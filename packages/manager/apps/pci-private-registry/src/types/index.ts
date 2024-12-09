@@ -5,6 +5,12 @@ export enum FilterRestrictionsEnum {
   REGISTRY = 'registry',
 }
 
+export enum TIPRestrictionsMethodEnum {
+  DELETE = 'DELETE',
+  REPLACE = 'REPLACE',
+  ADD = 'ADD',
+}
+
 export interface TIPRestrictions {
   createdAt: Date;
   cidr: string;

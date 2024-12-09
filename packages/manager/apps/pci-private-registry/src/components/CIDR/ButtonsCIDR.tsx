@@ -1,3 +1,4 @@
+import { memo, useCallback } from 'react';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_TYPE,
@@ -5,43 +6,54 @@ import {
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
 } from '@ovhcloud/ods-components';
+import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { OsdsIcon, OsdsButton } from '@ovhcloud/ods-components/react';
+import { useTranslation } from 'react-i18next';
+import {
+  OsdsIcon,
+  OsdsButton,
+  OsdsSpinner,
+} from '@ovhcloud/ods-components/react';
 import { useQueryClient } from '@tanstack/react-query';
 import { SubmitHandler, useFormContext } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 import {
   getRegistryQueyPrefixWithId,
   useIpRestrictions,
+  useUpdateIpRestriction,
 } from '@/api/hooks/useIpRestrictions';
-import { TIPRestrictionsData } from '@/types';
+import { TIPRestrictionsData, TIPRestrictionsMethodEnum } from '@/types';
 
-type Entry = {
-  ipBlock: string;
-  authorization: string[];
-};
-
-function addUniqueEntry(entries: Entry[], newEntry: Entry): Entry {
-  const existingEntry = entries.find(
-    (entry) => entry.ipBlock === newEntry.ipBlock,
-  );
-
-  if (existingEntry) {
-    newEntry.authorization.forEach((auth) => {
-      if (!existingEntry.authorization.includes(auth)) {
-        existingEntry.authorization.push(auth);
-      }
-    });
-  }
-
-  return newEntry;
-}
+import { categorizeByKey } from '@/helpers';
 
 const Buttons = () => {
   const queryClient = useQueryClient();
   const { projectId, registryId } = useParams();
-  const { handleSubmit } = useFormContext();
-  const { data: ipRestrictions } = useIpRestrictions(projectId, registryId, []);
+  const { handleSubmit, formState } = useFormContext();
+  const { t } = useTranslation(['ip-restructions', 'common']);
+
+  const { addSuccess, addError } = useNotifications();
+
+  const onError = useCallback(
+    () => addError(t('common:private_registry_crud_cidr_error')),
+    [addError],
+  );
+  const onSuccess = useCallback(
+    () => addSuccess(t('private_registry_cidr_submit_success')),
+    [addSuccess, t],
+  );
+
+  const { isPending: isPendingGetRestriction } = useIpRestrictions(
+    projectId,
+    registryId,
+  );
+
+  const { updateIpRestrictions, isPending } = useUpdateIpRestriction({
+    projectId,
+    registryId,
+    onError,
+    onSuccess,
+  });
 
   const removeDraftRow = () =>
     queryClient.setQueryData(
@@ -53,9 +65,19 @@ const Buttons = () => {
     );
 
   const onSubmit: SubmitHandler<TIPRestrictionsData> = (data) => {
-    const log = addUniqueEntry(ipRestrictions, data);
-    console.log(log);
+    const categorizeByKeyResult = categorizeByKey([data], 'authorization', [
+      'management',
+      'registry',
+    ]);
+    updateIpRestrictions({
+      cidrToUpdate: categorizeByKeyResult,
+      action: TIPRestrictionsMethodEnum.ADD,
+    });
   };
+
+  if (isPending || isPendingGetRestriction) {
+    return <OsdsSpinner />;
+  }
 
   return (
     <div className="grid grid-cols-[0.45fr,0.45fr] gap-4">
@@ -77,6 +99,7 @@ const Buttons = () => {
       <OsdsButton
         data-testid="submit-button"
         role="submit"
+        disabled={Boolean(Object.values(formState.errors).length) || undefined}
         type={ODS_BUTTON_TYPE.submit}
         onClick={handleSubmit(onSubmit)}
         color={ODS_THEME_COLOR_INTENT.primary}
@@ -93,4 +116,4 @@ const Buttons = () => {
   );
 };
 
-export default Buttons;
+export default memo(Buttons);

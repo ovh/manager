@@ -7,6 +7,7 @@ import {
   FilterRestrictionsServer,
   TIPRestrictionsData,
   TIPRestrictionsDefault,
+  TIPRestrictionsMethodEnum,
 } from '@/types';
 
 export default function ActionComponent({
@@ -43,7 +44,7 @@ export default function ActionComponent({
             FilterRestrictionsServer,
             TIPRestrictionsDefault[]
           >,
-          action: 'DELETE',
+          action: TIPRestrictionsMethodEnum.DELETE,
         });
       },
     },

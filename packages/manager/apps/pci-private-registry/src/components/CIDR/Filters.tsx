@@ -29,6 +29,7 @@ import {
   useUpdateIpRestriction,
 } from '@/api/hooks/useIpRestrictions';
 import { categorizeByKey } from '@/helpers';
+import { TIPRestrictionsMethodEnum } from '@/types';
 
 const Filters = ({ createNewRow }: { createNewRow: () => void }) => {
   const [searchField, setSearchField] = useState('');
@@ -67,7 +68,10 @@ const Filters = ({ createNewRow }: { createNewRow: () => void }) => {
       'authorization',
       ['management', 'registry'],
     );
-    updateIpRestrictions(categorizeByKeyResult, 'DELETE');
+    updateIpRestrictions({
+      cidrToUpdate: categorizeByKeyResult,
+      action: TIPRestrictionsMethodEnum.DELETE,
+    });
   }, [data, updateIpRestrictions]);
 
   const DraftModeEnabled = useMemo(() => data.some((item) => item.draft), [
@@ -152,13 +156,13 @@ const Filters = ({ createNewRow }: { createNewRow: () => void }) => {
               <FilterAdd
                 columns={[
                   {
-                    id: 'name',
-                    label: t('kube_list_name'),
+                    id: 'cidr',
+                    label: t('private_registry_bloc_cidr'),
                     comparators: FilterCategories.String,
                   },
                   {
-                    id: 'id',
-                    label: t('kube_list_id'),
+                    id: 'authorized',
+                    label: t('private_registry_cidr_authorization'),
                     comparators: FilterCategories.String,
                   },
                 ]}

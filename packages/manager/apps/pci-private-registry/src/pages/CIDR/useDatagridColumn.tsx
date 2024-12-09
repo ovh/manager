@@ -26,6 +26,7 @@ import Authorization from '@/components/CIDR/Authorization';
 import Description from '@/components/CIDR/Description';
 import IpBlock from '@/components/CIDR/IpBlock';
 import { capitalizeAndJoin } from '@/helpers';
+import AuthorizationLabel from '@/components/CIDR/AuthorizationLabel';
 
 export const useDatagridColumn = () => {
   const { control, handleSubmit, formState, ...other } = useFormContext();
@@ -91,7 +92,7 @@ export const useDatagridColumn = () => {
           <></>
         ),
       label:
-        data.length || (isDraft && data.length > 1)
+        (isDraft && data.length > 1) || (!isDraft && data.length)
           ? (((
               <div className="flex justify-center items-center mt-2">
                 <OsdsCheckbox
@@ -142,7 +143,7 @@ export const useDatagridColumn = () => {
         ) : (
           <div>{capitalizeAndJoin(props.authorization)}</div>
         ),
-      label: t('private_registry_cidr_authorization'),
+      label: ((<AuthorizationLabel />) as unknown) as string,
     },
     {
       id: 'add',

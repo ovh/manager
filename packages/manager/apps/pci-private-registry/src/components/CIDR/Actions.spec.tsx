@@ -1,12 +1,9 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
-import { ActionMenu } from '@ovh-ux/manager-react-components';
 import { useParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
 import ActionComponent from './Actions';
 import { useUpdateIpRestriction } from '@/api/hooks/useIpRestrictions';
 
-// Mock des modules
 vi.mock('react-router-dom', () => ({
   useParams: vi.fn(),
 }));

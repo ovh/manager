@@ -8,6 +8,7 @@ import {
   FilterRestrictionsServer,
   TIPRestrictionsData,
   TIPRestrictionsDefault,
+  TIPRestrictionsMethodEnum,
 } from '@/types';
 import queryClient from '@/queryClient';
 
@@ -20,7 +21,7 @@ export const getRegistryQueyPrefixWithId = (
 export const useIpRestrictions = (
   projectId: string,
   registryId: string,
-  type: FilterRestrictionsServer[],
+  type: FilterRestrictionsServer[] = ['management', 'registry'],
   select?: (data: TIPRestrictionsData[]) => TIPRestrictionsData[],
 ) =>
   useSuspenseQuery<TIPRestrictionsData[]>({
@@ -48,8 +49,17 @@ export const useUpdateIpRestriction = ({
       action,
     }: {
       cidrToUpdate: Record<FilterRestrictionsServer, TIPRestrictionsDefault[]>;
-      action: 'DELETE' | 'REPLACE';
-    }) => updateIpRestriction(projectId, registryId, cidrToUpdate, action),
+      action:
+        | TIPRestrictionsMethodEnum.DELETE
+        | TIPRestrictionsMethodEnum.REPLACE
+        | TIPRestrictionsMethodEnum.ADD;
+    }) =>
+      updateIpRestriction(
+        projectId,
+        registryId,
+        cidrToUpdate,
+        action ?? TIPRestrictionsMethodEnum.ADD,
+      ),
     onError,
     onSuccess: async () => {
       queryClient.invalidateQueries({
@@ -68,7 +78,10 @@ export const useUpdateIpRestriction = ({
       action,
     }: {
       cidrToUpdate: Record<FilterRestrictionsServer, TIPRestrictionsDefault[]>;
-      action: 'DELETE' | 'REPLACE';
+      action:
+        | TIPRestrictionsMethodEnum.DELETE
+        | TIPRestrictionsMethodEnum.REPLACE
+        | TIPRestrictionsMethodEnum.ADD;
     }) => mutation.mutate({ cidrToUpdate, action }),
     ...mutation,
   };

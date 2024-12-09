@@ -49,10 +49,7 @@ export default function BlocCIDR() {
 
   const { addInfo, clearNotifications, addError } = useNotifications();
 
-  const { data: dataCIDR } = useIpRestrictions(projectId, registryId, [
-    'management',
-    'registry',
-  ]);
+  const { data: dataCIDR } = useIpRestrictions(projectId, registryId);
   const { data: registry } = useRegistry(projectId, registryId, true);
 
   const isDraft = useMemo(
@@ -71,7 +68,6 @@ export default function BlocCIDR() {
         (err) => typeof err.message === 'string' && addError(t(err.message)),
       );
     }
-
     return clearNotifications;
   }, [formState, dataCIDR, isDraft]);
 

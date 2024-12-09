@@ -2,14 +2,13 @@ import {
   ODS_INPUT_TYPE,
   ODS_TEXT_COLOR_INTENT,
 } from '@ovhcloud/ods-components';
+
 import { OsdsInput } from '@ovhcloud/ods-components/react';
 import { Controller, useFormContext } from 'react-hook-form';
 import { DataGridTextCell } from '@ovh-ux/manager-react-components';
-import { useTranslation } from 'react-i18next';
 
 const IpBlock = () => {
   const { formState, control } = useFormContext();
-  const { t } = useTranslation(['ip-restrictions']);
 
   return (
     <>

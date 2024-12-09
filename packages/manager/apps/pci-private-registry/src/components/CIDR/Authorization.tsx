@@ -20,7 +20,7 @@ const Authorization = () => {
                 onChange(JSON.parse(e.target.value));
               }
             }}
-            value={value}
+            value={JSON.stringify(value)}
           >
             <span slot="placeholder" className="text-[#4e5693] font-normal">
               {t('private_registry_cidr_authorization_select')}
