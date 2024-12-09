@@ -46,6 +46,7 @@ export function QuantitySelector({
   max,
   className,
   contentClassName,
+  ...props
 }: Readonly<QuantitySelectorProps>) {
   const { t } = useTranslation('pci-quantity-selector');
   const [, setCounter] = useState(0);
@@ -61,7 +62,7 @@ export function QuantitySelector({
   useEffect(forceRedraw, [min, max]);
 
   return (
-    <OsdsFormField className={className} inline>
+    <OsdsFormField className={className} inline {...props}>
       <div className={contentClassName}>
         <div slot="label" className="flex gap-2">
           {label && (
