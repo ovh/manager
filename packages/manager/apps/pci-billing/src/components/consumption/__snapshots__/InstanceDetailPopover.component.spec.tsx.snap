@@ -14,7 +14,7 @@ exports[`InstanceDetailPopover > matches snapshot 1`] = `
       <strong>
         cpbc_server_details_popover_region : 
       </strong>
-      manager_components_region_A_micro
+      GRA-STAGING-A
     </osds-text>
     <osds-text
       class="block"

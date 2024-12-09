@@ -135,7 +135,7 @@ exports[`OutgoingTrafficList > matches snapshot with existing storages 1`] = `
                     color="text"
                     level="body"
                   >
-                    manager_components_region_SGP_micro
+                    SGP1
                   </osds-text>
                 </td>
                 <td
@@ -173,7 +173,7 @@ exports[`OutgoingTrafficList > matches snapshot with existing storages 1`] = `
                     color="text"
                     level="body"
                   >
-                    manager_components_region_MUM_micro
+                    AP-SOUTH-MUM-1
                   </osds-text>
                 </td>
                 <td
@@ -211,7 +211,7 @@ exports[`OutgoingTrafficList > matches snapshot with existing storages 1`] = `
                     color="text"
                     level="body"
                   >
-                    manager_components_region_SYD_micro
+                    SYD1
                   </osds-text>
                 </td>
                 <td

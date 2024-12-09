@@ -126,7 +126,7 @@ exports[`VolumeList > matches snapshot with existing volumes 1`] = `
                             <strong>
                               cpbc_volume_location : 
                             </strong>
-                            manager_components_region_BRU_micro
+                            EU-WEST-LZ-BRU-A
                           </osds-text>
                           <osds-text
                             class="block"
@@ -231,7 +231,7 @@ exports[`VolumeList > matches snapshot with existing volumes 1`] = `
                             <strong>
                               cpbc_volume_location : 
                             </strong>
-                            manager_components_region_MRS_micro
+                            EU-WEST-LZ-MRS-A
                           </osds-text>
                           <osds-text
                             class="block"
@@ -336,7 +336,7 @@ exports[`VolumeList > matches snapshot with existing volumes 1`] = `
                             <strong>
                               cpbc_volume_location : 
                             </strong>
-                            manager_components_region_PRG_micro
+                            EU-CENTRAL-LZ-PRG-A
                           </osds-text>
                           <osds-text
                             class="block"
@@ -441,7 +441,7 @@ exports[`VolumeList > matches snapshot with existing volumes 1`] = `
                             <strong>
                               cpbc_volume_location : 
                             </strong>
-                            manager_components_region_PRG_micro
+                            EU-CENTRAL-LZ-PRG-A
                           </osds-text>
                           <osds-text
                             class="block"
