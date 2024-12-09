@@ -26,7 +26,12 @@ export default function HistoryResume({
     environment,
   } = useContext(ShellContext);
 
-  const { translationValues } = useComputeDate();
+  const {
+    translationValues,
+    billingDate,
+    nextMonthDate,
+    prevMonthDate,
+  } = useComputeDate();
 
   useEffect(() => {
     navigation

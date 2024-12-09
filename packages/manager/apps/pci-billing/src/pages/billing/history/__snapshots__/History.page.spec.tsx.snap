@@ -1,0 +1,109 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`History > matches snapshot when data exist 1`] = `
+<DocumentFragment>
+  <div>
+    <div
+      class="mb-5 flex justify-between items-center"
+    >
+      <osds-button
+        class="flex"
+        color="primary"
+        size="sm"
+        type="button"
+        variant="ghost"
+      >
+        <osds-icon
+          class="mr-4"
+          color="primary"
+          name="chevron-left"
+          size="xxs"
+        />
+        cpbh_previous_month
+      </osds-button>
+      <osds-text
+        color="text"
+        level="heading"
+        size="500"
+        slot="summary"
+      >
+        cpbh_current_month
+      </osds-text>
+      <osds-button
+        class="flex"
+        color="primary"
+        size="sm"
+        type="button"
+        variant="ghost"
+      >
+        cpbh_next_month
+        <osds-icon
+          class="ml-4"
+          color="primary"
+          name="chevron-right"
+          size="xxs"
+        />
+      </osds-button>
+    </div>
+    <osds-spinner
+      class="block text-center"
+      inline="true"
+      size="md"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`History > matches snapshot when is Pending true 1`] = `
+<DocumentFragment>
+  <div>
+    <div
+      class="mb-5 flex justify-between items-center"
+    >
+      <osds-button
+        class="flex"
+        color="primary"
+        size="sm"
+        type="button"
+        variant="ghost"
+      >
+        <osds-icon
+          class="mr-4"
+          color="primary"
+          name="chevron-left"
+          size="xxs"
+        />
+        cpbh_previous_month
+      </osds-button>
+      <osds-text
+        color="text"
+        level="heading"
+        size="500"
+        slot="summary"
+      >
+        cpbh_current_month
+      </osds-text>
+      <osds-button
+        class="flex"
+        color="primary"
+        size="sm"
+        type="button"
+        variant="ghost"
+      >
+        cpbh_next_month
+        <osds-icon
+          class="ml-4"
+          color="primary"
+          name="chevron-right"
+          size="xxs"
+        />
+      </osds-button>
+    </div>
+    <osds-spinner
+      class="block text-center"
+      inline="true"
+      size="md"
+    />
+  </div>
+</DocumentFragment>
+`;
