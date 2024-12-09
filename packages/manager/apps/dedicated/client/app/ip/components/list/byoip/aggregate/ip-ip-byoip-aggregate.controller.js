@@ -13,7 +13,6 @@ export default class IpByoipAggregateController {
     this.$scope = $scope;
     this.IpByoipService = IpByoipService;
     this.ip = $scope.currentActionData.ipBlock;
-    this.refreshIpList = $scope.currentActionData.refreshIpList;
     this.aggregationIps = [];
     this.selectedAggregationIp = {};
     this.isLoaded = false;
@@ -73,18 +72,6 @@ export default class IpByoipAggregateController {
       this.selectedAggregationIp.aggregationIp,
     )
       .then(() => {
-        this.refreshIpList(
-          this.selectedAggregationIp.childrenIps.map((ip) => ({
-            ipBlock: ip,
-          })),
-          [
-            {
-              ipBlock: this.selectedAggregationIp.aggregationIp,
-              isTemporaryEntry: true,
-            },
-          ],
-        );
-
         this.Alerter.success(
           this.$translate.instant('ip_table_manage_byoip_aggregate_success'),
         );
