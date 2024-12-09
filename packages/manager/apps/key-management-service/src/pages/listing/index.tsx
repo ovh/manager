@@ -1,5 +1,5 @@
-import React from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
   ODS_MESSAGE_TYPE,
@@ -31,6 +31,8 @@ import {
   DatagridCellStatus,
 } from '@/components/Listing/ListingCells';
 import KmsGuidesHeader from '@/components/Guide/KmsGuidesHeader';
+import { useAutoRefetch } from '@/data/hooks/useAutoRefetch';
+import { getOkmsServicesResourceListQueryKey } from '@/data/api/okms';
 
 export default function Listing() {
   const { t } = useTranslation('key-management-service/listing');
@@ -38,6 +40,10 @@ export default function Listing() {
   const navigate = useNavigate();
   const { clearNotifications } = useNotifications();
   const { trackClick } = useOvhTracking();
+  const { state } = useLocation();
+  const [isRefetchEnabled, setIsRefetchEnabled] = useState<boolean>(
+    state?.hasPendingOrder,
+  );
 
   const columns = [
     {
@@ -80,6 +86,12 @@ export default function Listing() {
     pageSize: 10,
   });
 
+  useAutoRefetch({
+    queryKey: getOkmsServicesResourceListQueryKey,
+    enabled: isRefetchEnabled,
+    onFinish: () => setIsRefetchEnabled(false),
+  });
+
   const headerProps: HeadersProps = {
     title: t('key_management_service_listing_title'),
     headerButton: <KmsGuidesHeader />,
@@ -88,7 +100,11 @@ export default function Listing() {
   return (
     <RedirectionGuard
       isLoading={isLoading || !flattenData}
-      condition={status === 'success' && data?.pages[0].data.length === 0}
+      condition={
+        status === 'success' &&
+        !isRefetchEnabled &&
+        data?.pages[0].data.length === 0
+      }
       route={ROUTES_URLS.onboarding}
       isError={isError}
       errorComponent={

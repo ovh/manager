@@ -36,7 +36,7 @@ export default class NutanixDashboardCtrl {
     return (
       diff >= 0 &&
       diff <= LICENSE_REGISTRATION_ENDS_IN_DAYS &&
-      this.getTechnicalDetails.nutanixCluster.license.edition ===
+      this.getTechnicalDetails?.nutanixCluster?.license.edition ===
         'Personal license'
     );
   }

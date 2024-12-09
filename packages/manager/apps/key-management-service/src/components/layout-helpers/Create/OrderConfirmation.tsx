@@ -122,7 +122,7 @@ const OrderConfirmation = ({ region }: OrderConfirmationProps) => {
             actionType: 'navigation',
             actions: ['finish'],
           });
-          navigate(ROUTES_URLS.root);
+          navigate(ROUTES_URLS.root, { state: { hasPendingOrder: true } });
         }}
       >
         {t('key_management_service_create_order_initiated_cta_done')}
