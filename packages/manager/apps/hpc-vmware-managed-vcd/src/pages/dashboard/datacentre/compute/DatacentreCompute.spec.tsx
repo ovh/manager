@@ -4,7 +4,7 @@ import {
   organizationList,
   datacentreList,
 } from '@ovh-ux/manager-module-vcd-api';
-import { checkTextVisibility } from '@ovh-ux/manager-core-test-utils';
+import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 import {
   DEFAULT_LISTING_ERROR,
   labels,
@@ -20,13 +20,13 @@ describe('Datacentre Compute Listing Page', () => {
     });
 
     // access compute tab
-    await checkTextVisibility(COMPUTE_TITLE);
+    await assertTextVisibility(COMPUTE_TITLE);
     const tab = screen.getByText(COMPUTE_TITLE);
     await waitFor(() => userEvent.click(tab));
 
     // check page title & CTA
-    await checkTextVisibility(VHOSTS_TITLE);
-    await checkTextVisibility(
+    await assertTextVisibility(VHOSTS_TITLE);
+    await assertTextVisibility(
       labels.datacentresCompute.managed_vcd_vdc_compute_order_cta,
     );
   });
@@ -37,6 +37,6 @@ describe('Datacentre Compute Listing Page', () => {
       isComputeKO: true,
     });
 
-    await checkTextVisibility(DEFAULT_LISTING_ERROR);
+    await assertTextVisibility(DEFAULT_LISTING_ERROR);
   });
 });

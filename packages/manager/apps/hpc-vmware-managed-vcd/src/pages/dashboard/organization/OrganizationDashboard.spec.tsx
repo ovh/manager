@@ -1,7 +1,7 @@
 import userEvents from '@testing-library/user-event';
 import { screen, waitFor } from '@testing-library/react';
 import { organizationList } from '@ovh-ux/manager-module-vcd-api';
-import { checkTextVisibility } from '@ovh-ux/manager-core-test-utils';
+import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 import { renderTest, labels } from '../../../test-utils';
 
 describe('Organization Dashboard Page', () => {
@@ -10,11 +10,11 @@ describe('Organization Dashboard Page', () => {
     const link = screen.getByText(organizationList[0].currentState.fullName);
     await waitFor(() => userEvents.click(link));
 
-    await checkTextVisibility(
+    await assertTextVisibility(
       labels.dashboard.managed_vcd_dashboard_data_protection,
     );
 
-    await checkTextVisibility(organizationList[0].currentState.description);
+    await assertTextVisibility(organizationList[0].currentState.description);
   });
 
   it('display an error', async () => {
@@ -23,6 +23,6 @@ describe('Organization Dashboard Page', () => {
       isOrganizationKo: true,
     });
 
-    await checkTextVisibility('Organization error');
+    await assertTextVisibility('Organization error');
   });
 });
