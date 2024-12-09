@@ -28,12 +28,4 @@ export const RANGES = {
   LE_16,
 };
 
-export const UPSCALE_TRACKING_PREFIX = 'vps::detail::upscale-step-';
-
-export default {
-  PRICING_MODES,
-  RANGES,
-  LE_RANGES,
-  PRICING_PERIODS,
-  UPSCALE_TRACKING_PREFIX,
-};
+export default { PRICING_MODES, RANGES, LE_RANGES, PRICING_PERIODS };
