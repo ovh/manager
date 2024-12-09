@@ -53,77 +53,73 @@ export default function HubSupport() {
 
   return (
     <OsdsTile className="w-full block p-6" inline>
-      {isLoading ? (
-        <Skeletons />
-      ) : (
-        <div className="flex flex-col">
-          {error && (
-            <TileError
-              className="block p-4"
-              message={t('hub_support_error')}
-              refetch={refetch}
-            />
-          )}
-          {!error && data.count <= 0 && <HubSupportHelp />}
-          {!error && data.count > 0 && (
-            <>
-              <div className="flex mb-2 gap-4 items-center">
-                <OsdsText
+      <div className="flex flex-col">
+        {error && (
+          <TileError
+            className="block p-4"
+            message={t('hub_support_error')}
+            refetch={refetch}
+          />
+        )}
+        {!error && !data?.count && <HubSupportHelp />}
+        {!error && data?.count > 0 && (
+          <>
+            <div className="flex mb-2 gap-4 items-center">
+              <OsdsText
+                color={ODS_THEME_COLOR_INTENT.primary}
+                level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
+                className="block"
+                size={ODS_TEXT_SIZE._400}
+              >
+                {t('hub_support_title')}
+              </OsdsText>
+              <OsdsChip
+                color={ODS_THEME_COLOR_INTENT.primary}
+                size={ODS_CHIP_SIZE.sm}
+              >
+                {data?.count}
+              </OsdsChip>
+              <div className="ml-auto flex items-center gap-4">
+                <OsdsIcon
+                  hoverable
+                  data-testid="refresh-icon"
+                  className="cursor-pointer"
+                  onClick={() => refetch()}
+                  name={ODS_ICON_NAME.REFRESH}
+                  size={ODS_ICON_SIZE.xs}
                   color={ODS_THEME_COLOR_INTENT.primary}
-                  level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-                  className="block"
-                  size={ODS_TEXT_SIZE._400}
-                >
-                  {t('hub_support_title')}
-                </OsdsText>
-                <OsdsChip
+                />
+                <OsdsLink
+                  href={urlSeeAll}
+                  target={
+                    isEUOrCA
+                      ? OdsHTMLAnchorElementTarget._blank
+                      : OdsHTMLAnchorElementTarget._self
+                  }
+                  rel={
+                    isEUOrCA ? OdsHTMLAnchorElementRel.noreferrer : undefined
+                  }
                   color={ODS_THEME_COLOR_INTENT.primary}
-                  size={ODS_CHIP_SIZE.sm}
+                  className="font-bold text-right"
                 >
-                  {data.count}
-                </OsdsChip>
-                <div className="ml-auto flex items-center gap-4">
-                  <OsdsIcon
-                    hoverable
-                    data-testid="refresh-icon"
-                    className="cursor-pointer"
-                    onClick={() => refetch()}
-                    name={ODS_ICON_NAME.REFRESH}
-                    size={ODS_ICON_SIZE.xs}
-                    color={ODS_THEME_COLOR_INTENT.primary}
-                  />
-                  <OsdsLink
-                    href={urlSeeAll}
-                    target={
-                      isEUOrCA
-                        ? OdsHTMLAnchorElementTarget._blank
-                        : OdsHTMLAnchorElementTarget._self
-                    }
-                    rel={
-                      isEUOrCA ? OdsHTMLAnchorElementRel.noreferrer : undefined
-                    }
-                    color={ODS_THEME_COLOR_INTENT.primary}
-                    className="font-bold text-right"
-                  >
-                    {tCommon('hub_support_see_more')}
-                    <span slot="end">
-                      <OsdsIcon
-                        hoverable
-                        name={ODS_ICON_NAME.EXTERNAL_LINK}
-                        size={ODS_ICON_SIZE.xs}
-                        color={ODS_THEME_COLOR_INTENT.primary}
-                      />
-                    </span>
-                  </OsdsLink>
-                </div>
+                  {tCommon('hub_support_see_more')}
+                  <span slot="end">
+                    <OsdsIcon
+                      hoverable
+                      name={ODS_ICON_NAME.EXTERNAL_LINK}
+                      size={ODS_ICON_SIZE.xs}
+                      color={ODS_THEME_COLOR_INTENT.primary}
+                    />
+                  </span>
+                </OsdsLink>
               </div>
-              <div className="w-full">
-                <HubSupportTable tickets={data.data} />
-              </div>
-            </>
-          )}
-        </div>
-      )}
+            </div>
+            <div className="w-full">
+              <HubSupportTable tickets={data?.data} />
+            </div>
+          </>
+        )}
+      </div>
     </OsdsTile>
   );
 }

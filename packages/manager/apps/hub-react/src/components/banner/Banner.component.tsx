@@ -21,7 +21,6 @@ export default function Banner() {
 
   return (
     <>
-      {isLoading && <OsdsSkeleton data-testid="banner_skeleton" inline />}
       {!isLoading && banner && (
         <OsdsLink
           className="mb-4"

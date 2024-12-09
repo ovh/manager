@@ -128,7 +128,7 @@ export default function BillingSummary() {
             data-testid="bills_amount_container"
             className="block whitespace-nowrap manager-hub-billing-summary__bill-total"
           >
-            {!isLoading && formattedPrice}
+            {!isLoading ? formattedPrice : <OsdsSkeleton inline />}
           </span>
           <p className="mt-6">
             {isLoading && (
