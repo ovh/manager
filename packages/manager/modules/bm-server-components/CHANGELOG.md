@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.1.1...@ovh-ux/manager-bm-server-components@2.2.0) (2024-12-09)
+
+
+### Features
+
+* **components:** add protected-data components ([39de227](https://github.com/ovh/manager/commit/39de2273f6e564ba48e5b778845cb88e54ff4bfb))
+* **nutanix:** add iam condition on nutanix dashboard ([d0cda2a](https://github.com/ovh/manager/commit/d0cda2aee5664e7b6883e46205ffbccc1efdaab2))
+
+
+
+
+
 ## [2.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.1.0...@ovh-ux/manager-bm-server-components@2.1.1) (2024-11-28)
 
 

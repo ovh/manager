@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@2.0.2...@ovh-ux/manager-nutanix@2.1.0) (2024-12-09)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3534] ([5e6accb](https://github.com/ovh/manager/commit/5e6accb99f54cd97688ba33b37468f92996d0a28))
+* **protected-data:** fix build configuration ([2705b1f](https://github.com/ovh/manager/commit/2705b1f7648ef43e0d98f5ffc3a1698770b854bb))
+
+
+### Features
+
+* **components:** add protected-data components ([39de227](https://github.com/ovh/manager/commit/39de2273f6e564ba48e5b778845cb88e54ff4bfb))
+* **nutanix:** add iam condition on nutanix dashboard ([d0cda2a](https://github.com/ovh/manager/commit/d0cda2aee5664e7b6883e46205ffbccc1efdaab2))
+
+
+
+
+
 ## [2.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@2.0.1...@ovh-ux/manager-nutanix@2.0.2) (2024-11-28)
 
 **Note:** Version bump only for package @ovh-ux/manager-nutanix
