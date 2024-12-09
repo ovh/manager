@@ -30,6 +30,18 @@ export default class VmwareVdcAddCtrl {
     this.hostList = [];
 
     this.model = { vdc: null, host: null, datastoreRequired: false };
+    this.manageSapHanaOrder();
+  }
+
+  manageSapHanaOrder() {
+    this.hostTypes = Object.values(HOST_TYPE).filter(
+      (host) => this.orderSapHana || host !== HOST_TYPE.SAPHANA,
+    );
+    this.step1DescriptionLabel = this.$translate.instant(
+      `dedicatedCloud_configuration_add_datacenter_step_1_description${
+        !this.orderSapHana ? '_no_saphana' : ''
+      }`,
+    );
   }
 
   datacentersLoad() {
@@ -64,21 +76,15 @@ export default class VmwareVdcAddCtrl {
     this.hostsLoading = true;
     return this.checkDatastore()
       .then((data) => {
-        const hostType = { ...HOST_TYPE };
-        if (!this.orderSapHana) {
-          delete hostType.SAPHANA;
-        }
         this.model.datastoreRequired = !data;
-        this.hostList = Object.values(hostType).map((host) => {
-          return {
-            name:
-              host !== HOST_TYPE.STANDARD
-                ? `${this.model.vdc.vdc}_${host}`
-                : this.model.vdc.vdc,
-            range: this.model.vdc.vdc,
-            host,
-          };
-        });
+        this.hostList = this.hostTypes.map((host) => ({
+          name:
+            host !== HOST_TYPE.STANDARD
+              ? `${this.model.vdc.vdc}_${host}`
+              : this.model.vdc.vdc,
+          range: this.model.vdc.vdc,
+          host,
+        }));
       })
       .catch((err) => {
         return this.goBack(

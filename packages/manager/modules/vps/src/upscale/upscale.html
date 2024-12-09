@@ -28,6 +28,7 @@
             prevent-next="true"
             valid="$ctrl.range"
             on-focus="$ctrl.resetRangeConfiguration()"
+            on-submit="$ctrl.trackStep(2)"
         >
             <div class="row d-md-flex flex-wrap">
                 <div
@@ -130,6 +131,7 @@
             description="{{:: 'vps_upscale_change_configuration_details' | translate }}"
             prevent-next="true"
             valid="$ctrl.isNewPlanCodeDifferent && $ctrl.rangeConfiguration.pricing"
+            on-submit="$ctrl.trackStep($ctrl.isEliteUpgrade ? 2 : 3)"
         >
             <p data-translate="vps_upscale_change_configuration_indication"></p>
             <table class="table pr-5">
@@ -237,6 +239,7 @@
             editable="!$ctrl.loading.performUpscale"
             prevent-next="true"
             valid="$ctrl.agreeContracts || ($ctrl.order.contracts.length === 0 && !$ctrl.agreements)"
+            on-submit="$ctrl.trackStep($ctrl.isEliteUpgrade ? 3 : 4)"
         >
             <div data-ng-if="$ctrl.order">
                 <oui-checkbox
@@ -263,6 +266,7 @@
             on-focus="$ctrl.formatNewRangeInformation()"
             loading="$ctrl.loading.performUpscale"
             submit-text="{{:: 'vps_common_order' | translate }}"
+            on-submit="$ctrl.trackStep($ctrl.isEliteUpgrade ? 3 : 4, true)"
         >
             <div class="row">
                 <vps-upscale-summary-configuration

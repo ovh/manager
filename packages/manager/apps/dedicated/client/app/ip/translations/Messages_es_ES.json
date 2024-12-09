@@ -772,5 +772,7 @@
   "ip_repricing_banner_list_item_2": "A partir del 1 de diciembre de 2022 para las direcciones existentes (contratadas antes del 6 de octubre de 2022).",
   "ip_repricing_banner_link": "Más información",
   "ip_unused_banner_text": "Tiene direcciones IP no utilizadas. Las direcciones IPv4 son un recurso cada vez más escaso, por lo que, si no las necesita, le recomendamos que las libere.",
-  "ip_unused_banner_link": "Ver mis direcciones IP no utilizadas."
+  "ip_unused_banner_link": "Ver mis direcciones IP no utilizadas.",
+  "ip_table_ipBlock_under_creation": "Creando...",
+  "ip_table_ipblock_under_division": "División en curso"
 }
