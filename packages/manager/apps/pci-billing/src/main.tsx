@@ -7,7 +7,7 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import App from './App';
 
-import './index.css';
+import './index.scss';
 
 import '@/vite-hmr.ts';
 
