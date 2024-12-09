@@ -1,13 +1,13 @@
 import { organizationList } from '@ovh-ux/manager-module-vcd-api';
-import { checkTextVisibility } from '@ovh-ux/manager-core-test-utils';
+import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 import { renderTest, labels } from '../../../test-utils';
 
 describe('Organizations Listing Page', () => {
   it('display the listing page if there is at least one organization', async () => {
     await renderTest({ nbOrganization: 1 });
 
-    await checkTextVisibility(labels.listing.managed_vcd_listing_description);
+    await assertTextVisibility(labels.listing.managed_vcd_listing_description);
 
-    await checkTextVisibility(organizationList[0].currentState.fullName);
+    await assertTextVisibility(organizationList[0].currentState.fullName);
   });
 });

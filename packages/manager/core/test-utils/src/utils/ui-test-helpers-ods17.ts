@@ -43,23 +43,23 @@ export const getButtonByLabel = async ({
   altLabel,
   disabled,
   isLink,
+  nth = 0,
 }: {
   container: HTMLElement;
   label: string;
   altLabel?: string;
   disabled?: boolean;
   isLink?: boolean;
+  nth?: number;
 }) => {
   let button: HTMLElement;
   await waitFor(() => {
     const buttonList = container.querySelectorAll(
       isLink ? 'osds-link' : 'osds-button',
     );
-    buttonList.forEach((btn) => {
-      if ([label, altLabel].includes(btn.textContent)) {
-        button = btn;
-      }
-    });
+    button = Array.from(buttonList).filter((btn) =>
+      [label, altLabel].includes(btn.textContent),
+    )[nth];
     return disabled
       ? expect(button).toHaveAttribute('disabled')
       : expect(button).not.toHaveAttribute('disabled');
@@ -71,14 +71,16 @@ export const getButtonByIcon = async ({
   container,
   iconName,
   disabled,
+  nth = 0,
 }: {
   container: HTMLElement;
   iconName: ODS_ICON_NAME;
   disabled?: boolean;
+  nth?: number;
 }) => {
   let button: HTMLElement;
   await waitFor(() => {
-    button = container.querySelector(`osds-icon[name="${iconName}"]`)
+    button = container.querySelectorAll(`osds-icon[name="${iconName}"]`)?.[nth]
       ?.parentElement;
     return disabled
       ? expect(button).toHaveAttribute('disabled')
@@ -87,16 +89,36 @@ export const getButtonByIcon = async ({
   return button;
 };
 
-export const getButtonByTestId = async (testId: string, disabled?: boolean) => {
+export const getButtonByTestId = async ({
+  testId,
+  disabled,
+  nth = 0,
+}: {
+  testId: string;
+  disabled?: boolean;
+  nth?: number;
+}) => {
   let button: HTMLElement;
   await waitFor(() => {
-    button = screen.getByTestId(testId);
+    button = screen.getAllByTestId(testId).at(nth);
     return disabled
       ? expect(button).toHaveAttribute('disabled')
       : expect(button).not.toHaveAttribute('disabled');
   }, WAIT_FOR_DEFAULT_OPTIONS);
   return button;
 };
+
+/**
+ * @description Standard check: wait and expect some text to be visible on the screen
+ * @param text expected to be visible
+ * @param timeout time to wait for (default to 30sec)
+ * @returns
+ */
+export const assertTextVisibility = async (text: string): Promise<void> =>
+  waitFor(
+    () => expect(screen.getByText(text)).toBeVisible(),
+    WAIT_FOR_DEFAULT_OPTIONS,
+  );
 
 export const changeInputValue = async ({
   inputLabel,
@@ -111,15 +133,3 @@ export const changeInputValue = async ({
   });
   return waitFor(() => fireEvent(input, event));
 };
-
-/**
- * @description Standard check: wait and expect some text to be visible on the screen
- * @param text expected to be visible
- * @param timeout time to wait for (default to 30sec)
- * @returns
- */
-export const checkTextVisibility = (text: string): Promise<void> =>
-  waitFor(
-    () => expect(screen.getByText(text)).toBeVisible(),
-    WAIT_FOR_DEFAULT_OPTIONS,
-  );
