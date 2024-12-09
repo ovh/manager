@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.2.1...@ovh-ux/manager-netapp@2.2.2) (2024-12-09)
+
+
+### Bug Fixes
+
+* **vrack-services:** add missing translations [CDS 3537] ([#14438](https://github.com/ovh/manager/issues/14438)) ([9c39644](https://github.com/ovh/manager/commit/9c39644f000aab11a5ee57e0248337cfe040b840))
+
+
+
+
+
 ## [2.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.2.0...@ovh-ux/manager-netapp@2.2.1) (2024-12-05)
 
 
