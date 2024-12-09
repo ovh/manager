@@ -1,24 +1,11 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { getMacroRegion } from '@ovh-ux/manager-react-components';
 import { TCatalog } from '@ovh-ux/manager-pci-common';
 import { useCloudCatalog } from '@/api/hooks/cloud-catalog';
 import { useAvailableGatewayPlans } from '@/api/hooks/gateway-plans';
 import { TAvailableGatewayPlansResponse } from '@/api/data/gateway-plans';
 import { useInactiveRegions } from '@/api/hooks/useInactiveRegions';
-
-const getMacroRegion = (region: string) => {
-  const regionSubStrings = region.split('-');
-
-  const macroRegionMap = [
-    null,
-    regionSubStrings[0].split(/(\d)/)[0],
-    regionSubStrings[0],
-    regionSubStrings[2],
-    regionSubStrings[2] === 'LZ' ? regionSubStrings[3] : regionSubStrings[2],
-    regionSubStrings[3],
-  ];
-  return macroRegionMap[regionSubStrings.length] || 'Unknown_Macro_Region';
-};
 
 const getLitteralProductSize = (productName: string): string => {
   const [, size] = /-([^-]+)$/.exec(productName) || [];

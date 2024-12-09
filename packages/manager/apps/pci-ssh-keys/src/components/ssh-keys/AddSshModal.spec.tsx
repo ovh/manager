@@ -40,7 +40,7 @@ describe('Add ssh modal', () => {
     const { getByTestId } = renderModal();
     const keyNameInput = getByTestId('sshKeyName');
     const publicKeyInput = getByTestId('sshPublicKey');
-    const submitButton = getByTestId('submitButton');
+    const submitButton = getByTestId('pciModal-button_submit');
     expect(add).not.toHaveBeenCalled();
     act(() => {
       fireEvent.change(keyNameInput, {
@@ -81,7 +81,7 @@ describe('Add ssh modal', () => {
     const { getByTestId } = renderModal();
     const keyNameInput = getByTestId('sshKeyName');
     const publicKeyInput = getByTestId('sshPublicKey');
-    const submitButton = getByTestId('submitButton');
+    const submitButton = getByTestId('pciModal-button_submit');
     act(() => {
       fireEvent.change(keyNameInput, {
         target: {

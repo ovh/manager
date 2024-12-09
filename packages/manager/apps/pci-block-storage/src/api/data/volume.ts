@@ -194,12 +194,14 @@ export const addVolume = async ({
   volumeCapacity,
   volumeType,
 }: AddVolumeProps): Promise<void> => {
-  const { data } = await v6.post<void>(`/cloud/project/${projectId}/volume`, {
-    name,
-    region: regionName,
-    size: volumeCapacity,
-    type: volumeType,
-  });
+  const { data } = await v6.post<void>(
+    `/cloud/project/${projectId}/region/${regionName}/volume`,
+    {
+      name,
+      size: volumeCapacity,
+      type: volumeType,
+    },
+  );
 
   return data;
 };

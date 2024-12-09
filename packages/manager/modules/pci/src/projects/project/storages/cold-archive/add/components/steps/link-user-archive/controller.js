@@ -13,12 +13,16 @@ export default class ColdArchiveLinkUserArchiveController {
     $translate,
     CucCloudMessage,
     PciStoragesColdArchiveService,
+    PciStoragesObjectStorageService,
     atInternet,
+    $q,
   ) {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.pciStoragesColdArchiveService = PciStoragesColdArchiveService;
+    this.PciStoragesObjectStorageService = PciStoragesObjectStorageService;
     this.atInternet = atInternet;
+    this.$q = $q;
 
     this.USER_SUCCESS_BANNER =
       COLD_ARCHIVE_TRACKING.ADD_USER.USER_SUCCESS_BANNER;
@@ -247,14 +251,23 @@ export default class ColdArchiveLinkUserArchiveController {
         )
       : Service.generateS3Credentials(this.projectId, user.id);
 
+    const secretPromise = this.PciStoragesObjectStorageService.getS3Secret(
+      this.projectId,
+      user.id,
+      user.s3Credentials?.access,
+    );
     this.userModel.linkedMode.isInProgress = true;
-    return taskPromise
-      .then((credential) => {
+    return this.$q
+      .all([taskPromise, secretPromise])
+      .then(([credential, secretData]) => {
         this.trackPage(
           `${COLD_ARCHIVE_TRACKING.ADD_USER.ASSOCIATE.ASSOCIATE_USER}_${COLD_ARCHIVE_TRACKING.STATUS.SUCCESS}`,
         );
         this.userModel.linkedMode.selected.s3Credentials = credential;
-        this.userModel.linkedMode.credential = credential;
+        this.userModel.linkedMode.credential = {
+          ...credential,
+          secret: secretData.secret,
+        };
       })
       .catch(() => {
         this.trackPage(

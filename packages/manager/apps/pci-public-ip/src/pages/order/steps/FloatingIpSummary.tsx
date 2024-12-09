@@ -87,7 +87,6 @@ export const FloatingIpSummary = ({
             <OsdsMessage
               icon={ODS_ICON_NAME.WARNING}
               color={ODS_THEME_COLOR_INTENT.warning}
-              className="rounded-[8px]"
             >
               <div>
                 <p>
@@ -153,7 +152,6 @@ export const FloatingIpSummary = ({
             <OsdsMessage
               icon={ODS_ICON_NAME.INFO}
               color={ODS_THEME_COLOR_INTENT.info}
-              className="rounded-[8px]"
             >
               <OsdsText
                 color={ODS_THEME_COLOR_INTENT.text}
@@ -170,7 +168,6 @@ export const FloatingIpSummary = ({
             <OsdsMessage
               icon={ODS_ICON_NAME.INFO}
               color={ODS_THEME_COLOR_INTENT.info}
-              className="rounded-[8px]"
             >
               <p>{tOrder('pci_additional_ip_create_step_summary_banner3')}</p>
             </OsdsMessage>

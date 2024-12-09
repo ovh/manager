@@ -74,7 +74,6 @@ export default function SwitchPage(): JSX.Element {
       onOdsModalClose={() => {
         goBack();
       }}
-      color={ODS_THEME_COLOR_INTENT.text}
     >
       <slot name="content">
         {!isNodesPending ? (
