@@ -11,12 +11,7 @@ import { Price } from '@ovh-ux/manager-models';
 import { pricingConstants } from '@ovh-ux/manager-product-offers';
 
 import UpscaleService from './upscale.service';
-import {
-  PRICING_MODES,
-  RANGES,
-  LE_RANGES,
-  UPSCALE_TRACKING_PREFIX,
-} from './upscale.constants';
+import { PRICING_MODES, RANGES, LE_RANGES } from './upscale.constants';
 
 export default class UpscaleController {
   /* @ngInject */
@@ -512,6 +507,11 @@ export default class UpscaleController {
   }
 
   performUpscaleService() {
+    this.atInternet.trackClick({
+      name: `vps::detail::upscale::order-${this.range.formattedName}`,
+      type: 'action',
+    });
+
     this.loading.performUpscale = true;
     const plan = this.getPlanFromSelectedRangeAndConfiguration(
       this.rangeConfiguration,
@@ -553,23 +553,5 @@ export default class UpscaleController {
       .finally(() => {
         this.loading.performUpscale = false;
       });
-  }
-
-  trackStep(index, order) {
-    const currentPlanCode = this.upscaleRanges.find((e) => e.isCurrentRange)
-      ?.planCode;
-    const { planCode } = this.getPlanFromSelectedRangeAndConfiguration(
-      this.rangeConfiguration,
-      this.range.formattedName.toLowerCase(),
-    );
-    return order
-      ? this.atInternet.trackClick({
-          name: `${UPSCALE_TRACKING_PREFIX}${index}::order-${currentPlanCode}_to_${planCode}`,
-          type: 'action',
-        })
-      : this.atInternet.trackPage({
-          name: `${UPSCALE_TRACKING_PREFIX}${index}`,
-          type: 'navigation',
-        });
   }
 }
