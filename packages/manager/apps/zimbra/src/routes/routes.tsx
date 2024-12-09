@@ -22,18 +22,27 @@ export const Routes: any = [
       {
         path: ':serviceName',
         ...lazyRouteConfig(() => import('@/pages/dashboard/_layout')),
+        handle: {
+          breadcrumbLabel: 'zimbra_dashboard_title',
+        },
         children: [
           {
             path: '',
             ...lazyRouteConfig(() =>
               import('@/pages/dashboard/GeneralInformation/GeneralInformation'),
             ),
+            handle: {
+              breadcrumbLabel: 'zimbra_dashboard_general_informations',
+            },
           },
           {
             path: 'organizations',
             ...lazyRouteConfig(() =>
               import('@/pages/dashboard/Organizations/Organizations'),
             ),
+            handle: {
+              breadcrumbLabel: 'zimbra_dashboard_organizations',
+            },
             children: [
               {
                 path: 'add',
@@ -42,6 +51,9 @@ export const Routes: any = [
                     '@/pages/dashboard/Organizations/ModalAddAndEditOrganization.page'
                   ),
                 ),
+                handle: {
+                  breadcrumbLabel: 'zimbra_dashboard_organizations_add',
+                },
               },
               {
                 path: 'edit',
@@ -50,6 +62,9 @@ export const Routes: any = [
                     '@/pages/dashboard/Organizations/ModalAddAndEditOrganization.page'
                   ),
                 ),
+                handle: {
+                  breadcrumbLabel: 'zimbra_dashboard_organizations_edit',
+                },
               },
               {
                 path: 'delete',
@@ -58,6 +73,9 @@ export const Routes: any = [
                     '@/pages/dashboard/Organizations/ModalDeleteOrganization.component'
                   ),
                 ),
+                handle: {
+                  breadcrumbLabel: 'zimbra_dashboard_organizations_delete',
+                },
               },
             ],
           },
@@ -66,19 +84,28 @@ export const Routes: any = [
             ...lazyRouteConfig(() =>
               import('@/pages/dashboard/Domains/Domains'),
             ),
+            handle: {
+              breadcrumbLabel: 'zimbra_dashboard_domains',
+            },
             children: [
               {
                 path: 'add',
                 ...lazyRouteConfig(() =>
                   import('@/pages/dashboard/Domains/AddDomain.page'),
                 ),
-                handle: { isOverridePage: true },
+                handle: {
+                  isOverridePage: true,
+                  breadcrumbLabel: 'zimbra_dashboard_domains_add',
+                },
               },
               {
                 path: 'edit',
                 ...lazyRouteConfig(() =>
                   import('@/pages/dashboard/Domains/ModalEditDomain.component'),
                 ),
+                handle: {
+                  breadcrumbLabel: 'zimbra_dashboard_domains_edit',
+                },
               },
               {
                 path: 'delete',
@@ -87,14 +114,49 @@ export const Routes: any = [
                     '@/pages/dashboard/Domains/ModalDeleteDomain.component'
                   ),
                 ),
+                handle: {
+                  breadcrumbLabel: 'zimbra_dashboard_domains_delete',
+                },
               },
               {
-                path: 'diagnostic',
+                path: 'diagnostics/mx',
                 ...lazyRouteConfig(() =>
-                  import(
-                    '@/pages/dashboard/Domains/ModalDiagnosticDnsRecord.component'
-                  ),
+                  import('@/pages/dashboard/Domains/Diagnostics.page'),
                 ),
+                handle: {
+                  isOverridePage: true,
+                  breadcrumbLabel: 'zimbra_dashboard_domains_diagnostics',
+                },
+              },
+              {
+                path: 'diagnostics/srv',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/dashboard/Domains/Diagnostics.page'),
+                ),
+                handle: {
+                  isOverridePage: true,
+                  breadcrumbLabel: 'zimbra_dashboard_domains_diagnostics',
+                },
+              },
+              {
+                path: 'diagnostics/spf',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/dashboard/Domains/Diagnostics.page'),
+                ),
+                handle: {
+                  isOverridePage: true,
+                  breadcrumbLabel: 'zimbra_dashboard_domains_diagnostics',
+                },
+              },
+              {
+                path: 'diagnostics/dkim',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/dashboard/Domains/Diagnostics.page'),
+                ),
+                handle: {
+                  isOverridePage: true,
+                  breadcrumbLabel: 'zimbra_dashboard_domains_diagnostics',
+                },
               },
             ],
           },
@@ -103,6 +165,9 @@ export const Routes: any = [
             ...lazyRouteConfig(() =>
               import('@/pages/dashboard/EmailAccounts/EmailAccounts'),
             ),
+            handle: {
+              breadcrumbLabel: 'zimbra_dashboard_email_accounts',
+            },
             children: [
               {
                 path: 'add',
@@ -111,7 +176,10 @@ export const Routes: any = [
                     '@/pages/dashboard/EmailAccounts/AddAndEditEmailAccount.page'
                   ),
                 ),
-                handle: { isOverridePage: true },
+                handle: {
+                  isOverridePage: true,
+                  breadcrumbLabel: 'zimbra_dashboard_email_accounts_add',
+                },
               },
               {
                 path: 'settings',
@@ -120,7 +188,10 @@ export const Routes: any = [
                     '@/pages/dashboard/EmailAccounts/AddAndEditEmailAccount.page'
                   ),
                 ),
-                handle: { isOverridePage: true },
+                handle: {
+                  isOverridePage: true,
+                  breadcrumbLabel: 'zimbra_dashboard_email_accounts_settings',
+                },
               },
               {
                 path: 'alias',
@@ -129,7 +200,10 @@ export const Routes: any = [
                     '@/pages/dashboard/EmailAccounts/AddAndEditEmailAccount.page'
                   ),
                 ),
-                handle: { isOverridePage: true },
+                handle: {
+                  isOverridePage: true,
+                  breadcrumbLabel: 'zimbra_dashboard_email_accounts_alias',
+                },
                 children: [
                   {
                     path: 'add',
@@ -138,6 +212,10 @@ export const Routes: any = [
                         '@/pages/dashboard/EmailAccounts/ModalAddAlias.component'
                       ),
                     ),
+                    handle: {
+                      breadcrumbLabel:
+                        'zimbra_dashboard_email_accounts_alias_add',
+                    },
                   },
                   {
                     path: 'delete',
@@ -146,6 +224,10 @@ export const Routes: any = [
                         '@/pages/dashboard/EmailAccounts/ModalDeleteAlias.component'
                       ),
                     ),
+                    handle: {
+                      breadcrumbLabel:
+                        'zimbra_dashboard_email_accounts_alias_delete',
+                    },
                   },
                 ],
               },
@@ -156,7 +238,11 @@ export const Routes: any = [
                     '@/pages/dashboard/EmailAccounts/AddAndEditEmailAccount.page'
                   ),
                 ),
-                handle: { isOverridePage: true },
+                handle: {
+                  isOverridePage: true,
+                  breadcrumbLabel:
+                    'zimbra_dashboard_email_accounts_redirections',
+                },
                 children: [
                   {
                     path: 'add',
@@ -165,6 +251,10 @@ export const Routes: any = [
                         '@/pages/dashboard/Redirections/ModalAddAndEditRedirections.page'
                       ),
                     ),
+                    handle: {
+                      breadcrumbLabel:
+                        'zimbra_dashboard_email_accounts_redirections_add',
+                    },
                   },
                   {
                     path: 'edit',
@@ -173,6 +263,10 @@ export const Routes: any = [
                         '@/pages/dashboard/Redirections/ModalAddAndEditRedirections.page'
                       ),
                     ),
+                    handle: {
+                      breadcrumbLabel:
+                        'zimbra_dashboard_email_accounts_redirections_edit',
+                    },
                   },
                   {
                     path: 'delete',
@@ -181,12 +275,20 @@ export const Routes: any = [
                         '@/pages/dashboard/Redirections/ModalDeleteRedirections.component'
                       ),
                     ),
+                    handle: {
+                      breadcrumbLabel:
+                        'zimbra_dashboard_email_accounts_redirections_delete',
+                    },
                   },
                 ],
               },
               {
                 path: 'auto_replies',
-                handle: { isOverridePage: true },
+                handle: {
+                  isOverridePage: true,
+                  breadcrumbLabel:
+                    'zimbra_dashboard_email_accounts_auto_replies',
+                },
                 ...lazyRouteConfig(() =>
                   import(
                     '@/pages/dashboard/EmailAccounts/AddAndEditEmailAccount.page'
@@ -198,7 +300,11 @@ export const Routes: any = [
                     ...lazyRouteConfig(() =>
                       import('@/pages/dashboard/AutoReplies/AddAutoReply.page'),
                     ),
-                    handle: { isOverridePage: true },
+                    handle: {
+                      isOverridePage: true,
+                      breadcrumbLabel:
+                        'zimbra_dashboard_email_accounts_auto_replies_add',
+                    },
                   },
                   {
                     path: 'delete',
@@ -207,6 +313,10 @@ export const Routes: any = [
                         '@/pages/dashboard/AutoReplies/ModalDeleteAutoReply.component'
                       ),
                     ),
+                    handle: {
+                      breadcrumbLabel:
+                        'zimbra_dashboard_email_accounts_auto_replies_delete',
+                    },
                   },
                 ],
               },
@@ -217,6 +327,9 @@ export const Routes: any = [
                     '@/pages/dashboard/EmailAccounts/ModalDeleteEmailAccount.component'
                   ),
                 ),
+                handle: {
+                  breadcrumbLabel: 'zimbra_dashboard_email_accounts_delete',
+                },
               },
               {
                 path: 'order',
@@ -225,7 +338,10 @@ export const Routes: any = [
                     '@/pages/dashboard/EmailAccounts/EmailAccountsOrder.page'
                   ),
                 ),
-                handle: { isOverridePage: true },
+                handle: {
+                  isOverridePage: true,
+                  breadcrumbLabel: 'zimbra_dashboard_email_accounts_order',
+                },
               },
             ],
           },
@@ -234,6 +350,9 @@ export const Routes: any = [
             ...lazyRouteConfig(() =>
               import('@/pages/dashboard/MailingLists/MailingLists'),
             ),
+            handle: {
+              breadcrumbLabel: 'zimbra_dashboard_mailing_lists',
+            },
             children: [
               {
                 path: 'add',
@@ -242,7 +361,10 @@ export const Routes: any = [
                     '@/pages/dashboard/MailingLists/AddAndEditMailingList.page'
                   ),
                 ),
-                handle: { isOverridePage: true },
+                handle: {
+                  isOverridePage: true,
+                  breadcrumbLabel: 'zimbra_dashboard_mailing_lists_add',
+                },
               },
               {
                 path: 'settings',
@@ -251,7 +373,10 @@ export const Routes: any = [
                     '@/pages/dashboard/MailingLists/AddAndEditMailingList.page'
                   ),
                 ),
-                handle: { isOverridePage: true },
+                handle: {
+                  isOverridePage: true,
+                  breadcrumbLabel: 'zimbra_dashboard_mailing_lists_settings',
+                },
               },
             ],
           },
@@ -260,6 +385,9 @@ export const Routes: any = [
             ...lazyRouteConfig(() =>
               import('@/pages/dashboard/Redirections/Redirections'),
             ),
+            handle: {
+              breadcrumbLabel: 'zimbra_dashboard_redirections',
+            },
             children: [
               {
                 path: 'add',
@@ -268,6 +396,9 @@ export const Routes: any = [
                     '@/pages/dashboard/Redirections/ModalAddAndEditRedirections.page'
                   ),
                 ),
+                handle: {
+                  breadcrumbLabel: 'zimbra_dashboard_redirections_add',
+                },
               },
               {
                 path: 'edit',
@@ -276,6 +407,9 @@ export const Routes: any = [
                     '@/pages/dashboard/Redirections/ModalAddAndEditRedirections.page'
                   ),
                 ),
+                handle: {
+                  breadcrumbLabel: 'zimbra_dashboard_redirections_edit',
+                },
               },
               {
                 path: 'delete',
@@ -284,6 +418,9 @@ export const Routes: any = [
                     '@/pages/dashboard/Redirections/ModalDeleteRedirections.component'
                   ),
                 ),
+                handle: {
+                  breadcrumbLabel: 'zimbra_dashboard_redirections_delete',
+                },
               },
             ],
           },
@@ -292,6 +429,9 @@ export const Routes: any = [
             ...lazyRouteConfig(() =>
               import('@/pages/dashboard/AutoReplies/AutoReplies'),
             ),
+            handle: {
+              breadcrumbLabel: 'zimbra_dashboard_auto_replies',
+            },
             children: [
               {
                 path: 'delete',
@@ -300,12 +440,18 @@ export const Routes: any = [
                     '@/pages/dashboard/AutoReplies/ModalDeleteAutoReply.component'
                   ),
                 ),
+                handle: {
+                  breadcrumbLabel: 'zimbra_dashboard_auto_replies_delete',
+                },
               },
               {
                 path: 'add',
                 ...lazyRouteConfig(() =>
                   import('@/pages/dashboard/AutoReplies/AddAutoReply.page'),
                 ),
+                handle: {
+                  breadcrumbLabel: 'zimbra_dashboard_auto_replies_add',
+                },
               },
             ],
           },
