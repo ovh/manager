@@ -62,15 +62,12 @@ create_release_note() (
 )
 
 push_and_release() {
+  # TODO: Replace "1.42.0" with the actual version
   printf "%s\n" "Commit and tag"
-  git add .
-  git commit -s -m "release: $1"
-  git tag -a -m "release: $1" "$1"
-  if ! "${DRY_RELEASE}"; then
-    gh config set prompt disabled
-    git push origin "${GIT_BRANCH}" --tags
-    echo "${RELEASE_NOTE}" | gh release create "$1" -F -
-  fi
+  git add packages/manager-react-components/package.json
+  git add packages/manager-react-components/CHANGELOG.md
+  git commit -s -m "release: manager-react-components v1.42.0"
+  git tag -a -m "@ovh-ux/manager-react-components@1.42.0" "@ovh-ux/manager-react-components@1.42.0"
 }
 
 update_sonar_version() {
@@ -92,6 +89,7 @@ help()
 
 main() {
   # Parse options
+  # TODO: For "maintenance/manager-react-components-v1.x" branch, release should not be dry release
   while getopts "dsh" option; do
     case "${option}" in
       d)
@@ -115,26 +113,26 @@ main() {
     exit 0
   fi
 
-  current_tag="$(git describe --abbrev=0)"
-  printf "%s\n" "Previous tag was $current_tag"
+  #current_tag="$(git describe --abbrev=0)"
+  #printf "%s\n" "Previous tag was $current_tag"
 
   #For each package create semver tag in order to be used by lerna version
-  while read -r package; do
-    name=$(echo "$package" | cut -d ':' -f 2)
-    version=$(echo "$package" | cut -d ':' -f 3)
-    create_smoke_tag "$current_tag" "$name" "$version"
-  done <<< "$changed_packages"
+  # while read -r package; do
+  #   name=$(echo "$package" | cut -d ':' -f 2)
+  #   version=$(echo "$package" | cut -d ':' -f 3)
+  #   create_smoke_tag "$current_tag" "$name" "$version"
+  # done <<< "$changed_packages"
 
-  next_tag=$(get_release_name "$SEED")
-  printf "%s\n" "New tag is $next_tag"
+  #next_tag=$(get_release_name "$SEED")
+  #printf "%s\n" "New tag is $next_tag"
 
-  RELEASE_NOTE+="# Release $next_tag\
+  #RELEASE_NOTE+="# Release $next_tag\
 
 
-"
+#"
 
-  update_sonar_version "$next_tag"
-  version "$next_tag"
+  # update_sonar_version "$next_tag"
+  #version "$next_tag"
 
   #For each package generate formatted section in release note
   while read -r package; do
@@ -147,9 +145,9 @@ main() {
   done <<< "$changed_packages"
 
   #Remove package specific tags
-  clean_tags
+  # clean_tags
 
-  push_and_release "$next_tag"
+  push_and_release
 }
 
 main "${@}"
