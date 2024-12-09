@@ -64,7 +64,26 @@ export const OrderSubmitModalContent: React.FC<OrderSubmitModalContentProps> = (
         waiveRetractationPeriod: true,
       }),
     onSuccess,
-    onError,
+    onError: async (response) => {
+      const {
+        request: { status },
+      } = response;
+
+      if (status === 400) {
+        try {
+          const { data } = await postOrderCartCartIdCheckout({
+            cartId,
+            autoPayWithPreferredPaymentMethod: false,
+            waiveRetractationPeriod: true,
+          });
+          window.top.location.href = data.url;
+        } catch (err) {
+          onError(response);
+        }
+      } else {
+        onError(response);
+      }
+    },
   });
 
   return (
