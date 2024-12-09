@@ -1,4 +1,4 @@
-import { describe, Mock, vi } from 'vitest';
+import { describe, vi } from 'vitest';
 import { render } from '@testing-library/react';
 import { wrapper } from '@ovh-ux/manager-pci-load-balancer-app/src/wrapperRenders';
 import React from 'react';
@@ -100,7 +100,7 @@ describe('AlertsPart', () => {
       expect(defaultProps.onDelete).toBeCalledWith('id');
     });
   });
-  describe.skip('Alert is not available', () => {
+  describe('Alert is not available', () => {
     beforeAll(() => {
       defaultProps.alert = null;
     });
@@ -115,6 +115,4 @@ describe('AlertsPart', () => {
       expect(getByTestId('pciModal-modal')).toBeInTheDocument();
     });
   });
-  //
-  // describe('Modal', () => {});
 });
