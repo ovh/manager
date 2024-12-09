@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.6.3...@ovh-ux/manager-procedures-app@0.7.0) (2024-12-09)
+
+
+### Features
+
+* **procedures:** add gdpr page  ([#13990](https://github.com/ovh/manager/issues/13990)) ([5ee650f](https://github.com/ovh/manager/commit/5ee650f4409e91116d74c738ab58359c014e610e))
+* **procedures:** manage privacy policy link for sys and ks users ([#14297](https://github.com/ovh/manager/issues/14297)) ([928346a](https://github.com/ovh/manager/commit/928346ab60958a1acaa55e89b73b8c4970513402))
+* **procedures:** prevent closing while uploading files ([#14085](https://github.com/ovh/manager/issues/14085)) ([1a0cb4d](https://github.com/ovh/manager/commit/1a0cb4d03377e0f238956b0cec8a4c35d5a7271a))
+
+
+
+
+
 ## [0.6.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.6.2...@ovh-ux/manager-procedures-app@0.6.3) (2024-11-28)
 
 **Note:** Version bump only for package @ovh-ux/manager-procedures-app
