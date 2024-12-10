@@ -9,7 +9,7 @@ const moduleName = 'ovhManagerDedicatedServerDashboardServerInstallationOvh';
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state(
-      'app.dedicated-server.server.dashboard.installation-ovh.**',
+      'app.dedicated-server.server.dashboard.installation-standard.**',
       {
         url: '/installation/ovh',
         lazyLoad: ($transition$) => {
