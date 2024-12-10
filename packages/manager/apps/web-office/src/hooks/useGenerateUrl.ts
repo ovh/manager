@@ -20,7 +20,7 @@ export const UseGenerateUrl = (
 
   const queryString = Object.entries(queryParams)
     .filter(([key]) => key !== 'serviceName')
-    .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
+    .map(([key, value]) => `${key}=${value}`)
     .join('&');
 
   const fullURL = queryString ? `${URL}?${queryString}` : URL;

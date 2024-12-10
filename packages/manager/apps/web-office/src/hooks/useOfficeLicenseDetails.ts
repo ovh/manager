@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { useSearchParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import {
   getOfficeLicenseDetails,
   getlicenseOfficeServiceQueryKey,
@@ -9,8 +9,7 @@ export const useOfficeLicenseDetail = (
   serviceName?: string,
   noCache = false,
 ) => {
-  const [searchParams] = useSearchParams();
-  const selectedServiceName = searchParams.get('serviceName');
+  const { serviceName: selectedServiceName } = useParams();
 
   return useQuery({
     queryKey: getlicenseOfficeServiceQueryKey({
