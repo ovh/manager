@@ -1,3 +1,5 @@
+import { LicenseEnum, UserStateEnum } from '../api.type';
+
 export type LicenseType = {
   address: string;
   city: string;
@@ -8,13 +10,30 @@ export type LicenseType = {
   phone: string;
   serviceName: string;
   serviceType: string;
-  status: string;
+  status: UserStateEnum;
   zipCode: string;
   iam: {
     id: string;
     urn: string;
   };
-  [key: string]: string | { id: string; urn: string };
+  [key: string]: string | number | boolean | { id: string; urn: string };
+};
+
+export type LicensePrepaidType = {
+  activationEmail: string;
+  firstName: string;
+  isVirtual: boolean;
+  lastName: string;
+  licences: LicenseEnum[];
+  serviceName: string;
+  status: UserStateEnum;
+  taskPendingId: number;
+  tenantServiceName: string;
+  usageLocation: string;
+  iam: {
+    id: string;
+    urn: string;
+  };
 };
 
 export type GetOfficeLicenseServiceParams = {

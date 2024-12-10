@@ -1,8 +1,8 @@
 export const urls = {
   root: '',
   onboarding: '/onboarding',
-  listing: '/',
+  listing: '/license',
   dashboard: '/license/:serviceName',
-  tab2: '/Tab2',
-  license: '/license',
+  license: '/license/:serviceName',
+  consumption: '/license/:serviceName/consumption',
 };

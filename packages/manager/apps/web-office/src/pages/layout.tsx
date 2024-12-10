@@ -9,10 +9,7 @@ import Loading from '@/components/Loading/Loading';
 
 export default function Layout() {
   const location = useLocation();
-
   const routing = useRouting();
-
-  useRouteSynchro();
 
   const { data, isLoading } = useOfficeLicenses();
 
@@ -21,6 +18,7 @@ export default function Layout() {
   }, [location]);
 
   useRouteSynchro();
+
   return (
     <>
       <Outlet />

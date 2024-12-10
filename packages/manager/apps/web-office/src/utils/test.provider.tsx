@@ -10,6 +10,7 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import userEvent from '@testing-library/user-event';
 import dashboardTranslation from '@/public/translations/dashboard/Messages_fr_FR.json';
+import dashboardUsersTranslation from '@/public/translations/dashboard/users/Messages_fr_FR.json';
 import licensesTranslation from '@/public/translations/licenses/Messages_fr_FR.json';
 import '@testing-library/jest-dom';
 import 'element-internals-polyfill';
@@ -21,6 +22,7 @@ i18n.use(initReactI18next).init({
     fr: {
       dashboard: dashboardTranslation,
       licenses: licensesTranslation,
+      'dashboard/users': dashboardUsersTranslation,
     },
   },
   ns: ['dashboard'],
