@@ -45,7 +45,7 @@ exports[`AlertsPart > Alert is available > should render 1`] = `
         data-testid="osds-button"
         inline="true"
         size="sm"
-        variant="stroked"
+        variant="flat"
       >
         cpbe_estimate_alert_delete
          

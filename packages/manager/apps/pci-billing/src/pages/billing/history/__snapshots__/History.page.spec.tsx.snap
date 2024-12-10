@@ -111,7 +111,7 @@ exports[`History > matches snapshot when data exist 1`] = `
               class="my-2"
               color="primary"
               level="subheading"
-              size="600"
+              size="500"
               slot="summary"
             >
               cpbc_monthly_instance_detail_title (275.75 undefined)
@@ -151,7 +151,7 @@ exports[`History > matches snapshot when data exist 1`] = `
                 class="my-2"
                 color="primary"
                 level="subheading"
-                size="600"
+                size="500"
                 slot="summary"
               >
                 cpbc_hourly_instance_detail_title (12.50 undefined)
@@ -170,7 +170,7 @@ exports[`History > matches snapshot when data exist 1`] = `
                 class="my-2"
                 color="primary"
                 level="subheading"
-                size="600"
+                size="500"
                 slot="summary"
               >
                 cpbc_snapshot_detail_title (7.25 undefined)
@@ -371,7 +371,7 @@ exports[`History > matches snapshot when data exist 1`] = `
                 class="my-2"
                 color="primary"
                 level="subheading"
-                size="600"
+                size="500"
                 slot="summary"
               >
                 cpbc_volume_detail_title (45.00 undefined)
@@ -390,7 +390,7 @@ exports[`History > matches snapshot when data exist 1`] = `
                 class="my-2"
                 color="primary"
                 level="subheading"
-                size="600"
+                size="500"
                 slot="summary"
               >
                 cpbc_object_storage_detail_title (35.50 undefined)
@@ -615,7 +615,7 @@ exports[`History > matches snapshot when data exist 1`] = `
                 class="my-2"
                 color="primary"
                 level="subheading"
-                size="600"
+                size="500"
                 slot="summary"
               >
                 cpbc_archive_storage_detail_title (15.75 undefined)
@@ -903,7 +903,7 @@ exports[`History > matches snapshot when data exist 1`] = `
                 class="my-2"
                 color="primary"
                 level="subheading"
-                size="600"
+                size="500"
                 slot="summary"
               >
                 cpbc_cold_archive_detail_title (100.00 undefined)
@@ -1121,7 +1121,7 @@ exports[`History > matches snapshot when data exist 1`] = `
                 class="my-2"
                 color="primary"
                 level="subheading"
-                size="600"
+                size="500"
                 slot="summary"
               >
                 cpbc_hourly_instance_trafic_title (50.00 undefined)
@@ -1302,7 +1302,7 @@ exports[`History > matches snapshot when data exist 1`] = `
                 class="my-2"
                 color="primary"
                 level="subheading"
-                size="600"
+                size="500"
                 slot="summary"
               >
                 cpbc_hourly_private_registry_title (36.00 undefined)
@@ -1520,7 +1520,7 @@ exports[`History > matches snapshot when data exist 1`] = `
                 class="my-2"
                 color="primary"
                 level="subheading"
-                size="600"
+                size="500"
                 slot="summary"
               >
                 Kubernetes Load Balancer (24.00 undefined)
@@ -1738,7 +1738,7 @@ exports[`History > matches snapshot when data exist 1`] = `
                 class="my-2"
                 color="primary"
                 level="subheading"
-                size="600"
+                size="500"
                 slot="summary"
               >
                 cpbc_hourly_training_title (450.00 undefined)
@@ -1956,7 +1956,7 @@ exports[`History > matches snapshot when data exist 1`] = `
                 class="my-2"
                 color="primary"
                 level="subheading"
-                size="600"
+                size="500"
                 slot="summary"
               >
                 cpbc_hourly_notebooks_title (180.00 undefined)
@@ -2174,7 +2174,7 @@ exports[`History > matches snapshot when data exist 1`] = `
                 class="my-2"
                 color="primary"
                 level="subheading"
-                size="600"
+                size="500"
                 slot="summary"
               >
                 cpbc_hourly_ai_deploy_title (180.00 undefined)
@@ -2392,7 +2392,7 @@ exports[`History > matches snapshot when data exist 1`] = `
                 class="my-2"
                 color="primary"
                 level="subheading"
-                size="600"
+                size="500"
                 slot="summary"
               >
                 cpbc_hourly_data_processing_title (75.50 undefined)
@@ -2610,7 +2610,7 @@ exports[`History > matches snapshot when data exist 1`] = `
                 class="my-2"
                 color="primary"
                 level="subheading"
-                size="600"
+                size="500"
                 slot="summary"
               >
                 cpbc_hourly_databases_title (360.00 undefined)
@@ -2828,7 +2828,7 @@ exports[`History > matches snapshot when data exist 1`] = `
                 class="my-2"
                 color="primary"
                 level="subheading"
-                size="600"
+                size="500"
                 slot="summary"
               >
                 cpbc_hourly_floating_ip_title (18.00 undefined)
@@ -3046,7 +3046,7 @@ exports[`History > matches snapshot when data exist 1`] = `
                 class="my-2"
                 color="primary"
                 level="subheading"
-                size="600"
+                size="500"
                 slot="summary"
               >
                 cpbc_hourly_public_ip_title (12.00 undefined)
@@ -3264,7 +3264,7 @@ exports[`History > matches snapshot when data exist 1`] = `
                 class="my-2"
                 color="primary"
                 level="subheading"
-                size="600"
+                size="500"
                 slot="summary"
               >
                 cpbc_hourly_gateway_title (36.00 undefined)
@@ -3482,7 +3482,7 @@ exports[`History > matches snapshot when data exist 1`] = `
                 class="my-2"
                 color="primary"
                 level="subheading"
-                size="600"
+                size="500"
                 slot="summary"
               >
                 Load Balancer (96.00 undefined)
