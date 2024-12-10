@@ -11,7 +11,7 @@ export type TVolume = {
   statusGroup: string;
   region: string;
   bootable: boolean;
-  planCode: string;
+  planCode: string | null;
   type: string;
   regionName: string;
 };
