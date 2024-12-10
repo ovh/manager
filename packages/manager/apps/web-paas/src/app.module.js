@@ -21,6 +21,7 @@ export default (containerEl, environment) => {
       uiRouter,
       WebPaas,
     ])
+    .onEnter(() => console.log('web-paas'))
     .config(
       /* @ngInject */ ($locationProvider) => $locationProvider.hashPrefix(''),
     )
