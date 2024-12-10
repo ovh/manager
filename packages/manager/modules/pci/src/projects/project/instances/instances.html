@@ -240,7 +240,7 @@
                 data-on-click="$ctrl.createBackupInstance($row)"
                 data-ng-if="
                     $row.statusGroup === 'ACTIVE'
-                        ? ($row.isLocalZone ? $ctrl.isInstanceLocalZoneBackupAvailable : true)
+                        ? $ctrl.snapshotAvailability[$row.region] && $ctrl.snapshotAvailability[$row.region].plans.length
                         : false
                 "
             >
@@ -252,7 +252,7 @@
                 data-disabled="!$row.canCreateOrScheduleBackup()"
                 data-on-click="$ctrl.scheduleAutoBackup($row)"
                 data-ng-if="$row.statusGroup === 'ACTIVE' &&
-                    $ctrl.PciProjectsProjectInstanceService.automatedBackupIsAvailable($row.flavor.type) && !$row.isLocalZone"
+                    $ctrl.PciProjectsProjectInstanceService.automatedBackupIsAvailable($row.flavor.type) && $ctrl.snapshotAvailability[$row.region] && $ctrl.snapshotAvailability[$row.region].plans.length && $ctrl.snapshotAvailability[$row.region].workflow"
             >
                 <span
                     data-translate="pci_projects_project_instances_autobackup_label"

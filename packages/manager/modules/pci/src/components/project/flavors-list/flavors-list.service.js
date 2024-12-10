@@ -44,14 +44,7 @@ export default class FlavorsList {
   }
 
   getCatalog(endpoint, ovhSubsidiary) {
-    return this.$http
-      .get(endpoint, {
-        params: {
-          productName: 'cloud',
-          ovhSubsidiary,
-        },
-      })
-      .then(({ data: catalog }) => catalog);
+    return this.CucPriceHelper.getCatalog(endpoint, { ovhSubsidiary }, true);
   }
 
   getFlavors(
@@ -69,7 +62,11 @@ export default class FlavorsList {
           serviceName,
           region: currentRegion,
         }).$promise,
-        prices: this.CucPriceHelper.getPrices(serviceName, catalogEndpoint),
+        prices: this.CucPriceHelper.getPrices(
+          serviceName,
+          catalogEndpoint,
+          true,
+        ),
         catalog: this.getCatalog(
           catalogEndpoint,
           this.coreConfig.getUser().ovhSubsidiary,

@@ -11,22 +11,17 @@ import {
   addWorkflow,
   getRegionsWorkflows,
   TExecutionState,
-  TWorkflowExecution,
+  TRemoteWorkflow,
 } from '@/api/data/region-workflow';
 import { deleteWorkflow } from '@/api/data/workflow';
 import { paginateResults } from '@/helpers';
 
 export const WORKFLOW_TYPE = 'instance_backup';
 
-export type TWorkflow = {
-  name: string;
-  id: string;
-  instanceId: string;
+export type TWorkflow = TRemoteWorkflow & {
   instanceName: string;
-  cron: string;
   lastExecution: string;
   lastExecutionStatus: TExecutionState;
-  executions: TWorkflowExecution[];
 };
 
 export const useWorkflows = (projectId: string) => {
@@ -58,6 +53,14 @@ export const useWorkflows = (projectId: string) => {
           .flat(1)
           .filter((w) => !!w)
           .map((w) => {
+            if (!w.executions) {
+              return {
+                ...w,
+                lastExecution: '',
+                lastExecutionStatus: undefined,
+              };
+            }
+
             let [lastExecutionAt, lastExecutionStatus] = [
               new Date(),
               undefined,

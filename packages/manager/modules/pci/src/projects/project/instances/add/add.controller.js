@@ -20,7 +20,6 @@ import {
   DEFAULT_VLAN_ID,
   DEFAULT_CIDR,
   VLAN_ID,
-  HOURS_PER_MONTH,
   PLAN_ORDER,
 } from '../../project.constants';
 
@@ -61,6 +60,7 @@ export default class PciInstancesAddController {
     atInternet,
     PciProject,
     OvhApiCloudProjectRegion,
+    HOURS_PER_MONTH,
     $scope,
   ) {
     this.$q = $q;
@@ -142,7 +142,6 @@ export default class PciInstancesAddController {
 
     this.quota = null;
     this.flavor = null;
-    this.disableNetwork = false;
 
     this.loadMessages();
 
@@ -531,9 +530,18 @@ export default class PciInstancesAddController {
         { region: this.model.datacenter.name },
       )
       .$promise.then(() => {
-        return this.OvhApiCloudProjectRegion.AvailableRegions()
-          .v6()
-          .resetQueryCache();
+        return this.$q.all([
+          this.OvhApiCloudProjectRegion.AvailableRegions()
+            .v6()
+            .resetQueryCache(),
+          this.PciProjectsProjectInstanceService.getSnapshotAvailability(
+            this.projectId,
+            this.catalogEndpoint,
+          ).then((snapshotAvailability) => {
+            this.snapshotAvailability[this.model.datacenter.name] =
+              snapshotAvailability[this.model.datacenter.name];
+          }),
+        ]);
       })
       .then(() => {
         this.CucCloudMessage.success(
@@ -742,16 +750,6 @@ export default class PciInstancesAddController {
     return this.model.image?.type?.includes('windows');
   }
 
-  getBackupPrice() {
-    if (this.is3AZRegion()) {
-      this.instance.planCode = 'consumption.3AZ';
-    }
-    return this.PciProjectsProjectInstanceService.getSnapshotMonthlyPrice(
-      this.projectId,
-      this.instance,
-    );
-  }
-
   showImageNavigation() {
     return (
       this.model.image &&
@@ -778,7 +776,6 @@ export default class PciInstancesAddController {
       };
     }
     if (!isEmpty(this.model.datacenter)) {
-      this.disableNetwork = this.isLocalZone();
       this.quota = new Quota(this.model.datacenter.quota.instance);
       this.generateInstanceName();
       if (
@@ -786,28 +783,40 @@ export default class PciInstancesAddController {
           this.flavor.type,
         )
       ) {
-        this.automatedBackup.selected = false;
-        this.automatedBackup.schedule = null;
-        this.automatedBackup.price = null;
-        this.isGettingBackupPrice = true;
-        return this.getBackupPrice().then(({ price }) => {
-          const { value, currencyCode } = price;
+        if (
+          !this.snapshotAvailability[this.instance.region] ||
+          !this.snapshotAvailability[this.instance.region].plans.length ||
+          !this.snapshotAvailability[this.instance.region].workflow
+        ) {
+          this.automatedBackup.selected = false;
+          this.automatedBackup.schedule = null;
+          this.automatedBackup.price = null;
+        } else {
+          const plan = this.snapshotAvailability[this.instance.region].plans[0];
+          this.automatedBackup.price = this.formatBackupMonthlyPrice(
+            plan.price,
+          );
+        }
 
-          this.automatedBackup.price = `~${new Intl.NumberFormat(
-            this.coreConfig.getUserLocale().replace('_', '-'),
-            {
-              style: 'currency',
-              currency: currencyCode,
-              maximumFractionDigits: 3,
-            },
-          ).format(value * this.HOURS_PER_MONTH)}`;
-
-          this.isGettingBackupPrice = false;
-          return this.automatedBackup.price;
-        });
+        return this.automatedBackup.price;
       }
     }
     return this.$q.when();
+  }
+
+  formatBackupMonthlyPrice(price) {
+    const { value, currencyCode } = price;
+
+    const formatter = new Intl.NumberFormat(
+      this.coreConfig.getUserLocale().replace('_', '-'),
+      {
+        style: 'currency',
+        currency: currencyCode,
+        maximumFractionDigits: 3,
+      },
+    );
+
+    return `~${formatter.format(value * this.HOURS_PER_MONTH)}`;
   }
 
   getLocalPrivateNetworkSubnet() {
@@ -1895,5 +1904,11 @@ export default class PciInstancesAddController {
 
   get shouldShow3AZRegionData() {
     return this.regionsTypesAvailability[THREE_AZ_REGION] && this.is3AZRegion();
+  }
+
+  onAutomatedBackupChange(modelValue) {
+    if (!modelValue) {
+      this.automatedBackup.schedule = null;
+    }
   }
 }
