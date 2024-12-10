@@ -263,7 +263,7 @@ export default function WebSidebar() {
             id: 'web-office',
             label: t('sidebar_license_office'),
             icon: getIcon('ms-Icon ms-Icon--OfficeLogo'),
-            routeMatcher: new RegExp(`^/web-office`),
+            routeMatcher: new RegExp('^/web-office'),
             async loader() {
               const services = await loadServices('/license/office');
               return [

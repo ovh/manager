@@ -1,5 +1,12 @@
+import { getApiPath } from '../utils/apiPath';
+
 export const getOfficeLicenseDetailsQueryKey = (serviceName: string) => [
-  `get/license/office/${serviceName}`,
+  'get',
+  getApiPath(serviceName),
+  serviceName,
 ];
 
-export const getOfficeLicenseQueryKey = () => [`get/license/office`];
+export const getOfficeLicenseQueryKey = (serviceName: string) => [
+  'get',
+  getApiPath(serviceName),
+];
