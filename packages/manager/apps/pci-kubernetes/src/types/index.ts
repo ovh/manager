@@ -1,6 +1,29 @@
 import { z } from 'zod';
 import { pluginData } from '@/api/data/plugins';
 
+export enum SigningAlgorithms {
+  ES256 = 'ES256',
+  ES384 = 'ES384',
+  ES512 = 'ES512',
+  PS256 = 'PS256',
+  PS384 = 'PS384',
+  PS512 = 'PS512',
+  RS256 = 'RS256',
+  RS384 = 'RS384',
+  RS512 = 'RS512',
+}
+
+export enum PlaceHolder {
+  issuerUrl = 'https://www.ovhcloud.com/fr/',
+  clientId = 'my-oidc-client-id',
+  usernameClaim = 'sub',
+  usernamePrefix = 'oidc:',
+  groupsClaim = 'groups',
+  requiredClaim = 'group=admin,group=dev-team',
+  groupsPrefix = 'oidc:',
+  caContent = '"LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0t...\n\t<base64-encoded CA content continues here>"',
+}
+
 export type TKube = {
   id: string;
   region: string;
@@ -59,6 +82,15 @@ export enum BreakPoints {
   XL = 1140,
 }
 
+// Fonction pour vérifier si une chaîne est une chaîne Base64 valide
+function isBase64(str: string) {
+  try {
+    return btoa(atob(str)) === str;
+  } catch (err) {
+    return false;
+  }
+}
+
 export const oidcSchema = z.object({
   issuerUrl: z
     .string()
@@ -76,19 +108,56 @@ export const oidcSchema = z.object({
   usernameClaim: z.string().optional(),
   usernamePrefix: z.string().optional(),
   groupsClaim: z
-    .array(z.string())
+    .string()
     .nullable()
-    .optional(),
+    .optional()
+    .refine(
+      (value) => {
+        if (!value) return true;
+        const groupPattern = /^([\w-]+)(,([\w-]+))*$/;
+        return groupPattern.test(value);
+      },
+      {
+        message:
+          'pci_projects_project_kubernetes_details_service_oidc_provider_field_groups_claim_error',
+      },
+    ),
   groupsPrefix: z.string().optional(),
   signingAlgorithms: z
-    .array(z.string())
+    .array(z.nativeEnum(SigningAlgorithms))
     .nullable()
     .optional(),
-  caContent: z.string().optional(),
+  caContent: z
+    .string()
+    .default(`${PlaceHolder.groupsClaim}`)
+    .optional()
+    .refine(
+      (value) => {
+        if (value) {
+          return isBase64(value);
+        }
+        return true;
+      },
+      {
+        message:
+          'pci_projects_project_kubernetes_details_service_oidc_provider_field_ca_content_error',
+      },
+    ),
   requiredClaim: z
-    .array(z.string())
+    .string()
     .nullable()
-    .optional(),
+    .optional()
+    .refine(
+      (value) => {
+        if (!value) return true;
+        const claimPattern = /^([\w-]+=[\w-]+)(,([\w-]+=[\w-]+))*$/;
+        return claimPattern.test(value);
+      },
+      {
+        message:
+          'pci_projects_project_kubernetes_details_service_oidc_provider_field_required_claim_error',
+      },
+    ),
 });
 
 export type FormValues = z.infer<typeof oidcSchema>;
@@ -98,14 +167,14 @@ export type TOidcFormValues = Omit<FormValues, 'clientId | issuerUrl'> & {
   issuerUrl: string;
 };
 
-export enum SigningAlgorithms {
-  ES256 = 'ES256',
-  ES384 = 'ES384',
-  ES512 = 'ES512',
-  PS256 = 'PS256',
-  PS384 = 'PS384',
-  PS512 = 'PS512',
-  RS256 = 'RS256',
-  RS384 = 'RS384',
-  RS512 = 'RS512',
-}
+export type TOidcProvider = {
+  issuerUrl: string;
+  clientId: string;
+  usernameClaim?: string;
+  usernamePrefix?: string;
+  groupsClaim?: string[];
+  requiredClaim?: string[];
+  groupsPrefix?: string;
+  signingAlgorithms?: SigningAlgorithms[];
+  caContent?: string;
+};

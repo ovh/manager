@@ -115,7 +115,7 @@ export function getColorByPercentage(percentage: number): string {
   return colorThresholds[colorThresholds.length - 1].color;
 }
 
-export const getErrorMessage = (error: any): string => {
+export const getErrorMessage = (error): string => {
   if (!error) return '';
   if (typeof error === 'string') return error;
   if ('message' in error && typeof error.message === 'string')
@@ -128,3 +128,18 @@ export const camelToSnake = (camelCase: string): string =>
 
 export const filterSchemaKeys = (schema, excludeKeys) =>
   Object.keys(schema.shape).filter((key) => !excludeKeys.includes(key));
+
+export const parseCommaSeparated = (
+  value: string | string[] | undefined,
+): string[] => {
+  if (Array.isArray(value)) {
+    return value.map((item) => item.trim()).filter(Boolean);
+  }
+  if (typeof value === 'string') {
+    return value
+      .split(',')
+      .map((item) => item.trim())
+      .filter(Boolean);
+  }
+  return [];
+};
