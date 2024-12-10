@@ -9,9 +9,11 @@ import { GenericUser } from '@/data/api/database/user.api';
 import * as database from '@/types/cloud/project/database';
 import { getColumns } from './_components/UsersTableColumns.component';
 import { Button } from '@/components/ui/button';
-import { DataTable } from '@/components/ui/data-table';
+import DataTable from '@/components/data-table';
 import { useUserActivityContext } from '@/contexts/UserActivityContext';
 import { POLLING } from '@/configuration/polling.constants';
+import { FilterCategories } from '@/lib/filters';
+import UserStatusBadge from './_components/UserStatusBadge.component';
 
 export function breadcrumb() {
   return (
@@ -53,32 +55,64 @@ const Users = () => {
     },
   });
 
+  const filters = [
+    {
+      id: 'username',
+      label: "Nom d'utilisateur",
+      comparators: FilterCategories.String,
+    },
+    {
+      id: 'createdAt',
+      label: 'Date de création',
+      comparators: FilterCategories.Date,
+    },
+    {
+      id: 'status',
+      label: 'Statut',
+      comparators: FilterCategories.Options,
+      options: Object.values(database.StatusEnum).map((value) => ({
+        label: <UserStatusBadge status={value} />,
+        value,
+      })),
+    },
+  ];
+
   return (
     <>
       <h2>{t('title')}</h2>
-      {service.capabilities.users?.create && (
-        <Button
-          data-testid="users-add-button"
-          variant={'outline'}
-          size="sm"
-          className="text-base"
-          disabled={
-            service.capabilities.users?.create ===
-            database.service.capability.StateEnum.disabled
-          }
-          onClick={() => navigate('./add')}
-        >
-          <Plus className="size-4 mr-2" />
-          {t('addButtonLabel')}
-        </Button>
-      )}
-
       {usersQuery.isSuccess ? (
-        <DataTable columns={columns} data={usersQuery.data} pageSize={25} />
+        <DataTable.Provider
+          columns={columns}
+          data={usersQuery.data}
+          pageSize={25}
+          filtersDefinition={filters}
+        >
+          <DataTable.Header>
+            {service.capabilities.users?.create && (
+              <DataTable.Action>
+                <Button
+                  data-testid="users-add-button"
+                  variant={'outline'}
+                  disabled={
+                    service.capabilities.users?.create ===
+                    database.service.capability.StateEnum.disabled
+                  }
+                  onClick={() => navigate('./add')}
+                >
+                  <Plus className="size-4 mr-2" />
+                  {t('addButtonLabel')}
+                </Button>
+              </DataTable.Action>
+            )}
+            <DataTable.SearchBar />
+            <DataTable.FiltersButton />
+          </DataTable.Header>
+          <DataTable.FiltersList />
+          <DataTable.Table />
+          <DataTable.Pagination />
+        </DataTable.Provider>
       ) : (
-        <div data-testid="users-table-skeleton">
-          <DataTable.Skeleton columns={3} rows={5} width={100} height={16} />
-        </div>
+        <DataTable.Skeleton />
       )}
 
       <Outlet />

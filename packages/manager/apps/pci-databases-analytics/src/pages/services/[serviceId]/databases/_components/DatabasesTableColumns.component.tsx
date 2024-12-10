@@ -2,7 +2,7 @@ import { ColumnDef } from '@tanstack/react-table';
 import { MoreHorizontal } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
-import { SortableHeader } from '@/components/ui/data-table';
+import { SortableHeader } from '@/components/data-table/sortable-header';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -17,6 +17,7 @@ import {
 } from '@/components/ui/tooltip';
 import * as database from '@/types/cloud/project/database';
 import { useServiceData } from '../../Service.context';
+import { MENU_COLUMN_ID } from '@/components/data-table/DataTable';
 
 interface DatabasesTableColumnsProps {
   onDeleteClick: (db: database.service.Database) => void;
@@ -35,7 +36,7 @@ export const getColumns = ({ onDeleteClick }: DatabasesTableColumnsProps) => {
       accessorFn: (row) => row.name,
     },
     {
-      id: 'actions',
+      id: MENU_COLUMN_ID,
       cell: ({ row }) => {
         return (
           <div className="flex justify-end">

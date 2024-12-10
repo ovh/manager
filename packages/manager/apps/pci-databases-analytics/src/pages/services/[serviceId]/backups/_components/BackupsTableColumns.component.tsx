@@ -2,7 +2,7 @@ import { ColumnDef } from '@tanstack/react-table';
 
 import { useTranslation } from 'react-i18next';
 import { MoreHorizontal } from 'lucide-react';
-import { SortableHeader } from '@/components/ui/data-table';
+import { SortableHeader } from '@/components/data-table/sortable-header';
 
 import UserStatusBadge from '../../users/_components/UserStatusBadge.component';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';

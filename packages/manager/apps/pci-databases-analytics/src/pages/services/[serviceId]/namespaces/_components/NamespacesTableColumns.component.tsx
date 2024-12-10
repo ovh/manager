@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { ColumnDef } from '@tanstack/react-table';
 
 import { MoreHorizontal } from 'lucide-react';
-import { SortableHeader } from '@/components/ui/data-table';
+import { SortableHeader } from '@/components/data-table/sortable-header';
 import {
   Tooltip,
   TooltipProvider,
