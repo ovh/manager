@@ -9877,15 +9877,6 @@
     test-exclude "^7.0.1"
     tinyrainbow "^1.2.0"
 
-"@vitest/expect@1.3.1":
-  version "1.3.1"
-  resolved "https://registry.npmjs.org/@vitest/expect/-/expect-1.3.1.tgz#d4c14b89c43a25fd400a6b941f51ba27fe0cb918"
-  integrity sha512-xofQFwIzfdmLLlHa6ag0dPV8YsnKOCP1KdAeVVh34vSjN2dcUiXYCD9htu/9eM7t8Xln4v03U9HLxLpPlsXdZw==
-  dependencies:
-    "@vitest/spy" "1.3.1"
-    "@vitest/utils" "1.3.1"
-    chai "^4.3.10"
-
 "@vitest/expect@1.4.0":
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/@vitest/expect/-/expect-1.4.0.tgz#d64e17838a20007fecd252397f9b96a1ca81bfb0"
@@ -10102,13 +10093,6 @@
     "@vitest/pretty-format" "2.1.5"
     magic-string "^0.30.12"
     pathe "^1.1.2"
-
-"@vitest/spy@1.3.1":
-  version "1.3.1"
-  resolved "https://registry.npmjs.org/@vitest/spy/-/spy-1.3.1.tgz#814245d46d011b99edd1c7528f5725c64e85a88b"
-  integrity sha512-xAcW+S099ylC9VLU7eZfdT9myV67Nor9w9zhf0mGCYJSO+zM2839tOeROTdikOi/8Qeusffvxb/MyBSOja1Uig==
-  dependencies:
-    tinyspy "^2.2.0"
 
 "@vitest/spy@1.4.0":
   version "1.4.0"
@@ -17543,6 +17527,13 @@ i18next@^23.11.5:
   dependencies:
     "@babel/runtime" "^7.23.2"
 
+i18next@^23.16.4:
+  version "23.16.8"
+  resolved "https://registry.npmjs.org/i18next/-/i18next-23.16.8.tgz#3ae1373d344c2393f465556f394aba5a9233b93a"
+  integrity sha512-06r/TitrM88Mg5FdUXAKL96dJMzgqLE5dv3ryBAra4KCwD9mJ4ndOTS95ZuymIGoE+2hzfdaMak2X11/es7ZWg==
+  dependencies:
+    "@babel/runtime" "^7.23.2"
+
 i18next@^23.8.2:
   version "23.8.2"
   resolved "https://registry.yarnpkg.com/i18next/-/i18next-23.8.2.tgz#f3ff6ea929e0927d9717f0ed195ae46d05919900"
@@ -23861,7 +23852,7 @@ react-hook-form@^7.53.1:
   resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.53.1.tgz#3f2cd1ed2b3af99416a4ac674da2d526625add67"
   integrity sha512-6aiQeBda4zjcuaugWvim9WsGqisoUk+etmFEsSUMm451/Ic8L/UAb7sRtMj3V+Hdzm6mMjU1VhiSzYUZeBm0Vg==
 
-react-i18next@^11.18.1, react-i18next@^11.18.6:
+react-i18next@^11.18.1:
   version "11.18.6"
   resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-11.18.6.tgz#e159c2960c718c1314f1e8fcaa282d1c8b167887"
   integrity sha512-yHb2F9BiT0lqoQDt8loZ5gWP331GwctHz9tYQ8A2EIEUu+CcEdjBLQWli1USG3RdWQt3W+jqQLg/d4rrQR96LA==
@@ -23893,7 +23884,7 @@ react-i18next@^15.1.0:
     "@babel/runtime" "^7.25.0"
     html-parse-stringify "^3.0.1"
 
-react-inspector@6.0.2, react-inspector@^6.0.0:
+react-inspector@6.0.2:
   version "6.0.2"
   resolved "https://registry.yarnpkg.com/react-inspector/-/react-inspector-6.0.2.tgz#aa3028803550cb6dbd7344816d5c80bf39d07e9d"
   integrity sha512-x+b7LxhmHXjHoU/VrFAzw5iutsILRoYyDq97EDYdFpPLcvqtEzk4ZSZSQjnFPbr5T57tLXnHcqFYoN1pI6u8uQ==
@@ -26200,16 +26191,7 @@ string-length@^4.0.1:
     char-regex "^1.0.2"
     strip-ansi "^6.0.0"
 
-"string-width-cjs@npm:string-width@^4.2.0":
-  version "4.2.3"
-  resolved "https://registry.yarnpkg.com/string-width/-/string-width-4.2.3.tgz#269c7117d27b05ad2e536830a8ec895ef9c6d010"
-  integrity sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==
-  dependencies:
-    emoji-regex "^8.0.0"
-    is-fullwidth-code-point "^3.0.0"
-    strip-ansi "^6.0.1"
-
-"string-width@^1.0.2 || 2 || 3 || 4", string-width@^4.0.0, string-width@^4.1.0, string-width@^4.2.0, string-width@^4.2.2, string-width@^4.2.3:
+"string-width-cjs@npm:string-width@^4.2.0", "string-width@^1.0.2 || 2 || 3 || 4", string-width@^4.0.0, string-width@^4.1.0, string-width@^4.2.0, string-width@^4.2.2, string-width@^4.2.3:
   version "4.2.3"
   resolved "https://registry.yarnpkg.com/string-width/-/string-width-4.2.3.tgz#269c7117d27b05ad2e536830a8ec895ef9c6d010"
   integrity sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==
@@ -26323,14 +26305,7 @@ stringify-entities@^3.0.0:
     character-entities-legacy "^1.0.0"
     xtend "^4.0.0"
 
-"strip-ansi-cjs@npm:strip-ansi@^6.0.1":
-  version "6.0.1"
-  resolved "https://registry.yarnpkg.com/strip-ansi/-/strip-ansi-6.0.1.tgz#9e26c63d30f53443e9489495b2105d37b67a85d9"
-  integrity sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==
-  dependencies:
-    ansi-regex "^5.0.1"
-
-strip-ansi@6.0.1, strip-ansi@^6.0.0, strip-ansi@^6.0.1:
+"strip-ansi-cjs@npm:strip-ansi@^6.0.1", strip-ansi@6.0.1, strip-ansi@^6.0.0, strip-ansi@^6.0.1:
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/strip-ansi/-/strip-ansi-6.0.1.tgz#9e26c63d30f53443e9489495b2105d37b67a85d9"
   integrity sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==
@@ -29063,7 +29038,7 @@ wordwrap@^1.0.0:
   resolved "https://registry.yarnpkg.com/wordwrap/-/wordwrap-1.0.0.tgz#27584810891456a4171c8d0226441ade90cbcaeb"
   integrity sha512-gvVzJFlPycKc5dZN4yPkP8w7Dc37BtP1yczEneOb4uq34pXZcvrtRTmWV8W+Ume+XCxKgbjM+nevkyFPMybd4Q==
 
-"wrap-ansi-cjs@npm:wrap-ansi@^7.0.0":
+"wrap-ansi-cjs@npm:wrap-ansi@^7.0.0", wrap-ansi@^7.0.0:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/wrap-ansi/-/wrap-ansi-7.0.0.tgz#67e145cff510a6a6984bdf1152911d69d2eb9e43"
   integrity sha512-YVGIj2kamLSTxw6NsZjoBxfSwsn0ycdesmc4p+Q21c5zPuZ1pl+NfxVdxPtdHvmNVOQ6XSYG4AUtyt/Fi7D16Q==
@@ -29076,15 +29051,6 @@ wrap-ansi@^6.0.1, wrap-ansi@^6.2.0:
   version "6.2.0"
   resolved "https://registry.yarnpkg.com/wrap-ansi/-/wrap-ansi-6.2.0.tgz#e9393ba07102e6c91a3b221478f0257cd2856e53"
   integrity sha512-r6lPcBGxZXlIcymEu7InxDMhdW0KDxpLgoFLcguasxCaJ/SOIZwINatK9KY/tf+ZrlywOKU0UDj3ATXUBfxJXA==
-  dependencies:
-    ansi-styles "^4.0.0"
-    string-width "^4.1.0"
-    strip-ansi "^6.0.0"
-
-wrap-ansi@^7.0.0:
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/wrap-ansi/-/wrap-ansi-7.0.0.tgz#67e145cff510a6a6984bdf1152911d69d2eb9e43"
-  integrity sha512-YVGIj2kamLSTxw6NsZjoBxfSwsn0ycdesmc4p+Q21c5zPuZ1pl+NfxVdxPtdHvmNVOQ6XSYG4AUtyt/Fi7D16Q==
   dependencies:
     ansi-styles "^4.0.0"
     string-width "^4.1.0"
