@@ -34,7 +34,7 @@ const schemaAddCidr = (dataCIDR: string[]) =>
         if (existingIpBlocks.includes(value)) {
           ctx.addIssue({
             code: z.ZodIssueCode.custom,
-            message: 'IP/CIDR already exists in the list.',
+            message: 'private_registry_cidr_already_exist',
           });
         }
       }),
@@ -55,9 +55,14 @@ export type ConfirmCIDRSchemaType = z.infer<ReturnType<typeof schemaAddCidr>>;
 
 export default function BlocIPBlock() {
   const { projectId, registryId } = useParams();
-  const { data: dataCIDR } = useIpRestrictions(projectId, registryId);
+  const { data: dataCIDR, isPending } = useIpRestrictions(
+    projectId,
+    registryId,
+  );
   const methods = useForm<ConfirmCIDRSchemaType>({
-    resolver: zodResolver(schemaAddCidr(dataCIDR.map((e) => e.ipBlock))),
+    resolver: zodResolver(
+      !isPending && schemaAddCidr(dataCIDR.map((e) => e.ipBlock)),
+    ),
     mode: 'onBlur',
     reValidateMode: 'onChange',
   });

@@ -1,6 +1,7 @@
-import { ActionMenu } from '@ovh-ux/manager-react-components';
+import { ActionMenu, useNotifications } from '@ovh-ux/manager-react-components';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useFormContext } from 'react-hook-form';
 import { categorizeByKey } from '@/helpers';
 import { useUpdateIpRestriction } from '@/api/hooks/useIpRestrictions';
 import {
@@ -15,17 +16,26 @@ export default function ActionComponent({
 }: {
   cidr: TIPRestrictionsData;
 }) {
-  const { t } = useTranslation(['common']);
+  const { t } = useTranslation(['ip-restrictions']);
   const { projectId, registryId } = useParams();
+  const { reset } = useFormContext();
+  const { addSuccess, addError } = useNotifications();
   const { updateIpRestrictions } = useUpdateIpRestriction({
     projectId,
     registryId,
+    onError() {
+      addError(t('common:private_registry_crud_cidr_error'));
+    },
+    onSuccess: () => {
+      reset();
+      addSuccess(t('private_registry_cidr_delete_success'), true);
+    },
   });
 
   const items = [
     {
       id: 0,
-      label: t('private_registry_common_delete'),
+      label: t('ip_restrictions_delete_block'),
       disabled: false,
       onClick: () => {
         const categorizeByKeyResult = categorizeByKey(
