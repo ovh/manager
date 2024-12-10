@@ -43,7 +43,7 @@ export const EstimatePart = ({
     <div>
       <OsdsText
         level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-        size={ODS_THEME_TYPOGRAPHY_SIZE._600}
+        size={ODS_THEME_TYPOGRAPHY_SIZE._500}
         color={ODS_THEME_COLOR_INTENT.text}
       >
         {tConsumption('cpbc_tab_forecast')}
