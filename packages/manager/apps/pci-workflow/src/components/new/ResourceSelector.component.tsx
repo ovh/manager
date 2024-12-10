@@ -33,12 +33,14 @@ import { usePaginatedInstances } from '@/api/hooks/useInstances';
 import StatusComponent from '@/components/new/Status.component';
 import NotSupportedTooltipComponent from '@/components/new/NotSupportedTooltip.component';
 import { TWorkflowInstance } from '@/types';
+import { useLZAutoBackupAvailability } from '@/hooks/useLZAutoBackupAvailability';
 
 const useDatagridColumn = (
   selectedInstance: TWorkflowInstance,
   onSelectInstance: (instance: TWorkflowInstance) => void,
 ) => {
   const { t } = useTranslation('new');
+  const { isAvailable: canSelectInstance } = useLZAutoBackupAvailability();
   return [
     {
       id: 'actions',
@@ -50,10 +52,13 @@ const useDatagridColumn = (
               color={ODS_THEME_COLOR_INTENT.primary}
               size={ODS_RADIO_BUTTON_SIZE.xs}
               data-testid={`radio-button-${instance.id}`}
-              disabled={isLocalZone(instance.region) || undefined}
+              disabled={
+                (isLocalZone(instance.region) && !canSelectInstance) ||
+                undefined
+              }
               className="mx-auto"
               onClick={() => {
-                if (!isLocalZone(instance.region)) {
+                if (!isLocalZone(instance.region) || canSelectInstance) {
                   onSelectInstance(instance);
                 }
               }}
