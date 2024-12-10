@@ -1,4 +1,4 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import {
   EditConnectionPool,
@@ -13,14 +13,26 @@ export interface UseEditConnectionPool {
 }
 export function useEditConnectionPool({
   onError,
-  onSuccess,
+  onSuccess: customOnSuccess,
 }: UseEditConnectionPool) {
+  const queryClient = useQueryClient();
   const mutation = useMutation({
     mutationFn: (cpInfo: EditConnectionPool) => {
       return editConnectionPool(cpInfo);
     },
     onError,
-    onSuccess,
+    onSuccess: (data, variables) => {
+      queryClient.invalidateQueries({
+        queryKey: [
+          variables.projectId,
+          'database',
+          variables.engine,
+          variables.serviceId,
+          'connectionPool',
+        ],
+      });
+      customOnSuccess(data);
+    },
   });
 
   return {

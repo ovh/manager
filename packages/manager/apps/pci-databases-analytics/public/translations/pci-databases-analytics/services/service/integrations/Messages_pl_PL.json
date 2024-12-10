@@ -43,5 +43,6 @@
   "addIntegrationErrorNoDuplicate": "Podobna integracja już istnieje.",
   "addIntegrationErrorStringParamRequired": "Wymagane",
   "addIntegrationErrorIntegerParamRequired": "Wprowadź liczbę dodatnią",
-  "addIntegrationButtonAdd": "Dodaj"
+  "addIntegrationButtonAdd": "Dodaj",
+  "addIntegrationButtonCancel": "Anuluj"
 }

@@ -286,7 +286,7 @@ export function createTree(
   suggestions: database.availability.Suggestion[],
   catalog: order.publicOrder.Catalog,
 ) {
-  return availabilities.reduce((acc, curr) => {
+  const tree = availabilities.reduce((acc, curr) => {
     const engineSuggestion = suggestions.find((s) => s.engine === curr.engine);
     // Map engine
     const treeEngine = mapEngine(acc, curr, capabilities, engineSuggestion);
@@ -317,4 +317,12 @@ export function createTree(
     setPrices(curr, catalog, treePlan, treeFlavor);
     return acc;
   }, [] as Engine[]);
+  // sanitize: if default version returned from suggestions by api does not exist,
+  // set the last one as default
+  tree.forEach((engine) => {
+    if (!engine.versions.find((v) => v.name === engine.defaultVersion)) {
+      engine.defaultVersion = engine.versions[engine.versions.length - 1].name;
+    }
+  });
+  return tree;
 }

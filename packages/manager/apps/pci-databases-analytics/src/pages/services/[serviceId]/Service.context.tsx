@@ -1,6 +1,7 @@
 import { UseQueryResult } from '@tanstack/react-query';
-import { useOutletContext, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import * as database from '@/types/cloud/project/database';
+import { useGetService } from '@/hooks/api/database/service/useGetService.hook';
 
 // Share data with the child routes
 export type ServiceLayoutContext = {
@@ -8,7 +9,7 @@ export type ServiceLayoutContext = {
   serviceQuery: UseQueryResult<database.Service, Error>;
 };
 export const useServiceData = () => {
-  const { projectId, category } = useParams();
-  const { service, serviceQuery } = useOutletContext() as ServiceLayoutContext;
-  return { projectId, category, service, serviceQuery };
+  const { projectId, category, serviceId } = useParams();
+  const serviceQuery = useGetService(projectId, serviceId);
+  return { projectId, category, service: serviceQuery.data, serviceQuery };
 };

@@ -1,15 +1,13 @@
 import { useTranslation } from 'react-i18next';
 import { ColumnDef } from '@tanstack/react-table';
 import { Plus } from 'lucide-react';
+import { Outlet, useNavigate } from 'react-router-dom';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 import * as database from '@/types/cloud/project/database';
 import { useServiceData } from '../Service.context';
 import { DataTable } from '@/components/ui/data-table';
 import { getColumns } from './_components/DatabasesTableColumns.component';
 import { Button } from '@/components/ui/button';
-import { useModale } from '@/hooks/useModale';
-import AddDatabase from './_components/AddDatabase.component';
-import DeleteDatabase from './_components/DeleteDatabase.component';
 import { useUserActivityContext } from '@/contexts/UserActivityContext';
 import { POLLING } from '@/configuration/polling.constants';
 import { useGetDatabases } from '@/hooks/api/database/database/useGetDatabases.hook';
@@ -27,9 +25,8 @@ const Databases = () => {
   const { t } = useTranslation(
     'pci-databases-analytics/services/service/databases',
   );
-  const addModale = useModale('add');
-  const deleteModale = useModale('delete');
-  const { projectId, service, serviceQuery } = useServiceData();
+  const navigate = useNavigate();
+  const { projectId, service } = useServiceData();
   const { isUserActive } = useUserActivityContext();
   const databasesQuery = useGetDatabases(
     projectId,
@@ -39,11 +36,9 @@ const Databases = () => {
       refetchInterval: isUserActive && POLLING.DATABASES,
     },
   );
-  const deletingDatabase = databasesQuery.data?.find(
-    (d) => d.id === deleteModale.value,
-  );
   const columns: ColumnDef<database.service.Database>[] = getColumns({
-    onDeleteClick: (db: database.service.Database) => deleteModale.open(db.id),
+    onDeleteClick: (db: database.service.Database) =>
+      navigate(`./delete/${db.id}`),
   });
   return (
     <>
@@ -58,7 +53,7 @@ const Databases = () => {
             service.capabilities.databases?.create ===
             database.service.capability.StateEnum.disabled
           }
-          onClick={() => addModale.open()}
+          onClick={() => navigate('./add')}
         >
           <Plus className="w-4 h-4 mr-2" />
           {t('addButtonLabel')}
@@ -73,27 +68,7 @@ const Databases = () => {
         </div>
       )}
 
-      <AddDatabase
-        controller={addModale.controller}
-        service={service}
-        onSuccess={() => {
-          addModale.close();
-          databasesQuery.refetch();
-          serviceQuery.refetch();
-        }}
-      />
-
-      {deletingDatabase && (
-        <DeleteDatabase
-          controller={deleteModale.controller}
-          service={service}
-          database={deletingDatabase}
-          onSuccess={() => {
-            deleteModale.close();
-            databasesQuery.refetch();
-          }}
-        />
-      )}
+      <Outlet />
     </>
   );
 };

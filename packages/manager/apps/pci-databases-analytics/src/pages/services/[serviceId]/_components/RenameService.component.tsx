@@ -16,7 +16,6 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import * as database from '@/types/cloud/project/database';
 import {
-  Dialog,
   DialogClose,
   DialogContent,
   DialogDescription,
@@ -24,29 +23,22 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import { ModalController } from '@/hooks/useModale';
 import { useToast } from '@/components/ui/use-toast';
 import { useEditService } from '@/hooks/api/database/service/useEditService.hook';
-import { useTrackAction, useTrackPage } from '@/hooks/useTracking';
+import { useTrackAction } from '@/hooks/useTracking';
 import { TRACKING } from '@/configuration/tracking.constants';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
+import RouteModal from '@/components/route-modal/RouteModal';
 
 interface RenameServiceProps {
   service: database.Service;
-  controller: ModalController;
   onSuccess?: (service: database.Service) => void;
   onError?: (error: Error) => void;
 }
 
-const RenameService = ({
-  service,
-  controller,
-  onError,
-  onSuccess,
-}: RenameServiceProps) => {
+const RenameService = ({ service, onError, onSuccess }: RenameServiceProps) => {
   // import translations
   const { projectId } = useParams();
-  useTrackPage(TRACKING.renameService.page(service.engine));
   const track = useTrackAction();
   const { t } = useTranslation('pci-databases-analytics/services/service');
   const toast = useToast();
@@ -110,7 +102,7 @@ const RenameService = ({
   });
 
   return (
-    <Dialog {...controller}>
+    <RouteModal isLoading={!service?.id}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle data-testid="rename-service-modal">
@@ -162,7 +154,7 @@ const RenameService = ({
           </form>
         </Form>
       </DialogContent>
-    </Dialog>
+    </RouteModal>
   );
 };
 

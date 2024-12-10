@@ -22,6 +22,7 @@ import {
 import { mockedIntegrations } from '@/__tests__/helpers/mocks/integrations';
 import { apiErrorMock } from '@/__tests__/helpers/mocks/cdbError';
 import { useToast } from '@/components/ui/use-toast';
+import { CdbError } from '@/data/api/database';
 
 // Override mock to add capabilities
 const mockedNewService = {
@@ -35,10 +36,18 @@ const mockedNewService = {
     },
   },
 };
+const mockedUsedNavigate = vi.fn();
 
 describe('Integrations page', () => {
   beforeEach(() => {
     // Mock necessary hooks and dependencies
+    vi.mock('react-router-dom', async () => {
+      const mod = await vi.importActual('react-router-dom');
+      return {
+        ...mod,
+        useNavigate: () => mockedUsedNavigate,
+      };
+    });
     vi.mock('react-i18next', () => ({
       useTranslation: () => ({
         t: (key: string) => key,
@@ -124,7 +133,7 @@ describe('Integrations page', () => {
         },
       },
       category: 'operational',
-      serviceQuery: {} as UseQueryResult<database.Service, Error>,
+      serviceQuery: {} as UseQueryResult<database.Service, CdbError>,
     });
     render(<Integrations />, { wrapper: RouterWithQueryClientWrapper });
     expect(screen.queryByTestId('integrations-add-button')).toBeInTheDocument();
@@ -139,7 +148,7 @@ describe('Integrations page', () => {
         },
       },
       category: 'operational',
-      serviceQuery: {} as UseQueryResult<database.Service, Error>,
+      serviceQuery: {} as UseQueryResult<database.Service, CdbError>,
     });
     render(<Integrations />, { wrapper: RouterWithQueryClientWrapper });
     expect(screen.queryByTestId('integrations-add-button')).toBeNull();
@@ -156,7 +165,7 @@ describe('Integrations page', () => {
         },
       },
       category: 'operational',
-      serviceQuery: {} as UseQueryResult<database.Service, Error>,
+      serviceQuery: {} as UseQueryResult<database.Service, CdbError>,
     });
     render(<Integrations />, { wrapper: RouterWithQueryClientWrapper });
     const addButton = screen.queryByTestId('integrations-add-button');
@@ -196,91 +205,19 @@ describe('Open modals', () => {
     vi.clearAllMocks();
   });
 
-  it('open and close add integrations modal', async () => {
+  it('shows add modal', async () => {
     act(() => {
       fireEvent.click(screen.getByTestId('integrations-add-button'));
     });
     await waitFor(() => {
-      expect(screen.getByTestId('add-integrations-modal')).toBeInTheDocument();
-    });
-    act(() => {
-      fireEvent.keyDown(screen.getByTestId('add-integrations-modal'), {
-        key: 'Escape',
-        code: 'Escape',
-      });
-    });
-    await waitFor(() => {
-      expect(
-        screen.queryByTestId('add-integrations-modal'),
-      ).not.toBeInTheDocument();
+      expect(mockedUsedNavigate).toHaveBeenCalledWith('./add');
     });
   });
 
-  it('shows delete integrations modal', async () => {
+  it('shows delete databases modal', async () => {
     await openButtonInMenu('integrations-action-delete-button');
     await waitFor(() => {
-      expect(
-        screen.getByTestId('delete-integrations-modal'),
-      ).toBeInTheDocument();
-    });
-  });
-  it('closes delete integrations modal', async () => {
-    await openButtonInMenu('integrations-action-delete-button');
-    await waitFor(() => {
-      expect(
-        screen.getByTestId('delete-integrations-modal'),
-      ).toBeInTheDocument();
-    });
-    act(() => {
-      fireEvent.click(screen.getByTestId('delete-integrations-cancel-button'));
-    });
-    await waitFor(() => {
-      expect(
-        screen.queryByTestId('delete-integrations-modal'),
-      ).not.toBeInTheDocument();
-    });
-  });
-
-  it('delete integrations on error trigger toast', async () => {
-    const errorMsg = {
-      description: 'api error message',
-      title: 'deleteIntegrationToastErrorTitle',
-      variant: 'destructive',
-    };
-    vi.mocked(integrationApi.deleteIntegration).mockImplementationOnce(() => {
-      throw apiErrorMock;
-    });
-    await openButtonInMenu('integrations-action-delete-button');
-    await waitFor(() => {
-      expect(
-        screen.getByTestId('delete-integrations-modal'),
-      ).toBeInTheDocument();
-    });
-    act(() => {
-      fireEvent.click(screen.getByTestId('delete-integrations-submit-button'));
-    });
-    await waitFor(() => {
-      expect(integrationApi.deleteIntegration).toHaveBeenCalled();
-      expect(useToast().toast).toHaveBeenCalledWith(errorMsg);
-    });
-  });
-
-  it('refetch data on delete integrations success', async () => {
-    await openButtonInMenu('integrations-action-delete-button');
-    await waitFor(() => {
-      expect(
-        screen.getByTestId('delete-integrations-modal'),
-      ).toBeInTheDocument();
-    });
-    act(() => {
-      fireEvent.click(screen.getByTestId('delete-integrations-submit-button'));
-    });
-    await waitFor(() => {
-      expect(
-        screen.queryByTestId('delete-integrations-modal'),
-      ).not.toBeInTheDocument();
-      expect(integrationApi.deleteIntegration).toHaveBeenCalled();
-      expect(integrationApi.getServiceIntegrations).toHaveBeenCalled();
+      expect(mockedUsedNavigate).toHaveBeenCalledWith('./delete/integrationId');
     });
   });
 });
