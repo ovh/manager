@@ -7,7 +7,7 @@ exports[`MonthlyConsumption Component > matches snapshot 1`] = `
       class="my-2"
       color="primary"
       level="subheading"
-      size="600"
+      size="500"
       slot="summary"
     >
       cpbc_monthly_instance_detail_title (100.50 undefined)
