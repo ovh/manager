@@ -1,5 +1,8 @@
+// V Should be first V
+import '@/test-utils/setupTests';
+// -----
 import React from 'react';
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { render, waitFor } from '@testing-library/react';
 import { Breadcrumb, BreadcrumbProps } from './Breadcrumb.component';
 

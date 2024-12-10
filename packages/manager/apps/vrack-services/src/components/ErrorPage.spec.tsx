@@ -1,3 +1,6 @@
+// V Should be first V
+import '@/test-utils/setupTests';
+// -----
 import React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { render } from '@testing-library/react';
@@ -5,6 +8,7 @@ import {
   ShellContext,
   ShellContextType,
 } from '@ovh-ux/manager-react-shell-client';
+import { AxiosHeaders } from 'axios';
 import { ErrorBannerProps, ErrorPage } from './ErrorPage.component';
 
 /** Render */
@@ -21,7 +25,7 @@ const shellContext = {
   },
 };
 
-const renderComponent = ({ error }: ErrorBannerProps) => {
+const renderComponent = ({ error }: Partial<ErrorBannerProps>) => {
   return render(
     <ShellContext.Provider
       value={(shellContext as unknown) as ShellContextType}
@@ -42,7 +46,18 @@ describe('ErrorPage Component', () => {
           headers: {
             'x-ovh-queryid': 'api-error-queryid',
           },
+          status: 400,
+          statusText: 'nok',
+          config: {
+            headers: new AxiosHeaders({
+              'x-ovh-queryid': 'api-error-queryid',
+            }),
+          },
         },
+        toJSON: vi.fn(),
+        isAxiosError: true,
+        name: 'test',
+        message: 'api-error-message',
       },
     });
     expect(getByText('api-error-message')).toBeDefined();
