@@ -1,36 +1,34 @@
-import { memo, useCallback } from 'react';
+import { useCallback } from 'react';
 import {
-  ODS_BUTTON_SIZE,
   ODS_BUTTON_TYPE,
-  ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
 } from '@ovhcloud/ods-components';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
-import {
-  OsdsIcon,
-  OsdsButton,
-  OsdsSpinner,
-} from '@ovhcloud/ods-components/react';
+import { OsdsIcon, OsdsSpinner } from '@ovhcloud/ods-components/react';
 import { useQueryClient } from '@tanstack/react-query';
 import { SubmitHandler, useFormContext } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 import {
   getRegistryQueyPrefixWithId,
-  useIpRestrictions,
   useUpdateIpRestriction,
 } from '@/api/hooks/useIpRestrictions';
-import { TIPRestrictionsData, TIPRestrictionsMethodEnum } from '@/types';
+import {
+  FilterRestrictionsServer,
+  TIPRestrictionsData,
+  TIPRestrictionsMethodEnum,
+} from '@/types';
 
 import { categorizeByKey } from '@/helpers';
 
 const Buttons = () => {
   const queryClient = useQueryClient();
   const { projectId, registryId } = useParams();
-  const { handleSubmit, formState } = useFormContext();
-  const { t } = useTranslation(['ip-restructions', 'common']);
+
+  const { handleSubmit, formState, reset } = useFormContext();
+  const { t } = useTranslation(['ip-restrictions', 'common']);
 
   const { addSuccess, addError } = useNotifications();
 
@@ -38,15 +36,10 @@ const Buttons = () => {
     () => addError(t('common:private_registry_crud_cidr_error')),
     [addError],
   );
-  const onSuccess = useCallback(
-    () => addSuccess(t('private_registry_cidr_submit_success')),
-    [addSuccess, t],
-  );
-
-  const { isPending: isPendingGetRestriction } = useIpRestrictions(
-    projectId,
-    registryId,
-  );
+  const onSuccess = useCallback(() => {
+    reset();
+    addSuccess(t('private_registry_cidr_submit_success'), true);
+  }, [addSuccess, t]);
 
   const { updateIpRestrictions, isPending } = useUpdateIpRestriction({
     projectId,
@@ -55,7 +48,8 @@ const Buttons = () => {
     onSuccess,
   });
 
-  const removeDraftRow = () =>
+  const removeDraftRow = () => {
+    reset();
     queryClient.setQueryData(
       getRegistryQueyPrefixWithId(projectId, registryId, [
         'management',
@@ -63,57 +57,56 @@ const Buttons = () => {
       ]),
       (oldData: TIPRestrictionsData[]) => oldData.filter((item) => !item.draft),
     );
+  };
 
-  const onSubmit: SubmitHandler<TIPRestrictionsData> = (data) => {
+  const onSubmit: SubmitHandler<TIPRestrictionsData> = async (data) => {
     const categorizeByKeyResult = categorizeByKey([data], 'authorization', [
       'management',
       'registry',
     ]);
     updateIpRestrictions({
-      cidrToUpdate: categorizeByKeyResult,
+      cidrToUpdate: categorizeByKeyResult as Record<
+        FilterRestrictionsServer,
+        TIPRestrictionsData[]
+      >,
       action: TIPRestrictionsMethodEnum.ADD,
     });
   };
 
-  if (isPending || isPendingGetRestriction) {
+  if (isPending) {
     return <OsdsSpinner />;
   }
 
   return (
-    <div className="grid grid-cols-[0.45fr,0.45fr] gap-4">
-      <OsdsButton
+    <div className="md:grid grid-cols-[0.5fr,0.5fr] gap-4 ">
+      <button
+        className="button-datagrid-form cursor-pointer hover:[#85d9fd] border-[#85d9fd] border-solid border pt-3 bg-white rounded"
         data-testid="remove-draft-button"
         onClick={removeDraftRow}
-        type={ODS_BUTTON_TYPE.submit}
-        color={ODS_THEME_COLOR_INTENT.primary}
-        variant={ODS_BUTTON_VARIANT.stroked}
-        size={ODS_BUTTON_SIZE.sm}
+        type={ODS_BUTTON_TYPE.reset}
       >
         <OsdsIcon
           size={ODS_ICON_SIZE.sm}
           color={ODS_THEME_COLOR_INTENT.primary}
           name={ODS_ICON_NAME.CLOSE}
         />
-      </OsdsButton>
+      </button>
 
-      <OsdsButton
+      <button
+        className="button-datagrid-form cursor-pointer border-[#85d9fd] border-solid border bg-white pt-3  rounded"
         data-testid="submit-button"
-        role="submit"
         disabled={Boolean(Object.values(formState.errors).length) || undefined}
         type={ODS_BUTTON_TYPE.submit}
         onClick={handleSubmit(onSubmit)}
-        color={ODS_THEME_COLOR_INTENT.primary}
-        variant={ODS_BUTTON_VARIANT.stroked}
-        size={ODS_BUTTON_SIZE.sm}
       >
         <OsdsIcon
           size={ODS_ICON_SIZE.sm}
           color={ODS_THEME_COLOR_INTENT.primary}
           name={ODS_ICON_NAME.OK}
         />
-      </OsdsButton>
+      </button>
     </div>
   );
 };
 
-export default memo(Buttons);
+export default Buttons;
