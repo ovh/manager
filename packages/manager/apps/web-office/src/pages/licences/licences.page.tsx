@@ -16,7 +16,6 @@ import {
 } from '@ovhcloud/ods-components';
 import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { Breadcrumb } from '@/components/Breadcrumb/Breadcrumb';
 import { CTAS } from '@/guides.constants';
 import { urls } from '@/routes/routes.constants';
 import { LicenseType } from '@/api/license/type';
@@ -28,7 +27,7 @@ const columns: DatagridColumn<LicenseType>[] = [
   {
     id: 'serviceName',
     cell: (item) => {
-      const href = UseGenerateUrl(urls.dashboard, 'href', {
+      const href = UseGenerateUrl(urls.license, 'href', {
         serviceName: item.serviceName,
       });
 

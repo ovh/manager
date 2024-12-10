@@ -1,3 +1,4 @@
+import { UserStateEnum } from '../api.type';
 import { LicenseType } from '../license/type';
 
 export const licensesMock: LicenseType[] = [
@@ -11,7 +12,7 @@ export const licensesMock: LicenseType[] = [
     phone: '0033123456789',
     serviceName: 'user123.o365.ovh.com',
     serviceType: 'payAsYouGo',
-    status: 'active',
+    status: UserStateEnum.OK,
     zipCode: '75001',
     iam: {
       id: '12345abc-6789-def0-gh12-3456789ijklm',
@@ -28,7 +29,7 @@ export const licensesMock: LicenseType[] = [
     phone: '0033123456789',
     serviceName: 'topuser125.o365.ovh.com',
     serviceType: 'payAsYouGo',
-    status: 'active',
+    status: UserStateEnum.OK,
     zipCode: '59000',
     iam: {
       id: '12345abc-6789-def0-gh12-3456789ijklm',
