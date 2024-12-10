@@ -12,10 +12,18 @@ import {
 } from '@/types';
 import queryClient from '@/queryClient';
 
+type TUpdateIpRestrictionMutationParams = {
+  cidrToUpdate: Record<FilterRestrictionsServer, TIPRestrictionsDefault[]>;
+  action:
+    | TIPRestrictionsMethodEnum.DELETE
+    | TIPRestrictionsMethodEnum.REPLACE
+    | TIPRestrictionsMethodEnum.ADD;
+};
+
 export const getRegistryQueyPrefixWithId = (
   projectId: string,
   registryId: string,
-  type: FilterRestrictionsServer[],
+  type: FilterRestrictionsServer[] = ['management', 'registry'],
 ) => [...getRegistryQueryPrefix(projectId), registryId, 'ipRestrictions', type];
 
 export const useIpRestrictions = (
@@ -47,13 +55,7 @@ export const useUpdateIpRestriction = ({
     mutationFn: async ({
       cidrToUpdate,
       action,
-    }: {
-      cidrToUpdate: Record<FilterRestrictionsServer, TIPRestrictionsDefault[]>;
-      action:
-        | TIPRestrictionsMethodEnum.DELETE
-        | TIPRestrictionsMethodEnum.REPLACE
-        | TIPRestrictionsMethodEnum.ADD;
-    }) =>
+    }: TUpdateIpRestrictionMutationParams) =>
       updateIpRestriction(
         projectId,
         registryId,
@@ -61,8 +63,9 @@ export const useUpdateIpRestriction = ({
         action ?? TIPRestrictionsMethodEnum.ADD,
       ),
     onError,
+    mutationKey: getRegistryQueyPrefixWithId(projectId, registryId),
     onSuccess: async () => {
-      queryClient.invalidateQueries({
+      await queryClient.invalidateQueries({
         queryKey: getRegistryQueyPrefixWithId(projectId, registryId, [
           'management',
           'registry',
@@ -76,13 +79,8 @@ export const useUpdateIpRestriction = ({
     updateIpRestrictions: ({
       cidrToUpdate,
       action,
-    }: {
-      cidrToUpdate: Record<FilterRestrictionsServer, TIPRestrictionsDefault[]>;
-      action:
-        | TIPRestrictionsMethodEnum.DELETE
-        | TIPRestrictionsMethodEnum.REPLACE
-        | TIPRestrictionsMethodEnum.ADD;
-    }) => mutation.mutate({ cidrToUpdate, action }),
+    }: TUpdateIpRestrictionMutationParams) =>
+      mutation.mutate({ cidrToUpdate, action }),
     ...mutation,
   };
 };

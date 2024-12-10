@@ -8,15 +8,29 @@ import {
   useNotifications,
 } from '@ovh-ux/manager-react-components';
 
-import { useCallback, useEffect, useMemo } from 'react';
-import { QueryClient, QueryKey, useQueryClient } from '@tanstack/react-query';
+import { useCallback, useEffect } from 'react';
+import {
+  QueryClient,
+  QueryKey,
+  useMutationState,
+  useQueryClient,
+} from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useFormContext } from 'react-hook-form';
-import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
-import { OsdsText } from '@ovhcloud/ods-components/react';
+import {
+  ODS_MESSAGE_TYPE,
+  ODS_SPINNER_SIZE,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
+} from '@ovhcloud/ods-components';
+import {
+  OsdsSpinner,
+  OsdsText,
+  OsdsMessage,
+} from '@ovhcloud/ods-components/react';
 import { useDatagridColumn } from '@/pages/CIDR/useDatagridColumn';
 import Filters from '@/components/CIDR/Filters';
 import {
@@ -39,7 +53,6 @@ const createNewRow = (queryClient: QueryClient, key: QueryKey) =>
 
 export default function BlocCIDR() {
   const { t } = useTranslation(['ip-restrictions', 'common']);
-
   const { projectId, registryId } = useParams();
   const { data: project } = useProject();
   const queryClient = useQueryClient();
@@ -47,29 +60,31 @@ export default function BlocCIDR() {
   const { formState } = useFormContext();
   const columns = useDatagridColumn();
 
-  const { addInfo, clearNotifications, addError } = useNotifications();
+  const {
+    addInfo,
+    clearNotifications,
+    addError,
+    notifications,
+  } = useNotifications();
 
-  const { data: dataCIDR } = useIpRestrictions(projectId, registryId);
+  const { data: dataCIDR, isPending } = useIpRestrictions(
+    projectId,
+    registryId,
+  );
   const { data: registry } = useRegistry(projectId, registryId, true);
 
-  const isDraft = useMemo(
-    () => dataCIDR.some((restriction) => restriction.draft),
-    [dataCIDR],
-  );
+  const variablesPending = useMutationState({
+    filters: { status: 'pending' },
+    select: (mutation) => mutation.state.variables,
+  });
 
   useEffect(() => {
-    if (!dataCIDR.length || (dataCIDR.length === 1 && isDraft)) {
+    if (!dataCIDR.length) {
       addInfo(t('private_registry_noCIDR'));
     }
+  }, [dataCIDR, addInfo]);
 
-    const errorValues = Object.values(formState.errors);
-    if (errorValues?.length) {
-      errorValues.forEach(
-        (err) => typeof err.message === 'string' && addError(t(err.message)),
-      );
-    }
-    return clearNotifications;
-  }, [formState, dataCIDR, isDraft]);
+  useEffect(() => clearNotifications, []);
 
   const createNewBlocsCIDR = useCallback(
     () =>
@@ -83,11 +98,21 @@ export default function BlocCIDR() {
     [projectId, registryId],
   );
 
+  if (isPending || variablesPending.length) {
+    return (
+      <OsdsSpinner
+        inline
+        size={ODS_SPINNER_SIZE.md}
+        className="block text-center mt-5"
+      />
+    );
+  }
+
   return (
     <>
       {project && <BreadcrumbCIDR />}
 
-      <div className="header mt-8">
+      <div className="header my-8">
         <Headers
           title={registry.name}
           headerButton={
@@ -105,16 +130,24 @@ export default function BlocCIDR() {
           {t('common:private_registry_manage_CIDR')}
         </OsdsText>
       </div>
+      {Object.values(formState.errors)?.map((err) => (
+        <OsdsMessage
+          color={ODS_THEME_COLOR_INTENT.error}
+          type={ODS_MESSAGE_TYPE.error}
+          key={err.message}
+        >
+          {t(err.message as string)}
+        </OsdsMessage>
+      ))}
       <Notifications />
-      <Filters createNewRow={createNewBlocsCIDR} />
-      <div>
+      <div className="mt-8">
+        <Filters createNewRow={createNewBlocsCIDR} />
         <Datagrid
           columns={columns}
           items={dataCIDR}
           totalItems={dataCIDR?.length || 0}
           pagination={pagination}
           onPaginationChange={setPagination}
-          className="!overflow-x-visiblee"
         />
       </div>
     </>

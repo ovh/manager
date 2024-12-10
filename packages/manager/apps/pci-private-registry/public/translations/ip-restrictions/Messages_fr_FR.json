@@ -1,6 +1,8 @@
 {
   "private_registry_noCIDR": "Actuellement votre Managed Private Registry est ouverte à toutes les connexions. \nPour limiter l'accès à votre Managed Private Registry, il est important de définir des adresses IP autorisées (Bloc CIDR). \nEn procédant ainsi, vous assurez que seules les personnes ou les systèmes que vous avez approuvés peuvent accéder à votre Registry, ce qui renforce la sécurité et facilite la gestion des connexions.",
   "ip_restrictions_add_block": "Ajouter un Bloc CIDR autorisé",
+  "ip_restrictions_delete_block": "Supprimer un Bloc CIDR autorisé",
+  "ip_restrictions_delete_multiple_block": "Supprimer plusieurs blocs CIDR autorisés",
   "private_registry_bloc_cidr": "Bloc CIDR",
   "private_registry_cidr_description": "Description",
   "private_registry_cidr_authorization": "Composant autorisé",
@@ -9,5 +11,8 @@
   "private_registry_cidr_validation_ipBlock": "Ce bloc CIDR doit être valide (par exemple : 192.168.0.0/24).",
   "private_registry_cidr_validation_authorization": "Veuillez sélectionner au moins un composant autorisé.",
   "private_registry_cidr_submit_success": "Votre nouveau Bloc CIDR a été créé.",
-  "private_registry_cidr_help_authorized_component": "<p>Il existe 2 composants logiciel pour gérer les blocs CIDR :</p><p>Management: permet d'autoriser l'acces à UI et à l'API Harbor.</p><p>Registry: permet aux différents client / CLI d'autoriser l'acces au backend Registry (Docker, Helm, ... )</p>"
+  "private_registry_cidr_delete_success": "Votre Bloc CIDR a été supprimé avec succès.",
+  "private_registry_cidr_delete_all_success": "Tous les blocs CIDR sélectionnés ont été supprimés avec succès.",
+  "private_registry_cidr_help_authorized_component": "<p>Il existe 2 composants logiciel pour gérer les blocs CIDR :</p><p>Management: permet d'autoriser l'acces à UI et à l'API Harbor.</p><p>Registry: permet aux différents client / CLI d'autoriser l'acces au backend Registry (Docker, Helm, ... )</p>",
+  "private_registry_cidr_already_exist": "L'IP/CIDR existe déjà dans la liste."
 }
