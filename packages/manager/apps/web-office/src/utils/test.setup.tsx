@@ -1,6 +1,10 @@
 import { vi } from 'vitest';
-import { licensesMock } from '@/api/_mock_/license';
-import { useOfficeLicenses } from '@/hooks';
+import {
+  usersMock,
+  licensesMock,
+  licensesPrepaidMock,
+  licensesPrepaidExpandedMock,
+} from '@/api/_mock_';
 
 const mocksAxios = vi.hoisted(() => ({
   get: vi.fn(),
@@ -36,37 +40,42 @@ vi.mock('@/hooks', async (importActual) => {
   return {
     ...(await importActual<typeof import('@/hooks')>()),
     useGenerateUrl: vi.fn(),
-    useOfficeLicenses: vi.fn(() => ({
-      data: licensesMock,
-
-      totalCount: licensesMock.length,
-      isLoading: false,
-      sorting: {},
-      setSorting: vi.fn(),
-      pageIndex: 1,
-    })),
   };
 });
 
-vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
-  const actual = await importOriginal<
-    typeof import('@ovh-ux/manager-react-components')
-  >();
-
+vi.mock('@/api/license', async (importActual) => {
   return {
-    ...actual,
-    useResourcesIcebergV6: vi.fn(() => ({
-      flattenData: licensesMock,
-      isError: false,
-      error: null,
-      totalCount: licensesMock.length,
-      hasNextPage: false,
-      fetchNextPage: vi.fn(),
-      isLoading: false,
-      sorting: {},
-      setSorting: vi.fn(),
-      pageIndex: 1,
-    })),
+    ...(await importActual<typeof import('@/api/license')>()),
+    getOfficeGlobalLicenses: vi.fn(() => {
+      return Promise.resolve(licensesMock);
+    }),
+    getOfficeLicenses: vi.fn(() => {
+      return Promise.resolve(licensesMock);
+    }),
+    getOfficeLicenseDetails: vi.fn((serviceName) => {
+      return Promise.resolve(
+        licensesMock.find((license) => license.serviceName === serviceName),
+      );
+    }),
+    getOfficePrepaidLicenses: vi.fn(() => {
+      return Promise.resolve(licensesPrepaidMock);
+    }),
+    getOfficePrepaidLicenseDetails: vi.fn((serviceName) => {
+      return Promise.resolve(
+        licensesPrepaidExpandedMock.find(
+          (license) => license.serviceName === serviceName,
+        ),
+      );
+    }),
+  };
+});
+
+vi.mock('@/api/users', async (importActual) => {
+  return {
+    ...(await importActual<typeof import('@/api/users')>()),
+    getOfficeUsers: vi.fn(() => {
+      return Promise.resolve(usersMock);
+    }),
   };
 });
 

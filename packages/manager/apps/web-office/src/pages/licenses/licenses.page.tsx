@@ -16,19 +16,17 @@ import {
 } from '@ovhcloud/ods-components';
 import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { Breadcrumb } from '@/components/Breadcrumb/Breadcrumb';
 import { CTAS } from '@/guides.constants';
 import { urls } from '@/routes/routes.constants';
-import { LicenseType } from '@/api/license/type';
-import { useOfficeLicenses } from '@/hooks';
-import { UseGenerateUrl } from '@/hooks/useGenerateUrl';
+import { LicenseType } from '@/api/license';
+import { useOfficeLicenses, UseGenerateUrl } from '@/hooks';
 import Loading from '@/components/Loading/Loading';
 
 const columns: DatagridColumn<LicenseType>[] = [
   {
     id: 'serviceName',
     cell: (item) => {
-      const href = UseGenerateUrl(urls.dashboard, 'href', {
+      const href = UseGenerateUrl(urls.license, 'href', {
         serviceName: item.serviceName,
       });
 
@@ -106,6 +104,7 @@ const columns: DatagridColumn<LicenseType>[] = [
 export default function Licenses() {
   const { t } = useTranslation('licenses');
   const { data, isLoading } = useOfficeLicenses();
+
   const { sorting, setSorting } = useDatagridSearchParams();
 
   const context = useContext(ShellContext);
@@ -119,6 +118,7 @@ export default function Licenses() {
   const header = {
     title: t('microsoft_office_licenses_title'),
   };
+
   const sortedData = React.useMemo(() => {
     if (!data || data.length === 0 || !sorting) return data;
 
@@ -133,34 +133,36 @@ export default function Licenses() {
 
     return sorted;
   }, [data, sorting]);
-  if (isLoading) {
-    return <Loading />;
-  }
 
   return (
-    <BaseLayout header={header}>
-      <div className="mb-4">
-        <OdsButton
-          color={ODS_BUTTON_COLOR.primary}
-          variant={ODS_BUTTON_VARIANT.outline}
-          onClick={goOrder}
-          label={t('microsoft_office_licenses_order')}
-          data-testid="licenses-order-button"
-        ></OdsButton>
-      </div>
-      {columns && (
-        <Datagrid
-          columns={columns.map((column) => ({
-            ...column,
-            label: t(column.label),
-          }))}
-          items={sortedData || []}
-          totalItems={sortedData?.length || 0}
-          sorting={sorting}
-          onSortChange={setSorting}
-          className="mt-4"
-        />
+    <>
+      {isLoading && <Loading />}
+      {!isLoading && (
+        <BaseLayout header={header}>
+          <div className="mb-4">
+            <OdsButton
+              color={ODS_BUTTON_COLOR.primary}
+              variant={ODS_BUTTON_VARIANT.outline}
+              onClick={goOrder}
+              label={t('microsoft_office_licenses_order')}
+              data-testid="licenses-order-button"
+            ></OdsButton>
+          </div>
+          {columns && (
+            <Datagrid
+              columns={columns.map((column) => ({
+                ...column,
+                label: t(column.label),
+              }))}
+              items={sortedData || []}
+              totalItems={sortedData?.length || 0}
+              sorting={sorting}
+              onSortChange={setSorting}
+              className="mt-4"
+            />
+          )}
+        </BaseLayout>
       )}
-    </BaseLayout>
+    </>
   );
 }
