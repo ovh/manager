@@ -13,34 +13,25 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import { CONFIGURATION_CONFIG } from './configuration.constants';
 import { useLabelForm } from '@/components/labels/useLabelForm.hook';
+import { CONFIGURATION_CONFIG } from '../order/configuration/configuration.constants';
 
-interface LabelsFormProps {
-  labelValue: ai.Label[];
-  onChange: (newLabels: ai.Label[]) => void;
+interface LabelFormProps {
+  labelValue: string[];
+  onChange: (newLabel: ai.Label) => void;
   disabled?: boolean;
 }
 
-const LabelsForm = React.forwardRef<HTMLInputElement, LabelsFormProps>(
+const LabelForm = React.forwardRef<HTMLInputElement, LabelFormProps>(
   ({ labelValue, onChange, disabled }, ref) => {
     const { t } = useTranslation('pci-ai-notebooks/components/configuration');
-
     const { form } = useLabelForm({
-      configuredLabel: labelValue.map((label) => label.name),
+      configuredLabel: labelValue,
     });
 
     const onSubmit: SubmitHandler<ai.Label> = (data: ai.Label) => {
-      const newLabels = [...labelValue, data];
-      onChange(newLabels);
+      onChange(data);
       form.reset();
-    };
-
-    const removeLabel = (indexToRemove: number) => {
-      const newLabels = labelValue.filter(
-        (_, index) => index !== indexToRemove,
-      );
-      onChange(newLabels);
     };
 
     return (
@@ -91,45 +82,11 @@ const LabelsForm = React.forwardRef<HTMLInputElement, LabelsFormProps>(
             <PlusCircle />
           </Button>
         </div>
-        <ul>
-          {labelValue.map((label, index) => (
-            <li key={label.name} className="flex items-center ml-5 text-sm">
-              <div>
-                <span>{label.name}</span>
-                {label.value && (
-                  <>
-                    <span> - </span>
-                    <span className="truncate max-w-96" title={label.value}>
-                      {label.value}
-                    </span>
-                  </>
-                )}
-              </div>
-              <Button
-                data-testid={`label-remove-button-${index}`}
-                className="text-red-500 rounded-full p-2 hover:text-red-500 h-8 w-8"
-                variant={'ghost'}
-                type="button"
-                onClick={() => removeLabel(index)}
-                disabled={disabled}
-              >
-                <Trash2 />
-              </Button>
-            </li>
-          ))}
-        </ul>
-        <p data-testid="configured-labels">
-          {t('numberOfConfiguredLabels', {
-            count: labelValue.length,
-            max: CONFIGURATION_CONFIG.maxLabelNumber,
-            context: `${labelValue.length}`,
-          })}
-        </p>
       </Form>
     );
   },
 );
 
-LabelsForm.displayName = 'LabelsForm';
+LabelForm.displayName = 'LabelForm';
 
-export default LabelsForm;
+export default LabelForm;

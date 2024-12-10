@@ -1,7 +1,12 @@
 {
   "dashboardTitle": "Dashboard",
+  "accessLinkTitle": "Accès",
+  "labelsTitle": "Labels",
   "resourcesTitle": "Ressources",
   "lifeCycleTitle": "Cycle de vie",
+  "billingSupportTitle": "Support & Facturation",
+  "configurationTitle": "Configuration",
+  "cliTitle": "CLI",
   "powerTitleSection": "Power",
   "computeTitleSection": "Compute",
   "storageTitleSection": "Stockage",

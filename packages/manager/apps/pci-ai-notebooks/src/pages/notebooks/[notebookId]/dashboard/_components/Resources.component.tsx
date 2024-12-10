@@ -80,7 +80,7 @@ const Resources = () => {
           <h5>{t('storageTitleSection')}</h5>
           <HardDrive className="size-4" />
         </div>
-        <div className="flex flex-row items-center gap-4">
+        <div className="flex flex-row items-center gap-2">
           <span>
             {t('temporaryLocalStorageField', {
               storage: bytesConverter(
@@ -100,7 +100,7 @@ const Resources = () => {
           </Popover>
         </div>
       </div>
-      <div className="flex flex-row items-center gap-4">
+      <div className="flex flex-row items-center gap-2">
         <span>
           {t('workspaceStorage', {
             storage: bytesConverter(

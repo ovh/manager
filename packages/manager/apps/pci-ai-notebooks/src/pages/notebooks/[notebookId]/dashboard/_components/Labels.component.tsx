@@ -1,4 +1,4 @@
-import { Plus, X } from 'lucide-react';
+import { X } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useNotebookData } from '../../Notebook.context';
 import { Button } from '@/components/ui/button';
@@ -7,15 +7,13 @@ import { isOvhTags } from '@/lib/notebookHelper';
 import { useEditLabel } from '@/hooks/api/ai/notebook/label/useEditLabel.hook';
 import { useToast } from '@/components/ui/use-toast';
 import { getAIApiErrorMessage } from '@/lib/apiHelper';
-import AddLabel from './AddLabel.component';
-import { useModale } from '@/hooks/useModale';
-import { CONFIGURATION_CONFIG } from '@/components/order/configuration/configuration.constants';
+import LabelForm from '@/components/labels/LabelDashboardForm.component';
+import * as ai from '@/types/cloud/project/ai';
 
-const Tags = () => {
+const Labels = () => {
   const { notebook, notebookQuery, projectId } = useNotebookData();
   const { t } = useTranslation('pci-ai-notebooks/notebooks/notebook/dashboard');
   const toast = useToast();
-  const addModale = useModale('add');
 
   const { editLabel, isPending } = useEditLabel({
     onError: (err) => {
@@ -44,24 +42,24 @@ const Tags = () => {
     });
   };
 
+  const handleAddLabel = (label: ai.Label) => {
+    editLabel({
+      projectId,
+      notebookId: notebook.id,
+      label: {
+        name: label.name,
+        value: label.value,
+      },
+    });
+  };
+
   return (
     <>
       <div data-testid="privacy-container">
-        <Button
-          size="sm"
-          variant="outline"
-          type="button"
-          onClick={() => addModale.open()}
-          disabled={
-            Object.entries(notebook.spec.labels).length >=
-            CONFIGURATION_CONFIG.maxLabelNumber
-          }
-        >
-          <div className="flex flex-row gap-2 items-center">
-            <Plus className="size-4" />
-            <span>Add Tag</span>
-          </div>
-        </Button>
+        <LabelForm
+          labelValue={Object.keys(notebook.spec.labels)}
+          onChange={(newLabel) => handleAddLabel(newLabel)}
+        />
         <div className="flex flex-wrap gap-2 mt-4">
           {notebook.spec.labels &&
             Object.entries(notebook.spec.labels).map(([labKey, value]) => (
@@ -78,6 +76,7 @@ const Tags = () => {
                         disabled={isPending}
                         size="table"
                         type="button"
+                        variant="ghost"
                         className="inline"
                         onClick={() => handleDeleteLabel(labKey)}
                       >
@@ -90,16 +89,8 @@ const Tags = () => {
             ))}
         </div>
       </div>
-      <AddLabel
-        controller={addModale.controller}
-        notebook={notebook}
-        onSuccess={() => {
-          addModale.close();
-          notebookQuery.refetch();
-        }}
-      />
     </>
   );
 };
 
-export default Tags;
+export default Labels;

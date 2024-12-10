@@ -14,7 +14,6 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { useNotebookData } from '../Notebook.context';
 import Resources from './_components/Resources.component';
 import Configurations from './_components/Configuration.component';
-import Privacy from './_components/Tags.component';
 import { useGetCommand } from '@/hooks/api/ai/notebook/useGetCommand.hook';
 import { getAIApiErrorMessage } from '@/lib/apiHelper';
 import { useToast } from '@/components/ui/use-toast';
@@ -22,7 +21,8 @@ import * as ai from '@/types/cloud/project/ai';
 import CliCodeBlock from '@/components/cli-code-block/CliCodeBlock.component';
 import OvhLink from '@/components/links/OvhLink.component';
 import LifeCycle from './_components/LifeCycle.component';
-import NotebookLink from './_components/NotebookLink.component';
+import Labels from './_components/Labels.component';
+import AccessLink from './_components/AccessLink.component';
 
 const Dashboard = () => {
   const { notebook, projectId } = useNotebookData();
@@ -58,19 +58,19 @@ const Dashboard = () => {
           <CardHeader>
             <h4>
               <Link className="size-4 inline mr-2" />
-              <span>Accès</span>
+              <span>{t('accessLinkTitle')}</span>
             </h4>
           </CardHeader>
           <CardContent>
-            <NotebookLink />
+            <AccessLink />
           </CardContent>
           <div className="border-t my-2 pt-2 mx-6"></div>
           <h4 className="px-6 mb-4">
             <Tag className="size-4 inline mr-2" />
-            <span>Tags</span>
+            <span>{t('labelsTitle')}</span>
           </h4>
           <CardContent>
-            <Privacy />
+            <Labels />
           </CardContent>
         </Card>
         <Card>
@@ -101,7 +101,7 @@ const Dashboard = () => {
           <CardHeader>
             <h4>
               <UserCheck className="inline size-4 mr-2 mb-1" />
-              Support & Facturation
+              {t('billingSupportTitle')}
             </h4>
           </CardHeader>
           <CardContent>
@@ -130,7 +130,7 @@ const Dashboard = () => {
           <div className="border-t my-2 pt-2 mx-6"></div>
           <h4 className="px-6 mb-4">
             <Settings2 className="inline size-4 mr-2 mb-1" />
-            Configuration
+            {t('configurationTitle')}
           </h4>
 
           <CardContent>
@@ -141,7 +141,7 @@ const Dashboard = () => {
           <CardHeader>
             <h4>
               <TerminalSquare className="size-4 inline mr-2" />
-              <span>CLI</span>
+              <span>{t('cliTitle')}</span>
             </h4>
           </CardHeader>
           <CardContent>

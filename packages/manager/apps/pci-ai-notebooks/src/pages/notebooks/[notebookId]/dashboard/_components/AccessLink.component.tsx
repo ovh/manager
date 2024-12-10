@@ -10,7 +10,7 @@ import { Button } from '@/components/ui/button';
 import A from '@/components/links/A.component';
 import { isRunningNotebook } from '@/lib/notebookHelper';
 
-const NotebookLink = () => {
+const AccessLink = () => {
   const { notebook } = useNotebookData();
   const { t } = useTranslation('pci-ai-notebooks/notebooks/notebook/dashboard');
 
@@ -23,6 +23,7 @@ const NotebookLink = () => {
       <Button
         type="button"
         variant="default"
+        className="w-full"
         disabled={!isRunningNotebook(notebook.status.state)}
       >
         <A href={notebook.status.url} target="_blank" rel="noopener noreferrer">
@@ -36,7 +37,7 @@ const NotebookLink = () => {
         <h5>{t('grafanaTitle')}</h5>
         <Activity className="size-4" />
       </div>
-      <Button type="button" variant="outline">
+      <Button className="w-full" type="button" variant="outline">
         <A
           href={notebook.status.monitoringUrl}
           target="_blank"
@@ -52,4 +53,4 @@ const NotebookLink = () => {
   );
 };
 
-export default NotebookLink;
+export default AccessLink;
