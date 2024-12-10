@@ -8,6 +8,7 @@ import { ODS_TEXT_LEVEL } from '@ovhcloud/ods-components';
 import { isLocalZone } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { ReactNode } from 'react';
+import { useLZAutoBackupAvailability } from '@/hooks/useLZAutoBackupAvailability';
 
 type NotSupportedTooltipComponentProps = {
   children: ReactNode;
@@ -19,7 +20,8 @@ export default function NotSupportedTooltipComponent({
   children,
 }: Readonly<NotSupportedTooltipComponentProps>) {
   const { t } = useTranslation();
-  return isLocalZone(region) ? (
+  const { isAvailable: isSupported } = useLZAutoBackupAvailability();
+  return isLocalZone(region) && !isSupported ? (
     <OsdsPopover>
       <span slot="popover-trigger">{children}</span>
       <OsdsPopoverContent>
