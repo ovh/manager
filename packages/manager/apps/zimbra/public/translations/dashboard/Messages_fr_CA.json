@@ -5,6 +5,7 @@
   "zimbra_dashboard_domains_edit": "Configuration du domaine",
   "zimbra_dashboard_domains_delete": "Supprimer un domaine",
   "zimbra_dashboard_domains_diagnostic": "Diagnostique",
+  "zimbra_dashboard_domains_verify": "Vérification",
   "zimbra_dashboard_email_accounts": "Compte email",
   "zimbra_dashboard_email_accounts_add": "Créer un compte email",
   "zimbra_dashboard_email_accounts_edit": "Modifier le compte",

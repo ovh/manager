@@ -13,6 +13,5 @@ export const FEATURE_FLAGS = {
   MAILINGLISTS: false,
   DOMAIN_DIAGNOSTICS: false,
   DOMAIN_DNS_CONFIGURATION: false,
-  DOMAIN_NOT_OVH: false,
   ORDER: false,
 };
