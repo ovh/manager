@@ -55,6 +55,12 @@ export default class PciInstanceEditController {
 
     this.loadMessages();
     this.updateInstanceFlavor();
+    this.getUAppUrl(
+      'public-cloud',
+      `#/pci/projects/${this.projectId}/savings-plan`,
+    ).then((url) => {
+      this.savingsPlanUrl = url;
+    });
   }
 
   updateInstanceFlavor() {
