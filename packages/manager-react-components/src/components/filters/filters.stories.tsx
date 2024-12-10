@@ -83,7 +83,7 @@ export const DefaultProps = {
 };
 
 export default {
-  title: 'Components/filters',
+  title: 'Components/Filters',
   component: FiltersStory,
   decorators: [withRouter],
 };
