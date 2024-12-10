@@ -7,7 +7,7 @@ exports[`EstimatePart > Prices rae not pending > should render the component if 
       color="text"
       data-testid="osds-text"
       level="heading"
-      size="600"
+      size="500"
     >
       consumption | cpbc_tab_forecast
     </osds-text>
@@ -64,7 +64,7 @@ exports[`EstimatePart > Prices rae not pending > should render the component if 
       color="text"
       data-testid="osds-text"
       level="heading"
-      size="600"
+      size="500"
     >
       consumption | cpbc_tab_forecast
     </osds-text>
@@ -121,7 +121,7 @@ exports[`EstimatePart > should render the component if is pending 1`] = `
       color="text"
       data-testid="osds-text"
       level="heading"
-      size="600"
+      size="500"
     >
       consumption | cpbc_tab_forecast
     </osds-text>
