@@ -6,6 +6,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { getMacroRegion } from '@ovh-ux/manager-react-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { getMacroRegion } from '@ovh-ux/manager-react-components';
 import { useEffect, useState } from 'react';
 import { useStorageRegions } from '@/api/hooks/useRegion';
 import { Region } from '@/api/data/region';

@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+import { getMacroRegion } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { getMacroRegion } from '@ovh-ux/manager-react-components';
 import { TCatalog } from '@ovh-ux/manager-pci-common';
