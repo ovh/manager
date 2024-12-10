@@ -41,6 +41,17 @@ angular
         },
       });
 
+      $stateProvider.state('vrack.order.**', {
+        url: '/order',
+        lazyLoad: ($transition$) => {
+          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+          return import('./order/module').then((mod) =>
+            $ocLazyLoad.inject(mod.default || mod),
+          );
+        },
+      });
+
       $stateProvider.state('vrack.dashboard.**', {
         url: '/:vrackId',
         lazyLoad: ($transition$) => {
