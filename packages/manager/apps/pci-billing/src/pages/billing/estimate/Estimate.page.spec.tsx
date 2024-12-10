@@ -1,6 +1,7 @@
 import { describe, Mock, vi, expect } from 'vitest';
 import { render } from '@testing-library/react';
 import { wrapper } from '@ovh-ux/manager-pci-load-balancer-app/src/wrapperRenders';
+import { act } from 'react-dom/test-utils';
 import {
   EstimatePart,
   TEstimateProps,
@@ -118,5 +119,39 @@ describe('EstimatePage', () => {
     expect(call.forecastTotalHourlyPrice).toBe(2);
     expect(call.currentPricesError).toBe(null);
     expect(call.isLoading).toBe(false);
+  });
+
+  describe('Create alert modal', () => {
+    describe('Success', () => {
+      it('should clear notifications', () => {});
+      it('should show success message', () => {});
+      it('should update cache', () => {});
+    });
+    describe('Failure', () => {
+      it('should show error message', () => {});
+    });
+  });
+
+  describe('Update alert modal', () => {
+    describe('Success', () => {
+      it('should clear notifications', () => {});
+      it('should show success message', () => {});
+      it('should update cache', () => {});
+    });
+    describe('Failure', () => {
+      it('should show error message', () => {});
+    });
+  });
+
+  describe('Delete alert modal', () => {
+    describe('Success', () => {
+      it('should clear notifications', () => {});
+      it('should show success message', () => {});
+      it('should update cache', () => {});
+    });
+    describe('Failure', () => {
+      it('should clear notifications', () => {});
+      it('should show error message', () => {});
+    });
   });
 });
