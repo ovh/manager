@@ -19,6 +19,7 @@ const defaultProps: TBillingStepProps = {
 };
 
 vi.mock('@ovh-ux/manager-react-components', () => ({
+  useProjectUrl: vi.fn().mockReturnValue('mockProjectUrl'),
   useCatalogPrice: () => ({
     getTextPrice: (price: number) => price,
     getFormattedCatalogPrice: (price: number) => price,
