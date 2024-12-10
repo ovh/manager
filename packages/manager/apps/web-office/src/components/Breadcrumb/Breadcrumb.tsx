@@ -18,40 +18,34 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = () => {
   const location = useLocation();
 
   const rootUrl = serviceName
-    ? '#/:serviceName'.replace(':serviceName', '')
+    ? '#/license/:serviceName'.replace(':serviceName', '')
     : '#/';
 
   const breadcrumbItems = useMemo(() => {
     const pathParts = location.pathname.split('/').filter(Boolean);
-    const breadcrumbParts = pathParts.slice(1);
+    const breadcrumbParts = pathParts.slice(2);
     return [
       {
         label: 'Microsoft 365',
         href: rootUrl,
       },
-      ...(breadcrumbParts.length === 1
-        ? [
-            {
-              label: serviceName,
-              href: `${rootUrl}`,
-            },
-          ]
-        : breadcrumbParts.map((_, index) => {
-            const label =
-              index === breadcrumbParts.length - 1
-                ? serviceName
-                : t(
-                    `microsoft_office__dashboard_${breadcrumbParts
-                      .slice(0, index + 1)
-                      .join('_')}`,
-                  );
+      {
+        label: pathParts[1],
+        href: `#/${pathParts.slice(0, 2).join('/')}`,
+      },
+      ...breadcrumbParts.map((_, index) => {
+        const label = t(
+          `microsoft_office_dashboard_${breadcrumbParts
+            .slice(0, index + 1)
+            .join('_')}`,
+        );
 
-            const url = `#/${pathParts.slice(0, index + 2).join('/')}`;
-            return {
-              label,
-              href: url,
-            };
-          })),
+        const url = `#/${pathParts.slice(0, index + 2).join('/')}`;
+        return {
+          label,
+          href: url,
+        };
+      }),
     ].filter(Boolean);
   }, [location, serviceName, rootUrl, t]);
 
