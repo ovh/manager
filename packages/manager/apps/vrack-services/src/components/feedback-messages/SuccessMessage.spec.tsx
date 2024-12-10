@@ -1,25 +1,33 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { describe, expect, it, vi } from 'vitest';
-import { render, waitFor, act } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+import { UseQueryResult } from '@tanstack/react-query';
 import vrackServicesList from '../../../mocks/vrack-services/get-vrack-services.json';
-import { useVrackServicesList } from '@/data';
-import { ApiResponse } from '@ovh-ux/manager-core-api';
+import { VrackServicesWithIAM, useVrackServicesList } from '@/data';
 import { SuccessMessages } from './SuccessMessage.component';
 import { MessagesContext, MessagesContextType } from './Messages.context';
 
 /** Render */
 const mockContextMessage = {
-    successMessages: [{id: 123, message: 'test-message', options: {linkLabel: 'test-link-label', linkUrl: 'test-link-url'}}],
-    hiddenMessages: [],
-    hideMessage: vi.fn()
-}
+  successMessages: [
+    {
+      id: 123,
+      message: 'test-message',
+      options: { linkLabel: 'test-link-label', linkUrl: 'test-link-url' },
+    },
+  ],
+  hiddenMessages: [] as number[],
+  hideMessage: vi.fn(),
+  addSuccessMessage: vi.fn(),
+};
 
-const renderComponent = ({id}: {id?:string}) => {
+const renderComponent = ({ id }: { id?: string }) => {
   return render(
     <MessagesContext.Provider value={mockContextMessage as MessagesContextType}>
-      <SuccessMessages id={id}/>
-    </MessagesContext.Provider>
+      <SuccessMessages id={id} />
+    </MessagesContext.Provider>,
   );
 };
 
@@ -51,11 +59,11 @@ vi.mock('react-i18next', () => ({
 }));
 /** END MOCKS */
 
-
 describe('OperationMessages Component', () => {
   it('should display a message for all vrs which are not ready', async () => {
-    const user = userEvent.setup();
-    vi.mocked(useVrackServicesList).mockReturnValue({data: {data: vrackServicesList}} as ApiResponse);
+    vi.mocked(useVrackServicesList).mockReturnValue({
+      data: { data: vrackServicesList },
+    } as UseQueryResult<ApiResponse<VrackServicesWithIAM[]>, ApiError>);
     const { getByText } = renderComponent({});
     await waitFor(async () => {
       const message = getByText('test-message');

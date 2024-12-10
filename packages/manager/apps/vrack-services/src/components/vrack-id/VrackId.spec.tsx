@@ -1,3 +1,6 @@
+// V Should be first V
+import '@/test-utils/setupTests';
+// -----
 import React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { render, waitFor } from '@testing-library/react';
