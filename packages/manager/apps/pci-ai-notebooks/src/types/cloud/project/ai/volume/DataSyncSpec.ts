@@ -7,5 +7,5 @@ export interface DataSyncSpec {
   /** True if the user has created the object */
   manual?: boolean;
   /** Only sync this volume */
-  volume: string;
+  volume?: string;
 }

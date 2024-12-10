@@ -19,7 +19,7 @@ interface DeleteNotebookModalProps {
   notebook: ai.notebook.Notebook;
   controller: ModalController;
   onSuccess?: (notebook: ai.notebook.Notebook) => void;
-  onError?: (service: Error) => void;
+  onError?: (notebook: Error) => void;
 }
 
 const DeleteNotebook = ({
