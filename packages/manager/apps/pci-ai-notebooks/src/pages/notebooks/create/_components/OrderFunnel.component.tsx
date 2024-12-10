@@ -41,7 +41,7 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 import { Label } from '@/components/ui/label';
-import LabelsForm from '@/components/order/configuration/LabelsForm.component';
+import LabelsForm from '@/components/labels/LabelsForm.component';
 import SshKeyForm from '@/components/order/configuration/SshKeyForm.component';
 import { SshKey } from '@/types/cloud/sshkey';
 import VolumeForm from '@/components/order/volumes/VolumesForm.component';
@@ -466,10 +466,15 @@ const OrderFunnel = ({
                             <FormControl>
                               <LabelsForm
                                 {...field}
-                                labelValue={field.value}
-                                onChange={(newLabel) =>
-                                  model.form.setValue('labels', newLabel)
+                                configuredLabels={field.value}
+                                displayLabels={true}
+                                onRemove={(newLabels: ai.Label[]) =>
+                                  model.form.setValue('labels', newLabels)
                                 }
+                                onAdd={(newLabel: ai.Label) => {
+                                  const newLabels = [...field.value, newLabel];
+                                  model.form.setValue('labels', newLabels);
+                                }}
                               />
                             </FormControl>
                             <FormMessage />

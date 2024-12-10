@@ -13,34 +13,35 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import { CONFIGURATION_CONFIG } from './configuration.constants';
+import { CONFIGURATION_CONFIG } from '../order/configuration/configuration.constants';
 import { useLabelForm } from '@/components/labels/useLabelForm.hook';
 
 interface LabelsFormProps {
-  labelValue: ai.Label[];
-  onChange: (newLabels: ai.Label[]) => void;
+  configuredLabels: ai.Label[];
+  displayLabels: boolean;
+  onAdd: (newLabel: ai.Label) => void;
+  onRemove?: (newLabels: ai.Label[]) => void;
   disabled?: boolean;
 }
 
 const LabelsForm = React.forwardRef<HTMLInputElement, LabelsFormProps>(
-  ({ labelValue, onChange, disabled }, ref) => {
+  ({ configuredLabels, onAdd, onRemove, displayLabels, disabled }, ref) => {
     const { t } = useTranslation('pci-ai-notebooks/components/configuration');
 
     const { form } = useLabelForm({
-      configuredLabel: labelValue.map((label) => label.name),
+      configuredLabel: configuredLabels.map((label) => label.name),
     });
 
     const onSubmit: SubmitHandler<ai.Label> = (data: ai.Label) => {
-      const newLabels = [...labelValue, data];
-      onChange(newLabels);
+      onAdd(data);
       form.reset();
     };
 
     const removeLabel = (indexToRemove: number) => {
-      const newLabels = labelValue.filter(
+      const newLabels = configuredLabels.filter(
         (_, index) => index !== indexToRemove,
       );
-      onChange(newLabels);
+      onRemove(newLabels);
     };
 
     return (
@@ -84,47 +85,51 @@ const LabelsForm = React.forwardRef<HTMLInputElement, LabelsFormProps>(
             onClick={form.handleSubmit(onSubmit)}
             disabled={
               disabled ||
-              labelValue.length >= CONFIGURATION_CONFIG.maxLabelNumber
+              configuredLabels.length >= CONFIGURATION_CONFIG.maxLabelNumber
             }
             className="mt-[1.875rem] text-primary rounded-full p-2 ml-2 hover:text-primary"
           >
             <PlusCircle />
           </Button>
         </div>
-        <ul>
-          {labelValue.map((label, index) => (
-            <li key={label.name} className="flex items-center ml-5 text-sm">
-              <div>
-                <span>{label.name}</span>
-                {label.value && (
-                  <>
-                    <span> - </span>
-                    <span className="truncate max-w-96" title={label.value}>
-                      {label.value}
-                    </span>
-                  </>
-                )}
-              </div>
-              <Button
-                data-testid={`label-remove-button-${index}`}
-                className="text-red-500 rounded-full p-2 hover:text-red-500 h-8 w-8"
-                variant={'ghost'}
-                type="button"
-                onClick={() => removeLabel(index)}
-                disabled={disabled}
-              >
-                <Trash2 />
-              </Button>
-            </li>
-          ))}
-        </ul>
-        <p data-testid="configured-labels">
-          {t('numberOfConfiguredLabels', {
-            count: labelValue.length,
-            max: CONFIGURATION_CONFIG.maxLabelNumber,
-            context: `${labelValue.length}`,
-          })}
-        </p>
+        {displayLabels && (
+          <>
+            <ul>
+              {configuredLabels.map((label, index) => (
+                <li key={label.name} className="flex items-center ml-5 text-sm">
+                  <div>
+                    <span>{label.name}</span>
+                    {label.value && (
+                      <>
+                        <span> - </span>
+                        <span className="truncate max-w-96" title={label.value}>
+                          {label.value}
+                        </span>
+                      </>
+                    )}
+                  </div>
+                  <Button
+                    data-testid={`label-remove-button-${index}`}
+                    className="text-red-500 rounded-full p-2 hover:text-red-500 h-8 w-8"
+                    variant={'ghost'}
+                    type="button"
+                    onClick={() => removeLabel(index)}
+                    disabled={disabled}
+                  >
+                    <Trash2 />
+                  </Button>
+                </li>
+              ))}
+            </ul>
+            <p data-testid="configured-labels">
+              {t('numberOfConfiguredLabels', {
+                count: configuredLabels.length,
+                max: CONFIGURATION_CONFIG.maxLabelNumber,
+                context: `${configuredLabels.length}`,
+              })}
+            </p>
+          </>
+        )}
       </Form>
     );
   },

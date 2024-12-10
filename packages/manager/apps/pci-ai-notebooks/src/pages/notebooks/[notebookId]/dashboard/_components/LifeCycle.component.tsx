@@ -10,8 +10,6 @@ const LifeCycle = () => {
   const { notebook } = useNotebookData();
   const { t } = useTranslation('pci-ai-notebooks/notebooks/notebook/dashboard');
 
-  console.log(notebook.status.lastJobStatus.history);
-
   return (
     <>
       <h5>{t('durationTitle')}</h5>

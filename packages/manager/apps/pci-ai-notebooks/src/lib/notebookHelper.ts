@@ -18,7 +18,3 @@ export const OVH_TAGS_CONFIG = {
   id: 'ovh/id',
   type: 'ovh/type',
 };
-
-export function isOvhTags(key: string) {
-  return key === OVH_TAGS_CONFIG.id || key === OVH_TAGS_CONFIG.type;
-}
