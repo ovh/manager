@@ -18,11 +18,6 @@ import Link from '@/components/links/Link.component';
 import { convertSecondsToTimeString } from '@/lib/durationHelper';
 import NotebookStatusBadge from './NotebookStatusBadge.component';
 import { isDeletingNotebook, isRunningNotebook } from '@/lib/notebookHelper';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/components/ui/popover';
 
 interface NotebooksListColumnsProps {
   onStartClicked: (notebook: ai.notebook.Notebook) => void;
