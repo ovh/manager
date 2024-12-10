@@ -1,21 +1,13 @@
-import { screen, waitFor } from '@testing-library/react';
+import { organizationList } from '@ovh-ux/manager-module-vcd-api';
+import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 import { renderTest, labels } from '../../../test-utils';
-import { organizationList } from '../../../../mocks/vcd-organization/vcd-organization.mock';
 
 describe('Organizations Listing Page', () => {
   it('display the listing page if there is at least one organization', async () => {
     await renderTest({ nbOrganization: 1 });
 
-    await waitFor(() =>
-      expect(
-        screen.getByText(labels.listing.managed_vcd_listing_description),
-      ).toBeVisible(),
-    );
+    await assertTextVisibility(labels.listing.managed_vcd_listing_description);
 
-    await waitFor(() =>
-      expect(
-        screen.getByText(organizationList[0].currentState.fullName),
-      ).toBeVisible(),
-    );
+    await assertTextVisibility(organizationList[0].currentState.fullName);
   });
 });

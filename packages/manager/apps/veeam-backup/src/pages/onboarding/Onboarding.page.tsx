@@ -9,12 +9,12 @@ import { useNavigate } from 'react-router-dom';
 import { OsdsMessage } from '@ovhcloud/ods-components/react';
 import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { useOrganizationList } from '@ovh-ux/manager-module-vcd-api';
 import { useGuideUtils } from './useGuideUtils';
 import onboardingImgSrc from '@/assets/veeamxOVHcloud.svg';
 import { urls } from '@/routes/routes.constant';
 import { useBillingUrl } from '@/components/Links/BillingLink.component';
 import { productFullName } from '@/veeam-backup.config';
-import { useOrganizationList } from '@/data';
 import { NoOrganizationMessage } from '@/components/NoOrganizationMessage/NoOrganizationMessage.component';
 import { Loading } from '@/components/Loading/Loading';
 

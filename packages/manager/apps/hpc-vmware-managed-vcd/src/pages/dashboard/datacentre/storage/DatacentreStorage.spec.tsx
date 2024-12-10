@@ -1,13 +1,15 @@
 import { screen, waitFor } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
 import {
-  checkTextVisibility,
+  organizationList,
+  datacentreList,
+} from '@ovh-ux/manager-module-vcd-api';
+import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
+import {
   DEFAULT_LISTING_ERROR,
   labels,
   renderTest,
 } from '../../../../test-utils';
-import { datacentreList } from '../../../../../mocks/vcd-organization/vcd-datacentre.mock';
-import { organizationList } from '../../../../../mocks/vcd-organization/vcd-organization.mock';
 import { STORAGE_TITLE } from '../DatacentreDashboard.constant';
 
 describe('Datacentre Storage Listing Page', () => {
@@ -17,13 +19,13 @@ describe('Datacentre Storage Listing Page', () => {
     });
 
     // access storage tab
-    await checkTextVisibility(STORAGE_TITLE);
+    await assertTextVisibility(STORAGE_TITLE);
     const tab = screen.getByText(STORAGE_TITLE);
     await waitFor(() => userEvent.click(tab));
 
     // check page title & CTA
-    await checkTextVisibility(STORAGE_TITLE);
-    await checkTextVisibility(
+    await assertTextVisibility(STORAGE_TITLE);
+    await assertTextVisibility(
       labels.datacentresStorage.managed_vcd_vdc_storage_order_cta,
     );
   });
@@ -34,6 +36,6 @@ describe('Datacentre Storage Listing Page', () => {
       isStorageKO: true,
     });
 
-    await checkTextVisibility(DEFAULT_LISTING_ERROR);
+    await assertTextVisibility(DEFAULT_LISTING_ERROR);
   });
 });

@@ -12,8 +12,11 @@ import {
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useQueryClient } from '@tanstack/react-query';
+import {
+  VeeamBackup,
+  veeamBackupListQueryKey,
+} from '@ovh-ux/manager-module-vcd-api';
 import { MessageData, MessagesContext } from './Messages.context';
-import { VeeamBackupWithIam, veeamBackupListQueryKey } from '@/data';
 
 export const SuccessMessage: React.FC<Partial<MessageData>> = ({
   id,
@@ -54,7 +57,7 @@ export const SuccessMessages: React.FC<{ id?: string }> = ({ id }) => {
   const { successMessages, hiddenMessages } = React.useContext(MessagesContext);
   const queryClient = useQueryClient();
   const veeamBackupList = queryClient.getQueryData<{
-    data: VeeamBackupWithIam[];
+    data: VeeamBackup[];
   }>(veeamBackupListQueryKey);
 
   if (veeamBackupList?.data?.length === 0) {

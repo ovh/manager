@@ -5,29 +5,31 @@ import { useTranslation } from 'react-i18next';
 import { OsdsButton } from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import IVcdStorage from '@/types/vcd-storage.interface';
+import {
+  getVcdDatacentreStorageRoute,
+  getVdcStorageQueryKey,
+  VCDStorage,
+} from '@ovh-ux/manager-module-vcd-api';
 import DatagridContainer from '@/components/datagrid/container/DatagridContainer.component';
 import { STORAGE_TITLE } from '../DatacentreDashboard.constant';
-import { getVcdDatacentreStorageRoute } from '@/data/api/hpc-vmware-managed-vcd-datacentre';
 import { subRoutes, urls } from '@/routes/routes.constant';
-import { getVdcStorageQueryKey } from '@/utils/queryKeys';
 import { capitalize } from '@/utils/capitalize';
 
-const DatagridIdCell = (vcdStorage: IVcdStorage) => (
+const DatagridIdCell = (vcdStorage: VCDStorage) => (
   <DataGridTextCell>{vcdStorage?.id}</DataGridTextCell>
 );
-const DatagridNameCell = (vcdStorage: IVcdStorage) => (
+const DatagridNameCell = (vcdStorage: VCDStorage) => (
   <DataGridTextCell>{vcdStorage?.currentState?.name}</DataGridTextCell>
 );
-const DatagridProfileCell = (vcdStorage: IVcdStorage) => (
+const DatagridProfileCell = (vcdStorage: VCDStorage) => (
   <DataGridTextCell>{vcdStorage?.currentState?.profile}</DataGridTextCell>
 );
-const DatagridTypeCell = (vcdStorage: IVcdStorage) => (
+const DatagridTypeCell = (vcdStorage: VCDStorage) => (
   <DataGridTextCell>
     {capitalize(vcdStorage?.currentState?.type)}
   </DataGridTextCell>
 );
-const DatagridCapacityCell = (vcdStorage: IVcdStorage) => {
+const DatagridCapacityCell = (vcdStorage: VCDStorage) => {
   const { t } = useTranslation('hpc-vmware-managed-vcd/datacentres');
   return (
     <DataGridTextCell>
@@ -37,7 +39,7 @@ const DatagridCapacityCell = (vcdStorage: IVcdStorage) => {
     </DataGridTextCell>
   );
 };
-const DatagridBillingCell = (vcdStorage: IVcdStorage) => {
+const DatagridBillingCell = (vcdStorage: VCDStorage) => {
   const { t } = useTranslation('hpc-vmware-managed-vcd/datacentres/compute');
   return (
     <DataGridTextCell>
