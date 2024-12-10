@@ -35,6 +35,7 @@ import {
   WINDOWS_PRIVATE_MODE_LICENSE_GUIDE,
   PRIVATE_NETWORK_MODE,
   LOCAL_PRIVATE_NETWORK_MODE,
+  HOURS_PER_MONTH,
 } from './add.constants';
 
 import { INSTANCE_PRICING_LINKS } from '../instances.constants';
@@ -503,6 +504,8 @@ export default class PciInstancesAddController {
       return null;
     }
 
+    this.shouldRecalculateBackupPrice = true;
+
     this.getFilteredRegions();
 
     if (
@@ -678,6 +681,9 @@ export default class PciInstancesAddController {
   }
 
   getBackupPrice() {
+    if (this.instance) {
+      this.instance.isLocalZone = this.isLocalZone();
+    }
     return this.PciProjectsProjectInstanceService.getSnapshotMonthlyPrice(
       this.projectId,
       this.instance,
@@ -714,13 +720,17 @@ export default class PciInstancesAddController {
       this.quota = new Quota(this.model.datacenter.quota.instance);
       this.generateInstanceName();
       if (
+        this.shouldRecalculateBackupPrice &&
         this.PciProjectsProjectInstanceService.automatedBackupIsAvailable(
           this.flavor.type,
         )
       ) {
+        this.shouldRecalculateBackupPrice = false;
+        this.isCalculatingBackupPrice = true;
         this.automatedBackup.selected = false;
         this.automatedBackup.schedule = null;
         return this.getBackupPrice().then((price) => {
+          this.isCalculatingBackupPrice = false;
           this.automatedBackup.price = price;
         });
       }
@@ -1707,5 +1717,30 @@ export default class PciInstancesAddController {
       'configure_network',
       `${modelValue ? '' : 'de'}activate_private_network_compatible_lz`,
     ]);
+  }
+
+  get automatedBackupPrice() {
+    if (!this.automatedBackup?.price) {
+      return '';
+    }
+    const { price } = this.automatedBackup.price;
+    if (this.isLocalZone()) {
+      const { value, currencyCode } = price;
+      return `~${new Intl.NumberFormat(
+        this.coreConfig.getUserLocale().replace('_', '-'),
+        {
+          style: 'currency',
+          currency: currencyCode,
+          maximumFractionDigits: 3,
+        },
+      ).format(value * HOURS_PER_MONTH)}`;
+    }
+    return price.text;
+  }
+
+  onAutomatedBackupChange(modelValue) {
+    if (!modelValue) {
+      this.automatedBackup.schedule = null;
+    }
   }
 }
