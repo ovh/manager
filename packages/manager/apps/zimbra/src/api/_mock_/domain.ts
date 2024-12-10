@@ -26,7 +26,7 @@ export const domainDetailMock: DomainType = {
     expectedDNSConfig: {
       mx: [],
       ownership: {
-        cname: null,
+        cname: 'test',
       },
     },
   },

@@ -8,6 +8,8 @@
   "zimbra_domains_datagrid_organization_label": "Organisation",
   "zimbra_domains_datagrid_status_label": "Statut",
   "zimbra_domains_datagrid_account_number": "Nombre de comptes",
+  "zimbra_domains_datagrid_cname_label": "CNAME",
+  "zimbra_domains_datagrid_cname_tooltip": "Pour confirmer que vous êtes bien le titulaire de ce domaine, veuillez créer une entrée DNS de type CNAME contenant la valeur <br/><strong>{{cname}}</strong><br/>Vous avez 48 heures pour compléter cette étape.",
   "zimbra_domains_tooltip_configure": "Configurer",
   "zimbra_domains_tooltip_delete": "Supprimer",
   "zimbra_domains_tooltip_need_organization": "Veuillez d'abord configurer une organisation"
