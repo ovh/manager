@@ -17,7 +17,7 @@ import {
 } from '@/components/ui/tooltip';
 import * as database from '@/types/cloud/project/database';
 import { useServiceData } from '../../Service.context';
-import { MENU_COLUMN_ID } from '@/components/data-table/data-table';
+import { MENU_COLUMN_ID } from '@/components/data-table/DataTable';
 
 interface DatabasesTableColumnsProps {
   onDeleteClick: (db: database.service.Database) => void;

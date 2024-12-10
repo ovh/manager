@@ -17,14 +17,13 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import './translations';
-import { Filter } from './filter-list';
 import { Calendar } from '../ui/calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
 import FormattedDate from '../formatted-date/FormattedDate.component';
 import { useDateFnsLocale } from '@/hooks/useDateFnsLocale.hook';
-import { FilterCategories, FilterComparator } from '@/lib/filters';
+import { Filter, FilterCategories, FilterComparator } from '@/lib/filters';
 
-type ColumnFilter = {
+export type ColumnFilter = {
   id: string;
   label: string;
   comparators: FilterComparator[];

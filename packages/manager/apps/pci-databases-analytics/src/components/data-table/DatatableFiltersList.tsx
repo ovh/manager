@@ -5,6 +5,7 @@ import { Badge } from '../ui/badge';
 import { Button } from '../ui/button';
 import './translations';
 import { useLocale } from '@/hooks/useLocale';
+import { useDataTableContext } from './DataTableContext';
 
 export declare enum FilterComparator {
   Includes = 'includes',
@@ -32,11 +33,9 @@ export type FilterListProps = {
   onRemoveFilter: (filter: FilterWithLabel) => void;
 };
 
-export function FilterList({
-  filters,
-  onRemoveFilter,
-}: Readonly<FilterListProps>) {
+export function DatatableFiltersList() {
   const { t } = useTranslation('filters');
+  const { columnFilters } = useDataTableContext();
   const locale = useLocale();
   const formater = useMemo(
     () => new Intl.DateTimeFormat(locale.replace('_', '-')),
@@ -71,16 +70,16 @@ export function FilterList({
     return `${label}${formattedValue}`;
   };
 
-  if (!filters.length) return <></>;
+  if (!columnFilters?.filters.length) return <></>;
   return (
     <div className="flex flex-wrap gap-2 mt-2">
-      {filters?.map((filter, key) => (
+      {columnFilters.filters?.map((filter, key) => (
         <Badge variant="info" className="py-0.5" key={key}>
           <span>{getFilterContent(filter)}</span>
           <Button
             variant="ghost"
             className="ml-2 p-0 size-4"
-            onClick={() => onRemoveFilter(filter)}
+            onClick={() => columnFilters.removeFilter(filter)}
           >
             <X className="size-4" />
           </Button>

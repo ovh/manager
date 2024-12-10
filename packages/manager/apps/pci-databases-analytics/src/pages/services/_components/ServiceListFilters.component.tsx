@@ -77,12 +77,6 @@ export const getFilters = () => {
       label: 'Date de création',
       comparators: FilterCategories.Date,
     },
-    // Edge case: will incorrectly be computed for mongodb discovery as the value can be either in GB or in MB
-    {
-      id: 'storage.size.value',
-      label: 'Stockage',
-      comparators: FilterCategories.Numeric,
-    },
     {
       id: 'status',
       label: 'Statut',

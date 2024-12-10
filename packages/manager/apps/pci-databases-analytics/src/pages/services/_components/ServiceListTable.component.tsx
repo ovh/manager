@@ -2,16 +2,14 @@ import { useNavigate } from 'react-router-dom';
 import { ColumnDef } from '@tanstack/react-table';
 import { Plus } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { DataTable } from '@/components/data-table/data-table';
 import * as database from '@/types/cloud/project/database';
 import { Skeleton } from '@/components/ui/skeleton';
 import { getColumns } from './ServiceListColumns.component';
 import { useTrackAction } from '@/hooks/useTracking';
 import { TRACKING } from '@/configuration/tracking.constants';
 import { Button } from '@/components/ui/button';
-import Link from '@/components/links/Link.component';
 import { getFilters } from './ServiceListFilters.component';
-import { DataTableHead } from '@/components/data-table/data-table-head';
+import DataTable from '@/components/data-table';
 
 interface ServicesListProps {
   services: database.Service[];
@@ -41,58 +39,32 @@ export default function ServicesList({ services }: ServicesListProps) {
   const servicesFilters = getFilters();
 
   return (
-    <>
-      <DataTable
-        columns={columns}
-        data={services}
-        pageSize={25}
-        itemNumber={services.length}
-        headerContent={(
-          table,
-          globalFilter,
-          filters,
-          addFilter,
-          removeFilter,
-        ) => (
-          <DataTableHead
-            actionButton={
-              <Button
-                data-testid="create-service-button"
-                size="sm"
-                className="text-base"
-                asChild
-              >
-                <Link
-                  to="./new"
-                  className="hover:no-underline"
-                  onClick={() =>
-                    track(TRACKING.servicesList.createDatabaseClick())
-                  }
-                >
-                  <Plus className="w-4 h-4 mr-2" />
-                  {t('createNewService')}
-                </Link>
-              </Button>
-            }
-            searchBar={{
-              render: 'default',
-              table,
-              globalFilter,
+    <DataTable.Provider
+      columns={columns}
+      data={services}
+      pageSize={25}
+      filtersDefinition={servicesFilters}
+    >
+      <DataTable.Header>
+        <DataTable.Action>
+          <Button
+            data-testid="create-service-button"
+            onClick={() => {
+              track(TRACKING.servicesList.createDatabaseClick());
+              navigate('./new');
             }}
-            filterButton={{
-              render: 'default',
-              columnFilters: servicesFilters,
-              addFilter,
-            }}
-            filterList={{
-              render: 'default',
-              filters,
-              removeFilter,
-            }}
-          />
-        )}
-      ></DataTable>
-    </>
+          >
+            <Plus className="size-6 mr-2 text-primary-foreground" />
+            {t('createNewService')}
+          </Button>
+        </DataTable.Action>
+        <DataTable.SearchBar />
+        <DataTable.FiltersButton />
+      </DataTable.Header>
+      <DataTable.FiltersList />
+      <DataTable.Table />
+      <DataTable.Pagination />
+    </DataTable.Provider>
   );
 }
 

@@ -6,6 +6,7 @@ import { GenericUser } from '@/data/api/database/user.api';
 import { SortableHeader } from '@/components/data-table/sortable-header';
 import UserStatusBadge from './UserStatusBadge.component';
 import UserActions from './UsersTableActions.component';
+import { MENU_COLUMN_ID } from '@/components/data-table/DataTable';
 
 interface UserListColumnsProps {
   displayGroupCol: boolean;
@@ -170,7 +171,7 @@ export const getColumns = ({
     },
   };
   const actionsColumn: ColumnDef<GenericUser> = {
-    id: 'actions',
+    id: MENU_COLUMN_ID,
     cell: ({ row }) => (
       <UserActions
         user={row.original}

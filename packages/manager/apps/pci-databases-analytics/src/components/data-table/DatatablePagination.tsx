@@ -4,7 +4,6 @@ import {
   ChevronFirst,
   ChevronLast,
 } from 'lucide-react';
-import { Table as TanStackTable } from '@tanstack/react-table';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import {
@@ -14,23 +13,20 @@ import {
   SelectTrigger,
   SelectValue,
 } from '../ui/select';
+import { useDataTableContext } from './DataTableContext';
 
-interface DataTablePaginationProps<TData> {
-  table: TanStackTable<TData>;
-  itemNumber?: number;
-}
-export function DataTablePagination<TData>({
-  table,
-  itemNumber,
-}: DataTablePaginationProps<TData>) {
+export function DataTablePagination() {
   const { t } = useTranslation('pci-databases-analytics/components/data-table');
+  const { table } = useDataTableContext();
+  const itemCount = table.getRowCount();
+  if (itemCount === 0) return <></>;
   return (
     <div className="flex justify-end mt-4">
       <div className="flex items-center">
         <div className="flex items-center space-x-2">
-          {itemNumber > 0 && (
+          {itemCount > 0 && (
             <div className="flex px-4 items-center justify-center text-sm font-medium">
-              <span>{t('itemCount', { count: itemNumber })}</span>
+              <span>{t('itemCount', { count: itemCount })}</span>
             </div>
           )}
           <Select

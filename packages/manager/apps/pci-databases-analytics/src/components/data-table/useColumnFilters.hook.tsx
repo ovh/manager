@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { FilterWithLabel } from './filter-list';
 import { Filter } from '@/lib/filters';
+import { FilterWithLabel } from './DatatableFiltersList';
 
 const filterEquals = (a: Filter, b: Filter) =>
   a.key === b.key && a.value === b.value && a.comparator === b.comparator;

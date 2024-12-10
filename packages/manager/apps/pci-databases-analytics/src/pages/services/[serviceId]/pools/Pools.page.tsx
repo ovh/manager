@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { DataTable } from '@/components/data-table/data-table';
+import DataTable from '@/components/data-table';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 import { useServiceData } from '../Service.context';
 import { POLLING } from '@/configuration/polling.constants';
@@ -117,7 +117,7 @@ const Pools = () => {
         </Button>
       )}
       {connectionPoolsQuery.isSuccess && connectionPoolListWithData ? (
-        <DataTable
+        <DataTable.Provider
           columns={columns}
           data={connectionPoolListWithData}
           pageSize={25}
