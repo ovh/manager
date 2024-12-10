@@ -4,6 +4,7 @@ import {
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
 } from '@ovhcloud/ods-components';
+import { useFormContext } from 'react-hook-form';
 import {
   OsdsButton,
   OsdsIcon,
@@ -18,6 +19,7 @@ import {
   useColumnFilters,
   useDataGrid,
   FilterList,
+  useNotifications,
 } from '@ovh-ux/manager-react-components';
 
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
@@ -29,12 +31,17 @@ import {
   useUpdateIpRestriction,
 } from '@/api/hooks/useIpRestrictions';
 import { categorizeByKey } from '@/helpers';
-import { TIPRestrictionsMethodEnum } from '@/types';
+import {
+  FilterRestrictionsServer,
+  TIPRestrictionsDefault,
+  TIPRestrictionsMethodEnum,
+} from '@/types';
 
 const Filters = ({ createNewRow }: { createNewRow: () => void }) => {
   const [searchField, setSearchField] = useState('');
   const { projectId, registryId } = useParams();
   const { filters, addFilter, removeFilter } = useColumnFilters();
+  const { reset } = useFormContext();
   const filterPopoverRef = useRef(undefined);
   const { pagination, setPagination } = useDataGrid();
   const { data } = useIpRestrictions(projectId, registryId, [
@@ -43,7 +50,7 @@ const Filters = ({ createNewRow }: { createNewRow: () => void }) => {
   ]);
 
   const { t } = useTranslation(['ip-restrictions']);
-
+  const { addSuccess, addError } = useNotifications();
   const showDeleteButton = useMemo(
     () => data.filter((item) => item.checked).length >= 2,
     [data],
@@ -52,6 +59,13 @@ const Filters = ({ createNewRow }: { createNewRow: () => void }) => {
   const { updateIpRestrictions } = useUpdateIpRestriction({
     projectId,
     registryId,
+    onError: () => {
+      addError(t('common:private_registry_crud_cidr_error'));
+    },
+    onSuccess: () => {
+      reset();
+      addSuccess(t('private_registry_cidr_delete_all_success'), true);
+    },
   });
 
   const deleteAllSelectedRows = useCallback(() => {
@@ -69,7 +83,10 @@ const Filters = ({ createNewRow }: { createNewRow: () => void }) => {
       ['management', 'registry'],
     );
     updateIpRestrictions({
-      cidrToUpdate: categorizeByKeyResult,
+      cidrToUpdate: categorizeByKeyResult as Record<
+        FilterRestrictionsServer,
+        TIPRestrictionsDefault[]
+      >,
       action: TIPRestrictionsMethodEnum.DELETE,
     });
   }, [data, updateIpRestrictions]);
@@ -110,11 +127,11 @@ const Filters = ({ createNewRow }: { createNewRow: () => void }) => {
             >
               <OsdsIcon
                 size={ODS_ICON_SIZE.xs}
-                name={ODS_ICON_NAME.PLUS}
+                name={ODS_ICON_NAME.TRASH}
                 className="mr-2"
                 color={ODS_THEME_COLOR_INTENT.primary}
               />
-              {t('delete')}
+              {t('ip_restrictions_delete_multiple_block')}
             </OsdsButton>
           )}
         </div>

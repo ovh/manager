@@ -2,17 +2,11 @@ import {
   DatagridColumn,
   DataGridTextCell,
 } from '@ovh-ux/manager-react-components';
-import { useMemo } from 'react';
-import {
-  ODS_CHECKBOX_BUTTON_SIZE,
-  ODS_TEXT_COLOR_INTENT,
-} from '@ovhcloud/ods-components';
+import { useCallback, useMemo } from 'react';
+
 import { useParams } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
-import {
-  OsdsCheckbox,
-  OsdsCheckboxButton,
-} from '@ovhcloud/ods-components/react';
+
 import { useTranslation } from 'react-i18next';
 import { FormProvider, useFormContext } from 'react-hook-form';
 import ButtonsCIDR from '@/components/CIDR/ButtonsCIDR';
@@ -27,6 +21,22 @@ import Description from '@/components/CIDR/Description';
 import IpBlock from '@/components/CIDR/IpBlock';
 import { capitalizeAndJoin } from '@/helpers';
 import AuthorizationLabel from '@/components/CIDR/AuthorizationLabel';
+import Checkboxes from '@/components/CIDR/Checkboxes.component';
+import AllCheckboxComponent from '@/components/CIDR/AllCheckbox.component';
+
+function evaluateDraftAndData(draft, dataLength) {
+  if (!draft) {
+    if (dataLength < 2) {
+      return false;
+    }
+  }
+  if (draft) {
+    if (dataLength < 3) {
+      return false;
+    }
+  }
+  return true;
+}
 
 export const useDatagridColumn = () => {
   const { control, handleSubmit, formState, ...other } = useFormContext();
@@ -52,62 +62,50 @@ export const useDatagridColumn = () => {
     [data],
   );
 
-  const updateChecked = (ipBlock: string, allIsSelected?: boolean) => {
-    const key = getRegistryQueyPrefixWithId(projectId, registryId, [
-      'management',
-      'registry',
-    ]);
+  const updateChecked = useCallback(
+    (ipBlock: string, allIsSelected?: boolean) => {
+      const key = getRegistryQueyPrefixWithId(projectId, registryId, [
+        'management',
+        'registry',
+      ]);
 
-    queryClient.setQueryData(key, (oldData: TIPRestrictionsData[]) =>
-      oldData.map((item) => {
-        if (allIsSelected && item.checked !== null) {
-          return { ...item, checked: !dataAllSelected };
-        }
-        if (item.ipBlock === ipBlock) {
-          return { ...item, checked: !item.checked };
-        }
-        return item;
-      }),
-    );
-  };
+      queryClient.setQueryData(key, (oldData: TIPRestrictionsData[]) =>
+        oldData.map((item) => {
+          if (allIsSelected && item.checked !== null) {
+            return { ...item, checked: !dataAllSelected };
+          }
+          if (item.ipBlock === ipBlock) {
+            return { ...item, checked: !item.checked };
+          }
+          return item;
+        }),
+      );
+    },
+    [dataAllSelected],
+  );
 
   const columns: DatagridColumn<TIPRestrictionsData>[] = [
     {
       id: 'check',
       cell: (props) =>
-        props.checked !== null ? (
-          <div className="flex justify-center items-center mt-2">
-            <OsdsCheckbox
-              onOdsCheckedChange={() => updateChecked(props.ipBlock)}
-              color="primary"
-              checked={props.checked}
-            >
-              <OsdsCheckboxButton
-                color={ODS_TEXT_COLOR_INTENT.primary}
-                size={ODS_CHECKBOX_BUTTON_SIZE.sm}
-              />
-            </OsdsCheckbox>
-          </div>
+        props.checked !== null && evaluateDraftAndData(isDraft, data.length) ? (
+          <Checkboxes
+            checked={props.checked}
+            ipBlock={props.ipBlock}
+            updateChecked={updateChecked}
+            dataAllSelected={dataAllSelected}
+          />
         ) : (
           <></>
         ),
-      label:
-        (isDraft && data.length > 1) || (!isDraft && data.length)
-          ? (((
-              <div className="flex justify-center items-center mt-2">
-                <OsdsCheckbox
-                  onOdsCheckedChange={() => updateChecked(null, true)}
-                  color="primary"
-                  checked={dataAllSelected || undefined}
-                >
-                  <OsdsCheckboxButton
-                    color={ODS_TEXT_COLOR_INTENT.primary}
-                    size={ODS_CHECKBOX_BUTTON_SIZE.sm}
-                  />
-                </OsdsCheckbox>
-              </div>
-            ) as unknown) as string)
-          : '',
+      label: evaluateDraftAndData(isDraft, data.length)
+        ? (((
+            <AllCheckboxComponent
+              updateChecked={updateChecked}
+              dataAllSelected={dataAllSelected}
+            />
+          ) as unknown) as string)
+        : '',
     },
     {
       id: 'cidr',
