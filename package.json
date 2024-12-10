@@ -48,7 +48,7 @@
     "packages:publish": "scripts/publish.js",
     "prepare": "husky install",
     "release": "scripts/release/release.sh",
-    "start": "node -r esm scripts/start-application.js",
+    "start": "node scripts/start-application.mjs",
     "test:jest": "jest --runInBand",
     "test": "yarn lint",
     "test:turbo": "turbo run test --concurrency=1",
