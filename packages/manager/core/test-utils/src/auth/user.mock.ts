@@ -1,4 +1,4 @@
-export const user = {
+export const user: unknown = {
   legalform: 'corporation',
   italianSDI: '0000000',
   currency: { code: 'EUR', symbol: '€' },
