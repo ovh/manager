@@ -57,7 +57,7 @@ export default function Consumption() {
           <OsdsText
             color={ODS_THEME_COLOR_INTENT.text}
             level={ODS_TEXT_LEVEL.heading}
-            size={ODS_TEXT_SIZE._600}
+            size={ODS_TEXT_SIZE._500}
             className="block my-5"
           >
             {t('cpbc_tab_consumption')}

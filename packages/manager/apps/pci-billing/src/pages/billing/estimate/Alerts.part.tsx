@@ -254,7 +254,7 @@ export const AlertsPart = ({
                 <OsdsButton
                   className="ml-2"
                   color={ODS_THEME_COLOR_INTENT.primary}
-                  variant={ODS_BUTTON_VARIANT.stroked}
+                  variant={ODS_BUTTON_VARIANT.flat}
                   inline
                   size={ODS_BUTTON_SIZE.sm}
                   onClick={() => remove()}

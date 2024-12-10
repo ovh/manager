@@ -24,7 +24,7 @@ export default function MonthlyConsumption({
   return (
     <OsdsAccordion>
       <OsdsText
-        size={ODS_TEXT_SIZE._600}
+        size={ODS_TEXT_SIZE._500}
         level={ODS_TEXT_LEVEL.subheading}
         color={ODS_THEME_COLOR_INTENT.primary}
         slot="summary"
