@@ -1,9 +1,11 @@
-type RIGHT = {
-  urn: string;
-  subsidiariesExcluded?: string[];
-};
+// type RIGHT = {
+//   urn: string;
+//   subsidiariesExcluded?: string[];
+// };
 
-export const MINIMAL_RIGHTS: RIGHT[] = [
+// TODO
+// export const MINIMAL_RIGHTS: RIGHT[] = [
+export const MINIMAL_RIGHTS = [
   { urn: 'account:apiovh:me/get' },
   {
     urn: 'account:apiovh:me/supportLevel/get',
