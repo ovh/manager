@@ -1,5 +1,5 @@
 import React from 'react';
-import { RouteObject, Navigate } from 'react-router-dom';
+import { RouteObject } from 'react-router-dom';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 import NotFound from '@/pages/404';
 import { urls } from '@/routes/routes.constants';
@@ -18,46 +18,44 @@ const lazyRouteConfig = (importFn: CallableFunction): Partial<RouteObject> => {
 
 export const Routes: any = [
   {
-    path: urls.listing,
-    element: <Navigate to={urls.license} />,
-  },
-  {
-    path: urls.license,
-    ...lazyRouteConfig(() => import('@/pages/licences/licences.page')),
-    handle: {
-      tracking: {
-        pageName: 'licenses',
-        pageType: PageType.listing,
-      },
-    },
-  },
-  {
-    path: urls.dashboard,
-    ...lazyRouteConfig(() => import('@/pages/dashboard')),
+    path: '',
+    ...lazyRouteConfig(() => import('@/pages/layout')),
     children: [
       {
-        id: 'dashboard',
-        path: '',
-        ...lazyRouteConfig(() =>
-          import('@/pages/dashboard/general-informations'),
-        ),
+        path: urls.listing,
+        ...lazyRouteConfig(() => import('@/pages/licenses/licenses.page')),
         handle: {
           tracking: {
-            pageName: 'dashboard',
-            pageType: PageType.dashboard,
+            pageName: 'licenses',
+            pageType: PageType.listing,
           },
         },
       },
       {
-        id: 'dashboard.tab2',
-        path: 'Tab2',
-        ...lazyRouteConfig(() => import('@/pages/dashboard/tab2')),
-        handle: {
-          tracking: {
-            pageName: 'tab2',
-            pageType: PageType.dashboard,
+        path: urls.dashboard,
+        ...lazyRouteConfig(() => import('@/pages/dashboard')),
+        children: [
+          {
+            path: '',
+            ...lazyRouteConfig(() => import('@/pages/dashboard/users/Users')),
+            handle: {
+              tracking: {
+                pageName: 'license',
+                pageType: PageType.dashboard,
+              },
+            },
           },
-        },
+          {
+            path: 'consumption',
+            ...lazyRouteConfig(() => import('@/pages/dashboard/consumption')),
+            handle: {
+              tracking: {
+                pageName: 'consumption',
+                pageType: PageType.dashboard,
+              },
+            },
+          },
+        ],
       },
     ],
   },
