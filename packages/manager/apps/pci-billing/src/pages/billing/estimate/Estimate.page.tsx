@@ -1,8 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { getDateFnsLocale } from '@ovh-ux/manager-core-utils';
 import { useParams } from 'react-router-dom';
-import { ApiError } from '@ovh-ux/manager-core-api';
-import { useNotifications } from '@ovh-ux/manager-react-components';
 import { AlertsPart } from './Alerts.part';
 import { EstimatePart } from './Estimate.part';
 import { useUsagePrice } from '@/hooks/useUsagePrice';
@@ -13,10 +11,10 @@ import {
   useGetAlert,
   useUpdateAlert,
 } from '@/api/hooks/useAlerting';
-import queryClient from '@/queryClient';
+import { useCallbacks } from '@/pages/billing/estimate/callbacks';
 
 export default function Estimate(): JSX.Element {
-  const { i18n, t: tEstimate } = useTranslation('estimate');
+  const { i18n } = useTranslation('estimate');
 
   const userLocale = getDateFnsLocale(i18n.language);
 
@@ -24,7 +22,7 @@ export default function Estimate(): JSX.Element {
 
   const { projectId } = useParams();
 
-  const { addSuccess, addError, clearNotifications } = useNotifications();
+  const { create, update, remove } = useCallbacks();
 
   const {
     data: forecastPrices,
@@ -38,51 +36,22 @@ export default function Estimate(): JSX.Element {
 
   const { data: alert, isLoading: isAlertLoading } = useGetAlert(projectId);
 
-  const invalidateCache = async () => {
-    await queryClient.invalidateQueries({
-      queryKey: ['project', projectId, 'alerting'],
-    });
-  };
-
   const { createAlert, isPending: isAlertCreating } = useCreateAlert(
     projectId,
-    async () => {
-      clearNotifications();
-      addSuccess(tEstimate('cpbea_estimate_alert_success'), true);
-      await invalidateCache();
-    },
-    () => {
-      addError(tEstimate('cpbea_estimate_alert_error'), true);
-    },
+    create.success,
+    create.failure,
   );
 
   const { updateAlert, isPending: isAlertUpdating } = useUpdateAlert(
     projectId,
-    async () => {
-      clearNotifications();
-      addSuccess(tEstimate('cpbea_estimate_alert_success'), true);
-      await invalidateCache();
-    },
-    () => {
-      addError(tEstimate('cpbea_estimate_alert_error'), true);
-    },
+    update.success,
+    update.failure,
   );
 
   const { deleteAlert, isPending: isAlertDeleting } = useDeleteAlert(
     projectId,
-    async () => {
-      clearNotifications();
-      addSuccess(tEstimate('cpbe_estimate_alert_delete_success'), true);
-      await invalidateCache();
-    },
-    (err: ApiError) => {
-      clearNotifications();
-      addError(
-        `${tEstimate('cpbe_estimate_alert_delete_error')} ${err.response?.data
-          ?.message || ''}`,
-        true,
-      );
-    },
+    remove.success,
+    remove.failure,
   );
 
   const isLoading =
