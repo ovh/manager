@@ -35,6 +35,7 @@ const ENTITY = {
   IDENTITY: 'identity',
   RESOURCE_GROUP: 'resourceGroup',
   RESOURCE_TYPE: 'resourceType',
+  APPLICATION: 'application',
 };
 
 const ENTITY_NAME_PATTERN = /^[a-zA-Z0-9-/_+]*$/;
@@ -192,6 +193,11 @@ const TAG = {
     'dedicated::account::iam::delete-group-ressources::cancel',
   DELETE_RESOURCE_GROUP__CONFIRM:
     'dedicated::account::iam::delete-group-ressources::confirm',
+  DELETE_APPLICATION: 'dedicated::account::iam::delete-application',
+  DELETE_APPLICATION__CANCEL:
+    'dedicated::account::iam::delete-application::cancel',
+  DELETE_APPLICATION__CONFIRM:
+    'dedicated::account::iam::delete-application::confirm',
 
   // Policy edition
   EDIT_POLICY: 'dedicated::account::iam::edit-policy',
@@ -253,6 +259,16 @@ const TAG = {
     'iam::group-ressources::edit-group-confirm-banner::error',
   RESOURCE_GROUPS__EDIT_GROUP_CONFIRM_BANNER__SUCCESS:
     'iam::group-ressources::edit-group-confirm-banner::success',
+
+  // List of applications
+  APPLICATIONS: 'dedicated::account::iam::applications',
+  APPLICATIONS__DELETE: 'dedicated::account::iam::applications::delete',
+
+  // List of applications - banners
+  APPLICATIONS__DELETE_APPLICATION_CONFIRM_BANNER__ERROR:
+    'iam::applications::delete-application-confirm-banner::error',
+  APPLICATIONS__DELETE_APPLICATION_CONFIRM_BANNER__SUCCESS:
+    'iam::applications::delete-application-confirm-banner::success',
 
   // Commons
   ADD_ACTION_MANUALLY_SUCCESS: 'add-manually-success',
