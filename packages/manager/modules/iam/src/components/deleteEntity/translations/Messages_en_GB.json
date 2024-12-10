@@ -17,5 +17,11 @@
   "iam_delete_entity_resourceType_name": "Deleting product type: ",
   "iam_delete_entity_resourceType_success": "Product type deleted",
   "iam_delete_entity_resourceType_warn": "Warning: this action will delete the associated resources and the selected actions",
-  "iam_delete_entity_secondary_label": "Exit"
+  "iam_delete_entity_secondary_label": "Exit",
+  "iam_delete_entity_application_error": "An error occurred deleting the application: {{ message }}",
+  "iam_delete_entity_application_field": "Please enter the word “{{ statement }}” to confirm the deletion of your application",
+  "iam_delete_entity_application_heading": "Delete an application",
+  "iam_delete_entity_application_name": "Delete application: ",
+  "iam_delete_entity_application_success": "Application deleted",
+  "iam_delete_entity_application_warn": "Warning: This action will delete the application and revoke all associated certificates."
 }
