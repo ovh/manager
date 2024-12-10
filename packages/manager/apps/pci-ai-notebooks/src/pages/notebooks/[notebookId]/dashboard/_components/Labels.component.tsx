@@ -54,50 +54,48 @@ const Labels = () => {
   };
 
   return (
-    <>
-      <div data-testid="labels-container">
-        <LabelsForm
-          configuredLabels={
-            notebook?.spec?.labels &&
-            Object.entries(notebook.spec.labels).map(([key, value]) => ({
-              name: key,
-              value,
-            }))
-          }
-          displayLabels={false}
-          onAdd={(newLabel) => handleAddLabel(newLabel)}
-        />
-        <div className="flex flex-wrap gap-2 mt-4">
-          {notebook.spec.labels &&
-            Object.entries(notebook.spec.labels)
-              .filter(
-                ([labkey]) =>
-                  labkey !== OVH_TAGS_CONFIG.id &&
-                  labkey !== OVH_TAGS_CONFIG.type,
-              )
-              .map(([labKey, value]) => (
-                <Badge className="py-1" key={labKey} variant={'info'}>
-                  <div className="flex flex-row gap-1">
-                    <span key={`span_${labKey}`}>
-                      {labKey} = {value}
-                    </span>
-                    <Button
-                      key={`button_${labKey}`}
-                      disabled={isPending}
-                      size="table"
-                      type="button"
-                      variant="ghost"
-                      className="inline"
-                      onClick={() => handleDeleteLabel(labKey)}
-                    >
-                      <X className="size-3 mx-auto" />
-                    </Button>
-                  </div>
-                </Badge>
-              ))}
-        </div>
+    <div data-testid="labels-container">
+      <LabelsForm
+        configuredLabels={
+          notebook?.spec?.labels &&
+          Object.entries(notebook.spec.labels).map(([key, value]) => ({
+            name: key,
+            value,
+          }))
+        }
+        displayLabels={false}
+        onAdd={(newLabel) => handleAddLabel(newLabel)}
+      />
+      <div className="flex flex-wrap gap-2 mt-4">
+        {notebook.spec.labels &&
+          Object.entries(notebook.spec.labels)
+            .filter(
+              ([labkey]) =>
+                labkey !== OVH_TAGS_CONFIG.id &&
+                labkey !== OVH_TAGS_CONFIG.type,
+            )
+            .map(([labKey, value]) => (
+              <Badge className="py-1" key={labKey} variant={'info'}>
+                <div className="flex flex-row gap-1">
+                  <span key={`span_${labKey}`}>
+                    {labKey} = {value}
+                  </span>
+                  <Button
+                    key={`button_${labKey}`}
+                    disabled={isPending}
+                    size="table"
+                    type="button"
+                    variant="ghost"
+                    className="inline"
+                    onClick={() => handleDeleteLabel(labKey)}
+                  >
+                    <X className="size-3 mx-auto" />
+                  </Button>
+                </div>
+              </Badge>
+            ))}
       </div>
-    </>
+    </div>
   );
 };
 
