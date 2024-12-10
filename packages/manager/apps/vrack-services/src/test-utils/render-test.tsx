@@ -20,6 +20,7 @@ import {
 } from '@ovh-ux/manager-core-test-utils';
 import { translations, labels } from './test-i18n';
 import { TestApp } from './TestApp';
+import { ConfigParams, getConfig } from '../../mocks/handlers';
 
 const APP_NAME = 'vrack-services';
 
@@ -31,9 +32,13 @@ export const renderTest = async ({
   ...mockParams
 }: {
   initialRoute?: string;
-} & GetServicesMocksParams = {}) => {
+} & GetServicesMocksParams &
+  ConfigParams = {}) => {
   ((global as unknown) as { server: SetupServer }).server?.resetHandlers(
-    ...toMswHandlers([...getAuthenticationMocks({ isAuthMocked: true })]),
+    ...toMswHandlers([
+      ...getAuthenticationMocks({ isAuthMocked: true }),
+      ...getConfig(mockParams),
+    ]),
   );
 
   if (!context) {

@@ -18,13 +18,8 @@ import {
 import { getVrackMocks, GetVrackMocksParams } from './vrack';
 import { getRegionMocks, GetRegionMocksParams } from './vrack-services/region';
 import { GetIamMocksParams, getIamMocks } from './iam/iam';
-import {
-  GetAuthenticationMocks,
-  getAuthenticationMocks,
-} from '../../../../../playwright-helpers/mocks/auth';
 
 export type ConfigParams = GetVrackServicesMocksParams &
-  GetAuthenticationMocks &
   GetOrderDetailsMocksParams &
   GetRegionMocksParams &
   GetVrackMocksParams &
@@ -43,7 +38,6 @@ export const getConfig = ({
   ...params
 }: ConfigParams): Handler[] =>
   [
-    getAuthenticationMocks,
     getVrackServicesMocks,
     getRegionMocks,
     getVrackMocks,

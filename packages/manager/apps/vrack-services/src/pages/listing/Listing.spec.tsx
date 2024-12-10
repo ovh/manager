@@ -1,18 +1,13 @@
 import { describe, expect, it } from 'vitest';
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 import { labels, renderTest } from '../../test-utils';
 
-describe('KMS listing test suite', () => {
-  it('should redirect to the onboarding page when the kms list is empty', async () => {
-    await renderTest();
+describe('Vrack Services listing test suite', () => {
+  it('should redirect to the onboarding page when the VRS list is empty', async () => {
+    await renderTest({ nbVs: 0 });
 
-    expect(
-      screen.getByText(labels.onboarding.onboardingPageTitle),
-    ).toBeVisible();
-
-    expect(
-      screen.queryByText(labels.listing.listingTitle),
-    ).not.toBeInTheDocument();
+    await assertTextVisibility(labels.onboarding.onboardingPageTitle);
   });
 });

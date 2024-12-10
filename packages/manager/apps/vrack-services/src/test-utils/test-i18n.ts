@@ -12,16 +12,6 @@ import subnets from '../../public/translations/vrack-services/subnets/Messages_f
 
 const APP_NAME = 'vrack-services';
 
-// const error = {
-//   manager_error_page_title: 'Oops …!',
-//   manager_error_page_button_cancel: 'Annuler',
-//   manager_error_page_detail_code: "Code d'erreur : ",
-//   manager_error_page_action_reload_label: 'Réessayer',
-//   manager_error_page_action_home_label: "Retour à la page d'accueil",
-//   manager_error_page_default:
-//     'Une erreur est survenue lors du chargement de la page.',
-// };
-
 export const translations = {
   [APP_NAME]: common,
   [`${APP_NAME}/create`]: create,

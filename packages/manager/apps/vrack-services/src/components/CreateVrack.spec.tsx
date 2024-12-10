@@ -1,3 +1,6 @@
+// V Should be first V
+import '@/test-utils/setupTests';
+// -----
 import React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { render, fireEvent, waitFor, act } from '@testing-library/react';
@@ -32,13 +35,6 @@ const renderComponent = ({ closeModal }: CreateVrackProps) => {
 
 /** MOCKS */
 const closeModalMock = vi.fn();
-
-vi.mock('react-i18next', () => ({
-  useTranslation: () => ({
-    t: (translationKey: string) => translationKey,
-    i18n: { language: 'fr_FR' },
-  }),
-}));
 
 vi.mock('@/utils/cart', async (importOriginal) => {
   const original: typeof import('@/utils/cart') = await importOriginal();
