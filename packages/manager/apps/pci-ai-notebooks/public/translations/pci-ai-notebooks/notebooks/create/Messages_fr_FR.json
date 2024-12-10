@@ -53,6 +53,6 @@
   "cliCode": "Equivalent CLI",
   "errorGetCommandCli": "Une erreur est survenue lors de la génération de code équivalent pour la CLI",
   "cliEquivalentModalTitle": "Création d’un notebook équivalent",
-  "cliEquivalentModalDescription": "Créer le même notebook via la CLI",
+  "cliEquivalentModalDescription": "Commande CLI",
   "cliEquivalentModalToastMessage": "Le code a été copié"
 }

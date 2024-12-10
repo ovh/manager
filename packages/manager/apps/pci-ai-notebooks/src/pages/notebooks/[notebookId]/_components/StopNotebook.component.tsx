@@ -18,7 +18,7 @@ import { useStopNotebook } from '@/hooks/api/ai/notebook/useStopNotebook.hook';
 interface StopNotebookModalProps {
   notebook: ai.notebook.Notebook;
   controller: ModalController;
-  onSuccess?: (notebook: ai.notebook.Notebook) => void;
+  onSuccess?: () => void;
   onError?: (service: Error) => void;
 }
 
@@ -52,7 +52,7 @@ const StopNotebook = ({
         }),
       });
       if (onSuccess) {
-        onSuccess(notebook);
+        onSuccess();
       }
     },
   });

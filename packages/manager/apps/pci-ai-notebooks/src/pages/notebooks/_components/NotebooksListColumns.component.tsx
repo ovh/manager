@@ -1,11 +1,5 @@
 import { ColumnDef } from '@tanstack/react-table';
-import {
-  Cpu,
-  MoreHorizontal,
-  ShieldAlert,
-  ShieldCheck,
-  Zap,
-} from 'lucide-react';
+import { Cpu, Globe, LockKeyhole, MoreHorizontal, Zap } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import * as ai from '@/types/cloud/project/ai';
@@ -23,7 +17,7 @@ import { SortableHeader } from '@/components/ui/data-table';
 import Link from '@/components/links/Link.component';
 import { convertSecondsToTimeString } from '@/lib/durationHelper';
 import NotebookStatusBadge from './NotebookStatusBadge.component';
-import { isDeletingNotebook, isRunningNotebook } from '@/lib/statusHelper';
+import { isDeletingNotebook, isRunningNotebook } from '@/lib/notebookHelper';
 
 interface NotebooksListColumnsProps {
   onStartClicked: (notebook: ai.notebook.Notebook) => void;
@@ -119,7 +113,8 @@ export const getColumns = ({
     },
     {
       id: 'Operating time',
-      accessorFn: (row) => convertSecondsToTimeString(row.status.duration),
+      accessorFn: (row) =>
+        convertSecondsToTimeString(row.status.duration, true),
       header: ({ column }) => (
         <SortableHeader column={column}>
           {t('tableHeaderDuration')}
@@ -140,13 +135,13 @@ export const getColumns = ({
           <div>
             {unsecureHttp ? (
               <div className="flex gap-2 items-center">
-                <ShieldCheck className="size-4 inline mr-2 text-green-500" />
-                {t('networkSecureTitle')}
+                <Globe className="size-4 inline mr-2" />
+                {t('networkPublicTitle')}
               </div>
             ) : (
               <div className="flex gap-2 items-center">
-                <ShieldAlert className="size-4 inline mr-2 text-amber-400" />
-                {t('networkPublicTitle')}
+                <LockKeyhole className="size-4 inline mr-2" />
+                {t('networkSecureTitle')}
               </div>
             )}
           </div>
