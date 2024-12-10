@@ -10,7 +10,7 @@ exports[`HourlyConsumption > matches snapshot 1`] = `
         class="my-2"
         color="primary"
         level="subheading"
-        size="600"
+        size="500"
         slot="summary"
       >
         cpbc_hourly_instance_detail_title (10.50 undefined)
@@ -29,7 +29,7 @@ exports[`HourlyConsumption > matches snapshot 1`] = `
         class="my-2"
         color="primary"
         level="subheading"
-        size="600"
+        size="500"
         slot="summary"
       >
         cpbc_snapshot_detail_title (5.25 undefined)
@@ -52,7 +52,7 @@ exports[`HourlyConsumption > matches snapshot 1`] = `
         class="my-2"
         color="primary"
         level="subheading"
-        size="600"
+        size="500"
         slot="summary"
       >
         cpbc_volume_detail_title (7.75 undefined)
@@ -71,7 +71,7 @@ exports[`HourlyConsumption > matches snapshot 1`] = `
         class="my-2"
         color="primary"
         level="subheading"
-        size="600"
+        size="500"
         slot="summary"
       >
         cpbc_object_storage_detail_title (undefined undefined)
@@ -94,7 +94,7 @@ exports[`HourlyConsumption > matches snapshot 1`] = `
         class="my-2"
         color="primary"
         level="subheading"
-        size="600"
+        size="500"
         slot="summary"
       >
         cpbc_archive_storage_detail_title (undefined undefined)
@@ -117,7 +117,7 @@ exports[`HourlyConsumption > matches snapshot 1`] = `
         class="my-2"
         color="primary"
         level="subheading"
-        size="600"
+        size="500"
         slot="summary"
       >
         cpbc_cold_archive_detail_title (undefined undefined)
@@ -140,7 +140,7 @@ exports[`HourlyConsumption > matches snapshot 1`] = `
         class="my-2"
         color="primary"
         level="subheading"
-        size="600"
+        size="500"
         slot="summary"
       >
         cpbc_hourly_instance_trafic_title (undefined undefined)
@@ -163,7 +163,7 @@ exports[`HourlyConsumption > matches snapshot 1`] = `
         class="my-2"
         color="primary"
         level="subheading"
-        size="600"
+        size="500"
         slot="summary"
       >
         cpbc_hourly_private_registry_title (undefined undefined)
@@ -186,7 +186,7 @@ exports[`HourlyConsumption > matches snapshot 1`] = `
         class="my-2"
         color="primary"
         level="subheading"
-        size="600"
+        size="500"
         slot="summary"
       >
         Kubernetes Load Balancer (undefined undefined)
@@ -209,7 +209,7 @@ exports[`HourlyConsumption > matches snapshot 1`] = `
         class="my-2"
         color="primary"
         level="subheading"
-        size="600"
+        size="500"
         slot="summary"
       >
         cpbc_hourly_training_title (undefined undefined)
@@ -232,7 +232,7 @@ exports[`HourlyConsumption > matches snapshot 1`] = `
         class="my-2"
         color="primary"
         level="subheading"
-        size="600"
+        size="500"
         slot="summary"
       >
         cpbc_hourly_notebooks_title (undefined undefined)
@@ -255,7 +255,7 @@ exports[`HourlyConsumption > matches snapshot 1`] = `
         class="my-2"
         color="primary"
         level="subheading"
-        size="600"
+        size="500"
         slot="summary"
       >
         cpbc_hourly_ai_deploy_title (undefined undefined)
@@ -278,7 +278,7 @@ exports[`HourlyConsumption > matches snapshot 1`] = `
         class="my-2"
         color="primary"
         level="subheading"
-        size="600"
+        size="500"
         slot="summary"
       >
         cpbc_hourly_data_processing_title (undefined undefined)
@@ -301,7 +301,7 @@ exports[`HourlyConsumption > matches snapshot 1`] = `
         class="my-2"
         color="primary"
         level="subheading"
-        size="600"
+        size="500"
         slot="summary"
       >
         cpbc_hourly_databases_title (undefined undefined)
@@ -324,7 +324,7 @@ exports[`HourlyConsumption > matches snapshot 1`] = `
         class="my-2"
         color="primary"
         level="subheading"
-        size="600"
+        size="500"
         slot="summary"
       >
         cpbc_hourly_floating_ip_title (undefined undefined)
@@ -347,7 +347,7 @@ exports[`HourlyConsumption > matches snapshot 1`] = `
         class="my-2"
         color="primary"
         level="subheading"
-        size="600"
+        size="500"
         slot="summary"
       >
         cpbc_hourly_public_ip_title (undefined undefined)
@@ -370,7 +370,7 @@ exports[`HourlyConsumption > matches snapshot 1`] = `
         class="my-2"
         color="primary"
         level="subheading"
-        size="600"
+        size="500"
         slot="summary"
       >
         cpbc_hourly_gateway_title (undefined undefined)
@@ -393,7 +393,7 @@ exports[`HourlyConsumption > matches snapshot 1`] = `
         class="my-2"
         color="primary"
         level="subheading"
-        size="600"
+        size="500"
         slot="summary"
       >
         Load Balancer (undefined undefined)
