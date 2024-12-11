@@ -68,24 +68,24 @@ describe('KMS Guides Header tests suite', () => {
     await waitFor(() => {
       let guideElement = getByText('guides_header_quick_start');
       expect(guideElement).toBeInTheDocument();
-      let osdsLinkElement = guideElement.closest('osds-link');
-      expect(osdsLinkElement).toHaveAttribute(
+      let odsLinkElement = guideElement.closest('ods-link');
+      expect(odsLinkElement).toHaveAttribute(
         'href',
         `${SUPPORT_URL.EU}${GUIDE_LIST.quickStart.FR}`,
       );
 
       guideElement = getByText('guides_header_kms_usage');
       expect(guideElement).toBeInTheDocument();
-      osdsLinkElement = guideElement.closest('osds-link');
-      expect(osdsLinkElement).toHaveAttribute(
+      odsLinkElement = guideElement.closest('ods-link');
+      expect(odsLinkElement).toHaveAttribute(
         'href',
         `${SUPPORT_URL.EU}${GUIDE_LIST.usage.FR}`,
       );
 
       guideElement = getByText('guides_header_connect_kmip_product');
       expect(guideElement).toBeInTheDocument();
-      osdsLinkElement = guideElement.closest('osds-link');
-      expect(osdsLinkElement).toHaveAttribute(
+      odsLinkElement = guideElement.closest('ods-link');
+      expect(odsLinkElement).toHaveAttribute(
         'href',
         `${SUPPORT_URL.EU}${GUIDE_LIST.kmip.FR}`,
       );

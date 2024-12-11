@@ -7,14 +7,14 @@ import React, {
   useState,
 } from 'react';
 import { useTranslation } from 'react-i18next';
-import { OsdsButton, OsdsIcon, OsdsText } from '@ovhcloud/ods-components/react';
+import { OdsButton, OdsIcon, OdsText } from '@ovhcloud/ods-components/react';
 import {
+  ODS_BUTTON_COLOR,
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
-  ODS_ICON_SIZE,
+  ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ButtonType,
   PageLocation,
@@ -52,18 +52,17 @@ const CreateAddIdentities = ({
   const { trackClick } = useOvhTracking();
 
   useEffect(() => {
-    if (isRootAccount) {
-      setIdentityURNs([
-        `urn:v1:${region.toLowerCase()}:identity:account:${auth.account}`,
-      ]);
-      return;
-    }
-    const userURNs = userList.map((user) => user.urn);
-    const groupURNs = groupList.map((group) => group.urn);
-    const serviceAccountURNs = serviceAccountList.map(
-      (serviceAccount) => serviceAccount.identity,
+    setIdentityURNs(
+      isRootAccount
+        ? [`urn:v1:${region.toLowerCase()}:identity:account:${auth.account}`]
+        : [
+            ...userList.map((user) => user.urn),
+            ...groupList.map((group) => group.urn),
+            ...serviceAccountList.map(
+              (serviceAccount) => serviceAccount.identity,
+            ),
+          ],
     );
-    setIdentityURNs([...userURNs, ...groupURNs, ...serviceAccountURNs]);
   }, [userList, groupList, serviceAccountList, isRootAccount]);
 
   return (
@@ -80,17 +79,13 @@ const CreateAddIdentities = ({
 
           {!isRootAccount && (
             <>
-              <div className="flex">
-                <OsdsIcon
-                  name={ODS_ICON_NAME.INFO}
-                  size={ODS_ICON_SIZE.sm}
-                  color={ODS_THEME_COLOR_INTENT.primary}
-                />
-                <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
+              <div className="flex items-center gap-1">
+                <OdsIcon name={ODS_ICON_NAME.circleInfo} />
+                <OdsText preset={ODS_TEXT_PRESET.span}>
                   {t(
                     'key_management_service_credential_create_identities_max_label',
                   )}
-                </OsdsText>
+                </OdsText>
               </div>
               <IdentitiesSelectedUsersList identityURNs={identityURNs} />
               <IdentitiesSelectedGroups identityURNs={identityURNs} />
@@ -99,10 +94,9 @@ const CreateAddIdentities = ({
           )}
         </div>
         <div className="flex gap-4">
-          <OsdsButton
-            inline
-            variant={ODS_BUTTON_VARIANT.stroked}
-            color={ODS_THEME_COLOR_INTENT.primary}
+          <OdsButton
+            variant={ODS_BUTTON_VARIANT.outline}
+            color={ODS_BUTTON_COLOR.primary}
             size={ODS_BUTTON_SIZE.sm}
             onClick={() => {
               trackClick({
@@ -113,15 +107,13 @@ const CreateAddIdentities = ({
               });
               navigate(`/${okmsId}/${ROUTES_URLS.credentials}`);
             }}
-          >
-            {t(
+            label={t(
               'key_management_service_credential_create_identities_button_cancel_label',
             )}
-          </OsdsButton>
-          <OsdsButton
-            inline
+          />
+          <OdsButton
             variant={ODS_BUTTON_VARIANT.ghost}
-            color={ODS_THEME_COLOR_INTENT.primary}
+            color={ODS_BUTTON_COLOR.primary}
             size={ODS_BUTTON_SIZE.sm}
             onClick={() => {
               trackClick({
@@ -132,14 +124,12 @@ const CreateAddIdentities = ({
               });
               prevStep();
             }}
-          >
-            {t(
+            label={t(
               'key_management_service_credential_create_identities_button_back_label',
             )}
-          </OsdsButton>
-          <OsdsButton
-            inline
-            color={ODS_THEME_COLOR_INTENT.primary}
+          />
+          <OdsButton
+            color={ODS_BUTTON_COLOR.primary}
             size={ODS_BUTTON_SIZE.sm}
             onClick={() => {
               trackClick({
@@ -150,14 +140,11 @@ const CreateAddIdentities = ({
               });
               nextStep();
             }}
-            disabled={
-              identityURNs.length > 25 || identityURNs.length === 0 || undefined
-            }
-          >
-            {t(
+            isDisabled={identityURNs.length > 25 || identityURNs.length === 0}
+            label={t(
               'key_management_service_credential_create_identities_button_create_label',
             )}
-          </OsdsButton>
+          />
         </div>
       </div>
     </div>

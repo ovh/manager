@@ -1,19 +1,17 @@
 import React from 'react';
+import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsText } from '@ovhcloud/ods-components/react';
 
 export type TileBlockProps = React.PropsWithChildren<{
-  label?: string;
+  label?: React.ReactNode;
 }>;
 
 export const TileBlock: React.FC<React.PropsWithChildren<TileBlockProps>> = ({
   label,
   children,
 }) => (
-  <dl className="flex flex-col gap-y-[8px] my-0">
-    <dt className="tile-block-title m-0 text-[--ods-color-heading] text-[16px] leading-[16px] font-semibold">
-      {label}
-    </dt>
-    <dd className="tile-block-description m-0 text-[--ods-color-text] text-[16px] leading-[16px] min-h-[16px]">
-      {children}
-    </dd>
-  </dl>
+  <div className="grid gap-1">
+    <OdsText preset={ODS_TEXT_PRESET.heading6}>{label}</OdsText>
+    <OdsText preset={ODS_TEXT_PRESET.paragraph}>{children}</OdsText>
+  </div>
 );

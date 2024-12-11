@@ -1,9 +1,11 @@
 import {
+  ODS_BUTTON_ICON_ALIGNMENT,
   ODS_BUTTON_SIZE,
+  ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
-import { OdsButton, OdsText, OdsLink } from '@ovhcloud/ods-components/react';
+import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
 import React, { PropsWithChildren } from 'react';
 
 import placeholderSrc from '../../../../public/assets/placeholder.png';
@@ -12,6 +14,7 @@ type OnboardingLayoutButtonProps = {
   orderButtonLabel?: string;
   orderHref?: string;
   moreInfoHref?: string;
+  moreInfoIcon?: ODS_ICON_NAME;
   moreInfoButtonLabel?: string;
   onOrderButtonClick?: () => void;
   onmoreInfoButtonClick?: () => void;
@@ -27,10 +30,11 @@ export type OnboardingLayoutProps = OnboardingLayoutButtonProps &
   }>;
 
 const OnboardingLayoutButton: React.FC<OnboardingLayoutButtonProps> = ({
-  orderHref,
   orderButtonLabel,
+  orderHref,
   moreInfoHref,
   moreInfoButtonLabel,
+  moreInfoIcon = ODS_ICON_NAME.externalLink,
   onOrderButtonClick,
   onmoreInfoButtonClick,
   isActionDisabled,
@@ -40,20 +44,32 @@ const OnboardingLayoutButton: React.FC<OnboardingLayoutButtonProps> = ({
   }
   return (
     <div className="flex sm:pt-8 xs:pt-2.5 flex-row items-center space-x-4 justify-center">
-      {moreInfoButtonLabel && moreInfoHref && (
-        <OdsLink
-          onClick={onmoreInfoButtonClick}
-          {...(isActionDisabled && { disabled: true })}
-          href={moreInfoHref}
-          label={moreInfoButtonLabel}
-          icon={ODS_ICON_NAME.externalLink}
-        />
-      )}
       <OdsButton
         size={ODS_BUTTON_SIZE.md}
-        onClick={onOrderButtonClick}
+        onClick={() => {
+          onOrderButtonClick?.();
+          if (orderHref) {
+            window.open(orderHref, '_blank');
+          }
+        }}
         label={orderButtonLabel}
+        isDisabled={isActionDisabled}
       />
+      {moreInfoButtonLabel && (onmoreInfoButtonClick || moreInfoHref) && (
+        <OdsButton
+          size={ODS_BUTTON_SIZE.md}
+          variant={ODS_BUTTON_VARIANT.outline}
+          onClick={() => {
+            onmoreInfoButtonClick?.();
+            if (moreInfoHref) {
+              window.open(moreInfoHref, '_blank');
+            }
+          }}
+          label={moreInfoButtonLabel}
+          icon={moreInfoIcon}
+          iconAlignment={ODS_BUTTON_ICON_ALIGNMENT.right}
+        />
+      )}
     </div>
   );
 };
@@ -62,8 +78,8 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
   hideHeadingSection,
   title,
   description,
-  orderHref,
   orderButtonLabel,
+  orderHref,
   moreInfoHref,
   moreInfoButtonLabel,
   children,
@@ -96,7 +112,10 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
             {title}
           </OdsText>
           {description && (
-            <OdsText preset="span" className="onboarding-description">
+            <OdsText
+              preset="paragraph"
+              className="block text-center xs:pt-2.5 sm:pt-8 max-w-4xl"
+            >
               {description}
             </OdsText>
           )}

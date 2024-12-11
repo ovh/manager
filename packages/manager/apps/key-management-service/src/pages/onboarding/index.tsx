@@ -5,12 +5,8 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import {
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-  ODS_TEXT_COLOR_INTENT,
-} from '@ovhcloud/ods-components';
-import { OsdsText } from '@ovhcloud/ods-components/react';
+import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsText } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import useGuideUtils from '@/hooks/guide/useGuideUtils';
@@ -29,15 +25,13 @@ export default function Onboarding() {
       title={t('title')}
       img={{ src: onboardingImgSrc }}
       description={descriptionsKeys.map((descKey) => (
-        <OsdsText
-          level={ODS_TEXT_LEVEL.body}
-          size={ODS_TEXT_SIZE._800}
-          color={ODS_TEXT_COLOR_INTENT.text}
-          className="block text-center mb-4"
+        <OdsText
           key={descKey}
+          className="block text-center mb-4"
+          preset={ODS_TEXT_PRESET.paragraph}
         >
           {t(descKey)}
-        </OsdsText>
+        </OdsText>
       ))}
       orderButtonLabel={t('orderButtonLabel')}
       onOrderButtonClick={() => {
@@ -51,6 +45,6 @@ export default function Onboarding() {
       }}
       moreInfoButtonLabel={t('moreInfoButtonLabel')}
       moreInfoHref={guideLinks?.quickStart}
-    ></OnboardingLayout>
+    />
   );
 }

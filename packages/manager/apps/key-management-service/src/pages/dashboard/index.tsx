@@ -114,20 +114,22 @@ export default function DashboardPage() {
 
   return (
     <Suspense fallback={<Loading />}>
-      <BaseLayout
-        header={headerProps}
-        onClickReturn={() => {
-          navigate(ROUTES_URLS.root);
-        }}
-        backLinkLabel={tDashboard('key_management_service_dashboard_back_link')}
-        breadcrumb={<Breadcrumb items={breadcrumbItems} />}
-        message={<Notifications />}
-        tabs={<Dashboard tabs={tabsList} />}
-      >
-        <OkmsContext.Provider value={okms.data}>
+      <OkmsContext.Provider value={okms?.data}>
+        <BaseLayout
+          header={headerProps}
+          onClickReturn={() => {
+            navigate(ROUTES_URLS.root);
+          }}
+          backLinkLabel={tDashboard(
+            'key_management_service_dashboard_back_link',
+          )}
+          breadcrumb={<Breadcrumb items={breadcrumbItems} />}
+          message={<Notifications />}
+          tabs={<Dashboard tabs={tabsList} />}
+        >
           <Outlet />
-        </OkmsContext.Provider>
-      </BaseLayout>
+        </BaseLayout>
+      </OkmsContext.Provider>
     </Suspense>
   );
 }

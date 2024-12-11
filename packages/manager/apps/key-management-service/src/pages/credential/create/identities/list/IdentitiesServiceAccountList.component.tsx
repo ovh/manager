@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
-import { OsdsSearchBar, OsdsDivider } from '@ovhcloud/ods-components/react';
+import { OdsInput } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { IdentityOauthClient } from '@/types/identity.type';
 import IdentitiesServiceAccountTile from '../tile/IdentitiesServiceAccountTile.component';
@@ -36,19 +36,16 @@ const IdentitiesServiceAccountList = ({
   };
   return (
     <>
-      <OsdsSearchBar
-        onOdsValueChange={(searchText) => {
-          return filterTerms(searchText.detail.value);
-        }}
-        onOdsSearchSubmit={(searchText) => {
-          return filterTerms(searchText.detail.inputValue);
-        }}
+      <OdsInput
+        className="mb-4 w-full"
+        name="search"
         placeholder={t(
           'key_management_service_credential_create_identities_service-account_list_search_placeholder',
         )}
+        onOdsChange={(event) => filterTerms(event.detail.value as string)}
+        type="search"
       />
-      <OsdsDivider />
-      <div className="flex flex-col gap-3">
+      <div className="grid gap-3 mb-4">
         {sortedFilteredServiceAccount.map((serviceAccount) => (
           <IdentitiesServiceAccountTile
             serviceAccount={serviceAccount}

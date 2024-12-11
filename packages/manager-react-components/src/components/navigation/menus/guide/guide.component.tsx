@@ -21,14 +21,19 @@ export interface GuideItem {
 
 export interface GuideButtonProps {
   items: GuideItem[];
+  isLoading?: boolean;
 }
 
-export const GuideButton: React.FC<GuideButtonProps> = ({ items }) => {
+export const GuideButton: React.FC<GuideButtonProps> = ({
+  items,
+  isLoading,
+}) => {
   const { t } = useTranslation('buttons');
   return (
     <>
       <div id="navigation-menu-guide-trigger">
         <OdsButton
+          isLoading={isLoading}
           slot="menu-title"
           className="block mb-6"
           variant={ODS_BUTTON_VARIANT.ghost}
@@ -38,10 +43,11 @@ export const GuideButton: React.FC<GuideButtonProps> = ({ items }) => {
         />
       </div>
 
-      <OdsPopover triggerId="navigation-menu-guide-trigger" with-arrow="true">
+      <OdsPopover triggerId="navigation-menu-guide-trigger" withArrow>
         {items.map((item) => (
           <div key={item.id}>
             <Links
+              className="block py-2"
               href={item.href}
               target={item.target}
               download={item.download}

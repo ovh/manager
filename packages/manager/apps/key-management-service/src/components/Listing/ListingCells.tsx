@@ -14,9 +14,8 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { useNavigate } from 'react-router-dom';
 import { ODS_ICON_NAME, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
-import { OsdsSpinner } from '@ovhcloud/ods-components/react';
+import { OdsSpinner } from '@ovhcloud/ods-components/react';
 import { OKMS } from '@/types/okms.type';
-import KmsActionMenu from '../menu/KmsActionMenu.component';
 import { OkmsAllServiceKeys } from '@/types/okmsServiceKey.type';
 import { useServiceKeyTypeTranslations } from '@/hooks/serviceKey/useServiceKeyTypeTranslations';
 import { ServiceKeyStatus } from '../serviceKey/serviceKeyStatus/serviceKeyStatus.component';
@@ -27,7 +26,7 @@ import { OkmsServiceState } from '../layout-helpers/Dashboard/okmsServiceState/O
 import { OkmsContext } from '@/pages/dashboard';
 
 export const DatagridCellId = (props: OKMS | OkmsAllServiceKeys) => {
-  return <Clipboard value={props.id} />;
+  return <Clipboard className="w-full" value={props.id} />;
 };
 
 export const DatagridCellName = (props: OKMS) => {
@@ -35,20 +34,18 @@ export const DatagridCellName = (props: OKMS) => {
   const navigate = useNavigate();
 
   return (
-    <div>
-      <Links
-        onClickReturn={() => {
-          trackClick({
-            location: PageLocation.datagrid,
-            buttonType: ButtonType.link,
-            actionType: 'navigation',
-            actions: ['go-to-kms'],
-          });
-          navigate(`/${props?.id}`);
-        }}
-        label={props?.iam.displayName}
-      />
-    </div>
+    <Links
+      onClickReturn={() => {
+        trackClick({
+          location: PageLocation.datagrid,
+          buttonType: ButtonType.link,
+          actionType: 'navigation',
+          actions: ['go-to-kms'],
+        });
+        navigate(`/${props?.id}`);
+      }}
+      label={props?.iam.displayName}
+    />
   );
 };
 
@@ -56,7 +53,7 @@ export const DatagridCellRegion = (kms: OKMS) => {
   return (
     <DataGridTextCell>
       <Region
-        mode={'region'}
+        mode="region"
         name={kms.region.toLowerCase().replaceAll('_', '-')}
       />
     </DataGridTextCell>
@@ -68,21 +65,12 @@ export const DatagridCellStatus = (kms: OKMS) => {
     resourceName: kms.id,
   });
   if (isLoading) {
-    return <OsdsSpinner inline size={ODS_SPINNER_SIZE.sm} />;
+    return <OdsSpinner size={ODS_SPINNER_SIZE.sm} />;
   }
   if (isError) {
     return <></>;
   }
-  return (
-    <OkmsServiceState
-      state={OkmsServiceInfos.data.resource.state}
-      inline={true}
-    ></OkmsServiceState>
-  );
-};
-
-export const DatagridActionMenu = (props: OKMS) => {
-  return <KmsActionMenu {...props} />;
+  return <OkmsServiceState state={OkmsServiceInfos.data.resource.state} />;
 };
 
 export const DatagridServiceKeyCellName = (props: OkmsAllServiceKeys) => {
@@ -90,30 +78,28 @@ export const DatagridServiceKeyCellName = (props: OkmsAllServiceKeys) => {
   const { trackClick } = useOvhTracking();
 
   return (
-    <div>
-      <Links
-        onClickReturn={() => {
-          trackClick({
-            location: PageLocation.datagrid,
-            buttonType: ButtonType.link,
-            actionType: 'navigation',
-            actions: ['details_encryption_key'],
-          });
-          navigate(`${props?.id}`);
-        }}
-        label={props?.name}
-      />
-    </div>
+    <Links
+      onClickReturn={() => {
+        trackClick({
+          location: PageLocation.datagrid,
+          buttonType: ButtonType.link,
+          actionType: 'navigation',
+          actions: ['details_encryption_key'],
+        });
+        navigate(`${props?.id}`);
+      }}
+      label={props?.name}
+    />
   );
 };
 
 export const DatagridServiceKeyCellId = (props: OkmsAllServiceKeys) => {
-  return <Clipboard value={props.id} />;
+  return <Clipboard className="w-full" value={props.id} />;
 };
 
 export const DatagridCellType = (props: OkmsAllServiceKeys) => {
   const translatedValue = useServiceKeyTypeTranslations(props.type);
-  return <DataGridTextCell> {translatedValue}</DataGridTextCell>;
+  return <DataGridTextCell>{translatedValue}</DataGridTextCell>;
 };
 
 export const DatagridCreationDate = (props: OkmsAllServiceKeys) => {
@@ -136,7 +122,7 @@ export const DatagridCreationDate = (props: OkmsAllServiceKeys) => {
 };
 
 export const DatagridStatus = (props: OkmsAllServiceKeys) => {
-  return <ServiceKeyStatus state={props.state} inline />;
+  return <ServiceKeyStatus state={props.state} />;
 };
 
 export const DatagridServiceKeyActionMenu = (props: OkmsAllServiceKeys) => {
@@ -147,15 +133,13 @@ export const DatagridServiceKeyActionMenu = (props: OkmsAllServiceKeys) => {
   });
   const actionList = useServiceKeyActionsList(okms, serviceKey?.data, true);
 
-  if (isPending) {
-    return <></>;
-  }
-
   return (
     <ActionMenu
-      items={actionList}
+      id={`service-key-actions-${props.id}`}
+      isLoading={isPending}
       isCompact
-      icon={ODS_ICON_NAME.ELLIPSIS_VERTICAL}
+      icon={ODS_ICON_NAME.ellipsisVertical}
+      items={actionList}
     />
   );
 };

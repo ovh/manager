@@ -1,15 +1,11 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import {
-  OsdsToggle,
-  OsdsText,
-  OsdsFormField,
-  OsdsCheckbox,
+  OdsToggle,
+  OdsText,
+  OdsFormField,
 } from '@ovhcloud/ods-components/react';
+import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
 import {
   ButtonType,
   PageLocation,
@@ -29,38 +25,35 @@ const IdentitiesRootAccount = ({
   const { trackClick } = useOvhTracking();
 
   return (
-    <OsdsFormField inline>
-      <OsdsCheckbox
-        checked={isRootAccount}
-        onOdsCheckedChange={() => {
+    <OdsFormField>
+      <label htmlFor="rootAccount" slot="label">
+        <OdsText className="block" preset={ODS_TEXT_PRESET.heading4}>
+          {t(
+            'key_management_service_credential_create_identities_root_account_toggle_label',
+          )}
+        </OdsText>
+      </label>
+      <OdsToggle
+        name="rootAccount"
+        id="rootAccount"
+        defaultChecked={isRootAccount}
+        onOdsChange={(event) => {
           trackClick({
             location: PageLocation.funnel,
             buttonType: ButtonType.button,
             actionType: 'action',
             actions: ['toggle_root_identity', !isRootAccount ? 'on' : 'off'],
           });
-          setIsRootAccount(!isRootAccount);
+          setIsRootAccount(event.detail.value);
         }}
-      >
-        <OsdsToggle>
-          <OsdsText
-            slot="end"
-            color={ODS_THEME_COLOR_INTENT.text}
-            size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-            className="pl-3"
-          >
-            {t(
-              'key_management_service_credential_create_identities_root_account_toggle_label',
-            )}
-          </OsdsText>
-        </OsdsToggle>
-      </OsdsCheckbox>
-      <OsdsText color={ODS_THEME_COLOR_INTENT.text} slot="helper">
+      />
+
+      <OdsText preset={ODS_TEXT_PRESET.paragraph}>
         {t(
           'key_management_service_credential_create_identities_root_account_toggle_helper',
         )}
-      </OsdsText>
-    </OsdsFormField>
+      </OdsText>
+    </OdsFormField>
   );
 };
 
