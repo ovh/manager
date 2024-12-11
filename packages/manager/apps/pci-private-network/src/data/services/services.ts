@@ -14,12 +14,21 @@ export const createPrivateNetwork = async (
     enableSnat,
     isLocalZone,
     region,
-    ...networkCreationParams
+    ...networkCreationData
   } = values;
-  const { gateway, vlanId, ...localZoneData } = networkCreationParams;
+  // exclude gateway and vlanId for LZ
+  const { gateway, vlanId, ...param } = networkCreationData;
+
+  // exclude dns param for LZ
+  const {
+    dnsNameServers,
+    useDefaultPublicDNSResolver,
+    ...subnetLZ
+  } = param.subnet;
+  const networkCreationDataLZ = { ...param, subnet: { ...subnetLZ } };
   const data = (isLocalZone
-    ? localZoneData
-    : networkCreationParams) as TNetworkCreationData;
+    ? networkCreationDataLZ
+    : networkCreationData) as TNetworkCreationData;
 
   const creation = await apiCreatePrivateNetwork({
     projectId,

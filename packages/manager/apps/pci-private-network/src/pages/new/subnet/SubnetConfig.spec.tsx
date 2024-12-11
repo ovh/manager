@@ -29,6 +29,7 @@ describe('SubnetConfig CIDR', () => {
         const form = useForm<NewPrivateNetworkForm>({
           defaultValues: {
             subnet: {
+              allocationPools: [],
               cidr,
             },
           },

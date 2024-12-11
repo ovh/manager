@@ -22,9 +22,14 @@ vi.mocked(fetchCheckPrivateNetworkCreationStatus).mockResolvedValue({
 } as TNetworkCreationResponse);
 
 describe('Create Private Network', () => {
-  it('should not post gateway and vlanId when region is LZ', async () => {
+  it('should not post gateway, vlanId and dns when region is LZ', async () => {
     const values: NewPrivateNetworkForm = { ...form, isLocalZone: true };
     const { name, subnet, region } = values;
+    const {
+      useDefaultPublicDNSResolver,
+      dnsNameServers,
+      ...subnetParams
+    } = subnet;
 
     await createPrivateNetwork(values, projectId);
 
@@ -33,7 +38,7 @@ describe('Create Private Network', () => {
       region,
       data: {
         name,
-        subnet,
+        subnet: subnetParams,
       },
     });
 

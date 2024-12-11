@@ -8,6 +8,8 @@ const privateNetworkForm = {
     enableDhcp: true,
     enableGatewayIp: true,
     ipVersion: 4,
+    dnsNameServers: [],
+    useDefaultPublicDNSResolver: true,
   },
   vlanId: 22,
   existingGatewayId: 'testExistingIdGateway',
