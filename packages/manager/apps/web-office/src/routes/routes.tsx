@@ -44,6 +44,22 @@ export const Routes: any = [
                 pageType: PageType.dashboard,
               },
             },
+            children: [
+              {
+                path: 'edit-name',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/dashboard/components/UpdateDisplayNameModal.component'
+                  ),
+                ),
+                handle: {
+                  tracking: {
+                    pageName: 'edit-name',
+                    pageType: PageType.dashboard,
+                  },
+                },
+              },
+            ],
           },
           {
             path: 'consumption',

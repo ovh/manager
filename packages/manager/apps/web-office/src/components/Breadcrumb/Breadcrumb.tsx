@@ -33,7 +33,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = () => {
         label: pathParts[1],
         href: `#/${pathParts.slice(0, 2).join('/')}`,
       },
-      ...breadcrumbParts.map((_, index) => {
+      ...breadcrumbParts.map((_: any, index: number) => {
         const label = t(
           `microsoft_office_dashboard_${breadcrumbParts
             .slice(0, index + 1)

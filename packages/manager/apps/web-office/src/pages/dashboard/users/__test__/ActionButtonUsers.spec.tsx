@@ -14,7 +14,7 @@ describe('Users datagrid (licence) action menu', () => {
     const { container } = render(
       <ActionButtonUsers
         usersItem={usersMock[0]}
-        licenceDetail={licensesMock[0]}
+        licenseDetail={licensesMock[0]}
       />,
     );
 
@@ -42,7 +42,7 @@ describe('Users datagrid (licence) action menu', () => {
     const { container } = render(
       <ActionButtonUsers
         usersItem={licensesPrepaidExpandedMock[1]}
-        licenceDetail={licensesPrepaidExpandedMock[1]}
+        licenseDetail={licensesPrepaidExpandedMock[1]}
       />,
     );
 
@@ -70,7 +70,7 @@ describe('Users datagrid (licence) action menu', () => {
     const { container } = render(
       <ActionButtonUsers
         usersItem={licensesPrepaidExpandedMock[0]}
-        licenceDetail={licensesPrepaidExpandedMock[0]}
+        licenseDetail={licensesPrepaidExpandedMock[0]}
       />,
     );
 
