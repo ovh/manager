@@ -44,7 +44,7 @@ const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
     />
   ) : (
     <button
-      className={style['button-as-div']}
+      className={`${style['button-as-div']} relative`}
       title={t(node.translation)}
       onKeyUp={(e) => {
         if (e.key === 'Enter') {
@@ -61,11 +61,11 @@ const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
         {!isShortText && <span>{t(node.translation)}</span>}
       </span>
       <span className="flex justify-end align-items-center">
-        {!isShortText && (count as number) > 0 && (
+        {(count as number) > 0 && (
           <OsdsIcon
             name={ODS_ICON_NAME.SHAPE_DOT}
             size={ODS_ICON_SIZE.xs}
-            className={style.sidebarLinkTag}
+            className={`${style.sidebarLinkTag} ${isShortText ? 'absolute -top-1.5 right-2.5' : ''}`}
           />
         )}
         {!isShortText && node.children ? (
