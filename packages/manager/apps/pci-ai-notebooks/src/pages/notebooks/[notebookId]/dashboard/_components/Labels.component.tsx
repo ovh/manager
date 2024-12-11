@@ -27,7 +27,7 @@ const Labels = () => {
     [notebook],
   );
 
-  const { editLabel, isPending } = useEditLabel({
+  const { editLabel } = useEditLabel({
     onError: (err) => {
       toast.toast({
         title: t('notebookToastErrorTitle'),
