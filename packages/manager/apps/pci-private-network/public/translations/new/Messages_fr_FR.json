@@ -47,5 +47,14 @@
   "pci_projects_project_network_private_allocation_ip_end": "Adresse IP de fin",
   "pci_projects_project_network_private_host_route": "Host route",
   "pci_projects_project_network_private_target_cidr": "Target CIDR",
-  "pci_projects_project_network_private_nexthop_ip": "Nexthop IP"
+  "pci_projects_project_network_private_nexthop_ip": "Nexthop IP",
+  "pci_projects_project_network_private_dns_server": "DNS Server",
+  "pci_projects_project_network_private_dns_server_description": "L'IP du serveur DNS qui est comminiqué par le service de DHCP du sous réseau.",
+  "pci_projects_project_network_private_dns_server_public": "DNS public",
+  "pci_projects_project_network_private_dns_server_local": "DNS local au réseau public",
+  "pci_projects_project_network_private_dns_server_custom": "DNS personnalisé",
+  "pci_projects_project_network_private_dns_server_public_description": "Cette option configure le DHCP pour utiliser le DNS public d'OVH",
+  "pci_projects_project_network_private_dns_server_local_description": "Cette option permet d'utiliser la résolution de nom interne d'openstack avec 'host-%(octet0)s-%(octet1)s-%(octet2)s-%(octet3)s.openstacklocal', e.g. 'host-192-168-0-4.openstacklocal'",
+  "pci_projects_project_network_private_dns_server_custom_description": "Cette option vous permet de configurer vos propres DNS.",
+  "pci_projects_project_network_private_dns_server_custom_title": "Adresse du serveur DNS"
 }

@@ -41,6 +41,8 @@ export default function NewPage(): JSX.Element {
         enableGatewayIp: true,
         ipVersion: 4,
         allocationPools: [],
+        dnsNameServers: [],
+        useDefaultPublicDNSResolver: true,
       },
     },
     resolver: zodResolver(NEW_PRIVATE_NETWORK_FORM_SCHEMA),
