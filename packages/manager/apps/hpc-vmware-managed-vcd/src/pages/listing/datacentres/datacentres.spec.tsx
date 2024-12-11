@@ -1,12 +1,9 @@
-import { screen, waitFor } from '@testing-library/react';
 import {
-  checkTextVisibility,
-  DEFAULT_LISTING_ERROR,
-  labels,
-  renderTest,
-} from '../../../test-utils';
-import { datacentreList } from '../../../../mocks/vcd-organization/vcd-datacentre.mock';
-import { organizationList } from '../../../../mocks/vcd-organization/vcd-organization.mock';
+  organizationList,
+  datacentreList,
+} from '@ovh-ux/manager-module-vcd-api';
+import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
+import { DEFAULT_LISTING_ERROR, labels, renderTest } from '../../../test-utils';
 
 describe('Datacentres Listing Page', () => {
   it('displays the virtual datacentres listing page', async () => {
@@ -14,19 +11,9 @@ describe('Datacentres Listing Page', () => {
       initialRoute: `/${organizationList[0].id}/datacentres`,
     });
 
-    await waitFor(
-      () =>
-        expect(
-          screen.getByText(labels.datacentres.managed_vcd_vdc_title),
-        ).toBeVisible(),
-      { timeout: 30_000 },
-    );
+    await assertTextVisibility(labels.datacentres.managed_vcd_vdc_title);
 
-    await waitFor(() =>
-      expect(
-        screen.getByText(datacentreList[0].currentState.name),
-      ).toBeVisible(),
-    );
+    await assertTextVisibility(datacentreList[0].currentState.name);
   });
 
   it('display an error', async () => {
@@ -35,6 +22,6 @@ describe('Datacentres Listing Page', () => {
       isDatacentresKo: true,
     });
 
-    await checkTextVisibility(DEFAULT_LISTING_ERROR);
+    await assertTextVisibility(DEFAULT_LISTING_ERROR);
   });
 });

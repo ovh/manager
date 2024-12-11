@@ -7,7 +7,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { useParams } from 'react-router-dom';
-import useVcdOrder from '@/data/hooks/useVcdOrder';
+import { useVcdOrder } from '@ovh-ux/manager-module-vcd-api';
 import { WINDOWS_LICENSE_PLANCODE } from '@/utils/planCode.constants';
 
 export default function OrganizationOptionsTile({

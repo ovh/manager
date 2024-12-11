@@ -8,7 +8,7 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'jsdom',
-    setupFiles: './setupTests.ts',
+    setupFiles: '@ovh-ux/manager-core-test-utils/setup-file-msw-ods17.tsx',
     coverage: {
       include: ['src'],
       exclude: [
@@ -18,6 +18,9 @@ export default defineConfig({
         'src/App.tsx',
         'src/index.tsx',
         'src/tracking.constant.ts',
+        '404.tsx',
+        'src/**/*.spec.ts',
+        'src/**/*.spec.tsx',
       ],
     },
     testTimeout: 60000,
