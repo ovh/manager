@@ -62,15 +62,6 @@ export default class NewAccountFormFieldController {
       }
     });
 
-    // handle email validation
-    if (this.rule.fieldName === 'email') {
-      this.$scope.$on('account.email.response.validity', (ev, isValid) => {
-        if (this.value) {
-          this.fieldset[this.id].$setValidity('emailAvailable', isValid);
-        }
-      });
-    }
-
     // reset sms consent value when phone type is no longer 'mobile'
     if (this.rule.fieldName === 'smsConsent') {
       this.$scope.$on('account.smsConsent.reset', () => {
@@ -164,9 +155,6 @@ export default class NewAccountFormFieldController {
           }
           const regex = this.rule.regularExpression.replace(/\//g, '\\/');
           return new RegExp(regex).test(value);
-        }
-        if (this.rule.fieldName === this.FIELD_NAME_LIST.password) {
-          return /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(value);
         }
         if (this.rule.in) {
           if (this.rule.mandatory) {
