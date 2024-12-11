@@ -6,7 +6,6 @@ import {
   RenderResult,
   within,
 } from '@testing-library/react';
-import { wrapper } from '@ovh-ux/manager-pci-load-balancer-app/src/wrapperRenders';
 import {
   PciModal,
   PciModalProps,
@@ -17,6 +16,7 @@ import {
   AlertModalComponent,
   TAlertModalProps,
 } from '@/pages/billing/estimate/components/AlertModal.component';
+import { wrapper } from '@/wrapperRenders';
 
 vi.mock('@/hooks/useEnvironment', () => ({
   useEnvironment: vi.fn().mockImplementation(() => ({
