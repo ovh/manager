@@ -226,7 +226,6 @@ export default function HostedPrivateCloudSidebar() {
           },
           feature['vrack-services'] && {
             id: 'dedicated-vrackservices',
-            badge: 'beta',
             label: t('sidebar_vrack_services'),
             icon: getIcon('oui-icon oui-icon-vRack-services_concept'),
             pathMatcher: new RegExp('^/vrack-services'),
