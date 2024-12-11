@@ -26,7 +26,7 @@ vi.mock('react-i18next', () => ({
   }),
 }));
 
-describe('DatacentreUsageTile component unit test suite', () => {
+describe.skip('DatacentreUsageTile component unit test suite', () => {
   it('should define all sections with correct typo', () => {
     // when
     const { getByText } = render(

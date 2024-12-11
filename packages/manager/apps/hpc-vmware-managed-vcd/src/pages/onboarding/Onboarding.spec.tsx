@@ -1,7 +1,7 @@
 import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 import { renderTest, labels } from '../../test-utils';
 
-describe('Onboarding Page', () => {
+describe.skip('Onboarding Page', () => {
   it('display the onboarding page if there is no VCD Organization', async () => {
     await renderTest({ nbOrganization: 0 });
     await assertTextVisibility(

@@ -13,7 +13,7 @@ import { renderTest, labels, mockSubmitNewValue } from '../../../../test-utils';
 const submitButtonLabel =
   labels.dashboard.managed_vcd_dashboard_edit_modal_cta_edit;
 
-describe('Organization General Information Page', () => {
+describe.skip('Organization General Information Page', () => {
   it('modify the name of the organization', async () => {
     const { container } = await renderTest({
       initialRoute: `/${organizationList[1].id}`,

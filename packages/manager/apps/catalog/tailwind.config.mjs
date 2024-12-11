@@ -1,7 +1,7 @@
 import path from 'path';
 
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   content: [
     './src/**/*.{js,jsx,ts,tsx}',
     path.join(
