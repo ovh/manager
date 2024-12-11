@@ -1,0 +1,4 @@
+export enum PrivateNetworkTabName {
+  GLOBAL_REGIONS_TAB_NAME = 'GLOBAL_REGIONS',
+  LOCAL_ZONE_TAB_NAME = 'LOCAL_ZONE',
+}

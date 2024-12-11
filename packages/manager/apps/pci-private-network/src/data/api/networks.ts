@@ -53,3 +53,27 @@ export const getSubnets = async (
 
   return data;
 };
+
+export const getNetwork = async (
+  projectId: string,
+  region: string,
+  networkId: string,
+) => {
+  const { data } = await v6.get<TNetwork>(
+    `/cloud/project/${projectId}/region/${region}/network/${networkId}`,
+  );
+
+  return data;
+};
+
+export const deleteNetwork = async (
+  projectId: string,
+  region: string,
+  networkId: string,
+) => {
+  const { data } = await v6.delete(
+    `/cloud/project/${projectId}/region/${region}/network/${networkId}`,
+  );
+
+  return data;
+};
