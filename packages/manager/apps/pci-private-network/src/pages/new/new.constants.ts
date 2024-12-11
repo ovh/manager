@@ -72,11 +72,16 @@ export const NEW_PRIVATE_NETWORK_FORM_SCHEMA = z.object({
       .transform((allocationIps) =>
         allocationIps.filter(({ start, end }) => start && end),
       ),
+    dnsNameServers: z
+      .string()
+      .ip()
+      .array(),
     hostRoutes: hostRoutesSchema
       .array()
       .transform((hostRoutes) =>
         hostRoutes.filter(({ destination, nextHop }) => destination && nextHop),
       ),
+    useDefaultPublicDNSResolver: z.boolean(),
   }),
   gateway: z
     .object({

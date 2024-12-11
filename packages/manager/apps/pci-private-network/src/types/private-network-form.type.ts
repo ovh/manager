@@ -6,6 +6,8 @@ export type Subnet = {
   enableDhcp: boolean;
   enableGatewayIp: boolean;
   ipVersion: number;
+  dnsNameServers: [];
+  useDefaultPublicDNSResolver: boolean;
 };
 
 export type Gateway = {
