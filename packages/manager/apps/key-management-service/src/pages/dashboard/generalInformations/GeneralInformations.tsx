@@ -1,7 +1,9 @@
 import React from 'react';
-
 import { useNavigate, useParams } from 'react-router-dom';
-import { useServiceDetails } from '@ovh-ux/manager-react-components';
+import {
+  DashboardGridLayout,
+  useServiceDetails,
+} from '@ovh-ux/manager-react-components';
 import { useOKMSById } from '@/data/hooks/useOKMS';
 import { ROUTES_URLS } from '@/routes/routes.constants';
 import InformationsTile from '@/components/layout-helpers/Dashboard/GeneralInformationsTiles/InformationsTile';
@@ -31,13 +33,13 @@ function GeneralInformationsTab() {
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+    <DashboardGridLayout>
       <InformationsTile
         okmsData={okms.data}
         okmsServiceInfos={okmsService.data}
       />
       <BillingInformationsTile okmsService={okmsService.data} />
-    </div>
+    </DashboardGridLayout>
   );
 }
 

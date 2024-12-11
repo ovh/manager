@@ -1,8 +1,8 @@
-import { act, screen, waitFor } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
+import { WAIT_FOR_DEFAULT_OPTIONS } from '@ovh-ux/manager-core-test-utils';
 import { renderTestApp } from '@/utils/tests/renderTestApp';
-import '@testing-library/jest-dom';
 import { labels } from '@/utils/tests/init.i18n';
 import { ROUTES_URLS } from '@/routes/routes.constants';
 import { catalogMock } from '@/mocks/catalog/catalog.mock';
@@ -29,7 +29,7 @@ describe('KMS creation page test suite', () => {
           ),
         ).toBeVisible(),
 
-      { timeout: 30_000 },
+      WAIT_FOR_DEFAULT_OPTIONS,
     );
 
     expect(
@@ -51,8 +51,7 @@ describe('KMS creation page test suite', () => {
             labels.create.key_management_service_create_select_placeholder,
           ),
         ).toBeVisible(),
-
-      { timeout: 10_000 },
+      WAIT_FOR_DEFAULT_OPTIONS,
     );
 
     expect(
@@ -74,9 +73,7 @@ describe('KMS creation page test suite', () => {
             labels.create.key_management_service_create_cta_cancel,
           ),
         ).toBeEnabled(),
-      {
-        timeout: 10_000,
-      },
+      WAIT_FOR_DEFAULT_OPTIONS,
     );
 
     await userEvent.click(
@@ -88,7 +85,7 @@ describe('KMS creation page test suite', () => {
         expect(
           screen.getByText(labels.listing.key_management_service_listing_title),
         ).toBeVisible(),
-      { timeout: 10_000 },
+      WAIT_FOR_DEFAULT_OPTIONS,
     );
   });
 
@@ -99,9 +96,7 @@ describe('KMS creation page test suite', () => {
 
     await waitFor(
       () => expect(screen.getByAltText('OOPS')).toBeInTheDocument(),
-      {
-        timeout: 10_000,
-      },
+      WAIT_FOR_DEFAULT_OPTIONS,
     );
   });
 
@@ -115,12 +110,10 @@ describe('KMS creation page test suite', () => {
             labels.create.key_management_service_create_select_placeholder,
           ),
         ).toBeVisible(),
-      {
-        timeout: 10_000,
-      },
+      WAIT_FOR_DEFAULT_OPTIONS,
     );
 
-    await act(() => userEvent.click(screen.getByTestId('select-region')));
+    await waitFor(() => userEvent.click(screen.getByTestId('select-region')));
 
     await userEvent.click(
       screen.getByTestId(
@@ -135,7 +128,7 @@ describe('KMS creation page test suite', () => {
             labels.create.key_management_service_create_cta_order,
           ),
         ).toBeEnabled(),
-      { timeout: 10_000 },
+      WAIT_FOR_DEFAULT_OPTIONS,
     );
   });
 });
@@ -151,14 +144,12 @@ describe('order KMS test suite', () => {
             labels.create.key_management_service_create_select_placeholder,
           ),
         ).toBeVisible(),
-      {
-        timeout: 10_000,
-      },
+      WAIT_FOR_DEFAULT_OPTIONS,
     );
 
-    await act(() => userEvent.click(screen.getByTestId('select-region')));
+    await waitFor(() => userEvent.click(screen.getByTestId('select-region')));
 
-    await act(() =>
+    await waitFor(() =>
       userEvent.click(
         screen.getByTestId(
           `select-region-option-${catalogMock.plans[0].configurations[0].values[0]}`,
@@ -170,7 +161,7 @@ describe('order KMS test suite', () => {
       screen.getByText(labels.create.key_management_service_create_cta_order),
     ).toBeEnabled();
 
-    await act(() =>
+    await waitFor(() =>
       userEvent.click(
         screen.getByText(labels.create.key_management_service_create_cta_order),
       ),
@@ -232,7 +223,7 @@ describe('order KMS test suite', () => {
       ),
     ).toBeEnabled();
 
-    await act(() =>
+    await waitFor(() =>
       userEvent.click(
         screen.getByText(
           labels.create.key_management_service_create_order_initiated_cta_done,
@@ -245,7 +236,7 @@ describe('order KMS test suite', () => {
         expect(
           screen.getByText(labels.listing.key_management_service_listing_title),
         ).toBeVisible(),
-      { timeout: 10_000 },
+      WAIT_FOR_DEFAULT_OPTIONS,
     );
   });
 });

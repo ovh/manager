@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useState } from 'react';
+import React, { Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   NavLink,
@@ -19,11 +19,7 @@ import {
   Notifications,
 } from '@ovh-ux/manager-react-components';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
-import {
-  OsdsTabBar,
-  OsdsTabBarItem,
-  OsdsTabs,
-} from '@ovhcloud/ods-components/react';
+import { OdsTabs, OdsTab } from '@ovhcloud/ods-components/react';
 import {
   getOkmsCredentialQueryKey,
   useOkmsCredentialById,
@@ -50,7 +46,6 @@ const CredentialDashboard = () => {
   const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
   const { t } = useTranslation('key-management-service/credential');
-  const [activePanel, setActivePanel] = useState('');
   const location = useLocation();
   const { okmsId, credentialId } = useParams();
 
@@ -66,10 +61,6 @@ const CredentialDashboard = () => {
     okmsId,
     credentialId,
   });
-
-  useEffect(() => {
-    setActivePanel(location.pathname);
-  }, [location]);
 
   if (isLoadingCredential || isLoadingKms) return <Loading />;
 
@@ -134,8 +125,13 @@ const CredentialDashboard = () => {
           });
         }}
         tabs={
-          <OsdsTabs panel={activePanel}>
-            <OsdsTabBar slot="top">
+          <OdsTabs>
+            <OdsTab
+              isSelected={
+                location.pathname ===
+                `/${okmsId}/${ROUTES_URLS.credentials}/${credentialId}`
+              }
+            >
               <NavLink
                 to={`/${okmsId}/${ROUTES_URLS.credentials}/${credentialId}`}
                 className="flex no-underline"
@@ -148,15 +144,17 @@ const CredentialDashboard = () => {
                   });
                 }}
               >
-                <OsdsTabBarItem
-                  panel={`/${okmsId}/${ROUTES_URLS.credentials}/${credentialId}`}
-                  role="tab"
-                >
-                  {t(
-                    'key_management_service_credential_dashboard_tab_informations',
-                  )}
-                </OsdsTabBarItem>
+                {t(
+                  'key_management_service_credential_dashboard_tab_informations',
+                )}
               </NavLink>
+            </OdsTab>
+            <OdsTab
+              isSelected={
+                location.pathname ===
+                `/${okmsId}/${ROUTES_URLS.credentials}/${credentialId}/${ROUTES_URLS.credentialIdentities}`
+              }
+            >
               <NavLink
                 to={`/${okmsId}/${ROUTES_URLS.credentials}/${credentialId}/${ROUTES_URLS.credentialIdentities}`}
                 className="flex no-underline"
@@ -169,17 +167,12 @@ const CredentialDashboard = () => {
                   });
                 }}
               >
-                <OsdsTabBarItem
-                  panel={`/${okmsId}/${ROUTES_URLS.credentials}/${credentialId}/${ROUTES_URLS.credentialIdentities}`}
-                  role="tab"
-                >
-                  {t(
-                    'key_management_service_credential_dashboard_tab_identities',
-                  )}
-                </OsdsTabBarItem>
+                {t(
+                  'key_management_service_credential_dashboard_tab_identities',
+                )}
               </NavLink>
-            </OsdsTabBar>
-          </OsdsTabs>
+            </OdsTab>
+          </OdsTabs>
         }
       >
         <Outlet

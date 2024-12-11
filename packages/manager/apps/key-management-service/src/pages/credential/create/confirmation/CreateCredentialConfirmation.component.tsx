@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { OsdsButton } from '@ovhcloud/ods-components/react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { OdsButton } from '@ovhcloud/ods-components/react';
+import { ODS_BUTTON_COLOR } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import CreateCredentialConfirmationDetails from './CreateCredentialConfirmationDetails.component';
@@ -29,18 +29,14 @@ const CreateCredentialConfirmation = ({
         isKeyDownloaded={isKeyDownloaded}
         setIsKeyDownloaded={setIsKeyDownloaded}
       />
-      <span>
-        <OsdsButton
-          color={ODS_THEME_COLOR_INTENT.primary}
-          disabled={!isKeyDownloaded || undefined}
-          onClick={() => navigate(`/${okmsId}/${ROUTES_URLS.credentials}`)}
-          inline
-        >
-          {t(
-            'key_management_service_credential_create_confirmation_button_done_label',
-          )}
-        </OsdsButton>
-      </span>
+      <OdsButton
+        color={ODS_BUTTON_COLOR.primary}
+        isDisabled={!isKeyDownloaded}
+        onClick={() => navigate(`/${okmsId}/${ROUTES_URLS.credentials}`)}
+        label={t(
+          'key_management_service_credential_create_confirmation_button_done_label',
+        )}
+      />
     </div>
   );
 };
