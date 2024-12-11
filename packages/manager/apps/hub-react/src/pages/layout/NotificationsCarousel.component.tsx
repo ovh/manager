@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import {
   OsdsIcon,
+  OsdsLink,
   OsdsMessage,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
@@ -14,8 +15,12 @@ import {
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { Trans, useTranslation } from 'react-i18next';
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { useFetchHubNotifications } from '@/data/hooks/notifications/useNotifications';
 import { Notification, NotificationType } from '@/types/notifications.type';
+import useGuideUtils from '@/hooks/guides/useGuideUtils';
+import { NOTIFICATIONS_LINKS } from '@/pages/layout/layout.constants';
 
 const getMessageColor = (type: NotificationType) => {
   switch (type) {
@@ -63,9 +68,11 @@ const getTextColor = (type: NotificationType) => {
 };
 
 export default function NotificationsCarousel() {
+  const { t } = useTranslation('hub/notifications');
   const { trackClick } = useOvhTracking();
   const { data: notifications } = useFetchHubNotifications();
   const [currentIndex, setCurrentIndex] = useState(0);
+  const notificationsLinks = useGuideUtils(NOTIFICATIONS_LINKS);
 
   const showNextNotification = () => {
     setCurrentIndex(
@@ -76,6 +83,10 @@ export default function NotificationsCarousel() {
       actions: ['hub', 'dashboard', 'alert', 'action'],
     });
   };
+
+  const notificationLink =
+    notifications?.[currentIndex] &&
+    notificationsLinks[notifications[currentIndex].id];
 
   return (
     <>
@@ -93,11 +104,19 @@ export default function NotificationsCarousel() {
             level={ODS_TEXT_LEVEL.body}
             size={ODS_TEXT_SIZE._500}
           >
-            <span
-              dangerouslySetInnerHTML={{
-                __html: notifications[currentIndex].description,
+            <Trans
+              t={t}
+              i18nKey={`${notifications[currentIndex].id}_description`}
+              components={{
+                anchor: (
+                  <OsdsLink
+                    href={notificationLink}
+                    color={ODS_THEME_COLOR_INTENT.primary}
+                    target={OdsHTMLAnchorElementTarget._blank}
+                  ></OsdsLink>
+                ),
               }}
-            ></span>
+            ></Trans>
           </OsdsText>
           {notifications?.length > 1 && (
             <>
