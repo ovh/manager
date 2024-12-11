@@ -4,7 +4,6 @@ import {
   RESTRICTED_INSTANCES,
   PRODUCTS,
 } from './quota.constants';
-import { QUOTA_INCREASE_MODES } from './increase-request/increase.constants';
 
 export default class {
   /* @ngInject */
@@ -46,12 +45,13 @@ export default class {
     };
     this.PciProjectQuota.setServiceOptions(this.serviceOptions);
     this.increaseQuotaUrls = {
-      contactSupport: `${this.$state.href(this.$state.$current)}/increase/${
-        QUOTA_INCREASE_MODES.CONTACT_SUPPORT
-      }`,
-      buyCredits: `${this.$state.href(this.$state.$current)}/increase/${
-        QUOTA_INCREASE_MODES.BUY_CREDITS
-      }`,
+      // TODO : CHANGE href to the real page
+      contactSupport: `${this.$state.href(
+        this.$state.$current,
+      )}/increase/contact-support`,
+      buyCredits: `${this.$state.href(
+        this.$state.$current,
+      )}/increase/buy-credits`,
     };
   }
 
