@@ -3,5 +3,10 @@
   "error_service": "No services info",
   "microsoft_office_dashboard_consumption": "Consommation",
   "microsoft_office_dashboard_licences": "Licences",
+  "microsoft_office_modal_update_headline": "Changer le nom",
+  "microsoft_office_modal_update_description": "Voulez-vous vraiment mettre à jour le nom de votre licence ?",
+  "microsoft_office_modal_update_input_label": "Nouveau nom",
+  "microsoft_office_modal_update_confirm": "Confirmer",
+  "microsoft_office_modal_update_cancel": "Annuler",
   "back_link": "Retour à la liste"
 }

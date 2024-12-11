@@ -1,12 +1,12 @@
 import { v6 } from '@ovh-ux/manager-core-api';
-import { GetOfficeLicenseServiceParams } from './type';
 import { getApiPath, getApiPathWithoutServiceName } from '../utils/apiPath';
+import { LicenseType } from './type';
 
 // GET
 
-export const getlicenseOfficeServiceQueryKey = (
-  params: GetOfficeLicenseServiceParams,
-) => [`get/license/office/${params.serviceName}`];
+export const getlicenseOfficeServiceQueryKey = (serviceName: string) => [
+  `get/license/office/${serviceName}`,
+];
 
 export const getOfficeLicenseDetails = async (serviceName: string) => {
   const { data } = await v6.get(`${getApiPath(serviceName)}`);
@@ -35,5 +35,12 @@ export const getOfficePrepaidLicenses = async (serviceName: string) => {
 // POST
 
 // PUT
+export const updateOfficeLicenseDetails = async (
+  serviceName: string,
+  licenseData: Partial<LicenseType>,
+): Promise<LicenseType> => {
+  const { data } = await v6.put(`${getApiPath(serviceName)}`, licenseData);
+  return data;
+};
 
 // DELETE

@@ -12,9 +12,9 @@ export const useOfficeLicenseDetail = (
   const { serviceName: selectedServiceName } = useParams();
 
   return useQuery({
-    queryKey: getlicenseOfficeServiceQueryKey({
-      serviceName: serviceName || selectedServiceName,
-    }),
+    queryKey: getlicenseOfficeServiceQueryKey(
+      serviceName || selectedServiceName,
+    ),
     queryFn: () =>
       getOfficeLicenseDetails(serviceName || selectedServiceName || ''),
     enabled: Boolean(serviceName || selectedServiceName),
