@@ -337,4 +337,18 @@ export default class NutanixService {
       ),
     };
   }
+
+  updateClusterNodePowerStateOn(nodeId) {
+    return this.$http
+      .put(`/dedicated/server/${nodeId}`, {
+        bootId: 1,
+        monitoring: false,
+        noIntervention: false,
+      })
+      .then(() => this.rebootClusterNode(nodeId));
+  }
+
+  rebootClusterNode(nodeId) {
+    return this.$http.post(`/dedicated/server/${nodeId}/reboot`);
+  }
 }
