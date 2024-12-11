@@ -57,9 +57,5 @@ angular.module('App').service(
         },
       });
     }
-
-    retrievingVolumes(serviceName) {
-      return this.$http.get(`/hosting/web/${serviceName}/email/volumes`);
-    }
   },
 );

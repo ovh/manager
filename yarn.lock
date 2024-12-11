@@ -12383,10 +12383,10 @@ chartjs-adapter-date-fns@^3.0.0:
   resolved "https://registry.yarnpkg.com/chartjs-adapter-date-fns/-/chartjs-adapter-date-fns-3.0.0.tgz#c25f63c7f317c1f96f9a7c44bd45eeedb8a478e5"
   integrity sha512-Rs3iEB3Q5pJ973J93OBTpnP7qoGwvq3nUnoMdtxO+9aoJof7UFcRbWcIDteXuYd1fgAvct/32T9qaLyLuZVwCg==
 
-chartjs-plugin-datasource-prometheus@^2.1.3:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/chartjs-plugin-datasource-prometheus/-/chartjs-plugin-datasource-prometheus-2.2.0.tgz#fdfdf7803fa48d6d30e0176fa7102aac585af596"
-  integrity sha512-phE/Pmhsnx1XWjI9WzN8mfw2XN8yJSewl8AOdtdcTH3kFeZ3n+k2HW5mPNa7yyrGQTwK4EZdmTwwL94EPd+Yig==
+chartjs-plugin-datasource-prometheus@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/chartjs-plugin-datasource-prometheus/-/chartjs-plugin-datasource-prometheus-2.3.0.tgz#cf4f6332c499fd7ccf89a41373b5d040d44daa1e"
+  integrity sha512-vEmqSihjzm/3dqSaEvKsS/MqF6wJSdbB9GJ3LlH6Ht6U2p93mMFXxw/uYYwkbQMXhKoh5Ba/bbGP+eCvxIH1xQ==
   dependencies:
     chartjs-adapter-date-fns "^3.0.0"
     prometheus-query "^3.3.3"
