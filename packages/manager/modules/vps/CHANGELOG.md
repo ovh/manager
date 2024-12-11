@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.43.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.43.3...@ovh-ux/manager-vps@2.43.4) (2024-12-11)
+
+
+### Bug Fixes
+
+* **dedicated.vps:** fix the access to vps dashboard with iam rules ([#14124](https://github.com/ovh/manager/issues/14124)) ([286f0d3](https://github.com/ovh/manager/commit/286f0d3ba22cab4919b606a8ea70831421b8fea1))
+
+
+
+
+
 ## [2.43.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.43.2...@ovh-ux/manager-vps@2.43.3) (2024-12-09)
 
 
