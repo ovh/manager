@@ -6,6 +6,8 @@ import {
   ORDER_FOLLOW_UP_STEP_ENUM,
 } from '../../projects.constant';
 
+import PciVoucher from '../components/voucher/voucher.class';
+
 const getPaymentMethodTimeoutLimit = 30000;
 const ANTI_FRAUD = {
   CASE_FRAUD_REFUSED: '(error 906)',
@@ -211,8 +213,21 @@ export default class PciProjectNewPaymentCtrl {
     }, ANTI_FRAUD.POLLING_INTERVAL);
   }
 
+  initFreeTrialVoucher() {
+    if (this.freeTrialEligibility?.voucher) {
+      const { voucher, value } = this.freeTrialEligibility;
+      this.model.voucher = new PciVoucher({
+        value,
+        valid: true,
+        paymentMethodRequired: true,
+        credit: voucher.credit,
+      });
+    }
+    return null;
+  }
+
   manageProjectCreation() {
-    // reset message
+    // reset  message
     this.CucCloudMessage.flushMessages('pci.projects.new.payment');
 
     let infraConfigPromise = Promise.resolve(true);
@@ -552,6 +567,7 @@ export default class PciProjectNewPaymentCtrl {
         onMessage: () => this.refreshMessages(),
       },
     );
+    this.initFreeTrialVoucher();
 
     return null;
   }
