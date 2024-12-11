@@ -5,6 +5,7 @@ import {
   NUTANIX_SERVICE_TYPE,
 } from './constants';
 import Cluster from './cluster.class';
+import Node from './node.class';
 
 export default class NutanixService {
   /* @ngInject */
@@ -172,11 +173,9 @@ export default class NutanixService {
   getNodesWithState(serviceName) {
     return this.$http
       .get(`/nutanix/${serviceName}/nodes`, {
-        serviceType: 'aapi',
+        serviceType: 'apiv6',
       })
-      .then(({ data }) => {
-        data.map((node) => new Node(node));
-      });
+      .then(({ data }) => data.map((node) => new Node(node)));
   }
 
   getServer(nodeId) {

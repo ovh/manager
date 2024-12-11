@@ -28,7 +28,7 @@ export default class NutanixGeneralInfoCtrl {
     this.REPLICATION_FACTOR_PREFIX = REPLICATION_FACTOR_PREFIX;
     this.NUTANIX_PERSONAL_LICENSE_EDITION = NUTANIX_PERSONAL_LICENSE_EDITION;
     this.GENERAL_INFO_TILE_TITLE = GENERAL_INFO_TILE_TITLE;
-    this.nodes = [];
+    this.nodesDetails = [];
   }
 
   $onInit() {
@@ -66,8 +66,8 @@ export default class NutanixGeneralInfoCtrl {
   loadNodesStatus() {
     this.loadingNodesStatus = true;
     return this.NutanixService.getNodesWithState(this.serviceName)
-      .then((nodes) => {
-        this.nodes = nodes;
+      .then((nodesDetails) => {
+        this.nodesDetails = nodesDetails;
       })
       .finally(() => {
         this.loadingNodesStatus = false;
@@ -75,11 +75,11 @@ export default class NutanixGeneralInfoCtrl {
   }
 
   get numberNodesDeployed() {
-    return this.nodes.filter((node) => node.isDeployed).length;
+    return this.nodesDetails.filter((node) => node.isDeployed).length;
   }
 
   get numberNodesToDeploy() {
-    return this.nodes.filter((node) => !node.isDeployed).length;
+    return this.nodesDetails.filter((node) => !node.isDeployed).length;
   }
 
   setPrivateBandwidthServiceId() {
