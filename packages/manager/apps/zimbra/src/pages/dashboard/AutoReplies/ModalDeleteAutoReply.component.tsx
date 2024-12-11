@@ -10,10 +10,23 @@ import {
   ODS_MODAL_COLOR,
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
+import {
+  ButtonType,
+  PageLocation,
+  PageType,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { useGenerateUrl } from '@/hooks';
 import Modal from '@/components/Modals/Modal';
+import {
+  CANCEL,
+  CONFIRM,
+  DELETE_AUTO_REPLY,
+  EMAIL_ACCOUNT_DELETE_AUTO_REPLY,
+} from '@/tracking.constant';
 
 export default function ModalDeleteAutoReply() {
+  const { trackClick, trackPage } = useOvhTracking();
   const { t } = useTranslation('autoReplies/delete');
   const navigate = useNavigate();
 
@@ -22,6 +35,11 @@ export default function ModalDeleteAutoReply() {
   delete params.deleteAutoReplyId;
 
   const deleteAutoReplyId = searchParams.get('deleteAutoReplyId');
+  const editEmailAccountId = searchParams.get('editEmailAccountId');
+
+  const trackingName = editEmailAccountId
+    ? EMAIL_ACCOUNT_DELETE_AUTO_REPLY
+    : DELETE_AUTO_REPLY;
 
   const { addError, addSuccess } = useNotifications();
 
@@ -34,6 +52,10 @@ export default function ModalDeleteAutoReply() {
       return Promise.resolve(autoReplyId);
     },
     onSuccess: () => {
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: trackingName,
+      });
       addSuccess(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t('zimbra_auto_replies_delete_success_message')}
@@ -42,6 +64,10 @@ export default function ModalDeleteAutoReply() {
       );
     },
     onError: (error: ApiError) => {
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: trackingName,
+      });
       addError(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t('zimbra_auto_replies_delete_error_message', {
@@ -61,7 +87,23 @@ export default function ModalDeleteAutoReply() {
   });
 
   const handleDeleteClick = () => {
+    trackClick({
+      location: PageLocation.page,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [trackingName, CONFIRM],
+    });
     deleteAutoReply(deleteAutoReplyId);
+  };
+
+  const handleCancelClick = () => {
+    trackClick({
+      location: PageLocation.page,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [trackingName, CANCEL],
+    });
+    onClose();
   };
 
   return (
@@ -73,7 +115,7 @@ export default function ModalDeleteAutoReply() {
       isOpen
       secondaryButton={{
         label: t('zimbra_auto_replies_delete_cancel'),
-        action: onClose,
+        action: handleCancelClick,
         testid: 'cancel-btn',
         variant: ODS_BUTTON_VARIANT.outline,
       }}
