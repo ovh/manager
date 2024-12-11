@@ -8,14 +8,18 @@ import '@ovh-ux/ng-at-internet';
 import { isTopLevelApplication } from '@ovh-ux/manager-config';
 import { registerCoreModule } from '@ovh-ux/manager-core';
 import ngOvhSsoAuth from '@ovh-ux/ng-ovh-sso-auth';
+import ngOvhHttp from '@ovh-ux/ng-ovh-http';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import ovhManagerAtInternetConfiguration from '@ovh-ux/manager-at-internet-configuration';
 import { registerAtInternet } from '@ovh-ux/ng-shell-tracking';
 // TODO: Change to '@ovh-ux/manager-billing' when module is deployed
 // import Billing from '@ovh-ux/manager-billing';
 import Billing from '../../../modules/new-billing/src';
+import config, {
+  getConstants,
+} from '../../../modules/new-billing/src/config/config';
 import errorPage from './error';
-import dedicatedUniverseComponents from '../../../modules/account/src/dedicatedUniverseComponents';
+import dedicatedUniverseComponents from '../../../modules/new-billing/src/dedicatedUniverseComponents';
 import TRACKING from './tracking/at-internet.constants';
 import '@ovh-ux/ui-kit/dist/css/oui.css';
 import './app.less';
@@ -37,6 +41,8 @@ export default async (containerEl, shellClient) => {
     shellClient.environment.getEnvironment(),
     shellClient.i18n.getLocale(),
   ]);
+
+  const configConstants = getConstants(environment.getRegion());
 
   const coreCallbacks = {
     onLocaleChange: (lang) => {
@@ -126,6 +132,7 @@ export default async (containerEl, shellClient) => {
         ovhManagerAtInternetConfiguration,
         ngOvhSsoAuth,
         ngUiRouterBreadcrumb,
+        ngOvhHttp,
         'oui',
         uiRouter,
         dedicatedUniverseComponents,
@@ -145,6 +152,25 @@ export default async (containerEl, shellClient) => {
     })
     .config(trackingConfig)
     .config(calendarConfigProvider)
+    .constant('constants', {
+      prodMode: config.prodMode,
+      swsProxyRootPath: config.swsProxyRootPath,
+      aapiRootPath: config.aapiRootPath,
+      target: config.target,
+      renew: configConstants.RENEW_URL,
+      urls: configConstants.URLS,
+      UNIVERS: configConstants.UNIVERS,
+      TOP_GUIDES: configConstants.TOP_GUIDES,
+      vmsUrl: configConstants.vmsUrl,
+      statusUrl: configConstants.statusUrl,
+      aapiHeaderName: 'X-Ovh-Session',
+      vrackUrl: configConstants.vrackUrl,
+      REDIRECT_URLS: configConstants.REDIRECT_URLS,
+      DEFAULT_LANGUAGE: configConstants.DEFAULT_LANGUAGE,
+      FALLBACK_LANGUAGE: configConstants.FALLBACK_LANGUAGE,
+      SUPPORT: configConstants.SUPPORT,
+      SECTIONS_UNIVERSE_MAP: configConstants.SECTIONS_UNIVERSE_MAP,
+    })
     .run(broadcastAppStarted)
     .run(transitionsConfig)
     .run(defaultErrorHandler);

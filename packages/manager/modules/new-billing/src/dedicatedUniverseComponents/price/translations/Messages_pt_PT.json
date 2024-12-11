@@ -1,0 +1,7 @@
+{
+  "price_price_ht_label": "{{ price }} HT",
+  "price_price_ttc_label": "{{ price }} TTC",
+  "price_price_free": "Incluído",
+  "price_price_gst_excl_label": "{{ price }} + IVA",
+  "price_price_gst_incl_label": "{{ price }} c/ IVA incl."
+}
