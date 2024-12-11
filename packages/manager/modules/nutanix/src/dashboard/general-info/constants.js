@@ -33,6 +33,7 @@ export const GENERAL_INFO_TILE_TITLE = {
 };
 
 export const NUTANIX_PERSONAL_LICENSE_EDITION = 'Personal license';
+export const NUTANIX_BYOL = 'BYOL';
 
 export const FEATURES = {
   PACK_TYPE: 'nutanix:pack-type',
