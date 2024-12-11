@@ -203,6 +203,12 @@ export default /* @ngInject */ function EmailProDomains(
       .then(({ data }) => data);
   };
 
+  this.disableDkimForMXplan = function disableDkimForMXplan(domain) {
+    return $http
+      .put(`/email/domain/${domain}/dkim/disable`)
+      .then(({ data }) => data);
+  };
+
   this.getDomain = function getDomain(serviceName, domain) {
     return $http
       .get(`/email/pro/${serviceName}/domain/${domain}`)
@@ -214,6 +220,12 @@ export default /* @ngInject */ function EmailProDomains(
       .post(
         `/email/pro/${serviceName}/domain/${domain}/dkim/${selector}/enable`,
       )
+      .then(({ data }) => data);
+  };
+
+  this.enableDkimForMXplan = function enableDkimForMXplan(domain) {
+    return $http
+      .put(`/email/domain/${domain}/dkim/enable`)
       .then(({ data }) => data);
   };
 

@@ -709,7 +709,7 @@
   "emailpro_tab_domain_diagnostic_dkim_activation_no_ovhcloud": "Nie możemy automatycznie skonfigurować Twojej domeny, ponieważ nie jest ona hostowana w OVHCloud. Skonfiguruj DKIM, postępując zgodnie z instrukcjami zawartymi w tym <a href=\"{{url}}\" target=\"_blank\">przewodniku</a>.",
   "emailpro_tab_domain_diagnostic_dkim_configurate_no_ovhcloud": "Skonfiguruj",
   "emailpro_tab_domain_diagnostic_dkim_name": "Nazwa",
-  "emailpro_tab_domain_diagnostic_dkim_target": "Adres docelowy",
+  "emailpro_tab_domain_diagnostic_dkim_target": "Adres docelowy {{value}}",
   "emailpro_tab_domain_diagnostic_dkim_activation_ovhcloud": "Skonfigurujemy dla Ciebie DKIM. Pełna aktywacja może potrwać 24 godziny.",
   "emailpro_tab_domain_diagnostic_dkim_activation_success": "Trwa konfiguracja DKIM. Aktualizacja może potrwać do 24 godzin.",
   "emailpro_tab_domain_diagnostic_dkim_error": "Wystąpił błąd podczas konfiguracji DKIM.<br />{{message}}",
@@ -905,5 +905,11 @@
   "email_tab_modal_delete_redirection_accounts": "<strong>{0}</strong> na <strong>{1}</strong>",
   "emails_common_continue_question": "Czy chcesz kontynuować?",
   "emails_common_account_name_conditions": "Uwaga, nazwa konta musi spełniać następujące wymagania: <br/>- Minimum {0} znaki<br/>- Maksimum {1} znaki<br/>- Brak spacji<br/>- Brak znaków akcentowanych<br/>- Brak znaków specjalnych za wyjątkiem ., - i _.",
-  "emailpro-mxplan_tab_domain_no_domains": "Brak wyników"
+  "emailpro-mxplan_tab_domain_no_domains": "Brak wyników",
+  "emailpro_tab_domain_diagnostic_dkim_cname_field": "Pole CNAME",
+  "emailpro_tab_domain_diagnostic_dkim_id_generation_no_ovhcloud_doing": "Trwa generowanie danych dostępowych...",
+  "emailpro_tab_domain_diagnostic_dkim_id_generation_no_ovhcloud_done": "Dane do logowania zostały wygenerowane. Informacje na temat konfiguracji znajdziesz w następnym kroku.",
+  "emailpro_tab_domain_diagnostic_dkim_mxplan_no_ovhcloud": "Po dokonaniu modyfikacji odczekaj kilka minut i kliknij „Włącz”.",
+  "emailpro_tab_domain_diagnostic_dkim_subdomain": "Subdomena {{value}}",
+  "emailpro_tab_domain_diagnostic_dkim_cname": "CNAME {{value}}"
 }
