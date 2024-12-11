@@ -1,4 +1,5 @@
 import { OLD_CLUSTER_PLAN_CODE } from './constants';
+import { getConstants } from '../../../../apps/dedicated/client/app/config/config';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('nutanix.dashboard', {
@@ -34,7 +35,6 @@ export default /* @ngInject */ ($stateProvider) => {
     component: 'nutanixDashboard',
     resolve: {
       trackingPrefix: /* @ngInject */ () => 'hpc::nutanix::cluster',
-      user: /* @ngInject */ (coreConfig) => coreConfig.getUser(),
       cluster: /* @ngInject */ (NutanixService, serviceName) =>
         NutanixService.getCluster(serviceName),
       clusterAddOns: /* @ngInject */ (NutanixService, serviceInfo) =>
@@ -112,6 +112,11 @@ export default /* @ngInject */ ($stateProvider) => {
         }
 
         return resourceIam.displayName;
+      },
+      expressOrderLink: /* @ngInject */ (coreConfig) => {
+        const urls = getConstants(coreConfig.getRegion()).URLS;
+        return (urls[coreConfig.getUser().ovhSubsidiary] ?? urls.FR)
+          .express_order_resume;
       },
     },
   });
