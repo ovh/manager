@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { getMacroRegion } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { getMacroRegion } from '@ovh-ux/manager-react-components';
 import { useAvailabilities } from '@/api/hooks/useAvailabilities';
