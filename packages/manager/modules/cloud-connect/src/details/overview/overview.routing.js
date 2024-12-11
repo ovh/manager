@@ -25,6 +25,10 @@ export default /* @ngInject */ ($stateProvider) => {
           isDirectService: cloudConnect.isDirectService(),
           allowedPopType: cloudConnect.getAllowedPopType(),
         }),
+      goToDiagnosticPage: /* @ngInject */ ($state) => (cloudConnect) =>
+        $state.go('cloud-connect.details.diagnostic', {
+          cloudConnect,
+        }),
       goToRemovePopConfigurationPage: /* @ngInject */ (
         $state,
         cloudConnect,
@@ -61,7 +65,6 @@ export default /* @ngInject */ ($stateProvider) => {
       goToTestBGPPeeringPage: /* @ngInject */ ($state, cloudConnect) => (
         data,
       ) => {
-        console.log(data);
         $state.go('cloud-connect.details.overview.test-bgp-peering', {
           cloudConnectId: cloudConnect.id,
           ...data,
