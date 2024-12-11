@@ -1,11 +1,11 @@
 import { describe, vi } from 'vitest';
 import React from 'react';
 import { render } from '@testing-library/react';
-import { wrapper } from '@ovh-ux/manager-pci-load-balancer-app/src/wrapperRenders';
 import {
   EstimatePart,
   TEstimateProps,
 } from '@/pages/billing/estimate/Estimate.part';
+import { wrapper } from '@/wrapperRenders';
 
 vi.mock('@ovhcloud/ods-components/react', async () => {
   const {
