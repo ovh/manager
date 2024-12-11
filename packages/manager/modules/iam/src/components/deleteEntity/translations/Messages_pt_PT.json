@@ -17,5 +17,11 @@
   "iam_delete_entity_resourceType_name": "Eliminação do tipo de produto: ",
   "iam_delete_entity_resourceType_success": "O tipo de produto foi eliminado com sucesso",
   "iam_delete_entity_resourceType_warn": "Atenção, esta ação levará à eliminação dos recursos associados e das ações selecionadas",
-  "iam_delete_entity_secondary_label": "Anular"
+  "iam_delete_entity_secondary_label": "Anular",
+  "iam_delete_entity_application_error": "Não foi possível eliminar a aplicação devido a um erro: {{ message }}",
+  "iam_delete_entity_application_field": "Introduza a palavra \"{{ statement }}\" para confirmar a eliminação da sua aplicação",
+  "iam_delete_entity_application_heading": "Eliminar uma aplicação",
+  "iam_delete_entity_application_name": "Eliminação da aplicação: ",
+  "iam_delete_entity_application_success": "Aplicação eliminada",
+  "iam_delete_entity_application_warn": "Atenção: esta ação eliminará a aplicação e revogará todos os certificados associados a esta aplicação."
 }

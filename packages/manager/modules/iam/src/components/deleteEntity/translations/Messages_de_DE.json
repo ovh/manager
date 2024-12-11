@@ -17,5 +17,11 @@
   "iam_delete_entity_resourceType_name": "Löschen des Produkttyps: ",
   "iam_delete_entity_resourceType_success": "Der Produkttyp wurde gelöscht",
   "iam_delete_entity_resourceType_warn": "Achtung, mit dieser Aktion werden alle zugehörigen Ressourcen und ausgewählten Aktionen gelöscht",
-  "iam_delete_entity_secondary_label": "Abbrechen"
+  "iam_delete_entity_secondary_label": "Abbrechen",
+  "iam_delete_entity_application_error": "Die Anwendung konnte aufgrund eines Fehlers nicht gelöscht werden: {{ message }}",
+  "iam_delete_entity_application_field": "Bitte geben Sie das Wort „{{ statement }}“ ein, um das Löschen Ihrer Anwendung zu bestätigen.",
+  "iam_delete_entity_application_heading": "Anwendung löschen",
+  "iam_delete_entity_application_name": "Löschung der Anwendung: ",
+  "iam_delete_entity_application_success": "Anwendung gelöscht",
+  "iam_delete_entity_application_warn": "Warnung: Durch diese Aktion wird die Anwendung gelöscht und alle dieser Anwendung zugeordneten Zertifikate werden widerrufen."
 }
