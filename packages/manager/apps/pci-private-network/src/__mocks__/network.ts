@@ -41,18 +41,12 @@ const localZoneNetworks = [
 
 const networks = [
   {
-    id: 'net1',
-    name: 'net1',
-    region: 'region1',
+    ...localZoneNetworks[0],
     vlanId: 34,
-    visibility: NetworkVisibility.Private,
   },
   {
-    id: 'net2',
-    name: 'net2',
-    region: 'region2',
+    ...localZoneNetworks[1],
     vlanId: 34,
-    visibility: NetworkVisibility.Private,
   },
   {
     id: 'net3',

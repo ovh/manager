@@ -104,7 +104,7 @@ const DataGridHeaderActions: FC<Props> = ({
                 name={ODS_ICON_NAME.FILTER}
                 size={ODS_ICON_SIZE.xs}
                 color={ODS_THEME_COLOR_INTENT.primary}
-                className={'mr-7'}
+                className="mr-7"
               />
             </OsdsButton>
             <OsdsPopoverContent>
