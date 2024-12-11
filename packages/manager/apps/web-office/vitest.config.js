@@ -22,6 +22,7 @@ export default defineConfig({
         'src/routes/routes.tsx',
         'src/utils/index.ts',
         'src/**/*constants.ts',
+        'src/queryClient.ts',
         ...coverageConfigDefaults.exclude,
       ],
     },

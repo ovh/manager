@@ -9,11 +9,11 @@ import { LicenseType } from '@/api/license/type';
 
 interface ActionButtonUsersProps {
   usersItem: UserNativeType;
-  licenceDetail: LicenseType;
+  licenseDetail: LicenseType;
 }
 const ActionButtonUsers: React.FC<ActionButtonUsersProps> = ({
   usersItem,
-  licenceDetail,
+  licenseDetail,
 }) => {
   const { t } = useTranslation('dashboard/users');
 
@@ -39,9 +39,9 @@ const ActionButtonUsers: React.FC<ActionButtonUsersProps> = ({
             id: 1,
             onclick: handlePasswordChangeClick,
             label: t('dashboard_users_action_user_change_password'),
-            urn: licenceDetail.iam.urn,
+            urn: licenseDetail.iam.urn,
             iamActions: [
-              ...(!licenceDetail.tenantServiceName
+              ...(!licenseDetail.tenantServiceName
                 ? [IAM_ACTIONS.user.password]
                 : [IAM_ACTIONS.licencePrepaid.changePassword]),
             ],
@@ -52,9 +52,9 @@ const ActionButtonUsers: React.FC<ActionButtonUsersProps> = ({
       id: 2,
       onclick: handleEditUserClick,
       label: t('dashboard_users_action_user_edit'),
-      urn: licenceDetail.iam.urn,
+      urn: licenseDetail.iam.urn,
       iamActions: [
-        ...(!licenceDetail.tenantServiceName
+        ...(!licenseDetail.tenantServiceName
           ? [IAM_ACTIONS.user.edit]
           : [IAM_ACTIONS.licencePrepaid.edit]),
       ],
@@ -65,9 +65,9 @@ const ActionButtonUsers: React.FC<ActionButtonUsersProps> = ({
             id: 3,
             onclick: handleDeleteUserClick,
             label: t('dashboard_users_action_user_delete'),
-            urn: licenceDetail.iam.urn,
+            urn: licenseDetail.iam.urn,
             iamActions: [
-              ...(!licenceDetail.tenantServiceName
+              ...(!licenseDetail.tenantServiceName
                 ? [IAM_ACTIONS.user.delete]
                 : [IAM_ACTIONS.licencePrepaid.unconfigure]),
             ],

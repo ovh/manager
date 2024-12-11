@@ -2,6 +2,13 @@
   "title": "Dashboard page",
   "error_service": "No services info",
   "microsoft_office_dashboard_consumption": "Consommation",
-  "microsoft_office_dashboard_licences": "Licences",
+  "microsoft_office_dashboard_licenses_group": "Groupes de licences",
+  "microsoft_office_dashboard_licenses": "Licences",
+  "microsoft_office_dashboard_edit-name": "Éditer",
+  "microsoft_office_modal_update_headline": "Changer le nom",
+  "microsoft_office_modal_update_description": "Veuilliez saisir le nouveau nom que vous souhaitez donner à votre service.",
+  "microsoft_office_modal_update_input_label": "Nouveau nom",
+  "microsoft_office_modal_update_confirm": "Confirmer",
+  "microsoft_office_modal_update_cancel": "Annuler",
   "back_link": "Retour à la liste"
 }
