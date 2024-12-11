@@ -35,6 +35,7 @@ import { DiagnosticBadge } from '@/components/DiagnosticBadge';
 import { DomainType } from '@/api/domain/type';
 import { AccountStatistics, ResourceStatus } from '@/api/api.type';
 import { BadgeStatus } from '@/components/BadgeStatus';
+import { CnameBadge } from './CnameBadge.component';
 
 export type DomainsItem = {
   id: string;
@@ -43,6 +44,7 @@ export type DomainsItem = {
   organizationLabel: string;
   account: number;
   status: ResourceStatus;
+  cnameToCheck?: string;
 };
 
 const columns: DatagridColumn<DomainsItem>[] = [
@@ -99,7 +101,12 @@ const columns: DatagridColumn<DomainsItem>[] = [
   },
   {
     id: 'status',
-    cell: (item) => <BadgeStatus itemStatus={item.status}></BadgeStatus>,
+    cell: (item) =>
+      item.cnameToCheck && item.status === ResourceStatus.CREATING ? (
+        <CnameBadge item={item} />
+      ) : (
+        <BadgeStatus itemStatus={item.status}></BadgeStatus>
+      ),
     label: 'zimbra_domains_datagrid_status_label',
   },
   {
@@ -150,6 +157,7 @@ export default function Domains() {
           0,
         ),
         status: item.resourceStatus,
+        cnameToCheck: item.currentState?.expectedDNSConfig?.ownership?.cname,
       })) ?? []
     );
   }, [domains]);
