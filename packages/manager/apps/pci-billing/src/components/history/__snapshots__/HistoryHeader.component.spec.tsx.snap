@@ -1,0 +1,48 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`HistoryHeader > matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="mb-5 flex justify-between items-center"
+  >
+    <osds-button
+      class="flex"
+      color="primary"
+      size="sm"
+      type="button"
+      variant="ghost"
+    >
+      <osds-icon
+        class="mr-4"
+        color="primary"
+        name="chevron-left"
+        size="xxs"
+      />
+      cpbh_previous_month
+    </osds-button>
+    <osds-text
+      color="text"
+      level="heading"
+      size="500"
+      slot="summary"
+    >
+      cpbh_current_month
+    </osds-text>
+    <osds-button
+      class="flex"
+      color="primary"
+      size="sm"
+      type="button"
+      variant="ghost"
+    >
+      cpbh_next_month
+      <osds-icon
+        class="ml-4"
+        color="primary"
+        name="chevron-right"
+        size="xxs"
+      />
+    </osds-button>
+  </div>
+</DocumentFragment>
+`;

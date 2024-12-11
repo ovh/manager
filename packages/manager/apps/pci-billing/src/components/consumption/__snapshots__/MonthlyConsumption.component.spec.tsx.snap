@@ -1,0 +1,25 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`MonthlyConsumption Component > matches snapshot 1`] = `
+<DocumentFragment>
+  <osds-accordion>
+    <osds-text
+      class="my-2"
+      color="primary"
+      level="subheading"
+      size="500"
+      slot="summary"
+    >
+      cpbc_monthly_instance_detail_title (100.50 undefined)
+    </osds-text>
+    <div
+      class="flex justify-center"
+    >
+      <osds-spinner
+        inline="true"
+        size="md"
+      />
+    </div>
+  </osds-accordion>
+</DocumentFragment>
+`;
