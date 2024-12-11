@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.2.2...@ovh-ux/manager-web@19.3.0) (2024-12-11)
+
+
+### Features
+
+* **web.hosting:** move metrics to mimir ([#14320](https://github.com/ovh/manager/issues/14320)) ([609de8d](https://github.com/ovh/manager/commit/609de8d130b6056ff3b9042a0c701541c2784a05))
+
+
+
+
+
 ## [19.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.2.1...@ovh-ux/manager-web@19.2.2) (2024-12-09)
 
 

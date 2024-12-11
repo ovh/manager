@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps-app@3.0.8...@ovh-ux/manager-vps-app@3.1.0) (2024-12-11)
+
+
+### Features
+
+* **vps:** move metrics to mimir ([#14240](https://github.com/ovh/manager/issues/14240)) ([7b725a1](https://github.com/ovh/manager/commit/7b725a1e7e15f4e577d12bfc62ae1965befecb0f))
+
+
+
+
+
 ## [3.0.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps-app@3.0.7...@ovh-ux/manager-vps-app@3.0.8) (2024-12-11)
 
 **Note:** Version bump only for package @ovh-ux/manager-vps-app
