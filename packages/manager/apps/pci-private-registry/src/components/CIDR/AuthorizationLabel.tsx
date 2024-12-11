@@ -37,18 +37,18 @@ const AuthorizationLabel = () => {
         />
       </span>
 
-      <>
-        <OsdsPopoverContent>
+      <OsdsPopoverContent>
+        <Trans ns="ip-restrictions">
           <OsdsText
             color={ODS_THEME_COLOR_INTENT.text}
             level={ODS_TEXT_LEVEL.body}
           >
-            <Trans style={{ maxWidth: '200px' }} ns="ip-restrictions">
-              {t('private_registry_cidr_help_authorized_component')}
-            </Trans>
+            {t(
+              'private_registry_cidr_help_authorized_component_jklfdskfdslhfksdkhfkdlshfkdlshfkldshfkldhkldhslkfhdlskhfkldshfklhsdfklhdslkfdsklfhkldshfkl',
+            )}
           </OsdsText>
-        </OsdsPopoverContent>
-      </>
+        </Trans>
+      </OsdsPopoverContent>
     </OsdsPopover>
   );
 };
