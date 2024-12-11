@@ -28,5 +28,5 @@
   "banner_edit_name": "Der Name des Savings Plan wurde erfolgreich geändert.",
   "banner_create_sp": "Ihr Savings Plan wurde erstellt. Er ist ab dem {{startDate}} aktiv.",
   "informationMessage": "Sie können Ihre Dienstleistungen weiterhin wie gewohnt verwalten. Die Plattform berechnet automatisch Ihre Nutzung basierend auf den Konfigurationen Ihrer Savings Pläne und dem Verbrauch Ihrer bestehenden oder zukünftigen Ressourcen.",
-  "months_other": "{{count}} Monat"
+  "months_other": "{{count}} Monat"
 }

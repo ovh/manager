@@ -28,5 +28,5 @@
   "banner_edit_name": "El nombre del Savings Plan se ha modificado correctamente.",
   "banner_create_sp": "Su Savings Plan se ha creado correctamente. Este estará activo a partir del {{startDate}}",
   "informationMessage": "Siga administrando sus servicios como de costumbre. La plataforma calcula automáticamente su uso en función de las configuraciones de sus Savings Planes y del consumo de sus recursos existentes o futuros.",
-  "months_other": "{{count}} meses"
+  "months_other": "{{count}} mes"
 }

@@ -1,11 +1,13 @@
 import React, { Suspense, useEffect } from 'react';
 import { I18nextProvider } from 'react-i18next';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import '../src/lib.scss';
 import { Preview } from '@storybook/react';
-import '../src/tailwind/theme.css';
-import i18n from './i18n';
 import './storybook.css';
+import '../src/tailwind/theme.css';
+import '../src/lib.scss';
+import '@ovhcloud/ods-themes/default';
+import i18n from './i18n';
+import TechnicalInformation from './technical-information.mdx';
 
 const mockQueryClient = new QueryClient({
   defaultOptions: {
@@ -21,19 +23,19 @@ const preview: Preview = {
     docs: {
       toc: {
         contentsSelector: '.sbdocs-content',
-        headingSelector: 'h2, h3',
+        headingSelector: 'h1, h2, h3',
         disable: false,
       },
       source: {
         excludeDecorators: true,
+        state: 'open',
       },
+      page: TechnicalInformation,
     },
     actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
-      matchers: {
-        color: /(background|color)$/i,
-        date: /Date$/,
-      },
+      expanded: true,
+      hideNoControlsWarning: true,
     },
     options: {
       storySort: {
@@ -44,6 +46,9 @@ const preview: Preview = {
         ],
       },
       showPanel: true,
+    },
+    status: {
+      type: 'stable',
     },
   },
 };
