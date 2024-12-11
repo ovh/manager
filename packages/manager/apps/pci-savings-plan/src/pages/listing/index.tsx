@@ -20,6 +20,11 @@ import {
 
 import { Title } from '@ovh-ux/manager-react-components';
 
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import TableContainer from '@/components/Table/TableContainer';
 import {
   getMutationKeyCreateSavingsPlan,
@@ -88,6 +93,7 @@ const ListingTablePage: React.FC<ListingProps> = ({
   refetchSavingsPlans,
 }) => {
   const { t } = useTranslation('listing');
+  const { trackClick } = useOvhTracking();
 
   const hrefDashboard = useHref('');
   const serviceId = useServiceId();
@@ -133,6 +139,14 @@ const ListingTablePage: React.FC<ListingProps> = ({
           color={ODS_THEME_COLOR_INTENT.primary}
           inline
           href={`${hrefDashboard}/new`}
+          onClick={() => {
+            trackClick({
+              location: PageLocation.page,
+              buttonType: ButtonType.button,
+              actionType: 'navigation',
+              actions: ['add_savings_plan'],
+            });
+          }}
         >
           <span slot="start" className="flex justify-center items-center">
             <OsdsIcon
