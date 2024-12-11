@@ -1,8 +1,8 @@
-import path from 'path';
 import config from '@ovh-ux/manager-tailwind-config';
+import path from 'path';
 
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   ...config,
   content: [
     './src/**/*.{js,jsx,ts,tsx}',
@@ -11,4 +11,7 @@ module.exports = {
       '**/*.{js,jsx,ts,tsx}',
     ),
   ],
+  corePlugins: {
+    preflight: false,
+  },
 };
