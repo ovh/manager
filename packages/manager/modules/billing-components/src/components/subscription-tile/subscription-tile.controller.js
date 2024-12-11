@@ -225,4 +225,46 @@ export default class ServicesActionsCtrl {
       this.serviceInfos.serviceType,
     );
   }
+
+  trackCommitmentClick() {
+    // TODO add constant and switch for other service type
+    this.atInternet.trackClick({
+      name:
+        'DedicatedServers::dedicated-server::{{model}}::tile::link::renew-discount_{{model}}',
+      type: 'action',
+      page_category: 'dashboard',
+      page: {
+        name:
+          'DedicatedServers::dedicated-server::{{model}}::dashboard::general-information',
+      },
+    });
+  }
+
+  trackUpdateAutomaticRenewClick() {
+    // TODO add constant and switch for other service type
+    this.atInternet.trackClick({
+      name: this.serviceInfos.hasAutomaticRenew()
+        ? 'DedicatedServers::dedicated-server::{{model}}::tile::link::edit-frequency_{{model}}'
+        : 'DedicatedServers::dedicated-server::{{model}}::tile::link::renew_{{model}}',
+      type: 'action',
+      page_category: 'dashboard',
+      page: {
+        name:
+          'DedicatedServers::dedicated-server::{{model}}::dashboard::general-information',
+      },
+    });
+  }
+
+  trackResiliateAction() {
+    // TODO add constant and switch for other service type
+    this.atInternet.trackClick({
+      name: 'DedicatedServers::dedicated-server::model::tile::link::stop_model',
+      type: 'action',
+      page_category: 'dashboard',
+      page: {
+        name:
+          'DedicatedServers::dedicated-server::{{model}}::dashboard::general-information',
+      },
+    });
+  }
 }

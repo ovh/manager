@@ -86,6 +86,7 @@ export default class AutorenewCtrl {
       this.hideHeaderGuide =
         Object.keys(this.guides.url.my_services).length === 0;
     }
+    this.currentCriteria = JSON.parse(JSON.stringify(this.criteria));
   }
 
   descriptionOfHeading() {
@@ -198,6 +199,13 @@ export default class AutorenewCtrl {
   }
 
   onCriteriaChange($criteria) {
+    const newCriteria = $criteria.find(
+      (f) =>
+        !this.currentCriteria.some(
+          (s) => s.property === f.property && s.value === f.value,
+        ),
+    );
+
     const selectedType = find($criteria, { property: 'serviceType' });
     const searchText = find($criteria, { property: null });
     const filters = reduce(
@@ -214,6 +222,17 @@ export default class AutorenewCtrl {
       },
       {},
     );
+
+    if (newCriteria) {
+      this.atInternet.trackClick({
+        name: `Hub::billing::services::listing::button::filter_services::go-to-${newCriteria.property}-${newCriteria.value}::service`,
+        type: 'action',
+        page_category: 'listing',
+        page: {
+          name: 'Hub::billing::services::services::listing::autorenew',
+        },
+      });
+    }
 
     this.onListParamChanges({
       filters: JSON.stringify(filters),
