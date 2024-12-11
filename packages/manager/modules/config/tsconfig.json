@@ -13,6 +13,7 @@
     "allowJs": true,
     "declaration": true,
     "skipLibCheck": true,
+    "emitDeclarationOnly": true,
     "declarationDir": "dist/types"
   },
   "include": ["src/**/*"],
