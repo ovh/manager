@@ -1,11 +1,20 @@
 import * as z from 'zod';
 import { useParams } from 'react-router-dom';
+import { Headers, PciGuidesHeader } from '@ovh-ux/manager-react-components';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+import { OsdsText } from '@ovhcloud/ods-components/react';
+import { useProject } from '@ovh-ux/manager-pci-common';
 import { useForm, FormProvider } from 'react-hook-form';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { useTranslation } from 'react-i18next';
+import BreadcrumbCIDR from '@/components/CIDR/Breadcrumb';
 import { FilterRestrictionsEnum } from '@/types';
 import { isCidr, isIp } from '@/helpers';
 import BlocCIDR from '@/components/CIDR/CIDR.component';
 import { useIpRestrictions } from '@/api/hooks/useIpRestrictions';
+
+import { useRegistry } from '@/api/hooks/useRegistry';
 
 const schemaAddCidr = (dataCIDR: string[]) =>
   z.object({
@@ -55,10 +64,13 @@ export type ConfirmCIDRSchemaType = z.infer<ReturnType<typeof schemaAddCidr>>;
 
 export default function BlocIPBlock() {
   const { projectId, registryId } = useParams();
+  const { data: project } = useProject();
+  const { data: registry } = useRegistry(projectId, registryId, true);
   const { data: dataCIDR, isPending } = useIpRestrictions(
     projectId,
     registryId,
   );
+  const { t } = useTranslation();
   const methods = useForm<ConfirmCIDRSchemaType>({
     resolver: zodResolver(
       !isPending && schemaAddCidr(dataCIDR.map((e) => e.ipBlock)),
@@ -68,8 +80,30 @@ export default function BlocIPBlock() {
   });
 
   return (
-    <FormProvider {...methods}>
-      <BlocCIDR />
-    </FormProvider>
+    <>
+      {project && <BreadcrumbCIDR />}
+
+      <div className="header my-8">
+        <Headers
+          title={registry.name}
+          headerButton={
+            <div className="min-w-[7rem]">
+              <PciGuidesHeader category="kubernetes" />
+            </div>
+          }
+        />
+        <OsdsText
+          className="block mb-6"
+          size={ODS_TEXT_SIZE._400}
+          level={ODS_TEXT_LEVEL.body}
+          color={ODS_THEME_COLOR_INTENT.text}
+        >
+          {t('common:private_registry_manage_CIDR')}
+        </OsdsText>
+      </div>
+      <FormProvider {...methods}>
+        <BlocCIDR />
+      </FormProvider>
+    </>
   );
 }
