@@ -43,11 +43,7 @@ describe('useAddIntegration', () => {
       expect(databaseAPI.addIntegration).toHaveBeenCalledWith(
         addIntegrationProps,
       );
-      expect(onSuccess).toHaveBeenCalledWith(
-        mockedIntegrations,
-        addIntegrationProps,
-        undefined,
-      );
+      expect(onSuccess).toHaveBeenCalledWith(mockedIntegrations);
     });
   });
 });

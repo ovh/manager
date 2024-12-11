@@ -38,11 +38,7 @@ describe('useDeleteDatabase', () => {
       expect(databaseAPI.deleteDatabase).toHaveBeenCalledWith(
         deleteDatabaseProps,
       );
-      expect(onSuccess).toHaveBeenCalledWith(
-        undefined,
-        deleteDatabaseProps,
-        undefined,
-      );
+      expect(onSuccess).toHaveBeenCalledWith();
     });
   });
 });

@@ -41,11 +41,7 @@ describe('useAddNamespace', () => {
 
     await waitFor(() => {
       expect(databaseAPI.addNamespace).toHaveBeenCalledWith(addNamespaceProps);
-      expect(onSuccess).toHaveBeenCalledWith(
-        mockedNamespaces,
-        addNamespaceProps,
-        undefined,
-      );
+      expect(onSuccess).toHaveBeenCalledWith(mockedNamespaces);
     });
   });
 });

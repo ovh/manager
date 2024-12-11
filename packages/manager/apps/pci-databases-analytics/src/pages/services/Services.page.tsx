@@ -1,24 +1,22 @@
 import { useMemo } from 'react';
-import { useParams } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Plus } from 'lucide-react';
 import { useGetServices } from '@/hooks/api/database/service/useGetServices.hook';
 import ServicesList from './_components/ServiceListTable.component';
-import Onboarding from './_components/Onboarding.component';
 import LegalMentions from '../_components/LegalMentions.component';
 import { POLLING } from '@/configuration/polling.constants';
 import Link from '@/components/links/Link.component';
 import { Button } from '@/components/ui/button';
 import Guides from '@/components/guides/Guides.component';
 import { GuideSections } from '@/types/guide';
-import { useTrackPage, useTrackAction } from '@/hooks/useTracking';
+import { useTrackAction } from '@/hooks/useTracking';
 import { useUserActivityContext } from '@/contexts/UserActivityContext';
 import { TRACKING } from '@/configuration/tracking.constants';
 import * as database from '@/types/cloud/project/database';
 
 const Services = () => {
   const { t } = useTranslation('pci-databases-analytics/services');
-  useTrackPage(TRACKING.servicesList.page());
   const track = useTrackAction();
   const { projectId, category } = useParams();
   const { isUserActive } = useUserActivityContext();
@@ -35,9 +33,6 @@ const Services = () => {
   }, [servicesQuery.data, category]);
 
   if (servicesQuery.isLoading) return <ServicesList.Skeleton />;
-  if (servicesQuery.isSuccess && filteredServices.length === 0) {
-    return <Onboarding />;
-  }
   return (
     <>
       <div
@@ -69,11 +64,9 @@ const Services = () => {
           {t('createNewService')}
         </Link>
       </Button>
-      <ServicesList
-        services={filteredServices}
-        refetchFn={servicesQuery.refetch}
-      />
+      <ServicesList services={filteredServices} />
       <LegalMentions className="mt-4" />
+      <Outlet />
     </>
   );
 };

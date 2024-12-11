@@ -1,4 +1,4 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import {
   EditNamespace,
   editNamespace,
@@ -10,13 +10,28 @@ export interface UsEditNamespace {
   onError: (cause: CdbError) => void;
   onSuccess: (namespace: database.m3db.Namespace) => void;
 }
-export function useEditNamespace({ onError, onSuccess }: UsEditNamespace) {
+export function useEditNamespace({
+  onError,
+  onSuccess: customOnSuccess,
+}: UsEditNamespace) {
+  const queryClient = useQueryClient();
   const mutation = useMutation({
     mutationFn: (npInfo: EditNamespace) => {
       return editNamespace(npInfo);
     },
     onError,
-    onSuccess,
+    onSuccess: (data, variables) => {
+      queryClient.invalidateQueries({
+        queryKey: [
+          variables.projectId,
+          'database',
+          variables.engine,
+          variables.serviceId,
+          'namespace',
+        ],
+      });
+      customOnSuccess(data);
+    },
   });
 
   return {

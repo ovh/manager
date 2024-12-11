@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { add } from 'date-fns';
-import { useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { Pen } from 'lucide-react';
 import Link from '@/components/links/Link.component';
 import * as database from '@/types/cloud/project/database';
@@ -9,8 +9,6 @@ import { getColumns } from './_components/BackupsTableColumns.component';
 import { DataTable } from '@/components/ui/data-table';
 import { POLLING } from '@/configuration/polling.constants';
 import { Button } from '@/components/ui/button';
-import { useModale } from '@/hooks/useModale';
-import RestoreServiceModal from './_components/Restore.component';
 import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table';
 import Guides from '@/components/guides/Guides.component';
 import { useUserActivityContext } from '@/contexts/UserActivityContext';
@@ -24,25 +22,20 @@ const Backups = () => {
   const { t } = useTranslation(
     'pci-databases-analytics/services/service/backups',
   );
-  const restoreModal = useModale('restore');
   const navigate = useNavigate();
-  const { projectId, service, serviceQuery } = useServiceData();
+  const { projectId, service } = useServiceData();
   const { isUserActive } = useUserActivityContext();
   const backupsQuery = useGetBackups(projectId, service.engine, service.id, {
     refetchInterval: isUserActive && POLLING.BACKUPS,
   });
   const columns = getColumns({
     onRestoreClick: (backup) => {
-      restoreModal.open(backup.id);
+      navigate(`./restore/${backup.id}`);
     },
     onForkClick: (backup) => {
       navigate(`fork?backup=${backup.id}`);
     },
   });
-
-  const selectedBackup = backupsQuery.data?.find(
-    (b) => b.id === restoreModal.value,
-  );
 
   return (
     <>
@@ -109,7 +102,7 @@ const Backups = () => {
             variant="outline"
             size="sm"
             className="text-base"
-            onClick={() => restoreModal.open()}
+            onClick={() => navigate('./restore')}
           >
             {t('actionRestore')}
           </Button>
@@ -132,18 +125,7 @@ const Backups = () => {
           <DataTable.Skeleton columns={5} rows={5} width={100} height={16} />
         </div>
       )}
-
-      {backupsQuery.data && (
-        <RestoreServiceModal
-          controller={restoreModal.controller}
-          backup={selectedBackup}
-          backups={backupsQuery.data}
-          onSuccess={() => {
-            restoreModal.close();
-            serviceQuery.refetch();
-          }}
-        />
-      )}
+      <Outlet />
     </>
   );
 };
