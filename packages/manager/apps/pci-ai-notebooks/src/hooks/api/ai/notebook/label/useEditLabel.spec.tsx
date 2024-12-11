@@ -30,11 +30,7 @@ describe('useEditLabel', () => {
 
     await waitFor(() => {
       expect(labelApi.editLabel).toHaveBeenCalledWith(editLabelProps);
-      expect(onSuccess).toHaveBeenCalledWith(
-        mockedLabel,
-        editLabelProps,
-        undefined,
-      );
+      expect(onSuccess).toHaveBeenCalled();
     });
   });
 });

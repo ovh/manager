@@ -27,6 +27,7 @@
   "supportLink": "Contacter le support",
   "deleteNotebookButton": "Supprimer",
   "liveCodeEditorTitle": "Live code editor",
+  "openEditor": "Ouvrir {{editor}}",
   "grafanaTitle": "Suivi de la consommation",
   "grafanaButton": "Dashboard grafana",
   "addLabelTitle": "Ajouter un label",

@@ -467,14 +467,9 @@ const OrderFunnel = ({
                               <LabelsForm
                                 {...field}
                                 configuredLabels={field.value}
-                                displayLabels={true}
-                                onRemove={(newLabels: ai.Label[]) =>
+                                onChange={(newLabels: ai.Label[]) =>
                                   model.form.setValue('labels', newLabels)
                                 }
-                                onAdd={(newLabel: ai.Label) => {
-                                  const newLabels = [...field.value, newLabel];
-                                  model.form.setValue('labels', newLabels);
-                                }}
                               />
                             </FormControl>
                             <FormMessage />

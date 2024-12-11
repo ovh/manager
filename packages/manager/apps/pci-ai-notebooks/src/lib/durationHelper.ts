@@ -1,5 +1,6 @@
 import { Duration, Locale, formatDuration } from 'date-fns';
 import * as duration from 'duration-fns';
+import { useTranslation } from 'react-i18next';
 
 export function durationStringToHuman(durationString: string, locale: Locale) {
   return formatDuration(duration.parse(durationString), {
@@ -65,8 +66,15 @@ export function convertDurationStringToISODuration(durationTime: string) {
 }
 
 export function convertSecondsToTimeString(seconds: number, short: boolean) {
-  if (seconds === 0) return short ? '0s' : '0 secondes';
-  if (seconds < 60) return short? `${seconds}s` : `${seconds} secondes`;
+  const { t } = useTranslation('pci-ai-notebooks/components/configuration');
+
+  if (seconds === 0) return short ? '0s' : t('zeroSecondes');
+  if (seconds < 60)
+    return short
+      ? `${seconds}s`
+      : t('secondes', {
+          sec: seconds,
+        });
   const days = Math.floor(seconds / 86400);
   const leftoverSeconds = seconds % 86400;
   const hours = Math.floor(leftoverSeconds / 3600);
@@ -75,13 +83,31 @@ export function convertSecondsToTimeString(seconds: number, short: boolean) {
 
   const timeStringParts = [];
   if (days > 0) {
-    timeStringParts.push(short? `${days}d` :  `${days} jours`);
+    timeStringParts.push(
+      short
+        ? `${days}d`
+        : t('days', {
+            day: days,
+          }),
+    );
   }
   if (hours > 0) {
-    timeStringParts.push(short ? `${hours}h` : `${hours} heures`);
+    timeStringParts.push(
+      short
+        ? `${hours}h`
+        : t('hours', {
+            hour: hours,
+          }),
+    );
   }
   if (minutes > 0) {
-    timeStringParts.push(short ?  `${minutes}m` : `${minutes} minutes`);
+    timeStringParts.push(
+      short
+        ? `${minutes}m`
+        : t('minutes', {
+            min: minutes,
+          }),
+    );
   }
 
   return timeStringParts.join(' ');

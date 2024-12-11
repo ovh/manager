@@ -5,11 +5,12 @@ import { useNotebookData } from '../../Notebook.context';
 import { convertSecondsToTimeString } from '@/lib/durationHelper';
 import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table';
 import { TIMELINE_MAX } from '@/configuration/polling.constants';
+import { useDateFnsLocale } from '@/hooks/useDateFnsLocale.hook';
 
 const LifeCycle = () => {
   const { notebook } = useNotebookData();
   const { t } = useTranslation('pci-ai-notebooks/notebooks/notebook/dashboard');
-
+  const dateLocale = useDateFnsLocale();
   return (
     <>
       <h5>{t('durationTitle')}</h5>
@@ -29,7 +30,7 @@ const LifeCycle = () => {
                 </TableCell>
                 <TableCell className="font-semibold">{state.state}</TableCell>
                 <TableCell className="font-semibold">
-                  {format(state.date, 'yyyy-MM-dd HH:mm:ss')}
+                  {format(state.date, 'PPpp' , {locale : dateLocale})}
                 </TableCell>
               </TableRow>
             ))}

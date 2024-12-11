@@ -59,7 +59,6 @@ export default function NotebookLayout() {
       <>
         <NotebookHeader.Skeleton />
         <TabsMenu.Skeleton />
-        Loading your notebook data
       </>
     );
   }

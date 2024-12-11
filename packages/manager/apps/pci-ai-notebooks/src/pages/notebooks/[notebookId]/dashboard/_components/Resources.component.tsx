@@ -128,6 +128,7 @@ const Resources = () => {
           value={[notebook.status.workspace.storageUsed]}
           min={0}
           max={notebook.status.workspace.storageFree}
+          hideThumb={true}
         />
         <span className="text-sm">
           {t('sliderInfo', {

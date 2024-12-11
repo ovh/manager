@@ -19,5 +19,10 @@
   "addSshKeyTitle": "Configurer un nouvelle clé SSH",
   "formSshKeyButtonCancel": "Annuler",
   "formSshKeyButtonConfirm": "Confirmer",
-  "cliToastCopied": "Le code a été copié"
+  "cliToastCopied": "Le code a été copié",
+  "zeroSecondes": "0 secondes",
+  "secondes": "{{sec}} secondes",
+  "days": "{{day}} jours",
+  "hours": "{{hour}} heures",
+  "minutes": "{{min}} minutes"
 }

@@ -28,7 +28,9 @@ const AccessLink = () => {
       >
         <A href={notebook.status.url} target="_blank" rel="noopener noreferrer">
           <div className="flex flex-row gap-1 items-center text-white capitalize">
-            Ouvrir {notebook.spec.env.editorId}
+            {t('openEditor', {
+              editor: notebook.spec.env.editorId,
+            })}
             <ArrowUpRightFromSquare className="size-4" />
           </div>
         </A>

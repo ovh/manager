@@ -79,7 +79,9 @@ export const NotebookHeader = ({
               rel="noopener noreferrer"
             >
               <div className="flex flex-row gap-1 items-center text-white capitalize">
-                Ouvrir {notebook.spec.env.editorId}
+                {t('openEditor', {
+                  editor: notebook.spec.env.editorId,
+                })}
                 <ArrowUpRightFromSquare className="size-3" />
               </div>
             </A>

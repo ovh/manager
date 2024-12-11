@@ -1,6 +1,6 @@
 import React from 'react';
 import { SubmitHandler } from 'react-hook-form';
-import { PlusCircle, Trash2 } from 'lucide-react';
+import { PlusCircle, X } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -15,17 +15,18 @@ import {
 } from '@/components/ui/form';
 import { CONFIGURATION_CONFIG } from '../order/configuration/configuration.constants';
 import { useLabelForm } from '@/components/labels/useLabelForm.hook';
+import { Badge } from '../ui/badge';
 
 interface LabelsFormProps {
   configuredLabels: ai.Label[];
-  displayLabels: boolean;
-  onAdd: (newLabel: ai.Label) => void;
-  onRemove?: (newLabels: ai.Label[]) => void;
+  onAdd?: (newLabel: ai.Label) => void;
+  onDelete?: (newLabel: ai.Label) => void;
+  onChange?: (newLabels: ai.Label[]) => void;
   disabled?: boolean;
 }
 
 const LabelsForm = React.forwardRef<HTMLInputElement, LabelsFormProps>(
-  ({ configuredLabels, onAdd, onRemove, displayLabels, disabled }, ref) => {
+  ({ configuredLabels, onAdd, onDelete, onChange, disabled }, ref) => {
     const { t } = useTranslation('pci-ai-notebooks/components/configuration');
 
     const { form } = useLabelForm({
@@ -33,15 +34,29 @@ const LabelsForm = React.forwardRef<HTMLInputElement, LabelsFormProps>(
     });
 
     const onSubmit: SubmitHandler<ai.Label> = (data: ai.Label) => {
-      onAdd(data);
+      if (onAdd) {
+        onAdd(data);
+      }
+      if (onChange) {
+        const newLabels = [...configuredLabels, data];
+        onChange(newLabels);
+      }
       form.reset();
     };
 
-    const removeLabel = (indexToRemove: number) => {
-      const newLabels = configuredLabels.filter(
-        (_, index) => index !== indexToRemove,
-      );
-      onRemove(newLabels);
+    const removeLabel = (key: string) => {
+      if (onChange) {
+        const newLabels = configuredLabels.filter(
+          (label: ai.Label) => label.name !== key,
+        );
+        onChange(newLabels);
+      }
+      if (onDelete) {
+        const labelToRemove = configuredLabels.find(
+          (label: ai.Label) => label.name === key,
+        );
+        onDelete(labelToRemove);
+      }
     };
 
     return (
@@ -92,44 +107,34 @@ const LabelsForm = React.forwardRef<HTMLInputElement, LabelsFormProps>(
             <PlusCircle />
           </Button>
         </div>
-        {displayLabels && (
-          <>
-            <ul>
-              {configuredLabels.map((label, index) => (
-                <li key={label.name} className="flex items-center ml-5 text-sm">
-                  <div>
-                    <span>{label.name}</span>
-                    {label.value && (
-                      <>
-                        <span> - </span>
-                        <span className="truncate max-w-96" title={label.value}>
-                          {label.value}
-                        </span>
-                      </>
-                    )}
-                  </div>
-                  <Button
-                    data-testid={`label-remove-button-${index}`}
-                    className="text-red-500 rounded-full p-2 hover:text-red-500 h-8 w-8"
-                    variant={'ghost'}
-                    type="button"
-                    onClick={() => removeLabel(index)}
-                    disabled={disabled}
-                  >
-                    <Trash2 />
-                  </Button>
-                </li>
-              ))}
-            </ul>
-            <p data-testid="configured-labels">
-              {t('numberOfConfiguredLabels', {
-                count: configuredLabels.length,
-                max: CONFIGURATION_CONFIG.maxLabelNumber,
-                context: `${configuredLabels.length}`,
-              })}
-            </p>
-          </>
-        )}
+        <div className="flex flex-wrap gap-2 mt-4">
+          {configuredLabels.map((label) => (
+            <Badge className="py-1" key={label.name} variant={'info'}>
+              <div className="flex flex-row gap-1">
+                <span key={`span_${label.name}`}>
+                  {`${label.name} = ${label.value}`}
+                </span>
+                <Button
+                  key={`button_${label}`}
+                  size="table"
+                  type="button"
+                  variant="ghost"
+                  className="inline"
+                  onClick={() => removeLabel(label.name)}
+                >
+                  <X className="size-3 mx-auto" />
+                </Button>
+              </div>
+            </Badge>
+          ))}
+        </div>
+        <p className="mt-2 text-sm" data-testid="configured-labels">
+          {t('numberOfConfiguredLabels', {
+            count: configuredLabels.length,
+            max: CONFIGURATION_CONFIG.maxLabelNumber,
+            context: `${configuredLabels.length}`,
+          })}
+        </p>
       </Form>
     );
   },
