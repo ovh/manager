@@ -41,6 +41,9 @@ export default /* @ngInject */ function($rootScope) {
   this.warning = function(message, alertId) {
     self.set(alertTypesHash.WARNING, message, null, alertId);
   };
+  this.info = function(message, alertId) {
+    self.set(alertTypesHash.INFO, message, null, alertId);
+  };
 
   this.alertFromSWSBatchResult = function alertFromSWSBatchResult(
     messages,
