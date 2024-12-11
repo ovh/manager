@@ -1,4 +1,8 @@
-import { CLUSTER_STATUS, NUTANIX_AUTHORIZATION_TYPE } from '../../constants';
+import {
+  CLUSTER_STATUS,
+  NUTANIX_AUTHORIZATION_TYPE,
+  MAX_NODES_BY_CLUSTER,
+} from '../../constants';
 import {
   GENERAL_INFO_TILE_TITLE,
   NUTANIX_PERSONAL_LICENSE_EDITION,
@@ -31,6 +35,7 @@ export default class NutanixGeneralInfoCtrl {
     this.NUTANIX_BYOL = NUTANIX_BYOL;
     this.GENERAL_INFO_TILE_TITLE = GENERAL_INFO_TILE_TITLE;
     this.nodesDetails = [];
+    this.addNodeTooltipContent = null;
   }
 
   $onInit() {
@@ -68,6 +73,23 @@ export default class NutanixGeneralInfoCtrl {
       })
       .finally(() => {
         this.loadingServicesDetails = false;
+      });
+  }
+
+  loadNodesStatus() {
+    this.loadingNodesStatus = true;
+    return this.NutanixService.getNodesWithState(this.serviceName)
+      .then((nodesDetails) => {
+        this.nodesDetails = nodesDetails;
+        this.isMaxNodesReached = nodesDetails.length >= MAX_NODES_BY_CLUSTER;
+        this.addNodeTooltipContent = this.isMaxNodesReached
+          ? this.$translate.instant(
+              'nutanix_dashboard_cluster_add_node_max_node_tooltip',
+            )
+          : null;
+      })
+      .finally(() => {
+        this.loadingNodesStatus = false;
       });
   }
 

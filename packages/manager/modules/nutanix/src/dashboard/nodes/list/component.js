@@ -6,6 +6,7 @@ export default {
     serviceName: '<',
     cluster: '<',
     nodes: '<',
+    goToAddNode: '<',
   },
   controller,
   template,
