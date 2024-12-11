@@ -64,7 +64,9 @@ const getFormattedSubnets = (
       ipVersion,
     }) => {
       const allocatedIp = allocationPools
-        ?.map((i) => `${i.start} - ${i.end}`)
+        ?.map(
+          (allocationPool) => `${allocationPool.start} - ${allocationPool.end}`,
+        )
         .join(' ,');
 
       return {
