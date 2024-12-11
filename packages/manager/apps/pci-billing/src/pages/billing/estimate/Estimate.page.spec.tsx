@@ -1,13 +1,12 @@
 import { describe, Mock, vi, expect } from 'vitest';
 import { render } from '@testing-library/react';
-import { wrapper } from '@ovh-ux/manager-pci-load-balancer-app/src/wrapperRenders';
-import { act } from 'react-dom/test-utils';
 import {
   EstimatePart,
   TEstimateProps,
 } from '@/pages/billing/estimate/Estimate.part';
 import EstimatePage from './Estimate.page';
 import { AlertsPart, TAlertsPart } from '@/pages/billing/estimate/Alerts.part';
+import { wrapper } from '@/wrapperRenders';
 
 vi.mock('@/api/hooks/useAlerting', async () => ({
   useGetAlertIds: vi.fn().mockImplementation(() => ({

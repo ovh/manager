@@ -1,5 +1,5 @@
 import { TVolume } from '@ovh-ux/manager-pci-common';
-import * as _volumeHook from '@ovh-ux/manager-pci-common/src/api/hook/useVolume';
+import * as pciCommon from '@ovh-ux/manager-pci-common';
 import { UseQueryResult } from '@tanstack/react-query';
 import { render } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
@@ -104,7 +104,7 @@ describe('VolumeList', () => {
   ];
 
   it('matches snapshot with existing volumes', () => {
-    vi.spyOn(_volumeHook, 'useVolumes').mockReturnValue({
+    vi.spyOn(pciCommon, 'useVolumes').mockReturnValue({
       data: mockAllVolumes,
       isPending: false,
     } as UseQueryResult<TVolume[], Error>);
@@ -117,7 +117,7 @@ describe('VolumeList', () => {
   });
 
   it('matches snapshot with empty volumes', () => {
-    vi.spyOn(_volumeHook, 'useVolumes').mockReturnValue({
+    vi.spyOn(pciCommon, 'useVolumes').mockReturnValue({
       data: mockAllVolumes,
       isPending: false,
     } as UseQueryResult<TVolume[], Error>);
