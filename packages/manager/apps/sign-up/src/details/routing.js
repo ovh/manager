@@ -21,7 +21,7 @@ export const state = {
       subsidiary === INDIAN_SUBSIDIARY,
   },
   atInternet: {
-    rename: 'accountcreation-step2',
+    ignore: true,
   },
 };
 
