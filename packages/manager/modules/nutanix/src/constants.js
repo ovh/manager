@@ -1,3 +1,6 @@
+export const PRODUCT_ID = 'nutanix';
+export const DEFAULT_OS_NODE_NUTANIX = 'none_64.en';
+
 export const NOT_SUBSCRIBED = 'notSubscribed';
 export const SERVER_OPTIONS = {
   BANDWIDTH: 'BANDWIDTH',
@@ -20,6 +23,8 @@ export const NODE_STATUS = {
   UNDEPLOY_FAILURE: 'undeploy_failure',
   UNKNOWN: 'unknown',
 };
+
+export const MAX_NODES_BY_CLUSTER = 15;
 
 export const NUTANIX_SERVICE_TYPE = 'NUTANIX';
 
@@ -69,10 +74,14 @@ export const NUTANIX_AUTHORIZATION_TYPE = {
 };
 
 export default {
+  PRODUCT_ID,
+  DEFAULT_OS_NODE_NUTANIX,
+  NUTANIX_ORDER_URL,
   CLUSTER_STATUS,
   NODE_STATUS,
   NOT_SUBSCRIBED,
   SERVER_OPTIONS,
   NUTANIX_SERVICE_TYPE,
   FEATURES,
+  MAX_NODES_BY_CLUSTER,
 };
