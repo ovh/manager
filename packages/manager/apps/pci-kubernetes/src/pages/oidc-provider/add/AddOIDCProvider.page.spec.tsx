@@ -8,31 +8,26 @@ import {
 import AddOIDCProvider, { AddOIDCProviderPage } from './AddOIDCProvider.page';
 import { wrapper } from '@/wrapperRenders';
 import * as useKubernetesModule from '@/api/hooks/useKubernetes';
-import { TOidcProvider } from '@/api/data/kubernetes';
-import { OidcFormValues } from '@/types';
+import { TOidcProvider } from '@/types';
+import { OidcProviderModal } from '@/components/oidc/OidcProviderModal.component';
 
 type AddOIDCProviderPageReturnType = UseMutationResult<
   never,
   Error,
-  OidcFormValues,
+  TOidcProvider,
   unknown
-> & { upsertOidcProvider: (params: OidcFormValues) => void };
+> & { upsertOidcProvider: (params: TOidcProvider) => void };
 
 describe('AddOIDCProviderPage', () => {
   it('renders loading spinner when data is pending', () => {
-    vi.spyOn(useKubernetesModule, 'useUpsertOidcProvider').mockReturnValue(({
+    vi.spyOn(useKubernetesModule, 'useOidcProvider').mockReturnValue({
       isPending: true,
-      isUpdate: false,
-    } as unknown) as AddOIDCProviderPageReturnType);
+    } as UseQueryResult<TOidcProvider>);
     const { getByTestId } = render(<AddOIDCProviderPage />, { wrapper });
     expect(getByTestId('addOIDCProvider-spinner')).toBeVisible();
   });
 
   it('displays error message when issuer URL is invalid', async () => {
-    vi.spyOn(useKubernetesModule, 'useUpsertOidcProvider').mockReturnValue(({
-      upsertOidcProvider: vi.fn(),
-      isPending: false,
-    } as unknown) as AddOIDCProviderPageReturnType);
     vi.spyOn(useKubernetesModule, 'useOidcProvider').mockReturnValue({
       isPending: false,
     } as UseQueryResult<TOidcProvider>);
@@ -110,7 +105,7 @@ describe('AddOIDCProviderPage', () => {
       data: { clientId: '', issuerUrl: '' },
     } as UseQueryResult<TOidcProvider>);
 
-    const { getByTestId } = render(<AddOIDCProvider />, {
+    const { getByTestId } = render(<OidcProviderModal />, {
       wrapper,
     });
 
