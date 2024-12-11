@@ -22,6 +22,7 @@ export default {
     goToManageServiceKeysPage: '<',
     goToChangeBandwidthPage: '<',
     goToTestBGPPeeringPage: '<',
+    goToDiagnosticPage: '<',
     user: '<',
   },
   controller,
