@@ -12,6 +12,7 @@ export const FEATURE_FLAGS = {
   AUTOREPLIES: false,
   MAILINGLISTS: false,
   DOMAIN_DIAGNOSTICS: false,
+  DOMAIN_DIAGNOSTICS_SRV: false,
   DOMAIN_DNS_CONFIGURATION: false,
   DOMAIN_NOT_OVH: false,
   ORDER: false,

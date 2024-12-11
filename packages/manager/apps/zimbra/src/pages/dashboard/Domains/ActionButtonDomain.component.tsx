@@ -7,6 +7,7 @@ import { DomainsItem } from './Domains';
 import { useGenerateUrl, usePlatform } from '@/hooks';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import { ResourceStatus } from '@/api/api.type';
+import { FEATURE_FLAGS } from '@/utils';
 
 interface ActionButtonDomainProps {
   domainItem: DomainsItem;
@@ -34,6 +35,14 @@ const ActionButtonDomain: React.FC<ActionButtonDomainProps> = ({
     navigate(hrefEditDomain);
   };
 
+  const hrefDiagnosticsDomain = useGenerateUrl('./diagnostics/mx', 'path', {
+    domainId: domainItem.id,
+  });
+
+  const handleDiagnosticsDomainClick = () => {
+    navigate(hrefDiagnosticsDomain);
+  };
+
   const actionItems = [
     {
       id: 1,
@@ -44,13 +53,25 @@ const ActionButtonDomain: React.FC<ActionButtonDomainProps> = ({
     },
     {
       id: 2,
+      onclick: handleDiagnosticsDomainClick,
+      label: t('zimbra_domains_tooltip_diagnostics'),
+      urn: platformUrn,
+      iamActions: [
+        IAM_ACTIONS.domain
+          .edit /* IAM_ACTIONS.domain.diagnose, IAM_ACTIONS.zoneDNS.get */,
+      ],
+      hidden: !FEATURE_FLAGS.DOMAIN_DIAGNOSTICS,
+    },
+    {
+      id: 3,
       onclick: handleDeleteDomainClick,
       label: t('zimbra_domains_tooltip_delete'),
       urn: platformUrn,
       iamActions: [IAM_ACTIONS.domain.delete],
       color: ODS_BUTTON_COLOR.critical,
     },
-  ];
+  ].filter((item) => !item.hidden);
+
   return (
     <ActionMenu
       id={domainItem.id}
