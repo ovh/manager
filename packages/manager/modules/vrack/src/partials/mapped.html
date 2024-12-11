@@ -27,12 +27,12 @@
                 'ovh-font ovh-font-server': serviceType === 'dedicatedServer' || serviceType === 'dedicatedServerInterface',
                 'ovh-font ovh-font-network': serviceType === 'dedicatedConnect',
                 'ovh-font ovh-font-vRack': serviceType === 'legacyVrack',
-                'oui-icon oui-icon-line-communicating_concept': serviceType === 'ovhCloudConnect'}"
+                'oui-icon oui-icon-line-communicating_concept': serviceType === 'ovhCloudConnect',
+                'oui-icon oui-icon-vRack-services_concept': serviceType === 'vrackServices'}"
             >
             </i>
             <span data-ng-bind="::$ctrl.getDisplayName(serviceType)"></span>
         </span>
-
         <ul
             class="vrack__service-list"
             data-ng-if="!$ctrl.cucVrackService.isGroupedServiceType(serviceType) && serviceType !== 'ip'"

@@ -1,0 +1,51 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Components/Datagrid Cursor/Documentation" />
+
+# Datagrid
+
+## Overview
+
+The `Datagrid` is table component used for displaying and interacting with data
+
+It supports advanced features like:
+
+- **Sorting**: Enable column sorting with custom logic.
+- **Infinite Scrolling**: Load additional data on demand with a "Load More" button.
+- **Pagination**: Load additional data on demand with a "Load More" button.
+
+## Usage
+
+- Can be use with API V6 and API V2
+- `Pagination` mode is now deprecated
+- `Cursor` navigation is recommended <a target="_blank" href="https://apiv2.pages.ovhcloud.tools/deep-dive/seamless/pagination/">link</a>
+
+---
+
+### Tanstack Table <a target="_blank" href="https://tanstack.com/table/latest/docs/introduction">V8</a>
+
+The TanStack Table (formerly React Table) is a lightweight, powerful, and highly customizable library for building data grids and tables in React applications. It provides a modular architecture and advanced features to handle complex table requirements efficiently.
+
+Why Use TanStack Table?
+
+- **Flexibility**: Customize every aspect of the table, from rendering to state management.
+- **Performance**: Lightweight and optimized for large datasets.
+- **Feature-Rich**: Sorting, filtering, pagination, and virtualization out of the box.
+
+---
+
+#### API V6
+
+##### usage with Iceberg
+
+We provide a custom hook `useResourcesIcebergV6`
+
+##### usage without Iceberg
+
+We provide a custom hook `useResourcesV6`
+
+#### API V2
+
+##### usage **_ONLY_** with Iceberg
+
+We provide a custom hook `useResourcesIcebergV2`

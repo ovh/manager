@@ -292,7 +292,6 @@ export default function DedicatedSidebar() {
           },
           feature['vrack-services'] && {
             id: 'dedicated-vrackservices',
-            badge: 'beta',
             label: t('sidebar_vrack_services'),
             icon: getIcon('oui-icon oui-icon-vRack-services_concept'),
             href: navigation.getURL('vrack-services', '/'),

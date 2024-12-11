@@ -64,18 +64,24 @@ export default class OvhManagerNetAppNetworkConfigurationCtrl {
     this.disableVrackServicesField = false;
     this.selectedVrackService = null;
 
-    // Get vrack services associated to this vrack
+    // Get vrack services associated to this vrack which is of same region as efs
     this.filteredVrackServices = this.vrackServices.filter(
-      (vrs) => vrs.currentState.vrackId === this.selectedVrack.internalName,
+      (vrs) =>
+        vrs.currentState.vrackId === this.selectedVrack.internalName &&
+        vrs.currentState.region === this.storage.region,
     );
 
-    // Get vrack allowed services and concat to the vrack services list
+    // Get vrack allowed services and concat to the vrack services list which is of same region as efs
     this.NetAppDashboardService.getAllowedVrackServices(
       this.selectedVrack.internalName,
     ).then(({ vrackServices }) => {
       this.filteredVrackServices = this.filteredVrackServices.concat(
-        vrackServices.map((vrackServicesId) =>
-          this.vrackServices.find((vrs) => vrs.id === vrackServicesId),
+        this.vrackServices.filter((vrs) =>
+          vrackServices.find(
+            (vrackServicesId) =>
+              vrackServicesId === vrs.id &&
+              this.storage.region === vrs.currentState.region,
+          ),
         ),
       );
 

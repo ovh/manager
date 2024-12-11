@@ -16,7 +16,7 @@
                         data-ng-repeat="license in $ctrl.licenses track by $index"
                         name="license"
                         model="$ctrl.selectedLicense"
-                        label="{{:: ('netapp_order_performance_level_type_' + license.name) | translate }}"
+                        label="{{:: $ctrl.LICENSE_TYPE[license.name]}}"
                         values="[license]"
                     >
                         <oui-select-picker-description>
@@ -50,6 +50,18 @@
                     data-model="$ctrl.selectedRegion"
                     data-values="[region]"
                 >
+                    <oui-select-picker-section
+                        data-ng-if="region.network === 'vrack'"
+                    >
+                        <strong
+                            data-translate="netapp_order_region_compatiable_with_info"
+                        >
+                        </strong>
+                        <span
+                            class="oui-badge oui-badge_s oui-badge_best-seller my-1"
+                            data-ng-bind="region['network']"
+                        ></span>
+                    </oui-select-picker-section>
                 </oui-select-picker>
             </div>
         </oui-step-form>

@@ -18,6 +18,7 @@ import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 import './vrack.less';
 import './vrack-mapper.less';
 
+import { ApiV2ListHelper } from '@ovh-ux/manager-ng-apiv2-helper';
 import actionsPartials from '../partials/actions.html';
 import availablePartials from '../partials/available.html';
 import component from './vrack.component';
@@ -59,6 +60,7 @@ angular
     vrackMoveDialog,
     vrackAddModal,
     vrackDeleteModal,
+    ApiV2ListHelper.moduleName,
   ])
   .service('vrackService', service)
   .component('ovhManagerVrackComponent', component)
