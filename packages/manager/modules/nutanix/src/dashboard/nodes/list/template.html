@@ -1,4 +1,12 @@
 <oui-datagrid rows="$ctrl.nodes" data-page-size="25" class="mt-5">
+    <oui-datagrid-topbar>
+        <oui-button on-click="$ctrl.goToAddNode()"
+            ><span
+                data-translate="nutanix_dashboard_nodes_list_add_nodes"
+            ></span
+        ></oui-button>
+    </oui-datagrid-topbar>
+
     <oui-datagrid-column
         data-title="'nutanix_dashboard_nodes_list_display_name' | translate"
         data-property="displayName"

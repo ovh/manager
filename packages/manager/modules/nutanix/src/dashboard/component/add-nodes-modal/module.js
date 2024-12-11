@@ -2,26 +2,20 @@ import angular from 'angular';
 import '@ovh-ux/manager-core';
 import '@uirouter/angularjs';
 import 'angular-translate';
-import { region } from '@ovh-ux/manager-components';
+import '@ovh-ux/ui-kit';
 
-import routing from './routing';
 import component from './component';
-import datacenterName from '../../component/datacenter-name/module';
-import addNodes from './add-nodes';
 
-const moduleName = 'ovhManagerNutanixAllNodes';
+const moduleName = 'ovhManagerNutanixAddNutanixNodesModal';
 
 angular
   .module(moduleName, [
+    'oui',
     'ovhManagerCore',
     'pascalprecht.translate',
     'ui.router',
-    region,
-    datacenterName,
-    addNodes,
   ])
-  .config(routing)
-  .component('nutanixAllNodes', component)
+  .component('addNutanixNodesModal', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

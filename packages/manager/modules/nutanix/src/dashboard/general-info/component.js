@@ -8,6 +8,7 @@ export default {
     goToEditName: '<',
     goToUpgradePrivateBandwidth: '<',
     goToRedeploy: '<',
+    goToAddNode: '<',
     server: '<',
     serviceDetails: '<',
     serviceInfo: '<',

@@ -6,6 +6,7 @@ import {
 } from './constants';
 import Cluster from './cluster.class';
 import Node from './node.class';
+import TechnicalDetails from './technical-details.class';
 
 export default class NutanixService {
   /* @ngInject */
@@ -78,13 +79,15 @@ export default class NutanixService {
         serviceType: 'aapi',
       })
       .then(({ data }) =>
-        data?.baremetalServers?.storage ? data?.baremetalServers : null,
+        data?.baremetalServers?.storage
+          ? new TechnicalDetails(data.baremetalServers)
+          : null,
       )
       .catch(() => null);
   }
 
   getClusterHardwareInfo(serviceId, nodeServiceId) {
-    return this.getClusterOptions(serviceId)
+    return this.getServiceOptions(serviceId)
       .then((options) => {
         const optionsServiceId = [nodeServiceId, serviceId];
         options.forEach((option) => {
@@ -136,7 +139,7 @@ export default class NutanixService {
         });
       }
       if (hardwareInfo.nutanixCluster) {
-        // only one nutanix cluster, no need merge the reults
+        // only one nutanix cluster, no need merge the results
         nutanixCluster = hardwareInfo.nutanixCluster;
       }
     });
@@ -146,7 +149,7 @@ export default class NutanixService {
     };
   }
 
-  getClusterOptions(serviceId) {
+  getServiceOptions(serviceId) {
     return this.$http
       .get(`/services/${serviceId}/options`)
       .then(({ data }) => data);
