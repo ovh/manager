@@ -4,7 +4,7 @@
   "pci_projects_project_network_private_create": "Utwórz prywatną sieć",
   "pci_projects_project_network_private_name": "Nazwa",
   "pci_projects_project_network_private_vlan_id": "ID sieci VLAN",
-  "pci_projects_project_network_private_region": "Region",
+  "pci_projects_project_network_private_region": "Lokalizacja",
   "pci_projects_project_network_private_gateway": "Brama",
   "pci_projects_project_network_private_dhcp_active": "Aktywny",
   "pci_projects_project_network_private_dhcp_disabled": "wyłączony",
@@ -19,5 +19,9 @@
   "pci_projects_project_network_private_delete_cancel": "Anuluj",
   "pci_projects_project_network_private_delete_confirmation": "Czy na pewno chcesz usunąć prywatną sieć  {{name}}?",
   "pci_projects_project_network_private_delete_success": "Trwa usuwanie prywatnej sieci {{name}}.",
-  "pci_projects_project_network_private_delete_error": "Wystąpił błąd podczas usuwania prywatnej sieci: {{message}}."
+  "pci_projects_project_network_private_delete_error": "Wystąpił błąd podczas usuwania prywatnej sieci: {{message}}.",
+  "pci_projects_project_network_private_back_to_list": "Wyświetl wszystkie prywatne sieci",
+  "pci_projects_project_network_private_subnet_create": "Utwórz podsieć",
+  "pci_projects_project_network_private_ip_version": "Wersja IP",
+  "pci_projects_project_network_private_action": "Operacje"
 }
