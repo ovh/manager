@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.5.3...@ovh-ux/manager-dedicated@20.6.0) (2024-12-11)
+
+
+### Bug Fixes
+
+* **dedicated.pcc:** fix order label when SAP HANA is unavailable ([#14288](https://github.com/ovh/manager/issues/14288)) ([81c8311](https://github.com/ovh/manager/commit/81c8311650643f45dc7d18be0bbf5448163745b1))
+* **dedicated:** update landing page guide links ([#13563](https://github.com/ovh/manager/issues/13563)) ([5d9ae91](https://github.com/ovh/manager/commit/5d9ae911b5c93121018765f50e119e55dcdb5154))
+
+
+### Features
+
+* **dedicated:** fix translation issue in fr and ca ([#14091](https://github.com/ovh/manager/issues/14091)) ([417a57f](https://github.com/ovh/manager/commit/417a57fb080ff8f585091b41b7b83ae37c64608a))
+* **dedicated:** show tempory ip when slice or merge ([#13387](https://github.com/ovh/manager/issues/13387)) ([4424f5a](https://github.com/ovh/manager/commit/4424f5a82acd1931dfd284c379cad0278b8baba7))
+
+
+
+
+
 ## [20.5.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.5.2...@ovh-ux/manager-dedicated@20.5.3) (2024-12-09)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated
