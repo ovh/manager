@@ -1,8 +1,10 @@
 import { AccountStatistics, ResourceStatus } from '../api.type';
 
 export type DomainBodyParamsType = {
-  organizationId?: string;
-  name?: string;
+  organizationId: string;
+  name: string;
+  autoConfigureMX: boolean;
+  autoConfigureSPF: boolean;
 };
 
 export type DomainType = {
