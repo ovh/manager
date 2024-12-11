@@ -2,11 +2,13 @@ import {
   DashboardTile,
   DateFormat,
   Description,
+  Links,
+  LinkType,
   useFormattedDate,
   useServiceDetails,
 } from '@ovh-ux/manager-react-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
+import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import {
   OsdsIcon,
   OsdsLink,
@@ -41,6 +43,15 @@ const BillingInformationsTile = ({ serviceName }: { serviceName: string }) => {
     'dedicated',
     '#/billing/autorenew',
     { searchText: serviceName },
+  ]);
+
+  const {
+    data: contactUrl,
+    isLoading: isLoadingContactUrl,
+  } = useNavigationGetUrl([
+    'dedicated',
+    '#/contacts/services',
+    { serviceName },
   ]);
 
   const openTerminateModal = () =>
@@ -100,17 +111,33 @@ const BillingInformationsTile = ({ serviceName }: { serviceName: string }) => {
           value: (
             <div className="flex flex-col gap-4">
               <div>
-                {isLoading
-                  ? Array.from({ length: 3 }).map((_, index) => (
-                      <OsdsSkeleton key={index} />
-                    ))
-                  : serviceDetails?.data.customer.contacts.map((contact) => (
+                {isLoading ? (
+                  <>
+                    <OsdsSkeleton />
+                    <OsdsSkeleton />
+                    <OsdsSkeleton />
+                  </>
+                ) : (
+                  <>
+                    {serviceDetails?.data.customer.contacts.map((contact) => (
                       <Description key={contact.type}>{`${
                         contact.customerCode
                       } ${t(
                         `hycu_dashboard_contact_type_${contact.type}`,
                       )}`}</Description>
                     ))}
+                  </>
+                )}
+                {isLoadingContactUrl ? (
+                  <OsdsSkeleton />
+                ) : (
+                  <Links
+                    href={(contactUrl as string) ?? '#'}
+                    type={LinkType.next}
+                    label={t('hycu_dashboard_field_label_manage_contacts')}
+                    className="mt-4"
+                  />
+                )}
               </div>
             </div>
           ),
