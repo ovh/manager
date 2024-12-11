@@ -34,10 +34,10 @@ interface IPaymentMethod {
 }
 
 const computeAlert = (paymentMethods: IPaymentMethod[]): string => {
-  const currentCreditCard: IPaymentMethod = paymentMethods?.find(currentPaymentMethod => currentPaymentMethod.paymentType === 'CREDIT_CARD' 
+  const currentCreditCard: IPaymentMethod = paymentMethods?.find(currentPaymentMethod => currentPaymentMethod.paymentType === 'CREDIT_CARD'
   && currentPaymentMethod.default);
 
-  if (currentCreditCard) {
+  if (currentCreditCard?.expirationDate) {
     const creditCardExpirationDate = new Date(currentCreditCard.expirationDate);
     if (creditCardExpirationDate.getTime() < Date.now()) {
       return PAYMENT_ALERTS.EXPIRED_CARD;
