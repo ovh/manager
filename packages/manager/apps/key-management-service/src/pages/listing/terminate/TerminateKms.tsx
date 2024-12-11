@@ -40,6 +40,7 @@ export default function TerminateKms() {
 
   return (
     <DeleteModal
+      isOpen
       headline={t('key_management_service_terminate_heading')}
       closeModal={() => {
         trackClick({

@@ -2,16 +2,15 @@ import React, { useState } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
-  ODS_MESSAGE_TYPE,
+  ODS_MESSAGE_COLOR,
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
+  ODS_BUTTON_COLOR,
 } from '@ovhcloud/ods-components';
-import { OsdsButton, OsdsMessage } from '@ovhcloud/ods-components/react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { OdsButton, OdsMessage } from '@ovhcloud/ods-components/react';
 import {
   BaseLayout,
   Datagrid,
-  HeadersProps,
   Notifications,
   RedirectionGuard,
   useNotifications,
@@ -24,7 +23,6 @@ import {
 import { useOKMSList } from '@/data/hooks/useOKMS';
 import { ROUTES_URLS } from '@/routes/routes.constants';
 import {
-  DatagridActionMenu,
   DatagridCellId,
   DatagridCellName,
   DatagridCellRegion,
@@ -33,6 +31,7 @@ import {
 import KmsGuidesHeader from '@/components/Guide/KmsGuidesHeader';
 import { useAutoRefetch } from '@/data/hooks/useAutoRefetch';
 import { getOkmsServicesResourceListQueryKey } from '@/data/api/okms';
+import KmsActionMenu from '@/components/menu/KmsActionMenu.component';
 
 export default function Listing() {
   const { t } = useTranslation('key-management-service/listing');
@@ -68,7 +67,7 @@ export default function Listing() {
     },
     {
       id: 'action',
-      cell: DatagridActionMenu,
+      cell: KmsActionMenu,
       isSortable: false,
       label: '',
     },
@@ -92,11 +91,6 @@ export default function Listing() {
     onFinish: () => setIsRefetchEnabled(false),
   });
 
-  const headerProps: HeadersProps = {
-    title: t('key_management_service_listing_title'),
-    headerButton: <KmsGuidesHeader />,
-  };
-
   return (
     <RedirectionGuard
       isLoading={isLoading || !flattenData}
@@ -108,18 +102,24 @@ export default function Listing() {
       route={ROUTES_URLS.onboarding}
       isError={isError}
       errorComponent={
-        <OsdsMessage className="mt-4" type={ODS_MESSAGE_TYPE.error}>
+        <OdsMessage className="mt-4" color={ODS_MESSAGE_COLOR.critical}>
           {tError('manager_error_page_default')}
-        </OsdsMessage>
+        </OdsMessage>
       }
     >
-      <BaseLayout header={headerProps} message={<Notifications />}>
-        <div className={'flex mb-3 mt-6'}>
-          <OsdsButton
+      <BaseLayout
+        header={{
+          title: t('key_management_service_listing_title'),
+          headerButton: <KmsGuidesHeader />,
+        }}
+        message={<Notifications />}
+      >
+        <div className="flex mb-3 mt-6">
+          <OdsButton
             className="mr-1"
             size={ODS_BUTTON_SIZE.sm}
-            variant={ODS_BUTTON_VARIANT.stroked}
-            color={ODS_THEME_COLOR_INTENT.primary}
+            variant={ODS_BUTTON_VARIANT.outline}
+            color={ODS_BUTTON_COLOR.primary}
             onClick={() => {
               clearNotifications();
               trackClick({
@@ -130,12 +130,11 @@ export default function Listing() {
               });
               navigate(ROUTES_URLS.createKeyManagementService);
             }}
-          >
-            {t('key_management_service_listing_add_kms_button')}
-          </OsdsButton>
+            label={t('key_management_service_listing_add_kms_button')}
+          />
         </div>
         {flattenData && (
-          <div className={'mt-8'}>
+          <div className="mt-8">
             <Datagrid
               columns={columns}
               items={flattenData}

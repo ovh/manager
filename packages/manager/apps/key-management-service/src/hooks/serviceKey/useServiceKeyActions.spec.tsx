@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { renderHook } from '@testing-library/react';
+import { ODS_BUTTON_COLOR } from '@ovhcloud/ods-components';
 import {
   OkmsAllServiceKeys,
   OkmsKeyTypes,
@@ -83,8 +83,8 @@ describe('useServiceKeyActionsList', () => {
         {
           id: 1,
           label: 'key_management_service_service-keys_link_download_key',
-          color: ODS_THEME_COLOR_INTENT.primary,
-          disabled: false,
+          color: ODS_BUTTON_COLOR.primary,
+          isDisabled: false,
           href: `data:text/json;charset=utf-8,${encodeURIComponent(
             JSON.stringify([]),
           )}`,
@@ -93,12 +93,12 @@ describe('useServiceKeyActionsList', () => {
         {
           id: 2,
           label: 'key_management_service_service-keys_link_deactivate_key',
-          color: ODS_THEME_COLOR_INTENT.primary,
+          color: ODS_BUTTON_COLOR.primary,
         },
         {
           id: 4,
           label: 'key_management_service_service-keys_link_delete_key',
-          color: ODS_THEME_COLOR_INTENT.error,
+          color: ODS_BUTTON_COLOR.critical,
           disabled: true,
         },
       ],
@@ -114,7 +114,7 @@ describe('useServiceKeyActionsList', () => {
         {
           id: 1,
           label: 'key_management_service_service-keys_link_download_key',
-          color: ODS_THEME_COLOR_INTENT.primary,
+          color: ODS_BUTTON_COLOR.primary,
           disabled: true,
           href: `data:text/json;charset=utf-8,${encodeURIComponent(
             JSON.stringify([]),
@@ -124,13 +124,13 @@ describe('useServiceKeyActionsList', () => {
         {
           id: 3,
           label: 'key_management_service_service-keys_link_reactivate_key',
-          color: ODS_THEME_COLOR_INTENT.primary,
+          color: ODS_BUTTON_COLOR.primary,
           disabled: false,
         },
         {
           id: 4,
           label: 'key_management_service_service-keys_link_delete_key',
-          color: ODS_THEME_COLOR_INTENT.error,
+          color: ODS_BUTTON_COLOR.critical,
           disabled: false,
         },
       ],
@@ -146,7 +146,7 @@ describe('useServiceKeyActionsList', () => {
         {
           id: 1,
           label: 'key_management_service_service-keys_link_download_key',
-          color: ODS_THEME_COLOR_INTENT.primary,
+          color: ODS_BUTTON_COLOR.primary,
           disabled: true,
           href: `data:text/json;charset=utf-8,${encodeURIComponent(
             JSON.stringify([]),
@@ -156,13 +156,13 @@ describe('useServiceKeyActionsList', () => {
         {
           id: 3,
           label: 'key_management_service_service-keys_link_reactivate_key',
-          color: ODS_THEME_COLOR_INTENT.primary,
+          color: ODS_BUTTON_COLOR.primary,
           disabled: false,
         },
         {
           id: 4,
           label: 'key_management_service_service-keys_link_delete_key',
-          color: ODS_THEME_COLOR_INTENT.error,
+          color: ODS_BUTTON_COLOR.critical,
           disabled: false,
         },
       ],
@@ -187,12 +187,12 @@ describe('useServiceKeyActionsList', () => {
         {
           id: 2,
           label: 'key_management_service_service-keys_link_deactivate_key',
-          color: ODS_THEME_COLOR_INTENT.primary,
+          color: ODS_BUTTON_COLOR.primary,
         },
         {
           id: 4,
           label: 'key_management_service_service-keys_link_delete_key',
-          color: ODS_THEME_COLOR_INTENT.error,
+          color: ODS_BUTTON_COLOR.critical,
           disabled: true,
         },
       ],
