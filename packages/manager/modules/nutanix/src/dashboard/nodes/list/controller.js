@@ -1,4 +1,5 @@
 import { NODE_BADGE_STATE } from './constants';
+import { MAX_NODES_BY_CLUSTER } from '../../../constants';
 
 export default class NutanixAllNodesCtrl {
   /* @ngInject */
@@ -13,6 +14,12 @@ export default class NutanixAllNodesCtrl {
     const uniqueStates = [...new Set(this.nodes.map(({ state }) => state))];
     this.mapNodes = this.mapAllNodes();
 
+    this.isMaxNodesReached = this.nodes.length >= MAX_NODES_BY_CLUSTER;
+    this.addNodeTooltipContent = this.isMaxNodesReached
+      ? this.$translate.instant(
+          'nutanix_dashboard_nodes_add_node_max_node_tooltip',
+        )
+      : null;
     this.stateColumnOptions = {
       hideOperators: true,
       values: uniqueStates.reduce(

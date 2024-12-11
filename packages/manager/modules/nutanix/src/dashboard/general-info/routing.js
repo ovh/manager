@@ -7,10 +7,16 @@ export default /* @ngInject */ ($stateProvider) => {
     component: 'nutanixGeneralInfo',
     resolve: {
       trackingPrefix: /* @ngInject */ () => TRACKING.DASHBOARD,
+      goToDashboard: /* @ngInject */ ($state) => () =>
+        $state.go('nutanix.dashboard.general-info'),
       goToEditName: /* @ngInject */ ($state) => (nutanixClusterIamName) =>
         $state.go('nutanix.dashboard.general-info.edit-display-name', {
           nutanixClusterIamName,
         }),
+      goToAddNode: /* @ngInject */ ($state) => () =>
+        $state.go('nutanix.dashboard.general-info.add-nodes'),
+      listingNodesPagesLink: /* @ngInject */ ($state, serviceName) =>
+        $state.href('nutanix.dashboard.nodes', { serviceName }),
       goToNutanixGeneralInfo: /* @ngInject */ (
         $state,
         Alerter,
@@ -37,15 +43,6 @@ export default /* @ngInject */ ($stateProvider) => {
         clusterTechnicalDetails?.license?.edition,
       isLegacyPack: /* @ngInject */ (packType) =>
         LEGACY_PACK_TYPES.includes(packType),
-      clusterAddOns: /* @ngInject */ (NutanixService, serviceInfo) =>
-        NutanixService.getClusterOptions(serviceInfo.serviceId).catch(
-          (error) => {
-            if (error.status === 403) {
-              return [];
-            }
-            throw error;
-          },
-        ),
       goToUpgradePrivateBandwidth: /* @ngInject */ ($state) => () =>
         $state.go('nutanix.dashboard.general-info.bandwidth-private-order'),
       handleError: /* @ngInject */ (Alerter) => (error) =>
