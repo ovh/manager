@@ -7,10 +7,14 @@ export default /* @ngInject */ ($stateProvider) => {
     component: 'nutanixGeneralInfo',
     resolve: {
       trackingPrefix: /* @ngInject */ () => TRACKING.DASHBOARD,
+      goToDashboard: /* @ngInject */ ($state) => () =>
+        $state.go('nutanix.dashboard.general-info'),
       goToEditName: /* @ngInject */ ($state) => (displayName) =>
         $state.go('nutanix.dashboard.general-info.edit-display-name', {
           displayName,
         }),
+      goToAddNode: /* @ngInject */ ($state) => () =>
+        $state.go('nutanix.dashboard.general-info.add-nodes'),
       goToNutanixGeneralInfo: /* @ngInject */ (
         $state,
         Alerter,
@@ -37,8 +41,6 @@ export default /* @ngInject */ ($stateProvider) => {
         clusterTechnicalDetails.license.edition,
       isLegacyPack: /* @ngInject */ (packType) =>
         LEGACY_PACK_TYPES.includes(packType),
-      clusterAddOns: /* @ngInject */ (NutanixService, serviceInfo) =>
-        NutanixService.getClusterOptions(serviceInfo.serviceId),
       goToUpgradePrivateBandwidth: /* @ngInject */ ($state) => () =>
         $state.go('nutanix.dashboard.general-info.bandwidth-private-order'),
       handleError: /* @ngInject */ (Alerter) => (error) =>

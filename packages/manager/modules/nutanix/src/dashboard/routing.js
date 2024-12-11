@@ -1,4 +1,5 @@
 import { OLD_CLUSTER_PLAN_CODE } from './constants';
+import { getConstants } from '../../../../apps/dedicated/client/app/config/config';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('nutanix.dashboard', {
@@ -7,9 +8,10 @@ export default /* @ngInject */ ($stateProvider) => {
     component: 'nutanixDashboard',
     resolve: {
       trackingPrefix: /* @ngInject */ () => 'hpc::nutanix::cluster',
-      user: /* @ngInject */ (coreConfig) => coreConfig.getUser(),
       cluster: /* @ngInject */ (NutanixService, serviceName) =>
         NutanixService.getCluster(serviceName),
+      clusterAddOns: /* @ngInject */ (NutanixService, serviceInfo) =>
+        NutanixService.getServiceOptions(serviceInfo.serviceId),
       nodes: /* @ngInject */ (cluster, NutanixService) =>
         NutanixService.getNodeDetails(cluster.getNodes()),
       nodeId: /* @ngInject */ (cluster) => cluster.getFirstNode(),
@@ -21,7 +23,6 @@ export default /* @ngInject */ ($stateProvider) => {
         NutanixService.getServiceInfo(serviceName),
       serviceDetails: /* @ngInject */ (NutanixService, serviceInfo) =>
         NutanixService.getServiceDetails(serviceInfo.serviceId),
-
       isOldCluster: /* @ngInject */ (NutanixService, serviceInfo) =>
         // If the plan code is nutanix-standard or nutanix-advanced or nutanix-byol its newCluster
         NutanixService.getServicesDetails(serviceInfo.serviceId).then((data) =>
@@ -41,6 +42,11 @@ export default /* @ngInject */ ($stateProvider) => {
       technicalDetails: /* ngInject */ (getTechnicalDetails) =>
         getTechnicalDetails.baremetalServers,
       breadcrumb: /* @ngInject */ (serviceName) => serviceName,
+      expressOrderLink: /* @ngInject */ (coreConfig) => {
+        const urls = getConstants(coreConfig.getRegion()).URLS;
+        return (urls[coreConfig.getUser().ovhSubsidiary] ?? urls.FR)
+          .express_order_resume;
+      },
     },
   });
 };
