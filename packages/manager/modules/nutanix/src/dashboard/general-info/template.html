@@ -180,11 +180,13 @@
                     <div>
                         <a
                             class="oui-link_icon"
-                            href="#"
-                            data-translate="nutanix_dashboard_cluster_manage_nodes"
+                            data-ng-href="{{$ctrl.listingNodesPagesLink}}"
                         >
                             <span
-                                class="oui-icon oui-icon-arrow-right"
+                                data-translate="nutanix_dashboard_cluster_manage_nodes"
+                            ></span>
+                            <span
+                                class="oui-icon oui-icon-arrow-right align-middle d-inline-block"
                                 aria-hidden="true"
                             ></span>
                         </a>
@@ -192,7 +194,9 @@
                 </oui-tile-description>
                 <oui-action-menu data-compact data-placement="end">
                     <oui-action-menu-item
-                        on-click="$ctrl.goToEditName($ctrl.serviceDetails.resource.displayName)"
+                        data-on-click="$ctrl.goToAddNode()"
+                        data-disabled="$ctrl.isMaxNodesReached"
+                        data-oui-tooltip="{{ $ctrl.addNodeTooltipContent }}"
                     >
                         <span
                             data-translate="nutanix_dashboard_cluster_buy_node"

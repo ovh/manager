@@ -28,5 +28,6 @@
   "nutanix_dashboard_cluster_one_node_to_deploy": "1 noeud à installer",
   "nutanix_dashboard_cluster_several_nodes_to_deploy": "{{numberOfNodes}} noeuds à installer",
   "nutanix_dashboard_cluster_one_node_deployed": "1 noeud installé",
-  "nutanix_dashboard_cluster_several_nodes_deployed": "{{numberOfNodes}} noeuds installés"
+  "nutanix_dashboard_cluster_several_nodes_deployed": "{{numberOfNodes}} noeuds installés",
+  "nutanix_dashboard_cluster_add_node_max_node_tooltip": "Vous avez atteint le nombre maximum de noeuds autorisés dans un cluster"
 }
