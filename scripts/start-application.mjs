@@ -3,6 +3,7 @@ import { basename } from 'path';
 import concurrently from 'concurrently';
 import execa from 'execa';
 import inquirer from 'inquirer';
+import inquirerSearchList from 'inquirer-search-list';
 
 /**
  * Workspace location for all applications.
@@ -87,7 +88,7 @@ async function getApplicationId(packageName) {
   );
 }
 
-inquirer.registerPrompt('search-list', require('inquirer-search-list'));
+inquirer.registerPrompt('search-list', inquirerSearchList);
 
 inquirer
   .prompt(questions)
