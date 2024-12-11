@@ -2,9 +2,10 @@ import { CTAS, GUIDES, US_CTA, US_GUIDES } from './constants';
 
 export default class VrackOnboardingCtrl {
   /* @ngInject */
-  constructor($translate, coreConfig) {
+  constructor($state, $translate, coreConfig) {
     this.$translate = $translate;
     this.coreConfig = coreConfig;
+    this.$state = $state;
   }
 
   async $onInit() {
@@ -27,5 +28,9 @@ export default class VrackOnboardingCtrl {
     }));
 
     this.cta = cta;
+  }
+
+  goToOrder() {
+    this.$state.go('vrack.order');
   }
 }
