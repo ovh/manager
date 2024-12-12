@@ -305,6 +305,7 @@ export default class NutanixService {
     };
   }
 
+
   updateClusterNodePowerStateOn(nodeId) {
     return this.$http
       .put(`/dedicated/server/${nodeId}`, {
@@ -312,6 +313,24 @@ export default class NutanixService {
         monitoring: false,
         noIntervention: false,
       })
+      .then(() => this.rebootClusterNode(nodeId));
+  }
+
+  getClusterNodePowerId(nodeId) {
+    return this.$http
+      .get(`/dedicated/server/${nodeId}/boot?bootType=power`)
+      .then(({ data }) => data[0]);
+  }
+
+  updateClusterNodePowerStateOff(nodeId) {
+    return this.getClusterNodePowerId(nodeId)
+      .then((powerId) =>
+        this.$http.put(`/dedicated/server/${nodeId}`, {
+          bootId: powerId,
+          monitoring: false,
+          noIntervention: false,
+        }),
+      )
       .then(() => this.rebootClusterNode(nodeId));
   }
 
