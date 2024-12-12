@@ -35,6 +35,7 @@ export default {
     activateDiscovery: '<',
     orderStatus: '<',
     getUAppUrl: '<',
+    kubernetesURL: '<',
   },
   controller,
   template,

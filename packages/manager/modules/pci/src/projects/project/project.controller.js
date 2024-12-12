@@ -136,4 +136,11 @@ export default class ProjectController {
     );
     this.activateDiscovery = false;
   }
+
+  getActionURL(action) {
+    if (action.name === 'kubernetes') {
+      return this.kubernetesURL;
+    }
+    return false;
+  }
 }
