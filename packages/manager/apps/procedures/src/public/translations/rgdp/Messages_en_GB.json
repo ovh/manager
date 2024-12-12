@@ -17,7 +17,7 @@
   "rgdp_form_field_label_nichandle": "Your customer ID/NIC handle",
   "rgdp_form_field_label_category": "Email subject",
   "rgdp_form_field_label_category_detail": "for data processing managed by OVHcloud",
-  "rgdp_form_field_label_request_description": "Please provide a description of your request to exercise a right",
+  "rgdp_form_field_label_request_description": "Please provide a description of your request to exercise a right:",
   "rgdp_form_field_placeholder_category": "Choose from the list",
   "rgdp_form_category_opposition_right": "Right to object",
   "rgdp_form_category_rectification_right": "Right to rectification",
