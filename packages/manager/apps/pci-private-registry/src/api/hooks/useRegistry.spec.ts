@@ -3,7 +3,6 @@ import { Mock, vi } from 'vitest';
 
 import {
   useGetAllRegistries,
-  useRegistry,
   useGetRegistryPlan,
   useGetRegistryAvailablePlans,
   useDeleteRegistry,
@@ -11,6 +10,7 @@ import {
   usePostRegistryCredentials,
   useUpdatePlan,
   sortRegistries,
+  useSuspenseRegistry,
 } from './useRegistry';
 import {
   deleteRegistry,
@@ -58,9 +58,12 @@ describe('Hooks and utilities tests', () => {
     const mockRegistry = { id: '1', name: 'Test Registry' };
     (getRegistry as Mock).mockResolvedValue(mockRegistry);
 
-    const { result } = renderHook(() => useRegistry('project-id', '1', false), {
-      wrapper,
-    });
+    const { result } = renderHook(
+      () => useSuspenseRegistry('project-id', '1'),
+      {
+        wrapper,
+      },
+    );
 
     await waitFor(() => expect(result.current.isSuccess).toBeTruthy());
 

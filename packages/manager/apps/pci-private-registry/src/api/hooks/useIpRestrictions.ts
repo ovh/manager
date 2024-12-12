@@ -12,7 +12,7 @@ import {
 } from '@/types';
 import queryClient from '@/queryClient';
 
-type TUpdateIpRestrictionMutationParams = {
+export type TUpdateIpRestrictionMutationParams = {
   cidrToUpdate: Record<FilterRestrictionsServer, TIPRestrictionsDefault[]>;
   action:
     | TIPRestrictionsMethodEnum.DELETE
