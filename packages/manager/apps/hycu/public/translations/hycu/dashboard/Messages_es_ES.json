@@ -44,7 +44,7 @@
   "hycu_dashboard_update_display_name_modal_headline": "Editar el nombre",
   "hycu_dashboard_update_display_name_input_label": "Apellido",
   "hycu_dashboard_update_display_name_pattern_message": "Por favor, utilice solo letras sin acento y los siguientes caracteres especiales: ! @ # $ % ^ &amp; * ( ) - _ + = [ ] { } ; : , . ? (máximo 36 caracteres).",
-  "hycu_dashboard_update_display_name_success": "La descripción se ha modificado correctamente.",
+  "hycu_dashboard_update_display_name_success": "El nombre se ha modificado correctamente.",
   "hycu_dashboard_edit_modal_error": "Se ha producido un error: {{error}}.",
   "hycu_dashboard_error_license_message": "Se ha producido un error al activar la licencia ({{error}}). Por favor, compruebe la información proporcionada y vuelva a intentarlo. Si el problema persiste, contacte con nuestro equipo de soporte.",
   "hycu_dashboard_warning_license_suspended_message": "El servicio se ha dado de baja."

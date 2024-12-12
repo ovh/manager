@@ -44,7 +44,7 @@
   "hycu_dashboard_update_display_name_modal_headline": "Zmień nazwę",
   "hycu_dashboard_update_display_name_input_label": "Nazwisko",
   "hycu_dashboard_update_display_name_pattern_message": "Należy używać tylko liter bez następujących znaków specjalnych: ! @ # $ % ^ &amp; * ( ) - _ + = [ ] { } ; : , . ? (maksymalna liczba znaków: 36).",
-  "hycu_dashboard_update_display_name_success": "Opis został zmieniony.",
+  "hycu_dashboard_update_display_name_success": "Nazwa została zmodyfikowana.",
   "hycu_dashboard_edit_modal_error": "Wystąpił błąd: {{error}}",
   "hycu_dashboard_error_license_message": "Wystąpił błąd podczas aktywacji Twojej licencji ({{error}}). Sprawdź podane informacje i spróbuj ponownie. Jeśli problem się powtórzy, skontaktuj się z pomocą techniczną.",
   "hycu_dashboard_warning_license_suspended_message": "Usługa została zakończona."
