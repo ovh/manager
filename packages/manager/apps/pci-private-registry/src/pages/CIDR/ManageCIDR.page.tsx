@@ -31,7 +31,7 @@ const schemaAddCidr = (dataCIDR: string[]) =>
         return value;
       })
       .superRefine((value, ctx) => {
-        // Vérification CIDR format
+        // Vérify CIDR format
         if (!isCidr(value)) {
           ctx.addIssue({
             code: z.ZodIssueCode.custom,
@@ -66,15 +66,10 @@ export default function BlocIPBlock() {
   const { projectId, registryId } = useParams();
   const { data: project } = useProject();
   const { data: registry } = useRegistry(projectId, registryId, true);
-  const { data: dataCIDR, isPending } = useIpRestrictions(
-    projectId,
-    registryId,
-  );
-  const { t } = useTranslation();
+  const { data: dataCIDR } = useIpRestrictions(projectId, registryId);
+  const { t } = useTranslation(['ip-restrictions']);
   const methods = useForm<ConfirmCIDRSchemaType>({
-    resolver: zodResolver(
-      !isPending && schemaAddCidr(dataCIDR.map((e) => e.ipBlock)),
-    ),
+    resolver: zodResolver(schemaAddCidr(dataCIDR.map((e) => e.ipBlock))),
     mode: 'onBlur',
     reValidateMode: 'onChange',
   });
@@ -88,7 +83,7 @@ export default function BlocIPBlock() {
           title={registry.name}
           headerButton={
             <div className="min-w-[7rem]">
-              <PciGuidesHeader category="kubernetes" />
+              <PciGuidesHeader category="private_registry" />
             </div>
           }
         />
@@ -98,7 +93,7 @@ export default function BlocIPBlock() {
           level={ODS_TEXT_LEVEL.body}
           color={ODS_THEME_COLOR_INTENT.text}
         >
-          {t('common:private_registry_manage_CIDR')}
+          {t('private_registry_cidr_manage_title')}
         </OsdsText>
       </div>
       <FormProvider {...methods}>

@@ -15,7 +15,7 @@ type ActionComponentProps = {
 export default function ActionComponent({
   registry,
 }: Readonly<ActionComponentProps>) {
-  const { t } = useTranslation();
+  const { t } = useTranslation(['common', 'ip-restrictions']);
 
   const { projectId } = useParams();
   const { data: registryPlan } = useGetRegistryPlan(projectId, registry?.id);
@@ -103,7 +103,7 @@ export default function ActionComponent({
     },
     {
       id: 6,
-      label: t('private_registry_manage_CIDR'),
+      label: t('ip-restrictions:private_registry_cidr_manage_title'),
       href: hrefManageCIDR,
       disabled: registry.status !== PRIVATE_REGISTRY_STATUS.READY,
       onClick: () =>
