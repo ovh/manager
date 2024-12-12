@@ -6,7 +6,7 @@ import { useProjectUrl } from '@ovh-ux/manager-react-components';
 
 const BreadcrumbCIDR = () => {
   const { data: project } = useProject();
-  const hrefBack = useHref('../..');
+  const hrefBack = useHref('..');
   const hrefProject = useProjectUrl('public-cloud');
   const { t } = useTranslation(['ip-restrictions', 'common']);
   return (
