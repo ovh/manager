@@ -24,69 +24,25 @@ import {
 
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
-import { useRef, useState, useMemo, memo, useCallback } from 'react';
+import { useRef, useState, useMemo, memo } from 'react';
 
-import {
-  useIpRestrictions,
-  useUpdateIpRestriction,
-} from '@/api/hooks/useIpRestrictions';
-import { categorizeByKey } from '@/helpers';
-import {
-  FilterRestrictionsServer,
-  TIPRestrictionsDefault,
-  TIPRestrictionsMethodEnum,
-} from '@/types';
+import { useIpRestrictions } from '@/api/hooks/useIpRestrictions';
+
+import DeleteModal from './DeleteModal.component';
 
 const Filters = ({ createNewRow }: { createNewRow: () => void }) => {
   const [searchField, setSearchField] = useState('');
   const { projectId, registryId } = useParams();
   const { filters, addFilter, removeFilter } = useColumnFilters();
-  const { reset } = useFormContext();
   const filterPopoverRef = useRef(undefined);
   const { pagination, setPagination } = useDataGrid();
   const { data } = useIpRestrictions(projectId, registryId);
-
+  const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const { t } = useTranslation(['ip-restrictions']);
-  const { addSuccess, addError } = useNotifications();
   const showDeleteButton = useMemo(
     () => data.filter((item) => item.checked).length >= 2,
     [data],
   );
-
-  const { updateIpRestrictions } = useUpdateIpRestriction({
-    projectId,
-    registryId,
-    onError: () => {
-      addError(t('common:private_registry_crud_cidr_error'));
-    },
-    onSuccess: () => {
-      reset();
-      addSuccess(t('private_registry_cidr_delete_all_success'), true);
-    },
-  });
-
-  const deleteAllSelectedRows = useCallback(() => {
-    const rowToDelete = data
-      .filter((item) => item.checked)
-      .map((item) => ({
-        ipBlock: item.ipBlock,
-        authorization: item.authorization,
-        description: item.description,
-      }));
-
-    const categorizeByKeyResult = categorizeByKey(
-      rowToDelete,
-      'authorization',
-      ['management', 'registry'],
-    );
-    updateIpRestrictions({
-      cidrToUpdate: categorizeByKeyResult as Record<
-        FilterRestrictionsServer,
-        TIPRestrictionsDefault[]
-      >,
-      action: TIPRestrictionsMethodEnum.DELETE,
-    });
-  }, [data, updateIpRestrictions]);
 
   const DraftModeEnabled = useMemo(() => data.some((item) => item.draft), [
     data,
@@ -121,7 +77,7 @@ const Filters = ({ createNewRow }: { createNewRow: () => void }) => {
               variant={ODS_BUTTON_VARIANT.stroked}
               color={ODS_THEME_COLOR_INTENT.primary}
               className="xs:mb-0.5 sm:mb-0"
-              onClick={deleteAllSelectedRows}
+              onClick={() => setOpenDeleteModal(true)}
             >
               <OsdsIcon
                 size={ODS_ICON_SIZE.xs}
@@ -133,6 +89,7 @@ const Filters = ({ createNewRow }: { createNewRow: () => void }) => {
             </OsdsButton>
           )}
         </div>
+        {openDeleteModal && <DeleteModal all />}
 
         <div className="justify-between flex">
           <OsdsSearchBar
