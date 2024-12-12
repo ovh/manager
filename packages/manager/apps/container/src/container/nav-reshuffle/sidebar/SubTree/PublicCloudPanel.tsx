@@ -11,6 +11,9 @@ import { Location, useLocation } from 'react-router-dom';
 import style from '../style.module.scss';
 import SubTreeSection from '@/container/nav-reshuffle/sidebar/SubTree/SubTreeSection';
 import { PUBLICCLOUD_UNIVERSE_ID } from '../navigation-tree/services/publicCloud';
+import {
+  useDefaultPublicCloudProject
+} from '@/container/nav-reshuffle/data/hooks/defaultPublicCloudProject/useDefaultPublicCloudProject';
 
 export interface PublicCloudPanelProps {
   rootNode: Node;
@@ -62,19 +65,14 @@ export const PublicCloudPanel: React.FC<ComponentProps<
     },
   });
 
-  const { data: defaultPciProject, status: defaultPciProjectStatus } = useQuery(
+  const { data: defaultPciProject, status: defaultPciProjectStatus } = useDefaultPublicCloudProject(
     {
-      queryKey: ['default-pci-project'],
-      queryFn: () => {
-        return fetchIcebergV6<PciProject>({
-          route: '/me/preferences/manager/PUBLIC_CLOUD_DEFAULT_PROJECT',
-        });
-      },
-      select: (response) => {
-        return response?.data?.length ? (response.data[0] as PciProject) : null;
+      select: (defaultProjectId: string | null): PciProject | null => {
+        return defaultProjectId !== null
+          ? pciProjects?.find((project: PciProject) => project.project_id === defaultProjectId) || null
+          : null;
       },
       enabled: rootNode.id === PUBLICCLOUD_UNIVERSE_ID && !selectedPciProject,
-      retry: false,
     },
   );
 
@@ -110,10 +108,12 @@ export const PublicCloudPanel: React.FC<ComponentProps<
   }, [pciProjects, rootNode, containerURL]);
 
   useEffect(() => {
-    if (defaultPciProjectStatus === 'success') {
-      setSelectedPciProject(defaultPciProject);
-    } else if (defaultPciProjectStatus === 'error' && pciProjects?.length) {
-      setSelectedPciProject(pciProjects[0]);
+    if (selectedPciProject === null) {
+      if (defaultPciProjectStatus === 'success') {
+        setSelectedPciProject(defaultPciProject);
+      } else if (defaultPciProjectStatus === 'error' && pciProjects?.length) {
+        setSelectedPciProject(pciProjects[0]);
+      }
     }
   }, [defaultPciProject, defaultPciProjectStatus, pciProjects]);
 
