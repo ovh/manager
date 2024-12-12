@@ -126,6 +126,10 @@ export default class OvhManagerNetAppNetworkConfigurationCtrl {
     } else {
       this.disableSubnetField = false;
     }
+
+    if (this.subnets.length === 1) {
+      [this.selectedSubnet] = this.subnets;
+    }
   }
 
   configureNetwork() {
