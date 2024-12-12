@@ -11,9 +11,10 @@ import {
   VCDStorage,
 } from '@ovh-ux/manager-module-vcd-api';
 import DatagridContainer from '@/components/datagrid/container/DatagridContainer.component';
-import { STORAGE_TITLE } from '../DatacentreDashboard.constant';
+import { STORAGE_LABEL } from '../datacentreDashboard.constants';
 import { subRoutes, urls } from '@/routes/routes.constant';
 import { capitalize } from '@/utils/capitalize';
+import { ID_LABEL } from '../../dashboard.constants';
 
 const DatagridIdCell = (vcdStorage: VCDStorage) => (
   <DataGridTextCell>{vcdStorage?.id}</DataGridTextCell>
@@ -30,7 +31,7 @@ const DatagridTypeCell = (vcdStorage: VCDStorage) => (
   </DataGridTextCell>
 );
 const DatagridCapacityCell = (vcdStorage: VCDStorage) => {
-  const { t } = useTranslation('hpc-vmware-managed-vcd/datacentres');
+  const { t } = useTranslation('datacentres');
   return (
     <DataGridTextCell>
       {t('managed_vcd_vdc_quota_value', {
@@ -40,7 +41,7 @@ const DatagridCapacityCell = (vcdStorage: VCDStorage) => {
   );
 };
 const DatagridBillingCell = (vcdStorage: VCDStorage) => {
-  const { t } = useTranslation('hpc-vmware-managed-vcd/datacentres/compute');
+  const { t } = useTranslation('datacentres/compute');
   return (
     <DataGridTextCell>
       {t(
@@ -52,18 +53,15 @@ const DatagridBillingCell = (vcdStorage: VCDStorage) => {
 
 export default function StorageListingPage() {
   const { id, vdcId } = useParams();
-  const { t } = useTranslation('hpc-vmware-managed-vcd/datacentres/storage');
-  const { t: tVdc } = useTranslation('hpc-vmware-managed-vcd/datacentres');
-  const { t: tCompute } = useTranslation(
-    'hpc-vmware-managed-vcd/datacentres/compute',
-  );
+  const { t } = useTranslation('datacentres/storage');
+  const { t: tCompute } = useTranslation('datacentres/compute');
   const navigate = useNavigate();
 
   const columns = [
     {
       id: 'id',
       cell: DatagridIdCell,
-      label: tVdc('managed_vcd_vdc_id'),
+      label: ID_LABEL,
       isSortable: false,
     },
     {
@@ -100,7 +98,7 @@ export default function StorageListingPage() {
 
   return (
     <DatagridContainer
-      title={STORAGE_TITLE}
+      title={STORAGE_LABEL}
       queryKey={getVdcStorageQueryKey(vdcId)}
       columns={columns}
       route={{

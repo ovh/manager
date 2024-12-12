@@ -15,14 +15,13 @@ import {
 import {
   COMPUTE_ORDER_MAX_QUANTITY,
   COMPUTE_ORDER_MIN_QUANTITY,
-} from './DatacentreComputeOrder.constants';
+} from './datacentreComputeOrder.constants';
 import { subRoutes } from '@/routes/routes.constant';
+import { RAM_LABEL, VHOST_LABEL } from '../compute/datacentreCompute.constants';
 
 export default function ComputeOrderPage() {
-  const { t } = useTranslation('hpc-vmware-managed-vcd/datacentres/order');
-  const { t: tCompute } = useTranslation(
-    'hpc-vmware-managed-vcd/datacentres/compute',
-  );
+  const { t } = useTranslation('datacentres/order');
+  const { t: tCompute } = useTranslation('datacentres/compute');
   const columns: DatagridColumn<VCDOrderableVhostPriced>[] = [
     {
       id: 'select',
@@ -33,7 +32,7 @@ export default function ComputeOrderPage() {
     {
       id: 'vhost',
       cell: ComputeOrderVhostCell,
-      label: t('managed_vcd_vdc_order_vhost'),
+      label: VHOST_LABEL,
       isSortable: false,
     },
     {
@@ -45,7 +44,7 @@ export default function ComputeOrderPage() {
     {
       id: 'ram',
       cell: ComputeOrderRamCell,
-      label: t('managed_vcd_vdc_order_ram'),
+      label: RAM_LABEL,
       isSortable: false,
     },
     {
