@@ -9,18 +9,18 @@ import { useQueryClient } from '@tanstack/react-query';
 
 import { useTranslation } from 'react-i18next';
 import { FormProvider, useFormContext } from 'react-hook-form';
-import ButtonsCIDR from '@/components/CIDR/ButtonsCIDR';
+import ButtonsCIDR from '@/components/CIDR/ButtonsCIDR.component';
 import { TIPRestrictionsData } from '@/types';
 import {
   getRegistryQueyPrefixWithId,
   useIpRestrictions,
 } from '@/api/hooks/useIpRestrictions';
-import ActionComponent from '@/components/CIDR/Actions';
-import Authorization from '@/components/CIDR/Authorization';
-import Description from '@/components/CIDR/Description';
-import IpBlock from '@/components/CIDR/IpBlock';
+import ActionComponent from '@/components/CIDR/Actions.component';
+import Authorization from '@/components/CIDR/Authorization.component';
+import Description from '@/components/CIDR/Description.component';
+import IpBlock from '@/components/CIDR/IpBlock.component';
 import { capitalizeAndJoin } from '@/helpers';
-import AuthorizationLabel from '@/components/CIDR/AuthorizationLabel';
+import AuthorizationLabel from '@/components/CIDR/AuthorizationLabel.component';
 import Checkboxes from '@/components/CIDR/Checkboxes.component';
 import AllCheckboxComponent from '@/components/CIDR/AllCheckbox.component';
 

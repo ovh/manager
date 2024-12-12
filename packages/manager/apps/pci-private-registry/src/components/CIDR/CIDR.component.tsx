@@ -24,7 +24,7 @@ import {
   OsdsText,
 } from '@ovhcloud/ods-components/react';
 import { useDatagridColumn } from '@/pages/CIDR/useDatagridColumn';
-import Filters from '@/components/CIDR/Filters';
+import Filters from '@/components/CIDR/Filters.component';
 import {
   getRegistryQueyPrefixWithId,
   useIpRestrictions,
@@ -50,23 +50,14 @@ export default function BlocCIDR() {
   const { formState } = useFormContext();
   const columns = useDatagridColumn();
 
-  const { addInfo, clearNotifications } = useNotifications();
+  const { clearNotifications } = useNotifications();
 
-  const { data: dataCIDR, isPending } = useIpRestrictions(
-    projectId,
-    registryId,
-  );
+  const { data: dataCIDR } = useIpRestrictions(projectId, registryId);
 
   const variablesPending = useMutationState({
     filters: { status: 'pending' },
     select: (mutation) => mutation.state.variables,
   });
-
-  useEffect(() => {
-    if (!dataCIDR.length) {
-      addInfo(t('private_registry_noCIDR'));
-    }
-  }, [dataCIDR, addInfo]);
 
   useEffect(() => clearNotifications, []);
 
@@ -79,7 +70,7 @@ export default function BlocCIDR() {
       ]),
     );
 
-  if (isPending || variablesPending.length) {
+  if (variablesPending.length) {
     return (
       <OsdsSpinner
         inline
@@ -91,6 +82,22 @@ export default function BlocCIDR() {
 
   return (
     <>
+      {!dataCIDR?.length && (
+        <OsdsMessage
+          color={ODS_THEME_COLOR_INTENT.info}
+          type={ODS_MESSAGE_TYPE.info}
+          key={t('private_registry_noCIDR')}
+          className="my-6"
+        >
+          <OsdsText
+            color={ODS_THEME_COLOR_INTENT.info}
+            data-testid="errorBanner"
+          >
+            {t('private_registry_noCIDR')}
+            <br />
+          </OsdsText>
+        </OsdsMessage>
+      )}
       {Object.values(formState.errors)?.map((err) => (
         <OsdsMessage
           color={ODS_THEME_COLOR_INTENT.error}

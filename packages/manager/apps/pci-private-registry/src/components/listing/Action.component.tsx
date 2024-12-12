@@ -105,7 +105,9 @@ export default function ActionComponent({
       id: 6,
       label: t('ip-restrictions:private_registry_cidr_manage_title'),
       href: hrefManageCIDR,
-      disabled: registry.status !== PRIVATE_REGISTRY_STATUS.READY,
+      disabled:
+        registry.status !== PRIVATE_REGISTRY_STATUS.READY &&
+        registry.status !== PRIVATE_REGISTRY_STATUS.ERROR,
       onClick: () =>
         tracking?.trackClick({
           name: 'PCI_PROJECTS_PRIVATEREGISTRY_MANAGE_CIDR',

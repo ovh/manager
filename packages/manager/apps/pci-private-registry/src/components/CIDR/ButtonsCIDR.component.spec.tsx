@@ -6,7 +6,7 @@ import { useNotifications } from '@ovh-ux/manager-react-components';
 
 import { UseSuspenseQueryResult } from '@tanstack/react-query';
 import { useIpRestrictions } from '../../api/hooks/useIpRestrictions';
-import Buttons from './ButtonsCIDR';
+import Buttons from './ButtonsCIDR.component';
 import { wrapper } from '@/wrapperRenders';
 import { TIPRestrictionsData } from '@/types';
 
