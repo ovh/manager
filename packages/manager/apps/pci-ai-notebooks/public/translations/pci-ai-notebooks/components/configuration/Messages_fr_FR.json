@@ -20,9 +20,16 @@
   "formSshKeyButtonCancel": "Annuler",
   "formSshKeyButtonConfirm": "Confirmer",
   "cliToastCopied": "Le code a été copié",
-  "zeroSecondes": "0 secondes",
-  "secondes": "{{sec}} secondes",
-  "days": "{{day}} jours",
-  "hours": "{{hour}} heures",
-  "minutes": "{{min}} minutes"
+  "numberOfSeconds_zero": "{{count}} secondes",
+  "numberOfSeconds_one": "{{count}} seconde",
+  "numberOfSeconds_other": "{{count}} secondes",
+  "numberOfMinutes_zero": "{{count}} minutes",
+  "numberOfMinutes_one": "{{count}} minute",
+  "numberOfMinutes_other": "{{count}} minutes",
+  "numberOfHours_zero": "{{count}} heures",
+  "numberOfHours_one": "{{count}} heure",
+  "numberOfHours_other": "{{count}} heures",
+  "numberOfDays_zero": "{{count}} jours",
+  "numberOfDays_one": "{{count}} jour",
+  "numberOfDays_other": "{{count}} jours"
 }

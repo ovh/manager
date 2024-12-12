@@ -68,12 +68,11 @@ export function convertDurationStringToISODuration(durationTime: string) {
 export function convertSecondsToTimeString(seconds: number, short: boolean) {
   const { t } = useTranslation('pci-ai-notebooks/components/configuration');
 
-  if (seconds === 0) return short ? '0s' : t('zeroSecondes');
   if (seconds < 60)
     return short
       ? `${seconds}s`
-      : t('secondes', {
-          sec: seconds,
+      : t('numberOfSeconds', {
+          count: seconds,
         });
   const days = Math.floor(seconds / 86400);
   const leftoverSeconds = seconds % 86400;
@@ -86,8 +85,8 @@ export function convertSecondsToTimeString(seconds: number, short: boolean) {
     timeStringParts.push(
       short
         ? `${days}d`
-        : t('days', {
-            day: days,
+        : t('numberOfDays', {
+            count: days,
           }),
     );
   }
@@ -95,8 +94,8 @@ export function convertSecondsToTimeString(seconds: number, short: boolean) {
     timeStringParts.push(
       short
         ? `${hours}h`
-        : t('hours', {
-            hour: hours,
+        : t('numberOfHours', {
+            count: hours,
           }),
     );
   }
@@ -104,8 +103,8 @@ export function convertSecondsToTimeString(seconds: number, short: boolean) {
     timeStringParts.push(
       short
         ? `${minutes}m`
-        : t('minutes', {
-            min: minutes,
+        : t('numberOfMinutes', {
+            count: minutes,
           }),
     );
   }

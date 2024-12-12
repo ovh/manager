@@ -132,7 +132,6 @@ const LabelsForm = React.forwardRef<HTMLInputElement, LabelsFormProps>(
           {t('numberOfConfiguredLabels', {
             count: configuredLabels.length,
             max: CONFIGURATION_CONFIG.maxLabelNumber,
-            context: `${configuredLabels.length}`,
           })}
         </p>
       </Form>
