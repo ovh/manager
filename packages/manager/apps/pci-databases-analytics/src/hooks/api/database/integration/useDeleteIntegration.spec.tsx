@@ -40,11 +40,7 @@ describe('useDeleteIntegration', () => {
       expect(databaseAPI.deleteIntegration).toHaveBeenCalledWith(
         deleteIntegrationProps,
       );
-      expect(onSuccess).toHaveBeenCalledWith(
-        undefined,
-        deleteIntegrationProps,
-        undefined,
-      );
+      expect(onSuccess).toHaveBeenCalledWith();
     });
   });
 });

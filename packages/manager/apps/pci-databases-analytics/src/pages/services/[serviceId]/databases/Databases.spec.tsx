@@ -18,6 +18,7 @@ import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/Route
 import { mockedService as mockedServiceOrig } from '@/__tests__/helpers/mocks/services';
 import { apiErrorMock } from '@/__tests__/helpers/mocks/cdbError';
 import { mockedDatabase } from '@/__tests__/helpers/mocks/databases';
+import { CdbError } from '@/data/api/database';
 
 // Override mock to add capabilities
 const mockedService = {
@@ -31,10 +32,18 @@ const mockedService = {
     },
   },
 };
+const mockedUsedNavigate = vi.fn();
 
 describe('Databases page', () => {
   beforeEach(() => {
     // Mock necessary hooks and dependencies
+    vi.mock('react-router-dom', async () => {
+      const mod = await vi.importActual('react-router-dom');
+      return {
+        ...mod,
+        useNavigate: () => mockedUsedNavigate,
+      };
+    });
     vi.mock('react-i18next', () => ({
       useTranslation: () => ({
         t: (key: string) => key,
@@ -50,7 +59,7 @@ describe('Databases page', () => {
         projectId: 'projectId',
         service: mockedService,
         category: 'operational',
-        serviceQuery: {} as UseQueryResult<database.Service, Error>,
+        serviceQuery: {} as UseQueryResult<database.Service, CdbError>,
       })),
     }));
     vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
@@ -104,7 +113,7 @@ describe('Databases page', () => {
         },
       },
       category: 'operational',
-      serviceQuery: {} as UseQueryResult<database.Service, Error>,
+      serviceQuery: {} as UseQueryResult<database.Service, CdbError>,
     });
     render(<Databases />, { wrapper: RouterWithQueryClientWrapper });
     expect(screen.queryByTestId('add-button')).toBeInTheDocument();
@@ -117,7 +126,7 @@ describe('Databases page', () => {
         capabilities: {},
       },
       category: 'operational',
-      serviceQuery: {} as UseQueryResult<database.Service, Error>,
+      serviceQuery: {} as UseQueryResult<database.Service, CdbError>,
     });
     render(<Databases />, { wrapper: RouterWithQueryClientWrapper });
     expect(screen.queryByTestId('add-button')).toBeNull();
@@ -134,7 +143,7 @@ describe('Databases page', () => {
         },
       },
       category: 'operational',
-      serviceQuery: {} as UseQueryResult<database.Service, Error>,
+      serviceQuery: {} as UseQueryResult<database.Service, CdbError>,
     });
     render(<Databases />, { wrapper: RouterWithQueryClientWrapper });
     const addButton = screen.queryByTestId('add-button');
@@ -179,81 +188,14 @@ describe('Open modals', () => {
       fireEvent.click(screen.getByTestId('add-button'));
     });
     await waitFor(() => {
-      expect(screen.getByTestId('add-database-modal')).toBeInTheDocument();
-    });
-  });
-  it('closes add user modal', async () => {
-    act(() => {
-      fireEvent.click(screen.getByTestId('add-button'));
-    });
-    await waitFor(() => {
-      expect(screen.getByTestId('add-database-modal')).toBeInTheDocument();
-    });
-    act(() => {
-      fireEvent.click(screen.getByTestId('add-database-cancel-button'));
-    });
-    await waitFor(() => {
-      expect(
-        screen.queryByTestId('add-database-modal'),
-      ).not.toBeInTheDocument();
-    });
-  });
-  it('refetch data on add user success', async () => {
-    act(() => {
-      fireEvent.click(screen.getByTestId('add-button'));
-    });
-    await waitFor(() => {
-      expect(screen.getByTestId('add-database-modal')).toBeInTheDocument();
-    });
-    act(() => {
-      fireEvent.change(screen.getByTestId('add-database-name-input'), {
-        target: {
-          value: 'newdb',
-        },
-      });
-      fireEvent.click(screen.getByTestId('add-database-submit-button'));
-    });
-    await waitFor(() => {
-      expect(
-        screen.queryByTestId('add-database-modal'),
-      ).not.toBeInTheDocument();
-      expect(databasesApi.getServiceDatabases).toHaveBeenCalled();
+      expect(mockedUsedNavigate).toHaveBeenCalledWith('./add');
     });
   });
 
   it('shows delete databases modal', async () => {
     await openButtonInMenu('databases-action-delete-button');
     await waitFor(() => {
-      expect(screen.getByTestId('delete-database-modal')).toBeInTheDocument();
-    });
-  });
-  it('closes delete databases modal', async () => {
-    await openButtonInMenu('databases-action-delete-button');
-    await waitFor(() => {
-      expect(screen.getByTestId('delete-database-modal')).toBeInTheDocument();
-    });
-    act(() => {
-      fireEvent.click(screen.getByTestId('delete-database-cancel-button'));
-    });
-    await waitFor(() => {
-      expect(
-        screen.queryByTestId('delete-database-modal'),
-      ).not.toBeInTheDocument();
-    });
-  });
-  it('refetch data on delete user success', async () => {
-    await openButtonInMenu('databases-action-delete-button');
-    await waitFor(() => {
-      expect(screen.getByTestId('delete-database-modal')).toBeInTheDocument();
-    });
-    act(() => {
-      fireEvent.click(screen.getByTestId('delete-database-submit-button'));
-    });
-    await waitFor(() => {
-      expect(
-        screen.queryByTestId('delete-database-modal'),
-      ).not.toBeInTheDocument();
-      expect(databasesApi.getServiceDatabases).toHaveBeenCalled();
+      expect(mockedUsedNavigate).toHaveBeenCalledWith('./delete/databaseId');
     });
   });
 });

@@ -20,6 +20,7 @@ import {
   mockedQueries,
   mockedQueryStatisticsPG,
 } from '@/__tests__/helpers/mocks/queries';
+import { CdbError } from '@/data/api/database';
 
 // Override mock to add capabilities
 const mockedService = {
@@ -126,7 +127,7 @@ describe('Queries page', () => {
         capabilities: {},
       },
       category: 'operational',
-      serviceQuery: {} as UseQueryResult<database.Service, Error>,
+      serviceQuery: {} as UseQueryResult<database.Service, CdbError>,
     });
     render(<Queries />, { wrapper: RouterWithQueryClientWrapper });
     expect(
@@ -152,7 +153,7 @@ describe('Queries page', () => {
         },
       },
       category: 'operational',
-      serviceQuery: {} as UseQueryResult<database.Service, Error>,
+      serviceQuery: {} as UseQueryResult<database.Service, CdbError>,
     });
     render(<Queries />, { wrapper: RouterWithQueryClientWrapper });
     expect(screen.getByTestId('current-queries-container')).toBeInTheDocument();
@@ -180,7 +181,7 @@ describe('Queries page', () => {
         },
       },
       category: 'operational',
-      serviceQuery: {} as UseQueryResult<database.Service, Error>,
+      serviceQuery: {} as UseQueryResult<database.Service, CdbError>,
     });
     render(<Queries />, { wrapper: RouterWithQueryClientWrapper });
     expect(screen.getByTestId('current-queries-container')).toBeInTheDocument();
@@ -219,7 +220,7 @@ describe('Action of queries and statistics', () => {
       projectId: 'projectId',
       service: mockedService,
       category: 'operational',
-      serviceQuery: {} as UseQueryResult<database.Service, Error>,
+      serviceQuery: {} as UseQueryResult<database.Service, CdbError>,
     });
     render(<Queries />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {

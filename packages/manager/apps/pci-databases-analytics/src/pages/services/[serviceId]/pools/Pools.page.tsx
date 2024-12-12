@@ -1,22 +1,16 @@
 import { useTranslation } from 'react-i18next';
 import { ColumnDef } from '@tanstack/react-table';
 import { useEffect, useState } from 'react';
-
+import { Outlet, useNavigate } from 'react-router-dom';
 import { Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { DataTable } from '@/components/ui/data-table';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
-
-import { useModale } from '@/hooks/useModale';
-
 import { useServiceData } from '../Service.context';
 import { POLLING } from '@/configuration/polling.constants';
 import { GenericUser } from '@/data/api/database/user.api';
 import * as database from '@/types/cloud/project/database';
 import { getColumns } from './_components/PoolsTableColumns.component';
-import InfoConnectionPool from './_components/InfoConnectionPool.component';
-import AddEditConnectionPool from './_components/AddEditconnectionPool.component';
-import DeleteConnectionPool from './_components/DeleteConnectionPool.component';
 import Guides from '@/components/guides/Guides.component';
 import { useUserActivityContext } from '@/contexts/UserActivityContext';
 import { GuideSections } from '@/types/guide';
@@ -40,6 +34,7 @@ export interface ConnectionPoolWithData
 }
 
 const Pools = () => {
+  const navigate = useNavigate();
   const { t } = useTranslation(
     'pci-databases-analytics/services/service/pools',
   );
@@ -48,10 +43,6 @@ const Pools = () => {
     ConnectionPoolWithData[]
   >([]);
   const { isUserActive } = useUserActivityContext();
-  const addModale = useModale('add');
-  const getInfoModale = useModale('information');
-  const deleteModale = useModale('delete');
-  const editModale = useModale('edit');
   const connectionPoolsQuery = useGetConnectionPools(
     projectId,
     service.engine,
@@ -94,24 +85,13 @@ const Pools = () => {
   }, [connectionPoolsQuery.data, usersQuery.data, databasesQuery.data]);
 
   const columns: ColumnDef<ConnectionPoolWithData>[] = getColumns({
-    onGetInformationClick: (pools: ConnectionPoolWithData) =>
-      getInfoModale.open(pools.id),
-    onEditClick: (pools: ConnectionPoolWithData) => editModale.open(pools.id),
-    onDeleteClick: (pools: ConnectionPoolWithData) =>
-      deleteModale.open(pools.id),
+    onGetInformationClick: (pool: ConnectionPoolWithData) =>
+      navigate(`./informations/${pool.id}`),
+    onEditClick: (pool: ConnectionPoolWithData) =>
+      navigate(`./edit/${pool.id}`),
+    onDeleteClick: (pool: ConnectionPoolWithData) =>
+      navigate(`./delete/${pool.id}`),
   });
-
-  const connectionPoolToDelete = connectionPoolListWithData?.find(
-    (cp) => cp.id === deleteModale.value,
-  );
-
-  const connectionPoolToDisplayInfo = connectionPoolListWithData?.find(
-    (cp) => cp.id === getInfoModale.value,
-  );
-
-  const connectionPoolToEdit = connectionPoolListWithData?.find(
-    (cp) => cp.id === editModale.value,
-  );
 
   return (
     <>
@@ -126,7 +106,7 @@ const Pools = () => {
           variant={'outline'}
           size="sm"
           className="text-base"
-          onClick={() => addModale.open()}
+          onClick={() => navigate('./add')}
           disabled={
             service.capabilities.connectionPools.create ===
             database.service.capability.StateEnum.disabled
@@ -147,68 +127,7 @@ const Pools = () => {
           <DataTable.Skeleton columns={5} rows={2} width={100} height={16} />
         </div>
       )}
-      {connectionPoolsQuery.isSuccess &&
-        usersQuery.isSuccess &&
-        databasesQuery.isSuccess && (
-          <AddEditConnectionPool
-            isEdition={false}
-            controller={addModale.controller}
-            users={usersQuery.data}
-            service={service}
-            connectionPools={connectionPoolsQuery.data}
-            databases={databasesQuery.data}
-            onSuccess={() => {
-              addModale.close();
-              databasesQuery.refetch();
-              connectionPoolsQuery.refetch();
-            }}
-          />
-        )}
-
-      {connectionPoolToDisplayInfo &&
-        connectionPoolsQuery.isSuccess &&
-        databasesQuery.isSuccess && (
-          <InfoConnectionPool
-            service={service}
-            controller={getInfoModale.controller}
-            connectionPool={connectionPoolToDisplayInfo}
-            databases={databasesQuery.data}
-          />
-        )}
-
-      {connectionPoolToEdit &&
-        connectionPoolsQuery.isSuccess &&
-        usersQuery.isSuccess &&
-        databasesQuery.isSuccess && (
-          <AddEditConnectionPool
-            isEdition={true}
-            controller={editModale.controller}
-            connectionPools={connectionPoolsQuery.data}
-            editedConnectionPool={connectionPoolToEdit}
-            users={usersQuery.data}
-            service={service}
-            databases={databasesQuery.data}
-            onSuccess={() => {
-              editModale.close();
-              databasesQuery.refetch();
-              connectionPoolsQuery.refetch();
-            }}
-          />
-        )}
-
-      {connectionPoolToDelete && (
-        <DeleteConnectionPool
-          controller={deleteModale.controller}
-          service={service}
-          connectionPool={connectionPoolToDelete}
-          onSuccess={() => {
-            deleteModale.close();
-            connectionPoolsQuery.refetch();
-            usersQuery.refetch();
-            databasesQuery.refetch();
-          }}
-        />
-      )}
+      <Outlet />
     </>
   );
 };
