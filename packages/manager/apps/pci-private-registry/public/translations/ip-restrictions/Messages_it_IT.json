@@ -1,0 +1,18 @@
+{
+  "private_registry_noCIDR": "Attualmente il Managed Private Registry è aperto a tutte le connessioni. Per limitare l'accesso al Managed Private Registry, è importante definire gli indirizzi IP autorizzati (Blocco CIDR). In questo modo si garantisce che solo le persone o i sistemi approvati possano accedere al Registry, aumentando la protezione e semplificando la gestione delle connessioni.",
+  "ip_restrictions_add_block": "Aggiungi un blocco CIDR autorizzato",
+  "ip_restrictions_delete_block": "Elimina un blocco CIDR autorizzato",
+  "ip_restrictions_delete_multiple_block": "Elimina più blocchi CIDR autorizzati",
+  "private_registry_bloc_cidr": "Blocco CIDR",
+  "private_registry_cidr_description": "Descrizione",
+  "private_registry_cidr_authorization": "Componente autorizzato",
+  "private_registry_cidr_manage_title": "Gestisci i blocchi CIDR autorizzati",
+  "private_registry_cidr_authorization_select": "Seleziona un componente",
+  "private_registry_cidr_validation_ipBlock": "Il blocco deve essere in formato CIDR (ad esempio: 192.168.0.0/24).",
+  "private_registry_cidr_validation_authorization": "Seleziona almeno un componente autorizzato.",
+  "private_registry_cidr_submit_success": "Il blocco CIDR è stato aggiunto ai blocchi CIDR autorizzati.",
+  "private_registry_cidr_delete_success": "Il blocco CIDR è stato eliminato correttamente.",
+  "private_registry_cidr_delete_all_success": "Tutti i blocchi CIDR selezionati sono stati eliminati correttamente.",
+  "private_registry_cidr_help_authorized_component": "<p>Esistono 2 componenti software per gestire i blocchi<br/> CIDR:</p><p style='display: block;'>Management: permette di autorizzare l'accesso a UI e <br/> API Harbor.</p><p style='display: block;'>Registry: permette ai diversi clienti / CLI di autorizzare <br/>  l'accesso al backend Registry (Docker, Helm, ... )</p>",
+  "private_registry_cidr_already_exist": "L'IP/CIDR esiste già nella lista."
+}

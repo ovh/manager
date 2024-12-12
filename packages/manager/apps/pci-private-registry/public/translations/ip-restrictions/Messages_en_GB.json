@@ -1,0 +1,18 @@
+{
+  "private_registry_noCIDR": "Currently, your Managed Private Registry is open to all connections. To limit access to your Managed Private Registry, it is important to define authorized IP addresses (CIDR. block). By doing this, you ensure that only people or systems you have approved can access your Registry, which enhances security and makes it easier to manage connections.",
+  "ip_restrictions_add_block": "Add an authorized CIDR. block",
+  "ip_restrictions_delete_block": "Delete an authorized CIDR. block",
+  "ip_restrictions_delete_multiple_block": "Delete multiple authorized CIDR. blocks",
+  "private_registry_bloc_cidr": "CIDR. block",
+  "private_registry_cidr_description": "Description",
+  "private_registry_cidr_authorization": "Allowed Component",
+  "private_registry_cidr_manage_title": "Manage authorized CIDR. blocks",
+  "private_registry_cidr_authorization_select": "Select a component",
+  "private_registry_cidr_validation_ipBlock": "This block must conform to the CIDR. format (e.g: 192.168.0.0/24).",
+  "private_registry_cidr_validation_authorization": "Please select at least one allowed component.",
+  "private_registry_cidr_submit_success": "Your CIDR. block has been added to the authorized CIDR. blocks.",
+  "private_registry_cidr_delete_success": "Your CIDR. block has been deleted.",
+  "private_registry_cidr_delete_all_success": "All selected CIDR. blocks were successfully deleted.",
+  "private_registry_cidr_help_authorized_component": "<p>There are 2 software components for managing blocks<br/> CIDR.:</p><p style='display: block;'>Management: allows access to UI and <br/> the Harbor API.</p><p style='display: block;'>Registry: allows different clients/CLIs to authorize <br/>  access to the backend registry (Docker, Helm, etc.)</p>",
+  "private_registry_cidr_already_exist": "The IP/CIDR. already exists in the list."
+}
