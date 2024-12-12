@@ -9,6 +9,7 @@ import component from './component';
 import datacenterName from '../../component/datacenter-name/module';
 import addNodes from './add-nodes';
 import poweronNode from './poweron-node';
+import poweroffNode from './poweroff-node';
 
 const moduleName = 'ovhManagerNutanixAllNodes';
 
@@ -21,6 +22,7 @@ angular
     datacenterName,
     addNodes,
     poweronNode,
+    poweroffNode,
   ])
   .config(routing)
   .component('nutanixAllNodes', component)
