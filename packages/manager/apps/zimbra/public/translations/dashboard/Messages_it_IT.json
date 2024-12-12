@@ -59,5 +59,6 @@
   "zimbra_dashboard_redirections_add": "Crea un reindirizzamento",
   "zimbra_dashboard_auto_replies_add": "Crea una risposta automatica",
   "zimbra_dashboard_email_accounts_order": "Ordina account email",
-  "zimbra_dashboard_tile_status_ongoingTask_none": "Nessun task in corso"
+  "zimbra_dashboard_tile_status_ongoingTask_none": "Nessun task in corso",
+  "zimbra_dashboard_domains_verify": "Verifica"
 }

@@ -96,6 +96,15 @@ export const Routes: any = [
                   ),
                 ),
               },
+              {
+                path: 'verify',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/dashboard/Domains/VerifyDomain.page'),
+                ),
+                handle: {
+                  isOverridePage: true,
+                },
+              },
             ],
           },
           {
