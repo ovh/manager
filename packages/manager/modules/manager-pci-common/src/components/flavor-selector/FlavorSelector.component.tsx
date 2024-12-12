@@ -1,12 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import clsx from 'clsx';
-import { OsdsSpinner, OsdsText } from '@ovhcloud/ods-components/react';
-import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
 import { TabsComponent } from '@ovh-ux/manager-react-components';
+import { OdsSpinner, OdsText } from '@ovhcloud/ods-components/react';
+import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import {
   KUBE_FLAVOR_CATEGORIES,
   useMergedKubeFlavors,
@@ -34,7 +30,7 @@ export function FlavorSelector({
   const [selectedFlavor, setSelectedFlavor] = useState(null);
 
   if (isPending) {
-    return <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />;
+    return <OdsSpinner size={ODS_SPINNER_SIZE.md} />;
   }
 
   return (
@@ -42,14 +38,12 @@ export function FlavorSelector({
       items={KUBE_FLAVOR_CATEGORIES}
       itemKey={({ category }) => category}
       titleElement={(category, isSelected) => (
-        <OsdsText
-          breakSpaces={false}
-          size={ODS_THEME_TYPOGRAPHY_SIZE._600}
-          color={
-            isSelected
-              ? ODS_THEME_COLOR_INTENT.text
-              : ODS_THEME_COLOR_INTENT.primary
-          }
+        <OdsText
+          preset="span"
+          className={clsx(
+            'text-[--ods-color-primary-500] text-[18px]',
+            isSelected && 'text-[--ods-color-heading]',
+          )}
         >
           <span
             className={clsx(
@@ -59,7 +53,7 @@ export function FlavorSelector({
           >
             {category.title}
           </span>
-        </OsdsText>
+        </OdsText>
       )}
       contentElement={(category) => (
         <div className="grid gap-6 p-6 grid-cols-1 md:grid-cols-2 xl:grid-cols-4">
