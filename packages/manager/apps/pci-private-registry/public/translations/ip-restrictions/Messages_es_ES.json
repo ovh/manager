@@ -14,5 +14,7 @@
   "private_registry_cidr_delete_success": "El bloque CIDR se ha eliminado correctamente.",
   "private_registry_cidr_delete_all_success": "Todos los bloques CIDR seleccionados se han eliminado correctamente.",
   "private_registry_cidr_help_authorized_component": "<p>Hay 2 componentes de software para administrar bloques<br/> CIDR:</p><p style='display: block;'>Management: permite autorizar el acceso a UI y a <br/> la API Harbor.</p><p style='display: block;'>Registry: permite a los diferentes clientes / CLI autorizar <br/>  acceso al backend Registry (Docker, Helm...)</p>",
-  "private_registry_cidr_already_exist": "La IP/CIDR ya existe en la lista."
+  "private_registry_cidr_already_exist": "La IP/CIDR ya existe en la lista.",
+  "private_registry_cidr_delete_modal_subtitle": "¿Seguro que quiere eliminar el bloque CIDR?",
+  "private_registry_cidr_delete_modal_all_subtitle": "¿Seguro que quiere eliminar todos los bloques CIDR seleccionados?"
 }
