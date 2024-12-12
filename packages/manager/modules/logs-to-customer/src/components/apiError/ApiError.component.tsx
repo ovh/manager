@@ -13,15 +13,16 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 export interface IError {
+  testId: string;
   error: Error;
   onRetry: () => void;
 }
 
-export default function ApiError({ error, onRetry }: IError) {
+export default function ApiError({ error, onRetry, testId }: Readonly<IError>) {
   const { t } = useTranslation('error');
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4" data-testid={testId}>
       <OsdsMessage
         color={ODS_THEME_COLOR_INTENT.error}
         type={ODS_MESSAGE_TYPE.error}
