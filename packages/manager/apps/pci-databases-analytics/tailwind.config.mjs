@@ -1,5 +1,7 @@
+import tailwindcssAnimate from 'tailwindcss-animate';
+
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     container: {
@@ -300,5 +302,5 @@ module.exports = {
     },
   },
   // eslint-disable-next-line global-require
-  plugins: [require('tailwindcss-animate')],
+  plugins: [tailwindcssAnimate],
 };
