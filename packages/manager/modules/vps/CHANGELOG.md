@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.44.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.43.4...@ovh-ux/manager-vps@2.44.0) (2024-12-11)
+
+
+### Features
+
+* **vps:** move metrics to mimir ([#14240](https://github.com/ovh/manager/issues/14240)) ([7b725a1](https://github.com/ovh/manager/commit/7b725a1e7e15f4e577d12bfc62ae1965befecb0f))
+
+
+
+
+
 ## [2.43.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.43.3...@ovh-ux/manager-vps@2.43.4) (2024-12-11)
 
 
