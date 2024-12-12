@@ -210,7 +210,7 @@
   "telecom_pack_migration_ont_shipping_contact": "Contacto de entrega",
   "telecom_pack_migration_ont_shipping_confirm": "Confirmar este contacto de entrega",
   "telecom_pack_migration_ont_shipping_addresses_error": "Ocorreu um erro aquando do carregamento dos seus contactos. {{error}}",
-  "telecom_pack_migration_confirm_temporary_pack_creation_line_1": "Durante a transição para a sua nova oferta, será criado um pack temporário para assegurar a continuidade do serviço",
+  "telecom_pack_migration_confirm_temporary_pack_creation_line_1": "Durante a transição para a sua nova oferta, será criado um pack temporário para assegurar a continuidade do serviço.",
   "telecom_pack_migration_confirm_temporary_pack_creation_line_2": "Este pack será automaticamente eliminado uma vez finalizada a encomenda de Fibra.",
   "telecom_pack_migration_confirm_temporary_pack_creation_line_3": "Não é necessária nenhuma ação de modificação ou de eliminação da sua parte : a passagem para o seu acesso Fibra será efetuada de forma totalmente automatizada."
 }
