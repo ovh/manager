@@ -7,9 +7,12 @@ describe('LogsToCustomer module', () => {
   it('should display an error if /log/kind api is KO', async () => {
     await renderTest({ isLogKindsKO: true });
 
-    await waitFor(() => expect(screen.getByText('error_title')).toBeDefined(), {
-      timeout: 10_000,
-    });
+    await waitFor(
+      () => expect(screen.getByTestId('logKinds-error')).toBeVisible(),
+      {
+        timeout: 10_000,
+      },
+    );
   });
 
   it('should render a loading state when the api request is pending', async () => {
