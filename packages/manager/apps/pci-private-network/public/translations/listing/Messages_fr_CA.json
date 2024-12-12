@@ -4,7 +4,7 @@
   "pci_projects_project_network_private_create": "Créer un réseau privé",
   "pci_projects_project_network_private_name": "Nom",
   "pci_projects_project_network_private_vlan_id": "VLAN ID",
-  "pci_projects_project_network_private_region": "Région",
+  "pci_projects_project_network_private_region": "Localisation",
   "pci_projects_project_network_private_gateway": "Passerelle",
   "pci_projects_project_network_private_dhcp_active": "actif",
   "pci_projects_project_network_private_dhcp_disabled": "désactivé",
@@ -19,5 +19,9 @@
   "pci_projects_project_network_private_delete_cancel": "Annuler",
   "pci_projects_project_network_private_delete_confirmation": "Souhaitez-vous réellement supprimer le réseau privé {{name}} ?",
   "pci_projects_project_network_private_delete_success": "Le réseau privé {{ name }} est en cours de suppression",
-  "pci_projects_project_network_private_delete_error": "Une erreur est survenue lors de la suppression du réseau privé {{ message }}"
+  "pci_projects_project_network_private_delete_error": "Une erreur est survenue lors de la suppression du réseau privé {{ message }}",
+  "pci_projects_project_network_private_back_to_list": "Voir tous les réseaux privés",
+  "pci_projects_project_network_private_subnet_create": "Créer un sous-réseau",
+  "pci_projects_project_network_private_ip_version": "IP Version",
+  "pci_projects_project_network_private_action": "Actions"
 }

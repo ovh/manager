@@ -90,5 +90,7 @@
   "common_dual_list_target_search": "Buscar en el contenido de destino",
   "common_file_dropAreaSingle": "Arrastre y suelte un archivo o",
   "common_file_notSingleError": "Solo es posible añadir un archivo",
-  "common_find_out_more_here": "Más información aquí"
+  "common_find_out_more_here": "Más información aquí",
+  "common_cancel_button_label": "Cancelar",
+  "common_click_here_btn": "haga clic aquí"
 }
