@@ -1,9 +1,10 @@
 import { vi, it, describe, expect } from 'vitest';
-import { render } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 import { Node } from '../navigation-tree/node';
 import { PublicCloudPanel, PublicCloudPanelProps } from './PublicCloudPanel';
 import { mockShell } from '../mocks/sidebarMocks';
 import { PciProject } from '../ProjectSelector/PciProject';
+import { Props as ProjectSelectorProps } from '../ProjectSelector/ProjectSelector';
 import { pciNode } from '../navigation-tree/services/publicCloud';
 
 const node: Node = {
@@ -53,22 +54,24 @@ vi.mock('@/context', () => ({
 
 vi.mock('@tanstack/react-query', () => ({
   useQuery: ({ queryKey }: { queryKey: Array<string> }) => {
-    return queryKey.includes('pci-projects')
-      ? {
-          data: () => pciProjects,
-          isError: () => false,
-          isSuccess: () => true,
-          refetch: () => {},
-        }
-      : {
-          data: () => pciProjects[0],
-          status: () => 'success',
-        };
+    return {
+      data: pciProjects,
+      isError: false,
+      isSuccess: true,
+      refetch: () => {},
+    };
   },
 }));
 
+vi.mock('@/container/nav-reshuffle/data/hooks/defaultPublicCloudProject/useDefaultPublicCloudProject', () => ({
+  useDefaultPublicCloudProject: () => ({
+    data: pciProjects[1],
+    status: 'success',
+  }),
+}));
+
 const location = {
-  pathname: '/pci/projects/12345/rancher',
+  pathname: '/public-cloud/pci/projects',
   search: '',
 };
 
@@ -77,12 +80,29 @@ vi.mock('react-router-dom', () => ({
 }));
 
 vi.mock('../ProjectSelector/ProjectSelector', () => ({
-  default: () => <div data-testid="public-cloud-panel-project-selector" />,
+  default: ({ selectedProject }: ProjectSelectorProps) => {
+    return (<div data-testid="public-cloud-panel-project-selector">{selectedProject?.project_id}</div>);
+  },
 }));
 
 describe('PublicCloudPanel.component', () => {
   it('should render', () => {
     const { queryByTestId } = renderPublicCloudPanelComponent(props);
     expect(queryByTestId('public-cloud-panel')).not.toBeNull();
+  });
+
+  it('should display default project id in project selector when url does not contain an id', () => {
+    const { queryByTestId } = renderPublicCloudPanelComponent(props);
+    const projectSelector = queryByTestId('public-cloud-panel-project-selector');
+    expect(projectSelector).not.toBeNull();
+    expect(projectSelector.innerHTML).toBe('54321');
+  });
+
+  it('should display project id in project selector when url contains an id', () => {
+    location.pathname = '/public-cloud/pci/projects/12345/rancher';
+    const { queryByTestId } = renderPublicCloudPanelComponent(props);
+    const projectSelector = queryByTestId('public-cloud-panel-project-selector');
+    expect(projectSelector).not.toBeNull();
+    expect(projectSelector.innerHTML).toBe('12345');
   });
 });
