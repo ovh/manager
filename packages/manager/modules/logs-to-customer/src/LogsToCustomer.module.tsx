@@ -67,6 +67,7 @@ export default function LogsToCustomerModule({
   if (error)
     return (
       <ApiError
+        testId="logKinds-error"
         error={error}
         onRetry={() =>
           queryClient.refetchQueries({
@@ -78,6 +79,9 @@ export default function LogsToCustomerModule({
 
   if (logKinds.length === 0)
     return <Description>{t('log_kind_empty_state_description')}</Description>;
+
+  if (!currentLogKind)
+    return <Description>{t('log_kind_no_kind_selected')}</Description>;
 
   return (
     <div className="flex flex-col gap-8">

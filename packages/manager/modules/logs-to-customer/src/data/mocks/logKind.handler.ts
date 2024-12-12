@@ -1,9 +1,8 @@
 import { Handler } from '../../../../../../../playwright-helpers';
-import { testLogUrl } from '../../test-utils/test.constant';
+import { apiUrlMocks } from '../../test-utils/test.constant';
 import { logKindsMock } from './logKind.mock';
 
 export type GetLogKindsMocksParams = {
-  baseUrl?: string;
   isLogKindsKO?: boolean;
   nbLogKind?: number;
 };
@@ -15,7 +14,7 @@ export const getLogKindsMocks = ({
   nbLogKind = logKindsMock.length,
 }: GetLogKindsMocksParams): Handler[] => [
   {
-    url: testLogUrl,
+    url: apiUrlMocks.logKind,
     response: isLogKindsKO
       ? { message: LogKindsError }
       : logKindsMock.slice(0, nbLogKind),
