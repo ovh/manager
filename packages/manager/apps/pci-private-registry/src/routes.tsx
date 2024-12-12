@@ -1,4 +1,4 @@
-export const lazyRouteConfig = (importFn: CallableFunction) => ({
+const lazyRouteConfig = (importFn: CallableFunction) => ({
   lazy: async () => {
     const { default: moduleDefault, ...moduleExports } = await importFn();
 
@@ -8,13 +8,10 @@ export const lazyRouteConfig = (importFn: CallableFunction) => ({
     };
   },
 });
+
 export interface RouteHandle {
   tracking?: string;
 }
-
-const ROUTE_PATHS = {
-  root: '/pci/projects/:projectId/private-registry',
-};
 
 export default [
   {
@@ -23,7 +20,7 @@ export default [
   },
   {
     id: 'root',
-    path: ROUTE_PATHS.root,
+    path: '/pci/projects/:projectId/private-registry',
     ...lazyRouteConfig(() => import('@/pages/Layout')),
     children: [
       {
@@ -32,26 +29,17 @@ export default [
           tracking: 'registries',
         },
         ...lazyRouteConfig(() => import('@/pages/list/List.page')),
-      },
-      {
-        path: ':registryId',
         children: [
           {
-            path: 'api-url',
+            path: ':registryId/api-url',
             handle: {
               tracking: 'api-url',
             },
             ...lazyRouteConfig(() => import('@/pages/api-url/APIUrl.page')),
           },
+
           {
-            path: 'manage-cidr',
-            handle: {
-              tracking: 'CIDR',
-            },
-            ...lazyRouteConfig(() => import('@/pages/CIDR/ManageCIDR.page')),
-          },
-          {
-            path: 'credentials',
+            path: ':registryId/credentials',
             handle: {
               tracking: 'credentials',
             },
@@ -59,6 +47,7 @@ export default [
               import('@/pages/credentials/Credentials.page'),
             ),
           },
+
           {
             id: 'delete',
             path: 'delete',
@@ -77,6 +66,10 @@ export default [
           // tracking: 'registries',
         },
         ...lazyRouteConfig(() => import('@/pages/create/Create.page')),
+      },
+      {
+        path: ':registryId/manage-cidr',
+        ...lazyRouteConfig(() => import('@/pages/CIDR/ManageCIDR.page')),
       },
       {
         id: 'onboarding',
