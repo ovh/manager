@@ -14,17 +14,14 @@ interface NotebooksProps {
 export const Loader = ({ params }: NotebooksProps) => {
   // check if we have a correct category
   const { projectId } = params;
-
   return queryClient
     .fetchQuery({
       queryKey: [projectId, 'auth'],
       queryFn: () => getAuthorization({ projectId }),
     })
     .then((auth) => {
-      if (!auth) {
-        return redirect(
-          `/pci/projects/${projectId}/ai/notebooks/authorization`,
-        );
+      if (!auth.authorized) {
+        return redirect(`/pci/projects/${projectId}/ai/notebooks/auth`);
       }
       return queryClient
         .fetchQuery({

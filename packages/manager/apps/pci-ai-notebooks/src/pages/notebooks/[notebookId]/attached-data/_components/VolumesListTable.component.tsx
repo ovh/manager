@@ -22,11 +22,7 @@ export default function VolumesList({ volumes }: Readonly<VolumesListProps>) {
     },
   });
 
-  return (
-    <>
-      <DataTable columns={columns} data={volumes} pageSize={25} />
-    </>
-  );
+  return <DataTable columns={columns} data={volumes} pageSize={25} />;
 }
 
 VolumesList.Skeleton = function VolumesListSkeleton() {

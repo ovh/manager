@@ -8,7 +8,6 @@ import { useUserActivityContext } from '@/contexts/UserActivityContext';
 import { useGetNotebooks } from '@/hooks/api/ai/notebook/useGetNotebooks.hook';
 import Guides from '@/components/guides/Guides.component';
 import NotebooksList from './_components/NotebooksListTable.component';
-import Onboarding from './_components/Onboarding.component';
 
 const Notebooks = () => {
   const { t } = useTranslation('pci-ai-notebooks/notebooks');
@@ -19,9 +18,6 @@ const Notebooks = () => {
   });
 
   if (notebooksQuery.isLoading) return <NotebooksList.Skeleton />;
-  if (notebooksQuery.isSuccess && notebooksQuery.data.length === 0) {
-    return <Onboarding />;
-  }
   return (
     <>
       <div

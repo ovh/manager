@@ -18,11 +18,7 @@ export default function BackupsList({ backups }: Readonly<BackupsListProps>) {
     },
   });
 
-  return (
-    <>
-      <DataTable columns={columns} data={backups} pageSize={25} />
-    </>
-  );
+  return <DataTable columns={columns} data={backups} pageSize={25} />;
 }
 
 BackupsList.Skeleton = function BackupsListSkeleton() {

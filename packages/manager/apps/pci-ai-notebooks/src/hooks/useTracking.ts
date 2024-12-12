@@ -7,7 +7,6 @@ import {
   PCI_LEVEL2,
 } from '@/configuration/tracking.constants';
 import { PlanCode } from '@/types/cloud/Project';
-import { useGetNotebook } from './api/ai/notebook/useGetNotebook.hook';
 
 // Set the project mode, needed to track discovery actions
 function useProjectModeTracking() {
@@ -63,30 +62,16 @@ export function useTrackPageAuto() {
   // Last match is the current route, we need it
   // to get the tracking key associated with the route
   const match = matches[matches.length - 1];
-  const notebookQuery = useGetNotebook(
-    match.params.projectId,
-    match.params.notebookId,
-    {
-      enabled: !!match.params.notebookId,
-    },
-  );
-  const notebook = notebookQuery.data;
   const hasTrackedRef = useRef(false);
 
   useEffect(() => {
     if (hasTrackedRef.current) return;
-    if (params.notebookId && !notebook) return;
     const prefix = APP_TRACKING_PREFIX;
     const { id } = match;
     const routerTrackingKey = (match?.handle as { tracking: string })?.tracking;
     const suffix =
       routerTrackingKey || id || location.pathname.split('/').pop();
     let injectedTrackingKey = `${prefix}::${suffix}`;
-
-    // inject params in key. For exemple replace {category} by params.category if it exists
-    injectedTrackingKey = injectedTrackingKey.replace(/{(\w+)}/g, (_, key) => {
-      return params[key] || '';
-    });
 
     // replace . by ::
     injectedTrackingKey = injectedTrackingKey.replaceAll('.', '::');
