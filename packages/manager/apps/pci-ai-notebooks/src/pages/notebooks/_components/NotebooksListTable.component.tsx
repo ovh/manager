@@ -24,11 +24,7 @@ export default function NotebooksList({ notebooks }: NotebooksListProps) {
     },
   });
 
-  return (
-    <>
-      <DataTable columns={columns} data={notebooks} pageSize={25} />
-    </>
-  );
+  return <DataTable columns={columns} data={notebooks} pageSize={25} />;
 }
 
 NotebooksList.Skeleton = function NotebooksListSkeleton() {

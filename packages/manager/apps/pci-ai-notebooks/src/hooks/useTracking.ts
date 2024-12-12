@@ -2,7 +2,10 @@ import { useLocation, useMatches, useParams } from 'react-router-dom';
 import { useContext, useEffect, useRef } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import usePciProject from './api/project/usePciProject.hook';
-import { PCI_LEVEL2 } from '@/configuration/tracking.constants';
+import {
+  APP_TRACKING_PREFIX,
+  PCI_LEVEL2,
+} from '@/configuration/tracking.constants';
 import { PlanCode } from '@/types/cloud/Project';
 import { useGetNotebook } from './api/ai/notebook/useGetNotebook.hook';
 
@@ -73,7 +76,7 @@ export function useTrackPageAuto() {
   useEffect(() => {
     if (hasTrackedRef.current) return;
     if (params.notebookId && !notebook) return;
-    const prefix = 'PublicCloud::ai::notebooks';
+    const prefix = APP_TRACKING_PREFIX;
     const { id } = match;
     const routerTrackingKey = (match?.handle as { tracking: string })?.tracking;
     const suffix =
@@ -85,32 +88,14 @@ export function useTrackPageAuto() {
       return params[key] || '';
     });
 
-    // Inject service data into the key if available
-    if (notebook) {
-      injectedTrackingKey = injectedTrackingKey.replace(
-        /{service\.(\w+(\.\w+)*)}/g,
-        (_, path) => {
-          // Split the path by "." and traverse the `service` object
-          const value = path.split('.').reduce((acc: unknown, key: string) => {
-            if (typeof acc === 'object' && acc !== null && key in acc) {
-              return (acc as Record<string, unknown>)[key];
-            }
-            return undefined;
-          }, notebook);
-          return typeof value === 'string' ? value : ''; // Ensure only strings are returned
-        },
-      );
-    }
-
     // replace . by ::
     injectedTrackingKey = injectedTrackingKey.replaceAll('.', '::');
-    // console.log(`[Tracking] ${injectedTrackingKey}`);
     trackPage({
       name: injectedTrackingKey,
       level2: PCI_LEVEL2,
     });
     hasTrackedRef.current = true;
-  }, [location.pathname, params.serviceId, notebook, notebookQuery.isLoading]);
+  }, [location.pathname, params.serviceId]);
 
   useEffect(() => {
     hasTrackedRef.current = false;

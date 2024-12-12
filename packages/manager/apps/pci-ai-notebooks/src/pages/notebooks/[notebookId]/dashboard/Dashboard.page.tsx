@@ -147,30 +147,11 @@ const Dashboard = () => {
           </CardHeader>
           <CardContent>
             {command && (
-              <CliCodeBlock
-                title="Vous pouvez créer le même notebook en utilisant ces lignes de commande dans votre ovhai CLI."
-                code={command.command}
-              />
+              <CliCodeBlock title={t('cliCodeTitle')} code={command.command} />
             )}
           </CardContent>
         </Card>
       </div>
-      <Card>
-        <CardHeader>
-          <h4>
-            <TerminalSquare className="size-4 inline mr-2" />
-            <span>CLI</span>
-          </h4>
-        </CardHeader>
-        <CardContent>
-          {command && (
-            <CliCodeBlock
-              title="Vous pouvez créer le même notebook en utilisant ces lignes de commande dans votre ovhai CLI."
-              code={command.command}
-            />
-          )}
-        </CardContent>
-      </Card>
       <Outlet />
     </>
   );

@@ -103,15 +103,6 @@ export default [
                   ),
                 ),
               },
-              {
-                path: 'add-label',
-                id: 'notebook.dashboard.add-label',
-                ...lazyRouteConfig(() =>
-                  import(
-                    '@/pages/notebooks/[notebookId]/dashboard/addLabel/AddLabel.modal'
-                  ),
-                ),
-              },
             ],
           },
           {
