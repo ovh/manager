@@ -709,7 +709,7 @@
   "emailpro_tab_domain_diagnostic_dkim_activation_no_ovhcloud": "Da Ihre Domain nicht bei OVHcloud gehostet wird, können wir sie nicht automatisch konfigurieren. Sie können DKIM mithilfe dieser <a href=\"{{url}}\" target=\"_blank\">Anleitung</a> konfigurieren.",
   "emailpro_tab_domain_diagnostic_dkim_configurate_no_ovhcloud": "Konfigurieren",
   "emailpro_tab_domain_diagnostic_dkim_name": "Name",
-  "emailpro_tab_domain_diagnostic_dkim_target": "Ziel",
+  "emailpro_tab_domain_diagnostic_dkim_target": "Ziel {{ value }}",
   "emailpro_tab_domain_diagnostic_dkim_activation_ovhcloud": "Wir richten DKIM für Sie ein. Die vollständige Aktivierung kann 24 Stunden dauern.",
   "emailpro_tab_domain_diagnostic_dkim_activation_success": "Die DKIM-Konfiguration wird ausgeführt. Beachten Sie, dass es bis zu 24 Stunden dauern kann, bis die Änderung übernommen wird.",
   "emailpro_tab_domain_diagnostic_dkim_error": "Bei der DKIM-Konfiguration ist ein Fehler aufgetreten.<br />{{message}}",
@@ -905,5 +905,11 @@
   "email_tab_modal_delete_redirection_accounts": "<strong>{0}</strong> auf <strong>{1}</strong>",
   "emails_common_continue_question": "Möchten Sie fortfahren? ",
   "emails_common_account_name_conditions": "Achtung, der Name des Accounts muss folgende Bedingungen erfüllen: <br/>- Mindestens {0} Zeichen<br/>- Höchstens {1} Zeichen<br/>- Keine Leerzeichen<br/>- Keine Zeichen mit Akzent oder Umlaute<br/>- Keine Sonderzeichen außer . und - und _.",
-  "emailpro-mxplan_tab_domain_no_domains": "Keine Ergebnisse gefunden"
+  "emailpro-mxplan_tab_domain_no_domains": "Keine Ergebnisse gefunden",
+  "emailpro_tab_domain_diagnostic_dkim_cname_field": "CNAME-Feld",
+  "emailpro_tab_domain_diagnostic_dkim_id_generation_no_ovhcloud_doing": "Ihre Zugangsdaten werden erstellt, bitte gedulden Sie sich einen Augenblick …",
+  "emailpro_tab_domain_diagnostic_dkim_id_generation_no_ovhcloud_done": "Die Erstellung Ihrer Zugangsdaten ist abgeschlossen. Die Konfigurationsinformationen finden Sie im nächsten Schritt.",
+  "emailpro_tab_domain_diagnostic_dkim_mxplan_no_ovhcloud": "Warten Sie nach der Änderung einige Minuten und klicken Sie auf „Aktivieren“.",
+  "emailpro_tab_domain_diagnostic_dkim_subdomain": "Subdomain {{ value }}",
+  "emailpro_tab_domain_diagnostic_dkim_cname": "CNAME {{ value }}"
 }

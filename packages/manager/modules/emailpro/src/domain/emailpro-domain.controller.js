@@ -1,7 +1,11 @@
 import angular from 'angular';
 import set from 'lodash/set';
 
-import { DKIM_STATUS, DKIM_STATUS_CLASS } from './emailpro-domain.constants';
+import {
+  DKIM_STATUS,
+  DKIM_STATUS_CLASS,
+  DKIM_STATUS_CLASS_MXPLAN,
+} from './emailpro-domain.constants';
 
 export default /* @ngInject */ (
   $scope,
@@ -17,6 +21,7 @@ export default /* @ngInject */ (
   $scope.stateOk = EmailPro.stateOk;
   $scope.DKIM_STATUS = DKIM_STATUS;
   $scope.DKIM_STATUS_CLASS = DKIM_STATUS_CLASS;
+  $scope.DKIM_STATUS_CLASS_MXPLAN = DKIM_STATUS_CLASS_MXPLAN;
 
   const init = function init() {
     $scope.loading = false;
@@ -137,6 +142,27 @@ export default /* @ngInject */ (
       });
     }
   }
+
+  $scope.getDkimColouredChipClass = function getDkimColouredChipClass(
+    exchange,
+    domain,
+  ) {
+    return exchange.isMXPlan
+      ? DKIM_STATUS_CLASS_MXPLAN[$scope.getDkimForMxPlan(domain)]
+      : DKIM_STATUS_CLASS[domain.dkimDiag.state];
+  };
+
+  $scope.getDkimForMxPlan = function getDkimForMxPlan(domain) {
+    if (domain.dkim.status !== DKIM_STATUS.DISABLED) {
+      return domain.dkim.status;
+    }
+    const otherStatusThanSet =
+      domain.dkim.selectors.filter((selector) => selector.status !== 'set')
+        .length > 0;
+    return otherStatusThanSet
+      ? DKIM_STATUS.DISABLED_NO_SET
+      : DKIM_STATUS.DISABLED;
+  };
 
   $scope.getDomains = function getDomains(count, offset) {
     $scope.loading = true;
