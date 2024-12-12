@@ -8,6 +8,8 @@ export type GetVrackMocksParams = {
   nbVrack?: number;
   dissociateKo?: boolean;
   vrackTaskKo?: boolean;
+  getVrackKo?: boolean;
+  getVrackEligibleServicesKo?: boolean;
 };
 
 export const getVrackMocks = ({
@@ -16,6 +18,8 @@ export const getVrackMocks = ({
   nbVrack = 5,
   dissociateKo = false,
   vrackTaskKo = false,
+  getVrackKo = false,
+  getVrackEligibleServicesKo = false,
 }: GetVrackMocksParams): Handler[] => [
   {
     url: '/vrack/:id/task/:taskId',
@@ -37,8 +41,13 @@ export const getVrackMocks = ({
   },
   {
     url: '/vrack/:id/allowedServices',
-    response: getAllowedServicesResponse(nbEligibleVrackServices),
+    response: getVrackEligibleServicesKo
+      ? {
+          message: 'eligible services KO',
+        }
+      : getAllowedServicesResponse(nbEligibleVrackServices),
     api: 'v6',
+    status: getVrackEligibleServicesKo ? 500 : 200,
   },
   {
     url: '/vrack/:id/vrackServices',
@@ -61,7 +70,12 @@ export const getVrackMocks = ({
   },
   {
     url: '/vrack',
-    response: vrackList.slice(0, nbVrack),
+    response: getVrackKo
+      ? {
+          message: 'Get vRack KO',
+        }
+      : vrackList.slice(0, nbVrack),
     api: 'v6',
+    status: getVrackKo ? 500 : 200,
   },
 ];

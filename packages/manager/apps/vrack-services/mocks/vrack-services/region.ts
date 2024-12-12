@@ -25,3 +25,11 @@ export const getRegionMocks = ({
     api: 'v2',
   },
 ];
+
+export const getRegionFlagsMocks = (): Handler[] => [
+  {
+    url: '/flags/:country',
+    response: '',
+    baseUrl: '',
+  },
+];

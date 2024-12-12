@@ -1,5 +1,7 @@
 import { vi } from 'vitest';
+import React from 'react';
 import '@testing-library/jest-dom';
+import { NavLinkProps } from 'react-router-dom';
 
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
@@ -25,5 +27,6 @@ vi.mock('react-router-dom', async (importOriginal) => {
     useLocation: vi.fn().mockReturnValue({
       pathname: 'pathname',
     }),
+    NavLink: ({ ...params }: NavLinkProps) => <>{params.children}</>,
   };
 });
