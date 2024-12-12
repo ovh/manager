@@ -59,5 +59,6 @@
   "zimbra_dashboard_redirections_add": "Weiterleitung erstellen",
   "zimbra_dashboard_auto_replies_add": "Eine Auto-Antwort erstellen",
   "zimbra_dashboard_email_accounts_order": "E-Mail Accounts bestellen",
-  "zimbra_dashboard_tile_status_ongoingTask_none": "Keine laufenden Tasks"
+  "zimbra_dashboard_tile_status_ongoingTask_none": "Keine laufenden Tasks",
+  "zimbra_dashboard_domains_verify": "Überprüfung"
 }
