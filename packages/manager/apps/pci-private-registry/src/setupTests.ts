@@ -41,6 +41,7 @@ vi.mock('@ovh-ux/manager-react-components', async () => {
     useNotifications: vi.fn().mockReturnValue({
       addError: vi.fn(),
       addSuccess: vi.fn(),
+      addInfo: vi.fn(),
     }),
   };
 });

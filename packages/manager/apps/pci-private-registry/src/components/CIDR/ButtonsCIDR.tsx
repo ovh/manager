@@ -95,7 +95,7 @@ const Buttons = () => {
       <button
         className="button-datagrid-form cursor-pointer border-[#85d9fd] border-solid border bg-white pt-3  rounded"
         data-testid="submit-button"
-        disabled={Boolean(Object.values(formState.errors).length) || undefined}
+        disabled={Boolean(Object.values(formState.errors)?.length) || undefined}
         type={ODS_BUTTON_TYPE.submit}
         onClick={handleSubmit(onSubmit)}
       >
