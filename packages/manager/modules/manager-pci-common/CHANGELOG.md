@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@0.13.0...@ovh-ux/manager-pci-common@0.14.0) (2024-12-12)
+
+
+### Bug Fixes
+
+* **pci-common:** update image & volume types ([6b0779f](https://github.com/ovh/manager/commit/6b0779fbfa91747db755f3a07a18b3e80acfcbf6))
+
+
+### Features
+
+* **pci-billing:** add billing current usage section ([4d9d7ec](https://github.com/ovh/manager/commit/4d9d7ec55bd56abcecc85bf066c9c4e73190a5d9))
+
+
+
+
+
 # [0.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@0.12.0...@ovh-ux/manager-pci-common@0.13.0) (2024-12-09)
 
 
