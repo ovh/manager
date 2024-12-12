@@ -31,6 +31,7 @@ export default class EmailProDomainDkimAutoconfigCtrl extends DkimAutoConfigurat
 
     this.serviceType = 'emailpro';
     this.domain = $scope.currentActionData.domain;
+    this.isMXPlan = $scope.currentActionData.isMXPlan;
     this.DKIM_STATUS = DKIM_STATUS;
     this.dkimGuideLink =
       DKIM_CONFIGURATION_GUIDE[coreConfig.getUser().ovhSubsidiary] ||
@@ -43,66 +44,66 @@ export default class EmailProDomainDkimAutoconfigCtrl extends DkimAutoConfigurat
   }
 
   init() {
-    this.loading = true;
-    const {
-      dkimDiag: { state, errorCode, message },
-    } = this.domain;
-    this.dkimStatus = state;
-    if (state === DKIM_STATUS.ERROR) {
-      this.dkimErrorMessage = message;
-    }
+    if (this.isMXPlan) {
+      const {
+        dkim: { autoconfig, status, selectors },
+      } = this.domain;
+      this.dkimStatus = status;
+      this.autoconfigMXplanAvailable = autoconfig;
+      this.dkimForNoOvhCloud = !autoconfig;
+      this.dkimMXplanSelectors = selectors;
+      this.bodyText = this.getBodyText(status, this.dkimGuideLink);
+    } else {
+      this.loading = true;
+      const {
+        dkimDiag: { state, errorCode, message },
+      } = this.domain;
+      this.dkimStatus = state;
+      if (state === DKIM_STATUS.ERROR) {
+        this.dkimErrorMessage = errorCode ? message : undefined;
+      }
 
-    // Vars for DKIM configuration inside modal stepper
-    this.initializeDkimConfiguratorNoOvh();
+      // Vars for DKIM configuration inside modal stepper
+      this.initializeDkimConfiguratorNoOvh();
 
-    this.services.EmailProDomains.getDnsSettings(
-      this.services.$stateParams.productId,
-      this.domain.name,
-    )
-      .then(
-        (data) => {
-          this.domainDiag = data;
-          this.hideConfirmButton = this.hideConfirmButton();
-          this.dkimForNoOvhCloud =
-            this.dkimStatus === DKIM_STATUS.TO_CONFIGURE &&
-            !this.domainDiag.isOvhDomain;
-          this.bodyText = this.getBodyText(
-            state,
-            this.dkimGuideLink,
-            errorCode,
-          );
-          this.loading = false;
-        },
-        (failure) => {
-          this.services.$scope.resetAction();
-          this.services.$scope.setMessage(
-            this.services.$translate.instant(
-              'emailpro_tab_domain_diagnostic_add_field_failure',
-            ),
-            failure,
-          );
-        },
+      this.services.EmailProDomains.getDnsSettings(
+        this.services.$stateParams.productId,
+        this.domain.name,
       )
-      .finally(() => {
-        this.loading.step1 = false;
-      });
-  }
-
-  hideConfirmButton() {
-    return (
-      this.domainDiag.isOvhDomain &&
-      [
-        DKIM_STATUS.TO_CONFIGURE,
-        DKIM_STATUS.ACTIVE,
-        DKIM_STATUS.DISABLED,
-      ].includes(this.dkimStatus)
-    );
+        .then(
+          (data) => {
+            this.domainDiag = data;
+            this.dkimForNoOvhCloud =
+              this.dkimStatus === DKIM_STATUS.TO_CONFIGURE &&
+              !this.domainDiag.isOvhDomain;
+            this.bodyText = this.getBodyText(
+              state,
+              this.dkimGuideLink,
+              errorCode,
+            );
+            this.loading = false;
+          },
+          (failure) => {
+            this.services.$scope.resetAction();
+            this.services.$scope.setMessage(
+              this.services.$translate.instant(
+                'emailpro_tab_domain_diagnostic_add_field_failure',
+              ),
+              failure,
+            );
+          },
+        )
+        .finally(() => {
+          this.loading.step1 = false;
+        });
+    }
   }
 
   onFinishDkim() {
     switch (this.dkimStatus) {
       case DKIM_STATUS.TO_CONFIGURE:
         return this.configDkim();
+      case DKIM_STATUS.ENABLED:
       case DKIM_STATUS.ACTIVE:
         return this.deactivateDkim();
       case DKIM_STATUS.DISABLED:
@@ -116,11 +117,13 @@ export default class EmailProDomainDkimAutoconfigCtrl extends DkimAutoConfigurat
   activateDkim() {
     const dkimSelectors = this.domain.dkim;
 
-    const promise = this.services.EmailProDomains.enableDkim(
-      this.services.$stateParams.productId,
-      this.domain.name,
-      dkimSelectors[0].selectorName,
-    );
+    const promise = this.isMXPlan
+      ? this.services.EmailProDomains.enableDkimForMXplan(this.domain.name)
+      : this.services.EmailProDomains.enableDkim(
+          this.services.$stateParams.productId,
+          this.domain.name,
+          dkimSelectors[0].selectorName,
+        );
 
     this.handleDkimOperationResponse(promise);
   }
@@ -128,13 +131,15 @@ export default class EmailProDomainDkimAutoconfigCtrl extends DkimAutoConfigurat
   deactivateDkim() {
     const dkimSelectors = this.domain.dkim;
 
-    const promise = this.services.EmailProDomains.disableDkim(
-      this.services.$stateParams.productId,
-      this.domain.name,
-      dkimSelectors[0].status === 'inProduction'
-        ? dkimSelectors[0].selectorName
-        : dkimSelectors[1].selectorName,
-    );
+    const promise = this.isMXPlan
+      ? this.services.EmailProDomains.disableDkimForMXplan(this.domain.name)
+      : this.services.EmailProDomains.disableDkim(
+          this.services.$stateParams.productId,
+          this.domain.name,
+          dkimSelectors[0].status === 'inProduction'
+            ? dkimSelectors[0].selectorName
+            : dkimSelectors[1].selectorName,
+        );
     this.handleDkimOperationResponse(promise);
   }
 
@@ -142,11 +147,13 @@ export default class EmailProDomainDkimAutoconfigCtrl extends DkimAutoConfigurat
     return this.services.EmailProDomains.getDkimSelector(
       this.services.$stateParams.productId,
       this.domain.name,
-    ).catch(({ data }) => {
-      this.writeError('emailpro_tab_domain_diagnostic_dkim_error', data);
-      this.leaveDkimConfigurator();
-      return this.services.$q.reject(data);
-    });
+    )
+      .then((data) => this.services.$q.resolve(data))
+      .catch(({ data }) => {
+        this.writeError('emailpro_tab_domain_diagnostic_dkim_error', data);
+        this.leaveDkimConfigurator();
+        return this.services.$q.reject(data);
+      });
   }
 
   postDkim(selectors) {
@@ -192,9 +199,11 @@ export default class EmailProDomainDkimAutoconfigCtrl extends DkimAutoConfigurat
   getBodyText(status, url, errorCode) {
     let translationKey;
     if (status === DKIM_STATUS.TO_CONFIGURE) {
-      translationKey = this.domainDiag.isOvhDomain
-        ? 'emailpro_tab_domain_diagnostic_dkim_activation_ovhcloud'
-        : 'emailpro_tab_domain_diagnostic_dkim_activation_no_ovhcloud';
+      translationKey =
+        this.domainDiag.isOvhDomain ||
+        (this.isMXPlan && this.autoconfigMXplanAvailable)
+          ? 'emailpro_tab_domain_diagnostic_dkim_activation_ovhcloud'
+          : 'emailpro_tab_domain_diagnostic_dkim_activation_no_ovhcloud';
     } else {
       translationKey = DKIM_STATUS_TEXT[status];
     }
