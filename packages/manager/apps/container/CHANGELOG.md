@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.93.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.93.0...@ovh-ux/manager-container-app@0.93.1) (2024-12-12)
+
+
+### Bug Fixes
+
+* **container:** dont show payment modal for cb without exp date ([#14521](https://github.com/ovh/manager/issues/14521)) ([e0c5a61](https://github.com/ovh/manager/commit/e0c5a61cdc980a83e5f4b85f7052a128e4522510))
+
+
+
+
+
 # [0.93.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.92.0...@ovh-ux/manager-container-app@0.93.0) (2024-12-09)
 
 
