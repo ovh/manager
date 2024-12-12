@@ -21,16 +21,3 @@ export const getLogKindsv6 = async (logKindUrl: ApiUrls['logKind']) => {
   });
   return data;
 };
-
-/**
- * GET log kind
- */
-export const getLogKindv2 = async (
-  logKindUrl: ApiUrls['logKind'],
-  name: string,
-) => apiClient.v2.get<LogKind>(`${logKindUrl}/${name}`);
-
-export const getLogKindv6 = async (
-  logKindUrl: ApiUrls['logKind'],
-  name: string,
-) => apiClient.v6.get<LogKind>(`${logKindUrl}/${name}`);
