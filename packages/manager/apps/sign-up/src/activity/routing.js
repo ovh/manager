@@ -11,10 +11,7 @@ export const state = {
       trackError('step3', field),
   },
   atInternet: {
-    rename: /* @ngInject */ ($state) => {
-      const me = $state.transition.injector().get('me');
-      return `accountcreation-step3-${me.model.legalform}`;
-    },
+    ignore: true,
   },
 };
 
