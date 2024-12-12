@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-billing-app",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "private": true,
   "description": "OVHcloud Billing app",
   "repository": {
@@ -44,7 +44,7 @@
     "@ovh-ux/ng-ovh-sso-auth": "^4.8.1",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.1.1",
     "@ovh-ux/ng-ovh-user-pref": "2.1.1",
-    "@ovh-ux/ng-ovh-utils": "^14.4.1",
+    "@ovh-ux/ng-ovh-utils": "^14.5.0",
     "@ovh-ux/ng-q-allsettled": "^2.1.2",
     "@ovh-ux/ng-shell-tracking": "^0.6.0",
     "@ovh-ux/ng-translate-async-loader": "^2.2.1",

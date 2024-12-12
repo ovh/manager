@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-registry-app@0.2.10...@ovh-ux/manager-pci-private-registry-app@0.3.0) (2024-12-12)
+
+
+### Features
+
+* **common-api-module:** create a common-api module ([#14301](https://github.com/ovh/manager/issues/14301)) ([974ec7b](https://github.com/ovh/manager/commit/974ec7bdef0017024793a4a1e2402fdaa8771d8b))
+
+
+
+
+
 ## [0.2.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-registry-app@0.2.9...@ovh-ux/manager-pci-private-registry-app@0.2.10) (2024-12-12)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-private-registry-app

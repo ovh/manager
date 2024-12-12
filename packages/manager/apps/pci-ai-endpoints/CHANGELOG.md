@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-endpoints-app@0.1.9...@ovh-ux/manager-pci-ai-endpoints-app@0.1.10) (2024-12-12)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3541] ([ee5c8cc](https://github.com/ovh/manager/commit/ee5c8cce954309dc0fd3bf902e81e0291956e8df))
+
+
+
+
+
 ## [0.1.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-endpoints-app@0.1.8...@ovh-ux/manager-pci-ai-endpoints-app@0.1.9) (2024-12-12)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-ai-endpoints-app

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.7.0...@ovh-ux/manager-procedures-app@0.7.1) (2024-12-12)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3551] ([dd496fa](https://github.com/ovh/manager/commit/dd496fa5be674624251641833b4af80631064ec3))
+
+
+
+
+
 # [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.6.3...@ovh-ux/manager-procedures-app@0.7.0) (2024-12-09)
 
 
