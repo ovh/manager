@@ -1,4 +1,4 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import {
   DeleteConnectionPool,
   deleteConnectionPool,
@@ -12,14 +12,26 @@ interface UseDeleteConnectionPool {
 
 export function useDeleteConnectionPool({
   onError,
-  onSuccess,
+  onSuccess: customOnSuccess,
 }: UseDeleteConnectionPool) {
+  const queryClient = useQueryClient();
   const mutation = useMutation({
     mutationFn: (connectionPoolInfo: DeleteConnectionPool) => {
       return deleteConnectionPool(connectionPoolInfo);
     },
     onError,
-    onSuccess,
+    onSuccess: (_data, variables) => {
+      queryClient.invalidateQueries({
+        queryKey: [
+          variables.projectId,
+          'database',
+          variables.engine,
+          variables.serviceId,
+          'connectionPool',
+        ],
+      });
+      customOnSuccess();
+    },
   });
 
   return {

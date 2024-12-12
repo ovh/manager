@@ -1,9 +1,8 @@
 import { z } from 'zod';
 import { useTranslation } from 'react-i18next';
-import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import {
-  Dialog,
   DialogClose,
   DialogContent,
   DialogDescription,
@@ -28,7 +27,6 @@ import {
 } from '@/components/ui/form';
 
 import TagsInput from '@/components/tags-input/TagsInput.component';
-import { ModalController } from '@/hooks/useModale';
 import {
   UseAddUser,
   useAddUser,
@@ -39,36 +37,30 @@ import { useUserForm } from './formUser/useUserForm.hook';
 import RolesSelect from './formUser/RolesSelect.component';
 import { useServiceData } from '../../Service.context';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
+import RouteModal from '@/components/route-modal/RouteModal';
 
 interface AddEditUserModalProps {
-  isEdition: boolean;
   editedUser?: GenericUser;
-  users: GenericUser[];
+  existingUsers: GenericUser[];
   service: database.Service;
-  controller: ModalController;
   onSuccess?: (user?: GenericUser) => void;
   onError?: (error: Error) => void;
 }
 const AddEditUserModal = ({
-  isEdition,
   editedUser,
-  users,
+  existingUsers,
   service,
-  controller,
-  onSuccess,
-  onError,
 }: AddEditUserModalProps) => {
+  const navigate = useNavigate();
   const { projectId } = useServiceData();
 
   const { form, schema } = useUserForm({
-    existingUsers: users,
+    existingUsers,
     service,
     editedUser,
   });
 
-  useEffect(() => {
-    if (!controller.open) form.reset();
-  }, [controller.open]);
+  const isEdition = !!editedUser?.id;
 
   const { t } = useTranslation(
     'pci-databases-analytics/services/service/users',
@@ -83,9 +75,6 @@ const AddEditUserModal = ({
         variant: 'destructive',
         description: getCdbApiErrorMessage(err),
       });
-      if (onError) {
-        onError(err);
-      }
     },
     onSuccess: (user) => {
       toast.toast({
@@ -94,9 +83,7 @@ const AddEditUserModal = ({
           name: user.username,
         }),
       });
-      if (onSuccess) {
-        onSuccess(user);
-      }
+      navigate('../');
     },
   };
 
@@ -133,7 +120,7 @@ const AddEditUserModal = ({
   });
 
   return (
-    <Dialog {...controller}>
+    <RouteModal isLoading={!existingUsers}>
       <DialogContent className="sm:max-w-xl">
         <DialogHeader>
           <DialogTitle data-testid="add-edit-user-modal">
@@ -341,7 +328,7 @@ const AddEditUserModal = ({
           </form>
         </Form>
       </DialogContent>
-    </Dialog>
+    </RouteModal>
   );
 };
 

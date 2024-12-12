@@ -17,6 +17,7 @@ import * as namespaceApi from '@/data/api/database/namespace.api';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedService as mockedServiceOrig } from '@/__tests__/helpers/mocks/services';
 import { mockedNamespaces } from '@/__tests__/helpers/mocks/namespaces';
+import { CdbError } from '@/data/api/database';
 
 // Override mock to add capabilities
 const mockedService = {
@@ -36,11 +37,19 @@ const ResizeObserverMock = vi.fn(() => ({
   unobserve: vi.fn(),
   disconnect: vi.fn(),
 }));
+const mockedUsedNavigate = vi.fn();
 
 describe('Namespaces page', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
     // Mock necessary hooks and dependencies
+    vi.mock('react-router-dom', async () => {
+      const mod = await vi.importActual('react-router-dom');
+      return {
+        ...mod,
+        useNavigate: () => mockedUsedNavigate,
+      };
+    });
     vi.mock('react-i18next', () => ({
       useTranslation: () => ({
         t: (key: string) => key,
@@ -113,7 +122,7 @@ describe('Namespaces page', () => {
         },
       },
       category: 'operational',
-      serviceQuery: {} as UseQueryResult<database.Service, Error>,
+      serviceQuery: {} as UseQueryResult<database.Service, CdbError>,
     });
     render(<Namespaces />, { wrapper: RouterWithQueryClientWrapper });
     expect(screen.queryByTestId('namespaces-add-button')).toBeInTheDocument();
@@ -128,7 +137,7 @@ describe('Namespaces page', () => {
         },
       },
       category: 'operational',
-      serviceQuery: {} as UseQueryResult<database.Service, Error>,
+      serviceQuery: {} as UseQueryResult<database.Service, CdbError>,
     });
     render(<Namespaces />, { wrapper: RouterWithQueryClientWrapper });
     expect(screen.queryByTestId('namespaces-add-button')).toBeNull();
@@ -145,7 +154,7 @@ describe('Namespaces page', () => {
         },
       },
       category: 'operational',
-      serviceQuery: {} as UseQueryResult<database.Service, Error>,
+      serviceQuery: {} as UseQueryResult<database.Service, CdbError>,
     });
     render(<Namespaces />, { wrapper: RouterWithQueryClientWrapper });
     const addButton = screen.queryByTestId('namespaces-add-button');
@@ -197,140 +206,26 @@ describe('Open modals', () => {
     vi.clearAllMocks();
   });
 
-  it('open and close add namespaces modal', async () => {
-    act(() => {
-      fireEvent.click(screen.getByTestId('namespaces-add-button'));
-    });
-    screen.debug();
-    await waitFor(() => {
-      expect(
-        screen.getByTestId('add-edit-namespaces-modal'),
-      ).toBeInTheDocument();
-    });
-    act(() => {
-      fireEvent.click(screen.getByTestId('add-edit-namespaces-cancel-button'));
-    });
-    await waitFor(() => {
-      expect(
-        screen.queryByTestId('add-edit-namespaces-modal'),
-      ).not.toBeInTheDocument();
-    });
-  });
-  it('refetch data on add namespaces success', async () => {
+  it('open add namespaces modal', async () => {
     act(() => {
       fireEvent.click(screen.getByTestId('namespaces-add-button'));
     });
     await waitFor(() => {
-      expect(
-        screen.getByTestId('add-edit-namespaces-modal'),
-      ).toBeInTheDocument();
-    });
-    act(() => {
-      fireEvent.change(screen.getByTestId('add-edit-namespaces-name-input'), {
-        target: {
-          value: 'newNamespaces',
-        },
-      });
-      fireEvent.change(
-        screen.getByTestId('add-edit-namespaces-resolution-input'),
-        {
-          target: {
-            value: '1D',
-          },
-        },
-      );
-      fireEvent.change(
-        screen.getByTestId('add-edit-namespaces-retention-input'),
-        {
-          target: {
-            value: '48H',
-          },
-        },
-      );
-      fireEvent.click(screen.getByTestId('add-edit-namespaces-submit-button'));
-    });
-    await waitFor(() => {
-      expect(
-        screen.queryByTestId('add-edit-namespaces-modal'),
-      ).not.toBeInTheDocument();
-      expect(namespaceApi.addNamespace).toHaveBeenCalled();
-      expect(namespaceApi.getNamespaces).toHaveBeenCalled();
+      expect(mockedUsedNavigate).toHaveBeenCalledWith('./add');
     });
   });
 
   it('shows edit namespaces modal', async () => {
     await openButtonInMenu('namespaces-action-edit-button');
     await waitFor(() => {
-      expect(
-        screen.getByTestId('add-edit-namespaces-modal'),
-      ).toBeInTheDocument();
-    });
-  });
-
-  it('refetch data on edit namespaces success', async () => {
-    await openButtonInMenu('namespaces-action-edit-button');
-    await waitFor(() => {
-      expect(
-        screen.getByTestId('add-edit-namespaces-modal'),
-      ).toBeInTheDocument();
-    });
-
-    act(() => {
-      fireEvent.change(
-        screen.getByTestId(
-          'add-edit-namespaces-blockDataExpirationDuration-input',
-        ),
-        {
-          target: {
-            value: '5m',
-          },
-        },
-      );
-      fireEvent.click(screen.getByTestId('add-edit-namespaces-submit-button'));
-    });
-    await waitFor(() => {
-      expect(
-        screen.queryByTestId('add-edit-namespaces-modal'),
-      ).not.toBeInTheDocument();
-      expect(namespaceApi.editNamespace).toHaveBeenCalled();
-      expect(namespaceApi.getNamespaces).toHaveBeenCalled();
+      expect(mockedUsedNavigate).toHaveBeenCalledWith('./edit/namespaceId');
     });
   });
 
   it('shows delete namespace modal', async () => {
     await openButtonInMenu('namespaces-action-delete-button');
     await waitFor(() => {
-      expect(screen.getByTestId('delete-namespaces-modal')).toBeInTheDocument();
-    });
-  });
-  it('closes delete namespaces modal', async () => {
-    await openButtonInMenu('namespaces-action-delete-button');
-    await waitFor(() => {
-      expect(screen.getByTestId('delete-namespaces-modal')).toBeInTheDocument();
-    });
-    act(() => {
-      fireEvent.click(screen.getByTestId('delete-namespaces-cancel-button'));
-    });
-    await waitFor(() => {
-      expect(
-        screen.queryByTestId('delete-namespaces-modal'),
-      ).not.toBeInTheDocument();
-    });
-  });
-  it('refetch data on delete namespaces success', async () => {
-    await openButtonInMenu('namespaces-action-delete-button');
-    await waitFor(() => {
-      expect(screen.getByTestId('delete-namespaces-modal')).toBeInTheDocument();
-    });
-    act(() => {
-      fireEvent.click(screen.getByTestId('delete-namespaces-submit-button'));
-    });
-    await waitFor(() => {
-      expect(
-        screen.queryByTestId('delete-namespaces-modal'),
-      ).not.toBeInTheDocument();
-      expect(namespaceApi.getNamespaces).toHaveBeenCalled();
-      expect(namespaceApi.deleteNamespace).toHaveBeenCalled();
+      expect(mockedUsedNavigate).toHaveBeenCalledWith('./delete/namespaceId');
     });
   });
 });

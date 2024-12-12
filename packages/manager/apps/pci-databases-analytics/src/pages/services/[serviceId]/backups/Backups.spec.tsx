@@ -16,6 +16,7 @@ import { Locale } from '@/hooks/useLocale';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedService as mockedServiceOrig } from '@/__tests__/helpers/mocks/services';
 import { mockedBackup } from '@/__tests__/helpers/mocks/backup';
+import { CdbError } from '@/data/api/database';
 
 // Override mock to add capabilities
 const mockedService = {
@@ -32,10 +33,18 @@ const mockedService = {
   },
 };
 
+const mockedUsedNavigate = vi.fn();
 describe('Backups page', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
     // Mock necessary hooks and dependencies
+    vi.mock('react-router-dom', async () => {
+      const mod = await vi.importActual('react-router-dom');
+      return {
+        ...mod,
+        useNavigate: () => mockedUsedNavigate,
+      };
+    });
     vi.mock('react-i18next', () => ({
       useTranslation: () => ({
         t: (key: string) => key,
@@ -107,7 +116,7 @@ describe('Backups page', () => {
         capabilities: {},
       },
       category: 'operational',
-      serviceQuery: {} as UseQueryResult<database.Service, Error>,
+      serviceQuery: {} as UseQueryResult<database.Service, CdbError>,
     });
     render(<Backups />, { wrapper: RouterWithQueryClientWrapper });
     expect(screen.queryByTestId('fork-button')).toBeNull();
@@ -129,7 +138,7 @@ describe('Backups page', () => {
         },
       },
       category: 'operational',
-      serviceQuery: {} as UseQueryResult<database.Service, Error>,
+      serviceQuery: {} as UseQueryResult<database.Service, CdbError>,
     });
     render(<Backups />, { wrapper: RouterWithQueryClientWrapper });
     const restoreButton = screen.queryByTestId('restore-backup-button');
@@ -172,7 +181,7 @@ describe('Open restore modals', () => {
       projectId: 'projectId',
       service: mockedService,
       category: 'operational',
-      serviceQuery: {} as UseQueryResult<database.Service, Error>,
+      serviceQuery: {} as UseQueryResult<database.Service, CdbError>,
     });
     const ResizeObserverMock = vi.fn(() => ({
       observe: vi.fn(),
@@ -189,68 +198,20 @@ describe('Open restore modals', () => {
     vi.clearAllMocks();
   });
 
-  it('open and close restore modal from restore button', async () => {
+  it('open restore modal from restore button', async () => {
     act(() => {
       fireEvent.click(screen.getByTestId('restore-backup-button'));
     });
     await waitFor(() => {
-      expect(screen.getByTestId('restore-modal')).toBeInTheDocument();
-    });
-    act(() => {
-      fireEvent.keyDown(screen.getByTestId('restore-modal'), {
-        key: 'Escape',
-        code: 'Escape',
-      });
-    });
-    await waitFor(() => {
-      expect(screen.queryByTestId('restore-modal')).not.toBeInTheDocument();
+      expect(mockedUsedNavigate).toHaveBeenCalledWith('./restore');
     });
   });
-  it('restore from backup on restore success', async () => {
+  it('open restore modal from backup menu', async () => {
     await openButtonInMenu('backups-action-restore-button');
     await waitFor(() => {
-      expect(screen.getByTestId('restore-modal')).toBeInTheDocument();
-      expect(screen.getByTestId('restore-submit-button')).toBeInTheDocument();
-      expect(screen.getByTestId('restore-submit-button')).not.toBeDisabled();
-    });
-    act(() => {
-      fireEvent.click(screen.getByTestId('restore-submit-button'));
-    });
-    await waitFor(() => {
-      expect(backupsApi.restoreBackup).toHaveBeenCalled();
-    });
-  });
-
-  it('restore from now on restore success', async () => {
-    act(() => {
-      fireEvent.click(screen.getByTestId('restore-backup-button'));
-    });
-    await waitFor(() => {
-      expect(screen.getByTestId('restore-modal')).toBeInTheDocument();
-    });
-
-    act(() => {
-      fireEvent.click(screen.getByTestId('restore-modal-radio-now'));
-      fireEvent.click(screen.getByTestId('restore-submit-button'));
-    });
-    await waitFor(() => {
-      expect(backupsApi.restoreBackup).toHaveBeenCalled();
-    });
-  });
-  it('restore from pitr on restore success', async () => {
-    act(() => {
-      fireEvent.click(screen.getByTestId('restore-backup-button'));
-    });
-    await waitFor(() => {
-      expect(screen.getByTestId('restore-modal')).toBeInTheDocument();
-    });
-
-    act(() => {
-      fireEvent.click(screen.getByTestId('restore-modal-radio-pitr'));
-      fireEvent.click(screen.getByTestId('restore-submit-button'));
-    });
-    await waitFor(() => {
-      expect(backupsApi.restoreBackup).toHaveBeenCalled();
+      expect(mockedUsedNavigate).toHaveBeenCalledWith(
+        './restore/testBackup123',
+      );
     });
   });
 });

@@ -39,11 +39,7 @@ describe('useDeleteUser', () => {
 
     await waitFor(() => {
       expect(databaseAPI.deleteUser).toHaveBeenCalledWith(deleteUserProps);
-      expect(onSuccess).toHaveBeenCalledWith(
-        undefined,
-        deleteUserProps,
-        undefined,
-      );
+      expect(onSuccess).toHaveBeenCalledWith();
     });
   });
 });
