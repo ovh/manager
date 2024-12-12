@@ -17,7 +17,7 @@ const Resources = () => {
       {notebook.spec.resources.gpu > 0 ? (
         <div className="flex flex-col">
           <div className="flex flex-row gap-2 items-center">
-            <h5>Power</h5>
+            <h5>{t('powerTitleSection')}</h5>
             <Zap className="size-4" />
           </div>
           <span className="uppercase">
