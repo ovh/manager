@@ -58,10 +58,9 @@ export const useGetAllRegistries = (projectId: string) =>
       })) as TRegistry[],
   });
 
-export const useRegistry = (
+export const useSuspenseRegistry = (
   projectId: string,
   registryId: string,
-  suspense: boolean,
   select?: (data: TRegistry) => TRegistry,
 ) => {
   const params = {
@@ -69,7 +68,7 @@ export const useRegistry = (
     queryFn: () => getRegistry(projectId, registryId),
     select,
   };
-  return suspense ? useSuspenseQuery(params) : useQuery(params);
+  return useSuspenseQuery(params);
 };
 
 export const useGetRegistryPlan = (projectId: string, registryId: string) =>

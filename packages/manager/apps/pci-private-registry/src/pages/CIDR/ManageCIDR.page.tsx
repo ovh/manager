@@ -8,13 +8,12 @@ import { useProject } from '@ovh-ux/manager-pci-common';
 import { useForm, FormProvider } from 'react-hook-form';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
-import BreadcrumbCIDR from '@/components/CIDR/Breadcrumb';
+import BreadcrumbCIDR from '@/components/CIDR/Breadcrumb.component';
 import { FilterRestrictionsEnum } from '@/types';
 import { isCidr, isIp } from '@/helpers';
 import BlocCIDR from '@/components/CIDR/CIDR.component';
 import { useIpRestrictions } from '@/api/hooks/useIpRestrictions';
-
-import { useRegistry } from '@/api/hooks/useRegistry';
+import { useSuspenseRegistry } from '@/api/hooks/useRegistry';
 
 const schemaAddCidr = (dataCIDR: string[]) =>
   z.object({
@@ -65,7 +64,7 @@ export type ConfirmCIDRSchemaType = z.infer<ReturnType<typeof schemaAddCidr>>;
 export default function BlocIPBlock() {
   const { projectId, registryId } = useParams();
   const { data: project } = useProject();
-  const { data: registry } = useRegistry(projectId, registryId, true);
+  const { data: registry } = useSuspenseRegistry(projectId, registryId);
   const { data: dataCIDR } = useIpRestrictions(projectId, registryId);
   const { t } = useTranslation(['ip-restrictions']);
   const methods = useForm<ConfirmCIDRSchemaType>({

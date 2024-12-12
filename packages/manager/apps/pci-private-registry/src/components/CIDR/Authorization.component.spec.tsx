@@ -1,17 +1,10 @@
-import {
-  act,
-  fireEvent,
-  render,
-  renderHook,
-  waitFor,
-} from '@testing-library/react';
+import { act, render, renderHook, waitFor } from '@testing-library/react';
 import { FormProvider, useForm } from 'react-hook-form';
 import {
   OdsSelectValueChangeEventDetail,
   OsdsSelect,
-  OsdsSelectOptionCustomEvent,
 } from '@ovhcloud/ods-components';
-import Authorization from './Authorization';
+import Authorization from './Authorization.component';
 
 describe('Authorization Component', () => {
   it('should emit the correct event on selection change', async () => {

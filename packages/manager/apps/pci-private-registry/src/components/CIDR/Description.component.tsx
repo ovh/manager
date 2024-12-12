@@ -14,6 +14,7 @@ const Description = () => {
       control={control}
       render={({ field: { onChange, value } }) => (
         <OsdsInput
+          data-testid="input-description"
           value={value}
           color={ODS_TEXT_COLOR_INTENT.primary}
           onOdsValueChange={(e) => onChange(e.detail.value)}
