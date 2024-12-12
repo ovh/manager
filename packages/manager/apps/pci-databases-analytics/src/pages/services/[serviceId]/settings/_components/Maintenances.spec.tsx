@@ -30,6 +30,9 @@ import { CdbError } from '@/data/api/database';
 const mockedService = {
   ...mockedServiceOrig,
   capabilities: {
+    service: {
+      update: database.service.capability.StateEnum.enabled,
+    },
     maintenanceApply: {
       create: database.service.capability.StateEnum.enabled,
     },
@@ -147,6 +150,9 @@ describe('Maintenance in settings page', () => {
       service: {
         ...mockedService,
         capabilities: {
+          service: {
+            update: database.service.capability.StateEnum.enabled,
+          },
           maintenanceApply: {
             create: database.service.capability.StateEnum.disabled,
           },

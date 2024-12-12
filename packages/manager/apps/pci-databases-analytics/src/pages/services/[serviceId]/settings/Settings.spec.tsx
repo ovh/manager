@@ -28,6 +28,9 @@ import { CdbError } from '@/data/api/database';
 const mockedService = {
   ...mockedServiceOrig,
   capabilities: {
+    service: {
+      update: database.service.capability.StateEnum.enabled,
+    },
     advancedConfiguration: {
       create: database.service.capability.StateEnum.enabled,
       update: database.service.capability.StateEnum.enabled,
