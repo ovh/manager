@@ -76,7 +76,7 @@ describe('BlocCIDR Component', () => {
       </Wrapper>,
     );
 
-    const button = screen.getByText('createNewRow'); // Ajoutez un bouton ou une action pour déclencher cette fonctionnalité
+    const button = screen.getByText('createNewRow');
     fireEvent.click(button);
 
     expect(setQueryDataMock).toHaveBeenCalled();
