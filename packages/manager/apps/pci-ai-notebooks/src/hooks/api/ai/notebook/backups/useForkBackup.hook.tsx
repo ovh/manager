@@ -1,4 +1,5 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useParams } from 'react-router-dom';
 import { AIError } from '@/data/api';
 import * as ai from '@/types/cloud/project/ai';
 import {
@@ -12,12 +13,22 @@ interface UseForkBackup {
 }
 
 export function useForkBackup({ onError, onSuccess }: UseForkBackup) {
+  const queryClient = useQueryClient();
+  const { projectId } = useParams();
   const mutation = useMutation({
     mutationFn: (forkInfo: BackupData) => {
       return forkBackup(forkInfo);
     },
     onError,
-    onSuccess,
+    onSuccess: (data) => {
+      // invalidate notebooks list to avoid displaying
+      // old list
+      queryClient.invalidateQueries({
+        queryKey: [projectId, 'ai/notebook'],
+        refetchType: 'none',
+      });
+      onSuccess(data);
+    },
   });
 
   return {

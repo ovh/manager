@@ -20,7 +20,7 @@ export function useDeleteNotebook({
     },
     onError,
     onSuccess: () => {
-      // Invalidate service list query to get the latest data
+      // Invalidate notebooks list query to get the latest data
       queryClient.invalidateQueries({
         queryKey: [projectId, 'ai/notebook', { exact: true }],
       });
