@@ -10,6 +10,8 @@
   "tableHeaderCaching": "Cache",
   "mountPathCopyToast": "Le répertoire de montage a été copié",
   "tableActionSyncData": "Synchroniser manuellement les données",
+  "tableWithCache": "Actif",
+  "tableWithoutCache": "Inactif",
   "synchDataButtonHelper": "La synchronisation des données est possible seulement lorsque le notebook est en statut \"Echec de synchronisation\" (seulement pour le type push) ou \"En service\"",
   "permission_RO": "Lecture Seule",
   "permission_RW": "Lecture & Ecriture",

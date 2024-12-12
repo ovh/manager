@@ -1,8 +1,7 @@
 import { ColumnDef } from '@tanstack/react-table';
-import { Files, MoreHorizontal } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { Files, MoreHorizontal } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,7 +11,6 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { SortableHeader } from '@/components/ui/data-table';
 import * as ai from '@/types/cloud/project/ai';
-import { Checkbox } from '@/components/ui/checkbox';
 import { useToast } from '@/components/ui/use-toast';
 import { useNotebookData } from '../../Notebook.context';
 import { isDataSyncNotebook } from '@/lib/notebookHelper';
@@ -93,18 +91,14 @@ export const getColumns = ({ onDataSyncClicked }: VolumesListColumnsProps) => {
       id: 'Caching',
       accessorFn: (row) => row.cache,
       header: ({ column }) => (
-        <div className="flex justify-center items-center">
-          <SortableHeader column={column}>
-            {t('tableHeaderCaching')}
-          </SortableHeader>
-        </div>
+        <SortableHeader column={column}>
+          {t('tableHeaderCaching')}
+        </SortableHeader>
       ),
       cell: ({ row }) => {
-        return (
-          <div className="flex justify-center items-center">
-            <Checkbox checked={row.original.cache} disabled={true} />
-          </div>
-        );
+        return row.original.cache
+          ? t('tableWithCache')
+          : t('tableWithoutCache');
       },
     },
     {

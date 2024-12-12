@@ -71,7 +71,6 @@ const DataSync = ({
       }
     },
     onSuccess: () => {
-      console.log('in on success');
       const toastdesc: string = volume
         ? t('dataSyncMountPathToastSuccessDescription', {
             name: volume.mountPath,
