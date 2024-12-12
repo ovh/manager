@@ -1,6 +1,7 @@
 import React from 'react';
 import { describe, expect, it } from 'vitest';
 import { render, screen, waitFor, act } from '@/utils/test.provider';
+import { DNS_CONFIG_TYPE } from '@/utils';
 import AddDomain from '../AddDomain.page';
 import addDomainTranslation from '@/public/translations/domains/addDomain/Messages_fr_FR.json';
 
@@ -87,11 +88,11 @@ describe('Add Domain page', () => {
     clickIsselectedDomainOvh(selectedDomain);
 
     const selectedRadioConfigTypeStandard = getByTestId(
-      'radio-config-standardConfiguration',
+      'radio-config-standard',
     );
     act(() => {
       selectedRadioConfigTypeStandard.odsChange.emit({
-        value: 'standardConfiguration',
+        value: DNS_CONFIG_TYPE.STANDARD,
       });
     });
 
@@ -126,12 +127,10 @@ describe('Add Domain page', () => {
     const selectedDomain = getByTestId('select-domain');
     clickIsselectedDomainOvh(selectedDomain);
 
-    const selectedRadioConfigTypeExpert = getByTestId(
-      'radio-config-expertConfiguration',
-    );
+    const selectedRadioConfigTypeExpert = getByTestId('radio-config-expert');
     act(() => {
       selectedRadioConfigTypeExpert.odsChange.emit({
-        value: 'expertConfiguration',
+        value: DNS_CONFIG_TYPE.EXPERT,
       });
     });
 

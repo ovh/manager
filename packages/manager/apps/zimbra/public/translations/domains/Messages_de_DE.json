@@ -10,5 +10,8 @@
   "zimbra_domains_datagrid_diagnostic_configuration_ok": "Konfiguration OK",
   "zimbra_domains_datagrid_diagnostic_tooltip_title": "Diagnose {{ diagType }}",
   "zimbra_domains_tooltip_configure": "Konfigurieren",
-  "zimbra_domains_datagrid_status_label": "Status"
+  "zimbra_domains_datagrid_status_label": "Status",
+  "zimbra_domains_datagrid_cname_label": "CNAME",
+  "zimbra_domains_datagrid_cname_tooltip_title": "Verifikation der Domain",
+  "zimbra_domains_datagrid_cname_tooltip": "Um zu bestätigen, dass Sie der Inhaber dieser Domain sind, erstellen Sie bitte einen CNAME-Eintrag: <br/><br/><strong>{{cname}}</strong> zu <strong>ovh.com</strong><br/><br/>Sie haben 48 Stunden Zeit, um diesen Schritt abzuschließen."
 }
