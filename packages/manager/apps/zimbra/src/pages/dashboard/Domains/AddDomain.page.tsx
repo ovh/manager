@@ -54,12 +54,17 @@ import {
 } from '@/api/domain';
 import queryClient from '@/queryClient';
 import { DomainType } from '@/api/domain/type';
-import { DNS_CONFIG_TYPE, DnsRecordType, FEATURE_FLAGS } from '@/utils';
+import { DNS_CONFIG_TYPE, DnsRecordType } from '@/utils';
 
 export enum DomainOwnership {
   OVH = 'ovhDomain',
   EXTERNAL = 'externalDomain',
 }
+
+const defaultExpertConfState = {
+  [DnsRecordType.MX]: true,
+  [DnsRecordType.SPF]: true,
+};
 
 export default function AddDomain() {
   const { t } = useTranslation('domains/addDomain');
@@ -84,9 +89,7 @@ export default function AddDomain() {
     queryFn: () => getDomainsZoneList(),
   });
 
-  const [selectedRadioDomain, setSelectedRadioDomain] = useState(
-    DomainOwnership.OVH,
-  );
+  const [domainType, setDomainType] = useState(DomainOwnership.OVH);
 
   const [selectedDomainName, setSelectedDomainName] = useState('');
   const [domainToVerify, setDomainToVerify] = useState('');
@@ -101,22 +104,15 @@ export default function AddDomain() {
     }
   }, [domainToVerify]);
 
-  const [
-    selectedRadioConfigurationType,
-    setSelectedRadioConfigurationType,
-  ] = useState(
-    !FEATURE_FLAGS.DOMAIN_DNS_CONFIGURATION ? DNS_CONFIG_TYPE.STANDARD : '',
+  const [configurationType, setConfigurationType] = useState(
+    DNS_CONFIG_TYPE.STANDARD,
   );
 
-  const [expertConfigItemsState, setExpertConfigItemsState] = useState<
+  const [expertConfState, setExpertConfState] = useState<
     Record<string, boolean>
-  >({});
+  >(defaultExpertConfState);
 
   const expertConfigItems = [
-    {
-      name: DnsRecordType.SRV,
-      label: t('zimbra_domains_add_domain_configuration_expert_configure_srv'),
-    },
     {
       name: DnsRecordType.MX,
       label: t('zimbra_domains_add_domain_configuration_expert_configure_mx'),
@@ -126,8 +122,14 @@ export default function AddDomain() {
       label: t('zimbra_domains_add_domain_configuration_expert_configure_spf'),
     },
     {
+      name: DnsRecordType.SRV,
+      label: t('zimbra_domains_add_domain_configuration_expert_configure_srv'),
+      isDisabled: true,
+    },
+    {
       name: DnsRecordType.DKIM,
       label: t('zimbra_domains_add_domain_configuration_expert_configure_dkim'),
+      isDisabled: true,
     },
   ];
 
@@ -140,43 +142,42 @@ export default function AddDomain() {
     event: OdsSelectCustomEvent<OdsSelectChangeEventDetail>,
   ) => {
     setSelectedDomainName(event.detail.value);
-    if (FEATURE_FLAGS.DOMAIN_DNS_CONFIGURATION) {
-      setSelectedRadioConfigurationType('');
-    }
-    setExpertConfigItemsState({});
+    setConfigurationType(DNS_CONFIG_TYPE.STANDARD);
+    setExpertConfState(defaultExpertConfState);
   };
 
-  const ovhDomain = selectedRadioDomain === DomainOwnership.OVH;
+  const ovhDomain = domainType === DomainOwnership.OVH;
 
-  const isExpertConfigurationSelected =
-    selectedRadioConfigurationType === 'expertConfiguration';
+  const isExpertConfSelected = configurationType === DNS_CONFIG_TYPE.EXPERT;
 
-  const handleRadioDomainChange = useCallback(
+  const handleDomainTypeChange = useCallback(
     (event: OdsRadioCustomEvent<OdsRadioChangeEventDetail>) => {
       const newValue = event.detail.value as DomainOwnership;
-      setSelectedRadioDomain(newValue);
+      setDomainType(newValue);
       setSelectedDomainName('');
+      setConfigurationType(DNS_CONFIG_TYPE.STANDARD);
+      setExpertConfState(defaultExpertConfState);
     },
-    [setSelectedRadioDomain],
+    [setDomainType],
   );
 
-  const handleRadioConfigurationTypeChange = useCallback(
+  const handleConfigurationTypeChange = useCallback(
     (event: OdsRadioCustomEvent<OdsRadioChangeEventDetail>) => {
       const type = `${event.detail.value}` || '';
-      setSelectedRadioConfigurationType(type);
-      setExpertConfigItemsState({});
+      setConfigurationType(type);
+      setExpertConfState(defaultExpertConfState);
     },
-    [setSelectedRadioConfigurationType],
+    [setConfigurationType],
   );
 
-  const handleExpertConfigItemsChange = useCallback(
+  const handleExpertConfChange = useCallback(
     (event: OdsCheckboxCustomEvent<OdsCheckboxChangeEventDetail>) => {
-      setExpertConfigItemsState((prev) => ({
+      setExpertConfState((prev) => ({
         ...prev,
         [event.target.name]: event.detail.checked,
       }));
     },
-    [expertConfigItemsState],
+    [expertConfState],
   );
 
   const { mutate: addDomain, isPending: isSending } = useMutation({
@@ -218,7 +219,16 @@ export default function AddDomain() {
     const formData = {
       organizationId: selectedOrganization,
       name: selectedDomainName,
-      autoConfigureMX: selectedRadioDomain !== DomainOwnership.EXTERNAL,
+      autoConfigureMX:
+        (configurationType === DNS_CONFIG_TYPE.STANDARD && ovhDomain) ||
+        (configurationType === DNS_CONFIG_TYPE.EXPERT &&
+          expertConfState[DnsRecordType.MX]) ||
+        false,
+      autoConfigureSPF:
+        (configurationType === DNS_CONFIG_TYPE.STANDARD && ovhDomain) ||
+        (configurationType === DNS_CONFIG_TYPE.EXPERT &&
+          expertConfState[DnsRecordType.SPF]) ||
+        false,
     };
     addDomain(formData);
   };
@@ -277,8 +287,8 @@ export default function AddDomain() {
               value={DomainOwnership.OVH}
               inputId={DomainOwnership.OVH}
               name="radio-ovhDomain"
-              isChecked={selectedRadioDomain === DomainOwnership.OVH}
-              onOdsChange={(value) => handleRadioDomainChange(value)}
+              isChecked={domainType === DomainOwnership.OVH}
+              onOdsChange={(value) => handleDomainTypeChange(value)}
             ></OdsRadio>
             <label htmlFor={DomainOwnership.OVH}>
               <OdsText preset={ODS_TEXT_PRESET.paragraph}>
@@ -291,8 +301,8 @@ export default function AddDomain() {
               value={DomainOwnership.EXTERNAL}
               inputId={DomainOwnership.EXTERNAL}
               name="radio-externalDomain"
-              isChecked={selectedRadioDomain === DomainOwnership.EXTERNAL}
-              onOdsChange={(value) => handleRadioDomainChange(value)}
+              isChecked={domainType === DomainOwnership.EXTERNAL}
+              onOdsChange={(value) => handleDomainTypeChange(value)}
             ></OdsRadio>
             <label htmlFor={DomainOwnership.EXTERNAL}>
               <OdsText preset={ODS_TEXT_PRESET.paragraph}>
@@ -310,7 +320,7 @@ export default function AddDomain() {
           )}
         </OdsFormField>
       )}
-      {selectedOrganization && selectedRadioDomain && (
+      {selectedOrganization && domainType && (
         <OdsFormField className="w-full">
           <label htmlFor="form-field-input" slot="label">
             {t('zimbra_domains_add_domain_title')}
@@ -356,47 +366,41 @@ export default function AddDomain() {
           )}
         </OdsFormField>
       )}
-      {FEATURE_FLAGS.DOMAIN_DNS_CONFIGURATION &&
-        selectedRadioDomain &&
-        ovhDomain &&
-        selectedDomainName && (
-          <OdsFormField className="w-full space-y-5">
-            <label htmlFor="form-field-input" slot="label">
-              {t('zimbra_domains_add_domain_configuration_title')}
-            </label>
-            <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-              {t('zimbra_domains_add_domain_configuration_description')}
-            </OdsText>
-            {[DNS_CONFIG_TYPE.STANDARD, DNS_CONFIG_TYPE.EXPERT].map((type) => (
-              <div key={type} className="flex leading-none gap-4">
-                <OdsRadio
-                  id={type}
-                  key={type}
-                  name="domainConfigurationType"
-                  value={`${type}Configuration`}
-                  onOdsChange={(value) =>
-                    handleRadioConfigurationTypeChange(value)
-                  }
-                  data-testid={`radio-config-${type}Configuration`}
-                ></OdsRadio>
-                <label htmlFor={type} className="flex flex-col w-full">
-                  <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-                    {t(
-                      `zimbra_domains_add_domain_configuration_choice_${type}`,
-                    )}
-                  </OdsText>
-                  <OdsText preset={ODS_TEXT_PRESET.caption}>
-                    {t(
-                      `zimbra_domains_add_domain_configuration_choice_${type}_info`,
-                    )}
-                  </OdsText>
-                </label>
-              </div>
-            ))}
-          </OdsFormField>
-        )}
-      {isExpertConfigurationSelected && (
-        <OdsFormField className="w-full space-y-5">
+      {domainType && ovhDomain && selectedDomainName && (
+        <OdsFormField className="w-full">
+          <label htmlFor="form-field-input" slot="label">
+            {t('zimbra_domains_add_domain_configuration_title')}
+          </label>
+          <OdsText className="mb-4" preset={ODS_TEXT_PRESET.paragraph}>
+            {t('zimbra_domains_add_domain_configuration_description')}
+          </OdsText>
+          {[DNS_CONFIG_TYPE.STANDARD, DNS_CONFIG_TYPE.EXPERT].map((type) => (
+            <div key={type} className="flex leading-none gap-4">
+              <OdsRadio
+                key={type}
+                inputId={type}
+                name="domainConfigurationType"
+                value={type}
+                isChecked={type === configurationType}
+                onOdsChange={(value) => handleConfigurationTypeChange(value)}
+                data-testid={`radio-config-${type}`}
+              ></OdsRadio>
+              <label htmlFor={type} className="flex flex-col w-full">
+                <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                  {t(`zimbra_domains_add_domain_configuration_choice_${type}`)}
+                </OdsText>
+                <OdsText preset={ODS_TEXT_PRESET.caption}>
+                  {t(
+                    `zimbra_domains_add_domain_configuration_choice_${type}_info`,
+                  )}
+                </OdsText>
+              </label>
+            </div>
+          ))}
+        </OdsFormField>
+      )}
+      {isExpertConfSelected && (
+        <OdsFormField className="w-full space-y-4">
           <OdsText preset={ODS_TEXT_PRESET.paragraph}>
             <Trans
               t={t}
@@ -404,20 +408,23 @@ export default function AddDomain() {
               values={{ domain: selectedDomainName }}
             />
           </OdsText>
-          {expertConfigItems.map(({ name, label }) => (
-            <div key={name} className="flex leading-none gap-4">
-              <OdsCheckbox
-                inputId={name}
-                key={name}
-                isChecked={expertConfigItemsState[name]}
-                name={name}
-                onOdsChange={handleExpertConfigItemsChange}
-              ></OdsCheckbox>
-              <label htmlFor={name}>
-                <OdsText preset={ODS_TEXT_PRESET.paragraph}>{label}</OdsText>
-              </label>
-            </div>
-          ))}
+          {expertConfigItems.map(({ name, label, isDisabled }) =>
+            isDisabled ? null : (
+              <div key={name} className="flex leading-none gap-4">
+                <OdsCheckbox
+                  inputId={name}
+                  key={name}
+                  isChecked={expertConfState[name]}
+                  name={name}
+                  onOdsChange={handleExpertConfChange}
+                  isDisabled={isDisabled}
+                ></OdsCheckbox>
+                <label htmlFor={name}>
+                  <OdsText preset={ODS_TEXT_PRESET.paragraph}>{label}</OdsText>
+                </label>
+              </div>
+            ),
+          )}
         </OdsFormField>
       )}
       <OdsFormField>
@@ -428,7 +435,7 @@ export default function AddDomain() {
           isDisabled={
             !selectedOrganization ||
             !selectedDomainName ||
-            (!selectedRadioConfigurationType && ovhDomain)
+            (!configurationType && ovhDomain)
           }
           isLoading={isSending}
           label={t('zimbra_domains_add_domain_cta_confirm')}

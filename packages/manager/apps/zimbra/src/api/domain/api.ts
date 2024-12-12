@@ -53,7 +53,7 @@ export const postZimbraDomain = async (
 export const putZimbraDomain = async (
   platformId: string,
   domainId: string,
-  params: DomainBodyParamsType,
+  params: Partial<DomainBodyParamsType>,
 ) => {
   const { data } = await v2.put(`${getApiPath(platformId)}domain/${domainId}`, {
     targetSpec: params,
