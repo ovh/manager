@@ -1,12 +1,6 @@
-import React, { ReactNode, useEffect, useState } from 'react';
-import { OsdsIcon, OsdsText } from '@ovhcloud/ods-components/react';
-import {
-  ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { OdsText, OdsIcon } from '@ovhcloud/ods-components/react';
+import { ReactNode, useEffect, useState } from 'react';
 
 export const AccordionComponent = ({
   title,
@@ -44,24 +38,17 @@ export const AccordionComponent = ({
           onClick={() => toggle()}
         >
           <div className="w-full text-left">
-            <OsdsText
-              size={ODS_TEXT_SIZE._400}
-              level={ODS_TEXT_LEVEL.body}
-              color={ODS_THEME_COLOR_INTENT.text}
-            >
-              {title}
-            </OsdsText>
+            <OdsText preset="span">{title}</OdsText>
           </div>
           <div className="w-fit flex items-center">
-            <OsdsIcon
+            <OdsIcon
+              className="text-[--ods-color-cprimary-500] text-[16px]"
               name={
                 state.isOpen
-                  ? ODS_ICON_NAME.CHEVRON_UP
-                  : ODS_ICON_NAME.CHEVRON_DOWN
+                  ? ODS_ICON_NAME.chevronUp
+                  : ODS_ICON_NAME.chevronDown
               }
-              size={ODS_ICON_SIZE.xxs}
-              color={ODS_THEME_COLOR_INTENT.primary}
-            ></OsdsIcon>
+            />
           </div>
         </button>
       </div>
