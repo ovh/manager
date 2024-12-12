@@ -15,7 +15,7 @@ export default defineConfig({
         'src/types',
         'src/translations',
         'src/test-utils',
-        'src/index.tsx',
+        'src/index.ts',
         'src/data/types',
         'src/data/mocks',
         'src/**/*.spec.ts',
