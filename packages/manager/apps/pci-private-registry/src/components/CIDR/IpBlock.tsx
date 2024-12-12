@@ -5,7 +5,6 @@ import {
 
 import { OsdsInput } from '@ovhcloud/ods-components/react';
 import { Controller, useFormContext } from 'react-hook-form';
-import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 
 const IpBlock = () => {
   const { formState, control } = useFormContext();
@@ -16,17 +15,15 @@ const IpBlock = () => {
         name="ipBlock"
         control={control}
         render={({ field: { onChange, value } }) => (
-          <DataGridTextCell>
-            <OsdsInput
-              placeholder="ex: 192.168.1.1/32"
-              color={ODS_TEXT_COLOR_INTENT.primary}
-              type={ODS_INPUT_TYPE.text}
-              value={value}
-              onOdsValueChange={(e) => onChange(e.target.value)}
-              className="border"
-              error={Boolean(formState.errors?.ipBlock?.message)}
-            />
-          </DataGridTextCell>
+          <OsdsInput
+            placeholder="ex: 192.168.1.1/32"
+            color={ODS_TEXT_COLOR_INTENT.primary}
+            type={ODS_INPUT_TYPE.text}
+            value={value}
+            onOdsValueChange={(e) => onChange(e.target.value)}
+            className="border"
+            error={Boolean(formState.errors?.ipBlock?.message)}
+          />
         )}
       />
     </>

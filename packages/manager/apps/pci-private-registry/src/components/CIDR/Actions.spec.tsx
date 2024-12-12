@@ -1,8 +1,12 @@
-import { render, screen, fireEvent } from '@testing-library/react';
-import { describe, it, expect, vi } from 'vitest';
+import { render, screen, fireEvent, renderHook } from '@testing-library/react';
+import { describe, it, expect, vi, Mock } from 'vitest';
+import { FormProvider, useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 import ActionComponent from './Actions';
+
 import { useUpdateIpRestriction } from '@/api/hooks/useIpRestrictions';
+import { TIPRestrictionsData } from '@/types';
+import { wrapper } from '@/wrapperRenders';
 
 vi.mock('react-router-dom', () => ({
   useParams: vi.fn(),
@@ -19,39 +23,41 @@ vi.mock('@/api/hooks/useIpRestrictions', () => ({
 describe('ActionComponent', () => {
   it('renders ActionMenu with correct items', () => {
     // Mock les valeurs retournées
-    (useParams as vi.Mock).mockReturnValue({
+    (useParams as Mock).mockReturnValue({
       projectId: 'project123',
       registryId: 'registry456',
     });
     const updateIpRestrictionsMock = vi.fn();
-    (useUpdateIpRestriction as vi.Mock).mockReturnValue({
+    (useUpdateIpRestriction as Mock).mockReturnValue({
       updateIpRestrictions: updateIpRestrictionsMock,
     });
 
-    // Données fictives pour les props
-    const cidrMock = {
+    const cidrMock = ({
       ipBlock: '192.168.0.1/24',
-      authorization: 'ALLOW',
+      authorization: ['management'],
       description: 'Test description',
-    };
+    } as unknown) as TIPRestrictionsData;
 
-    // Rendu du composant
-    render(<ActionComponent cidr={cidrMock} />);
+    const { result } = renderHook(useForm);
 
-    // Vérifie si l'ActionMenu est bien rendu
-    const deleteButton = screen.getByText('private_registry_common_delete');
+    render(
+      <FormProvider {...result.current}>
+        <ActionComponent cidr={cidrMock} />
+      </FormProvider>,
+      { wrapper },
+    );
+
+    const deleteButton = screen.getByText('ip_restrictions_delete_block');
     expect(deleteButton).toBeInTheDocument();
 
-    // Simule un clic
     fireEvent.click(deleteButton);
 
-    // Vérifie que la fonction updateIpRestrictions est appelée correctement
     expect(updateIpRestrictionsMock).toHaveBeenCalledWith({
       cidrToUpdate: {
-        ALLOW: [
+        management: [
           {
             ipBlock: '192.168.0.1/24',
-            authorization: 'ALLOW',
+
             description: 'Test description',
           },
         ],

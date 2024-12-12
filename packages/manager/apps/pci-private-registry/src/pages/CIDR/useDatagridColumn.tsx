@@ -45,10 +45,7 @@ export const useDatagridColumn = () => {
   const { t } = useTranslation(['ip-restrictions']);
   const { projectId, registryId } = useParams();
 
-  const { data } = useIpRestrictions(projectId, registryId, [
-    'management',
-    'registry',
-  ]);
+  const { data } = useIpRestrictions(projectId, registryId);
 
   const isDraft = useMemo(() => data.some((restriction) => restriction.draft), [
     data,

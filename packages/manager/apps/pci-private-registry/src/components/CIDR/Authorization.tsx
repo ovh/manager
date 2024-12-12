@@ -14,10 +14,11 @@ const Authorization = () => {
         control={control}
         render={({ field: { onChange, value } }) => (
           <OsdsSelect
+            data-testid="authorization-select"
             error={Boolean(formState.errors?.authorization?.message)}
             onOdsValueChange={(e) => {
               if (typeof e.target.value === 'string') {
-                onChange(JSON.parse(e.target.value));
+                onChange(JSON.parse(e.detail.value as string));
               }
             }}
             value={JSON.stringify(value)}
