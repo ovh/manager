@@ -108,10 +108,12 @@ export const PublicCloudPanel: React.FC<ComponentProps<
   }, [pciProjects, rootNode, containerURL]);
 
   useEffect(() => {
-    if (defaultPciProjectStatus === 'success') {
-      setSelectedPciProject(defaultPciProject);
-    } else if (defaultPciProjectStatus === 'error' && pciProjects?.length) {
-      setSelectedPciProject(pciProjects[0]);
+    if (selectedPciProject === null) {
+      if (defaultPciProjectStatus === 'success') {
+        setSelectedPciProject(defaultPciProject);
+      } else if (defaultPciProjectStatus === 'error' && pciProjects?.length) {
+        setSelectedPciProject(pciProjects[0]);
+      }
     }
   }, [defaultPciProject, defaultPciProjectStatus, pciProjects]);
 
