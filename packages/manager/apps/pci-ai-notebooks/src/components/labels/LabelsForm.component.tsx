@@ -20,7 +20,7 @@ import { Badge } from '../ui/badge';
 interface LabelsFormProps {
   configuredLabels: ai.Label[];
   onAdd?: (newLabel: ai.Label) => void;
-  onDelete?: (newLabel: ai.Label) => void;
+  onDelete?: (deleteLabel: ai.Label) => void;
   onChange?: (newLabels: ai.Label[]) => void;
   disabled?: boolean;
 }
