@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-app@0.2.1...@ovh-ux/manager-billing-app@0.2.2) (2024-12-12)
+
+
+### Bug Fixes
+
+* **billing:** fix autorenew display issue ([#14525](https://github.com/ovh/manager/issues/14525)) ([f8ce779](https://github.com/ovh/manager/commit/f8ce77915a06cbc7e876d2649f5d17ced23c4580))
+
+
+
+
+
 ## [0.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-app@0.2.0...@ovh-ux/manager-billing-app@0.2.1) (2024-12-11)
 
 **Note:** Version bump only for package @ovh-ux/manager-billing-app
