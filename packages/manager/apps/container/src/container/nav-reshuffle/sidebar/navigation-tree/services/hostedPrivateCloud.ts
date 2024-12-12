@@ -110,7 +110,7 @@ hostedPrivateCloudUniverse.children = [
         tag: NodeTag.NEW,
         routing: {
           application: 'hycu',
-          hash: '',
+          hash: '#/',
         },
         features: ['hycu'],
       },
