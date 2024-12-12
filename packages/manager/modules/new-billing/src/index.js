@@ -19,6 +19,7 @@ import ngUiRouterLayout from '@ovh-ux/ng-ui-router-layout';
 import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 import ngOvhOrderTracking from '@ovh-ux/ng-ovh-order-tracking';
 import ngOvhContacts from '@ovh-ux/ng-ovh-contacts';
+import ngOvhHttp from '@ovh-ux/ng-ovh-http';
 import ngOvhUserPref from '@ovh-ux/ng-ovh-user-pref';
 import ovhManagerAccountMigration from '@ovh-ux/manager-account-migration';
 import ngQAllSettled from '@ovh-ux/ng-q-allsettled';
@@ -49,6 +50,7 @@ angular
     ngOvhFeatureFlipping,
     ngOvhOrderTracking,
     ngOvhContacts,
+    ngOvhHttp,
     'ngUiRouterBreadcrumb',
     ngAtInternetUiRouterPlugin,
     ngQAllSettled,
