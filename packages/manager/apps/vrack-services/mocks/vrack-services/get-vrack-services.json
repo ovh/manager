@@ -207,7 +207,12 @@
     "targetSpec": {
       "subnets": []
     },
-    "updatedAt": "2023-03-10T09:10:00Z"
+    "updatedAt": "2023-03-10T09:10:00Z",
+    "iam": {
+      "displayName": "vrs-ahz-9t0-7lb-b5",
+      "id": "f30d4ca1-d183-4484-a408-27b9139dce3d",
+      "urn": "urn:v1:eu:resource:vrackServices:vrs-ahz-9t0-7lb-b5"
+    }
   },
   {
     "checksum": "003df9f0d644a36164a7de26ab20bf6c",

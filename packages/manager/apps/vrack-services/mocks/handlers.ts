@@ -16,7 +16,11 @@ import {
   GetVrackServicesMocksParams,
 } from './vrack-services/vrack-services';
 import { getVrackMocks, GetVrackMocksParams } from './vrack';
-import { getRegionMocks, GetRegionMocksParams } from './vrack-services/region';
+import {
+  getRegionFlagsMocks,
+  getRegionMocks,
+  GetRegionMocksParams,
+} from './vrack-services/region';
 import { GetIamMocksParams, getIamMocks } from './iam/iam';
 
 export type ConfigParams = GetVrackServicesMocksParams &
@@ -45,6 +49,7 @@ export const getConfig = ({
     getServicesMocks,
     getIamMocks,
     getCartMocks,
+    getRegionFlagsMocks,
   ]
     .flatMap((getMocks) => getMocks(params))
     .concat(
