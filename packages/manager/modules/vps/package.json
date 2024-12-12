@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-vps",
-  "version": "2.43.4",
+  "version": "2.44.0",
   "private": true,
   "description": "VPS product.",
   "repository": {
@@ -47,7 +47,9 @@
     "bootstrap": "~3.3.0",
     "chart.js": "^4.4.2",
     "chartjs-adapter-date-fns": "^3.0.0",
+    "chartjs-plugin-datasource-prometheus": "^2.3.0",
     "chartjs-plugin-zoom": "^2.0.1",
+    "date-fns": "^2.24.0",
     "jsurl": "0.1.5",
     "moment": "^2.24.0",
     "oclazyload": "^1.1.0",

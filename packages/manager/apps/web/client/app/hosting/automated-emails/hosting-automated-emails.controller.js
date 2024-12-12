@@ -1,5 +1,5 @@
+import ChartDatasourcePrometheusPlugin from 'chartjs-plugin-datasource-prometheus';
 import get from 'lodash/get';
-import head from 'lodash/head';
 import isEmpty from 'lodash/isEmpty';
 import set from 'lodash/set';
 import { formatDistanceToNow, parse } from 'date-fns';
@@ -7,6 +7,7 @@ import { formatDistanceToNow, parse } from 'date-fns';
 export default class HostingTabAutomatedEmailsCtrl {
   /* @ngInject */
   constructor(
+    $q,
     $scope,
     $stateParams,
     $timeout,
@@ -14,108 +15,25 @@ export default class HostingTabAutomatedEmailsCtrl {
     atInternet,
     DATEFNS_LOCALE,
     HostingAutomatedEmails,
+    HostingStatistics,
     Alerter,
     $filter,
     WucUser,
     ChartFactory,
   ) {
+    this.$q = $q;
     this.$scope = $scope;
     this.$stateParams = $stateParams;
     this.$timeout = $timeout;
     this.$translate = $translate;
     this.atInternet = atInternet;
     this.HostingAutomatedEmails = HostingAutomatedEmails;
+    this.HostingStatistics = HostingStatistics;
     this.Alerter = Alerter;
     this.DATEFNS_LOCALE = DATEFNS_LOCALE;
     this.$filter = $filter;
     this.WucUser = WucUser;
-    this.WucChartjsFactory = ChartFactory;
-
-    this.HOSTING_AUTOMATED_EMAILS = {
-      type: 'line',
-      data: {
-        datasets: [],
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            position: 'bottom',
-            display: true,
-          },
-          pan: {
-            enabled: true,
-            mode: 'xy',
-          },
-          zoom: {
-            zoom: {
-              enabled: true,
-              wheel: {
-                enabled: true,
-              },
-              pinch: {
-                enabled: true,
-              },
-              mode: 'xy',
-              limits: {
-                max: 10,
-                min: 0.5,
-              },
-            },
-          },
-          tooltip: {
-            mode: 'index',
-            intersect: false,
-            callbacks: {
-              title(data) {
-                const date = parse(
-                  get(head(data), 'label'),
-                  'PPpp',
-                  new Date(),
-                );
-                return formatDistanceToNow(date, {
-                  addSuffix: true,
-                  locale: DATEFNS_LOCALE,
-                });
-              },
-            },
-          },
-        },
-        elements: {
-          point: {
-            radius: 0,
-          },
-        },
-        scales: {
-          y: {
-            type: 'linear',
-            display: true,
-            position: 'left',
-            title: {
-              display: true,
-            },
-            grid: {
-              drawBorder: true,
-              display: true,
-            },
-          },
-          x: {
-            type: 'time',
-            position: 'bottom',
-            grid: {
-              drawBorder: true,
-              display: false,
-            },
-            time: {
-              displayFormats: {
-                hour: 'LT',
-              },
-            },
-          },
-        },
-      },
-    };
+    this.ChartFactory = ChartFactory;
   }
 
   $onInit() {
@@ -150,7 +68,144 @@ export default class HostingTabAutomatedEmailsCtrl {
       this.guide = get(guides, 'hostingScriptEmail', null);
     });
 
-    this.retrievingAutomatedEmails();
+    return this.retrievingAutomatedEmails();
+  }
+
+  loadChart() {
+    this.loaders.volumes = true;
+    this.HostingStatistics.getMetricsToken(this.$stateParams.productId).then(
+      ({ endpoint, token }) => {
+        const query = `sum without(cluster, statusCode,cluster_name, datacenter, host, host_type, hw_profile, service_name, user) (label_replace(sum_over_time((mailout_sendmails_count{service_name="${this.$stateParams.productId}"}[30m])), "mail", "sent", "", "")) OR label_replace(vector(0), "mail", "sent", "", "")`;
+
+        this.stats.chart = new this.ChartFactory({
+          type: 'line',
+          plugins: [ChartDatasourcePrometheusPlugin],
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              'datasource-prometheus': {
+                borderWidth: 1,
+                errorMsg: {
+                  message: this.$translate.instant(
+                    'hosting_tab_STATISTICS_none',
+                  ),
+                },
+                noDataMsg: {
+                  message: this.$translate.instant(
+                    'hosting_tab_STATISTICS_none',
+                  ),
+                },
+                findInBorderColorMap: () => '#848CBC',
+                findInBackgroundColorMap: () => '#EAECF4',
+                findInLabelMap: () =>
+                  this.$translate.instant(
+                    'hosting_tab_AUTOMATED_EMAILS_emails_sent',
+                  ),
+                fill: true,
+                tension: 0.5,
+                query: (start, end) => {
+                  const url = `${endpoint}/prometheus/api/v1/query_range?query=${query}&start=${start.toISOString()}&end=${end.toISOString()}&step=30m`;
+
+                  const headers = {
+                    authorization: `bearer ${token}`,
+                    'content-type': 'application/x-www-form-urlencoded',
+                  };
+
+                  return fetch(url, { headers })
+                    .then((response) => {
+                      if (response.ok) {
+                        return response.json();
+                      }
+
+                      return null;
+                    })
+                    .then((response) => response.data);
+                },
+                timeRange: {
+                  type: 'relative',
+                  start: -1 * 30 * 24 * 60 * 60 * 1000,
+                  end: 0,
+                },
+              },
+              legend: {
+                position: 'bottom',
+                display: true,
+              },
+              pan: {
+                enabled: true,
+                mode: 'xy',
+              },
+              zoom: {
+                zoom: {
+                  enabled: true,
+                  wheel: {
+                    enabled: true,
+                  },
+                  pinch: {
+                    enabled: true,
+                  },
+                  mode: 'xy',
+                  limits: {
+                    max: 10,
+                    min: 0.5,
+                  },
+                },
+              },
+              tooltip: {
+                mode: 'index',
+                intersect: false,
+                callbacks: {
+                  title(data) {
+                    const date = parse(
+                      get(data[0], 'label'),
+                      'PPpp',
+                      new Date(),
+                    );
+                    return formatDistanceToNow(date, {
+                      addSuffix: true,
+                      locale: this.DATEFNS_LOCALE,
+                    });
+                  },
+                },
+              },
+            },
+            elements: {
+              point: {
+                radius: 0,
+              },
+            },
+            scales: {
+              y: {
+                type: 'linear',
+                display: true,
+                position: 'left',
+                title: {
+                  display: true,
+                },
+                grid: {
+                  drawBorder: true,
+                  display: true,
+                },
+              },
+              x: {
+                type: 'time',
+                position: 'bottom',
+                grid: {
+                  drawBorder: true,
+                  display: false,
+                },
+                time: {
+                  displayFormats: {
+                    hour: 'LT',
+                  },
+                },
+              },
+            },
+          },
+        });
+      },
+    );
   }
 
   retrievingAutomatedEmails() {
@@ -170,8 +225,7 @@ export default class HostingTabAutomatedEmailsCtrl {
         }
 
         this.automatedEmails = data;
-        this.retrievingVolumes();
-        this.retrievingBounces();
+        return this.$q.all([this.loadChart(), this.retrievingBounces()]);
       })
       .catch((err) => {
         set(err, 'type', err.type || 'ERROR');
@@ -183,44 +237,6 @@ export default class HostingTabAutomatedEmailsCtrl {
       })
       .finally(() => {
         this.loaders.loading = false;
-      });
-  }
-
-  retrievingVolumes() {
-    this.loaders.volumes = true;
-
-    return this.HostingAutomatedEmails.retrievingVolumes(
-      this.$stateParams.productId,
-    )
-      .then((data) => {
-        this.stats.chart = new this.WucChartjsFactory(
-          angular.copy(this.HOSTING_AUTOMATED_EMAILS),
-        );
-        this.stats.chart.addSerie(
-          this.$translate.instant('hosting_tab_AUTOMATED_EMAILS_emails_sent'),
-          data.data.reverse().map((d) => ({
-            x: moment.utc(new Date(d.date)).valueOf(),
-            y: d.volume,
-          })),
-          {
-            dataset: {
-              fill: true,
-              borderWidth: 1,
-            },
-          },
-        );
-      })
-      .catch((err) => {
-        if (err.status !== 404) {
-          this.Alerter.alertFromSWS(
-            this.$translate.instant('hosting_tab_AUTOMATED_EMAILS_error'),
-            get(err, 'data', err),
-            this.$scope.alerts.main,
-          );
-        }
-      })
-      .finally(() => {
-        this.loaders.volumes = false;
       });
   }
 

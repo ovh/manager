@@ -52,6 +52,7 @@ import './css/source.scss';
 import get from 'lodash/get';
 import has from 'lodash/has';
 import set from 'lodash/set';
+import * as dateFnsLocales from 'date-fns/locale';
 import isString from 'lodash/isString';
 import trustedNic from '@ovh-ux/manager-trusted-nic';
 import '@ovh-ux/ng-at-internet';
@@ -129,6 +130,17 @@ const getEnvironment = (shellClient) => {
 
 const getLocale = (shellClient) => {
   return shellClient.i18n.getLocale();
+};
+
+const getDateFnsLocale = (language) => {
+  if (language === 'en_GB') {
+    return 'enGB';
+  }
+  if (language === 'fr_CA') {
+    return 'frCA';
+  }
+  const [locale] = language.split('_');
+  return locale;
 };
 
 export default async (containerEl, shellClient) => {
@@ -233,6 +245,7 @@ export default async (containerEl, shellClient) => {
       ].filter(isString),
     )
     .service('Polling', pollingService)
+    .constant('DATEFNS_LOCALE', dateFnsLocales[getDateFnsLocale(locale)])
     .constant('shellClient', shellClient)
     .constant('constants', {
       prodMode: config.prodMode,

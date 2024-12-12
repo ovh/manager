@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.6.0...@ovh-ux/manager-dedicated@20.7.0) (2024-12-11)
+
+
+### Features
+
+* **vps:** move metrics to mimir ([#14240](https://github.com/ovh/manager/issues/14240)) ([7b725a1](https://github.com/ovh/manager/commit/7b725a1e7e15f4e577d12bfc62ae1965befecb0f))
+* **web.hosting:** move metrics to mimir ([#14320](https://github.com/ovh/manager/issues/14320)) ([609de8d](https://github.com/ovh/manager/commit/609de8d130b6056ff3b9042a0c701541c2784a05))
+
+
+
+
+
 # [20.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.5.3...@ovh-ux/manager-dedicated@20.6.0) (2024-12-11)
 
 

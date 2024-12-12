@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.17.1...@ovh-ux/manager-iplb@1.18.0) (2024-12-11)
+
+
+### Features
+
+* **web.hosting:** move metrics to mimir ([#14320](https://github.com/ovh/manager/issues/14320)) ([609de8d](https://github.com/ovh/manager/commit/609de8d130b6056ff3b9042a0c701541c2784a05))
+
+
+
+
+
 ## [1.17.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.17.0...@ovh-ux/manager-iplb@1.17.1) (2024-10-21)
 
 
