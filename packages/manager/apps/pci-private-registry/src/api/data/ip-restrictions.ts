@@ -2,6 +2,7 @@ import { v6 } from '@ovh-ux/manager-core-api';
 import { aggregateBySpecificKey } from '@/helpers';
 import {
   FilterRestrictionsServer,
+  TIPRestrictions,
   TIPRestrictionsDefault,
   TIPRestrictionsMethodEnum,
 } from '@/types';
@@ -9,9 +10,7 @@ import {
 const baseUrl = (projectId: string, registryId: string) =>
   `/cloud/project/${projectId}/containerRegistry/${registryId}/ipRestrictions`;
 
-export const fetchV6URl = async (
-  url: string,
-): Promise<TIPRestrictionsDefault[]> => {
+export const fetchV6URl = async (url: string): Promise<TIPRestrictions[]> => {
   const { data } = await v6.get(url);
   return data;
 };

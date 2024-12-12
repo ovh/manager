@@ -1,6 +1,7 @@
 import {
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
+  ODS_TEXT_COLOR_HUE,
   ODS_TEXT_COLOR_INTENT,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
@@ -21,10 +22,10 @@ const AuthorizationLabel = () => {
     <OsdsPopover>
       <span slot="popover-trigger">
         <OsdsText
-          className="mb-4"
-          size={ODS_TEXT_SIZE._400}
+          size={ODS_TEXT_SIZE._500}
+          hue={ODS_TEXT_COLOR_HUE._800}
           level={ODS_TEXT_LEVEL.body}
-          color={ODS_TEXT_COLOR_INTENT.text}
+          color={ODS_TEXT_COLOR_INTENT.primary}
         >
           {t('private_registry_cidr_authorization')}
         </OsdsText>
@@ -43,9 +44,7 @@ const AuthorizationLabel = () => {
             color={ODS_THEME_COLOR_INTENT.text}
             level={ODS_TEXT_LEVEL.body}
           >
-            {t(
-              'private_registry_cidr_help_authorized_component_jklfdskfdslhfksdkhfkdlshfkdlshfkldshfkldhkldhslkfhdlskhfkldshfklhsdfklhdslkfdsklfhkldshfkl',
-            )}
+            {t('private_registry_cidr_help_authorized_component')}
           </OsdsText>
         </Trans>
       </OsdsPopoverContent>

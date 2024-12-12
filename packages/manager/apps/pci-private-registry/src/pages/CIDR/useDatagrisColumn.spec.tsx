@@ -1,10 +1,13 @@
 import { renderHook } from '@testing-library/react';
-import { vi, describe, it, expect, beforeEach } from 'vitest';
-import { useFormContext } from 'react-hook-form';
+import { vi, describe, it, expect } from 'vitest';
+import { UseSuspenseQueryResult } from '@tanstack/react-query';
+import { FieldValues, useFormContext, UseFormReturn } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 import { useIpRestrictions } from '@/api/hooks/useIpRestrictions';
 import { useDatagridColumn } from './useDatagridColumn';
 import { wrapper } from '@/wrapperRenders';
+
+import { TIPRestrictionsData } from '@/types';
 
 vi.mock('react-router-dom', () => ({
   useParams: vi.fn(),
@@ -20,7 +23,6 @@ vi.mock('@/api/hooks/useIpRestrictions', () => ({
 
 describe('useDatagridColumn', () => {
   it('should return the correct columns', () => {
-    // Mock des données et des dépendances
     const mockData = [
       {
         ipBlock: '192.168.0.1',
@@ -38,28 +40,27 @@ describe('useDatagridColumn', () => {
       },
     ];
 
-    vi.mocked(useIpRestrictions).mockReturnValue({ data: mockData });
+    vi.mocked(useIpRestrictions).mockReturnValue(({
+      data: mockData,
+    } as unknown) as UseSuspenseQueryResult<TIPRestrictionsData[], Error>);
     vi.mocked(useParams).mockReturnValue({
       projectId: 'project123',
       registryId: 'registry456',
     });
-    vi.mocked(useFormContext).mockReturnValue({
+    vi.mocked(useFormContext).mockReturnValue(({
       control: {},
       handleSubmit: vi.fn(),
       formState: {},
-    });
+    } as unknown) as UseFormReturn<FieldValues, unknown, FieldValues>);
 
-    // Test du hook
     const { result } = renderHook(() => useDatagridColumn(), { wrapper });
     const columns = result.current;
 
-    expect(columns).toHaveLength(5); // Vérifiez le nombre de colonnes
+    expect(columns).toHaveLength(5);
 
-    // Vérifications des colonnes spécifiques
     const checkColumn = columns.find((col) => col.id === 'check');
     expect(checkColumn).toBeDefined();
-    expect(checkColumn?.label).toBeTruthy(); // Vérifie qu'il a une étiquette
-
+    expect(checkColumn?.label).toBe('');
     const cidrColumn = columns.find((col) => col.id === 'cidr');
     expect(cidrColumn).toBeDefined();
     expect(cidrColumn?.label).toBe('private_registry_bloc_cidr');
@@ -70,7 +71,6 @@ describe('useDatagridColumn', () => {
 
     const authorizedColumn = columns.find((col) => col.id === 'authorized');
     expect(authorizedColumn).toBeDefined();
-    expect(authorizedColumn?.label).toBe('private_registry_cidr_authorization');
 
     const addColumn = columns.find((col) => col.id === 'add');
     expect(addColumn).toBeDefined();

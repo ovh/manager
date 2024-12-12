@@ -44,10 +44,7 @@ const Filters = ({ createNewRow }: { createNewRow: () => void }) => {
   const { reset } = useFormContext();
   const filterPopoverRef = useRef(undefined);
   const { pagination, setPagination } = useDataGrid();
-  const { data } = useIpRestrictions(projectId, registryId, [
-    'management',
-    'registry',
-  ]);
+  const { data } = useIpRestrictions(projectId, registryId);
 
   const { t } = useTranslation(['ip-restrictions']);
   const { addSuccess, addError } = useNotifications();
@@ -112,7 +109,8 @@ const Filters = ({ createNewRow }: { createNewRow: () => void }) => {
               size={ODS_ICON_SIZE.xs}
               name={ODS_ICON_NAME.PLUS}
               className="mr-2"
-              color={ODS_THEME_COLOR_INTENT.default}
+              contrasted
+              color={ODS_THEME_COLOR_INTENT.primary}
             />
             {t('ip_restrictions_add_block')}
           </OsdsButton>

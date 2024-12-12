@@ -1,15 +1,14 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, renderHook } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { useFormContext } from 'react-hook-form';
+import { useForm, FormProvider } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
-import rQuery from '@tanstack/react-query';
+import { useNotifications } from '@ovh-ux/manager-react-components';
+
+import { UseSuspenseQueryResult } from '@tanstack/react-query';
 import { useIpRestrictions } from '../../api/hooks/useIpRestrictions';
 import Buttons from './ButtonsCIDR';
 import { wrapper } from '@/wrapperRenders';
-
-vi.mock('react-hook-form', () => ({
-  useFormContext: vi.fn(),
-}));
+import { TIPRestrictionsData } from '@/types';
 
 vi.mock('react-router-dom', () => ({
   useParams: vi.fn(),
@@ -34,11 +33,15 @@ describe('Buttons component', () => {
         { ipBlock: '192.168.0.1', authorization: ['management'] },
         { ipBlock: '192.168.0.2', authorization: ['registry'] },
       ],
-    });
-    vi.mocked(useFormContext).mockReturnValue({
-      handleSubmit: (fn: any) => fn,
-    });
-    render(<Buttons />, { wrapper });
+    } as UseSuspenseQueryResult<TIPRestrictionsData[], Error>);
+    const { result } = renderHook(useForm, { wrapper });
+
+    render(
+      <FormProvider {...result.current}>
+        <Buttons />
+      </FormProvider>,
+      { wrapper },
+    );
     const submitButton = screen.getByTestId('submit-button');
     const cancelButton = screen.getByTestId('remove-draft-button');
     expect(submitButton).toBeInTheDocument();
@@ -50,25 +53,34 @@ describe('Buttons component', () => {
       projectId: 'project123',
       registryId: 'registry456',
     });
+
+    vi.mocked(useNotifications).mockReturnValue({
+      addSuccess: vi.fn((text, bool) => text + bool),
+      addInfo: vi.fn(),
+    });
+
     vi.mocked(useIpRestrictions).mockReturnValue({
       data: [
         { ipBlock: '192.168.0.1', authorization: ['management'] },
         { ipBlock: '192.168.0.2', authorization: ['registry'] },
       ],
-    });
-    vi.mocked(useFormContext).mockReturnValue({
-      handleSubmit: (fn: any) => fn,
-    });
-    const handleSubmitMock = vi.fn((fn: any) => fn);
-    vi.mocked(useFormContext).mockReturnValue({
-      handleSubmit: handleSubmitMock,
-    });
+    } as UseSuspenseQueryResult<TIPRestrictionsData[], Error>);
 
-    render(<Buttons />, { wrapper });
+    const handleSubmitMock = vi.fn((fn: any) => fn);
+    const { result } = renderHook(useForm, { wrapper });
+
+    const methods = { ...result.current, handleSubmit: handleSubmitMock };
+
+    render(
+      <FormProvider {...methods}>
+        <Buttons />
+      </FormProvider>,
+      { wrapper },
+    );
 
     const submitButton = screen.getByTestId('submit-button');
     fireEvent.click(submitButton);
 
-    expect(handleSubmitMock).toHaveBeenCalled();
+    expect(handleSubmitMock).toHaveBeenCalledWith(expect.any(Function));
   });
 });
