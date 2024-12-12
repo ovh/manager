@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-dedicated",
-  "version": "20.7.0",
+  "version": "20.7.1",
   "private": true,
   "description": "OVHcloud Dedicated control panel.",
   "repository": {
@@ -75,7 +75,7 @@
     "@ovh-ux/ng-ovh-swimming-poll": "^5.1.2",
     "@ovh-ux/ng-ovh-toaster": "^2.1.2",
     "@ovh-ux/ng-ovh-user-pref": "^2.1.2",
-    "@ovh-ux/ng-ovh-utils": "^14.4.2",
+    "@ovh-ux/ng-ovh-utils": "^14.5.0",
     "@ovh-ux/ng-ovh-web-universe-components": "^9.19.1",
     "@ovh-ux/ng-pagination-front": "^10.3.2",
     "@ovh-ux/ng-q-allsettled": "^2.1.2",

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [14.5.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-utils@14.4.2...@ovh-ux/ng-ovh-utils@14.5.0) (2024-12-12)
+
+
+### Features
+
+* add info for alerter services ([727ea38](https://github.com/ovh/manager/commit/727ea38fb9626624e77e804fb7912e98115c26c7))
+
+
+
+
+
 ## [14.4.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-utils@14.4.1...@ovh-ux/ng-ovh-utils@14.4.2) (2024-11-28)
 
 **Note:** Version bump only for package @ovh-ux/ng-ovh-utils

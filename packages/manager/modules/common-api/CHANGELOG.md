@@ -1,0 +1,11 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [0.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-common-api@0.1.0...@ovh-ux/manager-module-common-api@0.2.0) (2024-12-12)
+
+
+### Features
+
+* **common-api-module:** create a common-api module ([#14301](https://github.com/ovh/manager/issues/14301)) ([974ec7b](https://github.com/ovh/manager/commit/974ec7bdef0017024793a4a1e2402fdaa8771d8b))
