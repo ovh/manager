@@ -2,7 +2,7 @@ import { ColumnDef } from '@tanstack/react-table';
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import { useServiceData } from '../../Service.context';
-import { DataTable } from '@/components/ui/data-table';
+import DataTable from '@/components/data-table';
 import * as database from '@/types/cloud/project/database';
 import { getColumns } from './CurrentQueriesTableColumns.component';
 import { useToast } from '@/components/ui/use-toast';
@@ -128,7 +128,11 @@ const CurrentQueries = () => {
         </div>
       </div>
       {currentQueriesQuery.isSuccess ? (
-        <DataTable columns={columns} data={filteredQueries} pageSize={25} />
+        <DataTable.Provider
+          columns={columns}
+          data={filteredQueries}
+          pageSize={25}
+        />
       ) : (
         <div data-testid="current-queries-skeleton">
           <DataTable.Skeleton columns={3} rows={5} width={100} height={16} />

@@ -5,7 +5,6 @@ import { Plus } from 'lucide-react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import * as database from '@/types/cloud/project/database';
 import { Button } from '@/components/ui/button';
-import { DataTable } from '@/components/ui/data-table';
 
 import { useUserActivityContext } from '@/contexts/UserActivityContext';
 import { useServiceData } from '../Service.context';
@@ -14,6 +13,7 @@ import { getColumns } from './_components/NamespacesTableColumns.component';
 import { NAMESPACES_CONFIG } from './_components/formNamespace/namespace.constants';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 import { useGetNamespaces } from '@/hooks/api/database/namespace/useGetNamespaces.hook';
+import DataTable from '@/components/data-table';
 
 export function breadcrumb() {
   return (
@@ -75,7 +75,7 @@ const Namespaces = () => {
         </Button>
       )}
       {namespacesQuery.isSuccess ? (
-        <DataTable
+        <DataTable.Provider
           columns={columns}
           data={namespacesQuery.data}
           pageSize={25}

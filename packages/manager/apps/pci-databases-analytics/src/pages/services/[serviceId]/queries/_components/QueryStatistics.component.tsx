@@ -2,7 +2,7 @@ import { ColumnDef } from '@tanstack/react-table';
 import { useTranslation } from 'react-i18next';
 import { RotateCcw } from 'lucide-react';
 import { useServiceData } from '../../Service.context';
-import { DataTable } from '@/components/ui/data-table';
+import DataTable from '@/components/data-table';
 import * as database from '@/types/cloud/project/database';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
@@ -72,7 +72,7 @@ const QueryStatistics = () => {
         </Button>
       )}
       {queryStatisticsQuery.isSuccess ? (
-        <DataTable
+        <DataTable.Provider
           columns={columns}
           data={
             queryStatisticsQuery.data as database.postgresql.querystatistics.Query[]

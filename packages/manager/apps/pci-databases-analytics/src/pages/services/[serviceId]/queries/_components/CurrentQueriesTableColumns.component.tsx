@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { MoreHorizontal } from 'lucide-react';
 import { ColumnDef } from '@tanstack/react-table';
-import { SortableHeader } from '@/components/ui/data-table';
+import DataTable from '@/components/data-table';
 import { ExpandableSqlQuery } from './ExpandableSqlQuery.component';
 import {
   DropdownMenu,
@@ -27,9 +27,9 @@ export const getColumns = ({
     {
       id: 'query',
       header: ({ column }) => (
-        <SortableHeader column={column}>
+        <DataTable.SortableHeader column={column}>
           {t('tableCurrentQueriesHeadName')}
-        </SortableHeader>
+        </DataTable.SortableHeader>
       ),
       accessorFn: (row) => row.query,
       cell: ({ row }) => <ExpandableSqlQuery sqlQuery={row.original.query} />,
@@ -37,45 +37,45 @@ export const getColumns = ({
     {
       id: 'pid',
       header: ({ column }) => (
-        <SortableHeader column={column}>
+        <DataTable.SortableHeader column={column}>
           {t('tableCurrentQueriesHeadPid')}
-        </SortableHeader>
+        </DataTable.SortableHeader>
       ),
       accessorFn: (row) => row.pid,
     },
     {
       id: 'queryDuration',
       header: ({ column }) => (
-        <SortableHeader column={column}>
+        <DataTable.SortableHeader column={column}>
           {t('tableCurrentQueriesHeadQueryDuration')}
-        </SortableHeader>
+        </DataTable.SortableHeader>
       ),
       accessorFn: (row) => row.queryDuration,
     },
     {
       id: 'databaseName',
       header: ({ column }) => (
-        <SortableHeader column={column}>
+        <DataTable.SortableHeader column={column}>
           {t('tableCurrentQueriesHeadDatabaseName')}
-        </SortableHeader>
+        </DataTable.SortableHeader>
       ),
       accessorFn: (row) => row.databaseName,
     },
     {
       id: 'clientIp',
       header: ({ column }) => (
-        <SortableHeader column={column}>
+        <DataTable.SortableHeader column={column}>
           {t('tableCurrentQueriesHeadClientIp')}
-        </SortableHeader>
+        </DataTable.SortableHeader>
       ),
       accessorFn: (row) => row.clientIp,
     },
     {
       id: 'applicationName',
       header: ({ column }) => (
-        <SortableHeader column={column}>
+        <DataTable.SortableHeader column={column}>
           {t('tableCurrentQueriesHeadApplicationName')}
-        </SortableHeader>
+        </DataTable.SortableHeader>
       ),
       accessorFn: (row) => row.applicationName,
     },

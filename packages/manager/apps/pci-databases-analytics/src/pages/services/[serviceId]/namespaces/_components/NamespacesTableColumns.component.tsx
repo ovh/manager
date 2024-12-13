@@ -2,7 +2,6 @@ import { useTranslation } from 'react-i18next';
 import { ColumnDef } from '@tanstack/react-table';
 
 import { MoreHorizontal } from 'lucide-react';
-import { SortableHeader } from '@/components/ui/data-table';
 import {
   Tooltip,
   TooltipProvider,
@@ -22,6 +21,7 @@ import { useDateFnsLocale } from '@/hooks/useDateFnsLocale.hook';
 import * as database from '@/types/cloud/project/database';
 import { durationStringToHuman } from '@/lib/durationHelper';
 import { useServiceData } from '../../Service.context';
+import DataTable from '@/components/data-table';
 
 interface NamespacesTableColumnsProps {
   onEditClick: (namespace: database.m3db.Namespace) => void;
@@ -40,23 +40,27 @@ export const getColumns = ({
     {
       id: 'name',
       header: ({ column }) => (
-        <SortableHeader column={column}>{t('tableHeadName')}</SortableHeader>
+        <DataTable.SortableHeader column={column}>
+          {t('tableHeadName')}
+        </DataTable.SortableHeader>
       ),
       accessorFn: (row) => row.name,
     },
     {
       id: 'type',
       header: ({ column }) => (
-        <SortableHeader column={column}>{t('tableHeadType')}</SortableHeader>
+        <DataTable.SortableHeader column={column}>
+          {t('tableHeadType')}
+        </DataTable.SortableHeader>
       ),
       accessorFn: (row) => row.type,
     },
     {
       id: 'retention',
       header: ({ column }) => (
-        <SortableHeader column={column}>
+        <DataTable.SortableHeader column={column}>
           {t('tableHeadRetentionTime')}
-        </SortableHeader>
+        </DataTable.SortableHeader>
       ),
       accessorFn: (row) =>
         durationStringToHuman(row.retention.periodDuration, dateLocale),
@@ -64,9 +68,9 @@ export const getColumns = ({
     {
       id: 'resolution',
       header: ({ column }) => (
-        <SortableHeader column={column}>
+        <DataTable.SortableHeader column={column}>
           {t('tableHeadResolution')}
-        </SortableHeader>
+        </DataTable.SortableHeader>
       ),
       accessorFn: (row) => durationStringToHuman(row.resolution, dateLocale),
     },
