@@ -26,7 +26,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = () => {
     const breadcrumbParts = pathParts.slice(2);
     return [
       {
-        label: 'Microsoft 365',
+        label: 'Mes comptes Microsoft 365',
         href: rootUrl,
       },
       {
