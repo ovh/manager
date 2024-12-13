@@ -72,7 +72,7 @@ export const PublicCloudPanel: React.FC<ComponentProps<
           ? pciProjects?.find((project: PciProject) => project.project_id === defaultProjectId) || null
           : null;
       },
-      enabled: rootNode.id === PUBLICCLOUD_UNIVERSE_ID && !selectedPciProject,
+      enabled: rootNode.id === PUBLICCLOUD_UNIVERSE_ID && !selectedPciProject && !pciProjects,
     },
   );
 
@@ -105,7 +105,7 @@ export const PublicCloudPanel: React.FC<ComponentProps<
         setSelectedPciProject(project);
       }
     }
-  }, [pciProjects, rootNode, containerURL]);
+  }, [rootNode, containerURL]);
 
   useEffect(() => {
     if (selectedPciProject === null) {
