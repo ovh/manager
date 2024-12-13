@@ -1,9 +1,7 @@
 import { act, fireEvent, render, waitFor } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
-import {
-  OdsInputValueChangeEventDetail,
-  OsdsInput,
-} from '@ovhcloud/ods-components';
+
+import { OdsInput, OdsInputChangeEventDetail } from '@ovhcloud/ods-components';
 import {
   DeletionModal,
   DeletionModalProps,
@@ -33,51 +31,56 @@ describe('DeletionModal', () => {
   it('should disable submit button when confirmation text does not match', () => {
     const { getByTestId } = renderDeletionModal(defaultProps);
 
-    const deleteInput = (getByTestId('delete-input') as unknown) as OsdsInput;
+    const deleteInput = (getByTestId('delete-input') as unknown) as OdsInput;
 
     act(() => {
       fireEvent.change(getByTestId('delete-input'), {
         target: { value: 'WRONG' },
       });
-      deleteInput.odsValueChange.emit({
+      deleteInput.odsChange.emit({
         value: 'WRONG',
-      } as OdsInputValueChangeEventDetail);
+      } as OdsInputChangeEventDetail);
     });
 
-    expect(getByTestId('pciModal-button_submit')).toBeDisabled();
+    expect(getByTestId('pciModal-button_submit')).toHaveAttribute(
+      'is-disabled',
+      'true',
+    );
   });
 
   it('should enable submit button when confirmation text matches', () => {
     const { getByTestId } = renderDeletionModal(defaultProps);
 
-    const deleteInput = (getByTestId('delete-input') as unknown) as OsdsInput;
+    const deleteInput = (getByTestId('delete-input') as unknown) as OdsInput;
 
     act(() => {
       fireEvent.change(getByTestId('delete-input'), {
         target: { value: 'CONFIRM' },
       });
-      deleteInput.odsValueChange.emit({
+      deleteInput.odsChange.emit({
         value: 'CONFIRM',
-      } as OdsInputValueChangeEventDetail);
+      } as OdsInputChangeEventDetail);
     });
-
-    expect(getByTestId('pciModal-button_submit')).not.toBeDisabled();
+    expect(getByTestId('pciModal-button_submit')).toHaveAttribute(
+      'is-disabled',
+      'false',
+    );
   });
 
   it('displays error message when input does not match confirmation text', async () => {
     const { getByTestId } = renderDeletionModal(defaultProps);
 
-    const deleteInput = (getByTestId('delete-input') as unknown) as OsdsInput;
+    const deleteInput = (getByTestId('delete-input') as unknown) as OdsInput;
 
     act(() => {
       fireEvent.change(getByTestId('delete-input'), {
         target: { value: 'WRONG' },
       });
-      deleteInput.odsValueChange.emit({
+      deleteInput.odsChange.emit({
         value: 'WRONG',
-      } as OdsInputValueChangeEventDetail);
+      } as OdsInputChangeEventDetail);
       fireEvent.blur(getByTestId('delete-input'));
-      deleteInput.odsInputBlur.emit();
+      deleteInput.odsBlur.emit();
     });
 
     await waitFor(() =>
@@ -91,10 +94,10 @@ describe('DeletionModal', () => {
   it('displays error message when input is empty', async () => {
     const { getByTestId } = renderDeletionModal(defaultProps);
 
-    const deleteInput = (getByTestId('delete-input') as unknown) as OsdsInput;
+    const deleteInput = (getByTestId('delete-input') as unknown) as OdsInput;
     act(() => {
       fireEvent.blur(getByTestId('delete-input'));
-      deleteInput.odsInputBlur.emit();
+      deleteInput.odsBlur.emit();
     });
 
     await waitFor(() =>
