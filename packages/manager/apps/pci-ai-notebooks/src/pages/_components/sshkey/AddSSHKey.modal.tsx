@@ -1,11 +1,10 @@
-import { useEffect } from 'react';
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import * as sshkey from '@/types/cloud/sshkey';
-import { ModalController } from '@/hooks/useModale';
 import {
   UseAddSshKey,
   useAddSshKey,
@@ -13,7 +12,6 @@ import {
 import { getAIApiErrorMessage } from '@/lib/apiHelper';
 import { useToast } from '@/components/ui/use-toast';
 import {
-  Dialog,
   DialogClose,
   DialogContent,
   DialogFooter,
@@ -30,22 +28,20 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import RouteModal from '@/components/route-modal/RouteModal';
+import { useGetSshkey } from '@/hooks/api/sshkey/useGetSshkey.hook';
 
-interface AddSSHKeyProps {
-  configuredSshKeys: sshkey.SshKey[];
-  controller: ModalController;
-  onSuccess?: (sshKey: sshkey.SshKey) => void;
-  onError?: (error: Error) => void;
-}
-
-const AddSSHKey = ({
-  configuredSshKeys,
-  controller,
-  onError,
-  onSuccess,
-}: AddSSHKeyProps) => {
+const AddSSHKey = () => {
   const { projectId } = useParams();
   const { t } = useTranslation('pci-ai-notebooks/components/configuration');
+  const navigate = useNavigate();
+
+  const sshKeyQuery = useGetSshkey(projectId);
+
+  const configuredSshKeys: sshkey.SshKey[] = useMemo(() => {
+    return sshKeyQuery.data;
+  }, [sshKeyQuery.isSuccess]);
+
   const sshKeySchema = z.object({
     name: z
       .string()
@@ -68,10 +64,6 @@ const AddSSHKey = ({
     resolver: zodResolver(sshKeySchema),
   });
 
-  useEffect(() => {
-    if (!controller.open) form.reset();
-  }, [controller.open]);
-
   const toast = useToast();
 
   const sshKeyMutationConfig: UseAddSshKey = {
@@ -81,9 +73,6 @@ const AddSSHKey = ({
         variant: 'destructive',
         description: getAIApiErrorMessage(err),
       });
-      if (onError) {
-        onError(err);
-      }
     },
     onAddKeySuccess(sshKey) {
       form.reset();
@@ -93,9 +82,7 @@ const AddSSHKey = ({
           name: sshKey.name,
         }),
       });
-      if (onSuccess) {
-        onSuccess(sshKey);
-      }
+      navigate('../');
     },
   };
 
@@ -110,7 +97,7 @@ const AddSSHKey = ({
   });
 
   return (
-    <Dialog {...controller}>
+    <RouteModal backUrl="../">
       <DialogContent className="sm:max-w-xl">
         <DialogHeader>
           <DialogTitle data-testid="add-sshKey-modal">
@@ -179,7 +166,7 @@ const AddSSHKey = ({
           </form>
         </Form>
       </DialogContent>
-    </Dialog>
+    </RouteModal>
   );
 };
 

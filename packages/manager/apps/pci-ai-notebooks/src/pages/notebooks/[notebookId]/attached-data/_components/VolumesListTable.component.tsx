@@ -1,45 +1,28 @@
 import { ColumnDef } from '@tanstack/react-table';
-import { useMemo } from 'react';
-import { useModale } from '@/hooks/useModale';
+import { useNavigate } from 'react-router-dom';
 import * as ai from '@/types/cloud/project/ai';
 import { getColumns } from './VolumesListColumns.component';
 import { DataTable } from '@/components/ui/data-table';
 import { Skeleton } from '@/components/ui/skeleton';
-import DataSync from './DataSync.component';
+import { useNotebookData } from '../../Notebook.context';
 
 interface VolumesListProps {
   volumes: ai.volume.Volume[];
 }
 
 export default function VolumesList({ volumes }: Readonly<VolumesListProps>) {
-  const dataSyncModale = useModale('datasync');
-
-  const dataSyncVolume: ai.volume.Volume = useMemo(
-    () =>
-      volumes.find((vol) => vol.dataStore.container === dataSyncModale.value),
-    [dataSyncModale.value, volumes],
-  );
-
+  const { notebook } = useNotebookData();
+  const navigate = useNavigate();
   const columns: ColumnDef<ai.volume.Volume>[] = getColumns({
     onDataSyncClicked: (volume: ai.volume.Volume) => {
-      dataSyncModale.open(volume.dataStore.container);
+      const volumeId = notebook.status.volumes.find(
+        (vol) => vol.mountPath === volume.mountPath,
+      ).id;
+      navigate(`./data-sync/${volumeId}`);
     },
   });
 
-  return (
-    <>
-      <DataTable columns={columns} data={volumes} pageSize={25} />
-      {dataSyncVolume && (
-        <DataSync
-          controller={dataSyncModale.controller}
-          volume={dataSyncVolume}
-          onSuccess={() => {
-            dataSyncModale.close();
-          }}
-        />
-      )}
-    </>
-  );
+  return <DataTable columns={columns} data={volumes} pageSize={25} />;
 }
 
 VolumesList.Skeleton = function VolumesListSkeleton() {

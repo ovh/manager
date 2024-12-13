@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { AlertCircle, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
@@ -12,13 +12,10 @@ import OvhLink from '@/components/links/OvhLink.component';
 import usePciProject from '@/hooks/api/project/usePciProject.hook';
 import { PlanCode } from '@/configuration/project';
 
-interface AuthProps {
-  onSuccess?: () => void;
-}
-
-export default function Auth({ onSuccess }: AuthProps) {
+export default function Auth() {
   const { t } = useTranslation('pci-ai-notebooks/auth');
   const toast = useToast();
+  const navigate = useNavigate();
   const { projectId } = useParams();
   const projectData = usePciProject();
 
@@ -38,9 +35,7 @@ export default function Auth({ onSuccess }: AuthProps) {
         title: t('formActiveUserToastSuccessTitle'),
         description: t(`formActiveUserToastSuccessDescription`),
       });
-      if (onSuccess) {
-        onSuccess();
-      }
+      navigate('../');
     },
   };
 

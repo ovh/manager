@@ -19,7 +19,7 @@ export function useAddNotebook({ onError, onSuccess }: AddNotebookProps) {
     },
     onError,
     onSuccess: (data) => {
-      // invalidate services list to avoid displaying
+      // invalidate notebook list to avoid displaying
       // old list
       queryClient.invalidateQueries({
         queryKey: [projectId, 'ai/notebook'],

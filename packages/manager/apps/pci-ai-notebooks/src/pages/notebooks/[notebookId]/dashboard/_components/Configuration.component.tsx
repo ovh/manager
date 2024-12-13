@@ -4,21 +4,13 @@ import { useNavigate } from 'react-router-dom';
 import { useNotebookData } from '../../Notebook.context';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
-import DeleteNotebook from '../../_components/DeleteNotebook.component';
-import { useGetNotebooks } from '@/hooks/api/ai/notebook/useGetNotebooks.hook';
-import { useModale } from '@/hooks/useModale';
-import { isRunningNotebook } from '@/lib/notebookHelper';
+import { isStoppedNotebook } from '@/lib/notebookHelper';
 
 const Configurations = () => {
-  const { notebook, projectId } = useNotebookData();
+  const { notebook } = useNotebookData();
   const { t } = useTranslation('pci-ai-notebooks/notebooks/notebook/dashboard');
   const navigate = useNavigate();
   const toast = useToast();
-  const deleteModale = useModale('delete');
-
-  const getNotebooksQuery = useGetNotebooks(projectId, {
-    enabled: false,
-  });
 
   return (
     <div data-testid="configuration-container">
@@ -46,20 +38,11 @@ const Configurations = () => {
         data-testid="service-confi-delete-button"
         variant="destructive"
         className="w-full bg-background border-2 hover:bg-destructive/10 font-semibold border-destructive text-destructive mt-4"
-        onClick={() => deleteModale.open()}
-        disabled={isRunningNotebook(notebook.status.state)}
+        onClick={() => navigate('./delete')}
+        disabled={!isStoppedNotebook(notebook.status.state)}
       >
         {t('deleteNotebookButton')}
       </Button>
-      <DeleteNotebook
-        controller={deleteModale.controller}
-        notebook={notebook}
-        onSuccess={() => {
-          navigate(`../../../`);
-          deleteModale.close();
-          getNotebooksQuery.refetch();
-        }}
-      />
     </div>
   );
 };
