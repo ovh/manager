@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate, useLocation } from 'react-router-dom';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
 import {
@@ -47,6 +47,7 @@ export default function Listing() {
   const { t } = useTranslation('vrack-services/listing');
   const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
+  const { state } = useLocation();
   const [reachedBetaLimit, setReachedBetaLimit] = React.useState(false);
   const { data: features, isSuccess } = useFeatureAvailability([
     'vrack-services:order',
@@ -69,6 +70,7 @@ export default function Listing() {
   if (
     !isLoading &&
     !areOrdersLoading &&
+    !state?.fromOrder &&
     data?.data.length === 0 &&
     vrackServicesDeliveringOrders?.length === 0
   ) {
