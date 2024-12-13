@@ -42,7 +42,7 @@ export const AccordionComponent = ({
           </div>
           <div className="w-fit flex items-center">
             <OdsIcon
-              className="text-[--ods-color-cprimary-500] text-[16px]"
+              className="text-[--ods-color-primary-500] text-[16px]"
               name={
                 state.isOpen
                   ? ODS_ICON_NAME.chevronUp
