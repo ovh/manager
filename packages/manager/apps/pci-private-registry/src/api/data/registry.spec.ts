@@ -3,15 +3,10 @@ import { v6 } from '@ovh-ux/manager-core-api'; // Assurez-vous que cette importa
 import {
   getAllRegistries,
   getRegistry,
-  getRegistryPlan,
-  getRegistryAvailablePlans,
   deleteRegistry,
-  postRegistryCredentials,
-  renameRegistry,
   createRegistry,
   updatePlan,
   TRegistry,
-  TRegistryPlan,
 } from './registry';
 
 vi.mock('@ovh-ux/manager-core-api'); // Mocking the v6 API

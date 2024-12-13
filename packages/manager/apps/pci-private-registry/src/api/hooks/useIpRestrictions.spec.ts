@@ -1,7 +1,11 @@
 import { renderHook, waitFor, act } from '@testing-library/react';
 import { Mock, vi } from 'vitest';
-import { applyFilters } from '@ovh-ux/manager-core-api';
-import { Filter, PaginationState } from '@ovh-ux/manager-react-components';
+import {
+  applyFilters,
+  Filter,
+  FilterComparator,
+} from '@ovh-ux/manager-core-api';
+import { PaginationState } from '@ovh-ux/manager-react-components';
 import {
   TUpdateIpRestrictionMutationParams,
   useIpRestrictions,
@@ -213,7 +217,7 @@ const renderIpRestrictionsWithFilterHook = (
   registryId: string,
   type: FilterRestrictionsServer[],
   pagination: PaginationState,
-  filters: Filter,
+  filters: Filter[],
 ) =>
   renderHook(
     () =>
@@ -246,12 +250,14 @@ describe('useIpRestrictionsWithFilter Hook Tests', () => {
       .mockReturnValue(paginatedData);
 
     const pagination = { pageIndex: 0, pageSize: 10 };
-    const filters: Filter = {
-      key: 'ipBlock',
-      value: '192.168.0.1',
-      comparator: 'includes',
-      label: '',
-    };
+    const filters: (Filter & { label: string })[] = [
+      {
+        key: 'ipBlock',
+        value: '192.168.0.1',
+        comparator: FilterComparator.Includes,
+        label: '',
+      },
+    ];
 
     const { result } = renderIpRestrictionsWithFilterHook(
       'project-id',
@@ -294,7 +300,14 @@ describe('useIpRestrictionsWithFilter Hook Tests', () => {
       pageIndex: 0,
       pageSize: 10,
     };
-    const filters = { description: 'block' };
+    const filters: (Filter & { label: string })[] = [
+      {
+        key: 'description',
+        label: '',
+        value: 'block',
+        comparator: FilterComparator.Includes,
+      },
+    ];
 
     const { result } = renderIpRestrictionsWithFilterHook(
       'project-id',
