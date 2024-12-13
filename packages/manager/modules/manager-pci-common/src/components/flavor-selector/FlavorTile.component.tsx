@@ -162,17 +162,11 @@ export function FlavorTile({
               {t('pci_project_flavors_quota_info')}
             </OdsText>
             <OdsLink
-              className="ml-3"
+              className="ml-3 text-[14px] "
               color={ODS_LINK_COLOR.primary}
               href={`${projectHref}/quota`}
-            >
-              <OdsText
-                preset="span"
-                className="text-[--ods-color-primary-500] text-[14px]"
-              >
-                {t('pci_project_flavors_quota_manage')}
-              </OdsText>
-            </OdsLink>
+              label={t('pci_project_flavors_quota_manage')}
+            />
           </>
         )}
       </div>
