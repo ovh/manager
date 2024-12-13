@@ -13,7 +13,6 @@ const Checkboxes = ({
   updateChecked,
   checked,
 }: {
-  dataAllSelected: boolean;
   updateChecked: (ipBlock: string, allIsSelected?: boolean) => void;
   ipBlock: string;
   checked: boolean;
