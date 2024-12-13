@@ -26,7 +26,9 @@ export default function ActionComponent({
   return (
     <>
       <ActionMenu items={items} isCompact />
-      {openDeleteModal && <DeleteModal cidr={cidr} />}
+      {openDeleteModal && (
+        <DeleteModal onClose={() => setOpenDeleteModal(false)} cidr={cidr} />
+      )}
     </>
   );
 }
