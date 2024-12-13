@@ -28,14 +28,14 @@ export const getColumns = ({ onDataSyncClicked }: VolumesListColumnsProps) => {
   const columns: ColumnDef<ai.volume.Volume>[] = [
     {
       id: 'Alias',
-      accessorFn: (row) => row.dataStore.alias,
+      accessorFn: (row) => row.volumeSource.dataStore.alias,
       header: ({ column }) => (
         <SortableHeader column={column}>{t('tableHeaderAlias')}</SortableHeader>
       ),
     },
     {
       id: 'Container',
-      accessorFn: (row) => row.dataStore.container,
+      accessorFn: (row) => row.volumeSource.dataStore.container,
       header: ({ column }) => (
         <SortableHeader column={column}>
           {t('tableHeaderContainer')}

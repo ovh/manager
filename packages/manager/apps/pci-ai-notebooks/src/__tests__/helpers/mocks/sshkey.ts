@@ -6,3 +6,11 @@ export const mockedSshKey: sshkey.SshKey = {
   publicKey: 'publicKey',
   regions: ['GRA'],
 };
+
+export const mockedSshKeyDetail: sshkey.SshKeyDetail = {
+  fingerPrint: 'fingerPrint',
+  id: 'id',
+  name: 'name',
+  publicKey: 'publicKey',
+  regions: ['GRA', 'BHS'],
+};

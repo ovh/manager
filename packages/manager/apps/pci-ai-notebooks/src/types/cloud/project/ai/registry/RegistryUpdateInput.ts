@@ -1,9 +1,9 @@
 /** Docker registry update object */
 export interface RegistryUpdateInput {
   /** Docker registry password */
-  password: string;
+  password?: string;
   /** Docker registry URL */
-  url: string;
+  url?: string;
   /** Docker registry username */
-  username: string;
+  username?: string;
 }

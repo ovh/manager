@@ -1,8 +1,12 @@
 import { useTranslation } from 'react-i18next';
-import { HelpCircle, Info } from 'lucide-react';
+import { HelpCircle } from 'lucide-react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
 import { Button } from '@/components/ui/button';
 import {
-  Dialog,
   DialogClose,
   DialogContent,
   DialogFooter,
@@ -11,9 +15,7 @@ import {
 } from '@/components/ui/dialog';
 import { useToast } from '@/components/ui/use-toast';
 import * as ai from '@/types/cloud/project/ai';
-import { ModalController } from '@/hooks/useModale';
 import { getAIApiErrorMessage } from '@/lib/apiHelper';
-import { useDataSyncForm } from './formDataSync/useDataSyncForm.hook';
 import { useDataSync } from '@/hooks/api/ai/notebook/datasync/useDataSync.hook';
 import { useNotebookData } from '../../Notebook.context';
 import {
@@ -36,28 +38,26 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
-import { Alert, AlertDescription } from '@/components/ui/alert';
+import RouteModal from '@/components/route-modal/RouteModal';
 
-interface DataSyncModalProps {
-  volume?: ai.volume.Volume;
-  controller: ModalController;
-  onSuccess?: () => void;
-  onError?: (service: Error) => void;
-}
-
-const DataSync = ({
-  volume,
-  controller,
-  onError,
-  onSuccess,
-}: DataSyncModalProps) => {
+const DataSync = () => {
+  const { volumeId } = useParams();
+  const [volume, setVolume] = useState<ai.volume.VolumeStatus>();
   const { notebook, projectId } = useNotebookData();
   const { t } = useTranslation(
     'pci-ai-notebooks/notebooks/notebook/attached-data',
   );
+  const navigate = useNavigate();
   const toast = useToast();
 
-  const { form } = useDataSyncForm();
+  useEffect(() => {
+    if (!volumeId) return;
+    const volumeToSync: ai.volume.VolumeStatus = notebook.status.volumes.find(
+      (vol: ai.volume.VolumeStatus) => vol.id === volumeId,
+    );
+    if (volumeId && !volumeToSync) navigate('../');
+    setVolume(volumeToSync);
+  }, [volumeId]);
 
   const { dataSync, isPending } = useDataSync({
     onError: (err) => {
@@ -66,24 +66,37 @@ const DataSync = ({
         variant: 'destructive',
         description: getAIApiErrorMessage(err),
       });
-      if (onError) {
-        onError(err);
-      }
     },
     onSuccess: () => {
       const toastdesc: string = volume
         ? t('dataSyncMountPathToastSuccessDescription', {
             name: volume.mountPath,
+            interpolation: { escapeValue: false },
           })
         : t('dataSyncGlobalToastSuccessDescription');
       toast.toast({
         title: t('dataSyncToastSuccessTitle'),
         description: toastdesc,
       });
-      if (onSuccess) {
-        onSuccess();
-      }
+      navigate('../');
     },
+  });
+
+  const dataSyncTypeRules = z.nativeEnum(ai.volume.DataSyncEnum);
+
+  const schema = z.object({
+    type: dataSyncTypeRules,
+  });
+
+  type ValidationSchema = z.infer<typeof schema>;
+
+  const defaultValues: ValidationSchema = {
+    type: ai.volume.DataSyncEnum.pull,
+  };
+
+  const form = useForm<ValidationSchema>({
+    resolver: zodResolver(schema),
+    defaultValues,
   });
 
   const onSubmit = form.handleSubmit((formValues) => {
@@ -103,7 +116,7 @@ const DataSync = ({
   });
 
   return (
-    <Dialog {...controller}>
+    <RouteModal backUrl="../">
       <DialogContent>
         <DialogHeader>
           <DialogTitle data-testid="datasync-modal">
@@ -147,29 +160,21 @@ const DataSync = ({
                       )}
                     </SelectContent>
                   </Select>
-                  <Alert variant="info">
-                    <AlertDescription className="mt-2 text-base">
-                      <div className="flex flex-row gap-5 items-center">
-                        <Info className="h-7 w-7" />
-                        {volume ? (
-                          <p>
-                            {t('dataSyncMountPathAlertDescription', {
-                              name: volume.mountPath,
-                              interpolation: { escapeValue: false },
-                            })}
-                          </p>
-                        ) : (
-                          <p>{t('dataSyncGlobalAlertDescription')}</p>
-                        )}
-                      </div>
-                    </AlertDescription>
-                  </Alert>
-
-                  <FormControl></FormControl>
+                  <FormControl />
                   <FormMessage />
                 </FormItem>
               )}
             />
+            {volume ? (
+              <p>
+                {t('dataSyncMountPathAlertDescription', {
+                  name: volume.mountPath,
+                  interpolation: { escapeValue: false },
+                })}
+              </p>
+            ) : (
+              <p>{t('dataSyncGlobalAlertDescription')}</p>
+            )}
             <DialogFooter className="flex justify-end">
               <DialogClose asChild>
                 <Button
@@ -191,7 +196,7 @@ const DataSync = ({
           </form>
         </Form>
       </DialogContent>
-    </Dialog>
+    </RouteModal>
   );
 };
 

@@ -30,7 +30,7 @@ const LifeCycle = () => {
                 </TableCell>
                 <TableCell className="font-semibold">{state.state}</TableCell>
                 <TableCell className="font-semibold">
-                  {format(state.date, 'PPpp' , {locale : dateLocale})}
+                  {format(state.date, 'PPpp', { locale: dateLocale })}
                 </TableCell>
               </TableRow>
             ))}

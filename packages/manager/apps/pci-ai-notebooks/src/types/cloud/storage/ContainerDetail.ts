@@ -4,23 +4,23 @@ import { ContainerObject } from '@/types/cloud/storage/ContainerObject';
 /** ContainerDetail */
 export interface ContainerDetail {
   /** Whether this is an archive container or not */
-  archive?: boolean;
+  archive: boolean;
   /** Container type */
-  containerType?: TypeEnum;
+  containerType: TypeEnum;
   /** Origins allowed to make Cross Origin Requests */
-  cors?: string[];
+  cors: string[];
   /** Container name */
-  name?: string;
+  name: string;
   /** Objects stored in container */
-  objects?: ContainerObject[];
-  /** Public container (DEPRECATED: see containerType) */
-  public?: boolean;
+  objects: ContainerObject[];
+  /** @deprecated Public container (DEPRECATED: see containerType) */
+  public: boolean;
   /** Container region */
-  region?: string;
+  region: string;
   /** Container static URL */
-  staticUrl?: string;
+  staticUrl: string;
   /** Total bytes stored */
-  storedBytes?: number;
+  storedBytes: number;
   /** Total objects stored */
-  storedObjects?: number;
+  storedObjects: number;
 }

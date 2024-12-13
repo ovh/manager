@@ -3,11 +3,11 @@ import { MonthlyInstanceDetail } from '@/types/cloud/billingView/MonthlyInstance
 /** MonthlyInstance */
 export interface MonthlyInstance {
   /** Details about monthly instances */
-  details?: MonthlyInstanceDetail[];
+  details: MonthlyInstanceDetail[];
   /** Instance reference */
-  reference?: string;
+  reference: string;
   /** Instance region */
-  region?: string;
+  region: string;
   /** Total price */
-  totalPrice?: number;
+  totalPrice: number;
 }

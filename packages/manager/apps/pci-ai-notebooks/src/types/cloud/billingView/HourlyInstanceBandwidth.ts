@@ -7,7 +7,7 @@ export interface HourlyInstanceBandwidth {
   /** Instance outgoing bandwidth details */
   outgoingBandwidth?: BandwidthInstance;
   /** Region */
-  region?: string;
+  region: string;
   /** Total price */
-  totalPrice?: number;
+  totalPrice: number;
 }

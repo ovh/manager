@@ -14,12 +14,12 @@ export function useAddNotebook({ onError, onSuccess }: AddNotebookProps) {
   const queryClient = useQueryClient();
   const { projectId } = useParams();
   const mutation = useMutation({
-    mutationFn: (notebookInfo: ai.notebook.NotebookSpec) => {
+    mutationFn: (notebookInfo: ai.notebook.NotebookSpecInput) => {
       return addNotebook({ projectId, notebookInfo });
     },
     onError,
     onSuccess: (data) => {
-      // invalidate services list to avoid displaying
+      // invalidate notebook list to avoid displaying
       // old list
       queryClient.invalidateQueries({
         queryKey: [projectId, 'ai/notebook'],
@@ -30,7 +30,7 @@ export function useAddNotebook({ onError, onSuccess }: AddNotebookProps) {
   });
 
   return {
-    addNotebook: (notebookInfo: ai.notebook.NotebookSpec) => {
+    addNotebook: (notebookInfo: ai.notebook.NotebookSpecInput) => {
       return mutation.mutate(notebookInfo);
     },
     ...mutation,

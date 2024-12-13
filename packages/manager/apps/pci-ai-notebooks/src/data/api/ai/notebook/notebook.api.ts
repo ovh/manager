@@ -20,7 +20,7 @@ export const getNotebook = async ({ projectId, notebookId }: NotebookData) =>
     .then((res) => res.data as ai.notebook.Notebook);
 
 export interface AddNotebook extends PCIAi {
-  notebookInfo: ai.notebook.NotebookSpec;
+  notebookInfo: ai.notebook.NotebookSpecInput;
 }
 export const addNotebook = async ({ projectId, notebookInfo }: AddNotebook) =>
   apiClient.v6

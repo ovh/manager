@@ -5,5 +5,5 @@ export interface Logs {
   /** Last activity date */
   lastActivity?: string;
   /** Logs lines */
-  logs?: LogLine[];
+  logs: LogLine[];
 }

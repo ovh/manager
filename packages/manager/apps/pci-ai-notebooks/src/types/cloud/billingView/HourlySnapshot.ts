@@ -6,9 +6,9 @@ export interface HourlySnapshot {
   /** Instance snapshot details */
   instance?: InstanceSnapshot;
   /** Region */
-  region?: string;
+  region: string;
   /** Total price */
-  totalPrice?: number;
+  totalPrice: number;
   /** Volume snapshot details */
   volume?: VolumeSnapshot;
 }

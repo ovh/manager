@@ -1,5 +1,12 @@
 import { ColumnDef } from '@tanstack/react-table';
-import { Cpu, Globe, LockKeyhole, MoreHorizontal, Zap } from 'lucide-react';
+import {
+  ArrowUpRightFromSquare,
+  Cpu,
+  Globe,
+  LockKeyhole,
+  MoreHorizontal,
+  Zap,
+} from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import * as ai from '@/types/cloud/project/ai';
@@ -17,7 +24,12 @@ import { SortableHeader } from '@/components/ui/data-table';
 import Link from '@/components/links/Link.component';
 import { convertSecondsToTimeString } from '@/lib/durationHelper';
 import NotebookStatusBadge from './NotebookStatusBadge.component';
-import { isDeletingNotebook, isRunningNotebook } from '@/lib/notebookHelper';
+import {
+  isDeletingNotebook,
+  isRunningNotebook,
+  isStoppedNotebook,
+} from '@/lib/notebookHelper';
+import A from '@/components/links/A.component';
 
 interface NotebooksListColumnsProps {
   onStartClicked: (notebook: ai.notebook.Notebook) => void;
@@ -75,13 +87,45 @@ export const getColumns = ({
       ),
     },
     {
-      id: 'Environment',
-      accessorFn: (row) =>
-        `${row.spec.env.frameworkId} - ${row.spec.env.frameworkVersion}`,
+      id: 'Framework',
+      accessorFn: (row) => row.spec.env.frameworkId,
       header: ({ column }) => (
         <SortableHeader column={column}>
-          {t('tableHeaderEnvironment')}
+          {t('tableHeaderFramework')}
         </SortableHeader>
+      ),
+      cell: ({ row }) => (
+        <span className="capitalize">{row.original.spec.env.frameworkId}</span>
+      ),
+    },
+    {
+      id: 'Editor',
+      accessorFn: (row) => row.spec.env.editorId,
+      header: ({ column }) => (
+        <SortableHeader column={column}>
+          {t('tableHeaderEditor')}
+        </SortableHeader>
+      ),
+      cell: ({ row }) => (
+        <Button
+          className="capitalize font-semibold flex flex-row gap-1 items-center"
+          type="button"
+          size="badge"
+          disabled={
+            row.original.status.state !== ai.notebook.NotebookStateEnum.RUNNING
+          }
+        >
+          <A
+            href={row.original.status.url}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div className="flex flex-row gap-1 items-center text-white capitalize">
+              {row.original.spec.env.editorId}
+              <ArrowUpRightFromSquare className="size-3" />
+            </div>
+          </A>
+        </Button>
       ),
     },
     {
@@ -226,7 +270,7 @@ export const getColumns = ({
               <DropdownMenuItem
                 variant="destructive"
                 disabled={
-                  isRunningNotebook(notebook.status.state) ||
+                  !isStoppedNotebook(notebook.status.state) ||
                   isDeletingNotebook(notebook.status.state)
                 }
                 onClick={() => {
