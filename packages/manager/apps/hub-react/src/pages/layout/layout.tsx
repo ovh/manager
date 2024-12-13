@@ -1,4 +1,11 @@
-import { useEffect, useContext, useRef, Suspense, lazy, useState } from 'react';
+import React, {
+  useEffect,
+  useContext,
+  useRef,
+  Suspense,
+  lazy,
+  useState,
+} from 'react';
 import { useLocation } from 'react-router-dom';
 import {
   useOvhTracking,
@@ -21,21 +28,12 @@ import {
 import { defineCurrentPage } from '@ovh-ux/request-tagger';
 import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-import {
-  features,
-  BILLING_FEATURE,
-  SIRET_BANNER_FEATURE,
-  SIRET_MODAL_FEATURE,
-} from '@/pages/layout/layout.constants';
+import { features } from '@/pages/layout/layout.constants';
 import { useFetchHubServices } from '@/data/hooks/services/useServices';
 import { useFetchHubLastOrder } from '@/data/hooks/lastOrder/useLastOrder';
 // Components used in Suspense's fallback cannot be lazy loaded (break testing)
 import TileGridSkeleton from '@/components/tile-grid-skeleton/TileGridSkeleton.component';
-import TileSkeleton from '@/components/tile-grid-skeleton/tile-skeleton/TileSkeleton.component';
-import NotificationsCarouselSkeleton from '@/pages/layout/NotificationsCarousel.skeleton';
-import PaymentStatusSkeleton from '@/pages/layout/PaymentStatus.skeleton';
-import BillingSummarySkeleton from '@/pages/layout/BillingSummary.skeleton';
-import OrderTrackingSkeleton from '@/components/hub-order-tracking/OrderTracking.skeleton';
+import { Context } from '@/pages/layout/context';
 
 const Welcome = lazy(() => import('@/components/welcome/Welcome.component'));
 const Banner = lazy(() => import('@/components/banner/Banner.component'));
@@ -95,10 +93,7 @@ export default function Layout() {
     getIsAccountSidebarVisible();
   }, []);
 
-  const {
-    data: availability,
-    isPending: isAvailabilityLoading,
-  } = useFeatureAvailability(features);
+  const { data: availability } = useFeatureAvailability(features);
   const {
     data: services,
     isPending: areServicesLoading,
@@ -120,171 +115,130 @@ export default function Layout() {
 
   return (
     <>
-      <div className="skipnav">
-        <OsdsButton
-          inline
-          color={ODS_THEME_COLOR_INTENT.primary}
-          variant={ODS_BUTTON_VARIANT.ghost}
-          size={ODS_BUTTON_SIZE.sm}
-          onClick={scrollToComponent}
-          data-testid="skipnav_button"
-        >
-          {t('manager_hub_skip_to_main_content')}
-        </OsdsButton>
-      </div>
-      <div className="relative w-full h-full overflow-auto">
-        <div
-          className={`absolute hub-main w-full h-full ${
-            isAccountSidebarVisible ? 'hub-main-view_sidebar_expanded' : ''
-          }`}
-          data-testid="hub_main_div"
-        >
-          <div className="mb-12">
-            {/* Skip content target */}
-            <div className="skiptarget">
-              <a
-                id="maincontent"
-                data-testid="main_content"
-                ref={mainContentRef}
-              >
-                -
-              </a>
-            </div>
-            {/* /Skip content target */}
-            <div className="pt-8">
-              <div className="hub-main-view_container px-6 box-border">
-                <div className="pb-12">
-                  <Suspense
-                    fallback={
-                      <OsdsSkeleton data-testid="welcome_skeleton" inline />
-                    }
-                  >
-                    <Welcome />
-                  </Suspense>
-                  <div className="flex flex-wrap w-full minw-0 items-center justify-between">
-                    {isLoading && <NotificationsCarouselSkeleton />}
-                    {!isLoading && !isFreshCustomer && (
-                      <>
-                        <Suspense>
-                          <Banner />
-                        </Suspense>
-                        <Suspense fallback={<NotificationsCarouselSkeleton />}>
-                          <NotificationsCarousel />
-                        </Suspense>
-                      </>
-                    )}
-                  </div>
-                  {!isLoading && !isFreshCustomer && (
-                    <>
-                      {availability?.[SIRET_BANNER_FEATURE] && (
-                        <Suspense>
-                          <SiretBanner />
-                        </Suspense>
-                      )}
-                      {availability?.[SIRET_MODAL_FEATURE] && (
-                        <Suspense>
-                          <SiretModal />
-                        </Suspense>
-                      )}
-                    </>
-                  )}
-                  {!isLoading && (
-                    <>
-                      {availability?.['identity-documents'] && (
-                        <Suspense>
-                          <KycIndiaBanner />
-                        </Suspense>
-                      )}
-                      {availability?.['procedures:fraud'] && (
-                        <Suspense>
-                          <KycFraudBanner />
-                        </Suspense>
-                      )}
-                    </>
-                  )}
-                  {!isFreshCustomer && (
-                    <OsdsText
-                      className="inline-block my-6"
-                      level={ODS_TEXT_LEVEL.heading}
-                      size={ODS_TEXT_SIZE._500}
-                      hue={ODS_TEXT_COLOR_HUE._800}
-                      color={ODS_THEME_COLOR_INTENT.primary}
+      <Context.Provider
+        value={{
+          isLoading,
+          isFreshCustomer,
+          availability,
+        }}
+      >
+        <div className="skipnav">
+          <OsdsButton
+            inline
+            color={ODS_THEME_COLOR_INTENT.primary}
+            variant={ODS_BUTTON_VARIANT.ghost}
+            size={ODS_BUTTON_SIZE.sm}
+            onClick={scrollToComponent}
+            data-testid="skipnav_button"
+          >
+            {t('manager_hub_skip_to_main_content')}
+          </OsdsButton>
+        </div>
+        <div className="relative w-full h-full overflow-auto">
+          <div
+            className={`absolute hub-main w-full h-full ${
+              isAccountSidebarVisible ? 'hub-main-view_sidebar_expanded' : ''
+            }`}
+            data-testid="hub_main_div"
+          >
+            <div className="mb-12">
+              {/* Skip content target */}
+              <div className="skiptarget">
+                <a
+                  id="maincontent"
+                  data-testid="main_content"
+                  ref={mainContentRef}
+                >
+                  -
+                </a>
+              </div>
+              {/* /Skip content target */}
+              <div className="pt-8">
+                <div className="hub-main-view_container px-6 box-border">
+                  <div className="pb-12">
+                    <Suspense
+                      fallback={
+                        <OsdsSkeleton data-testid="welcome_skeleton" inline />
+                      }
                     >
-                      {t('manager_hub_dashboard_overview')}
-                    </OsdsText>
-                  )}
-                  <div className={`flex flex-wrap ${isLoading ? '' : '-mx-6'}`}>
-                    <div className="md:w-8/12 mb-6 md:mb-8 px-6 box-border">
-                      {isLoading && <PaymentStatusSkeleton />}
-                      {!isLoading && !isFreshCustomer && (
-                        <Suspense fallback={<PaymentStatusSkeleton />}>
-                          <PaymentStatus
-                            canManageBilling={availability?.[BILLING_FEATURE]}
-                          />
-                        </Suspense>
-                      )}
-                    </div>
-                    <div className="md:w-4/12 mb-6 md:mb-8 order-3 md:order-2 px-6 box-border">
-                      {isLoading && (
-                        <BillingSummarySkeleton data-testid="billing_summary_skeleton" />
-                      )}
-                      {!isLoading && !isFreshCustomer && (
-                        <Suspense
-                          fallback={
-                            <BillingSummarySkeleton data-testid="billing_summary_skeleton" />
-                          }
-                        >
+                      <Welcome />
+                    </Suspense>
+                    <Suspense>
+                      <Banner />
+                    </Suspense>
+                    <Suspense>
+                      <NotificationsCarousel />
+                    </Suspense>
+                    <Suspense>
+                      <SiretBanner />
+                    </Suspense>
+                    <Suspense>
+                      <SiretModal />
+                    </Suspense>
+                    <Suspense>
+                      <KycIndiaBanner />
+                    </Suspense>
+                    <Suspense>
+                      <KycFraudBanner />
+                    </Suspense>
+                    {/* FIXME: this result in a shift when done loading */}
+                    {!isFreshCustomer && (
+                      <OsdsText
+                        className="inline-block my-6"
+                        level={ODS_TEXT_LEVEL.heading}
+                        size={ODS_TEXT_SIZE._500}
+                        hue={ODS_TEXT_COLOR_HUE._800}
+                        color={ODS_THEME_COLOR_INTENT.primary}
+                      >
+                        {t('manager_hub_dashboard_overview')}
+                      </OsdsText>
+                    )}
+                    <div
+                      className={`flex flex-wrap ${isLoading ? '' : '-mx-6'}`}
+                    >
+                      <div className="md:w-8/12 mb-6 md:mb-8 px-6 box-border">
+                        <PaymentStatus />
+                      </div>
+                      <div className="md:w-4/12 mb-6 md:mb-8 order-3 md:order-2 px-6 box-border">
+                        <Suspense>
                           {user.enterprise ? (
                             <EnterpriseBillingSummary />
                           ) : (
                             <BillingSummary />
                           )}
                         </Suspense>
-                      )}
-                    </div>
-                    <div className="md:w-8/12 mb-6 md:mb-8 order-2 md:order-3 px-6 box-border">
-                      <Suspense
-                        fallback={
-                          <TileSkeleton data-testid="support_skeleton" />
-                        }
-                      >
-                        <HubSupport />
-                      </Suspense>
-                    </div>
-                    <div className="md:w-4/12 order-4 px-6 box-border">
-                      {isLoading && (
-                        <OrderTrackingSkeleton data-testid="order_tracking_skeleton" />
-                      )}
-                      {!isLoading && !isFreshCustomer && (
-                        <Suspense
-                          fallback={
-                            <OrderTrackingSkeleton data-testid="order_tracking_skeleton" />
-                          }
-                        >
+                      </div>
+                      <div className="md:w-8/12 mb-6 md:mb-8 order-2 md:order-3 px-6 box-border">
+                        <Suspense>
+                          <HubSupport />
+                        </Suspense>
+                      </div>
+                      <div className="md:w-4/12 order-4 px-6 box-border">
+                        <Suspense>
                           <OrderTracking />
+                        </Suspense>
+                      </div>
+                    </div>
+                    <div className="hub-dashboard-product">
+                      {isLoading && <TileGridSkeleton />}
+                      {!isLoading && !isFreshCustomer && (
+                        <Suspense fallback={<TileGridSkeleton />}>
+                          <Products services={services}></Products>
+                        </Suspense>
+                      )}
+                      {!isLoading && isFreshCustomer && (
+                        <Suspense fallback={<TileGridSkeleton />}>
+                          <Catalog />
                         </Suspense>
                       )}
                     </div>
-                  </div>
-                  <div className="hub-dashboard-product">
-                    {isLoading && <TileGridSkeleton />}
-                    {!isLoading && !isFreshCustomer && (
-                      <Suspense fallback={<TileGridSkeleton />}>
-                        <Products services={services}></Products>
-                      </Suspense>
-                    )}
-                    {!isLoading && isFreshCustomer && (
-                      <Suspense fallback={<TileGridSkeleton />}>
-                        <Catalog />
-                      </Suspense>
-                    )}
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </Context.Provider>
     </>
   );
 }
