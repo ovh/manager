@@ -15,7 +15,11 @@ import {
 } from '@/api/data/user';
 import queryClient from '@/queryClient';
 
-const getQueryKeyUsers = (projectId: string) => ['project', projectId, 'users'];
+export const getQueryKeyUsers = (projectId: string) => [
+  'project',
+  projectId,
+  'users',
+];
 
 export const useAllUsers = (projectId: string) =>
   useQuery({
@@ -41,14 +45,16 @@ export const useUsers = (projectId: string) => {
           (result) => result.data?.userId === user.openstackId,
         )?.data;
 
-        all.push({
-          ...user,
-          access: s3Credentials?.access,
-          s3Credentials,
-          search: `${user.username} ${user.description} ${
-            s3Credentials ? s3Credentials?.access : ''
-          }`.trimEnd(),
-        });
+        if (s3Credentials) {
+          all.push({
+            ...user,
+            access: s3Credentials?.access,
+            s3Credentials,
+            search: `${user.username} ${user.description} ${
+              s3Credentials ? s3Credentials?.access : ''
+            }`.trimEnd(),
+          });
+        }
 
         return all;
       }, []),

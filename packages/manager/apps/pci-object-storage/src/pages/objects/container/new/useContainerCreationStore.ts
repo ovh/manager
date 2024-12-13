@@ -10,7 +10,7 @@ export interface ContainerCreationForn {
   offer: string;
   deploymentMode: string;
   region: TRegionAvailability;
-  user: string;
+  ownerId: string;
   versioning: boolean;
   encryption: string;
   containerName: string;
@@ -29,7 +29,7 @@ export interface ContainerStore {
     offer: StepState;
     deployment: StepState;
     region: StepState;
-    user: StepState;
+    ownerId: StepState;
     versioning: StepState;
     encryption: StepState;
     containerName: StepState;
@@ -48,9 +48,9 @@ export interface ContainerStore {
   editRegion: () => void;
   submitRegion: () => void;
 
-  setUser: (user: string) => void;
-  editUser: () => void;
-  submitUser: () => void;
+  setOwnerId: (ownerId: string) => void;
+  editOwnerId: () => void;
+  submitOwnerId: () => void;
 
   setVersioning: (versioning: boolean) => void;
   editVersioning: () => void;
@@ -131,7 +131,7 @@ export const useContainerCreationStore = create<ContainerStore>()(
         offer: OBJECT_CONTAINER_OFFER_STORAGE_STANDARD,
         deploymentMode: undefined,
         region: undefined,
-        user: undefined,
+        ownerId: '',
         versioning: false,
         encryption: 'plain',
         containerName: '',
@@ -143,7 +143,7 @@ export const useContainerCreationStore = create<ContainerStore>()(
         offer: { isOpen: true },
         deployment: {},
         region: {},
-        user: {},
+        ownerId: {},
         versioning: {},
         encryption: {},
         containerName: {},
@@ -157,7 +157,7 @@ export const useContainerCreationStore = create<ContainerStore>()(
             offer,
             deploymentMode: undefined,
             region: undefined,
-            user: undefined,
+            ownerId: '',
             versioning: false,
             encryption: 'plain',
             containerName: '',
@@ -175,7 +175,7 @@ export const useContainerCreationStore = create<ContainerStore>()(
         editStep('offer', [
           'deployment',
           'region',
-          'user',
+          'ownerId',
           'versioning',
           'encryption',
           'containerName',
@@ -188,7 +188,7 @@ export const useContainerCreationStore = create<ContainerStore>()(
             ...state.form,
             deploymentMode,
             region: undefined,
-            user: undefined,
+            ownerId: '',
             versioning: false,
             encryption: 'plain',
             containerName: '',
@@ -199,7 +199,7 @@ export const useContainerCreationStore = create<ContainerStore>()(
       editDeploymentMode: () =>
         editStep('deployment', [
           'region',
-          'user',
+          'ownerId',
           'versioning',
           'encryption',
           'containerName',
@@ -210,7 +210,7 @@ export const useContainerCreationStore = create<ContainerStore>()(
           form: {
             ...state.form,
             region,
-            user: undefined,
+            ownerId: '',
             versioning: false,
             encryption: 'plain',
             containerName: '',
@@ -224,32 +224,32 @@ export const useContainerCreationStore = create<ContainerStore>()(
         } else if (form.deploymentMode === OBJECT_CONTAINER_MODE_LOCAL_ZONE) {
           submitStep('region', 'containerName');
         } else {
-          submitStep('region', 'user');
+          submitStep('region', 'ownerId');
         }
       },
       editRegion: () =>
         editStep('region', [
-          'user',
+          'ownerId',
           'versioning',
           'encryption',
           'containerName',
           'containerType',
         ]),
 
-      setUser: (user: string) =>
+      setOwnerId: (ownerId: string) =>
         set((state) => ({
           form: {
             ...state.form,
-            user,
+            ownerId,
             versioning: false,
             encryption: 'plain',
             containerName: '',
             containerType: undefined,
           },
         })),
-      editUser: () =>
-        editStep('user', ['versioning', 'encryption', 'containerName']),
-      submitUser: () => submitStep('user', 'versioning'),
+      editOwnerId: () =>
+        editStep('ownerId', ['versioning', 'encryption', 'containerName']),
+      submitOwnerId: () => submitStep('ownerId', 'versioning'),
 
       setVersioning: (versioning: boolean) =>
         set((state) => ({
