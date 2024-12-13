@@ -32,7 +32,7 @@ type LinkUserCreationProps = {
 export default function LinkUserCreation({
   onCreateUser,
   onCancel,
-}: LinkUserCreationProps) {
+}: Readonly<LinkUserCreationProps>) {
   const { projectId } = useParams();
   const { t: tAssociateUser } = useTranslation(
     'containers/associate-user-to-container',
