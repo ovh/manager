@@ -1,5 +1,5 @@
 import { render, screen, fireEvent, renderHook } from '@testing-library/react';
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { useForm, FormProvider } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 import { useNotifications } from '@ovh-ux/manager-react-components';

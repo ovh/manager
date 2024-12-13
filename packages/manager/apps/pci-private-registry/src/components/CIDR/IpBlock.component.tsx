@@ -10,23 +10,21 @@ const IpBlock = () => {
   const { formState, control } = useFormContext();
 
   return (
-    <>
-      <Controller
-        name="ipBlock"
-        control={control}
-        render={({ field: { onChange, value } }) => (
-          <OsdsInput
-            placeholder="ex: 192.168.1.1/32"
-            color={ODS_TEXT_COLOR_INTENT.primary}
-            type={ODS_INPUT_TYPE.text}
-            value={value}
-            onOdsValueChange={(e) => onChange(e.target.value)}
-            className="border"
-            error={Boolean(formState.errors?.ipBlock?.message)}
-          />
-        )}
-      />
-    </>
+    <Controller
+      name="ipBlock"
+      control={control}
+      render={({ field: { onChange, value } }) => (
+        <OsdsInput
+          placeholder="ex: 192.168.1.1/32"
+          color={ODS_TEXT_COLOR_INTENT.primary}
+          type={ODS_INPUT_TYPE.text}
+          value={value}
+          onOdsValueChange={(e) => onChange(e.target.value)}
+          className="border"
+          error={Boolean(formState.errors?.ipBlock?.message)}
+        />
+      )}
+    />
   );
 };
 

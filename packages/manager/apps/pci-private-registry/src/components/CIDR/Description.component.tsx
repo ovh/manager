@@ -1,4 +1,3 @@
-import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import {
   ODS_INPUT_TYPE,
   ODS_TEXT_COLOR_INTENT,
