@@ -1,6 +1,5 @@
-import React from 'react';
-import { OsdsTile } from '@ovhcloud/ods-components/react';
 import clsx from 'clsx';
+import { OdsCard } from '@ovhcloud/ods-components/react';
 import { TLocalisation } from './useRegions';
 import {
   regionContainer,
@@ -25,17 +24,16 @@ export function RegionList({
     <ul className={regionContainer}>
       {regions.map((region) => (
         <li className="w-full px-1" key={region.name}>
-          <OsdsTile
+          <OdsCard
             className={clsx(
               regionTile,
               region === selectedRegion && regionTileSelected,
             )}
-            checked={selectedRegion === region}
             onClick={() => onClick(region)}
             data-testid={`region-${region.name}`}
           >
             {render(region, selectedRegion === region)}
-          </OsdsTile>
+          </OdsCard>
         </li>
       ))}
     </ul>
