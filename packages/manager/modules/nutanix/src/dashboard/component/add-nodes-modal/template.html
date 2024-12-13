@@ -46,18 +46,26 @@
             ></p>
 
             <div>
-                <span
-                    data-translate="nutanix_dashboard_add_nodes_price_preffix"
-                ></span>
-                <span
-                    class="font-weight-bold"
-                    data-ng-bind="$ctrl.nodePriceText"
-                ></span>
-                <span
-                    data-translate="nutanix_dashboard_add_nodes_price_suffix"
-                ></span>
+                <div>
+                    <span
+                        data-translate="nutanix_dashboard_add_nodes_price_preffix"
+                    ></span>
+                    <span
+                        class="font-weight-bold"
+                        data-ng-bind="$ctrl.nodePriceText"
+                    ></span>
+                    <span
+                        data-translate="nutanix_dashboard_add_nodes_price_suffix"
+                    ></span>
+                </div>
 
-                <oui-field>
+                <p
+                    class="font-weight-bold mt-2 mb-4"
+                    data-translate="nutanix_dashboard_add_nodes_informations_max_nodes"
+                    data-translate-values="$ctrl.informationsClusterNode"
+                ></p>
+
+                <oui-field error-messages="$ctrl.customErrorMessages">
                     <oui-numeric
                         name="numberOfNodes"
                         model="$ctrl.numberOfNodes"
