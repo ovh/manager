@@ -4,7 +4,7 @@ import {
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
 } from '@ovhcloud/ods-components';
-import { useFormContext } from 'react-hook-form';
+
 import {
   OsdsButton,
   OsdsIcon,
@@ -13,13 +13,16 @@ import {
   OsdsSearchBar,
 } from '@ovhcloud/ods-components/react';
 import { useParams } from 'react-router-dom';
-import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
+import {
+  Filter,
+  FilterCategories,
+  FilterComparator,
+} from '@ovh-ux/manager-core-api';
 import {
   FilterAdd,
   useColumnFilters,
   useDataGrid,
   FilterList,
-  useNotifications,
 } from '@ovh-ux/manager-react-components';
 
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
@@ -30,23 +33,35 @@ import { useIpRestrictions } from '@/api/hooks/useIpRestrictions';
 
 import DeleteModal from './DeleteModal.component';
 
-const Filters = ({ createNewRow }: { createNewRow: () => void }) => {
+const Filters = ({
+  createNewRow,
+  addFilter,
+  removeFilter,
+  filters,
+}: {
+  createNewRow: () => void;
+  addFilter: (filter: Filter) => void;
+  removeFilter: (filter: Filter) => void;
+  filters: Filter[];
+}) => {
   const [searchField, setSearchField] = useState('');
   const { projectId, registryId } = useParams();
-  const { filters, addFilter, removeFilter } = useColumnFilters();
   const filterPopoverRef = useRef(undefined);
   const { pagination, setPagination } = useDataGrid();
   const { data } = useIpRestrictions(projectId, registryId);
+
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const { t } = useTranslation(['ip-restrictions']);
+
   const showDeleteButton = useMemo(
     () => data.filter((item) => item.checked).length >= 2,
     [data],
   );
 
-  const DraftModeEnabled = useMemo(() => data.some((item) => item.draft), [
+  const draftModeEnabled = useMemo(() => data.some((item) => item.draft), [
     data,
   ]);
+  const { filters: filtersColumn } = useColumnFilters();
 
   return (
     <>
@@ -56,7 +71,7 @@ const Filters = ({ createNewRow }: { createNewRow: () => void }) => {
             size={ODS_BUTTON_SIZE.sm}
             color={ODS_THEME_COLOR_INTENT.primary}
             className="xs:mb-0.5 sm:mb-0"
-            disabled={DraftModeEnabled || undefined}
+            disabled={draftModeEnabled || undefined}
             onClick={() => {
               createNewRow();
             }}
@@ -89,7 +104,9 @@ const Filters = ({ createNewRow }: { createNewRow: () => void }) => {
             </OsdsButton>
           )}
         </div>
-        {openDeleteModal && <DeleteModal all />}
+        {openDeleteModal && (
+          <DeleteModal onClose={() => setOpenDeleteModal(false)} all />
+        )}
 
         <div className="justify-between flex">
           <OsdsSearchBar
@@ -101,11 +118,11 @@ const Filters = ({ createNewRow }: { createNewRow: () => void }) => {
                 pageSize: pagination.pageSize,
               });
               addFilter({
-                key: 'name',
+                key: 'ipBlock',
                 value: detail.inputValue,
                 comparator: FilterComparator.Includes,
                 label: '',
-              });
+              } as Filter & { label: string });
               setSearchField('');
             }}
           />
@@ -133,7 +150,7 @@ const Filters = ({ createNewRow }: { createNewRow: () => void }) => {
                     comparators: FilterCategories.String,
                   },
                   {
-                    id: 'authorized',
+                    id: 'authorization',
                     label: t('private_registry_cidr_authorization'),
                     comparators: FilterCategories.String,
                   },
@@ -146,7 +163,7 @@ const Filters = ({ createNewRow }: { createNewRow: () => void }) => {
                   addFilter({
                     ...addedFilter,
                     label: column.label,
-                  });
+                  } as Filter & { label: string });
                   filterPopoverRef.current?.closeSurface();
                 }}
               />
@@ -155,7 +172,10 @@ const Filters = ({ createNewRow }: { createNewRow: () => void }) => {
         </div>
       </div>
       <div className="my-5">
-        <FilterList filters={filters} onRemoveFilter={removeFilter} />
+        <FilterList
+          filters={filters as typeof filtersColumn}
+          onRemoveFilter={removeFilter}
+        />
       </div>
     </>
   );
