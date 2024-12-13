@@ -5,7 +5,7 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 import * as database from '@/types/cloud/project/database';
 import { useServiceData } from '../Service.context';
-import { DataTable } from '@/components/ui/data-table';
+import DataTable from '@/components/data-table';
 import { getColumns } from './_components/DatabasesTableColumns.component';
 import { Button } from '@/components/ui/button';
 import { useUserActivityContext } from '@/contexts/UserActivityContext';
@@ -61,7 +61,11 @@ const Databases = () => {
       )}
 
       {databasesQuery.isSuccess ? (
-        <DataTable columns={columns} data={databasesQuery.data} pageSize={25} />
+        <DataTable.Provider
+          columns={columns}
+          data={databasesQuery.data}
+          pageSize={25}
+        />
       ) : (
         <div data-testid="table-skeleton">
           <DataTable.Skeleton columns={3} rows={5} width={100} height={16} />
