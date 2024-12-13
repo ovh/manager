@@ -26,9 +26,9 @@ export const RegionTile = ({
         <hr className="w-full border-solid border-0 border-b border-ods-primary-200" />
         <div>
           {region?.isLocalZone ? (
-            <RegionLocalzoneChip />
+            <RegionLocalzoneChip id={`popover-localzone-${region.name}`} />
           ) : (
-            <RegionGlobalzoneChip />
+            <RegionGlobalzoneChip id={`popover-globalzone-${region.name}`} />
           )}
         </div>
       </>
