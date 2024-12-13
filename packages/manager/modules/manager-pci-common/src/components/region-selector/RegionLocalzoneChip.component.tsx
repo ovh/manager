@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { FC, useContext } from 'react';
 import { Links, LinkType } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useTranslation } from 'react-i18next';
@@ -10,7 +10,9 @@ import {
 } from '@ovhcloud/ods-components';
 import { URL_INFO } from './constants';
 
-export function RegionLocalzoneChip() {
+export type TRegionLocalzoneChipProps = Readonly<{ id: string }>;
+
+export const RegionLocalzoneChip: FC<TRegionLocalzoneChipProps> = ({ id }) => {
   const { t } = useTranslation('pci-region-selector');
   const context = useContext(ShellContext);
   const { ovhSubsidiary } = context.environment.getUser();
@@ -20,7 +22,7 @@ export function RegionLocalzoneChip() {
 
   return (
     <>
-      <div id="popover-trigger">
+      <div id={id}>
         <OdsTag
           className="font-bold"
           label={t('pci_project_flavors_zone_localzone')}
@@ -30,7 +32,7 @@ export function RegionLocalzoneChip() {
           onClick={(event) => event.stopPropagation()}
         />
       </div>
-      <OdsPopover triggerId="popover-trigger">
+      <OdsPopover triggerId={id}>
         <OdsText preset="span">
           {t('pci_project_flavors_zone_localzone_tooltip')}
         </OdsText>
@@ -45,4 +47,4 @@ export function RegionLocalzoneChip() {
       </OdsPopover>
     </>
   );
-}
+};
