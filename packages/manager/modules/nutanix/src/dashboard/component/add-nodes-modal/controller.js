@@ -6,10 +6,30 @@ export default class {
     this.$translate = $translate;
     this.$window = $window;
     this.numberOfNodes = 1;
+
+    this.defineCustomErrorMessages();
   }
 
   get maxNodeToBuy() {
     return MAX_NODES_BY_CLUSTER - this.cluster.targetSpec.nodes.length;
+  }
+
+  get informationsClusterNode() {
+    return {
+      currentNumberOfNodes: this.cluster.targetSpec.nodes.length,
+      maxNumberOfNodes: MAX_NODES_BY_CLUSTER,
+    };
+  }
+
+  defineCustomErrorMessages() {
+    this.customErrorMessages = {
+      max: this.$translate.instant(
+        'nutanix_dashboard_add_nodes_error_too_many_nodes',
+      ),
+      min: this.$translate.instant(
+        'nutanix_dashboard_add_nodes_error_not_enough_nodes',
+      ),
+    };
   }
 
   get nodePriceText() {
