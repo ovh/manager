@@ -38,7 +38,6 @@ export default function LinkUserSelector({
   onSelectOwner,
   onCancel,
 }: Readonly<LinkUserSelectorProps>) {
-  const { t } = useTranslation('containers/add');
   const { t: tAssociateUser } = useTranslation(
     'containers/associate-user-to-container',
   );
@@ -118,8 +117,9 @@ export default function LinkUserSelector({
               undefined
             }
             onOdsValueChange={(event: OdsSelectValueChangeEvent) => {
-              if (event.detail.value) {
+              if (listenForChangeEventsRef.current) {
                 const user = listUsers.find((u) => u.id === event.detail.value);
+                listenForChangeEventsRef.current = false;
                 onSelectOwner(user);
               }
             }}
