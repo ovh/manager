@@ -140,6 +140,7 @@ export const fetchCheckPrivateNetworkCreationStatus = (
         error.message as CreationStatus,
       ),
     retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
+    staleTime: 0,
   });
 
 export const useSubnets = (

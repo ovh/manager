@@ -1,31 +1,12 @@
 import { describe, vi } from 'vitest';
 import { renderHook, waitFor } from '@testing-library/react';
+import { catalog } from '@/__mocks__/catalog';
 import useGatewayAvailabilityRegion from './useIsPlanCodeAvailableInRegion';
 
 vi.mock('@ovh-ux/manager-pci-common', () => ({
   useProject: vi.fn().mockReturnValue({ data: {} }),
   useProductAvailability: vi.fn().mockReturnValue({
-    data: {
-      plans: [
-        {
-          code: 'planCode1',
-          regions: [
-            {
-              name: 'GRA11',
-            },
-            { name: 'GRA7' },
-          ],
-        },
-        {
-          code: 'planCode2',
-          regions: [
-            {
-              name: 'SGP1',
-            },
-          ],
-        },
-      ],
-    },
+    data: catalog,
   }),
 }));
 
