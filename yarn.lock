@@ -6499,16 +6499,7 @@
   dependencies:
     lodash "^4.17.15"
 
-"@ovh-ux/ovh-at-internet@^0.17.0":
-  version "0.17.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ovh-at-internet/-/ovh-at-internet-0.17.0.tgz#464c5230e672b35b9dff95bf89dfd85ce806da2e"
-  integrity sha512-sSiJ4zI94WdofCvEC6/cUmL1jgBIyQkZ+JQqXm5X2ux8WeLZH0p2TsULhn/sjEY/TbHFmkEWmuIijp5hNoXOaw==
-  dependencies:
-    "@ovh-ux/manager-config" "^8.0.1"
-    "@types/lodash-es" "^4.17.5"
-    lodash-es "^4.17.15"
-
-"@ovh-ux/ovh-at-internet@^0.18.1":
+"@ovh-ux/ovh-at-internet@^0.18.0", "@ovh-ux/ovh-at-internet@^0.18.1":
   version "0.18.1"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ovh-at-internet/-/ovh-at-internet-0.18.1.tgz#a9d0d543a187031f61b699c57aaec0529f68a790"
   integrity sha512-i0ZFNGrktTsgTw8G2Fx2pn/xkgmwhyJ7JsCx7+RkzEakcV2E3+u5yTfSNlLVyHTMiqKGyjMz330/dw221qVaDw==
@@ -9899,7 +9890,7 @@
   resolved "https://registry.yarnpkg.com/@types/linkify-it/-/linkify-it-3.0.5.tgz#1e78a3ac2428e6d7e6c05c1665c242023a4601d8"
   integrity sha512-yg6E+u0/+Zjva+buc3EIb+29XEg4wltq7cSmd4Uc2EE/1nUVmxyzpX6gUXD0V8jIrG0r7YeOGVIbYRkxeooCtw==
 
-"@types/lodash-es@^4.17.12", "@types/lodash-es@^4.17.5":
+"@types/lodash-es@^4.17.12":
   version "4.17.12"
   resolved "https://registry.yarnpkg.com/@types/lodash-es/-/lodash-es-4.17.12.tgz#65f6d1e5f80539aa7cfbfc962de5def0cf4f341b"
   integrity sha512-0NgftHUcV4v34VhXm8QBSftKVXtbkBG3ViCjs6+eJ5a6y6Mi/jiFGPc1sC7QK+9BFhWrURE3EOggmWaSxL9OzQ==
