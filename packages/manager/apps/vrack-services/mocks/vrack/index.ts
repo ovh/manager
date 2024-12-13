@@ -24,7 +24,7 @@ export const getVrackMocks = ({
   {
     url: '/vrack/:id/task/:taskId',
     response: vrackTaskKo ? { message: 'Task error' } : {},
-    status: vrackTaskKo ? 500 : 404,
+    status: vrackTaskKo ? 400 : 404,
     api: 'v6',
   },
   {
@@ -35,7 +35,7 @@ export const getVrackMocks = ({
           function: '',
           id: 123456,
         },
-    status: dissociateKo ? 500 : 200,
+    status: dissociateKo ? 400 : 200,
     api: 'v6',
     method: 'delete',
   },
@@ -47,7 +47,7 @@ export const getVrackMocks = ({
         }
       : getAllowedServicesResponse(nbEligibleVrackServices),
     api: 'v6',
-    status: getVrackEligibleServicesKo ? 500 : 200,
+    status: getVrackEligibleServicesKo ? 400 : 200,
   },
   {
     url: '/vrack/:id/vrackServices',
@@ -60,7 +60,7 @@ export const getVrackMocks = ({
           id: 123456,
         },
     method: 'post',
-    status: associationKo ? 500 : 200,
+    status: associationKo ? 400 : 200,
     api: 'v6',
   },
   {
@@ -76,6 +76,6 @@ export const getVrackMocks = ({
         }
       : vrackList.slice(0, nbVrack),
     api: 'v6',
-    status: getVrackKo ? 500 : 200,
+    status: getVrackKo ? 400 : 200,
   },
 ];

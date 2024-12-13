@@ -6,9 +6,10 @@ import {
   assertTextVisibility,
   getButtonByLabel,
 } from '@ovh-ux/manager-core-test-utils';
-import { screen, waitFor, act } from '@testing-library/react';
+import { screen, waitFor, act, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { labels, renderTest } from '../../test-utils';
+import { assertModalTitle, labels, renderTest } from '../../test-utils';
+import { urls } from '@/routes/routes.constants';
 
 describe('Vrack Services create page test suite', () => {
   it('should display the create form with regions', async () => {
@@ -35,9 +36,7 @@ describe('Vrack Services create page test suite', () => {
       return regionRadioInput;
     });
 
-    await act(() => {
-      user.click(regionRadio);
-    });
+    await waitFor(() => user.click(regionRadio));
 
     await waitFor(() => {
       expect(regionRadio.closest('osds-radio')).toHaveAttribute('checked');
@@ -53,8 +52,8 @@ describe('Vrack Services create page test suite', () => {
       user.click(submitButton);
     });
 
-    assertModalVisibility({ container, isVisible: true });
-    assertModalText({ container, text: labels.create.modalHeadline });
+    await assertModalVisibility({ container, isVisible: true });
+    await assertModalTitle({ container, title: labels.create.modalHeadline });
   });
 
   it('should redirect to listing page if user has no right to order vrs', async () => {
@@ -70,5 +69,62 @@ describe('Vrack Services create page test suite', () => {
     });
 
     await assertTextVisibility(labels.listing.listingDescription);
+  });
+
+  it('should display create with vRack', async () => {
+    const { container } = await renderTest({
+      initialRoute: urls.createConfirm.replace(':region', 'eu-west-rbx'),
+      nbVs: 1,
+    });
+
+    const createvrackButton = await getButtonByLabel({
+      container,
+      label: labels.create.modalConfirmVrackButtonLabel,
+    });
+
+    await waitFor(() => fireEvent.click(createvrackButton));
+
+    await assertModalText({
+      container,
+      text: labels.create.modalDescriptionLine4,
+    });
+    await assertModalText({
+      container,
+      text: labels.create.modalDescriptionLine5,
+    });
+
+    const cancelButton = await getButtonByLabel({
+      container,
+      label: labels.create.modalCancelButtonLabel,
+    });
+
+    await waitFor(() => fireEvent.click(cancelButton));
+
+    await assertModalVisibility({ container, isVisible: false });
+  });
+
+  it('should display create without vRack', async () => {
+    const { container } = await renderTest({
+      initialRoute: urls.createConfirm.replace(':region', 'eu-west-rbx'),
+      nbVs: 1,
+    });
+
+    const createWithoutVrackButton = await getButtonByLabel({
+      container,
+      label: labels.create.modalNoVrackButtonLabel,
+    });
+
+    await waitFor(() => fireEvent.click(createWithoutVrackButton));
+
+    await waitFor(() => {
+      expect(
+        screen.queryByText(labels.create.modalDescriptionLine4),
+      ).toBeNull();
+    });
+
+    await assertModalText({
+      container,
+      text: labels.create.modalDescriptionLine5,
+    });
   });
 });
