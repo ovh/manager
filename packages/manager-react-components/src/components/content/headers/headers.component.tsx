@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { Title, Subtitle } from '../../typography';
 
 export interface HeadersProps {
-  title?: string;
-  subtitle?: string;
-  description?: string;
-  headerButton?: React.ReactElement;
+  title?: ReactNode;
+  subtitle?: ReactNode;
+  description?: ReactNode;
+  headerButton?: ReactNode;
 }
 
 export const Headers: React.FC<HeadersProps> = ({
