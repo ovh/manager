@@ -3,9 +3,9 @@ import { Quantity } from '@/types/cloud/billingView/Quantity';
 /** HourlyInstanceDetail */
 export interface HourlyInstanceDetail {
   /** Instance ID */
-  instanceId?: string;
+  instanceId: string;
   /** Hours of run instances */
-  quantity?: Quantity;
+  quantity: Quantity;
   /** Total price */
-  totalPrice?: number;
+  totalPrice: number;
 }

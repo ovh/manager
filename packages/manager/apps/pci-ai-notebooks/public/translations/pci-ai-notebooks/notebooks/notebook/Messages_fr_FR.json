@@ -1,4 +1,11 @@
 {
+  "dashboardTab": "Dashboard",
+  "dataTab": "Données attachées",
+  "backupTab": "Backups",
+  "logsTab": "Logs",
+  "publicAccessLabel": "Public",
+  "privateAccessLabel": "Privé",
+  "openEditor": "Ouvrir {{editor}}",
   "deleteNotebookTitle": "Supprimer le notebook",
   "deleteNotebookDescription": "Etes-vous sur de vouloir supprimer le notebook {{name}} ?",
   "notebookButtonCancel": "Annuler",

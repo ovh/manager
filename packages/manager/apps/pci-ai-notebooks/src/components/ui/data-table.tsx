@@ -250,7 +250,8 @@ DataTable.Skeleton = function DataTableSkeleton({
             {Array.from({ length: columns }).map((col, iCol) => (
               <TableCell key={`${col}${iCol}`}>
                 <Skeleton
-                  style={{ width: `${width}px`, height: `${height}px` }}
+                  className='block'
+                  style={{ width: `${width}px`, height: `${height}px`}}
                 />
               </TableCell>
             ))}

@@ -3,7 +3,7 @@ import { Quantity } from '@/types/cloud/billingView/Quantity';
 /** VolumeSnapshot */
 export interface VolumeSnapshot {
   /** GiBh stored */
-  quantity?: Quantity;
+  quantity: Quantity;
   /** Total price */
-  totalPrice?: number;
+  totalPrice: number;
 }

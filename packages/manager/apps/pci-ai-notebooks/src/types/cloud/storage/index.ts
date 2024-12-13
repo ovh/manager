@@ -13,6 +13,8 @@ export * from './PresignedURL';
 export * from './PresignedURLInput';
 export * from './PresignedURLMethodEnum';
 export * from './Quota';
+export * from './ReplicationRule';
+export * from './ReplicationRuleStatusEnum';
 export * from './RetrievalStateEnum';
 export * from './RightEnum';
 export * from './StorageClassEnum';

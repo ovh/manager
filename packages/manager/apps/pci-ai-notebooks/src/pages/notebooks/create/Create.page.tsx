@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 import Guides from '@/components/guides/Guides.component';
 import { useGetCatalog } from '@/hooks/api/catalog/useGetCatalog.hook';
@@ -8,7 +8,6 @@ import { useGetRegions } from '@/hooks/api/ai/capabilities/useGetRegions.hook';
 import { useGetFramework } from '@/hooks/api/ai/notebook/capabilities/useGetFramework.hook';
 import { useGetEditor } from '@/hooks/api/ai/notebook/capabilities/useGetEditor.hook';
 import { useGetSshkey } from '@/hooks/api/sshkey/useGetSshkey.hook';
-import { mockedSuggestion } from '@/__tests__/helpers/mocks/suggestion';
 import { useGetSuggestions } from '@/hooks/api/ai/notebook/useGetSuggestions.hook';
 
 export function breadcrumb() {
@@ -63,6 +62,7 @@ const Notebook = () => {
             suggestions={suggestionsQuery.data}
           />
         )}
+      <Outlet />
     </>
   );
 };

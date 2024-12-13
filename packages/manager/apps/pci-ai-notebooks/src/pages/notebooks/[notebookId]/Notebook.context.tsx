@@ -1,6 +1,7 @@
 import { UseQueryResult } from '@tanstack/react-query';
-import { useOutletContext, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import * as ai from '@/types/cloud/project/ai';
+import { useGetNotebook } from '@/hooks/api/ai/notebook/useGetNotebook.hook';
 
 // Share data with the child routes
 export type NotebookLayoutContext = {
@@ -8,10 +9,7 @@ export type NotebookLayoutContext = {
   notebookQuery: UseQueryResult<ai.notebook.Notebook, Error>;
 };
 export const useNotebookData = () => {
-  const { projectId } = useParams();
-  const {
-    notebook,
-    notebookQuery,
-  } = useOutletContext() as NotebookLayoutContext;
-  return { projectId, notebook, notebookQuery };
+  const { projectId, notebookId } = useParams();
+  const notebookQuery = useGetNotebook(projectId, notebookId);
+  return { projectId, notebook: notebookQuery.data, notebookQuery };
 };

@@ -2,7 +2,6 @@ import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import {
-  Dialog,
   DialogClose,
   DialogContent,
   DialogFooter,
@@ -11,23 +10,23 @@ import {
 } from '@/components/ui/dialog';
 import { useToast } from '@/components/ui/use-toast';
 import * as ai from '@/types/cloud/project/ai';
-import { ModalController } from '@/hooks/useModale';
 import { getAIApiErrorMessage } from '@/lib/apiHelper';
 import { useStartNotebook } from '@/hooks/api/ai/notebook/useStartNotebook.hook';
+import RouteModal from '@/components/route-modal/RouteModal';
 
-interface StartNotebookModalProps {
+interface StartNotebookProps {
   notebook: ai.notebook.Notebook;
-  controller: ModalController;
-  onSuccess?: (notebook: ai.notebook.Notebook) => void;
-  onError?: (service: Error) => void;
+  onSuccess?: () => void;
+  onError?: (notebook: Error) => void;
+  onClose?: () => void;
 }
 
 const StartNotebook = ({
   notebook,
-  controller,
   onError,
   onSuccess,
-}: StartNotebookModalProps) => {
+  onClose,
+}: StartNotebookProps) => {
   const { projectId } = useParams();
 
   const { t } = useTranslation('pci-ai-notebooks/notebooks/notebook');
@@ -52,7 +51,7 @@ const StartNotebook = ({
         }),
       });
       if (onSuccess) {
-        onSuccess(notebook);
+        onSuccess();
       }
     },
   });
@@ -63,8 +62,9 @@ const StartNotebook = ({
       notebookId: notebook.id,
     });
   };
+
   return (
-    <Dialog {...controller}>
+    <RouteModal backUrl="../" isLoading={!notebook?.id} onClose={onClose}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle data-testid="start-notebook-modal">
@@ -96,7 +96,7 @@ const StartNotebook = ({
           </Button>
         </DialogFooter>
       </DialogContent>
-    </Dialog>
+    </RouteModal>
   );
 };
 

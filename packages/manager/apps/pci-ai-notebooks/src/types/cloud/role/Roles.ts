@@ -4,7 +4,7 @@ import { Service } from '@/types/cloud/role/Service';
 /** OpenStack role */
 export interface Roles {
   /** OpenStack roles */
-  roles?: Role[];
+  roles: Role[];
   /** OpenStack services */
-  services?: Service[];
+  services: Service[];
 }

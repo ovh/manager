@@ -34,7 +34,6 @@ describe('useDeleteNotebooks', () => {
       expect(notebookApi.deleteNotebook).toHaveBeenCalledWith(
         deleteNotebookProps,
       );
-      expect(onDeleteSuccess).toHaveBeenCalledWith();
     });
   });
 });

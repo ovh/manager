@@ -53,6 +53,9 @@
   "cliCode": "Equivalent CLI",
   "errorGetCommandCli": "Une erreur est survenue lors de la génération de code équivalent pour la CLI",
   "cliEquivalentModalTitle": "Création d’un notebook équivalent",
-  "cliEquivalentModalDescription": "Créer le même notebook via la CLI",
-  "cliEquivalentModalToastMessage": "Le code a été copié"
+  "cliEquivalentModalDescription": "Commande CLI",
+  "cliEquivalentModalToastMessage": "Le code a été copié",
+  "errorCreatingNotebook": "Erreur",
+  "successCreatingNotebookTitle": "Succès",
+  "successCreatingNotebookDescription": "Votre notebook a été créé avec succès"
 }

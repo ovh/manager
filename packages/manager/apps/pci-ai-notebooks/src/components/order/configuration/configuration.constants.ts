@@ -1,4 +1,4 @@
 export const CONFIGURATION_CONFIG = {
-  maxLabelNumber: 10,
+  maxLabelNumber: 8,
   maxSshKeyNumber: 10,
 };

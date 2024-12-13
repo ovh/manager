@@ -2,7 +2,6 @@ import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import {
-  Dialog,
   DialogClose,
   DialogContent,
   DialogFooter,
@@ -11,25 +10,22 @@ import {
 } from '@/components/ui/dialog';
 import { useToast } from '@/components/ui/use-toast';
 import * as ai from '@/types/cloud/project/ai';
-import { ModalController } from '@/hooks/useModale';
 import { useDeleteNotebook } from '@/hooks/api/ai/notebook/useDeleteNotebook.hook';
 import { getAIApiErrorMessage } from '@/lib/apiHelper';
+import RouteModal from '@/components/route-modal/RouteModal';
 
-interface DeleteNotebookModalProps {
+interface DeleteNotebookProps {
   notebook: ai.notebook.Notebook;
-  controller: ModalController;
   onSuccess?: (notebook: ai.notebook.Notebook) => void;
-  onError?: (service: Error) => void;
+  onError?: (notebook: Error) => void;
 }
 
 const DeleteNotebook = ({
   notebook,
-  controller,
   onError,
   onSuccess,
-}: DeleteNotebookModalProps) => {
+}: DeleteNotebookProps) => {
   const { projectId } = useParams();
-
   const { t } = useTranslation('pci-ai-notebooks/notebooks/notebook');
   const toast = useToast();
 
@@ -64,7 +60,7 @@ const DeleteNotebook = ({
     });
   };
   return (
-    <Dialog {...controller}>
+    <RouteModal backUrl="../" isLoading={!notebook?.id}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle data-testid="delete-notebook-modal">
@@ -96,7 +92,7 @@ const DeleteNotebook = ({
           </Button>
         </DialogFooter>
       </DialogContent>
-    </Dialog>
+    </RouteModal>
   );
 };
 
