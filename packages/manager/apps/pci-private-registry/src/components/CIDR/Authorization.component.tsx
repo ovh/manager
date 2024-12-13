@@ -8,49 +8,47 @@ const Authorization = () => {
   const { control, formState } = useFormContext();
   const { t } = useTranslation(['ip-restrictions']);
   return (
-    <>
-      <Controller
-        name="authorization"
-        control={control}
-        render={({ field: { onChange, value } }) => (
-          <OsdsSelect
-            data-testid="authorization-select"
-            error={Boolean(formState.errors?.authorization?.message)}
-            onOdsValueChange={(e) => {
-              if (typeof e.target.value === 'string') {
-                onChange(JSON.parse(e.detail.value as string));
-              }
-            }}
-            value={JSON.stringify(value)}
+    <Controller
+      name="authorization"
+      control={control}
+      render={({ field: { onChange, value } }) => (
+        <OsdsSelect
+          data-testid="authorization-select"
+          error={Boolean(formState.errors?.authorization?.message)}
+          onOdsValueChange={(e) => {
+            if (typeof e.target.value === 'string') {
+              onChange(JSON.parse(e.detail.value as string));
+            }
+          }}
+          value={JSON.stringify(value)}
+        >
+          <span slot="placeholder" className="text-[#4e5693] font-normal">
+            {t('private_registry_cidr_authorization_select')}
+          </span>
+          <OsdsSelectOption
+            value={JSON.stringify([FilterRestrictionsEnum.REGISTRY])}
           >
-            <span slot="placeholder" className="text-[#4e5693] font-normal">
-              {t('private_registry_cidr_authorization_select')}
-            </span>
-            <OsdsSelectOption
-              value={JSON.stringify([FilterRestrictionsEnum.REGISTRY])}
-            >
-              {capitalizeAndJoin([FilterRestrictionsEnum.REGISTRY])}
-            </OsdsSelectOption>
-            <OsdsSelectOption
-              value={JSON.stringify([FilterRestrictionsEnum.MANAGEMENT])}
-            >
-              {capitalizeAndJoin([FilterRestrictionsEnum.MANAGEMENT])}
-            </OsdsSelectOption>
-            <OsdsSelectOption
-              value={JSON.stringify([
-                FilterRestrictionsEnum.REGISTRY,
-                FilterRestrictionsEnum.MANAGEMENT,
-              ])}
-            >
-              {capitalizeAndJoin([
-                FilterRestrictionsEnum.MANAGEMENT,
-                FilterRestrictionsEnum.REGISTRY,
-              ])}
-            </OsdsSelectOption>
-          </OsdsSelect>
-        )}
-      />
-    </>
+            {capitalizeAndJoin([FilterRestrictionsEnum.REGISTRY])}
+          </OsdsSelectOption>
+          <OsdsSelectOption
+            value={JSON.stringify([FilterRestrictionsEnum.MANAGEMENT])}
+          >
+            {capitalizeAndJoin([FilterRestrictionsEnum.MANAGEMENT])}
+          </OsdsSelectOption>
+          <OsdsSelectOption
+            value={JSON.stringify([
+              FilterRestrictionsEnum.REGISTRY,
+              FilterRestrictionsEnum.MANAGEMENT,
+            ])}
+          >
+            {capitalizeAndJoin([
+              FilterRestrictionsEnum.MANAGEMENT,
+              FilterRestrictionsEnum.REGISTRY,
+            ])}
+          </OsdsSelectOption>
+        </OsdsSelect>
+      )}
+    />
   );
 };
 

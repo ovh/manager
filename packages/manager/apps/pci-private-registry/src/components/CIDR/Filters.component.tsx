@@ -4,7 +4,7 @@ import {
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
 } from '@ovhcloud/ods-components';
-
+import { useFormContext } from 'react-hook-form';
 import {
   OsdsButton,
   OsdsIcon,
@@ -13,16 +13,13 @@ import {
   OsdsSearchBar,
 } from '@ovhcloud/ods-components/react';
 import { useParams } from 'react-router-dom';
-import {
-  Filter,
-  FilterCategories,
-  FilterComparator,
-} from '@ovh-ux/manager-core-api';
+import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
 import {
   FilterAdd,
+  useColumnFilters,
   useDataGrid,
   FilterList,
-  useColumnFilters,
+  useNotifications,
 } from '@ovh-ux/manager-react-components';
 
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
@@ -33,35 +30,23 @@ import { useIpRestrictions } from '@/api/hooks/useIpRestrictions';
 
 import DeleteModal from './DeleteModal.component';
 
-const Filters = ({
-  createNewRow,
-  addFilter,
-  removeFilter,
-  filters,
-}: {
-  createNewRow: () => void;
-  addFilter: (filter: Filter) => void;
-  removeFilter: (filter: Filter) => void;
-  filters: Filter[];
-}) => {
+const Filters = ({ createNewRow }: { createNewRow: () => void }) => {
   const [searchField, setSearchField] = useState('');
   const { projectId, registryId } = useParams();
+  const { filters, addFilter, removeFilter } = useColumnFilters();
   const filterPopoverRef = useRef(undefined);
   const { pagination, setPagination } = useDataGrid();
   const { data } = useIpRestrictions(projectId, registryId);
-
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const { t } = useTranslation(['ip-restrictions']);
-
   const showDeleteButton = useMemo(
     () => data.filter((item) => item.checked).length >= 2,
     [data],
   );
 
-  const draftModeEnabled = useMemo(() => data.some((item) => item.draft), [
+  const DraftModeEnabled = useMemo(() => data.some((item) => item.draft), [
     data,
   ]);
-  const { filters: filtersColumn } = useColumnFilters();
 
   return (
     <>
@@ -71,7 +56,7 @@ const Filters = ({
             size={ODS_BUTTON_SIZE.sm}
             color={ODS_THEME_COLOR_INTENT.primary}
             className="xs:mb-0.5 sm:mb-0"
-            disabled={draftModeEnabled || undefined}
+            disabled={DraftModeEnabled || undefined}
             onClick={() => {
               createNewRow();
             }}
@@ -104,9 +89,7 @@ const Filters = ({
             </OsdsButton>
           )}
         </div>
-        {openDeleteModal && (
-          <DeleteModal onClose={() => setOpenDeleteModal(false)} all />
-        )}
+        {openDeleteModal && <DeleteModal all />}
 
         <div className="justify-between flex">
           <OsdsSearchBar
@@ -118,11 +101,11 @@ const Filters = ({
                 pageSize: pagination.pageSize,
               });
               addFilter({
-                key: 'ipBlock',
+                key: 'name',
                 value: detail.inputValue,
                 comparator: FilterComparator.Includes,
                 label: '',
-              } as Filter & { label: string });
+              });
               setSearchField('');
             }}
           />
@@ -163,7 +146,7 @@ const Filters = ({
                   addFilter({
                     ...addedFilter,
                     label: column.label,
-                  } as typeof addedFilter);
+                  });
                   filterPopoverRef.current?.closeSurface();
                 }}
               />
@@ -172,10 +155,7 @@ const Filters = ({
         </div>
       </div>
       <div className="my-5">
-        <FilterList
-          filters={filters as typeof filtersColumn}
-          onRemoveFilter={removeFilter}
-        />
+        <FilterList filters={filters} onRemoveFilter={removeFilter} />
       </div>
     </>
   );
