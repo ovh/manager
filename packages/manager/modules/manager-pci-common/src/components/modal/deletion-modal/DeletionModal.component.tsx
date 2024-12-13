@@ -95,7 +95,7 @@ export function DeletionModal({
           data-testid="delete-formField"
           error={errorMessage}
         >
-          <OdsText slot="label" preset="span" className="text-[14px]">
+          <OdsText preset="span" className="text-[14px]">
             {confirmationLabel}
           </OdsText>
           <OdsInput
