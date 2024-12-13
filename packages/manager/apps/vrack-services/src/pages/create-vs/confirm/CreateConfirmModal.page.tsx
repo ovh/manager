@@ -161,7 +161,7 @@ export default function CreateConfirmModal() {
               queryKey: getDeliveringOrderQueryKey(OrderDescription.vrack),
             });
 
-            navigate(urls.listing);
+            navigate(urls.listing, { state: { fromOrder: true } });
           }}
         />
       ) : (
