@@ -21,16 +21,17 @@ import {
 } from '@/types';
 import { categorizeByKey } from '@/helpers';
 
+type DeleteModalProps =
+  | { all: true; cidr?: never; onClose: () => void }
+  | { all?: false; cidr: TIPRestrictionsData; onClose: () => void };
+
 export default function DeleteModal({
   cidr,
   all = false,
-}: {
-  cidr?: TIPRestrictionsData;
-  all: boolean;
-}) {
+  onClose,
+}: DeleteModalProps) {
   const { t } = useTranslation(['ip-restrictions']);
-  const navigate = useNavigate();
-  const closeModal = () => navigate('..');
+
   const { projectId, registryId } = useParams();
   const { data } = useIpRestrictions(projectId, registryId);
   const { reset } = useFormContext();
@@ -81,7 +82,7 @@ export default function DeleteModal({
   return (
     <OsdsModal
       color={ODS_THEME_COLOR_INTENT.info}
-      onOdsModalClose={closeModal}
+      onOdsModalClose={() => onClose()}
       dismissible
       headline={t('ip_restrictions_delete_block')}
     >
@@ -96,7 +97,7 @@ export default function DeleteModal({
         slot="actions"
         color={ODS_THEME_COLOR_INTENT.primary}
         variant={ODS_BUTTON_VARIANT.stroked}
-        onClick={closeModal}
+        onClick={() => onClose()}
       >
         {t('common:private_registry_common_cancel')}
       </OsdsButton>
