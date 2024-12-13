@@ -46,7 +46,7 @@ export function QuantitySelector({
       <div className={contentClassName}>
         <div slot="label" className="flex gap-2">
           {label && (
-            <OdsText preset="span" className="text-[14px]">
+            <OdsText preset="span" className="text-[14px] font-bold">
               {label}
             </OdsText>
           )}
@@ -71,7 +71,6 @@ export function QuantitySelector({
           </OdsText>
         )}
         <OdsQuantity
-          data-testid="quantity-button-minus"
           onOdsChange={(event: OdsInputChangeEvent) =>
             onValueChange(Number(event.detail.value))
           }

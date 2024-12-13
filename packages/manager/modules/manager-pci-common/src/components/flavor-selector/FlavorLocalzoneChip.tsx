@@ -4,6 +4,7 @@ import { useContext } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { OdsTag, OdsText, OdsPopover } from '@ovhcloud/ods-components/react';
 import { ODS_ICON_NAME, ODS_TAG_COLOR } from '@ovhcloud/ods-components';
+import clsx from 'clsx';
 import {
   GLOBAL_REGIONS_INFO_URL,
   LOCAL_ZONE_INFO_URL,
@@ -32,6 +33,12 @@ export function FlavorLocalzoneChip({
     <>
       <div id="popover-trigger">
         <OdsTag
+          className={clsx(
+            'text-[--ods-color-primary-500] font-bold text-[14px]',
+            isLocalZone
+              ? 'bg-[--ods-color-critical-100]'
+              : 'bg-[--ods-color-primary-100]',
+          )}
           label={
             isLocalZone
               ? t('pci_project_flavors_zone_localzone')
