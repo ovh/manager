@@ -66,7 +66,6 @@ export function PciModal({
 
         <OdsButton
           label={cancelText || t('common_cancel')}
-          slot="actions"
           color={ODS_BUTTON_COLOR.primary}
           variant={ODS_BUTTON_VARIANT.ghost}
           onClick={onCancel}
@@ -74,7 +73,6 @@ export function PciModal({
         />
         <OdsButton
           label={submitText || t('common_confirm')}
-          slot="actions"
           color={ODS_BUTTON_COLOR.primary}
           onClick={onConfirm}
           isDisabled={isDisabled}
