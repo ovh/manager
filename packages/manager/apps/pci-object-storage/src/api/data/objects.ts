@@ -1,5 +1,6 @@
 import { v6 } from '@ovh-ux/manager-core-api';
-import { OPENIO_DEFAULT_REGION } from '@/constants';
+import { addMonths } from 'date-fns';
+import { OPENIO_DEFAULT_REGION, OPENIO_PRESIGN_EXPIRE } from '@/constants';
 
 export type TAccess = {
   token: string;
@@ -63,5 +64,40 @@ export const addUser = async (
       objectKey: objectName,
     },
   );
+  return data;
+};
+
+export const downloadStandardS3Object = async (
+  projectId: string,
+  regionName: string,
+  storageId: string,
+  object,
+) => {
+  const { data } = await v6.post(
+    `/cloud/project/${projectId}/region/${regionName}/${object.s3StorageType}/${storageId}/presign`,
+    {
+      expire: OPENIO_PRESIGN_EXPIRE,
+      method: 'GET',
+      object: object.key,
+    },
+  );
+  return data;
+};
+
+export const downloadObject = async (
+  projectId: string,
+  storageId: string,
+  object,
+) => {
+  const expirationDate = addMonths(new Date(), 1).toISOString();
+
+  const { data } = await v6.post(
+    `/cloud/project/${projectId}/storage/${storageId}/publicUrl`,
+    {
+      expirationDate,
+      objectName: object?.name,
+    },
+  );
+
   return data;
 };

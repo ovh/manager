@@ -40,7 +40,8 @@
     "react-i18next": "^14.0.5",
     "react-router-dom": "^6.24.1",
     "react-use": "^17.5.0",
-    "zustand": "^4.5.5"
+    "zustand": "^4.5.5",
+    "date-fns": "^3.6.0"
   },
   "devDependencies": {
     "@jest/globals": "^29.7.0",

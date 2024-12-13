@@ -232,3 +232,4 @@ export const OBJECT_CONTAINER_OFFERS_LABELS = {
     price: null,
   },
 };
+export const OPENIO_PRESIGN_EXPIRE = 3600;
