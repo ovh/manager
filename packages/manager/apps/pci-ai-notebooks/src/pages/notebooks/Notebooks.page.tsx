@@ -1,6 +1,6 @@
 import { Plus } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
+import { useParams, Outlet } from 'react-router-dom';
 import Link from '@/components/links/Link.component';
 import { Button } from '@/components/ui/button';
 import { POLLING } from '@/configuration/polling.constants';
@@ -8,7 +8,6 @@ import { useUserActivityContext } from '@/contexts/UserActivityContext';
 import { useGetNotebooks } from '@/hooks/api/ai/notebook/useGetNotebooks.hook';
 import Guides from '@/components/guides/Guides.component';
 import NotebooksList from './_components/NotebooksListTable.component';
-import Onboarding from './_components/Onboarding.component';
 
 const Notebooks = () => {
   const { t } = useTranslation('pci-ai-notebooks/notebooks');
@@ -19,9 +18,6 @@ const Notebooks = () => {
   });
 
   if (notebooksQuery.isLoading) return <NotebooksList.Skeleton />;
-  if (notebooksQuery.isSuccess && notebooksQuery.data.length === 0) {
-    return <Onboarding />;
-  }
   return (
     <>
       <div
@@ -42,10 +38,8 @@ const Notebooks = () => {
           {t('createNewNotebook')}
         </Link>
       </Button>
-      <NotebooksList
-        notebooks={notebooksQuery.data}
-        refetchFn={notebooksQuery.refetch}
-      />
+      <NotebooksList notebooks={notebooksQuery.data} />
+      <Outlet />
     </>
   );
 };

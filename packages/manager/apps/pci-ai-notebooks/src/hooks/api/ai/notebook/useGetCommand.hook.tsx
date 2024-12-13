@@ -1,4 +1,4 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 
 import { useParams } from 'react-router-dom';
 import * as ai from '@/types/cloud/project/ai';
@@ -11,22 +11,13 @@ interface GetCommandProps {
 }
 
 export function useGetCommand({ onError, onSuccess }: GetCommandProps) {
-  const queryClient = useQueryClient();
   const { projectId } = useParams();
   const mutation = useMutation({
     mutationFn: (notebookInfo: ai.notebook.NotebookSpecInput) => {
       return getCommand({ projectId, notebookInfo });
     },
     onError,
-    onSuccess: (data) => {
-      // invalidate services list to avoid displaying
-      // old list
-      queryClient.invalidateQueries({
-        queryKey: [projectId, 'ai/notebook'],
-        refetchType: 'none',
-      });
-      onSuccess(data);
-    },
+    onSuccess,
   });
 
   return {
