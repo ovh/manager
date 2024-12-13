@@ -292,3 +292,7 @@ export const STORAGE_ASYNC_REPLICATION_LINK = {
   WS:
     'https://help.ovhcloud.com/csm/es-public-cloud-storage-s3-asynchronous-replication-buckets?id=kb_article_view&sysparm_article=KB0062419',
 };
+export const CONTAINER_USER_ASSOCIATION_MODES = {
+  LINKED: 'LINKED',
+  CREATE: 'CREATE',
+};
