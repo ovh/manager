@@ -10,4 +10,4 @@ export const getFramework = async ({ projectId }: PCIAi) =>
         'X-Pagination-Size': '50000',
       },
     })
-    .then((res) => res.data as ai.notebook.Framework[]);
+    .then((res) => res.data as ai.capabilities.notebook.Framework[]);

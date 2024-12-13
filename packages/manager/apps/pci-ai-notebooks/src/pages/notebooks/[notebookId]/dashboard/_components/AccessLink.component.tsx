@@ -6,9 +6,8 @@ import {
 import { useTranslation } from 'react-i18next';
 import { useNotebookData } from '../../Notebook.context';
 import { Button } from '@/components/ui/button';
-
+import * as ai from '@/types/cloud/project/ai';
 import A from '@/components/links/A.component';
-import { isRunningNotebook } from '@/lib/notebookHelper';
 
 const AccessLink = () => {
   const { notebook } = useNotebookData();
@@ -24,7 +23,9 @@ const AccessLink = () => {
         type="button"
         variant="default"
         className="w-full"
-        disabled={!isRunningNotebook(notebook.status.state)}
+        disabled={
+          notebook.status.state !== ai.notebook.NotebookStateEnum.RUNNING
+        }
       >
         <A href={notebook.status.url} target="_blank" rel="noopener noreferrer">
           <div className="flex flex-row gap-1 items-center text-white capitalize">

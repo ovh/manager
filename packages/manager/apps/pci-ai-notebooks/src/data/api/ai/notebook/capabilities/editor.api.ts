@@ -10,4 +10,4 @@ export const getEditor = async ({ projectId }: PCIAi) =>
         'X-Pagination-Size': '50000',
       },
     })
-    .then((res) => res.data as ai.notebook.Editor[]);
+    .then((res) => res.data as ai.capabilities.notebook.Editor[]);

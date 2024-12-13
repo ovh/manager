@@ -2,7 +2,6 @@ import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import {
-  Dialog,
   DialogClose,
   DialogContent,
   DialogFooter,
@@ -11,23 +10,23 @@ import {
 } from '@/components/ui/dialog';
 import { useToast } from '@/components/ui/use-toast';
 import * as ai from '@/types/cloud/project/ai';
-import { ModalController } from '@/hooks/useModale';
 import { getAIApiErrorMessage } from '@/lib/apiHelper';
 import { useStopNotebook } from '@/hooks/api/ai/notebook/useStopNotebook.hook';
+import RouteModal from '@/components/route-modal/RouteModal';
 
-interface StopNotebookModalProps {
+interface StopNotebookProps {
   notebook: ai.notebook.Notebook;
-  controller: ModalController;
   onSuccess?: () => void;
-  onError?: (service: Error) => void;
+  onError?: (notebook: Error) => void;
+  onClose?: () => void;
 }
 
 const StopNotebook = ({
   notebook,
-  controller,
   onError,
   onSuccess,
-}: StopNotebookModalProps) => {
+  onClose,
+}: StopNotebookProps) => {
   const { projectId } = useParams();
 
   const { t } = useTranslation('pci-ai-notebooks/notebooks/notebook');
@@ -64,7 +63,7 @@ const StopNotebook = ({
     });
   };
   return (
-    <Dialog {...controller}>
+    <RouteModal backUrl="../" isLoading={!notebook?.id} onClose={onClose}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle data-testid="stop-notebook-modal">
@@ -115,7 +114,7 @@ const StopNotebook = ({
           </Button>
         </DialogFooter>
       </DialogContent>
-    </Dialog>
+    </RouteModal>
   );
 };
 

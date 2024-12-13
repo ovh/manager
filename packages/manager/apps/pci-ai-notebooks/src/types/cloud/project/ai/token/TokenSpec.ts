@@ -3,7 +3,7 @@ import { TokenRoleEnum } from '@/types/cloud/project/ai/TokenRoleEnum';
 /** AI Solutions Application Token Spec Object to create a notebook */
 export interface TokenSpec {
   /** Application token label selector */
-  labelSelector: string;
+  labelSelector?: string;
   /** Application token name */
   name: string;
   /** Public Cloud Storage Region */

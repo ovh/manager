@@ -6,21 +6,21 @@ import { PresetTypeEnum } from '@/types/cloud/project/ai/capabilities/PresetType
 /** AI Solutions Preset image */
 export interface Preset {
   /** Preset capabilities */
-  capabilities?: PresetCapabilities;
+  capabilities: PresetCapabilities;
   /** Preset description */
-  descriptions?: string[];
+  descriptions: string[];
   /** URL toward the preset image documentation */
-  docUrl?: PresetDocumentationUrl[];
+  docUrl: PresetDocumentationUrl[];
   /** Preset id */
-  id?: string;
+  id: string;
   /** URL toward the logo to illustrate the preset */
-  logoUrl?: string;
+  logoUrl: string;
   /** Preset name */
-  name?: string;
+  name: string;
   /** Partner name */
-  partner?: Partner;
+  partner: Partner;
   /** Snippet example of the doc */
-  snippet?: string;
+  snippet: string;
   /** Preset type */
-  type?: PresetTypeEnum;
+  type: PresetTypeEnum;
 }

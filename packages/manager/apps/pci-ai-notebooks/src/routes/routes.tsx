@@ -29,6 +29,41 @@ export default [
         path: '',
         id: 'notebooks',
         ...lazyRouteConfig(() => import('@/pages/Root.page')),
+        children: [
+          {
+            path: 'start/:notebookId',
+            id: 'notebooks.start',
+            ...lazyRouteConfig(() =>
+              import('@/pages/notebooks/start/Start.modal'),
+            ),
+          },
+          {
+            path: 'stop/:notebookId',
+            id: 'notebooks.stop',
+            ...lazyRouteConfig(() =>
+              import('@/pages/notebooks/stop/Stop.modal'),
+            ),
+          },
+          {
+            path: 'delete/:notebookId',
+            id: 'notebooks.delete',
+            ...lazyRouteConfig(() =>
+              import('@/pages/notebooks/delete/Delete.modal'),
+            ),
+          },
+        ],
+      },
+      {
+        path: 'auth',
+        id: 'auth',
+        ...lazyRouteConfig(() => import('@/pages/notebooks/auth/Auth.page')),
+      },
+      {
+        path: 'onboarding',
+        id: 'onboarding',
+        ...lazyRouteConfig(() =>
+          import('@/pages/notebooks/onboarding/Onboarding.page'),
+        ),
       },
       {
         path: 'new',
@@ -36,6 +71,15 @@ export default [
         ...lazyRouteConfig(() =>
           import('@/pages/notebooks/create/Create.page'),
         ),
+        children: [
+          {
+            path: 'add-sshkey',
+            id: 'create.add-sshkey',
+            ...lazyRouteConfig(() =>
+              import('@/pages/_components/sshkey/AddSSHKey.modal'),
+            ),
+          },
+        ],
       },
       {
         path: ':notebookId',
@@ -49,6 +93,71 @@ export default [
             ...lazyRouteConfig(() =>
               import('@/pages/notebooks/[notebookId]/dashboard/Dashboard.page'),
             ),
+            children: [
+              {
+                path: 'delete',
+                id: 'notebook.dashboard.delete',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/notebooks/[notebookId]/dashboard/delete/Delete.modal'
+                  ),
+                ),
+              },
+            ],
+          },
+          {
+            path: 'attach-data',
+            id: 'notebook.attach-data',
+            ...lazyRouteConfig(() =>
+              import(
+                '@/pages/notebooks/[notebookId]/attached-data/AttachedData.page'
+              ),
+            ),
+            children: [
+              {
+                path: 'data-sync',
+                id: 'notebook.attach-data.data-sync',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/notebooks/[notebookId]/attached-data/dataSync/DataSync.modal'
+                  ),
+                ),
+              },
+              {
+                path: 'data-sync/:volumeId?',
+                id: 'notebook.attach-data.data-sync.volume',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/notebooks/[notebookId]/attached-data/dataSync/DataSync.modal'
+                  ),
+                ),
+              },
+            ],
+          },
+          {
+            path: 'logs',
+            id: 'notebook.logs',
+            ...lazyRouteConfig(() =>
+              import('@/pages/notebooks/[notebookId]/logs/Logs.page'),
+            ),
+          },
+          {
+            path: 'backups',
+            id: 'notebook.backups',
+            ...lazyRouteConfig(() =>
+              import('@/pages/notebooks/[notebookId]/backups/Backups.page'),
+            ),
+            children: [
+              {
+                path: 'fork/:backupId?',
+                id: 'notebook.notebook.backups.fork',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/notebooks/[notebookId]/backups/fork/Fork.modal'
+                  ),
+                ),
+              },
+            ],
           },
         ],
       },
