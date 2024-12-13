@@ -15,6 +15,8 @@ export default /* @ngInject */ ($stateProvider) => {
         }),
       goToAddNode: /* @ngInject */ ($state) => () =>
         $state.go('nutanix.dashboard.general-info.add-nodes'),
+      listingNodesPagesLink: /* @ngInject */ ($state, serviceName) =>
+        $state.href('nutanix.dashboard.nodes', { serviceName }),
       goToNutanixGeneralInfo: /* @ngInject */ (
         $state,
         Alerter,

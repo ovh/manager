@@ -26,6 +26,7 @@ export default {
     getAccountAuthorizations: '<',
     nutanixClusterIamName: '@',
     accountAuthorizations: '<',
+    listingNodesPagesLink: '<',
   },
   controller,
   template,
