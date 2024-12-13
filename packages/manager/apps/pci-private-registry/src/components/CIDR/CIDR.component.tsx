@@ -1,6 +1,7 @@
 import {
   Datagrid,
   Notifications,
+  useColumnFilters,
   useDataGrid,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
@@ -27,7 +28,7 @@ import { useDatagridColumn } from '@/pages/CIDR/useDatagridColumn';
 import Filters from '@/components/CIDR/Filters.component';
 import {
   getRegistryQueyPrefixWithId,
-  useIpRestrictions,
+  useIpRestrictionsWithFilter,
 } from '@/api/hooks/useIpRestrictions';
 import { TIPRestrictionsData } from '@/types';
 
@@ -46,13 +47,20 @@ export default function BlocCIDR() {
   const { projectId, registryId } = useParams();
 
   const queryClient = useQueryClient();
-  const { pagination, setPagination } = useDataGrid();
   const { formState } = useFormContext();
   const columns = useDatagridColumn();
+  const { pagination, setPagination } = useDataGrid();
+  const { filters, addFilter, removeFilter } = useColumnFilters();
 
   const { clearNotifications } = useNotifications();
 
-  const { data: dataCIDR } = useIpRestrictions(projectId, registryId);
+  const { data: dataCIDR } = useIpRestrictionsWithFilter(
+    projectId,
+    registryId,
+    ['management', 'registry'],
+    pagination,
+    filters,
+  );
 
   const variablesPending = useMutationState({
     filters: { status: 'pending' },
@@ -82,7 +90,7 @@ export default function BlocCIDR() {
 
   return (
     <>
-      {!dataCIDR?.length && (
+      {!dataCIDR.rows.length && (
         <OsdsMessage
           color={ODS_THEME_COLOR_INTENT.info}
           type={ODS_MESSAGE_TYPE.info}
@@ -116,11 +124,16 @@ export default function BlocCIDR() {
       ))}
       <Notifications />
       <div className="mt-8">
-        <Filters createNewRow={createNewBlocsCIDR} />
+        <Filters
+          filters={filters}
+          addFilter={addFilter}
+          removeFilter={removeFilter}
+          createNewRow={createNewBlocsCIDR}
+        />
         <Datagrid
           columns={columns}
-          items={dataCIDR}
-          totalItems={dataCIDR?.length || 0}
+          items={dataCIDR.rows}
+          totalItems={dataCIDR.totalRows || 0}
           pagination={pagination}
           onPaginationChange={setPagination}
         />

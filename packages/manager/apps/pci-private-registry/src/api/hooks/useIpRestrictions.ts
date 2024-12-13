@@ -1,5 +1,8 @@
 import { useMutation, useSuspenseQuery } from '@tanstack/react-query';
+import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
+import { PaginationState } from '@ovh-ux/manager-react-components';
 import { getRegistryQueryPrefix } from './useRegistry';
+
 import {
   getIpRestrictions,
   updateIpRestriction,
@@ -11,6 +14,7 @@ import {
   TIPRestrictionsMethodEnum,
 } from '@/types';
 import queryClient from '@/queryClient';
+import { paginateResults } from '@/helpers';
 
 export type TUpdateIpRestrictionMutationParams = {
   cidrToUpdate: Record<FilterRestrictionsServer, TIPRestrictionsDefault[]>;
@@ -26,17 +30,32 @@ export const getRegistryQueyPrefixWithId = (
   type: FilterRestrictionsServer[] = ['management', 'registry'],
 ) => [...getRegistryQueryPrefix(projectId), registryId, 'ipRestrictions', type];
 
-export const useIpRestrictions = (
+export const useIpRestrictions = <T = TIPRestrictionsData[]>(
   projectId: string,
   registryId: string,
   type: FilterRestrictionsServer[] = ['management', 'registry'],
-  select?: (data: TIPRestrictionsData[]) => TIPRestrictionsData[],
+  select?: (data: TIPRestrictionsData[]) => T,
 ) =>
-  useSuspenseQuery<TIPRestrictionsData[]>({
+  useSuspenseQuery({
     queryKey: getRegistryQueyPrefixWithId(projectId, registryId, type),
-    queryFn: () => getIpRestrictions(projectId, registryId, type),
+    queryFn: async (): Promise<TIPRestrictionsData[]> =>
+      getIpRestrictions(projectId, registryId, type),
     select,
   });
+
+export const useIpRestrictionsWithFilter = (
+  projectId: string,
+  registryId: string,
+  type: FilterRestrictionsServer[] = ['management', 'registry'],
+  pagination: PaginationState,
+  filters: Filter[],
+) =>
+  useIpRestrictions(projectId, registryId, type, (data) =>
+    paginateResults<TIPRestrictionsData>(
+      applyFilters(data || [], filters),
+      pagination,
+    ),
+  );
 
 type TUpdateIpRestrictionParams = {
   projectId: string;
