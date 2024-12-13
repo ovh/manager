@@ -87,7 +87,6 @@ export const PublicCloudPanel: React.FC<ComponentProps<
   useEffect(() => {
     const { appHash } = containerURL;
     if (appHash.startsWith('/pci/projects/new')) {
-      console.log('setting new project')
       setSelectedPciProject(null);
     } else {
       if (!pciProjects?.length) return;
@@ -103,16 +102,13 @@ export const PublicCloudPanel: React.FC<ComponentProps<
         );
       }
       if (project) {
-        console.log('setting url project')
         setSelectedPciProject(project);
       }
       else {
         if (defaultPciProject !== null) {
-          console.log('setting default project')
           setSelectedPciProject(defaultPciProject);
         }
         else {
-          console.log('setting first project')
           setSelectedPciProject(pciProjects[0]);
         }
       }
