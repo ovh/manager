@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useFormContext } from 'react-hook-form';
-import { useCallback } from 'react';
+import { useCallback, useContext } from 'react';
 import { OsdsModal, OsdsButton } from '@ovhcloud/ods-components/react';
 import {
   Description,
@@ -10,7 +10,7 @@ import {
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import {
-  useIpRestrictions,
+  useIpRestrictionsWithFilter,
   useUpdateIpRestriction,
 } from '@/api/hooks/useIpRestrictions';
 import {
@@ -20,6 +20,7 @@ import {
   TIPRestrictionsMethodEnum,
 } from '@/types';
 import { categorizeByKey } from '@/helpers';
+import { Context } from '../../pages/CIDR/FilterContext.provider';
 
 type DeleteModalProps =
   | { all: true; cidr?: never; onClose: () => void }
@@ -33,7 +34,14 @@ export default function DeleteModal({
   const { t } = useTranslation(['ip-restrictions']);
 
   const { projectId, registryId } = useParams();
-  const { data } = useIpRestrictions(projectId, registryId);
+  const { filters, pagination } = useContext(Context);
+  const { data } = useIpRestrictionsWithFilter(
+    projectId,
+    registryId,
+    ['management', 'registry'],
+    pagination,
+    filters,
+  );
   const { reset } = useFormContext();
   const { addError, addSuccess } = useNotifications();
 
@@ -57,7 +65,7 @@ export default function DeleteModal({
   });
 
   const deleteAllSelectedRows = useCallback(() => {
-    const rowToDelete = data
+    const rowToDelete = data.rows
       .filter((item) => item.checked)
       .map((item) => ({
         ipBlock: item.ipBlock,
