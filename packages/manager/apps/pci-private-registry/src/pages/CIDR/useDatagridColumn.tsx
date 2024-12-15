@@ -13,7 +13,7 @@ import ButtonsCIDR from '@/components/CIDR/ButtonsCIDR.component';
 import { TIPRestrictionsData } from '@/types';
 import {
   getRegistryQueyPrefixWithId,
-  useIpRestrictions,
+  useIpRestrictionsWithFilter,
 } from '@/api/hooks/useIpRestrictions';
 import ActionComponent from '@/components/CIDR/Actions.component';
 import Authorization from '@/components/CIDR/Authorization.component';
@@ -23,8 +23,9 @@ import { capitalizeAndJoin } from '@/helpers';
 import AuthorizationLabel from '@/components/CIDR/AuthorizationLabel.component';
 import Checkboxes from '@/components/CIDR/Checkboxes.component';
 import AllCheckboxComponent from '@/components/CIDR/AllCheckbox.component';
+import useFilter from './useFilters';
 
-function evaluateDraftAndData(draft, dataLength) {
+function evaluateDraftAndData(draft: boolean, dataLength: number) {
   if (!draft) {
     if (dataLength < 2) {
       return false;
@@ -44,16 +45,23 @@ export const useDatagridColumn = () => {
   const queryClient = useQueryClient();
   const { t } = useTranslation(['ip-restrictions']);
   const { projectId, registryId } = useParams();
+  const { filters, pagination } = useFilter();
+  const { data } = useIpRestrictionsWithFilter(
+    projectId,
+    registryId,
+    ['management', 'registry'],
+    pagination,
+    filters,
+  );
 
-  const { data } = useIpRestrictions(projectId, registryId);
-
-  const isDraft = useMemo(() => data.some((restriction) => restriction.draft), [
-    data,
-  ]);
+  const isDraft = useMemo(
+    () => data.rows.some((restriction) => restriction.draft),
+    [data],
+  );
 
   const dataAllSelected = useMemo(
     () =>
-      data
+      data.rows
         .filter((item) => item.checked !== null)
         .every((item) => item.checked),
     [data],
@@ -69,7 +77,9 @@ export const useDatagridColumn = () => {
       queryClient.setQueryData(key, (oldData: TIPRestrictionsData[]) =>
         oldData.map((item) => {
           if (allIsSelected && item.checked !== null) {
-            return { ...item, checked: !dataAllSelected };
+            if (data.rows.find((row) => row.ipBlock === item.ipBlock)) {
+              return { ...item, checked: !dataAllSelected };
+            }
           }
           if (item.ipBlock === ipBlock) {
             return { ...item, checked: !item.checked };
@@ -78,24 +88,24 @@ export const useDatagridColumn = () => {
         }),
       );
     },
-    [dataAllSelected],
+    [dataAllSelected, data],
   );
 
   const columns: DatagridColumn<TIPRestrictionsData>[] = [
     {
       id: 'check',
       cell: (props) =>
-        props.checked !== null && evaluateDraftAndData(isDraft, data.length) ? (
+        props.checked !== null &&
+        evaluateDraftAndData(isDraft, data.rows.length) ? (
           <Checkboxes
             checked={props.checked}
             ipBlock={props.ipBlock}
             updateChecked={updateChecked}
-            dataAllSelected={dataAllSelected}
           />
         ) : (
           <></>
         ),
-      label: evaluateDraftAndData(isDraft, data.length)
+      label: evaluateDraftAndData(isDraft, data.rows.length)
         ? (((
             <AllCheckboxComponent
               updateChecked={updateChecked}

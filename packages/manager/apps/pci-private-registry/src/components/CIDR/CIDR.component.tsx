@@ -31,6 +31,7 @@ import {
   useIpRestrictionsWithFilter,
 } from '@/api/hooks/useIpRestrictions';
 import { TIPRestrictionsData } from '@/types';
+import useFilters from '@/pages/CIDR/useFilters';
 
 const createNewRow = (queryClient: QueryClient, key: QueryKey) =>
   queryClient.setQueryData(key, (oldData: TIPRestrictionsData[]) => [
@@ -49,9 +50,7 @@ export default function BlocCIDR() {
   const queryClient = useQueryClient();
   const { formState } = useFormContext();
   const columns = useDatagridColumn();
-  const { pagination, setPagination } = useDataGrid();
-  const { filters, addFilter, removeFilter } = useColumnFilters();
-
+  const { pagination, filters, setPagination } = useFilters();
   const { clearNotifications } = useNotifications();
 
   const { data: dataCIDR } = useIpRestrictionsWithFilter(
@@ -124,19 +123,16 @@ export default function BlocCIDR() {
       ))}
       <Notifications />
       <div className="mt-8">
-        <Filters
-          filters={filters}
-          addFilter={addFilter}
-          removeFilter={removeFilter}
-          createNewRow={createNewBlocsCIDR}
-        />
-        <Datagrid
-          columns={columns}
-          items={dataCIDR.rows}
-          totalItems={dataCIDR.totalRows || 0}
-          pagination={pagination}
-          onPaginationChange={setPagination}
-        />
+        <>
+          <Filters createNewRow={createNewBlocsCIDR} />
+          <Datagrid
+            columns={columns}
+            items={dataCIDR.rows}
+            totalItems={dataCIDR.totalRows || 0}
+            pagination={pagination}
+            onPaginationChange={setPagination}
+          />
+        </>
       </div>
     </>
   );
