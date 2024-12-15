@@ -14,6 +14,7 @@ import { isCidr, isIp } from '@/helpers';
 import BlocCIDR from '@/components/CIDR/CIDR.component';
 import { useIpRestrictions } from '@/api/hooks/useIpRestrictions';
 import { useSuspenseRegistry } from '@/api/hooks/useRegistry';
+import { FilterProvider } from './FilterContext.provider';
 
 const schemaAddCidr = (dataCIDR: string[]) =>
   z.object({
@@ -95,9 +96,11 @@ export default function BlocIPBlock() {
           {t('private_registry_cidr_manage_title')}
         </OsdsText>
       </div>
-      <FormProvider {...methods}>
-        <BlocCIDR />
-      </FormProvider>
+      <FilterProvider>
+        <FormProvider {...methods}>
+          <BlocCIDR />
+        </FormProvider>
+      </FilterProvider>
     </>
   );
 }

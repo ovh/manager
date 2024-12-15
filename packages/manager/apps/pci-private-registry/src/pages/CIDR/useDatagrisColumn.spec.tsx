@@ -3,9 +3,10 @@ import { vi, describe, it, expect } from 'vitest';
 import { UseSuspenseQueryResult } from '@tanstack/react-query';
 import { FieldValues, useFormContext, UseFormReturn } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
-import { useIpRestrictions } from '@/api/hooks/useIpRestrictions';
+import { useIpRestrictionsWithFilter } from '@/api/hooks/useIpRestrictions';
 import { useDatagridColumn } from './useDatagridColumn';
-import { wrapper } from '@/wrapperRenders';
+import { FilterProvider } from './FilterContext.provider';
+import { wrapper as Wrap } from '@/wrapperRenders';
 
 import { TIPRestrictionsData } from '@/types';
 
@@ -19,30 +20,33 @@ vi.mock('react-hook-form', () => ({
 
 vi.mock('@/api/hooks/useIpRestrictions', () => ({
   useIpRestrictions: vi.fn(),
+  useIpRestrictionsWithFilter: vi.fn(),
 }));
 
 describe('useDatagridColumn', () => {
   it('should return the correct columns', () => {
-    const mockData = [
-      {
-        ipBlock: '192.168.0.1',
-        checked: true,
-        draft: false,
-        authorization: ['management'],
-        description: 'CIDR 1',
-      },
-      {
-        ipBlock: '192.168.0.2',
-        checked: false,
-        draft: true,
-        authorization: ['registry'],
-        description: 'CIDR 2',
-      },
-    ];
+    const mockData = {
+      rows: [
+        {
+          ipBlock: '192.168.0.1',
+          checked: true,
+          draft: false,
+          authorization: ['management'],
+          description: 'CIDR 1',
+        },
+        {
+          ipBlock: '192.168.0.2',
+          checked: false,
+          draft: true,
+          authorization: ['registry'],
+          description: 'CIDR 2',
+        },
+      ],
+    };
 
-    vi.mocked(useIpRestrictions).mockReturnValue(({
+    vi.mocked(useIpRestrictionsWithFilter).mockReturnValue(({
       data: mockData,
-    } as unknown) as UseSuspenseQueryResult<TIPRestrictionsData[], Error>);
+    } as unknown) as UseSuspenseQueryResult<{ rows: TIPRestrictionsData[]; pageCount: number; totalRows: number }, Error>);
     vi.mocked(useParams).mockReturnValue({
       projectId: 'project123',
       registryId: 'registry456',
@@ -53,7 +57,13 @@ describe('useDatagridColumn', () => {
       formState: {},
     } as unknown) as UseFormReturn<FieldValues, unknown, FieldValues>);
 
-    const { result } = renderHook(() => useDatagridColumn(), { wrapper });
+    const { result } = renderHook(() => useDatagridColumn(), {
+      wrapper: ({ children }) => (
+        <FilterProvider>
+          <Wrap>{children}</Wrap>
+        </FilterProvider>
+      ),
+    });
     const columns = result.current;
 
     expect(columns).toHaveLength(5);

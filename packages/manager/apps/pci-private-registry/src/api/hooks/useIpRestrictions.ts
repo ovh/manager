@@ -46,7 +46,7 @@ export const useIpRestrictions = <T = TIPRestrictionsData[]>(
 export const useIpRestrictionsWithFilter = (
   projectId: string,
   registryId: string,
-  type: FilterRestrictionsServer[] = ['management', 'registry'],
+  type: FilterRestrictionsServer[],
   pagination: PaginationState,
   filters: Filter[],
 ) =>

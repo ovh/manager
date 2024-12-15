@@ -5,6 +5,7 @@ import {
   ODS_ICON_SIZE,
 } from '@ovhcloud/ods-components';
 
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   OsdsButton,
   OsdsIcon,
@@ -12,56 +13,72 @@ import {
   OsdsPopoverContent,
   OsdsSearchBar,
 } from '@ovhcloud/ods-components/react';
-import { useParams } from 'react-router-dom';
+
 import {
   Filter,
   FilterCategories,
   FilterComparator,
 } from '@ovh-ux/manager-core-api';
+
 import {
   FilterAdd,
   useColumnFilters,
-  useDataGrid,
   FilterList,
 } from '@ovh-ux/manager-react-components';
 
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useRef, useState, useMemo, memo } from 'react';
-
-import { useIpRestrictions } from '@/api/hooks/useIpRestrictions';
-
+import { useIpRestrictionsWithFilter } from '@/api/hooks/useIpRestrictions';
 import DeleteModal from './DeleteModal.component';
+import useFilter from '@/pages/CIDR/useFilters';
 
-const Filters = ({
-  createNewRow,
-  addFilter,
-  removeFilter,
-  filters,
-}: {
-  createNewRow: () => void;
-  addFilter: (filter: Filter) => void;
-  removeFilter: (filter: Filter) => void;
-  filters: Filter[];
-}) => {
+const Filters = ({ createNewRow }: { createNewRow: () => void }) => {
   const [searchField, setSearchField] = useState('');
   const { projectId, registryId } = useParams();
   const filterPopoverRef = useRef(undefined);
-  const { pagination, setPagination } = useDataGrid();
-  const { data } = useIpRestrictions(projectId, registryId);
+  const {
+    filters,
+    pagination,
+    setPagination,
+    addFilter,
+    removeFilter,
+  } = useFilter();
+  const { data } = useIpRestrictionsWithFilter(
+    projectId,
+    registryId,
+    ['management', 'registry'],
+    pagination,
+    filters,
+  );
 
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const { t } = useTranslation(['ip-restrictions']);
 
   const showDeleteButton = useMemo(
-    () => data.filter((item) => item.checked).length >= 2,
+    () => data.rows.filter((item) => item.checked).length >= 2,
     [data],
   );
 
-  const draftModeEnabled = useMemo(() => data.some((item) => item.draft), [
+  const draftModeEnabled = useMemo(() => data.rows.some((item) => item.draft), [
     data,
   ]);
+
   const { filters: filtersColumn } = useColumnFilters();
+
+  const handleAddFilter = (
+    inputValue: string | string[],
+    key = 'ipBlock',
+    label = '',
+  ) => {
+    setPagination({ pageIndex: 0, pageSize: pagination.pageSize });
+    addFilter({
+      key,
+      value: inputValue,
+      comparator: FilterComparator.Includes,
+      label,
+    } as Filter & { label: string });
+  };
 
   return (
     <>
@@ -72,9 +89,7 @@ const Filters = ({
             color={ODS_THEME_COLOR_INTENT.primary}
             className="xs:mb-0.5 sm:mb-0"
             disabled={draftModeEnabled || undefined}
-            onClick={() => {
-              createNewRow();
-            }}
+            onClick={createNewRow}
           >
             <OsdsIcon
               size={ODS_ICON_SIZE.xs}
@@ -113,16 +128,7 @@ const Filters = ({
             className="w-[70%]"
             value={searchField}
             onOdsSearchSubmit={({ detail }) => {
-              setPagination({
-                pageIndex: 0,
-                pageSize: pagination.pageSize,
-              });
-              addFilter({
-                key: 'ipBlock',
-                value: detail.inputValue,
-                comparator: FilterComparator.Includes,
-                label: '',
-              } as Filter & { label: string });
+              handleAddFilter(detail.inputValue);
               setSearchField('');
             }}
           />
@@ -145,7 +151,7 @@ const Filters = ({
               <FilterAdd
                 columns={[
                   {
-                    id: 'cidr',
+                    id: 'ipBlock',
                     label: t('private_registry_bloc_cidr'),
                     comparators: FilterCategories.String,
                   },
@@ -156,14 +162,7 @@ const Filters = ({
                   },
                 ]}
                 onAddFilter={(addedFilter, column) => {
-                  setPagination({
-                    pageIndex: 0,
-                    pageSize: pagination.pageSize,
-                  });
-                  addFilter({
-                    ...addedFilter,
-                    label: column.label,
-                  } as Filter & { label: string });
+                  handleAddFilter(addedFilter.value, column.id, column.label);
                   filterPopoverRef.current?.closeSurface();
                 }}
               />
