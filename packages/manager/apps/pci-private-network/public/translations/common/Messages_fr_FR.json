@@ -70,7 +70,7 @@
   "common_stepper_skip_this_step": "Ignorer cette étape",
   "common_stepper_next_button_label": "Suivant",
   "common_stepper_submit_button_label": "Envoyer",
-  "common_stepper_cancel_button_label": "Annuler",
+  "common_cancel_button_label": "Annuler",
   "common_file_attachmentsHeading": "Fichier(s) joint(s)",
   "common_file_dropArea": "Glissez/déposez des fichiers ou",
   "common_file_dropAreaSingle": "Glissez/déposez un fichier ou",
@@ -90,5 +90,6 @@
   "common_password_weak_password": "Mot de passe faible.",
   "common_password_good_password": "Mot de passe correct.",
   "common_password_strong_password": "Mot de passe fort.",
-  "common_find_out_more_here": "En savoir plus ici"
+  "common_find_out_more_here": "En savoir plus ici",
+  "common_click_here_btn": "cliquez ici"
 }

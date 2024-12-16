@@ -1,6 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
+import { UseQueryResult } from '@tanstack/react-query';
 import Price from '@/components/price/Price.component';
+import { useGetCatalog } from '@/hooks/api/catalog/useGetCatalog.hook';
+import { order } from '@/types/catalog';
 
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
@@ -81,5 +84,23 @@ describe('Price component value', () => {
     expect(screen.getByTestId('pricing-ttc')).toHaveTextContent(
       '(pricing_ttc 0,00 €)',
     );
+  });
+
+  it('should display skeleton if catalog is fetching', () => {
+    vi.mocked(useGetCatalog).mockImplementation(() => {
+      return ({
+        isSuccess: false,
+        isLoading: true, // Simulate loading state
+        isError: false,
+        data: undefined,
+        error: null,
+        refetch: vi.fn(),
+        status: 'loading', // Provide status explicitly
+      } as unknown) as UseQueryResult<order.publicOrder.Catalog, Error>;
+    });
+    render(
+      <Price priceInUcents={1000000000} taxInUcents={200000000} decimals={2} />,
+    );
+    expect(screen.getByTestId('pricing-skeleton')).toBeInTheDocument();
   });
 });

@@ -292,6 +292,12 @@ export default /* @ngInject */ ($stateProvider) => {
         const ovhShell = $injector.get('ovhShell');
         return ovhShell.navigation.getURL(...args).then((url) => url);
       },
+
+      kubernetesURL: /* @ngInject */ (getUAppUrl, projectId) =>
+        getUAppUrl(
+          'public-cloud',
+          `#/pci/projects/${projectId}/kubernetes`,
+        ).then((url) => url),
     },
   });
 

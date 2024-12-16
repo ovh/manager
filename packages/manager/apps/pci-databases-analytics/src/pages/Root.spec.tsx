@@ -3,6 +3,9 @@ import { render, screen, waitFor } from '@testing-library/react';
 import Root from '@/pages/Root.page';
 import { Locale } from '@/hooks/useLocale';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
+import { mockedService } from '@/__tests__/helpers/mocks/services';
+import * as serviceApi from '@/data/api/database/service.api';
+import * as database from '@/types/cloud/project/database';
 
 describe('Home page', () => {
   beforeEach(() => {
@@ -13,6 +16,18 @@ describe('Home page', () => {
         t: (key: string) => key,
       }),
     }));
+
+    vi.mock('react-router-dom', async () => {
+      const mod = await vi.importActual('react-router-dom');
+      return {
+        ...mod,
+        redirect: vi.fn(),
+        useParams: () => ({
+          projectId: 'projectId',
+          category: database.engine.CategoryEnum.all,
+        }),
+      };
+    });
 
     vi.mock('@/data/api/database/service.api', () => ({
       getServices: vi.fn(() => []),
@@ -35,10 +50,13 @@ describe('Home page', () => {
     });
   });
 
-  it('should display onboarding pages', async () => {
+  it('should display service page', async () => {
+    vi.mocked(serviceApi.getServices).mockResolvedValue([mockedService]);
     render(<Root />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByTestId('onbaording-container')).toBeInTheDocument();
+      expect(
+        screen.getByTestId('services-guides-container'),
+      ).toBeInTheDocument();
     });
   });
 });

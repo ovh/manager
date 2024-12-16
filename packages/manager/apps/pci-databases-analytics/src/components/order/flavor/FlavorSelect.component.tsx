@@ -63,7 +63,7 @@ const FlavorsSelect = React.forwardRef<HTMLTableElement, FlavorsSelectProps>(
       <Table
         data-testid="flavor-select-table"
         ref={ref}
-        className={cn('min-w-max w-full', className)}
+        className={cn('table-auto max-w-full overflow-x-auto', className)}
       >
         <TableHeader data-testid="flavor-select-table-header">
           <TableRow className="bg-primary-100 hover:bg-primary-10">
