@@ -16,6 +16,22 @@ import {
   PostLogTailUrlParams,
   postLogTailUrlMocks,
 } from '../data/mocks/logTailUrl.handler';
+import {
+  GetLogSubscriptionsMocksParams,
+  getLogSubscriptionsMocks,
+} from '../data/mocks/logSubscription.handler';
+import {
+  GetLogStreamUrlMocksParams,
+  getLogStreamUrlMocks,
+} from '../data/mocks/logStreamUrl.handler';
+import {
+  GetLogStreamMocksParams,
+  getLogStreamMocks,
+} from '../data/mocks/logStream.handler';
+import {
+  GetLogServiceMocksParams,
+  getLogServiceMocks,
+} from '../data/mocks/logService.handler';
 
 export const renderTest = async ({
   initialRoute,
@@ -24,11 +40,19 @@ export const renderTest = async ({
   initialRoute?: string;
 } & GetLogKindsMocksParams &
   GetLogMessageParams &
-  PostLogTailUrlParams = {}) => {
+  PostLogTailUrlParams &
+  GetLogSubscriptionsMocksParams &
+  GetLogStreamUrlMocksParams &
+  GetLogStreamMocksParams &
+  GetLogServiceMocksParams = {}) => {
   ((global as unknown) as { server: SetupServer }).server?.resetHandlers(
     ...toMswHandlers([
       ...getLogKindsMocks(mockParams),
       ...postLogTailUrlMocks(mockParams),
+      ...getLogSubscriptionsMocks(mockParams),
+      ...getLogStreamUrlMocks(mockParams),
+      ...getLogStreamMocks(mockParams),
+      ...getLogServiceMocks(mockParams),
     ]),
     getLogMessageMocks(mockParams),
   );

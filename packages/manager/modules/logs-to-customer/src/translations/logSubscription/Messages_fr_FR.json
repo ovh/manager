@@ -1,0 +1,11 @@
+{
+  "log_subscription_tile_title": "Ces logs sont transférés dans Logs Data Platform",
+  "log_subscription_serviceName_tile_label": "Nom du service",
+  "log_subscription_button_unsubscribe_label": "Se désabonner",
+  "log_subscription_empty_tile_title": "Flux",
+  "log_subscription_empty_tile_description": "En vous abonnant à ce flux, vous pouvez transférer vos logs directement dans Logs Data Platform d'OVHcloud qui vous permet de faire des recherches plus avancées, créer des alertes et des visualisations ou bien tout simplement les archiver.",
+  "log_subscription_empty_tile_button_know_more": "En savoir plus sur Logs Data Platform",
+  "log_subscription_empty_tile_button_subscribe": "S'abonner",
+  "log_subscription_list_title": "Utiliser vos logs",
+  "log_subscription_list_button_subscribe_more": "S'abonner sur un autre flux de données"
+}
