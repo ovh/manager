@@ -1,5 +1,5 @@
 import { vi, test, expect, beforeEach, afterEach } from 'vitest';
-import { v6 } from '@ovh-ux/manager-core-api'; // Assurez-vous que cette importation est correcte.
+import { v6 } from '@ovh-ux/manager-core-api';
 import {
   getAllRegistries,
   getRegistry,
@@ -9,18 +9,18 @@ import {
   TRegistry,
 } from './registry';
 
-vi.mock('@ovh-ux/manager-core-api'); // Mocking the v6 API
+vi.mock('@ovh-ux/manager-core-api');
 
 describe('Registry API Tests', () => {
   const projectId = 'test-project-id';
   const registryId = 'test-registry-id';
 
   beforeEach(() => {
-    vi.clearAllMocks(); // Clear mocks before each test
+    vi.clearAllMocks();
   });
 
   afterEach(() => {
-    vi.restoreAllMocks(); // Restore mocks after each test
+    vi.restoreAllMocks();
   });
 
   test('getAllRegistries should return a list of registries', async () => {
