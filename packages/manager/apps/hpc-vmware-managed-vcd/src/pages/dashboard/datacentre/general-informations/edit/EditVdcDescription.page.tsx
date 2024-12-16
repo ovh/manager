@@ -18,7 +18,7 @@ export default function EditVdcDescription() {
   const { addSuccess } = useMessageContext();
   const { id, vdcId } = useParams();
   const { data: vcdDatacentre } = useVcdDatacentre(id, vdcId);
-  const { updateDetails, error, isError } = useUpdateVdcDetails({
+  const { updateDetails, error, isError, isPending } = useUpdateVdcDetails({
     id,
     vdcId,
     onSuccess: () => {
@@ -52,6 +52,7 @@ export default function EditVdcDescription() {
         })
       }
       error={isError ? error : null}
+      isLoading={isPending}
     />
   );
 }

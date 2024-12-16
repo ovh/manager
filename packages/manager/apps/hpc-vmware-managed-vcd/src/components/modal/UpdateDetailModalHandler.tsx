@@ -33,7 +33,12 @@ export const UpdateDetailModalHandler = ({
   const { addSuccess } = useMessageContext();
   const { id } = useParams();
   const { data: vcdOrganization } = useVcdOrganization({ id });
-  const { updateDetails, error, isError } = useUpdateVcdOrganizationDetails({
+  const {
+    updateDetails,
+    error,
+    isError,
+    isPending,
+  } = useUpdateVcdOrganizationDetails({
     id,
     onSuccess: () => {
       addSuccess({
@@ -89,6 +94,7 @@ export const UpdateDetailModalHandler = ({
       }
       onCloseModal={closeModal}
       error={isError ? error : null}
+      isLoading={isPending}
     />
   );
 };
