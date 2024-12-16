@@ -232,3 +232,52 @@ export const OBJECT_CONTAINER_OFFERS_LABELS = {
     price: null,
   },
 };
+
+export const STORAGE_ASYNC_REPLICATION_LINK = {
+  DEFAULT:
+    'https://help.ovhcloud.com/csm/en-public-cloud-storage-s3-asynchronous-replication-buckets?id=kb_article_view&sysparm_article=KB0062417',
+  ASIA:
+    'https://help.ovhcloud.com/csm/asia-public-cloud-storage-s3-asynchronous-replication-buckets?id=kb_article_view&sysparm_article=KB0062424',
+  AU:
+    'https://help.ovhcloud.com/csm/en-au-public-cloud-storage-s3-asynchronous-replication-buckets?id=kb_article_view&sysparm_article=KB0062420',
+  CA:
+    'https://help.ovhcloud.com/csm/en-ca-public-cloud-storage-s3-asynchronous-replication-buckets?id=kb_article_view&sysparm_article=KB0062423',
+  DE:
+    'https://help.ovhcloud.com/csm/de-public-cloud-storage-s3-asynchronous-replication-buckets?id=kb_article_view&sysparm_article=KB0062426',
+  ES:
+    'https://help.ovhcloud.com/csm/es-es-public-cloud-storage-s3-asynchronous-replication-buckets?id=kb_article_view&sysparm_article=KB0062427',
+  EU:
+    'https://help.ovhcloud.com/csm/en-ie-public-cloud-storage-s3-asynchronous-replication-buckets?id=kb_article_view&sysparm_article=KB0062415',
+  FR:
+    'https://help.ovhcloud.com/csm/fr-public-cloud-storage-s3-asynchronous-replication-buckets?id=kb_article_view&sysparm_article=KB0062418',
+  GB:
+    'https://help.ovhcloud.com/csm/en-gb-public-cloud-storage-s3-asynchronous-replication-buckets?id=kb_article_view&sysparm_article=KB0062422',
+  IE:
+    'https://help.ovhcloud.com/csm/en-ie-public-cloud-storage-s3-asynchronous-replication-buckets?id=kb_article_view&sysparm_article=KB0062415',
+  IN:
+    'https://help.ovhcloud.com/csm/asia-public-cloud-storage-s3-asynchronous-replication-buckets?id=kb_article_view&sysparm_article=KB0062424',
+  IT:
+    'https://help.ovhcloud.com/csm/it-public-cloud-storage-s3-asynchronous-replication-buckets?id=kb_article_view&sysparm_article=KB0062425',
+  MA:
+    'https://help.ovhcloud.com/csm/fr-public-cloud-storage-s3-asynchronous-replication-buckets?id=kb_article_view&sysparm_article=KB0062418',
+  NL:
+    'https://help.ovhcloud.com/csm/en-public-cloud-storage-s3-asynchronous-replication-buckets?id=kb_article_view&sysparm_article=KB0062417',
+  PL:
+    'https://help.ovhcloud.com/csm/pl-public-cloud-storage-s3-asynchronous-replication-buckets?id=kb_article_view&sysparm_article=KB0062421',
+  PT:
+    'https://help.ovhcloud.com/csm/pt-public-cloud-storage-s3-asynchronous-replication-buckets?id=kb_article_view&sysparm_article=KB0062414',
+  QC:
+    'https://help.ovhcloud.com/csm/fr-ca-public-cloud-storage-s3-asynchronous-replication-buckets?id=kb_article_view&sysparm_article=KB0062413',
+  SG:
+    'https://help.ovhcloud.com/csm/en-sg-public-cloud-storage-s3-asynchronous-replication-buckets?id=kb_article_view&sysparm_article=KB0062416',
+  SN:
+    'https://help.ovhcloud.com/csm/fr-public-cloud-storage-s3-asynchronous-replication-buckets?id=kb_article_view&sysparm_article=KB0062418',
+  TN:
+    'https://help.ovhcloud.com/csm/fr-public-cloud-storage-s3-asynchronous-replication-buckets?id=kb_article_view&sysparm_article=KB0062418',
+  US:
+    'https://support.us.ovhcloud.com/hc/en-us/articles/34270032176019-Object-Storage-Master-asynchronous-replication-across-your-buckets',
+  WE:
+    'https://help.ovhcloud.com/csm/en-public-cloud-storage-s3-asynchronous-replication-buckets?id=kb_article_view&sysparm_article=KB0062417',
+  WS:
+    'https://help.ovhcloud.com/csm/es-public-cloud-storage-s3-asynchronous-replication-buckets?id=kb_article_view&sysparm_article=KB0062419',
+};
