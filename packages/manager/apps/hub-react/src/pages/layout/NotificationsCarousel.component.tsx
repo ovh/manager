@@ -24,7 +24,6 @@ import { useFetchHubNotifications } from '@/data/hooks/notifications/useNotifica
 import { Notification, NotificationType } from '@/types/notifications.type';
 import useGuideUtils from '@/hooks/guides/useGuideUtils';
 import { NOTIFICATIONS_LINKS } from '@/pages/layout/layout.constants';
-import NotificationsCarouselSkeleton from '@/pages/layout/NotificationsCarousel.skeleton';
 import { useHubContext } from '@/pages/layout/context';
 
 const getMessageColor = (type: NotificationType) => {

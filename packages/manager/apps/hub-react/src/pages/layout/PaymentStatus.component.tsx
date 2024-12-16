@@ -118,7 +118,11 @@ export default function PaymentStatus() {
           {autorenewLink && (
             <Suspense
               fallback={
-                <OsdsSkeleton data-testid="my_services_link_skeleton" />
+                <OsdsSkeleton
+                  data-testid="my_services_link_skeleton"
+                  inline
+                  size={ODS_SKELETON_SIZE.xs}
+                />
               }
             >
               <Await
