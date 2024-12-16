@@ -2,6 +2,14 @@ import get from 'lodash/get';
 import isFunction from 'lodash/isFunction';
 import some from 'lodash/some';
 import { INDIAN_SUBSIDIARY } from '../constants';
+import {
+  BUTTON_TRACKING_PREFIX,
+  CHAPTER_1,
+  DISPLAY_ROOT_PAGE_TRACKING,
+  REQUEST_RESULT_TRACKING_PREFIX,
+  SUBMIT_FORM_GOAL_TYPE,
+  SUBMIT_FORM_TRACKING_PREFIX,
+} from '../at-internet.constants';
 
 export default class SignUpFormAppCtrl {
   /* @ngInject */
@@ -62,23 +70,42 @@ export default class SignUpFormAppCtrl {
   }
 
   onStepFormCancel(step) {
-    this.atInternet.trackPage({
-      name: `accountcreation-step${step === 'details' ? '2' : '3'}-${
-        this.me.model.legalform
-      }::cancel`,
+    const hits = [
+      BUTTON_TRACKING_PREFIX,
+      `create_account_step${step === 'details' ? '3' : '4'}`,
+      'cancel',
+      `${this.me.model.legalform}_${this.me.ovhSubsidiary}`,
+    ];
+    this.atInternet.trackClick({
+      name: hits.join('::'),
+      type: 'action',
+      page_category: CHAPTER_1,
+      page: {
+        name: DISPLAY_ROOT_PAGE_TRACKING,
+      },
     });
     return this.cancelStep(step);
   }
 
   onStepperFinished() {
     this.saveError = null;
+    const hits = [
+      SUBMIT_FORM_TRACKING_PREFIX,
+      `${this.me.model.legalform}_${this.me.ovhSubsidiary}`,
+    ];
 
     const tracking = {
-      name: `accountcreation-ok-${this.me.model.legalform}`,
+      name: hits.join('::'),
+      type: 'action',
+      goalType: SUBMIT_FORM_GOAL_TYPE,
       accountcreationSiretProvided: this.me.model
         .companyNationalIdentificationNumber
         ? 'Provided'
         : '',
+      page_category: CHAPTER_1,
+      page: {
+        name: DISPLAY_ROOT_PAGE_TRACKING,
+      },
     };
 
     if (this.isSmsConsentAvailable) {
@@ -86,16 +113,31 @@ export default class SignUpFormAppCtrl {
       tracking.accountPhoneType = this.me.model.phoneType;
     }
 
-    this.atInternet.trackPage(tracking);
+    this.atInternet.trackClick(tracking);
 
     // call to finishSignUp binding
     if (isFunction(this.finishSignUp)) {
+      const getTrackingHits = (status) => [
+        REQUEST_RESULT_TRACKING_PREFIX,
+        `confirmation_${status}`, // 'success' | 'error'
+        `${this.me.model.legalform}_${this.me.ovhSubsidiary}`,
+      ];
       return this.finishSignUp(this.smsConsent)
         .then(() => {
+          this.atInternet.trackPage({
+            name: getTrackingHits('success').join('::'),
+            page_category: 'banner',
+            goalType: 'account-creation-finalstep',
+          });
           if (this.needkyc) this.goToKycDocumentUploadPage();
         })
         .catch((error) => {
           this.saveError = error;
+          this.atInternet.trackPage({
+            name: getTrackingHits('error').join('::'),
+            page_category: 'banner',
+            goalType: 'account-creation-finalstep',
+          });
         });
     }
     if (this.needkyc) {
@@ -116,5 +158,10 @@ export default class SignUpFormAppCtrl {
     if (this.me.state === 'incomplete') {
       this.me.legalform = null;
     }
+
+    this.atInternet.trackPage({
+      name: DISPLAY_ROOT_PAGE_TRACKING,
+      page_category: CHAPTER_1,
+    });
   }
 }
