@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.8.5...@ovh-ux/manager-pci-databases-analytics-app@1.9.0) (2024-12-16)
+
+
+### Features
+
+* **pci-db-analytics:** rework modals ([#14216](https://github.com/ovh/manager/issues/14216)) ([d42f284](https://github.com/ovh/manager/commit/d42f284259d3a45eab4cc9cdbc97bfd6be5e866b))
+
+
+
+
+
 ## [1.8.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.8.4...@ovh-ux/manager-pci-databases-analytics-app@1.8.5) (2024-12-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-databases-analytics-app

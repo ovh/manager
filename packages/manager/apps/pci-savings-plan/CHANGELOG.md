@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.6.3...@ovh-ux/manager-pci-savings-plan-app@1.7.0) (2024-12-16)
+
+
+### Features
+
+* **savings-plan:** update mrc version ([#14328](https://github.com/ovh/manager/issues/14328)) ([4db7f60](https://github.com/ovh/manager/commit/4db7f603686ca70799fd57676634087c77cab4c4))
+
+
+
+
+
 ## [1.6.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.6.2...@ovh-ux/manager-pci-savings-plan-app@1.6.3) (2024-12-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app

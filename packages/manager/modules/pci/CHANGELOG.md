@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.73.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.72.1...@ovh-ux/manager-pci@6.73.0) (2024-12-16)
+
+
+### Bug Fixes
+
+* **pci:** add kubernetes link ([#14522](https://github.com/ovh/manager/issues/14522)) ([0980991](https://github.com/ovh/manager/commit/09809912d1d069f5d2d2fe6019b5630b797b316d))
+
+
+### Features
+
+* **pci:** remove private registry angularJS ([#14076](https://github.com/ovh/manager/issues/14076)) ([ba4781a](https://github.com/ovh/manager/commit/ba4781a5f81281c37bd5b5329c1e17782df26598))
+
+
+
+
+
 ## [6.72.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.72.0...@ovh-ux/manager-pci@6.72.1) (2024-12-12)
 
 
