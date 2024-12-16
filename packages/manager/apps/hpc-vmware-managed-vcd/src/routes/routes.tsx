@@ -85,21 +85,22 @@ export const Routes: any = [
                   },
                 },
               },
-              {
-                id: 'reset-password',
-                path: urls.resetPassword,
-                ...lazyRouteConfig(() =>
-                  import(
-                    '@/pages/dashboard/organization/general-information/edit/EditPassword.page'
-                  ),
-                ),
-                handle: {
-                  tracking: {
-                    pageName: 'reset-password',
-                    pageType: PageType.popup,
-                  },
-                },
-              },
+              // uncomment below: when API for resetPassword is available
+              // {
+              //   id: 'reset-password',
+              //   path: urls.resetPassword,
+              //   ...lazyRouteConfig(() =>
+              //     import(
+              //       '@/pages/dashboard/organization/general-information/edit/EditPassword.page'
+              //     ),
+              //   ),
+              //   handle: {
+              //     tracking: {
+              //       pageName: 'reset-password',
+              //       pageType: PageType.popup,
+              //     },
+              //   },
+              // },
             ],
           },
           {
