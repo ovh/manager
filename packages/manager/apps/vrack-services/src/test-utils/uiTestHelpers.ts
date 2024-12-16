@@ -120,6 +120,23 @@ export const changeInputValueByLabelText = async ({
   return waitFor(() => fireEvent(odsInput, event));
 };
 
+export const changeSelectValueByLabelText = async ({
+  selectLabel,
+  value,
+}: {
+  selectLabel: string;
+  value: string;
+}) => {
+  const odsForm: HTMLElement = screen
+    .getByText(selectLabel)
+    ?.closest('osds-form-field');
+  const odsSelect = odsForm.querySelector('osds-select');
+  const event = new CustomEvent('odsValueChange', {
+    detail: { value },
+  });
+  return waitFor(() => fireEvent(odsSelect, event));
+};
+
 export const assertOsdFormInputInError = async ({
   inputLabel,
   inError = false,
