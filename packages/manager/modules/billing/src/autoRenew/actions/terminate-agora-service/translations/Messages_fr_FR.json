@@ -23,5 +23,9 @@
   "autorenew_agora_terminate_service_NUTANIX": "Résilier le service Nutanix on OVHcloud",
   "autorenew_agora_terminate_service_warning_NUTANIX": "Veuillez confirmer la résiliation de votre Nutanix on OVHcloud \"{{serviceName}}\"",
   "autorenew_agora_terminate_service_success_NUTANIX": "Votre demande de résiliation de votre Nutanix a été prise en compte. Un e-mail contenant la procédure vous a été envoyé.",
-  "autorenew_agora_terminate_service_error_NUTANIX": "Une erreur est survenue lors de la demande de résiliation de votre Nutanix. {{error}}"
+  "autorenew_agora_terminate_service_error_NUTANIX": "Une erreur est survenue lors de la demande de résiliation de votre Nutanix. {{error}}",
+  "autorenew_agora_terminate_service_NUTANIX_NODE": "Résilier ce noeud",
+  "autorenew_agora_terminate_service_warning_NUTANIX_NODE": "Vous allez résilier la souscription du noeud \"{{serviceName}}\".",
+  "autorenew_agora_terminate_service_success_NUTANIX_NODE": "La résiliation de votre noeud \"{{serviceName}}\" a bien été prise en compte. Vous recevrez un e-mail avec les détails de la procédure à suivre.",
+  "autorenew_agora_terminate_service_error_NUTANIX_NODE": "Votre demande de résiliation n'a pas été prise en compte : {{error}}"
 }
