@@ -305,7 +305,6 @@ export default class NutanixService {
     };
   }
 
-
   updateClusterNodePowerStateOn(nodeId) {
     return this.$http
       .put(`/dedicated/server/${nodeId}`, {
