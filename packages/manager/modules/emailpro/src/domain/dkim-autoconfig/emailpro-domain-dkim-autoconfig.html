@@ -4,10 +4,9 @@
         data-wizard
         data-wizard-on-cancel="resetAction"
         data-wizard-on-finish="ctrl.onFinishDkim.bind(ctrl)"
-        data-wizard-cancel-button-text="('emailpro_tab_domain_diagnostic_dkim_' + (ctrl.hideConfirmButton ? 'cancel' : 'close')) | translate"
-        data-wizard-confirm-button-text="ctrl.dkimStatus === ctrl.DKIM_STATUS.ACTIVE ?
-        'emailpro_tab_domain_diagnostic_dkim_deactivate' : 'emailpro_tab_domain_diagnostic_dkim_activate' | translate"
-        data-wizard-hide-confirm-button="ctrl.hideConfirmButton"
+        data-wizard-cancel-button-text="('emailpro_tab_domain_diagnostic_dkim_' + (ctrl.hideConfirmButton() ? 'cancel' : 'close')) | translate"
+        data-wizard-confirm-button-text="'emailpro_tab_domain_diagnostic_dkim_' + (ctrl.dkimStatus === ctrl.DKIM_STATUS.ACTIVE || ctrl.dkimStatus === ctrl.DKIM_STATUS.ENABLED ? 'deactivate' : 'activate') | translate"
+        data-wizard-hide-confirm-button="!ctrl.hideConfirmButton()"
         data-wizard-title="ctrl.getTitleForWizard()"
     >
         <div data-wizard-step>
@@ -28,10 +27,10 @@
     <div data-ng-if="ctrl.dkimForNoOvhCloud">
         <div
             data-wizard
-            data-wizard-on-finish="ctrl.leaveDkimConfigurator.bind(ctrl)"
-            data-wizard-on-cancel="ctrl.leaveDkimConfigurator.bind(ctrl)"
+            data-wizard-on-finish="ctrl.isMXPlan ? ctrl.onFinishDkim.bind(ctrl) : ctrl.leaveDkimConfigurator.bind(ctrl, true)"
+            data-wizard-on-cancel="ctrl.leaveDkimConfigurator.bind(ctrl, true)"
             data-wizard-hide-previous-button="true"
-            data-wizard-confirm-button-text=":: 'emailpro_tab_domain_diagnostic_dkim_confirm_no_ovhcloud' | translate"
+            data-wizard-confirm-button-text="'emailpro_tab_domain_diagnostic_dkim_' + (ctrl.isMXPlan ? 'activate' : 'confirm_no_ovhcloud') | translate"
             data-wizard-next-button-text="ctrl.getNextButtonDependingOnStep() | translate"
             data-wizard-title="ctrl.getTitleDkimConfigurator() | translate"
         >
@@ -55,12 +54,15 @@
                 data-wizard-step-on-next="ctrl.getDkimSelector.bind(ctrl)"
                 data-wizard-step-valid="ctrl.isStepConfigureValid"
             >
-                <div class="col-md-12" data-ng-if="ctrl.loading">
+                <div
+                    class="col-md-12"
+                    data-ng-if="!ctrl.isStepConfigureValid && ctrl.loading"
+                >
                     <oui-spinner></oui-spinner>
                 </div>
 
                 <p
-                    data-translate="emailpro_tab_domain_diagnostic_dkim_id_generation_no_ovhcloud"
+                    data-translate="{{ 'emailpro_tab_domain_diagnostic_dkim_id_generation_no_ovhcloud_' + (!ctrl.isStepConfigureValid ? 'doing' : 'done') }}"
                 ></p>
             </div>
 
@@ -69,43 +71,50 @@
                 data-wizard-step-on-load="ctrl.initContext.bind(ctrl)"
                 data-wizard-step-on-next="ctrl.leaveDkimConfigurator.bind(ctrl)"
             >
-                <p
-                    data-translate="emailpro_tab_domain_diagnostic_dkim_configurate_dns_records_info"
-                ></p>
+                <div class="col-md-12" data-ng-if="ctrl.loading">
+                    <oui-spinner></oui-spinner>
+                </div>
 
-                <dl class="dl-horizontal dl-md">
-                    <dt
-                        data-translate="emailpro_tab_domain_diagnostic_dkim_text_field"
-                    ></dt>
-                    <dd>
-                        <span
-                            data-ng-bind-html="ctrl.selector1NameInfos"
-                        ></span>
-                    </dd>
-                    <dd>
-                        <span
-                            data-ng-bind-html="ctrl.selector1RecordInfos"
-                        ></span>
-                    </dd>
-                    <dd>
-                        <span
-                            data-ng-bind-html="ctrl.selector2NameInfos"
-                        ></span>
-                    </dd>
-                    <dd>
-                        <span
-                            data-ng-bind-html="ctrl.selector2RecordInfos"
-                        ></span>
-                    </dd>
-                </dl>
+                <div data-ng-if="!ctrl.loading">
+                    <p
+                        data-translate="emailpro_tab_domain_diagnostic_dkim_configurate_dns_records_info"
+                    ></p>
 
-                <span
-                    data-translate="emailpro_tab_domain_diagnostic_dkim_configurate_activation_guide"
-                    data-translate-values="{ url: ctrl.dkimGuideLinkNoOvh }"
-                ></span>
-                <span
-                    data-translate="emailpro_tab_domain_diagnostic_dkim_configurate_activation_time"
-                ></span>
+                    <dl class="dl-horizontal dl-md">
+                        <dt
+                            data-translate="{{ 'emailpro_tab_domain_diagnostic_dkim_' + (ctrl.isMXPlan ? 'text' : 'cname') + '_field' }}"
+                        ></dt>
+                        <dd data-ng-if="!ctrl.isMXPlan">
+                            <span
+                                data-ng-bind-html="ctrl.selector1NameInfos"
+                            ></span>
+                        </dd>
+                        <dd>
+                            <span
+                                data-ng-bind-html="ctrl.selector1RecordInfos"
+                            ></span>
+                        </dd>
+                        <dd data-ng-if="!ctrl.isMXPlan">
+                            <span
+                                data-ng-bind-html="ctrl.selector2NameInfos"
+                            ></span>
+                        </dd>
+                        <dd>
+                            <span
+                                data-ng-bind-html="ctrl.selector2RecordInfos"
+                            ></span>
+                        </dd>
+                    </dl>
+
+                    <p
+                        data-translate="emailpro_tab_domain_diagnostic_dkim_configurate_activation_guide"
+                        data-translate-values="{ url: ctrl.dkimGuideLinkNoOvh }"
+                        class="mb-0"
+                    ></p>
+                    <p
+                        data-translate="{{ 'emailpro_tab_domain_diagnostic_dkim_' + (ctrl.isMXPlan ? 'mxplan_no_ovhcloud' : 'configurate_activation_time') }}"
+                    ></p>
+                </div>
             </div>
         </div>
     </div>
