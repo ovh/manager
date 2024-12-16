@@ -1,30 +1,19 @@
-import React, { useContext } from 'react';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useNotifications } from '@ovh-ux/manager-react-components';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { ODS_BUTTON_SIZE, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-} from '@ovhcloud/ods-common-theming';
-import {
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
-import {
-  OsdsButton,
-  OsdsDivider,
-  OsdsIcon,
-  OsdsText,
-  OsdsTile,
+  OdsButton,
+  OdsCard,
+  OdsDivider,
+  OdsLink,
+  OdsText,
 } from '@ovhcloud/ods-components/react';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+import { useContext } from 'react';
 import { Translation, useTranslation } from 'react-i18next';
-import { LogTileUnsubscribeAction } from './LogTileUnsubscribeAction.component';
-import { LogContext } from './LogProvider.component';
-import { LogHowTo } from './LogHowTo.component';
 import { useLogsDetails } from '../../api/hook/useLogs';
+import { LogHowTo } from './LogHowTo.component';
+import { LogContext } from './LogProvider.component';
+import { LogTileUnsubscribeAction } from './LogTileUnsubscribeAction.component';
 
 import '../../translations/logs';
 
@@ -51,88 +40,53 @@ export function LogTiles({ onGotoStreams }: Readonly<LogTilesProps>) {
       {logs?.length === 0 && <LogHowTo onGotoStreams={onGotoStreams} />}
       {logs?.length > 0 && (
         <>
-          <OsdsText
-            color={ODS_THEME_COLOR_INTENT.text}
-            level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-            size={ODS_TEXT_SIZE._300}
-          >
+          <OdsText preset="heading-1">
             {t('log_tile_subscriptions_title')}
-          </OsdsText>
-          <OsdsButton
+          </OdsText>
+          <OdsButton
+            icon={ODS_ICON_NAME.plus}
+            label={t('log_tile_subscriptions_subscribe')}
             className="mt-4"
-            color={ODS_THEME_COLOR_INTENT.primary}
             size={ODS_BUTTON_SIZE.sm}
-            variant={ODS_BUTTON_VARIANT.stroked}
             onClick={() => {
               clearNotifications();
               onGotoStreams();
             }}
-          >
-            <span slot="start">
-              <OsdsIcon
-                name={ODS_ICON_NAME.ADD}
-                size={ODS_ICON_SIZE.xxs}
-                color={ODS_THEME_COLOR_INTENT.primary}
-              />
-            </span>
-            {t('log_tile_subscriptions_subscribe')}
-          </OsdsButton>
+          />
         </>
       )}
       {logs?.map(({ data, log, stream, streamURL }) => (
-        <OsdsTile
-          key={log?.serviceName + stream?.streamId}
-          className="mt-4"
-          color={ODS_THEME_COLOR_INTENT.primary}
-        >
+        <OdsCard key={log?.serviceName + stream?.streamId} className="mt-4">
           <div className="flex flex-col">
-            <OsdsText
-              className="block"
-              color={ODS_THEME_COLOR_INTENT.text}
-              level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-              size={ODS_TEXT_SIZE._400}
-            >
+            <OdsText className="block" preset="heading-1">
               {t('log_title_subscriptions_title')}
-            </OsdsText>
+            </OdsText>
             <dl className="grid grid-cols-2">
               <dt className="mb-4">
-                <OsdsText
-                  color={ODS_THEME_COLOR_INTENT.text}
-                  level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                  size={ODS_TEXT_SIZE._500}
-                >
+                <OdsText preset="span" className="font-bold">
                   {data?.displayName || log?.serviceName}
-                </OsdsText>
+                </OdsText>
               </dt>
               <dd className="text-right">{log?.serviceName}</dd>
               <dt className="mb-4">
-                <OsdsText
-                  color={ODS_THEME_COLOR_INTENT.text}
-                  level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                  size={ODS_TEXT_SIZE._500}
-                >
+                <OdsText preset="span" className="font-bold">
                   {t('log_title_subscriptions_user')}
-                </OsdsText>
+                </OdsText>
               </dt>
               <dd className="text-right">{data?.username}</dd>
               <dt>
-                <OsdsText
-                  color={ODS_THEME_COLOR_INTENT.text}
-                  level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                  size={ODS_TEXT_SIZE._500}
-                >
+                <OdsText preset="span" className="font-bold">
                   {t('logs_list_title')}
-                </OsdsText>
+                </OdsText>
               </dt>
               <dd className="text-right">{stream?.title}</dd>
             </dl>
-            <OsdsDivider color={ODS_THEME_COLOR_INTENT.primary} separator />
-            <OsdsButton
-              inline
-              color={ODS_THEME_COLOR_INTENT.primary}
-              size={ODS_BUTTON_SIZE.sm}
-              variant={ODS_BUTTON_VARIANT.stroked}
+            <OdsDivider color="dark" />
+            <OdsLink
+              className="text-[14px]"
+              label={t('log_title_subscriptions_button_watch')}
               href={streamURL?.address}
+              icon={ODS_ICON_NAME.externalLink}
               onClick={() => {
                 if (logsTracking?.graylogWatch) {
                   tracking.trackClick({
@@ -140,21 +94,9 @@ export function LogTiles({ onGotoStreams }: Readonly<LogTilesProps>) {
                   });
                 }
               }}
-              target={OdsHTMLAnchorElementTarget._blank}
-              disabled={streamURL?.address ? undefined : true}
-            >
-              {t('log_title_subscriptions_button_watch')}
-              <span slot="end">
-                <OsdsIcon
-                  aria-hidden="true"
-                  className="ml-4"
-                  name={ODS_ICON_NAME.EXTERNAL_LINK}
-                  hoverable
-                  size={ODS_ICON_SIZE.xxs}
-                  color={ODS_THEME_COLOR_INTENT.primary}
-                />
-              </span>
-            </OsdsButton>
+              target="_blank"
+              isDisabled={streamURL?.address ? undefined : true}
+            />
             <LogTileUnsubscribeAction
               subscriptionId={log.subscriptionId}
               onSuccess={() =>
@@ -180,7 +122,7 @@ export function LogTiles({ onGotoStreams }: Readonly<LogTilesProps>) {
               }
             />
           </div>
-        </OsdsTile>
+        </OdsCard>
       ))}
     </>
   );
