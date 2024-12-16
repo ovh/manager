@@ -29,6 +29,7 @@ import {
   OsdsTile,
 } from '@ovhcloud/ods-components/react';
 import { useMemo } from 'react';
+import { ResponseAPIError } from '@ovh-ux/manager-pci-common';
 import { Translation, useTranslation } from 'react-i18next';
 import { useHref, useParams } from 'react-router-dom';
 import { TKube } from '@/types';
