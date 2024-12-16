@@ -53,5 +53,7 @@
   "pci_projects_project_storages_containers_add_deployment_mode_localzone_label": "Local Zone",
   "pci_projects_project_storages_containers_add_deployment_mode_flipping_region-3-az": "Regiony 3-AZ",
   "pci_projects_project_storages_containers_add_deployment_mode_flipping_region": "Regiony",
-  "pci_projects_project_storages_containers_add_deployment_mode_flipping_localzone": "Local Zones"
+  "pci_projects_project_storages_containers_add_deployment_mode_flipping_localzone": "Local Zones",
+  "pci_projects_project_storages_containers_add_replication_rules_info": "Gratulacje, Twój bucket jest prawie gotowy do użycia ze zintegrowaną odpornością, aby zapewnić maksymalny czas działania. Pamiętaj, że nie obejmuje to replikacji danych poza lokalizacją. Jeśli Twój przypadek zastosowania wymaga tej dodatkowej warstwy ochrony, rozważ użycie replikacji asynchronicznej w jednym lub kilku regionach (dostępnej tylko przez API). ",
+  "pci_projects_project_storages_containers_add_replication_rules_info_link": "Dowiedz się więcej i rozpocznij."
 }

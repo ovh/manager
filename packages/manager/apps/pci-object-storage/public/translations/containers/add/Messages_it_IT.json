@@ -53,5 +53,7 @@
   "pci_projects_project_storages_containers_add_deployment_mode_localzone_label": "Local Zone",
   "pci_projects_project_storages_containers_add_deployment_mode_flipping_region-3-az": "Region 3-AZ",
   "pci_projects_project_storages_containers_add_deployment_mode_flipping_region": "Region",
-  "pci_projects_project_storages_containers_add_deployment_mode_flipping_localzone": "Local Zone"
+  "pci_projects_project_storages_containers_add_deployment_mode_flipping_localzone": "Local Zone",
+  "pci_projects_project_storages_containers_add_replication_rules_info": "Congratulazioni! Il tuo bucket è quasi pronto per essere utilizzato con una resilienza integrata per garantire il massimo tempo di funzionamento. Ti ricordiamo che questa operazione non include la replica dei tuoi dati fuori sede. Se il tuo caso d'uso richiede questo livello di protezione supplementare, considera di utilizzare la nostra replica asincrona su una o più Region (disponibile solo tramite le API). ",
+  "pci_projects_project_storages_containers_add_replication_rules_info_link": "Per saperne di più e iniziare."
 }
