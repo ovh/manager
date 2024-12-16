@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.12.7...@ovh-ux/manager-emailpro@3.13.0) (2024-12-16)
+
+
+### Features
+
+* **web.mxplan:** add feature dkim ([ce4053b](https://github.com/ovh/manager/commit/ce4053bcd1752769b873f82c753b6040d83fdf53))
+
+
+
+
+
 ## [3.12.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.12.6...@ovh-ux/manager-emailpro@3.12.7) (2024-11-05)
 
 
