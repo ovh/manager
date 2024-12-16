@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('nutanix.dashboard.nodes.all.poweroff', {
+  $stateProvider.state('nutanix.dashboard.nodes.all.poweroff-node', {
     url: '/poweroff/:node',
     views: {
       modal: {
