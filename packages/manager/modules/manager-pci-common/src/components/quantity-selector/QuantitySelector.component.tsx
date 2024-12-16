@@ -20,6 +20,7 @@ export interface QuantitySelectorProps {
   max?: number;
   className?: string;
   contentClassName?: string;
+  id?: string;
 }
 
 export function QuantitySelector({
@@ -32,6 +33,7 @@ export function QuantitySelector({
   max,
   className,
   contentClassName,
+  id = 'popover-trigger',
   ...props
 }: Readonly<QuantitySelectorProps>) {
   const { t } = useTranslation('pci-quantity-selector');
@@ -44,7 +46,7 @@ export function QuantitySelector({
   return (
     <OdsFormField className={className} {...props}>
       <div className={contentClassName}>
-        <div slot="label" className="flex gap-2">
+        <div className="flex gap-2">
           {label && (
             <OdsText preset="span" className="text-[14px] font-bold">
               {label}
@@ -52,13 +54,13 @@ export function QuantitySelector({
           )}
           {labelHelpText && (
             <>
-              <div id="popover-trigger">
+              <div id={id}>
                 <OdsIcon
                   name={ODS_ICON_NAME.question}
                   className="cursor-help text-[16px]"
                 />
               </div>
-              <OdsPopover triggerId="popover-trigger" className="w-4 h-4">
+              <OdsPopover triggerId={id} className="w-4 h-4">
                 {labelHelpText}
               </OdsPopover>
             </>

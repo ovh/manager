@@ -26,6 +26,7 @@ export interface FlavorDiskType {
 }
 
 export interface FlavorTileProps {
+  id: string;
   flavorName: string;
   flavorSpecs: {
     ram: number;
@@ -59,6 +60,7 @@ const separatorClass = 'h-px my-5 bg-[#85d9fd] border-0';
 const gigabytes = 10 ** 9;
 
 export function FlavorTile({
+  id,
   flavorName,
   flavorSpecs,
   flavorCompatibility,
@@ -136,9 +138,14 @@ export function FlavorTile({
           {t('pci_project_flavors_zone_compatible')}
         </OdsText>
         <div className="flex gap-4 mt-3">
-          {flavorCompatibility.localzone && <FlavorLocalzoneChip isLocalZone />}
+          {flavorCompatibility.localzone && (
+            <FlavorLocalzoneChip isLocalZone id={`popover-localzone-${id}`} />
+          )}
           {flavorCompatibility.globalzone && (
-            <FlavorLocalzoneChip isLocalZone={false} />
+            <FlavorLocalzoneChip
+              isLocalZone={false}
+              id={`popover-globalzone-${id}`}
+            />
           )}
         </div>
         <hr className={separatorClass} />

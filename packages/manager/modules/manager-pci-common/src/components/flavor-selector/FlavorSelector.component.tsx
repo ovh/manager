@@ -62,6 +62,7 @@ export function FlavorSelector({
             .map((flavor) => (
               <div key={flavor.id}>
                 <FlavorTile
+                  id={flavor.id}
                   flavorName={flavor.name.toUpperCase()}
                   flavorSpecs={{
                     ram: flavor.ram,

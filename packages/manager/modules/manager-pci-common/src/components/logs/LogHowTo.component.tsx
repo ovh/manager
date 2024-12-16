@@ -1,24 +1,16 @@
-import React, { useContext } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-} from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-  ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import {
-  OsdsButton,
-  OsdsIcon,
-  OsdsLink,
-  OsdsText,
-  OsdsTile,
+  OdsButton,
+  OdsLink,
+  OdsText,
+  OdsCard,
 } from '@ovhcloud/ods-components/react';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAllStreamIds, useDbaasLogs } from '../../api/hook/useLogs';
 import { LogContext } from './LogProvider.component';
@@ -69,64 +61,45 @@ export function LogHowTo({ onGotoStreams }: Readonly<LogHowToProps>) {
     }
   };
 
+  const getLogButtonLabel = () => {
+    if (!hasAccount) {
+      return t('log_button_create_account');
+    }
+    if (hasAccount && !hasStream) {
+      return t('log_button_create_stream');
+    }
+    return t('log_button_transfer_stream');
+  };
+
   return (
     <>
-      <OsdsText
-        color={ODS_THEME_COLOR_INTENT.primary}
-        level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-        size={ODS_TEXT_SIZE._300}
-      >
-        {t('log_tile_section_title')}
-      </OsdsText>
-      <OsdsTile className="mt-4" color={ODS_THEME_COLOR_INTENT.primary}>
+      <OdsText preset="heading-1">{t('log_tile_section_title')}</OdsText>
+      <OdsCard className="mt-4">
         <div className="flex flex-col">
-          <OsdsText
-            className="block"
-            color={ODS_THEME_COLOR_INTENT.text}
-            level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-            size={ODS_TEXT_SIZE._400}
-          >
-            {t('log_tile_title')}
-          </OsdsText>
+          <OdsText preset="heading-2">{t('log_tile_title')}</OdsText>
           {t('log_tile_empty_state_description')}
           {!hasAccount && <p>{t('log_tile_desc_create_account')}</p>}
           {hasAccount && !hasStream && (
             <p>{t('log_tile_desc_create_stream')}</p>
           )}
           {logsGuideURL && (
-            <OsdsLink
+            <OdsLink
+              label={t('log_data_platform_guide_link')}
+              icon={ODS_ICON_NAME.externalLink}
               className="mt-4"
-              color={ODS_THEME_COLOR_INTENT.primary}
               href={logsGuideURL}
-              target={OdsHTMLAnchorElementTarget._blank}
-            >
-              {t('log_data_platform_guide_link')}
-              <span slot="end">
-                <OsdsIcon
-                  aria-hidden="true"
-                  className="ml-4"
-                  name={ODS_ICON_NAME.EXTERNAL_LINK}
-                  hoverable
-                  size={ODS_ICON_SIZE.xxs}
-                  color={ODS_THEME_COLOR_INTENT.primary}
-                />
-              </span>
-            </OsdsLink>
+              target="_blank"
+            />
           )}
-          <OsdsButton
+          <OdsButton
             className="mt-8"
-            inline
-            color={ODS_THEME_COLOR_INTENT.primary}
             size={ODS_BUTTON_SIZE.sm}
-            variant={ODS_BUTTON_VARIANT.stroked}
+            variant={ODS_BUTTON_VARIANT.outline}
             onClick={onCreate}
-          >
-            {!hasAccount && t('log_button_create_account')}
-            {hasAccount && !hasStream && t('log_button_create_stream')}
-            {hasAccount && hasStream && t('log_button_transfer_stream')}
-          </OsdsButton>
+            label={getLogButtonLabel()}
+          />
         </div>
-      </OsdsTile>
+      </OdsCard>
     </>
   );
 }

@@ -1,5 +1,3 @@
-import React, { useRef } from 'react';
-import { useTranslation } from 'react-i18next';
 import { FilterCategories } from '@ovh-ux/manager-core-api';
 import {
   Datagrid,
@@ -8,23 +6,20 @@ import {
   useColumnFilters,
   useDataGrid,
 } from '@ovh-ux/manager-react-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
-  ODS_ICON_SIZE,
   ODS_SPINNER_SIZE,
 } from '@ovhcloud/ods-components';
 import {
-  OsdsButton,
-  OsdsIcon,
-  OsdsPopover,
-  OsdsPopoverContent,
-  OsdsSpinner,
+  OdsButton,
+  OdsPopover,
+  OdsSpinner,
 } from '@ovhcloud/ods-components/react';
-import { useStreams } from '../../api/hook/useDbaasLogs';
+import { useTranslation } from 'react-i18next';
 import { TDbaasLog } from '../../api/data/dbaas-logs';
+import { useStreams } from '../../api/hook/useDbaasLogs';
 import { useStreamsListColumns } from './useStreamsListColumns';
 
 import '../../translations/logs';
@@ -51,55 +46,46 @@ export function StreamsList({
     account,
     serviceName,
   });
-  const filterPopoverRef = useRef(undefined);
 
   if (isPending)
     return (
       <div className="text-center">
-        <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
+        <OdsSpinner size={ODS_SPINNER_SIZE.md} />
       </div>
     );
   return (
     <>
       <div className="flex justify-end">
-        <OsdsPopover ref={filterPopoverRef}>
-          <OsdsButton
-            slot="popover-trigger"
+        <div id="popover-trigger">
+          <OdsButton
             size={ODS_BUTTON_SIZE.sm}
-            color={ODS_THEME_COLOR_INTENT.primary}
-            variant={ODS_BUTTON_VARIANT.stroked}
-          >
-            <OsdsIcon
-              name={ODS_ICON_NAME.FILTER}
-              size={ODS_ICON_SIZE.xs}
-              className="mr-2"
-              color={ODS_THEME_COLOR_INTENT.primary}
-            />
-            {tFilter('common_criteria_adder_filter_label')}
-          </OsdsButton>
-          <OsdsPopoverContent>
-            <FilterAdd
-              columns={[
-                {
-                  id: 'title',
-                  label: t('list_column_stream_name'),
-                  comparators: FilterCategories.String,
-                },
-              ]}
-              onAddFilter={(addedFilter, column) => {
-                setPagination({
-                  pageIndex: 0,
-                  pageSize: pagination.pageSize,
-                });
-                addFilter({
-                  ...addedFilter,
-                  label: column.label,
-                });
-                filterPopoverRef.current?.closeSurface();
-              }}
-            />
-          </OsdsPopoverContent>
-        </OsdsPopover>
+            variant={ODS_BUTTON_VARIANT.outline}
+            icon={ODS_ICON_NAME.filter}
+            label={tFilter('common_criteria_adder_filter_label')}
+          />
+        </div>
+
+        <OdsPopover triggerId="popover-trigger">
+          <FilterAdd
+            columns={[
+              {
+                id: 'title',
+                label: t('list_column_stream_name'),
+                comparators: FilterCategories.String,
+              },
+            ]}
+            onAddFilter={(addedFilter, column) => {
+              setPagination({
+                pageIndex: 0,
+                pageSize: pagination.pageSize,
+              });
+              addFilter({
+                ...addedFilter,
+                label: column.label,
+              });
+            }}
+          />
+        </OdsPopover>
       </div>
       <div className="my-5">
         <FilterList filters={filters} onRemoveFilter={removeFilter} />

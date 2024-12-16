@@ -17,10 +17,12 @@ const URL_INFO = {
 
 export type TFlavorLocalzoneChip = {
   isLocalZone: boolean;
+  id: string;
 };
 
 export function FlavorLocalzoneChip({
   isLocalZone,
+  id,
 }: Readonly<TFlavorLocalzoneChip>) {
   const { t } = useTranslation('pci-flavors');
   const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
@@ -31,7 +33,7 @@ export function FlavorLocalzoneChip({
 
   return (
     <>
-      <div id="popover-trigger">
+      <div id={id}>
         <OdsTag
           className={clsx(
             'text-[--ods-color-primary-500] font-bold text-[14px]',
@@ -51,7 +53,7 @@ export function FlavorLocalzoneChip({
           onClick={(event) => event.stopPropagation()}
         />
       </div>
-      <OdsPopover triggerId="popover-trigger">
+      <OdsPopover triggerId={id}>
         <OdsText preset="span">
           {isLocalZone
             ? t('pci_project_flavors_zone_localzone_tooltip')
