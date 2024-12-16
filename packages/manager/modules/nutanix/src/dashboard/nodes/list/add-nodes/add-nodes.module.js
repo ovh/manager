@@ -9,7 +9,7 @@ import '@ovh-ux/ui-kit';
 
 import routing from './add-nodes.routing';
 
-const moduleName = 'ovhManagerDedicatedServerDashboardTerminate';
+const moduleName = 'ovhManagerNutanixNodesAllAddNodes';
 
 angular
   .module(moduleName, [
