@@ -12,7 +12,7 @@ export interface ContainerCreationForn {
   region: TRegionAvailability;
   user: string;
   versioning: boolean;
-  encryption: boolean;
+  encryption: string;
   containerName: string;
   containerType: string;
 }
@@ -56,7 +56,7 @@ export interface ContainerStore {
   editVersioning: () => void;
   submitVersioning: () => void;
 
-  setEncryption: (encryption: boolean) => void;
+  setEncryption: (encryption: string) => void;
   editEncryption: () => void;
   submitEncryption: () => void;
 
@@ -133,7 +133,7 @@ export const useContainerCreationStore = create<ContainerStore>()(
         region: undefined,
         user: undefined,
         versioning: false,
-        encryption: false,
+        encryption: 'plain',
         containerName: '',
         containerType: undefined,
       },
@@ -159,7 +159,7 @@ export const useContainerCreationStore = create<ContainerStore>()(
             region: undefined,
             user: undefined,
             versioning: false,
-            encryption: false,
+            encryption: 'plain',
             containerName: '',
             containerType: undefined,
           },
@@ -179,6 +179,7 @@ export const useContainerCreationStore = create<ContainerStore>()(
           'versioning',
           'encryption',
           'containerName',
+          'containerType',
         ]),
 
       setDeploymentMode: (deploymentMode: string) =>
@@ -189,7 +190,7 @@ export const useContainerCreationStore = create<ContainerStore>()(
             region: undefined,
             user: undefined,
             versioning: false,
-            encryption: false,
+            encryption: 'plain',
             containerName: '',
             containerType: undefined,
           },
@@ -211,7 +212,7 @@ export const useContainerCreationStore = create<ContainerStore>()(
             region,
             user: undefined,
             versioning: false,
-            encryption: false,
+            encryption: 'plain',
             containerName: '',
             containerType: undefined,
           },
@@ -241,7 +242,7 @@ export const useContainerCreationStore = create<ContainerStore>()(
             ...state.form,
             user,
             versioning: false,
-            encryption: false,
+            encryption: 'plain',
             containerName: '',
             containerType: undefined,
           },
@@ -255,7 +256,7 @@ export const useContainerCreationStore = create<ContainerStore>()(
           form: {
             ...state.form,
             versioning,
-            encryption: false,
+            encryption: 'plain',
             containerName: '',
             containerType: undefined,
           },
@@ -264,7 +265,7 @@ export const useContainerCreationStore = create<ContainerStore>()(
         editStep('versioning', ['encryption', 'containerName']),
       submitVersioning: () => submitStep('versioning', 'encryption'),
 
-      setEncryption: (encryption: boolean) =>
+      setEncryption: (encryption: string) =>
         set((state) => ({
           form: {
             ...state.form,
