@@ -52,7 +52,7 @@ export function DeploymentModeStep() {
       next={{
         action: submitDeploymentMode,
         label: t('pci-common:common_stepper_next_button_label'),
-        isDisabled: false,
+        isDisabled: !form.deploymentMode,
       }}
       edit={{
         action: editDeploymentMode,
