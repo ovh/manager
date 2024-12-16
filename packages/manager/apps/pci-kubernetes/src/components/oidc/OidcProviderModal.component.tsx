@@ -173,7 +173,7 @@ export function OidcProviderModal() {
                 )}
               </OsdsText>
 
-              {['issuerUrl', 'clientId'].map((fieldName, index) => {
+              {['issuerUrl', 'clientId'].map((fieldName) => {
                 const transformedFieldName = transformKey(fieldName);
                 return (
                   <RenderFormField

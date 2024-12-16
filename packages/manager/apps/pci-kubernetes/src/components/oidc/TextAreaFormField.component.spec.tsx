@@ -2,7 +2,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, vi, expect } from 'vitest';
 import {
   TextAreaFormField,
-  TtextAreaFormFieldProps,
+  TTextAreaFormFieldProps,
 } from './TextAreaFormField.component';
 
 vi.mock('@ovhcloud/ods-components/react', () => ({
@@ -20,7 +20,7 @@ vi.mock('@ovhcloud/ods-components/react', () => ({
 }));
 
 describe('TextAreaFormField', () => {
-  const defaultProps: TtextAreaFormFieldProps = {
+  const defaultProps: TTextAreaFormFieldProps = {
     name: 'testField',
     value: 'Initial value',
     placeholder: 'Enter text',

@@ -2,7 +2,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, vi, expect } from 'vitest';
 import {
   InputFormField,
-  TinputFormFieldProps,
+  TInputFormFieldProps,
 } from './InputFormField.component';
 
 vi.mock('@ovhcloud/ods-components/react', () => ({
@@ -25,7 +25,7 @@ vi.mock('@ovhcloud/ods-components/react', () => ({
 }));
 
 describe('InputFormField', () => {
-  const defaultProps: TinputFormFieldProps = {
+  const defaultProps: TInputFormFieldProps = {
     name: 'testField',
     value: 'Initial value',
     placeholder: 'Enter text',
