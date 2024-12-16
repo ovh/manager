@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.5.0...@ovh-ux/manager-billing-components@4.6.0) (2024-12-16)
+
+
+### Features
+
+* **dedicated:** display warn msg at bottom on serice termination form ([#14378](https://github.com/ovh/manager/issues/14378)) ([f95bdac](https://github.com/ovh/manager/commit/f95bdac5f45a154c2cac9057fb8df4fd7c506691))
+
+
+
+
+
 # [4.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.4.0...@ovh-ux/manager-billing-components@4.5.0) (2024-12-09)
 
 

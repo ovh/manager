@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.2.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@4.1.0...@ovh-ux/sign-up-app@4.2.0) (2024-12-16)
+
+
+### Features
+
+* **signup:** use new tracking nomenclature ([#14259](https://github.com/ovh/manager/issues/14259)) ([6439cf1](https://github.com/ovh/manager/commit/6439cf109c3bf2204f19521ef4d65cde6b271829))
+
+
+
+
+
 # [4.1.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@4.0.2...@ovh-ux/sign-up-app@4.1.0) (2024-12-09)
 
 

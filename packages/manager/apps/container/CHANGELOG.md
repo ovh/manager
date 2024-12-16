@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.94.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.93.1...@ovh-ux/manager-container-app@0.94.0) (2024-12-16)
+
+
+### Bug Fixes
+
+* **container:** fixed default public cloud project retrieval ([#14319](https://github.com/ovh/manager/issues/14319)) ([a444d3f](https://github.com/ovh/manager/commit/a444d3ff34e0b5a7b65dd1eb34cdde1e9ae51536))
+* **container:** fixed default public cloud project retrieval ([#14580](https://github.com/ovh/manager/issues/14580)) ([0b0f33c](https://github.com/ovh/manager/commit/0b0f33cd051bcb13f8600b33d3f1b5e6eda94a9a))
+* **pnr:** fix find node by routing ([#14307](https://github.com/ovh/manager/issues/14307)) ([413dd20](https://github.com/ovh/manager/commit/413dd204c54c4dcf68d903f4545d8237613e5092))
+
+
+### Features
+
+* **container:** pnr2 add bullet on lvl 1 on reduce mode ([#14411](https://github.com/ovh/manager/issues/14411)) ([57372db](https://github.com/ovh/manager/commit/57372db8bbd37421fd8411c38dbb22e6f4beb51d))
+
+
+
+
+
 ## [0.93.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.93.0...@ovh-ux/manager-container-app@0.93.1) (2024-12-12)
 
 
