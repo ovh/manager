@@ -19,5 +19,9 @@
   "autorenew_agora_terminate_service_error_DBAAS_LOGS": "Une erreur est survenue lors de la demande de résiliation de votre LDP. {{error}}",
   "autorenew_agora_terminate_service_error_VRACK_SERVICES_RESOURCE": "Une erreur est survenue lors de la demande de résiliation de vRack Services. {{error}}",
   "autorenew_agora_terminate_service_error_VMWARE_CLOUD_DIRECTOR_BACKUP": "Une erreur est survenue lors de la demande de résiliation de Managed Veeam for VCD. {{error}}",
-  "autorenew_agora_terminate_service_confirm_input": "Entrez \"TERMINATE\" dans le champ ci-dessous pour confirmer"
+  "autorenew_agora_terminate_service_confirm_input": "Entrez \"TERMINATE\" dans le champ ci-dessous pour confirmer",
+  "autorenew_agora_terminate_service_NUTANIX_NODE": "Résilier ce noeud",
+  "autorenew_agora_terminate_service_warning_NUTANIX_NODE": "Vous allez résilier la souscription du noeud \"{{serviceName}}\".",
+  "autorenew_agora_terminate_service_success_NUTANIX_NODE": "Votre demande de résiliation de votre \"{{serviceName}}\" a été prise en compte. Un e-mail contenant la procédure vous a été envoyé.",
+  "autorenew_agora_terminate_service_error_NUTANIX_NODE": "Votre demande de résiliation n'a pas été prise en compte : {{error}}"
 }
