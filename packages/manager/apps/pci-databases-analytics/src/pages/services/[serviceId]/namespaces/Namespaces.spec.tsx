@@ -201,7 +201,6 @@ describe('Open modals', () => {
     act(() => {
       fireEvent.click(screen.getByTestId('namespaces-add-button'));
     });
-    screen.debug();
     await waitFor(() => {
       expect(
         screen.getByTestId('add-edit-namespaces-modal'),
