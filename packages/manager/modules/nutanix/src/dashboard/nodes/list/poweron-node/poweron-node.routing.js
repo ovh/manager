@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('nutanix.dashboard.nodes.all.poweron', {
+  $stateProvider.state('nutanix.dashboard.nodes.all.poweron-node', {
     url: '/poweron/:node',
     views: {
       modal: {
