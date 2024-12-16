@@ -30,6 +30,7 @@ interface EditModalProps {
   onCloseModal: () => void;
   onEdit: (detail: string) => Promise<AxiosResponse<unknown>>;
   error: ApiError | null;
+  isLoading: boolean;
 }
 
 export const EditDetailModal = ({
@@ -41,12 +42,14 @@ export const EditDetailModal = ({
   onCloseModal,
   onEdit,
   error,
+  isLoading,
 }: EditModalProps) => {
   const { t } = useTranslation('dashboard');
   const [newDetail, setNewDetail] = useState<string>(detailValue || '');
   const [isErrorVisible, setIsErrorVisible] = useState(false);
   const isValidDetail = validateDetail(newDetail);
-  const isButtonEnabled = isValidDetail && newDetail !== detailValue;
+  const isButtonEnabled =
+    isValidDetail && newDetail !== detailValue && !isLoading;
 
   const handleSubmit = async () => {
     if (isValidDetail) {
