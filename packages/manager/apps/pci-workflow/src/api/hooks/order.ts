@@ -1,5 +1,13 @@
-import { useQuery } from '@tanstack/react-query';
-import { getCatalogQuery, useProject } from '@ovh-ux/manager-pci-common';
+import { useQuery, useQueries } from '@tanstack/react-query';
+import {
+  getCatalogQuery,
+  getProductAvailabilityQuery,
+  useProject,
+} from '@ovh-ux/manager-pci-common';
+import {
+  isLocalZone,
+  convertHourlyPriceToMonthly,
+} from '@ovh-ux/manager-react-components';
 
 export const useProjectAddons = (projectId: string, ovhSubsidiary: string) => {
   const { data: project } = useProject(projectId);
@@ -19,7 +27,7 @@ export const useProjectAddons = (projectId: string, ovhSubsidiary: string) => {
   });
 };
 
-export const useInstanceSnapshotPricing = (
+export const findInstanceSnapshotPricing = (
   projectId: string,
   instanceRegion: string,
   ovhSubsidiary: string,
@@ -42,3 +50,56 @@ export const useInstanceSnapshotPricing = (
     data: snapshotPricing,
   };
 };
+
+export const findLocalZoneInstanceSnapshotPricing = (
+  projectId: string,
+  instanceRegion: string,
+  ovhSubsidiary: string,
+) => {
+  const queries = useQueries({
+    queries: [
+      { ...getCatalogQuery(ovhSubsidiary), enabled: Boolean(ovhSubsidiary) },
+      {
+        ...getProductAvailabilityQuery(projectId, ovhSubsidiary),
+        enabled: Boolean(projectId) && Boolean(ovhSubsidiary),
+      },
+    ],
+  });
+  const [catalog, productAvailability] = queries;
+  const snapshotPlanCode = productAvailability.data?.plans?.find(
+    ({ code, regions }) =>
+      code.startsWith('snapshot.consumption') &&
+      regions.find(({ name }) => name === instanceRegion),
+  )?.code;
+  const snapshotAddon =
+    catalog.data?.addons?.find(
+      (addon) => addon.planCode === snapshotPlanCode,
+    ) ||
+    catalog.data?.addons?.find(
+      (addon) => addon.planCode === 'snapshot.consumption.LZ',
+    );
+  const [snapshotPricing] = (snapshotAddon?.pricings || [])?.filter(
+    (p) =>
+      p.capacities.includes('renew') || p.capacities.includes('consumption'),
+  );
+  return {
+    isPending: queries.some(({ isPending }) => isPending),
+    data: {
+      ...snapshotPricing,
+      price: convertHourlyPriceToMonthly(snapshotPricing?.price || 0),
+    },
+  };
+};
+
+export const useInstanceSnapshotPricing = (
+  projectId: string,
+  instanceRegion: string,
+  ovhSubsidiary: string,
+) =>
+  isLocalZone(instanceRegion)
+    ? findLocalZoneInstanceSnapshotPricing(
+        projectId,
+        instanceRegion,
+        ovhSubsidiary,
+      )
+    : findInstanceSnapshotPricing(projectId, instanceRegion, ovhSubsidiary);
