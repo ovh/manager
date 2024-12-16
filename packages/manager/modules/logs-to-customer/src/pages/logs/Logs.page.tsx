@@ -1,6 +1,7 @@
 import React from 'react';
-import LogsSubscriptions from '../../components/subscriptions/Subscriptions';
+
 import LogTail from '../../components/logTail/LogTail.component';
+import LogsSubscriptions from '../../components/subscriptions/Subscriptions.component';
 
 export default function Logs() {
   return (
