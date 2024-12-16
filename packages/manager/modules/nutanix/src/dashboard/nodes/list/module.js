@@ -11,6 +11,7 @@ import addNodes from './add-nodes';
 import poweronNode from './poweron-node';
 import poweroffNode from './poweroff-node';
 import uninstallNode from './uninstall-node';
+import resiliateNode from './resiliate-node';
 
 const moduleName = 'ovhManagerNutanixAllNodes';
 
@@ -26,6 +27,7 @@ angular
     poweronNode,
     poweroffNode,
     uninstallNode,
+    resiliateNode,
   ])
   .config(routing)
   .component('nutanixAllNodes', component)
