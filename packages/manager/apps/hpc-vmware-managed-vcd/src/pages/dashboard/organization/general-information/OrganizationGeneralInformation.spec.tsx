@@ -94,53 +94,55 @@ describe('Organization General Information Page', () => {
     await assertModalText({ container, text: 'Organization update error' });
   });
 
-  it('resets the password of the organization', async () => {
-    const { container } = await renderTest({
-      initialRoute: `/${organizationList[1].id}`,
-    });
+  // uncomment below: when API for resetPassword is available
+  // it('resets the password of the organization', async () => {
+  //   const { container } = await renderTest({
+  //     initialRoute: `/${organizationList[1].id}`,
+  //   });
 
-    await assertTextVisibility(
-      labels.dashboard.managed_vcd_dashboard_password_renew,
-    );
+  //   await assertTextVisibility(
+  //     labels.dashboard.managed_vcd_dashboard_password_renew,
+  //   );
 
-    const resetPasswordLink = await getButtonByLabel({
-      container,
-      label: labels.dashboard.managed_vcd_dashboard_password_renew,
-      isLink: true,
-    });
-    await waitFor(() => userEvents.click(resetPasswordLink));
+  //   const resetPasswordLink = await getButtonByLabel({
+  //     container,
+  //     label: labels.dashboard.managed_vcd_dashboard_password_renew,
+  //     isLink: true,
+  //   });
+  //   await waitFor(() => userEvents.click(resetPasswordLink));
 
-    await assertModalVisibility({ container, isVisible: true });
+  //   await assertModalVisibility({ container, isVisible: true });
 
-    const validateButton = await getButtonByLabel({
-      container,
-      label: labels.dashboard.managed_vcd_dashboard_edit_modal_cta_validate,
-    });
-    await waitFor(() => userEvents.click(validateButton));
+  //   const validateButton = await getButtonByLabel({
+  //     container,
+  //     label: labels.dashboard.managed_vcd_dashboard_edit_modal_cta_validate,
+  //   });
+  //   await waitFor(() => userEvents.click(validateButton));
 
-    await assertModalVisibility({ container, isVisible: false });
-    await assertTextVisibility(
-      labels.dashboard.managed_vcd_dashboard_password_renew_success,
-    );
-  });
+  //   await assertModalVisibility({ container, isVisible: false });
+  //   await assertTextVisibility(
+  //     labels.dashboard.managed_vcd_dashboard_password_renew_success,
+  //   );
+  // });
 
-  it('trying to reset password displays an error if reset password service is KO', async () => {
-    const { container } = await renderTest({
-      initialRoute: `/${organizationList[0].id}/reset-password`,
-      isOrganizationResetPasswordKo: true,
-    });
+  // uncomment below: when API for resetPassword is available
+  // it('trying to reset password displays an error if reset password service is KO', async () => {
+  //   const { container } = await renderTest({
+  //     initialRoute: `/${organizationList[0].id}/reset-password`,
+  //     isOrganizationResetPasswordKo: true,
+  //   });
 
-    await assertModalVisibility({ container, isVisible: true });
+  //   await assertModalVisibility({ container, isVisible: true });
 
-    const validateButton = await getButtonByLabel({
-      container,
-      label: labels.dashboard.managed_vcd_dashboard_edit_modal_cta_validate,
-    });
-    await waitFor(() => userEvents.click(validateButton));
+  //   const validateButton = await getButtonByLabel({
+  //     container,
+  //     label: labels.dashboard.managed_vcd_dashboard_edit_modal_cta_validate,
+  //   });
+  //   await waitFor(() => userEvents.click(validateButton));
 
-    await assertModalVisibility({ container, isVisible: false });
-    await assertTextVisibility(
-      labels.dashboard.managed_vcd_dashboard_password_renew_error,
-    );
-  });
+  //   await assertModalVisibility({ container, isVisible: false });
+  //   await assertTextVisibility(
+  //     labels.dashboard.managed_vcd_dashboard_password_renew_error,
+  //   );
+  // });
 });
