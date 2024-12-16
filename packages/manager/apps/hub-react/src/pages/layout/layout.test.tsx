@@ -1,12 +1,6 @@
 import { ReactNode } from 'react';
 import { describe, expect, it, vi } from 'vitest';
-import {
-  act,
-  fireEvent,
-  render,
-  screen,
-  waitFor,
-} from '@testing-library/react';
+import { act, fireEvent, render, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import * as reactShellClientModule from '@ovh-ux/manager-react-shell-client';
 import * as ReactComponentsModule from '@ovh-ux/manager-react-components';

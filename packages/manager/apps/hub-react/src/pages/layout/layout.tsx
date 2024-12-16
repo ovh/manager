@@ -5,6 +5,7 @@ import React, {
   Suspense,
   lazy,
   useState,
+  useMemo,
 } from 'react';
 import { useLocation } from 'react-router-dom';
 import {
@@ -112,133 +113,130 @@ export default function Layout() {
     services?.data?.count ||
     (lastOrder?.status === 'OK' && lastOrder?.data)
   );
+  const context = useMemo(
+    () => ({
+      isLoading,
+      isFreshCustomer,
+      availability,
+    }),
+    [isLoading, isFreshCustomer, availability],
+  );
 
   return (
-    <>
-      <Context.Provider
-        value={{
-          isLoading,
-          isFreshCustomer,
-          availability,
-        }}
-      >
-        <div className="skipnav">
-          <OsdsButton
-            inline
-            color={ODS_THEME_COLOR_INTENT.primary}
-            variant={ODS_BUTTON_VARIANT.ghost}
-            size={ODS_BUTTON_SIZE.sm}
-            onClick={scrollToComponent}
-            data-testid="skipnav_button"
-          >
-            {t('manager_hub_skip_to_main_content')}
-          </OsdsButton>
-        </div>
-        <div className="relative w-full h-full overflow-auto">
-          <div
-            className={`absolute hub-main w-full h-full ${
-              isAccountSidebarVisible ? 'hub-main-view_sidebar_expanded' : ''
-            }`}
-            data-testid="hub_main_div"
-          >
-            <div className="mb-12">
-              {/* Skip content target */}
-              <div className="skiptarget">
-                <a
-                  id="maincontent"
-                  data-testid="main_content"
-                  ref={mainContentRef}
-                >
-                  -
-                </a>
-              </div>
-              {/* /Skip content target */}
-              <div className="pt-8">
-                <div className="hub-main-view_container px-6 box-border">
-                  <div className="pb-12">
-                    <Suspense
-                      fallback={
-                        <OsdsSkeleton data-testid="welcome_skeleton" inline />
-                      }
+    <Context.Provider value={context}>
+      <div className="skipnav">
+        <OsdsButton
+          inline
+          color={ODS_THEME_COLOR_INTENT.primary}
+          variant={ODS_BUTTON_VARIANT.ghost}
+          size={ODS_BUTTON_SIZE.sm}
+          onClick={scrollToComponent}
+          data-testid="skipnav_button"
+        >
+          {t('manager_hub_skip_to_main_content')}
+        </OsdsButton>
+      </div>
+      <div className="relative w-full h-full overflow-auto">
+        <div
+          className={`absolute hub-main w-full h-full ${
+            isAccountSidebarVisible ? 'hub-main-view_sidebar_expanded' : ''
+          }`}
+          data-testid="hub_main_div"
+        >
+          <div className="mb-12">
+            {/* Skip content target */}
+            <div className="skiptarget">
+              <a
+                id="maincontent"
+                data-testid="main_content"
+                ref={mainContentRef}
+              >
+                -
+              </a>
+            </div>
+            {/* /Skip content target */}
+            <div className="pt-8">
+              <div className="hub-main-view_container px-6 box-border">
+                <div className="pb-12">
+                  <Suspense
+                    fallback={
+                      <OsdsSkeleton data-testid="welcome_skeleton" inline />
+                    }
+                  >
+                    <Welcome />
+                  </Suspense>
+                  <Suspense>
+                    <Banner />
+                  </Suspense>
+                  <Suspense>
+                    <NotificationsCarousel />
+                  </Suspense>
+                  <Suspense>
+                    <SiretBanner />
+                  </Suspense>
+                  <Suspense>
+                    <SiretModal />
+                  </Suspense>
+                  <Suspense>
+                    <KycIndiaBanner />
+                  </Suspense>
+                  <Suspense>
+                    <KycFraudBanner />
+                  </Suspense>
+                  {!isFreshCustomer && (
+                    <OsdsText
+                      className="inline-block my-6"
+                      level={ODS_TEXT_LEVEL.heading}
+                      size={ODS_TEXT_SIZE._500}
+                      hue={ODS_TEXT_COLOR_HUE._800}
+                      color={ODS_THEME_COLOR_INTENT.primary}
                     >
-                      <Welcome />
-                    </Suspense>
-                    <Suspense>
-                      <Banner />
-                    </Suspense>
-                    <Suspense>
-                      <NotificationsCarousel />
-                    </Suspense>
-                    <Suspense>
-                      <SiretBanner />
-                    </Suspense>
-                    <Suspense>
-                      <SiretModal />
-                    </Suspense>
-                    <Suspense>
-                      <KycIndiaBanner />
-                    </Suspense>
-                    <Suspense>
-                      <KycFraudBanner />
-                    </Suspense>
-                    {/* FIXME: this result in a shift when done loading */}
-                    {!isFreshCustomer && (
-                      <OsdsText
-                        className="inline-block my-6"
-                        level={ODS_TEXT_LEVEL.heading}
-                        size={ODS_TEXT_SIZE._500}
-                        hue={ODS_TEXT_COLOR_HUE._800}
-                        color={ODS_THEME_COLOR_INTENT.primary}
-                      >
-                        {t('manager_hub_dashboard_overview')}
-                      </OsdsText>
+                      {t('manager_hub_dashboard_overview')}
+                    </OsdsText>
+                  )}
+                  <div className={`flex flex-wrap ${isLoading ? '' : '-mx-6'}`}>
+                    <div className="md:w-8/12 mb-6 md:mb-8 px-6 box-border">
+                      <PaymentStatus />
+                    </div>
+                    <div className="md:w-4/12 mb-6 md:mb-8 order-3 md:order-2 px-6 box-border">
+                      <Suspense>
+                        {user.enterprise ? (
+                          <EnterpriseBillingSummary />
+                        ) : (
+                          <BillingSummary />
+                        )}
+                      </Suspense>
+                    </div>
+                    <div className="md:w-8/12 mb-6 md:mb-8 order-2 md:order-3 px-6 box-border">
+                      <Suspense>
+                        <HubSupport />
+                      </Suspense>
+                    </div>
+                    <div className="md:w-4/12 order-4 px-6 box-border">
+                      <Suspense>
+                        <OrderTracking />
+                      </Suspense>
+                    </div>
+                  </div>
+                  <div className="hub-dashboard-product">
+                    {isLoading && <TileGridSkeleton />}
+                    {!isLoading && !isFreshCustomer && (
+                      <Suspense fallback={<TileGridSkeleton />}>
+                        <Products services={services}></Products>
+                      </Suspense>
                     )}
-                    <div
-                      className={`flex flex-wrap ${isLoading ? '' : '-mx-6'}`}
-                    >
-                      <div className="md:w-8/12 mb-6 md:mb-8 px-6 box-border">
-                        <PaymentStatus />
-                      </div>
-                      <div className="md:w-4/12 mb-6 md:mb-8 order-3 md:order-2 px-6 box-border">
-                        <Suspense>
-                          {user.enterprise ? (
-                            <EnterpriseBillingSummary />
-                          ) : (
-                            <BillingSummary />
-                          )}
-                        </Suspense>
-                      </div>
-                      <div className="md:w-8/12 mb-6 md:mb-8 order-2 md:order-3 px-6 box-border">
-                        <Suspense>
-                          <HubSupport />
-                        </Suspense>
-                      </div>
-                      <div className="md:w-4/12 order-4 px-6 box-border">
-                        <Suspense>
-                          <OrderTracking />
-                        </Suspense>
-                      </div>
-                    </div>
-                    <div className="hub-dashboard-product">
-                      {isLoading && <TileGridSkeleton />}
-                      {!isLoading && !isFreshCustomer && (
-                        <Suspense fallback={<TileGridSkeleton />}>
-                          <Products services={services}></Products>
-                        </Suspense>
-                      )}
-                      {!isLoading && isFreshCustomer && (
-                        <Suspense fallback={<TileGridSkeleton />}>
-                          <Catalog />
-                        </Suspense>
-                      )}
-                    </div>
+                    {!isLoading && isFreshCustomer && (
+                      <Suspense fallback={<TileGridSkeleton />}>
+                        <Catalog />
+                      </Suspense>
+                    )}
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </Context.Provider>
-    </>
+      </div>
+    </Context.Provider>
   );
 }

@@ -3,7 +3,7 @@ import {
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { OsdsLink, OsdsSkeleton } from '@ovhcloud/ods-components/react';
+import { OsdsLink } from '@ovhcloud/ods-components/react';
 import {
   OdsHTMLAnchorElementTarget,
   OdsHTMLAnchorElementRel,
