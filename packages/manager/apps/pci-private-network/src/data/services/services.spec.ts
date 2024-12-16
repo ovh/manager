@@ -1,15 +1,24 @@
 import { describe, vi } from 'vitest';
 import { NewPrivateNetworkForm } from '@/types/private-network-form.type';
-import { TNetworkCreationResponse } from '@/types/network.type';
-import { createPrivateNetwork as apiCreatePrivateNetwork } from '@/data/api/networks';
+import { TNetwork, TNetworkCreationResponse } from '@/types/network.type';
+import {
+  createPrivateNetwork as apiCreatePrivateNetwork,
+  getNetwork,
+} from '@/data/api/networks';
 import { enableSnatOnGateway, assignGateway } from '@/data/api/gateway';
-import { fetchCheckPrivateNetworkCreationStatus } from '@/data/hooks/networks/useNetworks';
+import {
+  fetchCheckPrivateNetworkCreationStatus,
+  updatePrivateNetworksList,
+} from '@/data/hooks/networks/useNetworks';
 import { createPrivateNetwork } from './services';
 import { privateNetworkForm as form, projectId } from '@/__mocks__/network';
 
+const vlanIdTest = 3000;
 const operationId = 'operationId';
+const resourceId = 'testResourceId';
 
 vi.mock('@/data/api/networks');
+vi.mocked(getNetwork).mockResolvedValue({ vlanId: vlanIdTest } as TNetwork);
 vi.mocked(apiCreatePrivateNetwork).mockResolvedValue({
   id: operationId,
 } as TNetworkCreationResponse);
@@ -18,7 +27,7 @@ vi.mock('@/data/api/gateway');
 
 vi.mock('@/data/hooks/networks/useNetworks');
 vi.mocked(fetchCheckPrivateNetworkCreationStatus).mockResolvedValue({
-  resourceId: 'testResourceId',
+  resourceId,
 } as TNetworkCreationResponse);
 
 describe('Create Private Network', () => {
@@ -63,6 +72,14 @@ describe('Create Private Network', () => {
       projectId,
       operationId,
     );
+
+    expect(updatePrivateNetworksList).toHaveBeenCalledWith(projectId, {
+      id: resourceId,
+      name,
+      region,
+      visibility: 'private',
+      vlanId,
+    });
   });
 
   it('should enable snat', async () => {
@@ -86,8 +103,28 @@ describe('Create Private Network', () => {
     expect(assignGateway).toHaveBeenCalledWith(
       projectId,
       region,
-      'testResourceId',
+      resourceId,
       existingGatewayId,
     );
+  });
+
+  it('should call getNetwork and updatePrivateNetworksList when region is not LZ and vlanId not defined by user', async () => {
+    const { vlanId, ...values } = form;
+
+    await createPrivateNetwork(values, projectId);
+
+    expect(getNetwork).toHaveBeenCalledWith(
+      projectId,
+      values.region,
+      resourceId,
+    );
+
+    expect(updatePrivateNetworksList).toHaveBeenCalledWith(projectId, {
+      id: resourceId,
+      name: values.name,
+      region: values.region,
+      visibility: 'private',
+      vlanId: vlanIdTest,
+    });
   });
 });

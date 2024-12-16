@@ -12,10 +12,6 @@ import OnBoardingPage from './Onboarding.page';
 
 vi.mock('react-router-dom');
 
-vi.mock('./OnBoardingGuard', () => ({
-  default: ({ children }) => <>{children}</>,
-}));
-
 const shellContext = {
   environment: {
     getUser: vi.fn(),

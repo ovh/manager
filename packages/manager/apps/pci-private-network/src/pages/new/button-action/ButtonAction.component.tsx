@@ -16,12 +16,8 @@ import { isDiscoveryProject, useProject } from '@ovh-ux/manager-pci-common';
 import { useNavigate } from 'react-router-dom';
 import { useFormContext } from 'react-hook-form';
 import { ErrorResponse } from '@/types/network.type';
-import { ROUTE_PATHS } from '@/routes';
 import { NewPrivateNetworkForm } from '@/types/private-network-form.type';
-import {
-  createPrivateNetwork,
-  refreshPrivateNetworkList,
-} from '@/data/services/services';
+import { createPrivateNetwork } from '@/data/services/services';
 
 const ButtonAction: React.FC = () => {
   const { t } = useTranslation(['new', 'common']);
@@ -36,10 +32,7 @@ const ButtonAction: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const navigate = useNavigate();
 
-  const onSuccess = async (
-    privateNetworkName: string,
-    isLocalZone: boolean,
-  ) => {
+  const onSuccess = async (privateNetworkName: string) => {
     addSuccess(
       <span>
         {t('new:pci_projects_project_network_private_create_success', {
@@ -49,11 +42,7 @@ const ButtonAction: React.FC = () => {
       true,
     );
 
-    const redirectPath = isLocalZone
-      ? ROUTE_PATHS.localZone
-      : ROUTE_PATHS.globalRegions;
-
-    navigate(`../${redirectPath}`);
+    navigate(-1);
   };
 
   const onError = (e: ErrorResponse) => {
@@ -72,8 +61,7 @@ const ButtonAction: React.FC = () => {
 
     try {
       await createPrivateNetwork(values, projectId);
-      refreshPrivateNetworkList(projectId);
-      onSuccess(values.name, values.isLocalZone);
+      onSuccess(values.name);
     } catch (e) {
       onError(e);
     }
