@@ -49,7 +49,7 @@ export function WorkflowName({
   const [hasError, setHasError] = useState(false);
   const isValid = VALID_NAME_PATTERN.test(workflowName);
   const { me } = useMe();
-  const { getFormattedCatalogPrice } = useCatalogPrice(2, {
+  const { getFormattedCatalogPrice } = useCatalogPrice(3, {
     hideTaxLabel: true,
   });
   const { data: pricing, isPending } = useInstanceSnapshotPricing(
