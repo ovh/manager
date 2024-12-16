@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@3.0.1...@ovh-ux/sign-up@3.1.0) (2024-12-16)
+
+
+### Features
+
+* **signup:** added minlength and maxlength management ([#14327](https://github.com/ovh/manager/issues/14327)) ([7d44f86](https://github.com/ovh/manager/commit/7d44f86ef96830041214e6c50eee69b16264fbe7))
+
+
+
+
+
 ## [3.0.1](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@3.0.0...@ovh-ux/sign-up@3.0.1) (2024-11-28)
 
 **Note:** Version bump only for package @ovh-ux/sign-up
