@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('nutanix.dashboard.nodes.all.uninstall', {
+  $stateProvider.state('nutanix.dashboard.nodes.all.uninstall-node', {
     url: '/uninstall/:node',
     views: {
       modal: {
