@@ -187,7 +187,7 @@ export default function EndpointCreatePage() {
           size={ODS_SELECT_SIZE.md}
         >
           <span slot="placeholder">{t('subnetPlaceholder')}</span>
-          {vrackServices?.data.currentState.subnets.map((subnet) => (
+          {vrackServices?.data?.currentState.subnets.map((subnet) => (
             <OsdsSelectOption key={subnet.cidr} value={subnet.cidr}>
               {subnet.displayName
                 ? `${subnet.displayName} - ${subnet.cidr}`

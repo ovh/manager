@@ -552,7 +552,7 @@
     "currentState": {
       "displayName": "SUB-test",
       "productStatus": "DRAFT",
-      "region": "LABEUPRE",
+      "region": "eu-west-lim",
       "subnets": [
         {
           "cidr": "10.0.0.0/24",
