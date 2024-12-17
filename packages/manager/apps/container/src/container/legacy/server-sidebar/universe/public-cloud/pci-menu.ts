@@ -47,7 +47,6 @@ export const features = [
   'public-cloud:project-settings',
   'ai-dashboard',
   'data-platform',
-  'ai-endpoints',
   'key-management-service',
   'pci-savings-plan',
   'pci-ai-endpoints',
@@ -354,7 +353,6 @@ export function getPciProjectMenu(
       'notebooks',
       'training',
       'ai-apps',
-      'ai-endpoints',
       'pci-ai-endpoints'
     )
   ) {
@@ -390,13 +388,6 @@ export function getPciProjectMenu(
           title: 'AI Endpoints',
           badge: 'beta',
           href: getURL('public-cloud', `#/pci/projects/${projectId}/ai/endpoints`),
-        },
-        isFeaturesAvailable('ai-endpoints') && {
-          id: 'ai-endpoints',
-          title: 'AI Endpoints',
-          badge: 'beta',
-          href: 'https://endpoints.ai.cloud.ovh.net/',
-          external: true,
         },
       ],
     });

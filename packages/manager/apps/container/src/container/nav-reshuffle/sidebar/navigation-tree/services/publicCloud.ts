@@ -494,7 +494,7 @@ pciNode.children = [
     idAttr: 'pci-ai-link',
     universe: PUBLICCLOUD_UNIVERSE_ID,
     translation: 'sidebar_pci_ai',
-    features: ['notebooks', 'ai-apps', 'training', 'ai-dashboard', 'ai-endpoints', 'pci-ai-endpoints'],
+    features: ['notebooks', 'ai-apps', 'training', 'ai-dashboard', 'pci-ai-endpoints'],
     forceVisibility: true,
     children: [
       {
@@ -548,17 +548,6 @@ pciNode.children = [
         },
         features: ['ai-apps'],
         forceVisibility: true,
-      },
-      {
-        id: 'pci-ai-endpoints',
-        idAttr: 'pci-ai-endpoints-link',
-        universe: PUBLICCLOUD_UNIVERSE_ID,
-        translation: 'sidebar_pci_ai_endpoints',
-        count: false,
-        url: 'https://endpoints.ai.cloud.ovh.net/',
-        features: ['ai-endpoints'],
-        tag: NodeTag.BETA,
-        isExternal: true,
       },
       {
         id: 'pci-ai-endpoints-app',
