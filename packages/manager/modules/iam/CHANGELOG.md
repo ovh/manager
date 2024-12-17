@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.13.1...@ovh-ux/manager-iam@1.14.0) (2024-12-17)
+
+
+### Bug Fixes
+
+* **iam:** fix application tracking constants ([576c666](https://github.com/ovh/manager/commit/576c6664a421e7cfc69b73752dbe71a13fb0ebec))
+* **iam:** update application tab translations ([9290b67](https://github.com/ovh/manager/commit/9290b672a9498d3aef4dbc7f26989ea77a63fb9d))
+
+
+### Features
+
+* **iam:** add applications tab ([#13396](https://github.com/ovh/manager/issues/13396)) ([82b511a](https://github.com/ovh/manager/commit/82b511a747741b1b0ba7cc50f4d1da93e25320af))
+* **iam:** add VCD translations in iam policy configuration ([d344051](https://github.com/ovh/manager/commit/d34405193b8f89b7751799dab8ef9e0b6723ffe9))
+* **iam:** remove pagination on type request ([30cd2f1](https://github.com/ovh/manager/commit/30cd2f14129678f38d03dcd8ca338ad56be82489))
+
+
+
+
+
 ## [1.13.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.13.0...@ovh-ux/manager-iam@1.13.1) (2024-11-07)
 
 

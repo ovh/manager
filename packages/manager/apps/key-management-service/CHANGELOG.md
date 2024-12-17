@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.13.1...@ovh-ux/manager-key-management-service-app@0.14.0) (2024-12-17)
+
+
+### Bug Fixes
+
+* **kms): revert "feat(kms:** refacto delete modal" ([bc9bc75](https://github.com/ovh/manager/commit/bc9bc75deea305ef365d807db616f827de822044))
+
+
+### Features
+
+* **kms:** servicekey list ti implementation ([c296fa7](https://github.com/ovh/manager/commit/c296fa735925ca923fae84f08267c9f4d79333db))
+
+
+
+
+
 ## [0.13.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.13.0...@ovh-ux/manager-key-management-service-app@0.13.1) (2024-12-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-key-management-service-app
