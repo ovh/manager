@@ -33,7 +33,7 @@ export const useDatagridColumn = () => {
 
   const queryClient = useQueryClient();
   const { t } = useTranslation(['ip-restrictions']);
-  const { projectId, registryId } = useParams();
+  const { projectId = '', registryId = '' } = useParams();
   const { filters, pagination } = useFilter();
   const { data } = useIpRestrictionsWithFilter(
     projectId,
@@ -64,7 +64,7 @@ export const useDatagridColumn = () => {
       ]);
 
       queryClient.setQueryData<TIPRestrictionsData[]>(key, (oldData) =>
-        oldData.map((item) => {
+        oldData?.map((item) => {
           if (allIsSelected && item.checked !== null) {
             if (data.rows.find((row) => row.ipBlock === item.ipBlock)) {
               return { ...item, checked: !isAllDataSelected };

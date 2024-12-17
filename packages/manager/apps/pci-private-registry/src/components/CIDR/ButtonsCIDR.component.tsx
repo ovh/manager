@@ -25,7 +25,7 @@ import { categorizeByKey } from '@/helpers';
 
 const Buttons = () => {
   const queryClient = useQueryClient();
-  const { projectId, registryId } = useParams();
+  const { projectId = '', registryId = '' } = useParams();
 
   const { handleSubmit, formState, reset } = useFormContext();
   const { t } = useTranslation(['ip-restrictions', 'common']);
@@ -55,7 +55,7 @@ const Buttons = () => {
       'registry',
     ]);
     queryClient.setQueryData<TIPRestrictionsData[]>(key, (oldData) =>
-      oldData.filter((item) => !item.draft),
+      oldData?.filter((item) => !item.draft),
     );
   };
 

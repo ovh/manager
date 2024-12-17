@@ -33,6 +33,7 @@ import {
   useIpRestrictionsWithFilter,
 } from '@/api/hooks/useIpRestrictions';
 import useFilters from '@/pages/CIDR/useFilters';
+import { TIPRestrictionsData } from '@/types';
 
 const createNewRow = (queryClient: QueryClient, key: QueryKey) =>
   queryClient.setQueryData<TIPRestrictionsData[]>(key, (oldData) => [
@@ -41,11 +42,11 @@ const createNewRow = (queryClient: QueryClient, key: QueryKey) =>
       description: null,
       ipBlock: null,
       createdAt: new Date(),
-      id: oldData.length + 1,
+      id: oldData?.length ? oldData.length + 1 : 0,
       draft: true,
       checked: null,
     },
-    ...oldData,
+    ...(oldData ?? []),
   ]);
 
 export default function BlocCIDR() {

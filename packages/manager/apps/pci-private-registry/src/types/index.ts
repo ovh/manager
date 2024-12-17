@@ -13,17 +13,17 @@ export enum TIPRestrictionsMethodEnum {
 
 export interface TIPRestrictions {
   createdAt: Date;
-  ipBlock: string;
-  description: string;
+  ipBlock: string | null;
+  description: string | null;
 }
 
 export interface TIPRestrictionsMethod {
-  authorization: FilterRestrictionsServer[];
+  authorization: FilterRestrictionsServer[] | null;
 }
 
 export interface TIPRestrictionsDraft {
   draft: boolean;
-  checked: boolean;
+  checked: boolean | null;
 }
 
 export type TIPRestrictionsDefault = TIPRestrictions & TIPRestrictionsMethod;
