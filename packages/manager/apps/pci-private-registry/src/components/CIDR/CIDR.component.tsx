@@ -1,8 +1,6 @@
 import {
   Datagrid,
   Notifications,
-  useColumnFilters,
-  useDataGrid,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
 
@@ -18,7 +16,11 @@ import { useParams } from 'react-router-dom';
 
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useFormContext } from 'react-hook-form';
-import { ODS_MESSAGE_TYPE, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+import {
+  ODS_MESSAGE_TYPE,
+  ODS_SPINNER_SIZE,
+  ODS_TEXT_SIZE,
+} from '@ovhcloud/ods-components';
 import {
   OsdsSpinner,
   OsdsMessage,
@@ -98,6 +100,7 @@ export default function BlocCIDR() {
         >
           <OsdsText
             color={ODS_THEME_COLOR_INTENT.info}
+            size={ODS_TEXT_SIZE._400}
             data-testid="errorBanner"
           >
             {t('private_registry_noCIDR')}
@@ -109,14 +112,15 @@ export default function BlocCIDR() {
         <OsdsMessage
           color={ODS_THEME_COLOR_INTENT.error}
           type={ODS_MESSAGE_TYPE.error}
-          key={err.message as string}
+          key={err?.message as string}
           className="my-6"
         >
           <OsdsText
             color={ODS_THEME_COLOR_INTENT.error}
+            size={ODS_TEXT_SIZE._400}
             data-testid="errorBanner"
           >
-            {t(err.message as string)}
+            {t(err?.message as string)}
             <br />
           </OsdsText>
         </OsdsMessage>

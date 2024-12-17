@@ -3,10 +3,8 @@ import {
   DataGridTextCell,
 } from '@ovh-ux/manager-react-components';
 import { useCallback, useMemo } from 'react';
-
 import { useParams } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
-
 import { useTranslation } from 'react-i18next';
 import { FormProvider, useFormContext } from 'react-hook-form';
 import ButtonsCIDR from '@/components/CIDR/ButtonsCIDR.component';
@@ -25,18 +23,9 @@ import Checkboxes from '@/components/CIDR/Checkboxes.component';
 import AllCheckboxComponent from '@/components/CIDR/AllCheckbox.component';
 import useFilter from './useFilters';
 
-function evaluateDraftAndData(draft: boolean, dataLength: number) {
-  if (!draft) {
-    if (dataLength < 2) {
-      return false;
-    }
-  }
-  if (draft) {
-    if (dataLength < 3) {
-      return false;
-    }
-  }
-  return true;
+function showCheckboxes(draft: boolean, dataLength: number): boolean {
+  const minDataLength = draft ? 3 : 2;
+  return dataLength >= minDataLength;
 }
 
 export const useDatagridColumn = () => {
@@ -59,7 +48,7 @@ export const useDatagridColumn = () => {
     [data],
   );
 
-  const dataAllSelected = useMemo(
+  const isAllDataSelected = useMemo(
     () =>
       data.rows
         .filter((item) => item.checked !== null)
@@ -68,7 +57,7 @@ export const useDatagridColumn = () => {
   );
 
   const updateChecked = useCallback(
-    (ipBlock: string, allIsSelected?: boolean) => {
+    (ipBlock: string | null, allIsSelected?: boolean) => {
       const key = getRegistryQueyPrefixWithId(projectId, registryId, [
         'management',
         'registry',
@@ -78,7 +67,7 @@ export const useDatagridColumn = () => {
         oldData.map((item) => {
           if (allIsSelected && item.checked !== null) {
             if (data.rows.find((row) => row.ipBlock === item.ipBlock)) {
-              return { ...item, checked: !dataAllSelected };
+              return { ...item, checked: !isAllDataSelected };
             }
           }
           if (item.ipBlock === ipBlock) {
@@ -88,15 +77,14 @@ export const useDatagridColumn = () => {
         }),
       );
     },
-    [dataAllSelected, data],
+    [isAllDataSelected, data],
   );
 
   const columns: DatagridColumn<TIPRestrictionsData>[] = [
     {
       id: 'check',
       cell: (props) =>
-        props.checked !== null &&
-        evaluateDraftAndData(isDraft, data.rows.length) ? (
+        props.checked !== null && showCheckboxes(isDraft, data.rows.length) ? (
           <Checkboxes
             checked={props.checked}
             ipBlock={props.ipBlock}
@@ -105,11 +93,11 @@ export const useDatagridColumn = () => {
         ) : (
           <></>
         ),
-      label: evaluateDraftAndData(isDraft, data.rows.length)
+      label: showCheckboxes(isDraft, data.rows.length)
         ? (((
             <AllCheckboxComponent
               updateChecked={updateChecked}
-              dataAllSelected={dataAllSelected}
+              isAllDataSelected={isAllDataSelected}
             />
           ) as unknown) as string)
         : '',
