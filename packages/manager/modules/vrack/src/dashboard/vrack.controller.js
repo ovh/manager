@@ -691,6 +691,7 @@ export default class VrackMoveDialogCtrl {
                   if (this.data.eligibleServices?.ovhCloudConnect?.length > 0) {
                     this.updateOvhCloudConnect();
                   }
+                  break;
                 case TYPE_SERVICE.vrackServices:
                   if (this.data.eligibleServices?.vrackServices?.length > 0) {
                     this.updateVrackServicesProductInfo();
