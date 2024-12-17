@@ -7,6 +7,8 @@ import { region, iamProtectedData } from '@ovh-ux/manager-components';
 import routing from './routing';
 import component from './component';
 import datacenterName from '../../component/datacenter-name/module';
+import nodeStatus from '../../component/node-os-datagrid/module';
+import nodeOsDatagrid from '../../component/service-status/module';
 import addNodes from './add-nodes';
 import poweronNode from './poweron-node';
 import poweroffNode from './poweroff-node';
@@ -23,6 +25,8 @@ angular
     region,
     datacenterName,
     iamProtectedData,
+    nodeStatus,
+    nodeOsDatagrid,
     addNodes,
     poweronNode,
     poweroffNode,

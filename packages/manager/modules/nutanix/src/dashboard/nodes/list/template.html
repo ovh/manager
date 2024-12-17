@@ -1,3 +1,13 @@
+<oui-message data-ng-if="$ctrl.hasErrorInstall" class="mb-3" type="error">
+    <span
+        data-translate="nutanix_dashboard_nodes_state_banner_error_install"
+    ></span>
+</oui-message>
+<oui-message data-ng-if="$ctrl.hasErrorUninstall" class="mb-3" type="error">
+    <span
+        data-translate="nutanix_dashboard_nodes_state_banner_error_uninstall"
+    ></span>
+</oui-message>
 <oui-datagrid rows="$ctrl.nodesMapped" data-page-size="25" class="mt-5">
     <oui-datagrid-topbar>
         <oui-button
@@ -36,26 +46,71 @@
     </oui-datagrid-column>
     <oui-datagrid-column
         data-title="'nutanix_dashboard_nodes_list_status' | translate"
-        data-property="state"
+        data-property="serviceStatus"
         data-sortable
         data-type="options"
         data-type-options="$ctrl.stateColumnOptions"
         data-filterable
     >
-        <iam-protected-data is-hidden=":: $row.isHiddenNode">
-            <span
-                class="{{'oui-badge ' + $ctrl.NODE_BADGE_STATE[$row.state] }}"
-                data-translate="{{ 'nutanix_dashboard_nodes_list_status_' + $row.state }}"
-            >
-            </span>
+        <iam-protected-data data-is-hidden=":: $row.isHiddenNode">
+            <div class="d-flex align-items-center">
+                <service-status status="$row.serviceStatus"></service-status>
+                <span
+                    data-ng-if="$row.serviceStatus === $ctrl.SERVICE_STATES.SUSPENDED"
+                    class="oui-icon oui-icon-help-circle"
+                    title="{{ 'nutanix_dashboard_nodes_suspended_tooltip' | translate }}"
+                    oui-tooltip
+                ></span>
+            </div>
         </iam-protected-data>
     </oui-datagrid-column>
     <oui-datagrid-column
         data-title="'nutanix_dashboard_nodes_list_localisation' | translate"
         data-property="datacenter"
     >
-        <iam-protected-data is-hidden=":: $row.isHiddenNode">
+        <iam-protected-data data-is-hidden=":: $row.isHiddenNode">
             <datacenter-name datacenter="$row.datacenter"> </datacenter-name>
         </iam-protected-data>
+    </oui-datagrid-column>
+
+    <oui-datagrid-column
+        data-title="'nutanix_dashboard_nodes_list_os_installed' | translate"
+        data-property="status"
+    >
+        <node-os-datagrid data-ng-else data-node="$row"></node-os-datagrid>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title="'nutanix_dashboard_nodes_list_node_ip' | translate"
+        data-property="ahvIp"
+        data-sortable
+        data-searchable
+        data-filterable
+    >
+        <oui-skeleton data-ng-if="$ctrl.loadingNodesStatus"></oui-skeleton>
+        <span data-ng-else data-ng-bind="$row.ahvIp"></span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title="'nutanix_dashboard_nodes_list_node_cvm' | translate"
+        data-property="cvmIp"
+        data-sortable
+        data-searchable
+        data-filterable
+    >
+        <span data-ng-bind="$row.cvmIp"></span>
+    </oui-datagrid-column>
+    <oui-datagrid-column>
+        <node-action-menu
+            data-ng-if="$row.possibleActions && $row.serviceStatus !== $ctrl.SERVICE_STATES.SUSPENDED"
+            data-possible-actions="$row.possibleActions"
+            data-on-power-on="$ctrl.onPowerOn($row.name)"
+            data-on-power-off="$ctrl.powerOffNode($row.name)"
+            data-on-install="$ctrl.installNode($row.name)"
+            data-on-reinstall="$ctrl.reinstallNode($row.name)"
+            data-on-uninstall="$ctrl.uninstallNode($row.name)"
+            data-on-terminate="$ctrl.terminateNode($row.name)"
+        >
+        </node-action-menu>
+        <node-action-menu-resiliated data-ng-if="$row.isResiliated">
+        </node-action-menu-resiliated>
     </oui-datagrid-column>
 </oui-datagrid>

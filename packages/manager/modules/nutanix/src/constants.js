@@ -24,6 +24,16 @@ export const NODE_STATUS = {
   UNKNOWN: 'unknown',
 };
 
+export const NODE_POWER_STATES = {
+  POWEROFF: 'poweroff',
+};
+
+export const SERVICE_STATES = {
+  ACTIVE: 'active',
+  SUSPENDED: 'suspended',
+  UNKNOWN: 'unknown',
+};
+
 export const MAX_NODES_BY_CLUSTER = 15;
 
 export const NUTANIX_SERVICE_TYPE = 'NUTANIX';
@@ -74,6 +84,8 @@ export const NUTANIX_GUIDE_LINK =
 
 export default {
   NUTANIX_GUIDE_LINK,
+  NODE_POWER_STATES,
+  SERVICE_STATES,
   PRODUCT_ID,
   DEFAULT_OS_NODE_NUTANIX,
   NUTANIX_ORDER_URL,
