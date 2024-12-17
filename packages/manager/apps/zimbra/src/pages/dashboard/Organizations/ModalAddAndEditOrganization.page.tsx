@@ -34,16 +34,12 @@ import {
 } from '@/api/organization';
 import queryClient from '@/queryClient';
 import {
-  checkValidityField,
-  checkValidityForm,
-  FormTypeInterface,
-} from '@/utils';
-import {
   ADD_ORGANIZATION,
   CANCEL,
   CONFIRM,
   EDIT_ORGANIZATION,
 } from '@/tracking.constant';
+import { FormTypeInterface, useForm } from '@/hooks/useForm';
 
 export default function ModalAddAndEditOrganization() {
   const { t } = useTranslation('organizations/addAndEdit');
@@ -61,27 +57,22 @@ export default function ModalAddAndEditOrganization() {
     navigate(goBackUrl);
   };
 
-  const [form, setForm] = useState<FormTypeInterface>({
+  const { form, setForm, isFormValid, setValue } = useForm({
     name: {
       value: '',
       defaultValue: '',
-      touched: false,
-      hasError: false,
       required: true,
       validate: /^.+$/,
     },
     label: {
       value: '',
       defaultValue: '',
-      touched: false,
-      hasError: false,
       required: true,
       validate: /^.{1,12}$/,
     },
   });
 
   const [isLoading, setIsLoading] = useState(!!editOrganizationId);
-  const [isFormValid, setIsFormValid] = useState(false);
 
   const {
     data: editOrganizationDetail,
@@ -162,18 +153,6 @@ export default function ModalAddAndEditOrganization() {
     onClose();
   };
 
-  const handleFormChange = (name: string, value: string) => {
-    const newForm: FormTypeInterface = form;
-    newForm[name] = {
-      ...form[name],
-      value,
-      touched: true,
-      hasError: !checkValidityField(name, value, form),
-    };
-    setForm((oldForm) => ({ ...oldForm, ...newForm }));
-    setIsFormValid(checkValidityForm(form));
-  };
-
   useEffect(() => {
     if (editOrganizationDetail && !isLoadingRequest) {
       const { name, label } = editOrganizationDetail.currentState;
@@ -247,13 +226,13 @@ export default function ModalAddAndEditOrganization() {
             hasError={form.name.hasError}
             value={form.name.value}
             defaultValue={form.name.defaultValue}
+            isRequired={form.name.required}
             onOdsBlur={({ target: { name, value } }) =>
-              handleFormChange(name, value.toString())
+              setValue(name, value.toString(), true)
             }
             onOdsChange={({ detail: { name, value } }) => {
-              handleFormChange(name, String(value));
+              setValue(name, String(value));
             }}
-            isRequired
           ></OdsInput>
         </OdsFormField>
         <OdsFormField
@@ -295,13 +274,13 @@ export default function ModalAddAndEditOrganization() {
             hasError={form.label.hasError}
             value={form.label.value}
             defaultValue={form.label.defaultValue}
+            isRequired={form.label.required}
             onOdsBlur={({ target: { name, value } }) =>
-              handleFormChange(name, value.toString())
+              setValue(name, value.toString(), true)
             }
             onOdsChange={({ detail: { name, value } }) =>
-              handleFormChange(name, String(value))
+              setValue(name, String(value))
             }
-            isRequired
           ></OdsInput>
           <OdsText class="block" preset={ODS_TEXT_PRESET.caption} slot="helper">
             {t('zimbra_organization_add_form_input_label_helper', {

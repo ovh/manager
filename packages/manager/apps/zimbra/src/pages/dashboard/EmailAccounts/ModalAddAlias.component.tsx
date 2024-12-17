@@ -29,14 +29,10 @@ import {
   getZimbraPlatformAliasQueryKey,
   postZimbraPlatformAlias,
 } from '@/api/alias';
-import {
-  ACCOUNT_REGEX,
-  checkValidityField,
-  checkValidityForm,
-  FormTypeInterface,
-} from '@/utils';
+import { ACCOUNT_REGEX } from '@/utils';
 import queryClient from '@/queryClient';
 import { CANCEL, CONFIRM, EMAIL_ACCOUNT_ADD_ALIAS } from '@/tracking.constant';
+import { useForm } from '@/hooks/useForm';
 
 export default function ModalAddAndEditOrganization() {
   const { trackClick, trackPage } = useOvhTracking();
@@ -51,25 +47,19 @@ export default function ModalAddAndEditOrganization() {
   const goBackUrl = useGenerateUrl('..', 'path', params);
   const onClose = () => navigate(goBackUrl);
 
-  const [form, setForm] = useState<FormTypeInterface>({
+  const { form, isFormValid, setValue } = useForm({
     alias: {
       value: '',
       defaultValue: '',
-      hasError: false,
       required: true,
-      touched: false,
       validate: ACCOUNT_REGEX,
     },
     domain: {
       value: '',
       defaultValue: '',
-      hasError: false,
       required: true,
-      touched: false,
     },
   });
-
-  const [isFormValid, setIsFormValid] = useState(false);
 
   const { data: domainList, isLoading: isLoadingDomain } = useDomains({
     shouldFetchAll: true,
@@ -134,18 +124,6 @@ export default function ModalAddAndEditOrganization() {
     },
   });
 
-  const handleFormChange = (name: string, value: string) => {
-    const newForm: FormTypeInterface = form;
-    newForm[name] = {
-      ...form[name],
-      value,
-      touched: true,
-      hasError: !checkValidityField(name, value, form),
-    };
-    setForm((oldForm) => ({ ...oldForm, ...newForm }));
-    setIsFormValid(checkValidityForm(form));
-  };
-
   const handleConfirmClick = () => {
     trackClick({
       location: PageLocation.popup,
@@ -209,10 +187,10 @@ export default function ModalAddAndEditOrganization() {
               isRequired={form.alias.required}
               hasError={form.alias.hasError}
               onOdsBlur={({ target: { name, value } }) =>
-                handleFormChange(name, value.toString())
+                setValue(name, value.toString(), true)
               }
               onOdsChange={({ detail: { name, value } }) => {
-                handleFormChange(name, String(value));
+                setValue(name, String(value));
               }}
               className="rounded-r-none border-r-0 w-1/2"
               data-testid="input-alias"
@@ -236,7 +214,7 @@ export default function ModalAddAndEditOrganization() {
               )}
               className="w-1/2"
               onOdsChange={({ detail: { name, value } }) =>
-                handleFormChange(name, value)
+                setValue(name, value)
               }
               data-testid="select-domain"
             >
