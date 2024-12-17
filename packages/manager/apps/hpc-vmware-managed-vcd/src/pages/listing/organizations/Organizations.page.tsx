@@ -9,15 +9,17 @@ import {
   Region,
 } from '@ovh-ux/manager-react-components';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-
+import {
+  vcdOrganizationListQueryKey,
+  VCD_ORGANIZATION_ROUTE,
+  VCDOrganization,
+} from '@ovh-ux/manager-module-vcd-api';
 import DatagridContainer from '@/components/datagrid/container/DatagridContainer.component';
 import { urls } from '@/routes/routes.constant';
-import IVcdOrganization from '@/types/vcd-organization.interface';
-import { VCD_ORGANIZATION_ROUTE } from '@/data/api/hpc-vmware-managed-vcd.constants';
-import { getVcdOrganizationsQueryKey } from '@/utils/queryKeys';
+import { MANAGED_VCD_LABEL } from '@/pages/dashboard/organization/organizationDashboard.constants';
 
 /* ========= datagrid cells ========== */
-const DatagridIdCell = (vdcOrg: IVcdOrganization) => {
+const DatagridIdCell = (vdcOrg: VCDOrganization) => {
   const navigate = useNavigate();
   return (
     <DataGridTextCell>
@@ -29,23 +31,23 @@ const DatagridIdCell = (vdcOrg: IVcdOrganization) => {
   );
 };
 
-const DatagridLocationCell = (vdcOrg: IVcdOrganization) => (
+const DatagridLocationCell = (vdcOrg: VCDOrganization) => (
   <DataGridTextCell>
     <Region name={vdcOrg.currentState?.region?.toLowerCase()} mode="region" />
   </DataGridTextCell>
 );
 
-const DatagridRegionCell = (vdcOrg: IVcdOrganization) => (
+const DatagridRegionCell = (vdcOrg: VCDOrganization) => (
   <DataGridTextCell>
     {vdcOrg.currentState?.region?.toLowerCase()}
   </DataGridTextCell>
 );
 
-const DatagridDescriptionCell = (vdcOrg: IVcdOrganization) => (
+const DatagridDescriptionCell = (vdcOrg: VCDOrganization) => (
   <DataGridTextCell>{vdcOrg.currentState?.description}</DataGridTextCell>
 );
 
-const DatagridWebInterfaceCell = (vdcOrg: IVcdOrganization) => (
+const DatagridWebInterfaceCell = (vdcOrg: VCDOrganization) => (
   <DataGridTextCell>
     <Links
       href={vdcOrg.currentState?.webInterfaceUrl}
@@ -90,8 +92,8 @@ export default function Listing() {
 
   return (
     <DatagridContainer
-      title={t('managed_vcd_listing_title')}
-      queryKey={getVcdOrganizationsQueryKey()}
+      title={MANAGED_VCD_LABEL}
+      queryKey={vcdOrganizationListQueryKey}
       route={{
         api: VCD_ORGANIZATION_ROUTE,
         onboarding: urls.onboarding,

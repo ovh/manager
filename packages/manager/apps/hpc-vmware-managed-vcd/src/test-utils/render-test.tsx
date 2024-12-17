@@ -12,9 +12,7 @@ import { render, waitFor, screen } from '@testing-library/react';
 import {
   getServicesMocks,
   GetServicesMocksParams,
-} from '@ovh-ux/manager-react-components';
-import { toMswHandlers } from '../../../../../../playwright-helpers';
-import { getAuthenticationMocks } from '../../../../../../playwright-helpers/mocks/auth';
+} from '@ovh-ux/manager-module-common-api';
 import {
   getVeeamBackupMocks,
   getOrganizationMocks,
@@ -25,10 +23,16 @@ import {
   GetDatacentreOrderMocksParams,
   GetVeeamBackupMocksParams,
   getIamMocks,
-} from '../../mocks';
-import { initTestI18n, labels } from './test-i18n';
+} from '@ovh-ux/manager-module-vcd-api';
+import {
+  initTestI18n,
+  getAuthenticationMocks,
+  toMswHandlers,
+} from '@ovh-ux/manager-core-test-utils';
+import { translations } from './test-i18n';
 import { TestApp } from './TestApp';
 import { APP_NAME } from '@/tracking.constant';
+import { MANAGED_VCD_LABEL } from '@/pages/dashboard/organization/organizationDashboard.constants';
 
 let context: ShellContextType;
 let i18nState: i18n;
@@ -60,7 +64,7 @@ export const renderTest = async ({
   }
 
   if (!i18nState) {
-    i18nState = await initTestI18n();
+    i18nState = await initTestI18n(APP_NAME, translations);
   }
 
   const result = render(
@@ -75,7 +79,7 @@ export const renderTest = async ({
     await waitFor(
       () =>
         expect(
-          screen.getAllByText(labels.listing.managed_vcd_listing_title, {
+          screen.getAllByText(MANAGED_VCD_LABEL, {
             exact: false,
           }).length,
         ).toBeGreaterThan(0),

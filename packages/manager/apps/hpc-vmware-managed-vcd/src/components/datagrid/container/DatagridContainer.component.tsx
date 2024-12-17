@@ -8,6 +8,7 @@ import {
 import { OsdsDivider } from '@ovhcloud/ods-components/react';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { icebergListingQueryKey } from '@ovh-ux/manager-module-vcd-api';
 import Loading from '@/components/loading/Loading.component';
 import TDatagridRoute from '@/types/datagrid-route.type';
 import { useAutoRefetch } from '@/data/hooks/useAutoRefetch';
@@ -15,7 +16,6 @@ import {
   hasResourceUpdatingTargetSpec,
   UpdatableResource,
 } from '@/utils/refetchConditions';
-import { icebergListingQueryKey } from '@/utils/queryKeys';
 
 export type TDatagridContainerProps = {
   route: TDatagridRoute;

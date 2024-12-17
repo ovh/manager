@@ -1,15 +1,17 @@
 import { screen, waitFor } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
 import {
-  checkTextVisibility,
+  organizationList,
+  datacentreList,
+} from '@ovh-ux/manager-module-vcd-api';
+import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
+import {
   DEFAULT_LISTING_ERROR,
   labels,
   renderTest,
 } from '../../../../test-utils';
-import { datacentreList } from '../../../../../mocks/vcd-organization/vcd-datacentre.mock';
-import { organizationList } from '../../../../../mocks/vcd-organization/vcd-organization.mock';
-import { COMPUTE_TITLE } from '../DatacentreDashboard.constant';
-import { VHOSTS_TITLE } from '../compute/DatacentreCompute.constants';
+import { COMPUTE_LABEL } from '../datacentreDashboard.constants';
+import { VHOSTS_LABEL } from '../compute/datacentreCompute.constants';
 
 describe('Datacentre Compute Listing Page', () => {
   it('access and display compute listing page', async () => {
@@ -18,13 +20,13 @@ describe('Datacentre Compute Listing Page', () => {
     });
 
     // access compute tab
-    await checkTextVisibility(COMPUTE_TITLE);
-    const tab = screen.getByText(COMPUTE_TITLE);
+    await assertTextVisibility(COMPUTE_LABEL);
+    const tab = screen.getByText(COMPUTE_LABEL);
     await waitFor(() => userEvent.click(tab));
 
     // check page title & CTA
-    await checkTextVisibility(VHOSTS_TITLE);
-    await checkTextVisibility(
+    await assertTextVisibility(VHOSTS_LABEL);
+    await assertTextVisibility(
       labels.datacentresCompute.managed_vcd_vdc_compute_order_cta,
     );
   });
@@ -35,6 +37,6 @@ describe('Datacentre Compute Listing Page', () => {
       isComputeKO: true,
     });
 
-    await checkTextVisibility(DEFAULT_LISTING_ERROR);
+    await assertTextVisibility(DEFAULT_LISTING_ERROR);
   });
 });
