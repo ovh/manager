@@ -233,6 +233,17 @@ export const OBJECT_CONTAINER_OFFERS_LABELS = {
   },
 };
 
+export const OBJECT_CONTAINER_TYPE_STATIC = 'static';
+export const OBJECT_CONTAINER_TYPE_PRIVATE = 'private';
+export const OBJECT_CONTAINER_TYPE_PUBLIC = 'public';
+export const OBJECT_CONTAINER_TYPES = [
+  OBJECT_CONTAINER_TYPE_STATIC,
+  OBJECT_CONTAINER_TYPE_PRIVATE,
+  OBJECT_CONTAINER_TYPE_PUBLIC,
+];
+
+export const CONTAINER_COMMERCIAL_NAME = 'storage-replicated';
+
 export const STORAGE_ASYNC_REPLICATION_LINK = {
   DEFAULT:
     'https://help.ovhcloud.com/csm/en-public-cloud-storage-s3-asynchronous-replication-buckets?id=kb_article_view&sysparm_article=KB0062417',
