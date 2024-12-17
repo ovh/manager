@@ -6,6 +6,8 @@ import cdn from '../cdn/hosting-cdn.modules';
 import cron from '../cron/cron.module';
 import database from '../database/hosting-database.module';
 import envvars from '../envvars/envvars.module';
+import databaseSelector from '../database/database-selector/database-selector.module';
+
 import generalInformations from '../general-informations/general-informations.module';
 import ftp from '../ftp/ftp.module';
 import hostingModule from '../module/hosting-module.module';
@@ -29,6 +31,7 @@ angular
     cron,
     database,
     envvars,
+    databaseSelector,
     ftp,
     generalInformations,
     hostingModule,

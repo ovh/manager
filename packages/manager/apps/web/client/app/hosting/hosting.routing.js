@@ -42,28 +42,49 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('app.hosting.dashboard', {
           productId,
         }),
+      goDatabaseSelector: /* @ngInject */ (coreURLBuilder) =>
+        coreURLBuilder.buildURL('web', `#/hosting/database-selector`),
       topbarOptions: /* @ngInject */ (
         $translate,
         $window,
         coreConfig,
         atInternet,
+        goDatabaseSelector,
       ) => ({
         cta: {
-          type: 'button',
+          type: 'actions',
           displayed: true,
           disabled: false,
-          label: $translate.instant('hostings_order'),
-          value: $translate.instant('hostings_order'),
-          onClick: () => {
-            atInternet.trackClick({
-              name: 'web::hosting::index::order',
-              type: 'action',
-            });
-            $window.open(
-              getHostingOrderUrl(coreConfig.getUser().ovhSubsidiary),
-              '_blank',
-            );
-          },
+          menuText: $translate.instant('hostings_order'),
+          actions: [
+            {
+              id: 'first-action-item',
+              displayed: true,
+              disabled: false,
+              label: $translate.instant('hostings_order_hosting'),
+              value: $translate.instant('hostings_order_hosting'),
+              onClick: () => {
+                atInternet.trackClick({
+                  name: 'web::hosting::index::order',
+                  type: 'action',
+                });
+                $window.open(
+                  getHostingOrderUrl(coreConfig.getUser().ovhSubsidiary),
+                  '_blank',
+                );
+              },
+            },
+            {
+              id: 'second-action-item',
+              displayed: true,
+              disabled: false,
+              label: $translate.instant('hostings_order_sql'),
+              value: $translate.instant('hostings_order_sql'),
+              onClick: () => {
+                $window.open(goDatabaseSelector, '_self');
+              },
+            },
+          ],
         },
       }),
       hideBreadcrumb: () => true,
