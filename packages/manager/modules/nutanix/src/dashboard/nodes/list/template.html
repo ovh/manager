@@ -1,6 +1,9 @@
 <oui-datagrid rows="$ctrl.nodesMapped" data-page-size="25" class="mt-5">
     <oui-datagrid-topbar>
-        <oui-button on-click="$ctrl.goToAddNode()"
+        <oui-button
+            data-on-click="$ctrl.goToAddNode()"
+            data-disabled="$ctrl.isMaxNodesReached"
+            data-oui-tooltip="{{ $ctrl.addNodeTooltipContent }}"
             ><span
                 data-translate="nutanix_dashboard_nodes_list_add_nodes"
             ></span
