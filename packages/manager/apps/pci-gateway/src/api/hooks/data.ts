@@ -1,11 +1,11 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getMacroRegion } from '@ovh-ux/manager-react-components';
-import { TCatalog } from '@ovh-ux/manager-pci-common';
+import { TAddon } from '@ovh-ux/manager-pci-common';
 import { useCloudCatalog } from '@/api/hooks/cloud-catalog';
 import { useAvailableGatewayPlans } from '@/api/hooks/gateway-plans';
-import { TAvailableGatewayPlansResponse } from '@/api/data/gateway-plans';
-import { useInactiveRegions } from '@/api/hooks/useInactiveRegions';
+import { TPlan, TPlanRegion } from '@/api/data/gateway-plans';
+import { RegionType } from '@/types/region';
 
 const getLitteralProductSize = (productName: string): string => {
   const [, size] = /-([^-]+)$/.exec(productName) || [];
@@ -21,6 +21,7 @@ export type TAvailableRegion = {
   macroName: string;
   microName: string;
   continent: string;
+  type: RegionType;
 };
 
 export type TSizeItem = {
@@ -33,133 +34,117 @@ export type TSizeItem = {
   availableRegions: TAvailableRegion[];
 };
 
+export type TAvailablePlansGrouped = {
+  [key: string]: { code: string; regions: TPlanRegion[] };
+};
+
+const getPrice = (addon: TAddon): number | undefined =>
+  addon?.pricings.find((price) => price.capacities.includes('consumption'))
+    ?.price;
+
 export const useData = (projectId: string) => {
-  const { i18n, t: tSelector } = useTranslation('catalog-selector');
-  const { t: tRegion } = useTranslation('regions');
+  const { t } = useTranslation(['catalog-selector', 'regions']);
   const { data: cloudCatalog } = useCloudCatalog();
   const { data: availableGatewayPlans } = useAvailableGatewayPlans(projectId);
 
-  const { data: inactiveRegions } = useInactiveRegions(projectId);
+  const getBandWidthLabel = (bandwidth: number) =>
+    bandwidth > 1000
+      ? t(`pci_projects_project_gateways_model_selector_bandwidth`, {
+          bandwidth: bandwidth / 1000,
+        }) +
+        t(
+          'pci_projects_project_gateways_model_selector_bandwidth_unit_size_gbps',
+        )
+      : t(`pci_projects_project_gateways_model_selector_bandwidth`, {
+          bandwidth,
+        }) +
+        t(
+          'pci_projects_project_gateways_model_selector_bandwidth_unit_size_mbps',
+        );
 
-  const [sizes, setSizes] = useState<TSizeItem[]>([]);
+  const mergedRegionPlan = useMemo(
+    () =>
+      availableGatewayPlans?.plans.reduce(
+        (result: TAvailablePlansGrouped, currentValue: TPlan) => {
+          const code = currentValue.code.replace(/\.3AZ$/, '');
+          const newResult = { ...result };
 
-  const isRegionActive = useCallback(
-    (region: { name: string }) =>
-      !inactiveRegions?.some(
-        (inactiveRegion) => inactiveRegion.name === region.name,
+          if (newResult[code]) {
+            newResult[code] = {
+              code,
+              regions: [...newResult[code].regions, ...currentValue.regions],
+            };
+          } else {
+            newResult[code] = currentValue;
+          }
+
+          return newResult;
+        },
+        {},
       ),
-    [inactiveRegions],
+    [availableGatewayPlans],
   );
 
-  useEffect(() => {
-    if (availableGatewayPlans && cloudCatalog && inactiveRegions) {
-      const gatewayPlansWithRegions = availableGatewayPlans.plans.filter(
-        (plan) => plan.regions.length,
-      );
+  const gatewayRefPlans = useMemo(
+    () =>
+      mergedRegionPlan
+        ? Object.values(mergedRegionPlan).filter((plan) =>
+            plan.code.includes('hour'),
+          )
+        : [],
+    [mergedRegionPlan],
+  );
 
-      const newSizes = gatewayPlansWithRegions
-        .reduce(
-          (accumulator, currentValue) => {
-            const addon = cloudCatalog.addons.find(
-              ($addon) => $addon.planCode === currentValue.code,
-            );
-            const plansProductName = addon.product;
+  const sizes: TSizeItem[] = useMemo(() => {
+    if (cloudCatalog) {
+      return gatewayRefPlans.map((plan) => {
+        const addonHourly = cloudCatalog.addons.find(
+          ($addon) => $addon.planCode === plan.code,
+        );
 
-            const isHourly = addon.planCode.includes('hour');
+        const addonMonthly = cloudCatalog.addons.find(
+          ($addon) => $addon.planCode === plan.code.replace('hour', 'month'),
+        );
 
-            const foundProduct = accumulator.find(
-              (product) => product.name === plansProductName,
-            );
+        const hourlyPrice = getPrice(addonHourly);
+        const monthlyPrice = getPrice(addonMonthly);
 
-            if (foundProduct) {
-              if (isHourly) {
-                foundProduct.hourly = { addon, plan: currentValue };
-              } else {
-                foundProduct.monthly = { addon, plan: currentValue };
-              }
-            } else {
-              const newProduct = isHourly
-                ? {
-                    name: plansProductName,
-                    hourly: { addon, plan: currentValue },
-                  }
-                : {
-                    name: plansProductName,
-                    monthly: { addon, plan: currentValue },
-                  };
-              accumulator.push(newProduct);
-            }
-            return accumulator;
-          },
-          [] as {
-            name: string;
-            hourly?: {
-              plan: TAvailableGatewayPlansResponse['plans'][0];
-              addon: TCatalog['addons'][0];
-            };
-            monthly?: {
-              plan: TAvailableGatewayPlansResponse['plans'][0];
-              addon: TCatalog['addons'][0];
-            };
-          }[],
-        )
-        .map((product) => {
-          const size: TSizeItem = {
-            payload: getLitteralProductSize(product.name),
-            label: `${tSelector(
-              `pci_projects_project_gateways_model_selector_size`,
-            )} ${getLitteralProductSize(product.name).toUpperCase()}`,
-            bandwidth: product.hourly.addon.blobs.technical.bandwidth.level,
-            bandwidthLabel: ((bandwidthLevel: number) =>
-              bandwidthLevel > 1000
-                ? tSelector(
-                    `pci_projects_project_gateways_model_selector_bandwidth`,
-                    { bandwidth: bandwidthLevel / 1000 },
-                  ) +
-                  tSelector(
-                    'pci_projects_project_gateways_model_selector_bandwidth_unit_size_gbps',
-                  )
-                : tSelector(
-                    `pci_projects_project_gateways_model_selector_bandwidth`,
-                    { bandwidth: bandwidthLevel },
-                  ) +
-                  tSelector(
-                    'pci_projects_project_gateways_model_selector_bandwidth_unit_size_mbps',
-                  ))(product.hourly.addon.blobs.technical.bandwidth.level),
-            hourlyPrice: product.hourly.addon.pricings.find((price) =>
-              price.capacities.includes('consumption'),
-            )?.price,
-            monthlyPrice: product.monthly.addon.pricings.find((price) =>
-              price.capacities.includes('consumption'),
-            )?.price,
-            availableRegions: product.monthly.plan?.regions.map((region) => ({
-              name: region.name,
-              datacenter: region.datacenter,
-              continentCode: region.continentCode,
-              enabled: region.enabled,
-              active: isRegionActive(region),
-              macroName: tRegion(
-                `manager_components_region_${getMacroRegion(region.name)}`,
-              ),
-              microName: tRegion(
-                `manager_components_region_${getMacroRegion(
-                  region.name,
-                )}_micro`,
-                { micro: region.name },
-              ),
-              continent: tRegion(
-                `manager_components_region_continent_${getMacroRegion(
-                  region.name,
-                )}`,
-              ),
-            })),
-          };
-          return size;
-        });
-
-      setSizes(newSizes?.sort((a, b) => a.monthlyPrice - b.monthlyPrice));
+        return {
+          payload: getLitteralProductSize(addonHourly.product),
+          label: `${t(
+            `pci_projects_project_gateways_model_selector_size`,
+          )} ${getLitteralProductSize(addonHourly.product).toUpperCase()}`,
+          bandwidth: addonHourly.blobs.technical.bandwidth.level,
+          bandwidthLabel: getBandWidthLabel(
+            addonHourly.blobs.technical.bandwidth.level,
+          ),
+          hourlyPrice,
+          monthlyPrice,
+          availableRegions: plan.regions.map((region) => ({
+            ...region,
+            macroName: t(
+              `regions:manager_components_region_${getMacroRegion(
+                region.name,
+              )}`,
+            ),
+            microName: t(
+              `regions:manager_components_region_${getMacroRegion(
+                region.name,
+              )}_micro`,
+              { micro: region.name },
+            ),
+            continent: t(
+              `regions:manager_components_region_continent_${getMacroRegion(
+                region.name,
+              )}`,
+            ),
+          })) as TAvailableRegion[],
+        };
+      });
     }
-  }, [availableGatewayPlans, cloudCatalog, inactiveRegions, i18n]);
 
-  return sizes;
+    return [];
+  }, [gatewayRefPlans, cloudCatalog]);
+
+  return sizes.sort((a, b) => a.monthlyPrice - b.monthlyPrice);
 };
