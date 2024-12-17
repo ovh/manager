@@ -19,5 +19,7 @@
   "nutanix_cluster_unit_gbps": "{{t0}} Gbps",
   "nutanix_dashboard_technical_details_cpu_frequency_unit": "GHz",
   "nutanix_dashboard_technical_details_ram_size_unit": "Go",
-  "nutanix_dashboard_technical_details_ram_frequency_unit": "MHz"
+  "nutanix_dashboard_technical_details_ram_frequency_unit": "MHz",
+  "nutanix_dashboard_service_status_active": "Actif",
+  "nutanix_dashboard_service_status_suspended": "Suspendu"
 }

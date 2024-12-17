@@ -1,14 +1,14 @@
 {
   "nutanix_dashboard_nodes_list_display_name": "Nom du noeud",
-  "nutanix_dashboard_nodes_list_type_of_server": "Type de serveur",
-  "nutanix_dashboard_nodes_list_status": "Statut du noeud",
+  "nutanix_dashboard_nodes_list_type_of_server": "Serveur",
+  "nutanix_dashboard_nodes_list_status": "Statut",
   "nutanix_dashboard_nodes_list_localisation": "Localisation",
-  "nutanix_dashboard_nodes_list_status_OK": "Normal",
-  "nutanix_dashboard_nodes_list_status_ERROR": "En erreur",
-  "nutanix_dashboard_nodes_list_status_HACKED": "Hacké",
-  "nutanix_dashboard_nodes_list_status_HACKED_BLOCKED": "Hacké et bloqué",
+  "nutanix_dashboard_nodes_list_os_installed": "OS installé",
+  "nutanix_dashboard_nodes_list_node_ip": "IP du noeud",
+  "nutanix_dashboard_nodes_list_node_cvm": "IP CVM",
   "nutanix_dashboard_nodes_list_localisation_value": "{{dcName}} (Baie {{rackName}})",
   "nutanix_dashboard_nodes_list_data_hidden": "CACHÉ",
   "nutanix_dashboard_nodes_list_add_nodes": "Ajouter des noeuds",
-  "nutanix_dashboard_nodes_add_node_max_node_tooltip": "Vous avez atteint le nombre maximum de noeuds autorisés dans un cluster"
+  "nutanix_dashboard_nodes_add_node_max_node_tooltip": "Vous avez atteint le nombre maximum de noeuds autorisés dans un cluster",
+  "nutanix_dashboard_nodes_suspended_tooltip": "Pour ré-activer le noeud veuillez contacter le support"
 }
