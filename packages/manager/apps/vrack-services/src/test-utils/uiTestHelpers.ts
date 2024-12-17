@@ -104,13 +104,15 @@ export const getButtonByIcon = async ({
 export const changeInputValueByLabelText = async ({
   inputLabel,
   value,
+  number = 0,
 }: {
   inputLabel: string;
   value: string;
+  number?: number;
 }) => {
   const odsForm: HTMLElement = screen
-    .getByText(inputLabel)
-    ?.closest('osds-form-field');
+    .getAllByText(inputLabel)
+    [number]?.closest('osds-form-field');
   const odsInput = odsForm.querySelector('osds-input');
   const event = new CustomEvent('odsValueChange', {
     detail: { value },
