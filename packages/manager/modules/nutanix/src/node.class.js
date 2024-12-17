@@ -38,6 +38,6 @@ export default class Node {
   }
 
   get isWaitForConfigure() {
-    return !this.isResilied && !this.isDeployed;
+    return !this.isTerminated && !this.isDeployed;
   }
 }

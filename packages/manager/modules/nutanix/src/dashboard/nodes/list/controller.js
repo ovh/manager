@@ -1,18 +1,21 @@
-import { NODE_BADGE_STATE } from './constants';
-import { MAX_NODES_BY_CLUSTER } from '../../../constants';
+import { MAX_NODES_BY_CLUSTER, SERVICE_STATES } from '../../../constants';
 
 export default class NutanixAllNodesCtrl {
   /* @ngInject */
-  constructor(ovhManagerRegionService, $translate) {
+  constructor(NutanixService, ovhManagerRegionService, $translate) {
     this.ovhManagerRegionService = ovhManagerRegionService;
     this.$translate = $translate;
-    this.NODE_BADGE_STATE = NODE_BADGE_STATE;
+    this.NutanixService = NutanixService;
     this.nodesMapped = [];
+    this.loadingNodesStatus = false;
+    this.SERVICE_STATES = SERVICE_STATES;
   }
 
   $onInit() {
-    const uniqueStates = [...new Set(this.nodes.map(({ state }) => state))];
-    this.mapNodes = this.mapAllNodes();
+    const uniqueStates = [
+      ...new Set(this.nodes.map(({ serviceStatus }) => serviceStatus)),
+    ];
+    this.mapAllNodes();
 
     this.isMaxNodesReached = this.nodes.length >= MAX_NODES_BY_CLUSTER;
     this.addNodeTooltipContent = this.isMaxNodesReached
@@ -26,7 +29,7 @@ export default class NutanixAllNodesCtrl {
         (options, status) => ({
           ...options,
           [status]: this.$translate.instant(
-            `nutanix_dashboard_nodes_list_status_${status}`,
+            `nutanix_dashboard_service_status_${status}`,
           ),
         }),
         {},
@@ -43,6 +46,7 @@ export default class NutanixAllNodesCtrl {
       node.displayName !== null
         ? node
         : {
+            ...node,
             isHiddenNode: true,
             iam: {
               displayName: this.$translate.instant(
