@@ -40,13 +40,7 @@ import {
   getZimbraPlatformMailingListsQueryKey,
 } from '@/api/mailinglist';
 import { DomainType } from '@/api/domain';
-import {
-  ACCOUNT_REGEX,
-  checkValidityField,
-  checkValidityForm,
-  FormTypeInterface,
-  OWNER_REGEX,
-} from '@/utils';
+import { ACCOUNT_REGEX, OWNER_REGEX } from '@/utils';
 import queryClient from '@/queryClient';
 import {
   ADD_MAILING_LIST,
@@ -54,6 +48,7 @@ import {
   CONFIRM,
   EDIT_MAILING_LIST,
 } from '@/tracking.constant';
+import { FormTypeInterface, useForm } from '@/hooks/useForm';
 
 const replyToChoices = [
   {
@@ -104,7 +99,6 @@ export default function MailingListSettings({
   const editMailingListId = searchParams.get('editMailingListId');
   const organizationIdParam = searchParams.get('organizationId');
   const trackingName = editMailingListId ? EDIT_MAILING_LIST : ADD_MAILING_LIST;
-  const [isFormValid, setIsFormValid] = useState(false);
   const [selectedDomainOrganization, setSelectedDomainOrganization] = useState(
     '',
   );
@@ -112,51 +106,42 @@ export default function MailingListSettings({
 
   const goBack = () => navigate(goBackUrl);
 
-  const [form, setForm] = useState<FormTypeInterface>({
+  const { form, setForm, isFormValid, setValue } = useForm({
     ...{
       account: {
         value: '',
         defaultValue: '',
-        touched: false,
         required: true,
         validate: ACCOUNT_REGEX,
       },
       domain: {
         value: '',
         defaultValue: '',
-        touched: false,
         required: true,
       },
       defaultReplyTo: {
         value: '',
         defaultValue: '',
-        touched: false,
         required: true,
       },
       owner: {
         value: '',
         defaultValue: '',
-        touched: false,
         required: true,
         validate: OWNER_REGEX,
       },
       language: {
         value: '',
         defaultValue: '',
-        touched: false,
         required: true,
       },
       moderationOption: {
         value: '',
         defaultValue: '',
-        touched: false,
-        required: false,
       },
       subscriberModeration: {
         value: '',
         defaultValue: '',
-        touched: false,
-        required: false,
       },
     },
   });
@@ -204,23 +189,11 @@ export default function MailingListSettings({
     }
   }, [editMailingListDetail]);
 
-  const handleFormChange = (name: string, value: string) => {
-    const newForm: FormTypeInterface = form;
-    newForm[name] = {
-      ...form[name],
-      value,
-      touched: true,
-      hasError: !checkValidityField(name, value, form),
-    };
-    setForm((oldForm) => ({ ...oldForm, ...newForm }));
-    setIsFormValid(checkValidityForm(form));
-  };
-
   const handleDomainChange = (selectedDomain: string) => {
     const organizationLabel = domainList.find(
       ({ currentState }) => currentState.name === selectedDomain,
     )?.currentState.organizationLabel;
-    handleFormChange('domain', selectedDomain);
+    setValue('domain', selectedDomain);
     setSelectedDomainOrganization(organizationLabel);
   };
 
@@ -315,14 +288,14 @@ export default function MailingListSettings({
             hasError={form.account.hasError}
             value={form.account.value}
             defaultValue={form.account.defaultValue}
-            isRequired
+            isRequired={form.account.required}
             className="w-1/2"
             data-testid="input-account"
             onOdsBlur={({ target: { name, value } }) =>
-              handleFormChange(name, value.toString())
+              setValue(name, value.toString(), true)
             }
             onOdsChange={({ detail: { name, value } }) => {
-              handleFormChange(name, String(value));
+              setValue(name, String(value));
             }}
           ></OdsInput>
           <OdsInput
@@ -339,7 +312,7 @@ export default function MailingListSettings({
             defaultValue={form.domain.defaultValue}
             className="w-1/2"
             hasError={form.domain.hasError}
-            isRequired
+            isRequired={form.domain.required}
             onOdsChange={(e) => handleDomainChange(e.detail.value)}
             placeholder={t('zimbra_mailinglist_add_select_domain_placeholder')}
             data-testid="select-domain"
@@ -373,14 +346,14 @@ export default function MailingListSettings({
             hasError={form.owner.hasError}
             value={form.owner.value}
             defaultValue={form.owner.defaultValue}
-            isRequired
+            isRequired={form.owner.required}
             className="w-1/2"
             data-testid="input-owner"
             onOdsBlur={({ target: { name, value } }) =>
-              handleFormChange(name, value.toString())
+              setValue(name, value.toString(), true)
             }
             onOdsChange={({ detail: { name, value } }) => {
-              handleFormChange(name, String(value));
+              setValue(name, String(value));
             }}
           ></OdsInput>
         </div>
@@ -397,7 +370,7 @@ export default function MailingListSettings({
                 name="defaultReplyTo"
                 value={value}
                 onOdsChange={(event) =>
-                  handleFormChange('defaultReplyTo', event.detail.value)
+                  setValue('defaultReplyTo', event.detail.value)
                 }
                 data-testid={`radio-reply-to-${value}`}
               ></OdsRadio>
@@ -417,9 +390,9 @@ export default function MailingListSettings({
           value={form.language.value}
           className="w-1/2"
           hasError={form.language.hasError}
-          isRequired
+          isRequired={form.language.required}
           data-testid="select-language"
-          onOdsChange={(e) => handleFormChange(e.detail.name, e.detail.value)}
+          onOdsChange={(e) => setValue(e.detail.name, e.detail.value)}
           defaultValue=""
           placeholder={t('zimbra_mailinglist_add_select_language_placeholder')}
         >
@@ -442,7 +415,7 @@ export default function MailingListSettings({
                 name="moderationOption"
                 value={value}
                 onOdsChange={(event) =>
-                  handleFormChange('moderationOption', event.detail.value)
+                  setValue('moderationOption', event.detail.value)
                 }
                 data-testid={`radio-moderation-option-${value}`}
               ></OdsRadio>
@@ -456,12 +429,17 @@ export default function MailingListSettings({
               className="mt-4"
               data-testid="toggle-subscriber-moderation"
               onOdsChange={() =>
-                handleFormChange(
+                setValue(
                   'subscriberModeration',
                   form.subscriberModeration.value === 'true' ? 'false' : 'true',
                 )
               }
-              value={form.subscriberModeration.value === 'true' ? true : null}
+              value={form.subscriberModeration.value === 'true'}
+              defaultValue={
+                (form.subscriberModeration.value as unknown) as
+                  | (false & readonly string[])
+                  | (true & readonly string[]) // this type is broken is ODS
+              }
               withLabel
               name="toggle-subscriber-moderation"
             ></OdsToggle>
