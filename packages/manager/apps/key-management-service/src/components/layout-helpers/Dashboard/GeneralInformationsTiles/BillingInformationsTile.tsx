@@ -10,16 +10,19 @@ import {
   ODS_ICON_SIZE,
   ODS_TEXT_COLOR_INTENT,
 } from '@ovhcloud/ods-components';
-import { Outlet, useNavigate } from 'react-router-dom';
 import { OsdsChip, OsdsIcon, OsdsLink } from '@ovhcloud/ods-components/react';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   ButtonType,
   PageLocation,
+  PageType,
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { OKMS } from '@/types/okms.type';
+import { useTerminateOKms } from '@/data/hooks/useTerminateOKms';
+import { TerminateModal } from '@/components/Modal/terminate/TerminateModal.component';
 import { OkmsServiceState } from '../okmsServiceState/OkmsServiceState.component';
 import { Tile } from '@/components/dashboard/tile/tile.component';
 import { TileItem } from '@/components/dashboard/tile-item/tileItem.component';
@@ -27,25 +30,47 @@ import { TileValue } from '@/components/dashboard/tile-value/tileValue.component
 import { TileSeparator } from '@/components/dashboard/tile-separator/tileSeparator';
 import { TileValueDate } from '@/components/dashboard/tile-value-date/tileValueDate.component';
 import { DISPLAY_CONTACTS_MANAGEMENT_KEY } from './BillingInformationsTile.constants';
-import { ROUTES_URLS } from '@/routes/routes.constants';
 
 type BillingInformationsTileProps = {
+  okmsData?: OKMS;
   okmsService?: ServiceDetails;
 };
 
 const BillingInformationsTile = ({
+  okmsData,
   okmsService,
 }: BillingInformationsTileProps) => {
   const { t } = useTranslation('key-management-service/dashboard');
-  const navigate = useNavigate();
-  const { trackClick } = useOvhTracking();
+  const { trackClick, trackPage } = useOvhTracking();
   const [contactUrl, setContactUrl] = useState('');
+  const [showTerminationModal, setShowTerminationModal] = useState(false);
   const { data: availability } = useFeatureAvailability([
     DISPLAY_CONTACTS_MANAGEMENT_KEY,
   ]);
   const {
     shell: { navigation },
   } = useContext(ShellContext);
+  const closeTerminateModal = () => {
+    setShowTerminationModal(false);
+  };
+
+  const { terminateKms, isPending } = useTerminateOKms({
+    okmsId: okmsData.id,
+    onSuccess: () => {
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: 'delete_kms_success',
+      });
+      closeTerminateModal();
+    },
+    onError: () => {
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: 'delete_kms_error',
+      });
+      closeTerminateModal();
+    },
+  });
 
   const dateFormat: Intl.DateTimeFormatOptions = {
     day: '2-digit',
@@ -65,7 +90,7 @@ const BillingInformationsTile = ({
           actionType: 'navigation',
           actions: ['delete_kms'],
         });
-        navigate(ROUTES_URLS.terminateOkms);
+        setShowTerminationModal(true);
       },
     },
   ];
@@ -187,7 +212,13 @@ const BillingInformationsTile = ({
           </>
         )}
       </Tile>
-      <Outlet />
+      {showTerminationModal && (
+        <TerminateModal
+          onConfirmTerminate={terminateKms}
+          closeModal={closeTerminateModal}
+          isLoading={isPending}
+        />
+      )}
     </>
   );
 };
