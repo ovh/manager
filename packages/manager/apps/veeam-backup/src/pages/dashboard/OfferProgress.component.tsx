@@ -24,9 +24,6 @@ export const OfferProgress: React.FC<VeeamBackupOffer> = ({
 }) => {
   const { t } = useTranslation('dashboard');
   const percent = (usedSpaceInGB / (quotaInTB * 10)).toFixed(2);
-  const usedSpaceLabel = `${usedSpaceInGB} ${t('gigabyte')}`;
-  const quotaSpaceLabel = `${quotaInTB} ${t('terabyte')}`;
-  const label = `${usedSpaceLabel} / ${quotaSpaceLabel} (${percent}%)`;
 
   return (
     <div className="flex flex-col">
@@ -36,7 +33,7 @@ export const OfferProgress: React.FC<VeeamBackupOffer> = ({
           size={ODS_TEXT_SIZE._500}
           color={ODS_THEME_COLOR_INTENT.text}
         >
-          {label}
+          {t('space_summary', { usedSpaceInGB, quotaInTB, percent })}
         </OsdsText>
         <OsdsTooltip>
           <OsdsIcon
