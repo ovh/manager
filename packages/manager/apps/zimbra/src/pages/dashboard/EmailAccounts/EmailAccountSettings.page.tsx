@@ -208,7 +208,7 @@ export default function EmailAccountSettings({
       domain: { value: domain },
     } = form;
     let dataBody = {
-      email: `${account}@${domain}`,
+      email: `${account}@${domain}`.toLowerCase(),
     };
     Object.entries(form).forEach(([key, { value }]) => {
       if (
