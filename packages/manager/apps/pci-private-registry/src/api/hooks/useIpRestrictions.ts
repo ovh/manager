@@ -18,10 +18,7 @@ import { paginateResults } from '@/helpers';
 
 export type TUpdateIpRestrictionMutationParams = {
   cidrToUpdate: Record<FilterRestrictionsServer, TIPRestrictionsDefault[]>;
-  action:
-    | TIPRestrictionsMethodEnum.DELETE
-    | TIPRestrictionsMethodEnum.REPLACE
-    | TIPRestrictionsMethodEnum.ADD;
+  action: TIPRestrictionsMethodEnum;
 };
 
 export const getRegistryQueyPrefixWithId = (

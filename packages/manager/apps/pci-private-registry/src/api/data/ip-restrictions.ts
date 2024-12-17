@@ -15,6 +15,18 @@ export const fetchV6URl = async (url: string): Promise<TIPRestrictions[]> => {
   return data;
 };
 
+/**
+ * Aggregates IP restrictions data from multiple authorizations by calling APIs and combining the results.
+ *
+ * This function fetches IP restriction data for each provided authorization type, enriches it with metadata,
+ * and aggregates the data by a specific key (`ipBlock` and `authorization`).
+ *
+ * @param projectId - The identifier of the project.
+ * @param registryId - The identifier of the registry.
+ * @param authorization - A list of authorization types to fetch IP restrictions for.
+ * @returns - A promise that resolves to an array of aggregated IP restrictions,
+ * enriched with metadata such as `draft`, `checked`, and `id`. Returns an empty array if no data is fetched.
+ */
 export const getIpRestrictions = async (
   projectId: string,
   registryId: string,
@@ -22,62 +34,68 @@ export const getIpRestrictions = async (
 ) => {
   const data = await Promise.all(
     authorization.map(async (auth) => {
-      const getDataServer = await fetchV6URl(
+      const getListRestrictions = await fetchV6URl(
         `${baseUrl(projectId, registryId)}/${auth}`,
       );
-      return getDataServer.map((ipBlocks) => ({
+      return getListRestrictions.map((ipBlocks) => ({
         ...ipBlocks,
         authorization: auth,
       }));
     }),
   );
-  if (data.length) {
-    const newData = data.flat().map((restriction) => ({
-      ...restriction,
-      draft: false,
-      checked: false,
-      id: restriction.ipBlock,
-    }));
-    return aggregateBySpecificKey(newData, 'ipBlock', 'authorization');
-  }
-  return [];
+
+  const restrictionData = data.flat().map((restriction) => ({
+    ...restriction,
+    draft: false,
+    checked: false,
+    id: restriction.ipBlock,
+  }));
+  return aggregateBySpecificKey(restrictionData, 'ipBlock', 'authorization');
 };
 
 // Function to iterate through entries and handle each authorization
-export const processIpBlock = async (
-  projectId: string,
-  registryId: string,
-  authorization: FilterRestrictionsServer,
-  values: TIPRestrictionsDefault[],
-  action:
-    | TIPRestrictionsMethodEnum.DELETE
-    | TIPRestrictionsMethodEnum.REPLACE
-    | TIPRestrictionsMethodEnum.ADD,
-) => {
+export const processIpBlock = async ({
+  projectId,
+  registryId,
+  authorization,
+  values,
+  action,
+}: {
+  projectId: string;
+  registryId: string;
+  authorization: FilterRestrictionsServer;
+  values: TIPRestrictionsDefault[];
+  action: TIPRestrictionsMethodEnum;
+}) => {
   const dataRegistry = await fetchV6URl(
     `${baseUrl(projectId, registryId)}/${authorization}`,
   );
 
-  values.forEach((value) => {
-    const blockIndex = dataRegistry.findIndex(
-      (item) => value.ipBlock === item.ipBlock,
-    );
+  const updatedRegistry = values.reduce((acc, value) => {
+    const blockIndex = acc.findIndex((item) => value.ipBlock === item.ipBlock);
 
-    if (blockIndex !== -1) {
-      if (action === TIPRestrictionsMethodEnum.DELETE) {
-        dataRegistry.splice(blockIndex, 1);
-      }
-      if (action === TIPRestrictionsMethodEnum.REPLACE) {
-        dataRegistry[blockIndex] = value;
-      }
-    } else {
-      dataRegistry.push(value);
+    switch (action) {
+      case TIPRestrictionsMethodEnum.DELETE:
+        return blockIndex !== -1
+          ? acc.filter((_, index) => index !== blockIndex)
+          : acc;
+
+      case TIPRestrictionsMethodEnum.REPLACE:
+        return blockIndex !== -1
+          ? acc.map((item, index) => (index === blockIndex ? value : item))
+          : [...acc, value];
+
+      case TIPRestrictionsMethodEnum.ADD:
+        return blockIndex === -1 ? [...acc, value] : acc;
+
+      default:
+        return acc;
     }
-  });
+  }, dataRegistry);
 
   return v6.put(
     `${baseUrl(projectId, registryId)}/${authorization}`,
-    dataRegistry.map((registry) => ({
+    updatedRegistry.map((registry) => ({
       ipBlock: registry.ipBlock,
       description: registry.description,
     })),
@@ -88,20 +106,17 @@ export const updateIpRestriction = async (
   projectId: string,
   registryId: string,
   cidrToUpdate: Record<FilterRestrictionsServer, TIPRestrictionsDefault[]>,
-  action:
-    | TIPRestrictionsMethodEnum.DELETE
-    | TIPRestrictionsMethodEnum.REPLACE
-    | TIPRestrictionsMethodEnum.ADD,
+  action: TIPRestrictionsMethodEnum,
 ) => {
   const entries = Object.entries(cidrToUpdate);
   const promises = entries.map(([authorization, values]) =>
-    processIpBlock(
+    processIpBlock({
       projectId,
       registryId,
-      authorization as FilterRestrictionsServer,
+      authorization: authorization as FilterRestrictionsServer,
       values,
       action,
-    ),
+    }),
   );
   return Promise.all(promises);
 };

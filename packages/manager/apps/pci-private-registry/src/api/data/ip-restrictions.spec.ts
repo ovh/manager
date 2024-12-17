@@ -6,7 +6,12 @@ import {
   processIpBlock,
 } from './ip-restrictions';
 
-import { FilterRestrictionsServer, TIPRestrictionsDefault } from '@/types';
+import {
+  FilterRestrictionsServer,
+  TIPRestrictionsData,
+  TIPRestrictionsDefault,
+  TIPRestrictionsMethodEnum,
+} from '@/types';
 
 const mockProjectId = 'testProjectId';
 const mockRegistryId = 'testRegistryId';
@@ -68,7 +73,7 @@ describe('IP Restrictions API', () => {
   });
 
   it('handles empty IP restrictions response', async () => {
-    const mockIpRestrictions = [];
+    const mockIpRestrictions: TIPRestrictionsData[] = [];
 
     vi.mocked(v6.get).mockResolvedValue({ data: mockIpRestrictions });
 
@@ -110,8 +115,11 @@ describe('updateIpRestriction', () => {
     const result = await updateIpRestriction(
       mockProjectId,
       mockRegistryId,
-      { management: mockUpdatedIp },
-      'REPLACE',
+      ({ management: mockUpdatedIp } as unknown) as Record<
+        FilterRestrictionsServer,
+        TIPRestrictionsDefault[]
+      >,
+      TIPRestrictionsMethodEnum.REPLACE,
     );
 
     expect(v6.put).toHaveBeenCalledWith(
@@ -141,8 +149,11 @@ describe('updateIpRestriction', () => {
     const result = await updateIpRestriction(
       mockProjectId,
       mockRegistryId,
-      { management: mockIpToDelete },
-      'DELETE',
+      ({ management: mockIpToDelete } as unknown) as Record<
+        FilterRestrictionsServer,
+        TIPRestrictionsDefault[]
+      >,
+      TIPRestrictionsMethodEnum.DELETE,
     );
 
     expect(v6.put).toHaveBeenCalledWith(
@@ -171,13 +182,13 @@ describe('processIpBlock', () => {
     vi.mocked(v6.get).mockResolvedValue({ data: mockExistingData });
     vi.mocked(v6.put).mockResolvedValue({ data: 'success' });
 
-    const resultReplace = await processIpBlock(
-      mockProjectId,
-      mockRegistryId,
-      'management',
-      mockNewIpBlock,
-      'REPLACE',
-    );
+    const resultReplace = await processIpBlock({
+      projectId: mockProjectId,
+      registryId: mockRegistryId,
+      authorization: 'management',
+      values: mockNewIpBlock,
+      action: TIPRestrictionsMethodEnum.REPLACE,
+    });
 
     expect(
       v6.put,
@@ -187,13 +198,13 @@ describe('processIpBlock', () => {
     );
     expect(resultReplace).toEqual({ data: 'success' });
 
-    const resultDelete = await processIpBlock(
-      mockProjectId,
-      mockRegistryId,
-      'management',
-      mockNewIpBlock,
-      'DELETE',
-    );
+    const resultDelete = await processIpBlock({
+      projectId: mockProjectId,
+      registryId: mockRegistryId,
+      authorization: 'management',
+      values: mockNewIpBlock,
+      action: TIPRestrictionsMethodEnum.DELETE,
+    });
 
     expect(v6.put).toHaveBeenCalledWith(
       `/cloud/project/${mockProjectId}/containerRegistry/${mockRegistryId}/ipRestrictions/management`,
@@ -220,8 +231,11 @@ describe('IP Restrictions Update API', () => {
     const result = await updateIpRestriction(
       'testProjectId',
       'testRegistryId',
-      { management: mockUpdatedIp },
-      'REPLACE',
+      ({ management: mockUpdatedIp } as unknown) as Record<
+        FilterRestrictionsServer,
+        TIPRestrictionsDefault[]
+      >,
+      TIPRestrictionsMethodEnum.REPLACE,
     );
 
     expect(v6.put).toHaveBeenCalledWith(
@@ -242,15 +256,20 @@ describe('IP Restrictions Update API', () => {
 
     vi.mocked(v6.get).mockResolvedValueOnce({ data: mockIpRestrictions });
 
-    const mockIpToDelete = [{ ipBlock: '192.168.0.2', description: 'value' }];
+    const mockIpToDelete = ([
+      { ipBlock: '192.168.0.2', description: 'value' },
+    ] as unknown) as TIPRestrictionsData[];
 
     vi.mocked(v6.put).mockResolvedValue({ data: 'success' });
 
     const result = await updateIpRestriction(
       'testProjectId',
       'testRegistryId',
-      { management: mockIpToDelete },
-      'DELETE',
+      ({ management: mockIpToDelete } as unknown) as Record<
+        FilterRestrictionsServer,
+        TIPRestrictionsDefault[]
+      >,
+      TIPRestrictionsMethodEnum.DELETE,
     );
 
     expect(v6.put).toHaveBeenCalledWith(
@@ -278,8 +297,11 @@ describe('IP Restrictions Update API', () => {
       updateIpRestriction(
         'testProjectId',
         'testRegistryId',
-        { management: [] },
-        'REPLACE',
+        ({ management: [] } as unknown) as Record<
+          FilterRestrictionsServer,
+          TIPRestrictionsDefault[]
+        >,
+        TIPRestrictionsMethodEnum.REPLACE,
       ),
     ).rejects.toThrow('Network Error');
   });
@@ -290,20 +312,20 @@ describe('IP Restrictions Process API', () => {
       { ipBlock: '192.168.0.2', description: 'oldValue' },
     ];
 
-    const mockNewIpBlock = [
+    const mockNewIpBlock = ([
       { ipBlock: '192.168.0.2', description: 'newValue' },
-    ];
+    ] as unknown) as TIPRestrictionsDefault[];
 
     vi.mocked(v6.get).mockResolvedValue({ data: mockExistingData });
     vi.mocked(v6.put).mockResolvedValue({ data: 'success' });
 
-    const resultReplace = await processIpBlock(
-      'testProjectId',
-      'testRegistryId',
-      'registry',
-      mockNewIpBlock,
-      'REPLACE',
-    );
+    const resultReplace = await processIpBlock({
+      projectId: 'testProjectId',
+      registryId: 'testRegistryId',
+      authorization: 'registry',
+      values: mockNewIpBlock as TIPRestrictionsDefault[],
+      action: TIPRestrictionsMethodEnum.REPLACE,
+    });
 
     expect(
       v6.put,
@@ -314,13 +336,13 @@ describe('IP Restrictions Process API', () => {
     expect(resultReplace).toEqual({ data: 'success' });
 
     // Testing DELETE action
-    const resultDelete = await processIpBlock(
-      'testProjectId',
-      'testRegistryId',
-      'registry',
-      mockNewIpBlock,
-      'DELETE',
-    );
+    const resultDelete = await processIpBlock({
+      projectId: 'testProjectId',
+      registryId: 'testRegistryId',
+      authorization: 'registry',
+      values: mockNewIpBlock,
+      action: TIPRestrictionsMethodEnum.DELETE,
+    });
 
     expect(v6.put).toHaveBeenCalledWith(
       '/cloud/project/testProjectId/containerRegistry/testRegistryId/ipRestrictions/registry',
@@ -338,13 +360,13 @@ describe('IP Restrictions Process API', () => {
     vi.mocked(v6.put).mockRejectedValue(new Error('Network Error'));
 
     await expect(
-      processIpBlock(
-        'testProjectId',
-        'testRegistryId',
-        'registry',
-        [],
-        'REPLACE',
-      ),
+      processIpBlock({
+        projectId: 'testProjectId',
+        registryId: 'testRegistryId',
+        authorization: 'registry',
+        values: [],
+        action: TIPRestrictionsMethodEnum.REPLACE,
+      }),
     ).rejects.toThrow('Network Error');
   });
 });

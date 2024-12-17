@@ -85,7 +85,9 @@ describe('useIpRestrictions Hook Tests', () => {
     (vi.mocked(getIpRestrictions) as Mock).mockResolvedValueOnce(mockData);
 
     const selectMock = vi.fn((data) =>
-      data.filter((item) => item.description === 'allow'),
+      data.filter(
+        (item: { description: string }) => item.description === 'allow',
+      ),
     );
 
     const { result } = renderIpRestrictionsHook(

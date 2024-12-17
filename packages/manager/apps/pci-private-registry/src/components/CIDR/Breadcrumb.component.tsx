@@ -14,7 +14,7 @@ const BreadcrumbCIDR = () => {
       items={[
         {
           href: hrefProject,
-          label: project.description,
+          label: project?.description,
         },
         {
           href: hrefBack,

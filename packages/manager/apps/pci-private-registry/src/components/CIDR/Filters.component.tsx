@@ -36,7 +36,7 @@ import useFilter from '@/pages/CIDR/useFilters';
 const Filters = ({ createNewRow }: { createNewRow: () => void }) => {
   const [searchField, setSearchField] = useState('');
   const { projectId, registryId } = useParams();
-  const filterPopoverRef = useRef(undefined);
+  const filterPopoverRef = useRef<HTMLOsdsPopoverElement | null>(null);
   const {
     filters,
     pagination,

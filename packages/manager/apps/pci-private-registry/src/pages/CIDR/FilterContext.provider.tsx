@@ -5,8 +5,9 @@ import {
 import { createContext } from 'react';
 
 const Context = createContext<
-  ReturnType<typeof useColumnFilters> & ReturnType<typeof useDataGrid>
->(null);
+  | (ReturnType<typeof useColumnFilters> & ReturnType<typeof useDataGrid>)
+  | Record<string, never>
+>({});
 
 const FilterProvider = ({ children }: { children: JSX.Element }) => {
   const dataGrid = useDataGrid();

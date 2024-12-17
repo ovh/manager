@@ -1,7 +1,7 @@
-// FilterContext.test.tsx
 import { render, screen, fireEvent } from '@testing-library/react';
-import { describe, it, expect, vi } from 'vitest';
-import { useDataGrid } from '@ovh-ux/manager-react-components';
+import { FilterComparator } from '@ovh-ux/manager-core-api';
+import { describe, it, expect } from 'vitest';
+
 import { FilterProvider } from './FilterContext.provider';
 import useFilterContext from './useFilters';
 
@@ -40,7 +40,7 @@ const TestComponent: React.FC = () => {
         <button
           onClick={() =>
             addFilter({
-              comparator: 'includes',
+              comparator: FilterComparator.Includes,
               label: '',
               key: 'example',
               value: 'value',

@@ -12,6 +12,7 @@ describe('Description  Component', () => {
       useForm({
         defaultValues: {
           authorization: [],
+          description: '',
         },
       }),
     );
