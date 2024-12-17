@@ -52,7 +52,7 @@ export default defineConfig({
       entry: path.resolve(pathSrc, 'index.ts'),
       name: 'ManagerPciCommonLib',
       fileName: 'index',
-      formats: ['es'],
+      formats: ['esm', 'cjs'],
     },
     rollupOptions: {
       external: (id) =>
