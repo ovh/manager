@@ -163,12 +163,7 @@ const Filters = ({ createNewRow }: { createNewRow: () => void }) => {
                   },
                 ]}
                 onAddFilter={(addedFilter, column) => {
-                  handleAddFilter(
-                    addedFilter.value,
-                    column.id,
-                    column.label,
-                    FilterComparator.IsEqual,
-                  );
+                  handleAddFilter(addedFilter.value, column.id, column.label);
                   filterPopoverRef.current?.closeSurface();
                 }}
               />
