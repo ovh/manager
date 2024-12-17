@@ -3,8 +3,10 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import {
   CreateCartResult,
+  Order,
   OrderDescription,
   getDeliveringOrderQueryKey,
+  postOrderCartCartIdCheckout,
 } from '@ovh-ux/manager-module-order';
 import {
   ShellContext,
@@ -14,7 +16,7 @@ import {
   TrackingClickParams,
 } from '@ovh-ux/manager-react-shell-client';
 import { useTranslation } from 'react-i18next';
-import { ApiError } from '@ovh-ux/manager-core-api';
+import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_TYPE,
@@ -34,7 +36,6 @@ import { LoadingText } from '@/components/LoadingText.component';
 import { OrderSubmitModalContent } from '@/components/OrderSubmitModalContent.component';
 import { createVrackServicesCart } from '@/utils/cart';
 import { urls } from '@/routes/routes.constants';
-import { MessagesContext } from '@/components/feedback-messages/Messages.context';
 
 const trackingParams: TrackingClickParams = {
   buttonType: ButtonType.button,
@@ -49,21 +50,57 @@ export default function CreateConfirmModal() {
   const { t } = useTranslation('vrack-services/create');
   const { trackClick } = useOvhTracking();
   const { region } = useParams();
-  const { addSuccessMessage } = React.useContext(MessagesContext);
   const { environment } = React.useContext(ShellContext);
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+
+  const {
+    mutate: sendOrder,
+    isPending: isSendOrderPending,
+    error: sendOrderError,
+    isError: isSendOrderError,
+  } = useMutation<ApiResponse<Order>, ApiError, { cartId: string }>({
+    mutationFn: ({ cartId }) =>
+      postOrderCartCartIdCheckout({
+        cartId,
+        autoPayWithPreferredPaymentMethod: true,
+        waiveRetractationPeriod: true,
+      }),
+    onError: async (error, { cartId }) => {
+      const {
+        request: { status },
+      } = error;
+
+      if (status === 400) {
+        const sendOrderResponse = await postOrderCartCartIdCheckout({
+          cartId,
+          autoPayWithPreferredPaymentMethod: false,
+          waiveRetractationPeriod: true,
+        });
+        window.top.location.href = sendOrderResponse.data.url;
+        return Promise.resolve(sendOrderResponse);
+      }
+
+      return Promise.resolve(error);
+    },
+  });
 
   const { mutate: createCart, data, error, isError, isPending } = useMutation<
     CreateCartResult,
     ApiError,
     { hasVrack?: boolean; region: string }
   >({
-    mutationFn: (params) =>
-      createVrackServicesCart({
+    mutationFn: async (params) => {
+      const createCartResponse = await createVrackServicesCart({
         ovhSubsidiary: environment.user.ovhSubsidiary,
         ...params,
-      }),
+      });
+
+      if (createCartResponse.contractList.length === 0)
+        await sendOrder({ cartId: createCartResponse.cartId });
+
+      return Promise.resolve(createCartResponse);
+    },
   });
 
   const cancel = () => {
@@ -80,27 +117,33 @@ export default function CreateConfirmModal() {
       headline={t('modalHeadline')}
       onOdsModalClose={cancel}
     >
-      {hasVrackOrderAsked && (
-        <OsdsText
-          className="block mb-4"
-          level={ODS_TEXT_LEVEL.body}
-          size={ODS_TEXT_SIZE._400}
-          color={ODS_THEME_COLOR_INTENT.text}
-        >
-          {t('modalDescriptionLine4')}
-        </OsdsText>
-      )}
-      {hasVrackServiceOrderAsked && (
-        <OsdsText
-          className="block mb-4"
-          level={ODS_TEXT_LEVEL.body}
-          size={ODS_TEXT_SIZE._400}
-          color={ODS_THEME_COLOR_INTENT.text}
-        >
-          {t('modalDescriptionLine5')}
-        </OsdsText>
-      )}
-      {!hasVrackServiceOrderAsked && (
+      {hasVrackOrderAsked &&
+        !isPending &&
+        !isSendOrderPending &&
+        !isSendOrderError && (
+          <OsdsText
+            className="block mb-4"
+            level={ODS_TEXT_LEVEL.body}
+            size={ODS_TEXT_SIZE._400}
+            color={ODS_THEME_COLOR_INTENT.text}
+          >
+            {t('modalDescriptionLine4')}
+          </OsdsText>
+        )}
+      {hasVrackServiceOrderAsked &&
+        !isPending &&
+        !isSendOrderPending &&
+        !isSendOrderError && (
+          <OsdsText
+            className="block mb-4"
+            level={ODS_TEXT_LEVEL.body}
+            size={ODS_TEXT_SIZE._400}
+            color={ODS_THEME_COLOR_INTENT.text}
+          >
+            {t('modalDescriptionLine5')}
+          </OsdsText>
+        )}
+      {(!hasVrackServiceOrderAsked || isPending || isSendOrderPending) && (
         <>
           <OsdsText
             className="block mb-4"
@@ -135,7 +178,24 @@ export default function CreateConfirmModal() {
           </OsdsText>
         </OsdsMessage>
       )}
-      {isPending && <LoadingText title={t('modalCreateOrderWaitMessage')} />}
+      {isSendOrderError && !isSendOrderError && (
+        <OsdsMessage
+          color={ODS_THEME_COLOR_INTENT.error}
+          icon={ODS_ICON_NAME.ERROR_CIRCLE}
+          className="mb-6"
+        >
+          <OsdsText
+            level={ODS_TEXT_LEVEL.body}
+            size={ODS_TEXT_SIZE._400}
+            color={ODS_THEME_COLOR_INTENT.text}
+          >
+            {sendOrderError?.response?.data?.message}
+          </OsdsText>
+        </OsdsMessage>
+      )}
+      {(isPending || isSendOrderPending) && (
+        <LoadingText title={t('modalCreateOrderWaitMessage')} />
+      )}
       <OsdsButton
         slot="actions"
         type={ODS_BUTTON_TYPE.button}
@@ -150,7 +210,7 @@ export default function CreateConfirmModal() {
           submitButtonLabel={t('modalSubmitOrderButtonLabel')}
           cartId={data?.cartId}
           contractList={data?.contractList}
-          onSuccess={async (orderResponse) => {
+          onSuccess={async () => {
             await queryClient.invalidateQueries({
               queryKey: getDeliveringOrderQueryKey(
                 OrderDescription.vrackServices,
@@ -171,7 +231,7 @@ export default function CreateConfirmModal() {
             type={ODS_BUTTON_TYPE.button}
             variant={ODS_BUTTON_VARIANT.stroked}
             color={ODS_THEME_COLOR_INTENT.primary}
-            disabled={isPending || undefined}
+            disabled={isPending || isSendOrderPending || undefined}
             {...handleClick(() => {
               setHasVrackServiceOrderAsked(true);
               trackClick({
@@ -188,7 +248,7 @@ export default function CreateConfirmModal() {
             type={ODS_BUTTON_TYPE.button}
             variant={ODS_BUTTON_VARIANT.flat}
             color={ODS_THEME_COLOR_INTENT.primary}
-            disabled={isPending || undefined}
+            disabled={isPending || isSendOrderPending || undefined}
             {...handleClick(() => {
               setHasVrackOrderAsked(true);
               setHasVrackServiceOrderAsked(true);
