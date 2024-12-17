@@ -1,16 +1,24 @@
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom';
-import { AlertCircle, ArrowRight } from 'lucide-react';
+import { redirect, useNavigate, useParams } from 'react-router-dom';
+import { AlertCircle, ArrowRight, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
-import {
-  PostMutateAuthorizationProps,
-  usePostAuthorization,
-} from '@/hooks/api/ai/authorization/usePostAuthorization.hook';
+// import {
+//   PostMutateAuthorizationProps,
+//   usePostAuthorization,
+// } from '@/hooks/api/ai/authorization/usePostAuthorization.hook';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import OvhLink from '@/components/links/OvhLink.component';
 import usePciProject from '@/hooks/api/project/usePciProject.hook';
 import { PlanCode } from '@/configuration/project';
+import {
+  PostMutateTestProps,
+  useDeleteTest,
+  useGetTest,
+  usePostTest,
+} from '@/hooks/api/test/useTest.hook';
+import { TestType } from '@/data/api/test/test.api';
+import Link from '@/components/links/Link.component';
 
 export default function Auth() {
   const { t } = useTranslation('pci-ai-notebooks/auth');
@@ -19,10 +27,13 @@ export default function Auth() {
   const { projectId } = useParams();
   const projectData = usePciProject();
 
+  const tests = useGetTest(projectId);
+
   const isProjectDiscoveryMode =
     projectData.data?.planCode === PlanCode.DISCOVERY;
 
-  const PostAuthorizationProps: PostMutateAuthorizationProps = {
+  // const PostAuthorizationProps: PostMutateAuthorizationProps = {
+  const PostTestProps: PostMutateTestProps = {
     onError(err) {
       toast.toast({
         title: t(`formActiveUserToastErrorTitle`),
@@ -39,12 +50,21 @@ export default function Auth() {
     },
   };
 
-  const { postAuthorization } = usePostAuthorization(PostAuthorizationProps);
+  // const { postAuthorization } = usePostAuthorization(PostAuthorizationProps);
+  const { postTest } = usePostTest(PostTestProps);
+  const { deleteTest } = useDeleteTest(PostTestProps);
 
   const activateProject = () => {
-    postAuthorization({
-      projectId,
-    });
+    // postAuthorization({
+    //   projectId,
+    // });
+
+    const test: TestType = {
+      delay: 3600,
+      email: 'ab@ovhcloud.com',
+      monthlyThreshold: 1,
+    };
+    postTest(test);
   };
 
   return (
@@ -92,6 +112,21 @@ export default function Auth() {
         >
           {t('authActivateProjectButton')}
         </Button>
+
+        <ul>
+          {tests.isSuccess &&
+            tests.data.map((test) => (
+              <li key={test.id}>
+                {test.id}{' '}
+                <Button variant="ghost" onClick={() => deleteTest(test)}>
+                  <X />
+                </Button>
+              </li>
+            ))}
+        </ul>
+        {tests.isSuccess && tests.data.length > 0 && (
+          <Link to={'../'}>Go to notebooks</Link>
+        )}
       </div>
     </>
   );
