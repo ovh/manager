@@ -50,12 +50,12 @@ const Buttons = () => {
 
   const removeDraftRow = () => {
     reset();
-    queryClient.setQueryData(
-      getRegistryQueyPrefixWithId(projectId, registryId, [
-        'management',
-        'registry',
-      ]),
-      (oldData: TIPRestrictionsData[]) => oldData.filter((item) => !item.draft),
+    const key = getRegistryQueyPrefixWithId(projectId, registryId, [
+      'management',
+      'registry',
+    ]);
+    queryClient.setQueryData<TIPRestrictionsData[]>(key, (oldData) =>
+      oldData.filter((item) => !item.draft),
     );
   };
 

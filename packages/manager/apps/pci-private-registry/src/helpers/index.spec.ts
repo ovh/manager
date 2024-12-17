@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { categorizeByKey, isCidr, isIp } from '.';
+import { categorizeByKey } from '.';
+
 import { aggregateBySpecificKey } from './index';
 
 type TestData = {

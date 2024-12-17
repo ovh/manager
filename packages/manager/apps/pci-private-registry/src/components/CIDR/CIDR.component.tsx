@@ -32,12 +32,15 @@ import {
   getRegistryQueyPrefixWithId,
   useIpRestrictionsWithFilter,
 } from '@/api/hooks/useIpRestrictions';
-import { TIPRestrictionsData } from '@/types';
 import useFilters from '@/pages/CIDR/useFilters';
 
 const createNewRow = (queryClient: QueryClient, key: QueryKey) =>
-  queryClient.setQueryData(key, (oldData: TIPRestrictionsData[]) => [
+  queryClient.setQueryData<TIPRestrictionsData[]>(key, (oldData) => [
     {
+      authorization: null,
+      description: null,
+      ipBlock: null,
+      createdAt: new Date(),
       id: oldData.length + 1,
       draft: true,
       checked: null,
@@ -129,13 +132,16 @@ export default function BlocCIDR() {
       <div className="mt-8">
         <>
           <Filters createNewRow={createNewBlocsCIDR} />
-          <Datagrid
-            columns={columns}
-            items={dataCIDR.rows}
-            totalItems={dataCIDR.totalRows || 0}
-            pagination={pagination}
-            onPaginationChange={setPagination}
-          />
+          <div className="mt-8">
+            <Datagrid
+              columns={columns}
+              items={dataCIDR.rows}
+              totalItems={dataCIDR.totalRows || 0}
+              pagination={pagination}
+              onPaginationChange={setPagination}
+              className="overflow-x-visible"
+            />
+          </div>
         </>
       </div>
     </>
