@@ -282,7 +282,6 @@ export const useContainerCreationStore = create<ContainerStore>()(
           form: {
             ...state.form,
             containerName,
-            containerType: undefined,
           },
         })),
       editContainerName: () => editStep('containerName', []),
