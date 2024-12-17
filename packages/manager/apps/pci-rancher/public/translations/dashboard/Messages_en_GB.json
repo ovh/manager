@@ -56,5 +56,5 @@
   "createRancherOfferDescription": "With at least 20 vCPUs charged per Rancher",
   "egress_title": "Rancher egress CIDRs",
   "egress_tooltip": "These CIDRs list the output IP address ranges used by Rancher. You might need to whitelist these IP addresses to access your third-party platforms (e.g. API calls to provision resources).",
-  "badRequestSwitchPlan": "An error has occurred changing the solution for your Managed Rancher Service. You are currently using drivers that are not supported in the {{plan}} solution: {{drivers}}"
+  "badRequestSwitchPlan": "An error has occurred changing the solution for your Managed Rancher Service. You are currently using drivers that are not compatible with the {{plan}} solution: {{drivers}}"
 }
