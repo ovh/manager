@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.3.3...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.3.4) (2024-12-17)
+
+
+### Reverts
+
+* **vcd:** revert resetPassword and usageTile ([25a0b5c](https://github.com/ovh/manager/commit/25a0b5c8f3e871e3140aa4a0780d5e0d3ab8f28a))
+
+
+
+
+
 ## [0.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.3.2...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.3.3) (2024-12-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-managed-vcd-app
