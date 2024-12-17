@@ -30,6 +30,7 @@ import { useState } from 'react';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { Currency } from '@ovh-ux/manager-config';
+import { useProjectRights } from '@ovh-ux/manager-pci-common';
 import { AlertModalComponent } from '@/pages/billing/estimate/components/AlertModal.component';
 
 import queryClient from '@/queryClient';
@@ -72,11 +73,13 @@ export const AlertsPart = ({
   onCreate,
   onUpdate,
   onDelete,
-  isLoading,
+  isLoading: isAlertDataLoading,
 }: TAlertsPart): JSX.Element => {
   const { t: tEstimate } = useTranslation('estimate');
 
   const { addError } = useNotifications();
+  const { hasReadWriteRights, isPending: isRightsPending } = useProjectRights();
+  const isLoading = isAlertDataLoading || isRightsPending;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -212,48 +215,54 @@ export const AlertsPart = ({
                 </ResponsiveContainer>
               </div>
               <div>
+                {hasReadWriteRights && (
+                  <>
+                    <OsdsButton
+                      color={ODS_THEME_COLOR_INTENT.primary}
+                      variant={ODS_BUTTON_VARIANT.stroked}
+                      inline
+                      size={ODS_BUTTON_SIZE.sm}
+                      onClick={openModal}
+                    >
+                      {tEstimate('cpbe_estimate_alert_edit')}{' '}
+                    </OsdsButton>
+                    <OsdsButton
+                      className="ml-2"
+                      color={ODS_THEME_COLOR_INTENT.primary}
+                      variant={ODS_BUTTON_VARIANT.flat}
+                      inline
+                      size={ODS_BUTTON_SIZE.sm}
+                      onClick={() => remove()}
+                    >
+                      {tEstimate('cpbe_estimate_alert_delete')}{' '}
+                    </OsdsButton>
+                  </>
+                )}
+              </div>
+            </>
+          ) : (
+            hasReadWriteRights && (
+              <div className="mt-8">
                 <OsdsButton
-                  color={ODS_THEME_COLOR_INTENT.primary}
-                  variant={ODS_BUTTON_VARIANT.stroked}
-                  inline
-                  size={ODS_BUTTON_SIZE.sm}
-                  onClick={openModal}
-                >
-                  {tEstimate('cpbe_estimate_alert_edit')}{' '}
-                </OsdsButton>
-                <OsdsButton
-                  className="ml-2"
                   color={ODS_THEME_COLOR_INTENT.primary}
                   variant={ODS_BUTTON_VARIANT.flat}
                   inline
                   size={ODS_BUTTON_SIZE.sm}
-                  onClick={() => remove()}
+                  onClick={openModal}
+                  disabled={!!currentPricesError || undefined}
                 >
-                  {tEstimate('cpbe_estimate_alert_delete')}{' '}
+                  <OsdsIcon
+                    name={ODS_ICON_NAME.BELL}
+                    size={ODS_ICON_SIZE.xs}
+                    color={ODS_THEME_COLOR_INTENT.primary}
+                    contrasted
+                    aria-hidden="true"
+                    className="mr-2"
+                  />
+                  {tEstimate('cpbe_estimate_alert_create')}{' '}
                 </OsdsButton>
               </div>
-            </>
-          ) : (
-            <div className="mt-8">
-              <OsdsButton
-                color={ODS_THEME_COLOR_INTENT.primary}
-                variant={ODS_BUTTON_VARIANT.flat}
-                inline
-                size={ODS_BUTTON_SIZE.sm}
-                onClick={openModal}
-                disabled={!!currentPricesError || undefined}
-              >
-                <OsdsIcon
-                  name={ODS_ICON_NAME.BELL}
-                  size={ODS_ICON_SIZE.xs}
-                  color={ODS_THEME_COLOR_INTENT.primary}
-                  contrasted
-                  aria-hidden="true"
-                  className="mr-2"
-                />
-                {tEstimate('cpbe_estimate_alert_create')}{' '}
-              </OsdsButton>
-            </div>
+            )
           )}
         </>
       )}

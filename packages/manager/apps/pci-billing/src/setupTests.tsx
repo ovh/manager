@@ -25,6 +25,10 @@ vi.mock('@ovh-ux/manager-pci-common', async () => {
       projectName: 'project-name',
       project_id: 'project-id',
     }),
+    useProjectRights: vi.fn().mockReturnValue({
+      hasReadWriteRights: true,
+      isPending: false,
+    }),
   };
 });
 
@@ -63,6 +67,7 @@ vi.mock('react-i18next', () => ({
     },
   }),
   Trans: ({ children }: { children: string }) => children,
+  Translation: ({ children }: { children: string }) => children,
 }));
 
 const mocks = vi.hoisted(() => ({
