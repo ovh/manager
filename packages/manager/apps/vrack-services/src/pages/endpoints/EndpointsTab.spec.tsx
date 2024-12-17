@@ -54,7 +54,7 @@ describe('Vrack Services endpoints page test suite', () => {
     await assertTextVisibility(
       labels.endpoints.endpointDatagridManagedServiceURNLabel,
     );
-    await assertTextVisibility(iamData.displayName);
+    await assertTextVisibility(iamData!.displayName);
     await assertTextVisibility(
       vrackServicesList[1].currentState.subnets[0].serviceEndpoints[0]
         .endpoints[0].ip,
@@ -69,6 +69,10 @@ describe('Vrack Services endpoints page test suite', () => {
         vrackServicesList[1].id,
       ),
     });
+    const urn =
+      vrackServicesList[1].currentState.subnets[0].serviceEndpoints[0]
+        .managedServiceURN;
+    const iamData = iamResources.find((item) => item.urn === urn);
 
     const actionMenuButton = await getButtonByIcon({
       container,
@@ -86,7 +90,10 @@ describe('Vrack Services endpoints page test suite', () => {
 
     await assertModalTitle({
       container,
-      title: labels.endpoints.modalEndpointUpdateHeadline,
+      title: labels.endpoints.modalEndpointUpdateHeadline.replace(
+        '{{name}}',
+        iamData!.name,
+      ),
     });
 
     await changeInputValueByLabelText({
