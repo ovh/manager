@@ -51,5 +51,6 @@ export default {
     isGridscaleLocalzoneAvailable: '<',
     hasGridscaleLocalzoneRegion: '<',
     isInstanceLocalZoneBackupAvailable: '<',
+    isInstanceLocalZoneAutoBackupAvailable: '<',
   },
 };

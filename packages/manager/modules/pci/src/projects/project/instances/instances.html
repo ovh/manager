@@ -236,8 +236,11 @@
             <oui-action-menu-item
                 data-disabled="!$row.canCreateOrScheduleBackup()"
                 data-on-click="$ctrl.scheduleAutoBackup($row)"
-                data-ng-if="$row.statusGroup === 'ACTIVE' &&
-                    $ctrl.PciProjectsProjectInstanceService.automatedBackupIsAvailable($row.flavor.type) && !$row.isLocalZone"
+                data-ng-if="
+                       $row.statusGroup === 'ACTIVE'
+                    && $ctrl.PciProjectsProjectInstanceService.automatedBackupIsAvailable($row.flavor.type)
+                    && (!$row.isLocalZone || $ctrl.isInstanceLocalZoneAutoBackupAvailable)
+                "
             >
                 <span
                     data-translate="pci_projects_project_instances_autobackup_label"

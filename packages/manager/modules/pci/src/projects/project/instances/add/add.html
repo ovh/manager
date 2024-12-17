@@ -337,7 +337,7 @@
         data-header="{{ :: 'pci_projects_project_instances_add_instance_title' | translate }}"
         data-on-focus="$ctrl.onInstanceFocus()"
         data-editable="!$ctrl.isLoading"
-        data-valid="$ctrl.automatedBackup.selected ? !!$ctrl.automatedBackup.schedule : true"
+        data-valid="!$ctrl.automatedBackup.selected || !!$ctrl.automatedBackup.schedule"
         name="instances_add_configuration"
         data-on-submit="$ctrl.onInstanceSubmit()"
         data-prevent-next="true"
