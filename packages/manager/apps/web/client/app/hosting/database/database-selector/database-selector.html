@@ -1,0 +1,33 @@
+<div>
+    <p
+        class="oui-heading_3"
+        data-translate="hosting_database_selector_action_title"
+    ></p>
+    <form novalidate name="database-selector-form">
+        <oui-field
+            label="{{ ::'hosting_database_selector_action_hosting' | translate }}"
+            size="l"
+        >
+            <oui-select
+                items="$ctrl.getHostingsIceberg"
+                match="displayName"
+                model="$ctrl.selectedHosting"
+                name="hosting"
+                searchable
+                required
+                track-by="$item.serviceName"
+            >
+                <span ng-bind="$item.displayName"></span>
+                <br />
+                <small><span ng-bind="$item.serviceName"></span></small>
+            </oui-select>
+        </oui-field>
+
+        <oui-form-actions
+            data-submit-text="{{ ::'hosting_database_selector_action_button' | translate }}"
+            data-disabled="!$ctrl.selectedHosting"
+            data-on-submit="$ctrl.goToDatabaseOrder($ctrl.selectedHosting)"
+        >
+        </oui-form-actions>
+    </form>
+</div>
