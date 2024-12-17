@@ -1,0 +1,14 @@
+<span
+    data-ng-if=":: $ctrl.isInstallationError()"
+    class="oui-badge oui-badge_error"
+    data-translate="nutanix_node_status_error_installation"
+></span>
+<span
+    data-ng-if=":: !$ctrl.isInstallationError() && $ctrl.isNotInstalled()"
+    class="oui-badge oui-badge_warning"
+    data-translate="nutanix_node_status_not_installed"
+></span>
+<span
+    data-ng-if=":: !$ctrl.isInstallationError() && !$ctrl.isNotInstalled()"
+    data-ng-bind="$ctrl.os"
+></span>
