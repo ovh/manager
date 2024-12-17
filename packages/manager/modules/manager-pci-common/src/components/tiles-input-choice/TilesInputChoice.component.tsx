@@ -30,7 +30,7 @@ export function TileInputChoice<T extends Item>({
         gridTemplateColumns: `repeat(${columnsCount || 3}, minmax(0, 1fr))`,
       }}
     >
-      {isSubmitted && (
+      {isSubmitted && selectedItem && (
         <li key={selectedItem?.id}>
           <TileChoice isSelected isDisabled>
             {renderItem(selectedItem, true)}
