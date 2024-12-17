@@ -36,7 +36,10 @@ function GeneralInformationsTab() {
         okmsData={okms.data}
         okmsServiceInfos={okmsService.data}
       />
-      <BillingInformationsTile okmsService={okmsService.data} />
+      <BillingInformationsTile
+        okmsData={okms.data}
+        okmsService={okmsService.data}
+      />
     </div>
   );
 }
