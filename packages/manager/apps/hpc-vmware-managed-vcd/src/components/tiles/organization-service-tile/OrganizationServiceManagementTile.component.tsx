@@ -1,15 +1,18 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { DashboardTile } from '@ovh-ux/manager-react-components';
+import { useNavigate, useParams } from 'react-router-dom';
+import { DashboardTile, Links } from '@ovh-ux/manager-react-components';
 import { OsdsChip } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_CHIP_SIZE } from '@ovhcloud/ods-components';
 import ServiceRenewTileItem from './renew-tile-item/ServiceRenewTileItem';
 import ServiceContactsTileItem from './contact-tile-item/ServiceContactsTileItem';
-import ServicePasswordTileItem from './password-tile-item/ServicePasswordTileItem';
+import { subRoutes, urls } from '@/routes/routes.constant';
 
 export default function OrganizationServiceManagementTile() {
   const { t } = useTranslation('dashboard');
+  const { id } = useParams();
+  const navigate = useNavigate();
 
   return (
     <div className="h-fit">
@@ -38,7 +41,14 @@ export default function OrganizationServiceManagementTile() {
           {
             id: 'servicePassword',
             label: t('managed_vcd_dashboard_password'),
-            value: <ServicePasswordTileItem />,
+            value: (
+              <Links
+                label={t('managed_vcd_dashboard_password_renew')}
+                onClickReturn={() =>
+                  navigate(urls.resetPassword.replace(subRoutes.dashboard, id))
+                }
+              />
+            ),
           },
           {
             id: 'serviceContacts',

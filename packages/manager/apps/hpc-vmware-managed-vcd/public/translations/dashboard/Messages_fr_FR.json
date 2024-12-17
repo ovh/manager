@@ -24,7 +24,6 @@
   "managed_vcd_dashboard_service_cancellation": "Résilier le service",
   "managed_vcd_dashboard_password": "Mot de passe",
   "managed_vcd_dashboard_password_renew": "Renouveler le mot de passe admin",
-  "managed_vcd_dashboard_password_tooltip": "Si vous souhaitez changer votre mot de passe administrateur, merci de contacter le support",
   "managed_vcd_dashboard_password_modal_title": "Changer le mot de passe",
   "managed_vcd_dashboard_password_modal_subtitle": "Êtes-vous certain de changer de mot de passe ?",
   "managed_vcd_dashboard_password_renew_success": "Vous allez recevoir un email pour visualiser votre mot de passe",
