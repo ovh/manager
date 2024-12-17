@@ -16,9 +16,9 @@ describe('ModalAddAndEditRedirections Component', async () => {
     expect(confirmButton).toHaveAttribute('is-disabled', 'true');
 
     act(() => {
-      inputAccount.odsChange.emit({ name: 'account', value: '' });
-      selectDomain.odsChange.emit({ name: 'domain', value: '' });
-      inputTo.odsChange.emit({ name: 'to', value: '' });
+      inputAccount.odsBlur.emit({ name: 'account', value: '' });
+      selectDomain.odsBlur.emit({ name: 'domain', value: '' });
+      inputTo.odsBlur.emit({ name: 'to', value: '' });
     });
 
     expect(inputAccount).toHaveAttribute('has-error', 'true');

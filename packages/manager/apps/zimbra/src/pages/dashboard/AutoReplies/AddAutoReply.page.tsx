@@ -48,13 +48,7 @@ import {
   useDomains,
   useGenerateUrl,
 } from '@/hooks';
-import {
-  ACCOUNT_REGEX,
-  checkValidityField,
-  checkValidityForm,
-  FormTypeInterface,
-  makeDateFromDDMMYYYY,
-} from '@/utils';
+import { ACCOUNT_REGEX, makeDateFromDDMMYYYY } from '@/utils';
 import Loading from '@/components/Loading/Loading';
 import {
   ADD_AUTO_REPLY,
@@ -63,6 +57,7 @@ import {
   CONFIRM,
   EMAIL_ACCOUNT_ADD_AUTO_REPLY,
 } from '@/tracking.constant';
+import { FormTypeInterface, useForm } from '@/hooks/useForm';
 
 export enum AutoReplyTypes {
   LINKED = 'linked',
@@ -99,7 +94,6 @@ export default function AddAutoReply() {
   const trackingName = editEmailAccountId
     ? EMAIL_ACCOUNT_ADD_AUTO_REPLY
     : ADD_AUTO_REPLY;
-  const [isFormValid, setIsFormValid] = useState(false);
   const [selectedOrganizationId, setSelectedOrganizationId] = useState(
     organizationId,
   );
@@ -108,53 +102,61 @@ export default function AddAutoReply() {
 
   const onClose = () => navigate(goBackUrl);
 
-  const [form, setForm] = useState<FormTypeInterface>({
-    ...{
-      account: {
-        value: '',
-        defaultValue: '',
-        touched: false,
-        required: true,
-        validate: ACCOUNT_REGEX,
-      },
-      domain: {
-        value: '',
-        touched: false,
-        required: true,
-      },
-      duration: {
-        value: AutoReplyDurations.TEMPORARY,
-        touched: false,
-        required: true,
-      },
-      from: {
-        value: '',
-        touched: false,
-        required: true,
-      },
-      until: {
-        value: '',
-        touched: false,
-        required: true,
-      },
-      sendCopy: {
-        value: '',
-        touched: false,
-        required: false,
-      },
-      sendCopyTo: {
-        value: '',
-        touched: false,
-        required: false,
-      },
-      message: {
-        value: '',
-        defaultValue: '',
-        touched: false,
-        required: true,
+  const { form, isFormValid, setValue } = useForm(
+    {
+      ...{
+        account: {
+          value: '',
+          defaultValue: '',
+          required: true,
+          validate: ACCOUNT_REGEX,
+        },
+        domain: {
+          value: '',
+          required: true,
+        },
+        duration: {
+          value: AutoReplyDurations.TEMPORARY,
+          required: true,
+        },
+        from: {
+          value: '',
+          required: true,
+        },
+        until: {
+          value: '',
+          required: true,
+        },
+        sendCopy: {
+          value: '',
+        },
+        sendCopyTo: {
+          value: '',
+        },
+        message: {
+          value: '',
+          defaultValue: '',
+          required: true,
+        },
       },
     },
-  });
+    {
+      onValueChange: (currentForm, name) => {
+        const newForm = currentForm;
+        if (name === 'sendCopy') {
+          newForm.sendCopyTo.required = !!newForm.sendCopy.value;
+          newForm.sendCopyTo.hasError = false;
+        }
+        if (name === 'duration') {
+          newForm.from.required =
+            newForm.duration.value === AutoReplyDurations.TEMPORARY;
+          newForm.until.required =
+            newForm.duration.value === AutoReplyDurations.TEMPORARY;
+        }
+        return newForm;
+      },
+    },
+  );
 
   const fromDate = useMemo(() => {
     return form.from.value ? makeDateFromDDMMYYYY(form.from.value) : undefined;
@@ -222,33 +224,11 @@ export default function AddAutoReply() {
     enabled: !!editEmailAccountId,
   });
 
-  const handleFormChange = (name: string, value: string) => {
-    const newForm: FormTypeInterface = form;
-    newForm[name] = {
-      ...form[name],
-      value,
-      touched: true,
-      hasError: !checkValidityField(name, value, form),
-    };
-    if (name === 'sendCopy') {
-      newForm.sendCopyTo.required = !!newForm.sendCopy.value;
-      newForm.sendCopyTo.hasError = false;
-    }
-    if (name === 'duration') {
-      newForm.from.required =
-        newForm.duration.value === AutoReplyDurations.TEMPORARY;
-      newForm.until.required =
-        newForm.duration.value === AutoReplyDurations.TEMPORARY;
-    }
-    setForm((oldForm) => ({ ...oldForm, ...newForm }));
-    setIsFormValid(checkValidityForm(form));
-  };
-
   useEffect(() => {
     if (account) {
       const [head, tail] = (account.currentState?.email || '@').split('@');
-      handleFormChange('account', head);
-      handleFormChange('domain', tail);
+      setValue('account', head);
+      setValue('domain', tail);
       setSelectedOrganizationId(account.currentState?.organizationId);
     }
   }, [account]);
@@ -369,16 +349,10 @@ export default function AddAutoReply() {
               data-testid="input-account"
               isDisabled={editEmailAccountId ? true : null}
               onOdsBlur={(event) =>
-                handleFormChange(
-                  event.target.name,
-                  event.target.value.toString(),
-                )
+                setValue(event.target.name, event.target.value.toString(), true)
               }
               onOdsChange={(event) => {
-                handleFormChange(
-                  event.detail.name,
-                  event.detail.value.toString(),
-                );
+                setValue(event.detail.name, event.detail.value.toString());
               }}
             >
               {domainAccounts && (
@@ -406,7 +380,7 @@ export default function AddAutoReply() {
               hasError={form.from.hasError}
               isDisabled={isLoading || editEmailAccountId ? true : null}
               onOdsChange={(event) =>
-                handleFormChange('domain', event.detail.value as string)
+                setValue('domain', event.detail.value as string)
               }
               data-testid="select-domain"
               placeholder={t(
@@ -434,9 +408,7 @@ export default function AddAutoReply() {
               name={value}
               value={value}
               isChecked={form.duration.value === value}
-              onOdsChange={(event) =>
-                handleFormChange('duration', event.detail.value)
-              }
+              onOdsChange={(event) => setValue('duration', event.detail.value)}
               data-testid={value}
               className="cursor-pointer"
             ></OdsRadio>
@@ -461,7 +433,7 @@ export default function AddAutoReply() {
               value={fromDate}
               min={now}
               onOdsChange={(event) => {
-                handleFormChange('from', event.detail.formattedValue);
+                setValue('from', event.detail.formattedValue);
               }}
             ></OdsDatepicker>
           </OdsFormField>
@@ -480,7 +452,7 @@ export default function AddAutoReply() {
               value={untilDate}
               min={fromDate || now}
               onOdsChange={(event) =>
-                handleFormChange('until', event.detail.formattedValue)
+                setValue('until', event.detail.formattedValue)
               }
             ></OdsDatepicker>
           </OdsFormField>
@@ -495,7 +467,7 @@ export default function AddAutoReply() {
             data-testid="sendCopy"
             isChecked={form.sendCopy.value === 'checked'}
             onClick={() =>
-              handleFormChange(
+              setValue(
                 'sendCopy',
                 form.sendCopy.value === 'checked' ? '' : 'checked',
               )
@@ -523,9 +495,7 @@ export default function AddAutoReply() {
                 ? true
                 : null
             }
-            onOdsChange={(event) =>
-              handleFormChange('sendCopyTo', event.detail.value)
-            }
+            onOdsChange={(event) => setValue('sendCopyTo', event.detail.value)}
           >
             {orgAccounts?.map(({ currentState: acc }) => (
               <option key={acc.email} value={acc.email}>
@@ -547,9 +517,7 @@ export default function AddAutoReply() {
           defaultValue={form.message.defaultValue}
           placeholder={t('zimbra_auto_replies_add_message_placeholder')}
           hasError={form.message.hasError}
-          onOdsChange={(event) =>
-            handleFormChange('message', event.target.value)
-          }
+          onOdsChange={(event) => setValue('message', event.target.value)}
         ></OdsTextarea>
         <OdsText preset={ODS_TEXT_PRESET.caption}>
           {t('zimbra_auto_replies_add_message_helper')}
