@@ -10,7 +10,7 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
 import BreadcrumbCIDR from '@/components/CIDR/Breadcrumb.component';
 import { FilterRestrictionsEnum } from '@/types';
-import { isCidr, isIp } from '@/helpers';
+import { isCidr, isIp } from '@/helpers/ip-restrictions';
 import BlocCIDR from '@/components/CIDR/CIDR.component';
 import { useIpRestrictions } from '@/api/hooks/useIpRestrictions';
 import { useSuspenseRegistry } from '@/api/hooks/useRegistry';

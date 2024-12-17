@@ -63,7 +63,7 @@ export const useDatagridColumn = () => {
         'registry',
       ]);
 
-      queryClient.setQueryData(key, (oldData: TIPRestrictionsData[]) =>
+      queryClient.setQueryData<TIPRestrictionsData[]>(key, (oldData) =>
         oldData.map((item) => {
           if (allIsSelected && item.checked !== null) {
             if (data.rows.find((row) => row.ipBlock === item.ipBlock)) {

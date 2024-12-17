@@ -70,12 +70,13 @@ const Filters = ({ createNewRow }: { createNewRow: () => void }) => {
     inputValue: string | string[],
     key = 'ipBlock',
     label = '',
+    comparator = FilterComparator.Includes,
   ) => {
     setPagination({ pageIndex: 0, pageSize: pagination.pageSize });
     addFilter({
       key,
       value: inputValue,
-      comparator: FilterComparator.Includes,
+      comparator,
       label,
     } as Filter & { label: string });
   };
@@ -162,7 +163,12 @@ const Filters = ({ createNewRow }: { createNewRow: () => void }) => {
                   },
                 ]}
                 onAddFilter={(addedFilter, column) => {
-                  handleAddFilter(addedFilter.value, column.id, column.label);
+                  handleAddFilter(
+                    addedFilter.value,
+                    column.id,
+                    column.label,
+                    FilterComparator.IsEqual,
+                  );
                   filterPopoverRef.current?.closeSurface();
                 }}
               />
