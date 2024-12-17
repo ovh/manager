@@ -34,7 +34,16 @@ describe('Buttons component', () => {
         { ipBlock: '192.168.0.2', authorization: ['registry'] },
       ],
     } as UseSuspenseQueryResult<TIPRestrictionsData[], Error>);
-    const { result } = renderHook(useForm, { wrapper });
+    const { result } = renderHook(
+      () =>
+        useForm({
+          defaultValues: {
+            authorization: [],
+            description: '',
+          },
+        }),
+      { wrapper },
+    );
 
     render(
       <FormProvider {...result.current}>

@@ -31,7 +31,6 @@ const schemaAddCidr = (dataCIDR: string[]) =>
         return value;
       })
       .superRefine((value, ctx) => {
-        // Vérify CIDR format
         if (!isCidr(value)) {
           ctx.addIssue({
             code: z.ZodIssueCode.custom,

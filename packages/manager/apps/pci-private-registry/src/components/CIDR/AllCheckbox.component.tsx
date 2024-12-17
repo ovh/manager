@@ -10,16 +10,16 @@ import {
 
 const AllCheckBox = ({
   updateChecked,
-  dataAllSelected,
+  isAllDataSelected,
 }: {
-  updateChecked: (ipBlock: string, allIsSelected?: boolean) => void;
-  dataAllSelected: boolean;
+  updateChecked: (ipBlock: string | null, allIsSelected?: boolean) => void;
+  isAllDataSelected: boolean;
 }) => (
   <div className="flex justify-center items-center mt-2 relative">
     <OsdsCheckbox
       onOdsCheckedChange={() => updateChecked(null, true)}
       color="primary"
-      checked={dataAllSelected || undefined}
+      checked={isAllDataSelected || undefined}
     >
       <OsdsCheckboxButton
         className="absolute top-1/2 left-1/2 -translate-x-1/2 "

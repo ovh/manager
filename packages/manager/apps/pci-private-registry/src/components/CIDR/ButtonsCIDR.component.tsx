@@ -9,7 +9,7 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
 import { OsdsIcon, OsdsSpinner } from '@ovhcloud/ods-components/react';
 import { useQueryClient } from '@tanstack/react-query';
-import { SubmitHandler, useFormContext } from 'react-hook-form';
+import { FieldValues, SubmitHandler, useFormContext } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 import {
   getRegistryQueyPrefixWithId,
@@ -59,7 +59,7 @@ const Buttons = () => {
     );
   };
 
-  const onSubmit: SubmitHandler<TIPRestrictionsData> = async (data) => {
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const categorizeByKeyResult = categorizeByKey([data], 'authorization', [
       'management',
       'registry',

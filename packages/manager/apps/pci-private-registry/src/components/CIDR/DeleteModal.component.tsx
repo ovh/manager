@@ -2,13 +2,8 @@ import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useFormContext } from 'react-hook-form';
 import { useCallback, useContext } from 'react';
-import { OsdsModal, OsdsButton } from '@ovhcloud/ods-components/react';
-import {
-  Description,
-  useNotifications,
-} from '@ovh-ux/manager-react-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import { useNotifications } from '@ovh-ux/manager-react-components';
+import { PciModal } from '@ovh-ux/manager-pci-common';
 import {
   useIpRestrictionsWithFilter,
   useUpdateIpRestriction,
@@ -48,7 +43,7 @@ export default function DeleteModal({
   const { updateIpRestrictions } = useUpdateIpRestriction({
     projectId,
     registryId,
-    onError() {
+    onError: () => {
       addError(t('common:private_registry_crud_cidr_error'));
     },
     onSuccess: () => {
@@ -64,81 +59,58 @@ export default function DeleteModal({
     },
   });
 
-  const deleteAllSelectedRows = useCallback(() => {
-    const rowToDelete = data.rows
-      .filter((item) => item.checked)
-      .map((item) => ({
-        ipBlock: item.ipBlock,
-        authorization: item.authorization,
-        description: item.description,
-      }));
+  const getCategorizedRestrictions = (
+    rows: {
+      ipBlock: string;
+      description: string;
+      authorization: FilterRestrictionsServer[];
+    }[],
+  ) => categorizeByKey(rows, 'authorization', ['management', 'registry']);
 
-    const categorizeByKeyResultAll = categorizeByKey(
-      rowToDelete,
-      'authorization',
-      ['management', 'registry'],
-    );
+  const handleDelete = useCallback(() => {
+    const rowsToDelete = all
+      ? data.rows
+          .filter((item) => item.checked)
+          .map(({ ipBlock, authorization, description }) => ({
+            ipBlock,
+            authorization,
+            description,
+          }))
+      : [
+          {
+            ipBlock: cidr?.ipBlock ?? '',
+            authorization: cidr?.authorization ?? ['management'],
+            description: cidr?.description ?? '',
+          },
+        ];
+
+    const categorizedRestrictions = getCategorizedRestrictions(rowsToDelete);
     updateIpRestrictions({
-      cidrToUpdate: categorizeByKeyResultAll as Record<
+      cidrToUpdate: categorizedRestrictions as Record<
         FilterRestrictionsServer,
         TIPRestrictionsDefault[]
       >,
       action: TIPRestrictionsMethodEnum.DELETE,
     });
-  }, [data, updateIpRestrictions]);
+  }, [all, cidr, data, updateIpRestrictions]);
 
   return (
-    <OsdsModal
-      color={ODS_THEME_COLOR_INTENT.info}
-      onOdsModalClose={() => onClose()}
-      dismissible
-      headline={t('ip_restrictions_delete_block')}
+    <PciModal
+      type="warning"
+      title={t('ip_restrictions_delete_block')}
+      isPending={false}
+      isDisabled={false}
+      cancelText={t('common:private_registry_common_cancel')}
+      submitText={t('common:private_registry_common_confirm')}
+      onConfirm={handleDelete}
+      onClose={onClose}
+      onCancel={onClose}
     >
-      <Description className="mt-6">
-        {t(
-          all
-            ? 'private_registry_cidr_delete_modal_all_subtitle'
-            : 'private_registry_cidr_delete_modal_subtitle',
-        )}
-      </Description>
-      <OsdsButton
-        slot="actions"
-        color={ODS_THEME_COLOR_INTENT.primary}
-        variant={ODS_BUTTON_VARIANT.stroked}
-        onClick={() => onClose()}
-      >
-        {t('common:private_registry_common_cancel')}
-      </OsdsButton>
-      <OsdsButton
-        slot="actions"
-        color={ODS_THEME_COLOR_INTENT.primary}
-        variant={ODS_BUTTON_VARIANT.flat}
-        onClick={() => {
-          if (all) {
-            return deleteAllSelectedRows();
-          }
-          const categorizeByKeyResult = categorizeByKey(
-            [
-              {
-                ipBlock: cidr.ipBlock,
-                authorization: cidr.authorization,
-                description: cidr.description,
-              },
-            ],
-            'authorization',
-            cidr.authorization,
-          );
-          return updateIpRestrictions({
-            cidrToUpdate: categorizeByKeyResult as Record<
-              FilterRestrictionsServer,
-              TIPRestrictionsDefault[]
-            >,
-            action: TIPRestrictionsMethodEnum.DELETE,
-          });
-        }}
-      >
-        {t('common:private_registry_common_confirm')}
-      </OsdsButton>
-    </OsdsModal>
+      {t(
+        all
+          ? 'private_registry_cidr_delete_modal_all_subtitle'
+          : 'private_registry_cidr_delete_modal_subtitle',
+      )}
+    </PciModal>
   );
 }
