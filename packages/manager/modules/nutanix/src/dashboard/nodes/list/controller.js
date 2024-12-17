@@ -3,16 +3,19 @@ import { MAX_NODES_BY_CLUSTER } from '../../../constants';
 
 export default class NutanixAllNodesCtrl {
   /* @ngInject */
-  constructor(ovhManagerRegionService, $translate) {
+  constructor(NutanixService, ovhManagerRegionService, $translate) {
     this.ovhManagerRegionService = ovhManagerRegionService;
     this.$translate = $translate;
+    this.NutanixService = NutanixService;
     this.NODE_BADGE_STATE = NODE_BADGE_STATE;
     this.nodesMapped = [];
+    this.loadingNodesStatus = false;
   }
 
   $onInit() {
     const uniqueStates = [...new Set(this.nodes.map(({ state }) => state))];
     this.mapNodes = this.mapAllNodes();
+    this.loadNodesStatus();
 
     this.isMaxNodesReached = this.nodes.length >= MAX_NODES_BY_CLUSTER;
     this.addNodeTooltipContent = this.isMaxNodesReached
@@ -36,6 +39,25 @@ export default class NutanixAllNodesCtrl {
 
   static getNodeDetailsState(nodeId) {
     return `nutanix.dashboard.nodes.node.general-info({ nodeId: '${nodeId}'})`;
+  }
+
+  loadNodesStatus() {
+    this.loadingNodesStatus = true;
+    return this.NutanixService.getNodesWithState(this.serviceName)
+      .then((nodesDetails) => {
+        nodesDetails.forEach((nodeDetail) => {
+          const nodeIndex = this.nodesMapped.findIndex(
+            (node) => node.name === nodeDetail.server,
+          );
+          this.nodesMapped[nodeIndex] = {
+            ...this.nodesMapped[nodeIndex],
+            ...nodeDetail,
+          };
+        });
+      })
+      .finally(() => {
+        this.loadingNodesStatus = false;
+      });
   }
 
   mapAllNodes() {

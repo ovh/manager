@@ -42,31 +42,52 @@
         data-type-options="$ctrl.stateColumnOptions"
         data-filterable
     >
-        <span
-            data-ng-if="!$row.isHiddenNode"
-            class="{{'oui-badge ' + $ctrl.NODE_BADGE_STATE[$row.state] }}"
-            data-translate="{{ 'nutanix_dashboard_nodes_list_status_' + $row.state }}"
-        >
-        </span>
-        <span
-            data-ng-if="$row.isHiddenNode"
-            data-translate="nutanix_dashboard_nodes_list_data_hidden"
-        >
-        </span>
+        <iam-protected-data data-is-hidden="$row.isHiddenNode">
+            <span
+                class="{{'oui-badge ' + $ctrl.NODE_BADGE_STATE[$row.state] }}"
+                data-translate="{{ 'nutanix_dashboard_nodes_list_status_' + $row.state }}"
+            >
+            </span>
+        </iam-protected-data>
     </oui-datagrid-column>
     <oui-datagrid-column
         data-title="'nutanix_dashboard_nodes_list_localisation' | translate"
         data-property="datacenter"
     >
-        <datacenter-name
-            data-ng-if="!$row.isHiddenNode"
-            datacenter="$row.datacenter"
-        >
-        </datacenter-name>
-        <span
-            data-ng-if="$row.isHiddenNode"
-            data-translate="nutanix_dashboard_nodes_list_data_hidden"
-        >
-        </span>
+        <iam-protected-data data-is-hidden="$row.isHiddenNode">
+            <datacenter-name datacenter="$row.datacenter"> </datacenter-name>
+        </iam-protected-data>
+    </oui-datagrid-column>
+
+    <oui-datagrid-column
+        data-title="'nutanix_dashboard_nodes_list_os_installed' | translate"
+        data-property="status"
+    >
+        <oui-skeleton data-ng-if="$ctrl.loadingNodesStatus"></oui-skeleton>
+        <node-status
+            data-ng-else
+            data-status="$row.status"
+            data-os="$row.os"
+        ></node-status>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title="'nutanix_dashboard_nodes_list_node_ip' | translate"
+        data-property="ahvIp"
+        data-sortable
+        data-searchable
+        data-filterable
+    >
+        <oui-skeleton data-ng-if="$ctrl.loadingNodesStatus"></oui-skeleton>
+        <span data-ng-else data-ng-bind="$row.ahvIp"></span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title="'nutanix_dashboard_nodes_list_node_cvm' | translate"
+        data-property="cvmIp"
+        data-sortable
+        data-searchable
+        data-filterable
+    >
+        <oui-skeleton data-ng-if="$ctrl.loadingNodesStatus"></oui-skeleton>
+        <span data-ng-else data-ng-bind="$row.cvmIp"></span>
     </oui-datagrid-column>
 </oui-datagrid>
