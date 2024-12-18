@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-app@0.1.5...@ovh-ux/manager-account-app@0.1.6) (2024-12-18)
+
+
+### Bug Fixes
+
+* **account:** add buffer to wepack ([#14584](https://github.com/ovh/manager/issues/14584)) ([ca6192e](https://github.com/ovh/manager/commit/ca6192e1bdf48e71f004a0576966d2c3dfb42ab8))
+
+
+
+
+
 ## [0.1.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-app@0.1.4...@ovh-ux/manager-account-app@0.1.5) (2024-12-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-account-app
