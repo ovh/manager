@@ -1,17 +1,12 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
-import {
-  addUser,
-  deleteObject,
-  deleteS3Object,
-  getAccessToken,
-} from '@/api/data/objects';
+import { addUser, deleteObject, deleteS3Object } from '@/api/data/objects';
 import queryClient from '@/queryClient';
-import { TStorage } from '../data/storages';
+import { TStorage, getStorageAccess } from '../data/storages';
 
 export const useAccessToken = (projectId: string) =>
   useQuery({
     queryKey: ['project', projectId, 'access'],
-    queryFn: () => getAccessToken(projectId),
+    queryFn: () => getStorageAccess({ projectId }),
   });
 
 type DeleteObjectProps = {
@@ -41,7 +36,7 @@ export const useDeleteObject = ({
           storage.s3StorageType,
         );
       } else {
-        const response = await getAccessToken(projectId);
+        const response = await getStorageAccess({ projectId });
         deleteObject(
           projectId,
           storage.name,

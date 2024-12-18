@@ -19,6 +19,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import { StepComponent } from '@ovh-ux/manager-react-components';
 import { useContainerCreationStore } from '../useContainerCreationStore';
+import { ENCRYPTION_ALGORITHM_SSE_S3, NO_ENCRYPTION_VALUE } from '@/constants';
 
 export function EncryptionStep() {
   const { t } = useTranslation(['containers/data-encryption', 'pci-common']);
@@ -69,7 +70,7 @@ export function EncryptionStep() {
             setEncryption(event.detail.newValue);
           }}
         >
-          <OsdsRadio className="mt-4" value="plain">
+          <OsdsRadio className="mt-4" value={NO_ENCRYPTION_VALUE}>
             <OsdsRadioButton
               color={ODS_THEME_COLOR_INTENT.primary}
               size={ODS_RADIO_BUTTON_SIZE.xs}
@@ -89,7 +90,7 @@ export function EncryptionStep() {
           <div className="flex">
             <OsdsRadio
               className="mt-4"
-              value="aes256"
+              value={ENCRYPTION_ALGORITHM_SSE_S3}
               disabled={form.region?.name === 'AP-SOUTH-MUM'}
             >
               <OsdsRadioButton

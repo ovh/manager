@@ -4,6 +4,7 @@ import {
   OsdsInput,
   OsdsLink,
   OsdsMessage,
+  OsdsSpinner,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
 import {
@@ -16,12 +17,17 @@ import {
   ODS_ICON_SIZE,
   ODS_INPUT_TYPE,
   ODS_MESSAGE_TYPE,
+  ODS_SPINNER_SIZE,
 } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import { StepComponent } from '@ovh-ux/manager-react-components';
 import { useContext, useState } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { useContainerCreationStore } from '../useContainerCreationStore';
+import { useNavigate } from 'react-router-dom';
+import {
+  ContainerCreationForn,
+  useContainerCreationStore,
+} from '../useContainerCreationStore';
 import {
   OBJECT_CONTAINER_MODE_LOCAL_ZONE,
   OBJECT_CONTAINER_MODE_MONO_ZONE,
@@ -33,17 +39,21 @@ import {
 
 const validNameRegex = /^[a-z0-9]([a-z0-9.-]{1,61})[a-z0-9]$/;
 
-export function ContainerNameStep() {
+interface ContainerNameStepProps {
+  isCreationPending: boolean;
+  onSubmit: (form: ContainerCreationForn) => void;
+}
+
+export function ContainerNameStep({
+  isCreationPending,
+  onSubmit,
+}: Readonly<ContainerNameStepProps>) {
   const { t } = useTranslation(['containers/add', 'pci-common']);
   const context = useContext(ShellContext);
+  const { tracking } = context.shell;
+  const navigate = useNavigate();
   const { ovhSubsidiary } = context.environment.getUser();
-  const {
-    form,
-    stepper,
-    setContainerName,
-    submitContainerName,
-    editContainerName,
-  } = useContainerCreationStore();
+  const { form, stepper, setContainerName } = useContainerCreationStore();
   const [isTouched, setIsTouched] = useState(false);
   const isValid = validNameRegex.test(form.containerName);
   const shouldDisplayError = isTouched && !isValid;
@@ -56,7 +66,7 @@ export function ContainerNameStep() {
       title={t('pci_projects_project_storages_containers_add_name_title')}
       isOpen={stepper.containerName.isOpen || stepper.containerName.isLocked}
       isChecked={stepper.containerName.isChecked}
-      isLocked={stepper.containerName.isLocked}
+      isLocked={stepper.containerName.isLocked || isCreationPending}
       order={
         form.offer === OBJECT_CONTAINER_OFFER_SWIFT ||
         (form.offer === OBJECT_CONTAINER_OFFER_STORAGE_STANDARD &&
@@ -65,12 +75,20 @@ export function ContainerNameStep() {
           : 7
       }
       next={{
-        action: submitContainerName,
+        action: () => {
+          onSubmit(form);
+        },
         label: t('pci_projects_project_storages_containers_add_submit_label'),
         isDisabled: !isValid,
       }}
-      edit={{
-        action: editContainerName,
+      skip={{
+        action: () => {
+          tracking?.trackClick({
+            name: 'storage_container_cancel_creation',
+            type: 'action',
+          });
+          navigate('..');
+        },
         label: t('pci_projects_project_storages_containers_add_cancel_label'),
       }}
     >
@@ -139,6 +157,11 @@ export function ContainerNameStep() {
             </OsdsLink>
           </p>
         </OsdsMessage>
+      )}
+      {isCreationPending && (
+        <div className="my-4">
+          <OsdsSpinner size={ODS_SPINNER_SIZE.md} inline />
+        </div>
       )}
     </StepComponent>
   );
