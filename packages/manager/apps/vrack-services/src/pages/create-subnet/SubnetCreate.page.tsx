@@ -81,10 +81,6 @@ export default function SubnetCreate() {
         pageType: PageType.bannerSuccess,
       });
       navigate(dashboardUrl);
-      addSuccessMessage(
-        t('subnetCreationSuccess', { id: getDisplayName(vrackServices?.data) }),
-        { vrackServicesId: id },
-      );
     },
     onError: () => {
       trackPage({

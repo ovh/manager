@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
-    "lib": ["dom", "es2020"],
+    "lib": ["dom", "es2021"],
     "noEmit": true,
     "target": "es2020",
-    "types": ["vite/client", "node", "jest"],
+    "types": ["vite/client", "node"],
     "module": "ES2020",
     "moduleResolution": "node",
     "removeComments": true,
@@ -19,11 +19,9 @@
     "jsx": "react",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"],
-      "@playwright-helpers": ["../../../../playwright-helpers/index"],
-      "@playwright-helpers/*": ["../../../../playwright-helpers/*"]
+      "@/*": ["./src/*"]
     }
   },
-  "include": ["**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules", "dist", "types", "src/__tests__", "*.spec.ts"]
+  "include": ["src"],
+  "exclude": ["node_modules", "dist", "types"]
 }

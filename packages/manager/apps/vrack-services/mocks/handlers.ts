@@ -1,4 +1,4 @@
-import { Handler } from '@playwright-helpers';
+import { Handler } from '@ovh-ux/manager-core-test-utils';
 import {
   getCartMocks,
   GetCartMocksParams,
@@ -16,15 +16,14 @@ import {
   GetVrackServicesMocksParams,
 } from './vrack-services/vrack-services';
 import { getVrackMocks, GetVrackMocksParams } from './vrack';
-import { getRegionMocks, GetRegionMocksParams } from './vrack-services/region';
-import { GetIamMocksParams, getIamMocks } from './iam/iam';
 import {
-  GetAuthenticationMocks,
-  getAuthenticationMocks,
-} from '../../../../../playwright-helpers/mocks/auth';
+  getRegionFlagsMocks,
+  getRegionMocks,
+  GetRegionMocksParams,
+} from './vrack-services/region';
+import { GetIamMocksParams, getIamMocks } from './iam/iam';
 
 export type ConfigParams = GetVrackServicesMocksParams &
-  GetAuthenticationMocks &
   GetOrderDetailsMocksParams &
   GetRegionMocksParams &
   GetVrackMocksParams &
@@ -43,7 +42,6 @@ export const getConfig = ({
   ...params
 }: ConfigParams): Handler[] =>
   [
-    getAuthenticationMocks,
     getVrackServicesMocks,
     getRegionMocks,
     getVrackMocks,
@@ -51,6 +49,7 @@ export const getConfig = ({
     getServicesMocks,
     getIamMocks,
     getCartMocks,
+    getRegionFlagsMocks,
   ]
     .flatMap((getMocks) => getMocks(params))
     .concat(

@@ -111,6 +111,7 @@ export const AssociateVrack: React.FC<AssociateVrackProps> = ({
         onOdsValueChange={(event: OdsSelectValueChangeEvent) =>
           setSelectedVrack(event.detail.value as string)
         }
+        data-testid="select-vrack-input"
       >
         <span slot="placeholder">{t('vrackSelectPlaceholder')}</span>
         {vrackList.map((vrack) => (
