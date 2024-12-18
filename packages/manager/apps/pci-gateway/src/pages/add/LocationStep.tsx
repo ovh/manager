@@ -31,8 +31,7 @@ type IState = {
  * TODO : move groups(continent) from translation files
  */
 export const LocationStep = () => {
-  const { t: tStepper } = useTranslation('stepper');
-  const { t: tAdd } = useTranslation('add');
+  const { t } = useTranslation(['stepper', 'add']);
   const { projectId } = useParams();
   const [searchParams] = useSearchParams();
   const { tracking } = useContext(ShellContext).shell;
@@ -93,14 +92,14 @@ export const LocationStep = () => {
       isOpen={store.steps.get(StepsEnum.LOCATION).isOpen}
       isChecked={store.steps.get(StepsEnum.LOCATION).isChecked}
       isLocked={store.steps.get(StepsEnum.LOCATION).isLocked}
-      title={tAdd('pci_projects_project_public_gateways_add_region_title')}
+      title={t('add:pci_projects_project_public_gateways_add_region_title')}
       subtitle={
         <OsdsText
           level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
           size={ODS_THEME_TYPOGRAPHY_SIZE._400}
           color={ODS_THEME_COLOR_INTENT.text}
         >
-          {tAdd('pci_projects_project_public_gateways_add_description3')}
+          {t('add:pci_projects_project_public_gateways_add_description3')}
           <OsdsLink
             color={ODS_THEME_COLOR_INTENT.primary}
             target={OdsHTMLAnchorElementTarget._blank}
@@ -126,7 +125,7 @@ export const LocationStep = () => {
               });
             }
           : undefined,
-        label: tStepper('Next'),
+        label: t('stepper:Next'),
         isDisabled: state.region && !state.region.active,
       }}
       edit={{
@@ -139,7 +138,7 @@ export const LocationStep = () => {
           store.updateForm.name(undefined);
           store.updateForm.network(undefined, undefined);
         },
-        label: tStepper('common_stepper_modify_this_step'),
+        label: t('stepper:common_stepper_modify_this_step'),
         isDisabled: false,
       }}
     >
