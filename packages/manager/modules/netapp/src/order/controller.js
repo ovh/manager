@@ -4,10 +4,11 @@ import { CatalogPricing } from '@ovh-ux/manager-models';
 
 import {
   REGION_LABEL,
+  NETWORK_LABEL,
   SIZE_FACTOR,
   SIZE_MULTIPLE,
-  DATACENTER_TO_COUNTRY,
-  DATACENTER_TO_REGION,
+  REGION_TO_COUNTRY,
+  LICENSE_TYPE,
 } from './constants';
 
 const findRegionConfiguration = (configurations) =>
@@ -46,6 +47,7 @@ export default class OvhManagerNetAppOrderCtrl {
     this.$window = $window;
     this.coreConfig = coreConfig;
     this.RedirectionService = RedirectionService;
+    this.LICENSE_TYPE = LICENSE_TYPE;
   }
 
   $onInit() {
@@ -76,26 +78,17 @@ export default class OvhManagerNetAppOrderCtrl {
   }
 
   onRegionStepFocus() {
-    const plans = getPlansWithLicense(
-      this.catalog.plans,
-      this.selectedLicense.name,
-    );
-    this.regions = uniq(
-      plans.flatMap(
-        ({ configurations }) =>
-          configurations.find(({ name }) => name === 'region').values,
-      ),
+    const [product] = this.catalog.products[0].blobs.meta.configurations.filter(
+      ({ name }) => name === 'region',
     );
 
-    this.catalogByLocation = this.regions.map((datacenter) => {
-      const flag =
-        datacenter === 'ERI' ? 'gb' : DATACENTER_TO_COUNTRY[datacenter];
+    this.catalogByLocation = product.values.map((region) => {
+      const [, networkValue] = region.blobs.tags[0].split(':');
+      const flag = REGION_TO_COUNTRY[region.value];
       return {
-        datacenter,
-        regionName: DATACENTER_TO_REGION[datacenter],
-        location: this.$translate.instant(
-          `netapp_location_${DATACENTER_TO_REGION[datacenter]}`,
-        ),
+        network: networkValue,
+        regionName: region.value,
+        location: this.$translate.instant(`netapp_location_${region.value}`),
         icon: `oui-flag oui-flag_${flag}`,
       };
     });
@@ -110,7 +103,7 @@ export default class OvhManagerNetAppOrderCtrl {
     );
     const availablePlans = getPlansWithRegion(
       plans,
-      this.selectedRegion.datacenter,
+      this.selectedRegion.regionName,
     );
     this.plans = availablePlans.map((plan) => ({
       ...plan,
@@ -169,7 +162,7 @@ export default class OvhManagerNetAppOrderCtrl {
   goToOrderUrl() {
     const pricingModeType = this.pricingMode.pricingMode.replace(/[0-9]+/, '');
     this.atInternet.trackClick({
-      name: `netapp::order::confirm::${this.selectedRegion.datacenter}_${this.selectedLicense.name}_${this.selectedSize}TB_${this.duration.duration}_${pricingModeType}`,
+      name: `netapp::order::confirm::${this.selectedRegion.regionName}_${this.selectedLicense.name}_${this.selectedSize}TB_${this.duration.duration}_${pricingModeType}`,
       type: 'action',
     });
 
@@ -186,7 +179,11 @@ export default class OvhManagerNetAppOrderCtrl {
       configuration: [
         {
           label: REGION_LABEL,
-          value: this.selectedRegion.datacenter,
+          value: this.selectedRegion.regionName,
+        },
+        {
+          label: NETWORK_LABEL,
+          value: this.selectedRegion.network,
         },
       ],
     };

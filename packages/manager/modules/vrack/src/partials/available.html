@@ -30,7 +30,8 @@
                 'ovh-font ovh-font-server': serviceType === 'dedicatedServer' || serviceType === 'dedicatedServerInterface',
                 'ovh-font ovh-font-network': serviceType === 'dedicatedConnect',
                 'ovh-font ovh-font-vRack': serviceType === 'legacyVrack',
-                'oui-icon oui-icon-line-communicating_concept': serviceType === 'ovhCloudConnect'}"
+                'oui-icon oui-icon-line-communicating_concept': serviceType === 'ovhCloudConnect',
+                'oui-icon oui-icon-vRack-services_concept': serviceType === 'vrackServices'}"
             >
             </i>
             <span data-ng-bind="::$ctrl.getDisplayName(serviceType)"></span>
@@ -117,8 +118,10 @@
         </ul>
     </li>
 </ul>
-<vrack-select-dialog-modal
+<vrack-single-select-dialog-modal
     data-is-open-modal="$ctrl.modals.select.open"
     data-on-confirm="$ctrl.modals.select.confirm"
     data-on-cancel="$ctrl.modals.select.cancel"
-></vrack-select-dialog-modal>
+    data-is-ipv6="$ctrl.modals.select.isIpv6"
+    data-is-vrack-service="$ctrl.modals.select.isVrackService"
+></vrack-single-select-dialog-modal>

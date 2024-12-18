@@ -6,10 +6,7 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import { RouterProvider, createHashRouter } from 'react-router-dom';
 import { getRoutes } from '@/routes/routes';
-import {
-  MessageOptions,
-  MessagesContext,
-} from '@/components/feedback-messages/Messages.context';
+import { MessageContextProvider } from '@/components/feedback-messages/Messages.context';
 import '@ovhcloud/ods-theme-blue-jeans';
 
 const queryClient = new QueryClient({
@@ -50,30 +47,11 @@ const Routes: React.FC = () => {
 };
 
 export const App: React.FC = () => {
-  const [successMessages, setSuccessMessages] = React.useState([]);
-  const [hiddenMessages, setHiddenMessages] = React.useState([]);
-
-  const messageContext = React.useMemo(
-    () => ({
-      successMessages,
-      hiddenMessages,
-      addSuccessMessage: (msg: string, options: MessageOptions) => {
-        setSuccessMessages((msgList) =>
-          msgList.concat({ id: Date.now(), message: msg, options }),
-        );
-      },
-      hideMessage: (id: number) => {
-        setHiddenMessages((hiddenMessage) => hiddenMessage.concat(id));
-      },
-    }),
-    [successMessages, hiddenMessages],
-  );
-
   return (
     <QueryClientProvider client={queryClient}>
-      <MessagesContext.Provider value={messageContext}>
+      <MessageContextProvider>
         <Routes />
-      </MessagesContext.Provider>
+      </MessageContextProvider>
       <ReactQueryDevtools />
     </QueryClientProvider>
   );

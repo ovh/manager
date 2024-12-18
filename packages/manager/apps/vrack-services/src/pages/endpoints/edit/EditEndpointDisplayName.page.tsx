@@ -41,7 +41,9 @@ export default function EditEndpointDisplayName() {
     <UpdateIamNameModal
       closeModal={onClose}
       inputLabel={t('endpointUpdateDisplayNameInputLabel')}
-      headline={t('modalEndpointUpdateHeadline')}
+      headline={t('modalEndpointUpdateHeadline', {
+        name: resource?.name,
+      })}
       description={t('modalEndpointUpdateDescription')}
       defaultValue={resource?.displayName}
       resourceName={resource?.name}
