@@ -89,7 +89,6 @@ export default class AccountUserIdentityDocumentsController {
 
   uploadIdentityDocuments() {
     this.trackClick(TRACKING_TASK_TAG.clickSendMyDocuments);
-    this.handleUploadConfirmModal(false);
     this.loading = true;
     this.displayError = false;
     if (this.isValid) {
