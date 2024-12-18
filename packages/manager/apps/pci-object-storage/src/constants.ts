@@ -244,6 +244,9 @@ export const OBJECT_CONTAINER_TYPES = [
 
 export const CONTAINER_COMMERCIAL_NAME = 'storage-replicated';
 
+export const NO_ENCRYPTION_VALUE = 'plaintext';
+export const ENCRYPTION_ALGORITHM_SSE_S3 = 'AES256';
+
 export const STORAGE_ASYNC_REPLICATION_LINK = {
   DEFAULT:
     'https://help.ovhcloud.com/csm/en-public-cloud-storage-s3-asynchronous-replication-buckets?id=kb_article_view&sysparm_article=KB0062417',
