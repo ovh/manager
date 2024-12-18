@@ -14,8 +14,7 @@
   },
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
-  "type": "module",
-  "main": "dist/index.cjs",
+  "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "types": "dist/types/index.d.ts",
   "files": [
