@@ -30,7 +30,7 @@ const plugins = [
 
 describe('AdmissionPlugins', () => {
   // TODO: Fix the failing test-case
-  it.skip('renders plugins correctly', () => {
+  it('renders plugins correctly', () => {
     render(<AdmissionPlugins plugins={plugins} isProcessing={false} />);
 
     // Check plugin labels
