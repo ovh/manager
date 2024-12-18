@@ -258,6 +258,11 @@ export default /* @ngInject */ ($stateProvider) => {
           productId: serverName,
         }),
       trackingPrefix: () => 'dedicated::server::dashboard',
+      trackingSubscriptionPrefix: () =>
+        'DedicatedServers::dedicated-server::node',
+      trackingPage: () =>
+        'DedicatedServers::dedicated-server::node::node::dashboard::general-information',
+      trackingNameSuffix: () => 'node',
       trafficInformation: /* @ngInject */ (
         $q,
         $stateParams,

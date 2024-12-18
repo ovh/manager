@@ -90,6 +90,12 @@ export default class {
     });
   }
 
+  static getSimpleRangeName(rangeFullName) {
+    const rangesKeys = Object.values(RANGES).join('|');
+    const [simpleRangeName] = rangeFullName.match(new RegExp(rangesKeys, 'i'));
+    return simpleRangeName?.toLocaleLowerCase();
+  }
+
   canBeMigrated() {
     return this.vpsMigration?.status === MIGRATION_STATUS.AVAILABLE;
   }
@@ -98,6 +104,16 @@ export default class {
     return this.stateVps?.model?.name.includes(
       RANGES.STARTER.toLocaleLowerCase(),
     );
+  }
+
+  getTrackingProductLine() {
+    if (this.stateVps?.model?.name) {
+      const model = this.constructor.getSimpleRangeName(
+        this.stateVps?.model?.name,
+      );
+      return `vps_${model}`;
+    }
+    return '';
   }
 
   getRangeCompareLink() {

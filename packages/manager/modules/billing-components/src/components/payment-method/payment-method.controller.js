@@ -1,9 +1,10 @@
 export default class PaymentMethodController {
   /* @ngInject */
-  constructor($http, coreURLBuilder, $filter) {
+  constructor($http, coreURLBuilder, $filter, atInternet) {
     this.$http = $http;
     this.coreURLBuilder = coreURLBuilder;
     this.$filter = $filter;
+    this.atInternet = atInternet;
   }
 
   $onInit() {
@@ -34,5 +35,18 @@ export default class PaymentMethodController {
       'dedicated',
       '#/billing/payment/method',
     );
+  }
+
+  trackPaymentClick() {
+    this.atInternet.trackClick({
+      name: `hub::billing::services::listing::tile::link::${
+        this.paymentMehtod ? 'edit' : 'activate'
+      }_services::autorenew`,
+      type: 'action',
+      page_category: this.trackingCategory,
+      page: {
+        name: this.trackingPage,
+      },
+    });
   }
 }
