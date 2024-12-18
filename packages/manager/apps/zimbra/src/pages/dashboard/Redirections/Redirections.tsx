@@ -93,7 +93,7 @@ export function Redirections() {
   const isLoading = false;
 
   return (
-    <div className="py-6">
+    <div>
       <Outlet />
       {platformUrn && (
         <>

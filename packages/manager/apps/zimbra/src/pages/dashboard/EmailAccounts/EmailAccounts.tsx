@@ -148,7 +148,7 @@ export default function EmailAccounts() {
   const webmailUrl = GUIDES_LIST.webmail.url.DEFAULT;
 
   const hrefAddEmailAccount = useGenerateUrl('./add', 'path');
-  const hrefOrderEmailAccount = useGenerateUrl('./order', 'href');
+  const hrefOrderEmailAccount = useGenerateUrl('./order', 'path');
 
   const handleAddEmailAccountClick = () => {
     trackClick({
@@ -219,45 +219,49 @@ export default function EmailAccounts() {
               </ManagerText>
             </div>
           </div>
-          {(data?.length > 0 || dataDomains?.length > 0) && (
-            <ManagerButton
-              id="add-account-btn"
-              color={ODS_BUTTON_COLOR.primary}
-              size={ODS_BUTTON_SIZE.sm}
-              urn={platformUrn}
-              iamActions={[IAM_ACTIONS.account.create]}
-              onClick={handleAddEmailAccountClick}
-              data-testid="add-account-btn"
-              className="mb-6"
-              icon={ODS_ICON_NAME.plus}
-              label={t('zimbra_account_account_add')}
-            />
-          )}
-          {dataDomains?.length === 0 && (
-            <OdsTooltip className="mb-6" triggerId="tooltip-trigger">
-              <OdsButton
+          <div className="mb-6 flex gap-6">
+            {(data?.length > 0 || dataDomains?.length > 0) && (
+              <ManagerButton
+                id="add-account-btn"
                 color={ODS_BUTTON_COLOR.primary}
                 size={ODS_BUTTON_SIZE.sm}
-                isDisabled
+                urn={platformUrn}
+                iamActions={[IAM_ACTIONS.account.create]}
+                onClick={handleAddEmailAccountClick}
+                data-testid="add-account-btn"
                 icon={ODS_ICON_NAME.plus}
                 label={t('zimbra_account_account_add')}
-              ></OdsButton>
-              <div id="tooltip-trigger">
-                <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-                  {t('zimbra_domains_tooltip_need_domain')}
-                </OdsText>
-              </div>
-            </OdsTooltip>
-          )}
-          {FEATURE_FLAGS.ORDER && (
-            <OdsButton
-              data-testid="order-account-btn"
-              color={ODS_BUTTON_COLOR.primary}
-              size={ODS_BUTTON_SIZE.sm}
-              onClick={handleOrderEmailAccountClick}
-              label={t('zimbra_account_account_order')}
-            ></OdsButton>
-          )}
+              />
+            )}
+            {dataDomains?.length === 0 && (
+              <OdsTooltip triggerId="tooltip-trigger">
+                <OdsButton
+                  color={ODS_BUTTON_COLOR.primary}
+                  size={ODS_BUTTON_SIZE.sm}
+                  isDisabled
+                  icon={ODS_ICON_NAME.plus}
+                  label={t('zimbra_account_account_add')}
+                ></OdsButton>
+                <div id="tooltip-trigger">
+                  <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                    {t('zimbra_domains_tooltip_need_domain')}
+                  </OdsText>
+                </div>
+              </OdsTooltip>
+            )}
+            {FEATURE_FLAGS.ORDER && (
+              <ManagerButton
+                id="order-account-btn"
+                urn={platformUrn}
+                iamActions={[IAM_ACTIONS.account.create]}
+                data-testid="order-account-btn"
+                color={ODS_BUTTON_COLOR.primary}
+                size={ODS_BUTTON_SIZE.sm}
+                onClick={handleOrderEmailAccountClick}
+                label={t('zimbra_account_account_order')}
+              />
+            )}
+          </div>
           {isLoading ? (
             <Loading />
           ) : (
