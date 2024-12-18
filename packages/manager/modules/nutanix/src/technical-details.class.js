@@ -1,5 +1,6 @@
 export default class TechnicalDetails {
-  constructor(technicalDetails) {
+  constructor(technicalDetails, $translate) {
+    this.$translate = $translate;
     Object.assign(this, technicalDetails);
   }
 
@@ -8,8 +9,13 @@ export default class TechnicalDetails {
     if (!ram) {
       return '-';
     }
-    const freqUnit = 'Ghz';
-    const gbTranslated = 'Gb';
+
+    const freqUnit = this.$translate.instant(
+      'nutanix_dashboard_technical_details_ram_frequency_unit',
+    );
+    const gbTranslated = this.$translate.instant(
+      'nutanix_dashboard_technical_details_ram_size_unit',
+    );
     const ramSize = ram.size ? `${ram.size} ${gbTranslated}` : '';
     const ramType = ram.type ?? '';
     const ramECC = ram.ecc ? 'ECC' : '';
@@ -22,7 +28,9 @@ export default class TechnicalDetails {
     if (!cpu) {
       return '-';
     }
-    const freqUnit = 'GHz';
+    const freqUnit = this.$translate.instant(
+      'nutanix_dashboard_technical_details_cpu_frequency_unit',
+    );
     const cpuNumber = cpu.number ?? 1;
     const cpuBrand = cpu.brand ?? '';
     const cpuModel = cpu.model ?? '';
