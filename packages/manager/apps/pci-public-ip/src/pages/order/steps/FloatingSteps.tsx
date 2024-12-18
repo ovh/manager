@@ -15,7 +15,6 @@ import { StepIdsEnum, TRegion } from '@/api/types';
 import { useOrderStore } from '@/pages/order/hooks/useStore';
 import { useActions } from '@/pages/order/hooks/useActions';
 import { StepComponent } from '@/components/container/Step.component';
-import { RegionInputComponent } from '@/components/input/RegionInput.component';
 import { FloatingIpSummary } from '@/pages/order/steps/FloatingIpSummary';
 
 export const FloatingSteps = ({
