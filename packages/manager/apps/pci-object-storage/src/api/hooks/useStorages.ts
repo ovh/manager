@@ -11,11 +11,19 @@ import {
   TStorage,
   getStorage,
   updateStorage,
+  createSwiftStorage,
+  createS3Storage,
+  setContainerAsStatic,
+  setContainerAsPublic,
 } from '../data/storages';
 import {
   OBJECT_CONTAINER_MODE_LOCAL_ZONE,
   OBJECT_CONTAINER_MODE_MONO_ZONE,
   OBJECT_CONTAINER_MODE_MULTI_ZONES,
+  OBJECT_CONTAINER_OFFER_STORAGE_STANDARD,
+  OBJECT_CONTAINER_OFFER_SWIFT,
+  OBJECT_CONTAINER_TYPE_PUBLIC,
+  OBJECT_CONTAINER_TYPE_STATIC,
 } from '@/constants';
 import { paginateResults } from '@/helpers';
 
@@ -261,6 +269,78 @@ export const useUpdateStorage = ({
   return {
     updateContainer: ({ versioning }: { versioning: { status: string } }) =>
       mutation.mutate({ versioning }),
+    ...mutation,
+  };
+};
+
+export interface UseCreateContainerArgs {
+  offer: string;
+  archive?: boolean;
+  containerName: string;
+  region: string;
+  ownerId?: string;
+  encryption?: string;
+  versioning?: boolean;
+  containerType?: string;
+}
+
+export const useCreateContainer = ({
+  projectId,
+  onSuccess,
+  onError,
+}: {
+  projectId: string;
+  onSuccess: (container: TStorage) => void;
+  onError: (error: ApiError) => void;
+}) => {
+  const queryClient = useQueryClient();
+  const mutation = useMutation({
+    mutationFn: async (args: UseCreateContainerArgs) => {
+      let result = null;
+      if (args.offer === OBJECT_CONTAINER_OFFER_SWIFT) {
+        result = await createSwiftStorage({
+          projectId,
+          archive: args.archive || false,
+          containerName: args.containerName,
+          region: args.region,
+        });
+      } else if (args.offer === OBJECT_CONTAINER_OFFER_STORAGE_STANDARD) {
+        result = createS3Storage({
+          projectId,
+          containerName: args.containerName,
+          ownerId: args.ownerId,
+          region: args.region,
+          encryption: args.encryption,
+          versioning: args.versioning,
+        });
+      }
+      if (!result) throw new Error(`${args.offer}: unknown container offer!`);
+      if (args.containerType === OBJECT_CONTAINER_TYPE_STATIC) {
+        await setContainerAsStatic({
+          projectId,
+          containerId: result.id,
+        });
+      } else if (args.containerType === OBJECT_CONTAINER_TYPE_PUBLIC) {
+        await setContainerAsPublic({
+          projectId,
+          containerName: args.containerName,
+          region: args.region,
+        });
+      }
+      return result;
+    },
+    onError,
+    onSuccess: async (result) => {
+      await queryClient.invalidateQueries({
+        queryKey: getStorageQueryKey(projectId),
+      });
+      onSuccess(result);
+    },
+  });
+
+  return {
+    createContainer: (container: UseCreateContainerArgs) =>
+      mutation.mutate(container),
     ...mutation,
   };
 };

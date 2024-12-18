@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { TRegionAvailability } from '@ovh-ux/manager-pci-common';
 import {
+  NO_ENCRYPTION_VALUE,
   OBJECT_CONTAINER_MODE_LOCAL_ZONE,
   OBJECT_CONTAINER_OFFER_STORAGE_STANDARD,
   OBJECT_CONTAINER_OFFER_SWIFT,
@@ -36,6 +37,8 @@ export interface ContainerStore {
     containerType: StepState;
   };
 
+  reset: () => void;
+
   setOffer: (offer: string) => void;
   editOffer: () => void;
   submitOffer: () => void;
@@ -61,13 +64,33 @@ export interface ContainerStore {
   submitEncryption: () => void;
 
   setContainerName: (name: string) => void;
-  editContainerName: () => void;
-  submitContainerName: () => void;
 
   setContainerType: (type: string) => void;
   editContainerType: () => void;
   submitContainerType: () => void;
 }
+
+const initialForm = {
+  offer: OBJECT_CONTAINER_OFFER_STORAGE_STANDARD,
+  deploymentMode: undefined,
+  region: undefined,
+  ownerId: '',
+  versioning: false,
+  encryption: NO_ENCRYPTION_VALUE,
+  containerName: '',
+  containerType: undefined,
+};
+
+const initialStepper = {
+  offer: { isOpen: true },
+  deployment: {},
+  region: {},
+  ownerId: {},
+  versioning: {},
+  encryption: {},
+  containerName: {},
+  containerType: {},
+};
 
 export const useContainerCreationStore = create<ContainerStore>()(
   (set, get) => {
@@ -127,28 +150,17 @@ export const useContainerCreationStore = create<ContainerStore>()(
 
     return {
       // initial form state
-      form: {
-        offer: OBJECT_CONTAINER_OFFER_STORAGE_STANDARD,
-        deploymentMode: undefined,
-        region: undefined,
-        ownerId: '',
-        versioning: false,
-        encryption: 'plain',
-        containerName: '',
-        containerType: undefined,
-      },
+      form: initialForm,
 
       // initial stepper state
-      stepper: {
-        offer: { isOpen: true },
-        deployment: {},
-        region: {},
-        ownerId: {},
-        versioning: {},
-        encryption: {},
-        containerName: {},
-        containerType: {},
-      },
+      stepper: initialStepper,
+
+      reset: () =>
+        set((state) => ({
+          ...state,
+          form: initialForm,
+          stepper: initialStepper,
+        })),
 
       setOffer: (offer: string) =>
         set((state) => ({
@@ -159,7 +171,7 @@ export const useContainerCreationStore = create<ContainerStore>()(
             region: undefined,
             ownerId: '',
             versioning: false,
-            encryption: 'plain',
+            encryption: NO_ENCRYPTION_VALUE,
             containerName: '',
             containerType: undefined,
           },
@@ -190,7 +202,7 @@ export const useContainerCreationStore = create<ContainerStore>()(
             region: undefined,
             ownerId: '',
             versioning: false,
-            encryption: 'plain',
+            encryption: NO_ENCRYPTION_VALUE,
             containerName: '',
             containerType: undefined,
           },
@@ -212,7 +224,7 @@ export const useContainerCreationStore = create<ContainerStore>()(
             region,
             ownerId: '',
             versioning: false,
-            encryption: 'plain',
+            encryption: NO_ENCRYPTION_VALUE,
             containerName: '',
             containerType: undefined,
           },
@@ -242,7 +254,7 @@ export const useContainerCreationStore = create<ContainerStore>()(
             ...state.form,
             ownerId,
             versioning: false,
-            encryption: 'plain',
+            encryption: NO_ENCRYPTION_VALUE,
             containerName: '',
             containerType: undefined,
           },
@@ -256,7 +268,7 @@ export const useContainerCreationStore = create<ContainerStore>()(
           form: {
             ...state.form,
             versioning,
-            encryption: 'plain',
+            encryption: NO_ENCRYPTION_VALUE,
             containerName: '',
             containerType: undefined,
           },
@@ -284,10 +296,6 @@ export const useContainerCreationStore = create<ContainerStore>()(
             containerName,
           },
         })),
-      editContainerName: () => editStep('containerName', []),
-      submitContainerName: () => {
-        // @TODO create container
-      },
 
       setContainerType: (containerType: string) =>
         set((state) => ({
