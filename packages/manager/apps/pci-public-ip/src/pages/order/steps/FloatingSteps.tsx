@@ -7,6 +7,7 @@ import {
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useNavigation } from '@ovh-ux/manager-react-shell-client';
+import { RegionSelector } from '@ovh-ux/manager-pci-common';
 import { useTranslation } from 'react-i18next';
 import { useEffect, useMemo, useState } from 'react';
 import { useData } from '@/api/hooks/useData';
@@ -76,11 +77,36 @@ export const FloatingSteps = ({
         onEdit={On.edit}
         order={2}
       >
-        <RegionInputComponent
-          regions={DataState.regions}
-          value={form.floatingRegion}
-          onInput={(value: TRegion) =>
-            setForm({ ...form, floatingRegion: value })
+        <RegionSelector
+          projectId={projectId}
+          onSelectRegion={(region) => {
+            if (region) {
+              const {
+                continentLabel: continent,
+                continentCode,
+                datacenterLocation: datacenter,
+                status,
+                macroLabel: macroName,
+                microLabel: microName,
+                name,
+              } = region;
+
+              const floatingRegion: TRegion = {
+                continent,
+                continentCode,
+                datacenter,
+                enabled: status === 'UP',
+                macroName,
+                microName,
+                name,
+              };
+
+              setForm({ ...form, floatingRegion });
+            }
+          }}
+          regionFilter={(region) =>
+            region.isMacro ||
+            DataState.regions.some(({ name }) => name === region.name)
           }
         />
       </StepComponent>
