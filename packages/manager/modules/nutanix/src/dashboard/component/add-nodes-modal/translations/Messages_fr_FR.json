@@ -9,7 +9,7 @@
   "nutanix_dashboard_add_nodes_price_preffix": "Le prix du noeud est de",
   "nutanix_dashboard_add_nodes_price_suffix": "HT/mois",
   "nutanix_dashboard_add_nodes_number_of_nodes_available": "Votre cluster est composé de {{numberOfNodes}} noeuds actuellement et vous pouvez l'étendre jusqu'à 15 noeuds.",
-  "nutanix_dashboard_add_nodes_number_of_nodes_to_command": "Nombre de noeuds supplémentaires à commander.",
+  "nutanix_dashboard_add_nodes_number_of_additional_nodes_to_command": "Nombre de noeuds supplémentaires à commander.",
   "nutanix_dashboard_add_nodes_confirm": "Commander",
   "nutanix_dashboard_add_nodes_cancel": "Annuler",
   "nutanix_dashboard_add_nodes_success_banner": "Votre commande de noeud(s) a été initiée. Si vous ne l'avez pas encore finalisée, vous pouvez la compléter en cliquant sur le lien suivant : ",

@@ -65,7 +65,10 @@
                     data-translate-values="$ctrl.informationsClusterNode"
                 ></p>
 
-                <oui-field error-messages="$ctrl.customErrorMessages">
+                <oui-field
+                    label="{{ 'nutanix_dashboard_add_nodes_number_of_additional_nodes_to_command' | translate }}"
+                    error-messages="$ctrl.customErrorMessages"
+                >
                     <oui-numeric
                         name="numberOfNodes"
                         model="$ctrl.numberOfNodes"
