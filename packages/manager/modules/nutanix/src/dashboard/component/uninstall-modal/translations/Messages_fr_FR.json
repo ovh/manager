@@ -1,6 +1,6 @@
 {
-  "nutanix_dashboard_uninstall_node_title": "Eteindre le noeud",
-  "nutanix_dashboard_uninstall_node_description": "L'extinction d'un noeud Nutanix peut avoir un impact sur votre cluster, vérifiez les pré-requis sur le portail de Nutanix pour réaliser cette action",
+  "nutanix_dashboard_uninstall_node_title": "Désinstaller le noeud",
+  "nutanix_dashboard_uninstall_node_description": "Voulez-vous vraiment éteindre votre noeud \"{{serviceName}}\"? La désinstallation d'un noeud Nutanix peut avoir un impact sur votre cluster, vérifier les pré-requis sur le portail de Nutanix pour réaliser cette action",
   "nutanix_dashboard_uninstall_node_uninstall_guidelink": "Accéder au portail",
   "nutanix_dashboard_uninstall_node_confirmation": "Voulez-vous vraiment éteindre votre noeud {{serviceName}} ?",
   "nutanix_dashboard_uninstall_node_confirm": "Détâcher",
