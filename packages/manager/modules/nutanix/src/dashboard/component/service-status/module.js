@@ -6,7 +6,7 @@ import '@ovh-ux/ui-kit';
 
 import component from './component';
 
-const moduleName = 'ovhManagerNutanixNodeStatus';
+const moduleName = 'ovhManagerNutanixServiceStatus';
 
 angular
   .module(moduleName, [
@@ -15,7 +15,7 @@ angular
     'pascalprecht.translate',
     'ui.router',
   ])
-  .component('nodeStatus', component)
+  .component('serviceStatus', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

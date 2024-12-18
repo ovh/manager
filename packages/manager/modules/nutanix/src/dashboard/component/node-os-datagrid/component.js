@@ -4,6 +4,8 @@ import controller from './controller';
 export default {
   bindings: {
     status: '<',
+    serviceStatus: '<',
+    powerState: '<',
     os: '<',
   },
   template,

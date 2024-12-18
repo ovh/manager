@@ -43,11 +43,15 @@
         data-filterable
     >
         <iam-protected-data data-is-hidden="$row.isHiddenNode">
-            <span
-                class="{{'oui-badge ' + $ctrl.NODE_BADGE_STATE[$row.state] }}"
-                data-translate="{{ 'nutanix_dashboard_nodes_list_status_' + $row.state }}"
-            >
-            </span>
+            <div class="d-flex align-items-center">
+                <service-status status="$row.serviceStatus"></service-status>
+                <span
+                    data-ng-if="$row.serviceStatus === 'suspended'"
+                    class="oui-icon oui-icon-help-circle"
+                    title="{{ 'nutanix_dashboard_nodes_suspended_tooltip' | translate }}"
+                    oui-tooltip
+                ></span>
+            </div>
         </iam-protected-data>
     </oui-datagrid-column>
     <oui-datagrid-column
@@ -64,11 +68,13 @@
         data-property="status"
     >
         <oui-skeleton data-ng-if="$ctrl.loadingNodesStatus"></oui-skeleton>
-        <node-status
+        <node-os-datagrid
             data-ng-else
             data-status="$row.status"
+            data-service-status="$row.serviceStatus"
+            data-power-state="$row.powerState"
             data-os="$row.os"
-        ></node-status>
+        ></node-os-datagrid>
     </oui-datagrid-column>
     <oui-datagrid-column
         data-title="'nutanix_dashboard_nodes_list_node_ip' | translate"
