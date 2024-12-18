@@ -202,6 +202,7 @@ export const PublicCloudPanel: React.FC<ComponentProps<
           color={ODS_THEME_COLOR_INTENT.primary}
           type={ODS_BUTTON_TYPE.button}
           size={ODS_BUTTON_SIZE.sm}
+          data-testid="pci-create-project"
           variant={ODS_BUTTON_VARIANT.flat}
           onClick={() =>
             navigationPlugin.navigateTo('public-cloud', `#/pci/projects/new`)

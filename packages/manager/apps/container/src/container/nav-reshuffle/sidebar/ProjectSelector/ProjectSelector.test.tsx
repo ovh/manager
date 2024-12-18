@@ -15,7 +15,6 @@ const pciProjects : Array<Partial<PciProject>> = [
 ];
 
 const onProjectChange = vi.fn();
-const onProjectCreate = vi.fn();
 const onSeeAllProjects = vi.fn();
 const onMenuOpen = vi.fn();
 
@@ -24,10 +23,8 @@ const props: Props = {
   projects: pciProjects as Array<PciProject>,
   selectedProject: pciProjects[0] as PciProject,
   onProjectChange: onProjectChange,
-  onProjectCreate: onProjectCreate,
   onSeeAllProjects: onSeeAllProjects,
   onMenuOpen: onMenuOpen,
-  createLabel: "Créer un projet",
   seeAllButton: true,
   seeAllLabel: "Tous mes projets Public Cloud",
 }
@@ -38,9 +35,7 @@ const renderProjectSelector = (props: Props) => {
     projects={props.projects}
     selectedProject={props.projects[0]}
     onProjectChange={props.onProjectChange}
-    onProjectCreate={props.onProjectCreate}
     onSeeAllProjects={props.onSeeAllProjects}
-    createLabel={props.createLabel}
     seeAllButton={props.seeAllButton}
     seeAllLabel={props.seeAllLabel}
   />);
