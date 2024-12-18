@@ -1,7 +1,5 @@
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_SIZE,
-  ODS_BUTTON_TYPE,
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
@@ -9,10 +7,10 @@ import {
   ODS_INPUT_TYPE,
 } from '@ovhcloud/ods-components';
 import {
-  OsdsButton,
-  OsdsIcon,
-  OsdsInput,
-  OsdsQuantity,
+  OdsButton,
+  OdsIcon,
+  OdsInput,
+  OdsQuantity,
 } from '@ovhcloud/ods-components/react';
 import React from 'react';
 
@@ -33,8 +31,8 @@ const QuantitySelector: React.FC<QuantitySelectorProps> = ({
   const isDisabledPlus = quantity >= MAX_QUANTITY;
 
   return (
-    <OsdsQuantity>
-      <OsdsButton
+    <OdsQuantity>
+      <OdsButton
         data-testid="minus-button"
         onClick={onMinusClick}
         slot="minus"
@@ -44,13 +42,13 @@ const QuantitySelector: React.FC<QuantitySelectorProps> = ({
         variant={ODS_BUTTON_VARIANT.flat}
         text-align="center"
       >
-        <OsdsIcon
+        <OdsIcon
           size={ODS_ICON_SIZE.sm}
           name={ODS_ICON_NAME.MINUS}
           contrasted
         />
-      </OsdsButton>
-      <OsdsInput
+      </OdsButton>
+      <OdsInput
         data-testid="input-quantity"
         type={ODS_INPUT_TYPE.number}
         color={ODS_THEME_COLOR_INTENT.primary}
@@ -58,16 +56,16 @@ const QuantitySelector: React.FC<QuantitySelectorProps> = ({
         max={MAX_QUANTITY}
         step={1}
         value={quantity}
-        onOdsValueChange={(e) => {
+        onOdsChange={(e) => {
           const value = Number(e.detail.value);
           if (value > 0 && value <= MAX_QUANTITY) {
             onChangeQuantity(value);
           }
         }}
         size={ODS_INPUT_SIZE.md}
-      ></OsdsInput>
-      <OsdsButton
-        disabled={isDisabledPlus || null}
+      ></OdsInput>
+      <OdsButton
+        isDisabled={isDisabledPlus || null}
         data-testid="plus-button"
         onClick={!isDisabledPlus ? onPlusClick : null}
         slot="plus"
@@ -77,13 +75,13 @@ const QuantitySelector: React.FC<QuantitySelectorProps> = ({
         variant={ODS_BUTTON_VARIANT.flat}
         text-align="center"
       >
-        <OsdsIcon
+        <OdsIcon
           size={ODS_ICON_SIZE.sm}
           name={ODS_ICON_NAME.PLUS}
           contrasted
-        ></OsdsIcon>
-      </OsdsButton>
-    </OsdsQuantity>
+        ></OdsIcon>
+      </OdsButton>
+    </OdsQuantity>
   );
 };
 
