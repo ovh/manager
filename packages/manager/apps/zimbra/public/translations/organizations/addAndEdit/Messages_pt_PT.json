@@ -16,5 +16,6 @@
   "zimbra_organization_add_success_message": "O seu pedido de adição de uma organização foi registado. Será aplicado dentro de alguns instantes.",
   "zimbra_organization_add_error_message": "Não foi possível adicionar uma organização. {{ error }}",
   "zimbra_organization_edit_success_message": "O seu pedido de modificação foi registado. Será executado dentro de alguns instantes.",
-  "zimbra_organization_edit_error_message": "Não foi possível realizar o pedido de modificação. {{ error }}"
+  "zimbra_organization_edit_error_message": "Não foi possível realizar o pedido de modificação. {{ error }}",
+  "zimbra_organization_add_cancel": "Anular"
 }

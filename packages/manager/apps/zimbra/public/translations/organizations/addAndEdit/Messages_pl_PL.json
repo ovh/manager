@@ -16,5 +16,6 @@
   "zimbra_organization_add_success_message": "Dyspozycja dodania organizacji została przyjęta. Zostanie wykonana w ciągu kilku minut.",
   "zimbra_organization_add_error_message": "Dodanie organizacji nie powiodło się. {{error}}",
   "zimbra_organization_edit_success_message": "Dyspozycja modyfikacji została przyjęta. Zostanie wykonana w ciągu kilku minut.",
-  "zimbra_organization_edit_error_message": "Modyfikacja nie powiodła się. {{error}}"
+  "zimbra_organization_edit_error_message": "Modyfikacja nie powiodła się. {{error}}",
+  "zimbra_organization_add_cancel": "Anuluj"
 }

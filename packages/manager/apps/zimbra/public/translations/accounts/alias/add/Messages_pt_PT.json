@@ -9,5 +9,6 @@
   "zimbra_account_alias_add_select_domain_placeholder": "Escolher um nome de domínio",
   "zimbra_account_alias_add_btn_confirm": "Confirmar",
   "zimbra_account_alias_add_success_message": "O seu pedido de criação de alias foi registado. Será tratado dentro de alguns instantes.",
-  "zimbra_account_alias_add_error_message": "O seu pedido de criação de alias não foi bem-sucedido. {{ error }}"
+  "zimbra_account_alias_add_error_message": "O seu pedido de criação de alias não foi bem-sucedido. {{ error }}",
+  "zimbra_account_alias_add_btn_cancel": "Anular"
 }
