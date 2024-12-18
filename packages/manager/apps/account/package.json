@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-account-app",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "private": true,
   "description": "User account and contacts management application",
   "repository": {
