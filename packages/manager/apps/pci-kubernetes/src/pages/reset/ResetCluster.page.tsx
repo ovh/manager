@@ -94,7 +94,7 @@ export default function ResetClusterPage() {
   const [formState, setFormState] = useState({
     workerNodesPolicy: WORKER_NODE_POLICIES.DELETE,
     selectedVersion: getFormatedKubeVersion(kubernetesCluster?.version || ''),
-    privateNetworkId: kubernetesCluster?.privateNetworkId,
+    privateNetworkId: kubernetesCluster?.privateNetworkId ?? undefined,
     subnet: null,
     loadBalancersSubnet: null,
     gateway: {
