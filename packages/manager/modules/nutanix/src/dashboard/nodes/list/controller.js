@@ -1,4 +1,3 @@
-import { NODE_BADGE_STATE } from './constants';
 import { MAX_NODES_BY_CLUSTER } from '../../../constants';
 
 export default class NutanixAllNodesCtrl {
@@ -7,7 +6,6 @@ export default class NutanixAllNodesCtrl {
     this.ovhManagerRegionService = ovhManagerRegionService;
     this.$translate = $translate;
     this.NutanixService = NutanixService;
-    this.NODE_BADGE_STATE = NODE_BADGE_STATE;
     this.nodesMapped = [];
     this.loadingNodesStatus = false;
   }
@@ -49,6 +47,9 @@ export default class NutanixAllNodesCtrl {
           const nodeIndex = this.nodesMapped.findIndex(
             (node) => node.name === nodeDetail.server,
           );
+
+          if (nodeIndex < 0) return;
+
           this.nodesMapped[nodeIndex] = {
             ...this.nodesMapped[nodeIndex],
             ...nodeDetail,
