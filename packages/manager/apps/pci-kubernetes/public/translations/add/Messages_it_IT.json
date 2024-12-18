@@ -43,5 +43,7 @@
   "kube_update_policy_picker_documentation_text": "Maggiori informazioni sulle politiche di sicurezza di Managed Kubernetes Service.",
   "kube_update_policy_picker_documentation_link": "Consulta la documentazione",
   "kubernetes_add_update_policy_title": "Seleziona la politica di sicurezza",
-  "kubernetes_select_version_title": "Seleziona una versione"
+  "kubernetes_select_version_title": "Seleziona una versione",
+  "kubernetes_add_billing_savings_plan_banner": "Usufruisci di tariffe mensili vantaggiose grazie ai Savings Plan, conservando la flessibilità delle istanze all’ora.",
+  "kubernetes_add_billing_savings_plan_cta": "Configura i tuoi Savings Plan"
 }
