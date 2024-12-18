@@ -20,6 +20,7 @@
     "start:watch": "tsc -w"
   },
   "devDependencies": {
+    "@ovh-ux/manager-core-api": "^0.9.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.0.1",
     "@testing-library/user-event": "^14.5.2",
@@ -30,7 +31,7 @@
     "vitest": "^2.1.4"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-core-api": "^0.10.0",
+    "@ovh-ux/manager-core-api": "^0.9.0",
     "@ovhcloud/ods-common-core": "17.x",
     "@ovhcloud/ods-components": "17.x",
     "@tanstack/react-query": "5.x",
