@@ -6,7 +6,7 @@
   "nutanix_dashboard_add_nodes_memory": "Mémoire :",
   "nutanix_dashboard_add_nodes_stokage": "Stokage :",
   "nutanix_dashboard_add_nodes_informations": "Informations",
-  "nutanix_dashboard_add_nodes_price_preffix": "Le prix du noeud est de",
+  "nutanix_dashboard_add_nodes_price_preffix": "Le prix d'un noeud supplémentaire est de",
   "nutanix_dashboard_add_nodes_price_suffix": "HT/mois",
   "nutanix_dashboard_add_nodes_number_of_nodes_available": "Votre cluster est composé de {{numberOfNodes}} noeuds actuellement et vous pouvez l'étendre jusqu'à 15 noeuds.",
   "nutanix_dashboard_add_nodes_number_of_additional_nodes_to_command": "Nombre de noeuds supplémentaires à commander.",
