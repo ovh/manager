@@ -130,6 +130,25 @@ export default class CloudConnectService {
       .then(({ data }) => data);
   }
 
+  runDiagnostic(
+    serviceName,
+    dcConfigId,
+    diagnosticName,
+    diagnosticType,
+    extraConfigId,
+    popConfigId,
+  ) {
+    return this.$http
+      .post(`/ovhCloudConnect/${serviceName}/diagnostic`, {
+        dcConfigId,
+        diagnosticName,
+        diagnosticType,
+        extraConfigId,
+        popConfigId,
+      })
+      .then(({ data }) => data);
+  }
+
   loadAllTasks(cloudConnectId) {
     return this.$http
       .get(`/ovhCloudConnect/${cloudConnectId}/task`)
