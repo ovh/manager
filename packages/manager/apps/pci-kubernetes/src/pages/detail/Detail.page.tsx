@@ -73,7 +73,7 @@ export default function DetailPage() {
       ),
       to: useResolvedPath('logs').pathname,
       tracking: TRACKING_TABS.LOGS,
-      isHidden: region === 'US',
+      isHidden: false,
     },
   ];
 
