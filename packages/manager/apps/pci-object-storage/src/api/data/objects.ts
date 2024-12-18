@@ -1,17 +1,6 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 import { OPENIO_DEFAULT_REGION } from '@/constants';
 
-export type TAccess = {
-  token: string;
-  endpoints: { region: string; url: string }[];
-};
-export const getAccessToken = async (projectId: string): Promise<TAccess> => {
-  const { data } = await v6.post<TAccess>(
-    `/cloud/project/${projectId}/storage/access`,
-  );
-  return data;
-};
-
 export const deleteS3Object = async (
   projectId: string,
   containerId: string,
