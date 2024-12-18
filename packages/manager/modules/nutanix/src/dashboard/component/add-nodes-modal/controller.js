@@ -53,7 +53,9 @@ export default class {
     this.handleSuccess(
       `${this.$translate.instant(
         'nutanix_dashboard_add_nodes_success_banner',
-      )}<a href="${this.generateOrderExpressLink()}" target="_blank" rel="nooponer">${this.generateOrderExpressLink()}</a>`,
+      )}<a href="${this.generateOrderExpressLink()}" target="_blank" rel="nooponer">${this.$translate.instant(
+        'nutanix_dashboard_add_nodes_success_banner_link_label',
+      )}</a>`,
     );
   }
 

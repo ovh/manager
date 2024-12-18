@@ -13,6 +13,7 @@
   "nutanix_dashboard_add_nodes_confirm": "Commander",
   "nutanix_dashboard_add_nodes_cancel": "Annuler",
   "nutanix_dashboard_add_nodes_success_banner": "Votre commande de noeud(s) a été initiée. Si vous ne l'avez pas encore finalisée, vous pouvez la compléter en cliquant sur le lien suivant : ",
+  "nutanix_dashboard_add_nodes_success_banner_link_label": "Finaliser la commande",
   "nutanix_dashboard_add_nodes_informations_max_nodes": "Votre cluster est composé de {{currentNumberOfNodes}} noeuds actuellement et vous pouvez l'étendre jusqu'à {{maxNumberOfNodes}} noeuds.",
   "nutanix_dashboard_add_nodes_error_too_many_nodes": "Vous dépassez le nombre maximum de noeuds autorisés dans un cluster",
   "nutanix_dashboard_add_nodes_error_not_enough_nodes": "Vous devez commander au moins 1 noeud"
