@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.95.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.94.1...@ovh-ux/manager-container-app@0.95.0) (2024-12-18)
+
+
+### Features
+
+* **container:** remove beta badge for vrackservices ([2169811](https://github.com/ovh/manager/commit/21698113d99e2f586d4a860d4a17634c2a7f55e3))
+* **dedicated.vrack:** order vrack with preferred payment method ([#12132](https://github.com/ovh/manager/issues/12132)) ([80a45b6](https://github.com/ovh/manager/commit/80a45b64fb2bf0165ed9b39c0ee3fddd5376a5db))
+
+
+
+
+
 ## [0.94.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.94.0...@ovh-ux/manager-container-app@0.94.1) (2024-12-18)
 
 **Note:** Version bump only for package @ovh-ux/manager-container-app

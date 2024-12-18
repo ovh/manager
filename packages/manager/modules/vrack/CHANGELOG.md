@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.13.0...@ovh-ux/manager-vrack@1.14.0) (2024-12-18)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 158] ([0ceb6be](https://github.com/ovh/manager/commit/0ceb6be04607f0583c5accd3ec320d1387374a65))
+
+
+### Features
+
+* **dedicated.vrack:** add vrack services to vrack dashboard ([2c18e66](https://github.com/ovh/manager/commit/2c18e6667a9a3c0dd84c9818a6688c23b5c06903))
+* **dedicated.vrack:** order vrack with preferred payment method ([#12132](https://github.com/ovh/manager/issues/12132)) ([80a45b6](https://github.com/ovh/manager/commit/80a45b64fb2bf0165ed9b39c0ee3fddd5376a5db))
+* **dedicated.vrack:** restrict single service selection for vs ([b7e52e7](https://github.com/ovh/manager/commit/b7e52e7940b97bccf80bcbe8017b2633cf2c9240))
+
+
+
+
+
 # [1.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.12.3...@ovh-ux/manager-vrack@1.13.0) (2024-12-03)
 
 
