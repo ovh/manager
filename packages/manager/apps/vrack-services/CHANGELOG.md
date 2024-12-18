@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.10.10...@ovh-ux/manager-vrack-services-app@0.11.0) (2024-12-18)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 157] ([b652bce](https://github.com/ovh/manager/commit/b652bce5c94017620bbf07397c9309e279540a3b))
+* **vrack-services:** disable delete if association exist ([daea97a](https://github.com/ovh/manager/commit/daea97a5cb52d0bb636ed8679e7f10a0ba143f98))
+* **vrack-services:** resolve redirection issue ([8b99dba](https://github.com/ovh/manager/commit/8b99dbad270ec4938e46bc81e25e00fe9c6c2ca3))
+
+
+### Features
+
+* **vrack-services:** block redireaction to onboarding page after order ([#14530](https://github.com/ovh/manager/issues/14530)) ([4b96ed1](https://github.com/ovh/manager/commit/4b96ed100d85c0f3a7ff50ee5b3962db35fb99df))
+* **vrack-services:** disable delete option if vs is already associated ([1fd3252](https://github.com/ovh/manager/commit/1fd3252dacdb990ca6ae7e1d6ff28490418e9d96))
+* **vrack-services:** fix automatic validation for vs order ([#14365](https://github.com/ovh/manager/issues/14365)) ([040fa80](https://github.com/ovh/manager/commit/040fa8085245ae8c6503c649e8510fe8dc43c21f))
+* **vrack-services:** fix display title of edit modal ([7f4e18c](https://github.com/ovh/manager/commit/7f4e18c012f17cfd8835d666cab5d2a17c8e54b4))
+* **vrack-services:** modify vrackservices creation modal content ([0ce2799](https://github.com/ovh/manager/commit/0ce27999c1f2e992ac437d6e5b525650fe683862))
+* **vrack-services:** order vrs without contracts ([88af63c](https://github.com/ovh/manager/commit/88af63c1ca7d821d87a9ea1bb909766a95f3c72f))
+
+
+
+
+
 ## [0.10.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.10.9...@ovh-ux/manager-vrack-services-app@0.10.10) (2024-12-18)
 
 **Note:** Version bump only for package @ovh-ux/manager-vrack-services-app

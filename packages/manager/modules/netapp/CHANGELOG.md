@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.2.4...@ovh-ux/manager-netapp@2.3.0) (2024-12-18)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 158] ([0ceb6be](https://github.com/ovh/manager/commit/0ceb6be04607f0583c5accd3ec320d1387374a65))
+
+
+### Features
+
+* **dedicated.netapp:** restrict one subnet activation ([c929305](https://github.com/ovh/manager/commit/c92930552dec6d33e4472987bc1759e3f7ba3f22))
+* **netapp:** add badge for region compatiability ([1b5a367](https://github.com/ovh/manager/commit/1b5a3679a61af90896e3f4a486716e9934798bc5))
+* **netapp:** filter eligible vrackservices list based on efs region ([de3402e](https://github.com/ovh/manager/commit/de3402ed3008badd62e1e286987ce8b17bda76d7))
+* **netapp:** retrive region information from catalog ([35c6f7b](https://github.com/ovh/manager/commit/35c6f7b5862246d9c4c86ec5821a2699a7256381))
+
+
+
+
+
 ## [2.2.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.2.3...@ovh-ux/manager-netapp@2.2.4) (2024-12-11)
 
 
