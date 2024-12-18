@@ -27,7 +27,7 @@ export type TCountry = {
 export type TRegion = {
   continentCode: string;
   datacenter: string;
-  enabled: string;
+  enabled: boolean;
   name: string;
   macroName: string;
   microName: string;
