@@ -84,6 +84,9 @@ module.exports = (env = {}) => {
         path.resolve(__dirname, '../../../node_modules'),
       ],
       mainFields: ['module', 'browser', 'main'],
+      fallback: {
+        buffer: require.resolve('buffer/'),
+      },
     },
     plugins: [
       new webpack.ContextReplacementPlugin(
@@ -95,6 +98,9 @@ module.exports = (env = {}) => {
           ? `'${process.env.NODE_ENV}'`
           : '"development"',
         __NG_APP_INJECTIONS__: getNgAppInjections(['EU', 'CA', 'US']),
+      }),
+      new webpack.ProvidePlugin({
+        Buffer: ['buffer', 'Buffer'],
       }),
     ],
   });
