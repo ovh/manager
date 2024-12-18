@@ -66,10 +66,10 @@ import {
   STORAGE_ASYNC_REPLICATION_LINK,
   TRACKING,
 } from '@/constants';
-import { useGetFeatureAvailability } from '@/api/hooks/useAvailability';
 import { useGetRegion } from '@/api/hooks/useRegion';
 import { useAllStorages } from '@/api/hooks/useStorages';
 import { TServerContainer } from '@/api/data/container';
+import { useGetEncriptionAvailability } from '@/api/hooks/useGetEncriptionAvailability';
 
 export type TContainer = {
   id: string;
@@ -96,7 +96,7 @@ export default function ObjectPage() {
   const hrefProject = useProjectUrl('public-cloud');
   const { t: tObjects } = useTranslation('objects');
   const { t: tContainer } = useTranslation('container');
-  const { t: tCommon } = useTranslation('common');
+  const { t: tCommon } = useTranslation('pci-common');
   const { t: tVersioning } = useTranslation('containers/enable-versioning');
   const { t: tAdd } = useTranslation('storages/add');
   const { t: tDataEncryption } = useTranslation('container/data-encryption');
@@ -166,10 +166,6 @@ export default function ObjectPage() {
         (rule) => rule.status === 'enabled',
       );
 
-      const service = region?.services.find(
-        ({ name }) => name === OBJECT_CONTAINER_OFFER_STORAGE_STANDARD,
-      );
-
       const validTypes = [
         OBJECT_CONTAINER_MODE_MONO_ZONE,
         OBJECT_CONTAINER_MODE_MULTI_ZONES,
@@ -183,10 +179,7 @@ export default function ObjectPage() {
     STORAGE_ASYNC_REPLICATION_LINK[me?.ovhSubsidiary] ||
     STORAGE_ASYNC_REPLICATION_LINK.DEFAULT;
 
-  const { available: isEncryptionAvailable } = useGetFeatureAvailability(
-    'public-cloud:object-storage:encryption',
-    'public-cloud',
-  );
+  const { available: isEncryptionAvailable } = useGetEncriptionAvailability();
 
   const displayEncryptionData = useMemo<boolean>(() => {
     return isEncryptionAvailable && !!container?.s3StorageType;
