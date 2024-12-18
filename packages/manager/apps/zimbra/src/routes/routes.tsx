@@ -460,6 +460,7 @@ export const Routes: any = [
                   import('@/pages/dashboard/AutoReplies/AddAutoReply.page'),
                 ),
                 handle: {
+                  isOverridePage: true,
                   breadcrumbLabel: 'zimbra_dashboard_auto_replies_add',
                 },
               },

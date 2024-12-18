@@ -6,7 +6,7 @@ import {
   Subtitle,
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { useLocation, useMatches, useSearchParams } from 'react-router-dom';
 import { useDomains, useGenerateUrl, usePlatform, useAccount } from '@/hooks';
 import Loading from '@/components/Loading/Loading';
 import { urls } from '@/routes/routes.constants';
@@ -24,11 +24,16 @@ import TabsPanel, {
 export default function AddAndEditAccount() {
   const { t } = useTranslation('accounts/addAndEdit');
   const location = useLocation();
+  const matches = useMatches();
   const { platformId } = usePlatform();
   const [searchParams] = useSearchParams();
   const editEmailAccountId = searchParams.get('editEmailAccountId');
   const [isLoading, setIsLoading] = useState(true);
-  const goBackUrl = useGenerateUrl('..', 'href');
+  const goBackUrl = useGenerateUrl(
+    matches.find((m) => m.pathname.endsWith('email_accounts'))?.pathname ||
+      '..',
+    'href',
+  );
   const [isSettingsTab, setIsSettingsTab] = useState(false);
   const [isAliasTab, setIsAliasTab] = useState(false);
   const [isRedirectionsTab, setIsRedirectionsTab] = useState(false);

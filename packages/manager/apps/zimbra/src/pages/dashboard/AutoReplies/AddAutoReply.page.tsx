@@ -45,6 +45,7 @@ import {
 import { ACCOUNT_REGEX, makeDateFromDDMMYYYY } from '@/utils';
 import Loading from '@/components/Loading/Loading';
 import { FormTypeInterface, useForm } from '@/hooks/useForm';
+import queryClient from '@/queryClient';
 
 export enum AutoReplyTypes {
   LINKED = 'linked',
@@ -217,6 +218,9 @@ export default function AddAutoReply() {
     const orgId = selectedDomain?.currentState?.organizationId;
     if (selectedDomain && selectedOrganizationId !== orgId) {
       setSelectedOrganizationId(orgId);
+      queryClient.invalidateQueries({
+        queryKey: ['get', 'account'],
+      });
     }
   }, [selectedDomain]);
 
@@ -303,22 +307,25 @@ export default function AddAutoReply() {
                 setValue(event.detail.name, event.detail.value.toString());
               }}
             >
-              {domainAccounts && (
-                <datalist slot="list">
-                  {domainAccounts.map((acc) => {
-                    const [head] = (acc.currentState?.email || '@').split('@');
-                    return <option key={head} value={head}></option>;
-                  })}
-                </datalist>
-              )}
+              <datalist slot="list">
+                {(domainAccounts || []).map((acc, index) => {
+                  const [head] = (acc.currentState?.email || '@').split('@');
+                  return (
+                    <option
+                      key={`account-${head}-${index}`}
+                      value={head}
+                    ></option>
+                  );
+                })}
+              </datalist>
             </OdsInput>
             <OdsInput
               name="@"
               type={ODS_INPUT_TYPE.text}
               value={'@'}
-              isReadonly={true}
-              isDisabled={true}
-              className="w-10"
+              isReadonly
+              isDisabled
+              className="w-10 input-at"
             ></OdsInput>
             <OdsSelect
               id="domain"
@@ -335,8 +342,11 @@ export default function AddAutoReply() {
                 'zimbra_auto_replies_add_select_domain_placeholder',
               )}
             >
-              {domains?.map(({ currentState: domain }) => (
-                <option key={domain.name} value={domain.name}>
+              {(domains || []).map(({ currentState: domain }, index) => (
+                <option
+                  key={`domain-${domain.name}-${index}`}
+                  value={domain.name}
+                >
                   {domain.name}
                 </option>
               ))}
@@ -428,7 +438,7 @@ export default function AddAutoReply() {
           </label>
         </div>
       </OdsFormField>
-      {!!form.sendCopy.value && (
+      {!!form.sendCopy.value && !isOrgAccountsLoading && (
         <OdsFormField>
           <OdsSelect
             id="sendCopyTo"
@@ -445,8 +455,8 @@ export default function AddAutoReply() {
             }
             onOdsChange={(event) => setValue('sendCopyTo', event.detail.value)}
           >
-            {orgAccounts?.map(({ currentState: acc }) => (
-              <option key={acc.email} value={acc.email}>
+            {(orgAccounts || []).map(({ currentState: acc }, index) => (
+              <option key={`copy-${acc.email}-${index}`} value={acc.email}>
                 {acc.email}
               </option>
             ))}

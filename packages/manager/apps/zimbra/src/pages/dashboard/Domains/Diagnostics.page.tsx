@@ -297,7 +297,10 @@ const TabContent = ({
         </table>
       )}
       {hasError && isOvh && (
-        <OdsButton label={t('zimbra_domain_diagnostic_cta_auto_configure')} />
+        <OdsButton
+          className="mt-6"
+          label={t('zimbra_domain_diagnostic_cta_auto_configure')}
+        />
       )}
     </div>
   );
