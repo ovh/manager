@@ -92,7 +92,7 @@ export default function EmailAccountsAlias() {
     })) ?? [];
 
   return (
-    <div className="py-6 mt-8">
+    <div>
       <Outlet />
       {platformUrn && (
         <>
