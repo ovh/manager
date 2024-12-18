@@ -12,6 +12,7 @@ export const ROUTE_PATHS = {
   USER_DELETE: ':userId/delete',
   USER_IMPORT_POLICY: 'import-policy',
   OBJECTS: `/pci/projects/:projectId/storages/objects/:storageId`,
+  ADD_OBJECT: 'new',
   DELETE_OBJECT: `:objectName/delete`,
   ENABLE_VERSIONING: 'enableVersioning',
   DOWNLOAD_RCLONE: 'rclone/download',
@@ -59,6 +60,10 @@ const DownloadRClonePage = lazy(() =>
   import('@/pages/objects/container/users/rclone-download/RCloneDownload.page'),
 );
 
+const AddObjectPage = lazy(() =>
+  import('@/pages/objects/container/object/add/AddObject.page'),
+);
+
 const RoutesComponent = () => (
   <Routes>
     <Route id="root" path={ROUTE_PATHS.ROOT} Component={LayoutPage}>
@@ -90,15 +95,13 @@ const RoutesComponent = () => (
           Component={AddUserObjectPage}
         />
         <Route path={ROUTE_PATHS.DELETE_OBJECT} Component={DeleteObjectPage} />
+        <Route
+          path={ROUTE_PATHS.ENABLE_VERSIONING}
+          Component={EnableVersioningPage}
+        />
+        <Route path={ROUTE_PATHS.ADD_OBJECT} Component={AddObjectPage} />
       </Route>
       <Route path="" element={<>Page not found</>}></Route>
-    </Route>
-    <Route path={ROUTE_PATHS.OBJECTS} Component={ObjectPage}>
-      <Route path={ROUTE_PATHS.DELETE_OBJECT} Component={DeleteObjectPage} />
-      <Route
-        path={ROUTE_PATHS.ENABLE_VERSIONING}
-        Component={EnableVersioningPage}
-      />
     </Route>
   </Routes>
 );

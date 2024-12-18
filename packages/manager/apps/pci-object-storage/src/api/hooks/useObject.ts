@@ -1,5 +1,11 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { addUser, deleteObject, deleteS3Object } from '@/api/data/objects';
+import {
+  addHighPerfObjects,
+  addObjects,
+  addUser,
+  deleteObject,
+  deleteS3Object,
+} from '@/api/data/objects';
 import queryClient from '@/queryClient';
 import { TStorage, getStorageAccess } from '../data/storages';
 
@@ -70,6 +76,7 @@ type AddUserProps = {
   onError: (cause: Error) => void;
   onSuccess: () => void;
 };
+
 export const useAddUser = ({
   projectId,
   storageId,
@@ -93,6 +100,55 @@ export const useAddUser = ({
   });
   return {
     addUser: () => mutation.mutate(),
+    ...mutation,
+  };
+};
+
+type AddObjectsProps = {
+  projectId: string;
+  container: TStorage;
+  prefix: string;
+  files: File[];
+  storageClass: string;
+  onError?: (cause: Error) => void;
+  onSuccess?: () => void;
+};
+
+export const useAddObjects = ({
+  projectId,
+  container,
+  prefix,
+  files,
+  storageClass,
+  onSuccess,
+  onError,
+}: AddObjectsProps) => {
+  const addPromise = container?.s3StorageType
+    ? () =>
+        addHighPerfObjects(
+          projectId,
+          container?.region,
+          container?.name,
+          prefix,
+          files,
+          container?.s3StorageType,
+          storageClass,
+        )
+    : () => addObjects(projectId, container, prefix, files);
+
+  const mutation = useMutation({
+    mutationFn: addPromise,
+    onError,
+    onSuccess: () => {
+      /**
+       * TODO: Should invalidate the objects fetch cache
+       */
+      onSuccess();
+    },
+  });
+
+  return {
+    addObjects: () => mutation.mutate(),
     ...mutation,
   };
 };
