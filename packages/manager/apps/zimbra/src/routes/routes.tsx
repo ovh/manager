@@ -561,6 +561,8 @@ export const Routes: any = [
                     pageName: ADD_AUTO_REPLY,
                     pageType: PageType.popup,
                   },
+                  isOverridePage: true,
+                  breadcrumbLabel: 'zimbra_dashboard_auto_replies_add',
                 },
               },
             ],
