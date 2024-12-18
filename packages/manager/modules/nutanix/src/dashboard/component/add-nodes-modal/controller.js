@@ -43,6 +43,18 @@ export default class {
     return `${this.expressOrderLink}?products=${expressOrderParams}`;
   }
 
+  generateSuccessMessage() {
+    const successMessage = this.$translate.instant(
+      'nutanix_dashboard_add_nodes_success_banner',
+    );
+    const helpLinkLabel = this.$translate.instant(
+      'nutanix_dashboard_add_nodes_success_banner_link_label',
+    );
+    const orderExpressLink = this.generateOrderExpressLink();
+
+    return `${successMessage}<a href="${orderExpressLink}" target="_blank" rel="nooponer">${helpLinkLabel}</a>`;
+  }
+
   onSubmit() {
     if (this.cancelSubscriptionForm.$invalid) {
       return;
@@ -50,13 +62,7 @@ export default class {
 
     this.openExpressOrderTab();
 
-    this.handleSuccess(
-      `${this.$translate.instant(
-        'nutanix_dashboard_add_nodes_success_banner',
-      )}<a href="${this.generateOrderExpressLink()}" target="_blank" rel="nooponer">${this.$translate.instant(
-        'nutanix_dashboard_add_nodes_success_banner_link_label',
-      )}</a>`,
-    );
+    this.handleSuccess(this.generateSuccessMessage());
   }
 
   openExpressOrderTab() {
