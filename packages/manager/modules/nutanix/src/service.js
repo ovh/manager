@@ -84,7 +84,7 @@ export default class NutanixService {
       })
       .then(({ data }) =>
         data?.baremetalServers?.storage
-          ? new TechnicalDetails(data.baremetalServers)
+          ? new TechnicalDetails(data.baremetalServers, this.$translate)
           : null,
       )
       .catch(() => null);
@@ -304,7 +304,6 @@ export default class NutanixService {
       ),
     };
   }
-
 
   updateClusterNodePowerStateOn(nodeId) {
     return this.$http
