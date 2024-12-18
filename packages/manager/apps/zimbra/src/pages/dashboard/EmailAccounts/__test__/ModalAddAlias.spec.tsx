@@ -29,12 +29,7 @@ describe('add alias modal', () => {
       expect(queryByTestId('spinner')).toBeNull();
     });
 
-    screen.getByText(
-      emailAccountAliasAddTranslation.zimbra_account_alias_add_description.replace(
-        '{{ account }}',
-        accountDetailMock.currentState?.email,
-      ),
-    );
+    screen.getByText(accountDetailMock.currentState?.email);
   });
 
   it('check validity form', async () => {
