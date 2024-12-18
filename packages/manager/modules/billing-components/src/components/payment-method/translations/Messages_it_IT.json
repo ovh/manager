@@ -1,0 +1,9 @@
+{
+  "payment_method_title": "Il mio metodo di pagamento",
+  "payment_method_default_label": "Predefinito",
+  "payment_method_expired_label": "Scaduto",
+  "payment_method_update_link_label": "Modificare",
+  "payment_method_add_link_label": "Aggiungere",
+  "payment_method_expiration_date_label": "Scadenza: {{ date }}",
+  "payment_expiration_no_default_method_message": "Non hai inserito nessuna modalità di pagamento predefinita."
+}
