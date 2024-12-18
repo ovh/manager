@@ -6,6 +6,7 @@ export default {
     billingManagementAvailability: '<',
     service: '<',
     trackingPrefix: '@?',
+    trackingPage: '@?',
     getCommitmentLink: '&?',
     getCancelCommitmentLink: '&?',
     getCancelResiliationLink: '&?',

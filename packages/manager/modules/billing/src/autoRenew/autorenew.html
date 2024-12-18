@@ -76,7 +76,11 @@
     </oui-message>
 
     <div class="autorenew-box-container">
-        <ovh-manager-auto-renew-payment-method></ovh-manager-auto-renew-payment-method>
+        <ovh-manager-auto-renew-payment-method
+            tracking-page="$ctrl.trackingPage"
+            tracking-category="$ctrl.trackingCategory"
+        >
+        </ovh-manager-auto-renew-payment-method>
         <ovh-manager-auto-renew-tips></ovh-manager-auto-renew-tips>
     </div>
 
@@ -236,6 +240,8 @@
         >
             <billing-services-actions
                 service="$row"
+                tracking-prefix="{{ $ctrl.trackingActionsPrefix }}"
+                tracking-page="{{ $ctrl.trackingPage }}"
                 user="$ctrl.currentUser"
                 billing-management-availability="$ctrl.isAutorenewManagementAvailable"
             >

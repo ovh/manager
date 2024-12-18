@@ -26,7 +26,6 @@ export default class ServicesActionsCtrl {
   }
 
   $onInit() {
-    this.user = this.coreConfig.getUser();
 
     this.user = this.coreConfig.getUser();
     this.BillingLinksService.generateAutorenewLinks(this.service, {
@@ -78,7 +77,17 @@ export default class ServicesActionsCtrl {
   }
 
   trackAction(action, hasActionInEvent = true) {
-    if (this.trackingPrefix) {
+    if (this.trackingPrefix && this.trackingPage) {
+      const name = `${this.trackingPrefix}::button::${action}::service`;
+      this.atInternet.trackClick({
+        name,
+        type: 'action',
+        page_category: 'listing',
+        page: {
+          name: this.trackingPage,
+        },
+      });
+    } else if (this.trackingPrefix) {
       const name = hasActionInEvent
         ? `${this.trackingPrefix}::action::${action}`
         : `${this.trackingPrefix}::${action}`;

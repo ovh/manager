@@ -189,12 +189,19 @@ export default class ServicesActionsCtrl {
   }
 
   trackAction(action, hasActionInEvent = true) {
-    if (this.trackingPrefix) {
+    if (this.trackingPrefix && this.trackingPage && this.trackingNameSuffix) {
       const name = hasActionInEvent
-        ? `${this.trackingPrefix}::action::${action}`
-        : `${this.trackingPrefix}::${action}`;
+        ? `${this.trackingPrefix}::tile::link::${action}_${this.trackingNameSuffix}`
+        : `${this.trackingPrefix}::${action}_${this.trackingNameSuffix}`;
 
-      this.atInternet.trackClick({ name, type: 'action' });
+      this.atInternet.trackClick({
+        name,
+        type: 'action',
+        page_category: 'dashboard',
+        page: {
+          name: this.trackingPage,
+        },
+      });
     }
   }
 
