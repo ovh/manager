@@ -22,5 +22,7 @@
   "billing_contact": "{{code}} Abrechnung",
   "technical_contact": "{{code}} Technik",
   "location": "Standort",
-  "terminated_service": "Der Dienst wurde gekündigt."
+  "terminated_service": "Der Dienst wurde gekündigt.",
+  "gigabyte": "GB",
+  "terabyte": "TB"
 }

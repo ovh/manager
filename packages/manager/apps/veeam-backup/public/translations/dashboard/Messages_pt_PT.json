@@ -22,5 +22,7 @@
   "billing_contact": "{{code}} Faturação",
   "technical_contact": "{{code}} Técnico",
   "location": "Localização",
-  "terminated_service": "O serviço foi rescindido."
+  "terminated_service": "O serviço foi rescindido.",
+  "gigabyte": "GB",
+  "terabyte": "TB"
 }
