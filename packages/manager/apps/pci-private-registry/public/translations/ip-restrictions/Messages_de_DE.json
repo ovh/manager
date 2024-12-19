@@ -13,8 +13,10 @@
   "private_registry_cidr_submit_success": "Der CIDR-Block wurde den zulässigen CIDR-Blöcken hinzugefügt.",
   "private_registry_cidr_delete_success": "Ihr CIDR-Block wurde gelöscht.",
   "private_registry_cidr_delete_all_success": "Alle ausgewählten CIDR-Blöcke wurden erfolgreich gelöscht.",
-  "private_registry_cidr_help_authorized_component": "<p>Es gibt 2 Softwarekomponenten zur Verwaltung der Blöcke<br/> CIDR:</p><p style='display: block;'>Management: Zugriff auf UI und <br/> die Harbor API.</p><p style='display: block;'>Registry: erlaubt es den verschiedenen Kunden / CLI, <br/>  den Zugang zur Backend Registry (Docker, Helm, ...)</p>",
+  "private_registry_cidr_help_authorized_component": "Es gibt zwei Softwarekomponenten zur Verwaltung von CIDR-Blöcken:",
   "private_registry_cidr_already_exist": "Die IP/CIDR ist bereits in der Liste vorhanden.",
   "private_registry_cidr_delete_modal_subtitle": "Sind Sie sicher, dass Sie den CIDR-Block löschen möchten?",
-  "private_registry_cidr_delete_modal_all_subtitle": "Möchten Sie wirklich alle ausgewählten CIDR-Blöcke löschen?"
+  "private_registry_cidr_delete_modal_all_subtitle": "Möchten Sie wirklich alle ausgewählten CIDR-Blöcke löschen?",
+  "private_registry_cidr_help_authorized_component_part2": "Management: Zugriff auf UI und Harbor-API erlauben.",
+  "private_registry_cidr_help_authorized_component_part3": "Registry : erlaubt es den verschiedenen Kunden / CLI, den Zugriff auf die Backend Registry (Docker, Helm, ...) zu erlauben"
 }
