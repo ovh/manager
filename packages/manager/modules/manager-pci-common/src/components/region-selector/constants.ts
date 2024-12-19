@@ -49,7 +49,54 @@ export const GLOBAL_REGIONS_INFO_URL: Record<string, string> = {
   WE: 'https://ovhcloud.com/us-en/public-cloud/compute/',
 };
 
+export const EXPANSIONS_REGIONS_AZ = {
+  DEFAULT:
+    'https://www.ovhcloud.com/en/about-us/global-infrastructure/expansion-regions-az/',
+  ASIA:
+    'https://www.ovhcloud.com/asia/about-us/global-infrastructure/expansion-regions-az/',
+  AU:
+    ' https://www.ovhcloud.com/en-au/about-us/global-infrastructure/expansion-regions-az/',
+  CA:
+    'https://www.ovhcloud.com/en-ca/about-us/global-infrastructure/expansion-regions-az/',
+  GB:
+    'https://www.ovhcloud.com/en-gb/about-us/global-infrastructure/expansion-regions-az/',
+  IE:
+    'https://www.ovhcloud.com/en-ie/about-us/global-infrastructure/expansion-regions-az/',
+  IN:
+    'https://www.ovhcloud.com/en-in/about-us/global-infrastructure/expansion-regions-az/',
+  SG:
+    'https://www.ovhcloud.com/en-sg/about-us/global-infrastructure/expansion-regions-az/',
+  DE:
+    'https://www.ovhcloud.com/de/about-us/global-infrastructure/expansion-regions-az/',
+  ES:
+    'https://www.ovhcloud.com/es-es/about-us/global-infrastructure/expansion-regions-az/',
+  FR:
+    'https://www.ovhcloud.com/fr/about-us/global-infrastructure/expansion-regions-az/',
+  IT:
+    'https://www.ovhcloud.com/it/about-us/global-infrastructure/expansion-regions-az/',
+  MA:
+    'https://www.ovhcloud.com/fr-ma/about-us/global-infrastructure/expansion-regions-az/',
+  SN:
+    'https://www.ovhcloud.com/fr-sn/about-us/global-infrastructure/expansion-regions-az/',
+  TN:
+    'https://www.ovhcloud.com/fr-tn/about-us/global-infrastructure/expansion-regions-az/',
+  NL:
+    'https://www.ovhcloud.com/nl/about-us/global-infrastructure/expansion-regions-az/',
+  PL:
+    'https://www.ovhcloud.com/pl/about-us/global-infrastructure/expansion-regions-az/',
+  PT:
+    'https://www.ovhcloud.com/pt/about-us/global-infrastructure/expansion-regions-az/',
+  QC:
+    'https://www.ovhcloud.com/fr-ca/about-us/global-infrastructure/expansion-regions-az/',
+  US:
+    'https://www.ovhcloud.com/en/about-us/global-infrastructure/expansion-regions-az/',
+  WS:
+    'https://www.ovhcloud.com/es/about-us/global-infrastructure/expansion-regions-az/',
+};
+
 export const URL_INFO = {
   GLOBAL_REGIONS: GLOBAL_REGIONS_INFO_URL,
   LOCAL_ZONE: LOCAL_ZONE_INFO_URL,
+  REGION_3AZ: EXPANSIONS_REGIONS_AZ,
+  '1AZ_REGIONS': EXPANSIONS_REGIONS_AZ,
 };
