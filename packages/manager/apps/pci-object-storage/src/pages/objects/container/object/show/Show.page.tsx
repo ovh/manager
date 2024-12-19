@@ -312,8 +312,12 @@ export default function ObjectPage() {
                         __html: tContainer(
                           'pci_projects_project_storages_containers_container_object_info_storedObjects',
                           {
-                            count: `<strong>${container?.objectsCount}</strong>`,
+                            // count: `<strong>${container?.objectsCount}</strong>`,
                           },
+                          // count is a reserved word in i18n(plurals) and should be a number, thus this quick fix since we couldn't change the key in trad files
+                        ).replace(
+                          '{{ count }}',
+                          `<strong>${container?.objectsCount}</strong>`,
                         ),
                       }}
                     ></span>
