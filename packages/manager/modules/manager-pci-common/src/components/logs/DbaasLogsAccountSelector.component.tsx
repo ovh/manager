@@ -1,10 +1,6 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
-import {
-  OsdsSelect,
-  OsdsSelectOption,
-  OsdsSpinner,
-} from '@ovhcloud/ods-components/react';
+import { OdsSelect, OdsSpinner } from '@ovhcloud/ods-components/react';
 import { TDbaasLog } from '../../api/data/dbaas-logs';
 import { useDbaasLogs } from '../../api/hook/useLogs';
 
@@ -26,7 +22,7 @@ export function DbaasLogsAccountSelector({
   if (isPending)
     return (
       <div className="text-center">
-        <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
+        <OdsSpinner size={ODS_SPINNER_SIZE.md} />
       </div>
     );
 
@@ -34,24 +30,24 @@ export function DbaasLogsAccountSelector({
     <>
       {dbaasLogs?.length && (
         <div className="mt-8">
-          <OsdsSelect
+          <OdsSelect
+            name="select-serviceName"
             className="w-[20rem]"
             value={account?.serviceName}
-            onOdsValueChange={(event) =>
+            onOdsChange={(event) =>
               onAccountChange(
                 dbaasLogs.find(
                   ({ serviceName }) => serviceName === `${event.detail.value}`,
                 ),
               )
             }
-            inline
           >
             {dbaasLogs.map((log) => (
-              <OsdsSelectOption value={log.serviceName} key={log.serviceName}>
+              <option value={log.serviceName} key={log.serviceName}>
                 {log.displayName || log.serviceName}
-              </OsdsSelectOption>
+              </option>
             ))}
-          </OsdsSelect>
+          </OdsSelect>
         </div>
       )}
     </>

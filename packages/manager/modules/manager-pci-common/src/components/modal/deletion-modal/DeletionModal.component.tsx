@@ -1,21 +1,13 @@
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-} from '@ovhcloud/ods-common-theming';
-import {
-  ODS_INPUT_TYPE,
-  ODS_TEXT_SIZE,
-  OdsInputValueChangeEvent,
-} from '@ovhcloud/ods-components';
-import {
-  OsdsFormField,
-  OsdsInput,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import '../../../translations/common';
+import { ODS_INPUT_TYPE, OdsInputChangeEvent } from '@ovhcloud/ods-components';
+import {
+  OdsFormField,
+  OdsInput,
+  OdsText,
+} from '@ovhcloud/ods-components/react';
 import { PciModal, PciModalProps } from '../PciModal.component';
+import '../../../translations/common';
 
 export type DeletionModalProps = PciModalProps & {
   confirmationText?: string;
@@ -49,10 +41,10 @@ export function DeletionModal({
     isTouched: false,
   });
 
-  const handleInputDeleteChange = (event: OdsInputValueChangeEvent) => {
+  const handleInputDeleteChange = (event: OdsInputChangeEvent) => {
     setFormState({
       ...formState,
-      deleteInput: event.detail.value,
+      deleteInput: event.detail.value as string,
     });
   };
 
@@ -98,37 +90,33 @@ export function DeletionModal({
     >
       {children}
       {confirmationText && (
-        <OsdsFormField
+        <OdsFormField
           class="mt-6"
           data-testid="delete-formField"
           error={errorMessage}
         >
-          <OsdsText
-            slot="label"
-            level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-            color={ODS_THEME_COLOR_INTENT.text}
-            size={ODS_TEXT_SIZE._200}
-          >
+          <OdsText preset="span" className="text-[14px] font-bold">
             {confirmationLabel}
-          </OsdsText>
-          <OsdsInput
+          </OdsText>
+          <OdsInput
+            name="delete-input"
             value={formState.deleteInput}
             type={ODS_INPUT_TYPE.text}
             data-testid="delete-input"
-            onOdsValueChange={handleInputDeleteChange}
+            onOdsChange={handleInputDeleteChange}
             className={
               errorMessage
                 ? 'bg-red-100 border-red-500 text-red-500 focus:text-red-500'
                 : 'border-color-[var(--ods-color-default-200)] bg-white'
             }
-            onOdsInputBlur={() => {
+            onOdsBlur={() => {
               setFormState({
                 ...formState,
                 isTouched: true,
               });
             }}
           />
-        </OsdsFormField>
+        </OdsFormField>
       )}
     </PciModal>
   );

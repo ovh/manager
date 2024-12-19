@@ -1,28 +1,22 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { useTranslation, Translation } from 'react-i18next';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import {
-  OsdsButton,
-  OsdsIcon,
-  OsdsLink,
-  OsdsSkeleton,
-  OsdsSpinner,
-} from '@ovhcloud/ods-components/react';
+import { ApiError } from '@ovh-ux/manager-core-api';
+import { useNotifications } from '@ovh-ux/manager-react-components';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-  ODS_SPINNER_SIZE,
 } from '@ovhcloud/ods-components';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { useNotifications } from '@ovh-ux/manager-react-components';
-import { ApiError } from '@ovh-ux/manager-core-api';
 import {
-  useSubscriptions,
+  OdsButton,
+  OdsLink,
+  OdsSkeleton,
+} from '@ovhcloud/ods-components/react';
+import { useContext, useEffect, useState } from 'react';
+import { Translation, useTranslation } from 'react-i18next';
+import {
   useCreateSubscription,
   useRemoveSubscription,
+  useSubscriptions,
 } from '../../api/hook/useDbaasLogs';
 import { LogContext } from './LogProvider.component';
 
@@ -110,13 +104,12 @@ export function StreamSubscriptions({
       .then(setSubscriptionsURL);
   }, []);
 
-  if (isPending) return <OsdsSkeleton />;
+  if (isPending) return <OdsSkeleton />;
   return (
     <div className="flex justify-between items-center min-w-[14rem]">
       {subscriptionCount > 0 ? (
-        <OsdsLink
-          className="mr-4"
-          color={ODS_THEME_COLOR_INTENT.primary}
+        <OdsLink
+          className="mr-4 text-[--ods-color-primary-500] text-[16px]"
           href={subscriptionsURL}
           onClick={() => {
             if (logsTracking?.ldpDetails) {
@@ -125,28 +118,18 @@ export function StreamSubscriptions({
               });
             }
           }}
-          target={OdsHTMLAnchorElementTarget._blank}
-        >
-          {subscriptionCount}
-          <span slot="end">
-            <OsdsIcon
-              aria-hidden="true"
-              className="ml-4"
-              name={ODS_ICON_NAME.EXTERNAL_LINK}
-              hoverable
-              size={ODS_ICON_SIZE.xxs}
-              color={ODS_THEME_COLOR_INTENT.primary}
-            />
-          </span>
-        </OsdsLink>
+          label={subscriptionCount.toString()}
+          icon={ODS_ICON_NAME.externalLink}
+          target="_blank"
+        />
       ) : (
         '-'
       )}
       {currentSubscription && (
-        <OsdsButton
-          color={ODS_THEME_COLOR_INTENT.primary}
+        <OdsButton
+          label={t('list_button_unsubscribe')}
           size={ODS_BUTTON_SIZE.sm}
-          variant={ODS_BUTTON_VARIANT.stroked}
+          isLoading={isRemovePending}
           onClick={() => {
             if (!isRemovePending) {
               remove(currentSubscription.subscriptionId);
@@ -157,22 +140,14 @@ export function StreamSubscriptions({
               }
             }
           }}
-          disabled={isRemovePending ? true : undefined}
-          inline
-        >
-          {t('list_button_unsubscribe')}
-          {isRemovePending && (
-            <span slot="start">
-              <OsdsSpinner className="mt-3" size={ODS_SPINNER_SIZE.sm} inline />
-            </span>
-          )}
-        </OsdsButton>
+          isDisabled={isRemovePending}
+        />
       )}
       {!currentSubscription && (
-        <OsdsButton
-          color={ODS_THEME_COLOR_INTENT.primary}
+        <OdsButton
+          label={t('list_button_subscribe')}
           size={ODS_BUTTON_SIZE.sm}
-          variant={ODS_BUTTON_VARIANT.stroked}
+          variant={ODS_BUTTON_VARIANT.outline}
           onClick={() => {
             if (!isCreationPending) {
               create();
@@ -183,16 +158,9 @@ export function StreamSubscriptions({
               }
             }
           }}
-          disabled={isCreationPending ? true : undefined}
-          inline
-        >
-          {t('list_button_subscribe')}
-          {isCreationPending && (
-            <span slot="start">
-              <OsdsSpinner className="mt-3" size={ODS_SPINNER_SIZE.sm} inline />
-            </span>
-          )}
-        </OsdsButton>
+          isLoading={isCreationPending}
+          isDisabled={isCreationPending}
+        />
       )}
     </div>
   );
