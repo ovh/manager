@@ -34,6 +34,8 @@
             data-ng-pattern="$ctrl.inputValidator"
             data-ng-disabled="$ctrl.disableInputField"
             data-ng-required="$ctrl.rule.mandatory"
+            data-ng-maxlength="$ctrl.rule.maxLength"
+            data-ng-minlength="$ctrl.rule.minLength"
         />
 
         <!-- SELECT INPUT -->
@@ -112,6 +114,8 @@
                 data-ng-model="$ctrl.value"
                 data-ng-model-options="{ debounce: $ctrl.debounce }"
                 data-ng-required="$ctrl.rule.mandatory"
+                data-ng-maxlength="$ctrl.rule.maxLength"
+                data-ng-minlength="$ctrl.rule.minLength"
                 data-ng-attr-placeholder="{{ $ctrl.phonePlaceHolder }}"
                 data-ng-change="$ctrl.onChange()"
                 data-ng-focus="$ctrl.focused = true"
@@ -133,21 +137,9 @@
             data-ng-blur="$ctrl.focused = false"
             data-ng-pattern="$ctrl.inputValidator"
             data-ng-required="$ctrl.rule.mandatory"
+            data-ng-maxlength="$ctrl.rule.maxLength"
+            data-ng-minlength="$ctrl.rule.minLength"
         />
-
-        <oui-password
-            data-ng-if="$ctrl.getFieldType() === $ctrl.FIELD_NAME_LIST.password"
-            data-ng-attr-id="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
-            data-ng-attr-name="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
-            data-ng-model="$ctrl.value"
-            data-ng-model-options="{ debounce: $ctrl.debounce }"
-            data-ng-change="$ctrl.onChange()"
-            data-ng-focus="$ctrl.focused = true"
-            data-ng-blur="$ctrl.focused = false"
-            data-ng-pattern="$ctrl.inputValidator"
-            data-ng-required="$ctrl.rule.mandatory"
-        >
-        </oui-password>
 
         <!-- CHECKBOX INPUT -->
         <oui-checkbox
@@ -186,23 +178,12 @@
             </oui-radio>
         </oui-radio-group>
 
-        <p
+        <span
             class="help-block text-danger"
+            data-ng-repeat="(error, value) in $ctrl.fieldset['ovh_field_' + $ctrl.rule.fieldName].$error"
             role="alert"
-            data-ng-if="$ctrl.fieldset['ovh_field_' + $ctrl.rule.fieldName].$error.required"
-            data-translate="signup_field_required_error"
-        ></p>
-        <p
-            class="help-block text-danger"
-            role="alert"
-            data-ng-if="$ctrl.fieldset['ovh_field_' + $ctrl.rule.fieldName].$error.pattern"
-            data-translate="{{ $ctrl.rule.fieldName !== 'password' ? 'signup_field_pattern_error' : 'signup_password_invalid' }}"
-        ></p>
-        <p
-            class="help-block text-danger"
-            role="alert"
-            data-ng-if="$ctrl.fieldset['ovh_field_' + $ctrl.rule.fieldName].$error.emailAvailable && $ctrl.value"
-            data-translate="signup_email_in_use"
-        ></p>
+            data-translate="{{ 'common_field_error_' + error }}"
+            data-translate-values="{ minlength: $ctrl.rule.minLength, maxlength: $ctrl.rule.maxLength }"
+        ></span>
     </div>
 </div>
