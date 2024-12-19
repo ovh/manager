@@ -46,6 +46,19 @@ const AuthorizationLabel = () => {
           >
             {t('private_registry_cidr_help_authorized_component')}
           </OsdsText>
+          <OsdsText
+            color={ODS_THEME_COLOR_INTENT.text}
+            level={ODS_TEXT_LEVEL.body}
+          >
+            {t('private_registry_cidr_help_authorized_component_part2')}
+          </OsdsText>
+          <br />
+          <OsdsText
+            color={ODS_THEME_COLOR_INTENT.text}
+            level={ODS_TEXT_LEVEL.body}
+          >
+            {t('private_registry_cidr_help_authorized_component_part3')}
+          </OsdsText>
         </Trans>
       </OsdsPopoverContent>
     </OsdsPopover>

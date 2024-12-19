@@ -22,7 +22,7 @@ describe('DeletePage', () => {
     expect(getByTestId('pciModal-spinner')).toBeInTheDocument();
   });
   // to migrate to pci-common
-  it.skip('disables submit button when confirmation text does not match', () => {
+  it('disables submit button when confirmation text does not match', () => {
     vi.spyOn(ApiRegistryModule, 'useGetAllRegistries').mockReturnValueOnce({
       isPending: false,
     } as UseQueryResult<TRegistry[]>);
@@ -43,7 +43,7 @@ describe('DeletePage', () => {
     expect(getByTestId('pciModal-button_submit')).toBeDisabled();
   });
   // to migrate to pci-common
-  it.skip('enables submit button when confirmation text matches', () => {
+  it('enables submit button when confirmation text matches', () => {
     vi.spyOn(ApiRegistryModule, 'useGetAllRegistries').mockReturnValueOnce({
       isPending: false,
     } as UseQueryResult<TRegistry[]>);

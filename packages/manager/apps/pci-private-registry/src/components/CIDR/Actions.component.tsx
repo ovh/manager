@@ -1,8 +1,7 @@
-import { useState } from 'react';
 import { ActionMenu } from '@ovh-ux/manager-react-components';
+import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { TIPRestrictionsData } from '@/types';
-import DeleteModal from './DeleteModal.component';
 
 export default function ActionComponent({
   cidr,
@@ -10,7 +9,7 @@ export default function ActionComponent({
   cidr: TIPRestrictionsData;
 }) {
   const { t } = useTranslation(['ip-restrictions']);
-  const [openDeleteModal, setOpenDeleteModal] = useState(false);
+  const navigate = useNavigate();
 
   const items = [
     {
@@ -18,17 +17,10 @@ export default function ActionComponent({
       label: t('ip_restrictions_delete_block'),
       disabled: false,
       onClick: () => {
-        setOpenDeleteModal(true);
+        navigate(`./delete`, { state: { cidr } });
       },
     },
   ];
 
-  return (
-    <>
-      <ActionMenu items={items} isCompact />
-      {openDeleteModal && (
-        <DeleteModal onClose={() => setOpenDeleteModal(false)} cidr={cidr} />
-      )}
-    </>
-  );
+  return <ActionMenu items={items} isCompact />;
 }

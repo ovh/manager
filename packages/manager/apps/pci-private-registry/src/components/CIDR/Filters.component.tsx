@@ -26,15 +26,15 @@ import {
   FilterList,
 } from '@ovh-ux/manager-react-components';
 
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useRef, useState, useMemo, memo } from 'react';
 import { useIpRestrictionsWithFilter } from '@/api/hooks/useIpRestrictions';
-import DeleteModal from './DeleteModal.component';
 import useFilter from '@/pages/CIDR/useFilters';
 
 const Filters = ({ createNewRow }: { createNewRow: () => void }) => {
   const [searchField, setSearchField] = useState('');
+  const navigate = useNavigate();
   const { projectId, registryId } = useParams();
   const filterPopoverRef = useRef<HTMLOsdsPopoverElement | null>(null);
   const {
@@ -52,7 +52,6 @@ const Filters = ({ createNewRow }: { createNewRow: () => void }) => {
     filters,
   );
 
-  const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const { t } = useTranslation(['ip-restrictions']);
 
   const showDeleteButton = useMemo(
@@ -108,7 +107,11 @@ const Filters = ({ createNewRow }: { createNewRow: () => void }) => {
               variant={ODS_BUTTON_VARIANT.stroked}
               color={ODS_THEME_COLOR_INTENT.primary}
               className="xs:mb-0.5 sm:mb-0"
-              onClick={() => setOpenDeleteModal(true)}
+              onClick={() =>
+                navigate('./delete', {
+                  state: { all: true, filters, pagination },
+                })
+              }
             >
               <OsdsIcon
                 size={ODS_ICON_SIZE.xs}
@@ -120,9 +123,6 @@ const Filters = ({ createNewRow }: { createNewRow: () => void }) => {
             </OsdsButton>
           )}
         </div>
-        {openDeleteModal && (
-          <DeleteModal onClose={() => setOpenDeleteModal(false)} all />
-        )}
 
         <div className="justify-between flex">
           <OsdsSearchBar
