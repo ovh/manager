@@ -15,6 +15,7 @@ import {
   createS3Storage,
   setContainerAsStatic,
   setContainerAsPublic,
+  updateStorageType,
 } from '../data/storages';
 import {
   OBJECT_CONTAINER_MODE_LOCAL_ZONE,
@@ -414,6 +415,50 @@ export const useAddUser = ({
 
   return {
     addUser: () => mutation.mutate(),
+    ...mutation,
+  };
+};
+
+export interface UpdateStorageTypeProps {
+  projectId: string;
+  onSuccess: () => void;
+  onError: (error: ApiError) => void;
+}
+
+export const useUpdateStorageType = ({
+  projectId,
+  onSuccess,
+  onError,
+}: UpdateStorageTypeProps) => {
+  const queryClient = useQueryClient();
+  const mutation = useMutation({
+    mutationFn: async ({
+      containerId,
+      containerType,
+    }: {
+      containerId: string;
+      containerType: TStorage['containerType'];
+    }) =>
+      updateStorageType({
+        projectId,
+        containerId,
+        containerType,
+      }),
+    onError,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: getStorageQueryKey(projectId),
+      });
+      onSuccess();
+    },
+  });
+  return {
+    updateStorageType(
+      containerId: string,
+      containerType: TStorage['containerType'],
+    ) {
+      return mutation.mutate({ containerId, containerType });
+    },
     ...mutation,
   };
 };
