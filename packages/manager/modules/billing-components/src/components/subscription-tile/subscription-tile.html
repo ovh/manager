@@ -19,8 +19,8 @@
             <oui-skeleton size="s" data-ng-if="$ctrl.isLoading"></oui-skeleton>
             <p data-ng-if="!$ctrl.isLoading">
                 <span
-                    class="text-wrap"
-                    data-ng-if="!$ctrl.service.isEngaged() && !$ctrl.serviceInfos.hasPendingEngagement"
+                    class="text-wrap d-block"
+                    data-ng-if="!$ctrl.serviceInfos.hasEngagement() && !$ctrl.serviceInfos.hasPendingEngagement"
                     data-translate="manager_billing_subscription_engagement_status_none"
                 >
                 </span>
