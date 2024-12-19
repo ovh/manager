@@ -102,7 +102,7 @@ export default function DeletePage() {
             isStorageS3
               ? 'pci_projects_project_storages_containers_container_delete_warning'
               : 'pci_projects_project_storages_containers_container_delete_object_erase_message',
-            { container: storageToDelete.name },
+            { container: storageToDelete?.name },
           )}
         </OdsMessage>
       </OdsText>
