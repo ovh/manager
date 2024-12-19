@@ -1,0 +1,30 @@
+{
+  "name": "EU-CENTRAL-LZ-PRG-A",
+  "continentCode": "EU",
+  "datacenterLocation": "PRG",
+  "status": "UP",
+  "type": "localzone",
+  "services": [
+    {
+      "name": "volume",
+      "status": "UP",
+      "endpoint": "https://foo/bar.fake"
+    },
+    {
+      "name": "network",
+      "status": "UP",
+      "endpoint": "https://foo/bar2.fake"
+    },
+    {
+      "name": "instance",
+      "status": "UP",
+      "endpoint": "https://foo/bar3.fake"
+    },
+    {
+      "name": "image",
+      "status": "UP",
+      "endpoint": "https://foo/bar4.fake"
+    }
+  ],
+  "ipCountries": []
+}
