@@ -67,8 +67,8 @@ angular.module('services').service(
           },
           {
             label: 'OUT_TCP_CONN',
-            query: (serviceName, step) =>
-              `sum without(cluster, statusCode,cluster_name, datacenter, host, host_type, hw_profile, service_name, user) (sum_over_time(aggregator_stats_out_tcpConn_value{service_name="${serviceName}"}[${step}])) OR label_replace(vector(0), "tcp", "forward", "", "")`,
+            query: (serviceName, step, rawStep) =>
+              `sum without(cluster, statusCode,cluster_name, datacenter, host, host_type, hw_profile, service_name, user) (sum_over_time(aggregator_stats_out_tcpConn_value{service_name="${serviceName}"}[${step}])) / ${rawStep} OR label_replace(vector(0), "tcp", "forward", "", "")`,
             unit: this.$translate.instant(
               'hosting_tab_STATISTICS_series_unit_cnx_min',
             ),
