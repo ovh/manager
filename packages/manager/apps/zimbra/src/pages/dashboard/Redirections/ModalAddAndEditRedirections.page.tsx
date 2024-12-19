@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import {
   OdsCheckbox,
@@ -17,14 +17,9 @@ import {
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import Modal from '@/components/Modals/Modal';
 import { useAccount, useDomains, useGenerateUrl } from '@/hooks';
-import {
-  FormTypeInterface,
-  checkValidityField,
-  checkValidityForm,
-  ACCOUNT_REGEX,
-  EMAIL_REGEX,
-} from '@/utils';
+import { ACCOUNT_REGEX, EMAIL_REGEX } from '@/utils';
 import Loading from '@/components/Loading/Loading';
+import { useForm } from '@/hooks/useForm';
 
 export default function ModalAddAndEditRedirections() {
   const { t } = useTranslation('redirections/addAndEdit');
@@ -40,7 +35,6 @@ export default function ModalAddAndEditRedirections() {
   const onClose = () => navigate(goBackUrl);
 
   const { addError, addSuccess } = useNotifications();
-  const [isFormValid, setIsFormValid] = useState(false);
 
   const { data: domainList, isLoading: isLoadingDomain } = useDomains({
     enabled: !editEmailAccountId && !editRedirectionId,
@@ -51,50 +45,29 @@ export default function ModalAddAndEditRedirections() {
     enabled: !!editEmailAccountId,
   });
 
-  const [form, setForm] = useState<FormTypeInterface>({
+  const { form, isFormValid, setValue } = useForm({
     account: {
       value: '',
       defaultValue: '',
-      touched: false,
-      hasError: false,
       required: !editEmailAccountId,
       validate: ACCOUNT_REGEX,
     },
     domain: {
       value: '',
       defaultValue: '',
-      touched: false,
-      hasError: false,
       required: !editEmailAccountId,
     },
     to: {
       value: '',
       defaultValue: '',
-      touched: false,
-      hasError: false,
       required: true,
       validate: EMAIL_REGEX,
     },
     keepCopy: {
       value: '',
       defaultValue: '',
-      touched: false,
-      hasError: false,
-      required: false,
     },
   });
-
-  const handleFormChange = (name: string, value: string) => {
-    const newForm: FormTypeInterface = form;
-    newForm[name] = {
-      value,
-      touched: true,
-      required: form[name].required,
-      hasError: !checkValidityField(name, value, form),
-    };
-    setForm((oldForm) => ({ ...oldForm, ...newForm }));
-    setIsFormValid(checkValidityForm(form));
-  };
 
   /* const getDataBody = useCallback(
     (formRef: FormTypeInterface) => {
@@ -202,13 +175,13 @@ export default function ModalAddAndEditRedirections() {
                   hasError={form.account.hasError}
                   value={form.account.value}
                   defaultValue={form.account.defaultValue}
+                  isRequired={form.account.required}
                   onOdsBlur={({ target: { name, value } }) =>
-                    handleFormChange(name, String(value))
+                    setValue(name, String(value), true)
                   }
                   onOdsChange={({ detail: { name, value } }) => {
-                    handleFormChange(name, String(value));
+                    setValue(name, String(value));
                   }}
-                  isRequired
                   className="w-1/2"
                   data-testid="input-account"
                 ></OdsInput>
@@ -224,16 +197,16 @@ export default function ModalAddAndEditRedirections() {
                   name="domain"
                   value={form.domain.value}
                   defaultValue={form.domain.defaultValue}
-                  className="w-1/2"
+                  isRequired={form.domain.required}
                   hasError={form.domain.hasError}
-                  isRequired
+                  className="w-1/2"
                   data-testid="select-domain"
                   isDisabled={isLoadingDomain}
                   placeholder={t(
                     'zimbra_redirections_add_select_domain_placeholder',
                   )}
                   onOdsChange={({ detail: { name, value } }) =>
-                    handleFormChange(name, value)
+                    setValue(name, value)
                   }
                 >
                   {domainList?.map(({ currentState: domain }) => (
@@ -263,13 +236,13 @@ export default function ModalAddAndEditRedirections() {
             value={form.to.value}
             defaultValue={form.to.defaultValue}
             hasError={form.to.hasError}
+            isRequired={form.to.required}
             onOdsBlur={({ target: { name, value } }) =>
-              handleFormChange(name, value.toString())
+              setValue(name, value.toString(), true)
             }
             onOdsChange={({ detail: { name, value } }) =>
-              handleFormChange(name, String(value))
+              setValue(name, String(value))
             }
-            isRequired
           />
         </OdsFormField>
         <OdsFormField
@@ -283,10 +256,7 @@ export default function ModalAddAndEditRedirections() {
               name="keepCopy"
               isChecked={form.keepCopy.value === 'true'}
               onOdsChange={(e) => {
-                handleFormChange(
-                  'keepCopy',
-                  e.detail.checked ? 'true' : 'false',
-                );
+                setValue('keepCopy', e.detail.checked ? 'true' : 'false');
               }}
             ></OdsCheckbox>
             <label htmlFor="keepCopy">
