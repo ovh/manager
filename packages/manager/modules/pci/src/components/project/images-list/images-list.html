@@ -28,6 +28,13 @@
                             data-match="name"
                             data-values="images"
                         >
+                            <oui-select-picker-section
+                                data-ng-if="$ctrl.getPriceText({ distribution, images })"
+                            >
+                                <span
+                                    data-ng-bind="$ctrl.getPriceText({ distribution, images })"
+                                ></span>
+                            </oui-select-picker-section>
                         </oui-select-picker>
                     </div>
                     <oui-checkbox
@@ -52,6 +59,13 @@
                                 data-match="name"
                                 data-values="images"
                             >
+                                <oui-select-picker-section
+                                    data-ng-if="$ctrl.getPriceText({ distribution, images })"
+                                >
+                                    <span
+                                        data-ng-bind="$ctrl.getPriceText({ distribution, images })"
+                                    ></span>
+                                </oui-select-picker-section>
                             </oui-select-picker>
                         </div>
                         <div
@@ -168,6 +182,13 @@
                 data-picture="{{$ctrl.IMAGE_ASSETS.os[$ctrl.distribution]}}"
                 data-match="name"
             >
+                <oui-select-picker-section
+                    data-ng-if="$ctrl.getPriceText({ distribution: $ctrl.distribution, images: [$ctrl.image] })"
+                >
+                    <span
+                        data-ng-bind="$ctrl.getPriceText({ distribution: $ctrl.distribution, images: [$ctrl.image] })"
+                    ></span>
+                </oui-select-picker-section>
             </oui-select-picker>
         </div>
     </div>

@@ -37,7 +37,10 @@ import {
   LOCAL_PRIVATE_NETWORK_MODE,
 } from './add.constants';
 
-import { INSTANCE_PRICING_LINKS } from '../instances.constants';
+import {
+  INSTANCE_PRICING_LINKS,
+  WINDOWS_GEN_3_ADDON_PLANCODE,
+} from '../instances.constants';
 import { useURLModel } from '../../project.utils';
 
 export default class PciInstancesAddController {
@@ -1707,5 +1710,84 @@ export default class PciInstancesAddController {
       'configure_network',
       `${modelValue ? '' : 'de'}activate_private_network_compatible_lz`,
     ]);
+  }
+
+  shouldShowWindowsGen3Data(
+    distribution = this.model?.image?.distribution,
+    images = [this.model?.image],
+  ) {
+    const {
+      windowsGen3: { isFeatureAvailable },
+      model: { flavorGroup },
+    } = this;
+
+    if (!distribution || !images.length || !flavorGroup) {
+      return false;
+    }
+
+    const isWindowsDistribution = Boolean(distribution.match(/^windows/i));
+    const hasWindowsServerImages =
+      isWindowsDistribution &&
+      images.some(({ name }) => name.match(/20(16|19|22)/));
+    const isLicensedFlavor = Boolean(
+      this.catalog.addons
+        .find(({ planCode }) => planCode === flavorGroup?.planCodes.hourly)
+        ?.addonFamilies.some(({ addons }) =>
+          addons.includes(WINDOWS_GEN_3_ADDON_PLANCODE),
+        ),
+    );
+    const is1AZRegion = !this.isLocalZone();
+
+    return (
+      isFeatureAvailable &&
+      isWindowsDistribution &&
+      hasWindowsServerImages &&
+      isLicensedFlavor &&
+      is1AZRegion
+    );
+  }
+
+  getWindowsLicensePrice(multiplier = 1) {
+    const { coreConfig, windowsGen3 } = this;
+    const convertedPrice = windowsGen3.price / 10 ** 8;
+
+    return new Intl.NumberFormat(coreConfig.getUserLocale().replace('_', '-'), {
+      style: 'currency',
+      currency: coreConfig.getUser().currency.code,
+      maximumFractionDigits: Math.max(
+        `${convertedPrice}`.split('.').pop().length,
+        3,
+      ),
+    }).format(convertedPrice * multiplier);
+  }
+
+  getWindowsLicensePriceText(distribution, images) {
+    if (!this.shouldShowWindowsGen3Data(distribution, images)) {
+      return '';
+    }
+
+    const price = this.getWindowsLicensePrice();
+    const unit = this.$translate.instant(
+      'pci_projects_project_instances_add_windows_gen3_license_unit_w_core',
+    );
+
+    return `+ ${price} ${unit}`;
+  }
+
+  getWindowsLicenseTotalPriceText() {
+    const { flavorGroup } = this.model;
+
+    if (!flavorGroup || !this.shouldShowWindowsGen3Data()) {
+      return '';
+    }
+
+    const price = this.getWindowsLicensePrice(
+      flavorGroup.technicalBlob.cpu.cores,
+    );
+    const unit = this.$translate.instant(
+      'pci_projects_project_instances_add_windows_gen3_license_unit',
+    );
+
+    return `${price} ${unit}`;
   }
 }
