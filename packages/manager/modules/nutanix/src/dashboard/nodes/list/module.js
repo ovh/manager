@@ -7,6 +7,11 @@ import { region } from '@ovh-ux/manager-components';
 import routing from './routing';
 import component from './component';
 import datacenterName from '../../component/datacenter-name/module';
+import addNodes from './add-nodes';
+import poweronNode from './poweron-node';
+import poweroffNode from './poweroff-node';
+import uninstallNode from './uninstall-node';
+import resiliateNode from './resiliate-node';
 
 const moduleName = 'ovhManagerNutanixAllNodes';
 
@@ -17,6 +22,11 @@ angular
     'ui.router',
     region,
     datacenterName,
+    addNodes,
+    poweronNode,
+    poweroffNode,
+    uninstallNode,
+    resiliateNode,
   ])
   .config(routing)
   .component('nutanixAllNodes', component)
