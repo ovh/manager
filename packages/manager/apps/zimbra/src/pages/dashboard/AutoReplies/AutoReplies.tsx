@@ -90,7 +90,7 @@ export function AutoReplies() {
   const [searchParams] = useSearchParams();
   const params = Object.fromEntries(searchParams.entries());
   const editEmailAccountId = searchParams.get('editEmailAccountId');
-  const hrefAddAutoReply = useGenerateUrl('./add', 'href', params);
+  const hrefAddAutoReply = useGenerateUrl('./add', 'path', params);
   const handleAddClick = () => navigate(hrefAddAutoReply);
   const location = useLocation();
 

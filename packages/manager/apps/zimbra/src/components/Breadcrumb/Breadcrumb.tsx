@@ -1,9 +1,9 @@
 import React, { useMemo } from 'react';
 import {
-  useParams,
   useSearchParams,
   createSearchParams,
   useLocation,
+  useMatches,
 } from 'react-router-dom';
 import {
   OdsBreadcrumb,
@@ -11,8 +11,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { ODS_LINK_COLOR } from '@ovhcloud/ods-components';
-import { urls } from '@/routes/routes.constants';
-import { useGenerateUrl, useOrganization } from '@/hooks';
+import { useOrganization } from '@/hooks';
 
 export type BreadcrumbProps = {
   items?: { label: string; href?: string }[];
@@ -21,68 +20,46 @@ export type BreadcrumbProps = {
 
 const whiteListedSearchParams = ['organizationId'];
 
-export const Breadcrumb: React.FC<BreadcrumbProps> = ({
-  items = [],
-  overviewUrl,
-}) => {
-  const { serviceName } = useParams();
+export const Breadcrumb: React.FC<BreadcrumbProps> = () => {
   const { t } = useTranslation('dashboard');
   const location = useLocation();
   const [searchParams] = useSearchParams();
-  const params = useMemo(() => {
+  const matches = useMatches();
+
+  const queryParams = useMemo(() => {
     return Array.from(searchParams.entries()).filter(([key]) =>
       whiteListedSearchParams.includes(key),
     );
   }, [searchParams]);
+
   const search = useMemo(
-    () => (params.length ? `?${createSearchParams(params)}` : ''),
-    [params],
+    () => (queryParams.length ? `?${createSearchParams(queryParams)}` : ''),
+    [queryParams],
   );
   const { data: organization, isLoading } = useOrganization();
 
-  const rootUrl = serviceName
-    ? '#/:serviceName'.replace(':serviceName', serviceName)
-    : '#/';
-
-  const overviewUrlValue = useGenerateUrl(
-    overviewUrl ||
-      (serviceName ? urls.overview.replace(':serviceName', serviceName) : '/'),
-    'href',
-  );
-
   const breadcrumbItems = useMemo(() => {
-    const pathParts = location.pathname.split('/').filter(Boolean);
-    const breadcrumbParts = pathParts.slice(1);
+    const items = matches.slice(1);
+    const parts = items.map((item, index) => ({
+      label: t(
+        (item.handle as Record<string, string>)?.breadcrumbLabel ||
+          'to_be_defined',
+      ),
+      href: `#${item.pathname}${index === 0 ? '' : search}`,
+    }));
 
-    return [
-      {
-        label: t('zimbra_dashboard_title'),
-        href: rootUrl,
-      },
-      ...(organization && !isLoading
-        ? [
-            {
-              label: organization?.currentState.name,
-              href: overviewUrlValue,
-            },
-          ]
-        : []),
-      ...breadcrumbParts.map((_, index) => {
-        const url = `#/${pathParts.slice(0, index + 2).join('/')}${search}`;
-        const label = t(
-          `zimbra_dashboard_${breadcrumbParts.slice(0, index + 1).join('_')}`,
-        );
-        return {
-          label,
-          href: url,
-        };
-      }),
-      ...items,
-    ].filter(Boolean);
+    if (organization && !isLoading) {
+      parts.splice(1, 0, {
+        label: organization.currentState.name,
+        href: `#${items[0].pathname}${search}`,
+      });
+    }
+
+    return parts;
   }, [location, organization]);
 
   return (
-    <OdsBreadcrumb data-testid="breadcrumb" className="mb-4">
+    <OdsBreadcrumb data-testid="breadcrumb">
       {breadcrumbItems.map((item) => (
         <OdsBreadcrumbItem
           key={item.label}
