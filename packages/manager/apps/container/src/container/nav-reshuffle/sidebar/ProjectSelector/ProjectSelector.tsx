@@ -33,10 +33,8 @@ export type Props = {
   projects: PciProject[];
   selectedProject: PciProject;
   onProjectChange: CallableFunction;
-  onProjectCreate: CallableFunction;
   onSeeAllProjects: CallableFunction;
   onMenuOpen?: CallableFunction;
-  createLabel: string;
   seeAllButton: boolean;
   seeAllLabel: string;
 };
@@ -45,10 +43,8 @@ const ProjectSelector: React.FC<ComponentProps<Props>> = ({
   projects,
   selectedProject,
   onProjectChange,
-  onProjectCreate,
   onSeeAllProjects,
   onMenuOpen,
-  createLabel,
   seeAllButton,
   seeAllLabel,
 }: Props): JSX.Element => {
@@ -87,15 +83,7 @@ const ProjectSelector: React.FC<ComponentProps<Props>> = ({
   };
   const [options, setOptions] = useState([]);
   const [value, setValue] = useState(null);
-  const [createProjectOption, setCreateProjectOption] = useState(null);
   const [seeAllProjectsOption, setSeeAllProjectsOption] = useState(null);
-
-  useEffect(() => {
-    setCreateProjectOption({
-      new: true,
-      label: createLabel,
-    });
-  }, [createLabel]);
 
   useEffect(() => {
     setSeeAllProjectsOption(
@@ -111,7 +99,6 @@ const ProjectSelector: React.FC<ComponentProps<Props>> = ({
   useEffect(() => {
     setOptions([
       ...(seeAllProjectsOption ? [seeAllProjectsOption] : []),
-      ...(createProjectOption ? [createProjectOption] : []),
       ...(projects
         ? projects.map(({ project_id: projectId, description }) => ({
             id: projectId,
@@ -119,7 +106,7 @@ const ProjectSelector: React.FC<ComponentProps<Props>> = ({
           }))
         : [])
     ]);
-  }, [projects, createProjectOption]);
+  }, [projects]);
 
   useEffect(() => {
     if (selectedProject) {
@@ -127,10 +114,8 @@ const ProjectSelector: React.FC<ComponentProps<Props>> = ({
         id: selectedProject.project_id,
         label: selectedProject.description || selectedProject.project_id,
       });
-    } else if (createProjectOption) {
-      setValue(createProjectOption);
     }
-  }, [selectedProject, options, createProjectOption]);
+  }, [selectedProject, options]);
 
   return (
     <>
@@ -145,9 +130,7 @@ const ProjectSelector: React.FC<ComponentProps<Props>> = ({
         value={value}
         data-testid="project-selector"
         onChange={(option) => {
-          if (option.new) {
-            onProjectCreate();
-          } else if (option.seeAll) {
+          if (option.seeAll) {
             onSeeAllProjects();
           } else {
             onProjectChange(
