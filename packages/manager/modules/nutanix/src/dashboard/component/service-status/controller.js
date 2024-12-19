@@ -1,4 +1,5 @@
-import { SERVICE_BADGE_STATE, SERVICE_STATE } from './constants';
+import { SERVICE_BADGE_STATES } from './constants';
+import { SERVICE_STATES } from '../../../constants';
 
 export default class {
   /* @ngInject */
@@ -8,8 +9,8 @@ export default class {
 
   getStatusBadgeStyle() {
     return (
-      SERVICE_BADGE_STATE[this.status] ??
-      SERVICE_BADGE_STATE[SERVICE_STATE.UNKNOWN]
+      SERVICE_BADGE_STATES[this.status] ??
+      SERVICE_BADGE_STATES[SERVICE_STATES.UNKNOWN]
     );
   }
 

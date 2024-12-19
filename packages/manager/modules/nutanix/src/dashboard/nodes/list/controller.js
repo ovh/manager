@@ -1,4 +1,4 @@
-import { MAX_NODES_BY_CLUSTER } from '../../../constants';
+import { MAX_NODES_BY_CLUSTER, SERVICE_STATES } from '../../../constants';
 
 export default class NutanixAllNodesCtrl {
   /* @ngInject */
@@ -8,6 +8,7 @@ export default class NutanixAllNodesCtrl {
     this.NutanixService = NutanixService;
     this.nodesMapped = [];
     this.loadingNodesStatus = false;
+    this.SERVICE_STATES = SERVICE_STATES;
   }
 
   $onInit() {

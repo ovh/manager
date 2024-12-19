@@ -1,4 +1,8 @@
-import { NODE_STATUS } from '../../../constants';
+import {
+  NODE_STATUS,
+  SERVICE_STATES,
+  NODE_POWER_STATES,
+} from '../../../constants';
 
 export default class {
   /* @ngInject */
@@ -7,11 +11,11 @@ export default class {
   }
 
   isPowerOff() {
-    return this.powerState === 'poweroff';
+    return this.powerState === NODE_POWER_STATES.POWEROFF;
   }
 
   isSuspended() {
-    return this.serviceStatus === 'suspended';
+    return this.serviceStatus === SERVICE_STATES.SUSPENDED;
   }
 
   isInstallationError() {
