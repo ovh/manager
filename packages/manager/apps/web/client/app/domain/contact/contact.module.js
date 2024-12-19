@@ -1,6 +1,8 @@
 import routing from './contact.routing';
-import contactDashboardComponent from './dashboard/dashboard.component';
+import contactDashboardComponent from './contact.component';
 import ContactService from './contact.service';
+
+import editContactModule from './edit/edit.module';
 
 const moduleName = 'ovhManagerWebDomainContact';
 
@@ -9,6 +11,7 @@ angular
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
     'ui.router',
+    editContactModule,
   ])
   .component('domainZoneDashboardContact', contactDashboardComponent)
   .service('ContactService', ContactService)

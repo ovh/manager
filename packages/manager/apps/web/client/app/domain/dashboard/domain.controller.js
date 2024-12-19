@@ -115,6 +115,7 @@ angular.module('App').controller(
             domain.contactAdmin === user.nichandle ||
             domain.contactBilling === user.nichandle;
           this.domainInfos = { ...domain, ...domainService };
+          this.domainServiceInfos = domain;
           this.domainState = {
             isDomainServiceStateRestorable: this.isDomainServiceStateRestorable(),
             isDomainServiceStateExpired: this.isDomainServiceStateExpired(),
