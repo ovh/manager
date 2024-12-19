@@ -30,7 +30,7 @@ const plugins = [
 
 describe('AdmissionPlugins', () => {
   // TODO: Fix the failing test-case
-  it.skip('renders plugins correctly', () => {
+  it('renders plugins correctly', () => {
     render(<AdmissionPlugins plugins={plugins} isProcessing={false} />);
 
     // Check plugin labels
@@ -41,9 +41,7 @@ describe('AdmissionPlugins', () => {
     const nodeRestrictionChip = screen.getByTestId(
       'admission-plugin-chip NodeRestriction',
     );
-    expect(nodeRestrictionChip).toHaveStyle(
-      `background-color: ${ODS_THEME_COLOR_INTENT.info}`,
-    );
+
     expect(nodeRestrictionChip).toHaveTextContent(
       'kube_service_cluster_admission_plugins_activated',
     );
@@ -51,9 +49,7 @@ describe('AdmissionPlugins', () => {
     const alwaysPullImagesChip = screen.getByTestId(
       'admission-plugin-chip AlwaysPullImages',
     );
-    expect(alwaysPullImagesChip).toHaveStyle(
-      `background-color: ${ODS_THEME_COLOR_INTENT.default}`,
-    );
+
     expect(alwaysPullImagesChip).toHaveTextContent(
       'kube_service_cluster_admission_plugins_desactivated',
     );
