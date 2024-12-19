@@ -18,10 +18,10 @@
         data-valid="$ctrl.model.vdc"
         data-prevent-next
     >
-        <div class="col-sm-12 mt-2 mb-4 d-flex flex-wrap align-content-stretch">
+        <div class="row">
             <oui-select-picker
                 data-ng-repeat="datacenter in $ctrl.vdcList track by $index"
-                class="col-md-4"
+                class="col-sm-12 col-md-4 my-3"
                 data-model="$ctrl.model.vdc"
                 data-label="{{ :: 'dedicatedCloud_configuration_add_datacenter_card_vdc_' + datacenter.vdc + '_label' | translate }}"
                 data-values="[datacenter]"
@@ -55,19 +55,19 @@
                 data-translate="dedicatedCloud_configuration_add_datacenter_message_edge_information"
             ></p>
         </oui-message>
-        <div class="col-sm-12 mt-2 mb-4 d-flex flex-wrap align-content-stretch">
+        <div class="row">
             <oui-select-picker
                 data-ng-repeat="host in $ctrl.hostList track by $index"
-                class="col-md-3"
+                class="col-sm-12 col-md-4 my-3"
                 data-model="$ctrl.model.host"
-                data-label="{{ :: 'dedicatedCloud_configuration_add_datacenter_card_host_' + host.name + '_label' | translate }}"
+                data-label="{{ 'dedicatedCloud_configuration_add_datacenter_card_host_' + host.name + '_label' | translate }}"
                 data-values="[host]"
                 data-disabled="$ctrl.submitting"
                 data-required
             >
                 <oui-select-picker-section>
                     <p
-                        data-translate="{{ :: 'dedicatedCloud_configuration_add_datacenter_card_host_' + host.name + '_description' }}"
+                        data-translate="{{ 'dedicatedCloud_configuration_add_datacenter_card_host_' + host.name + '_description' }}"
                     ></p>
                 </oui-select-picker-section>
             </oui-select-picker>
