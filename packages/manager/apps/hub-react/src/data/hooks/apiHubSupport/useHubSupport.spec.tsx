@@ -1,7 +1,6 @@
 import { QueryClientProvider } from '@tanstack/react-query';
 import { act, renderHook, waitFor } from '@testing-library/react';
 import { PropsWithChildren } from 'react';
-import { AxiosResponse } from 'axios';
 import { describe, it, vi } from 'vitest';
 import { useFetchHubSupport } from '@/data/hooks/apiHubSupport/useHubSupport';
 import { SupportResponse } from '@/types/support.type';
