@@ -46,7 +46,7 @@
   "pci_projects_project_storages_containers_add_deployment_mode_soon": "Próximamente",
   "pci_projects_project_storages_containers_add_offers_estimated_price": "Desde {{price}}/mes + IVA por TB",
   "pci_projects_project_storages_containers_add_deployment_mode_price": "{{price}}/mes + IVA por TB*",
-  "pci_projects_project_storages_containers_add_deployment_mode_price_explanation": "*El precio indicado corresponde al precio público de 1 TB de almacenamiento durante 30 días. Para más información, ",
+  "pci_projects_project_storages_containers_add_deployment_mode_price_explanation": "* El precio indicado corresponde al precio público de 1 TB de almacenamiento durante 30 días. Para más información, ",
   "pci_projects_project_storages_containers_add_deployment_mode_price_explanation_link": "consulte la página de precios.",
   "pci_projects_project_storages_containers_add_deployment_mode_localzone": "Local Zones",
   "pci_projects_project_storages_containers_add_deployment_mode_localzone_description": "Despliegue sus aplicaciones cerca de sus usuarios para reducir la latencia y conservar los datos.",
@@ -54,6 +54,6 @@
   "pci_projects_project_storages_containers_add_deployment_mode_flipping_region-3-az": "Regiones 3-AZ",
   "pci_projects_project_storages_containers_add_deployment_mode_flipping_region": "Regiones",
   "pci_projects_project_storages_containers_add_deployment_mode_flipping_localzone": "Local Zones",
-  "pci_projects_project_storages_containers_add_replication_rules_info": "¡Enhorabuena, su contenedor está listo para su uso! Si su uso requiere una replicación multisitio de sus datos para una mayor resiliencia y disponibilidad, considere la posibilidad de utilizar nuestra replicación asíncrona en una o varias regiones (disponible a través de la API).",
+  "pci_projects_project_storages_containers_add_replication_rules_info": "¡Enhorabuena! Ya puede empezar a utilizar su contenedor. Si necesita una replicación multisitio de los datos para una mayor resiliencia y disponibilidad, puede utilizar nuestra replicación asíncrona en una o varias regiones (disponible por API).",
   "pci_projects_project_storages_containers_add_replication_rules_info_link": "Para saber más y empezar."
 }
