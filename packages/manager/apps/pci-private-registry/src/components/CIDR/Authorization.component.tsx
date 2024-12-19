@@ -22,7 +22,7 @@ const Authorization = () => {
           }}
           value={JSON.stringify(value)}
         >
-          <span slot="placeholder" className="text-[#4e5693] font-normal">
+          <span slot="placeholder" className=" font-normal">
             {t('private_registry_cidr_authorization_select')}
           </span>
           <OsdsSelectOption

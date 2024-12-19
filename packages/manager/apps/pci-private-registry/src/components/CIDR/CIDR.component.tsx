@@ -49,12 +49,11 @@ const createNewRow = (queryClient: QueryClient, key: QueryKey) =>
     ...(oldData ?? []),
   ]);
 
-export default function BlocCIDR() {
+export default function BlockCIDR() {
   const { t } = useTranslation(['ip-restrictions', 'common']);
   const { projectId, registryId } = useParams();
-
   const queryClient = useQueryClient();
-  const { formState } = useFormContext();
+  const { formState, reset } = useFormContext();
   const columns = useDatagridColumn();
   const { pagination, filters, setPagination } = useFilters();
   const { clearNotifications } = useNotifications();
@@ -71,6 +70,26 @@ export default function BlocCIDR() {
     filters: { status: 'pending' },
     select: (mutation) => mutation.state.variables,
   });
+
+  const useUpdateIpRestrictionVariables = useMutationState({
+    filters: {
+      mutationKey: getRegistryQueyPrefixWithId(projectId, registryId),
+    },
+    select: (mutation) => mutation.state,
+  });
+
+  useEffect(() => {
+    // if we are using a modal inside a page routing, we cannot reset the component inside the modal
+    // use form context is not the target of routing
+    if (
+      useUpdateIpRestrictionVariables.length &&
+      useUpdateIpRestrictionVariables[
+        useUpdateIpRestrictionVariables.length - 1
+      ].status === 'success'
+    ) {
+      reset();
+    }
+  }, [useUpdateIpRestrictionVariables]);
 
   useEffect(() => clearNotifications, []);
 

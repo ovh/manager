@@ -1,9 +1,18 @@
-import { useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useFormContext } from 'react-hook-form';
-import { useCallback, useContext } from 'react';
-import { useNotifications } from '@ovh-ux/manager-react-components';
+import { useCallback } from 'react';
+import { OsdsText } from '@ovhcloud/ods-components/react';
+import {
+  PaginationState,
+  useNotifications,
+} from '@ovh-ux/manager-react-components';
 import { PciModal } from '@ovh-ux/manager-pci-common';
+import { ODS_TEXT_COLOR_INTENT } from '@ovhcloud/ods-components';
+import {
+  ODS_THEME_TYPOGRAPHY_LEVEL,
+  ODS_THEME_TYPOGRAPHY_SIZE,
+} from '@ovhcloud/ods-common-theming';
+import { Filter } from '@ovh-ux/manager-core-api';
 import {
   useIpRestrictionsWithFilter,
   useUpdateIpRestriction,
@@ -15,21 +24,24 @@ import {
   TIPRestrictionsMethodEnum,
 } from '@/types';
 import { categorizeByKey } from '@/helpers';
-import { Context } from '../../pages/CIDR/FilterContext.provider';
 
-type DeleteModalProps =
-  | { all: true; cidr?: never; onClose: () => void }
-  | { all?: false; cidr: TIPRestrictionsData; onClose: () => void };
+type DeleteModalState =
+  | { all: true; cidr?: never }
+  | { all?: false; cidr: TIPRestrictionsData };
 
-export default function DeleteModal({
-  cidr,
-  all = false,
-  onClose,
-}: DeleteModalProps) {
+export default function DeleteModal() {
   const { t } = useTranslation(['ip-restrictions']);
-
+  const {
+    state: { filters, pagination, cidr, all },
+  } = useLocation() as {
+    state: DeleteModalState & { filters?: Filter[] } & {
+      pagination?: PaginationState;
+    };
+  };
+  const navigate = useNavigate();
+  const onClose = () => navigate('./..');
   const { projectId, registryId } = useParams();
-  const { filters, pagination } = useContext(Context);
+
   const { data } = useIpRestrictionsWithFilter(
     projectId,
     registryId,
@@ -37,7 +49,6 @@ export default function DeleteModal({
     pagination,
     filters,
   );
-  const { reset } = useFormContext();
   const { addError, addSuccess } = useNotifications();
 
   const { updateIpRestrictions } = useUpdateIpRestriction({
@@ -47,7 +58,6 @@ export default function DeleteModal({
       addError(t('common:private_registry_crud_cidr_error'));
     },
     onSuccess: () => {
-      reset();
       addSuccess(
         t(
           all
@@ -83,7 +93,7 @@ export default function DeleteModal({
             description: cidr?.description ?? '',
           },
         ];
-
+    onClose();
     const categorizedRestrictions = getCategorizedRestrictions(rowsToDelete);
     updateIpRestrictions({
       cidrToUpdate: categorizedRestrictions as Record<
@@ -106,11 +116,17 @@ export default function DeleteModal({
       onClose={onClose}
       onCancel={onClose}
     >
-      {t(
-        all
-          ? 'private_registry_cidr_delete_modal_all_subtitle'
-          : 'private_registry_cidr_delete_modal_subtitle',
-      )}
+      <OsdsText
+        color={ODS_TEXT_COLOR_INTENT.text}
+        level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+        size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+      >
+        {t(
+          all
+            ? 'private_registry_cidr_delete_modal_all_subtitle'
+            : 'private_registry_cidr_delete_modal_subtitle',
+        )}
+      </OsdsText>
     </PciModal>
   );
 }

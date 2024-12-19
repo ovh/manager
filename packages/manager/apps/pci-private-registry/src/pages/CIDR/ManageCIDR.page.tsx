@@ -10,7 +10,7 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
 import BreadcrumbCIDR from '@/components/CIDR/Breadcrumb.component';
 import { FilterRestrictionsEnum } from '@/types';
-import { isCidr, isIp } from '@/helpers/ip-restrictions';
+
 import BlocCIDR from '@/components/CIDR/CIDR.component';
 import { useIpRestrictions } from '@/api/hooks/useIpRestrictions';
 import { useSuspenseRegistry } from '@/api/hooks/useRegistry';
@@ -21,22 +21,29 @@ const schemaAddCidr = (dataCIDR: string[]) =>
     description: z.string().optional(),
     ipBlock: z
       .string()
+      .trim()
       .transform((value) => {
-        if (isCidr(value)) {
-          return value;
-        }
-        if (isIp(value)) {
+        try {
+          z.string()
+            .cidr()
+            .parse(value);
+        } catch (err) {
           return `${value}/32`;
         }
         return value;
       })
       .superRefine((value, ctx) => {
-        if (!isCidr(value)) {
+        try {
+          z.string()
+            .cidr()
+            .parse(value);
+        } catch (err) {
           ctx.addIssue({
             code: z.ZodIssueCode.custom,
             message: 'private_registry_cidr_validation_ipBlock',
           });
         }
+
         // verify duplication cidr
         const existingIpBlocks = dataCIDR.map((item) => item);
         if (existingIpBlocks.includes(value)) {

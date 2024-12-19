@@ -11,9 +11,6 @@ import { wrapper } from '@/wrapperRenders';
 const compute = () => render(<CreatePage />, { wrapper });
 
 describe('CreatePage', () => {
-  afterEach(() => {
-    vi.resetAllMocks();
-  });
   vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
     const actual = (await importOriginal()) as typeof import('@ovhcloud/ods-components/react');
     return {
@@ -78,7 +75,7 @@ describe('CreatePage', () => {
         expect(queryByTestId('breadcrumb')).toBeInTheDocument();
       });
 
-      it.skip('should show breadcrumb with right props', async () => {
+      it('should show breadcrumb with right props', async () => {
         vi.spyOn(pciCommonModule, 'useProject').mockReturnValueOnce({
           data: {} as TProject,
         } as UseQueryResult<TProject, ResponseAPIError>);
@@ -118,9 +115,5 @@ describe('CreatePage', () => {
 
       expect(queryByTestId('breadcrumb')).not.toBeInTheDocument();
     });
-  });
-
-  describe.skip('Tracking', () => {
-    it('should', () => {});
   });
 });

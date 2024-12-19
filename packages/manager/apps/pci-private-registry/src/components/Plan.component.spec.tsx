@@ -40,6 +40,16 @@ const defaultAddon = {
 };
 
 describe('PlanComponent', () => {
+  vi.mock('react-i18next', () => ({
+    useTranslation: vi.fn().mockImplementation(() => ({
+      t(key: string, data: Record<string, unknown>) {
+        return key === 'private_registry_upgrade_plan_connections'
+          ? `private_registry_upgrade_plan_connections:${data.total}`
+          : key;
+      },
+    })),
+  }));
+
   vi.mock('@ovh-ux/manager-react-components', async () => ({
     useMe: () => ({
       me: {
@@ -85,7 +95,7 @@ describe('PlanComponent', () => {
     );
   });
 
-  it.skip('should show concurrent connections', () => {
+  it('should show concurrent connections', () => {
     const { getByTestId } = render(<PlanComponent plan={defaultPlan} />, {
       wrapper,
     });

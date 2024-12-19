@@ -41,7 +41,7 @@ describe('NameStep', () => {
     expect(container).toMatchSnapshot();
   });
 
-  it.skip('should render StepComponent', () => {
+  it('should render StepComponent', () => {
     compute();
 
     const spy = StepComponent as Mock;
@@ -88,7 +88,7 @@ describe('NameStep', () => {
       );
     });
     describe('Items', () => {
-      it.skip("should render 'TilesInputComponent' with empty array if localisations regions is not valid", () => {
+      it("should render 'TilesInputComponent' with empty array if localisations regions is not valid", () => {
         (useProjectLocalisation as Mock).mockReturnValueOnce({
           data: null,
         });
@@ -135,7 +135,7 @@ describe('NameStep', () => {
           expect(call.items).toEqual([]);
         });
 
-        it.skip('capabilities are valid', () => {
+        it('capabilities are valid', () => {
           (useGetCapabilities as Mock).mockReturnValue({
             data: [
               {

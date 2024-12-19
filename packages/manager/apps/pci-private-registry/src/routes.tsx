@@ -68,6 +68,10 @@ export default [
         ...lazyRouteConfig(() => import('@/pages/create/Create.page')),
       },
       {
+        path: ':registryId/manage-cidr/delete',
+        ...lazyRouteConfig(() => import('@/pages/CIDR/DeleteCIDR.page')),
+      },
+      {
         path: ':registryId/manage-cidr',
         ...lazyRouteConfig(() => import('@/pages/CIDR/ManageCIDR.page')),
       },

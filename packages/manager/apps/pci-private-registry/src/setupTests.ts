@@ -5,7 +5,6 @@ import { queryClient } from './wrapperRenders';
 
 afterEach(() => {
   queryClient.clear();
-  vi.resetAllMocks();
 });
 
 vi.mock('react-router-dom', async () => {
