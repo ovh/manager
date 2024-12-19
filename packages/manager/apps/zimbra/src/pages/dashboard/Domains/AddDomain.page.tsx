@@ -81,7 +81,9 @@ export default function AddDomain() {
 
   const { platformId } = usePlatform();
   const { data: organization } = useOrganization();
-  const { data: organizations, isLoading } = useOrganizationList();
+  const { data: organizations, isLoading } = useOrganizationList({
+    shouldFetchAll: true,
+  });
 
   const [selectedOrganization, setSelectedOrganization] = useState(
     organization?.id || '',

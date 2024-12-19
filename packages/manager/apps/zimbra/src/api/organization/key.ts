@@ -1,8 +1,16 @@
-export const getZimbraPlatformOrganizationQueryKey = (platformId: string) => [
-  `get/zimbra/platform/${platformId}/organization`,
-];
+export const getZimbraPlatformOrganizationQueryKey = (
+  platformId: string,
+  shouldFetchAll?: boolean,
+) =>
+  [
+    'get',
+    'organization',
+    'zimbra',
+    platformId,
+    shouldFetchAll ? 'all' : '',
+  ].filter(Boolean);
 
 export const getZimbraPlatformOrganizationDetailsQueryKey = (
   platformId: string,
   organizationId: string,
-) => [`get/zimbra/platform/${platformId}/organization/${organizationId}`];
+) => ['get', 'organization', 'zimbra', platformId, organizationId];
