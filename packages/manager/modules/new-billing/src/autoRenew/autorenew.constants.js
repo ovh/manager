@@ -36,6 +36,7 @@ export const COLUMNS_CONFIG = [
   },
   {
     property: 'renewPeriod',
+    hidden: true,
   },
   {
     property: 'expiration',
@@ -73,6 +74,22 @@ export const SERVICE_STATUS = {
 };
 
 export const URL_PARAMETER_SEPARATOR = '%20';
+
+const TRACKING_CHAPTER_1 = 'Hub';
+const TRACKING_CHAPTER_2 = 'billing';
+const TRACKING_CHAPTER_3 = 'services';
+
+const TRACKING_PAGE_SUFFIX = 'services::listing::autorenew';
+export const TRACKING_PAGE_CATEGORY = 'listing';
+export const TRACKING_PAGE = `${TRACKING_CHAPTER_1}::${TRACKING_CHAPTER_2}::${TRACKING_CHAPTER_3}::${TRACKING_PAGE_SUFFIX}`;
+export const TRACKING_FILTER_NAME_PREFIX =
+  'Hub::billing::services::listing::button::filter_services';
+
+export const TRACKING_AUTORENEW_PAGE_NAME = `Hub::billing::services::services::listing::autorenew`;
+export const TRACKING_SSH_PAGE_NAME = `${TRACKING_AUTORENEW_PAGE_NAME}::ssh`;
+export const TRACKING_AGREEMENTS_PAGE_NAME = `${TRACKING_AUTORENEW_PAGE_NAME}::agreements`;
+
+export const TRACKING_ACTIONS_PREFIX = `${TRACKING_CHAPTER_1}::${TRACKING_CHAPTER_2}::${TRACKING_CHAPTER_3}::${TRACKING_PAGE_CATEGORY}`;
 
 export default {
   AUTORENEW_EVENT,

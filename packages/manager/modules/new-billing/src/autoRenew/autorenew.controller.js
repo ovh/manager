@@ -10,6 +10,10 @@ import {
   COLUMNS_CONFIG,
   NIC_ALL,
   URL_PARAMETER_SEPARATOR,
+  TRACKING_FILTER_NAME_PREFIX,
+  TRACKING_PAGE_CATEGORY,
+  TRACKING_PAGE,
+  TRACKING_ACTIONS_PREFIX,
 } from './autorenew.constants';
 
 export default class AutorenewCtrl {
@@ -35,6 +39,10 @@ export default class AutorenewCtrl {
   }
 
   $onInit() {
+    this.trackingPage = TRACKING_PAGE;
+    this.trackingCategory = TRACKING_PAGE_CATEGORY;
+    this.trackingActionsPrefix = TRACKING_ACTIONS_PREFIX;
+
     this.ALIGNMENT_URL = this.coreConfig.isRegion('EU')
       ? ALIGNMENT_URLS[this.currentUser.ovhSubsidiary] || ALIGNMENT_URLS.FR
       : null;
@@ -86,6 +94,7 @@ export default class AutorenewCtrl {
       this.hideHeaderGuide =
         Object.keys(this.guides.url.my_services).length === 0;
     }
+    this.currentCriteria = JSON.parse(JSON.stringify(this.criteria));
   }
 
   descriptionOfHeading() {
@@ -198,6 +207,13 @@ export default class AutorenewCtrl {
   }
 
   onCriteriaChange($criteria) {
+    const newCriteria = $criteria.find(
+      (f) =>
+        !this.currentCriteria.some(
+          (s) => s.property === f.property && s.value === f.value,
+        ),
+    );
+
     const selectedType = find($criteria, { property: 'serviceType' });
     const searchText = find($criteria, { property: null });
     const filters = reduce(
@@ -214,6 +230,22 @@ export default class AutorenewCtrl {
       },
       {},
     );
+
+    if (newCriteria) {
+      const property = newCriteria.property
+        ? newCriteria.property.toLowerCase()
+        : 'search-text';
+      const value = newCriteria.value?.toLowerCase();
+
+      this.atInternet.trackClick({
+        name: `${TRACKING_FILTER_NAME_PREFIX}::go-to-${property}-${value}::service`,
+        type: 'action',
+        page_category: TRACKING_PAGE_CATEGORY,
+        page: {
+          name: TRACKING_PAGE,
+        },
+      });
+    }
 
     this.onListParamChanges({
       filters: JSON.stringify(filters),
