@@ -9,24 +9,32 @@ export default class TelecomTelephonyAliasConfigurationSoundsCtrl {
   /* @ngInject */
   constructor(
     $q,
+    $scope,
     $state,
     $stateParams,
     $translate,
+    $timeout,
+    $document,
     $uibModal,
     featureTypeLabel,
     OvhApiTelephony,
     TucToast,
     tucVoipServiceAlias,
+    tucTelecomVoip,
   ) {
     this.$q = $q;
+    this.$scope = $scope;
     this.$state = $state;
     this.$stateParams = $stateParams;
     this.$translate = $translate;
+    this.$timeout = $timeout;
+    this.$document = $document;
     this.$uibModal = $uibModal;
     this.featureTypeLabel = featureTypeLabel;
     this.OvhApiTelephony = OvhApiTelephony;
     this.TucToast = TucToast;
     this.tucVoipServiceAlias = tucVoipServiceAlias;
+    this.tucTelecomVoip = tucTelecomVoip;
   }
 
   $onInit() {
@@ -35,6 +43,16 @@ export default class TelecomTelephonyAliasConfigurationSoundsCtrl {
       serviceName: this.$stateParams.serviceName,
     };
     this.loading = true;
+    this.playing = null;
+    this.pendingListen = null;
+
+    [this.audioElement] = this.$document.find('#soundAudio');
+    this.audioElement.addEventListener('ended', () => {
+      this.$timeout(() => {
+        this.playing = null;
+        this.pendingListen = null;
+      });
+    });
 
     return this.$q
       .all({
@@ -50,6 +68,25 @@ export default class TelecomTelephonyAliasConfigurationSoundsCtrl {
       })
       .then(({ options, queueOptions, sounds }) => {
         this.options = options;
+        // on options.toneOnOpening and options.toneOnHold change, stop playing the sound
+        this.$scope.$watch(
+          () => this.options.toneOnOpening,
+          () => {
+            if (this.playing !== this.options.toneOnOpening) {
+              this.playing = null;
+              this.audioElement.pause();
+            }
+          },
+        );
+        this.$scope.$watch(
+          () => this.options.toneOnHold,
+          () => {
+            if (this.playing !== this.options.toneOnHold) {
+              this.playing = null;
+              this.audioElement.pause();
+            }
+          },
+        );
         [this.queueOptions] = queueOptions;
         this.sounds = sounds
           .concat({ soundId: null, name: this.$translate.instant('none') })
@@ -133,6 +170,50 @@ export default class TelecomTelephonyAliasConfigurationSoundsCtrl {
             break;
         }
       });
+  }
+
+  fetchSound(soundId) {
+    return this.tucTelecomVoip.fetchSound(soundId);
+  }
+
+  listenSound(sound) {
+    if (!sound) {
+      return this.$q.when(null);
+    }
+    if (this.playing === sound) {
+      this.playing = null;
+      this.audioElement.pause();
+    } else {
+      this.audioElement.pause();
+      this.playing = sound;
+      this.pendingListen = true;
+      return this.fetchSound(sound)
+        .then((info) => {
+          this.playing = sound;
+          this.audioElement.src = info.getUrl;
+          this.audioElement.play().catch((err) => {
+            this.playing = null;
+            this.pendingListen = false;
+            this.TucToast.error(
+              `${this.$translate.instant(
+                'telephony_alias_config_contactCenterSolution_sounds_listen_error',
+              )} ${err.message || err}`,
+            );
+            this.$scope.$apply(); // force scope update because of audioElement event
+          });
+        })
+        .catch((err) => {
+          this.TucToast.error(
+            `${this.$translate.instant(
+              'telephony_alias_config_contactCenterSolution_sounds_listen_error',
+            )} ${err.data.message || err.message || err}`,
+          );
+        })
+        .finally(() => {
+          this.pendingListen = false;
+        });
+    }
+    return this.$q.when(null);
   }
 
   fetchSounds() {
