@@ -30,7 +30,7 @@ export const useDatagridColumn = () => {
             color={ODS_THEME_COLOR_INTENT.primary}
             onClick={() =>
               navigate({
-                pathname: `./${props.name}`,
+                pathname: `./${props.id || props.name}`,
                 search: `?${createSearchParams({
                   region: props.region,
                 })}`,
