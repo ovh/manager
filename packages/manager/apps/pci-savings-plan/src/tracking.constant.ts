@@ -16,5 +16,5 @@ export const LEVEL2 = {
   },
 };
 export const UNIVERSE = 'PublicCloud';
-export const SUB_UNIVERSE = 'PublicCloud';
-export const APP_NAME = 'pci-savings-plan';
+export const SUB_UNIVERSE = 'settings';
+export const APP_NAME = 'savings-plan';
