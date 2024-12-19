@@ -13,8 +13,10 @@
   "private_registry_cidr_submit_success": "Your CIDR. block has been added to the authorized CIDR. blocks.",
   "private_registry_cidr_delete_success": "Your CIDR. block has been deleted.",
   "private_registry_cidr_delete_all_success": "All selected CIDR. blocks were successfully deleted.",
-  "private_registry_cidr_help_authorized_component": "<p>There are 2 software components for managing blocks<br/> CIDR.:</p><p style='display: block;'>Management: allows access to UI and <br/> the Harbor API.</p><p style='display: block;'>Registry: allows different clients/CLIs to authorize <br/>  access to the backend registry (Docker, Helm, etc.)</p>",
+  "private_registry_cidr_help_authorized_component": "There are two software components for managing CIDR. blocks:",
   "private_registry_cidr_already_exist": "The IP/CIDR. already exists in the list.",
   "private_registry_cidr_delete_modal_subtitle": "Are you sure you want to delete the CIDR. block?",
-  "private_registry_cidr_delete_modal_all_subtitle": "Are you sure you want to delete all selected CIDR. blocks?"
+  "private_registry_cidr_delete_modal_all_subtitle": "Are you sure you want to delete all selected CIDR. blocks?",
+  "private_registry_cidr_help_authorized_component_part2": "Management: allows you to authorize access to UI and the Harbor API.",
+  "private_registry_cidr_help_authorized_component_part3": "Registry: allows different clients/CLI to authorize access to the backend Registry (Docker, Helm, ... )"
 }
