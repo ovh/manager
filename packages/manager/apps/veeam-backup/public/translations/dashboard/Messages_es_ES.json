@@ -22,5 +22,7 @@
   "billing_contact": "{{code}} Facturación",
   "technical_contact": "{{code}} Técnico",
   "location": "Localización",
-  "terminated_service": "El servicio se ha dado de baja."
+  "terminated_service": "El servicio se ha dado de baja.",
+  "gigabyte": "GB",
+  "terabyte": "TB"
 }

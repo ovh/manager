@@ -22,5 +22,7 @@
   "billing_contact": "{{code}} Kontakt księgowy",
   "technical_contact": "{{code}} Kontakt techniczny",
   "location": "Lokalizacja",
-  "terminated_service": "Usługa została zakończona."
+  "terminated_service": "Usługa została zakończona.",
+  "gigabyte": "GB",
+  "terabyte": "TB"
 }
