@@ -125,7 +125,9 @@ const Sidebar = (): JSX.Element => {
     }
     const currentNode: Node = selectedSubMenu || savedNode;
 
-    if (currentNode) {
+
+
+    if (currentNode?.routing) {
       // We already stored a node, we want to know if it stills in coherence with the current path
       // If not, we reset the node to null to not keep wrong information.
       const universe = findNodeById(currentNavigationNode, currentNode.universe);
@@ -154,14 +156,11 @@ const Sidebar = (): JSX.Element => {
           selectLvl1Node(universe)
 
           return;
-        } else {
-          selectedNode ? selectLvl1Node(null) : setSavedNode(null);
         }
-      } else {
-        selectedNode ? selectLvl1Node(null) : setSavedNode(null);
       }
     }
-
+    selectedNode ? selectLvl1Node(null) : setSavedNode(null);
+    
     // If we didn't have a stored node or if we have reset it,
     // we search in the full navigation tree a node that could match the current path
     const foundNode = findNodeByRouting(currentNavigationNode, pathname);
