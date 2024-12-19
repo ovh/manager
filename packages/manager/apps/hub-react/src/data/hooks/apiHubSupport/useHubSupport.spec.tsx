@@ -1,7 +1,6 @@
 import { QueryClientProvider } from '@tanstack/react-query';
 import { act, renderHook, waitFor } from '@testing-library/react';
 import { PropsWithChildren } from 'react';
-import { AxiosResponse } from 'axios';
 import { describe, it, vi } from 'vitest';
 import { useFetchHubSupport } from '@/data/hooks/apiHubSupport/useHubSupport';
 import { SupportResponse } from '@/types/support.type';
@@ -29,8 +28,9 @@ describe('useFetchHubSupport', () => {
       .spyOn(hubSupportApi, 'getHubSupport')
       .mockReturnValue(
         Promise.resolve({
-          data: { data: supportDataResponse, status: 'OK' },
-        } as AxiosResponse),
+          data: supportDataResponse,
+          status: 'OK',
+        }),
       );
 
     const { result } = renderHook(() => useFetchHubSupport(), {
@@ -52,8 +52,9 @@ describe('useFetchHubSupport', () => {
       .spyOn(hubSupportApi, 'getHubSupport')
       .mockReturnValue(
         Promise.resolve({
-          data: { data: supportDataResponse, status: 'OK' },
-        } as AxiosResponse),
+          data: supportDataResponse,
+          status: 'OK',
+        }),
       );
 
     const { result } = renderHook(() => useFetchHubSupport(), {
