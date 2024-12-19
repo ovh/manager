@@ -111,6 +111,7 @@ export default class PciProjectQuotaIncreaseController {
         serviceName: this.projectId,
         subject: this.issueType?.label,
         body,
+        urgency: 'medium',
       })
       .$promise.then(({ ticketId }) => {
         this.trackPage(
