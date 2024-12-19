@@ -14,3 +14,6 @@ export const FEATURE_FLAGS = {
   DOMAIN_DIAGNOSTICS: false,
   ORDER: false,
 };
+
+export const APIV2_MAX_PAGESIZE = 9999;
+export const APIV2_DEFAULT_PAGESIZE = 25;

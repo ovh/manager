@@ -63,7 +63,9 @@ export default function ModalAddAndEditOrganization() {
 
   const [isFormValid, setIsFormValid] = useState(false);
 
-  const { data: domainList, isLoading: isLoadingDomain } = useDomains();
+  const { data: domainList, isLoading: isLoadingDomain } = useDomains({
+    shouldFetchAll: true,
+  });
 
   const {
     data: editAccountDetail,
