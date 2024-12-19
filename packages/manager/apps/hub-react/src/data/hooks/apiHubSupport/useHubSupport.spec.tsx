@@ -29,8 +29,9 @@ describe('useFetchHubSupport', () => {
       .spyOn(hubSupportApi, 'getHubSupport')
       .mockReturnValue(
         Promise.resolve({
-          data: { data: supportDataResponse, status: 'OK' },
-        } as AxiosResponse),
+          data: supportDataResponse,
+          status: 'OK',
+        }),
       );
 
     const { result } = renderHook(() => useFetchHubSupport(), {
@@ -52,8 +53,9 @@ describe('useFetchHubSupport', () => {
       .spyOn(hubSupportApi, 'getHubSupport')
       .mockReturnValue(
         Promise.resolve({
-          data: { data: supportDataResponse, status: 'OK' },
-        } as AxiosResponse),
+          data: supportDataResponse,
+          status: 'OK',
+        }),
       );
 
     const { result } = renderHook(() => useFetchHubSupport(), {
