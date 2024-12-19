@@ -8,7 +8,7 @@ const sunriseUniverse: Node = {
   translation: 'sidebar_sunrise',
   shortTranslation: 'sidebar_sunrise_short',
   illustration,
-  svgIcon: OvhProductName.STAR,
+  svgIcon: OvhProductName.SUNRISE,
   routing: {
     application: 'sunrise',
   },
