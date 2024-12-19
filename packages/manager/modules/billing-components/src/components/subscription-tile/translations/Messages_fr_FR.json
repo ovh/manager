@@ -1,9 +1,10 @@
 {
-  "manager_billing_subscription": "Abonnement",
-  "manager_billing_subscription_creation": "Date de création",
+  "manager_billing_subscription": "Mon offre",
+  "manager_billing_subscription_creation": "Date de souscription",
+  "manager_billing_subscription_statut": "Statut",
   "manager_billing_subscription_next_due_date": "Prochaine échéance",
   "manager_billing_subscription_engagement": "Engagement",
-  "manager_billing_subscription_engagement_status_none": "Aucun",
+  "manager_billing_subscription_engagement_status_none": "Sans engagement",
   "manager_billing_subscription_contacts": "Contacts",
   "manager_billing_subscription_contacts_admin": "Administrateur",
   "manager_billing_subscription_contacts_tech": "Technique",
@@ -17,5 +18,22 @@
   "manager_billing_subscription_engagement_status_engaged": "Se termine le {{ endDate }}",
   "manager_billing_subscription_engagement_status_engaged_renew": "Se renouvelle le {{ endDate }}",
   "manager_billing_subscription_engagement_status_engaged_expired": "Terminé le {{ endDate }}",
-  "manager_billing_subscription_engagement_status_commitement_pending": "Votre service sera engagé à partir du {{ nextBillingDate }}"
+  "manager_billing_subscription_engagement_status_commitement_pending": "Votre service sera engagé à partir du {{ nextBillingDate }}",
+  "manager_billing_subscription_engagement_manage": "Gérer mon engagement",
+
+  "manager_billing_subscription_autorenew_none": "Aucun",
+  "manager_billing_subscription_autorenew_every_1_month": "Tous les mois",
+  "manager_billing_subscription_autorenew_every_3_month": "Tous les 3 mois",
+  "manager_billing_subscription_autorenew_every_6_month": "Tous les 6 mois",
+  "manager_billing_subscription_autorenew_every_12_month": "Tous les ans",
+  "manager_billing_subscription_resiliate_cancel": "Annuler la résiliation",
+  "manager_billing_subscription_autorenew_title": "Renouvellement automatique",
+  "manager_billing_subscription_configure_renew": "Configurer le renouvellement",
+  "manager_billing_subscription_configure_renew_frequency": "Configurer la fréquence de renouvellement",
+
+  "manager_billing_subscription_resiliate": "Résilier",
+  "manager_billing_subscription_resiliate_my_engagement": "Résilier mon engagement",
+
+  "manager_billing_subscription_pay_bill": "Régulariser",
+  "manager_billing_subscription_pay_bill_renew": "Renouveler"
 }
