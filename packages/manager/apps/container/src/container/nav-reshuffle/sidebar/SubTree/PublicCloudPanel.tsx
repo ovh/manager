@@ -1,6 +1,7 @@
 import ProjectSelector from '../ProjectSelector/ProjectSelector';
 import { PciProject } from '../ProjectSelector/PciProject';
 import { fetchIcebergV6 } from '@ovh-ux/manager-core-api';
+import { OsdsButton } from '@ovhcloud/ods-components/react';
 import { useQuery } from '@tanstack/react-query';
 import { useState, useEffect } from 'react';
 import { Node } from '../navigation-tree/node';
@@ -11,9 +12,13 @@ import { Location, useLocation } from 'react-router-dom';
 import style from '../style.module.scss';
 import SubTreeSection from '@/container/nav-reshuffle/sidebar/SubTree/SubTreeSection';
 import { PUBLICCLOUD_UNIVERSE_ID } from '../navigation-tree/services/publicCloud';
+import { useDefaultPublicCloudProject } from '@/container/nav-reshuffle/data/hooks/defaultPublicCloudProject/useDefaultPublicCloudProject';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
-  useDefaultPublicCloudProject
-} from '@/container/nav-reshuffle/data/hooks/defaultPublicCloudProject/useDefaultPublicCloudProject';
+  ODS_BUTTON_SIZE,
+  ODS_BUTTON_TYPE,
+  ODS_BUTTON_VARIANT,
+} from '@ovhcloud/ods-components';
 
 export interface PublicCloudPanelProps {
   rootNode: Node;
@@ -65,16 +70,22 @@ export const PublicCloudPanel: React.FC<ComponentProps<
     },
   });
 
-  const { data: defaultPciProject, status: defaultPciProjectStatus } = useDefaultPublicCloudProject(
-    {
-      select: (defaultProjectId: string | null): PciProject | null => {
-        return defaultProjectId !== null
-          ? pciProjects?.find((project: PciProject) => project.project_id === defaultProjectId) || null
-          : null;
-      },
-      enabled: rootNode.id === PUBLICCLOUD_UNIVERSE_ID && !selectedPciProject && !pciProjects,
+  const {
+    data: defaultPciProject,
+    status: defaultPciProjectStatus,
+  } = useDefaultPublicCloudProject({
+    select: (defaultProjectId: string | null): PciProject | null => {
+      return defaultProjectId !== null
+        ? pciProjects?.find(
+            (project: PciProject) => project.project_id === defaultProjectId,
+          ) || null
+        : null;
     },
-  );
+    enabled:
+      rootNode.id === PUBLICCLOUD_UNIVERSE_ID &&
+      !selectedPciProject &&
+      !pciProjects,
+  });
 
   /** Watch URL changes to update selected menu dynamically */
   useEffect(() => {
@@ -103,12 +114,10 @@ export const PublicCloudPanel: React.FC<ComponentProps<
       }
       if (project) {
         setSelectedPciProject(project);
-      }
-      else {
+      } else {
         if (defaultPciProject !== null) {
           setSelectedPciProject(defaultPciProject);
-        }
-        else {
+        } else {
           setSelectedPciProject(pciProjects[0]);
         }
       }
@@ -140,7 +149,11 @@ export const PublicCloudPanel: React.FC<ComponentProps<
           selectedProject={selectedPciProject}
           onProjectChange={(option: typeof selectedPciProject) => {
             if (selectedPciProject !== option) {
-              trackingPlugin.trackClick({ name: 'navbar_v3_entry_home::pci::specific_project_from_listing', type: 'navigation' });
+              trackingPlugin.trackClick({
+                name:
+                  'navbar_v3_entry_home::pci::specific_project_from_listing',
+                type: 'navigation',
+              });
               setSelectedPciProject(option);
               navigationPlugin.navigateTo(
                 'public-cloud',
@@ -148,13 +161,9 @@ export const PublicCloudPanel: React.FC<ComponentProps<
               );
             }
           }}
-          onProjectCreate={() => {
-            navigationPlugin.navigateTo('public-cloud', `#/pci/projects/new`);
-          }}
           onSeeAllProjects={() => {
             navigationPlugin.navigateTo('public-cloud', `#/pci/projects`);
           }}
-          createLabel={t('sidebar_pci_new')}
           seeAllButton={true}
           seeAllLabel={t('sidebar_pci_all')}
         />
@@ -188,23 +197,39 @@ export const PublicCloudPanel: React.FC<ComponentProps<
           </button>
         )}
       </li>
+      <li className="px-3 mt-3 flex">
+        <OsdsButton
+          color={ODS_THEME_COLOR_INTENT.primary}
+          type={ODS_BUTTON_TYPE.button}
+          size={ODS_BUTTON_SIZE.sm}
+          data-testid="pci-create-project"
+          variant={ODS_BUTTON_VARIANT.flat}
+          onClick={() =>
+            navigationPlugin.navigateTo('public-cloud', `#/pci/projects/new`)
+          }
+        >
+          {t('sidebar_pci_new')} +
+        </OsdsButton>
+      </li>
       {selectedPciProject !== null &&
-        rootNode.children?.filter((childNode) => !shouldHideElement(childNode, 1)).map((node) => (
-          <li
-            key={node.id}
-            id={node.id}
-            className={style.sidebar_pciEntry}
-            role="menuitem"
-          >
+        rootNode.children
+          ?.filter((childNode) => !shouldHideElement(childNode, 1))
+          .map((node) => (
+            <li
+              key={node.id}
+              id={node.id}
+              className={style.sidebar_pciEntry}
+              role="menuitem"
+            >
               <SubTreeSection
                 node={node}
                 selectedNode={selectedNode}
                 selectedPciProject={selectedPciProject?.project_id}
                 handleOnSubMenuClick={handleOnSubMenuClick}
               />
-            {node.separator && <hr role="separator" />}
-          </li>
-        ))}
+              {node.separator && <hr role="separator" />}
+            </li>
+          ))}
     </>
   );
 };
