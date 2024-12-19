@@ -14,12 +14,13 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { SortableHeader } from '@/components/ui/data-table';
+import DataTable from '@/components/data-table';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
 import { humanizeEngine } from '@/lib/engineNameHelper';
 import Link from '@/components/links/Link.component';
 import { useTrackAction } from '@/hooks/useTracking';
 import { TRACKING } from '@/configuration/tracking.constants';
+import { formatStorage } from '@/lib/bytesHelper';
 
 interface ServiceListColumnsProps {
   onRenameClicked: (service: database.Service) => void;
@@ -37,9 +38,11 @@ export const getColumns = ({
     {
       id: 'description/id',
       header: ({ column }) => (
-        <SortableHeader column={column}>{t('tableHeaderName')}</SortableHeader>
+        <DataTable.SortableHeader column={column}>
+          {t('tableHeaderName')}
+        </DataTable.SortableHeader>
       ),
-      accessorFn: (row) => row.description,
+      accessorFn: (row) => `${row.description}-${row.id}`,
       cell: ({ row }) => {
         const { id, description, status, engine, nodes } = row.original;
         return (
@@ -78,9 +81,9 @@ export const getColumns = ({
       id: 'Engine',
       accessorFn: (row) => row.engine,
       header: ({ column }) => (
-        <SortableHeader column={column}>
+        <DataTable.SortableHeader column={column}>
           {t('tableHeaderEngine')}
-        </SortableHeader>
+        </DataTable.SortableHeader>
       ),
       cell: ({ row }) => {
         const { engine, version } = row.original;
@@ -99,7 +102,9 @@ export const getColumns = ({
       id: 'Plan',
       accessorFn: (row) => row.plan,
       header: ({ column }) => (
-        <SortableHeader column={column}>{t('tableHeaderPlan')}</SortableHeader>
+        <DataTable.SortableHeader column={column}>
+          {t('tableHeaderPlan')}
+        </DataTable.SortableHeader>
       ),
       cell: ({ row }) => {
         const { plan } = row.original;
@@ -110,9 +115,9 @@ export const getColumns = ({
       id: 'Flavor',
       accessorFn: (row) => row.flavor,
       header: ({ column }) => (
-        <SortableHeader column={column}>
+        <DataTable.SortableHeader column={column}>
           {t('tableHeaderFlavor')}
-        </SortableHeader>
+        </DataTable.SortableHeader>
       ),
       cell: ({ row }) => {
         const { flavor } = row.original;
@@ -123,16 +128,16 @@ export const getColumns = ({
       id: 'Storage',
       accessorFn: (row) => row.storage?.size.value ?? 0,
       header: ({ column }) => (
-        <SortableHeader column={column}>
+        <DataTable.SortableHeader column={column}>
           {t('tableHeaderStorage')}
-        </SortableHeader>
+        </DataTable.SortableHeader>
       ),
       cell: ({ row }) => {
         const service = row.original;
         return (
           <span>
             {service.storage && service.storage.size.value > 0
-              ? `${service.storage.size.value} ${service.storage.size.unit}`
+              ? `${formatStorage(service.storage.size)}`
               : '-'}
           </span>
         );
@@ -142,9 +147,9 @@ export const getColumns = ({
       id: 'Region',
       accessorFn: (row) => row.nodes[0].region,
       header: ({ column }) => (
-        <SortableHeader column={column}>
+        <DataTable.SortableHeader column={column}>
           {t('tableHeaderLocation')}
-        </SortableHeader>
+        </DataTable.SortableHeader>
       ),
       cell: ({ row }) => (
         <span>{tRegions(`region_${row.original.nodes[0].region}`)}</span>
@@ -154,7 +159,9 @@ export const getColumns = ({
       id: 'Nodes',
       accessorFn: (row) => row.nodes.length,
       header: ({ column }) => (
-        <SortableHeader column={column}>{t('tableHeaderNodes')}</SortableHeader>
+        <DataTable.SortableHeader column={column}>
+          {t('tableHeaderNodes')}
+        </DataTable.SortableHeader>
       ),
       cell: ({ row }) => {
         const service = row.original;
@@ -200,9 +207,9 @@ export const getColumns = ({
       id: 'Creation date',
       accessorFn: (row) => row.createdAt,
       header: ({ column }) => (
-        <SortableHeader column={column}>
+        <DataTable.SortableHeader column={column}>
           {t('tableHeaderCreationDate')}
-        </SortableHeader>
+        </DataTable.SortableHeader>
       ),
       cell: ({ row }) => (
         <span>
@@ -214,9 +221,9 @@ export const getColumns = ({
       id: 'Status',
       accessorFn: (row) => row.status,
       header: ({ column }) => (
-        <SortableHeader column={column}>
+        <DataTable.SortableHeader column={column}>
           {t('tableHeaderStatus')}
-        </SortableHeader>
+        </DataTable.SortableHeader>
       ),
       cell: ({ row }) => {
         return <ServiceStatusBadge status={row.original.status} />;
@@ -224,6 +231,7 @@ export const getColumns = ({
     },
     {
       id: 'actions',
+      enableGlobalFilter: false,
       cell: ({ row }) => {
         const service = row.original;
 

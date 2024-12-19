@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { ColumnDef } from '@tanstack/react-table';
 
 import { MoreHorizontal } from 'lucide-react';
-import { SortableHeader } from '@/components/ui/data-table';
+import DataTable from '@/components/data-table';
 import {
   Tooltip,
   TooltipProvider,
@@ -38,39 +38,45 @@ export const getColumns = ({
     {
       id: 'name',
       header: ({ column }) => (
-        <SortableHeader column={column}>{t('tableHeadName')}</SortableHeader>
+        <DataTable.SortableHeader column={column}>
+          {t('tableHeadName')}
+        </DataTable.SortableHeader>
       ),
       accessorFn: (row) => row.name,
     },
     {
       id: 'database',
       header: ({ column }) => (
-        <SortableHeader column={column}>
+        <DataTable.SortableHeader column={column}>
           {t('tableHeadDatabase')}
-        </SortableHeader>
+        </DataTable.SortableHeader>
       ),
       accessorFn: (row) => row.database.name,
     },
     {
       id: 'mode',
       header: ({ column }) => (
-        <SortableHeader column={column}>{t('tableHeadMode')}</SortableHeader>
+        <DataTable.SortableHeader column={column}>
+          {t('tableHeadMode')}
+        </DataTable.SortableHeader>
       ),
       accessorFn: (row) => row.mode,
     },
     {
       id: 'size',
       header: ({ column }) => (
-        <SortableHeader column={column}>{t('tableHeadSize')}</SortableHeader>
+        <DataTable.SortableHeader column={column}>
+          {t('tableHeadSize')}
+        </DataTable.SortableHeader>
       ),
       accessorFn: (row) => row.size,
     },
     {
       id: 'username',
       header: ({ column }) => (
-        <SortableHeader column={column}>
+        <DataTable.SortableHeader column={column}>
           {t('tableHeadUsername')}
-        </SortableHeader>
+        </DataTable.SortableHeader>
       ),
       accessorFn: (row) => (row.user ? row.user.username : ''),
     },

@@ -5,7 +5,7 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 import * as database from '@/types/cloud/project/database';
 import { useServiceData } from '../Service.context';
-import { DataTable } from '@/components/ui/data-table';
+import DataTable from '@/components/data-table';
 import { Button } from '@/components/ui/button';
 import { POLLING } from '@/configuration/polling.constants';
 import { getColumns } from './_components/IntegrationListColumns.component';
@@ -87,7 +87,11 @@ const Integrations = () => {
         </Button>
       )}
       {!isLoading ? (
-        <DataTable columns={columns} data={integrations} pageSize={25} />
+        <DataTable.Provider
+          columns={columns}
+          data={integrations}
+          pageSize={25}
+        />
       ) : (
         <div data-testid="integrations-table-skeleton">
           <DataTable.Skeleton columns={3} rows={5} width={100} height={16} />
