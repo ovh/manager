@@ -1,5 +1,5 @@
-import controller from './dashboard.controller';
-import template from './dashboard.html';
+import controller from './contact.controller';
+import template from './contact.html';
 
 export default {
   controller,
