@@ -8,6 +8,7 @@ import {
 import App from './App';
 
 import './index.scss';
+import '@ovh-ux/manager-pci-common/dist/style.css';
 
 import '@/vite-hmr.ts';
 
