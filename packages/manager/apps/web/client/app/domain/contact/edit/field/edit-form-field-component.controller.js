@@ -1,0 +1,412 @@
+import map from 'lodash/map';
+import {
+  FIELD_NAME_LIST,
+  POINT_SEPARATOR,
+  FORM_PART_PREFIX,
+  GENERAL_KEY,
+  CONTACT_KEY,
+  PROFILE_KEY,
+  SECTIONS,
+  OPERATORS,
+  OVH_FIELD_PREFIX,
+  REGEX,
+} from '../edit.constants';
+
+export default class EditOwnerFormFieldController {
+  /* @ngInject */
+  constructor(
+    $filter,
+    $locale,
+    $scope,
+    $timeout,
+    $translate,
+    atInternet,
+    coreConfig,
+  ) {
+    this.$filter = $filter;
+    this.$locale = $locale;
+    this.$scope = $scope;
+    this.$timeout = $timeout;
+    this.$translate = $translate;
+    this.atInternet = atInternet;
+
+    this.FORM_PART_PREFIX = FORM_PART_PREFIX;
+    this.POINT_SEPARATOR = POINT_SEPARATOR;
+    this.FIELD_NAME_LIST = FIELD_NAME_LIST;
+    this.GENERAL_KEY = GENERAL_KEY;
+    this.CONTACT_KEY = CONTACT_KEY;
+    this.PROFILE_KEY = PROFILE_KEY;
+    this.SECTIONS = SECTIONS;
+
+    this.user = coreConfig.getUser();
+  }
+
+  $onInit() {
+    // unique field identifier
+    this.id = `ovh_field_${this.rule.label}`;
+
+    // field value
+    this.value = undefined;
+
+    // set value
+    this.setDefaultValue();
+
+    // initialize value if rule has initialValue attribute
+    this.setInitialValue();
+
+    // cache for enum translations
+    this.translatedEnumCache = null;
+
+    // validate input on rule update
+    this.$scope.$watch('$ctrl.rule', () => {
+      this.translatedEnumCache = null;
+      if (this.fieldset && this.fieldset[this.id]) {
+        this.fieldset[this.id].$validate();
+      }
+    });
+  }
+
+  goToTunnelOrder() {
+    window.open(
+      `https://www.ovh.com/fr/order/domain/#/legacy/domain/trade/list?options/trade/list?options=${JSURL.stringify(
+        [this.domainName],
+      )}`,
+      '_blank',
+    );
+  }
+
+  currentForm() {
+    const form = this.domainZoneDashboardContactEdit.ovhEditContactForm;
+    return {
+      ...(form[`${FORM_PART_PREFIX}${GENERAL_KEY}`] &&
+        Object.fromEntries(
+          Object.entries(form[`${FORM_PART_PREFIX}${GENERAL_KEY}`]).filter(
+            ([key]) => {
+              return key.includes(OVH_FIELD_PREFIX);
+            },
+          ),
+        )),
+      ...(form[`${FORM_PART_PREFIX}${PROFILE_KEY}`] &&
+        Object.fromEntries(
+          Object.entries(form[`${FORM_PART_PREFIX}${PROFILE_KEY}`]).filter(
+            ([key]) => {
+              return key.includes(OVH_FIELD_PREFIX);
+            },
+          ),
+        )),
+      ...(form[`${FORM_PART_PREFIX}${CONTACT_KEY}`] &&
+        Object.fromEntries(
+          Object.entries(form[`${FORM_PART_PREFIX}${CONTACT_KEY}`]).filter(
+            ([key]) => {
+              return key.includes(OVH_FIELD_PREFIX);
+            },
+          ),
+        )),
+    };
+  }
+
+  fieldCurrentValue(fieldName) {
+    const value =
+      this.currentForm()[`ovh_field_${fieldName}`]?.$modelValue ||
+      this.getDescendantProp(this.contactInformations, this.rule.label);
+    return typeof value === 'object' ? value.key : value;
+  }
+
+  checkStringValue(fieldName, constraintValue, haveToInclude, strict) {
+    let check = false;
+    if (strict) {
+      check = this.fieldCurrentValue(fieldName) === constraintValue;
+    } else {
+      check = this.fieldCurrentValue(fieldName).includes(constraintValue);
+    }
+    return haveToInclude ? check : !check;
+  }
+
+  checkArrayValue(fieldName, constraintsValues, haveToInclude) {
+    const check = constraintsValues.includes(this.fieldCurrentValue(fieldName));
+    return haveToInclude ? check : !check;
+  }
+
+  checkConstraint(rules) {
+    const constraints =
+      rules.conditions?.fields.constraints || rules.constraints;
+    const fieldLabel = rules.conditions?.fields.label || rules.label;
+    const equalRule = {
+      field: fieldLabel,
+      ...constraints.find((constraint) => constraint.operator === OPERATORS.EQ),
+    };
+    const noEqualRule = {
+      field: fieldLabel,
+      ...constraints.find((constraint) => constraint.operator === OPERATORS.NE),
+    };
+    const containsRule = {
+      field: fieldLabel,
+      ...constraints.find(
+        (constraint) => constraint.operator === OPERATORS.CONTAINS,
+      ),
+    };
+    const notcontainsRule = {
+      field: fieldLabel,
+      ...constraints.find(
+        (constraint) => constraint.operator === OPERATORS.NOTCONTAINS,
+      ),
+    };
+
+    if (equalRule.operator) {
+      return this[equalRule.values ? 'checkArrayValue' : 'checkStringValue'](
+        equalRule.field,
+        equalRule.value || equalRule.values,
+        true,
+        true,
+      );
+    }
+
+    if (noEqualRule.operator) {
+      return this[equalRule.values ? 'checkArrayValue' : 'checkStringValue'](
+        equalRule.field,
+        equalRule.value || equalRule.values,
+        false,
+        true,
+      );
+    }
+
+    if (containsRule.operator) {
+      return this[equalRule.values ? 'checkArrayValue' : 'checkStringValue'](
+        equalRule.field,
+        equalRule.value || equalRule.values,
+        true,
+        false,
+      );
+    }
+
+    if (notcontainsRule.operator) {
+      return this[equalRule.values ? 'checkArrayValue' : 'checkStringValue'](
+        equalRule.field,
+        equalRule.value || equalRule.values,
+        false,
+        false,
+      );
+    }
+
+    return true;
+  }
+
+  isRequired() {
+    const requiredRules = this.rule.constraints.find(
+      (constraint) => constraint.operator === 'required',
+    );
+    if (requiredRules?.conditions) {
+      return requiredRules?.conditions?.and
+        ? !requiredRules?.conditions?.and
+            .map((rule) => this.checkConstraint(rule.fields))
+            .some((e) => e === false)
+        : this.checkConstraint(requiredRules);
+    }
+    return !!requiredRules;
+  }
+
+  isReadOnly() {
+    const readonlyRules = this.rule.constraints.find(
+      (constraint) => constraint.operator === 'readonly',
+    );
+    if (readonlyRules?.conditions?.and) {
+      return !readonlyRules?.conditions?.and
+        .map((rule) => this.checkConstraint(rule.fields))
+        .some((e) => e === false);
+    }
+    if (readonlyRules?.conditions) {
+      return this.checkConstraint(readonlyRules.conditions);
+    }
+    return !!readonlyRules;
+  }
+
+  getDescendantProp(obj, desc) {
+    const arr = desc.split(this.POINT_SEPARATOR);
+    // eslint-disable-next-line no-param-reassign, no-cond-assign
+    while (arr.length && (obj = obj[arr.shift()]));
+    return obj;
+  }
+
+  setDefaultValue() {
+    const value = this.getDescendantProp(
+      this.contactInformations,
+      this.rule.label,
+    );
+    if (this.rule.placeholder && !value) {
+      if (this.getFieldType() === 'select') {
+        this.value = {
+          key: this.rule.placeholder,
+        };
+      } else {
+        this.value = this.rule.placeholder;
+      }
+    }
+  }
+
+  // if rule has an initialValue, use it
+  setInitialValue() {
+    const initialValue = this.getDescendantProp(
+      this.contactInformations,
+      this.rule.label,
+    );
+    if (initialValue) {
+      let value = angular.copy(initialValue);
+      if (this.getFieldType() === 'select') {
+        const translated = this.getFormattedTranslation(this.rule, value);
+        value = {
+          key: value,
+          translated,
+        };
+      } else if (this.getFieldType() === 'date') {
+        value = moment(initialValue, 'YYYY-MM-DD').toDate();
+      }
+      this.value = value;
+    }
+  }
+
+  getFormattedTranslation(rule, value) {
+    if ([this.FIELD_NAME_LIST.addressCountry].includes(rule.label)) {
+      return this.$translate.instant(
+        `${rule.label}_${value}`
+          .replace(/\./g, '_')
+          .replace('address_country', 'country'),
+      );
+    }
+
+    return [this.FIELD_NAME_LIST.legalform].includes(rule.label)
+      ? this.$translate.instant(
+          `domain_tab_CONTACT_edit_form_${rule.label}_${value}`.replace(
+            /\./g,
+            '_',
+          ),
+        )
+      : this.$translate.instant(
+          `${this.rule.label}_${value}`.replace(/\./g, '_'),
+        );
+  }
+
+  // returns field type depending of current rule
+  getFieldType() {
+    if (
+      this.rule.constraints.find(
+        (constraint) => constraint.operator === 'contains',
+      )?.values
+    ) {
+      return 'select';
+    }
+
+    if ((this.rule.label || '') === this.FIELD_NAME_LIST.birthDay) {
+      return 'date';
+    }
+    return 'text';
+  }
+
+  // returns field type depending of current rule
+  getFieldSubType() {
+    if ([this.FIELD_NAME_LIST.email].includes(this.rule.label)) {
+      return 'email';
+    }
+    if (
+      [this.FIELD_NAME_LIST.phone, this.FIELD_NAME_LIST.cellPhone].includes(
+        this.rule.label,
+      )
+    ) {
+      return 'tel';
+    }
+    return 'text';
+  }
+
+  inputValidator() {
+    if ([this.FIELD_NAME_LIST.email].includes(this.rule.label)) {
+      return REGEX.EMAIL;
+    }
+    if (
+      [this.FIELD_NAME_LIST.phone, this.FIELD_NAME_LIST.cellPhone].includes(
+        this.rule.label,
+      )
+    ) {
+      return REGEX.PHONE;
+    }
+    return null;
+  }
+
+  // returns translated list of rule enum values
+  getTranslatedEnums() {
+    if (this.translatedEnumCache) {
+      return this.translatedEnumCache;
+    }
+
+    const containsArray = this.rule.constraints.find(
+      (constraint) => constraint.operator === 'contains',
+    );
+
+    const result = map(containsArray?.values || [], (value) => {
+      const translated = [this.FIELD_NAME_LIST.legalform].includes(
+        this.rule.label,
+      )
+        ? this.$translate.instant(
+            `domain_tab_CONTACT_edit_form_${this.rule.label}_${value}`.replace(
+              /\./g,
+              '_',
+            ),
+          )
+        : this.$translate.instant(
+            `${this.rule.label}_${value}`
+              .replace(/\./g, '_')
+              .replace('address_country', 'country'),
+          );
+      return {
+        key: value,
+        translated,
+      };
+    }).sort((a, b) => {
+      if (a.translated > b.translated) {
+        return 1;
+      }
+      return -1;
+    });
+
+    this.translatedEnumCache = result;
+    return result;
+  }
+
+  hasMoreRequieredField() {
+    return (
+      Object.values(this.currentForm()).filter((field) => field.$$attr.required)
+        .length >
+      Object.values(this.currentForm()).length / 2
+    );
+  }
+
+  // handle special area translation cases
+  getLabelTranslation() {
+    this.rule.mandatory = this.isRequired();
+    const mandatoryLabel = this.rule.mandatory ? 'mandatory' : 'optionnal';
+    const displayMandatoryLabel =
+      (this.hasMoreRequieredField() && mandatoryLabel === 'optionnal') ||
+      (!this.hasMoreRequieredField() && mandatoryLabel === 'mandatory');
+    const translatedLabel = this.$translate.instant(
+      `domain_tab_CONTACT_edit_form_${this.rule.label
+        .split(this.POINT_SEPARATOR)
+        .join('_')}_label`,
+    );
+
+    return [
+      translatedLabel,
+      ...(displayMandatoryLabel
+        ? [
+            this.$translate.instant(
+              `domain_tab_CONTACT_edit_form_${mandatoryLabel}`,
+            ),
+          ]
+        : []),
+    ].join(' ');
+  }
+
+  dateFormat() {
+    return this.$locale.DATETIME_FORMATS.shortDate
+      .replace('dd', 'd')
+      .replace(/MM|M/g, 'm')
+      .replace(/yy|y/g, 'Y');
+  }
+}
