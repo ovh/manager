@@ -263,3 +263,22 @@ export const setContainerAsPublic = async ({
   }
   return true;
 };
+
+export const updateStorageType = async ({
+  projectId,
+  containerId,
+  containerType,
+}: {
+  projectId: string;
+  containerId: string;
+  containerType: TStorage['containerType'];
+}) => {
+  const { data } = await v6.put(
+    `/cloud/project/${projectId}/storage/${containerId}`,
+    {
+      containerType,
+    },
+  );
+
+  return data;
+};
