@@ -53,7 +53,6 @@ export default class AccountUserIdentityDocumentsController {
     this.loading = false;
     this.showUploadOption = true;
     this.displayError = false;
-    this.isOpenModal = false;
     this.isOpenInformationModal = false;
     this.dashboardRedirectURL = this.coreURLBuilder.buildURL('hub', '');
     this.user_type = USER_TYPE[this.currentUser]
@@ -89,10 +88,9 @@ export default class AccountUserIdentityDocumentsController {
   }
 
   uploadIdentityDocuments() {
-    this.handleUploadConfirmModal(false);
+    this.trackClick(TRACKING_TASK_TAG.clickSendMyDocuments);
     this.loading = true;
     this.displayError = false;
-    this.trackClick(TRACKING_TASK_TAG.confirmSendMyDocuments);
     if (this.isValid) {
       const promise = this.links
         ? // We cannot re call getUploadDocumentsLinks if it answered successfully, so if we already
@@ -122,14 +120,6 @@ export default class AccountUserIdentityDocumentsController {
     } else {
       this.files = null;
       this.displayErrorBanner();
-    }
-  }
-
-  handleUploadConfirmModal(open) {
-    this.isOpenModal = open;
-    if (open) {
-      this.trackClick(TRACKING_TASK_TAG.clickSendMyDocuments);
-      this.trackPage(TRACKING_TASK_TAG.displayPopUpSendMyDocuments);
     }
   }
 
@@ -169,11 +159,11 @@ export default class AccountUserIdentityDocumentsController {
         ? this.checkInvidualValidity()
         : Object.keys(this.proofs).reduce(
             (acc, proofType) =>
-              (acc &&
-                (this.files[proofType] ||
-                  proofType === this.PROOF_TYPE.authority_declaration)) ||
-              (this.user_type === this.USER_TYPE.default &&
-                proofType === this.PROOF_TYPE.vat),
+              acc &&
+              (!!this.files[proofType] ||
+                proofType === this.PROOF_TYPE.authority_declaration ||
+                (this.user_type === this.USER_TYPE.default &&
+                  proofType === this.PROOF_TYPE.vat)),
             true,
           );
   }
