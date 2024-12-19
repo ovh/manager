@@ -1,5 +1,9 @@
 import get from 'lodash/get';
 import set from 'lodash/set';
+import {
+  DKIM_STATUS,
+  DKIM_STATUS_CLASS,
+} from './dkim/email-domain-dkim.constants';
 
 const changeOwner = {
   CZ: 'https://www.ovh.cz/cgi-bin/procedure/procedureChangeOwner.cgi',
@@ -45,6 +49,7 @@ export default class EmailTabGeneralInformationsCtrl {
     this.OvhApiEmailDomain = OvhApiEmailDomain;
     this.WucUser = WucUser;
     this.WucEmails = WucEmails;
+    this.DKIM_STATUS_CLASS = DKIM_STATUS_CLASS;
   }
 
   $onInit() {
@@ -83,11 +88,15 @@ export default class EmailTabGeneralInformationsCtrl {
         mxRecords: this.WucEmails.getMxRecords(
           this.$stateParams.productId,
         ).catch(() => null),
+        dkim: this.WucEmails.getDkim(this.$stateParams.productId).catch(
+          () => null,
+        ),
       })
-      .then(({ domain, dnsFilter, mxRecords }) => {
+      .then(({ domain, dnsFilter, mxRecords, dkim }) => {
         this.domain = domain;
         this.dnsFilter = dnsFilter;
         this.mxRecords = mxRecords;
+        this.dkim = dkim;
       })
       .catch((err) => {
         this.Alerter.alertFromSWS(
@@ -203,5 +212,24 @@ export default class EmailTabGeneralInformationsCtrl {
     return this.$state.go('app.email.domain.upgrade', {
       productId: this.$stateParams.productId,
     });
+  }
+
+  goToDkimManagement() {
+    return this.$state.go('app.email.domain.information.dkim', {
+      productId: this.$stateParams.productId,
+      dkim: this.dkim,
+    });
+  }
+
+  getDkimStatus() {
+    if (this.dkim.status !== DKIM_STATUS.DISABLED) {
+      return this.dkim.status;
+    }
+    const otherStatusThanSet =
+      this.dkim.selectors.filter((selector) => selector.status !== 'set')
+        .length > 0;
+    return otherStatusThanSet
+      ? DKIM_STATUS.DISABLED_NO_SET
+      : DKIM_STATUS.DISABLED;
   }
 }
