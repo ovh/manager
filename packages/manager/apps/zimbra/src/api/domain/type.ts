@@ -7,6 +7,16 @@ export type DomainBodyParamsType = {
   autoConfigureSPF: boolean;
 };
 
+export type ExpectedDnsConfig = {
+  mx: Array<{
+    priority: number;
+    target: string;
+  }>;
+  ownership: {
+    cname: string | null;
+  };
+};
+
 export type DomainType = {
   checksum: string;
   currentState: {
@@ -18,15 +28,7 @@ export type DomainType = {
     status: string;
     updatedAt: string;
     accountsStatistics: AccountStatistics[];
-    expectedDNSConfig: {
-      mx: Array<{
-        priority: number;
-        target: string;
-      }>;
-      ownership: {
-        cname: string | null;
-      };
-    };
+    expectedDNSConfig: ExpectedDnsConfig;
   };
   currentTasks: Array<{
     id: string;
@@ -40,3 +42,147 @@ export type DomainType = {
     organizationId: string;
   };
 };
+
+/** IAM resource metadata embedded in services models */
+export interface ResourceMetadata {
+  /** Resource display name */
+  displayName?: string;
+  /** Unique identifier of the resource */
+  id: string;
+  /** Resource tags. Tags that were internally computed are prefixed with ovh: */
+  tags?: { [key: string]: string };
+  /** Unique resource name used in policies */
+  urn: string;
+}
+
+/** Zone dns Management */
+export interface ZoneWithIAM {
+  /** Is DNSSEC supported by this zone */
+  dnssecSupported: boolean;
+  /** hasDnsAnycast flag of the DNS zone */
+  hasDnsAnycast: boolean;
+  /** IAM resource metadata */
+  iam?: ResourceMetadata;
+  /** Last update date of the DNS zone */
+  lastUpdate: string;
+  /** Zone name */
+  name: string;
+  /** Name servers that host the DNS zone */
+  nameServers: string[];
+}
+
+export type DnsDiagnostic = MXDiagnostic | SPFDiagnostic | DKIMDiagnostic;
+
+/** Error code of MX Diagnostics */
+export enum MXErrorCodeEnum {
+  'MISSING_VALID_MX_RECORD' = 'MISSING_VALID_MX_RECORD',
+}
+
+/** Object representing an MX record */
+export interface MXRecord {
+  /** Priority for that target server */
+  priority: number;
+  /** Target server */
+  target: string;
+}
+
+/** Object representing a MX diagnostic */
+export interface MXDiagnostic {
+  /** Error code of the MX diagnostic */
+  errorCode?: MXErrorCodeEnum;
+  /** Error message of the MX diagnostic */
+  errorMessage?: string;
+  /** MX records found */
+  recordsFound?: MXRecord[];
+  /** Status of the MX diagnostic */
+  status: DiagnosticStatusEnum;
+}
+
+/** Error code of SPF Diagnostics */
+export enum SPFErrorCodeEnum {
+  'MISSING_RECORD' = 'MISSING_RECORD',
+  'OVH_NOT_INCLUDED' = 'OVH_NOT_INCLUDED',
+}
+
+/** Object representing a SPF diagnostic */
+export interface SPFDiagnostic {
+  /** Error code of the SPF diagnostic */
+  errorCode?: SPFErrorCodeEnum;
+  /** Error message of the SPF diagnostic */
+  errorMessage?: string;
+  /** Record found for SPF */
+  recordFound?: string;
+  /** Status of the SPF diagnostic */
+  status: DiagnosticStatusEnum;
+}
+
+/** Global status of the diagnostic */
+export enum GlobalDiagnosticStatusEnum {
+  'ERROR' = 'ERROR',
+  'OK' = 'OK',
+  'PARTIAL' = 'PARTIAL',
+}
+
+/** Error code for glopbal diagnostic */
+export enum GlobalDiagnosticErrorEnum {
+  'DNS_TIMEOUT' = 'DNS_TIMEOUT',
+}
+
+/** Status of the diagnostic */
+export enum DiagnosticStatusEnum {
+  'DISABLED' = 'DISABLED',
+  'ERROR' = 'ERROR',
+  'OK' = 'OK',
+  'TO_CONFIGURE' = 'TO_CONFIGURE',
+  'UPDATING' = 'UPDATING',
+}
+
+/** Error code of DKIM Diagnostics */
+export enum DKIMErrorCodeEnum {
+  'INCORRECT_CNAME_RECORD' = 'INCORRECT_CNAME_RECORD',
+  'MISSING_ONE_SELECTOR' = 'MISSING_ONE_SELECTOR',
+  'OVH_NOT_INCLUDED' = 'OVH_NOT_INCLUDED',
+  'TASK_FAILED' = 'TASK_FAILED',
+}
+
+/** Object representing a diagnostic of DKIM */
+export interface DKIMDiagnostic {
+  /** Error code of the DKIM diagnostic */
+  errorCode?: DKIMErrorCodeEnum;
+  /** Error message of the DKIM diagnostic */
+  errorMessage?: string;
+  /** Records found in DNS identified as DKIM */
+  recordsFound?: string[];
+  /** Status of the DKIM diagnostic */
+  status: DiagnosticStatusEnum;
+}
+
+/** Diagnostic of a domain */
+export interface Diagnostic {
+  /** Diagnostic of DKIM fields */
+  dkim?: DKIMDiagnostic;
+  /** Error code of the global diagnostic */
+  errorCode?: GlobalDiagnosticErrorEnum;
+  /** Error message of the global diagnostic */
+  errorMessage?: string;
+  /** Diagnostic of MX fields */
+  mx?: MXDiagnostic;
+  /** Diagnostic of SPF field */
+  spf?: SPFDiagnostic;
+  /** Global status of the diagnostic */
+  status: GlobalDiagnosticStatusEnum;
+}
+
+/** Response to a diagnostic request */
+export interface DiagnosticResponse {
+  /** Diagnostic of the domain */
+  diagnostic: Diagnostic;
+  /** expected dns config of the domain */
+  expectedDNSConfig: ExpectedDnsConfig;
+  /** Id of the domain */
+  domainId: string;
+  /** Name of the domain */
+  domainName: string;
+  /** Id of the diagnostic */
+  id: string;
+}
