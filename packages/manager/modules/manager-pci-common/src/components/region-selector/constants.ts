@@ -49,7 +49,33 @@ export const GLOBAL_REGIONS_INFO_URL: Record<string, string> = {
   WE: 'https://ovhcloud.com/us-en/public-cloud/compute/',
 };
 
+export const EXPANSIONS_REGIONS_AZ = {
+  DEFAULT: 'https://www.ovhcloud.com/en/about-us/global-infrastructure/',
+  ASIA: 'https://www.ovhcloud.com/asia/about-us/global-infrastructure/',
+  AU: 'https://www.ovhcloud.com/en-au/about-us/global-infrastructure/',
+  CA: 'https://www.ovhcloud.com/en-ca/about-us/global-infrastructure/',
+  GB: 'https://www.ovhcloud.com/en-gb/about-us/global-infrastructure/',
+  IE: 'https://www.ovhcloud.com/en-ie/about-us/global-infrastructure/',
+  IN: 'https://www.ovhcloud.com/en-in/about-us/global-infrastructure/',
+  SG: 'https://www.ovhcloud.com/en-sg/about-us/global-infrastructure/',
+  DE: 'https://www.ovhcloud.com/de/about-us/global-infrastructure/',
+  ES: 'https://www.ovhcloud.com/es-es/about-us/global-infrastructure/',
+  FR: 'https://www.ovhcloud.com/fr/about-us/global-infrastructure/',
+  IT: 'https://www.ovhcloud.com/it/about-us/global-infrastructure/',
+  MA: 'https://www.ovhcloud.com/fr-ma/about-us/global-infrastructure/',
+  SN: 'https://www.ovhcloud.com/fr-sn/about-us/global-infrastructure/',
+  TN: 'https://www.ovhcloud.com/fr-tn/about-us/global-infrastructure/',
+  NL: 'https://www.ovhcloud.com/nl/about-us/global-infrastructure/',
+  PL: 'https://www.ovhcloud.com/nl/about-us/global-infrastructure/',
+  PT: 'https://www.ovhcloud.com/pt/about-us/global-infrastructure/',
+  QC: 'https://www.ovhcloud.com/fr-ca/about-us/global-infrastructure/',
+  US: 'https://www.ovhcloud.com/en/about-us/global-infrastructure/',
+  WS: 'https://www.ovhcloud.com/es/about-us/global-infrastructure/',
+};
+
 export const URL_INFO = {
   GLOBAL_REGIONS: GLOBAL_REGIONS_INFO_URL,
   LOCAL_ZONE: LOCAL_ZONE_INFO_URL,
+  REGION_3AZ: EXPANSIONS_REGIONS_AZ,
+  '1AZ_REGIONS': EXPANSIONS_REGIONS_AZ,
 };
