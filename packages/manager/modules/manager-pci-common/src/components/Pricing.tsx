@@ -1,6 +1,6 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import clsx from 'clsx';
-import { OsdsSkeleton } from '@ovhcloud/ods-components/react';
+import { OdsSkeleton } from '@ovhcloud/ods-components/react';
 import { TPricing } from '../api/data';
 import { usePricing } from '../hooks';
 import { PriceFormattingOptions } from '../hooks/usePricing';
@@ -16,7 +16,7 @@ export function Pricing({ pricing, options }: Readonly<PricingProps>) {
     pricing,
     options,
   ]);
-  if (!price) return <OsdsSkeleton />;
+  if (!price) return <OdsSkeleton />;
   return (
     <span>
       <span className={clsx(price?.secondary && 'font-bold')}>

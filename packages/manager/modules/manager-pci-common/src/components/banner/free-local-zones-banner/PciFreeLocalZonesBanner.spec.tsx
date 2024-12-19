@@ -14,7 +14,7 @@ describe('PciFreeLocalZonesBanner tests', () => {
         />,
       );
 
-      expect(container.querySelector('osds-link')).toHaveAttribute(
+      expect(container.querySelector('ods-link')).toHaveAttribute(
         'href',
         URLs[subsidiary],
       );

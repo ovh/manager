@@ -1,11 +1,8 @@
-import React, { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { DataGridTextCell } from '@ovh-ux/manager-react-components';
-import { ODS_TEXT_LEVEL } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
-import { OsdsChip, OsdsLink, OsdsText } from '@ovhcloud/ods-components/react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+import { OdsBadge, OdsLink, OdsText } from '@ovhcloud/ods-components/react';
 import { TDbaasLog, TDbaasStream } from '../../api/data/dbaas-logs';
 import { StreamRetention } from './StreamRetention.component';
 import { StreamSubscriptions } from './StreamSubscriptions.component';
@@ -36,17 +33,13 @@ export const useStreamsListColumns = ({
       id: 'name',
       cell: () => (
         <DataGridTextCell>
-          <OsdsLink
-            color={ODS_THEME_COLOR_INTENT.primary}
-            href={accountURL}
-            target={OdsHTMLAnchorElementTarget._blank}
-          >
+          <OdsLink href={accountURL} target="_blank">
             {account.displayName || account.serviceName}
-          </OsdsLink>
+          </OdsLink>
           {account.displayName && (
-            <OsdsText className="block" level={ODS_TEXT_LEVEL.caption}>
+            <OdsText className="block" preset="caption">
               {account.serviceName}
-            </OsdsText>
+            </OdsText>
           )}
         </DataGridTextCell>
       ),
@@ -70,16 +63,10 @@ export const useStreamsListColumns = ({
       id: 'indexation',
       cell: (stream: TDbaasStream) => (
         <DataGridTextCell>
-          <OsdsChip
-            color={
-              ODS_THEME_COLOR_INTENT[
-                stream.indexingEnabled ? 'success' : 'warning'
-              ]
-            }
-            inline
-          >
-            {t(`list_indexation_status_${stream.indexingEnabled}`)}
-          </OsdsChip>
+          <OdsBadge
+            label={t(`list_indexation_status_${stream.indexingEnabled}`)}
+            color={stream.indexingEnabled ? 'success' : 'warning'}
+          />
         </DataGridTextCell>
       ),
       label: t('list_column_stream_indexation'),

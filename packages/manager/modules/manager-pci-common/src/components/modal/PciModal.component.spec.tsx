@@ -47,23 +47,30 @@ describe('PciModal Tests', () => {
 
     const { getByTestId } = renderModal(propsWithNoType);
 
-    expect(getByTestId('pciModal-modal')).toHaveAttribute('color', 'primary');
+    expect(getByTestId('pciModal-modal')).toHaveAttribute(
+      'color',
+      'information',
+    );
   });
 
   it('disables submit button when isDisabled is true', () => {
     const propsWithIsDisabledTrue = { ...defaultProps, isDisabled: true };
 
     const { getByTestId } = renderModal(propsWithIsDisabledTrue);
-
-    expect(getByTestId('pciModal-button_submit')).toBeDisabled();
+    expect(getByTestId('pciModal-button_submit')).toHaveAttribute(
+      'is-disabled',
+      'true',
+    );
   });
 
   it('enables submit button when isDisabled is false', () => {
     const propsWithIsDisabledFalse = { ...defaultProps, isDisabled: false };
 
     const { getByTestId } = renderModal(propsWithIsDisabledFalse);
-
-    expect(getByTestId('pciModal-button_submit')).not.toBeDisabled();
+    expect(getByTestId('pciModal-button_submit')).toHaveAttribute(
+      'is-disabled',
+      'false',
+    );
   });
 
   it('calls onConfirm when submit button is clicked', () => {
@@ -95,15 +102,17 @@ describe('PciModal Tests', () => {
   });
 
   it('renders submit button with default text when submitText is undefined', () => {
-    const { getByText } = renderModal(defaultProps);
-
-    expect(getByText('common_confirm')).toBeVisible();
+    const { getByTestId } = renderModal(defaultProps);
+    const button = getByTestId('pciModal-button_submit');
+    expect(button).toHaveAttribute('label', 'common_confirm');
+    expect(button).toBeVisible();
   });
 
   it('renders cancel button with default text when cancelText is undefined', () => {
-    const { getByText } = renderModal(defaultProps);
-
-    expect(getByText('common_cancel')).toBeVisible();
+    const { getByTestId } = renderModal(defaultProps);
+    const button = getByTestId('pciModal-button_cancel');
+    expect(button).toHaveAttribute('label', 'common_cancel');
+    expect(button).toBeVisible();
   });
 
   it('renders submit button with custom text', () => {
@@ -112,9 +121,10 @@ describe('PciModal Tests', () => {
       submitText: 'Custom Submit',
     };
 
-    const { getByText } = renderModal(propsWithSubmitText);
-
-    expect(getByText('Custom Submit')).toBeVisible();
+    const { getByTestId } = renderModal(propsWithSubmitText);
+    const button = getByTestId('pciModal-button_submit');
+    expect(button).toHaveAttribute('label', 'Custom Submit');
+    expect(button).toBeVisible();
   });
 
   it('renders cancel button with custom text', () => {
@@ -123,8 +133,9 @@ describe('PciModal Tests', () => {
       cancelText: 'Custom Cancel',
     };
 
-    const { getByText } = renderModal(propsWithCancelText);
-
-    expect(getByText('Custom Cancel')).toBeVisible();
+    const { getByTestId } = renderModal(propsWithCancelText);
+    const button = getByTestId('pciModal-button_cancel');
+    expect(button).toHaveAttribute('label', 'Custom Cancel');
+    expect(button).toBeVisible();
   });
 });

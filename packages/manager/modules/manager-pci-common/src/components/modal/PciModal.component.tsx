@@ -1,11 +1,16 @@
 import {
-  OsdsButton,
-  OsdsModal,
-  OsdsSpinner,
+  ODS_BUTTON_COLOR,
+  ODS_BUTTON_VARIANT,
+  ODS_MODAL_COLOR,
+  ODS_SPINNER_SIZE,
+} from '@ovhcloud/ods-components';
+import {
+  OdsButton,
+  OdsModal,
+  OdsSpinner,
+  OdsText,
 } from '@ovhcloud/ods-components/react';
 import React from 'react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_BUTTON_VARIANT, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 
 export type PciModalProps = {
@@ -36,46 +41,44 @@ export function PciModal({
   const { t } = useTranslation('pci-common');
 
   return (
-    <OsdsModal
+    <OdsModal
       color={
         type === 'warning'
-          ? ODS_THEME_COLOR_INTENT.warning
-          : ODS_THEME_COLOR_INTENT.primary
+          ? ODS_MODAL_COLOR.warning
+          : ODS_MODAL_COLOR.information
       }
-      headline={title}
       data-testid="pciModal-modal"
-      onOdsModalClose={onClose}
+      onOdsClose={onClose}
     >
-      <slot name="content">
-        {isPending ? (
-          <OsdsSpinner
-            inline
-            size={ODS_SPINNER_SIZE.md}
-            className="block text-center mt-6"
-            data-testid="pciModal-spinner"
-          />
-        ) : (
-          <div className="mt-6">{children}</div>
-        )}
-      </slot>
-      <OsdsButton
-        slot="actions"
-        color={ODS_THEME_COLOR_INTENT.primary}
-        variant={ODS_BUTTON_VARIANT.ghost}
-        onClick={onCancel}
-        data-testid="pciModal-button_cancel"
-      >
-        {cancelText || t('common_cancel')}
-      </OsdsButton>
-      <OsdsButton
-        slot="actions"
-        color={ODS_THEME_COLOR_INTENT.primary}
-        onClick={onConfirm}
-        disabled={isDisabled || undefined}
-        data-testid="pciModal-button_submit"
-      >
-        {submitText || t('common_confirm')}
-      </OsdsButton>
-    </OsdsModal>
+      <>
+        <OdsText preset="heading-3">{title}</OdsText>
+        <slot name="content">
+          {isPending ? (
+            <OdsSpinner
+              size={ODS_SPINNER_SIZE.md}
+              className="block text-center mt-6"
+              data-testid="pciModal-spinner"
+            />
+          ) : (
+            <div className="mt-6">{children}</div>
+          )}
+        </slot>
+
+        <OdsButton
+          label={cancelText || t('common_cancel')}
+          color={ODS_BUTTON_COLOR.primary}
+          variant={ODS_BUTTON_VARIANT.ghost}
+          onClick={onCancel}
+          data-testid="pciModal-button_cancel"
+        />
+        <OdsButton
+          label={submitText || t('common_confirm')}
+          color={ODS_BUTTON_COLOR.primary}
+          onClick={onConfirm}
+          isDisabled={isDisabled}
+          data-testid="pciModal-button_submit"
+        />
+      </>
+    </OdsModal>
   );
 }
