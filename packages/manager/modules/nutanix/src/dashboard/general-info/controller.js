@@ -7,6 +7,7 @@ import {
   TRAVAUX_LINK,
   TRACKING,
   GUIDES_URL,
+  NUTANIX_BYOL,
 } from './constants';
 
 export default class NutanixGeneralInfoCtrl {
@@ -27,6 +28,7 @@ export default class NutanixGeneralInfoCtrl {
     this.NutanixService = NutanixService;
     this.REPLICATION_FACTOR_PREFIX = REPLICATION_FACTOR_PREFIX;
     this.NUTANIX_PERSONAL_LICENSE_EDITION = NUTANIX_PERSONAL_LICENSE_EDITION;
+    this.NUTANIX_BYOL = NUTANIX_BYOL;
     this.GENERAL_INFO_TILE_TITLE = GENERAL_INFO_TILE_TITLE;
   }
 
