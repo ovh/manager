@@ -46,9 +46,7 @@ const queryClient = new QueryClient();
 
 const trackClickMock = vi.fn();
 const trackPageMock = vi.fn();
-const trackImpressionMock = vi.fn();
-const trackClickImpressionMock = vi.fn();
-const mocks = vi.hoisted(() => ({
+const mocks: any = vi.hoisted(() => ({
   bills: {
     data: {
       currency: {
@@ -119,50 +117,52 @@ const mocks = vi.hoisted(() => ({
     data: { count: 0, data: {} },
     status: 'OK',
   },
-}));
-
-const shellContext = {
-  environment: {
-    user: {
-      enterprise: false,
-      companyNationalIdentificationNumber: null,
-      legalform: 'corporation',
-      country: 'FR',
-    } as User,
-    getUser: vi.fn(() => ({
-      currency: {
-        code: 'USD',
+  shellContext: {
+    environment: {
+      user: {
+        enterprise: false,
+        companyNationalIdentificationNumber: null,
+        legalform: 'corporation',
+        country: 'FR',
+      } as User,
+      getUser: vi.fn(() => ({
+        currency: {
+          code: 'USD',
+        },
+      })),
+      getUserLocale: vi.fn(() => mocks.locale),
+      getRegion: vi.fn(() => mocks.region),
+    },
+    shell: {
+      ux: {
+        hidePreloader: vi.fn(),
+        stopProgress: vi.fn(),
+        isAccountSidebarVisible: () => mocks.isAccountSidebarVisible,
       },
-    })),
-    getUserLocale: vi.fn(() => mocks.locale),
-    getRegion: vi.fn(() => mocks.region),
-  },
-  shell: {
-    ux: {
-      hidePreloader: vi.fn(),
-      stopProgress: vi.fn(),
-      isAccountSidebarVisible: () => mocks.isAccountSidebarVisible,
-    },
-    navigation: {
-      getURL: vi.fn(
-        () =>
-          new Promise((resolve) =>
-            setTimeout(() => resolve('https://fake-link.com'), 50),
-          ),
-      ),
-    },
-    tracking: {
-      trackImpression: trackImpressionMock,
-      trackClickImpression: trackClickImpressionMock,
+      navigation: {
+        getURL: vi.fn(
+          () =>
+            new Promise((resolve) =>
+              setTimeout(() => resolve('https://fake-link.com'), 50),
+            ),
+        ),
+      },
+      tracking: {
+        trackImpression: vi.fn(),
+        trackClickImpression: vi.fn(),
+      },
+      environment: {
+        getEnvironment: () => mocks.shellContext.environment,
+      },
     },
   },
-};
+}));
 
 const renderComponent = (component: ReactNode) => {
   return render(
     <QueryClientProvider client={queryClient}>
       <ShellContext.Provider
-        value={(shellContext as unknown) as ShellContextType}
+        value={(mocks.shellContext as unknown) as ShellContextType}
       >
         {component}
       </ShellContext.Provider>
@@ -457,7 +457,7 @@ describe('Layout.page', () => {
   });
 
   it('should display enterprise billing summary if customer is enterprise', async () => {
-    shellContext.environment.user.enterprise = true;
+    mocks.shellContext.environment.user.enterprise = true;
     const { findByTestId } = renderComponent(<Layout />);
 
     const enterpriseBillingSummary = await findByTestId(
@@ -809,21 +809,21 @@ describe('Layout.page', () => {
     });
 
     it('should not be displayed for non company customer', async () => {
-      shellContext.environment.user.legalform = 'individual';
+      mocks.shellContext.environment.user.legalform = 'individual';
       const { queryByTestId } = renderComponent(<SiretBanner />);
       expect(queryByTestId('siret_banner')).not.toBeInTheDocument();
     });
 
     it('should not be displayed for customer not residing in France', async () => {
-      shellContext.environment.user.legalform = 'corporation';
-      shellContext.environment.user.country = 'GB';
+      mocks.shellContext.environment.user.legalform = 'corporation';
+      mocks.shellContext.environment.user.country = 'GB';
       const { queryByTestId } = renderComponent(<SiretBanner />);
       expect(queryByTestId('siret_banner')).not.toBeInTheDocument();
     });
 
     it('should not be displayed for french company with national company identification number', async () => {
-      shellContext.environment.user.country = 'FR';
-      shellContext.environment.user.companyNationalIdentificationNumber = 99999;
+      mocks.shellContext.environment.user.country = 'FR';
+      mocks.shellContext.environment.user.companyNationalIdentificationNumber = 99999;
       const { queryByTestId } = renderComponent(<SiretBanner />);
       expect(queryByTestId('siret_banner')).not.toBeInTheDocument();
     });
@@ -831,7 +831,7 @@ describe('Layout.page', () => {
 
   describe('SiretModal component', () => {
     it('should render for french company without national company identification number', async () => {
-      shellContext.environment.user.companyNationalIdentificationNumber = null;
+      mocks.shellContext.environment.user.companyNationalIdentificationNumber = null;
       const { getByTestId, getByText } = renderComponent(<SiretModal />);
       expect(getByTestId('siret_modal')).not.toBeNull();
       expect(
@@ -890,21 +890,21 @@ describe('Layout.page', () => {
     });
 
     it('should not be displayed for non company customer', async () => {
-      shellContext.environment.user.legalform = 'individual';
+      mocks.shellContext.environment.user.legalform = 'individual';
       const { queryByTestId } = renderComponent(<SiretModal />);
       expect(queryByTestId('siret_modal')).not.toBeInTheDocument();
     });
 
     it('should not be displayed for customer not residing in France', async () => {
-      shellContext.environment.user.legalform = 'corporation';
-      shellContext.environment.user.country = 'GB';
+      mocks.shellContext.environment.user.legalform = 'corporation';
+      mocks.shellContext.environment.user.country = 'GB';
       const { queryByTestId } = renderComponent(<SiretModal />);
       expect(queryByTestId('siret_modal')).not.toBeInTheDocument();
     });
 
     it('should not be displayed for french company with national company identification number', async () => {
-      shellContext.environment.user.country = 'FR';
-      shellContext.environment.user.companyNationalIdentificationNumber = 99999;
+      mocks.shellContext.environment.user.country = 'FR';
+      mocks.shellContext.environment.user.companyNationalIdentificationNumber = 99999;
       const { queryByTestId } = renderComponent(<SiretModal />);
       expect(queryByTestId('siret_modal')).not.toBeInTheDocument();
     });
@@ -952,7 +952,9 @@ describe('Layout.page', () => {
       const { findByTestId, getByTestId } = renderComponent(<KycFraudBanner />);
       expect(getByTestId('kyc_fraud_banner')).not.toBeNull();
 
-      expect(trackImpressionMock).toHaveBeenCalledWith({
+      expect(
+        mocks.shellContext.shell.tracking.trackImpression,
+      ).toHaveBeenCalledWith({
         campaignId: 'kyc-fraud',
         creation: 'notification',
         format: 'banner',
@@ -964,7 +966,9 @@ describe('Layout.page', () => {
 
       await act(() => fireEvent.click(link));
 
-      expect(trackClickImpressionMock).toHaveBeenCalledWith({
+      expect(
+        mocks.shellContext.shell.tracking.trackClickImpression,
+      ).toHaveBeenCalledWith({
         click: {
           campaignId: 'kyc-fraud',
           creation: 'notification',
@@ -976,13 +980,15 @@ describe('Layout.page', () => {
     });
 
     it('should render the banner and track display if user has started his KYC validation', async () => {
-      trackImpressionMock.mockReset();
+      mocks.shellContext.shell.tracking.trackImpression.mockReset();
       mocks.kycStatus.status = 'open';
       mocks.kycStatus.ticketId = 'CS0013982';
       const { getByTestId } = renderComponent(<KycFraudBanner />);
       expect(getByTestId('kyc_fraud_banner')).not.toBeNull();
 
-      expect(trackImpressionMock).toHaveBeenCalledWith({
+      expect(
+        mocks.shellContext.shell.tracking.trackImpression,
+      ).toHaveBeenCalledWith({
         campaignId: 'kyc-fraud',
         creation: 'notification',
         format: 'banner',
