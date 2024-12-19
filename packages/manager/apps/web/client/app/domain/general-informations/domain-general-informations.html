@@ -495,10 +495,10 @@
                         <ul class="list-unstyled">
                             <p
                                 class="mb-0"
-                                data-ng-if="::$ctrl.domainInfos.contactAdmin.id"
+                                data-ng-if="::$ctrl.domainServiceInfos.contactAdmin"
                             >
                                 <span
-                                    data-ng-bind="::$ctrl.domainInfos.contactAdmin.id"
+                                    data-ng-bind="::$ctrl.domainServiceInfos.contactAdmin"
                                 ></span
                                 >:
                                 <span
@@ -508,10 +508,10 @@
                             </p>
                             <p
                                 class="mb-0"
-                                data-ng-if="::$ctrl.domainInfos.contactTech.id"
+                                data-ng-if="::$ctrl.domainServiceInfos.contactTech"
                             >
                                 <span
-                                    data-ng-bind="::$ctrl.domainInfos.contactTech.id"
+                                    data-ng-bind="::$ctrl.domainServiceInfos.contactTech"
                                 ></span
                                 >:
                                 <span
@@ -521,10 +521,10 @@
                             </p>
                             <p
                                 class="mb-0"
-                                data-ng-if="::$ctrl.domainInfos.contactBilling.id"
+                                data-ng-if="::$ctrl.domainServiceInfos.contactBilling"
                             >
                                 <span
-                                    data-ng-bind="::$ctrl.domainInfos.contactBilling.id"
+                                    data-ng-bind="::$ctrl.domainServiceInfos.contactBilling"
                                 ></span
                                 >:
                                 <span
@@ -551,35 +551,11 @@
                         <oui-action-menu-item
                             data-ng-if="$ctrl.actions.manageContact.href"
                             aria-label="{{ ::$ctrl.actions.manageContact.text }}"
-                            href="{{ ::$ctrl.actions.manageContact.href }}"
+                            data-on-click="$ctrl.goToContactManagement()"
                             top
                         >
                             <span
                                 data-ng-bind="::$ctrl.actions.manageContact.text"
-                            ></span>
-                        </oui-action-menu-item>
-                        <oui-spinner
-                            size="s"
-                            class="ml-4"
-                            data-ng-if="$ctrl.loading.changeOwner"
-                        ></oui-spinner>
-                        <oui-action-menu-item
-                            aria-label="{{ ::$ctrl.actions.changeOwner.text }}"
-                            data-href="{{ ::$ctrl.actions.changeOwner.href }}"
-                            data-ng-if="$ctrl.actions.changeOwner.href && !$ctrl.loading.changeOwner"
-                            data-external
-                            ><span
-                                data-ng-bind="::$ctrl.actions.changeOwner.text"
-                            ></span>
-                        </oui-action-menu-item>
-                        <oui-action-menu-item
-                            aria-label="domain_configuration_update_owner"
-                            data-href="{{ ::$ctrl.updateOwnerUrl.target }}"
-                            data-ng-if="$ctrl.updateOwnerUrl.target"
-                            top
-                        >
-                            <span
-                                data-translate="domain_configuration_update_owner"
                             ></span>
                         </oui-action-menu-item>
                     </oui-action-menu>
