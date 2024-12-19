@@ -44,6 +44,7 @@ export default function ModalAddAndEditRedirections() {
 
   const { data: domainList, isLoading: isLoadingDomain } = useDomains({
     enabled: !editEmailAccountId && !editRedirectionId,
+    shouldFetchAll: true,
   });
 
   const { data: accountDetail, isLoading: isLoadingAccount } = useAccount({

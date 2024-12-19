@@ -177,6 +177,7 @@ export default function AddAutoReply() {
 
   const { data: domains, isLoading } = useDomains({
     enabled: !editEmailAccountId,
+    shouldFetchAll: true,
   });
 
   const selectedDomain = useMemo(() => {
@@ -188,12 +189,14 @@ export default function AddAutoReply() {
   const { data: domainAccounts } = useAccountList({
     enabled: !editEmailAccountId && !!selectedDomain,
     domainId: selectedDomain?.id,
+    shouldFetchAll: true,
   });
 
   const { data: orgAccounts, isLoading: isOrgAccountsLoading } = useAccountList(
     {
       enabled: !!form.sendCopy.value && !!selectedOrganizationId,
       organizationId: selectedOrganizationId,
+      shouldFetchAll: true,
     },
   );
 
