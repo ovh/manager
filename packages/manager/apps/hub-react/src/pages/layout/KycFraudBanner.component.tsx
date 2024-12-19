@@ -20,7 +20,11 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useKyc } from '@/data/hooks/kyc/useKyc';
 import { KycProcedures, KycStatuses } from '@/types/kyc.type';
 import { SUPPORT_URLS } from '@/components/hub-support/HubSupport.constants';
-import { KYC_FRAUD_TRACK_IMPRESSION } from '@/pages/layout/layout.constants';
+import {
+  KYC_FRAUD_FEATURE,
+  KYC_FRAUD_TRACK_IMPRESSION,
+} from '@/pages/layout/layout.constants';
+import { useHubContext } from '@/pages/layout/context';
 
 export default function KycFraudBanner() {
   const { t } = useTranslation('hub/kyc');
@@ -28,11 +32,18 @@ export default function KycFraudBanner() {
     environment,
     shell: { navigation, tracking },
   } = useContext(ShellContext);
+  const { availability, isLoading, isFreshCustomer } = useHubContext();
   const { useKycStatus } = useKyc(KycProcedures.FRAUD);
-  const { data } = useKycStatus();
   const { user } = environment;
   const region = environment.getRegion();
   const isEUOrCA = ['EU', 'CA'].includes(region);
+  const { data } = useKycStatus({
+    enabled: !(
+      isLoading ||
+      isFreshCustomer ||
+      availability?.[KYC_FRAUD_FEATURE]
+    ),
+  });
 
   const shouldBeDisplayed = useMemo(
     () =>
