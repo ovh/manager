@@ -1,5 +1,6 @@
 import angular from 'angular';
 import ovhManagerCore from '@ovh-ux/manager-core';
+import ngOvhWebUniverseComponents from '@ovh-ux/ng-ovh-web-universe-components';
 import set from 'lodash/set';
 import autorenew from './autoRenew/autorenew.module';
 import billingMain from './main/billing-main.module';
@@ -49,6 +50,7 @@ angular
     'oc.lazyLoad',
     'ui.select',
     'ngOvhFeatureFlipping',
+    ngOvhWebUniverseComponents,
     autorenew,
     billingMain,
     history,
