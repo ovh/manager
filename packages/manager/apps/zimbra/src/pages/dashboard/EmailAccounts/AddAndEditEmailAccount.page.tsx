@@ -38,7 +38,9 @@ export default function AddAndEditAccount() {
     enabled: !!editEmailAccountId,
   });
 
-  const { data: domainList, isLoading: isLoadingDomainRequest } = useDomains();
+  const { data: domainList, isLoading: isLoadingDomainRequest } = useDomains({
+    shouldFetchAll: true,
+  });
 
   function activatedTabs(pathMatchers: RegExp[]) {
     return pathMatchers?.some((pathMatcher) =>
