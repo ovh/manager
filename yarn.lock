@@ -10791,7 +10791,7 @@ angular-route@^1.6.0:
 
 angular-sanitize@1.7.x:
   version "1.7.9"
-  resolved "https://registry.yarnpkg.com/angular-sanitize/-/angular-sanitize-1.7.9.xtgz#6b4d5e826abdabd352b13a7c65c8c74daf6a7b15"
+  resolved "https://registry.yarnpkg.com/angular-sanitize/-/angular-sanitize-1.7.9.tgz#6b4d5e826abdabd352b13a7c65c8c74daf6a7b15"
   integrity sha512-nB/xe7JQWF9nLvhHommAICQ3eWrfRETo0EVGFESi952CDzDa+GAJ/2BFBNw44QqQPxj1Xua/uYKrbLsOGWZdbQ==
 
 angular-sanitize@^1.6.9, angular-sanitize@^1.7.5, angular-sanitize@^1.7.8:
