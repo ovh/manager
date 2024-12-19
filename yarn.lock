@@ -3088,7 +3088,22 @@
   dependencies:
     "@floating-ui/utils" "^0.2.5"
 
-"@floating-ui/dom@1.6.3", "@floating-ui/dom@^1.0.1", "@floating-ui/dom@^1.6.1":
+"@floating-ui/core@^1.6.0":
+  version "1.6.8"
+  resolved "https://registry.yarnpkg.com/@floating-ui/core/-/core-1.6.8.tgz#aa43561be075815879305965020f492cdb43da12"
+  integrity sha512-7XJ9cPU+yI2QeLS+FCSlqNFZJq8arvswefkZrYI1yQBbftw6FyrZOxYSh+9S7z7TpeWlRt9zJ5IhM1WIL334jA==
+  dependencies:
+    "@floating-ui/utils" "^0.2.8"
+
+"@floating-ui/dom@1.6.11":
+  version "1.6.11"
+  resolved "https://registry.yarnpkg.com/@floating-ui/dom/-/dom-1.6.11.tgz#8631857838d34ee5712339eb7cbdfb8ad34da723"
+  integrity sha512-qkMCxSR24v2vGkhYDo/UzxfJN3D4syqSjyuTFz6C7XcpU1pASPRieNI0Kj5VP3/503mOfYiGY891ugBX1GlABQ==
+  dependencies:
+    "@floating-ui/core" "^1.6.0"
+    "@floating-ui/utils" "^0.2.8"
+
+"@floating-ui/dom@^1.0.1", "@floating-ui/dom@^1.6.1":
   version "1.6.3"
   resolved "https://registry.yarnpkg.com/@floating-ui/dom/-/dom-1.6.3.tgz#954e46c1dd3ad48e49db9ada7218b0985cee75ef"
   integrity sha512-RnDthu3mzPlQ31Ss/BTwQ1zjzIhr3lk1gZB1OC56h/1vEtaXkESrOqL5fQVMfXpwGtRwX+YsZBdyHtJMQnkArw==
@@ -3112,6 +3127,11 @@
   version "0.2.5"
   resolved "https://registry.yarnpkg.com/@floating-ui/utils/-/utils-0.2.5.tgz#105c37d9d9620ce69b7f692a20c821bf1ad2cbf9"
   integrity sha512-sTcG+QZ6fdEUObICavU+aB3Mp8HY4n14wYHdxK4fXjPmv3PXZZeY5RaguJmGyeH/CJQhX3fqKUtS4qc1LoHwhQ==
+
+"@floating-ui/utils@^0.2.8":
+  version "0.2.8"
+  resolved "https://registry.yarnpkg.com/@floating-ui/utils/-/utils-0.2.8.tgz#21a907684723bbbaa5f0974cf7730bd797eb8e62"
+  integrity sha512-kym7SodPp8/wloecOpcmSnWJsK7M0E5Wg8UcFA+uO4B9s5d0ywXOEro/8HM9x0rW+TljRzul/14UYz3TleT3ig==
 
 "@fortawesome/fontawesome-free@^5.11.2":
   version "5.15.4"
@@ -5233,12 +5253,24 @@
     "@ovhcloud/ods-common-stencil" "17.2.2"
     "@ovhcloud/ods-common-theming" "17.2.2"
 
-"@ovhcloud/ods-components@18.0.0":
-  version "18.0.0"
-  resolved "https://registry.npmjs.org/@ovhcloud/ods-components/-/ods-components-18.0.0.tgz#b0e4da6c35c19004f35bac6b34abb1f78c6d1af0"
-  integrity sha512-Nhgi8iMX/+tWJb6D8WSN8qNqC32XEwdDL0rc7o9V0OwcXPwSqu7QtTYKB+1s1kGTDxfyl7HGrSDYbqgUI0niMw==
+"@ovhcloud/ods-components@18.4.0":
+  version "18.4.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-18.4.0.tgz#039490f269b0aa6309037739a55df129d3bad55d"
+  integrity sha512-XTEzEInatQIiEavVp556J9bgDlnnrkJLejIzPTQsT1wPfinSA9C8wk0L3bsTIIpSBPOkms6stQT4jLGxW8dH5A==
   dependencies:
-    "@floating-ui/dom" "1.6.3"
+    "@floating-ui/dom" "1.6.11"
+    "@stencil/core" "4.16.0"
+    google-libphonenumber "3.2.35"
+    tom-select "2.3.1"
+    tslib "2.6.3"
+    vanillajs-datepicker "1.3.4"
+
+"@ovhcloud/ods-components@^18.3.0":
+  version "18.4.1"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-18.4.1.tgz#44e21d23fbf844348e94b966d2aa5c38d8376dc8"
+  integrity sha512-aS7BArn0691hyHAn2/ND/7XYIX01gAmVCSvEl8uT9umT4iDDvodipkWRtGxBUin6ndvyED1Jx0BfCbtYsrKPeQ==
+  dependencies:
+    "@floating-ui/dom" "1.6.11"
     "@stencil/core" "4.16.0"
     google-libphonenumber "3.2.35"
     tom-select "2.3.1"
@@ -5259,10 +5291,10 @@
   dependencies:
     "@ovhcloud/ods-common-theming" "17.2.2"
 
-"@ovhcloud/ods-themes@18.0.0":
-  version "18.0.0"
-  resolved "https://registry.npmjs.org/@ovhcloud/ods-themes/-/ods-themes-18.0.0.tgz#0a7c658e0e9d572262ed41896fee4819c2764167"
-  integrity sha512-0PfXUyF6bX9emb/a6S16QThKsSXyvrNYT3n1zQF/le8tMXP7292TGKIgqXhsZmkcD9tCdD6VLXuJTS8Zv3a5Yg==
+"@ovhcloud/ods-themes@^18.3.0", "@ovhcloud/ods-themes@^18.4.0":
+  version "18.4.1"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-18.4.1.tgz#1c8dfeff1ba0b829fd61e8dea41af4cdbed46912"
+  integrity sha512-bezBp/Bgbo19IFPJ/+a/bFt2IArjq8wGrHPshpk/bVVZsxkgpAiUfRERmftU+l7gYU3e+yvFdopNL6eRaJDPWQ==
 
 "@ovhcloud/reket-axios-client@^0.2.1":
   version "0.2.1"
@@ -6697,14 +6729,6 @@
   resolved "https://registry.npmjs.org/@stencil/core/-/core-4.16.0.tgz#79c430d5875e0ce3a7666607b6fb53512890577b"
   integrity sha512-gXaC5IrquV/Hw5JIZTCWkM5lJEbBQtnvHLhDebjar6A6+YBqxah04dardS+YUNVuRbnE6Hcja7KKiAXT3oVsvw==
 
-"@storybook/addon-a11y@8.0.4":
-  version "8.0.4"
-  resolved "https://registry.npmjs.org/@storybook/addon-a11y/-/addon-a11y-8.0.4.tgz#2e62ab86a016a9ed6e4b52d61e0549c2568b0923"
-  integrity sha512-5OyZNzjNXjNUD9vBfjxFnJjMMcBFYWyI4zy5qmJcbAvBv/COiXNfNg2cr2YPNtU5WfA6nsaIESfHFGBHI3GDAg==
-  dependencies:
-    "@storybook/addon-highlight" "8.0.4"
-    axe-core "^4.2.0"
-
 "@storybook/addon-actions@7.5.3":
   version "7.5.3"
   resolved "https://registry.yarnpkg.com/@storybook/addon-actions/-/addon-actions-7.5.3.tgz#e0d0d819488d1d19918b23469b3ea6610fee5f07"
@@ -6839,13 +6863,6 @@
     "@storybook/core-events" "7.5.3"
     "@storybook/global" "^5.0.0"
     "@storybook/preview-api" "7.5.3"
-
-"@storybook/addon-highlight@8.0.4":
-  version "8.0.4"
-  resolved "https://registry.npmjs.org/@storybook/addon-highlight/-/addon-highlight-8.0.4.tgz#32f21a1f850394e83277a1cd553a33c86cb603f4"
-  integrity sha512-tnEiVaJlXL07v8JBox+QtRPVruoy0YovOTAOWY7fKDiKzF1I9wLaJjQF3wOsvwspHTHu00OZw2gsazgXiH4wLQ==
-  dependencies:
-    "@storybook/global" "^5.0.0"
 
 "@storybook/addon-interactions@7.5.3":
   version "7.5.3"
@@ -8490,6 +8507,19 @@
     lodash "^4.17.21"
     redent "^3.0.0"
 
+"@testing-library/jest-dom@^6.6.3":
+  version "6.6.3"
+  resolved "https://registry.yarnpkg.com/@testing-library/jest-dom/-/jest-dom-6.6.3.tgz#26ba906cf928c0f8172e182c6fe214eb4f9f2bd2"
+  integrity sha512-IteBhl4XqYNkM54f4ejhLRJiZNqcSCoXUOG2CPK7qbD322KjQozM4kHQOfkG2oln9b9HTYqs+Sae8vBATubxxA==
+  dependencies:
+    "@adobe/css-tools" "^4.4.0"
+    aria-query "^5.0.0"
+    chalk "^3.0.0"
+    css.escape "^1.5.1"
+    dom-accessibility-api "^0.6.3"
+    lodash "^4.17.21"
+    redent "^3.0.0"
+
 "@testing-library/react@14.0.0":
   version "14.0.0"
   resolved "https://registry.yarnpkg.com/@testing-library/react/-/react-14.0.0.tgz#59030392a6792450b9ab8e67aea5f3cc18d6347c"
@@ -8528,6 +8558,13 @@
   version "16.0.1"
   resolved "https://registry.yarnpkg.com/@testing-library/react/-/react-16.0.1.tgz#29c0ee878d672703f5e7579f239005e4e0faa875"
   integrity sha512-dSmwJVtJXmku+iocRhWOUFbrERC76TX2Mnf0ATODz8brzAZrMBbzLwQixlBSanZxR6LddK3eiwpSFZgDET1URg==
+  dependencies:
+    "@babel/runtime" "^7.12.5"
+
+"@testing-library/react@^16.1.0":
+  version "16.1.0"
+  resolved "https://registry.yarnpkg.com/@testing-library/react/-/react-16.1.0.tgz#aa0c61398bac82eaf89776967e97de41ac742d71"
+  integrity sha512-Q2ToPvg0KsVL0ohND9A3zLJWcOXXcO8IDu3fj11KhNt0UlCWyFyvnCIBkd12tidB2lkiVRG8VFqdhcqhqnAQtg==
   dependencies:
     "@babel/runtime" "^7.12.5"
 
@@ -11200,11 +11237,6 @@ aws4@^1.8.0:
   version "1.12.0"
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.12.0.tgz#ce1c9d143389679e253b314241ea9aa5cec980d3"
   integrity sha512-NmWvPnx0F1SfrQbYwOi7OeaNGokp9XhzNioJ/CSBs8Qa4vxug81mhJEAVZwxXuBmYB5KDRfMq/F3RR0BIU7sWg==
-
-axe-core@^4.2.0:
-  version "4.10.0"
-  resolved "https://registry.npmjs.org/axe-core/-/axe-core-4.10.0.tgz#d9e56ab0147278272739a000880196cdfe113b59"
-  integrity sha512-Mr2ZakwQ7XUAjp7pAwQWRhhK8mQQ6JAaNWSjmjxil0R8BPioMtQsTLOolGYkji1rcL++3dCqZA3zWqpT+9Ew6g==
 
 axios@^0.21.1:
   version "0.21.4"
@@ -16110,6 +16142,11 @@ flag-icon-css@~0.8.5:
   version "0.8.6"
   resolved "https://registry.yarnpkg.com/flag-icon-css/-/flag-icon-css-0.8.6.tgz#7dab89f99040c2a1113108132a1eab8c1dea44c4"
   integrity sha512-OQdsWTHoPB1gi79Be6mLgKD1GprOLur/Qv370nh91+Lrw0rIhGMjYc+CVgS05ZhjaMYn/CEQUNreW4SN1giQQw==
+
+flag-icons@^7.2.3:
+  version "7.2.3"
+  resolved "https://registry.yarnpkg.com/flag-icons/-/flag-icons-7.2.3.tgz#b67f379fa0ef28c4e605319a78035131bdd8ced7"
+  integrity sha512-X2gUdteNuqdNqob2KKTJTS+ZCvyWeLCtDz9Ty8uJP17Y4o82Y+U/Vd4JNrdwTAjagYsRznOn9DZ+E/Q52qbmqg==
 
 flagged-respawn@^2.0.0:
   version "2.0.0"
