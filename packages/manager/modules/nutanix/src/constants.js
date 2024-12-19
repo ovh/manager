@@ -24,7 +24,7 @@ export const NODE_STATUS = {
   UNKNOWN: 'unknown',
 };
 
-export const MAX_NODES_BY_CLUSTER = 15;
+export const MAX_NODES_BY_CLUSTER = 5;
 
 export const NUTANIX_SERVICE_TYPE = 'NUTANIX';
 
