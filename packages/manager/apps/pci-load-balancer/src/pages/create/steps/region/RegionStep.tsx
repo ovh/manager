@@ -7,7 +7,11 @@ import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { StepComponent } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-import { ShapesInputComponent } from '@ovh-ux/manager-pci-common';
+import {
+  RegionSelector,
+  useProject,
+  ShapesInputComponent,
+} from '@ovh-ux/manager-pci-common';
 import { useEffect, useRef } from 'react';
 import { TRegion } from '@/api/hook/useRegions';
 import { REGION_AVAILABILITY_LINK } from '@/constants';
@@ -33,7 +37,7 @@ export const RegionStep = ({
 }: Readonly<TRegionStepProps>): JSX.Element => {
   const { t: tCommon } = useTranslation('pci-common');
   const { t: tCreate } = useTranslation('load-balancer/create');
-
+  const { data: project } = useProject();
   const columnsCount = useColumnsCount();
 
   const { trackStep } = useTracking();
@@ -77,7 +81,7 @@ export const RegionStep = ({
             store.open(StepsEnum.IP);
           },
           label: tCommon('common_stepper_next_button_label'),
-          isDisabled: store.region === null,
+          isDisabled: !store.region?.isEnabled,
         }}
         edit={{
           action: () => {
@@ -117,26 +121,23 @@ export const RegionStep = ({
             <OsdsSpinner inline />
           </div>
         ) : (
-          <ShapesInputComponent<TRegion>
-            items={regions?.get(store.addon?.code) || []}
-            onInput={(region) => store.set.region(region)}
-            value={store.region}
-            columnsCount={columnsCount}
-            item={{
-              LabelComponent,
-              getId: (item) => item.name,
-              isDisabled: (item) => !item.isEnabled,
+          <RegionSelector
+            projectId={project.project_id}
+            onSelectRegion={(selectedRegion) => {
+              if (selectedRegion) {
+                const region = regions
+                  ?.get(store.addon?.code)
+                  ?.find(({ name }) => selectedRegion.name === name);
+
+                store.set.region(region);
+              }
             }}
-            stack={{
-              by: (item) => item?.macroName || '',
-              LabelComponent: StackLabelComponent,
-              TitleComponent: StackTitleComponent,
-            }}
-            group={{
-              by: (item) => item.continent,
-              LabelComponent: GroupLabelComponent,
-            }}
-            isMobile={isMobile}
+            regionFilter={(region) =>
+              region.isMacro ||
+              regions
+                ?.get(store.addon?.code)
+                ?.some(({ name }) => name === region.name)
+            }
           />
         )}
       </StepComponent>
