@@ -65,13 +65,16 @@ export const useDatagridColumn = () => {
 
       queryClient.setQueryData<TIPRestrictionsData[]>(key, (oldData) =>
         oldData?.map((item) => {
-          if (allIsSelected && item.checked !== null) {
-            if (data.rows.find((row) => row.ipBlock === item.ipBlock)) {
+          if (item.checked !== null) {
+            if (
+              allIsSelected &&
+              data.rows.find((row) => row.ipBlock === item.ipBlock)
+            ) {
               return { ...item, checked: !isAllDataSelected };
             }
-          }
-          if (item.ipBlock === ipBlock) {
-            return { ...item, checked: !item.checked };
+            if (item.ipBlock === ipBlock) {
+              return { ...item, checked: !item.checked };
+            }
           }
           return item;
         }),
