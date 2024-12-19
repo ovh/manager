@@ -2,8 +2,6 @@ import { ColumnDef } from '@tanstack/react-table';
 
 import { useTranslation } from 'react-i18next';
 import { MoreHorizontal } from 'lucide-react';
-import { SortableHeader } from '@/components/ui/data-table';
-
 import UserStatusBadge from '../../users/_components/UserStatusBadge.component';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
 import { BackupWithExpiricyDate } from '../Backups.page';
@@ -16,6 +14,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { useServiceData } from '../../Service.context';
 import * as database from '@/types/cloud/project/database';
+import DataTable from '@/components/data-table';
 
 interface BackupsTableColumnsProps {
   onForkClick: (backup: BackupWithExpiricyDate) => void;
@@ -33,7 +32,9 @@ export const getColumns = ({
   const nameColumn: ColumnDef<BackupWithExpiricyDate> = {
     id: 'name',
     header: ({ column }) => (
-      <SortableHeader column={column}>{t('tableHeadName')}</SortableHeader>
+      <DataTable.SortableHeader column={column}>
+        {t('tableHeadName')}
+      </DataTable.SortableHeader>
     ),
     accessorFn: (row) => row.description,
   };
@@ -47,9 +48,9 @@ export const getColumns = ({
     id: 'Creation date',
     accessorFn: (row) => row.createdAt,
     header: ({ column }) => (
-      <SortableHeader column={column}>
+      <DataTable.SortableHeader column={column}>
         {t('tableHeadCreationDate')}
-      </SortableHeader>
+      </DataTable.SortableHeader>
     ),
     cell: ({ row }) => (
       <FormattedDate
@@ -65,9 +66,9 @@ export const getColumns = ({
     id: 'Expiry date',
     accessorFn: (row) => row.expiricyDate,
     header: ({ column }) => (
-      <SortableHeader column={column}>
+      <DataTable.SortableHeader column={column}>
         {t('tableHeadNExpiryDate')}
-      </SortableHeader>
+      </DataTable.SortableHeader>
     ),
     cell: ({ row }) => {
       return (
@@ -85,7 +86,9 @@ export const getColumns = ({
     id: 'Status',
     accessorFn: (row) => row.status,
     header: ({ column }) => (
-      <SortableHeader column={column}>{t('tableHeadStatus')}</SortableHeader>
+      <DataTable.SortableHeader column={column}>
+        {t('tableHeadStatus')}
+      </DataTable.SortableHeader>
     ),
     cell: ({ row }) => {
       return <UserStatusBadge status={row.original.status} />;
