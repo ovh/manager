@@ -9,6 +9,7 @@ import App from './App';
 import '@ovhcloud/ods-theme-blue-jeans/dist/index.css';
 import './index.scss';
 import './vite-hmr';
+import '@ovh-ux/manager-pci-common/dist/style.css';
 
 import { UNIVERSE, SUB_UNIVERSE, APP_NAME, LEVEL2 } from './tracking.constant';
 
