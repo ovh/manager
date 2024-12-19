@@ -46,7 +46,7 @@
             <div class="d-flex align-items-center">
                 <service-status status="$row.serviceStatus"></service-status>
                 <span
-                    data-ng-if="$row.serviceStatus === 'suspended'"
+                    data-ng-if="$row.serviceStatus === $ctrl.SERVICE_STATES.SUSPENDED"
                     class="oui-icon oui-icon-help-circle"
                     title="{{ 'nutanix_dashboard_nodes_suspended_tooltip' | translate }}"
                     oui-tooltip
