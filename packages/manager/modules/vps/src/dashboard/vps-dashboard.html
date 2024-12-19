@@ -640,7 +640,9 @@
                 go-to-resiliation="$ctrl.goToResiliation()"
                 service-infos="$ctrl.serviceInfo"
                 highlight-engagement="$ctrl.shouldReengage"
-                tracking-prefix="{{ ::$ctrl.trackingPrefix }}"
+                tracking-prefix="{{ ::'VPS::vps::' + $ctrl.getTrackingProductLine() }}"
+                tracking-page="{{ 'VPS::vps::'+ $ctrl.getTrackingProductLine() + '::' + $ctrl.getTrackingProductLine() + '::dashboard::general-information' }}"
+                tracking-name-suffix="{{ $ctrl.getTrackingProductLine() }}"
                 user="$ctrl.connectedUser"
                 commit-impression-data="$ctrl.shouldReengage ?
                     $ctrl.RECOMMIT_IMPRESSION_TRACKING_DATA :
