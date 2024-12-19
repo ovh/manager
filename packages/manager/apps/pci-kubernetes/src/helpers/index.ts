@@ -1,4 +1,6 @@
 import { PaginationState } from '@ovh-ux/manager-react-components';
+import { FieldError, FieldErrors } from 'react-hook-form';
+import { ZodObject, ZodRawShape } from 'zod';
 
 export const REFETCH_INTERVAL_DURATION = 15_000;
 export const QUOTA_ERROR_URL =
@@ -114,3 +116,39 @@ export function getColorByPercentage(percentage: number): string {
   // If percentage exceeds all thresholds, return the last color
   return colorThresholds[colorThresholds.length - 1].color;
 }
+
+export const getErrorMessage = (error: FieldError | FieldErrors): string => {
+  if (!error) return '';
+  if (typeof error === 'string') return error;
+  if ('message' in error && typeof error.message === 'string')
+    return error.message;
+  return '';
+};
+
+export const camelToSnake = (camelCase: string): string =>
+  camelCase.replace(/([A-Z])/g, '_$1').toLowerCase();
+
+export const filterSchemaKeys = (
+  schema: ZodObject<ZodRawShape>,
+  excludeKeys: string[],
+): string[] =>
+  Object.keys(schema.shape).filter((key) => !excludeKeys.includes(key));
+
+const normalizeToArray = (value: string | string[] | undefined): string[] =>
+  Array.isArray(value) ? value : value?.split(',') ?? [];
+
+export const parseCommaSeparated = (value: string | string[]): string[] =>
+  normalizeToArray(value)
+    .map((item) => item.trim())
+    .filter(Boolean);
+
+export const isBase64 = (str: string) => {
+  try {
+    return btoa(atob(str)) === str;
+  } catch (err) {
+    return false;
+  }
+};
+
+export const transformKey = (key: string): string =>
+  key.replace(/([A-Z])/g, '_$1').toLowerCase();

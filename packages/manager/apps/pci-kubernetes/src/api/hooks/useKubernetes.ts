@@ -7,7 +7,7 @@ import {
 } from '@tanstack/react-query';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { OidcFormValues, TKube } from '@/types';
+import { TKube, TOidcProvider } from '@/types';
 import queryClient from '@/queryClient';
 import { paginateResults, REFETCH_INTERVAL_DURATION } from '@/helpers';
 import { STATUS } from '@/constants';
@@ -436,7 +436,7 @@ export const useUpsertOidcProvider = ({
   isUpdate,
 }: UpsertOidcProviderProps) => {
   const mutation = useMutation({
-    mutationFn: async (params: OidcFormValues) =>
+    mutationFn: async (params: TOidcProvider) =>
       isUpdate
         ? updateOidcProvider(projectId, kubeId, params)
         : addOidcProvider(projectId, kubeId, params),
@@ -449,7 +449,7 @@ export const useUpsertOidcProvider = ({
     },
   });
   return {
-    upsertOidcProvider: (params: OidcFormValues) => mutation.mutate(params),
+    upsertOidcProvider: (params: TOidcProvider) => mutation.mutate(params),
     ...mutation,
   };
 };

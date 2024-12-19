@@ -24,7 +24,7 @@ import {
 import { KUBE_TRACK_PREFIX } from '@/tracking.constants';
 
 export default function RemoveOIDCProvider() {
-  const { t } = useTranslation('remove-oidc-provider');
+  const { t } = useTranslation('oidc-provider');
   const { projectId, kubeId } = useParams();
   const navigate = useNavigate();
   const onClose = () => navigate('..');
