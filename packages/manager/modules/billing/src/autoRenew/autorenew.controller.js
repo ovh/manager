@@ -232,8 +232,13 @@ export default class AutorenewCtrl {
     );
 
     if (newCriteria) {
+      const property = newCriteria.property
+        ? newCriteria.property.toLowerCase()
+        : 'search-text';
+      const value = newCriteria.value?.toLowerCase();
+
       this.atInternet.trackClick({
-        name: `${TRACKING_FILTER_NAME_PREFIX}::go-to-${newCriteria.property?.toLowerCase()}-${newCriteria.value?.toLowerCase()}::service`,
+        name: `${TRACKING_FILTER_NAME_PREFIX}::go-to-${property}-${value}::service`,
         type: 'action',
         page_category: TRACKING_PAGE_CATEGORY,
         page: {
