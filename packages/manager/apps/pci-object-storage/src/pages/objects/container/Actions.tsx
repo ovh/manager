@@ -1,15 +1,52 @@
-import { createSearchParams, useHref, useNavigate } from 'react-router-dom';
-import { ActionMenu } from '@ovh-ux/manager-react-components';
-import { useTranslation } from 'react-i18next';
+import { createSearchParams, useParams, useNavigate } from 'react-router-dom';
+import { ActionMenu, useNotifications } from '@ovh-ux/manager-react-components';
+import { Translation, useTranslation } from 'react-i18next';
 import { v4 as uuidV4 } from 'uuid';
+import { ApiError } from '@ovh-ux/manager-core-api';
+
 import { TStorage } from '@/api/data/storages';
 import { OBJECT_CONTAINER_MODE_LOCAL_ZONE } from '@/constants';
 import { isSwiftType } from '@/helpers';
+import { useUpdateStorageType } from '@/api/hooks/useStorages';
 
 export function Actions({ storage }: { storage: TStorage }) {
   const { t } = useTranslation('pci-storages-containers');
-
   const navigate = useNavigate();
+  const { projectId } = useParams();
+  const { addSuccess, addError } = useNotifications();
+
+  const { isPending, updateStorageType } = useUpdateStorageType({
+    projectId,
+    onSuccess() {
+      addSuccess(
+        <Translation ns="pci-storages-containers">
+          {(_t) =>
+            _t(
+              storage.containerType === 'public'
+                ? 'pci_projects_project_storages_containers_toggle_private_succeed'
+                : 'pci_projects_project_storages_containers_toggle_public_succeed',
+              {
+                name: storage.name,
+              },
+            )
+          }
+        </Translation>,
+        true,
+      );
+    },
+    onError(error: ApiError) {
+      addError(
+        <Translation ns="pci-storages-containers">
+          {(_t) =>
+            _t('pci_projects_project_storages_containers_toggle_fail', {
+              message: error?.response?.data?.message || error?.message || null,
+            })
+          }
+        </Translation>,
+        true,
+      );
+    },
+  });
 
   const items = [
     {
@@ -41,14 +78,18 @@ export function Actions({ storage }: { storage: TStorage }) {
     {
       id: 2,
       onClick: () => {
-        // @TODO implement public toggle action
+        updateStorageType(
+          storage.id,
+          storage.containerType === 'public' ? 'private' : 'public',
+        );
       },
       label: t(
-        storage.state
+        storage.containerType === 'public'
           ? 'pci_projects_project_storages_containers_switch_to_private_label'
           : 'pci_projects_project_storages_containers_switch_to_public_label',
       ),
       condition: isSwiftType(storage),
+      disabled: isPending,
     },
     {
       id: 3,

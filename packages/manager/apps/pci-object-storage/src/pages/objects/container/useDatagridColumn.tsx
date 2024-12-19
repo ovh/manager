@@ -114,7 +114,7 @@ export const useDatagridColumn = () => {
       cell: (props: TStorage) => {
         if (
           i18n.exists(
-            `containers:pci_projects_project_storages_containers_containerType_${props.containerType}`,
+            `pci-storages-containers:pci_projects_project_storages_containers_containerType_${props.containerType}`,
           )
         ) {
           return (
