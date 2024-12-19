@@ -299,3 +299,18 @@ export const CONTAINER_USER_ASSOCIATION_MODES = {
   LINKED: 'LINKED',
   CREATE: 'CREATE',
 };
+export const OBJECT_CONTAINER_STORAGE_CLASS = {
+  STANDARD: 'STANDARD',
+  HIGH_PERFORMANCE: 'HIGH_PERF',
+};
+
+export const X_CONTAINER_HEADERS_REGEX = /^(X-Container|X-Storage)/i;
+
+export const X_AUTH_TOKEN = 'X-Auth-Token';
+export const X_STORAGE_POLICY = 'x-storage-policy';
+export const X_AMZ_STORAGE_CLASS = 'X-Amz-Storage-Class';
+export const X_CONTAINER_READ = 'x-container-read';
+export const X_CONTAINER_META_WEB_LISTINGS = 'x-container-meta-web-listings';
+export const X_CONTAINER_READ_PUBLIC_VALUE = '.r:*,.rlistings';
+
+export const OPENIO_PRESIGN_EXPIRE = 3600;
