@@ -1,11 +1,10 @@
-import { CommonTitle, Description } from '@ovh-ux/manager-react-components';
-import {
-  ODS_INPUT_TYPE,
-  OdsInputValueChangeEventDetail,
-  OsdsInputCustomEvent,
-} from '@ovhcloud/ods-components';
-import { OsdsFormField, OsdsInput } from '@ovhcloud/ods-components/react';
 import React, { Dispatch, SetStateAction } from 'react';
+import { ODS_INPUT_TYPE, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import {
+  OdsFormField,
+  OdsInput,
+  OdsText,
+} from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { CredentialNameErrorsType } from '@/utils/credential/validateCredentialName';
 
@@ -39,36 +38,34 @@ const CreateGeneralInformationsName = ({
         return null;
     }
   };
+
   return (
-    <div className="flex flex-col gap-5 md:gap-6">
-      <CommonTitle>
-        {t(
-          'key_management_service_credential_create_general_information_display_name_title',
-        )}
-      </CommonTitle>
-      <Description>
-        {t(
-          'key_management_service_credential_create_general_information_display_name_subtitle',
-        )}
-      </Description>
-      <OsdsFormField error={getNameErrorMessage(credentialNameError)}>
-        <OsdsInput
-          aria-label="input-service-key-name"
-          type={ODS_INPUT_TYPE.text}
-          error={!!credentialNameError}
-          required
-          placeholder={t(
-            'key_management_service_credential_create_general_information_display_name_placeholder',
+    <OdsFormField error={getNameErrorMessage(credentialNameError)}>
+      <div slot="label">
+        <OdsText className="block" preset={ODS_TEXT_PRESET.heading5}>
+          {t(
+            'key_management_service_credential_create_general_information_display_name_title',
           )}
-          value={name}
-          onOdsValueChange={(
-            e: OsdsInputCustomEvent<OdsInputValueChangeEventDetail>,
-          ) => {
-            return setName(e.detail.value);
-          }}
-        />
-      </OsdsFormField>
-    </div>
+        </OdsText>
+        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+          {t(
+            'key_management_service_credential_create_general_information_display_name_subtitle',
+          )}
+        </OdsText>
+      </div>
+      <OdsInput
+        name="input-service-key-name"
+        aria-label="input-service-key-name"
+        type={ODS_INPUT_TYPE.text}
+        hasError={!!credentialNameError}
+        isRequired
+        placeholder={t(
+          'key_management_service_credential_create_general_information_display_name_placeholder',
+        )}
+        value={name}
+        onOdsChange={(e) => setName(e.detail.value as string)}
+      />
+    </OdsFormField>
   );
 };
 

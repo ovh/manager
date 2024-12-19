@@ -1,7 +1,7 @@
 import { Subtitle } from '@ovh-ux/manager-react-components';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { OsdsTile } from '@ovhcloud/ods-components/react';
+import { OdsCard } from '@ovhcloud/ods-components/react';
 import CreateCredentialConfirmationDetailsText from './CreateCredentialConfirmationDetailsText.component';
 import { OkmsCredential } from '@/types/okmsCredential.type';
 import { getDaysFromDate } from '@/utils/credential/validityDateUtils';
@@ -16,8 +16,8 @@ const CreateCredentialConfirmationDetails = ({
   const { t } = useTranslation('key-management-service/credential');
 
   return (
-    <OsdsTile>
-      <div className="flex flex-col w-full gap-7 md:gap-9 break-words">
+    <OdsCard className="p-4">
+      <div className="flex flex-col w-full gap-4 md:gap-5 break-words">
         <Subtitle>
           {t(
             'key_management_service_credential_create_confirmation_details_title',
@@ -51,7 +51,7 @@ const CreateCredentialConfirmationDetails = ({
           )}
         />
       </div>
-    </OsdsTile>
+    </OdsCard>
   );
 };
 

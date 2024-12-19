@@ -24,7 +24,7 @@ export function GuidesHeader({
     <>
       <div id="guides-header-trigger">
         <OdsButton
-          slot={'menu-title'}
+          slot="menu-title"
           variant={ODS_BUTTON_VARIANT.ghost}
           icon={ODS_ICON_NAME.book}
           label={label}

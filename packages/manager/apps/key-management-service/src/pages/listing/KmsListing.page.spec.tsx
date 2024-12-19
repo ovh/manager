@@ -1,7 +1,11 @@
-import { act, screen, waitFor } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { renderTestApp } from '@/utils/tests/renderTestApp';
-import '@testing-library/jest-dom';
+import {
+  assertOds18ModalVisibility,
+  assertTextVisibility,
+  getOds18ButtonByLabel,
+} from '@ovh-ux/manager-core-test-utils';
 import { labels } from '@/utils/tests/init.i18n';
 import { okmsMock } from '@/mocks/kms/okms.mock';
 
@@ -29,74 +33,45 @@ describe('KMS listing test suite', () => {
   });
 
   it(`should navigate to the kms creation form on click on "${labels.listing.key_management_service_listing_add_kms_button}" button`, async () => {
-    await renderTestApp();
+    const { container } = await renderTestApp();
 
-    await waitFor(
-      () =>
-        expect(
-          screen.getByText(
-            labels.listing.key_management_service_listing_add_kms_button,
-          ),
-        ).toBeEnabled(),
-      {
-        timeout: 30_000,
-      },
-    );
+    const button = await getOds18ButtonByLabel({
+      container,
+      label: labels.listing.key_management_service_listing_add_kms_button,
+      altLabel: 'key_management_service_listing_add_kms_button',
+    });
 
-    await act(() =>
-      userEvent.click(
-        screen.getByText(
-          labels.listing.key_management_service_listing_add_kms_button,
-        ),
-      ),
-    );
+    await waitFor(() => userEvent.click(button));
 
-    await waitFor(
-      () =>
-        expect(
-          screen.getByText(
-            labels.create.key_management_service_create_subtitle,
-          ),
-        ).toBeVisible(),
-      { timeout: 30_000 },
+    await assertTextVisibility(
+      labels.create.key_management_service_create_subtitle,
     );
   });
 
   it('should navigate to a kms dashboard on click on kms name', async () => {
-    await renderTestApp();
+    const { container } = await renderTestApp();
 
-    await act(() =>
-      userEvent.click(screen.getByText(okmsMock[0].iam.displayName)),
-    );
+    const dashboardLink = await getOds18ButtonByLabel({
+      container,
+      label: okmsMock[0].iam.displayName,
+      isLink: true,
+    });
 
-    await waitFor(
-      () =>
-        expect(
-          screen.getByText(labels.dashboard.billing_informations),
-        ).toBeVisible(),
-      { timeout: 30_000 },
-    );
+    await waitFor(() => userEvent.click(dashboardLink));
+
+    await assertTextVisibility(labels.dashboard.billing_informations);
   });
 
   it(`should navigate to the kms delete modal on click on "${labels.listing.key_management_service_listing_terminate}" list action button`, async () => {
-    await renderTestApp();
+    const { container } = await renderTestApp();
 
-    await act(() =>
-      userEvent.click(
-        screen.getByText(
-          labels.listing.key_management_service_listing_terminate,
-        ),
-      ),
-    );
+    const terminateButton = await getOds18ButtonByLabel({
+      container,
+      label: labels.listing.key_management_service_listing_terminate,
+    });
 
-    await waitFor(
-      () =>
-        expect(
-          screen.getByText(
-            labels.terminate.key_management_service_terminate_cancel,
-          ),
-        ).toBeVisible(),
-      { timeout: 30_000 },
-    );
+    await waitFor(() => userEvent.click(terminateButton));
+
+    await assertOds18ModalVisibility({ container, isVisible: true });
   });
 });
