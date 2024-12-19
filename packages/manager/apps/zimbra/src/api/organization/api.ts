@@ -1,19 +1,22 @@
 import { fetchIcebergV2, v2 } from '@ovh-ux/manager-core-api';
 import { OrganizationBodyParamsType, OrganizationType } from './type';
 import { getApiPath } from '../utils/apiPath';
+import { APIV2_DEFAULT_PAGESIZE } from '@/utils';
 
 // GET
 
 export const getZimbraPlatformOrganization = ({
   platformId,
   pageParam,
+  pageSize = APIV2_DEFAULT_PAGESIZE,
 }: {
   platformId: string;
   pageParam?: unknown;
+  pageSize?: number;
 }) =>
   fetchIcebergV2<OrganizationType[]>({
     route: `${getApiPath(platformId)}organization`,
-    pageSize: 25,
+    pageSize,
     cursor: pageParam as string,
   });
 

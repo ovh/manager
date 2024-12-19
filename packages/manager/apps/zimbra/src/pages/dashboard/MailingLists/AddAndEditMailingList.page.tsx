@@ -42,7 +42,9 @@ export default function AddAndEditMailingList() {
     isLoading: isLoadingMailingListDetailRequest,
   } = useMailingList({ mailingListId: editMailingListId });
 
-  const { data: domainList, isLoading: isLoadingDomainRequest } = useDomains();
+  const { data: domainList, isLoading: isLoadingDomainRequest } = useDomains({
+    shouldFetchAll: true,
+  });
 
   useEffect(() => {
     if (
