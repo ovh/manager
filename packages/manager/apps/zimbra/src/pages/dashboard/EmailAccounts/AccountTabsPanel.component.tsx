@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { OdsTabs, OdsTab } from '@ovhcloud/ods-components/react';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 
 export type TabItemProps = {
   name: string;
+  trackingName: string;
   title: string;
   pathMatchers?: RegExp[];
   to: string;
@@ -15,6 +21,7 @@ export type TabsProps = {
 };
 
 export const AccountTabsPanel: React.FC<TabsProps> = ({ tabs }) => {
+  const { trackClick } = useOvhTracking();
   const [activePanel, setActivePanel] = useState('');
   const location = useLocation();
   const navigate = useNavigate();
@@ -48,6 +55,14 @@ export const AccountTabsPanel: React.FC<TabsProps> = ({ tabs }) => {
               key={`osds-tab-bar-item-${tab.name}`}
               to={tab.to}
               className="no-underline"
+              onClick={() => {
+                trackClick({
+                  location: PageLocation.page,
+                  buttonType: ButtonType.tab,
+                  actionType: 'navigation',
+                  actions: [tab.trackingName],
+                });
+              }}
             >
               <OdsTab
                 id={tab.name}

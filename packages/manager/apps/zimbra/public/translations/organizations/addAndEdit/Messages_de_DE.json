@@ -16,5 +16,6 @@
   "zimbra_organization_add_success_message": "Ihre Anfrage zum Hinzufügen einer Organisation wurde registriert. Sie wird in Kürze wirksam.",
   "zimbra_organization_add_error_message": "Ihre Anfrage zum Hinzufügen einer Organisation ist fehlgeschlagen. {{ error }}",
   "zimbra_organization_edit_success_message": "Ihre Änderungsanfrage wurde registriert. Sie wird in Kürze ausgeführt.",
-  "zimbra_organization_edit_error_message": "Ihre Änderungsanfrage ist fehlgeschlagen. {{ error }}"
+  "zimbra_organization_edit_error_message": "Ihre Änderungsanfrage ist fehlgeschlagen. {{ error }}",
+  "zimbra_organization_add_cancel": "Abbrechen"
 }

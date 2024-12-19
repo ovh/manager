@@ -15,10 +15,12 @@ import {
   ODS_MESSAGE_COLOR,
   ODS_LINK_COLOR,
 } from '@ovhcloud/ods-components';
+import {ButtonType, PageLocation, useOvhTracking} from '@ovh-ux/manager-react-shell-client';
 import { useGenerateUrl, useDomain } from '@/hooks';
 import { GUIDES_LIST } from '@/guides.constants';
 import GuideLink from '@/components/GuideLink';
 import Loading from '@/components/Loading/Loading';
+import { BACK_PREVIOUS_PAGE, VERIFY_DOMAIN } from '@/tracking.constant';
 
 export enum DomainOwnership {
   OVH = 'ovhDomain',
@@ -27,7 +29,7 @@ export enum DomainOwnership {
 
 export default function ValidateOwnership() {
   const { t } = useTranslation('domains/addDomain');
-
+  const { trackClick } = useOvhTracking();
   const [searchParams] = useSearchParams();
   const domainId = searchParams.get('domainId');
   const { data: domain, isFetching, isError } = useDomain(domainId);
@@ -45,6 +47,14 @@ export default function ValidateOwnership() {
           iconAlignment={IconLinkAlignmentType.left}
           type={LinkType.back}
           href={goBackUrl}
+          onClickReturn={() => {
+            trackClick({
+              location: PageLocation.page,
+              buttonType: ButtonType.button,
+              actionType: 'navigation',
+              actions: [VERIFY_DOMAIN, BACK_PREVIOUS_PAGE],
+            });
+          }}
           color={ODS_LINK_COLOR.primary}
           label={t('zimbra_domains_add_domain_cta_back')}
         />
