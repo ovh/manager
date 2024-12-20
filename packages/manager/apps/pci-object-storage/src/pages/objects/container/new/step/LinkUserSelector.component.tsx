@@ -29,12 +29,12 @@ import queryClient from '@/queryClient';
 import UserInformationTile from './UserInformationTile.component';
 
 type LinkUserSelectorProps = {
-  formUser: TUser;
+  userId: string;
   onSelectOwner: (user: TUser) => void;
   onCancel: () => void;
 };
 export default function LinkUserSelector({
-  formUser,
+  userId,
   onSelectOwner,
   onCancel,
 }: Readonly<LinkUserSelectorProps>) {
@@ -45,6 +45,7 @@ export default function LinkUserSelector({
   const { data: listUsers, isPending: isPendingListUsers } = useUsers(
     projectId,
   );
+  const formUser = listUsers?.find((user) => user.id === userId);
 
   const [secretUser, setSecretUser] = useState('');
 
@@ -80,7 +81,7 @@ export default function LinkUserSelector({
     if (!formUser?.s3Credentials) {
       const credentials = await generateS3Credentials(projectId, formUser?.id);
       await queryClient.invalidateQueries({
-        queryKey: [...getQueryKeyUsers(projectId), formUser.id],
+        queryKey: [...getQueryKeyUsers(projectId), formUser?.id],
       });
       onSelectOwner({
         ...formUser,

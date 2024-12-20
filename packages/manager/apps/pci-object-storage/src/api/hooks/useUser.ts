@@ -27,7 +27,10 @@ export const useAllUsers = (projectId: string) =>
     queryFn: () => getAllUsers(projectId),
   });
 
-export const useUsers = (projectId: string) => {
+export const useUsers = (
+  projectId: string,
+  filterWithCredentials?: boolean,
+) => {
   const { data: users, isPending } = useAllUsers(projectId);
   const allUsersQueries = useQueries({
     queries: (users || [])?.map((user) => ({
@@ -45,16 +48,16 @@ export const useUsers = (projectId: string) => {
           (result) => result.data?.userId === user.openstackId,
         )?.data;
 
-        if (s3Credentials) {
-          all.push({
-            ...user,
-            access: s3Credentials?.access,
-            s3Credentials,
-            search: `${user.username} ${user.description} ${
-              s3Credentials ? s3Credentials?.access : ''
-            }`.trimEnd(),
-          });
-        }
+        if (filterWithCredentials && !s3Credentials) return all;
+
+        all.push({
+          ...user,
+          access: s3Credentials?.access,
+          s3Credentials,
+          search: `${user.username} ${user.description} ${
+            s3Credentials ? s3Credentials?.access : ''
+          }`.trimEnd(),
+        });
 
         return all;
       }, []),
@@ -82,7 +85,10 @@ export const usePaginatedUsers = (
   sorting: ColumnSort,
   filters: Filter[],
 ) => {
-  const { data: users, error, isLoading, isPending } = useUsers(projectId);
+  const { data: users, error, isLoading, isPending } = useUsers(
+    projectId,
+    true,
+  );
 
   return useMemo(
     () => ({
