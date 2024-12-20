@@ -1,0 +1,9 @@
+{
+  "payment_method_title": "My payment method",
+  "payment_method_default_label": "By default",
+  "payment_method_expired_label": "Expired",
+  "payment_method_update_link_label": "Edit",
+  "payment_method_add_link_label": "Add",
+  "payment_method_expiration_date_label": "Exp. {{ date }}",
+  "payment_expiration_no_default_method_message": "You have not set a default payment method."
+}
