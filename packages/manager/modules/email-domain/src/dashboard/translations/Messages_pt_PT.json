@@ -369,5 +369,7 @@
   "email_tab_popover_delegate_info": "Lista das delegações para a conta <strong>{{t0}}</strong>",
   "email_tab_popover_delegate_format_error": "Formato do ID de cliente inválido",
   "emails_create_account": "Criar uma conta",
-  "emails_create_account_new_window": "(Nova janela)"
+  "emails_create_account_new_window": "(Nova janela)",
+  "emails_general_information_diagnostic": "Diagnóstico",
+  "emails_general_information_diagnostic_dkim": "DKIM"
 }
