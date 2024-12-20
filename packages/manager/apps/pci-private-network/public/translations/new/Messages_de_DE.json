@@ -1,7 +1,7 @@
 {
   "pci_projects_project_network_private_create": "Privates Netzwerk erstellen",
   "pci_projects_project_network_private_create_init_error": "Beim Laden der Informationen ist ein Fehler aufgetreten: {{ message }}",
-  "pci_projects_project_network_private_create_configure": "Konfigurieren Sie Ihr privates Netzwerk",
+  "pci_projects_project_network_private_create_configure": "Konfigurieren Sie Ihr privates Netzwerk.",
   "pci_projects_project_network_private_create_configure_address": "Adresse des privaten Netzwerks (CIDR)",
   "pci_projects_project_network_private_create_configure_mask": "Maske",
   "pci_projects_project_network_private_create_configure_choose_vlan": "VLAN-ID festlegen",
