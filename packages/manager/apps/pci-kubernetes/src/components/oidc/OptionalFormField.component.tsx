@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import { OsdsFormField, OsdsText } from '@ovhcloud/ods-components/react';
+import { useTranslation } from 'react-i18next';
 import {
   ODS_TEXT_COLOR_INTENT,
   ODS_TEXT_LEVEL,
@@ -8,12 +8,22 @@ import {
 } from '@ovhcloud/ods-components';
 import { getErrorMessage } from '@/helpers';
 
-type TFieldProps = {
+type TOptionalFormFieldProps = {
   name: string;
   label: string;
   description?: string;
   dataTestId?: string;
-  component: React.ComponentType<any>;
+  placeholder: string;
+  caption?: string;
+  component: React.ComponentType<{
+    name: string;
+    value: string;
+    onChange: (value: string | string[]) => void;
+    onBlur: () => void;
+    error?: boolean | string;
+    placeholder?: string;
+    caption?: string;
+  }>;
 };
 
 export function OptionalFormField({
@@ -22,20 +32,22 @@ export function OptionalFormField({
   description,
   dataTestId,
   component,
+  placeholder,
+  caption,
   ...props
-}: TFieldProps) {
+}: Readonly<TOptionalFormFieldProps>) {
+  const { t } = useTranslation(['oidc-provider', 'common']);
+
   const {
     control,
     formState: { errors },
   } = useFormContext();
 
-  const errorMessage = getErrorMessage(errors[name]);
-
-  const MajComp = component;
+  const errorMessage = t(getErrorMessage(errors[name]));
 
   return (
     <OsdsFormField
-      className="mt-10"
+      className="mt-8"
       data-testid={`${dataTestId || name}-formfield`}
       error={errorMessage}
     >
@@ -59,15 +71,21 @@ export function OptionalFormField({
       <Controller
         name={name}
         control={control}
-        render={({ field: { onChange, onBlur, value } }) => (
-          <MajComp
-            value={value}
-            onChange={onChange}
-            onBlur={onBlur}
-            error={errorMessage}
-            {...props}
-          />
-        )}
+        render={({ field: { onBlur, onChange, value } }) => {
+          const ComponentOptional = component;
+          return (
+            <ComponentOptional
+              name={name}
+              value={value}
+              onChange={onChange}
+              onBlur={onBlur}
+              error={errorMessage}
+              placeholder={placeholder}
+              caption={caption}
+              {...props}
+            />
+          );
+        }}
       />
     </OsdsFormField>
   );
