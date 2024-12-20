@@ -5,10 +5,7 @@ import { queryClient } from '@ovh-ux/manager-react-core-application';
 import {
   ODS_MESSAGE_COLOR,
   ODS_BUTTON_SIZE,
-  ODS_ICON_NAME,
-  ODS_BUTTON_VARIANT,
   ODS_TEXT_PRESET,
-  ODS_BUTTON_ICON_ALIGNMENT,
   ODS_BUTTON_COLOR,
 } from '@ovhcloud/ods-components';
 import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
@@ -102,7 +99,7 @@ export default function Keys() {
     );
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-4">
       <OdsText preset={ODS_TEXT_PRESET.paragraph}>
         {t('key_management_service_service-keys_headline')}
       </OdsText>
@@ -111,28 +108,24 @@ export default function Keys() {
           {tError('manager_error_page_default')}
         </OdsMessage>
       )}
-      <div>
-        <ManagerButton
-          id="createEncryptionKey"
-          size={ODS_BUTTON_SIZE.sm}
-          color={ODS_BUTTON_COLOR.primary}
-          variant={ODS_BUTTON_VARIANT.outline}
-          onClick={() => {
-            trackClick({
-              location: PageLocation.page,
-              buttonType: ButtonType.button,
-              actionType: 'action',
-              actions: ['create_encryption_key'],
-            });
-            navigate(ROUTES_URLS.createKmsServiceKey);
-          }}
-          urn={okms.iam.urn}
-          iamActions={[kmsIamActions.serviceKeyCreate]}
-          label={t('key_management_service_service-keys_cta_create')}
-          icon={ODS_ICON_NAME.plus}
-          iconAlignment={ODS_BUTTON_ICON_ALIGNMENT.left}
-        />
-      </div>
+      <ManagerButton
+        id="createEncryptionKey"
+        size={ODS_BUTTON_SIZE.sm}
+        color={ODS_BUTTON_COLOR.primary}
+        className="w-fit"
+        onClick={() => {
+          trackClick({
+            location: PageLocation.page,
+            buttonType: ButtonType.button,
+            actionType: 'action',
+            actions: ['create_encryption_key'],
+          });
+          navigate(ROUTES_URLS.createKmsServiceKey);
+        }}
+        urn={okms.iam.urn}
+        iamActions={[kmsIamActions.serviceKeyCreate]}
+        label={t('key_management_service_service-keys_cta_create')}
+      />
       <Datagrid
         columns={columns}
         items={okmsServiceKey || []}

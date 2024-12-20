@@ -5,7 +5,7 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import React from 'react';
-import { ODS_BUTTON_COLOR, ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { OKMS } from '@/types/okms.type';
@@ -20,7 +20,6 @@ const KmsActionMenu = ({ id }: OKMS) => {
     {
       id: 1,
       label: t('key_management_service_listing_terminate'),
-      color: ODS_BUTTON_COLOR.critical,
       onClick: () => {
         trackClick({
           location: PageLocation.datagrid,
@@ -39,6 +38,7 @@ const KmsActionMenu = ({ id }: OKMS) => {
       items={items}
       isCompact
       icon={ODS_ICON_NAME.ellipsisVertical}
+      variant={ODS_BUTTON_VARIANT.ghost}
     />
   );
 };

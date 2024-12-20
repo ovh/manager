@@ -7,7 +7,10 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { OkmsServiceKeyReference } from '@/types/okmsServiceKeyReference.type';
+import {
+  OkmsServiceKeyReference,
+  OkmsServiceKeyReferenceOperations,
+} from '@/types/okmsServiceKeyReference.type';
 import {
   OkmsKeyTypes,
   OkmsServiceKeyOperations,
@@ -40,6 +43,23 @@ export const KeyUsageSection: React.FC<KeyUsageSectionProps> = ({
     });
   }, [serviceKey]);
 
+  const onCheckboxChange = (operation: OkmsServiceKeyReferenceOperations) => {
+    setKeyOperations((prev) => {
+      const newOperations: OkmsServiceKeyOperations[][] = prev.includes(
+        operation.value,
+      )
+        ? prev.filter((op) => op !== operation.value)
+        : [...prev, operation.value];
+      trackClick({
+        location: PageLocation.funnel,
+        buttonType: ButtonType.button,
+        actionType: 'action',
+        actions: ['select_use_key', newOperations.flat().join('_')],
+      });
+      return newOperations;
+    });
+  };
+
   return (
     <OdsFormField>
       <div slot="label">
@@ -64,22 +84,7 @@ export const KeyUsageSection: React.FC<KeyUsageSectionProps> = ({
             isDisabled={
               keyType === OkmsKeyTypes.EC || keyType === OkmsKeyTypes.RSA
             }
-            onOdsChange={() =>
-              setKeyOperations((prev) => {
-                const newOperations: OkmsServiceKeyOperations[][] = prev.includes(
-                  operation.value,
-                )
-                  ? prev.filter((op) => op !== operation.value)
-                  : [...prev, operation.value];
-                trackClick({
-                  location: PageLocation.funnel,
-                  buttonType: ButtonType.button,
-                  actionType: 'action',
-                  actions: ['select_use_key', newOperations.flat().join('_')],
-                });
-                return newOperations;
-              })
-            }
+            onOdsChange={() => onCheckboxChange(operation)}
           />
         ))}
       </div>

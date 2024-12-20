@@ -5,13 +5,13 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { OdsText, OdsButton, OdsCard } from '@ovhcloud/ods-components/react';
+import { OdsText, OdsButton } from '@ovhcloud/ods-components/react';
 import {
   ODS_TEXT_PRESET,
   ODS_BUTTON_SIZE,
   ODS_BUTTON_COLOR,
 } from '@ovhcloud/ods-components';
-import { LinkType, Links, Subtitle } from '@ovh-ux/manager-react-components';
+import { LinkType, Links } from '@ovh-ux/manager-react-components';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ROUTES_URLS } from '@/routes/routes.constants';
@@ -38,34 +38,32 @@ const OrderConfirmation = ({ region }: OrderConfirmationProps) => {
   }, [orderLink]);
 
   return (
-    <>
-      <OdsCard className="mb-6 p-4">
-        <div className="flex flex-col gap-6 mb-6">
-          <Subtitle>
-            {t('key_management_service_create_order_initiated_title')}
-          </Subtitle>
-          <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-            {t('key_management_service_create_order_initiated_subtitle')}
-          </OdsText>
-          <Links
-            type={LinkType.external}
-            label={orderLink}
-            target="_blank"
-            href={orderLink}
-            onClickReturn={() =>
-              trackClick({
-                location: PageLocation.funnel,
-                buttonType: ButtonType.externalLink,
-                actionType: 'navigation',
-                actions: ['go-back-order'],
-              })
-            }
-          />
-          <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-            {t('key_management_service_create_order_initiated_info')}
-          </OdsText>
-        </div>
-      </OdsCard>
+    <div className="flex flex-col gap-8">
+      <div className="flex flex-col gap-4">
+        <OdsText preset={ODS_TEXT_PRESET.heading2}>
+          {t('key_management_service_create_order_initiated_title')}
+        </OdsText>
+        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+          {t('key_management_service_create_order_initiated_subtitle')}
+        </OdsText>
+        <Links
+          type={LinkType.external}
+          label={orderLink}
+          target="_blank"
+          href={orderLink}
+          onClickReturn={() =>
+            trackClick({
+              location: PageLocation.funnel,
+              buttonType: ButtonType.externalLink,
+              actionType: 'navigation',
+              actions: ['go-back-order'],
+            })
+          }
+        />
+        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+          {t('key_management_service_create_order_initiated_info')}
+        </OdsText>
+      </div>
       <OdsButton
         size={ODS_BUTTON_SIZE.md}
         color={ODS_BUTTON_COLOR.primary}
@@ -80,7 +78,7 @@ const OrderConfirmation = ({ region }: OrderConfirmationProps) => {
         }}
         label={t('key_management_service_create_order_initiated_cta_done')}
       />
-    </>
+    </div>
   );
 };
 
