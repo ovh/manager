@@ -109,7 +109,7 @@ export function ContainerNameStep({
         />
       </OsdsFormField>
       <OsdsText
-        size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+        size={ODS_THEME_TYPOGRAPHY_SIZE._100}
         color={
           shouldDisplayError
             ? ODS_THEME_COLOR_INTENT.error

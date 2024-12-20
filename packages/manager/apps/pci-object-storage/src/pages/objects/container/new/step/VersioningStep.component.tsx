@@ -51,7 +51,7 @@ export function VersioningStep() {
         <p>
           <OsdsText
             color={ODS_THEME_COLOR_INTENT.text}
-            size={ODS_TEXT_SIZE._600}
+            size={ODS_TEXT_SIZE._400}
           >
             {t(
               'containers/enable-versioning:pci_projects_project_storages_containers_bucket_versioning_description',
@@ -77,7 +77,7 @@ export function VersioningStep() {
               <div slot="end" className="align-bottom inline-block">
                 <OsdsText
                   color={ODS_THEME_COLOR_INTENT.text}
-                  size={ODS_TEXT_SIZE._600}
+                  size={ODS_TEXT_SIZE._400}
                 >
                   {t(
                     'pci_projects_project_storages_containers_bucket_versioning_disabled',
@@ -95,7 +95,7 @@ export function VersioningStep() {
               <div slot="end" className="align-bottom inline-block">
                 <OsdsText
                   color={ODS_THEME_COLOR_INTENT.text}
-                  size={ODS_TEXT_SIZE._600}
+                  size={ODS_TEXT_SIZE._400}
                 >
                   {t(
                     'pci_projects_project_storages_containers_bucket_versioning_enabled',
