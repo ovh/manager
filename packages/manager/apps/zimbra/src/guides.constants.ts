@@ -1,5 +1,14 @@
+import {
+  GUIDE_ADMINISTRATOR,
+  GUIDE_CNAME,
+  GUIDE_DNS_CONFIG,
+  GUIDE_USER,
+  GUIDE_WEBMAIL,
+} from './tracking.constant';
+
 export interface GuideLinks {
-  [key: string]: string | Guide;
+  [key: string]: string;
+  DEFAULT: string;
   FR?: string;
   GB?: string;
   DE?: string;
@@ -8,7 +17,6 @@ export interface GuideLinks {
   PL?: string;
   PT?: string;
   IE?: string;
-  DEFAULT?: string;
   MA?: string;
   TN?: string;
   SN?: string;
@@ -17,12 +25,15 @@ export interface GuideLinks {
 
 export interface Guide {
   key: string;
-  url: GuideLinks | string;
+  url: GuideLinks;
   tracking: string;
 }
 
 const helpRoot = 'https://help.ovhcloud.com/csm/';
-const WEBMAIL = 'https://webmail.mail.ovh.net/';
+
+const WEBMAIL = {
+  DEFAULT: 'https://webmail.mail.ovh.net/',
+};
 
 export const ZIMBRA_USER_GUIDE: GuideLinks = {
   FR: `${helpRoot}fr-mx-plan-zimbra-faq?id=kb_article_view&sysparm_article=KB0061410`,
@@ -88,27 +99,27 @@ export const GUIDES_LIST = {
   webmail: {
     key: 'zimbra_dashboard_webmail',
     url: WEBMAIL,
-    tracking: '::to define',
+    tracking: GUIDE_WEBMAIL,
   },
   administrator_guide: {
     key: 'zimbra_dashboard_administrator_guide',
     url: ZIMBRA_ADMINISTRATOR_GUIDE,
-    tracking: '::to define',
+    tracking: GUIDE_ADMINISTRATOR,
   },
   user_guide: {
     key: 'zimbra_dashboard_user_guides',
     url: ZIMBRA_USER_GUIDE,
-    tracking: '::to define',
+    tracking: GUIDE_USER,
   },
   cname_guide: {
     key: 'zimbra_cname_guide',
     url: ZIMBRA_CNAME_GUIDE,
-    tracking: '::to define',
+    tracking: GUIDE_CNAME,
   },
   dns_configuration_guide: {
     key: 'zimbra_dns_configuration_guide',
     url: ZIMBRA_DNS_CONFIGURATION_GUIDE,
-    tracking: '::to define',
+    tracking: GUIDE_DNS_CONFIG,
   },
 };
 

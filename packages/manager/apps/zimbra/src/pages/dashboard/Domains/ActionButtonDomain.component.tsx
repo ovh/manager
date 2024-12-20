@@ -3,10 +3,16 @@ import { useTranslation } from 'react-i18next';
 import { ActionMenu } from '@ovh-ux/manager-react-components';
 import { useNavigate } from 'react-router-dom';
 import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { DomainsItem } from './Domains';
 import { useGenerateUrl, usePlatform } from '@/hooks';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import { ResourceStatus } from '@/api/api.type';
+import { DELETE_DOMAIN, EDIT_DOMAIN } from '@/tracking.constant';
 
 interface ActionButtonDomainProps {
   domainItem: DomainsItem;
@@ -16,6 +22,7 @@ const ActionButtonDomain: React.FC<ActionButtonDomainProps> = ({
 }) => {
   const { t } = useTranslation('domains');
   const navigate = useNavigate();
+  const { trackClick } = useOvhTracking();
   const { platformUrn } = usePlatform();
 
   const hrefDeleteDomain = useGenerateUrl('./delete', 'path', {
@@ -23,6 +30,12 @@ const ActionButtonDomain: React.FC<ActionButtonDomainProps> = ({
   });
 
   const handleDeleteDomainClick = () => {
+    trackClick({
+      location: PageLocation.datagrid,
+      buttonType: ButtonType.button,
+      actionType: 'navigation',
+      actions: [DELETE_DOMAIN],
+    });
     navigate(hrefDeleteDomain);
   };
 
@@ -31,6 +44,12 @@ const ActionButtonDomain: React.FC<ActionButtonDomainProps> = ({
   });
 
   const handleEditDomainClick = () => {
+    trackClick({
+      location: PageLocation.datagrid,
+      buttonType: ButtonType.button,
+      actionType: 'navigation',
+      actions: [EDIT_DOMAIN],
+    });
     navigate(hrefEditDomain);
   };
 

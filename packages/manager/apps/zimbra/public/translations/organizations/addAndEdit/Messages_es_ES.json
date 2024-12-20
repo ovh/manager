@@ -16,5 +16,6 @@
   "zimbra_organization_add_success_message": "La solicitud de adición de la organización se ha enviado. Será efectiva en unos instantes.",
   "zimbra_organization_add_error_message": "Se ha producido un error al enviar la solicitud de adición de la organización: {{ error }}",
   "zimbra_organization_edit_success_message": "La solicitud de modificación se ha enviado. Se ejecutará en unos instantes.",
-  "zimbra_organization_edit_error_message": "Se ha producido un error al enviar la solicitud de modificación: {{ error }}"
+  "zimbra_organization_edit_error_message": "Se ha producido un error al enviar la solicitud de modificación: {{ error }}",
+  "zimbra_organization_add_cancel": "Cancelar"
 }
