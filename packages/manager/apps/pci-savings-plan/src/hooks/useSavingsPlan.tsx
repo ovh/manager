@@ -1,6 +1,11 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useMutation, useQuery } from '@tanstack/react-query';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { useServices } from './useService';
 import {
   SavingsPlanContract,
@@ -65,8 +70,8 @@ export const postSavingsPlan = async ({
   offerId: string;
   displayName: string;
   size: number;
-}): Promise<SavingsPlanService[]> => {
-  const { data } = await v6.post<SavingsPlanService[]>(
+}): Promise<SavingsPlanService> => {
+  const { data } = await v6.post<SavingsPlanService>(
     `/services/${serviceId}/savingsPlans/subscribe/execute`,
     {
       displayName,
@@ -145,13 +150,23 @@ export const useSavingsPlanEditName = (savingsPlanId: string) => {
 
 export const useSavingsPlanCreate = () => {
   const { refetch } = useSavingsPlan();
+  const { trackClick } = useOvhTracking();
   const serviceId = useServiceId();
   const navigate = useNavigate();
   const { projectId } = useParams();
 
   return useMutation({
-    onSuccess: async () => {
+    onSuccess: async (res) => {
       const { data } = await refetch();
+      trackClick({
+        location: PageLocation.funnel,
+        buttonType: ButtonType.button,
+        actionType: 'action',
+        actions: [
+          `add_savings_plan::confirm::savings_plan_created_${res.period}_${res.flavor}_${res.model}_${res.size}`,
+        ],
+      });
+
       if (data?.length) {
         navigate(getSavingsPlansUrl(projectId));
       }
