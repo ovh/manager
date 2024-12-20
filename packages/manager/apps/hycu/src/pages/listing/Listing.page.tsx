@@ -21,6 +21,7 @@ import {
   useFormattedDate,
   Notifications,
 } from '@ovh-ux/manager-react-components';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
@@ -35,6 +36,7 @@ import { IHycuDetails } from '@/types/hycu.details.interface';
 import { urls, subRoutes } from '@/routes/routes.constant';
 import HycuActionMenu from './menu/HycuActionMenu.component';
 import { getStatusColor } from '@/utils/statusColor';
+import { TRACKING } from '@/tracking.constant';
 
 /* ========= datagrid cells ========= */
 const DatagridErrorCell = () => {
@@ -141,6 +143,7 @@ const DatagridActionCell = (hycuDetail: IHycuDetails) => {
 };
 
 export default function Listing() {
+  const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
   const { t } = useTranslation('hycu/listing');
   const { t: tCommon } = useTranslation('hycu');
@@ -227,6 +230,7 @@ export default function Listing() {
                   variant={ODS_BUTTON_VARIANT.stroked}
                   size={ODS_BUTTON_SIZE.sm}
                   onClick={() => {
+                    trackClick(TRACKING.listing.orderClick);
                     navigate(urls.order);
                   }}
                   inline
