@@ -3,9 +3,8 @@ import { vi } from 'vitest';
 import { UseQueryResult } from '@tanstack/react-query';
 import ClusterAccessAndSecurity from '@/components/service/ClusterAccessAndSecurity.component';
 import { wrapper } from '@/wrapperRenders';
-import { TKube } from '@/types';
+import { TKube, TOidcProvider } from '@/types';
 import * as useKubernetesModule from '@/api/hooks/useKubernetes';
-import { TOidcProvider } from '@/api/data/kubernetes';
 
 describe('ClusterAccessAndSecurity', () => {
   it('renders access and security title with correct text', () => {
