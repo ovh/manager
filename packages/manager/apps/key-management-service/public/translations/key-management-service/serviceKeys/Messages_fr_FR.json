@@ -92,7 +92,7 @@
   "key_management_service_service-keys_deactivation_success": "La clé a été désactivée avec succès",
   "key_management_service_service-keys_reactivate_success": "La clé a été réactivée avec succès",
   "key_management_service_service-keys_create_protection_level_title": "Niveau de protection",
-  "key_management_service_service-keys_create_protection_level_subtitle": "Indiquez le type d'algorithme utilisé pour la clé de chiffrement.",
+  "key_management_service_service-keys_create_protection_level_subtitle": "Indiquez le niveau de protection utilisé pour la clé de chiffrement.",
   "key_management_service_service-keys_create_software_protection_title": "Protection logicielle",
   "key_management_service_service-keys_create_software_protection_subtitle": "Les opérations cryptographiques sont effectuées sur un logiciel."
 }
