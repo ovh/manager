@@ -9,11 +9,11 @@ import {
   useCatalogPrice,
   convertHourlyPriceToMonthly,
 } from '@ovh-ux/manager-react-components';
-import { TAddon } from '@ovh-ux/manager-pci-common';
+import { TVolumeAddon } from '@/api/data/catalog';
 
 export interface PriceEstimateProps {
   volumeCapacity: number;
-  volumeType: TAddon;
+  volumeType: TVolumeAddon;
 }
 
 export function PriceEstimate({

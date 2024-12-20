@@ -1,37 +1,28 @@
-import {
-  OsdsButton,
-  OsdsSpinner,
-  OsdsText,
-  OsdsChip,
-} from '@ovhcloud/ods-components/react';
+import { OsdsButton, OsdsText, OsdsChip } from '@ovhcloud/ods-components/react';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
-import {
-  ODS_CHIP_SIZE,
-  ODS_BUTTON_SIZE,
-  ODS_SPINNER_SIZE,
-} from '@ovhcloud/ods-components';
+import { ODS_CHIP_SIZE, ODS_BUTTON_SIZE } from '@ovhcloud/ods-components';
 import {
   TilesInputComponent,
   useCatalogPrice,
 } from '@ovh-ux/manager-react-components';
 
 import { useTranslation } from 'react-i18next';
-import { useState } from 'react';
-import { TAddon, TCatalog } from '@ovh-ux/manager-pci-common';
+import { useMemo, useState } from 'react';
 import { useTranslateBytes } from '@/pages/new/hooks/useTranslateBytes';
-import { useConsumptionVolumesAddon } from '@/api/hooks/useConsumptionVolumesAddon';
 import { StepState } from '@/pages/new/hooks/useStep';
 import { TLocalisation } from '@/api/hooks/useRegions';
+import { useVolumeCatalog } from '@/api/hooks/useCatalog';
+import { TVolumeAddon } from '@/api/data/catalog';
 
 export interface VolumeTypeStepProps {
   projectId: string;
   region: TLocalisation;
   step: StepState;
-  onSubmit: (volumeType: TAddon) => void;
+  onSubmit: (volumeType: TVolumeAddon) => void;
 }
 
 export function VolumeTypeStep({
@@ -43,30 +34,32 @@ export function VolumeTypeStep({
   const { t } = useTranslation('add');
   const { t: tStepper } = useTranslation('stepper');
   const { t: tCommon } = useTranslation('common');
-  const [volumeType, setVolumeType] = useState<TAddon>(undefined);
+  const [volumeType, setVolumeType] = useState<TVolumeAddon>(undefined);
   const tBytes = useTranslateBytes();
   const { getFormattedCatalogPrice } = useCatalogPrice(6, {
     hideTaxLabel: true,
   });
 
-  const { volumeTypes, isPending } = useConsumptionVolumesAddon(
-    projectId,
-    region,
+  const { data } = useVolumeCatalog(projectId);
+  const volumeTypes = useMemo(
+    () =>
+      data?.models.filter(
+        (m) =>
+          m.pricingType === 'consumption' &&
+          m.pricings.flatMap((p) => p.regions).includes(region.name),
+      ) || [],
+    [data, region],
   );
 
   const displayedTypes =
     volumeType && step.isLocked ? [volumeType] : volumeTypes;
 
-  if (isPending) {
-    return <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />;
-  }
-
   return (
     <>
-      <TilesInputComponent<TCatalog['addons'][0]>
+      <TilesInputComponent<TVolumeAddon>
         value={volumeType}
         items={displayedTypes || []}
-        label={(vType: TCatalog['addons'][0]) => (
+        label={(vType: TVolumeAddon) => (
           <div className="w-full">
             <div className="border-solid border-0 border-b border-b-[#85d9fd] py-3 d-flex">
               <OsdsText

@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { TAddon, useProjectRegions } from '@ovh-ux/manager-pci-common';
+import { useProjectRegions } from '@ovh-ux/manager-pci-common';
 import { Step, useStep } from '@/pages/new/hooks/useStep';
 import { TFormState } from '@/pages/new/form.type';
 import { TLocalisation } from '@/api/hooks/useRegions';
@@ -7,6 +7,7 @@ import {
   isProductWithAvailabilityZone,
   isRegionWith3AZ,
 } from '@/api/data/availableVolumes';
+import { TVolumeAddon } from '@/api/data/catalog';
 
 export function useVolumeStepper(projectId: string) {
   const { data } = useProjectRegions(projectId);
@@ -91,7 +92,7 @@ export function useVolumeStepper(projectId: string) {
         });
         setForm((f) => ({ region: f.region }));
       },
-      submit: (volumeType: TAddon) => {
+      submit: (volumeType: TVolumeAddon) => {
         volumeTypeStep.check();
         volumeTypeStep.lock();
         if (
