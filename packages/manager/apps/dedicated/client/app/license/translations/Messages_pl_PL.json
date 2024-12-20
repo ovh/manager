@@ -600,7 +600,7 @@
   "license_upgrade_redirection_popup_upgrade": "Zaktualizuj licencję",
   "license_upgrade_title": "Wykonaj upgrade licencji",
   "license_upgrade_title_button": "Wykonaj upgrade licencji",
-  "license_upgrade_common_no_upgrade": "Upgrade wersji Pleska, z której korzystasz nie jest dostępny. Skontaktuj się z pomocą, aby uzyskać więcej informacji.",
+  "license_upgrade_common_no_upgrade": "Brak dostępnych aktualizacji dla Twojej wersji Plesk.",
   "license_upgrade_common_no_change": "Bez zmian",
   "license_upgrade_summary_title": "Informacje o aktualnej licencji",
   "license_upgrade_summary_version": "Wersja",
