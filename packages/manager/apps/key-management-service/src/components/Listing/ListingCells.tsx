@@ -13,7 +13,11 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { useNavigate } from 'react-router-dom';
-import { ODS_ICON_NAME, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+import {
+  ODS_BUTTON_VARIANT,
+  ODS_ICON_NAME,
+  ODS_SPINNER_SIZE,
+} from '@ovhcloud/ods-components';
 import { OdsSpinner } from '@ovhcloud/ods-components/react';
 import { OKMS } from '@/types/okms.type';
 import { OkmsAllServiceKeys } from '@/types/okmsServiceKey.type';
@@ -138,6 +142,7 @@ export const DatagridServiceKeyActionMenu = (props: OkmsAllServiceKeys) => {
       id={`service-key-actions-${props.id}`}
       isLoading={isPending}
       isCompact
+      variant={ODS_BUTTON_VARIANT.ghost}
       icon={ODS_ICON_NAME.ellipsisVertical}
       items={actionList}
     />

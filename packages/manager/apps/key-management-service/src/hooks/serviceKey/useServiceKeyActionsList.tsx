@@ -152,7 +152,7 @@ const useServiceKeyActionsList = (
     ].includes(okmsKey?.state) && {
       id: 4,
       label: t('key_management_service_service-keys_link_delete_key'),
-      color: ODS_BUTTON_COLOR.critical,
+      color: ODS_BUTTON_COLOR.primary,
       isDisabled: okmsKey?.state === OkmsServiceKeyState.active,
       isLoading: deleteIsPending,
       iamActions: [kmsIamActions.serviceKeyDelete],

@@ -1,13 +1,14 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useNavigate } from 'react-router-dom';
-import { OdsLink } from '@ovhcloud/ods-components/react';
+import { OdsLink, OdsText } from '@ovhcloud/ods-components/react';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
   ODS_BUTTON_COLOR,
   ODS_LINK_COLOR,
   ODS_ICON_NAME,
+  ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
 import {
   Clipboard,
@@ -52,7 +53,11 @@ const CredentialGeneralInformations = () => {
     {
       id: 'name',
       label: t('key_management_service_credential_dashboard_name'),
-      value: credential.name || credential.id,
+      value: (
+        <OdsText preset={ODS_TEXT_PRESET.span}>
+          {credential.name || credential.id}
+        </OdsText>
+      ),
     },
     {
       id: 'id',
@@ -62,7 +67,11 @@ const CredentialGeneralInformations = () => {
     {
       id: 'description',
       label: t('key_management_service_credential_dashboard_description'),
-      value: credential.description || '',
+      value: (
+        <OdsText preset={ODS_TEXT_PRESET.span}>
+          {credential.description || ''}
+        </OdsText>
+      ),
     },
     {
       id: 'status',

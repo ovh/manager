@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next';
 import {
   ODS_MESSAGE_COLOR,
   ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
   ODS_BUTTON_COLOR,
 } from '@ovhcloud/ods-components';
 import { OdsButton, OdsMessage } from '@ovhcloud/ods-components/react';
@@ -114,11 +113,10 @@ export default function Listing() {
         }}
         message={<Notifications />}
       >
-        <div className="flex mb-3 mt-6">
+        <div className="flex flex-col gap-4">
           <OdsButton
-            className="mr-1"
+            className="w-fit"
             size={ODS_BUTTON_SIZE.sm}
-            variant={ODS_BUTTON_VARIANT.outline}
             color={ODS_BUTTON_COLOR.primary}
             onClick={() => {
               clearNotifications();
@@ -132,9 +130,7 @@ export default function Listing() {
             }}
             label={t('key_management_service_listing_add_kms_button')}
           />
-        </div>
-        {flattenData && (
-          <div className="mt-8">
+          {flattenData && (
             <Datagrid
               columns={columns}
               items={flattenData}
@@ -143,8 +139,8 @@ export default function Listing() {
               onFetchNextPage={() => fetchNextPage()}
               contentAlignLeft
             />
-          </div>
-        )}
+          )}
+        </div>
         <Outlet />
       </BaseLayout>
     </RedirectionGuard>

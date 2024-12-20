@@ -1,11 +1,11 @@
 import { screen, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { renderTestApp } from '@/utils/tests/renderTestApp';
 import {
   assertOds18ModalVisibility,
   assertTextVisibility,
   getOds18ButtonByLabel,
 } from '@ovh-ux/manager-core-test-utils';
+import userEvent from '@testing-library/user-event';
+import { renderTestApp } from '@/utils/tests/renderTestApp';
 import { labels } from '@/utils/tests/init.i18n';
 import { okmsMock } from '@/mocks/kms/okms.mock';
 

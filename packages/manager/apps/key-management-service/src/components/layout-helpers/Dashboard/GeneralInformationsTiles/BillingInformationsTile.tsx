@@ -14,6 +14,7 @@ import {
   ODS_ICON_NAME,
   ODS_TEXT_PRESET,
   ODS_BADGE_COLOR,
+  ODS_BUTTON_VARIANT,
 } from '@ovhcloud/ods-components';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { OdsText, OdsBadge } from '@ovhcloud/ods-components/react';
@@ -104,7 +105,7 @@ const BillingInformationsTile = ({
               'key_management_service_dashboard_field_label_next_billing_date',
             ),
             value: (
-              <div className="flex flex-row justify-between items-center">
+              <div className="flex flex-row justify-between items-center gap-2">
                 <TileValueDate
                   value={okmsService?.billing.nextBillingDate}
                   options={dateFormat}
@@ -116,6 +117,7 @@ const BillingInformationsTile = ({
                     items={items}
                     isCompact
                     icon={ODS_ICON_NAME.ellipsisVertical}
+                    variant={ODS_BUTTON_VARIANT.ghost}
                   />
                 </div>
               </div>
