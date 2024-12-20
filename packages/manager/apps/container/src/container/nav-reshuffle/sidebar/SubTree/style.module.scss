@@ -24,6 +24,13 @@
       width: 20rem;
       transition: transform 0.3s ease-in 0s, opacity 0.3s ease-in 0s, width 0s ease-out 0s;
     }
+
+    &_close {
+      transform: scaleX(0);
+      opacity: 0;
+      width: 20rem;
+      transition: transform 0.3s ease-in 0s, opacity 0.3s ease-in 0s, width 0s ease-out 0s;
+    }
   }
   &_list {
     min-height: 28.125rem;

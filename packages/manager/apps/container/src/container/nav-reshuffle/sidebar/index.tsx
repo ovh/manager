@@ -1,4 +1,4 @@
-import { useEffect, useState, Suspense } from 'react';
+import { useEffect, useState, useMemo, Suspense } from 'react';
 import { useLocation } from 'react-router-dom';
 import { aapi } from '@ovh-ux/manager-core-api';
 import { useTranslation } from 'react-i18next';
@@ -73,6 +73,7 @@ const Sidebar = (): JSX.Element => {
     const initializeNavigationTree = async () => {
       if (currentNavigationNode) return;
       const features = initFeatureNames(navigationTree);
+      setCurrentNavigationNode(findNodeById(navigationTree, 'sidebar'));
 
       const results = await fetchFeatureAvailabilityData(features);
 
@@ -215,10 +216,9 @@ const Sidebar = (): JSX.Element => {
   };
 
   const closeSubMenu = () => {
-    setShowSubTree(false);
-
     setTimeout(() => {
-      setSelectedNode(null);
+      setShowSubTree(false);
+      setIsManuallyClosed(true);
       setSelectedSubMenu(null);
       setIsManuallyClosed(true);
     }, 400);
@@ -256,35 +256,40 @@ const Sidebar = (): JSX.Element => {
     if (firstElement) firstElement.focus();
   };
 
+  const isLoading = useMemo<boolean>(() => (!servicesCount || !currentNavigationNode), [servicesCount, currentNavigationNode]);
+
   return (
     <div
-      className={`${style.sidebar} ${
-        selectedNode ? style.sidebar_selected : ''
+      className={`${style.sidebar} ${selectedNode ? style.sidebar_selected : ''
       }`}
     >
       <div
         className={`${style.sidebar_wrapper} ${!open && style.sidebar_short}`}
       >
         <div className={style.sidebar_lvl1}>
-          {!isMobile && (
-            <a
-              role="img"
-              className={`block ${style.sidebar_logo}`}
-              aria-label="OVHcloud"
-              target="_top"
-              href={logoLink}
-            >
-              <img
-                className={`${open ? 'mx-4' : 'mx-2'} my-3`}
-                src={open ? logo : shortLogo}
-                alt="OVHcloud"
-                aria-hidden="true"
-              />
-            </a>
-          )}
+            {!isMobile && (
+              <a
+                role="img"
+                className={`block ${style.sidebar_logo}`}
+                aria-label="OVHcloud"
+                target="_top"
+                href={logoLink}
+              >
+                <img
+                  className={`${open ? 'mx-4' : 'mx-2'} my-3`}
+                  src={open ? logo : shortLogo}
+                  alt="OVHcloud"
+                  aria-hidden="true"
+                />
+              </a>
+            )}
 
-          <div className={style.sidebar_menu} role="menubar">
+          <div
+            className={style.sidebar_menu}
+            role="menubar"
+          >
             <ul id="menu" role="menu">
+
               <li className="px-3 mb-3 mt-2 h-8">
                 {open && currentNavigationNode && (
                   <h2>{t(currentNavigationNode.translation)}</h2>
@@ -307,6 +312,7 @@ const Sidebar = (): JSX.Element => {
                     <SidebarLink
                       node={node}
                       hasService={node.hasService}
+                      isLoading={isLoading}
                       handleOnClick={() => menuClickHandler(node)}
                       handleOnEnter={(node: Node) => onEnter(node)}
                       id={node.idAttr}
@@ -346,15 +352,16 @@ const Sidebar = (): JSX.Element => {
             </div>
           </div>
 
-          {assistanceTree && (
-            <Suspense fallback="">
-              <Assistance
+            {assistanceTree && (
+              <Suspense fallback="">
+                <Assistance
                 nodeTree={assistanceTree}
                 selectedNode={selectedNode}
-                isShort={!open}
+                isLoading={isLoading}
+                isShort={!open} 
               />
-            </Suspense>
-          )}
+              </Suspense>
+            )}
 
           <button
             className={style.sidebar_toggle_btn}
@@ -363,9 +370,8 @@ const Sidebar = (): JSX.Element => {
           >
             {open && <span className="mr-2">{t('sidebar_reduce')}</span>}
             <span
-              className={`${
-                style.sidebar_toggle_btn_first_icon
-              } oui-icon oui-icon-chevron-${open ? 'left' : 'right'}`}
+              className={`${style.sidebar_toggle_btn_first_icon
+                } oui-icon oui-icon-chevron-${open ? 'left' : 'right'}`}
               aria-hidden="true"
             ></span>
             <span
@@ -375,7 +381,7 @@ const Sidebar = (): JSX.Element => {
           </button>
         </div>
       </div>
-      {showSubTree && !isManuallyClosed && (
+      {selectedNode && !isManuallyClosed && (
         <SubTree
           selectedNode={selectedSubMenu}
           handleCloseSideBar={closeSubMenu}
