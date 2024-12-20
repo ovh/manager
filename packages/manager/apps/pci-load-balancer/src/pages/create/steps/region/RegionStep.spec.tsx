@@ -106,7 +106,7 @@ describe('RegionStep', () => {
       const call = calls[calls.length - 1][0] as TStepProps;
 
       expect(call.title).toBe(
-        'load-balancer/create | octavia_load_balancer_create_region_title',
+        'load-balancer/create,pci-common | octavia_load_balancer_create_region_title',
       );
 
       expect(call.isOpen).toBe(true);
@@ -118,12 +118,12 @@ describe('RegionStep', () => {
       expect(call.order).toBe(2);
 
       expect(call.next.label).toBe(
-        'pci-common | common_stepper_next_button_label',
+        'load-balancer/create,pci-common | pci-common:common_stepper_next_button_label',
       );
       expect(call.next.isDisabled).toBe(true);
 
       expect(call.edit.label).toBe(
-        'pci-common | common_stepper_modify_this_step',
+        'load-balancer/create,pci-common | pci-common:common_stepper_modify_this_step',
       );
     });
 
@@ -131,12 +131,12 @@ describe('RegionStep', () => {
       const { getByText } = renderStep();
       expect(
         getByText(
-          'load-balancer/create | octavia_load_balancer_create_region_intro',
+          'load-balancer/create,pci-common | octavia_load_balancer_create_region_intro',
         ),
       ).toBeInTheDocument();
       expect(
         getByText(
-          'load-balancer/create | octavia_load_balancer_create_region_link',
+          'load-balancer/create,pci-common | octavia_load_balancer_create_region_link',
         ),
       ).toBeInTheDocument();
     });
