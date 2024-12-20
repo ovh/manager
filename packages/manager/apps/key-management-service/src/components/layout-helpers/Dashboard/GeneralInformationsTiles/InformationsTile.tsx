@@ -13,6 +13,7 @@ import {
   ODS_ICON_NAME,
   ODS_TEXT_PRESET,
   ODS_BUTTON_COLOR,
+  ODS_BUTTON_SIZE,
 } from '@ovhcloud/ods-components';
 import {
   ButtonType,
@@ -46,7 +47,7 @@ const InformationsTile = ({
             id: 'name',
             label: t('key_management_service_dashboard_field_label_name'),
             value: (
-              <div className="flex justify-between items-center">
+              <div className="flex justify-between items-center gap-2">
                 <OdsText
                   preset={ODS_TEXT_PRESET.paragraph}
                   className="break-all"
@@ -56,6 +57,7 @@ const InformationsTile = ({
                 <div className="min-w-fit">
                   <OdsButton
                     aria-label="edit"
+                    size={ODS_BUTTON_SIZE.sm}
                     variant={ODS_BUTTON_VARIANT.outline}
                     color={ODS_BUTTON_COLOR.primary}
                     onClick={() => navigate(ROUTES_URLS.okmsUpdateName)}

@@ -17,6 +17,7 @@ import {
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
   ODS_BUTTON_COLOR,
+  ODS_BUTTON_SIZE,
 } from '@ovhcloud/ods-components';
 import {
   ButtonType,
@@ -145,7 +146,7 @@ export default function Key() {
                   'key_management_service_service-keys_dashboard_field_name',
                 ),
                 value: (
-                  <div className="flex justify-between items-center">
+                  <div className="flex justify-between items-center gap-2">
                     <OdsText
                       className="max-w-1/2 text-ellipsis overflow-hidden"
                       preset={ODS_TEXT_PRESET.paragraph}
@@ -155,6 +156,7 @@ export default function Key() {
                     <ManagerButton
                       id="editName"
                       label=""
+                      size={ODS_BUTTON_SIZE.sm}
                       variant={ODS_BUTTON_VARIANT.outline}
                       color={ODS_BUTTON_COLOR.primary}
                       urn={serviceKey.data.iam.urn}

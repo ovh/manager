@@ -9,7 +9,6 @@ import {
 import {
   ODS_BUTTON_COLOR,
   ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
@@ -35,7 +34,7 @@ const CredentialList = () => {
   );
 
   return (
-    <div className="flex flex-col gap-8 mt-8">
+    <div className="flex flex-col gap-4">
       <OdsText preset={ODS_TEXT_PRESET.paragraph}>
         {t('key_management_service_credential_headline')}
       </OdsText>
@@ -44,7 +43,6 @@ const CredentialList = () => {
         isLoading={isLoadingIam}
         size={ODS_BUTTON_SIZE.sm}
         color={ODS_BUTTON_COLOR.primary}
-        variant={ODS_BUTTON_VARIANT.outline}
         className="w-fit"
         onClick={() => {
           trackClick({

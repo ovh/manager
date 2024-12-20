@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import {
   OdsText,
   OdsSelect,
-  OdsFormField,
   OdsButton,
   OdsSpinner,
 } from '@ovhcloud/ods-components/react';
@@ -57,59 +56,53 @@ const RegionSelector = ({
     );
   }
   return (
-    <>
-      <div className="flex flex-col gap-6">
-        <OdsFormField className="mb-5">
-          <div slot="label">
-            <OdsText className="block" preset={ODS_TEXT_PRESET.heading5}>
-              {t('key_management_service_create_region_title')}
-            </OdsText>
-            <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-              {t('key_management_service_create_region_description')}
-            </OdsText>
-            {isLoading && (
-              <OdsSpinner className="mr-3" size={ODS_SPINNER_SIZE.sm} />
+    <div className="flex flex-col gap-8">
+      <div className="flex flex-col gap-4">
+        <OdsText preset={ODS_TEXT_PRESET.heading2}>
+          {t('key_management_service_create_region_title')}
+        </OdsText>
+        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+          {t('key_management_service_create_region_description')}
+        </OdsText>
+        {isLoading && (
+          <OdsSpinner className="mr-3" size={ODS_SPINNER_SIZE.sm} />
+        )}
+        {orderCatalogOKMS && !isLoading && (
+          <OdsSelect
+            className="md:w-[250px] sm:w-full"
+            name="select-region"
+            placeholder={t('key_management_service_create_select_placeholder')}
+            onOdsChange={(v) => {
+              const value = v.detail.value?.toString();
+
+              if (value) {
+                trackClick({
+                  location: PageLocation.funnel,
+                  buttonType: ButtonType.select,
+                  actionType: 'action',
+                  actions: ['select_location', value],
+                });
+
+                selectRegion(value);
+              }
+            }}
+          >
+            {orderCatalogOKMS.plans[0].configurations[0].values.map(
+              (region) => (
+                <option
+                  key={region}
+                  value={region}
+                  data-testid={`select-region-option-${region}`}
+                >
+                  <Region
+                    mode="region"
+                    name={region.toLowerCase().replaceAll('_', '-')}
+                  />
+                </option>
+              ),
             )}
-          </div>
-          {orderCatalogOKMS && !isLoading && (
-            <OdsSelect
-              className="md:w-[250px] sm:w-full"
-              name="select-region"
-              placeholder={t(
-                'key_management_service_create_select_placeholder',
-              )}
-              onOdsChange={(v) => {
-                const value = v.detail.value?.toString();
-
-                if (value) {
-                  trackClick({
-                    location: PageLocation.funnel,
-                    buttonType: ButtonType.select,
-                    actionType: 'action',
-                    actions: ['select_location', value],
-                  });
-
-                  selectRegion(value);
-                }
-              }}
-            >
-              {orderCatalogOKMS.plans[0].configurations[0].values.map(
-                (region) => (
-                  <option
-                    key={region}
-                    value={region}
-                    data-testid={`select-region-option-${region}`}
-                  >
-                    <Region
-                      mode="region"
-                      name={region.toLowerCase().replaceAll('_', '-')}
-                    />
-                  </option>
-                ),
-              )}
-            </OdsSelect>
-          )}
-        </OdsFormField>
+          </OdsSelect>
+        )}
       </div>
       <div className="flex flex-row gap-4">
         <OdsButton
@@ -145,7 +138,7 @@ const RegionSelector = ({
           label={t('key_management_service_create_cta_order')}
         />
       </div>
-    </>
+    </div>
   );
 };
 
