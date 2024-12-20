@@ -5,7 +5,7 @@ import {
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
-import { TAddon } from '@ovh-ux/manager-pci-common';
+import { TVolumeAddon } from '@/api/data/catalog';
 
 export const HIGHSPEED_V2_PLANCODE = 'volume.high-speed-gen2.consumption';
 
@@ -17,7 +17,10 @@ export function getDisplayUnit(unit: string) {
   return unit;
 }
 
-export function computeBandwidthToAllocate(capacity: number, addon: TAddon) {
+export function computeBandwidthToAllocate(
+  capacity: number,
+  addon: TVolumeAddon,
+) {
   const { bandwidth } = addon.blobs.technical;
   const allocatedBandwidth = capacity * bandwidth.level;
   const maxBandwidthInMb = bandwidth.max * 1000;
@@ -27,7 +30,7 @@ export function computeBandwidthToAllocate(capacity: number, addon: TAddon) {
     : `${maxBandwidthInMb} ${getDisplayUnit(bandwidth.unit)}`;
 }
 
-export function computeIopsToAllocate(capacity: number, addon: TAddon) {
+export function computeIopsToAllocate(capacity: number, addon: TVolumeAddon) {
   const { volume } = addon.blobs.technical;
   const allocatedIops = capacity * volume.iops.level;
 
@@ -38,7 +41,7 @@ export function computeIopsToAllocate(capacity: number, addon: TAddon) {
 
 export interface HighSpeedV2InfosProps {
   volumeCapacity: number;
-  volumeType: TAddon;
+  volumeType: TVolumeAddon;
 }
 
 export function HighSpeedV2Infos({

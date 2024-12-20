@@ -91,6 +91,12 @@ export default class PciInstanceEditController {
   }
 
   onImageChange(image) {
+    console.log(
+      'edit - calling onImageChange',
+      image,
+      this.defaultImage,
+      image ? image.isBackup() : null,
+    );
     if (image) {
       if (!this.defaultImage) {
         this.defaultImage = image;

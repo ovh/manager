@@ -4,12 +4,13 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { PciTrustedZoneBanner, TAddon } from '@ovh-ux/manager-pci-common';
+import { PciTrustedZoneBanner } from '@ovh-ux/manager-pci-common';
 import { PriceEstimate } from '@/pages/new/components/PriceEstimate';
+import { TVolumeAddon } from '@/api/data/catalog';
 
 interface ValidationStepProps {
   volumeCapacity: number;
-  volumeType: TAddon;
+  volumeType: TVolumeAddon;
   onSubmit: () => void;
 }
 

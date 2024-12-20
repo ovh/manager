@@ -182,6 +182,7 @@ export default class ImagesListController {
   }
 
   onImageChange(image, distribution) {
+    console.log('images list - calling image change in', image, distribution);
     if (distribution) {
       this.distribution = distribution;
     }
@@ -195,6 +196,7 @@ export default class ImagesListController {
     this.selectedImage = image;
     if (this.onChange) {
       this.onChange({ image: this.selectedImage });
+      console.log('images list - calling parent onChange');
     }
   }
 

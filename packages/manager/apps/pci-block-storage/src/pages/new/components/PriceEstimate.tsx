@@ -6,11 +6,11 @@ import {
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
 import { useCatalogPrice } from '@ovh-ux/manager-react-components';
-import { TAddon } from '@ovh-ux/manager-pci-common';
+import { TVolumeAddon } from '@/api/data/catalog';
 
 export interface PriceEstimateProps {
   volumeCapacity: number;
-  volumeType: TAddon;
+  volumeType: TVolumeAddon;
 }
 
 const ESTIMATE_MONTHLY_HOURS = 24 * 30;

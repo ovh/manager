@@ -25,5 +25,14 @@
   "pci_projects_project_storages_blocks_add_save_form": "Création du volume en cours",
   "pci_projects_project_storages_blocks_add_error_query": "Une erreur est survenue lors de la récupération des régions : {{ message }}",
   "pci_projects_project_storages_blocks_add_success_message": "Le volume {{volume}} a été ajouté",
-  "pci_projects_project_storages_blocks_add_error_post": "Une erreur est survenue lors de l'ajout du volume {{ volume }} : {{ message }}"
+  "pci_projects_project_storages_blocks_add_error_post": "Une erreur est survenue lors de l'ajout du volume {{ volume }} : {{ message }}",
+  "pci_projects_project_storages_blocks_add_deployment_mode_title": "Sélectionnez un mode de déploiement",
+  "pci_projects_project_storages_blocks_add_deployment_mode_description": "Sélectionnez la configuration optimale pour garantir la disponibilité, la résilience et la latence appropriée de vos données en fonction de vos cas d'usage. <Link>En savoir plus</Link>",
+  "pci_projects_project_storages_blocks_add_deployment_mode_title_1AZ": "Région 1-AZ",
+  "pci_projects_project_storages_blocks_add_deployment_mode_description_1AZ": "Déploiement résilient et économique sur 1 zone de disponibilité.",
+  "pci_projects_project_storages_blocks_add_deployment_mode_title_3AZ": "Région 3-AZ",
+  "pci_projects_project_storages_blocks_add_deployment_mode_description_3AZ": "Déploiement haute résilience/haute disponibilité pour vos applications critiques sur 3 zones de disponibilité.",
+  "pci_projects_project_storages_blocks_add_deployment_mode_title_LZ": "Local Zone",
+  "pci_projects_project_storages_blocks_add_deployment_mode_description_LZ": "Déploiement de vos applications au plus près de vos utilisatrices et utilisateurs pour une faible latence et la résidence des données.",
+  "pci_projects_project_storages_blocks_add_deployment_mode_price_from": "A partir de {{price}} HT/Go/heure"
 }
