@@ -17,6 +17,7 @@ export type TVolume = {
   planCode: string;
   type: string;
   regionName: string;
+  availabilityZone: 'any' | string;
 };
 
 export type VolumeOptions = {
@@ -185,7 +186,7 @@ export interface AddVolumeProps {
   regionName: string;
   volumeCapacity: number;
   volumeType: string;
-  availabilityZone?: string;
+  availabilityZone: string | null;
 }
 
 export const addVolume = async ({
@@ -194,6 +195,7 @@ export const addVolume = async ({
   regionName,
   volumeCapacity,
   volumeType,
+  availabilityZone,
 }: AddVolumeProps): Promise<void> => {
   const { data } = await v6.post<void>(
     `/cloud/project/${projectId}/region/${regionName}/volume`,
@@ -201,6 +203,7 @@ export const addVolume = async ({
       name,
       size: volumeCapacity,
       type: volumeType,
+      availabilityZone,
     },
   );
 

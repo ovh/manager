@@ -1,18 +1,14 @@
-import { useEffect, useMemo, useState } from 'react';
-import { TAddon, useProjectRegions } from '@ovh-ux/manager-pci-common';
+import { useEffect, useState } from 'react';
 import { Step, useStep } from '@/pages/new/hooks/useStep';
 import { TFormState } from '@/pages/new/form.type';
-import { TLocalisation } from '@/api/hooks/useRegions';
-import {
-  isProductWithAvailabilityZone,
-  isRegionWith3AZ,
-} from '@/api/data/availableVolumes';
+import { TVolumeAddon } from '@/api/data/catalog';
+import { useHas3AZRegion } from '@/api/hooks/useHas3AZRegion';
+import { TRegion } from '@/api/data/regions';
+import { useVolumeCatalog } from '@/api/hooks/useCatalog';
 
 export function useVolumeStepper(projectId: string) {
-  const { data } = useProjectRegions(projectId);
-  const is3AZAvailable = useMemo(() => !!data && data.some(isRegionWith3AZ), [
-    data,
-  ]);
+  const { data: volumeCatalog } = useVolumeCatalog(projectId);
+  const { has3AZ } = useHas3AZRegion(projectId);
 
   const [form, setForm] = useState<Partial<TFormState>>({});
   const locationStep = useStep({ isOpen: true });
@@ -23,12 +19,12 @@ export function useVolumeStepper(projectId: string) {
   const validationStep = useStep();
 
   useEffect(() => {
-    if (is3AZAvailable) {
+    if (has3AZ) {
       availabilityZoneStep.show();
     } else {
       availabilityZoneStep.hide();
     }
-  }, [is3AZAvailable]);
+  }, [has3AZ]);
 
   const order = [
     locationStep,
@@ -58,12 +54,19 @@ export function useVolumeStepper(projectId: string) {
         });
         setForm({});
       },
-      submit: (region: TLocalisation) => {
+      submit: (region: TRegion) => {
         locationStep.check();
         locationStep.lock();
         volumeTypeStep.open();
-        if (is3AZAvailable) {
-          if (isRegionWith3AZ(region)) {
+        if (has3AZ) {
+          if (
+            volumeCatalog.models.some((m) =>
+              m.pricings.some(
+                (p) =>
+                  p.regions.includes(region.name) && p.showAvailabilityZones,
+              ),
+            )
+          ) {
             availabilityZoneStep.show();
           } else {
             availabilityZoneStep.hide();
@@ -91,14 +94,13 @@ export function useVolumeStepper(projectId: string) {
         });
         setForm((f) => ({ region: f.region }));
       },
-      submit: (volumeType: TAddon) => {
+      submit: (volumeType: TVolumeAddon) => {
         volumeTypeStep.check();
         volumeTypeStep.lock();
-        if (
-          is3AZAvailable &&
-          isRegionWith3AZ(form.region) &&
-          isProductWithAvailabilityZone(volumeType.planCode)
-        ) {
+        const pricing = volumeType.pricings.find((p) =>
+          p.regions.includes(form.region.name),
+        );
+        if (has3AZ && pricing.showAvailabilityZones) {
           availabilityZoneStep.show();
           availabilityZoneStep.open();
         } else {
@@ -108,24 +110,24 @@ export function useVolumeStepper(projectId: string) {
         setForm((f) => ({
           ...f,
           volumeType,
+          pricing,
         }));
       },
     },
     availabilityZone: {
       step: availabilityZoneStep,
       edit: () => {
-        volumeTypeStep.unlock();
-        [
-          availabilityZoneStep,
-          capacityStep,
-          volumeNameStep,
-          validationStep,
-        ].forEach((step) => {
+        availabilityZoneStep.unlock();
+        [capacityStep, volumeNameStep, validationStep].forEach((step) => {
           step.uncheck();
           step.unlock();
           step.close();
         });
-        setForm((f) => ({ region: f.region, volumeType: f.volumeType }));
+        setForm((f) => ({
+          region: f.region,
+          volumeType: f.volumeType,
+          pricing: f.pricing,
+        }));
       },
       submit: (availabilityZone: string) => {
         availabilityZoneStep.check();
@@ -149,6 +151,7 @@ export function useVolumeStepper(projectId: string) {
         setForm((f) => ({
           region: f.region,
           volumeType: f.volumeType,
+          pricing: f.pricing,
           availabilityZone: f.availabilityZone,
         }));
       },
@@ -172,6 +175,7 @@ export function useVolumeStepper(projectId: string) {
         setForm((f) => ({
           region: f.region,
           volumeType: f.volumeType,
+          pricing: f.pricing,
           availabilityZone: f.availabilityZone,
           volumeCapacity: f.volumeCapacity,
         }));

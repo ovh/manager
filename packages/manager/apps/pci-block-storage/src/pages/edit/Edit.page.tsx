@@ -43,7 +43,7 @@ import HidePreloader from '@/core/HidePreloader';
 import { useVolumeMaxSize } from '@/api/data/quota';
 import { useRegionsQuota } from '@/api/hooks/useQuota';
 import { PriceEstimate } from '@/pages/new/components/PriceEstimate';
-import { useCatalog } from '@/api/hooks/useCatalog';
+import { useVolumeCatalog } from '@/api/hooks/useCatalog';
 
 type TFormState = {
   name: string;
@@ -84,17 +84,22 @@ export default function EditPage() {
     isLoading: isLoadingVolume,
     isPending: isPendingVolume,
   } = useVolume(projectId, volumeId);
-  const { data: catalog } = useCatalog();
+  const { data: catalog } = useVolumeCatalog(projectId);
 
   const catalogVolume = useMemo(() => {
     if (!!catalog && !!volume) {
-      return (
-        catalog.addons.find((addon) => addon.planCode === volume.planCode) ||
-        null
-      );
+      return catalog.models.find((addon) => addon.name === volume.type) || null;
     }
     return null;
   }, [catalog, volume]);
+
+  const pricing = useMemo(
+    () =>
+      catalogVolume
+        ? catalogVolume.pricings.find((p) => p.regions.includes(volume.region))
+        : null,
+    [catalogVolume, volume],
+  );
 
   const { volumeMaxSize } = useVolumeMaxSize(volume?.region);
 
@@ -427,7 +432,7 @@ export default function EditPage() {
             <div className="mb-6">
               <PriceEstimate
                 volumeCapacity={formState.size.value}
-                volumeType={catalogVolume}
+                pricing={pricing}
               />
             </div>
           )}

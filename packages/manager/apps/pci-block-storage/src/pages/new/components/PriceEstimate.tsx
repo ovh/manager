@@ -9,24 +9,21 @@ import {
   useCatalogPrice,
   convertHourlyPriceToMonthly,
 } from '@ovh-ux/manager-react-components';
-import { TAddon } from '@ovh-ux/manager-pci-common';
+import { TVolumePricing } from '@/api/data/catalog';
 
 export interface PriceEstimateProps {
   volumeCapacity: number;
-  volumeType: TAddon;
+  pricing: TVolumePricing;
 }
 
-export function PriceEstimate({
-  volumeCapacity,
-  volumeType,
-}: PriceEstimateProps) {
+export function PriceEstimate({ volumeCapacity, pricing }: PriceEstimateProps) {
   const { t } = useTranslation('add');
   const { getFormattedCatalogPrice } = useCatalogPrice(3, {
     hideTaxLabel: true,
   });
-  const { price } =
-    volumeType?.pricings?.find(({ type }) => type === 'consumption') || {};
-  const priceEstimate = convertHourlyPriceToMonthly(price * volumeCapacity);
+  const priceEstimate = convertHourlyPriceToMonthly(
+    pricing.price * volumeCapacity,
+  );
 
   return (
     <OsdsText
