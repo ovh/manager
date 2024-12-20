@@ -19,7 +19,7 @@ export default function UserInformationTile({
   secretUser,
   user,
 }: Readonly<UserInformationTileProps>) {
-  const { t: tCredentialBanner } = useTranslation('credential-banner');
+  const { t } = useTranslation(['credential-banner', 'pci-common']);
   return (
     <OsdsTile
       rounded
@@ -33,41 +33,59 @@ export default function UserInformationTile({
         color={ODS_THEME_COLOR_INTENT.success}
         className="block"
       >
-        {tCredentialBanner(
-          'pci_projects_project_storages_containers_add_linked_user_success_message',
-          { username: user.username },
-        )}
+        <span
+          dangerouslySetInnerHTML={{
+            __html: t(
+              'pci_projects_project_storages_containers_add_linked_user_success_message',
+              {
+                username: `<strong>${user.username}</strong>`,
+              },
+            ),
+          }}
+        />
       </OsdsText>
       <div className="flex justify-between mt-6">
         <OsdsFormField className="w-[45%]">
           <LabelComponent
-            text={tCredentialBanner(
+            text={t(
               'pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_username_label',
             )}
           ></LabelComponent>
-          <OsdsClipboard value={user.username} />
+          <OsdsClipboard value={user.username}>
+            <span slot="success-message">
+              {t('pci-common:common_clipboard_copied')}
+            </span>
+          </OsdsClipboard>
         </OsdsFormField>
         <OsdsFormField className="w-[45%]">
           <LabelComponent
-            text={tCredentialBanner(
+            text={t(
               'pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_access-key_label',
             )}
           ></LabelComponent>
-          <OsdsClipboard value={user.s3Credentials?.access} />
+          <OsdsClipboard value={user.s3Credentials?.access}>
+            <span slot="success-message">
+              {t('pci-common:common_clipboard_copied')}
+            </span>
+          </OsdsClipboard>
         </OsdsFormField>
       </div>
       <div className="flex mt-8 justify-between">
         <OsdsFormField className="w-[45%]">
           <LabelComponent
-            text={tCredentialBanner(
+            text={t(
               'pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_description_label',
             )}
           ></LabelComponent>
-          <OsdsClipboard value={user.description} />
+          <OsdsClipboard value={user.description}>
+            <span slot="success-message">
+              {t('pci-common:common_clipboard_copied')}
+            </span>
+          </OsdsClipboard>
         </OsdsFormField>
         <OsdsFormField className="w-[45%]">
           <LabelComponent
-            text={tCredentialBanner(
+            text={t(
               'pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_secret-key_label',
             )}
           ></LabelComponent>

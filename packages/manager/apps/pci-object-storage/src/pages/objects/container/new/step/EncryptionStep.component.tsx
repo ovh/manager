@@ -33,12 +33,12 @@ export function EncryptionStep() {
   return (
     <StepComponent
       title={t(
-        'pci_projects_project_storages_containers_data_encryption_description',
+        'pci_projects_project_storages_containers_data_encryption_title',
       )}
       isOpen={stepper.encryption.isOpen || stepper.encryption.isLocked}
       isChecked={stepper.encryption.isChecked}
       isLocked={stepper.encryption.isLocked}
-      order={5}
+      order={6}
       next={{
         action: submitEncryption,
         label: t('pci-common:common_stepper_next_button_label'),
@@ -53,7 +53,7 @@ export function EncryptionStep() {
         <p>
           <OsdsText
             color={ODS_THEME_COLOR_INTENT.text}
-            size={ODS_TEXT_SIZE._600}
+            size={ODS_TEXT_SIZE._400}
           >
             {t(
               'pci_projects_project_storages_containers_data_encryption_description',
@@ -78,7 +78,7 @@ export function EncryptionStep() {
               <div slot="end" className="align-bottom inline-block">
                 <OsdsText
                   color={ODS_THEME_COLOR_INTENT.text}
-                  size={ODS_TEXT_SIZE._600}
+                  size={ODS_TEXT_SIZE._400}
                 >
                   {t(
                     'pci_projects_project_storages_containers_data_encryption_plaintext',
@@ -100,7 +100,7 @@ export function EncryptionStep() {
                 <div slot="end" className="align-bottom inline-block">
                   <OsdsText
                     color={ODS_THEME_COLOR_INTENT.text}
-                    size={ODS_TEXT_SIZE._600}
+                    size={ODS_TEXT_SIZE._400}
                   >
                     {t(
                       'pci_projects_project_storages_containers_data_encryption_aes256',

@@ -1,6 +1,4 @@
-import { useTranslation } from 'react-i18next';
 import { StepComponent } from '@ovh-ux/manager-react-components';
-import { OsdsButton, OsdsIcon, OsdsText } from '@ovhcloud/ods-components/react';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
@@ -12,12 +10,14 @@ import {
   ODS_ICON_SIZE,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
+import { OsdsButton, OsdsIcon, OsdsText } from '@ovhcloud/ods-components/react';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useContainerCreationStore } from '../useContainerCreationStore';
+import LinkUserCreation from './LinkUserCreation.component';
 import LinkUserSelector from './LinkUserSelector.component';
 import { TUser } from '@/api/data/user';
 import { CONTAINER_USER_ASSOCIATION_MODES } from '@/constants';
-import LinkUserCreation from './LinkUserCreation.component';
 
 export function LinkUserStep() {
   const { t } = useTranslation([
@@ -32,15 +32,12 @@ export function LinkUserStep() {
     submitOwnerId,
     setOwnerId,
   } = useContainerCreationStore();
-  const [formUser, setFormUser] = useState<TUser>(null);
   const [associateMode, setAssociateMode] = useState('');
   const onCancel = () => {
     setAssociateMode('');
-    setFormUser(null);
     setOwnerId('');
   };
   const onSelectOwner = (user: TUser) => {
-    setFormUser(user);
     setOwnerId(user?.id);
   };
   return (
@@ -108,7 +105,7 @@ export function LinkUserStep() {
       )}
       {associateMode === CONTAINER_USER_ASSOCIATION_MODES.LINKED && (
         <LinkUserSelector
-          formUser={formUser}
+          userId={form.ownerId}
           onSelectOwner={onSelectOwner}
           onCancel={onCancel}
         />
