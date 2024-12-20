@@ -27,7 +27,6 @@
   "manager_billing_subscription_autorenew_every_6_month": "Tous les 6 mois",
   "manager_billing_subscription_autorenew_every_12_month": "Tous les ans",
   "manager_billing_subscription_resiliate_cancel": "Annuler la résiliation",
-  "manager_billing_subscription_resiliate_cancel_re_engage": "Se ré-engager",
   "manager_billing_subscription_autorenew_title": "Renouvellement automatique",
   "manager_billing_subscription_configure_renew": "Configurer le renouvellement",
   "manager_billing_subscription_configure_renew_frequency": "Configurer la fréquence de renouvellement",
