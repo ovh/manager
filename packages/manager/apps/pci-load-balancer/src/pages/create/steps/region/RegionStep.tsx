@@ -1,12 +1,21 @@
 import {
   OsdsLink,
+  OsdsMessage,
   OsdsSpinner,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+import {
+  ODS_ICON_NAME,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
+} from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { StepComponent } from '@ovh-ux/manager-react-components';
-import { useTranslation } from 'react-i18next';
+import {
+  StepComponent,
+  Links,
+  useProjectUrl,
+} from '@ovh-ux/manager-react-components';
+import { Trans, useTranslation } from 'react-i18next';
 import { RegionSelector, useProject } from '@ovh-ux/manager-pci-common';
 import { TRegion } from '@/api/hook/useRegions';
 import { REGION_AVAILABILITY_LINK } from '@/constants';
@@ -25,6 +34,7 @@ export const RegionStep = ({
 }: Readonly<TRegionStepProps>): JSX.Element => {
   const { t } = useTranslation(['load-balancer/create', 'pci-common']);
   const { data: project } = useProject();
+  const projectUrl = useProjectUrl('public-cloud');
 
   const { trackStep } = useTracking();
 
@@ -105,6 +115,34 @@ export const RegionStep = ({
               ?.some(({ name }) => name === region.name)
           }
         />
+      )}
+      {store.region && !store.region.isEnabled && (
+        <OsdsMessage
+          color={ODS_THEME_COLOR_INTENT.warning}
+          icon={ODS_ICON_NAME.WARNING}
+          className="mt-6"
+        >
+          <OsdsText
+            level={ODS_TEXT_LEVEL.body}
+            size={ODS_TEXT_SIZE._400}
+            color={ODS_THEME_COLOR_INTENT.text}
+          >
+            <Trans
+              t={t}
+              i18nKey="octavia_load_balancer_create_private_network"
+              components={{
+                link: (
+                  <Links
+                    label={t(
+                      'octavia_load_balancer_create_private_network_label',
+                    )}
+                    href={`${projectUrl}/private-networks/new`}
+                  />
+                ),
+              }}
+            />
+          </OsdsText>
+        </OsdsMessage>
       )}
     </StepComponent>
   );
