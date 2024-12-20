@@ -5,7 +5,7 @@ import { TileBlock } from './tile-block.component';
 
 export type DashboardTileBlockItem = {
   id: string;
-  label?: React.ReactNode;
+  label?: string;
   value: React.ReactNode;
 };
 

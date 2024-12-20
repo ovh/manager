@@ -131,7 +131,7 @@ const CreateGeneralInformations = ({
                 !!credentialNameError ||
                 !!credentialDescriptionError ||
                 !!credentialValidityError ||
-                (!!credentialCreationMethodError && isCustomCsr)
+                (isCustomCsr && !csr)
               }
               label={t(
                 'key_management_service_credential_create_cta_add_identities',
