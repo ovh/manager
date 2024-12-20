@@ -319,6 +319,11 @@ export default /* @ngInject */ ($stateProvider) => {
               : 'pci.projects.onboarding',
           )
           .catch(() => 'pci.projects.onboarding'),
+
+      are3AzRegionsAvailable: /* @ngInject */ (pciFeatures) =>
+        Boolean(
+          pciFeatures.isFeatureAvailable(PCI_FEATURES.ACTIONS.THREE_AZ_REGIONS),
+        ),
     },
   });
 };

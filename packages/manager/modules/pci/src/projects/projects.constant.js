@@ -96,6 +96,7 @@ export const PCI_FEATURES = {
   },
   ACTIONS: {
     INSTANCE_LOCALZONE_BACKUP: 'public-cloud:instance:local-zone-backup',
+    THREE_AZ_REGIONS: 'public-cloud:instance:three-az-regions',
   },
 };
 
