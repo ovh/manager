@@ -5,7 +5,7 @@
   "pci_projects_project_storages_containers_add_archive_title": "Créer un conteneur d'archive",
   "pci_projects_project_storages_containers_add_offer_title": "Sélectionnez votre offre",
   "pci_projects_project_storages_containers_add_offer_storage": "Swift API",
-  "pci_projects_project_storages_containers_add_offer_storage-s3-standard": "API compatible S3",
+  "pci_projects_project_storages_containers_add_offer_storage-s3-standard": "API compatible S3*",
   "pci_projects_project_storages_containers_add_offer_storage_description": "Solution basique pour le stockage sans besoin particulier en matière de performance. Il s'agit du stockage objet natif d'OpenStack, avec les API Swift.",
   "pci_projects_project_storages_containers_add_offer_storage-s3-standard_description": "Large éventail de fonctionnalités compatibles S3.",
   "pci_projects_project_storages_containers_add_offer_storage-s3-standard_label": "Nouveau",
@@ -56,5 +56,6 @@
   "pci_projects_project_storages_containers_add_deployment_mode_price_explanation": "*Le prix indiqué correspond au prix public d'1 To de stockage pendant 30 jours. Pour plus d'informations, ",
   "pci_projects_project_storages_containers_add_deployment_mode_price_explanation_link": "consultez la page des prix.",
   "pci_projects_project_storages_containers_add_replication_rules_info": "Félicitations, votre conteneur est bientôt prêt à être utilisé ! Si votre usage nécessite une réplication multisite de vos données pour une résilience et une disponibilité accrues, envisagez d'utiliser notre réplication asynchrone sur une ou plusieurs régions (disponible via API).",
-  "pci_projects_project_storages_containers_add_replication_rules_info_link": "Pour en savoir plus et commencer."
+  "pci_projects_project_storages_containers_add_replication_rules_info_link": "Pour en savoir plus et commencer.",
+  "pci_projects_project_storages_containers_disclaimer": "S3 est une marque déposée appartenant à Amazon Technologies, Inc. Les services de OVHcloud ne sont pas sponsorisés, approuvés, ou affiliés de quelque manière que ce soit."
 }
