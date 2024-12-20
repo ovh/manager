@@ -1,6 +1,7 @@
 import { fetchIcebergV2, v2 } from '@ovh-ux/manager-core-api';
 import { AccountBodyParamsType, AccountType } from './type';
 import { getApiPath } from '../utils/apiPath';
+import { APIV2_DEFAULT_PAGESIZE } from '@/utils';
 
 // GET
 
@@ -8,6 +9,7 @@ export const getZimbraPlatformAccounts = ({
   platformId,
   queryParameters,
   pageParam,
+  pageSize = APIV2_DEFAULT_PAGESIZE,
 }: {
   platformId: string;
   queryParameters?: {
@@ -15,12 +17,13 @@ export const getZimbraPlatformAccounts = ({
     domainId?: string;
   };
   pageParam?: unknown;
+  pageSize?: number;
 }) => {
   const params = new URLSearchParams(queryParameters).toString();
   const queryString = params ? `?${params}` : '';
   return fetchIcebergV2<AccountType[]>({
     route: `${getApiPath(platformId)}account${queryString}`,
-    pageSize: 25,
+    pageSize,
     cursor: pageParam as string,
   });
 };

@@ -46,7 +46,7 @@ export default function ModalEditDomain() {
   const {
     data: organizationsList,
     isLoading: isLoadingOrganizations,
-  } = useOrganizationList();
+  } = useOrganizationList({ shouldFetchAll: true });
 
   const { addError, addSuccess } = useNotifications();
 
