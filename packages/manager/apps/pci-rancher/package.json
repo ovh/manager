@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-rancher-app",
-  "version": "1.21.18",
+  "version": "1.21.19",
   "private": true,
   "description": "pci-rancher",
   "repository": {
