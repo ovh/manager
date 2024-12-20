@@ -7,6 +7,7 @@ export type TAvailableVolumesResponse = {
     regions: {
       name: string;
       enabled: boolean;
+      type: string;
     }[];
   }[];
 };
@@ -22,7 +23,7 @@ export const getProjectsAvailableVolumes = async (
   return data;
 };
 
-export function isRegionWith3AZ(region: TLocalisation) {
+export function isRegionWith3AZ(region: Pick<TLocalisation, 'type'>) {
   return region.type === 'region-3-az';
 }
 
