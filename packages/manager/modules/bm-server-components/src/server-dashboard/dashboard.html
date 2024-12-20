@@ -108,7 +108,9 @@
                 go-to-resiliation="$ctrl.goToResiliation()"
                 service-infos="$ctrl.serviceInfos"
                 highlight-engagement="$ctrl.server.shouldReengage"
-                tracking-prefix="{{:: 'dedicated::' + $ctrl.trackingPrefix }}"
+                tracking-prefix="{{ $ctrl.trackingSubscriptionPrefix }}"
+                data-tracking-page="{{ $ctrl.trackingPage }}"
+                data-tracking-name-suffix="{{ $ctrl.trackingNameSuffix }}"
                 user="$ctrl.user"
                 commit-impression-data="$ctrl.server.shouldReengage ?
                     $ctrl.RECOMMIT_IMPRESSION_TRACKING_DATA :
@@ -170,7 +172,9 @@
                 go-to-resiliation="$ctrl.goToResiliation()"
                 service-infos="$ctrl.serviceInfos"
                 highlight-engagement="$ctrl.server.shouldReengage"
-                tracking-prefix="{{:: 'dedicated::' + $ctrl.trackingPrefix }}"
+                tracking-prefix="{{ $ctrl.trackingSubscriptionPrefix }}"
+                data-tracking-page="{{ $ctrl.trackingPage }}"
+                data-tracking-name-suffix="{{ $ctrl.trackingNameSuffix }}"
                 user="$ctrl.user"
                 commit-impression-data="$ctrl.server.shouldReengage ?
                     $ctrl.RECOMMIT_IMPRESSION_TRACKING_DATA :

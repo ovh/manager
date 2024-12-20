@@ -1,7 +1,7 @@
 {
-  "billing_title": "Mes services",
-  "billing_description": "Gérez le renouvellement de vos services. Consultez leur statut ainsi que vos contrats.",
-  "billing_home_title": "Accueil",
+  "billing_title": "Gestion de mes offres et services",
+  "billing_description": "Bienvenue dans votre section GESTION DES SERVICES. Administrez le renouvellement, le paiement et la résiliation de vos services depuis cette page.",
+  "billing_home_title": "Tous les services",
   "billing_agreements_title": "Contrats",
   "billing_ssh_title": "Clés SSH",
   "billing_autorenew_service_disable_autorenew": "Désactiver le paiement automatique",
@@ -14,7 +14,7 @@
   "billing_autorenew_service_status_manual": "Renouvellement manuel",
   "billing_autorenew_service_status_manualPayment": "Renouvellement manuel",
   "billing_autorenew_service_status_pending_debt": "Facture à régler",
-  "billing_autorenew_service_status_delete_at_expiration": "Résiliation demandée",
+  "billing_autorenew_service_status_delete_at_expiration": "Résiliation programmée",
   "billing_autorenew_service_status_expired": "Résilié",
   "billing_autorenew_service_expiration_weeks": "Expirant dans une semaine",
   "billing_autorenew_service_expiration_months": "Expirant dans un mois",
@@ -30,8 +30,8 @@
   "autorenew_service_deleteAtExpiration_banner": "La résiliation à l’expiration du service « {{ serviceName }} » a bien été prise en compte. Vous pouvez annuler cette opération jusqu’à 24 heures avant expiration du service.",
   "autorenew_service_deleteAtExpiration_banner_cancel": "Annuler la resiliation à l’expiration",
 
-  "billing_autorenew_service": "Service",
-  "billing_autorenew_service_name": "Nom du service",
+  "billing_autorenew_service": "Type",
+  "billing_autorenew_service_name": "Service",
   "billing_autorenew_service_state_EXPIRED": "Suspendu",
   "billing_autorenew_service_state_UP": "Actif",
 
@@ -162,5 +162,14 @@
   "billing_autorenew_renew_action": "Renouveler",
   "billing_autorenew_service_renew_requires_mean_and_date": "Afin de finaliser l'activation du renouvellement automatique, veuillez ajouter un moyen de paiement et ensuite il vous sera possible de sélectionner votre date de prélèvement.",
   "billing_autorenew_service_activate_alert": "Vous avez au moins un service en renouvellement automatique mais vous n'avez pas encore autorisé cette option.",
-  "billing_autorenew_service_activate_alert_renew2016": "Ce message ne concerne pas les services Bare Metal et VPS."
+  "billing_autorenew_service_activate_alert_renew2016": "Ce message ne concerne pas les services Bare Metal et VPS.",
+
+  "billing_autorenew_service_frequency": "Fréquence de renouvellement",
+
+  "billing_autorenew_service_none": "Aucun",
+  "billing_autorenew_service_every_1_month": "Tous les mois",
+  "billing_autorenew_service_every_3_month": "Tous les 3 mois",
+  "billing_autorenew_service_every_6_month": "Tous les 6 mois",
+  "billing_autorenew_service_every_12_month": "Tous les ans",
+  "billing_autorenew_engagement_none": "Sans engagement"
 }
