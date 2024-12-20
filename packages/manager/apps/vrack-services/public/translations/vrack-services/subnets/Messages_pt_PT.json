@@ -29,7 +29,7 @@
   "modalDeleteDescription": "Para ser eliminada, a sub-rede não deve conter um Service Endpoint associado.",
   "none": "Nenhum",
   "subnetsOnboardingTitle": "Ainda não criou nenhuma sub-rede",
-  "subnetsOnboardingDescription": "Antes de criar um endpoint, deve criar uma sub-rede.",
+  "subnetsOnboardingDescription": "Para criar um endpoint, deve criar uma sub-rede.",
   "createSubnetPageTitle": "Criar uma sub-rede",
   "subnetsEmptyDataGridMessage": "Ainda não possui nenhuma sub-rede",
   "subnetDatagridDisplayNameLabel": "Nome",
