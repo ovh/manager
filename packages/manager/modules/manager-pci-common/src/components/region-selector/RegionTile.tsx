@@ -5,12 +5,26 @@ import { OsdsText } from '@ovhcloud/ods-components/react';
 import { TLocalisation } from './useRegions';
 import { RegionLocalzoneChip } from './RegionLocalzoneChip.component';
 import { RegionGlobalzoneChip } from './RegionGlobalzoneChip.component';
+import { Region3AZChip } from './Region3AZChip.component';
 
 export interface RegionTileProps {
   region: TLocalisation;
   isSelected: boolean;
   isCompact?: boolean;
 }
+
+export const RegionChip = ({ region }: Readonly<{ region: TLocalisation }>) => {
+  switch (region.type) {
+    case 'localzone':
+      return <RegionLocalzoneChip />;
+    case 'region':
+      return <RegionGlobalzoneChip />;
+    case 'region-3-az':
+      return <Region3AZChip />;
+    default:
+      return null;
+  }
+};
 
 export const RegionTile = ({
   region,
@@ -31,11 +45,7 @@ export const RegionTile = ({
       <>
         <hr className="w-full border-solid border-0 border-b border-ods-primary-200" />
         <div>
-          {region?.isLocalZone ? (
-            <RegionLocalzoneChip />
-          ) : (
-            <RegionGlobalzoneChip />
-          )}
+          <RegionChip region={region} />
         </div>
       </>
     )}

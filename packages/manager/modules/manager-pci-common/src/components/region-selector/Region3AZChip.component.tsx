@@ -1,9 +1,5 @@
-import React, { useContext } from 'react';
-import {
-  Links,
-  LinkType,
-  useFeatureAvailability,
-} from '@ovh-ux/manager-react-components';
+import { useContext } from 'react';
+import { Links, LinkType } from '@ovh-ux/manager-react-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
@@ -24,43 +20,31 @@ import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { useTranslation } from 'react-i18next';
 import { URL_INFO } from './constants';
 
-export const FEATURE_REGION_1AZ = 'public-cloud:region-1AZ';
-
-export function RegionGlobalzoneChip({
+export function Region3AZChip({
   showTooltip = true,
 }: Readonly<{
   showTooltip?: boolean;
 }>) {
   const { t } = useTranslation('pci-region-selector');
-  const { data } = useFeatureAvailability([FEATURE_REGION_1AZ]);
   const context = useContext(ShellContext);
   const { ovhSubsidiary } = context.environment.getUser();
-
-  const linkType = data?.[FEATURE_REGION_1AZ]
-    ? '1AZ_REGIONS'
-    : 'GLOBAL_REGIONS';
-  const tooltipUrl =
-    URL_INFO[linkType][ovhSubsidiary] || URL_INFO[linkType].DEFAULT;
+  const documentURL =
+    URL_INFO.REGION_3AZ[ovhSubsidiary] || URL_INFO.REGION_3AZ.DEFAULT;
 
   const chip = (
     <OsdsChip
-      class="chip-1AZ"
       size={ODS_CHIP_SIZE.sm}
+      class="chip-3AZ"
       onClick={(event) => event.stopPropagation()}
     >
       <OsdsText level={ODS_TEXT_LEVEL.body} size={ODS_TEXT_SIZE._500}>
-        {t(
-          `pci_project_flavors_zone_${
-            data?.[FEATURE_REGION_1AZ] ? '1AZ' : 'global_region'
-          }`,
-        )}
+        {t('pci_project_flavors_zone_3AZ')}
       </OsdsText>
       {showTooltip && (
         <OsdsIcon
           name={ODS_ICON_NAME.HELP}
           size={ODS_ICON_SIZE.xs}
           className="ml-2"
-          color={ODS_THEME_COLOR_INTENT.primary}
         />
       )}
     </OsdsChip>
@@ -75,11 +59,7 @@ export function RegionGlobalzoneChip({
             color={ODS_THEME_COLOR_INTENT.text}
             level={ODS_TEXT_LEVEL.body}
           >
-            {t(
-              `pci_project_flavors_zone_${
-                data?.[FEATURE_REGION_1AZ] ? '1AZ' : 'globalregions'
-              }_tooltip`,
-            )}
+            {t('pci_project_flavors_zone_3AZ_tooltip')}
           </OsdsText>
           &nbsp;
           <Links
@@ -87,7 +67,7 @@ export function RegionGlobalzoneChip({
             label={t('pci_project_flavors_zone_tooltip_link')}
             type={LinkType.external}
             target={OdsHTMLAnchorElementTarget._blank}
-            href={tooltipUrl}
+            href={documentURL}
           />
         </OsdsPopoverContent>
       </OsdsPopover>
