@@ -16,6 +16,7 @@ export default {
     onTabChange: '&',
     serviceName: '@',
     region: '<?',
+    getPriceText: '&',
   },
   transclude: true,
 };
