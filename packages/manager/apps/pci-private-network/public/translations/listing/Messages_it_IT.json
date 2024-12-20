@@ -20,7 +20,7 @@
   "pci_projects_project_network_private_delete_confirmation": "Vuoi davvero eliminare la rete privata {{name}}?",
   "pci_projects_project_network_private_delete_success": "Eliminazione della rete privata {{ name }} in corso...",
   "pci_projects_project_network_private_delete_error": "Si è verificato un errore durante l'eliminazione della rete privata: {{message}}",
-  "pci_projects_project_network_private_back_to_list": "Visualizza tutte le reti private",
+  "pci_projects_project_network_private_back_to_list": "Visualizzare tutte le reti private",
   "pci_projects_project_network_private_subnet_create": "Creare una sottorete",
   "pci_projects_project_network_private_ip_version": "Versione IP",
   "pci_projects_project_network_private_action": "Azioni"
