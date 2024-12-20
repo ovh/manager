@@ -16,11 +16,7 @@ const { refetch } = vi.hoisted(() => ({
 
 const trackClickMock = vi.fn();
 
-vi.mock('../skeletons/Skeletons.component', () => ({
-  Skeletons: () => <div data-testid="tile-skeleton"></div>,
-}));
-
-vi.mock('../tile-error/TileError.component', () => ({
+vi.mock('@/components/tile-error/TileError.component', () => ({
   default: () => <div data-testid="tile-error"></div>,
 }));
 
@@ -85,22 +81,26 @@ describe('HubOrderTracking Component', async () => {
     });
   });
 
-  it('displays loading skeleton when isLoading is true', () => {
+  it('displays loading skeletons when isLoading is true', () => {
     useFetchLastOrderMockValue.isLoading = true;
 
     render(<HubOrderTracking />);
 
-    const skeleton = screen.getByTestId('tile-skeleton');
+    const orderLinkSkeleton = screen.getByTestId('order_link_skeleton');
+    const orderInfoSkeleton = screen.getByTestId('order_info_skeleton');
+    const ordersLinkSkeleton = screen.getByTestId('orders_link_skeleton');
 
-    expect(skeleton).toBeInTheDocument();
+    expect(orderLinkSkeleton).toBeInTheDocument();
+    expect(orderInfoSkeleton).toBeInTheDocument();
+    expect(ordersLinkSkeleton).toBeInTheDocument();
   });
 
-  it('displays TileError when there is an error', () => {
+  it('displays TileError when there is an error', async () => {
     useFetchLastOrderMockValue.error = true;
 
     render(<HubOrderTracking />);
 
-    const tileError = screen.getByTestId('tile-error');
+    const tileError = await screen.findByTestId('tile-error');
     expect(tileError).toBeInTheDocument();
   });
 

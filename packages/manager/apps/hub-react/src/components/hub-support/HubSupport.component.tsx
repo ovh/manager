@@ -26,8 +26,8 @@ import { useFetchHubSupport } from '@/data/hooks/apiHubSupport/useHubSupport';
 import { SUPPORT_URLS } from './HubSupport.constants';
 import { HubSupportHelp } from './hub-support-help/HubSupportHelp.component';
 import { HubSupportTable } from './hub-support-table/HubSupportTable.component';
-import { Skeletons } from '../skeletons/Skeletons.component';
 import TileError from '../tile-error/TileError.component';
+import { Skeletons } from '@/components/skeletons/Skeletons.component';
 
 export default function HubSupport() {
   const { t } = useTranslation('hub/support');
