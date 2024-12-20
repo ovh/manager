@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.14.0...@ovh-ux/manager-vrack@1.14.1) (2024-12-20)
+
+
+### Bug Fixes
+
+* **vrack:** add ng-ovh-utils dep to resolve vrack build ([#14673](https://github.com/ovh/manager/issues/14673)) ([d93d91b](https://github.com/ovh/manager/commit/d93d91b151711bc1686c5f9fc23237143a4f9f7c))
+
+
+
+
+
 # [1.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.13.0...@ovh-ux/manager-vrack@1.14.0) (2024-12-18)
 
 

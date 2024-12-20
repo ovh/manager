@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ovh-at-internet",
-  "version": "0.18.0",
+  "version": "0.18.1",
   "description": "ATInternet tracking library for OVHcloud.",
   "keywords": [
     "at-internet",
@@ -37,7 +37,7 @@
     "lodash-es": "^4.17.15"
   },
   "devDependencies": {
-    "@ovh-ux/manager-config": "^8.0.1",
+    "@ovh-ux/manager-config": "^8.0.2",
     "@types/lodash-es": "^4.17.5"
   },
   "peerDependencies": {
