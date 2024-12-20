@@ -19,8 +19,8 @@
             <oui-skeleton size="s" data-ng-if="$ctrl.isLoading"></oui-skeleton>
             <p data-ng-if="!$ctrl.isLoading">
                 <span
-                    class="text-wrap"
-                    data-ng-if="!$ctrl.service.isEngaged() && !$ctrl.serviceInfos.hasPendingEngagement"
+                    class="text-wrap d-block"
+                    data-ng-if="!$ctrl.serviceInfos.hasEngagement() && !$ctrl.serviceInfos.hasPendingEngagement"
                     data-translate="manager_billing_subscription_engagement_status_none"
                 >
                 </span>
@@ -50,7 +50,7 @@
                     data-ng-if="$ctrl.constructor.showCommit($ctrl.serviceInfos, $ctrl.service.isEngaged(), $ctrl.highlightEngagement)"
                     class="oui-link_icon"
                     data-ng-href="{{ $ctrl.commitmentLink }}"
-                    data-ng-click="$ctrl.trackClick('go-to-commit')"
+                    data-ng-click="$ctrl.trackAction('renew-discount', true)"
                     target="_top"
                 >
                     <p>
@@ -110,12 +110,14 @@
 
     <oui-tile-definition
         term="{{:: 'manager_billing_subscription_autorenew_title' | translate }}"
+        data-ng-if="$ctrl.autorenewLink && !$ctrl.serviceInfos.hasParticularRenew() && !$ctrl.serviceInfos.hasPendingResiliation() && !$ctrl.serviceInfos.hasDebt() && !$ctrl.serviceInfos.isOneShot() && !$ctrl.serviceInfos.hasForcedRenew() && !$ctrl.serviceInfos.isResiliated() && $ctrl.serviceInfos.canHandleRenew() && !$ctrl.serviceInfos.hasEngagement()"
     >
         <oui-tile-description>
             <oui-skeleton size="s" data-ng-if="$ctrl.isLoading"></oui-skeleton>
 
             <p data-ng-if="!$ctrl.isLoading">
                 <span
+                    data-ng-if="false"
                     data-translate="{{ :: $ctrl.serviceInfos.hasAutomaticRenew() ?
                         'manager_billing_subscription_autorenew_every_'+ $ctrl.serviceInfos.renew.period +'_month' :
                         'manager_billing_subscription_autorenew_none' }}"
@@ -125,7 +127,7 @@
                     class="oui-link_icon"
                     data-ng-href="{{ $ctrl.updateLink }}"
                     data-ng-if="$ctrl.autorenewLink && !$ctrl.serviceInfos.hasParticularRenew() && !$ctrl.serviceInfos.hasPendingResiliation() && !$ctrl.serviceInfos.hasDebt() && !$ctrl.serviceInfos.isOneShot() && !$ctrl.serviceInfos.hasForcedRenew() && !$ctrl.serviceInfos.isResiliated() && $ctrl.serviceInfos.canHandleRenew() && !$ctrl.serviceInfos.hasEngagement()"
-                    data-ng-click="$ctrl.trackAction('go-to-configure-renew')"
+                    data-ng-click="$ctrl.trackAction($ctrl.serviceInfos.hasAutomaticRenew() ?'edit-frequency': 'renew', !$ctrl.serviceInfos.hasAutomaticRenew())"
                     target="_top"
                 >
                     <p>
@@ -158,7 +160,7 @@
                     class="oui-link_icon"
                     data-ng-href="{{ $ctrl.autorenewLink && !$ctrl.service.hasBillingRights($ctrl.user.nichandle) ? $ctrl.warningLink : $ctrl.billingLink }}"
                     data-ng-if="$ctrl.serviceInfos.hasDebt()"
-                    data-on-click="$ctrl.trackAction('go-to-pay-bill')"
+                    data-ng-click="$ctrl.trackAction('go-to-pay-bill')"
                     target="_top"
                 >
                     <p>
@@ -188,7 +190,7 @@
                     class="oui-link_icon"
                     data-ng-if="$ctrl.resiliateLink && ($ctrl.serviceInfos.hasAdminRights($ctrl.user.auth.account) || $ctrl.serviceInfos.hasAdminRights($ctrl.user.nichandle))"
                     data-ng-href="{{ $ctrl.resiliateLink }}"
-                    on-click="$ctrl.trackAction('go-to-resiliate')"
+                    data-ng-click="$ctrl.trackAction('stop', true)"
                     target="_top"
                 >
                     <p>
@@ -216,7 +218,7 @@
                     class="oui-link_icon"
                     data-ng-if="$ctrl.resiliateLink && ($ctrl.serviceInfos.hasAdminRights($ctrl.user.auth.account) || $ctrl.serviceInfos.hasAdminRights($ctrl.user.nichandle))"
                     data-ng-href="{{ $ctrl.resiliateLink }}"
-                    on-click="$ctrl.trackAction('go-to-resiliate')"
+                    data-ng-click="$ctrl.trackAction('stop', true)"
                     target="_top"
                 >
                     <p>

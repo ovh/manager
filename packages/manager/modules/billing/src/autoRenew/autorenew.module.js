@@ -6,6 +6,7 @@ import '@ovh-ux/ui-kit';
 import uiRouter from '@uirouter/angularjs';
 import ovhManagerBillingComponents from '@ovh-ux/manager-billing-components';
 import ovhManagerCore from '@ovh-ux/manager-core';
+import './autorenew.style.css';
 
 import activation from './actions/activation/activation.module';
 import agreements from './agreements/user-agreements.module';
