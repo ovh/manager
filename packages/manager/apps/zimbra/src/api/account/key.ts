@@ -7,10 +7,10 @@ export const getZimbraPlatformAccountsQueryKey = (
 ) => {
   const params = new URLSearchParams(queryParameters).toString();
   const queryString = params ? `?${params}` : '';
-  return [`get/zimbra/platform/${platformId}/account${queryString}`];
+  return ['get', 'account', 'platform', platformId, queryString];
 };
 
 export const getZimbraPlatformAccountDetailQueryKey = (
   platformId: string,
   accountId?: string,
-) => [`get/zimbra/platform/${platformId}/account/${accountId}`];
+) => ['get', 'account', 'platform', platformId, accountId];

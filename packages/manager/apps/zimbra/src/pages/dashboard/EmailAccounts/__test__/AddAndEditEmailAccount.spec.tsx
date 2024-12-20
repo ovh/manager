@@ -121,7 +121,7 @@ describe('email account add and edit page', () => {
     expect(button).toHaveAttribute('is-disabled', 'true');
 
     act(() => {
-      inputPassword.odsChange.emit({ name: 'password', value: '' });
+      inputPassword.odsBlur.emit({ name: 'password', value: '' });
       inputAccount.odsChange.emit({ name: 'account', value: '' });
     });
 
