@@ -1,0 +1,9 @@
+{
+  "payment_method_title": "Mein Zahlungsmittel",
+  "payment_method_default_label": "Standard",
+  "payment_method_expired_label": "Abgelaufen",
+  "payment_method_update_link_label": "Ändern",
+  "payment_method_add_link_label": "Hinzufügen",
+  "payment_method_expiration_date_label": "Läuft ab am {{ date }}",
+  "payment_expiration_no_default_method_message": "Sie haben kein Standardzahlungsmittel angegeben."
+}

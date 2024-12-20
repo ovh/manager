@@ -1,5 +1,9 @@
 import controller from './user-agreements.controller';
 import template from './user-agreements.html';
+import {
+  TRACKING_AGREEMENTS_PAGE_NAME,
+  TRACKING_PAGE_CATEGORY,
+} from '../autorenew.constants';
 
 export default /* @ngInject */ (
   $stateProvider,
@@ -19,6 +23,15 @@ export default /* @ngInject */ (
             (currentUser) =>
               currentUser.isTrusted && 'app.account.billing.autorenew',
           ),
+      atInternet: {
+        ignore: true,
+      },
+      onEnter: /* @ngInject */ (atInternet) => {
+        atInternet.trackPage({
+          name: TRACKING_AGREEMENTS_PAGE_NAME,
+          page_category: TRACKING_PAGE_CATEGORY,
+        });
+      },
       resolve: {
         gotoAcceptAllAgreements: /* @ngInject */ ($state, atInternet) => (
           agreements,

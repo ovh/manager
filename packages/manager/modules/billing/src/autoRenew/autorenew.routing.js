@@ -5,7 +5,11 @@ import range from 'lodash/range';
 
 import { BillingService } from '@ovh-ux/manager-models';
 
-import { NIC_ALL } from './autorenew.constants';
+import {
+  NIC_ALL,
+  TRACKING_AUTORENEW_PAGE_NAME,
+  TRACKING_PAGE_CATEGORY,
+} from './autorenew.constants';
 
 export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
   $stateProvider.state('app.account.billing.autorenewRedirection', {
@@ -243,6 +247,15 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
           }
         : {},
     ),
+    atInternet: {
+      ignore: true,
+    },
+    onEnter: /* @ngInject */ (atInternet) => {
+      atInternet.trackPage({
+        name: TRACKING_AUTORENEW_PAGE_NAME,
+        page_category: TRACKING_PAGE_CATEGORY,
+      });
+    },
     redirectTo: (transition) =>
       transition
         .injector()
