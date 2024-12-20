@@ -1,5 +1,6 @@
+import path from 'path';
+
 const config = {
-  content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
       spacing: {
@@ -36,6 +37,13 @@ const config = {
       full: '50%',
     },
   },
+  content: [
+    './src/**/*.{js,jsx,ts,tsx}',
+    path.join(
+      path.dirname(require.resolve('@ovh-ux/manager-react-components')),
+      '**/*.{js,jsx,ts,tsx}',
+    ),
+  ],
   plugins: [],
 };
 
