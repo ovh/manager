@@ -16,7 +16,7 @@ export const shellContext = {
   },
 };
 
-const queryClient = new QueryClient();
+export const queryClient = new QueryClient();
 
 export const wrapper = ({ children }) => (
   <QueryClientProvider client={queryClient}>
