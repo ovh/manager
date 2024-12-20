@@ -23,7 +23,7 @@ import {
   AVAILABILITY,
   MEGA_BYTES,
   OBJECT_CONTAINER_DEPLOYMENT_MODES_LABELS,
-  STORAGE_STANDARD_PLANCODE,
+  STORAGE_STANDARD_REGION_PLANCODE,
 } from '@/constants';
 
 export function DeploymentModeStepTile({ item: mode, isItemSelected }) {
@@ -41,7 +41,7 @@ export function DeploymentModeStepTile({ item: mode, isItemSelected }) {
   } = useProductAvailability(projectId);
 
   const plans = productAvailability?.plans?.filter((plan) =>
-    plan.code?.startsWith(STORAGE_STANDARD_PLANCODE),
+    plan.code?.startsWith(STORAGE_STANDARD_REGION_PLANCODE),
   );
 
   const lowestPrice = useMemo(() => {
@@ -50,9 +50,7 @@ export function DeploymentModeStepTile({ item: mode, isItemSelected }) {
       ?.map(({ code }) =>
         catalog?.addons.find((addon) => addon.planCode === code),
       );
-    const pricings = addons?.map(
-      (addon) => addon?.pricings?.sort((a, b) => a.price - b.price)?.[0],
-    );
+    const pricings = addons?.map((addon) => addon?.pricings?.[0]);
     return pricings?.sort((a, b) => a.price - b.price)?.[0];
   }, [mode, plans, catalog]);
 
