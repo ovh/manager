@@ -1,0 +1,282 @@
+{
+  "projectId": "8c8c4fd6d4414aa29fc777752b00005198664",
+  "models": [
+    {
+      "category": "balanced",
+      "name": "b2-30",
+      "isNew": false,
+      "compatibleLocalzone": false,
+      "compatibleRegion": true,
+      "pricings": [
+        {
+          "regions": [
+            "AP-SOUTHEAST-SYD",
+            "SYD1",
+            "UK1",
+            "RBX-A",
+            "SGP1",
+            "BHS5",
+            "DE1",
+            "GRA7",
+            "SBG7",
+            "GRA11",
+            "GRA9",
+            "WAW1",
+            "SBG5"
+          ],
+          "price": 26100000,
+          "interval": "hour",
+          "osType": "linux"
+        },
+        {
+          "regions": [
+            "SYD1",
+            "UK1",
+            "RBX-A",
+            "SGP1",
+            "BHS5",
+            "DE1",
+            "GRA7",
+            "SBG7",
+            "GRA11",
+            "GRA9",
+            "WAW1",
+            "SBG5"
+          ],
+          "price": 51600000,
+          "interval": "hour",
+          "osType": "windows"
+        },
+        {
+          "regions": [
+            "SYD1",
+            "UK1",
+            "RBX-A",
+            "SGP1",
+            "BHS5",
+            "DE1",
+            "GRA7",
+            "SBG7",
+            "GRA11",
+            "GRA9",
+            "WAW1",
+            "SBG5"
+          ],
+          "price": 9350000000,
+          "interval": "month",
+          "osType": "linux"
+        },
+        {
+          "regions": [
+            "SYD1",
+            "UK1",
+            "RBX-A",
+            "SGP1",
+            "BHS5",
+            "DE1",
+            "GRA7",
+            "SBG7",
+            "GRA11",
+            "GRA9",
+            "WAW1",
+            "SBG5"
+          ],
+          "price": 15350000000,
+          "interval": "month",
+          "osType": "windows"
+        }
+      ],
+      "specifications": {
+        "bandwidth": {
+          "guaranteed": true,
+          "level": 500,
+          "unlimited": false
+        },
+        "cpu": {
+          "cores": 8,
+          "frequency": 2,
+          "model": "vCore",
+          "type": "vCore"
+        },
+        "gpu": {
+          "memory": {
+            "interface": "",
+            "size": 0
+          },
+          "model": "",
+          "number": 0
+        },
+        "memory": {
+          "size": 30
+        },
+        "storage": {
+          "disks": [
+            {
+              "capacity": 200,
+              "number": 0,
+              "technology": "SSD"
+            }
+          ],
+          "raid": "local"
+        },
+        "vrack": {
+          "guaranteed": false,
+          "level": 2000,
+          "unlimited": false
+        }
+      },
+      "banners": []
+    }
+  ],
+  "categories": [
+    {
+      "name": "compute",
+      "isNew": false,
+      "isDefault": false
+    },
+    {
+      "name": "balanced",
+      "isNew": false,
+      "isDefault": true
+    },
+    {
+      "name": "ram",
+      "isNew": false,
+      "isDefault": false
+    },
+    {
+      "name": "accelerated",
+      "isNew": false,
+      "isDefault": false
+    },
+    {
+      "name": "vps",
+      "isNew": false,
+      "isDefault": false
+    },
+    {
+      "name": "discovery",
+      "isNew": true,
+      "isDefault": false
+    },
+    {
+      "name": "iops",
+      "isNew": false,
+      "isDefault": false
+    },
+    {
+      "name": "baremetal",
+      "isNew": false,
+      "isDefault": false
+    }
+  ],
+  "regions": [
+    {
+      "name": "SYD1",
+      "country": "au",
+      "isLocalzone": false,
+      "isInMaintenance": false,
+      "isActivated": false,
+      "datacenter": "SYD",
+      "category": "oceania"
+    },
+    {
+      "name": "EU-WEST-LZ-BRU-A",
+      "country": null,
+      "isLocalzone": true,
+      "isInMaintenance": false,
+      "isActivated": false,
+      "datacenter": "BRU",
+      "category": "western_europe"
+    },
+    {
+      "name": "BHS5",
+      "country": "ca",
+      "isLocalzone": false,
+      "isInMaintenance": false,
+      "isActivated": true,
+      "datacenter": "BHS",
+      "category": "north_america"
+    },
+    {
+      "name": "AP-SOUTH-MUM-1",
+      "country": "in",
+      "isLocalzone": false,
+      "isInMaintenance": false,
+      "isActivated": false,
+      "datacenter": "YNM",
+      "category": "south_east_asia"
+    },
+    {
+      "name": "GRA7",
+      "country": "fr",
+      "isLocalzone": false,
+      "isInMaintenance": false,
+      "isActivated": false,
+      "datacenter": "GRA",
+      "category": "western_europe"
+    },
+    {
+      "name": "SBG7",
+      "country": "fr",
+      "isLocalzone": false,
+      "isInMaintenance": false,
+      "isActivated": true,
+      "datacenter": "SBG",
+      "category": "central_europe"
+    },
+    {
+      "name": "EU-CENTRAL-LZ-PRG-A",
+      "country": null,
+      "isLocalzone": true,
+      "isInMaintenance": false,
+      "isActivated": false,
+      "datacenter": "PRG",
+      "category": "central_europe"
+    },
+    {
+      "name": "GRA9",
+      "country": "fr",
+      "isLocalzone": false,
+      "isInMaintenance": false,
+      "isActivated": false,
+      "datacenter": "GRA",
+      "category": "western_europe"
+    },
+    {
+      "name": "EU-SOUTH-LZ-MIL-A",
+      "country": null,
+      "isLocalzone": true,
+      "isInMaintenance": false,
+      "isActivated": false,
+      "datacenter": "MIL",
+      "category": "south_europe"
+    }
+  ],
+  "regionCategories": [
+    {
+      "name": "north_america",
+      "isNew": false
+    },
+    {
+      "name": "western_europe",
+      "isNew": false
+    },
+    {
+      "name": "central_europe",
+      "isNew": false
+    },
+    {
+      "name": "south_europe",
+      "isNew": false
+    },
+    {
+      "name": "south_east_asia",
+      "isNew": false
+    },
+    {
+      "name": "oceania",
+      "isNew": false
+    }
+  ]
+}
