@@ -86,7 +86,7 @@
                 data-variant="primary"
                 data-size="l"
                 data-disabled="$ctrl.kycStatus.status === $ctrl.KYC_STATUS.OPEN || !$ctrl.isValid || $ctrl.links"
-                data-on-click="$ctrl.handleUploadConfirmModal(true)"
+                data-on-click="$ctrl.uploadIdentityDocuments()"
             >
                 <span
                     data-translate="{{:: 'user_account_identity_documents_submit' | translate}}"
@@ -131,7 +131,7 @@
         ></upload-identity-documents-confirm>
     </div>
     <!--legal section-->
-    <div class="mt-4">
+    <div class="mt-4" data-ng-if="$ctrl.isListView">
         <small>
             <p
                 data-translate="user_account_identity_documents_legal_info3"
@@ -163,9 +163,3 @@
         <!--end of legal section-->
     </div>
 </div>
-<!-- Modal confirmation after uploading documents -->
-<document-upload-validation-modal
-    data-is-open-modal="$ctrl.isOpenInformationModal"
-    data-on-close="$ctrl.handleInformationModal(false)"
->
-</document-upload-validation-modal>
