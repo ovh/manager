@@ -9,6 +9,8 @@ import {
   NUTANIX_AUTHORIZATION_TYPE,
 } from './constants';
 import Cluster from './cluster.class';
+import Node from './node.class';
+import TechnicalDetails from './technical-details.class';
 
 export default class NutanixService {
   /* @ngInject */
@@ -38,7 +40,7 @@ export default class NutanixService {
   /**
    *
    * @param {string} nodeServiceName
-   * @param {clusrer[]} clusters
+   * @param {cluster[]} clusters
    * @returns {*} - cluster if found, null otherwise
    */
   static getClusterByNodeName(nodeServiceName, clusters = []) {
@@ -81,13 +83,15 @@ export default class NutanixService {
         serviceType: 'aapi',
       })
       .then(({ data }) =>
-        data?.baremetalServers?.storage ? data?.baremetalServers : null,
+        data?.baremetalServers?.storage
+          ? new TechnicalDetails(data.baremetalServers, this.$translate)
+          : null,
       )
       .catch(() => null);
   }
 
   getClusterHardwareInfo(serviceId, nodeServiceId) {
-    return this.getClusterOptions(serviceId)
+    return this.getServiceOptions(serviceId)
       .then((options) => {
         const optionsServiceId = [nodeServiceId, serviceId];
         options.forEach((option) => {
@@ -139,7 +143,7 @@ export default class NutanixService {
         });
       }
       if (hardwareInfo.nutanixCluster) {
-        // only one nutanix cluster, no need merge the reults
+        // only one nutanix cluster, no need merge the results
         nutanixCluster = hardwareInfo.nutanixCluster;
       }
     });
@@ -149,7 +153,7 @@ export default class NutanixService {
     };
   }
 
-  getClusterOptions(serviceId) {
+  getServiceOptions(serviceId) {
     return this.$http
       .get(`/services/${serviceId}/options`)
       .then(({ data }) => data);
@@ -171,6 +175,14 @@ export default class NutanixService {
     return this.$q
       .all(nodes.map((node) => this.getServer(node.server)))
       .then((res) => res);
+  }
+
+  getNodesWithState(serviceName) {
+    return this.$http
+      .get(`/nutanix/${serviceName}/nodes`, {
+        serviceType: 'apiv6',
+      })
+      .then(({ data }) => data.map((node) => new Node(node)));
   }
 
   getServer(nodeId) {
@@ -291,5 +303,41 @@ export default class NutanixService {
         authorizations.authorizedActions.includes(action),
       ),
     };
+  }
+
+  updateClusterNodePowerStateOn(nodeId) {
+    return this.$http
+      .put(`/dedicated/server/${nodeId}`, {
+        bootId: 1,
+        monitoring: false,
+        noIntervention: false,
+      })
+      .then(() => this.rebootClusterNode(nodeId));
+  }
+
+  getClusterNodePowerId(nodeId) {
+    return this.$http
+      .get(`/dedicated/server/${nodeId}/boot?bootType=power`)
+      .then(({ data }) => data[0]);
+  }
+
+  updateClusterNodePowerStateOff(nodeId) {
+    return this.getClusterNodePowerId(nodeId)
+      .then((powerId) =>
+        this.$http.put(`/dedicated/server/${nodeId}`, {
+          bootId: powerId,
+          monitoring: false,
+          noIntervention: false,
+        }),
+      )
+      .then(() => this.rebootClusterNode(nodeId));
+  }
+
+  rebootClusterNode(nodeId) {
+    return this.$http.post(`/dedicated/server/${nodeId}/reboot`);
+  }
+
+  uninstallClusterNode(clusterId, nodeId) {
+    return this.$http.post(`/nutanix/${clusterId}/nodes/${nodeId}/terminate`);
   }
 }

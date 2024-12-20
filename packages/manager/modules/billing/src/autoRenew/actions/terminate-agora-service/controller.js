@@ -16,6 +16,7 @@ export default class TerminateAgoraServiceController {
     this.goBack(
       this.$translate.instant(
         `autorenew_agora_terminate_service_success_${this.serviceType}`,
+        { serviceName: this.serviceName },
       ),
       'success',
     );
