@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Clipboard,
   DashboardTile,
+  DashboardTileBlockItem,
   LinkType,
   Links,
   Region,
@@ -112,6 +113,16 @@ const InformationsTile = ({
               />
             ),
           },
+          okmsData?.kmipRsaEndpoint && {
+            id: 'kmip-rsa',
+            label: 'test',
+            value: (
+              <Clipboard
+                className="block w-full"
+                value={okmsData?.kmipEndpoint}
+              />
+            ),
+          },
           {
             id: 'swagger',
             label: t('key_management_service_dashboard_field_label_swagger'),
@@ -131,7 +142,7 @@ const InformationsTile = ({
               />
             ),
           },
-        ]}
+        ].filter((item) => item !== undefined)}
       />
       <Outlet />
     </>
