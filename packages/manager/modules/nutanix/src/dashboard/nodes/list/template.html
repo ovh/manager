@@ -11,8 +11,13 @@
                 class="oui-link"
                 data-ui-sref="{{:: $ctrl.constructor.getNodeDetailsState($row.name) }}"
                 data-ng-bind="$row.iam.displayName"
+                data-ng-if="!$row.isHiddenNode"
             >
             </a>
+            <span
+                data-ng-if="$row.isHiddenNode"
+                data-ng-bind="$row.iam.displayName"
+            ></span>
         </iam-protected-data>
     </oui-datagrid-column>
     <oui-datagrid-column
