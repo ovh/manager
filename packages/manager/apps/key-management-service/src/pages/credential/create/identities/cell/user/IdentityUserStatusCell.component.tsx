@@ -5,7 +5,7 @@ import IdentitiesStatusBadge from '../../badge/IdentitiesStatusBadge.component';
 const IdentityUserStatusCell = (user: IdentityUser) => {
   return (
     <span>
-      <IdentitiesStatusBadge status={user.status} inline />
+      <IdentitiesStatusBadge status={user.status} />
     </span>
   );
 };

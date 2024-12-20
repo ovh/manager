@@ -14,7 +14,9 @@ export type CredentialNameErrorsType = typeof CredentialNameErrors[keyof typeof 
 
 export const credentialNameMaxCharacters = 50;
 
-export const validateCredentialName = (name: string) => {
+export const validateCredentialName = (name: string | null) => {
+  if (name === null) return undefined;
+
   if (name.length === 0) return CredentialNameErrors.required;
 
   if (name.length > credentialNameMaxCharacters)

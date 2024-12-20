@@ -12,11 +12,13 @@ import {
   ODS_BUTTON_VARIANT,
   ODS_INPUT_TYPE,
   ODS_MESSAGE_COLOR,
+  ODS_TEXT_PRESET,
   OdsInputChangeEventDetail,
   OdsInputCustomEvent,
 } from '@ovhcloud/ods-components';
 import { handleClick } from '../../../utils/click-utils';
 import './translations/translations';
+import { Subtitle } from '../../typography';
 
 export type UpdateNameModalProps = {
   headline: string;
@@ -64,47 +66,37 @@ export const UpdateNameModal: React.FC<UpdateNameModalProps> = ({
 
   return (
     <OdsModal isOpen={isOpen} onOdsClose={closeModal}>
-      <div>
-        <span className="update-name-headline text-[--ods-color-heading] text-[24px] leading-[32px] font-bold">
-          {headline}
-        </span>
-      </div>
+      <Subtitle>{headline}</Subtitle>
       {!!error && (
-        <OdsMessage color={ODS_MESSAGE_COLOR.danger}>
-          <OdsText preset="span">{t('updateModalError', { error })}</OdsText>
+        <OdsMessage color={ODS_MESSAGE_COLOR.critical}>
+          {t('updateModalError', { error })}
         </OdsMessage>
       )}
-      <span className="update-name-description text-[--ods-color-text] text-[14px] leading-[18px] my-[8px]">
-        {description}
-      </span>
-      <OdsFormField className="mb-8">
-        <div slot="label">
-          <span className="update-name-input-label text-[--ods-color-text] text-[14px] leading-[18px] font-semibold">
-            {inputLabel}
-          </span>
-        </div>
+      <OdsText preset={ODS_TEXT_PRESET.paragraph}>{description}</OdsText>
+      <OdsFormField className="block mb-8">
+        <label htmlFor="update-name-modal-input">
+          <OdsText preset={ODS_TEXT_PRESET.span}>{inputLabel}</OdsText>
+        </label>
         <OdsInput
+          className="block"
           aria-label="update-input"
+          name="update-name-modal-input"
           isDisabled={isLoading}
           type={ODS_INPUT_TYPE.text}
           value={displayName}
           hasError={isPatternError || undefined}
-          name="update-name-modal-input"
-          onOdsChange={(e: OdsInputCustomEvent<OdsInputChangeEventDetail>) =>
-            setDisplayName(e.detail.value as string)
-          }
+          onOdsChange={(e) => setDisplayName(e.detail.value as string)}
         />
         {patternMessage && (
-          <div className="mt-5">
-            <OdsText
-              preset="span"
-              className={`update-name-modal-pattern-message ${
-                isPatternError && pattern ? 'error' : ''
-              }`}
-            >
-              {patternMessage}
-            </OdsText>
-          </div>
+          <OdsText
+            slot="visual-hint"
+            preset="span"
+            className={`update-name-modal-pattern-message ${
+              isPatternError && pattern ? 'error' : ''
+            }`}
+          >
+            {patternMessage}
+          </OdsText>
         )}
       </OdsFormField>
       <OdsButton
