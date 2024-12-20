@@ -30,6 +30,7 @@ export default /* @ngInject */ function BillingUserService(
         result.billingCountry === 'FR' && result.legalform === 'individual',
       hasAutorenew2016: () =>
         AUTORENEW_2016_SUBSIDIARIES.includes(result.ovhSubsidiary),
+      auth: result.auth,
     }));
 
   this.getMe = () => $q.when(coreConfig.getUser());
