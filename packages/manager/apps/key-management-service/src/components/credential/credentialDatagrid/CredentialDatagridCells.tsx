@@ -13,7 +13,7 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { ODS_BUTTON_COLOR } from '@ovhcloud/ods-components';
+import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { OkmsCredential } from '@/types/okmsCredential.type';
 import { useFormattedDate } from '@/hooks/useFormattedDate';
 import { CredentialStatus } from '../credentialStatus/CredentialStatus.component';
@@ -140,6 +140,7 @@ export const DatagridCredentialCellActions = (credential: OkmsCredential) => {
     <ActionMenu
       id={`credentialsActions-${credential.id}`}
       items={items}
+      variant={ODS_BUTTON_VARIANT.ghost}
       isCompact
     />
   );

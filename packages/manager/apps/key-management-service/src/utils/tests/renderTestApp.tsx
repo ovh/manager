@@ -11,13 +11,13 @@ import {
   GetServicesMocksParams,
 } from '@ovh-ux/manager-module-common-api';
 import { render, waitFor, screen } from '@testing-library/react';
-import { TestApp } from './TestApp';
-import { initTestI18n } from './init.i18n';
 import {
   getAuthenticationMocks,
   toMswHandlers,
   WAIT_FOR_DEFAULT_OPTIONS,
 } from '@ovh-ux/manager-core-test-utils';
+import { TestApp } from './TestApp';
+import { initTestI18n } from './init.i18n';
 import { getOkmsMocks, GetOkmsMocksParams } from '@/mocks/kms/okms.handler';
 import {
   getServiceKeysMock,

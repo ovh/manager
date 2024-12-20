@@ -104,7 +104,7 @@ const BillingInformationsTile = ({
               'key_management_service_dashboard_field_label_next_billing_date',
             ),
             value: (
-              <div className="flex flex-row justify-between items-center">
+              <div className="flex flex-row justify-between items-center gap-2">
                 <TileValueDate
                   value={okmsService?.billing.nextBillingDate}
                   options={dateFormat}
