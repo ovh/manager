@@ -1,5 +1,5 @@
 {
   "pci_projects_project_storages_containers_container_empty_user_title": "Einen Nutzer zu meinem Container hinzufügen",
-  "pci_projects_project_storages_containers_container_empty_user_description": "Erstellen Sie einen Nutzer und erstellen Sie die S3-Zugangsdaten im Bereich „S3-Nnutzer“.",
-  "pci_projects_project_storages_containers_container_empty_user_label": "Zugang zu „S3-Nutzer“."
+  "pci_projects_project_storages_containers_container_empty_user_description": "Sie müssen einen Benutzer erstellen und im Bereich „Object Storage-Benutzer“ Object Storage-Zugangsdaten generieren.",
+  "pci_projects_project_storages_containers_container_empty_user_label": "Zu „Object Storage-Benutzer“ wechseln"
 }
