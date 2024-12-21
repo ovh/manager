@@ -1,5 +1,5 @@
 {
-  "cpbc_hourly_instance_col_name": "Nombre",
+  "cpbc_hourly_instance_col_name": "Apellido",
   "cpbc_hourly_instance_col_consumption": "Consumo",
   "cpbc_hourly_instance_col_consumption_tooltip": "Facturación a principios del mes siguiente.",
   "cpbc_hourly_instance_detail_title": "Servidores",
