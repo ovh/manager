@@ -32,7 +32,7 @@ export default [
       },
       {
         path: '',
-        ...lazyRouteConfig(() => import('@/pages/WithAuth.layout')),
+        ...lazyRouteConfig(() => import('@/pages/Auth.layout')),
         children: [
           {
             path: '',

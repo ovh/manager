@@ -11,7 +11,6 @@ interface NotebooksProps {
 }
 
 export const Loader = async ({ params }: NotebooksProps) => {
-  // check if we have a correct category
   const { projectId } = params;
   const notebooks = await queryClient.fetchQuery({
     queryKey: [projectId, 'ai/notebooks'],
