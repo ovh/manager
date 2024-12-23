@@ -58,6 +58,7 @@ vi.mock('@ovh-ux/manager-react-components', async () => {
   );
   return {
     ...rest,
+    useProjectUrl: vi.fn(),
     StepComponent: vi
       .fn()
       .mockImplementation(ActualStepComponent as typeof StepComponent),
