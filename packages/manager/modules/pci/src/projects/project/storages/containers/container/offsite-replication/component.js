@@ -3,9 +3,8 @@ import controller from './controller';
 
 const component = {
   bindings: {
-    isBucketVersioningEnabled: '<',
-    onBucketVersioningChange: '&',
-    forceEnableVersioning: '<',
+    isOffsiteReplicationEnabled: '<',
+    onOffsiteReplicationChange: '&',
   },
   template,
   controller,

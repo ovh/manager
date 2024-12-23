@@ -1,7 +1,7 @@
 export default class PciProjectStorageBucketVersioningController {
-  $onInit() {
-    this.isBucketVersioningEnabled = false;
-  }
+  // $onInit() {
+  //   // this.isBucketVersioningEnabled = this.forceEnableVersionning;
+  // }
 
   handleBucketVersioningChange() {
     this.onBucketVersioningChange({
