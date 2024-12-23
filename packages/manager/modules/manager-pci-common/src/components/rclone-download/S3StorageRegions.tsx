@@ -1,11 +1,6 @@
 import { useTranslatedMicroRegions } from '@ovh-ux/manager-react-components';
-import {
-  OsdsSelect,
-  OsdsSelectOption,
-  OsdsSpinner,
-} from '@ovhcloud/ods-components/react';
 import React, { useEffect, useState } from 'react';
-import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+import { OdsSelect, OdsSpinner } from '@ovhcloud/ods-components/react';
 import { useS3StorageRegions } from '../../api/hook/useRegions';
 import { TRegion } from '../../api/data';
 
@@ -31,29 +26,24 @@ export default function S3StorageRegions({
   }, [s3StorageRegions]);
 
   if (isLoading || !currentRegion) {
-    return (
-      <OsdsSpinner
-        data-testid="s3StorageRegions_spinner"
-        inline
-        size={ODS_SPINNER_SIZE.md}
-      />
-    );
+    return <OdsSpinner data-testid="s3StorageRegions_spinner" size="md" />;
   }
 
   return (
-    <OsdsSelect
+    <OdsSelect
       value={currentRegion}
+      name="currentRegion"
       data-testid="s3StorageRegions_select"
-      onOdsValueChange={(event) => {
+      onOdsChange={(event) => {
         setCurrentRegion(`${event.detail.value}`);
         onS3StorageRegionChange(`${event.detail.value}`);
       }}
     >
       {s3StorageRegions?.map((region: TRegion, index: number) => (
-        <OsdsSelectOption key={`${region.name}-${index}`} value={region.name}>
+        <option key={`${region.name}-${index}`} value={region.name}>
           {translateMicroRegion(region.name)}
-        </OsdsSelectOption>
+        </option>
       ))}
-    </OsdsSelect>
+    </OdsSelect>
   );
 }
