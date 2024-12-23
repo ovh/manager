@@ -13,16 +13,16 @@ export function breadcrumb() {
   return (
     <BreadcrumbItem
       translationKey="breadcrumb"
-      namespace="pci-ai-notebooks/notebooks/notebook/attached-data"
+      namespace="pci-ai-notebooks/notebooks/notebook/containers"
     />
   );
 }
 
-const AttachedData = () => {
+const Containers = () => {
   const { notebook } = useNotebookData();
   const navigate = useNavigate();
   const { t } = useTranslation(
-    'pci-ai-notebooks/notebooks/notebook/attached-data',
+    'pci-ai-notebooks/notebooks/notebook/containers',
   );
   const volumeInfoLink = 'https://docs.ovh.com/gb/en/publiccloud/ai/data/';
   return (
@@ -56,7 +56,8 @@ const AttachedData = () => {
       <VolumesList
         volumes={notebook.spec.volumes.filter(
           (vol: ai.volume.Volume) =>
-            vol.volumeSource.dataStore.internal === false,
+            vol.volumeSource.dataStore &&
+            vol.volumeSource.dataStore?.internal === false,
         )}
       />
       <Outlet />
@@ -64,4 +65,4 @@ const AttachedData = () => {
   );
 };
 
-export default AttachedData;
+export default Containers;

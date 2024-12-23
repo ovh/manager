@@ -1,6 +1,11 @@
 {
-  "containerFieldLabel": "Container",
-  "containerFieldPlaceholder": "Séléctionner un container",
+  "containerTitle": "Datastore S3, Datastore Git ou Object Storage OVHcloud",
+  "containerFieldLabel": "Conteneurs",
+  "containerDescription": "Datastore S3, Datastore Git ou Object Storage OVHcloud",
+  "noContainerDescription": "Vous n'avez pas configurés de Datastore S3 ou Git ni d'Object Storage OVHcloud.",
+  "datastoreLinkLabel": "Configurer un Datastore.",
+  "objectStorageLinkLabel": "Configurer un Object Storage OVHcloud.",
+  "containerFieldPlaceholder": "Séléctionner un conteneur",
   "gitBranchFieldLabel": "Branch Git",
   "mountDirectoryFieldLabel": "Répertoire de montage",
   "permissionsFieldLabel": "Permission",
@@ -13,6 +18,9 @@
   "duplicateMountPathError": "Ce répertoire de montage existe déjà",
   "mountPathError": "Ce répertoire de montage est réservé",
   "mountPathErrorFormat": "Format incorrect (ex : /files/test)",
+  "publicGitRepoTitle": "Dépots GIT public",
+  "publicGitUrlFieldLabel": "URL",
+  "gitUrlErrorFormat": "Format incorrect (ex: https://publicRepoGit.git)",
   "numberOfConfiguredVolumes_zero": "{{count}} volumes configurés",
   "numberOfConfiguredVolumes_one": "{{count}} volume configuré sur {{max}}",
   "numberOfConfiguredVolumes_other": "{{count}} volumes configurés sur {{max}}"

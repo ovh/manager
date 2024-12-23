@@ -54,6 +54,7 @@ import { useModale } from '@/hooks/useModale';
 import { useGetCommand } from '@/hooks/api/ai/notebook/useGetCommand.hook';
 import CliEquivalent from './CliEquivalent.component';
 import { getNotebookSpec } from '@/lib/orderFunnelHelper';
+import A from '@/components/links/A.component';
 
 interface OrderFunnelProps {
   regions: ai.capabilities.Region[];
@@ -434,19 +435,22 @@ const OrderFunnel = ({
                               {t('fieldVolumesLabel')}
                             </FormLabel>
                             <p>{t('fieldVolumeDescription')}</p>
+                            <A
+                              href="https://docs.ovh.com/gb/en/publiccloud/ai/data/"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              {t('fieldVolumeLink')}
+                            </A>
                             <FormControl>
-                              {model.lists.volumes.length > 0 ? (
-                                <VolumeForm
-                                  {...field}
-                                  configuredVolumesList={model.lists.volumes}
-                                  selectedVolumesList={field.value}
-                                  onChange={(newVolumes) =>
-                                    model.form.setValue('volumes', newVolumes)
-                                  }
-                                />
-                              ) : (
-                                <p>{t('noVolumeDescription')}</p>
-                              )}
+                              <VolumeForm
+                                {...field}
+                                configuredVolumesList={model.lists.volumes}
+                                selectedVolumesList={field.value}
+                                onChange={(newVolumes) =>
+                                  model.form.setValue('volumes', newVolumes)
+                                }
+                              />
                             </FormControl>
                             <FormMessage />
                           </FormItem>

@@ -46,7 +46,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     const filteredVolume: ai.volume.Volume[] = notebook.spec.volumes.filter(
-      (vol) => vol.volumeSource.dataStore.internal === false,
+      (vol) => vol.mountPath !== '/workspace',
     );
     getCommand({ ...notebook.spec, volumes: filteredVolume });
   }, [notebook]);
