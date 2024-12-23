@@ -24,6 +24,8 @@ export default {
     onSuccess: '&?',
     onCancel: '&?',
     onError: '&?',
+    validationErrorMessage: '<?',
+    validationPattern: '<?',
   },
   controller,
   template,

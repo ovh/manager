@@ -27,10 +27,14 @@ export const OLD_CLUSTER_PLAN_CODE = [
 
 export const LICENSE_REGISTRATION_ENDS_IN_DAYS = 90;
 
+// eslint-disable-next-line no-control-regex
+export const NAME_PATTERN = /^[\x00-\x7F]{1,40}$/;
+
 export default {
   NOT_SUBSCRIBED,
   SERVER_OPTIONS,
   GUIDE_URL,
   LICENSE_REGISTRATION_ENDS_IN_DAYS,
   OLD_CLUSTER_PLAN_CODE,
+  NAME_PATTERN,
 };
