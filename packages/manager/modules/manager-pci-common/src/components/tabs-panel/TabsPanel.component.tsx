@@ -1,10 +1,6 @@
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import {
-  OsdsTabBar,
-  OsdsTabBarItem,
-  OsdsTabs,
-} from '@ovhcloud/ods-components/react';
+import { OdsTab, OdsTabs } from '@ovhcloud/ods-components/react';
 import React, { useContext, useEffect, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 
@@ -40,36 +36,28 @@ export function TabsPanel({ tabs }: Readonly<TabsProps>) {
   }, [location.pathname]);
 
   return (
-    <OsdsTabs panel={activePanel}>
-      <OsdsTabBar slot="top">
-        {tabs.map((tab: TabItemProps) => (
-          <React.Fragment key={`osds-tab-bar-item-${tab.name}`}>
-            {tab.isDisabled ? (
-              <div>
-                <OsdsTabBarItem
-                  panel={tab.name}
-                  disabled={tab.isDisabled || undefined}
-                >
-                  {tab.title}
-                </OsdsTabBarItem>
-              </div>
-            ) : (
-              <NavLink
-                to={tab.to}
-                onClick={() => tracking?.trackClick({ name: tab.tracking })}
-                className="no-underline"
-              >
-                <OsdsTabBarItem
-                  panel={tab.name}
-                  disabled={tab.isDisabled || undefined}
-                >
-                  {tab.title}
-                </OsdsTabBarItem>
-              </NavLink>
-            )}
-          </React.Fragment>
-        ))}
-      </OsdsTabBar>
-    </OsdsTabs>
+    <OdsTabs>
+      {tabs.map((tab: TabItemProps) => (
+        <React.Fragment key={`osds-tab-bar-item-${tab.name}`}>
+          {tab.isDisabled ? (
+            <div>
+              <OdsTab isDisabled={tab.isDisabled || undefined}>
+                {tab.title}
+              </OdsTab>
+            </div>
+          ) : (
+            <NavLink
+              to={tab.to}
+              onClick={() => tracking?.trackClick({ name: tab.tracking })}
+              className="no-underline"
+            >
+              <OdsTab isDisabled={tab.isDisabled || undefined}>
+                {tab.title}
+              </OdsTab>
+            </NavLink>
+          )}
+        </React.Fragment>
+      ))}
+    </OdsTabs>
   );
 }
