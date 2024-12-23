@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.25.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.25.1...@ovh-ux/manager-new-billing@0.25.2) (2024-12-23)
+
+
+### Bug Fixes
+
+* **billing:** added auth information on currentUser ([#14688](https://github.com/ovh/manager/issues/14688)) ([6a1e400](https://github.com/ovh/manager/commit/6a1e400eaca7109fcb814bbf2d88069eb76b2c29))
+* **billing:** added wuc dependency to fix injection error ([#14560](https://github.com/ovh/manager/issues/14560)) ([5d5fae3](https://github.com/ovh/manager/commit/5d5fae381a02294d61674abe51c977932ba927d5))
+* **billing:** dead link on order tracking ([#14613](https://github.com/ovh/manager/issues/14613)) ([5e60d4e](https://github.com/ovh/manager/commit/5e60d4e77661f249252a2e4de32c6b18ff7c6838))
+* **billing:** fix hasautorenew2016 is not a function ([#14554](https://github.com/ovh/manager/issues/14554)) ([93b18fc](https://github.com/ovh/manager/commit/93b18fc1f18f98453eca0ea9bde9e898be4d358c))
+
+
+
+
+
 ## [0.25.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.25.0...@ovh-ux/manager-new-billing@0.25.1) (2024-12-12)
 
 
