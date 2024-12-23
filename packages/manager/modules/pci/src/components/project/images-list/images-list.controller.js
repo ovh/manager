@@ -47,12 +47,34 @@ export default class ImagesListController {
   }
 
   getImages() {
-    return this.PciProjectImages.getImages(this.serviceName, this.region).then(
-      (images) => {
-        this.images = images;
-        this.updateImages(images);
-        return images;
-      },
+    return (
+      this.PciProjectImages.getImages(this.serviceName, this.region)
+        .then((images) => {
+          this.images = images;
+          this.updateImages(images);
+          return images;
+        })
+        // >>> MOCK
+        .catch((error) => {
+          if (this.region === 'EU-WEST-PAR') {
+            return this.PciProjectImages.getImages(
+              this.serviceName,
+              'GRA11',
+            ).then((images) => {
+              this.images = images.map((image) => ({
+                ...image,
+                regions: image.regions.map((region) => ({
+                  ...region,
+                  region: 'EU-WEST-PAR',
+                })),
+              }));
+              this.updateImages(images);
+              return images;
+            });
+          }
+          throw error;
+        })
+      // <<< MOCK
     );
   }
 
