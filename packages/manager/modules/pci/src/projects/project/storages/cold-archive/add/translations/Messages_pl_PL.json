@@ -11,8 +11,8 @@
   "pci_projects_project_storages_cold_archive_add_action_create": "Utwórz kontener",
   "pci_projects_project_storages_cold_archive_add_action_cancel": "Anuluj",
   "pci_projects_project_storages_cold_archive_add_action_create_pending": "Trwa tworzenie kontenera",
-  "pci_projects_project_storages_cold_archive_add_action_create_archive_create_request_success_linked_user": "Kontener {{container}} został utworzony. Użytkownik S3 {{userName}} jest administratorem tego kontenera.",
+  "pci_projects_project_storages_cold_archive_add_action_create_archive_create_request_success_linked_user": "Kontener {{container}} został utworzony. Użytkownik Object Storage {{ userName }} jest administratorem tego kontenera.",
   "pci_projects_project_storages_cold_archive_add_action_create_archive_create_request_success_no_linked_user": "Kontener {{container}} został utworzony.",
-  "pci_projects_project_storages_cold_archive_add_action_create_archive_create_request_success": "Kontener {{containerName}} został utworzony. Użytkownik S3 {{userName}} jest administratorem tego kontenera.",
+  "pci_projects_project_storages_cold_archive_add_action_create_archive_create_request_success": "Kontener {{containerName}} został utworzony. Użytkownik Object Storage {{ userName }} jest administratorem tego kontenera.",
   "pci_projects_project_storages_cold_archive_add_action_create_archive_create_request_failed": "Wystąpił błąd podczas tworzenia kontenera {{containerName}}: {{message}}"
 }
