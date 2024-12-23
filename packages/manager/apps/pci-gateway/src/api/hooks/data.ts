@@ -20,6 +20,7 @@ export type TAvailableRegion = {
   macroName: string;
   microName: string;
   continent: string;
+  type: string;
 };
 
 export type TSizeItem = {
@@ -141,6 +142,7 @@ export const useData = (projectId: string) => {
                   region.name,
                 )}`,
               ),
+              type: region.type,
             })),
           };
           return size;

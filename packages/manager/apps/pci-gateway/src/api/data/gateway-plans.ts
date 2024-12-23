@@ -8,6 +8,7 @@ export type TAvailableGatewayPlansResponse = {
       continentCode: string;
       datacenter: string;
       enabled: boolean;
+      type: string;
     }[];
   }[];
 };
