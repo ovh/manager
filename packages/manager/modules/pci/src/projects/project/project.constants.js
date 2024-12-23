@@ -215,6 +215,8 @@ export const LEGACY_PLAN_CODES = ['project.legacy', 'project.2018'];
 
 export const LOCAL_ZONE_REGION = 'localzone';
 
+export const THREE_AZ_REGION = 'region-3-az';
+
 export const LOCAL_ZONE_INFO_URL = {
   DEFAULT: 'https://ovhcloud.com/en/public-cloud/local-zone-compute/',
   ASIA: 'https://ovhcloud.com/asia/public-cloud/local-zone-compute/',
@@ -291,6 +293,7 @@ export default {
   DATABASE_CREATION_GUIDES,
   PCI_FEATURES,
   LOCAL_ZONE_REGION,
+  THREE_AZ_REGION,
   URL_INFO,
   DISCOVERY_PROJECT_PLANCODE,
   DISCOVERY_PROMOTION_VOUCHER,

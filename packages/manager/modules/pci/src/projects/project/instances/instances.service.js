@@ -537,6 +537,23 @@ export default class PciProjectInstanceService {
         regions: this.PciProjectRegions.getRegions(projectId, customerRegions),
       })
       .then(({ availableRegions, regions }) => {
+        // >>> MOCK
+        const parisRegion = regions.find(({ name }) => name === 'EU-WEST-PAR');
+        const gra11Region = regions.find(({ name }) => name === 'GRA11');
+        regions.splice(regions.indexOf(parisRegion), 1, {
+          ...parisRegion,
+          availabilityZones: [
+            'EU-WEST-PAR-A',
+            'EU-WEST-PAR-B',
+            'EU-WEST-PAR-C',
+          ],
+          services: [
+            ...parisRegion.services,
+            { name: 'instance', status: 'UP' },
+          ],
+          quota: { ...gra11Region.quota },
+        });
+        // <<< MOCK
         const supportedRegions = filter(regions, (region) =>
           some(get(region, 'services', []), { name: 'instance', status: 'UP' }),
         );

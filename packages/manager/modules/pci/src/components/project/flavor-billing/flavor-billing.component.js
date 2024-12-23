@@ -1,5 +1,6 @@
 import controller from './flavor-billing.controller';
 import template from './flavor-billing.html';
+import './flavor-billing.scss';
 
 export default {
   controller,
@@ -13,5 +14,7 @@ export default {
     isLocalZone: '<',
     hourlyPriceInformation: '<',
     onChange: '&',
+    beta: '<',
+    free: '<',
   },
 };

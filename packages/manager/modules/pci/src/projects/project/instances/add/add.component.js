@@ -30,6 +30,7 @@ export default {
     projectActivationPageHref: '<',
     goToDiscoveryProjectActivationPage: '&',
     getUAppUrl: '<',
+    are3AzRegionsAvailable: '<',
   },
   controller,
   template,
