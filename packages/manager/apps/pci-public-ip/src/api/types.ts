@@ -32,6 +32,7 @@ export type TRegion = {
   macroName: string;
   microName: string;
   continent: string;
+  type: string;
 };
 
 export enum StepIdsEnum {

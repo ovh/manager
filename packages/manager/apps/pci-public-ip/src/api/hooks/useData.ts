@@ -39,7 +39,7 @@ export const useData = (projectId: string, regionName: string) => {
       instance.ipAddresses?.some((ip) => ip.type === 'private'),
     );
     const additionalInstances = (instances || []).filter((instance) =>
-      instance.ipAddresses.some((ip) => ip.type === 'public'),
+      instance.ipAddresses?.some((ip) => ip.type === 'public'),
     );
     setDataState((prev) => ({
       ...prev,
