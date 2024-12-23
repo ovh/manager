@@ -32,7 +32,7 @@ export const S3_REGION_CAPACITY = [
 ];
 export const DOWNLOAD_FILETYPE = {
   SWIFT: 'Swift',
-  S3: 'S3',
+  S3: 'S3 Compatible',
 };
 export const RCLONE_SERVICE_TYPE = {
   SWIFT: 'storage',
