@@ -4,7 +4,7 @@
   "pci_projects_project_storages_containers_container_archive_info_storedObjects": "Archives : {{ count }}",
   "pci_projects_project_storages_containers_container_object_info_storedObjects": "Objets : {{ count }}",
   "pci_projects_project_storages_containers_container_info_storedBytes": "Espace utilisé : {{ bytes }}",
-  "pci_projects_project_storages_containers_container_info_data_encryption_enabled": "Chiffrement : <strong>SSE-S3</strong>",
+  "pci_projects_project_storages_containers_container_info_data_encryption_enabled": "Chiffrement : <strong>SSE-OMK</strong>",
   "pci_projects_project_storages_containers_container_info_data_encryption_disabled": "Chiffrement : <strong>Aucun</strong>",
   "pci_projects_project_storages_containers_container_info_id": "ID",
   "pci_projects_project_storages_containers_container_info_publicUrl": "Endpoint",
