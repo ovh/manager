@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.45.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.44.0...@ovh-ux/manager-vps@2.45.0) (2024-12-23)
+
+
+### Features
+
+* **dedicated:** my services revamp ([#14431](https://github.com/ovh/manager/issues/14431)) ([be8ee42](https://github.com/ovh/manager/commit/be8ee42ac19a18f9ea6e276d3dcf099a3c6f64f7))
+
+
+
+
+
 # [2.44.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.43.4...@ovh-ux/manager-vps@2.44.0) (2024-12-11)
 
 

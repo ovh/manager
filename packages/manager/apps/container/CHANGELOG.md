@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.96.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.95.2...@ovh-ux/manager-container-app@0.96.0) (2024-12-23)
+
+
+### Bug Fixes
+
+* **pnr:** resolve routing undefined error ([#14572](https://github.com/ovh/manager/issues/14572)) ([69065b7](https://github.com/ovh/manager/commit/69065b77d59bcfcbbf70639894b48623c2e0224a))
+
+
+### Features
+
+* **billing:** backport myservices ([#14474](https://github.com/ovh/manager/issues/14474)) ([b09461e](https://github.com/ovh/manager/commit/b09461edcacaf8635c0168383c5a43af9db31cc1))
+* **container:** always show tour after user chooses cookies ([#14684](https://github.com/ovh/manager/issues/14684)) ([a64a4da](https://github.com/ovh/manager/commit/a64a4dac95f50895e7ca65693de2bbf90a168976))
+* **container:** change sunrise icon ([#14661](https://github.com/ovh/manager/issues/14661)) ([8496d11](https://github.com/ovh/manager/commit/8496d118742a36cd8687ab54d19f58a8d60eeb37))
+* **container:** move the public cloud create project button ([#14635](https://github.com/ovh/manager/issues/14635)) ([8b14f4e](https://github.com/ovh/manager/commit/8b14f4e4b507f25a47353a308c0bbdef22f7497a))
+
+
+
+
+
 ## [0.95.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.95.1...@ovh-ux/manager-container-app@0.95.2) (2024-12-20)
 
 **Note:** Version bump only for package @ovh-ux/manager-container-app

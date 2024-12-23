@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-react-app@0.4.6...@ovh-ux/manager-hub-react-app@0.5.0) (2024-12-23)
+
+
+### Features
+
+* **hub:** updated help link to avoid unnecessary redirection ([#13964](https://github.com/ovh/manager/issues/13964)) ([f939756](https://github.com/ovh/manager/commit/f9397566f48622a1ff61407316badc784a389294))
+
+
+
+
+
 ## [0.4.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-react-app@0.4.5...@ovh-ux/manager-hub-react-app@0.4.6) (2024-12-20)
 
 **Note:** Version bump only for package @ovh-ux/manager-hub-react-app

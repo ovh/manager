@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.6.1...@ovh-ux/manager-billing-components@4.7.0) (2024-12-23)
+
+
+### Features
+
+* **billing:** backport myservices ([#14474](https://github.com/ovh/manager/issues/14474)) ([b09461e](https://github.com/ovh/manager/commit/b09461edcacaf8635c0168383c5a43af9db31cc1))
+* **dedicated:** my services revamp ([#14431](https://github.com/ovh/manager/issues/14431)) ([be8ee42](https://github.com/ovh/manager/commit/be8ee42ac19a18f9ea6e276d3dcf099a3c6f64f7))
+
+
+
+
+
 ## [4.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.6.0...@ovh-ux/manager-billing-components@4.6.1) (2024-12-19)
 
 **Note:** Version bump only for package @ovh-ux/manager-billing-components

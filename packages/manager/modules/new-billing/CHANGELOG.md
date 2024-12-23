@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.25.2...@ovh-ux/manager-new-billing@0.26.0) (2024-12-23)
+
+
+### Features
+
+* **billing:** backport myservices ([#14474](https://github.com/ovh/manager/issues/14474)) ([b09461e](https://github.com/ovh/manager/commit/b09461edcacaf8635c0168383c5a43af9db31cc1))
+
+
+
+
+
 ## [0.25.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.25.1...@ovh-ux/manager-new-billing@0.25.2) (2024-12-23)
 
 
