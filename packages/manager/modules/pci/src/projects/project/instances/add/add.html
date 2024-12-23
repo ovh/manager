@@ -279,6 +279,50 @@
                     price: $ctrl.getBandwidthExtraCost($ctrl.model.datacenter)
                 }"
             ></p>
+            <div data-ng-if="$ctrl.shouldShow3AZRegionData">
+                <h5
+                    data-translate="pci_project_instances_instance_add_3_az_region_select_title"
+                ></h5>
+                <p
+                    data-translate="pci_project_instances_instance_add_3_az_region_select_description"
+                ></p>
+                <oui-radio-group
+                    data-model="$ctrl.model.threeAzRegion.auto"
+                    data-on-change="$ctrl.on3AzRegionChange(modelValue)"
+                    class="mb-3 three-az-region-auto"
+                >
+                    <oui-radio data-value="true" class="mb-3">
+                        <p
+                            data-translate="pci_project_instances_instance_add_3_az_region_select_auto_title"
+                            class="m-0"
+                        ></p>
+                        <p
+                            data-translate="pci_project_instances_instance_add_3_az_region_select_auto_description"
+                            class="three-az-region-auto__info"
+                        ></p>
+                    </oui-radio>
+
+                    <oui-radio data-value="false" class="mt-3">
+                        <span
+                            data-translate="pci_project_instances_instance_add_3_az_region_select_manual_title"
+                        ></span>
+                    </oui-radio>
+                    <div class="row auto-clear">
+                        <oui-select-picker
+                            data-ng-if="!$ctrl.model.threeAzRegion.auto"
+                            class="col-md-3 col-xl-2 my-3"
+                            data-ng-repeat="zone in $ctrl.model.datacenter.availabilityZones track by $index"
+                            data-name="{{ zone }}"
+                            data-model="$ctrl.model.threeAzRegion.zone"
+                            data-label="{{ zone }}"
+                            data-values="[zone]"
+                            data-variant="light"
+                            data-required
+                        >
+                        </oui-select-picker>
+                    </div>
+                </oui-radio-group>
+            </div>
         </div>
     </oui-step-form>
 
@@ -1094,6 +1138,8 @@
             data-addons="$ctrl.addons"
             data-disabled="false"
             data-on-change="$ctrl.onBillingChange(billing)"
+            data-beta="$ctrl.shouldShow3AZRegionData"
+            data-free="$ctrl.shouldShow3AZRegionData"
         >
             <pci-project-flavor-billing-hourly-price
                 data-ng-if="$ctrl.shouldShowWindowsGen3Data()"

@@ -76,6 +76,12 @@ export default class FlavorsList {
         ),
       })
       .then(({ flavors, prices, catalog, productAvailability }) => {
+        // >>> MOCK
+        flavors.push({
+          ...flavors.find(({ name }) => name === 'b3-8'),
+          region: 'EU-WEST-PAR',
+        });
+        // <<< MOCK
         const hourlyPlanCodes = flavors.filter(
           ({ planCodes }) => !isNil(planCodes.hourly),
         );

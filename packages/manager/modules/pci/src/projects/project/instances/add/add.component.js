@@ -32,6 +32,7 @@ export default {
     getUAppUrl: '<',
     windowsGen3: '<',
     catalog: '<',
+    are3AzRegionsAvailable: '<',
   },
   controller,
   template,

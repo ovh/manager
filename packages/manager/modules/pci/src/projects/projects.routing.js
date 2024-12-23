@@ -321,6 +321,7 @@ export default /* @ngInject */ ($stateProvider) => {
           .catch(() => 'pci.projects.onboarding'),
 
       are3AzRegionsAvailable: /* @ngInject */ (pciFeatures) =>
+        true ||
         Boolean(
           pciFeatures.isFeatureAvailable(PCI_FEATURES.ACTIONS.THREE_AZ_REGIONS),
         ),
