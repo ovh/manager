@@ -342,7 +342,7 @@ export const Datagrid = <T,>({
               {table.getRowModel().rows.length === 0 && !isLoading && (
                 <tr
                   className={
-                    'border-solid border-[1px] h-[3.25rem] border-[--ods-color-blue-200]'
+                    'border-[1px] h-[3.25rem] border-[--ods-color-blue-200]'
                   }
                 >
                   <td className="text-center" colSpan={columns.length}>
