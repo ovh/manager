@@ -1,11 +1,10 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getMacroRegion } from '@ovh-ux/manager-react-components';
 import { TCatalog } from '@ovh-ux/manager-pci-common';
 import { useCloudCatalog } from '@/api/hooks/cloud-catalog';
 import { useAvailableGatewayPlans } from '@/api/hooks/gateway-plans';
 import { TAvailableGatewayPlansResponse } from '@/api/data/gateway-plans';
-import { useInactiveRegions } from '@/api/hooks/useInactiveRegions';
 
 const getLitteralProductSize = (productName: string): string => {
   const [, size] = /-([^-]+)$/.exec(productName) || [];
@@ -39,20 +38,10 @@ export const useData = (projectId: string) => {
   const { data: cloudCatalog } = useCloudCatalog();
   const { data: availableGatewayPlans } = useAvailableGatewayPlans(projectId);
 
-  const { data: inactiveRegions } = useInactiveRegions(projectId);
-
   const [sizes, setSizes] = useState<TSizeItem[]>([]);
 
-  const isRegionActive = useCallback(
-    (region: { name: string }) =>
-      !inactiveRegions?.some(
-        (inactiveRegion) => inactiveRegion.name === region.name,
-      ),
-    [inactiveRegions],
-  );
-
   useEffect(() => {
-    if (availableGatewayPlans && cloudCatalog && inactiveRegions) {
+    if (availableGatewayPlans && cloudCatalog) {
       const gatewayPlansWithRegions = availableGatewayPlans.plans.filter(
         (plan) => plan.regions.length,
       );
@@ -137,7 +126,7 @@ export const useData = (projectId: string) => {
               datacenter: region.datacenter,
               continentCode: region.continentCode,
               enabled: region.enabled,
-              active: isRegionActive(region),
+              active: region.enabled,
               macroName: tRegion(
                 `manager_components_region_${getMacroRegion(region.name)}`,
               ),
@@ -159,7 +148,7 @@ export const useData = (projectId: string) => {
 
       setSizes(newSizes?.sort((a, b) => a.monthlyPrice - b.monthlyPrice));
     }
-  }, [availableGatewayPlans, cloudCatalog, inactiveRegions, i18n]);
+  }, [availableGatewayPlans, cloudCatalog, i18n]);
 
   return sizes;
 };
