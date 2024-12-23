@@ -4,30 +4,20 @@ import {
   useNotifications,
 } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+
 import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import {
-  ODS_RADIO_BUTTON_SIZE,
-  ODS_TEXT_COLOR_INTENT,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-  OsdsRadioGroupCustomEvent,
-} from '@ovhcloud/ods-components';
-import {
-  OsdsFormField,
-  OsdsLink,
-  OsdsRadio,
-  OsdsRadioButton,
-  OsdsRadioGroup,
-  OsdsText,
+  OdsFormField,
+  OdsText,
+  OdsLink,
+  OdsRadio,
 } from '@ovhcloud/ods-components/react';
 import React, { useCallback, useContext, useState } from 'react';
 import { Translation, useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
+import {
+  OdsRadioChangeEventDetail,
+  OdsRadioCustomEvent,
+} from '@ovhcloud/ods-components';
 import {
   DOWNLOAD_FILETYPE,
   DOWNLOAD_RCLONE_FILENAME,
@@ -59,13 +49,8 @@ export default function RCloneDownloadModal({
   const [region, setRegion] = useState('');
 
   const handleFileTypeChanged = useCallback(
-    (
-      event: OsdsRadioGroupCustomEvent<{
-        newValue?: string;
-        previousValue?: string;
-      }>,
-    ) => {
-      const type = `${event.detail.newValue}` || '';
+    (event: OdsRadioCustomEvent<OdsRadioChangeEventDetail>) => {
+      const type = `${event.detail.value}` || '';
       setFileType(type);
     },
     [setFileType],
@@ -94,20 +79,20 @@ export default function RCloneDownloadModal({
       addSuccess(
         <Translation ns="pci-rclone-download">
           {(_t) => (
-            <OsdsText>
+            <OdsText>
               {_t('pci_projects_project_users_download-rclone_success_message')}
-              <OsdsLink
+              <OdsLink
                 href={content}
                 className="ml-3"
-                color={ODS_TEXT_COLOR_INTENT.primary}
+                color="primary"
                 download={DOWNLOAD_RCLONE_FILENAME}
-                target={OdsHTMLAnchorElementTarget._top}
+                target="_top"
               >
                 {t(
                   'pci_projects_project_users_download-rclone_success_message_link',
                 )}
-              </OsdsLink>
-            </OsdsText>
+              </OdsLink>
+            </OdsText>
           )}
         </Translation>,
         true,
@@ -128,87 +113,52 @@ export default function RCloneDownloadModal({
       submitText={t('pci_projects_project_users_download-rclone_submit_label')}
       cancelText={t('pci_projects_project_users_download-rclone_cancel_label')}
     >
-      <OsdsText
-        level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-        color={ODS_THEME_COLOR_INTENT.text}
-        size={ODS_TEXT_SIZE._400}
-      >
+      <OdsText preset="paragraph">
         {t('pci_projects_project_users_download-rclone_content')}
-      </OsdsText>
+      </OdsText>
 
       {rCloneGuideURL && (
         <Links
           className="ml-3"
           href={rCloneGuideURL}
-          target={OdsHTMLAnchorElementTarget._blank}
+          target="_blank"
           type={LinkType.external}
           label={t('pci_projects_project_users_download-rclone_more_link')}
         />
       )}
 
-      <OsdsFormField className="mt-6 mb-8">
-        <OsdsText
-          className="font-bold"
-          size={ODS_TEXT_SIZE._100}
-          level={ODS_TEXT_LEVEL.caption}
-          color={ODS_THEME_COLOR_INTENT.text}
-          slot="label"
-        >
+      <OdsFormField className="mt-6 mb-8">
+        <OdsText className="font-bold" preset="caption" slot="label">
           {t('pci_projects_project_users_download-rclone_file_type_label')}
-        </OsdsText>
-        <OsdsRadioGroup
-          required
-          className="flex"
-          name="filetype-radiogroup"
-          value={fileType}
-          onOdsValueChange={handleFileTypeChanged}
-        >
-          <OsdsRadio
+        </OdsText>
+        <div className="flex">
+          <OdsRadio
             value={DOWNLOAD_FILETYPE.SWIFT}
-            name="swiftFileType"
+            name="fileType"
             className="mr-4"
-            color={ODS_THEME_COLOR_INTENT.primary}
+            color="primary"
+            onOdsChange={handleFileTypeChanged}
           >
-            <OsdsRadioButton
-              size={ODS_RADIO_BUTTON_SIZE.xs}
-              color={ODS_THEME_COLOR_INTENT.primary}
-            >
-              <OsdsText
-                slot="end"
-                size={ODS_THEME_TYPOGRAPHY_SIZE._500}
-                color={ODS_THEME_COLOR_INTENT.text}
-              >
-                {DOWNLOAD_FILETYPE.SWIFT}
-              </OsdsText>
-            </OsdsRadioButton>
-          </OsdsRadio>
-          <OsdsRadio value={DOWNLOAD_FILETYPE.S3} name="s3FileType">
-            <OsdsRadioButton
-              size={ODS_RADIO_BUTTON_SIZE.xs}
-              color={ODS_THEME_COLOR_INTENT.primary}
-            >
-              <OsdsText
-                size={ODS_THEME_TYPOGRAPHY_SIZE._500}
-                color={ODS_THEME_COLOR_INTENT.text}
-                slot="end"
-              >
-                {DOWNLOAD_FILETYPE.S3}
-              </OsdsText>
-            </OsdsRadioButton>
-          </OsdsRadio>
-        </OsdsRadioGroup>
-      </OsdsFormField>
+            <OdsText slot="end" preset="paragraph" color="primary">
+              {DOWNLOAD_FILETYPE.SWIFT}
+            </OdsText>
+          </OdsRadio>
+          <OdsRadio
+            value={DOWNLOAD_FILETYPE.S3}
+            name="fileType"
+            onOdsChange={handleFileTypeChanged}
+          >
+            <OdsText preset="paragraph" color="text" slot="end">
+              {DOWNLOAD_FILETYPE.S3}
+            </OdsText>
+          </OdsRadio>
+        </div>
+      </OdsFormField>
 
-      <OsdsFormField>
-        <OsdsText
-          className="font-bold"
-          size={ODS_TEXT_SIZE._100}
-          level={ODS_TEXT_LEVEL.caption}
-          color={ODS_THEME_COLOR_INTENT.text}
-          slot="label"
-        >
+      <OdsFormField>
+        <OdsText className="font-bold" preset="caption" slot="label">
           {t('pci_projects_project_users_download-rclone_region_label')}
-        </OsdsText>
+        </OdsText>
 
         {fileType === DOWNLOAD_FILETYPE.S3 ? (
           <S3StorageRegions
@@ -221,7 +171,7 @@ export default function RCloneDownloadModal({
             onStorageRegionChange={setRegion}
           />
         )}
-      </OsdsFormField>
+      </OdsFormField>
     </PciModal>
   );
 }

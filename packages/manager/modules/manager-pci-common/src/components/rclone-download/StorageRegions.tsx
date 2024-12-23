@@ -1,14 +1,7 @@
 import { useTranslatedMicroRegions } from '@ovh-ux/manager-react-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import {
-  OsdsSelect,
-  OsdsSelectOption,
-  OsdsSpinner,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+import { OdsSelect, OdsSpinner, OdsText } from '@ovhcloud/ods-components/react';
 import { useStorageRegions } from '../../api/hook/useRegions';
 import { TRegion } from '../../api/data/regions';
 
@@ -36,39 +29,30 @@ export default function StorageRegions({
   }, [storageRegions]);
 
   if (isLoading || !currentRegion) {
-    return (
-      <OsdsSpinner
-        data-testid="storageRegions_spinner"
-        inline
-        size={ODS_SPINNER_SIZE.md}
-      />
-    );
+    return <OdsSpinner data-testid="storageRegions_spinner" size="md" />;
   }
 
   return (
     <>
-      <OsdsSelect
+      <OdsSelect
         value={currentRegion}
+        name="currentRegion"
         data-testid="storageRegions_select"
-        onOdsValueChange={(event) => {
+        onOdsChange={(event) => {
           const { value } = event.detail;
           setCurrentRegion(`${value}`);
           onStorageRegionChange(`${value}`);
         }}
       >
         {storageRegions?.map((region: TRegion, index: number) => (
-          <OsdsSelectOption key={`${region.name}-${index}`} value={region.name}>
+          <option key={`${region.name}-${index}`} value={region.name}>
             {translateMicroRegion(region.name)}
-          </OsdsSelectOption>
+          </option>
         ))}
-      </OsdsSelect>
-      <OsdsText
-        slot="helper"
-        color={ODS_THEME_COLOR_INTENT.text}
-        className="mt-2"
-      >
+      </OdsSelect>
+      <OdsText slot="helper" color="text" className="mt-2">
         {t('pci_projects_project_users_download-rclone_region_help')}
-      </OsdsText>
+      </OdsText>
     </>
   );
 }
