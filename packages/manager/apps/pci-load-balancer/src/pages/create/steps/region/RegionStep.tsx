@@ -116,6 +116,21 @@ export const RegionStep = ({
           }
         />
       )}
+      {store.region?.type === 'region-3-az' && (
+        <OsdsMessage
+          color={ODS_THEME_COLOR_INTENT.warning}
+          icon={ODS_ICON_NAME.WARNING}
+          className="mt-6"
+        >
+          <OsdsText
+            level={ODS_TEXT_LEVEL.body}
+            size={ODS_TEXT_SIZE._400}
+            color={ODS_THEME_COLOR_INTENT.text}
+          >
+            {t('octavia_load_balancer_create_region_3az_price')}
+          </OsdsText>
+        </OsdsMessage>
+      )}
       {store.region && !store.region.isEnabled && (
         <OsdsMessage
           color={ODS_THEME_COLOR_INTENT.warning}
