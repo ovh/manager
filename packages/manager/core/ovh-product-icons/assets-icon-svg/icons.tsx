@@ -42,6 +42,8 @@ import { ReactComponent as ServerV2 } from './container/server.svg';
 import { ReactComponent as ShieldCheck } from './container/shield-check.svg';
 import { ReactComponent as ShoppingCartPlus } from './container/shopping-cart-plus.svg';
 import { ReactComponent as Star } from './container/star.svg';
+import { ReactComponent as CloudChangelog } from './container/cloud_changelog.svg';
+import { ReactComponent as HostingChangelog } from './container/hosting_changelog.svg';
 
 export { Hosting, Office365, Sharepoint, Exchange };
 export { TelecomEthernet, Telephony, Headset };
@@ -68,6 +70,8 @@ export {
   ShieldCheck,
   ShoppingCartPlus,
   Star,
+  CloudChangelog,
+  HostingChangelog,
 };
 
 export {

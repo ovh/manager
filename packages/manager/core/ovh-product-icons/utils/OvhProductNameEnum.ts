@@ -39,6 +39,8 @@ enum OvhProductName {
   SHIELDCHECK = 'ShieldCheck',
   SHOPPINGCARTPLUS = 'ShoppingCartPlus',
   STAR = 'Star',
+  CLOUD_CHANGELOG = 'CloudChangelog',
+  HOSTING_CHANGELOG = 'HostingChangelog',
 }
 
 export default OvhProductName;
