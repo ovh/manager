@@ -5,11 +5,14 @@ import {
   RedirectionGuard,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
-import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
 import { Suspense, useEffect, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
 import { Outlet, useLocation, useResolvedPath } from 'react-router-dom';
+import {
+  OdsBreadcrumb,
+  OdsBreadcrumbItem,
+} from '@ovhcloud/ods-components/react';
 import { ROUTE_PATHS } from '@/routes';
 import { useAllStorages } from '@/api/hooks/useStorages';
 
@@ -46,15 +49,10 @@ export default function ObjectsPage() {
       condition={!isPending && allStorages?.resources.length === 0}
       route="./onboarding"
     >
-      <OsdsBreadcrumb
-        items={[
-          {
-            href: hrefProject,
-            label: project.description,
-          },
-          { label: activePanelTranslation },
-        ]}
-      />
+      <OdsBreadcrumb>
+        <OdsBreadcrumbItem label="project.description" href={hrefProject} />
+        <OdsBreadcrumbItem label={activePanelTranslation} href="#" />
+      </OdsBreadcrumb>
 
       <div className="flex items-center justify-between mt-8">
         <Headers
