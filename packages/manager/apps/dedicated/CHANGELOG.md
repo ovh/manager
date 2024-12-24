@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [20.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.8.0...@ovh-ux/manager-dedicated@20.8.1) (2024-12-24)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+# [20.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.7.5...@ovh-ux/manager-dedicated@20.8.0) (2024-12-23)
+
+
+### Features
+
+* **dedicated:** my services revamp ([#14431](https://github.com/ovh/manager/issues/14431)) ([be8ee42](https://github.com/ovh/manager/commit/be8ee42ac19a18f9ea6e276d3dcf099a3c6f64f7))
+
+
+
+
+
+## [20.7.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.7.4...@ovh-ux/manager-dedicated@20.7.5) (2024-12-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+## [20.7.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.7.3...@ovh-ux/manager-dedicated@20.7.4) (2024-12-19)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
 ## [20.7.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.7.2...@ovh-ux/manager-dedicated@20.7.3) (2024-12-18)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated

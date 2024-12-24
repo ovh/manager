@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-product-icons@0.6.0...@ovh-ux/ovh-product-icons@0.7.0) (2024-12-19)
+
+
+### Features
+
+* **common:** change sunrise icon ([#14660](https://github.com/ovh/manager/issues/14660)) ([54d12a7](https://github.com/ovh/manager/commit/54d12a799618f5954f5dcbc61a4eb6e48112b7e1))
+
+
+
+
+
 # [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-product-icons@0.5.0...@ovh-ux/ovh-product-icons@0.6.0) (2024-09-30)
 
 

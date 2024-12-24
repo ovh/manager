@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-app@0.2.6...@ovh-ux/manager-billing-app@0.2.7) (2024-12-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-billing-app
+
+
+
+
+
+## [0.2.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-app@0.2.5...@ovh-ux/manager-billing-app@0.2.6) (2024-12-23)
+
+
+### Bug Fixes
+
+* **billing:** dead link on order tracking ([#14613](https://github.com/ovh/manager/issues/14613)) ([5e60d4e](https://github.com/ovh/manager/commit/5e60d4e77661f249252a2e4de32c6b18ff7c6838))
+
+
+
+
+
+## [0.2.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-app@0.2.4...@ovh-ux/manager-billing-app@0.2.5) (2024-12-19)
+
+**Note:** Version bump only for package @ovh-ux/manager-billing-app
+
+
+
+
+
 ## [0.2.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-app@0.2.3...@ovh-ux/manager-billing-app@0.2.4) (2024-12-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-billing-app

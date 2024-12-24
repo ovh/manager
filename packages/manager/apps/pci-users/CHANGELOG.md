@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-users-app@0.11.28...@ovh-ux/manager-pci-users-app@0.12.0) (2024-12-24)
+
+
+### Features
+
+* **pci-object-storage:** replace s3 mentions ([#14695](https://github.com/ovh/manager/issues/14695)) ([92ffe64](https://github.com/ovh/manager/commit/92ffe64810da512cfcf96eccb657a45db550c1a7))
+
+
+
+
+
+## [0.11.28](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-users-app@0.11.27...@ovh-ux/manager-pci-users-app@0.11.28) (2024-12-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-users-app
+
+
+
+
+
+## [0.11.27](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-users-app@0.11.26...@ovh-ux/manager-pci-users-app@0.11.27) (2024-12-19)
+
+
+### Bug Fixes
+
+* **pci-*:** import style from pci-common library ([#14669](https://github.com/ovh/manager/issues/14669)) ([7d8b5e4](https://github.com/ovh/manager/commit/7d8b5e491178d627a4d6d2f3b5043c540d11015b))
+
+
+
+
+
 ## [0.11.26](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-users-app@0.11.25...@ovh-ux/manager-pci-users-app@0.11.26) (2024-12-18)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-users-app

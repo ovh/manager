@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@6.0.10...@ovh-ux/manager-hub-app@6.0.11) (2024-12-23)
+
+
+### Bug Fixes
+
+* **hub:** resolve template issue ([#12386](https://github.com/ovh/manager/issues/12386)) ([51458ff](https://github.com/ovh/manager/commit/51458ffc163bb1f6cd7a27ae2207dd74aa329b48))
+
+
+
+
+
+## [6.0.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@6.0.9...@ovh-ux/manager-hub-app@6.0.10) (2024-12-19)
+
+**Note:** Version bump only for package @ovh-ux/manager-hub-app
+
+
+
+
+
 ## [6.0.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@6.0.8...@ovh-ux/manager-hub-app@6.0.9) (2024-12-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-hub-app

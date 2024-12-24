@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-app@3.0.8...@ovh-ux/manager-vrack-app@3.0.9) (2024-12-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-vrack-app
+
+
+
+
+
+## [3.0.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-app@3.0.7...@ovh-ux/manager-vrack-app@3.0.8) (2024-12-20)
+
+
+### Bug Fixes
+
+* **vrack:** add ng-ovh-utils dep to resolve vrack build ([#14673](https://github.com/ovh/manager/issues/14673)) ([d93d91b](https://github.com/ovh/manager/commit/d93d91b151711bc1686c5f9fc23237143a4f9f7c))
+
+
+
+
+
+## [3.0.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-app@3.0.6...@ovh-ux/manager-vrack-app@3.0.7) (2024-12-19)
+
+**Note:** Version bump only for package @ovh-ux/manager-vrack-app
+
+
+
+
+
 ## [3.0.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-app@3.0.5...@ovh-ux/manager-vrack-app@3.0.6) (2024-12-18)
 
 **Note:** Version bump only for package @ovh-ux/manager-vrack-app

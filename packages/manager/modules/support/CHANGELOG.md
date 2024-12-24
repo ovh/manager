@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@2.0.4...@ovh-ux/manager-support@2.1.0) (2024-12-24)
+
+
+### Features
+
+* **pci-object-storage:** replace s3 mentions ([#14695](https://github.com/ovh/manager/issues/14695)) ([92ffe64](https://github.com/ovh/manager/commit/92ffe64810da512cfcf96eccb657a45db550c1a7))
+
+
+
+
+
+## [2.0.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@2.0.3...@ovh-ux/manager-support@2.0.4) (2024-12-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-support
+
+
+
+
+
+## [2.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@2.0.2...@ovh-ux/manager-support@2.0.3) (2024-12-19)
+
+**Note:** Version bump only for package @ovh-ux/manager-support
+
+
+
+
+
 ## [2.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@2.0.1...@ovh-ux/manager-support@2.0.2) (2024-11-28)
 
 **Note:** Version bump only for package @ovh-ux/manager-support

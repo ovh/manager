@@ -1,8 +1,8 @@
 import { vi, it, describe, expect } from 'vitest';
-import { render, waitFor } from '@testing-library/react';
+import { render, act, fireEvent } from '@testing-library/react';
 import { Node } from '../navigation-tree/node';
 import { PublicCloudPanel, PublicCloudPanelProps } from './PublicCloudPanel';
-import { mockShell } from '../mocks/sidebarMocks';
+import { mockShell, mockPlugins } from '../mocks/sidebarMocks';
 import { PciProject } from '../ProjectSelector/PciProject';
 import { Props as ProjectSelectorProps } from '../ProjectSelector/ProjectSelector';
 import { pciNode } from '../navigation-tree/services/publicCloud';
@@ -105,4 +105,12 @@ describe('PublicCloudPanel.component', () => {
     expect(projectSelector).not.toBeNull();
     expect(projectSelector.innerHTML).toBe('12345');
   });
+
+  it('should navigate to project creation when the button is clicked', async () => {
+    const { queryByTestId } = renderPublicCloudPanelComponent(props);
+    const createButton = queryByTestId('pci-create-project');
+    await act(() => fireEvent.click(createButton));
+
+    expect(mockPlugins.navigation.navigateTo).toHaveBeenCalled();
+  })
 });

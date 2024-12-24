@@ -1,0 +1,9 @@
+{
+  "payment_method_title": "Mi forma de pago",
+  "payment_method_default_label": "Por defecto",
+  "payment_method_expired_label": "Expirado/a",
+  "payment_method_update_link_label": "Modificar",
+  "payment_method_add_link_label": "Añadir",
+  "payment_method_expiration_date_label": "Expira el {{ date }}",
+  "payment_expiration_no_default_method_message": "No ha indicado ninguna forma de pago por defecto."
+}

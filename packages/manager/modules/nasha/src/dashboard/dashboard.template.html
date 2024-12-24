@@ -143,7 +143,9 @@
                         service-infos="$ctrl.serviceInfo"
                         service-path="{{:: $ctrl.nashaApiUrl }}"
                         with-engagement="$ctrl.isCommitmentAvailable"
-                        tracking-prefix="nasha::dashboard"
+                        tracking-prefix="Storage_backup::storage_backup::nasha"
+                        data-tracking-page="Storage_backup::storage_backup::nasha::nasha::dashboard::general-information"
+                        data-tracking-name-suffix="nasha"
                         commit-impression-data=":: $ctrl.shouldReengage() ?
                             $ctrl.RECOMMIT_IMPRESSION_TRACKING_DATA :
                             $ctrl.COMMIT_IMPRESSION_TRACKING_DATA"

@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.3.1...@ovh-ux/manager-account@0.4.0) (2024-12-23)
+
+
+### Features
+
+* **account:** add hycu filter on contacts services page ([#14404](https://github.com/ovh/manager/issues/14404)) ([42dc2dc](https://github.com/ovh/manager/commit/42dc2dc4c313625e06f9c3e2a5131a110a94bc3c))
+* **account:** follow up demo kyc changes ([#14363](https://github.com/ovh/manager/issues/14363)) ([c1325a3](https://github.com/ovh/manager/commit/c1325a3e0d38edef4b36a044168d0247c437ff7b))
+
+
+
+
+
+## [0.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.3.0...@ovh-ux/manager-account@0.3.1) (2024-12-19)
+
+**Note:** Version bump only for package @ovh-ux/manager-account
+
+
+
+
+
 # [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.2.2...@ovh-ux/manager-account@0.3.0) (2024-12-16)
 
 
