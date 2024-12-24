@@ -9,32 +9,18 @@ import {
   useNotifications,
 } from '@ovh-ux/manager-react-components';
 import { Suspense, useRef, useState } from 'react';
-import {
-  OsdsButton,
-  OsdsIcon,
-  OsdsMessage,
-  OsdsPopover,
-  OsdsPopoverContent,
-  OsdsSearchBar,
-  OsdsSpinner,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
-import {
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-  ODS_MESSAGE_TYPE,
-  ODS_SPINNER_SIZE,
-} from '@ovhcloud/ods-components';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import { FilterCategories } from '@ovh-ux/manager-core-api';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
+import {
+  OdsButton,
+  OdsMessage,
+  OdsPopover,
+  OdsSpinner,
+  OdsInput,
+  OdsText,
+} from '@ovhcloud/ods-components/react';
 import { usePaginatedUsers } from '@/api/hooks/useUser';
 import { useDatagridColumn } from './useDatagridColumn';
 import queryClient from '@/queryClient';
@@ -51,7 +37,6 @@ export default function Listing() {
   const { clearNotifications } = useNotifications();
   const { filters, addFilter, removeFilter } = useColumnFilters();
   const [searchField, setSearchField] = useState('');
-  const [searchQueries, setSearchQueries] = useState<string[]>([]);
   const filterPopoverRef = useRef(undefined);
 
   const { paginatedUsers, isPending } = usePaginatedUsers(
@@ -78,141 +63,123 @@ export default function Listing() {
       <div className="header mt-8">
         <Notifications />
       </div>
-      <OsdsText
-        level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-        color={ODS_THEME_COLOR_INTENT.text}
-        size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-        className="mt-6 block"
-      >
+      <OdsText preset="heading-4" className="mt-6 block">
         {t('pci_projects_project_storages_containers_users_title')}
-      </OsdsText>
-      <OsdsText
-        level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-        color={ODS_THEME_COLOR_INTENT.text}
-        size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-        className="mt-6 block"
-      >
+      </OdsText>
+      <OdsText preset="paragraph" className="mt-6 block">
         {t('pci_projects_project_storages_containers_users_user_description')}
-      </OsdsText>
+      </OdsText>
       {availability?.[AVAILABILITY.LOCALZONE] && (
-        <OsdsMessage type={ODS_MESSAGE_TYPE.info} className="mt-6">
+        <OdsMessage
+          color="information"
+          className="mt-6 w-full"
+          isDismissible={false}
+        >
           {t('pci_projects_project_storages_containers_users_user_info_banner')}
-        </OsdsMessage>
+        </OdsMessage>
       )}
 
       <div className="sm:flex items-center justify-between mt-8">
-        <OsdsButton
-          size={ODS_BUTTON_SIZE.sm}
-          variant={ODS_BUTTON_VARIANT.flat}
+        <OdsButton
+          label={t('pci_projects_project_storages_containers_users_add_user')}
+          size="sm"
+          icon="plus"
           color={ODS_THEME_COLOR_INTENT.primary}
           className="xs:mb-0.5 sm:mb-0"
           onClick={() => {
             clearNotifications();
             navigate('./new');
           }}
-        >
-          <OsdsIcon
-            size={ODS_ICON_SIZE.xs}
-            name={ODS_ICON_NAME.PLUS}
-            className="mr-2 bg-white"
-            color={ODS_THEME_COLOR_INTENT.primary}
-          />
-          {t('pci_projects_project_storages_containers_users_add_user')}
-        </OsdsButton>
+        />
 
         <div className="justify-between flex">
-          <OsdsButton
+          <OdsButton
             data-testid="refresh-button"
-            size={ODS_BUTTON_SIZE.sm}
-            variant={ODS_BUTTON_VARIANT.stroked}
+            label=""
+            size="sm"
+            icon="refresh"
+            variant="outline"
             color={ODS_THEME_COLOR_INTENT.primary}
             className="xs:mb-0.5 sm:mb-0 mr-4"
             onClick={() => {
               refresh();
             }}
-          >
-            <OsdsIcon
-              size={ODS_ICON_SIZE.xs}
-              name={ODS_ICON_NAME.REFRESH}
-              className="mr-2"
-              color={ODS_THEME_COLOR_INTENT.primary}
-            />
-          </OsdsButton>
-          <OsdsSearchBar
+          ></OdsButton>
+          <OdsInput
             data-testid="search-bar"
             className="w-[14rem]"
             value={searchField}
-            onOdsSearchSubmit={({ detail }) => {
-              const { inputValue } = detail;
-              if (inputValue) {
+            type="search"
+            color="primary"
+            name="searchField"
+            onKeyDown={(event) => {
+              if (event.key === 'Enter') {
+                setPagination({
+                  pageIndex: 0,
+                  pageSize: pagination.pageSize,
+                });
+                addFilter({
+                  key: 'search',
+                  value: searchField,
+                  comparator: FilterComparator.Includes,
+                  label: '',
+                });
                 setSearchField('');
-                if (searchQueries.indexOf(inputValue) < 0) {
-                  setSearchQueries([...searchQueries, inputValue]);
-                  setPagination({
-                    ...pagination,
-                    pageIndex: 0,
-                  });
-                } else {
-                  setSearchQueries([...searchQueries]);
-                }
               }
             }}
+            onOdsChange={(event) => {
+              const value = event.detail.value.toString();
+              setSearchField(value);
+            }}
           />
-          <OsdsPopover ref={filterPopoverRef}>
-            <OsdsButton
-              slot="popover-trigger"
-              size={ODS_BUTTON_SIZE.sm}
-              color={ODS_THEME_COLOR_INTENT.primary}
-              variant={ODS_BUTTON_VARIANT.stroked}
+          <div>
+            <OdsButton
+              label={tFilter('common_criteria_adder_filter_label')}
+              size="sm"
+              color="primary"
+              id="popover-filter"
+              icon="filter"
+              variant="outline"
               class="ml-4"
-            >
-              <OsdsIcon
-                name={ODS_ICON_NAME.FILTER}
-                size={ODS_ICON_SIZE.xs}
-                className="ml-2"
-                color={ODS_THEME_COLOR_INTENT.primary}
-              />
-              {tFilter('common_criteria_adder_filter_label')}
-            </OsdsButton>
-            <OsdsPopoverContent>
-              <FilterAdd
-                columns={[
-                  {
-                    id: 'username',
-                    label: t(
-                      'pci_projects_project_storages_containers_users_username',
-                    ),
-                    comparators: FilterCategories.String,
-                  },
-                  {
-                    id: 'description',
-                    label: t(
-                      'pci_projects_project_storages_containers_users_description',
-                    ),
-                    comparators: FilterCategories.String,
-                  },
-                  {
-                    id: 'access',
-                    label: t(
-                      'pci_projects_project_storages_containers_users_accesskey',
-                    ),
-                    comparators: FilterCategories.String,
-                  },
-                ]}
-                onAddFilter={(addedFilter, column) => {
-                  setPagination({
-                    pageIndex: 0,
-                    pageSize: pagination.pageSize,
-                  });
-                  addFilter({
-                    ...addedFilter,
-                    label: column.label,
-                  });
-                  filterPopoverRef.current?.closeSurface();
-                }}
-              />
-            </OsdsPopoverContent>
-          </OsdsPopover>
+            />
+          </div>
+          <OdsPopover triggerId="popover-filter" ref={filterPopoverRef}>
+            <FilterAdd
+              columns={[
+                {
+                  id: 'username',
+                  label: t(
+                    'pci_projects_project_storages_containers_users_username',
+                  ),
+                  comparators: FilterCategories.String,
+                },
+                {
+                  id: 'description',
+                  label: t(
+                    'pci_projects_project_storages_containers_users_description',
+                  ),
+                  comparators: FilterCategories.String,
+                },
+                {
+                  id: 'access',
+                  label: t(
+                    'pci_projects_project_storages_containers_users_accesskey',
+                  ),
+                  comparators: FilterCategories.String,
+                },
+              ]}
+              onAddFilter={(addedFilter, column) => {
+                setPagination({
+                  pageIndex: 0,
+                  pageSize: pagination.pageSize,
+                });
+                addFilter({
+                  ...addedFilter,
+                  label: column.label,
+                });
+              }}
+            />
+          </OdsPopover>
         </div>
       </div>
 
@@ -221,11 +188,7 @@ export default function Listing() {
       </div>
 
       {isPending ? (
-        <OsdsSpinner
-          inline
-          size={ODS_SPINNER_SIZE.md}
-          data-testid="List-spinner"
-        />
+        <OdsSpinner size="md" data-testid="List-spinner" />
       ) : (
         <Datagrid
           columns={columns}
