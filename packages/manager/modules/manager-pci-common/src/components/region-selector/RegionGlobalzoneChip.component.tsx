@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { createContext, useContext } from 'react';
 import {
   Links,
   LinkType,
@@ -26,6 +26,10 @@ import { URL_INFO } from './constants';
 
 export const FEATURE_REGION_1AZ = 'public-cloud:region-1AZ';
 
+export const GlobalRegionTooltipContext = createContext<undefined | string>(
+  undefined,
+);
+
 export function RegionGlobalzoneChip({
   showTooltip = true,
 }: Readonly<{
@@ -41,6 +45,8 @@ export function RegionGlobalzoneChip({
     : 'GLOBAL_REGIONS';
   const tooltipUrl =
     URL_INFO[linkType][ovhSubsidiary] || URL_INFO[linkType].DEFAULT;
+
+  const tooltipContent = useContext(GlobalRegionTooltipContext);
 
   const chip = (
     <OsdsChip
@@ -75,11 +81,12 @@ export function RegionGlobalzoneChip({
             color={ODS_THEME_COLOR_INTENT.text}
             level={ODS_TEXT_LEVEL.body}
           >
-            {t(
-              `pci_project_flavors_zone_${
-                data?.[FEATURE_REGION_1AZ] ? '1AZ' : 'globalregions'
-              }_tooltip`,
-            )}
+            {tooltipContent ??
+              t(
+                `pci_project_flavors_zone_${
+                  data?.[FEATURE_REGION_1AZ] ? '1AZ' : 'globalregions'
+                }_tooltip`,
+              )}
           </OsdsText>
           &nbsp;
           <Links
