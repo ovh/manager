@@ -62,12 +62,17 @@ export default /* @ngInject */ ($stateProvider) => {
             datacenterId,
           },
         ),
-      goToTestBGPPeeringPage: /* @ngInject */ ($state, cloudConnect) => (
-        data,
-      ) => {
-        $state.go('cloud-connect.details.overview.test-bgp-peering', {
-          cloudConnectId: cloudConnect.id,
-          ...data,
+      goToCheckBGPPeeringPage: /* @ngInject */ ($state) => ({
+        popConfigId,
+        dcConfigId,
+        isExtra,
+        extraConfigId,
+      }) => {
+        $state.go('cloud-connect.details.overview.check-bgp-peering', {
+          popConfigId,
+          dcConfigId,
+          isExtra,
+          extraConfigId,
         });
       },
       goToRemoveExtraPage: /* @ngInject */ ($state) => (

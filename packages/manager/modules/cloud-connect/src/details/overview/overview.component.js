@@ -21,7 +21,7 @@ export default {
     goToSendServiceKeyPage: '<',
     goToManageServiceKeysPage: '<',
     goToChangeBandwidthPage: '<',
-    goToTestBGPPeeringPage: '<',
+    goToCheckBGPPeeringPage: '<',
     goToDiagnosticPage: '<',
     user: '<',
   },

@@ -1,13 +1,12 @@
-import controller from './test-bgp-peering.controller';
+import controller from './check-bgp-peering.controller';
 import template from './template.html';
 
 export default {
   bindings: {
-    isExtar: '<',
+    isExtra: '<',
     dcConfigId: '<',
     cloudConnectId: '<',
     goBack: '<',
-    vRackId: '<',
     extraConfigId: '<',
     popConfigId: '<',
   },

@@ -1,7 +1,7 @@
 <form
-    id="testBGPPeering"
-    name="testBGPPeering"
-    data-ng-submit="testBGPPeering.$valid && $ctrl.runDagnostic()"
+    id="CheckBGPPeering"
+    name="CheckBGPPeering"
+    data-ng-submit="CheckBGPPeering.$valid && $ctrl.runDagnostic()"
     novalidate
 >
     <oui-modal
@@ -17,7 +17,7 @@
         <oui-radio
             data-model="$ctrl.diagnosticType"
             name="oui-radio-diagnostic"
-            data-value="default"
+            data-value="$ctrl.diagnosticTypes.default"
         >
             <span
                 data-translate="cloud_connect_bgp_peering_choice_default"
@@ -26,7 +26,7 @@
         <oui-radio
             data-model="$ctrl.diagnosticType"
             name="oui-radio-diagnostic"
-            data-value="routes"
+            data-value="$ctrl.diagnosticTypes.routes"
         >
             <span
                 data-translate="cloud_connect_bgp_peering_choice_routes"
@@ -35,7 +35,7 @@
         <oui-radio
             data-model="$ctrl.diagnosticType"
             name="oui-radio-diagnostic"
-            data-value="AdvertisedRoutes"
+            data-value="$ctrl.diagnosticTypes.sdvertisedRoutes"
         >
             <span
                 data-translate="cloud_connect_bgp_peering_choice_advertised_routes"

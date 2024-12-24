@@ -6,7 +6,7 @@ import 'angular-translate';
 import 'oclazyload';
 import ngOvhCloudUniverseComponents from '@ovh-ux/ng-ovh-cloud-universe-components';
 
-const moduleName = 'ovhCloudConnectTestBGPPeeringLazyLoading';
+const moduleName = 'ovhCloudConnectCheckBGPPeeringLazyLoading';
 
 angular
   .module(moduleName, [
@@ -19,13 +19,13 @@ angular
   .config(
     /* @ngInject */ ($stateProvider) => {
       $stateProvider.state(
-        'cloud-connect.details.overview.test-bgp-peering.**',
+        'cloud-connect.details.overview.check-bgp-peering.**',
         {
-          url: '/test-bgp-peering',
+          url: '/check-bgp-peering',
           lazyLoad: ($transition$) => {
             const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-            return import('./test-bgp-peering.module').then((mod) =>
+            return import('./check-bgp-peering.module').then((mod) =>
               $ocLazyLoad.inject(mod.default || mod),
             );
           },

@@ -402,7 +402,10 @@ export default class CloudConnectService {
                     id: data.datacenterId,
                   });
                   set(data, 'dcName', get(dc, 'name', null));
-                  return new CloudConnectDatacenter(data);
+                  return new CloudConnectDatacenter({
+                    ...data,
+                    popConfigId: pop.id,
+                  });
                 });
             }),
           )
