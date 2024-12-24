@@ -6,6 +6,7 @@ export default {
     addSnapshotLink: '<',
     deleteSnapshot: '<',
     editSnapshot: '<',
+    createVolumeFromSnapshot: '<',
     serviceName: '<',
     snapshots: '<',
     hasOnlySystemSnapshot: '<',

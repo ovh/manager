@@ -37,7 +37,19 @@ export default /* @ngInject */ ($stateProvider) => {
           volumeId,
           snapshotId,
         }),
-
+      createVolumeFromSnapshot: /* @ngInject */ (
+        $state,
+        serviceName,
+        volumeId,
+      ) => (snapshotId) =>
+        $state.go(
+          'netapp.dashboard.volumes.dashboard.snapshots.create-volume',
+          {
+            serviceName,
+            volumeId,
+            snapshotId,
+          },
+        ),
       goToSnapshots: /* @ngInject */ (
         $state,
         Alerter,
