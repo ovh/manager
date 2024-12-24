@@ -3,8 +3,8 @@
   "pci_projects_project_storages_containers_offsite_replication_disabled": "Desactivar",
   "pci_projects_project_storages_containers_offsite_replication_enabled": "Activar",
   "pci_projects_project_storages_containers_offsite_replication_recommanded": "Recomendada",
-  "pci_projects_project_storages_containers_offsite_replication_price_estimation": "+{{price}} € TB/mes ",
-  "pci_projects_project_storages_containers_offsite_replication_final_price_estimation": "Total: ",
-  "pci_projects_project_storages_containers_offsite_replication_final_price_estimation_value": "{{price}} €/TB/mes",
+  "pci_projects_project_storages_containers_offsite_replication_price_estimation": "~{{price}} €/TB/mes ",
+  "pci_projects_project_storages_containers_offsite_replication_final_price_estimation": "Estimación total: ",
+  "pci_projects_project_storages_containers_offsite_replication_final_price_estimation_value": "~{{price}} €/TB/mes",
   "pci_projects_project_storages_containers_offsite_replication_versionning_warning": "Al activar el servicio Offsite Replication, el control de versiones también se activa. "
 }

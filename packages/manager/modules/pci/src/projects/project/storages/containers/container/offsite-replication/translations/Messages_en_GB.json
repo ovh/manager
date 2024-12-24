@@ -3,8 +3,8 @@
   "pci_projects_project_storages_containers_offsite_replication_disabled": "Disable",
   "pci_projects_project_storages_containers_offsite_replication_enabled": "Activate",
   "pci_projects_project_storages_containers_offsite_replication_recommanded": "Recommended",
-  "pci_projects_project_storages_containers_offsite_replication_price_estimation": "+{{price}}€ TB/month ",
-  "pci_projects_project_storages_containers_offsite_replication_final_price_estimation": "Total: ",
-  "pci_projects_project_storages_containers_offsite_replication_final_price_estimation_value": "{{price}} €/TB/month",
+  "pci_projects_project_storages_containers_offsite_replication_price_estimation": "~{{price}} €/TB/month ",
+  "pci_projects_project_storages_containers_offsite_replication_final_price_estimation": "Total estimate: ",
+  "pci_projects_project_storages_containers_offsite_replication_final_price_estimation_value": "~{{price}} €/TB/month",
   "pci_projects_project_storages_containers_offsite_replication_versionning_warning": "By enabling Offsite Replication, versioning is also enabled. "
 }
