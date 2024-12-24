@@ -2,7 +2,7 @@ export const ROUTES_URLS = {
   root: '/',
   listing: '/',
   onboarding: '/onboarding',
-  terminateOkms: '/terminate',
+  terminateOkms: 'terminate',
   createKeyManagementService: 'create',
   okmsId: ':okmsId',
   okmsUpdateName: 'update-name',

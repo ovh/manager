@@ -27,7 +27,7 @@ const CreateCredential = () => {
   const { data: okms, isLoading, error } = useOKMSById(okmsId);
   const { t } = useTranslation('key-management-service/credential');
   const [step, setStep] = useState<number>(1);
-  const [name, setName] = useState<string>('');
+  const [name, setName] = useState<string>(null);
   const [validity, setValidity] = useState<number>(30);
   const [description, setDescription] = useState<string | null>();
   const [csr, setCsr] = useState<string | null>(null);
@@ -98,12 +98,10 @@ const CreateCredential = () => {
           description: t('key_management_service_credential_create_subtitle'),
           headerButton: <KmsGuidesHeader />,
         }}
+        message={<Notifications />}
       >
         <IdentityDataProvider>
           <div className="w-full block">
-            <div className="mb-6">
-              <Notifications />
-            </div>
             {step === 1 && (
               <CreateGeneralInformations
                 name={name}
@@ -123,19 +121,17 @@ const CreateCredential = () => {
               <CreateAddIdentities
                 identityURNs={identityURNs}
                 setIdentityURNs={setIdentityURNs}
-                prevStep={() => {
-                  setStep(1);
-                }}
-                nextStep={() => {
+                prevStep={() => setStep(1)}
+                nextStep={() =>
                   createKmsCredential({
                     name,
                     identityURNs,
                     description,
                     validity,
                     ...(csr ? { csr } : {}),
-                  });
-                }}
-              ></CreateAddIdentities>
+                  })
+                }
+              />
             )}
             {step === 3 && (
               <CreateCredentialConfirmation okmsCredential={okmsCredential} />

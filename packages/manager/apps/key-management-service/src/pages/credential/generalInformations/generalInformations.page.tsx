@@ -1,9 +1,14 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useNavigate } from 'react-router-dom';
-import { OsdsButton } from '@ovhcloud/ods-components/react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import { OdsLink } from '@ovhcloud/ods-components/react';
+import {
+  ODS_BUTTON_SIZE,
+  ODS_BUTTON_VARIANT,
+  ODS_BUTTON_COLOR,
+  ODS_LINK_COLOR,
+  ODS_ICON_NAME,
+} from '@ovhcloud/ods-components';
 import {
   Clipboard,
   DashboardTile,
@@ -52,7 +57,7 @@ const CredentialGeneralInformations = () => {
     {
       id: 'id',
       label: t('key_management_service_credential_dashboard_id'),
-      value: <Clipboard value={credential.id} />,
+      value: <Clipboard className="w-full" value={credential.id} />,
     },
     {
       id: 'description',
@@ -62,7 +67,7 @@ const CredentialGeneralInformations = () => {
     {
       id: 'status',
       label: t('key_management_service_credential_dashboard_status'),
-      value: <CredentialStatus state={credential.status} inline />,
+      value: <CredentialStatus state={credential.status} />,
     },
     {
       id: 'creation',
@@ -85,13 +90,12 @@ const CredentialGeneralInformations = () => {
       id: 'actions',
       label: t('key_management_service_credential_dashboard_actions'),
       value: (
-        <div className="flex gap-4">
-          <OsdsButton
-            size={ODS_BUTTON_SIZE.sm}
-            color={ODS_THEME_COLOR_INTENT.primary}
+        <div className="flex items-center gap-4">
+          <OdsLink
+            color={ODS_LINK_COLOR.primary}
             href={href}
             download={filename}
-            disabled={isDisabled || undefined}
+            isDisabled={isDisabled}
             onClick={() =>
               trackClick({
                 location: PageLocation.page,
@@ -100,12 +104,13 @@ const CredentialGeneralInformations = () => {
                 actions: ['download_access_certificate'],
               })
             }
-          >
-            {t('key_management_service_credential_download')}
-          </OsdsButton>
+            label={t('key_management_service_credential_download')}
+            icon={ODS_ICON_NAME.download}
+          />
           <ManagerButton
+            id="deleteAccessCertificate"
             size={ODS_BUTTON_SIZE.sm}
-            color={ODS_THEME_COLOR_INTENT.error}
+            color={ODS_BUTTON_COLOR.critical}
             variant={ODS_BUTTON_VARIANT.ghost}
             iamActions={[kmsIamActions.credentialDelete]}
             onClick={() => {
@@ -118,9 +123,8 @@ const CredentialGeneralInformations = () => {
               navigate(ROUTES_URLS.credentialDelete);
             }}
             urn={okms.iam.urn}
-          >
-            {t('key_management_service_credential_delete')}
-          </ManagerButton>
+            label={t('key_management_service_credential_delete')}
+          />
         </div>
       ),
     },
@@ -133,7 +137,7 @@ const CredentialGeneralInformations = () => {
           'key_management_service_credential_dashboard_tile_general_informations',
         )}
         items={items}
-      ></DashboardTile>
+      />
       <Outlet />
     </div>
   );

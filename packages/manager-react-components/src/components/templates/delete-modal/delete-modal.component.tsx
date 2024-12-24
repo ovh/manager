@@ -16,9 +16,11 @@ import {
   ODS_BUTTON_COLOR,
   ODS_MESSAGE_COLOR,
   ODS_MODAL_COLOR,
+  ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
 import { handleClick } from '../../../utils/click-utils';
 import './translations/translations';
+import { Subtitle } from '../../typography';
 
 export const defaultDeleteModalTerminateValue = 'TERMINATE';
 
@@ -61,27 +63,21 @@ export const DeleteModal: React.FC<DeleteModalProps> = ({
   return (
     <OdsModal
       color={ODS_MODAL_COLOR.warning}
-      class="modal-actions"
       onOdsClose={close}
       isOpen={isOpen}
     >
-      <div>
-        <span className="delete-modal-headline text-[--ods-color-heading] text-[24px] leading-[32px] font-bold">
-          {headline}
-        </span>
-      </div>
+      <Subtitle>{headline}</Subtitle>
       {!!error && (
         <OdsMessage color={ODS_MESSAGE_COLOR.warning}>
-          <OdsText preset="span">{t('deleteModalError', { error })}</OdsText>
+          {t('deleteModalError', { error })}
         </OdsMessage>
       )}
-      <span className="delete-modal-description text-[--ods-color-text] text-[14px] leading-[18px] my-[8px]">
-        {description}
-      </span>
-      <OdsFormField className="mb-8">
+      <OdsText preset={ODS_TEXT_PRESET.paragraph}>{description}</OdsText>
+      <OdsFormField className="block mb-8">
         <label slot="label">{deleteInputLabel}</label>
         <OdsInput
-          name=""
+          className="block"
+          name="delete-input"
           aria-label="delete-input"
           isDisabled={isLoading || undefined}
           type={ODS_INPUT_TYPE.text}
@@ -92,7 +88,6 @@ export const DeleteModal: React.FC<DeleteModalProps> = ({
         />
       </OdsFormField>
       <OdsButton
-        isDisabled={isLoading}
         slot="actions"
         data-testid="manager-delete-modal-cancel"
         variant={ODS_BUTTON_VARIANT.ghost}
