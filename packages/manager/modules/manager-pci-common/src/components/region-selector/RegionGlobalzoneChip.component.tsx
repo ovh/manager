@@ -81,12 +81,13 @@ export function RegionGlobalzoneChip({
             color={ODS_THEME_COLOR_INTENT.text}
             level={ODS_TEXT_LEVEL.body}
           >
-            {tooltipContent ??
-              t(
-                `pci_project_flavors_zone_${
-                  data?.[FEATURE_REGION_1AZ] ? '1AZ' : 'globalregions'
-                }_tooltip`,
-              )}
+            {tooltipContent && data?.[FEATURE_REGION_1AZ]
+              ? tooltipContent
+              : t(
+                  `pci_project_flavors_zone_${
+                    data?.[FEATURE_REGION_1AZ] ? '1AZ' : 'globalregions'
+                  }_tooltip`,
+                )}
           </OsdsText>
           &nbsp;
           <Links
