@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.74.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.73.1...@ovh-ux/manager-pci@6.74.0) (2024-12-24)
+
+
+### Features
+
+* **pci-object-storage:** replace s3 mentions ([#14695](https://github.com/ovh/manager/issues/14695)) ([92ffe64](https://github.com/ovh/manager/commit/92ffe64810da512cfcf96eccb657a45db550c1a7))
+
+
+
+
+
 ## [6.73.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.73.0...@ovh-ux/manager-pci@6.73.1) (2024-12-19)
 
 
