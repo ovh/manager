@@ -6,6 +6,9 @@ const createTicketSupportIndex = '?id=csm_get_help';
 const ticketsSupportIndex = '?id=csm_cases_requests';
 const supportSubsidiary = 'ovhSubsidiary=';
 
+const cloud_changelog = 'https://github.com/orgs/ovh/projects/16/views/6';
+const hosting_and_collab_changelog = 'https://github.com/orgs/ovh/projects/18/views/2';
+
 interface UsefulLinks {
   help: {
     [key in string]: string;
@@ -15,6 +18,8 @@ interface UsefulLinks {
     tickets: (sub: string) => string;
   };
   tasks: string;
+  cloud_changelog?: string;
+  hosting_and_collab_changelog?: string;
 }
 type UsefulLinkConstants = {
   [key in Region]: UsefulLinks;
@@ -41,6 +46,8 @@ const consts: UsefulLinkConstants = {
       tickets: (sub: string) => `${helpRoot}${ticketsSupportIndex}&${supportSubsidiary}${sub}` 
     },
     tasks: 'https://www.status-ovhcloud.com/',
+    cloud_changelog,
+    hosting_and_collab_changelog,
   },
   CA: {
     help: {
@@ -57,12 +64,16 @@ const consts: UsefulLinkConstants = {
       tickets: (sub: string) => `${helpRoot}${ticketsSupportIndex}&${supportSubsidiary}${sub}` 
     },
     tasks: 'https://www.status-ovhcloud.com/',
+    cloud_changelog,
+    hosting_and_collab_changelog,
   },
   US: {
     help: {
       US: 'https://us.ovhcloud.com/support',
     },
     tasks: '',
+    cloud_changelog,
+    hosting_and_collab_changelog,
   },
 };
 
