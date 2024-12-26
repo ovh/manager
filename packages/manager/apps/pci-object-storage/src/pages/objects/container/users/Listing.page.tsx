@@ -8,7 +8,10 @@ import {
   useFeatureAvailability,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
-import { Suspense, useRef, useState } from 'react';
+import { Suspense, useState } from 'react';
+import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
+import { useTranslation } from 'react-i18next';
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import {
   OsdsButton,
   OsdsIcon,
@@ -51,8 +54,6 @@ export default function Listing() {
   const { clearNotifications } = useNotifications();
   const { filters, addFilter, removeFilter } = useColumnFilters();
   const [searchField, setSearchField] = useState('');
-  const [searchQueries, setSearchQueries] = useState<string[]>([]);
-  const filterPopoverRef = useRef(undefined);
 
   const { paginatedUsers, isPending } = usePaginatedUsers(
     projectId,
@@ -101,10 +102,11 @@ export default function Listing() {
       )}
 
       <div className="sm:flex items-center justify-between mt-8">
-        <OsdsButton
-          size={ODS_BUTTON_SIZE.sm}
-          variant={ODS_BUTTON_VARIANT.flat}
-          color={ODS_THEME_COLOR_INTENT.primary}
+        <OdsButton
+          label={t('pci_projects_project_storages_containers_users_add_user')}
+          size="sm"
+          icon="plus"
+          color="primary"
           className="xs:mb-0.5 sm:mb-0"
           onClick={() => {
             clearNotifications();
@@ -123,9 +125,11 @@ export default function Listing() {
         <div className="justify-between flex">
           <OsdsButton
             data-testid="refresh-button"
-            size={ODS_BUTTON_SIZE.sm}
-            variant={ODS_BUTTON_VARIANT.stroked}
-            color={ODS_THEME_COLOR_INTENT.primary}
+            label=""
+            size="sm"
+            icon="refresh"
+            variant="outline"
+            color="primary"
             className="xs:mb-0.5 sm:mb-0 mr-4"
             onClick={() => {
               refresh();
@@ -165,54 +169,45 @@ export default function Listing() {
               color={ODS_THEME_COLOR_INTENT.primary}
               variant={ODS_BUTTON_VARIANT.stroked}
               class="ml-4"
-            >
-              <OsdsIcon
-                name={ODS_ICON_NAME.FILTER}
-                size={ODS_ICON_SIZE.xs}
-                className="ml-2"
-                color={ODS_THEME_COLOR_INTENT.primary}
-              />
-              {tFilter('common_criteria_adder_filter_label')}
-            </OsdsButton>
-            <OsdsPopoverContent>
-              <FilterAdd
-                columns={[
-                  {
-                    id: 'username',
-                    label: t(
-                      'pci_projects_project_storages_containers_users_username',
-                    ),
-                    comparators: FilterCategories.String,
-                  },
-                  {
-                    id: 'description',
-                    label: t(
-                      'pci_projects_project_storages_containers_users_description',
-                    ),
-                    comparators: FilterCategories.String,
-                  },
-                  {
-                    id: 'access',
-                    label: t(
-                      'pci_projects_project_storages_containers_users_accesskey',
-                    ),
-                    comparators: FilterCategories.String,
-                  },
-                ]}
-                onAddFilter={(addedFilter, column) => {
-                  setPagination({
-                    pageIndex: 0,
-                    pageSize: pagination.pageSize,
-                  });
-                  addFilter({
-                    ...addedFilter,
-                    label: column.label,
-                  });
-                  filterPopoverRef.current?.closeSurface();
-                }}
-              />
-            </OsdsPopoverContent>
-          </OsdsPopover>
+            />
+          </div>
+          <OdsPopover triggerId="popover-filter">
+            <FilterAdd
+              columns={[
+                {
+                  id: 'username',
+                  label: t(
+                    'pci_projects_project_storages_containers_users_username',
+                  ),
+                  comparators: FilterCategories.String,
+                },
+                {
+                  id: 'description',
+                  label: t(
+                    'pci_projects_project_storages_containers_users_description',
+                  ),
+                  comparators: FilterCategories.String,
+                },
+                {
+                  id: 'access',
+                  label: t(
+                    'pci_projects_project_storages_containers_users_accesskey',
+                  ),
+                  comparators: FilterCategories.String,
+                },
+              ]}
+              onAddFilter={(addedFilter, column) => {
+                setPagination({
+                  pageIndex: 0,
+                  pageSize: pagination.pageSize,
+                });
+                addFilter({
+                  ...addedFilter,
+                  label: column.label,
+                });
+              }}
+            />
+          </OdsPopover>
         </div>
       </div>
 

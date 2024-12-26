@@ -2,10 +2,8 @@ import { DeletionModal } from '@ovh-ux/manager-pci-common';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Translation, useTranslation } from 'react-i18next';
-import { OsdsText } from '@ovhcloud/ods-components/react';
-import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useEffect, useState } from 'react';
+import { OdsText } from '@ovhcloud/ods-components/react';
 import { useDeleteUser, useUsers } from '@/api/hooks/useUser';
 import { TUser } from '@/api/data/user';
 
@@ -70,13 +68,9 @@ export default function DeletePage() {
         'pci_projects_project_storages_containers_users_delete_cancel',
       )}
     >
-      <OsdsText
-        level={ODS_TEXT_LEVEL.body}
-        color={ODS_THEME_COLOR_INTENT.text}
-        size={ODS_TEXT_SIZE._400}
-      >
+      <OdsText preset="paragraph">
         {t('pci_projects_project_storages_containers_users_delete_question')}
-      </OsdsText>
+      </OdsText>
     </DeletionModal>
   );
 }

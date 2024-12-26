@@ -46,15 +46,10 @@ export default function ObjectsPage() {
       condition={!isPending && allStorages?.resources.length === 0}
       route="./onboarding"
     >
-      <OsdsBreadcrumb
-        items={[
-          {
-            href: hrefProject,
-            label: project.description,
-          },
-          { label: activePanelTranslation },
-        ]}
-      />
+      <OdsBreadcrumb>
+        <OdsBreadcrumbItem label={project.description} href={hrefProject} />
+        <OdsBreadcrumbItem label={activePanelTranslation} href="#" />
+      </OdsBreadcrumb>
 
       <div className="flex items-center justify-between mt-8">
         <Headers

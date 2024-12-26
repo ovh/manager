@@ -3,11 +3,9 @@ import {
   DatagridColumn,
 } from '@ovh-ux/manager-react-components';
 import { createSearchParams, useNavigate } from 'react-router-dom';
-import { OsdsChip, OsdsLink } from '@ovhcloud/ods-components/react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
-import { ODS_CHIP_SIZE } from '@ovhcloud/ods-components';
 import { useBytes } from '@ovh-ux/manager-pci-common';
+import { OdsBadge, OdsLink } from '@ovhcloud/ods-components/react';
 import { TStorage } from '@/api/data/storages';
 import {
   OBJECT_CONTAINER_MODE_LOCAL_ZONE,
@@ -26,8 +24,9 @@ export const useDatagridColumn = () => {
       id: 'name',
       cell: (props: TStorage) => (
         <DataGridTextCell>
-          <OsdsLink
-            color={ODS_THEME_COLOR_INTENT.primary}
+          <OdsLink
+            color="primary"
+            href="#"
             onClick={() =>
               navigate({
                 pathname: `./${props.id || props.name}`,
@@ -36,9 +35,8 @@ export const useDatagridColumn = () => {
                 })}`,
               })
             }
-          >
-            {props.name}
-          </OsdsLink>
+            label={props.name}
+          />
         </DataGridTextCell>
       ),
       label: t('pci_projects_project_storages_containers_name_label'),
@@ -56,39 +54,21 @@ export const useDatagridColumn = () => {
         if (props.deploymentMode === OBJECT_CONTAINER_MODE_MULTI_ZONES) {
           return (
             <DataGridTextCell>
-              <OsdsChip
-                color={ODS_THEME_COLOR_INTENT.promotion}
-                inline
-                size={ODS_CHIP_SIZE.sm}
-              >
-                {props.mode}
-              </OsdsChip>
+              <OdsBadge color="promotion" size="sm" label={props.mode} />
             </DataGridTextCell>
           );
         }
         if (props.deploymentMode === OBJECT_CONTAINER_MODE_MONO_ZONE) {
           return (
             <DataGridTextCell>
-              <OsdsChip
-                color={ODS_THEME_COLOR_INTENT.info}
-                inline
-                size={ODS_CHIP_SIZE.sm}
-              >
-                {props.mode}
-              </OsdsChip>
+              <OdsBadge color="information" size="sm" label={props.mode} />
             </DataGridTextCell>
           );
         }
         if (props.deploymentMode === OBJECT_CONTAINER_MODE_LOCAL_ZONE) {
           return (
             <DataGridTextCell>
-              <OsdsChip
-                color={ODS_THEME_COLOR_INTENT.promotion}
-                inline
-                size={ODS_CHIP_SIZE.sm}
-              >
-                {props.mode}
-              </OsdsChip>
+              <OdsBadge color="promotion" size="sm" label={props.mode} />
             </DataGridTextCell>
           );
         }
