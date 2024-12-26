@@ -50,7 +50,7 @@ export default function ObjectsPage() {
       route="./onboarding"
     >
       <OdsBreadcrumb>
-        <OdsBreadcrumbItem label="project.description" href={hrefProject} />
+        <OdsBreadcrumbItem label={project.description} href={hrefProject} />
         <OdsBreadcrumbItem label={activePanelTranslation} href="#" />
       </OdsBreadcrumb>
 

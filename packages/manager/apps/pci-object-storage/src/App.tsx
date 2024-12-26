@@ -1,13 +1,12 @@
-import { odsSetup } from '@ovhcloud/ods-common-core';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { HashRouter } from 'react-router-dom';
 import RoutesComponent from '@/routes';
 import queryClient from './queryClient';
 
-import '@ovhcloud/ods-theme-blue-jeans';
-
-odsSetup();
+import '@ovhcloud/ods-themes/default';
+import '@ovh-ux/manager-react-components/dist/style.css';
+import '@ovh-ux/manager-pci-common/dist/style.css';
 
 function App() {
   return (
