@@ -4,25 +4,17 @@ import {
   useNotifications,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
-import {
-  ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-import {
-  OsdsBreadcrumb,
-  OsdsIcon,
-  OsdsLink,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { Translation, useTranslation } from 'react-i18next';
 import { useContext, useEffect } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useNavigate } from 'react-router-dom';
 import { ApiError } from '@ovh-ux/manager-core-api';
+import {
+  OdsBreadcrumb,
+  OdsBreadcrumbItem,
+  OdsLink,
+  OdsText,
+} from '@ovhcloud/ods-components/react';
 import {
   OBJECT_CONTAINER_MODE_LOCAL_ZONE,
   OBJECT_CONTAINER_OFFER_STORAGE_STANDARD,
@@ -116,17 +108,13 @@ export default function ContainerNewPage() {
 
   return (
     <>
-      <OsdsBreadcrumb
-        items={[
-          {
-            href: projectHref,
-            label: project?.description,
-          },
-          {
-            label: t('pci_projects_project_storages_containers_add_title'),
-          },
-        ]}
-      />
+      <OdsBreadcrumb>
+        <OdsBreadcrumbItem href={projectHref} label={project?.description} />
+        <OdsBreadcrumbItem
+          href=""
+          label={t('pci_projects_project_storages_containers_add_title')}
+        />
+      </OdsBreadcrumb>
 
       <div className="header mt-8">
         <Headers
@@ -134,32 +122,20 @@ export default function ContainerNewPage() {
         />
       </div>
 
-      <OsdsText
-        size={ODS_TEXT_SIZE._400}
-        level={ODS_TEXT_LEVEL.body}
-        color={ODS_THEME_COLOR_INTENT.text}
-      >
+      <OdsText preset="paragraph">
         {t('pci_projects_project_storages_containers_add_description')}
-      </OsdsText>
+      </OdsText>
       <br />
-      <OsdsLink
+      <OdsLink
         className="mt-4"
-        color={ODS_THEME_COLOR_INTENT.primary}
+        color="primary"
         href={pricesLink}
-        target={OdsHTMLAnchorElementTarget._blank}
-      >
-        {t('pci_projects_project_storages_containers_add_description_link')}
-        <span slot="end">
-          <OsdsIcon
-            aria-hidden="true"
-            className="ml-4"
-            name={ODS_ICON_NAME.EXTERNAL_LINK}
-            hoverable
-            size={ODS_ICON_SIZE.xxs}
-            color={ODS_THEME_COLOR_INTENT.primary}
-          />
-        </span>
-      </OsdsLink>
+        target="_blank"
+        icon="external-link"
+        label={t(
+          'pci_projects_project_storages_containers_add_description_link',
+        )}
+      />
       <div className="mt-6">
         <SolutionStepComponent />
         {form.offer === OBJECT_CONTAINER_OFFER_STORAGE_STANDARD && (

@@ -8,8 +8,7 @@ import {
   useFeatureAvailability,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
-import { Suspense, useRef, useState } from 'react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { Suspense, useState } from 'react';
 import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
@@ -37,7 +36,6 @@ export default function Listing() {
   const { clearNotifications } = useNotifications();
   const { filters, addFilter, removeFilter } = useColumnFilters();
   const [searchField, setSearchField] = useState('');
-  const filterPopoverRef = useRef(undefined);
 
   const { paginatedUsers, isPending } = usePaginatedUsers(
     projectId,
@@ -84,7 +82,7 @@ export default function Listing() {
           label={t('pci_projects_project_storages_containers_users_add_user')}
           size="sm"
           icon="plus"
-          color={ODS_THEME_COLOR_INTENT.primary}
+          color="primary"
           className="xs:mb-0.5 sm:mb-0"
           onClick={() => {
             clearNotifications();
@@ -99,7 +97,7 @@ export default function Listing() {
             size="sm"
             icon="refresh"
             variant="outline"
-            color={ODS_THEME_COLOR_INTENT.primary}
+            color="primary"
             className="xs:mb-0.5 sm:mb-0 mr-4"
             onClick={() => {
               refresh();
@@ -143,7 +141,7 @@ export default function Listing() {
               class="ml-4"
             />
           </div>
-          <OdsPopover triggerId="popover-filter" ref={filterPopoverRef}>
+          <OdsPopover triggerId="popover-filter">
             <FilterAdd
               columns={[
                 {
