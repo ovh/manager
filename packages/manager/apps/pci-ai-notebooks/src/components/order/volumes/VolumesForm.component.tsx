@@ -157,7 +157,10 @@ const VolumeForm = React.forwardRef<HTMLInputElement, VolumesFormProps>(
         {configuredVolumesList.length > 0 ? (
           <>
             <Form {...containerForm}>
-              <div className="flex flex-col w-full md:flex-row md:items-start gap-2">
+              <div
+                className="flex flex-col w-full md:flex-row md:items-start gap-2"
+                data-testid="datastore-form-container"
+              >
                 <div
                   className={`grid ${
                     selectedVolume?.type === ai.DataStoreTypeEnum.git
@@ -189,7 +192,7 @@ const VolumeForm = React.forwardRef<HTMLInputElement, VolumesFormProps>(
                           );
                         }}
                       >
-                        <SelectTrigger>
+                        <SelectTrigger data-testid="select-container-trigger">
                           <SelectValue
                             placeholder={t('containerFieldPlaceholder')}
                           />
@@ -218,12 +221,10 @@ const VolumeForm = React.forwardRef<HTMLInputElement, VolumesFormProps>(
                       defaultValue={''}
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel data-testid="ssh-key-name-field-label">
-                            {t('gitBranchFieldLabel')}
-                          </FormLabel>
+                          <FormLabel>{t('gitBranchFieldLabel')}</FormLabel>
                           <FormControl>
                             <Input
-                              data-testid="ssh-key-input-field"
+                              data-testid="git-branch-input-field"
                               {...field}
                               ref={ref}
                               placeholder="develop"
@@ -241,12 +242,10 @@ const VolumeForm = React.forwardRef<HTMLInputElement, VolumesFormProps>(
                     defaultValue={''}
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel data-testid="ssh-key-name-field-label">
-                          {t('mountDirectoryFieldLabel')}
-                        </FormLabel>
+                        <FormLabel>{t('mountDirectoryFieldLabel')}</FormLabel>
                         <FormControl>
                           <Input
-                            data-testid="ssh-key-input-field"
+                            data-testid="mount-directory-input-field"
                             {...field}
                             ref={ref}
                             placeholder="/workspace/demo"
@@ -331,7 +330,7 @@ const VolumeForm = React.forwardRef<HTMLInputElement, VolumesFormProps>(
                   />
 
                   <Button
-                    data-testid="ssh-key-label-add-button"
+                    data-testid="datastore-add-button"
                     variant={'ghost'}
                     onClick={containerForm.handleSubmit(onSubmit)}
                     disabled={
@@ -345,10 +344,10 @@ const VolumeForm = React.forwardRef<HTMLInputElement, VolumesFormProps>(
                 </div>
               </div>
             </Form>
-            <ul>
+            <ul data-testid="datastore-list">
               {selectedVolumesList
                 .filter((vol) => !vol.publicGit)
-                .map((volume, index) => (
+                .map((volume) => (
                   <li
                     key={volume.mountPath}
                     className="flex items-center ml-5 text-sm"
@@ -380,7 +379,7 @@ const VolumeForm = React.forwardRef<HTMLInputElement, VolumesFormProps>(
                         <span>{volume.cache ? 'cache' : 'no cache'}</span>
                       </div>
                       <Button
-                        data-testid={`volume-label-remove-button-${index}`}
+                        data-testid={`datatore-remove-button-${volume.mountPath}`}
                         className="text-red-500 rounded-full px-2 hover:text-red-500 h-8 w-8"
                         variant={'ghost'}
                         type="button"
@@ -395,10 +394,11 @@ const VolumeForm = React.forwardRef<HTMLInputElement, VolumesFormProps>(
             </ul>
           </>
         ) : (
-          <div>
+          <div data-testid="no-datastore-info-container">
             <p>{t('noContainerDescription')}</p>
             <div className="flex flex-col gap-2 mt-2">
               <OvhLink
+                data-testid="dashboard-datastore-link"
                 application="public-cloud"
                 path={`#/pci/projects/${projectId}/ai-dashboard`}
                 target="_blank"
@@ -407,6 +407,7 @@ const VolumeForm = React.forwardRef<HTMLInputElement, VolumesFormProps>(
                 {t('datastoreLinkLabel')}
               </OvhLink>
               <OvhLink
+                data-testid="object-storage-link"
                 application="public-cloud"
                 path={`#/pci/projects/${projectId}/storages/objects`}
                 target="_blank"
@@ -419,7 +420,10 @@ const VolumeForm = React.forwardRef<HTMLInputElement, VolumesFormProps>(
         )}
         <h5>{t('publicGitRepoTitle')}</h5>
         <Form {...publicGitForm}>
-          <div className="flex flex-col w-full md:flex-row md:items-start gap-2">
+          <div
+            className="flex flex-col w-full md:flex-row md:items-start gap-2"
+            data-testid="public-git-form-container"
+          >
             <div className="grid grid-cols-2 md:grid-cols-3 gap-2 w-full">
               <FormField
                 control={publicGitForm.control}
@@ -427,12 +431,10 @@ const VolumeForm = React.forwardRef<HTMLInputElement, VolumesFormProps>(
                 defaultValue={''}
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel data-testid="ssh-key-name-field-label">
-                      {t('publicGitUrlFieldLabel')}
-                    </FormLabel>
+                    <FormLabel>{t('publicGitUrlFieldLabel')}</FormLabel>
                     <FormControl>
                       <Input
-                        data-testid="ssh-key-input-field"
+                        data-testid="public-git-url-input-field"
                         {...field}
                         ref={ref}
                         placeholder="https://git-public-repo.git"
@@ -448,12 +450,10 @@ const VolumeForm = React.forwardRef<HTMLInputElement, VolumesFormProps>(
                 defaultValue={''}
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel data-testid="ssh-key-name-field-label">
-                      {t('mountDirectoryFieldLabel')}
-                    </FormLabel>
+                    <FormLabel>{t('mountDirectoryFieldLabel')}</FormLabel>
                     <FormControl>
                       <Input
-                        data-testid="ssh-key-input-field"
+                        data-testid="public-git-mount-path-input-field"
                         {...field}
                         ref={ref}
                         placeholder="/workspace/demo"
@@ -506,7 +506,7 @@ const VolumeForm = React.forwardRef<HTMLInputElement, VolumesFormProps>(
             </div>
             <div className="flex flex-row justify-around">
               <Button
-                data-testid="ssh-key-label-add-button"
+                data-testid="public-git-add-button"
                 variant={'ghost'}
                 onClick={publicGitForm.handleSubmit(onSubmit)}
                 disabled={
@@ -520,10 +520,10 @@ const VolumeForm = React.forwardRef<HTMLInputElement, VolumesFormProps>(
             </div>
           </div>
         </Form>
-        <ul>
+        <ul data-testid="public-git-list">
           {selectedVolumesList
             .filter((vol) => vol.publicGit)
-            .map((volume, index) => (
+            .map((volume) => (
               <li
                 key={volume.mountPath}
                 className="flex items-center ml-5 text-sm"
@@ -538,7 +538,7 @@ const VolumeForm = React.forwardRef<HTMLInputElement, VolumesFormProps>(
                     <span>{volume.mountPath}</span>
                   </div>
                   <Button
-                    data-testid={`public-git-remove-button-${index}`}
+                    data-testid={`public-git-remove-button-${volume.mountPath}`}
                     className="text-red-500 rounded-full px-2 hover:text-red-500 h-8 w-8"
                     variant={'ghost'}
                     type="button"
