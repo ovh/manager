@@ -49,11 +49,19 @@ export const mockedGitWithRegion: DataStoresWithRegion = {
   region: 'GRA',
 };
 
-export const mockedDatastoreWithContainer: DataStoresWithContainers = {
-  alias: 'alias',
+export const mockedDatastoreWithContainerS3: DataStoresWithContainers = {
+  alias: 'aliasS3',
   endpoint: 'endpoint',
   owner: ai.DataStoreOwnerEnum.customer,
   type: ai.DataStoreTypeEnum.s3,
-  id: 'id',
-  container: 'container2',
+  id: 'idS3',
+  container: 'containerS3',
+};
+
+export const mockedDatastoreWithContainerGit: DataStoresWithContainers = {
+  alias: 'aliasGit',
+  endpoint: 'endpointGit',
+  owner: ai.DataStoreOwnerEnum.customer,
+  type: ai.DataStoreTypeEnum.git,
+  id: 'idGit',
 };

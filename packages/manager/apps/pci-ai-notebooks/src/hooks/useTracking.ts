@@ -79,7 +79,6 @@ export function useTrackPageAuto() {
       name: injectedTrackingKey,
       level2: PCI_LEVEL2,
     });
-    console.debug('TRACK', injectedTrackingKey);
     hasTrackedRef.current = true;
   }, [location.pathname, params.serviceId]);
 

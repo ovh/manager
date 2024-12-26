@@ -8,3 +8,12 @@ export const mockedEditor: ai.capabilities.notebook.Editor = {
   name: 'EditorName',
   versions: ['version'],
 };
+
+export const mockedEditorBis: ai.capabilities.notebook.Editor = {
+  description: 'description1',
+  docUrl: 'docURl1',
+  id: 'jupyterlabcollaborative',
+  logoUrl: 'logoBis',
+  name: 'EditorNameBis',
+  versions: ['version'],
+};

@@ -61,7 +61,10 @@ const LabelsForm = React.forwardRef<HTMLInputElement, LabelsFormProps>(
 
     return (
       <Form {...form}>
-        <div className="flex w-full items-start gap-2">
+        <div
+          className="flex w-full items-start gap-2"
+          data-testid="labels-form-container"
+        >
           <div className="grid grid-cols-2 gap-2 w-full">
             <FormField
               control={form.control}
@@ -115,7 +118,8 @@ const LabelsForm = React.forwardRef<HTMLInputElement, LabelsFormProps>(
                   {`${label.name} = ${label.value}`}
                 </span>
                 <Button
-                  key={`button_${label}`}
+                  data-testid={`button_${label.name}`}
+                  key={`button_${label.name}`}
                   size="table"
                   type="button"
                   variant="ghost"

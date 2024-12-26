@@ -3,7 +3,7 @@ import { vi } from 'vitest';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import * as datastoreApi from '@/data/api/ai/datastore.api';
 import { mockedDatastore } from '@/__tests__/helpers/mocks/datastore';
-import { mockedCapabilitiesRegion } from '@/__tests__/helpers/mocks/region';
+import { mockedCapabilitiesRegionGRA } from '@/__tests__/helpers/mocks/region';
 import { useGetDatastoresWithContainers } from './useGetDatastoresWithContainers.hook';
 import { mockedContainer } from '@/__tests__/helpers/mocks/container';
 
@@ -34,7 +34,7 @@ const mockedResut = [
 describe('useGetDatastoresWithContainers', () => {
   it('should return Datastores', async () => {
     const projectId = 'projectId';
-    const region = mockedCapabilitiesRegion;
+    const region = mockedCapabilitiesRegionGRA;
     const datastores = [mockedDatastore];
 
     vi.mocked(datastoreApi.getDatastores).mockResolvedValue([mockedDatastore]);
