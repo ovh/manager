@@ -3,15 +3,9 @@ import { DeletionModal } from '@ovh-ux/manager-pci-common';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { Translation, useTranslation } from 'react-i18next';
-import { OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
-import {
-  ODS_MESSAGE_TYPE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 import { useAllStorages, useDeleteStorage } from '@/api/hooks/useStorages';
 import { PAGE_PREFIX } from '@/tracking.constants';
 
@@ -102,20 +96,16 @@ export default function DeletePage() {
         'pci_projects_project_storages_containers_container_delete_cancel_label',
       )}
     >
-      <OsdsText
-        level={ODS_TEXT_LEVEL.body}
-        color={ODS_THEME_COLOR_INTENT.text}
-        size={ODS_TEXT_SIZE._400}
-      >
-        <OsdsMessage type={ODS_MESSAGE_TYPE.warning} className="mt-6">
+      <OdsText preset="paragraph">
+        <OdsMessage color="warning" className="mt-6">
           {t(
             isStorageS3
               ? 'pci_projects_project_storages_containers_container_delete_warning'
               : 'pci_projects_project_storages_containers_container_delete_object_erase_message',
             { container: storageToDelete.name },
           )}
-        </OsdsMessage>
-      </OsdsText>
+        </OdsMessage>
+      </OdsText>
     </DeletionModal>
   );
 }

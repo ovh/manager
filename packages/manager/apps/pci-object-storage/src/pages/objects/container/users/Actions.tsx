@@ -1,5 +1,9 @@
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { ActionMenu, useNotifications } from '@ovh-ux/manager-react-components';
+import {
+  ActionMenu,
+  ActionMenuItem,
+  useNotifications,
+} from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useContext } from 'react';
 import { Translation, useTranslation } from 'react-i18next';
@@ -114,7 +118,7 @@ export default function ActionsComponent({ user }: { user: TUser }) {
   const importHref = useHref(`./import-policy?userId=${user.id}`);
   const downloadRCloneHref = useHref(`./rclone/download?userId=${user.id}`);
 
-  const items = [
+  const items: ActionMenuItem[] = [
     {
       id: 0,
       label: t('pci_projects_project_storages_containers_users_import_json'),
@@ -123,7 +127,7 @@ export default function ActionsComponent({ user }: { user: TUser }) {
     {
       id: 1,
       label: t('pci_projects_project_storages_containers_users_download_json'),
-      onclick: downloadUserPolicyJson,
+      onClick: downloadUserPolicyJson,
     },
     {
       id: 2,
@@ -135,7 +139,7 @@ export default function ActionsComponent({ user }: { user: TUser }) {
     {
       id: 3,
       label: t('pci_projects_project_storages_containers_users_see_secret_key'),
-      onclick: showSecretKey,
+      onClick: showSecretKey,
     },
     {
       id: 4,
@@ -146,5 +150,5 @@ export default function ActionsComponent({ user }: { user: TUser }) {
     },
   ];
 
-  return <ActionMenu items={items} isCompact />;
+  return <ActionMenu items={items} isCompact id="" />;
 }

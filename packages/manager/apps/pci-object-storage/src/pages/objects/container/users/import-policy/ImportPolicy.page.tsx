@@ -1,12 +1,10 @@
 import { PciModal } from '@ovh-ux/manager-pci-common';
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
-import { OsdsFormField, OsdsText } from '@ovhcloud/ods-components/react';
 import { Translation, useTranslation } from 'react-i18next';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { ApiError } from '@ovh-ux/manager-core-api';
+import { OdsFormField, OdsText } from '@ovhcloud/ods-components/react';
 import LabelComponent from '@/components/Label.component';
 import FileInputComponent from '@/components/FileInput.component';
 import { useImportPolicy, useUsers } from '@/api/hooks/useUser';
@@ -89,21 +87,17 @@ export default function ImportPolicyPage() {
       )}
       isDisabled={filesToUpload.length === 0 || isPending}
     >
-      <OsdsText
-        level={ODS_TEXT_LEVEL.body}
-        color={ODS_THEME_COLOR_INTENT.text}
-        size={ODS_TEXT_SIZE._400}
-      >
+      <OdsText preset="paragraph">
         {t('pci_projects_project_storages_containers_users_import_description')}
-      </OsdsText>
-      <OsdsFormField className="mt-4">
+      </OdsText>
+      <OdsFormField className="mt-4">
         <LabelComponent
           text={t(
             'pci_projects_project_storages_containers_users_import_add_files_label',
           )}
         />
         <FileInputComponent onFilesSelected={setFilesToUpload} />
-      </OsdsFormField>
+      </OdsFormField>
     </PciModal>
   );
 }
