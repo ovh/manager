@@ -1,15 +1,6 @@
 import React from 'react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import {
-  ODS_BUTTON_VARIANT,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
-import {
-  OsdsButton,
-  OsdsModal,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
+import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import { OdsButton, OdsModal, OdsText } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { SavingsPlanPlanedChangeStatus } from '@/types/api.type';
 
@@ -27,42 +18,35 @@ export default function RenewModal({
   const { t } = useTranslation('renew');
 
   return (
-    <OsdsModal headline={t('title')} onOdsModalClose={onClose}>
+    <OdsModal onOdsClose={onClose}>
+      <OdsText preset="heading-3">{t('title')}</OdsText>
+
       <slot name="content">
         <div className="mt-5">
-          <OsdsText
-            color={ODS_THEME_COLOR_INTENT.text}
-            level={ODS_TEXT_LEVEL.body}
-            size={ODS_TEXT_SIZE._400}
-          >
+          <OdsText preset="span">
             {t(
               periodEndAction === SavingsPlanPlanedChangeStatus.REACTIVATE
                 ? 'message_deactivate'
                 : 'message_activate',
             )}
-          </OsdsText>
+          </OdsText>
         </div>
       </slot>
-      <OsdsButton
-        slot="actions"
-        color={ODS_THEME_COLOR_INTENT.primary}
+      <OdsButton
+        label={t('buttons_cancel')}
         variant={ODS_BUTTON_VARIANT.ghost}
         onClick={onClose}
-      >
-        {t('buttons_cancel')}
-      </OsdsButton>
-      <OsdsButton
-        slot="actions"
-        color={ODS_THEME_COLOR_INTENT.primary}
-        onClick={onConfirm}
-        data-testid="renewModal-button_confirm"
-      >
-        {t(
+      />
+
+      <OdsButton
+        label={t(
           periodEndAction === SavingsPlanPlanedChangeStatus.REACTIVATE
             ? 'buttons_deactivate'
             : 'buttons_activate',
         )}
-      </OsdsButton>
-    </OsdsModal>
+        onClick={onConfirm}
+        data-testid="renewModal-button_confirm"
+      />
+    </OdsModal>
   );
 }
