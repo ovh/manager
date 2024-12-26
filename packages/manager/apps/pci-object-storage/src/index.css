@@ -1,8 +1,13 @@
+@import '@ovh-ux/manager-react-components/dist/style.css';
+@import '@ovh-ux/manager-pci-common/dist/style.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import '@ovh-ux/manager-react-components/dist/style.css';
+html {
+  font-family: var(--ods-font-family-default);
+}
 
 .application {
   @apply md:mx-12 mt-8;
