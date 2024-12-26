@@ -36,12 +36,15 @@ export function TabsPanel({ tabs }: Readonly<TabsProps>) {
   }, [location.pathname]);
 
   return (
-    <OdsTabs>
+    <OdsTabs id="osds-tab-bar">
       {tabs.map((tab: TabItemProps) => (
         <React.Fragment key={`osds-tab-bar-item-${tab.name}`}>
           {tab.isDisabled ? (
             <div>
-              <OdsTab isDisabled={tab.isDisabled || undefined}>
+              <OdsTab
+                isSelected={tab.isDisabled || undefined}
+                id={`osds-tab-bar-item-${tab.name}`}
+              >
                 {tab.title}
               </OdsTab>
             </div>
@@ -51,7 +54,10 @@ export function TabsPanel({ tabs }: Readonly<TabsProps>) {
               onClick={() => tracking?.trackClick({ name: tab.tracking })}
               className="no-underline"
             >
-              <OdsTab isDisabled={tab.isDisabled || undefined}>
+              <OdsTab
+                isSelected={tab.isDisabled || undefined}
+                id={`osds-tab-bar-item-${tab.name}`}
+              >
                 {tab.title}
               </OdsTab>
             </NavLink>
