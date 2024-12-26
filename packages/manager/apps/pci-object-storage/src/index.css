@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import '@ovh-ux/manager-react-components/dist/style.css';
+
 .application {
   @apply md:mx-12 mt-8;
 }
