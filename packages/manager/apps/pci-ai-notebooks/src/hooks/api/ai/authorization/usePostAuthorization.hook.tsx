@@ -1,5 +1,6 @@
-import { useMutation } from '@tanstack/react-query';
-import { AIError, PCIAi } from '@/data/api';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useParams } from 'react-router-dom';
+import { AIError } from '@/data/api';
 import * as ai from '@/types/cloud/project/ai';
 import { postAuthorization } from '@/data/api/ai/authorization.api';
 
@@ -12,17 +13,26 @@ export function usePostAuthorization({
   onError,
   onSuccess,
 }: PostMutateAuthorizationProps) {
+  const { projectId } = useParams();
+  const queryClient = useQueryClient();
   const mutation = useMutation({
-    mutationFn: (projectId: PCIAi) => {
-      return postAuthorization(projectId);
+    mutationFn: () => {
+      return postAuthorization({ projectId });
     },
     onError,
-    onSuccess,
+    onSuccess: (data) => {
+      // invalidate notebook auth
+      queryClient.invalidateQueries({
+        queryKey: [projectId, 'ai/notebook'],
+        refetchType: 'none',
+      });
+      onSuccess(data);
+    },
   });
 
   return {
-    postAuthorization: (projectId: PCIAi) => {
-      return mutation.mutate(projectId);
+    postAuthorization: () => {
+      return mutation.mutate();
     },
     ...mutation,
   };

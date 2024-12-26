@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { AlertCircle, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
@@ -16,7 +16,6 @@ export default function Auth() {
   const { t } = useTranslation('pci-ai-notebooks/auth');
   const toast = useToast();
   const navigate = useNavigate();
-  const { projectId } = useParams();
   const projectData = usePciProject();
 
   const isProjectDiscoveryMode =
@@ -42,9 +41,7 @@ export default function Auth() {
   const { postAuthorization } = usePostAuthorization(PostAuthorizationProps);
 
   const activateProject = () => {
-    postAuthorization({
-      projectId,
-    });
+    postAuthorization();
   };
 
   return (
