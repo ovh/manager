@@ -22,6 +22,7 @@ import * as database from '@/types/cloud/project/database';
 import { durationStringToHuman } from '@/lib/durationHelper';
 import { useServiceData } from '../../Service.context';
 import DataTable from '@/components/data-table';
+import { MENU_COLUMN_ID } from '@/components/data-table/DataTable.component';
 
 interface NamespacesTableColumnsProps {
   onEditClick: (namespace: database.m3db.Namespace) => void;
@@ -75,7 +76,7 @@ export const getColumns = ({
       accessorFn: (row) => durationStringToHuman(row.resolution, dateLocale),
     },
     {
-      id: 'actions',
+      id: MENU_COLUMN_ID,
       cell: ({ row }) => {
         return (
           <div className="flex justify-end">

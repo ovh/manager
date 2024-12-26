@@ -3,13 +3,19 @@ import * as database from '@/types/cloud/project/database';
 import { humanizeEngine } from '@/lib/engineNameHelper';
 import { FilterCategories } from '@/lib/filters';
 import ServiceStatusBadge from './ServiceStatusBadge.component';
+import {
+  FLAVORS_OPTIONS,
+  PLANS_OPTIONS,
+  REGIONS_OPTIONS,
+} from './ServiceListFilters.constants';
 
 export const getFilters = () => {
+  const { t } = useTranslation('pci-databases-analytics/services');
   const { t: tRegions } = useTranslation('regions');
   return [
     {
       id: 'description',
-      label: 'Nom',
+      label: t('tableHeaderName'),
       comparators: FilterCategories.String,
     },
     {
@@ -19,7 +25,7 @@ export const getFilters = () => {
     },
     {
       id: 'engine',
-      label: 'Engine',
+      label: t('tableHeaderEngine'),
       comparators: FilterCategories.Options,
       options: Object.values(database.EngineEnum).map((value) => ({
         label: humanizeEngine(value),
@@ -28,58 +34,36 @@ export const getFilters = () => {
     },
     {
       id: 'plan',
-      label: 'Plan',
+      label: t('tableHeaderPlan'),
       comparators: FilterCategories.Options,
-      options: [
-        'Discovery',
-        'Production',
-        'Advanced',
-        'Essential',
-        'Business',
-        'Enterprise',
-      ].map((plan) => ({ label: plan, value: plan })),
+      options: PLANS_OPTIONS.map((plan) => ({ label: plan, value: plan })),
     },
     {
       id: 'nodes[0].region',
-      label: 'Region',
+      label: t('tableHeaderLocation'),
       comparators: FilterCategories.Options,
-      options: ['BHS', 'DE', 'GRA', 'SBG', 'UK', 'WAW'].map((region) => ({
+      options: REGIONS_OPTIONS.map((region) => ({
         label: tRegions(`region_${region}`),
         value: region,
       })),
     },
     {
       id: 'flavor',
-      label: 'Flavor',
+      label: t('tableHeaderFlavor'),
       comparators: FilterCategories.Options,
-      options: [
-        'db2-free',
-        'db2-2',
-        'db2-4',
-        'db2-7',
-        'db2-15',
-        'db2-30',
-        'db2-60',
-        'db2-120',
-        'db1-4',
-        'db1-7',
-        'db1-15',
-        'db1-30',
-        'db1-60',
-        'db1-120',
-      ].map((flavor) => ({
+      options: FLAVORS_OPTIONS.map((flavor) => ({
         label: <span className="capitalize">{flavor}</span>,
         value: flavor,
       })),
     },
     {
       id: 'createdAt',
-      label: 'Date de création',
+      label: t('tableHeaderEngine'),
       comparators: FilterCategories.Date,
     },
     {
       id: 'status',
-      label: 'Statut',
+      label: t('tableHeaderStatus'),
       comparators: FilterCategories.Options,
       options: Object.values(database.StatusEnum).map((value) => ({
         label: <ServiceStatusBadge status={value} />,

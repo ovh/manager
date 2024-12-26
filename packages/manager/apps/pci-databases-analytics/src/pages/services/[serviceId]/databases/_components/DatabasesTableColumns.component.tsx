@@ -16,7 +16,7 @@ import {
 } from '@/components/ui/tooltip';
 import * as database from '@/types/cloud/project/database';
 import { useServiceData } from '../../Service.context';
-import { MENU_COLUMN_ID } from '@/components/data-table/DataTable';
+import { MENU_COLUMN_ID } from '@/components/data-table/DataTable.component';
 import DataTable from '@/components/data-table';
 
 interface DatabasesTableColumnsProps {

@@ -12,6 +12,7 @@ import {
 import { Button } from '@/components/ui/button';
 import * as database from '@/types/cloud/project/database';
 import { useServiceData } from '../../Service.context';
+import { MENU_COLUMN_ID } from '@/components/data-table/DataTable.component';
 
 interface CurrentQueriesListColumnsProps {
   onCancelQueryClicked: (query: database.service.currentqueries.Query) => void;
@@ -80,7 +81,7 @@ export const getColumns = ({
       accessorFn: (row) => row.applicationName,
     },
     {
-      id: 'actions',
+      id: MENU_COLUMN_ID,
       cell: ({ row }) => (
         <div className="w-full text-right pr-2">
           <DropdownMenu>

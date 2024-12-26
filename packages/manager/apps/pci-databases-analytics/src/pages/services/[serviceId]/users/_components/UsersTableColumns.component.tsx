@@ -6,7 +6,7 @@ import { GenericUser } from '@/data/api/database/user.api';
 import DataTable from '@/components/data-table';
 import UserStatusBadge from './UserStatusBadge.component';
 import UserActions from './UsersTableActions.component';
-import { MENU_COLUMN_ID } from '@/components/data-table/DataTable';
+import { MENU_COLUMN_ID } from '@/components/data-table/DataTable.component';
 
 interface UserListColumnsProps {
   displayGroupCol: boolean;

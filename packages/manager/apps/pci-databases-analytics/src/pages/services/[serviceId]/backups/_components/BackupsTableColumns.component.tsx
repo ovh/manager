@@ -15,6 +15,7 @@ import { Button } from '@/components/ui/button';
 import { useServiceData } from '../../Service.context';
 import * as database from '@/types/cloud/project/database';
 import DataTable from '@/components/data-table';
+import { MENU_COLUMN_ID } from '@/components/data-table/DataTable.component';
 
 interface BackupsTableColumnsProps {
   onForkClick: (backup: BackupWithExpiricyDate) => void;
@@ -95,7 +96,7 @@ export const getColumns = ({
     },
   };
   const actionsColumn: ColumnDef<BackupWithExpiricyDate> = {
-    id: 'actions',
+    id: MENU_COLUMN_ID,
     cell: ({ row }) => {
       return (
         <div className="flex justify-end">

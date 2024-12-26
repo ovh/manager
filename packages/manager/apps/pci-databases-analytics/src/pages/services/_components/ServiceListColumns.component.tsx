@@ -10,7 +10,6 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
@@ -21,6 +20,7 @@ import Link from '@/components/links/Link.component';
 import { useTrackAction } from '@/hooks/useTracking';
 import { TRACKING } from '@/configuration/tracking.constants';
 import { formatStorage } from '@/lib/bytesHelper';
+import { MENU_COLUMN_ID } from '@/components/data-table/DataTable.component';
 
 interface ServiceListColumnsProps {
   onRenameClicked: (service: database.Service) => void;
@@ -230,7 +230,7 @@ export const getColumns = ({
       },
     },
     {
-      id: 'actions',
+      id: MENU_COLUMN_ID,
       enableGlobalFilter: false,
       cell: ({ row }) => {
         const service = row.original;
@@ -251,7 +251,6 @@ export const getColumns = ({
               data-testid="services-action-content"
               align="end"
             >
-              <DropdownMenuLabel>Actions</DropdownMenuLabel>
               <DropdownMenuItem
                 variant="primary"
                 onClick={() => navigate(`./${row.original.id}`)}

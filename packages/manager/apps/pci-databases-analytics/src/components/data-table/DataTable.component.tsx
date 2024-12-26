@@ -1,8 +1,8 @@
-import React, { ReactElement, useMemo, useState } from 'react';
+import React, { ReactElement, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { flexRender } from '@tanstack/react-table';
 import { ChevronDown, ChevronUp } from 'lucide-react';
-import { useDataTableContext } from './DataTableContext';
+import { useDataTableContext } from './DataTable.context';
 import {
   Table,
   TableBody,
@@ -13,7 +13,7 @@ import {
 } from '@/components/ui/table';
 import { Button } from '../ui/button';
 
-export const MENU_COLUMN_ID = 'actions';
+export const MENU_COLUMN_ID = 'actions_menu_column';
 
 interface DatatableProps<TData> {
   renderRowExpansion?: (row: TData) => ReactElement | null;

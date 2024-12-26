@@ -2,9 +2,9 @@ import { ReactNode } from 'react';
 import { Search } from 'lucide-react';
 import { Input } from '../ui/input';
 import { Button } from '../ui/button';
-import { useDataTableContext } from './DataTableContext';
+import { useDataTableContext } from './DataTable.context';
 
-const DatatableSearchBar = ({ children }: { children?: ReactNode }) => {
+export function DatatableSearchBar({ children }: { children?: ReactNode }) {
   const { table, globalFilter } = useDataTableContext();
   return (
     <>
@@ -26,6 +26,4 @@ const DatatableSearchBar = ({ children }: { children?: ReactNode }) => {
       )}
     </>
   );
-};
-
-export default DatatableSearchBar;
+}

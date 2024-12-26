@@ -5,7 +5,7 @@ import { Badge } from '../ui/badge';
 import { Button } from '../ui/button';
 import './translations';
 import { useLocale } from '@/hooks/useLocale';
-import { useDataTableContext } from './DataTableContext';
+import { useDataTableContext } from './DataTable.context';
 
 export declare enum FilterComparator {
   Includes = 'includes',

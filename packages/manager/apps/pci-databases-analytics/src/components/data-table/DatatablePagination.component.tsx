@@ -13,7 +13,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '../ui/select';
-import { useDataTableContext } from './DataTableContext';
+import { useDataTableContext } from './DataTable.context';
 
 export function DataTablePagination() {
   const { t } = useTranslation('pci-databases-analytics/components/data-table');

@@ -12,9 +12,9 @@ import {
 import { ReactNode, createContext, useContext, useMemo, useState } from 'react';
 import { useColumnFilters } from './useColumnFilters.hook';
 import { applyFilters } from '@/lib/filters';
-import { ColumnFilter } from './DatatableDefaultFilterButton';
-import { DataTable } from './DataTable';
-import { DataTablePagination } from './DatatablePagination';
+import { ColumnFilter } from './DatatableDefaultFilterButton.component';
+import { DataTable } from './DataTable.component';
+import { DataTablePagination } from './DatatablePagination.component';
 
 interface DataTableProviderProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];

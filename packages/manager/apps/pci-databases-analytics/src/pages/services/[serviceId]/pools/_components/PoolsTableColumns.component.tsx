@@ -19,6 +19,7 @@ import { Button } from '@/components/ui/button';
 import { ConnectionPoolWithData } from '../Pools.page';
 import { useServiceData } from '../../Service.context';
 import * as database from '@/types/cloud/project/database';
+import { MENU_COLUMN_ID } from '@/components/data-table/DataTable.component';
 
 interface ConnectionPoolsTableColumnsProps {
   onGetInformationClick: (connectionPool: ConnectionPoolWithData) => void;
@@ -81,7 +82,7 @@ export const getColumns = ({
       accessorFn: (row) => (row.user ? row.user.username : ''),
     },
     {
-      id: 'actions',
+      id: MENU_COLUMN_ID,
       cell: ({ row }) => {
         return (
           <div className="flex justify-end">
