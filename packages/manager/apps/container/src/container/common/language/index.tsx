@@ -10,7 +10,7 @@ import LanguageList from './List';
 import { useShell } from '@/context';
 import { SMALL_DEVICE_MAX_SIZE } from '@/container/common/constants';
 
-type Props = {
+export type Props = {
   onChange(show: boolean): void;
   setUserLocale(locale: string): void;
   userLocale?: string;
@@ -76,7 +76,7 @@ function LanguageMenu({
   };
 
   return (
-    <div className="oui-navbar-dropdown" ref={ref}>
+    <div className="oui-navbar-dropdown" ref={ref} data-testid="languageMenu">
       <LanguageButton show={show} onClick={(nextShow) => setShow(nextShow)}>
         {getLanguageLabel()}
       </LanguageButton>
