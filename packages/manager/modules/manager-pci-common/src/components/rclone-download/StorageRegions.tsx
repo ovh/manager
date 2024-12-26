@@ -50,7 +50,7 @@ export default function StorageRegions({
           </option>
         ))}
       </OdsSelect>
-      <OdsText slot="helper" color="text" className="mt-2">
+      <OdsText preset="caption" className="mt-2">
         {t('pci_projects_project_users_download-rclone_region_help')}
       </OdsText>
     </>
