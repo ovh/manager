@@ -6,6 +6,7 @@ import { useSavingsPlanContract } from '@/hooks/useSavingsPlan';
 const LegalLinks = () => {
   const { data = [] } = useSavingsPlanContract();
 
+  console.log('data', data);
   return (
     <>
       {data.map((link) => (
