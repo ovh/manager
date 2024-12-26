@@ -1,23 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { MutationStatus, useMutationState } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useHref, useNavigate, useParams } from 'react-router-dom';
-import { MutationStatus, useMutationState } from '@tanstack/react-query';
-
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import {
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-  ODS_MESSAGE_TYPE,
-} from '@ovhcloud/ods-components';
-import {
-  OsdsButton,
-  OsdsIcon,
-  OsdsMessage,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
+import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import { OdsButton, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
+
 import { Title } from '@ovh-ux/manager-react-components';
 
 import TableContainer from '@/components/Table/TableContainer';
@@ -52,16 +41,13 @@ const Banner = ({ message }: { message: string }) => {
   }, [message]);
   return (
     showBanner && (
-      <OsdsMessage
-        type={ODS_MESSAGE_TYPE.success}
+      <OdsMessage
+        color="success"
         className="my-4"
-        removable
-        onOdsRemoveClick={() => setShowBanner(false)}
+        onOdsRemove={() => setShowBanner(false)}
       >
-        <OsdsText color={ODS_THEME_COLOR_INTENT.text} className="inline-block">
-          {message}
-        </OsdsText>
-      </OsdsMessage>
+        <OdsText className="inline-block">{message}</OdsText>
+      </OdsMessage>
     )
   );
 };
@@ -92,8 +78,10 @@ const ListingTablePage: React.FC<ListingProps> = ({
   const { environment } = useContext(ShellContext);
   const locale = environment.getUserLocale();
 
+  const navigate = useNavigate();
   const hrefDashboard = useHref('');
   const serviceId = useServiceId();
+  const { projectId } = useParams();
   const mutationSPChangePeriod = useMutationState<
     MutationInfo<SavingsPlanService> & {
       variables: {
@@ -130,30 +118,19 @@ const ListingTablePage: React.FC<ListingProps> = ({
     <>
       <Title>{t('title')}</Title>
       <div className="py-5">
-        <OsdsButton
+        <OdsButton
+          icon="plus"
           size={ODS_BUTTON_SIZE.sm}
-          variant={ODS_BUTTON_VARIANT.stroked}
-          color={ODS_THEME_COLOR_INTENT.primary}
-          inline
-          href={`${hrefDashboard}/new`}
-        >
-          <span slot="start" className="flex justify-center items-center">
-            <OsdsIcon
-              name={ODS_ICON_NAME.ADD}
-              size={ODS_ICON_SIZE.xxs}
-              color={ODS_THEME_COLOR_INTENT.primary}
-              className="mr-4"
-            />
-            <span>{t('createSavingsPlan')}</span>
-          </span>
-        </OsdsButton>
+          variant={ODS_BUTTON_VARIANT.outline}
+          onClick={() =>
+            navigate(`/pci/projects/${projectId}/savings-plan/new`)
+          }
+          label={t('createSavingsPlan')}
+        />
       </div>
-      <OsdsText
-        color={ODS_THEME_COLOR_INTENT.text}
-        className="inline-block my-4"
-      >
+      <OdsText preset="span" className="inline-block my-4">
         {t('informationMessage')}
-      </OsdsText>
+      </OdsText>
       {mutationSPChangePeriod.length > 0 && (
         <Banner
           message={renewBannerMessage}

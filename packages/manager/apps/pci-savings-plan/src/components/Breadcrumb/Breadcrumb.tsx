@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { Params, useLocation, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
+import {
+  OdsBreadcrumb,
+  OdsBreadcrumbItem,
+} from '@ovhcloud/ods-components/react';
 import { useNavigation } from '@ovh-ux/manager-react-shell-client';
 
 import { useProject } from '@ovh-ux/manager-pci-common';
@@ -16,6 +19,7 @@ const getPageName = (location: string, t: (key: string) => string) => {
     return [
       {
         label: t('createSavingsPlan'),
+        href: location,
       },
     ];
   }
@@ -45,20 +49,24 @@ const Breadcrumb: React.FC = () => {
     updateNav();
   }, [navigation, projectId]);
 
+  const breadcrumbItems = [
+    {
+      href: urlProject,
+      label: project?.description,
+    },
+    {
+      href: `${urlProject}/savings-plan`,
+      label: t('title'),
+    },
+    ...items,
+  ];
+
   return (
-    <OsdsBreadcrumb
-      items={[
-        {
-          href: urlProject,
-          label: project?.description,
-        },
-        {
-          href: `${urlProject}/savings-plan`,
-          label: t('title'),
-        },
-        ...items,
-      ]}
-    ></OsdsBreadcrumb>
+    <OdsBreadcrumb>
+      {breadcrumbItems.map((item) => (
+        <OdsBreadcrumbItem href={item.href} label={item.label} />
+      ))}
+    </OdsBreadcrumb>
   );
 };
 
