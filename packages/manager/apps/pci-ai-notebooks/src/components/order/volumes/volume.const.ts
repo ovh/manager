@@ -3,6 +3,7 @@ export const VOLUMES_CONFIG = {
     min: 1,
     max: 50,
     pattern: /^\/(\S)*$/,
+    savedPath: '/workspace',
   },
   maxVolumes: 10,
   gitUrl: {

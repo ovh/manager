@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { useParams } from 'react-router-dom';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { useForm, SubmitHandler } from 'react-hook-form';
 import {
   GitBranchIcon,
   HelpCircle,
@@ -21,7 +22,6 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-
 import {
   Select,
   SelectContent,
@@ -29,7 +29,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-
 import { DataStoresWithContainers } from '@/hooks/api/ai/datastore/useGetDatastoresWithContainers.hook';
 import { FormVolumes, OrderVolumes } from '@/types/orderFunnel';
 import { VOLUMES_CONFIG } from './volume.const';
@@ -40,7 +39,6 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 import OvhLink from '@/components/links/OvhLink.component';
-import { useNotebookData } from '@/pages/notebooks/[notebookId]/Notebook.context';
 
 interface VolumesFormProps {
   configuredVolumesList: DataStoresWithContainers[];
@@ -52,7 +50,7 @@ interface VolumesFormProps {
 const VolumeForm = React.forwardRef<HTMLInputElement, VolumesFormProps>(
   ({ configuredVolumesList, selectedVolumesList, onChange, disabled }, ref) => {
     const { t } = useTranslation('pci-ai-notebooks/components/volumes');
-    const { projectId } = useNotebookData();
+    const { projectId } = useParams();
     const [selectedVolume, setSelectedVolume] = useState<
       DataStoresWithContainers
     >();
@@ -77,7 +75,7 @@ const VolumeForm = React.forwardRef<HTMLInputElement, VolumesFormProps>(
       )
       .refine(
         (data) => {
-          if (data === '/workspace') {
+          if (data === VOLUMES_CONFIG.mountDirectory.savedPath) {
             return false;
           }
           return true;
