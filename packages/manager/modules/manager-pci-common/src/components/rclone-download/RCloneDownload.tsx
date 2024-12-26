@@ -115,51 +115,51 @@ export default function RCloneDownloadModal({
     >
       <OdsText preset="paragraph">
         {t('pci_projects_project_users_download-rclone_content')}
+        {rCloneGuideURL && (
+          <Links
+            className="ml-3"
+            href={rCloneGuideURL}
+            target="_blank"
+            type={LinkType.external}
+            label={t('pci_projects_project_users_download-rclone_more_link')}
+          />
+        )}
       </OdsText>
 
-      {rCloneGuideURL && (
-        <Links
-          className="ml-3"
-          href={rCloneGuideURL}
-          target="_blank"
-          type={LinkType.external}
-          label={t('pci_projects_project_users_download-rclone_more_link')}
-        />
-      )}
-
       <OdsFormField className="mt-6 mb-8">
-        <OdsText className="font-bold" preset="caption" slot="label">
+        <label slot="label" htmlFor="fileType">
           {t('pci_projects_project_users_download-rclone_file_type_label')}
-        </OdsText>
+        </label>
         <div className="flex">
           <OdsRadio
             value={DOWNLOAD_FILETYPE.SWIFT}
+            inputId="fileType-swift"
             name="fileType"
             className="mr-4"
+            isChecked
             color="primary"
             onOdsChange={handleFileTypeChanged}
-          >
-            <OdsText slot="end" preset="paragraph" color="primary">
-              {DOWNLOAD_FILETYPE.SWIFT}
-            </OdsText>
-          </OdsRadio>
+          />
+          <label htmlFor="fileType-swift">
+            <OdsText>{DOWNLOAD_FILETYPE.SWIFT}</OdsText>
+          </label>
           <OdsRadio
             value={DOWNLOAD_FILETYPE.S3}
             name="fileType"
+            inputId="fileType-s3"
+            class="ml-8 mr-4"
             onOdsChange={handleFileTypeChanged}
-          >
-            <OdsText preset="paragraph" color="text" slot="end">
-              {DOWNLOAD_FILETYPE.S3}
-            </OdsText>
-          </OdsRadio>
+          />
+          <label htmlFor="fileType-s3">
+            <OdsText>{DOWNLOAD_FILETYPE.S3}</OdsText>
+          </label>
         </div>
       </OdsFormField>
 
       <OdsFormField>
-        <OdsText className="font-bold" preset="caption" slot="label">
+        <label slot="label">
           {t('pci_projects_project_users_download-rclone_region_label')}
-        </OdsText>
-
+        </label>
         {fileType === DOWNLOAD_FILETYPE.S3 ? (
           <S3StorageRegions
             projectId={projectId}
