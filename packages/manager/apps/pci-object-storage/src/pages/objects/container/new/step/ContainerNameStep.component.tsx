@@ -1,29 +1,16 @@
-import {
-  OsdsFormField,
-  OsdsIcon,
-  OsdsInput,
-  OsdsLink,
-  OsdsMessage,
-  OsdsSpinner,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-import {
-  ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-  ODS_INPUT_TYPE,
-  ODS_MESSAGE_TYPE,
-  ODS_SPINNER_SIZE,
-} from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import { StepComponent } from '@ovh-ux/manager-react-components';
 import { useContext, useState } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useNavigate } from 'react-router-dom';
+import {
+  OdsFormField,
+  OdsInput,
+  OdsLink,
+  OdsMessage,
+  OdsSpinner,
+  OdsText,
+} from '@ovhcloud/ods-components/react';
 import {
   ContainerCreationForn,
   useContainerCreationStore,
@@ -92,75 +79,57 @@ export function ContainerNameStep({
         label: t('pci_projects_project_storages_containers_add_cancel_label'),
       }}
     >
-      <OsdsFormField
+      <OdsFormField
         error={
           shouldDisplayError
             ? t('pci-common:common_field_error_pattern')
             : undefined
         }
       >
-        <OsdsInput
+        <OdsInput
           value={form.containerName}
-          onOdsInputBlur={() => setIsTouched(true)}
-          onOdsValueChange={(event) => setContainerName(event.detail.value)}
-          type={ODS_INPUT_TYPE.text}
-          color={ODS_THEME_COLOR_INTENT.primary}
-          inline
+          name="containerName"
+          onOdsBlur={() => setIsTouched(true)}
+          onOdsChange={(event) =>
+            setContainerName(event.detail.value.toString())
+          }
+          color="primary"
         />
-      </OsdsFormField>
-      <OsdsText
-        size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-        color={
-          shouldDisplayError
-            ? ODS_THEME_COLOR_INTENT.error
-            : ODS_THEME_COLOR_INTENT.text
-        }
+      </OdsFormField>
+      <OdsText
+        preset="paragraph"
+        className={`${
+          shouldDisplayError ? 'text-[var(--ods-color-critical-500)]' : ''
+        }`}
       >
         {t(
           'pci_projects_project_storages_containers_add_pattern_help_storage-s3',
         )}
-      </OsdsText>
+      </OdsText>
       {(form.deploymentMode === OBJECT_CONTAINER_MODE_MONO_ZONE ||
         form.deploymentMode === OBJECT_CONTAINER_MODE_MULTI_ZONES) && (
-        <OsdsMessage
-          className="mt-4"
-          type={ODS_MESSAGE_TYPE.info}
-          color={ODS_THEME_COLOR_INTENT.info}
-        >
+        <OdsMessage className="mt-4" color="information">
           <p>
-            <OsdsText
-              size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-              color={ODS_THEME_COLOR_INTENT.text}
-            >
+            <OdsText preset="paragraph">
               {t(
                 'pci_projects_project_storages_containers_add_replication_rules_info',
               )}
-            </OsdsText>
-            <OsdsLink
-              color={ODS_THEME_COLOR_INTENT.primary}
+            </OdsText>
+            <OdsLink
+              color="primary"
               href={asyncReplicationLink}
-              target={OdsHTMLAnchorElementTarget._blank}
-            >
-              {t(
+              target="_blank"
+              icon="external-link"
+              label={t(
                 'pci_projects_project_storages_containers_add_replication_rules_info_link',
               )}
-              <span slot="end">
-                <OsdsIcon
-                  aria-hidden="true"
-                  className="ml-4"
-                  name={ODS_ICON_NAME.EXTERNAL_LINK}
-                  hoverable
-                  size={ODS_ICON_SIZE.xxs}
-                  color={ODS_THEME_COLOR_INTENT.primary}
-                />
-              </span>
-            </OsdsLink>
+            />
           </p>
-        </OsdsMessage>
+        </OdsMessage>
       )}
       {isCreationPending && (
         <div className="my-4">
-          <OsdsSpinner size={ODS_SPINNER_SIZE.md} inline />
+          <OdsSpinner size="md" />
         </div>
       )}
     </StepComponent>

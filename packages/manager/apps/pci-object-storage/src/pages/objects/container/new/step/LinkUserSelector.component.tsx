@@ -1,23 +1,14 @@
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import {
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_SPINNER_SIZE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-  OdsSelectValueChangeEvent,
-} from '@ovhcloud/ods-components';
-import {
-  OsdsButton,
-  OsdsFormField,
-  OsdsSelect,
-  OsdsSelectOption,
-  OsdsSpinner,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
+import {
+  OdsButton,
+  OdsFormField,
+  OdsSelect,
+  OdsSpinner,
+  OdsText,
+} from '@ovhcloud/ods-components/react';
+import { log } from 'console';
 import {
   getQueryKeyUsers,
   usePostS3Secret,
@@ -69,9 +60,8 @@ export default function LinkUserSelector({
    * when the issue on the OsdsSelect is fixed.
    * @TODO remove when migrating to ODS 18
    */
-  const listenForChangeEventsRef = useRef(true);
   useEffect(() => {
-    listenForChangeEventsRef.current = true;
+    console.log('formUser', formUser);
     if (formUser?.s3Credentials) {
       showSecretKey();
     }
@@ -99,122 +89,90 @@ export default function LinkUserSelector({
 
   return (
     <>
-      <OsdsFormField className="mt-6">
+      <OdsFormField className="mt-6">
         <LabelComponent
           text={tAssociateUser(
             'pci_projects_project_storages_containers_add_create_or_linked_user_linked_user_label',
           )}
         />
         <div className="flex items-center">
-          <OsdsSelect
+          <OdsSelect
             value={formUser?.id}
-            key={formUser?.id}
-            inline
-            className="min-w-[20%]"
-            color={ODS_THEME_COLOR_INTENT.text}
-            disabled={
+            className="min-w-[40%]"
+            name="selectUser"
+            isDisabled={
               haveShowedOrGeneratedCredentials ||
               isPendingListUsers ||
               undefined
             }
-            onOdsValueChange={(event: OdsSelectValueChangeEvent) => {
-              if (listenForChangeEventsRef.current) {
-                const user = listUsers.find((u) => u.id === event.detail.value);
-                listenForChangeEventsRef.current = false;
-                onSelectOwner(user);
-              }
+            onOdsChange={(event) => {
+              console.log('event', event);
+              const user = listUsers.find((u) => u.id === event.detail.value);
+              onSelectOwner(user);
+              console.log(formUser);
             }}
           >
             {formUser?.description ? (
-              <OsdsText
-                level={ODS_TEXT_LEVEL.body}
-                color={ODS_THEME_COLOR_INTENT.text}
-                size={ODS_TEXT_SIZE._400}
-                slot="selectedLabel"
-              >
+              <OdsText preset="paragraph" slot="selectedLabel">
                 {formUser?.username} - {formUser?.description}
-              </OsdsText>
+              </OdsText>
             ) : (
-              <OsdsText
-                level={ODS_TEXT_LEVEL.body}
-                color={ODS_THEME_COLOR_INTENT.text}
-                size={ODS_TEXT_SIZE._400}
-                slot="selectedLabel"
-              >
+              <OdsText preset="paragraph" slot="selectedLabel">
                 {formUser?.username}
-              </OsdsText>
+              </OdsText>
             )}
-            {listUsers?.map((user) => (
-              <OsdsSelectOption key={user.id} value={user.id}>
-                {user?.description ? (
-                  <OsdsText
-                    level={ODS_TEXT_LEVEL.body}
-                    color={ODS_THEME_COLOR_INTENT.text}
-                    size={ODS_TEXT_SIZE._400}
-                    className="mr-48"
-                  >
-                    {user?.username} - {user?.description}
-                  </OsdsText>
-                ) : (
-                  <OsdsText
-                    level={ODS_TEXT_LEVEL.body}
-                    color={ODS_THEME_COLOR_INTENT.text}
-                    size={ODS_TEXT_SIZE._400}
-                    className="mr-48"
-                  >
-                    {user?.username}
-                  </OsdsText>
-                )}
-                <OsdsText
-                  level={ODS_TEXT_LEVEL.body}
-                  size={ODS_TEXT_SIZE._200}
-                  color={ODS_THEME_COLOR_INTENT.text}
-                >
+            {listUsers?.map((user) =>
+              user?.description ? (
+                <option key={user.id} value={user.id}>
+                  {user?.username} - {user?.description}{' '}
                   {tAssociateUser(
                     user.s3Credentials
                       ? 'pci_projects_project_storages_containers_add_create_or_linked_user_linked_user_has_credential'
                       : 'pci_projects_project_storages_containers_add_create_or_linked_user_linked_user_has_not_credential',
                   )}
-                </OsdsText>
-              </OsdsSelectOption>
-            ))}
-          </OsdsSelect>
+                </option>
+              ) : (
+                <option key={user.id} value={user.id}>
+                  {user?.username}{' '}
+                  {tAssociateUser(
+                    user.s3Credentials
+                      ? 'pci_projects_project_storages_containers_add_create_or_linked_user_linked_user_has_credential'
+                      : 'pci_projects_project_storages_containers_add_create_or_linked_user_linked_user_has_not_credential',
+                  )}{' '}
+                </option>
+              ),
+            )}
+          </OdsSelect>
           {isPendingListUsers && (
-            <OsdsSpinner
-              inline
-              size={ODS_SPINNER_SIZE.sm}
-              className="ml-6 align-center"
-            />
+            <OdsSpinner size="sm" className="ml-6 align-center" />
           )}
         </div>
-      </OsdsFormField>
+      </OdsFormField>
       {haveShowedOrGeneratedCredentials && (
         <UserInformationTile secretUser={secretUser} user={formUser} />
       )}
       <div className="mt-6 flex">
-        <OsdsButton
+        <OdsButton
           onClick={onCancel}
-          variant={ODS_BUTTON_VARIANT.ghost}
-          size={ODS_BUTTON_SIZE.sm}
-          color={ODS_THEME_COLOR_INTENT.primary}
-          disabled={isPendingListUsers || undefined}
-        >
-          {tAssociateUser(
+          variant="ghost"
+          size="sm"
+          color="primary"
+          isDisabled={isPendingListUsers || undefined}
+          label={tAssociateUser(
             'pci_projects_project_storages_containers_add_create_or_linked_user_linked_user_btn_cancel',
           )}
-        </OsdsButton>
-        <OsdsButton
-          variant={ODS_BUTTON_VARIANT.stroked}
-          color={ODS_THEME_COLOR_INTENT.primary}
-          size={ODS_BUTTON_SIZE.sm}
-          class="ml-4"
-          disabled={isDisabled}
-          onClick={onShowCredentials}
-        >
-          {tAssociateUser(
+        />
+        <OdsButton
+          variant="outline"
+          label={tAssociateUser(
             'pci_projects_project_storages_containers_add_create_or_linked_user_linked_user_btn_linked',
           )}
-        </OsdsButton>
+          color="primary"
+          size="sm"
+          class="ml-4"
+          isDisabled={isDisabled}
+          onClick={onShowCredentials}
+        />
       </div>
     </>
   );
