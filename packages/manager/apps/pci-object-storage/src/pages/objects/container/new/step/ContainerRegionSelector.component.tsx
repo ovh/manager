@@ -10,18 +10,12 @@ import {
   useGetProjectRegions,
   useProductAvailability,
 } from '@ovh-ux/manager-pci-common';
-import {
-  OsdsMessage,
-  OsdsSpinner,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
-import {
-  ODS_MESSAGE_TYPE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 
+import {
+  OdsMessage,
+  OdsSpinner,
+  OdsText,
+} from '@ovhcloud/ods-components/react';
 import {
   OBJECT_CONTAINER_OFFER_STORAGE_STANDARD,
   STORAGE_STANDARD_REGION_PLANCODE,
@@ -103,7 +97,7 @@ export function ContainerRegionSelector({
 
   return (
     <>
-      {isPending && <OsdsSpinner inline />}
+      {isPending && <OdsSpinner />}
       {!isPending && !isSubmitted && (
         <ShapesInputComponent<
           TRegion & {
@@ -136,19 +130,15 @@ export function ContainerRegionSelector({
             by: (item) => item.continentName,
             LabelComponent: ({ groupName, isMobile, isGroupSelected }) => (
               <div className="max-w-full p-4">
-                <OsdsText
-                  size={
-                    isMobile || isGroupSelected
-                      ? ODS_TEXT_SIZE._500
-                      : ODS_TEXT_SIZE._400
-                  }
-                  level={ODS_TEXT_LEVEL.body}
-                  color={ODS_THEME_COLOR_INTENT.text}
-                  className="overflow-hidden whitespace-nowrap text-ellipsis"
+                <OdsText
+                  preset="paragraph"
+                  className={`overflow-hidden whitespace-nowrap text-ellipsis ${
+                    isMobile || isGroupSelected ? 'font-bold' : ''
+                  }`}
                 >
                   {groupName ||
                     t('regions:pci_project_regions_list_continent_all')}
-                </OsdsText>
+                </OdsText>
               </div>
             ),
           }}
@@ -156,15 +146,11 @@ export function ContainerRegionSelector({
         />
       )}
       {region && !region.enabled && (
-        <OsdsMessage
-          type={ODS_MESSAGE_TYPE.warning}
-          color={ODS_THEME_COLOR_INTENT.warning}
-          className="my-6 flex-row"
-        >
+        <OdsMessage color="warning" className="my-6 flex-row w-full">
           {t(
             'pci_projects_project_storages_containers_add_add_region_activate',
           )}
-        </OsdsMessage>
+        </OdsMessage>
       )}
       {!isPending && isSubmitted && (
         <TileInputChoice
