@@ -11,7 +11,6 @@ import {
   OsdsSpinner,
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import {
@@ -111,9 +110,10 @@ export default function LinkUserCreation({
             )}
           />
           <div className="flex items-center">
-            <OsdsInput
-              color={ODS_THEME_COLOR_INTENT.primary}
-              error={formState.hasError}
+            <OdsInput
+              color="primary"
+              name="description"
+              hasError={formState.hasError}
               value={formState.description}
               inline
               className="min-w-[20%]"
@@ -145,19 +145,21 @@ export default function LinkUserCreation({
       <div className="flex mt-8">
         <OsdsButton
           onClick={onCancel}
-          variant={ODS_BUTTON_VARIANT.ghost}
-          size={ODS_BUTTON_SIZE.sm}
-          disabled={isLoading || undefined}
-          color={ODS_THEME_COLOR_INTENT.primary}
+          variant="ghost"
+          size="sm"
+          label="linkUserCreation-cancel"
+          isDisabled={isLoading || undefined}
+          color="primary"
         >
           {tAssociateUser(
             'pci_projects_project_storages_containers_add_create_or_linked_user_linked_user_btn_cancel',
           )}
-        </OsdsButton>
-        <OsdsButton
-          color={ODS_THEME_COLOR_INTENT.primary}
-          size={ODS_BUTTON_SIZE.sm}
-          disabled={isDisabled}
+        </OdsButton>
+        <OdsButton
+          color="primary"
+          size="sm"
+          label="linkUserCreation-submit"
+          isDisabled={isDisabled}
           onClick={onConfirm}
           class="ml-4"
         >

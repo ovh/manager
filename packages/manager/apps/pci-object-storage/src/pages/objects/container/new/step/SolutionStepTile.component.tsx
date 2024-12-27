@@ -5,17 +5,7 @@ import {
   useCatalogPrice,
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-import {
-  OsdsChip,
-  OsdsSkeleton,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import {
-  ODS_CHIP_SIZE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
+import { OdsBadge, OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
 import {
   MEGA_BYTES,
   OBJECT_CONTAINER_OFFERS_LABELS,
@@ -34,80 +24,57 @@ export function SolutionStepTileComponent({ item, isItemSelected }) {
 
   return (
     <div>
-      <OsdsText
-        size={ODS_TEXT_SIZE._400}
-        level={ODS_TEXT_LEVEL.body}
-        color={ODS_THEME_COLOR_INTENT.text}
-        className={clsx('leading-8', isItemSelected && 'font-bold')}
+      <OdsText
+        preset="paragraph"
+        className={clsx('leading-8', isItemSelected && 'selected-tile-title')}
       >
         <span className="mr-4">
           {t(`pci_projects_project_storages_containers_add_offer_${item}`)}
         </span>
         {OBJECT_CONTAINER_OFFERS_LABELS[item]?.beta && (
-          <OsdsChip
-            color={ODS_THEME_COLOR_INTENT.warning}
-            inline
-            size={ODS_CHIP_SIZE.sm}
-          >
-            <span className={isItemSelected ? 'font-bold' : ''}>
-              {t(
-                `pci_projects_project_storages_containers_add_offer_${item}_label`,
-              )}
-            </span>
-          </OsdsChip>
-        )}
-        {OBJECT_CONTAINER_OFFERS_LABELS[item]?.new && (
-          <OsdsChip
-            inline
-            size={ODS_CHIP_SIZE.sm}
-            className="bg-[--ods-color-blue-200]"
-          >
-            {t(
+          <OdsBadge
+            color="warning"
+            size="sm"
+            label={t(
               `pci_projects_project_storages_containers_add_offer_${item}_label`,
             )}
-          </OsdsChip>
+          />
+        )}
+        {OBJECT_CONTAINER_OFFERS_LABELS[item]?.new && (
+          <OdsBadge
+            size="sm"
+            label={t(
+              `pci_projects_project_storages_containers_add_offer_${item}_label`,
+            )}
+          />
         )}
         {OBJECT_CONTAINER_OFFERS_LABELS[item]?.recommanded && (
-          <OsdsChip
-            inline
-            size={ODS_CHIP_SIZE.sm}
-            className="bg-[--ods-color-blue-200]"
-          >
-            <span className={isItemSelected ? 'font-bold' : ''}>
-              {t(
-                `pci_projects_project_storages_containers_add_offer_${item}_recommanded`,
-              )}
-            </span>
-          </OsdsChip>
+          <OdsBadge
+            size="sm"
+            label={t(
+              `pci_projects_project_storages_containers_add_offer_${item}_recommanded`,
+            )}
+          />
         )}
-      </OsdsText>
+      </OdsText>
       <p>
-        <OsdsText
-          size={ODS_TEXT_SIZE._100}
-          level={ODS_TEXT_LEVEL.body}
-          color={ODS_THEME_COLOR_INTENT.text}
-        >
+        <OdsText preset="caption">
           {t(
             `pci_projects_project_storages_containers_add_offer_${item}_description`,
           )}
-        </OsdsText>
+        </OdsText>
       </p>
       <p>
-        {isPending && <OsdsSkeleton />}
+        {isPending && <OdsSkeleton />}
         {!isPending && (
-          <OsdsText
-            size={ODS_TEXT_SIZE._100}
-            level={ODS_TEXT_LEVEL.body}
-            color={ODS_THEME_COLOR_INTENT.text}
-            className="font-bold"
-          >
+          <OdsText preset="caption" className="caption-price">
             {t(
               'pci_projects_project_storages_containers_add_offers_estimated_price',
               {
                 price: getTextPrice(hourlyPrice) || '?',
               },
             )}
-          </OsdsText>
+          </OdsText>
         )}
       </p>
     </div>

@@ -12,3 +12,11 @@ html {
 .application {
   @apply md:mx-12 mt-8;
 }
+
+.caption-price::part(text) {
+  @apply font-bold;
+}
+
+.selected-tile-title::part(text) {
+  @apply font-bold;
+}

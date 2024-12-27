@@ -1,18 +1,7 @@
 import { StepComponent } from '@ovh-ux/manager-react-components';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-} from '@ovhcloud/ods-common-theming';
-import {
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
-import { OsdsButton, OsdsIcon, OsdsText } from '@ovhcloud/ods-components/react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
 import { useContainerCreationStore } from '../useContainerCreationStore';
 import LinkUserCreation from './LinkUserCreation.component';
 import LinkUserSelector from './LinkUserSelector.component';
@@ -59,48 +48,37 @@ export function LinkUserStep() {
         label: t('pci-common:common_stepper_modify_this_step'),
       }}
     >
-      <OsdsText
-        color={ODS_THEME_COLOR_INTENT.text}
-        level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-        size={ODS_TEXT_SIZE._400}
-      >
+      <OdsText preset="paragraph">
         {t(
           'pci_projects_project_storages_containers_add_create_or_linked_user_description',
         )}
-      </OsdsText>
+      </OdsText>
       {associateMode === '' && (
         <div className="mt-6 flex">
-          <OsdsButton
+          <OdsButton
             onClick={() =>
               setAssociateMode(CONTAINER_USER_ASSOCIATION_MODES.LINKED)
             }
-            variant={ODS_BUTTON_VARIANT.ghost}
-            size={ODS_BUTTON_SIZE.sm}
-            color={ODS_THEME_COLOR_INTENT.primary}
-          >
-            {t(
+            variant="ghost"
+            size="sm"
+            color="primary"
+            label={t(
               'containers/associate-user-to-container:pci_projects_project_storages_containers_add_create_or_linked_user_mode_linked_user_btn',
             )}
-          </OsdsButton>
-          <OsdsButton
+          />
+          <OdsButton
             onClick={() =>
               setAssociateMode(CONTAINER_USER_ASSOCIATION_MODES.CREATE)
             }
-            variant={ODS_BUTTON_VARIANT.stroked}
-            color={ODS_THEME_COLOR_INTENT.primary}
-            size={ODS_BUTTON_SIZE.sm}
+            variant="outline"
+            color="primary"
+            size="sm"
             class="ml-4"
-          >
-            <OsdsIcon
-              name={ODS_ICON_NAME.PLUS}
-              color={ODS_THEME_COLOR_INTENT.primary}
-              size={ODS_ICON_SIZE.xxs}
-              className="mr-4"
-            />
-            {t(
+            label={t(
               'containers/associate-user-to-container:pci_projects_project_storages_containers_add_create_or_linked_user_mode_create_user_btn',
             )}
-          </OsdsButton>
+            icon="plus"
+          />
         </div>
       )}
       {associateMode === CONTAINER_USER_ASSOCIATION_MODES.LINKED && (
