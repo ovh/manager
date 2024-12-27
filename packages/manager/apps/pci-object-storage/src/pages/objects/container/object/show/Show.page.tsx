@@ -1,4 +1,4 @@
-import { Suspense, useMemo, useRef, useState } from 'react';
+import { Suspense, useMemo, useState } from 'react';
 import {
   Outlet,
   useHref,
@@ -7,49 +7,37 @@ import {
   useSearchParams,
 } from 'react-router-dom';
 import {
-  OsdsBreadcrumb,
-  OsdsButton,
-  OsdsChip,
-  OsdsFormField,
-  OsdsIcon,
-  OsdsLink,
-  OsdsMessage,
-  OsdsPopover,
-  OsdsPopoverContent,
-  OsdsSearchBar,
-  OsdsSpinner,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
-import {
   Clipboard,
   Datagrid,
   FilterAdd,
   FilterList,
   Headers,
+  PciMaintenanceBanner,
   useColumnFilters,
   useDataGrid,
   useMe,
   useNotifications,
+  useProductMaintenance,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { useBytes, useProject } from '@ovh-ux/manager-pci-common';
 import { useTracking } from '@ovh-ux/manager-react-shell-client';
+import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
 import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import {
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-  ODS_MESSAGE_TYPE,
-  ODS_SPINNER_SIZE,
-  OdsHTMLAnchorElementTarget,
-} from '@ovhcloud/ods-components';
-import { FilterCategories } from '@ovh-ux/manager-core-api';
+  OdsBadge,
+  OdsBreadcrumb,
+  OdsBreadcrumbItem,
+  OdsButton,
+  OdsFormField,
+  OdsIcon,
+  OdsInput,
+  OdsLink,
+  OdsMessage,
+  OdsPopover,
+  OdsSpinner,
+  OdsText,
+} from '@ovhcloud/ods-components/react';
 import {
   usePaginatedObjects,
   useServerContainer,
@@ -88,6 +76,9 @@ export default function ObjectPage() {
   const { trackClick } = useTracking();
 
   const { data: allContainers } = useAllStorages(project?.project_id);
+  const { hasMaintenance, maintenanceURL } = useProductMaintenance(
+    project.project_id,
+  );
 
   const { me } = useMe();
 
@@ -197,9 +188,6 @@ export default function ObjectPage() {
   const { filters, addFilter, removeFilter } = useColumnFilters();
   const [searchField, setSearchField] = useState('');
 
-  const [searchQueries, setSearchQueries] = useState<string[]>([]);
-  const filterPopoverRef = useRef(undefined);
-
   const { pagination, setPagination, sorting, setSorting } = useDataGrid();
 
   const { paginatedObjects } = usePaginatedObjects(
@@ -214,99 +202,74 @@ export default function ObjectPage() {
 
   return (
     <>
-      <OsdsBreadcrumb
-        items={[
-          {
-            href: hrefProject,
-            label: project.description,
-          },
-          {
-            href: objectStorageHref,
-            label: tObjects(
-              'pci_projects_project_storages_containers_object_title',
-            ),
-          },
-          {
-            label: container?.name,
-          },
-        ]}
-      />
+      <OdsBreadcrumb>
+        <OdsBreadcrumbItem href={hrefProject} label={project.description} />
+        <OdsBreadcrumbItem
+          href={objectStorageHref}
+          label={tObjects(
+            'pci_projects_project_storages_containers_object_title',
+          )}
+        />
+        <OdsBreadcrumbItem href="" label={project.description} />
+      </OdsBreadcrumb>
       <div className="flex items-center justify-between mt-8">
         <Headers title={container?.name} />
       </div>
       <div>
-        <OsdsIcon
-          size={ODS_ICON_SIZE.xxs}
-          name={ODS_ICON_NAME.ARROW_LEFT}
-          color={ODS_THEME_COLOR_INTENT.primary}
-          className="mr-4"
-        />
-        <OsdsLink
+        <OdsIcon name="arrow-left" className="mr-4" />
+        <OdsLink
           href={objectStorageHref}
-          color={ODS_THEME_COLOR_INTENT.primary}
-        >
-          {`${tCommon('common_back_button_back_to')}
-          "${tContainer(
-            'pci_projects_project_storages_containers_container_back_button_label',
-          )}"`}
-        </OsdsLink>
+          label={`
+            ${tCommon('common_back_button_back_to')}
+            ${' '}
+            ${tContainer(
+              'pci_projects_project_storages_containers_container_back_button_label',
+            )}`}
+        ></OdsLink>
       </div>
-      {/* maintenance banner */}
-      <section></section>
-      <OsdsMessage type={ODS_MESSAGE_TYPE.info} className="mt-6 p-8">
-        <OsdsText
-          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-          size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-          color={ODS_THEME_COLOR_INTENT.text}
-        >
-          {tContainer(
-            'pci_projects_project_storages_containers_container_add_replication_rules_info',
-          )}{' '}
-          <OsdsLink
-            href={REPLICATION_LINK}
-            color={ODS_THEME_COLOR_INTENT.primary}
-            target={'_blank' as OdsHTMLAnchorElementTarget}
-          >
-            {tAdd(
-              'pci_projects_project_storages_containers_add_replication_rules_info_link',
-            )}
-          </OsdsLink>
-          <OsdsIcon
-            size={ODS_ICON_SIZE.xxs}
-            name={ODS_ICON_NAME.ARROW_RIGHT}
-            color={ODS_THEME_COLOR_INTENT.primary}
-            className="ml-4"
-          />
-        </OsdsText>
-      </OsdsMessage>
+
+      {hasMaintenance && (
+        <PciMaintenanceBanner maintenanceURL={maintenanceURL} />
+      )}
+
+      {is.replicationRulesBannerShown && (
+        <OdsMessage color="information" className="mt-6 p-8">
+          <OdsText>
+            {tContainer(
+              'pci_projects_project_storages_containers_container_add_replication_rules_info',
+            )}{' '}
+            <OdsLink
+              href={REPLICATION_LINK}
+              target="blank"
+              label={tAdd(
+                'pci_projects_project_storages_containers_add_replication_rules_info_link',
+              )}
+            ></OdsLink>
+            <OdsIcon name="arrow-right" className="ml-4" />
+          </OdsText>
+        </OdsMessage>
+      )}
+
       {container && (
         <>
           <div className="grid grid-cols-12 gap-4 border border-solid border-[#bef1ff] bg-[#f5feff] rounded-md mt-6 py-8 px-12">
             <div className="grid gap-2 col-span-12 md:col-span-4">
               <div>
-                <OsdsText
-                  level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                  size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-                  color={ODS_THEME_COLOR_INTENT.text}
-                >
+                <OdsText>
                   <span
                     dangerouslySetInnerHTML={{
                       __html: tContainer(
                         'pci_projects_project_storages_containers_container_region',
-                        { region: `<strong>${container?.region}</strong>` },
+                        { region: `<strong> ${container?.region}</strong>` },
                       ),
                     }}
                   ></span>
-                </OsdsText>
+                </OdsText>
               </div>
 
               {!is.localZone && (
                 <div>
-                  <OsdsText
-                    level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                    size={ODS_THEME_TYPOGRAPHY_SIZE._200}
-                    color={ODS_THEME_COLOR_INTENT.text}
-                  >
+                  <OdsText>
                     <span
                       dangerouslySetInnerHTML={{
                         __html: tContainer(
@@ -321,17 +284,13 @@ export default function ObjectPage() {
                         ),
                       }}
                     ></span>
-                  </OsdsText>
+                  </OdsText>
                 </div>
               )}
 
               {!is.localZone && (
                 <div>
-                  <OsdsText
-                    level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                    size={ODS_THEME_TYPOGRAPHY_SIZE._200}
-                    color={ODS_THEME_COLOR_INTENT.text}
-                  >
+                  <OdsText>
                     <span
                       dangerouslySetInnerHTML={{
                         __html: tContainer(
@@ -340,16 +299,12 @@ export default function ObjectPage() {
                         ),
                       }}
                     ></span>
-                  </OsdsText>
+                  </OdsText>
                 </div>
               )}
               {displayEncryptionData && !is.encrypted && !is.localZone && (
                 <div>
-                  <OsdsText
-                    level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                    size={ODS_THEME_TYPOGRAPHY_SIZE._200}
-                    color={ODS_THEME_COLOR_INTENT.text}
-                  >
+                  <OdsText>
                     <span
                       dangerouslySetInnerHTML={{
                         __html: tContainer(
@@ -357,16 +312,12 @@ export default function ObjectPage() {
                         ),
                       }}
                     ></span>
-                  </OsdsText>
+                  </OdsText>
                 </div>
               )}
               {displayEncryptionData && is.encrypted && (
                 <div>
-                  <OsdsText
-                    level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                    size={ODS_THEME_TYPOGRAPHY_SIZE._200}
-                    color={ODS_THEME_COLOR_INTENT.text}
-                  >
+                  <OdsText>
                     <span
                       dangerouslySetInnerHTML={{
                         __html: tContainer(
@@ -374,66 +325,51 @@ export default function ObjectPage() {
                         ),
                       }}
                     ></span>
-                  </OsdsText>
-                  <OsdsPopover>
-                    <OsdsIcon
-                      size={ODS_ICON_SIZE.xs}
-                      name={ODS_ICON_NAME.HELP}
-                      color={ODS_THEME_COLOR_INTENT.primary}
-                      slot="popover-trigger"
-                      className="ml-4 cursor-help"
-                      onClick={() => {
-                        const name = TRACKING.STORAGE_ENCRYPTION.TOOLTIP_AES256;
-                        if (name) {
-                          trackClick({
-                            name,
-                            type: 'action',
-                          });
-                        }
-                      }}
-                    />
-                    <OsdsPopoverContent>
-                      <OsdsText
-                        level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                        size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-                        color={ODS_THEME_COLOR_INTENT.text}
-                      >
-                        {tDataEncryption(
-                          'pci_projects_project_storages_containers_data_encryption_aes256_tooltip',
-                        )}
-                      </OsdsText>
-                    </OsdsPopoverContent>
-                  </OsdsPopover>
+                  </OdsText>
+                  <OdsIcon
+                    id="aesPopoverTrigger"
+                    name="circle-question"
+                    className="ml-4"
+                    onClick={() => {
+                      const name = TRACKING.STORAGE_ENCRYPTION.TOOLTIP_AES256;
+                      if (name) {
+                        trackClick({
+                          name,
+                          type: 'action',
+                        });
+                      }
+                    }}
+                  />
+                  <OdsPopover triggerId="aesPopoverTrigger">
+                    <OdsText>
+                      {tDataEncryption(
+                        'pci_projects_project_storages_containers_data_encryption_aes256_tooltip',
+                      )}
+                    </OdsText>
+                  </OdsPopover>
                 </div>
               )}
               {is.rightOffer && !is.localZone && (
                 <div>
-                  <OsdsText
-                    level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                    size={ODS_THEME_TYPOGRAPHY_SIZE._200}
-                    color={ODS_THEME_COLOR_INTENT.text}
-                  >
+                  <OdsText>
                     {tVersioning(
                       'pci_projects_project_storages_containers_update_versioning_versioning',
                     )}
-                  </OsdsText>
-                  <OsdsChip
-                    inline
-                    color={(() => {
-                      if (container.versioning.status === 'enabled')
-                        return ODS_THEME_COLOR_INTENT.success;
-                      if (container.versioning.status === 'disabled')
-                        return ODS_THEME_COLOR_INTENT.error;
-                      if (container.versioning.status === 'suspended')
-                        return ODS_THEME_COLOR_INTENT.warning;
-                      return ODS_THEME_COLOR_INTENT.default;
-                    })()}
-                    className="ml-4"
-                  >
-                    {tVersioning(
+                  </OdsText>
+                  <OdsBadge
+                    label={tVersioning(
                       `pci_projects_project_storages_containers_update_versioning_${container.versioning.status}_label`,
                     )}
-                  </OsdsChip>
+                    color={(() => {
+                      if (container.versioning.status === 'enabled')
+                        return 'success';
+                      if (container.versioning.status === 'disabled')
+                        return 'critical';
+                      if (container.versioning.status === 'suspended')
+                        return 'warning';
+                      return 'information';
+                    })()}
+                  ></OdsBadge>
                 </div>
               )}
               {(is.rightOffer &&
@@ -441,244 +377,187 @@ export default function ObjectPage() {
                 container.versioning?.status === 'suspended') ||
                 (container.versioning?.status === 'disabled' && (
                   <div>
-                    <OsdsLink
-                      href={enableVersioningHref}
-                      color={ODS_THEME_COLOR_INTENT.primary}
-                    >
+                    <OdsLink href={enableVersioningHref}>
                       {tVersioning(
                         'pci_projects_project_storages_containers_update_versioning_title',
                       )}
-                    </OsdsLink>
-                    <OsdsIcon
-                      size={ODS_ICON_SIZE.xxs}
-                      name={ODS_ICON_NAME.ARROW_RIGHT}
-                      color={ODS_THEME_COLOR_INTENT.primary}
-                      className="ml-4"
-                    />
+                    </OdsLink>
+                    <OdsIcon name="arrow-right" className="ml-4" />
                   </div>
                 ))}
             </div>
             <div className="grid col-span-12 md:col-span-8 gap-4">
               <div>
-                <OsdsFormField>
-                  <OsdsText
-                    level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                    size={ODS_THEME_TYPOGRAPHY_SIZE._200}
-                    color={ODS_THEME_COLOR_INTENT.text}
-                    slot="label"
-                  >
+                <OdsFormField>
+                  <OdsText slot="label">
                     {tContainer(
                       'pci_projects_project_storages_containers_container_info_id',
                     )}
-                  </OsdsText>
+                  </OdsText>
                   <Clipboard value={container?.id || container?.name} />
-                </OsdsFormField>
+                </OdsFormField>
               </div>
 
               <div>
-                <OsdsFormField>
+                <OdsFormField>
                   <span>
-                    <OsdsText
-                      level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                      size={ODS_THEME_TYPOGRAPHY_SIZE._200}
-                      color={ODS_THEME_COLOR_INTENT.text}
-                      slot="label"
-                    >
+                    <OdsText slot="label">
                       {tContainer(
                         'pci_projects_project_storages_containers_container_info_publicUrl',
                       )}
-                    </OsdsText>
-                    <OsdsPopover>
-                      <OsdsIcon
-                        size={ODS_ICON_SIZE.xs}
-                        name={ODS_ICON_NAME.HELP}
-                        color={ODS_THEME_COLOR_INTENT.primary}
-                        slot="popover-trigger"
-                        className="ml-4 cursor-help"
-                      />
-                      <OsdsPopoverContent>
-                        <OsdsText
-                          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                          size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-                          color={ODS_THEME_COLOR_INTENT.text}
-                        >
-                          {tContainer(
-                            'pci_projects_project_storages_containers_container_info_publicUrl_help',
-                          )}
-                        </OsdsText>
-                      </OsdsPopoverContent>
-                    </OsdsPopover>
+                    </OdsText>
+                    <OdsIcon
+                      id="publicUrlPopoverTrigger"
+                      name="circle-question"
+                      className="ml-4"
+                    />
+                    <OdsPopover triggerId="publicUrlPopoverTrigger">
+                      <OdsText>
+                        {tContainer(
+                          'pci_projects_project_storages_containers_container_info_publicUrl_help',
+                        )}
+                      </OdsText>
+                    </OdsPopover>
                   </span>
                   <Clipboard value={container?.publicUrl} />
-                </OsdsFormField>
+                </OdsFormField>
               </div>
 
               <div>
-                <OsdsFormField>
+                <OdsFormField>
                   <span>
-                    <OsdsText
-                      level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                      size={ODS_THEME_TYPOGRAPHY_SIZE._200}
-                      color={ODS_THEME_COLOR_INTENT.text}
-                      slot="label"
-                    >
+                    <OdsText slot="label">
                       {container.s3StorageType
                         ? OBJECT_CONTAINER_S3_STATIC_URL_INFO
                         : tContainer(
                             'pci_projects_project_storages_containers_container_object_info_staticUrl',
                           )}
-                    </OsdsText>
-                    <OsdsPopover>
-                      <OsdsIcon
-                        size={ODS_ICON_SIZE.xs}
-                        name={ODS_ICON_NAME.HELP}
-                        color={ODS_THEME_COLOR_INTENT.primary}
-                        slot="popover-trigger"
-                        className="ml-4 cursor-help"
-                      />
-                      <OsdsPopoverContent>
-                        <OsdsText
-                          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                          size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-                          color={ODS_THEME_COLOR_INTENT.text}
-                        >
-                          {tContainer(
-                            `pci_projects_project_storages_containers_container_object_info_${
-                              container.s3StorageType
-                                ? 's3_staticUrl_help'
-                                : 'staticUrl_help'
-                            }`,
-                          )}
-                        </OsdsText>
-                      </OsdsPopoverContent>
-                    </OsdsPopover>
+                    </OdsText>
+                    <OdsIcon
+                      id="staticUrlPopoverTrigger"
+                      name="circle-question"
+                      className="ml-4"
+                    />
+                    <OdsPopover triggerId="staticUrlPopoverTrigger">
+                      <OdsText>
+                        {tContainer(
+                          `pci_projects_project_storages_containers_container_object_info_${
+                            container.s3StorageType
+                              ? 's3_staticUrl_help'
+                              : 'staticUrl_help'
+                          }`,
+                        )}
+                      </OdsText>
+                    </OdsPopover>
                   </span>
                   <Clipboard
                     value={container?.staticUrl || container?.virtualHost}
                   />
-                </OsdsFormField>
+                </OdsFormField>
               </div>
             </div>
           </div>
 
           <div className="sm:flex items-center justify-between mt-8">
-            <OsdsButton
-              size={ODS_BUTTON_SIZE.sm}
-              variant={ODS_BUTTON_VARIANT.stroked}
-              color={ODS_THEME_COLOR_INTENT.primary}
-              className="xs:mb-0.5 sm:mb-0"
+            <OdsButton
               onClick={() => {
                 clearNotifications();
                 navigate(`./new?region=${searchParams.get('region')}`);
               }}
-            >
-              <OsdsIcon
-                size={ODS_ICON_SIZE.xs}
-                name={ODS_ICON_NAME.PLUS}
-                className="mr-2"
-                color={ODS_THEME_COLOR_INTENT.primary}
-              />
-              {tContainer(
+              label={tContainer(
                 `pci_projects_project_storages_containers_container_add_object_label`,
               )}
-            </OsdsButton>
+              icon="plus"
+              size="sm"
+            />
 
             <div className="justify-between flex">
-              <OsdsSearchBar
-                data-testid="search-bar"
-                className="w-[14rem]"
+              <OdsInput
+                type="search"
+                name="searchField"
+                className="w-[70%]"
                 value={searchField}
-                onOdsSearchSubmit={({ detail }) => {
-                  const { inputValue } = detail;
-                  if (inputValue) {
-                    setSearchField('');
-                    if (searchQueries.indexOf(inputValue) < 0) {
-                      setSearchQueries([...searchQueries, inputValue]);
-                      setPagination({
-                        ...pagination,
-                        pageIndex: 0,
+                onKeyDown={(event) => {
+                  if (event.key === 'Enter') {
+                    if (searchField) {
+                      setSearchField('');
+                      addFilter({
+                        key: 'name',
+                        value: searchField,
+                        comparator: FilterComparator.Includes,
+                        label: '',
                       });
-                    } else {
-                      setSearchQueries([...searchQueries]);
                     }
                   }
                 }}
+                onOdsChange={(event) => {
+                  const value = event.detail.value.toString();
+                  setSearchField(value);
+                }}
               />
-              <OsdsPopover ref={filterPopoverRef}>
-                <OsdsButton
-                  slot="popover-trigger"
-                  size={ODS_BUTTON_SIZE.sm}
-                  color={ODS_THEME_COLOR_INTENT.primary}
-                  variant={ODS_BUTTON_VARIANT.stroked}
-                  class="ml-4"
-                >
-                  <OsdsIcon
-                    name={ODS_ICON_NAME.FILTER}
-                    size={ODS_ICON_SIZE.xs}
-                    className="ml-2"
-                    color={ODS_THEME_COLOR_INTENT.primary}
-                  />
-                  {tFilter('common_criteria_adder_filter_label')}
-                </OsdsButton>
-                <OsdsPopoverContent>
-                  <FilterAdd
-                    columns={[
-                      {
-                        id: 'key',
-                        label: tContainer(
-                          'pci_projects_project_storages_containers_container_name_label',
-                        ),
-                        comparators: FilterCategories.String,
-                      },
-                      {
-                        id: 'lastModified',
-                        label: tContainer(
-                          'pci_projects_project_storages_containers_container_lastModified_label',
-                        ),
-                        comparators: FilterCategories.String,
-                      },
-                      {
-                        id: 'storageClass',
-                        label: tContainer(
-                          'pci_projects_project_storages_containers_container_storage_class_label',
-                        ),
-                        comparators: FilterCategories.String,
-                      },
-                    ]}
-                    onAddFilter={(addedFilter, column) => {
-                      setPagination({
-                        pageIndex: 0,
-                        pageSize: pagination.pageSize,
-                      });
-                      addFilter({
-                        ...addedFilter,
-                        label: column.label,
-                      });
-                      filterPopoverRef.current?.closeSurface();
-                    }}
-                  />
-                </OsdsPopoverContent>
-              </OsdsPopover>
+              <OdsButton
+                id="filterPopoverTrigger"
+                slot="popover-trigger"
+                class="ml-4"
+                label={tFilter('common_criteria_adder_filter_label')}
+                icon="filter"
+                size="sm"
+                variant="outline"
+              ></OdsButton>
+              <OdsPopover triggerId="filterPopoverTrigger">
+                <FilterAdd
+                  columns={[
+                    {
+                      id: 'name',
+                      label: tContainer(
+                        'pci_projects_project_storages_containers_container_name_label',
+                      ),
+                      comparators: FilterCategories.String,
+                    },
+                    {
+                      id: 'lastModified',
+                      label: tContainer(
+                        'pci_projects_project_storages_containers_container_lastModified_label',
+                      ),
+                      comparators: FilterCategories.String,
+                    },
+                  ]}
+                  onAddFilter={(addedFilter, column) => {
+                    setPagination({
+                      pageIndex: 0,
+                      pageSize: pagination.pageSize,
+                    });
+                    addFilter({
+                      ...addedFilter,
+                      label: column.label,
+                    });
+                  }}
+                />
+              </OdsPopover>
             </div>
           </div>
-          <div className="my-8">
+          <div className="mt-8">
             <FilterList filters={filters} onRemoveFilter={removeFilter} />
           </div>
-          {isPending ? (
-            <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
-          ) : (
-            <Datagrid
-              columns={columns}
-              items={paginatedObjects?.rows || []}
-              totalItems={paginatedObjects?.totalRows || 0}
-              pagination={pagination}
-              onPaginationChange={setPagination}
-              sorting={sorting}
-              onSortChange={setSorting}
-              className="overflow-x-visible"
-            />
-          )}
-          <Tiles />
+          <div className="mt-8">
+            {isPending ? (
+              <OdsSpinner />
+            ) : (
+              <Datagrid
+                columns={columns}
+                items={paginatedObjects?.rows || []}
+                totalItems={paginatedObjects?.totalRows || 0}
+                pagination={pagination}
+                onPaginationChange={setPagination}
+                sorting={sorting}
+                onSortChange={setSorting}
+                className="overflow-x-visible"
+              />
+            )}
+          </div>
+          <div className="mt-8">
+            <Tiles />
+          </div>
         </>
       )}
       <Suspense>

@@ -9,12 +9,14 @@ import { OPENIO_PRESIGN_EXPIRE, TRACKING_PREFIX } from '@/constants';
 import { TObject } from '@/api/data/container';
 import { TContainer } from '@/pages/objects/container/object/show/Show.page';
 
+type TIndexedObject = TObject & { index: string };
+
 export default function ActionsComponent({
   object,
   container,
   isLocalZone,
 }: {
-  object: TObject;
+  object: TIndexedObject;
   container: TContainer;
   isLocalZone: boolean;
 }) {
@@ -88,5 +90,5 @@ export default function ActionsComponent({
     },
   ].filter(Boolean);
 
-  return <ActionMenu items={items} isCompact />;
+  return <ActionMenu id={object.index} items={items} isCompact />;
 }
