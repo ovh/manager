@@ -38,11 +38,14 @@ export const usePaginatedObjects = (
     () => ({
       isLoading,
       isPending,
-      paginatedObjects: paginateResults<TObject>(
+      paginatedObjects: paginateResults<TObject | { index: string }>(
         sortResults<TObject>(
           applyFilters<TObject>(container?.objects || [], filters),
           sorting,
-        ),
+        ).map((obj, index) => ({
+          index,
+          ...obj,
+        })),
         pagination,
       ),
       allObjects: container?.objects,
