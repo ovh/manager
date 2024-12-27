@@ -127,15 +127,12 @@ describe('CreatePlanForm', () => {
 
       // Select duration
       fireEvent.click(screen.getByText('commitment_month'));
-      // Select quantity
-      const plusButton = screen.getByTestId('plus-button');
-      fireEvent.click(plusButton);
       // Select model
       fireEvent.click(screen.getByText('select_model_description_instance_b3'));
       // Accept legal checkbox
       fireEvent.click(screen.getByText('legal_checkbox'));
       // Click on create button
-      fireEvent.click(screen.getByText('cta_plan'));
+      fireEvent.click(screen.getByTestId('cta-plan-button'));
 
       expect(defaultProps.onCreatePlan).toHaveBeenCalled();
     });
@@ -143,14 +140,16 @@ describe('CreatePlanForm', () => {
     it('When no instance selected, create button should be disabled ', async () => {
       await setupSpecTest();
 
-      fireEvent.click(screen.getByText('cta_plan'));
-      expect(screen.getByText('cta_plan')).toHaveAttribute('disabled');
+      const ctaPlanButton = screen.getByTestId('cta-plan-button');
+      fireEvent.click(ctaPlanButton);
+      expect(ctaPlanButton).toHaveAttribute('disabled');
     });
 
     it('should not call onCreatePlan if form not valid', async () => {
       await setupSpecTest();
 
-      fireEvent.click(screen.getByText('cta_plan'));
+      const ctaPlanButton = screen.getByTestId('cta-plan-button');
+      fireEvent.click(ctaPlanButton);
 
       expect(defaultProps.onCreatePlan).not.toHaveBeenCalled();
     });
