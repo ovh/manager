@@ -63,7 +63,7 @@ export default function ObjectsPage() {
         )}
       />
 
-      <div className="my-10 mt-8">
+      <div className="mt-8">
         <TabsPanel tabs={tabs} />
       </div>
 

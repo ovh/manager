@@ -61,7 +61,7 @@ export default function ListingPage() {
   const isPending = isAvailabilityPending || isStoragesPending;
 
   if (isPending) {
-    return <OdsSpinner size="md" />;
+    return <OdsSpinner size="md" className="mt-8" />;
   }
 
   return (
@@ -71,7 +71,7 @@ export default function ListingPage() {
       route="./onboarding"
     >
       <Notifications />
-      <div className="sm:flex items-center justify-between mt-4">
+      <div className="sm:flex items-center justify-between mt-8">
         <OdsButton
           size="sm"
           color="primary"
