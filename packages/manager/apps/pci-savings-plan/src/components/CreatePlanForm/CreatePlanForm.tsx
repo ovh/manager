@@ -47,7 +47,6 @@ import {
 import { formatDate } from '../../utils/formatter/date';
 import { isValidSavingsPlanName } from '../../utils/savingsPlan';
 import Commitment from '../Commitment/Commitment';
-import LegalLinks from '../LegalLinks/LegalLinks';
 import SimpleTile from '../SimpleTile/SimpleTile';
 import { TileTechnicalInfo } from '../TileTechnicalInfo/TileTechnicalInfo';
 
