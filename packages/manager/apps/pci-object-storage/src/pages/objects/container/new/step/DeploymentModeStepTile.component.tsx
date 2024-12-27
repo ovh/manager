@@ -8,17 +8,7 @@ import {
   useFeatureAvailability,
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-import {
-  OsdsChip,
-  OsdsSkeleton,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import {
-  ODS_CHIP_SIZE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
+import { OdsBadge, OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
 import {
   AVAILABILITY,
   MEGA_BYTES,
@@ -61,10 +51,8 @@ export function DeploymentModeStepTile({ item: mode, isItemSelected }) {
 
   return (
     <div className="p-4">
-      <OsdsText
-        size={ODS_TEXT_SIZE._400}
-        level={ODS_TEXT_LEVEL.body}
-        color={ODS_THEME_COLOR_INTENT.text}
+      <OdsText
+        preset="paragraph"
         className={clsx('leading-8', isItemSelected && 'font-bold')}
       >
         <span className="mr-4">
@@ -75,67 +63,52 @@ export function DeploymentModeStepTile({ item: mode, isItemSelected }) {
           )}
         </span>
         {OBJECT_CONTAINER_DEPLOYMENT_MODES_LABELS[mode]?.isMultiZone && (
-          <OsdsChip
-            inline
-            size={ODS_CHIP_SIZE.sm}
-            className="bg-[--ods-color-blue-200]"
-          >
-            <span className={isItemSelected ? 'font-bold' : ''}>
-              {t(
-                `pci_projects_project_storages_containers_add_deployment_mode_${mode}_label`,
-              )}
-            </span>
-          </OsdsChip>
+          <OdsBadge
+            size="sm"
+            className={`${
+              isItemSelected ? 'font-bold' : ''
+            } bg-[--ods-color-blue-200]`}
+            label={t(
+              `pci_projects_project_storages_containers_add_deployment_mode_${mode}_label`,
+            )}
+          />
         )}
         {OBJECT_CONTAINER_DEPLOYMENT_MODES_LABELS[mode]?.isMonoZone &&
           isLocalZoneAvailable &&
           is3azAvailable && (
-            <OsdsChip
-              inline
-              size={ODS_CHIP_SIZE.sm}
-              className="bg-[--ods-color-blue-200]"
-            >
-              <span className={isItemSelected ? 'font-bold' : ''}>
-                {t(
-                  `pci_projects_project_storages_containers_add_deployment_mode_${mode}_label`,
-                )}
-              </span>
-            </OsdsChip>
-          )}
-        {OBJECT_CONTAINER_DEPLOYMENT_MODES_LABELS[mode]?.isLocalZone && (
-          <OsdsChip
-            inline
-            size={ODS_CHIP_SIZE.sm}
-            className="bg-[--ods-color-promotion-400] text-[--ods-color-orange-100]"
-          >
-            <span className={isItemSelected ? 'font-bold' : ''}>
-              {t(
+            <OdsBadge
+              size="sm"
+              className={`${
+                isItemSelected ? 'font-bold' : ''
+              } bg-[--ods-color-blue-200]`}
+              label={t(
                 `pci_projects_project_storages_containers_add_deployment_mode_${mode}_label`,
               )}
-            </span>
-          </OsdsChip>
+            />
+          )}
+        {OBJECT_CONTAINER_DEPLOYMENT_MODES_LABELS[mode]?.isLocalZone && (
+          <OdsBadge
+            size="sm"
+            className={`${
+              isItemSelected ? 'font-bold' : ''
+            } bg-[--ods-color-promotion-400] text-[--ods-color-orange-100]`}
+            label={t(
+              `pci_projects_project_storages_containers_add_deployment_mode_${mode}_label`,
+            )}
+          />
         )}
-      </OsdsText>
+      </OdsText>
       <p>
-        <OsdsText
-          size={ODS_TEXT_SIZE._100}
-          level={ODS_TEXT_LEVEL.body}
-          color={ODS_THEME_COLOR_INTENT.text}
-        >
+        <OdsText preset="caption">
           {t(
             `pci_projects_project_storages_containers_add_deployment_mode_${mode}_description`,
           )}
-        </OsdsText>
+        </OdsText>
       </p>
       <p>
-        {isPending && <OsdsSkeleton />}
+        {isPending && <OdsSkeleton />}
         {!isPending && !!lowestPrice && (
-          <OsdsText
-            size={ODS_TEXT_SIZE._100}
-            level={ODS_TEXT_LEVEL.body}
-            color={ODS_THEME_COLOR_INTENT.text}
-            className="font-bold"
-          >
+          <OdsText preset="caption" className="caption-price">
             {t(
               OBJECT_CONTAINER_DEPLOYMENT_MODES_LABELS[mode].isMultiZone
                 ? 'pci_projects_project_storages_containers_add_deployment_mode_price'
@@ -147,7 +120,7 @@ export function DeploymentModeStepTile({ item: mode, isItemSelected }) {
                   ) || '?',
               },
             )}
-          </OsdsText>
+          </OdsText>
         )}
       </p>
     </div>
