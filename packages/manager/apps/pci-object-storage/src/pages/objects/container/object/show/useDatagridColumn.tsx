@@ -9,6 +9,8 @@ import ActionsComponent from './ActionsComponent';
 import { TObject } from '@/api/data/container';
 import { TContainer } from '@/pages/objects/container/object/show/Show.page';
 
+type TIndexedObject = TObject & { index: string };
+
 export const useDatagridColumn = ({
   container,
   isLocalZone,
@@ -20,17 +22,17 @@ export const useDatagridColumn = ({
 
   const { formatBytes } = useBytes();
 
-  const columns: DatagridColumn<TObject>[] = [
+  const columns: DatagridColumn<TIndexedObject>[] = [
     {
-      id: 'key',
-      cell: (props: TObject) => (
+      id: 'name',
+      cell: (props: TIndexedObject) => (
         <DataGridTextCell>{props.name || props.key}</DataGridTextCell>
       ),
       label: t('pci_projects_project_storages_containers_container_name_label'),
     },
     {
       id: 'lastModified',
-      cell: (props: TObject) => (
+      cell: (props: TIndexedObject) => (
         <DataGridTextCell>
           {format(new Date(props.lastModified), 'dd MMM yyyy HH:mm:ss')}
         </DataGridTextCell>
@@ -41,7 +43,7 @@ export const useDatagridColumn = ({
     },
     container?.s3StorageType && {
       id: 'storageClass',
-      cell: (props: TObject) => (
+      cell: (props: TIndexedObject) => (
         <DataGridTextCell>
           {t(
             `pci_projects_project_storages_containers_container_storage_class_${props.storageClass}`,
@@ -54,14 +56,14 @@ export const useDatagridColumn = ({
     },
     {
       id: 'size',
-      cell: (props: TObject) => (
+      cell: (props: TIndexedObject) => (
         <DataGridTextCell>{formatBytes(props.size, 2)}</DataGridTextCell>
       ),
       label: t('pci_projects_project_storages_containers_container_size_label'),
     },
     !container?.s3StorageType && {
       id: 'contentType',
-      cell: (props: TObject) => (
+      cell: (props: TIndexedObject) => (
         <DataGridTextCell>{props.contentType}</DataGridTextCell>
       ),
       label: t(
@@ -70,7 +72,7 @@ export const useDatagridColumn = ({
     },
     {
       id: 'actions',
-      cell: (props: TObject) => (
+      cell: (props: TIndexedObject) => (
         <div className="min-w-16">
           <ActionsComponent
             object={props}
