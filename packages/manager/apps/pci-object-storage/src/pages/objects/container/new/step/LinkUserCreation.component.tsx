@@ -1,5 +1,4 @@
 import { useTranslation } from 'react-i18next';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import {
@@ -106,7 +105,7 @@ export default function LinkUserCreation({
           />
           <div className="flex items-center">
             <OdsInput
-              color={ODS_THEME_COLOR_INTENT.primary}
+              color="primary"
               name="description"
               hasError={formState.hasError}
               value={formState.description}
@@ -138,14 +137,14 @@ export default function LinkUserCreation({
           size="sm"
           label="linkUserCreation-cancel"
           isDisabled={isLoading || undefined}
-          color={ODS_THEME_COLOR_INTENT.primary}
+          color="primary"
         >
           {tAssociateUser(
             'pci_projects_project_storages_containers_add_create_or_linked_user_linked_user_btn_cancel',
           )}
         </OdsButton>
         <OdsButton
-          color={ODS_THEME_COLOR_INTENT.primary}
+          color="primary"
           size="sm"
           label="linkUserCreation-submit"
           isDisabled={isDisabled}

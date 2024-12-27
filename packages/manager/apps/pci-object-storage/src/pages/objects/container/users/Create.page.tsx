@@ -1,30 +1,17 @@
 import { PciModal } from '@ovh-ux/manager-pci-common';
 import { useTranslation } from 'react-i18next';
-import {
-  OsdsText,
-  OsdsMessage,
-  OsdsRadioButton,
-  OsdsRadio,
-  OsdsSelectOption,
-  OsdsSelect,
-  OsdsFormField,
-  OsdsInput,
-} from '@ovhcloud/ods-components/react';
-import {
-  ODS_INPUT_TYPE,
-  ODS_MESSAGE_TYPE,
-  ODS_RADIO_BUTTON_SIZE,
-} from '@ovhcloud/ods-components';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
 import { useContext, useEffect, useState } from 'react';
-import clsx from 'clsx';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useNotifications, Clipboard } from '@ovh-ux/manager-react-components';
+import {
+  OdsFormField,
+  OdsInput,
+  OdsMessage,
+  OdsRadio,
+  OdsSelect,
+  OdsText,
+} from '@ovhcloud/ods-components/react';
 import { useUsers } from '@/api/hooks/useUser';
 import {
   createUser,
@@ -107,64 +94,44 @@ export default function UserCreatePage(): JSX.Element {
         </div>
         <div className="width-full grid grid-cols-1 sm:grid-cols-2 mt-8 gap-6">
           <div>
-            <OsdsFormField>
-              <OsdsText
-                level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                size={ODS_THEME_TYPOGRAPHY_SIZE._200}
-                color={ODS_THEME_COLOR_INTENT.text}
-                slot="label"
-              >
+            <OdsFormField>
+              <label slot="label">
                 {tCredential(
                   'pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_username_label',
                 )}
-              </OsdsText>
-              <Clipboard value={username} />
-            </OsdsFormField>
+              </label>
+              <Clipboard value={username} id="" />
+            </OdsFormField>
           </div>
           <div>
-            <OsdsFormField>
-              <OsdsText
-                level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                size={ODS_THEME_TYPOGRAPHY_SIZE._200}
-                color={ODS_THEME_COLOR_INTENT.text}
-                slot="label"
-              >
+            <OdsFormField>
+              <label slot="label">
                 {tCredential(
                   'pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_access-key_label',
                 )}
-              </OsdsText>
+              </label>
               <Clipboard value={access} />
-            </OsdsFormField>
+            </OdsFormField>
           </div>
           <div>
-            <OsdsFormField>
-              <OsdsText
-                level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                size={ODS_THEME_TYPOGRAPHY_SIZE._200}
-                color={ODS_THEME_COLOR_INTENT.text}
-                slot="label"
-              >
+            <OdsFormField>
+              <label slot="label">
                 {tCredential(
                   'pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_description_label',
                 )}
-              </OsdsText>
+              </label>
               <Clipboard value={description} />
-            </OsdsFormField>
+            </OdsFormField>
           </div>
           <div>
-            <OsdsFormField>
-              <OsdsText
-                level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                size={ODS_THEME_TYPOGRAPHY_SIZE._200}
-                color={ODS_THEME_COLOR_INTENT.text}
-                slot="label"
-              >
+            <OdsFormField>
+              <label slot="label">
                 {tCredential(
                   'pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_secret-key_label',
                 )}
-              </OsdsText>
+              </label>
               <Clipboard value={secret} />
-            </OsdsFormField>
+            </OdsFormField>
           </div>
         </div>
       </>
@@ -296,101 +263,79 @@ export default function UserCreatePage(): JSX.Element {
       isPending={state.isLoading}
     >
       {validUsersWithoutCredentials?.length > 0 && (
-        <OsdsMessage type={ODS_MESSAGE_TYPE.info}>
-          <OsdsText
-            level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-            size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-            color={ODS_THEME_COLOR_INTENT.text}
-          >
+        <OdsMessage color="information">
+          <OdsText preset="paragraph">
             {tAdd('pci_projects_project_users_add_info_banner')}
-          </OsdsText>
-        </OsdsMessage>
+          </OdsText>
+        </OdsMessage>
       )}
       <p>
-        <OsdsText
-          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-          size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-          color={ODS_THEME_COLOR_INTENT.text}
-        >
+        <OdsText preset="paragraph">
           {tAdd('pci_projects_project_users_add_short_description')}
-        </OsdsText>
+        </OdsText>
       </p>
       <div className="grid grid-cols-1 gap-4">
         {validUsersWithoutCredentials?.length > 0 && (
-          <OsdsRadio checked={state.userType === 'existing'}>
-            <OsdsRadioButton
-              size={ODS_RADIO_BUTTON_SIZE.xs}
-              color={ODS_THEME_COLOR_INTENT.primary}
-              onClick={() => {
+          <div className="flex">
+            <OdsRadio
+              isChecked={state.userType === 'existing'}
+              value="existing"
+              name="userType"
+              inputId="userType-existing"
+              className="mr-4"
+              onOdsChange={() => {
                 setState({ ...state, userType: 'existing' });
               }}
-            >
-              <OsdsText
-                level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-                color={ODS_THEME_COLOR_INTENT.text}
-                className={clsx(state.userType === 'existing' && 'font-bold')}
-                slot="end"
-              >
+            />
+            <label htmlFor="userType-existing">
+              <OdsText>
                 {tAdd('pci_projects_project_users_add_existing_user')}
-              </OsdsText>
-            </OsdsRadioButton>
-          </OsdsRadio>
-        )}
-        {state.userType === 'existing' && (
-          <div>
-            <OsdsSelect
-              value={state.selectedUserId}
-              onOdsValueChange={(event) => {
-                setState({
-                  ...state,
-                  selectedUserId: event.detail.value as string,
-                });
-              }}
-              className="ml-10 mt-4"
-            >
-              {validUsersWithoutCredentials?.map((user) => (
-                <OsdsSelectOption key={user.id} value={user.id}>
-                  {user.username} - {user.description}
-                </OsdsSelectOption>
-              ))}
-            </OsdsSelect>
+              </OdsText>
+            </label>
           </div>
         )}
-        <OsdsRadio checked={state.userType === 'new'}>
-          <OsdsRadioButton
-            size={ODS_RADIO_BUTTON_SIZE.xs}
-            color={ODS_THEME_COLOR_INTENT.primary}
-            onClick={() => {
-              setState({ ...state, userType: 'new' });
+        {state.userType === 'existing' && (
+          <OdsSelect
+            name="selectedUserId"
+            value={state.selectedUserId}
+            onOdsChange={(event) => {
+              setState({
+                ...state,
+                selectedUserId: event.detail.value as string,
+              });
             }}
+            className="ml-10 mt-4 mb-6"
           >
-            <OsdsText
-              level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-              size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-              color={ODS_THEME_COLOR_INTENT.text}
-              className={clsx(state.userType === 'new' && 'font-bold')}
-              slot="end"
-            >
+            {validUsersWithoutCredentials?.map((user) => (
+              <option key={user.id} value={user.id}>
+                {user.username} - {user.description}
+              </option>
+            ))}
+          </OdsSelect>
+        )}
+        <div className="flex">
+          <OdsRadio
+            value="new"
+            onOdsChange={() => setState({ ...state, userType: 'new' })}
+            name="userType"
+            inputId="userType-new"
+            className="mr-4"
+          />
+          <label htmlFor="userType-new">
+            <OdsText>
               {tAdd('pci_projects_project_users_add_create_user')}
-            </OsdsText>
-          </OsdsRadioButton>
-        </OsdsRadio>
+            </OdsText>
+          </label>
+        </div>
         {state.userType === 'new' && (
-          <OsdsFormField>
-            <OsdsText
-              level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-              size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-              color={ODS_THEME_COLOR_INTENT.text}
-              slot="label"
-              className="font-bold"
-            >
+          <OdsFormField>
+            <label slot="label">
               {tAdd('pci_projects_project_users_add_description_label')}
-            </OsdsText>
-            <OsdsInput
-              type={ODS_INPUT_TYPE.text}
+            </label>
+            <OdsInput
               value={state.userDescription.value}
-              onOdsValueChange={(event) => {
+              name="description"
+              onOdsChange={(event) => {
                 setState({
                   ...state,
                   userDescription: {
@@ -400,7 +345,7 @@ export default function UserCreatePage(): JSX.Element {
                 });
               }}
             />
-          </OsdsFormField>
+          </OdsFormField>
         )}
       </div>
     </PciModal>

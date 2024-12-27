@@ -1,23 +1,11 @@
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import {
-  OsdsIcon,
-  OsdsPopover,
-  OsdsPopoverContent,
-  OsdsRadio,
-  OsdsRadioButton,
-  OsdsRadioGroup,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
-import {
-  ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-  ODS_RADIO_BUTTON_SIZE,
-  ODS_TEXT_SIZE,
-  OdsRadioGroupValueChangeEventDetail,
-  OsdsRadioGroupCustomEvent,
-} from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import { StepComponent } from '@ovh-ux/manager-react-components';
+import {
+  OdsIcon,
+  OdsPopover,
+  OdsRadio,
+  OdsText,
+} from '@ovhcloud/ods-components/react';
 import { useContainerCreationStore } from '../useContainerCreationStore';
 import { ENCRYPTION_ALGORITHM_SSE_S3, NO_ENCRYPTION_VALUE } from '@/constants';
 
@@ -51,80 +39,49 @@ export function EncryptionStep() {
     >
       <>
         <p>
-          <OsdsText
-            color={ODS_THEME_COLOR_INTENT.text}
-            size={ODS_TEXT_SIZE._400}
-          >
+          <OdsText preset="paragraph">
             {t(
               'pci_projects_project_storages_containers_data_encryption_description',
             )}
-          </OsdsText>
+          </OdsText>
         </p>
-        <OsdsRadioGroup
-          value={form.encryption}
-          onOdsValueChange={(
-            event: OsdsRadioGroupCustomEvent<
-              OdsRadioGroupValueChangeEventDetail
-            >,
-          ) => {
-            setEncryption(event.detail.newValue);
-          }}
-        >
-          <OsdsRadio className="mt-4" value={NO_ENCRYPTION_VALUE}>
-            <OsdsRadioButton
-              color={ODS_THEME_COLOR_INTENT.primary}
-              size={ODS_RADIO_BUTTON_SIZE.xs}
-            >
-              <div slot="end" className="align-bottom inline-block">
-                <OsdsText
-                  color={ODS_THEME_COLOR_INTENT.text}
-                  size={ODS_TEXT_SIZE._400}
-                >
-                  {t(
-                    'pci_projects_project_storages_containers_data_encryption_plaintext',
-                  )}
-                </OsdsText>
-              </div>
-            </OsdsRadioButton>
-          </OsdsRadio>
-          <div className="flex">
-            <OsdsRadio
-              className="mt-4"
-              value={ENCRYPTION_ALGORITHM_SSE_S3}
-              disabled={form.region?.name === 'AP-SOUTH-MUM'}
-            >
-              <OsdsRadioButton
-                color={ODS_THEME_COLOR_INTENT.primary}
-                size={ODS_RADIO_BUTTON_SIZE.xs}
-              >
-                <div slot="end" className="align-bottom inline-block">
-                  <OsdsText
-                    color={ODS_THEME_COLOR_INTENT.text}
-                    size={ODS_TEXT_SIZE._400}
-                  >
-                    {t(
-                      'pci_projects_project_storages_containers_data_encryption_aes256',
-                    )}
-                  </OsdsText>
-                </div>
-              </OsdsRadioButton>
-            </OsdsRadio>
-            <OsdsPopover className="w-4 h-4">
-              <OsdsIcon
-                slot="popover-trigger"
-                name={ODS_ICON_NAME.HELP}
-                size={ODS_ICON_SIZE.xxs}
-                className="cursor-help ml-4 mt-4"
-                color={ODS_THEME_COLOR_INTENT.text}
-              />
-              <OsdsPopoverContent>
-                {t(
-                  'pci_projects_project_storages_containers_data_encryption_aes256_tooltip',
-                )}
-              </OsdsPopoverContent>
-            </OsdsPopover>
-          </div>
-        </OsdsRadioGroup>
+        <div className="flex mt-4">
+          <OdsRadio
+            className="mr-4"
+            value={NO_ENCRYPTION_VALUE}
+            name="encryption"
+            inputId="encryption-none"
+            onOdsChange={() => setEncryption(NO_ENCRYPTION_VALUE)}
+          />
+          <label htmlFor="encryption-none">
+            {t(
+              'pci_projects_project_storages_containers_data_encryption_plaintext',
+            )}
+          </label>
+        </div>
+        <div className="flex mt-4">
+          <OdsRadio
+            className="mr-4"
+            value={ENCRYPTION_ALGORITHM_SSE_S3}
+            name="encryption"
+            inputId="encryption-sse-s3"
+            isDisabled={form.region?.name === 'AP-SOUTH-MUM'}
+            onOdsChange={() => setEncryption(ENCRYPTION_ALGORITHM_SSE_S3)}
+          />
+          <label htmlFor="encryption-sse-s3">
+            {t(
+              'pci_projects_project_storages_containers_data_encryption_aes256',
+            )}
+          </label>
+          <span id="trigger-popover">
+            <OdsIcon name="circle-question" />
+          </span>
+          <OdsPopover triggerId="trigger-popover" className="w-4 h-4">
+            {t(
+              'pci_projects_project_storages_containers_data_encryption_aes256_tooltip',
+            )}
+          </OdsPopover>
+        </div>
       </>
     </StepComponent>
   );
