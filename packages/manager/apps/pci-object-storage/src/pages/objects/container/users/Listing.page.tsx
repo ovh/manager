@@ -181,23 +181,25 @@ export default function Listing() {
         </div>
       </div>
 
-      <div className="my-8">
+      <div className="my-8 mt-8">
         <FilterList filters={filters} onRemoveFilter={removeFilter} />
       </div>
 
       {isPending ? (
-        <OdsSpinner size="md" data-testid="List-spinner" />
+        <OdsSpinner size="md" data-testid="List-spinner" className="mt-8" />
       ) : (
-        <Datagrid
-          columns={columns}
-          items={paginatedUsers?.rows || []}
-          totalItems={paginatedUsers?.totalRows || 0}
-          pagination={pagination}
-          onPaginationChange={setPagination}
-          sorting={sorting}
-          onSortChange={setSorting}
-          className="overflow-x-visible"
-        />
+        <div className="mt-8">
+          <Datagrid
+            columns={columns}
+            items={paginatedUsers?.rows || []}
+            totalItems={paginatedUsers?.totalRows || 0}
+            pagination={pagination}
+            onPaginationChange={setPagination}
+            sorting={sorting}
+            onSortChange={setSorting}
+            className="overflow-x-visible"
+          />
+        </div>
       )}
       <Suspense>
         <Outlet />

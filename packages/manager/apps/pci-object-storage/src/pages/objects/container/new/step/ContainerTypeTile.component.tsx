@@ -2,9 +2,7 @@ import { clsx } from 'clsx';
 import { useTranslation } from 'react-i18next';
 import { useCatalogPrice } from '@ovh-ux/manager-react-components';
 import { useCatalog } from '@ovh-ux/manager-pci-common';
-import { OsdsSkeleton, OsdsText } from '@ovhcloud/ods-components/react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+import { OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
 import { CONTAINER_COMMERCIAL_NAME } from '@/constants';
 
 export interface ContainerTypeTileProps {
@@ -30,38 +28,29 @@ export function ContainerTypeTile({
 
   return (
     <>
-      <OsdsText
-        size={ODS_TEXT_SIZE._400}
-        level={ODS_TEXT_LEVEL.body}
-        color={ODS_THEME_COLOR_INTENT.text}
-        className={clsx('leading-8', isSelected && 'font-bold')}
+      <OdsText
+        preset="paragraph"
+        className={clsx('leading-8', isSelected && 'selected-tile-title')}
       >
-        {t(`pci_projects_project_storages_containers_add_type_${type}_label`)}
-      </OsdsText>
+        <span>
+          {t(`pci_projects_project_storages_containers_add_type_${type}_label`)}
+        </span>
+      </OdsText>
       <p>
-        <OsdsText
-          size={ODS_TEXT_SIZE._100}
-          level={ODS_TEXT_LEVEL.body}
-          color={ODS_THEME_COLOR_INTENT.text}
-        >
+        <OdsText preset="caption">
           {t(
             `pci_projects_project_storages_containers_add_type_${type}_description`,
           )}
-        </OsdsText>
+        </OdsText>
       </p>
       <p>
-        {isPending && <OsdsSkeleton />}
+        {isPending && <OdsSkeleton />}
         {!isPending && pricing && (
-          <OsdsText
-            size={ODS_TEXT_SIZE._100}
-            level={ODS_TEXT_LEVEL.body}
-            color={ODS_THEME_COLOR_INTENT.text}
-            className="font-bold"
-          >
+          <OdsText preset="caption" className="font-bold">
             {t('pci_projects_project_storages_containers_add_type_price', {
               price: getTextPrice(pricing.price),
             })}
-          </OsdsText>
+          </OdsText>
         )}
       </p>
     </>

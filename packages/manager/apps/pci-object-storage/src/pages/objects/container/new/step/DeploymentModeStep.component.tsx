@@ -3,17 +3,7 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { StepComponent } from '@ovh-ux/manager-react-components';
 import { TileInputChoice } from '@ovh-ux/manager-pci-common';
 import { useTranslation } from 'react-i18next';
-import { OsdsIcon, OsdsLink, OsdsText } from '@ovhcloud/ods-components/react';
-import {
-  ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-  ODS_TEXT_LEVEL,
-} from '@ovhcloud/ods-components';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+import { OdsLink, OdsText } from '@ovhcloud/ods-components/react';
 import {
   DEPLOYMENT_MODE_LINK,
   OBJECT_CONTAINER_DEPLOYMENT_MODES,
@@ -68,38 +58,23 @@ export function DeploymentModeStep() {
     >
       {!stepper.deployment.isLocked && (
         <p>
-          <OsdsText
-            color={ODS_THEME_COLOR_INTENT.text}
-            level={ODS_TEXT_LEVEL.body}
-            size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-            className="mt-8 block"
-          >
+          <OdsText preset="paragraph" className="mt-8 block">
             <span>
               {t(
                 'pci_projects_project_storages_containers_add_deployment_mode_sub_title',
               )}{' '}
             </span>
-            <OsdsLink
+            <OdsLink
               className="mt-4"
-              color={ODS_THEME_COLOR_INTENT.primary}
+              color="primary"
               href={deploymentModeLink}
-              target={OdsHTMLAnchorElementTarget._blank}
-            >
-              {t(
+              target="_blank"
+              label={t(
                 'pci_projects_project_storages_containers_add_deployment_mode_sub_title_link',
               )}
-              <span slot="end">
-                <OsdsIcon
-                  aria-hidden="true"
-                  className="ml-4"
-                  name={ODS_ICON_NAME.EXTERNAL_LINK}
-                  hoverable
-                  size={ODS_ICON_SIZE.xxs}
-                  color={ODS_THEME_COLOR_INTENT.primary}
-                />
-              </span>
-            </OsdsLink>
-          </OsdsText>
+              icon="external-link"
+            />
+          </OdsText>
         </p>
       )}
 
@@ -117,38 +92,23 @@ export function DeploymentModeStep() {
 
       {!stepper.deployment.isLocked && (
         <p>
-          <OsdsText
-            color={ODS_THEME_COLOR_INTENT.text}
-            level={ODS_TEXT_LEVEL.body}
-            size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-            className="mt-8 block"
-          >
+          <OdsText preset="paragraph" className="mt-8 block">
             <span>
               {t(
                 'pci_projects_project_storages_containers_add_deployment_mode_price_explanation',
               )}
             </span>
-            <OsdsLink
+            <OdsLink
               className="mt-4"
-              color={ODS_THEME_COLOR_INTENT.primary}
+              color="primary"
               href={storagePricesLink}
-              target={OdsHTMLAnchorElementTarget._blank}
-            >
-              {t(
+              target="_blank"
+              icon="external-link"
+              label={t(
                 'pci_projects_project_storages_containers_add_deployment_mode_price_explanation_link',
               )}
-              <span slot="end">
-                <OsdsIcon
-                  aria-hidden="true"
-                  className="ml-4"
-                  name={ODS_ICON_NAME.EXTERNAL_LINK}
-                  hoverable
-                  size={ODS_ICON_SIZE.xxs}
-                  color={ODS_THEME_COLOR_INTENT.primary}
-                />
-              </span>
-            </OsdsLink>
-          </OsdsText>
+            ></OdsLink>
+          </OdsText>
         </p>
       )}
     </StepComponent>

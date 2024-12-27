@@ -1,18 +1,6 @@
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import {
-  OsdsRadio,
-  OsdsRadioButton,
-  OsdsRadioGroup,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
-import {
-  ODS_RADIO_BUTTON_SIZE,
-  ODS_TEXT_SIZE,
-  OdsRadioGroupValueChangeEventDetail,
-  OsdsRadioGroupCustomEvent,
-} from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import { StepComponent } from '@ovh-ux/manager-react-components';
+import { OdsRadio, OdsText } from '@ovhcloud/ods-components/react';
 import { useContainerCreationStore } from '../useContainerCreationStore';
 
 export function VersioningStep() {
@@ -49,62 +37,42 @@ export function VersioningStep() {
     >
       <>
         <p>
-          <OsdsText
-            color={ODS_THEME_COLOR_INTENT.text}
-            size={ODS_TEXT_SIZE._400}
-          >
+          <OdsText preset="paragraph">
             {t(
               'containers/enable-versioning:pci_projects_project_storages_containers_bucket_versioning_description',
             )}
-          </OsdsText>
+          </OdsText>
         </p>
-        <OsdsRadioGroup
-          value={form.versioning?.toString()}
-          onOdsValueChange={(
-            event: OsdsRadioGroupCustomEvent<
-              OdsRadioGroupValueChangeEventDetail
-            >,
-          ) => {
-            setVersioning(event.detail.newValue === 'true');
-          }}
-        >
-          <OsdsRadio className="mt-4" value="false">
-            <OsdsRadioButton
-              color={ODS_THEME_COLOR_INTENT.primary}
-              size={ODS_RADIO_BUTTON_SIZE.xs}
-              checked={!form.versioning || undefined}
-            >
-              <div slot="end" className="align-bottom inline-block">
-                <OsdsText
-                  color={ODS_THEME_COLOR_INTENT.text}
-                  size={ODS_TEXT_SIZE._400}
-                >
-                  {t(
-                    'pci_projects_project_storages_containers_bucket_versioning_disabled',
-                  )}
-                </OsdsText>
-              </div>
-            </OsdsRadioButton>
-          </OsdsRadio>
-          <OsdsRadio className="mt-4" value="true">
-            <OsdsRadioButton
-              color={ODS_THEME_COLOR_INTENT.primary}
-              size={ODS_RADIO_BUTTON_SIZE.xs}
-              checked={form.versioning || undefined}
-            >
-              <div slot="end" className="align-bottom inline-block">
-                <OsdsText
-                  color={ODS_THEME_COLOR_INTENT.text}
-                  size={ODS_TEXT_SIZE._400}
-                >
-                  {t(
-                    'pci_projects_project_storages_containers_bucket_versioning_enabled',
-                  )}
-                </OsdsText>
-              </div>
-            </OsdsRadioButton>
-          </OsdsRadio>
-        </OsdsRadioGroup>
+        <div className="flex mt-4">
+          <OdsRadio
+            className="mr-4"
+            value="false"
+            isChecked={!form.versioning || undefined}
+            name="versioning"
+            inputId="versioning-false"
+            onOdsChange={() => setVersioning(false)}
+          />
+          <label htmlFor="versioning-false">
+            {t(
+              'pci_projects_project_storages_containers_bucket_versioning_disabled',
+            )}
+          </label>
+        </div>
+        <div className="flex mt-4">
+          <OdsRadio
+            className="mt-4"
+            value="true"
+            name="versioning"
+            onOdsChange={() => setVersioning(true)}
+            inputId="versioning-true"
+            isChecked={form.versioning || undefined}
+          />
+          <label htmlFor="versioning-true">
+            {t(
+              'pci_projects_project_storages_containers_bucket_versioning_enabled',
+            )}
+          </label>
+        </div>
       </>
     </StepComponent>
   );
