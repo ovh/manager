@@ -4,4 +4,6 @@ export const urls = {
   listing: '/',
   dashboard: '/:serviceName',
   tab2: 'Tab2',
+  installation: '/installation',
+  installationStep1: '/installation/step-1',
 };
