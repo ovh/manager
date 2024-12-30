@@ -31,6 +31,7 @@
   "sidebar_licences": "Licences",
   "sidebar_hpc": "Hosted Private Cloud",
   "sidebar_hpc_short": "HPC",
+  "sidebar_sap_features_hub": "SAP Features Hub",
   "sidebar_vmware_vsphere": "Managed VMware vSphere",
   "sidebar_vmware_vcd": "Managed VCD",
   "sidebar_vmware_all": "Tous mes services",
