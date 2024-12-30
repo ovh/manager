@@ -73,6 +73,27 @@ export const Routes: any = [
           },
         },
       },
+      {
+        path: urls.installation,
+        ...lazyRouteConfig(() =>
+          import('@/pages/installation/InstallationDashboard.page'),
+        ),
+        children: [
+          {
+            id: 'step1',
+            path: urls.installationStep1,
+            ...lazyRouteConfig(() =>
+              import('@/pages/installation/step1/InstallationStep1.page'),
+            ),
+            handle: {
+              tracking: {
+                pageName: 'dashboard',
+                pageType: PageType.dashboard,
+              },
+            },
+          },
+        ],
+      },
     ],
   },
   {
