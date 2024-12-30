@@ -1,15 +1,15 @@
 import { ActionBanner, useProjectUrl } from '@ovh-ux/manager-react-components';
-import { useNavigation } from '@ovh-ux/manager-react-shell-client';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { useContext } from 'react';
 import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 
-const PciSavingPlanBanner = ({ className }: { className: string }) => {
+const PciSavingsPlanBanner = ({ className }: { className: string }) => {
   const { t } = useTranslation('saving-plan-banner');
-
   const projectURL = useProjectUrl('public-cloud');
-
-  const { navigateTo } = useNavigation();
-
+  const {
+    navigation: { navigateTo },
+  } = useContext(ShellContext).shell;
   const navigateToSavingsPlan = async () => {
     await navigateTo(
       'public-cloud',
@@ -29,4 +29,4 @@ const PciSavingPlanBanner = ({ className }: { className: string }) => {
   );
 };
 
-export default PciSavingPlanBanner;
+export default PciSavingsPlanBanner;
