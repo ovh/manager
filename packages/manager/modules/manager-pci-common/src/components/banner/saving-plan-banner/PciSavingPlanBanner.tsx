@@ -4,7 +4,7 @@ import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 
 const PciSavingPlanBanner = ({ className }: { className: string }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('saving-plan-banner');
 
   const projectURL = useProjectUrl('public-cloud');
 
@@ -20,9 +20,9 @@ const PciSavingPlanBanner = ({ className }: { className: string }) => {
 
   return (
     <ActionBanner
-      message={t('pci_projects_project_activate_project_banner_message')}
-      cta={t('pci_projects_project_activate_project_banner_cta')}
-      type={ODS_MESSAGE_TYPE.warning}
+      message={t('kubernetes_add_billing_savings_plan_banner')}
+      cta={t('kubernetes_add_billing_type_description')}
+      type={ODS_MESSAGE_TYPE.info}
       onClick={navigateToSavingsPlan}
       className={className}
     />
