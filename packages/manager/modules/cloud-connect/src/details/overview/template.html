@@ -424,6 +424,34 @@
                                 ></span>
                             </oui-tile-description>
                         </oui-tile-definition>
+                        <!-- POP Diagnostic -->
+                        <oui-tile-definition
+                            data-ng-if="$pop.isL3Type()"
+                            data-term="{{ ::'cloud_connect_pop_diagnostic' | translate }}"
+                        >
+                            <oui-tile-description>
+                                <a
+                                    class="oui-link_icon"
+                                    data-ng-click="$ctrl.goToDiagnosticPage()"
+                                >
+                                    <span
+                                        data-translate="cloud_connect_pop_diagnostic_link"
+                                    ></span>
+                                    <span
+                                        class="oui-icon oui-icon-arrow-right align-middle d-inline-block"
+                                        aria-hidden="true"
+                                    ></span>
+                                </a>
+                            </oui-tile-description>
+                            <oui-action-menu data-compact data-placement="end">
+                                <oui-action-menu-item
+                                    data-on-click="$ctrl.goToCheckBGPPeeringPage({popConfigId: $pop.id , dcConfigId: $ctrl.datacenters.id })"
+                                    ><span
+                                        data-translate="cloud_connect_pop_diagnostic_check"
+                                    ></span
+                                ></oui-action-menu-item>
+                            </oui-action-menu>
+                        </oui-tile-definition>
                     </div>
                 </div>
             </oui-tile>
@@ -505,6 +533,7 @@
                         data-datacenter="configuration"
                         data-extra-config="extraConfig"
                         data-remove-extra="$ctrl.goToRemoveExtraPage(datacenterId, extraId)"
+                        data-check-bgp-peering="$ctrl.goToCheckBGPPeeringPage"
                     ></ovh-cloud-connect-datacenter-extra>
                 </div>
             </div>
