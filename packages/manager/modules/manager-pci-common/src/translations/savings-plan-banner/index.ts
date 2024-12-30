@@ -10,14 +10,14 @@ import pl_PL from './Messages_pl_PL.json';
 import pt_PT from './Messages_pt_PT.json';
 
 function addTranslations() {
-  i18next.addResources('de_DE', 'saving-plan-banner', de_DE);
-  i18next.addResources('en_GB', 'saving-plan-banner', en_GB);
-  i18next.addResources('es_ES', 'saving-plan-banner', es_ES);
-  i18next.addResources('fr_CA', 'saving-plan-banner', fr_CA);
-  i18next.addResources('fr_FR', 'saving-plan-banner', fr_FR);
-  i18next.addResources('it_IT', 'saving-plan-banner', it_IT);
-  i18next.addResources('pl_PL', 'saving-plan-banner', pl_PL);
-  i18next.addResources('pt_PT', 'saving-plan-banner', pt_PT);
+  i18next.addResources('de_DE', 'savings-plan-banner', de_DE);
+  i18next.addResources('en_GB', 'savings-plan-banner', en_GB);
+  i18next.addResources('es_ES', 'savings-plan-banner', es_ES);
+  i18next.addResources('fr_CA', 'savings-plan-banner', fr_CA);
+  i18next.addResources('fr_FR', 'savings-plan-banner', fr_FR);
+  i18next.addResources('it_IT', 'savings-plan-banner', it_IT);
+  i18next.addResources('pl_PL', 'savings-plan-banner', pl_PL);
+  i18next.addResources('pt_PT', 'savings-plan-banner', pt_PT);
 }
 
 if (i18next.isInitialized) {

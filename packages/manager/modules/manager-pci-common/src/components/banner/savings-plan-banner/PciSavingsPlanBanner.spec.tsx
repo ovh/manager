@@ -1,19 +1,28 @@
 import '@testing-library/jest-dom';
 import { render, screen, fireEvent } from '@testing-library/react';
+import {
+  ShellContext,
+  ShellContextType,
+} from '@ovh-ux/manager-react-shell-client';
 import { describe, it, vi } from 'vitest';
 import PciSavingPlanBanner from './PciSavingsPlanBanner';
+import { wrapper } from '@/wrapperRenders';
 
 const mockNavigateTo = vi.fn();
-vi.mock('@ovh-ux/manager-react-shell-client', () => ({
-  useNavigation: () => ({
-    navigateTo: mockNavigateTo,
-  }),
-}));
+
+const mockShellContext = {
+  shell: {
+    navigation: {
+      navigateTo: mockNavigateTo,
+    },
+  },
+};
 
 describe('PciSavingPlanBanner tests', () => {
   it('should render the banner with the correct message and CTA', () => {
     const { container } = render(
       <PciSavingPlanBanner className="test-class" />,
+      { wrapper },
     );
 
     expect(
@@ -28,7 +37,13 @@ describe('PciSavingPlanBanner tests', () => {
   });
 
   it('should call navigateToSavingsPlan on CTA click', async () => {
-    render(<PciSavingPlanBanner className="test-class" />);
+    render(
+      <ShellContext.Provider
+        value={(mockShellContext as unknown) as ShellContextType}
+      >
+        <PciSavingPlanBanner className="test-class" />
+      </ShellContext.Provider>,
+    );
 
     const ctaButton = screen.getByText('pci_projects_savings_plan_cta');
 

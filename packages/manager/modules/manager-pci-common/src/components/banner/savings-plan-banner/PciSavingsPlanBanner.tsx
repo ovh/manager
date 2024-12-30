@@ -5,7 +5,7 @@ import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 
 const PciSavingsPlanBanner = ({ className }: { className: string }) => {
-  const { t } = useTranslation('saving-plan-banner');
+  const { t } = useTranslation('savings-plan-banner');
   const projectURL = useProjectUrl('public-cloud');
   const {
     navigation: { navigateTo },
