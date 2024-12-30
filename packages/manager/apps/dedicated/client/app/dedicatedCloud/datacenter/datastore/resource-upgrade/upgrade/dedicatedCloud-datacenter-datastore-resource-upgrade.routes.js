@@ -2,7 +2,7 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
     'app.dedicatedCloud.details.datacenter.details.datastores.resourceUpgrade',
     {
-      url: '/upgradeResource',
+      url: '/upgradeResource?datastoreId',
       params: {
         id: null,
         type: null,
@@ -15,7 +15,7 @@ export default /* @ngInject */ ($stateProvider) => {
       layout: 'modal',
       resolve: {
         goBack: /* @ngInject */ (goBackToDatastore) => goBackToDatastore,
-        id: /* @ngInject */ ($transition$) => $transition$.params().id,
+        id: /* @ngInject */ ($transition$) => $transition$.params().datastoreId,
         type: /* @ngInject */ ($transition$) => $transition$.params().type,
         breadcrumb: () => null,
       },
