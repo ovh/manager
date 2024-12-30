@@ -6,3 +6,6 @@ export default {
   },
   rootLabel: 'sap-features-hub',
 };
+
+export const appName = 'sap-features-hub';
+export const productName = 'SAP Features Hub';
