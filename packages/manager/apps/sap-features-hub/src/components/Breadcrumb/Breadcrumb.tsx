@@ -7,7 +7,7 @@ import {
   useBreadcrumb,
   BreadcrumbItem,
 } from '@/hooks/breadcrumb/useBreadcrumb';
-import appConfig from '@/sap-features-hub.config';
+import { appName, productName } from '@/sap-features-hub.config';
 
 export interface BreadcrumbProps {
   customRootLabel?: string;
@@ -16,12 +16,9 @@ export interface BreadcrumbProps {
 }
 
 function Breadcrumb({ customRootLabel }: BreadcrumbProps): JSX.Element {
-  const label = customRootLabel || appConfig.rootLabel;
+  const label = customRootLabel || productName;
+  const breadcrumbItems = useBreadcrumb({ rootLabel: label, appName });
 
-  const breadcrumbItems = useBreadcrumb({
-    rootLabel: label,
-    appName: 'sap-features-hub',
-  });
   return (
     <OdsBreadcrumb>
       {breadcrumbItems?.map((item) => (
