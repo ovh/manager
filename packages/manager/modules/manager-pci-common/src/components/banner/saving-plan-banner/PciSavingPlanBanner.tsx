@@ -20,8 +20,8 @@ const PciSavingPlanBanner = ({ className }: { className: string }) => {
 
   return (
     <ActionBanner
-      message={t('kubernetes_add_billing_savings_plan_banner')}
-      cta={t('kubernetes_add_billing_type_description')}
+      message={t('pci_projects_savings_plan_banner')}
+      cta={t('pci_projects_savings_plan_cta')}
       type={ODS_MESSAGE_TYPE.info}
       onClick={navigateToSavingsPlan}
       className={className}
