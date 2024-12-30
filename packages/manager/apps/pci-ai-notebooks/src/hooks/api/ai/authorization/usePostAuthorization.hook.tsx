@@ -23,7 +23,7 @@ export function usePostAuthorization({
     onSuccess: (data) => {
       // invalidate notebook auth
       queryClient.invalidateQueries({
-        queryKey: [projectId, 'ai/notebook'],
+        queryKey: [projectId, 'ai/authorization'],
         refetchType: 'none',
       });
       onSuccess(data);

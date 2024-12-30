@@ -12,15 +12,11 @@ interface AuthLayoutProps {
 // check if the user has authentication
 export const Loader = async ({ params }: AuthLayoutProps) => {
   const { projectId } = params;
-  try {
-    const authResult = await queryClient.fetchQuery({
-      queryKey: [projectId, 'ai/authorization'],
-      queryFn: () => getAuthorization({ projectId }),
-    });
-    if (!authResult.authorized) {
-      return redirect(`/pci/projects/${projectId}/ai/notebooks/auth`);
-    }
-  } catch (_error) {
+  const authResult = await queryClient.fetchQuery({
+    queryKey: [projectId, 'ai/authorization'],
+    queryFn: () => getAuthorization({ projectId }),
+  });
+  if (!authResult.authorized) {
     return redirect(`/pci/projects/${projectId}/ai/notebooks/auth`);
   }
   return null;
