@@ -18,11 +18,11 @@ describe('PciSavingPlanBanner tests', () => {
     );
 
     expect(
-      screen.getByText('pci_projects_project_activate_project_banner_message'),
+      screen.getByText('pci_projects_savings_plan_banner'),
     ).toBeInTheDocument();
 
     expect(
-      screen.getByText('pci_projects_project_activate_project_banner_cta'),
+      screen.getByText('pci_projects_savings_plan_cta'),
     ).toBeInTheDocument();
 
     expect(container.querySelector('.test-class')).toBeInTheDocument();
@@ -31,9 +31,7 @@ describe('PciSavingPlanBanner tests', () => {
   it('should call navigateToSavingsPlan on CTA click', async () => {
     render(<PciSavingPlanBanner className="test-class" />);
 
-    const ctaButton = screen.getByText(
-      'pci_projects_project_activate_project_banner_cta',
-    );
+    const ctaButton = screen.getByText('pci_projects_savings_plan_cta');
 
     fireEvent.click(ctaButton);
 
