@@ -132,11 +132,11 @@ export default class CloudConnectService {
 
   runDiagnostic(
     serviceName,
-    dcConfigId,
     diagnosticName,
+    popConfigId,
+    dcConfigId,
     diagnosticType,
     extraConfigId,
-    popConfigId,
   ) {
     return this.$http
       .post(`/ovhCloudConnect/${serviceName}/diagnostic`, {
