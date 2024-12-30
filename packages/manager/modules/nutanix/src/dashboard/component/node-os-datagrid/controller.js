@@ -19,10 +19,13 @@ export default class {
   }
 
   isInstallationError() {
-    return [
-      this.NODE_STATUS.DEPLOY_FAILURE,
-      this.NODE_STATUS.UNDEPLOY_FAILURE,
-    ].includes(this.status);
+    return (
+      !this.isNotInstalled() &&
+      [
+        this.NODE_STATUS.DEPLOY_FAILURE,
+        this.NODE_STATUS.UNDEPLOY_FAILURE,
+      ].includes(this.status)
+    );
   }
 
   isNotInstalled() {

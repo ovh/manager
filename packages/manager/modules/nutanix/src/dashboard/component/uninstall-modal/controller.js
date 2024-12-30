@@ -1,17 +1,12 @@
-import { UNINSTALL_GUIDE_LINKS, UNINSTALL_PATTERN } from './constants';
+import { UNINSTALL_GUIDE_LINK, UNINSTALL_PATTERN } from './constants';
 
 export default class {
   /* @ngInject */
   constructor($translate) {
     this.$translate = $translate;
     this.UNINSTALL_PATTERN = UNINSTALL_PATTERN;
+    this.UNINSTALL_GUIDE_LINK = UNINSTALL_GUIDE_LINK;
     this.isLoading = false;
-  }
-
-  get uninstallGuidelink() {
-    return (
-      UNINSTALL_GUIDE_LINKS[this.userSubsidiary] ?? UNINSTALL_GUIDE_LINKS.EN
-    );
   }
 
   onSubmit() {
