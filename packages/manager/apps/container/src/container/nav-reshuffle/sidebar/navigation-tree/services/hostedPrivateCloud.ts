@@ -68,6 +68,18 @@ hostedPrivateCloudUniverse.children = [
         },
         features: ['license'],
       },
+      {
+        id: 'sap-features-hub',
+        idAttr: 'sap-features-hub-link',
+        universe: hostedPrivateCloudUniverse.id,
+        translation: 'sidebar_sap_features_hub',
+        serviceType: 'SAP_FEATURES_HUB',
+        routing: {
+          application: 'sap-features-hub',
+          hash: '#/sap-features-hub',
+        },
+        features: ['sap-features-hub'],
+      },
     ],
   },
   {
