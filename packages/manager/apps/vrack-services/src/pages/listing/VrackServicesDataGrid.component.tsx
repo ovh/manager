@@ -11,13 +11,11 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { DisplayName } from '@/components/display-name/DisplayName.component';
 import { VrackId } from '@/components/vrack-id/VrackId.component';
-import {
-  getDisplayName,
-  useVrackServicesList,
-  VrackServicesWithIAM,
-} from '@/data';
+import { useVrackServicesList } from '@/data/hooks';
 import { ProductStatusChip } from '@/components/ProductStatusChip.component';
 import { ActionCell } from './ActionCell.component';
+import { VrackServicesWithIAM } from '@/types';
+import { getDisplayName } from '@/utils/vrack-services';
 
 const sortVrackServicesListing = (
   sorting: ColumnSort,

@@ -20,7 +20,7 @@ import {
 import { useGuideUtils } from './useGuideUtils';
 import { OnboardingLayout } from '@/components/layout-helpers';
 import onboardingImgSrc from '@/assets/onboarding-img.png';
-import { getVrackServicesResourceListQueryKey } from '@/data';
+import { getVrackServicesResourceListQueryKey } from '@/data/api';
 import { urls } from '@/routes/routes.constants';
 import { onboardingRefetchInterval } from './onboarding.constants';
 

@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { OsdsSpinner, OsdsChip } from '@ovhcloud/ods-components/react';
-import { ProductStatus } from '@/data';
+import { ProductStatus } from '@/types';
 
 const colorByProductStatus = {
   [ProductStatus.ACTIVE]: ODS_THEME_COLOR_INTENT.success,

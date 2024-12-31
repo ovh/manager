@@ -31,7 +31,7 @@ import { useNavigate } from 'react-router-dom';
 import { handleClick } from '@ovh-ux/manager-react-components';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { getVrackListQueryKey } from '@/data';
+import { getVrackListQueryKey } from '@/data/api';
 import { DeliveringMessages } from '@/components/DeliveringMessages.component';
 import { MessagesContext } from './feedback-messages/Messages.context';
 import { LoadingText } from './LoadingText.component';

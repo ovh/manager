@@ -19,14 +19,9 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useOvhTracking, PageType } from '@ovh-ux/manager-react-shell-client';
 import { FormField } from '@/components/FormField.component';
 import {
-  getDisplayName,
   getVrackServicesResourceListQueryKey,
   getVrackServicesResourceQueryKey,
-  useUpdateVrackServices,
-  useVrackService,
-  isValidVlanNumber,
-  isValidCidr,
-} from '@/data';
+} from '@/data/api';
 import { CreatePageLayout } from '@/components/layout-helpers';
 import {
   displayNameInputName,
@@ -42,6 +37,9 @@ import {
 import { urls } from '@/routes/routes.constants';
 import { PageName } from '@/utils/tracking';
 import { MessagesContext } from '@/components/feedback-messages/Messages.context';
+import { useUpdateVrackServices, useVrackService } from '@/data/hooks';
+import { isValidVlanNumber } from '@/utils/vrack-services';
+import { isValidCidr } from '@/utils/cidr';
 
 export default function SubnetCreate() {
   const { t } = useTranslation('vrack-services/subnets');
