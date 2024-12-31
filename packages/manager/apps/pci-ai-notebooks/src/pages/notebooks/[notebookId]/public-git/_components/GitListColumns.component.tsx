@@ -13,14 +13,14 @@ export const getColumns = () => {
   const toast = useToast();
   const columns: ColumnDef<ai.volume.Volume>[] = [
     {
-      id: 'Url',
+      id: 'url',
       accessorFn: (row) => row.volumeSource.publicGit.url,
       header: ({ column }) => (
         <SortableHeader column={column}>{t('tableHeaderUrl')}</SortableHeader>
       ),
     },
     {
-      id: 'Mountpath',
+      id: 'mountpath',
       accessorFn: (row) => row.mountPath,
       header: ({ column }) => (
         <SortableHeader column={column}>
@@ -53,7 +53,7 @@ export const getColumns = () => {
       },
     },
     {
-      id: 'Permission',
+      id: 'permission',
       accessorFn: (row) => row.permission,
       header: ({ column }) => (
         <SortableHeader column={column}>

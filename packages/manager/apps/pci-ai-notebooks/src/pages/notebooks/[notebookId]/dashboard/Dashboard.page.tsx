@@ -24,6 +24,7 @@ import OvhLink from '@/components/links/OvhLink.component';
 import LifeCycle from './_components/LifeCycle.component';
 import Labels from './_components/Labels.component';
 import AccessLink from './_components/AccessLink.component';
+import { VOLUMES_CONFIG } from '@/components/order/volumes/volume.const';
 
 const Dashboard = () => {
   const { notebook, projectId } = useNotebookData();
@@ -46,7 +47,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     const filteredVolume: ai.volume.Volume[] = notebook.spec.volumes.filter(
-      (vol) => vol.mountPath !== '/workspace',
+      (vol) => vol.mountPath !== VOLUMES_CONFIG.mountDirectory.savedPath,
     );
     const notebookInfo: ai.notebook.NotebookSpecInput = {
       ...notebook.spec,

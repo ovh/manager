@@ -421,9 +421,7 @@ const OrderFunnel = ({
                   data-state={showAdvancedConfiguration ? 'open' : 'closed'}
                   className={`
                   overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down
-                  ${
-                    showAdvancedConfiguration ? 'max-h-screen' : 'max-h-0 py-0'
-                  }`}
+                  ${!showAdvancedConfiguration && 'max-h-0 py-0'}`}
                 >
                   <div className="flex flex-col gap-6">
                     <section id="volumes">
