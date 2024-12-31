@@ -1,5 +1,6 @@
 import { order } from '../catalog';
 import * as ai from '@/types/cloud/project/ai';
+import { PublicGit } from '../cloud/project/ai/volume';
 
 export interface Flavor extends ai.capabilities.Flavor {
   pricing: order.publicOrder.Pricing[];
@@ -23,7 +24,8 @@ export interface Containers {
 
 export interface OrderVolumes {
   cache: boolean;
-  dataStore: {
+  publicGit?: PublicGit;
+  dataStore?: {
     alias: string;
     container: string;
     type: ai.DataStoreTypeEnum;
@@ -35,6 +37,7 @@ export interface OrderVolumes {
 export interface FormVolumes {
   container: string;
   gitBranch: string;
+  gitUrl: string;
   mountDirectory: string;
   permission: ai.VolumePermissionEnum;
   cache: boolean;
@@ -72,5 +75,5 @@ export interface NotebookOrderResult {
     [key: string]: string;
   };
   sshKey: string[];
-  volumes: any[];
+  volumes: OrderVolumes[];
 }

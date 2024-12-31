@@ -1,5 +1,26 @@
 import { nichandle, order } from '@/types/catalog';
 
+export const mockedPricing: order.publicOrder.Pricing = {
+  capacities: [order.cart.GenericProductPricingCapacitiesEnum.consumption],
+  commitment: 1,
+  description: 'description',
+  interval: 2,
+  intervalUnit: order.cart.DurationUnitEnum.day,
+  mode: 'mode',
+  mustBeCompleted: true,
+  phase: 14,
+  price: 1,
+  quantity: {
+    min: 1,
+  },
+  repeat: {
+    min: 1,
+  },
+  strategy: order.cart.GenericProductPricingStrategyEnum.stairstep,
+  tax: 1,
+  type: order.cart.GenericProductPricingTypeEnum.consumption,
+};
+
 export const mockedCatalogPlan: order.publicOrder.Plan = {
   addonFamilies: [
     {
@@ -14,30 +35,9 @@ export const mockedCatalogPlan: order.publicOrder.Plan = {
     },
   ],
   invoiceName: 'invoiceName',
-  planCode: 'databases.mongodb-plan-flavor.hour.consumption',
+  planCode: 'ai-notebook.flavorCPUId.minute.consumption',
   pricingType: order.cart.GenericProductPricingTypeEnum.consumption,
-  pricings: [
-    {
-      capacities: [order.cart.GenericProductPricingCapacitiesEnum.consumption],
-      commitment: 1,
-      description: 'description',
-      interval: 2,
-      intervalUnit: order.cart.DurationUnitEnum.day,
-      mode: 'mode',
-      mustBeCompleted: true,
-      phase: 14,
-      price: 1,
-      quantity: {
-        min: 1,
-      },
-      repeat: {
-        min: 1,
-      },
-      strategy: order.cart.GenericProductPricingStrategyEnum.stairstep,
-      tax: 1,
-      type: order.cart.GenericProductPricingTypeEnum.consumption,
-    },
-  ],
+  pricings: [mockedPricing],
   product: 'product',
 };
 
@@ -55,30 +55,9 @@ export const mockedCatalogPlanMonth: order.publicOrder.Plan = {
     },
   ],
   invoiceName: 'invoiceName1',
-  planCode: 'databases.mongodb-plan-flavor.month.consumption',
+  planCode: 'ai-notebook.flavorCPUId.minute.consumption',
   pricingType: order.cart.GenericProductPricingTypeEnum.consumption,
-  pricings: [
-    {
-      capacities: [order.cart.GenericProductPricingCapacitiesEnum.consumption],
-      commitment: 1,
-      description: 'description',
-      interval: 2,
-      intervalUnit: order.cart.DurationUnitEnum.day,
-      mode: 'mode',
-      mustBeCompleted: true,
-      phase: 14,
-      price: 1,
-      quantity: {
-        min: 1,
-      },
-      repeat: {
-        min: 1,
-      },
-      strategy: order.cart.GenericProductPricingStrategyEnum.stairstep,
-      tax: 1,
-      type: order.cart.GenericProductPricingTypeEnum.consumption,
-    },
-  ],
+  pricings: [mockedPricing],
   product: 'product',
 };
 
@@ -96,30 +75,9 @@ export const mockedCatalogStorageMonth: order.publicOrder.Plan = {
     },
   ],
   invoiceName: 'invoiceName2',
-  planCode: 'databases.mongodb-plan-additionnal-storage-gb.month.consumption',
+  planCode: 'ai-notebook.flavorCPUId.minute.consumption',
   pricingType: order.cart.GenericProductPricingTypeEnum.consumption,
-  pricings: [
-    {
-      capacities: [order.cart.GenericProductPricingCapacitiesEnum.consumption],
-      commitment: 1,
-      description: 'description',
-      interval: 2,
-      intervalUnit: order.cart.DurationUnitEnum.day,
-      mode: 'mode',
-      mustBeCompleted: true,
-      phase: 14,
-      price: 1,
-      quantity: {
-        min: 1,
-      },
-      repeat: {
-        min: 1,
-      },
-      strategy: order.cart.GenericProductPricingStrategyEnum.stairstep,
-      tax: 1,
-      type: order.cart.GenericProductPricingTypeEnum.consumption,
-    },
-  ],
+  pricings: [mockedPricing],
   product: 'product',
 };
 
@@ -137,30 +95,9 @@ export const mockedCatalogStorageHour: order.publicOrder.Plan = {
     },
   ],
   invoiceName: 'invoiceName3',
-  planCode: 'databases.mongodb-plan-additionnal-storage-gb.hour.consumption',
+  planCode: 'ai-notebook.flavorCPUId.minute.consumption',
   pricingType: order.cart.GenericProductPricingTypeEnum.consumption,
-  pricings: [
-    {
-      capacities: [order.cart.GenericProductPricingCapacitiesEnum.consumption],
-      commitment: 1,
-      description: 'description',
-      interval: 2,
-      intervalUnit: order.cart.DurationUnitEnum.day,
-      mode: 'mode',
-      mustBeCompleted: true,
-      phase: 14,
-      price: 1,
-      quantity: {
-        min: 1,
-      },
-      repeat: {
-        min: 1,
-      },
-      strategy: order.cart.GenericProductPricingStrategyEnum.stairstep,
-      tax: 1,
-      type: order.cart.GenericProductPricingTypeEnum.consumption,
-    },
-  ],
+  pricings: [mockedPricing],
   product: 'product',
 };
 

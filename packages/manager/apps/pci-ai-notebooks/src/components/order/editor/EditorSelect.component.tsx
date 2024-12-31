@@ -3,6 +3,7 @@ import { UserRound, UsersRound } from 'lucide-react';
 import * as ai from '@/types/cloud/project/ai';
 import { cn } from '@/lib/utils';
 import RadioTile from '@/components/radio-tile/RadioTile.component';
+import { EDITOR_CONFIG } from './editor.constants';
 
 interface EditorsSelectProps {
   editors: ai.capabilities.notebook.Editor[];
@@ -24,6 +25,7 @@ const EditorsSelect = React.forwardRef<HTMLInputElement, EditorsSelectProps>(
       >
         {editors.map((editor) => (
           <RadioTile
+            data-testid={`editor-radio-tile-${editor.id}`}
             name="editor-select"
             key={editor.id}
             onChange={() => onChange(editor.id)}
@@ -34,12 +36,12 @@ const EditorsSelect = React.forwardRef<HTMLInputElement, EditorsSelectProps>(
               <div className="flex gap-2 items-center">
                 <h5
                   className={`capitalize ${
-                    editor.name === value ? 'font-bold' : 'font-normal'
+                    editor.id === value ? 'font-bold' : 'font-normal'
                   }`}
                 >
                   {editor.name}
                 </h5>
-                {editor.id === 'jupyterlabcollaborative' ? (
+                {editor.id === EDITOR_CONFIG.jupyterColab ? (
                   <UsersRound className="size-4" />
                 ) : (
                   <UserRound className="size-4" />

@@ -79,6 +79,7 @@ const FlavorsSelect = React.forwardRef<HTMLTableElement, FlavorsSelectProps>(
         <TableBody data-testid="flavor-select-table-body">
           {flavors.map((flavor) => (
             <TableRow
+              data-testid={`flavor-table-row-${flavor.id}`}
               tabIndex={0}
               onClick={() => clickInput(flavor.id)}
               onKeyDown={(e) => handleKeyDown(e, flavor.id)}

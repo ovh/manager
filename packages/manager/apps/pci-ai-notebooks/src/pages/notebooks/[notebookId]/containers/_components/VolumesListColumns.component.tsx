@@ -21,7 +21,7 @@ interface VolumesListColumnsProps {
 
 export const getColumns = ({ onDataSyncClicked }: VolumesListColumnsProps) => {
   const { t } = useTranslation(
-    'pci-ai-notebooks/notebooks/notebook/attached-data',
+    'pci-ai-notebooks/notebooks/notebook/containers',
   );
   const toast = useToast();
   const { notebook } = useNotebookData();

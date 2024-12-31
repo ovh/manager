@@ -1,9 +1,6 @@
 import { QueryObserverOptions, useQueries } from '@tanstack/react-query';
 import { useCallback, useEffect, useRef } from 'react';
-import {
-  getDatastoreContainer,
-  getDatastores,
-} from '@/data/api/ai/datastore.api';
+import { getDatastoreContainer } from '@/data/api/ai/datastore.api';
 import * as ai from '@/types/cloud/project/ai';
 import { Containers } from '@/types/orderFunnel';
 

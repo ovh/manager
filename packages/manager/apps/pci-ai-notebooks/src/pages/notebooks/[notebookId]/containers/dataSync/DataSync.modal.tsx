@@ -45,7 +45,7 @@ const DataSync = () => {
   const [volume, setVolume] = useState<ai.volume.VolumeStatus>();
   const { notebook, projectId } = useNotebookData();
   const { t } = useTranslation(
-    'pci-ai-notebooks/notebooks/notebook/attached-data',
+    'pci-ai-notebooks/notebooks/notebook/containers',
   );
   const navigate = useNavigate();
   const toast = useToast();

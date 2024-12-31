@@ -23,7 +23,7 @@ const FrameworksSelect = React.forwardRef<
   const fmkTypes = [...new Set([...mappedFramework.map((mr) => mr.type)])];
   return (
     <>
-      <div ref={ref}>
+      <div data-testid="fmk-select-container" ref={ref}>
         <Tabs
           defaultValue="0"
           onValueChange={(v) => setSelectedFrameworkTypeIndex(+v)}

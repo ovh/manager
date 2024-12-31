@@ -112,11 +112,11 @@ export default [
                 ],
               },
               {
-                path: 'attach-data',
-                id: 'notebook.attach-data',
+                path: 'containers',
+                id: 'notebook.containers',
                 ...lazyRouteConfig(() =>
                   import(
-                    '@/pages/notebooks/[notebookId]/attached-data/AttachedData.page'
+                    '@/pages/notebooks/[notebookId]/containers/Containers.page'
                   ),
                 ),
                 children: [
@@ -125,7 +125,7 @@ export default [
                     id: 'notebook.attach-data.data-sync',
                     ...lazyRouteConfig(() =>
                       import(
-                        '@/pages/notebooks/[notebookId]/attached-data/dataSync/DataSync.modal'
+                        '@/pages/notebooks/[notebookId]/containers/dataSync/DataSync.modal'
                       ),
                     ),
                   },
@@ -134,11 +134,20 @@ export default [
                     id: 'notebook.attach-data.data-sync.volume',
                     ...lazyRouteConfig(() =>
                       import(
-                        '@/pages/notebooks/[notebookId]/attached-data/dataSync/DataSync.modal'
+                        '@/pages/notebooks/[notebookId]/containers/dataSync/DataSync.modal'
                       ),
                     ),
                   },
                 ],
+              },
+              {
+                path: 'public-git',
+                id: 'notebook.public-git',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/notebooks/[notebookId]/public-git/PublicGit.page'
+                  ),
+                ),
               },
               {
                 path: 'logs',

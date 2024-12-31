@@ -3,7 +3,6 @@ import { useEffect, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 import { z } from 'zod';
-import { s } from 'vitest/dist/reporters-P7C2ytIv';
 import { useGetFlavor } from '@/hooks/api/ai/capabilities/useGetFlavor.hook';
 import { generateName } from '@/lib/nameGenerator';
 import { createFlavorPricingList } from '@/lib/priceFlavorHelper';
@@ -58,11 +57,18 @@ export function useOrderFunnel(
     ),
     volumes: z.array(
       z.object({
-        cache: z.boolean(),
-        dataStore: z.object({
-          alias: z.string(),
-          container: z.string(),
-        }),
+        cache: z.boolean().optional(),
+        dataStore: z
+          .object({
+            alias: z.string(),
+            container: z.string(),
+          })
+          .optional(),
+        publicGit: z
+          .object({
+            url: z.string(),
+          })
+          .optional(),
         mountPath: z.string(),
         permission: z.nativeEnum(ai.VolumePermissionEnum),
       }),

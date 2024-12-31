@@ -7,7 +7,7 @@ import {
   mockedDatastoreWithRegion,
 } from '@/__tests__/helpers/mocks/datastore';
 import { useGetDatastoresWithRegions } from './useGetDatastoresWithRegions.hook';
-import { mockedCapabilitiesRegion } from '@/__tests__/helpers/mocks/region';
+import { mockedCapabilitiesRegionGRA } from '@/__tests__/helpers/mocks/region';
 
 vi.mock('@/data/api/ai/datastore.api', () => ({
   getDatastores: vi.fn(),
@@ -16,7 +16,7 @@ vi.mock('@/data/api/ai/datastore.api', () => ({
 describe('useGetDatastoresWithRegions', () => {
   it('should return Datastores', async () => {
     const projectId = 'projectId';
-    const regions = [mockedCapabilitiesRegion];
+    const regions = [mockedCapabilitiesRegionGRA];
 
     vi.mocked(datastoreApi.getDatastores).mockResolvedValue([mockedDatastore]);
 
@@ -31,7 +31,7 @@ describe('useGetDatastoresWithRegions', () => {
       expect(result.current.data).toEqual([mockedDatastoreWithRegion]);
       expect(datastoreApi.getDatastores).toHaveBeenCalledWith({
         projectId,
-        region: mockedCapabilitiesRegion.id,
+        region: mockedCapabilitiesRegionGRA.id,
       });
     });
   });
