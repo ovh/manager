@@ -39,6 +39,7 @@ export const RECOMMIT_IMPRESSION_TRACKING_DATA = {
 
 export const MIGRATION_STATUS = {
   ONGOING: 'ongoing',
+  PLANNED: 'planned',
   AVAILABLE: 'available',
 };
 
@@ -66,6 +67,30 @@ export const VPS_RANGE_COMPARE_LINKS = {
   DEFAULT: 'https://www.ovhcloud.com/en/vps/compare/',
 };
 
+export const VPS_MIGRATION_FAQ_LINKS = {
+  FR: 'https://www.ovhcloud.com/fr/vps/vps-offer-migration/',
+  ES: 'https://www.ovhcloud.com/en-ie/vps/vps-offer-migration/',
+  DE: 'https://www.ovhcloud.com/en-ie/vps/vps-offer-migration/',
+  IE: 'https://www.ovhcloud.com/en-ie/vps/vps-offer-migration/',
+  IT: 'https://www.ovhcloud.com/en-ie/vps/vps-offer-migration/',
+  NL: 'https://www.ovhcloud.com/en-ie/vps/vps-offer-migration/',
+  PL: 'https://www.ovhcloud.com/en-ie/vps/vps-offer-migration/',
+  PT: 'https://www.ovhcloud.com/en-ie/vps/vps-offer-migration/',
+  GB: 'https://www.ovhcloud.com/en-gb/vps/vps-offer-migration/',
+  CA: 'https://www.ovhcloud.com/en-ca/vps/vps-offer-migration/',
+  QC: 'https://www.ovhcloud.com/fr-ca/vps/vps-offer-migration/',
+  MA: 'https://www.ovhcloud.com/fr-ma/vps/vps-offer-migration/',
+  SN: 'https://www.ovhcloud.com/fr-sn/vps/vps-offer-migration/',
+  TN: 'https://www.ovhcloud.com/fr-tn/vps/vps-offer-migration/',
+  AU: 'https://www.ovhcloud.com/en-au/vps/vps-offer-migration/',
+  SG: 'https://www.ovhcloud.com/en-sg/vps/vps-offer-migration/',
+  ASIA: 'https://www.ovhcloud.com/asia/vps/vps-offer-migration/',
+  IN: 'https://www.ovhcloud.com/en-in/vps/vps-offer-migration/',
+  WS: 'https://www.ovhcloud.com/en-ca/vps/vps-offer-migration/',
+  WE: 'https://www.ovhcloud.com/en-ie/vps/vps-offer-migration/',
+  DEFAULT: 'https://www.ovhcloud.com/en-ie/vps/vps-offer-migration/',
+};
+
 export default {
   DASHBOARD_FEATURES,
   MIGRATION_STATUS,
@@ -73,4 +98,5 @@ export default {
   SERVICE_TYPE,
   VPS_STATES,
   VPS_RANGE_COMPARE_LINKS,
+  VPS_MIGRATION_FAQ_LINKS,
 };
