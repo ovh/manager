@@ -49,6 +49,7 @@ import { isValidSavingsPlanName } from '../../utils/savingsPlan';
 import Commitment from '../Commitment/Commitment';
 import SimpleTile from '../SimpleTile/SimpleTile';
 import { TileTechnicalInfo } from '../TileTechnicalInfo/TileTechnicalInfo';
+import LegalLinks from '../LegalLinks/LegalLinks';
 
 const COMMON_SPACING = 'my-4';
 
@@ -251,6 +252,7 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
         <div className="flex flex-row  w-full overflow-x-auto">
           {resources.map((resource) => (
             <SimpleTile
+              className="py-5"
               key={resource.value.toString()}
               isActive={selectedResource === resource.value}
               onClick={() => onChangeResource(resource.value)}
@@ -320,7 +322,7 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
             name="quantity"
           />
         </OdsCard>
-        <OdsMessage className="my-4">
+        <OdsMessage className="my-4" isDismissible={false}>
           <OdsText className="inline-block">
             {t(
               isInstance
@@ -392,6 +394,7 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
         <label htmlFor="checkbox-label">
           <OdsText>{t('legal_checkbox')}</OdsText>
         </label>
+        <LegalLinks />
       </Block>
       <div className="flex mt-8">
         <OdsButton
