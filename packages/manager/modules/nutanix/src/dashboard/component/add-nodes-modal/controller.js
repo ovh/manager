@@ -2,9 +2,10 @@ import { MAX_NODES_BY_CLUSTER } from '../../../constants';
 
 export default class {
   /* @ngInject */
-  constructor($window, $translate) {
+  constructor($window, $translate, $locale) {
     this.$translate = $translate;
     this.$window = $window;
+    this.userLanguage = $locale.localeID.replace('_', '-');
     this.numberOfNodes = 1;
 
     this.defineCustomErrorMessages();
@@ -33,7 +34,10 @@ export default class {
   }
 
   get nodePriceText() {
-    return this.nodePricing.price.text;
+    return new Intl.NumberFormat(this.userLanguage, {
+      style: 'currency',
+      currency: this.nodePricing.currency,
+    }).format(this.nodePricing.priceInUcents / 1e8);
   }
 
   generateOrderExpressLink() {
