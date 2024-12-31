@@ -44,6 +44,34 @@ export const EXCHANGE_CONFIG_URL = {
 export const EXCHANGE_CONFIG = {
   URLS: {
     GUIDES: {
+      BACKUP: {
+        FR:
+          'https://help.ovhcloud.com/csm/fr-exchange-veeam-backup?id=kb_article_view&sysparm_article=KB0065635',
+        ES:
+          'https://help.ovhcloud.com/csm/es-es-exchange-veeam-backup?id=kb_article_view&sysparm_article=KB0065716',
+        DE:
+          'https://help.ovhcloud.com/csm/de-exchange-veeam-backup?id=kb_article_view&sysparm_article=KB0065715',
+        IE:
+          'https://help.ovhcloud.com/csm/en-ie-exchange-veeam-backup?id=kb_article_view&sysparm_article=KB0065713',
+        IT:
+          'https://help.ovhcloud.com/csm/it-exchange-veeam-backup?id=kb_article_view&sysparm_article=KB0065718',
+        PL:
+          'https://help.ovhcloud.com/csm/pl-exchange-veeam-backup?id=kb_article_view&sysparm_article=KB0065717',
+        PT:
+          'https://help.ovhcloud.com/csm/pt-exchange-veeam-backup?id=kb_article_view&sysparm_article=KB0065714',
+        GB:
+          'https://help.ovhcloud.com/csm/en-gb-exchange-veeam-backup?id=kb_article_view&sysparm_article=KB0065712',
+        MA:
+          'https://help.ovhcloud.com/csm/fr-exchange-veeam-backup?id=kb_article_view&sysparm_article=KB0065635',
+        SN:
+          'https://help.ovhcloud.com/csm/fr-exchange-veeam-backup?id=kb_article_view&sysparm_article=KB0065635',
+        TN:
+          'https://help.ovhcloud.com/csm/fr-exchange-veeam-backup?id=kb_article_view&sysparm_article=KB0065635',
+        WE:
+          'https://help.ovhcloud.com/csm/en-ie-exchange-veeam-backup?id=kb_article_view&sysparm_article=KB0065713',
+        DEFAULT:
+          'https://help.ovhcloud.com/csm/en-ie-exchange-veeam-backup?id=kb_article_view&sysparm_article=KB0065713',
+      },
       RESOURCES: {
         CA: '',
         CZ: '',
