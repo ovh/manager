@@ -50,5 +50,6 @@ export default {
     vncDisabled: '<',
     hourlyPriceInformation: '<',
     isInstanceLocalZoneBackupAvailable: '<',
+    isInstanceLocalZoneAutoBackupAvailable: '<',
   },
 };
