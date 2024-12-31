@@ -3,7 +3,7 @@ import { vi } from 'vitest';
 
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import * as capabilitiesApi from '@/data/api/ai/capabilities.api';
-import { mockedCapabilitiesRegion } from '@/__tests__/helpers/mocks/region';
+import { mockedCapabilitiesRegionGRA } from '@/__tests__/helpers/mocks/region';
 import { useGetRegions } from './useGetRegions.hook';
 
 vi.mock('@/data/api/ai/capabilities.api', () => ({
@@ -15,7 +15,7 @@ describe('useGetRegions', () => {
     const projectId = 'projectId';
 
     vi.mocked(capabilitiesApi.getRegions).mockResolvedValue([
-      mockedCapabilitiesRegion,
+      mockedCapabilitiesRegionGRA,
     ]);
 
     const { result } = renderHook(() => useGetRegions(projectId), {
@@ -24,7 +24,7 @@ describe('useGetRegions', () => {
 
     await waitFor(() => {
       expect(result.current.isSuccess).toBe(true);
-      expect(result.current.data).toEqual([mockedCapabilitiesRegion]);
+      expect(result.current.data).toEqual([mockedCapabilitiesRegionGRA]);
       expect(capabilitiesApi.getRegions).toHaveBeenCalledWith({
         projectId,
       });

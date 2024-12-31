@@ -6,7 +6,7 @@ import {
   Plus,
   TerminalSquare,
 } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 import * as ai from '@/types/cloud/project/ai';
 import { order } from '@/types/catalog';
@@ -81,6 +81,7 @@ const OrderFunnel = ({
     suggestions,
   );
   const { t } = useTranslation('pci-ai-notebooks/notebooks/create');
+  const { projectId } = useParams();
   const [showAdvancedConfiguration, setShowAdvancedConfiguration] = useState(
     false,
   );
@@ -122,10 +123,10 @@ const OrderFunnel = ({
   });
 
   const getCliCommand = () => {
-    const notebookInfos: ai.notebook.NotebookSpecInput = getNotebookSpec(
+    const notebookInfo: ai.notebook.NotebookSpecInput = getNotebookSpec(
       model.result,
     );
-    getCommand(notebookInfos);
+    getCommand({ projectId, notebookInfo });
   };
 
   const onSubmit = model.form.handleSubmit(

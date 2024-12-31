@@ -27,7 +27,7 @@ const CliCodeBlock = ({
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col" data-testid="cli-code-bloc-container">
       <div className="flex flex-row items-center p-2 pr-6 gap-4">
         <p>{title}</p>
         <Button
@@ -42,6 +42,7 @@ const CliCodeBlock = ({
       </div>
       <ScrollArea className={size}>
         <pre
+          data-testid="code-block-pre"
           style={{ wordBreak: 'break-word' }}
           className="p-4 whitespace-pre-wrap rounded-md bg-[#122844] text-white"
         >

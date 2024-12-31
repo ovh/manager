@@ -48,7 +48,11 @@ const Dashboard = () => {
     const filteredVolume: ai.volume.Volume[] = notebook.spec.volumes.filter(
       (vol) => vol.mountPath !== '/workspace',
     );
-    getCommand({ ...notebook.spec, volumes: filteredVolume });
+    const notebookInfo: ai.notebook.NotebookSpecInput = {
+      ...notebook.spec,
+      volumes: filteredVolume,
+    };
+    getCommand({ projectId, notebookInfo });
   }, [notebook]);
 
   return (

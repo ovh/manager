@@ -28,6 +28,7 @@ export async function handleSelectOption(
       expect(screen.getByText(optionLabel)).toBeInTheDocument();
     });
   });
+
   // Select the option
   act(() => {
     const optionsElements = screen.getAllByRole('option');
