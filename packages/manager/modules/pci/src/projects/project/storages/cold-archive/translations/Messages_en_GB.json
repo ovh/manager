@@ -3,7 +3,7 @@
   "pci_projects_project_storages_cold_archive_description": "Cold Archive storage provides the most cost-effective, secure and long-term storage for data that is rarely accessed.",
   "pci_projects_project_storages_cold_archive_price_link": "View the prices here.",
   "pci_projects_project_storages_cold_archive_tabs_tab_archives": "My containers",
-  "pci_projects_project_storages_cold_archive_tabs_tab_users": "Object Storage Users",
+  "pci_projects_project_storages_cold_archive_tabs_tab_users": "Object Storage users",
   "pci_projects_project_storages_cold_archives_guides_storage-backup_title": "All storage and backup guides",
   "pci_projects_project_storages_cold_archives_guides_storage-backup_description": "All storage and backup guides",
   "pci_projects_project_storages_cold_archives_guides_public-cloud-create-project_title": "Create a public cloud project",
@@ -36,7 +36,7 @@
   "pci_projects_project_storages_cold_archive_container_manage": "Monitor your containers via the OVHcloud Control Panel, provided with Cold Archive",
   "pci_projects_project_storages_cold_archive_container_manage_documentation_link": "Getting started configuring your CLI",
   "pci_projects_project_storages_cold_archive_container_manage_description_1": "Archiving operations, such as downloading, restoring or deleting your data, are carried out via the command line.",
-  "pci_projects_project_storages_cold_archive_container_manage_description_2": "For example, to download data, such as photos, videos, and other documents, you must use the CLI, SDK, or S3-compatible API.",
+  "pci_projects_project_storages_cold_archive_container_manage_description_2": "For example, to download data, such as photos, videos, and other documents, you need to use the CLI, SDK, or S3-compatible API.",
   "pci_projects_project_storages_cold_archive_containers_container_manage_endpoint_label": "Endpoint",
   "pci_projects_project_storages_cold_archive_containers_container_manage_region_label": "Region",
   "pci_projects_project_storages_cold_archive_containers_container_manage_close_label": "Close"
