@@ -108,6 +108,7 @@ export default function ActionsCell({
         variant={ODS_BUTTON_VARIANT.outline}
         size={ODS_BUTTON_SIZE.sm}
         isDisabled={!editable || undefined}
+        label="action-menu"
       />
       <MenuItems
         pciUrl={pciUrl}
