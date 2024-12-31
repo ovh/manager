@@ -6,6 +6,12 @@ import '@testing-library/jest-dom';
 
 import { render } from '@/utils/testProvider';
 
+vi.mock('@ovh-ux/manager-react-components', () => ({
+  useCatalogPrice: vi.fn().mockReturnValue({
+    getTextPrice: vi.fn().mockReturnValue('€10.00'),
+  }),
+}));
+
 const defaultProps = {
   duration: 1,
   price: '1',
@@ -14,19 +20,6 @@ const defaultProps = {
   onClick: vi.fn(),
   quantity: 1,
 };
-
-vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
-  const mod = await importOriginal<
-    typeof import('@ovh-ux/manager-react-components')
-  >();
-
-  return {
-    ...mod,
-    useCatalogPrice: vi
-      .fn()
-      .mockReturnValue({ getTextPrice: vi.fn().mockReturnValue('€10.00') }),
-  };
-});
 
 const setupSpecTest = async (props = defaultProps) =>
   render(<Commitment {...props} />);

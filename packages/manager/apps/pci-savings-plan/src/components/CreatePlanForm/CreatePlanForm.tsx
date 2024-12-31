@@ -1,6 +1,5 @@
-import { QuantitySelector, usePciUrl } from '@ovh-ux/manager-pci-common';
+import { usePciUrl } from '@ovh-ux/manager-pci-common';
 import { Subtitle } from '@ovh-ux/manager-react-components';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import {
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
@@ -48,7 +47,6 @@ import {
 import { formatDate } from '../../utils/formatter/date';
 import { isValidSavingsPlanName } from '../../utils/savingsPlan';
 import Commitment from '../Commitment/Commitment';
-import LegalLinks from '../LegalLinks/LegalLinks';
 import SimpleTile from '../SimpleTile/SimpleTile';
 import { TileTechnicalInfo } from '../TileTechnicalInfo/TileTechnicalInfo';
 
@@ -332,7 +330,7 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
             {isInstance && (
               <OdsLink
                 href={`${pciUrl}/quota`}
-                target={OdsHTMLAnchorElementTarget._blank}
+                target="_blank"
                 icon={ODS_ICON_NAME.externalLink}
                 label={t('quantity_banner_instance_link')}
               />
@@ -394,10 +392,10 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
         <label htmlFor="checkbox-label">
           <OdsText>{t('legal_checkbox')}</OdsText>
         </label>
-        <LegalLinks />
       </Block>
       <div className="flex mt-8">
         <OdsButton
+          data-testid="cta-cancel-button"
           label={t('cta_cancel')}
           className="mr-4"
           variant={ODS_BUTTON_VARIANT.outline}
@@ -405,6 +403,7 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
         />
 
         <OdsButton
+          data-testid="cta-plan-button"
           label={t('cta_plan')}
           isDisabled={!isButtonActive || undefined}
           onClick={onCreateSavingsPlan}
