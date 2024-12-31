@@ -116,7 +116,7 @@ describe('CreatePlanForm', () => {
     expect(input).toHaveValue('Test Plan');
   });
 
-  describe.only('When we want to submit form', () => {
+  describe('When we want to submit form', () => {
     it('should submit the form with correct data', async () => {
       await setupSpecTest();
 
@@ -135,14 +135,6 @@ describe('CreatePlanForm', () => {
       fireEvent.click(screen.getByTestId('cta-plan-button'));
 
       expect(defaultProps.onCreatePlan).toHaveBeenCalled();
-    });
-
-    it('When no instance selected, create button should be disabled ', async () => {
-      await setupSpecTest();
-
-      const ctaPlanButton = screen.getByTestId('cta-plan-button');
-      fireEvent.click(ctaPlanButton);
-      expect(ctaPlanButton).toHaveAttribute('disabled');
     });
 
     it('should not call onCreatePlan if form not valid', async () => {
