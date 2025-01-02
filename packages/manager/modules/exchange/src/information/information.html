@@ -243,7 +243,7 @@
                 >
                     <oui-tile-description>
                         <a
-                            class="oui-link"
+                            class="oui-link_icon"
                             data-ng-href="{{ctrl.displayGuides}}"
                             target="_blank"
                             rel="noopener"
@@ -256,7 +256,32 @@
                                 data-translate="exchange_dashboard_guides_url"
                             ></span>
                             <span
-                                class="fa fa-external-link"
+                                class="oui-icon oui-icon-external-link"
+                                aria-hidden="true"
+                            ></span>
+                        </a>
+                    </oui-tile-description>
+                </oui-tile-definition>
+            </oui-tile>
+
+            <oui-tile
+                class="h-100 mb-5"
+                data-ng-if=":: ctrl.canVeeamBackup()"
+                data-heading="{{ :: 'exchange_tab_INFORMATIONS_backup' | translate }}"
+            >
+                <oui-tile-definition>
+                    <oui-tile-description class="pt-2">
+                        <a
+                            class="oui-link_icon"
+                            data-ng-href="{{ ctrl.backupGuideUrl }}"
+                            target="_blank"
+                            rel="noopener"
+                        >
+                            <span
+                                data-translate="exchange_tab_INFORMATIONS_backup_guide_title"
+                            ></span>
+                            <span
+                                class="oui-icon oui-icon-external-link"
                                 aria-hidden="true"
                             ></span>
                         </a>
