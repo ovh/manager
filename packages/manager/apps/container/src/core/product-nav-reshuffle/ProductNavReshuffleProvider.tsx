@@ -6,6 +6,7 @@ import { Node } from '@/container/nav-reshuffle/sidebar/navigation-tree/node';
 import { MOBILE_WIDTH_RESOLUTION } from '@/container/common/constants';
 import { useMediaQuery } from 'react-responsive';
 import useOnboarding, { ONBOARDING_OPENED_STATE_ENUM } from '../onboarding';
+import { useLocation } from 'react-router-dom';
 
 type Props = {
   children: JSX.Element | JSX.Element[];
@@ -15,6 +16,7 @@ export const ProductNavReshuffleProvider = ({
   children = null,
 }: Props): JSX.Element => {
   let pnrContext = useContext(ProductNavReshuffleContext);
+  const location = useLocation();
 
   const [currentNavigationNode, setCurrentNavigationNode] = useState<Node>(null);
   const [navigationTree, setNavigationTree] = useState({});
@@ -23,6 +25,8 @@ export const ProductNavReshuffleProvider = ({
   const [isMobile, setIsMobile] = useState(useMediaQuery({
     query: `(max-width: ${MOBILE_WIDTH_RESOLUTION}px)`,
   }));
+  const [isAnimated, setIsAnimated] = useState(false);
+  const [isLocationChangesOnce, setIsLocationChangesOnce] = useState(false);
 
   const onboarding = useOnboarding();
 
@@ -89,6 +93,12 @@ export const ProductNavReshuffleProvider = ({
     }
   }, []);
 
+  useEffect(() => {
+    if (isAnimated) return;
+    if (isLocationChangesOnce) setIsAnimated(true);
+    setIsLocationChangesOnce(true);
+  }, [location])
+
   pnrContext = {
     // onboarding
     onboardingOpenedState,
@@ -109,6 +119,8 @@ export const ProductNavReshuffleProvider = ({
     navigationTree,
     setNavigationTree,
     isMobile,
+    isAnimated,
+    setIsAnimated
   };
 
   return (
