@@ -22,7 +22,7 @@ export const useUpdateVcdOrganizationDetails = ({
 }) => {
   const queryClient = useQueryClient();
 
-  const { mutateAsync: updateDetails, error, isError } = useMutation({
+  const { mutateAsync: updateDetails, ...mutation } = useMutation({
     mutationKey: updateVcdOrganizationDetailsMutationKey(id),
     mutationFn: ({ details }: UpdateVcdOrganizationDetailsParams) =>
       updateVcdOrganizationDetails({ id, details }),
@@ -40,5 +40,5 @@ export const useUpdateVcdOrganizationDetails = ({
     onError: (result: ApiError) => onError?.(result),
   });
 
-  return { updateDetails, error, isError };
+  return { updateDetails, ...mutation };
 };
