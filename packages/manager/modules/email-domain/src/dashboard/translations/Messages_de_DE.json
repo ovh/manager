@@ -369,5 +369,7 @@
   "email_tab_popover_delegate_info": "Liste der vergebenen Rechte für das Konto <strong>{{t0}}</strong>",
   "email_tab_popover_delegate_format_error": "Ungültiges Format Kundenkennung",
   "emails_create_account": "Account erstellen",
-  "emails_create_account_new_window": "(Neues Fenster)"
+  "emails_create_account_new_window": "(Neues Fenster)",
+  "emails_general_information_diagnostic": "Diagnose",
+  "emails_general_information_diagnostic_dkim": "DKIM"
 }

@@ -18,6 +18,12 @@ import {
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useMutation } from '@tanstack/react-query';
 import { ApiError } from '@ovh-ux/manager-core-api';
+import {
+  ButtonType,
+  PageLocation,
+  PageType,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { useGenerateUrl, useOrganization, usePlatform } from '@/hooks';
 import Modal from '@/components/Modals/Modal';
 import {
@@ -28,16 +34,22 @@ import {
 } from '@/api/organization';
 import queryClient from '@/queryClient';
 import {
-  checkValidityField,
-  checkValidityForm,
-  FormTypeInterface,
-} from '@/utils';
+  ADD_ORGANIZATION,
+  CANCEL,
+  CONFIRM,
+  EDIT_ORGANIZATION,
+} from '@/tracking.constant';
+import { FormTypeInterface, useForm } from '@/hooks/useForm';
 
 export default function ModalAddAndEditOrganization() {
   const { t } = useTranslation('organizations/addAndEdit');
+  const { trackClick, trackPage } = useOvhTracking();
   const { platformId } = usePlatform();
   const [searchParams] = useSearchParams();
   const editOrganizationId = searchParams?.get('editOrganizationId');
+  const trackingName = editOrganizationId
+    ? EDIT_ORGANIZATION
+    : ADD_ORGANIZATION;
   const { addError, addSuccess } = useNotifications();
   const navigate = useNavigate();
   const goBackUrl = useGenerateUrl('..', 'path');
@@ -45,27 +57,22 @@ export default function ModalAddAndEditOrganization() {
     navigate(goBackUrl);
   };
 
-  const [form, setForm] = useState<FormTypeInterface>({
+  const { form, setForm, isFormValid, setValue } = useForm({
     name: {
       value: '',
       defaultValue: '',
-      touched: false,
-      hasError: false,
       required: true,
       validate: /^.+$/,
     },
     label: {
       value: '',
       defaultValue: '',
-      touched: false,
-      hasError: false,
       required: true,
       validate: /^.{1,12}$/,
     },
   });
 
   const [isLoading, setIsLoading] = useState(!!editOrganizationId);
-  const [isFormValid, setIsFormValid] = useState(false);
 
   const {
     data: editOrganizationDetail,
@@ -79,6 +86,10 @@ export default function ModalAddAndEditOrganization() {
         : postZimbraPlatformOrganization(platformId, params);
     },
     onSuccess: () => {
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: trackingName,
+      });
       addSuccess(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t(
@@ -91,6 +102,10 @@ export default function ModalAddAndEditOrganization() {
       );
     },
     onError: (error: ApiError) => {
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: trackingName,
+      });
       addError(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t(
@@ -118,19 +133,24 @@ export default function ModalAddAndEditOrganization() {
       name: { value: name },
       label: { value: label },
     } = form;
+
+    trackClick({
+      location: PageLocation.popup,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [trackingName, CONFIRM],
+    });
     addOrEditOrganization({ name, label });
   };
 
-  const handleFormChange = (name: string, value: string) => {
-    const newForm: FormTypeInterface = form;
-    newForm[name] = {
-      ...form[name],
-      value,
-      touched: true,
-      hasError: !checkValidityField(name, value, form),
-    };
-    setForm((oldForm) => ({ ...oldForm, ...newForm }));
-    setIsFormValid(checkValidityForm(form));
+  const handleCancelClick = () => {
+    trackClick({
+      location: PageLocation.popup,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [trackingName, CANCEL],
+    });
+    onClose();
   };
 
   useEffect(() => {
@@ -156,6 +176,10 @@ export default function ModalAddAndEditOrganization() {
       onClose={onClose}
       isDismissible
       isLoading={isLoading}
+      secondaryButton={{
+        label: t('zimbra_organization_add_cancel'),
+        action: handleCancelClick,
+      }}
       primaryButton={{
         testid: 'confirm-btn',
         variant: ODS_BUTTON_VARIANT.default,
@@ -202,13 +226,13 @@ export default function ModalAddAndEditOrganization() {
             hasError={form.name.hasError}
             value={form.name.value}
             defaultValue={form.name.defaultValue}
+            isRequired={form.name.required}
             onOdsBlur={({ target: { name, value } }) =>
-              handleFormChange(name, value.toString())
+              setValue(name, value.toString(), true)
             }
             onOdsChange={({ detail: { name, value } }) => {
-              handleFormChange(name, String(value));
+              setValue(name, String(value));
             }}
-            isRequired
           ></OdsInput>
         </OdsFormField>
         <OdsFormField
@@ -250,13 +274,13 @@ export default function ModalAddAndEditOrganization() {
             hasError={form.label.hasError}
             value={form.label.value}
             defaultValue={form.label.defaultValue}
+            isRequired={form.label.required}
             onOdsBlur={({ target: { name, value } }) =>
-              handleFormChange(name, value.toString())
+              setValue(name, value.toString(), true)
             }
             onOdsChange={({ detail: { name, value } }) =>
-              handleFormChange(name, String(value))
+              setValue(name, String(value))
             }
-            isRequired
           ></OdsInput>
           <OdsText class="block" preset={ODS_TEXT_PRESET.caption} slot="helper">
             {t('zimbra_organization_add_form_input_label_helper', {

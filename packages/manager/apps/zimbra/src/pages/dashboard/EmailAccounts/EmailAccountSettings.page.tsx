@@ -21,6 +21,12 @@ import {
 } from '@ovhcloud/ods-components';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useMutation } from '@tanstack/react-query';
+import {
+  ButtonType,
+  PageLocation,
+  PageType,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { useGenerateUrl, usePlatform } from '@/hooks';
 import {
   AccountBodyParamsType,
@@ -30,14 +36,15 @@ import {
   putZimbraPlatformAccount,
 } from '@/api/account';
 import { DomainType } from '@/api/domain';
-import {
-  ACCOUNT_REGEX,
-  checkValidityField,
-  checkValidityForm,
-  FormTypeInterface,
-  PASSWORD_REGEX,
-} from '@/utils';
+import { ACCOUNT_REGEX, PASSWORD_REGEX } from '@/utils';
 import queryClient from '@/queryClient';
+import {
+  ADD_EMAIL_ACCOUNT,
+  CANCEL,
+  CONFIRM,
+  EDIT_EMAIL_ACCOUNT,
+} from '@/tracking.constant';
+import { FormTypeInterface, useForm } from '@/hooks/useForm';
 
 export default function EmailAccountSettings({
   domainList = [],
@@ -46,65 +53,53 @@ export default function EmailAccountSettings({
   domainList: DomainType[];
   editAccountDetail: AccountType;
 }>) {
+  const { trackClick, trackPage } = useOvhTracking();
   const { t } = useTranslation('accounts/addAndEdit');
   const navigate = useNavigate();
   const { addError, addSuccess } = useNotifications();
   const { platformId } = usePlatform();
   const [searchParams] = useSearchParams();
   const editEmailAccountId = searchParams.get('editEmailAccountId');
-  const [isFormValid, setIsFormValid] = useState(false);
+  const trackingName = editAccountDetail
+    ? EDIT_EMAIL_ACCOUNT
+    : ADD_EMAIL_ACCOUNT;
   const [selectedDomainOrganization, setSelectedDomainOrganization] = useState(
     '',
   );
   const goBackUrl = useGenerateUrl('..', 'path');
 
-  const goBack = () => {
+  const onClose = () => {
     return navigate(goBackUrl);
   };
 
-  const [form, setForm] = useState<FormTypeInterface>({
+  const { form, isFormValid, setValue, setForm } = useForm({
     ...{
       account: {
         value: '',
         defaultValue: '',
-        touched: false,
-        hasError: false,
         required: true,
         validate: ACCOUNT_REGEX,
       },
       domain: {
         value: '',
         defaultValue: '',
-        touched: false,
-        hasError: false,
         required: true,
       },
       lastName: {
         value: '',
         defaultValue: '',
-        touched: false,
-        hasError: false,
-        required: false,
       },
       firstName: {
         value: '',
         defaultValue: '',
-        touched: false,
-        hasError: false,
-        required: false,
       },
       displayName: {
         value: '',
         defaultValue: '',
-        touched: false,
-        hasError: false,
-        required: false,
       },
       password: {
         value: '',
         defaultValue: '',
-        touched: false,
-        hasError: false,
         required: !editEmailAccountId,
         validate: PASSWORD_REGEX,
       },
@@ -113,9 +108,6 @@ export default function EmailAccountSettings({
       description: {
         value: '',
         defaultValue: '',
-        touched: false,
-        hasError: false,
-        required: false,
       },
     }),
   });
@@ -141,23 +133,11 @@ export default function EmailAccountSettings({
     }
   }, []);
 
-  const handleFormChange = (name: string, value: string) => {
-    const newForm: FormTypeInterface = form;
-    newForm[name] = {
-      ...form[name],
-      value,
-      touched: true,
-      hasError: !checkValidityField(name, value, form),
-    };
-    setForm((oldForm) => ({ ...oldForm, ...newForm }));
-    setIsFormValid(checkValidityForm(form));
-  };
-
   const handleDomainChange = (selectedDomain: string) => {
     const organizationLabel = domainList.find(
       ({ currentState }) => currentState.name === selectedDomain,
     )?.currentState.organizationLabel;
-    handleFormChange('domain', selectedDomain);
+    setValue('domain', selectedDomain);
     setSelectedDomainOrganization(organizationLabel);
   };
 
@@ -168,6 +148,10 @@ export default function EmailAccountSettings({
         : postZimbraPlatformAccount(platformId, params);
     },
     onSuccess: () => {
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: trackingName,
+      });
       addSuccess(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t(
@@ -180,6 +164,10 @@ export default function EmailAccountSettings({
       );
     },
     onError: (error: ApiError) => {
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: trackingName,
+      });
       addError(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t(
@@ -198,17 +186,24 @@ export default function EmailAccountSettings({
       queryClient.invalidateQueries({
         queryKey: getZimbraPlatformAccountsQueryKey(platformId),
       });
-      goBack();
+      onClose();
     },
   });
 
   const handleSaveClick = () => {
+    trackClick({
+      location: PageLocation.page,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [trackingName, CONFIRM],
+    });
+
     const {
       account: { value: account },
       domain: { value: domain },
     } = form;
     let dataBody = {
-      email: `${account}@${domain}`,
+      email: `${account}@${domain}`.toLowerCase(),
     };
     Object.entries(form).forEach(([key, { value }]) => {
       if (
@@ -223,6 +218,16 @@ export default function EmailAccountSettings({
     });
 
     addOrEditEmailAccount(dataBody);
+  };
+
+  const handleCancelClick = () => {
+    trackClick({
+      location: PageLocation.page,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [trackingName, CANCEL],
+    });
+    onClose();
   };
 
   return (
@@ -244,10 +249,10 @@ export default function EmailAccountSettings({
             defaultValue={form.account.defaultValue}
             isRequired={form.account.required}
             onOdsBlur={({ target: { name, value } }) =>
-              handleFormChange(name, value.toString())
+              setValue(name, value.toString(), true)
             }
             onOdsChange={({ detail: { name, value } }) => {
-              handleFormChange(name, String(value));
+              setValue(name, String(value));
             }}
             className="w-1/2"
             data-testid="input-account"
@@ -315,10 +320,10 @@ export default function EmailAccountSettings({
             defaultValue={form.lastName.defaultValue}
             isRequired={form.lastName.required}
             onOdsBlur={({ target: { name, value } }) =>
-              handleFormChange(name, value.toString())
+              setValue(name, value.toString(), true)
             }
             onOdsChange={({ detail: { name, value } }) => {
-              handleFormChange(name, String(value));
+              setValue(name, String(value));
             }}
           ></OdsInput>
         </OdsFormField>
@@ -335,10 +340,10 @@ export default function EmailAccountSettings({
             defaultValue={form.firstName.defaultValue}
             isRequired={form.firstName.required}
             onOdsBlur={({ target: { name, value } }) =>
-              handleFormChange(name, value.toString())
+              setValue(name, value.toString(), true)
             }
             onOdsChange={({ detail: { name, value } }) => {
-              handleFormChange(name, String(value));
+              setValue(name, String(value));
             }}
           ></OdsInput>
         </OdsFormField>
@@ -357,10 +362,10 @@ export default function EmailAccountSettings({
             defaultValue={form.displayName.defaultValue}
             isRequired={form.displayName.required}
             onOdsBlur={({ target: { name, value } }) =>
-              handleFormChange(name, value.toString())
+              setValue(name, value.toString(), true)
             }
             onOdsChange={({ detail: { name, value } }) => {
-              handleFormChange(name, String(value));
+              setValue(name, String(value));
             }}
           ></OdsInput>
         </OdsFormField>
@@ -381,10 +386,10 @@ export default function EmailAccountSettings({
               value={form.description.value}
               defaultValue={form.description.defaultValue}
               onOdsBlur={({ target: { name, value } }) =>
-                handleFormChange(name, value.toString())
+                setValue(name, value.toString(), true)
               }
               onOdsChange={({ detail: { name, value } }) => {
-                handleFormChange(name, value);
+                setValue(name, value);
               }}
             ></OdsTextarea>
           </OdsFormField>
@@ -405,10 +410,10 @@ export default function EmailAccountSettings({
             defaultValue={form.password.defaultValue}
             hasError={form.password.hasError}
             onOdsBlur={({ target: { name, value } }) =>
-              handleFormChange(name, value.toString())
+              setValue(name, value.toString(), true)
             }
             onOdsChange={({ detail: { name, value } }) => {
-              handleFormChange(name, String(value));
+              setValue(name, String(value));
             }}
             data-testid="input-password"
           ></OdsPassword>
@@ -447,7 +452,7 @@ export default function EmailAccountSettings({
         {editAccountDetail && (
           <OdsButton
             slot="actions"
-            onClick={goBack}
+            onClick={handleCancelClick}
             color={ODS_BUTTON_COLOR.primary}
             variant={ODS_BUTTON_VARIANT.outline}
             label={t('zimbra_account_add_button_cancel')}

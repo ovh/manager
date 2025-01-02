@@ -27,7 +27,12 @@ import {
   ODS_ICON_NAME,
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import {
+  ButtonType,
+  PageLocation,
+  ShellContext,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { getExpressOrderURL } from '@ovh-ux/manager-module-order';
 import Loading from '@/components/Loading/Loading';
 import { useOrderCatalog } from '@/hooks/useOrderCatalog';
@@ -37,12 +42,13 @@ import {
   generateOrderURL,
   whitelistedPlanCodes,
 } from '@/api/order';
-import {
-  checkValidityField,
-  checkValidityForm,
-  FormTypeInterface,
-} from '@/utils';
 import { usePlatform } from '@/hooks';
+import {
+  CANCEL,
+  CONFIRM,
+  ORDER_ZIMBRA_EMAIL_ACCOUNT,
+} from '@/tracking.constant';
+import { FormTypeInterface, useForm } from '@/hooks/useForm';
 
 type OrderGeneratedTileProps = {
   orderURL: string;
@@ -103,6 +109,7 @@ function OrderCatalogForm({
   locale,
   orderBaseURL,
 }: Readonly<OrderCatalogFormProps>) {
+  const { trackClick } = useOvhTracking();
   const { t } = useTranslation('accounts/order');
   const { platformId } = usePlatform();
   const [orderURL, setOrderURL] = useState('');
@@ -123,17 +130,14 @@ function OrderCatalogForm({
       });
   }, [catalog]);
 
-  const [isFormValid, setIsFormValid] = useState(false);
-  const [form, setForm] = useState<FormTypeInterface>({
+  const { form, isFormValid, setValue } = useForm({
     consent: {
       value: '',
-      touched: false,
       required: true,
       validate: /checked/,
     },
     commitment: {
       value: '1',
-      touched: false,
       required: true,
     },
     ...plans.reduce<FormTypeInterface>((prev, curr) => {
@@ -141,31 +145,23 @@ function OrderCatalogForm({
         ...prev,
         [curr.planCode]: {
           value: '0',
-          required: false,
-          touched: false,
           validate: (value) => Number(value) >= 0 && Number(value) <= 1000,
         },
       };
     }, {}),
   });
 
-  const handleFormChange = (name: string, value: string) => {
-    const newForm: FormTypeInterface = form;
-    newForm[name] = {
-      required: true,
-      ...form[name],
-      value,
-      touched: true,
-      hasError: !checkValidityField(name, value, form),
-    };
-    const atLeastOneProductSelected = Object.entries(newForm)
-      .filter(([key]) => whitelistedPlanCodes.includes(key as ZimbraPlanCodes))
-      .some(([, item]) => Number(item.value) > 0);
-    setForm((oldForm) => ({ ...oldForm, ...newForm }));
-    setIsFormValid(checkValidityForm(form) && atLeastOneProductSelected);
-  };
+  const atLeastOneProductSelected = Object.entries(form)
+    .filter(([key]) => whitelistedPlanCodes.includes(key as ZimbraPlanCodes))
+    .some(([, item]) => Number(item.value) > 0);
 
   const handleConfirm = () => {
+    trackClick({
+      location: PageLocation.page,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [ORDER_ZIMBRA_EMAIL_ACCOUNT, CONFIRM, form.commitment.value],
+    });
     const products = Object.entries(form)
       .filter(([key]) => whitelistedPlanCodes.includes(key as ZimbraPlanCodes))
       .map(([key, { value }]) => {
@@ -213,7 +209,7 @@ function OrderCatalogForm({
               value={quantity || 0}
               onOdsChange={({ detail }) => {
                 const { name, value } = detail;
-                handleFormChange(name, value.toString());
+                setValue(name, value.toString());
               }}
             ></OdsQuantity>
             <Price
@@ -239,7 +235,7 @@ function OrderCatalogForm({
               value="1"
               isChecked={form.commitment.value === '1'}
               onOdsChange={(event) =>
-                handleFormChange('commitment', event.detail.value)
+                setValue('commitment', event.detail.value)
               }
             ></OdsRadio>
             <label htmlFor="1-month" className="flex flex-col w-full">
@@ -257,7 +253,7 @@ function OrderCatalogForm({
               isChecked={form.commitment.value === '12'}
               isDisabled={true}
               onOdsChange={(event) =>
-                handleFormChange('commitment', event.detail.value)
+                setValue('commitment', event.detail.value)
               }
             ></OdsRadio>
             <label htmlFor="12-month" className="flex flex-col w-full">
@@ -279,7 +275,7 @@ function OrderCatalogForm({
             data-testid="consent"
             isChecked={form.consent.value === 'checked'}
             onOdsChange={() =>
-              handleFormChange(
+              setValue(
                 'consent',
                 form.consent.value === 'checked' ? '' : 'checked',
               )
@@ -295,7 +291,7 @@ function OrderCatalogForm({
       <OdsButton
         className="w-fit"
         color={ODS_BUTTON_COLOR.primary}
-        isDisabled={!isFormValid ? true : null}
+        isDisabled={!isFormValid || !atLeastOneProductSelected}
         onClick={handleConfirm}
         data-testid="order-account-confirm-btn"
         label={t('zimbra_account_order_cta_confirm')}
@@ -305,6 +301,7 @@ function OrderCatalogForm({
 }
 
 export default function EmailAccountsOrder() {
+  const { trackClick } = useOvhTracking();
   const { addError } = useNotifications();
   const { t } = useTranslation('accounts/order');
   const context = useContext(ShellContext);
@@ -317,6 +314,12 @@ export default function EmailAccountsOrder() {
   const navigate = useNavigate();
 
   const goBack = () => {
+    trackClick({
+      location: PageLocation.page,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [ORDER_ZIMBRA_EMAIL_ACCOUNT, CANCEL],
+    });
     navigate('..');
   };
 

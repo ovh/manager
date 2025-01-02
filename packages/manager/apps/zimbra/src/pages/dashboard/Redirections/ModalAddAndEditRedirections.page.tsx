@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import {
   OdsCheckbox,
@@ -15,18 +15,30 @@ import {
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
 import { useNotifications } from '@ovh-ux/manager-react-components';
+import {
+  ButtonType,
+  PageLocation,
+  PageType,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
+import { ApiError } from '@ovh-ux/manager-core-api';
+import { useMutation } from '@tanstack/react-query';
 import Modal from '@/components/Modals/Modal';
 import { useAccount, useDomains, useGenerateUrl } from '@/hooks';
-import {
-  FormTypeInterface,
-  checkValidityField,
-  checkValidityForm,
-  ACCOUNT_REGEX,
-  EMAIL_REGEX,
-} from '@/utils';
+import { ACCOUNT_REGEX, EMAIL_REGEX } from '@/utils';
 import Loading from '@/components/Loading/Loading';
+import {
+  ADD_REDIRECTION,
+  CANCEL,
+  CONFIRM,
+  EDIT_REDIRECTION,
+  EMAIL_ACCOUNT_ADD_REDIRECTION,
+  EMAIL_ACCOUNT_EDIT_REDIRECTION,
+} from '@/tracking.constant';
+import { useForm } from '@/hooks/useForm';
 
 export default function ModalAddAndEditRedirections() {
+  const { trackClick, trackPage } = useOvhTracking();
   const { t } = useTranslation('redirections/addAndEdit');
   const navigate = useNavigate();
 
@@ -36,14 +48,23 @@ export default function ModalAddAndEditRedirections() {
   const params = Object.fromEntries(searchParams.entries());
   delete params.editRedirectionId;
 
+  const trackingName = useMemo(() => {
+    if (editEmailAccountId) {
+      return editRedirectionId
+        ? EMAIL_ACCOUNT_EDIT_REDIRECTION
+        : EMAIL_ACCOUNT_ADD_REDIRECTION;
+    }
+    return editRedirectionId ? EDIT_REDIRECTION : ADD_REDIRECTION;
+  }, [editRedirectionId, editEmailAccountId]);
+
   const goBackUrl = useGenerateUrl('..', 'path', params);
   const onClose = () => navigate(goBackUrl);
 
   const { addError, addSuccess } = useNotifications();
-  const [isFormValid, setIsFormValid] = useState(false);
 
   const { data: domainList, isLoading: isLoadingDomain } = useDomains({
     enabled: !editEmailAccountId && !editRedirectionId,
+    shouldFetchAll: true,
   });
 
   const { data: accountDetail, isLoading: isLoadingAccount } = useAccount({
@@ -51,50 +72,29 @@ export default function ModalAddAndEditRedirections() {
     enabled: !!editEmailAccountId,
   });
 
-  const [form, setForm] = useState<FormTypeInterface>({
+  const { form, isFormValid, setValue } = useForm({
     account: {
       value: '',
       defaultValue: '',
-      touched: false,
-      hasError: false,
       required: !editEmailAccountId,
       validate: ACCOUNT_REGEX,
     },
     domain: {
       value: '',
       defaultValue: '',
-      touched: false,
-      hasError: false,
       required: !editEmailAccountId,
     },
     to: {
       value: '',
       defaultValue: '',
-      touched: false,
-      hasError: false,
       required: true,
       validate: EMAIL_REGEX,
     },
     keepCopy: {
       value: '',
       defaultValue: '',
-      touched: false,
-      hasError: false,
-      required: false,
     },
   });
-
-  const handleFormChange = (name: string, value: string) => {
-    const newForm: FormTypeInterface = form;
-    newForm[name] = {
-      value,
-      touched: true,
-      required: form[name].required,
-      hasError: !checkValidityField(name, value, form),
-    };
-    setForm((oldForm) => ({ ...oldForm, ...newForm }));
-    setIsFormValid(checkValidityForm(form));
-  };
 
   /* const getDataBody = useCallback(
     (formRef: FormTypeInterface) => {
@@ -123,24 +123,64 @@ export default function ModalAddAndEditRedirections() {
     [form],
   ); */
 
-  const handleClickConfirm = () => {
-    if (isFormValid) {
+  const { mutate: addRedirection, isPending: isSending } = useMutation({
+    mutationFn: () => {
+      return Promise.resolve();
+    },
+    onSuccess: () => {
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: trackingName,
+      });
       addSuccess(
-        t(
-          editRedirectionId
-            ? 'zimbra_redirections_edit_success'
-            : 'zimbra_redirections_add_success',
-        ),
+        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+          {t('zimbra_redirection_add_success_message')}
+        </OdsText>,
+        true,
       );
-    } else {
+    },
+    onError: (error: ApiError) => {
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: trackingName,
+      });
       addError(
-        t(
-          editRedirectionId
-            ? 'zimbra_redirections_edit_error'
-            : 'zimbra_redirections_add_error',
-        ),
+        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+          {t('zimbra_redirection_add_error_message', {
+            error: error?.response?.data?.message,
+          })}
+        </OdsText>,
+        true,
       );
-    }
+    },
+    onSettled: () => {
+      /* queryClient.invalidateQueries({
+        queryKey: getZimbraPlatformRedirectionsQueryKey(platformId),
+      }); */
+
+      onClose();
+    },
+  });
+
+  const handleClickConfirm = () => {
+    trackClick({
+      location: PageLocation.page,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [trackingName, CONFIRM],
+    });
+
+    addRedirection();
+  };
+
+  const handleCancelClick = () => {
+    trackClick({
+      location: PageLocation.page,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [trackingName, CANCEL],
+    });
+
     onClose();
   };
 
@@ -158,7 +198,7 @@ export default function ModalAddAndEditRedirections() {
       secondaryButton={{
         testid: 'cancel-btn',
         label: t('zimbra_redirections_add_btn_cancel'),
-        action: onClose,
+        action: handleCancelClick,
       }}
       primaryButton={{
         testid: 'confirm-btn',
@@ -166,6 +206,7 @@ export default function ModalAddAndEditRedirections() {
         label: t('zimbra_redirections_add_btn_confirm'),
         action: handleClickConfirm,
         isDisabled: !isFormValid,
+        isLoading: isSending,
       }}
       isLoading={isLoadingDomain || isLoadingAccount}
     >
@@ -202,13 +243,13 @@ export default function ModalAddAndEditRedirections() {
                   hasError={form.account.hasError}
                   value={form.account.value}
                   defaultValue={form.account.defaultValue}
+                  isRequired={form.account.required}
                   onOdsBlur={({ target: { name, value } }) =>
-                    handleFormChange(name, String(value))
+                    setValue(name, String(value), true)
                   }
                   onOdsChange={({ detail: { name, value } }) => {
-                    handleFormChange(name, String(value));
+                    setValue(name, String(value));
                   }}
-                  isRequired
                   className="w-1/2"
                   data-testid="input-account"
                 ></OdsInput>
@@ -224,16 +265,16 @@ export default function ModalAddAndEditRedirections() {
                   name="domain"
                   value={form.domain.value}
                   defaultValue={form.domain.defaultValue}
-                  className="w-1/2"
+                  isRequired={form.domain.required}
                   hasError={form.domain.hasError}
-                  isRequired
+                  className="w-1/2"
                   data-testid="select-domain"
                   isDisabled={isLoadingDomain}
                   placeholder={t(
                     'zimbra_redirections_add_select_domain_placeholder',
                   )}
                   onOdsChange={({ detail: { name, value } }) =>
-                    handleFormChange(name, value)
+                    setValue(name, value)
                   }
                 >
                   {domainList?.map(({ currentState: domain }) => (
@@ -263,13 +304,13 @@ export default function ModalAddAndEditRedirections() {
             value={form.to.value}
             defaultValue={form.to.defaultValue}
             hasError={form.to.hasError}
+            isRequired={form.to.required}
             onOdsBlur={({ target: { name, value } }) =>
-              handleFormChange(name, value.toString())
+              setValue(name, value.toString(), true)
             }
             onOdsChange={({ detail: { name, value } }) =>
-              handleFormChange(name, String(value))
+              setValue(name, String(value))
             }
-            isRequired
           />
         </OdsFormField>
         <OdsFormField
@@ -283,10 +324,7 @@ export default function ModalAddAndEditRedirections() {
               name="keepCopy"
               isChecked={form.keepCopy.value === 'true'}
               onOdsChange={(e) => {
-                handleFormChange(
-                  'keepCopy',
-                  e.detail.checked ? 'true' : 'false',
-                );
+                setValue('keepCopy', e.detail.checked ? 'true' : 'false');
               }}
             ></OdsCheckbox>
             <label htmlFor="keepCopy">

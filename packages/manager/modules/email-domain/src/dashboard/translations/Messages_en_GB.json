@@ -369,5 +369,7 @@
   "email_tab_popover_delegate_info": "List of delegations for the <strong>{{t0}}</strong> account",
   "email_tab_popover_delegate_format_error": "NIC handle format not valid ",
   "emails_create_account": "Create an account",
-  "emails_create_account_new_window": "(New window)"
+  "emails_create_account_new_window": "(New window)",
+  "emails_general_information_diagnostic": "Diagnostic",
+  "emails_general_information_diagnostic_dkim": "DKIM"
 }

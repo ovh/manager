@@ -1,9 +1,14 @@
 import React from 'react';
 import { OdsLink } from '@ovhcloud/ods-components/react';
-import { useNavigate } from 'react-router-dom';
 import { ODS_LINK_COLOR } from '@ovhcloud/ods-components';
 import { IconLinkAlignmentType } from '@ovh-ux/manager-react-components';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { useGenerateUrl } from '@/hooks';
+import { SELECT_ORGANIZATION } from '@/tracking.constant';
 
 interface IdLinkProps {
   id: string;
@@ -11,13 +16,18 @@ interface IdLinkProps {
 }
 
 const IdLink: React.FC<IdLinkProps> = ({ id, label }) => {
-  const navigate = useNavigate();
+  const { trackClick } = useOvhTracking();
   const url = useGenerateUrl('..', 'href', {
     organizationId: id,
   });
 
   const handleLinkClick = () => {
-    navigate(url);
+    trackClick({
+      location: PageLocation.datagrid,
+      buttonType: ButtonType.button,
+      actionType: 'navigation',
+      actions: [SELECT_ORGANIZATION],
+    });
   };
 
   return (

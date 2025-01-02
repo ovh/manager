@@ -3,10 +3,16 @@ import { useTranslation } from 'react-i18next';
 import { ActionMenu } from '@ovh-ux/manager-react-components';
 import { useNavigate } from 'react-router-dom';
 import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { OrganizationItem } from './Organizations';
 import { useGenerateUrl, usePlatform } from '@/hooks';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import { ResourceStatus } from '@/api/api.type';
+import { DELETE_ORGANIZATION, EDIT_ORGANIZATION } from '@/tracking.constant';
 
 interface ActionButtonOrganizationProps {
   organizationItem: OrganizationItem;
@@ -16,6 +22,7 @@ const ActionButtonOrganization: React.FC<ActionButtonOrganizationProps> = ({
   organizationItem,
 }) => {
   const { t } = useTranslation('organizations');
+  const { trackClick } = useOvhTracking();
   const { platformUrn } = usePlatform();
   const navigate = useNavigate();
 
@@ -24,6 +31,12 @@ const ActionButtonOrganization: React.FC<ActionButtonOrganizationProps> = ({
   });
 
   const handleDeleteOrganizationClick = () => {
+    trackClick({
+      location: PageLocation.datagrid,
+      buttonType: ButtonType.button,
+      actionType: 'navigation',
+      actions: [DELETE_ORGANIZATION],
+    });
     navigate(hrefDeleteOrganization);
   };
 
@@ -32,6 +45,12 @@ const ActionButtonOrganization: React.FC<ActionButtonOrganizationProps> = ({
   });
 
   const handleEditOrganizationClick = () => {
+    trackClick({
+      location: PageLocation.datagrid,
+      buttonType: ButtonType.button,
+      actionType: 'navigation',
+      actions: [EDIT_ORGANIZATION],
+    });
     navigate(hrefEditOrganization);
   };
 
