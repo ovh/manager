@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import { useCatalogPrice } from '@ovh-ux/manager-react-components';
+import { useTranslation } from 'react-i18next';
 import {
   RancherPlan,
   TRancherPricing,
@@ -10,8 +11,9 @@ export const useFormattedRancherPrices = (
   plans: RancherPlan[],
   pricing?: TRancherPricing[],
 ) => {
-  const { getFormattedHourlyCatalogPrice } = useCatalogPrice(5);
-  const { getFormattedMonthlyCatalogPrice } = useCatalogPrice(2);
+  const { getFormattedCatalogPrice: hourly } = useCatalogPrice(5);
+  const { getFormattedCatalogPrice: monthly } = useCatalogPrice(2);
+  const { t } = useTranslation(['order-price']);
 
   return useMemo(() => {
     return plans?.reduce((acc, plan) => {
@@ -20,10 +22,12 @@ export const useFormattedRancherPrices = (
         ...acc,
         [plan.name]: pricingItem
           ? {
-              hourly: getFormattedHourlyCatalogPrice(pricingItem.hourlyPrice),
-              monthly: getFormattedMonthlyCatalogPrice(
-                pricingItem.monthlyPrice,
-              ),
+              hourly: `${hourly(pricingItem.hourlyPrice)} /vCPU/${t(
+                'order_catalog_price_interval_hour',
+              )}`,
+              monthly: `${monthly(pricingItem.monthlyPrice)} /vCPU/${t(
+                'order_catalog_price_interval_hour',
+              )}`,
             }
           : null,
       };
@@ -31,10 +35,5 @@ export const useFormattedRancherPrices = (
       RancherPlanName,
       { hourly: string; monthly: string | null }
     >;
-  }, [
-    plans,
-    pricing,
-    getFormattedHourlyCatalogPrice,
-    getFormattedMonthlyCatalogPrice,
-  ]);
+  }, [plans, pricing, hourly, monthly]);
 };
