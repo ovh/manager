@@ -18,6 +18,7 @@ export type ActionBannerProps = {
   onClick?: () => void;
   href?: string;
   className?: string;
+  isDismissible?: boolean;
 };
 
 export function ActionBanner({
@@ -27,9 +28,11 @@ export function ActionBanner({
   onClick,
   href,
   variant,
+  isDismissible = false,
 }: Readonly<ActionBannerProps>) {
   return (
     <OdsMessage
+      isDismissible={isDismissible}
       color={color}
       variant={variant}
       className="mt-3 flex-row"
