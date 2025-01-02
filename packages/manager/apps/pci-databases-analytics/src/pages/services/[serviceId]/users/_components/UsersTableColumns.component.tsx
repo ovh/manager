@@ -3,9 +3,10 @@ import { useTranslation } from 'react-i18next';
 import { Badge } from '@/components/ui/badge';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
 import { GenericUser } from '@/data/api/database/user.api';
-import { SortableHeader } from '@/components/ui/data-table';
+import DataTable from '@/components/data-table';
 import UserStatusBadge from './UserStatusBadge.component';
 import UserActions from './UsersTableActions.component';
+import { MENU_COLUMN_ID } from '@/components/data-table/DataTable.component';
 
 interface UserListColumnsProps {
   displayGroupCol: boolean;
@@ -36,14 +37,18 @@ export const getColumns = ({
   const userNameColumn: ColumnDef<GenericUser> = {
     id: 'username',
     header: ({ column }) => (
-      <SortableHeader column={column}>{t('tableHeadName')}</SortableHeader>
+      <DataTable.SortableHeader column={column}>
+        {t('tableHeadName')}
+      </DataTable.SortableHeader>
     ),
     accessorFn: (row) => row.username,
   };
   const groupColumn: ColumnDef<GenericUser> = {
     id: 'group',
     header: ({ column }) => (
-      <SortableHeader column={column}>{t('tableHeadGroup')}</SortableHeader>
+      <DataTable.SortableHeader column={column}>
+        {t('tableHeadGroup')}
+      </DataTable.SortableHeader>
     ),
     accessorFn: (row) => ('group' in row ? row.group : ''),
   };
@@ -68,7 +73,9 @@ export const getColumns = ({
   const keysColumn: ColumnDef<GenericUser> = {
     id: 'keys',
     header: ({ column }) => (
-      <SortableHeader column={column}>{t('tableHeadKeys')}</SortableHeader>
+      <DataTable.SortableHeader column={column}>
+        {t('tableHeadKeys')}
+      </DataTable.SortableHeader>
     ),
     accessorFn: (row) => ('keys' in row ? row.keys.length : ''),
     cell: ({ row }) => (
@@ -88,9 +95,9 @@ export const getColumns = ({
   const categoriesColumn: ColumnDef<GenericUser> = {
     id: 'categories',
     header: ({ column }) => (
-      <SortableHeader column={column}>
+      <DataTable.SortableHeader column={column}>
         {t('tableHeadCategories')}
-      </SortableHeader>
+      </DataTable.SortableHeader>
     ),
     accessorFn: (row) => ('categories' in row ? row.categories.length : ''),
     cell: ({ row }) => (
@@ -110,7 +117,9 @@ export const getColumns = ({
   const commandsColumn: ColumnDef<GenericUser> = {
     id: 'commands',
     header: ({ column }) => (
-      <SortableHeader column={column}>{t('tableHeadCommands')}</SortableHeader>
+      <DataTable.SortableHeader column={column}>
+        {t('tableHeadCommands')}
+      </DataTable.SortableHeader>
     ),
     accessorFn: (row) => ('commands' in row ? row.commands.length : ''),
     cell: ({ row }) => (
@@ -130,7 +139,9 @@ export const getColumns = ({
   const channelsColumn: ColumnDef<GenericUser> = {
     id: 'channels',
     header: ({ column }) => (
-      <SortableHeader column={column}>{t('tableHeadChannels')}</SortableHeader>
+      <DataTable.SortableHeader column={column}>
+        {t('tableHeadChannels')}
+      </DataTable.SortableHeader>
     ),
     accessorFn: (row) => ('channels' in row ? row.channels.length : ''),
     cell: ({ row }) => (
@@ -151,9 +162,9 @@ export const getColumns = ({
     id: 'Creation date',
     accessorFn: (row) => row.createdAt,
     header: ({ column }) => (
-      <SortableHeader column={column}>
+      <DataTable.SortableHeader column={column}>
         {t('tableHeadCreationDate')}
-      </SortableHeader>
+      </DataTable.SortableHeader>
     ),
     cell: ({ row }) => (
       <FormattedDate date={new Date(row.original.createdAt)} />
@@ -163,14 +174,16 @@ export const getColumns = ({
     id: 'Status',
     accessorFn: (row) => row.status,
     header: ({ column }) => (
-      <SortableHeader column={column}>{t('tableHeadStatus')}</SortableHeader>
+      <DataTable.SortableHeader column={column}>
+        {t('tableHeadStatus')}
+      </DataTable.SortableHeader>
     ),
     cell: ({ row }) => {
       return <UserStatusBadge status={row.original.status} />;
     },
   };
   const actionsColumn: ColumnDef<GenericUser> = {
-    id: 'actions',
+    id: MENU_COLUMN_ID,
     cell: ({ row }) => (
       <UserActions
         user={row.original}

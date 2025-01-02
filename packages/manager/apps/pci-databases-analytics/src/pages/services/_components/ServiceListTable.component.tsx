@@ -1,18 +1,24 @@
 import { useNavigate } from 'react-router-dom';
 import { ColumnDef } from '@tanstack/react-table';
-import { DataTable } from '@/components/ui/data-table';
+import { Plus } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import * as database from '@/types/cloud/project/database';
 import { Skeleton } from '@/components/ui/skeleton';
 import { getColumns } from './ServiceListColumns.component';
 import { useTrackAction } from '@/hooks/useTracking';
 import { TRACKING } from '@/configuration/tracking.constants';
+import { Button } from '@/components/ui/button';
+import { getFilters } from './ServiceListFilters.component';
+import DataTable from '@/components/data-table';
 
 interface ServicesListProps {
   services: database.Service[];
 }
 
 export default function ServicesList({ services }: ServicesListProps) {
+  const { t } = useTranslation('pci-databases-analytics/services');
   const track = useTrackAction();
+
   const navigate = useNavigate();
 
   const columns: ColumnDef<database.Service>[] = getColumns({
@@ -30,16 +36,35 @@ export default function ServicesList({ services }: ServicesListProps) {
       navigate(`./delete/${service.id}`);
     },
   });
+  const servicesFilters = getFilters();
 
   return (
-    <>
-      <DataTable
-        columns={columns}
-        data={services}
-        pageSize={25}
-        itemNumber={services.length}
-      />
-    </>
+    <DataTable.Provider
+      columns={columns}
+      data={services}
+      pageSize={25}
+      filtersDefinition={servicesFilters}
+    >
+      <DataTable.Header>
+        <DataTable.Action>
+          <Button
+            data-testid="create-service-button"
+            onClick={() => {
+              track(TRACKING.servicesList.createDatabaseClick());
+              navigate('./new');
+            }}
+          >
+            <Plus className="size-6 mr-2 text-primary-foreground" />
+            {t('createNewService')}
+          </Button>
+        </DataTable.Action>
+        <DataTable.SearchBar />
+        <DataTable.FiltersButton />
+      </DataTable.Header>
+      <DataTable.FiltersList />
+      <DataTable.Table />
+      <DataTable.Pagination />
+    </DataTable.Provider>
   );
 }
 
