@@ -34,7 +34,7 @@
   "pci_projects_project_users_show_key_label": "Show access key",
   "pci_projects_project_users_show_cert_label": "View certificate",
   "pci_projects_project_users_show_user_informations_label": "View details",
-  "pci_projects_project_users_high_perf_info": "You will need to define the roles of the High Performance object storage solution in your Object Storage solution, in the \"Object Storage users\" tab.",
+  "pci_projects_project_users_high_perf_info": "You will need to define the roles for the High Performance Object Storage solution in your Object Storage solution, in the \"Object Storage users\" tab.",
   "common_confirm": "Confirm",
   "common_cancel": "Cancel",
   "common_pagination_of": "of",

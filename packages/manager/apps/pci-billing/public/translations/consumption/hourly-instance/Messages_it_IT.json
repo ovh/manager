@@ -1,5 +1,5 @@
 {
-  "cpbc_hourly_instance_col_name": "Nome",
+  "cpbc_hourly_instance_col_name": "Cognome",
   "cpbc_hourly_instance_col_consumption": "Consumo",
   "cpbc_hourly_instance_col_consumption_tooltip": "Fatturato all'inizio del mese successivo",
   "cpbc_hourly_instance_detail_title": "Server",

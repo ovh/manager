@@ -1,10 +1,10 @@
 {
- "cpbc_no_consumption_data": "Kein Verbrauch für den gewählten Zeitraum.",
- "cpbc_snapshot_col_location": "Lokalisierung",
- "cpbc_snapshot_col_type": "Typ",
- "cpbc_snapshot_col_usage": "Verbrauch",
- "cpbc_snapshot_col_usage_info_part1": "Es wird der tatsächliche Speicherplatz abgerechnet; stündliche Berechnung (auf die volle Stunde gerundet).",
- "cpbc_snapshot_col_usage_info_part2": "Ihr Verbrauch entspricht genau {{amount}} GiB-Stunden.",
- "cpbc_snapshot_type_instance": "Server-Images",
- "cpb_error_message": "Leider können wir nicht alle Informationen abrufen. "
+  "cpbc_no_consumption_data": "Kein Verbrauch im gewählten Zeitraum.",
+  "cpbc_snapshot_col_location": "Standort",
+  "cpbc_snapshot_col_type": "Typ",
+  "cpbc_snapshot_col_usage": "Verbrauch",
+  "cpbc_snapshot_col_usage_info_part1": "Die Abrechnung erfolgt abhängig vom tatsächlichen Speicherplatz, der stündlich und auf die Stunde genau bestimmt wird.",
+  "cpbc_snapshot_col_usage_info_part2": "Ihr Verbrauch entspricht genau {{amount}} GiB-Stunden.",
+  "cpbc_snapshot_type_instance": "Server-Images",
+  "cpb_error_message": "Leider konnten wir nicht alle Informationen abrufen."
 }
