@@ -22,6 +22,8 @@ import {
   ShieldCheck,
   ShoppingCartPlus,
   Star,
+  CloudChangelog,
+  HostingChangelog,
 } from '../assets-icon-svg/icons';
 
 const containerIcons = {
@@ -48,6 +50,8 @@ const containerIcons = {
   ShieldCheck,
   ShoppingCartPlus,
   Star,
+  CloudChangelog,
+  HostingChangelog,
 };
 
 export default containerIcons;
