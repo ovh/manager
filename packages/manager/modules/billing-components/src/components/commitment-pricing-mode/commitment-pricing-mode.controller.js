@@ -61,7 +61,8 @@ export default class CommitmentPricingModeCtrl {
       {
         style: 'currency',
         currency: currencyCode,
-        currencyDisplay: 'narrowSymbol',
+        // use symbol instead of narrowSymbol to support Safari < 14.1
+        currencyDisplay: 'symbol',
       },
     ).format(price);
   }
