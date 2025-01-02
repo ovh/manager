@@ -45,30 +45,20 @@ export default function RemoveOIDCProvider() {
     kubeId,
     onError(error: ApiError) {
       addError(
-        <Translation ns="remove-oidc-provider">
-          {(_t) =>
-            _t(
-              'pci_projects_project_kubernetes_details_service_remove_oidc_provider_request_error',
-              {
-                message:
-                  error?.response?.data?.message || error?.message || null,
-              },
-            )
-          }
-        </Translation>,
+        t(
+          `pci_projects_project_kubernetes_details_service_remove_oidc_provider_request_error`,
+          { message: error?.response?.data?.message || error?.message || null },
+        ),
         true,
       );
       onClose();
     },
     onSuccess() {
       addSuccess(
-        <Translation ns="remove-oidc-provider">
-          {(_t) =>
-            _t(
-              'pci_projects_project_kubernetes_details_service_remove_oidc_provider_request_success',
-            )
-          }
-        </Translation>,
+        t(
+          `pci_projects_project_kubernetes_details_service_remove_oidc_provider_request_success`,
+        ),
+        true,
       );
       onClose();
     },

@@ -3,8 +3,8 @@ import { fireEvent, render } from '@testing-library/react';
 import { UseMutationResult, UseQueryResult } from '@tanstack/react-query';
 import RemoveOIDCProvider from '@/pages/oidc-provider/remove/RemoveOIDCProvider.page';
 import { wrapper } from '@/wrapperRenders';
+import { TOidcProvider } from '@/types';
 import * as useKubernetesModule from '@/api/hooks/useKubernetes';
-import { TOidcProvider } from '@/api/data/kubernetes';
 
 type RemoveOIDCProviderPageReturnType = UseMutationResult<
   never,
