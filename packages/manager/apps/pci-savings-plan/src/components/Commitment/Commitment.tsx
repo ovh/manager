@@ -2,6 +2,11 @@ import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { ODS_TILE_SIZE, ODS_TILE_VARIANT } from '@ovhcloud/ods-components';
 import { OsdsText, OsdsTile } from '@ovhcloud/ods-components/react';
 import React from 'react';
@@ -29,7 +34,7 @@ const Commitment = ({
   quantity: number;
 }) => {
   const { t } = useTranslation('create');
-
+  const { trackClick } = useOvhTracking();
   const { getTextPrice } = useCatalogPrice();
   const priceByMonthWithoutCommitment =
     convertHourlyPriceToMonthly(hourlyPriceWithoutCommitment) * quantity;
@@ -40,6 +45,16 @@ const Commitment = ({
     priceByMonthWithoutCommitment,
     priceNumber,
   );
+
+  const onClickTracking = () => {
+    trackClick({
+      location: PageLocation.funnel,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [`add_savings_plan::add_billing::add_${duration}`],
+    });
+    onClick();
+  };
 
   return (
     <OsdsTile
@@ -57,7 +72,7 @@ const Commitment = ({
           ? ODS_THEME_COLOR_INTENT.primary
           : ODS_THEME_COLOR_INTENT.default
       }
-      onClick={onClick}
+      onClick={onClickTracking}
     >
       <span slot="start" className="flex flex-row items-center justify-center">
         <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
