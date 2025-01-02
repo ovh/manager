@@ -1,5 +1,6 @@
 {
   "zimbra_organization_add": "Confirmer",
+  "zimbra_organization_add_cancel": "Annuler",
   "zimbra_organization_add_modal_title": "Ajouter une organisation",
   "zimbra_organization_add_modal_content_part1": "L'organisation représente un groupement logique de domaines et de boites mails.",
   "zimbra_organization_add_modal_content_part2": "Elle permet de définir des politiques de gestion groupées et définit l'isolation de vos boites mails (limite de l'annuaire d'entreprise).",

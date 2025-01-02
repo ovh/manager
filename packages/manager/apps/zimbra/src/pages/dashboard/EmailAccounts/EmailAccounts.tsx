@@ -18,6 +18,11 @@ import {
   ManagerText,
 } from '@ovh-ux/manager-react-components';
 import { Outlet, useNavigate } from 'react-router-dom';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { AccountType } from '@/api/account';
 import {
   useOverridePage,
@@ -28,7 +33,7 @@ import {
   useDomains,
 } from '@/hooks';
 import LabelChip from '@/components/LabelChip';
-import guidesConstants from '@/guides.constants';
+import { GUIDES_LIST } from '@/guides.constants';
 import ActionButtonEmail from './ActionButtonEmail.component';
 import {
   convertOctets,
@@ -40,6 +45,10 @@ import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import Loading from '@/components/Loading/Loading';
 import { BadgeStatus } from '@/components/BadgeStatus';
 import { ResourceStatus, AccountStatistics } from '@/api/api.type';
+import {
+  ADD_EMAIL_ACCOUNT,
+  ORDER_ZIMBRA_EMAIL_ACCOUNT,
+} from '@/tracking.constant';
 
 export type EmailsItem = {
   id: string;
@@ -97,6 +106,7 @@ const columns: DatagridColumn<EmailsItem>[] = [
 
 export default function EmailAccounts() {
   const { t } = useTranslation(['accounts', 'dashboard']);
+  const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
   const { data: platform, platformUrn } = usePlatform();
   const { data: organisation } = useOrganization();
@@ -135,15 +145,27 @@ export default function EmailAccounts() {
       : platform?.currentState?.accountsStatistics;
   }, [organisation, platform]);
 
-  const webmailUrl = guidesConstants.GUIDES_LIST.webmail.url;
+  const webmailUrl = GUIDES_LIST.webmail.url.DEFAULT;
 
   const hrefAddEmailAccount = useGenerateUrl('./add', 'path');
   const hrefOrderEmailAccount = useGenerateUrl('./order', 'href');
 
   const handleAddEmailAccountClick = () => {
+    trackClick({
+      location: PageLocation.page,
+      buttonType: ButtonType.button,
+      actionType: 'navigation',
+      actions: [ADD_EMAIL_ACCOUNT],
+    });
     navigate(hrefAddEmailAccount);
   };
   const handleOrderEmailAccountClick = () => {
+    trackClick({
+      location: PageLocation.page,
+      buttonType: ButtonType.button,
+      actionType: 'navigation',
+      actions: [ORDER_ZIMBRA_EMAIL_ACCOUNT],
+    });
     navigate(hrefOrderEmailAccount);
   };
 

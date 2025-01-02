@@ -23,6 +23,12 @@ import {
 } from '@ovhcloud/ods-components';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useMutation } from '@tanstack/react-query';
+import {
+  ButtonType,
+  PageLocation,
+  PageType,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { useGenerateUrl, usePlatform } from '@/hooks';
 import {
   postZimbraPlatformMailingList,
@@ -42,6 +48,12 @@ import {
   OWNER_REGEX,
 } from '@/utils';
 import queryClient from '@/queryClient';
+import {
+  ADD_MAILING_LIST,
+  CANCEL,
+  CONFIRM,
+  EDIT_MAILING_LIST,
+} from '@/tracking.constant';
 
 const replyToChoices = [
   {
@@ -83,6 +95,7 @@ export default function MailingListSettings({
   domainList: DomainType[];
   editMailingListDetail: MailingListType;
 }>) {
+  const { trackClick, trackPage } = useOvhTracking();
   const { t } = useTranslation('mailinglists/addAndEdit');
   const navigate = useNavigate();
   const { addError, addSuccess } = useNotifications();
@@ -90,15 +103,14 @@ export default function MailingListSettings({
   const [searchParams] = useSearchParams();
   const editMailingListId = searchParams.get('editMailingListId');
   const organizationIdParam = searchParams.get('organizationId');
+  const trackingName = editMailingListId ? EDIT_MAILING_LIST : ADD_MAILING_LIST;
   const [isFormValid, setIsFormValid] = useState(false);
   const [selectedDomainOrganization, setSelectedDomainOrganization] = useState(
     '',
   );
   const goBackUrl = useGenerateUrl('..', 'path');
 
-  const goBack = () => {
-    return navigate(goBackUrl);
-  };
+  const goBack = () => navigate(goBackUrl);
 
   const [form, setForm] = useState<FormTypeInterface>({
     ...{
@@ -219,6 +231,10 @@ export default function MailingListSettings({
         : postZimbraPlatformMailingList(platformId, params);
     },
     onSuccess: () => {
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: trackingName,
+      });
       addSuccess(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t(
@@ -231,6 +247,10 @@ export default function MailingListSettings({
       );
     },
     onError: (error: ApiError) => {
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: trackingName,
+      });
       addError(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t(
@@ -254,7 +274,23 @@ export default function MailingListSettings({
   });
 
   const handleSavelick = () => {
+    trackClick({
+      location: PageLocation.page,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [trackingName, CONFIRM],
+    });
     addOrEditMailingList(getDataBody(form));
+  };
+
+  const handleCancelClick = () => {
+    trackClick({
+      location: PageLocation.page,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [trackingName, CANCEL],
+    });
+    goBack();
   };
 
   return (
@@ -467,7 +503,7 @@ export default function MailingListSettings({
         {editMailingListId && (
           <OdsButton
             slot="actions"
-            onClick={goBack}
+            onClick={handleCancelClick}
             variant={ODS_BUTTON_VARIANT.outline}
             label={t('zimbra_mailinglist_add_button_cancel')}
           />

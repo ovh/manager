@@ -17,11 +17,20 @@ import {
   ODS_BUTTON_SIZE,
   ODS_ICON_NAME,
 } from '@ovhcloud/ods-components';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import ActionButtonAutoReply from './ActionButtonAutoReply.component';
 import { ResourceStatus } from '@/api/api.type';
 import { useGenerateUrl, usePlatform } from '@/hooks';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import { BadgeStatus } from '@/components/BadgeStatus';
+import {
+  ADD_AUTO_REPLY,
+  EMAIL_ACCOUNT_ADD_AUTO_REPLY,
+} from '@/tracking.constant';
 
 export type AutoRepliesItem = {
   id: string;
@@ -84,6 +93,7 @@ const columns: DatagridColumn<AutoRepliesItem>[] = [
 ];
 
 export function AutoReplies() {
+  const { trackClick } = useOvhTracking();
   const { t } = useTranslation('autoReplies');
   const { platformUrn } = usePlatform();
   const navigate = useNavigate();
@@ -91,7 +101,18 @@ export function AutoReplies() {
   const params = Object.fromEntries(searchParams.entries());
   const editEmailAccountId = searchParams.get('editEmailAccountId');
   const hrefAddAutoReply = useGenerateUrl('./add', 'href', params);
-  const handleAddClick = () => navigate(hrefAddAutoReply);
+  const handleAddClick = () => {
+    trackClick({
+      location: PageLocation.page,
+      buttonType: ButtonType.button,
+      actionType: 'navigation',
+      actions: [
+        editEmailAccountId ? EMAIL_ACCOUNT_ADD_AUTO_REPLY : ADD_AUTO_REPLY,
+      ],
+    });
+
+    navigate(hrefAddAutoReply);
+  };
   const location = useLocation();
 
   const shouldHide = useMemo(() => location?.pathname?.endsWith('add'), [

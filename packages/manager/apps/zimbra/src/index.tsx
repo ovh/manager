@@ -8,9 +8,19 @@ import {
 import App from './App';
 import './index.scss';
 import './vite-hmr';
+import { APP_NAME, LEVEL2, SUB_UNIVERSE, UNIVERSE } from './tracking.constant';
+
+const trackingContext = {
+  chapter1: UNIVERSE,
+  chapter2: SUB_UNIVERSE,
+  chapter3: APP_NAME,
+  appName: APP_NAME,
+  level2Config: LEVEL2,
+  pageTheme: UNIVERSE,
+};
 
 const init = async (appName: string) => {
-  const context = await initShellContext(appName);
+  const context = await initShellContext(appName, trackingContext);
 
   await initI18n({
     context,

@@ -17,6 +17,12 @@ import {
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useMutation } from '@tanstack/react-query';
 import { ApiError } from '@ovh-ux/manager-core-api';
+import {
+  ButtonType,
+  PageLocation,
+  PageType,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { useDomains, useGenerateUrl, usePlatform, useAccount } from '@/hooks';
 import Modal from '@/components/Modals/Modal';
 import {
@@ -30,8 +36,10 @@ import {
   FormTypeInterface,
 } from '@/utils';
 import queryClient from '@/queryClient';
+import { CANCEL, CONFIRM, EMAIL_ACCOUNT_ADD_ALIAS } from '@/tracking.constant';
 
 export default function ModalAddAndEditOrganization() {
+  const { trackClick, trackPage } = useOvhTracking();
   const { t } = useTranslation('accounts/alias/add');
   const { platformId } = usePlatform();
   const [searchParams] = useSearchParams();
@@ -41,7 +49,7 @@ export default function ModalAddAndEditOrganization() {
   const { addError, addSuccess } = useNotifications();
   const navigate = useNavigate();
   const goBackUrl = useGenerateUrl('..', 'path', params);
-  const goBack = () => navigate(goBackUrl);
+  const onClose = () => navigate(goBackUrl);
 
   const [form, setForm] = useState<FormTypeInterface>({
     alias: {
@@ -76,7 +84,7 @@ export default function ModalAddAndEditOrganization() {
     }
   }, [isLoadingDomain, isLoadingEmailDetail]);
 
-  const { mutate: handleNewAliasClick, isPending: isSubmitting } = useMutation({
+  const { mutate: addAlias, isPending: isSubmitting } = useMutation({
     mutationFn: () => {
       const {
         alias: { value: alias },
@@ -91,6 +99,10 @@ export default function ModalAddAndEditOrganization() {
       return postZimbraPlatformAlias(platformId, dataBody);
     },
     onSuccess: () => {
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: EMAIL_ACCOUNT_ADD_ALIAS,
+      });
       addSuccess(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t('zimbra_account_alias_add_success_message')}
@@ -99,6 +111,10 @@ export default function ModalAddAndEditOrganization() {
       );
     },
     onError: (error: ApiError) => {
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: EMAIL_ACCOUNT_ADD_ALIAS,
+      });
       addError(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t('zimbra_account_alias_add_error_message', {
@@ -112,7 +128,7 @@ export default function ModalAddAndEditOrganization() {
       queryClient.invalidateQueries({
         queryKey: getZimbraPlatformAliasQueryKey(platformId),
       });
-      goBack();
+      onClose();
     },
   });
 
@@ -128,21 +144,47 @@ export default function ModalAddAndEditOrganization() {
     setIsFormValid(checkValidityForm(form));
   };
 
+  const handleConfirmClick = () => {
+    trackClick({
+      location: PageLocation.popup,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [EMAIL_ACCOUNT_ADD_ALIAS, CONFIRM],
+    });
+
+    addAlias();
+  };
+
+  const handleCancelClick = () => {
+    trackClick({
+      location: PageLocation.popup,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [EMAIL_ACCOUNT_ADD_ALIAS, CANCEL],
+    });
+
+    onClose();
+  };
+
   return (
     <Modal
       title={t('zimbra_account_alias_add_modal_title')}
       color={ODS_MODAL_COLOR.information}
       isOpen
-      onClose={goBack}
+      onClose={onClose}
       isDismissible
       isLoading={isLoading}
+      secondaryButton={{
+        label: t('zimbra_account_alias_add_btn_cancel'),
+        action: handleCancelClick,
+      }}
       primaryButton={{
         testid: 'confirm-btn',
         variant: ODS_BUTTON_VARIANT.default,
         label: t('zimbra_account_alias_add_btn_confirm'),
         isDisabled: !isFormValid,
         isLoading: isLoading || isSubmitting,
-        action: handleNewAliasClick,
+        action: handleConfirmClick,
       }}
     >
       <>
