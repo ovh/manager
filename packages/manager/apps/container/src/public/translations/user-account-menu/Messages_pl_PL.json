@@ -56,5 +56,7 @@
   "user_account_menu_my_contacts": "Moje kontakty",
   "user_account_menu_my_payment_methods": "Moje sposoby płatności",
   "user_account_menu_my_identity_documents": "Moje dokumenty tożsamości",
-  "user_account_menu_my_assistance_tickets": "Moje zgłoszenia"
+  "user_account_menu_my_assistance_tickets": "Moje zgłoszenia",
+  "user_account_menu_useful_links_cloud_changelog": "Cloud Changelog",
+  "user_account_menu_useful_links_hosting_and_collab_changelog": "Hosting &amp; Collab Changelog"
 }
