@@ -21,6 +21,12 @@ import {
 } from '@ovhcloud/ods-components';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useMutation } from '@tanstack/react-query';
+import {
+  ButtonType,
+  PageLocation,
+  PageType,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { useGenerateUrl, usePlatform } from '@/hooks';
 import {
   AccountBodyParamsType,
@@ -38,6 +44,12 @@ import {
   PASSWORD_REGEX,
 } from '@/utils';
 import queryClient from '@/queryClient';
+import {
+  ADD_EMAIL_ACCOUNT,
+  CANCEL,
+  CONFIRM,
+  EDIT_EMAIL_ACCOUNT,
+} from '@/tracking.constant';
 
 export default function EmailAccountSettings({
   domainList = [],
@@ -46,19 +58,23 @@ export default function EmailAccountSettings({
   domainList: DomainType[];
   editAccountDetail: AccountType;
 }>) {
+  const { trackClick, trackPage } = useOvhTracking();
   const { t } = useTranslation('accounts/addAndEdit');
   const navigate = useNavigate();
   const { addError, addSuccess } = useNotifications();
   const { platformId } = usePlatform();
   const [searchParams] = useSearchParams();
   const editEmailAccountId = searchParams.get('editEmailAccountId');
+  const trackingName = editAccountDetail
+    ? EDIT_EMAIL_ACCOUNT
+    : ADD_EMAIL_ACCOUNT;
   const [isFormValid, setIsFormValid] = useState(false);
   const [selectedDomainOrganization, setSelectedDomainOrganization] = useState(
     '',
   );
   const goBackUrl = useGenerateUrl('..', 'path');
 
-  const goBack = () => {
+  const onClose = () => {
     return navigate(goBackUrl);
   };
 
@@ -168,6 +184,10 @@ export default function EmailAccountSettings({
         : postZimbraPlatformAccount(platformId, params);
     },
     onSuccess: () => {
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: trackingName,
+      });
       addSuccess(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t(
@@ -180,6 +200,10 @@ export default function EmailAccountSettings({
       );
     },
     onError: (error: ApiError) => {
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: trackingName,
+      });
       addError(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t(
@@ -198,11 +222,18 @@ export default function EmailAccountSettings({
       queryClient.invalidateQueries({
         queryKey: getZimbraPlatformAccountsQueryKey(platformId),
       });
-      goBack();
+      onClose();
     },
   });
 
   const handleSaveClick = () => {
+    trackClick({
+      location: PageLocation.page,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [trackingName, CONFIRM],
+    });
+
     const {
       account: { value: account },
       domain: { value: domain },
@@ -223,6 +254,16 @@ export default function EmailAccountSettings({
     });
 
     addOrEditEmailAccount(dataBody);
+  };
+
+  const handleCancelClick = () => {
+    trackClick({
+      location: PageLocation.page,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [trackingName, CANCEL],
+    });
+    onClose();
   };
 
   return (
@@ -447,7 +488,7 @@ export default function EmailAccountSettings({
         {editAccountDetail && (
           <OdsButton
             slot="actions"
-            onClick={goBack}
+            onClick={handleCancelClick}
             color={ODS_BUTTON_COLOR.primary}
             variant={ODS_BUTTON_VARIANT.outline}
             label={t('zimbra_account_add_button_cancel')}

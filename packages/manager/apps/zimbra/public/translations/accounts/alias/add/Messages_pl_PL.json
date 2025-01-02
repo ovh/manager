@@ -9,5 +9,6 @@
   "zimbra_account_alias_add_select_domain_placeholder": "Wybierz nazwę domeny",
   "zimbra_account_alias_add_btn_confirm": "Zatwierdź",
   "zimbra_account_alias_add_success_message": "Dyspozycja utworzenia aliasu została przyjęta. Zostanie przetworzona w ciągu kilku minut.",
-  "zimbra_account_alias_add_error_message": "Utworzenie aliasu nie powiodło się. {{error}}"
+  "zimbra_account_alias_add_error_message": "Utworzenie aliasu nie powiodło się. {{error}}",
+  "zimbra_account_alias_add_btn_cancel": "Anuluj"
 }

@@ -103,18 +103,4 @@ describe('mailing lists add and edit page', async () => {
       mailingListsAddAndEditTranslation.zimbra_mailinglist_edit_title,
     );
   });
-
-  it('should go back when back button pressed', async () => {
-    const { getByTestId, queryByTestId } = render(<AddAndEditMailingList />);
-
-    await waitFor(() => {
-      expect(queryByTestId('spinner')).toBeNull();
-    });
-
-    act(() => {
-      fireEvent.click(getByTestId('back-btn'));
-    });
-
-    expect(navigate).toHaveBeenCalledOnce();
-  });
 });

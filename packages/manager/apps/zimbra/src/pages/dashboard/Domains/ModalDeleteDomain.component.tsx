@@ -11,6 +11,12 @@ import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useMutation } from '@tanstack/react-query';
+import {
+  ButtonType,
+  PageLocation,
+  PageType,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { useAccountList, useGenerateUrl, usePlatform } from '@/hooks';
 import {
   deleteZimbraPlatformDomain,
@@ -18,11 +24,12 @@ import {
 } from '@/api/domain';
 import Modal from '@/components/Modals/Modal';
 import queryClient from '@/queryClient';
+import { CANCEL, CONFIRM, DELETE_DOMAIN } from '@/tracking.constant';
 
 export default function ModalDeleteDomain() {
   const { t } = useTranslation('domains/delete');
   const navigate = useNavigate();
-
+  const { trackClick, trackPage } = useOvhTracking();
   const [searchParams] = useSearchParams();
   const deleteDomainId = searchParams.get('deleteDomainId');
 
@@ -34,13 +41,17 @@ export default function ModalDeleteDomain() {
   const { addError, addSuccess } = useNotifications();
 
   const goBackUrl = useGenerateUrl('..', 'path');
-  const goBack = () => navigate(goBackUrl);
+  const onClose = () => navigate(goBackUrl);
 
   const { mutate: deleteDomain, isPending: isSending } = useMutation({
     mutationFn: (domainId: string) => {
       return deleteZimbraPlatformDomain(platformId, domainId);
     },
     onSuccess: () => {
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: DELETE_DOMAIN,
+      });
       addSuccess(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t('zimbra_domain_delete_success_message')}
@@ -49,6 +60,10 @@ export default function ModalDeleteDomain() {
       );
     },
     onError: (error: ApiError) => {
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: DELETE_DOMAIN,
+      });
       addError(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t('zimbra_domain_delete_error_message', {
@@ -63,22 +78,42 @@ export default function ModalDeleteDomain() {
         queryKey: getZimbraPlatformDomainsQueryKey(platformId),
       });
 
-      goBack();
+      onClose();
     },
   });
 
   const handleDeleteClick = () => {
+    trackClick({
+      location: PageLocation.popup,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [DELETE_DOMAIN, CONFIRM],
+    });
     deleteDomain(deleteDomainId);
+  };
+
+  const handleCancelClick = () => {
+    trackClick({
+      location: PageLocation.popup,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [DELETE_DOMAIN, CANCEL],
+    });
+    onClose();
   };
 
   return (
     <Modal
       title={t('zimbra_domain_delete_modal_title')}
       color={ODS_MODAL_COLOR.critical}
-      onClose={goBack}
-      isDismissible={true}
+      onClose={onClose}
+      isDismissible
       isLoading={isLoading}
       isOpen
+      secondaryButton={{
+        label: t('zimbra_domain_delete_cancel'),
+        action: handleCancelClick,
+      }}
       primaryButton={{
         label: t('zimbra_domain_delete'),
         variant: ODS_BUTTON_VARIANT.default,

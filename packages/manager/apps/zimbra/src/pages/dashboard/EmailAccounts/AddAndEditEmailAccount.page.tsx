@@ -7,6 +7,11 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useSearchParams } from 'react-router-dom';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { useDomains, useGenerateUrl, usePlatform, useAccount } from '@/hooks';
 import Loading from '@/components/Loading/Loading';
 import { TabItemProps, AccountTabsPanel } from './AccountTabsPanel.component';
@@ -16,8 +21,17 @@ import EmailAccountsAlias from './EmailAccountsAlias.page';
 import Redirections from '../Redirections/Redirections';
 import { FEATURE_FLAGS } from '@/utils';
 import AutoReplies from '../AutoReplies/AutoReplies';
+import {
+  ADD_EMAIL_ACCOUNT,
+  BACK_PREVIOUS_PAGE,
+  EDIT_EMAIL_ACCOUNT,
+  EMAIL_ACCOUNT_ALIAS,
+  EMAIL_ACCOUNT_AUTO_REPLY,
+  EMAIL_ACCOUNT_REDIRECTION,
+} from '@/tracking.constant';
 
 export default function AddAndEditAccount() {
+  const { trackClick } = useOvhTracking();
   const { t } = useTranslation('accounts/addAndEdit');
   const location = useLocation();
   const { platformId } = usePlatform();
@@ -95,12 +109,14 @@ export default function AddAndEditAccount() {
   const tabsList: TabItemProps[] = [
     {
       name: 'settings',
+      trackingName: EDIT_EMAIL_ACCOUNT,
       title: t('zimbra_account_edit_tabs_settings'),
       to: hrefSettings,
       pathMatchers: pathMatcherSettingsTabs,
     },
     {
       name: 'alias',
+      trackingName: EMAIL_ACCOUNT_ALIAS,
       title: t('zimbra_account_edit_tabs_alias'),
       to: hrefAlias,
       pathMatchers: pathMatcherAliasTabs,
@@ -108,6 +124,7 @@ export default function AddAndEditAccount() {
     },
     {
       name: 'redirections',
+      trackingName: EMAIL_ACCOUNT_REDIRECTION,
       title: t('zimbra_account_edit_tabs_redirections'),
       to: hrefRedirections,
       pathMatchers: pathMatcherRedirectionsTabs,
@@ -115,6 +132,7 @@ export default function AddAndEditAccount() {
     },
     {
       name: 'auto_replies',
+      trackingName: EMAIL_ACCOUNT_AUTO_REPLY,
       title: t('zimbra_account_edit_tabs_auto_replies'),
       to: hrefAutoReplies,
       pathMatchers: pathMatcherAutoRepliesTabs,
@@ -135,6 +153,17 @@ export default function AddAndEditAccount() {
               iconAlignment={IconLinkAlignmentType.left}
               type={LinkType.back}
               href={goBackUrl}
+              onClickReturn={() => {
+                trackClick({
+                  location: PageLocation.funnel,
+                  buttonType: ButtonType.link,
+                  actionType: 'navigation',
+                  actions: [
+                    editEmailAccountId ? EDIT_EMAIL_ACCOUNT : ADD_EMAIL_ACCOUNT,
+                    BACK_PREVIOUS_PAGE,
+                  ],
+                });
+              }}
               label={t('zimbra_account_add_cta_back')}
             />
             <Subtitle>

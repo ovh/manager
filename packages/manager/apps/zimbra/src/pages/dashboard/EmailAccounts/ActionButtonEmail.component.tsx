@@ -3,10 +3,16 @@ import { useTranslation } from 'react-i18next';
 import { ActionMenu } from '@ovh-ux/manager-react-components';
 import { useNavigate } from 'react-router-dom';
 import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { EmailsItem } from './EmailAccounts';
 import { useGenerateUrl, usePlatform } from '@/hooks';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import { ResourceStatus } from '@/api/api.type';
+import { DELETE_EMAIL_ACCOUNT, EDIT_EMAIL_ACCOUNT } from '@/tracking.constant';
 
 interface ActionButtonEmailAccountProps {
   emailsItem: EmailsItem;
@@ -15,6 +21,7 @@ interface ActionButtonEmailAccountProps {
 const ActionButtonEmail: React.FC<ActionButtonEmailAccountProps> = ({
   emailsItem,
 }) => {
+  const { trackClick } = useOvhTracking();
   const { t } = useTranslation('accounts');
   const { platformUrn } = usePlatform();
   const navigate = useNavigate();
@@ -24,6 +31,12 @@ const ActionButtonEmail: React.FC<ActionButtonEmailAccountProps> = ({
   });
 
   const handleEditEmailClick = () => {
+    trackClick({
+      location: PageLocation.datagrid,
+      buttonType: ButtonType.button,
+      actionType: 'navigation',
+      actions: [EDIT_EMAIL_ACCOUNT],
+    });
     navigate(hrefEditEmailAccount);
   };
 
@@ -32,6 +45,12 @@ const ActionButtonEmail: React.FC<ActionButtonEmailAccountProps> = ({
   });
 
   const handleDeleteEmailClick = () => {
+    trackClick({
+      location: PageLocation.datagrid,
+      buttonType: ButtonType.button,
+      actionType: 'navigation',
+      actions: [DELETE_EMAIL_ACCOUNT],
+    });
     navigate(hrefDeleteEmailAccount);
   };
 

@@ -11,6 +11,12 @@ import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useMutation } from '@tanstack/react-query';
 import { ApiError } from '@ovh-ux/manager-core-api';
+import {
+  ButtonType,
+  PageLocation,
+  PageType,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { useAccount, useGenerateUrl, usePlatform } from '@/hooks';
 import Modal from '@/components/Modals/Modal';
 import {
@@ -18,8 +24,10 @@ import {
   getZimbraPlatformAccountsQueryKey,
 } from '@/api/account';
 import queryClient from '@/queryClient';
+import { CANCEL, CONFIRM, DELETE_EMAIL_ACCOUNT } from '@/tracking.constant';
 
 export default function ModalDeleteEmailAccount() {
+  const { trackClick, trackPage } = useOvhTracking();
   const [searchParams] = useSearchParams();
   const deleteEmailAccountId = searchParams.get('deleteEmailAccountId');
   const { t } = useTranslation('accounts/delete');
@@ -28,7 +36,7 @@ export default function ModalDeleteEmailAccount() {
   const navigate = useNavigate();
 
   const goBackUrl = useGenerateUrl('..', 'path');
-  const goBack = () => navigate(goBackUrl);
+  const onClose = () => navigate(goBackUrl);
 
   const [step, setStep] = useState(1);
   const { data, isLoading } = useAccount({ accountId: deleteEmailAccountId });
@@ -38,6 +46,10 @@ export default function ModalDeleteEmailAccount() {
       return deleteZimbraPlatformAccount(platformId, emailAccountId);
     },
     onSuccess: () => {
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: DELETE_EMAIL_ACCOUNT,
+      });
       addSuccess(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t('zimbra_account_delete_success_message')}
@@ -46,6 +58,10 @@ export default function ModalDeleteEmailAccount() {
       );
     },
     onError: (error: ApiError) => {
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: DELETE_EMAIL_ACCOUNT,
+      });
       addError(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t('zimbra_account_delete_error_message', {
@@ -60,25 +76,41 @@ export default function ModalDeleteEmailAccount() {
         queryKey: getZimbraPlatformAccountsQueryKey(platformId),
       });
 
-      goBack();
+      onClose();
     },
   });
 
   const handleDeleteClick = () => {
+    trackClick({
+      location: PageLocation.popup,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [DELETE_EMAIL_ACCOUNT, CONFIRM],
+    });
     deleteEmailAccount(deleteEmailAccountId);
+  };
+
+  const handleCancelClick = () => {
+    trackClick({
+      location: PageLocation.popup,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [DELETE_EMAIL_ACCOUNT, CANCEL],
+    });
+    onClose();
   };
 
   return (
     <Modal
       title={t('zimbra_account_delete_modal_title')}
       color={ODS_MODAL_COLOR.critical}
-      onClose={goBack}
-      isDismissible={true}
+      onClose={onClose}
       isLoading={isLoading}
+      isDismissible
       isOpen
       secondaryButton={{
         label: t('zimbra_account_delete_button_cancel'),
-        action: goBack,
+        action: handleCancelClick,
       }}
       primaryButton={{
         label: t('zimbra_account_delete_button_delete'),

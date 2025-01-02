@@ -7,8 +7,14 @@ import {
 } from '@ovhcloud/ods-components';
 import { Trans, useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { DomainsItem } from './Domains';
 import { useGenerateUrl } from '@/hooks';
+import { VERIFY_DOMAIN } from '@/tracking.constant';
 
 export type CnameBadge = {
   item: DomainsItem;
@@ -16,6 +22,7 @@ export type CnameBadge = {
 
 export const CnameBadge: React.FC<CnameBadge> = ({ item }) => {
   const { t } = useTranslation('domains');
+  const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
   const validateUrl = useGenerateUrl('./verify', 'path', {
     domainId: item.id,
@@ -27,6 +34,12 @@ export const CnameBadge: React.FC<CnameBadge> = ({ item }) => {
       aria-hidden="true"
       className="cursor-pointer"
       onClick={() => {
+        trackClick({
+          location: PageLocation.datagrid,
+          buttonType: ButtonType.button,
+          actionType: 'navigation',
+          actions: [VERIFY_DOMAIN],
+        });
         navigate(validateUrl);
       }}
     >

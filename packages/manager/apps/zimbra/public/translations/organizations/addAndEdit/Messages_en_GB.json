@@ -16,5 +16,6 @@
   "zimbra_organization_add_success_message": "Your request to add an organisation has been submitted. It will be effective in a few moments.",
   "zimbra_organization_add_error_message": "Unable to submit your request to add an organisation. {{ error }}",
   "zimbra_organization_edit_success_message": "Your request to edit has been submitted. It will be executed in a few moments.",
-  "zimbra_organization_edit_error_message": "Unable to submit your request to edit. {{ error }}"
+  "zimbra_organization_edit_error_message": "Unable to submit your request to edit. {{ error }}",
+  "zimbra_organization_add_cancel": "Cancel"
 }

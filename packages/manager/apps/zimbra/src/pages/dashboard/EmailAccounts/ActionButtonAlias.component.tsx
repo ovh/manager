@@ -3,10 +3,16 @@ import { useTranslation } from 'react-i18next';
 import { ActionMenu } from '@ovh-ux/manager-react-components';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { AliasItem } from './EmailAccountsAlias.page';
 import { useGenerateUrl, usePlatform } from '@/hooks';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import { ResourceStatus } from '@/api/api.type';
+import { EMAIL_ACCOUNT_DELETE_ALIAS } from '@/tracking.constant';
 
 interface ActionButtonAliasAccountProps {
   aliasItem: AliasItem;
@@ -15,6 +21,7 @@ interface ActionButtonAliasAccountProps {
 const ActionButtonAlias: React.FC<ActionButtonAliasAccountProps> = ({
   aliasItem,
 }) => {
+  const { trackClick } = useOvhTracking();
   const { t } = useTranslation('accounts/alias');
   const { platformUrn } = usePlatform();
   const navigate = useNavigate();
@@ -27,6 +34,12 @@ const ActionButtonAlias: React.FC<ActionButtonAliasAccountProps> = ({
   });
 
   const handleDeleteAliasClick = () => {
+    trackClick({
+      location: PageLocation.page,
+      buttonType: ButtonType.button,
+      actionType: 'navigation',
+      actions: [EMAIL_ACCOUNT_DELETE_ALIAS],
+    });
     navigate(hrefDeleteAlias);
   };
 

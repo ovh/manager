@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import {
   OdsCheckbox,
@@ -15,6 +15,14 @@ import {
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
 import { useNotifications } from '@ovh-ux/manager-react-components';
+import {
+  ButtonType,
+  PageLocation,
+  PageType,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
+import { ApiError } from '@ovh-ux/manager-core-api';
+import { useMutation } from '@tanstack/react-query';
 import Modal from '@/components/Modals/Modal';
 import { useAccount, useDomains, useGenerateUrl } from '@/hooks';
 import {
@@ -25,8 +33,17 @@ import {
   EMAIL_REGEX,
 } from '@/utils';
 import Loading from '@/components/Loading/Loading';
+import {
+  ADD_REDIRECTION,
+  CANCEL,
+  CONFIRM,
+  EDIT_REDIRECTION,
+  EMAIL_ACCOUNT_ADD_REDIRECTION,
+  EMAIL_ACCOUNT_EDIT_REDIRECTION,
+} from '@/tracking.constant';
 
 export default function ModalAddAndEditRedirections() {
+  const { trackClick, trackPage } = useOvhTracking();
   const { t } = useTranslation('redirections/addAndEdit');
   const navigate = useNavigate();
 
@@ -35,6 +52,15 @@ export default function ModalAddAndEditRedirections() {
   const editRedirectionId = searchParams.get('editRedirectionId');
   const params = Object.fromEntries(searchParams.entries());
   delete params.editRedirectionId;
+
+  const trackingName = useMemo(() => {
+    if (editEmailAccountId) {
+      return editRedirectionId
+        ? EMAIL_ACCOUNT_EDIT_REDIRECTION
+        : EMAIL_ACCOUNT_ADD_REDIRECTION;
+    }
+    return editRedirectionId ? EDIT_REDIRECTION : ADD_REDIRECTION;
+  }, [editRedirectionId, editEmailAccountId]);
 
   const goBackUrl = useGenerateUrl('..', 'path', params);
   const onClose = () => navigate(goBackUrl);
@@ -123,24 +149,64 @@ export default function ModalAddAndEditRedirections() {
     [form],
   ); */
 
-  const handleClickConfirm = () => {
-    if (isFormValid) {
+  const { mutate: addRedirection, isPending: isSending } = useMutation({
+    mutationFn: () => {
+      return Promise.resolve();
+    },
+    onSuccess: () => {
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: trackingName,
+      });
       addSuccess(
-        t(
-          editRedirectionId
-            ? 'zimbra_redirections_edit_success'
-            : 'zimbra_redirections_add_success',
-        ),
+        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+          {t('zimbra_redirection_add_success_message')}
+        </OdsText>,
+        true,
       );
-    } else {
+    },
+    onError: (error: ApiError) => {
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: trackingName,
+      });
       addError(
-        t(
-          editRedirectionId
-            ? 'zimbra_redirections_edit_error'
-            : 'zimbra_redirections_add_error',
-        ),
+        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+          {t('zimbra_redirection_add_error_message', {
+            error: error?.response?.data?.message,
+          })}
+        </OdsText>,
+        true,
       );
-    }
+    },
+    onSettled: () => {
+      /* queryClient.invalidateQueries({
+        queryKey: getZimbraPlatformRedirectionsQueryKey(platformId),
+      }); */
+
+      onClose();
+    },
+  });
+
+  const handleClickConfirm = () => {
+    trackClick({
+      location: PageLocation.page,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [trackingName, CONFIRM],
+    });
+
+    addRedirection();
+  };
+
+  const handleCancelClick = () => {
+    trackClick({
+      location: PageLocation.page,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [trackingName, CANCEL],
+    });
+
     onClose();
   };
 
@@ -158,7 +224,7 @@ export default function ModalAddAndEditRedirections() {
       secondaryButton={{
         testid: 'cancel-btn',
         label: t('zimbra_redirections_add_btn_cancel'),
-        action: onClose,
+        action: handleCancelClick,
       }}
       primaryButton={{
         testid: 'confirm-btn',
@@ -166,6 +232,7 @@ export default function ModalAddAndEditRedirections() {
         label: t('zimbra_redirections_add_btn_confirm'),
         action: handleClickConfirm,
         isDisabled: !isFormValid,
+        isLoading: isSending,
       }}
       isLoading={isLoadingDomain || isLoadingAccount}
     >
