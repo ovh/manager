@@ -13,23 +13,35 @@
     width: 0rem;
     overflow-y: auto;
 
-    transition: transform 0.3s ease-in, opacity 0.3s ease-in, width 0s ease-out 0.3s;
     transform: scaleX(0);
     transform-origin: 0% 50%;
     opacity: 0;
+
+    &_animated {
+      transition: transform 0.3s ease-in, opacity 0.3s ease-in,
+      width 0s ease-out 0.3s;
+
+      &_open {
+        transition: transform 0.3s ease-in 0s, opacity 0.3s ease-in 0s,
+        width 0s ease-out 0s;
+      }
+
+      &_close {
+        transition: transform 0.3s ease-in 0s, opacity 0.3s ease-in 0s,
+        width 0s ease-out 0s;
+      }
+    }
 
     &_open {
       transform: scaleX(1);
       opacity: 1;
       width: 20rem;
-      transition: transform 0.3s ease-in 0s, opacity 0.3s ease-in 0s, width 0s ease-out 0s;
     }
 
     &_close {
       transform: scaleX(0);
       opacity: 0;
       width: 20rem;
-      transition: transform 0.3s ease-in 0s, opacity 0.3s ease-in 0s, width 0s ease-out 0s;
     }
   }
   &_list {
@@ -120,6 +132,11 @@
       left: 0;
       width: 100%;
       padding-top: 2.75rem;
+      transition: none;
+
+      &_open, &_close {
+        transition: none;
+      }
     }
     &_back_btn {
       display: flex;

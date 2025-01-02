@@ -13,6 +13,10 @@ $sidebar-font-size: 0.875rem;
   height: 100vh;
   position: relative;
   color: white;
+
+  &_animated {
+    transition: width 0.3s ease-in, min-width 0.3s ease-in;
+  }
   
   &_wrapper {
     height: 100%;
@@ -23,8 +27,6 @@ $sidebar-font-size: 0.875rem;
     overflow-y: auto;
     scrollbar-width: none;
     background-color: $p-700;
-
-    transition: width 0.3s ease-in, min-width 0.3s ease-in;
     transform-origin: left;
 
     &::-webkit-scrollbar {
@@ -319,6 +321,16 @@ $sidebar-font-size: 0.875rem;
       .sidebar_wrapper {
         transform: translatex(-100%);
         transition-duration: 0.2s;
+      }
+    }
+
+    &_action {
+      &_text {
+        transition: none;
+      }
+      
+      &_open &_text {
+        transition: none;
       }
     }
   }

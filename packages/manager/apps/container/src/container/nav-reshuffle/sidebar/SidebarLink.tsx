@@ -62,7 +62,7 @@ const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
       data-testid={id}
       role="button"
     >
-      <span className='flex gap-2 align-items-center w-full'>
+      <span className='flex gap-2 align-items-center w-full whitespace-nowrap'>
         <SvgIconWrapper name={node.svgIcon} height={32} width={32} className={`p-1 fill-white transition-all duration-200O shrink-0 ${isLoading && isShortText ? 'hidden' : 'block'}`} />
         {isShortText &&
           <OsdsSpinner className={`h-[32px] w-[32px] transition-all duration-200O shrink-0 ${isLoading ? 'block' : 'hidden'}`} size={ODS_SPINNER_SIZE.sm} contrasted />

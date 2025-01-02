@@ -31,7 +31,7 @@ const SubTree = ({
   open
 }: SubTreeProps): JSX.Element => {
   const { t } = useTranslation('sidebar');
-  const { isMobile } = useProductNavReshuffle();
+  const { isMobile, isAnimated } = useProductNavReshuffle();
   const [isOpen, setIsOpen] = useState(false);
 
   const [focusOnLast, setFocusOnLast] = useState<boolean>(false);
@@ -46,7 +46,7 @@ const SubTree = ({
 
   return (
     <div
-      className={`${style.subtree_content} ${isOpen ? style.subtree_content_open : style.subtree_content_close}`}
+      className={`${style.subtree_content} ${isOpen ? style.subtree_content_open : style.subtree_content_close} ${isAnimated && style.subtree_content_animated}`}
       onBlur={(e: any) => {
         const id = e.relatedTarget?.id.replace('-link', '');
         if (id === lastElement.id) {
