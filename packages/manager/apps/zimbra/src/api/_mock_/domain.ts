@@ -1,4 +1,4 @@
-import { DomainType } from '@/api/domain';
+import { DiagnosticResponse, DomainType } from '@/api/domain';
 import { ResourceStatus } from '@/api/api.type';
 
 export const domainDetailMock: DomainType = {
@@ -118,3 +118,50 @@ export const domainsMock: DomainType[] = [
 ];
 
 export const domainZone: string[] = ['test.fr', 'mydomain.fr', 'domain.fr'];
+
+export const domainDiagnosticMock = {
+  expectedDNSConfig: {
+    mx: [
+      {
+        priority: 5,
+        target: 'mx0.mail.ovh.net',
+      },
+    ],
+    ownership: {
+      cname: 'mycname',
+    },
+  },
+  diagnostic: {
+    dkim: {
+      errorCode: 'INCORRECT_CNAME_RECORD',
+      errorMessage: 'The CNAME setup on your DNS records is incorrect.',
+      recordsFound: ['string'],
+      status: 'ERROR',
+    },
+    errorCode: 'DNS_TIMEOUT',
+    errorMessage: 'There was a timeout while fetching DNS informations.',
+    mx: {
+      errorCode: 'MISSING_VALID_MX_RECORD',
+      errorMessage: 'Your configuration is missing some DNS records.',
+      recordsFound: [
+        {
+          priority: 0,
+          target: 'mx.notovh.mail.com',
+        },
+      ],
+      status: 'ERROR',
+    },
+    spf: {
+      recordFound: 'string',
+      status: 'OK',
+    },
+    status: 'ERROR',
+  },
+  domainId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+  domainName: 'zimbra.fr',
+  id: '19386dad-2e50-4000-86d3-0698199f4a01',
+} as DiagnosticResponse;
+
+export const domainsDiagnosticMock = [
+  domainDiagnosticMock,
+] as DiagnosticResponse[];
