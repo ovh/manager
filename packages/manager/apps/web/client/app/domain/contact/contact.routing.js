@@ -21,5 +21,9 @@ export default /* @ngInject */ ($stateProvider) => {
       goBack: /* @ngInject */ ($state) => () =>
         $state.go('app.domain.product.zone'),
     },
+    atInternet: {
+      rename:
+        'web::domain::domain-name::domain-name::dashboard::contact-management',
+    },
   });
 };

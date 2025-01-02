@@ -8,18 +8,21 @@ import {
   SECTIONS,
   POINT_SEPARATOR,
   OTHER_KEY,
+  CONTACT_MANAGEMENT_EDIT_TRACKING,
 } from './edit.constants';
 
 export default class DomainContactEditCtrl {
   /* @ngInject */
   constructor(
     $stateParams,
+    atInternet,
     ContactService,
     Alerter,
     $translate,
     RedirectionService,
   ) {
     this.$stateParams = $stateParams;
+    this.atInternet = atInternet;
     this.contactId = $stateParams.contactId;
     this.domainName = $stateParams.productId;
     this.contactInformations = $stateParams.contactInformations;
@@ -70,6 +73,7 @@ export default class DomainContactEditCtrl {
   }
 
   goToTunnelOrder() {
+    this.trackClick(CONTACT_MANAGEMENT_EDIT_TRACKING.LINK);
     window.open(
       `${
         this.orderUrlPrefix
@@ -174,6 +178,7 @@ export default class DomainContactEditCtrl {
   }
 
   submit() {
+    this.trackClick(CONTACT_MANAGEMENT_EDIT_TRACKING.SUBMIT);
     this.isSubmitting = true;
     const body = this.getChangedValue();
     this.ovhEditContactForm.$setPristine();
@@ -221,5 +226,17 @@ export default class DomainContactEditCtrl {
       .finally(() => {
         this.isSubmitting = false;
       });
+  }
+
+  onCancel() {
+    this.trackClick(CONTACT_MANAGEMENT_EDIT_TRACKING.CANCEL);
+    this.goBack();
+  }
+
+  trackClick(hit) {
+    this.atInternet.trackClick({
+      name: `${CONTACT_MANAGEMENT_EDIT_TRACKING.PREFIX}${hit}`,
+      type: 'action',
+    });
   }
 }

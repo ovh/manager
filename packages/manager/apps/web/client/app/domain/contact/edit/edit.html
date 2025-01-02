@@ -110,7 +110,7 @@
             data-submit-text="{{ :: 'domain_tab_CONTACT_edit_form_submit_btn' | translate }}"
             data-cancel-text="{{ :: 'domain_tab_CONTACT_edit_form_cancel_btn' | translate }}"
             data-on-submit="$ctrl.submit()"
-            data-on-cancel="$ctrl.goBack()"
+            data-on-cancel="$ctrl.onCancel()"
             data-disabled="$ctrl.ovhEditContactForm.$invalid || !$ctrl.ovhEditContactForm.$dirty || $ctrl.isSubmitting"
         >
         </oui-form-actions>

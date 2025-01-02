@@ -32,6 +32,11 @@ export const DOMAIN_STATE_TYPE = {
   warning: [DOMAIN_SERVICE_STATES.manualPayment],
 };
 
+export const TRACKING_DOMAIN = {
+  CONTACT_MANAGEMENT:
+    'web::domain::domain-name::main-tabnav::go-to-tab::contact-management_domain-name',
+};
+
 export default {
   DNSSEC_STATUS,
   OWNER_CHANGE_URL,
@@ -39,4 +44,5 @@ export default {
   PROTECTION_TYPES,
   DOMAIN_SERVICE_STATES,
   DOMAIN_STATE_TYPE,
+  TRACKING_DOMAIN,
 };
