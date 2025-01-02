@@ -5,6 +5,7 @@ import ServiceStatusBadge from '../../_components/ServiceStatusBadge.component';
 import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
 import { humanizeEngine } from '@/lib/engineNameHelper';
+import ServiceNameWithUpdate from './ServiceNameWithUpdate.component';
 
 export const ServiceHeader = ({ service }: { service: database.Service }) => {
   const { t } = useTranslation('regions');
@@ -17,7 +18,7 @@ export const ServiceHeader = ({ service }: { service: database.Service }) => {
         <Database width={40} height={40} />
       </div>
       <div>
-        <h2>{service.description ?? 'Dashboard'}</h2>
+        <ServiceNameWithUpdate service={service} />
         <div className="flex gap-2 flex-wrap">
           <ServiceStatusBadge status={service.status} />
           <Badge variant={'outline'}>
