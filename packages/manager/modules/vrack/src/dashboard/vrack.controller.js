@@ -84,6 +84,7 @@ export default class VrackMoveDialogCtrl {
   }
 
   $onInit() {
+    this.disableTerminate = false;
     this.poller = null;
     this.pollerEligible = null;
     this.serviceName = null;
@@ -104,6 +105,7 @@ export default class VrackMoveDialogCtrl {
     this.addIpv6ModalState = null;
     this.hasIpv6 = false;
     this.TYPE_SERVICE = TYPE_SERVICE;
+    this.terminateVrackModalOpen = false;
 
     if (this.coreConfig.getRegion() === 'US') {
       this.surveyUrl = US_SURVEY_LINK;
@@ -259,6 +261,45 @@ export default class VrackMoveDialogCtrl {
 
   refreshMessage() {
     this.messages = this.messageHandler.getMessages();
+  }
+
+  openTerminateVrackModal() {
+    this.terminateVrackModalOpen = true;
+  }
+
+  // Disable terminate option if the vrack is suspended or if its not empty
+  getTerminateOption() {
+    this.vrackService
+      .getVrackStatus(this.$stateParams.vrackId)
+      .then((status) => {
+        const vrackServices = Object.values(this.data.vrackServices).flat();
+        this.disableTerminate =
+          status === 'suspended' || vrackServices.length !== 0;
+      });
+  }
+
+  terminateVrack() {
+    this.terminateVrackModalOpen = false;
+    return this.vrackService
+      .terminateVrack(this.serviceName)
+      .then(() => {
+        this.CucCloudMessage.success(
+          this.$translate.instant('vrack_terminate_modal_success_banner'),
+        );
+        this.CucCloudMessage.info(
+          this.$translate.instant(
+            'vrack_terminate_modal_vack_deleted_info_banner',
+          ),
+        );
+      })
+      .catch(() => {
+        this.CucCloudMessage.error(
+          this.$translate.instant('vrack_terminate_modal_error_banner'),
+        );
+      })
+      .finally(() => {
+        this.resetAction();
+      });
   }
 
   loadMessage() {
@@ -944,6 +985,8 @@ export default class VrackMoveDialogCtrl {
           .then((result) => {
             this.data.pendingTasks = tasks;
             this.data.vrackServices = result.vrackServices;
+            // getTerminateOption methond to disable terminate option if the vrack is suspended or if its not empty
+            this.getTerminateOption();
 
             /**
              * Finally, check if some tasks are adding or removing services in vrack
@@ -1297,6 +1340,7 @@ export default class VrackMoveDialogCtrl {
     this.form.servicesToAdd = [];
     this.deleteIpv6Modal = false;
     this.addIpv6Modal = false;
+    this.terminateVrackModalOpen = false;
   }
 
   deleteServiceAction() {
