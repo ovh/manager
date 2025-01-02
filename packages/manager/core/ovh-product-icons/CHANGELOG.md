@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-product-icons@0.7.0...@ovh-ux/ovh-product-icons@0.8.0) (2025-01-02)
+
+
+### Features
+
+* **ovh-product-icons:** added changelog icons ([#14723](https://github.com/ovh/manager/issues/14723)) ([9cee013](https://github.com/ovh/manager/commit/9cee013e760a9a61655dc23e65e3675ec317b09f))
+
+
+
+
+
 # [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-product-icons@0.6.0...@ovh-ux/ovh-product-icons@0.7.0) (2024-12-19)
 
 

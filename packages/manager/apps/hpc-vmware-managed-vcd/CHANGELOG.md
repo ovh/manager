@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.3.9...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.3.10) (2025-01-02)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3576] ([5dc4f4b](https://github.com/ovh/manager/commit/5dc4f4b77dc3023494a2cbde7ed548c7fad953b7))
+
+
+
+
+
 ## [0.3.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.3.8...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.3.9) (2024-12-20)
 
 **Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-managed-vcd-app
