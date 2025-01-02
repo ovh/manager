@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.14.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.14.1...@ovh-ux/manager-vrack@1.14.2) (2025-01-02)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([b4312a2](https://github.com/ovh/manager/commit/b4312a2392e6645664b328f6dc27e173c79ad9c8))
+
+
+
+
+
 ## [1.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.14.0...@ovh-ux/manager-vrack@1.14.1) (2024-12-20)
 
 
