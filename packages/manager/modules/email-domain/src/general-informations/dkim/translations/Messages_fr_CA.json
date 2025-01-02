@@ -1,0 +1,17 @@
+{
+  "email_domain_dkim_title_activation": "Activer DKIM",
+  "email_domain_dkim_title_desactivation": "Désactiver DKIM",
+  "email_domain_dkim_title_configuration": "Configuration DKIM",
+  "email_domain_dkim_activate": "Activer",
+  "email_domain_dkim_deactivate": "Désactiver",
+  "email_domain_dkim_activation": "Votre DKIM est configuré mais n'est pas activé. Souhaitez-vous l'activer ?",
+  "email_domain_dkim_deactivation": "DKIM est actuellement actif sur votre domaine. Souhaitez-vous le désactiver ? (non recommandé)",
+  "email_domain_dkim_in_progress": "Une opération sur votre DKIM est en cours.",
+  "email_domain_dkim_activation_success": "Configuration DKIM en cours, veuillez noter que la mise à jour peut prendre jusqu'à 24 heures pour se propager.",
+  "email_domain_dkim_error": "Une erreur est survenue pendant la configuration DKIM. {{message}}",
+  "email_domain_dkim_configurate_dns_records_info": "Pour configurer votre DKIM vous devez ajouter ces deux entrées à vos DNS",
+  "email_domain_dkim_text_field": "Champ Texte",
+  "email_domain_dkim_cname": "CNAME {{ value }}",
+  "email_domain_dkim_configurate_activation_guide": "Référez-vous à la documentation de votre fournisseur de domaine. Retrouvez de l'aide sur notre <a href=\"{{url}}\" target=\"_blank\">guide</a>.",
+  "email_domain_dkim_no_ovhcloud_extra_step": "Après modification, attendre quelques minutes et cliquer sur \"Activer\"."
+}

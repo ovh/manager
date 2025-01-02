@@ -369,5 +369,7 @@
   "email_tab_popover_delegate_info": "Lista delle deleghe per l'account <strong>{{t0}}</strong>",
   "email_tab_popover_delegate_format_error": "Il formato del NIC handle non è valido",
   "emails_create_account": "Crea un account",
-  "emails_create_account_new_window": "(nuova finestra)"
+  "emails_create_account_new_window": "(nuova finestra)",
+  "emails_general_information_diagnostic": "Diagnostica",
+  "emails_general_information_diagnostic_dkim": "DKIM"
 }
