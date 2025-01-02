@@ -28,5 +28,9 @@ export default /* @ngInject */ ($stateProvider) => {
         return promise;
       },
     },
+    atInternet: {
+      rename:
+        'web::domain::domain-name::domain-name::funnel::edit_holder-contact',
+    },
   });
 };

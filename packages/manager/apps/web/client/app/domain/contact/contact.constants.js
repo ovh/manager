@@ -190,11 +190,18 @@ export const GUIDE_URLS = {
 
 export const LEGAL_FORM_INDIVIDUAL = 'individual';
 
+export const CONTACT_MANAGEMENT_TRACKING = {
+  PREFIX: 'web::domain::domain-name::',
+  REASSIGN_CONTACT: 'page::button::reset_domain-name-contacts',
+  EDIT_CONTACT: 'tile::button::edit_{{contactType}}-contact',
+};
+
 export default {
   INFO_PROPERTIES,
   LEGAL_FORM_INDIVIDUAL,
   INFO_PROPERTIES_ARRAY,
   INFO_PROPERTIES_ORGANISATION_ARRAY,
   OWNER_NOT_FOUND,
-  GUIDE_URL: GUIDE_URLS,
+  GUIDE_URLS,
+  CONTACT_MANAGEMENT_TRACKING,
 };

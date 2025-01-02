@@ -7,6 +7,7 @@ import {
   OWNER_INFO_PROPERTIES,
   OWNER_INFO_PROPERTIES_ORGANISATION_ARRAY,
   OWNER_INFO_PROPERTIES_ARRAY,
+  CONTACT_MANAGEMENT_TRACKING,
 } from './contact.constants';
 
 export default class DomainContactDashboardCtrl {
@@ -14,6 +15,7 @@ export default class DomainContactDashboardCtrl {
   constructor(
     $q,
     $state,
+    atInternet,
     ContactService,
     coreConfig,
     coreURLBuilder,
@@ -25,6 +27,7 @@ export default class DomainContactDashboardCtrl {
     this.ContactService = ContactService;
     this.DomainService = Domain;
     this.$state = $state;
+    this.atInternet = atInternet;
     this.coreURLBuilder = coreURLBuilder;
     this.Alerter = Alerter;
     this.user = coreConfig.getUser();
@@ -90,8 +93,14 @@ export default class DomainContactDashboardCtrl {
       .join(' ');
   }
 
-  editContact(owner = false) {
-    if (!owner) {
+  editContact(contactType) {
+    this.trackClick(
+      CONTACT_MANAGEMENT_TRACKING.EDIT_CONTACT.replace(
+        '{{contactType}}',
+        contactType,
+      ),
+    );
+    if (contactType !== 'holder') {
       return window.open(this.USER_ACCOUNT_INFOS_LINK, '_blank');
     }
     return this.$state.go('app.domain.product.contact.edit', {
@@ -132,6 +141,14 @@ export default class DomainContactDashboardCtrl {
   }
 
   openReassignContacts() {
+    this.trackClick(CONTACT_MANAGEMENT_TRACKING.REASSIGN_CONTACT);
     window.open(this.contactsManagementUrl, '_blank');
+  }
+
+  trackClick(hit) {
+    this.atInternet.trackClick({
+      name: `${CONTACT_MANAGEMENT_TRACKING.PREFIX}${hit}`,
+      type: 'action',
+    });
   }
 }

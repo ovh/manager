@@ -110,6 +110,13 @@ export const REGEX = {
   PHONE: /^\+(\d{1,5}\.)?\d{1,15}$/,
 };
 
+export const CONTACT_MANAGEMENT_EDIT_TRACKING = {
+  PREFIX: 'web::domain::domain-name::funnel::',
+  SUBMIT: 'button::edit_holder-contact_confirm',
+  CANCEL: 'button::edit_holder-contact_cancel',
+  LINK: 'link::edit_holder_next',
+};
+
 export default {
   POINT_SEPARATOR,
   FORM_PART_PREFIX,
@@ -128,4 +135,5 @@ export default {
   CONTAINS,
   OPERATORS,
   REGEX,
+  CONTACT_MANAGEMENT_EDIT_TRACKING,
 };

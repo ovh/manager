@@ -20,6 +20,7 @@ import {
   DOMAIN_SERVICE_STATES,
   DOMAIN_STATE_TYPE,
   PROTECTION_TYPES,
+  TRACKING_DOMAIN,
 } from './general-information.constants';
 
 export default class DomainTabGeneralInformationsCtrl {
@@ -697,6 +698,11 @@ export default class DomainTabGeneralInformationsCtrl {
     this.trackClick(DOMAIN_TRACKING.WEBHOSTING_ORDER);
 
     return this.goToWebhostingOrder();
+  }
+
+  onGoToContactManagement() {
+    this.trackClick(TRACKING_DOMAIN.CONTACT_MANAGEMENT);
+    return this.goToContactManagement();
   }
 }
 

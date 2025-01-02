@@ -68,7 +68,7 @@
                     ></p>
                     <oui-button
                         data-disabled="!$ctrl.isNicAdmin"
-                        data-on-click="$ctrl.editContact(true)"
+                        data-on-click="$ctrl.editContact('holder')"
                         data-variant="link"
                         data-icon-right="oui-icon-arrow-right"
                         class="mb-2 position-absolute"
@@ -103,7 +103,7 @@
                     <oui-button
                         data-disabled="!$ctrl.isNicAdmin"
                         data-variant="link"
-                        data-on-click="$ctrl.editContact()"
+                        data-on-click="$ctrl.editContact('administrator')"
                         data-icon-right="oui-icon-arrow-right"
                         class="mb-2 position-absolute"
                         style="bottom: 0px !important;"
@@ -140,7 +140,7 @@
                     ></p>
                     <oui-button
                         data-disabled="$ctrl.domainInfos.contactTech !== $ctrl.user.nichandle"
-                        data-on-click="$ctrl.editContact()"
+                        data-on-click="$ctrl.editContact('technical')"
                         data-variant="link"
                         data-icon-right="oui-icon-arrow-right"
                         class="mb-2 position-absolute"
@@ -178,7 +178,7 @@
                     ></p>
                     <oui-button
                         data-disabled="$ctrl.domainInfos.contactBilling !== $ctrl.user.nichandle"
-                        data-on-click="$ctrl.editContact()"
+                        data-on-click="$ctrl.editContact('billing')"
                         data-variant="link"
                         data-icon-right="oui-icon-arrow-right"
                         class="mb-2 position-absolute"
