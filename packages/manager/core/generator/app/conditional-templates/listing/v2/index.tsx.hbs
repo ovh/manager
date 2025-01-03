@@ -1,13 +1,12 @@
 import React, { useState, useEffect, } from 'react';
 import { useTranslation } from 'react-i18next';
 import { {{#if isPCI }}useParams, {{/if}} useNavigate, useLocation } from 'react-router-dom';
-
 import { OdsButton } from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
-
 import {
   BaseLayout,
   Datagrid,
+  dataType,
   DataGridTextCell,
   useResourcesIcebergV2,
 } from '@ovh-ux/manager-react-components';
@@ -51,6 +50,7 @@ export default function Listing() {
     navigate(`${path}${label}`);
   };
 
+  // Code to remove and declare definition columns in const variable
   useEffect(() => {
     if (status === 'success' && data?.pages[0].data.length === 0) {
       navigate(urls.onboarding);

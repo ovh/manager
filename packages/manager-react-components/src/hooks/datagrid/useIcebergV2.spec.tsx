@@ -47,7 +47,7 @@ const mockData = {
         },
         {
           ip: '15.235.xxx.xxx',
-          newUpgradeSystem: true,
+          newUpgradeSystem: false,
         },
         {
           ip: '148.113.xxx.xxx',
@@ -74,7 +74,7 @@ const mockData = {
           newUpgradeSystem: true,
         },
         {
-          ip: '15.235.xxx.xxx',
+          ip: '15.234.xxx.xxx',
           newUpgradeSystem: true,
         },
         {
