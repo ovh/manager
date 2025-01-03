@@ -71,7 +71,7 @@
   "pci_projects_project_instances_add_automated_backup_label": "Backup automatizado de instancias",
   "pci_projects_project_instances_add_automated_backup_recommended": "Recomendado",
   "pci_projects_project_instances_add_automated_backup_infos": "Esta funcionalidad permite realizar un backup de su instancia de forma automática, con la frecuencia que usted elija.",
-  "pci_projects_project_instances_add_billing_title": "Seleccione un período de facturación",
+  "pci_projects_project_instances_add_billing_title": "Facturación",
   "pci_projects_project_instances_add_billing_coming_soon_message_title": "Precios mensuales",
   "pci_projects_project_instances_add_billing_coming_soon_message_description": "Los precios mensuales estarán disponibles próximamente con la llegada de los Saving Plans.",
   "pci_projects_project_instances_add_billing_montly_discount_message": "Ahorre en la factura de su instancia pasando a la tarifa mensual.",
@@ -125,5 +125,9 @@
   "pci_projects_project_instances_add_attch_floating_ip_checkbox_label_tooltip": "Opción no disponible durante la configuración de varias instancias. Acceda a «Public IP» para asociar una Floating IP a sus instancias.",
   "pci_project_instances_instance_add_region_savings_plan_info": "Las Local Zones no son compatibles con los Savings Plans.",
   "pci_projects_project_instances_add_billing_savings_plan_banner": "Disfrute de tarifas mensuales más económicas gracias a los Savings Plans, manteniendo la flexibilidad de las instancias por horas.",
-  "pci_projects_project_instances_add_billing_savings_plan_cta": "Configure sus Savings Plans"
+  "pci_projects_project_instances_add_billing_savings_plan_cta": "Configure sus Savings Plans",
+  "pci_projects_project_instances_add_billing_savings_plan_banner_windows_gen_3": "Disfrute de tarifas mensuales más económicas gracias a los Savings Plans, manteniendo la flexibilidad de las instancias por horas. Tenga en cuenta que los costes de las licencias Windows no se incluyen en los Savings Plans.",
+  "pci_projects_project_instances_add_windows_gen3_license_unit": "/hora + IVA",
+  "pci_projects_project_instances_add_windows_gen3_license_unit_w_core": "/hora + IVA por vCore",
+  "pci_projects_project_instances_add_windows_gen3_license_total_price_label": "Precio de la licencia:"
 }

@@ -1,10 +1,8 @@
 export const ISSUE_CATEGORY = 'assistance';
 export const ISSUE_SERVICE_TYPE = 'cloud_project';
-export const ISSUE_TYPE_IDS = [33381, 33382, 43227, 44486, 44800, 44801];
-export const QUOTA_INCREASE_MODES = {
-  CONTACT_SUPPORT: 'contact-support',
-  BUY_CREDITS: 'buy-credits',
-};
+// This is the list of issue type ids for the quota increase request for each different language
+export const ISSUE_TYPE_IDS = [33381, 33382, 43227, 44486, 44800, 44801, 44485];
+
 export const TRACK = {
   BASE: 'PublicCloud::pci::projects::project::quota',
   SELECT_PLAN: 'select-plan',
@@ -23,7 +21,6 @@ export default {
   ISSUE_CATEGORY,
   ISSUE_SERVICE_TYPE,
   ISSUE_TYPE_IDS,
-  QUOTA_INCREASE_MODES,
   TRACK,
   SUPPORT_TICKET_ID_URL,
 };

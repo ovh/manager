@@ -14,4 +14,7 @@ export default {
     hourlyPriceInformation: '<',
     onChange: '&',
   },
+  transclude: {
+    hourlyPrice: '?pciProjectFlavorBillingHourlyPrice',
+  },
 };

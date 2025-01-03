@@ -1,17 +1,14 @@
-import { ISSUE_CATEGORY, ISSUE_SERVICE_TYPE } from './increase.constants';
-
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('pci.projects.project.quota.increase', {
-    url: '/increase/contact-support',
-    component: 'pciProjectQuotaIncrease',
+  $stateProvider.state('pci.projects.project.quota.increasecredits', {
+    url: '/increase/buy-credits',
+    views: {
+      modal: {
+        component: 'pciProjectQuotaIncreaseCredits',
+      },
+    },
+    layout: 'modal',
     resolve: {
       breadcrumb: () => null,
-      issueTypes: /* @ngInject */ (OvhApiSupport, $translate) =>
-        OvhApiSupport.v6().getIssueTypes({
-          category: ISSUE_CATEGORY,
-          language: $translate.use(),
-          serviceType: ISSUE_SERVICE_TYPE,
-        }).$promise,
       goBack: /* @ngInject */ ($state, CucCloudMessage) => (
         message = false,
         type = 'success',
