@@ -1,6 +1,6 @@
 {
-  "title": "Bienvenue uapp",
-  "crumb": "ips",
-  "tabs_2": "Tabs 2",
-  "onboarding": "Onboarding"
+  "per_ip": "/IP",
+  "per_ip_full": "par adresse IP",
+  "breadcrumb_root_label": "Toutes les IPs",
+  "order": "Commander une IP"
 }
