@@ -191,13 +191,13 @@ angular
         );
       };
 
-      function isMainDomain(hosting, domain) {
+      $scope.isMainDomain = function isMainDomain(hosting, domain) {
         return ['ovh.net', 'hosting.ovh.net']
           .map(
             (suffix) => `${hosting.primaryLogin}.${hosting.cluster}.${suffix}`,
           )
           .some((mainDomain) => mainDomain === domain.name);
-      }
+      };
 
       $scope.isUpdateDomainDisabled = function isUpdateDomainDisabled(
         hosting,
@@ -205,7 +205,7 @@ angular
       ) {
         return (
           domain.status === HOSTING_STATUS.UPDATING ||
-          isMainDomain(hosting, domain)
+          $scope.isMainDomain(hosting, domain)
         );
       };
 
