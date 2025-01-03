@@ -1,4 +1,5 @@
 import { v6 } from '@ovh-ux/manager-core-api';
+import { RegionType } from '@/types/region';
 
 export type TAvailableGatewayPlansResponse = {
   plans: {
@@ -8,7 +9,7 @@ export type TAvailableGatewayPlansResponse = {
       continentCode: string;
       datacenter: string;
       enabled: boolean;
-      type: string;
+      type: RegionType;
     }[];
   }[];
 };
