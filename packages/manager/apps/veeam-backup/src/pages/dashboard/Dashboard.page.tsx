@@ -117,7 +117,12 @@ export default function DashboardPage() {
                   label: t('region'),
                   value: (
                     <Description>
-                      {getRegionNameFromAzName(data?.data.currentState.azName)}
+                      <Region
+                        mode="region"
+                        name={getRegionNameFromAzName(
+                          data?.data.currentState.azName,
+                        )}
+                      />
                     </Description>
                   ),
                 },
