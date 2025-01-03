@@ -34,12 +34,6 @@ export const Routes: any = [
         ),
         children: [
           {
-            path: 'confirm',
-            ...lazyRouteConfig(() =>
-              import('@/pages/disableMFA/create/confirm/Confirm.page'),
-            ),
-          },
-          {
             path: '',
             ...lazyRouteConfig(() =>
               import('@/pages/disableMFA/create/form/Form.page'),
