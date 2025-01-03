@@ -7,7 +7,8 @@ import {
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useContext } from 'react';
 import { Translation, useTranslation } from 'react-i18next';
-import { useHref, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { v4 as uuidV4 } from 'uuid';
 import { downloadContent } from '@/utils';
 import { DOWNLOAD_FILENAME, DOWNLOAD_TYPE } from '@/constants';
 import { usePostS3Secret } from '@/api/hooks/useUser';
@@ -22,6 +23,8 @@ export default function ActionsComponent({ user }: { user: TUser }) {
   const { projectId } = useParams();
   const { addSuccess, addInfo, addError } = useNotifications();
   const { tracking } = useContext(ShellContext).shell;
+
+  const navigate = useNavigate();
 
   const { postS3Secret: showSecretKey } = usePostS3Secret({
     projectId,
@@ -114,15 +117,11 @@ export default function ActionsComponent({ user }: { user: TUser }) {
       );
   };
 
-  const deleteHref = useHref(`./${user.id}/delete`);
-  const importHref = useHref(`./import-policy?userId=${user.id}`);
-  const downloadRCloneHref = useHref(`./rclone/download?userId=${user.id}`);
-
   const items: ActionMenuItem[] = [
     {
       id: 0,
       label: t('pci_projects_project_storages_containers_users_import_json'),
-      href: importHref,
+      onClick: () => navigate(`./import-policy?userId=${user.id}`),
     },
     {
       id: 1,
@@ -134,7 +133,7 @@ export default function ActionsComponent({ user }: { user: TUser }) {
       label: t(
         'pci_projects_project_storages_containers_users_download_rclone_file',
       ),
-      href: downloadRCloneHref,
+      onClick: () => navigate(`./rclone/download?userId=${user.id}`),
     },
     {
       id: 3,
@@ -143,12 +142,12 @@ export default function ActionsComponent({ user }: { user: TUser }) {
     },
     {
       id: 4,
-      href: deleteHref,
       label: tPciStoragesContainers(
         'pci_projects_project_storages_containers_delete_label',
       ),
+      onClick: () => navigate(`./${user.id}/delete`),
     },
   ];
 
-  return <ActionMenu items={items} isCompact id="" />;
+  return <ActionMenu id={uuidV4()} items={items} isCompact />;
 }
