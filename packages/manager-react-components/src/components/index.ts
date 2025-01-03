@@ -28,3 +28,5 @@ export * from './ManagerText/ManagerText';
 
 export * from './pci-maintenance-banner';
 export * from './region/region.component';
+
+// New feature
