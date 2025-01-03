@@ -1,3 +1,4 @@
+<div data-ovh-alert="nutanix-dashboard-alert"></div>
 <oui-message data-ng-if="$ctrl.clusterRedeploying" class="mb-3" type="warning">
     <span data-translate="nutanix_dashboard_cluster_deploying_info"></span>
 </oui-message>
@@ -247,12 +248,13 @@
             go-to-commit="$ctrl.goToCommit()"
             go-to-cancel-commit="$ctrl.goToCancelCommit()"
             go-to-cancel-resiliation="$ctrl.goToCancelResiliation()"
-            go-to-resiliation="$ctrl.goToResiliation()"
             service-infos="$ctrl.serviceInfo"
             user="$ctrl.user"
             tracking-prefix="Enterprise_solutions::nutanix::nutanix"
             tracking-page="Enterprise_solutions::nutanix::nutanix::nutanix::dashboard::general-information"
             tracking-name-suffix="nutanix"
+            is-custom-resiliation-handle="true"
+            handle-go-to-resiliation="$ctrl.goToResiliate($ctrl.serviceName)"
         >
         </billing-subscription-tile>
     </div>
