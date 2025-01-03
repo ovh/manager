@@ -24,6 +24,7 @@ import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { StepsEnum, useNewGatewayStore } from '@/pages/add/useStore';
 import { TAvailableRegion, useData } from '@/api/hooks/data';
+import { RegionType } from '@/types/region';
 
 type IState = {
   regions: TAvailableRegion[];
@@ -159,7 +160,7 @@ export const LocationStep = () => {
           r.isMacro || state.regions.some(({ name }) => name === r.name)
         }
       />
-      {state.region?.type === 'region-3-az' && (
+      {state.region?.type === RegionType['3AZ'] && (
         <OsdsMessage
           color={ODS_THEME_COLOR_INTENT.warning}
           icon={ODS_ICON_NAME.WARNING}

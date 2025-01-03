@@ -5,6 +5,7 @@ import { TCatalog } from '@ovh-ux/manager-pci-common';
 import { useCloudCatalog } from '@/api/hooks/cloud-catalog';
 import { useAvailableGatewayPlans } from '@/api/hooks/gateway-plans';
 import { TAvailableGatewayPlansResponse } from '@/api/data/gateway-plans';
+import { RegionType } from '@/types/region';
 
 const getLitteralProductSize = (productName: string): string => {
   const [, size] = /-([^-]+)$/.exec(productName) || [];
@@ -20,7 +21,7 @@ export type TAvailableRegion = {
   macroName: string;
   microName: string;
   continent: string;
-  type: string;
+  type: RegionType;
 };
 
 export type TSizeItem = {
