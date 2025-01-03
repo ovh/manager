@@ -40,19 +40,20 @@ const Commitment = ({
     <OdsCard
       className={`flex flex-row items-center mr-5 my-4 p-5 justify-between w-full cursor-pointer ${
         isActive
-          ? 'bg-[--ods-color-blue-100] border-[--ods-color-blue-600]'
+          ? 'bg-[--ods-color-primary-050] border-[--ods-color-primary-500] border-2'
           : ''
       }`}
       onClick={onClick}
     >
       <span className="flex flex-row items-center justify-center">
         <OdsText>{t('commitment_month', { value: duration })}</OdsText>
-        <OdsText
-          className="ml-3 text-[#AC246F] text-[16px]"
-          style={{ '--ods-text-color': '#AC246F' } as React.CSSProperties}
-        >
-          {diffInPercent ? `- ${diffInPercent} %` : ''}
-        </OdsText>
+        {diffInPercent && (
+          <OdsText className="ml-3  text-[16px]">
+            <span className="text-[#AC246F] font-bold">
+              {`- ${diffInPercent} %`}
+            </span>
+          </OdsText>
+        )}
       </span>
       <span className="flex flex-col items-end justify-center">
         <div className="flex flex-row items-center justify-center">
@@ -61,8 +62,10 @@ const Commitment = ({
               {`~ ${getTextPrice(priceByMonthWithoutCommitment * CENTS_PRICE)}`}
             </OdsText>
           )}
-          <OdsText className="ml-3 text-[#AC246F] text-[16px]">
-            {getTextPrice(priceNumber * CENTS_PRICE)}
+          <OdsText className="ml-3  text-[16px]">
+            <span className="text-[#AC246F] font-bold">
+              {getTextPrice(priceNumber * CENTS_PRICE)}
+            </span>
           </OdsText>
         </div>
         <OdsText>{t('commitment_price_month')}</OdsText>
