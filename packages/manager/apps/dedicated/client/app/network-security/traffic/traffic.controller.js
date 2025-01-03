@@ -1,8 +1,11 @@
+import { addMilliseconds } from 'date-fns';
 import NetworkSecurityService from '../network-security.service';
 import {
   PAGE_SIZE,
   TRAFFIC_PERIODS,
   TRAFFIC_PERIOD_LIST,
+  MILLISECONDS_PER_MINUTE,
+  TIMEZONE_MULTIPLIER,
   CHART,
 } from './traffic.constant';
 
@@ -18,6 +21,8 @@ export default class TrafficController {
     this.TRAFFIC_PERIOD_LIST = TRAFFIC_PERIOD_LIST;
     this.CHART = CHART;
     this.PAGE_SIZE = PAGE_SIZE;
+    this.MILLISECONDS_PER_MINUTE = MILLISECONDS_PER_MINUTE;
+    this.TIMEZONE_MULTIPLIER = TIMEZONE_MULTIPLIER;
   }
 
   $onInit() {
@@ -141,8 +146,9 @@ export default class TrafficController {
     this.results = null;
     this.displayGraph = false;
     const currentDate = new Date();
-    const after = new Date();
+    let after = new Date();
     const before = currentDate.toISOString();
+
     switch (this.period.name) {
       case this.TRAFFIC_PERIOD_LIST.last6h:
         after.setTime(after.getTime() - 6 * 60 * 60 * 1000);
@@ -154,7 +160,18 @@ export default class TrafficController {
         after.setDate(after.getDate() - 14);
         break;
       case 'custom':
-        after.setTime(this.dateTime);
+        after = new Date(this.dateTime);
+        /* Adjust the time window:
+            1. getTimezoneOffset() handles UTC to local time conversion (in minutes)
+            2. TIMEZONE_MULTIPLIER (4) adjusts the graph to show expected time window
+            3. Convert to milliseconds for date-fns addMilliseconds function
+         */
+        after = addMilliseconds(
+          after,
+          after.getTimezoneOffset() *
+            this.TIMEZONE_MULTIPLIER *
+            this.MILLISECONDS_PER_MINUTE,
+        );
         break;
       default:
         after.setDate(after.getDate() - 1);
