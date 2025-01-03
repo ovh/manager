@@ -1,4 +1,8 @@
-import { fetchIcebergV6, apiClient } from '@ovh-ux/manager-core-api';
+import {
+  fetchIcebergV6,
+  apiClient,
+  ApiResponse,
+} from '@ovh-ux/manager-core-api';
 
 export type GetIpListParams = {
   /** Filter the value of campus property (ilike) (alpha) */
@@ -62,3 +66,25 @@ export const getListingIcebergV6 = async ({
   }
   return { data, status, totalCount };
 };
+
+export const getOrganisationList = async (): Promise<ApiResponse<string[]>> =>
+  apiClient.v6.get<string[]>('/me/ipOrganisation');
+
+export type Organisation = {
+  city: string;
+  country: string;
+  abuse_mailbox: string;
+  lastname: string;
+  zip: string;
+  firstname: string;
+  address: string;
+  registry: 'RIPE' | 'ARIN';
+  state: string;
+  phone: string;
+  organisationId: string;
+};
+
+export const getOrganisation = async (
+  orgId: string,
+): Promise<ApiResponse<Organisation>> =>
+  apiClient.v6.get<Organisation>(`/me/ipOrganisation/${orgId}`);
