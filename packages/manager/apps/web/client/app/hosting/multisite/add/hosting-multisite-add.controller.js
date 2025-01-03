@@ -110,11 +110,15 @@ angular
         domainWithoutSubdomain: /^([^.]+\.[^.]+)$/,
       };
 
-      $scope.getHostingIp = (hosting, activeCDN, ipv6) =>
-        hosting[
-          (activeCDN === 'ACTIVE' ? 'hostingIp' : 'clusterIp') +
-            (ipv6 ? 'v6' : '')
-        ];
+      $scope.getHostingIp = (hosting, activeCDN, ipv6) => {
+        const selectedCountryIp = $scope.selected.countryIp;
+        return selectedCountryIp
+          ? selectedCountryIp[ipv6 ? 'ipv6' : 'ip']
+          : hosting[
+              (activeCDN === 'ACTIVE' ? 'hostingIp' : 'clusterIp') +
+                (ipv6 ? 'v6' : '')
+            ];
+      };
 
       $scope.isPathValid = () =>
         Hosting.constructor.isPathValid($scope.selected.path);
@@ -168,7 +172,7 @@ angular
           $scope.model.hosting &&
           $scope.model.options &&
           $scope.model.domainsCount >=
-            $scope.model.capabilities.attachedDomains &&
+            $scope.model.capabilities?.attachedDomains &&
           !$scope.model.moreThanOneDomainCountWithOneAttached
         );
       };

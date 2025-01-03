@@ -10,7 +10,6 @@ export default {
     firewall: '=',
     hosting: '<',
     ipLocation: '=',
-    ipv6: '=',
     ownLog: '=',
     ownLogDomain: '=',
     path: '=',
