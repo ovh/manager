@@ -24,6 +24,7 @@ interface SavingsPlanActionsCell {
 }
 
 const MenuItems = ({
+  id,
   status,
   flavor,
   onClickEdit,
@@ -31,6 +32,7 @@ const MenuItems = ({
   periodEndAction,
   pciUrl,
 }: {
+  id: string;
   status: SavingsPlanStatus;
   flavor: string;
   onClickEdit: () => void;
@@ -45,8 +47,8 @@ const MenuItems = ({
   const isInstance = useMemo(() => /\d/.test(flavor), [flavor]);
 
   return (
-    <>
-      <div id="popover-trigger">
+    <OdsPopover triggerId={`popover-trigger-${id}`}>
+      <div className="flex flex-col gap-2">
         <OdsButton
           label={t('edit')}
           size={ODS_BUTTON_SIZE.sm}
@@ -54,9 +56,6 @@ const MenuItems = ({
           text-align="start"
           onClick={onClickEdit}
         />
-      </div>
-
-      <OdsPopover triggerId="popover-trigger">
         {status !== SavingsPlanStatus.TERMINATED && (
           <OdsButton
             label={
@@ -82,8 +81,8 @@ const MenuItems = ({
               : navigate(`${pciUrl}/rancher/new`)
           }
         />
-      </OdsPopover>
-    </>
+      </div>
+    </OdsPopover>
   );
 };
 
@@ -103,14 +102,17 @@ export default function ActionsCell({
 
   return (
     <>
-      <OdsButton
-        icon={ODS_ICON_NAME.ellipsisVertical}
-        variant={ODS_BUTTON_VARIANT.outline}
-        size={ODS_BUTTON_SIZE.sm}
-        isDisabled={!editable || undefined}
-        label="action-menu"
-      />
+      <div id={`popover-trigger-${id}`}>
+        <OdsButton
+          label=""
+          icon={ODS_ICON_NAME.ellipsisVertical}
+          variant={ODS_BUTTON_VARIANT.outline}
+          size={ODS_BUTTON_SIZE.sm}
+          isDisabled={!editable || undefined}
+        />
+      </div>
       <MenuItems
+        id={id}
         pciUrl={pciUrl}
         flavor={flavor}
         status={status}

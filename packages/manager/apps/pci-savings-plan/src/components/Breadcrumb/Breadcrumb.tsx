@@ -64,7 +64,11 @@ const Breadcrumb: React.FC = () => {
   return (
     <OdsBreadcrumb>
       {breadcrumbItems.map((item) => (
-        <OdsBreadcrumbItem href={item.href} label={item.label} />
+        <OdsBreadcrumbItem
+          key={item.href}
+          href={item.href}
+          label={item.label}
+        />
       ))}
     </OdsBreadcrumb>
   );
