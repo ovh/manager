@@ -104,7 +104,7 @@ export function StreamSubscriptions({
     navigation
       .getURL(
         'dedicated',
-        `#/dbaas/logs/${serviceName}/streams/${streamId}/subscriptions`,
+        `#/dbaas/logs/${account}/streams/${streamId}/subscriptions`,
         {},
       )
       .then(setSubscriptionsURL);
