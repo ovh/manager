@@ -51,6 +51,7 @@ export default {
     goToTrafficOrder: '<',
     goToTrafficCancel: '<',
     serverType: '<?',
+    displayRbxEolBanner: '<?',
   },
   controller,
   template,
