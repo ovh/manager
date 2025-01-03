@@ -1,6 +1,6 @@
 import { fetchIcebergV6, FilterComparator } from "@ovh-ux/manager-core-api";
 
-const fetchAgreementsUpdates = async () => {
+const fetchPendingAgreements = async () => {
   const { data } = await fetchIcebergV6({
     route: '/me/agreements',
     filters: [{ key: 'agreed', comparator: FilterComparator.IsIn, value: ['todo', 'ko'] }],
@@ -8,4 +8,4 @@ const fetchAgreementsUpdates = async () => {
   return data;
 };
 
-export default fetchAgreementsUpdates;
+export default fetchPendingAgreements;
