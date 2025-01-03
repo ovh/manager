@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useHref, useNavigate, useParams } from 'react-router-dom';
 import { MutationStatus, useMutationState } from '@tanstack/react-query';
@@ -17,7 +17,7 @@ import {
   OsdsMessage,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { Title } from '@ovh-ux/manager-react-components';
 
 import TableContainer from '@/components/Table/TableContainer';
@@ -27,6 +27,7 @@ import {
   useServiceId,
 } from '@/hooks/useSavingsPlan';
 import { SavingsPlanService } from '@/types';
+import { toLocalDateUTC } from '@/utils/formatter/date';
 
 export const formatDateString = (dateString: string, locale?: string) => {
   const date = new Date(dateString);
@@ -88,6 +89,8 @@ const ListingTablePage: React.FC<ListingProps> = ({
   refetchSavingsPlans,
 }) => {
   const { t } = useTranslation('listing');
+  const { environment } = useContext(ShellContext);
+  const locale = environment.getUserLocale();
 
   const hrefDashboard = useHref('');
   const serviceId = useServiceId();
@@ -160,11 +163,15 @@ const ListingTablePage: React.FC<ListingProps> = ({
       {mutationSpCreate.length > 0 && !lastMutationSpCreate.error?.code && (
         <Banner
           message={t('banner_create_sp', {
-            startDate: lastMutationSpCreate.data.startDate,
+            startDate: toLocalDateUTC(
+              lastMutationSpCreate.data.startDate,
+              locale,
+            ),
           })}
           key={lastMutationSpCreate.submittedAt}
         />
       )}
+
       {mutationSPEditName.length > 0 && (
         <Banner
           message={t('banner_edit_name')}
