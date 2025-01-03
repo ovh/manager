@@ -1,14 +1,11 @@
-import camelCase from 'lodash/camelCase';
 import compact from 'lodash/compact';
 import filter from 'lodash/filter';
 import find from 'lodash/find';
 import head from 'lodash/head';
-import indexOf from 'lodash/indexOf';
 import map from 'lodash/map';
 import parseInt from 'lodash/parseInt';
 import set from 'lodash/set';
 import snakeCase from 'lodash/snakeCase';
-import orderBy from 'lodash/orderBy';
 import uniq from 'lodash/uniq';
 
 export default class Server {
@@ -811,21 +808,7 @@ export default class Server {
         },
         params: {
           type: 'ovh',
-        },
-      },
-    );
-  }
-
-  getPersonalTemplates(serviceName) {
-    return this.OvhHttp.get(
-      '/sws/dedicated/server/{serviceName}/installation/templates',
-      {
-        rootPath: '2api',
-        urlParams: {
-          serviceName,
-        },
-        params: {
-          type: 'personal',
+          mode: 'new',
         },
       },
     );
@@ -852,20 +835,6 @@ export default class Server {
     });
   }
 
-  getOvhPartitionSchemesTemplates(serviceName, template, customeInstall) {
-    return this.OvhHttp.get(
-      '/sws/dedicated/server/{serviceName}/installation/{template}/partitionSchemes',
-      {
-        rootPath: '2api',
-        urlParams: {
-          serviceName,
-          template,
-          customeInstall,
-        },
-      },
-    );
-  }
-
   getOvhPartitionSchemesTemplatesDetail(template, partitionScheme) {
     return this.OvhHttp.get(
       '/sws/dedicated/server/installationTemplate/{template}/{partitionScheme}/partitions',
@@ -875,145 +844,29 @@ export default class Server {
           template,
           partitionScheme,
         },
-      },
-    );
-  }
-
-  postAddPartition(gabaritName, gabaritSchemePartitionName, partition) {
-    const data = angular.copy(partition);
-    data.type = camelCase(data.typePartition);
-    delete data.typePartition;
-
-    data.filesystem = camelCase(data.fileSystem);
-    delete data.fileSystem;
-
-    data.size = camelCase(data.partitionSize);
-    delete data.partitionSize;
-
-    data.raid = data.raid ? parseInt(data.raid.replace(/_/g, ''), 10) : null;
-
-    delete data.oldMountPoint;
-
-    data.step = camelCase(data.order);
-    delete data.order;
-
-    data.mountpoint = data.mountPoint;
-    delete data.mountPoint;
-
-    return this.OvhHttp.post(
-      '/me/installationTemplate/{templateName}/partitionScheme/{schemeName}/partition',
-      {
-        rootPath: 'apiv6',
-        urlParams: {
-          templateName: gabaritName,
-          schemeName: gabaritSchemePartitionName,
-        },
-        data,
-      },
-    );
-  }
-
-  putSetPartition(gabaritName, gabaritSchemePartitionName, partition) {
-    const newPartition = angular.copy(partition);
-    newPartition.filesystem = camelCase(newPartition.fileSystem);
-    newPartition.mountpoint = newPartition.mountPoint;
-    newPartition.size = {
-      value: newPartition.partitionSize,
-      unit: 'MB',
-    };
-    newPartition.type = camelCase(newPartition.typePartition);
-    newPartition.raid = newPartition.raid
-      ? parseInt(newPartition.raid.replace(/_/g, ''), 10)
-      : null;
-    delete newPartition.fileSystem;
-    delete newPartition.mountPoint;
-    delete newPartition.typePartition;
-    delete newPartition.partitionSize;
-    delete newPartition.oldMountPoint;
-
-    return this.OvhHttp.put(
-      '/me/installationTemplate/{gabaritName}/partitionScheme/{gabaritSchemePartitionName}/partition/{mountpoint}',
-      {
-        rootPath: 'apiv6',
-        urlParams: {
-          gabaritName,
-          gabaritSchemePartitionName,
-          mountpoint: partition.oldMountPoint,
-        },
-        data: newPartition,
-      },
-    );
-  }
-
-  deleteSetPartition(gabaritName, gabaritSchemePartitionName, mountpoint) {
-    return this.OvhHttp.delete(
-      '/me/installationTemplate/{templateName}/partitionScheme/{schemeName}/partition/{mountpoint}',
-      {
-        rootPath: 'apiv6',
-        urlParams: {
-          templateName: gabaritName,
-          schemeName: gabaritSchemePartitionName,
-          mountpoint,
+        params: {
+          type: 'ovh',
         },
       },
     );
-  }
-
-  checkIntegrity(gabaritName) {
-    return this.OvhHttp.post(
-      '/me/installationTemplate/{gabaritName}/checkIntegrity',
-      {
-        rootPath: 'apiv6',
-        urlParams: {
-          gabaritName,
-        },
-      },
-    );
-  }
-
-  putSetGabarit(productId, gabaritName, gabaritNameNew, customization) {
-    return this.put(productId, '{gabaritName}', {
-      urlParams: {
-        gabaritName,
-      },
-      data: {
-        templateName: gabaritNameNew,
-        customization,
-      },
-      proxypass: true,
-      urlPath: this.path.installationMe,
-    });
   }
 
   startInstallation(
     serviceName,
-    templateName,
-    partitionSchemeName,
-    details,
-    userMetadata = {},
+    operatingSystem,
+    storage = {},
+    customizations = {},
   ) {
-    return this.OvhHttp.post('/dedicated/server/{serviceName}/install/start', {
+    return this.OvhHttp.post('/dedicated/server/{serviceName}/reinstall', {
       rootPath: 'apiv6',
       urlParams: {
         serviceName,
       },
       data: {
-        userMetadata,
-        details,
-        partitionSchemeName,
-        templateName,
+        operatingSystem,
+        storage,
+        customizations,
       },
-    });
-  }
-
-  deleteGabarit(productId, gabaritName) {
-    return this.delete(productId, '{gabaritName}', {
-      urlParams: {
-        gabaritName,
-      },
-      broadcast: 'dedicated.installation.gabarit.refresh',
-      urlPath: this.path.installationMe,
-      proxypass: true,
     });
   }
 
@@ -1431,130 +1284,6 @@ export default class Server {
         )
         .then((results) => results.data),
     );
-  }
-
-  postHardwareRaid(productId, templateName, schemeName, disks, raid) {
-    return this.post(
-      productId,
-      '{templateName}/partitionScheme/{schemeName}/hardwareRaid',
-      {
-        urlParams: {
-          templateName,
-          schemeName,
-        },
-        data: {
-          disks,
-          mode: raid,
-          name: 'managerHardRaid',
-          step: 1,
-        },
-        proxypass: true,
-        urlPath: this.path.installationMe,
-      },
-    );
-  }
-
-  putHardwareRaid(productId, templateName, schemeName, disks, raid) {
-    return this.put(
-      productId,
-      '{templateName}/partitionScheme/{schemeName}/hardwareRaid/{name}',
-      {
-        urlParams: {
-          templateName,
-          schemeName,
-          name: 'managerHardRaid',
-        },
-        data: {
-          disks,
-          mode: raid,
-          name: 'managerHardRaid',
-          step: 1,
-        },
-        proxypass: true,
-        urlPath: this.path.installationMe,
-      },
-    );
-  }
-
-  getPartitionSchemeHardwareRaid(productId, templateName, schemeName) {
-    return this.get(
-      productId,
-      '{templateName}/partitionScheme/{schemeName}/hardwareRaid',
-      {
-        urlParams: {
-          templateName,
-          schemeName,
-        },
-        proxypass: true,
-        urlPath: this.path.installationMe,
-      },
-    ).then((response) => {
-      const index = indexOf(response, 'managerHardRaid');
-
-      if (index !== -1) {
-        return this.get(
-          productId,
-          '{templateName}/partitionScheme/{schemeName}/hardwareRaid/{name}',
-          {
-            urlParams: {
-              templateName,
-              schemeName,
-              name: response[index],
-            },
-            proxypass: true,
-            urlPath: this.path.installationMe,
-          },
-        );
-      }
-
-      if (response.length > 0) {
-        return this.get(
-          productId,
-          '{templateName}/partitionScheme/{schemeName}/hardwareRaid/{name}',
-          {
-            urlParams: {
-              templateName,
-              schemeName,
-              name: response[0],
-            },
-            proxypass: true,
-            urlPath: this.path.installationMe,
-          },
-        );
-      }
-
-      return this.$q.when();
-    });
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  isHardRaidLocationError(error) {
-    return (
-      error.status === 403 &&
-      error.data &&
-      error.data.message === 'Not available from this location'
-    );
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  isHardRaidUnavailableError(error) {
-    return (
-      error.status === 403 &&
-      error.data &&
-      error.data.message === 'Hardware RAID is not supported by this server'
-    );
-  }
-
-  getPartitionSchemesByPriority(productId, templateName) {
-    return this.getPartitionSchemes(productId, templateName).then((schemes) => {
-      const getSchemes = map(schemes, (scheme) =>
-        this.getPartitionSchemePriority(productId, templateName, scheme),
-      );
-
-      return this.$q.all(getSchemes).then((schemesDetails) => {
-        return map(orderBy(schemesDetails, 'priority', 'desc'), 'name');
-      });
-    });
   }
 
   updateServiceInfos(serviceName, data) {
