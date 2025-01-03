@@ -19,12 +19,14 @@ import { RegionList } from './RegionList.component';
 import '../../translations/region-selector';
 
 import './style.scss';
+import { GlobalRegionTooltipContext } from './RegionGlobalzoneChip.component';
 
 export interface RegionSelectorProps {
   projectId: string;
   onSelectRegion: (region?: TLocalisation) => void;
   regionFilter?: (region: TLocalisation) => boolean;
   compactMode?: boolean;
+  globalRegionTooltip?: string;
 }
 
 export function RegionSelector({
@@ -32,6 +34,7 @@ export function RegionSelector({
   onSelectRegion,
   regionFilter,
   compactMode,
+  globalRegionTooltip,
 }: Readonly<RegionSelectorProps>): JSX.Element {
   const { t } = useTranslation('pci-region-selector');
 
@@ -62,12 +65,14 @@ export function RegionSelector({
             selectedRegion={selectedMacroRegion}
             onClick={selectMacroRegion}
             render={(region: TLocalisation, isSelected) => (
-              <RegionTile
-                key={region.name}
-                region={region}
-                isSelected={isSelected}
-                isCompact={compactMode}
-              />
+              <GlobalRegionTooltipContext.Provider value={globalRegionTooltip}>
+                <RegionTile
+                  key={region.name}
+                  region={region}
+                  isSelected={isSelected}
+                  isCompact={compactMode}
+                />
+              </GlobalRegionTooltipContext.Provider>
             )}
           />
           {microRegions?.length > 0 && (
