@@ -10,6 +10,8 @@ import {
   BaseLayout,
 } from '@ovh-ux/manager-react-components';
 
+import { OdsButton } from '@ovhcloud/ods-components/react';
+import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import Loading from '@/components/Loading/Loading';
 import ErrorBanner from '@/components/Error/Error';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
@@ -83,7 +85,14 @@ export default function Listing() {
 
   return (
     <BaseLayout breadcrumb={<Breadcrumb />} header={header}>
-      <React.Suspense>
+      <OdsButton
+        className="mb-5"
+        variant={ODS_BUTTON_VARIANT.outline}
+        icon={ODS_ICON_NAME.plus}
+        onClick={() => navigate(urls.order)}
+        label={t('orderIps')}
+      />
+      <React.Suspense fallback={<Loading />}>
         {columns && flattenData && (
           <Datagrid
             columns={columns}
