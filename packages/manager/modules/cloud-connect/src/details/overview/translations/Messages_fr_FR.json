@@ -40,6 +40,7 @@
   "cloud_connect_pop_diagnostic": "POP Diagnostic",
   "cloud_connect_pop_diagnostic_link": "Voir les résultats de mes diagnostiques",
   "cloud_connect_pop_diagnostic_check": "Test BGP Peering",
+  "cloud_connect_pop_get_mac_list": "Voir la liste de mes adresses MAC",
   "cloud_connect_provider": "Provider",
   "cloud_connect_pop_configure": "Configuration PoP {{ indexNumber }}",
   "cloud_connect_pop_configure_add": "Ajouter une configuration PoP",
