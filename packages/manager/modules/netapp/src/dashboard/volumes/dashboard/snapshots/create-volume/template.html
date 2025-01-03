@@ -1,0 +1,44 @@
+<form
+    id="createVolumeFormSnapshot"
+    name="createVolumeFormSnapshot"
+    data-ng-submit="createVolumeFormSnapshot.$valid && $ctrl.createVolumeFromSnapshot()"
+    novalidate
+>
+    <oui-modal
+        data-heading="{{ ::'netapp_volumes_snapshots_create_volume_title' | translate }}"
+        data-primary-label="{{ ::'netapp_volumes_snapshots_create_volume_confirm' | translate }}"
+        data-secondary-label="{{ ::'netapp_volumes_snapshots_create_volume_cancel' | translate }}"
+        data-secondary-action="$ctrl.goBack()"
+        data-on-dismiss="$ctrl.goBack()"
+        data-loading="$ctrl.isLoading"
+    >
+        <p
+            data-translate="netapp_volumes_snapshots_create_volume_description"
+            data-translate-values="{snapshot: $ctrl.snapshot.name || $ctrl.snapshot.id}"
+        ></p>
+        <oui-field
+            label="{{:: 'netapp_volumes_snapshots_create_volume_name_label' | translate }}"
+        >
+            <input
+                class="oui-input"
+                name="volumeName"
+                type="text"
+                data-ng-model="$ctrl.name"
+                data-ng-pattern="$ctrl.PATTERN"
+                maxlength="255"
+            />
+        </oui-field>
+        <oui-field
+            label="{{:: 'netapp_volumes_snapshots_create_volume_description_label' | translate }}"
+        >
+            <input
+                class="oui-input"
+                name="volumeDescription"
+                type="text"
+                data-ng-model="$ctrl.description"
+                data-ng-pattern="$ctrl.PATTERN"
+                maxlength="255"
+            />
+        </oui-field>
+    </oui-modal>
+</form>

@@ -6,6 +6,7 @@
   "netapp_volumes_snapshots_actions_create_label": "Snapshot: Créer un snapshot",
   "netapp_volumes_snapshots_actions_edit": "Éditer",
   "netapp_volumes_snapshots_actions_hold": "Sauvegarder",
+  "netapp_volumes_snapshots_actions_create_volume": "Créer un volume",
   "netapp_volumes_snapshots_actions_delete": "Supprimer",
   "netapp_volumes_snapshots_id": "ID",
   "netapp_volumes_snapshots_name": "Nom",
