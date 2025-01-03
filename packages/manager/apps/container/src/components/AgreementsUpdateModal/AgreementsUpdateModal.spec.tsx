@@ -72,7 +72,7 @@ vi.mock('@/context/modals', () => ({
   useModals: () => ({ current: ModalTypes.agreements })
 }));
 
-vi.mock('@/hooks/agreements/useAgreementsUpdate', () => ({
+vi.mock('@/hooks/agreements/usePendingAgreements', () => ({
   default: () => ({ data: mocks.agreements })
 }));
 
