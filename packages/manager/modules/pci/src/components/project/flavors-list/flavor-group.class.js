@@ -17,7 +17,7 @@ export default class FlavorGroup {
           flavors,
           (flavor) => image.includes(flavor.osType) && !flavor.isFlex(),
         ),
-        ['regions', 'id', 'osType', 'planCodes'],
+        ['regions', 'id', 'osType'],
       ),
     );
 
