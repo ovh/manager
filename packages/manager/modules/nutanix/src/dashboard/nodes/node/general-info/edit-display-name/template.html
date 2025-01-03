@@ -11,11 +11,13 @@
         data-loading="$ctrl.loading.update"
         data-type="{{ !$ctrl.actionEnabled ? 'warning' : '' }}"
         data-heading="{{ :: 'nutanix_node_server_displaname_edit_title' | translate }}"
+        data-primary-disabled="updateNodeDisplayNameForm.$invalid"
     >
         <div data-ng-if="$ctrl.actionEnabled">
             <p data-translate="nutanix_node_server_displaname_edit_help"></p>
             <oui-field
                 data-label="{{:: 'nutanix_node_server_displaname_edit_displayname_label' | translate }}"
+                data-error-messages="{ pattern: ('nutanix_node_server_displaname_error_pattern_validation' | translate) }"
             >
                 <input
                     class="oui-input"
@@ -23,6 +25,7 @@
                     name="display-name"
                     id="update-display-name"
                     data-ng-model="$ctrl.displayName"
+                    data-ng-pattern="$ctrl.namePattern"
                     required
                 />
             </oui-field>
