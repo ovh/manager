@@ -1,0 +1,193 @@
+<div data-ui-view>
+    <oui-header heading="{{'domain_tab_CONTACT_title' | translate}}">
+        <oui-guide-menu
+            data-text="{{ ::'domain_tab_CONTACT_guide_text' | translate }}"
+        >
+            <oui-guide-menu-item
+                data-href="{{ ::$ctrl.GUIDE_URL }}"
+                data-external="true"
+                ><span
+                    data-translate="domain_tab_CONTACT_guide_manage_contact_and_services"
+                ></span>
+            </oui-guide-menu-item>
+        </oui-guide-menu>
+    </oui-header>
+
+    <div class="text-center" data-ng-if="$ctrl.loading">
+        <oui-spinner data-size="l"></oui-spinner>
+    </div>
+
+    <div data-ovh-alert="dashboardContact"></div>
+
+    <div data-ng-if="!$ctrl.loading">
+        <div class="row">
+            <div class="col-md-12">
+                <strong
+                    class="mb-2"
+                    data-translate="domain_tab_CONTACT_header"
+                ></strong>
+                <p data-translate="domain_tab_CONTACT_description"></p>
+            </div>
+        </div>
+
+        <oui-button
+            class="mb-3 mt-3"
+            data-variant="secondary"
+            data-ng-click="$ctrl.openReassignContacts()"
+        >
+            <span data-translate="domain_tab_CONTACT_reassign_contacts"></span>
+        </oui-button>
+
+        <div class="d-flex flex-wrap justify-content-start align-items-stretch">
+            <div class="col-md-4 mt-3 col-sm-12 col-xs-12">
+                <oui-tile
+                    class="h-100"
+                    data-heading="{{:: 'domain_tab_CONTACT_owner' | translate }}"
+                >
+                    <div data-ng-if="$ctrl.isNicAdmin" class="mb-2">
+                        <span
+                            data-ng-repeat="infoProperty in $ctrl.ownerInfoProperties track by $index"
+                            data-ng-if=":: $ctrl.showOwnerInfo(infoProperty)"
+                            class="d-block font-weight-bold"
+                            data-ng-bind=":: $ctrl.getDisplayedOwnerField(infoProperty)"
+                        ></span>
+                    </div>
+                    <div
+                        class="oui-message oui-message_info oui-message_no-icon"
+                        data-ng-if="!$ctrl.isNicAdmin"
+                        role="alert"
+                    >
+                        <p
+                            class="oui-message__body"
+                            data-translate="domain_tab_CONTACT_edit_form_owner_infos"
+                        ></p>
+                    </div>
+                    <p
+                        class="mb-5"
+                        data-translate="domain_tab_CONTACT_description_owner"
+                    ></p>
+                    <oui-button
+                        data-disabled="!$ctrl.isNicAdmin"
+                        data-on-click="$ctrl.editContact('holder')"
+                        data-variant="link"
+                        data-icon-right="oui-icon-arrow-right"
+                        class="mb-2 position-absolute"
+                        style="bottom: 0px !important;"
+                    >
+                        <span data-translate="domain_tab_CONTACT_modify"></span>
+                    </oui-button>
+                </oui-tile>
+            </div>
+            <div class="col-md-4 mt-3 col-sm-12 col-xs-12">
+                <oui-tile
+                    class="h-100"
+                    data-heading="{{:: 'domain_tab_CONTACT_admin' | translate }}"
+                >
+                    <span
+                        class="d-block font-weight-bold pb-2"
+                        data-ng-bind="::$ctrl.domainInfos.contactAdmin"
+                    >
+                    </span>
+                    <div data-ng-if="$ctrl.isNicAdmin" class="mb-2">
+                        <span
+                            data-ng-repeat="infoProperty in $ctrl.infoProperties track by $index"
+                            data-ng-if="::$ctrl.showContactInfo(infoProperty)"
+                            class="d-block font-weight-bold"
+                            data-ng-bind="::$ctrl.getDisplayedField(infoProperty)"
+                        ></span>
+                    </div>
+                    <p
+                        class="mb-5"
+                        data-translate="domain_tab_CONTACT_description_admin"
+                    ></p>
+                    <oui-button
+                        data-disabled="!$ctrl.isNicAdmin"
+                        data-variant="link"
+                        data-on-click="$ctrl.editContact('administrator')"
+                        data-icon-right="oui-icon-arrow-right"
+                        class="mb-2 position-absolute"
+                        style="bottom: 0px !important;"
+                    >
+                        <span data-translate="domain_tab_CONTACT_modify"></span>
+                    </oui-button>
+                </oui-tile>
+            </div>
+            <div class="col-md-4 mt-3 col-sm-12 col-xs-12">
+                <oui-tile
+                    class="h-100"
+                    data-heading="{{:: 'domain_tab_CONTACT_technical' | translate }}"
+                >
+                    <span
+                        class="d-block font-weight-bold pb-2"
+                        data-ng-bind="::$ctrl.domainInfos.contactTech"
+                    >
+                    </span>
+                    <div
+                        class="mb-2"
+                        data-ng-if="$ctrl.domainInfos.contactTech === $ctrl.user.nichandle"
+                    >
+                        <span
+                            data-ng-repeat="infoProperty in $ctrl.infoProperties track by $index"
+                            data-ng-if="::$ctrl.showContactInfo(infoProperty)"
+                            class="d-block font-weight-bold"
+                            data-ng-bind="::$ctrl.getDisplayedField(infoProperty)"
+                        ></span>
+                    </div>
+
+                    <p
+                        class="mb-5"
+                        data-translate="domain_tab_CONTACT_description_technical"
+                    ></p>
+                    <oui-button
+                        data-disabled="$ctrl.domainInfos.contactTech !== $ctrl.user.nichandle"
+                        data-on-click="$ctrl.editContact('technical')"
+                        data-variant="link"
+                        data-icon-right="oui-icon-arrow-right"
+                        class="mb-2 position-absolute"
+                        style="bottom: 0px !important;"
+                    >
+                        <span data-translate="domain_tab_CONTACT_modify"></span>
+                    </oui-button>
+                </oui-tile>
+            </div>
+
+            <div class="col-md-4 mt-3 col-sm-12 col-xs-12">
+                <oui-tile
+                    data-heading="{{:: 'domain_tab_CONTACT_billing' | translate }}"
+                >
+                    <span
+                        class="d-block font-weight-bold pb-2"
+                        data-ng-bind="::$ctrl.domainInfos.contactBilling"
+                    >
+                    </span>
+                    <div
+                        class="mb-2"
+                        data-ng-if="$ctrl.domainInfos.contactBilling === $ctrl.user.nichandle"
+                    >
+                        <span
+                            data-ng-repeat="infoProperty in $ctrl.infoProperties track by $index"
+                            data-ng-if="::$ctrl.showContactInfo(infoProperty)"
+                            class="d-block font-weight-bold"
+                            data-ng-bind="::$ctrl.getDisplayedField(infoProperty)"
+                        ></span>
+                    </div>
+
+                    <p
+                        class="mb-5"
+                        data-translate="domain_tab_CONTACT_description_billing"
+                    ></p>
+                    <oui-button
+                        data-disabled="$ctrl.domainInfos.contactBilling !== $ctrl.user.nichandle"
+                        data-on-click="$ctrl.editContact('billing')"
+                        data-variant="link"
+                        data-icon-right="oui-icon-arrow-right"
+                        class="mb-2 position-absolute"
+                        style="bottom: 0px !important;"
+                    >
+                        <span data-translate="domain_tab_CONTACT_modify"></span>
+                    </oui-button>
+                </oui-tile>
+            </div>
+        </div>
+    </div>
+</div>

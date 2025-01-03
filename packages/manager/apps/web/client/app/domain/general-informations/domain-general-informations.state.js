@@ -51,6 +51,18 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       ...commonResolves,
+      goToContactManagement: /* @ngInject */ ($state, Alerter) => (
+        message = false,
+        type = 'success',
+      ) => {
+        const promise = $state.go('app.domain.product.contact');
+
+        if (message) {
+          promise.then(() => Alerter[type](message, 'domain_alert_main'));
+        }
+
+        return promise;
+      },
       goToDashboard: /* @ngInject */ ($state, Alerter) => (
         message = false,
         type = 'success',

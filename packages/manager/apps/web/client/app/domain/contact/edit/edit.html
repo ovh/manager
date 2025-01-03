@@ -1,0 +1,118 @@
+<oui-back-button data-on-click=":: $ctrl.goBack()"> </oui-back-button>
+
+<h3 data-translate="domain_tab_CONTACT_edit_title"></h3>
+<p data-translate="domain_tab_CONTACT_edit_owner_description"></p>
+
+<!-- ALERT -->
+<div data-ovh-alert="InfoErrors"></div>
+
+<h4 data-translation="domain_tab_CONTACT_edit_form_general_infos_title"></h4>
+
+<div class="text-center" data-ng-if="$ctrl.loading">
+    <oui-spinner></oui-spinner>
+</div>
+
+<form
+    id="ovhEditContactForm"
+    name="$ctrl.ovhEditContactForm"
+    data-ng-if="!$ctrl.loading && $ctrl.rules"
+    novalidate
+>
+    <div class="row">
+        <div class="col-md-6">
+            <!-- FORM SECTIONS -->
+            <fieldset
+                data-ng-form="{{$ctrl.FORM_PART_PREFIX + section}}"
+                class="mb-4"
+                data-ng-repeat="section in ::$ctrl.getSections('left') track by $index"
+                data-ng-if="$ctrl.getRulesBySection(section).length"
+            >
+                <h3
+                    data-translate="{{ :: 'domain_tab_CONTACT_edit_form_section_' + section }}"
+                ></h3>
+                <div data-ng-attr-id="{{ :: 'ovh_form_content_' + section }}">
+                    <!-- SECTION FIELDS -->
+                    <edit-owner-form-field
+                        data-ng-repeat="rule in $ctrl.getRulesBySection(section) track by rule.label"
+                        data-rule="rule"
+                        data-rules="$ctrl.rules"
+                        data-domain-name="$ctrl.domainName"
+                        data-contact-informations="$ctrl.contactInformations"
+                        data-fieldset=":: $ctrl.ovhEditContactForm[$ctrl.FORM_PART_PREFIX + section]"
+                    >
+                    </edit-owner-form-field>
+                </div>
+            </fieldset>
+        </div>
+
+        <div class="col-md-6">
+            <!-- FORM SECTIONS -->
+            <fieldset
+                data-ng-form="{{$ctrl.FORM_PART_PREFIX + section}}"
+                class="mb-4"
+                data-ng-repeat="section in ::$ctrl.getSections('right') track by $index"
+                data-ng-if="$ctrl.getRulesBySection(section).length"
+            >
+                <h3
+                    data-translate="{{ :: 'domain_tab_CONTACT_edit_form_section_' + section }}"
+                ></h3>
+                <div data-ng-attr-id="{{ :: 'ovh_form_content_' + section }}">
+                    <!-- SECTION FIELDS -->
+                    <edit-owner-form-field
+                        data-ng-repeat="rule in $ctrl.getRulesBySection(section) track by rule.label"
+                        data-rule="rule"
+                        data-rules="$ctrl.rules"
+                        data-domain-name="$ctrl.domainName"
+                        data-contact-informations="$ctrl.contactInformations"
+                        data-fieldset=":: $ctrl.ovhEditContactForm[$ctrl.FORM_PART_PREFIX + section]"
+                    >
+                    </edit-owner-form-field>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+    <div class="row mt-2 pl-2">
+        <div class="col-md-12">
+            <oui-message
+                class="mb-2"
+                type="warning"
+                data-ng-if="$ctrl.ovhEditContactForm.$invalid"
+            >
+                <span
+                    data-translate="domain_tab_CONTACT_edit_form_content_check_validation"
+                ></span>
+            </oui-message>
+        </div>
+    </div>
+
+    <div data-ng-if="$ctrl.hasReadOnlyField()">
+        <p
+            class="mb-0"
+            data-translate="domain_tab_CONTACT_edit_form_change_owner"
+        ></p>
+        <a
+            class="oui-link_icon"
+            data-ng-click="$ctrl.goToTunnelOrder()"
+            target="_top"
+        >
+            <span
+                data-translate="domain_tab_CONTACT_edit_form_click_here"
+            ></span>
+            <span
+                class="oui-icon oui-icon-external-link"
+                aria-hidden="true"
+            ></span
+        ></a>
+    </div>
+
+    <div class="row mt-4 pl-2">
+        <oui-form-actions
+            data-submit-text="{{ :: 'domain_tab_CONTACT_edit_form_submit_btn' | translate }}"
+            data-cancel-text="{{ :: 'domain_tab_CONTACT_edit_form_cancel_btn' | translate }}"
+            data-on-submit="$ctrl.submit()"
+            data-on-cancel="$ctrl.onCancel()"
+            data-disabled="$ctrl.ovhEditContactForm.$invalid || !$ctrl.ovhEditContactForm.$dirty || $ctrl.isSubmitting"
+        >
+        </oui-form-actions>
+    </div>
+</form>
