@@ -27,7 +27,7 @@
   },
   "scripts": {
     "build": "yarn run build:turbo",
-    "build:turbo": "turbo run build --concurrency=5",
+    "build:turbo": "turbo run build --concurrency=5 --filter=\"@ovh-ux/manager-pci-common\"",
     "dev": "turbo run dev",
     "clean": "lerna clean -y && yarn run clean:dist && rimraf node_modules",
     "clean:dist": "rimraf \"packages/**/dist\"",
@@ -51,7 +51,7 @@
     "start": "node -r esm scripts/start-application.js",
     "test:jest": "jest --runInBand",
     "test": "yarn lint",
-    "test:turbo": "turbo run test --concurrency=1",
+    "test:turbo": "turbo run test --concurrency=1 --filter=\"@ovh-ux/manager-pci-common\"",
     "test:scripts": "make test",
     "test:playwright:run": "lerna run test:e2e:ci --stream --concurrency=1 --no-bail"
   },
