@@ -12,6 +12,7 @@ export type TRegion = {
   macroName: string;
   microName: string;
   continent: string;
+  type: string;
 };
 
 // @TODO this part looks similar to what have been created in the region selector
@@ -61,6 +62,7 @@ export const useGetRegions = (
                     region.name,
                   )}`,
                 ),
+                type: region.type,
               });
             });
           }
