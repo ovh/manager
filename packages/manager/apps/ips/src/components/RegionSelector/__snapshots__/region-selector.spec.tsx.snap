@@ -38,7 +38,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
         color="neutral"
       >
         <span
-          class="fi-fr w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          style="background-image: url(flags/fr.svg);"
         />
         <div
           class="flex flex-col"
@@ -66,7 +67,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
         color="neutral"
       >
         <span
-          class="fi-fr w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          style="background-image: url(flags/fr.svg);"
         />
         <div
           class="flex flex-col"
@@ -94,7 +96,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
         color="neutral"
       >
         <span
-          class="fi-fr w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          style="background-image: url(flags/fr.svg);"
         />
         <div
           class="flex flex-col"
@@ -122,7 +125,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
         color="neutral"
       >
         <span
-          class="fi-fr w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          style="background-image: url(flags/fr.svg);"
         />
         <div
           class="flex flex-col"
@@ -150,7 +154,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
         color="neutral"
       >
         <span
-          class="fi-de w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          style="background-image: url(flags/de.svg);"
         />
         <div
           class="flex flex-col"
@@ -178,7 +183,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
         color="neutral"
       >
         <span
-          class="fi-pl w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          style="background-image: url(flags/pl.svg);"
         />
         <div
           class="flex flex-col"
@@ -206,7 +212,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
         color="neutral"
       >
         <span
-          class="fi-gb w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          style="background-image: url(flags/gb.svg);"
         />
         <div
           class="flex flex-col"
@@ -234,7 +241,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
         color="neutral"
       >
         <span
-          class="fi-us w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          style="background-image: url(flags/us.svg);"
         />
         <div
           class="flex flex-col"
@@ -262,7 +270,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
         color="neutral"
       >
         <span
-          class="fi-us w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          style="background-image: url(flags/us.svg);"
         />
         <div
           class="flex flex-col"
@@ -290,7 +299,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
         color="neutral"
       >
         <span
-          class="fi-ca w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          style="background-image: url(flags/ca.svg);"
         />
         <div
           class="flex flex-col"
@@ -318,7 +328,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
         color="neutral"
       >
         <span
-          class="fi-sg w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          style="background-image: url(flags/sg.svg);"
         />
         <div
           class="flex flex-col"
@@ -346,7 +357,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
         color="neutral"
       >
         <span
-          class="fi-au w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          style="background-image: url(flags/au.svg);"
         />
         <div
           class="flex flex-col"
@@ -374,7 +386,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
         color="neutral"
       >
         <span
-          class="fi-fr w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          style="background-image: url(flags/fr.svg);"
         />
         <div
           class="flex flex-col"
@@ -402,7 +415,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
         color="neutral"
       >
         <span
-          class="fi-fr w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          style="background-image: url(flags/fr.svg);"
         />
         <div
           class="flex flex-col"
@@ -430,7 +444,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
         color="neutral"
       >
         <span
-          class="fi-ca w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          style="background-image: url(flags/ca.svg);"
         />
         <div
           class="flex flex-col"
@@ -458,7 +473,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
         color="neutral"
       >
         <span
-          class="fi-in w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          style="background-image: url(flags/in.svg);"
         />
         <div
           class="flex flex-col"
@@ -486,7 +502,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
         color="neutral"
       >
         <span
-          class="fi-fr w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          style="background-image: url(flags/fr.svg);"
         />
         <div
           class="flex flex-col"
@@ -514,7 +531,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
         color="neutral"
       >
         <span
-          class="fi-fr w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          style="background-image: url(flags/fr.svg);"
         />
         <div
           class="flex flex-col"
@@ -542,7 +560,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
         color="neutral"
       >
         <span
-          class="fi-fr w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          style="background-image: url(flags/fr.svg);"
         />
         <div
           class="flex flex-col"
@@ -570,7 +589,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
         color="neutral"
       >
         <span
-          class="fi-be w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          style="background-image: url(flags/be.svg);"
         />
         <div
           class="flex flex-col"
@@ -598,7 +618,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
         color="neutral"
       >
         <span
-          class="fi-es w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          style="background-image: url(flags/es.svg);"
         />
         <div
           class="flex flex-col"
@@ -626,7 +647,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
         color="neutral"
       >
         <span
-          class="fi-fr w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          style="background-image: url(flags/fr.svg);"
         />
         <div
           class="flex flex-col"
@@ -654,7 +676,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
         color="neutral"
       >
         <span
-          class="fi-us w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          style="background-image: url(flags/us.svg);"
         />
         <div
           class="flex flex-col"
@@ -682,7 +705,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
         color="neutral"
       >
         <span
-          class="fi-us w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          style="background-image: url(flags/us.svg);"
         />
         <div
           class="flex flex-col"
@@ -710,7 +734,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
         color="neutral"
       >
         <span
-          class="fi-us w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          style="background-image: url(flags/us.svg);"
         />
         <div
           class="flex flex-col"
@@ -738,7 +763,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
         color="neutral"
       >
         <span
-          class="fi-us w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          style="background-image: url(flags/us.svg);"
         />
         <div
           class="flex flex-col"
@@ -766,7 +792,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
         color="neutral"
       >
         <span
-          class="fi-us w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          style="background-image: url(flags/us.svg);"
         />
         <div
           class="flex flex-col"
@@ -794,7 +821,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
         color="neutral"
       >
         <span
-          class="fi-us w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          style="background-image: url(flags/us.svg);"
         />
         <div
           class="flex flex-col"
@@ -822,7 +850,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
         color="neutral"
       >
         <span
-          class="fi-us w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          style="background-image: url(flags/us.svg);"
         />
         <div
           class="flex flex-col"
@@ -850,7 +879,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
         color="neutral"
       >
         <span
-          class="fi-us w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          style="background-image: url(flags/us.svg);"
         />
         <div
           class="flex flex-col"
@@ -878,7 +908,8 @@ exports[`RegionSelector component > renders correctly 1`] = `
         color="neutral"
       >
         <span
-          class="fi-fr w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+          style="background-image: url(flags/fr.svg);"
         />
         <div
           class="flex flex-col"

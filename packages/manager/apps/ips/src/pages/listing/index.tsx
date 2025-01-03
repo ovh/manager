@@ -1,28 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useLocation, Navigate } from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
 import {
   Datagrid,
   DataGridTextCell,
   useResourcesIcebergV6,
-  dataType,
   BaseLayout,
+  ErrorBanner,
 } from '@ovh-ux/manager-react-components';
-
+import { ApiError } from '@ovh-ux/manager-core-api';
+import { OdsButton } from '@ovhcloud/ods-components/react';
+import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import Loading from '@/components/Loading/Loading';
-import ErrorBanner from '@/components/Error/Error';
-import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
-
-import appConfig from '@/ips.config';
 import { urls } from '@/routes/routes.constant';
 
 export default function Listing() {
-  const myConfig = appConfig;
-  const serviceKey = myConfig.listing?.datagrid?.serviceKey;
   const [columns, setColumns] = useState([]);
   const navigate = useNavigate();
-  const location = useLocation();
   const { t } = useTranslation('listing');
   const {
     flattenData,
@@ -36,7 +30,7 @@ export default function Listing() {
     sorting,
     setSorting,
     pageIndex,
-  } = useResourcesIcebergV6({
+  } = useResourcesIcebergV6<any>({
     route: `/ip`,
     queryKey: ['ips', `/ip`],
   });
@@ -66,7 +60,7 @@ export default function Listing() {
   }, [flattenData]);
 
   if (isError) {
-    return <ErrorBanner error={error.message} />;
+    return <ErrorBanner error={error as ApiError} />;
   }
 
   if (isLoading && pageIndex === 1) {
@@ -82,8 +76,15 @@ export default function Listing() {
   };
 
   return (
-    <BaseLayout breadcrumb={<Breadcrumb />} header={header}>
-      <React.Suspense>
+    <BaseLayout header={header}>
+      <OdsButton
+        className="mb-5"
+        variant={ODS_BUTTON_VARIANT.outline}
+        icon={ODS_ICON_NAME.plus}
+        onClick={() => navigate(urls.order)}
+        label={t('orderIps')}
+      />
+      <React.Suspense fallback={<Loading />}>
         {columns && flattenData && (
           <Datagrid
             columns={columns}
