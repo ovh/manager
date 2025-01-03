@@ -12,7 +12,7 @@
   "pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_create_field_user_cta_cancel": "Abbrechen",
   "pci_projects_project_storages_cold_archive_add_step_link_user_archive_user_description_label": "Nutzerbeschreibung:",
   "pci_projects_project_storages_cold_archive_add_step_link_user_archive_user_credential_banner_secret_key_field_label": "Ihr geheimer Object Storage Schlüssel:",
-  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_request_success": "Die Object Storage-Anmeldeinformationen für den Benutzer {{userName}} wurden generiert.",
-  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_request_fail": "Die Object Storage-Anmeldeinformationen wurden nicht generiert.",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_request_success": "Die Object Storage Login-Daten für den User {{userName}} wurden generiert.",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_request_fail": "Die Object Storage Login-Daten wurden nicht generiert.",
   "pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_select": "Einen bestehenden Nutzer auswählen"
 }
