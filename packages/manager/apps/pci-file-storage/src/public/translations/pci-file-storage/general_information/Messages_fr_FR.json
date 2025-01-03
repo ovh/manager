@@ -1,0 +1,21 @@
+{
+  "title_information": "Informations",
+  "title_manage": "Gestion",
+  "title_connecting": "Connexions",
+  "title_name": "Nom du partage",
+  "title_description": "Description",
+  "title_status": "Statut",
+  "title_region": "Région",
+  "title_createdAt": "Date de création",
+  "title_protocol": "Protocole",
+  "title_size": "Taille allouée",
+  "title_mount_path": "Point de montage",
+  "action_manage_acl": "Gestion des accès",
+  "action_create_snapshot": "Créer un snapshot",
+  "action_manage_snapshot": "Gérer les snapshots",
+  "action_restore_snapshot": "Restaurer depuis un snapshot",
+  "action_upgrade_size": "Mettre à jour la taille",
+  "action_delete": "Supprimer",
+  "copy_success": "Point de montage copié",
+  "copy_error": "Impossible de copier le point de montage"
+}
