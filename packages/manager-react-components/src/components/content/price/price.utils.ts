@@ -17,6 +17,8 @@ export interface PriceProps {
   isConvertIntervalUnit?: boolean;
   /** The locale for price formatting */
   locale: string;
+  suffix?: string;
+  isStartingPrice?: boolean;
 }
 
 export const getPrice = (value: number, tax?: number): number => {
