@@ -1,14 +1,11 @@
-import React, { Suspense } from 'react';
+import React, { startTransition, Suspense } from 'react';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { UpdateNameModal } from '@ovh-ux/manager-react-components';
 import { useSavingsPlan, useSavingsPlanEditName } from '@/hooks/useSavingsPlan';
 import { REGEX } from '@/utils/savingsPlan';
 
-const EditNamePage = () => {
-  const { t } = useTranslation('edit-name');
-  const { t: tCreate } = useTranslation('create');
-
+const EditNameChildren = () => {
   const navigate = useNavigate();
   const { savingsPlanId } = useParams();
 
@@ -16,22 +13,28 @@ const EditNamePage = () => {
   const { mutate: editName } = useSavingsPlanEditName(savingsPlanId);
   const [searchParams] = useSearchParams();
 
-  const currentPlan = savingsPlan.find((plan) => plan.id === savingsPlanId);
+  const currentPlan = savingsPlan?.find((plan) => plan.id === savingsPlanId);
+
+  const { t } = useTranslation('edit-name');
+  const { t: tCreate } = useTranslation('create');
 
   return (
-    <Suspense fallback="">
+    <>
       {currentPlan ? (
         <UpdateNameModal
+          isOpen
           inputLabel=""
           closeModal={() =>
             navigate({ pathname: '..', search: searchParams.toString() })
           }
           defaultValue={currentPlan?.displayName || ''}
           updateDisplayName={(displayName) => {
-            editName({
-              displayName,
+            startTransition(() => {
+              editName({
+                displayName,
+              });
+              navigate({ pathname: '..', search: searchParams.toString() });
             });
-            navigate({ pathname: '..', search: searchParams.toString() });
           }}
           headline={t('title')}
           pattern={REGEX}
@@ -41,6 +44,13 @@ const EditNamePage = () => {
       ) : (
         <></>
       )}
+    </>
+  );
+};
+const EditNamePage = () => {
+  return (
+    <Suspense fallback="">
+      <EditNameChildren />
     </Suspense>
   );
 };
