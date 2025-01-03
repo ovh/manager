@@ -1,8 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Card, OnboardingLayout } from '@ovh-ux/manager-react-components';
-import useGuideUtils from '@/hooks/guide/useGuideUtils';
-import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
+import useGuideUtils from '@/pages/onboarding/useGuideUtils';
 import onboardingImgSrc from './onboarding-img.png';
 
 export default function Onboarding() {
@@ -46,21 +45,18 @@ export default function Onboarding() {
   };
 
   return (
-    <>
-      <Breadcrumb />
-      <OnboardingLayout
-        title={title}
-        img={imgSrc}
-        description={description}
-        orderButtonLabel={t('orderButtonLabel')}
-        orderHref={t('orderButtonLink')}
-        moreInfoButtonLabel={t('moreInfoButtonLabel')}
-        moreInfoHref={t('moreInfoButtonLink')}
-      >
-        {tileList.map((tile) => (
-          <Card key={tile.id} href={tile.href} texts={tile.texts} />
-        ))}
-      </OnboardingLayout>
-    </>
+    <OnboardingLayout
+      title={title}
+      img={imgSrc}
+      description={description}
+      orderButtonLabel={t('orderButtonLabel')}
+      orderHref={t('orderButtonLink')}
+      moreInfoButtonLabel={t('moreInfoButtonLabel')}
+      moreInfoHref={t('moreInfoButtonLink')}
+    >
+      {tileList.map((tile) => (
+        <Card key={tile.id} href={tile.href} texts={tile.texts} />
+      ))}
+    </OnboardingLayout>
   );
 }
