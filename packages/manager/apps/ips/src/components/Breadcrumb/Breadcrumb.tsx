@@ -3,25 +3,34 @@ import {
   OdsBreadcrumb,
   OdsBreadcrumbItem,
 } from '@ovhcloud/ods-components/react';
-import {
-  useBreadcrumb,
-  BreadcrumbItem,
-} from '@/hooks/breadcrumb/useBreadcrumb';
-import appConfig from '@/ips.config';
+import { useTranslation } from 'react-i18next';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { urls } from '@/routes/routes.constant';
+import { APP_NAME } from '@/tracking.constant';
 
-export interface BreadcrumbProps {
-  customRootLabel?: string;
-  appName?: string;
-  items?: BreadcrumbItem[];
-}
+export function Breadcrumb(): JSX.Element {
+  const { t } = useTranslation('ips');
+  const location = useLocation();
+  const navigate = useNavigate();
 
-function Breadcrumb({ customRootLabel }: BreadcrumbProps): JSX.Element {
-  const label = customRootLabel || appConfig.rootLabel;
+  const pathnames = location.pathname.split('/').filter(Boolean);
+  const paths = pathnames.map((value) => ({
+    label: t(value),
+    onClick: () => navigate(`/#/${APP_NAME}/${value}`),
+  }));
 
-  const breadcrumbItems = useBreadcrumb({
-    rootLabel: label,
-    appName: 'ips',
-  });
+  const breadcrumbItems: {
+    label: string;
+    href?: string;
+    onClick?: () => void;
+  }[] = [
+    {
+      label: t('breadcrumb_root_label'),
+      onClick: () => navigate(urls.listing),
+    },
+    ...paths,
+  ];
+
   return (
     <OdsBreadcrumb>
       {breadcrumbItems?.map((item) => (
@@ -29,10 +38,9 @@ function Breadcrumb({ customRootLabel }: BreadcrumbProps): JSX.Element {
           key={item.label}
           href={item.href}
           label={item.label}
+          onClick={item.onClick}
         />
       ))}
     </OdsBreadcrumb>
   );
 }
-
-export default Breadcrumb;

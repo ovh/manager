@@ -5959,10 +5959,10 @@
     "@ovhcloud/ods-common-stencil" "17.2.2"
     "@ovhcloud/ods-common-theming" "17.2.2"
 
-"@ovhcloud/ods-components@^18.3.0":
-  version "18.3.0"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-18.3.0.tgz#f5fa856bb45ad7df3ebe421d64ab334f41c7206c"
-  integrity sha512-E2bDV7RDnNty8fR7Fbvkxug2pySmsy4BQIt9rY0VTZWtcbaUlazmKbr+l+TjeL7vRxiPR4+9xLidI1kwt26O9A==
+"@ovhcloud/ods-components@18.4.1", "@ovhcloud/ods-components@^18.3.0":
+  version "18.4.1"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-18.4.1.tgz#44e21d23fbf844348e94b966d2aa5c38d8376dc8"
+  integrity sha512-aS7BArn0691hyHAn2/ND/7XYIX01gAmVCSvEl8uT9umT4iDDvodipkWRtGxBUin6ndvyED1Jx0BfCbtYsrKPeQ==
   dependencies:
     "@floating-ui/dom" "1.6.11"
     "@stencil/core" "4.16.0"
@@ -5972,9 +5972,9 @@
     vanillajs-datepicker "1.3.4"
 
 "@ovhcloud/ods-components@^18.4.1":
-  version "18.4.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-18.4.1.tgz#44e21d23fbf844348e94b966d2aa5c38d8376dc8"
-  integrity sha512-aS7BArn0691hyHAn2/ND/7XYIX01gAmVCSvEl8uT9umT4iDDvodipkWRtGxBUin6ndvyED1Jx0BfCbtYsrKPeQ==
+  version "18.5.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-18.5.0.tgz#f5b9d3ace2dafab19340e1457a0d113ccb09a52c"
+  integrity sha512-578ljWS0bQOROt2LTFMDVP8NIaSXu1K8OjqzaXnSBdw1sL/zbKCmtsvYMyaAuOTRK1iwYqL7BI45L2IIu9J4ig==
   dependencies:
     "@floating-ui/dom" "1.6.11"
     "@stencil/core" "4.16.0"
@@ -5997,12 +5997,7 @@
   dependencies:
     "@ovhcloud/ods-common-theming" "17.2.2"
 
-"@ovhcloud/ods-themes@^18.3.0":
-  version "18.3.0"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-18.3.0.tgz#804e3502e6791f7ec2efc24abb107d27cd4e02e0"
-  integrity sha512-mTxtcM4tCUPk98x65PeslXqGONJraTryXgkbgbZuvtOYf9SgVl+zFJfyisD2sYGuJvVf6hJP1NvJkyrxOUqtSw==
-
-"@ovhcloud/ods-themes@^18.4.1":
+"@ovhcloud/ods-themes@^18.3.0", "@ovhcloud/ods-themes@^18.4.1":
   version "18.4.1"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-18.4.1.tgz#1c8dfeff1ba0b829fd61e8dea41af4cdbed46912"
   integrity sha512-bezBp/Bgbo19IFPJ/+a/bFt2IArjq8wGrHPshpk/bVVZsxkgpAiUfRERmftU+l7gYU3e+yvFdopNL6eRaJDPWQ==
@@ -6037,13 +6032,6 @@
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/@pkgr/core/-/core-0.1.1.tgz#1ec17e2edbec25c8306d424ecfbf13c7de1aaa31"
   integrity sha512-cq8o4cWH0ibXh9VGi5P20Tu9XF/0fFXl9EUinr9QfTM7a7p0oTA4iJRCQWppXR1Pg8dSM0UCItCkPwsk9qWWYA==
-
-"@playwright/test@^1.34.3", "@playwright/test@^1.41.2":
-  version "1.43.0"
-  resolved "https://registry.yarnpkg.com/@playwright/test/-/test-1.43.0.tgz#5d90f247b26d404dd5d81c60f9c7c5e5159eb664"
-  integrity sha512-Ebw0+MCqoYflop7wVKj711ccbNlrwTBCtjY5rlbiY9kHL2bCYxq+qltK6uPsVBGGAOb033H2VO0YobcQVxoW7Q==
-  dependencies:
-    playwright "1.43.0"
 
 "@playwright/test@^1.49.1":
   version "1.49.1"
@@ -16049,11 +16037,6 @@ flag-icon-css@~0.8.5:
   resolved "https://registry.yarnpkg.com/flag-icon-css/-/flag-icon-css-0.8.6.tgz#7dab89f99040c2a1113108132a1eab8c1dea44c4"
   integrity sha512-OQdsWTHoPB1gi79Be6mLgKD1GprOLur/Qv370nh91+Lrw0rIhGMjYc+CVgS05ZhjaMYn/CEQUNreW4SN1giQQw==
 
-flag-icons@^7.2.3:
-  version "7.2.3"
-  resolved "https://registry.yarnpkg.com/flag-icons/-/flag-icons-7.2.3.tgz#b67f379fa0ef28c4e605319a78035131bdd8ced7"
-  integrity sha512-X2gUdteNuqdNqob2KKTJTS+ZCvyWeLCtDz9Ty8uJP17Y4o82Y+U/Vd4JNrdwTAjagYsRznOn9DZ+E/Q52qbmqg==
-
 flagged-respawn@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/flagged-respawn/-/flagged-respawn-2.0.0.tgz#abf39719dcfe1ac06c86c9466081c541c682987b"
@@ -22555,24 +22538,10 @@ pkg-types@^1.0.3:
     mlly "^1.2.0"
     pathe "^1.1.0"
 
-playwright-core@1.43.0:
-  version "1.43.0"
-  resolved "https://registry.yarnpkg.com/playwright-core/-/playwright-core-1.43.0.tgz#d8079acb653abebb0b63062e432479647a4e1271"
-  integrity sha512-iWFjyBUH97+pUFiyTqSLd8cDMMOS0r2ZYz2qEsPjH8/bX++sbIJT35MSwKnp1r/OQBAqC5XO99xFbJ9XClhf4w==
-
 playwright-core@1.49.1:
   version "1.49.1"
   resolved "https://registry.yarnpkg.com/playwright-core/-/playwright-core-1.49.1.tgz#32c62f046e950f586ff9e35ed490a424f2248015"
   integrity sha512-BzmpVcs4kE2CH15rWfzpjzVGhWERJfmnXmniSyKeRZUs9Ws65m+RGIi7mjJK/euCegfn3i7jvqWeWyHe9y3Vgg==
-
-playwright@1.43.0:
-  version "1.43.0"
-  resolved "https://registry.yarnpkg.com/playwright/-/playwright-1.43.0.tgz#2c2efd4ee2a25defd8c24c98ccb342bdd9d435f5"
-  integrity sha512-SiOKHbVjTSf6wHuGCbqrEyzlm6qvXcv7mENP+OZon1I07brfZLGdfWV0l/efAzVx7TF3Z45ov1gPEkku9q25YQ==
-  dependencies:
-    playwright-core "1.43.0"
-  optionalDependencies:
-    fsevents "2.3.2"
 
 playwright@1.49.1:
   version "1.49.1"
