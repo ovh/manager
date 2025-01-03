@@ -3,7 +3,6 @@ import { screen, waitFor } from '@testing-library/react';
 import { HttpResponse, http } from 'msw';
 import { setupServer } from 'msw/node';
 import React from 'react';
-import { vi } from 'vitest';
 import { render } from '@/utils/testProvider';
 import LegalLinks from './LegalLinks';
 import { SavingsPlanContract } from '@/types';
@@ -24,15 +23,12 @@ const MOCK_CONTRACTS: SavingsPlanContract[] = [
 ];
 
 const server = setupServer(
-  http.get('/engine/apiv6/services?resourceName=undefined', ({ request }) => {
+  http.get('/engine/apiv6/services?resourceName=undefined', () => {
     return HttpResponse.json([123]);
   }),
-  http.get(
-    '/engine/apiv6/services/123/savingsPlans/contracts',
-    ({ request }) => {
-      return HttpResponse.json(MOCK_CONTRACTS);
-    },
-  ),
+  http.get('/engine/apiv6/services/123/savingsPlans/contracts', () => {
+    return HttpResponse.json(MOCK_CONTRACTS);
+  }),
 );
 
 beforeAll(() => server.listen());
@@ -44,8 +40,8 @@ describe('LegalLinks', async () => {
     render(<LegalLinks />);
 
     await waitFor(() => {
-      expect(screen.getByText(MOCK_CONTRACTS[0].name)).toBeInTheDocument();
-      expect(screen.getByText(MOCK_CONTRACTS[1].name)).toBeInTheDocument();
+      expect(screen.getByTestId(MOCK_CONTRACTS[0].name)).toBeInTheDocument();
+      expect(screen.getByTestId(MOCK_CONTRACTS[1].name)).toBeInTheDocument();
     });
   });
 });
