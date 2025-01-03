@@ -37,7 +37,8 @@ export function LocationStep({
           onSelectRegion={setRegion}
           regionFilter={(r) =>
             r.isMacro ||
-            r.services.some((s) => s.name === 'volume' && s.status === 'UP')
+            r.services.some((s) => s.name === 'volume' && s.status === 'UP') ||
+            r.type === 'region-3-az'
           }
         />
       )}
