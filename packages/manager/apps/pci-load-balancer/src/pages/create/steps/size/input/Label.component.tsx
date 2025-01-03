@@ -26,7 +26,7 @@ export const LabelComponent = ({
         size={ODS_TEXT_SIZE._400}
         level={ODS_TEXT_LEVEL.body}
         color={ODS_THEME_COLOR_INTENT.text}
-        className={isItemSelected ? 'font-bold' : ''}
+        className={isItemSelected ? 'font-bold' : 'font-normal'}
       >
         {tCreate('octavia_load_balancer_create_size_flavour_title', {
           sizeCode: item.label,
