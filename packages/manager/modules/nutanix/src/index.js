@@ -61,3 +61,5 @@ angular
   );
 
 export default moduleName;
+
+// Fix
