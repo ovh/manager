@@ -1,6 +1,7 @@
 {
   "price_ht_label": "HT",
   "price_ttc_label": "TTC",
+  "price_from_label": "à partir de ",
   "price_free": "Inclus",
   "price_gst_excl_label": "ex. GST",
   "price_gst_incl_label": "incl. GST",
