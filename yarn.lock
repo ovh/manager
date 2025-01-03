@@ -5939,19 +5939,7 @@
     "@ovhcloud/ods-common-stencil" "17.2.2"
     "@ovhcloud/ods-common-theming" "17.2.2"
 
-"@ovhcloud/ods-components@^18.3.0":
-  version "18.3.0"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-18.3.0.tgz#f5fa856bb45ad7df3ebe421d64ab334f41c7206c"
-  integrity sha512-E2bDV7RDnNty8fR7Fbvkxug2pySmsy4BQIt9rY0VTZWtcbaUlazmKbr+l+TjeL7vRxiPR4+9xLidI1kwt26O9A==
-  dependencies:
-    "@floating-ui/dom" "1.6.11"
-    "@stencil/core" "4.16.0"
-    google-libphonenumber "3.2.35"
-    tom-select "2.3.1"
-    tslib "2.6.3"
-    vanillajs-datepicker "1.3.4"
-
-"@ovhcloud/ods-components@^18.4.1":
+"@ovhcloud/ods-components@^18.3.0", "@ovhcloud/ods-components@^18.4.1":
   version "18.4.1"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-18.4.1.tgz#44e21d23fbf844348e94b966d2aa5c38d8376dc8"
   integrity sha512-aS7BArn0691hyHAn2/ND/7XYIX01gAmVCSvEl8uT9umT4iDDvodipkWRtGxBUin6ndvyED1Jx0BfCbtYsrKPeQ==
@@ -5977,12 +5965,7 @@
   dependencies:
     "@ovhcloud/ods-common-theming" "17.2.2"
 
-"@ovhcloud/ods-themes@^18.3.0":
-  version "18.3.0"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-18.3.0.tgz#804e3502e6791f7ec2efc24abb107d27cd4e02e0"
-  integrity sha512-mTxtcM4tCUPk98x65PeslXqGONJraTryXgkbgbZuvtOYf9SgVl+zFJfyisD2sYGuJvVf6hJP1NvJkyrxOUqtSw==
-
-"@ovhcloud/ods-themes@^18.4.1":
+"@ovhcloud/ods-themes@^18.3.0", "@ovhcloud/ods-themes@^18.4.1":
   version "18.4.1"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-18.4.1.tgz#1c8dfeff1ba0b829fd61e8dea41af4cdbed46912"
   integrity sha512-bezBp/Bgbo19IFPJ/+a/bFt2IArjq8wGrHPshpk/bVVZsxkgpAiUfRERmftU+l7gYU3e+yvFdopNL6eRaJDPWQ==
@@ -16014,6 +15997,11 @@ flag-icon-css@~0.8.5:
   version "0.8.6"
   resolved "https://registry.yarnpkg.com/flag-icon-css/-/flag-icon-css-0.8.6.tgz#7dab89f99040c2a1113108132a1eab8c1dea44c4"
   integrity sha512-OQdsWTHoPB1gi79Be6mLgKD1GprOLur/Qv370nh91+Lrw0rIhGMjYc+CVgS05ZhjaMYn/CEQUNreW4SN1giQQw==
+
+flag-icons@^7.2.3:
+  version "7.2.3"
+  resolved "https://registry.yarnpkg.com/flag-icons/-/flag-icons-7.2.3.tgz#b67f379fa0ef28c4e605319a78035131bdd8ced7"
+  integrity sha512-X2gUdteNuqdNqob2KKTJTS+ZCvyWeLCtDz9Ty8uJP17Y4o82Y+U/Vd4JNrdwTAjagYsRznOn9DZ+E/Q52qbmqg==
 
 flagged-respawn@^2.0.0:
   version "2.0.0"
