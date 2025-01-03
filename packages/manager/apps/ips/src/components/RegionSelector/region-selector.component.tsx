@@ -13,7 +13,6 @@ import {
   isRegionInUs,
   shadowColor,
 } from './region-selector.utils';
-import 'flag-icons/css/flag-icons.min.css';
 import './region-selector.scss';
 
 export type RegionSelectorProps = {
@@ -68,9 +67,12 @@ export const RegionSelector: React.FC<RegionSelectorProps> = ({
                 color={ODS_CARD_COLOR.neutral}
               >
                 <span
-                  className={`fi-${getCountryCode(
-                    region,
-                  )} w-[44px] h-[32px] shadow-md shadow-[${shadowColor}] mr-3`}
+                  style={{
+                    backgroundImage: `url('flags/${getCountryCode(
+                      region,
+                    )}.svg')`,
+                  }}
+                  className={`w-[44px] h-[32px] shadow-md shadow-[${shadowColor}] mr-3`}
                 />
                 <div className="flex flex-col">
                   <OdsText className="block" preset={ODS_TEXT_PRESET.heading4}>
