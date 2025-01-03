@@ -1,6 +1,7 @@
 import moment from 'moment';
 
 import { GUIDE_URL, LICENSE_REGISTRATION_ENDS_IN_DAYS } from './constants';
+import { NUTANIX_PERSONAL_LICENSE_EDITION } from './general-info/constants';
 
 export default class NutanixDashboardCtrl {
   /* @ngInject */
@@ -37,7 +38,7 @@ export default class NutanixDashboardCtrl {
       diff >= 0 &&
       diff <= LICENSE_REGISTRATION_ENDS_IN_DAYS &&
       this.getTechnicalDetails?.nutanixCluster?.license.edition ===
-        'Personal license'
+        NUTANIX_PERSONAL_LICENSE_EDITION
     );
   }
 }
