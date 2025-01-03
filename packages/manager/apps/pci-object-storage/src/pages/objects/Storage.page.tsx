@@ -46,21 +46,17 @@ export default function ObjectsPage() {
       condition={!isPending && allStorages?.resources.length === 0}
       route="./onboarding"
     >
-      <OdsBreadcrumb>
+      <OdsBreadcrumb className="mb-8">
         <OdsBreadcrumbItem label={project.description} href={hrefProject} />
         <OdsBreadcrumbItem label={activePanelTranslation} href="#" />
       </OdsBreadcrumb>
 
-      <div className="flex items-center justify-between mt-8">
-        <Headers
-          title={t('pci_projects_project_storages_containers_object_title')}
-        />
-        <PciGuidesHeader category="objectStorage" />
-      </div>
       <Headers
+        title={t('pci_projects_project_storages_containers_object_title')}
         description={t(
           'pci_projects_project_storages_containers_object_description',
         )}
+        headerButton={<PciGuidesHeader category="objectStorage" />}
       />
 
       <div className="mt-8">
