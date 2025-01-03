@@ -1,6 +1,11 @@
 import '@testing-library/jest-dom';
 import 'element-internals-polyfill';
 import { vi } from 'vitest';
+import { queryClient } from './wrapperRenders';
+
+afterEach(() => {
+  queryClient.clear();
+});
 
 vi.mock('react-router-dom', async () => {
   const mod = await vi.importActual('react-router-dom');
@@ -10,7 +15,7 @@ vi.mock('react-router-dom', async () => {
     useParams: () => ({ projectId: 'project-id', kubeId: 'kube-id' }),
     useHref: vi.fn(),
     useLocation: vi.fn(),
-    useNavigate: vi.fn(),
+    useNavigate: vi.fn(() => vi.fn()),
     Navigate: () => null,
     Outlet: vi.fn(() => 'Outlet'),
   };
@@ -35,6 +40,7 @@ vi.mock('@ovh-ux/manager-react-components', async () => {
     useNotifications: vi.fn().mockReturnValue({
       addError: vi.fn(),
       addSuccess: vi.fn(),
+      addInfo: vi.fn(),
     }),
   };
 });
