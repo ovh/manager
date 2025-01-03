@@ -17,6 +17,11 @@ export type TDataState = {
   regions: TRegion[];
 };
 
+enum IPType {
+  Private = 'private',
+  Public = 'public',
+}
+
 export const useData = (projectId: string, regionName: string) => {
   const { ipTypes } = useIpTypes();
   const { countries } = useCountries(projectId, regionName);
@@ -36,10 +41,10 @@ export const useData = (projectId: string, regionName: string) => {
 
   useEffect(() => {
     const floatingInstances = (instances || []).filter((instance) =>
-      instance.ipAddresses?.some((ip) => ip.type === 'private'),
+      instance.ipAddresses?.some((ip) => ip.type === IPType.Private),
     );
     const additionalInstances = (instances || []).filter((instance) =>
-      instance.ipAddresses?.some((ip) => ip.type === 'public'),
+      instance.ipAddresses?.some((ip) => ip.type === IPType.Public),
     );
     setDataState((prev) => ({
       ...prev,

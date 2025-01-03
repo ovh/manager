@@ -15,7 +15,7 @@ import { RegionSelector } from '@ovh-ux/manager-pci-common';
 import { useTranslation } from 'react-i18next';
 import { useEffect, useMemo, useState } from 'react';
 import { useData } from '@/api/hooks/useData';
-import { StepIdsEnum, TRegion } from '@/api/types';
+import { RegionType, StepIdsEnum, TRegion } from '@/api/types';
 import { useOrderStore } from '@/pages/order/hooks/useStore';
 import { useActions } from '@/pages/order/hooks/useActions';
 import { StepComponent } from '@/components/container/Step.component';
@@ -95,7 +95,6 @@ export const FloatingSteps = ({
                 macroLabel: macroName,
                 microLabel: microName,
                 name,
-                type,
               } = region;
 
               const floatingRegion: TRegion = {
@@ -106,7 +105,7 @@ export const FloatingSteps = ({
                 macroName,
                 microName,
                 name,
-                type,
+                type: region.type as RegionType,
               };
 
               setForm({ ...form, floatingRegion });
@@ -117,7 +116,7 @@ export const FloatingSteps = ({
             DataState.regions.some(({ name }) => name === region.name)
           }
         />
-        {form.floatingRegion?.type === 'region-3-az' && (
+        {form.floatingRegion?.type === RegionType['3AZ'] && (
           <OsdsMessage
             color={ODS_THEME_COLOR_INTENT.warning}
             icon={ODS_ICON_NAME.WARNING}
