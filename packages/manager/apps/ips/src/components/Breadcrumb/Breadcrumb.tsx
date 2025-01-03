@@ -6,7 +6,7 @@ import {
 import {
   useBreadcrumb,
   BreadcrumbItem,
-} from '@/hooks/breadcrumb/useBreadcrumb';
+} from '@/components/Breadcrumb/useBreadcrumb';
 import appConfig from '@/ips.config';
 
 export interface BreadcrumbProps {

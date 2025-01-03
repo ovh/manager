@@ -1,0 +1,66 @@
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { OdsSelect } from '@ovhcloud/ods-components/react';
+import { OrderSection } from './OrderSection.component';
+import { useAvailableGeolocationFromPlanCode } from '@/data/hooks/catalog';
+import { getCountryCode } from '@/components/RegionSelector/region-selector.utils';
+
+export type GeolocationSectionProps = {
+  selectedGeolocation?: string;
+  setSelectedGeolocation: React.Dispatch<React.SetStateAction<string>>;
+  selectedPlanCode?: string;
+  selectedRegion?: string;
+};
+
+export const GeolocationSection: React.FC<GeolocationSectionProps> = ({
+  selectedGeolocation,
+  setSelectedGeolocation,
+  selectedPlanCode,
+  selectedRegion,
+}) => {
+  const { t } = useTranslation('order');
+  const { t: tRegionSelector } = useTranslation('region-selector');
+  const { geolocations } = useAvailableGeolocationFromPlanCode(
+    selectedPlanCode,
+  );
+
+  React.useEffect(() => {
+    if (selectedRegion) {
+      const code = getCountryCode(selectedRegion) || geolocations[0];
+      setSelectedGeolocation(code === 'gb' ? 'uk' : code);
+    }
+  }, [selectedRegion]);
+
+  return (
+    <OrderSection
+      title={t('geolocation_selection_title')}
+      description={t('geolocation_selection_description')}
+    >
+      <OdsSelect
+        key={geolocations.join('-')}
+        className="block w-full max-w-[384px]"
+        name="ip-geolocation"
+        onOdsChange={(event) =>
+          setSelectedGeolocation(event.target.value as string)
+        }
+        value={selectedGeolocation}
+        customRenderer={{
+          option: (data) => `<div style="display: flex">
+            <span>${tRegionSelector(
+              `region-selector-country-name_${data.value}`,
+            )}</span>
+            <span style="width: 32px; height: 24px; margin: auto 15px auto auto; background-image: url('flags/${
+              data.value
+            }.svg')"></span>
+          </div>`,
+        }}
+      >
+        {geolocations.map((country) => (
+          <option key={country} value={country}>
+            {tRegionSelector(`region-selector-country-name_${country}`)}
+          </option>
+        ))}
+      </OdsSelect>
+    </OrderSection>
+  );
+};
