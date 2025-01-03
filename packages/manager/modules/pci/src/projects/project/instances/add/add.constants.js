@@ -87,6 +87,8 @@ export const ADD_INSTANCE_TRACKING_PREFIX = [
   'funnel',
 ];
 
+export const HOURS_PER_MONTH = 730;
+
 export default {
   BANDWIDTH_OUT,
   INSTANCE_MODES_ENUM,
@@ -99,4 +101,5 @@ export default {
   URL_MODEL,
   ADD_INSTANCE_TRACKING_PAGE_NAME,
   ADD_INSTANCE_TRACKING_PREFIX,
+  HOURS_PER_MONTH,
 };

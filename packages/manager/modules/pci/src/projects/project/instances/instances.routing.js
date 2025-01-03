@@ -474,6 +474,13 @@ export default /* @ngInject */ ($stateProvider) => {
           PCI_FEATURES.ACTIONS.INSTANCE_LOCALZONE_BACKUP,
         );
       },
+      isInstanceLocalZoneAutoBackupAvailable: /* @ngInject */ (pciFeatures) => {
+        return (
+          pciFeatures.isFeatureAvailable(
+            PCI_FEATURES.ACTIONS.INSTANCE_LOCALZONE_AUTO_BACKUP,
+          ) || false
+        );
+      },
     },
   });
 };

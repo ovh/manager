@@ -337,9 +337,10 @@
         data-header="{{ :: 'pci_projects_project_instances_add_instance_title' | translate }}"
         data-on-focus="$ctrl.onInstanceFocus()"
         data-editable="!$ctrl.isLoading"
-        data-valid="$ctrl.automatedBackup.selected ? $ctrl.automatedBackup.schedule : true"
+        data-valid="$ctrl.automatedBackup.selected ? !!$ctrl.automatedBackup.schedule : true"
         name="instances_add_configuration"
         data-on-submit="$ctrl.onInstanceSubmit()"
+        data-prevent-next="true"
     >
         <oui-field
             data-label="{{ 'pci_projects_project_instances_add_numInstances_label' | translate }}"
@@ -444,12 +445,14 @@
         </div>
 
         <div
-            data-ng-if="$ctrl.PciProjectsProjectInstanceService.automatedBackupIsAvailable($ctrl.flavor.type) && !$ctrl.isLocalZone()"
+            data-ng-if="$ctrl.isInstanceLocalZoneAutoBackupAvailable && $ctrl.PciProjectsProjectInstanceService.automatedBackupIsAvailable($ctrl.flavor.type)"
         >
             <oui-checkbox
                 class="mb-4"
                 model="$ctrl.automatedBackup.selected"
                 name="automatedBackup"
+                data-on-change="$ctrl.onAutomatedBackupChange(modelValue)"
+                data-disabled="$ctrl.isCalculatingBackupPrice"
             >
                 <oui-checkbox-label>
                     <span
@@ -467,10 +470,15 @@
                 ></span>
             </oui-checkbox>
             <p
+                data-ng-if="!$ctrl.isCalculatingBackupPrice"
                 class="font-weight-bold"
                 data-translate="pci_workflow_create_monthly_backup_price"
-                data-translate-values="{ price : $ctrl.automatedBackup.price.price.text }"
+                data-translate-values="{ price : $ctrl.automatedBackupPrice }"
             ></p>
+            <oui-spinner
+                data-size="s"
+                data-ng-if="$ctrl.isCalculatingBackupPrice"
+            />
             <pci-projects-project-workflow-schedule
                 data-ng-if="$ctrl.automatedBackup.selected"
                 data-schedule="$ctrl.automatedBackup.schedule"
