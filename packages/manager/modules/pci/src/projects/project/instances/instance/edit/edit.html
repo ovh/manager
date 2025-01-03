@@ -366,14 +366,24 @@
                     </div>
                     <oui-message
                         data-type="info"
-                        data-ng-if="$ctrl.hasComingSoonFlavorTag($ctrl.instance.flavor)"
+                        data-ng-if="$ctrl.hasComingSoonFlavorTag($ctrl.instance.flavor) && $ctrl.isSavingsPlanAvailable"
                     >
-                        <h6
-                            data-translate="pci_projects_project_instances_instance_edit_billing_anti_affinity_coming_soon_message_title"
-                        ></h6>
                         <p
-                            data-translate="pci_projects_project_instances_instance_edit_billing_anti_affinity_coming_soon_message_description"
+                            data-translate="pci_projects_project_instances_add_billing_savings_plan_banner"
                         ></p>
+                        <a
+                            class="oui-link oui-link_icon"
+                            data-ng-href="{{:: $ctrl.savingsPlanUrl }}"
+                            target="_blank"
+                        >
+                            <span
+                                data-translate="pci_projects_project_instances_add_billing_savings_plan_cta"
+                            ></span>
+                            <span
+                                class="oui-icon oui-icon-arrow-right"
+                                aria-hidden="true"
+                            ></span>
+                        </a>
                     </oui-message>
                     <pci-project-flavor-billing
                         data-flavor="$ctrl.defaultFlavor"
