@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useMemo, useState } from 'react';
-import useAgreementsUpdate from '@/hooks/agreements/useAgreementsUpdate';
+import usePendingAgreements from '@/hooks/agreements/usePendingAgreements';
 import { ODS_THEME_COLOR_HUE, ODS_THEME_COLOR_INTENT, ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
 import { OsdsButton, OsdsLink, OsdsModal, OsdsText } from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT, ODS_TEXT_LEVEL } from '@ovhcloud/ods-components';
 import { Trans, useTranslation } from 'react-i18next';
 import ApplicationContext from '@/context';
 import ovhCloudLogo from '@/assets/images/logo-ovhcloud.png';
-import { useAuthorizationIam } from '@ovh-ux/manager-react-components/src/hooks/iam';
+import { useAuthorizationIam } from '@ovh-ux/manager-react-components';
 import useAccountUrn from '@/hooks/accountUrn/useAccountUrn';
 import { ModalTypes } from '@/context/modals/modals.context';
 import { useModals } from '@/context/modals';
@@ -30,7 +30,7 @@ export default function AgreementsUpdateModal () {
   const { t } = useTranslation('agreements-update-modal');
   const { data: urn } = useAccountUrn({ enabled: shouldTryToDisplay });
   const { isAuthorized: canUserAcceptAgreements, isLoading: isAuthorizationLoading } = useAuthorizationIam(['account:apiovh:me/agreements/accept'], urn);
-  const { data: agreements, isLoading: areAgreementsLoading } = useAgreementsUpdate({ enabled: canUserAcceptAgreements });
+  const { data: agreements, isLoading: areAgreementsLoading } = usePendingAgreements({ enabled: canUserAcceptAgreements });
   const goToContractPage = () => {
     setShowModal(false);
     navigation.navigateTo('dedicated', `#/billing/autorenew/agreements`);
