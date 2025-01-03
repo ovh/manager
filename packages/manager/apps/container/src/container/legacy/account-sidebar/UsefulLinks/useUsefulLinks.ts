@@ -8,6 +8,8 @@ import { ODS_ICON_NAME} from '@ovhcloud/ods-components'
 
 
 import getOdsIcon from '../getOdsIcon';
+import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
+import { getSvgIcon } from '../getSvgIcon';
 
 interface UseUsefulLinks {
   getUsefulLinks(): UsefulLink[];
@@ -28,6 +30,20 @@ const useUsefulLinks = (): UseUsefulLinks => {
   const getUsefulLinks = (): UsefulLink[] => {
     const trackingPrefix = 'hub::sidebar::useful-links';
     return [
+      {
+        id: 'cloud_changelog',
+        external: true,
+        href: constants[region]?.cloud_changelog,
+        tracking: `${trackingPrefix}::go-to-cloud-changelog`,
+        icon: getSvgIcon(OvhProductName.CLOUD_CHANGELOG)
+      },
+      {
+        id: 'hosting_and_collab_changelog',
+        external: true,
+        href: constants[region]?.hosting_and_collab_changelog,
+        tracking: `${trackingPrefix}::go-to-hosting-and-collab-changelog`,
+        icon: getSvgIcon(OvhProductName.HOSTING_CHANGELOG)
+      },
       {
         id: 'helpCenter',
         external: true,

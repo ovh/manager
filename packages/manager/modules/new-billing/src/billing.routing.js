@@ -5,13 +5,30 @@ import {
   GUIDE_TRACKING_TAG,
 } from './constants/guides-header.constants';
 
-export default /* @ngInject */ ($stateProvider) => {
+export default /* @ngInject */ (
+  $stateProvider,
+  $urlRouterProvider,
+  $urlServiceProvider,
+) => {
   $stateProvider.state('billing', {
     url: '',
     translations: { value: ['.'], format: 'json' },
     redirectTo: 'billing.main',
     template,
     controller,
+    onEnter: () => {
+      $urlServiceProvider.rules.when('/order/:id', '/orders/:id');
+
+      $urlRouterProvider.when(
+        /(credits|fidelity|mean|method|ovhaccount|vouchers)/,
+        ($location, $state) => {
+          const [, subroute, remainder] = $location.$$path.match(
+            /\/(credits|fidelity|mean|method|ovhaccount|vouchers)(\/.*)?/,
+          );
+          return $state.go(`billing.payment.${subroute}`, { remainder });
+        },
+      );
+    },
     resolve: {
       denyEnterprise: ($q, $state, currentUser) => {
         if (

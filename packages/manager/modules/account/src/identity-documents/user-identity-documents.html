@@ -47,6 +47,35 @@
             ></span>
         </div>
 
+        <!-- Suceess Banner -->
+        <div
+            class="mt-2"
+            data-ng-if="!$ctrl.loading && !$ctrl.showUploadOption"
+        >
+            <oui-message data-type="success">
+                <p
+                    class="oui-heading_4"
+                    data-translate="user_account_identity_documents_submit_success_message_title"
+                ></p>
+                <p
+                    data-translate="user_account_identity_documents_submit_success_message_description"
+                ></p>
+            </oui-message>
+            <!-- go back to dashboard option -->
+            <a
+                class="oui-link_icon mt-3"
+                data-ng-href="{{:: $ctrl.dashboardRedirectURL }}"
+                target="_blank"
+                rel="noopener"
+            >
+                <span
+                    data-translate="user_account_identity_documents_go_back_to_dashboard"
+                ></span>
+            </a>
+            <!--end of go back to dashboard option -->
+        </div>
+        <!-- End of Suceess Banner -->
+
         <div class="d-flex flex-column mt-3">
             <div
                 data-ng-repeat="(proof, values) in $ctrl.proofs"
@@ -94,35 +123,6 @@
             ></oui-button>
         </div>
         <!-- End of upload option -->
-
-        <!-- Suceess Banner -->
-        <div
-            class="mt-2"
-            data-ng-if="!$ctrl.loading && !$ctrl.showUploadOption"
-        >
-            <oui-message data-type="success">
-                <p
-                    class="oui-heading_4"
-                    data-translate="user_account_identity_documents_submit_success_message_title"
-                ></p>
-                <p
-                    data-translate="user_account_identity_documents_submit_success_message_description"
-                ></p>
-            </oui-message>
-            <!-- go back to dashboard option -->
-            <a
-                class="oui-link_icon mt-3"
-                data-ng-href="{{:: $ctrl.dashboardRedirectURL }}"
-                target="_blank"
-                rel="noopener"
-            >
-                <span
-                    data-translate="user_account_identity_documents_go_back_to_dashboard"
-                ></span>
-            </a>
-            <!--end of go back to dashboard option -->
-        </div>
-        <!-- End of Suceess Banner -->
     </div>
     <!--legal section-->
     <div class="mt-4" data-ng-if="$ctrl.isListView">

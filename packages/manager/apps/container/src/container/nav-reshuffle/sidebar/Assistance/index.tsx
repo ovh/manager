@@ -40,6 +40,12 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
         node.url = urls.get(node.url as keyof ContentURLS);
       }
       switch (node.id) {
+        case 'cloud_changelog':
+          node.onClick = () => trackNode('cloud_changelog');
+          break;
+        case 'hosting_and_collab_changelog':
+          node.onClick = () => trackNode('hosting_and_collab_changelog');
+          break;
         case 'marketplace':
           node.onClick = () => trackNode('marketplace');
           break;
@@ -49,14 +55,14 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
           node.isExternal = true;
           break;
         case 'tickets':
-            node.onClick = () => trackNode('assistance_support_tickets');
-            node.url =  isEUOrCA ? node.url : null;
-            node.routing = !isEUOrCA ? {
-              application: 'dedicated',
-              hash: '#/ticket',
-            } : null;
-            node.isExternal = isEUOrCA;
-            break;
+          node.onClick = () => trackNode('assistance_support_tickets');
+          node.url = isEUOrCA ? node.url : null;
+          node.routing = !isEUOrCA ? {
+            application: 'dedicated',
+            hash: '#/ticket',
+          } : null;
+          node.isExternal = isEUOrCA;
+          break;
         case 'assistance_status':
           node.onClick = () => trackNode('assistance_status');
           break;

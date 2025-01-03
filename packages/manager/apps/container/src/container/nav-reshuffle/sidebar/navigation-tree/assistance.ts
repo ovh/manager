@@ -5,6 +5,20 @@ export const assistanceTree: Node = {
   translation: 'sidebar_assistance_title',
   children: [
     {
+      id: 'cloud_changelog',
+      translation: 'sidebar_cloud_changelog',
+      url: 'cloud_changelog',
+      count: false,
+      isExternal: true,
+    },
+    {
+      id: 'hosting_and_collab_changelog',
+      translation: 'sidebar_hosting_and_collab_changelog',
+      url: 'hosting_and_collab_changelog',
+      count: false,
+      isExternal: true,
+    },
+    {
       id: 'marketplace',
       translation: 'sidebar_marketplace',
       url: 'marketplace',

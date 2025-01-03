@@ -6,7 +6,9 @@ import { WarningSessionModal } from './WarningSessionModal';
 import userContext from '../context';
 
 export const SessionModals: FunctionComponent = () => {
-  const { user } = useContext(userContext);
+  const context = useContext(userContext);
+
+  const { user } = context;
   const {
     setShowExpiredModal,
     setShowWarningModal,

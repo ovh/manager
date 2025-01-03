@@ -29,7 +29,7 @@ export default async (containerEl, shellClient) => {
   const moduleName = 'BillingApp';
 
   const routingConfig = /* @ngInject */ ($urlRouterProvider) => {
-    $urlRouterProvider.otherwise('/billing');
+    $urlRouterProvider.otherwise('/');
   };
 
   const trackingConfig = /* @ngInject */ (atInternetConfigurationProvider) => {
