@@ -4,9 +4,10 @@ import react from '@vitejs/plugin-react';
 import legacy from '@vitejs/plugin-legacy';
 import svgr from 'vite-plugin-svgr';
 import yn from 'yn';
-
+import { viteStaticCopy } from 'vite-plugin-static-copy';
 import IframeHmrPlugin from './plugin/iframe-hmr.js';
 import viteOvhDevServerPlugin from './plugin/dev-server.js';
+import { getCommonTranslations } from './commonTranslations.js';
 
 const isContainerApp = process.cwd().endsWith('container');
 const runInContainer = process.env.CONTAINER;
@@ -67,6 +68,9 @@ const getBaseConfig = (config) => {
       viteOvhDevServerPlugin({ isContainerApp, envConfig }),
       IframeHmrPlugin(),
       svgr(),
+      viteStaticCopy({
+        targets: [...getCommonTranslations()],
+      }),
     ],
     css: {
       preprocessorOptions: {
