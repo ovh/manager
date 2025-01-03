@@ -7,7 +7,7 @@ import {
 } from '@ovhcloud/ods-common-theming';
 import { ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 
-export default function SeeRequest() {
+export default function ErrorPage() {
   const { t } = useTranslation('account-disable-2fa/error');
 
   return (
