@@ -1,29 +1,26 @@
 import {
-  kycIndiaModalLocalStorageKey,
   kycIndiaFeature,
+  kycIndiaModalLocalStorageKey,
   requiredStatusKey,
   trackingContext,
   trackingPrefix,
 } from './constants';
 import { useIdentityDocumentsStatus } from '@/hooks/useIdentityDocumentsStatus';
 import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
-import { FunctionComponent, useEffect, useRef, useState } from 'react';
+import { FunctionComponent, useEffect, useMemo, useRef, useState } from 'react';
 import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
-import { useTranslation, Trans } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { useLocalStorage } from 'react-use';
 import { useShell } from '@/context';
-import {
-  OsdsButton,
-  OsdsCollapsible,
-  OsdsModal,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
+import { OsdsButton, OsdsCollapsible, OsdsModal, OsdsText, } from '@ovhcloud/ods-components/react';
 import {
   ODS_THEME_COLOR_HUE,
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
+import { useModals } from '@/context/modals';
+import { ModalTypes } from '@/context/modals/modals.context';
 
 export const IdentityDocumentsModal: FunctionComponent = () => {
   const shell = useShell();
@@ -31,17 +28,21 @@ export const IdentityDocumentsModal: FunctionComponent = () => {
   const [storage, setStorage] = useLocalStorage<boolean>(
     kycIndiaModalLocalStorageKey,
   );
+  const { current } = useModals();
+
+  const kycURL = navigationPlugin.getURL('dedicated', `#/identity-documents`);
 
   const { t } = useTranslation('identity-documents-modal');
   const legalInformationRef = useRef<any>(null);
 
   const [showModal, setShowModal] = useState<boolean>(false);
 
-  const availabilityDataResponse = useFeatureAvailability([kycIndiaFeature]);
-  const availability = availabilityDataResponse?.data;
+  const { data: availability, isLoading: isFeatureAvailabilityLoading } = useFeatureAvailability([kycIndiaFeature]);
 
-  const { data: statusDataResponse } = useIdentityDocumentsStatus({
-    enabled: Boolean(availability && availability[kycIndiaFeature] && !storage),
+  const isKycAvailable = useMemo(() => Boolean(availability && availability[kycIndiaFeature] && !storage), [availability, storage]);
+
+  const { data: statusDataResponse, isLoading: isProcedureStatusLoading } = useIdentityDocumentsStatus({
+    enabled: isKycAvailable && current === ModalTypes.kyc && window.location.href !== kycURL,
   });
 
   const trackingPlugin = shell.getPlugin('tracking');
@@ -51,13 +52,13 @@ export const IdentityDocumentsModal: FunctionComponent = () => {
     setStorage(true);
     trackingPlugin.trackClick({
       name: `${trackingPrefix}::pop-up::link::kyc::cancel`,
+      type: 'action',
       ...trackingContext,
     });
   };
 
   const onConfirm = () => {
     setShowModal(false);
-    setStorage(true);
     trackingPlugin.trackClick({
       name: `${trackingPrefix}::pop-up::button::kyc::start-verification`,
       type: 'action',
@@ -67,10 +68,31 @@ export const IdentityDocumentsModal: FunctionComponent = () => {
   };
 
   useEffect(() => {
-    if (statusDataResponse?.data?.status === requiredStatusKey) {
-      setShowModal(true);
+    const shouldManageModal = current === ModalTypes.kyc && window.location.href !== kycURL;
+    // We handle the modal display only when the KYC modal is the current one, and we are not on the page
+    // where the user can do the related action (upload his documents)
+    if (shouldManageModal) {
+      // We will wait for feature availability response before handling the modal lifecycle
+      if (!isFeatureAvailabilityLoading && availability) {
+        // If the KYC feature is not available we can safely switch to the next modal
+        if (!isKycAvailable) {
+          shell.getPlugin('ux').notifyModalActionDone();
+        }
+        // Otherwise we will wait for the KYC procedure status to decide either we display th modal or switch to the
+        // next one
+        else if (!isProcedureStatusLoading && statusDataResponse) {
+          // If the procedure's status is 'required' we display the modal
+          if (statusDataResponse?.data?.status === requiredStatusKey) {
+            setShowModal(true);
+          }
+          // Otherwise we go to the next modal (if it exists)
+          else if (shouldManageModal) {
+            shell.getPlugin('ux').notifyModalActionDone();
+          }
+        }
+      }
     }
-  }, [statusDataResponse?.data?.status]);
+  }, [current, isFeatureAvailabilityLoading, availability, isKycAvailable, isProcedureStatusLoading, statusDataResponse]);
 
   useEffect(() => {
     if (showModal) {
