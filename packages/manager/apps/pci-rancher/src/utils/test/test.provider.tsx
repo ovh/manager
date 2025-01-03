@@ -8,6 +8,7 @@ import dashboardTranslation from '@translation/dashboard/Messages_fr_FR.json';
 import onboardingTranslation from '@translation/onboarding/Messages_fr_FR.json';
 import listingTranslation from '@translation/listing/Messages_fr_FR.json';
 import updateSoftwareTranslation from '@translation/updateSoftware/Messages_fr_FR.json';
+import orderPriceTranslation from '@translation/order-price/Messages_fr_FR.json';
 import queryClient from '@/queryClient';
 
 const ns = ['onboarding', 'listing', 'dashboard', 'updateSoftware'];
@@ -21,6 +22,7 @@ i18n.use(initReactI18next).init({
       onboarding: onboardingTranslation,
       listing: listingTranslation,
       updateSoftware: updateSoftwareTranslation,
+      'order-price': orderPriceTranslation,
     },
   },
   fallbackNS: ns,

@@ -13,7 +13,7 @@ export const useFormattedRancherPrices = (
 ) => {
   const { getFormattedCatalogPrice: hourly } = useCatalogPrice(5);
   const { getFormattedCatalogPrice: monthly } = useCatalogPrice(2);
-  const { t } = useTranslation(['order-price']);
+  const { t } = useTranslation('order-price');
 
   return useMemo(() => {
     return plans?.reduce((acc, plan) => {
@@ -26,7 +26,7 @@ export const useFormattedRancherPrices = (
                 'order_catalog_price_interval_hour',
               )}`,
               monthly: `${monthly(pricingItem.monthlyPrice)} /vCPU/${t(
-                'order_catalog_price_interval_hour',
+                'order_catalog_price_interval_month',
               )}`,
             }
           : null,
