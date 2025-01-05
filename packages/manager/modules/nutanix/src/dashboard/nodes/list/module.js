@@ -13,6 +13,7 @@ import addNodes from './add-nodes';
 import poweronNode from './poweron-node';
 import poweroffNode from './poweroff-node';
 import installNode from './install-node';
+import reinstallNode from './reinstall-node';
 import uninstallNode from './uninstall-node';
 import resiliateNode from './resiliate-node';
 
@@ -32,6 +33,7 @@ angular
     poweronNode,
     poweroffNode,
     installNode,
+    reinstallNode,
     uninstallNode,
     resiliateNode,
   ])
