@@ -12,6 +12,7 @@ import nodeOsDatagrid from '../../component/service-status/module';
 import addNodes from './add-nodes';
 import poweronNode from './poweron-node';
 import poweroffNode from './poweroff-node';
+import installNode from './install-node';
 import uninstallNode from './uninstall-node';
 import resiliateNode from './resiliate-node';
 
@@ -30,6 +31,7 @@ angular
     addNodes,
     poweronNode,
     poweroffNode,
+    installNode,
     uninstallNode,
     resiliateNode,
   ])
