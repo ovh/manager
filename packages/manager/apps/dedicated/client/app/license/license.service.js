@@ -117,6 +117,10 @@ export default /* @ngInject */ function LicenseService(
             return result.upgradableVersions.filter((version) => {
               return version.planCode.endsWith('-ca');
             });
+          case result.actualUpgradeVersion.billing.plan.code.endsWith('-eu'):
+            return result.upgradableVersions.filter((version) => {
+              return version.planCode.endsWith('-eu');
+            });
           default:
             return result.upgradableVersions;
         }
@@ -130,11 +134,27 @@ export default /* @ngInject */ function LicenseService(
   ) {
     if (planCode?.endsWith('-ca')) {
       return results.filter((version) => {
-        return version.planCode.endsWith(`${expression}-ca`);
+        return (
+          version.planCode.includes(expression) &&
+          version.planCode.endsWith(`-ca`)
+        );
       });
     }
+
+    if (planCode?.endsWith('-eu')) {
+      return results.filter((version) => {
+        return (
+          version.planCode.includes(expression) &&
+          version.planCode.endsWith(`-eu`)
+        );
+      });
+    }
+
     return results.filter((version) => {
-      return version.planCode.includes(expression);
+      return (
+        version.planCode.includes(expression) &&
+        !(version.planCode.endsWith(`-ca`) || version.planCode.endsWith(`-eu`))
+      );
     });
   };
 
