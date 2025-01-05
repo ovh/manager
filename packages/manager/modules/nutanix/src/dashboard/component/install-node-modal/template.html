@@ -19,7 +19,7 @@
             <oui-field
                 label="{{ 'nutanix_dashboard_install_node_label_ahv_ip' | translate }}"
                 data-error-messages="$ctrl.errorMessages"
-                help-text="{{ $ctrl.installNodeForm.ahvIp.$invalid && $ctrl.installNodeForm.$dirty ? '' : ('nutanix_dashboard_install_ip_tooltip' | translate) }}"
+                help-text="{{:: 'nutanix_dashboard_install_ip_tooltip' | translate }}"
             >
                 <div class="oui-input-overlay">
                     <input
@@ -38,7 +38,7 @@
             <oui-field
                 label="{{ 'nutanix_dashboard_install_node_label_cvm_ip' | translate }}"
                 data-error-messages="$ctrl.errorMessages"
-                help-text="{{ $ctrl.installNodeForm.cvmIp.$invalid && $ctrl.installNodeForm.$dirty ? '' : ('nutanix_dashboard_install_ip_tooltip' | translate) }}"
+                help-text="{{ :: 'nutanix_dashboard_install_ip_tooltip' | translate }}"
             >
                 <div class="oui-input-overlay">
                     <input
