@@ -4,11 +4,12 @@ import {
   PRISM_CENTRAL_TYPE_ALONE,
   PRISM_CENTRAL_TYPE_SCALE,
   PRISM_CENTRAL_TYPES,
-  IPV4_REGEX,
   IPV4_BLOCK_REGEX,
   TRACKING_PREFIX,
   IP_FOR_SCALE_REDEPLOY,
 } from './constants';
+
+import { IPV4_REGEX } from '../../constants';
 
 export default class NutanixGeneralInfoRedeployCtrl {
   /* @ngInject */

@@ -27,7 +27,10 @@ export const OLD_CLUSTER_PLAN_CODE = [
 
 export const LICENSE_REGISTRATION_ENDS_IN_DAYS = 90;
 
+export const IPV4_REGEX = /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
+
 export default {
+  IPV4_REGEX,
   NOT_SUBSCRIBED,
   SERVER_OPTIONS,
   GUIDE_URL,
