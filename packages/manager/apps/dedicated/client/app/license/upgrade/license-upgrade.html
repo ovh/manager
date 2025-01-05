@@ -186,7 +186,7 @@
                     <p
                         class="text-primary font-weight-bold"
                         data-translate="license_order_step4_pay_upgrade_amount"
-                        data-translate-value-price="{{ orderDetails.details[0].totalPrice.text }}"
+                        data-translate-value-price="{{ getPriceInformation(orderDetails.details) }}"
                     ></p>
                     <div data-ng-show="orderDetails.contracts.length > 0">
                         <p
