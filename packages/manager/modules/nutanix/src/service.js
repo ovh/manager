@@ -362,6 +362,13 @@ export default class NutanixService {
     return this.$http.post(`/dedicated/server/${nodeId}/reboot`);
   }
 
+  installClusterNode(clusterId, nodeId, options) {
+    return this.$http.put(
+      `/nutanix/${clusterId}/nodes/${nodeId}/deploy`,
+      options,
+    );
+  }
+
   uninstallClusterNode(clusterId, nodeId) {
     return this.$http.post(`/nutanix/${clusterId}/nodes/${nodeId}/terminate`);
   }
