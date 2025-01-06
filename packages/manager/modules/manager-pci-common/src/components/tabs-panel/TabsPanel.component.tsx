@@ -40,14 +40,7 @@ export function TabsPanel({ tabs }: Readonly<TabsProps>) {
       {tabs.map((tab: TabItemProps) => (
         <React.Fragment key={`osds-tab-bar-item-${tab.name}`}>
           {tab.isDisabled ? (
-            <div>
-              <OdsTab
-                isSelected={tab.isDisabled || undefined}
-                id={`osds-tab-bar-item-${tab.name}`}
-              >
-                {tab.title}
-              </OdsTab>
-            </div>
+            <OdsTab id={`osds-tab-bar-item-${tab.name}`}>{tab.title}</OdsTab>
           ) : (
             <NavLink
               to={tab.to}
@@ -55,7 +48,7 @@ export function TabsPanel({ tabs }: Readonly<TabsProps>) {
               className="no-underline"
             >
               <OdsTab
-                isSelected={tab.isDisabled || undefined}
+                isSelected={tab.name === activePanel}
                 id={`osds-tab-bar-item-${tab.name}`}
               >
                 {tab.title}
