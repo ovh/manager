@@ -1,0 +1,34 @@
+[
+  {
+    "acceptedFormats": [
+      "jpg",
+      "jpeg"
+    ],
+    "acceptedValues": null,
+    "description": "Registrant Company Business License/Certificate issued by respective country's authority, the license should be within the period of validity",
+    "fields": null,
+    "key": "corporationProof",
+    "maximumSize": 1024000,
+    "minimumSize": null,
+    "readOnly": false,
+    "template": null,
+    "type": "/me/document",
+    "value": "4d745309-2b49-4b79-9b63-963e6595cefe"
+  },
+  {
+    "acceptedFormats": [
+      "jpg",
+      "jpeg"
+    ],
+    "acceptedValues": null,
+    "description": "Registrant (Marcin Sawicki) contact passport copy.",
+    "fields": null,
+    "key": "identityEvidence",
+    "maximumSize": 1024000,
+    "minimumSize": null,
+    "readOnly": false,
+    "template": null,
+    "type": "/me/document",
+    "value": "2f28ec00-bdb6-4e08-ad99-8d3612ee05c3"
+  }
+]

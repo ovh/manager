@@ -1,0 +1,43 @@
+[
+  {
+    "acceptedFormats": null,
+    "acceptedValues": null,
+    "description": "Update name with valid content",
+    "fields": null,
+    "key": "name",
+    "maximumSize": null,
+    "minimumSize": null,
+    "readOnly": false,
+    "template": null,
+    "type": "string",
+    "value": "Paul"
+  },
+  {
+    "acceptedFormats": null,
+    "acceptedValues": null,
+    "description": "Update firstname with valid content",
+    "fields": null,
+    "key": "firstname",
+    "maximumSize": null,
+    "minimumSize": null,
+    "readOnly": false,
+    "template": null,
+    "type": "string",
+    "value": "Dupont"
+  },
+  {
+    "acceptedFormats": null,
+    "acceptedValues": null,
+    "description": "Update identificationNumber with valid content",
+    "fields": null,
+    "key": "identificationNumber",
+    "maximumSize": null,
+    "minimumSize": null,
+    "readOnly": false,
+    "template": null,
+    "type": "string",
+    "value": "123"
+  }
+]
+
+

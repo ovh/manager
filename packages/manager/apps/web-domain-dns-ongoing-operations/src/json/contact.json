@@ -1,0 +1,16 @@
+
+{
+  "acceptedFormats": null,
+  "acceptedValues": null,
+  "description": "Contact can be updated through /me/contact/1104",
+  "fields": [
+    "organisationName"
+  ],
+  "key": "nicowner",
+  "maximumSize": null,
+  "minimumSize": null,
+  "readOnly": false,
+  "template": null,
+  "type": "/me/contact",
+  "value": "1104"
+}

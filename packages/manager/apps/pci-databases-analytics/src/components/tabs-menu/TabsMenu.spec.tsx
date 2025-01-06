@@ -37,7 +37,7 @@ describe('TabsMenu component', () => {
   it('renders tabs with labels and optional count badges', () => {
     const tabs = [
       { href: '/tab1', label: 'Tab 1', count: 10 },
-      { href: '/tab2', label: 'Tab 2' },
+      { href: '/domain', label: 'Tab 2' },
       { href: '/tab3', label: 'Tab 3', count: 5 },
     ];
     setup(tabs);
@@ -55,7 +55,7 @@ describe('TabsMenu component', () => {
   it('handles scroll on wheel event', async () => {
     const tabs = [
       { href: '/tab1', label: 'Tab 1', count: 10 },
-      { href: '/tab2', label: 'Tab 2' },
+      { href: '/domain', label: 'Tab 2' },
       { href: '/tab3', label: 'Tab 3', count: 5 },
       { href: '/tab4', label: 'Tab 4', count: 20 },
     ];
@@ -74,7 +74,7 @@ describe('TabsMenu component', () => {
     window.HTMLElement.prototype.scrollIntoView = scrollMock;
     const tabs = [
       { href: '/', label: 'Tab 1', count: 10 },
-      { href: '/tab2', label: 'Tab 2' },
+      { href: '/domain', label: 'Tab 2' },
       { href: '/tab3', label: 'Tab 3', count: 5 },
     ];
     setup(tabs);

@@ -25,6 +25,19 @@ module.exports = (env) => {
   if (env.dev) {
     proxy.unshift(...env.dev.map((config) => serverProxy.dev(config)));
   }
+  proxy.unshift({
+    target: 'http://localhost:8080/', // Local port
+    context: ['/engine/2api/'],
+    changeOrigin: true,
+    logLevel: 'debug',
+    secure: false,
+    headers: {
+      'X-Ovh-Nic': 'ca1097942-ovh', // Change Nic with yours
+    },
+    pathRewrite: {
+      '^/engine/2api/': '/',
+    },
+  });
   return {
     mode: 'development',
     devServer: {

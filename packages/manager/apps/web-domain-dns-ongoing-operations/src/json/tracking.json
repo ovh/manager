@@ -1,0 +1,74 @@
+[
+  {
+    "currentStep": {
+      "description": "Finalization of the transfer",
+      "executionDuration": 1,
+      "step": "Finalization Of The Transfer"
+    },
+    "expectedDoneDate": "2024-12-30T14:05:40Z",
+    "followUpSteps": [
+      {
+        "description": "initialisation",
+        "executionDuration": 0,
+        "step": "initialisation"
+      },
+      {
+        "description": "Ask and wait contacts Confirmation",
+        "executionDuration": 432000,
+        "step": "Contacts Confirmation"
+      },
+      {
+        "description": "Ask registry transfer and wait the confirmation of the current registrar",
+        "executionDuration": 432000,
+        "step": "Confirmation Of The Current Registrar"
+      },
+      {
+        "description": "Finalization of the transfer",
+        "executionDuration": 1,
+        "step": "Finalization Of The Transfer"
+      }
+    ],
+    "lastUpdateDate": "2024-12-30T15:00:38+01:00",
+    "progress": 50,
+    "taskActions": [],
+    "taskStatus": "todo"
+  },
+
+  {
+    "currentStep": {
+      "description": "",
+      "executionDuration": 864001,
+      "step": "askForAuthInfo"
+    },
+    "expectedDoneDate": "2025-01-09T14:03:31Z",
+    "followUpSteps": [
+      {
+        "description": "initialisation",
+        "executionDuration": 0,
+        "step": "initialisation"
+      },
+      {
+        "description": "Ask and wait contacts Confirmation",
+        "executionDuration": 432000,
+        "step": "Contacts Confirmation"
+      },
+      {
+        "description": "Ask registry transfer and wait the confirmation of the current registrar",
+        "executionDuration": 432000,
+        "step": "Confirmation Of The Current Registrar"
+      },
+      {
+        "description": "Finalization of the transfer",
+        "executionDuration": 1,
+        "step": "Finalization Of The Transfer"
+      }
+    ],
+    "lastUpdateDate": "2024-12-30T14:49:54+01:00",
+    "progress": 0,
+    "taskActions": [
+      "canCancel",
+      "canCorrect"
+    ],
+    "taskStatus": "error"
+  }
+]

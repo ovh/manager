@@ -15,3 +15,4 @@ playwright-report
 playwright-helpers/config.ts
 test-results
 e2e-dist
+/packages/manager/tools/webpack-dev-server/src/config.js

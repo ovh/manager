@@ -88,7 +88,8 @@
                                     <span
                                         class="mr-2 ml-2"
                                         data-ng-if="$ctrl.constructor.showEndOfLifeMessage(distribution.endOfInstall,true) || $ctrl.constructor.showEndOfLifeMessage(distribution.endOfInstall,false)"
-                                    >|</span>
+                                        >|</span
+                                    >
                                     <span
                                         class="text-danger"
                                         data-ng-if="$ctrl.constructor.showEndOfLifeMessage(distribution.endOfInstall,true)"
@@ -125,7 +126,10 @@
                                             rel="nofollow noopener"
                                             target="_blank"
                                         >
-                                            <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span>
+                                            <span
+                                                class="oui-icon oui-icon-external-link"
+                                                aria-hidden="true"
+                                            ></span>
                                         </a>
                                     </i>
                                 </oui-radio-description>
@@ -1289,12 +1293,11 @@
                     <oui-spinner></oui-spinner>
                 </div>
                 <div data-ng-hide="loader.loading || loader.loadingForm">
-
-                    <p class="mt-4"
+                    <p
+                        class="mt-4"
                         data-translate="server_configuration_installation_ovh_step3_info"
                         data-translate-values="{ t0: installation.selectDistribution.description, t1: constants.server.name }"
-                    >
-                    </p>
+                    ></p>
                     <oui-message
                         data-type="warning"
                         data-ng-if="$ctrl.constructor.showEndOfLifeMessage(installation.selectDistribution.endOfInstall,true)"
@@ -1314,7 +1317,9 @@
                                     data-translate="server_configuration_installation_ovh_step3_name"
                                 ></dt>
                                 <dd>
-                                    <span data-ng-bind="installation.selectDistribution.project.os.name"></span>
+                                    <span
+                                        data-ng-bind="installation.selectDistribution.project.os.name"
+                                    ></span>
                                     <span
                                         class="pl-2 fa"
                                         aria-hidden="true"
@@ -1327,7 +1332,10 @@
                                             rel="nofollow noopener"
                                             target="_blank"
                                         >
-                                            <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span>
+                                            <span
+                                                class="oui-icon oui-icon-external-link"
+                                                aria-hidden="true"
+                                            ></span>
                                         </a>
                                     </span>
                                 </dd>
@@ -1340,7 +1348,9 @@
                                     data-translate="server_configuration_installation_ovh_step3_version"
                                 ></dt>
                                 <dd>
-                                    <span data-ng-bind="installation.selectDistribution.project.os.version"></span>
+                                    <span
+                                        data-ng-bind="installation.selectDistribution.project.os.version"
+                                    ></span>
                                     <span
                                         class="pl-2 fa"
                                         aria-hidden="true"
@@ -1353,7 +1363,10 @@
                                             rel="nofollow noopener"
                                             target="_blank"
                                         >
-                                            <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span>
+                                            <span
+                                                class="oui-icon oui-icon-external-link"
+                                                aria-hidden="true"
+                                            ></span>
                                         </a>
                                     </span>
                                 </dd>
@@ -1366,7 +1379,9 @@
                                     data-translate="server_configuration_installation_ovh_step3_license"
                                 ></dt>
                                 <dd>
-                                    <span data-ng-bind="installation.selectDistribution.license.os.name.join(', ')"></span>
+                                    <span
+                                        data-ng-bind="installation.selectDistribution.license.os.name.join(', ')"
+                                    ></span>
                                     <span
                                         class="pl-2 fa"
                                         aria-hidden="true"
@@ -1379,7 +1394,10 @@
                                             rel="nofollow noopener"
                                             target="_blank"
                                         >
-                                            <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span>
+                                            <span
+                                                class="oui-icon oui-icon-external-link"
+                                                aria-hidden="true"
+                                            ></span>
                                         </a>
                                     </span>
                                 </dd>
@@ -1392,7 +1410,9 @@
                                     data-translate="server_configuration_installation_ovh_step3_editor"
                                 ></dt>
                                 <dd>
-                                    <span data-ng-bind="installation.selectDistribution.project.os.governance.join(', ')"></span>
+                                    <span
+                                        data-ng-bind="installation.selectDistribution.project.os.governance.join(', ')"
+                                    ></span>
                                 </dd>
                             </dl>
                         </div>
@@ -1409,7 +1429,9 @@
                                     data-translate="server_configuration_installation_ovh_step3_name"
                                 ></dt>
                                 <dd>
-                                    <span data-ng-bind="installation.selectDistribution.project.usage.name"></span>
+                                    <span
+                                        data-ng-bind="installation.selectDistribution.project.usage.name"
+                                    ></span>
                                     <span
                                         class="pl-2 fa"
                                         aria-hidden="true"
@@ -1422,7 +1444,10 @@
                                             rel="nofollow noopener"
                                             target="_blank"
                                         >
-                                            <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span>
+                                            <span
+                                                class="oui-icon oui-icon-external-link"
+                                                aria-hidden="true"
+                                            ></span>
                                         </a>
                                     </span>
                                 </dd>
@@ -1435,7 +1460,9 @@
                                     data-translate="server_configuration_installation_ovh_step3_version"
                                 ></dt>
                                 <dd>
-                                    <span data-ng-bind="installation.selectDistribution.project.usage.version"></span>
+                                    <span
+                                        data-ng-bind="installation.selectDistribution.project.usage.version"
+                                    ></span>
                                     <span
                                         class="pl-2 fa"
                                         aria-hidden="true"
@@ -1448,7 +1475,10 @@
                                             rel="nofollow noopener"
                                             target="_blank"
                                         >
-                                            <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span>
+                                            <span
+                                                class="oui-icon oui-icon-external-link"
+                                                aria-hidden="true"
+                                            ></span>
                                         </a>
                                     </span>
                                 </dd>
@@ -1461,7 +1491,9 @@
                                     data-translate="server_configuration_installation_ovh_step3_license"
                                 ></dt>
                                 <dd>
-                                    <span data-ng-bind="installation.selectDistribution.license.usage.name.join(', ')"></span>
+                                    <span
+                                        data-ng-bind="installation.selectDistribution.license.usage.name.join(', ')"
+                                    ></span>
                                     <span
                                         class="pl-2 fa"
                                         aria-hidden="true"
@@ -1474,7 +1506,10 @@
                                             rel="nofollow noopener"
                                             target="_blank"
                                         >
-                                            <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span>
+                                            <span
+                                                class="oui-icon oui-icon-external-link"
+                                                aria-hidden="true"
+                                            ></span>
                                         </a>
                                     </span>
                                 </dd>
@@ -1487,7 +1522,9 @@
                                     data-translate="server_configuration_installation_ovh_step3_editor"
                                 ></dt>
                                 <dd>
-                                    <span data-ng-bind="installation.selectDistribution.project.usage.governance.join(', ')"></span>
+                                    <span
+                                        data-ng-bind="installation.selectDistribution.project.usage.governance.join(', ')"
+                                    ></span>
                                 </dd>
                             </dl>
                         </div>
@@ -1542,7 +1579,6 @@
                     </div>
 
                     <div class="table-responsive">
-
                         <h5
                             data-translate="server_configuration_installation_resume_partitioning"
                         ></h5>

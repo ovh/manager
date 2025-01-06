@@ -1,4 +1,4 @@
-import { PageType } from '@ovh-ux/manager-react-shell-client';
+  import { PageType } from '@ovh-ux/manager-react-shell-client';
 import React from 'react';
 import NotFound from '@/pages/notFound/NotFound.page';
 
