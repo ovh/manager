@@ -65,14 +65,12 @@ export function RegionSelector({
             selectedRegion={selectedMacroRegion}
             onClick={selectMacroRegion}
             render={(region: TLocalisation, isSelected) => (
-              <GlobalRegionTooltipContext.Provider value={globalRegionTooltip}>
-                <RegionTile
-                  key={region.name}
-                  region={region}
-                  isSelected={isSelected}
-                  isCompact={compactMode}
-                />
-              </GlobalRegionTooltipContext.Provider>
+              <RegionTile
+                key={region.name}
+                region={region}
+                isSelected={isSelected}
+                isCompact={compactMode}
+              />
             )}
           />
           {microRegions?.length > 0 && (

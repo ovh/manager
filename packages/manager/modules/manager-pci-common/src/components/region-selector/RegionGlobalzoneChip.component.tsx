@@ -26,9 +26,7 @@ import { URL_INFO } from './constants';
 
 export const FEATURE_REGION_1AZ = 'public-cloud:region-1AZ';
 
-export const GlobalRegionTooltipContext = createContext<undefined | string>(
-  undefined,
-);
+export const Has3AZContext = createContext<boolean>(false);
 
 export function RegionGlobalzoneChip({
   showTooltip = true,
@@ -46,7 +44,7 @@ export function RegionGlobalzoneChip({
   const tooltipUrl =
     URL_INFO[linkType][ovhSubsidiary] || URL_INFO[linkType].DEFAULT;
 
-  const tooltipContent = useContext(GlobalRegionTooltipContext);
+  const has3AZ = useContext(Has3AZContext);
 
   const chip = (
     <OsdsChip
@@ -81,8 +79,8 @@ export function RegionGlobalzoneChip({
             color={ODS_THEME_COLOR_INTENT.text}
             level={ODS_TEXT_LEVEL.body}
           >
-            {tooltipContent && data?.[FEATURE_REGION_1AZ]
-              ? tooltipContent
+            {has3AZ && data?.[FEATURE_REGION_1AZ]
+              ? t('pci_project_flavors_zone_1AZ_with_3AZ_tooltip')
               : t(
                   `pci_project_flavors_zone_${
                     data?.[FEATURE_REGION_1AZ] ? '1AZ' : 'globalregions'
