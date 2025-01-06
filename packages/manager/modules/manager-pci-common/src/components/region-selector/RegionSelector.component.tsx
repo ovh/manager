@@ -19,7 +19,6 @@ import { RegionList } from './RegionList.component';
 import '../../translations/region-selector';
 
 import './style.scss';
-import { GlobalRegionTooltipContext } from './RegionGlobalzoneChip.component';
 
 export interface RegionSelectorProps {
   projectId: string;
@@ -34,7 +33,6 @@ export function RegionSelector({
   onSelectRegion,
   regionFilter,
   compactMode,
-  globalRegionTooltip,
 }: Readonly<RegionSelectorProps>): JSX.Element {
   const { t } = useTranslation('pci-region-selector');
 

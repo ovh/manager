@@ -6,6 +6,7 @@ import {
 } from '@ovh-ux/manager-react-components';
 import {
   FEATURE_REGION_1AZ,
+  Has3AZContext,
   RegionGlobalzoneChip,
 } from './RegionGlobalzoneChip.component';
 import { wrapper } from '@/wrapperRenders';
@@ -83,6 +84,45 @@ describe('RegionGlobalzoneChip', () => {
         expect(screen.queryByText(expected.tooltip)).not.toBeInTheDocument();
         expect(
           screen.queryByText('pci_project_flavors_zone_tooltip_link'),
+        ).not.toBeInTheDocument();
+      }
+    },
+  );
+
+  it.each([
+    ['render', true, true],
+    ['not render', true, undefined],
+    ['not render', false, true],
+  ])(
+    'should %s 3AZ tooltip text when feature availability is %s and 3AZ availability is %s',
+    (expected: string, show1AZ: boolean, has3AZ: boolean) => {
+      vi.mocked(useFeatureAvailability).mockImplementationOnce(
+        (features) =>
+          ({
+            data: {
+              ...Object.fromEntries(
+                features.map((feature) => [feature, false]),
+              ),
+              [FEATURE_REGION_1AZ]: show1AZ,
+            },
+            isLoading: false,
+          } as UseFeatureAvailabilityResult),
+      );
+
+      render(
+        <Has3AZContext.Provider value={has3AZ}>
+          <RegionGlobalzoneChip />
+        </Has3AZContext.Provider>,
+        { wrapper },
+      );
+
+      if (expected === 'render') {
+        expect(
+          screen.getByText('pci_project_flavors_zone_1AZ_with_3AZ_tooltip'),
+        ).toBeInTheDocument();
+      } else {
+        expect(
+          screen.queryByText('pci_project_flavors_zone_1AZ_with_3AZ_tooltip'),
         ).not.toBeInTheDocument();
       }
     },
