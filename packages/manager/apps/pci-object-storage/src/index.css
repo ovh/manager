@@ -9,10 +9,6 @@ html {
   font-family: var(--ods-font-family-default);
 }
 
-.application {
-  @apply md:mx-12 mt-8;
-}
-
 .caption-price::part(text) {
   @apply font-bold;
 }
