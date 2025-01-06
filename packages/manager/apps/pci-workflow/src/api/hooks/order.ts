@@ -27,11 +27,11 @@ export const useProjectAddons = (projectId: string, ovhSubsidiary: string) => {
   });
 };
 
-export const findInstanceSnapshotPricing = (
+const useRegionInstanceSnapshotPricing = (
   projectId: string,
   instanceRegion: string,
   ovhSubsidiary: string,
-) => {
+) => () => {
   const query = useProjectAddons(projectId, ovhSubsidiary);
   const addons = query.data;
   const snapshotAddon =
@@ -51,11 +51,11 @@ export const findInstanceSnapshotPricing = (
   };
 };
 
-export const findLocalZoneInstanceSnapshotPricing = (
+const useLocalZoneInstanceSnapshotPricing = (
   projectId: string,
   instanceRegion: string,
   ovhSubsidiary: string,
-) => {
+) => () => {
   const queries = useQueries({
     queries: [
       { ...getCatalogQuery(ovhSubsidiary), enabled: Boolean(ovhSubsidiary) },
@@ -95,11 +95,18 @@ export const useInstanceSnapshotPricing = (
   projectId: string,
   instanceRegion: string,
   ovhSubsidiary: string,
-) =>
-  isLocalZone(instanceRegion)
-    ? findLocalZoneInstanceSnapshotPricing(
-        projectId,
-        instanceRegion,
-        ovhSubsidiary,
-      )
-    : findInstanceSnapshotPricing(projectId, instanceRegion, ovhSubsidiary);
+) => {
+  const getRegionSnapshotPricing = useRegionInstanceSnapshotPricing(
+    projectId,
+    instanceRegion,
+    ovhSubsidiary,
+  );
+  const getLocalZoneSnapshotPricing = useLocalZoneInstanceSnapshotPricing(
+    projectId,
+    instanceRegion,
+    ovhSubsidiary,
+  );
+  return isLocalZone
+    ? getLocalZoneSnapshotPricing()
+    : getRegionSnapshotPricing();
+};
