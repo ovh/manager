@@ -5,7 +5,7 @@
   "pci_projects_project_storages_containers_add_archive_title": "Crear un contenedor de archivos",
   "pci_projects_project_storages_containers_add_offer_title": "Seleccione su solución",
   "pci_projects_project_storages_containers_add_offer_storage": "API Swift",
-  "pci_projects_project_storages_containers_add_offer_storage-s3-standard": "API compatible con S3",
+  "pci_projects_project_storages_containers_add_offer_storage-s3-standard": "API compatible con S3*",
   "pci_projects_project_storages_containers_add_offer_storage_description": "Solución básica de almacenamiento sin necesidades particulares en materia de rendimiento. Se trata del almacenamiento de objetos nativo de OpenStack, con las API Swift.",
   "pci_projects_project_storages_containers_add_offer_storage-s3-standard_description": "Amplia gama de funcionalidades compatibles con S3.",
   "pci_projects_project_storages_containers_add_offer_storage-s3-standard_label": "Novedad",
