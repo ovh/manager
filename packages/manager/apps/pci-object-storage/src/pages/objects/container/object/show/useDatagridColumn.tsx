@@ -73,13 +73,11 @@ export const useDatagridColumn = ({
     {
       id: 'actions',
       cell: (props: TIndexedObject) => (
-        <div className="min-w-16">
-          <ActionsComponent
-            object={props}
-            container={container}
-            isLocalZone={isLocalZone}
-          />
-        </div>
+        <ActionsComponent
+          object={props}
+          container={container}
+          isLocalZone={isLocalZone}
+        />
       ),
       label: '',
       isSortable: false,
