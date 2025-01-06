@@ -72,14 +72,17 @@ const SshKeyForm = React.forwardRef<HTMLInputElement, SshKeyFormProps>(
     return (
       <Form {...form}>
         {configuredSshKeys.length > 0 && (
-          <div className="flex w-full items-start gap-2">
+          <div
+            className="flex w-full items-start gap-2"
+            data-testid="ssh-key-container"
+          >
             <div className="w-full">
               <FormField
                 control={form.control}
                 name="name"
                 render={() => (
                   <FormItem>
-                    <FormLabel data-testid="ssh-key-select-label">
+                    <FormLabel data-testid="ssh-key-select">
                       {t('configuredKeyFieldLabel')}
                     </FormLabel>
                     <Select
@@ -93,15 +96,20 @@ const SshKeyForm = React.forwardRef<HTMLInputElement, SshKeyFormProps>(
                         form.setValue('sshKey', newSshKey.publicKey);
                       }}
                     >
-                      <SelectTrigger>
+                      <SelectTrigger data-testid="select-sshKey-trigger">
                         <SelectValue
+                          data-testid="select-value"
                           ref={ref}
                           placeholder={t('sshKeyFieldPlaceholder')}
                         />
                       </SelectTrigger>
-                      <SelectContent>
+                      <SelectContent data-testid="select-content">
                         {Object.values(configuredSshKeys).map((sshKey) => (
-                          <SelectItem key={sshKey.name} value={sshKey.name}>
+                          <SelectItem
+                            data-testid="select-item"
+                            key={sshKey.name}
+                            value={sshKey.name}
+                          >
                             {sshKey.name}
                           </SelectItem>
                         ))}
@@ -114,7 +122,7 @@ const SshKeyForm = React.forwardRef<HTMLInputElement, SshKeyFormProps>(
               />
             </div>
             <Button
-              data-testid="ssh-key-label-add-button"
+              data-testid="ssh-key-add-button"
               variant={'ghost'}
               onClick={form.handleSubmit(onSubmit)}
               disabled={
@@ -132,7 +140,7 @@ const SshKeyForm = React.forwardRef<HTMLInputElement, SshKeyFormProps>(
             <li key={sshKey.name} className="flex items-center ml-5 text-sm">
               <span>{sshKey.name}</span>
               <Button
-                data-testid={`ssh-key-label-remove-button-${index}`}
+                data-testid={`ssh-key-remove-button-${index}`}
                 className="text-red-500 rounded-full p-2 hover:text-red-500 h-8 w-8"
                 variant={'ghost'}
                 type="button"
@@ -144,7 +152,7 @@ const SshKeyForm = React.forwardRef<HTMLInputElement, SshKeyFormProps>(
             </li>
           ))}
         </ul>
-        <p data-testid="ssh-key-configured-labels">
+        <p data-testid="ssh-key-configured">
           {t('numberOfConfiguredKeys', {
             count: sshKeyList.length,
             max: CONFIGURATION_CONFIG.maxSshKeyNumber,

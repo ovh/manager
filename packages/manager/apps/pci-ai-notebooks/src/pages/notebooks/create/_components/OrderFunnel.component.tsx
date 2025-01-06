@@ -6,7 +6,7 @@ import {
   Plus,
   TerminalSquare,
 } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 import * as ai from '@/types/cloud/project/ai';
 import { order } from '@/types/catalog';
@@ -54,6 +54,7 @@ import { useModale } from '@/hooks/useModale';
 import { useGetCommand } from '@/hooks/api/ai/notebook/useGetCommand.hook';
 import CliEquivalent from './CliEquivalent.component';
 import { getNotebookSpec } from '@/lib/orderFunnelHelper';
+import A from '@/components/links/A.component';
 
 interface OrderFunnelProps {
   regions: ai.capabilities.Region[];
@@ -80,6 +81,7 @@ const OrderFunnel = ({
     suggestions,
   );
   const { t } = useTranslation('pci-ai-notebooks/notebooks/create');
+  const { projectId } = useParams();
   const [showAdvancedConfiguration, setShowAdvancedConfiguration] = useState(
     false,
   );
@@ -121,10 +123,10 @@ const OrderFunnel = ({
   });
 
   const getCliCommand = () => {
-    const notebookInfos: ai.notebook.NotebookSpecInput = getNotebookSpec(
+    const notebookInfo: ai.notebook.NotebookSpecInput = getNotebookSpec(
       model.result,
     );
-    getCommand(notebookInfos);
+    getCommand({ projectId, notebookInfo });
   };
 
   const onSubmit = model.form.handleSubmit(
@@ -419,9 +421,7 @@ const OrderFunnel = ({
                   data-state={showAdvancedConfiguration ? 'open' : 'closed'}
                   className={`
                   overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down
-                  ${
-                    showAdvancedConfiguration ? 'max-h-screen' : 'max-h-0 py-0'
-                  }`}
+                  ${!showAdvancedConfiguration && 'max-h-0 py-0'}`}
                 >
                   <div className="flex flex-col gap-6">
                     <section id="volumes">
@@ -434,19 +434,22 @@ const OrderFunnel = ({
                               {t('fieldVolumesLabel')}
                             </FormLabel>
                             <p>{t('fieldVolumeDescription')}</p>
+                            <A
+                              href="https://docs.ovh.com/gb/en/publiccloud/ai/data/"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              {t('fieldVolumeLink')}
+                            </A>
                             <FormControl>
-                              {model.lists.volumes.length > 0 ? (
-                                <VolumeForm
-                                  {...field}
-                                  configuredVolumesList={model.lists.volumes}
-                                  selectedVolumesList={field.value}
-                                  onChange={(newVolumes) =>
-                                    model.form.setValue('volumes', newVolumes)
-                                  }
-                                />
-                              ) : (
-                                <p>{t('noVolumeDescription')}</p>
-                              )}
+                              <VolumeForm
+                                {...field}
+                                configuredVolumesList={model.lists.volumes}
+                                selectedVolumesList={field.value}
+                                onChange={(newVolumes) =>
+                                  model.form.setValue('volumes', newVolumes)
+                                }
+                              />
                             </FormControl>
                             <FormMessage />
                           </FormItem>

@@ -1,6 +1,7 @@
 import { DataStoresWithContainers } from '@/hooks/api/ai/datastore/useGetDatastoresWithContainers.hook';
 import { DataStoresWithRegion } from '@/hooks/api/ai/datastore/useGetDatastoresWithRegions.hook';
 import * as ai from '@/types/cloud/project/ai';
+import { OrderVolumes } from '@/types/orderFunnel';
 
 export const mockedDatastoreInput: ai.DataStoreInput = {
   alias: 'datastoreAlias',
@@ -49,11 +50,50 @@ export const mockedGitWithRegion: DataStoresWithRegion = {
   region: 'GRA',
 };
 
-export const mockedDatastoreWithContainer: DataStoresWithContainers = {
-  alias: 'alias',
+export const mockedDatastoreWithContainerS3: DataStoresWithContainers = {
+  alias: 'aliasS3',
   endpoint: 'endpoint',
   owner: ai.DataStoreOwnerEnum.customer,
   type: ai.DataStoreTypeEnum.s3,
-  id: 'id',
-  container: 'container2',
+  id: 'idS3',
+  container: 'containerS3',
+};
+
+export const mockedDatastoreWithContainerGit: DataStoresWithContainers = {
+  alias: 'aliasGit',
+  endpoint: 'endpointGit',
+  owner: ai.DataStoreOwnerEnum.customer,
+  type: ai.DataStoreTypeEnum.git,
+  id: 'idGit',
+};
+
+export const mockedOrderVolumesS3: OrderVolumes = {
+  cache: false,
+  dataStore: {
+    alias: 'alias',
+    container: 'container',
+    type: ai.DataStoreTypeEnum.s3,
+  },
+  mountPath: '/s3',
+  permission: ai.VolumePermissionEnum.RWD,
+};
+
+export const mockedOrderVolumesGit: OrderVolumes = {
+  cache: true,
+  dataStore: {
+    alias: 'alias',
+    container: 'develop',
+    type: ai.DataStoreTypeEnum.git,
+  },
+  mountPath: '/git',
+  permission: ai.VolumePermissionEnum.RWD,
+};
+
+export const mockedOrderPublicGit: OrderVolumes = {
+  cache: false,
+  publicGit: {
+    url: 'https://repo.git',
+  },
+  mountPath: '/demo',
+  permission: ai.VolumePermissionEnum.RO,
 };

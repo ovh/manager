@@ -1,30 +1,35 @@
 import * as ai from '@/types/cloud/project/ai';
+import { NotebookEnv } from '@/types/cloud/project/ai/notebook/NotebookEnv';
 import { mockedJobStatus } from './job';
 import { mockedDataSync } from './datasync';
 
+const notebookEnv: NotebookEnv = {
+  editorId: 'editor',
+  frameworkId: 'frameworkId',
+  frameworkVersion: 'frameworkVersion',
+};
+
+const jobEnv: ai.job.JobEnv = {
+  name: 'envVarsName',
+  value: 'envVarsValue',
+};
+
+const mockedResources: ai.Resources = {
+  cpu: 1,
+  ephemeralStorage: 1,
+  flavor: 'flavor',
+  gpu: 1,
+  memory: 1,
+  privateNetwork: 1,
+  publicNetwork: 1,
+};
+
 export const mockedNotebookSpec: ai.notebook.NotebookSpec = {
-  env: {
-    editorId: 'editor',
-    frameworkId: 'frameworkId',
-    frameworkVersion: 'frameworkVersion',
-  },
-  envVars: [
-    {
-      name: 'envVarsName',
-      value: 'envVarsValue',
-    },
-  ],
+  env: notebookEnv,
+  envVars: [jobEnv],
   name: 'name',
   region: 'region',
-  resources: {
-    cpu: 1,
-    ephemeralStorage: 1,
-    flavor: 'flavor',
-    gpu: 1,
-    memory: 1,
-    privateNetwork: 1,
-    publicNetwork: 1,
-  },
+  resources: mockedResources,
 };
 
 export const mockedNotebookStatus: ai.notebook.NotebookStatus = {
@@ -45,4 +50,12 @@ export const mockedNotebook: ai.notebook.Notebook = {
   status: mockedNotebookStatus,
   updatedAt: 'updatedAt',
   user: 'user',
+};
+
+export const mockedNotebookSpecInput: ai.notebook.NotebookSpecInput = {
+  env: notebookEnv,
+  envVars: [jobEnv],
+  name: 'name',
+  region: 'region',
+  resources: mockedResources,
 };

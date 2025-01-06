@@ -1,7 +1,7 @@
 {
   "breadcrumb": "Conteneurs de données",
   "attachedDataTitle": "Conteneurs de données",
-  "attachedDataDescription": "Si nécessaire, vous pouvez attacher des conteneurs Object Storage OVHcloud à votre notebook. Une fois attachés, ceux-ci seront temporairement chargés et mis en cache près de votre instance afin de réduire la latence et d’améliorer les performances. La bonne pratique est d’attacher un conteneur avec vos données entrantes et un autre avec vos données sortantes.",
+  "attachedDataDescription": "Vous pouvez attacher des conteneurs de type Datastore S3, Datastore GIT, Object Storage OVHcloud à votre notebook. Une fois attachés, ceux-ci seront temporairement chargés et mis en cache près de votre instance afin de réduire la latence et d’améliorer les performances. La bonne pratique est d’attacher un conteneur avec vos données entrantes et un autre avec vos données sortantes.",
   "attachedDataInfoLink": "En savoir plus sur le stockage de données.",
   "synchroniseDataButton": "Synchronisation globale des données",
   "tableHeaderAlias": "Alias",

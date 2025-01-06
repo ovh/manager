@@ -79,6 +79,7 @@ export function convertSecondsToTimeString(seconds: number, short: boolean) {
   const hours = Math.floor(leftoverSeconds / 3600);
   const leftoverMinutes = leftoverSeconds % 3600;
   const minutes = Math.floor(leftoverMinutes / 60);
+  const leftover = leftoverMinutes % 60;
 
   const timeStringParts = [];
   if (days > 0) {
@@ -105,6 +106,16 @@ export function convertSecondsToTimeString(seconds: number, short: boolean) {
         ? `${minutes}m`
         : t('numberOfMinutes', {
             count: minutes,
+          }),
+    );
+  }
+
+  if (leftover > 0) {
+    timeStringParts.push(
+      short
+        ? `${leftover}s`
+        : t('numberOfSeconds', {
+            count: leftover,
           }),
     );
   }

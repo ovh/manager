@@ -33,7 +33,7 @@ const VersionSelector = ({
   const { t } = useTranslation('pci-ai-notebooks/components/framework');
   return (
     <Popover open={open} onOpenChange={setOpen}>
-      <div className="hidden">
+      <div data-testid="fmk-tile-version-container" className="hidden">
         {versions.map((fmkVersion) => (
           <input
             type="radio"
