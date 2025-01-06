@@ -1,16 +1,9 @@
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import {
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-  OdsSelectValueChangeEvent,
-} from '@ovhcloud/ods-components';
-import {
-  OsdsFormField,
-  OsdsSelect,
-  OsdsSelectOption,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
+import {
+  OdsFormField,
+  OdsSelect,
+  OdsText,
+} from '@ovhcloud/ods-components/react';
 import { TUser } from '@/api/data/user';
 import LabelComponent from '@/components/Label.component';
 
@@ -27,86 +20,56 @@ export default function StepOneComponent({
   const { t } = useTranslation('pci-storages-containers-object-add-user');
   return (
     <>
-      <OsdsText
-        level={ODS_TEXT_LEVEL.body}
-        color={ODS_THEME_COLOR_INTENT.text}
-        size={ODS_TEXT_SIZE._400}
-      >
+      <OdsText>
         {t(
           'pci_projects_project_storages_containers_container_addUser_description_object_step_0',
         )}
-      </OsdsText>
-      <OsdsFormField className="mt-4">
+      </OdsText>
+      <OdsFormField className="mt-4">
         <LabelComponent
           text={t(
             'pci_projects_project_storages_containers_container_addUser_select_user_label',
           )}
         />
-        <OsdsSelect
+        <OdsSelect
           value={selectedUser?.id}
-          onOdsValueChange={(event: OdsSelectValueChangeEvent) => {
+          onOdsChange={(event) => {
             const user = users.find((u) => u.id === event.detail.value);
             onSelectUser(user);
           }}
+          name={'userSelect'}
         >
           {selectedUser?.description ? (
-            <OsdsText
-              level={ODS_TEXT_LEVEL.body}
-              color={ODS_THEME_COLOR_INTENT.text}
-              size={ODS_TEXT_SIZE._400}
-              slot="selectedLabel"
-            >
+            <OdsText slot="selectedLabel">
               {selectedUser?.username} - {selectedUser?.description}
-            </OsdsText>
+            </OdsText>
           ) : (
-            <OsdsText
-              level={ODS_TEXT_LEVEL.body}
-              color={ODS_THEME_COLOR_INTENT.text}
-              size={ODS_TEXT_SIZE._400}
-              slot="selectedLabel"
-            >
-              {selectedUser?.username}
-            </OsdsText>
+            <OdsText slot="selectedLabel">{selectedUser?.username}</OdsText>
           )}
 
-          {users?.map((user) => (
-            <OsdsSelectOption key={user.id} value={user.id}>
-              {user?.description ? (
-                <OsdsText
-                  level={ODS_TEXT_LEVEL.body}
-                  color={ODS_THEME_COLOR_INTENT.text}
-                  size={ODS_TEXT_SIZE._400}
-                  className="mr-48"
-                >
-                  {user?.username} - {user?.description}
-                </OsdsText>
-              ) : (
-                <OsdsText
-                  level={ODS_TEXT_LEVEL.body}
-                  color={ODS_THEME_COLOR_INTENT.text}
-                  size={ODS_TEXT_SIZE._400}
-                  className="mr-48"
-                >
-                  {user?.username}
-                </OsdsText>
-              )}
-              <OsdsText
-                level={ODS_TEXT_LEVEL.body}
-                size={ODS_TEXT_SIZE._200}
-                color={ODS_THEME_COLOR_INTENT.text}
-              >
-                {t(
-                  user.s3Credentials
-                    ? 'pci_projects_project_storages_containers_container_addUser_select_user_has_credential'
-                    : 'pci_projects_project_storages_containers_container_addUser_select_user_has_not_credential',
+          {/* TODO select option */}
+          {users?.map((user) => {
+            return (
+              <div key={user.id}>
+                {user?.description ? (
+                  <OdsText className="mr-48">
+                    {user?.username} - {user?.description}
+                  </OdsText>
+                ) : (
+                  <OdsText className="mr-48">{user?.username}</OdsText>
                 )}
-              </OsdsText>
-            </OsdsSelectOption>
-          ))}
-        </OsdsSelect>
-      </OsdsFormField>
+                <OdsText>
+                  {t(
+                    user.s3Credentials
+                      ? 'pci_projects_project_storages_containers_container_addUser_select_user_has_credential'
+                      : 'pci_projects_project_storages_containers_container_addUser_select_user_has_not_credential',
+                  )}
+                </OdsText>
+              </div>
+            );
+          })}
+        </OdsSelect>
+      </OdsFormField>
     </>
   );
 }
-
-// pci_projects_project_storages_containers_container_addUser_select_user_has_credential
