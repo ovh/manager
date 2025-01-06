@@ -25,7 +25,6 @@ export interface RegionSelectorProps {
   onSelectRegion: (region?: TLocalisation) => void;
   regionFilter?: (region: TLocalisation) => boolean;
   compactMode?: boolean;
-  globalRegionTooltip?: string;
 }
 
 export function RegionSelector({
