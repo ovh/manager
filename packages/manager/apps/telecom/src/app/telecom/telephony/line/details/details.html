@@ -231,6 +231,12 @@
                     <dt data-translate="telephony_line_details_sip_domain"></dt>
                     <dd data-ng-bind="::$ctrl.line.options.domain || '-'"></dd>
 
+                    <!-- OUTBOUND PROXY -->
+                    <dt
+                        data-translate="telephony_line_details_sip_outbound_proxy"
+                    ></dt>
+                    <dd data-ng-bind="::$ctrl.line.options.proxy || '-'"></dd>
+
                     <!-- INFRA -->
                     <dt data-translate="telephony_line_details_sip_infra"></dt>
                     <dd data-ng-bind="::$ctrl.line.infrastructure || '-'"></dd>
