@@ -2,7 +2,7 @@ import {
   DataGridTextCell,
   DatagridColumn,
 } from '@ovh-ux/manager-react-components';
-import { createSearchParams, useNavigate } from 'react-router-dom';
+import { createSearchParams, useHref, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useBytes } from '@ovh-ux/manager-pci-common';
 import { OdsBadge, OdsLink } from '@ovhcloud/ods-components/react';
@@ -16,7 +16,6 @@ import { Actions } from './Actions';
 
 export const useDatagridColumn = () => {
   const { i18n, t } = useTranslation(['pci-storages-containers', 'pci-common']);
-  const navigate = useNavigate();
   const { formatBytes } = useBytes();
 
   const columns: DatagridColumn<TStorage>[] = [
@@ -26,15 +25,12 @@ export const useDatagridColumn = () => {
         <DataGridTextCell>
           <OdsLink
             color="primary"
-            href="#"
-            onClick={() =>
-              navigate({
-                pathname: `./${props.id || props.name}`,
-                search: `?${createSearchParams({
-                  region: props.region,
-                })}`,
-              })
-            }
+            href={useHref({
+              pathname: `./${props.id || props.name}`,
+              search: `?${createSearchParams({
+                region: props.region,
+              })}`,
+            })}
             label={props.name}
           />
         </DataGridTextCell>
