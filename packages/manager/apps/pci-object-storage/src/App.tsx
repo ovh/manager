@@ -5,8 +5,6 @@ import RoutesComponent from '@/routes';
 import queryClient from './queryClient';
 
 import '@ovhcloud/ods-themes/default';
-import '@ovh-ux/manager-react-components/dist/style.css';
-import '@ovh-ux/manager-pci-common/dist/style.css';
 
 function App() {
   return (
