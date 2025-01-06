@@ -7,11 +7,13 @@ import {
   useSearchParams,
 } from 'react-router-dom';
 import {
+  BaseLayout,
   Clipboard,
   Datagrid,
   FilterAdd,
   FilterList,
-  Headers,
+  Links,
+  LinkType,
   PciMaintenanceBanner,
   useColumnFilters,
   useDataGrid,
@@ -201,51 +203,45 @@ export default function ObjectPage() {
   );
 
   return (
-    <>
-      <OdsBreadcrumb>
-        <OdsBreadcrumbItem href={hrefProject} label={project.description} />
-        <OdsBreadcrumbItem
-          href={objectStorageHref}
-          label={tObjects(
-            'pci_projects_project_storages_containers_object_title',
-          )}
-        />
-        <OdsBreadcrumbItem href="" label={project.description} />
-      </OdsBreadcrumb>
-      <div className="flex items-center justify-between mt-8">
-        <Headers title={container?.name} />
-      </div>
-      <div>
-        <OdsIcon name="arrow-left" className="mr-4" />
-        <OdsLink
-          href={objectStorageHref}
-          label={`
-            ${tCommon('common_back_button_back_to')}
-            ${' '}
-            ${tContainer(
-              'pci_projects_project_storages_containers_container_back_button_label',
-            )}`}
-        ></OdsLink>
-      </div>
-
+    <BaseLayout
+      breadcrumb={
+        <OdsBreadcrumb>
+          <OdsBreadcrumbItem href={hrefProject} label={project.description} />
+          <OdsBreadcrumbItem
+            href={objectStorageHref}
+            label={tObjects(
+              'pci_projects_project_storages_containers_object_title',
+            )}
+          />
+          <OdsBreadcrumbItem href="" label={project.description} />
+        </OdsBreadcrumb>
+      }
+      header={{ title: container?.name }}
+      backLinkLabel={`
+        ${tCommon('common_back_button_back_to')} ${tContainer(
+        'pci_projects_project_storages_containers_container_back_button_label',
+      )}`}
+      hrefPrevious={objectStorageHref}
+    >
       {hasMaintenance && (
         <PciMaintenanceBanner maintenanceURL={maintenanceURL} />
       )}
 
       {is.replicationRulesBannerShown && (
-        <OdsMessage color="information" className="mt-6 p-8">
+        <OdsMessage color="information" className="mt-6">
           <OdsText>
             {tContainer(
               'pci_projects_project_storages_containers_container_add_replication_rules_info',
-            )}{' '}
-            <OdsLink
+            )}
+            <Links
+              className="ml-4"
               href={REPLICATION_LINK}
-              target="blank"
+              target="_blank"
+              type={LinkType.external}
               label={tAdd(
                 'pci_projects_project_storages_containers_add_replication_rules_info_link',
               )}
-            ></OdsLink>
-            <OdsIcon name="arrow-right" className="ml-4" />
+            />
           </OdsText>
         </OdsMessage>
       )}
@@ -295,7 +291,9 @@ export default function ObjectPage() {
                       dangerouslySetInnerHTML={{
                         __html: tContainer(
                           'pci_projects_project_storages_containers_container_info_storedBytes',
-                          { bytes: `<strong>${container?.usedSpace}</strong>` },
+                          {
+                            bytes: `<strong>${container?.usedSpace}</strong>`,
+                          },
                         ),
                       }}
                     ></span>
@@ -563,6 +561,6 @@ export default function ObjectPage() {
       <Suspense>
         <Outlet />
       </Suspense>
-    </>
+    </BaseLayout>
   );
 }
