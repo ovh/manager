@@ -7,7 +7,6 @@ export default class NutanixAllNodesCtrl {
     this.$translate = $translate;
     this.NutanixService = NutanixService;
     this.nodesMapped = [];
-    this.loadingNodesStatus = false;
     this.SERVICE_STATES = SERVICE_STATES;
   }
 
@@ -16,7 +15,7 @@ export default class NutanixAllNodesCtrl {
       ...new Set(this.nodes.map(({ serviceStatus }) => serviceStatus)),
     ];
     this.mapNodes = this.mapAllNodes();
-    this.loadNodesStatus();
+    this.mapNodesStatus();
 
     this.isMaxNodesReached = this.nodes.length >= MAX_NODES_BY_CLUSTER;
     this.addNodeTooltipContent = this.isMaxNodesReached
@@ -42,26 +41,19 @@ export default class NutanixAllNodesCtrl {
     return `nutanix.dashboard.nodes.node.general-info({ nodeId: '${nodeId}'})`;
   }
 
-  loadNodesStatus() {
-    this.loadingNodesStatus = true;
-    return this.NutanixService.getNodesWithState(this.serviceName)
-      .then((nodesDetails) => {
-        nodesDetails.forEach((nodeDetail) => {
-          const nodeIndex = this.nodesMapped.findIndex(
-            (node) => node.name === nodeDetail.server,
-          );
+  mapNodesStatus() {
+    this.cluster.getNodes().forEach((nodeDetail) => {
+      const nodeIndex = this.nodesMapped.findIndex(
+        (node) => node.name === nodeDetail.server,
+      );
 
-          if (nodeIndex < 0) return;
+      if (nodeIndex < 0) return;
 
-          this.nodesMapped[nodeIndex] = {
-            ...this.nodesMapped[nodeIndex],
-            ...nodeDetail,
-          };
-        });
-      })
-      .finally(() => {
-        this.loadingNodesStatus = false;
-      });
+      this.nodesMapped[nodeIndex] = {
+        ...this.nodesMapped[nodeIndex],
+        ...nodeDetail,
+      };
+    });
   }
 
   mapAllNodes() {
