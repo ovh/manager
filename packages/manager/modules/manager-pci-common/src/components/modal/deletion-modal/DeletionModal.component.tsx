@@ -27,6 +27,7 @@ export function DeletionModal({
   cancelText,
   submitText,
   isPending,
+  isDisabled,
   onConfirm,
   onClose,
   onCancel,
@@ -66,10 +67,6 @@ export function DeletionModal({
     });
   }, [formState.deleteInput, formState.isTouched]);
 
-  const isDisabled =
-    isPending ||
-    (confirmationText && formState.deleteInput !== confirmationText);
-
   const errorMessage = {
     [FormErrorEnum.REQUIRED]: t('common_field_error_required'),
     [FormErrorEnum.INVALID]: t('common_field_error_pattern'),
@@ -81,7 +78,11 @@ export function DeletionModal({
       title={title}
       type={type || 'warning'}
       isPending={isPending}
-      isDisabled={isDisabled}
+      isDisabled={
+        isPending ||
+        (confirmationText && formState.deleteInput !== confirmationText) ||
+        isDisabled
+      }
       cancelText={cancelText}
       submitText={submitText}
       onClose={onClose}
