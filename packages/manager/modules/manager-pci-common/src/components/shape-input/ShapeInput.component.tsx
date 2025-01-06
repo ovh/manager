@@ -226,7 +226,7 @@ export const ShapesInputComponent = function ShapesInputComponent<T>({
                 <li
                   key={groupName || 'none'}
                   className={clsx(
-                    'border border-solid border-[#bef1ff] rounded-t-lg overflow-hidden',
+                    'border border-solid border-[#bef1ff] rounded-t-md overflow-hidden',
                     groupName === state.group
                       ? 'border-b-0 bg-[#F5FEFF] m-t[1px]'
                       : 'border-b bg-white',

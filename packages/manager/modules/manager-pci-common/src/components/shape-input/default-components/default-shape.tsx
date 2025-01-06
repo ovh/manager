@@ -16,11 +16,11 @@ export const DefaultShapeComponent = ({
   <button
     className={clsx(
       GHOST_BUTTON_CLASS,
-      'w-full h-full border-solid border-2 rounded-lg cursor-pointer',
+      'w-full h-full border-solid border-2 rounded-md cursor-pointer',
       isDisabled && 'cursor-not-allowed pointer-events-none opacity-50',
       isSelected
-        ? 'border-[--ods-color-blue-600] !bg-[--ods-color-blue-100]'
-        : 'bg-white border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600]',
+        ? 'border-[--ods-color-primary-600] !bg-[--ods-color-primary-100]'
+        : 'bg-white border-[--ods-color-primary-100] hover:bg-[--ods-color-primary-100] hover:border-[--ods-color-primary-600]',
     )}
     onClick={() => {
       if (!isDisabled) action();
