@@ -54,16 +54,21 @@ export function getNotebookSpec(formResult: NotebookOrderResult) {
   };
 
   if (formResult.volumes.length > 0) {
-    notebookInfos.volumes = formResult.volumes.map((volume: OrderVolumes) => ({
-      cache: volume.cache,
-      dataStore: {
-        alias: volume.dataStore.alias,
-        container: volume.dataStore.container,
-      },
-      mountPath: volume.mountPath,
-      permission: volume.permission,
-    }));
+    notebookInfos.volumes = formResult.volumes.map((volume: OrderVolumes) => {
+      return {
+        cache: volume.cache,
+        mountPath: volume.mountPath,
+        permission: volume.permission,
+        volumeSource: volume.publicGit
+          ? { publicGit: volume.publicGit }
+          : {
+              dataStore: {
+                alias: volume.dataStore.alias,
+                container: volume.dataStore.container,
+              },
+            },
+      };
+    });
   }
-
   return notebookInfos;
 }

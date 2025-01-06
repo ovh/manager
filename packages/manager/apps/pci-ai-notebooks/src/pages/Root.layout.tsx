@@ -11,7 +11,6 @@ import { defineCurrentPage } from '@ovh-ux/request-tagger';
 import queryClient from '@/query.client';
 import { useLoadingIndicatorContext } from '@/contexts/LoadingIndicator.context';
 import { getProject } from '@/data/api/project/project.api';
-import Breadcrumb from '@/components/breadcrumb/Breadcrumb.component';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 import { Toaster } from '@/components/ui/toaster';
 import PageLayout from '@/components/page-layout/PageLayout.component';
@@ -31,20 +30,19 @@ interface NotebooksLayoutProps {
   };
   request: Request;
 }
-// try to fetch the service data, redirect to service page if it fails
+// try to get project details from project id, redirect if the projectId is invalid
 export const Loader = async ({ params }: NotebooksLayoutProps) => {
   const { projectId } = params;
-
   // check if we have a correct projectId
-  return queryClient
-    .fetchQuery({
+  try {
+    await queryClient.fetchQuery({
       queryKey: ['projectId', projectId],
       queryFn: () => getProject(projectId),
-    })
-    .then(
-      () => null,
-      () => redirect(`/pci/projects`),
-    );
+    });
+  } catch (_error) {
+    return redirect(`/pci/projects`);
+  }
+  return null;
 };
 
 function RoutingSynchronisation() {
@@ -83,7 +81,6 @@ export default function Layout() {
   return (
     <PageLayout>
       <UserActivityProvider timeout={USER_INACTIVITY_TIMEOUT}>
-        <Breadcrumb />
         <RoutingSynchronisation />
         <Outlet />
         <Toaster />

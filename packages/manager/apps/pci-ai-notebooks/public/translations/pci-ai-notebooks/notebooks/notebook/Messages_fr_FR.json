@@ -1,6 +1,7 @@
 {
   "dashboardTab": "Dashboard",
-  "dataTab": "Données attachées",
+  "containerTab": "Conteneurs",
+  "publicGit": "Dépots Git",
   "backupTab": "Backups",
   "logsTab": "Logs",
   "publicAccessLabel": "Public",

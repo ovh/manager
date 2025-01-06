@@ -26,6 +26,7 @@ export const FrameworkTile = ({
   }, [selectedVersion]);
   return (
     <RadioTile
+      data-testid={`fmk-radio-tile-${framework.id}`}
       name="framework-select"
       onChange={handleFrameworkClick}
       value={framework.name}
