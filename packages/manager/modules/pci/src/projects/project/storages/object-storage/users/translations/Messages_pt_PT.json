@@ -6,7 +6,7 @@
   "pci_projects_project_storages_containers_users_download_json": "Descarregar a política de acesso do utilizador (JSON)",
   "pci_projects_project_storages_containers_users_user_management": "Gestão de utilizadores",
   "pci_projects_project_storages_containers_users_user_description": "Nesta secção, pode adicionar um novo utilizador Object Storage, obter a sua chave de acesso e a sua chave secreta e gerir as políticas de acesso dos utilizadores.",
-  "pci_projects_project_storages_containers_users_user_description_warning": "Depois de criar o seu utilizador, será necessário gerar as credenciais Object Storage para este na secção «Users &amp; Roles».",
+  "pci_projects_project_storages_containers_users_user_description_warning": "Depois de criar o utilizador, será necessário gerar as credenciais Object Storage na secção «Utilizadores e funções».",
   "pci_projects_project_storages_containers_users_add_user": "Adicionar um utilizador",
   "pci_projects_project_storages_containers_users_import_success_message": "O download do ficheiro JSON associado ao utilizador {{user}} foi efetuado com êxito.",
   "pci_projects_project_storages_containers_users_import_error_message": "Ocorreu um erro aquando do download do ficheiro JSON associado ao utilizador: {{ message }}.",
