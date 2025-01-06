@@ -5,14 +5,14 @@ import path from 'path';
 module.exports = {
   ...config,
   content: [
-    './src//.{js,jsx,ts,tsx}',
+    './src/**/*.{js,jsx,ts,tsx}',
     path.join(
       path.dirname(require.resolve('@ovh-ux/manager-react-components')),
-      '/.{js,jsx,ts,tsx}',
+      '**/*.{js,jsx,ts,tsx}',
     ),
     path.join(
       path.dirname(require.resolve('@ovh-ux/manager-pci-common')),
-      '*/.{js,jsx,ts,tsx}',
+      '**/*.{js,jsx,ts,tsx}',
     ),
   ],
   corePlugins: {
