@@ -1,11 +1,9 @@
+import { ApiError } from '@ovh-ux/manager-core-api';
 import { DeletionModal } from '@ovh-ux/manager-pci-common';
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
-import { OsdsText } from '@ovhcloud/ods-components/react';
+import { OdsText } from '@ovhcloud/ods-components/react';
 import { Translation, useTranslation } from 'react-i18next';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import { ApiError } from '@ovh-ux/manager-core-api';
 import { useDeleteObject } from '@/api/hooks/useObject';
 import { useStorage } from '@/api/hooks/useStorages';
 
@@ -87,16 +85,12 @@ export default function DeletePage() {
         'pci_projects_project_storages_containers_container_object_delete_cancel_label',
       )}
     >
-      <OsdsText
-        level={ODS_TEXT_LEVEL.body}
-        color={ODS_THEME_COLOR_INTENT.text}
-        size={ODS_TEXT_SIZE._400}
-      >
+      <OdsText>
         {t(
           'pci_projects_project_storages_containers_container_object_delete_content',
           { object: decodedObjectName },
         )}
-      </OsdsText>
+      </OdsText>
     </DeletionModal>
   );
 }

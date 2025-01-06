@@ -2,7 +2,7 @@ import { v6 } from '@ovh-ux/manager-core-api';
 import { ActionMenu } from '@ovh-ux/manager-react-components';
 import { useTracking } from '@ovh-ux/manager-react-shell-client';
 import { useTranslation } from 'react-i18next';
-import { useHref, useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useProject } from '@ovh-ux/manager-pci-common';
 import { addWeeks } from 'date-fns';
 import { OPENIO_PRESIGN_EXPIRE, TRACKING_PREFIX } from '@/constants';
@@ -24,11 +24,8 @@ export default function ActionsComponent({
 
   const [searchParams] = useSearchParams();
 
-  const navigate = useNavigate();
-
-  const addUserHref = useHref(`./addUser?region=${searchParams.get('region')}`);
-
   const { trackClick } = useTracking();
+  const navigate = useNavigate();
 
   const { data: project } = useProject();
 
@@ -68,7 +65,13 @@ export default function ActionsComponent({
         label: t(
           'pci_projects_project_storages_containers_container_add_user_label',
         ),
-        href: addUserHref,
+        onClick: () => {
+          navigate(
+            `./${encodeURIComponent(
+              object.name || object.key,
+            )}/addUser?region=${searchParams.get('region')}`,
+          );
+        },
       },
     {
       id: 1,
@@ -84,7 +87,9 @@ export default function ActionsComponent({
       ),
       onClick: () => {
         navigate(
-          `./${object.name || object.name}/delete?region=${container.region}`,
+          `./${encodeURIComponent(object.name || object.key)}/delete?region=${
+            container.region
+          }`,
         );
       },
     },
