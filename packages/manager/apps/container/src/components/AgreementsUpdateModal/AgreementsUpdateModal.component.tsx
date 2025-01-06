@@ -26,9 +26,11 @@ export default function AgreementsUpdateModal () {
     '#/billing/autorenew/agreements',
   );
   const [ showModal, setShowModal ] = useState(false);
-  const shouldTryToDisplay = useMemo(() => region !== 'US' && current === ModalTypes.agreements && window.location.href !== myContractsLink, [region, current, window.location.href]);
+  const isCurrentModalActive = useMemo(() => current === ModalTypes.agreements, [current]);
+  const isOnAgreementsPage = useMemo(() => window.location.href === myContractsLink, [window.location.href]);
+  const isFeatureAvailable = useMemo(() => region !== 'US', [region]);
   const { t } = useTranslation('agreements-update-modal');
-  const { data: urn } = useAccountUrn({ enabled: shouldTryToDisplay });
+  const { data: urn } = useAccountUrn({ enabled: isCurrentModalActive && !isOnAgreementsPage && isFeatureAvailable });
   const { isAuthorized: canUserAcceptAgreements, isLoading: isAuthorizationLoading } = useAuthorizationIam(['account:apiovh:me/agreements/accept'], urn);
   const { data: agreements, isLoading: areAgreementsLoading } = usePendingAgreements({ enabled: canUserAcceptAgreements });
   const goToContractPage = () => {
@@ -36,28 +38,43 @@ export default function AgreementsUpdateModal () {
     navigation.navigateTo('dedicated', `#/billing/autorenew/agreements`);
   };
 
+  /*
+   Since we don't want to display multiple modals at the same time we "watch" the `current` modal, and once it is
+   the agreements modal turn, we will try to display it (if conditions are met) or switch to the next one otherwise.
+   As a result, only once the agreements modal is the current one will we manage the modal lifecycle.
+   Lifecycle management:
+    - If user is on the agreements page, we will not display the modal and let the page notify for modal change
+    once the user accept non-validated agreements or leave the page
+    - Wait until all necessary data (IAM authorization, non-validated agreements list) are loaded
+    - Once we have the data, check if they allow the display of the modal (IAM authorized + at least one non-validated
+    agreement), if the conditions are met, we show the modal, otherwise we switch to the next one
+   */
   useEffect(() => {
-    const shouldManageModal = region !== 'US' && current === ModalTypes.agreements && window.location.href !== myContractsLink;
-    // We consider we have loaded all information if conditions are not respected to try to display the modal
-    const hasFullyLoaded = !shouldManageModal
-      // Or authorization are loaded but user does have right to accept contract or has no contract to accept
-      || !isAuthorizationLoading && (!canUserAcceptAgreements || !areAgreementsLoading);
-    // We handle the modal display only when the Agreements modal is the current one, contract management is available
-    // (region is not US) and we are not on the page where the user can do the related action (accepts his contract)
-    if (shouldManageModal) {
-      // We will wait for all data to be retrieved before handling the modal lifecycle
-      if (hasFullyLoaded) {
-        // If no contract are to be accepted we go to the next modal (if it exists)
-        if (!agreements?.length) {
-          shell.getPlugin('ux').notifyModalActionDone();
-        }
-        // Otherwise we display the modal
-        else {
-          setShowModal(true);
-        }
+    if (!isCurrentModalActive) return;
+
+    const hasFullyLoaded = !isAuthorizationLoading && (!canUserAcceptAgreements || !areAgreementsLoading);
+
+    if (isFeatureAvailable) {
+      if (isOnAgreementsPage || !hasFullyLoaded) return;
+
+      if (!agreements?.length) {
+        shell.getPlugin('ux').notifyModalActionDone();
+      } else {
+        setShowModal(true);
       }
+    } else {
+      shell.getPlugin('ux').notifyModalActionDone();
     }
-  }, [canUserAcceptAgreements, isAuthorizationLoading, canUserAcceptAgreements, areAgreementsLoading, agreements, current]);
+    return;
+  }, [
+    isCurrentModalActive,
+    isFeatureAvailable,
+    isOnAgreementsPage,
+    isAuthorizationLoading,
+    canUserAcceptAgreements,
+    areAgreementsLoading,
+    agreements,
+  ]);
 
   return showModal ? (
     <>
