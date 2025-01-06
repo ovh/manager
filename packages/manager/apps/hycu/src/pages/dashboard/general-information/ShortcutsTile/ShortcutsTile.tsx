@@ -1,6 +1,7 @@
 import { OsdsIcon } from '@ovhcloud/ods-components/react';
 import {
   DashboardTile,
+  useFeatureAvailability,
   useServiceDetails,
 } from '@ovh-ux/manager-react-components';
 
@@ -17,7 +18,7 @@ import {
   ManagerLinkProps,
 } from '@/components/ManagerLink/ManagerLink.component';
 import { IAM_ACTIONS } from '@/utils/iam.constants';
-import { HYCU_CHANGE_PACK_FEATURE_ACTIVATED } from '@/constants';
+import { HYCU_CHANGE_PACK_FEATURE } from '@/constants';
 
 const ShortcutsItem = ({ children, ...rest }: ManagerLinkProps) => (
   <ManagerLink color={ODS_THEME_COLOR_INTENT.primary} {...rest}>
@@ -38,6 +39,9 @@ const ShortcutsTile = ({ serviceName }: { serviceName: string }) => {
     resourceName: serviceName,
   });
   const { t } = useTranslation('hycu/dashboard');
+  const { data: changePackFeature } = useFeatureAvailability([
+    HYCU_CHANGE_PACK_FEATURE,
+  ]);
 
   const isServiceSuspended = useMemo(
     () => serviceDetails?.data.resource.state === 'suspended',
@@ -117,7 +121,7 @@ const ShortcutsTile = ({ serviceName }: { serviceName: string }) => {
         !hycuDetail?.data.controllerId
           ? links.linkActivated
           : links.linkReactivated,
-        ((HYCU_CHANGE_PACK_FEATURE_ACTIVATED &&
+        ((changePackFeature?.[HYCU_CHANGE_PACK_FEATURE] &&
           hycuDetail?.data.licenseStatus === LicenseStatus.ACTIVATED) ||
           undefined) &&
           links.linkChangePackType,
