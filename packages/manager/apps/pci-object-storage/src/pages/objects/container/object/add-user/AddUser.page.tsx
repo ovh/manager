@@ -1,11 +1,11 @@
-import { useNotifications } from '@ovh-ux/manager-react-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_BUTTON_VARIANT, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import {
-  OsdsButton,
-  OsdsModal,
-  OsdsSpinner,
+  OdsButton,
+  OdsModal,
+  OdsSpinner,
+  OdsText,
 } from '@ovhcloud/ods-components/react';
+import { useNotifications } from '@ovh-ux/manager-react-components';
+import { ODS_BUTTON_VARIANT, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { useEffect, useState } from 'react';
 import { Translation, useTranslation } from 'react-i18next';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
@@ -87,17 +87,15 @@ export default function AddUserPage() {
   const onConfirm = () => addUser();
   const isPending = isPendingListUsers || isPendingAddUser;
   return (
-    <OsdsModal
-      headline={t(
+    <OdsModal onOdsClose={onClose}>
+      <OdsText preset="heading-3">{}</OdsText>
+      headline=
+      {t(
         'pci_projects_project_storages_containers_container_addUser_container_title',
       )}
-      color={ODS_THEME_COLOR_INTENT.primary}
-      onOdsModalClose={onClose}
-    >
       <slot name="content">
         {isPending ? (
-          <OsdsSpinner
-            inline
+          <OdsSpinner
             size={ODS_SPINNER_SIZE.md}
             className="block text-center mt-6"
             data-testid="pciModal-spinner"
@@ -121,40 +119,33 @@ export default function AddUserPage() {
         )}
       </slot>
       {stepUser === 1 && (
-        <OsdsButton
+        <OdsButton
           slot="actions"
           onClick={() => setStepUser(0)}
-          color={ODS_THEME_COLOR_INTENT.primary}
           variant={ODS_BUTTON_VARIANT.ghost}
-        >
-          {t(
+          label={t(
             'pci_projects_project_storages_containers_container_addUser_back_label',
           )}
-        </OsdsButton>
+        />
       )}
-
-      <OsdsButton
+      <OdsButton
         slot="actions"
         onClick={onCancel}
-        color={ODS_THEME_COLOR_INTENT.primary}
         variant={ODS_BUTTON_VARIANT.ghost}
-      >
-        {t(
+        label={t(
           'pci_projects_project_storages_containers_container_addUser_cancel_label',
         )}
-      </OsdsButton>
-      <OsdsButton
+      />
+      <OdsButton
         slot="actions"
         onClick={() => (stepUser === 0 ? setStepUser(1) : onConfirm())}
-        color={ODS_THEME_COLOR_INTENT.primary}
-        disabled={(!selectedUser && stepUser === 0) || isPending || undefined}
-      >
-        {t(
+        isDisabled={(!selectedUser && stepUser === 0) || isPending || undefined}
+        label={t(
           stepUser === 0
             ? 'pci_projects_project_storages_containers_container_addUser_next_label'
             : 'pci_projects_project_storages_containers_container_addUser_submit_label',
         )}
-      </OsdsButton>
-    </OsdsModal>
+      />
+    </OdsModal>
   );
 }
