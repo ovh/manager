@@ -4,6 +4,7 @@ import CloudConnect from './cloud-connect.class';
 import CloudConnectDatacenter from './cloud-connect-datacenter.class';
 import CloudConnectDatacenterExtra from './cloud-connect-datacenter-extra.class';
 import CloudConnectTasks from './cloud-connect-tasks.class';
+import CloudConnectDiagnostics from './cloud-connect-diagnostics.class';
 import CloudConnectServiceKey from './cloud-connect-service-key.class';
 import CloudConnectInterface from './cloud-connect-interface.class';
 
@@ -166,6 +167,25 @@ export default class CloudConnectService {
     return this.$http
       .get(`/ovhCloudConnect/${cloudConnectId}/task/${taskId}`)
       .then(({ data }) => new CloudConnectTasks(data));
+  }
+
+  getAllDiagnostics(cloudConnectId) {
+    return this.$http
+      .get(`/ovhCloudConnect/${cloudConnectId}/diagnostic`)
+      .then((res) =>
+        this.$q.all(
+          map(res.data, (diagnosticId) =>
+            this.getDiagnosticDetails(cloudConnectId, diagnosticId),
+          ),
+        ),
+      )
+      .then((res) => res);
+  }
+
+  getDiagnosticDetails(cloudConnectId, diagnosticId) {
+    return this.$http
+      .get(`/ovhCloudConnect/${cloudConnectId}/diagnostic/${diagnosticId}`)
+      .then(({ data }) => new CloudConnectDiagnostics(data));
   }
 
   saveDescription(cloudConnectId, description) {
