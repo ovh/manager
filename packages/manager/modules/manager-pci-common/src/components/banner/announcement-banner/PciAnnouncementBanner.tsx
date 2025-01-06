@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import { ODS_MESSAGE_VARIANT } from '@ovhcloud/ods-components';
 import { useNavigation } from '@ovh-ux/manager-react-shell-client';
 import { ActionBanner } from '@ovh-ux/manager-react-components';
 import { useAnnouncementBanner } from './useAnnouncementBanner.hook';
@@ -25,6 +26,7 @@ export function PciAnnouncementBanner({
     <>
       {isBannerVisible && (
         <ActionBanner
+          variant={ODS_MESSAGE_VARIANT.default}
           message={t('pci_projects_beta_public_cloud_banner_info')}
           cta={t('pci_projects_beta_public_cloud_banner_info_link')}
           onClick={onGoToRegion}
