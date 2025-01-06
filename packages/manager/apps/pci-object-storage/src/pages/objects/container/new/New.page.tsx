@@ -1,6 +1,8 @@
 import { useProject } from '@ovh-ux/manager-pci-common';
 import {
-  Headers,
+  BaseLayout,
+  Links,
+  LinkType,
   useNotifications,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
@@ -107,55 +109,53 @@ export default function ContainerNewPage() {
   }, []);
 
   return (
-    <>
-      <OdsBreadcrumb>
-        <OdsBreadcrumbItem href={projectHref} label={project?.description} />
-        <OdsBreadcrumbItem
-          href=""
-          label={t('pci_projects_project_storages_containers_add_title')}
-        />
-      </OdsBreadcrumb>
-
-      <div className="header mt-8">
-        <Headers
-          title={t('pci_projects_project_storages_containers_add_title')}
-        />
-      </div>
-
-      <OdsText preset="paragraph">
-        {t('pci_projects_project_storages_containers_add_description')}
-      </OdsText>
-      <br />
-      <OdsLink
-        className="mt-4"
-        color="primary"
-        href={pricesLink}
-        target="_blank"
-        icon="external-link"
-        label={t(
-          'pci_projects_project_storages_containers_add_description_link',
-        )}
-      />
-      <div className="mt-6">
-        <SolutionStepComponent />
-        {form.offer === OBJECT_CONTAINER_OFFER_STORAGE_STANDARD && (
-          <DeploymentModeStep />
-        )}
-        <RegionStep />
-        {form.offer === OBJECT_CONTAINER_OFFER_SWIFT && <ContainerType />}
-        {form.offer === OBJECT_CONTAINER_OFFER_STORAGE_STANDARD &&
-          form.deploymentMode !== OBJECT_CONTAINER_MODE_LOCAL_ZONE && (
-            <>
-              <LinkUserStep />
-              <VersioningStep />
-              <EncryptionStep />
-            </>
+    <BaseLayout
+      breadcrumb={
+        <OdsBreadcrumb>
+          <OdsBreadcrumbItem href={projectHref} label={project?.description} />
+          <OdsBreadcrumbItem
+            href=""
+            label={t('pci_projects_project_storages_containers_add_title')}
+          />
+        </OdsBreadcrumb>
+      }
+      header={{
+        title: t('pci_projects_project_storages_containers_add_title'),
+      }}
+    >
+      <div className="mb-6">
+        <OdsText preset="paragraph">
+          {t('pci_projects_project_storages_containers_add_description')}
+        </OdsText>
+        <Links
+          className="block mt-4"
+          href={pricesLink}
+          target="_blank"
+          type={LinkType.external}
+          label={t(
+            'pci_projects_project_storages_containers_add_description_link',
           )}
-        <ContainerNameStep
-          isCreationPending={isPending}
-          onSubmit={onCreateContainer}
         />
       </div>
-    </>
+
+      <SolutionStepComponent />
+      {form.offer === OBJECT_CONTAINER_OFFER_STORAGE_STANDARD && (
+        <DeploymentModeStep />
+      )}
+      <RegionStep />
+      {form.offer === OBJECT_CONTAINER_OFFER_SWIFT && <ContainerType />}
+      {form.offer === OBJECT_CONTAINER_OFFER_STORAGE_STANDARD &&
+        form.deploymentMode !== OBJECT_CONTAINER_MODE_LOCAL_ZONE && (
+          <>
+            <LinkUserStep />
+            <VersioningStep />
+            <EncryptionStep />
+          </>
+        )}
+      <ContainerNameStep
+        isCreationPending={isPending}
+        onSubmit={onCreateContainer}
+      />
+    </BaseLayout>
   );
 }
