@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.5.1...@ovh-ux/manager-react-components@2.6.0) (2025-01-06)
+
+### Features
+
+- allow action banner to be dismissible ([#14755](https://github.com/ovh/manager/pull/14755)) ([f273e8e](https://github.com/ovh/manager/commit/f273e8e564686f34b3bd25b9dd3fcc820433d2d4))
+
+### Bug Fixes
+
+- **manager-react-components:** storybook documentation auto generate ([#14403](https://github.com/ovh/manager/pull/14403)) ([b50e47b](https://github.com/ovh/manager/commit/b50e47b9a9750de724b079a61dd0e4b7090e243d))
+- **mrc:** clipboard translations ([a781e8e](https://github.com/ovh/manager/commit/a781e8e27cdb7fb796f3cf7321fcd5a5f9e6c93f))
+- **i18n:** add missing translations [CDS 3552] ([2859bb6](https://github.com/ovh/manager/commit/2859bb6176867de2387ed7bb2570c742d990df94))
+- **mrc:** clipboard props typing ([#14578](https://github.com/ovh/manager/pull/14578)) ([8bfca44](https://github.com/ovh/manager/commit/8bfca44c7dbc7b88f6d742a4b4e6d3239d90e7e6))
+
+### Documentation
+
+- **mrc:** format changelog ([9e50b80](https://github.com/ovh/manager/commit/9e50b80fd24ca34db65aca861ff341055aa2ab66))
+
 ## [2.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.5.0...@ovh-ux/manager-react-components@2.5.1) (2024-12-03)
 
 ### Bug Fixes
