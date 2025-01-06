@@ -118,12 +118,12 @@ export default class NutanixService {
   getClusterHardwareInfo(serviceId, nodeServiceId) {
     return this.getServiceOptions(serviceId)
       .then((options) => {
-        const optionsServiceId = [nodeServiceId, serviceId];
+        const optionsServiceId = new Set([nodeServiceId, serviceId]);
         options.forEach((option) => {
-          optionsServiceId.push(option.serviceId);
+          optionsServiceId.add(option.serviceId);
         });
         return this.$q.all(
-          optionsServiceId.map((optionServiceId) => {
+          [...optionsServiceId].map((optionServiceId) => {
             return this.getHardwareInfo(optionServiceId).then(
               (hardwareInfo) => {
                 return {

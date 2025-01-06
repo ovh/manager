@@ -3,8 +3,6 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '',
     component: 'nutanixAllNodes',
     resolve: {
-      nodes: /* @ngInject */ (cluster, NutanixService) =>
-        NutanixService.getNodeDetails(cluster.getNodes()),
       breadcrumb: /* @ngInject */ () => null,
       goToAddNode: /* @ngInject */ ($state) => () =>
         $state.go('nutanix.dashboard.nodes.all.add-nodes'),
