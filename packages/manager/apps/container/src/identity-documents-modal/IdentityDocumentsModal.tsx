@@ -66,33 +66,42 @@ export const IdentityDocumentsModal: FunctionComponent = () => {
     });
     navigationPlugin.navigateTo('dedicated', `#/identity-documents`);
   };
-
+  /*
+   Since we don't want to display multiple modals at the same time we "watch" the `current` modal, and once it is
+   the agreements modal turn, we will try to display it (if conditions are met) or switch to the next one otherwise.
+   As a result, only once the agreements modal is the current one will we manage the modal lifecycle.
+   Lifecycle management:
+    - If user is on the KYC page, we will not display the modal and let the page notify for modal change
+    once the user has uploaded his documents or leave the page
+    - Wait until all necessary data (feature flipping, procedure status) are loaded
+    - Once we have the data, check if they allow the display of the modal (FF authorized + procedure status is
+    'required'), if the conditions are met, we show the modal, otherwise we switch to the next one
+   */
   useEffect(() => {
     const shouldManageModal = current === ModalTypes.kyc && window.location.href !== kycURL;
-    // We handle the modal display only when the KYC modal is the current one, and we are not on the page
-    // where the user can do the related action (upload his documents)
     if (shouldManageModal) {
-      // We will wait for feature availability response before handling the modal lifecycle
       if (!isFeatureAvailabilityLoading && availability) {
-        // If the KYC feature is not available we can safely switch to the next modal
         if (!isKycAvailable) {
           shell.getPlugin('ux').notifyModalActionDone();
         }
-        // Otherwise we will wait for the KYC procedure status to decide either we display th modal or switch to the
-        // next one
         else if (!isProcedureStatusLoading && statusDataResponse) {
-          // If the procedure's status is 'required' we display the modal
           if (statusDataResponse?.data?.status === requiredStatusKey) {
             setShowModal(true);
           }
-          // Otherwise we go to the next modal (if it exists)
           else if (shouldManageModal) {
             shell.getPlugin('ux').notifyModalActionDone();
           }
         }
       }
     }
-  }, [current, isFeatureAvailabilityLoading, availability, isKycAvailable, isProcedureStatusLoading, statusDataResponse]);
+  }, [
+    current,
+    isFeatureAvailabilityLoading,
+    availability,
+    isKycAvailable,
+    isProcedureStatusLoading,
+    statusDataResponse,
+  ]);
 
   useEffect(() => {
     if (showModal) {
