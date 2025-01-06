@@ -1,6 +1,6 @@
 import { TabsPanel, useProject } from '@ovh-ux/manager-pci-common';
 import {
-  Headers,
+  BaseLayout,
   PciGuidesHeader,
   RedirectionGuard,
   useProjectUrl,
@@ -46,26 +46,26 @@ export default function ObjectsPage() {
       condition={!isPending && allStorages?.resources.length === 0}
       route="./onboarding"
     >
-      <OdsBreadcrumb className="mb-8">
-        <OdsBreadcrumbItem label={project.description} href={hrefProject} />
-        <OdsBreadcrumbItem label={activePanelTranslation} href="#" />
-      </OdsBreadcrumb>
-
-      <Headers
-        title={t('pci_projects_project_storages_containers_object_title')}
-        description={t(
-          'pci_projects_project_storages_containers_object_description',
-        )}
-        headerButton={<PciGuidesHeader category="objectStorage" />}
-      />
-
-      <div className="mt-8">
-        <TabsPanel tabs={tabs} />
-      </div>
-
-      <Suspense>
-        <Outlet />
-      </Suspense>
+      <BaseLayout
+        breadcrumb={
+          <OdsBreadcrumb>
+            <OdsBreadcrumbItem label={project.description} href={hrefProject} />
+            <OdsBreadcrumbItem label={activePanelTranslation} href="#" />
+          </OdsBreadcrumb>
+        }
+        header={{
+          title: t('pci_projects_project_storages_containers_object_title'),
+          description: t(
+            'pci_projects_project_storages_containers_object_description',
+          ),
+          headerButton: <PciGuidesHeader category="objectStorage" />,
+        }}
+        tabs={<TabsPanel tabs={tabs} />}
+      >
+        <Suspense>
+          <Outlet />
+        </Suspense>
+      </BaseLayout>
     </RedirectionGuard>
   );
 }
