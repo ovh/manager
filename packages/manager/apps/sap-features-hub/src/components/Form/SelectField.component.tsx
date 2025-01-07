@@ -30,13 +30,19 @@ export const SelectField = <T extends Record<string, unknown>>({
   isDisabled,
   isLoading,
   handleChange,
-  options,
+  options = [],
   label,
   optionLabelKey,
   optionValueKey,
   placeholder,
   error,
 }: SelectFieldProps<T>) => {
+  const sanitizedOptions = options.map((opt) => ({
+    value: String(opt?.[optionValueKey] || ''),
+    label: String(opt?.[optionLabelKey] || opt?.[optionValueKey] || ''),
+    ...opt,
+  }));
+
   return (
     <OdsFormField error={error}>
       <label htmlFor={name} slot="label">
@@ -44,7 +50,7 @@ export const SelectField = <T extends Record<string, unknown>>({
       </label>
       <div className="flex items-center gap-4">
         <OdsSelect
-          key={options?.map((opt) => opt[optionValueKey]).join('-')}
+          key={sanitizedOptions.map((opt) => opt.value).join('-')}
           id={name}
           name={name}
           placeholder={placeholder}
@@ -53,20 +59,16 @@ export const SelectField = <T extends Record<string, unknown>>({
           className="w-full max-w-[304px]"
           hasError={!!error}
           defaultValue={
-            options?.length === 1
-              ? String(options[0][optionValueKey])
+            sanitizedOptions.length === 1
+              ? sanitizedOptions[0].value
               : undefined
           }
         >
-          {!!options?.length &&
-            options.map((option) => (
-              <option
-                key={String(option[optionValueKey])}
-                value={String(option[optionValueKey])}
-              >
-                {String(option[optionLabelKey] || option[optionValueKey])}
-              </option>
-            ))}
+          {sanitizedOptions.map((opt) => (
+            <option key={opt.value} value={opt.value}>
+              {opt.label}
+            </option>
+          ))}
         </OdsSelect>
         {isLoading && <OdsSpinner size="sm" />}
       </div>
