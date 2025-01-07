@@ -12,5 +12,11 @@
   "pci_projects_project_quota_increase_select_volume_quota-100vms": "100 VM",
   "pci_projects_project_quota_increase_select_volume_quota-200vms": "200 VM",
   "pci_projects_project_quota_increase_buy_credits": "Sie können Ihrem Public Cloud Projekt Guthaben hinzufügen und so mehr Quotas verwenden.",
-  "pci_projects_project_quota_increase_payment_info": "Sobald Sie das Hinzufügen von Quotas bestätigt haben, wird dieses Guthaben von Ihrem hinterlegten Zahlungsmittel abgebucht. Es kann nicht rückerstattet werden. Es wird dann automatisch ausschließlich auf die Rechnungen für Ihr Projekt verwendet."
+  "pci_projects_project_quota_increase_payment_info": "Sobald Sie das Hinzufügen von Quotas bestätigt haben, wird dieses Guthaben von Ihrem hinterlegten Zahlungsmittel abgebucht. Es kann nicht rückerstattet werden. Es wird dann automatisch ausschließlich auf die Rechnungen für Ihr Projekt verwendet.",
+  "pci_projects_project_quota_information_banner": "Damit Ihre Anfrage nach einer Erhöhung registriert wird, füllen Sie bitte alle Felder dieses Fragebogens/Formulars aus. Machen Sie alle erforderlichen Angaben, sonst können wir leider nicht angemessen auf Ihre Anfrage reagieren. Vielen Dank für Ihr Verständnis.",
+  "pci_projects_project_quota_assistance_title": "Meine Support-Anfragen",
+  "pci_projects_project_quota_assistance_description": "Erstellen und verfolgen Sie Ihre Support-Anfragen ganz nach Bedarf. Sie können sie anzeigen, sortieren und auf bereits archivierte Anfragen zugreifen.",
+  "pci_projects_project_quota_assistance_success_1": "Um die Bearbeitung Ihrer Anfrage zu vereinfachen, erstellen Sie bitte nur ein Ticket zum selben Thema.",
+  "pci_projects_project_quota_assistance_success_2": "Sehen Sie sich unsere Guides an:",
+  "pci_projects_project_quota_assistance_success_3": "Sie haben die Antwort auf Ihre Frage gefunden? Bitte schließen Sie Ihr Ticket in Ihrem Kundencenter."
 }

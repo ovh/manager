@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useHref, useNavigate, useParams } from 'react-router-dom';
 import { Translation, useTranslation } from 'react-i18next';
 import {
   Headers,
-  useCatalogPrice,
   useNotifications,
   useProjectLocalRegions,
   useProjectUrl,
@@ -22,7 +21,6 @@ import {
   ODS_ICON_SIZE,
   ODS_INPUT_SIZE,
   ODS_INPUT_TYPE,
-  ODS_SKELETON_SIZE,
   ODS_SPINNER_SIZE,
   ODS_TEXT_LEVEL,
 } from '@ovhcloud/ods-components';
@@ -33,7 +31,6 @@ import {
   OsdsIcon,
   OsdsInput,
   OsdsQuantity,
-  OsdsSkeleton,
   OsdsSpinner,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
@@ -41,14 +38,12 @@ import { useProject } from '@ovh-ux/manager-pci-common';
 import { VOLUME_MIN_SIZE, VOLUME_UNLIMITED_QUOTA } from '@/constants';
 import ChipRegion from '@/components/edit/ChipRegion.component';
 import { TVolume } from '@/api/data/volume';
-import {
-  useGetPrices,
-  useUpdateVolume,
-  useVolume,
-} from '@/api/hooks/useVolume';
+import { useUpdateVolume, useVolume } from '@/api/hooks/useVolume';
 import HidePreloader from '@/core/HidePreloader';
 import { useVolumeMaxSize } from '@/api/data/quota';
 import { useRegionsQuota } from '@/api/hooks/useQuota';
+import { PriceEstimate } from '@/pages/new/components/PriceEstimate';
+import { useCatalog } from '@/api/hooks/useCatalog';
 
 type TFormState = {
   name: string;
@@ -82,16 +77,24 @@ export default function EditPage() {
 
   const projectUrl = useProjectUrl('public-cloud');
   const { data: project } = useProject(projectId || '');
-  const catalogPrice = useGetPrices(projectId, volumeId);
   const { translateMicroRegion } = useTranslatedMicroRegions();
-
-  const { getTextPrice } = useCatalogPrice(3);
 
   const {
     data: volume,
     isLoading: isLoadingVolume,
     isPending: isPendingVolume,
   } = useVolume(projectId, volumeId);
+  const { data: catalog } = useCatalog();
+
+  const catalogVolume = useMemo(() => {
+    if (!!catalog && !!volume) {
+      return (
+        catalog.addons.find((addon) => addon.planCode === volume.planCode) ||
+        null
+      );
+    }
+    return null;
+  }, [catalog, volume]);
 
   const { volumeMaxSize } = useVolumeMaxSize(volume?.region);
 
@@ -171,19 +174,6 @@ export default function EditPage() {
     return volumeMaxSize;
   };
 
-  const getVolumePriceEstimationFromCatalog = (
-    price: { priceInUcents: number },
-    volumeSize: number,
-  ) => {
-    const hourlyEstimation = volumeSize * price.priceInUcents;
-    const monthlyEstimation = hourlyEstimation * 30 * 24;
-
-    return {
-      hourly: hourlyEstimation,
-      monthly: monthlyEstimation,
-    };
-  };
-
   const isLoading =
     isLoadingVolume ||
     isPendingVolume ||
@@ -216,11 +206,6 @@ export default function EditPage() {
       updateVolume();
     }
   };
-
-  const estimatedPrice =
-    catalogPrice &&
-    formState.size.value >= 0 &&
-    getVolumePriceEstimationFromCatalog(catalogPrice, formState.size.value);
   const hasError = errorState.isMinError || errorState.isMaxError;
 
   return (
@@ -438,22 +423,14 @@ export default function EditPage() {
             </OsdsText>
           </div>
 
-          {!hasError &&
-            (estimatedPrice?.monthly !== undefined ? (
-              <OsdsText
-                level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-                color={ODS_THEME_COLOR_INTENT.text}
-                className="block mb-6"
-              >
-                {tVolumeEdit(
-                  'pci_projects_project_storages_blocks_block_volume-edit_price_text',
-                  { price: getTextPrice(estimatedPrice.monthly) },
-                )}
-              </OsdsText>
-            ) : (
-              <OsdsSkeleton inline size={ODS_SKELETON_SIZE.md} />
-            ))}
+          {!hasError && !!catalogVolume && (
+            <div className="mb-6">
+              <PriceEstimate
+                volumeCapacity={formState.size.value}
+                volumeType={catalogVolume}
+              />
+            </div>
+          )}
 
           {errorState.isMinError && (
             <OsdsText

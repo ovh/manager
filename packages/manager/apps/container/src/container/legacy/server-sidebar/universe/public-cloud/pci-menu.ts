@@ -47,7 +47,6 @@ export const features = [
   'public-cloud:project-settings',
   'ai-dashboard',
   'data-platform',
-  'ai-endpoints',
   'key-management-service',
   'pci-savings-plan',
   'pci-ai-endpoints',
@@ -336,7 +335,7 @@ export function getPciProjectMenu(
           id: 'data-platform',
           title: 'Data Platform',
           badge: 'beta',
-          href: 'https://eu.dataplatform.ovh.net/',
+          href: `https://hq-api.eu.dataplatform.ovh.net/iam/v4/login?authentication_provider=ovh&project=${projectId}&app_id=forepaas&&response_type=token&redirect_uri=https%3A%2F%2Feu.dataplatform.ovh.net&authorize_bypass=true&token_mode=cookie&force_auth=false`,
           external: true,
         },
         isFeaturesAvailable('logs-data-platform') && {
@@ -354,7 +353,6 @@ export function getPciProjectMenu(
       'notebooks',
       'training',
       'ai-apps',
-      'ai-endpoints',
       'pci-ai-endpoints'
     )
   ) {
@@ -390,13 +388,6 @@ export function getPciProjectMenu(
           title: 'AI Endpoints',
           badge: 'beta',
           href: getURL('public-cloud', `#/pci/projects/${projectId}/ai/endpoints`),
-        },
-        isFeaturesAvailable('ai-endpoints') && {
-          id: 'ai-endpoints',
-          title: 'AI Endpoints',
-          badge: 'beta',
-          href: 'https://endpoints.ai.cloud.ovh.net/',
-          external: true,
         },
       ],
     });

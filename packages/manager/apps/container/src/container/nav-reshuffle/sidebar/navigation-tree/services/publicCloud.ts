@@ -469,7 +469,7 @@ pciNode.children = [
         universe: PUBLICCLOUD_UNIVERSE_ID,
         translation: 'sidebar_pci_analytics_data_platform',
         count: false,
-        url: 'https://eu.dataplatform.ovh.net/',
+        url: 'https://hq-api.eu.dataplatform.ovh.net/iam/v4/login?authentication_provider=ovh&project={projectId}&app_id=forepaas&&response_type=token&redirect_uri=https%3A%2F%2Feu.dataplatform.ovh.net&authorize_bypass=true&token_mode=cookie&force_auth=false',
         features: ['data-platform'],
         tag: NodeTag.BETA,
         isExternal: true,
@@ -494,7 +494,7 @@ pciNode.children = [
     idAttr: 'pci-ai-link',
     universe: PUBLICCLOUD_UNIVERSE_ID,
     translation: 'sidebar_pci_ai',
-    features: ['notebooks', 'ai-apps', 'training', 'ai-dashboard', 'ai-endpoints', 'pci-ai-endpoints'],
+    features: ['notebooks', 'ai-apps', 'training', 'ai-dashboard', 'pci-ai-endpoints'],
     forceVisibility: true,
     children: [
       {
@@ -548,17 +548,6 @@ pciNode.children = [
         },
         features: ['ai-apps'],
         forceVisibility: true,
-      },
-      {
-        id: 'pci-ai-endpoints',
-        idAttr: 'pci-ai-endpoints-link',
-        universe: PUBLICCLOUD_UNIVERSE_ID,
-        translation: 'sidebar_pci_ai_endpoints',
-        count: false,
-        url: 'https://endpoints.ai.cloud.ovh.net/',
-        features: ['ai-endpoints'],
-        tag: NodeTag.BETA,
-        isExternal: true,
       },
       {
         id: 'pci-ai-endpoints-app',

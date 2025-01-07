@@ -30,6 +30,8 @@ export default {
     projectActivationPageHref: '<',
     goToDiscoveryProjectActivationPage: '&',
     getUAppUrl: '<',
+    windowsGen3: '<',
+    catalog: '<',
   },
   controller,
   template,

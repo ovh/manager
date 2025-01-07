@@ -1,12 +1,16 @@
 import {
   OsdsCheckbox,
   OsdsCheckboxButton,
+  OsdsIcon,
+  OsdsLink,
   OsdsMessage,
   OsdsText,
   OsdsTile,
 } from '@ovhcloud/ods-components/react';
 import {
   ODS_CHECKBOX_BUTTON_SIZE,
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
   ODS_MESSAGE_TYPE,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
@@ -18,7 +22,11 @@ import {
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
-import { useCatalogPrice } from '@ovh-ux/manager-react-components';
+import {
+  useCatalogPrice,
+  useProjectUrl,
+} from '@ovh-ux/manager-react-components';
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ANTI_AFFINITY_MAX_NODES } from '@/constants';
 
 const checkedClass =
@@ -51,6 +59,9 @@ export default function BillingStep(props: TBillingStepProps): JSX.Element {
     getFormattedMonthlyCatalogPrice,
     getFormattedHourlyCatalogPrice,
   } = useCatalogPrice(4, { exclVat: true });
+
+  const projectURL = useProjectUrl('public-cloud');
+  const savingsPlanUrl = `${projectURL}/savings-plan`;
 
   return (
     <>
@@ -101,23 +112,27 @@ export default function BillingStep(props: TBillingStepProps): JSX.Element {
           >
             <div className="flex flex-col">
               <OsdsText
-                level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-                size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-                color={ODS_THEME_COLOR_INTENT.text}
-              >
-                {t(
-                  'kubernetes_add_billing_anti_affinity_coming_soon_message_title',
-                )}
-              </OsdsText>
-              <OsdsText
                 level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
                 size={ODS_THEME_TYPOGRAPHY_SIZE._400}
                 color={ODS_THEME_COLOR_INTENT.text}
               >
-                {t(
-                  'kubernetes_add_billing_anti_affinity_coming_soon_message_description',
-                )}
+                {t('kubernetes_add_billing_savings_plan_banner')}
               </OsdsText>
+              <OsdsLink
+                className="mt-2 flex items-center"
+                target={OdsHTMLAnchorElementTarget._blank}
+                color={ODS_THEME_COLOR_INTENT.primary}
+                href={savingsPlanUrl}
+              >
+                {t('kubernetes_add_billing_savings_plan_cta')}
+                <OsdsIcon
+                  className="ml-5"
+                  aria-hidden="true"
+                  name={ODS_ICON_NAME.ARROW_RIGHT}
+                  size={ODS_ICON_SIZE.xxs}
+                  color={ODS_THEME_COLOR_INTENT.primary}
+                />
+              </OsdsLink>
             </div>
           </OsdsMessage>
         ) : (
