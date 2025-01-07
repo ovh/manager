@@ -31,11 +31,11 @@ export const useIpRestrictions = <T = TIPRestrictionsData[]>(
   projectId: string,
   registryId: string,
   type: FilterRestrictionsServer[] = ['management', 'registry'],
-  select?: (data: TIPRestrictionsData[]) => T,
+  select?: (data: TIPRestrictionsDefault[]) => T,
 ) =>
   useSuspenseQuery({
     queryKey: getRegistryQueyPrefixWithId(projectId, registryId, type),
-    queryFn: async (): Promise<TIPRestrictionsData[]> =>
+    queryFn: async (): Promise<TIPRestrictionsDefault[]> =>
       getIpRestrictions(projectId, registryId, type),
     select,
   });
@@ -49,7 +49,15 @@ export const useIpRestrictionsWithFilter = (
 ) =>
   useIpRestrictions(projectId, registryId, type, (data) =>
     paginateResults<TIPRestrictionsData>(
-      applyFilters(data || [], filters),
+      applyFilters(
+        data.map((restriction) => ({
+          ...restriction,
+          draft: false,
+          checked: false,
+          id: restriction.ipBlock,
+        })) || [],
+        filters,
+      ),
       pagination,
     ),
   );

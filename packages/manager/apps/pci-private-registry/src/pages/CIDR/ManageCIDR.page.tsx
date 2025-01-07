@@ -1,6 +1,11 @@
 import * as z from 'zod';
 import { useParams } from 'react-router-dom';
-import { Headers, PciGuidesHeader } from '@ovh-ux/manager-react-components';
+import {
+  Headers,
+  PciGuidesHeader,
+  useColumnFilters,
+  useDataGrid,
+} from '@ovh-ux/manager-react-components';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { OsdsText } from '@ovhcloud/ods-components/react';
@@ -10,11 +15,10 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
 import BreadcrumbCIDR from '@/components/CIDR/Breadcrumb.component';
 import { FilterRestrictionsEnum } from '@/types';
-
-import BlocCIDR from '@/components/CIDR/CIDR.component';
-import { useIpRestrictions } from '@/api/hooks/useIpRestrictions';
+import BlockCIDR from '@/components/CIDR/CIDR.component';
+import { useIpRestrictionsWithFilter } from '@/api/hooks/useIpRestrictions';
 import { useSuspenseRegistry } from '@/api/hooks/useRegistry';
-import { FilterProvider } from './FilterContext.provider';
+import { DatagridProvider } from './DatagridContext.provider';
 
 const schemaAddCidr = (dataCIDR: string[]) =>
   z.object({
@@ -69,13 +73,21 @@ const schemaAddCidr = (dataCIDR: string[]) =>
 export type ConfirmCIDRSchemaType = z.infer<ReturnType<typeof schemaAddCidr>>;
 
 export default function BlocIPBlock() {
-  const { projectId, registryId } = useParams();
+  const { projectId = '', registryId = '' } = useParams();
   const { data: project } = useProject();
   const { data: registry } = useSuspenseRegistry(projectId, registryId);
-  const { data: dataCIDR } = useIpRestrictions(projectId, registryId);
+  const dataGrid = useDataGrid();
+  const columnFilters = useColumnFilters();
+  const { data: dataCIDR } = useIpRestrictionsWithFilter(
+    projectId,
+    registryId,
+    ['management', 'registry'],
+    dataGrid.pagination,
+    columnFilters.filters,
+  );
   const { t } = useTranslation(['ip-restrictions']);
   const methods = useForm<ConfirmCIDRSchemaType>({
-    resolver: zodResolver(schemaAddCidr(dataCIDR.map((e) => e.ipBlock))),
+    resolver: zodResolver(schemaAddCidr(dataCIDR.rows.map((e) => e.ipBlock))),
     mode: 'onBlur',
     reValidateMode: 'onChange',
   });
@@ -102,11 +114,17 @@ export default function BlocIPBlock() {
           {t('private_registry_cidr_manage_title')}
         </OsdsText>
       </div>
-      <FilterProvider>
-        <FormProvider {...methods}>
-          <BlocCIDR />
-        </FormProvider>
-      </FilterProvider>
+
+      <FormProvider {...methods}>
+        <DatagridProvider
+          dataGrid={dataGrid}
+          columnFilters={columnFilters}
+          key={dataCIDR.totalRows}
+          data={dataCIDR.rows}
+        >
+          <BlockCIDR />
+        </DatagridProvider>
+      </FormProvider>
     </>
   );
 }

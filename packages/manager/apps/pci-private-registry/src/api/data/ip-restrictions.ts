@@ -44,13 +44,7 @@ export const getIpRestrictions = async (
     }),
   );
 
-  const restrictionData = data.flat().map((restriction) => ({
-    ...restriction,
-    draft: false,
-    checked: false,
-    id: restriction.ipBlock,
-  }));
-  return aggregateBySpecificKey(restrictionData, 'ipBlock', 'authorization');
+  return aggregateBySpecificKey(data.flat(), 'ipBlock', 'authorization');
 };
 
 // Function to iterate through entries and handle each authorization

@@ -22,6 +22,13 @@ vi.mock('../../api/hooks/useIpRestrictions', async (importOriginal) => {
   };
 });
 
+vi.mock('@/pages/CIDR/useDatagridContext', () => ({
+  __esModule: true,
+  default: () => ({
+    removeDraftRow: vi.fn(),
+  }),
+}));
+
 describe('Buttons component', () => {
   it('should render two buttons', () => {
     vi.mocked(useParams).mockReturnValue({

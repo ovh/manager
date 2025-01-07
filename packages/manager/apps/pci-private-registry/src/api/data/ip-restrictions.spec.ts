@@ -49,25 +49,16 @@ describe('IP Restrictions API', () => {
         ipBlock: '192.168.0.1/2',
         description: 'value1',
         authorization: mockAuthorization,
-        draft: false,
-        checked: false,
-        id: '192.168.0.1/2',
       },
       {
         ipBlock: '192.168.0.2',
         description: 'value21',
         authorization: ['registry'],
-        draft: false,
-        checked: false,
-        id: '192.168.0.2',
       },
       {
         ipBlock: '192.168.0.2/24',
         description: 'value22',
         authorization: ['management'],
-        draft: false,
-        checked: false,
-        id: '192.168.0.2/24',
       },
     ]);
   });

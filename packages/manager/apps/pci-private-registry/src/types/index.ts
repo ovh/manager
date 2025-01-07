@@ -13,7 +13,7 @@ export enum TIPRestrictionsMethodEnum {
 
 export interface TIPRestrictions {
   createdAt: Date;
-  ipBlock: string | null;
+  ipBlock: string;
   description: string | null;
 }
 

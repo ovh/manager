@@ -26,40 +26,44 @@ import {
   FilterList,
 } from '@ovh-ux/manager-react-components';
 
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useRef, useState, useMemo, memo } from 'react';
-import { useIpRestrictionsWithFilter } from '@/api/hooks/useIpRestrictions';
-import useFilter from '@/pages/CIDR/useFilters';
+import useDataGridContext from '@/pages/CIDR/useDatagridContext';
+import { categorizeByKey } from '@/helpers';
+import { FilterRestrictionsServer } from '@/types';
 
-const Filters = ({ createNewRow }: { createNewRow: () => void }) => {
+const getCategorizedRestrictions = (
+  rows: {
+    ipBlock: string;
+    description: string | null;
+    authorization: FilterRestrictionsServer[] | null;
+  }[],
+) => categorizeByKey(rows, 'authorization', ['management', 'registry']);
+
+const Filters = () => {
   const [searchField, setSearchField] = useState('');
   const navigate = useNavigate();
-  const { projectId, registryId } = useParams();
   const filterPopoverRef = useRef<HTMLOsdsPopoverElement | null>(null);
   const {
+    rows: data,
+    totalRows,
     filters,
     pagination,
     setPagination,
     addFilter,
     removeFilter,
-  } = useFilter();
-  const { data } = useIpRestrictionsWithFilter(
-    projectId,
-    registryId,
-    ['management', 'registry'],
-    pagination,
-    filters,
-  );
+    addNewRow,
+  } = useDataGridContext();
 
   const { t } = useTranslation(['ip-restrictions']);
 
   const showDeleteButton = useMemo(
-    () => data.rows.filter((item) => item.checked).length >= 2,
+    () => data.filter((item) => item.checked).length >= 2,
     [data],
   );
 
-  const draftModeEnabled = useMemo(() => data.rows.some((item) => item.draft), [
+  const draftModeEnabled = useMemo(() => data.some((item) => item.draft), [
     data,
   ]);
 
@@ -89,7 +93,7 @@ const Filters = ({ createNewRow }: { createNewRow: () => void }) => {
             color={ODS_THEME_COLOR_INTENT.primary}
             className="xs:mb-0.5 sm:mb-0"
             disabled={draftModeEnabled || undefined}
-            onClick={createNewRow}
+            onClick={() => addNewRow()}
           >
             <OsdsIcon
               size={ODS_ICON_SIZE.xs}
@@ -107,11 +111,26 @@ const Filters = ({ createNewRow }: { createNewRow: () => void }) => {
               variant={ODS_BUTTON_VARIANT.stroked}
               color={ODS_THEME_COLOR_INTENT.primary}
               className="xs:mb-0.5 sm:mb-0"
-              onClick={() =>
+              onClick={() => {
+                const rowsToDelete = data
+                  .filter((item) => item.checked)
+                  .map(({ ipBlock, authorization, description }) => ({
+                    ipBlock,
+                    authorization,
+                    description,
+                  }));
+                const categorizedRestrictions = getCategorizedRestrictions(
+                  rowsToDelete,
+                );
                 navigate('./delete', {
-                  state: { all: true, filters, pagination },
-                })
-              }
+                  state: {
+                    cidr: categorizedRestrictions,
+                    totalRows,
+                    filters,
+                    pagination,
+                  },
+                });
+              }}
             >
               <OsdsIcon
                 size={ODS_ICON_SIZE.xs}

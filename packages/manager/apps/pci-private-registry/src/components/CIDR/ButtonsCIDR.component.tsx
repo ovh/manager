@@ -8,13 +8,10 @@ import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
 import { OsdsIcon, OsdsSpinner } from '@ovhcloud/ods-components/react';
-import { useQueryClient } from '@tanstack/react-query';
+
 import { FieldValues, SubmitHandler, useFormContext } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
-import {
-  getRegistryQueyPrefixWithId,
-  useUpdateIpRestriction,
-} from '@/api/hooks/useIpRestrictions';
+import { useUpdateIpRestriction } from '@/api/hooks/useIpRestrictions';
 import {
   FilterRestrictionsServer,
   TIPRestrictionsData,
@@ -22,9 +19,9 @@ import {
 } from '@/types';
 
 import { categorizeByKey } from '@/helpers';
+import useDataGridContext from '@/pages/CIDR/useDatagridContext';
 
 const Buttons = () => {
-  const queryClient = useQueryClient();
   const { projectId = '', registryId = '' } = useParams();
 
   const { handleSubmit, formState, reset } = useFormContext();
@@ -48,16 +45,7 @@ const Buttons = () => {
     onSuccess,
   });
 
-  const removeDraftRow = () => {
-    reset();
-    const key = getRegistryQueyPrefixWithId(projectId, registryId, [
-      'management',
-      'registry',
-    ]);
-    queryClient.setQueryData<TIPRestrictionsData[]>(key, (oldData) =>
-      oldData?.filter((item) => !item.draft),
-    );
-  };
+  const { removeDraftRow } = useDataGridContext();
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const categorizeByKeyResult = categorizeByKey([data], 'authorization', [
@@ -80,7 +68,7 @@ const Buttons = () => {
   return (
     <div className="md:grid grid-cols-[0.5fr,0.5fr] gap-4 ">
       <button
-        className="button-datagrid-form cursor-pointer hover:[#85d9fd] border-[#85d9fd] border-solid border pt-3 bg-white rounded"
+        className="button-datagrid-form cursor-pointer hover:[#85d9fd] border-[--ods-color-blue-200] border-solid border pt-3 bg-white rounded"
         data-testid="remove-draft-button"
         onClick={removeDraftRow}
         type={ODS_BUTTON_TYPE.reset}
@@ -93,7 +81,7 @@ const Buttons = () => {
       </button>
 
       <button
-        className="button-datagrid-form cursor-pointer border-[#85d9fd] border-solid border bg-white pt-3  rounded"
+        className="button-datagrid-form cursor-pointer border-[--ods-color-blue-200] border-solid border bg-white pt-3  rounded"
         data-testid="submit-button"
         disabled={Boolean(Object.values(formState.errors)?.length) || undefined}
         type={ODS_BUTTON_TYPE.submit}

@@ -19,20 +19,19 @@ import {
 } from '@/api/hooks/useIpRestrictions';
 import {
   FilterRestrictionsServer,
-  TIPRestrictionsData,
   TIPRestrictionsDefault,
   TIPRestrictionsMethodEnum,
 } from '@/types';
-import { categorizeByKey } from '@/helpers';
 
-type DeleteModalState =
-  | { all: true; cidr?: never }
-  | { all?: false; cidr: TIPRestrictionsData };
+type DeleteModalState = {
+  cidr: Record<FilterRestrictionsServer, TIPRestrictionsDefault[]>;
+  totalRows: number;
+};
 
 export default function DeleteModal() {
   const { t } = useTranslation(['ip-restrictions']);
   const {
-    state: { filters, pagination, cidr, all },
+    state: { filters, pagination, cidr, totalRows },
   } = useLocation() as {
     state: DeleteModalState & { filters?: Filter[] } & {
       pagination?: PaginationState;
@@ -60,7 +59,7 @@ export default function DeleteModal() {
     onSuccess: () => {
       addSuccess(
         t(
-          all
+          totalRows > 1
             ? 'private_registry_cidr_delete_all_success'
             : 'private_registry_cidr_delete_success',
         ),
@@ -69,40 +68,17 @@ export default function DeleteModal() {
     },
   });
 
-  const getCategorizedRestrictions = (
-    rows: {
-      ipBlock: string;
-      description: string;
-      authorization: FilterRestrictionsServer[];
-    }[],
-  ) => categorizeByKey(rows, 'authorization', ['management', 'registry']);
-
   const handleDelete = useCallback(() => {
-    const rowsToDelete = all
-      ? data.rows
-          .filter((item) => item.checked)
-          .map(({ ipBlock, authorization, description }) => ({
-            ipBlock,
-            authorization,
-            description,
-          }))
-      : [
-          {
-            ipBlock: cidr?.ipBlock ?? '',
-            authorization: cidr?.authorization ?? ['management'],
-            description: cidr?.description ?? '',
-          },
-        ];
     onClose();
-    const categorizedRestrictions = getCategorizedRestrictions(rowsToDelete);
+
     updateIpRestrictions({
-      cidrToUpdate: categorizedRestrictions as Record<
+      cidrToUpdate: cidr as Record<
         FilterRestrictionsServer,
         TIPRestrictionsDefault[]
       >,
       action: TIPRestrictionsMethodEnum.DELETE,
     });
-  }, [all, cidr, data, updateIpRestrictions]);
+  }, [cidr, data, updateIpRestrictions]);
 
   return (
     <PciModal
@@ -122,7 +98,7 @@ export default function DeleteModal() {
         size={ODS_THEME_TYPOGRAPHY_SIZE._400}
       >
         {t(
-          all
+          totalRows > 1
             ? 'private_registry_cidr_delete_modal_all_subtitle'
             : 'private_registry_cidr_delete_modal_subtitle',
         )}

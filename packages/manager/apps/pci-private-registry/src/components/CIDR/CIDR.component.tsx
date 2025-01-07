@@ -5,12 +5,7 @@ import {
 } from '@ovh-ux/manager-react-components';
 
 import { useEffect } from 'react';
-import {
-  QueryClient,
-  QueryKey,
-  useMutationState,
-  useQueryClient,
-} from '@tanstack/react-query';
+import { useMutationState } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 
@@ -28,43 +23,16 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useDatagridColumn } from '@/pages/CIDR/useDatagridColumn';
 import Filters from '@/components/CIDR/Filters.component';
-import {
-  getRegistryQueyPrefixWithId,
-  useIpRestrictionsWithFilter,
-} from '@/api/hooks/useIpRestrictions';
-import useFilters from '@/pages/CIDR/useFilters';
-import { TIPRestrictionsData } from '@/types';
-
-const createNewRow = (queryClient: QueryClient, key: QueryKey) =>
-  queryClient.setQueryData<TIPRestrictionsData[]>(key, (oldData) => [
-    {
-      authorization: null,
-      description: null,
-      ipBlock: null,
-      createdAt: new Date(),
-      id: oldData?.length ? oldData.length + 1 : 0,
-      draft: true,
-      checked: null,
-    },
-    ...(oldData ?? []),
-  ]);
+import { getRegistryQueyPrefixWithId } from '@/api/hooks/useIpRestrictions';
+import useDataGridContext from '@/pages/CIDR/useDatagridContext';
 
 export default function BlockCIDR() {
   const { t } = useTranslation(['ip-restrictions', 'common']);
-  const { projectId, registryId } = useParams();
-  const queryClient = useQueryClient();
+  const { projectId = '', registryId = '' } = useParams();
   const { formState, reset } = useFormContext();
   const columns = useDatagridColumn();
-  const { pagination, filters, setPagination } = useFilters();
+  const { pagination, setPagination, rows, totalRows } = useDataGridContext();
   const { clearNotifications } = useNotifications();
-
-  const { data: dataCIDR } = useIpRestrictionsWithFilter(
-    projectId,
-    registryId,
-    ['management', 'registry'],
-    pagination,
-    filters,
-  );
 
   const variablesPending = useMutationState({
     filters: { status: 'pending' },
@@ -93,15 +61,6 @@ export default function BlockCIDR() {
 
   useEffect(() => clearNotifications, []);
 
-  const createNewBlocsCIDR = () =>
-    createNewRow(
-      queryClient,
-      getRegistryQueyPrefixWithId(projectId, registryId, [
-        'management',
-        'registry',
-      ]),
-    );
-
   if (variablesPending.length) {
     return (
       <OsdsSpinner
@@ -114,7 +73,7 @@ export default function BlockCIDR() {
 
   return (
     <>
-      {!dataCIDR.rows.length && (
+      {!rows.length && (
         <OsdsMessage
           color={ODS_THEME_COLOR_INTENT.info}
           type={ODS_MESSAGE_TYPE.info}
@@ -151,12 +110,12 @@ export default function BlockCIDR() {
       <Notifications />
       <div className="mt-8">
         <>
-          <Filters createNewRow={createNewBlocsCIDR} />
+          <Filters />
           <div className="mt-8">
             <Datagrid
               columns={columns}
-              items={dataCIDR.rows}
-              totalItems={dataCIDR.totalRows || 0}
+              items={rows}
+              totalItems={totalRows || 0}
               pagination={pagination}
               onPaginationChange={setPagination}
               className="overflow-x-visible"

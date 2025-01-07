@@ -5,7 +5,7 @@ import { FieldValues, useFormContext, UseFormReturn } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 import { useIpRestrictionsWithFilter } from '@/api/hooks/useIpRestrictions';
 import { useDatagridColumn } from './useDatagridColumn';
-import { FilterProvider } from './FilterContext.provider';
+import { DatagridProvider } from './DatagridContext.provider';
 import { wrapper as Wrap } from '@/wrapperRenders';
 
 import { TIPRestrictionsData } from '@/types';
@@ -59,9 +59,9 @@ describe('useDatagridColumn', () => {
 
     const { result } = renderHook(() => useDatagridColumn(), {
       wrapper: ({ children }) => (
-        <FilterProvider>
+        <DatagridProvider data={mockData.rows}>
           <Wrap>{children}</Wrap>
-        </FilterProvider>
+        </DatagridProvider>
       ),
     });
     const columns = result.current;

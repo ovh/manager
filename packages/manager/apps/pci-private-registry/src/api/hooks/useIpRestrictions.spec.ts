@@ -236,8 +236,8 @@ const renderIpRestrictionsWithFilterHook = (
 describe('useIpRestrictionsWithFilter Hook Tests', () => {
   it('should fetch and paginate IP restrictions successfully', async () => {
     const mockData = [
-      { id: 'fromMockData1', ipBlock: '192.168.0.1/24', description: 'allow' },
-      { id: '2', ipBlock: '10.0.0.0/8', description: 'deny' },
+      { ipBlock: '192.168.0.1/24', description: 'allow' },
+      { ipBlock: '10.0.0.0/8', description: 'deny' },
     ];
     const filteredData = [mockData[0]];
     const paginatedData = {
@@ -276,14 +276,22 @@ describe('useIpRestrictionsWithFilter Hook Tests', () => {
       'registry-id',
       ['management', 'registry'],
     );
-    expect(applyFilters).toHaveBeenCalledWith(mockData, filters);
+    expect(applyFilters).toHaveBeenCalledWith(
+      mockData.map((mock) => ({
+        ...mock,
+        id: mock.ipBlock,
+        checked: false,
+        draft: false,
+      })),
+      filters,
+    );
     expect(paginateResults).toHaveBeenCalledWith(filteredData, pagination);
   });
 
   it('should return empty rows if no data matches filters', async () => {
     const mockData = [
-      { id: '1', ipBlock: '192.168.0.1/24', description: 'allow' },
-      { id: '2', ipBlock: '10.0.0.0/8', description: 'deny' },
+      { ipBlock: '192.168.0.1/24', description: 'allow' },
+      { ipBlock: '10.0.0.0/8', description: 'deny' },
     ];
     const filteredData: never[] = [];
     const paginatedData = {
@@ -326,7 +334,15 @@ describe('useIpRestrictionsWithFilter Hook Tests', () => {
       'registry-id',
       ['management', 'registry'],
     );
-    expect(applyFilters).toHaveBeenCalledWith(mockData, filters);
+    expect(applyFilters).toHaveBeenCalledWith(
+      mockData.map((mock) => ({
+        ...mock,
+        id: mock.ipBlock,
+        checked: false,
+        draft: false,
+      })),
+      filters,
+    );
     expect(paginateResults).toHaveBeenCalledWith(filteredData, pagination);
   });
 });
