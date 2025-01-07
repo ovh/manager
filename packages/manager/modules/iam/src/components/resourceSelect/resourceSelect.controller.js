@@ -125,6 +125,13 @@ export default class ResourceSelectController {
       if (this.model.types?.length) {
         this.transformResourceTypes(this.model.types);
       }
+      this.$timeout(() => {
+        this.form[this.resourcesName].$setValidity(
+          'limit',
+          !this.model.selection ||
+            this.model.selection.length <= Number(this.maxLength),
+        );
+      });
     }
 
     if (!required) {
@@ -162,10 +169,6 @@ export default class ResourceSelectController {
    * @param {Object} value
    */
   onResourcesChanged(value) {
-    this.form[this.resourcesName].$setValidity(
-      'limit',
-      this.model.selection.length <= Number(this.maxLength),
-    );
     if (this.onChange) {
       this.onModelChanged();
       this.onChange({ change: { type: 'resources', value } });
