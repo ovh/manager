@@ -16,19 +16,21 @@ export default function LabelComponent({
 }: Readonly<TLabelProps>): JSX.Element {
   return (
     <div slot={slot} className={`flex gap-2 items-center ${className}`.trim()}>
-      <label slot="label">
-        <OdsText>{text}</OdsText>
-        <OdsIcon
-          id="popover-trigger"
-          name="circle-question"
-          className="cursor-help"
-        />
-      </label>
+      <OdsText preset="caption" className="font-bold-class">
+        {text}
+      </OdsText>
 
       {!!helpText && (
-        <OdsTooltip triggerId="popover-trigger" className="w-4 h-4">
-          {helpText}
-        </OdsTooltip>
+        <>
+          <OdsIcon
+            id="popover-trigger"
+            name="circle-question"
+            className="cursor-help"
+          />
+          <OdsTooltip triggerId="popover-trigger" className="w-4 h-4">
+            {helpText}
+          </OdsTooltip>
+        </>
       )}
     </div>
   );

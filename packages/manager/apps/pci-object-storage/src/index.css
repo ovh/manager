@@ -16,3 +16,7 @@ html {
 .selected-tile-title::part(text) {
   @apply font-bold;
 }
+
+.font-bold-class::part(text) {
+  @apply font-bold;
+}
