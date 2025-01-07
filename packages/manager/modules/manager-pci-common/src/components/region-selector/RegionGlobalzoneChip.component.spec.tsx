@@ -6,11 +6,11 @@ import {
 } from '@ovh-ux/manager-react-components';
 import {
   FEATURE_REGION_1AZ,
-  Has3AZContext,
   RegionGlobalzoneChip,
 } from './RegionGlobalzoneChip.component';
 import { wrapper } from '@/wrapperRenders';
 import { URL_INFO } from '@/components/region-selector/constants';
+import { useHas3AZ } from '@/hooks/useHas3AZ/useHas3AZ';
 
 vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
   const module = await importOriginal<
@@ -18,6 +18,8 @@ vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
   >();
   return { ...module, useFeatureAvailability: vi.fn() };
 });
+
+vi.mock('@/hooks/useHas3AZ/useHas3AZ');
 
 enum ExpectedType {
   GLOBAL_REGIONS = 'GLOBAL_REGIONS',
@@ -109,12 +111,9 @@ describe('RegionGlobalzoneChip', () => {
           } as UseFeatureAvailabilityResult),
       );
 
-      render(
-        <Has3AZContext.Provider value={has3AZ}>
-          <RegionGlobalzoneChip />
-        </Has3AZContext.Provider>,
-        { wrapper },
-      );
+      vi.mocked(useHas3AZ).mockReturnValue(has3AZ);
+
+      render(<RegionGlobalzoneChip />, { wrapper });
 
       if (expected === 'render') {
         expect(

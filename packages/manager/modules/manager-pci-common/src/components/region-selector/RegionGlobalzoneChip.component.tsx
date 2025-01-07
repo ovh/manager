@@ -23,6 +23,7 @@ import {
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { useTranslation } from 'react-i18next';
 import { URL_INFO } from './constants';
+import { useHas3AZ } from '../../hooks/useHas3AZ/useHas3AZ';
 
 export const FEATURE_REGION_1AZ = 'public-cloud:region-1AZ';
 
@@ -44,7 +45,7 @@ export function RegionGlobalzoneChip({
   const tooltipUrl =
     URL_INFO[linkType][ovhSubsidiary] || URL_INFO[linkType].DEFAULT;
 
-  const has3AZ = useContext(Has3AZContext);
+  const has3AZ = useHas3AZ();
 
   const chip = (
     <OsdsChip
