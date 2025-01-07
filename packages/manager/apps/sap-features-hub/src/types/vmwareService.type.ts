@@ -4,12 +4,6 @@ export type SwsResponse<T> = {
   results: T[];
 };
 
-export type SwsListResponse<T> = {
-  count: number;
-  pagination: number[];
-  list: SwsResponse<T>;
-};
-
 export type VMwareService = {
   displayName: string;
   advancedSecurity: boolean;

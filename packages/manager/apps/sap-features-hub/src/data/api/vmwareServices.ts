@@ -1,16 +1,16 @@
-import apiClient, { ApiResponse } from '@ovh-ux/manager-core-api';
+import apiClient, { ApiResponse, v6 } from '@ovh-ux/manager-core-api';
 import {
-  SwsListResponse,
   SwsResponse,
   VMwareDatacentre,
   VMwareDatacentreCluster,
   VMwareService,
 } from '@/types/vmwareService.type';
 
-export type GetClusterProps = {
+export type GetClustersIdsProps = {
   serviceName: string;
   datacenterId: string;
 };
+export type GetOneClusterProps = GetClustersIdsProps & { clusterId: number };
 
 const vmwareServicesRoute =
   '/service?type=/dedicatedCloud&subType=EPCC&external=false';
@@ -18,11 +18,18 @@ const vmwareServicesRoute =
 const getVMwareDatacentreRoute = (serviceName: string) =>
   `/sws/dedicatedCloud/${serviceName}/datacenters-summary`;
 
+const getDatacentreClusterIdsRoute = ({
+  serviceName,
+  datacenterId,
+}: GetClustersIdsProps) =>
+  `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/cluster`;
+
 const getDatacentreClusterRoute = ({
   serviceName,
   datacenterId,
-}: GetClusterProps) =>
-  `sws/dedicatedCloud/${serviceName}/datacenters/${datacenterId}/hosts`;
+  clusterId,
+}: GetOneClusterProps) =>
+  `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/cluster/${clusterId}`;
 
 export const getVMwareServices = async (): Promise<ApiResponse<
   VMwareService[]
@@ -33,10 +40,15 @@ export const getVMwareDatacentres = async (
 ): Promise<ApiResponse<SwsResponse<VMwareDatacentre>>> =>
   apiClient.aapi.get(getVMwareDatacentreRoute(serviceName));
 
-export const getDatacentreClusters = async ({
+export const getDatacentreClusterIds = async ({
   serviceName,
   datacenterId,
-}: GetClusterProps): Promise<ApiResponse<
-  SwsListResponse<VMwareDatacentreCluster>
->> =>
-  apiClient.aapi.get(getDatacentreClusterRoute({ serviceName, datacenterId }));
+}: GetClustersIdsProps): Promise<ApiResponse<number[]>> =>
+  v6.get(getDatacentreClusterIdsRoute({ serviceName, datacenterId }));
+
+export const getDatacentreCluster = async ({
+  serviceName,
+  datacenterId,
+  clusterId,
+}: GetOneClusterProps): Promise<ApiResponse<VMwareDatacentreCluster>> =>
+  v6.get(getDatacentreClusterRoute({ serviceName, datacenterId, clusterId }));
