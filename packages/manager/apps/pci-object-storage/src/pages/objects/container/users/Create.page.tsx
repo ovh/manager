@@ -22,6 +22,7 @@ import {
 import { poll } from '@/utils';
 import { TRACKING_PREFIX, TRACKING_S3_POLICY_ADD } from '@/constants';
 import queryClient from '@/queryClient';
+import LabelComponent from '@/components/Label.component';
 
 type TState = {
   userType?: 'new' | 'existing';
@@ -85,56 +86,52 @@ export default function UserCreatePage(): JSX.Element {
     secret: string;
   }) => {
     const content = (
-      <>
-        <div>
+      <div className="w-full">
+        <OdsText>
           {tCredential(
             'pci_projects_project_storages_containers_add_linked_user_success_message',
             { username },
           )}
+        </OdsText>
+        <div className="grid grid-cols-1 sm:grid-cols-2 mt-8 gap-6">
+          <OdsFormField>
+            <LabelComponent
+              text={tCredential(
+                'pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_username_label',
+              )}
+            />
+            <Clipboard className="w-[100%]" value={username} />
+          </OdsFormField>
+
+          <OdsFormField>
+            <LabelComponent
+              text={tCredential(
+                'pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_access-key_label',
+              )}
+            />
+
+            <Clipboard className="w-[100%]" value={access} />
+          </OdsFormField>
+
+          <OdsFormField>
+            <LabelComponent
+              text={tCredential(
+                'pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_description_label',
+              )}
+            />
+            <Clipboard className="w-[100%]" value={description} />
+          </OdsFormField>
+
+          <OdsFormField>
+            <LabelComponent
+              text={tCredential(
+                'pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_secret-key_label',
+              )}
+            />
+            <Clipboard className="w-[100%]" value={secret} />
+          </OdsFormField>
         </div>
-        <div className="width-full grid grid-cols-1 sm:grid-cols-2 mt-8 gap-6">
-          <div>
-            <OdsFormField>
-              <label slot="label">
-                {tCredential(
-                  'pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_username_label',
-                )}
-              </label>
-              <Clipboard value={username} id="" />
-            </OdsFormField>
-          </div>
-          <div>
-            <OdsFormField>
-              <label slot="label">
-                {tCredential(
-                  'pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_access-key_label',
-                )}
-              </label>
-              <Clipboard value={access} />
-            </OdsFormField>
-          </div>
-          <div>
-            <OdsFormField>
-              <label slot="label">
-                {tCredential(
-                  'pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_description_label',
-                )}
-              </label>
-              <Clipboard value={description} />
-            </OdsFormField>
-          </div>
-          <div>
-            <OdsFormField>
-              <label slot="label">
-                {tCredential(
-                  'pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_secret-key_label',
-                )}
-              </label>
-              <Clipboard value={secret} />
-            </OdsFormField>
-          </div>
-        </div>
-      </>
+      </div>
     );
     addSuccess(content, true);
     queryClient.invalidateQueries({
@@ -269,14 +266,14 @@ export default function UserCreatePage(): JSX.Element {
           </OdsText>
         </OdsMessage>
       )}
-      <p>
-        <OdsText preset="paragraph">
-          {tAdd('pci_projects_project_users_add_short_description')}
-        </OdsText>
-      </p>
+
+      <OdsText preset="paragraph" className="my-6">
+        {tAdd('pci_projects_project_users_add_short_description')}
+      </OdsText>
+
       <div className="grid grid-cols-1 gap-4">
         {validUsersWithoutCredentials?.length > 0 && (
-          <div className="flex">
+          <div className="flex items-center mb-2">
             <OdsRadio
               isChecked={state.userType === 'existing'}
               value="existing"
@@ -288,12 +285,13 @@ export default function UserCreatePage(): JSX.Element {
               }}
             />
             <label htmlFor="userType-existing">
-              <OdsText>
+              <OdsText preset="span">
                 {tAdd('pci_projects_project_users_add_existing_user')}
               </OdsText>
             </label>
           </div>
         )}
+
         {state.userType === 'existing' && (
           <OdsSelect
             name="selectedUserId"
@@ -304,7 +302,7 @@ export default function UserCreatePage(): JSX.Element {
                 selectedUserId: event.detail.value as string,
               });
             }}
-            className="ml-10 mt-4 mb-6"
+            className="mb-8"
           >
             {validUsersWithoutCredentials?.map((user) => (
               <option key={user.id} value={user.id}>
@@ -313,7 +311,8 @@ export default function UserCreatePage(): JSX.Element {
             ))}
           </OdsSelect>
         )}
-        <div className="flex">
+
+        <div className="flex items-center mb-2">
           <OdsRadio
             value="new"
             onOdsChange={() => setState({ ...state, userType: 'new' })}
@@ -322,16 +321,18 @@ export default function UserCreatePage(): JSX.Element {
             className="mr-4"
           />
           <label htmlFor="userType-new">
-            <OdsText>
+            <OdsText preset="span">
               {tAdd('pci_projects_project_users_add_create_user')}
             </OdsText>
           </label>
         </div>
+
         {state.userType === 'new' && (
           <OdsFormField>
-            <label slot="label">
-              {tAdd('pci_projects_project_users_add_description_label')}
-            </label>
+            <LabelComponent
+              text={tAdd('pci_projects_project_users_add_description_label')}
+            />
+
             <OdsInput
               value={state.userDescription.value}
               name="description"
