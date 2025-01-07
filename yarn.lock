@@ -5840,23 +5840,6 @@
     date-fns "^3.6.0"
     lodash.isequal "^4.5.0"
 
-"@ovh-ux/manager-react-components@2.2.0":
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-components/-/manager-react-components-2.2.0.tgz#08d506926d23aae28cc6e69583b77e41d72c8899"
-  integrity sha512-d08/fkmaILeSb4BKmq253EzG3d3OxzIFB4hG3u/OcoqMo3blkR4ScWAFY6yuokA9GyFlL0o4YAdtIZ0KEfI4zw==
-  dependencies:
-    "@babel/plugin-proposal-private-property-in-object" "^7.21.11"
-    "@tanstack/react-query" "^5.51.21"
-    "@tanstack/react-table" "^8.20.1"
-    clsx "^2.1.1"
-    lodash.isdate "^4.0.1"
-    lodash.isequal "^4.5.0"
-    react-i18next "^14.0.5"
-    react-use "^17.5.0"
-    sass "1.71.0"
-    tailwindcss "^3.4.4"
-    uuid "^9.0.1"
-
 "@ovh-ux/manager-react-components@^1.41.1":
   version "1.41.1"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-components/-/manager-react-components-1.41.1.tgz#da0195c82fdf26e101f47c11d5b604c90547d810"
