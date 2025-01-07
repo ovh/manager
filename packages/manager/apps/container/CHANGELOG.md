@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.98.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.97.0...@ovh-ux/manager-container-app@0.98.0) (2025-01-07)
+
+
+### Features
+
+* **container:** added 2 links on usefull links legacy ([#14724](https://github.com/ovh/manager/issues/14724)) ([72b2576](https://github.com/ovh/manager/commit/72b2576221abf91914eaf59d86642fa8948a8762))
+* **container:** added 2 links on usefull links pnr ([#14717](https://github.com/ovh/manager/issues/14717)) ([854aad1](https://github.com/ovh/manager/commit/854aad18b9b096f3741cb038c723baf7f3550376))
+
+
+
+
+
 # [0.97.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.96.1...@ovh-ux/manager-container-app@0.97.0) (2025-01-07)
 
 
