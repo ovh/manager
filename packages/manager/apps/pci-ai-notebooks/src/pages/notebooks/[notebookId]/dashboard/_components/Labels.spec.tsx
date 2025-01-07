@@ -124,40 +124,4 @@ describe('Configuration component', () => {
       });
     });
   });
-
-  //   it('renders and trigger copy Id in clipboard', async () => {
-  //     Object.assign(window.navigator, {
-  //       clipboard: {
-  //         writeText: vi.fn().mockImplementation(() => Promise.resolve()),
-  //       },
-  //     });
-  //     render(<Configurations />, { wrapper: RouterWithQueryClientWrapper });
-  //     await waitFor(() => {
-  //       expect(screen.getByText(mockedNotebook.id)).toBeInTheDocument();
-  //     });
-  //     act(() => {
-  //       fireEvent.click(screen.getByTestId('dashboard-copy-id-button'));
-  //     });
-  //     await waitFor(() => {
-  //       expect(window.navigator.clipboard.writeText).toHaveBeenCalledWith(
-  //         mockedNotebook.id,
-  //       );
-  //       expect(useToast().toast).toHaveBeenCalledWith({
-  //         title: 'notebookIdCopyToast',
-  //       });
-  //     });
-  //   });
-
-  //   it('open delete notebook modal', async () => {
-  //     render(<Configurations />, { wrapper: RouterWithQueryClientWrapper });
-  //     expect(
-  //       screen.getByTestId('notebook-config-delete-button'),
-  //     ).not.toBeDisabled();
-  //     act(() => {
-  //       fireEvent.click(screen.getByTestId('notebook-config-delete-button'));
-  //     });
-  //     await waitFor(() => {
-  //       expect(mockedUsedNavigate).toHaveBeenCalledWith('./delete');
-  //     });
-  //   });
 });
