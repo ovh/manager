@@ -2,7 +2,6 @@
 
 RELEASE_NOTE=""
 DRY_RELEASE=false
-SEED=""
 
 create_smoke_tag() {
   git tag "$2@$3" "$1"
@@ -13,12 +12,6 @@ clean_tags() {
   while read -r tag; do
     git tag -d "$tag"
   done <<< "$tags"
-}
-
-version_mrc() {
-  # Version only the manager-react-components package
-  printf "%s\n" "Versioning manager-react-components"
-  node_modules/.bin/lerna version --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --scope=manager-react-components --yes
 }
 
 version() {
@@ -39,7 +32,29 @@ version() {
     node_modules/.bin/lerna version --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --allow-branch="${GIT_BRANCH}" --yes
   else
     printf "%s\n" "Releasing"
-    node_modules/.bin/lerna version --conventional-commits --no-commit-hooks --no-git-tag-version --no-push  --yes
+    node_modules/.bin/lerna version --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --yes
+  fi
+}
+
+version_mrc() {
+  if [ -z "${GIT_BRANCH}" ]; then
+    printf "%s\n" "Missing GIT_BRANCH environment variable"
+    exit 1
+  fi
+
+  if [[ "${GIT_BRANCH}" != "master" && ! "${DRY_RELEASE}" ]]; then
+    printf "%s\n" "Only dry releases are allowed on side branches"
+    exit 1
+  fi
+
+  tag="$1"
+
+  if "${DRY_RELEASE}"; then
+    printf "%s\n" "Dry releasing"
+    node_modules/.bin/lerna version --scope=manager-react-components --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --allow-branch="${GIT_BRANCH}" --yes
+  else
+    printf "%s\n" "Releasing"
+    node_modules/.bin/lerna version --scope=manager-react-components --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --yes
   fi
 }
 
@@ -125,67 +140,55 @@ main() {
   current_tag="$(git describe --abbrev=0)"
   printf "%s\n" "Previous tag was $current_tag"
 
-  #For each package create semver tag in order to be used by lerna version
+  # Separate versioning for `manager-react-components` and other packages
+  mrc_changed=false
   while read -r package; do
     name=$(echo "$package" | cut -d ':' -f 2)
     version=$(echo "$package" | cut -d ':' -f 3)
-    create_smoke_tag "$current_tag" "$name" "$version"
+
+    # Check if the changed package is `manager-react-components`
+    if [[ "$name" == "manager-react-components" ]]; then
+      mrc_changed=true
+    fi
+      create_smoke_tag "$current_tag" "$name" "$version"
+    fi
   done <<< "$changed_packages"
 
+  # Handle `manager-react-components` separately
+  if [ "$mrc_changed" = true ]; then
+    next_tag=$(get_release_name "$SEED")
+    printf "%s\n" "New tag for manager-react-components: $next_tag"
+
+    RELEASE_NOTE+="# Release $next_tag\n\n"
+
+    update_sonar_version "$next_tag"
+    version_mrc "$next_tag"
+
+    # Create release note for manager-react-components
+    RELEASE_NOTE+="$(create_release_note "packages/manager-react-components" "manager-react-components")\n\n"
+
+    # Commit and release manager-react-components
+    #clean_tags
+    #push_and_release "$next_tag"
+  fi
+
+  # Handle the rest of the packages
   next_tag=$(get_release_name "$SEED")
-  printf "%s\n" "New tag is $next_tag"
-
-  RELEASE_NOTE+="# Release $next_tag\
-
-
-"
-
+  printf "%s\n" "New tag for other packages: $next_tag"
+  RELEASE_NOTE+="# Release $next_tag\n\n"
   update_sonar_version "$next_tag"
   version "$next_tag"
-
-  #For each package generate formatted section in release note
+  # Generate formatted release notes for other packages
   while read -r package; do
     path=$(echo "$package" | cut -d ':' -f 1)
     name=$(echo "$package" | cut -d ':' -f 2)
-    RELEASE_NOTE+="$(create_release_note "$path" "$name")\
-
-
-"
+    RELEASE_NOTE+="$(create_release_note "$path" "$name")\n\n"
   done <<< "$changed_packages"
+  # Remove package-specific tags for other packages
+  clean_tags
+  # Push and release for other packages
+  push_and_release "$next_tag"
 
-  # For manager-react-components (MRC), version it specifically
-  if echo "$changed_packages" | grep -q "manager-react-components"; then
-    # Only version MRC package
-    next_tag=$(get_release_name "$SEED")
-    printf "%s\n" "New tag for MRC: $next_tag"
-
-    RELEASE_NOTE+="# Release $next_tag\
-
-
-"
-
-    # Update Sonar version for the new tag
-    update_sonar_version "$next_tag"
-    
-    # Version the MRC package
-    version_mrc
-
-    # Update the changelog for MRC package
-    path="packages/manager-react-components"  # Adjust path as needed
-    name="manager-react-components"
-    RELEASE_NOTE+="$(create_release_note "$path" "$name")\
-
-
-"
-
-    # Commit changes and tag
-    push_and_release "$next_tag"
-  fi
-
-    #Remove package specific tags
-    clean_tags
-
-    push_and_release "$next_tag"
 }
 
 main "${@}"
