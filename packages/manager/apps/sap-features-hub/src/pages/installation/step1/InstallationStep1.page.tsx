@@ -63,7 +63,11 @@ export default function InstallationStep1() {
           optionLabelKey={'displayName'}
           isDisabled={isLoadingServices || isServicesError}
           isLoading={isLoadingServices}
-          handleChange={(event) => setServiceName(event.detail.value)}
+          handleChange={(event) => {
+            setServiceName(event.detail.value);
+            setDatacenterId(null);
+            setClusterName(null);
+          }}
         />
         <SelectField
           name={'service_vdc'}
@@ -76,7 +80,10 @@ export default function InstallationStep1() {
             !serviceName || isLoadingDatacentres || isDatacentresError
           }
           isLoading={isLoadingDatacentres}
-          handleChange={(event) => setDatacenterId(event.detail.value)}
+          handleChange={(event) => {
+            setDatacenterId(event.detail.value);
+            setClusterName(null);
+          }}
           error={
             isVDCError
               ? t('service_input_error_no_cluster_available')
