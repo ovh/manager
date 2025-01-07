@@ -5,7 +5,7 @@ import {
   Filter,
   FilterComparator,
 } from '@ovh-ux/manager-core-api';
-import { PaginationState } from '@ovh-ux/manager-react-components';
+
 import {
   TUpdateIpRestrictionMutationParams,
   useIpRestrictions,
@@ -25,84 +25,67 @@ vi.mock('../data/ip-restrictions');
 vi.mock('@/queryClient');
 vi.mock('@ovh-ux/manager-core-api');
 
-const renderIpRestrictionsHook = (
-  projectId: string,
-  registryId: string,
-  scopes: FilterRestrictionsServer[],
-  select?: (data: any) => any,
-) =>
-  renderHook(() => useIpRestrictions(projectId, registryId, scopes, select), {
-    wrapper,
-  });
+const renderHookWithWrapper = (
+  hook: (...params: unknown[]) => unknown,
+  params: unknown[],
+) => renderHook(() => hook(...params), { wrapper });
 
-const renderUpdateIpRestrictionHook = (
-  projectId: string,
-  registryId: string,
-  onSuccess: Mock,
-  onError: Mock,
-) =>
-  renderHook(
-    () =>
-      useUpdateIpRestriction({
-        projectId,
-        registryId,
-        onSuccess,
-        onError,
-      }),
-    { wrapper },
-  );
+const projectId = 'project-id';
+const registryId = 'registry-id';
+const scopes: FilterRestrictionsServer[] = ['management', 'registry'];
+
+const mockData = [
+  { ipBlock: '192.168.0.1/24', description: 'allow' },
+  { ipBlock: '10.0.0.0/8', description: 'deny' },
+];
 
 describe('useIpRestrictions Hook Tests', () => {
   afterEach(() => {
     vi.clearAllMocks();
   });
 
-  it('should fetch IP restrictions successfully', async () => {
-    const mockData = [
-      { ipBlock: '192.168.0.1/24', description: 'allow' },
-      { ipBlock: '10.0.0.0/8', description: 'deny' },
-    ];
-    (getIpRestrictions as Mock).mockResolvedValueOnce(mockData);
+  test.each([
+    {
+      description: 'should fetch IP restrictions successfully',
+      mockedResponse: mockData,
+      expectedResult: mockData,
+      select: undefined,
+    },
+    {
+      description: 'should apply a selector to fetched IP restrictions',
+      mockedResponse: [
+        { id: '1', ipBlock: '192.168.0.2/32', description: 'allow' },
+        { id: '2', ipBlock: '10.0.0.0/8', description: 'deny' },
+      ],
+      expectedResult: [
+        { id: '1', ipBlock: '192.168.0.2/32', description: 'allow' },
+      ],
+      select: vi.fn((data: any) =>
+        data.filter(
+          (item: { description: string }) => item.description === 'allow',
+        ),
+      ),
+    },
+  ])('$description', async ({ mockedResponse, expectedResult, select }) => {
+    (getIpRestrictions as Mock).mockResolvedValueOnce(mockedResponse);
 
-    const { result } = renderIpRestrictionsHook('project-id', 'registry-id', [
-      'management',
-      'registry',
+    const { result } = renderHookWithWrapper(useIpRestrictions, [
+      projectId,
+      registryId,
+      scopes,
+      select,
     ]);
 
-    await waitFor(() => expect(result.current.data).toEqual(mockData));
+    await waitFor(() => expect(result.current.data).toEqual(expectedResult));
     expect(getIpRestrictions).toHaveBeenCalledWith(
-      'project-id',
-      'registry-id',
-      ['management', 'registry'],
-    );
-  });
-
-  it('should apply a selector to fetched IP restrictions', async () => {
-    const mockData = [
-      { id: '1', ipBlock: '192.168.0.2/32', description: 'allow' },
-      { id: '2', ipBlock: '10.0.0.0/8', description: 'deny' },
-    ];
-    (vi.mocked(getIpRestrictions) as Mock).mockResolvedValueOnce(mockData);
-
-    const selectMock = vi.fn((data) =>
-      data.filter(
-        (item: { description: string }) => item.description === 'allow',
-      ),
+      projectId,
+      registryId,
+      scopes,
     );
 
-    const { result } = renderIpRestrictionsHook(
-      'project-id',
-      'registry-id',
-      ['management', 'registry'],
-      selectMock,
-    );
-
-    await waitFor(() =>
-      expect(result.current.data).toEqual([
-        { id: '1', ipBlock: '192.168.0.2/32', description: 'allow' },
-      ]),
-    );
-    expect(selectMock).toHaveBeenCalledWith(mockData);
+    if (select) {
+      expect(select).toHaveBeenCalledWith(mockedResponse);
+    }
   });
 });
 
@@ -111,238 +94,151 @@ describe('useUpdateIpRestriction Hook Tests', () => {
     vi.clearAllMocks();
   });
 
-  it('should successfully update IP restrictions', async () => {
-    const mockInvalidate = vi.fn();
-    (updateIpRestriction as Mock).mockResolvedValue(null);
-    queryClient.invalidateQueries = mockInvalidate;
-
-    const onSuccess = vi.fn();
-    const onError = vi.fn();
-
-    const { result } = renderUpdateIpRestrictionHook(
-      'project-id',
-      'registry-id',
-      onSuccess,
-      onError,
-    );
-
-    const params = {
-      cidrToUpdate: {
-        management: [
-          { id: '1', ipBlock: '192.168.0.2/24', description: 'allow' },
-        ],
-      },
-      action: 'REPLACE' as const,
-    };
-
-    await act(async () => {
-      result.current.updateIpRestrictions(
-        (params as unknown) as TUpdateIpRestrictionMutationParams,
-      );
-    });
-
-    expect(updateIpRestriction).toHaveBeenCalledWith(
-      'project-id',
-      'registry-id',
-      params.cidrToUpdate,
-      'REPLACE',
-    );
-    expect(mockInvalidate).toHaveBeenCalledWith({
-      queryKey: [
-        'project',
-        'project-id',
-        'registry',
-        'registry-id',
-        'ipRestrictions',
-        ['management', 'registry'],
-      ],
-    });
-    expect(onSuccess).toHaveBeenCalled();
-  });
-
-  it('should call onError when update fails', async () => {
-    const error = new Error('Update failed');
-    (updateIpRestriction as Mock).mockRejectedValue(error);
-
-    const onSuccess = vi.fn();
-    const onError = vi.fn();
-
-    const { result } = renderUpdateIpRestrictionHook(
-      'project-id',
-      'registry-id',
-      onSuccess,
-      onError,
-    );
-
-    const params = {
-      cidrToUpdate: {
-        management: [
-          { id: '1', ipBlock: '192.168.0.1/24', description: 'allow' },
-        ],
-      },
-      action: 'DELETE' as const,
-    };
-
-    await act(async () => {
-      result.current.updateIpRestrictions(
-        (params as unknown) as TUpdateIpRestrictionMutationParams,
-      );
-    });
-
-    expect(updateIpRestriction).toHaveBeenCalledWith(
-      'project-id',
-      'registry-id',
-      params.cidrToUpdate,
-      'DELETE',
-    );
-    expect(onError).toHaveBeenCalledWith(
-      error,
-      {
-        action: 'DELETE',
+  test.each([
+    {
+      description: 'should successfully update IP restrictions',
+      params: {
         cidrToUpdate: {
           management: [
-            {
-              description: 'allow',
-              id: '1',
-              ipBlock: '192.168.0.1/24',
-            },
+            { id: '1', ipBlock: '192.168.0.2/24', description: 'allow' },
           ],
         },
+        action: 'REPLACE' as const,
       },
-      undefined,
-    );
-  });
-});
+      mockResponse: null,
+      onSuccessCalled: true,
+      onErrorCalled: false,
+    },
+    {
+      description: 'should call onError when update fails',
+      params: {
+        cidrToUpdate: {
+          management: [
+            { id: '1', ipBlock: '192.168.0.1/24', description: 'allow' },
+          ],
+        },
+        action: 'DELETE' as const,
+      },
+      mockResponse: new Error('Update failed'),
+      onSuccessCalled: false,
+      onErrorCalled: true,
+    },
+  ])(
+    '$description',
+    async ({ params, mockResponse, onSuccessCalled, onErrorCalled }) => {
+      const mockInvalidate = vi.fn();
+      queryClient.invalidateQueries = mockInvalidate;
 
-const renderIpRestrictionsWithFilterHook = (
-  projectId: string,
-  registryId: string,
-  type: FilterRestrictionsServer[],
-  pagination: PaginationState,
-  filters: Filter[],
-) =>
-  renderHook(
-    () =>
-      useIpRestrictionsWithFilter(
+      const onSuccess = vi.fn();
+      const onError = vi.fn();
+
+      if (mockResponse instanceof Error) {
+        (updateIpRestriction as Mock).mockRejectedValueOnce(mockResponse);
+      } else {
+        (updateIpRestriction as Mock).mockResolvedValueOnce(mockResponse);
+      }
+
+      const { result } = renderHookWithWrapper(useUpdateIpRestriction, [
+        { projectId, registryId, onSuccess, onError },
+      ]);
+
+      await act(async () =>
+        result.current.updateIpRestrictions(
+          (params as unknown) as TUpdateIpRestrictionMutationParams,
+        ),
+      );
+
+      expect(updateIpRestriction).toHaveBeenCalledWith(
         projectId,
         registryId,
-        type,
-        pagination,
-        filters,
-      ),
-    { wrapper },
+        params.cidrToUpdate,
+        params.action,
+      );
+
+      if (onSuccessCalled) expect(onSuccess).toHaveBeenCalled();
+      if (onErrorCalled)
+        expect(onError).toHaveBeenCalledWith(mockResponse, params, undefined);
+    },
   );
+});
 
 describe('useIpRestrictionsWithFilter Hook Tests', () => {
-  it('should fetch and paginate IP restrictions successfully', async () => {
-    const mockData = [
-      { ipBlock: '192.168.0.1/24', description: 'allow' },
-      { ipBlock: '10.0.0.0/8', description: 'deny' },
-    ];
-    const filteredData = [mockData[0]];
-    const paginatedData = {
-      rows: filteredData,
-      pageCount: 0,
-      totalRows: filteredData.length,
-    };
-    (getIpRestrictions as Mock).mockResolvedValueOnce(mockData);
-    (applyFilters as Mock).mockReturnValueOnce(filteredData);
-    const paginateResults = vi
-      .spyOn(helpers, 'paginateResults')
-      .mockReturnValue(paginatedData);
-
-    const pagination = { pageIndex: 0, pageSize: 10 };
-    const filters: (Filter & { label: string })[] = [
-      {
-        key: 'ipBlock',
-        value: '192.168.0.1',
-        comparator: FilterComparator.Includes,
-        label: '',
-      },
-    ];
-
-    const { result } = renderIpRestrictionsWithFilterHook(
-      'project-id',
-      'registry-id',
-      ['management', 'registry'],
-      pagination,
-      filters,
-    );
-
-    await waitFor(() => expect(result.current.data).toEqual(paginatedData));
-
-    expect(getIpRestrictions).toHaveBeenCalledWith(
-      'project-id',
-      'registry-id',
-      ['management', 'registry'],
-    );
-    expect(applyFilters).toHaveBeenCalledWith(
-      mockData.map((mock) => ({
-        ...mock,
-        id: mock.ipBlock,
-        checked: false,
-        draft: false,
-      })),
-      filters,
-    );
-    expect(paginateResults).toHaveBeenCalledWith(filteredData, pagination);
+  afterEach(() => {
+    vi.clearAllMocks();
   });
 
-  it('should return empty rows if no data matches filters', async () => {
-    const mockData = [
-      { ipBlock: '192.168.0.1/24', description: 'allow' },
-      { ipBlock: '10.0.0.0/8', description: 'deny' },
-    ];
-    const filteredData: never[] = [];
-    const paginatedData = {
-      rows: filteredData,
-      pageCount: 0,
-      totalRows: filteredData.length,
-    };
-    (getIpRestrictions as Mock).mockResolvedValueOnce(mockData);
-    (applyFilters as Mock).mockReturnValueOnce(filteredData);
-
-    const paginateResults = vi
-      .spyOn(helpers, 'paginateResults')
-      .mockReturnValue(paginatedData);
-
-    const pagination = {
-      pageIndex: 0,
-      pageSize: 10,
-    };
-    const filters: (Filter & { label: string })[] = [
-      {
-        key: 'description',
-        label: '',
-        value: 'block',
-        comparator: FilterComparator.Includes,
+  test.each([
+    {
+      description: 'should fetch and paginate IP restrictions successfully',
+      filters: [
+        {
+          key: 'ipBlock',
+          value: '192.168.0.1',
+          comparator: FilterComparator.Includes,
+          label: '',
+        },
+      ],
+      mockFilteredData: [mockData[0]],
+      expectedPaginatedData: {
+        rows: [mockData[0]],
+        pageCount: 0,
+        totalRows: 1,
       },
-    ];
+    },
+    {
+      description: 'should return empty rows if no data matches filters',
+      filters: [
+        {
+          key: 'description',
+          value: 'block',
+          comparator: FilterComparator.Includes,
+          label: '',
+        },
+      ],
+      mockFilteredData: [],
+      expectedPaginatedData: { rows: [], pageCount: 0, totalRows: 0 },
+    },
+  ])(
+    '$description',
+    async ({ filters, mockFilteredData, expectedPaginatedData }) => {
+      (getIpRestrictions as Mock).mockResolvedValueOnce(mockData);
+      (applyFilters as Mock).mockReturnValueOnce(mockFilteredData);
+      vi.spyOn(helpers, 'paginateResults').mockReturnValue(
+        expectedPaginatedData,
+      );
 
-    const { result } = renderIpRestrictionsWithFilterHook(
-      'project-id',
-      'registry-id',
-      ['management', 'registry'],
-      pagination,
-      filters,
-    );
+      const pagination = { pageIndex: 0, pageSize: 10 };
 
-    await waitFor(() => expect(result.current.data).toEqual(paginatedData));
+      const { result } = renderHookWithWrapper(useIpRestrictionsWithFilter, [
+        projectId,
+        registryId,
+        scopes,
+        pagination,
+        filters,
+      ]);
 
-    expect(getIpRestrictions).toHaveBeenCalledWith(
-      'project-id',
-      'registry-id',
-      ['management', 'registry'],
-    );
-    expect(applyFilters).toHaveBeenCalledWith(
-      mockData.map((mock) => ({
-        ...mock,
-        id: mock.ipBlock,
-        checked: false,
-        draft: false,
-      })),
-      filters,
-    );
-    expect(paginateResults).toHaveBeenCalledWith(filteredData, pagination);
-  });
+      await waitFor(() =>
+        expect(result.current.data).toEqual(expectedPaginatedData),
+      );
+
+      expect(getIpRestrictions).toHaveBeenCalledWith(
+        projectId,
+        registryId,
+        scopes,
+      );
+      expect(applyFilters).toHaveBeenCalledWith(
+        mockData.map((mock) => ({
+          ...mock,
+          id: mock.ipBlock,
+          checked: false,
+          draft: false,
+        })),
+        filters,
+      );
+      expect(helpers.paginateResults).toHaveBeenCalledWith(
+        mockFilteredData,
+        pagination,
+      );
+    },
+  );
 });
