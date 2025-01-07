@@ -110,11 +110,35 @@ export const REGEX = {
   PHONE: /^\+(\d{1,5}\.)?\d{1,15}$/,
 };
 
+const TRACKING_PREFIX = 'web::domain::domain-name::';
+
+const TRACKING_CATEGORY_AND_THEME = {
+  page_category: 'funnel',
+  page_theme: 'Domains',
+  page: { name: TRACKING_PREFIX },
+};
+
 export const CONTACT_MANAGEMENT_EDIT_TRACKING = {
-  PREFIX: 'web::domain::domain-name::funnel::',
-  SUBMIT: 'button::edit_holder-contact_confirm',
-  CANCEL: 'button::edit_holder-contact_cancel',
-  LINK: 'link::edit_holder_next',
+  PAGE: {
+    name: `${TRACKING_PREFIX}domain-name::funnel::edit_holder-contact`,
+    ...TRACKING_CATEGORY_AND_THEME,
+  },
+  BANNER: {
+    name: `${TRACKING_PREFIX}domain-name::funnel::edit_holder-contact::banner-{{bannerType}}::edit-holder-contact_{{bannerType}}`,
+    ...TRACKING_CATEGORY_AND_THEME,
+  },
+  SUBMIT: {
+    name: `${TRACKING_PREFIX}funnel::button::edit_holder-contact_confirm`,
+    ...TRACKING_CATEGORY_AND_THEME,
+  },
+  CANCEL: {
+    name: `${TRACKING_PREFIX}funnel::button::edit_holder-contact_cancel`,
+    ...TRACKING_CATEGORY_AND_THEME,
+  },
+  LINK: {
+    name: `${TRACKING_PREFIX}funnel::link::edit_holder_next`,
+    ...TRACKING_CATEGORY_AND_THEME,
+  },
 };
 
 export default {
