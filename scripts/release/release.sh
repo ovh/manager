@@ -54,7 +54,7 @@ version_mrc() {
     node_modules/.bin/lerna version --scope=manager-react-components --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --allow-branch="${GIT_BRANCH}" --yes
   else
     printf "%s\n" "Releasing"
-    node_modules/.bin/lerna version --scope=manager-react-components --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --yes
+    node_modules/.bin/lerna exec --scope=@ovh-ux/manager-react-components -- lerna version --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --yes
   fi
 }
 
@@ -147,7 +147,7 @@ main() {
     version=$(echo "$package" | cut -d ':' -f 3)
 
     # Check if the changed package is `manager-react-components`
-    if [[ "$name" == "manager-react-components" ]]; then
+    if [[ "$name" == *manager-react-components* ]]; then
       mrc_changed=true
     else
       create_smoke_tag "$current_tag" "$name" "$version"
@@ -155,7 +155,7 @@ main() {
   done <<< "$changed_packages"
 
   # Handle `manager-react-components` separately
-  if [ "$mrc_changed" = true ]; then
+  if [ "$mrc_changed" == true ]; then
     next_tag=$(get_release_name "$SEED")
     printf "%s\n" "New tag for manager-react-components: $next_tag"
 
@@ -167,7 +167,7 @@ main() {
     # Create release note for manager-react-components
     RELEASE_NOTE+="$(create_release_note "packages/manager-react-components" "manager-react-components")\n\n"
 
-    # Commit and release manager-react-components
+    #Commit and release manager-react-components
     #clean_tags
     #push_and_release "$next_tag"
   fi
