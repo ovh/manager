@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useParams, useResolvedPath } from 'react-router-dom';
-
-import { BaseLayout } from '@ovh-ux/manager-react-components';
+import {
+  BaseLayout,
+  GuideButton,
+  GuideItem,
+} from '@ovh-ux/manager-react-components';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { GUIDES_LIST } from '@/guides.constants';
 import { Breadcrumb } from '@/components/Breadcrumb/Breadcrumb';
 import { urls } from '@/routes/routes.constants';
 import TabsPanel from '@/components/layout-helpers/Dashboard/TabsPanel';
@@ -22,7 +27,8 @@ export default function DashboardPage() {
   const { serviceName } = useParams();
   const { t } = useTranslation('dashboard');
   const basePath = useResolvedPath('').pathname;
-
+  const context = useContext(ShellContext);
+  const { ovhSubsidiary } = context.environment.getUser();
   function computePathMatchers(routes: string[]) {
     return routes.map(
       (path) => new RegExp(path.replace(':serviceName', serviceName)),
@@ -44,8 +50,18 @@ export default function DashboardPage() {
     },
   ];
 
+  const guideItems: GuideItem[] = [
+    {
+      id: 1,
+      href: (GUIDES_LIST.office_guides.url[ovhSubsidiary] ||
+        GUIDES_LIST.office_guides.url.DEFAULT) as string,
+      target: '_blank',
+      label: t('microsoft_office_dashboard_guides'),
+    },
+  ];
   const header = {
     title: serviceName,
+    headerButton: <GuideButton items={guideItems} />,
   };
 
   return (

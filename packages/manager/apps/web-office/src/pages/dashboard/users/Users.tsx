@@ -1,8 +1,17 @@
 import React from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { Datagrid, DatagridColumn } from '@ovh-ux/manager-react-components';
-import { ODS_ICON_NAME, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsIcon, OdsLink, OdsText } from '@ovhcloud/ods-components/react';
+import {
+  ODS_BUTTON_VARIANT,
+  ODS_ICON_NAME,
+  ODS_TEXT_PRESET,
+} from '@ovhcloud/ods-components';
+import {
+  OdsIcon,
+  OdsLink,
+  OdsText,
+  OdsButton,
+} from '@ovhcloud/ods-components/react';
 import { UserNativeType } from '@/api/users/type';
 import Loading from '@/components/Loading/Loading';
 import { useOfficeLicenseDetail, useOfficeUsers } from '@/hooks';
@@ -104,7 +113,11 @@ export default function Users() {
         <p>{t('dashboard_users_download_info')}</p>
         <strong>{t('dashboard_users_download_id')}</strong>
       </OdsText>
-
+      <OdsButton
+        label={t('dashboard_users_order_button_licenses')}
+        variant={ODS_BUTTON_VARIANT.outline}
+        className="block"
+      />
       {columns && (
         <Datagrid
           columns={columns.map((column) => ({
