@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@0.14.1...@ovh-ux/manager-pci-common@0.14.2) (2024-12-18)
+
+### Bug Fixes
+
+* **pci-common:** subscriptions url ([439f7a](https://github.com/ovh/manager/commit/439f7add4e5ed960f1b9982078eea8d6b186223c))
+* **pci-common:** fix flashing effect on shapes input component ([b64f9f6](https://github.com/ovh/manager/commit/b64f9f6dab5f83183182e7c89ced46d878ddee7b))
+
+
 ## [0.14.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@0.14.1...@ovh-ux/manager-pci-common@0.14.2) (2024-12-18)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-common
