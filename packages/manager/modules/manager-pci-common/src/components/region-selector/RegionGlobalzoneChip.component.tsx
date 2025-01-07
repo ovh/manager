@@ -27,8 +27,6 @@ import { useHas3AZ } from '../../hooks/useHas3AZ/useHas3AZ';
 
 export const FEATURE_REGION_1AZ = 'public-cloud:region-1AZ';
 
-export const Has3AZContext = createContext<boolean>(false);
-
 export function RegionGlobalzoneChip({
   showTooltip = true,
 }: Readonly<{
