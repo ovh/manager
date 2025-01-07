@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-email-domain@1.7.3...@ovh-ux/manager-email-domain@1.8.0) (2025-01-07)
+
+
+### Features
+
+* **web.email-domaine:** add dkim feature ([#14362](https://github.com/ovh/manager/issues/14362)) ([754298d](https://github.com/ovh/manager/commit/754298dc76035a2795c9b29e5695e0e89b4a6d2b))
+
+
+
+
+
 ## [1.7.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-email-domain@1.7.2...@ovh-ux/manager-email-domain@1.7.3) (2024-11-05)
 
 
