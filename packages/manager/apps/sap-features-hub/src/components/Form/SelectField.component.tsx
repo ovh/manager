@@ -10,13 +10,22 @@ import {
   OdsSelectCustomEvent,
 } from '@ovhcloud/ods-components';
 
-type SelectFieldProps<T extends Record<string, unknown>> = {
+type SelectOptionsProps<T> = T extends Record<string, unknown>
+  ? {
+      options: T[];
+      optionValueKey: keyof T;
+      optionLabelKey?: keyof T;
+    }
+  : {
+      options: string[] | number[];
+      optionValueKey?: never;
+      optionLabelKey?: never;
+    };
+
+type SelectFieldProps<T> = SelectOptionsProps<T> & {
   name: string;
   label: string;
-  options: T[];
-  optionValueKey: keyof T;
-  optionLabelKey?: keyof T;
-  isDisabled: boolean;
+  isDisabled?: boolean;
   isLoading?: boolean;
   handleChange: (
     event: OdsSelectCustomEvent<OdsSelectChangeEventDetail>,
@@ -25,9 +34,12 @@ type SelectFieldProps<T extends Record<string, unknown>> = {
   error?: string;
 };
 
-export const SelectField = <T extends Record<string, unknown>>({
+const getFormattedValue = (value: unknown) =>
+  typeof value === 'number' ? value : String(value);
+
+export const SelectField = <T,>({
   name,
-  isDisabled,
+  isDisabled = false,
   isLoading,
   handleChange,
   options = [],
@@ -37,11 +49,14 @@ export const SelectField = <T extends Record<string, unknown>>({
   placeholder,
   error,
 }: SelectFieldProps<T>) => {
-  const sanitizedOptions = options.map((opt) => ({
-    value: String(opt?.[optionValueKey] || ''),
-    label: String(opt?.[optionLabelKey] || opt?.[optionValueKey] || ''),
-    ...opt,
-  }));
+  const sanitizedOptions = options.map((opt) =>
+    typeof opt === 'object'
+      ? {
+          value: opt?.[optionValueKey] || '',
+          label: String(opt?.[optionLabelKey] || opt?.[optionValueKey] || ''),
+        }
+      : { value: opt, label: String(opt) },
+  );
 
   return (
     <OdsFormField error={error}>
@@ -59,13 +74,16 @@ export const SelectField = <T extends Record<string, unknown>>({
           className="w-full max-w-[304px]"
           hasError={!!error}
           defaultValue={
-            sanitizedOptions.length === 1
-              ? sanitizedOptions[0].value
+            !isLoading && sanitizedOptions.length === 1
+              ? String(sanitizedOptions[0].value)
               : undefined
           }
         >
           {sanitizedOptions.map((opt) => (
-            <option key={opt.value} value={opt.value}>
+            <option
+              key={getFormattedValue(opt.value)}
+              value={getFormattedValue(opt.value)}
+            >
               {opt.label}
             </option>
           ))}
