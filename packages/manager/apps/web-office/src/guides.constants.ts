@@ -22,6 +22,7 @@ export interface Guide {
 }
 
 const helpRoot = 'https://docs.ovh.com/';
+const csmRoot = 'https://help.ovhcloud.com/csm/';
 
 export const WEB_OFFICE_ONBOARDING_1: GuideLinks = {
   FR: `${helpRoot}fr/microsoft-collaborative-solutions/commander-et-gerer-un-groupe-de-licences-office-365-ovh/`,
@@ -58,6 +59,23 @@ export const WEB_OFFICE_ONBOARDING_3: GuideLinks = {
   FR: `${helpRoot}fr/microsoft-collaborative-solutions/office365-proplus-bureau-a-distance/`,
 };
 
+export const WEB_OFFICE_GUIDES: GuideLinks = {
+  DEFAULT: `${csmRoot}en-ie-microsoft-office365-csp1?id=kb_article_view&sysparm_article=KB0053502`,
+  DE: `${csmRoot}de-microsoft-office365-csp1?id=kb_article_view&sysparm_article=KB0053520`,
+  ES: `${csmRoot}es-es-microsoft-office365-csp1?id=kb_article_view&sysparm_article=KB0053505`,
+  IE: `${csmRoot}en-ie-microsoft-office365-csp1?id=kb_article_view&sysparm_article=KB0053502`,
+  IT: `${csmRoot}it-microsoft-office365-csp1?id=kb_article_view&sysparm_article=KB0053519`,
+  NL: `${csmRoot}en-nl-documentation-web-cloud?id=kb_browse_cat&kb_id=e17b4f25551974502d4c6e78b7421955`,
+  PL: `${csmRoot}pl-microsoft-office365-csp1?id=kb_article_view&sysparm_article=KB0053522`,
+  PT: `${csmRoot}pt-microsoft-office365-csp1?id=kb_article_view&sysparm_article=KB0053509`,
+  GB: `${csmRoot}en-gb-microsoft-office365-csp1?id=kb_article_view&sysparm_article=KB0041601`,
+  MA: `${csmRoot}fr-microsoft-office365-csp1?id=kb_article_view&sysparm_article=KB0053507`,
+  SN: `${csmRoot}fr-microsoft-office365-csp1?id=kb_article_view&sysparm_article=KB0053507`,
+  TN: `${csmRoot}fr-microsoft-office365-csp1?id=kb_article_view&sysparm_article=KB0053507`,
+  FR: `${csmRoot}fr-microsoft-office365-csp1?id=kb_article_view&sysparm_article=KB0053507`,
+  WE: `${csmRoot}en-ie-microsoft-office365-csp1?id=kb_article_view&sysparm_article=KB0053502`,
+};
+
 export const CTAS: Record<string, string> = {
   DEFAULT: 'https://ovhcloud.com/en/collaborative-tools/microsoft-365/',
   ASIA: 'https://ovhcloud.com/asia/collaborative-tools/microsoft-365/',
@@ -83,4 +101,15 @@ export const CTAS: Record<string, string> = {
   LT: 'https://ovhcloud.com/lt/collaborative-tools/microsoft-365/',
   WE: 'https://ovhcloud.com/us-en/collaborative-tools/microsoft-365/',
   WS: 'https://ovhcloud.com/us-en/collaborative-tools/microsoft-365/',
+};
+
+export const GUIDES_LIST = {
+  office_guides: {
+    key: 'web-office_dashboard_guides',
+    url: WEB_OFFICE_GUIDES,
+  },
+};
+
+export default {
+  GUIDES_LIST,
 };
