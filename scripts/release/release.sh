@@ -149,7 +149,7 @@ main() {
     # Check if the changed package is `manager-react-components`
     if [[ "$name" == "manager-react-components" ]]; then
       mrc_changed=true
-    fi
+    else
       create_smoke_tag "$current_tag" "$name" "$version"
     fi
   done <<< "$changed_packages"
