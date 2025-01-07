@@ -2,7 +2,6 @@
 
 RELEASE_NOTE=""
 DRY_RELEASE=false
-SEED=""
 
 create_smoke_tag() {
   git tag "$2@$3" "$1"
@@ -18,29 +17,7 @@ clean_tags() {
 version_mrc() {
   # Version only the manager-react-components package
   printf "%s\n" "Versioning manager-react-components"
-  node_modules/.bin/lerna version --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --scope=manager-react-components --yes
-}
-
-version() {
-  if [ -z "${GIT_BRANCH}" ]; then
-    printf "%s\n" "Missing GIT_BRANCH environment variable"
-    exit 1
-  fi
-
-  if [[ "${GIT_BRANCH}" != "master" && ! "${DRY_RELEASE}" ]]; then
-    printf "%s\n" "Only dry releases are allowed on side branches"
-    exit 1
-  fi
-
-  tag="$1"
-
-  if "${DRY_RELEASE}"; then
-    printf "%s\n" "Dry releasing"
-    node_modules/.bin/lerna version --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --allow-branch="${GIT_BRANCH}" --yes
-  else
-    printf "%s\n" "Releasing"
-    node_modules/.bin/lerna version --conventional-commits --no-commit-hooks --no-git-tag-version --no-push  --yes
-  fi
+  node_modules/.bin/lerna exec --scope=manager-react-components -- lerna version --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --yes
 }
 
 get_changed_packages() {
@@ -125,34 +102,6 @@ main() {
   current_tag="$(git describe --abbrev=0)"
   printf "%s\n" "Previous tag was $current_tag"
 
-  #For each package create semver tag in order to be used by lerna version
-  while read -r package; do
-    name=$(echo "$package" | cut -d ':' -f 2)
-    version=$(echo "$package" | cut -d ':' -f 3)
-    create_smoke_tag "$current_tag" "$name" "$version"
-  done <<< "$changed_packages"
-
-  next_tag=$(get_release_name "$SEED")
-  printf "%s\n" "New tag is $next_tag"
-
-  RELEASE_NOTE+="# Release $next_tag\
-
-
-"
-
-  update_sonar_version "$next_tag"
-  version "$next_tag"
-
-  #For each package generate formatted section in release note
-  while read -r package; do
-    path=$(echo "$package" | cut -d ':' -f 1)
-    name=$(echo "$package" | cut -d ':' -f 2)
-    RELEASE_NOTE+="$(create_release_note "$path" "$name")\
-
-
-"
-  done <<< "$changed_packages"
-
   # For manager-react-components (MRC), version it specifically
   if echo "$changed_packages" | grep -q "manager-react-components"; then
     # Only version MRC package
@@ -180,12 +129,10 @@ main() {
 
     # Commit changes and tag
     push_and_release "$next_tag"
+  else
+    printf "%s\n" "No changes detected for manager-react-components. Exiting."
+    exit 0
   fi
-
-    #Remove package specific tags
-    clean_tags
-
-    push_and_release "$next_tag"
 }
 
 main "${@}"
