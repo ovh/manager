@@ -24,5 +24,6 @@
   "location": "Location",
   "terminated_service": "The service has been cancelled.",
   "gigabyte": "GB",
-  "terabyte": "TB"
+  "terabyte": "TB",
+  "space_summary": "{{usedSpaceInGB}} GB ({{percent}}% of {{quotaInTB}} TB)"
 }

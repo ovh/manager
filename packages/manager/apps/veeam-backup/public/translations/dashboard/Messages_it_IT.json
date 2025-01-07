@@ -24,5 +24,6 @@
   "location": "Localizzazione",
   "terminated_service": "Il servizio è stato disattivato.",
   "gigabyte": "GB",
-  "terabyte": "TB"
+  "terabyte": "TB",
+  "space_summary": "{{usedSpaceInGB}} GB ({{percent}}% di {{quotaInTB}} TB)"
 }

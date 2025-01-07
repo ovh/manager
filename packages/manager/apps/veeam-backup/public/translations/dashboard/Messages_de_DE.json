@@ -24,5 +24,6 @@
   "location": "Standort",
   "terminated_service": "Der Dienst wurde gekündigt.",
   "gigabyte": "GB",
-  "terabyte": "TB"
+  "terabyte": "TB",
+  "space_summary": "{{usedSpaceInGB}} GB ({{percent}}% von {{quotaInTB}} TB)"
 }
