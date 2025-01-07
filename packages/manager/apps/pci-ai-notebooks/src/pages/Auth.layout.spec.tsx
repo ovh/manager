@@ -27,7 +27,7 @@ describe('Auth Layout', () => {
     vi.clearAllMocks();
   });
 
-  it('renders the breadcrumb component', async () => {
+  it('fetches project authorization', async () => {
     Loader(AuthLayoutProps);
     await waitFor(() => {
       expect(authAPI.getAuthorization).toHaveBeenCalled();

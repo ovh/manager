@@ -22,7 +22,7 @@ export const getGuides = async ({
   if (lang) {
     filters.push(`lang:eq=${lang}`);
   }
-  if (filters?.length > 0) {
+  if (filters.length > 0) {
     headers['X-Pagination-Filter'] = filters.join('&');
   }
   return apiClient.v6

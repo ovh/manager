@@ -39,7 +39,7 @@ describe('Notebooks Layout', () => {
     });
   });
 
-  it('renders the breadcrumb component', async () => {
+  it('fetches project data', async () => {
     Loader(breadCrumbParam);
     await waitFor(() => {
       expect(projectAPI.getProject).toHaveBeenCalled();

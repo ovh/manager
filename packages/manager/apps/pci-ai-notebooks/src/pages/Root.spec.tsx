@@ -55,7 +55,7 @@ describe('Home page', () => {
     });
   });
 
-  it('renders the breadcrumb component', async () => {
+  it('fetches notebook data', async () => {
     Loader(NotebookProps);
     await waitFor(() => {
       expect(notebookApi.getNotebooks).toHaveBeenCalled();
