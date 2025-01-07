@@ -190,10 +190,27 @@ export const GUIDE_URLS = {
 
 export const LEGAL_FORM_INDIVIDUAL = 'individual';
 
+const TRACKING_PREFIX = 'web::domain::domain-name::';
+
+const TRACKING_CATEGORY_AND_THEME = {
+  page_category: 'dashboard',
+  page_theme: 'Domains',
+  page: { name: TRACKING_PREFIX },
+};
+
 export const CONTACT_MANAGEMENT_TRACKING = {
-  PREFIX: 'web::domain::domain-name::',
-  REASSIGN_CONTACT: 'page::button::reset_domain-name-contacts',
-  EDIT_CONTACT: 'tile::button::edit_{{contactType}}-contact',
+  PAGE: {
+    name: `${TRACKING_PREFIX}domain-name::dashboard::contact-management`,
+    ...TRACKING_CATEGORY_AND_THEME,
+  },
+  REASSIGN_CONTACT: {
+    name: `${TRACKING_PREFIX}page::button::reset_domain-name-contacts`,
+    ...TRACKING_CATEGORY_AND_THEME,
+  },
+  EDIT_CONTACT: {
+    name: `${TRACKING_PREFIX}tile::button::edit_{{contactType}}-contact`,
+    ...TRACKING_CATEGORY_AND_THEME,
+  },
 };
 
 export default {

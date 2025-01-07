@@ -204,6 +204,7 @@ export default class DomainContactEditCtrl {
               ),
               'InfoErrors',
             );
+            this.trackErrorBanner();
           }),
       )
       .catch((error) => {
@@ -222,6 +223,7 @@ export default class DomainContactEditCtrl {
           }`,
           'InfoErrors',
         );
+        this.trackErrorBanner();
       })
       .finally(() => {
         this.isSubmitting = false;
@@ -235,8 +237,18 @@ export default class DomainContactEditCtrl {
 
   trackClick(hit) {
     this.atInternet.trackClick({
-      name: `${CONTACT_MANAGEMENT_EDIT_TRACKING.PREFIX}${hit}`,
+      ...hit,
       type: 'action',
+    });
+  }
+
+  trackErrorBanner() {
+    this.atInternet.trackPage({
+      ...CONTACT_MANAGEMENT_EDIT_TRACKING.BANNER,
+      name: CONTACT_MANAGEMENT_EDIT_TRACKING.BANNER.name.replace(
+        /{{bannerType}}/g,
+        'error',
+      ),
     });
   }
 }
