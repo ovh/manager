@@ -1,7 +1,11 @@
 import filter from 'lodash/filter';
 import get from 'lodash/get';
 
-import { RENEW_URL, DOMAIN_SERVICE_STATUS } from './domain.constant';
+import {
+  RENEW_URL,
+  DOMAIN_SERVICE_STATUS,
+  CONTACT_MANAGEMENT_TRACKING,
+} from './domain.constant';
 
 angular.module('App').controller(
   'DomainCtrl',
@@ -16,6 +20,7 @@ angular.module('App').controller(
       $timeout,
       $translate,
       Alerter,
+      atInternet,
       constants,
       coreURLBuilder,
       Domain,
@@ -38,6 +43,7 @@ angular.module('App').controller(
       this.$timeout = $timeout;
       this.$translate = $translate;
       this.Alerter = Alerter;
+      this.atInternet = atInternet;
       this.constants = constants;
       this.Domain = Domain;
       this.coreURLBuilder = coreURLBuilder;
@@ -263,6 +269,10 @@ angular.module('App').controller(
 
     getState() {
       return this.isAllDom ? 'app.alldom.domain' : 'app.domain.product';
+    }
+
+    trackClickContactManagement() {
+      this.atInternet.trackClick(CONTACT_MANAGEMENT_TRACKING);
     }
   },
 );

@@ -94,12 +94,13 @@ export default class DomainContactDashboardCtrl {
   }
 
   editContact(contactType) {
-    this.trackClick(
-      CONTACT_MANAGEMENT_TRACKING.EDIT_CONTACT.replace(
+    this.trackClick({
+      ...CONTACT_MANAGEMENT_TRACKING.EDIT_CONTACT,
+      name: CONTACT_MANAGEMENT_TRACKING.EDIT_CONTACT.name.replace(
         '{{contactType}}',
         contactType,
       ),
-    );
+    });
     if (contactType !== 'holder') {
       return window.open(this.USER_ACCOUNT_INFOS_LINK, '_blank');
     }
@@ -147,7 +148,7 @@ export default class DomainContactDashboardCtrl {
 
   trackClick(hit) {
     this.atInternet.trackClick({
-      name: `${CONTACT_MANAGEMENT_TRACKING.PREFIX}${hit}`,
+      ...hit,
       type: 'action',
     });
   }
