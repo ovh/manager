@@ -74,9 +74,9 @@ export function IFrameAppRouter({
    *
    * @TODO remove this condition when pci-load-balancer µapp is prodded and validated.
    */
-  if ('pci-load-balancer' in configuration) {
-    delete configuration['octavia-load-balancer'];
-  }
+  // if ('pci-load-balancer' in configuration) {
+  //   delete configuration['octavia-load-balancer'];
+  // }
 
   // We order applications configurations by hash size, as a configuration with a hash means we want a route to be
   // redirected to this application. As a result we need to have them first, so they take priority over routes from
