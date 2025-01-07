@@ -22,6 +22,7 @@ describe('ActionComponent', () => {
     vi.mocked(useNavigate).mockReturnValue(mockNavigate);
     const cidr = ({
       ipBlock: '192.168.0.1/24',
+      authorization: ['management'],
     } as unknown) as TIPRestrictionsData;
 
     render(<ActionComponent cidr={cidr} />);
@@ -29,7 +30,17 @@ describe('ActionComponent', () => {
     // Click the action menu item
     fireEvent.click(screen.getByText('ip_restrictions_delete_block'));
     expect(mockNavigate).toHaveBeenCalledWith('./delete', {
-      state: { cidr: { ipBlock: '192.168.0.1/24' } },
+      state: {
+        cidr: {
+          management: [
+            {
+              description: undefined,
+              ipBlock: '192.168.0.1/24',
+            },
+          ],
+          registry: [],
+        },
+      },
     });
   });
 });
