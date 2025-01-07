@@ -236,6 +236,7 @@ const Sidebar = (): JSX.Element => {
   };
 
   const menuClickHandler = (node: Node) => {
+    setIsAnimated(true);
     setSelectedSubMenu(null);
     selectLvl1Node(node);
     setIsManuallyClosed(false);
@@ -268,8 +269,8 @@ const Sidebar = (): JSX.Element => {
   };
 
   const isLoading = useMemo<boolean>(
-    () => !servicesCount || !currentNavigationNode,
-    [servicesCount, currentNavigationNode],
+    () => !currentNavigationNode,
+    [currentNavigationNode],
   );
 
   return (
