@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.12.7...@ovh-ux/manager-pci-kubernetes-app@0.13.0) (2025-01-07)
+
+
+### Bug Fixes
+
+* update tailwind config for third party imports ([#14675](https://github.com/ovh/manager/issues/14675)) ([822f1bc](https://github.com/ovh/manager/commit/822f1bcb7c46a4d6b77050f8ee8fb58150a51fd3))
+
+
+### Features
+
+* **pci-kubernetes:** add savings plan banner ([#13708](https://github.com/ovh/manager/issues/13708)) ([1eb0a78](https://github.com/ovh/manager/commit/1eb0a7889e0a4c21f4606427aaee832e94a48861))
+
+
+
+
+
 ## [0.12.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.12.6...@ovh-ux/manager-pci-kubernetes-app@0.12.7) (2024-12-20)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-kubernetes-app

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.7.4...@ovh-ux/manager-pci-savings-plan-app@1.7.5) (2025-01-07)
+
+
+### Bug Fixes
+
+* **pci-savings-plan:** add utc date on creation ([#14447](https://github.com/ovh/manager/issues/14447)) ([b0cc2b9](https://github.com/ovh/manager/commit/b0cc2b9bf687be3db68bbfae18797678d246d2e7))
+* update tailwind config for third party imports ([#14675](https://github.com/ovh/manager/issues/14675)) ([822f1bc](https://github.com/ovh/manager/commit/822f1bcb7c46a4d6b77050f8ee8fb58150a51fd3))
+
+
+
+
+
 ## [1.7.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.7.3...@ovh-ux/manager-pci-savings-plan-app@1.7.4) (2024-12-20)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app

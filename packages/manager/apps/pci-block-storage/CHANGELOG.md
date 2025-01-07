@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.21](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.6.20...@ovh-ux/manager-pci-block-storage-app@0.6.21) (2025-01-07)
+
+
+### Bug Fixes
+
+* **pci-block-storage:** use 730 hours for monthly price ([#14467](https://github.com/ovh/manager/issues/14467)) ([5ae1d0c](https://github.com/ovh/manager/commit/5ae1d0c967adc7e9128ecba3a1ed60a3db365589))
+* update tailwind config for third party imports ([#14675](https://github.com/ovh/manager/issues/14675)) ([822f1bc](https://github.com/ovh/manager/commit/822f1bcb7c46a4d6b77050f8ee8fb58150a51fd3))
+
+
+
+
+
 ## [0.6.20](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.6.19...@ovh-ux/manager-pci-block-storage-app@0.6.20) (2024-12-20)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-block-storage-app

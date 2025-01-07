@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.97.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.96.1...@ovh-ux/manager-container-app@0.97.0) (2025-01-07)
+
+
+### Features
+
+* **container:** pass projectId in data platform url ([#14670](https://github.com/ovh/manager/issues/14670)) ([b52c911](https://github.com/ovh/manager/commit/b52c911d6aa4ae8c98bdbb6b94c8f61fc2df412a))
+* **pci.ai.endpoints:** remove odl external link ([#14617](https://github.com/ovh/manager/issues/14617)) ([26f1b39](https://github.com/ovh/manager/commit/26f1b39551ddcc5c650e966c4acebed671e8f717))
+
+
+
+
+
 ## [0.96.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.96.0...@ovh-ux/manager-container-app@0.96.1) (2025-01-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-container-app

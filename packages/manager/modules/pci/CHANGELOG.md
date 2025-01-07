@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.75.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.74.1...@ovh-ux/manager-pci@6.75.0) (2025-01-07)
+
+
+### Bug Fixes
+
+* **pci:** correct FR translation ([#14769](https://github.com/ovh/manager/issues/14769)) ([34985a2](https://github.com/ovh/manager/commit/34985a269a103603eb85096dd7e391b93ad01bb6))
+
+
+### Features
+
+* **pci.instances:** add Windows Gen 3 license price ([#14543](https://github.com/ovh/manager/issues/14543)) ([0a153a3](https://github.com/ovh/manager/commit/0a153a3ca0c54f0b529a0c388fc4d4f7e9d31e88))
+* **pci.quota:** add quota support in page ([#14117](https://github.com/ovh/manager/issues/14117)) ([c4712bc](https://github.com/ovh/manager/commit/c4712bcf9d728a7705e110a0df56e2050a278420))
+
+
+
+
+
 ## [6.74.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.74.0...@ovh-ux/manager-pci@6.74.1) (2025-01-02)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.18](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-workflow-app@0.1.17...@ovh-ux/manager-pci-workflow-app@0.1.18) (2025-01-07)
+
+
+### Bug Fixes
+
+* update tailwind config for third party imports ([#14675](https://github.com/ovh/manager/issues/14675)) ([822f1bc](https://github.com/ovh/manager/commit/822f1bcb7c46a4d6b77050f8ee8fb58150a51fd3))
+
+
+
+
+
 ## [0.1.17](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-workflow-app@0.1.16...@ovh-ux/manager-pci-workflow-app@0.1.17) (2024-12-20)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-workflow-app
