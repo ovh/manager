@@ -13,6 +13,7 @@ export * from './components/region-selector/RegionLocalzoneChip.component';
 export * from './components/region-selector/Region3AZChip.component';
 export * from './hooks';
 export * from './constants';
+export * from './contexts/PCICommonContext/PCICommonContext';
 export * from './components/quantity-selector';
 export * from './components/Pricing';
 export * from './components/shape-input/ShapeInput.component';
