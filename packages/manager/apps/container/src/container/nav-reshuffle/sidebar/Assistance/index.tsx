@@ -44,7 +44,7 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
           node.onClick = () => trackNode('cloud_changelog');
           break;
         case 'hosting_and_collab_changelog':
-          node.onClick = () => trackNode('hosting_and_collab_changelog');
+          node.onClick = () => trackNode('hosting_collab_changelog');
           break;
         case 'marketplace':
           node.onClick = () => trackNode('marketplace');

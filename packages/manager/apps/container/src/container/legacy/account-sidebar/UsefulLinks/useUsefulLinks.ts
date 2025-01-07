@@ -41,7 +41,7 @@ const useUsefulLinks = (): UseUsefulLinks => {
         id: 'hosting_and_collab_changelog',
         external: true,
         href: constants[region]?.hosting_and_collab_changelog,
-        tracking: `${trackingPrefix}::go-to-hosting-and-collab-changelog`,
+        tracking: `${trackingPrefix}::go-to-hosting-collab-changelog`,
         icon: getSvgIcon(OvhProductName.HOSTING_CHANGELOG)
       },
       {
