@@ -9,7 +9,6 @@ const LegalLinks = () => {
     <>
       {data.map((link) => (
         <Links
-          data-testid={link.name}
           key={link.name}
           label={link.name}
           href={link.url}

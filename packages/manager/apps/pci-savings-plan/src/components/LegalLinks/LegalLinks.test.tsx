@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom';
-import { screen, waitFor } from '@testing-library/react';
+import { waitFor } from '@testing-library/react';
 import { HttpResponse, http } from 'msw';
 import { setupServer } from 'msw/node';
 import React from 'react';
@@ -37,11 +37,16 @@ afterAll(() => server.close());
 
 describe('LegalLinks', async () => {
   it('renders the legal links correctly', async () => {
-    render(<LegalLinks />);
+    const { container } = render(<LegalLinks />);
 
     await waitFor(() => {
-      expect(screen.getByTestId(MOCK_CONTRACTS[0].name)).toBeInTheDocument();
-      expect(screen.getByTestId(MOCK_CONTRACTS[1].name)).toBeInTheDocument();
+      MOCK_CONTRACTS.forEach((contract) => {
+        expect(
+          container.querySelector(
+            `[label='${contract.name}'][href='${contract.url}']`,
+          ),
+        ).toBeInTheDocument();
+      });
     });
   });
 });
