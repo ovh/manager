@@ -2,7 +2,7 @@ import React from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { Datagrid, DatagridColumn } from '@ovh-ux/manager-react-components';
 import { ODS_ICON_NAME, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsLink, OdsText } from '@ovhcloud/ods-components/react';
+import { OdsIcon, OdsLink, OdsText } from '@ovhcloud/ods-components/react';
 import { UserNativeType } from '@/api/users/type';
 import Loading from '@/components/Loading/Loading';
 import { useOfficeLicenseDetail, useOfficeUsers } from '@/hooks';
@@ -85,6 +85,7 @@ export default function Users() {
   return (
     <div className="mb-4" data-testid="test">
       <OdsText preset={ODS_TEXT_PRESET.paragraph} className="mb-4">
+        <OdsIcon name={ODS_ICON_NAME.download} className="mr-4" />
         <Trans
           t={t}
           i18nKey={'dashboard_users_download_text'}
