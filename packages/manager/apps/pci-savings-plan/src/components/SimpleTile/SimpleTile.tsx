@@ -1,4 +1,5 @@
 import { OdsCard } from '@ovhcloud/ods-components/react';
+import clsx from 'clsx';
 import React from 'react';
 
 const SimpleTile: React.FC<React.PropsWithChildren<{
@@ -7,13 +8,15 @@ const SimpleTile: React.FC<React.PropsWithChildren<{
   className?: string;
 }>> = ({ children, onClick, isActive, className }) => (
   <OdsCard
-    className={`flex items-center flex-col justify-center w-1/2 shrink-0 md:shrink md:w-1/4  mr-5 text-center p-3 ${
-      onClick ? 'cursor-pointer' : 'cursor-default'
-    } ${
-      isActive
-        ? ' bg-[--ods-color-primary-050] border-[--ods-color-primary-500] border-2'
-        : ''
-    } ${className}`}
+    className={clsx(
+      'flex items-center flex-col justify-center w-1/2 shrink-0 md:shrink md:w-1/4 mr-5 text-center p-3',
+      'font-semibold text-[16px] leading-[20px]',
+      {
+        'cursor-pointer': onClick,
+        'border-[--ods-color-primary-500] border-2': isActive,
+      },
+      className,
+    )}
     color={'neutral'}
     onClick={onClick}
   >
