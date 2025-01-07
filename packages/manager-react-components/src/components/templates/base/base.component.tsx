@@ -1,7 +1,12 @@
 import React from 'react';
 import { Headers, HeadersProps } from '../../content';
 import { OdsText } from '@ovhcloud/ods-components/react';
-import { LinkType, Links, Subtitle } from '../../typography';
+import {
+  IconLinkAlignmentType,
+  LinkType,
+  Links,
+  Subtitle,
+} from '../../typography';
 import { PageLayout } from '../layout/layout.component';
 
 export type BaseLayoutProps = React.PropsWithChildren<{
@@ -12,6 +17,7 @@ export type BaseLayoutProps = React.PropsWithChildren<{
   subtitle?: string;
   subDescription?: string;
   backLinkLabel?: string;
+  backLinkIconAlignment?: IconLinkAlignmentType;
   hrefPrevious?: string;
   tabs?: React.ReactElement;
   onClickReturn?: () => void;
@@ -29,6 +35,7 @@ export const BaseLayout = ({
   children,
   header,
   tabs,
+  backLinkIconAlignment = IconLinkAlignmentType.right,
 }: BaseLayoutProps) => (
   <PageLayout>
     <div>{breadcrumb}</div>
@@ -46,6 +53,7 @@ export const BaseLayout = ({
           type={LinkType.back}
           target="_self"
           href={hrefPrevious}
+          iconAlignment={backLinkIconAlignment}
         />
       </div>
     )}
