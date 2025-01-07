@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.1.6...@ovh-ux/manager-pci-billing-app@0.1.7) (2025-01-07)
+
+
+### Bug Fixes
+
+* update tailwind config for third party imports ([#14675](https://github.com/ovh/manager/issues/14675)) ([822f1bc](https://github.com/ovh/manager/commit/822f1bcb7c46a4d6b77050f8ee8fb58150a51fd3))
+
+
+
+
+
 ## [0.1.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.1.5...@ovh-ux/manager-pci-billing-app@0.1.6) (2025-01-02)
 
 

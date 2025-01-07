@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-load-balancer-app@0.2.11...@ovh-ux/manager-pci-load-balancer-app@0.2.12) (2025-01-07)
+
+
+### Bug Fixes
+
+* **pci-common:** fix flashing effect on shapes input component ([#14416](https://github.com/ovh/manager/issues/14416)) ([6657dc2](https://github.com/ovh/manager/commit/6657dc29557f03026cf138d97552bd8b31a14a2d))
+* update tailwind config for third party imports ([#14675](https://github.com/ovh/manager/issues/14675)) ([822f1bc](https://github.com/ovh/manager/commit/822f1bcb7c46a4d6b77050f8ee8fb58150a51fd3))
+
+
+
+
+
 ## [0.2.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-load-balancer-app@0.2.10...@ovh-ux/manager-pci-load-balancer-app@0.2.11) (2024-12-20)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-load-balancer-app
