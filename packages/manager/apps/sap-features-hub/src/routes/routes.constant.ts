@@ -1,9 +1,18 @@
+export const subRoutes = {
+  onboarding: 'onboarding',
+  installation: 'installation',
+  serviceName: ':serviceName',
+  initialStep: 'initialization',
+  stepId: ':stepId',
+};
+
 export const urls = {
-  root: '/',
-  onboarding: '/onboarding',
-  listing: '/',
-  dashboard: '/:serviceName',
-  tab2: 'Tab2',
-  installation: '/installation',
-  installationStep1: '/installation/step-1',
+  root: `/`,
+  listing: `/`,
+  tab2: `Tab2`,
+  onboarding: `/${subRoutes.onboarding}`,
+  dashboard: `/${subRoutes.serviceName}`,
+  installation: `/${subRoutes.installation}`,
+  installationInitialStep: `/${subRoutes.installation}/${subRoutes.initialStep}`,
+  installationStep: `/${subRoutes.installation}/${subRoutes.stepId}/${subRoutes.serviceName}`,
 };

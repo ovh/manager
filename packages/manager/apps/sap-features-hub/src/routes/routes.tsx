@@ -80,10 +80,25 @@ export const Routes: any = [
         ),
         children: [
           {
-            id: 'step1',
-            path: urls.installationStep1,
+            id: 'initialStep',
+            path: urls.installationInitialStep,
             ...lazyRouteConfig(() =>
-              import('@/pages/installation/step1/InstallationStep1.page'),
+              import(
+                '@/pages/installation/initialStep/InstallationInitialStep.page'
+              ),
+            ),
+            handle: {
+              tracking: {
+                pageName: 'dashboard',
+                pageType: PageType.dashboard,
+              },
+            },
+          },
+          {
+            id: 'stepId',
+            path: urls.installationStep,
+            ...lazyRouteConfig(() =>
+              import('@/pages/installation/formStep/FormStep.page'),
             ),
             handle: {
               tracking: {
