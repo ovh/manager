@@ -29,7 +29,7 @@ export interface RegionSelectorProps {
   onSelectRegion: (region?: TLocalisation) => void;
   regionFilter?: (region: TLocalisation) => boolean;
   compactMode?: boolean;
-  meta?: RegionMetaType;
+  regionMeta?: RegionMetaType;
 }
 
 export function RegionSelector({
@@ -37,7 +37,7 @@ export function RegionSelector({
   onSelectRegion,
   regionFilter,
   compactMode,
-  meta,
+  regionMeta,
 }: Readonly<RegionSelectorProps>): JSX.Element {
   const { t } = useTranslation('pci-region-selector');
 
@@ -58,7 +58,7 @@ export function RegionSelector({
   }
 
   return (
-    <RegionMetaContext.Provider value={meta}>
+    <RegionMetaContext.Provider value={regionMeta}>
       <TabsComponent
         items={continents}
         itemKey={(i) => i.id}
