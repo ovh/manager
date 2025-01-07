@@ -40,7 +40,7 @@ export const Links: React.FC<LinksProps> = ({
   ...props
 }: LinksProps) => (
   <OdsLink
-    className={`mrc-link ${className}`}
+    className={className}
     href={href}
     onClick={onClickReturn}
     color={color}

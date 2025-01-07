@@ -44,10 +44,10 @@ export const GuideButton: React.FC<GuideButtonProps> = ({
       </div>
 
       <OdsPopover triggerId="navigation-menu-guide-trigger" withArrow>
-        {items.map((item) => (
-          <div key={item.id}>
+        <div className="flex flex-col gap-4">
+          {items.map((item) => (
             <Links
-              className="block py-2"
+              key={item.id}
               href={item.href}
               target={item.target}
               download={item.download}
@@ -56,8 +56,8 @@ export const GuideButton: React.FC<GuideButtonProps> = ({
               label={item.label}
               onClickReturn={item.onClick}
             />
-          </div>
-        ))}
+          ))}
+        </div>
       </OdsPopover>
     </>
   );

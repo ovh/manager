@@ -13,12 +13,9 @@ import {
   ODS_INPUT_TYPE,
   ODS_MESSAGE_COLOR,
   ODS_TEXT_PRESET,
-  OdsInputChangeEventDetail,
-  OdsInputCustomEvent,
 } from '@ovhcloud/ods-components';
 import { handleClick } from '../../../utils/click-utils';
 import './translations/translations';
-import { Subtitle } from '../../typography';
 
 export type UpdateNameModalProps = {
   headline: string;
@@ -66,52 +63,60 @@ export const UpdateNameModal: React.FC<UpdateNameModalProps> = ({
 
   return (
     <OdsModal isOpen={isOpen} onOdsClose={closeModal}>
-      <Subtitle>{headline}</Subtitle>
-      {!!error && (
-        <OdsMessage color={ODS_MESSAGE_COLOR.critical}>
-          {t('updateModalError', { error })}
-        </OdsMessage>
-      )}
-      <OdsText preset={ODS_TEXT_PRESET.paragraph}>{description}</OdsText>
-      <OdsFormField className="block mb-8">
-        <label htmlFor="update-name-modal-input">
-          <OdsText preset={ODS_TEXT_PRESET.span}>{inputLabel}</OdsText>
-        </label>
-        <OdsInput
-          className="block"
-          aria-label="update-input"
-          name="update-name-modal-input"
-          isDisabled={isLoading}
-          type={ODS_INPUT_TYPE.text}
-          value={displayName}
-          hasError={isPatternError || undefined}
-          onOdsChange={(e) => setDisplayName(e.detail.value as string)}
-        />
-        {patternMessage && (
-          <OdsText
-            slot="visual-hint"
-            preset="span"
-            className={`update-name-modal-pattern-message ${
-              isPatternError && pattern ? 'error' : ''
-            }`}
-          >
-            {patternMessage}
-          </OdsText>
+      <div className="flex flex-col gap-4">
+        <OdsText preset={ODS_TEXT_PRESET.heading3}>{headline}</OdsText>
+        {!!error && (
+          <OdsMessage color={ODS_MESSAGE_COLOR.critical}>
+            {t('updateModalError', { error })}
+          </OdsMessage>
         )}
-      </OdsFormField>
-      <OdsButton
-        slot="actions"
-        variant={ODS_BUTTON_VARIANT.ghost}
-        {...handleClick(closeModal)}
-        label={cancelButtonLabel || t('updateModalCancelButton')}
-      />
-      <OdsButton
-        isDisabled={isPatternError || defaultValue === displayName || undefined}
-        slot="actions"
-        isLoading={isLoading}
-        {...handleClick(() => updateDisplayName(displayName))}
-        label={confirmButtonLabel || t('updateModalConfirmButton')}
-      />
+        {description && (
+          <OdsText preset={ODS_TEXT_PRESET.paragraph}>{description}</OdsText>
+        )}
+        <OdsFormField>
+          <label htmlFor="update-name-modal-input">
+            <OdsText preset={ODS_TEXT_PRESET.span}>{inputLabel}</OdsText>
+          </label>
+          <OdsInput
+            className="block"
+            aria-label="update-input"
+            name="update-name-modal-input"
+            isDisabled={isLoading}
+            type={ODS_INPUT_TYPE.text}
+            value={displayName}
+            hasError={isPatternError || undefined}
+            onOdsChange={(e) => setDisplayName(e.detail.value as string)}
+          />
+          {patternMessage && (
+            <OdsText
+              slot="visual-hint"
+              preset="span"
+              className={`update-name-modal-pattern-message ${
+                isPatternError && pattern ? 'error' : ''
+              }`}
+            >
+              {patternMessage}
+            </OdsText>
+          )}
+        </OdsFormField>
+        <div className="flex justify-end gap-2">
+          <OdsButton
+            slot="actions"
+            variant={ODS_BUTTON_VARIANT.ghost}
+            {...handleClick(closeModal)}
+            label={cancelButtonLabel || t('updateModalCancelButton')}
+          />
+          <OdsButton
+            isDisabled={
+              isPatternError || defaultValue === displayName || undefined
+            }
+            slot="actions"
+            isLoading={isLoading}
+            {...handleClick(() => updateDisplayName(displayName))}
+            label={confirmButtonLabel || t('updateModalConfirmButton')}
+          />
+        </div>
+      </div>
     </OdsModal>
   );
 };

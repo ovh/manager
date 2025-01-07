@@ -20,7 +20,6 @@ import {
 } from '@ovhcloud/ods-components';
 import { handleClick } from '../../../utils/click-utils';
 import './translations/translations';
-import { Subtitle } from '../../typography';
 
 export const defaultDeleteModalTerminateValue = 'TERMINATE';
 
@@ -66,46 +65,52 @@ export const DeleteModal: React.FC<DeleteModalProps> = ({
       onOdsClose={close}
       isOpen={isOpen}
     >
-      <Subtitle>{headline}</Subtitle>
-      {!!error && (
-        <OdsMessage color={ODS_MESSAGE_COLOR.warning}>
-          {t('deleteModalError', { error })}
-        </OdsMessage>
-      )}
-      <OdsText preset={ODS_TEXT_PRESET.paragraph}>{description}</OdsText>
-      <OdsFormField className="block mb-8">
-        <label slot="label">{deleteInputLabel}</label>
-        <OdsInput
-          className="block"
-          name="delete-input"
-          aria-label="delete-input"
-          isDisabled={isLoading || undefined}
-          type={ODS_INPUT_TYPE.text}
-          value={deleteInput}
-          onOdsChange={(e: OdsInputCustomEvent<OdsInputChangeEventDetail>) =>
-            setDeleteInput(e.detail.value as string)
-          }
-        />
-      </OdsFormField>
-      <OdsButton
-        slot="actions"
-        data-testid="manager-delete-modal-cancel"
-        variant={ODS_BUTTON_VARIANT.ghost}
-        color={ODS_BUTTON_COLOR.primary}
-        {...handleClick(close)}
-        label={cancelButtonLabel || t('deleteModalCancelButton')}
-      />
-      <OdsButton
-        isDisabled={isDisabled}
-        slot="actions"
-        isLoading={isLoading}
-        data-testid="manager-delete-modal-confirm"
-        {...handleClick(() => {
-          setDeleteInput('');
-          onConfirmDelete();
-        })}
-        label={confirmButtonLabel || t('deleteModalDeleteButton')}
-      />
+      <div className="flex flex-col gap-4">
+        <OdsText preset={ODS_TEXT_PRESET.heading3}>{headline}</OdsText>
+        {!!error && (
+          <OdsMessage color={ODS_MESSAGE_COLOR.warning}>
+            {t('deleteModalError', { error })}
+          </OdsMessage>
+        )}
+        {description && (
+          <OdsText preset={ODS_TEXT_PRESET.paragraph}>{description}</OdsText>
+        )}
+        <OdsFormField>
+          <label slot="label">{deleteInputLabel}</label>
+          <OdsInput
+            className="block"
+            name="delete-input"
+            aria-label="delete-input"
+            isDisabled={isLoading || undefined}
+            type={ODS_INPUT_TYPE.text}
+            value={deleteInput}
+            onOdsChange={(e: OdsInputCustomEvent<OdsInputChangeEventDetail>) =>
+              setDeleteInput(e.detail.value as string)
+            }
+          />
+        </OdsFormField>
+        <div className="flex justify-end gap-2">
+          <OdsButton
+            slot="actions"
+            data-testid="manager-delete-modal-cancel"
+            variant={ODS_BUTTON_VARIANT.ghost}
+            color={ODS_BUTTON_COLOR.primary}
+            {...handleClick(close)}
+            label={cancelButtonLabel || t('deleteModalCancelButton')}
+          />
+          <OdsButton
+            isDisabled={isDisabled}
+            slot="actions"
+            isLoading={isLoading}
+            data-testid="manager-delete-modal-confirm"
+            {...handleClick(() => {
+              setDeleteInput('');
+              onConfirmDelete();
+            })}
+            label={confirmButtonLabel || t('deleteModalDeleteButton')}
+          />
+        </div>
+      </div>
     </OdsModal>
   );
 };
