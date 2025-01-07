@@ -19,14 +19,17 @@ import { RegionList } from './RegionList.component';
 import '../../translations/region-selector';
 
 import './style.scss';
-import { MetaContext, MetaType } from '../../contexts/MetaContext';
+import {
+  RegionMetaContext,
+  RegionMetaType,
+} from '../../contexts/RegionMetaContext';
 
 export interface RegionSelectorProps {
   projectId: string;
   onSelectRegion: (region?: TLocalisation) => void;
   regionFilter?: (region: TLocalisation) => boolean;
   compactMode?: boolean;
-  meta?: MetaType;
+  meta?: RegionMetaType;
 }
 
 export function RegionSelector({
@@ -55,7 +58,7 @@ export function RegionSelector({
   }
 
   return (
-    <MetaContext.Provider value={meta}>
+    <RegionMetaContext.Provider value={meta}>
       <TabsComponent
         items={continents}
         itemKey={(i) => i.id}
@@ -118,6 +121,6 @@ export function RegionSelector({
         )}
         onChange={setSelectedContinent}
       />
-    </MetaContext.Provider>
+    </RegionMetaContext.Provider>
   );
 }

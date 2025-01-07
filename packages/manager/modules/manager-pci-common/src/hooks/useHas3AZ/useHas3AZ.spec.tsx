@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react';
 import { useHas3AZ } from './useHas3AZ';
-import { MetaContext } from '../../contexts/MetaContext';
+import { RegionMetaContext } from '../../contexts/RegionMetaContext';
 
 describe('useHas3AZ', () => {
   it.each([
@@ -15,7 +15,9 @@ describe('useHas3AZ', () => {
     (expected: boolean, meta: { has3AZ: boolean | string } | undefined) => {
       const { result } = renderHook(() => useHas3AZ(), {
         wrapper: ({ children }) => (
-          <MetaContext.Provider value={meta}>{children}</MetaContext.Provider>
+          <RegionMetaContext.Provider value={meta}>
+            {children}
+          </RegionMetaContext.Provider>
         ),
       });
 
