@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [20.8.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.8.3...@ovh-ux/manager-dedicated@20.8.4) (2025-01-07)
+
+
+### Bug Fixes
+
+* **dedicated:** adjust timezone handling for custom dates ([8b9667f](https://github.com/ovh/manager/commit/8b9667f0193bcd7e135bc8144f206da6ad04bb21))
+
+
+
+
+
 ## [20.8.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.8.2...@ovh-ux/manager-dedicated@20.8.3) (2025-01-07)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated
