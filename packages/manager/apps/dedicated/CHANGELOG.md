@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.8.4...@ovh-ux/manager-dedicated@20.9.0) (2025-01-07)
+
+
+### Features
+
+* **account:** kyc india update banner position and text formatting ([#14726](https://github.com/ovh/manager/issues/14726)) ([5b28cbe](https://github.com/ovh/manager/commit/5b28cbec38c456c6f8e3554e5223ef00a37131b1))
+
+
+
+
+
 ## [20.8.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.8.3...@ovh-ux/manager-dedicated@20.8.4) (2025-01-07)
 
 

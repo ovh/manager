@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-react-app@0.5.0...@ovh-ux/manager-hub-react-app@0.6.0) (2025-01-07)
+
+
+### Bug Fixes
+
+* **hub-react:** display error in support tile when api send an error ([#14677](https://github.com/ovh/manager/issues/14677)) ([dfe9039](https://github.com/ovh/manager/commit/dfe903987ea2e3036405d63d1bf3db6caf23fc02))
+
+
+### Features
+
+* **hub-react:** handle notifications translations in front end ([#14417](https://github.com/ovh/manager/issues/14417)) ([ea907fa](https://github.com/ovh/manager/commit/ea907fa943152479bb52658aa563d7eeafc404e3))
+
+
+
+
+
 # [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-react-app@0.4.6...@ovh-ux/manager-hub-react-app@0.5.0) (2024-12-23)
 
 

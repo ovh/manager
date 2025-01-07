@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.4.1...@ovh-ux/manager-account@0.5.0) (2025-01-07)
+
+
+### Bug Fixes
+
+* **account:** fixed new email path in template ([#14419](https://github.com/ovh/manager/issues/14419)) ([7580863](https://github.com/ovh/manager/commit/7580863fe18332d42608dbf9a90487ccfa5f3c84))
+
+
+### Features
+
+* **account:** kyc india update banner position and text formatting ([#14726](https://github.com/ovh/manager/issues/14726)) ([5b28cbe](https://github.com/ovh/manager/commit/5b28cbec38c456c6f8e3554e5223ef00a37131b1))
+
+
+
+
+
 ## [0.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.4.0...@ovh-ux/manager-account@0.4.1) (2025-01-02)
 
 
