@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.13.4...@ovh-ux/manager-zimbra-app@0.14.0) (2025-01-07)
+
+
+### Bug Fixes
+
+* **zimbra:** load all available data when needed ([d6aaf4f](https://github.com/ovh/manager/commit/d6aaf4f5039891c2526da07dd30db80078cc53a5))
+* **zimbra:** lowercase email address ([4c2c30f](https://github.com/ovh/manager/commit/4c2c30f6ee08f82cada31946640cfeb49660b689))
+* **zimbra:** required form field has error on init ([b61911a](https://github.com/ovh/manager/commit/b61911a693d49f7dd57ecb41efb702b4e861b748))
+
+
+### Features
+
+* **zimbra:** add tracking first batch ([#14174](https://github.com/ovh/manager/issues/14174)) ([65d9218](https://github.com/ovh/manager/commit/65d92186a09778e9951f5053d3b551d6c1769d6d))
+
+
+
+
+
 ## [0.13.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.13.3...@ovh-ux/manager-zimbra-app@0.13.4) (2024-12-20)
 
 **Note:** Version bump only for package @ovh-ux/manager-zimbra-app

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.20.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.19.1...@ovh-ux/ng-ovh-web-universe-components@9.20.0) (2025-01-07)
+
+
+### Features
+
+* **web.email-domaine:** add dkim feature ([#14362](https://github.com/ovh/manager/issues/14362)) ([754298d](https://github.com/ovh/manager/commit/754298dc76035a2795c9b29e5695e0e89b4a6d2b))
+
+
+
+
+
 ## [9.19.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.19.0...@ovh-ux/ng-ovh-web-universe-components@9.19.1) (2024-11-26)
 
 
