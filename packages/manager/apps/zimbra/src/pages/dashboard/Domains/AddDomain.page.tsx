@@ -40,6 +40,12 @@ import {
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import {
+  ButtonType,
+  PageLocation,
+  PageType,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
+import {
   useOrganization,
   useOrganizationList,
   usePlatform,
@@ -55,6 +61,7 @@ import {
 import queryClient from '@/queryClient';
 import { DomainType } from '@/api/domain/type';
 import { DNS_CONFIG_TYPE, DnsRecordType } from '@/utils';
+import { ADD_DOMAIN, CONFIRM, BACK_PREVIOUS_PAGE } from '@/tracking.constant';
 
 export enum DomainOwnership {
   OVH = 'ovhDomain',
@@ -69,12 +76,14 @@ const defaultExpertConfState = {
 export default function AddDomain() {
   const { t } = useTranslation('domains/addDomain');
   const navigate = useNavigate();
-
+  const { trackClick, trackPage } = useOvhTracking();
   const { addError, addSuccess } = useNotifications();
 
   const { platformId } = usePlatform();
   const { data: organization } = useOrganization();
-  const { data: organizations, isLoading } = useOrganizationList();
+  const { data: organizations, isLoading } = useOrganizationList({
+    shouldFetchAll: true,
+  });
 
   const [selectedOrganization, setSelectedOrganization] = useState(
     organization?.id || '',
@@ -185,6 +194,10 @@ export default function AddDomain() {
       return postZimbraDomain(platformId, params);
     },
     onSuccess: () => {
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: ADD_DOMAIN,
+      });
       addSuccess(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t('zimbra_domains_add_domain_success_message')}
@@ -193,6 +206,10 @@ export default function AddDomain() {
       );
     },
     onError: (error: ApiError) => {
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: ADD_DOMAIN,
+      });
       addError(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t('zimbra_domains_add_domain_error_message', {
@@ -230,6 +247,12 @@ export default function AddDomain() {
           expertConfState[DnsRecordType.SPF]) ||
         false,
     };
+    trackClick({
+      location: PageLocation.page,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [ADD_DOMAIN, CONFIRM],
+    });
     addDomain(formData);
   };
 
@@ -246,6 +269,14 @@ export default function AddDomain() {
         iconAlignment={IconLinkAlignmentType.left}
         type={LinkType.back}
         href={backLinkUrl}
+        onClickReturn={() => {
+          trackClick({
+            location: PageLocation.page,
+            buttonType: ButtonType.button,
+            actionType: 'navigation',
+            actions: [ADD_DOMAIN, BACK_PREVIOUS_PAGE],
+          });
+        }}
         color={ODS_LINK_COLOR.primary}
         label={t('zimbra_domains_add_domain_cta_back')}
       />

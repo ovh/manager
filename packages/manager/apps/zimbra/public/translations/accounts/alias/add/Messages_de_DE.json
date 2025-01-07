@@ -9,5 +9,6 @@
   "zimbra_account_alias_add_select_domain_placeholder": "Einen Domainnamen auswählen",
   "zimbra_account_alias_add_btn_confirm": "Bestätigen",
   "zimbra_account_alias_add_success_message": "Ihre Anfrage zur Erstellung eines Alias wurde registriert. Sie wird in Kürze bearbeitet.",
-  "zimbra_account_alias_add_error_message": "Ihre Anfrage zur Erstellung eines Alias ist fehlgeschlagen. {{ error }}"
+  "zimbra_account_alias_add_error_message": "Ihre Anfrage zur Erstellung eines Alias ist fehlgeschlagen. {{ error }}",
+  "zimbra_account_alias_add_btn_cancel": "Abbrechen"
 }

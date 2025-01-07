@@ -369,5 +369,7 @@
   "email_tab_popover_delegate_info": "Lista delegowania uprawnień dla konta <strong>{{t0}}</strong>",
   "email_tab_popover_delegate_format_error": "Nieprawidłowy format identyfikatora klienta",
   "emails_create_account": "Załóż konto",
-  "emails_create_account_new_window": "(Nowe okno)"
+  "emails_create_account_new_window": "(Nowe okno)",
+  "emails_general_information_diagnostic": "Diagnostyka",
+  "emails_general_information_diagnostic_dkim": "DKIM"
 }

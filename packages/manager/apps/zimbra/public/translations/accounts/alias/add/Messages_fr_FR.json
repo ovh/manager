@@ -8,6 +8,7 @@
   "zimbra_account_alias_add_input_email_helper_rule_3": "Les caractères spéciaux ne peuvent pas être placés côte à côte",
   "zimbra_account_alias_add_select_domain_placeholder": "Sélectionner un nom de domaine",
   "zimbra_account_alias_add_btn_confirm": "Confirmer",
+  "zimbra_account_alias_add_btn_cancel": "Annuler",
   "zimbra_account_alias_add_success_message": "Votre demande de création d'alias a bien été prise en compte. Elle sera traitée d'ici quelques instants.",
   "zimbra_account_alias_add_error_message": "Votre demande de création d'alias n'a pas pu aboutir. {{ error }}"
 }

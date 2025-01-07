@@ -12,7 +12,6 @@ import {
 } from '@/api/_mock_';
 import { AccountType } from '@/api/account';
 import { DomainType } from '@/api/domain';
-import {} from '@/api/_mock_/order';
 
 const mocksAxios = vi.hoisted(() => ({
   get: vi.fn(),
@@ -42,6 +41,21 @@ vi.mock('axios', async (importActual) => {
   };
 
   return mockAxios;
+});
+
+vi.mock('@ovh-ux/manager-react-shell-client', async (importActual) => {
+  return {
+    ...(await importActual<
+      typeof import('@ovh-ux/manager-react-shell-client')
+    >()),
+    useOvhTracking: vi.fn(() => {
+      return {
+        trackClick: vi.fn(),
+        trackPage: vi.fn(),
+        trackCurrentPage: vi.fn(),
+      };
+    }),
+  };
 });
 
 vi.mock('@/hooks', async (importActual) => {

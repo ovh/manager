@@ -4,12 +4,14 @@ import {
   UseInfiniteQueryResult,
 } from '@tanstack/react-query';
 import { useSearchParams } from 'react-router-dom';
+import { useEffect } from 'react';
 import { usePlatform } from '@/hooks';
 import {
   AccountType,
   getZimbraPlatformAccounts,
   getZimbraPlatformAccountsQueryKey,
 } from '@/api/account';
+import { APIV2_MAX_PAGESIZE } from '@/utils';
 
 type UseAccountListParams = Omit<
   UseInfiniteQueryOptions,
@@ -17,10 +19,11 @@ type UseAccountListParams = Omit<
 > & {
   domainId?: string;
   organizationId?: string;
+  shouldFetchAll?: boolean;
 };
 
 export const useAccountList = (props: UseAccountListParams = {}) => {
-  const { domainId, organizationId, ...options } = props;
+  const { domainId, organizationId, shouldFetchAll, ...options } = props;
   const { platformId } = usePlatform();
   const [searchParams] = useSearchParams();
 
@@ -33,19 +36,24 @@ export const useAccountList = (props: UseAccountListParams = {}) => {
     ...(selectedDomainId && { domainId: selectedDomainId }),
   };
 
-  return useInfiniteQuery({
+  const query = useInfiniteQuery({
     ...options,
     initialPageParam: null,
-    queryKey: getZimbraPlatformAccountsQueryKey(platformId, queryParameters),
+    queryKey: getZimbraPlatformAccountsQueryKey(
+      platformId,
+      queryParameters,
+      shouldFetchAll,
+    ),
     queryFn: ({ pageParam }) =>
       getZimbraPlatformAccounts({
         platformId,
         queryParameters,
         pageParam,
+        ...(shouldFetchAll ? { pageSize: APIV2_MAX_PAGESIZE } : {}),
       }),
-    enabled: (query) =>
+    enabled: (q) =>
       (typeof options.enabled === 'function'
-        ? options.enabled(query)
+        ? options.enabled(q)
         : typeof options.enabled !== 'boolean' || options.enabled) &&
       !!platformId,
     getNextPageParam: (lastPage: { cursorNext?: string }) =>
@@ -55,4 +63,12 @@ export const useAccountList = (props: UseAccountListParams = {}) => {
         (page: UseInfiniteQueryResult<AccountType[]>) => page.data,
       ),
   });
+
+  useEffect(() => {
+    if (shouldFetchAll && query.hasNextPage) {
+      query.fetchNextPage();
+    }
+  }, [query.data]);
+
+  return query;
 };

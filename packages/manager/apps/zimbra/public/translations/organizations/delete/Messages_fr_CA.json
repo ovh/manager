@@ -1,5 +1,6 @@
 {
   "zimbra_organization_delete": "Supprimer",
+  "zimbra_organization_delete_cancel": "Annuler",
   "zimbra_organization_delete_modal_title": "Supprimer l'organisation",
   "zimbra_organization_delete_modal_content": "Voulez-vous vraiment supprimer l'organisation ?",
   "zimbra_organization_delete_modal_message_disabled_part1": "Au moins un domaine est encore associé à cette organisation.",

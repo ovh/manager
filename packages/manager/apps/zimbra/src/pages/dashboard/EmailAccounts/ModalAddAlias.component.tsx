@@ -17,21 +17,25 @@ import {
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useMutation } from '@tanstack/react-query';
 import { ApiError } from '@ovh-ux/manager-core-api';
+import {
+  ButtonType,
+  PageLocation,
+  PageType,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { useDomains, useGenerateUrl, usePlatform, useAccount } from '@/hooks';
 import Modal from '@/components/Modals/Modal';
 import {
   getZimbraPlatformAliasQueryKey,
   postZimbraPlatformAlias,
 } from '@/api/alias';
-import {
-  ACCOUNT_REGEX,
-  checkValidityField,
-  checkValidityForm,
-  FormTypeInterface,
-} from '@/utils';
+import { ACCOUNT_REGEX } from '@/utils';
 import queryClient from '@/queryClient';
+import { CANCEL, CONFIRM, EMAIL_ACCOUNT_ADD_ALIAS } from '@/tracking.constant';
+import { useForm } from '@/hooks/useForm';
 
 export default function ModalAddAndEditOrganization() {
+  const { trackClick, trackPage } = useOvhTracking();
   const { t } = useTranslation('accounts/alias/add');
   const { platformId } = usePlatform();
   const [searchParams] = useSearchParams();
@@ -41,29 +45,25 @@ export default function ModalAddAndEditOrganization() {
   const { addError, addSuccess } = useNotifications();
   const navigate = useNavigate();
   const goBackUrl = useGenerateUrl('..', 'path', params);
-  const goBack = () => navigate(goBackUrl);
+  const onClose = () => navigate(goBackUrl);
 
-  const [form, setForm] = useState<FormTypeInterface>({
+  const { form, isFormValid, setValue } = useForm({
     alias: {
       value: '',
       defaultValue: '',
-      hasError: false,
       required: true,
-      touched: false,
       validate: ACCOUNT_REGEX,
     },
     domain: {
       value: '',
       defaultValue: '',
-      hasError: false,
       required: true,
-      touched: false,
     },
   });
 
-  const [isFormValid, setIsFormValid] = useState(false);
-
-  const { data: domainList, isLoading: isLoadingDomain } = useDomains();
+  const { data: domainList, isLoading: isLoadingDomain } = useDomains({
+    shouldFetchAll: true,
+  });
 
   const {
     data: editAccountDetail,
@@ -76,7 +76,7 @@ export default function ModalAddAndEditOrganization() {
     }
   }, [isLoadingDomain, isLoadingEmailDetail]);
 
-  const { mutate: handleNewAliasClick, isPending: isSubmitting } = useMutation({
+  const { mutate: addAlias, isPending: isSubmitting } = useMutation({
     mutationFn: () => {
       const {
         alias: { value: alias },
@@ -91,6 +91,10 @@ export default function ModalAddAndEditOrganization() {
       return postZimbraPlatformAlias(platformId, dataBody);
     },
     onSuccess: () => {
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: EMAIL_ACCOUNT_ADD_ALIAS,
+      });
       addSuccess(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t('zimbra_account_alias_add_success_message')}
@@ -99,6 +103,10 @@ export default function ModalAddAndEditOrganization() {
       );
     },
     onError: (error: ApiError) => {
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: EMAIL_ACCOUNT_ADD_ALIAS,
+      });
       addError(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t('zimbra_account_alias_add_error_message', {
@@ -112,20 +120,30 @@ export default function ModalAddAndEditOrganization() {
       queryClient.invalidateQueries({
         queryKey: getZimbraPlatformAliasQueryKey(platformId),
       });
-      goBack();
+      onClose();
     },
   });
 
-  const handleFormChange = (name: string, value: string) => {
-    const newForm: FormTypeInterface = form;
-    newForm[name] = {
-      ...form[name],
-      value,
-      touched: true,
-      hasError: !checkValidityField(name, value, form),
-    };
-    setForm((oldForm) => ({ ...oldForm, ...newForm }));
-    setIsFormValid(checkValidityForm(form));
+  const handleConfirmClick = () => {
+    trackClick({
+      location: PageLocation.popup,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [EMAIL_ACCOUNT_ADD_ALIAS, CONFIRM],
+    });
+
+    addAlias();
+  };
+
+  const handleCancelClick = () => {
+    trackClick({
+      location: PageLocation.popup,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [EMAIL_ACCOUNT_ADD_ALIAS, CANCEL],
+    });
+
+    onClose();
   };
 
   return (
@@ -133,16 +151,20 @@ export default function ModalAddAndEditOrganization() {
       title={t('zimbra_account_alias_add_modal_title')}
       color={ODS_MODAL_COLOR.information}
       isOpen
-      onClose={goBack}
+      onClose={onClose}
       isDismissible
       isLoading={isLoading}
+      secondaryButton={{
+        label: t('zimbra_account_alias_add_btn_cancel'),
+        action: handleCancelClick,
+      }}
       primaryButton={{
         testid: 'confirm-btn',
         variant: ODS_BUTTON_VARIANT.default,
         label: t('zimbra_account_alias_add_btn_confirm'),
         isDisabled: !isFormValid,
         isLoading: isLoading || isSubmitting,
-        action: handleNewAliasClick,
+        action: handleConfirmClick,
       }}
     >
       <>
@@ -165,10 +187,10 @@ export default function ModalAddAndEditOrganization() {
               isRequired={form.alias.required}
               hasError={form.alias.hasError}
               onOdsBlur={({ target: { name, value } }) =>
-                handleFormChange(name, value.toString())
+                setValue(name, value.toString(), true)
               }
               onOdsChange={({ detail: { name, value } }) => {
-                handleFormChange(name, String(value));
+                setValue(name, String(value));
               }}
               className="rounded-r-none border-r-0 w-1/2"
               data-testid="input-alias"
@@ -192,7 +214,7 @@ export default function ModalAddAndEditOrganization() {
               )}
               className="w-1/2"
               onOdsChange={({ detail: { name, value } }) =>
-                handleFormChange(name, value)
+                setValue(name, value)
               }
               data-testid="select-domain"
             >
