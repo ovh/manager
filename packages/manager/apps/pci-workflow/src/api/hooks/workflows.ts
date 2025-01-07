@@ -26,7 +26,7 @@ export type TWorkflow = {
   cron: string;
   lastExecution: string;
   lastExecutionStatus: TExecutionState;
-  executions: TWorkflowExecution[];
+  executions: TWorkflowExecution[] | null;
 };
 
 export const useWorkflows = (projectId: string) => {
@@ -58,6 +58,14 @@ export const useWorkflows = (projectId: string) => {
           .flat(1)
           .filter((w) => !!w)
           .map((w) => {
+            if (!w.executions) {
+              return {
+                ...w,
+                lastExecution: '',
+                lastExecutionStatus: undefined,
+              };
+            }
+
             let [lastExecutionAt, lastExecutionStatus] = [
               new Date(),
               undefined,
