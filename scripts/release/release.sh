@@ -32,7 +32,7 @@ version() {
     node_modules/.bin/lerna version --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --allow-branch="${GIT_BRANCH}" --yes
   else
     printf "%s\n" "Releasing"
-    node_modules/.bin/lerna version --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --yes
+    node_modules/.bin/lerna version --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --yes --ignore-changes="packages/manager-react-components/**"
   fi
 }
 
@@ -54,7 +54,7 @@ version_mrc() {
     node_modules/.bin/lerna version --scope=manager-react-components --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --allow-branch="${GIT_BRANCH}" --yes
   else
     printf "%s\n" "Releasing"
-    node_modules/.bin/lerna exec --scope=@ovh-ux/manager-react-components -- lerna version --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --yes
+    node_modules/.bin/lerna exec --scope=@ovh-ux/manager-react-components -- lerna version --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --no-private --ignore-changes="packages/modules/manager-pci-common/**" --yes
   fi
 }
 
@@ -132,6 +132,7 @@ main() {
   done
 
   changed_packages=$(get_changed_packages)
+  printf "%s\n" "Changed packages $changed_packages"
   if [ -z "$changed_packages" ]; then
     printf "%s\n" "Nothing to release"
     exit 0
@@ -149,6 +150,8 @@ main() {
     # Check if the changed package is `manager-react-components`
     if [[ "$name" == *manager-react-components* ]]; then
       mrc_changed=true
+      path_mrc=$(echo "$package" | cut -d ':' -f 1)
+      name_mrc=$(echo "$package" | cut -d ':' -f 2)
     else
       create_smoke_tag "$current_tag" "$name" "$version"
     fi
@@ -165,13 +168,13 @@ main() {
     version_mrc "$next_tag"
 
     # Create release note for manager-react-components
-    RELEASE_NOTE+="$(create_release_note "packages/manager-react-components" "manager-react-components")\n\n"
+    RELEASE_NOTE+="$(create_release_note "$path_mrc" "$name_mrc")\n\n"
 
     #Commit and release manager-react-components
-    #clean_tags
+    clean_tags
     #push_and_release "$next_tag"
   fi
-
+  
   # Handle the rest of the packages
   next_tag=$(get_release_name "$SEED")
   printf "%s\n" "New tag for other packages: $next_tag"
@@ -187,7 +190,7 @@ main() {
   # Remove package-specific tags for other packages
   clean_tags
   # Push and release for other packages
-  push_and_release "$next_tag"
+  #push_and_release "$next_tag"
 
 }
 

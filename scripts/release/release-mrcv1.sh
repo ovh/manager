@@ -15,9 +15,25 @@ clean_tags() {
 }
 
 version_mrc() {
-  # Version only the manager-react-components package
-  printf "%s\n" "Versioning manager-react-components"
-  node_modules/.bin/lerna exec --scope=manager-react-components -- lerna version --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --yes
+  if [ -z "${GIT_BRANCH}" ]; then
+    printf "%s\n" "Missing GIT_BRANCH environment variable"
+    exit 1
+  fi
+
+  if [[ "${GIT_BRANCH}" != "master" && ! "${DRY_RELEASE}" ]]; then
+    printf "%s\n" "Only dry releases are allowed on side branches"
+    exit 1
+  fi
+
+  tag="$1"
+
+  if "${DRY_RELEASE}"; then
+    printf "%s\n" "Dry releasing"
+    node_modules/.bin/lerna version --scope=manager-react-components --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --allow-branch="${GIT_BRANCH}" --yes
+  else
+    printf "%s\n" "Releasing"
+    node_modules/.bin/lerna exec --scope=@ovh-ux/manager-react-components -- lerna version --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --no-private --ignore-changes="packages/modules/manager-pci-common/**" --yes
+  fi
 }
 
 get_changed_packages() {
