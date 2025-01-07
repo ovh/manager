@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.7.2...@ovh-ux/manager-procedures-app@0.8.0) (2025-01-07)
+
+
+### Features
+
+* **procedures:** added supplementary unit test ([#14737](https://github.com/ovh/manager/issues/14737)) ([ee91b4b](https://github.com/ovh/manager/commit/ee91b4b5ffcca891540be9c704f36b033ab204bc))
+
+
+
+
+
 ## [0.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.7.1...@ovh-ux/manager-procedures-app@0.7.2) (2024-12-19)
 
 **Note:** Version bump only for package @ovh-ux/manager-procedures-app
