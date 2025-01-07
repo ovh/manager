@@ -8,13 +8,17 @@ import {
   useVMwareServices,
 } from '@/hooks/vmwareServices/useVMwareServices';
 import { SelectField } from '@/components/Form/SelectField.component';
+import { useFormSteps } from '@/hooks/formStep/useFormSteps';
+import { useLocalStorage } from '@/hooks/localStorage/useLocalStorage';
 
-export default function InstallationStep1() {
+export default function InstallationInitialStep() {
   const { t } = useTranslation('installation');
   const [serviceName, setServiceName] = useState<string>(null);
   const [datacenterId, setDatacenterId] = useState<string>(null);
   const [clusterName, setClusterName] = useState<string>(null);
   const [isFormValid, setIsFormValid] = useState<boolean>(false);
+  const { initializeAndProceed, currentStepLabel } = useFormSteps();
+  const { setStorageItem } = useLocalStorage();
 
   const {
     data: services,
@@ -37,7 +41,7 @@ export default function InstallationStep1() {
     datacenterId,
   });
 
-  const isVDCError = useMemo(
+  const isError = useMemo(
     () =>
       datacenterId &&
       !clusters?.length &&
@@ -47,8 +51,13 @@ export default function InstallationStep1() {
   );
 
   useEffect(() => {
-    setIsFormValid(clusterName && !isVDCError);
-  }, [isVDCError, clusterName]);
+    setIsFormValid(clusterName && !isError);
+  }, [isError, clusterName]);
+
+  const handleSubmit = () => {
+    setStorageItem(currentStepLabel, { vdcId: datacenterId, clusterName });
+    initializeAndProceed(serviceName);
+  };
 
   return (
     <div>
@@ -85,9 +94,7 @@ export default function InstallationStep1() {
             setClusterName(null);
           }}
           error={
-            isVDCError
-              ? t('service_input_error_no_cluster_available')
-              : undefined
+            isError ? t('service_input_error_no_cluster_available') : undefined
           }
         />
         <SelectField
@@ -97,12 +104,16 @@ export default function InstallationStep1() {
           options={clusters}
           optionValueKey={'name'}
           isDisabled={
-            !datacenterId || isLoadingClusters || isClustersError || isVDCError
+            !datacenterId || isLoadingClusters || isClustersError || isError
           }
           isLoading={isLoadingClusters && !isLoadingDatacentres}
           handleChange={(event) => setClusterName(event.detail.value)}
         />
-        <OdsButton label={t('service_cta')} isDisabled={!isFormValid} />
+        <OdsButton
+          label={t('service_cta')}
+          isDisabled={!isFormValid}
+          onClick={handleSubmit}
+        />
       </form>
     </div>
   );
