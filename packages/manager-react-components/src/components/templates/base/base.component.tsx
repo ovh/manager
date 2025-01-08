@@ -3,7 +3,6 @@ import { Headers, HeadersProps } from '../../content';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { LinkType, Links, Subtitle } from '../../typography';
 import { PageLayout } from '../layout/layout.component';
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 
 export type BaseLayoutProps = React.PropsWithChildren<{
   breadcrumb?: React.ReactElement;
@@ -32,14 +31,14 @@ export const BaseLayout = ({
   tabs,
 }: BaseLayoutProps) => (
   <PageLayout>
-    <div className="mb-5">{breadcrumb}</div>
+    <div>{breadcrumb}</div>
     {header && (
-      <div className="mb-4">
+      <div className="mt-[24px]">
         <Headers {...header} />
       </div>
     )}
     {backLinkLabel && (onClickReturn || hrefPrevious) && (
-      <div className="mb-4">
+      <div className="mb-[16px]">
         <Links
           data-testid="manager-back-link"
           onClickReturn={onClickReturn}
@@ -51,7 +50,7 @@ export const BaseLayout = ({
       </div>
     )}
     {description && (
-      <OdsText className="mb-4 block" preset={ODS_TEXT_PRESET.paragraph}>
+      <OdsText className="mb-[16px]" preset="span">
         {description}
       </OdsText>
     )}
