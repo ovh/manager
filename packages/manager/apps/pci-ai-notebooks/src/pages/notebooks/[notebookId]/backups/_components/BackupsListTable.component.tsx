@@ -25,7 +25,7 @@ BackupsList.Skeleton = function BackupsListSkeleton() {
   return (
     <>
       <div
-        data-testid="volume-list-table-skeleton"
+        data-testid="backup-list-table-skeleton"
         className="flex justify-between w-100 mb-2 items-end"
       >
         <Skeleton className="h-10 w-48" />

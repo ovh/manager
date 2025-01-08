@@ -38,5 +38,5 @@
   "addLabelNameSubmit": "Ajouter",
   "notebookToastErrorTitle": "Erreur",
   "notebookToastSuccessTitle": "Succés",
-  "deleteNotebookSuccess": "Le label a été correctement ajouté à votre notebook"
+  "notebookLabelSuccess": "Labels correctement mis à jour."
 }

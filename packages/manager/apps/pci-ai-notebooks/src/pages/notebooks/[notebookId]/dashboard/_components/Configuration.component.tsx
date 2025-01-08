@@ -35,7 +35,7 @@ const Configurations = () => {
         </Button>
       </div>
       <Button
-        data-testid="service-confi-delete-button"
+        data-testid="notebook-config-delete-button"
         variant="destructive"
         className="w-full bg-background border-2 hover:bg-destructive/10 font-semibold border-destructive text-destructive mt-4"
         onClick={() => navigate('./delete')}

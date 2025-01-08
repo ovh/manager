@@ -29,7 +29,11 @@ const Backups = () => {
     <>
       <h4>{t('title')}</h4>
       <p>{t('description')}</p>
-      {backupsQuery.isSuccess && <BackupsList backups={backupsQuery.data} />}
+      {backupsQuery.isSuccess ? (
+        <BackupsList backups={backupsQuery.data} />
+      ) : (
+        <BackupsList.Skeleton />
+      )}
       <Outlet />
     </>
   );
