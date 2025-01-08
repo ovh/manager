@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@1.0.3...@ovh-ux/manager-pci-common@1.0.4) (2025-01-08)
+
+
+### Bug Fixes
+
+* **manager-pci-common:** improve banner and remove close on discovery ([177761b](https://github.com/ovh/manager/commit/177761b588de0b959ef77dd253f82bd5df48b297))
+* **manager-pci-common:** subscriptions url ([#14797](https://github.com/ovh/manager/issues/14797)) ([096c370](https://github.com/ovh/manager/commit/096c3708350d7e13ba9102607ce0ca9efa608795))
+
+
+
+
+
 ## [1.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@1.0.2...@ovh-ux/manager-pci-common@1.0.3) (2025-01-07)
 
 
