@@ -1,5 +1,5 @@
 import angular from 'angular';
-
+import displayTags from '../display-tags/index.js';
 import '@ovh-ux/ng-translate-async-loader';
 import '@uirouter/angularjs';
 import 'oclazyload';
@@ -9,7 +9,7 @@ import onboarding from './onboarding';
 const moduleName = 'ovhManagerDedicatedServerServersLazyLoading';
 
 angular
-  .module(moduleName, ['ui.router', 'oc.lazyLoad', onboarding])
+  .module(moduleName, ['ui.router', 'oc.lazyLoad', onboarding, displayTags])
   .config(
     /* @ngInject */ ($stateProvider) => {
       $stateProvider

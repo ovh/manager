@@ -25,6 +25,10 @@
                 class="oui-table__header"
                 data-translate="dedicated_servers_status"
             ></th>
+            <th
+                class="oui-table__header"
+                data-translate="dedicated_servers_tags"
+            ></th>
         </tr>
     </thead>
     <tbody>
@@ -57,6 +61,22 @@
                     }"
                     data-translate="{{:: 'dedicated_servers_state_' + node.state }}"
                 ></span>
+            </td>
+            <td class="oui-table__cell">
+                <span
+                    data-ng-repeat="tag in $ctrl.getTags(node.iam.tags)  | limitTo: 2"
+                >
+                    <span class="oui-badge oui-badge_info" data-ng-bind="tag">
+                    </span>
+                </span>
+                <button
+                    type="button"
+                    class="oui-link"
+                    data-ng-if="$ctrl.getTags(node.iam.tags).length > 1"
+                    data-ng-click="$ctrl.goToTagsModal(node.iam)"
+                >
+                    ...
+                </button>
             </td>
         </tr>
     </tbody>
