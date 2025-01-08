@@ -1,7 +1,16 @@
+import {
+  CLOUD_CONNECT_TRACKING_PREFIX,
+  CLOUD_CONNECT_LISTING_TRACKING_CONTEXT,
+} from '../../cloud-connect.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('cloud-connect.details.service-keys', {
     url: '/service-keys',
     component: 'cloudConnectDetailsServiceKeys',
+    atInternet: {
+      rename: `${CLOUD_CONNECT_TRACKING_PREFIX}cloud-connect::dashboard::service-keys`,
+      ...CLOUD_CONNECT_LISTING_TRACKING_CONTEXT,
+    },
     resolve: {
       serviceKeys: /* @ngInject */ (cloudConnectService, cloudConnect) =>
         cloudConnectService.loadServiceKeys(cloudConnect),

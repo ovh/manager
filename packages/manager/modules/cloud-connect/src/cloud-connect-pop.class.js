@@ -25,6 +25,10 @@ export default class CloudConnectPop {
     return this.type === POP_TYPE_CONSTANT.L3;
   }
 
+  isL2Type() {
+    return this.type === POP_TYPE_CONSTANT.L2;
+  }
+
   isActive() {
     return this.status === STATUS.ACTIVE;
   }
