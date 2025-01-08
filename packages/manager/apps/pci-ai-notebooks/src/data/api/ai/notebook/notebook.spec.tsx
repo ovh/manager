@@ -10,6 +10,7 @@ import {
   stopNotebook,
 } from '@/data/api/ai/notebook/notebook.api';
 import { mockedNotebookSpec } from '@/__tests__/helpers/mocks/notebook';
+import * as ai from '@/types/cloud/project/ai';
 
 vi.mock('@ovh-ux/manager-core-api', () => {
   const get = vi.fn(() => {
@@ -100,6 +101,19 @@ describe('notebook functions', () => {
           privateNetwork: 1,
           publicNetwork: 1,
         },
+        volumes: [
+          {
+            cache: false,
+            mountPath: '/demo',
+            permission: ai.VolumePermissionEnum.RO,
+            volumeSource: {
+              dataStore: {
+                alias: 'alias',
+                container: 'container',
+              },
+            },
+          },
+        ],
       },
     );
   });
@@ -168,6 +182,19 @@ describe('notebook functions', () => {
           privateNetwork: 1,
           publicNetwork: 1,
         },
+        volumes: [
+          {
+            cache: false,
+            mountPath: '/demo',
+            permission: ai.VolumePermissionEnum.RO,
+            volumeSource: {
+              dataStore: {
+                alias: 'alias',
+                container: 'container',
+              },
+            },
+          },
+        ],
       },
     );
   });

@@ -18,27 +18,27 @@ const NotebookTabs = ({ notebook }: NotebookTabsProps) => {
     refetchInterval: isUserActive && POLLING.BACKUPS,
   });
 
-  const containers: ai.volume.Volume[] = notebook.spec.volumes.filter(
+  const containers: ai.volume.Volume[] = notebook.spec.volumes?.filter(
     (vol: ai.volume.Volume) =>
       vol.volumeSource.dataStore &&
       vol.volumeSource.dataStore.internal === false,
   );
 
-  const publicGitRepo: ai.volume.Volume[] = notebook.spec.volumes.filter(
+  const publicGitRepo: ai.volume.Volume[] = notebook.spec.volumes?.filter(
     (vol: ai.volume.Volume) => vol.volumeSource.publicGit,
   );
 
   const tabs = [
     { href: '', label: t('dashboardTab'), end: true },
-    containers.length > 0 && {
+    containers?.length > 0 && {
       href: 'containers',
       label: t('containerTab'),
-      count: containers.length,
+      count: containers?.length,
     },
-    publicGitRepo.length > 0 && {
+    publicGitRepo?.length > 0 && {
       href: 'public-git',
       label: t('publicGit'),
-      count: publicGitRepo.length,
+      count: publicGitRepo?.length,
     },
     backups &&
       backups?.length > 0 && {

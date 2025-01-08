@@ -86,7 +86,7 @@ const Logs = () => {
       </div>
       <ScrollArea className="p-2 h-[500px] bg-[#122844]">
         {logsQuery.isSuccess ? (
-          <ul ref={listLogRef}>
+          <ul data-testid="logs-area" ref={listLogRef}>
             {logsQuery.data.logs.map((log, index) => (
               <li
                 className="whitespace-pre text-white font-mono text-sm"

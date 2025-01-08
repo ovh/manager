@@ -21,7 +21,7 @@ const Notebooks = () => {
   return (
     <>
       <div
-        data-testid="services-guides-container"
+        data-testid="notebooks-guides-container"
         className="flex justify-between w-full items-center"
       >
         <h2>{t('title')}</h2>

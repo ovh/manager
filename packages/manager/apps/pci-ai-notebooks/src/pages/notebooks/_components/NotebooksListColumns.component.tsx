@@ -227,6 +227,7 @@ export const getColumns = ({
             >
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
               <DropdownMenuItem
+                data-testid="notebook-action-manage-button"
                 variant="primary"
                 onClick={() => navigate(`./${row.original.id}`)}
                 disabled={
@@ -236,7 +237,6 @@ export const getColumns = ({
               >
                 {t('tableActionManage')}
               </DropdownMenuItem>
-
               <DropdownMenuItem
                 data-testid="notebook-action-start-button"
                 disabled={
@@ -250,7 +250,6 @@ export const getColumns = ({
               >
                 {t('tableActionStart')}
               </DropdownMenuItem>
-
               <DropdownMenuItem
                 data-testid="notebook-action-stop-button"
                 disabled={
@@ -264,10 +263,9 @@ export const getColumns = ({
               >
                 {t('tableActionStop')}
               </DropdownMenuItem>
-
               <DropdownMenuSeparator />
-
               <DropdownMenuItem
+                data-testid="notebook-action-delete-button"
                 variant="destructive"
                 disabled={
                   !isStoppedNotebook(notebook.status.state) ||

@@ -19,7 +19,7 @@ export const mockedJobStatus: ai.job.JobStatus = {
   dataSync: [mockedDataSync],
   history: [
     {
-      date: 'date',
+      date: '2024-12-12T16:27:46.65022Z',
       state: ai.job.JobStateEnum.DONE,
     },
   ],
@@ -29,10 +29,10 @@ export const mockedJobStatus: ai.job.JobStatus = {
   },
 };
 export const mockedJob: ai.job.Job = {
-  createdAt: 'createdAt',
+  createdAt: '2024-12-12T16:27:46.65022Z',
   id: 'jobId',
   spec: mockedJobSpec,
   status: mockedJobStatus,
-  updatedAt: 'updatedAt',
+  updatedAt: '2024-12-12T16:27:46.65022Z',
   user: 'user',
 };

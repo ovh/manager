@@ -127,11 +127,12 @@ export const NotebookHeader = ({
 };
 
 NotebookHeader.Skeleton = function NotebookHeaderSkeleton() {
+  const { t } = useTranslation('pci-ai-notebooks/notebooks/notebook');
   return (
     <div className="flex gap-2 items-center mt-4 mb-6">
       <Skeleton className="rounded-full h-14 w-14" />
       <div>
-        <h2>Dashboard</h2>
+        <h2>{t('dashboardTab')}</h2>
         <div className="flex gap-2">
           <Skeleton className="h-4 w-10" />
           <Skeleton className="h-4 w-10" />

@@ -38,7 +38,7 @@ const Labels = () => {
     onSuccess: () => {
       toast.toast({
         title: t('notebookToastSuccessTitle'),
-        description: t('deleteNotebookSuccess'),
+        description: t('notebookLabelSuccess'),
       });
       notebookQuery.refetch();
     },

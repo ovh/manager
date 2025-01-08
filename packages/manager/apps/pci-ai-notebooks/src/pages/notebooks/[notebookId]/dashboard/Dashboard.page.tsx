@@ -59,7 +59,10 @@ const Dashboard = () => {
   return (
     <>
       <h2>{t('dashboardTitle')}</h2>
-      <div className="flex flex-col lg:grid lg:grid-flow-col lg:auto-cols-fr gap-2">
+      <div
+        className="flex flex-col lg:grid lg:grid-flow-col lg:auto-cols-fr gap-2"
+        data-testid="dashboard-container"
+      >
         <Card>
           <CardHeader>
             <h4>
