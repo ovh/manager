@@ -34,7 +34,6 @@ import {
   OdsFormField,
   OdsIcon,
   OdsInput,
-  OdsLink,
   OdsMessage,
   OdsPopover,
   OdsSpinner,
@@ -60,6 +59,7 @@ import { useGetRegion } from '@/api/hooks/useRegion';
 import { useAllStorages } from '@/api/hooks/useStorages';
 import { TServerContainer } from '@/api/data/container';
 import { useGetEncriptionAvailability } from '@/api/hooks/useGetEncriptionAvailability';
+import LabelComponent from '@/components/Label.component';
 
 export type TContainer = {
   id: string;
@@ -202,6 +202,10 @@ export default function ObjectPage() {
     filters,
   );
 
+  if (!container) {
+    return <OdsSpinner size="md" />;
+  }
+
   return (
     <BaseLayout
       breadcrumb={
@@ -300,6 +304,7 @@ export default function ObjectPage() {
                   </OdsText>
                 </div>
               )}
+
               {displayEncryptionData && !is.encrypted && !is.localZone && (
                 <div>
                   <OdsText>
@@ -313,6 +318,7 @@ export default function ObjectPage() {
                   </OdsText>
                 </div>
               )}
+
               {displayEncryptionData && is.encrypted && (
                 <div>
                   <OdsText>
@@ -348,13 +354,15 @@ export default function ObjectPage() {
                 </div>
               )}
               {is.rightOffer && !is.localZone && (
-                <div>
+                <div className="flex gap-4">
                   <OdsText>
                     {tVersioning(
                       'pci_projects_project_storages_containers_update_versioning_versioning',
                     )}
                   </OdsText>
                   <OdsBadge
+                    size="md"
+                    className="font-bold"
                     label={tVersioning(
                       `pci_projects_project_storages_containers_update_versioning_${container.versioning.status}_label`,
                     )}
@@ -374,85 +382,64 @@ export default function ObjectPage() {
                 !is.localZone &&
                 container.versioning?.status === 'suspended') ||
                 (container.versioning?.status === 'disabled' && (
-                  <div>
-                    <OdsLink href={enableVersioningHref}>
-                      {tVersioning(
-                        'pci_projects_project_storages_containers_update_versioning_title',
-                      )}
-                    </OdsLink>
-                    <OdsIcon name="arrow-right" className="ml-4" />
-                  </div>
+                  <Links
+                    label={tVersioning(
+                      'pci_projects_project_storages_containers_update_versioning_title',
+                    )}
+                    type={LinkType.next}
+                    href={enableVersioningHref}
+                  />
                 ))}
             </div>
             <div className="grid col-span-12 md:col-span-8 gap-4">
-              <div>
-                <OdsFormField>
-                  <OdsText slot="label">
-                    {tContainer(
-                      'pci_projects_project_storages_containers_container_info_id',
-                    )}
-                  </OdsText>
-                  <Clipboard value={container?.id || container?.name} />
-                </OdsFormField>
-              </div>
+              <OdsFormField>
+                <LabelComponent
+                  text={tContainer(
+                    'pci_projects_project_storages_containers_container_info_id',
+                  )}
+                />
+                <Clipboard
+                  className="w-[100%]"
+                  value={container?.id || container?.name}
+                />
+              </OdsFormField>
 
-              <div>
-                <OdsFormField>
-                  <span>
-                    <OdsText slot="label">
-                      {tContainer(
-                        'pci_projects_project_storages_containers_container_info_publicUrl',
-                      )}
-                    </OdsText>
-                    <OdsIcon
-                      id="publicUrlPopoverTrigger"
-                      name="circle-question"
-                      className="ml-4"
-                    />
-                    <OdsPopover triggerId="publicUrlPopoverTrigger">
-                      <OdsText>
-                        {tContainer(
-                          'pci_projects_project_storages_containers_container_info_publicUrl_help',
-                        )}
-                      </OdsText>
-                    </OdsPopover>
-                  </span>
-                  <Clipboard value={container?.publicUrl} />
-                </OdsFormField>
-              </div>
+              <OdsFormField>
+                <LabelComponent
+                  triggerId="public-url-popover"
+                  text={tContainer(
+                    'pci_projects_project_storages_containers_container_info_publicUrl',
+                  )}
+                  helpText={tContainer(
+                    'pci_projects_project_storages_containers_container_info_publicUrl_help',
+                  )}
+                />
+                <Clipboard className="w-[100%]" value={container?.publicUrl} />
+              </OdsFormField>
 
-              <div>
-                <OdsFormField>
-                  <span>
-                    <OdsText slot="label">
-                      {container.s3StorageType
-                        ? OBJECT_CONTAINER_S3_STATIC_URL_INFO
-                        : tContainer(
-                            'pci_projects_project_storages_containers_container_object_info_staticUrl',
-                          )}
-                    </OdsText>
-                    <OdsIcon
-                      id="staticUrlPopoverTrigger"
-                      name="circle-question"
-                      className="ml-4"
-                    />
-                    <OdsPopover triggerId="staticUrlPopoverTrigger">
-                      <OdsText>
-                        {tContainer(
-                          `pci_projects_project_storages_containers_container_object_info_${
-                            container.s3StorageType
-                              ? 's3_staticUrl_help'
-                              : 'staticUrl_help'
-                          }`,
-                        )}
-                      </OdsText>
-                    </OdsPopover>
-                  </span>
-                  <Clipboard
-                    value={container?.staticUrl || container?.virtualHost}
-                  />
-                </OdsFormField>
-              </div>
+              <OdsFormField>
+                <LabelComponent
+                  triggerId="virtual-host-popover"
+                  text={
+                    container.s3StorageType
+                      ? OBJECT_CONTAINER_S3_STATIC_URL_INFO
+                      : tContainer(
+                          'pci_projects_project_storages_containers_container_object_info_staticUrl',
+                        )
+                  }
+                  helpText={tContainer(
+                    `pci_projects_project_storages_containers_container_object_info_${
+                      container.s3StorageType
+                        ? 's3_staticUrl_help'
+                        : 'staticUrl_help'
+                    }`,
+                  )}
+                />
+                <Clipboard
+                  className="w-[100%]"
+                  value={container?.staticUrl || container?.virtualHost}
+                />
+              </OdsFormField>
             </div>
           </div>
 
@@ -493,6 +480,7 @@ export default function ObjectPage() {
                   setSearchField(value);
                 }}
               />
+
               <OdsButton
                 id="filterPopoverTrigger"
                 slot="popover-trigger"
@@ -501,7 +489,8 @@ export default function ObjectPage() {
                 icon="filter"
                 size="sm"
                 variant="outline"
-              ></OdsButton>
+              />
+
               <OdsPopover triggerId="filterPopoverTrigger">
                 <FilterAdd
                   columns={[
@@ -534,9 +523,11 @@ export default function ObjectPage() {
               </OdsPopover>
             </div>
           </div>
+
           <div className="mt-8">
             <FilterList filters={filters} onRemoveFilter={removeFilter} />
           </div>
+
           <div className="mt-8">
             {isPending ? (
               <OdsSpinner />
@@ -553,6 +544,7 @@ export default function ObjectPage() {
               />
             )}
           </div>
+
           <div className="mt-8">
             <Tiles />
           </div>
