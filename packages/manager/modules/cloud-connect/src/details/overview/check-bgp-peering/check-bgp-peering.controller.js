@@ -20,11 +20,11 @@ export default class CheckBGPPeeringCtrl {
     this.cloudConnectService
       .runDiagnostic(
         this.cloudConnectId,
-        this.dcConfigId,
         this.diagnosticName,
+        this.popConfigId,
+        this.dcConfigId,
         this.diagnosticType,
         this.extraConfigId,
-        this.popConfigId,
       )
       .then(() => {
         return this.goBack(
