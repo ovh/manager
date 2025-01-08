@@ -31,6 +31,8 @@ import { useDownloadRCloneConfig } from '../../api/hook/useRclone';
 import '../../translations/rclone-download';
 import { PciModal } from '../modal';
 
+import '../../index.css';
+
 type RCloneDownloadModalProps = { userId: string };
 
 export default function RCloneDownloadModal({
@@ -126,40 +128,45 @@ export default function RCloneDownloadModal({
         )}
       </OdsText>
 
-      <OdsFormField className="mt-6 mb-8">
-        <label slot="label" htmlFor="fileType">
+      <OdsFormField>
+        <OdsText preset="caption" className="label-caption-bold">
           {t('pci_projects_project_users_download-rclone_file_type_label')}
-        </label>
-        <div className="flex">
-          <OdsRadio
-            value={DOWNLOAD_FILETYPE.SWIFT}
-            inputId="fileType-swift"
-            name="fileType"
-            className="mr-4"
-            isChecked
-            color="primary"
-            onOdsChange={handleFileTypeChanged}
-          />
-          <label htmlFor="fileType-swift">
-            <OdsText>{DOWNLOAD_FILETYPE.SWIFT}</OdsText>
-          </label>
-          <OdsRadio
-            value={DOWNLOAD_FILETYPE.S3}
-            name="fileType"
-            inputId="fileType-s3"
-            class="ml-8 mr-4"
-            onOdsChange={handleFileTypeChanged}
-          />
-          <label htmlFor="fileType-s3">
-            <OdsText>{DOWNLOAD_FILETYPE.S3}</OdsText>
-          </label>
+        </OdsText>
+
+        <div className="flex gap-8">
+          <div className="flex gap-4 items-center">
+            <OdsRadio
+              value={DOWNLOAD_FILETYPE.SWIFT}
+              inputId="fileType-swift"
+              name="fileType"
+              isChecked
+              color="primary"
+              onOdsChange={handleFileTypeChanged}
+            />
+            <label htmlFor="fileType-swift">
+              <OdsText>{DOWNLOAD_FILETYPE.SWIFT}</OdsText>
+            </label>
+          </div>
+
+          <div className="flex gap-4 items-center">
+            <OdsRadio
+              value={DOWNLOAD_FILETYPE.S3}
+              name="fileType"
+              inputId="fileType-s3"
+              onOdsChange={handleFileTypeChanged}
+            />
+            <label htmlFor="fileType-s3">
+              <OdsText>{DOWNLOAD_FILETYPE.S3}</OdsText>
+            </label>
+          </div>
         </div>
       </OdsFormField>
 
       <OdsFormField>
-        <label slot="label">
+        <OdsText preset="caption" className="label-caption-bold">
           {t('pci_projects_project_users_download-rclone_region_label')}
-        </label>
+        </OdsText>
+
         {fileType === DOWNLOAD_FILETYPE.S3 ? (
           <S3StorageRegions
             projectId={projectId}
