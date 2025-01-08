@@ -15,7 +15,7 @@ export default class {
   }
 
   getStatusBadgeLabel() {
-    const translateKey = `nutanix_service_status_${this.status}`;
+    const translateKey = `nutanix_dashboard_service_status_${this.status}`;
     const labelTranslated = this.$translate.instant(translateKey);
 
     return translateKey === labelTranslated ? this.status : labelTranslated;

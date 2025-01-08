@@ -15,7 +15,6 @@ angular
     'pascalprecht.translate',
     'ui.router',
   ])
-  .component('serviceStatus', component)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .component('serviceStatus', component);
 
 export default moduleName;
