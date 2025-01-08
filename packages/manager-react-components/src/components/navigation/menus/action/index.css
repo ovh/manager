@@ -1,0 +1,4 @@
+ods-button.action-menu-item::part(button) {
+  width: 100%;
+  justify-content: left;
+}

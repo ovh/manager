@@ -10,6 +10,8 @@ import '../translations/translation';
 
 import { ManagerButton } from '../../../ManagerButton/ManagerButton';
 
+import './index.css';
+
 export interface ActionMenuItem {
   id: number;
   rel?: string;
@@ -48,14 +50,11 @@ const MenuItem = ({
     className: 'w-full action-menu-item',
     ...item,
   };
+
   return (
-    <div className="-mx-[2px]">
+    <div className="mx-[2px]">
       {!item?.iamActions || item?.iamActions?.length === 0 ? (
-        <OdsButton {...buttonProps} label={item.label}>
-          <span slot="start">
-            <span>{item.label}</span>
-          </span>
-        </OdsButton>
+        <OdsButton {...buttonProps} label={item?.label} />
       ) : (
         <ManagerButton
           id={`${id}`}
@@ -86,7 +85,7 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
 
   return (
     <>
-      <div key={id} id={`navigation-action-trigger-${id}`}>
+      <div className="w-fit" key={id} id={`navigation-action-trigger-${id}`}>
         <OdsButton
           data-testid="navigation-action-trigger-action"
           className="action-menu-btn"
@@ -106,7 +105,7 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
         />
       </div>
       <OdsPopover
-        className="py-[8px] px-0 overflow-hidden"
+        className="py-[8px] overflow-hidden"
         triggerId={`navigation-action-trigger-${id}`}
         with-arrow
       >
