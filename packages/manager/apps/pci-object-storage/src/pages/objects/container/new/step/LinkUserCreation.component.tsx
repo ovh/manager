@@ -55,7 +55,7 @@ export default function LinkUserCreation({
 
   const { postS3Secret: showSecretKey } = usePostS3Secret({
     projectId,
-    userId: newUser?.id,
+    userId: `${newUser?.id}`,
     userAccess: newUser?.s3Credentials?.access,
     onSuccess: ({ secret }) => {
       setSecretUser(secret);
@@ -74,10 +74,13 @@ export default function LinkUserCreation({
     const data = await createUser(projectId, formState.description);
 
     poll<TUser>({
-      fn: () => getUser(projectId, data.id),
+      fn: () => getUser(projectId, `${data.id}`),
       ruleFn: (user: TUser) => user.status === 'ok',
       onSuccess: async ({ value }) => {
-        const credentials = await generateS3Credentials(projectId, value.id);
+        const credentials = await generateS3Credentials(
+          projectId,
+          `${value.id}`,
+        );
         setNewUser({
           ...value,
           access: credentials.access,
@@ -95,7 +98,9 @@ export default function LinkUserCreation({
   return (
     <>
       {newUser && secretUser ? (
-        <UserInformationTile user={newUser} secretUser={secretUser} />
+        <div className="mt-4">
+          <UserInformationTile user={newUser} secretUser={secretUser} />
+        </div>
       ) : (
         <OsdsFormField
           className="mt-6"
@@ -147,26 +152,22 @@ export default function LinkUserCreation({
           onClick={onCancel}
           variant="ghost"
           size="sm"
-          label="linkUserCreation-cancel"
+          label={tAssociateUser(
+            'pci_projects_project_storages_containers_add_create_or_linked_user_create_user_btn_cancel',
+          )}
           isDisabled={isLoading || undefined}
           color="primary"
-        >
-          {tAssociateUser(
-            'pci_projects_project_storages_containers_add_create_or_linked_user_linked_user_btn_cancel',
-          )}
-        </OdsButton>
+        ></OdsButton>
         <OdsButton
           color="primary"
           size="sm"
-          label="linkUserCreation-submit"
+          label={tAssociateUser(
+            'pci_projects_project_storages_containers_add_create_or_linked_user_create_user_btn_linked',
+          )}
           isDisabled={isDisabled}
           onClick={onConfirm}
           class="ml-4"
-        >
-          {tAssociateUser(
-            'pci_projects_project_storages_containers_add_create_or_linked_user_create_user_btn_linked',
-          )}
-        </OsdsButton>
+        ></OdsButton>
       </div>
     </>
   );

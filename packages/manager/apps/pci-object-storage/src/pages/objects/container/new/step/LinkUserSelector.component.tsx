@@ -1,6 +1,3 @@
-import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
-import { useEffect, useRef, useState } from 'react';
 import {
   OdsButton,
   OdsFormField,
@@ -8,14 +5,16 @@ import {
   OdsSpinner,
   OdsText,
 } from '@ovhcloud/ods-components/react';
-import { log } from 'console';
+import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useParams } from 'react-router-dom';
+import { TUser, generateS3Credentials } from '@/api/data/user';
 import {
   getQueryKeyUsers,
   usePostS3Secret,
   useUsers,
 } from '@/api/hooks/useUser';
 import LabelComponent from '@/components/Label.component';
-import { generateS3Credentials, TUser } from '@/api/data/user';
 import queryClient from '@/queryClient';
 import UserInformationTile from './UserInformationTile.component';
 
@@ -36,7 +35,7 @@ export default function LinkUserSelector({
   const { data: listUsers, isPending: isPendingListUsers } = useUsers(
     projectId,
   );
-  const formUser = listUsers?.find((user) => user.id === userId);
+  const formUser = listUsers?.find((user) => `${user.id}` === userId);
 
   const [secretUser, setSecretUser] = useState('');
 
@@ -47,7 +46,7 @@ export default function LinkUserSelector({
 
   const { postS3Secret: showSecretKey } = usePostS3Secret({
     projectId,
-    userId: formUser?.id,
+    userId: `${formUser?.id}`,
     userAccess: formUser?.s3Credentials?.access,
     onSuccess: ({ secret }) => {
       setSecretUser(secret);
@@ -69,7 +68,10 @@ export default function LinkUserSelector({
 
   const onShowCredentials = async () => {
     if (!formUser?.s3Credentials) {
-      const credentials = await generateS3Credentials(projectId, formUser?.id);
+      const credentials = await generateS3Credentials(
+        projectId,
+        `${formUser?.id}`,
+      );
       await queryClient.invalidateQueries({
         queryKey: [...getQueryKeyUsers(projectId), formUser?.id],
       });
@@ -89,16 +91,15 @@ export default function LinkUserSelector({
 
   return (
     <>
-      <OdsFormField className="mt-6">
+      <OdsFormField className="mt-6 min-w-[40%]">
         <LabelComponent
           text={tAssociateUser(
             'pci_projects_project_storages_containers_add_create_or_linked_user_linked_user_label',
           )}
         />
-        <div className="flex items-center">
+        <div>
           <OdsSelect
-            value={formUser?.id}
-            className="min-w-[40%]"
+            value={`${formUser?.id}`}
             name="selectUser"
             isDisabled={
               haveShowedOrGeneratedCredentials ||
@@ -106,10 +107,10 @@ export default function LinkUserSelector({
               undefined
             }
             onOdsChange={(event) => {
-              console.log('event', event);
-              const user = listUsers.find((u) => u.id === event.detail.value);
+              const user = listUsers.find(
+                (u) => u.id === parseInt(event.detail.value, 10),
+              );
               onSelectOwner(user);
-              console.log(formUser);
             }}
           >
             {formUser?.description ? (
@@ -148,9 +149,11 @@ export default function LinkUserSelector({
           )}
         </div>
       </OdsFormField>
-      {haveShowedOrGeneratedCredentials && (
-        <UserInformationTile secretUser={secretUser} user={formUser} />
-      )}
+      <div>
+        {haveShowedOrGeneratedCredentials && (
+          <UserInformationTile secretUser={secretUser} user={formUser} />
+        )}
+      </div>
       <div className="mt-6 flex">
         <OdsButton
           onClick={onCancel}
