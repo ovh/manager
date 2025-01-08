@@ -1,9 +1,7 @@
 import { renderHook } from '@testing-library/react';
 import { PropsWithChildren, useContext } from 'react';
-import {
-  PCICommonContext,
-  usePCICommonContextFactory,
-} from '@/contexts/PCICommonContext/PCICommonContext';
+import { PCICommonContext } from '@/contexts/PCICommonContext/PCICommonContext';
+import { usePCICommonContextFactory } from './usePCICommonContextFactory';
 
 const TestChildrenMerge = ({ children }: PropsWithChildren) => {
   const pciCommonContext = usePCICommonContextFactory({
@@ -27,12 +25,48 @@ const TestChildrenOverride = ({ children }: PropsWithChildren) => (
   </PCICommonContext.Provider>
 );
 
+const ParentWithoutProvider = ({ children }: PropsWithChildren) => (
+  <TestChildrenMerge>{children}</TestChildrenMerge>
+);
+
+const ParentWithMyVar = ({ children }: PropsWithChildren) => {
+  const pciCommonContext = usePCICommonContextFactory({
+    myVar: 'parent',
+  });
+
+  return (
+    <PCICommonContext.Provider value={pciCommonContext}>
+      <TestChildrenMerge>{children}</TestChildrenMerge>
+    </PCICommonContext.Provider>
+  );
+};
+
+const ParentWithMyVar2 = ({ children }: PropsWithChildren) => {
+  const pciCommonContext = usePCICommonContextFactory({
+    myVar2: 'parent',
+  });
+
+  return (
+    <PCICommonContext.Provider value={pciCommonContext}>
+      <TestChildrenMerge>{children}</TestChildrenMerge>
+    </PCICommonContext.Provider>
+  );
+};
+
+const ParentWithEmptyFactory = ({ children }: PropsWithChildren) => {
+  const pciCommonContext = usePCICommonContextFactory();
+
+  return (
+    <PCICommonContext.Provider value={pciCommonContext}>
+      {children}
+    </PCICommonContext.Provider>
+  );
+};
+
 describe('usePCICommonContextFactory', () => {
   it('should set value', () => {
     const { result } = renderHook(() => useContext(PCICommonContext), {
-      wrapper: ({ children }) => (
-        <TestChildrenMerge>{children}</TestChildrenMerge>
-      ),
+      wrapper: ParentWithoutProvider,
     });
 
     expect(result.current).toEqual({ myVar: 'children' });
@@ -40,17 +74,7 @@ describe('usePCICommonContextFactory', () => {
 
   it('should override previously set value', () => {
     const { result } = renderHook(() => useContext(PCICommonContext), {
-      wrapper: ({ children }) => {
-        const pciCommonContext = usePCICommonContextFactory({
-          myVar: 'parent',
-        });
-
-        return (
-          <PCICommonContext.Provider value={pciCommonContext}>
-            <TestChildrenMerge>{children}</TestChildrenMerge>
-          </PCICommonContext.Provider>
-        );
-      },
+      wrapper: ParentWithMyVar,
     });
 
     expect(result.current).toEqual({ myVar: 'children' });
@@ -58,17 +82,7 @@ describe('usePCICommonContextFactory', () => {
 
   it('should merge with old value', () => {
     const { result } = renderHook(() => useContext(PCICommonContext), {
-      wrapper: ({ children }) => {
-        const pciCommonContext = usePCICommonContextFactory({
-          myVar2: 'parent',
-        });
-
-        return (
-          <PCICommonContext.Provider value={pciCommonContext}>
-            <TestChildrenMerge>{children}</TestChildrenMerge>
-          </PCICommonContext.Provider>
-        );
-      },
+      wrapper: ParentWithMyVar2,
     });
 
     expect(result.current).toEqual({ myVar: 'children', myVar2: 'parent' });
@@ -76,17 +90,11 @@ describe('usePCICommonContextFactory', () => {
 
   it('should override old value', () => {
     const { result } = renderHook(() => useContext(PCICommonContext), {
-      wrapper: ({ children }) => {
-        const pciCommonContext = usePCICommonContextFactory({
-          myVar2: 'parent',
-        });
-
-        return (
-          <PCICommonContext.Provider value={pciCommonContext}>
-            <TestChildrenOverride>{children}</TestChildrenOverride>
-          </PCICommonContext.Provider>
-        );
-      },
+      wrapper: ({ children }) => (
+        <ParentWithMyVar2>
+          <TestChildrenOverride>{children}</TestChildrenOverride>
+        </ParentWithMyVar2>
+      ),
     });
 
     expect(result.current).toEqual({ myVar: 'children' });
@@ -94,15 +102,7 @@ describe('usePCICommonContextFactory', () => {
 
   it('should work with no values', () => {
     const { result } = renderHook(() => useContext(PCICommonContext), {
-      wrapper: ({ children }) => {
-        const pciCommonContext = usePCICommonContextFactory();
-
-        return (
-          <PCICommonContext.Provider value={pciCommonContext}>
-            {children}
-          </PCICommonContext.Provider>
-        );
-      },
+      wrapper: ParentWithEmptyFactory,
     });
 
     expect(result.current).toEqual({});

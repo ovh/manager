@@ -1,9 +1,7 @@
 import { renderHook } from '@testing-library/react';
 import { useHas3AZ } from './useHas3AZ';
-import {
-  PCICommonContext,
-  usePCICommonContextFactory,
-} from '../../contexts/PCICommonContext/PCICommonContext';
+import { PCICommonContext } from '../../contexts/PCICommonContext/PCICommonContext';
+import { usePCICommonContextFactory } from '../usePCICommonContextFactory/usePCICommonContextFactory';
 
 describe('useHas3AZ', () => {
   it.each([
