@@ -11,7 +11,6 @@ import useAccountUrn from '@/hooks/accountUrn/useAccountUrn';
 import { ModalTypes } from '@/context/modals/modals.context';
 import { useModals } from '@/context/modals';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-import { requiredStatusKey } from '@/identity-documents-modal/constants';
 
 export default function AgreementsUpdateModal () {
   const { shell } = useContext(ApplicationContext);
@@ -22,8 +21,8 @@ export default function AgreementsUpdateModal () {
   const navigation = shell.getPlugin('navigation');
   const { current } = useModals();
   const myContractsLink = navigation.getURL(
-    'dedicated',
-    '#/billing/autorenew/agreements',
+    'billing',
+    '#/autorenew/agreements',
   );
   const [ showModal, setShowModal ] = useState(false);
   const isCurrentModalActive = useMemo(() => current === ModalTypes.agreements, [current]);
@@ -52,9 +51,11 @@ export default function AgreementsUpdateModal () {
   useEffect(() => {
     if (!isCurrentModalActive) return;
 
-    const hasFullyLoaded = !isAuthorizationLoading && (!canUserAcceptAgreements || !areAgreementsLoading);
-
     if (isFeatureAvailable) {
+      const hasFullyLoaded =
+        !isAuthorizationLoading &&
+        (!canUserAcceptAgreements ||
+          (!areAgreementsLoading && Boolean(agreements)));
       if (isOnAgreementsPage || !hasFullyLoaded) return;
 
       if (!agreements?.length) {
