@@ -16,6 +16,7 @@ export default class CloudConnectOverviewCtrl {
   $onInit() {
     this.loadMessages();
     this.loadServiceInfo();
+    this.getMacLoading = false;
     if (this.cloudConnect.isVrackAssociated()) {
       this.loadVrackDetails(this.cloudConnect.vrack);
       this.loadInterfaces();
@@ -131,6 +132,28 @@ export default class CloudConnectOverviewCtrl {
           }),
         ),
       );
+  }
+
+  getMacList(pop) {
+    const diagnosticName = 'diagMacs';
+    this.getMacLoading = true;
+    this.cloudConnectService
+      .runDiagnostic(this.cloudConnect.id, diagnosticName, pop.id)
+      .then(() => {
+        this.CucCloudMessage.success(
+          this.$translate.instant('cloud_connect_bgp_peering_success'),
+        );
+      })
+      .catch((error) =>
+        this.CucCloudMessage.error(
+          this.$translate.instant('cloud_connect_dc_get_configuration_error', {
+            message: get(error, 'data.message', error.message),
+          }),
+        ),
+      )
+      .finally(() => {
+        this.getMacLoading = false;
+      });
   }
 
   getBandwidth(bandwidth) {
