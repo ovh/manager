@@ -5832,10 +5832,10 @@
     tailwindcss "^3.4.4"
     uuid "^9.0.1"
 
-"@ovh-ux/manager-react-components@^1.43.1":
-  version "1.43.1"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-components/-/manager-react-components-1.43.1.tgz#0a72057ba43cdb866dfb27d568c049c96cbae168"
-  integrity sha512-oLqroaUwULz+0rs9riCILTGTYqfCg4iLqnONtADJKPVwWG0NWx3ZCgb9Q8cJ6T3Qq4JOcCIb2ij6Uct6d6gMzg==
+"@ovh-ux/manager-react-shell-client@^0.8.4":
+  version "0.8.4"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-shell-client/-/manager-react-shell-client-0.8.4.tgz#df2dfaee89fe4d2cf94c1d9e0dcf4a5e86de5258"
+  integrity sha512-ex8TwTzaOBRJIGRjeKIQgSwNSFWPxWoaiOdKXrE7eulG6mNTS2WG0b8KmM1pUWmICwfxXY4NPGWc8PqemKFQiA==
   dependencies:
     "@ovhcloud/ods-common-core" "17.2.2"
     "@ovhcloud/ods-common-theming" "17.2.2"
@@ -5877,6 +5877,13 @@
   integrity sha512-LvxWv+ER5p8hKHntejrcbxPNA6s9MqcAxnnDfvxPTeo292ZVERy6rDZ1ukuV8w6BhRKGGU/IXL8jILgLS6drKg==
   dependencies:
     lodash "^4.17.15"
+
+"@ovh-ux/ovh-at-internet@^0.18.1":
+  version "0.18.1"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ovh-at-internet/-/ovh-at-internet-0.18.1.tgz#a9d0d543a187031f61b699c57aaec0529f68a790"
+  integrity sha512-i0ZFNGrktTsgTw8G2Fx2pn/xkgmwhyJ7JsCx7+RkzEakcV2E3+u5yTfSNlLVyHTMiqKGyjMz330/dw221qVaDw==
+  dependencies:
+    lodash-es "^4.17.15"
 
 "@ovh-ux/rollup-plugin-less-inject@^1.0.5":
   version "1.0.6"

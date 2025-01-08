@@ -11,7 +11,7 @@ import {
 } from '@ovhcloud/ods-components';
 import { FormKey } from '@/types/form.type';
 
-type SelectOptionsProps<T> = T extends Record<string, unknown>
+export type SelectOptionsProps<T> = T extends Record<string, unknown>
   ? {
       options: T[];
       optionValueKey: keyof T;
