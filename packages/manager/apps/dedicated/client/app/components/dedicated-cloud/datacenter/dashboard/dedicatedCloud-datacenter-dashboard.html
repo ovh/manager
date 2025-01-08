@@ -186,6 +186,7 @@
             <oui-tile
                 data-heading="{{:: 'dedicatedCloud_nsx_edge_title' | translate }}"
                 data-loading="$ctrl.loading"
+                data-ng-if="$ctrl.datacenter.model.isNsxCommercialRangeName"
             >
                 <oui-tile-definition
                     data-term="{{:: 'dedicatedCloud_nsx_edge_level' | translate }}"
