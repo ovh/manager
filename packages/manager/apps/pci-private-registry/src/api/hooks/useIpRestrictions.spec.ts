@@ -26,7 +26,12 @@ vi.mock('@/queryClient');
 vi.mock('@ovh-ux/manager-core-api');
 
 const renderHookWithWrapper = (
-  hook: (...params: unknown[]) => unknown,
+  hook: (
+    ...params: unknown[]
+  ) => {
+    updateIpRestrictions(arg0: TUpdateIpRestrictionMutationParams): unknown;
+    data: unknown;
+  },
   params: unknown[],
 ) => renderHook(() => hook(...params), { wrapper });
 
