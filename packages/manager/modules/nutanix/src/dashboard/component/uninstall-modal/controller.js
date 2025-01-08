@@ -1,11 +1,12 @@
-import { UNINSTALL_GUIDE_LINK, UNINSTALL_PATTERN } from './constants';
+import { UNINSTALL_PATTERN } from './constants';
+import { NUTANIX_GUIDE_LINK } from '../../../constants';
 
 export default class {
   /* @ngInject */
   constructor($translate) {
     this.$translate = $translate;
     this.UNINSTALL_PATTERN = UNINSTALL_PATTERN;
-    this.UNINSTALL_GUIDE_LINK = UNINSTALL_GUIDE_LINK;
+    this.NUTANIX_GUIDE_LINK = NUTANIX_GUIDE_LINK;
     this.isLoading = false;
   }
 
