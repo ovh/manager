@@ -6,6 +6,7 @@ export default {
     datacenter: '<',
     extraConfig: '<',
     removeExtra: '&',
+    checkBgpPeering: '<',
   },
   controller,
   template,

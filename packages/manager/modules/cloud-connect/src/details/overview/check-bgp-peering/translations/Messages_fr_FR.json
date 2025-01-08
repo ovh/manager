@@ -1,0 +1,10 @@
+{
+  "cloud_connect_bgp_peering": "Test de connexion BGP",
+  "cloud_connect_bgp_peering_description": "Choisissez un diagnostic à effectuer",
+  "cloud_connect_bgp_peering_choice_default": "<b>Default</b> (Obtenir l'état de la session BGP et toutes les informations associées)",
+  "cloud_connect_bgp_peering_choice_routes": "<b>Routes</b> (Obtenir les routes apprises par OVHcloud via BGP)",
+  "cloud_connect_bgp_peering_choice_advertised_routes": "<b>Advertised-Routes</b> (Obtenir les routes annoncées par OVHcloud sur BGP)",
+  "cloud_connect_bgp_peering_success": "Votre diagnostic est en cours. Consultez le résultat ici",
+  "cloud_connect_bgp_peering_error": "Impossible de lancer le diagnostic: <br> {{ message }} <br> request_id: {{requestId}}",
+  "cloud_connect_run_diagnostic": "lancer le diagnostic"
+}
