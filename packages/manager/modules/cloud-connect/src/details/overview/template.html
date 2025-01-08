@@ -424,6 +424,46 @@
                                 ></span>
                             </oui-tile-description>
                         </oui-tile-definition>
+                        <!-- POP Diagnostic -->
+                        <oui-tile-definition
+                            data-ng-if="$pop.isL3Type() || $pop.isL2Type()"
+                            data-term="{{ ::'cloud_connect_pop_diagnostic' | translate }}"
+                        >
+                            <oui-tile-description>
+                                <div class="d-flex flex-row">
+                                    <a
+                                        class="oui-link_icon"
+                                        data-ng-href="{{::$ctrl.diagnosticPageUrl()}}"
+                                        data-ng-click="$ctrl.trackDiagnosticPageLink()"
+                                    >
+                                        <span
+                                            data-translate="cloud_connect_pop_diagnostic_link"
+                                        ></span>
+                                        <span
+                                            aria-hidden="true"
+                                            class="oui-icon oui-icon-arrow-right align-middle d-inline-block"
+                                        ></span>
+                                    </a>
+                                </div>
+                            </oui-tile-description>
+                            <oui-action-menu data-compact data-placement="end">
+                                <oui-action-menu-item
+                                    data-ng-if="$pop.isL3Type()"
+                                    data-ng-click="$ctrl.runBGPPeeringDiagnostic($pop.id ,$ctrl.datacenters.id)"
+                                    ><span
+                                        data-translate="cloud_connect_pop_diagnostic_check"
+                                    ></span
+                                ></oui-action-menu-item>
+                                <oui-action-menu-item
+                                    data-ng-if="$pop.isL2Type()"
+                                    data-ng-click="$ctrl.getMacList($pop)"
+                                    data-disabled="$ctrl.getMacLoading"
+                                    ><span
+                                        data-translate="cloud_connect_pop_get_mac_list"
+                                    ></span
+                                ></oui-action-menu-item>
+                            </oui-action-menu>
+                        </oui-tile-definition>
                     </div>
                 </div>
             </oui-tile>
@@ -505,6 +545,7 @@
                         data-datacenter="configuration"
                         data-extra-config="extraConfig"
                         data-remove-extra="$ctrl.goToRemoveExtraPage(datacenterId, extraId)"
+                        data-check-bgp-peering="$ctrl.goToCheckBGPPeeringPage"
                     ></ovh-cloud-connect-datacenter-extra>
                 </div>
             </div>

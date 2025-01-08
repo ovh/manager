@@ -1,0 +1,69 @@
+<form
+    id="CheckBGPPeering"
+    name="CheckBGPPeering"
+    data-ng-submit="CheckBGPPeering.$valid && $ctrl.runDagnostic()"
+    novalidate
+>
+    <oui-modal
+        data-heading="{{:: 'cloud_connect_bgp_peering' | translate }}"
+        data-primary-label="{{:: 'cloud_connect_run_diagnostic' | translate }}"
+        data-primary-disabled="$ctrl.isLoading"
+        data-secondary-action="$ctrl.cancel()"
+        data-secondary-label="{{:: 'cloud_connect_cancel' | translate }}"
+        data-on-dismiss="$ctrl.cancel()"
+        data-loading="$ctrl.isLoading"
+    >
+        <p data-translate="cloud_connect_bgp_peering_description"></p>
+        <oui-radio
+            data-model="$ctrl.diagnosticType"
+            name="oui-radio-diagnostic"
+            data-value="$ctrl.diagnosticTypes.default"
+            data-ng-click="$ctrl.selectOption()"
+        >
+            <oui-radio-label>
+                <span
+                    data-translate="cloud_connect_bgp_peering_choice_default"
+                ></span>
+            </oui-radio-label>
+            <oui-radio-description>
+                <span
+                    data-translate="cloud_connect_bgp_peering_choice_default_description"
+                ></span>
+            </oui-radio-description>
+        </oui-radio>
+        <oui-radio
+            data-model="$ctrl.diagnosticType"
+            name="oui-radio-diagnostic"
+            data-value="$ctrl.diagnosticTypes.routes"
+            data-ng-click="$ctrl.selectOption()"
+        >
+            <oui-radio-label>
+                <span
+                    data-translate="cloud_connect_bgp_peering_choice_routes"
+                ></span>
+            </oui-radio-label>
+            <oui-radio-description>
+                <span
+                    data-translate="cloud_connect_bgp_peering_choice_routes_description"
+                ></span>
+            </oui-radio-description>
+        </oui-radio>
+        <oui-radio
+            data-model="$ctrl.diagnosticType"
+            name="oui-radio-diagnostic"
+            data-value="$ctrl.diagnosticTypes.advertisedRoutes"
+            data-ng-click="$ctrl.selectOption()"
+        >
+            <oui-radio-label>
+                <span
+                    data-translate="cloud_connect_bgp_peering_choice_advertised_routes"
+                ></span>
+            </oui-radio-label>
+            <oui-radio-description>
+                <span
+                    data-translate="cloud_connect_bgp_peering_choice_advertised_routes_description"
+                ></span>
+            </oui-radio-description>
+        </oui-radio>
+    </oui-modal>
+</form>
