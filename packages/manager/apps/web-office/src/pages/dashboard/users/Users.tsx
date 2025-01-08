@@ -3,6 +3,7 @@ import { Trans, useTranslation } from 'react-i18next';
 import { Datagrid, DatagridColumn } from '@ovh-ux/manager-react-components';
 import { ODS_ICON_NAME, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OdsLink, OdsText } from '@ovhcloud/ods-components/react';
+import { Outlet } from 'react-router-dom';
 import { UserNativeType } from '@/api/users/type';
 import Loading from '@/components/Loading/Loading';
 import { useOfficeLicenseDetail, useOfficeUsers } from '@/hooks';
@@ -15,11 +16,11 @@ export default function Users() {
 
   const { data: dataUsers, isLoading: isLoadingUsers } = useOfficeUsers();
   const {
-    data: dataLicenceDetail,
-    isLoading: isLoadingLicenceDetail,
+    data: dataLicenseDetail,
+    isLoading: isLoadingLicenseDetail,
   } = useOfficeLicenseDetail();
 
-  if (isLoadingUsers || isLoadingLicenceDetail) {
+  if (isLoadingUsers || isLoadingLicenseDetail) {
     return <Loading />;
   }
 
@@ -48,11 +49,11 @@ export default function Users() {
       label: 'dashboard_users_table_activationEmail',
     },
     {
-      id: 'licences',
+      id: 'licenses',
       cell: (item: UserNativeType) => (
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.licences}</OdsText>
       ),
-      label: 'dashboard_users_table_licences',
+      label: 'dashboard_users_table_licenses',
     },
     {
       id: 'status',
@@ -75,7 +76,7 @@ export default function Users() {
       cell: (item: UserNativeType) => (
         <ActionButtonUsers
           usersItem={item}
-          licenceDetail={dataLicenceDetail}
+          licenseDetail={dataLicenseDetail}
         ></ActionButtonUsers>
       ),
       label: '',
@@ -115,6 +116,7 @@ export default function Users() {
           className="mt-4"
         />
       )}
+      <Outlet />
     </div>
   );
 }

@@ -3,7 +3,7 @@ import { OdsText } from '@ovhcloud/ods-components/react';
 import { Title, Subtitle } from '../../typography';
 
 export interface HeadersProps {
-  title?: string;
+  title?: React.ReactNode;
   subtitle?: string;
   description?: string;
   headerButton?: React.ReactElement;
