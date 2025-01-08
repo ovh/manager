@@ -29,6 +29,19 @@ export default /* @ngInject */ ($stateProvider) => {
                 isMultiAZFeatureAvailable && clusters.data.length !== 0,
             );
         },
+        editDetails: /* @ngInject */ ($uibModal) => (data) => {
+          return $uibModal.open({
+            animation: true,
+            templateUrl: './components/name-edition/name-edition.html',
+            controller: 'NameEditionCtrl',
+            controllerAs: '$ctrl',
+            resolve: {
+              data: () => ({
+                ...data,
+              }),
+            },
+          });
+        },
         currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
           $state.href($state.current.name, $transition$.params()),
         allServersLink: /* @ngInject */ ($transition$, $state) =>

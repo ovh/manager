@@ -12,6 +12,7 @@
   "dedicated_servers_datacenter": "Datacenter",
   "dedicated_servers_country": "Pays",
   "dedicated_servers_region": "Région",
+  "dedicated_servers_tags": "Tags",
   "dedicated_servers_monitoring": "État Monitoring",
   "dedicated_servers_popover_details": "Détails",
   "dedicated_servers_button_server_order": "Commander un serveur dédié",
