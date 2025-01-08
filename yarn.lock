@@ -5782,6 +5782,14 @@
   resolved "https://registry.yarnpkg.com/@orchidjs/unicode-variants/-/unicode-variants-1.1.2.tgz#1fd71791a67fdd1591ebe0dcaadd3964537a824e"
   integrity sha512-5DobW1CHgnBROOEpFlEXytED5OosEWESFvg/VYmH0143oXcijYTprRYJTs+55HzGM4IqxiLFSuqEzu9mPNwVsA==
 
+"@ovh-ux/manager-config@^8.0.2":
+  version "8.0.2"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-config/-/manager-config-8.0.2.tgz#1e5447f6d92fdf5bcb9ee8cb062d86d54aa8d52f"
+  integrity sha512-hQgHD4BhqSX+6MYhc2HB9bXIj9YYcYaWcfKb+WQ6si/ow10wBCi8bY7v8EesXgkj7rM7kXzRZqoyUMVI5+imRA==
+  dependencies:
+    "@ovh-ux/ovh-reket" "^2.1.7"
+    lodash-es "^4.17.15"
+
 "@ovh-ux/manager-pci-common@^0.14.2":
   version "0.14.2"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-pci-common/-/manager-pci-common-0.14.2.tgz#183b57723639854b9e3411a702df7c2a1d1eb099"
@@ -5832,6 +5840,18 @@
     tailwindcss "^3.4.4"
     uuid "^9.0.1"
 
+"@ovh-ux/manager-react-shell-client@*":
+  version "0.8.5"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-shell-client/-/manager-react-shell-client-0.8.5.tgz#b391298e455dd79b0d29a2cfff38a677c8472ef6"
+  integrity sha512-e5L8F6ZciX1gDacWCR67zkKXT1R9iNTag1atL+NFnx2MpB4NJBWq5ro6tUVg3q5DBkToYNsdiz1MGG6HxhSfiw==
+  dependencies:
+    "@ovh-ux/manager-config" "^8.0.2"
+    "@ovh-ux/ovh-at-internet" "^0.18.1"
+    "@ovh-ux/request-tagger" "^0.4.0"
+    "@ovh-ux/shell" "^4.1.0"
+    i18next "^23.8.2"
+    i18next-http-backend "^2.4.2"
+
 "@ovh-ux/manager-react-shell-client@^0.8.4":
   version "0.8.4"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-shell-client/-/manager-react-shell-client-0.8.4.tgz#df2dfaee89fe4d2cf94c1d9e0dcf4a5e86de5258"
@@ -5857,6 +5877,13 @@
   integrity sha512-LvxWv+ER5p8hKHntejrcbxPNA6s9MqcAxnnDfvxPTeo292ZVERy6rDZ1ukuV8w6BhRKGGU/IXL8jILgLS6drKg==
   dependencies:
     lodash "^4.17.15"
+
+"@ovh-ux/ovh-at-internet@^0.18.1":
+  version "0.18.1"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ovh-at-internet/-/ovh-at-internet-0.18.1.tgz#a9d0d543a187031f61b699c57aaec0529f68a790"
+  integrity sha512-i0ZFNGrktTsgTw8G2Fx2pn/xkgmwhyJ7JsCx7+RkzEakcV2E3+u5yTfSNlLVyHTMiqKGyjMz330/dw221qVaDw==
+  dependencies:
+    lodash-es "^4.17.15"
 
 "@ovh-ux/rollup-plugin-less-inject@^1.0.5":
   version "1.0.6"

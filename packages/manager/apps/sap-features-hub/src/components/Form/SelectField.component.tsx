@@ -10,7 +10,7 @@ import {
   OdsSelectCustomEvent,
 } from '@ovhcloud/ods-components';
 
-type SelectOptionsProps<T> = T extends Record<string, unknown>
+export type SelectOptionsProps<T> = T extends Record<string, unknown>
   ? {
       options: T[];
       optionValueKey: keyof T;
@@ -34,6 +34,9 @@ type SelectFieldProps<T> = SelectOptionsProps<T> & {
   error?: string;
 };
 
+const getFormattedValue = (value: unknown) =>
+  typeof value === 'number' ? value : String(value);
+
 export const SelectField = <T,>({
   name,
   isDisabled,
@@ -49,10 +52,10 @@ export const SelectField = <T,>({
   const sanitizedOptions = options.map((opt) =>
     typeof opt === 'object'
       ? {
-          value: String(opt?.[optionValueKey] || ''),
+          value: opt?.[optionValueKey] || '',
           label: String(opt?.[optionLabelKey] || opt?.[optionValueKey] || ''),
         }
-      : { value: String(opt), label: String(opt) },
+      : { value: opt, label: String(opt) },
   );
 
   return (
@@ -72,12 +75,15 @@ export const SelectField = <T,>({
           hasError={!!error}
           defaultValue={
             !isLoading && sanitizedOptions.length === 1
-              ? sanitizedOptions[0].value
+              ? String(sanitizedOptions[0].value)
               : undefined
           }
         >
           {sanitizedOptions.map((opt) => (
-            <option key={opt.value} value={opt.value}>
+            <option
+              key={getFormattedValue(opt.value)}
+              value={getFormattedValue(opt.value)}
+            >
               {opt.label}
             </option>
           ))}
