@@ -19,8 +19,12 @@ export const Headers: React.FC<HeadersProps> = ({
     <div className="flex items-center justify-between">
       <div>
         {title && <Title>{title}</Title>}
-        {subtitle && <Subtitle className="block">{subtitle}</Subtitle>}
-        {description && <OdsText preset="span">{description}</OdsText>}
+        {subtitle && <Subtitle className="block mb-6">{subtitle}</Subtitle>}
+        {description && (
+          <OdsText className="mb-[16px]" preset="span">
+            {description}
+          </OdsText>
+        )}
       </div>
       {headerButton && <div>{headerButton}</div>}
     </div>
