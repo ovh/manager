@@ -95,7 +95,7 @@ export default function ResetClusterPage() {
     workerNodesPolicy: WORKER_NODE_POLICIES.DELETE,
     selectedVersion: getFormatedKubeVersion(kubernetesCluster?.version || ''),
     ...(!!kubernetesCluster?.privateNetworkId && {
-      privateNetworks: kubernetesCluster?.privateNetworkId,
+      privateNetworkId: kubernetesCluster?.privateNetworkId,
     }),
     subnet: null,
     loadBalancersSubnet: null,
