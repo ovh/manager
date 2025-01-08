@@ -23,6 +23,7 @@ export default function ImportPolicyPage() {
   const { t } = useTranslation('objects/users/import-policy');
   const [filesToUpload, setFilesToUpload] = useState<File[]>([]);
   const navigate = useNavigate();
+
   const onCancel = () => navigate(`..`);
   const onClose = () => navigate(`..`);
 
@@ -58,13 +59,12 @@ export default function ImportPolicyPage() {
         </Translation>,
         true,
       );
-      navigate('..');
+      onClose();
     },
   });
 
   const onConfirm = () => {
     importPolicy();
-    navigate('..');
   };
 
   useEffect(() => {
@@ -90,7 +90,8 @@ export default function ImportPolicyPage() {
       <OdsText preset="paragraph">
         {t('pci_projects_project_storages_containers_users_import_description')}
       </OdsText>
-      <OdsFormField className="mt-4">
+
+      <OdsFormField className="w-full my-4">
         <LabelComponent
           text={t(
             'pci_projects_project_storages_containers_users_import_add_files_label',
