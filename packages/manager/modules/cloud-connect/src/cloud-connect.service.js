@@ -169,23 +169,14 @@ export default class CloudConnectService {
       .then(({ data }) => new CloudConnectTasks(data));
   }
 
-  getAllDiagnostics(cloudConnectId) {
-    return this.$http
-      .get(`/ovhCloudConnect/${cloudConnectId}/diagnostic`)
-      .then((res) =>
-        this.$q.all(
-          map(res.data, (diagnosticId) =>
-            this.getDiagnosticDetails(cloudConnectId, diagnosticId),
-          ),
-        ),
-      )
-      .then((res) => res);
-  }
-
-  getDiagnosticDetails(cloudConnectId, diagnosticId) {
-    return this.$http
-      .get(`/ovhCloudConnect/${cloudConnectId}/diagnostic/${diagnosticId}`)
-      .then(({ data }) => new CloudConnectDiagnostics(data));
+  getDiagnosticsWithDetails(cloudConnectId) {
+    return this.iceberg(`/ovhCloudConnect/${cloudConnectId}/diagnostic`)
+      .query()
+      .expand('CachedObjectList-Pages')
+      .execute(null, true)
+      .$promise.then(({ data: result }) =>
+        result.map((item) => new CloudConnectDiagnostics(item)),
+      );
   }
 
   saveDescription(cloudConnectId, description) {

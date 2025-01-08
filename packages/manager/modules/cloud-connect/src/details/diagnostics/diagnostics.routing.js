@@ -1,10 +1,10 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('cloud-connect.details.diagnostics', {
     url: '/diagnostics',
-    component: 'cloudConnectDetailsDiagnostics',
+    component: 'cloudConnectDiagnosticsDetails',
     resolve: {
       diagnosticList: /* @ngInject */ (cloudConnectService, cloudConnect) =>
-        cloudConnectService.getAllDiagnostics(cloudConnect.id),
+        cloudConnectService.getDiagnosticsWithDetails(cloudConnect.id),
       refreshDiagnostics: /* @ngInject */ ($state) => () => {
         return $state.reload();
       },

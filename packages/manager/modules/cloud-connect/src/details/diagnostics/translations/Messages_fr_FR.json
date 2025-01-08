@@ -5,7 +5,7 @@
   "cloud_connect_diagnostics_description": "Description",
   "cloud_connect_diagnostics_description_diagPeering": "BGP Peering Default",
   "cloud_connect_diagnostics_description_diagRoutes": "BGP Peering - Routes",
-  "cloud_connect_diagnostics_description_diagPeeringExtra": "BGP Peering - Advertosed Routes",
+  "cloud_connect_diagnostics_description_diagPeeringExtra": "BGP Peering - Advertised Routes",
   "cloud_connect_diagnostics_description_diagMacs": "Mac List",
   "cloud_connect_diagnostics_status": "Statut",
   "cloud_connect_diagnostics_status_todo": "Planifié",
