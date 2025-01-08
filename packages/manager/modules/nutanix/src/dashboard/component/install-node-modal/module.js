@@ -7,6 +7,7 @@ import '@ovh-ux/ui-kit';
 import component from './component';
 import ipSubnetValidator from '../../directive/ip-subnet-validator.directive';
 import uniqueIpValidator from '../../directive/unique-ip-validator.directive';
+import ipValidator from '../../directive/ip-validator.directive';
 
 const moduleName = 'ovhManagerNutanixInstallNodeModal';
 
@@ -17,9 +18,10 @@ angular
     'pascalprecht.translate',
     'ui.router',
   ])
-  .component('installNutanixNodeModal', component)
-  .directive('nutanixDashboardRedeployIpSubnetValidator', ipSubnetValidator)
-  .directive('nutanixDashboardRedeployUniqueIpValidator', uniqueIpValidator)
+  .component('nutanixInstallNodeModal', component)
+  .directive('nutanixIpSubnetValidator', ipSubnetValidator)
+  .directive('nutanixUniqueIpValidator', uniqueIpValidator)
+  .directive('nutanixIpValidator', ipValidator)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

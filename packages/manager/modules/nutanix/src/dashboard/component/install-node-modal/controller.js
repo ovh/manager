@@ -1,9 +1,6 @@
-import { IPV4_REGEX } from '../../constants';
-
 export default class NutanixDashboarInstallNodeModal {
   /* @ngInject */
   constructor(NutanixService, $translate) {
-    this.IPV4_REGEX = IPV4_REGEX;
     this.NutanixService = NutanixService;
     this.$translate = $translate;
 
@@ -14,7 +11,7 @@ export default class NutanixDashboarInstallNodeModal {
       uniqueIpValidator: this.$translate.instant(
         'nutanix_dashboard_install_ip_unique_error',
       ),
-      pattern: this.$translate.instant(
+      ipValidator: this.$translate.instant(
         'nutanix_dashboard_install_ip_format_error',
       ),
     };

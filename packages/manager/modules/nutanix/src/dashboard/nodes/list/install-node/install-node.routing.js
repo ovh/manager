@@ -3,7 +3,7 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/install/:node',
     views: {
       modal: {
-        component: 'installNutanixNodeModal',
+        component: 'nutanixInstallNodeModal',
       },
     },
     layout: 'modal',

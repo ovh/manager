@@ -9,8 +9,6 @@ import {
   IP_FOR_SCALE_REDEPLOY,
 } from './constants';
 
-import { IPV4_REGEX } from '../../constants';
-
 export default class NutanixGeneralInfoRedeployCtrl {
   /* @ngInject */
   constructor($translate, atInternet) {
@@ -19,7 +17,6 @@ export default class NutanixGeneralInfoRedeployCtrl {
     this.REDEPLOY_CONFIG_OPTIONS = REDEPLOY_CONFIG_OPTIONS;
     this.PRISM_CENTRAL_TYPE_ALONE = PRISM_CENTRAL_TYPE_ALONE;
     this.prismCentralTypes = PRISM_CENTRAL_TYPES;
-    this.IPV4_REGEX = IPV4_REGEX;
     this.IPV4_BLOCK_REGEX = IPV4_BLOCK_REGEX;
   }
 
