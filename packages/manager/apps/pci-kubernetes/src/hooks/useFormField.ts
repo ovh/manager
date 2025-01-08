@@ -1,23 +1,27 @@
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { oidcSchema } from '@/types';
-import { formComponentFactory } from '@/helpers/formComponentFactory';
+import { oidcSchema, PlaceHolder } from '@/types';
 import { camelToSnake, filterSchemaKeys } from '@/helpers';
+import { CheckBoxFormField } from '@/components/oidc/CheckBoxFormField.component';
+import { InputFormField } from '@/components/oidc/InputFormField.component';
+import { TextAreaFormField } from '@/components/oidc/TextAreaFormField.component';
 
 const useFormFields = () => {
   const { t } = useTranslation('oidc-provider');
 
-  const fields = useMemo(() => {
-    const excludeKeys = [
-      'issuerUrl',
-      'clientId',
-      'groupsClaim',
-      'requiredClaim',
-    ];
+  return useMemo(() => {
+    const excludeKeys = ['issuerUrl', 'clientId'];
     const schemaKeys = filterSchemaKeys(oidcSchema, excludeKeys);
+
+    const componentMap = {
+      signingAlgorithms: CheckBoxFormField,
+      caContent: TextAreaFormField,
+      default: InputFormField,
+    };
 
     return schemaKeys.map((name) => {
       const snakeCaseName = camelToSnake(name);
+
       return {
         name,
         label: t(
@@ -26,12 +30,16 @@ const useFormFields = () => {
         description: t(
           `pci_projects_project_kubernetes_details_service_oidc_provider_field_${snakeCaseName}_description`,
         ),
-        component: (props) => formComponentFactory(name, props),
+        caption: ['requiredClaim', 'groupsClaim'].includes(name)
+          ? t(
+              `pci_projects_project_kubernetes_details_service_oidc_provider_field_${snakeCaseName}_caption`,
+            )
+          : undefined,
+        placeholder: PlaceHolder[name],
+        component: componentMap[name] || componentMap.default,
       };
     });
   }, [oidcSchema.shape, t]);
-
-  return fields;
 };
 
 export default useFormFields;
