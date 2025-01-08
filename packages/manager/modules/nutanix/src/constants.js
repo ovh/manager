@@ -83,7 +83,11 @@ export const NUTANIX_AUTHORIZATION_TYPE = {
   SUPPORT: 'SUPPORT',
 };
 
+export const NUTANIX_GUIDE_LINK =
+  'https://portal.nutanix.com/page/documents/list?type=software';
+
 export default {
+  NUTANIX_GUIDE_LINK,
   NODE_POWER_STATES,
   SERVICE_STATES,
   PRODUCT_ID,
