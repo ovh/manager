@@ -36,7 +36,7 @@
   "pci_projects_project_storages_cold_archive_container_manage": "Monitoruj kontenery w panelu klienta dostarczonym wraz OVHcloud Cold Archive",
   "pci_projects_project_storages_cold_archive_container_manage_documentation_link": "Pierwsze kroki z CLI, konfiguracja",
   "pci_projects_project_storages_cold_archive_container_manage_description_1": "Operacje archiwizacji, takie jak pobieranie, przywracanie lub usuwanie danych, są wykonywane za pomocą wiersza poleceń.",
-  "pci_projects_project_storages_cold_archive_container_manage_description_2": "Na przykład, aby pobrać dane, takie jak zdjęcia, filmy wideo i inne dokumenty, należy użyć CLI, SDK lub API kompatybilnego z S3.",
+  "pci_projects_project_storages_cold_archive_container_manage_description_2": "Na przykład, aby pobrać dane, takie jak zdjęcia, filmy wideo i inne dokumenty, skorzystaj z CLI, SDK lub API kompatybilnego z S3.",
   "pci_projects_project_storages_cold_archive_containers_container_manage_endpoint_label": "EndPoint",
   "pci_projects_project_storages_cold_archive_containers_container_manage_region_label": "Region",
   "pci_projects_project_storages_cold_archive_containers_container_manage_close_label": "Zamknij"
