@@ -13,7 +13,7 @@ export default /* @ngInject */ ($stateProvider) => {
       goBack: /* @ngInject */ (goToDashboard) => goToDashboard,
       nodeTechnicalDetails: /* @ngInject */ (NutanixService, cluster) =>
         NutanixService.getNodeHardwareInfo(cluster.targetSpec.nodes[0].server),
-      nodeServicesDetails: (NutanixService, server) =>
+      nodeServicesDetails: /* ngInject */ (NutanixService, server) =>
         NutanixService.getAllServicesDetails(server.serviceId),
       nodePricing: /* ngInject */ (NutanixService, nodeServicesDetails) =>
         NutanixService.constructor.getServicesTotalPrice(
