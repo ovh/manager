@@ -9,7 +9,7 @@
                 <!-- name -->
                 <oui-tile-definition
                     term="{{:: 'server_configuration_displayname' | translate }}"
-                    description="{{ $ctrl.server.displayName }}"
+                    description="{{ $ctrl.server.iam.displayName }}"
                 >
                     <oui-action-menu
                         data-ng-if="::$ctrl.showNameActions()"
@@ -17,7 +17,7 @@
                         data-placement="end"
                     >
                         <oui-action-menu-item
-                            on-click="$ctrl.goToNodeNameEdit($ctrl.server.displayName)"
+                            on-click="$ctrl.goToNodeNameEdit($ctrl.server.iam.displayName)"
                         >
                             <span
                                 data-translate="server_configuration_displayname_edit_button"
