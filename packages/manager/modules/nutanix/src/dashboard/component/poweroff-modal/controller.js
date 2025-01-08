@@ -1,15 +1,13 @@
-import { POWEROFF_GUIDE_LINKS, POWEROFF_PATTERN } from './constants';
+import { POWEROFF_PATTERN } from './constants';
+import { NUTANIX_GUIDE_LINK } from '../../../constants';
 
 export default class {
   /* @ngInject */
   constructor($window, $translate) {
     this.$translate = $translate;
     this.POWEROFF_PATTERN = POWEROFF_PATTERN;
+    this.NUTANIX_GUIDE_LINK = NUTANIX_GUIDE_LINK;
     this.isLoading = false;
-  }
-
-  get poweroffGuidelink() {
-    return POWEROFF_GUIDE_LINKS[this.userSubsidiary] ?? POWEROFF_GUIDE_LINKS.EN;
   }
 
   onSubmit() {
