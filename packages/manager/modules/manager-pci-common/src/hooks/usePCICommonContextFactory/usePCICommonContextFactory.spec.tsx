@@ -3,10 +3,12 @@ import { PropsWithChildren, useContext } from 'react';
 import { PCICommonContext } from '@/contexts/PCICommonContext/PCICommonContext';
 import { usePCICommonContextFactory } from './usePCICommonContextFactory';
 
+const myVarChildren = {
+  myVar: 'children',
+};
+
 const TestChildrenMerge = ({ children }: PropsWithChildren) => {
-  const pciCommonContext = usePCICommonContextFactory({
-    myVar: 'children',
-  });
+  const pciCommonContext = usePCICommonContextFactory(myVarChildren);
 
   return (
     <PCICommonContext.Provider value={pciCommonContext}>
@@ -16,11 +18,7 @@ const TestChildrenMerge = ({ children }: PropsWithChildren) => {
 };
 
 const TestChildrenOverride = ({ children }: PropsWithChildren) => (
-  <PCICommonContext.Provider
-    value={{
-      myVar: 'children',
-    }}
-  >
+  <PCICommonContext.Provider value={myVarChildren}>
     {children}
   </PCICommonContext.Provider>
 );
@@ -29,10 +27,12 @@ const ParentWithoutProvider = ({ children }: PropsWithChildren) => (
   <TestChildrenMerge>{children}</TestChildrenMerge>
 );
 
+const myVarParent = {
+  myVar: 'parent',
+};
+
 const ParentWithMyVar = ({ children }: PropsWithChildren) => {
-  const pciCommonContext = usePCICommonContextFactory({
-    myVar: 'parent',
-  });
+  const pciCommonContext = usePCICommonContextFactory(myVarParent);
 
   return (
     <PCICommonContext.Provider value={pciCommonContext}>
@@ -41,14 +41,16 @@ const ParentWithMyVar = ({ children }: PropsWithChildren) => {
   );
 };
 
+const myVar2Parent = {
+  myVar2: 'parent',
+};
+
 const ParentWithMyVar2 = ({ children }: PropsWithChildren) => {
-  const pciCommonContext = usePCICommonContextFactory({
-    myVar2: 'parent',
-  });
+  const pciCommonContext = usePCICommonContextFactory(myVar2Parent);
 
   return (
     <PCICommonContext.Provider value={pciCommonContext}>
-      <TestChildrenMerge>{children}</TestChildrenMerge>
+      {children}
     </PCICommonContext.Provider>
   );
 };
@@ -82,7 +84,11 @@ describe('usePCICommonContextFactory', () => {
 
   it('should merge with old value', () => {
     const { result } = renderHook(() => useContext(PCICommonContext), {
-      wrapper: ParentWithMyVar2,
+      wrapper: ({ children }) => (
+        <ParentWithMyVar2>
+          <TestChildrenMerge>{children}</TestChildrenMerge>
+        </ParentWithMyVar2>
+      ),
     });
 
     expect(result.current).toEqual({ myVar: 'children', myVar2: 'parent' });
