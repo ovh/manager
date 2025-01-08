@@ -2,12 +2,15 @@ import { ApiError } from '@ovh-ux/manager-core-api';
 import { PciModal } from '@ovh-ux/manager-pci-common';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
-import { OsdsText } from '@ovhcloud/ods-components/react';
+import { OdsText } from '@ovhcloud/ods-components/react';
 import { useContext } from 'react';
 import { Translation, useTranslation } from 'react-i18next';
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import {
+  createSearchParams,
+  useNavigate,
+  useParams,
+  useSearchParams,
+} from 'react-router-dom';
 import { PAGE_PREFIX } from '@/tracking.constants';
 import { useAllStorages, useUpdateStorage } from '@/api/hooks/useStorages';
 
@@ -19,16 +22,6 @@ export default function EnableVersioningPage() {
   const navigate = useNavigate();
   const { projectId, storageId } = useParams();
 
-  const onClose = () => navigate(`..`);
-
-  const onCancel = () => {
-    navigate(`..`);
-    tracking?.trackClick({
-      name: `${PAGE_PREFIX}object::enable-versioning::cancel`,
-      type: 'action',
-    });
-  };
-
   const [searchParams] = useSearchParams();
 
   const { data: storages, isPending: isStoragesPending } = useAllStorages(
@@ -37,6 +30,22 @@ export default function EnableVersioningPage() {
 
   const storageDetail = storages?.resources.find((s) => s.name === storageId);
 
+  const onClose = () =>
+    navigate({
+      pathname: `..`,
+      search: `?${createSearchParams({
+        region: searchParams.get('region'),
+      })}`,
+    });
+
+  const onCancel = () => {
+    onClose();
+    tracking?.trackClick({
+      name: `${PAGE_PREFIX}object::enable-versioning::cancel`,
+      type: 'action',
+    });
+  };
+
   const { updateContainer, isPending } = useUpdateStorage({
     projectId,
     region: searchParams.get('region'),
@@ -44,7 +53,7 @@ export default function EnableVersioningPage() {
     s3StorageType: storageDetail?.s3StorageType,
     onError(error: ApiError) {
       addError(
-        <Translation ns="objects/activate-versioning">
+        <Translation ns="containers/enable-versioning">
           {(_t) =>
             _t(
               'pci_projects_project_storages_containers_update_versioning_enable_error_message',
@@ -61,7 +70,7 @@ export default function EnableVersioningPage() {
     },
     onSuccess() {
       addSuccess(
-        <Translation ns="objects/activate-versioning">
+        <Translation ns="containers/enable-versioning">
           {(_t) =>
             _t(
               'pci_projects_project_storages_containers_update_versioning_enable_success_message',
@@ -70,7 +79,7 @@ export default function EnableVersioningPage() {
         </Translation>,
         true,
       );
-      navigate('..');
+      onClose();
     },
   });
 
@@ -102,15 +111,11 @@ export default function EnableVersioningPage() {
         'pci_projects_project_storages_containers_update_versioning_cancel_label',
       )}
     >
-      <OsdsText
-        level={ODS_TEXT_LEVEL.body}
-        color={ODS_THEME_COLOR_INTENT.text}
-        size={ODS_TEXT_SIZE._400}
-      >
+      <OdsText preset="paragraph">
         {t(
           'pci_projects_project_storages_containers_bucket_versioning_description',
         )}
-      </OsdsText>
+      </OdsText>
     </PciModal>
   );
 }
