@@ -27,7 +27,7 @@ export default /* @ngInject */ ($stateProvider) => {
         clusterServiceName,
       ) => (message, type) => {
         const promise = $state.go('nutanix.dashboard.nodes.all', {
-          clusterServiceName,
+          serviceName: clusterServiceName,
         });
 
         if (message) {
