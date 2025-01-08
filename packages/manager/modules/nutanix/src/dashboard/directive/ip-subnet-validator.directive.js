@@ -9,7 +9,7 @@ export default /* @ngInject */ () => ({
       let gatewayCIDR;
       try {
         gatewayCIDR = ipaddr.parseCIDR(
-          scope.$eval(attrs.nutanixDashboardRedeployIpSubnetValidator),
+          scope.$eval(attrs.nutanixIpSubnetValidator),
         );
       } catch (e) {
         gatewayCIDR = null;
