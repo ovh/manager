@@ -1,0 +1,3 @@
+.label-caption-bold::part(text) {
+  @apply font-bold;
+}
