@@ -32,7 +32,7 @@ version_mrc() {
     node_modules/.bin/lerna version --scope=manager-react-components --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --allow-branch="${GIT_BRANCH}" --yes
   else
     printf "%s\n" "Releasing"
-    node_modules/.bin/lerna exec --scope=@ovh-ux/manager-react-components -- lerna version --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --no-private --ignore-changes="packages/modules/manager-pci-common/**" --yes
+    node_modules/.bin/lerna exec --scope=@ovh-ux/manager-react-components -- lerna version --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --no-private --ignore-changes="packages/manager/modules/manager-pci-common/**" --yes
   fi
 }
 
@@ -118,33 +118,37 @@ main() {
   current_tag="$(git describe --abbrev=0)"
   printf "%s\n" "Previous tag was $current_tag"
 
-  # For manager-react-components (MRC), version it specifically
-  if echo "$changed_packages" | grep -q "manager-react-components"; then
-    # Only version MRC package
+  # Separate versioning for `manager-react-components` and other packages
+  mrc_changed=false
+  while read -r package; do
+    name=$(echo "$package" | cut -d ':' -f 2)
+    version=$(echo "$package" | cut -d ':' -f 3)
+
+    # Check if the changed package is `manager-react-components`
+    if [[ "$name" == *manager-react-components* ]]; then
+      mrc_changed=true
+      path_mrc=$(echo "$package" | cut -d ':' -f 1)
+      name_mrc=$(echo "$package" | cut -d ':' -f 2)
+      create_smoke_tag "$current_tag" "$name" "$version"
+    fi
+  done <<< "$changed_packages"
+
+  # Handle `manager-react-components` separately
+  if [ "$mrc_changed" == true ]; then
     next_tag=$(get_release_name "$SEED")
-    printf "%s\n" "New tag for MRC: $next_tag"
+    printf "%s\n" "New tag for manager-react-components: $next_tag"
 
-    RELEASE_NOTE+="# Release $next_tag\
+    RELEASE_NOTE+="# Release $next_tag\n\n"
 
-
-"
-
-    # Update Sonar version for the new tag
     update_sonar_version "$next_tag"
-    
-    # Version the MRC package
-    version_mrc
+    version_mrc "$next_tag"
 
-    # Update the changelog for MRC package
-    path="packages/manager-react-components"  # Adjust path as needed
-    name="manager-react-components"
-    RELEASE_NOTE+="$(create_release_note "$path" "$name")\
+    # Create release note for manager-react-components
+    RELEASE_NOTE+="$(create_release_note "$path_mrc" "$name_mrc")\n\n"
 
-
-"
-
-    # Commit changes and tag
-    push_and_release "$next_tag"
+    # Commit and release manager-react-components
+    clean_tags
+    #push_and_release "$next_tag"
   else
     printf "%s\n" "No changes detected for manager-react-components. Exiting."
     exit 0
