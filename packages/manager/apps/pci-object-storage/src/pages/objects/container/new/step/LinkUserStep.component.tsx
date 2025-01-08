@@ -27,7 +27,7 @@ export function LinkUserStep() {
     setOwnerId('');
   };
   const onSelectOwner = (user: TUser) => {
-    setOwnerId(user?.id);
+    setOwnerId(`${user?.id}`);
   };
   return (
     <StepComponent
