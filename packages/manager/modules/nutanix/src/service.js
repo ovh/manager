@@ -77,24 +77,29 @@ export default class NutanixService {
     return this.$http.get(`/services/${serviceId}`).then(({ data }) => data);
   }
 
-  getServicesTotalPrice(serviceId) {
+  getAllServicesDetails(serviceId) {
     return this.$q
       .all([
         this.getServicesDetails(serviceId),
         this.getServiceOptions(serviceId),
       ])
-      .then(([serviceDetails, optionsDetails]) => {
-        const optionsPrices = optionsDetails.reduce((sum, service) => {
-          const price = service.billing?.pricing?.priceInUcents || 0;
-          return sum + price;
-        }, 0);
+      .then(([serviceDetails, optionsDetails]) => ({
+        serviceDetails,
+        optionsDetails,
+      }));
+  }
 
-        return {
-          priceInUcents:
-            optionsPrices + serviceDetails.billing?.pricing.priceInUcents,
-          currency: serviceDetails.billing?.pricing?.price?.currencyCode,
-        };
-      });
+  static getServicesTotalPrice(serviceDetails, optionsDetails) {
+    const optionsPrices = optionsDetails.reduce((sum, service) => {
+      const price = service.billing?.pricing?.priceInUcents || 0;
+      return sum + price;
+    }, 0);
+
+    return {
+      priceInUcents:
+        optionsPrices + serviceDetails.billing?.pricing.priceInUcents,
+      currency: serviceDetails.billing?.pricing?.price?.currencyCode,
+    };
   }
 
   getNodeHardwareInfo(nodeId) {
