@@ -103,6 +103,14 @@
                             data-placement="end"
                         >
                             <oui-action-menu-item
+                                data-ng-if="extraConfig.type === 'bgp'"
+                                data-disabled="!extraConfig.isActive()"
+                                data-on-click="$ctrl.checkBgpPeering({ popConfigId: $ctrl.datacenter.popConfigId , dcConfigId: $ctrl.datacenter.id, isExtar: true, extraConfigId: extraConfig.id })"
+                                ><span
+                                    data-translate="cloud_connect_pop_diagnostic_check"
+                                ></span
+                            ></oui-action-menu-item>
+                            <oui-action-menu-item
                                 data-disabled="!extraConfig.isActive()"
                                 data-on-click="$ctrl.removeExtra({ datacenterId: $ctrl.datacenter.id, extraId: extraConfig.id })"
                                 ><span

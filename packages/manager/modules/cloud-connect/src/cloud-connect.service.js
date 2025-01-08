@@ -130,6 +130,25 @@ export default class CloudConnectService {
       .then(({ data }) => data);
   }
 
+  runDiagnostic(
+    serviceName,
+    dcConfigId,
+    diagnosticName,
+    diagnosticType,
+    extraConfigId,
+    popConfigId,
+  ) {
+    return this.$http
+      .post(`/ovhCloudConnect/${serviceName}/diagnostic`, {
+        dcConfigId,
+        diagnosticName,
+        diagnosticType,
+        extraConfigId,
+        popConfigId,
+      })
+      .then(({ data }) => data);
+  }
+
   loadAllTasks(cloudConnectId) {
     return this.$http
       .get(`/ovhCloudConnect/${cloudConnectId}/task`)
@@ -383,7 +402,10 @@ export default class CloudConnectService {
                     id: data.datacenterId,
                   });
                   set(data, 'dcName', get(dc, 'name', null));
-                  return new CloudConnectDatacenter(data);
+                  return new CloudConnectDatacenter({
+                    ...data,
+                    popConfigId: pop.id,
+                  });
                 });
             }),
           )

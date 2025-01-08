@@ -1,0 +1,45 @@
+<form
+    id="CheckBGPPeering"
+    name="CheckBGPPeering"
+    data-ng-submit="CheckBGPPeering.$valid && $ctrl.runDagnostic()"
+    novalidate
+>
+    <oui-modal
+        data-heading="{{:: 'cloud_connect_bgp_peering' | translate }}"
+        data-primary-label="{{:: 'cloud_connect_run_diagnostic' | translate }}"
+        data-primary-disabled="$ctrl.isLoading"
+        data-secondary-action="$ctrl.goBack()"
+        data-secondary-label="{{:: 'cloud_connect_cancel' | translate }}"
+        data-on-dismiss="$ctrl.goBack()"
+        data-loading="$ctrl.isLoading"
+    >
+        <p data-translate="cloud_connect_bgp_peering_description"></p>
+        <oui-radio
+            data-model="$ctrl.diagnosticType"
+            name="oui-radio-diagnostic"
+            data-value="$ctrl.diagnosticTypes.default"
+        >
+            <span
+                data-translate="cloud_connect_bgp_peering_choice_default"
+            ></span>
+        </oui-radio>
+        <oui-radio
+            data-model="$ctrl.diagnosticType"
+            name="oui-radio-diagnostic"
+            data-value="$ctrl.diagnosticTypes.routes"
+        >
+            <span
+                data-translate="cloud_connect_bgp_peering_choice_routes"
+            ></span>
+        </oui-radio>
+        <oui-radio
+            data-model="$ctrl.diagnosticType"
+            name="oui-radio-diagnostic"
+            data-value="$ctrl.diagnosticTypes.sdvertisedRoutes"
+        >
+            <span
+                data-translate="cloud_connect_bgp_peering_choice_advertised_routes"
+            ></span>
+        </oui-radio>
+    </oui-modal>
+</form>
