@@ -35,7 +35,7 @@ export const useUsers = (
   const allUsersQueries = useQueries({
     queries: (users || [])?.map((user) => ({
       queryKey: [...getQueryKeyUsers(projectId), user.id, 's3Credentials'],
-      queryFn: () => getS3Credentials(projectId, user.id),
+      queryFn: () => getS3Credentials(projectId, `${user.id}`),
       enabled: !isPending,
       select: (s3Credentials: TS3Credentials[]) => s3Credentials[0],
     })),
