@@ -13,7 +13,7 @@ const SimpleTile: React.FC<React.PropsWithChildren<{
       {
         'cursor-pointer': onClick,
         'cursor-default': !onClick,
-        'bg-[--ods-color-primary-050] border-[--ods-color-primary-500] border-2': isActive,
+        'border-[--ods-color-primary-500] border-2': isActive,
       },
       className,
     )}
