@@ -12,7 +12,9 @@ export default class NutanixAllNodesCtrl {
   }
 
   $onInit() {
-    const uniqueStates = [...new Set(this.nodes.map(({ state }) => state))];
+    const uniqueStates = [
+      ...new Set(this.nodes.map(({ serviceStatus }) => serviceStatus)),
+    ];
     this.mapNodes = this.mapAllNodes();
     this.loadNodesStatus();
 
@@ -28,7 +30,7 @@ export default class NutanixAllNodesCtrl {
         (options, status) => ({
           ...options,
           [status]: this.$translate.instant(
-            `nutanix_dashboard_nodes_list_status_${status}`,
+            `nutanix_dashboard_service_status_${status}`,
           ),
         }),
         {},
