@@ -25,13 +25,8 @@ vi.mock('../data/ip-restrictions');
 vi.mock('@/queryClient');
 vi.mock('@ovh-ux/manager-core-api');
 
-const renderHookWithWrapper = (
-  hook: (
-    ...params: unknown[]
-  ) => {
-    updateIpRestrictions(arg0: TUpdateIpRestrictionMutationParams): unknown;
-    data: unknown;
-  },
+const renderHookWithWrapper = <T>(
+  hook: (...params: unknown[]) => T,
   params: unknown[],
 ) => renderHook(() => hook(...params), { wrapper });
 
@@ -65,7 +60,7 @@ describe('useIpRestrictions Hook Tests', () => {
       expectedResult: [
         { id: '1', ipBlock: '192.168.0.2/32', description: 'allow' },
       ],
-      select: vi.fn((data: any) =>
+      select: vi.fn((data: unknown[]) =>
         data.filter(
           (item: { description: string }) => item.description === 'allow',
         ),
