@@ -1,11 +1,16 @@
-import { OdsIcon, OdsText, OdsTooltip } from '@ovhcloud/ods-components/react';
+import {
+  OdsIcon,
+  OdsPopover,
+  OdsText,
+  OdsTooltip,
+} from '@ovhcloud/ods-components/react';
 
 type TLabelProps = {
   text: string;
   helpText?: string;
-  hasError?: boolean;
   slot?: string;
   className?: string;
+  triggerId?: string;
 };
 
 export default function LabelComponent({
@@ -13,6 +18,7 @@ export default function LabelComponent({
   helpText,
   slot = 'label',
   className = '',
+  triggerId,
 }: Readonly<TLabelProps>): JSX.Element {
   return (
     <div slot={slot} className={`flex gap-2 items-center ${className}`.trim()}>
@@ -21,16 +27,16 @@ export default function LabelComponent({
       </OdsText>
 
       {!!helpText && (
-        <>
+        <div>
           <OdsIcon
-            id="popover-trigger"
+            id={triggerId}
             name="circle-question"
             className="cursor-help"
           />
-          <OdsTooltip triggerId="popover-trigger" className="w-4 h-4">
-            {helpText}
-          </OdsTooltip>
-        </>
+          <OdsPopover triggerId={triggerId}>
+            <OdsText preset="caption">{helpText}</OdsText>
+          </OdsPopover>
+        </div>
       )}
     </div>
   );
