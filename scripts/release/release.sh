@@ -32,7 +32,7 @@ version() {
     node_modules/.bin/lerna version --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --allow-branch="${GIT_BRANCH}" --yes
   else
     printf "%s\n" "Releasing"
-    node_modules/.bin/lerna version --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --yes --ignore-changes="packages/manager-react-components/**"
+    node_modules/.bin/lerna version --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --yes --ignore-changes="packages/manager-react-components/**,packages/manager/modules/manager-pci-common/**"
   fi
 }
 
@@ -54,7 +54,7 @@ version_mrc() {
     node_modules/.bin/lerna version --scope=manager-react-components --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --allow-branch="${GIT_BRANCH}" --yes
   else
     printf "%s\n" "Releasing"
-    node_modules/.bin/lerna exec --scope=@ovh-ux/manager-react-components -- lerna version --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --no-private --ignore-changes="packages/modules/manager-pci-common/**" --yes
+    node_modules/.bin/lerna exec --scope=@ovh-ux/manager-react-components -- lerna version --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --no-private --ignore-changes="packages/manager/modules/manager-pci-common/**" --yes
   fi
 }
 
@@ -132,7 +132,7 @@ main() {
   done
 
   changed_packages=$(get_changed_packages)
-  printf "%s\n" "Changed packages $changed_packages"
+  
   if [ -z "$changed_packages" ]; then
     printf "%s\n" "Nothing to release"
     exit 0
@@ -152,6 +152,7 @@ main() {
       mrc_changed=true
       path_mrc=$(echo "$package" | cut -d ':' -f 1)
       name_mrc=$(echo "$package" | cut -d ':' -f 2)
+      create_smoke_tag "$current_tag" "$name_mrc" "$version"
     else
       create_smoke_tag "$current_tag" "$name" "$version"
     fi
@@ -170,9 +171,9 @@ main() {
     # Create release note for manager-react-components
     RELEASE_NOTE+="$(create_release_note "$path_mrc" "$name_mrc")\n\n"
 
-    #Commit and release manager-react-components
+    # Commit and release manager-react-components
     clean_tags
-    #push_and_release "$next_tag"
+    push_and_release "$next_tag"
   fi
   
   # Handle the rest of the packages
@@ -181,16 +182,19 @@ main() {
   RELEASE_NOTE+="# Release $next_tag\n\n"
   update_sonar_version "$next_tag"
   version "$next_tag"
+
   # Generate formatted release notes for other packages
   while read -r package; do
     path=$(echo "$package" | cut -d ':' -f 1)
     name=$(echo "$package" | cut -d ':' -f 2)
     RELEASE_NOTE+="$(create_release_note "$path" "$name")\n\n"
   done <<< "$changed_packages"
+
   # Remove package-specific tags for other packages
   clean_tags
+
   # Push and release for other packages
-  #push_and_release "$next_tag"
+  push_and_release "$next_tag"
 
 }
 
