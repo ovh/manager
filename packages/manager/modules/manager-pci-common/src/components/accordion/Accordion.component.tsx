@@ -29,12 +29,12 @@ export const AccordionComponent = ({
 
   return (
     <section
-      className={`px-2 bg-[#F5FEFF] border border-solid border-[#bef1ff] rounded-lg ${className}`.trim()}
+      className={`px-2 bg-[#F5FEFF] border border-solid border-[#bef1ff] rounded-md ${className}`.trim()}
       {...props}
     >
       <div>
         <button
-          className="flex cursor-pointer px-2 w-full border-0 bg-transparent items-stretch"
+          className="flex cursor-pointer pl-2 pr-6 w-full border-0 bg-transparent items-stretch"
           onClick={() => toggle()}
         >
           <div className="w-full text-left">
