@@ -14,10 +14,23 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('nutanix.dashboard.nodes.all'),
       nodeTechnicalDetails: /* @ngInject */ (NutanixService, cluster) =>
         NutanixService.getNodeHardwareInfo(cluster.targetSpec.nodes[0].server),
-      nodePricing: /* ngInject */ (NutanixService, server) =>
-        NutanixService.getServicesTotalPrice(server.serviceId),
-      nodeOrderLinkGenerator: /* @ngInject */ (serviceName, clusterAddOns) =>
-        new NodeExpressOrderLinkGenerator(serviceName, clusterAddOns[0]),
+      nodeServicesDetails: (NutanixService, server) =>
+        NutanixService.getAllServicesDetails(server.serviceId),
+      nodePricing: /* ngInject */ (NutanixService, nodeServicesDetails) =>
+        NutanixService.constructor.getServicesTotalPrice(
+          nodeServicesDetails.serviceDetails,
+          nodeServicesDetails.optionsDetails,
+        ),
+      nodeOrderLinkGenerator: /* @ngInject */ (
+        serviceName,
+        nodeServicesDetails,
+        server,
+      ) =>
+        new NodeExpressOrderLinkGenerator(
+          serviceName,
+          nodeServicesDetails.serviceDetails,
+          server.availabilityZone,
+        ),
       handleSuccess: /* @ngInject */ (Alerter, goBack) => (message) => {
         Alerter.info(message, 'nutanix_dashboard_alert');
         goBack();
