@@ -14,6 +14,7 @@ import {
   FilterList,
   Links,
   LinkType,
+  Notifications,
   PciMaintenanceBanner,
   useColumnFilters,
   useDataGrid,
@@ -227,6 +228,8 @@ export default function ObjectPage() {
       )}`}
       hrefPrevious={objectStorageHref}
     >
+      <Notifications />
+
       {hasMaintenance && (
         <PciMaintenanceBanner maintenanceURL={maintenanceURL} />
       )}
