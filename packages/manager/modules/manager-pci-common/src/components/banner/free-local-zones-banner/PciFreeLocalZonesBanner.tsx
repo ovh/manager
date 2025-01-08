@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ActionBanner } from '@ovh-ux/manager-react-components';
+import { ODS_MESSAGE_VARIANT } from '@ovhcloud/ods-components';
 
 import '../../../translations/free-local-zones-banner';
 
@@ -55,6 +56,7 @@ export function PciFreeLocalZonesBanner({
 
   return (
     <ActionBanner
+      variant={ODS_MESSAGE_VARIANT.default}
       message={t(
         `pci_free_local_zones_banner_text${showConfirm ? '_confirm' : ''}`,
       )}

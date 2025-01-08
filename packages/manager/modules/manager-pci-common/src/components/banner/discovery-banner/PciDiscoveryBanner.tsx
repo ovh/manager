@@ -1,6 +1,9 @@
 import { useTranslation } from 'react-i18next';
 import { useNavigation } from '@ovh-ux/manager-react-shell-client';
-import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
+import {
+  ODS_MESSAGE_COLOR,
+  ODS_MESSAGE_VARIANT,
+} from '@ovhcloud/ods-components';
 import { ActionBanner } from '@ovh-ux/manager-react-components';
 import { TProject } from '../../../api/data';
 
@@ -40,7 +43,9 @@ export function PciDiscoveryBanner({
           cta={t('pci_projects_project_activate_project_banner_cta')}
           color={ODS_MESSAGE_COLOR.warning}
           onClick={activateDiscoveryProject}
+          variant={ODS_MESSAGE_VARIANT.default}
           className={className}
+          isDismissible={false}
         />
       )}
     </>
