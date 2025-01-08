@@ -9,7 +9,7 @@ export type TS3Credentials = {
 };
 
 export type TUser = {
-  id: string;
+  id: number;
   username: string;
   creationDate: string;
   description: string;

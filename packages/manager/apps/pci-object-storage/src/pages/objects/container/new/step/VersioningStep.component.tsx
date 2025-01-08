@@ -1,6 +1,10 @@
 import { useTranslation } from 'react-i18next';
 import { StepComponent } from '@ovh-ux/manager-react-components';
-import { OdsRadio, OdsText } from '@ovhcloud/ods-components/react';
+import {
+  OdsFormField,
+  OdsRadio,
+  OdsText,
+} from '@ovhcloud/ods-components/react';
 import { useContainerCreationStore } from '../useContainerCreationStore';
 
 export function VersioningStep() {
@@ -60,7 +64,7 @@ export function VersioningStep() {
         </div>
         <div className="flex mt-4">
           <OdsRadio
-            className="mt-4"
+            className="mr-4"
             value="true"
             name="versioning"
             onOdsChange={() => setVersioning(true)}

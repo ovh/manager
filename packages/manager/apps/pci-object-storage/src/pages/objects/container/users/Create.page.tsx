@@ -26,7 +26,7 @@ import LabelComponent from '@/components/Label.component';
 
 type TState = {
   userType?: 'new' | 'existing';
-  selectedUserId?: string;
+  selectedUserId?: number;
   userDescription: {
     value: string;
     isTouched: boolean;
@@ -200,7 +200,7 @@ export default function UserCreatePage(): JSX.Element {
         try {
           const credentials = await generateS3Credentials(
             projectId,
-            targetUser.id,
+            `${targetUser.id}`,
           );
           setState({ ...state, isLoading: false });
           onSuccess({
@@ -295,11 +295,11 @@ export default function UserCreatePage(): JSX.Element {
         {state.userType === 'existing' && (
           <OdsSelect
             name="selectedUserId"
-            value={state.selectedUserId}
+            value={`${state.selectedUserId}`}
             onOdsChange={(event) => {
               setState({
                 ...state,
-                selectedUserId: event.detail.value as string,
+                selectedUserId: parseInt(event.detail.value, 10),
               });
             }}
             className="mb-8"
