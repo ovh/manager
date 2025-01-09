@@ -68,7 +68,7 @@ const Buttons = () => {
   return (
     <div className="md:grid grid-cols-[0.5fr,0.5fr] gap-4 ">
       <button
-        className="button-datagrid-form cursor-pointer hover:[#85d9fd] border-[--ods-color-blue-200] border-solid border pt-3 bg-white rounded"
+        className="button-datagrid-form cursor-pointer border-[--ods-color-blue-200] border-solid border pt-3 bg-white rounded"
         data-testid="remove-draft-button"
         onClick={removeDraftRow}
         type={ODS_BUTTON_TYPE.reset}
