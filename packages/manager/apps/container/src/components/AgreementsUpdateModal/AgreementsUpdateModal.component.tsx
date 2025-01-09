@@ -1,27 +1,44 @@
 import React, { useContext, useEffect, useMemo, useState } from 'react';
-import usePendingAgreements from '@/hooks/agreements/usePendingAgreements';
-import { ODS_THEME_COLOR_HUE, ODS_THEME_COLOR_INTENT, ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
-import { OsdsButton, OsdsLink, OsdsModal, OsdsText } from '@ovhcloud/ods-components/react';
-import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT, ODS_TEXT_LEVEL } from '@ovhcloud/ods-components';
 import { Trans, useTranslation } from 'react-i18next';
+import {
+  ODS_THEME_COLOR_HUE,
+  ODS_THEME_COLOR_INTENT,
+  ODS_THEME_TYPOGRAPHY_SIZE,
+} from '@ovhcloud/ods-common-theming';
+import {
+  OsdsButton,
+  OsdsLink,
+  OsdsModal,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+import {
+  ODS_BUTTON_SIZE,
+  ODS_BUTTON_VARIANT,
+  ODS_TEXT_LEVEL,
+} from '@ovhcloud/ods-components';
+import { useAuthorizationIam } from '@ovh-ux/manager-react-components';
+import usePendingAgreements from '@/hooks/agreements/usePendingAgreements';
 import ApplicationContext from '@/context';
 import ovhCloudLogo from '@/assets/images/logo-ovhcloud.png';
-import { useAuthorizationIam } from '@ovh-ux/manager-react-components';
 import useAccountUrn from '@/hooks/accountUrn/useAccountUrn';
 import { ModalTypes } from '@/context/modals/modals.context';
 import { useModals } from '@/context/modals';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 
 export default function AgreementsUpdateModal () {
   const { shell } = useContext(ApplicationContext);
-  const region: string = shell
+  const environment = shell
     .getPlugin('environment')
-    .getEnvironment()
-    .getRegion();
+    .getEnvironment();
+  const region: string = environment.getRegion();
   const navigation = shell.getPlugin('navigation');
   const { current } = useModals();
+  // TODO: simplify this once new-billing is fully open to the public
+  const billingAppName = environment.getApplicationURL('new-billing')
+    ? 'new-billing'
+    : 'dedicated';
   const myContractsLink = navigation.getURL(
-    'billing',
+    billingAppName,
     '#/autorenew/agreements',
   );
   const [ showModal, setShowModal ] = useState(false);
@@ -34,7 +51,7 @@ export default function AgreementsUpdateModal () {
   const { data: agreements, isLoading: areAgreementsLoading } = usePendingAgreements({ enabled: canUserAcceptAgreements });
   const goToContractPage = () => {
     setShowModal(false);
-    navigation.navigateTo('dedicated', `#/billing/autorenew/agreements`);
+    navigation.navigateTo(billingAppName, `#/billing/autorenew/agreements`);
   };
 
   /*
