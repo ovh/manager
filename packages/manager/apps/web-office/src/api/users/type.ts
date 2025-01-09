@@ -1,4 +1,4 @@
-import { LicenseEnum, UserStateEnum } from '../api.type';
+import { LicenseEnum, TaskStatusEnum, UserStateEnum } from '../api.type';
 
 export type UserNativeType = {
   activationEmail: string;
@@ -16,4 +16,12 @@ export type UserNativeType = {
     | boolean
     | LicenseEnum[]
     | { id: string; urn: string };
+};
+
+export type PendingTaskType = {
+  finishDate?: string;
+  function: string;
+  id: number;
+  status: TaskStatusEnum;
+  todoDate: string;
 };

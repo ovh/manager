@@ -1,4 +1,4 @@
-import { fetchIcebergV6 } from '@ovh-ux/manager-core-api';
+import { fetchIcebergV6, v6 } from '@ovh-ux/manager-core-api';
 import { getApiPath } from '../utils/apiPath';
 import { UserNativeType } from './type';
 
@@ -19,3 +19,13 @@ export const getOfficeUsers = async (
 // PUT
 
 // DELETE
+
+export const deleteOfficeUser = async (
+  serviceName: string,
+  activationEmail: string,
+) => {
+  const { data } = await v6.delete(
+    `${getApiPath(serviceName)}user/${activationEmail}`,
+  );
+  return data;
+};
