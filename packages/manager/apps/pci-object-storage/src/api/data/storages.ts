@@ -18,7 +18,7 @@ export type TStorage = {
   objects?: unknown[];
   objectsSize?: number;
   virtualHost?: string;
-  ownerId?: string;
+  ownerId?: number;
   deploymentMode?: string;
   state?: string;
 };
@@ -142,7 +142,7 @@ export const createS3Storage = async ({
   projectId: string;
   containerName: string;
   region: string;
-  ownerId: string;
+  ownerId: number;
   encryption: string;
   versioning: boolean;
 }) => {

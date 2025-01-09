@@ -11,7 +11,7 @@ export interface ContainerCreationForn {
   offer: string;
   deploymentMode: string;
   region: TRegionAvailability;
-  ownerId: string;
+  ownerId: number;
   versioning: boolean;
   encryption: string;
   containerName: string;
@@ -51,7 +51,7 @@ export interface ContainerStore {
   editRegion: () => void;
   submitRegion: () => void;
 
-  setOwnerId: (ownerId: string) => void;
+  setOwnerId: (ownerId: number) => void;
   editOwnerId: () => void;
   submitOwnerId: () => void;
 
@@ -74,7 +74,7 @@ const initialForm = {
   offer: OBJECT_CONTAINER_OFFER_STORAGE_STANDARD,
   deploymentMode: undefined,
   region: undefined,
-  ownerId: '',
+  ownerId: undefined,
   versioning: false,
   encryption: NO_ENCRYPTION_VALUE,
   containerName: '',
@@ -169,7 +169,7 @@ export const useContainerCreationStore = create<ContainerStore>()(
             offer,
             deploymentMode: undefined,
             region: undefined,
-            ownerId: '',
+            ownerId: undefined,
             versioning: false,
             encryption: NO_ENCRYPTION_VALUE,
             containerName: '',
@@ -200,7 +200,7 @@ export const useContainerCreationStore = create<ContainerStore>()(
             ...state.form,
             deploymentMode,
             region: undefined,
-            ownerId: '',
+            ownerId: undefined,
             versioning: false,
             encryption: NO_ENCRYPTION_VALUE,
             containerName: '',
@@ -222,7 +222,7 @@ export const useContainerCreationStore = create<ContainerStore>()(
           form: {
             ...state.form,
             region,
-            ownerId: '',
+            ownerId: undefined,
             versioning: false,
             encryption: NO_ENCRYPTION_VALUE,
             containerName: '',
@@ -248,7 +248,7 @@ export const useContainerCreationStore = create<ContainerStore>()(
           'containerType',
         ]),
 
-      setOwnerId: (ownerId: string) =>
+      setOwnerId: (ownerId: number) =>
         set((state) => ({
           form: {
             ...state.form,
