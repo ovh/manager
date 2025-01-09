@@ -73,10 +73,10 @@ export function EncryptionStep() {
               'pci_projects_project_storages_containers_data_encryption_aes256',
             )}
           </label>
-          <span id="trigger-popover">
+          <span id="trigger-popover" className="ml-2">
             <OdsIcon name="circle-question" />
           </span>
-          <OdsPopover triggerId="trigger-popover" className="w-4 h-4">
+          <OdsPopover triggerId="trigger-popover">
             {t(
               'pci_projects_project_storages_containers_data_encryption_aes256_tooltip',
             )}

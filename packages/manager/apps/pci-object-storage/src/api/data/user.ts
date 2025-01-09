@@ -30,7 +30,7 @@ export type TUser = {
 
 export const getUser = async (
   projectId: string,
-  userId: string,
+  userId: number,
 ): Promise<TUser> => {
   const { data } = await v6.get<TUser>(
     `/cloud/project/${projectId}/user/${userId}`,
@@ -64,7 +64,7 @@ export const deleteUser = async (
 };
 export const getUserStoragePolicy = async (
   projectId: string,
-  userId: string,
+  userId: number,
 ): Promise<{ policy: string }> => {
   const { data } = await v6.get(
     `/cloud/project/${projectId}/user/${userId}/policy`,
@@ -74,7 +74,7 @@ export const getUserStoragePolicy = async (
 
 export const postS3Secret = async (
   projectId: string,
-  userId: string,
+  userId: number,
   userAccess: string,
 ): Promise<{ secret: string }> => {
   const { data } = await v6.post(
@@ -100,7 +100,7 @@ export const importUserPolicy = async (
 
 export const generateS3Credentials = async (
   projectId: string,
-  userId: string,
+  userId: number,
 ): Promise<TS3Credentials> => {
   const { data } = await v6.post<TS3Credentials>(
     `/cloud/project/${projectId}/user/${userId}/s3Credentials`,

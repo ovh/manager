@@ -313,7 +313,7 @@ export interface UseCreateContainerArgs {
   archive?: boolean;
   containerName: string;
   region: string;
-  ownerId?: string;
+  ownerId?: number;
   encryption?: string;
   versioning?: boolean;
   containerType?: string;
