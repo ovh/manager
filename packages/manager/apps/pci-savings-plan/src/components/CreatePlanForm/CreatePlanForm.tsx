@@ -7,6 +7,7 @@ import {
   ODS_SPINNER_SIZE,
   OdsInputChangeEvent,
 } from '@ovhcloud/ods-components';
+
 import {
   OdsButton,
   OdsCard,
@@ -175,6 +176,8 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
       )
     : [];
 
+  const isValidPlanName = isValidSavingsPlanName(planName);
+
   const isButtonActive = useMemo(
     () =>
       quantity > 0 &&
@@ -183,7 +186,8 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
       selectedResource &&
       isLegalChecked &&
       planName &&
-      !isDiscoveryProject,
+      !isDiscoveryProject &&
+      isValidPlanName,
     [
       quantity,
       offerIdSelected,
@@ -192,6 +196,7 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
       isLegalChecked,
       planName,
       isDiscoveryProject,
+      isValidPlanName,
     ],
   );
 
@@ -317,12 +322,17 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
           <OdsQuantity
             onOdsChange={(event: OdsInputChangeEvent) => {
               const newValue = Number(event.detail.value);
-              if (newValue >= 1 && newValue <= 1000) onChangeQuantity(newValue);
+              if (newValue >= 1 && newValue <= 1000) {
+                onChangeQuantity(newValue);
+              } else {
+                onChangeQuantity(1);
+              }
             }}
             value={quantity}
             min={1}
             max={1000}
             name="quantity"
+            isRequired
           />
         </OdsCard>
         <OdsMessage className="my-4" isDismissible={false}>
@@ -377,7 +387,7 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
           placeholder={t('savings_plan_name_input_placeholder')}
           aria-label="savings-plan-name-input"
           type={ODS_INPUT_TYPE.text}
-          hasError={!isValidSavingsPlanName(planName)}
+          hasError={!isValidPlanName}
           className={`${COMMON_SPACING} md:w-1/3`}
           value={planName}
           onOdsChange={(e) => setPlanName(e.target.value as string)}
@@ -395,7 +405,7 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
           onClick={() => setIsLegalChecked(!isLegalChecked)}
         />
         <label htmlFor="checkbox-label">
-          <OdsText>{t('legal_checkbox')}</OdsText>
+          <OdsText>{t('legal_checkbox')} &nbsp;</OdsText>
         </label>
         <LegalLinks className="mr-[5px]" />
       </Block>
@@ -411,7 +421,7 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
         <OdsButton
           data-testid="cta-plan-button"
           label={t('cta_plan')}
-          isDisabled={!isButtonActive || undefined}
+          isDisabled={!isButtonActive}
           onClick={onCreateSavingsPlan}
         />
       </div>

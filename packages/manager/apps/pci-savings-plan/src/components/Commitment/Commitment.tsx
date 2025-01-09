@@ -2,6 +2,7 @@ import { OdsText, OdsCard } from '@ovhcloud/ods-components/react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useCatalogPrice } from '@ovh-ux/manager-react-components';
+import clsx from 'clsx';
 import { getDiffInPercent } from './Commitment.utils';
 import {
   CENTS_PRICE,
@@ -38,12 +39,12 @@ const Commitment = ({
 
   return (
     <OdsCard
-      className={`flex flex-row items-center mr-5 my-4 p-5 justify-between w-full cursor-pointer ${
-        isActive
-          ? 'bg-[--ods-color-primary-050] border-[--ods-color-primary-500] border-2'
-          : ''
-      }`}
+      className={clsx(
+        'flex flex-row items-center mr-5 my-4 p-5 justify-between w-full cursor-pointer',
+        { 'border-[--ods-color-primary-500] border-2': isActive },
+      )}
       onClick={onClick}
+      color="neutral"
     >
       <span className="flex flex-row items-center justify-center">
         <OdsText>{t('commitment_month', { value: duration })}</OdsText>

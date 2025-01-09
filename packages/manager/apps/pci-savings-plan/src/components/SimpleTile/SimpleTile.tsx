@@ -17,7 +17,7 @@ const SimpleTile: React.FC<React.PropsWithChildren<{
       },
       className,
     )}
-    color={'neutral'}
+    color="neutral"
     onClick={onClick}
   >
     {children}
