@@ -1,12 +1,3 @@
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import {
-  ODS_TEXT_LEVEL,
-  OdsBreadcrumbAttributeItem,
-} from '@ovhcloud/ods-components';
-import { OsdsBreadcrumb, OsdsText } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import {
@@ -19,6 +10,11 @@ import {
 import { useProject } from '@ovh-ux/manager-pci-common';
 import { Suspense, useContext } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import {
+  OdsBreadcrumb,
+  OdsBreadcrumbItem,
+  OdsText,
+} from '@ovhcloud/ods-components/react';
 import {
   AVAILABILITY,
   GUIDES,
@@ -68,16 +64,6 @@ export default function OnBoardingPage() {
     },
   }));
 
-  const breadcrumbItems: OdsBreadcrumbAttributeItem[] = [
-    {
-      href: urlProject,
-      label: project?.description,
-    },
-    {
-      label: t('pci_projects_project_storages_objects_onboarding_title'),
-    },
-  ];
-
   const isPending = isAvailabilityPending || isStoragesPending;
 
   return (
@@ -86,87 +72,60 @@ export default function OnBoardingPage() {
       route={`/pci/projects/${projectId}/storages/objects`}
       condition={allStorages?.resources.length > 0}
     >
-      {project && <OsdsBreadcrumb items={breadcrumbItems} />}
+      {project && (
+        <OdsBreadcrumb>
+          <OdsBreadcrumbItem href={urlProject} label={project?.description} />
+          <OdsBreadcrumbItem
+            href=""
+            label={t('pci_projects_project_storages_objects_onboarding_title')}
+          />
+        </OdsBreadcrumb>
+      )}
       <OnboardingLayout
         title={t('pci_projects_project_storages_objects_onboarding_title')}
         description={
           <>
             {isS3User && (
               <>
-                <OsdsText
-                  color={ODS_THEME_COLOR_INTENT.text}
-                  level={ODS_TEXT_LEVEL.body}
-                  size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-                  className="mt-8 block"
-                >
+                <OdsText className="mt-8 block">
                   {t(
                     'pci_projects_project_storages_objects_onboarding_content5',
                   )}
-                </OsdsText>
-                <OsdsText
-                  color={ODS_THEME_COLOR_INTENT.text}
-                  level={ODS_TEXT_LEVEL.body}
-                  size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-                  className="mt-6 block"
-                >
+                </OdsText>
+                <OdsText className="mt-6 block">
                   {t(
                     'pci_projects_project_storages_objects_onboarding_content6',
                   )}
-                </OsdsText>
-                <OsdsText
-                  color={ODS_THEME_COLOR_INTENT.text}
-                  level={ODS_TEXT_LEVEL.body}
-                  size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-                  className="mt-8 block"
-                >
+                </OdsText>
+                <OdsText className="mt-8 block">
                   {t(
                     'pci_projects_project_storages_objects_onboarding_content7',
                   )}
-                </OsdsText>
+                </OdsText>
               </>
             )}
             {!isS3User && (
               <>
-                <OsdsText
-                  color={ODS_THEME_COLOR_INTENT.text}
-                  level={ODS_TEXT_LEVEL.body}
-                  size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-                  className="mt-8 block"
-                >
+                <OdsText className="mt-8 block">
                   {t(
                     'pci_projects_project_storages_objects_onboarding_content1',
                   )}
-                </OsdsText>
-                <OsdsText
-                  color={ODS_THEME_COLOR_INTENT.text}
-                  level={ODS_TEXT_LEVEL.body}
-                  size={ODS_THEME_TYPOGRAPHY_SIZE._500}
-                  className="mt-6 block"
-                >
+                </OdsText>
+                <OdsText className="mt-6 block">
                   {t(
                     'pci_projects_project_storages_objects_onboarding_content2',
                   )}
-                </OsdsText>
-                <OsdsText
-                  color={ODS_THEME_COLOR_INTENT.text}
-                  level={ODS_TEXT_LEVEL.body}
-                  size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-                  className="mt-8 block"
-                >
+                </OdsText>
+                <OdsText className="mt-8 block">
                   {t(
                     'pci_projects_project_storages_objects_onboarding_content3',
                   )}
-                </OsdsText>
-                <OsdsText
-                  color={ODS_THEME_COLOR_INTENT.text}
-                  level={ODS_TEXT_LEVEL.body}
-                  size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-                  className="mt-8 block"
-                >
+                </OdsText>
+                <OdsText className="mt-8 block">
                   {t(
                     'pci_projects_project_storages_objects_onboarding_content4',
                   )}
-                </OsdsText>
+                </OdsText>
               </>
             )}
           </>
