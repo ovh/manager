@@ -70,9 +70,9 @@ export default function AgreementsUpdateModal () {
 
     if (isFeatureAvailable) {
       const hasFullyLoaded =
+        urn &&
         !isAuthorizationLoading &&
-        (!canUserAcceptAgreements ||
-          (!areAgreementsLoading && Boolean(agreements)));
+        (!canUserAcceptAgreements || !areAgreementsLoading);
       if (isOnAgreementsPage || !hasFullyLoaded) return;
 
       if (!agreements?.length) {
