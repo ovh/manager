@@ -71,7 +71,7 @@ type AddUserProps = {
   storageId: string;
   objectName: string;
   region: string;
-  userId: string;
+  userId: number;
   role: string;
   onError: (cause: Error) => void;
   onSuccess: () => void;

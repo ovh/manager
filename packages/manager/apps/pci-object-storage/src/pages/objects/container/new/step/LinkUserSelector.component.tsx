@@ -19,7 +19,7 @@ import queryClient from '@/queryClient';
 import UserInformationTile from './UserInformationTile.component';
 
 type LinkUserSelectorProps = {
-  userId: string;
+  userId: number;
   onSelectOwner: (user: TUser) => void;
   onCancel: () => void;
 };
@@ -35,7 +35,7 @@ export default function LinkUserSelector({
   const { data: listUsers, isPending: isPendingListUsers } = useUsers(
     projectId,
   );
-  const formUser = listUsers?.find((user) => `${user.id}` === userId);
+  const formUser = listUsers?.find((user) => user.id === userId);
 
   const [secretUser, setSecretUser] = useState('');
 
@@ -46,7 +46,7 @@ export default function LinkUserSelector({
 
   const { postS3Secret: showSecretKey } = usePostS3Secret({
     projectId,
-    userId: `${formUser?.id}`,
+    userId: formUser?.id,
     userAccess: formUser?.s3Credentials?.access,
     onSuccess: ({ secret }) => {
       setSecretUser(secret);
@@ -54,13 +54,7 @@ export default function LinkUserSelector({
     onError: () => {},
   });
 
-  /**
-   * this prevent onOdsValueChange to be triggered twice, it can be removed
-   * when the issue on the OsdsSelect is fixed.
-   * @TODO remove when migrating to ODS 18
-   */
   useEffect(() => {
-    console.log('formUser', formUser);
     if (formUser?.s3Credentials) {
       showSecretKey();
     }
@@ -68,10 +62,7 @@ export default function LinkUserSelector({
 
   const onShowCredentials = async () => {
     if (!formUser?.s3Credentials) {
-      const credentials = await generateS3Credentials(
-        projectId,
-        `${formUser?.id}`,
-      );
+      const credentials = await generateS3Credentials(projectId, formUser?.id);
       await queryClient.invalidateQueries({
         queryKey: [...getQueryKeyUsers(projectId), formUser?.id],
       });
@@ -97,8 +88,9 @@ export default function LinkUserSelector({
             'pci_projects_project_storages_containers_add_create_or_linked_user_linked_user_label',
           )}
         />
-        <div>
+        <div className="flex">
           <OdsSelect
+            className="min-w-[25rem]"
             value={`${formUser?.id}`}
             name="selectUser"
             isDisabled={

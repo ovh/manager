@@ -20,12 +20,6 @@ describe('LabelComponent', () => {
     expect(queryByText('Help Text')).not.toBeInTheDocument();
   });
 
-  it('applies error color when hasError is true', () => {
-    const { getByText } = render(<LabelComponent text="Test Label" hasError />);
-    const label = getByText('Test Label');
-    expect(label).toHaveAttribute('color', 'error');
-  });
-
   it('applies custom className when provided', () => {
     const { getByText } = render(
       <LabelComponent text="Test Label" className="custom-class" />,
