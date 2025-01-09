@@ -86,26 +86,28 @@ export function ContainerNameStep({
             : undefined
         }
       >
-        <OdsInput
-          value={form.containerName}
-          name="containerName"
-          onOdsBlur={() => setIsTouched(true)}
-          onOdsChange={(event) =>
-            setContainerName(event.detail.value.toString())
-          }
-          color="primary"
-        />
+        <OdsFormField>
+          <OdsInput
+            value={form.containerName}
+            name="containerName"
+            onOdsBlur={() => setIsTouched(true)}
+            onOdsChange={(event) =>
+              setContainerName(event.detail.value.toString())
+            }
+            color="primary"
+          />
+        </OdsFormField>
+        <OdsText
+          slot="helper"
+          className={`max-w-2xl ${
+            shouldDisplayError ? 'text-[var(--ods-color-critical-500)]' : ''
+          }`}
+        >
+          {t(
+            'pci_projects_project_storages_containers_add_pattern_help_storage-s3',
+          )}
+        </OdsText>
       </OdsFormField>
-      <OdsText
-        preset="paragraph"
-        className={`${
-          shouldDisplayError ? 'text-[var(--ods-color-critical-500)]' : ''
-        }`}
-      >
-        {t(
-          'pci_projects_project_storages_containers_add_pattern_help_storage-s3',
-        )}
-      </OdsText>
       {(form.deploymentMode === OBJECT_CONTAINER_MODE_MONO_ZONE ||
         form.deploymentMode === OBJECT_CONTAINER_MODE_MULTI_ZONES) && (
         <OdsMessage className="mt-4" color="information">
