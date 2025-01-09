@@ -32,6 +32,7 @@ const shellContext = {
         case 'environment': return {
           getEnvironment: () => ({
             getRegion: vi.fn(() => mocks.region),
+            getApplicationURL: vi.fn((app) => `https://ovh.com/manager/${app}`)
           })
         };
       }
@@ -61,11 +62,11 @@ vi.mock('react', async (importOriginal) => {
 });
 
 vi.mock('@/hooks/accountUrn/useAccountUrn', () => ({
-  default: () => () => 'urn'
+  default: () => ({ data: 'urn' }),
 }));
 
-vi.mock('@ovh-ux/manager-react-components/src/hooks/iam', () => ({
-  useAuthorizationIam: () => () => ({ isAuthorized: mocks.isAuthorized })
+vi.mock('@ovh-ux/manager-react-components', () => ({
+  useAuthorizationIam: () => ({ isAuthorized: mocks.isAuthorized })
 }));
 
 vi.mock('@/context/modals', () => ({
