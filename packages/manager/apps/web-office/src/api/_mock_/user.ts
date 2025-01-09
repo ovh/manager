@@ -1,5 +1,5 @@
-import { LicenseEnum, UserStateEnum } from '../api.type';
-import { UserNativeType } from '../users/type';
+import { LicenseEnum, TaskStatusEnum, UserStateEnum } from '../api.type';
+import { PendingTaskType, UserNativeType } from '../users/type';
 
 export const usersMock: UserNativeType[] = [
   {
@@ -25,3 +25,11 @@ export const usersMock: UserNativeType[] = [
     usageLocation: 'fr',
   },
 ];
+
+export const pendingTask: PendingTaskType = {
+  finishDate: null,
+  function: 'deleteOffice365UserPaygNCE',
+  id: 581553,
+  status: TaskStatusEnum.TODO,
+  todoDate: '2025-01-09T11:20:52+01:00',
+};
