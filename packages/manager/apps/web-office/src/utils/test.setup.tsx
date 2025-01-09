@@ -54,7 +54,9 @@ vi.mock('@/api/license', async (importActual) => {
     }),
     getOfficeLicenseDetails: vi.fn((serviceName) => {
       return Promise.resolve(
-        licensesMock.find((license) => license.serviceName === serviceName),
+        [...licensesMock, ...licensesPrepaidExpandedMock].find(
+          (license) => license.serviceName === serviceName,
+        ),
       );
     }),
     getOfficePrepaidLicenses: vi.fn(() => {
