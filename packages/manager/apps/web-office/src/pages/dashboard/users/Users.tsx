@@ -28,10 +28,6 @@ export default function Users() {
     isLoading: isLoadingLicenceDetail,
   } = useOfficeLicenseDetail();
 
-  if (isLoadingUsers || isLoadingLicenceDetail) {
-    return <Loading />;
-  }
-
   const columns: DatagridColumn<UserNativeType>[] = [
     {
       id: 'firstName',
@@ -113,21 +109,31 @@ export default function Users() {
         <p>{t('dashboard_users_download_info')}</p>
         <strong>{t('dashboard_users_download_id')}</strong>
       </OdsText>
-      <OdsButton
-        label={t('dashboard_users_order_button_licenses')}
-        variant={ODS_BUTTON_VARIANT.outline}
-        className="block"
-      />
-      {columns && (
-        <Datagrid
-          columns={columns.map((column) => ({
-            ...column,
-            label: t(column.label),
-          }))}
-          items={dataUsers || []}
-          totalItems={dataUsers?.length || 0}
-          className="mt-4"
-        />
+
+      {isLoadingUsers || isLoadingLicenceDetail ? (
+        <Loading />
+      ) : (
+        <>
+          <OdsButton
+            data-testid="user-or-licenses-order-button"
+            label={
+              !dataLicenceDetail?.serviceType
+                ? t('dashboard_users_order_button_licenses')
+                : t('dashboard_users_order_button_users')
+            }
+            variant={ODS_BUTTON_VARIANT.outline}
+            className="block mb-4"
+          />
+          <Datagrid
+            columns={columns.map((column) => ({
+              ...column,
+              label: t(column.label),
+            }))}
+            items={dataUsers || []}
+            totalItems={dataUsers?.length || 0}
+            className="mt-4"
+          />
+        </>
       )}
     </div>
   );
