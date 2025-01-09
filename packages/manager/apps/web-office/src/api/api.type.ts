@@ -12,3 +12,11 @@ export enum LicenseEnum {
   OFFICE_BUSINESS = 'officeBusiness',
   OFFICE_PRO_PLUS = 'officeProPlus',
 }
+
+export enum TaskStatusEnum {
+  CANCELLED = 'cancelled',
+  DOING = 'doing',
+  DONE = 'done',
+  ERROR = 'error',
+  TODO = 'todo',
+}
