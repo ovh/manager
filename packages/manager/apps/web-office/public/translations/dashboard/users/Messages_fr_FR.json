@@ -15,5 +15,6 @@
   "dashboard_users_action_user_change_password": "Changer le mot de passe",
   "dashboard_users_action_user_edit": "Editer le compte",
   "dashboard_users_action_user_delete": "Supprimer le compte",
-  "dashboard_users_order_button_licenses": "Commander plus de licenses"
+  "dashboard_users_order_button_licenses": "Commander plus de licences",
+  "dashboard_users_order_button_users": "Ajouter un utilisateur"
 }
