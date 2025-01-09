@@ -1,13 +1,10 @@
 import { useHref } from 'react-router-dom';
-import { useOfficeLicenseDetail } from '@/hooks';
 
-export const UseGenerateUrl = (
+export const useGenerateUrl = (
   baseURL: string,
   type: 'path' | 'href' = 'path',
   params?: Record<string, string | number>,
 ) => {
-  const { data: serviceName } = useOfficeLicenseDetail();
-
   const URL = baseURL.replace(
     ':serviceName',
     (params?.serviceName as string) || '',
@@ -15,7 +12,6 @@ export const UseGenerateUrl = (
 
   const queryParams = {
     ...params,
-    ...(serviceName && { serviceNameDetail: serviceName }),
   };
 
   const queryString = Object.entries(queryParams)
