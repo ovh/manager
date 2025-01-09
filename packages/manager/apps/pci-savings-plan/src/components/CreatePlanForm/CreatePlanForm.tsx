@@ -26,6 +26,7 @@ import { MutationStatus, useMutationState } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
+import clsx from 'clsx';
 import useTechnicalInfo, { usePricingInfo } from '@/hooks/useCatalogCommercial';
 import {
   getMutationKeyCreateSavingsPlan,
@@ -55,9 +56,10 @@ const COMMON_SPACING = 'my-4';
 
 export const DescriptionWrapper: React.FC<{
   children: string;
-}> = ({ children }) => {
+  className?: string;
+}> = ({ children, className }) => {
   return (
-    <div className={COMMON_SPACING}>
+    <div className={clsx(COMMON_SPACING, className)}>
       <OdsText>{children}</OdsText>
     </div>
   );
@@ -272,7 +274,7 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
       <Block>
         <Subtitle>{t('select_model')}</Subtitle>
         {isInstance && (
-          <div className={COMMON_SPACING}>
+          <div className="mb-[16px] mt-[12px]">
             <OdsTabs slot="top">
               {tabsList.map((tab) => (
                 <OdsTab
@@ -290,7 +292,7 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
           {t(getDescriptionInstanceKey(instanceCategory))}
         </DescriptionWrapper>
         {!isTechnicalInfoLoading ? (
-          <div className="flex flex-row w-full overflow-x-auto">
+          <div className="flex flex-row w-full overflow-x-auto mb-[32px]">
             {currentInstanceSelected.technical?.map(({ name, technical }) => (
               <TileTechnicalInfo
                 key={name}
@@ -307,10 +309,10 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
       </Block>
       <Block>
         <Subtitle>{t('select_quantity')}</Subtitle>
-        <DescriptionWrapper>
+        <DescriptionWrapper className="mb-[12px]">
           {t('select_quantity_description')}
         </DescriptionWrapper>
-        <OdsCard className="flex flex-row items-center mr-5 p-4 text-center justify-between w-full">
+        <OdsCard className="flex flex-row items-center mr-5 p-4 text-center justify-between w-full mb-[32px] mt-[16px]">
           <OdsText>{t('quantity_label')}</OdsText>
           <OdsQuantity
             onOdsChange={(event: OdsInputChangeEvent) => {
@@ -395,9 +397,9 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
         <label htmlFor="checkbox-label">
           <OdsText>{t('legal_checkbox')}</OdsText>
         </label>
-        <LegalLinks />
+        <LegalLinks className="mr-[5px]" />
       </Block>
-      <div className="flex mt-8">
+      <div className="flex mt-[40px]">
         <OdsButton
           data-testid="cta-cancel-button"
           label={t('cta_cancel')}
