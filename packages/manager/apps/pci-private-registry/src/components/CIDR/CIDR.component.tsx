@@ -26,7 +26,7 @@ import Filters from '@/components/CIDR/Filters.component';
 import { getRegistryQueyPrefixWithId } from '@/api/hooks/useIpRestrictions';
 import useDataGridContext from '@/pages/CIDR/useDatagridContext';
 
-export default function BlockCIDR() {
+export default function CIDR() {
   const { t } = useTranslation(['ip-restrictions', 'common']);
   const { projectId = '', registryId = '' } = useParams();
   const { formState, reset } = useFormContext();
