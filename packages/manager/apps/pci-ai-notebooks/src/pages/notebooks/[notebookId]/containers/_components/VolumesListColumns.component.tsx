@@ -54,7 +54,7 @@ export const getColumns = ({ onDataSyncClicked }: VolumesListColumnsProps) => {
         return (
           <div className="w-full max-w-[200px] border border-1 border-primary-100">
             <Button
-              data-testid="dashboard-copy-id-button"
+              data-testid="containers-copy-mountpath-button"
               type="button"
               className="w-full flex justify-between items-center p-4 border-0"
               size="sm"
@@ -108,7 +108,7 @@ export const getColumns = ({ onDataSyncClicked }: VolumesListColumnsProps) => {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button
-                data-testid="notebooks-action-trigger"
+                data-testid="container-action-trigger"
                 variant="menu"
                 size="menu"
               >
@@ -124,7 +124,7 @@ export const getColumns = ({ onDataSyncClicked }: VolumesListColumnsProps) => {
                 {t('synchDataDropdownMenuLabel')}
               </DropdownMenuLabel>
               <DropdownMenuItem
-                data-testid="notebook-action-data-sync-button"
+                data-testid="container-action-data-sync-button"
                 variant="primary"
                 onClick={() => {
                   onDataSyncClicked(row.original);

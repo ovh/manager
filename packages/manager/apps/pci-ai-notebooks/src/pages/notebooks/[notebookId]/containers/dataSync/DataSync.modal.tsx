@@ -147,7 +147,7 @@ const DataSync = () => {
                       form.setValue('type', value);
                     }}
                   >
-                    <SelectTrigger>
+                    <SelectTrigger data-testid="select-datasync-trigger">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
