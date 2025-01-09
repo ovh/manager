@@ -39,6 +39,18 @@ export const getOfficePrepaidLicenses = async (serviceName: string) => {
 
 // POST
 
+export const postOfficePrepaidLicenseUnconfigure = async (
+  serviceName: string,
+  activationEmail: string,
+) => {
+  const { data } = await v6.post(
+    `${getApiPathWithoutServiceName(
+      serviceName,
+    )}${activationEmail}/unconfigure`,
+  );
+  return data;
+};
+
 // PUT
 
 // DELETE

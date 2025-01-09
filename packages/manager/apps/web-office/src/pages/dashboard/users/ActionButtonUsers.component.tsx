@@ -2,10 +2,12 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ActionMenu } from '@ovh-ux/manager-react-components';
 import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import { useNavigate } from 'react-router-dom';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import { UserStateEnum } from '@/api/api.type';
 import { UserNativeType } from '@/api/users/type';
 import { LicenseType } from '@/api/license/type';
+import { useGenerateUrl } from '@/hooks';
 
 interface ActionButtonUsersProps {
   usersItem: UserNativeType;
@@ -16,16 +18,21 @@ const ActionButtonUsers: React.FC<ActionButtonUsersProps> = ({
   licenceDetail,
 }) => {
   const { t } = useTranslation('dashboard/users');
+  const navigate = useNavigate();
+
+  const hrefDeleteUsers = useGenerateUrl('./users/delete', 'path', {
+    activationEmail: usersItem.activationEmail,
+    ...(!licenceDetail.serviceType && {
+      licencePrepaidName: licenceDetail.serviceName,
+    }),
+  });
 
   const handlePasswordChangeClick = () => {
     // @todo: for next user story
     console.log('handlePasswordChangeClick');
   };
 
-  const handleDeleteUserClick = () => {
-    // @todo: for next user story
-    console.log('handleDeleteUserClick');
-  };
+  const handleDeleteUserClick = () => navigate(hrefDeleteUsers);
 
   const handleEditUserClick = () => {
     // @todo: for next user story
