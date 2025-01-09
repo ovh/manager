@@ -74,7 +74,9 @@ export function TailLogs({
           search,
         )?.padStart(6, '')}</span> |`;
         logsKeys.forEach((key) => {
-          result += highlightSearch(` ${message[key]}`, search);
+          if (message[key] !== undefined) {
+            result += highlightSearch(` ${message[key]}`, search);
+          }
         });
         result += '<br />';
         return result;
