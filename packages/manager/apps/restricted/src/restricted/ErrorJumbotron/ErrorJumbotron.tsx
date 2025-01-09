@@ -1,14 +1,14 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 
+import useMinimalRights from '@/hooks/useMinimalRights/useMinimalRights';
 import jumbotron from './error-jumbotron.png';
 import './error-jumbotron.styles.scss';
-import Context from '@/context';
 
 const ErrorJumbotron = (): JSX.Element => {
   const { t } = useTranslation('restricted');
-  const { region } = useContext(Context);
-  const isUsRegion = region === 'US';
+  const minimalRights = useMinimalRights();
+
   return (
     <div className="my-5 error-jumbotron d-flex flex-column">
       <div className="d-flex justify-content-center">
@@ -22,14 +22,13 @@ const ErrorJumbotron = (): JSX.Element => {
         ></span>
         <p className="oui-message__body">
           {t(`restricted_error_default_start`, {
-            count: isUsRegion ? 3 : 4,
+            count: minimalRights.length,
           })}
         </p>
         <ul>
-          <li>account:apiovh:me/get</li>
-          {!isUsRegion && <li>account:apiovh:me/supportLevel/get</li>}
-          <li>account:apiovh:me/certificates/get</li>
-          <li>account:apiovh:me/tag/get</li>
+          {minimalRights.map(({ urn }) => (
+            <li key={urn}>{urn}</li>
+          ))}
         </ul>
         <p className="oui-message__body">{t('restricted_error_default_end')}</p>
       </div>
