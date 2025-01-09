@@ -35,7 +35,7 @@
   "pci_projects_project_storages_containers_container_documentation_title_veeam": "O Object Storage compatível com S3 com Veeam",
   "pci_projects_project_storages_containers_container_documentation_description_veeam": "Configure o Veeam para utilizar o seu espaço de armazenamento Object Storage compatível com S3.",
   "pci_projects_project_storages_containers_container_documentation_title_s3-limitation": "Os limites técnicos do Object Storage compatível com S3",
-  "pci_projects_project_storages_containers_container_documentation_description_s3-limitation": "Encontre aqui os limites técnicos relativos à oferta Object Storage compatível com S3",
+  "pci_projects_project_storages_containers_container_documentation_description_s3-limitation": "Descubra aqui os limites técnicos relativos à oferta Object Storage compatível com S3",
   "pci_projects_project_storages_containers_container_back_button_label": "Os meus containers",
   "pci_projects_project_storages_containers_container_object_info_s3_staticUrl_help": "Exponha os seus containers e objetos na Internet, configurando os direitos de acesso (por objeto) e dando acesso público. Poderão ser acedidos através do endereço Virtual Hosted-Style.",
   "pci_projects_project_storages_containers_container_info_data_encryption_enabled": "Encriptação: <strong>SSE-OMK</strong>",
@@ -43,7 +43,7 @@
   "pci_projects_project_storages_containers_container_storage_class_label": "Classe de armazenamento",
   "pci_projects_project_storages_containers_container_storage_class_STANDARD": "Standard",
   "pci_projects_project_storages_containers_container_storage_class_HIGH_PERF": "High Performance",
-  "pci_projects_project_storages_containers_container_maintenance_message": "A OVHcloud está a realizar uma operação de manutenção para fundir os pontos de terminação compatíveis com S3. A adição de objetos está temporariamente suspensa.",
+  "pci_projects_project_storages_containers_container_maintenance_message": "Estamos a efetuar uma operação de manutenção para fundir os pontos de terminação compatíveis com S3. A adição de objetos está temporariamente suspensa.",
   "pci_projects_project_storages_containers_container_region": "Localização: {{ region }}",
   "pci_projects_project_storages_containers_container_add_replication_rules_info": "Tenha em conta que o seu container não inclui a replicação fora das instalações dos seus dados. Se necessitar desta camada de proteção adicional, pode utilizar a nossa replicação assíncrona numa ou várias regiões (apenas disponível via API)."
 }
