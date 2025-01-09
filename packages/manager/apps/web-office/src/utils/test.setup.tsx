@@ -4,6 +4,8 @@ import {
   licensesMock,
   licensesPrepaidMock,
   licensesPrepaidExpandedMock,
+  pendingTask,
+  tenantPendingTask,
 } from '@/api/_mock_';
 
 const mocksAxios = vi.hoisted(() => ({
@@ -69,6 +71,9 @@ vi.mock('@/api/license', async (importActual) => {
         ),
       );
     }),
+    postOfficePrepaidLicenseUnconfigure: vi.fn(() => {
+      return Promise.resolve(pendingTask);
+    }),
   };
 });
 
@@ -77,6 +82,9 @@ vi.mock('@/api/users', async (importActual) => {
     ...(await importActual<typeof import('@/api/users')>()),
     getOfficeUsers: vi.fn(() => {
       return Promise.resolve(usersMock);
+    }),
+    deleteOfficeUser: vi.fn(() => {
+      return Promise.resolve(tenantPendingTask);
     }),
   };
 });
