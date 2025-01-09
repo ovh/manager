@@ -3,7 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.14.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@0.14.1...@ovh-ux/manager-pci-common@0.14.2) (2024-12-18)
+## [0.14.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@0.14.3...@ovh-ux/manager-pci-common@0.14.4) (2025-01-09)
+
+### Bug Fixes
+
+- **pci-common:** undefined logs ([1682ed3](https://github.com/ovh/manager/commit/1682ed3dabf274fe17d940ff538eb3149cacd9f6))
+
+### Continuous Integration
+
+- **pci-common:** enhance flavor components exports ([f4940c3](https://github.com/ovh/manager/commit/f4940c324fee014c18d00f79b70db4d4db393ab1))
+- **pci-common:** enhance region components exports ([c846105](https://github.com/ovh/manager/commit/c846105e7ea04f4c9cac25d5b1d8141234e473aa))
+
+## [0.14.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@0.14.2...@ovh-ux/manager-pci-common@0.14.3) (2025-01-07)
 
 ### Bug Fixes
 
