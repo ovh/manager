@@ -1,5 +1,6 @@
-import { LicenseEnum, UserStateEnum } from '../api.type';
+import { LicenseEnum, TaskStatusEnum, UserStateEnum } from '../api.type';
 import { LicensePrepaidType, LicenseType } from '../license/type';
+import { PendingTaskType } from '../users';
 
 export const licensesMock: LicenseType[] = [
   {
@@ -79,3 +80,11 @@ export const licensesPrepaidExpandedMock: LicensePrepaidType[] = [
     },
   },
 ];
+
+export const tenantPendingTask: PendingTaskType = {
+  finishDate: '2025-01-09T12:00:12+01:00',
+  function: 'unconfigureOffice365UserNCE',
+  id: 581562,
+  status: TaskStatusEnum.DONE,
+  todoDate: '2025-01-09T12:00:12+01:00',
+};
