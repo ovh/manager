@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { Outlet, useParams, useResolvedPath } from 'react-router-dom';
 import {
   BaseLayout,
+  Notifications,
+  useNotifications,
   GuideButton,
   GuideItem,
 } from '@ovh-ux/manager-react-components';
@@ -26,6 +28,7 @@ export type DashboardLayoutProps = {
 export default function DashboardPage() {
   const { serviceName } = useParams();
   const { t } = useTranslation('dashboard');
+  const { notifications } = useNotifications();
   const basePath = useResolvedPath('').pathname;
   const context = useContext(ShellContext);
   const { ovhSubsidiary } = context.environment.getUser();
@@ -69,6 +72,10 @@ export default function DashboardPage() {
       breadcrumb={<Breadcrumb />}
       header={header}
       tabs={<TabsPanel tabs={tabsList} />}
+      message={
+        // temporary fix margin even if empty
+        notifications.length ? <Notifications /> : null
+      }
     >
       <Outlet />
     </BaseLayout>
