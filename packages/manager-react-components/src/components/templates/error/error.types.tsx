@@ -1,3 +1,5 @@
+import React from 'react';
+
 export interface ErrorObject {
   status: number;
   data: any;
@@ -13,7 +15,7 @@ export const TRACKING_LABELS = {
   UNAUTHORIZED: 'unauthorized',
   PAGE_LOAD: 'error_during_page_loading',
 };
-export interface ErrorBannerProps {
+export interface ErrorBannerProps extends React.HTMLProps<HTMLDivElement> {
   error: {
     status?: number;
     data?: any;

@@ -31,6 +31,7 @@ import KmsGuidesHeader from '@/components/Guide/KmsGuidesHeader';
 import { useAutoRefetch } from '@/data/hooks/useAutoRefetch';
 import { getOkmsServicesResourceListQueryKey } from '@/data/api/okms';
 import KmsActionMenu from '@/components/menu/KmsActionMenu.component';
+import kmsListingTestIds from './KmsListing.constants';
 
 export default function Listing() {
   const { t } = useTranslation('key-management-service/listing');
@@ -129,6 +130,7 @@ export default function Listing() {
               navigate(ROUTES_URLS.createKeyManagementService);
             }}
             label={t('key_management_service_listing_add_kms_button')}
+            data-testid={kmsListingTestIds.ctaOrder}
           />
           {flattenData && (
             <Datagrid

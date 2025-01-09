@@ -1,4 +1,4 @@
-import { screen, waitFor } from '@testing-library/react';
+import { act, screen, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import { WAIT_FOR_DEFAULT_OPTIONS } from '@ovh-ux/manager-core-test-utils';
@@ -7,6 +7,8 @@ import { labels } from '@/utils/tests/init.i18n';
 import { ROUTES_URLS } from '@/routes/routes.constants';
 import { catalogMock } from '@/mocks/catalog/catalog.mock';
 import * as getKMSExpressOrderLink from '../../components/layout-helpers/Create/order-utils';
+import createKmsTestIds from './createKms.constants';
+import kmsListingTestIds from '../listing/KmsListing.constants';
 
 Object.assign(window, {
   open: vi.fn().mockImplementation(() => Promise.resolve()),
@@ -22,69 +24,48 @@ describe('KMS creation page test suite', () => {
     await renderTestApp(`/${ROUTES_URLS.createKeyManagementService}`);
 
     await waitFor(
-      () =>
-        expect(
-          screen.getByText(
-            labels.create.key_management_service_create_subtitle,
-          ),
-        ).toBeVisible(),
+      () => expect(screen.getByTestId(createKmsTestIds.subtitle)).toBeVisible(),
 
       WAIT_FOR_DEFAULT_OPTIONS,
     );
 
-    expect(
-      screen.getByText(
-        labels.create.key_management_service_create_region_title,
-      ),
-    ).toBeVisible();
+    expect(screen.getByTestId(createKmsTestIds.regionTitle)).toBeVisible();
 
     expect(
-      screen.getByText(
-        labels.create.key_management_service_create_region_description,
-      ),
+      screen.getByTestId(createKmsTestIds.regionDescription),
     ).toBeVisible();
 
     await waitFor(
       () =>
         expect(
-          screen.getByText(
+          screen.getByPlaceholderText(
             labels.create.key_management_service_create_select_placeholder,
           ),
         ).toBeVisible(),
       WAIT_FOR_DEFAULT_OPTIONS,
     );
 
-    expect(
-      screen.getByText(labels.create.key_management_service_create_cta_cancel),
-    ).toBeEnabled();
-
-    expect(
-      screen.getByText(labels.create.key_management_service_create_cta_order),
-    ).toBeDisabled();
+    expect(screen.getByTestId(createKmsTestIds.ctaCancel)).toBeEnabled();
+    expect(screen.getByTestId(createKmsTestIds.ctaCreate)).toBeDisabled();
   });
 
   it(`should navigate back to the list on click on ${labels.create.key_management_service_create_cta_cancel}`, async () => {
+    const user = userEvent.setup();
     await renderTestApp(`/${ROUTES_URLS.createKeyManagementService}`);
 
     await waitFor(
       () =>
-        expect(
-          screen.getByText(
-            labels.create.key_management_service_create_cta_cancel,
-          ),
-        ).toBeEnabled(),
+        expect(screen.getByTestId(createKmsTestIds.ctaCancel)).toBeEnabled(),
       WAIT_FOR_DEFAULT_OPTIONS,
     );
 
-    await userEvent.click(
-      screen.getByText(labels.create.key_management_service_create_cta_cancel),
-    );
+    await act(() => {
+      user.click(screen.getByTestId(createKmsTestIds.ctaCancel));
+    });
 
     await waitFor(
       () =>
-        expect(
-          screen.getByText(labels.listing.key_management_service_listing_title),
-        ).toBeVisible(),
+        expect(screen.getByTestId(kmsListingTestIds.ctaOrder)).toBeVisible(),
       WAIT_FOR_DEFAULT_OPTIONS,
     );
   });
@@ -95,7 +76,10 @@ describe('KMS creation page test suite', () => {
     });
 
     await waitFor(
-      () => expect(screen.getByAltText('OOPS')).toBeInTheDocument(),
+      () =>
+        expect(
+          screen.getByTestId(createKmsTestIds.catalogError),
+        ).toBeInTheDocument(),
       WAIT_FOR_DEFAULT_OPTIONS,
     );
   });

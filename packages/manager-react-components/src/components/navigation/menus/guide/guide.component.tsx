@@ -6,10 +6,10 @@ import {
 } from '@ovhcloud/ods-components';
 import { OdsPopover, OdsButton } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import { Links, LinkType } from '../../../typography';
+import { Links, LinksProps, LinkType } from '../../../typography';
 import '../translations/translation';
 
-export interface GuideItem {
+export interface GuideItem extends Omit<LinksProps, 'id'> {
   id: number;
   href: string;
   download?: string;
@@ -25,8 +25,8 @@ export interface GuideButtonProps {
 }
 
 export const GuideButton: React.FC<GuideButtonProps> = ({
-  items,
   isLoading,
+  items,
 }) => {
   const { t } = useTranslation('buttons');
   return (
@@ -45,16 +45,12 @@ export const GuideButton: React.FC<GuideButtonProps> = ({
 
       <OdsPopover triggerId="navigation-menu-guide-trigger" withArrow>
         <div className="flex flex-col gap-4">
-          {items.map((item) => (
+          {items.map(({ id, onClick, ...rest }) => (
             <Links
-              key={item.id}
-              href={item.href}
-              target={item.target}
-              download={item.download}
-              rel={item.rel}
+              key={id}
               type={LinkType.external}
-              label={item.label}
-              onClickReturn={item.onClick}
+              onClickReturn={onClick}
+              {...rest}
             />
           ))}
         </div>

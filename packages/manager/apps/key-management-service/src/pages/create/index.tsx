@@ -8,6 +8,7 @@ import RegionSelector from '@/components/layout-helpers/Create/RegionSelector';
 import OrderConfirmation from '@/components/layout-helpers/Create/OrderConfirmation';
 import KmsGuidesHeader from '@/components/Guide/KmsGuidesHeader';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
+import createKmsTestIds from './createKms.constants';
 
 export default function Create() {
   const { t } = useTranslation('key-management-service/create');
@@ -29,7 +30,11 @@ export default function Create() {
         <Title>{t('key_management_service_create_title')}</Title>
         <KmsGuidesHeader />
       </div>
-      <OdsText className="block mb-5" preset={ODS_TEXT_PRESET.paragraph}>
+      <OdsText
+        className="block mb-5"
+        preset={ODS_TEXT_PRESET.paragraph}
+        data-testid={createKmsTestIds.subtitle}
+      >
         {t('key_management_service_create_subtitle')}
       </OdsText>
       {!isOrderInitiated ? (
