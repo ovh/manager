@@ -17,5 +17,5 @@
   "zimbra_organization_add_error_message": "La tua richiesta di aggiunta dell'organizzazione non è andata a buon fine: {{ error }}",
   "zimbra_organization_edit_success_message": "La tua richiesta di modifica è stata presa in carico. Sarà eseguita entro pochi minuti.",
   "zimbra_organization_edit_error_message": "La tua richiesta di modifica non è andata a buon fine: {{ error }}",
-  "zimbra_organization_add_cancel": "Annulla"
+  "zimbra_organization_add_cancel": "Annullare"
 }
