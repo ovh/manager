@@ -1,4 +1,5 @@
 import React from 'react';
+import { Outlet } from 'react-router-dom';
 import { Trans, useTranslation } from 'react-i18next';
 import { Datagrid, DatagridColumn } from '@ovh-ux/manager-react-components';
 import {
@@ -88,7 +89,8 @@ export default function Users() {
   ];
 
   return (
-    <div className="mb-4" data-testid="test">
+    <div className="mb-4">
+      <Outlet />
       <OdsText preset={ODS_TEXT_PRESET.paragraph} className="mb-4">
         <OdsIcon name={ODS_ICON_NAME.download} className="mr-4" />
         <Trans
@@ -109,7 +111,6 @@ export default function Users() {
         <p>{t('dashboard_users_download_info')}</p>
         <strong>{t('dashboard_users_download_id')}</strong>
       </OdsText>
-
       {isLoadingUsers || isLoadingLicenceDetail ? (
         <Loading />
       ) : (

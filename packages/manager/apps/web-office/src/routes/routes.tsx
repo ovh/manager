@@ -44,6 +44,20 @@ export const Routes: any = [
                 pageType: PageType.dashboard,
               },
             },
+            children: [
+              {
+                path: 'users/delete',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/dashboard/users/ModalDeleteUsers.component'),
+                ),
+                handle: {
+                  tracking: {
+                    pageName: 'users-delete',
+                    pageType: PageType.popup,
+                  },
+                },
+              },
+            ],
           },
           {
             path: 'consumption',
