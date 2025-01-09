@@ -19,14 +19,14 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { CTAS } from '@/guides.constants';
 import { urls } from '@/routes/routes.constants';
 import { LicenseType } from '@/api/license';
-import { useOfficeLicenses, UseGenerateUrl } from '@/hooks';
+import { useOfficeLicenses, useGenerateUrl } from '@/hooks';
 import Loading from '@/components/Loading/Loading';
 
 const columns: DatagridColumn<LicenseType>[] = [
   {
     id: 'serviceName',
     cell: (item) => {
-      const href = UseGenerateUrl(urls.license, 'href', {
+      const href = useGenerateUrl(urls.license, 'href', {
         serviceName: item.serviceName,
       });
 
