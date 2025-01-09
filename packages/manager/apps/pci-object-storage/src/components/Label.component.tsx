@@ -1,9 +1,4 @@
-import {
-  OdsIcon,
-  OdsPopover,
-  OdsText,
-  OdsTooltip,
-} from '@ovhcloud/ods-components/react';
+import { OdsIcon, OdsPopover, OdsText } from '@ovhcloud/ods-components/react';
 
 type TLabelProps = {
   text: string;

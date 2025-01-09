@@ -194,7 +194,6 @@ export default function AddObjectPage() {
           text={t(
             'pci_projects_project_storages_containers_container_object_add_prefix_label',
           )}
-          hasError={!formState.prefix}
         />
 
         <OsdsInput
@@ -215,7 +214,6 @@ export default function AddObjectPage() {
             text={t(
               'pci_projects_project_storages_containers_container_object_add_storage_class_label',
             )}
-            hasError={false}
           />
           <OsdsRadioGroup
             required

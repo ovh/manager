@@ -24,10 +24,10 @@ export function LinkUserStep() {
   const [associateMode, setAssociateMode] = useState('');
   const onCancel = () => {
     setAssociateMode('');
-    setOwnerId('');
+    setOwnerId(undefined);
   };
   const onSelectOwner = (user: TUser) => {
-    setOwnerId(`${user?.id}`);
+    setOwnerId(user?.id);
   };
   return (
     <StepComponent

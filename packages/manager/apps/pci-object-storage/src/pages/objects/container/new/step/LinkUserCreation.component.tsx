@@ -55,7 +55,7 @@ export default function LinkUserCreation({
 
   const { postS3Secret: showSecretKey } = usePostS3Secret({
     projectId,
-    userId: `${newUser?.id}`,
+    userId: newUser?.id,
     userAccess: newUser?.s3Credentials?.access,
     onSuccess: ({ secret }) => {
       setSecretUser(secret);
@@ -74,13 +74,10 @@ export default function LinkUserCreation({
     const data = await createUser(projectId, formState.description);
 
     poll<TUser>({
-      fn: () => getUser(projectId, `${data.id}`),
+      fn: () => getUser(projectId, data.id),
       ruleFn: (user: TUser) => user.status === 'ok',
       onSuccess: async ({ value }) => {
-        const credentials = await generateS3Credentials(
-          projectId,
-          `${value.id}`,
-        );
+        const credentials = await generateS3Credentials(projectId, value.id);
         setNewUser({
           ...value,
           access: credentials.access,
@@ -109,7 +106,6 @@ export default function LinkUserCreation({
           }
         >
           <LabelComponent
-            hasError={formState.hasError}
             text={tAssociateUser(
               'pci_projects_project_storages_containers_add_create_or_linked_user_create_user_label',
             )}

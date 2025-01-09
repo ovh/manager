@@ -14,7 +14,6 @@ import { ApiError } from '@ovh-ux/manager-core-api';
 import {
   OdsBreadcrumb,
   OdsBreadcrumbItem,
-  OdsLink,
   OdsText,
 } from '@ovhcloud/ods-components/react';
 import {

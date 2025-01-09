@@ -34,7 +34,7 @@ export default function StepOneComponent({
           )}
         />
         <OdsSelect
-          value={selectedUser?.id}
+          value={`${selectedUser?.id}`}
           onOdsChange={(event) => {
             const user = users.find((u) => u.id == event.detail.value);
             onSelectUser(user);
