@@ -14,8 +14,12 @@ export interface BreadcrumbProps {
   items?: BreadcrumbItem[];
 }
 
+export interface KmsBreadcrumbItemType extends OdsBreadcrumbItemType {
+  onOdsClick: () => void;
+}
+
 export const useBreadcrumb = ({ rootLabel, items }: BreadcrumbProps) => {
-  const [pathItems, setPathItems] = useState<OdsBreadcrumbItemType[]>([]);
+  const [pathItems, setPathItems] = useState<KmsBreadcrumbItemType[]>([]);
   const location = useLocation();
   const navigate = useNavigate();
   const pathnames = location.pathname.split('/').filter((x) => x);
@@ -23,7 +27,7 @@ export const useBreadcrumb = ({ rootLabel, items }: BreadcrumbProps) => {
   const rootItem = ({
     label: rootLabel,
     onOdsClick: () => navigate(ROUTES_URLS.root),
-  } as unknown) as OdsBreadcrumbItemType;
+  } as unknown) as KmsBreadcrumbItemType;
 
   useEffect(() => {
     const pathNamesItems = pathnames.map((value) => {
@@ -41,7 +45,7 @@ export const useBreadcrumb = ({ rootLabel, items }: BreadcrumbProps) => {
       };
     });
 
-    setPathItems(pathNamesItems as OdsBreadcrumbItemType[]);
+    setPathItems(pathNamesItems as KmsBreadcrumbItemType[]);
   }, [location, items]);
 
   return [rootItem, ...pathItems];

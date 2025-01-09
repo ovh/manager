@@ -25,6 +25,7 @@ import { useNavigate } from 'react-router-dom';
 import { ErrorBanner, Region } from '@ovh-ux/manager-react-components';
 import { useOrderCatalogOKMS } from '@/data/hooks/useOrderCatalogOKMS';
 import { ROUTES_URLS } from '@/routes/routes.constants';
+import createKmsTestIds from '@/pages/create/createKms.constants';
 
 export type RegionSelectorProps = {
   setOrderInitiated: () => void;
@@ -51,17 +52,26 @@ const RegionSelector = ({
   if (isError && error) {
     return (
       <Suspense>
-        <ErrorBanner error={error.response} />
+        <ErrorBanner
+          error={error.response}
+          data-testid={createKmsTestIds.catalogError}
+        />
       </Suspense>
     );
   }
   return (
     <div className="flex flex-col gap-8">
       <div className="flex flex-col gap-4">
-        <OdsText preset={ODS_TEXT_PRESET.heading2}>
+        <OdsText
+          preset={ODS_TEXT_PRESET.heading2}
+          data-testid={createKmsTestIds.regionTitle}
+        >
           {t('key_management_service_create_region_title')}
         </OdsText>
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        <OdsText
+          preset={ODS_TEXT_PRESET.paragraph}
+          data-testid={createKmsTestIds.regionDescription}
+        >
           {t('key_management_service_create_region_description')}
         </OdsText>
         {isLoading && (
@@ -119,6 +129,7 @@ const RegionSelector = ({
             navigate(ROUTES_URLS.root);
           }}
           label={t('key_management_service_create_cta_cancel')}
+          data-testid={createKmsTestIds.ctaCancel}
         />
         <OdsButton
           size={ODS_BUTTON_SIZE.md}
@@ -136,6 +147,7 @@ const RegionSelector = ({
           icon={ODS_ICON_NAME.externalLink}
           iconAlignment={ODS_BUTTON_ICON_ALIGNMENT.left}
           label={t('key_management_service_create_cta_order')}
+          data-testid={createKmsTestIds.ctaCreate}
         />
       </div>
     </div>

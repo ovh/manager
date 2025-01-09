@@ -57,7 +57,7 @@ describe('useBreadcumb test suite', () => {
     const { result } = renderHook(() => useBreadcrumb({ rootLabel, items }));
 
     // when
-    result.current[0].onLinkClick({} as MouseEvent);
+    result.current[0].onOdsClick();
 
     // then
     expect(useNavigateMock).toHaveBeenCalledWith(ROUTES_URLS.root);
@@ -84,7 +84,7 @@ describe('useBreadcumb test suite', () => {
     const { result } = renderHook(() => useBreadcrumb({ rootLabel, items }));
 
     // when
-    result.current[2].onLinkClick({} as MouseEvent);
+    result.current[2].onOdsClick();
 
     // then
     expect(useNavigateMock).toHaveBeenCalledWith(items[1].navigateTo);
@@ -95,6 +95,6 @@ describe('useBreadcumb test suite', () => {
     const { result } = renderHook(() => useBreadcrumb({ rootLabel, items }));
 
     // then
-    expect(result.current[3].onLinkClick).not.toBeDefined();
+    expect(result.current[3].onOdsClick).not.toBeDefined();
   });
 });
