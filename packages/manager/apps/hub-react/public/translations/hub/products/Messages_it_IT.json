@@ -70,5 +70,6 @@
   "manager_hub_products_see_more": "Visualizza tutti i prodotti e servizi",
   "manager_hub_products_VMWARE_CLOUD_DIRECTOR": "Managed VCD",
   "manager_hub_products_LICENSE_HYCU": "HYCU",
-  "manager_hub_products_VMWARE_CLOUD_DIRECTOR_BACKUP": "Managed Veeam for VCD"
+  "manager_hub_products_VMWARE_CLOUD_DIRECTOR_BACKUP": "Managed Veeam for VCD",
+  "manager_hub_products_OKMS_RESOURCE": "Key Management Service"
 }
