@@ -31,7 +31,7 @@ export const getColumns = () => {
         return (
           <div className="w-full max-w-[200px] border border-1 border-primary-100">
             <Button
-              data-testid="dashboard-copy-id-button"
+              data-testid="public-git-copy-mountpath-button"
               type="button"
               className="w-full flex justify-between items-center p-4 border-0"
               size="sm"

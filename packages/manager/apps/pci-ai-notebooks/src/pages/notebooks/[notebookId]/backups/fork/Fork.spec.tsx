@@ -17,7 +17,7 @@ import * as backupApi from '@/data/api/ai/notebook/backups/backups.api';
 import { useToast } from '@/components/ui/use-toast';
 import { apiErrorMock } from '@/__tests__/helpers/mocks/aiError';
 
-describe('Backups page', () => {
+describe('Fork backup modal', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
     // Mock necessary hooks and dependencies
