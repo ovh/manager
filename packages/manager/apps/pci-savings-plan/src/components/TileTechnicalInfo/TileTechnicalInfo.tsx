@@ -13,7 +13,7 @@ const DisplayTechnicalInfo = ({
   const { memory, cpu, storage, bandwidth } = technical;
   return (
     <>
-      <OdsText className="text-[]">
+      <OdsText className="mt-5">
         {t('resource_model_characteristics_gb', {
           value: memory.size,
         })}
@@ -53,7 +53,7 @@ export const TileTechnicalInfo: React.FC<TileTechnicalInfoProps> = ({
 }) => (
   <SimpleTile onClick={onClick} isActive={isActive}>
     <div className="flex flex-col items-center justify-center">
-      <OdsText className="mb-5">
+      <OdsText className="">
         <span className="font-bold">{name}</span>
       </OdsText>
       {technical && technical.bandwidth && (

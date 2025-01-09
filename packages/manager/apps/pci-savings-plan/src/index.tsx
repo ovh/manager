@@ -8,7 +8,6 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import './index.scss';
 import './vite-hmr';
-import '@ovh-ux/manager-react-components/dist/style.css';
 import '@ovh-ux/manager-pci-common/dist/style.css';
 
 import { APP_NAME, LEVEL2, SUB_UNIVERSE, UNIVERSE } from './tracking.constant';

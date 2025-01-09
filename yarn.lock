@@ -5792,10 +5792,10 @@
     date-fns "^3.6.0"
     lodash.isequal "^4.5.0"
 
-"@ovh-ux/manager-pci-common@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-pci-common/-/manager-pci-common-1.0.1.tgz#2c3397e348a0088362f530ff27b53e743237e2dd"
-  integrity sha512-DlYyq5XAZHO+DH7xbtykW0qO+sRs/Ex0/TUAd0ldU3U2VveodsBbHkRVYq9M4BUpZICg45VqTwmXQdVJe6YumA==
+"@ovh-ux/manager-pci-common@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-pci-common/-/manager-pci-common-1.0.4.tgz#9fb79f247208a350d9de6f70178677ee00432ad3"
+  integrity sha512-QKItmyT2Uu4Gpq6RbGm+vsTcN7eSZamvLTswdfkNFH3YHHTx47a1PofCjgsUXlBZ+YD7H0bZl3CVBexGY7T8iw==
   dependencies:
     "@ovh-ux/manager-core-utils" "^0.3.0"
     "@ovh-ux/manager-tailwind-config" "^0.2.1"

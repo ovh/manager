@@ -313,9 +313,10 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
         <OdsCard className="flex flex-row items-center mr-5 p-4 text-center justify-between w-full">
           <OdsText>{t('quantity_label')}</OdsText>
           <OdsQuantity
-            onOdsChange={(event: OdsInputChangeEvent) =>
-              onChangeQuantity(Number(event.detail.value))
-            }
+            onOdsChange={(event: OdsInputChangeEvent) => {
+              const newValue = Number(event.detail.value);
+              if (newValue >= 1 && newValue <= 1000) onChangeQuantity(newValue);
+            }}
             value={quantity}
             min={1}
             max={1000}
