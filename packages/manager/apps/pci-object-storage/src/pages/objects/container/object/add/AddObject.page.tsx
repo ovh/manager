@@ -6,30 +6,16 @@ import {
   useNotifications,
 } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import {
-  ODS_INPUT_TYPE,
-  ODS_MESSAGE_TYPE,
-  ODS_RADIO_BUTTON_SIZE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
-import {
-  OsdsFormField,
-  OsdsInput,
-  OsdsMessage,
-  OsdsRadio,
-  OsdsRadioButton,
-  OsdsRadioGroup,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
 import { useContext, useMemo } from 'react';
 import { Translation, useTranslation } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import {
+  OdsFormField,
+  OdsInput,
+  OdsMessage,
+  OdsRadio,
+  OdsText,
+} from '@ovhcloud/ods-components/react';
 import {
   OBJECT_CONTAINER_STORAGE_CLASS,
   STORAGE_PRICES_LINK,
@@ -43,6 +29,8 @@ import { useAddObjectForm } from './useAddObjectsForm';
 
 export default function AddObjectPage() {
   const { t } = useTranslation(['objects/add', 'pci-common']);
+  const [searchParams] = useSearchParams();
+  const region = searchParams.get('region');
 
   const { projectId, storageId } = useParams();
   const { addSuccess, addError } = useNotifications();
@@ -76,7 +64,11 @@ export default function AddObjectPage() {
     [allContainers, storageId],
   );
 
-  const goBack = () => navigate(`..`);
+  const goBack = () =>
+    navigate({
+      pathname: `..`,
+      search: `?region=${region}`,
+    });
 
   const handleSuccess = () => {
     addSuccess(
@@ -154,29 +146,25 @@ export default function AddObjectPage() {
       isDisabled={!isFormValid}
     >
       {targetContainer?.s3StorageType && !isStorageClass && (
-        <OsdsMessage type={ODS_MESSAGE_TYPE.info} className="my-6">
+        <OdsMessage className="my-6">
           {t(
             'pci_projects_project_storages_containers_container_object_add_storage_class_info_banner',
           )}
-        </OsdsMessage>
+        </OdsMessage>
       )}
 
       {targetContainer?.s3StorageType && (
         <div>
-          <OsdsText
-            size={ODS_TEXT_SIZE._400}
-            level={ODS_TEXT_LEVEL.body}
-            color={ODS_THEME_COLOR_INTENT.text}
-          >
+          <OdsText>
             {t(
               'pci_projects_project_storages_containers_container_object_add_storage_class_label_description',
             )}
-          </OsdsText>
+          </OdsText>
           <Links
             className="ml-3"
             href={PRICE_LINK}
             type={LinkType.next}
-            target={OdsHTMLAnchorElementTarget._blank}
+            target={LinkType.external}
             label={t(
               'pci_projects_project_storages_containers_container_object_add_storage_class_label_description_link',
             )}
@@ -184,7 +172,7 @@ export default function AddObjectPage() {
         </div>
       )}
 
-      <OsdsFormField
+      <OdsFormField
         className="my-8"
         error={
           !formState.prefix ? t('pci-common:common_field_error_required') : ''
@@ -196,96 +184,86 @@ export default function AddObjectPage() {
           )}
         />
 
-        <OsdsInput
+        <OdsInput
           id="prefix"
           name="prefix"
-          required
+          isRequired
           max={32}
-          type={ODS_INPUT_TYPE.text}
           value={formState.prefix}
-          error={!formState.prefix}
-          onOdsValueChange={(event) => updatePrefix(event.detail.value)}
+          hasError={!formState.prefix}
+          onOdsChange={(event) => updatePrefix(`${event.detail.value}`)}
         />
-      </OsdsFormField>
+      </OdsFormField>
 
       {targetContainer?.s3StorageType && isStorageClass && (
-        <OsdsFormField className="mt-6 mb-8">
+        <div className="mt-6 mb-8">
           <LabelComponent
             text={t(
               'pci_projects_project_storages_containers_container_object_add_storage_class_label',
             )}
           />
-          <OsdsRadioGroup
-            required
-            value={formState.storageClass}
-            onOdsValueChange={(event) =>
-              updateStorageClass(event.detail.newValue)
+          <OdsRadio
+            value={OBJECT_CONTAINER_STORAGE_CLASS.STANDARD}
+            name="swiftFileType"
+            className="mr-4"
+            inputId="swiftFileType"
+            isChecked={
+              formState.storageClass === OBJECT_CONTAINER_STORAGE_CLASS.STANDARD
             }
+            onOdsChange={(event) => updateStorageClass(event.detail.value)}
           >
-            <OsdsRadio
-              value={OBJECT_CONTAINER_STORAGE_CLASS.STANDARD}
-              name="swiftFileType"
-              className="mr-4"
-              color={ODS_THEME_COLOR_INTENT.primary}
-            >
-              <OsdsRadioButton
-                size={ODS_RADIO_BUTTON_SIZE.xs}
-                color={ODS_THEME_COLOR_INTENT.primary}
+            <label htmlFor="swiftFileType">
+              <OdsText
+                className={
+                  formState.storageClass ===
+                  OBJECT_CONTAINER_STORAGE_CLASS.STANDARD
+                    ? 'font-bold'
+                    : 'font-normal'
+                }
               >
-                <OsdsText
-                  slot="end"
-                  size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-                  color={ODS_THEME_COLOR_INTENT.text}
-                  className={
-                    formState.storageClass ===
-                    OBJECT_CONTAINER_STORAGE_CLASS.STANDARD
-                      ? 'font-bold'
-                      : 'font-normal'
-                  }
-                >
-                  {t(
-                    'pci_projects_project_storages_containers_container_object_add_storage_class_standard',
-                  )}
-                </OsdsText>
-              </OsdsRadioButton>
-            </OsdsRadio>
-            <OsdsRadio
-              value={OBJECT_CONTAINER_STORAGE_CLASS.HIGH_PERFORMANCE}
-              name="s3FileType"
-            >
-              <OsdsRadioButton
-                size={ODS_RADIO_BUTTON_SIZE.xs}
-                color={ODS_THEME_COLOR_INTENT.primary}
+                {t(
+                  'pci_projects_project_storages_containers_container_object_add_storage_class_standard',
+                )}
+              </OdsText>
+            </label>
+          </OdsRadio>
+          <OdsRadio
+            value={OBJECT_CONTAINER_STORAGE_CLASS.HIGH_PERFORMANCE}
+            name="s3FileType"
+            className="mr-4"
+            inputId="s3FileType"
+            isChecked={
+              formState.storageClass ===
+              OBJECT_CONTAINER_STORAGE_CLASS.HIGH_PERFORMANCE
+            }
+            onOdsChange={(event) => updateStorageClass(event.detail.value)}
+          >
+            <label htmlFor="s3FileType">
+              <OdsText
+                className={
+                  formState.storageClass ===
+                  OBJECT_CONTAINER_STORAGE_CLASS.HIGH_PERFORMANCE
+                    ? 'font-bold'
+                    : 'font-normal'
+                }
               >
-                <OsdsText
-                  size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-                  color={ODS_THEME_COLOR_INTENT.text}
-                  slot="end"
-                  className={
-                    formState.storageClass ===
-                    OBJECT_CONTAINER_STORAGE_CLASS.HIGH_PERFORMANCE
-                      ? 'font-bold'
-                      : 'font-normal'
-                  }
-                >
-                  {t(
-                    'pci_projects_project_storages_containers_container_object_add_storage_class_high_perf',
-                  )}
-                </OsdsText>
-              </OsdsRadioButton>
-            </OsdsRadio>
-          </OsdsRadioGroup>
-        </OsdsFormField>
+                {t(
+                  'pci_projects_project_storages_containers_container_object_add_storage_class_high_perf',
+                )}
+              </OdsText>
+            </label>
+          </OdsRadio>
+        </div>
       )}
 
-      <OsdsFormField className="mt-4">
+      <OdsFormField className="mt-4">
         <LabelComponent
           text={t(
             'pci_projects_project_storages_containers_container_object_add_files_label',
           )}
         />
         <FileInputComponent onFilesSelected={updateFiles} />
-      </OsdsFormField>
+      </OdsFormField>
     </PciModal>
   );
 }
