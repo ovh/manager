@@ -138,7 +138,7 @@ export const useDeleteUser = ({
 
 type UsePostS3SecretParams = {
   projectId: string;
-  userId: string;
+  userId: number;
   userAccess: string;
   onSuccess: ({ secret }: { secret: string }) => void;
   onError: (cause: ApiError) => void;

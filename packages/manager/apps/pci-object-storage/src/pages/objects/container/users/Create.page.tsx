@@ -200,7 +200,7 @@ export default function UserCreatePage(): JSX.Element {
         try {
           const credentials = await generateS3Credentials(
             projectId,
-            `${targetUser.id}`,
+            targetUser.id,
           );
           setState({ ...state, isLoading: false });
           onSuccess({
