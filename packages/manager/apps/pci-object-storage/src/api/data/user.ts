@@ -14,8 +14,7 @@ export type TUser = {
   creationDate: string;
   description: string;
   openstackId: string;
-  // TODO add status when necessery
-  status: 'creating' | 'ok';
+  status: 'creating' | 'ok' | 'deleting' | 'deleted';
   access?: string;
   search?: string;
   password: string;
