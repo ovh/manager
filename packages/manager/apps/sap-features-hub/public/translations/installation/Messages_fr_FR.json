@@ -4,6 +4,7 @@
   "backlink_label": "Retour au SAP Features Hub",
   "previous_step_cta": "Précédent",
   "select_label": "Sélectionnez",
+  "passwords": "Mots de passe",
   "service_title": "Sélectionnez votre service VMware on OVHcloud",
   "service_subtitle": "Sélectionnez votre service VMware on OVHcloud, votre datacentre et le cluster sur lequel vous souhaitez déployer votre système SAP.",
   "service_cta": "Spécifiez l'installation",
@@ -16,5 +17,11 @@
   "deployment_cta": "Précisez vos informations SAP",
   "deployment_input_application_version": "Version d'application",
   "deployment_input_application_type": "Type d'application",
-  "deployment_input_deployment_type": "Type de déploiement"
+  "deployment_input_deployment_type": "Type de déploiement",
+  "system_title": "Précisez les détails de votre futur système SAP.",
+  "system_subtitle": "Saisissez les détails de votre futur système SAP correspondant à vos besoins.",
+  "system_sid_validation_message": "Un SID comporte 3 caractères alphanumériques en majuscule",
+  "system_password_validation_message": "Le mot de passe doit contenir au moins 8 caractères, incluant une lettre minuscule, une lettre majuscule, un chiffre et un caractère spécial",
+  "system_password_sap_master_helper": "Sera utilisé pour tous les utilisateurs SAP demandés par l'installation (DDIC, sapadm etc.)",
+  "system_cta": "Saisissez l'emplacement des sources SAP"
 }
