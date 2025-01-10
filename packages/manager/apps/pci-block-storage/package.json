@@ -17,7 +17,7 @@
   "dependencies": {
     "@ovh-ux/manager-config": "^8.0.2",
     "@ovh-ux/manager-core-api": "^0.9.0",
-    "@ovh-ux/manager-pci-common": "file:./ovh-ux-manager-pci-common-v0.14.5-3az.tgz",
+    "@ovh-ux/manager-pci-common": "file:./ovh-ux-manager-pci-common-v0.15.0-3az.tgz",
     "@ovh-ux/manager-react-components": "^1.43.0",
     "@ovh-ux/manager-react-core-application": "^0.11.5",
     "@ovh-ux/manager-react-shell-client": "^0.8.5",
