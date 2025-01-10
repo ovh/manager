@@ -36,6 +36,7 @@ const NameDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
     <div className="flex flex-col gap-2">
       <div className="flex items-center gap-2">
         <Button
+          data-testid="name-section-button"
           variant={'link'}
           size={'link'}
           type="button"
@@ -157,6 +158,7 @@ const FrameworkDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
     <div className="flex flex-col gap-2">
       <div className="flex items-center gap-2">
         <Button
+          data-testid="framework-section-button"
           variant={'link'}
           size={'link'}
           type="button"
@@ -189,6 +191,7 @@ const EditorDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
     <div className="flex flex-col gap-2">
       <div className="flex items-center gap-2">
         <Button
+          data-testid="editor-section-button"
           variant={'link'}
           size={'link'}
           type="button"
@@ -220,6 +223,7 @@ const PrivacyDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
     <div className="flex flex-col gap-2">
       <div className="flex items-center gap-2">
         <Button
+          data-testid="access-section-button"
           variant={'link'}
           size={'link'}
           type="button"
@@ -250,6 +254,7 @@ const VolumesDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
     <div className="flex flex-col gap-2">
       <div className="flex items-center gap-2">
         <Button
+          data-testid="volumes-section-button"
           variant={'link'}
           size={'link'}
           type="button"

@@ -3,7 +3,7 @@ import * as ai from '@/types/cloud/project/ai';
 export const mockedFramework: ai.notebook.Framework = {
   description: 'description',
   docUrl: 'docURl',
-  id: 'frameworkId',
+  id: 'one-for-all',
   logoUrl: 'logo',
   name: 'FrameworkName',
   versions: ['version'],

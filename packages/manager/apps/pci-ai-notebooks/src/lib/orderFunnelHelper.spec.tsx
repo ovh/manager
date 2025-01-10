@@ -62,7 +62,7 @@ describe('orderFunnelHelper', () => {
 
     const notebookSpecInputCPU: ai.notebook.NotebookSpecInput = {
       env: {
-        editorId: 'editorId',
+        editorId: 'jupyterlab',
         frameworkId: 'noId',
         frameworkVersion: '',
       },

@@ -5,7 +5,7 @@ export const mockedSuggestion: Suggestions[] = [
     region: 'GRA',
     ressources: {
       nb: 1,
-      flavor: 'l4-1-gpu',
+      flavor: 'flavorCPUId',
     },
     framework: {
       id: 'one-for-all',
