@@ -146,12 +146,11 @@ export default function LinkUserSelector({
           <UserInformationTile secretUser={secretUser} user={formUser} />
         )}
       </div>
-      <div className="mt-6 flex">
+      <div className="mt-6 flex gap-4">
         <OdsButton
           onClick={onCancel}
           variant="ghost"
           size="sm"
-          color="primary"
           isDisabled={isPendingListUsers || undefined}
           label={tAssociateUser(
             'pci_projects_project_storages_containers_add_create_or_linked_user_linked_user_btn_cancel',
@@ -162,9 +161,7 @@ export default function LinkUserSelector({
           label={tAssociateUser(
             'pci_projects_project_storages_containers_add_create_or_linked_user_linked_user_btn_linked',
           )}
-          color="primary"
           size="sm"
-          class="ml-4"
           isDisabled={isDisabled}
           onClick={onShowCredentials}
         />
