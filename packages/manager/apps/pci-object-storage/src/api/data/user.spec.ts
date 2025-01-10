@@ -13,14 +13,6 @@ import {
 } from './user';
 import { OBJECT_STORAGE_USER_ROLE } from '@/constants';
 
-vi.mock('@ovh-ux/manager-core-api', () => ({
-  v6: {
-    get: vi.fn(),
-    post: vi.fn(),
-    delete: vi.fn(),
-  },
-}));
-
 describe('User API', () => {
   const projectId = 'test-project';
   const userId = 1;
