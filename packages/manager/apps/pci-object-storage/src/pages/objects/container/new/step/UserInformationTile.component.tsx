@@ -20,9 +20,9 @@ export default function UserInformationTile({
 }: Readonly<UserInformationTileProps>) {
   const { t } = useTranslation(['credential-banner', 'pci-common']);
   return (
-    <OdsMessage color="success" className="w-100">
-      <div>
-        <OdsText preset="paragraph" className="block">
+    <OdsMessage color="success" className="w-full my-6">
+      <div className="w-full">
+        <OdsText preset="paragraph" className="block mb-4">
           <span
             dangerouslySetInnerHTML={{
               __html: t(
@@ -34,52 +34,50 @@ export default function UserInformationTile({
             }}
           />
         </OdsText>
-        <div className="flex justify-between mt-6">
-          <OdsFormField className="w-[45%]">
+
+        <div className="grid grid-cols-2 gap-4">
+          <OdsFormField>
             <LabelComponent
               text={t(
                 'pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_username_label',
               )}
-            ></LabelComponent>
-            <OdsClipboard value={user.username}>
-              <span slot="success-message">
-                {t('pci-common:common_clipboard_copied')}
-              </span>
-            </OdsClipboard>
+            />
+            <OdsClipboard className="w-[100%]" value={user.username} />
           </OdsFormField>
-          <OdsFormField className="w-[45%]">
+
+          <OdsFormField>
             <LabelComponent
               text={t(
                 'pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_access-key_label',
               )}
-            ></LabelComponent>
-            <OdsClipboard value={user.s3Credentials?.access}>
-              <span slot="success-message">
-                {t('pci-common:common_clipboard_copied')}
-              </span>
-            </OdsClipboard>
+            />
+            <OdsClipboard
+              className="w-[100%]"
+              value={user.s3Credentials?.access}
+            />
           </OdsFormField>
-        </div>
-        <div className="flex mt-8 justify-between">
-          <OdsFormField className="w-[45%]">
+
+          <OdsFormField>
             <LabelComponent
               text={t(
                 'pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_description_label',
               )}
-            ></LabelComponent>
-            <OdsClipboard value={user.description}>
-              <span slot="success-message">
-                {t('pci-common:common_clipboard_copied')}
-              </span>
-            </OdsClipboard>
+            />
+            <OdsClipboard className="w-[100%]" value={user.description} />
           </OdsFormField>
-          <OdsFormField className="w-[45%]">
+
+          <OdsFormField>
             <LabelComponent
               text={t(
                 'pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_secret-key_label',
               )}
-            ></LabelComponent>
-            <OdsPassword name="secretKey" value={secretUser} color="primary" />
+            />
+            <OdsPassword
+              className="w-[100%]"
+              name="secretKey"
+              value={secretUser}
+              color="primary"
+            />
           </OdsFormField>
         </div>
       </div>

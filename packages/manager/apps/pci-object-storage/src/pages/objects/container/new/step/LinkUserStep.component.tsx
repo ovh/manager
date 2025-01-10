@@ -53,15 +53,15 @@ export function LinkUserStep() {
           'pci_projects_project_storages_containers_add_create_or_linked_user_description',
         )}
       </OdsText>
+
       {associateMode === '' && (
-        <div className="mt-6 flex">
+        <div className="mt-6 flex gap-4">
           <OdsButton
             onClick={() =>
               setAssociateMode(CONTAINER_USER_ASSOCIATION_MODES.LINKED)
             }
             variant="ghost"
             size="sm"
-            color="primary"
             label={t(
               'containers/associate-user-to-container:pci_projects_project_storages_containers_add_create_or_linked_user_mode_linked_user_btn',
             )}
@@ -71,9 +71,7 @@ export function LinkUserStep() {
               setAssociateMode(CONTAINER_USER_ASSOCIATION_MODES.CREATE)
             }
             variant="outline"
-            color="primary"
             size="sm"
-            class="ml-4"
             label={t(
               'containers/associate-user-to-container:pci_projects_project_storages_containers_add_create_or_linked_user_mode_create_user_btn',
             )}
@@ -81,6 +79,7 @@ export function LinkUserStep() {
           />
         </div>
       )}
+
       {associateMode === CONTAINER_USER_ASSOCIATION_MODES.LINKED && (
         <LinkUserSelector
           userId={form.ownerId}
@@ -88,6 +87,7 @@ export function LinkUserStep() {
           onCancel={onCancel}
         />
       )}
+
       {associateMode === CONTAINER_USER_ASSOCIATION_MODES.CREATE && (
         <LinkUserCreation onCancel={onCancel} onCreateUser={onSelectOwner} />
       )}
