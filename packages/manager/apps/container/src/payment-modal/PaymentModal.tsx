@@ -16,7 +16,7 @@ import {
 } from '@ovhcloud/ods-common-theming';
 import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 
-interface IPaymentMethod {
+export interface IPaymentMethod {
   icon?: any;
   label: string;
   status: string;
@@ -90,6 +90,7 @@ const PaymentModal = (): JSX.Element => {
       onOdsModalClose={closeHandler}
       headline={t('payment_modal_title')}
       color={ODS_THEME_COLOR_INTENT.info}
+      data-testid="paymentModal"
     >
       <OsdsText
         color={ODS_THEME_COLOR_INTENT.text}
