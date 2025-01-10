@@ -13,7 +13,9 @@ export interface RegionTileProps {
   isCompact?: boolean;
 }
 
-export const RegionChip = ({ region }: Readonly<{ region: TLocalisation }>) => {
+export const RegionChipByType = ({
+  region,
+}: Readonly<{ region: TLocalisation }>) => {
   switch (region.type) {
     case 'localzone':
       return <RegionLocalzoneChip />;
@@ -45,7 +47,7 @@ export const RegionTile = ({
       <>
         <hr className="w-full border-solid border-0 border-b border-ods-primary-200" />
         <div>
-          <RegionChip region={region} />
+          <RegionChipByType region={region} />
         </div>
       </>
     )}
