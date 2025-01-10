@@ -72,12 +72,12 @@ describe('addUser', () => {
       projectId: 'projectId',
       region: 'region',
       storageId: 'storageId',
-      userId: 'userId',
+      userId: 123,
       role: 'role',
     });
 
     expect(v6.post).toHaveBeenCalledWith(
-      '/cloud/project/projectId/region/region/storage/storageId/policy/userId',
+      '/cloud/project/projectId/region/region/storage/storageId/policy/123',
       {
         roleName: 'role',
         objectKey: undefined,
