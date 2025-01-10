@@ -95,6 +95,12 @@ push_and_release() {
   fi
 }
 
+push_and_release_mrc() {
+  printf "%s\n" "Commit mrc changes"
+  git add packages/manager-react-components/package.json packages/manager-react-components/CHANGELOG.md
+  git commit -s --amend --no-edit
+}
+
 update_sonar_version() {
   printf "%s\n" "Updating sonar"
   sed -i "s/sonar\.projectVersion=.*/sonar\.projectVersion=$1/" ".sonarcloud.properties"
@@ -132,7 +138,7 @@ main() {
   done
 
   changed_packages=$(get_changed_packages)
-  
+
   if [ -z "$changed_packages" ]; then
     printf "%s\n" "Nothing to release"
     exit 0
@@ -158,24 +164,7 @@ main() {
     fi
   done <<< "$changed_packages"
 
-  # Handle `manager-react-components` separately
-  if [ "$mrc_changed" == true ]; then
-    next_tag=$(get_release_name "$SEED")
-    printf "%s\n" "New tag for manager-react-components: $next_tag"
 
-    RELEASE_NOTE+="# Release $next_tag\n\n"
-
-    update_sonar_version "$next_tag"
-    version_mrc "$next_tag"
-
-    # Create release note for manager-react-components
-    RELEASE_NOTE+="$(create_release_note "$path_mrc" "$name_mrc")\n\n"
-
-    # Commit and release manager-react-components
-    clean_tags
-    push_and_release "$next_tag"
-  fi
-  
   # Handle the rest of the packages
   next_tag=$(get_release_name "$SEED")
   printf "%s\n" "New tag for other packages: $next_tag"
@@ -195,6 +184,24 @@ main() {
 
   # Push and release for other packages
   push_and_release "$next_tag"
+
+  # Handle `manager-react-components` separately
+  if [ "$mrc_changed" == true ]; then
+    next_tag=$(get_release_name "$SEED")
+    printf "%s\n" "New tag for manager-react-components: $next_tag"
+
+    RELEASE_NOTE+="# Release $next_tag\n\n"
+
+    update_sonar_version "$next_tag"
+    version_mrc "$next_tag"
+
+    # Create release note for manager-react-components
+    RELEASE_NOTE+="$(create_release_note "$path_mrc" "$name_mrc")\n\n"
+
+    # Commit and release manager-react-components
+    clean_tags
+    push_and_release_mrc "$next_tag"
+  fi
 
 }
 
