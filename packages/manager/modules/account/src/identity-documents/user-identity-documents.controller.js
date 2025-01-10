@@ -26,6 +26,7 @@ const replaceTrackingParams = (hit, params) => {
 export default class AccountUserIdentityDocumentsController {
   /* @ngInject */
   constructor(
+    $injector,
     $q,
     $http,
     $scope,
@@ -34,6 +35,7 @@ export default class AccountUserIdentityDocumentsController {
     atInternet,
     ExitGuardService,
   ) {
+    this.$injector = $injector;
     this.$q = $q;
     this.$http = $http;
     this.$scope = $scope;
@@ -71,6 +73,9 @@ export default class AccountUserIdentityDocumentsController {
     this.proofs = this.DOCUMENTS_MATRIX[this.user_type]?.proofs;
     this.selectProofType(null);
     this.trackPage(TRACKING_TASK_TAG.dashboard);
+    // We are storing the information that the KYC India modal validation has been displayed, that way we won't
+    // display it on the next connection
+    localStorage.setItem('KYC_INDIA_IDENTITY_DOCUMENTS_MODAL', 'true');
   }
 
   selectProofType(proof) {
@@ -136,6 +141,16 @@ export default class AccountUserIdentityDocumentsController {
 
   handleInformationModal(open) {
     this.isOpenInformationModal = open;
+  }
+
+  closeInformationModal() {
+    this.handleInformationModal(false);
+    // We try to notify the container that the action required by the KYCIndiaModal has been done
+    // and we can switch to the next one if necessary
+    if (this.$injector.has('shellClient')) {
+      const shellClient = this.$injector.get('shellClient');
+      shellClient.ux.notifyModalActionDone();
+    }
   }
 
   addDocuments(proofType, documentType, files, isReset) {
