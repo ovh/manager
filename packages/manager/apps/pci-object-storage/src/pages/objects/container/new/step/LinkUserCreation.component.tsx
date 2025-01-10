@@ -86,6 +86,7 @@ export default function LinkUserCreation({
 
   const isDisabled =
     !formState.description || isLoading || !!newUser || undefined;
+
   return (
     <>
       {newUser && secretUser ? (
@@ -94,7 +95,7 @@ export default function LinkUserCreation({
         </div>
       ) : (
         <OdsFormField
-          className="mt-6"
+          className="my-6 block "
           error={
             formState.hasError ? tCommon('common_field_error_required') : ''
           }
@@ -131,7 +132,7 @@ export default function LinkUserCreation({
         </OdsFormField>
       )}
 
-      <div className="flex mt-8">
+      <div className="flex mt-8 gap-4">
         <OdsButton
           onClick={onCancel}
           variant="ghost"
@@ -140,18 +141,15 @@ export default function LinkUserCreation({
             'pci_projects_project_storages_containers_add_create_or_linked_user_create_user_btn_cancel',
           )}
           isDisabled={isLoading || undefined}
-          color="primary"
-        ></OdsButton>
+        />
         <OdsButton
-          color="primary"
           size="sm"
           label={tAssociateUser(
             'pci_projects_project_storages_containers_add_create_or_linked_user_create_user_btn_linked',
           )}
           isDisabled={isDisabled}
           onClick={onConfirm}
-          class="ml-4"
-        ></OdsButton>
+        />
       </div>
     </>
   );

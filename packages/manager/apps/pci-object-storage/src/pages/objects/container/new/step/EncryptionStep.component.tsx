@@ -38,49 +38,52 @@ export function EncryptionStep() {
       }}
     >
       <>
-        <p>
-          <OdsText preset="paragraph">
-            {t(
-              'pci_projects_project_storages_containers_data_encryption_description',
-            )}
-          </OdsText>
-        </p>
-        <div className="flex mt-4">
-          <OdsRadio
-            className="mr-4"
-            value={NO_ENCRYPTION_VALUE}
-            name="encryption"
-            inputId="encryption-none"
-            onOdsChange={() => setEncryption(NO_ENCRYPTION_VALUE)}
-          />
-          <label htmlFor="encryption-none">
-            {t(
-              'pci_projects_project_storages_containers_data_encryption_plaintext',
-            )}
-          </label>
-        </div>
-        <div className="flex mt-4">
-          <OdsRadio
-            className="mr-4"
-            value={ENCRYPTION_ALGORITHM_SSE_S3}
-            name="encryption"
-            inputId="encryption-sse-s3"
-            isDisabled={form.region?.name === 'AP-SOUTH-MUM'}
-            onOdsChange={() => setEncryption(ENCRYPTION_ALGORITHM_SSE_S3)}
-          />
-          <label htmlFor="encryption-sse-s3">
-            {t(
-              'pci_projects_project_storages_containers_data_encryption_aes256',
-            )}
-          </label>
-          <span id="trigger-popover" className="ml-2">
-            <OdsIcon name="circle-question" />
-          </span>
-          <OdsPopover triggerId="trigger-popover">
-            {t(
-              'pci_projects_project_storages_containers_data_encryption_aes256_tooltip',
-            )}
-          </OdsPopover>
+        <OdsText preset="paragraph" className="block">
+          {t(
+            'pci_projects_project_storages_containers_data_encryption_description',
+          )}
+        </OdsText>
+
+        <div className="flex flex-col gap-4 my-6">
+          <div className="flex items-center gap-4">
+            <OdsRadio
+              value={NO_ENCRYPTION_VALUE}
+              name="encryption"
+              inputId="encryption-none"
+              onOdsChange={() => setEncryption(NO_ENCRYPTION_VALUE)}
+            />
+            <label htmlFor="encryption-none">
+              <OdsText>
+                {t(
+                  'pci_projects_project_storages_containers_data_encryption_plaintext',
+                )}
+              </OdsText>
+            </label>
+          </div>
+          <div className="flex items-center gap-4">
+            <OdsRadio
+              value={ENCRYPTION_ALGORITHM_SSE_S3}
+              name="encryption"
+              inputId="encryption-sse-s3"
+              isDisabled={form.region?.name === 'AP-SOUTH-MUM'}
+              onOdsChange={() => setEncryption(ENCRYPTION_ALGORITHM_SSE_S3)}
+            />
+            <label htmlFor="encryption-sse-s3">
+              <OdsText>
+                {t(
+                  'pci_projects_project_storages_containers_data_encryption_aes256',
+                )}
+              </OdsText>
+            </label>
+            <div>
+              <OdsIcon id="trigger-popover" name="circle-question" />
+              <OdsPopover triggerId="trigger-popover">
+                {t(
+                  'pci_projects_project_storages_containers_data_encryption_aes256_tooltip',
+                )}
+              </OdsPopover>
+            </div>
+          </div>
         </div>
       </>
     </StepComponent>
