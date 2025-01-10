@@ -36,7 +36,7 @@ export default function AgreementsUpdateModal () {
   // TODO: simplify this once new-billing is fully open to the public
   const isNewBillingAvailable = Boolean(environment.getApplicationURL('new-billing'));
   const billingAppName = isNewBillingAvailable ? 'new-billing' : 'dedicated';
-  const billingAppPath = `#${isNewBillingAvailable ? '' : 'billing/'}/autorenew/agreements`;
+  const billingAppPath = `#/${isNewBillingAvailable ? '' : 'billing/'}autorenew/agreements`;
   const myContractsLink = navigation.getURL(billingAppName, billingAppPath);
   const [ showModal, setShowModal ] = useState(false);
   const isCurrentModalActive = useMemo(() => current === ModalTypes.agreements, [current]);
