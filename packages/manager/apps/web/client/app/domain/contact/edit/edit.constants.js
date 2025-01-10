@@ -115,28 +115,45 @@ const TRACKING_PREFIX = 'web::domain::domain-name::';
 const TRACKING_CATEGORY_AND_THEME = {
   page_category: 'funnel',
   page_theme: 'Domains',
-  page: { name: TRACKING_PREFIX },
 };
+
+const TRACKING_EDIT_HOLDER_SUFFIX = 'domain-name::funnel::edit_holder-contact';
 
 export const CONTACT_MANAGEMENT_EDIT_TRACKING = {
   PAGE: {
     name: `${TRACKING_PREFIX}domain-name::funnel::edit_holder-contact`,
+    page: {
+      name: `${TRACKING_PREFIX}${TRACKING_EDIT_HOLDER_SUFFIX}`,
+    },
     ...TRACKING_CATEGORY_AND_THEME,
   },
   BANNER: {
-    name: `${TRACKING_PREFIX}domain-name::funnel::edit_holder-contact::banner-{{bannerType}}::edit-holder-contact_{{bannerType}}`,
+    name: `${TRACKING_PREFIX}domain-name::banner-{{bannerType}}::edit-holder-contact_{{returnType}}`,
+    page: {
+      name: `${TRACKING_PREFIX}domain-name::banner-{{bannerType}}::edit-holder-contact_{{returnType}}`,
+    },
     ...TRACKING_CATEGORY_AND_THEME,
+    page_category: 'banner',
   },
   SUBMIT: {
     name: `${TRACKING_PREFIX}funnel::button::edit_holder-contact_confirm`,
+    page: {
+      name: `${TRACKING_PREFIX}${TRACKING_EDIT_HOLDER_SUFFIX}`,
+    },
     ...TRACKING_CATEGORY_AND_THEME,
   },
   CANCEL: {
     name: `${TRACKING_PREFIX}funnel::button::edit_holder-contact_cancel`,
+    page: {
+      name: `${TRACKING_PREFIX}${TRACKING_EDIT_HOLDER_SUFFIX}`,
+    },
     ...TRACKING_CATEGORY_AND_THEME,
   },
   LINK: {
     name: `${TRACKING_PREFIX}funnel::link::edit_holder_next`,
+    page: {
+      name: `${TRACKING_PREFIX}domain-name::funnel::edit_holder-contact`,
+    },
     ...TRACKING_CATEGORY_AND_THEME,
   },
 };
