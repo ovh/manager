@@ -1,8 +1,5 @@
-import { Plus } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useParams, Outlet } from 'react-router-dom';
-import Link from '@/components/links/Link.component';
-import { Button } from '@/components/ui/button';
 import { POLLING } from '@/configuration/polling.constants';
 import { useUserActivityContext } from '@/contexts/UserActivityContext';
 import { useGetNotebooks } from '@/hooks/api/ai/notebook/useGetNotebooks.hook';
