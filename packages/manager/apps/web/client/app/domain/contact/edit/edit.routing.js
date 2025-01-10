@@ -26,15 +26,27 @@ export default /* @ngInject */ ($stateProvider) => {
         });
 
         if (message) {
+          const replaceValue = {
+            '{{bannerType}}_success': 'info',
+            '{{returnType}}_success': 'success',
+            '{{bannerType}}_error': 'error',
+            '{{returnType}}_error': 'error',
+          };
           promise.then(() =>
             $timeout(() => {
               Alerter[type](message, 'dashboardContact');
               atInternet.trackPage({
                 ...CONTACT_MANAGEMENT_EDIT_TRACKING.BANNER,
                 name: CONTACT_MANAGEMENT_EDIT_TRACKING.BANNER.name.replace(
-                  /{{bannerType}}/g,
-                  type,
+                  /{{bannerType}}|{{returnType}}/g,
+                  (match) => replaceValue[`${match}_${type}`],
                 ),
+                page: {
+                  name: CONTACT_MANAGEMENT_EDIT_TRACKING.BANNER.page.name.replace(
+                    /{{bannerType}}|{{returnType}}/g,
+                    (match) => replaceValue[`${match}_${type}`],
+                  ),
+                },
               });
             }, 1000),
           );

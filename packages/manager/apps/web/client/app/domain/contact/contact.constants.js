@@ -195,20 +195,31 @@ const TRACKING_PREFIX = 'web::domain::domain-name::';
 const TRACKING_CATEGORY_AND_THEME = {
   page_category: 'dashboard',
   page_theme: 'Domains',
-  page: { name: TRACKING_PREFIX },
 };
+
+const TRACKING_CONTACT_MANAGEMENT_SUFFIX =
+  'domain-name::dashboard::contact-management';
 
 export const CONTACT_MANAGEMENT_TRACKING = {
   PAGE: {
     name: `${TRACKING_PREFIX}domain-name::dashboard::contact-management`,
+    page: {
+      name: `${TRACKING_PREFIX}${TRACKING_CONTACT_MANAGEMENT_SUFFIX}`,
+    },
     ...TRACKING_CATEGORY_AND_THEME,
   },
   REASSIGN_CONTACT: {
     name: `${TRACKING_PREFIX}page::button::reset_domain-name-contacts`,
+    page: {
+      name: `${TRACKING_PREFIX}${TRACKING_CONTACT_MANAGEMENT_SUFFIX}`,
+    },
     ...TRACKING_CATEGORY_AND_THEME,
   },
   EDIT_CONTACT: {
     name: `${TRACKING_PREFIX}tile::button::edit_{{contactType}}-contact`,
+    page: {
+      name: `${TRACKING_PREFIX}${TRACKING_CONTACT_MANAGEMENT_SUFFIX}`,
+    },
     ...TRACKING_CATEGORY_AND_THEME,
   },
 };
