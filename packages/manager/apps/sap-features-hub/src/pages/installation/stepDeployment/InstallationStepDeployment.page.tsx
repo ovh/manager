@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { OdsButton } from '@ovhcloud/ods-components/react';
+import { OdsInputChangeEvent } from '@ovhcloud/ods-components';
 import { FormTitle } from '@/components/Form/FormTitle.component';
 import { SelectField } from '@/components/Form/SelectField.component';
 import { useFormSteps } from '@/hooks/formStep/useFormSteps';
@@ -9,29 +10,21 @@ import {
   APPLICATION_VERSIONS,
   DEPLOYMENT_TYPES,
 } from './installationStepDeployment.constants';
-import { useLocalStorage } from '@/hooks/localStorage/useLocalStorage';
+import { useInstallationFormContext } from '@/context/InstallationForm.context';
 
 export default function InstallationStepDeployment() {
   const { t } = useTranslation('installation');
-  const [applicationVersion, setApplicationVersion] = useState<string>(null);
-  const [applicationType, setApplicationType] = useState<string>(null);
-  const [deploymentType, setDeploymentType] = useState<string>(null);
-  const { previousStep, nextStep, currentStepLabel } = useFormSteps();
-  const { setStorageItem, removeStorageItem } = useLocalStorage();
+  const { previousStep, nextStep } = useFormSteps();
+  const {
+    values: { applicationVersion, applicationType, deploymentType },
+    setValues,
+  } = useInstallationFormContext();
 
   const isFormValid = applicationVersion && applicationType && deploymentType;
 
-  const handlePrevious = () => {
-    removeStorageItem(currentStepLabel);
-    previousStep();
-  };
-  const handleSubmit = () => {
-    setStorageItem(currentStepLabel, {
-      applicationVersion,
-      applicationType,
-      deploymentType,
-    });
-    nextStep();
+  const handleChange = (e: OdsInputChangeEvent) => {
+    const { name, value } = e.detail;
+    setValues((prev) => ({ ...prev, [name]: value }));
   };
 
   return (
@@ -42,36 +35,39 @@ export default function InstallationStepDeployment() {
       />
       <form className="flex flex-col gap-y-6">
         <SelectField
-          name={'deployment_application_version'}
+          name="applicationVersion"
           label={t('deployment_input_application_version')}
           placeholder={t('select_label')}
           options={APPLICATION_VERSIONS}
-          handleChange={(event) => setApplicationVersion(event.detail.value)}
+          handleChange={handleChange}
+          defaultValue={applicationVersion}
         />
         <SelectField
-          name={'deployment_application_type'}
+          name="applicationType"
           label={t('deployment_input_application_type')}
           placeholder={t('select_label')}
           options={APPLICATION_TYPES}
-          handleChange={(event) => setApplicationType(event.detail.value)}
+          handleChange={handleChange}
+          defaultValue={applicationType}
         />
         <SelectField
-          name={'deployment_type'}
+          name="deploymentType"
           label={t('deployment_input_deployment_type')}
           placeholder={t('select_label')}
           options={DEPLOYMENT_TYPES}
-          handleChange={(event) => setDeploymentType(event.detail.value)}
+          handleChange={handleChange}
+          defaultValue={deploymentType}
         />
         <div className="flex gap-x-2">
           <OdsButton
             label={t('previous_step_cta')}
             variant="outline"
-            onClick={handlePrevious}
+            onClick={previousStep}
           />
           <OdsButton
             label={t('deployment_cta')}
             isDisabled={!isFormValid}
-            onClick={handleSubmit}
+            onClick={nextStep}
           />
         </div>
       </form>
