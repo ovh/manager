@@ -31,14 +31,10 @@ export const useFormSteps = () => {
     }
   };
 
-  const getStepLabel = (step: string) => `sap_installation_formStep_${step}`;
-
   return {
     initializeAndProceed,
     nextStep,
     previousStep,
-    getStepLabel,
     currentStep: isInitialStep ? '1' : stepId,
-    currentStepLabel: getStepLabel(isInitialStep ? '1' : stepId),
   };
 };
