@@ -92,7 +92,7 @@
   "key_management_service_service-keys_reactivate_success": "Der Schlüssel wurde erfolgreich reaktiviert.",
   "key_management_service_service_keys_back_link": "Zurück zur Liste der Schlüssel",
   "key_management_service_service-keys_create_protection_level_title": "Schutzebene",
-  "key_management_service_service-keys_create_protection_level_subtitle": "Geben Sie den für den Verschlüsselungsschlüssel verwendeten Algorithmustyp an.",
+  "key_management_service_service-keys_create_protection_level_subtitle": "Geben Sie die für den Verschlüsselungsschlüssel verwendete Schutzebene an.",
   "key_management_service_service-keys_create_software_protection_title": "Software-Schutz",
   "key_management_service_service-keys_create_software_protection_subtitle": "Kryptografische Operationen werden mit Software ausgeführt."
 }
