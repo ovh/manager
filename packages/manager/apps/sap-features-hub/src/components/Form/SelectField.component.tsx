@@ -9,6 +9,7 @@ import {
   OdsSelectChangeEventDetail,
   OdsSelectCustomEvent,
 } from '@ovhcloud/ods-components';
+import { FormKey } from '@/types/form.type';
 
 type SelectOptionsProps<T> = T extends Record<string, unknown>
   ? {
@@ -23,7 +24,7 @@ type SelectOptionsProps<T> = T extends Record<string, unknown>
     };
 
 type SelectFieldProps<T> = SelectOptionsProps<T> & {
-  name: string;
+  name: FormKey;
   label: string;
   isDisabled?: boolean;
   isLoading?: boolean;
@@ -32,6 +33,7 @@ type SelectFieldProps<T> = SelectOptionsProps<T> & {
   ) => void;
   placeholder?: string;
   error?: string;
+  defaultValue?: string;
 };
 
 const getFormattedValue = (value: unknown) =>
@@ -48,6 +50,7 @@ export const SelectField = <T,>({
   optionValueKey,
   placeholder,
   error,
+  defaultValue,
 }: SelectFieldProps<T>) => {
   const sanitizedOptions = options.map((opt) =>
     typeof opt === 'object'
@@ -57,6 +60,12 @@ export const SelectField = <T,>({
         }
       : { value: opt, label: String(opt) },
   );
+
+  const getDefaultValue = () => {
+    if (defaultValue) return defaultValue;
+    if (isLoading || sanitizedOptions.length !== 1) return undefined;
+    return String(sanitizedOptions[0].value);
+  };
 
   return (
     <OdsFormField error={error}>
@@ -71,13 +80,9 @@ export const SelectField = <T,>({
           placeholder={placeholder}
           isDisabled={isDisabled}
           onOdsChange={handleChange}
-          className="w-full max-w-[304px]"
+          className="w-full max-w-[19em]"
           hasError={!!error}
-          defaultValue={
-            !isLoading && sanitizedOptions.length === 1
-              ? String(sanitizedOptions[0].value)
-              : undefined
-          }
+          defaultValue={getDefaultValue()}
         >
           {sanitizedOptions.map((opt) => (
             <option
