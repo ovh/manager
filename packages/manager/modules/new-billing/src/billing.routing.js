@@ -20,12 +20,12 @@ export default /* @ngInject */ (
       $urlServiceProvider.rules.when('/order/:id', '/orders/:id');
 
       $urlRouterProvider.when(
-        /(credits|fidelity|mean|method|ovhaccount|vouchers)/,
+        /\/(credits|fidelity|mean|method|ovhaccount|vouchers)$/,
         ($location, $state) => {
-          const [, subroute, remainder] = $location.$$path.match(
+          const [, subroute] = $location.$$path.match(
             /\/(credits|fidelity|mean|method|ovhaccount|vouchers)(\/.*)?/,
           );
-          return $state.go(`billing.payment.${subroute}`, { remainder });
+          return $state.go(`billing.payment.${subroute}`);
         },
       );
     },
