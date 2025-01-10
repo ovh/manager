@@ -34,13 +34,10 @@ export default function AgreementsUpdateModal () {
   const navigation = shell.getPlugin('navigation');
   const { current } = useModals();
   // TODO: simplify this once new-billing is fully open to the public
-  const billingAppName = environment.getApplicationURL('new-billing')
-    ? 'new-billing'
-    : 'dedicated';
-  const myContractsLink = navigation.getURL(
-    billingAppName,
-    '#/autorenew/agreements',
-  );
+  const isNewBillingAvailable = Boolean(environment.getApplicationURL('new-billing'));
+  const billingAppName = isNewBillingAvailable ? 'new-billing' : 'dedicated';
+  const billingAppPath = `#${isNewBillingAvailable ? '' : 'billing/'}/autorenew/agreements`;
+  const myContractsLink = navigation.getURL(billingAppName, billingAppPath);
   const [ showModal, setShowModal ] = useState(false);
   const isCurrentModalActive = useMemo(() => current === ModalTypes.agreements, [current]);
   const isOnAgreementsPage = useMemo(() => window.location.href === myContractsLink, [window.location.href]);
@@ -51,7 +48,7 @@ export default function AgreementsUpdateModal () {
   const { data: agreements, isLoading: areAgreementsLoading } = usePendingAgreements({ enabled: canUserAcceptAgreements });
   const goToContractPage = () => {
     setShowModal(false);
-    navigation.navigateTo(billingAppName, `#/billing/autorenew/agreements`);
+    navigation.navigateTo(billingAppName, billingAppPath);
   };
 
   /*
