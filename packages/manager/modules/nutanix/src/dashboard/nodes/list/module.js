@@ -2,7 +2,7 @@ import angular from 'angular';
 import '@ovh-ux/manager-core';
 import '@uirouter/angularjs';
 import 'angular-translate';
-import { region } from '@ovh-ux/manager-components';
+import { region, iamProtectedData } from '@ovh-ux/manager-components';
 
 import routing from './routing';
 import component from './component';
@@ -17,6 +17,7 @@ angular
     'ui.router',
     region,
     datacenterName,
+    iamProtectedData,
   ])
   .config(routing)
   .component('nutanixAllNodes', component)
