@@ -1,10 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { StepComponent } from '@ovh-ux/manager-react-components';
-import {
-  OdsFormField,
-  OdsRadio,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
+import { OdsRadio, OdsText } from '@ovhcloud/ods-components/react';
 import { useContainerCreationStore } from '../useContainerCreationStore';
 
 export function VersioningStep() {
@@ -13,6 +9,7 @@ export function VersioningStep() {
     'containers/enable-versioning',
     'pci-common',
   ]);
+
   const {
     form,
     setVersioning,
@@ -20,6 +17,7 @@ export function VersioningStep() {
     submitVersioning,
     editVersioning,
   } = useContainerCreationStore();
+
   return (
     <StepComponent
       title={t(
@@ -40,42 +38,45 @@ export function VersioningStep() {
       }}
     >
       <>
-        <p>
-          <OdsText preset="paragraph">
-            {t(
-              'containers/enable-versioning:pci_projects_project_storages_containers_bucket_versioning_description',
-            )}
-          </OdsText>
-        </p>
-        <div className="flex mt-4">
-          <OdsRadio
-            className="mr-4"
-            value="false"
-            isChecked={!form.versioning || undefined}
-            name="versioning"
-            inputId="versioning-false"
-            onOdsChange={() => setVersioning(false)}
-          />
-          <label htmlFor="versioning-false">
-            {t(
-              'pci_projects_project_storages_containers_bucket_versioning_disabled',
-            )}
-          </label>
-        </div>
-        <div className="flex mt-4">
-          <OdsRadio
-            className="mr-4"
-            value="true"
-            name="versioning"
-            onOdsChange={() => setVersioning(true)}
-            inputId="versioning-true"
-            isChecked={form.versioning || undefined}
-          />
-          <label htmlFor="versioning-true">
-            {t(
-              'pci_projects_project_storages_containers_bucket_versioning_enabled',
-            )}
-          </label>
+        <OdsText preset="paragraph" className="block">
+          {t(
+            'containers/enable-versioning:pci_projects_project_storages_containers_bucket_versioning_description',
+          )}
+        </OdsText>
+
+        <div className="flex flex-col gap-4 my-6">
+          <div className="flex items-center gap-4">
+            <OdsRadio
+              value="false"
+              isChecked={!form.versioning || undefined}
+              name="versioning"
+              inputId="versioning-false"
+              onOdsChange={() => setVersioning(false)}
+            />
+            <label htmlFor="versioning-false">
+              <OdsText>
+                {t(
+                  'pci_projects_project_storages_containers_bucket_versioning_disabled',
+                )}
+              </OdsText>
+            </label>
+          </div>
+          <div className="flex items-center gap-4">
+            <OdsRadio
+              value="true"
+              name="versioning"
+              onOdsChange={() => setVersioning(true)}
+              inputId="versioning-true"
+              isChecked={form.versioning || undefined}
+            />
+            <label htmlFor="versioning-true">
+              <OdsText>
+                {t(
+                  'pci_projects_project_storages_containers_bucket_versioning_enabled',
+                )}
+              </OdsText>
+            </label>
+          </div>
         </div>
       </>
     </StepComponent>
