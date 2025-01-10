@@ -22,5 +22,6 @@
   "administrator_contact": "{{code}} Administrateur",
   "billing_contact": "{{code}} Facturation",
   "technical_contact": "{{code}} Technique",
-  "terminated_service": "Le service a été résilié."
+  "terminated_service": "Le service a été résilié.",
+  "space_summary": "{{usedSpaceInGB}} Go ({{percent}}% de {{quotaInTB}} To)"
 }
