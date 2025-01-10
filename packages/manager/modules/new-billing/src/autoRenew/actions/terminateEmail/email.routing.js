@@ -11,11 +11,15 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
       email: /* @ngInject */ (BillingAutoRenew, name) =>
         BillingAutoRenew.getEmailInfos(name),
       isHosting: /* @ngInject */ (email) => /hosting/.test(email.offer),
-      redirection: /* @ngInject */ ($q, isHosting, email) => {
+      redirection: /* @ngInject */ ($q, coreURLBuilder, isHosting, email) => {
         if (isHosting) {
-          window.location.href = `/web/#/hosting/${encodeURIComponent(
-            email.domain,
-          )}/terminateEmail?tab=GENERAL_INFORMATIONS`;
+          window.location.href = coreURLBuilder.buildURL(
+            'web',
+            `#/hosting/${encodeURIComponent(email.domain)}/terminateEmail`,
+            {
+              tab: 'GENERAL_INFORMATIONS',
+            },
+          );
           return $q.defer().promise;
         }
         return $q.when();
