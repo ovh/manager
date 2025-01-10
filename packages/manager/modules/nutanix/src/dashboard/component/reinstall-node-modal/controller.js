@@ -26,14 +26,14 @@ export default class NutanixDashboardReinstallNodeCtrl {
       .then(() => {
         this.handleSuccess(
           `${this.$translate.instant(
-            'nutanix_dashboard_install_node_success_banner',
+            'nutanix_dashboard_reinstall_node_success_banner',
           )}`,
         );
       })
       .catch((error) => {
         this.handleError(
           `${this.$translate.instant(
-            'nutanix_dashboard_install_node_error_banner',
+            'nutanix_dashboard_reinstall_node_error_banner',
           )} ${error.message}`,
         );
       })
