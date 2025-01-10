@@ -246,9 +246,15 @@ export default class DomainContactEditCtrl {
     this.atInternet.trackPage({
       ...CONTACT_MANAGEMENT_EDIT_TRACKING.BANNER,
       name: CONTACT_MANAGEMENT_EDIT_TRACKING.BANNER.name.replace(
-        /{{bannerType}}/g,
+        /{{bannerType}}|{{returnType}}/g,
         'error',
       ),
+      page: {
+        name: CONTACT_MANAGEMENT_EDIT_TRACKING.BANNER.page.name.replace(
+          /{{bannerType}}|{{returnType}}/g,
+          'error',
+        ),
+      },
     });
   }
 }
