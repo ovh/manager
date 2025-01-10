@@ -6,19 +6,19 @@ export interface ConnectionPool {
   /** Database used for the connection pool */
   databaseId: string;
   /** ID of the connection pool */
-  id?: string;
+  id: string;
   /** Connection mode to the connection pool */
   mode: ModeEnum;
   /** Name of the connection pool */
-  name?: string;
+  name: string;
   /** Port of the connection pool */
-  port?: number;
+  port: number;
   /** Size of the connection pool */
   size: number;
   /** Ssl connection mode for the pool */
   sslMode?: SslModeEnum;
   /** Connection URI to the pool */
-  uri?: string;
+  uri: string;
   /** User authorized to connect to the pool, if none all the users are allowed */
   userId?: string;
 }

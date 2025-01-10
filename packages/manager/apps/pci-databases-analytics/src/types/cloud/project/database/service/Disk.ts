@@ -3,5 +3,5 @@ export interface Disk {
   /** Service disk size  */
   size: number;
   /** Service disk size  */
-  type?: string;
+  type: string;
 }

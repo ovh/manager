@@ -11,9 +11,9 @@ import { Node } from '@/types/cloud/project/database/service/Node';
 import { StatusEnum } from '@/types/cloud/project/database/StatusEnum';
 import { Storage } from '@/types/cloud/project/database/service/Storage';
 
-/** Cloud database kafka service definition */
-export interface Service {
-  /** Time on which backups start every day */
+/** Cloud database service definition without prometheus enabler */
+export interface ServiceWithoutPrometheus {
+  /** @deprecated Time on which backups start every day. DEPRECATED: use backups.time */
   backupTime: Time;
   /** Information related to the backups, null if the engine does not support backups */
   backups?: Backup;
@@ -27,8 +27,6 @@ export interface Service {
   description: string;
   /** @deprecated Disk attributes of the cluster. DEPRECATED: use storage */
   disk: Disk;
-  /** Enable Prometheus */
-  enablePrometheus?: boolean;
   /** List of all endpoints of the service */
   endpoints: Endpoint[];
   /** Name of the engine of the service */
@@ -45,16 +43,14 @@ export interface Service {
   networkId?: string;
   /** Type of network of the cluster */
   networkType: NetworkTypeEnum;
-  /** @deprecated Number of nodes in the cluster. DEPRECATED: useNodes */
+  /** @deprecated Number of nodes in the cluster. DEPRECATED: use nodes */
   nodeNumber: number;
   /** Nodes of the cluster */
   nodes: Node[];
   /** Plan of the cluster */
   plan: string;
-  /** Defines whether the REST API is enabled on the cluster */
-  restApi: boolean;
-  /** Defines whether the schema registry is enabled on the cluster */
-  schemaRegistry: boolean;
+  /** Region of the cluster */
+  region?: string;
   /** Current status of the cluster */
   status: StatusEnum;
   /** Storage attributes of the cluster */

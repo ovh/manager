@@ -4,19 +4,19 @@ import { StatusEnum } from '@/types/cloud/project/database/StatusEnum';
 /** Cloud databases cluster new node definition */
 export interface NodeCreation {
   /** Date of the creation of the node */
-  createdAt?: string;
+  createdAt: string;
   /** Flavor of the node */
   flavor: string;
   /** Node ID */
-  id?: string;
+  id: string;
   /** Name of the node */
-  name?: string;
+  name: string;
   /** Connection port for the node */
-  port?: number;
+  port: number;
   /** Region of the node */
   region: string;
   /** Role of the node */
-  role: RoleEnum;
+  role?: RoleEnum;
   /** Current status of the node */
-  status?: StatusEnum;
+  status: StatusEnum;
 }

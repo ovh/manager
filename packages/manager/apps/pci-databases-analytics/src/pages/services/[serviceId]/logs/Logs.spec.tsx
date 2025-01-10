@@ -30,7 +30,6 @@ const mockService: database.Service = {
   nodes: [],
   plan: '',
   status: database.StatusEnum.READY,
-  region: '',
   storage: null,
   version: '',
   backups: {
