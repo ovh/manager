@@ -9,16 +9,16 @@ import {
 } from '@/hooks/vmwareServices/useVMwareServices';
 import { SelectField } from '@/components/Form/SelectField.component';
 import { useFormSteps } from '@/hooks/formStep/useFormSteps';
-import { useLocalStorage } from '@/hooks/localStorage/useLocalStorage';
+import { useInstallationFormContext } from '@/context/InstallationForm.context';
 
 export default function InstallationInitialStep() {
   const { t } = useTranslation('installation');
-  const [serviceName, setServiceName] = useState<string>(null);
-  const [datacenterId, setDatacenterId] = useState<string>(null);
-  const [clusterName, setClusterName] = useState<string>(null);
   const [isFormValid, setIsFormValid] = useState<boolean>(false);
-  const { initializeAndProceed, currentStepLabel } = useFormSteps();
-  const { setStorageItem } = useLocalStorage();
+  const { initializeAndProceed } = useFormSteps();
+  const {
+    values: { serviceName, datacenterId, clusterName },
+    setValues,
+  } = useInstallationFormContext();
 
   const {
     data: services,
@@ -38,7 +38,7 @@ export default function InstallationInitialStep() {
     isError: isClustersError,
   } = useDatacentreClusters({
     serviceName,
-    datacenterId,
+    datacenterId: String(datacenterId),
   });
 
   const isError = useMemo(
@@ -54,65 +54,68 @@ export default function InstallationInitialStep() {
     setIsFormValid(clusterName && !isError);
   }, [isError, clusterName]);
 
-  const handleSubmit = () => {
-    setStorageItem(currentStepLabel, { vdcId: datacenterId, clusterName });
-    initializeAndProceed(serviceName);
-  };
-
   return (
     <div>
       <FormTitle title={t('service_title')} subtitle={t('service_subtitle')} />
       <form className="flex flex-col gap-y-6">
         <SelectField
-          name={'service_vmware'}
+          name="serviceName"
           label={t('service_input_vmware')}
           placeholder={t('select_label')}
           options={services}
-          optionValueKey={'serviceName'}
-          optionLabelKey={'displayName'}
+          optionValueKey="serviceName"
+          optionLabelKey="displayName"
           isDisabled={isLoadingServices || isServicesError}
           isLoading={isLoadingServices}
           handleChange={(event) => {
-            setServiceName(event.detail.value);
-            setDatacenterId(null);
-            setClusterName(null);
+            setValues((prev) => ({
+              ...prev,
+              serviceName: event.detail.value,
+              datacenterId: null,
+              clusterName: null,
+            }));
           }}
         />
         <SelectField
-          name={'service_vdc'}
+          name="datacenterId"
           label={t('service_input_vdc')}
           placeholder={t('select_label')}
           options={datacentres}
-          optionValueKey={'datacenterId'}
-          optionLabelKey={'name'}
+          optionValueKey="datacenterId"
+          optionLabelKey="name"
           isDisabled={
             !serviceName || isLoadingDatacentres || isDatacentresError
           }
           isLoading={isLoadingDatacentres}
           handleChange={(event) => {
-            setDatacenterId(event.detail.value);
-            setClusterName(null);
+            setValues((prev) => ({
+              ...prev,
+              datacenterId: Number(event.detail.value),
+              clusterName: null,
+            }));
           }}
           error={
             isError ? t('service_input_error_no_cluster_available') : undefined
           }
         />
         <SelectField
-          name={'service_cluster'}
+          name="clusterName"
           label={t('service_input_cluster')}
           placeholder={t('select_label')}
           options={clusters}
-          optionValueKey={'name'}
+          optionValueKey="name"
           isDisabled={
             !datacenterId || isLoadingClusters || isClustersError || isError
           }
-          isLoading={isLoadingClusters && !isLoadingDatacentres}
-          handleChange={(event) => setClusterName(event.detail.value)}
+          isLoading={!!datacenterId && isLoadingClusters}
+          handleChange={(event) =>
+            setValues((prev) => ({ ...prev, clusterName: event.detail.value }))
+          }
         />
         <OdsButton
           label={t('service_cta')}
           isDisabled={!isFormValid}
-          onClick={handleSubmit}
+          onClick={() => initializeAndProceed(serviceName)}
         />
       </form>
     </div>
