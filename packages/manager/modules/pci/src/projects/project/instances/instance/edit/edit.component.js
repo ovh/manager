@@ -20,5 +20,6 @@ export default {
     customerRegions: '<',
     imageInformation: '<',
     hourlyPriceInformation: '<',
+    getUAppUrl: '<',
   },
 };
