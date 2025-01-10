@@ -26,6 +26,7 @@ import {
   OBJECT_CONTAINER_TYPE_STATIC,
 } from '@/constants';
 import { paginateResults } from '@/helpers';
+import { addUser } from '../data/objects';
 
 export const sortStorages = (sorting: ColumnSort, storages: TStorage[]) => {
   const order = sorting.desc ? -1 : 1;
@@ -375,6 +376,44 @@ export const useCreateContainer = ({
   return {
     createContainer: (container: UseCreateContainerArgs) =>
       mutation.mutate(container),
+    ...mutation,
+  };
+};
+
+type AddUserProps = {
+  projectId: string;
+  storageId: string;
+  region: string;
+  userId: string;
+  role: string;
+  onError: (cause: Error) => void;
+  onSuccess: () => void;
+};
+
+export const useAddUser = ({
+  projectId,
+  storageId,
+  region,
+  userId,
+  role,
+  onError,
+  onSuccess,
+}: AddUserProps) => {
+  const queryClient = useQueryClient();
+  const mutation = useMutation({
+    mutationFn: async () =>
+      addUser({ projectId, region, storageId, userId, role }),
+    onError,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: getStorageQueryKey(projectId),
+      });
+      onSuccess();
+    },
+  });
+
+  return {
+    addUser: () => mutation.mutate(),
     ...mutation,
   };
 };

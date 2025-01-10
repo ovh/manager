@@ -12,6 +12,7 @@ type StepOneComponentProps = {
   selectedUser: TUser;
   users: TUser[];
 };
+
 export default function StepOneComponent({
   onSelectUser,
   selectedUser,
@@ -23,7 +24,7 @@ export default function StepOneComponent({
     <>
       <OdsText>
         {t(
-          'pci_projects_project_storages_containers_container_addUser_description_object_step_0',
+          'pci_projects_project_storages_containers_container_addUser_description_container_step_0',
         )}
       </OdsText>
 
@@ -47,19 +48,19 @@ export default function StepOneComponent({
               key={user?.id}
               className="flew justify-between"
             >
-              <option>
+              <OdsText preset="paragraph">
                 {user?.description
                   ? `${user?.username} -  ${user?.description}`
                   : user.username}
-              </option>
+              </OdsText>
 
-              <option className="ml-48">
+              <OdsText preset="caption" className="ml-48">
                 {t(
                   user.s3Credentials
                     ? 'pci_projects_project_storages_containers_container_addUser_select_user_has_credential'
                     : 'pci_projects_project_storages_containers_container_addUser_select_user_has_not_credential',
                 )}
-              </option>
+              </OdsText>
             </option>
           ))}
         </OdsSelect>

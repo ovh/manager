@@ -43,14 +43,21 @@ export const deleteObject = async (
   return response.json();
 };
 
-export const addUser = async (
-  projectId: string,
-  region: string,
-  objectName: string,
-  storageId: string,
-  userId: string,
-  role: string,
-) => {
+export const addUser = async ({
+  projectId,
+  region,
+  storageId,
+  userId,
+  role,
+  objectName,
+}: {
+  projectId: string;
+  region: string;
+  storageId: string;
+  userId: string;
+  role: string;
+  objectName?: string;
+}) => {
   const { data } = await v6.post(
     `/cloud/project/${projectId}/region/${region}/storage/${storageId}/policy/${userId}`,
     {
