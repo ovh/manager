@@ -76,6 +76,12 @@ vi.mock('@ovh-ux/manager-core-api', async () => {
   return {
     ...mod,
     fetchIcebergV6: vi.fn(),
+    aapi: {
+      get: vi.fn(),
+      post: vi.fn(),
+      put: vi.fn(),
+      delete: vi.fn(),
+    },
     v6: {
       get: vi.fn(),
       post: vi.fn(),
