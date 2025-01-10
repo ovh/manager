@@ -19,5 +19,4 @@ export const useGetFlavor = (
     ],
     queryFn: () => getFlavor(projectId, regionName, addon),
     enabled: !!projectId && !!regionName && !!addon,
-    throwOnError: true,
   });

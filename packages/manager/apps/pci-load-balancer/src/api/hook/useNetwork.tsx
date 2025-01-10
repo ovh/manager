@@ -105,7 +105,6 @@ export const useGetRegionPrivateNetworks = (
     queryKey: ['project', projectId, 'region', region, 'networks'],
     queryFn: () => getRegionPrivateNetworks(projectId, region),
     enabled: !!projectId && !!region,
-    throwOnError: true,
   });
 
   const list = useMemo(

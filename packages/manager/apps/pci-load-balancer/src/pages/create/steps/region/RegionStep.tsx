@@ -100,6 +100,7 @@ export const RegionStep = ({
         <RegionSelector
           projectId={project.project_id}
           onSelectRegion={(selectedRegion) => {
+            store.set.region(undefined);
             if (selectedRegion) {
               const region = regions
                 ?.get(store.addon?.code)
