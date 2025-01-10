@@ -5,21 +5,22 @@ import { OBJECT_CONTAINER_USER_ROLES } from '@/constants';
 export type StepTwoComponentProps = {
   onSelectRole: (role: string) => void;
   selectedRole: string;
-  objectName: string;
+  containerId: string;
 };
 
 export default function StepTwoComponent({
   onSelectRole,
   selectedRole,
-  objectName,
+  containerId,
 }: Readonly<StepTwoComponentProps>) {
   const { t } = useTranslation('containers/add-user');
+
   return (
     <>
-      <OdsText>
+      <OdsText preset="paragraph">
         {t(
-          'pci_projects_project_storages_containers_container_addUser_description_object_step_1',
-          { value: objectName },
+          'pci_projects_project_storages_containers_container_addUser_description_container_step_1',
+          { value: containerId },
         )}
       </OdsText>
 

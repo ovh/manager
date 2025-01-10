@@ -8,38 +8,37 @@ import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ODS_BUTTON_VARIANT, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { useEffect, useState } from 'react';
 import { Translation, useTranslation } from 'react-i18next';
-import {
-  createSearchParams,
-  useNavigate,
-  useParams,
-  useSearchParams,
-} from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useUsers } from '@/api/hooks/useUser';
 import { TUser } from '@/api/data/user';
 import StepOneComponent from './StepOne.component';
 import StepTwoComponent from './StepTwo.component';
-import { useAddUser } from '@/api/hooks/useObject';
+import { useAddUser, useAllStorages } from '@/api/hooks/useStorages';
 
-export default function AddUserPage() {
+export default function AddUserToContainerPage() {
   const { t } = useTranslation('containers/add-user');
-
-  const { addSuccess, addError } = useNotifications();
-  const navigate = useNavigate();
-
-  const { projectId, storageId, objectName } = useParams();
-  const [searchParams] = useSearchParams();
-
-  const decodedObjectName = objectName.replace(/~2F/g, '/');
-  const region = searchParams.get('region');
-
-  const { data: listUsers, isPending: isPendingListUsers } = useUsers(
-    projectId,
-  );
 
   const [stepUser, setStepUser] = useState(0);
   const [selectedUser, setSelectedUser] = useState<TUser>(null);
   const [selectedRole, setSelectedRole] = useState<string>(null);
+
+  const { addSuccess, addError } = useNotifications();
+  const navigate = useNavigate();
+
+  const { projectId } = useParams();
+  const [searchPrams] = useSearchParams();
+  const containerId = searchPrams.get('containerId');
+
+  const { data: storages, isPending: isStoragesPending } = useAllStorages(
+    projectId,
+  );
+
+  const storageDetail = storages?.resources.find((s) => s.name === containerId);
+
+  const { data: listUsers, isPending: isPendingListUsers } = useUsers(
+    projectId,
+  );
 
   useEffect(() => {
     if (listUsers) {
@@ -47,31 +46,23 @@ export default function AddUserPage() {
     }
   }, [listUsers]);
 
-  const onClose = () =>
-    navigate({
-      pathname: `..`,
-      search: `?${createSearchParams({
-        region: searchParams.get('region'),
-      })}`,
-    });
-
-  const onCancel = onClose;
+  const onCancel = () => navigate(`..`);
+  const onClose = () => navigate(`..`);
 
   const { addUser, isPending: isPendingAddUser } = useAddUser({
     projectId,
-    storageId,
-    objectName: decodedObjectName,
+    storageId: containerId,
     userId: selectedUser?.id,
     role: selectedRole,
-    region,
-    onError(error: ApiError) {
+    region: storageDetail?.region,
+    onError: (error: ApiError) => {
       addError(
         <Translation ns="containers/add-user">
           {(_t) =>
             _t(
-              'pci_projects_project_storages_containers_container_addUser_object_error_addUser',
+              'pci_projects_project_storages_containers_container_addUser_error_addUser',
               {
-                value: decodedObjectName,
+                value: containerId,
                 message:
                   error?.response?.data?.message || error?.message || null,
               },
@@ -82,14 +73,14 @@ export default function AddUserPage() {
       );
       onClose();
     },
-    onSuccess() {
+    onSuccess: () => {
       addSuccess(
         <Translation ns="containers/add-user">
           {(_t) =>
             _t(
-              'pci_projects_project_storages_containers_container_addUser_object_success_message',
+              'pci_projects_project_storages_containers_container_addUser_success_message',
               {
-                value: decodedObjectName,
+                value: containerId,
                 name: selectedUser?.description,
                 role: t(
                   `pci_projects_project_storages_containers_container_addUser_right_${selectedRole}`,
@@ -104,13 +95,13 @@ export default function AddUserPage() {
     },
   });
 
-  const isPending = isPendingListUsers || isPendingAddUser;
+  const isPending = isPendingListUsers || isPendingAddUser || isStoragesPending;
 
   return (
     <OdsModal onOdsClose={onClose} isOpen>
       <OdsText preset="heading-3">
         {t(
-          'pci_projects_project_storages_containers_container_addUser_object_title',
+          'pci_projects_project_storages_containers_container_addUser_container_title',
         )}
       </OdsText>
 
@@ -131,7 +122,7 @@ export default function AddUserPage() {
             <StepTwoComponent
               onSelectRole={setSelectedRole}
               selectedRole={selectedRole}
-              objectName={decodedObjectName}
+              containerId={containerId}
             />
           )}
         </div>
@@ -147,6 +138,7 @@ export default function AddUserPage() {
           )}
         />
       )}
+
       <OdsButton
         slot="actions"
         onClick={onCancel}

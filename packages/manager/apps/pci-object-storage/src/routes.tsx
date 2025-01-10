@@ -5,6 +5,7 @@ export const ROUTE_PATHS = {
   ROOT: '/pci/projects/:projectId/storages/objects',
   ONBOARDING: 'onboarding',
   CONTAINER_DELETE: 'delete',
+  CONTAINER_ADD_USER: 'addUser',
   STORAGES: '',
   CONTAINER_NEW: 'new',
   USER_LIST: 'users',
@@ -40,6 +41,9 @@ const DeleteContainerPage = lazy(() =>
 const AddUserObjectPage = lazy(() =>
   import('@/pages/objects/container/object/add-user/AddUser.page'),
 );
+const AddUserToContainerPage = lazy(() =>
+  import('@/pages/objects/container/add-user/AddUser.page'),
+);
 const UserListPage = lazy(() =>
   import('@/pages/objects/container/users/Listing.page'),
 );
@@ -74,6 +78,10 @@ const RoutesComponent = () => (
           <Route
             path={ROUTE_PATHS.CONTAINER_DELETE}
             Component={DeleteContainerPage}
+          />
+          <Route
+            path={ROUTE_PATHS.CONTAINER_ADD_USER}
+            Component={AddUserToContainerPage}
           />
         </Route>
         <Route path={ROUTE_PATHS.USER_LIST} Component={UserListPage}>
