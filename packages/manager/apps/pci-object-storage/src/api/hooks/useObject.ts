@@ -89,7 +89,14 @@ export const useAddUser = ({
 }: AddUserProps) => {
   const mutation = useMutation({
     mutationFn: async () =>
-      addUser({ projectId, region, objectName, storageId, userId, role }),
+      addUser({
+        projectId,
+        region,
+        objectName,
+        storageId,
+        userId,
+        role,
+      }),
     onError,
     onSuccess: async () => {
       await queryClient.invalidateQueries({

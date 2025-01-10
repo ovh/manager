@@ -54,7 +54,7 @@ export const addUser = async ({
   projectId: string;
   region: string;
   storageId: string;
-  userId: string;
+  userId: number;
   role: string;
   objectName?: string;
 }) => {
