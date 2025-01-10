@@ -9,5 +9,11 @@
   "pci_project_flavors_zone_global_region": "Region",
   "pci_project_flavors_zone_localzone_tooltip": "Le Local Zone sono un nuovo tipo di localizzazione che supporta una parte del nostro catalogo di prodotti Public Cloud. Prevediamo di aumentare gradualmente il numero di Local Zone disponibili nel mondo nei prossimi anni.",
   "pci_project_flavors_zone_globalregions_tooltip": "Le Region sono supportate da uno o più datacenter gestiti da OVHcloud. Ogni Region fornisce una o più Availability Zone con il catalogo completo di servizi OVHcloud.",
-  "pci_project_flavors_zone_tooltip_link": "Scopri di più"
+  "pci_project_flavors_zone_tooltip_link": "Scopri di più",
+  "pci_project_flavors_zone_1AZ": "1-AZ",
+  "pci_project_flavors_zone_3AZ": "3-AZ",
+  "pci_project_flavors_zone_localzone_1AZ_tooltip": "Una Local Zone corrisponde a un metodo di implementazione dei prodotti Public Cloud di OVHcloud in datacenter situati il più vicino possibile agli utenti finali.",
+  "pci_project_flavors_zone_1AZ_with_3AZ_tooltip": "Con il prossimo arrivo delle regioni 3-AZ, il tipo di installazione 'Regioni' cambia nome! Una Region 1-AZ (zona di disponibilità) raggruppa uno o più datacenter localizzati sullo stesso sito.",
+  "pci_project_flavors_zone_1AZ_tooltip": "Una Region 1-AZ (zona di disponibilità) raggruppa uno o più datacenter localizzati sullo stesso sito.",
+  "pci_project_flavors_zone_3AZ_tooltip": "Una regione 3-AZ comprende tre zone di disponibilità situate nella stessa area metropolitana, separate da pochi chilometri. Soddisfa i più elevati requisiti di resilienza, garantendo al tempo stesso una latenza estremamente bassa tra gli AZ."
 }
