@@ -12,4 +12,9 @@
   .oui-checkbox__label {
     word-break: break-word;
   }
+
+  .oui-modal__body {
+    max-height: 70vh;
+    overflow-y: auto;
+  }
 }
