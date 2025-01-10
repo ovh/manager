@@ -20,7 +20,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { SortableHeader } from '@/components/ui/data-table';
 import Link from '@/components/links/Link.component';
 import { convertSecondsToTimeString } from '@/lib/durationHelper';
 import NotebookStatusBadge from './NotebookStatusBadge.component';
@@ -30,6 +29,7 @@ import {
   isStoppedNotebook,
 } from '@/lib/notebookHelper';
 import A from '@/components/links/A.component';
+import DataTable from '@/components/data-table';
 
 interface NotebooksListColumnsProps {
   onStartClicked: (notebook: ai.notebook.Notebook) => void;
@@ -49,9 +49,11 @@ export const getColumns = ({
     {
       id: 'name/id',
       header: ({ column }) => (
-        <SortableHeader column={column}>{t('tableHeaderName')}</SortableHeader>
+        <DataTable.SortableHeader column={column}>
+          {t('tableHeaderName')}
+        </DataTable.SortableHeader>
       ),
-      accessorFn: (row) => row.spec.name,
+      accessorFn: (row) => `${row.spec.name}-${row.id}`,
       cell: ({ row }) => {
         const { id, spec, status } = row.original;
         return (
@@ -78,9 +80,9 @@ export const getColumns = ({
       id: 'Region',
       accessorFn: (row) => row.spec.region,
       header: ({ column }) => (
-        <SortableHeader column={column}>
+        <DataTable.SortableHeader column={column}>
           {t('tableHeaderLocation')}
-        </SortableHeader>
+        </DataTable.SortableHeader>
       ),
       cell: ({ row }) => (
         <span>{tRegions(`region_${row.original.spec.region}`)}</span>
@@ -90,9 +92,9 @@ export const getColumns = ({
       id: 'Framework',
       accessorFn: (row) => row.spec.env.frameworkId,
       header: ({ column }) => (
-        <SortableHeader column={column}>
+        <DataTable.SortableHeader column={column}>
           {t('tableHeaderFramework')}
-        </SortableHeader>
+        </DataTable.SortableHeader>
       ),
       cell: ({ row }) => (
         <span className="capitalize">{row.original.spec.env.frameworkId}</span>
@@ -102,9 +104,9 @@ export const getColumns = ({
       id: 'Editor',
       accessorFn: (row) => row.spec.env.editorId,
       header: ({ column }) => (
-        <SortableHeader column={column}>
+        <DataTable.SortableHeader column={column}>
           {t('tableHeaderEditor')}
-        </SortableHeader>
+        </DataTable.SortableHeader>
       ),
       cell: ({ row }) => (
         <Button
@@ -130,11 +132,11 @@ export const getColumns = ({
     },
     {
       id: 'Resources',
-      accessorFn: (row) => row.spec.env,
+      accessorFn: (row) => row.spec.resources.cpu,
       header: ({ column }) => (
-        <SortableHeader column={column}>
+        <DataTable.SortableHeader column={column}>
           {t('tableHeaderResources')}
-        </SortableHeader>
+        </DataTable.SortableHeader>
       ),
       cell: ({ row }) => {
         const { cpu, gpu, gpuModel } = row.original.spec.resources;
@@ -160,19 +162,16 @@ export const getColumns = ({
       accessorFn: (row) =>
         convertSecondsToTimeString(row.status.duration, true),
       header: ({ column }) => (
-        <SortableHeader column={column}>
+        <DataTable.SortableHeader column={column}>
           {t('tableHeaderDuration')}
-        </SortableHeader>
+        </DataTable.SortableHeader>
       ),
     },
     {
       id: 'Privacy',
-      accessorFn: (row) => row.spec.unsecureHttp,
-      header: ({ column }) => (
-        <SortableHeader column={column}>
-          {t('tableHeaderPrivacy')}
-        </SortableHeader>
-      ),
+      accessorFn: () =>
+        `${t('networkSecureTitle')} - ${t('networkPublicTitle')}`,
+      header: t('tableHeaderPrivacy'),
       cell: ({ row }) => {
         const { unsecureHttp } = row.original.spec;
         return (
@@ -194,18 +193,20 @@ export const getColumns = ({
     },
     {
       id: 'Status',
-      accessorFn: (row) => row.status,
+      accessorFn: (row) => row.status.state,
       header: ({ column }) => (
-        <SortableHeader column={column}>
+        <DataTable.SortableHeader column={column}>
           {t('tableHeaderStatus')}
-        </SortableHeader>
+        </DataTable.SortableHeader>
       ),
       cell: ({ row }) => {
         return <NotebookStatusBadge status={row.original.status.state} />;
       },
     },
+
     {
       id: 'actions',
+      enableGlobalFilter: false,
       cell: ({ row }) => {
         const notebook = row.original;
 

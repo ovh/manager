@@ -27,7 +27,7 @@ const Notebooks = () => {
         <h2>{t('title')}</h2>
         <Guides />
       </div>
-      <Button
+      {/* <Button
         variant="default"
         type="button"
         data-testid="create-notebook-button"
@@ -37,7 +37,7 @@ const Notebooks = () => {
           <Plus className="w-4 h-4 mr-2" />
           {t('createNewNotebook')}
         </Link>
-      </Button>
+      </Button> */}
       <NotebooksList notebooks={notebooksQuery.data} />
       <Outlet />
     </>
