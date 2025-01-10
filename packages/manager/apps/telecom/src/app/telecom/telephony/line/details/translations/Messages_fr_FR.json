@@ -27,6 +27,7 @@
   "telephony_line_details_sip_login": "Login / User name",
   "telephony_line_details_sip_auth_login": "Authorization user name",
   "telephony_line_details_sip_domain": "Domain / Registrar",
+  "telephony_line_details_sip_outbound_proxy": "Proxy sortant",
   "telephony_line_details_sip_infra": "Infrastructure",
   "telephony_line_details_sip_last_rec": "Date du dernier enregistrement",
   "telephony_line_details_sip_last_rec_info": "Un enregistrement sur le réseau est valable durant une heure.",
