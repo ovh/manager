@@ -9,6 +9,7 @@ import {
 
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 import { useFormSteps } from '@/hooks/formStep/useFormSteps';
+import { InstallationFormContextProvider } from '@/context/InstallationForm.context';
 
 export type DashboardTabItemProps = {
   name: string;
@@ -20,20 +21,22 @@ export type DashboardLayoutProps = {
   tabs: DashboardTabItemProps[];
 };
 
-export default function PreinstallationPage() {
+export default function InstallationDashboard() {
   const { t } = useTranslation('installation');
   const { currentStep } = useFormSteps();
 
   return (
-    <BaseLayout
-      breadcrumb={<Breadcrumb />}
-      header={{ title: t('title', { step: currentStep }) }}
-      backLinkLabel={t('backlink_label')}
-      onClickReturn={() => {}}
-      description={t('description')}
-      iconAlignment={IconLinkAlignmentType.left}
-    >
-      <Outlet />
-    </BaseLayout>
+    <InstallationFormContextProvider>
+      <BaseLayout
+        breadcrumb={<Breadcrumb />}
+        header={{ title: t('title', { step: currentStep }) }}
+        backLinkLabel={t('backlink_label')}
+        onClickReturn={() => {}}
+        description={t('description')}
+        iconAlignment={IconLinkAlignmentType.left}
+      >
+        <Outlet />
+      </BaseLayout>
+    </InstallationFormContextProvider>
   );
 }
