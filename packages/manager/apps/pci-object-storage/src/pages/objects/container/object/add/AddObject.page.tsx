@@ -173,7 +173,7 @@ export default function AddObjectPage() {
       )}
 
       <OdsFormField
-        className="my-8"
+        className="w-full my-4"
         error={
           !formState.prefix ? t('pci-common:common_field_error_required') : ''
         }
@@ -196,67 +196,57 @@ export default function AddObjectPage() {
       </OdsFormField>
 
       {targetContainer?.s3StorageType && isStorageClass && (
-        <div className="mt-6 mb-8">
+        <div className="my-6">
           <LabelComponent
             text={t(
               'pci_projects_project_storages_containers_container_object_add_storage_class_label',
             )}
           />
-          <OdsRadio
-            value={OBJECT_CONTAINER_STORAGE_CLASS.STANDARD}
-            name="swiftFileType"
-            className="mr-4"
-            inputId="swiftFileType"
-            isChecked={
-              formState.storageClass === OBJECT_CONTAINER_STORAGE_CLASS.STANDARD
-            }
-            onOdsChange={(event) => updateStorageClass(event.detail.value)}
-          >
-            <label htmlFor="swiftFileType">
-              <OdsText
-                className={
+          <div className="flex flex-col gap-4">
+            <div className="flex items-center gap-4">
+              <OdsRadio
+                value={OBJECT_CONTAINER_STORAGE_CLASS.STANDARD}
+                name="swiftFileType"
+                inputId="swiftFileType"
+                isChecked={
                   formState.storageClass ===
                   OBJECT_CONTAINER_STORAGE_CLASS.STANDARD
-                    ? 'font-bold'
-                    : 'font-normal'
                 }
-              >
-                {t(
-                  'pci_projects_project_storages_containers_container_object_add_storage_class_standard',
-                )}
-              </OdsText>
-            </label>
-          </OdsRadio>
-          <OdsRadio
-            value={OBJECT_CONTAINER_STORAGE_CLASS.HIGH_PERFORMANCE}
-            name="s3FileType"
-            className="mr-4"
-            inputId="s3FileType"
-            isChecked={
-              formState.storageClass ===
-              OBJECT_CONTAINER_STORAGE_CLASS.HIGH_PERFORMANCE
-            }
-            onOdsChange={(event) => updateStorageClass(event.detail.value)}
-          >
-            <label htmlFor="s3FileType">
-              <OdsText
-                className={
+                onOdsChange={(event) => updateStorageClass(event.detail.value)}
+              />
+              <label htmlFor="swiftFileType">
+                <OdsText preset="span">
+                  {t(
+                    'pci_projects_project_storages_containers_container_object_add_storage_class_standard',
+                  )}
+                </OdsText>
+              </label>
+            </div>
+
+            <div className="flex items-center gap-4">
+              <OdsRadio
+                value={OBJECT_CONTAINER_STORAGE_CLASS.HIGH_PERFORMANCE}
+                name="s3FileType"
+                inputId="s3FileType"
+                isChecked={
                   formState.storageClass ===
                   OBJECT_CONTAINER_STORAGE_CLASS.HIGH_PERFORMANCE
-                    ? 'font-bold'
-                    : 'font-normal'
                 }
-              >
-                {t(
-                  'pci_projects_project_storages_containers_container_object_add_storage_class_high_perf',
-                )}
-              </OdsText>
-            </label>
-          </OdsRadio>
+                onOdsChange={(event) => updateStorageClass(event.detail.value)}
+              />
+              <label htmlFor="s3FileType">
+                <OdsText preset="span">
+                  {t(
+                    'pci_projects_project_storages_containers_container_object_add_storage_class_high_perf',
+                  )}
+                </OdsText>
+              </label>
+            </div>
+          </div>
         </div>
       )}
 
-      <OdsFormField className="mt-4">
+      <OdsFormField className="w-full my-4">
         <LabelComponent
           text={t(
             'pci_projects_project_storages_containers_container_object_add_files_label',
