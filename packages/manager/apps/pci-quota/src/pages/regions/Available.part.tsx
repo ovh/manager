@@ -1,11 +1,18 @@
 import { OdsIcon, OdsText } from '@ovhcloud/ods-components/react';
 import { ShapesInputComponent } from '@ovh-ux/manager-pci-common';
 import { useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useLocations } from '@/api/hooks/useRegions';
 import { TPlainLocation } from '@/pages/regions/Regions.page';
 
-export const AvailablePart = (): JSX.Element => {
+export const AvailablePart = ({
+  isMobile,
+}: {
+  isMobile: boolean;
+}): JSX.Element => {
   const { projectId } = useParams();
+
+  const { t } = useTranslation('regions');
 
   const { data: locations } = useLocations(projectId);
 
@@ -13,7 +20,7 @@ export const AvailablePart = (): JSX.Element => {
     <div>
       <div>
         <OdsText preset="heading-6" className="text-[#00185e]">
-          Locations available
+          {t('pci_projects_project_regions_added_title')}
         </OdsText>
       </div>
       <ShapesInputComponent<TPlainLocation>
@@ -22,16 +29,14 @@ export const AvailablePart = (): JSX.Element => {
         group={{
           by: (item) => item.continent || 'M',
           LabelComponent: ({ groupName, isGroupSelected }) => (
-            <div>
-              <OdsText
-                preset="heading-6"
-                className={`p-5 ${
-                  isGroupSelected ? 'text-[#4d5592]' : 'text-[#0050d7]'
-                }`}
-              >
-                {groupName || 'All locations'}
-              </OdsText>
-            </div>
+            <OdsText
+              preset="heading-6"
+              className={`p-5 shape-input-group-label ${
+                isGroupSelected ? 'active' : ''
+              }`}
+            >
+              {groupName || 'All locations'}
+            </OdsText>
           ),
         }}
         item={{
@@ -52,9 +57,11 @@ export const AvailablePart = (): JSX.Element => {
                 {item.regions.map((region) => (
                   <li
                     key={region}
-                    className="border border-solid border-[--ods-color-blue-200] border-b-0 border-l-0 border-r-0 mt-4 pt-4"
+                    className="border border-solid border-[--ods-color-primary-200] border-b-0 border-l-0 border-r-0 mt-4 pt-4"
                   >
-                    <OdsText preset="caption">{region}</OdsText>
+                    <OdsText preset="caption">
+                      {item.name} ({region})
+                    </OdsText>
                   </li>
                 ))}
               </ul>
@@ -63,6 +70,7 @@ export const AvailablePart = (): JSX.Element => {
           getId: (item) => item.name,
           isDisabled: () => true,
         }}
+        isMobile={isMobile}
       />
     </div>
   );

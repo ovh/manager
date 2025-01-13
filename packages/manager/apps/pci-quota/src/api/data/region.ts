@@ -21,6 +21,6 @@ export const getRegions = async (
 };
 
 export const addRegion = async (projectId: string, regionCode: string) => {
-  const url = `/cloud/project/region?serviceName=${projectId}`;
+  const url = `/cloud/project/${projectId}/region`;
   await v6.post(url, { region: regionCode });
 };

@@ -10,7 +10,8 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { OdsSelectCustomRenderer } from '@ovhcloud/ods-components';
 import { useGetIssueTypes } from '@/api/hooks/useIssuTypes';
 import { ISSUE_TYPE_IDS } from '@/constants';
 import { useGetServiceOptions } from '@/api/hooks/useServiceOptions';
@@ -21,6 +22,7 @@ export type TProps = {
   onConfirm: (formData: string) => void;
   onCancel: () => void;
   onClose: () => void;
+  isLoading: boolean;
 };
 
 type TState = {
@@ -33,9 +35,11 @@ export const Modal = ({
   onConfirm,
   onClose,
   onCancel,
+  isLoading,
 }: TProps): JSX.Element => {
   const { t, i18n } = useTranslation('quotas/increase');
   const { projectId } = useParams();
+  const select = useRef(null);
 
   const { data: project } = useProject(projectId);
 
@@ -61,6 +65,19 @@ export const Modal = ({
 
   const { data: serviceOptions } = useGetServiceOptions(projectId);
 
+  const selectCustomRenderer: OdsSelectCustomRenderer = {
+    item: (data: { text: string }) => {
+      return `<span>${data.text}</span>`;
+    },
+    option: (data: { text: string }) => {
+      return `<div style="display:flex;"><div style="flex-basis: 50%;">${data.text
+        .split('-')[0]
+        .trim()}</div><div style="flex-basis: 50%;text-align:right;">${data.text
+        .split('-')[1]
+        .trim()}</div></div>`;
+    },
+  };
+
   return (
     <OdsModal isOpen={true} onOdsClose={onClose}>
       <div className="">
@@ -76,7 +93,7 @@ export const Modal = ({
                 {t('pci_projects_project_quota_increase_buy_credits')}
               </OdsText>
               <div className="mt-4">
-                <OdsMessage color="warning">
+                <OdsMessage color="warning" isDismissible={false}>
                   <OdsText>
                     {t('pci_projects_project_quota_increase_payment_info')}
                   </OdsText>
@@ -112,13 +129,18 @@ export const Modal = ({
           )}
           {type === 'credit' && (
             <OdsSelect
+              className="mt-8"
               name="service-option"
+              placeholder={t(
+                'pci_projects_project_quota_increase_select_volume',
+              )}
               onOdsChange={(event) => {
                 const target = serviceOptions.find(
                   (s) => s.planCode === event.target.value,
                 );
                 setState((prev) => ({ ...prev, serviceOption: target }));
               }}
+              customRenderer={selectCustomRenderer}
             >
               {serviceOptions?.map(({ planCode, prices }) => (
                 <option key={planCode} value={planCode}>
@@ -143,6 +165,11 @@ export const Modal = ({
             }
             label="Confirm"
             className="ml-3"
+            isDisabled={
+              (type === 'credit' && !state.serviceOption) ||
+              (type === 'support' && !state.description)
+            }
+            isLoading={isLoading}
           />
         </div>
       </div>

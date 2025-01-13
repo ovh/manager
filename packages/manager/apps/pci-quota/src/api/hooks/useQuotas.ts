@@ -1,7 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 import { ColumnSort } from '@tanstack/react-table';
 import { PaginationState } from '@ovh-ux/manager-react-components';
-import { getQuotas, IQuota } from '@/api/data/quota';
+import { useMemo } from 'react';
+import { getQuotas, Quota } from '@/api/data/quota';
+import { useLocations } from '@/api/hooks/useRegions';
 
 const paginateResults = <T>(items: T[], pagination: PaginationState) => ({
   rows: items.slice(
@@ -12,8 +14,17 @@ const paginateResults = <T>(items: T[], pagination: PaginationState) => ({
   totalRows: items.length,
 });
 
-export const sortQuotas = (sorting: ColumnSort, storages: IQuota[]) => {
-  return storages;
+export const sortQuotas = (quotas: Quota[], sorting: ColumnSort) => {
+  const { id: sortKey, desc } = sorting;
+
+  if (sortKey === 'region') {
+    const sortedQuotas = [...quotas].sort((a, b) =>
+      a.fullRegionName.localeCompare(b.fullRegionName),
+    );
+
+    return desc ? sortedQuotas : sortedQuotas.reverse();
+  }
+  return quotas;
 };
 
 export const useQuotas = (
@@ -25,10 +36,28 @@ export const useQuotas = (
     queryKey: ['project', projectId, 'quotas'],
     queryFn: () => getQuotas(projectId),
   });
+
+  const { data: locations } = useLocations(projectId);
+
+  const quotas = useMemo(() => {
+    return query.data?.map((quota) => {
+      const targetLocation = locations.find((location) =>
+        location.regions.some((region) => region === quota.region),
+      );
+
+      return new Quota({
+        ...quota,
+        fullRegionName: targetLocation
+          ? `${targetLocation?.name} (${quota.region})`
+          : quota.region,
+      });
+    });
+  }, [locations, query.data]);
+
   return {
     ...query,
-    paginatedData: paginateResults<IQuota>(
-      sortQuotas(sorting, query.data || []),
+    paginatedData: paginateResults<Quota>(
+      sortQuotas(quotas || [], sorting),
       pagination,
     ),
   };
