@@ -4,21 +4,21 @@ import { Env } from '@/types/cloud/project/ai/Env';
 /** AI Solutions AI App update object */
 export interface UpdateInput {
   /** App command and arguments */
-  command: string[];
+  command?: string[];
   /** Number of CPU resources requested (applies to CPU flavors) */
-  cpu: number;
+  cpu?: number;
   /** Default port to access http service inside the app */
-  defaultHttpPort: number;
+  defaultHttpPort?: number;
   /** Deployment strategy to use when updating this AI App */
-  deploymentStrategy: DeploymentStrategy;
+  deploymentStrategy?: DeploymentStrategy;
   /** Environment variables to be patched (empty/null value to remove) */
-  envVars: Env[];
+  envVars?: Env[];
   /** App instance flavor */
-  flavor: string;
+  flavor?: string;
   /** Number of GPU resources requested (applies to GPU flavors) */
-  gpu: number;
+  gpu?: number;
   /** GRPC Port that we want to expose in case workload HTTP & gRPC servers cannot be multiplexed to listen on the same port */
-  grpcPort: number;
+  grpcPort?: number;
   /** URL of the Docker image for this AI deployment */
-  url: string;
+  url?: string;
 }

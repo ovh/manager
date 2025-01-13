@@ -4,15 +4,15 @@ import { PresetResources } from '@/types/cloud/project/ai/capabilities/PresetRes
 /** AI Solutions Preset image enabled features */
 export interface PresetCapabilities {
   /** Exec enabled */
-  exec?: boolean;
+  exec: boolean;
   /** Flavor types */
-  flavorTypes?: FlavorTypeEnum[];
+  flavorTypes: FlavorTypeEnum[];
   /** Log enabled */
-  log?: boolean;
+  log: boolean;
   /** Resources requirements */
-  resources?: PresetResources;
+  resources: PresetResources;
   /** SSH enabled */
-  ssh?: boolean;
+  ssh: boolean;
   /** Volume enabled */
-  volume?: boolean;
+  volume: boolean;
 }

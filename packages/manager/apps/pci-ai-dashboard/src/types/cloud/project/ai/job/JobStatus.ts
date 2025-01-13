@@ -8,7 +8,7 @@ import { VolumeStatus } from '@/types/cloud/project/ai/volume/VolumeStatus';
 /** AI Solutions Job Status Object */
 export interface JobStatus {
   /** Status about the datasync linked to the job */
-  dataSync?: DataSync[];
+  dataSync: DataSync[];
   /** Duration of the job */
   duration?: number;
   /** Exit code of the job */
@@ -20,9 +20,9 @@ export interface JobStatus {
   /** Address to reach when you want to access the Job's gRPC services */
   grpcAddress?: string;
   /** Job state history */
-  history?: JobStatusHistory[];
+  history: JobStatusHistory[];
   /** Information about the job */
-  info?: Info;
+  info: Info;
   /** Job info url */
   infoUrl?: string;
   /** Date when the job was initialized */

@@ -8,15 +8,15 @@ import { VolumeStatus } from '@/types/cloud/project/ai/volume/VolumeStatus';
 /** AI Solutions App Status Object */
 export interface AppStatus {
   /** Number of available replicas */
-  availableReplicas?: number;
+  availableReplicas: number;
   /** Status about the datasync linked to the app */
-  dataSync?: DataSync[];
+  dataSync: DataSync[];
   /** Address to reach when you want to access the App's gRPC services */
   grpcAddress?: string;
   /** Job state history */
-  history?: AppStateHistory[];
+  history: AppStateHistory[];
   /** Information about the app */
-  info?: Info;
+  info: Info;
   /** App info url */
   infoUrl?: string;
   /** Internal IP address of the app service */

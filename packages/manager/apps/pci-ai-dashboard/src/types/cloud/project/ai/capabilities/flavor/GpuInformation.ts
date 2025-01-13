@@ -1,9 +1,9 @@
 /** AI Solutions Global GPU information */
 export interface GpuInformation {
   /** The GPU Brand */
-  gpuBrand?: string;
+  gpuBrand: string;
   /** The GPU Memory in bits */
-  gpuMemory?: number;
+  gpuMemory: number;
   /** The GPU Model */
-  gpuModel?: string;
+  gpuModel: string;
 }
