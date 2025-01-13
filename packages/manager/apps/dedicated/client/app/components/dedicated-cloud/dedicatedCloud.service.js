@@ -551,7 +551,7 @@ class DedicatedCloudService {
 
   /* ------- ICEBERG -------*/
 
-  icebergQuery(url, params) {
+  icebergQuery(url, paginationParams, urlParams) {
     const {
       filters,
       pageSize,
@@ -559,7 +559,7 @@ class DedicatedCloudService {
       sort,
       sortOrder,
       defaultFilterColumn,
-    } = params;
+    } = paginationParams;
 
     let request = this.iceberg(url)
       .query()
@@ -573,7 +573,7 @@ class DedicatedCloudService {
     }
 
     return this.$q
-      .resolve(request.execute(null, true).$promise)
+      .resolve(request.execute(urlParams, true).$promise)
       .then(({ data, headers }) => ({
         data,
         meta: {
@@ -1468,8 +1468,12 @@ class DedicatedCloudService {
 
   /* ------- Operations -------*/
 
-  getOperations(serviceName, params) {
-    return this.icebergQuery(`/dedicatedCloud/${serviceName}/task`, params);
+  getOperations(serviceName, paginationParams, urlParams) {
+    return this.icebergQuery(
+      `/dedicatedCloud/${serviceName}/task`,
+      paginationParams,
+      urlParams,
+    );
   }
 
   getOperation(serviceName, opts) {
