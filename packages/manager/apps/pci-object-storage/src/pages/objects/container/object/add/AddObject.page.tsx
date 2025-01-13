@@ -247,12 +247,12 @@ export default function AddObjectPage() {
       )}
 
       <OdsFormField className="w-full my-4">
-        <LabelComponent
-          text={t(
+        <FileInputComponent
+          dropzoneLabel={t(
             'pci_projects_project_storages_containers_container_object_add_files_label',
           )}
+          onFilesSelected={updateFiles}
         />
-        <FileInputComponent onFilesSelected={updateFiles} />
       </OdsFormField>
     </PciModal>
   );
