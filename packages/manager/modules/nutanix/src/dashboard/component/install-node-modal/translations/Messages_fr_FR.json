@@ -8,7 +8,7 @@
   "nutanix_dashboard_install_node_confirm": "Installer",
   "nutanix_dashboard_install_node_cancel": "Annuler",
   "nutanix_dashboard_install_node_success_banner": "Votre demande d'installation a été prise en compte. Cette opération peut prendre jusqu'à 1h",
-  "nutanix_dashboard_install_node_error_banner": "Votre demande d'installation n'a pas été prise en compte : ",
+  "nutanix_dashboard_install_node_error_banner": "La demande d'installation n'a pas abouti. Si l'erreur persiste, merci de contacter le support",
   "nutanix_dashboard_install_ip_unique_error": "Cette IP est déjà utilisée sur ce cluster",
   "nutanix_dashboard_install_ip_not_in_cidr_subnet_error": "Les adresses ne sont pas sur le même réseau.",
   "nutanix_dashboard_install_ip_format_error": "Le format de l'IP n'est pas correct",
