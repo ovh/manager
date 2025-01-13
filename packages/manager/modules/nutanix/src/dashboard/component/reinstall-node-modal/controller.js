@@ -30,11 +30,11 @@ export default class NutanixDashboardReinstallNodeCtrl {
           )}`,
         );
       })
-      .catch((error) => {
+      .catch(() => {
         this.handleError(
-          `${this.$translate.instant(
+          this.$translate.instant(
             'nutanix_dashboard_reinstall_node_error_banner',
-          )} ${error.message}`,
+          ),
         );
       })
       .finally(() => {
