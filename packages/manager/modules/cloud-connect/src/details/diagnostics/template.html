@@ -29,11 +29,8 @@
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'cloud_connect_diagnostics_description' | translate"
-            data-property="descriptionKey"
         >
-            <span
-                data-ng-bind="'cloud_connect_diagnostics_description_' +  $value | translate"
-            ></span>
+            <span data-ng-bind="$row.getDescription()"></span>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'cloud_connect_diagnostics_status' | translate"
