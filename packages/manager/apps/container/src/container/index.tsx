@@ -12,6 +12,9 @@ import SSOAuthModal from '@/sso-auth-modal/SSOAuthModal';
 import PaymentModal from '@/payment-modal/PaymentModal';
 import LiveChat from '@/components/LiveChat';
 import { IdentityDocumentsModal } from '@/identity-documents-modal/IdentityDocumentsModal';
+import AgreementsUpdateModal from '@/components/AgreementsUpdateModal/AgreementsUpdateModal.component';
+import useModals from '@/context/modals/useModals';
+import { ModalsProvider } from '@/context/modals';
 
 export default function Container(): JSX.Element {
   const {
@@ -81,16 +84,19 @@ export default function Container(): JSX.Element {
       <Suspense fallback="">
         <SSOAuthModal />
       </Suspense>
-      {isCookiePolicyApplied &&
-        <Suspense fallback="">
-          <PaymentModal />
-        </Suspense>
-      }
-      {isCookiePolicyApplied &&
-        <Suspense fallback="">
-          <IdentityDocumentsModal />
-        </Suspense>
-      }
+      {isCookiePolicyApplied && (
+        <ModalsProvider>
+          <Suspense fallback="">
+            <AgreementsUpdateModal />
+          </Suspense>
+          <Suspense fallback="">
+            <PaymentModal />
+          </Suspense>
+          <Suspense fallback="">
+            <IdentityDocumentsModal />
+          </Suspense>
+        </ModalsProvider>
+      )}
       <Suspense fallback="...">
         <CookiePolicy shell={shell} onValidate={cookiePolicyHandler} />
       </Suspense>
