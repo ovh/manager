@@ -1,5 +1,7 @@
-import { RegionGlobalzoneChip } from '@ovh-ux/manager-pci-common/src/components/region-selector/RegionGlobalzoneChip.component';
-import { RegionLocalzoneChip } from '@ovh-ux/manager-pci-common/src/components/region-selector/RegionLocalzoneChip.component';
+import {
+  RegionGlobalzoneChip,
+  RegionLocalzoneChip,
+} from '@ovh-ux/manager-pci-common';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { OsdsTile, OsdsText } from '@ovhcloud/ods-components/react';
 import clsx from 'clsx';
