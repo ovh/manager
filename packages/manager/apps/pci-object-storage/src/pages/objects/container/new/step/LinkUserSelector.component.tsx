@@ -90,7 +90,7 @@ export default function LinkUserSelector({
         />
         <div className="flex">
           <OdsSelect
-            className="min-w-[25rem]"
+            className="min-w-[35rem]"
             value={`${formUser?.id}`}
             name="selectUser"
             isDisabled={
@@ -104,38 +104,32 @@ export default function LinkUserSelector({
               );
               onSelectOwner(user);
             }}
+            customRenderer={{
+              option: (data) => {
+                return `<div style="display: flex; justify-content: space-between; align-items: center;">
+                          <p style="font-size: 16px; margin: 0;">${data.text}</p>
+                          <p style="font-size: 12px; margin: 0;">${data.hint}</p>
+                        </div>`;
+              },
+            }}
           >
-            {formUser?.description ? (
-              <OdsText preset="paragraph" slot="selectedLabel">
-                {formUser?.username} - {formUser?.description}
-              </OdsText>
-            ) : (
-              <OdsText preset="paragraph" slot="selectedLabel">
-                {formUser?.username}
-              </OdsText>
-            )}
-            {listUsers?.map((user) =>
-              user?.description ? (
-                <option key={user.id} value={user.id}>
-                  {user?.username} - {user?.description}{' '}
-                  {tAssociateUser(
-                    user.s3Credentials
-                      ? 'pci_projects_project_storages_containers_add_create_or_linked_user_linked_user_has_credential'
-                      : 'pci_projects_project_storages_containers_add_create_or_linked_user_linked_user_has_not_credential',
-                  )}
-                </option>
-              ) : (
-                <option key={user.id} value={user.id}>
-                  {user?.username}{' '}
-                  {tAssociateUser(
-                    user.s3Credentials
-                      ? 'pci_projects_project_storages_containers_add_create_or_linked_user_linked_user_has_credential'
-                      : 'pci_projects_project_storages_containers_add_create_or_linked_user_linked_user_has_not_credential',
-                  )}{' '}
-                </option>
-              ),
-            )}
+            {listUsers?.map((user) => (
+              <option
+                key={user.id}
+                value={user.id}
+                data-hint={tAssociateUser(
+                  user.s3Credentials
+                    ? 'pci_projects_project_storages_containers_add_create_or_linked_user_linked_user_has_credential'
+                    : 'pci_projects_project_storages_containers_add_create_or_linked_user_linked_user_has_not_credential',
+                )}
+              >
+                {user?.description
+                  ? `${user?.username} -  ${user?.description}`
+                  : user.username}
+              </option>
+            ))}
           </OdsSelect>
+
           {isPendingListUsers && (
             <OdsSpinner size="sm" className="ml-6 align-center" />
           )}
