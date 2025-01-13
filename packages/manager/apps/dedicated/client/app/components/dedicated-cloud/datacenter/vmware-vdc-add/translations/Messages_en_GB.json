@@ -17,7 +17,7 @@
   "dedicatedCloud_configuration_add_datacenter_card_host_nsx-t_vsan_description": "Your new virtual datacentre will comprise hosts that are suited for the Software-Defined Datacentre environment (you can choose host specifications in the next step).",
   "dedicatedCloud_configuration_add_datacenter_card_host_nsx-t_saphana_label": "SAP HANA hosts (with NSX)",
   "dedicatedCloud_configuration_add_datacenter_card_host_nsx-t_saphana_description": "Your new virtual datacentre will comprise a Software-Defined Datacentre infrastructure that is specially designed and SAP HANA-certified (you can choose host specifications in the next step).",
-  "dedicatedCloud_configuration_add_datacenter_card_host_vsphere_label": "Standard Hosts",
+  "dedicatedCloud_configuration_add_datacenter_card_host_vsphere_label": "Standard hosts",
   "dedicatedCloud_configuration_add_datacenter_card_host_vsphere_description": "Your new virtual datacentre will comprise standard hosts (you can choose host specifications in the next step).",
   "dedicatedCloud_configuration_add_datacenter_card_host_vsphere_vsan_label": "vSAN hosts",
   "dedicatedCloud_configuration_add_datacenter_card_host_vsphere_vsan_description": "Your new virtual datacentre will comprise hosts that are suited for hyperconverged storage (you can choose host specifications in the next step).",
