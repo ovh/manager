@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.3.11...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.4.0) (2025-01-13)
+
+
+### Features
+
+* **vmware:** add new page ([2d84ee2](https://github.com/ovh/manager/commit/2d84ee2edc78df28be8716e782efe29e5a3641ee))
+
+
+
+
+
 ## [0.3.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.3.10...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.3.11) (2025-01-09)
 
 **Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-managed-vcd-app
