@@ -10,6 +10,7 @@ import PageLayout from '@/components/page-layout/PageLayout.component';
 
 import { UserActivityProvider } from '@/contexts/UserActivity.context';
 import { USER_INACTIVITY_TIMEOUT } from '@/configuration/polling';
+import { useTrackPageAuto } from '@/hooks/useTracking';
 
 export function breadcrumb() {
   return (
@@ -46,6 +47,7 @@ function RoutingSynchronisation() {
   const location = useLocation();
   const routing = useRouting();
   const shell = useShell();
+
   useEffect(() => {
     routing.stopListenForHashChange();
   }, []);
@@ -54,6 +56,9 @@ function RoutingSynchronisation() {
     setLoading(false);
     routing.onHashChange();
   }, [location]);
+
+  useTrackPageAuto();
+
   return <></>;
 }
 
