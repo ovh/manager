@@ -5,7 +5,6 @@ import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { OdsFormField, OdsText } from '@ovhcloud/ods-components/react';
-import LabelComponent from '@/components/Label.component';
 import FileInputComponent from '@/components/FileInput.component';
 import { useImportPolicy, useUsers } from '@/api/hooks/useUser';
 import { TUser } from '@/api/data/user';
@@ -92,12 +91,12 @@ export default function ImportPolicyPage() {
       </OdsText>
 
       <OdsFormField className="w-full my-4">
-        <LabelComponent
-          text={t(
+        <FileInputComponent
+          dropzoneLabel={t(
             'pci_projects_project_storages_containers_users_import_add_files_label',
           )}
+          onFilesSelected={setFilesToUpload}
         />
-        <FileInputComponent onFilesSelected={setFilesToUpload} />
       </OdsFormField>
     </PciModal>
   );
