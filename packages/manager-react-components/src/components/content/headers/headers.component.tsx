@@ -22,7 +22,7 @@ export const Headers: React.FC<HeadersProps> = ({
         {subtitle && <Subtitle className="block">{subtitle}</Subtitle>}
         {description && <OdsText preset="span">{description}</OdsText>}
       </div>
-      {headerButton && <div className="flex flex-nowrap">{headerButton}</div>}
+      {headerButton && <div className="flex flex-wrap">{headerButton}</div>}
     </div>
   );
 };
