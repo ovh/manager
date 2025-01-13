@@ -10,7 +10,7 @@ import {
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import OvhLink from '@/components/links/OvhLink.component';
 import usePciProject from '@/hooks/api/project/useGetProjects.hook';
-import { PlanCode } from '@/configuration/project';
+import { PlanCode } from '@/types/cloud/Project';
 
 export default function Auth() {
   const { t } = useTranslation('pci-ai-dashboard/auth');
