@@ -83,7 +83,7 @@ const HeadingWithHeaderButtons: HeadersProps = {
 
 export const header = () => <Headers {...Heading} />;
 export const subHeader = () => <Headers {...SubHeading} />;
-export const headerWithGuidesAndChangelog = () => (
+export const headerWithHeaderButtons = () => (
   <Headers {...HeadingWithHeaderButtons} />
 );
 export const headerWithActions = () => <Headers {...HeadingWithActionButton} />;
