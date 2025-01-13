@@ -1,5 +1,5 @@
 import { useShallow } from 'zustand/react/shallow';
-import { FlavorTile } from '@ovh-ux/manager-pci-common/src/components/flavor-selector/FlavorTile.component';
+import { FlavorTile } from '@ovh-ux/manager-pci-common';
 import { FC, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TabContentWrapper } from '@/components/tab/TabContentWrapper.component';
