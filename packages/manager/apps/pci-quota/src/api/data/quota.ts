@@ -4,6 +4,7 @@ import { TServiceOption } from '@/api/data/service-option';
 
 export interface IQuota {
   region: string;
+  fullRegionName: string;
   instance: {
     maxCores: number;
     maxInstances: number;
@@ -44,6 +45,8 @@ export interface IQuota {
 export class Quota implements IQuota {
   region: string;
 
+  fullRegionName: string;
+
   instance: {
     maxCores: number;
     maxInstances: number;
@@ -80,6 +83,15 @@ export class Quota implements IQuota {
     volumeCount: number;
   };
 
+  constructor(q: IQuota) {
+    this.region = q.region;
+    this.fullRegionName = q.fullRegionName;
+    this.instance = q.instance;
+    this.loadbalancer = q.loadbalancer;
+    this.network = q.network;
+    this.volume = q.volume;
+  }
+
   static getUsagePercentage(max: number, used: number): number {
     return max === 0 ? 100 : (used / max) * 100;
   }
@@ -105,11 +117,11 @@ export class Quota implements IQuota {
     );
   }
 
-  isInstanceQuotaAvailable() {
+  get isInstanceQuotaAvailable() {
     return this.instance != null;
   }
 
-  isInstanceQuotaAboveThreshold() {
+  get isInstanceQuotaAboveThreshold() {
     return (
       this.instanceInstancesUsage >= QUOTA_THRESHOLD ||
       this.instanceCpuUsage >= QUOTA_THRESHOLD ||
@@ -133,28 +145,26 @@ export class Quota implements IQuota {
   }
 
   get isQuotaAvailable() {
-    return this.isInstanceQuotaAvailable() && this.isVolumeQuotaAvailable;
+    return this.isInstanceQuotaAvailable && this.isVolumeQuotaAvailable;
   }
 
   //-------
   get isInstanceQuotaThresholdReached() {
     return (
-      this.isInstanceQuotaAvailable() &&
+      this.isInstanceQuotaAvailable &&
       this.instanceInstancesUsage >= QUOTA_THRESHOLD
     );
   }
 
   get isCpuQuotaThresholdReached() {
     return (
-      this.isInstanceQuotaAvailable() &&
-      this.instanceCpuUsage >= QUOTA_THRESHOLD
+      this.isInstanceQuotaAvailable && this.instanceCpuUsage >= QUOTA_THRESHOLD
     );
   }
 
-  isRamQuotaThresholdReached() {
+  get isRamQuotaThresholdReached() {
     return (
-      this.isInstanceQuotaAvailable() &&
-      this.instanceRamUsage >= QUOTA_THRESHOLD
+      this.isInstanceQuotaAvailable && this.instanceRamUsage >= QUOTA_THRESHOLD
     );
   }
 

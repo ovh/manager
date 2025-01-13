@@ -10,6 +10,7 @@ import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import {
   Headers,
+  Notifications,
   PciGuidesHeader,
   useNotifications,
   useProjectUrl,
@@ -19,6 +20,8 @@ import {
   PciDiscoveryBanner,
   useProject,
 } from '@ovh-ux/manager-pci-common';
+import { useMedia } from 'react-use';
+import { isDiscoveryProject } from '@ovh-ux/manager-pci-common/src';
 import { AvailablePart } from '@/pages/regions/Available.part';
 import { ToAddPart } from '@/pages/regions/ToAdd.part';
 import { useLocations } from '@/api/hooks/useRegions';
@@ -39,6 +42,8 @@ type TState = {
 export default function RegionsPage(): JSX.Element {
   const { t } = useTranslation('regions');
   const [state, setState] = useState<TState>({ isAddingRegion: false });
+
+  const isMobile: boolean = useMedia(`(max-width: 760px)`);
 
   const hrefProject = useProjectUrl('public-cloud');
 
@@ -74,9 +79,11 @@ export default function RegionsPage(): JSX.Element {
       await addRegion(projectId, code);
 
       addSuccess(
-        t('pci_projects_project_regions_add_region_success', {
-          code,
-        }),
+        <OdsText>
+          {t('pci_projects_project_regions_add_region_success', {
+            code,
+          })}
+        </OdsText>,
       );
 
       await queryClient.invalidateQueries({
@@ -84,9 +91,12 @@ export default function RegionsPage(): JSX.Element {
       });
     } catch (e) {
       addError(
-        t('pci_projects_project_regions_add_region_error', {
-          message: e?.response?.data?.message,
-        }),
+        <OdsText>
+          {t('pci_projects_project_regions_add_region_error', {
+            message: e?.response?.data?.message,
+          })}
+          ,
+        </OdsText>,
       );
     } finally {
       setState({ ...state, isAddingRegion: false });
@@ -118,8 +128,9 @@ export default function RegionsPage(): JSX.Element {
       <div className="my-10 mt-8">
         <TabsComponent activeTab={'regions'} />
       </div>
+      <Notifications />
       <div>
-        <OdsText preset="heading-3" className="text-[#00185e]">
+        <OdsText preset="heading-3">
           {t('pci_projects_project_regions_title')}
         </OdsText>
       </div>
@@ -131,28 +142,36 @@ export default function RegionsPage(): JSX.Element {
       </OdsText>
 
       <div>
-        <OdsMessage color="information" className="mt-6 mb-6 w-full">
+        <OdsMessage
+          color="information"
+          className="mt-6 mb-6 w-full"
+          isDismissible={false}
+        >
           {t('pci_projects_project_regions_info_message')}
         </OdsMessage>
       </div>
 
       <div>
-        <AvailablePart />
+        <AvailablePart isMobile={isMobile} />
         <ToAddPart
           selectedRegions={selectedRegions}
           setSelectedRegion={setSelectedRegion}
           onInput={setSelectedLocation}
           locations={locations}
+          selectedLocation={selectedLocation}
+          isMobile={isMobile}
         />
       </div>
-      <div className="mt-12">
-        <OdsButton
-          label={t('pci_projects_project_regions_add_region')}
-          onClick={doAddRegion}
-          isDisabled={!selectedLocation}
-          isLoading={state.isAddingRegion}
-        />
-      </div>
+      {locations?.length !== 0 && (
+        <div className="mt-12">
+          <OdsButton
+            label={t('pci_projects_project_regions_add_region')}
+            onClick={doAddRegion}
+            isDisabled={!selectedLocation || isDiscoveryProject(project)}
+            isLoading={state.isAddingRegion}
+          />
+        </div>
+      )}
     </div>
   );
 }
