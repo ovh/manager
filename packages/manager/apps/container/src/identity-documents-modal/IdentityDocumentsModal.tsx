@@ -1,26 +1,29 @@
 import {
-  kycIndiaFeature,
   kycIndiaModalLocalStorageKey,
+  kycIndiaFeature,
   requiredStatusKey,
   trackingContext,
   trackingPrefix,
 } from './constants';
 import { useIdentityDocumentsStatus } from '@/hooks/useIdentityDocumentsStatus';
 import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
-import { FunctionComponent, useEffect, useMemo, useRef, useState } from 'react';
+import { FunctionComponent, useEffect, useRef, useState } from 'react';
 import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
-import { Trans, useTranslation } from 'react-i18next';
+import { useTranslation, Trans } from 'react-i18next';
 import { useLocalStorage } from 'react-use';
 import { useShell } from '@/context';
-import { OsdsButton, OsdsCollapsible, OsdsModal, OsdsText, } from '@ovhcloud/ods-components/react';
+import {
+  OsdsButton,
+  OsdsCollapsible,
+  OsdsModal,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
 import {
   ODS_THEME_COLOR_HUE,
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
-import { useModals } from '@/context/modals';
-import { ModalTypes } from '@/context/modals/modals.context';
 
 export const IdentityDocumentsModal: FunctionComponent = () => {
   const shell = useShell();
@@ -28,21 +31,17 @@ export const IdentityDocumentsModal: FunctionComponent = () => {
   const [storage, setStorage] = useLocalStorage<boolean>(
     kycIndiaModalLocalStorageKey,
   );
-  const { current } = useModals();
-
-  const kycURL = navigationPlugin.getURL('dedicated', `#/identity-documents`);
 
   const { t } = useTranslation('identity-documents-modal');
   const legalInformationRef = useRef<any>(null);
 
   const [showModal, setShowModal] = useState<boolean>(false);
 
-  const { data: availability, isLoading: isFeatureAvailabilityLoading } = useFeatureAvailability([kycIndiaFeature]);
+  const availabilityDataResponse = useFeatureAvailability([kycIndiaFeature]);
+  const availability = availabilityDataResponse?.data;
 
-  const isKycAvailable = useMemo(() => Boolean(availability && availability[kycIndiaFeature] && !storage), [availability, storage]);
-
-  const { data: statusDataResponse, isLoading: isProcedureStatusLoading } = useIdentityDocumentsStatus({
-    enabled: isKycAvailable && current === ModalTypes.kyc && window.location.href !== kycURL,
+  const { data: statusDataResponse } = useIdentityDocumentsStatus({
+    enabled: Boolean(availability && availability[kycIndiaFeature] && !storage),
   });
 
   const trackingPlugin = shell.getPlugin('tracking');
@@ -52,13 +51,13 @@ export const IdentityDocumentsModal: FunctionComponent = () => {
     setStorage(true);
     trackingPlugin.trackClick({
       name: `${trackingPrefix}::pop-up::link::kyc::cancel`,
-      type: 'action',
       ...trackingContext,
     });
   };
 
   const onConfirm = () => {
     setShowModal(false);
+    setStorage(true);
     trackingPlugin.trackClick({
       name: `${trackingPrefix}::pop-up::button::kyc::start-verification`,
       type: 'action',
@@ -66,42 +65,12 @@ export const IdentityDocumentsModal: FunctionComponent = () => {
     });
     navigationPlugin.navigateTo('dedicated', `#/identity-documents`);
   };
-  /*
-   Since we don't want to display multiple modals at the same time we "watch" the `current` modal, and once it is
-   the agreements modal turn, we will try to display it (if conditions are met) or switch to the next one otherwise.
-   As a result, only once the agreements modal is the current one will we manage the modal lifecycle.
-   Lifecycle management:
-    - If user is on the KYC page, we will not display the modal and let the page notify for modal change
-    once the user has uploaded his documents or leave the page
-    - Wait until all necessary data (feature flipping, procedure status) are loaded
-    - Once we have the data, check if they allow the display of the modal (FF authorized + procedure status is
-    'required'), if the conditions are met, we show the modal, otherwise we switch to the next one
-   */
+
   useEffect(() => {
-    const shouldManageModal = current === ModalTypes.kyc && window.location.href !== kycURL;
-    if (shouldManageModal) {
-      if (!isFeatureAvailabilityLoading && availability) {
-        if (!isKycAvailable) {
-          shell.getPlugin('ux').notifyModalActionDone();
-        }
-        else if (!isProcedureStatusLoading && statusDataResponse) {
-          if (statusDataResponse?.data?.status === requiredStatusKey) {
-            setShowModal(true);
-          }
-          else if (shouldManageModal) {
-            shell.getPlugin('ux').notifyModalActionDone();
-          }
-        }
-      }
+    if (statusDataResponse?.data?.status === requiredStatusKey) {
+      setShowModal(true);
     }
-  }, [
-    current,
-    isFeatureAvailabilityLoading,
-    availability,
-    isKycAvailable,
-    isProcedureStatusLoading,
-    statusDataResponse,
-  ]);
+  }, [statusDataResponse?.data?.status]);
 
   useEffect(() => {
     if (showModal) {

@@ -1,7 +1,6 @@
 import get from 'lodash/get';
 
 export default /* @ngInject */ function UserAccountAgreementsController(
-  $injector,
   $scope,
   $translate,
   Alerter,
@@ -78,12 +77,6 @@ export default /* @ngInject */ function UserAccountAgreementsController(
     UserAccountServicesAgreements.accept(contract)
       .then(
         () => {
-          // After the last contract has been accepted, we'll try to indicate to the container, that agreements updates
-          // have been accepted
-          if ($injector.has('shellClient')) {
-            const shellClient = $injector.get('shellClient');
-            shellClient.ux.notifyModalActionDone();
-          }
           $scope.getToValidate();
           $scope.$broadcast('paginationServerSide.reload', 'agreementsList');
         },
