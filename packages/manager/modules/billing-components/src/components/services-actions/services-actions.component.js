@@ -11,6 +11,8 @@ export default {
     getCancelCommitmentLink: '&?',
     getCancelResiliationLink: '&?',
     getResiliationLink: '&?',
+    handleGoToResiliation: '&?',
+    isCustomResiliationHandled: '<?',
   },
   controller,
   template,
