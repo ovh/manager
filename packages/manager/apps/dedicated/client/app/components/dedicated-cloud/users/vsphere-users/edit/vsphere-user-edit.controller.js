@@ -11,7 +11,7 @@ export default class {
   $onInit() {
     this.user.tokenValidator = this.user.isTokenValidator;
     this.originUser = this.pickUserInformationToSend();
-    this.emailRegExp = /^(?:[\w-.]+@[\w-.]+\.[\w-]+)?$/;
+    this.emailRegExp = /^(?:[\w-.]+(\+[\w-.]+)*@[\w-.]+\.[\w-]+)?$/;
     if (this.coreConfig.isRegion('US')) {
       this.phoneRegExp = /\+1\.\d{10}/;
     } else {
