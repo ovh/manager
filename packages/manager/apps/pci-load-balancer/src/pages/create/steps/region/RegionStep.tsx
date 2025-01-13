@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import {
   OsdsLink,
   OsdsMessage,
@@ -16,7 +17,12 @@ import {
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 import { Trans, useTranslation } from 'react-i18next';
-import { RegionSelector, useProject } from '@ovh-ux/manager-pci-common';
+import {
+  RegionSelector,
+  useProject,
+  usePCICommonContextFactory,
+  PCICommonContext,
+} from '@ovh-ux/manager-pci-common';
 import { TRegion } from '@/api/hook/useRegions';
 import { REGION_AVAILABILITY_LINK } from '@/constants';
 import { StepsEnum, useCreateStore } from '@/pages/create/store';
@@ -27,6 +33,10 @@ export type TRegionStepProps = {
   regions: Map<string, TRegion[]>;
   ovhSubsidiary: string;
 };
+
+const isRegionWith3AZ = (regions: TRegion[]) =>
+  regions.some((region) => region.type === 'region-3-az');
+
 export const RegionStep = ({
   isLoading,
   regions,
@@ -39,6 +49,14 @@ export const RegionStep = ({
   const { trackStep } = useTracking();
 
   const store = useCreateStore();
+
+  const has3AZ = useMemo(() => {
+    const allRegions = regions
+      ? Array.from(regions, ([, values]) => values)
+      : [];
+    return isRegionWith3AZ(allRegions.flat());
+  }, [regions]);
+  const pciCommonProperties = usePCICommonContextFactory({ has3AZ });
 
   return (
     <StepComponent
@@ -97,25 +115,27 @@ export const RegionStep = ({
           <OsdsSpinner inline />
         </div>
       ) : (
-        <RegionSelector
-          projectId={project.project_id}
-          onSelectRegion={(selectedRegion) => {
-            store.set.region(undefined);
-            if (selectedRegion) {
-              const region = regions
-                ?.get(store.addon?.code)
-                ?.find(({ name }) => selectedRegion.name === name);
+        <PCICommonContext.Provider value={pciCommonProperties}>
+          <RegionSelector
+            projectId={project.project_id}
+            onSelectRegion={(selectedRegion) => {
+              store.set.region(undefined);
+              if (selectedRegion) {
+                const region = regions
+                  ?.get(store.addon?.code)
+                  ?.find(({ name }) => selectedRegion.name === name);
 
-              store.set.region(region);
+                store.set.region(region);
+              }
+            }}
+            regionFilter={(region) =>
+              region.isMacro ||
+              regions
+                ?.get(store.addon?.code)
+                ?.some(({ name }) => name === region.name)
             }
-          }}
-          regionFilter={(region) =>
-            region.isMacro ||
-            regions
-              ?.get(store.addon?.code)
-              ?.some(({ name }) => name === region.name)
-          }
-        />
+          />
+        </PCICommonContext.Provider>
       )}
       {store.region?.type === 'region-3-az' && (
         <OsdsMessage
