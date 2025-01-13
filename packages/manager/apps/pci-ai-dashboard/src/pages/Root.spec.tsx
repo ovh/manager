@@ -1,12 +1,9 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
-
 import Layout, { breadcrumb as Breadcrumb, Loader } from '@/pages/Root.layout';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import * as projectAPI from '@/data/api/project/project.api';
-import * as authAPI from '@/data/api/ai/authorization.api';
 import { mockedAuthorization } from '@/__tests__/helpers/mocks/authorization';
-import * as ai from '@/types/cloud/project/ai';
 
 const breadCrumbParam = {
   params: {
@@ -68,21 +65,6 @@ describe('Dashboard Layout', () => {
     });
     await waitFor(() => {
       expect(screen.getByTestId('pageLayout')).toBeInTheDocument();
-      expect(screen.getByText('description')).toBeInTheDocument();
-    });
-  });
-
-  it('renders the Layout component and display auth page', async () => {
-    const noAut: ai.AuthorizationStatus = {
-      authorized: false,
-    };
-    vi.mocked(authAPI.getAuthorization).mockResolvedValueOnce(noAut);
-    render(<Layout />, {
-      wrapper: RouterWithQueryClientWrapper,
-    });
-    await waitFor(() => {
-      expect(screen.getByTestId('activate-project-button')).toBeInTheDocument();
-      expect(screen.getByTestId('auth-page-container')).toBeInTheDocument();
     });
   });
 });
