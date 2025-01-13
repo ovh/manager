@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.99.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.99.0...@ovh-ux/manager-container-app@0.99.1) (2025-01-13)
+
+
+### Reverts
+
+* Revert "feat(container): added an invitation modal to accept contract (#14041)" (#14879) ([0335815](https://github.com/ovh/manager/commit/0335815099786b81380e103523b364797f305698)), closes [#14041](https://github.com/ovh/manager/issues/14041) [#14879](https://github.com/ovh/manager/issues/14879)
+
+
+
+
+
 # [0.99.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.98.1...@ovh-ux/manager-container-app@0.99.0) (2025-01-13)
 
 
