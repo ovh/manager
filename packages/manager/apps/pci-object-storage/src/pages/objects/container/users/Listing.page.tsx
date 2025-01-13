@@ -27,7 +27,6 @@ import { AVAILABILITY } from '@/constants';
 
 export default function Listing() {
   const { t } = useTranslation('objects/users');
-  const { t: tFilter } = useTranslation('filters');
 
   const { projectId } = useParams();
   const { pagination, setPagination, sorting, setSorting } = useDataGrid();
@@ -90,57 +89,50 @@ export default function Listing() {
           }}
         />
 
-        <div className="justify-between flex">
+        <div className="flex justify-center gap-4">
           <OdsButton
-            data-testid="refresh-button"
-            label=""
             size="sm"
-            icon="refresh"
             variant="outline"
             color="primary"
-            className="xs:mb-0.5 sm:mb-0 mr-4"
-            onClick={() => {
-              refresh();
-            }}
-          ></OdsButton>
+            className="xs:mb-0.5 sm:mb-0"
+            onClick={refresh}
+            icon="refresh"
+            label=""
+          />
           <OdsInput
-            data-testid="search-bar"
-            className="w-[14rem]"
-            value={searchField}
-            type="search"
-            color="primary"
             name="searchField"
-            onKeyDown={(event) => {
-              if (event.key === 'Enter') {
-                setPagination({
-                  pageIndex: 0,
-                  pageSize: pagination.pageSize,
-                });
-                addFilter({
-                  key: 'search',
-                  value: searchField,
-                  comparator: FilterComparator.Includes,
-                  label: '',
-                });
-                setSearchField('');
-              }
-            }}
-            onOdsChange={(event) => {
-              const value = event.detail.value.toString();
-              setSearchField(value);
+            className="min-w-[15rem]"
+            value={searchField}
+            onOdsChange={({ detail }) => setSearchField(detail.value as string)}
+          />
+          <OdsButton
+            label=""
+            icon="magnifying-glass"
+            size="sm"
+            onClick={() => {
+              setPagination({
+                pageIndex: 0,
+                pageSize: pagination.pageSize,
+              });
+              addFilter({
+                key: 'search',
+                value: searchField,
+                comparator: FilterComparator.Includes,
+                label: '',
+              });
+              setSearchField('');
             }}
           />
-          <div>
-            <OdsButton
-              label={tFilter('common_criteria_adder_filter_label')}
-              size="sm"
-              color="primary"
-              id="popover-filter"
-              icon="filter"
-              variant="outline"
-              class="ml-4"
-            />
-          </div>
+
+          <OdsButton
+            slot="popover-trigger"
+            id="popover-filter"
+            size="sm"
+            color="primary"
+            label={t('pci-common:common_criteria_adder_filter_label')}
+            variant="outline"
+            icon="filter"
+          />
           <OdsPopover triggerId="popover-filter">
             <FilterAdd
               columns={[

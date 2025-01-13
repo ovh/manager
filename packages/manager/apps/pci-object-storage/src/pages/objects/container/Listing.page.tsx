@@ -89,7 +89,7 @@ export default function ListingPage() {
             });
           }}
         />
-        <div className="justify-between flex space-x-4">
+        <div className="flex justify-center gap-4">
           <OdsButton
             size="sm"
             variant="outline"
@@ -101,41 +101,40 @@ export default function ListingPage() {
             label=""
           />
           <OdsInput
-            type="search"
             name="searchField"
-            className="w-[70%]"
+            className="min-w-[15rem]"
             value={searchField}
-            onKeyDown={(event) => {
-              if (event.key === 'Enter') {
-                setPagination({
-                  pageIndex: 0,
-                  pageSize: pagination.pageSize,
-                });
-                addFilter({
-                  key: 'name',
-                  value: searchField,
-                  comparator: FilterComparator.Includes,
-                  label: '',
-                });
-                setSearchField('');
-              }
-            }}
-            onOdsChange={(event) => {
-              const value = event.detail.value.toString();
-              setSearchField(value);
+            onOdsChange={({ detail }) => setSearchField(detail.value as string)}
+          />
+          <OdsButton
+            label=""
+            icon="magnifying-glass"
+            size="sm"
+            onClick={() => {
+              setPagination({
+                pageIndex: 0,
+                pageSize: pagination.pageSize,
+              });
+              addFilter({
+                key: 'name',
+                value: searchField,
+                comparator: FilterComparator.Includes,
+                label: '',
+              });
+              setSearchField('');
             }}
           />
-          <div>
-            <OdsButton
-              slot="popover-trigger"
-              id="popover-filter"
-              size="sm"
-              color="primary"
-              label={t('pci-common:common_criteria_adder_filter_label')}
-              variant="outline"
-              icon="filter"
-            />
-          </div>
+
+          <OdsButton
+            slot="popover-trigger"
+            id="popover-filter"
+            size="sm"
+            color="primary"
+            label={t('pci-common:common_criteria_adder_filter_label')}
+            variant="outline"
+            icon="filter"
+          />
+
           <OdsPopover triggerId="popover-filter">
             <FilterAdd
               columns={[
