@@ -42,6 +42,7 @@ import { toggleManualQuota, unleash } from '@/api/data/project';
 import { useGetServiceOptions } from '@/api/hooks/useServiceOptions';
 import { TabsComponent } from '@/components/tabs/Tabs.component';
 import { useGetValidPaymentMethodIds } from '@/api/hooks/usePaymentmethods';
+import { useProjectService } from '@/api/hooks/useService';
 
 type TState = {
   manualQuota: {
@@ -54,6 +55,10 @@ export default function QuotaPage(): JSX.Element {
   const { t: tQuota } = useTranslation('quotas');
   const { projectId } = useParams();
   const columns = useDatagridColumn();
+
+  const { data: service, isPending: isServicePending } = useProjectService(
+    projectId,
+  );
 
   const hrefProject = useProjectUrl('public-cloud');
 
@@ -109,7 +114,7 @@ export default function QuotaPage(): JSX.Element {
     },
     toggleManualQuota: async () => {
       try {
-        await toggleManualQuota(projectId, !state.manualQuota.isActive);
+        await toggleManualQuota(projectId, state.manualQuota.isActive);
         setState((prev) => ({
           ...prev,
           manualQuota: {
@@ -129,7 +134,7 @@ export default function QuotaPage(): JSX.Element {
         ...prev,
         manualQuota: {
           ...prev.manualQuota,
-          isActive: project.manualQuota,
+          isActive: !project.manualQuota,
         },
       }));
     }
@@ -149,8 +154,7 @@ export default function QuotaPage(): JSX.Element {
           />
         </OdsBreadcrumb>
       )}
-
-      {!serviceOptions.length && (
+      {!isServicePending && !service && !serviceOptions.length && (
         <div className="mt-10">
           <OdsMessage color="danger" className="w-full" isDismissible={false}>
             <div className="p-2">
@@ -164,7 +168,6 @@ export default function QuotaPage(): JSX.Element {
           </OdsMessage>
         </div>
       )}
-
       <div className="header mt-8">
         <Headers
           headerButton={
@@ -179,10 +182,9 @@ export default function QuotaPage(): JSX.Element {
       <div className="my-10 mt-8">
         <TabsComponent activeTab={'quota'} />
       </div>
-
       <Notifications />
       {is.quotaRestricted && is.defaultPaymentMethodAvailable && (
-        <div className="mt-8 p-8 rounded-lg border border-solid border-[#bef1ff] bg-[#f5feff]">
+        <div className="mt-8 p-8 rounded-md border border-solid border-[#bef1ff] bg-[#f5feff]">
           <div>
             <OdsText preset="heading-6">
               {tQuota(
@@ -201,7 +203,7 @@ export default function QuotaPage(): JSX.Element {
         </div>
       )}
       {!is.quotaRestricted && (
-        <div className="p-8 rounded-lg border border-solid border-[#bef1ff] bg-[#f5feff] mt-4">
+        <div className="p-8 rounded-md border border-solid border-[#bef1ff] bg-[#f5feff] mt-4">
           <div>
             <OdsText preset="heading-6">
               {tQuota('pci_projects_project_quota_protect_explain')}
@@ -279,7 +281,7 @@ export default function QuotaPage(): JSX.Element {
       )}
       <div className="text-right mt-6 pr-2">
         <OdsText>{tQuota('pci_projects_project_quota_autoscaling')}</OdsText>
-        <OdsIcon name="circle-question" className="text-xs" id="trigger" />
+        <OdsIcon name="circle-question" className="text-xs px-4" id="trigger" />
         <OdsPopover triggerId="trigger">
           {tQuota('pci_projects_project_quota_autoscaling_help')}
         </OdsPopover>
@@ -308,8 +310,14 @@ export default function QuotaPage(): JSX.Element {
             });
           }}
         />
+        <OdsText className="pl-4">
+          {tQuota(
+            state.manualQuota.isActive
+              ? 'pci_projects_project_quota_autoscaling_on'
+              : 'pci_projects_project_quota_autoscaling_off',
+          )}
+        </OdsText>
       </div>
-
       <div className="mt-8">
         <Datagrid
           columns={columns}

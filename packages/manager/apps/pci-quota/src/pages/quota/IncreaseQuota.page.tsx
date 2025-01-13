@@ -132,9 +132,16 @@ ${formData}
             const cartId = await createAndAssignCart(me.ovhSubsidiary);
             const { url } = await orderQuota(projectId, cartId, serviceOption);
             addSuccess(
-              t('pci_projects_project_quota_increase_buy_success_message', {
-                billingUrl: url,
-              }),
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: t(
+                    'pci_projects_project_quota_increase_buy_success_message',
+                    {
+                      billingUrl: url,
+                    },
+                  ),
+                }}
+              ></span>,
             );
             goBack();
           } catch (e) {
@@ -167,6 +174,7 @@ ${formData}
       onConfirm={on.confirm}
       onClose={on.close}
       onCancel={on.cancel}
+      isLoading={isLoading}
     ></Modal>
   );
 }
