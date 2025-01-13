@@ -107,7 +107,7 @@ export function useResourcesV6<T = unknown>({
         sortColumn(type, a?.[sorting.id], b?.[sorting.id], sorting?.desc),
       );
       setFlattenData([]);
-      setSortData([...sortedDatas]);
+      setSortData(applyFilters([...sortedDatas], filters));
     }
   }, [sorting]);
 
@@ -130,7 +130,7 @@ export function useResourcesV6<T = unknown>({
     setSorting,
     pageIndex,
     totalCount,
-    flattenData: applyFilters(flattenData, filters),
+    flattenData,
     isError,
     isLoading,
     hasNextPage: pageIndex * pageSize + pageSize <= flattenData.length,
