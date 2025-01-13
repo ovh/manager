@@ -176,7 +176,7 @@ const OrderFunnel = ({
             data-testid="order-funnel-container"
             className="col-span-1 md:col-span-3 divide-y-[24px] divide-transparent"
           >
-            <section id="name">
+            <section id="name" data-testid="name-section">
               <h4 className="mb-2">{t('fieldDimensionLabel')}</h4>
               <FormField
                 control={model.form.control}
@@ -195,7 +195,7 @@ const OrderFunnel = ({
               />
             </section>
 
-            <section id="region">
+            <section id="region" data-testid="region-section">
               <FormField
                 control={model.form.control}
                 name="region"
@@ -220,7 +220,7 @@ const OrderFunnel = ({
                 )}
               />
             </section>
-            <section id="flavor">
+            <section id="flavor" data-testid="flavor-section">
               <FormField
                 control={model.form.control}
                 name="flavorWithQuantity.flavor"
@@ -284,7 +284,7 @@ const OrderFunnel = ({
                 )}
               />
             </section>
-            <section id="framework">
+            <section id="framework" data-testid="framework-section">
               <h4 className="mb-2">{t('fieldCaracteristicLabel')}</h4>
               <FormField
                 control={model.form.control}
@@ -312,7 +312,7 @@ const OrderFunnel = ({
                 )}
               />
             </section>
-            <section id="editor">
+            <section id="editor" data-testid="editor-section">
               <FormField
                 control={model.form.control}
                 name="editor"
@@ -337,7 +337,7 @@ const OrderFunnel = ({
               />
             </section>
 
-            <section id="access">
+            <section id="access" data-testid="access-section">
               <FormField
                 control={model.form.control}
                 name="privacy"
@@ -397,10 +397,11 @@ const OrderFunnel = ({
             </section>
 
             {/* Advanced configuration */}
-            <section id="advancedConfig">
+            <section id="advancedConfig" data-testid="advance-config-section">
               <Card>
                 <CardHeader>
                   <Button
+                    data-testid="advanced-config-button"
                     type="button"
                     variant="ghost"
                     className="w-full flex flex-row items-center justify-between font-semibold text-xl"
@@ -555,6 +556,7 @@ const OrderFunnel = ({
             </CardContent>
             <CardFooter className="flex flex-col">
               <Button
+                data-testid="cli-command-button"
                 type="button"
                 variant="link"
                 disabled={isPendingCommand}

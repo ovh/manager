@@ -2,8 +2,8 @@ import { ColumnDef } from '@tanstack/react-table';
 import { useNavigate } from 'react-router-dom';
 import * as ai from '@/types/cloud/project/ai';
 import { getColumns } from './BackupsListColumns.component';
-import { DataTable } from '@/components/ui/data-table';
 import { Skeleton } from '@/components/ui/skeleton';
+import DataTable from '@/components/data-table';
 
 interface BackupsListProps {
   backups: ai.notebook.Backup[];
@@ -18,7 +18,7 @@ export default function BackupsList({ backups }: Readonly<BackupsListProps>) {
     },
   });
 
-  return <DataTable columns={columns} data={backups} pageSize={25} />;
+  return <DataTable.Provider columns={columns} data={backups} pageSize={25} />;
 }
 
 BackupsList.Skeleton = function BackupsListSkeleton() {

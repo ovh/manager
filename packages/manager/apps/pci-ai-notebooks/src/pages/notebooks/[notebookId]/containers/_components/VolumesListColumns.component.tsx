@@ -9,11 +9,11 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { SortableHeader } from '@/components/ui/data-table';
 import * as ai from '@/types/cloud/project/ai';
 import { useToast } from '@/components/ui/use-toast';
 import { useNotebookData } from '../../Notebook.context';
 import { isDataSyncNotebook } from '@/lib/notebookHelper';
+import DataTable from '@/components/data-table';
 
 interface VolumesListColumnsProps {
   onDataSyncClicked: (volume: ai.volume.Volume) => void;
@@ -30,29 +30,31 @@ export const getColumns = ({ onDataSyncClicked }: VolumesListColumnsProps) => {
       id: 'Alias',
       accessorFn: (row) => row.volumeSource.dataStore.alias,
       header: ({ column }) => (
-        <SortableHeader column={column}>{t('tableHeaderAlias')}</SortableHeader>
+        <DataTable.SortableHeader column={column}>
+          {t('tableHeaderAlias')}
+        </DataTable.SortableHeader>
       ),
     },
     {
       id: 'Container',
       accessorFn: (row) => row.volumeSource.dataStore.container,
       header: ({ column }) => (
-        <SortableHeader column={column}>
+        <DataTable.SortableHeader column={column}>
           {t('tableHeaderContainer')}
-        </SortableHeader>
+        </DataTable.SortableHeader>
       ),
     },
     {
       id: 'Mountpath',
       accessorFn: (row) => row.mountPath,
       header: ({ column }) => (
-        <SortableHeader column={column}>
+        <DataTable.SortableHeader column={column}>
           {t('tableHeaderMountPath')}
-        </SortableHeader>
+        </DataTable.SortableHeader>
       ),
       cell: ({ row }) => {
         return (
-          <div className="w-full max-w-[200px] border border-1 border-primary-100">
+          <div className="w-full border border-1 border-primary-100">
             <Button
               data-testid="containers-copy-mountpath-button"
               type="button"
@@ -79,9 +81,9 @@ export const getColumns = ({ onDataSyncClicked }: VolumesListColumnsProps) => {
       id: 'Permission',
       accessorFn: (row) => row.permission,
       header: ({ column }) => (
-        <SortableHeader column={column}>
+        <DataTable.SortableHeader column={column}>
           {t('tableHeaderPermission')}
-        </SortableHeader>
+        </DataTable.SortableHeader>
       ),
       cell: ({ row }) => {
         return t(`permission_${row.original.permission}`);
@@ -91,9 +93,9 @@ export const getColumns = ({ onDataSyncClicked }: VolumesListColumnsProps) => {
       id: 'Caching',
       accessorFn: (row) => row.cache,
       header: ({ column }) => (
-        <SortableHeader column={column}>
+        <DataTable.SortableHeader column={column}>
           {t('tableHeaderCaching')}
-        </SortableHeader>
+        </DataTable.SortableHeader>
       ),
       cell: ({ row }) => {
         return row.original.cache

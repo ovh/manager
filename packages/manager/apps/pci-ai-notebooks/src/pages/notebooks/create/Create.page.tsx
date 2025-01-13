@@ -45,12 +45,12 @@ const Notebook = () => {
   });
 
   const loading =
-    regionsQuery.isLoading ||
-    catalogQuery.isLoading ||
-    frameworkQuery.isLoading ||
-    editorQuery.isLoading ||
-    sshKeyQuery.isLoading ||
-    suggestionsQuery.isLoading;
+    regionsQuery.isPending ||
+    catalogQuery.isPending ||
+    frameworkQuery.isPending ||
+    editorQuery.isPending ||
+    sshKeyQuery.isPending ||
+    suggestionsQuery.isPending;
 
   return (
     <>

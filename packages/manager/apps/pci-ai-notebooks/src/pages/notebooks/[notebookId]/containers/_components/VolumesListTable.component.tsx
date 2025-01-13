@@ -2,8 +2,9 @@ import { ColumnDef } from '@tanstack/react-table';
 import { useNavigate } from 'react-router-dom';
 import * as ai from '@/types/cloud/project/ai';
 import { getColumns } from './VolumesListColumns.component';
-import { DataTable } from '@/components/ui/data-table';
+
 import { useNotebookData } from '../../Notebook.context';
+import DataTable from '@/components/data-table';
 
 interface VolumesListProps {
   volumes: ai.volume.Volume[];
@@ -21,5 +22,5 @@ export default function VolumesList({ volumes }: Readonly<VolumesListProps>) {
     },
   });
 
-  return <DataTable columns={columns} data={volumes} pageSize={25} />;
+  return <DataTable.Provider columns={columns} data={volumes} pageSize={25} />;
 }
