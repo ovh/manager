@@ -459,41 +459,42 @@ export default function ObjectPage() {
               size="sm"
             />
 
-            <div className="justify-between flex">
+            <div className="flex justify-center gap-4">
               <OdsInput
-                type="search"
                 name="searchField"
-                className="w-[70%]"
+                className="min-w-[15rem]"
                 value={searchField}
-                onKeyDown={(event) => {
-                  if (event.key === 'Enter') {
-                    if (searchField) {
-                      setSearchField('');
-                      addFilter({
-                        key: 'name',
-                        value: searchField,
-                        comparator: FilterComparator.Includes,
-                        label: '',
-                      });
-                    }
-                  }
-                }}
-                onOdsChange={(event) => {
-                  const value = event.detail.value.toString();
-                  setSearchField(value);
+                onOdsChange={({ detail }) =>
+                  setSearchField(detail.value as string)
+                }
+              />
+              <OdsButton
+                label=""
+                icon="magnifying-glass"
+                size="sm"
+                onClick={() => {
+                  setPagination({
+                    pageIndex: 0,
+                    pageSize: pagination.pageSize,
+                  });
+                  addFilter({
+                    key: 'search',
+                    value: searchField,
+                    comparator: FilterComparator.Includes,
+                    label: '',
+                  });
+                  setSearchField('');
                 }}
               />
 
               <OdsButton
                 id="filterPopoverTrigger"
-                slot="popover-trigger"
-                class="ml-4"
-                label={tFilter('common_criteria_adder_filter_label')}
-                icon="filter"
                 size="sm"
+                color="primary"
+                label={tFilter('common_criteria_adder_filter_label')}
                 variant="outline"
+                icon="filter"
               />
-
               <OdsPopover triggerId="filterPopoverTrigger">
                 <FilterAdd
                   columns={[

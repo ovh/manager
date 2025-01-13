@@ -3,7 +3,6 @@ import {
   OdsFormField,
   OdsSelect,
   OdsSpinner,
-  OdsText,
 } from '@ovhcloud/ods-components/react';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
