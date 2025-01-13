@@ -128,7 +128,7 @@ export default function RCloneDownloadModal({
         )}
       </OdsText>
 
-      <OdsFormField>
+      <OdsFormField className="block my-6">
         <OdsText preset="caption" className="label-caption-bold">
           {t('pci_projects_project_users_download-rclone_file_type_label')}
         </OdsText>
@@ -162,7 +162,7 @@ export default function RCloneDownloadModal({
         </div>
       </OdsFormField>
 
-      <OdsFormField>
+      <OdsFormField className="w-full">
         <OdsText preset="caption" className="label-caption-bold">
           {t('pci_projects_project_users_download-rclone_region_label')}
         </OdsText>
