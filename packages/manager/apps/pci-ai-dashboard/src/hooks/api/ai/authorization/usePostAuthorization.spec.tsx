@@ -11,7 +11,6 @@ vi.mock('@/data/api/ai/authorization.api', () => ({
 
 describe('usePostAuthorization', () => {
   it('should call usePostAuthorization on mutation with data', async () => {
-    const projectId = 'projectId';
     const onSuccess = vi.fn();
     const onError = vi.fn();
 
@@ -20,21 +19,11 @@ describe('usePostAuthorization', () => {
       () => usePostAuthorization({ onError, onSuccess }),
       { wrapper: QueryClientWrapper },
     );
-
-    const postDatastoreProps = {
-      projectId,
-    };
-    result.current.postAuthorization(postDatastoreProps);
+    result.current.postAuthorization();
 
     await waitFor(() => {
-      expect(authApi.postAuthorization).toHaveBeenCalledWith(
-        postDatastoreProps,
-      );
-      expect(onSuccess).toHaveBeenCalledWith(
-        mockedAuthorization,
-        postDatastoreProps,
-        undefined,
-      );
+      expect(authApi.postAuthorization).toHaveBeenCalled();
+      expect(onSuccess).toHaveBeenCalledWith(mockedAuthorization);
     });
   });
 });
