@@ -2,7 +2,7 @@ import {
   DataGridTextCell,
   DatagridColumn,
 } from '@ovh-ux/manager-react-components';
-import { createSearchParams, useHref, useNavigate } from 'react-router-dom';
+import { createSearchParams, useHref } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useBytes } from '@ovh-ux/manager-pci-common';
 import { OdsBadge, OdsLink } from '@ovhcloud/ods-components/react';
