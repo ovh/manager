@@ -3,11 +3,10 @@ import {
   DatagridColumn,
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-import { TQuota } from '@ovh-ux/manager-pci-common';
-import { OdsBadge } from '@ovhcloud/ods-components/react';
 import { useTranslatedBytes } from '@ovh-ux/manager-pci-block-storage-app/src/hooks/useTranslatedBytes';
 import { Quota } from '@/api/data/quota';
 import { PRODUCTS } from '@/constants';
+import { LimitedQuotaBadgeComponent } from '@/pages/quota/components/LimitedQuotaBadge.component';
 
 export const useDatagridColumn = () => {
   const { t } = useTranslation('quotas');
@@ -15,8 +14,7 @@ export const useDatagridColumn = () => {
     {
       id: 'region',
       cell: (props: Quota) => (
-        // TODO translate region
-        <DataGridTextCell>{props.region}</DataGridTextCell>
+        <DataGridTextCell>{props.fullRegionName}</DataGridTextCell>
       ),
       label: t('pci_projects_project_quota_region'),
     },
@@ -32,11 +30,7 @@ export const useDatagridColumn = () => {
           </span>
 
           {props.isInstanceQuotaThresholdReached && (
-            <OdsBadge
-              label={t('pci_projects_project_quota_threshold_reached')}
-              color="warning"
-              className="ml-4"
-            ></OdsBadge>
+            <LimitedQuotaBadgeComponent />
           )}
         </DataGridTextCell>
       ),
@@ -53,13 +47,7 @@ export const useDatagridColumn = () => {
               : props.instance.maxCores}
           </span>
 
-          {props.isCpuQuotaThresholdReached && (
-            <OdsBadge
-              label={t('pci_projects_project_quota_threshold_reached')}
-              color="warning"
-              className="ml-4"
-            ></OdsBadge>
-          )}
+          {props.isCpuQuotaThresholdReached && <LimitedQuotaBadgeComponent />}
         </DataGridTextCell>
       ),
       label: t('pci_projects_project_quota_core'),
@@ -93,13 +81,7 @@ export const useDatagridColumn = () => {
                 : max}
             </span>
 
-            {props.isRamQuotaThresholdReached && (
-              <OdsBadge
-                label={t('pci_projects_project_quota_threshold_reached')}
-                color="warning"
-                className="ml-4"
-              ></OdsBadge>
-            )}
+            {props.isRamQuotaThresholdReached && <LimitedQuotaBadgeComponent />}
           </DataGridTextCell>
         );
       },
@@ -133,13 +115,8 @@ export const useDatagridColumn = () => {
                 ? t('pci_projects_project_quota_instance_unlimited')
                 : max}
             </span>
-
             {props.isVolumeQuotaThresholdReached && (
-              <OdsBadge
-                label={t('pci_projects_project_quota_threshold_reached')}
-                color="warning"
-                className="ml-4"
-              ></OdsBadge>
+              <LimitedQuotaBadgeComponent />
             )}
           </DataGridTextCell>
         );
@@ -166,7 +143,7 @@ export const useDatagridColumn = () => {
     },
     {
       id: 'lbs',
-      cell: (props: TQuota) => (
+      cell: (props: Quota) => (
         <DataGridTextCell>
           {props.loadbalancer?.usedLoadbalancers || 0} /{' '}
           {props.loadbalancer?.maxLoadbalancers || 0}
