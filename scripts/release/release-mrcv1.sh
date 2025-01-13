@@ -73,6 +73,12 @@ push_and_release() {
   fi
 }
 
+push_and_release_mrc() {
+  printf "%s\n" "Commit mrc changes"
+  git add packages/manager-react-components/package.json packages/manager-react-components/CHANGELOG.md
+  git commit -s --amend --no-edit
+}
+
 update_sonar_version() {
   printf "%s\n" "Updating sonar"
   sed -i "s/sonar\.projectVersion=.*/sonar\.projectVersion=$1/" ".sonarcloud.properties"
@@ -148,7 +154,7 @@ main() {
 
     # Commit and release manager-react-components
     clean_tags
-    #push_and_release "$next_tag"
+    push_and_release_mrc "$next_tag"
   else
     printf "%s\n" "No changes detected for manager-react-components. Exiting."
     exit 0
