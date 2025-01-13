@@ -128,6 +128,7 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
         $transition$.params().redirectResult,
       onPaymentMethodAdded: /* @ngInject */ (
         $transition$,
+        $injector,
         $translate,
         goPaymentList,
         RedirectionService,
@@ -137,6 +138,12 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
         if (callbackUrl && RedirectionService.validate(callbackUrl)) {
           window.location.href = callbackUrl;
           return callbackUrl;
+        }
+        // We try to notify the container that the action required by the PaymentModal has been done
+        // and we can switch to the next one if necessary
+        if ($injector.has('shellClient')) {
+          const shellClient = $injector.get('shellClient');
+          shellClient.ux.notifyModalActionDone();
         }
 
         return goPaymentList(
