@@ -15,8 +15,6 @@ import {
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
 import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
-import { useModals } from '@/context/modals';
-import { ModalTypes } from '@/context/modals/modals.context';
 
 interface IPaymentMethod {
   icon?: any;
@@ -35,8 +33,8 @@ interface IPaymentMethod {
   paymentMethodId: number;
 }
 
-const computeAlert = (paymentMethods: IPaymentMethod[] =[]): string => {
-  const currentCreditCard: IPaymentMethod = paymentMethods.find(currentPaymentMethod => currentPaymentMethod.paymentType === 'CREDIT_CARD'
+const computeAlert = (paymentMethods: IPaymentMethod[]): string => {
+  const currentCreditCard: IPaymentMethod = paymentMethods?.find(currentPaymentMethod => currentPaymentMethod.paymentType === 'CREDIT_CARD'
   && currentPaymentMethod.default);
 
   if (currentCreditCard?.expirationDate) {
@@ -59,41 +57,31 @@ const PaymentModal = (): JSX.Element => {
   const { t } = useTranslation('payment-modal');
   const [showPaymentModal, setShowPaymentModal] = useState(false);
   const shell = useShell();
-  const { current } = useModals();
 
   const paymentMethodURL = shell
     .getPlugin('navigation')
     .getURL('dedicated', '#/billing/payment/method');
 
-  const closeHandler = () => {
-    setShowPaymentModal(false);
-    shell.getPlugin('ux').notifyModalActionDone();
-  };
+  const closeHandler = () => setShowPaymentModal(false);
   const validateHandler = () =>  {
     setShowPaymentModal(false);
     window.location.href = paymentMethodURL;
-  };
+  }
 
-  const isReadyToRequest = current === ModalTypes.payment && window.location.href !== paymentMethodURL;
-
-  const { data: paymentResponse, isLoading } = useQuery({
+  const { data: paymentResponse } = useQuery({
     queryKey: ['me-payment-method'],
-    queryFn: () => fetchIcebergV6<IPaymentMethod>({ route: '/me/payment/method' }),
-    enabled: isReadyToRequest,
+    queryFn: () => fetchIcebergV6<IPaymentMethod>({ route: '/me/payment/method' })
   });
 
   useEffect(() => {
-    if (isReadyToRequest && !isLoading) {
-      const alert = computeAlert(paymentResponse?.data);
+    if (paymentResponse) {
+      const alert = computeAlert(paymentResponse.data);
       if (alert) {
         setAlert(alert);
         setShowPaymentModal(true);
       }
-      else {
-        shell.getPlugin('ux').notifyModalActionDone();
-      }
     }
-  }, [paymentResponse, isReadyToRequest, isLoading]);
+  }, [paymentResponse]);
 
   return !showPaymentModal ? (
     <></>
