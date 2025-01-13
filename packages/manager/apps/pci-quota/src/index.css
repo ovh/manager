@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.shape-input-group-label {
+  &::part(text) {
+    @apply text-[#0050d7];
+  }
+  &.active {
+    &::part(text) {
+      @apply text-[#4d5592];
+    }
+  }
+}
