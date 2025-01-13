@@ -11,7 +11,7 @@ export interface ChangelogItem {
   download?: string;
   target?: string;
   rel?: string;
-  label: string;
+  labelKey: string;
   onClick?: () => void;
 }
 
@@ -45,7 +45,7 @@ export const ChangelogButton: React.FC<ChangelogButtonProps> = ({ items }) => {
               download={item.download}
               rel={item.rel}
               type={LinkType.external}
-              label={item.label}
+              label={t(`user_account_changelog_${item.labelKey}`)}
               onClickReturn={item.onClick}
             />
           </div>

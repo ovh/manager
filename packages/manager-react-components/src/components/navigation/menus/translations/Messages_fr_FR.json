@@ -1,5 +1,8 @@
 {
   "common_actions": "Actions",
   "user_account_guides_header": "Guides",
-  "user_account_changelog_header": "Roadmap & changelog"
+  "user_account_changelog_header": "Roadmap & changelog",
+  "user_account_changelog_roadmap": "Roadmap",
+  "user_account_changelog_changelog": "Changelog",
+  "user_account_changelog_feature-request": "Feature request"
 }
