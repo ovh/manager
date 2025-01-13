@@ -23,8 +23,8 @@ import useDataGridContext from '@/pages/CIDR/useDatagridContext';
 
 const Buttons = () => {
   const { projectId = '', registryId = '' } = useParams();
-
-  const { handleSubmit, formState, reset } = useFormContext();
+  const { resetRows } = useDataGridContext();
+  const { handleSubmit, formState, reset: resetForm } = useFormContext();
   const { t } = useTranslation(['ip-restrictions', 'common']);
 
   const { addSuccess, addError } = useNotifications();
@@ -34,7 +34,8 @@ const Buttons = () => {
     [addError],
   );
   const onSuccess = useCallback(() => {
-    reset();
+    resetForm();
+    resetRows();
     addSuccess(t('private_registry_cidr_submit_success'), true);
   }, [addSuccess, t]);
 
@@ -45,7 +46,7 @@ const Buttons = () => {
     onSuccess,
   });
 
-  const { removeDraftRow } = useDataGridContext();
+  const { removeDraftRow, isUpdating } = useDataGridContext();
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const categorizeByKeyResult = categorizeByKey([data], 'authorization', [
@@ -57,7 +58,9 @@ const Buttons = () => {
         FilterRestrictionsServer,
         TIPRestrictionsData[]
       >,
-      action: TIPRestrictionsMethodEnum.ADD,
+      action: isUpdating
+        ? TIPRestrictionsMethodEnum.REPLACE
+        : TIPRestrictionsMethodEnum.ADD,
     });
   };
 
@@ -70,7 +73,10 @@ const Buttons = () => {
       <button
         className="button-datagrid-form cursor-pointer border-[--ods-color-blue-200] border-solid border pt-3 bg-white rounded"
         data-testid="remove-draft-button"
-        onClick={removeDraftRow}
+        onClick={() => {
+          removeDraftRow();
+          resetForm();
+        }}
         type={ODS_BUTTON_TYPE.reset}
       >
         <OsdsIcon

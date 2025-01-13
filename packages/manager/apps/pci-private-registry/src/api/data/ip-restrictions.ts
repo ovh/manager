@@ -103,13 +103,22 @@ export const updateIpRestriction = async (
   action: TIPRestrictionsMethodEnum,
 ) => {
   const entries = Object.entries(cidrToUpdate);
+
+  // This function is used to delete the object inside authorisation array if REPLACE action is used
+  const firstIpBlock = Object.values(cidrToUpdate)
+    .flat()
+    .find((item) => item);
+
   const promises = entries.map(([authorization, values]) =>
     processIpBlock({
       projectId,
       registryId,
       authorization: authorization as FilterRestrictionsServer,
-      values,
-      action,
+      values: firstIpBlock && values.length === 0 ? [firstIpBlock] : values,
+      action:
+        firstIpBlock && values.length === 0
+          ? TIPRestrictionsMethodEnum.DELETE
+          : action,
     }),
   );
   return Promise.all(promises);

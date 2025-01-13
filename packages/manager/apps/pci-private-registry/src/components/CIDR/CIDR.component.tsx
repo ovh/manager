@@ -3,14 +3,14 @@ import {
   Notifications,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
-
 import { useEffect } from 'react';
 import { useMutationState } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
-
+import * as z from 'zod';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useFormContext } from 'react-hook-form';
+import { useForm, FormProvider } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import {
   ODS_MESSAGE_TYPE,
   ODS_SPINNER_SIZE,
@@ -25,13 +25,84 @@ import { useDatagridColumn } from '@/pages/CIDR/useDatagridColumn';
 import Filters from '@/components/CIDR/Filters.component';
 import { getRegistryQueyPrefixWithId } from '@/api/hooks/useIpRestrictions';
 import useDataGridContext from '@/pages/CIDR/useDatagridContext';
+import { FilterRestrictionsEnum } from '@/types';
+
+const schemaAddCidr = (dataCIDR: string[], isUpdating: boolean) =>
+  z.object({
+    description: z.string().optional(),
+    ipBlock: z
+      .string()
+      .trim()
+      .transform((value) => {
+        try {
+          z.string()
+            .cidr()
+            .parse(value);
+        } catch (err) {
+          return `${value}/32`;
+        }
+        return value;
+      })
+      .superRefine((value, ctx) => {
+        try {
+          z.string()
+            .cidr()
+            .parse(value);
+        } catch (err) {
+          ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            message: 'private_registry_cidr_validation_ipBlock',
+          });
+        }
+        if (!isUpdating) {
+          // verify duplication cidr
+          const existingIpBlocks = dataCIDR.map((item) => item);
+          if (existingIpBlocks.includes(value)) {
+            ctx.addIssue({
+              code: z.ZodIssueCode.custom,
+              message: 'private_registry_cidr_already_exist',
+            });
+          }
+        }
+      }),
+    authorization: z
+      .array(
+        z.enum([
+          FilterRestrictionsEnum.MANAGEMENT,
+          FilterRestrictionsEnum.REGISTRY,
+        ]),
+      )
+      .default([])
+      .refine((auth) => auth.length > 0, {
+        message: 'private_registry_cidr_validation_authorization',
+      }),
+  });
+
+export type ConfirmCIDRSchemaType = z.infer<ReturnType<typeof schemaAddCidr>>;
 
 export default function CIDR() {
   const { t } = useTranslation(['ip-restrictions', 'common']);
   const { projectId = '', registryId = '' } = useParams();
-  const { formState, reset } = useFormContext();
+  const {
+    pagination,
+    setPagination,
+    rows,
+    totalRows,
+    isUpdating,
+  } = useDataGridContext();
+  const methods = useForm<ConfirmCIDRSchemaType>({
+    resolver: zodResolver(
+      schemaAddCidr(
+        rows.map((e) => e.ipBlock),
+        isUpdating,
+      ),
+    ),
+    mode: 'onBlur',
+    reValidateMode: 'onChange',
+  });
+
   const columns = useDatagridColumn();
-  const { pagination, setPagination, rows, totalRows } = useDataGridContext();
+
   const { clearNotifications } = useNotifications();
 
   const variablesPending = useMutationState({
@@ -55,7 +126,7 @@ export default function CIDR() {
         useUpdateIpRestrictionVariables.length - 1
       ].status === 'success'
     ) {
-      reset();
+      methods.reset();
     }
   }, [useUpdateIpRestrictionVariables]);
 
@@ -72,7 +143,7 @@ export default function CIDR() {
   }
 
   return (
-    <>
+    <FormProvider {...methods}>
       {!rows.length && (
         <OsdsMessage
           color={ODS_THEME_COLOR_INTENT.info}
@@ -90,7 +161,7 @@ export default function CIDR() {
           </OsdsText>
         </OsdsMessage>
       )}
-      {Object.values(formState.errors)?.map((err) => (
+      {Object.values(methods.formState.errors)?.map((err) => (
         <OsdsMessage
           color={ODS_THEME_COLOR_INTENT.error}
           type={ODS_MESSAGE_TYPE.error}
@@ -123,6 +194,6 @@ export default function CIDR() {
           </div>
         </>
       </div>
-    </>
+    </FormProvider>
   );
 }
