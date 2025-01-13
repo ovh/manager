@@ -303,10 +303,28 @@ export default function UserCreatePage(): JSX.Element {
               });
             }}
             className="mb-8"
+            customRenderer={{
+              option: (data) => {
+                return `<div style="display: flex; justify-content: space-between; align-items: center;">
+                          <p style="font-size: 16px; margin: 0;">${data.text}</p>
+                          <p style="font-size: 12px; margin: 0;">${data.hint}</p>
+                        </div>`;
+              },
+            }}
           >
             {validUsersWithoutCredentials?.map((user) => (
-              <option key={user.id} value={user.id}>
-                {user.username} - {user.description}
+              <option
+                value={user?.id}
+                key={user?.id}
+                data-hint={tAdd(
+                  user.s3Credentials
+                    ? 'pci_projects_project_users_add_as_credentials'
+                    : 'pci_projects_project_users_add_as_no_credentials',
+                )}
+              >
+                {user?.description
+                  ? `${user?.username} -  ${user?.description}`
+                  : user.username}
               </option>
             ))}
           </OdsSelect>
