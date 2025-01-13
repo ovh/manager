@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.5.1...@ovh-ux/manager-account@0.6.0) (2025-01-13)
+
+
+### Features
+
+* **container:** added an invitation modal to accept contract ([#14041](https://github.com/ovh/manager/issues/14041)) ([f5f1193](https://github.com/ovh/manager/commit/f5f119394c7f9d3290b4a2a642ad1d7887688384))
+
+
+
+
+
 ## [0.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.5.0...@ovh-ux/manager-account@0.5.1) (2025-01-09)
 
 
