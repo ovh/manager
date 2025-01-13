@@ -36,7 +36,7 @@ export default class {
           this.$translate.instant(
             'dedicatedCloud_datacenter_convert_to_global_success',
             {
-              t0: this.datacenterId,
+              t0: this.datastoreId,
             },
           ),
         );
