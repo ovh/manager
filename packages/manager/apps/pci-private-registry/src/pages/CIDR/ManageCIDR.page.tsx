@@ -1,4 +1,4 @@
-import * as z from 'zod';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import {
   Headers,
@@ -6,71 +6,17 @@ import {
   useColumnFilters,
   useDataGrid,
 } from '@ovh-ux/manager-react-components';
-import { zodResolver } from '@hookform/resolvers/zod';
+
 import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { OsdsText } from '@ovhcloud/ods-components/react';
 import { useProject } from '@ovh-ux/manager-pci-common';
-import { useForm, FormProvider } from 'react-hook-form';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
 import BreadcrumbCIDR from '@/components/CIDR/Breadcrumb.component';
-import { FilterRestrictionsEnum } from '@/types';
 import BlockCIDR from '@/components/CIDR/CIDR.component';
 import { useIpRestrictionsWithFilter } from '@/api/hooks/useIpRestrictions';
 import { useSuspenseRegistry } from '@/api/hooks/useRegistry';
 import { DatagridProvider } from './DatagridContext.provider';
-
-const schemaAddCidr = (dataCIDR: string[]) =>
-  z.object({
-    description: z.string().optional(),
-    ipBlock: z
-      .string()
-      .trim()
-      .transform((value) => {
-        try {
-          z.string()
-            .cidr()
-            .parse(value);
-        } catch (err) {
-          return `${value}/32`;
-        }
-        return value;
-      })
-      .superRefine((value, ctx) => {
-        try {
-          z.string()
-            .cidr()
-            .parse(value);
-        } catch (err) {
-          ctx.addIssue({
-            code: z.ZodIssueCode.custom,
-            message: 'private_registry_cidr_validation_ipBlock',
-          });
-        }
-
-        // verify duplication cidr
-        const existingIpBlocks = dataCIDR.map((item) => item);
-        if (existingIpBlocks.includes(value)) {
-          ctx.addIssue({
-            code: z.ZodIssueCode.custom,
-            message: 'private_registry_cidr_already_exist',
-          });
-        }
-      }),
-    authorization: z
-      .array(
-        z.enum([
-          FilterRestrictionsEnum.MANAGEMENT,
-          FilterRestrictionsEnum.REGISTRY,
-        ]),
-      )
-      .default([])
-      .refine((auth) => auth.length > 0, {
-        message: 'private_registry_cidr_validation_authorization',
-      }),
-  });
-
-export type ConfirmCIDRSchemaType = z.infer<ReturnType<typeof schemaAddCidr>>;
 
 export default function BlocIPBlock() {
   const { projectId = '', registryId = '' } = useParams();
@@ -78,6 +24,7 @@ export default function BlocIPBlock() {
   const { data: registry } = useSuspenseRegistry(projectId, registryId);
   const dataGrid = useDataGrid();
   const columnFilters = useColumnFilters();
+  const [refreCount, setRefreshCount] = useState(0);
   const { data: dataCIDR } = useIpRestrictionsWithFilter(
     projectId,
     registryId,
@@ -86,12 +33,13 @@ export default function BlocIPBlock() {
     columnFilters.filters,
     dataGrid.sorting,
   );
-  const methods = useForm<ConfirmCIDRSchemaType>({
-    resolver: zodResolver(schemaAddCidr(dataCIDR.rows.map((e) => e.ipBlock))),
-    mode: 'onSubmit',
-    reValidateMode: 'onBlur',
-  });
   const { t } = useTranslation(['ip-restrictions']);
+
+  useEffect(() => {
+    if (dataCIDR.rows) {
+      setRefreshCount((prev) => prev + 1);
+    }
+  }, [dataCIDR.rows]);
 
   return (
     <>
@@ -116,16 +64,14 @@ export default function BlocIPBlock() {
         </OsdsText>
       </div>
 
-      <FormProvider {...methods}>
-        <DatagridProvider
-          dataGrid={dataGrid}
-          columnFilters={columnFilters}
-          data={dataCIDR.rows}
-          totalRows={dataCIDR.totalRows}
-        >
-          <BlockCIDR />
-        </DatagridProvider>
-      </FormProvider>
+      <DatagridProvider
+        dataGrid={dataGrid}
+        columnFilters={columnFilters}
+        data={dataCIDR.rows}
+        totalRows={dataCIDR.totalRows}
+      >
+        <BlockCIDR />
+      </DatagridProvider>
     </>
   );
 }

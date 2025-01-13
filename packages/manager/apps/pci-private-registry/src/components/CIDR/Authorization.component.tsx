@@ -40,8 +40,8 @@ const Authorization = () => {
           </OsdsSelectOption>
           <OsdsSelectOption
             value={JSON.stringify([
-              FilterRestrictionsEnum.REGISTRY,
               FilterRestrictionsEnum.MANAGEMENT,
+              FilterRestrictionsEnum.REGISTRY,
             ])}
           >
             {capitalizeAndJoin([

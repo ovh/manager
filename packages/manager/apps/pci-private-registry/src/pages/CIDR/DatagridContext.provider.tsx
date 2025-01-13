@@ -22,9 +22,11 @@ export type ContextDatagridType<
   initialData: { current: T };
   updateCheckedStateRow: (ipBlock: string, allIsSelected: boolean) => void;
   removeDraftRow: () => void;
+  resetRows: () => void;
   addNewRow: (column?: Record<string, unknown>) => void;
-
+  editActualRow: (ipBlock: string) => unknown;
   draftedData: DatagridAction[];
+  isUpdating: boolean;
 } & ReturnType<typeof useDataGrid> &
   ReturnType<typeof useColumnFilters>;
 
@@ -41,6 +43,27 @@ const createNewRow = <TData extends DatagridAction[]>(
   },
   ...(oldData ?? []),
 ];
+
+const editRow = <TData extends DatagridAction[]>(
+  rows: TData,
+  target: string,
+) => {
+  let editedRow = null;
+  const updatedRows = rows.map((item) => {
+    if (item.draft) {
+      // reset all draft
+      return { ...item, draft: false };
+    }
+    if (item.ipBlock === target) {
+      editedRow = {
+        ...item,
+      };
+      return { ...item, checked: null, draft: true };
+    }
+    return item;
+  });
+  return { updatedRows, editedRow };
+};
 
 const updateCheckedState = <TData extends DatagridAction[]>(
   data: TData,
@@ -82,13 +105,14 @@ const DatagridProvider = <TData extends DatagridAction[]>({
   totalRows,
 }: DatagridProviderProps<TData>) => {
   const [draftedData, setDraftedData] = useState(data);
+  const [isUpdating, setIsUpdating] = useState(false);
+
   const initialData = useRef(data);
 
   useEffect(() => {
     setDraftedData(data);
   }, [data]);
 
-  const { reset } = useFormContext();
   const isAllDataSelected = useMemo(
     () =>
       draftedData
@@ -112,11 +136,28 @@ const DatagridProvider = <TData extends DatagridAction[]>({
 
   const removeDraftRow = () => {
     setDraftedData(data);
-    reset();
+    setIsUpdating(false);
   };
 
   const addNewRow = (column: Record<string, unknown>) =>
     setDraftedData(createNewRow(draftedData, column) as TData);
+
+  const editActualRow = (ipBlock: string) => {
+    setIsUpdating(true);
+    const { editedRow, updatedRows } = editRow(draftedData, ipBlock);
+    setDraftedData(updatedRows as TData);
+    return editedRow;
+  };
+
+  const resetRows = () => {
+    setDraftedData(
+      draftedData.map((row) => ({
+        ...row,
+        draft: false,
+        checked: false,
+      })) as TData,
+    );
+  };
 
   const isDraft = useMemo(
     () => draftedData.some((restriction) => restriction.draft),
@@ -133,10 +174,13 @@ const DatagridProvider = <TData extends DatagridAction[]>({
         totalRows,
         draftedData,
         addNewRow,
+        editActualRow,
         isAllDataSelected,
         isDraft,
         updateCheckedStateRow,
         removeDraftRow,
+        resetRows,
+        isUpdating,
       }}
     >
       {children}

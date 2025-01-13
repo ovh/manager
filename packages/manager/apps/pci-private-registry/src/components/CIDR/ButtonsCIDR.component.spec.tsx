@@ -14,6 +14,13 @@ vi.mock('react-router-dom', () => ({
   useParams: vi.fn(),
 }));
 
+vi.mock('@/pages/CIDR/useDatagridContext', () => ({
+  __esModule: true,
+  default: () => ({
+    removeDraftRow: vi.fn(),
+  }),
+}));
+
 vi.mock('../../api/hooks/useIpRestrictions', async (importOriginal) => {
   const actual = (await importOriginal()) as Record<string, unknown>;
   return {

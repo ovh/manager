@@ -23,7 +23,6 @@ import useDataGridContext from '@/pages/CIDR/useDatagridContext';
 
 const Buttons = () => {
   const { projectId = '', registryId = '' } = useParams();
-
   const { handleSubmit, formState, reset } = useFormContext();
   const { t } = useTranslation(['ip-restrictions', 'common']);
 
@@ -60,7 +59,9 @@ const Buttons = () => {
         FilterRestrictionsServer,
         TIPRestrictionsData[]
       >,
-      action: TIPRestrictionsMethodEnum.ADD,
+      action: isUpdating
+        ? TIPRestrictionsMethodEnum.REPLACE
+        : TIPRestrictionsMethodEnum.ADD,
     });
   };
 
@@ -73,7 +74,10 @@ const Buttons = () => {
       <button
         className="button-datagrid-form cursor-pointer border-[--ods-color-blue-200] border-solid border pt-3 bg-white rounded"
         data-testid="remove-draft-button"
-        onClick={removeDraftRow}
+        onClick={() => {
+          removeDraftRow();
+          resetForm();
+        }}
         type={ODS_BUTTON_TYPE.reset}
       >
         <OsdsIcon

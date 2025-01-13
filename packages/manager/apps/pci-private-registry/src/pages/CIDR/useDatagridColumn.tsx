@@ -4,7 +4,7 @@ import {
 } from '@ovh-ux/manager-react-components';
 
 import { useTranslation } from 'react-i18next';
-import { FormProvider, useFormContext } from 'react-hook-form';
+
 import ButtonsCIDR from '@/components/CIDR/ButtonsCIDR.component';
 import { TIPRestrictionsData } from '@/types';
 import ActionComponent from '@/components/CIDR/Actions.component';
@@ -23,8 +23,6 @@ function showCheckboxes(draft: boolean, dataLength: number): boolean {
 }
 
 export const useDatagridColumn = () => {
-  const { control, handleSubmit, formState, ...other } = useFormContext();
-
   const { t } = useTranslation(['ip-restrictions']);
   const {
     updateCheckedStateRow,
@@ -60,9 +58,7 @@ export const useDatagridColumn = () => {
       id: 'cidr',
       cell: (props) =>
         props.draft ? (
-          <FormProvider {...{ control, handleSubmit, formState, ...other }}>
-            <IpBlock />
-          </FormProvider>
+          <IpBlock />
         ) : (
           <DataGridTextCell>{props.ipBlock}</DataGridTextCell>
         ),
@@ -72,9 +68,7 @@ export const useDatagridColumn = () => {
       id: 'description',
       cell: (props) =>
         props.draft ? (
-          <FormProvider {...{ control, handleSubmit, formState, ...other }}>
-            <Description />
-          </FormProvider>
+          <Description />
         ) : (
           <DataGridTextCell>{props.description}</DataGridTextCell>
         ),
@@ -84,9 +78,7 @@ export const useDatagridColumn = () => {
       id: 'authorized',
       cell: (props) =>
         props.draft ? (
-          <FormProvider {...{ control, handleSubmit, formState, ...other }}>
-            <Authorization />
-          </FormProvider>
+          <Authorization />
         ) : (
           <div>{capitalizeAndJoin(props.authorization)}</div>
         ),
@@ -97,9 +89,7 @@ export const useDatagridColumn = () => {
       id: 'add',
       cell: (props) =>
         props.draft ? (
-          <FormProvider {...{ control, handleSubmit, formState, ...other }}>
-            <ButtonsCIDR />
-          </FormProvider>
+          <ButtonsCIDR />
         ) : (
           <div className="flex flex-row justify-center">
             <ActionComponent cidr={props} />
