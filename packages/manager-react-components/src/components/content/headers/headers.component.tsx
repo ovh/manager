@@ -26,7 +26,9 @@ export const Headers: React.FC<HeadersProps> = ({
           </OdsText>
         )}
       </div>
-      {headerButton && <div className="flex flex-wrap">{headerButton}</div>}
+      {headerButton && (
+        <div className="flex flex-wrap justify-end">{headerButton}</div>
+      )}
     </div>
   );
 };
