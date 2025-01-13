@@ -1,0 +1,9 @@
+{
+  "autorenew_agora_terminate_vrack_blocked_title": "Supprimer mon Vrack",
+  "autorenew_agora_terminate_vrack_blocked_description": "Afin de supprimer votre Vrack vous devez au préalable deconnecter tous les services qui y sont ratachés",
+  "autorenew_agora_terminate_vrack_blocked_close": "Fermer",
+  "autorenew_agora_terminate_service_VRACK": "Supprimer Vrack",
+  "autorenew_agora_terminate_service_warning_VRACK": "Veuillez confirmer la suppression de Vrack",
+  "autorenew_agora_terminate_service_success_VRACK": "Votre demande de suppression de votre Vrack a été prise en compte. Un e-mail contenant la procédure vous a été envoyé.",
+  "autorenew_agora_terminate_service_error_VRACK": "Une erreur est survenue lors de la demande de suppression de votre Vrack. {{error}}"
+}
