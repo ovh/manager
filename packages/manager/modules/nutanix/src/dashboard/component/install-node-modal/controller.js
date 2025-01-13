@@ -36,11 +36,11 @@ export default class NutanixDashboarInstallNodeModal {
           )}`,
         );
       })
-      .catch((error) => {
+      .catch(() => {
         this.handleError(
-          `${this.$translate.instant(
+          this.$translate.instant(
             'nutanix_dashboard_install_node_error_banner',
-          )} ${error.message}`,
+          ),
         );
       })
       .finally(() => {
