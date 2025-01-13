@@ -3,7 +3,7 @@ import {
   useDataGrid,
 } from '@ovh-ux/manager-react-components';
 import { useFormContext } from 'react-hook-form';
-import { createContext, useCallback, useMemo, useState } from 'react';
+import { createContext, useCallback, useMemo, useRef, useState } from 'react';
 
 export type ContextDatagridType<
   T extends DatagridAction[] = DatagridAction[]
@@ -12,6 +12,7 @@ export type ContextDatagridType<
   isAllDataSelected: boolean;
   rows: T;
   totalRows: number;
+  initialData: { current: T };
   updateCheckedStateRow: (ipBlock: string, allIsSelected: boolean) => void;
   removeDraftRow: () => void;
   addNewRow: (column?: Record<string, unknown>) => void;
@@ -72,6 +73,7 @@ const DatagridProvider = <TData extends DatagridAction[]>({
   columnFilters,
 }: DatagridProviderProps<TData>) => {
   const [draftedData, setDraftedData] = useState(data);
+  const initialData = useRef(data);
   const totalRows = data.length + draftedData.length;
   const { reset } = useFormContext();
   const isAllDataSelected = useMemo(
@@ -114,6 +116,7 @@ const DatagridProvider = <TData extends DatagridAction[]>({
         ...dataGrid,
         ...columnFilters,
         rows: draftedData,
+        initialData,
         totalRows,
         draftedData,
         addNewRow,

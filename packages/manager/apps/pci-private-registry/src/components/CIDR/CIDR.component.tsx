@@ -31,7 +31,13 @@ export default function CIDR() {
   const { projectId = '', registryId = '' } = useParams();
   const { formState, reset } = useFormContext();
   const columns = useDatagridColumn();
-  const { pagination, setPagination, rows, totalRows } = useDataGridContext();
+  const {
+    pagination,
+    setPagination,
+    rows,
+    totalRows,
+    initialData,
+  } = useDataGridContext();
   const { clearNotifications } = useNotifications();
 
   const variablesPending = useMutationState({
@@ -73,7 +79,7 @@ export default function CIDR() {
 
   return (
     <>
-      {!rows.length && (
+      {!initialData.current.length && (
         <OsdsMessage
           color={ODS_THEME_COLOR_INTENT.info}
           type={ODS_MESSAGE_TYPE.info}
