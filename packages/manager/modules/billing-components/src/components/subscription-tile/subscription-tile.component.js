@@ -18,6 +18,8 @@ export default {
     commitImpressionData: '<?',
     withContactManagement: '<?',
     disableServiceActions: '<?',
+    isCustomResiliationHandled: '<?',
+    handleGoToResiliation: '&?',
   },
   controller,
   template,

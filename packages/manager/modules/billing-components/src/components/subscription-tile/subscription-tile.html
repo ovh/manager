@@ -189,8 +189,8 @@
                 <a
                     class="oui-link_icon"
                     data-ng-if="$ctrl.resiliateLink && ($ctrl.serviceInfos.hasAdminRights($ctrl.user.auth.account) || $ctrl.serviceInfos.hasAdminRights($ctrl.user.nichandle))"
-                    data-ng-href="{{ $ctrl.resiliateLink }}"
-                    data-ng-click="$ctrl.trackAction('stop', true)"
+                    data-ng-href="{{:: !$ctrl.isCustomResiliationHandled && $ctrl.resiliateLink }}"
+                    data-ng-click="$ctrl.handleClickResiliate($event)"
                     target="_top"
                 >
                     <p>
