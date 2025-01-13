@@ -40,26 +40,29 @@ export default function StepOneComponent({
             onSelectUser(user);
           }}
           name="userSelect"
+          customRenderer={{
+            option: (data) => {
+              return `<div style="display: flex; justify-content: space-between; align-items: center;">
+                        <p style="font-size: 16px; margin: 0;">${data.text}</p>
+                        <p style="font-size: 12px; margin: 0;">${data.hint}</p>
+                     </div>`;
+            },
+          }}
         >
           {users?.map((user) => (
             <option
               value={user?.id}
               key={user?.id}
               className="flew justify-between"
+              data-hint={t(
+                user.s3Credentials
+                  ? 'pci_projects_project_storages_containers_container_addUser_select_user_has_credential'
+                  : 'pci_projects_project_storages_containers_container_addUser_select_user_has_not_credential',
+              )}
             >
-              <option>
-                {user?.description
-                  ? `${user?.username} -  ${user?.description}`
-                  : user.username}
-              </option>
-
-              <option className="ml-48">
-                {t(
-                  user.s3Credentials
-                    ? 'pci_projects_project_storages_containers_container_addUser_select_user_has_credential'
-                    : 'pci_projects_project_storages_containers_container_addUser_select_user_has_not_credential',
-                )}
-              </option>
+              {user?.description
+                ? `${user?.username} -  ${user?.description}`
+                : user.username}
             </option>
           ))}
         </OdsSelect>
