@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next';
 import {
-  OdsCard,
   OdsClipboard,
   OdsFormField,
   OdsMessage,
