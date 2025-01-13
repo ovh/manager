@@ -73,6 +73,7 @@ push_and_release() {
   fi
 }
 
+
 push_and_release_mrc() {
   printf "%s\n" "Commit mrc changes"
   git add packages/manager-react-components/package.json packages/manager-react-components/CHANGELOG.md
@@ -154,7 +155,11 @@ main() {
 
     # Commit and release manager-react-components
     clean_tags
+<<<<<<< HEAD
     push_and_release_mrc "$next_tag"
+=======
+    #push_and_release "$next_tag"
+>>>>>>> 086241f8fba8f48d4cb6a68f52c4f0754dd13d5e
   else
     printf "%s\n" "No changes detected for manager-react-components. Exiting."
     exit 0
