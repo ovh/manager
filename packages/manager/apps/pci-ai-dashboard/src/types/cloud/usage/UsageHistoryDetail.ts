@@ -8,13 +8,13 @@ export interface UsageHistoryDetail {
   /** Hourly usage */
   hourlyUsage?: HourlyResources;
   /** Usage id */
-  id?: string;
+  id: string;
   /** Entry last update */
-  lastUpdate?: string;
+  lastUpdate: string;
   /** Monthly usage */
   monthlyUsage?: MonthlyResources;
   /** Usage dates (from/to) */
-  period?: Period;
+  period: Period;
   /** Resource usage (billed per hour/minute/second/unit) */
   resourcesUsage?: TypedResources[];
 }

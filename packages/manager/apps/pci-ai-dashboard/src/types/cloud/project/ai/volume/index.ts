@@ -5,7 +5,6 @@ export * from './DataSyncProgressStateEnum';
 export * from './DataSyncSpec';
 export * from './DataSyncStateEnum';
 export * from './DataSyncStatus';
-export * from './PrivateSwift';
 export * from './Progress';
 export * from './PublicGit';
 export * from './PublicSwift';

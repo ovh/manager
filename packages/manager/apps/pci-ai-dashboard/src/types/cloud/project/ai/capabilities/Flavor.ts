@@ -5,17 +5,17 @@ import { FlavorTypeEnum } from '@/types/cloud/project/ai/capabilities/FlavorType
 /** AI Solutions Flavor */
 export interface Flavor {
   /** Is the flavor the default one for a flavor type */
-  default?: boolean;
+  default: boolean;
   /** Flavor description */
-  description?: string;
+  description: string;
   /** Describe GPU information */
   gpuInformation?: GpuInformation;
   /** Flavor id */
-  id?: string;
+  id: string;
   /** Maximum amount available for a job / notebook */
-  max?: number;
+  max: number;
   /** Describe the amount of resources given per unit of the flavor */
-  resourcesPerUnit?: ResourcesPerUnit;
+  resourcesPerUnit: ResourcesPerUnit;
   /** Flavor type */
-  type?: FlavorTypeEnum;
+  type: FlavorTypeEnum;
 }

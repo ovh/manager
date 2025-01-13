@@ -1,7 +1,7 @@
 /** Period */
 export interface Period {
   /** Usage from */
-  from?: string;
+  from: string;
   /** Usage to */
-  to?: string;
+  to: string;
 }

@@ -5,11 +5,11 @@ export interface Partner {
   /** Partner contract with logged in user's tenant */
   contract?: Contract;
   /** Partner creation date */
-  createdAt?: string;
+  createdAt: string;
   /** Partner Description */
-  description?: string;
+  description: string;
   /** Partner Id */
-  id?: string;
+  id: string;
   /** Partner Name */
-  name?: string;
+  name: string;
 }

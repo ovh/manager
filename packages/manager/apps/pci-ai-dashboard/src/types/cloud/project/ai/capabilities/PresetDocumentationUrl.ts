@@ -1,7 +1,7 @@
 /** AI Solutions Preset image */
 export interface PresetDocumentationUrl {
   /** Documentation Name */
-  name?: string;
+  name: string;
   /** Documentation URL */
-  url?: string;
+  url: string;
 }

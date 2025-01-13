@@ -4,19 +4,19 @@ import { UserStatusEnum } from '@/types/cloud/user/UserStatusEnum';
 /** UserDetail */
 export interface UserDetail {
   /** User creation date */
-  creationDate?: string;
+  creationDate: string;
   /** User description */
-  description?: string;
+  description: string;
   /** User id */
-  id?: number;
+  id: number;
   /** User id on openstack */
   openstackId?: string;
   /** User password */
-  password?: string;
+  password: string;
   /** User roles */
-  roles?: Role[];
+  roles: Role[];
   /** User status */
-  status?: UserStatusEnum;
+  status: UserStatusEnum;
   /** Username */
-  username?: string;
+  username: string;
 }

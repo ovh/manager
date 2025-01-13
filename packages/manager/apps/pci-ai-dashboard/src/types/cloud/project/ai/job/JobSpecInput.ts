@@ -6,23 +6,23 @@ import { Volume } from '@/types/cloud/project/ai/volume/Volume';
 /** AI Solutions Job Spec Object to create a job */
 export interface JobSpecInput {
   /** Job command */
-  command: string[];
+  command?: string[];
   /** Port use as the default one to access http service inside job */
-  defaultHttpPort: number;
+  defaultHttpPort?: number;
   /** List of environment variable to be set inside job */
-  envVars: JobEnv[];
+  envVars?: JobEnv[];
   /** GRPC Port that we want to expose in case workload HTTP & gRPC servers cannot be multiplexed to listen on the same port */
-  grpcPort: number;
+  grpcPort?: number;
   /** Job image */
   image: string;
   /** Labels are used to scope tokens, labels prefixed by 'ovh/' are owned by the platform and overridden */
-  labels: { [key: string]: string };
+  labels?: { [key: string]: string };
   /** Job name */
   name: string;
   /** Partner ID */
-  partnerId: string;
+  partnerId?: string;
   /** User ID to use to access the job */
-  readUser: string;
+  readUser?: string;
   /** Host region of the job */
   region: string;
   /** Job resources */
@@ -30,13 +30,13 @@ export interface JobSpecInput {
   /** Shutdown strategy (if any) */
   shutdown?: ShutdownStrategyEnum;
   /** SSH keys authorized to access to the job container */
-  sshPublicKeys: string[];
+  sshPublicKeys?: string[];
   /** Maximum time to spend before killing the job */
-  timeout: number;
+  timeout?: number;
   /** Whether job is set to be restarted after timeout */
-  timeoutAutoRestart: boolean;
+  timeoutAutoRestart?: boolean;
   /** Whether job api port can be accessed without any authentication token */
-  unsecureHttp: boolean;
+  unsecureHttp?: boolean;
   /** Job Data linked */
-  volumes: Volume[];
+  volumes?: Volume[];
 }

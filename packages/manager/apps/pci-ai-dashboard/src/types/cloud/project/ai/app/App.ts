@@ -4,15 +4,15 @@ import { AppStatus } from '@/types/cloud/project/ai/app/AppStatus';
 /** AI Solutions Platform App Object */
 export interface App {
   /** App creation date */
-  createdAt?: string;
+  createdAt: string;
   /** App Id */
-  id?: string;
+  id: string;
   /** App spec */
-  spec?: AppSpec;
+  spec: AppSpec;
   /** App Container Status */
-  status?: AppStatus;
+  status: AppStatus;
   /** App last update date */
-  updatedAt?: string;
+  updatedAt: string;
   /** App user owner */
-  user?: string;
+  user: string;
 }
