@@ -9,8 +9,9 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { SortableHeader } from '@/components/ui/data-table';
+
 import * as ai from '@/types/cloud/project/ai';
+import DataTable from '@/components/data-table';
 
 interface BackupsListColumnsProps {
   onForkClicked: (backup: ai.notebook.Backup) => void;
@@ -23,25 +24,27 @@ export const getColumns = ({ onForkClicked }: BackupsListColumnsProps) => {
       id: 'Id',
       accessorFn: (row) => row.id,
       header: ({ column }) => (
-        <SortableHeader column={column}>{t('tableHeaderId')}</SortableHeader>
+        <DataTable.SortableHeader column={column}>
+          {t('tableHeaderId')}
+        </DataTable.SortableHeader>
       ),
     },
     {
       id: 'CreationDate',
       accessorFn: (row) => row.createdAt,
       header: ({ column }) => (
-        <SortableHeader column={column}>
+        <DataTable.SortableHeader column={column}>
           {t('tableHeaderCreationDate')}
-        </SortableHeader>
+        </DataTable.SortableHeader>
       ),
     },
     {
       id: 'UpdateDate',
       accessorFn: (row) => row.updatedAt,
       header: ({ column }) => (
-        <SortableHeader column={column}>
+        <DataTable.SortableHeader column={column}>
           {t('tableHeaderUpdateDate')}
-        </SortableHeader>
+        </DataTable.SortableHeader>
       ),
     },
     {

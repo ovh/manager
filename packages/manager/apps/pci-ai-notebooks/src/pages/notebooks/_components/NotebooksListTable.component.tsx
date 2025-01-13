@@ -1,15 +1,20 @@
+import { useTranslation } from 'react-i18next';
+import { Plus } from 'lucide-react';
 import { ColumnDef } from '@tanstack/react-table';
 import { useNavigate } from 'react-router-dom';
-import { DataTable } from '@/components/ui/data-table';
 import { Skeleton } from '@/components/ui/skeleton';
 import * as ai from '@/types/cloud/project/ai';
 import { getColumns } from './NotebooksListColumns.component';
+import { getFilters } from './NotebookListFilters.component';
+import DataTable from '@/components/data-table';
+import { Button } from '@/components/ui/button';
 
 interface NotebooksListProps {
   notebooks: ai.notebook.Notebook[];
 }
 
 export default function NotebooksList({ notebooks }: NotebooksListProps) {
+  const { t } = useTranslation('pci-ai-notebooks/notebooks');
   const navigate = useNavigate();
 
   const columns: ColumnDef<ai.notebook.Notebook>[] = getColumns({
@@ -24,7 +29,35 @@ export default function NotebooksList({ notebooks }: NotebooksListProps) {
     },
   });
 
-  return <DataTable columns={columns} data={notebooks} pageSize={25} />;
+  const notebooksFilters = getFilters();
+
+  return (
+    <DataTable.Provider
+      columns={columns}
+      data={notebooks}
+      pageSize={25}
+      filtersDefinition={notebooksFilters}
+    >
+      <DataTable.Header>
+        <DataTable.Action>
+          <Button
+            data-testid="create-notebook-button"
+            onClick={() => {
+              navigate('./new');
+            }}
+          >
+            <Plus className="size-6 mr-2 text-primary-foreground" />
+            {t('createNewNotebook')}
+          </Button>
+        </DataTable.Action>
+        <DataTable.SearchBar />
+        <DataTable.FiltersButton />
+      </DataTable.Header>
+      <DataTable.FiltersList />
+      <DataTable.Table />
+      <DataTable.Pagination />
+    </DataTable.Provider>
+  );
 }
 
 NotebooksList.Skeleton = function NotebooksListSkeleton() {

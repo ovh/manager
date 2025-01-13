@@ -2,9 +2,9 @@ import { ColumnDef } from '@tanstack/react-table';
 import { useTranslation } from 'react-i18next';
 import { Files } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { SortableHeader } from '@/components/ui/data-table';
 import * as ai from '@/types/cloud/project/ai';
 import { useToast } from '@/components/ui/use-toast';
+import DataTable from '@/components/data-table';
 
 export const getColumns = () => {
   const { t } = useTranslation(
@@ -16,20 +16,22 @@ export const getColumns = () => {
       id: 'url',
       accessorFn: (row) => row.volumeSource.publicGit.url,
       header: ({ column }) => (
-        <SortableHeader column={column}>{t('tableHeaderUrl')}</SortableHeader>
+        <DataTable.SortableHeader column={column}>
+          {t('tableHeaderUrl')}
+        </DataTable.SortableHeader>
       ),
     },
     {
       id: 'mountpath',
       accessorFn: (row) => row.mountPath,
       header: ({ column }) => (
-        <SortableHeader column={column}>
+        <DataTable.SortableHeader column={column}>
           {t('tableHeaderMountPath')}
-        </SortableHeader>
+        </DataTable.SortableHeader>
       ),
       cell: ({ row }) => {
         return (
-          <div className="w-full max-w-[200px] border border-1 border-primary-100">
+          <div className="w-full border border-1 border-primary-100">
             <Button
               data-testid="public-git-copy-mountpath-button"
               type="button"
@@ -56,9 +58,9 @@ export const getColumns = () => {
       id: 'permission',
       accessorFn: (row) => row.permission,
       header: ({ column }) => (
-        <SortableHeader column={column}>
+        <DataTable.SortableHeader column={column}>
           {t('tableHeaderPermission')}
-        </SortableHeader>
+        </DataTable.SortableHeader>
       ),
       cell: ({ row }) => {
         return t(`permission_${row.original.permission}`);
