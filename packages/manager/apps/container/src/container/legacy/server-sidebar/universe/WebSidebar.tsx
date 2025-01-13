@@ -27,7 +27,6 @@ export const webFeatures = [
   'office-reseller',
   'sharepoint',
   'web:microsoft',
-  'web-paas',
   'cloud-web',
   'cloud-database',
   'zimbra'
@@ -292,33 +291,6 @@ export default function WebSidebar() {
           },
         });
       }
-    }
-
-    if (features['web-paas']) {
-      menu.push({
-        id: 'web-paas',
-        label: t('sidebar_web_paas'),
-        icon: getIcon('oui-icon oui-icon-partner-platformsh_concept'),
-        routeMatcher: new RegExp(`^(/configuration)?/(paas/webpaas)`),
-        async loader() {
-          const subscription = await loadServices('/webPaaS/subscription');
-          return [
-            {
-              id: 'web_paas_all_accounts',
-              label: t('sidebar_project_all'),
-              href: navigation.getURL('web', '#/paas/webpaas/projects'),
-            },
-            ...subscription.map((service) => ({
-              ...service,
-              icon: getIcon('oui-icon oui-icon-partner-platformsh_concept'),
-              href: navigation.getURL(
-                'web',
-                `#/paas/webpaas/projects/${service.serviceName}/service`,
-              ),
-            })),
-          ];
-        },
-      });
     }
 
     return menu;
