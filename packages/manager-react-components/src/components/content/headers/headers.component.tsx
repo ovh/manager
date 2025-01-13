@@ -26,7 +26,7 @@ export const Headers: React.FC<HeadersProps> = ({
           </OdsText>
         )}
       </div>
-      {headerButton && <div>{headerButton}</div>}
+      {headerButton && <div className="flex flex-nowrap">{headerButton}</div>}
     </div>
   );
 };
