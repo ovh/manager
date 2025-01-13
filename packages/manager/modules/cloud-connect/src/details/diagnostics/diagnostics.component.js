@@ -5,6 +5,7 @@ export default {
     cloudConnect: '<',
     refreshDiagnostics: '<',
     diagnosticList: '<',
+    gotoDiagnosticResult: '<',
   },
   template,
 };
