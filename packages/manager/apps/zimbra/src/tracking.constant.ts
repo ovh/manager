@@ -95,4 +95,13 @@ export const GUIDE_ADMINISTRATOR = 'administrator-guide';
 export const GUIDE_USER = 'user-guide';
 export const GUIDE_CNAME = 'cname-guide';
 export const GUIDE_DNS_CONFIG = 'dns-configuration-guide';
+
+// CHANGELOG
+export const CHANGELOG_PREFIXES = ['tile-changelog-roadmap', 'external-link'];
+export const CHANGELOG_DESTINATION = {
+  CHANGELOG: 'changelog',
+  ROADMAP: 'roadmap',
+  FEATURE_REQUEST: 'feature-request',
+};
+
 export const GO_TO = (link: string) => `go-to-${link}`;
