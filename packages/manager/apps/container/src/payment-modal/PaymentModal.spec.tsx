@@ -4,6 +4,7 @@ import { PAYMENT_ALERTS } from './constants';
 import PaymentModal, { IPaymentMethod } from './PaymentModal';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import * as ManagerApi from '@ovh-ux/manager-core-api';
+import { ModalTypes } from '@/context/modals/modals.context';
 
 vi.mock('@/context', () => ({
   useShell: () => ({
@@ -11,6 +12,10 @@ vi.mock('@/context', () => ({
       getURL: vi.fn(),
     }),
   }),
+}));
+
+vi.mock('@/context/modals', () => ({
+  useModals: () => ({ current: ModalTypes.payment })
 }));
 
 // Expired card in 50 days
