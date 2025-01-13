@@ -29,6 +29,7 @@ export const ChangelogButton: React.FC<ChangelogButtonProps> = ({ items }) => {
           variant={ODS_BUTTON_VARIANT.ghost}
           size={ODS_BUTTON_SIZE.sm}
           label={t('user_account_changelog_header')}
+          className="whitespace-nowrap"
         ></OdsButton>
       </div>
 
