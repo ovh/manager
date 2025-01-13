@@ -12,6 +12,8 @@ import {
   GuideItem,
   Notifications,
   useNotifications,
+  ChangelogButton,
+  ChangelogItem,
 } from '@ovh-ux/manager-react-components';
 
 import { useTranslation } from 'react-i18next';
@@ -39,6 +41,8 @@ import {
   REDIRECTION,
   GO_TO,
   UNSELECT_ORGANIZATION,
+  CHANGELOG_PREFIXES,
+  CHANGELOG_DESTINATION,
 } from '@/tracking.constant';
 import './Dashboard.scss';
 
@@ -68,6 +72,57 @@ export const Dashboard: React.FC = () => {
           buttonType: ButtonType.externalLink,
           actionType: 'navigation',
           actions: [GO_TO(GUIDES_LIST.administrator_guide.tracking)],
+        });
+      },
+    },
+  ];
+
+  const changelogItems: ChangelogItem[] = [
+    {
+      id: 1,
+      href:
+        'https://github.com/orgs/ovh/projects/18/views/2?sliceBy%5Bvalue%5D=Collaboration&pane=info',
+      target: '_blank',
+      labelKey: 'changelog',
+      onClick: () => {
+        trackClick({
+          actionType: 'navigation',
+          actions: [
+            ...CHANGELOG_PREFIXES,
+            GO_TO(CHANGELOG_DESTINATION.CHANGELOG),
+          ],
+        });
+      },
+    },
+    {
+      id: 2,
+      href:
+        'https://github.com/orgs/ovh/projects/18/views/1?sliceBy%5Bvalue%5D=Collaboration&pane=info',
+      target: '_blank',
+      labelKey: 'roadmap',
+      onClick: () => {
+        trackClick({
+          actionType: 'navigation',
+          actions: [
+            ...CHANGELOG_PREFIXES,
+            GO_TO(CHANGELOG_DESTINATION.ROADMAP),
+          ],
+        });
+      },
+    },
+    {
+      id: 3,
+      href:
+        'https://github.com/ovh/collaborative-tools-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+      target: '_blank',
+      labelKey: 'feature-request',
+      onClick: () => {
+        trackClick({
+          actionType: 'navigation',
+          actions: [
+            ...CHANGELOG_PREFIXES,
+            GO_TO(CHANGELOG_DESTINATION.FEATURE_REQUEST),
+          ],
         });
       },
     },
@@ -165,7 +220,12 @@ export const Dashboard: React.FC = () => {
       breadcrumb={<Breadcrumb />}
       header={{
         title: 'Zimbra',
-        headerButton: <GuideButton items={guideItems} />,
+        headerButton: (
+          <>
+            <ChangelogButton items={changelogItems} />
+            <GuideButton items={guideItems} />
+          </>
+        ),
       }}
       subtitle={
         organization &&
