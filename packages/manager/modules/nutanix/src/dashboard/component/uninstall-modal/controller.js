@@ -20,11 +20,11 @@ export default class {
           )}`,
         );
       })
-      .catch((error) => {
+      .catch(() => {
         this.handleError(
-          `${this.$translate.instant(
+          this.$translate.instant(
             'nutanix_dashboard_uninstall_node_error_banner',
-          )} ${error.message}`,
+          ),
         );
       })
       .finally(() => {

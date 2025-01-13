@@ -6,5 +6,5 @@
   "nutanix_dashboard_uninstall_node_cancel": "Annuler",
   "nutanix_dashboard_uninstall_node_input_label": "Entrez \"{{magicword}}\" pour confirmer votre choix",
   "nutanix_dashboard_uninstall_node_success_banner": "Votre demande de désinstallation a été prise en compte. Cette opération peut prendre jusqu'à 10 minutes",
-  "nutanix_dashboard_uninstall_node_error_banner": "Votre demande de désinstallation n'a pas été prise en compte :"
+  "nutanix_dashboard_uninstall_node_error_banner": "La demande de désinstallation n'a pas abouti. Si l'erreur persiste, merci de contacter le support"
 }
