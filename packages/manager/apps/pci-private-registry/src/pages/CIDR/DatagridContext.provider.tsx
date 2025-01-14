@@ -64,6 +64,7 @@ type DatagridProviderProps<TData extends DatagridAction[]> = {
   columnFilters?: ReturnType<typeof useColumnFilters>;
   children: JSX.Element;
   data: TData;
+  totalRows: number;
 };
 
 const DatagridProvider = <TData extends DatagridAction[]>({
@@ -71,10 +72,11 @@ const DatagridProvider = <TData extends DatagridAction[]>({
   data,
   dataGrid,
   columnFilters,
+  totalRows,
 }: DatagridProviderProps<TData>) => {
   const [draftedData, setDraftedData] = useState(data);
   const initialData = useRef(data);
-  const totalRows = data.length + draftedData.length;
+
   const { reset } = useFormContext();
   const isAllDataSelected = useMemo(
     () =>

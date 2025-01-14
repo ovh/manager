@@ -148,6 +148,10 @@ const Filters = () => {
             className="w-[70%]"
             value={searchField}
             onOdsSearchSubmit={({ detail }) => {
+              setPagination({
+                pageIndex: 0,
+                pageSize: pagination.pageSize,
+              });
               handleAddFilter(detail.inputValue);
               setSearchField('');
             }}
