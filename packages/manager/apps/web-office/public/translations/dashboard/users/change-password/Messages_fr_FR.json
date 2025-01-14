@@ -1,0 +1,19 @@
+{
+  "dashboard_users_change-password_title": "Modifier le mot de passe",
+  "dashboard_users_change-password_description": "Vous êtes sur le point de modifier le mot de passe de votre compte",
+  "dashboard_users_change-password_subdescription": "Voulez-vous continuez ?",
+  "dashboard_users_change-password_label1": "Mot de passe :",
+  "dashboard_users_change-password_label2": "Confirmation :",
+  "dashboard_users_change-password_label3": "Email :",
+  "dashboard_users_change-password_cta_cancel": "Annuler",
+  "dashboard_users_change-password_cta_confirm": "Confirmer",
+  "dashboard_users_change-password_helper1": "Attention, le mot de passe doit respecter les conditions suivantes :",
+  "dashboard_users_change-password_helper2": "Minimum 8 caractères",
+  "dashboard_users_change-password_helper3": "Maximum 16 caractères",
+  "dashboard_users_change-password_helper4": "Au moins 1 lettre minuscule, 1 lettre majuscule, 1 chiffre ou 1 caractère spécial",
+  "dashboard_users_change-password_email-edit-title": "Si vous ne renseignez pas de mot de passe, celui-ci sera généré aléatoirement et envoyé par email à l'adresse précisée",
+  "dashboard_users_change-password_email-edit": "Envoyer par email",
+  "dashboard_users_change-password_email-placeholder": "l'adresse email du contact admin",
+  "dashboard_users_change-password_message_error": "Une erreur s'est produite lors de la récupération des informations.",
+  "dashboard_users_change-password_message_success": "Votre changement de mot de passe a bien été pris en compte."
+}
