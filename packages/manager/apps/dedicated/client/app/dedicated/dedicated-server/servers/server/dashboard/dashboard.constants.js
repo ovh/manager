@@ -27,6 +27,7 @@ export const UPGRADE_TYPE = {
 };
 
 export const RBX1_DATACENTER = 'RBX_1';
+export const RBX1_CONTAINER_START_WITH = 'CT';
 
 export default {
   ELIGIBLE_FOR_UPGRADE,
@@ -34,4 +35,5 @@ export default {
   RECOMMIT_IMPRESSION_TRACKING_DATA,
   UPGRADE_TYPE,
   RBX1_DATACENTER,
+  RBX1_CONTAINER_START_WITH,
 };

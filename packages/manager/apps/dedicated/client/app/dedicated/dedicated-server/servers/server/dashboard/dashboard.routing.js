@@ -2,7 +2,11 @@ import includes from 'lodash/includes';
 import isEmpty from 'lodash/isEmpty';
 
 import UpgradeTask from './upgrade/upgrade-task.class';
-import { ELIGIBLE_FOR_UPGRADE, RBX1_DATACENTER } from './dashboard.constants';
+import {
+  ELIGIBLE_FOR_UPGRADE,
+  RBX1_CONTAINER_START_WITH,
+  RBX1_DATACENTER,
+} from './dashboard.constants';
 import { UPGRADE_MODE } from './upgrade/upgrade.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -337,7 +341,8 @@ export default /* @ngInject */ ($stateProvider) => {
       displayRbxEolBanner: /* @ngInject */ (features, server) => {
         return (
           features.isFeatureAvailable('dedicated-server:rbx1-eol-banner') &&
-          server.datacenter === RBX1_DATACENTER
+          server.datacenter === RBX1_DATACENTER &&
+          !server.rack.toUpperCase().startsWith(RBX1_CONTAINER_START_WITH)
         );
       },
     },
