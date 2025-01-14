@@ -6,6 +6,7 @@ import { OdsButton } from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 
 import {
+  Breadcrumb,
   Datagrid,
   DataGridTextCell,
   useResourcesIcebergV6,
@@ -15,7 +16,6 @@ import {
 
 import Loading from '@/components/Loading/Loading';
 import ErrorBanner from '@/components/Error/Error';
-import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 
 import appConfig from '@/{{appName}}.config';
 
@@ -96,7 +96,7 @@ export default function Listing() {
   };
 
   return (
-    <BaseLayout breadcrumb={<Breadcrumb />} header={header}>
+    <BaseLayout breadcrumb={<Breadcrumb rootLabel={appConfig.rootLabel} appName="{{appName}}" />} header={header}>} header={header}>
       <React.Suspense>
         {columns && flattenData && (
           <Datagrid
