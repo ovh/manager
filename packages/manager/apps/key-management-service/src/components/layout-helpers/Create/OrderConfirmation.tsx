@@ -16,6 +16,7 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ROUTES_URLS } from '@/routes/routes.constants';
 import { getKMSExpressOrderLink } from './order-utils';
+import { CREATE_KMS_TEST_IDS } from '@/pages/create/createKms.constants';
 
 type OrderConfirmationProps = {
   region: string;
@@ -51,6 +52,7 @@ const OrderConfirmation = ({ region }: OrderConfirmationProps) => {
           label={orderLink}
           target="_blank"
           href={orderLink}
+          data-testid={CREATE_KMS_TEST_IDS.orderLink}
           onClickReturn={() =>
             trackClick({
               location: PageLocation.funnel,
@@ -67,6 +69,7 @@ const OrderConfirmation = ({ region }: OrderConfirmationProps) => {
       <OdsButton
         size={ODS_BUTTON_SIZE.md}
         color={ODS_BUTTON_COLOR.primary}
+        data-testid={CREATE_KMS_TEST_IDS.ctaFinish}
         onClick={() => {
           trackClick({
             location: PageLocation.funnel,

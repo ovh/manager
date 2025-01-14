@@ -94,14 +94,28 @@ export const getOds18ButtonByIcon = async ({
 
 export const changeOds18InputValue = async ({
   inputLabel,
-  value,
+  inputValue,
 }: {
   inputLabel: string;
-  value: string;
+  inputValue: string;
 }) => {
   const input = screen.getByLabelText(inputLabel);
-  const event = new CustomEvent('odsValueChange', {
+
+  return waitFor(() =>
+    fireEvent.change(input, { target: { value: inputValue } }),
+  );
+};
+
+export const selectOds18SelectOption = async ({
+  testId,
+  value,
+}: {
+  testId: string;
+  value: string;
+}) => {
+  const select = screen.getByTestId(testId);
+  const event = new CustomEvent('odsChange', {
     detail: { value },
   });
-  return waitFor(() => fireEvent(input, event));
+  waitFor(() => fireEvent(select, event));
 };

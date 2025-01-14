@@ -3,7 +3,7 @@ import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OdsText } from '@ovhcloud/ods-components/react';
 
 export type TileBlockProps = React.PropsWithChildren<{
-  label?: React.ReactNode;
+  label?: string;
 }>;
 
 export const TileBlock: React.FC<React.PropsWithChildren<TileBlockProps>> = ({

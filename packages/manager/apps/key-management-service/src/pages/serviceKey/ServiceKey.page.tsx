@@ -39,6 +39,7 @@ import { useOKMSById } from '@/data/hooks/useOKMS';
 import ServiceKeyStateActions from '@/components/serviceKey/serviceKeyStateActions/ServiceKeyStateActions.component';
 import { getOkmsResourceQueryKey } from '@/data/api/okms';
 import { kmsIamActions } from '@/utils/iam/iam.constants';
+import { SERVICE_KEY_TEST_IDS } from './ServiceKey.constants';
 
 export default function Key() {
   const { okmsId, keyId } = useParams();
@@ -150,12 +151,14 @@ export default function Key() {
                     <OdsText
                       className="max-w-1/2 text-ellipsis overflow-hidden"
                       preset={ODS_TEXT_PRESET.paragraph}
+                      data-testid="truc"
                     >
                       {kmsKey.name}
                     </OdsText>
                     <ManagerButton
                       id="editName"
                       label=""
+                      data-testid={SERVICE_KEY_TEST_IDS.editNameButton}
                       size={ODS_BUTTON_SIZE.sm}
                       variant={ODS_BUTTON_VARIANT.ghost}
                       color={ODS_BUTTON_COLOR.primary}

@@ -25,6 +25,7 @@ import {
   ServiceKeyNameErrorsType,
   validateServiceKeyName,
 } from '@/utils/serviceKey/validateServiceKeyName';
+import { SERVICE_KEY_TEST_IDS } from '../ServiceKey.constants';
 
 export const EditServiceKeyNameModal = () => {
   const { okmsId, keyId } = useParams();
@@ -128,6 +129,7 @@ export const EditServiceKeyNameModal = () => {
           !!serviceKeyNameError || serviceKeyName === data?.data?.name
         }
         slot="actions"
+        data-testid={SERVICE_KEY_TEST_IDS.modifyNameButton}
         color={ODS_BUTTON_COLOR.primary}
         onClick={() => updateKmsServiceKey({ name: serviceKeyName })}
         aria-label="edit-name-okms"
