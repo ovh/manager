@@ -9,5 +9,11 @@
   "pci_project_flavors_zone_global_region": "Regionen",
   "pci_project_flavors_zone_localzone_tooltip": "Local Zones sind eine neue Art der Lokalisierung, die einen Teil unseres Public-Cloud-Produktportfolios unterstützt. In den nächsten Jahren werden wir die Gesamtzahl der Local Zones weltweit schrittweise erhöhen.",
   "pci_project_flavors_zone_globalregions_tooltip": "Die Regionen stützen sich auf ein oder mehrere Rechenzentren, die von OVHcloud verwaltet werden. Jede Region bietet eine oder mehrere Availability Zones mit dem vollständigen OVHcloud Dienstportfolio.",
-  "pci_project_flavors_zone_tooltip_link": "Mehr erfahren"
+  "pci_project_flavors_zone_tooltip_link": "Mehr erfahren",
+  "pci_project_flavors_zone_1AZ": "1-AZ",
+  "pci_project_flavors_zone_3AZ": "3-AZ",
+  "pci_project_flavors_zone_localzone_1AZ_tooltip": "Eine Local Zone entspricht einer Methode zur Bereitstellung der Public Cloud Produkte von OVHcloud in Rechenzentren, die sich in unmittelbarer Nähe der Endbenutzer befinden.",
+  "pci_project_flavors_zone_1AZ_with_3AZ_tooltip": "Mit dem baldigen Eintreffen der 3-AZ Regionen ändert sich der Bereitstellungstyp „Regionen“! Eine 1-AZ-Region (Verfügbarkeitszone) besteht aus einem oder mehreren Rechenzentren, die sich an einem Standort befinden.",
+  "pci_project_flavors_zone_1AZ_tooltip": "Eine 1-AZ-Region (Verfügbarkeitszone) besteht aus einem oder mehreren Rechenzentren, die sich an einem Standort befinden.",
+  "pci_project_flavors_zone_3AZ_tooltip": "Eine 3-AZ-Region besteht aus drei Verfügbarkeitszonen, die sich innerhalb eines einzigen großstädtischen Ballungsgebiets befinden und wenige Kilometer voneinander entfernt sind. Sie erfüllt höchste Anforderungen an die Resilienz und gewährleistet gleichzeitig extrem geringe Latenzen zwischen AZ."
 }
