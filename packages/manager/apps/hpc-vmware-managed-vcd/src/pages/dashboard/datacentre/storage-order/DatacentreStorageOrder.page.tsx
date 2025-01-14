@@ -8,8 +8,10 @@ import {
   StorageOrderPriceCell,
   StorageOrderSelectCell,
   StorageOrderTypeCell,
+  StoragePerformanceClassCell,
 } from '@/components/datagrid/storage/StorageOrderCells.component';
 import {
+  PERFORMANCE_CLASS_LABEL,
   STORAGE_ORDER_MAX_QUANTITY,
   STORAGE_ORDER_MIN_QUANTITY,
 } from './datacentreStorageOrder.constants';
@@ -29,6 +31,12 @@ export default function StorageOrderPage() {
       id: 'storage',
       cell: StorageOrderTypeCell,
       label: t('managed_vcd_vdc_order_type'),
+      isSortable: false,
+    },
+    {
+      id: 'performanceClass',
+      cell: StoragePerformanceClassCell,
+      label: PERFORMANCE_CLASS_LABEL,
       isSortable: false,
     },
     {
