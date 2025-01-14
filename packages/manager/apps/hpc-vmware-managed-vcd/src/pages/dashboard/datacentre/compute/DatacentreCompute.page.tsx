@@ -1,52 +1,25 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom';
-import { DataGridTextCell } from '@ovh-ux/manager-react-components';
-import { OsdsButton } from '@ovhcloud/ods-components/react';
-import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   getVcdDatacentreComputeRoute,
   getVdcComputeQueryKey,
-  VCDCompute,
 } from '@ovh-ux/manager-module-vcd-api';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import { OsdsButton } from '@ovhcloud/ods-components/react';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { useNavigate, useParams } from 'react-router-dom';
+import { ID_LABEL } from '../../dashboard.constants';
+import { VHOST_LABEL, VHOSTS_LABEL } from './datacentreCompute.constants';
+import {
+  ActionDeleteCell,
+  DatagridBillingCell,
+  DatagridCpuCountCell,
+  DatagridIdCell,
+  DatagridRamCountCell,
+  DatagridVHostProfilCell,
+} from '@/components/datagrid/compute/ComputeCells.component';
 import DatagridContainer from '@/components/datagrid/container/DatagridContainer.component';
 import { subRoutes, urls } from '@/routes/routes.constant';
-import { VHOST_LABEL, VHOSTS_LABEL } from './datacentreCompute.constants';
-import { ID_LABEL } from '../../dashboard.constants';
-
-const DatagridIdCell = (vcdCompute: VCDCompute) => (
-  <DataGridTextCell>{vcdCompute?.id}</DataGridTextCell>
-);
-const DatagridVHostProfilCell = (vcdCompute: VCDCompute) => (
-  <DataGridTextCell>{vcdCompute?.currentState?.profile}</DataGridTextCell>
-);
-
-const DatagridCpuCountCell = (vcdCompute: VCDCompute) => (
-  <DataGridTextCell>{vcdCompute.currentState?.vCPUCount}</DataGridTextCell>
-);
-const DatagridBillingCell = (vcdCompute: VCDCompute) => {
-  const { t } = useTranslation('datacentres/compute');
-  return (
-    <DataGridTextCell>
-      {t(
-        `managed_vcd_vdc_compute_billing_${vcdCompute.currentState?.billingType}`,
-      )}
-    </DataGridTextCell>
-  );
-};
-
-const DatagridRamCountCell = (vcdCompute: VCDCompute) => {
-  const { t } = useTranslation('datacentres');
-
-  return (
-    <DataGridTextCell>
-      {t('managed_vcd_vdc_quota_value', {
-        quota: vcdCompute.currentState?.memoryQuota,
-      })}
-    </DataGridTextCell>
-  );
-};
 
 export default function ComputeListingPage() {
   const { id, vdcId } = useParams();
@@ -83,6 +56,11 @@ export default function ComputeListingPage() {
       id: 'billing',
       cell: DatagridBillingCell,
       label: t('managed_vcd_vdc_compute_billing'),
+      isSortable: false,
+    },
+    {
+      id: 'actions',
+      cell: ActionDeleteCell,
       isSortable: false,
     },
   ];
