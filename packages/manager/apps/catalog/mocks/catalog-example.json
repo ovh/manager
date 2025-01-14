@@ -262,25 +262,6 @@
     "category": "Storage and Backup"
   },
   {
-    "id": 20430,
-    "name": "Web PaaS Powered by Platform.sh",
-    "description": "La plateforme de développement pensée pour les développeurs et leurs équipes, afin de concevoir, déployer et exécuter des applications web.",
-    "lang": "fr_FR",
-    "categories": [
-      "Catalogs",
-      "Hébergements web & Domaines",
-      "Web PaaS",
-      "Web PaaS Powered by Platform.sh"
-    ],
-    "url": "https://mockup.url.com",
-    "regionTags": ["EU"],
-    "productName": "WEB_PAAS",
-    "order": "https://www.ovh.com/manager/#/web/paas/webpaas/new",
-    "featureAvailability": "web-paas",
-    "universe": "Hébergements web & Domaines",
-    "category": "Web PaaS"
-  },
-  {
     "id": 20431,
     "name": "Workflow Management",
     "description": "Automatisez vos tâches pour manipuler vos ressources cloud, en vous basant sur votre logique métier, afin de répondre à chaque situation",
