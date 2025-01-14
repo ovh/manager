@@ -23,6 +23,7 @@ export function RegionLocalzoneChip({
       title={t('pci_project_flavors_zone_localzone')}
       className="chip-LZ"
       showTooltipIcon={showTooltip}
+      onClick={showTooltip ? (event) => event.stopPropagation() : undefined}
     />
   );
 

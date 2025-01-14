@@ -21,6 +21,7 @@ export function Region3AZChip({
       className="chip-3AZ"
       title={t('pci_project_flavors_zone_3AZ')}
       showTooltipIcon={showTooltip}
+      onClick={showTooltip ? (event) => event.stopPropagation() : undefined}
     />
   );
 

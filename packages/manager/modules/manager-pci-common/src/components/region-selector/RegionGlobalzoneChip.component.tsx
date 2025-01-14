@@ -28,6 +28,7 @@ export function RegionGlobalzoneChip({
       showTooltipIcon={showTooltip}
       title={t(`pci_project_flavors_zone_${is1AZ ? '1AZ' : 'global_region'}`)}
       className="chip-1AZ"
+      onClick={showTooltip ? (event) => event.stopPropagation() : undefined}
     />
   );
 

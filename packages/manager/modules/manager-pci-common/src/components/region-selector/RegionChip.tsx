@@ -1,5 +1,6 @@
 import { OsdsChip, OsdsIcon, OsdsText } from '@ovhcloud/ods-components/react';
 import {
+  JSX,
   ODS_CHIP_SIZE,
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
@@ -7,23 +8,23 @@ import {
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import React from 'react';
+import React, { HTMLAttributes } from 'react';
+
+export type RegionChipProps = JSX.OsdsChip &
+  HTMLAttributes<HTMLOsdsChipElement> & {
+    showTooltipIcon?: boolean;
+    title: string;
+    className?: string;
+  };
 
 export function RegionChip({
   showTooltipIcon,
   title,
   className,
-}: {
-  showTooltipIcon?: boolean;
-  title: string;
-  className?: string;
-}) {
+  ...chipProps
+}: RegionChipProps) {
   return (
-    <OsdsChip
-      class={className}
-      size={ODS_CHIP_SIZE.sm}
-      onClick={(event) => event.stopPropagation()}
-    >
+    <OsdsChip class={className} size={ODS_CHIP_SIZE.sm} {...chipProps}>
       <OsdsText level={ODS_TEXT_LEVEL.body} size={ODS_TEXT_SIZE._500}>
         {title}
       </OsdsText>
