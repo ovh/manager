@@ -54,7 +54,7 @@ const IdentitiesSelectedBase = ({
       <Datagrid
         columns={datagridColumns}
         items={items}
-        totalItems={items?.length}
+        totalItems={items.length}
         contentAlignLeft
         noResultLabel={t(
           'key_management_service_credential_create_identities_list_button_no_result_label',

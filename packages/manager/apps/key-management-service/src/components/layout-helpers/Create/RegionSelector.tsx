@@ -25,7 +25,7 @@ import { useNavigate } from 'react-router-dom';
 import { ErrorBanner, Region } from '@ovh-ux/manager-react-components';
 import { useOrderCatalogOKMS } from '@/data/hooks/useOrderCatalogOKMS';
 import { ROUTES_URLS } from '@/routes/routes.constants';
-import createKmsTestIds from '@/pages/create/createKms.constants';
+import { CREATE_KMS_TEST_IDS } from '@/pages/create/createKms.constants';
 
 export type RegionSelectorProps = {
   setOrderInitiated: () => void;
@@ -54,7 +54,7 @@ const RegionSelector = ({
       <Suspense>
         <ErrorBanner
           error={error.response}
-          data-testid={createKmsTestIds.catalogError}
+          data-testid={CREATE_KMS_TEST_IDS.catalogError}
         />
       </Suspense>
     );
@@ -62,16 +62,10 @@ const RegionSelector = ({
   return (
     <div className="flex flex-col gap-8">
       <div className="flex flex-col gap-4">
-        <OdsText
-          preset={ODS_TEXT_PRESET.heading2}
-          data-testid={createKmsTestIds.regionTitle}
-        >
+        <OdsText preset={ODS_TEXT_PRESET.heading2}>
           {t('key_management_service_create_region_title')}
         </OdsText>
-        <OdsText
-          preset={ODS_TEXT_PRESET.paragraph}
-          data-testid={createKmsTestIds.regionDescription}
-        >
+        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t('key_management_service_create_region_description')}
         </OdsText>
         {isLoading && (
@@ -82,6 +76,7 @@ const RegionSelector = ({
             className="md:w-[250px] sm:w-full"
             name="select-region"
             placeholder={t('key_management_service_create_select_placeholder')}
+            data-testid={CREATE_KMS_TEST_IDS.selectRegion}
             onOdsChange={(v) => {
               const value = v.detail.value?.toString();
 
@@ -102,7 +97,7 @@ const RegionSelector = ({
                 <option
                   key={region}
                   value={region}
-                  data-testid={`select-region-option-${region}`}
+                  data-testid={`${CREATE_KMS_TEST_IDS.selectRegion}-${region}`}
                 >
                   <Region
                     mode="region"
@@ -129,7 +124,7 @@ const RegionSelector = ({
             navigate(ROUTES_URLS.root);
           }}
           label={t('key_management_service_create_cta_cancel')}
-          data-testid={createKmsTestIds.ctaCancel}
+          data-testid={CREATE_KMS_TEST_IDS.ctaCancel}
         />
         <OdsButton
           size={ODS_BUTTON_SIZE.md}
@@ -147,7 +142,7 @@ const RegionSelector = ({
           icon={ODS_ICON_NAME.externalLink}
           iconAlignment={ODS_BUTTON_ICON_ALIGNMENT.left}
           label={t('key_management_service_create_cta_order')}
-          data-testid={createKmsTestIds.ctaCreate}
+          data-testid={CREATE_KMS_TEST_IDS.ctaCreate}
         />
       </div>
     </div>

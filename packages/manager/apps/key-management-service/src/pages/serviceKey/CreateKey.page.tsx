@@ -39,6 +39,7 @@ import { ProtectionLevelSection } from './ProtectionLevelSection.component';
 import { GeneralInformationSection } from './GeneralInformationSection.component';
 import { KeyTypeSection } from './KeyTypeSection.component';
 import { KeyUsageSection } from './KeyUsageSection.component';
+import { CREATE_KEY_TEST_IDS } from './CreateKey.constants';
 
 export default function CreateKey() {
   const { okmsId } = useParams();
@@ -214,6 +215,7 @@ export default function CreateKey() {
                 <OdsButton
                   size={ODS_BUTTON_SIZE.md}
                   color={ODS_BUTTON_COLOR.primary}
+                  data-testid={CREATE_KEY_TEST_IDS.ctaConfirm}
                   onClick={() => {
                     trackClick({
                       location: PageLocation.funnel,

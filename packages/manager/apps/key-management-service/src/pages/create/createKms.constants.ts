@@ -1,10 +1,8 @@
-const createKmsTestIds = {
-  subtitle: 'kms-create-subtitle',
-  regionTitle: 'region-title',
-  regionDescription: 'region-description',
+export const CREATE_KMS_TEST_IDS = {
+  selectRegion: 'select-region',
   ctaCancel: 'cta-cancel',
   ctaCreate: 'cta-create',
   catalogError: 'catalog-create',
+  orderLink: 'order-link',
+  ctaFinish: 'cta-finish',
 };
-
-export default createKmsTestIds;

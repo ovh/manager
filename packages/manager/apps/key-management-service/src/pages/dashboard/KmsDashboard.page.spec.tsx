@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import {
   WAIT_FOR_DEFAULT_OPTIONS,
   assertTextVisibility,
-  getOds18ButtonByLabel,
+  getOdsButtonByLabel,
 } from '@ovh-ux/manager-core-test-utils';
 import { renderTestApp } from '@/utils/tests/renderTestApp';
 import { labels } from '@/utils/tests/init.i18n';
@@ -39,10 +39,11 @@ describe('KMS dashboard test suite', () => {
   it(`should navigate back to the kms list on click on ${labels.dashboard.key_management_service_dashboard_back_link}`, async () => {
     const { container } = await renderTestApp(`/${okmsMock[0].id}`);
 
-    const backLink = await getOds18ButtonByLabel({
+    const backLink = await getOdsButtonByLabel({
       container,
       label: labels.dashboard.key_management_service_dashboard_back_link,
       isLink: true,
+      timeout: 3000,
     });
 
     await waitFor(() => userEvent.click(backLink));

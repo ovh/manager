@@ -1,14 +1,17 @@
 import { act, screen, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
-import { WAIT_FOR_DEFAULT_OPTIONS } from '@ovh-ux/manager-core-test-utils';
+import {
+  selectOdsSelectOption,
+  WAIT_FOR_DEFAULT_OPTIONS,
+} from '@ovh-ux/manager-core-test-utils';
 import { renderTestApp } from '@/utils/tests/renderTestApp';
 import { labels } from '@/utils/tests/init.i18n';
 import { ROUTES_URLS } from '@/routes/routes.constants';
 import { catalogMock } from '@/mocks/catalog/catalog.mock';
 import * as getKMSExpressOrderLink from '../../components/layout-helpers/Create/order-utils';
-import createKmsTestIds from './createKms.constants';
 import kmsListingTestIds from '../listing/KmsListing.constants';
+import { CREATE_KMS_TEST_IDS } from './createKms.constants';
 
 Object.assign(window, {
   open: vi.fn().mockImplementation(() => Promise.resolve()),
@@ -24,15 +27,26 @@ describe('KMS creation page test suite', () => {
     await renderTestApp(`/${ROUTES_URLS.createKeyManagementService}`);
 
     await waitFor(
-      () => expect(screen.getByTestId(createKmsTestIds.subtitle)).toBeVisible(),
+      () =>
+        expect(
+          screen.getByText(
+            labels.create.key_management_service_create_region_title,
+          ),
+        ).toBeVisible(),
 
       WAIT_FOR_DEFAULT_OPTIONS,
     );
 
-    expect(screen.getByTestId(createKmsTestIds.regionTitle)).toBeVisible();
+    expect(
+      screen.getByText(
+        labels.create.key_management_service_create_region_description,
+      ),
+    ).toBeVisible();
 
     expect(
-      screen.getByTestId(createKmsTestIds.regionDescription),
+      screen.getByText(
+        labels.create.key_management_service_create_region_description,
+      ),
     ).toBeVisible();
 
     await waitFor(
@@ -45,8 +59,8 @@ describe('KMS creation page test suite', () => {
       WAIT_FOR_DEFAULT_OPTIONS,
     );
 
-    expect(screen.getByTestId(createKmsTestIds.ctaCancel)).toBeEnabled();
-    expect(screen.getByTestId(createKmsTestIds.ctaCreate)).toBeDisabled();
+    expect(screen.getByTestId(CREATE_KMS_TEST_IDS.ctaCancel)).toBeEnabled();
+    expect(screen.getByTestId(CREATE_KMS_TEST_IDS.ctaCreate)).toBeDisabled();
   });
 
   it(`should navigate back to the list on click on ${labels.create.key_management_service_create_cta_cancel}`, async () => {
@@ -55,12 +69,12 @@ describe('KMS creation page test suite', () => {
 
     await waitFor(
       () =>
-        expect(screen.getByTestId(createKmsTestIds.ctaCancel)).toBeEnabled(),
+        expect(screen.getByTestId(CREATE_KMS_TEST_IDS.ctaCancel)).toBeEnabled(),
       WAIT_FOR_DEFAULT_OPTIONS,
     );
 
     await act(() => {
-      user.click(screen.getByTestId(createKmsTestIds.ctaCancel));
+      user.click(screen.getByTestId(CREATE_KMS_TEST_IDS.ctaCancel));
     });
 
     await waitFor(
@@ -78,7 +92,7 @@ describe('KMS creation page test suite', () => {
     await waitFor(
       () =>
         expect(
-          screen.getByTestId(createKmsTestIds.catalogError),
+          screen.getByTestId(CREATE_KMS_TEST_IDS.catalogError),
         ).toBeInTheDocument(),
       WAIT_FOR_DEFAULT_OPTIONS,
     );
@@ -90,28 +104,21 @@ describe('KMS creation page test suite', () => {
     await waitFor(
       () =>
         expect(
-          screen.getByText(
+          screen.getByPlaceholderText(
             labels.create.key_management_service_create_select_placeholder,
           ),
         ).toBeVisible(),
       WAIT_FOR_DEFAULT_OPTIONS,
     );
 
-    await waitFor(() => userEvent.click(screen.getByTestId('select-region')));
-
-    await userEvent.click(
-      screen.getByTestId(
-        `select-region-option-${catalogMock.plans[0].configurations[0].values[0]}`,
-      ),
-    );
+    selectOdsSelectOption({
+      testId: CREATE_KMS_TEST_IDS.selectRegion,
+      value: catalogMock.plans[0].configurations[0].values[0],
+    });
 
     await waitFor(
       () =>
-        expect(
-          screen.getByText(
-            labels.create.key_management_service_create_cta_order,
-          ),
-        ).toBeEnabled(),
+        expect(screen.getByTestId(CREATE_KMS_TEST_IDS.ctaCreate)).toBeEnabled(),
       WAIT_FOR_DEFAULT_OPTIONS,
     );
   });
@@ -119,36 +126,42 @@ describe('KMS creation page test suite', () => {
 
 describe('order KMS test suite', () => {
   beforeEach(async () => {
+    const user = userEvent.setup();
     await renderTestApp(`/${ROUTES_URLS.createKeyManagementService}`);
 
     await waitFor(
       () =>
         expect(
-          screen.getByText(
+          screen.getByPlaceholderText(
             labels.create.key_management_service_create_select_placeholder,
           ),
         ).toBeVisible(),
       WAIT_FOR_DEFAULT_OPTIONS,
     );
 
-    await waitFor(() => userEvent.click(screen.getByTestId('select-region')));
+    selectOdsSelectOption({
+      testId: CREATE_KMS_TEST_IDS.selectRegion,
+      value: catalogMock.plans[0].configurations[0].values[0],
+    });
 
-    await waitFor(() =>
-      userEvent.click(
-        screen.getByTestId(
-          `select-region-option-${catalogMock.plans[0].configurations[0].values[0]}`,
-        ),
-      ),
+    await waitFor(
+      () =>
+        expect(screen.getByTestId(CREATE_KMS_TEST_IDS.ctaCreate)).toBeEnabled(),
+      WAIT_FOR_DEFAULT_OPTIONS,
     );
 
-    expect(
-      screen.getByText(labels.create.key_management_service_create_cta_order),
-    ).toBeEnabled();
+    await act(() => {
+      user.click(screen.getByTestId(CREATE_KMS_TEST_IDS.ctaCreate));
+    });
 
-    await waitFor(() =>
-      userEvent.click(
-        screen.getByText(labels.create.key_management_service_create_cta_order),
-      ),
+    await waitFor(
+      () =>
+        expect(
+          screen.getByText(
+            labels.create.key_management_service_create_order_initiated_title,
+          ),
+        ).toBeVisible(),
+      WAIT_FOR_DEFAULT_OPTIONS,
     );
   });
 
@@ -163,17 +176,11 @@ describe('order KMS test suite', () => {
   it('should display the order confirmation page', async () => {
     expect(
       screen.getByText(
-        labels.create.key_management_service_create_order_initiated_title,
-      ),
-    ).toBeVisible();
-
-    expect(
-      screen.getByText(
         labels.create.key_management_service_create_order_initiated_subtitle,
       ),
     ).toBeVisible();
 
-    expect(screen.getByText(mockedUrl)).toBeVisible();
+    expect(screen.getByTestId(CREATE_KMS_TEST_IDS.orderLink)).toBeVisible();
 
     expect(
       screen.getByText(
@@ -181,17 +188,14 @@ describe('order KMS test suite', () => {
       ),
     ).toBeVisible();
 
-    expect(
-      screen.getByText(
-        labels.create.key_management_service_create_order_initiated_cta_done,
-      ),
-    ).toBeVisible();
+    expect(screen.getByTestId(CREATE_KMS_TEST_IDS.ctaFinish)).toBeVisible();
   });
 
   it('should open the order page on link click', async () => {
-    expect(screen.getByText(mockedUrl)).toBeVisible();
+    const link = screen.getByTestId(CREATE_KMS_TEST_IDS.orderLink);
+    expect(link).toBeVisible();
 
-    await userEvent.click(screen.getByText(mockedUrl));
+    await userEvent.click(link);
 
     expect(window.open).toHaveBeenCalledWith(
       mockedUrl,
@@ -201,19 +205,10 @@ describe('order KMS test suite', () => {
   });
 
   it(`should redirect to the listing page on click on ${labels.create.key_management_service_create_order_initiated_cta_done}`, async () => {
-    expect(
-      screen.getByText(
-        labels.create.key_management_service_create_order_initiated_cta_done,
-      ),
-    ).toBeEnabled();
+    const ctaDone = screen.getByTestId(CREATE_KMS_TEST_IDS.ctaFinish);
+    expect(ctaDone).toBeEnabled();
 
-    await waitFor(() =>
-      userEvent.click(
-        screen.getByText(
-          labels.create.key_management_service_create_order_initiated_cta_done,
-        ),
-      ),
-    );
+    await waitFor(() => userEvent.click(ctaDone));
 
     await waitFor(
       () =>

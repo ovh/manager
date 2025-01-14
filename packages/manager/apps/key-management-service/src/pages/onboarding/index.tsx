@@ -24,15 +24,19 @@ export default function Onboarding() {
     <OnboardingLayout
       title={t('title')}
       img={{ src: onboardingImgSrc }}
-      description={descriptionsKeys.map((descKey) => (
-        <OdsText
-          key={descKey}
-          className="block text-center mb-4"
-          preset={ODS_TEXT_PRESET.paragraph}
-        >
-          {t(descKey)}
-        </OdsText>
-      ))}
+      description={
+        <div className="flex flex-col gap-3">
+          {descriptionsKeys.map((descKey) => (
+            <OdsText
+              key={descKey}
+              className="block text-center"
+              preset={ODS_TEXT_PRESET.paragraph}
+            >
+              {t(descKey)}
+            </OdsText>
+          ))}
+        </div>
+      }
       orderButtonLabel={t('orderButtonLabel')}
       onOrderButtonClick={() => {
         trackClick({

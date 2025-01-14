@@ -34,6 +34,7 @@ import { OkmsContext } from '..';
 import Loading from '@/components/Loading/Loading';
 import { getOkmsServiceKeyResourceListQueryKey } from '@/data/api/okmsServiceKey';
 import { kmsIamActions } from '@/utils/iam/iam.constants';
+import { SERVICE_KEY_LIST_TEST_IDS } from './ServiceKeyList.constants';
 
 export default function Keys() {
   const { t } = useTranslation('key-management-service/serviceKeys');
@@ -110,6 +111,7 @@ export default function Keys() {
       )}
       <ManagerButton
         id="createEncryptionKey"
+        data-testid={SERVICE_KEY_LIST_TEST_IDS.ctaCreateKey}
         size={ODS_BUTTON_SIZE.sm}
         color={ODS_BUTTON_COLOR.primary}
         className="w-fit"

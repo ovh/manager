@@ -1,8 +1,8 @@
 import { screen, waitFor } from '@testing-library/react';
 import {
-  assertOds18ModalVisibility,
+  assertOdsModalVisibility,
   assertTextVisibility,
-  getOds18ButtonByLabel,
+  getOdsButtonByLabel,
 } from '@ovh-ux/manager-core-test-utils';
 import userEvent from '@testing-library/user-event';
 import { renderTestApp } from '@/utils/tests/renderTestApp';
@@ -35,7 +35,7 @@ describe('KMS listing test suite', () => {
   it(`should navigate to the kms creation form on click on "${labels.listing.key_management_service_listing_add_kms_button}" button`, async () => {
     const { container } = await renderTestApp();
 
-    const button = await getOds18ButtonByLabel({
+    const button = await getOdsButtonByLabel({
       container,
       label: labels.listing.key_management_service_listing_add_kms_button,
       altLabel: 'key_management_service_listing_add_kms_button',
@@ -51,7 +51,7 @@ describe('KMS listing test suite', () => {
   it('should navigate to a kms dashboard on click on kms name', async () => {
     const { container } = await renderTestApp();
 
-    const dashboardLink = await getOds18ButtonByLabel({
+    const dashboardLink = await getOdsButtonByLabel({
       container,
       label: okmsMock[0].iam.displayName,
       isLink: true,
@@ -65,13 +65,13 @@ describe('KMS listing test suite', () => {
   it(`should navigate to the kms delete modal on click on "${labels.listing.key_management_service_listing_terminate}" list action button`, async () => {
     const { container } = await renderTestApp();
 
-    const terminateButton = await getOds18ButtonByLabel({
+    const terminateButton = await getOdsButtonByLabel({
       container,
       label: labels.listing.key_management_service_listing_terminate,
     });
 
     await waitFor(() => userEvent.click(terminateButton));
 
-    await assertOds18ModalVisibility({ container, isVisible: true });
+    await assertOdsModalVisibility({ container, isVisible: true });
   });
 });

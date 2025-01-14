@@ -93,6 +93,7 @@ export const DatagridServiceKeyCellName = (props: OkmsAllServiceKeys) => {
         navigate(`${props?.id}`);
       }}
       label={props?.name}
+      data-testid={`service-key-link-${props.id}`}
     />
   );
 };
