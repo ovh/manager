@@ -13,8 +13,9 @@ const IpBlock = () => {
     <Controller
       name="ipBlock"
       control={control}
-      render={({ field: { onChange, value } }) => (
+      render={({ field: { onChange, value, onBlur } }) => (
         <OsdsInput
+          onOdsInputBlur={onBlur}
           placeholder="ex: 192.168.1.1/32"
           color={ODS_TEXT_COLOR_INTENT.primary}
           type={ODS_INPUT_TYPE.text}
