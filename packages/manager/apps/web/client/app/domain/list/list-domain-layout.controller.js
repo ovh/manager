@@ -122,11 +122,6 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
       ),
     };
 
-    this.CANCEL_LINK = this.coreURLBuilder.buildURL(
-      'dedicated',
-      '#/billing/autorenew/delete?serviceId=',
-    );
-
     this.USER_ACCOUNT_INFOS_LINK = this.coreURLBuilder.buildURL(
       'dedicated',
       '#/useraccount/infos',
@@ -181,6 +176,13 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
     this.$window.top.location.href = this.coreURLBuilder.buildURL(
       'dedicated',
       `#/billing/autorenew/disable?selectedType=DOMAIN&searchText=${domain}&services=${serviceId}`,
+    );
+  }
+
+  goToTerminateDomain({ domain }) {
+    this.$window.top.location.href = this.coreURLBuilder.buildURL(
+      'dedicated',
+      `#/billing/autoRenew?searchText=${domain}&selectedType=DOMAIN`,
     );
   }
 
