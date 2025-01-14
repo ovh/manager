@@ -186,7 +186,12 @@ const Filters = () => {
                   },
                 ]}
                 onAddFilter={(addedFilter, column) => {
-                  handleAddFilter(addedFilter.value, column.id, column.label);
+                  handleAddFilter(
+                    addedFilter.value,
+                    column.id,
+                    column.label,
+                    addedFilter.comparator,
+                  );
                   filterPopoverRef.current?.closeSurface();
                 }}
               />
