@@ -1,52 +1,53 @@
-import { FC, useContext } from 'react';
-import { Links, LinkType } from '@ovh-ux/manager-react-components';
+import React, { useContext } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useTranslation } from 'react-i18next';
-import { OdsPopover, OdsTag, OdsText } from '@ovhcloud/ods-components/react';
-import {
-  ODS_ICON_NAME,
-  ODS_TAG_COLOR,
-  ODS_TAG_SIZE,
-} from '@ovhcloud/ods-components';
 import { URL_INFO } from './constants';
+import { useHas3AZ } from '../../hooks/useHas3AZ/useHas3AZ';
+import { useIs1AZ } from '../../hooks/useIs1AZ/useIs1AZ';
+import { RegionChip } from './RegionChip';
+import { RegionPopover } from './RegionPopover';
 
-export type TRegionGlobalzoneChipProps = Readonly<{ id: string }>;
-
-export const RegionGlobalzoneChip: FC<TRegionGlobalzoneChipProps> = ({
-  id,
-}) => {
+export function RegionGlobalzoneChip({
+  showTooltip = true,
+}: Readonly<{
+  showTooltip?: boolean;
+}>) {
   const { t } = useTranslation('pci-region-selector');
+  const is1AZ = useIs1AZ();
   const context = useContext(ShellContext);
   const { ovhSubsidiary } = context.environment.getUser();
-  const getDocumentUrl = (linkType: string) =>
-    URL_INFO[linkType as keyof typeof URL_INFO][ovhSubsidiary] ||
-    URL_INFO[linkType as keyof typeof URL_INFO].DEFAULT;
 
-  return (
-    <>
-      <div id={id}>
-        <OdsTag
-          className="font-bold"
-          label={t('pci_project_flavors_zone_global_region')}
-          icon={ODS_ICON_NAME.question}
-          color={ODS_TAG_COLOR.information}
-          size={ODS_TAG_SIZE.md}
-          onClick={(event) => event.stopPropagation()}
-        />
-      </div>
-      <OdsPopover triggerId={id}>
-        <OdsText preset="span">
-          {t('pci_project_flavors_zone_globalregions_tooltip')}
-        </OdsText>
-        &nbsp;
-        <Links
-          tab-index="-1"
-          label={t('pci_project_flavors_zone_tooltip_link')}
-          type={LinkType.external}
-          target="_blank"
-          href={getDocumentUrl('GLOBAL_REGIONS')}
-        />
-      </OdsPopover>
-    </>
+  const linkType = is1AZ ? '1AZ_REGIONS' : 'GLOBAL_REGIONS';
+  const tooltipUrl =
+    URL_INFO[linkType][ovhSubsidiary] || URL_INFO[linkType].DEFAULT;
+
+  const has3AZ = useHas3AZ();
+
+  const chip = (
+    <RegionChip
+      showTooltipIcon={showTooltip}
+      title={t(`pci_project_flavors_zone_${is1AZ ? '1AZ' : 'global_region'}`)}
+      className="chip-1AZ"
+      onClick={showTooltip ? (event) => event.stopPropagation() : undefined}
+    />
   );
-};
+
+  return showTooltip ? (
+    <RegionPopover
+      tooltipUrl={tooltipUrl}
+      tooltip={
+        is1AZ && !has3AZ
+          ? t('pci_project_flavors_zone_1AZ_with_3AZ_tooltip')
+          : t(
+              `pci_project_flavors_zone_${
+                is1AZ ? '1AZ' : 'globalregions'
+              }_tooltip`,
+            )
+      }
+    >
+      {chip}
+    </RegionPopover>
+  ) : (
+    chip
+  );
+}
