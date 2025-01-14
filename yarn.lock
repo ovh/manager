@@ -5792,9 +5792,10 @@
     date-fns "^3.6.0"
     lodash.isequal "^4.5.0"
 
-"@ovh-ux/manager-pci-common@file:ovh-ux-manager-pci-common-v0.15.0-3az.1.tgz":
-  version "0.15.0-3az.1"
-  resolved "file:ovh-ux-manager-pci-common-v0.15.0-3az.1.tgz#32a775334d46dbb5b9d3886d514f54f8958820ec"
+"@ovh-ux/manager-pci-common@file:ovh-ux-manager-pci-common-v0.15.0-3az.2.tgz":
+  version "0.15.0-3az.2"
+  uid "626394a67a65be739851f6d26fc07cfb987008c7"
+  resolved "file:ovh-ux-manager-pci-common-v0.15.0-3az.2.tgz#626394a67a65be739851f6d26fc07cfb987008c7"
   dependencies:
     "@ovh-ux/manager-tailwind-config" "^0.2.1"
     clsx "2.1.1"
