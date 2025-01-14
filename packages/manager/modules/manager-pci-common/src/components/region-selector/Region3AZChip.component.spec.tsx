@@ -1,15 +1,16 @@
 import { render } from '@testing-library/react';
-import { RegionGlobalzoneChip } from './RegionGlobalzoneChip.component';
+import { describe, it } from 'vitest';
 import { wrapper } from '@/wrapperRenders';
+import { Region3AZChip } from './Region3AZChip.component';
 
-describe('RegionGlobalzoneChip', () => {
+describe('Region3AZChip', () => {
   it('renders tag with correct text', () => {
-    const { container } = render(<RegionGlobalzoneChip />, {
+    const { container } = render(<Region3AZChip />, {
       wrapper,
     });
     const tagElt = container.querySelector('ods-badge');
 
     expect(tagElt).toBeInTheDocument();
-    expect(tagElt).toHaveAttribute('label', 'pci_project_flavors_zone_1AZ');
+    expect(tagElt).toHaveAttribute('label', 'pci_project_flavors_zone_3AZ');
   });
 });
