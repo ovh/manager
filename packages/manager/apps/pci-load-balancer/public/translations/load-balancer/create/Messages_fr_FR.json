@@ -44,6 +44,5 @@
   "octavia_load_balancer_create_banner": "Votre Load Balancer est en cours de création. Cela ne prendra que quelques minutes.",
   "octavia_load_balancer_create_private_network": "Il n'existe aucun réseau privé dans la région sélectionnée. Assurez-vous de <link /> avant la création du Load Balancer.",
   "octavia_load_balancer_create_private_network_label": "créer un réseau privé",
-  "octavia_load_balancer_create_region_3az_price": "Load Balancer est actuellement en phase Beta dans la zone Paris (eu-west-par) et est donc gratuite durant cette période.",
-  "octavia_load_balancer_create_region_1az": "Avec l'arrivée prochaine des régions 3-AZ, le type de déploiement 'Régions' change de nom ! Une région 1-AZ (zone de disponibilité) regroupe un ou plusieurs datacenters localisés sur un même site. "
+  "octavia_load_balancer_create_region_3az_price": "Load Balancer est actuellement en phase Beta dans la zone Paris (eu-west-par) et est donc gratuite durant cette période."
 }

@@ -11,6 +11,10 @@ import { REGION_AVAILABILITY_LINK } from '@/constants';
 vi.mock('@ovh-ux/manager-pci-common', () => ({
   useProject: vi.fn().mockReturnValue({ data: { project_id: 'project_id' } }),
   RegionSelector: () => <div />,
+  usePCICommonContextFactory: vi.fn(),
+  PCICommonContext: {
+    Provider: () => <></>,
+  },
 }));
 
 vi.mock('react-i18next', async () => {
