@@ -30,8 +30,8 @@ export const StorageOrderSelectCell = (storage: VCDOrderableStoragePriced) => {
   );
 };
 
-export const StorageOrderTypeCell = (storage: VCDOrderableStoragePriced) => (
-  <DataGridTextCell>{storage.name}</DataGridTextCell>
+export const StorageOrderTypeCell = ({ name }: VCDOrderableStoragePriced) => (
+  <DataGridTextCell>{name}</DataGridTextCell>
 );
 
 export const StorageOrderPriceCell = (storage: VCDOrderableStoragePriced) => {
@@ -42,6 +42,17 @@ export const StorageOrderPriceCell = (storage: VCDOrderableStoragePriced) => {
         {getVdcResourcePriceLabel(storage)}
       </Description>
       <Description>{t('managed_vcd_vdc_order_price_detail')}</Description>
+    </DataGridTextCell>
+  );
+};
+
+export const StoragePerformanceClassCell = ({
+  performanceClass,
+}: VCDOrderableStoragePriced) => {
+  const { t } = useTranslation('datacentres/order');
+  return (
+    <DataGridTextCell>
+      {t('managed_vcd_vdc_order_performance_class', { performanceClass })}
     </DataGridTextCell>
   );
 };
