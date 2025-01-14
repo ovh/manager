@@ -11,7 +11,11 @@ import {
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useNavigation } from '@ovh-ux/manager-react-shell-client';
-import { RegionSelector } from '@ovh-ux/manager-pci-common';
+import {
+  RegionSelector,
+  usePCICommonContextFactory,
+  PCICommonContext,
+} from '@ovh-ux/manager-pci-common';
 import { useTranslation } from 'react-i18next';
 import { useEffect, useMemo, useState } from 'react';
 import { useData } from '@/api/hooks/useData';
@@ -20,6 +24,9 @@ import { useOrderStore } from '@/pages/order/hooks/useStore';
 import { useActions } from '@/pages/order/hooks/useActions';
 import { StepComponent } from '@/components/container/Step.component';
 import { FloatingIpSummary } from '@/pages/order/steps/FloatingIpSummary';
+
+const isRegionWith3AZ = (regions: TRegion[]) =>
+  regions.some((region) => region.type === RegionType['3AZ']);
 
 export const FloatingSteps = ({
   projectId,
@@ -68,6 +75,9 @@ export const FloatingSteps = ({
     }
   }, [selectedInstanceIpAddresses]);
 
+  const has3AZ = isRegionWith3AZ(DataState.regions);
+  const pciCommonProperties = usePCICommonContextFactory({ has3AZ });
+
   return (
     <>
       <StepComponent
@@ -80,42 +90,44 @@ export const FloatingSteps = ({
         onEdit={On.edit}
         order={2}
       >
-        <RegionSelector
-          projectId={projectId}
-          onSelectRegion={(region) => {
-            // to reset the previews selection if the region is Macro
-            setForm({ ...form, floatingRegion: undefined });
+        <PCICommonContext.Provider value={pciCommonProperties}>
+          <RegionSelector
+            projectId={projectId}
+            onSelectRegion={(region) => {
+              // to reset the previews selection if the region is Macro
+              setForm({ ...form, floatingRegion: undefined });
 
-            if (region) {
-              const {
-                continentLabel: continent,
-                continentCode,
-                datacenterLocation: datacenter,
-                status,
-                macroLabel: macroName,
-                microLabel: microName,
-                name,
-              } = region;
+              if (region) {
+                const {
+                  continentLabel: continent,
+                  continentCode,
+                  datacenterLocation: datacenter,
+                  status,
+                  macroLabel: macroName,
+                  microLabel: microName,
+                  name,
+                } = region;
 
-              const floatingRegion: TRegion = {
-                continent,
-                continentCode,
-                datacenter,
-                enabled: status === 'UP',
-                macroName,
-                microName,
-                name,
-                type: region.type as RegionType,
-              };
+                const floatingRegion: TRegion = {
+                  continent,
+                  continentCode,
+                  datacenter,
+                  enabled: status === 'UP',
+                  macroName,
+                  microName,
+                  name,
+                  type: region.type as RegionType,
+                };
 
-              setForm({ ...form, floatingRegion });
+                setForm({ ...form, floatingRegion });
+              }
+            }}
+            regionFilter={(region) =>
+              region.isMacro ||
+              DataState.regions.some(({ name }) => name === region.name)
             }
-          }}
-          regionFilter={(region) =>
-            region.isMacro ||
-            DataState.regions.some(({ name }) => name === region.name)
-          }
-        />
+          />
+        </PCICommonContext.Provider>
         {form.floatingRegion?.type === RegionType['3AZ'] && (
           <OsdsMessage
             color={ODS_THEME_COLOR_INTENT.warning}
