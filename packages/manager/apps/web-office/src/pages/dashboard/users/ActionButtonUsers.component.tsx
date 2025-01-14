@@ -33,10 +33,18 @@ const ActionButtonUsers: React.FC<ActionButtonUsersProps> = ({
     }),
   });
 
-  const handlePasswordChangeClick = () => {
-    // @todo: for next user story
-    console.log('handlePasswordChangeClick');
-  };
+  const hrefChangePasswordUsers = useGenerateUrl(
+    './users/change-password',
+    'path',
+    {
+      activationEmail: usersItem.activationEmail,
+      ...(!licenceDetail.serviceType && {
+        licencePrepaidName: licenceDetail.serviceName,
+      }),
+    },
+  );
+
+  const handlePasswordChangeClick = () => navigate(hrefChangePasswordUsers);
 
   const handleDeleteUserClick = () => navigate(hrefDeleteUsers);
 
