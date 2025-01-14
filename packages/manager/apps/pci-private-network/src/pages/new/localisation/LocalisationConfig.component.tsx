@@ -4,6 +4,7 @@ import {
   RegionSelector,
   useProject,
   PCICommonContext,
+  usePCICommonContextFactory,
   useProjectRegions,
   TRegion,
 } from '@ovh-ux/manager-pci-common';
@@ -22,11 +23,12 @@ const LocalisationConfig: React.FC = () => {
   const { data: regions } = useProjectRegions(project.project_id);
 
   const has3AZ = useMemo(() => isRegionWith3AZ(regions), [regions]);
+  const pciCommonProperties = usePCICommonContextFactory({ has3AZ });
 
   return (
     <div className="flex flex-col gap-6 my-8">
       <Subtitle>{t('pci_project_network_private_localisation')}</Subtitle>
-      <PCICommonContext.Provider value={{ has3AZ }}>
+      <PCICommonContext.Provider value={pciCommonProperties}>
         <RegionSelector
           projectId={project.project_id}
           onSelectRegion={(region) => {
