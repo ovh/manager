@@ -29,7 +29,7 @@ version_mrc() {
 
   if "${DRY_RELEASE}"; then
     printf "%s\n" "Dry releasing"
-    node_modules/.bin/lerna version --scope=manager-react-components --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --allow-branch="${GIT_BRANCH}" --yes
+    node_modules/.bin/lerna version --scope=@ovh-ux/manager-react-components --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --allow-branch="${GIT_BRANCH}" --yes
   else
     printf "%s\n" "Releasing"
     node_modules/.bin/lerna exec --scope=@ovh-ux/manager-react-components -- lerna version --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --no-private --ignore-changes="packages/manager/modules/manager-pci-common/**" --yes
@@ -37,7 +37,7 @@ version_mrc() {
 }
 
 get_changed_packages() {
-  node_modules/.bin/lerna changed --all -p -l
+  node_modules/.bin/lerna changed --all -p -l --no-ignore-changes
 }
 
 get_release_name() {
@@ -62,18 +62,6 @@ create_release_note() (
 )
 
 push_and_release() {
-  printf "%s\n" "Commit and tag"
-  git add .
-  git commit -s -m "release: $1"
-  git tag -a -m "release: $1" "$1"
-  if ! "${DRY_RELEASE}"; then
-    gh config set prompt disabled
-    git push origin "${GIT_BRANCH}" --tags
-    echo "${RELEASE_NOTE}" | gh release create "$1" -F -
-  fi
-}
-
-push_and_release_mrc() {
   printf "%s\n" "Commit mrc changes"
   git add packages/manager-react-components/package.json packages/manager-react-components/CHANGELOG.md
   git commit -s --amend --no-edit
@@ -154,7 +142,7 @@ main() {
 
     # Commit and release manager-react-components
     clean_tags
-    push_and_release_mrc "$next_tag"
+    push_and_release "$next_tag"
   else
     printf "%s\n" "No changes detected for manager-react-components. Exiting."
     exit 0
