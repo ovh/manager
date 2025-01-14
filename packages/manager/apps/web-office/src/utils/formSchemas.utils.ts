@@ -1,5 +1,15 @@
 import { z } from 'zod';
 import i18n from 'i18next';
+import { PASSWORD_REGEX } from './form';
+
+const looseOptional = <T extends z.ZodTypeAny>(schema: T) =>
+  z.preprocess(
+    (value: unknown) =>
+      value === null || (typeof value === 'string' && value === '')
+        ? undefined
+        : value,
+    schema.optional(),
+  );
 
 export const EDIT_USERS_FORM_SCHEMA = z.object({
   firstname: z
@@ -25,3 +35,49 @@ export const EDIT_USERS_FORM_SCHEMA = z.object({
       i18n?.t('common:common_field_error_pattern'),
     ),
 });
+
+export const CHANGE_PASSWORD_USERS_FORM_SCHEMA = z
+  .object({
+    password: looseOptional(
+      z
+        .string()
+        .regex(PASSWORD_REGEX, i18n?.t('common:common_field_error_password'))
+        .min(
+          8,
+          i18n?.t('common:common_field_error_minlength', { minlength: 8 }),
+        )
+        .max(
+          16,
+          i18n?.t('common:common_field_error_maxlength', { maxlength: 16 }),
+        )
+        .optional(),
+    ),
+    confirmPassword: looseOptional(
+      z
+        .string()
+        .min(
+          8,
+          i18n?.t('common:common_field_error_minlength', { minlength: 8 }),
+        )
+        .max(
+          16,
+          i18n?.t('common:common_field_error_maxlength', { maxlength: 16 }),
+        )
+        .optional(),
+    ),
+    email: z
+      .string()
+      .email(i18n?.t('common:common_field_error_email'))
+      .max(255)
+      .nullable()
+      .optional(),
+  })
+  .refine(
+    (data) =>
+      data.confirmPassword === undefined ||
+      data.confirmPassword === data.password,
+    {
+      message: i18n?.t('common:common_field_error_confirm_password'),
+      path: ['confirmPassword'],
+    },
+  );
