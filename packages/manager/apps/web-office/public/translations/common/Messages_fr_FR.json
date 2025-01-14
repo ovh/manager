@@ -4,5 +4,8 @@
   "common_field_error_maxlength": "Veuillez saisir un maximum de {{maxlength}} caractères.",
   "common_field_error_pattern": "Veuillez saisir un format valide.",
   "cta_cancel": "Annuler",
-  "cta_confirm": "Valider"
+  "cta_confirm": "Valider",
+  "common_field_error_password": "Mot de passe invalide",
+  "common_field_error_confirm_password": "Les mots de passe doivent être identiques.",
+  "common_field_error_email": "Veuillez saisir une adresse email valide."
 }
