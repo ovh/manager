@@ -11,10 +11,11 @@ const Description = () => {
     <Controller
       name="description"
       control={control}
-      render={({ field: { onChange, value } }) => (
+      render={({ field: { onChange, value, onBlur } }) => (
         <OsdsInput
           data-testid="input-description"
           value={value}
+          onOdsInputBlur={onBlur}
           color={ODS_TEXT_COLOR_INTENT.primary}
           onOdsValueChange={(e) => onChange(e.detail.value)}
           type={ODS_INPUT_TYPE.text}

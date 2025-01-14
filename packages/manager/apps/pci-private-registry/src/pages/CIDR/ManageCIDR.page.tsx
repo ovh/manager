@@ -88,8 +88,8 @@ export default function BlocIPBlock() {
   );
   const methods = useForm<ConfirmCIDRSchemaType>({
     resolver: zodResolver(schemaAddCidr(dataCIDR.rows.map((e) => e.ipBlock))),
-    mode: 'onBlur',
-    reValidateMode: 'onChange',
+    mode: 'onSubmit',
+    reValidateMode: 'onBlur',
   });
   const { t } = useTranslation(['ip-restrictions']);
 

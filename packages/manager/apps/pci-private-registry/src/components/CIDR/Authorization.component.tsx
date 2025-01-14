@@ -5,19 +5,22 @@ import { FilterRestrictionsEnum } from '@/types';
 import { capitalizeAndJoin } from '@/helpers';
 
 const Authorization = () => {
-  const { control, formState } = useFormContext();
+  const { control, formState, trigger } = useFormContext();
   const { t } = useTranslation(['ip-restrictions']);
   return (
     <Controller
       name="authorization"
       control={control}
-      render={({ field: { onChange, value } }) => (
+      render={({ field: { onChange, value }, fieldState: { isDirty } }) => (
         <OsdsSelect
           data-testid="authorization-select"
           error={Boolean(formState.errors?.authorization?.message)}
           onOdsValueChange={(e) => {
             if (typeof e.target.value === 'string') {
               onChange(JSON.parse(e.detail.value as string));
+            }
+            if (!isDirty) {
+              trigger('authorization');
             }
           }}
           value={JSON.stringify(value)}
