@@ -20,7 +20,6 @@ import {
 import TabsPanel from '@/components/detail/TabsPanel.component';
 import { useKubeDetail } from '@/api/hooks/useKubernetes';
 import { TRACKING_TABS, CHANGELOG_CHAPTERS } from '@/tracking.constants';
-import { useAppStore } from '@/store';
 import { CHANGELOG_LINKS } from '@/constants';
 import { REFETCH_INTERVAL_DURATION } from '@/helpers';
 
@@ -29,7 +28,6 @@ export default function DetailPage() {
   const { t: tDetail } = useTranslation('detail');
   const [activePanelTranslation, setActivePanelTranslation] = useState(null);
 
-  const { region } = useAppStore();
   const { data: project } = useProject();
   const { projectId, kubeId } = useParams();
   const hrefProject = useProjectUrl('public-cloud');
