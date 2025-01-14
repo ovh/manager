@@ -26,3 +26,9 @@ export type UserParamsType = {
   firstName: string;
   lastName: string;
 };
+
+export type UserChangePasswordType = {
+  password?: string;
+  shouldSendMail: boolean;
+  notifyEmail?: string;
+};
