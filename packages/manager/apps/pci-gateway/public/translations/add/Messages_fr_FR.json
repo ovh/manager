@@ -40,6 +40,5 @@
   "pci_projects_project_public_gateways_add_region_activate_line1": "Cette région n'est pas encore activée. Vous pouvez l'activer sur l'onglet ",
   "pci_projects_project_public_gateways_add_region_activate_line2": "Quota and localisation ",
   "pci_projects_project_public_gateways_add_region_activate_line3": "puis revenir créer votre Gateway.",
-  "pci_projects_project_public_gateways_3az_price": "Gateway est actuellement en phase Beta dans la zone Paris (eu-west-par) et est donc gratuite durant cette période.",
-  "pci_projects_project_public_gateways_1az": "Avec l'arrivée prochaine des régions 3-AZ, le type de déploiement 'Régions' change de nom ! Une région 1-AZ (zone de disponibilité) regroupe un ou plusieurs datacenters localisés sur un même site. "
+  "pci_projects_project_public_gateways_3az_price": "Gateway est actuellement en phase Beta dans la zone Paris (eu-west-par) et est donc gratuite durant cette période."
 }
