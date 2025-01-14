@@ -32,7 +32,7 @@ version() {
     node_modules/.bin/lerna version --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --allow-branch="${GIT_BRANCH}" --yes
   else
     printf "%s\n" "Releasing"
-    node_modules/.bin/lerna version --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --yes --ignore-changes="packages/manager-react-components/**,packages/manager/modules/manager-pci-common/**"
+    node_modules/.bin/lerna version --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --yes
   fi
 }
 
@@ -51,7 +51,7 @@ version_mrc() {
 
   if "${DRY_RELEASE}"; then
     printf "%s\n" "Dry releasing"
-    node_modules/.bin/lerna version --scope=manager-react-components --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --allow-branch="${GIT_BRANCH}" --yes
+    node_modules/.bin/lerna version --scope @ovh-ux/manager-react-components --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --allow-branch="${GIT_BRANCH}" --no-private --yes
   else
     printf "%s\n" "Releasing"
     node_modules/.bin/lerna exec --scope=@ovh-ux/manager-react-components -- lerna version --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --no-private --ignore-changes="packages/manager/modules/manager-pci-common/**" --yes
@@ -60,6 +60,10 @@ version_mrc() {
 
 get_changed_packages() {
   node_modules/.bin/lerna changed --all -p -l
+}
+
+get_changed_packages_no_ignore_changes() {
+  node_modules/.bin/lerna changed --all -p -l --no-ignore-changes
 }
 
 get_release_name() {
@@ -88,11 +92,6 @@ push_and_release() {
   git add .
   git commit -s -m "release: $1"
   git tag -a -m "release: $1" "$1"
-  if ! "${DRY_RELEASE}"; then
-    gh config set prompt disabled
-    git push origin "${GIT_BRANCH}" --tags
-    echo "${RELEASE_NOTE}" | gh release create "$1" -F -
-  fi
 }
 
 push_and_release_mrc() {
@@ -147,21 +146,12 @@ main() {
   current_tag="$(git describe --abbrev=0)"
   printf "%s\n" "Previous tag was $current_tag"
 
-  # Separate versioning for `manager-react-components` and other packages
-  mrc_changed=false
   while read -r package; do
     name=$(echo "$package" | cut -d ':' -f 2)
     version=$(echo "$package" | cut -d ':' -f 3)
 
-    # Check if the changed package is `manager-react-components`
-    if [[ "$name" == *manager-react-components* ]]; then
-      mrc_changed=true
-      path_mrc=$(echo "$package" | cut -d ':' -f 1)
-      name_mrc=$(echo "$package" | cut -d ':' -f 2)
-      create_smoke_tag "$current_tag" "$name_mrc" "$version"
-    else
-      create_smoke_tag "$current_tag" "$name" "$version"
-    fi
+    create_smoke_tag "$current_tag" "$name" "$version"
+
   done <<< "$changed_packages"
 
 
@@ -178,12 +168,25 @@ main() {
     name=$(echo "$package" | cut -d ':' -f 2)
     RELEASE_NOTE+="$(create_release_note "$path" "$name")\n\n"
   done <<< "$changed_packages"
+  
 
-  # Remove package-specific tags for other packages
-  clean_tags
+  get_changed_packages_no_ignore_changes=$(get_changed_packages_no_ignore_changes)
 
-  # Push and release for other packages
-  push_and_release "$next_tag"
+  # Separate versioning for `manager-react-components` and other packages
+  mrc_changed=false
+  while read -r package; do
+    name=$(echo "$package" | cut -d ':' -f 2)
+    version=$(echo "$package" | cut -d ':' -f 3)
+
+    # Check if the changed package is `manager-react-components`
+    if [[ "$name" == *manager-react-components* ]]; then
+      mrc_changed=true
+      printf "%s\n" "New tag will be for manager-react-components"
+      path_mrc=$(echo "$package" | cut -d ':' -f 1)
+      name_mrc=$(echo "$package" | cut -d ':' -f 2)
+      create_smoke_tag "$current_tag" "$name_mrc" "$version"
+    fi
+  done <<< "$get_changed_packages_no_ignore_changes"
 
   # Handle `manager-react-components` separately
   if [ "$mrc_changed" == true ]; then
@@ -202,6 +205,9 @@ main() {
     clean_tags
     push_and_release_mrc "$next_tag"
   fi
+
+  # Push and release for other packages
+  push_and_release "$next_tag"
 
 }
 
