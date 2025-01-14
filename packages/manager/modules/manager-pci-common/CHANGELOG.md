@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@0.14.4...@ovh-ux/manager-pci-common@0.15.0) (2025-01-15)
+
+### Features
+
+- **pci-common:** add 3AZ region and 1AZ chip ([455b619](https://github.com/ovh/manager/commit/455b619e0e68e299089b17928233c3747313f32f))
+
 ## [0.14.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@0.14.3...@ovh-ux/manager-pci-common@0.14.4) (2025-01-09)
 
 ### Bug Fixes
