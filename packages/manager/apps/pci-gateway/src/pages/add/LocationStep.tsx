@@ -1,7 +1,11 @@
 import { StepComponent } from '@ovh-ux/manager-react-components';
-import { RegionSelector } from '@ovh-ux/manager-pci-common';
+import {
+  RegionSelector,
+  usePCICommonContextFactory,
+  PCICommonContext,
+} from '@ovh-ux/manager-pci-common';
 import { useTranslation } from 'react-i18next';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useMemo, useState } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
 import {
   OsdsIcon,
@@ -33,6 +37,9 @@ type IState = {
   selectedContinent: string;
   selectedMacroName: string;
 };
+
+const isRegionWith3AZ = (regions: TAvailableRegion[]) =>
+  regions.some((region) => region.type === RegionType['3AZ']);
 
 /**
  *
@@ -96,6 +103,10 @@ export const LocationStep = () => {
     }
   }, [searchParams, state.regions]);
 
+  const has3AZ = useMemo(() => isRegionWith3AZ(state.regions), [state.regions]);
+
+  const pciCommonProperties = usePCICommonContextFactory({ has3AZ });
+
   return (
     <StepComponent
       id={StepsEnum.LOCATION}
@@ -153,13 +164,15 @@ export const LocationStep = () => {
         isDisabled: false,
       }}
     >
-      <RegionSelector
-        projectId={projectId}
-        onSelectRegion={(region) => store.updateForm.regionName(region?.name)}
-        regionFilter={(r) =>
-          r.isMacro || state.regions.some(({ name }) => name === r.name)
-        }
-      />
+      <PCICommonContext.Provider value={pciCommonProperties}>
+        <RegionSelector
+          projectId={projectId}
+          onSelectRegion={(region) => store.updateForm.regionName(region?.name)}
+          regionFilter={(r) =>
+            r.isMacro || state.regions.some(({ name }) => name === r.name)
+          }
+        />
+      </PCICommonContext.Provider>
       {state.region?.type === RegionType['3AZ'] && (
         <OsdsMessage
           color={ODS_THEME_COLOR_INTENT.warning}
