@@ -83,6 +83,7 @@ vi.mock('@/api/users', async (importActual) => {
     ),
     deleteOfficeUser: vi.fn(() => Promise.resolve(tenantPendingTask)),
     putOfficeUserDetail: vi.fn(() => Promise.resolve(null)),
+    postUsersPassword: vi.fn(() => Promise.resolve(null)),
   };
 });
 
@@ -101,6 +102,7 @@ vi.mock('react-router-dom', async (importActual) => {
     useNavigate: vi.fn(() => navigate),
     useSearchParams: vi.fn(() => [new URLSearchParams(), vi.fn()]),
     useMatches: vi.fn(() => []),
+    useParams: vi.fn(() => []),
   };
 });
 

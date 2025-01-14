@@ -54,10 +54,9 @@ const Modal: React.FC<ModalProps> = ({
       data-testid="modal"
       color={color}
       isDismissible={isDismissible}
-      className="text-left"
+      className="text-left max-height-modal"
       onOdsClose={onClose}
       isOpen={isOpen}
-      class="max-height-modal"
     >
       <OdsText className="mb-4" preset={ODS_TEXT_PRESET.heading4}>
         {title}
