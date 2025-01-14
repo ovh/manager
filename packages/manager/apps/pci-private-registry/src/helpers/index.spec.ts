@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { categorizeByKey } from '.';
 
-import { aggregateBySpecificKey } from './index';
+import { aggregateBySpecificKey, generateUniqueString } from './index';
 
 type TestData = {
   id: number;
@@ -134,5 +134,56 @@ describe('aggregateBySpecificKey', () => {
     const result = aggregateBySpecificKey(data, 'category', 'name');
 
     expect(result).toEqual([{ id: 1, category: 'fruit', name: ['apple'] }]);
+  });
+});
+
+describe('generateUniqueString', () => {
+  const testCases = [
+    {
+      description: 'handles an array with multiple objects',
+      input: [
+        { type: 'animal', name: 'dog', age: 3 },
+        { type: 'animal', name: 'cat', age: 2 },
+        { type: 'plant', name: 'rose', age: 1 },
+        { type: 'animal', name: 'bird', age: 1 },
+      ],
+      expectedBase64:
+        'eyJ0eXBlIjoiYW5pbWFsIiwibmFtZSI6ImJpcmQiLCJhZ2UiOjF9fHsidHlwZSI6ImFuaW1hbCIsIm5hbWUiOiJjYXQiLCJhZ2UiOjJ9fHsidHlwZSI6ImFuaW1hbCIsIm5hbWUiOiJkb2ciLCJhZ2UiOjN9fHsidHlwZSI6InBsYW50IiwibmFtZSI6InJvc2UiLCJhZ2UiOjF9',
+    },
+    {
+      description: 'handles an array with a single object',
+      input: [{ type: 'animal', name: 'fox', age: 4 }],
+      expectedBase64: 'eyJ0eXBlIjoiYW5pbWFsIiwibmFtZSI6ImZveCIsImFnZSI6NH0=',
+    },
+    {
+      description: 'handles an empty array',
+      input: [],
+      expectedBase64: '',
+    },
+    {
+      description: 'handles objects with additional properties',
+      input: [
+        { type: 'vehicle', name: 'car', speed: 120 },
+        { type: 'vehicle', name: 'bike', speed: 30 },
+      ],
+      expectedBase64:
+        'eyJ0eXBlIjoidmVoaWNsZSIsIm5hbWUiOiJiaWtlIiwic3BlZWQiOjMwfXx7InR5cGUiOiJ2ZWhpY2xlIiwibmFtZSI6ImNhciIsInNwZWVkIjoxMjB9',
+    },
+  ];
+
+  it.each(testCases)('$description', ({ input, expectedBase64 }) => {
+    const result = generateUniqueString<
+      | {
+          type: string;
+          age: number;
+          name: string;
+        }
+      | {
+          type: string;
+          name: string;
+          speed: number;
+        }
+    >(input);
+    expect(result).toBe(expectedBase64);
   });
 });
