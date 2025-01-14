@@ -34,8 +34,6 @@ type IState = {
   regions: TAvailableRegion[];
   region: TAvailableRegion;
   regionsLink: string;
-  selectedContinent: string;
-  selectedMacroName: string;
 };
 
 const isRegionWith3AZ = (regions: TAvailableRegion[]) =>
@@ -61,8 +59,6 @@ export const LocationStep = () => {
     region: undefined,
     regions: [],
     regionsLink: '',
-    selectedContinent: undefined,
-    selectedMacroName: undefined,
   });
 
   useEffect(() => {
@@ -148,7 +144,7 @@ export const LocationStep = () => {
             }
           : undefined,
         label: t('stepper:Next'),
-        isDisabled: state.region && !state.region.active,
+        isDisabled: !state.region?.enabled,
       }}
       edit={{
         action: (id) => {
