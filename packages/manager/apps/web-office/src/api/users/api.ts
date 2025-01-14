@@ -1,7 +1,8 @@
 import { fetchIcebergV6, v6 } from '@ovh-ux/manager-core-api';
 import { getApiPath } from '../utils/apiPath';
+import { UserChangePasswordType, UserParamsType } from '../api.type';
 import { UserNativeType } from './type';
-import { UserParamsType } from '../api.type';
+import { useOfficeServiceType } from '@/hooks';
 
 // GET
 
@@ -26,7 +27,22 @@ export const getOfficeUserDetail = async (
 };
 
 // POST
+export const postUsersPassword = async (
+  serviceName: string,
+  activationEmail: string,
+  params: UserChangePasswordType,
+) => {
+  const serviceType = useOfficeServiceType(serviceName);
+  const apiPath = getApiPath(serviceName);
 
+  const endpoint =
+    serviceType === 'payAsYouGo'
+      ? `${apiPath}user/${activationEmail}/changePassword`
+      : `${apiPath}changePassword`;
+
+  const { data } = await v6.post(endpoint, params);
+  return data;
+};
 // PUT
 
 export const putOfficeUserDetail = async (

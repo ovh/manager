@@ -69,6 +69,20 @@ export const Routes: any = [
                   },
                 },
               },
+              {
+                path: 'users/change-password',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/dashboard/users/ModalChangePasswordUsers.component'
+                  ),
+                ),
+                handle: {
+                  tracking: {
+                    pageName: 'users-changePassword',
+                    pageType: PageType.popup,
+                  },
+                },
+              },
             ],
           },
           {
