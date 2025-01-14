@@ -1,22 +1,27 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { MutationStatus, useMutationState } from '@tanstack/react-query';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Outlet, useHref, useNavigate, useParams } from 'react-router-dom';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
 
 import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
-import { OdsButton, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
+import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
 
-import { Title } from '@ovh-ux/manager-react-components';
+import {
+  Notifications,
+  Title,
+  useNotifications,
+} from '@ovh-ux/manager-react-components';
 
 import TableContainer from '@/components/Table/TableContainer';
-import {
-  getMutationKeyCreateSavingsPlan,
-  useSavingsPlan,
-  useServiceId,
-} from '@/hooks/useSavingsPlan';
+import { useSavingsPlan } from '@/hooks/useSavingsPlan';
 import { SavingsPlanService } from '@/types';
-import { toLocalDateUTC } from '@/utils/formatter/date';
+
+interface ListingTablePageProps {
+  data: SavingsPlanService[];
+  refetchSavingsPlans: () => void;
+}
+interface ListingProps {
+  refetchSavingsPlans: () => void;
+}
 
 export const formatDateString = (dateString: string, locale?: string) => {
   const date = new Date(dateString);
@@ -31,88 +36,23 @@ export const formatDateString = (dateString: string, locale?: string) => {
     : '-';
 };
 
-const Banner = ({ message }: { message: string }) => {
-  const [showBanner, setShowBanner] = useState(true);
-
-  useEffect(() => {
-    if (message) {
-      setShowBanner(true);
-    }
-  }, [message]);
-  return (
-    showBanner && (
-      <OdsMessage
-        color="success"
-        className="my-4"
-        onOdsRemove={() => setShowBanner(false)}
-      >
-        <OdsText className="inline-block">{message}</OdsText>
-      </OdsMessage>
-    )
-  );
-};
-
-export interface ListingProps {
-  data: SavingsPlanService[];
-  refetchSavingsPlans: () => void;
-}
-
-type MutationInfo<Data = void> = {
-  submittedAt: number;
-  error?: {
-    code: string;
-  };
-  status: MutationStatus;
-  data?: Data;
-};
-
-const getMutationFilters = (filters: (string | number)[]) => ({
+export const getMutationFilters = (filters: (string | number)[]) => ({
   filters: { mutationKey: filters },
 });
 
-const ListingTablePage: React.FC<ListingProps> = ({
+const ListingTablePage: React.FC<ListingTablePageProps> = ({
   data,
   refetchSavingsPlans,
 }) => {
   const { t } = useTranslation('listing');
-  const { environment } = useContext(ShellContext);
-  const locale = environment.getUserLocale();
-
   const navigate = useNavigate();
-  const hrefDashboard = useHref('');
-  const serviceId = useServiceId();
   const { projectId } = useParams();
-  const mutationSPChangePeriod = useMutationState<
-    MutationInfo<SavingsPlanService> & {
-      variables: {
-        periodEndAction: 'REACTIVATE' | 'ACTIVATE';
-      };
-    }
-  >(getMutationFilters(['savings-plan', serviceId, 'change-period']));
+  const { clearNotifications } = useNotifications();
 
-  const mutationSPEditName = useMutationState<MutationInfo>(
-    getMutationFilters(['savings-plan', serviceId, 'edit-name']),
-  );
-
-  const mutationSpCreate = useMutationState<MutationInfo<SavingsPlanService>>(
-    getMutationFilters(getMutationKeyCreateSavingsPlan(serviceId)),
-  );
-
-  const lastMutationEditName =
-    mutationSPEditName[mutationSPEditName.length - 1];
-  const lastMutationChangePeriod =
-    mutationSPChangePeriod[mutationSPChangePeriod.length - 1];
-  const lastMutationSpCreate = mutationSpCreate[mutationSpCreate.length - 1];
-
-  const renewBannerMessage = t(
-    lastMutationChangePeriod?.variables.periodEndAction === 'REACTIVATE'
-      ? 'banner_renew_activate'
-      : 'banner_renew_deactivate',
-    {
-      planName: lastMutationChangePeriod?.data?.displayName,
-      endDate: lastMutationChangePeriod?.data?.endDate,
-    },
-  );
+  const handleClick = () => {
+    clearNotifications();
+    navigate(`/pci/projects/${projectId}/savings-plan/new`);
+  };
 
   return (
     <>
@@ -122,39 +62,14 @@ const ListingTablePage: React.FC<ListingProps> = ({
           icon="plus"
           size={ODS_BUTTON_SIZE.sm}
           variant={ODS_BUTTON_VARIANT.outline}
-          onClick={() =>
-            navigate(`/pci/projects/${projectId}/savings-plan/new`)
-          }
+          onClick={handleClick}
           label={t('createSavingsPlan')}
         />
       </div>
       <OdsText preset="span" className="inline-block my-4">
         {t('informationMessage')}
       </OdsText>
-      {mutationSPChangePeriod.length > 0 && (
-        <Banner
-          message={renewBannerMessage}
-          key={lastMutationChangePeriod.submittedAt}
-        />
-      )}
-      {mutationSpCreate.length > 0 && !lastMutationSpCreate.error?.code && (
-        <Banner
-          message={t('banner_create_sp', {
-            startDate: toLocalDateUTC(
-              lastMutationSpCreate.data.startDate,
-              locale,
-            ),
-          })}
-          key={lastMutationSpCreate.submittedAt}
-        />
-      )}
-
-      {mutationSPEditName.length > 0 && (
-        <Banner
-          message={t('banner_edit_name')}
-          key={lastMutationEditName.submittedAt}
-        />
-      )}
+      <Notifications />
       <TableContainer data={data} refetchSavingsPlans={refetchSavingsPlans} />
     </>
   );

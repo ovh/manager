@@ -1,5 +1,5 @@
 import { usePciUrl } from '@ovh-ux/manager-pci-common';
-import { Subtitle } from '@ovh-ux/manager-react-components';
+import { Subtitle, useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
@@ -21,13 +21,22 @@ import {
   OdsTabs,
   OdsText,
 } from '@ovhcloud/ods-components/react';
-import React, { FC, Suspense, useEffect, useMemo, useState } from 'react';
+import React, {
+  FC,
+  Suspense,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 
 import { MutationStatus, useMutationState } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 import clsx from 'clsx';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import useTechnicalInfo, { usePricingInfo } from '@/hooks/useCatalogCommercial';
 import {
   getMutationKeyCreateSavingsPlan,
@@ -46,7 +55,7 @@ import {
   Resource,
   ResourceType,
 } from '../../types/CreatePlan.type';
-import { formatDate } from '../../utils/formatter/date';
+import { formatDate, toLocalDateUTC } from '../../utils/formatter/date';
 import { isValidSavingsPlanName } from '../../utils/savingsPlan';
 import Commitment from '../Commitment/Commitment';
 import SimpleTile from '../SimpleTile/SimpleTile';
@@ -239,7 +248,12 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
     }
   };
 
-  const onChangeQuantity = (v: number) => setQuantity(v);
+  const handleQuantityChange = useCallback(
+    (event: OdsInputChangeEvent) => {
+      setQuantity(Math.max(1, Math.min(Number(event.detail.value), 1000)));
+    },
+    [setQuantity],
+  );
 
   return (
     <div>
@@ -320,19 +334,11 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
         <OdsCard className="flex flex-row items-center mr-5 p-4 text-center justify-between w-full mb-[32px] mt-[16px]">
           <OdsText>{t('quantity_label')}</OdsText>
           <OdsQuantity
-            onOdsChange={(event: OdsInputChangeEvent) => {
-              const newValue = Number(event.detail.value);
-              if (newValue >= 1 && newValue <= 1000) {
-                onChangeQuantity(newValue);
-              } else {
-                onChangeQuantity(1);
-              }
-            }}
+            onOdsChange={handleQuantityChange}
             value={quantity}
             min={1}
             max={1000}
             name="quantity"
-            isRequired
           />
         </OdsCard>
         <OdsMessage className="my-4" isDismissible={false}>
@@ -405,7 +411,7 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
           onClick={() => setIsLegalChecked(!isLegalChecked)}
         />
         <label htmlFor="checkbox-label">
-          <OdsText>{t('legal_checkbox')} &nbsp;</OdsText>
+          <OdsText>{t('legal_checkbox')}</OdsText>
         </label>
         <LegalLinks className="mr-[5px]" />
       </Block>
@@ -436,7 +442,11 @@ export const CreatePlanFormContainer = ({
 }: {
   isDiscoveryProject: boolean;
 }) => {
-  const { t } = useTranslation('create');
+  const { environment } = useContext(ShellContext);
+  const locale = environment.getUserLocale();
+
+  const { t } = useTranslation(['create', 'listing']);
+  const { addSuccess } = useNotifications();
 
   const [instanceCategory, setInstanceCategory] = useState<
     InstanceTechnicalName
@@ -465,7 +475,20 @@ export const CreatePlanFormContainer = ({
     }
   }, [technicalList]);
 
-  const { mutate: onCreatePlan } = useSavingsPlanCreate();
+  const handleCreateSavingsPlanSuccess = useCallback(
+    (data: { startDate: string }) => {
+      addSuccess(
+        t('listing:banner_create_sp', {
+          startDate: toLocalDateUTC(data.startDate, locale),
+        }),
+      );
+    },
+    [addSuccess, t, locale],
+  );
+
+  const { mutate: onCreatePlan } = useSavingsPlanCreate(
+    handleCreateSavingsPlanSuccess,
+  );
 
   const sortedPriceByDuration = [...pricingByDuration].sort(
     (a, b) => a.duration - b.duration,
