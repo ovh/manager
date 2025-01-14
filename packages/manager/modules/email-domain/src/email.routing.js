@@ -28,22 +28,6 @@ export default /* @ngInject */ ($stateProvider) => {
           productId,
         }),
       hideBreadcrumb: () => true,
-      topbarOptions: /* @ngInject */ ($translate, $state, atInternet) => ({
-        cta: {
-          type: 'button',
-          displayed: true,
-          disabled: false,
-          label: $translate.instant('emails_domain_order'),
-          value: $translate.instant('emails_domain_order'),
-          onClick: () => {
-            atInternet.trackClick({
-              name: 'web::email::index::order',
-              type: 'action',
-            });
-            $state.go('app.mx-plan');
-          },
-        },
-      }),
     },
   });
 
