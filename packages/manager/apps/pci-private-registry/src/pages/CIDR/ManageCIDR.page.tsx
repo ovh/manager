@@ -19,6 +19,7 @@ import BlockCIDR from '@/components/CIDR/CIDR.component';
 import { useIpRestrictionsWithFilter } from '@/api/hooks/useIpRestrictions';
 import { useSuspenseRegistry } from '@/api/hooks/useRegistry';
 import { DatagridProvider } from './DatagridContext.provider';
+import { generateUniqueString } from '@/helpers';
 
 const schemaAddCidr = (dataCIDR: string[]) =>
   z.object({
@@ -78,7 +79,6 @@ export default function BlocIPBlock() {
   const { data: registry } = useSuspenseRegistry(projectId, registryId);
   const dataGrid = useDataGrid();
   const columnFilters = useColumnFilters();
-
   const { data: dataCIDR } = useIpRestrictionsWithFilter(
     projectId,
     registryId,
@@ -86,12 +86,14 @@ export default function BlocIPBlock() {
     dataGrid.pagination,
     columnFilters.filters,
   );
-  const { t } = useTranslation(['ip-restrictions']);
   const methods = useForm<ConfirmCIDRSchemaType>({
     resolver: zodResolver(schemaAddCidr(dataCIDR.rows.map((e) => e.ipBlock))),
     mode: 'onBlur',
     reValidateMode: 'onChange',
   });
+  const { t } = useTranslation(['ip-restrictions']);
+
+  const uniqueValue = generateUniqueString(dataCIDR.rows);
 
   return (
     <>
@@ -122,7 +124,7 @@ export default function BlocIPBlock() {
             ...dataGrid,
           }}
           columnFilters={columnFilters}
-          key={dataCIDR.totalRows}
+          key={uniqueValue}
           data={dataCIDR.rows}
           totalRows={dataCIDR.totalRows}
         >
