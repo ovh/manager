@@ -52,34 +52,28 @@ const MenuItem = ({
     size: ODS_BUTTON_SIZE.sm,
     variant: ODS_BUTTON_VARIANT.ghost,
     displayTooltip: false,
-    className: 'w-full action-menu-item',
+    className: 'menu-item-button',
     ...item,
   };
 
   if (item.href) {
     return (
-      <div className="-mx-[2px]">
-        <OdsLink
-          className="block w-full action-menu-item p-2"
-          color={ODS_LINK_COLOR.primary}
-          href={item.href}
-          download={item.download}
-          label={item.label}
-          isDisabled={item.isDisabled}
-          onClick={item.onClick}
-        />
-      </div>
+      <OdsLink
+        className="menu-item-link"
+        color={ODS_LINK_COLOR.primary}
+        href={item.href}
+        download={item.download}
+        label={item.label}
+        isDisabled={item.isDisabled}
+        onClick={item.onClick}
+      />
     );
   }
 
-  return (
-    <div className="-mx-[2px]">
-      {!item?.iamActions || item?.iamActions?.length === 0 ? (
-        <OdsButton {...buttonProps} />
-      ) : (
-        <ManagerButton id={`${id}`} isIamTrigger={isTrigger} {...buttonProps} />
-      )}
-    </div>
+  return !item?.iamActions || item?.iamActions?.length === 0 ? (
+    <OdsButton {...buttonProps} />
+  ) : (
+    <ManagerButton id={`${id}`} isIamTrigger={isTrigger} {...buttonProps} />
   );
 };
 
@@ -118,18 +112,20 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
         />
       </div>
       <OdsPopover
-        className="py-[8px] px-0 overflow-hidden"
+        className="py-[8px] px-0"
         triggerId={`navigation-action-trigger-${id}`}
         with-arrow
       >
-        {items.map(({ id: itemId, ...item }) => (
-          <MenuItem
-            id={itemId}
-            key={itemId}
-            item={item}
-            isTrigger={isTrigger}
-          />
-        ))}
+        <div className="flex flex-col justify-stretch">
+          {items.map(({ id: itemId, ...item }) => (
+            <MenuItem
+              id={itemId}
+              key={itemId}
+              item={item}
+              isTrigger={isTrigger}
+            />
+          ))}
+        </div>
       </OdsPopover>
     </>
   );
