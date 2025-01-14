@@ -4,7 +4,7 @@ import { render } from '../../../utils/test.provider';
 import {
   header,
   subHeader,
-  headerWithGuides,
+  headerWithHeaderButtons,
   headerWithActions,
 } from './headers.stories';
 import { IamAuthorizationResponse } from '../../../hooks/iam/iam.interface';
@@ -41,7 +41,7 @@ describe('Headers component', () => {
   });
 
   it('renders header with guides correctly', async () => {
-    render(headerWithGuides());
+    render(headerWithHeaderButtons());
     await waitFor(() => {
       expect(
         screen.getByText('Example for header with guides'),

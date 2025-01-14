@@ -23,7 +23,9 @@ export const Headers: React.FC<HeadersProps> = ({
           <Description className="mb-6">{description}</Description>
         )}
       </div>
-      {headerButton && <div>{headerButton}</div>}
+      {headerButton && (
+        <div className="flex flex-wrap justify-end">{headerButton}</div>
+      )}
     </div>
   );
 };

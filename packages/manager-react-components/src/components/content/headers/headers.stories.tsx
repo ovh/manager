@@ -4,6 +4,9 @@ import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import Headers, { HeadersProps } from './headers.component';
 import ActionMenu from '../../navigation/menus/action/action.component';
 import GuideButton from '../../navigation/menus/guide/guide.component';
+import ChangelogButton, {
+  ChangelogItem,
+} from '../../navigation/menus/changelog/changelog.component';
 
 const Heading: HeadersProps = {
   title: 'Example for header',
@@ -44,20 +47,48 @@ const guideItems = [
   },
 ];
 
+const changelogItems: ChangelogItem[] = [
+  {
+    id: 1,
+    href: 'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Baremetal',
+    target: OdsHTMLAnchorElementTarget._blank,
+    labelKey: 'roadmap',
+  },
+  {
+    id: 2,
+    href: 'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Baremetal',
+    target: OdsHTMLAnchorElementTarget._blank,
+    labelKey: 'changelog',
+  },
+  {
+    id: 3,
+    href: 'https://github.com/ovh/infrastructure-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+    target: OdsHTMLAnchorElementTarget._blank,
+    labelKey: 'feature-request',
+  },
+];
+
 const HeadingWithActionButton: HeadersProps = {
   title: 'Example for header with actions ',
   description: 'description for header',
   headerButton: <ActionMenu items={actionItems} />,
 };
-const HeadingWithGuideButton: HeadersProps = {
-  title: 'Example for header with guides',
+const HeadingWithHeaderButtons: HeadersProps = {
+  title: 'Example for header with guides and changelogs',
   description: 'description for subheader',
-  headerButton: <GuideButton items={guideItems} />,
+  headerButton: (
+    <>
+      <ChangelogButton items={changelogItems} />
+      <GuideButton items={guideItems} />
+    </>
+  ),
 };
 
 export const header = () => <Headers {...Heading} />;
 export const subHeader = () => <Headers {...SubHeading} />;
-export const headerWithGuides = () => <Headers {...HeadingWithGuideButton} />;
+export const headerWithHeaderButtons = () => (
+  <Headers {...HeadingWithHeaderButtons} />
+);
 export const headerWithActions = () => <Headers {...HeadingWithActionButton} />;
 
 const meta: Meta = {
