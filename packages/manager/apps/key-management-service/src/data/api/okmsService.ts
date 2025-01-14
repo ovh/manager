@@ -32,15 +32,3 @@ export const getServiceInfos = async (okmsId: string) => {
   const serviceId = await getOkmsServiceId(okmsId);
   return apiClient.v6.get<ServiceDetails>(`/services/${serviceId.data[0]}`);
 };
-
-export type TerminateKmsParams = {
-  serviceId: number;
-};
-
-export const terminateOKmsQueryKey = (kms: string) => [`terminateKms-${kms}`];
-
-/**
- * Terminiate a kms
- */
-export const terminateOKms = async ({ serviceId }: TerminateKmsParams) =>
-  apiClient.v6.post<{ message: string }>(`/services/${serviceId}/terminate`);
