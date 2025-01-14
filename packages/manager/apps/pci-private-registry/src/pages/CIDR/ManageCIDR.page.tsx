@@ -78,6 +78,7 @@ export default function BlocIPBlock() {
   const { data: registry } = useSuspenseRegistry(projectId, registryId);
   const dataGrid = useDataGrid();
   const columnFilters = useColumnFilters();
+
   const { data: dataCIDR } = useIpRestrictionsWithFilter(
     projectId,
     registryId,
@@ -117,10 +118,13 @@ export default function BlocIPBlock() {
 
       <FormProvider {...methods}>
         <DatagridProvider
-          dataGrid={dataGrid}
+          dataGrid={{
+            ...dataGrid,
+          }}
           columnFilters={columnFilters}
           key={dataCIDR.totalRows}
           data={dataCIDR.rows}
+          totalRows={dataCIDR.totalRows}
         >
           <BlockCIDR />
         </DatagridProvider>
