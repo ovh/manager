@@ -36,6 +36,9 @@ export const CREATE_RESOURCE_GROUP_TAG = {
   },
 };
 
+export const CREATE_RESOURCE_GROUP_MAX_SIZE = 100;
+
 export default {
   CREATE_RESOURCE_GROUP_TAG,
+  CREATE_RESOURCE_GROUP_MAX_SIZE,
 };
