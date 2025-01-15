@@ -10,3 +10,7 @@ ods-button.action-menu-item::part(button) {
   width: 100%;
   justify-content: left;
 }
+
+ods-modal.max-height-modal::part(dialog) {
+  max-height: 90%;
+}
