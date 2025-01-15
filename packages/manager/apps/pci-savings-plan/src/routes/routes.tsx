@@ -21,8 +21,18 @@ export const Routes = [
     ...lazyRouteConfig(() => import('@/pages/layout')),
     children: [
       {
-        id: 'listing',
+        id: 'dashboard',
         path: '',
+        ...lazyRouteConfig(() => import('@/pages/dashboard')),
+        handle: {
+          tracking: {
+            pageName: 'dashboard',
+          },
+        },
+      },
+      {
+        id: 'listing',
+        path: 'listing',
         ...lazyRouteConfig(() => import('@/pages/listing')),
         handle: {
           tracking: {

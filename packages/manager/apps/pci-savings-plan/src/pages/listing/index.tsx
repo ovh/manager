@@ -19,6 +19,7 @@ import {
 import TableContainer from '@/components/Table/TableContainer';
 import { useSavingsPlan } from '@/hooks/useSavingsPlan';
 import { SavingsPlanService } from '@/types';
+import TabsDashboard from '@/components/Dashboard/TabsDashboard/TabsDashboard';
 
 interface ListingTablePageProps {
   data: SavingsPlanService[];
@@ -49,7 +50,7 @@ const ListingTablePage: React.FC<ListingTablePageProps> = ({
   data,
   refetchSavingsPlans,
 }) => {
-  const { t } = useTranslation('listing');
+  const { t } = useTranslation(['listing', 'dashboard']);
   const { trackClick } = useOvhTracking();
 
   const navigate = useNavigate();
@@ -70,6 +71,7 @@ const ListingTablePage: React.FC<ListingTablePageProps> = ({
   return (
     <>
       <Title>{t('title')}</Title>
+      {projectId && <TabsDashboard projectId={projectId} />}
       <div className="py-5">
         <OdsButton
           icon="plus"
