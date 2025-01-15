@@ -55,10 +55,6 @@ export default class BillingTerminate {
     return this.$http.post(`/services/${serviceId}/terminate`);
   }
 
-  serviceTerminationForVrack(serviceId) {
-    return this.$http.post(`/vrack/${serviceId}/terminate`);
-  }
-
   getTerminationForm(serviceId) {
     return this.OvhApiServices.Form()
       .v6()
