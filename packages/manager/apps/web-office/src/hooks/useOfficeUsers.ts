@@ -28,5 +28,6 @@ export const useOfficeUsers = () => {
                 .map((license) => getOfficePrepaidLicenseDetails(license)),
             );
           }),
+    enabled: !!serviceName,
   });
 };
