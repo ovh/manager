@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.27.1...@ovh-ux/manager-new-billing@0.28.0) (2025-01-15)
+
+
+### Bug Fixes
+
+* **billing:** fix malformed redirection ([#14864](https://github.com/ovh/manager/issues/14864)) ([b159760](https://github.com/ovh/manager/commit/b15976019854016668d7b650ce903b55432add72))
+* **billing:** fixed redirection to hosting mx plan resiliation page ([#14820](https://github.com/ovh/manager/issues/14820)) ([aeb1913](https://github.com/ovh/manager/commit/aeb1913dedc342c8c1438b36d6f7459ae9355179))
+
+
+### Features
+
+* **container:** added an invitation modal to accept contract ([#14880](https://github.com/ovh/manager/issues/14880)) ([39fcb77](https://github.com/ovh/manager/commit/39fcb77d7c333817aed93f924e500e7ddbf1f4b3))
+
+
+### Reverts
+
+* Revert Manager-14722 (#14905) ([ecdcf8b](https://github.com/ovh/manager/commit/ecdcf8b96a57918e164767f77577ebeeb381203e)), closes [#14905](https://github.com/ovh/manager/issues/14905)
+
+
+
+
+
 ## [0.27.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.27.0...@ovh-ux/manager-new-billing@0.27.1) (2025-01-13)
 
 

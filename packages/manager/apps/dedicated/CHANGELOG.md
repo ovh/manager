@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.10.1...@ovh-ux/manager-dedicated@20.11.0) (2025-01-15)
+
+
+### Features
+
+* **container:** added an invitation modal to accept contract ([#14880](https://github.com/ovh/manager/issues/14880)) ([39fcb77](https://github.com/ovh/manager/commit/39fcb77d7c333817aed93f924e500e7ddbf1f4b3))
+
+
+### Reverts
+
+* Revert Manager-14722 (#14905) ([ecdcf8b](https://github.com/ovh/manager/commit/ecdcf8b96a57918e164767f77577ebeeb381203e)), closes [#14905](https://github.com/ovh/manager/issues/14905)
+
+
+
+
+
 ## [20.10.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.10.0...@ovh-ux/manager-dedicated@20.10.1) (2025-01-13)
 
 
