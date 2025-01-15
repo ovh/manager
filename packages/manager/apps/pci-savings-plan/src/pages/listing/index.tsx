@@ -21,6 +21,7 @@ import {
 import TableContainer from '@/components/Table/TableContainer';
 import { useSavingsPlan } from '@/hooks/useSavingsPlan';
 import { SavingsPlanService } from '@/types';
+import TabsDashboard from '@/components/Dashboard/TabsDashboard/TabsDashboard';
 
 import { CHANGELOG_LINKS } from '@/constants';
 
@@ -53,7 +54,7 @@ const ListingTablePage: React.FC<ListingTablePageProps> = ({
   data,
   refetchSavingsPlans,
 }) => {
-  const { t } = useTranslation('listing');
+  const { t } = useTranslation(['listing', 'dashboard']);
   const { trackClick } = useOvhTracking();
 
   const navigate = useNavigate();
@@ -70,7 +71,6 @@ const ListingTablePage: React.FC<ListingTablePageProps> = ({
     clearNotifications();
     navigate(`/pci/projects/${projectId}/savings-plan/new`);
   };
-
   return (
     <>
       <div className="flex justify-between items-center">
@@ -88,9 +88,7 @@ const ListingTablePage: React.FC<ListingTablePageProps> = ({
           label={t('createSavingsPlan')}
         />
       </div>
-      <OdsText preset="span" className="inline-block my-4">
-        {t('informationMessage')}
-      </OdsText>
+
       <Notifications />
       <TableContainer data={data} refetchSavingsPlans={refetchSavingsPlans} />
     </>
