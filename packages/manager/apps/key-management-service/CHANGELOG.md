@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.14.4...@ovh-ux/manager-key-management-service-app@0.15.0) (2025-01-15)
+
+
+### Features
+
+* **kms:** change protection level subtile translation ([#14650](https://github.com/ovh/manager/issues/14650)) ([c10a88d](https://github.com/ovh/manager/commit/c10a88dae013e11645ee3370e502448eac21037f))
+
+
+
+
+
 ## [0.14.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.14.3...@ovh-ux/manager-key-management-service-app@0.14.4) (2025-01-09)
 
 **Note:** Version bump only for package @ovh-ux/manager-key-management-service-app

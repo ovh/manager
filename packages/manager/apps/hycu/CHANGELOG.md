@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hycu-app@0.3.15...@ovh-ux/manager-hycu-app@0.4.0) (2025-01-15)
+
+
+### Features
+
+* **hycu:** add feature flipping on change pack ([f85191f](https://github.com/ovh/manager/commit/f85191f89091bfd852e42ae96e8279931d531020))
+
+
+
+
+
 ## [0.3.15](https://github.com/ovh/manager/compare/@ovh-ux/manager-hycu-app@0.3.14...@ovh-ux/manager-hycu-app@0.3.15) (2025-01-09)
 
 **Note:** Version bump only for package @ovh-ux/manager-hycu-app
