@@ -1,0 +1,42 @@
+{
+  "dashboard_tabs": "Tableau de Bord des Savings Plan",
+  "listing_tabs": "Mes Savings Plans",
+  "dashboard_description": "Le Tableau de bord présente les détails de vos Savings Plan pour la période spécifiée, y compris l'utilisation, la couverture et la liste de vos Savings Plans",
+  "dashboard_kpis_title": "Kpis",
+  "dashboard_table_title": "Détail de consommation des Savings Plans",
+  "dashboard_columns_start": "Début",
+  "dashboard_columns_end": "Fin",
+  "dashboard_columns_consumption_size": "Utilisation",
+  "dashboard_columns_cumul_plan_size": "Couverture totale",
+
+  "dashboard_kpis_active_plans_name": "Nombre de Savings Plans actifs",
+  "dashboard_kpis_active_plans_tooltip": "Nombre total de vos Savings plans actifs sur la période donnée pour la ressource sélectionnée",
+
+  "dashboard_kpis_usage_percent_name": "% utilisation des Savings Plans",
+  "dashboard_kpis_usage_percent_tooltip": "Moyenne d'utilisation de vos Savings Plans (sur la période sélectionnée pour la ressource sélectionnée)",
+
+  "dashboard_kpis_coverage_percent_name": "% Couverture des Savings Plans",
+  "dashboard_kpis_coverage_percent_tooltip": "Moyenne de couverture de vos Savings Plans (sur la période sélectionnée pour la ressource sélectionnée)",
+
+  "dashboard_kpis_non_discounted_name": "Montant de facture non remisé",
+  "dashboard_kpis_non_discounted_tooltip": "Montant de la facture dépassant vos configurations Savings Plans (sur la période sélectionnée pour la ressource sélectionnée)",
+  "dashboard_kpis_saved_amount_name": "Economies réalisées",
+  "dashboard_kpis_saved_amount_name_tooltip": "Total des économies réalisées (sur la période sélectionnée pour la ressource sélectionnée)",
+  "dashboard_kpis_saved_strikethrough": "Au lieu de <price>{{pricing}}</price>",
+
+  "dashboard_kpis_not_available": "Non disponible",
+
+  "dashboard_select_label_service": "Service",
+  "dashboard_select_label_period": "Période",
+
+  "dashboard_select_no_service": "Aucun service",
+
+  "dashboard_banner_no_savings_plan": "Vous n'avez pas de Savings Plan actif pour ce mois, vous pouvez consulter vos consommations passées en changeant la période.",
+
+  "dashboard_graph_title": "Utilisation et couverture des Savings Plans",
+  "dashboard_graph_y_axis_label": "Nombre d'instance(s)",
+  "dashboard_graph_y_axis_label_vcpu": "Nombre de vCPU(s)",
+  "dashboard_graph_x_axis_label": "Jour",
+  "dashboard_graph_included": "Inclus dans les Savings Plans",
+  "dashboard_graph_excluded": "Exclus des Savings Plans"
+}
