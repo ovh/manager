@@ -101,7 +101,7 @@ export const LocationStep = () => {
 
   const has3AZ = useMemo(() => isRegionWith3AZ(state.regions), [state.regions]);
 
-  const pciCommonProperties = usePCICommonContextFactory({ has3AZ });
+  const metaProps = usePCICommonContextFactory({ has3AZ });
 
   return (
     <StepComponent
@@ -160,7 +160,7 @@ export const LocationStep = () => {
         isDisabled: false,
       }}
     >
-      <PCICommonContext.Provider value={pciCommonProperties}>
+      <PCICommonContext.Provider value={metaProps}>
         <RegionSelector
           projectId={projectId}
           onSelectRegion={(region) => store.updateForm.regionName(region?.name)}

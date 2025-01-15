@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getMacroRegion } from '@ovh-ux/manager-react-components';
 import { TAddon } from '@ovh-ux/manager-pci-common';
@@ -47,38 +47,39 @@ export const useData = (projectId: string) => {
   const { data: cloudCatalog } = useCloudCatalog();
   const { data: availableGatewayPlans } = useAvailableGatewayPlans(projectId);
 
-  const getBandWidthLabel = (bandwidth: number) =>
-    bandwidth > 1000
-      ? t(`pci_projects_project_gateways_model_selector_bandwidth`, {
-          bandwidth: bandwidth / 1000,
-        }) +
-        t(
-          'pci_projects_project_gateways_model_selector_bandwidth_unit_size_gbps',
-        )
-      : t(`pci_projects_project_gateways_model_selector_bandwidth`, {
-          bandwidth,
-        }) +
-        t(
-          'pci_projects_project_gateways_model_selector_bandwidth_unit_size_mbps',
-        );
+  const getBandWidthLabel = useCallback(
+    (bandwidth: number) =>
+      bandwidth > 1000
+        ? t(`pci_projects_project_gateways_model_selector_bandwidth`, {
+            bandwidth: bandwidth / 1000,
+          }) +
+          t(
+            'pci_projects_project_gateways_model_selector_bandwidth_unit_size_gbps',
+          )
+        : t(`pci_projects_project_gateways_model_selector_bandwidth`, {
+            bandwidth,
+          }) +
+          t(
+            'pci_projects_project_gateways_model_selector_bandwidth_unit_size_mbps',
+          ),
+    [t],
+  );
 
   const mergedRegionPlan = useMemo(
     () =>
       availableGatewayPlans?.plans.reduce(
         (result: TAvailablePlansGrouped, currentValue: TPlan) => {
           const code = currentValue.code.replace(/\.3AZ$/, '');
-          const newResult = { ...result };
 
-          if (newResult[code]) {
-            newResult[code] = {
-              code,
-              regions: [...newResult[code].regions, ...currentValue.regions],
-            };
-          } else {
-            newResult[code] = currentValue;
-          }
-
-          return newResult;
+          return {
+            ...result,
+            [code]: result[code]
+              ? {
+                  code,
+                  regions: [...result[code].regions, ...currentValue.regions],
+                }
+              : currentValue,
+          };
         },
         {},
       ),
@@ -99,11 +100,11 @@ export const useData = (projectId: string) => {
     if (cloudCatalog) {
       return gatewayRefPlans.map((plan) => {
         const addonHourly = cloudCatalog.addons.find(
-          ($addon) => $addon.planCode === plan.code,
+          (addon) => addon.planCode === plan.code,
         );
 
         const addonMonthly = cloudCatalog.addons.find(
-          ($addon) => $addon.planCode === plan.code.replace('hour', 'month'),
+          (addon) => addon.planCode === plan.code.replace('hour', 'month'),
         );
 
         const hourlyPrice = getPrice(addonHourly);
@@ -144,7 +145,7 @@ export const useData = (projectId: string) => {
     }
 
     return [];
-  }, [gatewayRefPlans, cloudCatalog]);
+  }, [cloudCatalog, gatewayRefPlans, t, getBandWidthLabel]);
 
   return sizes.sort((a, b) => a.monthlyPrice - b.monthlyPrice);
 };
