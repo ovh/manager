@@ -1,5 +1,6 @@
 import React from 'react';
 import { vi, describe, it, expect } from 'vitest';
+import * as reactShellClientModule from '@ovh-ux/manager-react-shell-client';
 import { screen } from '@testing-library/react';
 import Commitment from './Commitment';
 import '@testing-library/jest-dom';
@@ -14,6 +15,18 @@ const defaultProps = {
   onClick: vi.fn(),
   quantity: 1,
 };
+
+const trackingSpy = vi.fn();
+
+vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
+  const original: typeof reactShellClientModule = await importOriginal();
+  return {
+    ...original,
+    useOvhTracking: () => ({
+      trackClick: trackingSpy,
+    }),
+  };
+});
 
 vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
   const mod = await importOriginal<

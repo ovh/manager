@@ -1,6 +1,7 @@
 import React from 'react';
 import { vi, describe, it, expect } from 'vitest';
 import { screen, fireEvent, waitFor } from '@testing-library/react';
+import * as reactShellClientModule from '@ovh-ux/manager-react-shell-client';
 import '@testing-library/jest-dom';
 import CreatePlanForm, { CreatePlanFormProps } from './CreatePlanForm';
 import {
@@ -17,6 +18,17 @@ vi.mock('react-i18next', () => ({
 }));
 
 const mockedUsedNavigate = vi.fn();
+const trackingSpy = vi.fn();
+
+vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
+  const original: typeof reactShellClientModule = await importOriginal();
+  return {
+    ...original,
+    useOvhTracking: () => ({
+      trackClick: trackingSpy,
+    }),
+  };
+});
 
 vi.mock('react-router-dom', async (importOriginal) => {
   const actual = await importOriginal();
