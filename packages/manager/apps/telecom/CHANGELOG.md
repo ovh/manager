@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.1.6...@ovh-ux/manager-telecom@16.2.0) (2025-01-15)
+
+
+### Features
+
+* **telecom:** add the outbound proxy on sip account informations ([#1](https://github.com/ovh/manager/issues/1)… ([#14783](https://github.com/ovh/manager/issues/14783)) ([bad0867](https://github.com/ovh/manager/commit/bad0867b595ea92e64649a41fc322dcbaa8fd3af))
+
+
+
+
+
 ## [16.1.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.1.5...@ovh-ux/manager-telecom@16.1.6) (2025-01-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom
