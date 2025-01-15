@@ -5,7 +5,7 @@
   "offer_title": "Włącz {{productName}}",
   "offer_content_part1": "Usługa Veeam Data Platform zawiera wtyczkę VCD do tworzenia kopii zapasowych wirtualnych maszyn i vApps z dowolnego Virtual Data Center (VDC) w organizacji.",
   "offer_content_part2": "Jest ona dostępna na poziomie organizacji dla każdego użytkownika VMware Cloud Director z rolą administratora organizacji.",
-  "offer_price": "/VM/m-c + zużycie Object Storage",
+  "offer_price": "/VM/m-c + zużycie przestrzeni dyskowej",
   "next_step": "Dalej",
   "choose_org_title": "Wybierz organizację VMware Cloud Director",
   "all_organization_backed_up_message_fetch_next_page": "Wszystkie organizacje VCD są już powiązane z usługą Managed Veeam for VCD. Załaduj więcej organizacji.",
