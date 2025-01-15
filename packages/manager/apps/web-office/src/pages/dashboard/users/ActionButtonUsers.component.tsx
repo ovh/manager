@@ -19,11 +19,17 @@ const ActionButtonUsers: React.FC<ActionButtonUsersProps> = ({
 }) => {
   const { t } = useTranslation('dashboard/users');
   const navigate = useNavigate();
-
   const hrefDeleteUsers = useGenerateUrl('./users/delete', 'path', {
     activationEmail: usersItem.activationEmail,
     ...(!licenceDetail.serviceType && {
-      licencePrepaidName: licenceDetail.serviceName,
+      licencePrepaidName: usersItem.serviceName,
+    }),
+  });
+
+  const hrefEditUsers = useGenerateUrl('./users/edit', 'path', {
+    activationEmail: usersItem.activationEmail,
+    ...(!licenceDetail.serviceType && {
+      licencePrepaidName: usersItem.serviceName,
     }),
   });
 
@@ -34,10 +40,7 @@ const ActionButtonUsers: React.FC<ActionButtonUsersProps> = ({
 
   const handleDeleteUserClick = () => navigate(hrefDeleteUsers);
 
-  const handleEditUserClick = () => {
-    // @todo: for next user story
-    console.log('handleEditUserClick');
-  };
+  const handleEditUserClick = () => navigate(hrefEditUsers);
 
   const actionItems = [
     ...(!usersItem.isVirtual

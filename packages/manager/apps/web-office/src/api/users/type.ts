@@ -10,6 +10,7 @@ export type UserNativeType = {
   status: UserStateEnum;
   taskPendingId: number;
   usageLocation: string;
+  serviceName?: string;
   [key: string]:
     | string
     | number

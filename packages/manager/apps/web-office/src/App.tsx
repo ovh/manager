@@ -1,17 +1,10 @@
 import React, { useEffect, useContext } from 'react';
-import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
+import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { RouterProvider, createHashRouter } from 'react-router-dom';
 import { Routes } from './routes/routes';
-
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 300_000,
-    },
-  },
-});
+import queryClient from './queryClient';
 
 function App() {
   const { shell } = useContext(ShellContext);
