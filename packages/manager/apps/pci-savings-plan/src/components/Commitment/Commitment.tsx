@@ -56,7 +56,10 @@ const Commitment = ({
     <OdsCard
       className={clsx(
         'flex flex-row items-center mr-5 my-4 p-5 justify-between w-full cursor-pointer',
-        { 'border-[--ods-color-primary-500] border-2': isActive },
+        {
+          'border-[--ods-color-primary-500] border-2': isActive,
+          'border border-[--ods-color-neutral-200]': !isActive,
+        },
       )}
       onClick={onClickTracking}
       color="neutral"
