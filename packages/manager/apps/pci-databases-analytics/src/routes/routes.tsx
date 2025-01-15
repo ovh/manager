@@ -299,6 +299,18 @@ export default [
             ...lazyRouteConfig(() =>
               import('@/pages/services/[serviceId]/metrics/Metrics.page'),
             ),
+            children: [
+              {
+                id:
+                  'service.{service.engine}.metrics.reset-prometheus-password',
+                path: 'reset-prometheus-password',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/services/[serviceId]/metrics/resetPrometheusPassword/ResetPrometheusPassword.modal'
+                  ),
+                ),
+              },
+            ],
           },
           {
             path: 'logs',

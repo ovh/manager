@@ -39,7 +39,13 @@ describe('Metrics page', () => {
     vi.mock('@/pages/services/[serviceId]/Service.context', () => ({
       useServiceData: vi.fn(() => ({
         projectId: 'projectId',
-        service: mockedServiceOrig,
+        service: {
+          ...mockedServiceOrig,
+          capabilities: {
+            ...mockedServiceOrig.capabilities,
+            prometheus: { read: database.service.capability.StateEnum.enabled },
+          },
+        },
         category: 'operational',
         serviceQuery: {} as UseQueryResult<database.Service, Error>,
       })),
@@ -101,6 +107,12 @@ describe('Metrics page', () => {
       ).toBeInTheDocument();
       const chartContainer = screen.getAllByTestId('metric-chart-container');
       expect(chartContainer.length).toBeGreaterThan(0);
+    });
+  });
+  it('renders and shows prometheus tile', async () => {
+    render(<Metrics />, { wrapper: RouterWithQueryClientWrapper });
+    await waitFor(() => {
+      expect(screen.getByTestId('prometheus-tile')).toBeInTheDocument();
     });
   });
 });
