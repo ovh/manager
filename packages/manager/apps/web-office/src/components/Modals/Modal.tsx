@@ -57,6 +57,7 @@ const Modal: React.FC<ModalProps> = ({
       className="text-left"
       onOdsClose={onClose}
       isOpen={isOpen}
+      class="max-height-modal"
     >
       <OdsText className="mb-4" preset={ODS_TEXT_PRESET.heading4}>
         {title}
