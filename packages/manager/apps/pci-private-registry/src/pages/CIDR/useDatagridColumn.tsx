@@ -89,6 +89,7 @@ export const useDatagridColumn = () => {
         ) : (
           <div>{capitalizeAndJoin(props.authorization)}</div>
         ),
+      // need to had a Popover next to the label
       label: ((<AuthorizationLabel />) as unknown) as string,
     },
     {

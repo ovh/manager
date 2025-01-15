@@ -3,7 +3,14 @@ import {
   useDataGrid,
 } from '@ovh-ux/manager-react-components';
 import { useFormContext } from 'react-hook-form';
-import { createContext, useCallback, useMemo, useRef, useState } from 'react';
+import {
+  createContext,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 
 export type ContextDatagridType<
   T extends DatagridAction[] = DatagridAction[]
@@ -76,6 +83,10 @@ const DatagridProvider = <TData extends DatagridAction[]>({
 }: DatagridProviderProps<TData>) => {
   const [draftedData, setDraftedData] = useState(data);
   const initialData = useRef(data);
+
+  useEffect(() => {
+    setDraftedData(data);
+  }, [data]);
 
   const { reset } = useFormContext();
   const isAllDataSelected = useMemo(

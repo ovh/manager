@@ -116,20 +116,3 @@ export function capitalizeAndJoin(array: string[]) {
 
   return capitalizedArray.join(', ');
 }
-
-/**
- * Generates a unique string based on the objects of a specific type in an array.
- *
- * @param {Array<T>} array - The array of objects to process.
- * @param {string} type - The type of objects to filter by (e.g., 'animal').
- * @returns {string} - A unique Base64-encoded string representing the filtered objects.
- * @template T - The generic type of the objects in the array.
- */
-export function generateUniqueString<T>(array: T[]): string {
-  const uniqueString = array
-    .map((obj) => JSON.stringify(obj))
-    .sort()
-    .join('|');
-
-  return btoa(uniqueString); // Encode en base64 pour une chaîne compacte
-}

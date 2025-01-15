@@ -19,7 +19,6 @@ import BlockCIDR from '@/components/CIDR/CIDR.component';
 import { useIpRestrictionsWithFilter } from '@/api/hooks/useIpRestrictions';
 import { useSuspenseRegistry } from '@/api/hooks/useRegistry';
 import { DatagridProvider } from './DatagridContext.provider';
-import { generateUniqueString } from '@/helpers';
 
 const schemaAddCidr = (dataCIDR: string[]) =>
   z.object({
@@ -93,8 +92,6 @@ export default function BlocIPBlock() {
   });
   const { t } = useTranslation(['ip-restrictions']);
 
-  const uniqueValue = generateUniqueString(dataCIDR.rows);
-
   return (
     <>
       {project && <BreadcrumbCIDR />}
@@ -124,7 +121,6 @@ export default function BlocIPBlock() {
             ...dataGrid,
           }}
           columnFilters={columnFilters}
-          key={uniqueValue}
           data={dataCIDR.rows}
           totalRows={dataCIDR.totalRows}
         >
