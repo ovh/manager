@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.76.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.75.1...@ovh-ux/manager-pci@6.76.0) (2025-01-15)
+
+
+### Features
+
+* **pci:** replace savings plan banner on edition instance ([#14306](https://github.com/ovh/manager/issues/14306)) ([7a72d13](https://github.com/ovh/manager/commit/7a72d130c07eab64092d8f2f2dca8a2929714129))
+
+
+
+
+
 ## [6.75.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.75.0...@ovh-ux/manager-pci@6.75.1) (2025-01-09)
 
 

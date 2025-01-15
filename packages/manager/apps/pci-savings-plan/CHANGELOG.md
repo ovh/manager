@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.7.6...@ovh-ux/manager-pci-savings-plan-app@1.8.0) (2025-01-15)
+
+
+### Features
+
+* **pci-savings-plan:** add tracking ([#14401](https://github.com/ovh/manager/issues/14401)) ([262091c](https://github.com/ovh/manager/commit/262091c78a65b7b5e79d97c4c80c13f23353a84f))
+
+
+
+
+
 ## [1.7.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.7.5...@ovh-ux/manager-pci-savings-plan-app@1.7.6) (2025-01-09)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app
