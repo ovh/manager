@@ -17,11 +17,15 @@ export const ErrorBanner = ({
   onRedirectHome,
   onReloadPage,
   labelTracking,
+  ...rest
 }: ErrorBannerProps) => {
   const { t } = useTranslation('error');
 
   return (
-    <div className="mx-auto  w-full h-full max-w-[600px] overflow-hidden mx-autogrid p-5">
+    <div
+      className="mx-auto  w-full h-full max-w-[600px] overflow-hidden mx-autogrid p-5"
+      {...rest}
+    >
       <img src={ErrorImg} alt="OOPS" className="w-full" />
       <div className="py-2">
         <OdsText preset={ODS_TEXT_PRESET.heading1}>
