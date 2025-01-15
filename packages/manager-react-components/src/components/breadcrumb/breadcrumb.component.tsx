@@ -12,17 +12,15 @@ export interface BreadcrumbProps {
   appName: string;
 }
 
-export function Breadcrumb({
+export const Breadcrumb: React.FC<BreadcrumbProps> = ({
   rootLabel,
   appName,
-}: BreadcrumbProps): JSX.Element {
+}) => {
   const label = rootLabel;
-
   const breadcrumbItems = useBreadcrumb({
     rootLabel: label,
     appName,
   });
-
   return (
     <OdsBreadcrumb>
       {breadcrumbItems?.map((item) => (
@@ -34,4 +32,4 @@ export function Breadcrumb({
       ))}
     </OdsBreadcrumb>
   );
-}
+};

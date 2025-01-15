@@ -7,13 +7,13 @@ export type BreadcrumbItem = {
   href?: string;
 };
 
-export interface useBreadcrumbProps {
+export interface UseBreadcrumbProps {
   rootLabel?: string;
   appName?: string;
   projectId?: string;
   items?: BreadcrumbItem[];
 }
-export const useBreadcrumb = ({ rootLabel, appName }: useBreadcrumbProps) => {
+export const useBreadcrumb = ({ rootLabel, appName }: UseBreadcrumbProps) => {
   const { shell } = useContext(ShellContext);
   const [root, setRoot] = useState<BreadcrumbItem[]>([]);
   const [paths, setPaths] = useState<BreadcrumbItem[]>([]);

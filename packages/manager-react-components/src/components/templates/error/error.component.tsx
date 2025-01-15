@@ -1,18 +1,15 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { OdsText, OdsButton, OdsMessage } from '@ovhcloud/ods-components/react';
 import {
   ODS_BUTTON_VARIANT,
   ODS_MESSAGE_COLOR,
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
-import { PageType } from '@ovh-ux/manager-react-shell-client';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { ErrorMessage, TRACKING_LABELS } from './error.types';
+import { PageType, ShellContext } from '@ovh-ux/manager-react-shell-client';
+
+import { ErrorMessage, TRACKING_LABELS, ErrorBannerProps } from './error.types';
 import './translations/translations';
-
-import { ErrorBannerProps } from './error.types';
-import { useTranslation } from 'react-i18next';
-
 import ErrorImg from '../../../../public/assets/error-banner-oops.png';
 
 function getTrackingTypology(error: ErrorMessage) {

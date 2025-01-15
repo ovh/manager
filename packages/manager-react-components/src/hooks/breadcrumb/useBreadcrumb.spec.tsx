@@ -61,7 +61,8 @@ describe('useBreadcrumb', () => {
     expect(current[0].label).toBe('vrackServices');
     expect(current[0].href).toBe('/#/vrack-services/vrackServices');
   });
-
+});
+describe('useBreadcrumb', () => {
   it('should return an array with 3 breadcrumb items', async () => {
     beforeEach(() => {
       vitest.mock('react-router-dom', async () => ({

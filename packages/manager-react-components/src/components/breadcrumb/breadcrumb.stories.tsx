@@ -1,9 +1,9 @@
 import React from 'react';
-import { Breadcrumb } from './breadcrumb.component';
 import {
   withRouter,
   reactRouterParameters,
 } from 'storybook-addon-react-router-v6';
+import { Breadcrumb } from './breadcrumb.component';
 
 const BreadcrumbStory = (args) => {
   return <Breadcrumb rootLabel={args.rootLabel} appName={args.appName} />;
