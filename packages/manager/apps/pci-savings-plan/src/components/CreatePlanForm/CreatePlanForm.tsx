@@ -61,7 +61,10 @@ import {
   ResourceType,
 } from '../../types/CreatePlan.type';
 import { formatDate, toLocalDateUTC } from '../../utils/formatter/date';
-import { isValidSavingsPlanName } from '../../utils/savingsPlan';
+import {
+  getInstancesInformation,
+  isValidSavingsPlanName,
+} from '../../utils/savingsPlan';
 import Commitment from '../Commitment/Commitment';
 import SimpleTile from '../SimpleTile/SimpleTile';
 import { TileTechnicalInfo } from '../TileTechnicalInfo/TileTechnicalInfo';
@@ -318,7 +321,7 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
                   isSelected={tab.technicalName === instanceCategory}
                   onClick={() => setInstanceCategory(tab.technicalName)}
                 >
-                  {tab.label}
+                  {t(tab.label)}
                 </OdsTab>
               ))}
             </OdsTabs>
@@ -524,42 +527,16 @@ export const CreatePlanFormContainer = ({
     },
   ];
 
-  const instancesInfo: InstanceInfo[] = [
-    {
-      id: '1',
-      category: ResourceType.instance,
-      technicalName: InstanceTechnicalName.b3,
-      label: t('resource_tabs_general_purpose'),
-      technical: technicalList,
-    },
-    {
-      id: '2',
-      category: ResourceType.instance,
-      technicalName: InstanceTechnicalName.c3,
-      label: t('resource_tabs_cpu'),
-      technical: technicalList,
-    },
-    {
-      id: '3',
-      category: ResourceType.instance,
-      technicalName: InstanceTechnicalName.r3,
-      label: t('resource_tabs_ram'),
-      technical: technicalList,
-    },
-    {
-      id: '4',
-      category: ResourceType.rancher,
-      technicalName: InstanceTechnicalName.rancher,
-      label: t('resource_tabs_rancher'),
-      technical: technicalList,
-    },
-  ];
+  const instancesInformation = useMemo(
+    () => getInstancesInformation(technicalList, t),
+    [technicalList, t],
+  );
 
   return (
     <CreatePlanForm
       onCreatePlan={onCreatePlan}
       resources={resources}
-      instancesInfo={instancesInfo}
+      instancesInfo={instancesInformation}
       instanceCategory={instanceCategory}
       setInstanceCategory={setInstanceCategory}
       pricingByDuration={sortedPriceByDuration}
