@@ -222,12 +222,7 @@ export default [
             handle: {
               tracking: 'streams',
             },
-            ...lazyRouteConfig(
-              () => import('@/pages/detail/log/Streams.page'),
-              {
-                disabledRegions: 'US',
-              },
-            ),
+            ...lazyRouteConfig(() => import('@/pages/detail/log/Streams.page')),
           },
         ],
       },
