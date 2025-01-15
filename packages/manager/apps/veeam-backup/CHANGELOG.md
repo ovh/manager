@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.3.10...@ovh-ux/manager-veeam-backup-app@0.3.11) (2025-01-15)
+
+
+### Bug Fixes
+
+* **veeam-backup:** fix space unit translation ([#14508](https://github.com/ovh/manager/issues/14508)) ([a4e0a97](https://github.com/ovh/manager/commit/a4e0a97fd7888e2f1c0975e7677cd4d4bd75086f))
+
+
+
+
+
 ## [0.3.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.3.9...@ovh-ux/manager-veeam-backup-app@0.3.10) (2025-01-09)
 
 **Note:** Version bump only for package @ovh-ux/manager-veeam-backup-app
