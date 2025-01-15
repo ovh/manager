@@ -5,53 +5,117 @@ import {
   OnboardingLayout,
   OnboardingLayoutProps,
 } from './onboarding.component';
-import { defaultProps } from './onboarding.stories';
+import { OdsText } from '@ovhcloud/ods-components/react';
+import placeholderSrc from './../../../../public/assets/placeholder.png';
+import { Card } from '../../navigation/card/card.component';
 
-const setupSpecTest = async (customProps?: Partial<OnboardingLayoutProps>) =>
-  waitFor(() =>
-    render(<OnboardingLayout {...defaultProps} {...customProps} />),
-  );
+const setupSpecTest = async (props: OnboardingLayoutProps) =>
+  waitFor(() => render(<OnboardingLayout {...props} />));
+
+const customTitle = 'onboarding title';
+const imgAltText = 'img alt text';
+const descriptionText = 'description text';
+const orderBtnLabel = 'Order Now';
+const infoBtnLabel = 'more info';
+const children = (
+  <>
+    <Card
+      href={''}
+      texts={{
+        title: 'Test Onboarding 1',
+        description: 'This is the description 1',
+        category: 'WEB',
+      }}
+    />
+    <Card
+      href={''}
+      texts={{
+        title: 'Test Onboarding 2',
+        description: 'This is the description 2',
+        category: 'CLOUD',
+      }}
+    />
+    <Card
+      href={''}
+      texts={{
+        title: 'Test Onboarding  3',
+        description: 'This is the description 3',
+        category: 'TELECOM',
+      }}
+    />
+  </>
+);
 
 describe('specs:onboarding', () => {
-  it('renders without error', async () => {
-    // when
-    const { getByText, container } = await setupSpecTest();
+  describe('default content', () => {
+    it('displays default content', async () => {
+      const screen = await setupSpecTest({ title: customTitle });
 
-    // then
-    const title = getByText('Welcome to Onboarding');
-    expect(title).toHaveClass('block text-center sm:pt-8 xs:pt-2.5');
-
-    // and
-    const orderButton = container.querySelector('[label="Order Now"]');
-    expect(orderButton.closest('div')).toHaveClass(
-      'flex sm:pt-8 xs:pt-2.5 flex-row items-center space-x-4 justify-center',
-    );
-
-    const description = getByText(
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    );
-    expect(description).toBeVisible();
-
-    const card = getByText('Test Onboarding 1');
-    expect(card.closest('aside')).toHaveClass(
-      'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 xs:pt-10 sm:pt-20',
-    );
+      expect(screen.getByText(customTitle)).toBeVisible();
+      expect(screen.getByAltText('placeholder image')).toBeVisible();
+    });
   });
 
-  describe('contents', () => {
-    it('displays additional content correctly', async () => {
-      const customProps: Partial<OnboardingLayoutProps> = {
-        title: 'Custom Title',
-        description: 'Custom Description',
-      };
+  describe('additional contents', () => {
+    it('displays description correctly', async () => {
+      const screen = await setupSpecTest({
+        title: customTitle,
+        description: (
+          <OdsText preset="paragraph" className="text-center">
+            {descriptionText}
+          </OdsText>
+        ),
+      });
 
-      const screen = await setupSpecTest(customProps);
+      expect(screen.getByText(descriptionText)).toBeVisible();
+    });
 
-      const customTitle = screen.getByText('Custom Title');
-      const customDescription = screen.getByText('Custom Description');
+    it('displays img correctly', async () => {
+      const screen = await setupSpecTest({
+        title: customTitle,
+        img: { src: placeholderSrc, alt: imgAltText },
+      });
 
-      expect(customTitle).toBeTruthy();
-      expect(customDescription).toBeTruthy();
+      expect(screen.getByAltText(imgAltText)).toBeVisible();
+    });
+
+    it('displays order button correctly', async () => {
+      const screen = await setupSpecTest({
+        title: customTitle,
+        orderHref: 'https://example.com/order',
+        orderButtonLabel: orderBtnLabel,
+      });
+
+      const orderButton = screen.container.querySelector(
+        `[label="${orderBtnLabel}"]`,
+      );
+      expect(orderButton).toBeVisible();
+    });
+
+    it('displays more info button correctly', async () => {
+      const screen = await setupSpecTest({
+        title: 'title',
+        moreInfoHref: 'https://example.com/order',
+        moreInfoButtonLabel: infoBtnLabel,
+      });
+
+      const orderButton = screen.container.querySelector(
+        `[label="${infoBtnLabel}"]`,
+      );
+      expect(orderButton).toBeVisible();
+    });
+
+    it('displays children correctly', async () => {
+      const screen = await waitFor(() =>
+        render(
+          <OnboardingLayout title={customTitle}>{children}</OnboardingLayout>,
+        ),
+      );
+
+      const card = screen.getByText('Test Onboarding 1');
+      expect(card.closest('aside')).toHaveClass(
+        'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 xs:pt-10 sm:pt-20',
+      );
     });
   });
 });
