@@ -45,6 +45,7 @@ export interface EditService extends ServiceData {
       | 'plan'
       | 'storage'
       | 'version'
+      | 'enablePrometheus'
     > & {
       backups?: Pick<database.service.Backup, 'time'>;
     }
