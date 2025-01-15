@@ -15,9 +15,10 @@ import {
   RegionSelector,
   usePCICommonContextFactory,
   PCICommonContext,
+  TLocalisation,
 } from '@ovh-ux/manager-pci-common';
 import { useTranslation } from 'react-i18next';
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useData } from '@/api/hooks/useData';
 import { RegionType, StepIdsEnum, TRegion } from '@/api/types';
 import { useOrderStore } from '@/pages/order/hooks/useStore';
@@ -76,7 +77,40 @@ export const FloatingSteps = ({
   }, [selectedInstanceIpAddresses]);
 
   const has3AZ = isRegionWith3AZ(DataState.regions);
-  const pciCommonProperties = usePCICommonContextFactory({ has3AZ });
+  const metaProps = usePCICommonContextFactory({ has3AZ });
+
+  const onSelectRegion = useCallback(
+    (region: TLocalisation) => {
+      // to reset the previews selection if the region is Macro
+      setForm({ ...form, floatingRegion: null });
+
+      if (region) {
+        const {
+          continentLabel: continent,
+          continentCode,
+          datacenterLocation: datacenter,
+          status,
+          macroLabel: macroName,
+          microLabel: microName,
+          name,
+        } = region;
+
+        const floatingRegion: TRegion = {
+          continent,
+          continentCode,
+          datacenter,
+          enabled: status === 'UP',
+          macroName,
+          microName,
+          name,
+          type: region.type as RegionType,
+        };
+
+        setForm({ ...form, floatingRegion });
+      }
+    },
+    [form, setForm],
+  );
 
   return (
     <>
@@ -90,38 +124,10 @@ export const FloatingSteps = ({
         onEdit={On.edit}
         order={2}
       >
-        <PCICommonContext.Provider value={pciCommonProperties}>
+        <PCICommonContext.Provider value={metaProps}>
           <RegionSelector
             projectId={projectId}
-            onSelectRegion={(region) => {
-              // to reset the previews selection if the region is Macro
-              setForm({ ...form, floatingRegion: undefined });
-
-              if (region) {
-                const {
-                  continentLabel: continent,
-                  continentCode,
-                  datacenterLocation: datacenter,
-                  status,
-                  macroLabel: macroName,
-                  microLabel: microName,
-                  name,
-                } = region;
-
-                const floatingRegion: TRegion = {
-                  continent,
-                  continentCode,
-                  datacenter,
-                  enabled: status === 'UP',
-                  macroName,
-                  microName,
-                  name,
-                  type: region.type as RegionType,
-                };
-
-                setForm({ ...form, floatingRegion });
-              }
-            }}
+            onSelectRegion={onSelectRegion}
             regionFilter={(region) =>
               region.isMacro ||
               DataState.regions.some(({ name }) => name === region.name)
