@@ -44,6 +44,7 @@ export interface SavingsPlanContract {
   content: string;
   url: string;
 }
+
 export interface SavingsPlanService {
   id: string;
   model: string;
