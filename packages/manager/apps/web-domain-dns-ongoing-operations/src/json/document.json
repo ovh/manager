@@ -5,7 +5,7 @@
       "jpeg"
     ],
     "acceptedValues": null,
-    "description": "Registrant Company Business License/Certificate issued by respective country's authority, the license should be within the period of validity",
+    "description": "Registrant Company Business License/Certificate issued by respective countrys authority, the license should be within the period of validity",
     "fields": null,
     "key": "corporationProof",
     "maximumSize": 1024000,

@@ -3,25 +3,27 @@ import { useTranslation } from 'react-i18next';
 import {
   OdsText,
   OdsLink,
-  OdsFormField,
   OdsInput,
 } from '@ovhcloud/ods-components/react';
+import { useNavigate } from "react-router-dom";
 import { TArgumentData } from '@/interface';
 
 interface ModalContentComponentProps {
   content: TArgumentData[];
+  domainId : number;
 }
 
 export default function ModalContentComponent({
   content,
+  domainId
 }: ModalContentComponentProps) {
   const { t } = useTranslation('dashboard');
+  const navigate = useNavigate();
 
   return (
-    <div className="my-4">
+    <div className="my-6">
       {content?.map((c, index) => (
         <div key={index}>
-          {/* Rajouter data pour l'api */}
           {c.data.type === '/me/contact' && (
             <div>
               <OdsText preset="span" className="mb-4">
@@ -42,10 +44,9 @@ export default function ModalContentComponent({
 
           {c.data.type === '/me/document' && (
             <OdsLink
-              href="test"
+              onClick={() => navigate(`/upload/${domainId}/${c.data.key}/`)}
               label={t(`domain_operations_update_nicowner_click_${c.data.key}`)}
               icon="external-link"
-              target="_blank"
               className="mb-1 block"
             />
           )}
@@ -60,7 +61,7 @@ export default function ModalContentComponent({
           )}
 
           {c.data.type === 'string' && (
-            <OdsFormField className="p-0 m-0">
+            <div className="mb-3">
               <div className="ods-form-field__label">
                 <label htmlFor={c.data.key}>{c.data.key}</label>
               </div>
@@ -70,7 +71,7 @@ export default function ModalContentComponent({
                 value={c.data.value}
                 name={c.data.key}
               ></OdsInput>
-            </OdsFormField>
+            </div>
           )}
         </div>
       ))}

@@ -38,7 +38,7 @@
     "currentStep": {
       "description": "",
       "executionDuration": 864001,
-      "step": "askForAuthInfo"
+      "step": "Finalization Of The Transfer"
     },
     "expectedDoneDate": "2025-01-09T14:03:31Z",
     "followUpSteps": [
@@ -64,7 +64,44 @@
       }
     ],
     "lastUpdateDate": "2024-12-30T14:49:54+01:00",
-    "progress": 0,
+    "progress": 75,
+    "taskActions": [
+      "canCancel",
+      "canCorrect"
+    ],
+    "taskStatus": "error"
+  },
+  {
+    "currentStep": {
+      "description": "",
+      "executionDuration": 864001,
+      "step": "over"
+    },
+    "expectedDoneDate": "2025-01-09T14:03:31Z",
+    "followUpSteps": [
+      {
+        "description": "initialisation",
+        "executionDuration": 0,
+        "step": "initialisation"
+      },
+      {
+        "description": "Ask and wait contacts Confirmation",
+        "executionDuration": 432000,
+        "step": "Contacts Confirmation"
+      },
+      {
+        "description": "Ask registry transfer and wait the confirmation of the current registrar",
+        "executionDuration": 432000,
+        "step": "Confirmation Of The Current Registrar"
+      },
+      {
+        "description": "Finalization of the transfer",
+        "executionDuration": 1,
+        "step": "Finalization Of The Transfer"
+      }
+    ],
+    "lastUpdateDate": "2024-12-30T14:49:54+01:00",
+    "progress": 100,
     "taskActions": [
       "canCancel",
       "canCorrect"

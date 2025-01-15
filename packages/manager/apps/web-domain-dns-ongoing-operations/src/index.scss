@@ -5,3 +5,19 @@
 html {
   font-family: var(--ods-font-family-default);
 }
+
+.disabled-title::part(text) {
+  color: #808080;
+}
+
+.primary-title::part(text) {
+  color: #00185E;
+}
+
+.success {
+  color: #2B8000;
+}
+
+.modal::part(dialog) {
+  max-height: 70vh;
+}

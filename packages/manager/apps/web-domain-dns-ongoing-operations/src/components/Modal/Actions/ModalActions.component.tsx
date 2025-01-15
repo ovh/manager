@@ -4,6 +4,7 @@ import {
   OdsButton,
   OdsRadio,
   OdsMessage,
+  OdsDivider,
 } from '@ovhcloud/ods-components/react';
 import { TOngoingOperations } from "@/interface";
 
@@ -42,70 +43,89 @@ export default function ModalActionsComponent({
     }
   };
   return (
-    <div className="flex flex-col gap-y-2">
-      <div className="flex items-center gap-x-1">
-        <OdsRadio
-          inputId="radio-relaunch"
-          name="radio-format"
-          onOdsChange={() => setCanRelaunch(true)}
-          isDisabled={!data?.canRelaunch}
-        ></OdsRadio>
-        <label
-          htmlFor="radio-relaunch"
-          className="form-field__radio__field__label"
-        >
-          {t('domain_operations_relaunch_title')}
-        </label>
-      </div>
+    <div>
+      <OdsDivider color="light" spacing="32" />
+      <div className="flex flex-col gap-y-2">
+        <div className="flex items-center gap-x-1">
+          <OdsRadio
+            inputId="radio-relaunch"
+            name="radio-format"
+            onOdsChange={() => {
+              setCanRelaunch(true);
+              setCanCancel(false);
+              setCanAccelerate(false);
+            }}
+            isDisabled={!data?.canRelaunch}
+          ></OdsRadio>
+          <label
+            htmlFor="radio-relaunch"
+            className="form-field__radio__field__label"
+          >
+            {t('domain_operations_relaunch_title')}
+          </label>
+        </div>
 
-      <div className="flex items-center gap-x-1">
-        <OdsRadio
-          inputId="radio-accelerate"
-          name="radio-format"
-          isDisabled={!data?.canAccelerate}
-          onOdsChange={() => setCanAccelerate(true)}
-        ></OdsRadio>
-        <label
-          htmlFor="radio-accelerate"
-          className="form-field__radio__field__label"
-        >
-          {t('domain_operations_accelerate_title')}
-        </label>
-      </div>
+        <div className="flex items-center gap-x-1">
+          <OdsRadio
+            inputId="radio-accelerate"
+            name="radio-format"
+            isDisabled={!data?.canAccelerate}
+            onOdsChange={() => {
+              setCanAccelerate(true);
+              setCanCancel(false);
+              setCanRelaunch(false);
+            }}
+          ></OdsRadio>
+          <label
+            htmlFor="radio-accelerate"
+            className="form-field__radio__field__label"
+          >
+            {t('domain_operations_accelerate_title')}
+          </label>
+        </div>
 
-      <div className="flex items-center gap-x-1">
-        <OdsRadio
-          inputId="radio-cancel"
-          name="radio-format"
-          isDisabled={!data?.canCancel}
-          onOdsChange={() => setCanCancel(true)}
-        ></OdsRadio>
-        <label
-          htmlFor="radio-cancel"
-          className="form-field__radio__field__label"
-        >
-          {t('domain_operations_cancel_title')}
-        </label>
-      </div>
+        <div className="flex items-center gap-x-1">
+          <OdsRadio
+            inputId="radio-cancel"
+            name="radio-format"
+            isDisabled={!data?.canCancel}
+            onOdsChange={() => {
+              setCanCancel(true);
+              setCanRelaunch(false);
+              setCanAccelerate(false);
+            }}
+          ></OdsRadio>
+          <label
+            htmlFor="radio-cancel"
+            className="form-field__radio__field__label"
+          >
+            {t('domain_operations_cancel_title')}
+          </label>
+        </div>
 
-      {canAccelerate && (
-        <OdsMessage color="warning" isDismissible={false}>{ t('domain_operations_accelerate_warning') }</OdsMessage>
-      )
-      }
+        {canAccelerate && (
+          <OdsMessage color="warning" isDismissible={false}>{ t('domain_operations_accelerate_warning') }</OdsMessage>
+        )}
 
-      <div className="flex justify-end">
-        <OdsButton
-          label={t('wizard_cancel')}
-          slot="actions"
-          onClick={onCloseModal}
-          variant="ghost"
-        />
-        <OdsButton
-          label={t('wizard_confirm')}
-          slot="actions"
-          isDisabled={!canRelaunch && !canAccelerate && !canCancel}
-          onClick={() => doOperation(data.id, operationType())}
-        />
+        <div className="flex justify-end">
+          <OdsButton
+            label={t('wizard_cancel')}
+            slot="actions"
+            onClick={() => {
+              onCloseModal();
+              setCanCancel(false);
+              setCanRelaunch(false);
+              setCanAccelerate(false);
+            }}
+            variant="ghost"
+          />
+          <OdsButton
+            label={t('wizard_confirm')}
+            slot="actions"
+            isDisabled={!canRelaunch && !canAccelerate && !canCancel}
+            onClick={() => doOperation(data.id, operationType())}
+          />
+        </div>
       </div>
     </div>
   );

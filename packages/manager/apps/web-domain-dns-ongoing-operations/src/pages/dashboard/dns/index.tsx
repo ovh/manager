@@ -31,8 +31,7 @@ export default function Domain() {
 
   const openModal = (id: number) => {
     setModalOpen(!isModalOpen);
-    // @ts-ignore
-    const dnsFilter = flattenData.filter((element) => element.id === id)
+    const dnsFilter = flattenData.filter((element: any) => element.id === id)
     setDnsData(dnsFilter[0]);
   };
 
@@ -40,7 +39,7 @@ export default function Domain() {
     setModalOpen(!isModalOpen);
   };
 
-  const columns = useDatagridColumn(openModal, true, flattenData);
+  const columns = useDatagridColumn(openModal, false, flattenData);
 
   if (isError) {
     return <ErrorBanner error={error.message} />;
@@ -60,7 +59,6 @@ export default function Domain() {
         universe='dns'
         isModalOpen={isModalOpen}
         onCloseModal={closeModal}
-        // @ts-ignore
         data={dnsData}
       />
       {flattenData && (

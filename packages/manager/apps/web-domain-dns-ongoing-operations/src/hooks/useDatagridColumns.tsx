@@ -1,13 +1,25 @@
-import React, { useMemo } from "react";
-import { useTranslation } from "react-i18next";
-import { ActionMenu, DataGridTextCell } from "@ovh-ux/manager-react-components";
-import { OdsBadge, OdsLink } from "@ovhcloud/ods-components/react";
-import { ODS_BADGE_COLOR } from "@ovhcloud/ods-components/src/components/badge/src/constants/badge-color";
-import { useFormatDate } from "@/hooks/date/useFormatDate";
-import { TOngoingOperations } from "@/interface";
+import React, { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
+import { ActionMenu, DataGridTextCell } from '@ovh-ux/manager-react-components';
+import {
+  OdsBadge,
+  OdsLink,
+  OdsText,
+  OdsTooltip,
+  OdsIcon,
+} from '@ovhcloud/ods-components/react';
+import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components/src/components/badge/src/constants/badge-color';
+import { useNavigate } from 'react-router-dom';
+import { useFormatDate } from '@/hooks/date/useFormatDate';
+import { TOngoingOperations } from '@/interface';
 
-export const useDatagridColumn = (openModal: (id: number) => void, isDomain : boolean, flattenData: object) => {
+export const useDatagridColumn = (
+  openModal: (id: number) => void,
+  isDomain: boolean,
+  flattenData: unknown[],
+) => {
   const { t } = useTranslation('dashboard');
+  const navigate = useNavigate();
 
   const badgeColor = (props: string) => {
     switch (props) {
@@ -15,20 +27,23 @@ export const useDatagridColumn = (openModal: (id: number) => void, isDomain : bo
         return ODS_BADGE_COLOR.warning;
       case 'error':
         return ODS_BADGE_COLOR.critical;
-      case 'success':
+      case 'done':
         return ODS_BADGE_COLOR.success;
-      case 'cancel':
+      case 'cancelled':
         return ODS_BADGE_COLOR.neutral;
       default:
         return ODS_BADGE_COLOR.information;
     }
   };
 
-  const formatColumnComment = (data: string) => {
-    if(data[0] === '"' && data.slice(-1) === '"') {
-      return data.replace(/"/g, '');
+  const formatColumnComment = (comment: string) => {
+    if (comment) {
+      if (comment[0] === '"' && comment.slice(-1) === '"') {
+        return comment.replace(/"/g, '');
+      }
+      return comment;
     }
-    return data;
+    return comment;
   };
 
   return useMemo(
@@ -36,10 +51,9 @@ export const useDatagridColumn = (openModal: (id: number) => void, isDomain : bo
       {
         id: 'domain',
         cell: (props: TOngoingOperations) => (
-          // TODO: Changer la génération du lien
           <OdsLink
             href={`https://www.ovh.com/manager/#/web/domain/${props.domain}/information`}
-            label={props.domain}
+            label={isDomain ? props.domain : props.zone}
             target="_blank"
           />
         ),
@@ -59,7 +73,9 @@ export const useDatagridColumn = (openModal: (id: number) => void, isDomain : bo
       {
         id: 'comment',
         cell: (props: TOngoingOperations) => (
-          <DataGridTextCell>{props.comment}</DataGridTextCell>
+          <DataGridTextCell>
+            {formatColumnComment(props.comment)}
+          </DataGridTextCell>
         ),
         label: t('domain_operations_table_header_comment'),
       },
@@ -73,13 +89,6 @@ export const useDatagridColumn = (openModal: (id: number) => void, isDomain : bo
         label: t('domain_operations_table_header_creationDate'),
       },
       {
-        id: 'date_processed',
-        cell: (props: TOngoingOperations) => (
-          <DataGridTextCell>{useFormatDate(props.todoDate)}</DataGridTextCell>
-        ),
-        label: t('domain_operations_table_header_todoDate'),
-      },
-      {
         id: 'last_updated',
         cell: (props: TOngoingOperations) => (
           <DataGridTextCell>{useFormatDate(props.lastUpdate)}</DataGridTextCell>
@@ -87,19 +96,38 @@ export const useDatagridColumn = (openModal: (id: number) => void, isDomain : bo
         label: t('domain_operations_table_header_lastUpdate'),
       },
       {
-        id: 'end_date',
-        cell: (props: TOngoingOperations) => (
-          <DataGridTextCell>{props?.endDate}</DataGridTextCell>
-        ),
-        label: t('domain_operations_table_header_doneDate'),
-      },
-      {
         id: 'status',
         cell: (props: TOngoingOperations) => (
-          <OdsBadge
-            color={badgeColor(props.status)}
-            label={t(`domain_operations_statusOperation_${props.status}`)}
-          />
+          <div className="flex items-center gap-x-1">
+            <OdsBadge
+              color={badgeColor(props.status)}
+              label={t(`domain_operations_statusOperation_${props.status}`)}
+            />
+            {props.status === 'todo' && (
+              <div>
+                <OdsIcon id={`trigger-${props.id}`} name="circle-question" />
+                <OdsTooltip
+                  triggerId={`trigger-${props.id}`}
+                  role="tooltip"
+                  strategy="fixed"
+                >
+                  <OdsText>Prochaine exécution le {useFormatDate(props.todoDate)}</OdsText>
+                </OdsTooltip>
+              </div>
+            )}
+            {props.status === 'done' && (
+              <div>
+                <OdsIcon id={`trigger-${props.id}`} name="circle-question" />
+                <OdsTooltip
+                  triggerId={`trigger-${props.id}`}
+                  role="tooltip"
+                  strategy="fixed"
+                >
+                  <OdsText>Fin de l'exécution le {props.endDate}</OdsText>
+                </OdsTooltip>
+              </div>
+            )}
+          </div>
         ),
         label: t('domain_operations_table_header_status'),
       },
@@ -132,6 +160,7 @@ export const useDatagridColumn = (openModal: (id: number) => void, isDomain : bo
                       props.function === 'DomainIncomingTransfer'
                         ? ''
                         : 'hidden',
+                    onClick: () => navigate(`/tracking/${props.id}`),
                   },
                 ]}
               />

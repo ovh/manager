@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import {
   Datagrid,
   useResourcesIcebergV6,
 } from '@ovh-ux/manager-react-components';
 
-import { OdsMessage } from "@ovhcloud/ods-components/react";
+import { OdsMessage } from '@ovhcloud/ods-components/react';
 import Loading from '@/components/Loading/Loading';
 import ErrorBanner from '@/components/Error/Error';
 import { useDatagridColumn } from '@/hooks/useDatagridColumns';
 import Modal from '@/components/Modal/Modal';
+import { UseResourcesIcebergType } from '@/interface';
 
 export default function Domain() {
   const {
@@ -23,23 +24,30 @@ export default function Domain() {
     sorting,
     setSorting,
     pageIndex,
-  } = useResourcesIcebergV6({
+  } = useResourcesIcebergV6<UseResourcesIcebergType>({
     route: `/me/task/domain`,
     queryKey: ['web-domain-dns-ongoing-operations', `/me/task/domain`],
   });
   const [isModalOpen, setModalOpen] = useState<boolean>(false);
-  const [domainData, setDomainData] = useState({});
-  const [status, setStatus] = useState('');
+  const [domainData, setDomainData] = useState(null);
+  const [status, setStatus] = useState<string>();
+  const [statusMessage, setStatusMessage] = useState<string>('');
 
   const openModal = (id: number) => {
     setModalOpen(!isModalOpen);
-    const domainFilter = flattenData.filter((element: any) => element.id === id);
-    //@ts-ignore
+    const domainFilter = flattenData.filter(
+      (element: any) => element.id === id,
+    );
     setDomainData(domainFilter[0]);
   };
 
   const closeModal = () => {
     setModalOpen(!isModalOpen);
+  };
+
+  const changeStatus = (label: string, message: string) => {
+    setStatus(label);
+    setStatusMessage(message);
   };
 
   const columns = useDatagridColumn(openModal, true, flattenData);
@@ -62,14 +70,29 @@ export default function Domain() {
         universe="domain"
         isModalOpen={isModalOpen}
         onCloseModal={closeModal}
-        //@ts-ignore
         data={domainData}
-        status={status}
+        changeStatus={changeStatus}
       />
 
-      {status &&
-        <OdsMessage color="success">Message de notification</OdsMessage>
-      }
+      {status === 'success' && (
+        <OdsMessage
+          color="success"
+          className="w-full mb-4"
+          onOdsRemove={() => changeStatus('', '')}
+        >
+          Message de notification success
+        </OdsMessage>
+      )}
+
+      {status === 'warning' && (
+        <OdsMessage
+          color="warning"
+          className="w-full mb-4"
+          onOdsRemove={() => changeStatus('', '')}
+        >
+          Une erreur s'est produite lors du relancement de l'opération : {statusMessage}
+        </OdsMessage>
+      )}
 
       {flattenData && (
         <Datagrid

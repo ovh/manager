@@ -32,7 +32,7 @@ export const getmeTaskDomainIdQueryKey = (params: GetmeTaskDomainIdParams) => [
 /**
  * Get information about domain related tasks : Get this object properties
  */
-export const getmeTaskDomainId = async (id: number): Promise<any> =>
+export const getmeTaskDomainId = async (id: string): Promise<any> =>
   apiClient.v6.get(`/me/task/domain/${id}`);
 
 /**
@@ -45,7 +45,7 @@ export const getmeTaskDomainNicList = async (id: number): Promise<any> =>
  * Get information about domain related tasks : Get the domain task argument
  */
 export const getmeTaskDomainArgument = async (
-  id: number,
+  id: string,
   nic: string,
 ): Promise<any> => apiClient.v6.get(`/me/task/domain/${id}/argument/${nic}`);
 

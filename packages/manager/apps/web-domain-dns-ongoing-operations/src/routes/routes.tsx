@@ -53,7 +53,12 @@ export const Routes: any = [
         id: 'track',
         path: urls.track,
         ...lazyRouteConfig(() => import('@/pages/tracking')),
-      }
+      },
+      {
+        id: 'upload',
+        path: urls.upload,
+        ...lazyRouteConfig(() => import('@/pages/upload')),
+      },
     ],
   },
   {

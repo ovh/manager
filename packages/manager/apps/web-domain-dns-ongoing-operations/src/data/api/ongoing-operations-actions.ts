@@ -6,5 +6,5 @@ export const operation = async (
   id: number,
   operationType: string,
 ): Promise<any> => {
-  apiClient.v6.post(`/me/task/${universe}/${id}/${operationType}`);
+  return apiClient.v6.post(`/me/task/${universe}/${id}/${operationType}`);
 };
