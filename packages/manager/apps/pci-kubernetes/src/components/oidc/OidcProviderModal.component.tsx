@@ -76,8 +76,6 @@ export function OidcProviderModal() {
 
   useEffect(() => {
     if (oidcProvider) {
-      console.log('oidpROVIDER', oidcProvider);
-
       reset({
         issuerUrl: oidcProvider.issuerUrl,
         clientId: oidcProvider.clientId,
