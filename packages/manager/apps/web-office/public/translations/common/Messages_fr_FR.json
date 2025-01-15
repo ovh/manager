@@ -1,0 +1,8 @@
+{
+  "common_field_error_required": "Veuillez compléter ce champ.",
+  "common_field_error_minlength": "Veuillez saisir un minimum de {{minlength}} caractères.",
+  "common_field_error_maxlength": "Veuillez saisir un maximum de {{maxlength}} caractères.",
+  "common_field_error_pattern": "Veuillez saisir un format valide.",
+  "cta_cancel": "Annuler",
+  "cta_confirm": "Valider"
+}

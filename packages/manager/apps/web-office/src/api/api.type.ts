@@ -20,3 +20,9 @@ export enum TaskStatusEnum {
   ERROR = 'error',
   TODO = 'todo',
 }
+
+export type UserParamsType = {
+  activationEmail: string;
+  firstName: string;
+  lastName: string;
+};
