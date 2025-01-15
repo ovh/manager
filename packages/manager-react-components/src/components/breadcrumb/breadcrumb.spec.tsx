@@ -25,6 +25,5 @@ describe('breadcrumb component', () => {
     expect(items[0]).toBeVisible();
     expect(items[1]).toBeVisible();
     expect(items[2]).toBeVisible();
-    expect(true).toBeTruthy();
   });
 });

@@ -35,7 +35,6 @@ export const ErrorBanner = ({
     env?.then((response) => {
       const { applicationName } = response;
       const name = `errors::${getTrackingTypology(error)}::${applicationName}`;
-      // to confirm with the tracking team
       shell?.tracking?.trackPage({
         name,
         level2: '81',

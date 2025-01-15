@@ -16,9 +16,8 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
   rootLabel,
   appName,
 }) => {
-  const label = rootLabel;
   const breadcrumbItems = useBreadcrumb({
-    rootLabel: label,
+    rootLabel,
     appName,
   });
   return (

@@ -2,20 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { {{#if isPCI }} useParams, {{/if}} useNavigate, useLocation } from 'react-router-dom';
 
-import { OdsButton } from '@ovhcloud/ods-components/react';
+import { OdsButton, OdsSpinner } from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 
 import {
   Breadcrumb,
   Datagrid,
   DataGridTextCell,
+  ErrorBanner,
   useResourcesIcebergV6,
   dataType,
   BaseLayout
 } from '@ovh-ux/manager-react-components';
-
-import Loading from '@/components/Loading/Loading';
-import ErrorBanner from '@/components/Error/Error';
 
 import appConfig from '@/{{appName}}.config';
 
@@ -84,11 +82,25 @@ export default function Listing() {
   }, [flattenData]);
 
   if (isError) {
-    return <ErrorBanner error={error.message} />;
+    const { response }: any = error;
+    const errorObj = {
+      data: error,
+      headers: response.headers,
+      status: response.status,
+    };
+    return (
+      <ErrorBanner
+        error={errorObj}
+      />
+    );
   }
 
   if (isLoading && pageIndex === 1) {
-    return (<div data-testid="listing-page-spinner"><Loading/></div>)
+    return (
+      <div className="flex justify-center" data-testid="listing-page-spinner">
+        <OdsSpinner />
+      </div>
+    );
   }
 
   const header = {
