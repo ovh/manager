@@ -6,25 +6,26 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { PciTrustedZoneBanner } from '@ovh-ux/manager-pci-common';
 import { PriceEstimate } from '@/pages/new/components/PriceEstimate';
-import { TVolumeAddon } from '@/api/data/catalog';
+import { TVolumePricing } from '@/api/data/catalog';
 
 interface ValidationStepProps {
   volumeCapacity: number;
-  volumeType: TVolumeAddon;
+  pricing: TVolumePricing;
   onSubmit: () => void;
 }
 
 export function ValidationStep({
   volumeCapacity,
-  volumeType,
+  pricing,
   onSubmit,
 }: Readonly<ValidationStepProps>) {
   const { t } = useTranslation('add');
   const navigate = useNavigate();
   const { clearNotifications } = useNotifications();
+
   return (
     <div className="mb-6">
-      <PriceEstimate volumeCapacity={volumeCapacity} volumeType={volumeType} />
+      <PriceEstimate volumeCapacity={volumeCapacity} pricing={pricing} />
       <div className="my-5">
         <PciTrustedZoneBanner />
       </div>

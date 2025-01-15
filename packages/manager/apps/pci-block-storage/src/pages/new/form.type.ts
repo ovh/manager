@@ -1,9 +1,10 @@
-import { TLocalisation } from '@/api/hooks/useRegions';
-import { TVolumeAddon } from '@/api/data/catalog';
+import { TVolumeAddon, TVolumePricing } from '@/api/data/catalog';
+import { TRegion } from '@/api/data/regions';
 
 export type TFormState = {
-  region: TLocalisation;
+  region: TRegion;
   volumeType: TVolumeAddon;
+  pricing: TVolumePricing;
   volumeName: string;
   volumeCapacity: number;
   availabilityZone: string;

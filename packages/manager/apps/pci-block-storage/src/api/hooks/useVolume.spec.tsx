@@ -29,12 +29,6 @@ vi.mock('@/api/data/volume', async (importOriginal) => {
   };
 });
 
-vi.mock('@ovh-ux/manager-react-components', () => ({
-  useTranslatedMicroRegions: vi.fn(() => ({
-    translateMicroRegion: vi.fn((t) => t),
-  })),
-}));
-
 const queryClient = new QueryClient();
 
 const wrapper = ({ children }) => (
@@ -98,7 +92,7 @@ describe('useVolumes', () => {
         size: 0,
         status: 'available',
         statusGroup: '',
-        region: 'region',
+        region: 'region1',
         bootable: false,
         planCode: '',
         type: '',
@@ -113,7 +107,7 @@ describe('useVolumes', () => {
         size: 0,
         status: 'available',
         statusGroup: '',
-        region: 'region',
+        region: 'region2',
         bootable: false,
         planCode: '',
         type: '',
@@ -147,8 +141,8 @@ describe('useVolumes', () => {
             id: '1',
             name: 'Volume 1',
             planCode: '',
-            region: 'region',
-            regionName: 'region',
+            region: 'region1',
+            regionName: 'manager_components_region_region_micro',
             size: 0,
             status: 'available',
             statusGroup: 'ACTIVE',
@@ -162,8 +156,8 @@ describe('useVolumes', () => {
             id: '2',
             name: 'Volume 2',
             planCode: '',
-            region: 'region',
-            regionName: 'region',
+            region: 'region2',
+            regionName: 'manager_components_region_region_micro',
             size: 0,
             status: 'available',
             statusGroup: 'ACTIVE',

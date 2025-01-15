@@ -1,7 +1,8 @@
 import { useMemo } from 'react';
 import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
-import { useTranslatedMicroRegions } from '@ovh-ux/manager-react-components';
+import { getMacroRegion } from '@ovh-ux/manager-react-components';
 import { useMutation, useQuery } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 import {
   addVolume,
   AddVolumeProps,
@@ -22,7 +23,7 @@ import { UCENTS_FACTOR } from '@/hooks/currency-constants';
 import queryClient from '@/queryClient';
 
 export const useAllVolumes = (projectId: string) => {
-  const { translateMicroRegion } = useTranslatedMicroRegions();
+  const { t } = useTranslation('region');
   return useQuery({
     queryKey: ['project', projectId, 'volumes'],
     queryFn: () => getAllVolumes(projectId),
@@ -56,10 +57,15 @@ export const useAllVolumes = (projectId: string) => {
         ) {
           statusGroup = 'ERROR';
         }
+
+        const macroRegion = getMacroRegion(volume.region);
+
         return {
           ...volume,
           statusGroup,
-          regionName: translateMicroRegion(volume.region),
+          regionName: t(`manager_components_region_${macroRegion}_micro`, {
+            micro: volume.availabilityZone ?? macroRegion,
+          }),
         };
       }),
     enabled: !!projectId,
@@ -270,6 +276,7 @@ export const useAddVolume = ({
   regionName,
   volumeCapacity,
   volumeType,
+  availabilityZone,
   onError,
   onSuccess,
 }: UseAddVolumeProps) => {
@@ -281,6 +288,7 @@ export const useAddVolume = ({
         regionName,
         volumeCapacity,
         volumeType,
+        availabilityZone,
       }),
     onError,
     onSuccess: async () => {

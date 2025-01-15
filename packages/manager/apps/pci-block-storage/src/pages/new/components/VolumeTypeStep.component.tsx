@@ -12,15 +12,110 @@ import {
 
 import { useTranslation } from 'react-i18next';
 import { useMemo, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { useTranslateBytes } from '@/pages/new/hooks/useTranslateBytes';
 import { StepState } from '@/pages/new/hooks/useStep';
-import { TLocalisation } from '@/api/hooks/useRegions';
 import { useVolumeCatalog } from '@/api/hooks/useCatalog';
 import { TVolumeAddon } from '@/api/data/catalog';
+import { TRegion } from '@/api/data/regions';
+
+const BETA_TAG = 'is_new';
+
+function VolumeTypeTile({
+  volumeType,
+  currentRegion,
+}: Readonly<{ volumeType: TVolumeAddon; currentRegion: TRegion }>) {
+  const { t } = useTranslation(['add', 'common']);
+  const { projectId } = useParams();
+  const {
+    data: { filters },
+  } = useVolumeCatalog(projectId);
+  const tBytes = useTranslateBytes();
+  const { getFormattedCatalogPrice } = useCatalogPrice(6, {
+    hideTaxLabel: true,
+  });
+
+  const pricing = volumeType.pricings[0];
+
+  const isNew = useMemo(
+    () =>
+      volumeType.tags.includes(BETA_TAG) ||
+      filters.deployment.some(
+        (deployment) =>
+          currentRegion.filters.deployment.includes(deployment.name) &&
+          deployment.tags.includes(BETA_TAG),
+      ),
+    [filters, volumeType],
+  );
+
+  return (
+    <div className="w-full">
+      <div className="border-solid border-0 border-b border-b-[#85d9fd] py-3 d-flex">
+        <OsdsText
+          level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
+          size={ODS_THEME_TYPOGRAPHY_SIZE._300}
+          color={ODS_THEME_COLOR_INTENT.text}
+        >
+          {volumeType.name}
+        </OsdsText>
+        {isNew && (
+          <OsdsChip
+            className="ms-3"
+            color={ODS_THEME_COLOR_INTENT.success}
+            size={ODS_CHIP_SIZE.sm}
+            inline
+          >
+            {t('common:pci_projects_project_storages_blocks_new')}
+          </OsdsChip>
+        )}
+      </div>
+      <div className="py-3">
+        <OsdsText
+          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+          color={ODS_THEME_COLOR_INTENT.text}
+        >
+          {pricing.specs.volume.iops.guaranteed
+            ? t(
+                'pci_projects_project_storages_blocks_add_type_addon_iops_guaranteed',
+                {
+                  iops: pricing.specs.volume.iops.level,
+                  separator: ', ',
+                },
+              )
+            : t(
+                'pci_projects_project_storages_blocks_add_type_addon_iops_not_guaranteed',
+                {
+                  iops:
+                    pricing.specs.volume.iops.max ||
+                    pricing.specs.volume.iops.level,
+                  separator: ', ',
+                },
+              )}
+          {t(
+            'pci_projects_project_storages_blocks_add_type_addon_capacity_max',
+            {
+              capacity: tBytes(
+                pricing.specs.volume.capacity.max,
+                0,
+                false,
+                'GB',
+                false,
+              ),
+            },
+          )}{' '}
+          <br />
+          {t('pci_projects_project_storages_blocks_add_type_addon_price', {
+            price: getFormattedCatalogPrice(volumeType.pricings[0]?.price),
+          })}
+        </OsdsText>
+      </div>
+    </div>
+  );
+}
 
 export interface VolumeTypeStepProps {
   projectId: string;
-  region: TLocalisation;
+  region: TRegion;
   step: StepState;
   onSubmit: (volumeType: TVolumeAddon) => void;
 }
@@ -31,23 +126,19 @@ export function VolumeTypeStep({
   step,
   onSubmit,
 }: Readonly<VolumeTypeStepProps>) {
-  const { t } = useTranslation('add');
-  const { t: tStepper } = useTranslation('stepper');
-  const { t: tCommon } = useTranslation('common');
-  const [volumeType, setVolumeType] = useState<TVolumeAddon>(undefined);
-  const tBytes = useTranslateBytes();
-  const { getFormattedCatalogPrice } = useCatalogPrice(6, {
-    hideTaxLabel: true,
-  });
-
+  const { t } = useTranslation('stepper');
   const { data } = useVolumeCatalog(projectId);
+
+  const [volumeType, setVolumeType] = useState<TVolumeAddon>(undefined);
+
   const volumeTypes = useMemo(
     () =>
-      data?.models.filter(
-        (m) =>
-          m.pricingType === 'consumption' &&
-          m.pricings.flatMap((p) => p.regions).includes(region.name),
-      ) || [],
+      data?.models
+        .map((m) => ({
+          ...m,
+          pricings: m.pricings.filter((p) => p.regions.includes(region.name)),
+        }))
+        .filter((m) => m.pricings.length > 0) || [],
     [data, region],
   );
 
@@ -60,70 +151,7 @@ export function VolumeTypeStep({
         value={volumeType}
         items={displayedTypes || []}
         label={(vType: TVolumeAddon) => (
-          <div className="w-full">
-            <div className="border-solid border-0 border-b border-b-[#85d9fd] py-3 d-flex">
-              <OsdsText
-                level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-                size={ODS_THEME_TYPOGRAPHY_SIZE._300}
-                color={ODS_THEME_COLOR_INTENT.text}
-              >
-                {vType.blobs.technical.name}
-              </OsdsText>
-              {vType.blobs.tags.includes('is_new') && (
-                <OsdsChip
-                  className="ms-3"
-                  color={ODS_THEME_COLOR_INTENT.success}
-                  size={ODS_CHIP_SIZE.sm}
-                  inline
-                >
-                  {tCommon('pci_projects_project_storages_blocks_new')}
-                </OsdsChip>
-              )}
-            </div>
-            <div className="py-3">
-              <OsdsText
-                level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                color={ODS_THEME_COLOR_INTENT.text}
-              >
-                {vType.blobs.technical.volume.iops.guaranteed
-                  ? t(
-                      'pci_projects_project_storages_blocks_add_type_addon_iops_guaranteed',
-                      {
-                        iops: vType.blobs.technical.volume.iops.level,
-                        separator: ', ',
-                      },
-                    )
-                  : t(
-                      'pci_projects_project_storages_blocks_add_type_addon_iops_not_guaranteed',
-                      {
-                        iops:
-                          vType.blobs.technical.volume.iops.max ||
-                          vType.blobs.technical.volume.iops.level,
-                        separator: ', ',
-                      },
-                    )}
-                {t(
-                  'pci_projects_project_storages_blocks_add_type_addon_capacity_max',
-                  {
-                    capacity: tBytes(
-                      vType.blobs.technical.volume.capacity.max,
-                      0,
-                      false,
-                      'GB',
-                      false,
-                    ),
-                  },
-                )}{' '}
-                <br />
-                {t(
-                  'pci_projects_project_storages_blocks_add_type_addon_price',
-                  {
-                    price: getFormattedCatalogPrice(vType.pricings[0]?.price),
-                  },
-                )}
-              </OsdsText>
-            </div>
-          </div>
+          <VolumeTypeTile volumeType={vType} currentRegion={region} />
         )}
         onInput={setVolumeType}
       />
@@ -135,7 +163,7 @@ export function VolumeTypeStep({
             onClick={() => onSubmit(volumeType)}
             className="w-fit"
           >
-            {tStepper('common_stepper_next_button_label')}
+            {t('common_stepper_next_button_label')}
           </OsdsButton>
         </div>
       )}

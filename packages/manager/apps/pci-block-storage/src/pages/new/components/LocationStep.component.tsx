@@ -1,7 +1,13 @@
-import { useContext, useState } from 'react';
-import { OsdsButton, OsdsLink, OsdsText } from '@ovhcloud/ods-components/react';
+import { useCallback, useContext, useMemo, useState } from 'react';
+import {
+  OsdsButton,
+  OsdsLink,
+  OsdsSpinner,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
 import {
   ODS_BUTTON_SIZE,
+  ODS_SPINNER_SIZE,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
@@ -9,60 +15,93 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { Trans, useTranslation } from 'react-i18next';
 import {
   isDiscoveryProject,
-  useProject,
+  PCICommonContext,
   RegionSelector,
   RegionSummary,
+  TLocalisation,
   usePCICommonContextFactory,
-  PCICommonContext,
+  useProject,
 } from '@ovh-ux/manager-pci-common';
-import { OvhSubsidiary, Subtitle } from '@ovh-ux/manager-react-components';
+import { Subtitle } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { TLocalisation } from '@/api/hooks/useRegions';
 import { StepState } from '@/pages/new/hooks/useStep';
-import { useProjectsAvailableVolumes } from '@/api/hooks/useProjectsAvailableVolumes';
-import { isRegionWith3AZ } from '@/api/data/availableVolumes';
-import { DeploymentModeStep } from '@/pages/new/components/DeploymentModeStep';
-import { getBaseUrl } from '@/website/ovhWebsiteMapper';
+import { DeploymentModeSelector } from '@/pages/new/components/DeploymentModeSelector';
+import { useVolumeCatalog } from '@/api/hooks/useCatalog';
+import { TCatalogGroup } from '@/api/data/catalog';
+import { DeploymentModeTileSummary } from '@/pages/new/components/DeploymentModeTileSummary';
+import { useHas3AZRegion } from '@/api/hooks/useHas3AZRegion';
+import { TRegion } from '@/api/data/regions';
+import { GLOBAL_INFRASTRUCTURE_URL } from '@/pages/new/components/website-link';
 
 interface LocationProps {
   projectId: string;
   step: StepState;
-  onSubmit: (region: TLocalisation) => void;
+  onSubmit: (region: TRegion) => void;
 }
-
-const useHas3AZRegion = (projectId: string) => {
-  const { data: availableVolumes, isPending } = useProjectsAvailableVolumes(
-    projectId,
-  );
-
-  return {
-    has3AZ:
-      availableVolumes?.plans.some((p) => p.regions.some(isRegionWith3AZ)) ||
-      false,
-    isPending,
-  };
-};
 
 export function LocationStep({
   projectId,
   step,
-  onSubmit,
+  onSubmit: parentSubmit,
 }: Readonly<LocationProps>) {
   const { t } = useTranslation(['stepper', 'add']);
+  const { data: volumeCatalog, isPending } = useVolumeCatalog(projectId);
   const context = useContext(ShellContext);
   const { ovhSubsidiary } = context.environment.getUser();
 
-  const [region, setRegion] = useState<TLocalisation>(undefined);
+  const [
+    selectedRegionGroup,
+    setSelectedRegionGroup,
+  ] = useState<TCatalogGroup | null>(null);
+  const [selectedLocalisation, setSelectedLocalisation] = useState<
+    TLocalisation
+  >(undefined);
+  const selectedRegion = useMemo(
+    () =>
+      selectedLocalisation
+        ? volumeCatalog.regions.find(
+            (r) => r.name === selectedLocalisation.name,
+          )
+        : null,
+    [volumeCatalog, selectedLocalisation],
+  );
+
   const { data: project } = useProject();
   const isDiscovery = isDiscoveryProject(project);
-  const hasRegion = !!region;
+  const hasRegion = !!selectedLocalisation;
 
   const { has3AZ } = useHas3AZRegion(projectId);
   const pciCommonProperties = usePCICommonContextFactory({ has3AZ });
 
+  const regions = useMemo(
+    () =>
+      selectedRegionGroup
+        ? volumeCatalog?.regions.filter((r) =>
+            r.filters.deployment.includes(selectedRegionGroup.name),
+          )
+        : volumeCatalog?.regions,
+    [volumeCatalog, selectedRegionGroup],
+  );
+
+  const onSubmit = useCallback(() => {
+    setSelectedRegionGroup(
+      volumeCatalog.filters.deployment.find(
+        (g) => g.name === selectedRegion.filters.deployment[0],
+      ),
+    );
+    parentSubmit(selectedRegion);
+  }, [volumeCatalog, selectedRegion, parentSubmit]);
+
+  if (isPending) return <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />;
+
   return (
     <PCICommonContext.Provider value={pciCommonProperties}>
-      {hasRegion && step.isLocked && <RegionSummary region={region} />}
+      {hasRegion && step.isLocked && (
+        <div>
+          <DeploymentModeTileSummary group={selectedRegionGroup} />
+          <RegionSummary region={selectedLocalisation} />
+        </div>
+      )}
       {(!step.isLocked || isDiscovery) && (
         <div>
           <div>
@@ -82,7 +121,10 @@ export function LocationStep({
                   components={{
                     Link: (
                       <OsdsLink
-                        href={getBaseUrl(ovhSubsidiary as OvhSubsidiary)}
+                        href={
+                          GLOBAL_INFRASTRUCTURE_URL[ovhSubsidiary] ??
+                          GLOBAL_INFRASTRUCTURE_URL.DEFAULT
+                        }
                         color={ODS_THEME_COLOR_INTENT.info}
                       />
                     ),
@@ -91,7 +133,14 @@ export function LocationStep({
               </OsdsText>
             </div>
           </div>
-          {/* <DeploymentModeStep /> */}
+          <DeploymentModeSelector
+            deploymentGroups={volumeCatalog.filters.deployment}
+            selectedRegionGroup={selectedRegionGroup}
+            onChange={(group) => {
+              setSelectedLocalisation(undefined);
+              setSelectedRegionGroup(group);
+            }}
+          />
 
           <div>
             <Subtitle>
@@ -100,11 +149,10 @@ export function LocationStep({
           </div>
           <RegionSelector
             projectId={projectId}
-            onSelectRegion={setRegion}
+            onSelectRegion={setSelectedLocalisation}
             regionFilter={(r) =>
-              r.isMacro ||
-              r.services.some((s) => s.name === 'volume' && s.status === 'UP')||
-              r.type === 'region-3-az'}
+              r.isMacro || regions.some((r2) => r2.name === r.name)
+            }
           />
         </div>
       )}
@@ -113,7 +161,7 @@ export function LocationStep({
           className="mt-4 w-fit"
           size={ODS_BUTTON_SIZE.md}
           color={ODS_THEME_COLOR_INTENT.primary}
-          onClick={() => onSubmit(region)}
+          onClick={onSubmit}
         >
           {t('common_stepper_next_button_label')}
         </OsdsButton>

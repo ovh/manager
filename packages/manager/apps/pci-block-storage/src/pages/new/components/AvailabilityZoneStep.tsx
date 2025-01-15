@@ -1,5 +1,5 @@
 import { TilesInputComponent } from '@ovh-ux/manager-react-components';
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import { OsdsButton, OsdsText } from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_SIZE } from '@ovhcloud/ods-components';
 import {
@@ -9,34 +9,33 @@ import {
 } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
 import { Step } from '@/pages/new/hooks/useStep';
+import { TRegion } from '@/api/data/regions';
 
-type Props = {
-  regionName: string;
+interface AvailabilityZoneStepProps {
+  region: TRegion;
   step: Step;
   onSubmit: (zone: string) => void;
-};
+}
 
-export function AvailabilityZoneStep({ regionName, step, onSubmit }: Props) {
+export function AvailabilityZoneStep({
+  region,
+  step,
+  onSubmit,
+}: Readonly<AvailabilityZoneStepProps>) {
   const { t } = useTranslation('stepper');
 
-  // TODO: use real informations
-  const zones = useMemo(
-    () =>
-      ['a', 'b', 'c'].map((suffix) => `${regionName.toLowerCase()}-${suffix}`),
-    [regionName],
-  );
   const [selectedZone, setSelectedZone] = useState<string | undefined>(
     undefined,
-  );
-  const displayedZones = useMemo(
-    () => (!!selectedZone && step.isLocked ? [selectedZone] : zones),
-    [zones, selectedZone, step],
   );
 
   return (
     <div>
       <TilesInputComponent<string>
-        items={displayedZones}
+        items={
+          step.isLocked && selectedZone
+            ? [selectedZone]
+            : region.availabilityZones
+        }
         value={selectedZone}
         onInput={(z) => setSelectedZone(z)}
         label={(z) => (

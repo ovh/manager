@@ -43,7 +43,8 @@ export default function NewPage(): JSX.Element {
     name: stepper.form.volumeName,
     regionName: stepper.form.region?.name,
     volumeCapacity: stepper.form.volumeCapacity,
-    volumeType: stepper.form.volumeType?.blobs.technical.name,
+    volumeType: stepper.form.volumeType?.name,
+    availabilityZone: stepper.form.availabilityZone,
     onSuccess: () => {
       navigate('..');
       addSuccess(
@@ -159,7 +160,7 @@ export default function NewPage(): JSX.Element {
             {!!stepper.form.region?.name && (
               <AvailabilityZoneStep
                 step={stepper.availabilityZone.step}
-                regionName={stepper.form.region.name}
+                region={stepper.form.region}
                 onSubmit={stepper.availabilityZone.submit}
               />
             )}
@@ -179,6 +180,7 @@ export default function NewPage(): JSX.Element {
             projectId={projectId}
             region={stepper.form.region}
             volumeType={stepper.form.volumeType}
+            pricing={stepper.form.pricing}
             step={stepper.capacity.step}
             onSubmit={stepper.capacity.submit}
           />
@@ -206,7 +208,7 @@ export default function NewPage(): JSX.Element {
         >
           <ValidationStep
             volumeCapacity={stepper.form.volumeCapacity}
-            volumeType={stepper.form.volumeType}
+            pricing={stepper.form.pricing}
             onSubmit={() => {
               clearNotifications();
               stepper.validation.submit();

@@ -1,75 +1,36 @@
 import { TAddon } from '@ovh-ux/manager-pci-common';
 import { v6 } from '@ovh-ux/manager-core-api';
+import { TRegion } from '@/api/data/regions';
 
-export type TPricing = {
-  capacities: string[];
-  mode: string;
-  phase: number;
-  commitment: number;
-  description: string;
-  price: {
-    currencyCode: string;
-    text: string;
-    value: number;
-  };
-  tax: number;
-  interval: number;
-  intervalUnit: string;
-  quantity: {
-    max?: number;
-    min?: number;
-  };
-  repeat: {
-    max?: number;
-    min?: number;
-  };
-  strategy: string;
-  mustBeCompleted: boolean;
-  type: string;
-  promotions: unknown[];
-  engagementConfiguration?: unknown;
-};
-
-export type TRegionGroup = {
+export type TCatalogGroup = {
   name: string;
   tags: string[];
 };
 
-export type TModelGroup = {
-  name: string;
-  type: string;
-  tags: string[];
-};
-
-export type TRegion = {
-  name: string;
-  type: '3-az' | 'region' | 'localzone';
-  availabilityZone: string[];
-  isInMaintenance: boolean;
-  isUp: boolean;
-  isActivated: boolean;
-  country: string;
-  regionGroup: string;
-  datacenter: string;
-};
-
-export type TVolumePricing = Omit<
-  TAddon['pricings'][number],
-  'interval' | 'intervalUnit'
-> & {
+export type TVolumePricing = Pick<TAddon['pricings'][number], 'price'> & {
   regions: TRegion['name'][];
+  showAvailabilityZones: boolean;
   interval: 'day' | 'hour' | 'month' | 'none';
+  specs: TAddon['blobs']['technical'];
 };
 
-export type TVolumeAddon = Omit<TAddon, 'pricings'> & {
-  groups: TRegionGroup['name'][];
+export type TVolumeCatalogFilter = {
+  [key in 'deployment' | 'region']: TCatalogGroup[];
+};
+
+export type TVolumeCatalogElementFilter = {
+  [Property in keyof TVolumeCatalogFilter]?: TVolumeCatalogFilter[Property][number]['name'][];
+};
+
+export type TVolumeAddon = {
+  name: string;
+  tags: string[];
+  filters: TVolumeCatalogElementFilter;
   pricings: TVolumePricing[];
-  pricingType: 'consumption' | string;
 };
 
 export type TVolumeCatalog = {
-  modelsGroups: TModelGroup[];
-  regionsGroups: TRegionGroup[];
+  filters: TVolumeCatalogFilter;
   regions: TRegion[];
   models: TVolumeAddon[];
 };
@@ -88,45 +49,26 @@ export function getLeastPrice(pricings: TVolumePricing[]) {
   );
 }
 
-function isConsumptionAddon(
-  addon: TVolumeAddon,
-): addon is TVolumeAddon & { pricingType: 'consumption' } {
-  return addon.pricingType === 'consumption';
-}
-
-function isConsumptionPricing(p: TVolumePricing) {
-  return p.capacities.includes('consumption');
-}
-
-export function mapPricesToGroups(
-  groups: TRegionGroup[],
+export function getGroupLeastPrice(
+  group: TCatalogGroup,
   regions: TRegion[],
   models: TVolumeAddon[],
-): (TRegionGroup & { leastPrice: number })[] {
-  return groups.map((group) => {
-    const groupRegions = regions
-      .filter((r) => r.type === group.name)
-      .map((r) => r.name);
+): number | null {
+  const groupRegions = regions
+    .filter((r) => r.type === group.name)
+    .map((r) => r.name);
 
-    const hasGroupRegions = (p: TVolumePricing) =>
-      p.regions.some((r) => groupRegions.includes(r));
+  const hasGroupRegions = (p: TVolumePricing) =>
+    p.regions.some((r) => groupRegions.includes(r));
 
-    return {
-      ...group,
-      leastPrice: models
-        .filter(isConsumptionAddon)
-        .map((m) =>
-          getLeastPrice(
-            m.pricings.filter(isConsumptionPricing).filter(hasGroupRegions),
-          ),
-        )
-        .reduce<number | null>(
-          (leastPrice, modelLeastPrice) =>
-            leastPrice === null
-              ? modelLeastPrice
-              : Math.min(modelLeastPrice, leastPrice),
-          null,
-        ),
-    };
-  });
+  return models
+    .map((m) => getLeastPrice(m.pricings.filter(hasGroupRegions)))
+    .filter((p) => p !== null)
+    .reduce<number | null>(
+      (leastPrice, modelLeastPrice) =>
+        leastPrice === null
+          ? modelLeastPrice
+          : Math.min(modelLeastPrice, leastPrice),
+      null,
+    );
 }

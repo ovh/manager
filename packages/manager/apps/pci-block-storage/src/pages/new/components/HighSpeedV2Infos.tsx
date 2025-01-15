@@ -5,9 +5,9 @@ import {
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
-import { TVolumeAddon } from '@/api/data/catalog';
+import { TVolumeAddon, TVolumePricing } from '@/api/data/catalog';
 
-export const HIGHSPEED_V2_PLANCODE = 'volume.high-speed-gen2.consumption';
+export const HIGHSPEED_V2_PLANCODE = 'high-speed-gen2';
 
 export function getDisplayUnit(unit: string) {
   const perGB = '/GB';
@@ -19,9 +19,9 @@ export function getDisplayUnit(unit: string) {
 
 export function computeBandwidthToAllocate(
   capacity: number,
-  addon: TVolumeAddon,
+  pricing: TVolumePricing,
 ) {
-  const { bandwidth } = addon.blobs.technical;
+  const { bandwidth } = pricing.specs;
   const allocatedBandwidth = capacity * bandwidth.level;
   const maxBandwidthInMb = bandwidth.max * 1000;
 
@@ -30,8 +30,11 @@ export function computeBandwidthToAllocate(
     : `${maxBandwidthInMb} ${getDisplayUnit(bandwidth.unit)}`;
 }
 
-export function computeIopsToAllocate(capacity: number, addon: TVolumeAddon) {
-  const { volume } = addon.blobs.technical;
+export function computeIopsToAllocate(
+  capacity: number,
+  pricing: TVolumePricing,
+) {
+  const { volume } = pricing.specs;
   const allocatedIops = capacity * volume.iops.level;
 
   return allocatedIops <= volume.iops.max
@@ -42,14 +45,16 @@ export function computeIopsToAllocate(capacity: number, addon: TVolumeAddon) {
 export interface HighSpeedV2InfosProps {
   volumeCapacity: number;
   volumeType: TVolumeAddon;
+  pricing: TVolumePricing;
 }
 
 export function HighSpeedV2Infos({
   volumeCapacity,
   volumeType,
+  pricing,
 }: HighSpeedV2InfosProps) {
   const { t } = useTranslation('add');
-  const isHighSpeedV2 = volumeType?.planCode === HIGHSPEED_V2_PLANCODE;
+  const isHighSpeedV2 = volumeType.name === HIGHSPEED_V2_PLANCODE;
   return (
     isHighSpeedV2 && (
       <div>
@@ -59,7 +64,7 @@ export function HighSpeedV2Infos({
           color={ODS_THEME_COLOR_INTENT.text}
         >
           {t('pci_projects_project_storages_blocks_add_size_bandwidth', {
-            bandwidth: computeBandwidthToAllocate(volumeCapacity, volumeType),
+            bandwidth: computeBandwidthToAllocate(volumeCapacity, pricing),
           })}
         </OsdsText>
         <br />
@@ -69,7 +74,7 @@ export function HighSpeedV2Infos({
           color={ODS_THEME_COLOR_INTENT.text}
         >
           {t('pci_projects_project_storages_blocks_add_size_iops', {
-            iops: computeIopsToAllocate(volumeCapacity, volumeType),
+            iops: computeIopsToAllocate(volumeCapacity, pricing),
           })}
         </OsdsText>
       </div>
