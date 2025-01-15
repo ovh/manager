@@ -19,6 +19,7 @@ import {
 import TableContainer from '@/components/Table/TableContainer';
 import { useSavingsPlan } from '@/hooks/useSavingsPlan';
 import { SavingsPlanService } from '@/types';
+import TabsDashboard from '@/components/Dashboard/TabsDashboard/TabsDashboard';
 
 interface ListingTablePageProps {
   data: SavingsPlanService[];
@@ -49,7 +50,7 @@ const ListingTablePage: React.FC<ListingTablePageProps> = ({
   data,
   refetchSavingsPlans,
 }) => {
-  const { t } = useTranslation('listing');
+  const { t } = useTranslation(['listing', 'dashboard']);
   const { trackClick } = useOvhTracking();
 
   const navigate = useNavigate();
@@ -66,10 +67,13 @@ const ListingTablePage: React.FC<ListingTablePageProps> = ({
     clearNotifications();
     navigate(`/pci/projects/${projectId}/savings-plan/new`);
   };
-
   return (
     <>
       <Title>{t('title')}</Title>
+      <OdsText preset="span" className="inline-block mb-4 w-[750px]">
+        {t('informationMessage')}
+      </OdsText>
+      {projectId && <TabsDashboard projectId={projectId} />}
       <div className="py-5">
         <OdsButton
           icon="plus"
@@ -79,9 +83,7 @@ const ListingTablePage: React.FC<ListingTablePageProps> = ({
           label={t('createSavingsPlan')}
         />
       </div>
-      <OdsText preset="span" className="inline-block my-4">
-        {t('informationMessage')}
-      </OdsText>
+
       <Notifications />
       <TableContainer data={data} refetchSavingsPlans={refetchSavingsPlans} />
     </>
