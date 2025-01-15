@@ -1,0 +1,9 @@
+// Customize <OdsButton />
+.menu-item-button {
+  &::part(button) {
+    width: 100%;
+    justify-content: left;
+    height: 32px;
+    border-radius: 0;
+  }
+}
