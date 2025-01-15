@@ -57,6 +57,18 @@ export const Routes: any = [
                   },
                 },
               },
+              {
+                path: 'users/edit',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/dashboard/users/ModalEditUsers.component'),
+                ),
+                handle: {
+                  tracking: {
+                    pageName: 'users-edit',
+                    pageType: PageType.popup,
+                  },
+                },
+              },
             ],
           },
           {
