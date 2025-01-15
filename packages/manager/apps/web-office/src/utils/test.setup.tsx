@@ -48,44 +48,41 @@ vi.mock('@/hooks', async (importActual) => {
 vi.mock('@/api/license', async (importActual) => {
   return {
     ...(await importActual<typeof import('@/api/license')>()),
-    getOfficeGlobalLicenses: vi.fn(() => {
-      return Promise.resolve(licensesMock);
-    }),
-    getOfficeLicenses: vi.fn(() => {
-      return Promise.resolve(licensesMock);
-    }),
-    getOfficeLicenseDetails: vi.fn((serviceName) => {
-      return Promise.resolve(
+    getOfficeGlobalLicenses: vi.fn(() => Promise.resolve(licensesMock)),
+    getOfficeLicenses: vi.fn(() => Promise.resolve(licensesMock)),
+    getOfficeLicenseDetails: vi.fn((serviceName) =>
+      Promise.resolve(
         [...licensesMock, ...licensesPrepaidExpandedMock].find(
           (license) => license.serviceName === serviceName,
         ),
-      );
-    }),
-    getOfficePrepaidLicenses: vi.fn(() => {
-      return Promise.resolve(licensesPrepaidMock);
-    }),
-    getOfficePrepaidLicenseDetails: vi.fn((serviceName) => {
-      return Promise.resolve(
+      ),
+    ),
+    getOfficePrepaidLicenses: vi.fn(() => Promise.resolve(licensesPrepaidMock)),
+    getOfficePrepaidLicenseDetails: vi.fn((serviceName) =>
+      Promise.resolve(
         licensesPrepaidExpandedMock.find(
           (license) => license.serviceName === serviceName,
         ),
-      );
-    }),
-    postOfficePrepaidLicenseUnconfigure: vi.fn(() => {
-      return Promise.resolve(pendingTask);
-    }),
+      ),
+    ),
+    postOfficePrepaidLicenseUnconfigure: vi.fn(() =>
+      Promise.resolve(pendingTask),
+    ),
+    putOfficeLicenseDetails: vi.fn(() => Promise.resolve(null)),
   };
 });
 
 vi.mock('@/api/users', async (importActual) => {
   return {
     ...(await importActual<typeof import('@/api/users')>()),
-    getOfficeUsers: vi.fn(() => {
-      return Promise.resolve(usersMock);
-    }),
-    deleteOfficeUser: vi.fn(() => {
-      return Promise.resolve(tenantPendingTask);
-    }),
+    getOfficeUsers: vi.fn(() => Promise.resolve(usersMock)),
+    getOfficeUserDetail: vi.fn((_, activationEmail) =>
+      Promise.resolve(
+        usersMock.find((user) => user.activationEmail === activationEmail),
+      ),
+    ),
+    deleteOfficeUser: vi.fn(() => Promise.resolve(tenantPendingTask)),
+    putOfficeUserDetail: vi.fn(() => Promise.resolve(null)),
   };
 });
 
