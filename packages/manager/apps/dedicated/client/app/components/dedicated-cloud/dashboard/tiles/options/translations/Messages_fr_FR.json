@@ -4,7 +4,7 @@
   "ovhManagerPccDashboardOptions_handleInitialData_error": "Une erreur est survenue lors de la récupération des données nécessaires à l'affichage des options.",
 
   "ovhManagerPccDashboardOptions_heading_conformity": "Conformité",
-  "ovhManagerPccDashboardOptions_heading_vmware_option": "Options VMware",
+  "ovhManagerPccDashboardOptions_heading_options": "Options",
   "ovhManagerPccDashboardOptions_basicOptions_term": "Options incluses",
 
   "ovhManagerPccDashboardOptions_basicOptions_actionMenu_activate": "Activer des options",
