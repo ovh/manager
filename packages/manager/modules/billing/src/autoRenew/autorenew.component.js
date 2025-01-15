@@ -19,7 +19,6 @@ export default {
     hasAutoRenew: '<',
     homeLink: '<',
     isAutorenewManagementAvailable: '<',
-    canDeleteVrack: '<',
     isAutorenew2016DeploymentBannerAvailable: '<',
     isEnterpriseCustomer: '<',
     nicBilling: '<',
