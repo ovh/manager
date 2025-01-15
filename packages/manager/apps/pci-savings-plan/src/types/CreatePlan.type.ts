@@ -1,5 +1,3 @@
-import { formatTechnicalInfo } from '@/utils/formatter/formatter';
-
 export enum ResourceType {
   instance = 'instance',
   rancher = 'rancher',
@@ -17,7 +15,6 @@ export type InstanceInfo = {
   category: ResourceType;
   technicalName: InstanceTechnicalName;
   label: string;
-  technical: ReturnType<typeof formatTechnicalInfo>[];
 };
 
 export type Resource = {
