@@ -5,7 +5,7 @@
   "offer_title": "{{productName}} aktivieren",
   "offer_content_part1": "Der Veeam Data Platform-Dienst verfügt über ein VCD-Plug-in, um VMs und vApps von jedem Virtual Data Center (VDC) der Organisation aus zu sichern.",
   "offer_content_part2": "Es ist auf Organisationsebene für alle Nutzer:innen von VMware Cloud Director mit der Rolle eines Organisations-Administrators verfügbar.",
-  "offer_price": "/VM/Monat + Nutzung von OVHcloud Object Storage",
+  "offer_price": "/VM/Monat + Speichernutzung",
   "next_step": "Weiter",
   "choose_org_title": "Eine VMware Cloud Director-Organisation auswählen",
   "all_organization_backed_up_message_fetch_next_page": "Alle VCD-Organisationen sind bereits mit dem Managed Veeam for VCD-Dienst verbunden. Bitte laden Sie weitere Organisationen.",
