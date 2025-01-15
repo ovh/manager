@@ -22,6 +22,7 @@ import {
   useProject,
   usePCICommonContextFactory,
   PCICommonContext,
+  TLocalisation,
 } from '@ovh-ux/manager-pci-common';
 import { TRegion } from '@/api/hook/useRegions';
 import { REGION_AVAILABILITY_LINK } from '@/constants';
@@ -51,12 +52,22 @@ export const RegionStep = ({
   const store = useCreateStore();
 
   const has3AZ = useMemo(() => {
-    const allRegions = regions
-      ? Array.from(regions, ([, values]) => values)
-      : [];
+    const allRegions = regions ? [...regions.values()] : [];
     return isRegionWith3AZ(allRegions.flat());
   }, [regions]);
-  const pciCommonProperties = usePCICommonContextFactory({ has3AZ });
+
+  const metaProps = usePCICommonContextFactory({ has3AZ });
+
+  const handleSelectRegion = (selectedRegion: TLocalisation) => {
+    store.set.region(null);
+    if (selectedRegion) {
+      const region = regions
+        ?.get(store.addon?.code)
+        ?.find(({ name }) => selectedRegion.name === name);
+
+      store.set.region(region);
+    }
+  };
 
   return (
     <StepComponent
@@ -115,19 +126,10 @@ export const RegionStep = ({
           <OsdsSpinner inline />
         </div>
       ) : (
-        <PCICommonContext.Provider value={pciCommonProperties}>
+        <PCICommonContext.Provider value={metaProps}>
           <RegionSelector
             projectId={project.project_id}
-            onSelectRegion={(selectedRegion) => {
-              store.set.region(undefined);
-              if (selectedRegion) {
-                const region = regions
-                  ?.get(store.addon?.code)
-                  ?.find(({ name }) => selectedRegion.name === name);
-
-                store.set.region(region);
-              }
-            }}
+            onSelectRegion={handleSelectRegion}
             regionFilter={(region) =>
               region.isMacro ||
               regions

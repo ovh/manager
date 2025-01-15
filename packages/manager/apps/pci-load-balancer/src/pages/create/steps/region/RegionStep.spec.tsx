@@ -1,4 +1,10 @@
 import { describe, Mock, vi } from 'vitest';
+import {
+  ResponseAPIError,
+  TProject,
+  useProject,
+} from '@ovh-ux/manager-pci-common';
+import { UseQueryResult } from '@tanstack/react-query';
 import { StepComponent, TStepProps } from '@ovh-ux/manager-react-components';
 import { render, renderHook } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
@@ -8,14 +14,11 @@ import { RegionStep, TRegionStepProps } from './RegionStep';
 import { StepsEnum, useCreateStore } from '@/pages/create/store';
 import { REGION_AVAILABILITY_LINK } from '@/constants';
 
-vi.mock('@ovh-ux/manager-pci-common', () => ({
-  useProject: vi.fn().mockReturnValue({ data: { project_id: 'project_id' } }),
-  RegionSelector: () => <div />,
-  usePCICommonContextFactory: vi.fn(),
-  PCICommonContext: {
-    Provider: () => <></>,
-  },
-}));
+vi.mock('@ovh-ux/manager-pci-common');
+
+vi.mocked(useProject).mockReturnValue({
+  data: { project_id: 'project_id' },
+} as UseQueryResult<TProject, ResponseAPIError>);
 
 vi.mock('react-i18next', async () => {
   const { ...rest } = await vi.importActual('react-i18next');
