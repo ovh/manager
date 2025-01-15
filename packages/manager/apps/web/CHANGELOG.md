@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.3.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.3.7...@ovh-ux/manager-web@19.3.8) (2025-01-15)
+
+
+### Bug Fixes
+
+* **web.hosting:** fix diag on main domain for multisite ([a9e55da](https://github.com/ovh/manager/commit/a9e55da853ea676293d939dceff513bdcbe475e4))
+* **web.hosting:** fix ip information if ipcountry is selected ([9145e5c](https://github.com/ovh/manager/commit/9145e5cb54ec30292ca5f58720d75ceb043bbb45))
+
+
+
+
+
 ## [19.3.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.3.6...@ovh-ux/manager-web@19.3.7) (2025-01-07)
 
 **Note:** Version bump only for package @ovh-ux/manager-web
