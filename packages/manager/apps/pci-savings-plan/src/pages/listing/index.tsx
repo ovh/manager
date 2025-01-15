@@ -3,7 +3,12 @@ import { useTranslation } from 'react-i18next';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 
 import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
-import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
+import {
+  OdsButton,
+  OdsTab,
+  OdsTabs,
+  OdsText,
+} from '@ovhcloud/ods-components/react';
 
 import {
   Notifications,
@@ -70,6 +75,24 @@ const ListingTablePage: React.FC<ListingTablePageProps> = ({
   return (
     <>
       <Title>{t('title')}</Title>
+      <OdsTabs class="my-tabs" id="css-tabs">
+        <OdsTab
+          class="my-tab"
+          id="css-tab-1"
+          onClick={() => navigate(`/pci/projects/${projectId}/savings-plan`)}
+        >
+          Tableau de Bord des Savings Plan
+        </OdsTab>
+        <OdsTab
+          id="css-tab-2"
+          isSelected
+          onClick={() =>
+            navigate(`/pci/projects/${projectId}/savings-plan/listing`)
+          }
+        >
+          Liste des Savings Plans
+        </OdsTab>
+      </OdsTabs>
       <div className="py-5">
         <OdsButton
           icon="plus"
