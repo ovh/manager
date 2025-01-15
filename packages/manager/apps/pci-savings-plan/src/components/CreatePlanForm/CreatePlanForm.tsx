@@ -49,22 +49,23 @@ import {
   Resource,
   ResourceType,
 } from '@/types/CreatePlan.type';
-import { toLocalDateUTC } from '@/utils/formatter/date';
-import {
-  buildDisplayName,
-  DeploymentMode,
-  getInstanceDisplayName,
-  isValidSavingsPlanName,
-} from '../../utils/savingsPlan';
 import CommitmentWrapper from '../Commitment/CommitmentWrapper';
-import LegalLinks from '../LegalLinks/LegalLinks';
-import { Block } from '../SimpleTile/SimpleTile';
 import SelectDeployment from './SelectDeployment';
 import SelectModel from './SelectModel';
 import SelectQuantity, {
   DEFAULT_QUANTITY,
   MAX_QUANTITY,
 } from './SelectQuantity';
+import { toLocalDateUTC } from '../../utils/formatter/date';
+import {
+  buildDisplayName,
+  DeploymentMode,
+  getInstanceDisplayName,
+  getInstancesInformation,
+  isValidSavingsPlanName,
+} from '../../utils/savingsPlan';
+import LegalLinks from '../LegalLinks/LegalLinks';
+import { formatTechnicalInfo } from '@/utils/formatter/formatter';
 import SelectResource from './SelectResource';
 
 const COMMON_SPACING = 'my-4';
@@ -80,8 +81,16 @@ export const DescriptionWrapper: React.FC<{
   );
 };
 
+const Block: React.FC<React.PropsWithChildren> = ({ children }) => {
+  return <div className="my-8">{children}</div>;
+};
+
+type InstanceInfoWithTechnical = InstanceInfo & {
+  technical: ReturnType<typeof formatTechnicalInfo>[];
+};
+
 export type CreatePlanFormProps = {
-  instancesInfo: InstanceInfo[];
+  instancesInfo: InstanceInfoWithTechnical[];
   resources: Resource[];
   instanceCategory: InstanceTechnicalName;
   setInstanceCategory: (category: InstanceTechnicalName) => void;
@@ -425,42 +434,20 @@ export const CreatePlanFormContainer = ({
     },
   ];
 
-  const instancesInfo: InstanceInfo[] = [
-    {
-      id: '1',
-      category: ResourceType.instance,
-      technicalName: InstanceTechnicalName.b3,
-      label: t('resource_tabs_general_purpose'),
-      technical: technicalList,
-    },
-    {
-      id: '2',
-      category: ResourceType.instance,
-      technicalName: InstanceTechnicalName.c3,
-      label: t('resource_tabs_cpu'),
-      technical: technicalList,
-    },
-    {
-      id: '3',
-      category: ResourceType.instance,
-      technicalName: InstanceTechnicalName.r3,
-      label: t('resource_tabs_ram'),
-      technical: technicalList,
-    },
-    {
-      id: '4',
-      category: ResourceType.rancher,
-      technicalName: InstanceTechnicalName.rancher,
-      label: t('resource_tabs_rancher'),
-      technical: technicalList,
-    },
-  ];
+  const instancesInformation = useMemo(
+    () =>
+      getInstancesInformation(t).map((i) => ({
+        ...i,
+        technical: technicalList,
+      })),
+    [technicalList, t],
+  );
 
   return (
     <CreatePlanForm
       onCreatePlan={onCreatePlan}
       resources={resources}
-      instancesInfo={instancesInfo}
+      instancesInfo={instancesInformation}
       instanceCategory={instanceCategory}
       setInstanceCategory={setInstanceCategory}
       pricingByDuration={sortedPriceByDuration}
