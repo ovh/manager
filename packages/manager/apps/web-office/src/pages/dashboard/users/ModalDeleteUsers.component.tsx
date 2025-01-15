@@ -61,9 +61,11 @@ export default function ModalDeleteUsers() {
     },
     onSettled: () => {
       queryClient.invalidateQueries({
-        queryKey: licencePrepaidName
-          ? getOfficeLicenseQueryKey(selectedServiceName)
-          : getOfficeUsersQueryKey(selectedServiceName),
+        queryKey: [
+          licencePrepaidName
+            ? getOfficeLicenseQueryKey(selectedServiceName)
+            : getOfficeUsersQueryKey(selectedServiceName),
+        ],
       });
       onClose();
     },

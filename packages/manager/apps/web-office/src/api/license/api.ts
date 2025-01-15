@@ -1,5 +1,6 @@
 import { aapi, v6 } from '@ovh-ux/manager-core-api';
 import { getApiPath, getApiPathWithoutServiceName } from '../utils/apiPath';
+import { UserParamsType } from '../api.type';
 
 // GET
 
@@ -14,12 +15,12 @@ export const getOfficeGlobalLicenses = async () => {
 };
 
 export const getOfficeLicenseDetails = async (serviceName: string) => {
-  const { data } = await v6.get(`${getApiPath(serviceName)}`);
+  const { data } = await v6.get(getApiPath(serviceName));
   return data;
 };
 
 export const getOfficePrepaidLicenseDetails = async (serviceName: string) => {
-  const { data } = await v6.get(`${getApiPath(serviceName)}`);
+  const { data } = await v6.get(getApiPath(serviceName));
   return data;
 };
 
@@ -52,5 +53,13 @@ export const postOfficePrepaidLicenseUnconfigure = async (
 };
 
 // PUT
+
+export const putOfficeLicenseDetails = async (
+  serviceName: string,
+  params: UserParamsType,
+) => {
+  const { data } = await v6.put(getApiPath(serviceName), params);
+  return data;
+};
 
 // DELETE
