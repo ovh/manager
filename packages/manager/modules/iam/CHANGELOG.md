@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.14.0...@ovh-ux/manager-iam@1.14.1) (2025-01-15)
+
+
+### Bug Fixes
+
+* **iam:** fix removal of resources validation size error ([65f36e1](https://github.com/ovh/manager/commit/65f36e1106f18b4adee709715acdd1500a4c602c))
+
+
+
+
+
 # [1.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.13.1...@ovh-ux/manager-iam@1.14.0) (2024-12-17)
 
 
