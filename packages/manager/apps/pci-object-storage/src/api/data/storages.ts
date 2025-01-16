@@ -54,6 +54,7 @@ export const deleteContainer = async (
   projectId: string,
   containerId: string,
 ) => {
+  console.log(`/cloud/project/${projectId}/storage/${containerId}`);
   await v6.delete(`/cloud/project/${projectId}/storage/${containerId}`);
 };
 

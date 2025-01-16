@@ -4,6 +4,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
 import { ApiError, applyFilters, Filter } from '@ovh-ux/manager-core-api';
 import { useGetProjectRegions } from '@ovh-ux/manager-pci-common';
+import { log } from 'console';
 import {
   deleteContainer,
   deleteS3Container,
@@ -222,13 +223,15 @@ export const useDeleteStorage = ({
       objects: TStorageObject[];
     }) => {
       const promisesObjectDeletion = objects.reduce(
-        (result, object) => [
-          ...result,
+        (all, object) => [
+          ...all,
           deleteObject(projectId, storage, object.name, storage.region),
         ],
         [],
       );
-      return Promise.all(promisesObjectDeletion).then(async () => {
+      console.log(promisesObjectDeletion);
+      return Promise.all(promisesObjectDeletion).then((data) => {
+        console.log(data);
         if (storage.s3StorageType) {
           return deleteS3Container(
             projectId,
