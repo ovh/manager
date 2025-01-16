@@ -84,16 +84,15 @@ export default function RCloneDownloadModal({
             <OdsText>
               {_t('pci_projects_project_users_download-rclone_success_message')}
               <OdsLink
+                label={t(
+                  'pci_projects_project_users_download-rclone_success_message_link',
+                )}
                 href={content}
                 className="ml-3"
                 color="primary"
                 download={DOWNLOAD_RCLONE_FILENAME}
                 target="_top"
-              >
-                {t(
-                  'pci_projects_project_users_download-rclone_success_message_link',
-                )}
-              </OdsLink>
+              />
             </OdsText>
           )}
         </Translation>,

@@ -60,6 +60,7 @@ export function PciModal({
           color="primary"
           variant="ghost"
           onClick={onCancel}
+          isDisabled={isDisabled}
           slot="actions"
           data-testid="pciModal-button_cancel"
         />

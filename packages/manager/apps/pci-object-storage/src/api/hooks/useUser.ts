@@ -205,10 +205,12 @@ export const useImportPolicy = ({
 }: ImportPolicyProps) => {
   const [isPending, setIsPending] = useState(false);
   const { t } = useTranslation('objects/users/import-policy');
+
   const importPolicy = async () => {
     try {
       setIsPending(true);
       const policy = await readFileAsJSON(files[0], t);
+
       importUserPolicy(projectId, userId, policy);
       onSuccess();
     } catch (e) {

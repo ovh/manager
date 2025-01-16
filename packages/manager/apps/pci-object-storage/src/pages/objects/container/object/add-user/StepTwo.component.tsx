@@ -25,10 +25,9 @@ export default function StepTwoComponent({
 
       <div className="flex flex-col gap-4 my-6">
         {OBJECT_CONTAINER_USER_ROLES.map((role) => (
-          <div className="flex items-center gap-4">
+          <div key={role} className="flex items-center gap-4">
             <OdsRadio
               inputId={role}
-              key={role}
               name={role}
               value={role}
               isChecked={role === selectedRole}

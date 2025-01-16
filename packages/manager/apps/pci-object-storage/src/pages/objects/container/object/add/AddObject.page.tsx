@@ -251,7 +251,8 @@ export default function AddObjectPage() {
           dropzoneLabel={t(
             'pci_projects_project_storages_containers_container_object_add_files_label',
           )}
-          onFilesSelected={updateFiles}
+          selectedFiles={formState.files}
+          setSelectedFiles={updateFiles}
         />
       </OdsFormField>
     </PciModal>

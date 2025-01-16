@@ -38,7 +38,7 @@ export default function ActionsComponent({ user }: { user: TUser }) {
                   'pci_projects_project_storages_containers_users_show_secret_key_success',
                   {
                     user: `<strong>${user.username}</strong>`,
-                    secret: `<code class="text-break">${secret}</code>`,
+                    secret: `<span style="color: var(--ods-color-critical-600); background: var(--ods-color-critical-050)">${secret}</span>`,
                   },
                 ),
               }}
