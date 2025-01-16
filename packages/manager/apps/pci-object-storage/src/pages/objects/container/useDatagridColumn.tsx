@@ -51,7 +51,12 @@ export const useDatagridColumn = () => {
         if (props.deploymentMode === OBJECT_CONTAINER_MODE_MULTI_ZONES) {
           return (
             <DataGridTextCell>
-              <OdsBadge color="promotion" size="sm" label={props.mode} />
+              <OdsBadge
+                color="information"
+                size="sm"
+                label={props.mode}
+                className="badge-deployment-multizone"
+              />
             </DataGridTextCell>
           );
         }
@@ -88,7 +93,7 @@ export const useDatagridColumn = () => {
         <DataGridTextCell>
           {props.deploymentMode === OBJECT_CONTAINER_MODE_LOCAL_ZONE
             ? 'n/a'
-            : props.storedObjects}
+            : props.storedObjects || props.objectsCount || 0}
         </DataGridTextCell>
       ),
       label: t('pci_projects_project_storages_containers_storedObjects_label'),
