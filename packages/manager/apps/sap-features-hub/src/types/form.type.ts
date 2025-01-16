@@ -1,6 +1,9 @@
 import { TextFieldProps } from '@/components/Form/TextField.component';
 
-type InstallationForm = InitializationForm & DeploymentForm & SystemForm;
+type InstallationForm = InitializationForm &
+  DeploymentForm &
+  SystemForm &
+  SourceForm;
 export type FormKey = keyof InstallationForm;
 
 export type InstallationFormErrors = Record<FormKey, string>;
@@ -34,4 +37,11 @@ export type SystemForm = {
   sidamnPassword: string;
   systemPassword: string;
 };
+export type SourceForm = {
+  bucketId: string;
+  endpoint: string;
+  accessKey: string;
+  secretKey: string;
+};
+
 export type SystemFormKeys = keyof SystemForm;

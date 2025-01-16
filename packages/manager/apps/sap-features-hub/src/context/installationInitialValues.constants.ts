@@ -16,6 +16,10 @@ export const installationInitialValues: InstallationFormValues = {
   masterSapHanaPassword: '',
   sidamnPassword: '',
   systemPassword: '',
+  bucketId: '',
+  endpoint: '',
+  accessKey: '',
+  secretKey: '',
 } as const;
 
 export const installationInitialErrors: InstallationFormErrors = Object.keys(
