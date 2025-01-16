@@ -15,23 +15,23 @@ import { useTranslation } from 'react-i18next';
 import { Links, LinkType } from '../../../typography';
 import '../translations/translation';
 import GithubIcon from './changelog.icon';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 export interface ChangelogItem {
-  id: number;
   href: string;
-  download?: string;
-  target?: OdsHTMLAnchorElementTarget;
-  rel?: OdsHTMLAnchorElementRel;
-  labelKey: string;
-  onClick?: () => void;
+  chapters?: string[];
 }
 
 export interface ChangelogButtonProps {
-  items: ChangelogItem[];
+  items: Record<string, ChangelogItem>;
 }
+
+export const CHANGELOG_PREFIXES = ['tile-changelog-roadmap', 'external-link'];
+const GO_TO = (link: string) => `go-to-${link}`;
 
 export const ChangelogButton: React.FC<ChangelogButtonProps> = ({ items }) => {
   const { t } = useTranslation('buttons');
+  const { trackClick } = useOvhTracking();
   return (
     <>
       <OsdsMenu>
@@ -48,21 +48,31 @@ export const ChangelogButton: React.FC<ChangelogButtonProps> = ({ items }) => {
           {t('mrc_changelog_header')}
         </OsdsButton>
 
-        {items.map((item) => (
-          <OsdsMenuGroup key={item.id}>
-            <OsdsMenuItem>
-              <Links
-                href={item.href}
-                target={item.target}
-                download={item.download}
-                rel={item.rel}
-                type={LinkType.external}
-                label={t(`mrc_changelog_${item.labelKey}`)}
-                onClickReturn={item.onClick}
-              />
-            </OsdsMenuItem>
-          </OsdsMenuGroup>
-        ))}
+        {Object.entries(items).map(([key, item]) => {
+          return (
+            <OsdsMenuGroup key={key}>
+              <OsdsMenuItem>
+                <Links
+                  href={item.href}
+                  target={OdsHTMLAnchorElementTarget._blank}
+                  rel={OdsHTMLAnchorElementRel.external}
+                  type={LinkType.external}
+                  label={t(`mrc_changelog_${key}`)}
+                  onClickReturn={() =>
+                    trackClick({
+                      actionType: 'navigation',
+                      actions: [
+                        ...item.chapters,
+                        ...CHANGELOG_PREFIXES,
+                        GO_TO(key),
+                      ],
+                    })
+                  }
+                />
+              </OsdsMenuItem>
+            </OsdsMenuGroup>
+          );
+        })}
       </OsdsMenu>
     </>
   );

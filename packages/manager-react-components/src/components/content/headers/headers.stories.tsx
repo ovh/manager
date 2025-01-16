@@ -47,26 +47,20 @@ const guideItems = [
   },
 ];
 
-const changelogItems: ChangelogItem[] = [
-  {
-    id: 1,
+const changelogItems: Record<string, ChangelogItem> = {
+  roadmap: {
     href: 'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Baremetal',
-    target: OdsHTMLAnchorElementTarget._blank,
-    labelKey: 'roadmap',
+    chapters: ['baremetal', 'server', 'dedicated'],
   },
-  {
-    id: 2,
-    href: 'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Baremetal',
-    target: OdsHTMLAnchorElementTarget._blank,
-    labelKey: 'changelog',
+  changelog: {
+    href: 'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Baremetal',
+    chapters: ['baremetal', 'server', 'dedicated'],
   },
-  {
-    id: 3,
-    href: 'https://github.com/ovh/infrastructure-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
-    target: OdsHTMLAnchorElementTarget._blank,
-    labelKey: 'feature-request',
+  'feature-request': {
+    href: 'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Baremetal',
+    chapters: ['baremetal', 'server', 'dedicated'],
   },
-];
+};
 
 const HeadingWithActionButton: HeadersProps = {
   title: 'Example for header with actions ',
