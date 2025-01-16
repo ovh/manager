@@ -249,18 +249,16 @@ export default function EmailAccounts() {
                 </div>
               </OdsTooltip>
             )}
-            {FEATURE_FLAGS.ORDER && (
-              <ManagerButton
-                id="order-account-btn"
-                urn={platformUrn}
-                iamActions={[IAM_ACTIONS.account.create]}
-                data-testid="order-account-btn"
-                color={ODS_BUTTON_COLOR.primary}
-                size={ODS_BUTTON_SIZE.sm}
-                onClick={handleOrderEmailAccountClick}
-                label={t('zimbra_account_account_order')}
-              />
-            )}
+            <ManagerButton
+              id="order-account-btn"
+              urn={platformUrn}
+              iamActions={[IAM_ACTIONS.account.create]}
+              data-testid="order-account-btn"
+              color={ODS_BUTTON_COLOR.primary}
+              size={ODS_BUTTON_SIZE.sm}
+              onClick={handleOrderEmailAccountClick}
+              label={t('zimbra_account_account_order')}
+            />
           </div>
           {isLoading ? (
             <Loading />
