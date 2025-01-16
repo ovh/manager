@@ -22,23 +22,22 @@ export const deleteObject = async (
   region: string,
 ) => {
   if (storage.s3StorageType) {
-    deleteS3Object(
+    return deleteS3Object(
       projectId,
       storage.id,
       objectName,
       region,
       storage.s3StorageType,
     );
-  } else {
-    const response = await getStorageAccess({ projectId });
-    deleteSwitchObject(
-      projectId,
-      storage.name,
-      objectName,
-      response.token,
-      region,
-    );
   }
+  const response = await getStorageAccess({ projectId });
+  return deleteSwitchObject(
+    projectId,
+    storage.name,
+    objectName,
+    response.token,
+    region,
+  );
 };
 
 type DeleteObjectProps = {
