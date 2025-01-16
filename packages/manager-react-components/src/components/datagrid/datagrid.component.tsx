@@ -49,8 +49,10 @@ export interface DatagridColumn<T> {
   isSortable?: boolean;
   /** set column comparator for the filter */
   comparator?: FilterComparator;
-  /* Filters displayed for the column */
+  /** Filters displayed for the column */
   type?: FilterTypeCategories;
+  /** Trigger the column filter */
+  isFilterable?: boolean;
 }
 
 type ColumnFilterProps = {
@@ -168,6 +170,12 @@ export const Datagrid = <T,>({
   useEffect(() => {
     const clmFilters = columns
       .filter((item) => 'comparator' in item || 'type' in item)
+      // .filter(
+      //   (item) =>
+      //     ('comparator' in item || 'type' in item) &&
+      //     'isFilterable' in item &&
+      //     item['isFilterable'],
+      // )
       .map((column) => ({
         id: column.id,
         label: column.label,
@@ -176,6 +184,8 @@ export const Datagrid = <T,>({
       }));
     setColumnsFilters(clmFilters);
   }, [columns]);
+
+  console.info('columnsFilters : ', columnsFilters);
 
   return (
     <div>
