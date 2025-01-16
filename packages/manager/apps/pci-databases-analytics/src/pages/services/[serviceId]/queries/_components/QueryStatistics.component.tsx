@@ -6,10 +6,11 @@ import DataTable from '@/components/data-table';
 import * as database from '@/types/cloud/project/database';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
-import { getColumns } from './QueryStatisticsTableColumns.component';
 import { useGetQueryStatistics } from '@/hooks/api/database/query/useGetQueryStatistics.hook';
 import { useResetQueryStatistics } from '@/hooks/api/database/query/useResetQueryStatistics.hook';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
+import { getColumns } from './QueryStatisticsTableColumns.component';
+import { QueryStatistics as QueryStatisticsType } from '@/data/api/database/queries.api';
 
 const QueryStatistics = () => {
   const { t } = useTranslation(
@@ -46,9 +47,9 @@ const QueryStatistics = () => {
     });
   };
 
-  const columns: ColumnDef<
-    database.postgresql.querystatistics.Query
-  >[] = getColumns();
+  const columns = getColumns(service.engine) as ColumnDef<
+    QueryStatisticsType
+  >[];
   return (
     <>
       <h3>{t('queryStatisticsTitle')}</h3>
@@ -74,9 +75,7 @@ const QueryStatistics = () => {
       {queryStatisticsQuery.isSuccess ? (
         <DataTable.Provider
           columns={columns}
-          data={
-            queryStatisticsQuery.data as database.postgresql.querystatistics.Query[]
-          }
+          data={queryStatisticsQuery.data as QueryStatisticsType[]}
           pageSize={25}
         />
       ) : (

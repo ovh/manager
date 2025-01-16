@@ -2,10 +2,10 @@ import { useTranslation } from 'react-i18next';
 import { useServiceData } from '../Service.context';
 import * as database from '@/types/cloud/project/database';
 import CurrentQueries from './_components/CurrentQueries.component';
-import QueryStatistics from './_components/QueryStatistics.component';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 import Guides from '@/components/guides/Guides.component';
 import { GuideSections } from '@/types/guide';
+import QueryStatistics from './_components/QueryStatistics.component';
 
 export function breadcrumb() {
   return (
@@ -30,10 +30,7 @@ const Queries = () => {
       {service.capabilities.currentQueries?.read ===
         database.service.capability.StateEnum.enabled && <CurrentQueries />}
       {service.capabilities.queryStatistics?.read ===
-        database.service.capability.StateEnum.enabled &&
-        service.engine === database.EngineEnum.postgresql && (
-          <QueryStatistics />
-        )}
+        database.service.capability.StateEnum.enabled && <QueryStatistics />}
     </>
   );
 };

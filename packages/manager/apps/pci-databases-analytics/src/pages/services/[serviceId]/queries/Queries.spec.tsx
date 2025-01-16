@@ -18,6 +18,7 @@ import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/Route
 import { mockedService as mockedServiceOrig } from '@/__tests__/helpers/mocks/services';
 import {
   mockedQueries,
+  mockedQueryStatistics,
   mockedQueryStatisticsPG,
 } from '@/__tests__/helpers/mocks/queries';
 import { CdbError } from '@/data/api/database';
@@ -244,6 +245,47 @@ describe('Action of queries and statistics', () => {
     await openButtonInMenu('current-queries-action-cancel-button');
     await waitFor(() => {
       expect(queriesApi.cancelCurrentQuery).toHaveBeenCalled();
+    });
+  });
+
+  it('renders and shows mysql queries statistics table', async () => {
+    vi.mocked(ServiceContext.useServiceData).mockReturnValue({
+      projectId: 'projectId',
+      service: {
+        ...mockedService,
+        engine: database.EngineEnum.mysql,
+      },
+      category: 'operational',
+      serviceQuery: {} as UseQueryResult<database.Service, CdbError>,
+    });
+    vi.mocked(queriesApi.getQueryStatistics).mockResolvedValue([
+      mockedQueryStatistics,
+    ]);
+
+    render(<Queries />, { wrapper: RouterWithQueryClientWrapper });
+    await waitFor(() => {
+      expect(
+        screen.getByText(mockedQueryStatistics.sumRowsSent),
+      ).toBeInTheDocument();
+      expect(
+        screen.getByText(mockedQueryStatistics.countStar),
+      ).toBeInTheDocument();
+      expect(
+        screen.getByText(mockedQueryStatistics.minTimerWait.toFixed(2)),
+      ).toBeInTheDocument();
+      expect(
+        screen.getByText(mockedQueryStatistics.maxTimerWait.toFixed(2)),
+      ).toBeInTheDocument();
+      expect(
+        screen.getByText(
+          (
+            mockedQueryStatistics.sumTimerWait / mockedQueryStatistics.countStar
+          ).toFixed(2),
+        ),
+      ).toBeInTheDocument();
+      expect(
+        screen.getByText(mockedQueryStatistics.sumTimerWait.toFixed(2)),
+      ).toBeInTheDocument();
     });
   });
 });
