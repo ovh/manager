@@ -135,15 +135,15 @@ WithActions.args = {
   isSortable: true,
 };
 
-export const Filters = {
-  args: {
-    items: [...Array(10).keys()].map((_, i) => ({
-      label: `Item #${i}`,
-      price: Math.floor(1 + Math.random() * 100),
-    })),
-    isSortable: true,
-    columns: columsFilters,
-  },
+export const Filters = DatagridStory.bind({});
+
+Filters.args = {
+  items: [...Array(10).keys()].map((_, i) => ({
+    label: `Item #${i}`,
+    price: Math.floor(1 + Math.random() * 100),
+  })),
+  isSortable: true,
+  columns: columsFilters,
 };
 
 export default {

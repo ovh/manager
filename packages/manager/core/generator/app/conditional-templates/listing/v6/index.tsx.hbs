@@ -68,6 +68,7 @@ export default function Listing() {
         .map((element) => ({
           id: element,
           label: element,
+          isFilterable: true,
           // @ts-ignore
           type: dataType(flattenData[0][element]),
           // @ts-ignore
@@ -124,7 +125,15 @@ export default function Listing() {
   };
 
   return (
-    <BaseLayout breadcrumb={<Breadcrumb rootLabel={appConfig.rootLabel} appName="{{appName}}" />} header={header}>} header={header}>
+    <BaseLayout
+      breadcrumb={
+        <Breadcrumb
+          rootLabel={appConfig.rootLabel}
+          appName="{{appName}}"
+        />
+      }
+      header={header}
+    >
       <React.Suspense>
         {columns && flattenData && (
           <Datagrid

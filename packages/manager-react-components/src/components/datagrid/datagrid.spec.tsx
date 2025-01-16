@@ -35,12 +35,14 @@ const sampleColumns = [
     },
     label: 'Name',
     comparator: FilterCategories.String,
+    isFilterable: true,
   },
   {
     id: 'another-column',
     label: 'test',
     cell: () => <DataGridTextCell />,
     comparator: FilterCategories.String,
+    isFilterable: true,
   },
 ];
 
@@ -301,7 +303,6 @@ it('should display filter add and filter list', async () => {
     add: null,
     remove: null,
   } as FilterProps;
-  console.info('sampleColumns : ', sampleColumns);
   const { container } = render(
     <DatagridTest
       columns={sampleColumns}

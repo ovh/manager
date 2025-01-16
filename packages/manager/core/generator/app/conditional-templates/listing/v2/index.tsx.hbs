@@ -104,7 +104,15 @@ export default function Listing() {
   };
 
   return (
-    <BaseLayout breadcrumb={<Breadcrumb rootLabel={appConfig.rootLabel} appName="{{appName}}" />} header={header}>
+    <BaseLayout
+      breadcrumb={
+        <Breadcrumb
+          rootLabel={appConfig.rootLabel}
+          appName="{{appName}}"
+        />
+      }
+      header={header}
+    >
       <React.Suspense>
         {columns && flattenData && (
           <Datagrid

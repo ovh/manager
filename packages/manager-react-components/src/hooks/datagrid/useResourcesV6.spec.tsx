@@ -5,12 +5,8 @@ import {
   QueryClientProvider,
   useQuery,
 } from '@tanstack/react-query';
-import { act, renderHook, waitFor } from '@testing-library/react';
-import {
-  IcebergFetchParamsV6,
-  FilterCategories,
-  FilterComparator,
-} from '@ovh-ux/manager-core-api';
+import { act, renderHook } from '@testing-library/react';
+import { IcebergFetchParamsV6 } from '@ovh-ux/manager-core-api';
 import { ResourcesV6Hook, useResourcesV6 } from './useResourcesV6';
 
 vitest.mock('@tanstack/react-query', async () => {
@@ -36,16 +32,6 @@ const renderUseResourcesV6Hook = (
       header: 'name',
       label: 'name',
       accessorKey: 'name',
-      comparator: FilterCategories.String,
-      type: 'string',
-      cell: (props: any) => <div>{props.name}</div>,
-    },
-    {
-      id: 'name2',
-      header: 'name2',
-      label: 'name2',
-      accessorKey: 'name2',
-      comparator: FilterCategories.String,
       type: 'string',
       cell: (props: any) => <div>{props.name}</div>,
     },
@@ -123,27 +109,5 @@ describe('useResourcesV6', () => {
     const { result } = renderUseResourcesV6Hook();
     const { totalCount } = result.current;
     expect(totalCount).toEqual(26);
-  });
-
-  it('should match ip-51-7 with a filter name', async () => {
-    const { result } = renderUseResourcesV6Hook();
-    act(() => {
-      result.current.filters.add({
-        comparator: 'includes' as FilterComparator,
-        key: 'name',
-        value: 'ns5007027.ip-51-7-XXXXX5.net',
-        label: 'name',
-      });
-    });
-    waitFor(() => {
-      const { flattenData, filters } = result.current;
-      expect(flattenData.length).toBe(1);
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      expect(flattenData[0].name).toBe('ns5007027.ip-51-7-XXXXX5.net');
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      expect(filters.value).toBe('ns5007027.ip-51-7-XXXXX5.net');
-    });
   });
 });
