@@ -20,3 +20,7 @@ html {
 .font-bold-class::part(text) {
   @apply font-bold;
 }
+
+.text-critical::part(text) {
+  color: var(--ods-color-critical-500);
+}

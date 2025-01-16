@@ -92,8 +92,8 @@ export default function ObjectPage() {
   const { t: tContainer } = useTranslation('container');
   const { t: tCommon } = useTranslation('pci-common');
   const { t: tVersioning } = useTranslation('containers/enable-versioning');
-  const { t: tAdd } = useTranslation('storages/add');
-  const { t: tDataEncryption } = useTranslation('container/data-encryption');
+  const { t: tAdd } = useTranslation('containers/add');
+  const { t: tDataEncryption } = useTranslation('containers/data-encryption');
   const objectStorageHref = useHref('..');
   const enableVersioningHref = useHref(
     `./enableVersioning?region=${searchParams.get('region')}`,

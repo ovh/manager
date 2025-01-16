@@ -14,6 +14,7 @@ export function LinkUserStep() {
     'pci-common',
     'containers/associate-user-to-container',
   ]);
+
   const {
     form,
     stepper,
@@ -21,7 +22,9 @@ export function LinkUserStep() {
     submitOwnerId,
     setOwnerId,
   } = useContainerCreationStore();
+
   const [associateMode, setAssociateMode] = useState('');
+
   const onCancel = () => {
     setAssociateMode('');
     setOwnerId(undefined);
@@ -29,6 +32,7 @@ export function LinkUserStep() {
   const onSelectOwner = (user: TUser) => {
     setOwnerId(user?.id);
   };
+
   return (
     <StepComponent
       title={t(

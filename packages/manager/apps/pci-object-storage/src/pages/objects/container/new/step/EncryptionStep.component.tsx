@@ -11,6 +11,7 @@ import { ENCRYPTION_ALGORITHM_SSE_S3, NO_ENCRYPTION_VALUE } from '@/constants';
 
 export function EncryptionStep() {
   const { t } = useTranslation(['containers/data-encryption', 'pci-common']);
+
   const {
     form,
     setEncryption,
@@ -18,6 +19,7 @@ export function EncryptionStep() {
     submitEncryption,
     editEncryption,
   } = useContainerCreationStore();
+
   return (
     <StepComponent
       title={t(
@@ -48,6 +50,7 @@ export function EncryptionStep() {
           <div className="flex items-center gap-4">
             <OdsRadio
               value={NO_ENCRYPTION_VALUE}
+              isChecked={form.encryption === NO_ENCRYPTION_VALUE}
               name="encryption"
               inputId="encryption-none"
               onOdsChange={() => setEncryption(NO_ENCRYPTION_VALUE)}
@@ -78,9 +81,11 @@ export function EncryptionStep() {
             <div>
               <OdsIcon id="trigger-popover" name="circle-question" />
               <OdsPopover triggerId="trigger-popover">
-                {t(
-                  'pci_projects_project_storages_containers_data_encryption_aes256_tooltip',
-                )}
+                <OdsText preset="caption">
+                  {t(
+                    'pci_projects_project_storages_containers_data_encryption_aes256_tooltip',
+                  )}
+                </OdsText>
               </OdsPopover>
             </div>
           </div>

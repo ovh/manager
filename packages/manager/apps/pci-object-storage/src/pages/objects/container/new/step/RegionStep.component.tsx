@@ -1,8 +1,11 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import { usePrevious } from 'react-use';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { StepComponent } from '@ovh-ux/manager-react-components';
-import { useTranslation } from 'react-i18next';
+import {
+  StepComponent,
+  useNotifications,
+} from '@ovh-ux/manager-react-components';
+import { Translation, useTranslation } from 'react-i18next';
 import {
   useAddProjectRegion,
   useRefreshProductAvailability,
@@ -10,15 +13,19 @@ import {
 import { useParams } from 'react-router-dom';
 import { ApiError } from '@ovh-ux/manager-core-api';
 
-import { OdsMessage, OdsSpinner } from '@ovhcloud/ods-components/react';
+import { OdsSpinner } from '@ovhcloud/ods-components/react';
 import { useContainerCreationStore } from '../useContainerCreationStore';
 import { OBJECT_CONTAINER_OFFER_SWIFT } from '@/constants';
 import { ContainerRegionSelector } from './ContainerRegionSelector.component';
 
 export function RegionStep() {
-  const { t } = useTranslation(['containers/add', 'pci-common', 'regions']);
+  const { t } = useTranslation(['containers/add', 'pci-common']);
+
   const context = useContext(ShellContext);
   const { ovhSubsidiary } = context.environment.getUser();
+
+  const { addSuccess, addError, clearNotifications } = useNotifications();
+
   const {
     form,
     stepper,
@@ -26,9 +33,10 @@ export function RegionStep() {
     editRegion,
     submitRegion,
   } = useContainerCreationStore();
-  const [addRegionMessage, setAddRegionMessage] = useState<JSX.Element>();
+
   const { projectId } = useParams();
   const { refresh } = useRefreshProductAvailability(projectId, ovhSubsidiary);
+
   const { addRegion, isPending } = useAddProjectRegion({
     projectId,
     onSuccess: () => {
@@ -38,25 +46,35 @@ export function RegionStep() {
         enabled: true,
       });
       submitRegion();
-      setAddRegionMessage(
-        <OdsMessage className="mt-8" color="success">
-          {t(
-            'pci_projects_project_storages_containers_add_add_region_success',
-            {
-              code: form.region.name,
-            },
-          )}
-        </OdsMessage>,
+      addSuccess(
+        <Translation ns="containers/add">
+          {(_t) =>
+            _t(
+              'pci_projects_project_storages_containers_add_add_region_success',
+              {
+                code: form.region.name,
+              },
+            )
+          }
+        </Translation>,
+        true,
       );
     },
     onError: (error: ApiError) => {
-      setAddRegionMessage(
-        <OdsMessage className="mt-8" color="danger">
-          {t('pci_projects_project_storages_containers_add_add_region_error', {
-            message: error?.response?.data?.message || error?.message || null,
-            requestId: error?.config?.headers['X-OVH-MANAGER-REQUEST-ID'],
-          })}
-        </OdsMessage>,
+      addError(
+        <Translation ns="containers/add">
+          {(_t) =>
+            _t(
+              'pci_projects_project_storages_containers_add_add_region_error',
+              {
+                message:
+                  error?.response?.data?.message || error?.message || null,
+                requestId: error?.config?.headers['X-OVH-MANAGER-REQUEST-ID'],
+              },
+            )
+          }
+        </Translation>,
+        true,
       );
     },
   });
@@ -73,7 +91,7 @@ export function RegionStep() {
   useEffect(() => {
     const { isLocked } = stepper.region;
     if (wasLocked === true && isLocked === false) {
-      setAddRegionMessage(undefined);
+      clearNotifications();
     }
   }, [stepper.region.isLocked]);
 
@@ -105,7 +123,6 @@ export function RegionStep() {
             isSubmitted={stepper.region.isLocked}
           />
         )}
-        {addRegionMessage}
       </>
     </StepComponent>
   );

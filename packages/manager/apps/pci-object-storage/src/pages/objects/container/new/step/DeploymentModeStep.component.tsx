@@ -16,6 +16,7 @@ import { useContainerCreationStore } from '../useContainerCreationStore';
 
 export function DeploymentModeStep() {
   const { t } = useTranslation(['containers/add', 'pci-common']);
+
   const columnsCount = useColumnsCount();
   const {
     form,
@@ -24,12 +25,15 @@ export function DeploymentModeStep() {
     editDeploymentMode,
     submitDeploymentMode,
   } = useContainerCreationStore();
+
   const context = useContext(ShellContext);
+
   const { ovhSubsidiary } = context.environment.getUser();
   const deploymentModeLink =
     DEPLOYMENT_MODE_LINK[ovhSubsidiary] || DEPLOYMENT_MODE_LINK.DEFAULT;
   const storagePricesLink =
     STORAGE_PRICES_LINK[ovhSubsidiary] || STORAGE_PRICES_LINK.DEFAULT;
+
   const items = useMemo(
     () =>
       OBJECT_CONTAINER_DEPLOYMENT_MODES.map((offer) => ({
@@ -37,6 +41,7 @@ export function DeploymentModeStep() {
       })),
     [OBJECT_CONTAINER_DEPLOYMENT_MODES],
   );
+
   return (
     <StepComponent
       title={t(
@@ -57,25 +62,21 @@ export function DeploymentModeStep() {
       }}
     >
       {!stepper.deployment.isLocked && (
-        <p>
-          <OdsText preset="paragraph" className="mt-8 block">
-            <span>
-              {t(
-                'pci_projects_project_storages_containers_add_deployment_mode_sub_title',
-              )}{' '}
-            </span>
-            <OdsLink
-              className="mt-4"
-              color="primary"
-              href={deploymentModeLink}
-              target="_blank"
-              label={t(
-                'pci_projects_project_storages_containers_add_deployment_mode_sub_title_link',
-              )}
-              icon="external-link"
-            />
-          </OdsText>
-        </p>
+        <OdsText preset="paragraph" className="mt-8 block">
+          {t(
+            'pci_projects_project_storages_containers_add_deployment_mode_sub_title',
+          )}
+          <OdsLink
+            className="mt-4"
+            color="primary"
+            href={deploymentModeLink}
+            target="_blank"
+            label={t(
+              'pci_projects_project_storages_containers_add_deployment_mode_sub_title_link',
+            )}
+            icon="external-link"
+          />
+        </OdsText>
       )}
 
       <TileInputChoice
@@ -91,25 +92,21 @@ export function DeploymentModeStep() {
       </TileInputChoice>
 
       {!stepper.deployment.isLocked && (
-        <p>
-          <OdsText preset="paragraph" className="mt-8 block">
-            <span>
-              {t(
-                'pci_projects_project_storages_containers_add_deployment_mode_price_explanation',
-              )}
-            </span>
-            <OdsLink
-              className="mt-4"
-              color="primary"
-              href={storagePricesLink}
-              target="_blank"
-              icon="external-link"
-              label={t(
-                'pci_projects_project_storages_containers_add_deployment_mode_price_explanation_link',
-              )}
-            ></OdsLink>
-          </OdsText>
-        </p>
+        <OdsText preset="paragraph" className="mt-8 block">
+          {t(
+            'pci_projects_project_storages_containers_add_deployment_mode_price_explanation',
+          )}
+          <OdsLink
+            className="mt-4"
+            color="primary"
+            href={storagePricesLink}
+            target="_blank"
+            icon="external-link"
+            label={t(
+              'pci_projects_project_storages_containers_add_deployment_mode_price_explanation_link',
+            )}
+          />
+        </OdsText>
       )}
     </StepComponent>
   );
