@@ -5,6 +5,9 @@ import { GUIDES_LIST } from './user.constants';
 import template from './user.html';
 import controller from './user.controller';
 
+const GDPR_REQUEST_MANAGEMENT_ACTION =
+  'account:apiovh:me/privacy/requests/erasure/manage';
+
 export default /* @ngInject */ ($stateProvider) => {
   const name = 'account.user';
 
@@ -44,6 +47,35 @@ export default /* @ngInject */ ($stateProvider) => {
           type: 'action',
         });
       },
+      canManageGdprRequests: /* @ngInject */ (Apiv2Service) =>
+        Apiv2Service.httpApiv2({
+          method: 'get',
+          url: '/engine/api/v2/iam/resource?resourceType=account',
+        }).then(({ data }) => {
+          if (!data[0]?.urn) {
+            return false;
+          }
+          return (
+            Apiv2Service.httpApiv2({
+              method: 'post',
+              url: `/engine/api/v2/iam/resource/${encodeURIComponent(
+                data[0].urn,
+              )}/authorization/check`,
+              data: {
+                actions: [GDPR_REQUEST_MANAGEMENT_ACTION],
+              },
+            })
+              .then(({ data: actions }) =>
+                actions.authorizedActions.includes(
+                  GDPR_REQUEST_MANAGEMENT_ACTION,
+                ),
+              )
+              // TODO: cleanup this comment once the action GDPR_REQUEST_MANAGEMENT_ACTION is available in IAM
+              // In order to be able to see the page, since the GDPR_REQUEST_MANAGEMENT_ACTION does not exist yet on
+              // IAM, replace the next line with `.catch(() => true)`
+              .catch(() => false)
+          );
+        }),
     },
   });
 };
