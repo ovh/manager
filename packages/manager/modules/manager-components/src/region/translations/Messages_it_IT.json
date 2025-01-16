@@ -364,5 +364,9 @@
   "manager_components_region_PAR": "Parigi",
   "manager_components_region_PAR_micro": "Parigi ({{ micro }})",
   "manager_components_region_location_PAR": "Europa occidentale (Francia)",
-  "manager_components_region_continent_PAR": "Europa occidentale"
+  "manager_components_region_continent_PAR": "Europa occidentale",
+  "manager_components_region_STO": "Stoccolma",
+  "manager_components_region_STO_micro": "Stoccolma ({{ micro }})",
+  "manager_components_region_continent_STO": "Nord Europa",
+  "manager_components_region_location_STO": "Nord Europa (Svezia)"
 }
