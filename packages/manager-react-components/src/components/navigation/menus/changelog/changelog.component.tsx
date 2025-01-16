@@ -45,7 +45,7 @@ export const ChangelogButton: React.FC<ChangelogButtonProps> = ({ items }) => {
           <span slot="start">
             <GithubIcon />
           </span>
-          {t('user_account_changelog_header')}
+          {t('mrc_changelog_header')}
         </OsdsButton>
 
         {items.map((item) => (
@@ -57,7 +57,7 @@ export const ChangelogButton: React.FC<ChangelogButtonProps> = ({ items }) => {
                 download={item.download}
                 rel={item.rel}
                 type={LinkType.external}
-                label={t(`user_account_changelog_${item.labelKey}`)}
+                label={t(`mrc_changelog_${item.labelKey}`)}
                 onClickReturn={item.onClick}
               />
             </OsdsMenuItem>
