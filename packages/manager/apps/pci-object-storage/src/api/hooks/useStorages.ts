@@ -27,7 +27,8 @@ import {
   OBJECT_CONTAINER_TYPE_STATIC,
 } from '@/constants';
 import { paginateResults } from '@/helpers';
-import { addUser } from '../data/objects';
+import { addUser, TStorageObject } from '../data/objects';
+import { deleteObject } from './useObject';
 
 export const sortStorages = (sorting: ColumnSort, storages: TStorage[]) => {
   const order = sorting.desc ? -1 : 1;
@@ -213,16 +214,31 @@ export const useDeleteStorage = ({
 }: UseDeleteStorageProps) => {
   const queryClient = useQueryClient();
   const mutation = useMutation({
-    mutationFn: async (storage: TStorage) => {
-      if (storage.s3StorageType) {
-        return deleteS3Container(
-          projectId,
-          storage.region,
-          storage.s3StorageType,
-          storage.name,
-        );
-      }
-      return deleteContainer(projectId, storage.id);
+    mutationFn: async ({
+      storage,
+      objects,
+    }: {
+      storage: TStorage;
+      objects: TStorageObject[];
+    }) => {
+      const promisesObjectDeletion = objects.reduce(
+        (result, object) => [
+          ...result,
+          deleteObject(projectId, storage, object.name, storage.region),
+        ],
+        [],
+      );
+      return Promise.all(promisesObjectDeletion).then(async () => {
+        if (storage.s3StorageType) {
+          return deleteS3Container(
+            projectId,
+            storage.region,
+            storage.s3StorageType,
+            storage.name,
+          );
+        }
+        return deleteContainer(projectId, storage.id);
+      });
     },
     onError,
     onSuccess: async () => {
@@ -233,8 +249,8 @@ export const useDeleteStorage = ({
     },
   });
   return {
-    deleteStorage(storage: TStorage) {
-      return mutation.mutate(storage);
+    deleteStorage(storage: TStorage, objects: TStorageObject[]) {
+      return mutation.mutate({ storage, objects });
     },
     ...mutation,
   };
