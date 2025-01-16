@@ -97,6 +97,21 @@ describe('License Hycu shortcuts tile for dashboard test suite', () => {
     );
   });
 
+  it("Can't see activate button when licence is pending", async () => {
+    await renderTestApp(`/${licensesHycu[0].serviceName}`, {
+      licenseStatus: LicenseStatus.PENDING,
+    });
+
+    await waitFor(
+      () => {
+        expect(
+          screen.getByTestId('hycu_link_regenerate_test_id'),
+        ).toHaveAttribute('disabled');
+      },
+      { timeout: 30_000 },
+    );
+  });
+
   it("Can't open activate modal without IAM authorization", async () => {
     const user = userEvent.setup();
     await renderTestApp(`/${licensesHycu[1].serviceName}`, {
