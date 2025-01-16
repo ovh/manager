@@ -1,6 +1,0 @@
-{
-  "pci_projects_project_storages_containers_bucket_versioning_title": "Gestão das versões",
-  "pci_projects_project_storages_containers_bucket_versioning_description": "Automatiza a criação de versões de um objeto para compensar a eliminação acidental deste último, ou simplesmente quando um novo objeto é alvo de upload.",
-  "pci_projects_project_storages_containers_bucket_versioning_disabled": "Desativar",
-  "pci_projects_project_storages_containers_bucket_versioning_enabled": "Ativar"
-}

@@ -11,11 +11,7 @@ import {
   useProductAvailability,
 } from '@ovh-ux/manager-pci-common';
 
-import {
-  OdsMessage,
-  OdsSpinner,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
+import { OdsSpinner, OdsText } from '@ovhcloud/ods-components/react';
 import {
   OBJECT_CONTAINER_OFFER_STORAGE_STANDARD,
   STORAGE_STANDARD_REGION_PLANCODE,
@@ -38,7 +34,8 @@ export function ContainerRegionSelector({
   onSelectRegion,
   isSubmitted,
 }: Readonly<RegionSelectorProps>) {
-  const { t } = useTranslation(['containers/add', 'pci-common', 'regions']);
+  const { t } = useTranslation(['containers/add', 'pci-common']);
+
   const { projectId } = useParams();
   const columnsCount = useColumnsCount();
 
@@ -137,7 +134,9 @@ export function ContainerRegionSelector({
                   }`}
                 >
                   {groupName ||
-                    t('regions:pci_project_regions_list_continent_all')}
+                    t(
+                      'pci-region-selector:pci_project_regions_list_continent_all',
+                    )}
                 </OdsText>
               </div>
             ),
@@ -146,11 +145,11 @@ export function ContainerRegionSelector({
         />
       )}
       {region && !region.enabled && (
-        <OdsMessage color="warning" className="my-6 flex-row w-full">
+        <OdsText className="my-6 text-critical font-bold-class">
           {t(
             'pci_projects_project_storages_containers_add_add_region_activate',
           )}
-        </OdsMessage>
+        </OdsText>
       )}
       {!isPending && isSubmitted && (
         <TileInputChoice
