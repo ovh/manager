@@ -402,7 +402,6 @@ export default class PciStoragesContainersService {
 
   addContainer(projectId, containerModel) {
     const { containerType } = containerModel;
-    console.log('containerModel', containerModel);
 
     return (containerModel.archive
       ? this.addStorageContainer(

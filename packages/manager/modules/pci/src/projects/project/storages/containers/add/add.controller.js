@@ -439,20 +439,9 @@ export default class PciStoragesContainersAddController {
     );
   }
 
-  // onDeploymentModeChange() {
-  //   console.log('deploymentMode', this.container.deploymentMode);
-  //   if (
-  //     this.container.deploymentMode === this.OBJECT_CONTAINER_MODE_MULTI_ZONES
-  //   ) {
-  //     console.log('hereeee !!!!!!!!! 2');
-  //     this.isOffsiteReplicationEnabled = true;
-  //   }
-  // }
-
   handleBucketVersioningChange(versioning) {
     if (versioning?.status === 'enabled') {
       this.container.versioning = versioning;
-      console.log('this.container 4', this.container);
     } else {
       delete this.container.versioning;
     }
@@ -463,15 +452,7 @@ export default class PciStoragesContainersAddController {
       this.isBucketVersioningEnabled = true;
       this.forceEnableVersioning = true;
       this.container.versioning = { status: 'enabled' };
-      console.log(
-        ' this.isBucketVersioningEnabled 11',
-        this.isBucketVersioningEnabled,
-      );
     } else {
-      console.log(
-        ' this.isBucketVersioningEnabled 22',
-        this.isBucketVersioningEnabled,
-      );
       this.isBucketVersioningEnabled = false;
       this.forceEnableVersioning = false;
     }
@@ -479,28 +460,15 @@ export default class PciStoragesContainersAddController {
 
   onOffsiteReplicationFocus() {
     this.isOffsiteReplicationEnabled = false;
-    // this.container.replication = {
-    //   rules: [
-    //     {
-    //       id: '',
-    //       status: 'enabled',
-    //       priority: 1,
-    //       deleteMarkerReplication: 'disabled',
-    //     },
-    //   ],
-    // };
-    console.log('this.container 1', this.container);
   }
 
   handleOffsiteReplicationChange(replication) {
     if (replication?.rules[0]?.status === 'enabled') {
       this.container.replication = replication;
       this.forceEnableVersioning = true;
-      console.log('this.container 2', this.container);
     } else {
       delete this.container.replication;
       this.forceEnableVersioning = false;
-      console.log('this.container 3', this.container);
     }
   }
 
@@ -511,7 +479,6 @@ export default class PciStoragesContainersAddController {
       ? `${this.container.containerType}::`
       : '';
     const dataCenterLocation = this.container.region.datacenterLocation;
-    console.log(' this.container', this.container);
 
     this.atInternet.trackClick({
       name: `storage_container_create_${containerOffer}_${dataCenterLocation}_${this

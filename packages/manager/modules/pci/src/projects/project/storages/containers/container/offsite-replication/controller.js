@@ -1,12 +1,4 @@
 export default class PciProjectStorageOffsiteReplicationController {
-  $onInit() {
-    // this.isOffsiteReplicationEnabled = true;
-    console.log(
-      'this.isOffsiteReplicationEnabled 10',
-      this.isOffsiteReplicationEnabled,
-    );
-  }
-
   handleOffsiteReplicationChange() {
     this.onOffsiteReplicationChange({
       replication: this.isOffsiteReplicationEnabled
