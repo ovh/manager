@@ -24,3 +24,7 @@ html {
 .text-critical::part(text) {
   color: var(--ods-color-critical-500);
 }
+
+.badge-deployment-multizone::part(badge) {
+  background-color: var(--ods-color-information-200);
+}

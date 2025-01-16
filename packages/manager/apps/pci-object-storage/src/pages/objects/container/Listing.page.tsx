@@ -101,6 +101,21 @@ export default function ListingPage() {
             name="searchField"
             className="min-w-[15rem]"
             value={searchField}
+            onKeyDown={(event) => {
+              if (event.key === 'Enter') {
+                setPagination({
+                  pageIndex: 0,
+                  pageSize: pagination.pageSize,
+                });
+                addFilter({
+                  key: 'name',
+                  value: searchField,
+                  comparator: FilterComparator.Includes,
+                  label: '',
+                });
+                setSearchField('');
+              }
+            }}
             onOdsChange={({ detail }) => setSearchField(detail.value as string)}
           />
           <OdsButton
