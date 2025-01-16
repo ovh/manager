@@ -9,10 +9,24 @@ export default class SofpthoneService {
     this.iceberg = iceberg;
   }
 
+  getSoftphoneStatus(billingAccount, serviceName) {
+    return this.$http
+      .get(`/telephony/${billingAccount}/line/${serviceName}/softphone/status`)
+      .then(({ data }) => data);
+  }
+
+  switchActivation(billingAccount, serviceName, enabled) {
+    return this.$http
+      .put(`/telephony/${billingAccount}/line/${serviceName}/softphone/beta`, {
+        enabled,
+      })
+      .then(({ data }) => data);
+  }
+
   modifyDevice(billingAccount, serviceName, name, deviceId) {
     return this.$http
       .put(
-        `/telephony/${billingAccount}/line/${serviceName}/devices/${deviceId}`,
+        `/telephony/${billingAccount}/line/${serviceName}/softphone/devices/${deviceId}`,
         {
           name,
         },
@@ -26,7 +40,7 @@ export default class SofpthoneService {
         this.$q.all(
           devices.map((device) =>
             this.$http.delete(
-              `/telephony/${billingAccount}/line/${serviceName}/devices/${device.id}`,
+              `/telephony/${billingAccount}/line/${serviceName}/softphone/devices/${device.id}`,
             ),
           ),
         );
@@ -37,17 +51,20 @@ export default class SofpthoneService {
   deleteDevice(billingAccount, serviceName, deviceId) {
     return this.$http
       .delete(
-        `/telephony/${billingAccount}/line/${serviceName}/devices/${deviceId}`,
+        `/telephony/${billingAccount}/line/${serviceName}/softphone/devices/${deviceId}`,
       )
       .then(({ data }) => data);
   }
 
   createDevice(billingAccount, serviceName, name) {
     return this.$http
-      .post(`/telephony/${billingAccount}/line/${serviceName}/devices`, {
-        name,
-        type: SOFTPHONE_TYPE,
-      })
+      .post(
+        `/telephony/${billingAccount}/line/${serviceName}/softphone/devices`,
+        {
+          name,
+          type: SOFTPHONE_TYPE,
+        },
+      )
       .then(({ data }) => data);
   }
 
@@ -78,14 +95,14 @@ export default class SofpthoneService {
 
   getSoftphoneDevices(billingAccount, serviceName) {
     return this.$http
-      .get(`/telephony/${billingAccount}/line/${serviceName}/devices`)
+      .get(`/telephony/${billingAccount}/line/${serviceName}/softphone/devices`)
       .then(({ data }) => data);
   }
 
   getSoftphoneDeviceDetail(billingAccount, serviceName, deviceId) {
     return this.$http
       .get(
-        `/telephony/${billingAccount}/line/${serviceName}/devices/${deviceId}`,
+        `/telephony/${billingAccount}/line/${serviceName}/softphone/devices/${deviceId}`,
       )
       .then(({ data }) => data);
   }
@@ -118,6 +135,12 @@ export default class SofpthoneService {
         filename,
         url,
       })
+      .then(({ data }) => data);
+  }
+
+  deleteSoftphoneLogo(billingAccount, serviceName) {
+    return this.$http
+      .delete(`/telephony/${billingAccount}/line/${serviceName}/softphone/logo`)
       .then(({ data }) => data);
   }
 
@@ -158,7 +181,7 @@ export default class SofpthoneService {
 
   getDevicesInfos(billingAccount, serviceName) {
     return this.iceberg(
-      `/telephony/${billingAccount}/line/${serviceName}/devices`,
+      `/telephony/${billingAccount}/line/${serviceName}/softphone/devices`,
     )
       .query()
       .expand('CachedObjectList-Pages')

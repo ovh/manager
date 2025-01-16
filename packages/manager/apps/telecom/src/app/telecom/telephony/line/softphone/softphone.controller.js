@@ -8,13 +8,13 @@ import {
 
 export default class SoftphoneController {
   /* @ngInject */
-  constructor(softphoneService, $translate, $q, TucToast) {
+  constructor(SoftphoneService, $translate, $q, TucToast) {
     this.acceptedFormats = LOGO_FILE_FORMATS;
     this.acceptedFormatsDesc = LOGO_FILE_FORMATS.map((format) =>
       ['image/', format].join(''),
     );
     this.maxSizeLogoFile = MAX_SIZE_LOGO_FILE;
-    this.softphoneService = softphoneService;
+    this.SoftphoneService = SoftphoneService;
     this.$translate = $translate;
     this.TucToast = TucToast;
     this.$q = $q;
@@ -33,37 +33,94 @@ export default class SoftphoneController {
       external: true,
     };
     this.isLoading = true;
-    this.softphoneService
-      .getDevicesInfos(this.billingAccount, this.serviceName)
-      .then((devices) => {
-        this.devices = devices;
+    this.currentServiceIsActivate = this.softphoneStatus.activation;
+    this.hasToggleSwitchActivation =
+      this.softphoneStatus.infrastructure === 'LEGACY';
+
+    if (this.currentServiceIsActivate) {
+      this.fetchSoftPhoneInformations();
+    }
+  }
+
+  fetchSoftPhoneInformations() {
+    this.isLoading = true;
+    this.$q
+      .all({
+        devicesInfos: this.SoftphoneService.getDevicesInfos(
+          this.billingAccount,
+          this.serviceName,
+        ),
+        logo: this.SoftphoneService.getLogo(
+          this.billingAccount,
+          this.serviceName,
+        ),
+        currentTheme: this.SoftphoneService.getSoftphoneCurrentTheme(
+          this.billingAccount,
+          this.serviceName,
+        ),
+      })
+      .then(
+        ({
+          devicesInfos,
+          logo: { url, filename },
+          currentTheme: { themeId },
+        }) => {
+          this.devices = devicesInfos;
+
+          this.logoUrl = url;
+          this.logoFilename = filename;
+
+          this.currentTheme = themeId;
+        },
+      )
+      .finally(() => {
         this.isLoading = false;
       });
-    this.softphoneService
-      .getLogo(this.billingAccount, this.serviceName)
-      .then(({ url, filename }) => {
-        this.logoUrl = url;
-        this.logoFilename = filename;
+  }
+
+  handleToggleSwitchActivation() {
+    this.SoftphoneService.switchActivation(
+      this.billingAccount,
+      this.serviceName,
+      !this.currentServiceIsActivate,
+    )
+      .then(() => {
+        this.TucToast.success(
+          this.$translate.instant(
+            'telephony_line_tab_softphone_activation_message_success',
+          ),
+        );
+        if (this.currentServiceIsActivate) {
+          this.fetchSoftPhoneInformations();
+        }
+      })
+      .catch(() => {
+        this.currentServiceIsActivate = !this.currentServiceIsActivate;
+        this.TucToast.error(
+          this.$translate.instant(
+            'telephony_line_tab_softphone_activation_message_error',
+          ),
+        );
       });
   }
 
   saveSoftphoneName(deviceId) {
     this.showEditFormSoftphoneName[deviceId] = false;
-    this.softphoneService
-      .modifyDevice(
-        this.billingAccount,
-        this.serviceName,
-        this.model[deviceId].name,
-        deviceId,
-      )
+    this.SoftphoneService.modifyDevice(
+      this.billingAccount,
+      this.serviceName,
+      this.model[deviceId].name,
+      deviceId,
+    )
       .then(() => {
         this.isLoading = true;
-        this.softphoneService
-          .getDevicesInfos(this.billingAccount, this.serviceName)
-          .then((devices) => {
-            this.isLoading = false;
-            this.devices = devices;
-          });
+        this.SoftphoneService.getDevicesInfos(
+          this.billingAccount,
+          this.serviceName,
+        ).then((devices) => {
+          this.isLoading = false;
+          this.devices = devices;
+        });
       })
       .catch((error) =>
         this.TucToast.error(
@@ -111,7 +168,7 @@ export default class SoftphoneController {
   applyTheme() {
     let promise;
     const applyTheme = () => {
-      return this.softphoneService.putSoftphoneTheme(
+      return this.SoftphoneService.putSoftphoneTheme(
         this.billingAccount,
         this.serviceName,
         this.currentTheme,
@@ -120,18 +177,16 @@ export default class SoftphoneController {
     if (!this.fileModel) {
       promise = this.$q.resolve(applyTheme());
     } else {
-      promise = this.softphoneService
-        .uploadDocument(this.fileModel[0])
-        .then((url) => {
-          this.softphoneService
-            .putSoftphoneLogo(
-              this.billingAccount,
-              this.serviceName,
-              this.fileModel[0].infos.name,
-              url,
-            )
-            .then(applyTheme());
-        });
+      promise = this.SoftphoneService.uploadDocument(this.fileModel[0]).then(
+        (url) => {
+          this.SoftphoneService.putSoftphoneLogo(
+            this.billingAccount,
+            this.serviceName,
+            this.fileModel[0].infos.name,
+            url,
+          ).then(applyTheme());
+        },
+      );
     }
 
     promise
@@ -155,10 +210,24 @@ export default class SoftphoneController {
   }
 
   deleteLogo() {
-    this.softphoneService.putSoftphoneLogo(
+    this.SoftphoneService.deleteSoftphoneLogo(
       this.billingAccount,
       this.serviceName,
-    );
+    )
+      .then(() =>
+        this.TucToast.success(
+          this.$translate.instant(
+            'telephony_line_softphone_apply_logo_success',
+          ),
+        ),
+      )
+      .catch((error) =>
+        this.TucToast.error(
+          this.$translate.instant('telephony_line_softphone_apply_logo_error', {
+            errorMessage: error.message,
+          }),
+        ),
+      );
   }
 
   helpTextForLogo() {

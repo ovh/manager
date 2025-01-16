@@ -1,283 +1,310 @@
 <tuc-toast-message></tuc-toast-message>
 
-<oui-collapsible
-    data-expanded="$ctrl.softphoneDevices.length === 0"
-    data-heading="{{ 'telephony_line_softphone_download_links_title' | translate }}"
->
-    <h4 class="pt-3">
-        <strong
-            data-translate="telephony_line_softphone_download_links_description_label"
-        ></strong>
-    </h4>
-
-    <p class="pt-1">
-        <b
-            data-translate="telephony_line_softphone_download_links_option_1"
-        ></b>
-    </p>
-    <div class="container-badges mb-2">
-        <div class="col-6 align-items-center">
-            <a data-ng-href="{{$ctrl.storeLinks[$ctrl.MOBILE_OS.ios]}}">
-                <img
-                    class="ios"
-                    alt="{{:: 'telephony_line_softphone_store_link_ios' | translate}}"
-                    src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-example-preferred.png"
-                />
-            </a>
-            <a data-ng-href="{{$ctrl.storeLinks[$ctrl.MOBILE_OS.android]}}">
-                <img
-                    class="android"
-                    alt="{{:: 'telephony_line_softphone_store_link_android' | translate}}"
-                    src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
-                />
-            </a>
-            <a data-ng-href="{{$ctrl.storeLinks[$ctrl.MOBILE_OS.windows]}}">
-                <img
-                    class="windows"
-                    alt="{{:: 'telephony_line_softphone_store_link_windows'| translate}}"
-                    src="https://get.microsoft.com/images/fr-ca%20dark.svg"
-                />
-            </a>
-        </div>
-    </div>
-
-    <p class="pt-1">
-        <b
-            data-translate="telephony_line_softphone_download_links_option_2"
-        ></b>
-    </p>
-    <div class="row mb-2">
-        <div class="d-flex justify-content-left ml-5">
-            <qr data-text="$ctrl.storeLinks[$ctrl.osName]"></qr>
-        </div>
-    </div>
-
-    <p class="pt-1">
-        <b
-            data-translate="telephony_line_softphone_download_links_option_3"
-        ></b>
-    </p>
-    <div class="row">
-        <oui-field
-            class="col-md-4"
-            data-label="{{ :: 'telephony_line_softphone_download_link' | translate }}"
+<div class="row" data-ng-if="$ctrl.hasToggleSwitchActivation">
+    <div class="d-flex align-items-center">
+        <oui-switch
+            data-model="$ctrl.currentServiceIsActivate"
+            data-on-change="$ctrl.handleToggleSwitchActivation()"
         >
-            <oui-clipboard
-                data-name="downloadLink"
-                data-model="$ctrl.storeLinks[$ctrl.osName]"
-            ></oui-clipboard>
-        </oui-field>
-    </div>
-</oui-collapsible>
-<oui-collapsible
-    class="custom-collapsible-no-click mt-3"
-    data-expanded="true"
-    data-heading="{{ 'telephony_line_softphone_configure_title' | translate }}"
->
-    <div class="row mb-2">
-        <div class="col-md-12 mb-2">
+        </oui-switch>
+        <oui-collapsible
+            class="custom-collapsible-no-click m-5 p-0"
+            data-expanded="true"
+        >
             <p
-                data-translate="telephony_line_softphone_configure_description"
+                data-translate="telephony_line_tab_softphone_active_description"
             ></p>
-            <oui-guide-menu
-                data-text="{{ 'telephony_line_softphone_guide_title' | translate }}"
-            >
-                <oui-guide-menu-item
-                    data-href="{{ ::$ctrl.guide.url }}"
-                    data-external="$ctrl.guide.external"
-                    ><span data-translate="{{ $ctrl.guide.title }}"></span>
-                </oui-guide-menu-item>
-            </oui-guide-menu>
+            <p
+                data-translate="telephony_line_tab_softphone_inactive_description"
+            ></p>
+        </oui-collapsible>
+    </div>
+</div>
+
+<div data-ng-if="$ctrl.currentServiceIsActivate">
+    <oui-collapsible
+        data-expanded="$ctrl.softphoneDevices.length === 0"
+        data-heading="{{ 'telephony_line_softphone_download_links_title' | translate }}"
+    >
+        <h4 class="pt-3">
+            <strong
+                data-translate="telephony_line_softphone_download_links_description_label"
+            ></strong>
+        </h4>
+
+        <p class="pt-1">
+            <b
+                data-translate="telephony_line_softphone_download_links_option_1"
+            ></b>
+        </p>
+        <div class="container-badges mb-2">
+            <div class="col-6 align-items-center">
+                <a data-ng-href="{{$ctrl.storeLinks[$ctrl.MOBILE_OS.ios]}}">
+                    <img
+                        class="ios"
+                        alt="{{:: 'telephony_line_softphone_store_link_ios' | translate}}"
+                        src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-example-preferred.png"
+                    />
+                </a>
+                <a data-ng-href="{{$ctrl.storeLinks[$ctrl.MOBILE_OS.android]}}">
+                    <img
+                        class="android"
+                        alt="{{:: 'telephony_line_softphone_store_link_android' | translate}}"
+                        src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
+                    />
+                </a>
+                <a data-ng-href="{{$ctrl.storeLinks[$ctrl.MOBILE_OS.windows]}}">
+                    <img
+                        class="windows"
+                        alt="{{:: 'telephony_line_softphone_store_link_windows'| translate}}"
+                        src="https://get.microsoft.com/images/fr-ca%20dark.svg"
+                    />
+                </a>
+            </div>
         </div>
-        <div
-            class="d-flex flex-wrap w-100 minw-0 align-items-center justify-content-start"
-        >
-            <oui-spinner data-ng-if="$ctrl.isLoading"></oui-spinner>
-            <oui-tile
-                data-ng-if="!$ctrl.isLoading"
-                data-ng-repeat="device in $ctrl.devices track by $index"
-                class="m-2"
-                data-heading="{{ ::device.name }}"
+
+        <p class="pt-1">
+            <b
+                data-translate="telephony_line_softphone_download_links_option_2"
+            ></b>
+        </p>
+        <div class="row mb-2">
+            <div class="d-flex justify-content-left ml-5">
+                <qr data-text="$ctrl.storeLinks[$ctrl.osName]"></qr>
+            </div>
+        </div>
+
+        <p class="pt-1">
+            <b
+                data-translate="telephony_line_softphone_download_links_option_3"
+            ></b>
+        </p>
+        <div class="row">
+            <oui-field
+                class="col-md-4"
+                data-label="{{ :: 'telephony_line_softphone_download_link' | translate }}"
             >
-                <button
-                    data-ng-if="!$ctrl.showEditFormSoftphoneName[device.id]"
-                    class="btn btn-icon btn-transparent pull-right mt-n5"
-                    data-ng-click="$ctrl.toggleEditSoftphoneName(device.id)"
+                <oui-clipboard
+                    data-name="downloadLink"
+                    data-model="$ctrl.storeLinks[$ctrl.osName]"
+                ></oui-clipboard>
+            </oui-field>
+        </div>
+    </oui-collapsible>
+    <oui-collapsible
+        class="custom-collapsible-no-click mt-3"
+        data-expanded="true"
+        data-heading="{{ 'telephony_line_softphone_configure_title' | translate }}"
+    >
+        <div class="row mb-2">
+            <div class="col-md-12 mb-2">
+                <p
+                    data-translate="telephony_line_softphone_configure_description"
+                ></p>
+                <oui-guide-menu
+                    data-text="{{ 'telephony_line_softphone_guide_title' | translate }}"
                 >
-                    <i class="oui-icon oui-icon-pen" aria-hidden="true"></i>
-                </button>
-                <div data-ng-if="$ctrl.showEditFormSoftphoneName[device.id]">
-                    <form name="$ctrl.softphoneNameForm[device.id]">
-                        <oui-field
-                            label="{{ 'telephony_line_softphone_edit_name_heading' | translate }}"
-                        >
-                            <div class="d-flex">
-                                <div
-                                    class="oui-input-overlay oui-input-overlay_inline"
-                                >
-                                    <input
-                                        id="edit_name_softphone_device_{{ device.id }}"
-                                        class="oui-input"
-                                        name="editableSoftphoneNameInput{{ device.id }}"
-                                        data-ng-model="$ctrl.model[device.id].name"
-                                        data-ng-pattern="/[a-zA-Z0-9]/"
-                                        type="text"
-                                    />
-                                    <span
-                                        class="oui-icon oui-icon-success mr-4"
-                                        aria-hidden="true"
-                                        data-ng-click="$ctrl.saveSoftphoneName(device.id)"
-                                        data-ng-disabled="!$ctrl.softphoneNameForm[device.id].$valid && !$ctrl.softphoneNameForm[device.id].$dirty"
-                                    ></span>
-                                    <span
-                                        data-ng-click="$ctrl.toggleEditSoftphoneName(device.id)"
-                                        class="oui-icon oui-icon-close text-secondary"
-                                        aria-hidden="true"
-                                    ></span>
+                    <oui-guide-menu-item
+                        data-href="{{ ::$ctrl.guide.url }}"
+                        data-external="$ctrl.guide.external"
+                        ><span data-translate="{{ $ctrl.guide.title }}"></span>
+                    </oui-guide-menu-item>
+                </oui-guide-menu>
+            </div>
+            <div
+                class="d-flex flex-wrap w-100 minw-0 align-items-center justify-content-start"
+            >
+                <oui-spinner data-ng-if="$ctrl.isLoading"></oui-spinner>
+                <oui-tile
+                    data-ng-if="!$ctrl.isLoading"
+                    data-ng-repeat="device in $ctrl.devices track by $index"
+                    class="m-2"
+                    data-heading="{{ ::device.name }}"
+                >
+                    <button
+                        data-ng-if="!$ctrl.showEditFormSoftphoneName[device.id]"
+                        class="btn btn-icon btn-transparent pull-right mt-n5"
+                        data-ng-click="$ctrl.toggleEditSoftphoneName(device.id)"
+                    >
+                        <i class="oui-icon oui-icon-pen" aria-hidden="true"></i>
+                    </button>
+                    <div
+                        data-ng-if="$ctrl.showEditFormSoftphoneName[device.id]"
+                    >
+                        <form name="$ctrl.softphoneNameForm[device.id]">
+                            <oui-field
+                                label="{{ 'telephony_line_softphone_edit_name_heading' | translate }}"
+                            >
+                                <div class="d-flex">
+                                    <div
+                                        class="oui-input-overlay oui-input-overlay_inline"
+                                    >
+                                        <input
+                                            id="edit_name_softphone_device_{{ device.id }}"
+                                            class="oui-input"
+                                            name="editableSoftphoneNameInput{{ device.id }}"
+                                            data-ng-model="$ctrl.model[device.id].name"
+                                            data-ng-pattern="/[a-zA-Z0-9]/"
+                                            type="text"
+                                        />
+                                        <span
+                                            class="oui-icon oui-icon-success mr-4"
+                                            aria-hidden="true"
+                                            data-ng-click="$ctrl.saveSoftphoneName(device.id)"
+                                            data-ng-disabled="!$ctrl.softphoneNameForm[device.id].$valid && !$ctrl.softphoneNameForm[device.id].$dirty"
+                                        ></span>
+                                        <span
+                                            data-ng-click="$ctrl.toggleEditSoftphoneName(device.id)"
+                                            class="oui-icon oui-icon-close text-secondary"
+                                            aria-hidden="true"
+                                        ></span>
+                                    </div>
                                 </div>
-                            </div>
-                        </oui-field>
-                    </form>
-                </div>
-                <oui-tile-definition
-                    data-term="{{:: 'telephony_line_softphone_status' | translate}}"
-                >
-                    <oui-tile-description>
-                        <div class="mt-1">
-                            <span
-                                data-ng-class="{
+                            </oui-field>
+                        </form>
+                    </div>
+                    <oui-tile-definition
+                        data-term="{{:: 'telephony_line_softphone_status' | translate}}"
+                    >
+                        <oui-tile-description>
+                            <div class="mt-1">
+                                <span
+                                    data-ng-class="{
                                      'oui-badge_error': device.status === $ctrl.STATUS_SOFTPHONE.unregistered,
                                      'oui-badge_success': device.status === $ctrl.STATUS_SOFTPHONE.registered
                                      }"
-                                class="oui-badge"
-                                data-translate="{{ 'telephony_line_softphone_' + device.status }}"
+                                    class="oui-badge"
+                                    data-translate="{{ 'telephony_line_softphone_' + device.status }}"
+                                >
+                                </span>
+                            </div>
+                        </oui-tile-description>
+                    </oui-tile-definition>
+                    <oui-tile-definition>
+                        <oui-tile-actions>
+                            <oui-button
+                                class="p-2"
+                                data-on-click="$ctrl.goToDeleteDevice(device.id)"
+                                variant="link"
                             >
-                            </span>
-                        </div>
-                    </oui-tile-description>
-                </oui-tile-definition>
-                <oui-tile-definition>
-                    <oui-tile-actions>
-                        <oui-button
-                            class="p-2"
-                            data-on-click="$ctrl.goToDeleteDevice(device.id)"
-                            variant="link"
-                        >
-                            <span
-                                class="text-danger"
-                                data-translate="telephony_line_softphone_btn_delete"
-                            >
-                            </span>
-                        </oui-button>
-                        <oui-button
-                            class="p-2"
-                            data-on-click="$ctrl.openAddDeviceModal(device.id)"
-                            ><span
-                                data-translate="telephony_line_softphone_btn_rerecord"
-                            >
-                            </span>
-                        </oui-button>
-                    </oui-tile-actions>
-                </oui-tile-definition>
-            </oui-tile>
+                                <span
+                                    class="text-danger"
+                                    data-translate="telephony_line_softphone_btn_delete"
+                                >
+                                </span>
+                            </oui-button>
+                            <oui-button
+                                class="p-2"
+                                data-on-click="$ctrl.openAddDeviceModal(device.id)"
+                                ><span
+                                    data-translate="telephony_line_softphone_btn_rerecord"
+                                >
+                                </span>
+                            </oui-button>
+                        </oui-tile-actions>
+                    </oui-tile-definition>
+                </oui-tile>
+            </div>
         </div>
-    </div>
-    <oui-button
-        class="mt-3"
-        data-icon-left="oui-icon-plus"
-        data-variant="primary"
-        data-on-click="$ctrl.openAddDeviceModal()"
-    >
-        <span data-translate="telephony_line_softphone_add_device"></span>
-    </oui-button>
-    <oui-button
-        class="ml-3 mt-3"
-        data-ng-if="$ctrl.softphoneDevices.length === 3"
-        data-variant="light"
-        data-on-click="$ctrl.deleteAllDevices()"
-    >
-        <span
-            class="text-danger"
-            data-translate="telephony_line_softphone_btn_delete_all"
-        ></span>
-    </oui-button>
-</oui-collapsible>
-<oui-collapsible
-    class="custom-collapsible-no-click mt-3"
-    data-expanded="true"
-    data-heading="{{ 'telephony_line_softphone_theme_title' | translate }}"
->
-    <p data-translate="telephony_line_softphone_save_theme_description"></p>
-    <!-- Coloured List !-->
-    <!-- Update logo with image file !-->
-    <form name="formTheme" data-ng-submit=":: $ctrl.applyTheme()">
-        <div style class="d-flex flex-wrap w-100 align-items-center">
-            <theme-picker
-                data-ng-repeat="theme in ::$ctrl.themes track by $index"
-                data-color="theme.color"
-                data-theme-id="theme.themeId"
-                data-selected="$ctrl.currentTheme"
-            ></theme-picker>
-        </div>
-        <button
-            data-ng-disabled="$ctrl.currentTheme===1"
-            type="submit"
-            class="btn btn-default"
+        <oui-button
+            class="mt-3"
+            data-icon-left="oui-icon-plus"
+            data-variant="primary"
+            data-on-click="$ctrl.openAddDeviceModal()"
+        >
+            <span data-translate="telephony_line_softphone_add_device"></span>
+        </oui-button>
+        <oui-button
+            class="ml-3 mt-3"
+            data-ng-if="$ctrl.softphoneDevices.length === 3"
+            data-variant="light"
+            data-on-click="$ctrl.deleteAllDevices()"
         >
             <span
-                data-translate="telephony_line_softphone_btn_apply_theme"
+                class="text-danger"
+                data-translate="telephony_line_softphone_btn_delete_all"
             ></span>
-        </button>
-    </form>
-    <p data-translate="telephony_line_softphone_save_theme"></p>
-</oui-collapsible>
-<oui-collapsible
-    class="custom-collapsible-no-click mt-3"
-    data-expanded="true"
-    data-heading="{{ 'telephony_line_softphone_logo_title' | translate }}"
->
-    <form name="form" data-ng-submit=":: $ctrl.applyTheme()">
-        <div class="row">
-            <oui-field
-                data-ng-class="{
-                                    'col-md-10': $ctrl.logoFilename!=='',
-                                    'col-md-12': $ctrl.logoFilename===''
-                                }"
-                data-label="{{ 'telephony_line_softphone_your_logo' | translate }}"
-                data-help-text="{{ $ctrl.helpTextForLogo() }}"
+        </oui-button>
+    </oui-collapsible>
+    <oui-collapsible
+        class="custom-collapsible-no-click mt-3"
+        data-expanded="true"
+        data-heading="{{ 'telephony_line_softphone_theme_title' | translate }}"
+    >
+        <p data-translate="telephony_line_softphone_save_theme_description"></p>
+        <!-- Coloured List !-->
+        <!-- Update logo with image file !-->
+        <form name="formTheme" data-ng-submit=":: $ctrl.applyTheme()">
+            <div style class="d-flex flex-wrap w-100 align-items-center">
+                <theme-picker
+                    data-ng-repeat="theme in ::$ctrl.themes track by $index"
+                    data-color="theme.color"
+                    data-theme-id="theme.themeId"
+                    data-selected="$ctrl.currentTheme"
+                ></theme-picker>
+            </div>
+            <button
+                data-ng-disabled="$ctrl.currentTheme===1"
+                type="submit"
+                class="btn btn-default"
             >
-                <oui-file
-                    data-accept="{{ $ctrl.acceptedFormats }}"
-                    data-maxsize="$ctrl.maxSizeLogoFile"
-                    data-on-select="$ctrl.updateFilesList()"
-                    data-droparea
-                    data-model="$ctrl.fileModel"
+                <span
+                    data-translate="telephony_line_softphone_btn_apply_theme"
+                ></span>
+            </button>
+        </form>
+        <p data-translate="telephony_line_softphone_save_theme"></p>
+    </oui-collapsible>
+    <oui-collapsible
+        class="custom-collapsible-no-click mt-3"
+        data-expanded="true"
+        data-heading="{{ 'telephony_line_softphone_logo_title' | translate }}"
+    >
+        <form name="form" data-ng-submit="$ctrl.applyTheme()">
+            <div class="row">
+                <oui-field
+                    data-ng-class="{
+                                    'col-md-10': $ctrl.logoFilename !== '',
+                                    'col-md-12': $ctrl.logoFilename === ''
+                                }"
+                    data-label="{{ 'telephony_line_softphone_your_logo' | translate }}"
+                    data-help-text="{{ $ctrl.helpTextForLogo() }}"
                 >
-                </oui-file>
-            </oui-field>
-            <img
-                class="col-md-2"
-                data-ng-if="$ctrl.logoFilename!==''"
-                src="{{:: $ctrl.logoUrl }}"
-                width="512"
-                height="auto"
-                alt="{{:: 'telephony_line_softphone_logo_image' | translate  }}"
-            />
-        </div>
-        <button
-            data-ng-disabled="!$ctrl.fileModel"
-            type="submit"
-            class="btn btn-default"
-        >
-            <span
-                data-translate="telephony_line_softphone_btn_apply_logo"
-            ></span>
-        </button>
-        <button class="btn btn-default" data-ng-click="$ctrl.deleteLogo()">
-            <span data-translate="telephony_line_softphone_logo_delete"></span>
-        </button>
-        <div class="row ml-2">
-            <p data-translate="telephony_line_softphone_save_logo"></p>
-        </div>
-    </form>
-</oui-collapsible>
+                    <oui-file
+                        data-accept="{{ $ctrl.acceptedFormats }}"
+                        data-maxsize="$ctrl.maxSizeLogoFile"
+                        data-on-select="$ctrl.updateFilesList()"
+                        data-droparea
+                        data-model="$ctrl.fileModel"
+                    >
+                    </oui-file>
+                </oui-field>
+                <img
+                    class="col-md-2"
+                    data-ng-if="$ctrl.logoFilename !== ''"
+                    data-ng-src="{{ $ctrl.logoUrl }}"
+                    width="512"
+                    height="auto"
+                    alt="{{:: 'telephony_line_softphone_logo_image' | translate  }}"
+                />
+            </div>
+            <button
+                data-ng-disabled="!$ctrl.fileModel"
+                type="submit"
+                class="btn btn-default"
+            >
+                <span
+                    data-translate="telephony_line_softphone_btn_apply_logo"
+                ></span>
+            </button>
+            <button class="btn btn-default" data-ng-click="$ctrl.deleteLogo()">
+                <span
+                    data-translate="telephony_line_softphone_logo_delete"
+                ></span>
+            </button>
+            <div class="row ml-2">
+                <p data-translate="telephony_line_softphone_save_logo"></p>
+            </div>
+        </form>
+    </oui-collapsible>
+</div>
