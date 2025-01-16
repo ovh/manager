@@ -13,5 +13,6 @@ export default {
     themes: '<',
     storeLinks: '<',
     goToDeleteDevice: '<',
+    softphoneStatus: '<',
   },
 };
