@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-network-app@0.12.7...@ovh-ux/manager-pci-private-network-app@0.12.8) (2025-01-16)
+
+
+### Bug Fixes
+
+* change SMP key to STO for Stockholm ([#14912](https://github.com/ovh/manager/issues/14912)) ([7aab13a](https://github.com/ovh/manager/commit/7aab13a0259261176d364b0e4aef3adfbdb0c79f))
+
+
+
+
+
 ## [0.12.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-network-app@0.12.6...@ovh-ux/manager-pci-private-network-app@0.12.7) (2025-01-09)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-private-network-app

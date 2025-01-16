@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.22.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.22.4...@ovh-ux/manager-components@1.22.5) (2025-01-16)
+
+
+### Bug Fixes
+
+* change SMP key to STO for Stockholm ([#14912](https://github.com/ovh/manager/issues/14912)) ([7aab13a](https://github.com/ovh/manager/commit/7aab13a0259261176d364b0e4aef3adfbdb0c79f))
+
+
+
+
+
 ## [1.22.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.22.3...@ovh-ux/manager-components@1.22.4) (2024-12-09)
 
 
