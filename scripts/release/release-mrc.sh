@@ -32,7 +32,7 @@ version_mrc() {
     node_modules/.bin/lerna version --scope=@ovh-ux/manager-react-components --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --allow-branch="${GIT_BRANCH}" --yes
   else
     printf "%s\n" "Releasing"
-    node_modules/.bin/lerna exec --scope=@ovh-ux/manager-react-components -- lerna version --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --no-private --ignore-changes="packages/manager/modules/manager-pci-common/**" --yes
+    node_modules/.bin/lerna version --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --no-private --ignore-changes "**/packages/manager/modules/manager-pci-common/**" --ignore-changes @ovh-ux/manager-pci-common --yes
   fi
 }
 
@@ -64,7 +64,7 @@ create_release_note() (
 push_and_release() {
   printf "%s\n" "Commit mrc changes"
   git add packages/manager-react-components/package.json packages/manager-react-components/CHANGELOG.md
-  git commit -s --amend --no-edit
+  #git commit -s --amend --no-edit
 }
 
 update_sonar_version() {
@@ -115,7 +115,8 @@ main() {
   # Separate versioning for `manager-react-components` and other packages
   while read -r package; do
     # Check if the changed package is `manager-react-components`
-    if [[ "$name" == *manager-react-components* ]]; then
+    if [[ "$package" == *manager-react-components* ]]; then
+      printf "%s\n" "New release for manager-react-components"
       mrc_changed=true
       path_mrc=$(echo "$package" | cut -d ':' -f 1)
       name_mrc=$(echo "$package" | cut -d ':' -f 2)
@@ -124,7 +125,7 @@ main() {
       # Create release note for manager-react-components
       RELEASE_NOTE+="$(create_release_note "$path_mrc" "$name_mrc")\n\n"
 
-      push_and_release "$next_tag"
+      #push_and_release "$next_tag"
     fi
   done <<< "$changed_packages"
 
