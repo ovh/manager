@@ -15,11 +15,13 @@ import {
   OsdsInput,
   OsdsMessage,
   OsdsModal,
+  OsdsSpinner,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
 import { AxiosResponse } from 'axios';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import Loading from '../loading/Loading.component';
 
 interface EditModalProps {
   detailValue: string;
@@ -30,6 +32,7 @@ interface EditModalProps {
   onCloseModal: () => void;
   onEdit: (detail: string) => Promise<AxiosResponse<unknown>>;
   error: ApiError | null;
+  isLoading: boolean;
 }
 
 export const EditDetailModal = ({
@@ -41,12 +44,14 @@ export const EditDetailModal = ({
   onCloseModal,
   onEdit,
   error,
+  isLoading,
 }: EditModalProps) => {
   const { t } = useTranslation('dashboard');
   const [newDetail, setNewDetail] = useState<string>(detailValue || '');
   const [isErrorVisible, setIsErrorVisible] = useState(false);
   const isValidDetail = validateDetail(newDetail);
-  const isButtonEnabled = isValidDetail && newDetail !== detailValue;
+  const isButtonEnabled =
+    isValidDetail && newDetail !== detailValue && !isLoading;
 
   const handleSubmit = async () => {
     if (isValidDetail) {
@@ -113,6 +118,7 @@ export const EditDetailModal = ({
         </OsdsText>
       </OsdsFormField>
 
+      {isLoading && <Loading slot="actions" className="w-9 mr-4" />}
       <OsdsButton
         slot="actions"
         color={ODS_THEME_COLOR_INTENT.primary}

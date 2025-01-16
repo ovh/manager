@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.3.11...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.3.12) (2025-01-15)
+
+
+### Bug Fixes
+
+* **vcd:** disable confirm button on update requests ([0cca16d](https://github.com/ovh/manager/commit/0cca16d1d6e582671a61bd56248c9db268abcff3))
+
+
+
+
+
+## [0.3.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.3.10...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.3.11) (2025-01-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-managed-vcd-app
+
+
+
+
+
 ## [0.3.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.3.9...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.3.10) (2025-01-02)
 
 

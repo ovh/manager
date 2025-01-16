@@ -39,6 +39,11 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { MutationStatus, useMutationState } from '@tanstack/react-query';
 
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import QuantitySelector, {
   MAX_QUANTITY,
 } from '@/components/QuantitySelector/QuantitySelector';
@@ -142,6 +147,7 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
   isDiscoveryProject,
 }: CreatePlanFormProps) => {
   const pciUrl = usePciUrl();
+  const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
   const { t } = useTranslation('create');
   const [selectedResource, setSelectedResource] = useState<ResourceType>(
@@ -448,7 +454,15 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
           slot="actions"
           variant={ODS_BUTTON_VARIANT.stroked}
           color={ODS_THEME_COLOR_INTENT.primary}
-          onClick={() => navigate('..')}
+          onClick={() => {
+            trackClick({
+              location: PageLocation.funnel,
+              buttonType: ButtonType.button,
+              actionType: 'action',
+              actions: [`add_savings_plan::cancell`],
+            });
+            navigate('..');
+          }}
         >
           {t('cta_cancel')}
         </OsdsButton>

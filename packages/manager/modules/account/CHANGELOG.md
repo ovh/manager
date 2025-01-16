@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.6.0...@ovh-ux/manager-account@0.6.1) (2025-01-13)
+
+
+### Reverts
+
+* Revert "feat(container): added an invitation modal to accept contract (#14041)" (#14879) ([0335815](https://github.com/ovh/manager/commit/0335815099786b81380e103523b364797f305698)), closes [#14041](https://github.com/ovh/manager/issues/14041) [#14879](https://github.com/ovh/manager/issues/14879)
+
+
+
+
+
+# [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.5.1...@ovh-ux/manager-account@0.6.0) (2025-01-13)
+
+
+### Features
+
+* **container:** added an invitation modal to accept contract ([#14041](https://github.com/ovh/manager/issues/14041)) ([f5f1193](https://github.com/ovh/manager/commit/f5f119394c7f9d3290b4a2a642ad1d7887688384))
+
+
+
+
+
+## [0.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.5.0...@ovh-ux/manager-account@0.5.1) (2025-01-09)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3598] ([115ec89](https://github.com/ovh/manager/commit/115ec895cab42ee1ca43d75fe15398c889d3752f))
+* **i18n:** add missing translations [CDS 3604] ([f1cfe02](https://github.com/ovh/manager/commit/f1cfe027ddb0d61c15bea0e42f3f520f2ca27d47))
+* **i18n:** add missing translations [CDS 3609] ([0ee1e2e](https://github.com/ovh/manager/commit/0ee1e2e7179d1fe61741d1d7ac0a20dd2d60c8eb))
+
+
+
+
+
 # [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.4.1...@ovh-ux/manager-account@0.5.0) (2025-01-07)
 
 

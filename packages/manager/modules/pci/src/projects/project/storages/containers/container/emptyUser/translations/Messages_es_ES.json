@@ -1,5 +1,5 @@
 {
   "pci_projects_project_storages_containers_container_empty_user_title": "Añadir un usuario a mi contenedor",
-  "pci_projects_project_storages_containers_container_empty_user_description": "Debe crear un usuario y generar las claves de Object Storage en la sección «Usuarios de Object Storage».",
-  "pci_projects_project_storages_containers_container_empty_user_label": "Acceder a «Usuarios de Object Storage»"
+  "pci_projects_project_storages_containers_container_empty_user_description": "Es necesario crear un usuario y generar claves Object Storage en la sección «Usuarios Object Storage».",
+  "pci_projects_project_storages_containers_container_empty_user_label": "Acceder a «Usuarios Object Storage»"
 }

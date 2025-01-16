@@ -27,7 +27,6 @@ export const Routes = [
         handle: {
           tracking: {
             pageName: 'listing',
-            pageType: PageType.listing,
           },
         },
         children: [
@@ -69,7 +68,7 @@ export const Routes = [
         ...lazyRouteConfig(() => import('@/pages/create')),
         handle: {
           tracking: {
-            pageName: 'create',
+            pageName: 'add_savings_plan',
             pageType: PageType.funnel,
           },
         },

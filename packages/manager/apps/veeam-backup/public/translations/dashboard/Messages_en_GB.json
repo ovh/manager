@@ -22,5 +22,8 @@
   "billing_contact": "{{code}} Billing",
   "technical_contact": "{{code}} Technical",
   "location": "Location",
-  "terminated_service": "The service has been cancelled."
+  "terminated_service": "The service has been cancelled.",
+  "gigabyte": "GB",
+  "terabyte": "TB",
+  "space_summary": "{{usedSpaceInGB}} GB ({{percent}}% of {{quotaInTB}} TB)"
 }

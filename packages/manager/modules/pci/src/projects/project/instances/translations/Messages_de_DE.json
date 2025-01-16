@@ -68,5 +68,7 @@
   "pci_projects_project_instances_status_SUSPENDED_TOOLTIP": "Für Ihre Instanz wird Ihnen immer der gleiche Preis berechnet.",
   "pci_projects_project_instances_status_SHUTOFF_TOOLTIP": "Für Ihre Instanz wird Ihnen immer der gleiche Preis berechnet.",
   "pci_projects_project_instances_status_SHELVED_TOOLTIP": "Es wird nur der Snapshot abgerechnet.",
-  "pci_projects_project_instances_status_SHELVED_OFFLOADED_TOOLTIP": "Es wird nur der Snapshot abgerechnet."
+  "pci_projects_project_instances_status_SHELVED_OFFLOADED_TOOLTIP": "Es wird nur der Snapshot abgerechnet.",
+  "pci_projects_project_instances_add_billing_savings_plan_banner": "Profitieren Sie von günstigen monatlichen Preisen mit den Savings Plans und behalten Sie die Flexibilität der Instanzen auf Stundenbasis bei.",
+  "pci_projects_project_instances_add_billing_savings_plan_cta": "Ihre Savings Plans konfigurieren"
 }

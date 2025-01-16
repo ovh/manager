@@ -13,7 +13,7 @@
   "pci_projects_project_storages_cold_archives_guides_getting-started-with-cold-archive_title": "Iniziare a utilizzare la classe di storage Cold Archive",
   "pci_projects_project_storages_cold_archives_guides_getting-started-with-cold-archive_description": "Crea container, archivia dati, recupera informazioni, consulta i metadati...",
   "pci_projects_project_storages_cold_archives_guides_manage-your-data_title": "Scarica i tuoi dati via CLI",
-  "pci_projects_project_storages_cold_archives_guides_manage-your-data_description": "Scarica i dati via API, CLI o SDK compatibile S3 ",
+  "pci_projects_project_storages_cold_archives_guides_manage-your-data_description": "Scarica i tuoi dati via API, CLI o SDK compatibile con S3 ",
   "pci_projects_project_storages_cold_archive_container_label": "Container",
   "pci_projects_project_storages_cold_archive_containers_creation_date_label": "Data di creazione",
   "pci_projects_project_storages_cold_archive_containers_add_container_label": "Creare un container",
@@ -36,7 +36,7 @@
   "pci_projects_project_storages_cold_archive_container_manage": "Monitorare i container dall’interfaccia dello Spazio Cliente fornita da OVHcloud Cold Archive",
   "pci_projects_project_storages_cold_archive_container_manage_documentation_link": "Iniziare a configurare la CLI",
   "pci_projects_project_storages_cold_archive_container_manage_description_1": "Le operazioni di archiviazione, così come download, ripristino o cancellazione dei dati possono essere effettuate da riga di comando.",
-  "pci_projects_project_storages_cold_archive_container_manage_description_2": "Ad esempio, per scaricare dati come foto, video e altri documenti, è necessario utilizzare la CLI, il SDK o l'API compatibile con S3.",
+  "pci_projects_project_storages_cold_archive_container_manage_description_2": "Per scaricare dati come foto, video e altri documenti, per esempio, è necessario utilizzare la CLI, il SDK o l'API compatibile con S3.",
   "pci_projects_project_storages_cold_archive_containers_container_manage_endpoint_label": "Endpoint",
   "pci_projects_project_storages_cold_archive_containers_container_manage_region_label": "Region",
   "pci_projects_project_storages_cold_archive_containers_container_manage_close_label": "Chiudi"

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.6.0...@ovh-ux/manager-react-components@2.6.1) (2025-01-09)
+
+### Bug Fixes
+
+- **mrc:** apply css stylings for header component ([#14804](https://github.com/ovh/manager/issues/14804)) ([fdec1f1](https://github.com/ovh/manager/commit/fdec1f16b7989c7da4a0ab20160b5fb7f3564e54))
+
 ## [2.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.5.1...@ovh-ux/manager-react-components@2.6.0) (2025-01-06)
 
 ### Features

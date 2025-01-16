@@ -3,6 +3,57 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.100.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.99.1...@ovh-ux/manager-container-app@0.100.0) (2025-01-15)
+
+
+### Bug Fixes
+
+* **container:** add missing mock for payment modal tests ([#14887](https://github.com/ovh/manager/issues/14887)) ([fd66de4](https://github.com/ovh/manager/commit/fd66de45bc35d8e9d0625d92b50bd08630f9dfdb))
+
+
+### Features
+
+* **container:** added an invitation modal to accept contract ([#14880](https://github.com/ovh/manager/issues/14880)) ([39fcb77](https://github.com/ovh/manager/commit/39fcb77d7c333817aed93f924e500e7ddbf1f4b3))
+
+
+### Reverts
+
+* Revert Manager-14722 (#14905) ([ecdcf8b](https://github.com/ovh/manager/commit/ecdcf8b96a57918e164767f77577ebeeb381203e)), closes [#14905](https://github.com/ovh/manager/issues/14905)
+
+
+
+
+
+## [0.99.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.99.0...@ovh-ux/manager-container-app@0.99.1) (2025-01-13)
+
+
+### Reverts
+
+* Revert "feat(container): added an invitation modal to accept contract (#14041)" (#14879) ([0335815](https://github.com/ovh/manager/commit/0335815099786b81380e103523b364797f305698)), closes [#14041](https://github.com/ovh/manager/issues/14041) [#14879](https://github.com/ovh/manager/issues/14879)
+
+
+
+
+
+# [0.99.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.98.1...@ovh-ux/manager-container-app@0.99.0) (2025-01-13)
+
+
+### Features
+
+* **container:** added an invitation modal to accept contract ([#14041](https://github.com/ovh/manager/issues/14041)) ([f5f1193](https://github.com/ovh/manager/commit/f5f119394c7f9d3290b4a2a642ad1d7887688384))
+
+
+
+
+
+## [0.98.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.98.0...@ovh-ux/manager-container-app@0.98.1) (2025-01-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
 # [0.98.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.97.0...@ovh-ux/manager-container-app@0.98.0) (2025-01-07)
 
 
