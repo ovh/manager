@@ -30,6 +30,7 @@ export const columsFilters = [
       return <DataGridTextCell>{item.label}</DataGridTextCell>;
     },
     label: 'Label',
+    isFilterable: true,
     comparator: FilterCategories.String,
   },
   {
@@ -38,6 +39,7 @@ export const columsFilters = [
       return <DataGridTextCell>{item.price} €</DataGridTextCell>;
     },
     label: 'Price',
+    isFilterable: true,
     comparator: FilterCategories.String,
   },
 ];
