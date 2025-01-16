@@ -14,28 +14,6 @@ clean_tags() {
   done <<< "$tags"
 }
 
-version() {
-  if [ -z "${GIT_BRANCH}" ]; then
-    printf "%s\n" "Missing GIT_BRANCH environment variable"
-    exit 1
-  fi
-
-  if [[ "${GIT_BRANCH}" != "master" && ! "${DRY_RELEASE}" ]]; then
-    printf "%s\n" "Only dry releases are allowed on side branches"
-    exit 1
-  fi
-
-  tag="$1"
-
-  if "${DRY_RELEASE}"; then
-    printf "%s\n" "Dry releasing"
-    node_modules/.bin/lerna version --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --allow-branch="${GIT_BRANCH}" --yes
-  else
-    printf "%s\n" "Releasing"
-    node_modules/.bin/lerna version --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --yes
-  fi
-}
-
 version_mrc() {
   if [ -z "${GIT_BRANCH}" ]; then
     printf "%s\n" "Missing GIT_BRANCH environment variable"
@@ -51,7 +29,7 @@ version_mrc() {
 
   if "${DRY_RELEASE}"; then
     printf "%s\n" "Dry releasing"
-    node_modules/.bin/lerna version --scope @ovh-ux/manager-react-components --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --allow-branch="${GIT_BRANCH}" --no-private --yes
+    node_modules/.bin/lerna version --scope=@ovh-ux/manager-react-components --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --allow-branch="${GIT_BRANCH}" --yes
   else
     printf "%s\n" "Releasing"
     node_modules/.bin/lerna exec --scope=@ovh-ux/manager-react-components -- lerna version --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --no-private --ignore-changes="packages/manager/modules/manager-pci-common/**" --yes
@@ -60,10 +38,6 @@ version_mrc() {
 
 get_changed_packages() {
   node_modules/.bin/lerna changed --all -p -l
-}
-
-get_changed_packages_no_ignore_changes() {
-  node_modules/.bin/lerna changed --all -p -l --no-ignore-changes
 }
 
 get_release_name() {
@@ -88,13 +62,6 @@ create_release_note() (
 )
 
 push_and_release() {
-  printf "%s\n" "Commit and tag"
-  git add .
-  git commit -s -m "release: $1"
-  git tag -a -m "release: $1" "$1"
-}
-
-push_and_release_mrc() {
   printf "%s\n" "Commit mrc changes"
   git add packages/manager-react-components/package.json packages/manager-react-components/CHANGELOG.md
   git commit -s --amend --no-edit
@@ -137,7 +104,6 @@ main() {
   done
 
   changed_packages=$(get_changed_packages)
-
   if [ -z "$changed_packages" ]; then
     printf "%s\n" "Nothing to release"
     exit 0
@@ -146,68 +112,21 @@ main() {
   current_tag="$(git describe --abbrev=0)"
   printf "%s\n" "Previous tag was $current_tag"
 
-  while read -r package; do
-    name=$(echo "$package" | cut -d ':' -f 2)
-    version=$(echo "$package" | cut -d ':' -f 3)
-
-    create_smoke_tag "$current_tag" "$name" "$version"
-
-  done <<< "$changed_packages"
-
-
-  # Handle the rest of the packages
-  next_tag=$(get_release_name "$SEED")
-  printf "%s\n" "New tag for other packages: $next_tag"
-  RELEASE_NOTE+="# Release $next_tag\n\n"
-  update_sonar_version "$next_tag"
-  version "$next_tag"
-
-  # Generate formatted release notes for other packages
-  while read -r package; do
-    path=$(echo "$package" | cut -d ':' -f 1)
-    name=$(echo "$package" | cut -d ':' -f 2)
-    RELEASE_NOTE+="$(create_release_note "$path" "$name")\n\n"
-  done <<< "$changed_packages"
-  
-
-  get_changed_packages_no_ignore_changes=$(get_changed_packages_no_ignore_changes)
-
   # Separate versioning for `manager-react-components` and other packages
-  mrc_changed=false
   while read -r package; do
-    name=$(echo "$package" | cut -d ':' -f 2)
-    version=$(echo "$package" | cut -d ':' -f 3)
-
     # Check if the changed package is `manager-react-components`
     if [[ "$name" == *manager-react-components* ]]; then
       mrc_changed=true
-      printf "%s\n" "New tag will be for manager-react-components"
       path_mrc=$(echo "$package" | cut -d ':' -f 1)
       name_mrc=$(echo "$package" | cut -d ':' -f 2)
-      create_smoke_tag "$current_tag" "$name_mrc" "$version"
+      version_mrc "$next_tag"
+      RELEASE_NOTE+="# Release $next_tag\n\n"
+      # Create release note for manager-react-components
+      RELEASE_NOTE+="$(create_release_note "$path_mrc" "$name_mrc")\n\n"
+
+      push_and_release "$next_tag"
     fi
-  done <<< "$get_changed_packages_no_ignore_changes"
-
-  # Handle `manager-react-components` separately
-  if [ "$mrc_changed" == true ]; then
-    next_tag=$(get_release_name "$SEED")
-    printf "%s\n" "New tag for manager-react-components: $next_tag"
-
-    RELEASE_NOTE+="# Release $next_tag\n\n"
-
-    update_sonar_version "$next_tag"
-    version_mrc "$next_tag"
-
-    # Create release note for manager-react-components
-    RELEASE_NOTE+="$(create_release_note "$path_mrc" "$name_mrc")\n\n"
-
-    # Commit and release manager-react-components
-    clean_tags
-    push_and_release_mrc "$next_tag"
-  fi
-
-  # Push and release for other packages
-  push_and_release "$next_tag"
+  done <<< "$changed_packages"
 
 }
 

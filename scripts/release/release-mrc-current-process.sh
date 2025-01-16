@@ -37,7 +37,7 @@ version_mrc() {
 }
 
 get_changed_packages() {
-  node_modules/.bin/lerna changed --all -p -l
+  node_modules/.bin/lerna changed --all -p -l --no-ignore-changes
 }
 
 get_release_name() {
@@ -62,15 +62,9 @@ create_release_note() (
 )
 
 push_and_release() {
-  printf "%s\n" "Commit and tag"
-  git add .
-  git commit -s -m "release: $1"
-  git tag -a -m "release: $1" "$1"
-  if ! "${DRY_RELEASE}"; then
-    gh config set prompt disabled
-    git push origin "${GIT_BRANCH}" --tags
-    echo "${RELEASE_NOTE}" | gh release create "$1" -F -
-  fi
+  printf "%s\n" "Commit mrc changes"
+  git add packages/manager-react-components/package.json packages/manager-react-components/CHANGELOG.md
+  git commit -s --amend --no-edit
 }
 
 update_sonar_version() {
@@ -148,7 +142,7 @@ main() {
 
     # Commit and release manager-react-components
     clean_tags
-    #push_and_release "$next_tag"
+    push_and_release "$next_tag"
   else
     printf "%s\n" "No changes detected for manager-react-components. Exiting."
     exit 0
