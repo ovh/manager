@@ -37,15 +37,11 @@ export default function AddUserPage() {
     projectId,
   );
 
+  const defaultUser = listUsers && listUsers[0];
+
   const [stepUser, setStepUser] = useState(0);
   const [selectedUser, setSelectedUser] = useState<TUser>(null);
   const [selectedRole, setSelectedRole] = useState<string>(null);
-
-  useEffect(() => {
-    if (listUsers) {
-      setSelectedUser(listUsers[0]);
-    }
-  }, [listUsers]);
 
   const onClose = () =>
     navigate({
@@ -125,7 +121,7 @@ export default function AddUserPage() {
             <StepOneComponent
               onSelectUser={setSelectedUser}
               users={listUsers}
-              selectedUser={selectedUser}
+              defaultUser={defaultUser}
             />
           ) : (
             <StepTwoComponent
@@ -158,7 +154,12 @@ export default function AddUserPage() {
       <OdsButton
         slot="actions"
         onClick={() => (stepUser === 0 ? setStepUser(1) : addUser())}
-        isDisabled={(!selectedUser && stepUser === 0) || isPending || undefined}
+        isDisabled={
+          (!selectedUser && stepUser === 0) ||
+          (!selectedRole && stepUser === 1) ||
+          isPending ||
+          undefined
+        }
         label={t(
           stepUser === 0
             ? 'pci_projects_project_storages_containers_container_addUser_next_label'

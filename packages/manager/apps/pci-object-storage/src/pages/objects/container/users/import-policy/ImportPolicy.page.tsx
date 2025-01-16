@@ -5,22 +5,27 @@ import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { OdsFormField, OdsText } from '@ovhcloud/ods-components/react';
+import { OdsFile } from '@ovhcloud/ods-components';
 import FileInputComponent from '@/components/FileInput.component';
 import { useImportPolicy, useUsers } from '@/api/hooks/useUser';
 import { TUser } from '@/api/data/user';
 
 export default function ImportPolicyPage() {
+  const { t } = useTranslation('objects/users/import-policy');
+
   const { addSuccess, addError } = useNotifications();
   const { projectId } = useParams();
   const [searchParams] = useSearchParams();
   const userId = searchParams.get('userId');
   const [user, setUser] = useState<TUser>(undefined);
+
   const {
     validUsersWithCredentials: listUsers,
     isPending: isPendingUsers,
   } = useUsers(projectId);
-  const { t } = useTranslation('objects/users/import-policy');
-  const [filesToUpload, setFilesToUpload] = useState<File[]>([]);
+
+  const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+
   const navigate = useNavigate();
 
   const onCancel = () => navigate(`..`);
@@ -29,7 +34,7 @@ export default function ImportPolicyPage() {
   const { importPolicy, isPending: isPendingImport } = useImportPolicy({
     projectId,
     userId,
-    files: filesToUpload,
+    files: selectedFiles,
     onError(error: ApiError) {
       addError(
         <Translation ns="objects/users/import-policy">
@@ -84,7 +89,7 @@ export default function ImportPolicyPage() {
       submitText={t(
         'pci_projects_project_storages_containers_users_import_submit_label',
       )}
-      isDisabled={filesToUpload.length === 0 || isPending}
+      isDisabled={selectedFiles.length === 0 || isPending}
     >
       <OdsText preset="paragraph">
         {t('pci_projects_project_storages_containers_users_import_description')}
@@ -95,7 +100,8 @@ export default function ImportPolicyPage() {
           dropzoneLabel={t(
             'pci_projects_project_storages_containers_users_import_add_files_label',
           )}
-          onFilesSelected={setFilesToUpload}
+          selectedFiles={selectedFiles}
+          setSelectedFiles={setSelectedFiles}
         />
       </OdsFormField>
     </PciModal>

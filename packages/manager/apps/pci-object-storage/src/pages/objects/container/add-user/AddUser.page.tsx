@@ -6,7 +6,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ODS_BUTTON_VARIANT, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Translation, useTranslation } from 'react-i18next';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { ApiError } from '@ovh-ux/manager-core-api';
@@ -36,15 +36,11 @@ export default function AddUserToContainerPage() {
 
   const storageDetail = storages?.resources.find((s) => s.name === containerId);
 
-  const { data: listUsers, isPending: isPendingListUsers } = useUsers(
+  const { validUsersWithCredentials, isPending: isPendingListUsers } = useUsers(
     projectId,
   );
 
-  useEffect(() => {
-    if (listUsers) {
-      setSelectedUser(listUsers[0]);
-    }
-  }, [listUsers, selectedUser]);
+  const defaultUser = validUsersWithCredentials && validUsersWithCredentials[0];
 
   const onCancel = () => navigate(`..`);
   const onClose = () => navigate(`..`);
@@ -115,8 +111,8 @@ export default function AddUserToContainerPage() {
           {stepUser === 0 ? (
             <StepOneComponent
               onSelectUser={setSelectedUser}
-              users={listUsers}
-              selectedUser={selectedUser}
+              users={validUsersWithCredentials}
+              defaultUser={defaultUser}
             />
           ) : (
             <StepTwoComponent
@@ -132,6 +128,7 @@ export default function AddUserToContainerPage() {
         <OdsButton
           slot="actions"
           onClick={() => setStepUser(0)}
+          isDisabled={isPendingAddUser}
           variant={ODS_BUTTON_VARIANT.outline}
           label={t(
             'pci_projects_project_storages_containers_container_addUser_back_label',
@@ -142,6 +139,7 @@ export default function AddUserToContainerPage() {
       <OdsButton
         slot="actions"
         onClick={onCancel}
+        isDisabled={isPendingAddUser}
         variant={ODS_BUTTON_VARIANT.outline}
         label={t(
           'pci_projects_project_storages_containers_container_addUser_cancel_label',
@@ -150,7 +148,12 @@ export default function AddUserToContainerPage() {
       <OdsButton
         slot="actions"
         onClick={() => (stepUser === 0 ? setStepUser(1) : addUser())}
-        isDisabled={(!selectedUser && stepUser === 0) || isPending || undefined}
+        isDisabled={
+          (!selectedUser && stepUser === 0) ||
+          (!selectedRole && stepUser === 1) ||
+          isPending ||
+          undefined
+        }
         label={t(
           stepUser === 0
             ? 'pci_projects_project_storages_containers_container_addUser_next_label'
