@@ -15,6 +15,7 @@ import { LogApiVersion } from './data/types/apiVersion';
 import { LogsContext } from './LogsToCustomer.context';
 import ApiError from './components/apiError/ApiError.component';
 import './translations';
+import { ZoomedInOutProvider } from './hooks/useZoomedInOut';
 
 export type ApiUrls = {
   logKind: string;
@@ -111,7 +112,9 @@ export default function LogsToCustomerModule({
         </div>
       )}
       <LogsContext.Provider value={LogsContextValues}>
-        <Outlet />
+        <ZoomedInOutProvider>
+          <Outlet />
+        </ZoomedInOutProvider>
       </LogsContext.Provider>
     </div>
   );
