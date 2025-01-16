@@ -24,7 +24,7 @@ import {
   STORAGE_ASYNC_REPLICATION_LINK,
 } from '@/constants';
 
-const validNameRegex = /^[a-z0-9]([a-z0-9.-]{1,61})[a-z0-9]$/;
+const validNameRegex = '^[a-z0-9]([a-z0-9.-]{1,61})[a-z0-9]$';
 
 interface ContainerNameStepProps {
   isCreationPending: boolean;
@@ -36,14 +36,15 @@ export function ContainerNameStep({
   onSubmit,
 }: Readonly<ContainerNameStepProps>) {
   const { t } = useTranslation(['containers/add', 'pci-common']);
+
   const context = useContext(ShellContext);
   const { tracking } = context.shell;
   const navigate = useNavigate();
   const { ovhSubsidiary } = context.environment.getUser();
   const { form, stepper, setContainerName } = useContainerCreationStore();
-  const [isTouched, setIsTouched] = useState(false);
-  const isValid = validNameRegex.test(form.containerName);
-  const shouldDisplayError = isTouched && !isValid;
+
+  const [nameError, setNameError] = useState(undefined);
+
   const asyncReplicationLink =
     STORAGE_ASYNC_REPLICATION_LINK[ovhSubsidiary] ||
     STORAGE_ASYNC_REPLICATION_LINK.DEFAULT;
@@ -66,7 +67,7 @@ export function ContainerNameStep({
           onSubmit(form);
         },
         label: t('pci_projects_project_storages_containers_add_submit_label'),
-        isDisabled: !isValid,
+        isDisabled: nameError,
       }}
       skip={{
         action: () => {
@@ -79,44 +80,44 @@ export function ContainerNameStep({
         label: t('pci_projects_project_storages_containers_add_cancel_label'),
       }}
     >
-      <OdsFormField
-        error={
-          shouldDisplayError
-            ? t('pci-common:common_field_error_pattern')
-            : undefined
-        }
-      >
-        <OdsFormField>
-          <OdsInput
-            value={form.containerName}
-            name="containerName"
-            onOdsBlur={() => setIsTouched(true)}
-            onOdsChange={(event) =>
-              setContainerName(event.detail.value.toString())
+      <OdsFormField error={nameError}>
+        <OdsInput
+          value={form.containerName}
+          name="containerName"
+          color="primary"
+          isRequired
+          pattern={`${validNameRegex}`}
+          onOdsChange={(event) => {
+            if (event.detail.validity?.valueMissing) {
+              setNameError(t('pci-common:common_field_error_required'));
+            } else if (event.detail.validity?.patternMismatch) {
+              setNameError(t('pci-common:common_field_error_pattern'));
+            } else {
+              setNameError(undefined);
             }
-            color="primary"
-          />
-        </OdsFormField>
+
+            setContainerName(event.detail.value.toString());
+          }}
+        />
+
         <OdsText
           slot="helper"
-          className={`max-w-2xl ${
-            shouldDisplayError ? 'text-[var(--ods-color-critical-500)]' : ''
-          }`}
+          preset="caption"
+          className={`max-w-2xl ${nameError ? 'text-critical' : ''}`}
         >
           {t(
             'pci_projects_project_storages_containers_add_pattern_help_storage-s3',
           )}
         </OdsText>
       </OdsFormField>
+
       {(form.deploymentMode === OBJECT_CONTAINER_MODE_MONO_ZONE ||
         form.deploymentMode === OBJECT_CONTAINER_MODE_MULTI_ZONES) && (
-        <OdsMessage className="mt-4" color="information">
-          <p>
-            <OdsText preset="paragraph">
-              {t(
-                'pci_projects_project_storages_containers_add_replication_rules_info',
-              )}
-            </OdsText>
+        <OdsMessage className="my-8" color="information" isDismissible={false}>
+          <OdsText preset="paragraph">
+            {t(
+              'pci_projects_project_storages_containers_add_replication_rules_info',
+            )}
             <OdsLink
               color="primary"
               href={asyncReplicationLink}
@@ -126,9 +127,10 @@ export function ContainerNameStep({
                 'pci_projects_project_storages_containers_add_replication_rules_info_link',
               )}
             />
-          </p>
+          </OdsText>
         </OdsMessage>
       )}
+
       {isCreationPending && (
         <div className="my-4">
           <OdsSpinner size="md" />
