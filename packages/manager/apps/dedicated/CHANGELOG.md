@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.11.0...@ovh-ux/manager-dedicated@20.12.0) (2025-01-16)
+
+
+### Bug Fixes
+
+* **dedicated.pcc:** fix display for vDC order step form ([#14683](https://github.com/ovh/manager/issues/14683)) ([8ff6d0c](https://github.com/ovh/manager/commit/8ff6d0ca0ae497283337a3b0aab68033b3048f4e))
+* **dedicated.pcc:** fix display of operation tasks ([#14696](https://github.com/ovh/manager/issues/14696)) ([6d299c6](https://github.com/ovh/manager/commit/6d299c6c14039ffff055ae11df4d6ee7a1fc9c5d))
+* **dedicated.pcc:** support email tags in user edition ([#14829](https://github.com/ovh/manager/issues/14829)) ([9d62065](https://github.com/ovh/manager/commit/9d62065cdb41b577ac2280068617028eba8cfc6e))
+* **dedicated:** display datastoreid on pcc datastore migration ([#14700](https://github.com/ovh/manager/issues/14700)) ([0fc7fc5](https://github.com/ovh/manager/commit/0fc7fc5c813cb57ad93bb7bd4a40f6ec5ed9a105))
+* **i18n:** add missing translations [CDS 3601] ([#14780](https://github.com/ovh/manager/issues/14780)) ([6c3d94a](https://github.com/ovh/manager/commit/6c3d94a6e1f658c0d7f27a6e5e4a79b6e7bbdd53))
+
+
+### Features
+
+* **dedicated.pcc:** update vcd migration label and status ([#14616](https://github.com/ovh/manager/issues/14616)) ([2aa940a](https://github.com/ovh/manager/commit/2aa940ab755c755874a36dc60674a1984814ab08))
+
+
+
+
+
 # [20.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.10.1...@ovh-ux/manager-dedicated@20.11.0) (2025-01-15)
 
 

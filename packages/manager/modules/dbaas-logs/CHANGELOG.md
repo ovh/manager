@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.26.3...@ovh-ux/manager-dbaas-logs@1.27.0) (2025-01-16)
+
+
+### Features
+
+* **dbaas.logs:** add cluster region on LDP dashboard ([#14792](https://github.com/ovh/manager/issues/14792)) ([2cde734](https://github.com/ovh/manager/commit/2cde734665c624723d273e61d47dfab06f7e9fdd))
+* **ldp:** handle indexing retention ([#14364](https://github.com/ovh/manager/issues/14364)) ([a22d086](https://github.com/ovh/manager/commit/a22d0866e8e28ef8eaaac0adbd9b960a5e3b780c))
+
+
+
+
+
 ## [1.26.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.26.2...@ovh-ux/manager-dbaas-logs@1.26.3) (2024-11-19)
 
 

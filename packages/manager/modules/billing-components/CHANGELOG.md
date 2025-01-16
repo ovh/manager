@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.7.0...@ovh-ux/manager-billing-components@4.8.0) (2025-01-16)
+
+
+### Features
+
+* **dedicated:** delete vrack from billing autorenew page ([#13823](https://github.com/ovh/manager/issues/13823)) ([ba52bf9](https://github.com/ovh/manager/commit/ba52bf99bf603357f92054b49b3bba13fba4a94f))
+* **dedicated:** revert delete vrack from billing autorenew page ([01de65b](https://github.com/ovh/manager/commit/01de65bd23415694b8d59ea75c5da8b01bd0eb30))
+* terminate nutanix cluster rebased ([#14763](https://github.com/ovh/manager/issues/14763)) ([d645d63](https://github.com/ovh/manager/commit/d645d631d8dca0ebd48a87377a268f4357b0b163))
+
+
+
+
+
 # [4.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.6.1...@ovh-ux/manager-billing-components@4.7.0) (2024-12-23)
 
 
