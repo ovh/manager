@@ -9,7 +9,8 @@ import { useStorage } from '@/api/hooks/useStorages';
 
 export default function DeletePage() {
   const { addSuccess, addError } = useNotifications();
-  const { t } = useTranslation('pci-storages-containers-object-delete');
+  const { t } = useTranslation('objects/delete');
+
   const navigate = useNavigate();
   const { projectId, storageId, objectName } = useParams();
   const decodedObjectName = objectName.replace(/~2F/g, '/');
@@ -30,7 +31,7 @@ export default function DeletePage() {
     region,
     onError(error: ApiError) {
       addError(
-        <Translation ns="pci-storages-containers-object-delete">
+        <Translation ns="objects/delete">
           {(_t) =>
             _t(
               'pci_projects_project_storages_containers_container_object_delete_object_error_delete',
@@ -48,7 +49,7 @@ export default function DeletePage() {
     },
     onSuccess() {
       addSuccess(
-        <Translation ns="pci-storages-containers-object-delete">
+        <Translation ns="objects/delete">
           {(_t) =>
             _t(
               'pci_projects_project_storages_containers_container_object_delete_object_success_message',

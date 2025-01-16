@@ -15,7 +15,8 @@ import {
 import { Actions } from './Actions';
 
 export const useDatagridColumn = () => {
-  const { i18n, t } = useTranslation(['pci-storages-containers', 'pci-common']);
+  const { i18n, t } = useTranslation(['containers', 'pci-common']);
+
   const { formatBytes } = useBytes();
 
   const columns: DatagridColumn<TStorage>[] = [
@@ -114,7 +115,7 @@ export const useDatagridColumn = () => {
       cell: (props: TStorage) => {
         if (
           i18n.exists(
-            `pci-storages-containers:pci_projects_project_storages_containers_containerType_${props.containerType}`,
+            `containers:pci_projects_project_storages_containers_containerType_${props.containerType}`,
           )
         ) {
           return (
