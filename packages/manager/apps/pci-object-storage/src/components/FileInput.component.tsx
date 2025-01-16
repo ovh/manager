@@ -5,23 +5,22 @@ import { useTranslation } from 'react-i18next';
 
 type FileInputComponentProps = {
   dropzoneLabel: string;
-  onFilesSelected: (files: File[]) => void;
+  selectedFiles: OdsFile[];
+  setSelectedFiles: (files: OdsFile[]) => void;
 };
 
 export default function FileInputComponent({
   dropzoneLabel,
-  onFilesSelected,
+  selectedFiles,
+  setSelectedFiles,
 }: Readonly<FileInputComponentProps>) {
   const { t } = useTranslation('pci-common');
-
-  const [selectedFiles, setSelectedFiles] = useState<OdsFile[]>([]);
 
   const handleFileChange = ({ detail }) => {
     const newFiles = Array.from(detail.files) as File[];
 
     const updatedFiles = [...selectedFiles, ...newFiles];
     setSelectedFiles(updatedFiles);
-    onFilesSelected(updatedFiles);
   };
 
   const handleRemoveFile = ({ detail }) => {
