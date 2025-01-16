@@ -23,6 +23,7 @@ import {
   SWIFT_PLANCODE,
   OBJECT_CONTAINER_MODE_LOCAL_ZONE,
   DEPLOYMENT_MODE_LINK,
+  OFFSITE_REPLICATION_CODE,
 } from '../containers.constants';
 
 import { CONTAINER_USER_ASSOCIATION_MODES } from './components/associate-user-to-container/constant';
@@ -180,6 +181,8 @@ export default class PciStoragesContainersAddController {
       .filter((addon) => addon.planCode === planCode)
       .map((addon) => addon.pricings[0].price)[0];
 
+    if (!hourlyPrice) return null;
+
     return hourlyPrice * 730 * 1024 * 0.00000001;
   }
 
@@ -205,6 +208,10 @@ export default class PciStoragesContainersAddController {
     this.OBJECT_CONTAINER_OFFERS_LABELS[
       OBJECT_CONTAINER_OFFER_SWIFT
     ].price = this.PriceFormatter.format(this.calculatePrice(SWIFT_PLANCODE));
+
+    this.OFFSITE_REPLICATION_PRICE = this.calculatePrice(
+      OFFSITE_REPLICATION_CODE,
+    );
   }
 
   getLowestPriceAddon(productCapability, regionType) {
@@ -240,6 +247,7 @@ export default class PciStoragesContainersAddController {
       this.projectId,
       this.coreConfig.getUser().ovhSubsidiary,
     ).then((productCapabilities) => {
+      this.productCapabilities = productCapabilities;
       const productCapability = productCapabilities.plans?.filter((plan) =>
         plan.code?.startsWith(STORAGE_STANDARD_REGION_PLANCODE),
       );
@@ -409,21 +417,26 @@ export default class PciStoragesContainersAddController {
     this.container.containerType = this.selectedType.id;
   }
 
-  onDeplymentModeFocus() {
+  onDeploymentModeFocus() {
     this.displaySelectedDeploymentMode = false;
     this.isOffsiteReplicationEnabled = false;
   }
 
-  onDeplymentModeSubmit() {
+  onDeploymentModeSubmit() {
     this.displaySelectedDeploymentMode = true;
     if (
       this.container.deploymentMode === this.OBJECT_CONTAINER_MODE_MULTI_ZONES
     ) {
-      console.log('hereeee !!!!!!!!! 1');
       this.isOffsiteReplicationEnabled = true;
     } else {
       delete this.container.replication;
     }
+    this.DEPLOYMENT_PRICE = this.getLowestPriceAddon(
+      this.productCapabilities.plans?.filter((plan) =>
+        plan.code?.startsWith(STORAGE_STANDARD_REGION_PLANCODE),
+      ),
+      OBJECT_CONTAINER_MODE_MULTI_ZONES,
+    );
   }
 
   // onDeploymentModeChange() {

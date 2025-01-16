@@ -167,8 +167,8 @@
         data-name="storage_select_deployment_mode"
         data-header="{{:: 'pci_projects_project_storages_containers_deployment_mode_title' | translate }}"
         data-navigation="$ctrl.container.deploymentMode"
-        data-on-focus="$ctrl.onDeplymentModeFocus()"
-        data-on-submit="$ctrl.onDeplymentModeSubmit()"
+        data-on-focus="$ctrl.onDeploymentModeFocus()"
+        data-on-submit="$ctrl.onDeploymentModeSubmit()"
         data-editable="!$ctrl.isLoading"
         data-valid="$ctrl.container.deploymentMode"
         data-prevent-next
@@ -401,6 +401,9 @@
         <pci-project-storages-offsite-replication
             data-is-offsite-replication-enabled="$ctrl.isOffsiteReplicationEnabled"
             data-on-offsite-replication-change="$ctrl.handleOffsiteReplicationChange(replication)"
+            data-offsite-replication-price="$ctrl.OFFSITE_REPLICATION_PRICE"
+            data-estimated-price="$ctrl.DEPLOYMENT_PRICE"
+            data-price-formatter="$ctrl.PriceFormatter"
         ></pci-project-storages-offsite-replication>
     </oui-step-form>
 

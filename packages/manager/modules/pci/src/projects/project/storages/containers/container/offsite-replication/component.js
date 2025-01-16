@@ -5,6 +5,9 @@ const component = {
   bindings: {
     isOffsiteReplicationEnabled: '<',
     onOffsiteReplicationChange: '&',
+    offsiteReplicationPrice: '<',
+    estimatedPrice: '<',
+    priceFormatter: '<',
   },
   template,
   controller,
