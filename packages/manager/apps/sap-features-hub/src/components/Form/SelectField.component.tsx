@@ -80,7 +80,7 @@ export const SelectField = <T,>({
           placeholder={placeholder}
           isDisabled={isDisabled}
           onOdsChange={handleChange}
-          className="w-full max-w-[19em]"
+          className="w-full max-w-md"
           hasError={!!error}
           defaultValue={getDefaultValue()}
         >
