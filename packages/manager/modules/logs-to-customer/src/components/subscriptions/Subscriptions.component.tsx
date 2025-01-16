@@ -1,21 +1,9 @@
 import React, { useContext } from 'react';
-import {
-  OsdsButton,
-  OsdsIcon,
-  OsdsSpinner,
-} from '@ovhcloud/ods-components/react';
-import {
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-  ODS_SPINNER_SIZE,
-} from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { OsdsSpinner } from '@ovhcloud/ods-components/react';
+import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { useQueryClient } from '@tanstack/react-query';
 import { CommonTitle } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
 import { LogsContext } from '../../LogsToCustomer.context';
 import {
   getLogSubscriptionsQueryKey,
@@ -24,10 +12,10 @@ import {
 import SubscriptionTile from './SubscriptionTile.component';
 import SubscriptionEmpty from './SubscriptionEmpty.component';
 import ApiError from '../apiError/ApiError.component';
+import { useZoomedInOut } from '../../hooks/useZoomedInOut';
 
 export default function LogsSubscriptions() {
   const { t } = useTranslation('logSubscription');
-  const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { currentLogKind, logApiUrls, logApiVersion } = useContext(LogsContext);
   const { data, isLoading, isPending, error } = useLogSubscriptions(
@@ -35,6 +23,7 @@ export default function LogsSubscriptions() {
     logApiVersion,
     currentLogKind,
   );
+  const { isZoomedIn } = useZoomedInOut();
 
   if (!currentLogKind) {
     return (
@@ -75,33 +64,24 @@ export default function LogsSubscriptions() {
       />
     );
 
-  if (data?.length === 0) return <SubscriptionEmpty />;
-
   return (
-    <div className="flex gap-8 flex-col p-8">
+    <div className="flex flex-col gap-6">
       <CommonTitle>{t('log_subscription_list_title')}</CommonTitle>
-      <OsdsButton
-        className="flex w-full"
-        color={ODS_THEME_COLOR_INTENT.primary}
-        variant={ODS_BUTTON_VARIANT.stroked}
-        size={ODS_BUTTON_SIZE.sm}
-        onClick={() => navigate('streams')}
+      <div
+        className={
+          isZoomedIn
+            ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4'
+            : 'flex flex-col gap-4'
+        }
       >
-        {t('log_subscription_list_button_subscribe_more')}
-        <span slot="start">
-          <OsdsIcon
-            name={ODS_ICON_NAME.PLUS}
-            size={ODS_ICON_SIZE.xs}
-            color={ODS_THEME_COLOR_INTENT.primary}
-          ></OsdsIcon>
-        </span>
-      </OsdsButton>
-      {data.map((subscription) => (
-        <SubscriptionTile
-          key={subscription.subscriptionId}
-          subscription={subscription}
-        />
-      ))}
+        <SubscriptionEmpty />
+        {data.map((subscription) => (
+          <SubscriptionTile
+            key={subscription.subscriptionId}
+            subscription={subscription}
+          />
+        ))}
+      </div>
     </div>
   );
 }

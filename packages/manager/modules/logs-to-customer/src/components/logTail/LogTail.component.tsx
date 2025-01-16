@@ -13,7 +13,6 @@ import './logTail.css';
 export default function LogTail() {
   const { currentLogKind, logApiUrls, logApiVersion } = useContext(LogsContext);
   const queryClient = useQueryClient();
-
   const { data, error, isPending } = useLogTailUrl({
     logTailUrl: logApiUrls.logUrl,
     logKind: currentLogKind?.name,
