@@ -395,26 +395,6 @@ export const rawCatalogData = [
   {
     categories: [
       'Catalogs',
-      'Web Hosting & Domains',
-      'Web PaaS',
-      'Web PaaS Powered by Platform.sh',
-    ],
-    category: 'Web PaaS',
-    description:
-      'A development platform designed for developers and their teams to design, deploy and run web applications.',
-    featureAvailability: 'web-paas',
-    id: 20430,
-    lang: 'en_GB',
-    name: 'Web PaaS Powered by Platform.sh',
-    order: 'https://www.ovh.com/manager/#/web/paas/webpaas/new',
-    productName: 'WEB_PAAS',
-    regionTags: ['EU'],
-    universe: 'Web Hosting & Domains',
-    url: 'https://mockup.url.com',
-  },
-  {
-    categories: [
-      'Catalogs',
       'Public Cloud',
       'Containers and orchestration',
       'Workflow Management',

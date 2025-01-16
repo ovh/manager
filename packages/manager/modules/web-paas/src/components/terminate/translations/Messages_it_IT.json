@@ -1,8 +1,0 @@
-{
-  "web_paas_service_terminate_description": "Vuoi davvero eliminare il tuo progetto {{projectName}}? Il progetto sarà rimosso dallo Spazio Cliente OVHcloud e da Platform.sh.",
-  "web_paas_service_terminate_common_confirm": "Confermare",
-  "web_paas_service_terminate_common_cancel": "Annullare",
-  "web_paas_service_terminate_title": "Elimina il progetto",
-  "web_paas_service_terminate_success": "La tua richiesta di eliminazione del progetto Platform SH è stata presa in carico. Ti abbiamo inviato un'email di conferma a seguito della tua richiesta.",
-  "web_paas_service_terminate_error": "Si è verificato un errore durante l'eliminazione del progetto: {{ message }}"
-}
