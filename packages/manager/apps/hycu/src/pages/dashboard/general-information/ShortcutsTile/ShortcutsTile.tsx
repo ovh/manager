@@ -48,13 +48,18 @@ const ShortcutsTile = ({ serviceName }: { serviceName: string }) => {
     [serviceDetails],
   );
 
+  const isLicencePending = useMemo(
+    () => hycuDetail?.data?.licenseStatus === LicenseStatus.PENDING,
+    [hycuDetail],
+  );
+
   const links = useMemo(
     () => ({
       linkActivated: {
         id: 'link_activated',
         value: (
           <ShortcutsItem
-            disabled={isServiceSuspended}
+            disabled={isServiceSuspended || isLicencePending}
             iamActions={[IAM_ACTIONS.licenseHycuApiOvhActivate]}
             urn={hycuDetail?.data?.iam?.urn}
             data-testid="hycu_link_activated_test_id"
@@ -75,7 +80,7 @@ const ShortcutsTile = ({ serviceName }: { serviceName: string }) => {
         id: 'link_regenerate',
         value: (
           <ShortcutsItem
-            disabled={isServiceSuspended}
+            disabled={isServiceSuspended || isLicencePending}
             iamActions={[IAM_ACTIONS.licenseHycuApiOvhRefresh]}
             urn={hycuDetail?.data?.iam?.urn}
             data-testid="hycu_link_regenerate_test_id"
