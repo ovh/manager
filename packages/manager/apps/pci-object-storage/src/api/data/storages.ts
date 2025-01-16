@@ -1,4 +1,5 @@
 import { aapi, v6 } from '@ovh-ux/manager-core-api';
+import { TStorageObject } from './objects';
 
 export type TStorage = {
   archive?: boolean;
@@ -8,6 +9,7 @@ export type TStorage = {
   region: string;
   storedBytes: number;
   storedObjects: number;
+  objectsCount: number;
   usedSpace: number;
   offer?: string;
   mode?: string;
@@ -15,7 +17,7 @@ export type TStorage = {
   s3StorageType?: string;
   isHighPerfStorage?: boolean;
   createdAt?: string;
-  objects?: unknown[];
+  objects?: TStorageObject[];
   objectsSize?: number;
   virtualHost?: string;
   ownerId?: number;

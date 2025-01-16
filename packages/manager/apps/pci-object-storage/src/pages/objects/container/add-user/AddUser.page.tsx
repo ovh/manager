@@ -44,7 +44,7 @@ export default function AddUserToContainerPage() {
     if (listUsers) {
       setSelectedUser(listUsers[0]);
     }
-  }, [listUsers]);
+  }, [listUsers, selectedUser]);
 
   const onCancel = () => navigate(`..`);
   const onClose = () => navigate(`..`);
