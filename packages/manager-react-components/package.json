@@ -51,6 +51,7 @@
     "@babel/core": "7.22.10",
     "@etchteam/storybook-addon-status": "^5.0.0",
     "@mdx-js/react": "^3.0.1",
+    "@ovh-ux/manager-module-common-api": "*",
     "@ovh-ux/manager-common-translations": "^0.7.0",
     "@ovh-ux/manager-core-api": "^0.12.0",
     "@ovh-ux/manager-core-utils": "*",
@@ -125,6 +126,7 @@
     "zustand": "^4.5.5"
   },
   "peerDependencies": {
+    "@ovh-ux/manager-module-common-api": "*",
     "@ovh-ux/manager-common-translations": "*",
     "@ovh-ux/manager-core-api": "^0.10.0",
     "@ovh-ux/manager-core-utils": "*",
