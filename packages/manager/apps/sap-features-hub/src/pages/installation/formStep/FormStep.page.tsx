@@ -5,17 +5,18 @@ import { useFormSteps } from '@/hooks/formStep/useFormSteps';
 import InstallationInitialStep from '../initialStep/InstallationInitialStep.page';
 import InstallationStepDeployment from '../stepDeployment/InstallationStepDeployment.page';
 import InstallationStepSystemInformation from '../stepSystemInformation/InstallationStepSystemInformation.page';
+import InstallationStepSourceInformation from '../stepSourceInformation/InstallationStepSourceInformation.page';
 
 const steps: Record<string, ReactNode> = {
   '1': <InstallationInitialStep />,
   '2': <InstallationStepDeployment />,
   '3': <InstallationStepSystemInformation />,
+  '4': <InstallationStepSourceInformation />,
 } as const;
 
 export default function FormStep() {
-  const { currentStep } = useFormSteps();
+  const { currentStep, previousStep } = useFormSteps();
   const { t } = useTranslation('installation');
-  const { previousStep } = useFormSteps();
 
   return (
     steps[currentStep] || (

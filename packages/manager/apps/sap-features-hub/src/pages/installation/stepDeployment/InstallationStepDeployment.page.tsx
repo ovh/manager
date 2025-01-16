@@ -1,8 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { OdsButton } from '@ovhcloud/ods-components/react';
 import { OdsInputChangeEvent } from '@ovhcloud/ods-components';
-import { FormTitle } from '@/components/Form/FormTitle.component';
 import { SelectField } from '@/components/Form/SelectField.component';
 import { useFormSteps } from '@/hooks/formStep/useFormSteps';
 import {
@@ -11,6 +9,7 @@ import {
   DEPLOYMENT_TYPES,
 } from './installationStepDeployment.constants';
 import { useInstallationFormContext } from '@/context/InstallationForm.context';
+import InstallationFormLayout from '@/components/Form/FormLayout.component';
 
 export default function InstallationStepDeployment() {
   const { t } = useTranslation('installation');
@@ -20,7 +19,10 @@ export default function InstallationStepDeployment() {
     setValues,
   } = useInstallationFormContext();
 
-  const isFormValid = applicationVersion && applicationType && deploymentType;
+  const isStepValid = React.useMemo(
+    () => applicationVersion && applicationType && deploymentType,
+    [applicationVersion, applicationType, deploymentType],
+  );
 
   const handleChange = (e: OdsInputChangeEvent) => {
     const { name, value } = e.detail;
@@ -28,49 +30,38 @@ export default function InstallationStepDeployment() {
   };
 
   return (
-    <div>
-      <FormTitle
-        title={t('deployment_title')}
-        subtitle={t('deployment_subtitle')}
+    <InstallationFormLayout
+      title={t('deployment_title')}
+      subtitle={t('deployment_subtitle')}
+      submitLabel={t('deployment_cta')}
+      isSubmitDisabled={!isStepValid}
+      onClickSubmit={nextStep}
+      onClickPrevious={previousStep}
+    >
+      <SelectField
+        name="applicationVersion"
+        label={t('deployment_input_application_version')}
+        placeholder={t('select_label')}
+        options={APPLICATION_VERSIONS}
+        handleChange={handleChange}
+        defaultValue={applicationVersion}
       />
-      <form className="flex flex-col gap-y-6">
-        <SelectField
-          name="applicationVersion"
-          label={t('deployment_input_application_version')}
-          placeholder={t('select_label')}
-          options={APPLICATION_VERSIONS}
-          handleChange={handleChange}
-          defaultValue={applicationVersion}
-        />
-        <SelectField
-          name="applicationType"
-          label={t('deployment_input_application_type')}
-          placeholder={t('select_label')}
-          options={APPLICATION_TYPES}
-          handleChange={handleChange}
-          defaultValue={applicationType}
-        />
-        <SelectField
-          name="deploymentType"
-          label={t('deployment_input_deployment_type')}
-          placeholder={t('select_label')}
-          options={DEPLOYMENT_TYPES}
-          handleChange={handleChange}
-          defaultValue={deploymentType}
-        />
-        <div className="flex gap-x-2">
-          <OdsButton
-            label={t('previous_step_cta')}
-            variant="outline"
-            onClick={previousStep}
-          />
-          <OdsButton
-            label={t('deployment_cta')}
-            isDisabled={!isFormValid}
-            onClick={nextStep}
-          />
-        </div>
-      </form>
-    </div>
+      <SelectField
+        name="applicationType"
+        label={t('deployment_input_application_type')}
+        placeholder={t('select_label')}
+        options={APPLICATION_TYPES}
+        handleChange={handleChange}
+        defaultValue={applicationType}
+      />
+      <SelectField
+        name="deploymentType"
+        label={t('deployment_input_deployment_type')}
+        placeholder={t('select_label')}
+        options={DEPLOYMENT_TYPES}
+        handleChange={handleChange}
+        defaultValue={deploymentType}
+      />
+    </InstallationFormLayout>
   );
 }
