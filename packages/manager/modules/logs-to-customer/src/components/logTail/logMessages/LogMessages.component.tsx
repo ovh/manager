@@ -24,6 +24,7 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useLogTailMessages } from '../../../data/hooks/useLogTailMessages';
 import { Log } from './log/Log.component';
 import { TemporaryLogsLink } from '../../../data/types/dbaas/logs';
+import { useZoomedInOut } from '../../../hooks/useZoomedInOut';
 
 interface ISearchContext {
   query: string;
@@ -49,7 +50,7 @@ export const LogMessages = ({ logTailMessageUrl }: ILogTailMessageUrl) => {
   const bottomRef = useRef<HTMLDivElement>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [autoScroll, setAutoScroll] = useState(true);
-
+  const { isZoomedIn, toggleZoom } = useZoomedInOut();
   const {
     messages,
     error,
@@ -112,39 +113,64 @@ export const LogMessages = ({ logTailMessageUrl }: ILogTailMessageUrl) => {
 
   return (
     <>
-      <div className="h-[--toolbox-height] flex items-center px-6 gap-4 box-border border-solid border-0 border-b border-slate-600">
-        <OsdsInput
-          type={ODS_INPUT_TYPE.search}
-          icon={ODS_ICON_NAME.SEARCH}
-          color={ODS_THEME_COLOR_INTENT.primary}
-          placeholder={t('log_tail_search_placeholder')}
-          contrasted
-          size={ODS_INPUT_SIZE.md}
-          class="min-w-80"
-          onOdsValueChange={(e) => setSearchQuery(e.detail.value)}
-          data-testid="logTail-searchInput"
-        />
+      <div className="h-[--toolbox-height] flex items-center justify-between px-6 box-border border-solid border-0 border-b border-slate-600">
+        <div className="flex gap-4 ">
+          <OsdsInput
+            type={ODS_INPUT_TYPE.search}
+            icon={ODS_ICON_NAME.SEARCH}
+            color={ODS_THEME_COLOR_INTENT.primary}
+            placeholder={t('log_tail_search_placeholder')}
+            contrasted
+            size={ODS_INPUT_SIZE.md}
+            class="min-w-80"
+            onOdsValueChange={(e) => setSearchQuery(e.detail.value)}
+            data-testid="logTail-searchInput"
+          />
+          <OsdsButton
+            inline
+            color={ODS_THEME_COLOR_INTENT.primary}
+            contrasted
+            variant={ODS_BUTTON_VARIANT.flat}
+            size={ODS_BUTTON_SIZE.sm}
+            onClick={togglePolling}
+            data-testid="logTail-togglePolling"
+          >
+            {isPolling ? '⏸︎' : '▶'}
+          </OsdsButton>
+          <OsdsButton
+            inline
+            color={ODS_THEME_COLOR_INTENT.primary}
+            contrasted
+            variant={ODS_BUTTON_VARIANT.flat}
+            size={ODS_BUTTON_SIZE.sm}
+            onClick={resetSession}
+            data-testid="logTail-clearSession"
+          >
+            {t('log_tail_clear_session')}
+          </OsdsButton>
+        </div>
         <OsdsButton
           inline
           color={ODS_THEME_COLOR_INTENT.primary}
           contrasted
           variant={ODS_BUTTON_VARIANT.flat}
           size={ODS_BUTTON_SIZE.sm}
-          onClick={togglePolling}
-          data-testid="logTail-togglePolling"
+          onClick={() => toggleZoom()}
+          data-testid="logTail-zoom"
         >
-          {isPolling ? '⏸︎' : '▶'}
-        </OsdsButton>
-        <OsdsButton
-          inline
-          color={ODS_THEME_COLOR_INTENT.primary}
-          contrasted
-          variant={ODS_BUTTON_VARIANT.flat}
-          size={ODS_BUTTON_SIZE.sm}
-          onClick={resetSession}
-          data-testid="logTail-clearSession"
-        >
-          {t('log_tail_clear_session')}
+          {isZoomedIn ? (
+            <OsdsIcon
+              name={ODS_ICON_NAME.ARROW_LEFT}
+              size={ODS_ICON_SIZE.sm}
+              color={ODS_THEME_COLOR_INTENT.primary}
+            />
+          ) : (
+            <OsdsIcon
+              name={ODS_ICON_NAME.ARROW_RIGHT}
+              size={ODS_ICON_SIZE.sm}
+              color={ODS_THEME_COLOR_INTENT.primary}
+            />
+          )}
         </OsdsButton>
       </div>
       <div className="relative font-mono text-xs ">
