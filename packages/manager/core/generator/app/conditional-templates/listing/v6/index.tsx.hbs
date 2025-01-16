@@ -68,6 +68,7 @@ export default function Listing() {
         .map((element) => ({
           id: element,
           label: element,
+          isFilterable: true,
           // @ts-ignore
           type: dataType(flattenData[0][element]),
           // @ts-ignore
