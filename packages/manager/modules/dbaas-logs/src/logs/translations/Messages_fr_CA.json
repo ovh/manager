@@ -191,6 +191,7 @@
   "logs_home_offer": "Offre",
   "logs_home_data_volume": "Volume des données",
   "logs_home_cluster": "Point d'accès",
+  "logs_home_region": "Région",
   "logs_home_service": "Nom d'utilisateur Logs Data Platform",
   "logs_home_service_type": "Type d'offre",
   "logs_home_service_type_standard": "Standard",

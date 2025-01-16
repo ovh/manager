@@ -28,7 +28,7 @@ export default class {
     return this.DedicatedCloud.getModels()
       .then((data) => {
         this.stateEnum = data.models['dedicatedCloud.TaskStateEnum'].enum;
-        this.progressionFilter = null;
+        this.progressionFilter = 'doing';
         this.progressionFilterList = map(this.stateEnum, (state) => ({
           value: state,
           label: this.$translate.instant(
@@ -57,23 +57,25 @@ export default class {
   }
 
   loadOperations({ offset, pageSize, sort }) {
-    const params = {
+    const paginationParams = {
       offset,
       pageSize,
       sort: sort.property,
       sortOrder: sort.dir === 1 ? 'ASC' : 'DESC',
       defaultFilterColumn: 'executionDate',
-      filters: this.progressionFilter
-        ? [
-            {
-              field: 'state',
-              comparator: 'is',
-              reference: [this.progressionFilter],
-            },
-          ]
-        : [],
     };
-    return this.DedicatedCloud.getOperations(this.productId, params);
+    // limitation to one year in case of too many data
+    const executionDate = new Date();
+    executionDate.setFullYear(executionDate.getFullYear() - 1);
+    const urlParams = {
+      state: this.progressionFilter,
+      executionDate: executionDate.toISOString(),
+    };
+    return this.DedicatedCloud.getOperations(
+      this.productId,
+      paginationParams,
+      urlParams,
+    );
   }
 
   setRelatedServices(operation) {

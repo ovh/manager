@@ -242,6 +242,11 @@
                 >
                 </oui-tile-definition>
                 <oui-tile-definition
+                    data-term="{{::'logs_home_region' | translate}}"
+                    data-description="{{:: 'label-' + ctrl.defaultCluster.region.toLowerCase() | translate}}"
+                >
+                </oui-tile-definition>
+                <oui-tile-definition
                     data-term="{{::'logs_home_service'|translate}}"
                     data-description="{{ctrl.accountDetails.username}}"
                 >

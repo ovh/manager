@@ -37,7 +37,7 @@ export default class LogsStreamsAddCtrl {
       FirstStep: { price: '' },
       SecondStep: { price: '' },
     };
-    this.availableRetentions = [];
+    this.availableIndexingRetentions = [];
     this.encryptionEnabled = false;
     this.initLoaders();
   }
@@ -124,9 +124,13 @@ export default class LogsStreamsAddCtrl {
 
       this.LogsStreamsService.getRetentions(this.serviceName).then(
         (retentions) => {
-          this.availableRetentions = retentions.reduce(
+          this.availableIndexingRetentions = retentions.reduce(
             (retentionsList, retention) => {
-              if (retention.isSupported) {
+              if (
+                retention.isSupported &&
+                retention.retentionType ===
+                  this.LogsConstants.RETENTION_TYPE.INDEXING
+              ) {
                 const updatedRetention = retention;
                 if (updatedRetention.duration) {
                   updatedRetention.label = moment

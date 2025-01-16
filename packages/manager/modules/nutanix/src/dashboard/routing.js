@@ -3,7 +3,34 @@ import { OLD_CLUSTER_PLAN_CODE } from './constants';
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('nutanix.dashboard', {
     url: '/:serviceName',
-    redirectTo: 'nutanix.dashboard.general-info',
+    redirectTo: (transition) => {
+      const $translatePromise = transition.injector().getAsync('$translate');
+      const serviceInfoPromise = transition.injector().getAsync('serviceInfo');
+
+      return Promise.all([$translatePromise, serviceInfoPromise]).then(
+        ([$translate, serviceInfo]) => {
+          if (serviceInfo.isResiliated()) {
+            return {
+              state: 'error',
+              params: {
+                detail: {
+                  message: $translate.instant(
+                    'nutanix_dashboard_service_suspended',
+                  ),
+                  status: 'EXPIRED',
+                  code: 404,
+                },
+                to: {
+                  state: 'nutanix.index',
+                },
+              },
+            };
+          }
+
+          return 'nutanix.dashboard.general-info';
+        },
+      );
+    },
     component: 'nutanixDashboard',
     resolve: {
       trackingPrefix: /* @ngInject */ () => 'hpc::nutanix::cluster',

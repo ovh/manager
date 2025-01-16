@@ -1,4 +1,8 @@
-import { RENEW_URL, SERVICE_TYPE } from './service-actions.constants';
+import {
+  RENEW_URL,
+  SERVICE_TYPE,
+  SERVICE_ACTIVE_STATUS,
+} from './service-actions.constants';
 
 export default class ServicesActionsCtrl {
   /* @ngInject */
@@ -10,6 +14,7 @@ export default class ServicesActionsCtrl {
     coreURLBuilder,
     BillingLinksService,
   ) {
+    this.SERVICE_ACTIVE_STATUS = SERVICE_ACTIVE_STATUS;
     this.$injector = $injector;
     this.$q = $q;
     this.atInternet = atInternet;
@@ -26,7 +31,6 @@ export default class ServicesActionsCtrl {
   }
 
   $onInit() {
-
     this.user = this.coreConfig.getUser();
     this.BillingLinksService.generateAutorenewLinks(this.service, {
       billingManagementAvailability: this.billingManagementAvailability,
@@ -37,6 +41,8 @@ export default class ServicesActionsCtrl {
     })
       .then((links) => {
         this.autorenewLink = links.autorenewLink;
+        this.billingManagementAvailabilityAndHaveAutorenewLink =
+          links.billingManagementAvailabilityAndHaveAutorenewLink;
         this.commitmentLink = links.commitmentLink;
         this.cancelCommitmentLink = links.cancelCommitmentLink;
         this.cancelResiliationLink = links.cancelResiliationLink;
@@ -93,6 +99,14 @@ export default class ServicesActionsCtrl {
         : `${this.trackingPrefix}::${action}`;
 
       this.atInternet.trackClick({ name, type: 'action' });
+    }
+  }
+
+  handleClickResiliate() {
+    this.trackAction('go-to-resiliate');
+
+    if (this.handleGoToResiliation) {
+      this.handleGoToResiliation();
     }
   }
 }
