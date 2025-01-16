@@ -86,6 +86,7 @@
             </oui-header-tabs-item>
 
             <oui-header-tabs-item
+                data-ng-if="LineCtrl.softphoneStatus.eligibility"
                 data-href="{{LineCtrl.softphoneLink}}"
                 data-active="LineCtrl.softphoneLink === LineCtrl.currentActiveLink()"
             >

@@ -116,6 +116,11 @@ export default /* @ngInject */ ($stateProvider) => {
           'telecom.telephony.billingAccount.line.dashboard.phone.order',
           $transition$.params(),
         ),
+      softphoneStatus: /* @ngInject */ ($stateParams, SoftphoneService) =>
+        SoftphoneService.getSoftphoneStatus(
+          $stateParams.billingAccount,
+          $stateParams.serviceName,
+        ),
       softphoneLink: /* @ngInject */ ($state, $transition$) =>
         $state.href(
           'telecom.telephony.billingAccount.line.dashboard.softphone',
