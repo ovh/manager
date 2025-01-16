@@ -2,6 +2,7 @@
   "title": "Assistant de pré-installation SAP - Étape {{step}}/8",
   "description": "Cet assistant vous guide pour réaliser une pré-installation d'un système SAP.",
   "backlink_label": "Retour au SAP Features Hub",
+  "invalid_input": "Veuillez saisir une valeur correcte selon le format attendu.",
   "previous_step_cta": "Précédent",
   "select_label": "Sélectionnez",
   "passwords": "Mots de passe",
@@ -23,5 +24,16 @@
   "system_sid_validation_message": "Un SID comporte 3 caractères alphanumériques en majuscule et commence par une lettre.",
   "system_password_validation_message": "Le mot de passe doit contenir au moins 8 caractères, incluant une lettre minuscule, une lettre majuscule, un chiffre et un caractère spécial parmi : !\"@ $%&/()=?'*+~#-.,;:{[]}\\<>│_",
   "system_password_sap_master_helper": "Sera utilisé pour tous les utilisateurs SAP demandés par l'installeur (DDIC, sapadm, etc.)",
-  "system_cta": "Saisissez l'emplacement des sources SAP"
+  "system_cta": "Saisissez l'emplacement des sources SAP",
+  "source_title": "Fournissez les sources d'installation SAP",
+  "source_subtitle": "Saisissez les informations de votre conteneur Object Storage S3 OVHcloud où se trouvent vos sources d'installation SAP.",
+  "source_input_container": "ID du conteneur",
+  "source_helper_container": "Le nom du conteneur doit comporter entre 3 et 63 caractères, commencer et se terminer par une lettre ou un chiffre en minuscule (de a à z, de 0 à 9), et peut inclure les signes de ponctuation « . » et « - ».",
+  "source_helper_endpoint": "L'endpoint est au format URL.",
+  "source_input_access_key": "Clé d'accès",
+  "source_helper_access_key": "Une clé d'accès est composée de 32 caractères alphanumériques.",
+  "source_input_secret_key": "Clé secrète",
+  "source_helper_secret_key": "Une clé secrète est composée de 32 caractères alphanumériques.",
+  "source_cta": "Spécifiez la configuration OS",
+  "source_error_check": "Erreur concernant les informations de conteneur fournies : {{error}}"
 }
