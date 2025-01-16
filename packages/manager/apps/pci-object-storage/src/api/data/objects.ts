@@ -7,6 +7,11 @@ import {
 } from '@/constants';
 import { getStorageAccess, TStorage, TStorageAccess } from './storages';
 
+export type TStorageObject = {
+  [key: string]: any;
+  name: string;
+};
+
 export const deleteS3Object = async (
   projectId: string,
   containerId: string,
@@ -22,7 +27,7 @@ export const deleteS3Object = async (
   return data;
 };
 
-export const deleteObject = async (
+export const deleteSwitchObject = async (
   projectId: string,
   storageName: string,
   objectName: string,

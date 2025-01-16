@@ -8,6 +8,7 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 import { useAllStorages, useDeleteStorage } from '@/api/hooks/useStorages';
 import { PAGE_PREFIX } from '@/tracking.constants';
+import { useServerContainer } from '@/api/hooks/useContainer';
 
 export default function DeletePage() {
   const { addSuccess, addError } = useNotifications();
@@ -31,9 +32,15 @@ export default function DeletePage() {
   const storageToDelete = storages?.resources?.find(
     (storage) => storage.name === searchParams.get('containerId'),
   );
+  const { data: container, isPending: isPendingContainer } = useServerContainer(
+    projectId,
+    storageToDelete?.region,
+    storageToDelete?.name,
+    storageToDelete?.id,
+  );
   const isStorageS3 = !!storageToDelete?.s3StorageType;
   const isDeletionDisabled =
-    !storageToDelete?.containerType && storageToDelete?.objects?.length > 0;
+    !storageToDelete?.containerType && storageToDelete?.objectsCount > 0;
 
   const { deleteStorage, isPending: isPendingDelete } = useDeleteStorage({
     projectId,
@@ -71,7 +78,7 @@ export default function DeletePage() {
     },
   });
 
-  const isPending = isPendingDelete || isStoragesPending;
+  const isPending = isPendingDelete || isStoragesPending || isPendingContainer;
 
   return (
     <DeletionModal
@@ -81,7 +88,7 @@ export default function DeletePage() {
       onCancel={onCancel}
       onClose={onClose}
       onConfirm={() => {
-        deleteStorage(storageToDelete);
+        deleteStorage(storageToDelete, container.objects);
         tracking?.trackClick({
           name: `${PAGE_PREFIX}storages::objects::delete::confirm`,
           type: 'action',
@@ -96,16 +103,28 @@ export default function DeletePage() {
         'pci_projects_project_storages_containers_container_delete_cancel_label',
       )}
     >
-      <OdsText preset="paragraph">
-        <OdsMessage color="warning" className="mt-6">
+      {storageToDelete?.objectsCount > 0 ||
+      storageToDelete?.storedObjects > 0 ? (
+        <OdsText preset="paragraph">
+          <OdsMessage color="warning" className="mt-6" isDismissible={false}>
+            {t(
+              isStorageS3
+                ? 'pci_projects_project_storages_containers_container_delete_warning'
+                : 'pci_projects_project_storages_containers_container_delete_object_erase_message',
+              { container: storageToDelete?.name },
+            )}
+          </OdsMessage>
+        </OdsText>
+      ) : (
+        <OdsText preset="paragraph">
           {t(
-            isStorageS3
-              ? 'pci_projects_project_storages_containers_container_delete_warning'
-              : 'pci_projects_project_storages_containers_container_delete_object_erase_message',
-            { container: storageToDelete?.name },
+            'pci_projects_project_storages_containers_container_delete_empty_warning',
+            {
+              container: storageToDelete?.name,
+            },
           )}
-        </OdsMessage>
-      </OdsText>
+        </OdsText>
+      )}
     </DeletionModal>
   );
 }

@@ -3,7 +3,7 @@ import {
   addHighPerfObjects,
   addObjects,
   addUser,
-  deleteObject,
+  deleteSwitchObject,
   deleteS3Object,
 } from '@/api/data/objects';
 import queryClient from '@/queryClient';
@@ -14,6 +14,32 @@ export const useAccessToken = (projectId: string) =>
     queryKey: ['project', projectId, 'access'],
     queryFn: () => getStorageAccess({ projectId }),
   });
+
+export const deleteObject = async (
+  projectId: string,
+  storage: TStorage,
+  objectName: string,
+  region: string,
+) => {
+  if (storage.s3StorageType) {
+    deleteS3Object(
+      projectId,
+      storage.id,
+      objectName,
+      region,
+      storage.s3StorageType,
+    );
+  } else {
+    const response = await getStorageAccess({ projectId });
+    deleteSwitchObject(
+      projectId,
+      storage.name,
+      objectName,
+      response.token,
+      region,
+    );
+  }
+};
 
 type DeleteObjectProps = {
   projectId: string;
@@ -33,24 +59,7 @@ export const useDeleteObject = ({
 }: DeleteObjectProps) => {
   const mutation = useMutation({
     mutationFn: async () => {
-      if (storage.s3StorageType) {
-        deleteS3Object(
-          projectId,
-          storage.id,
-          objectName,
-          region,
-          storage.s3StorageType,
-        );
-      } else {
-        const response = await getStorageAccess({ projectId });
-        deleteObject(
-          projectId,
-          storage.name,
-          objectName,
-          response.token,
-          region,
-        );
-      }
+      await deleteObject(projectId, storage, objectName, region);
     },
     onError,
     onSuccess: async () => {
