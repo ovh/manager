@@ -19,7 +19,6 @@ export default function StepOneComponent({
   users,
 }: Readonly<StepOneComponentProps>) {
   const { t } = useTranslation('containers/add-user');
-  console.log(selectedUser);
   return (
     <>
       <OdsText>
