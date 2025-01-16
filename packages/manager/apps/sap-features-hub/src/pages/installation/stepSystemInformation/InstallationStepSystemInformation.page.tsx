@@ -1,7 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
-import { FormTitle } from '@/components/Form/FormTitle.component';
+import { OdsText } from '@ovhcloud/ods-components/react';
 import { useFormSteps } from '@/hooks/formStep/useFormSteps';
 import {
   FORM_SAP_SIDS_LABEL,
@@ -12,6 +11,7 @@ import { useInstallationFormContext } from '@/context/InstallationForm.context';
 import { TextField } from '@/components/Form/TextField.component';
 import { getSystemFormData } from '@/utils/formStep';
 import { isValidSapPassword } from '@/utils/formValidation';
+import FormLayout from '@/components/Form/FormLayout.component';
 
 export default function InstallationStepSystemInformation() {
   const { t } = useTranslation('installation');
@@ -26,7 +26,7 @@ export default function InstallationStepSystemInformation() {
   const values = getSystemFormData(formValues);
   const errors = getSystemFormData(formErrors);
 
-  const isFormValid = React.useMemo(
+  const isStepValid = React.useMemo(
     () =>
       Object.values(values).every((value) => !!value) &&
       !Object.values(errors).some((error) => !!error),
@@ -37,57 +37,49 @@ export default function InstallationStepSystemInformation() {
   const pwdRule = t('system_password_validation_message');
 
   return (
-    <div>
-      <FormTitle title={t('system_title')} subtitle={t('system_subtitle')} />
-      <form className="flex flex-col gap-y-6">
-        <OdsText preset="heading-3">{FORM_SAP_SIDS_LABEL}</OdsText>
-        <OdsText>{sidRule}</OdsText>
-        {SYSTEM_TEXT_INPUTS.map(({ name, helperKey, ...inputProps }) => (
-          <TextField
-            key={name}
-            name={name}
-            onOdsChange={(e) => {
-              const isValid = e.detail.validity?.valid;
-              setValues((val) => ({ ...val, [name]: e.detail.value }));
-              setErrors((err) => ({ ...err, [name]: isValid ? '' : sidRule }));
-            }}
-            value={values[name]}
-            error={values[name] && errors[name]}
-            helperText={t(helperKey)}
-            {...inputProps}
-          />
-        ))}
-        <OdsText preset="heading-3">{t('passwords')}</OdsText>
-        <OdsText>{pwdRule}</OdsText>
-        {SYSTEM_PASSWORD_INPUTS.map(({ name, helperKey, ...inputProps }) => (
-          <TextField
-            key={name}
-            type="password"
-            name={name}
-            onOdsChange={(e) => {
-              const isValid = isValidSapPassword(e.detail.value as string);
-              setValues((val) => ({ ...val, [name]: e.detail.value }));
-              setErrors((err) => ({ ...err, [name]: isValid ? '' : pwdRule }));
-            }}
-            value={values[name]}
-            error={values[name] && errors[name]}
-            helperText={t(helperKey)}
-            {...inputProps}
-          />
-        ))}
-        <div className="flex gap-x-2">
-          <OdsButton
-            label={t('previous_step_cta')}
-            variant="outline"
-            onClick={previousStep}
-          />
-          <OdsButton
-            label={t('system_cta')}
-            isDisabled={!isFormValid}
-            onClick={nextStep}
-          />
-        </div>
-      </form>
-    </div>
+    <FormLayout
+      title={t('system_title')}
+      subtitle={t('system_subtitle')}
+      submitLabel={t('system_cta')}
+      isSubmitDisabled={!isStepValid}
+      onClickSubmit={nextStep}
+      onClickPrevious={previousStep}
+    >
+      <OdsText preset="heading-3">{FORM_SAP_SIDS_LABEL}</OdsText>
+      <OdsText className="italic">{sidRule}</OdsText>
+      {SYSTEM_TEXT_INPUTS.map(({ name, helperKey, ...inputProps }) => (
+        <TextField
+          key={name}
+          name={name}
+          onOdsChange={(e) => {
+            const isValid = e.detail.validity?.valid;
+            setValues((val) => ({ ...val, [name]: e.detail.value }));
+            setErrors((err) => ({ ...err, [name]: isValid ? '' : sidRule }));
+          }}
+          value={values[name]}
+          error={values[name] && errors[name]}
+          helperText={t(helperKey)}
+          {...inputProps}
+        />
+      ))}
+      <OdsText preset="heading-3">{t('passwords')}</OdsText>
+      <OdsText className="italic">{pwdRule}</OdsText>
+      {SYSTEM_PASSWORD_INPUTS.map(({ name, helperKey, ...inputProps }) => (
+        <TextField
+          key={name}
+          type="password"
+          name={name}
+          onOdsChange={(e) => {
+            const isValid = isValidSapPassword(e.detail.value as string);
+            setValues((val) => ({ ...val, [name]: e.detail.value }));
+            setErrors((err) => ({ ...err, [name]: isValid ? '' : pwdRule }));
+          }}
+          value={values[name]}
+          error={values[name] && errors[name]}
+          helperText={t(helperKey)}
+          {...inputProps}
+        />
+      ))}
+    </FormLayout>
   );
 }

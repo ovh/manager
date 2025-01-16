@@ -50,7 +50,16 @@ export const TextField: React.FC<TextFieldProps> = ({
       ) : (
         <OdsInput type={type} {...commonInputProps} />
       )}
-      {helperText && <OdsText slot="helper">{helperText}</OdsText>}
+      {helperText && (
+        <OdsText slot="helper" preset="caption" class="ods-field-helper">
+          {helperText}
+        </OdsText>
+      )}
+      {props.maxlength && (
+        <OdsText slot="visual-hint" preset="caption">
+          {`${props.value?.length || 0}/${props.maxlength}`}
+        </OdsText>
+      )}
     </OdsFormField>
   );
 };

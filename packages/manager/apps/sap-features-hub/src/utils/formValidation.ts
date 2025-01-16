@@ -1,3 +1,18 @@
+import { OdsInputChangeEvent } from '@ovhcloud/ods-components';
+
+export const isValidInput = (e: OdsInputChangeEvent) =>
+  e.detail.validity?.valid;
+
+export const isValidUrl = (value: string) => {
+  try {
+    const url = new URL(value);
+    if (!url) throw Error('Input is not a valid URL');
+    return true;
+  } catch (error) {
+    return false;
+  }
+};
+
 export const isValidSapPassword = (password: string): boolean => {
   if (password?.length < 8) return false;
   if (!/[a-z]/.test(password)) return false;
