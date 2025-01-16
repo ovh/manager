@@ -5,4 +5,3 @@ import './lib.scss';
 
 export * from './hooks/datagrid';
 export * from './components';
-// test version mrc
