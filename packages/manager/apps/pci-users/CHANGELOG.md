@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-users-app@0.12.3...@ovh-ux/manager-pci-users-app@0.12.4) (2025-01-16)
+
+
+### Bug Fixes
+
+* change SMP key to STO for Stockholm ([#14912](https://github.com/ovh/manager/issues/14912)) ([7aab13a](https://github.com/ovh/manager/commit/7aab13a0259261176d364b0e4aef3adfbdb0c79f))
+
+
+
+
+
 ## [0.12.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-users-app@0.12.2...@ovh-ux/manager-pci-users-app@0.12.3) (2025-01-09)
 
 
