@@ -5,21 +5,21 @@ import { ChangelogButton, ChangelogButtonProps } from './changelog.component';
 const changelogItems = [
   {
     id: 1,
-    href: 'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Baremetal',
+    href: 'https://ovh.com',
     target: '_blank',
-    labelKey: 'Roadmap',
+    labelKey: 'roadmap',
   },
   {
     id: 2,
-    href: 'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Baremetal',
+    href: 'https://ovh.com',
     target: '_blank',
-    labelKey: 'Changelog',
+    labelKey: 'changelog',
   },
   {
     id: 3,
-    href: 'https://github.com/ovh/infrastructure-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+    href: 'https://ovh.com',
     target: '_blank',
-    labelKey: 'Feature Request',
+    labelKey: 'feature-request',
   },
 ];
 
