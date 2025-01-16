@@ -281,5 +281,8 @@
   "manager_components_region_PAR": "Paryż",
   "manager_components_region_PAR_micro": "Paryż ({{micro}})",
   "manager_components_region_location_PAR": "Europa Zachodnia (Francja)",
-  "manager_components_region_continent_PAR": "Europa Zachodnia"
+  "manager_components_region_continent_PAR": "Europa Zachodnia",
+  "manager_components_region_STO": "Sztokholm",
+  "manager_components_region_STO_micro": "Sztokholm ({{micro}})",
+  "manager_components_region_continent_STO": "Europa Północna"
 }
