@@ -28,7 +28,7 @@ export const ChangelogButton: React.FC<ChangelogButtonProps> = ({ items }) => {
           slot="menu-title"
           variant={ODS_BUTTON_VARIANT.ghost}
           size={ODS_BUTTON_SIZE.sm}
-          label={t('user_account_changelog_header')}
+          label={t('mrc_changelog_header')}
           className="whitespace-nowrap"
         ></OdsButton>
       </div>
@@ -45,7 +45,7 @@ export const ChangelogButton: React.FC<ChangelogButtonProps> = ({ items }) => {
               download={item.download}
               rel={item.rel}
               type={LinkType.external}
-              label={t(`user_account_changelog_${item.labelKey}`)}
+              label={t(`mrc_changelog_${item.labelKey}`)}
               onClickReturn={item.onClick}
             />
           </div>
