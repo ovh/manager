@@ -17,7 +17,7 @@ const SubscriptionEmpty = () => {
   const { t } = useTranslation('logSubscription');
 
   return (
-    <OsdsTile rounded inline className="flex flex-col w-full h-fit">
+    <OsdsTile rounded inline className="flex flex-col">
       <div className="flex flex-col gap-6">
         <CommonTitle>{t('log_subscription_empty_tile_title')}</CommonTitle>
         <OsdsText
