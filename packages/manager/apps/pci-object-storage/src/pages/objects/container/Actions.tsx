@@ -10,7 +10,8 @@ import { isSwiftType } from '@/helpers';
 import { useUpdateStorageType } from '@/api/hooks/useStorages';
 
 export function Actions({ storage }: { storage: TStorage }) {
-  const { t } = useTranslation('pci-storages-containers');
+  const { t } = useTranslation('containers');
+
   const navigate = useNavigate();
   const { projectId } = useParams();
   const { addSuccess, addError } = useNotifications();
@@ -19,7 +20,7 @@ export function Actions({ storage }: { storage: TStorage }) {
     projectId,
     onSuccess() {
       addSuccess(
-        <Translation ns="pci-storages-containers">
+        <Translation ns="containers">
           {(_t) =>
             _t(
               storage.containerType === 'public'
@@ -36,7 +37,7 @@ export function Actions({ storage }: { storage: TStorage }) {
     },
     onError(error: ApiError) {
       addError(
-        <Translation ns="pci-storages-containers">
+        <Translation ns="containers">
           {(_t) =>
             _t('pci_projects_project_storages_containers_toggle_fail', {
               message: error?.response?.data?.message || error?.message || null,

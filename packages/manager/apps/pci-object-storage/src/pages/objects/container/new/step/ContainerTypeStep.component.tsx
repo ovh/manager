@@ -9,7 +9,9 @@ import { useContainerCreationStore } from '../useContainerCreationStore';
 
 export function ContainerType() {
   const { t } = useTranslation(['containers/add', 'pci-common']);
+
   const columnsCount = useColumnsCount();
+
   const {
     form,
     stepper,
@@ -32,7 +34,7 @@ export function ContainerType() {
       next={{
         action: submitContainerType,
         label: t('pci-common:common_stepper_next_button_label'),
-        isDisabled: false,
+        isDisabled: !form.containerType,
       }}
       edit={{
         action: editContainerType,

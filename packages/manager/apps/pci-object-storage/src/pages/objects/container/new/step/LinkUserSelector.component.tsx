@@ -106,25 +106,25 @@ export default function LinkUserSelector({
             customRenderer={{
               option: (data) => {
                 return `<div style="display: flex; justify-content: space-between; align-items: center;">
-                          <p style="font-size: 16px; margin: 0;">${data.text}</p>
-                          <p style="font-size: 12px; margin: 0;">${data.hint}</p>
+                          <p style="font-size: 16px; margin: 0;">${data?.text}</p>
+                          <p style="font-size: 12px; margin: 0;">${data?.hint}</p>
                         </div>`;
               },
             }}
           >
             {listUsers?.map((user) => (
               <option
-                key={user.id}
-                value={user.id}
+                key={user?.id}
+                value={user?.id}
                 data-hint={tAssociateUser(
-                  user.s3Credentials
+                  user?.s3Credentials
                     ? 'pci_projects_project_storages_containers_add_create_or_linked_user_linked_user_has_credential'
                     : 'pci_projects_project_storages_containers_add_create_or_linked_user_linked_user_has_not_credential',
                 )}
               >
                 {user?.description
                   ? `${user?.username} -  ${user?.description}`
-                  : user.username}
+                  : user?.username}
               </option>
             ))}
           </OdsSelect>

@@ -61,7 +61,7 @@ export const useAllStorages = (projectId: string) =>
   });
 
 export const useMappedStorages = (projectId: string) => {
-  const { i18n, t } = useTranslation('pci-storages-containers');
+  const { i18n, t } = useTranslation('containers');
 
   const {
     data: storages,
@@ -122,7 +122,7 @@ export const useStorages = (
     is3azAvailable: boolean;
   },
 ) => {
-  const { i18n, t } = useTranslation('pci-storages-containers');
+  const { i18n, t } = useTranslation('containers');
   const queryClient = useQueryClient();
 
   const {

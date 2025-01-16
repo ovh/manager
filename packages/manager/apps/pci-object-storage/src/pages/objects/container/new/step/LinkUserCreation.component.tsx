@@ -16,7 +16,8 @@ import {
 import LabelComponent from '@/components/Label.component';
 import { poll } from '@/utils';
 import UserInformationTile from './UserInformationTile.component';
-import { usePostS3Secret } from '@/api/hooks/useUser';
+import { getQueryKeyUsers, usePostS3Secret } from '@/api/hooks/useUser';
+import queryClient from '@/queryClient';
 
 type LinkUserCreationProps = {
   onCreateUser: (user: TUser) => void;
@@ -78,7 +79,9 @@ export default function LinkUserCreation({
           s3Credentials: credentials,
         });
         setIsLoading(false);
-
+        queryClient.invalidateQueries({
+          queryKey: [...getQueryKeyUsers(projectId)],
+        });
         onCreateUser(value);
       },
     });
@@ -111,7 +114,7 @@ export default function LinkUserCreation({
               name="description"
               hasError={formState.hasError}
               value={formState.description}
-              className="min-w-[20%]"
+              className="min-w-[35rem]"
               onOdsChange={(event) => {
                 setFormState((prevState) => ({
                   ...prevState,

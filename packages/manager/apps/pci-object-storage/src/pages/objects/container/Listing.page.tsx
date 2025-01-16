@@ -25,11 +25,8 @@ import { useDatagridColumn } from './useDatagridColumn';
 import { AVAILABILITY } from '@/constants';
 
 export default function ListingPage() {
-  const { t } = useTranslation([
-    'pci-storages-containers',
-    'containers/add',
-    'pci-common',
-  ]);
+  const { t } = useTranslation(['containers', 'containers/add', 'pci-common']);
+
   const { projectId } = useParams();
   const navigate = useNavigate();
   const { tracking } = useContext(ShellContext).shell;
