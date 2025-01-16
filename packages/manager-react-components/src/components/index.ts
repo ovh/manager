@@ -28,3 +28,7 @@ export * from './ManagerText/ManagerText';
 
 export * from './pci-maintenance-banner';
 export * from './region/region.component';
+
+export * from './formatted-date/FormattedDate';
+export * from './ServiceStateBadge/ServiceStateBadge';
+export * from './tiles/BillingInformationsTile/BillingInformationsTile';

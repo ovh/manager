@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 export const defaultUnknownDateLabel = 'N/A';
@@ -29,18 +30,21 @@ export const useFormattedDate = ({
   format?: DateFormat;
 }) => {
   const { i18n } = useTranslation();
-  const date = new Date(dateString);
-  const locale = i18n?.language?.replace('_', '-') || defaultLocale;
 
-  if (date.toString() === 'Invalid Date') {
-    return unknownDateLabel;
-  }
+  return useMemo(() => {
+    const date = new Date(dateString);
+    const locale = i18n?.language?.replace('_', '-') || defaultLocale;
 
-  return format === DateFormat.compact
-    ? date.toLocaleDateString(locale)
-    : date.toLocaleString(locale, {
-        day: 'numeric',
-        month: format === DateFormat.fullDisplay ? 'long' : 'short',
-        year: 'numeric',
-      });
+    if (date.toString() === 'Invalid Date') {
+      return unknownDateLabel;
+    }
+
+    return format === DateFormat.compact
+      ? date.toLocaleDateString(locale)
+      : date.toLocaleString(locale, {
+          day: 'numeric',
+          month: format === DateFormat.fullDisplay ? 'long' : 'short',
+          year: 'numeric',
+        });
+  }, [dateString, unknownDateLabel, defaultLocale, format, i18n]);
 };

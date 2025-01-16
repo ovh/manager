@@ -42,7 +42,7 @@ const items: DashboardTileBlockItem[] = [
     value: (
       <div className="flex">
         <div className="mr-auto">Test value</div>
-        <ActionMenu isCompact items={actionItems} />
+        <ActionMenu isCompact items={actionItems} id="mon-action-menu" />
       </div>
     ),
   },
