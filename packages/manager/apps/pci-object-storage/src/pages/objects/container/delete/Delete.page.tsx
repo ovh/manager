@@ -78,7 +78,7 @@ export default function DeletePage() {
     },
   });
 
-  const isPending = isPendingDelete || isStoragesPending || isPendingContainer;
+  const isPending = isPendingDelete || isStoragesPending;
 
   return (
     <DeletionModal
