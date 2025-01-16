@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@2.2.0...@ovh-ux/manager-nutanix@2.3.0) (2025-01-16)
+
+
+### Features
+
+* **nutanix:** add VLAN ID field in cluster redeployment ([#14482](https://github.com/ovh/manager/issues/14482)) ([190bc4c](https://github.com/ovh/manager/commit/190bc4ca608aed92f0ef85ba6ad00d555ffc20dd))
+* **nutanix:** display BYOL instead of pack type in dashboard ([#14408](https://github.com/ovh/manager/issues/14408)) ([f6bfae2](https://github.com/ovh/manager/commit/f6bfae22e2b517ff4706b006fcd9f73f1adb7497))
+* **nutanix:** revert add VLAN ID field in cluster redeployment ([#14482](https://github.com/ovh/manager/issues/14482))" ([#14898](https://github.com/ovh/manager/issues/14898)) ([925ab7b](https://github.com/ovh/manager/commit/925ab7b6467f02f947400119df907b994c0a9de4))
+* terminate nutanix cluster rebased ([#14763](https://github.com/ovh/manager/issues/14763)) ([d645d63](https://github.com/ovh/manager/commit/d645d631d8dca0ebd48a87377a268f4357b0b163))
+
+
+
+
+
 # [2.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@2.1.1...@ovh-ux/manager-nutanix@2.2.0) (2024-12-23)
 
 

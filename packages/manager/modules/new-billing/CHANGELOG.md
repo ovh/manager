@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.29.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.28.0...@ovh-ux/manager-new-billing@0.29.0) (2025-01-16)
+
+
+### Features
+
+* terminate nutanix cluster rebased ([#14763](https://github.com/ovh/manager/issues/14763)) ([d645d63](https://github.com/ovh/manager/commit/d645d631d8dca0ebd48a87377a268f4357b0b163))
+
+
+
+
+
 # [0.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.27.1...@ovh-ux/manager-new-billing@0.28.0) (2025-01-15)
 
 
