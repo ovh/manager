@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.43.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.43.0...@ovh-ux/manager-react-components@1.43.1) (2025-01-16)
+
+### Bug Fixes
+
+- **manager-react-components:** change SMP key to STO for Stockholm ([#14913](https://github.com/ovh/manager/issues/14913)) ([308a529](https://github.com/ovh/manager/commit/308a529364daafa759dc9040d7de7e5cbcf36460))
+
 # [1.43.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.42.0...@ovh-ux/manager-react-components@1.43.0) (2024-11-27)
 
 ### Bug Fixes
