@@ -1,8 +1,9 @@
-import { useProject } from '@ovh-ux/manager-pci-common';
+import { PciDiscoveryBanner, useProject } from '@ovh-ux/manager-pci-common';
 import {
   BaseLayout,
   Links,
   LinkType,
+  Notifications,
   useNotifications,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
@@ -137,6 +138,14 @@ export default function ContainerNewPage() {
         />
       </div>
 
+      <div className="my-6">
+        <PciDiscoveryBanner project={project} />
+      </div>
+
+      <div className="my-4">
+        <Notifications />
+      </div>
+
       <SolutionStepComponent />
       {form.offer === OBJECT_CONTAINER_OFFER_STORAGE_STANDARD && (
         <DeploymentModeStep />
@@ -155,6 +164,9 @@ export default function ContainerNewPage() {
         isCreationPending={isPending}
         onSubmit={onCreateContainer}
       />
+      <OdsText className="m-8">
+        {t('pci_projects_project_storages_containers_disclaimer')}
+      </OdsText>
     </BaseLayout>
   );
 }

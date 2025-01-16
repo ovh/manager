@@ -16,9 +16,7 @@ import { getUserStoragePolicy, TUser } from '@/api/data/user';
 
 export default function ActionsComponent({ user }: { user: TUser }) {
   const { t } = useTranslation('objects/users');
-  const { t: tPciStoragesContainers } = useTranslation(
-    'pci-storages-containers',
-  );
+  const { t: tContainers } = useTranslation('containers');
 
   const { projectId } = useParams();
   const { addSuccess, addInfo, addError } = useNotifications();
@@ -142,7 +140,7 @@ export default function ActionsComponent({ user }: { user: TUser }) {
     },
     {
       id: 4,
-      label: tPciStoragesContainers(
+      label: tContainers(
         'pci_projects_project_storages_containers_delete_label',
       ),
       onClick: () => navigate(`./${user.id}/delete`),
