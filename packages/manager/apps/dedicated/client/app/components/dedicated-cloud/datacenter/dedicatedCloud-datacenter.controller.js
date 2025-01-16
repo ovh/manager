@@ -5,6 +5,7 @@ import {
   VDC_MIRGRATION_GUIDE_LINK,
   TRACKING_NEW_PRODUCT_BANNER,
 } from './dedicatedCloud-datacenter.constants';
+import { VDC_TYPE } from './vmware-vdc-add/dedicatedCloud-vmware-vdc-add.constants';
 
 export default class {
   /* @ngInject */
@@ -24,6 +25,7 @@ export default class {
       )
       .then((data) => {
         this.isEOLDatacenter = COMMERCIAL_RANGE_NAME_EOL.includes(data);
+        this.datacenter.model.isNsxCommercialRangeName = data === VDC_TYPE.NSX;
         this.guideMigration =
           VDC_MIRGRATION_GUIDE_LINK[this.ovhSubsidiary] ||
           VDC_MIRGRATION_GUIDE_LINK.DEFAULT;
