@@ -88,11 +88,16 @@ export default function UserCreatePage(): JSX.Element {
     const content = (
       <div className="w-full">
         <OdsText>
-          {tCredential(
-            'pci_projects_project_storages_containers_add_linked_user_success_message',
-            { username },
-          )}
+          <span
+            dangerouslySetInnerHTML={{
+              __html: tCredential(
+                'pci_projects_project_storages_containers_add_linked_user_success_message',
+                { username: `<strong> ${username}</strong>` },
+              ),
+            }}
+          ></span>
         </OdsText>
+
         <div className="grid grid-cols-1 sm:grid-cols-2 mt-8 gap-6">
           <OdsFormField>
             <LabelComponent
@@ -133,7 +138,7 @@ export default function UserCreatePage(): JSX.Element {
         </div>
       </div>
     );
-    addSuccess(content, true);
+    addSuccess(content, false);
     queryClient.invalidateQueries({
       queryKey: ['project', projectId, 'users'],
     });
@@ -250,6 +255,7 @@ export default function UserCreatePage(): JSX.Element {
       submitText={tAdd('pci_projects_project_users_add_submit_label')}
       cancelText={tAdd('pci_projects_project_users_add_cancel_label')}
       isDisabled={
+        state.isLoading ||
         !state.userType ||
         (state.userType === 'new' && !state.userDescription.value) ||
         (state.userType === 'existing' && !state.selectedUserId)
@@ -260,7 +266,7 @@ export default function UserCreatePage(): JSX.Element {
       isPending={state.isLoading}
     >
       {validUsersWithoutCredentials?.length > 0 && (
-        <OdsMessage color="information">
+        <OdsMessage color="information" isDismissible={false}>
           <OdsText preset="paragraph">
             {tAdd('pci_projects_project_users_add_info_banner')}
           </OdsText>
