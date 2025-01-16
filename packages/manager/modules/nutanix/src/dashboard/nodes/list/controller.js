@@ -1,25 +1,36 @@
-import { NODE_BADGE_STATE } from './constants';
+import { MAX_NODES_BY_CLUSTER, SERVICE_STATES } from '../../../constants';
 
 export default class NutanixAllNodesCtrl {
   /* @ngInject */
-  constructor(ovhManagerRegionService, $translate) {
+  constructor(NutanixService, ovhManagerRegionService, $translate) {
     this.ovhManagerRegionService = ovhManagerRegionService;
     this.$translate = $translate;
-    this.NODE_BADGE_STATE = NODE_BADGE_STATE;
+    this.NutanixService = NutanixService;
     this.nodesMapped = [];
+    this.loadingNodesStatus = false;
+    this.SERVICE_STATES = SERVICE_STATES;
   }
 
   $onInit() {
-    const uniqueStates = [...new Set(this.nodes.map(({ state }) => state))];
+    const uniqueStates = [
+      ...new Set(this.nodes.map(({ serviceStatus }) => serviceStatus)),
+    ];
     this.mapNodes = this.mapAllNodes();
+    this.loadNodesStatus();
 
+    this.isMaxNodesReached = this.nodes.length >= MAX_NODES_BY_CLUSTER;
+    this.addNodeTooltipContent = this.isMaxNodesReached
+      ? this.$translate.instant(
+          'nutanix_dashboard_nodes_add_node_max_node_tooltip',
+        )
+      : null;
     this.stateColumnOptions = {
       hideOperators: true,
       values: uniqueStates.reduce(
         (options, status) => ({
           ...options,
           [status]: this.$translate.instant(
-            `nutanix_dashboard_nodes_list_status_${status}`,
+            `nutanix_dashboard_service_status_${status}`,
           ),
         }),
         {},
@@ -29,6 +40,28 @@ export default class NutanixAllNodesCtrl {
 
   static getNodeDetailsState(nodeId) {
     return `nutanix.dashboard.nodes.node.general-info({ nodeId: '${nodeId}'})`;
+  }
+
+  loadNodesStatus() {
+    this.loadingNodesStatus = true;
+    return this.NutanixService.getNodesWithState(this.serviceName)
+      .then((nodesDetails) => {
+        nodesDetails.forEach((nodeDetail) => {
+          const nodeIndex = this.nodesMapped.findIndex(
+            (node) => node.name === nodeDetail.server,
+          );
+
+          if (nodeIndex < 0) return;
+
+          this.nodesMapped[nodeIndex] = {
+            ...this.nodesMapped[nodeIndex],
+            ...nodeDetail,
+          };
+        });
+      })
+      .finally(() => {
+        this.loadingNodesStatus = false;
+      });
   }
 
   mapAllNodes() {

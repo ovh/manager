@@ -1,4 +1,5 @@
 import { OLD_CLUSTER_PLAN_CODE } from './constants';
+import { getConstants } from '../../../../apps/dedicated/client/app/config/config';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('nutanix.dashboard', {
@@ -7,15 +8,24 @@ export default /* @ngInject */ ($stateProvider) => {
     component: 'nutanixDashboard',
     resolve: {
       trackingPrefix: /* @ngInject */ () => 'hpc::nutanix::cluster',
-      user: /* @ngInject */ (coreConfig) => coreConfig.getUser(),
       cluster: /* @ngInject */ (NutanixService, serviceName) =>
         NutanixService.getCluster(serviceName),
+      clusterAddOns: /* @ngInject */ (NutanixService, serviceInfo) =>
+        NutanixService.getServiceOptions(serviceInfo.serviceId).catch(
+          (error) => {
+            if (error.status === 403) {
+              return [];
+            }
+            throw error;
+          },
+        ),
       nodes: /* @ngInject */ (cluster, NutanixService) =>
         NutanixService.getNodeDetails(cluster.getNodes()),
       nodeId: /* @ngInject */ (cluster) => cluster.getFirstNode(),
-      server: /* @ngInject */ (nodeId, NutanixService) =>
-        NutanixService.getServer(nodeId),
+      server: /* @ngInject */ (nodes) => nodes[0],
       serviceName: /* @ngInject */ ($transition$) =>
+        $transition$.params().serviceName,
+      clusterServiceName: /* @ngInject */ ($transition$) =>
         $transition$.params().serviceName,
       serviceInfo: /* @ngInject */ (NutanixService, serviceName) =>
         NutanixService.getServiceInfo(serviceName),
@@ -76,6 +86,11 @@ export default /* @ngInject */ ($stateProvider) => {
         }
 
         return resourceIam.displayName;
+      },
+      expressOrderLink: /* @ngInject */ (coreConfig) => {
+        const urls = getConstants(coreConfig.getRegion()).URLS;
+        return (urls[coreConfig.getUser().ovhSubsidiary] ?? urls.FR)
+          .express_order_resume;
       },
     },
   });

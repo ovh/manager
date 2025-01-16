@@ -1,0 +1,48 @@
+<oui-modal
+    data-on-dismiss="$ctrl.goBack()"
+    data-primary-action="$ctrl.onSubmit()"
+    data-primary-label="{{:: 'nutanix_dashboard_poweroff_node_confirm' | translate }}"
+    data-loading="$ctrl.isLoading"
+    data-primary-disabled="$ctrl.confirmPoweroffForm.$invalid"
+    data-secondary-action="$ctrl.goBack()"
+    data-secondary-label="{{:: 'nutanix_dashboard_poweroff_node_cancel' | translate }}"
+    data-heading="{{:: 'nutanix_dashboard_poweroff_node_title' | translate }}"
+>
+    <form name="$ctrl.confirmPoweroffForm" novalidate>
+        <oui-message data-type="warning" class="mb-2">
+            <div
+                data-translate="nutanix_dashboard_poweroff_node_description"
+            ></div>
+            <a
+                class="oui-link_icon"
+                data-ng-href="{{$ctrl.NUTANIX_GUIDE_LINK}}"
+                target="_blank"
+                rel="noopener"
+            >
+                <span
+                    data-translate="nutanix_dashboard_poweroff_node_poweroff_guidelink"
+                ></span>
+                <span
+                    class="oui-icon oui-icon-arrow-right"
+                    aria-hidden="true"
+                ></span>
+            </a>
+        </oui-message>
+        <p
+            data-translate="nutanix_dashboard_poweroff_node_confirmation"
+            data-translate-values="{ serviceName: $ctrl.nodeId}"
+        ></p>
+        <oui-field
+            data-label="{{:: 'nutanix_dasboard_poweroff_node_input_label' | translate:{ magicword: $ctrl.POWEROFF_PATTERN} }}"
+        >
+            <input
+                type="text"
+                class="oui-input"
+                name="poweroffInput"
+                data-ng-model="$ctrl.poweroffConfirmation"
+                data-ng-pattern="$ctrl.POWEROFF_PATTERN"
+                required
+            />
+        </oui-field>
+    </form>
+</oui-modal>
