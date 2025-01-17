@@ -13,7 +13,7 @@
   "pci_projects_project_quota_increase_select_volume_quota-200vms": "200 VMs",
   "pci_projects_project_quota_increase_buy_credits": "You can add credit to your Public Cloud project to get access to a higher level of quotas.",
   "pci_projects_project_quota_increase_payment_info": "Once you have confirmed the addition of quotas, this credit will be taken from your registered payment method and can no longer be refunded. It will then be used automatically for the billing of your project only.",
-  "pci_projects_project_quota_information_banner": "Please fill in all the fields of this questionnaire/form so your increase request can be processed. Your request cannot be approved unless it is completely filled in. Thank you for your understanding.",
+  "pci_projects_project_quota_information_banner": "Please fill in all fields on this form to have your increase request processed. Without a full registration process, we will not be able to respond favorably to your request. Thank you for your understanding.",
   "pci_projects_project_quota_assistance_title": "My support requests",
   "pci_projects_project_quota_assistance_description": "Create and track support requests as needed. You can view, sort, and access archived requests",
   "pci_projects_project_quota_assistance_success_1": "To make your request easier to process, please only create one ticket per issue.",
