@@ -167,16 +167,12 @@
         data-name="storage_select_deployment_mode"
         data-header="{{:: 'pci_projects_project_storages_containers_deployment_mode_title' | translate }}"
         data-navigation="$ctrl.container.deploymentMode"
-        data-on-focus="$ctrl.onDeploymentModeFocus()"
         data-on-submit="$ctrl.onDeploymentModeSubmit()"
         data-editable="!$ctrl.isLoading"
         data-valid="$ctrl.container.deploymentMode"
         data-prevent-next
     >
-        <div
-            data-ng-if="!$ctrl.displaySelectedDeploymentMode"
-            class="container-fluid px-0"
-        >
+        <div class="container-fluid px-0">
             <p>
                 <span
                     data-translate="pci_projects_project_storages_containers_add_deployment_mode_sub_title"
@@ -419,7 +415,6 @@
     >
         <pci-project-storages-bucket-versioning
             data-is-bucket-versioning-enabled="$ctrl.isBucketVersioningEnabled"
-            data-on-bucket-versioning-change="$ctrl.handleBucketVersioningChange(versioning)"
             data-force-enable-versioning="$ctrl.forceEnableVersioning"
         ></pci-project-storages-bucket-versioning>
     </oui-step-form>
@@ -496,7 +491,7 @@
 
         <oui-message
             data-type="info"
-            data-ng-if="$ctrl.container.deploymentMode === $ctrl.OBJECT_CONTAINER_MODE_MONO_ZONE || $ctrl.container.deploymentMode === $ctrl.OBJECT_CONTAINER_MODE_MULTI_ZONES && !$ctrl.container.replication"
+            data-ng-if="$ctrl.container.deploymentMode === $ctrl.OBJECT_CONTAINER_MODE_MONO_ZONE || $ctrl.container.deploymentMode === $ctrl.OBJECT_CONTAINER_MODE_MULTI_ZONES && !$ctrl.isOffsiteReplicationEnabled"
         >
             <p>
                 <span

@@ -95,6 +95,9 @@ export default class PciStoragesContainersAddController {
     this.container.offer = this.archive
       ? null
       : OBJECT_CONTAINER_OFFER_STORAGE_STANDARD;
+    this.isOffsiteReplicationEnabled = true;
+    this.forceEnableVersioning = true;
+    this.isBucketVersioningEnabled = true;
 
     this.userModel = {
       linkedMode: {
@@ -125,7 +128,6 @@ export default class PciStoragesContainersAddController {
     this.setOffersPrices();
     this.setDeploymentModePrices();
     this.featureFlip3azContainer();
-    this.isOffsiteReplicationEnabled = true;
   }
 
   /**
@@ -417,19 +419,13 @@ export default class PciStoragesContainersAddController {
     this.container.containerType = this.selectedType.id;
   }
 
-  onDeploymentModeFocus() {
-    this.displaySelectedDeploymentMode = false;
-    this.isOffsiteReplicationEnabled = false;
-  }
-
   onDeploymentModeSubmit() {
-    this.displaySelectedDeploymentMode = true;
     if (
       this.container.deploymentMode === this.OBJECT_CONTAINER_MODE_MULTI_ZONES
     ) {
       this.isOffsiteReplicationEnabled = true;
     } else {
-      delete this.container.replication;
+      this.isOffsiteReplicationEnabled = false;
     }
     this.DEPLOYMENT_PRICE = this.getLowestPriceAddon(
       this.productCapabilities.plans?.filter((plan) =>
@@ -439,36 +435,10 @@ export default class PciStoragesContainersAddController {
     );
   }
 
-  handleBucketVersioningChange(versioning) {
-    if (versioning?.status === 'enabled') {
-      this.container.versioning = versioning;
-    } else {
-      delete this.container.versioning;
-    }
-  }
-
-  onBucketVersioningFocus() {
-    if (this.container.replication?.rules[0]?.status === 'enabled') {
+  handleOffsiteReplicationChange() {
+    this.forceEnableVersioning = this.isOffsiteReplicationEnabled;
+    if (this.forceEnableVersioning) {
       this.isBucketVersioningEnabled = true;
-      this.forceEnableVersioning = true;
-      this.container.versioning = { status: 'enabled' };
-    } else {
-      this.isBucketVersioningEnabled = false;
-      this.forceEnableVersioning = false;
-    }
-  }
-
-  onOffsiteReplicationFocus() {
-    this.isOffsiteReplicationEnabled = false;
-  }
-
-  handleOffsiteReplicationChange(replication) {
-    if (replication?.rules[0]?.status === 'enabled') {
-      this.container.replication = replication;
-      this.forceEnableVersioning = true;
-    } else {
-      delete this.container.replication;
-      this.forceEnableVersioning = false;
     }
   }
 
@@ -487,6 +457,25 @@ export default class PciStoragesContainersAddController {
     });
     this.isLoading = true;
     this.container.ownerId = this.getUserOwnerId();
+    if (this.isOffsiteReplicationEnabled) {
+      this.container.replication = {
+        rules: [
+          {
+            id: '',
+            status: 'enabled',
+            priority: 1,
+            deleteMarkerReplication: 'disabled',
+          },
+        ],
+      };
+    } else {
+      this.container.replication = undefined;
+    }
+    if (this.isBucketVersioningEnabled) {
+      this.container.versioning = { status: 'enabled' };
+    } else {
+      this.container.versioning = undefined;
+    }
     return this.PciProjectStorageContainersService.addContainer(
       this.projectId,
       this.container,
