@@ -3,42 +3,19 @@ import {
   addHighPerfObjects,
   addObjects,
   addUser,
-  deleteSwitchObject,
+  deleteSwiftObject,
   deleteS3Object,
 } from '@/api/data/objects';
 import queryClient from '@/queryClient';
 import { TStorage, getStorageAccess } from '../data/storages';
+import { getAllStoragesQueryKey } from './useStorages';
+import { getContainerQueryKey } from './useContainer';
 
 export const useAccessToken = (projectId: string) =>
   useQuery({
     queryKey: ['project', projectId, 'access'],
     queryFn: () => getStorageAccess({ projectId }),
   });
-
-export const deleteObject = async (
-  projectId: string,
-  storage: TStorage,
-  objectName: string,
-  region: string,
-) => {
-  if (storage.s3StorageType) {
-    return deleteS3Object(
-      projectId,
-      storage.id,
-      objectName,
-      region,
-      storage.s3StorageType,
-    );
-  }
-  const response = await getStorageAccess({ projectId });
-  return deleteSwitchObject(
-    projectId,
-    storage.name,
-    objectName,
-    response.token,
-    region,
-  );
-};
 
 type DeleteObjectProps = {
   projectId: string;
@@ -48,6 +25,7 @@ type DeleteObjectProps = {
   onError: (cause: Error) => void;
   onSuccess: () => void;
 };
+
 export const useDeleteObject = ({
   projectId,
   storage,
@@ -58,13 +36,40 @@ export const useDeleteObject = ({
 }: DeleteObjectProps) => {
   const mutation = useMutation({
     mutationFn: async () => {
-      await deleteObject(projectId, storage, objectName, region);
+      if (storage.s3StorageType) {
+        return deleteS3Object({
+          projectId,
+          containerId: storage.name,
+          objectName,
+          containerRegion: region,
+          s3StorageType: storage.s3StorageType,
+        });
+      }
+
+      const { token } = await getStorageAccess({ projectId });
+      return deleteSwiftObject({
+        projectId,
+        storageName: storage.name,
+        objectName,
+        token,
+        region,
+      });
     },
     onError,
-    onSuccess: async () => {
-      await queryClient.invalidateQueries({
-        queryKey: ['project', projectId, 'objects'],
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: getAllStoragesQueryKey(projectId),
       });
+
+      queryClient.invalidateQueries({
+        queryKey: getContainerQueryKey({
+          projectId,
+          region,
+          containerId: storage?.id,
+          containerName: storage?.name,
+        }),
+      });
+
       onSuccess();
     },
   });
@@ -155,9 +160,19 @@ export const useAddObjects = ({
     mutationFn: addPromise,
     onError,
     onSuccess: () => {
-      /**
-       * TODO: Should invalidate the objects fetch cache
-       */
+      queryClient.invalidateQueries({
+        queryKey: getAllStoragesQueryKey(projectId),
+      });
+
+      queryClient.invalidateQueries({
+        queryKey: getContainerQueryKey({
+          projectId,
+          region: container?.region,
+          containerId: container?.id,
+          containerName: container?.name,
+        }),
+      });
+
       onSuccess();
     },
   });

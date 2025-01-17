@@ -37,7 +37,6 @@ export default function StepOneComponent({
           defaultValue={`${defaultUser?.id}`}
           onOdsChange={(event) => {
             const user = users.find((u) => `${u.id}` === event.detail.value);
-            console.log({ user });
             onSelectUser(user);
           }}
           name="userSelect"

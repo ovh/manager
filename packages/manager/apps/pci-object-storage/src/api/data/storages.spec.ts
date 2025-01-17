@@ -3,7 +3,7 @@ import { aapi, v6 } from '@ovh-ux/manager-core-api';
 
 import {
   getStorages,
-  deleteContainer,
+  deleteSwiftContainer,
   deleteS3Container,
   getStorage,
   updateStorage,
@@ -46,7 +46,7 @@ describe('storages API', () => {
   });
 
   it('should delete container', async () => {
-    await deleteContainer(projectId, containerId);
+    await deleteSwiftContainer(projectId, containerId);
     expect(v6.delete).toHaveBeenCalledWith(
       `/cloud/project/${projectId}/storage/${containerId}`,
     );
