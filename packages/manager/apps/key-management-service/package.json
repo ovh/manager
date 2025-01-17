@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-key-management-service-app",
-  "version": "0.15.0",
+  "version": "0.15.1",
   "private": true,
   "description": "ovh key-management-service",
   "repository": {
