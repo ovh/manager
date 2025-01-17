@@ -467,6 +467,21 @@ export default function ObjectPage() {
                 onOdsChange={({ detail }) =>
                   setSearchField(detail.value as string)
                 }
+                onKeyDown={(event) => {
+                  if (event.key === 'Enter') {
+                    setPagination({
+                      pageIndex: 0,
+                      pageSize: pagination.pageSize,
+                    });
+                    addFilter({
+                      key: 'search',
+                      value: searchField,
+                      comparator: FilterComparator.Includes,
+                      label: '',
+                    });
+                    setSearchField('');
+                  }
+                }}
               />
               <OdsButton
                 label=""
