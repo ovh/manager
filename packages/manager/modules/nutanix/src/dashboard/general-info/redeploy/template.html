@@ -187,7 +187,7 @@
                     >
                         <strong data-ng-bind="node.displayName"></strong>
                         <oui-field
-                            data-error-messages="{ 
+                            data-error-messages="{
                                 ipSubnetValidator: ('nutanix_redeploy_custom_config_ip_not_in_cidr_subnet_error' | translate),
                                 uniqueIpValidator: ('nutanix_redeploy_custom_config_ip_unique_error' | translate),
                                 pattern: ('nutanix_redeploy_custom_config_ip_format_error' | translate)
@@ -210,7 +210,7 @@
                             />
                         </oui-field>
                         <oui-field
-                            data-error-messages="{ 
+                            data-error-messages="{
                                 ipSubnetValidator: ('nutanix_redeploy_custom_config_ip_not_in_cidr_subnet_error' | translate),
                                 uniqueIpValidator: ('nutanix_redeploy_custom_config_ip_unique_error' | translate),
                                 pattern: ('nutanix_redeploy_custom_config_ip_format_error' | translate)
@@ -287,7 +287,7 @@
                     <oui-field
                         data-label="{{:: 'nutanix_redeploy_prism_central_vip' | translate}}"
                         data-label-popover="{{:: 'nutanix_redeploy_prism_central_virtual_ip_description' | translate}}"
-                        data-error-messages="{ 
+                        data-error-messages="{
                             ipSubnetValidator: ('nutanix_redeploy_custom_config_ip_not_in_cidr_subnet_error' | translate),
                             uniqueIpValidator: ('nutanix_redeploy_custom_config_ip_unique_error' | translate),
                             pattern: ('nutanix_redeploy_custom_config_ip_format_error' | translate)
@@ -359,7 +359,7 @@
                         data-translate="nutanix_redeploy_prism_element_vip_description"
                     ></p>
                     <oui-field
-                        data-error-messages="{ 
+                        data-error-messages="{
                             ipSubnetValidator: ('nutanix_redeploy_custom_config_ip_not_in_cidr_subnet_error' | translate),
                             uniqueIpValidator: ('nutanix_redeploy_custom_config_ip_unique_error' | translate),
                             pattern: ('nutanix_redeploy_custom_config_ip_format_error' | translate)
@@ -375,6 +375,35 @@
                             data-nutanix-dashboard-redeploy-unique-ip-validator="$ctrl.getIpsList()"
                             data-nutanix-dashboard-redeploy-ip-subnet-validator="$ctrl.config.gatewayCidr"
                         />
+                    </oui-field>
+                </div>
+                <div class="mb-3">
+                    <h5 data-translate="nutanix_redeploy_vlan_id"></h5>
+                    <p
+                        data-translate="nutanix_redeploy_vlan_id_description"
+                    ></p>
+                    <oui-field
+                        data-error-messages="{
+                            min: ('nutanix_redeploy_vlan_id_helper' | translate),
+                            max: ('nutanix_redeploy_vlan_id_helper' | translate),
+                        }"
+                    >
+                        <input
+                            class="oui-input w-50"
+                            maxlength="4"
+                            name="vlanId"
+                            required
+                            type="number"
+                            data-ng-model="$ctrl.config.infraVlanNumber"
+                            data-ng-model-options="{ debounce: 500 }"
+                            data-ng-min="1"
+                            data-ng-max="4000"
+                        />
+                        <p
+                            class="oui-field__helper"
+                            data-ng-if="!customConfig.vlanId.$error.max && !customConfig.vlanId.$error.min"
+                            data-translate="nutanix_redeploy_vlan_id_helper"
+                        ></p>
                     </oui-field>
                 </div>
                 <div class="mb-3">

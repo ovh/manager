@@ -40,5 +40,8 @@
   "nutanix_redeploy_erasure_coding": "Fonction Erasure Coding",
   "nutanix_redeploy_aos": "AOS Version",
   "nutanix_redeploy_node_ahv_ip": "AHV IP",
-  "nutanix_redeploy_node_cvm_ip": "CVM IP"
+  "nutanix_redeploy_node_cvm_ip": "CVM IP",
+  "nutanix_redeploy_vlan_id": "ID da VLAN",
+  "nutanix_redeploy_vlan_id_description": "Indique o VLAN ID utilizado para a implementação do cluster.",
+  "nutanix_redeploy_vlan_id_helper": "o VLAN ID deve estar compreendido entre 1 e 4000."
 }
