@@ -28,7 +28,7 @@ import sortingFieldButtonDirective from './components/directives/sortingFieldBut
 import renewDateComponent from './components/renewDate/billing-renew-date.component';
 import renewLabelComponent from './components/renewLabel/billing-renew-label.component';
 import renewFrequenceFilter from './components/filters/renewFrequence';
-import servicesHelper from './components/services/services.service';
+import servicesHelper from './services/servicesHelper.service';
 
 import routing from './billing.routing';
 import billingTracking from './atInternetTracking.config';

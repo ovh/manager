@@ -2,7 +2,7 @@ import kebabCase from 'lodash/kebabCase';
 import get from 'lodash/get';
 import has from 'lodash/has';
 
-import { SERVICES_TARGET_URLS } from './services.constants';
+import { SERVICES_TARGET_URLS } from '../constants/servicesHelper.constants';
 
 export default class ServicesHelper {
   /* @ngInject */
