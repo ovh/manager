@@ -169,13 +169,12 @@ export const Datagrid = <T,>({
   const [columnsFilters, setColumnsFilters] = useState([]);
   useEffect(() => {
     const clmFilters = columns
-      .filter((item) => 'comparator' in item || 'type' in item)
-      // .filter(
-      //   (item) =>
-      //     ('comparator' in item || 'type' in item) &&
-      //     'isFilterable' in item &&
-      //     item['isFilterable'],
-      // )
+      .filter(
+        (item) =>
+          ('comparator' in item || 'type' in item) &&
+          'isFilterable' in item &&
+          item['isFilterable'],
+      )
       .map((column) => ({
         id: column.id,
         label: column.label,
@@ -184,8 +183,6 @@ export const Datagrid = <T,>({
       }));
     setColumnsFilters(clmFilters);
   }, [columns]);
-
-  console.info('columnsFilters : ', columnsFilters);
 
   return (
     <div>
