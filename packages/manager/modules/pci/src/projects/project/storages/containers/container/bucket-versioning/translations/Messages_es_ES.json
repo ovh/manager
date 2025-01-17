@@ -3,5 +3,5 @@
   "pci_projects_project_storages_containers_bucket_versioning_description": "Automatiza la creación de versiones de un objeto para subsanar una posible eliminación accidental, o simplemente cuando se carga un nuevo objeto.",
   "pci_projects_project_storages_containers_bucket_versioning_disabled": "Desactivar",
   "pci_projects_project_storages_containers_bucket_versioning_enabled": "Activar",
-  "pci_projects_project_storages_containers_bucket_versioning_tooltip": "No se puede deshabilitar el control de versiones porque ha habilitado la replicación. Modifique el paso Offsite Replication si desea desactivarlo."
+  "pci_projects_project_storages_containers_bucket_versioning_tooltip": "No es posible deshabilitar el «versioning» porque tiene activada la replicación. Modifique la opción «Offsite Replication» para desactivarlo."
 }
