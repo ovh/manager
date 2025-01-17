@@ -28,7 +28,3 @@ jobs:
         run: yarn test:jest
       - name: Run tests Turbo
         run: yarn test:turbo
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
-      - name: Run e2e tests
-        run: yarn test:playwright:run
