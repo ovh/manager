@@ -1,6 +1,6 @@
 import { SystemFormKeys, TextInputData } from '@/types/form.type';
 
-const SID_PATTERN = /[A-Z0-9]{3}/.source;
+const SID_PATTERN = /^[A-Z][A-Z0-9]{2}$/.source;
 const PWD_PATTERN = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!"@ $%&=?'*+~#\-.,;:<>_]).{8,}$/
   .source;
 
@@ -11,12 +11,14 @@ export const SYSTEM_TEXT_INPUTS: TextInputData<SystemFormKeys>[] = [
     label: 'SAP SID',
     placeholder: 'S4H',
     pattern: SID_PATTERN,
+    maxlength: 3,
   },
   {
     name: 'sapHanaSid',
     label: 'SAP HANA SID',
     placeholder: 'HDB',
     pattern: SID_PATTERN,
+    maxlength: 3,
   },
 ] as const;
 
@@ -43,12 +45,3 @@ export const SYSTEM_PASSWORD_INPUTS: TextInputData<SystemFormKeys>[] = [
     pattern: PWD_PATTERN,
   },
 ] as const;
-
-export const SYSTEM_INITIAL_ERRORS = {
-  sapSid: '',
-  sapHanaSid: '',
-  masterSapPassword: '',
-  masterSapHanaPassword: '',
-  sidamnPassword: '',
-  systemPassword: '',
-} as const;
