@@ -6,7 +6,6 @@ import Link from '@/components/links/Link.component';
 import * as database from '@/types/cloud/project/database';
 import { useServiceData } from '../Service.context';
 import { getColumns } from './_components/BackupsTableColumns.component';
-import { DataTable } from '@/components/ui/data-table';
 import { POLLING } from '@/configuration/polling.constants';
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table';
@@ -14,6 +13,7 @@ import Guides from '@/components/guides/Guides.component';
 import { useUserActivityContext } from '@/contexts/UserActivityContext';
 import { GuideSections } from '@/types/guide';
 import { useGetBackups } from '@/hooks/api/database/backup/useGetBackups.hook';
+import DataTable from '@/components/data-table';
 
 export interface BackupWithExpiricyDate extends database.Backup {
   expiricyDate: Date;
@@ -110,7 +110,7 @@ const Backups = () => {
       </div>
 
       {backupsQuery.isSuccess ? (
-        <DataTable
+        <DataTable.Provider
           columns={columns}
           data={backupsQuery.data.map((backup) => ({
             ...backup,

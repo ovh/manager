@@ -1,88 +1,159 @@
 import { useTranslation } from 'react-i18next';
 import { ColumnDef } from '@tanstack/react-table';
-import { SortableHeader } from '@/components/ui/data-table';
+import DataTable from '@/components/data-table';
 import { ExpandableSqlQuery } from './ExpandableSqlQuery.component';
 import * as database from '@/types/cloud/project/database';
 
-export const getColumns = () => {
+export const getColumns = (engine: database.EngineEnum) => {
   const { t } = useTranslation(
     'pci-databases-analytics/services/service/queries',
   );
+
+  if (engine === database.EngineEnum.postgresql) {
+    return [
+      {
+        id: 'query',
+        header: ({ column }) => (
+          <DataTable.SortableHeader column={column}>
+            {t('tableQueryStatisticsHeadName')}
+          </DataTable.SortableHeader>
+        ),
+        accessorFn: (row) => row.query,
+        cell: ({ row }) => <ExpandableSqlQuery sqlQuery={row.original.query} />,
+      },
+      {
+        id: 'rows',
+        header: ({ column }) => (
+          <DataTable.SortableHeader column={column}>
+            {t('tableQueryStatisticsHeadRows')}
+          </DataTable.SortableHeader>
+        ),
+        accessorFn: (row) => row.rows,
+      },
+      {
+        id: 'calls',
+        header: ({ column }) => (
+          <DataTable.SortableHeader column={column}>
+            {t('tableQueryStatisticsHeadCalls')}
+          </DataTable.SortableHeader>
+        ),
+        accessorFn: (row) => row.calls,
+      },
+      {
+        id: 'minTime',
+        header: ({ column }) => (
+          <DataTable.SortableHeader column={column}>
+            {t('tableQueryStatisticsHeadMinTime')}
+          </DataTable.SortableHeader>
+        ),
+        accessorFn: (row) => row.minTime.toFixed(2),
+      },
+      {
+        id: 'maxTime',
+        header: ({ column }) => (
+          <DataTable.SortableHeader column={column}>
+            {t('tableQueryStatisticsHeadMaxTime')}
+          </DataTable.SortableHeader>
+        ),
+        accessorFn: (row) => row.maxTime.toFixed(2),
+      },
+      {
+        id: 'meanTime',
+        header: ({ column }) => (
+          <DataTable.SortableHeader column={column}>
+            {t('tableQueryStatisticsHeadMeanTime')}
+          </DataTable.SortableHeader>
+        ),
+        accessorFn: (row) => row.meanTime.toFixed(2),
+      },
+      {
+        id: 'stdDevTime',
+        header: ({ column }) => (
+          <DataTable.SortableHeader column={column}>
+            {t('tableQueryStatisticsHeadStdDevTime')}
+          </DataTable.SortableHeader>
+        ),
+        accessorFn: (row) => row.stddevTime.toFixed(2),
+      },
+      {
+        id: 'totalTime',
+        header: ({ column }) => (
+          <DataTable.SortableHeader column={column}>
+            {t('tableQueryStatisticsHeadTotalTime')}
+          </DataTable.SortableHeader>
+        ),
+        accessorFn: (row) => row.totalTime.toFixed(2),
+      },
+    ] as ColumnDef<database.postgresql.querystatistics.Query>[];
+  }
+
+  // MySQL Columns
   return [
     {
-      id: 'query',
+      id: 'digestText',
       header: ({ column }) => (
-        <SortableHeader column={column}>
+        <DataTable.SortableHeader column={column}>
           {t('tableQueryStatisticsHeadName')}
-        </SortableHeader>
+        </DataTable.SortableHeader>
       ),
-      accessorFn: (row) => row.query,
-      cell: ({ row }) => <ExpandableSqlQuery sqlQuery={row.original.query} />,
+      accessorFn: (row) => row.digestText,
+      cell: ({ row }) => (
+        <ExpandableSqlQuery sqlQuery={row.original.digestText} />
+      ),
     },
     {
-      id: 'rows',
+      id: 'sumRowsSent',
       header: ({ column }) => (
-        <SortableHeader column={column}>
+        <DataTable.SortableHeader column={column}>
           {t('tableQueryStatisticsHeadRows')}
-        </SortableHeader>
+        </DataTable.SortableHeader>
       ),
-      accessorFn: (row) => row.rows,
+      accessorFn: (row) => row.sumRowsSent,
     },
     {
-      id: 'calls',
+      id: 'countStar',
       header: ({ column }) => (
-        <SortableHeader column={column}>
+        <DataTable.SortableHeader column={column}>
           {t('tableQueryStatisticsHeadCalls')}
-        </SortableHeader>
+        </DataTable.SortableHeader>
       ),
-      accessorFn: (row) => row.calls,
+      accessorFn: (row) => row.countStar,
     },
     {
-      id: 'minTime',
+      id: 'minTimerWait',
       header: ({ column }) => (
-        <SortableHeader column={column}>
+        <DataTable.SortableHeader column={column}>
           {t('tableQueryStatisticsHeadMinTime')}
-        </SortableHeader>
+        </DataTable.SortableHeader>
       ),
-      accessorFn: (row) => row.minTime.toFixed(2),
+      accessorFn: (row) => row.minTimerWait.toFixed(2),
     },
     {
-      id: 'maxTime',
+      id: 'maxTimerWait',
       header: ({ column }) => (
-        <SortableHeader column={column}>
+        <DataTable.SortableHeader column={column}>
           {t('tableQueryStatisticsHeadMaxTime')}
-        </SortableHeader>
+        </DataTable.SortableHeader>
       ),
-      accessorFn: (row) => row.maxTime.toFixed(2),
+      accessorFn: (row) => row.maxTimerWait.toFixed(2),
     },
-
     {
-      id: 'meamTime',
+      id: 'meanTime',
       header: ({ column }) => (
-        <SortableHeader column={column}>
+        <DataTable.SortableHeader column={column}>
           {t('tableQueryStatisticsHeadMeanTime')}
-        </SortableHeader>
+        </DataTable.SortableHeader>
       ),
-      accessorFn: (row) => row.meanTime.toFixed(2),
-    },
-
-    {
-      id: 'stdDevTime',
-      header: ({ column }) => (
-        <SortableHeader column={column}>
-          {t('tableQueryStatisticsHeadStdDevTime')}
-        </SortableHeader>
-      ),
-      accessorFn: (row) => row.stddevTime.toFixed(2),
+      accessorFn: (row) => (row.sumTimerWait / row.countStar).toFixed(2),
     },
     {
-      id: 'totalTime',
+      id: 'sumTimerWait',
       header: ({ column }) => (
-        <SortableHeader column={column}>
+        <DataTable.SortableHeader column={column}>
           {t('tableQueryStatisticsHeadTotalTime')}
-        </SortableHeader>
+        </DataTable.SortableHeader>
       ),
-      accessorFn: (row) => row.totalTime.toFixed(2),
+      accessorFn: (row) => row.sumTimerWait.toFixed(2),
     },
-  ] as ColumnDef<database.postgresql.querystatistics.Query>[];
+  ] as ColumnDef<database.mysql.querystatistics.Query>[];
 };

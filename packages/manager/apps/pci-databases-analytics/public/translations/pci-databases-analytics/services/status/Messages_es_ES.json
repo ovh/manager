@@ -7,6 +7,6 @@
   "status-PENDING": "Pendiente",
   "status-UPDATING": "Actualizada",
   "status-ERROR": "En error",
-  "status-ERROR_INCONSISTENT_SPEC": "En error",
+  "status-ERROR_INCONSISTENT_SPEC": "Error spec",
   "status-READY": "Disponible"
 }
