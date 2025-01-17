@@ -1689,5 +1689,7 @@
   "exchange_ACTION_order_accounts_step3_bc_ovhtel": "A nota de encomenda foi gerada com sucesso. A sua encomenda está a ser tratada.",
   "exchange_ACTION_order_accounts_step3_explication_ovhtel": "Tenha em conta que é necessário aguardar cerca de 10 minutos para que a conta seja criada.",
   "exchange_tab_RESOURCES_add_resource_company": "Empresa",
-  "exchange_GROUPS_add_group_company_label": "Empresa"
+  "exchange_GROUPS_add_group_company_label": "Empresa",
+  "exchange_tab_INFORMATIONS_backup": "Backup",
+  "exchange_tab_INFORMATIONS_backup_guide_title": "Fazer o backup das contas de e-mail"
 }
