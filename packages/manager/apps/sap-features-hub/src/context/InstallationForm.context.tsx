@@ -7,12 +7,20 @@ import React, {
   useContext,
   useMemo,
 } from 'react';
-import { InstallationForm } from '@/types/form.type';
-import { installationInitialValues } from './installationInitialValues.constants';
+import {
+  InstallationFormErrors,
+  InstallationFormValues,
+} from '@/types/form.type';
+import {
+  installationInitialErrors,
+  installationInitialValues,
+} from './installationInitialValues.constants';
 
 type FormContextType = {
-  values: InstallationForm;
-  setValues: Dispatch<SetStateAction<InstallationForm>>;
+  values: InstallationFormValues;
+  setValues: Dispatch<SetStateAction<InstallationFormValues>>;
+  errors: InstallationFormErrors;
+  setErrors: Dispatch<SetStateAction<InstallationFormErrors>>;
 };
 type FormContextProviderProps = {
   children: ReactNode;
@@ -26,7 +34,11 @@ export const InstallationFormContextProvider: React.FC<FormContextProviderProps>
   children,
 }) => {
   const [values, setValues] = useState(installationInitialValues);
-  const contextValue = useMemo(() => ({ values, setValues }), [values]);
+  const [errors, setErrors] = useState(installationInitialErrors);
+  const contextValue = useMemo(
+    () => ({ values, setValues, errors, setErrors }),
+    [values, errors],
+  );
 
   return (
     <InstallationFormContext.Provider value={contextValue}>
