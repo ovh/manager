@@ -5,7 +5,7 @@
 
     <oui-radio-group
         data-model="$ctrl.isOffsiteReplicationEnabled"
-        data-on-change="$ctrl.handleOffsiteReplicationChange()"
+        data-on-change="$ctrl.onOffsiteReplicationChange()"
     >
         <oui-radio value="false">
             <span
@@ -18,7 +18,7 @@
             ></span>
             <strong
                 data-translate="pci_projects_project_storages_containers_offsite_replication_price_estimation"
-                data-translate-values="{price: $ctrl.offsiteReplicationPrice || '?'}"
+                data-translate-values="{price: $ctrl.offsiteReplicationPrice ? $ctrl.priceFormatter.format($ctrl.offsiteReplicationPrice) : '?'}"
             ></strong>
             <span
                 class="oui-badge oui-badge_best-seller"

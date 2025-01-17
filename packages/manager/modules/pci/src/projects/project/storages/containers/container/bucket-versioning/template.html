@@ -3,10 +3,7 @@
         data-translate="pci_projects_project_storages_containers_bucket_versioning_description"
     ></p>
 
-    <oui-radio-group
-        data-model="$ctrl.isBucketVersioningEnabled"
-        data-on-change="$ctrl.handleBucketVersioningChange()"
-    >
+    <oui-radio-group data-model="$ctrl.isBucketVersioningEnabled">
         <oui-radio value="false" data-disabled="$ctrl.forceEnableVersioning">
             <span
                 data-translate="pci_projects_project_storages_containers_bucket_versioning_disabled"
