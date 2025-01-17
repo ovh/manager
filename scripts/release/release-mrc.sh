@@ -118,7 +118,7 @@ main() {
     # Check if the changed package is `manager-react-components`
     if [[ "$package" == *manager-react-components* ]]; then
       printf "%s\n" "New release for manager-react-components"
-      mrc_changed=true
+      next_tag=$(get_release_name "$SEED")
       path_mrc=$(echo "$package" | cut -d ':' -f 1)
       name_mrc=$(echo "$package" | cut -d ':' -f 2)
       version_mrc "$next_tag"
