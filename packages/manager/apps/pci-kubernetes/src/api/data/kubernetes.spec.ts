@@ -20,13 +20,12 @@ import {
   removeOidcProvider,
   resetKubeConfig,
   terminateCluster,
-  TOidcProvider,
   updateKubePolicy,
   updateKubernetesCluster,
   updateKubeVersion,
   updateOidcProvider,
 } from '@/api/data/kubernetes';
-import { TKube } from '@/types';
+import { TKube, TOidcProvider } from '@/types';
 
 describe('getKubernetesCluster', () => {
   it('fetches kubernetes cluster successfully', async () => {
