@@ -12,6 +12,7 @@ import SSOAuthModal from '@/sso-auth-modal/SSOAuthModal';
 import PaymentModal from '@/payment-modal/PaymentModal';
 import LiveChat from '@/components/LiveChat';
 import { IdentityDocumentsModal } from '@/identity-documents-modal/IdentityDocumentsModal';
+import NewLiveChat from '@/components/livechat/LiveChat.component';
 
 export default function Container(): JSX.Element {
   const {
@@ -66,7 +67,7 @@ export default function Container(): JSX.Element {
             <LegacyContainer />
           </>
         )}
-        <LiveChat
+        {/* <LiveChat
           supportLevel={supportLevel?.level}
           language={language}
           subsidiary={ovhSubsidiary}
@@ -75,7 +76,8 @@ export default function Container(): JSX.Element {
           onReduce={() => setChatbotReduced(true)}
           onClose={() => shell.getPlugin('ux').closeChatbot()}
           style={{ position: 'absolute' }}
-        ></LiveChat>
+        ></LiveChat> */}
+        <NewLiveChat closeLiveChat={() => shell.getPlugin('ux').closeChatbot()}></NewLiveChat>
       </ProgressProvider>
 
       <Suspense fallback="">

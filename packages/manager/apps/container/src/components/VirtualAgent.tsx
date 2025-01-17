@@ -9,6 +9,7 @@ import dialogPolyfill from 'dialog-polyfill';
 import { useMediaQuery } from 'react-responsive';
 
 import styles from './virtualAgentStyles.module.scss';
+import useContainer from '@/core/container';
 
 interface VirtualAgentProps {
   name: string;
@@ -41,9 +42,15 @@ const VirtualAgent: React.FC<ComponentProps<VirtualAgentProps>> = (
     buttonIcon = 'oui-icon-chat',
     customStyles,
     onClose,
-    onStart,
-    onReduce,
   } = props;
+
+  const {
+    chatbotOpen,
+    chatbotReduced,
+    setChatbotOpen,
+    setChatbotReduced,
+  } = useContainer();
+
   const dialog = useRef(null);
   const mainFrame = useRef<HTMLIFrameElement>(null);
   const [started, setStarted] = useState(agentStarted);
@@ -58,8 +65,8 @@ const VirtualAgent: React.FC<ComponentProps<VirtualAgentProps>> = (
   });
 
   const toggle = () => {
-    setReduced(!reduced);
-    if (onReduce) onReduce();
+    setChatbotReduced(!chatbotReduced);
+    // if (onReduce) onReduce();
   };
   const stop = () => {
     setStarted(false);
@@ -69,8 +76,7 @@ const VirtualAgent: React.FC<ComponentProps<VirtualAgentProps>> = (
 
   const start = (startedValue: boolean, reducedValue: boolean) => {
     setStarted(startedValue);
-    setReduced(reducedValue);
-    if (onStart) onStart();
+    setChatbotReduced(reducedValue);
   };
 
   const setCustomStyleOnMobile = (
@@ -89,18 +95,18 @@ const VirtualAgent: React.FC<ComponentProps<VirtualAgentProps>> = (
   useEffect(() => {
     dialogPolyfill.registerDialog(dialog.current);
 
-    if (useStorage) {
-      if (storage) {
-        start(
-          storage === 'started' || storage === 'reduced',
-          storage === 'reduced',
-        );
-      } else {
-        start(agentStarted, !agentStarted);
-      }
-    } else {
-      start(agentStarted, !agentStarted);
-    }
+    // if (useStorage) {
+    //   if (storage) {
+    //     start(
+    //       storage === 'started' || storage === 'reduced',
+    //       storage === 'reduced',
+    //     );
+    //   } else {
+    //     start(agentStarted, !agentStarted);
+    //   }
+    // } else {
+      start(agentStarted, false);
+    //}
   }, []);
 
   useEffect(() => {
@@ -110,14 +116,7 @@ const VirtualAgent: React.FC<ComponentProps<VirtualAgentProps>> = (
   }, [agentStarted]);
 
   useEffect(() => {
-    if (!agentReduced) {
-      setReduced(false);
-      if (onReduce) onReduce();
-    }
-  }, [agentReduced]);
-
-  useEffect(() => {
-    if (started && !reduced) {
+    if (started && !chatbotReduced) {
       dialog.current.show();
       // This next line is for the focus when clicking with the keyboard
       // The native dialog API seem to focus right with the mouse click but not with the keyboard
@@ -128,16 +127,16 @@ const VirtualAgent: React.FC<ComponentProps<VirtualAgentProps>> = (
     } else {
       if (dialog?.current?.open) dialog.current.close();
 
-      if (started && reduced) setStorage('reduced');
+      if (started && chatbotReduced) setStorage('reduced');
       else removeStorage();
     }
-  }, [reduced, started]);
+  }, [chatbotReduced, started]);
 
   return (
     <div
       style={customStyles}
       className={`${
-        !reduced
+        !chatbotReduced
           ? styles.virtualAgent
           : `${styles.virtualAgent} ${styles.fitHeight}`
       } d-flex flex-column justify-content-end`}
@@ -154,14 +153,10 @@ const VirtualAgent: React.FC<ComponentProps<VirtualAgentProps>> = (
           className={`${styles.dialog_content} d-flex h-100 flex-column`}
         >
           <header
-            style={{
-              background: headerColor,
-            }}
+            style={{ background: 'radial-gradient(circle at bottom left, #000e9c, #00185e)' }}
             title={title}
             className={
-              headerColor
-                ? styles.header
-                : `${styles.header} oui-background-p-500`
+              `${styles.header} bg-gradient-to-r from-[#000e9c] to-[#00185e]`
             }
           >
             <button
@@ -180,7 +175,7 @@ const VirtualAgent: React.FC<ComponentProps<VirtualAgentProps>> = (
                 ref={mainFrame}
                 title={`${title} main view`}
                 src={url}
-                className={`${styles.main_frame} w-100 h-100 border-0`}
+                className={`${styles.main_frame} w-full h-full border-none`} // done to tw
                 sandbox="allow-scripts allow-top-navigation allow-forms allow-popups allow-same-origin allow-downloads"
               ></iframe>
             )}
@@ -190,7 +185,7 @@ const VirtualAgent: React.FC<ComponentProps<VirtualAgentProps>> = (
       {started && (
         <div
           role="group"
-          className={`${styles.group} d-xl-flex justify-content-end`}
+          className={`${styles.group} xl:flex justify-end`}
           style={setCustomStyleOnMobile(headerColor)}
         >
           <button
@@ -209,15 +204,15 @@ const VirtualAgent: React.FC<ComponentProps<VirtualAgentProps>> = (
           >
             <span
               className={
-                !reduced ? 'oui-icon oui-icon-close' : `oui-icon ${buttonIcon}`
+                !chatbotReduced ? 'oui-icon oui-icon-close' : `oui-icon ${buttonIcon}`
               }
             ></span>
             <span className="sr-only">{`Toggle ${title}`}</span>
           </button>
-          {reduced && (
+          {chatbotReduced && (
             <button
               title={`Close ${title}`}
-              className={`${styles.group_close_button} oui-button p-0`}
+              className={`${styles.group_close_button} oui-button z-10 p-0`} // fix cross below dot
               onClick={() => stop()}
             >
               <span className="oui-icon oui-icon-close m-auto"></span>
