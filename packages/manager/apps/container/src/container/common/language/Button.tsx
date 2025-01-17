@@ -7,7 +7,7 @@ import style from './style.module.scss';
 
 import { SMALL_DEVICE_MAX_SIZE } from '@/container/common/constants';
 
-type Props = {
+export type Props = {
   children?: JSX.Element;
   onClick(show: boolean): void;
   show?: boolean;
@@ -36,6 +36,7 @@ function LanguageButton({
         e.preventDefault();
         onClick(!show);
       }}
+      data-testid="languageButton"
     >
       <span className="oui-navbar-link__wrapper">
         <span className="oui-navbar-link__text">{children}</span>
