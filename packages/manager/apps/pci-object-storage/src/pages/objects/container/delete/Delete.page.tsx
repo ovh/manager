@@ -43,7 +43,7 @@ export default function DeletePage() {
 
   const isStorageS3 = !!storageToDelete?.s3StorageType;
   const isDeletionDisabled =
-    !storageToDelete?.containerType && storageToDelete?.objectsCount > 0;
+    !storageToDelete?.containerType && container?.objects.length > 0;
 
   const { deleteStorage, isPending: isPendingDelete } = useDeleteStorage({
     projectId,
@@ -106,8 +106,7 @@ export default function DeletePage() {
         'pci_projects_project_storages_containers_container_delete_cancel_label',
       )}
     >
-      {storageToDelete?.objectsCount > 0 ||
-      storageToDelete?.storedObjects > 0 ? (
+      {container?.objects.length > 0 ? (
         <OdsText preset="paragraph">
           <OdsMessage color="warning" className="mt-6" isDismissible={false}>
             {t(
