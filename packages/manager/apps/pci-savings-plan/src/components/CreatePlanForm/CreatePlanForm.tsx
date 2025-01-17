@@ -1,52 +1,47 @@
 import { usePciUrl } from '@ovh-ux/manager-pci-common';
-import { Description, Subtitle } from '@ovh-ux/manager-react-components';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
+import { Subtitle, useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ODS_BUTTON_VARIANT,
-  ODS_CHECKBOX_BUTTON_SIZE,
   ODS_ICON_NAME,
-  ODS_ICON_SIZE,
   ODS_INPUT_TYPE,
-  ODS_MESSAGE_TYPE,
   ODS_SPINNER_SIZE,
-  ODS_TILE_VARIANT,
-  OdsInputValueChangeEventDetail,
-  OsdsInputCustomEvent,
+  OdsInputChangeEvent,
 } from '@ovhcloud/ods-components';
-import {
-  OsdsButton,
-  OsdsCheckbox,
-  OsdsCheckboxButton,
-  OsdsInput,
-  OsdsLink,
-  OsdsMessage,
-  OsdsSpinner,
-  OsdsTabBar,
-  OsdsTabBarItem,
-  OsdsTabs,
-  OsdsText,
-  OsdsTile,
-  OsdsIcon,
-} from '@ovhcloud/ods-components/react';
-import React, { FC, useEffect, useMemo, useState, Suspense } from 'react';
 
+import {
+  OdsButton,
+  OdsCard,
+  OdsCheckbox,
+  OdsInput,
+  OdsLink,
+  OdsMessage,
+  OdsQuantity,
+  OdsSpinner,
+  OdsTab,
+  OdsTabs,
+  OdsText,
+} from '@ovhcloud/ods-components/react';
+import React, {
+  FC,
+  Suspense,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
+
+import { MutationStatus, useMutationState } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { MutationStatus, useMutationState } from '@tanstack/react-query';
 
 import {
   ButtonType,
   PageLocation,
   useOvhTracking,
+  ShellContext,
 } from '@ovh-ux/manager-react-shell-client';
-import QuantitySelector, {
-  MAX_QUANTITY,
-} from '@/components/QuantitySelector/QuantitySelector';
+import clsx from 'clsx';
 import useTechnicalInfo, { usePricingInfo } from '@/hooks/useCatalogCommercial';
 import {
   getMutationKeyCreateSavingsPlan,
@@ -56,30 +51,31 @@ import {
 import rancherSrc from '../../assets/images/rancher.png';
 import serviceSrc from '../../assets/images/service.png';
 import {
+  PricingByDurationType,
+  useDefaultOfferId,
+} from '../../hooks/planCreation/useDefaultOffer';
+import {
   InstanceInfo,
   InstanceTechnicalName,
   Resource,
   ResourceType,
 } from '../../types/CreatePlan.type';
-import { formatDate } from '../../utils/formatter/date';
+import { formatDate, toLocalDateUTC } from '../../utils/formatter/date';
 import { isValidSavingsPlanName } from '../../utils/savingsPlan';
 import Commitment from '../Commitment/Commitment';
-import LegalLinks from '../LegalLinks/LegalLinks';
 import SimpleTile from '../SimpleTile/SimpleTile';
 import { TileTechnicalInfo } from '../TileTechnicalInfo/TileTechnicalInfo';
-import {
-  PricingByDurationType,
-  useDefaultOfferId,
-} from '../../hooks/planCreation/useDefaultOffer';
+import LegalLinks from '../LegalLinks/LegalLinks';
 
 const COMMON_SPACING = 'my-4';
 
 export const DescriptionWrapper: React.FC<{
   children: string;
-}> = ({ children }) => {
+  className?: string;
+}> = ({ children, className }) => {
   return (
-    <div className={COMMON_SPACING}>
-      <Description>{children}</Description>
+    <div className={clsx(COMMON_SPACING, className)}>
+      <OdsText>{children}</OdsText>
     </div>
   );
 };
@@ -195,6 +191,8 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
       )
     : [];
 
+  const isValidPlanName = isValidSavingsPlanName(planName);
+
   const isButtonActive = useMemo(
     () =>
       quantity > 0 &&
@@ -203,7 +201,8 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
       selectedResource &&
       isLegalChecked &&
       planName &&
-      !isDiscoveryProject,
+      !isDiscoveryProject &&
+      isValidPlanName,
     [
       quantity,
       offerIdSelected,
@@ -212,6 +211,7 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
       isLegalChecked,
       planName,
       isDiscoveryProject,
+      isValidPlanName,
     ],
   );
 
@@ -246,6 +246,12 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
 
   const onCreateSavingsPlan = () => {
     if (offerIdSelected) {
+      trackClick({
+        location: PageLocation.funnel,
+        buttonType: ButtonType.button,
+        actionType: 'action',
+        actions: [`add_savings_plan::cancell`],
+      });
       onCreatePlan({
         offerId: offerIdSelected,
         displayName: planName,
@@ -254,21 +260,28 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
     }
   };
 
-  const onChangeQuantity = (v: number) => setQuantity(v);
+  const handleQuantityChange = useCallback(
+    (event: OdsInputChangeEvent) => {
+      const newValue = Number(event.detail.value);
+      if (newValue >= 1 && newValue <= 1000) {
+        setQuantity(newValue);
+      } else {
+        setQuantity(1);
+      }
+    },
+    [setQuantity],
+  );
 
   return (
     <div>
       <Block>
         {hasCreationErrorMessage && (
-          <OsdsMessage type={ODS_MESSAGE_TYPE.error} className="my-4">
-            <OsdsText
-              color={ODS_THEME_COLOR_INTENT.text}
-              className="inline-block"
-            >
+          <OdsMessage color="danger" className="my-4">
+            <OdsText className="inline-block">
               Une erreur est survenue lors de la création : &nbsp;
               {hasCreationErrorMessage}
-            </OsdsText>
-          </OsdsMessage>
+            </OdsText>
+          </OdsMessage>
         )}
         <Subtitle>{t('choose_ressource')}</Subtitle>
         <DescriptionWrapper>
@@ -277,12 +290,19 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
         <div className="flex flex-row  w-full overflow-x-auto">
           {resources.map((resource) => (
             <SimpleTile
+              className="py-5"
               key={resource.value.toString()}
               isActive={selectedResource === resource.value}
               onClick={() => onChangeResource(resource.value)}
             >
-              <img className="w-16 h-16" src={resource.img} alt="" />
-              <Description>{resource.label}</Description>
+              <img
+                className="w-16 h-16"
+                src={resource.img}
+                alt={resource.value}
+              />
+              <div>
+                <OdsText>{resource.label}</OdsText>
+              </div>
             </SimpleTile>
           ))}
         </div>
@@ -290,27 +310,25 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
       <Block>
         <Subtitle>{t('select_model')}</Subtitle>
         {isInstance && (
-          <div className={COMMON_SPACING}>
-            <OsdsTabs panel={instanceCategory}>
-              <OsdsTabBar slot="top">
-                {tabsList.map((tab) => (
-                  <OsdsTabBarItem
-                    key={`osds-tab-bar-item-${tab.technicalName}`}
-                    panel={tab.technicalName}
-                    onClick={() => setInstanceCategory(tab.technicalName)}
-                  >
-                    {tab.label}
-                  </OsdsTabBarItem>
-                ))}
-              </OsdsTabBar>
-            </OsdsTabs>
+          <div className="mb-[16px] mt-[12px]">
+            <OdsTabs slot="top">
+              {tabsList.map((tab) => (
+                <OdsTab
+                  key={`Ods-tab-bar-item-${tab.technicalName}`}
+                  isSelected={tab.technicalName === instanceCategory}
+                  onClick={() => setInstanceCategory(tab.technicalName)}
+                >
+                  {tab.label}
+                </OdsTab>
+              ))}
+            </OdsTabs>
           </div>
         )}
         <DescriptionWrapper>
           {t(getDescriptionInstanceKey(instanceCategory))}
         </DescriptionWrapper>
         {!isTechnicalInfoLoading ? (
-          <div className="flex flex-row w-full overflow-x-auto">
+          <div className="flex flex-row w-full overflow-x-auto mb-[32px]">
             {currentInstanceSelected.technical?.map(({ name, technical }) => (
               <TileTechnicalInfo
                 key={name}
@@ -322,63 +340,41 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
             ))}
           </div>
         ) : (
-          <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
+          <OdsSpinner size={ODS_SPINNER_SIZE.md} />
         )}
       </Block>
       <Block>
         <Subtitle>{t('select_quantity')}</Subtitle>
-        <DescriptionWrapper>
+        <DescriptionWrapper className="mb-[12px]">
           {t('select_quantity_description')}
         </DescriptionWrapper>
-        <OsdsTile
-          rounded
-          inline
-          variant={ODS_TILE_VARIANT.stroked}
-          className="flex flex-row items-center mr-5 text-center justify-between w-full"
-        >
-          <span slot="start">
-            <OsdsText>{t('quantity_label')}</OsdsText>
-          </span>
-          <span slot="end">
-            <QuantitySelector
-              quantity={quantity}
-              onMinusClick={() => setQuantity(quantity - 1)}
-              onPlusClick={() => {
-                if (quantity < MAX_QUANTITY) {
-                  setQuantity(quantity + 1);
-                }
-              }}
-              onChangeQuantity={onChangeQuantity}
-            />
-          </span>
-        </OsdsTile>
-        <OsdsMessage type={ODS_MESSAGE_TYPE.info} className="my-4">
-          <OsdsText
-            color={ODS_THEME_COLOR_INTENT.text}
-            className="inline-block"
-          >
+        <OdsCard className="flex flex-row items-center mr-5 p-4 text-center justify-between w-full mb-[32px] mt-[16px]">
+          <OdsText>{t('quantity_label')}</OdsText>
+          <OdsQuantity
+            onOdsChange={handleQuantityChange}
+            value={quantity}
+            min={1}
+            max={1000}
+            name="quantity"
+          />
+        </OdsCard>
+        <OdsMessage className="my-4" isDismissible={false}>
+          <OdsText className="inline-block">
             {t(
               isInstance
                 ? 'quantity_banner_instance'
                 : 'quantity_banner_rancher',
             )}
             {isInstance && (
-              <OsdsLink
-                color={ODS_THEME_COLOR_INTENT.primary}
+              <OdsLink
                 href={`${pciUrl}/quota`}
-                target={OdsHTMLAnchorElementTarget._blank}
-              >
-                {t('quantity_banner_instance_link')}
-                <OsdsIcon
-                  className="ml-2"
-                  name={ODS_ICON_NAME.EXTERNAL_LINK}
-                  size={ODS_ICON_SIZE.xxs}
-                  color={ODS_THEME_COLOR_INTENT.primary}
-                />
-              </OsdsLink>
+                target="_blank"
+                icon={ODS_ICON_NAME.externalLink}
+                label={t('quantity_banner_instance_link')}
+              />
             )}
-          </OsdsText>
-        </OsdsMessage>
+          </OdsText>
+        </OdsMessage>
       </Block>
       <Block>
         <Subtitle>{t('select_commitment')}</Subtitle>
@@ -403,77 +399,54 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
               );
             })
           ) : (
-            <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
+            <OdsSpinner size={ODS_SPINNER_SIZE.md} />
           )}
         </Suspense>
       </Block>
       <Block>
         <Subtitle>{t('choose_name')}</Subtitle>
-        <OsdsInput
+        <OdsInput
+          name="savings-plan-name-input"
           placeholder={t('savings_plan_name_input_placeholder')}
           aria-label="savings-plan-name-input"
           type={ODS_INPUT_TYPE.text}
-          color={
-            isValidSavingsPlanName(planName)
-              ? ODS_THEME_COLOR_INTENT.primary
-              : ODS_THEME_COLOR_INTENT.error
-          }
+          hasError={!isValidPlanName}
           className={`${COMMON_SPACING} md:w-1/3`}
           value={planName}
-          onOdsValueChange={(
-            e: OsdsInputCustomEvent<OdsInputValueChangeEventDetail>,
-          ) => setPlanName(e.target.value as string)}
+          onOdsChange={(e) => setPlanName(e.target.value as string)}
         />
-        <Description>{t('input_name_rules')}</Description>
+        <div>
+          <OdsText>{t('input_name_rules')}</OdsText>
+        </div>
       </Block>
       <Block>
-        <OsdsCheckbox>
-          <OsdsCheckboxButton
-            color={ODS_THEME_COLOR_INTENT.primary}
-            size={ODS_CHECKBOX_BUTTON_SIZE.sm}
-            interactive={true}
-            checked={isLegalChecked}
-            onClick={() => setIsLegalChecked(!isLegalChecked)}
-            hasFocus={true}
-          >
-            <OsdsText
-              color={ODS_THEME_COLOR_INTENT.text}
-              slot="end"
-              level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-              size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-            >
-              {t('legal_checkbox')}
-            </OsdsText>
-          </OsdsCheckboxButton>
-        </OsdsCheckbox>
-        <LegalLinks />
-      </Block>
-      <div className="flex mt-8">
-        <OsdsButton
+        <OdsCheckbox
+          inputId="checkbox-label"
           className="mr-4"
-          slot="actions"
-          variant={ODS_BUTTON_VARIANT.stroked}
-          color={ODS_THEME_COLOR_INTENT.primary}
-          onClick={() => {
-            trackClick({
-              location: PageLocation.funnel,
-              buttonType: ButtonType.button,
-              actionType: 'action',
-              actions: [`add_savings_plan::cancell`],
-            });
-            navigate('..');
-          }}
-        >
-          {t('cta_cancel')}
-        </OsdsButton>
-        <OsdsButton
-          disabled={!isButtonActive || undefined}
-          slot="actions"
-          color={ODS_THEME_COLOR_INTENT.primary}
+          name="legal-checked"
+          isChecked={isLegalChecked}
+          onClick={() => setIsLegalChecked(!isLegalChecked)}
+        />
+        <label htmlFor="checkbox-label">
+          <OdsText>{t('legal_checkbox')}</OdsText>
+        </label>
+        <LegalLinks className="mr-[5px]" />
+      </Block>
+      <div className="flex mt-[40px]">
+        <OdsButton
+          data-testid="cta-cancel-button"
+          label={t('cta_cancel')}
+          className="mr-4"
+          variant={ODS_BUTTON_VARIANT.outline}
+          onClick={() => navigate('..')}
+        />
+
+        <OdsButton
+          data-testid="cta-plan-button"
+          label={t('cta_plan')}
+          isDisabled={!isButtonActive}
           onClick={onCreateSavingsPlan}
-        >
-          {t('cta_plan')}
-        </OsdsButton>
+        />
       </div>
     </div>
   );
@@ -486,7 +459,11 @@ export const CreatePlanFormContainer = ({
 }: {
   isDiscoveryProject: boolean;
 }) => {
-  const { t } = useTranslation('create');
+  const { environment } = useContext(ShellContext);
+  const locale = environment.getUserLocale();
+
+  const { t } = useTranslation(['create', 'listing']);
+  const { addSuccess } = useNotifications();
 
   const [instanceCategory, setInstanceCategory] = useState<
     InstanceTechnicalName
@@ -515,7 +492,20 @@ export const CreatePlanFormContainer = ({
     }
   }, [technicalList]);
 
-  const { mutate: onCreatePlan } = useSavingsPlanCreate();
+  const handleCreateSavingsPlanSuccess = useCallback(
+    (data: { startDate: string }) => {
+      addSuccess(
+        t('listing:banner_create_sp', {
+          startDate: toLocalDateUTC(data.startDate, locale),
+        }),
+      );
+    },
+    [addSuccess, t, locale],
+  );
+
+  const { mutate: onCreatePlan } = useSavingsPlanCreate(
+    handleCreateSavingsPlanSuccess,
+  );
 
   const sortedPriceByDuration = [...pricingByDuration].sort(
     (a, b) => a.duration - b.duration,

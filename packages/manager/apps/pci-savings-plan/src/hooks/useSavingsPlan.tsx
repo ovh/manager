@@ -8,6 +8,7 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { useServices } from './useService';
 import {
+  UseSavingsPlanParams,
   SavingsPlanContract,
   SavingsPlanPlanedChangeStatus,
   SavingsPlanService,
@@ -105,12 +106,18 @@ export const getMutationKeySPChangePeriod = (
   serviceId: number,
 ) => ['savings-plan', serviceId, 'change-period', savingsPlanId];
 
-export const useSavingsPlanChangePeriod = (savingsPlanId: string) => {
+export const useSavingsPlanChangePeriod = ({
+  savingsPlanId,
+  onSuccess,
+}: UseSavingsPlanParams) => {
   const { refetch } = useSavingsPlan();
   const serviceId = useServiceId();
 
   return useMutation({
-    onSuccess: () => refetch(),
+    onSuccess: async () => {
+      onSuccess?.();
+      refetch();
+    },
     mutationKey: getMutationKeySPChangePeriod(savingsPlanId, serviceId),
     mutationFn: ({
       periodEndAction,
@@ -136,19 +143,27 @@ export const getMutationKeyCreateSavingsPlan = (serviceId: number) => [
   'create',
 ];
 
-export const useSavingsPlanEditName = (savingsPlanId: string) => {
+export const useSavingsPlanEditName = ({
+  savingsPlanId,
+  onSuccess,
+}: UseSavingsPlanParams) => {
   const { refetch } = useSavingsPlan();
   const serviceId = useServiceId();
 
   return useMutation({
-    onSuccess: () => refetch(),
     mutationKey: getMutationKeySPEditName(savingsPlanId, serviceId),
     mutationFn: ({ displayName }: { displayName: string }) =>
       putSubscribedSavingsPlanEditName(serviceId, savingsPlanId, displayName),
+    onSuccess: async () => {
+      onSuccess?.();
+      refetch();
+    },
   });
 };
 
-export const useSavingsPlanCreate = () => {
+export const useSavingsPlanCreate = (
+  onSuccess?: (data: SavingsPlanService) => void,
+) => {
   const { refetch } = useSavingsPlan();
   const { trackClick } = useOvhTracking();
   const serviceId = useServiceId();
@@ -157,7 +172,6 @@ export const useSavingsPlanCreate = () => {
 
   return useMutation({
     onSuccess: async (res) => {
-      const { data } = await refetch();
       trackClick({
         location: PageLocation.funnel,
         buttonType: ButtonType.button,
@@ -166,8 +180,9 @@ export const useSavingsPlanCreate = () => {
           `add_savings_plan::confirm::savings_plan_created_${res.period}_${res.flavor}_${res.model}_${res.size}`,
         ],
       });
-
-      if (data?.length) {
+      const { data: refetchData } = await refetch();
+      if (refetchData?.length) {
+        onSuccess?.(refetchData[0]);
         navigate(getSavingsPlansUrl(projectId));
       }
     },
