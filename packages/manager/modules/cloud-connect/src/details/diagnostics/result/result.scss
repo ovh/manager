@@ -1,0 +1,13 @@
+#ovh-cloudConnect-diagnostic-result-modal {
+  .result-output {
+    border-radius: 0;
+    background-color: black;
+    color: white;
+    white-space: pre-wrap;
+    overflow-y: auto;
+    padding: 1em;
+    max-height: 400px;
+    overflow: auto;
+    word-wrap: break-word;
+  }
+}
