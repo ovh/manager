@@ -5,11 +5,11 @@ import { Storage } from '@/types/cloud/project/database/availability/specificati
 /** Specifications of the availability of databases engines on cloud projects */
 export interface Specifications {
   /** Flavor name */
-  flavor?: string;
+  flavor: string;
   /** Type of network */
-  network?: NetworkTypeEnum;
+  network: NetworkTypeEnum;
   /** Specification of the nodes */
-  nodes?: Nodes;
+  nodes: Nodes;
   /** Specification of the storage */
   storage?: Storage;
 }

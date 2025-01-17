@@ -1,7 +1,7 @@
 /** Cloud database kafka topic creation definition */
 export interface TopicCreation {
   /** Topic ID */
-  id?: string;
+  id: string;
   /** Minimum insync replica accepted for this topic */
   minInsyncReplicas: number;
   /** Name of the topic */

@@ -3,15 +3,15 @@ import { TypeEnum } from '@/types/cloud/project/database/capabilities/advancedCo
 /** Specific database engine capability */
 export interface Property {
   /** Description of the property */
-  description?: string;
+  description: string;
   /** Maximum value for the property if numeric and applicable */
   maximum?: number;
   /** Minimum value for the property if numeric and applicable */
   minimum?: number;
   /** Property name */
-  name?: string;
+  name: string;
   /** Data type of the property */
-  type?: TypeEnum;
+  type: TypeEnum;
   /** Possible values for the property if string and applicable */
   values?: string[];
 }

@@ -3,9 +3,9 @@ import { StatusEnum } from '@/types/cloud/project/database/kafkaConnect/connecto
 /** KafkaConnect connector definition */
 export interface Task {
   /** Task ID */
-  id?: number;
+  id: number;
   /** Status of the task */
-  status?: StatusEnum;
+  status: StatusEnum;
   /** Trace of the task */
-  trace?: string;
+  trace: string;
 }

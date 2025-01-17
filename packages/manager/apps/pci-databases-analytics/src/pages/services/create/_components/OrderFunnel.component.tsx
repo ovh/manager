@@ -123,7 +123,7 @@ const OrderFunnel = ({
         serviceInfos.disk = {
           size:
             model.result.flavor.storage.minimum.value + data.additionalStorage,
-        };
+        } as database.service.Disk;
       }
       addService(serviceInfos);
     },

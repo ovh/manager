@@ -1,4 +1,4 @@
-/** Defines the source to fork a cluster from a backup. DEPRECATED: use forkFrom */
+/** @deprecated Defines the source to fork a cluster from a backup. DEPRECATED: use forkFrom */
 export interface BackupFork {
   /** Backup ID (not compatible with pointInTime) */
   id: string;

@@ -3,21 +3,21 @@ import { StatusEnum } from '@/types/cloud/project/database/StatusEnum';
 /** Redis user with password definition */
 export interface UserWithPassword {
   /** Categories of the user */
-  categories?: string[];
+  categories: string[];
   /** Channels of the user */
-  channels?: string[];
+  channels: string[];
   /** Commands of the user */
-  commands?: string[];
+  commands: string[];
   /** Date of the creation of the user */
-  createdAt?: string;
+  createdAt: string;
   /** User ID */
-  id?: string;
+  id: string;
   /** Keys of the user */
-  keys?: string[];
+  keys: string[];
   /** Password of the user */
-  password?: string;
+  password: string;
   /** Current status of the user */
-  status?: StatusEnum;
+  status: StatusEnum;
   /** Name of the user */
-  username?: string;
+  username: string;
 }
