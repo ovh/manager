@@ -25,6 +25,7 @@ export const CSV_HEADERS = [
   },
 ];
 
+export const FETCH_PAGE_SIZE = 100;
 export const CSV_FILENAME = 'export_ips.csv';
 export const CSV_DATA_ENCODING = 'base64';
 export const CSV_DATA_SCHEME = `data:text/csv;charset=ISO-8859-1;${CSV_DATA_ENCODING}`;
@@ -36,4 +37,5 @@ export default {
   CSV_DATA_ENCODING,
   CSV_DATA_SCHEME,
   CSV_SEPARATOR,
+  FETCH_PAGE_SIZE,
 };
