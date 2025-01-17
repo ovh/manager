@@ -5,3 +5,12 @@ import { PointerEvent } from './helpers/pointerEvent';
 // it is requiered for DropdownMenus
 // source: https://github.com/radix-ui/primitives/issues/856#issuecomment-928704064
 window.PointerEvent = PointerEvent as any;
+
+const originalConsoleError = console.error;
+
+console.error = (...args) => {
+  if (typeof args[0] === 'string' && args[0].includes('connect ECONNREFUSED')) {
+    return;
+  }
+  originalConsoleError(...args);
+};
