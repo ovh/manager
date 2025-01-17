@@ -5,6 +5,25 @@ import { useMemo } from 'react';
 import { getServerContainer, TObject } from '@/api/data/container';
 import { paginateResults, sortResults } from '@/helpers';
 
+export const getContainerQueryKey = ({
+  projectId,
+  region,
+  containerName,
+  containerId,
+}: {
+  projectId: string;
+  region: string;
+  containerName: string;
+  containerId: string;
+}) => [
+  'project',
+  projectId,
+  'region',
+  region,
+  'server-container',
+  containerId || containerName,
+];
+
 export const useServerContainer = (
   projectId: string,
   region: string,
@@ -12,7 +31,12 @@ export const useServerContainer = (
   id: string,
 ) => {
   return useQuery({
-    queryKey: ['project', projectId, 'region', region, 'server-container', id],
+    queryKey: getContainerQueryKey({
+      projectId,
+      region,
+      containerId: id,
+      containerName: name,
+    }),
     queryFn: () => getServerContainer(projectId, region, name, id),
     enabled: !!projectId && !!name && !!region,
   });

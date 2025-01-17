@@ -50,24 +50,18 @@ export const getStorages = async (
   return data;
 };
 
-export const deleteContainer = async (
-  projectId: string,
-  containerId: string,
-) => {
-  console.log(`/cloud/project/${projectId}/storage/${containerId}`);
-  await v6.delete(`/cloud/project/${projectId}/storage/${containerId}`);
-};
+export const deleteSwiftContainer = (projectId: string, containerId: string) =>
+  v6.delete(`/cloud/project/${projectId}/storage/${containerId}`);
 
-export const deleteS3Container = async (
+export const deleteS3Container = (
   projectId: string,
   region: string,
   s3StorageType: string,
   name: string,
-) => {
-  await v6.delete(
+) =>
+  v6.delete(
     `/cloud/project/${projectId}/region/${region}/${s3StorageType}/${name}`,
   );
-};
 
 export const getStorage = async (
   projectId: string,

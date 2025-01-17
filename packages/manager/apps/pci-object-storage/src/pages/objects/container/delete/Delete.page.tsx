@@ -29,15 +29,18 @@ export default function DeletePage() {
   const { data: storages, isPending: isStoragesPending } = useAllStorages(
     projectId,
   );
+
   const storageToDelete = storages?.resources?.find(
     (storage) => storage.name === searchParams.get('containerId'),
   );
+
   const { data: container, isPending: isPendingContainer } = useServerContainer(
     projectId,
     storageToDelete?.region,
     storageToDelete?.name,
     storageToDelete?.id,
   );
+
   const isStorageS3 = !!storageToDelete?.s3StorageType;
   const isDeletionDisabled =
     !storageToDelete?.containerType && storageToDelete?.objectsCount > 0;
@@ -78,7 +81,7 @@ export default function DeletePage() {
     },
   });
 
-  const isPending = isPendingDelete || isStoragesPending;
+  const isPending = isPendingDelete || isStoragesPending || isPendingContainer;
 
   return (
     <DeletionModal
@@ -88,7 +91,7 @@ export default function DeletePage() {
       onCancel={onCancel}
       onClose={onClose}
       onConfirm={() => {
-        deleteStorage(storageToDelete, container.objects);
+        deleteStorage({ storage: storageToDelete, objects: container.objects });
         tracking?.trackClick({
           name: `${PAGE_PREFIX}storages::objects::delete::confirm`,
           type: 'action',
