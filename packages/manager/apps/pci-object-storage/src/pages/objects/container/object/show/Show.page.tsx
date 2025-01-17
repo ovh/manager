@@ -283,7 +283,7 @@ export default function ObjectPage() {
                           // count is a reserved word in i18n(plurals) and should be a number, thus this quick fix since we couldn't change the key in trad files
                         ).replace(
                           '{{ count }}',
-                          `<strong>${container?.objectsCount}</strong>`,
+                          `<strong>${container?.objectsCount || 0}</strong>`,
                         ),
                       }}
                     ></span>
