@@ -62,9 +62,10 @@ create_release_note() (
 )
 
 push_and_release() {
-  printf "%s\n" "Commit mrc changes"
-  git add packages/manager-react-components/package.json packages/manager-react-components/CHANGELOG.md
-  #git commit -s --amend --no-edit
+  printf "%s\n" "Commit and tag"
+  git add .
+  git commit -s -m "release: $1"
+  git tag -a -m "release: $1" "$1"
 }
 
 update_sonar_version() {
@@ -125,7 +126,7 @@ main() {
       # Create release note for manager-react-components
       RELEASE_NOTE+="$(create_release_note "$path_mrc" "$name_mrc")\n\n"
 
-      #push_and_release "$next_tag"
+      push_and_release "$next_tag"
     fi
   done <<< "$changed_packages"
 
