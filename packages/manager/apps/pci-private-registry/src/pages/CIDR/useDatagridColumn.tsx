@@ -15,6 +15,7 @@ import { capitalizeAndJoin } from '@/helpers';
 import Checkboxes from '@/components/CIDR/Checkboxes.component';
 import AllCheckboxComponent from '@/components/CIDR/AllCheckbox.component';
 import useDataGridContext from './useDatagridContext';
+import AuthorizationLabel from '@/components/CIDR/AuthorizationLabel.component';
 
 function showCheckboxes(draft: boolean, dataLength: number): boolean {
   const minDataLength = draft ? 3 : 2;
@@ -88,7 +89,8 @@ export const useDatagridColumn = () => {
         ) : (
           <div>{capitalizeAndJoin(props.authorization)}</div>
         ),
-      label: t('private_registry_cidr_authorization'),
+      // need to had a Popover next to the label
+      label: ((<AuthorizationLabel />) as unknown) as string,
     },
     {
       id: 'add',

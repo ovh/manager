@@ -13,10 +13,7 @@ import {
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
 import { Filter } from '@ovh-ux/manager-core-api';
-import {
-  useIpRestrictionsWithFilter,
-  useUpdateIpRestriction,
-} from '@/api/hooks/useIpRestrictions';
+import { useUpdateIpRestriction } from '@/api/hooks/useIpRestrictions';
 import {
   FilterRestrictionsServer,
   TIPRestrictionsDefault,
@@ -31,7 +28,7 @@ type DeleteModalState = {
 export default function DeleteModal() {
   const { t } = useTranslation(['ip-restrictions']);
   const {
-    state: { filters, pagination, cidr, totalRows },
+    state: { cidr, totalRows },
   } = useLocation() as {
     state: DeleteModalState & { filters?: Filter[] } & {
       pagination?: PaginationState;
@@ -41,13 +38,6 @@ export default function DeleteModal() {
   const onClose = () => navigate('./..');
   const { projectId, registryId } = useParams();
 
-  const { data } = useIpRestrictionsWithFilter(
-    projectId,
-    registryId,
-    ['management', 'registry'],
-    pagination,
-    filters,
-  );
   const { addError, addSuccess } = useNotifications();
 
   const { updateIpRestrictions } = useUpdateIpRestriction({
@@ -78,7 +68,7 @@ export default function DeleteModal() {
       >,
       action: TIPRestrictionsMethodEnum.DELETE,
     });
-  }, [cidr, data, updateIpRestrictions]);
+  }, [cidr, updateIpRestrictions]);
 
   return (
     <PciModal

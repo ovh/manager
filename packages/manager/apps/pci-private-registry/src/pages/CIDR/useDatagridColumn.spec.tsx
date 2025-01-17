@@ -59,7 +59,7 @@ describe('useDatagridColumn', () => {
 
     const { result } = renderHook(() => useDatagridColumn(), {
       wrapper: ({ children }) => (
-        <DatagridProvider data={mockData.rows}>
+        <DatagridProvider data={mockData.rows} totalRows={mockData.rows.length}>
           <Wrap>{children}</Wrap>
         </DatagridProvider>
       ),

@@ -148,6 +148,10 @@ const Filters = () => {
             className="w-[70%]"
             value={searchField}
             onOdsSearchSubmit={({ detail }) => {
+              setPagination({
+                pageIndex: 0,
+                pageSize: pagination.pageSize,
+              });
               handleAddFilter(detail.inputValue);
               setSearchField('');
             }}
@@ -182,7 +186,12 @@ const Filters = () => {
                   },
                 ]}
                 onAddFilter={(addedFilter, column) => {
-                  handleAddFilter(addedFilter.value, column.id, column.label);
+                  handleAddFilter(
+                    addedFilter.value,
+                    column.id,
+                    column.label,
+                    addedFilter.comparator,
+                  );
                   filterPopoverRef.current?.closeSurface();
                 }}
               />

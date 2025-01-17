@@ -47,6 +47,7 @@ describe('DatagridProvider', () => {
         data={mockData}
         dataGrid={dataGrid}
         columnFilters={columnFilters}
+        totalRows={mockData.length}
       >
         <ConsumerComponent />
       </DatagridProvider>,

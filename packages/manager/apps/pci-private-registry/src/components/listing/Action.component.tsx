@@ -90,19 +90,6 @@ export default function ActionComponent({
     },
     {
       id: 5,
-      label: t('private_registry_common_delete'),
-      href: hrefDelete,
-      disabled:
-        registry.status !== PRIVATE_REGISTRY_STATUS.READY &&
-        registry.status !== PRIVATE_REGISTRY_STATUS.ERROR,
-      onClick: () =>
-        tracking?.trackClick({
-          name: 'PCI_PROJECTS_PRIVATEREGISTRY_DELETE',
-          type: 'action',
-        }),
-    },
-    {
-      id: 6,
       label: t('ip-restrictions:private_registry_cidr_manage_title'),
       href: hrefManageCIDR,
       disabled:
@@ -111,6 +98,19 @@ export default function ActionComponent({
       onClick: () =>
         tracking?.trackClick({
           name: 'PCI_PROJECTS_PRIVATEREGISTRY_MANAGE_CIDR',
+          type: 'action',
+        }),
+    },
+    {
+      id: 6,
+      label: t('private_registry_common_delete'),
+      href: hrefDelete,
+      disabled:
+        registry.status !== PRIVATE_REGISTRY_STATUS.READY &&
+        registry.status !== PRIVATE_REGISTRY_STATUS.ERROR,
+      onClick: () =>
+        tracking?.trackClick({
+          name: 'PCI_PROJECTS_PRIVATEREGISTRY_DELETE',
           type: 'action',
         }),
     },

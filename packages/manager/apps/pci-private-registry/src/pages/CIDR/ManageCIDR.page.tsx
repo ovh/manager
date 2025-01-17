@@ -85,12 +85,12 @@ export default function BlocIPBlock() {
     dataGrid.pagination,
     columnFilters.filters,
   );
-  const { t } = useTranslation(['ip-restrictions']);
   const methods = useForm<ConfirmCIDRSchemaType>({
     resolver: zodResolver(schemaAddCidr(dataCIDR.rows.map((e) => e.ipBlock))),
-    mode: 'onBlur',
-    reValidateMode: 'onChange',
+    mode: 'onSubmit',
+    reValidateMode: 'onBlur',
   });
+  const { t } = useTranslation(['ip-restrictions']);
 
   return (
     <>
@@ -119,8 +119,8 @@ export default function BlocIPBlock() {
         <DatagridProvider
           dataGrid={dataGrid}
           columnFilters={columnFilters}
-          key={dataCIDR.totalRows}
           data={dataCIDR.rows}
+          totalRows={dataCIDR.totalRows}
         >
           <BlockCIDR />
         </DatagridProvider>
