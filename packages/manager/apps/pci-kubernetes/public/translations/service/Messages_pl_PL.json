@@ -97,5 +97,7 @@
   "kube_service_cluster_etcd_quota": "Wykorzystanie limitu ETCD",
   "kube_service_cluster_etcd_quota_info": "Rozmiar ETCD to przestrzeń przydzielona do bazy danych ETCD zarządzanego klastra.",
   "kube_service_etcd_quota_error": "Ten klaster zużywa ponad 80% przydzielonego miejsca ETCD.",
-  "kube_service_etcd_quota_error_link": "Jak zarządzać zasobami ETCD?"
+  "kube_service_etcd_quota_error_link": "Jak zarządzać zasobami ETCD?",
+  "kube_service_show_optional": "Wyświetl więcej ustawień",
+  "kube_service_hide_optional": "Wyświetl mniej ustawień"
 }

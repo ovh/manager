@@ -1,4 +1,5 @@
-import { describe, it } from 'vitest';
+import { describe, it, expect } from 'vitest';
+import { z } from 'zod';
 import {
   compareFunction,
   formatIP,
@@ -6,6 +7,10 @@ import {
   isIPValid,
   paginateResults,
   getColorByPercentage,
+  camelToSnake,
+  filterSchemaKeys,
+  isBase64,
+  parseCommaSeparated,
 } from '@/helpers/index';
 
 describe('helper', () => {
@@ -85,5 +90,81 @@ describe('getColorByPercentage', () => {
 
   it('should return last color in thresholds if percentage exceeds 100', () => {
     expect(getColorByPercentage(120)).toBe('var(--ods-color-error-500)');
+  });
+});
+
+describe('camelToSnake', () => {
+  it('converts camelCase to snake_case', () => {
+    expect(camelToSnake('camelCase')).toBe('camel_case');
+    expect(camelToSnake('someLongVariableName')).toBe(
+      'some_long_variable_name',
+    );
+    expect(camelToSnake('already_snake_case')).toBe('already_snake_case');
+  });
+});
+
+describe('filterSchemaKeys', () => {
+  it('filters out keys from schema based on exclude list', () => {
+    const schema = z.object({
+      key1: z.string(),
+      key2: z.number(),
+      key3: z.boolean(),
+    });
+    const result = filterSchemaKeys(schema, ['key2']);
+    expect(result).toEqual(['key1', 'key3']);
+  });
+
+  it('returns all keys if exclude list is empty', () => {
+    const schema = z.object({
+      key1: z.string(),
+      key2: z.number(),
+    });
+    const result = filterSchemaKeys(schema, []);
+    expect(result).toEqual(['key1', 'key2']);
+  });
+
+  it('returns no keys if all are excluded', () => {
+    const schema = z.object({
+      key1: z.string(),
+      key2: z.number(),
+    });
+    const result = filterSchemaKeys(schema, ['key1', 'key2']);
+    expect(result).toEqual([]);
+  });
+});
+
+describe('parseCommaSeparated', () => {
+  it('parses a comma-separated string into an array', () => {
+    expect(parseCommaSeparated('a,b,c')).toEqual(['a', 'b', 'c']);
+  });
+
+  it('trims spaces around values', () => {
+    expect(parseCommaSeparated(' a , b , c ')).toEqual(['a', 'b', 'c']);
+  });
+
+  it('removes empty values', () => {
+    expect(parseCommaSeparated('a,,b,c,,')).toEqual(['a', 'b', 'c']);
+  });
+
+  it('handles arrays directly', () => {
+    expect(parseCommaSeparated(['a', ' b ', 'c'])).toEqual(['a', 'b', 'c']);
+  });
+
+  it('returns an empty array for undefined input', () => {
+    expect(parseCommaSeparated(undefined)).toEqual([]);
+  });
+});
+
+describe('isBase64', () => {
+  it('validates a correct Base64 string', () => {
+    expect(isBase64('SGVsbG8gd29ybGQ=')).toBe(true);
+  });
+
+  it('invalidates a non-Base64 string', () => {
+    expect(isBase64('NotBase64')).toBe(false);
+  });
+
+  it('invalidates a malformed Base64 string', () => {
+    expect(isBase64('SGVsbG8gd29ybGQ')).toBe(false);
   });
 });
