@@ -16,7 +16,7 @@ import { useMe } from '@/api/hooks/useMe';
 import { useSubnets } from '@/api/hooks/useSubnets';
 import { useGateways } from '@/api/hooks/useGateways';
 import { TGateway } from '@/api/data/gateways';
-import { useSelectedGateway } from '@/api/hooks/useSelectedGateway';
+import { useDefaultAvailableGateway } from '@/api/hooks/useDefaultAvailableGateway';
 import { CatalogPriceComponent } from '@/components/CatalogPrice.component';
 
 export const FloatingIpSummary = ({
@@ -41,7 +41,7 @@ export const FloatingIpSummary = ({
     projectId,
     networkId,
   );
-  const { state: selectedGateway } = useSelectedGateway();
+  const selectedGateway = useDefaultAvailableGateway(ipRegion);
 
   const { t: tOrder } = useTranslation('order');
 
@@ -96,20 +96,8 @@ export const FloatingIpSummary = ({
                   >
                     {tOrder(
                       'pci_additional_ip_create_summary_step_missing_components_description',
-                    )}
-                  </OsdsText>
-                </p>
-                <p>
-                  <OsdsText
-                    color={ODS_THEME_COLOR_INTENT.text}
-                    className="font-sans"
-                  >
-                    {tOrder(
-                      'pci_additional_ip_create_summary_step_gateway_name',
-                      {
-                        region: ipRegion,
-                      },
-                    )}
+                    )}{' '}
+                    : <b> Gateway.</b>
                   </OsdsText>
                 </p>
                 {selectedGateway && (
@@ -126,21 +114,13 @@ export const FloatingIpSummary = ({
                         'pci_additional_ip_create_summary_step_price',
                       )}{' '}
                       <CatalogPriceComponent
-                        price={selectedGateway.price.month}
-                        user={me}
-                        interval="month"
-                        maximumFractionDigits={4}
-                        locale={context.environment.getUserLocale()}
-                      />{' '}
-                      {tOrder('pci_additional_ip_create_summary_step_that_is')}{' '}
-                      <CatalogPriceComponent
                         price={selectedGateway.price.hour}
                         user={me}
                         maximumFractionDigits={4}
                         interval="hour"
                         locale={context.environment.getUserLocale()}
                       />
-                      <span>)*.</span>
+                      <span>).</span>
                     </OsdsText>
                   </p>
                 )}
