@@ -1,6 +1,9 @@
-import { InstallationForm } from '@/types/form.type';
+import {
+  InstallationFormErrors,
+  InstallationFormValues,
+} from '@/types/form.type';
 
-export const installationInitialValues: InstallationForm = {
+export const installationInitialValues: InstallationFormValues = {
   serviceName: '',
   datacenterId: null,
   clusterName: '',
@@ -14,3 +17,10 @@ export const installationInitialValues: InstallationForm = {
   sidamnPassword: '',
   systemPassword: '',
 } as const;
+
+export const installationInitialErrors: InstallationFormErrors = Object.keys(
+  installationInitialValues,
+).reduce(
+  (errors, key: keyof InstallationFormErrors) => ({ ...errors, [key]: '' }),
+  {} as InstallationFormErrors,
+);
