@@ -9,17 +9,13 @@ export default /* @ngInject */ ($stateProvider) => {
     layout: 'modal',
     resolve: {
       goBack: /* @ngInject */ (goToDiagnosticPage) => goToDiagnosticPage,
-      diagnostic: /* @ngInject */ (
-        $transition$,
-        cloudConnectService,
-        cloudConnect,
-      ) =>
-        cloudConnectService.getDiagnostic(
-          cloudConnect.id,
-          $transition$.params().diagnosticId,
-        ),
       diagnosticId: /* @ngInject */ ($transition$) =>
         $transition$.params().diagnosticId,
+      diagnostic: /* @ngInject */ (
+        cloudConnectService,
+        cloudConnect,
+        diagnosticId,
+      ) => cloudConnectService.getDiagnostic(cloudConnect.id, diagnosticId),
       breadcrumb: () => null,
     },
   });
