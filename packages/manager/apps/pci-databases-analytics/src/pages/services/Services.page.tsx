@@ -1,7 +1,12 @@
-import { useMemo } from 'react';
 import { Outlet, useParams } from 'react-router-dom';
+import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Plus } from 'lucide-react';
+import {
+  OdsButton,
+  OdsTag,
+  OdsAccordion,
+  OdsQuantity,
+} from '@ovhcloud/ods-components/react';
 import { useGetServices } from '@/hooks/api/database/service/useGetServices.hook';
 import ServicesList from './_components/ServiceListTable.component';
 import LegalMentions from '../_components/LegalMentions.component';
@@ -14,12 +19,17 @@ import { useTrackAction } from '@/hooks/useTracking';
 import { useUserActivityContext } from '@/contexts/UserActivityContext';
 import { TRACKING } from '@/configuration/tracking.constants';
 import * as database from '@/types/cloud/project/database';
+import { Form } from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
 
 const Services = () => {
   const { t } = useTranslation('pci-databases-analytics/services');
+
+  const [q, setQ] = useState(0);
   const track = useTrackAction();
   const { projectId, category } = useParams();
   const { isUserActive } = useUserActivityContext();
+  const [list, setList] = useState(['test', 'yop']);
   const servicesQuery = useGetServices(projectId, {
     refetchInterval: isUserActive && POLLING.SERVICES,
   });
@@ -48,14 +58,44 @@ const Services = () => {
           }
         />
       </div>
-      <Button
+      {list.map((i) => (
+        <OdsTag
+          label={i}
+          onOdsRemove={() => setList((old) => old.filter((a) => a !== i))}
+        />
+      ))}
+      <OdsQuantity
+        name="quant"
+        value={q}
+        onOdsChange={(e) => setQ(e.target.value)}
+        data-testid="coucouq"
+      />
+      <Input data-testid="coucou" />
+      q: {q}
+      <OdsAccordion>
+        <h2 slot="summary">This is an accordion</h2>
+        <div>
+          This is the content of the accordion
+          <OdsButton
+            onClick={() => setList(['test', ...list])}
+            label={'ClickMe'}
+          />
+          {list.map((i) => (
+            <OdsTag
+              label={i}
+              onOdsRemove={() => setList((old) => old.filter((a) => a !== i))}
+            />
+          ))}
+        </div>
+      </OdsAccordion>
+      <OdsButton
         data-testid="create-service-button"
         variant="outline"
         size="sm"
-        className="text-base"
-        asChild
+        className="text-base text-red-500"
+        label={t('createNewService')}
       >
-        <Link
+        {/* <Link
           to="./new"
           className="hover:no-underline"
           onClick={() => track(TRACKING.servicesList.createDatabaseClick())}
@@ -64,6 +104,8 @@ const Services = () => {
           {t('createNewService')}
         </Link>
       </Button>
+    </Link> */}
+      </OdsButton>
       <ServicesList services={filteredServices} />
       <LegalMentions className="mt-4" />
       <Outlet />
