@@ -43,6 +43,7 @@ const DeleteCredentialPage = () => {
 
   return (
     <DeleteModal
+      isOpen
       headline={t('key_management_service_credential_delete_modal_headline')}
       deleteInputLabel={t(
         'key_management_service_credential_delete_modal_input_label',

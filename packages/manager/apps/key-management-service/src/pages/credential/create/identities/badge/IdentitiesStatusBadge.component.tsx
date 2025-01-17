@@ -1,56 +1,51 @@
 import React from 'react';
-import { OsdsChip } from '@ovhcloud/ods-components/react';
-import {
-  ODS_CHIP_SIZE,
-  ODS_TEXT_COLOR_INTENT,
-  OdsChipAttribute,
-} from '@ovhcloud/ods-components';
+import { OdsBadge } from '@ovhcloud/ods-components/react';
+import { ODS_BADGE_COLOR, ODS_BADGE_SIZE } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import { IdentityStatus } from '@/types/identity.type';
 
-type IdentitiesStatusBadgeProps = Omit<OdsChipAttribute, 'color'> & {
-  status: IdentityStatus;
+const chipPropsByStatus: {
+  [key in IdentityStatus]: {
+    translationKey: string;
+    color: ODS_BADGE_COLOR;
+  };
+} = {
+  [IdentityStatus.password_change_required]: {
+    translationKey:
+      'key_management_service_credential_identity_status_password_change_required',
+    color: ODS_BADGE_COLOR.warning,
+  },
+  [IdentityStatus.disabled]: {
+    translationKey:
+      'key_management_service_credential_identity_status_disabled',
+    color: ODS_BADGE_COLOR.critical,
+  },
+  [IdentityStatus.ok]: {
+    translationKey: 'key_management_service_credential_identity_status_ok',
+    color: ODS_BADGE_COLOR.success,
+  },
 };
+
+type IdentitiesStatusBadgeProps = {
+  size?: ODS_BADGE_SIZE;
+  status: IdentityStatus;
+} & Record<string, string>;
 
 const IdentitiesStatusBadge = ({
   status,
-  size = ODS_CHIP_SIZE.md,
+  size = ODS_BADGE_SIZE.md,
   ...otherProps
 }: IdentitiesStatusBadgeProps) => {
   const { t } = useTranslation('key-management-service/credential');
-
-  const chipPropsByStatus: {
-    [key in IdentityStatus]: {
-      translationKey: string;
-      color: ODS_TEXT_COLOR_INTENT;
-    };
-  } = {
-    [IdentityStatus.password_change_required]: {
-      translationKey:
-        'key_management_service_credential_identity_status_password_change_required',
-      color: ODS_TEXT_COLOR_INTENT.warning,
-    },
-    [IdentityStatus.disabled]: {
-      translationKey:
-        'key_management_service_credential_identity_status_disabled',
-      color: ODS_TEXT_COLOR_INTENT.error,
-    },
-    [IdentityStatus.ok]: {
-      translationKey: 'key_management_service_credential_identity_status_ok',
-      color: ODS_TEXT_COLOR_INTENT.success,
-    },
-  };
-
   const props = chipPropsByStatus[status];
 
   return (
-    <OsdsChip
+    <OdsBadge
       size={size}
-      color={props?.color || ODS_TEXT_COLOR_INTENT.default}
+      color={props?.color || ODS_BADGE_COLOR.neutral}
       {...otherProps}
-    >
-      {props ? t(props.translationKey) : status}
-    </OsdsChip>
+      label={props ? t(props.translationKey) : status}
+    />
   );
 };
 

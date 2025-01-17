@@ -1,9 +1,12 @@
 import React, { Dispatch, SetStateAction, useEffect } from 'react';
 import { Subtitle } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-import { OsdsButton } from '@ovhcloud/ods-components/react';
-import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { OdsButton } from '@ovhcloud/ods-components/react';
+import {
+  ODS_BUTTON_COLOR,
+  ODS_BUTTON_SIZE,
+  ODS_BUTTON_VARIANT,
+} from '@ovhcloud/ods-components';
 import { useNavigate, useParams } from 'react-router-dom';
 import {
   ButtonType,
@@ -88,11 +91,6 @@ const CreateGeneralInformations = ({
             setValidity={setValidity}
             credentialValidityError={credentialValidityError}
           />
-          <Subtitle>
-            {t(
-              'key_management_service_credential_create_general_creation_method_title',
-            )}
-          </Subtitle>
           <CreateGeneralInformationsCreationMethod
             csr={csr}
             setCsr={setCsr}
@@ -101,11 +99,10 @@ const CreateGeneralInformations = ({
             credentialCreationMethodError={credentialCreationMethodError}
           />
           <div className="flex gap-4">
-            <OsdsButton
+            <OdsButton
               size={ODS_BUTTON_SIZE.md}
-              inline
-              variant={ODS_BUTTON_VARIANT.stroked}
-              color={ODS_THEME_COLOR_INTENT.primary}
+              variant={ODS_BUTTON_VARIANT.outline}
+              color={ODS_BUTTON_COLOR.primary}
               onClick={() => {
                 trackClick({
                   location: PageLocation.funnel,
@@ -115,13 +112,11 @@ const CreateGeneralInformations = ({
                 });
                 navigate(`/${okmsId}/${ROUTES_URLS.credentials}`);
               }}
-            >
-              {t('key_management_service_credential_create_cta_cancel')}
-            </OsdsButton>
-            <OsdsButton
+              label={t('key_management_service_credential_create_cta_cancel')}
+            />
+            <OdsButton
               size={ODS_BUTTON_SIZE.md}
-              inline
-              color={ODS_THEME_COLOR_INTENT.primary}
+              color={ODS_BUTTON_COLOR.primary}
               onClick={() => {
                 trackClick({
                   location: PageLocation.funnel,
@@ -131,16 +126,17 @@ const CreateGeneralInformations = ({
                 });
                 nextStep();
               }}
-              disabled={
+              isDisabled={
+                !name ||
                 !!credentialNameError ||
                 !!credentialDescriptionError ||
                 !!credentialValidityError ||
-                (!!credentialCreationMethodError && isCustomCsr) ||
-                undefined
+                (isCustomCsr && !csr)
               }
-            >
-              {t('key_management_service_credential_create_cta_add_identities')}
-            </OsdsButton>
+              label={t(
+                'key_management_service_credential_create_cta_add_identities',
+              )}
+            />
           </div>
         </div>
       </div>

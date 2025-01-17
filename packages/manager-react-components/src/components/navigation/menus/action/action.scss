@@ -1,0 +1,30 @@
+// Customize <OdsLink />
+.menu-item-link {
+  &::part(link) {
+    box-sizing: border-box;
+    width: 100%;
+    justify-content: left;
+    padding: 0 6px;
+    height: 32px;
+  }
+
+  &[is-disabled='false'] {
+    &::part(link) {
+      background-size: 0;
+
+      &:hover {
+        background-color: var(--ods-color-primary-100);
+      }
+    }
+  }
+}
+
+// Customize <OdsButton />
+.menu-item-button {
+  &::part(button) {
+    width: 100%;
+    justify-content: left;
+    height: 32px;
+    border-radius: 0;
+  }
+}

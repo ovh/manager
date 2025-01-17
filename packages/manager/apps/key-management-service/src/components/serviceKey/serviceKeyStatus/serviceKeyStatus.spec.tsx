@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  ODS_TEXT_COLOR_INTENT,
-  OdsChipAttribute,
-} from '@ovhcloud/ods-components';
+import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
 import { render } from '@testing-library/react';
 import { describe, expect, test } from 'vitest';
 import { ServiceKeyStatus } from './serviceKeyStatus.component';
@@ -12,47 +9,47 @@ describe('ServiceKeyStatus component test suite', () => {
   const useCases: {
     state: OkmsServiceKeyState;
     label: string;
-    colorValue: OdsChipAttribute['color'];
+    colorValue: ODS_BADGE_COLOR;
   }[] = [
     {
       state: OkmsServiceKeyState.active,
       label: 'key_management_service_service-keys_dashboard_field_state_active',
-      colorValue: ODS_TEXT_COLOR_INTENT.success,
+      colorValue: ODS_BADGE_COLOR.success,
     },
     {
       state: OkmsServiceKeyState.compromised,
       label:
         'key_management_service_service-keys_dashboard_field_state_compromised',
-      colorValue: ODS_TEXT_COLOR_INTENT.warning,
+      colorValue: ODS_BADGE_COLOR.warning,
     },
     {
       state: OkmsServiceKeyState.deactivated,
       label:
         'key_management_service_service-keys_dashboard_field_state_deactivated',
-      colorValue: ODS_TEXT_COLOR_INTENT.warning,
+      colorValue: ODS_BADGE_COLOR.warning,
     },
     {
       state: OkmsServiceKeyState.destroyed,
       label:
         'key_management_service_service-keys_dashboard_field_state_destroyed',
-      colorValue: ODS_TEXT_COLOR_INTENT.error,
+      colorValue: ODS_BADGE_COLOR.critical,
     },
     {
       state: OkmsServiceKeyState.destroyed_compromised,
       label:
         'key_management_service_service-keys_dashboard_field_state_destroyed_compromised',
-      colorValue: ODS_TEXT_COLOR_INTENT.error,
+      colorValue: ODS_BADGE_COLOR.critical,
     },
     {
       state: OkmsServiceKeyState.pre_active,
       label:
         'key_management_service_service-keys_dashboard_field_state_pre_active',
-      colorValue: ODS_TEXT_COLOR_INTENT.info,
+      colorValue: ODS_BADGE_COLOR.information,
     },
   ];
 
   test.each(useCases)(
-    'should return the right <OsdsChip /> configuration for $state state',
+    'should return the right <OdsBadge /> configuration for $state state',
     ({ state, colorValue, label }) => {
       // given state, colorValue and label
 
@@ -63,14 +60,14 @@ describe('ServiceKeyStatus component test suite', () => {
       const component = getByTestId('test');
 
       // then
-      expect(component).toHaveTextContent(label);
+      expect(component).toHaveProperty('label', label);
       expect(component).toHaveProperty('color', colorValue);
     },
   );
 
-  it('should return default <OsdsChip /> configuration for unexpected state', () => {
+  it('should return default <OdsBadge /> configuration for unexpected state', () => {
     // given
-    const serviceKeyState = 'AAA';
+    const serviceKeyState = 'unknown' as OkmsServiceKeyState;
 
     // when
     const { getByTestId } = render(
@@ -79,7 +76,7 @@ describe('ServiceKeyStatus component test suite', () => {
     const component = getByTestId('test');
 
     // then
-    expect(component).toHaveTextContent(serviceKeyState);
-    expect(component).toHaveProperty('color', ODS_TEXT_COLOR_INTENT.default);
+    expect(component).toHaveProperty('label', serviceKeyState);
+    expect(component).toHaveProperty('color', ODS_BADGE_COLOR.neutral);
   });
 });

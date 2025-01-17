@@ -1,28 +1,20 @@
 import React, { useContext, Dispatch, SetStateAction, Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  OsdsText,
-  OsdsSelect,
-  OsdsSelectOption,
-  OsdsFormField,
-  OsdsButton,
-  OsdsIcon,
-  OsdsSpinner,
+  OdsText,
+  OdsSelect,
+  OdsButton,
+  OdsSpinner,
 } from '@ovhcloud/ods-components/react';
-
 import {
   ODS_SPINNER_SIZE,
-  ODS_ICON_SIZE,
+  ODS_BUTTON_COLOR,
   ODS_ICON_NAME,
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
-  ODS_SELECT_SIZE,
+  ODS_TEXT_PRESET,
+  ODS_BUTTON_ICON_ALIGNMENT,
 } from '@ovhcloud/ods-components';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-} from '@ovhcloud/ods-common-theming';
 import {
   ButtonType,
   PageLocation,
@@ -33,6 +25,7 @@ import { useNavigate } from 'react-router-dom';
 import { ErrorBanner, Region } from '@ovh-ux/manager-react-components';
 import { useOrderCatalogOKMS } from '@/data/hooks/useOrderCatalogOKMS';
 import { ROUTES_URLS } from '@/routes/routes.constants';
+import { CREATE_KMS_TEST_IDS } from '@/pages/create/createKms.constants';
 
 export type RegionSelectorProps = {
   setOrderInitiated: () => void;
@@ -59,42 +52,35 @@ const RegionSelector = ({
   if (isError && error) {
     return (
       <Suspense>
-        <ErrorBanner error={error.response} />
+        <ErrorBanner
+          error={error.response}
+          data-testid={CREATE_KMS_TEST_IDS.catalogError}
+        />
       </Suspense>
     );
   }
   return (
-    <>
-      <div className="flex flex-col gap-6">
-        <OsdsText
-          level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-          size={ODS_THEME_TYPOGRAPHY_SIZE._600}
-          color={ODS_THEME_COLOR_INTENT.text}
-        >
+    <div className="flex flex-col gap-8">
+      <div className="flex flex-col gap-4">
+        <OdsText preset={ODS_TEXT_PRESET.heading2}>
           {t('key_management_service_create_region_title')}
-        </OsdsText>
-        <OsdsText
-          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-          size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-          color={ODS_THEME_COLOR_INTENT.text}
-        >
+        </OdsText>
+        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t('key_management_service_create_region_description')}
-        </OsdsText>
+        </OdsText>
+        {isLoading && (
+          <OdsSpinner className="mr-3" size={ODS_SPINNER_SIZE.sm} />
+        )}
+        {orderCatalogOKMS && !isLoading && (
+          <OdsSelect
+            className="md:w-[250px] sm:w-full"
+            name="select-region"
+            placeholder={t('key_management_service_create_select_placeholder')}
+            data-testid={CREATE_KMS_TEST_IDS.selectRegion}
+            onOdsChange={(v) => {
+              const value = v.detail.value?.toString();
 
-        <OsdsFormField inline className="mb-5">
-          <div slot="label">
-            {isLoading && (
-              <OsdsSpinner className="mr-3" inline size={ODS_SPINNER_SIZE.sm} />
-            )}
-          </div>
-          {orderCatalogOKMS && !isLoading && (
-            <OsdsSelect
-              inline
-              data-testid="select-region"
-              size={ODS_SELECT_SIZE.md}
-              onOdsValueChange={(v) => {
-                const value = v.detail.value.toString();
-
+              if (value) {
                 trackClick({
                   location: PageLocation.funnel,
                   buttonType: ButtonType.select,
@@ -103,55 +89,47 @@ const RegionSelector = ({
                 });
 
                 selectRegion(value);
-              }}
-            >
-              <span slot="placeholder">
-                {t('key_management_service_create_select_placeholder')}
-              </span>
-              {orderCatalogOKMS.plans[0].configurations[0].values.map(
-                (region) => {
-                  return (
-                    <OsdsSelectOption
-                      value={region}
-                      key={region}
-                      data-testid={`select-region-option-${region}`}
-                    >
-                      <Region
-                        mode={'region'}
-                        name={region.toLowerCase().replaceAll('_', '-')}
-                      />
-                    </OsdsSelectOption>
-                  );
-                },
-              )}
-            </OsdsSelect>
-          )}
-        </OsdsFormField>
+              }
+            }}
+          >
+            {orderCatalogOKMS.plans[0].configurations[0].values.map(
+              (region) => (
+                <option
+                  key={region}
+                  value={region}
+                  data-testid={`${CREATE_KMS_TEST_IDS.selectRegion}-${region}`}
+                >
+                  <Region
+                    mode="region"
+                    name={region.toLowerCase().replaceAll('_', '-')}
+                  />
+                </option>
+              ),
+            )}
+          </OdsSelect>
+        )}
       </div>
-      <div className="flex flex-row mt-6 gap-4">
-        <OsdsButton
-          className="mr-1"
-          size={ODS_BUTTON_SIZE.sm}
-          variant={ODS_BUTTON_VARIANT.stroked}
-          color={ODS_THEME_COLOR_INTENT.primary}
+      <div className="flex flex-row gap-4">
+        <OdsButton
+          size={ODS_BUTTON_SIZE.md}
+          variant={ODS_BUTTON_VARIANT.outline}
+          color={ODS_BUTTON_COLOR.primary}
           onClick={() => {
             trackClick({
               location: PageLocation.funnel,
               buttonType: ButtonType.link,
               actionType: 'navigation',
-              actions: ['create_kms', 'cancel', selectedRegion],
+              actions: ['create_kms', 'cancel'],
             });
             navigate(ROUTES_URLS.root);
           }}
-        >
-          {t('key_management_service_create_cta_cancel')}
-        </OsdsButton>
-        <OsdsButton
-          className="mr-1"
-          size={ODS_BUTTON_SIZE.sm}
-          variant={ODS_BUTTON_VARIANT.flat}
-          color={ODS_THEME_COLOR_INTENT.primary}
-          disabled={!selectedRegion || undefined}
+          label={t('key_management_service_create_cta_cancel')}
+          data-testid={CREATE_KMS_TEST_IDS.ctaCancel}
+        />
+        <OdsButton
+          size={ODS_BUTTON_SIZE.md}
+          color={ODS_BUTTON_COLOR.primary}
+          isDisabled={!selectedRegion}
           onClick={() => {
             trackClick({
               location: PageLocation.funnel,
@@ -161,18 +139,13 @@ const RegionSelector = ({
             });
             setOrderInitiated();
           }}
-        >
-          <span slot="start">
-            <OsdsIcon
-              name={ODS_ICON_NAME.EXTERNAL_LINK}
-              size={ODS_ICON_SIZE.xs}
-              contrasted
-            ></OsdsIcon>
-          </span>
-          {t('key_management_service_create_cta_order')}
-        </OsdsButton>
+          icon={ODS_ICON_NAME.externalLink}
+          iconAlignment={ODS_BUTTON_ICON_ALIGNMENT.left}
+          label={t('key_management_service_create_cta_order')}
+          data-testid={CREATE_KMS_TEST_IDS.ctaCreate}
+        />
       </div>
-    </>
+    </div>
   );
 };
 

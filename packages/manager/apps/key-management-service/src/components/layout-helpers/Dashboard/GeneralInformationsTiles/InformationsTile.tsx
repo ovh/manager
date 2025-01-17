@@ -1,38 +1,29 @@
 import React from 'react';
 import {
   Clipboard,
-  Description,
+  DashboardTile,
+  LinkType,
+  Links,
   Region,
   ServiceDetails,
 } from '@ovh-ux/manager-react-components';
-import {
-  OsdsButton,
-  OsdsIcon,
-  OsdsLink,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
+import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
 import {
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-  ODS_LINK_REFERRER_POLICY,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
+  ODS_TEXT_PRESET,
+  ODS_BUTTON_COLOR,
+  ODS_BUTTON_SIZE,
 } from '@ovhcloud/ods-components';
 import {
   ButtonType,
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { OKMS } from '@/types/okms.type';
-import { Tile } from '@/components/dashboard/tile/tile.component';
-import { TileSeparator } from '@/components/dashboard/tile-separator/tileSeparator';
-import { TileValue } from '@/components/dashboard/tile-value/tileValue.component';
-import { TileItem } from '@/components/dashboard/tile-item/tileItem.component';
+import { ROUTES_URLS } from '@/routes/routes.constants';
 
 type InformationTileProps = {
   okmsData?: OKMS;
@@ -48,86 +39,102 @@ const InformationsTile = ({
   const navigate = useNavigate();
 
   return (
-    <Tile title={t('general_informations')}>
-      <TileSeparator />
-      <TileItem title={t('key_management_service_dashboard_field_label_name')}>
-        <div className="flex justify-between items-center">
-          <Description className="break-all">
-            {okmsServiceInfos?.resource.displayName}
-          </Description>
-          <div className="min-w-fit">
-            <OsdsButton
-              circle
-              variant={ODS_BUTTON_VARIANT.stroked}
-              color={ODS_THEME_COLOR_INTENT.primary}
-              onClick={() => navigate('update-name')}
-            >
-              <OsdsIcon
-                aria-label="edit"
-                name={ODS_ICON_NAME.PEN}
-                size={ODS_ICON_SIZE.xs}
-                color={ODS_THEME_COLOR_INTENT.primary}
+    <>
+      <DashboardTile
+        title={t('general_informations')}
+        items={[
+          {
+            id: 'name',
+            label: t('key_management_service_dashboard_field_label_name'),
+            value: (
+              <div className="flex justify-between items-center gap-2">
+                <OdsText
+                  preset={ODS_TEXT_PRESET.paragraph}
+                  className="break-all"
+                >
+                  {okmsServiceInfos?.resource.displayName}
+                </OdsText>
+                <div className="min-w-fit">
+                  <OdsButton
+                    aria-label="edit"
+                    size={ODS_BUTTON_SIZE.sm}
+                    variant={ODS_BUTTON_VARIANT.ghost}
+                    color={ODS_BUTTON_COLOR.primary}
+                    onClick={() => navigate(ROUTES_URLS.okmsUpdateName)}
+                    icon={ODS_ICON_NAME.pen}
+                    label=""
+                  />
+                </div>
+              </div>
+            ),
+          },
+          {
+            id: 'id',
+            label: t('key_management_service_dashboard_field_label_id'),
+            value: <Clipboard className="block w-full" value={okmsData?.id} />,
+          },
+          {
+            id: 'urn',
+            label: t('key_management_service_dashboard_field_label_urn'),
+            value: (
+              <Clipboard className="block w-full" value={okmsData?.iam.urn} />
+            ),
+          },
+          {
+            id: 'region',
+            label: t('key_management_service_dashboard_field_label_region'),
+            value: (
+              <OdsText preset={ODS_TEXT_PRESET.span}>
+                <Region
+                  mode="region"
+                  name={okmsData.region.toLowerCase().replaceAll('_', '-')}
+                />
+              </OdsText>
+            ),
+          },
+          {
+            id: 'restApi',
+            label: t('key_management_service_dashboard_field_label_restApi'),
+            value: (
+              <Clipboard
+                className="block w-full"
+                value={okmsData?.restEndpoint}
               />
-            </OsdsButton>
-          </div>
-        </div>
-      </TileItem>
-      <TileSeparator />
-      <TileItem title={t('key_management_service_dashboard_field_label_id')}>
-        <Clipboard value={okmsData?.id} />
-      </TileItem>
-      <TileSeparator />
-      <TileItem title={t('key_management_service_dashboard_field_label_urn')}>
-        <Clipboard value={okmsData?.iam.urn} />
-      </TileItem>
-      <TileSeparator />
-      <TileItem
-        title={t('key_management_service_dashboard_field_label_region')}
-      >
-        <OsdsText
-          size={ODS_TEXT_SIZE._400}
-          level={ODS_TEXT_LEVEL.body}
-          color={ODS_THEME_COLOR_INTENT.default}
-        >
-          <Region
-            mode={'region'}
-            name={okmsData.region.toLowerCase().replaceAll('_', '-')}
-          />
-        </OsdsText>
-      </TileItem>
-      <TileSeparator />
-      <TileItem
-        title={t('key_management_service_dashboard_field_label_restApi')}
-      >
-        <Clipboard value={okmsData?.restEndpoint} />
-      </TileItem>
-      <TileSeparator />
-      <TileItem title={t('key_management_service_dashboard_field_label_kmip')}>
-        <Clipboard value={okmsData?.kmipEndpoint} />
-      </TileItem>
-      <TileSeparator />
-      <TileItem
-        title={t('key_management_service_dashboard_field_label_swagger')}
-      >
-        <OsdsLink
-          href={okmsData?.swaggerEndpoint}
-          color={ODS_THEME_COLOR_INTENT.primary}
-          target={OdsHTMLAnchorElementTarget._blank}
-          referrerpolicy={ODS_LINK_REFERRER_POLICY.strictOriginWhenCrossOrigin}
-          onClick={() =>
-            trackClick({
-              location: PageLocation.page,
-              buttonType: ButtonType.externalLink,
-              actionType: 'navigation',
-              actions: ['swagger-ui'],
-            })
-          }
-        >
-          {okmsData?.swaggerEndpoint}
-        </OsdsLink>
-      </TileItem>
+            ),
+          },
+          {
+            id: 'kmip',
+            label: t('key_management_service_dashboard_field_label_kmip'),
+            value: (
+              <Clipboard
+                className="block w-full"
+                value={okmsData?.kmipEndpoint}
+              />
+            ),
+          },
+          {
+            id: 'swagger',
+            label: t('key_management_service_dashboard_field_label_swagger'),
+            value: (
+              <Links
+                type={LinkType.external}
+                href={okmsData?.swaggerEndpoint}
+                onClickReturn={() =>
+                  trackClick({
+                    location: PageLocation.page,
+                    buttonType: ButtonType.externalLink,
+                    actionType: 'navigation',
+                    actions: ['swagger-ui'],
+                  })
+                }
+                label={okmsData?.swaggerEndpoint}
+              />
+            ),
+          },
+        ]}
+      />
       <Outlet />
-    </Tile>
+    </>
   );
 };
 

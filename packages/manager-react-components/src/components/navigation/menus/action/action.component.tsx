@@ -3,8 +3,10 @@ import {
   ODS_BUTTON_VARIANT,
   ODS_BUTTON_SIZE,
   ODS_ICON_NAME,
+  ODS_BUTTON_COLOR,
+  ODS_LINK_COLOR,
 } from '@ovhcloud/ods-components';
-import { OdsButton, OdsPopover } from '@ovhcloud/ods-components/react';
+import { OdsButton, OdsLink, OdsPopover } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import '../translations/translation';
 
@@ -13,6 +15,7 @@ import { ManagerButton } from '../../../ManagerButton/ManagerButton';
 export interface ActionMenuItem {
   id: number;
   rel?: string;
+  href?: string;
   download?: string;
   target?: string;
   onClick?: () => void;
@@ -21,6 +24,9 @@ export interface ActionMenuItem {
   iamActions?: string[];
   urn?: string;
   className?: string;
+  isDisabled?: boolean;
+  isLoading?: boolean;
+  color?: ODS_BUTTON_COLOR;
 }
 
 export interface ActionMenuProps {
@@ -30,6 +36,7 @@ export interface ActionMenuProps {
   variant?: ODS_BUTTON_VARIANT;
   id: string;
   isDisabled?: boolean;
+  isLoading?: boolean;
 }
 
 const MenuItem = ({
@@ -45,31 +52,28 @@ const MenuItem = ({
     size: ODS_BUTTON_SIZE.sm,
     variant: ODS_BUTTON_VARIANT.ghost,
     displayTooltip: false,
-    className: 'w-full action-menu-item',
+    className: 'menu-item-button',
     ...item,
   };
-  return (
-    <div className="-mx-[2px]">
-      {!item?.iamActions || item?.iamActions?.length === 0 ? (
-        <OdsButton {...buttonProps} label={item.label}>
-          <span slot="start">
-            <span>{item.label}</span>
-          </span>
-        </OdsButton>
-      ) : (
-        <ManagerButton
-          id={`${id}`}
-          isIamTrigger={isTrigger}
-          iamActions={item.iamActions}
-          urn={item.urn}
-          {...buttonProps}
-        >
-          <span slot="start">
-            <span>{item.label}</span>
-          </span>
-        </ManagerButton>
-      )}
-    </div>
+
+  if (item.href) {
+    return (
+      <OdsLink
+        className="menu-item-link"
+        color={ODS_LINK_COLOR.primary}
+        href={item.href}
+        download={item.download}
+        label={item.label}
+        isDisabled={item.isDisabled}
+        onClick={item.onClick}
+      />
+    );
+  }
+
+  return !item?.iamActions || item?.iamActions?.length === 0 ? (
+    <OdsButton {...buttonProps} />
+  ) : (
+    <ManagerButton id={`${id}`} isIamTrigger={isTrigger} {...buttonProps} />
   );
 };
 
@@ -79,6 +83,7 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
   icon,
   variant = ODS_BUTTON_VARIANT.outline,
   isDisabled = false,
+  isLoading = false,
   id,
 }) => {
   const { t } = useTranslation('buttons');
@@ -94,6 +99,7 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
           id={id}
           variant={variant}
           isDisabled={isDisabled}
+          isLoading={isLoading}
           size={ODS_BUTTON_SIZE.sm}
           onClick={() => setIsTrigger(true)}
           {...(!isCompact && { label: t('common_actions') })}
@@ -106,20 +112,20 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
         />
       </div>
       <OdsPopover
-        className="py-[8px] px-0 overflow-hidden"
+        className="py-[8px] px-0"
         triggerId={`navigation-action-trigger-${id}`}
         with-arrow
       >
-        {items.map(({ id: itemId, ...item }) => {
-          return (
+        <div className="flex flex-col justify-stretch">
+          {items.map(({ id: itemId, ...item }) => (
             <MenuItem
               id={itemId}
               key={itemId}
               item={item}
               isTrigger={isTrigger}
             />
-          );
-        })}
+          ))}
+        </div>
       </OdsPopover>
     </>
   );

@@ -53,19 +53,15 @@ const IdentitiesSelectedUsersList = ({
       title={t(
         'key_management_service_credential_create_identities_users_list_title',
       )}
-      addCallback={() => {
-        return navigate(ROUTES_URLS.createCredentialAddUserModal);
-      }}
+      addCallback={() => navigate(ROUTES_URLS.createCredentialAddUserModal)}
       addButtonLabel={t(
         'key_management_service_credential_create_identities_users_list_button_add_label',
       )}
-      deleteCallback={() => {
-        setUserList([]);
-      }}
+      deleteCallback={() => setUserList([])}
       datagridColumns={columns}
       items={userList}
       identityURNs={identityURNs}
-    ></IdentitiesSelectedBase>
+    />
   );
 };
 
