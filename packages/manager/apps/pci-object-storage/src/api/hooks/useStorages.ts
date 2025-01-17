@@ -4,19 +4,18 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
 import { ApiError, applyFilters, Filter } from '@ovh-ux/manager-core-api';
 import { useGetProjectRegions } from '@ovh-ux/manager-pci-common';
-import { log } from 'console';
 import {
-  deleteContainer,
+  deleteSwiftContainer,
   deleteS3Container,
   getStorages,
   TStorage,
-  getStorage,
   updateStorage,
   createSwiftStorage,
   createS3Storage,
   setContainerAsStatic,
   setContainerAsPublic,
   updateStorageType,
+  getStorageAccess,
 } from '../data/storages';
 import {
   OBJECT_CONTAINER_MODE_LOCAL_ZONE,
@@ -28,8 +27,7 @@ import {
   OBJECT_CONTAINER_TYPE_STATIC,
 } from '@/constants';
 import { paginateResults } from '@/helpers';
-import { addUser, TStorageObject } from '../data/objects';
-import { deleteObject } from './useObject';
+import { addUser, deleteSwiftObject, TStorageObject } from '../data/objects';
 
 export const sortStorages = (sorting: ColumnSort, storages: TStorage[]) => {
   const order = sorting.desc ? -1 : 1;
@@ -50,7 +48,7 @@ export const sortStorages = (sorting: ColumnSort, storages: TStorage[]) => {
   }
 };
 
-export const getStorageQueryKey = (projectId: string) => [
+export const getAllStoragesQueryKey = (projectId: string) => [
   'project',
   projectId,
   'storages',
@@ -58,7 +56,7 @@ export const getStorageQueryKey = (projectId: string) => [
 
 export const useAllStorages = (projectId: string) =>
   useQuery({
-    queryKey: getStorageQueryKey(projectId),
+    queryKey: getAllStoragesQueryKey(projectId),
     queryFn: () => getStorages(projectId),
   });
 
@@ -186,7 +184,7 @@ export const useStorages = (
       isRefreshing,
       refresh: () =>
         queryClient.invalidateQueries({
-          queryKey: getStorageQueryKey(projectId),
+          queryKey: getAllStoragesQueryKey(projectId),
         }),
     }),
     [
@@ -214,6 +212,7 @@ export const useDeleteStorage = ({
   onError,
 }: UseDeleteStorageProps) => {
   const queryClient = useQueryClient();
+
   const mutation = useMutation({
     mutationFn: async ({
       storage,
@@ -222,73 +221,68 @@ export const useDeleteStorage = ({
       storage: TStorage;
       objects: TStorageObject[];
     }) => {
-      const promisesObjectDeletion = objects.reduce(
-        (all, object) => [
-          ...all,
-          deleteObject(projectId, storage, object.name, storage.region),
-        ],
-        [],
+      if (storage.s3StorageType) {
+        return deleteS3Container(
+          projectId,
+          storage.region,
+          storage.s3StorageType,
+          storage.name,
+        );
+      }
+      const { token } = await getStorageAccess({ projectId });
+
+      const deletePromises = objects.map((object) =>
+        deleteSwiftObject({
+          projectId,
+          storageName: storage.name,
+          objectName: object.name,
+          region: storage.region,
+          token,
+        }),
       );
-      console.log(promisesObjectDeletion);
-      return Promise.all(promisesObjectDeletion).then((data) => {
-        console.log(data);
-        if (storage.s3StorageType) {
-          return deleteS3Container(
-            projectId,
-            storage.region,
-            storage.s3StorageType,
-            storage.name,
-          );
-        }
-        return deleteContainer(projectId, storage.id);
+
+      return Promise.all(deletePromises).then(() => {
+        return deleteSwiftContainer(projectId, storage.id);
       });
     },
     onError,
     onSuccess: async () => {
       await queryClient.invalidateQueries({
-        queryKey: getStorageQueryKey(projectId),
+        queryKey: getAllStoragesQueryKey(projectId),
       });
       onSuccess();
     },
   });
   return {
-    deleteStorage(storage: TStorage, objects: TStorageObject[]) {
+    deleteStorage({
+      storage,
+      objects,
+    }: {
+      storage: TStorage;
+      objects: TStorageObject[];
+    }) {
       return mutation.mutate({ storage, objects });
     },
     ...mutation,
   };
 };
 
-export const useStorage = (
-  projectId: string,
-  region: string,
-  storageId: string,
-) => {
+export const useStorage = (projectId: string, storageId: string) => {
   const {
     data: storages,
     error: errorStorages,
     isPending: isStoragesPending,
   } = useAllStorages(projectId);
 
-  const storage = storages?.resources.find(
-    (s) => s.id === storageId || s.name === storageId,
-  );
-
-  const { data, error: errorStorage, isPending: isPendingStorage } = useQuery({
-    queryKey: [...getStorageQueryKey(projectId), storageId],
-    enabled: !!storage,
-    queryFn: () =>
-      getStorage(projectId, region, storage.s3StorageType, storageId),
-  });
-
   return useMemo(() => {
     return {
-      isPending: isStoragesPending || isPendingStorage,
-      storage: data,
-      error: errorStorages || errorStorage,
-      storages,
+      isPending: isStoragesPending,
+      storage: storages?.resources.find(
+        (s) => s.id === storageId || s.name === storageId,
+      ),
+      error: errorStorages,
     };
-  }, [isPendingStorage, isStoragesPending, storage, data, storages]);
+  }, [storages, isStoragesPending, errorStorages]);
 };
 
 export interface UseUpdateStorageProps {
@@ -387,7 +381,7 @@ export const useCreateContainer = ({
     onError,
     onSuccess: async (result) => {
       await queryClient.invalidateQueries({
-        queryKey: getStorageQueryKey(projectId),
+        queryKey: getAllStoragesQueryKey(projectId),
       });
       onSuccess(result);
     },
@@ -426,7 +420,7 @@ export const useAddUser = ({
     onError,
     onSuccess: async () => {
       await queryClient.invalidateQueries({
-        queryKey: getStorageQueryKey(projectId),
+        queryKey: getAllStoragesQueryKey(projectId),
       });
       onSuccess();
     },
@@ -466,7 +460,7 @@ export const useUpdateStorageType = ({
     onError,
     onSuccess: async () => {
       await queryClient.invalidateQueries({
-        queryKey: getStorageQueryKey(projectId),
+        queryKey: getAllStoragesQueryKey(projectId),
       });
       onSuccess();
     },
