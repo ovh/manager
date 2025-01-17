@@ -7,51 +7,48 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { OdsInputChangeEvent, OdsInputType } from '@ovhcloud/ods-components';
 
-type TextFieldProps = {
+export type TextFieldProps = {
   name: string;
   value: string;
-  onChange: (e: OdsInputChangeEvent) => void;
+  onOdsChange: (e: OdsInputChangeEvent) => void;
   type?: OdsInputType;
   label?: string;
   placeholder?: string;
   pattern?: string;
   error?: string;
   helperText?: string;
+  minlength?: number;
+  maxlength?: number;
+  isRequired?: boolean;
 };
 
 export const TextField: React.FC<TextFieldProps> = ({
   name,
-  value,
-  onChange,
   type = 'text',
   label,
   error,
-  placeholder,
-  pattern,
   helperText,
+  ...props
 }) => {
-  const commonProps = {
+  const commonInputProps = {
     name,
     id: name,
-    value,
-    onOdsChange: onChange,
-    placeholder,
-    pattern,
     hasError: !!error,
     className: 'w-full',
+    ...props,
   };
 
   return (
-    <OdsFormField key={name} className="w-full max-w-[19em]" error={error}>
+    <OdsFormField key={name} className="w-full max-w-md" error={error}>
       {label && (
         <label htmlFor={name} slot="label">
           <OdsText>{label}</OdsText>
         </label>
       )}
       {type === 'password' ? (
-        <OdsPassword {...commonProps} />
+        <OdsPassword {...commonInputProps} />
       ) : (
-        <OdsInput type={type} {...commonProps} />
+        <OdsInput type={type} {...commonInputProps} />
       )}
       {helperText && <OdsText slot="helper">{helperText}</OdsText>}
     </OdsFormField>
