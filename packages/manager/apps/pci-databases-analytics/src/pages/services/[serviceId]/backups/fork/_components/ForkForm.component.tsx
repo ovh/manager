@@ -133,10 +133,10 @@ const ForkForm = ({
         },
         plan: data.plan,
         version: data.engineWithVersion.version,
-        ipRestrictions: data.ipRestrictions,
+        ipRestrictions: data.ipRestrictions as database.service.IpRestriction[],
         forkFrom: {
           serviceId: data.forkFrom.serviceId,
-        },
+        } as database.service.creation.ForkFrom,
       };
       if (data.network.type === database.NetworkTypeEnum.private) {
         // endpoint does not expect the network id, but the linked openstackId instead
@@ -150,7 +150,7 @@ const ForkForm = ({
         serviceInfos.disk = {
           size:
             model.result.flavor.storage.minimum.value + data.additionalStorage,
-        };
+        } as database.service.Disk;
       }
       switch (data.forkFrom.type) {
         case ForkSourceType.now:
