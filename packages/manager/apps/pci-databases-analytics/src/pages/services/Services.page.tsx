@@ -1,7 +1,12 @@
-import { useMemo } from 'react';
 import { Outlet, useParams } from 'react-router-dom';
+import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Plus } from 'lucide-react';
+import {
+  OdsButton,
+  OdsTag,
+  OdsAccordion,
+  OdsQuantity,
+} from '@ovhcloud/ods-components/react';
 import { useGetServices } from '@/hooks/api/database/service/useGetServices.hook';
 import ServicesList from './_components/ServiceListTable.component';
 import LegalMentions from '../_components/LegalMentions.component';
@@ -14,12 +19,17 @@ import { useTrackAction } from '@/hooks/useTracking';
 import { useUserActivityContext } from '@/contexts/UserActivityContext';
 import { TRACKING } from '@/configuration/tracking.constants';
 import * as database from '@/types/cloud/project/database';
+import { Form } from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
 
 const Services = () => {
   const { t } = useTranslation('pci-databases-analytics/services');
+
+  const [q, setQ] = useState(0);
   const track = useTrackAction();
   const { projectId, category } = useParams();
   const { isUserActive } = useUserActivityContext();
+  const [list, setList] = useState(['test', 'yop']);
   const servicesQuery = useGetServices(projectId, {
     refetchInterval: isUserActive && POLLING.SERVICES,
   });

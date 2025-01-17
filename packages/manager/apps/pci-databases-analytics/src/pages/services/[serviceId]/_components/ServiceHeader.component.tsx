@@ -1,5 +1,6 @@
 import { Database } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { OdsBadge } from '@ovhcloud/ods-components/react';
 import * as database from '@/types/cloud/project/database';
 import ServiceStatusBadge from '../../_components/ServiceStatusBadge.component';
 import { Badge } from '@/components/ui/badge';
@@ -21,18 +22,31 @@ export const ServiceHeader = ({ service }: { service: database.Service }) => {
         <ServiceNameWithUpdate service={service} />
         <div className="flex gap-2 flex-wrap">
           <ServiceStatusBadge status={service.status} />
-          <Badge variant={'outline'}>
-            {humanizeEngine(service.engine)} {service.version}
-          </Badge>
-          <Badge variant={'outline'} className="capitalize">
+          <OdsBadge
+            color={'neutral'}
+            label={`${humanizeEngine(service.engine)} ${service.version}`}
+          />
+          <OdsBadge
+            color={'neutral'}
+            label={service.plan}
+            className="capitalize text-critical-500"
+          >
             {service.plan}
-          </Badge>
-          <Badge variant={'outline'} className="capitalize">
+          </OdsBadge>
+          <OdsBadge
+            color={'neutral'}
+            label={service.flavor}
+            className="capitalize"
+          >
             {service.flavor}
-          </Badge>
-          <Badge variant={'outline'} className="capitalize">
-            {t(`region_${service.nodes[0].region}`)}
-          </Badge>
+          </OdsBadge>
+          <OdsBadge
+            color={'neutral'}
+            label={t(`region_${service.nodes[0].region}`)}
+            className="capitalize"
+          >
+            {}
+          </OdsBadge>
         </div>
       </div>
     </div>
