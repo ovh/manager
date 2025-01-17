@@ -1,8 +1,7 @@
 import { SystemFormKeys, TextInputData } from '@/types/form.type';
 
-const SID_PATTERN = /[A-Z0-9]{3}/.source;
-const PWD_PATTERN = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!"@ $%&=?'*+~#\-.,;:<>_]).{8,}$/
-  .source;
+// Un SID SAP comporte 3 caractères alphanumériques en majuscule et commence par une lettre.
+const SAP_SID_PATTERN = /^[A-Z][A-Z0-9]{2}$/.source;
 
 export const FORM_SAP_SIDS_LABEL = 'SAP SIDs';
 export const SYSTEM_TEXT_INPUTS: TextInputData<SystemFormKeys>[] = [
@@ -10,13 +9,17 @@ export const SYSTEM_TEXT_INPUTS: TextInputData<SystemFormKeys>[] = [
     name: 'sapSid',
     label: 'SAP SID',
     placeholder: 'S4H',
-    pattern: SID_PATTERN,
+    pattern: SAP_SID_PATTERN,
+    maxlength: 3,
+    isRequired: true,
   },
   {
     name: 'sapHanaSid',
     label: 'SAP HANA SID',
     placeholder: 'HDB',
-    pattern: SID_PATTERN,
+    pattern: SAP_SID_PATTERN,
+    maxlength: 3,
+    isRequired: true,
   },
 ] as const;
 
@@ -24,31 +27,22 @@ export const SYSTEM_PASSWORD_INPUTS: TextInputData<SystemFormKeys>[] = [
   {
     name: 'masterSapPassword',
     label: 'SAP MASTER',
-    pattern: PWD_PATTERN,
     helperKey: 'system_password_sap_master_helper',
+    isRequired: true,
   },
   {
     name: 'masterSapHanaPassword',
     label: 'SAP HANA MASTER',
-    pattern: PWD_PATTERN,
+    isRequired: true,
   },
   {
     name: 'sidamnPassword',
     label: 'SIDadm',
-    pattern: PWD_PATTERN,
+    isRequired: true,
   },
   {
     name: 'systemPassword',
     label: 'SAP HANA SYSTEM',
-    pattern: PWD_PATTERN,
+    isRequired: true,
   },
 ] as const;
-
-export const SYSTEM_INITIAL_ERRORS = {
-  sapSid: '',
-  sapHanaSid: '',
-  masterSapPassword: '',
-  masterSapHanaPassword: '',
-  sidamnPassword: '',
-  systemPassword: '',
-} as const;
