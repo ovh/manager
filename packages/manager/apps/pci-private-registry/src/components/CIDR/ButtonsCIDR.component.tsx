@@ -23,7 +23,14 @@ import useDataGridContext from '@/pages/CIDR/useDatagridContext';
 
 const Buttons = () => {
   const { projectId = '', registryId = '' } = useParams();
-  const { handleSubmit, formState, reset } = useFormContext();
+  const { removeDraftRow, isUpdating, reset } = useDataGridContext();
+  const {
+    handleSubmit,
+    formState,
+    reset: resetForm,
+    removeDraftRow,
+    reset,
+  } = useFormContext();
   const { t } = useTranslation(['ip-restrictions', 'common']);
 
   const { addSuccess, addError, clearNotifications } = useNotifications();
@@ -33,12 +40,10 @@ const Buttons = () => {
     [addError],
   );
 
-  const { removeDraftRow } = useDataGridContext();
-
   const onSuccess = useCallback(() => {
-    reset();
-    removeDraftRow();
+    resetForm();
     clearNotifications();
+    reset();
     addSuccess(t('private_registry_cidr_submit_success'), true);
   }, [addSuccess, t]);
 

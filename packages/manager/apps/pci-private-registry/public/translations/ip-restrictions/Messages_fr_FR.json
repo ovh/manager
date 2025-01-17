@@ -11,6 +11,7 @@
   "private_registry_cidr_authorization_select": "Sélectionner un composant",
   "private_registry_cidr_validation_ipBlock": "Ce bloc doit respecter le format CIDR (par exemple : 192.168.0.0/24).",
   "private_registry_cidr_validation_authorization": "Veuillez sélectionner au moins un composant autorisé.",
+  "private_registry_cidr_edition_success": "Votre bloc CIDR à été modifié avec succès.",
   "private_registry_cidr_submit_success": "Votre bloc CIDR a été ajouté aux blocs CIDR autorisés.",
   "private_registry_cidr_delete_success": "Votre bloc CIDR a été supprimé avec succès.",
   "private_registry_cidr_delete_all_success": "Tous les blocs CIDR sélectionnés ont été supprimés avec succès.",

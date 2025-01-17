@@ -150,6 +150,7 @@ const DatagridProvider = <TData extends DatagridAction[]>({
   };
 
   const resetRows = () => {
+    setIsUpdating(false);
     setDraftedData(
       draftedData.map((row) => ({
         ...row,
