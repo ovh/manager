@@ -33,9 +33,8 @@ jest.mock('@ovh-ux/manager-react-components', () => ({
   ...jest.requireActual('@ovh-ux/manager-react-components'),
   Subtitle: jest.fn(),
   Title: jest.fn(),
-  useCatalogPrice: jest.fn(() => ({
-    getFormattedHourlyCatalogPrice: jest.fn(() => 0.0171),
-    getFormattedMonthlyCatalogPrice: jest.fn(() => 12.312),
+  useCatalogPrice: jest.fn((val) => ({
+    getFormattedCatalogPrice: jest.fn(() => parseFloat((0.0171).toFixed(val))),
   })),
 }));
 
@@ -64,20 +63,18 @@ jest.mock('@ovh-ux/manager-react-shell-client', () => ({
 }));
 
 const setupSpecTest = async (props?: Partial<CreateRancherProps>) =>
-  waitFor(() =>
-    render(
-      <CreateRancher
-        projectId="1234"
-        onCreateRancher={onCreateRancher}
-        plans={rancherPlan}
-        versions={rancherVersion}
-        hasRancherCreationError={false}
-        isProjectDiscoveryMode={false}
-        isCreateRancherLoading={false}
-        pricing={rancherPlansPricing}
-        {...props}
-      />,
-    ),
+  render(
+    <CreateRancher
+      projectId="1234"
+      onCreateRancher={onCreateRancher}
+      plans={rancherPlan}
+      versions={rancherVersion}
+      hasRancherCreationError={false}
+      isProjectDiscoveryMode={false}
+      isCreateRancherLoading={false}
+      pricing={rancherPlansPricing}
+      {...props}
+    />,
   );
 
 describe('CreateRancher', () => {
@@ -150,8 +147,8 @@ describe('CreateRancher', () => {
 
   it('Given that there is prices I should see rancher pricing', async () => {
     const screen = await setupSpecTest();
-    const rancherPricingHourly = screen.getAllByText('0.0171');
-    const rancherPricingMonthly = screen.getAllByText('~ 12.312');
+    const rancherPricingHourly = screen.getAllByText('0.0171 /vCPU/heure');
+    const rancherPricingMonthly = screen.getAllByText('~ 0.02 /vCPU/mois');
 
     expect(rancherPricingMonthly).not.toBeNull();
     expect(rancherPricingHourly).not.toBeNull();
