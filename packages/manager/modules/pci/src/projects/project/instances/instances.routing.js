@@ -475,16 +475,11 @@ export default /* @ngInject */ ($stateProvider) => {
           PCI_FEATURES.ACTIONS.INSTANCE_LOCALZONE_BACKUP,
         );
       },
-      windowsGen3: /* @ngInject */ (catalog, pciFeatures) => ({
+      windowsGen3: /* @ngInject */ (catalog) => ({
         price:
           catalog.addons.find(
             ({ planCode }) => planCode === WINDOWS_GEN_3_ADDON_PLANCODE,
           )?.pricings[0]?.price || null,
-        isFeatureAvailable: Boolean(
-          pciFeatures.isFeatureAvailable(
-            PCI_FEATURES.ACTIONS.INSTANCE_WINDOWS_GEN_3,
-          ) || true,
-        ),
       }),
     },
   });
