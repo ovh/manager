@@ -117,9 +117,7 @@ export default function BlocIPBlock() {
 
       <FormProvider {...methods}>
         <DatagridProvider
-          dataGrid={{
-            ...dataGrid,
-          }}
+          dataGrid={dataGrid}
           columnFilters={columnFilters}
           data={dataCIDR.rows}
           totalRows={dataCIDR.totalRows}
