@@ -16,14 +16,17 @@ export default function DeletePage() {
   const decodedObjectName = objectName.replace(/~2F/g, '/');
   const [searchParams] = useSearchParams();
   const region = searchParams.get('region');
+
   const { storage, isPending: isPendingStorage } = useStorage(
     projectId,
-    region,
     storageId,
   );
+
   const goBack = () => navigate(`../?region=${region}`);
+
   const onCancel = goBack;
   const onClose = goBack;
+
   const { deleteObject, isPending: isPendingDelete } = useDeleteObject({
     projectId,
     objectName: decodedObjectName,
@@ -64,11 +67,14 @@ export default function DeletePage() {
       goBack();
     },
   });
+
   const onConfirm = () => {
     deleteObject();
     goBack();
   };
+
   const isPending = isPendingStorage || isPendingDelete;
+
   return (
     <DeletionModal
       title={t(

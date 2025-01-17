@@ -12,29 +12,41 @@ export type TStorageObject = {
   name: string;
 };
 
-export const deleteS3Object = async (
-  projectId: string,
-  containerId: string,
-  objectName: string,
-  containerRegion: string,
-  s3StorageType: string,
-) => {
+export const deleteS3Object = async ({
+  projectId,
+  containerId,
+  objectName,
+  containerRegion,
+  s3StorageType,
+}: {
+  projectId: string;
+  containerId: string;
+  objectName: string;
+  containerRegion: string;
+  s3StorageType: string;
+}) => {
   const region = containerRegion || OPENIO_DEFAULT_REGION;
   const key = encodeURIComponent(objectName).replace(/\./g, '%2E');
-  const { data } = await v6.delete(
+
+  return v6.delete(
     `/cloud/project/${projectId}/region/${region}/${s3StorageType}/${containerId}/object/${key}`,
   );
-  return data;
 };
 
-export const deleteSwitchObject = async (
-  projectId: string,
-  storageName: string,
-  objectName: string,
-  token: string,
-  region: string,
-): Promise<void> => {
-  const response = await fetch(
+export const deleteSwiftObject = async ({
+  projectId,
+  storageName,
+  objectName,
+  token,
+  region,
+}: {
+  projectId: string;
+  storageName: string;
+  objectName: string;
+  token: string;
+  region: string;
+}): Promise<Response> => {
+  return fetch(
     `https://storage.${region}.cloud.ovh.net/v1/AUTH_${projectId}/${storageName}/${encodeURIComponent(
       objectName,
     )}`,
@@ -45,7 +57,6 @@ export const deleteSwitchObject = async (
       },
     },
   );
-  return response.json();
 };
 
 export const addUser = async ({
