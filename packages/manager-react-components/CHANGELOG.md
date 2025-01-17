@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.43.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.43.1...@ovh-ux/manager-react-components@1.43.2) (2025-01-17)
+
+### Bug Fixes
+
+- **mrc:** bug fix ([7531f3f](https://github.com/ovh/manager/commit/7531f3fc72c768f6bd1d5b5b18feb43a6b6f12fb))
+
 # [1.43.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.43.0...@ovh-ux/manager-react-components@1.43.1) (2025-01-16)
 
 ### Bug Fixes
