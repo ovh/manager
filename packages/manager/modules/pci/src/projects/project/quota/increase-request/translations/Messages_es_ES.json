@@ -13,7 +13,7 @@
   "pci_projects_project_quota_increase_select_volume_quota-200vms": "200 MV",
   "pci_projects_project_quota_increase_buy_credits": "Puede añadir crédito a su proyecto de Public Cloud para acceder a un nivel superior de cuotas.",
   "pci_projects_project_quota_increase_payment_info": "Una vez que haya confirmado la adición de la cuota, el importe correspondiente al crédito se cargará en su forma de pago registrada y no podrá devolverse. Este crédito solo se utilizará automáticamente para abonar la facturación de su proyecto.",
-  "pci_projects_project_quota_information_banner": "Por favor, rellene todos los campos de este cuestionario/formulario para que podamos procesar su solicitud de aumento. Si el formulario no está totalmente completo, no podremos responder favorablemente a su solicitud. ¡Gracias por su comprensión!",
+  "pci_projects_project_quota_information_banner": "Por favor, rellene todos los campos de este formulario para que podamos procesar su solicitud de aumento. Si el formulario no está totalmente completo, no podremos responder favorablemente a su solicitud. ¡Gracias por su comprensión!",
   "pci_projects_project_quota_assistance_title": "Mis solicitudes de asistencia",
   "pci_projects_project_quota_assistance_description": "Cree y acceda a sus solicitudes de asistencia en función de sus necesidades. Consulte, organice y acceda a las solicitudes ya guardadas.",
   "pci_projects_project_quota_assistance_success_1": "Para facilitar el tratamiento de su solicitud, le recomendamos que cree un único tíquet de soporte.",
