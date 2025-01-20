@@ -87,6 +87,10 @@ export default /* @ngInject */ function LicenseService(
         upgradableVersions: this.getAllUpgradeVersion(serviceId),
       })
       .then((result) => {
+        // Pricing mode
+        this.pricingMode =
+          result?.actualUpgradeVersion?.billing?.pricing?.pricingMode ||
+          'default';
         // Below filter is only for old licenses, new licenses dont need it.
         switch (true) {
           case result.actualUpgradeVersion.billing.plan.code.includes(
@@ -154,7 +158,7 @@ export default /* @ngInject */ function LicenseService(
     return {
       autoPayWithPreferredPaymentMethod: false,
       duration: 'P1M',
-      pricingMode: 'default',
+      pricingMode: this.pricingMode,
       quantity: 1,
     };
   };
