@@ -1,4 +1,6 @@
+import { useMemo } from 'react';
 import { fetchIcebergV6 } from '@ovh-ux/manager-core-api';
+import { useProductAvailability, useProject } from '@ovh-ux/manager-pci-common';
 import { useQuery } from '@tanstack/react-query';
 
 export interface Region {
@@ -22,3 +24,20 @@ export const getRegionsQuery = (projectId: string) => ({
 
 export const useRegions = (projectId: string) =>
   useQuery(getRegionsQuery(projectId));
+
+export const useAvailableHourlyPlansRegion = (regionName: string) => {
+  const { data: project } = useProject();
+  const { data } = useProductAvailability(project.project_id, {
+    addonFamily: 'gateway',
+  });
+
+  return useMemo(() => {
+    const plans = data?.plans.filter(({ code }) => code.includes('hour')) || [];
+    const plansRegion =
+      plans.filter((plan) =>
+        plan.regions.some((region) => region.name === regionName),
+      ) || [];
+
+    return plansRegion.map((item) => item.code);
+  }, [data, regionName]);
+};
