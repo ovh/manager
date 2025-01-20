@@ -90,6 +90,7 @@ export default function LinkUserSelector({
         <div className="flex">
           <OdsSelect
             className="min-w-[35rem]"
+            key={`select-users-${listUsers?.length}`}
             value={`${formUser?.id}`}
             name="selectUser"
             isDisabled={
