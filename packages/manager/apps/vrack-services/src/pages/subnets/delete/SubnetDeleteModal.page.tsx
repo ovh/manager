@@ -9,13 +9,10 @@ import {
   TrackingClickParams,
 } from '@ovh-ux/manager-react-shell-client';
 import { DeleteModal } from '@ovh-ux/manager-react-components';
-import {
-  useVrackService,
-  useUpdateVrackServices,
-  getDisplayName,
-} from '@/data';
+import { useVrackService, useUpdateVrackServices } from '@/data/hooks';
 import { PageName } from '@/utils/tracking';
 import { MessagesContext } from '@/components/feedback-messages/Messages.context';
+import { getDisplayName } from '@/utils/vrack-services';
 
 const sharedTrackingParams: TrackingClickParams = {
   location: PageLocation.popup,

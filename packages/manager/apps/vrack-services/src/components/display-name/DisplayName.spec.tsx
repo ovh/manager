@@ -6,8 +6,8 @@ import { describe, expect, it } from 'vitest';
 import { render } from '@testing-library/react';
 import { DisplayName } from '@/components/display-name/DisplayName.component';
 import vrackServicesList from '../../../mocks/vrack-services/get-vrack-services.json';
-import { VrackServicesWithIAM } from '@/data';
 import '@testing-library/jest-dom';
+import { VrackServicesWithIAM } from '@/types';
 
 const defaultVs = vrackServicesList[0] as VrackServicesWithIAM;
 

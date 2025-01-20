@@ -27,14 +27,7 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { handleClick } from '@ovh-ux/manager-react-components';
-import {
-  getDisplayName,
-  useUpdateVrackServices,
-  useVrackService,
-  isValidVlanNumber,
-  getSubnetFromCidr,
-  isValidCidr,
-} from '@/data';
+import { useUpdateVrackServices, useVrackService } from '@/data/hooks';
 import { MessagesContext } from '@/components/feedback-messages/Messages.context';
 import { LoadingText } from '@/components/LoadingText.component';
 import { PageName } from '@/utils/tracking';
@@ -43,6 +36,12 @@ import {
   defaultCidr,
   defaultServiceRange,
 } from '@/pages/create-subnet/subnetCreate.constants';
+import { isValidCidr } from '@/utils/cidr';
+import {
+  getDisplayName,
+  getSubnetFromCidr,
+  isValidVlanNumber,
+} from '@/utils/vrack-services';
 
 const sharedTrackingParams = {
   location: PageLocation.popup,

@@ -29,15 +29,15 @@ import { useQueryClient } from '@tanstack/react-query';
 import { handleClick } from '@ovh-ux/manager-react-components';
 import { PageName } from '@/utils/tracking';
 import { LoadingText } from '@/components/LoadingText.component';
+import { getVrackServicesResourceListQueryKey } from '@/data/api';
+import { MessagesContext } from '@/components/feedback-messages/Messages.context';
+import { SuccessMessage } from '@/components/feedback-messages/SuccessMessage.component';
 import {
-  getDisplayName,
-  getVrackServicesResourceListQueryKey,
   useAssociateVrack,
   useDissociateVrack,
   useVrackService,
-} from '@/data';
-import { MessagesContext } from '@/components/feedback-messages/Messages.context';
-import { SuccessMessage } from '@/components/feedback-messages/SuccessMessage.component';
+} from '@/data/hooks';
+import { getDisplayName } from '@/utils/vrack-services';
 
 export type AssociateAnotherVrackProps = {
   vrackList: string[];

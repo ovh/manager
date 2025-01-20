@@ -1,12 +1,5 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
-import { Task } from '../api.type';
-
-export type AssociateVrackServicesParams = {
-  /** The internal name of your vrack */
-  vrack: string;
-  /** vrackServices service name */
-  vrackServices: string;
-};
+import { AssociateVrackServicesParams, Task } from '@/types';
 
 export const associateVrackServicesQueryKey = (vrackServicesId: string) => [
   `associateVrackServices-${vrackServicesId}`,

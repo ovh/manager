@@ -2,12 +2,12 @@ import React from 'react';
 import { useTask } from '@ovh-ux/manager-react-components';
 import { useMutation } from '@tanstack/react-query';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
-import { VrackTask } from '../vrack.type';
+import { useVrackService } from '@/data/hooks';
+import { VrackTask } from '@/types';
 import {
   dissociateVrackServices,
   dissociateVrackServicesQueryKey,
-} from '../delete';
-import { useVrackService } from '@/data/vrack-services';
+} from '@/data/api';
 
 export type UseDissociateVrackParams = {
   vrackServicesId: string;

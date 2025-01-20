@@ -4,9 +4,10 @@ import { useTranslation } from 'react-i18next';
 import { Navigate, useParams } from 'react-router-dom';
 import { OnboardingLayout } from '@/components/layout-helpers/OnboardingLayout.component';
 import onboardingImgSrc from '@/assets/onboarding-img.png';
-import { hasSubnet, isEditable, useVrackService } from '@/data';
+import { useVrackService } from '@/data/hooks';
 import { useNavigateToCreateSubnetPage } from '../subnets.hook';
 import { urls } from '@/routes/routes.constants';
+import { hasSubnet, isEditable } from '@/utils/vrack-services';
 
 export default function SubnetsOnboarding() {
   const { t } = useTranslation('vrack-services/subnets');

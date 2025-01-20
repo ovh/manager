@@ -26,14 +26,10 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import {
-  Contract,
-  Order,
-  postOrderCartCartIdCheckout,
-} from '@ovh-ux/manager-module-order';
-import { useMutation } from '@tanstack/react-query';
+import { Contract, Order } from '@ovh-ux/manager-module-order';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import { LoadingText } from '@/components/LoadingText.component';
+import { useSendOrder } from '@/data/hooks';
 
 export type OrderSubmitModalContentProps = {
   submitButtonLabel: string;
@@ -53,38 +49,7 @@ export const OrderSubmitModalContent: React.FC<OrderSubmitModalContentProps> = (
   const { t } = useTranslation('vrack-services');
   const { trackClick } = useOvhTracking();
   const [isContractAccepted, setIsContractAccepted] = React.useState(false);
-  const { mutate: sendOrder, isPending, error, isError } = useMutation<
-    ApiResponse<Order>,
-    ApiError
-  >({
-    mutationFn: () =>
-      postOrderCartCartIdCheckout({
-        cartId,
-        autoPayWithPreferredPaymentMethod: true,
-        waiveRetractationPeriod: true,
-      }),
-    onSuccess,
-    onError: async (response) => {
-      const {
-        request: { status },
-      } = response;
-
-      if (status === 400) {
-        try {
-          const { data } = await postOrderCartCartIdCheckout({
-            cartId,
-            autoPayWithPreferredPaymentMethod: false,
-            waiveRetractationPeriod: true,
-          });
-          window.top.location.href = data.url;
-        } catch (err) {
-          onError(response);
-        }
-      } else {
-        onError(response);
-      }
-    },
-  });
+  const { sendOrder, isPending, error, isError } = useSendOrder();
 
   return (
     <>
@@ -157,7 +122,7 @@ export const OrderSubmitModalContent: React.FC<OrderSubmitModalContentProps> = (
             buttonType: ButtonType.button,
             actions: ['order', 'confirm'],
           });
-          sendOrder();
+          sendOrder({ cartId, onSuccess, onError });
         })}
       >
         {submitButtonLabel}

@@ -15,13 +15,14 @@ import {
   DashboardLayout,
   DashboardLayoutProps,
 } from './DashboardLayout.component';
-import { VrackServicesWithIAM, useVrackServicesList } from '@/data';
+import { useVrackServicesList } from '@/data/hooks';
 import vrackServicesList from '../../../mocks/vrack-services/get-vrack-services.json';
+import { VrackServicesWithIAM } from '@/types';
 
 const queryClient = new QueryClient();
 
-vi.mock('@/data', async (importOriginal) => {
-  const original: typeof import('@/data') = await importOriginal();
+vi.mock('@/data/hooks', async (importOriginal) => {
+  const original: typeof import('@/data/hooks') = await importOriginal();
   return {
     ...original,
     useVrackServicesList: vi.fn(),

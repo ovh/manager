@@ -26,15 +26,12 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { useNavigate, useParams } from 'react-router-dom';
 import { handleClick } from '@ovh-ux/manager-react-components';
-import {
-  getVrackServicesResourceListQueryKey,
-  useVrackService,
-  useAssociateVrack,
-  getDisplayName,
-} from '@/data';
+import { getVrackServicesResourceListQueryKey } from '@/data/api';
 import { MessagesContext } from '@/components/feedback-messages/Messages.context';
 import { LoadingText } from '@/components/LoadingText.component';
 import { PageName } from '@/utils/tracking';
+import { useAssociateVrack, useVrackService } from '@/data/hooks';
+import { getDisplayName } from '@/utils/vrack-services';
 
 export type AssociateVrackProps = {
   vrackList: string[];

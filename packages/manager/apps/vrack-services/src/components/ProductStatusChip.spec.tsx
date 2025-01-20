@@ -6,7 +6,7 @@ import {
   ProductStatusChip,
   ProductStatusChipProps,
 } from './ProductStatusChip.component';
-import { ProductStatus } from '@/data';
+import { ProductStatus } from '@/types';
 
 const renderComponent = ({ productStatus }: ProductStatusChipProps) => {
   return render(<ProductStatusChip productStatus={productStatus} />);

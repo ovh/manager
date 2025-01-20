@@ -1,6 +1,6 @@
 import { PathParams } from 'msw';
-import { AllowedServicesResponse, Status, Task } from '../../src/data/api.type';
 import vrackServicesList from '../vrack-services/get-vrack-services.json';
+import { AllowedServicesResponse, Status, Task } from '@/types';
 
 export const getAllowedServicesResponse = (
   nbEligibleVrackServices: number,

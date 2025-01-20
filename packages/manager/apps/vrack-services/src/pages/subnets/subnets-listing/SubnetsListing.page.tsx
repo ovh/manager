@@ -20,8 +20,9 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { PageLayout } from '@/components/layout-helpers';
 import { SubnetDatagrid } from './SubnetDatagrid.component';
 import { useNavigateToCreateSubnetPage } from '../subnets.hook';
-import { hasSubnet, useVrackService } from '@/data';
+import { useVrackService } from '@/data/hooks';
 import { urls } from '@/routes/routes.constants';
+import { hasSubnet } from '@/utils/vrack-services';
 
 export default function SubnetsListing() {
   const { id } = useParams();

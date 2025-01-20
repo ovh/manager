@@ -10,7 +10,7 @@ import {
   useDataGrid,
 } from '@ovh-ux/manager-react-components';
 import { ErrorPage } from '@/components/ErrorPage.component';
-import { useVrackService, useServiceList } from '@/data';
+import { useVrackService, useServiceList } from '@/data/hooks';
 import { EndpointItem, useEndpointsList } from './useEndpointList.hook';
 import { ActionCell } from './ActionCell.component';
 

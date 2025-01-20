@@ -5,7 +5,8 @@ import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import { UseQueryResult } from '@tanstack/react-query';
 import { OperationMessages } from './OperationMessages.component';
 import vrackServicesList from '../../../mocks/vrack-services/get-vrack-services.json';
-import { VrackServicesWithIAM, useVrackServicesList } from '@/data';
+import { useVrackServicesList } from '@/data/hooks';
+import { VrackServicesWithIAM } from '@/types';
 
 /** Render */
 
@@ -16,8 +17,8 @@ const renderComponent = ({ id }: { id?: string }) => {
 /** END RENDER */
 
 /** MOCKS */
-vi.mock('@/data', async (importOriginal) => {
-  const original: typeof import('@/data') = await importOriginal();
+vi.mock('@/data/hooks', async (importOriginal) => {
+  const original: typeof import('@/data/hooks') = await importOriginal();
   return {
     ...original,
     useVrackServicesList: vi.fn(),

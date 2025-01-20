@@ -4,9 +4,10 @@ import { useTranslation } from 'react-i18next';
 import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { DeleteServiceModal } from '@ovh-ux/manager-react-components';
 import { MessagesContext } from '@/components/feedback-messages/Messages.context';
-import { getDisplayName, useVrackService } from '@/data';
+import { useVrackService } from '@/data/hooks';
 import { PageName } from '@/utils/tracking';
 import { sharedTrackingParams } from './deleteVrackServicesModal.constants';
+import { getDisplayName } from '@/utils/vrack-services';
 
 export default function DeleteVrackServicesModal() {
   const { id } = useParams();

@@ -4,15 +4,15 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
-import {
-  getvrackServicesReferenceRegionList,
-  getvrackServicesReferenceRegionListQueryKey,
-  Region,
-} from '@/data';
 import { ErrorPage } from '@/components/ErrorPage.component';
 import { RegionFormField } from './RegionFormField.component';
 import { CreatePageLayout } from '@/components/layout-helpers';
 import { urls } from '@/routes/routes.constants';
+import { Region } from '@/types';
+import {
+  getvrackServicesReferenceRegionList,
+  getvrackServicesReferenceRegionListQueryKey,
+} from '@/data/api';
 
 export default function CreateVrackServicesPage() {
   const [selectedRegion, setSelectedRegion] = React.useState('');

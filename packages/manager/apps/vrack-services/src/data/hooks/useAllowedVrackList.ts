@@ -1,12 +1,12 @@
 import { UseQueryOptions, useQueries, useQuery } from '@tanstack/react-query';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import {
-  getVrackList,
-  getVrackListQueryKey,
   getVrackAllowedServices,
   getVrackAllowedServicesQueryKey,
-} from '../get';
-import { AllowedServicesResponse } from '../../api.type';
+  getVrackList,
+  getVrackListQueryKey,
+} from '@/data/api';
+import { AllowedServicesResponse } from '@/types';
 
 /**
  * @returns List of allowed vRack to be associated to a vRack Services

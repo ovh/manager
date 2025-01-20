@@ -9,7 +9,7 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { UpdateIamNameModal } from '@ovh-ux/manager-react-components';
-import { useServiceList } from '@/data';
+import { useServiceList } from '@/data/hooks';
 import { PageName } from '@/utils/tracking';
 import { MessagesContext } from '@/components/feedback-messages/Messages.context';
 

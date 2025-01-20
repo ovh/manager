@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useQueryClient } from '@tanstack/react-query';
 import {
-  CreateCartResult,
-  Order,
   OrderDescription,
   getDeliveringOrderQueryKey,
-  postOrderCartCartIdCheckout,
 } from '@ovh-ux/manager-module-order';
 import {
   ShellContext,
@@ -16,7 +13,6 @@ import {
   TrackingClickParams,
 } from '@ovh-ux/manager-react-shell-client';
 import { useTranslation } from 'react-i18next';
-import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_TYPE,
@@ -34,8 +30,8 @@ import {
 import { handleClick } from '@ovh-ux/manager-react-components';
 import { LoadingText } from '@/components/LoadingText.component';
 import { OrderSubmitModalContent } from '@/components/OrderSubmitModalContent.component';
-import { createVrackServicesCart } from '@/utils/cart';
 import { urls } from '@/routes/routes.constants';
+import { useCreateCart } from '@/data/hooks';
 
 const trackingParams: TrackingClickParams = {
   buttonType: ButtonType.button,
@@ -55,53 +51,15 @@ export default function CreateConfirmModal() {
   const queryClient = useQueryClient();
 
   const {
-    mutate: sendOrder,
-    isPending: isSendOrderPending,
-    error: sendOrderError,
-    isError: isSendOrderError,
-  } = useMutation<ApiResponse<Order>, ApiError, { cartId: string }>({
-    mutationFn: ({ cartId }) =>
-      postOrderCartCartIdCheckout({
-        cartId,
-        autoPayWithPreferredPaymentMethod: true,
-        waiveRetractationPeriod: true,
-      }),
-    onError: async (error, { cartId }) => {
-      const {
-        request: { status },
-      } = error;
-
-      if (status === 400) {
-        const sendOrderResponse = await postOrderCartCartIdCheckout({
-          cartId,
-          autoPayWithPreferredPaymentMethod: false,
-          waiveRetractationPeriod: true,
-        });
-        window.top.location.href = sendOrderResponse.data.url;
-        return Promise.resolve(sendOrderResponse);
-      }
-
-      return Promise.resolve(error);
-    },
-  });
-
-  const { mutate: createCart, data, error, isError, isPending } = useMutation<
-    CreateCartResult,
-    ApiError,
-    { hasVrack?: boolean; region: string }
-  >({
-    mutationFn: async (params) => {
-      const createCartResponse = await createVrackServicesCart({
-        ovhSubsidiary: environment.user.ovhSubsidiary,
-        ...params,
-      });
-
-      if (createCartResponse.contractList.length === 0)
-        await sendOrder({ cartId: createCartResponse.cartId });
-
-      return Promise.resolve(createCartResponse);
-    },
-  });
+    createCart,
+    data,
+    error,
+    isError,
+    isPending,
+    sendOrderError,
+    isSendOrderPending,
+    isSendOrderError,
+  } = useCreateCart();
 
   const cancel = () => {
     trackClick({
@@ -238,7 +196,11 @@ export default function CreateConfirmModal() {
                 ...trackingParams,
                 actions: ['no-vrack', 'confirm'],
               });
-              createCart({ region, hasVrack: false });
+              createCart({
+                region,
+                hasVrack: false,
+                ovhSubsidiary: environment.user.ovhSubsidiary,
+              });
             })}
           >
             {t('modalNoVrackButtonLabel')}
@@ -256,7 +218,11 @@ export default function CreateConfirmModal() {
                 ...trackingParams,
                 actions: ['create-vrack', 'confirm'],
               });
-              createCart({ region, hasVrack: true });
+              createCart({
+                region,
+                hasVrack: true,
+                ovhSubsidiary: environment.user.ovhSubsidiary,
+              });
             })}
           >
             {t('modalConfirmVrackButtonLabel')}
