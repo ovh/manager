@@ -1,5 +1,5 @@
 {
-  "manager_components_select_ssh_key": "Clé(s) SSH à pré-installer :",
+  "manager_components_select_ssh_key": "Clé SSH à pré-installer :",
   "manager_components_select_ssh_key_help": "Ajoutez une clé dans la section Mon compte",
   "manager_components_sshkey_input": "Votre clé SSH Publique :",
   "manager_components_sshkey_input_placeholder": "Insérez une clé SSH publique. Exemple : {{t0}}",
