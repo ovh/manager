@@ -225,7 +225,6 @@ export default function ListingPage() {
           onPaginationChange={setPagination}
           sorting={sorting}
           onSortChange={setSorting}
-          className="overflow-x-visible"
         />
       </div>
 
