@@ -95,9 +95,9 @@ export default class PciStoragesContainersAddController {
     this.container.offer = this.archive
       ? null
       : OBJECT_CONTAINER_OFFER_STORAGE_STANDARD;
-    this.isOffsiteReplicationEnabled = true;
-    this.forceEnableVersioning = true;
-    this.isBucketVersioningEnabled = true;
+    this.isOffsiteReplicationEnabled = false;
+    this.forceEnableVersioning = false;
+    this.isBucketVersioningEnabled = false;
 
     this.userModel = {
       linkedMode: {
@@ -420,13 +420,6 @@ export default class PciStoragesContainersAddController {
   }
 
   onDeploymentModeSubmit() {
-    if (
-      this.container.deploymentMode === this.OBJECT_CONTAINER_MODE_MULTI_ZONES
-    ) {
-      this.isOffsiteReplicationEnabled = true;
-    } else {
-      this.isOffsiteReplicationEnabled = false;
-    }
     this.DEPLOYMENT_PRICE = this.getLowestPriceAddon(
       this.productCapabilities.plans?.filter((plan) =>
         plan.code?.startsWith(STORAGE_STANDARD_REGION_PLANCODE),
