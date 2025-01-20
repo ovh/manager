@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@2.3.0...@ovh-ux/manager-nutanix@2.4.0) (2025-01-20)
+
+
+### Bug Fixes
+
+* **nutanix:** fix node tab unavailable bug ([#14985](https://github.com/ovh/manager/issues/14985)) ([0ee6231](https://github.com/ovh/manager/commit/0ee62317582bd5c3321bb152aae57094256bffeb))
+
+
+### Features
+
+* **nutanix:** add VLAN ID field in cluster redeployment ([#14899](https://github.com/ovh/manager/issues/14899)) ([056d29b](https://github.com/ovh/manager/commit/056d29ba1be40e61d67c0e8a1f88b82923b13413))
+
+
+
+
+
 # [2.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@2.2.0...@ovh-ux/manager-nutanix@2.3.0) (2025-01-16)
 
 

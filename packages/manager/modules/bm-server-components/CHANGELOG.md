@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.3.0...@ovh-ux/manager-bm-server-components@2.4.0) (2025-01-20)
+
+
+### Features
+
+* **dedicated.server:** rbx1 eol banner ([#14742](https://github.com/ovh/manager/issues/14742)) ([acf26f4](https://github.com/ovh/manager/commit/acf26f476cde6cc1568c7686fd859e6c0755ddaa))
+
+
+
+
+
 # [2.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.2.1...@ovh-ux/manager-bm-server-components@2.3.0) (2024-12-23)
 
 
