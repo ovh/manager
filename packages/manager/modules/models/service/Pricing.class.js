@@ -20,7 +20,8 @@ export default class Pricing {
     return Intl.NumberFormat(convertLanguageFromOVHToBCP47(this.locale), {
       style: 'currency',
       currency: this.price.currencyCode,
-      currencyDisplay: 'narrowSymbol',
+      // use symbol instead of narrowSymbol to support Safari < 14.1
+      currencyDisplay: 'symbol',
     }).format(price);
   }
 
