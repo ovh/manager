@@ -178,13 +178,14 @@ export default function ListingPage() {
                   ),
                   comparators: FilterCategories.String,
                 },
-                {
-                  id: 'storedObjects',
-                  label: t(
-                    'pci_projects_project_storages_containers_storedObjects_label',
-                  ),
-                  comparators: FilterCategories.Numeric,
-                },
+                // Uncomment this when the numeric filter is fixed in Manager React Components
+                // {
+                //   id: 'containerCount',
+                //   label: t(
+                //     'pci_projects_project_storages_containers_storedObjects_label',
+                //   ),
+                //   comparators: FilterCategories.Numeric,
+                // },
               ]}
               onAddFilter={(addedFilter, column) => {
                 setPagination({

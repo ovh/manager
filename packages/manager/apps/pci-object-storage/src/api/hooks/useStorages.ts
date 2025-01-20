@@ -41,7 +41,7 @@ export const sortStorages = (sorting: ColumnSort, storages: TStorage[]) => {
         (a, b) => order * a[sorting.id]?.localeCompare(b[sorting.id]),
       );
     case 'usedSpace':
-    case 'storedObjects':
+    case 'containerCount':
       return storages.sort((a, b) => order * (a[sorting.id] - b[sorting.id]));
     default:
       return storages;
@@ -95,7 +95,7 @@ export const useMappedStorages = (projectId: string) => {
               : 'pci_projects_project_storages_containers_offer_swift',
           ),
           deploymentMode,
-          storedObjects: storage.storedObjects || 0,
+          containerCount: storage.storedObjects || storage.objectsCount || 0,
           usedSpace: storage.storedBytes || storage.objectsSize || 0,
         };
       });
