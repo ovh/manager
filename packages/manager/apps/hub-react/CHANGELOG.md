@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-react-app@0.6.2...@ovh-ux/manager-hub-react-app@0.6.3) (2025-01-20)
+
+
+### Bug Fixes
+
+* **hub:** add missing translation string for kms ([41dca14](https://github.com/ovh/manager/commit/41dca143427798d64df58f6a9baec8dc323db045))
+* **i18n:** add missing translations [CDS 3612] ([27adb30](https://github.com/ovh/manager/commit/27adb30d58ae8cfe6ceee4cf87f07bb9ad62b5b2))
+
+
+
+
+
 ## [0.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-react-app@0.6.1...@ovh-ux/manager-hub-react-app@0.6.2) (2025-01-17)
 
 **Note:** Version bump only for package @ovh-ux/manager-hub-react-app

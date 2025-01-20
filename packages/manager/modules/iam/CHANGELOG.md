@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.14.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.14.1...@ovh-ux/manager-iam@1.14.2) (2025-01-20)
+
+
+### Bug Fixes
+
+* **iam:** users-add modal too tall for small screens ([babd668](https://github.com/ovh/manager/commit/babd6689d115cdd341864613e375df9d7d93d741))
+
+
+
+
+
 ## [1.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.14.0...@ovh-ux/manager-iam@1.14.1) (2025-01-15)
 
 
