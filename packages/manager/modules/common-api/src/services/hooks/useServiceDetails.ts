@@ -30,7 +30,7 @@ export const useServiceDetails = ({
   options = {},
 }: UseServiceDetailsParams) => {
   const queryClient = useQueryClient();
-  return useQuery<ApiResponse<ServiceDetails>, ApiError>({
+  return useQuery({
     queryKey: queryKey ?? getServiceDetailsQueryKey(resourceName),
     queryFn: async () => {
       const { data } = await queryClient.fetchQuery<
@@ -42,6 +42,7 @@ export const useServiceDetails = ({
       });
       return getServiceDetails(data[0]);
     },
+    enabled: () => !!resourceName,
     ...options,
   });
 };

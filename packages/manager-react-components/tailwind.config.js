@@ -11,4 +11,9 @@ module.exports = {
       xxl: '87.5em',
     },
   },
+  plugins: [
+    function ({ addVariant }) {
+      addVariant('part-skeleton', '&::part(skeleton)');
+    },
+  ],
 };
