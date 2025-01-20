@@ -3,7 +3,9 @@ import { Meta } from '@storybook/react';
 import Headers, { HeadersProps } from './headers.component';
 import ActionMenu from '../../navigation/menus/action/action.component';
 import GuideButton from '../../navigation/menus/guide/guide.component';
-import ChangelogButton from '../../navigation/menus/changelog/changelog.component';
+import ChangelogButton, {
+  ChangelogLinks,
+} from '../../navigation/menus/changelog/changelog.component';
 
 const Heading: HeadersProps = {
   title: 'Example for header',
@@ -44,26 +46,15 @@ const guideItems = [
   },
 ];
 
-const changelogItems = [
-  {
-    id: 1,
-    href: 'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Baremetal',
-    target: '_blank',
-    labelKey: 'roadmap',
-  },
-  {
-    id: 2,
-    href: 'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Baremetal',
-    target: '_blank',
-    labelKey: 'changelog',
-  },
-  {
-    id: 3,
-    href: 'https://github.com/ovh/infrastructure-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
-    target: '_blank',
-    labelKey: 'feature-request',
-  },
-];
+const changelogChapters: string[] = ['baremetal', 'server', 'dedicated'];
+const changelogLinks: ChangelogLinks = {
+  roadmap:
+    'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Baremetal',
+  changelog:
+    'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Baremetal',
+  'feature-request':
+    'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Baremetal',
+};
 
 const HeadingWithActionButton: HeadersProps = {
   title: 'Example for header with actions ',
@@ -75,7 +66,7 @@ const HeadingWithHeaderButtons: HeadersProps = {
   description: 'description for subheader',
   headerButton: (
     <>
-      <ChangelogButton items={changelogItems} />
+      <ChangelogButton links={changelogLinks} chapters={changelogChapters} />
       <GuideButton items={guideItems} />
     </>
   ),

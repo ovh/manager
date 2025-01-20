@@ -5,22 +5,28 @@ import { useTranslation } from 'react-i18next';
 import { Links, LinkType } from '../../../typography';
 import '../translations/translation';
 
-export interface ChangelogItem {
-  id: number;
-  href: string;
-  download?: string;
-  target?: string;
-  rel?: string;
-  labelKey: string;
-  onClick?: () => void;
+export interface ChangelogLinks {
+  changelog: string;
+  roadmap: string;
+  'feature-request': string;
 }
 
 export interface ChangelogButtonProps {
-  items: ChangelogItem[];
+  links: ChangelogLinks;
+  chapters: string[];
 }
 
-export const ChangelogButton: React.FC<ChangelogButtonProps> = ({ items }) => {
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
+export const CHANGELOG_PREFIXES = ['tile-changelog-roadmap', 'external-link'];
+const GO_TO = (link: string) => `go-to-${link}`;
+
+export const ChangelogButton: React.FC<ChangelogButtonProps> = ({
+  links,
+  chapters,
+}) => {
   const { t } = useTranslation('buttons');
+  const { trackClick } = useOvhTracking();
   return (
     <>
       <div id="navigation-menu-changelog-trigger">
@@ -37,16 +43,20 @@ export const ChangelogButton: React.FC<ChangelogButtonProps> = ({ items }) => {
         triggerId="navigation-menu-changelog-trigger"
         with-arrow="true"
       >
-        {items.map((item) => (
-          <div key={item.id}>
+        {Object.entries(links).map(([key, value]) => (
+          <div key={key}>
             <Links
-              href={item.href}
-              target={item.target}
-              download={item.download}
-              rel={item.rel}
+              href={value}
+              target="_blank"
               type={LinkType.external}
-              label={t(`mrc_changelog_${item.labelKey}`)}
-              onClickReturn={item.onClick}
+              rel={LinkType.external}
+              label={t(`mrc_changelog_${key}`)}
+              onClickReturn={() =>
+                trackClick({
+                  actionType: 'navigation',
+                  actions: [...chapters, ...CHANGELOG_PREFIXES, GO_TO(key)],
+                })
+              }
             />
           </div>
         ))}
