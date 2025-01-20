@@ -98,6 +98,25 @@
             ></span>
         </oui-datagrid-column>
         <oui-datagrid-column
+            data-title=":: 'dedicated_servers_tags' | translate"
+            data-property="iam.tags"
+        >
+            <span
+                class="oui-badge oui-badge_info"
+                data-ng-repeat="tag in $ctrl.getTags($row.iam.tags)  | limitTo: 2"
+                data-ng-bind="tag"
+            >
+            </span>
+            <button
+                type="button"
+                class="oui-link"
+                data-ng-if="$ctrl.getTags($row.iam.tags).length > 1"
+                data-ng-click="$ctrl.goToTagsModal($row.iam)"
+            >
+                ...
+            </button>
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'dedicated_servers_monitoring' | translate"
             data-property="monitoringStatus"
             data-type="string"

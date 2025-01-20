@@ -1,4 +1,5 @@
 import template from './nodes.html';
+import controller from './nodes.controller.js';
 
 export default {
   bindings: {
@@ -6,4 +7,5 @@ export default {
     getNodeDashboardLink: '<',
   },
   template,
+  controller,
 };
