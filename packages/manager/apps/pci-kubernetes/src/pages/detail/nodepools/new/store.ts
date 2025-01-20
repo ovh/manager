@@ -127,7 +127,9 @@ export const useNewPoolStore = create<TFormStore>()((set, get) => ({
       };
     });
 
-    get().scrollToStep(id);
+    setTimeout(() => {
+      get().scrollToStep(id);
+    }, 400);
   },
   close: (id: StepsEnum) => {
     set((state) => {
