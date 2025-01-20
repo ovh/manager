@@ -1,6 +1,7 @@
 import angular from 'angular';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import ngOvhWebUniverseComponents from '@ovh-ux/ng-ovh-web-universe-components';
+import ngPaginationFront from '@ovh-ux/ng-pagination-front';
 import set from 'lodash/set';
 import autorenew from './autoRenew/autorenew.module';
 import billingMain from './main/billing-main.module';
@@ -51,6 +52,7 @@ angular
     'ui.select',
     'ngOvhFeatureFlipping',
     ngOvhWebUniverseComponents,
+    ngPaginationFront,
     autorenew,
     billingMain,
     history,
