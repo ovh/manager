@@ -78,7 +78,7 @@ export default class AutorenewCtrl {
 
     this.parseExtraCriteria();
 
-    if (this.sort.predicate) {
+    if (this.sort?.predicate) {
       this.columnsConfig = map(COLUMNS_CONFIG, (column) =>
         column.property === this.sort.predicate
           ? {
@@ -193,7 +193,7 @@ export default class AutorenewCtrl {
 
     return this.$q.resolve({
       meta: {
-        totalCount: this.services.count,
+        totalCount: this.services?.count || 0,
       },
       data: this.billingServices,
     });
