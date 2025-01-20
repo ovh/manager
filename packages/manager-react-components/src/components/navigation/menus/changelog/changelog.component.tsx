@@ -17,19 +17,24 @@ import '../translations/translation';
 import GithubIcon from './changelog.icon';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
-export interface ChangelogItem {
-  href: string;
-  chapters?: string[];
+export interface ChangelogLinks {
+  changelog: string;
+  roadmap: string;
+  'feature-request': string;
 }
 
 export interface ChangelogButtonProps {
-  items: Record<string, ChangelogItem>;
+  links: ChangelogLinks;
+  chapters: string[];
 }
 
 export const CHANGELOG_PREFIXES = ['tile-changelog-roadmap', 'external-link'];
 const GO_TO = (link: string) => `go-to-${link}`;
 
-export const ChangelogButton: React.FC<ChangelogButtonProps> = ({ items }) => {
+export const ChangelogButton: React.FC<ChangelogButtonProps> = ({
+  links,
+  chapters,
+}) => {
   const { t } = useTranslation('buttons');
   const { trackClick } = useOvhTracking();
   return (
@@ -48,12 +53,12 @@ export const ChangelogButton: React.FC<ChangelogButtonProps> = ({ items }) => {
           {t('mrc_changelog_header')}
         </OsdsButton>
 
-        {Object.entries(items).map(([key, item]) => {
+        {Object.entries(links).map(([key, link]) => {
           return (
             <OsdsMenuGroup key={key}>
               <OsdsMenuItem>
                 <Links
-                  href={item.href}
+                  href={link}
                   target={OdsHTMLAnchorElementTarget._blank}
                   rel={OdsHTMLAnchorElementRel.external}
                   type={LinkType.external}
@@ -61,11 +66,7 @@ export const ChangelogButton: React.FC<ChangelogButtonProps> = ({ items }) => {
                   onClickReturn={() =>
                     trackClick({
                       actionType: 'navigation',
-                      actions: [
-                        ...item.chapters,
-                        ...CHANGELOG_PREFIXES,
-                        GO_TO(key),
-                      ],
+                      actions: [...chapters, ...CHANGELOG_PREFIXES, GO_TO(key)],
                     })
                   }
                 />

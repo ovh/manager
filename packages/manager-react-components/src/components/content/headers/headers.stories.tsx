@@ -5,7 +5,7 @@ import Headers, { HeadersProps } from './headers.component';
 import ActionMenu from '../../navigation/menus/action/action.component';
 import GuideButton from '../../navigation/menus/guide/guide.component';
 import ChangelogButton, {
-  ChangelogItem,
+  ChangelogLinks,
 } from '../../navigation/menus/changelog/changelog.component';
 
 const Heading: HeadersProps = {
@@ -47,19 +47,14 @@ const guideItems = [
   },
 ];
 
-const changelogItems: Record<string, ChangelogItem> = {
-  roadmap: {
-    href: 'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Baremetal',
-    chapters: ['baremetal', 'server', 'dedicated'],
-  },
-  changelog: {
-    href: 'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Baremetal',
-    chapters: ['baremetal', 'server', 'dedicated'],
-  },
-  'feature-request': {
-    href: 'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Baremetal',
-    chapters: ['baremetal', 'server', 'dedicated'],
-  },
+const changelogChapters: string[] = ['baremetal', 'server', 'dedicated'];
+const changelogLinks: ChangelogLinks = {
+  roadmap:
+    'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Baremetal',
+  changelog:
+    'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Baremetal',
+  'feature-request':
+    'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Baremetal',
 };
 
 const HeadingWithActionButton: HeadersProps = {
@@ -72,7 +67,7 @@ const HeadingWithHeaderButtons: HeadersProps = {
   description: 'description for subheader',
   headerButton: (
     <>
-      <ChangelogButton items={changelogItems} />
+      <ChangelogButton links={changelogLinks} chapters={changelogChapters} />
       <GuideButton items={guideItems} />
     </>
   ),
