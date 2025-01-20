@@ -2,19 +2,17 @@ import React, { useState, useEffect, } from 'react';
 import { useTranslation } from 'react-i18next';
 import { {{#if isPCI }}useParams, {{/if}} useNavigate, useLocation } from 'react-router-dom';
 
-import { OdsButton } from '@ovhcloud/ods-components/react';
+import { OdsButton, OdsSpinner } from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 
 import {
   BaseLayout,
+  Breadcrumb,
   Datagrid,
   DataGridTextCell,
+  ErrorBanner,
   useResourcesIcebergV2,
 } from '@ovh-ux/manager-react-components';
-
-import Loading from '@/components/Loading/Loading';
-import ErrorBanner from '@/components/Error/Error';
-import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 
 import appConfig from '@/{{appName}}.config';
 import { urls } from '@/routes/routes.constant';
@@ -83,11 +81,21 @@ export default function Listing() {
   }, [data]);
 
   if (isError) {
-    return <ErrorBanner error={error} />;
+    const { response }: any = error;
+    const errorObj = {
+      data: error,
+      headers: response.headers,
+      status: response.status,
+    };
+    return (<ErrorBanner error={errorObj} />);
   }
 
   if (isLoading && !flattenData) {
-    return (<div data-testid="listing-page-spinner"><Loading/></div>)
+    return (
+      <div className="flex justify-center"  data-testid="listing-page-spinner">
+        <OdsSpinner />
+      </div>
+    );
   }
 
   const header = {
@@ -95,7 +103,7 @@ export default function Listing() {
   };
 
   return (
-    <BaseLayout breadcrumb={<Breadcrumb />} header={header}>
+    <BaseLayout breadcrumb={<Breadcrumb rootLabel={appConfig.rootLabel} appName="{{appName}}" />} header={header}>
       <React.Suspense>
         {columns && flattenData && (
           <Datagrid
