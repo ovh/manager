@@ -4,6 +4,7 @@ import { odsSetup } from '@ovhcloud/ods-common-core';
 import { useShell } from '@ovh-ux/manager-react-shell-client';
 
 import './global.css';
+import '@ovhcloud/ods-theme-blue-jeans';
 import '@ovhcloud/ods-themes/default';
 
 import queryClient from './query.client';
