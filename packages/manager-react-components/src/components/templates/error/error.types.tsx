@@ -4,9 +4,9 @@ export interface ErrorObject {
   headers: any;
 }
 export interface ErrorMessage {
-  message: string;
-  status: number;
-  detail: any;
+  message?: string;
+  status?: number;
+  detail?: any;
 }
 export const TRACKING_LABELS = {
   SERVICE_NOT_FOUND: 'service_not_found',
