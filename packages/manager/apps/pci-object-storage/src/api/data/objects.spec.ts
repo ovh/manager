@@ -2,10 +2,10 @@ import { describe, it, expect, vi } from 'vitest';
 import { v6 } from '@ovh-ux/manager-core-api';
 import {
   deleteS3Object,
-  deleteObject,
   addUser,
   addHighPerfObjects,
   addObjects,
+  deleteSwiftObject,
 } from './objects';
 import * as storages from './storages';
 import { TStorage } from './storages';
@@ -22,13 +22,13 @@ describe('deleteS3Object', () => {
     const mockResponse = { data: 'deleted' };
     vi.mocked(v6.delete).mockResolvedValue(mockResponse);
 
-    const result = await deleteS3Object(
-      'projectId',
-      'containerId',
-      'objectName',
-      'containerRegion',
-      's3StorageType',
-    );
+    const result = await deleteS3Object({
+      projectId: 'projectId',
+      containerId: 'containerId',
+      objectName: 'objectName',
+      containerRegion: 'containerRegion',
+      s3StorageType: 's3StorageType',
+    });
 
     expect(v6.delete).toHaveBeenCalledWith(
       '/cloud/project/projectId/region/containerRegion/s3StorageType/containerId/object/objectName',
@@ -42,13 +42,13 @@ describe('deleteObject', () => {
     const mockResponse = { json: vi.fn().mockResolvedValue('deleted') };
     global.fetch = vi.fn().mockResolvedValue(mockResponse);
 
-    const result = await deleteObject(
-      'projectId',
-      'storageName',
-      'objectName',
-      'token',
-      'region',
-    );
+    const result = await deleteSwiftObject({
+      projectId: 'projectId',
+      storageName: 'storageName',
+      objectName: 'objectName',
+      token: 'token',
+      region: 'region',
+    });
 
     expect(global.fetch).toHaveBeenCalledWith(
       'https://storage.region.cloud.ovh.net/v1/AUTH_projectId/storageName/objectName',
