@@ -1,20 +1,13 @@
 import React, { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_SIZE,
-  ODS_BUTTON_TYPE,
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
-  ODS_ICON_SIZE,
 } from '@ovhcloud/ods-components';
-import {
-  OsdsButton,
-  OsdsIcon,
-  OsdsMenu,
-  OsdsMenuItem,
-} from '@ovhcloud/ods-components/react';
+import { OdsButton, OdsLink, OdsPopover } from '@ovhcloud/ods-components/react';
 import { usePciUrl } from '@ovh-ux/manager-pci-common';
 import {
   ButtonType,
@@ -25,6 +18,7 @@ import {
   SavingsPlanPlanedChangeStatus,
   SavingsPlanStatus,
 } from '@/types/api.type';
+import './ActionCell.scss';
 
 interface SavingsPlanActionsCell {
   onClickEditName: (path: string) => void;
@@ -36,6 +30,7 @@ interface SavingsPlanActionsCell {
 }
 
 const MenuItems = ({
+  id,
   status,
   flavor,
   onClickEdit,
@@ -43,6 +38,7 @@ const MenuItems = ({
   periodEndAction,
   pciUrl,
 }: {
+  id: string;
   status: SavingsPlanStatus;
   flavor: string;
   onClickEdit: () => void;
@@ -53,52 +49,41 @@ const MenuItems = ({
   const { t } = useTranslation('listing');
   const { trackClick } = useOvhTracking();
 
+  const navigate = useNavigate();
   // We don't have a better way to check that, api return only a specific code and not an id related to scope (instance, rancher),
   // So if we have number in the flavor (b3-8, c3-16) it's an instance else it's a Rancher
   const isInstance = useMemo(() => /\d/.test(flavor), [flavor]);
 
   return (
-    <>
-      <OsdsMenuItem>
-        <OsdsButton
-          color={ODS_THEME_COLOR_INTENT.primary}
+    <OdsPopover triggerId={`popover-trigger-${id}`}>
+      <div className="flex flex-col gap-2">
+        <OdsButton
+          label={t('edit')}
           size={ODS_BUTTON_SIZE.sm}
           variant={ODS_BUTTON_VARIANT.ghost}
           text-align="start"
           onClick={onClickEdit}
-        >
-          <span slot="start">
-            <span>{t('edit')}</span>
-          </span>
-        </OsdsButton>
-      </OsdsMenuItem>
-
-      {status !== SavingsPlanStatus.TERMINATED && (
-        <OsdsMenuItem>
-          <OsdsButton
-            color={ODS_THEME_COLOR_INTENT.primary}
+        />
+        {status !== SavingsPlanStatus.TERMINATED && (
+          <OdsButton
+            label={
+              periodEndAction === SavingsPlanPlanedChangeStatus.TERMINATE
+                ? t('enableAutoRenew')
+                : t('disableAutoRenew')
+            }
             size={ODS_BUTTON_SIZE.sm}
             variant={ODS_BUTTON_VARIANT.ghost}
             text-align="start"
             onClick={onClickRenew}
-          >
-            <span slot="start">
-              <span>
-                {periodEndAction === SavingsPlanPlanedChangeStatus.TERMINATE
-                  ? t('enableAutoRenew')
-                  : t('disableAutoRenew')}
-              </span>
-            </span>
-          </OsdsButton>
-        </OsdsMenuItem>
-      )}
+          />
+        )}
 
-      <OsdsMenuItem>
-        <OsdsButton
-          color={ODS_THEME_COLOR_INTENT.primary}
-          size={ODS_BUTTON_SIZE.sm}
-          variant={ODS_BUTTON_VARIANT.ghost}
-          text-align="start"
+        <OdsLink
+          href={
+            isInstance ? `${pciUrl}/instances/new` : `${pciUrl}/rancher/new`
+          }
+          className="menu-item-link"
+          label={t(isInstance ? 'order_instance' : 'order_rancher')}
           onClick={() => {
             trackClick({
               location: PageLocation.page,
@@ -107,16 +92,9 @@ const MenuItems = ({
               actions: ['add_instance'],
             });
           }}
-          href={
-            isInstance ? `${pciUrl}/instances/new` : `${pciUrl}/rancher/new`
-          }
-        >
-          <span slot="start">
-            <span>{t(isInstance ? 'order_instance' : 'order_rancher')}</span>
-          </span>
-        </OsdsButton>
-      </OsdsMenuItem>
-    </>
+        />
+      </div>
+    </OdsPopover>
   );
 };
 
@@ -135,24 +113,18 @@ export default function ActionsCell({
   const onClickEdit = useCallback(() => onClickEditName(id), [id]);
 
   return (
-    <OsdsMenu className="absolute  mt-[-15px]">
-      <OsdsButton
-        slot="menu-title"
-        inline
-        circle
-        color={ODS_THEME_COLOR_INTENT.info}
-        variant={ODS_BUTTON_VARIANT.stroked}
-        type={ODS_BUTTON_TYPE.button}
-        size={ODS_BUTTON_SIZE.sm}
-        disabled={!editable || undefined}
-      >
-        <OsdsIcon
-          color={ODS_THEME_COLOR_INTENT.primary}
-          name={ODS_ICON_NAME.ELLIPSIS}
-          size={ODS_ICON_SIZE.xs}
+    <>
+      <div id={`popover-trigger-${id}`}>
+        <OdsButton
+          label=""
+          icon={ODS_ICON_NAME.ellipsisVertical}
+          variant={ODS_BUTTON_VARIANT.outline}
+          size={ODS_BUTTON_SIZE.sm}
+          isDisabled={!editable || undefined}
         />
-      </OsdsButton>
+      </div>
       <MenuItems
+        id={id}
         pciUrl={pciUrl}
         flavor={flavor}
         status={status}
@@ -160,6 +132,6 @@ export default function ActionsCell({
         onClickEdit={onClickEdit}
         onClickRenew={onClickRenew}
       />
-    </OsdsMenu>
+    </>
   );
 }

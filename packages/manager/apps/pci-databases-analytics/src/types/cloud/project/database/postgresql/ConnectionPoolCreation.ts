@@ -11,5 +11,5 @@ export interface ConnectionPoolCreation {
   /** Size of the connection pool */
   size: number;
   /** User authorized to connect to the pool, if none all the users are allowed */
-  userId: string;
+  userId?: string;
 }

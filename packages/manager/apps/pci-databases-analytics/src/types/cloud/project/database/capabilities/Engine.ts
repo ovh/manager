@@ -4,17 +4,17 @@ import { StrategyEnum } from '@/types/cloud/project/database/capabilities/engine
 /** Specific database engine capability */
 export interface Engine {
   /** Category of the engine */
-  category?: CategoryEnum;
+  category: CategoryEnum;
   /** Default version used for the engine */
-  defaultVersion?: string;
+  defaultVersion: string;
   /** Description of the engine */
-  description?: string;
+  description: string;
   /** Engine name */
-  name?: string;
+  name: string;
   /** SSL modes for this engine */
-  sslModes?: string[];
+  sslModes: string[];
   /** Storage strategy of the engine */
-  storage?: StrategyEnum;
+  storage: StrategyEnum;
   /** Versions available for this engine */
-  versions?: string[];
+  versions: string[];
 }

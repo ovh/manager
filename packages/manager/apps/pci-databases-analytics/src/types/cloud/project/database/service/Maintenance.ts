@@ -5,11 +5,11 @@ export interface Maintenance {
   /** Date of the application of the maintenance */
   appliedAt?: string;
   /** Description of the maintenance */
-  description?: string;
+  description: string;
   /** ID of the maintenance */
-  id?: string;
+  id: string;
   /** Date of the planification of the maintenance */
   scheduledAt?: string;
   /** Status of the maintenance */
-  status?: StatusEnum;
+  status: StatusEnum;
 }

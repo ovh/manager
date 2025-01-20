@@ -1,17 +1,13 @@
 import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import {
   ButtonType,
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { ODS_TILE_SIZE, ODS_TILE_VARIANT } from '@ovhcloud/ods-components';
-import { OsdsText, OsdsTile } from '@ovhcloud/ods-components/react';
+import { OdsText, OdsCard } from '@ovhcloud/ods-components/react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useCatalogPrice } from '@ovh-ux/manager-react-components';
+import clsx from 'clsx';
 import { getDiffInPercent } from './Commitment.utils';
 import {
   CENTS_PRICE,
@@ -57,54 +53,40 @@ const Commitment = ({
   };
 
   return (
-    <OsdsTile
-      size={ODS_TILE_SIZE.sm}
-      rounded
-      inline
-      variant={ODS_TILE_VARIANT.stroked}
-      className={`flex flex-row items-center mr-5 my-4 justify-between w-full cursor-pointer ${
-        isActive
-          ? 'bg-[--ods-color-blue-100] border-[--ods-color-blue-600]'
-          : ''
-      }`}
-      color={
-        isActive
-          ? ODS_THEME_COLOR_INTENT.primary
-          : ODS_THEME_COLOR_INTENT.default
-      }
+    <OdsCard
+      className={clsx(
+        'flex flex-row items-center mr-5 my-4 p-5 justify-between w-full cursor-pointer',
+        { 'border-[--ods-color-primary-500] border-2': isActive },
+      )}
       onClick={onClickTracking}
+      color="neutral"
     >
-      <span slot="start" className="flex flex-row items-center justify-center">
-        <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
-          {t('commitment_month', { value: duration })}
-        </OsdsText>
-        <OsdsText
-          size={ODS_THEME_TYPOGRAPHY_SIZE._500}
-          className="ml-3 text-[#AC246F]"
-        >
-          {diffInPercent ? `- ${diffInPercent} %` : ''}
-        </OsdsText>
+      <span className="flex flex-row items-center justify-center">
+        <OdsText>{t('commitment_month', { value: duration })}</OdsText>
+        {diffInPercent && (
+          <OdsText className="ml-3  text-[16px]">
+            <span className="text-[#AC246F] font-bold">
+              {`- ${diffInPercent} %`}
+            </span>
+          </OdsText>
+        )}
       </span>
-      <span slot="end" className="flex flex-col items-end justify-center">
+      <span className="flex flex-col items-end justify-center">
         <div className="flex flex-row items-center justify-center">
           {priceByMonthWithoutCommitment && (
-            <OsdsText
-              color={ODS_THEME_COLOR_INTENT.text}
-              className="line-through"
-            >
+            <OdsText className="line-through">
               {`~ ${getTextPrice(priceByMonthWithoutCommitment * CENTS_PRICE)}`}
-            </OsdsText>
+            </OdsText>
           )}
-          <OsdsText
-            size={ODS_THEME_TYPOGRAPHY_SIZE._500}
-            className="ml-3 text-[#AC246F]"
-          >
-            {getTextPrice(priceNumber * CENTS_PRICE)}
-          </OsdsText>
+          <OdsText className="ml-3  text-[16px]">
+            <span className="text-[#AC246F] font-bold">
+              {getTextPrice(priceNumber * CENTS_PRICE)}
+            </span>
+          </OdsText>
         </div>
-        <OsdsText>{t('commitment_price_month')}</OsdsText>
+        <OdsText>{t('commitment_price_month')}</OdsText>
       </span>
-    </OsdsTile>
+    </OdsCard>
   );
 };
 

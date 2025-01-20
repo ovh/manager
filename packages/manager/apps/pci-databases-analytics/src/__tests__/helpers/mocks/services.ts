@@ -75,7 +75,6 @@ export const mockedService: database.Service = {
   nodeNumber: 2,
   nodes: [mockedNode],
   plan: 'plan',
-  region: 'region',
   status: database.StatusEnum.CREATING,
   storage: {
     size: {
@@ -161,7 +160,6 @@ export const mockedServiceInte: database.Service = {
   nodeNumber: 2,
   nodes: [mockedNode],
   plan: 'plan',
-  region: 'region',
   status: database.StatusEnum.CREATING,
   storage: {
     size: {
@@ -193,6 +191,7 @@ export const mockedServiceCreation: database.ServiceCreation = {
   plan: 'plan',
   subnetId: 'subnetId',
   version: 'version',
+  disk: undefined,
 };
 
 export const mockedServiceCreationWithEngine: ServiceCreationWithEngine = {
@@ -247,7 +246,6 @@ export const mockedServiceInteBase: database.Service = {
   nodeNumber: 2,
   nodes: [mockedNode],
   plan: 'plan',
-  region: 'region',
   status: database.StatusEnum.READY,
   storage: {
     size: {

@@ -3,9 +3,9 @@ import { ComponentEnum } from '@/types/cloud/project/database/service/endpoint/C
 /** Defines the endpoint object in a cluster */
 export interface Endpoint {
   /** Type of component the URI relates to */
-  component?: ComponentEnum;
+  component: ComponentEnum;
   /** Domain of the cluster */
-  domain?: string;
+  domain: string;
   /** Path of the endpoint */
   path?: string;
   /** Connection port for the endpoint */
@@ -13,7 +13,7 @@ export interface Endpoint {
   /** Scheme used to generate the URI */
   scheme?: string;
   /** Defines whether the endpoint uses SSL */
-  ssl?: boolean;
+  ssl: boolean;
   /** SSL mode used to connect to the service if the SSL is enabled */
   sslMode?: string;
   /** URI of the endpoint */

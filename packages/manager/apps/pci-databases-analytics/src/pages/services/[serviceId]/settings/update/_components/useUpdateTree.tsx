@@ -17,7 +17,7 @@ export function useUpdateTree(availabilities: database.Availability[]) {
         engine: service.engine,
         flavor: service.flavor,
         plan: service.plan,
-        region: service.region,
+        region: service.nodes[0].region,
         version: service.version,
       },
     ];

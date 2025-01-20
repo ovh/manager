@@ -43,7 +43,6 @@ export interface EditService extends ServiceData {
       | 'ipRestrictions'
       | 'maintenanceTime'
       | 'plan'
-      | 'region'
       | 'storage'
       | 'version'
     > & {

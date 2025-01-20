@@ -1,3 +1,5 @@
+import { MutationStatus } from '@tanstack/react-query';
+
 export interface PciProject {
   project_id: string;
   projectName: string;
@@ -65,3 +67,17 @@ export interface SavingsPlanService {
   startDate: string;
   status: SavingsPlanStatus;
 }
+
+export type MutationInfo<T = void> = {
+  submittedAt: number;
+  error?: {
+    code: string;
+  };
+  status: MutationStatus;
+  data?: T;
+};
+
+export type UseSavingsPlanParams = {
+  savingsPlanId: string;
+  onSuccess?: () => void;
+};

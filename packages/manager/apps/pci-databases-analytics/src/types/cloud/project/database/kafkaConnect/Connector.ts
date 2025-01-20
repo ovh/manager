@@ -5,11 +5,11 @@ export interface Connector {
   /** Configuration of the connector */
   configuration: { [key: string]: string };
   /** Connector capability ID */
-  connectorId?: string;
+  connectorId: string;
   /** Connector ID */
-  id?: string;
+  id: string;
   /** Name of the connector */
-  name?: string;
+  name: string;
   /** Status of the connector */
-  status?: StatusEnum;
+  status: StatusEnum;
 }

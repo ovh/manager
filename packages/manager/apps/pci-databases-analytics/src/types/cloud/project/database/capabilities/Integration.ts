@@ -5,11 +5,11 @@ import { TypeEnum } from '@/types/cloud/project/database/service/integration/Typ
 /** Integration capability between database engines */
 export interface Integration {
   /** Destination engine for the integration */
-  destinationEngine?: EngineEnum;
+  destinationEngine: EngineEnum;
   /** Parameters for the integration capability */
   parameters?: Parameter[];
   /** Source engine for the integration */
-  sourceEngine?: EngineEnum;
+  sourceEngine: EngineEnum;
   /** Type of the integration */
-  type?: TypeEnum;
+  type: TypeEnum;
 }

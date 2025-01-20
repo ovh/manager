@@ -68,7 +68,7 @@ const IpsRestrictionsUpdate = ({
       engine: service.engine,
       projectId,
       data: {
-        ipRestrictions: formValues.ipRestrictions as database.IpRestrictionCreation[],
+        ipRestrictions: formValues.ipRestrictions as database.service.IpRestriction[],
       },
     });
   });

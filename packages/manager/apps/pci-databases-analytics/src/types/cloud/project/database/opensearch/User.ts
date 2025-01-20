@@ -6,11 +6,11 @@ export interface User {
   /** Acls of the user */
   acls: UserAcl[];
   /** Date of the creation of the user */
-  createdAt?: string;
+  createdAt: string;
   /** User ID */
-  id?: string;
+  id: string;
   /** Current status of the user */
-  status?: StatusEnum;
+  status: StatusEnum;
   /** Name of the user */
-  username?: string;
+  username: string;
 }

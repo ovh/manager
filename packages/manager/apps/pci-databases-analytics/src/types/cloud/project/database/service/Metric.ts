@@ -4,9 +4,9 @@ import { MetricUnitEnum } from '@/types/cloud/project/database/service/MetricUni
 /** Metric definition for cloud project databases */
 export interface Metric {
   /** Metric values for each cluster's host */
-  metrics?: HostMetric[];
+  metrics: HostMetric[];
   /** Name of the metric */
-  name?: string;
+  name: string;
   /** Unit of the metric */
-  units?: MetricUnitEnum;
+  units: MetricUnitEnum;
 }

@@ -59,6 +59,9 @@ export const mockedCapabilities: FullCapabilities = {
         memory: { value: 0, unit: 'GB' },
         storage: { value: 512, unit: 'MB' },
       },
+      core: 0,
+      memory: 0,
+      storage: 0,
     },
     {
       name: 'db1',
@@ -70,6 +73,9 @@ export const mockedCapabilities: FullCapabilities = {
         memory: { value: 16, unit: 'GB' },
         storage: { value: 20, unit: 'GB' },
       },
+      core: 0,
+      memory: 0,
+      storage: 0,
     },
     {
       name: 'db2',
@@ -81,6 +87,9 @@ export const mockedCapabilities: FullCapabilities = {
         memory: { value: 32, unit: 'GB' },
         storage: { value: 40, unit: 'GB' },
       },
+      core: 0,
+      memory: 0,
+      storage: 0,
     },
     {
       name: 'db3',
@@ -92,6 +101,9 @@ export const mockedCapabilities: FullCapabilities = {
         memory: { value: 64, unit: 'GB' },
         storage: { value: 40, unit: 'GB' },
       },
+      core: 0,
+      memory: 0,
+      storage: 0,
     },
   ],
   options: [

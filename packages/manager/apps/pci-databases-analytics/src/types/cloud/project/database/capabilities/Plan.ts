@@ -3,15 +3,15 @@ import { Lifecycle } from '@/types/cloud/project/database/availability/Lifecycle
 /** Cloud Database plan definition */
 export interface Plan {
   /** Automatic backup retention duration */
-  backupRetention?: string;
+  backupRetention: string;
   /** Description of the plan */
-  description?: string;
+  description: string;
   /** Defines the lifecycle of the availability */
-  lifecycle?: Lifecycle;
+  lifecycle: Lifecycle;
   /** Name of the plan */
-  name?: string;
+  name: string;
   /** Display order */
-  order?: number;
+  order: number;
   /** Display tags */
-  tags?: string[];
+  tags: string[];
 }

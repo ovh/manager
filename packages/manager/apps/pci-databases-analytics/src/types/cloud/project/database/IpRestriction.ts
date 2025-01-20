@@ -1,12 +1,12 @@
 import { IpBlock } from '@/types/IpBlock';
 import { StatusEnum } from '@/types/cloud/project/database/StatusEnum';
 
-/** Ip Restriction definition for cloud project databases (DEPRECATED) */
+/** @deprecated Ip Restriction definition for cloud project databases (DEPRECATED) */
 export interface IpRestriction {
   /** Description of the ip restriction */
   description: string;
   /** Whitelisted IP */
-  ip?: IpBlock;
+  ip: IpBlock;
   /** Current status of the ip restriction */
-  status?: StatusEnum;
+  status: StatusEnum;
 }

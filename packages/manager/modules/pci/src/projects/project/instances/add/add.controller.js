@@ -1717,7 +1717,6 @@ export default class PciInstancesAddController {
     images = [this.model?.image],
   ) {
     const {
-      windowsGen3: { isFeatureAvailable },
       model: { flavorGroup },
     } = this;
 
@@ -1739,7 +1738,6 @@ export default class PciInstancesAddController {
     const is1AZRegion = !this.isLocalZone();
 
     return (
-      isFeatureAvailable &&
       isWindowsDistribution &&
       hasWindowsServerImages &&
       isLicensedFlavor &&
@@ -1758,7 +1756,7 @@ export default class PciInstancesAddController {
         `${convertedPrice}`.split('.').pop().length,
         3,
       ),
-    }).format(convertedPrice * multiplier);
+    }).format(convertedPrice * multiplier * this.model.number);
   }
 
   getWindowsLicensePriceText(distribution, images) {

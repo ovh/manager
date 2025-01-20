@@ -3,20 +3,20 @@ import { Specifications } from '@/types/cloud/project/database/capabilities/flav
 
 /** Cloud Database flavor definition */
 export interface Flavor {
-  /** Flavor core number. DEPRECATED: use specifications.core */
-  core?: number;
+  /** @deprecated Flavor core number. DEPRECATED: use specifications.core */
+  core: number;
   /** Defines the lifecycle of the flavor */
-  lifecycle?: Lifecycle;
-  /** Flavor ram size in GB. DEPRECATED: use specifications.memory */
-  memory?: number;
+  lifecycle: Lifecycle;
+  /** @deprecated Flavor ram size in GB. DEPRECATED: use specifications.memory */
+  memory: number;
   /** Name of the flavor */
-  name?: string;
+  name: string;
   /** Display order */
-  order?: number;
+  order: number;
   /** Technical specifications of the flavor */
-  specifications?: Specifications;
-  /** Flavor disk size in GB. DEPRECATED: use specifications.storage */
-  storage?: number;
+  specifications: Specifications;
+  /** @deprecated Flavor disk size in GB. DEPRECATED: use specifications.storage */
+  storage: number;
   /** Display tags */
-  tags?: string[];
+  tags: string[];
 }

@@ -98,7 +98,7 @@ describe('Users page', () => {
       throw apiErrorMock;
     });
     render(<Users />, { wrapper: RouterWithQueryClientWrapper });
-    expect(screen.getByTestId('users-table-skeleton')).toBeInTheDocument();
+    expect(screen.getByTestId('datatable.skeleton')).toBeInTheDocument();
   });
   it('renders and shows users table', async () => {
     render(<Users />, { wrapper: RouterWithQueryClientWrapper });
@@ -115,7 +115,7 @@ describe('Users page', () => {
     ]);
     render(<Users />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByText('mongoRole')).toBeInTheDocument();
+      expect(screen.getByText('tableHeadRoles')).toBeInTheDocument();
     });
   });
   it('renders redis columns', async () => {

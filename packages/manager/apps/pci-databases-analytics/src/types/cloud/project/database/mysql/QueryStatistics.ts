@@ -3,5 +3,5 @@ import { Query } from '@/types/cloud/project/database/mysql/querystatistics/Quer
 /** Cloud database mysql query statistics response body definition */
 export interface QueryStatistics {
   /** Statistics of the queries */
-  queries?: Query[];
+  queries: Query[];
 }

@@ -3,7 +3,6 @@ import {
   initI18n,
   initShellContext,
 } from '@ovh-ux/manager-react-shell-client';
-import '@ovhcloud/ods-theme-blue-jeans/dist/index.css';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';

@@ -6,19 +6,19 @@ import { BackupTypeEnum } from '@/types/cloud/project/database/BackupTypeEnum';
 /** Cloud database backup definition */
 export interface Backup {
   /** Date of the creation of the backup */
-  createdAt?: string;
+  createdAt: string;
   /** Description of the backup */
   description: string;
   /** Backup ID */
-  id?: string;
-  /** Region where the backup is stored. DEPRECATED: use regions */
-  region?: string;
+  id: string;
+  /** @deprecated Region where the backup is stored. DEPRECATED: use regions */
+  region: string;
   /** Regions where the backup are stored */
-  regions?: Region[];
+  regions: Region[];
   /** Size of the backup */
-  size?: UnitAndValueLong;
+  size: UnitAndValueLong;
   /** Current status of the backup */
-  status?: StatusEnum;
+  status: StatusEnum;
   /** Type of backup */
-  type?: BackupTypeEnum;
+  type: BackupTypeEnum;
 }

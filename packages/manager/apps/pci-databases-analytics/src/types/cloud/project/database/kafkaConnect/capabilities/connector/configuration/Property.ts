@@ -6,19 +6,19 @@ export interface Property {
   /** Defines the default value is exists */
   defaultValue?: string;
   /** Description of the property */
-  description?: string;
+  description: string;
   /** Pretty name of the property */
-  displayName?: string;
+  displayName: string;
   /** Group to which belongs the property */
-  group?: string;
+  group: string;
   /** Importance of the property */
-  importance?: ImportanceEnum;
+  importance: ImportanceEnum;
   /** Name of the property */
-  name?: string;
+  name: string;
   /** Defines whether the property is required */
-  required?: boolean;
+  required: boolean;
   /** Type of data of the property */
-  type?: TypeEnum;
+  type: TypeEnum;
   /** Possible values for the property if string and applicable */
   values?: string[];
 }

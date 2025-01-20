@@ -5,5 +5,5 @@ export interface Storage {
   /** Service storage size */
   size: UnitAndValueLong;
   /** Service storage type */
-  type?: string;
+  type: string;
 }

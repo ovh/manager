@@ -8,5 +8,5 @@ export interface IpRestriction {
   /** Whitelisted IP */
   ip: IpBlock;
   /** Current status of the ip restriction */
-  status?: StatusEnum;
+  status: StatusEnum;
 }

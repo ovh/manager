@@ -1,11 +1,8 @@
 import React, { useEffect, useContext } from 'react';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
-import { odsSetup } from '@ovhcloud/ods-common-core';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { RouterProvider, createHashRouter } from 'react-router-dom';
 import { Routes } from './routes/routes';
-
-odsSetup();
 
 export const queryClient = new QueryClient({
   defaultOptions: {

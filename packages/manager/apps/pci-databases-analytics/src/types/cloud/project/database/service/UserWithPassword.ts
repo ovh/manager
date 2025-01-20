@@ -3,13 +3,13 @@ import { StatusEnum } from '@/types/cloud/project/database/StatusEnum';
 /** User with password definition */
 export interface UserWithPassword {
   /** Date of the creation of the user */
-  createdAt?: string;
+  createdAt: string;
   /** User ID */
-  id?: string;
+  id: string;
   /** Password of the user */
-  password?: string;
+  password: string;
   /** Current status of the user */
-  status?: StatusEnum;
+  status: StatusEnum;
   /** Name of the user */
-  username?: string;
+  username: string;
 }

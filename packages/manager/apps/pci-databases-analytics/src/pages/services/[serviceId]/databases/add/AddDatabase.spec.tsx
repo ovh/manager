@@ -109,6 +109,8 @@ describe('AddDatabase Component', () => {
   it('should show success toast on successful database addition', async () => {
     vi.mocked(databaseApi.addDatabase).mockResolvedValue({
       name: 'MyDatabase',
+      default: false,
+      id: '',
     });
 
     render(<AddDatabase />, { wrapper: RouterWithQueryClientWrapper });

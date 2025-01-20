@@ -7,7 +7,7 @@ export interface Lifecycle {
   /** End of sale of the product */
   endOfSale?: string;
   /** Date of the release of the product */
-  startDate?: string;
+  startDate: string;
   /** Status of the availability */
-  status?: StatusEnum;
+  status: StatusEnum;
 }

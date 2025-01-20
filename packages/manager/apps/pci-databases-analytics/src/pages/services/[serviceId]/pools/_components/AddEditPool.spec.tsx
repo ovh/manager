@@ -58,7 +58,7 @@ describe('AddEditPool', () => {
         service={mockedService}
         connectionPools={[]}
         databases={[mockedDatabase]}
-        users={[mockedUser as GenericUser]}
+        users={[(mockedUser as unknown) as GenericUser]}
       />,
       {
         wrapper: RouterWithQueryClientWrapper,
@@ -76,7 +76,7 @@ describe('AddEditPool', () => {
         service={mockedService}
         connectionPools={[]}
         databases={[mockedDatabase]}
-        users={[mockedUser as GenericUser]}
+        users={[(mockedUser as unknown) as GenericUser]}
       />,
       {
         wrapper: RouterWithQueryClientWrapper,
@@ -99,7 +99,7 @@ describe('AddEditPool', () => {
         service={mockedService}
         connectionPools={[]}
         databases={[mockedDatabase]}
-        users={[mockedUser as GenericUser]}
+        users={[(mockedUser as unknown) as GenericUser]}
       />,
       {
         wrapper: RouterWithQueryClientWrapper,
@@ -130,7 +130,7 @@ describe('AddEditPool', () => {
         service={mockedService}
         connectionPools={[mockedConnectionPool]}
         databases={[mockedDatabase]}
-        users={[mockedUser as GenericUser]}
+        users={[(mockedUser as unknown) as GenericUser]}
       />,
       {
         wrapper: RouterWithQueryClientWrapper,
@@ -161,7 +161,7 @@ describe('AddEditPool', () => {
         service={mockedService}
         connectionPools={[mockedConnectionPool]}
         databases={[mockedDatabase]}
-        users={[mockedUser as GenericUser]}
+        users={[(mockedUser as unknown) as GenericUser]}
         editedConnectionPool={mockedConnectionPool}
       />,
       {
@@ -196,7 +196,7 @@ describe('AddEditPool', () => {
         service={mockedService}
         connectionPools={[mockedConnectionPool]}
         databases={[mockedDatabase]}
-        users={[mockedUser as GenericUser]}
+        users={[(mockedUser as unknown) as GenericUser]}
       />,
       {
         wrapper: RouterWithQueryClientWrapper,
@@ -226,7 +226,7 @@ describe('AddEditPool', () => {
         service={mockedService}
         connectionPools={[mockedConnectionPool]}
         databases={[mockedDatabase]}
-        users={[mockedUser as GenericUser]}
+        users={[(mockedUser as unknown) as GenericUser]}
       />,
       {
         wrapper: RouterWithQueryClientWrapper,
