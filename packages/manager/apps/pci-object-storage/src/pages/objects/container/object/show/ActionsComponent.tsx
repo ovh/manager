@@ -2,8 +2,7 @@ import { v6 } from '@ovh-ux/manager-core-api';
 import { ActionMenu } from '@ovh-ux/manager-react-components';
 import { useTracking } from '@ovh-ux/manager-react-shell-client';
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import { useProject } from '@ovh-ux/manager-pci-common';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { addWeeks } from 'date-fns';
 import { OPENIO_PRESIGN_EXPIRE, TRACKING_PREFIX } from '@/constants';
 import { TObject } from '@/api/data/container';
@@ -27,7 +26,7 @@ export default function ActionsComponent({
   const { trackClick } = useTracking();
   const navigate = useNavigate();
 
-  const { data: project } = useProject();
+  const { projectId } = useParams();
 
   const download = async () => {
     trackClick({
@@ -36,7 +35,7 @@ export default function ActionsComponent({
     });
 
     if (container.s3StorageType) {
-      const url = `/cloud/project/${project?.project_id}/region/${container.region}/${container.s3StorageType}/${container.name}/presign`;
+      const url = `/cloud/project/${projectId}/region/${container.region}/${container.s3StorageType}/${container.name}/presign`;
       const options = {
         expire: OPENIO_PRESIGN_EXPIRE,
         method: 'GET',
@@ -48,7 +47,7 @@ export default function ActionsComponent({
       window.location.href = data.url;
     } else {
       const expirationDate = addWeeks(new Date(), 1).toISOString();
-      const url = `/cloud/project/${project?.project_id}/storage/${container.name}/publicUrl`;
+      const url = `/cloud/project/${projectId}/storage/${container.id}/publicUrl`;
       const options = {
         expirationDate,
         objectName: object.name,
