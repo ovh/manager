@@ -200,11 +200,12 @@ export default class TelecomTelephonyLinePhoneOrderCtrl {
       hardware: this.order.phone,
       retractation: this.order.retract,
     };
+
     if (get(this.order, 'shipping.mode') === 'mondialRelay') {
       params.mondialRelayId = this.order.shipping.relay.id;
-    } else {
-      params.shippingContactId = this.order.contact.id;
     }
+
+    params.shippingContactId = this.order.contact.id;
     this.isSubmiting = true;
     return this.OvhApiOrder.Telephony()
       .v6()
