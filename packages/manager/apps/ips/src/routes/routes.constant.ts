@@ -1,5 +1,5 @@
 export const subRoutes = {
-  root: '/ip',
+  root: '/',
   onboarding: 'onboarding',
   order: 'order',
 };
