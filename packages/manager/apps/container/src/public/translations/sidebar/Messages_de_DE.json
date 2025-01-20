@@ -206,6 +206,6 @@
   "sidebar_all_veeam_backup": "Alle Dienste",
   "sidebar_vmware_vsphere": "Managed VMware vSphere",
   "sidebar_vmware_vcd": "Managed VCD",
-  "sidebar_cloud_changelog": "Cloud Changelog",
-  "sidebar_hosting_and_collab_changelog": "Hosting &amp; Collab Changelog"
+  "sidebar_cloud_changelog": "Cloud-Changelog",
+  "sidebar_hosting_and_collab_changelog": "Changelog für Hosting und Zusammenarbeit"
 }
