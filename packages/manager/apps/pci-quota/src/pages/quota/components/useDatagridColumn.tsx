@@ -35,6 +35,7 @@ export const useDatagridColumn = () => {
         </DataGridTextCell>
       ),
       label: t('pci_projects_project_quota_instance'),
+      isSortable: false,
     },
     {
       id: 'vCpu',
@@ -51,6 +52,7 @@ export const useDatagridColumn = () => {
         </DataGridTextCell>
       ),
       label: t('pci_projects_project_quota_core'),
+      isSortable: false,
     },
     {
       id: 'ram',
@@ -86,6 +88,7 @@ export const useDatagridColumn = () => {
         );
       },
       label: t('pci_projects_project_quota_ram'),
+      isSortable: false,
     },
     {
       id: 'disk',
@@ -122,6 +125,7 @@ export const useDatagridColumn = () => {
         );
       },
       label: t('pci_projects_project_quota_add_disk'),
+      isSortable: false,
     },
     {
       id: 'ips',
@@ -131,6 +135,7 @@ export const useDatagridColumn = () => {
         </DataGridTextCell>
       ),
       label: PRODUCTS.FLOATING_IP,
+      isSortable: false,
     },
     {
       id: 'gateways',
@@ -140,6 +145,7 @@ export const useDatagridColumn = () => {
         </DataGridTextCell>
       ),
       label: PRODUCTS.GATEWAYS,
+      isSortable: false,
     },
     {
       id: 'lbs',
@@ -150,6 +156,7 @@ export const useDatagridColumn = () => {
         </DataGridTextCell>
       ),
       label: PRODUCTS.LB_OCTAVIA,
+      isSortable: false,
     },
   ];
 
