@@ -23,7 +23,7 @@
 
 <div data-ng-if="$ctrl.currentServiceIsActivate">
     <oui-collapsible
-        data-expanded="$ctrl.softphoneDevices.length === 0"
+        data-expanded="$ctrl.devices.length === 0"
         data-heading="{{ 'telephony_line_softphone_download_links_title' | translate }}"
     >
         <h4 class="pt-3">
@@ -216,7 +216,7 @@
         </oui-button>
         <oui-button
             class="ml-3 mt-3"
-            data-ng-if="$ctrl.softphoneDevices.length === 3"
+            data-ng-if="$ctrl.devices.length === 3"
             data-variant="light"
             data-on-click="$ctrl.deleteAllDevices()"
         >
@@ -232,19 +232,17 @@
         data-heading="{{ 'telephony_line_softphone_theme_title' | translate }}"
     >
         <p data-translate="telephony_line_softphone_save_theme_description"></p>
-        <!-- Coloured List !-->
-        <!-- Update logo with image file !-->
-        <form name="formTheme" data-ng-submit=":: $ctrl.applyTheme()">
+        <form name="formTheme" data-ng-submit="$ctrl.applyTheme()">
             <div style class="d-flex flex-wrap w-100 align-items-center">
                 <theme-picker
                     data-ng-repeat="theme in ::$ctrl.themes track by $index"
                     data-color="theme.color"
                     data-theme-id="theme.themeId"
-                    data-selected="$ctrl.currentTheme"
+                    data-selected="$ctrl.selectedTheme"
                 ></theme-picker>
             </div>
             <button
-                data-ng-disabled="$ctrl.currentTheme===1"
+                data-ng-disabled="$ctrl.isLoading || $ctrl.isUpdatingTheme || $ctrl.currentTheme === $ctrl.selectedTheme"
                 type="submit"
                 class="btn btn-default"
             >
@@ -260,7 +258,7 @@
         data-expanded="true"
         data-heading="{{ 'telephony_line_softphone_logo_title' | translate }}"
     >
-        <form name="form" data-ng-submit="$ctrl.applyTheme()">
+        <form name="formLogo" data-ng-submit="$ctrl.applyLogo()">
             <div class="row">
                 <oui-field
                     data-ng-class="{
@@ -271,8 +269,8 @@
                     data-help-text="{{ $ctrl.helpTextForLogo() }}"
                 >
                     <oui-file
-                        data-accept="{{ $ctrl.acceptedFormats }}"
-                        data-maxsize="$ctrl.maxSizeLogoFile"
+                        data-accept="{{ $ctrl.LOGO_FILE_FORMATS }}"
+                        data-maxsize="$ctrl.MAX_SIZE_LOGO_FILE"
                         data-on-select="$ctrl.updateFilesList()"
                         data-droparea
                         data-model="$ctrl.fileModel"
@@ -289,7 +287,7 @@
                 />
             </div>
             <button
-                data-ng-disabled="!$ctrl.fileModel"
+                data-ng-disabled="!$ctrl.fileModel || $ctrl.isUpdatingLogo"
                 type="submit"
                 class="btn btn-default"
             >
@@ -297,7 +295,12 @@
                     data-translate="telephony_line_softphone_btn_apply_logo"
                 ></span>
             </button>
-            <button class="btn btn-default" data-ng-click="$ctrl.deleteLogo()">
+            <button
+                type="button"
+                class="btn btn-default"
+                data-ng-click="$ctrl.deleteLogo()"
+                data-ng-disabled="$ctrl.logoFilename === ''"
+            >
                 <span
                     data-translate="telephony_line_softphone_logo_delete"
                 ></span>
