@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.8.0...@ovh-ux/manager-pci-savings-plan-app@1.9.0) (2025-01-20)
+
+
+### Bug Fixes
+
+* **svp:** add link in action menu ([#14993](https://github.com/ovh/manager/issues/14993)) ([a813e52](https://github.com/ovh/manager/commit/a813e529c08dbe320f4c94b7e021017dea7e2a68))
+
+
+### Features
+
+* **pci-savings-plan:** bump ods 18 ([#14733](https://github.com/ovh/manager/issues/14733)) ([9f87130](https://github.com/ovh/manager/commit/9f87130e77d403a756fe7cfd86b4055baa59bd5d))
+
+
+
+
+
 # [1.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.7.6...@ovh-ux/manager-pci-savings-plan-app@1.8.0) (2025-01-15)
 
 

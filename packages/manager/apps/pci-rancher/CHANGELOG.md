@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.21.22](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.21.21...@ovh-ux/manager-pci-rancher-app@1.21.22) (2025-01-20)
+
+
+### Bug Fixes
+
+* **pci-rancher:** add vcpu unit in pricing ([#14749](https://github.com/ovh/manager/issues/14749)) ([ce1527b](https://github.com/ovh/manager/commit/ce1527baa67759eb9376efd93a01f859f2828766))
+
+
+
+
+
 ## [1.21.21](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.21.20...@ovh-ux/manager-pci-rancher-app@1.21.21) (2025-01-17)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-rancher-app
