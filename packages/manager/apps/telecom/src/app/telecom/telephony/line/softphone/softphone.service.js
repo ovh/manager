@@ -153,6 +153,12 @@ export default class SofpthoneService {
       .then(({ data }) => data);
   }
 
+  deleteSoftphoneLogoGlobally(billingAccount) {
+    return this.$http
+      .delete(`/telephony/${billingAccount}/softphone/logo`)
+      .then(({ data }) => data);
+  }
+
   putSoftphoneThemeGlobally(billingAccount, themeId) {
     return this.$http
       .put(`/telephony/${billingAccount}/softphone/theme`, {
