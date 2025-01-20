@@ -25,6 +25,7 @@ export const MESSAGE_DISPLAY_DATE = '2023-04-01';
 
 export const LB_TEMPORARY_WARNING_BANNER_FEATURE =
   'ip-load-balancer:lb-temporary-warning-banner';
+export const LB_DELETE_FEATURE = 'ip-load-balancer:delete';
 
 export const LB_SUBSCRIPTION_CONTACT_SECTION =
   'ip-load-balancer:lb-contact-section';
@@ -33,5 +34,6 @@ export default {
   INFO_LINK,
   MESSAGE_DISPLAY_DATE,
   LB_TEMPORARY_WARNING_BANNER_FEATURE,
+  LB_DELETE_FEATURE,
   LB_SUBSCRIPTION_CONTACT_SECTION,
 };
