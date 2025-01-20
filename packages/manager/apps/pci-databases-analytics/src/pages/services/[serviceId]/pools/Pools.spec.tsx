@@ -12,13 +12,15 @@ import Pools, {
   breadcrumb as Breadcrumb,
 } from '@/pages/services/[serviceId]/pools/Pools.page';
 import * as database from '@/types/cloud/project/database';
+import * as poolsApi from '@/data/api/database/connectionPool.api';
 import { Locale } from '@/hooks/useLocale';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedService as mockedServiceOrig } from '@/__tests__/helpers/mocks/services';
 import { mockedConnectionPool } from '@/__tests__/helpers/mocks/connectionPool';
 import { mockedDatabase } from '@/__tests__/helpers/mocks/databases';
-import { mockedUser } from '@/__tests__/helpers/mocks/user';
 import { CdbError } from '@/data/api/database';
+import { apiErrorMock } from '@/__tests__/helpers/mocks/cdbError';
+import { mockedDatabaseUser } from '@/__tests__/helpers/mocks/databaseUser';
 
 // Override mock to add capabilities
 const mockedService = {
@@ -64,7 +66,7 @@ describe('Connection pool page', () => {
     }));
 
     vi.mock('@/data/api/database/user.api', () => ({
-      getUsers: vi.fn(() => [mockedUser]),
+      getUsers: vi.fn(() => [mockedDatabaseUser]),
     }));
 
     vi.mock('@/data/api/database/certificate.api', () => ({
@@ -107,6 +109,9 @@ describe('Connection pool page', () => {
   });
 
   it('renders and shows skeletons while loading', async () => {
+    vi.mocked(poolsApi.getConnectionPools).mockImplementationOnce(() => {
+      throw apiErrorMock;
+    });
     render(<Pools />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
       expect(

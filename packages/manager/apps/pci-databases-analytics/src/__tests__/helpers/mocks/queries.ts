@@ -27,13 +27,13 @@ export const mockedQueries: database.service.currentqueries.Query = {
 
 export const mockedQueryStatistics: database.mysql.querystatistics.Query = {
   avgTimerWait: 3,
-  countStar: 3,
+  countStar: 11,
   digest: 'digest',
   digestText: 'digestText',
   firstSeen: 'firstSeen',
   lastSeen: 'lastSeen',
-  maxTimerWait: 3,
-  minTimerWait: 3,
+  maxTimerWait: 9,
+  minTimerWait: 2.01,
   quantile95: 3,
   quantile99: 1,
   quantile999: 78987,
@@ -49,7 +49,7 @@ export const mockedQueryStatistics: database.mysql.querystatistics.Query = {
   sumNoIndexUsed: 3,
   sumRowsAffected: 3,
   sumRowsExamined: 3,
-  sumRowsSent: 3,
+  sumRowsSent: 8,
   sumSelectFullJoin: 3,
   sumSelectFullRangeJoin: 3,
   sumSelectRange: 3,
@@ -59,7 +59,7 @@ export const mockedQueryStatistics: database.mysql.querystatistics.Query = {
   sumSortRange: 3,
   sumSortRows: 3,
   sumSortScan: 3,
-  sumTimerWait: 3,
+  sumTimerWait: 4,
   sumWarnings: 3,
 };
 

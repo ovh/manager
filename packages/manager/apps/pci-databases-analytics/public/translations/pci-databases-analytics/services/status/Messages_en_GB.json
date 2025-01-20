@@ -7,6 +7,6 @@
   "status-PENDING": "Queued",
   "status-UPDATING": "Updating",
   "status-ERROR": "Error",
-  "status-ERROR_INCONSISTENT_SPEC": "Error",
+  "status-ERROR_INCONSISTENT_SPEC": "spec error",
   "status-READY": "Available"
 }

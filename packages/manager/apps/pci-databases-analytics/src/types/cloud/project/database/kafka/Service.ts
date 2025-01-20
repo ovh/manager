@@ -1,4 +1,5 @@
 import { Time } from '@/types/Time';
+import { Backup } from '@/types/cloud/project/database/service/Backup';
 import { CapabilityActions } from '@/types/cloud/project/database/service/CapabilityActions';
 import { CategoryEnum } from '@/types/cloud/project/database/engine/CategoryEnum';
 import { Disk } from '@/types/cloud/project/database/service/Disk';
@@ -14,24 +15,28 @@ import { Storage } from '@/types/cloud/project/database/service/Storage';
 export interface Service {
   /** Time on which backups start every day */
   backupTime: Time;
+  /** Information related to the backups, null if the engine does not support backups */
+  backups?: Backup;
   /** Capabilities of the services */
-  capabilities?: { [key: string]: CapabilityActions };
+  capabilities: { [key: string]: CapabilityActions };
   /** Category of the engine */
-  category?: CategoryEnum;
+  category: CategoryEnum;
   /** Date of the creation of the cluster */
-  createdAt?: string;
+  createdAt: string;
   /** Description of the cluster */
   description: string;
-  /** Disk attributes of the cluster. DEPRECATED: use storage */
+  /** @deprecated Disk attributes of the cluster. DEPRECATED: use storage */
   disk: Disk;
+  /** Enable Prometheus */
+  enablePrometheus?: boolean;
   /** List of all endpoints of the service */
-  endpoints?: Endpoint[];
+  endpoints: Endpoint[];
   /** Name of the engine of the service */
-  engine?: EngineEnum;
+  engine: EngineEnum;
   /** The VM flavor used for this cluster */
   flavor: string;
   /** Service ID */
-  id?: string;
+  id: string;
   /** IP Blocks authorized to access to the cluster */
   ipRestrictions: IpRestriction[];
   /** Time on which maintenances can start every day */
@@ -39,11 +44,11 @@ export interface Service {
   /** Private network ID in which the cluster is */
   networkId?: string;
   /** Type of network of the cluster */
-  networkType?: NetworkTypeEnum;
-  /** Number of nodes in the cluster. DEPRECATED: useNodes */
+  networkType: NetworkTypeEnum;
+  /** @deprecated Number of nodes in the cluster. DEPRECATED: useNodes */
   nodeNumber: number;
   /** Nodes of the cluster */
-  nodes?: Node[];
+  nodes: Node[];
   /** Plan of the cluster */
   plan: string;
   /** Defines whether the REST API is enabled on the cluster */
@@ -51,9 +56,9 @@ export interface Service {
   /** Defines whether the schema registry is enabled on the cluster */
   schemaRegistry: boolean;
   /** Current status of the cluster */
-  status?: StatusEnum;
+  status: StatusEnum;
   /** Storage attributes of the cluster */
-  storage: Storage;
+  storage?: Storage;
   /** Private subnet ID in which the cluster is */
   subnetId?: string;
   /** Version of the engine deployed on the cluster */

@@ -9,13 +9,13 @@ export interface User {
   /** Commands of the user */
   commands: string[];
   /** Date of the creation of the user */
-  createdAt?: string;
+  createdAt: string;
   /** User ID */
-  id?: string;
+  id: string;
   /** Keys of the user */
   keys: string[];
   /** Current status of the user */
-  status?: StatusEnum;
+  status: StatusEnum;
   /** Name of the user */
-  username?: string;
+  username: string;
 }

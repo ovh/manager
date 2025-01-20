@@ -48,22 +48,6 @@ const Services = () => {
           }
         />
       </div>
-      <Button
-        data-testid="create-service-button"
-        variant="outline"
-        size="sm"
-        className="text-base"
-        asChild
-      >
-        <Link
-          to="./new"
-          className="hover:no-underline"
-          onClick={() => track(TRACKING.servicesList.createDatabaseClick())}
-        >
-          <Plus className="w-4 h-4 mr-2" />
-          {t('createNewService')}
-        </Link>
-      </Button>
       <ServicesList services={filteredServices} />
       <LegalMentions className="mt-4" />
       <Outlet />

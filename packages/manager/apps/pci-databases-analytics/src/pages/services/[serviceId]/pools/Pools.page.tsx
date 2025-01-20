@@ -1,10 +1,10 @@
 import { useTranslation } from 'react-i18next';
 import { ColumnDef } from '@tanstack/react-table';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { DataTable } from '@/components/ui/data-table';
+import DataTable from '@/components/data-table';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 import { useServiceData } from '../Service.context';
 import { POLLING } from '@/configuration/polling.constants';
@@ -39,9 +39,6 @@ const Pools = () => {
     'pci-databases-analytics/services/service/pools',
   );
   const { projectId, service } = useServiceData();
-  const [connectionPoolListWithData, setConnectionPoolListWithData] = useState<
-    ConnectionPoolWithData[]
-  >([]);
   const { isUserActive } = useUserActivityContext();
   const connectionPoolsQuery = useGetConnectionPools(
     projectId,
@@ -63,7 +60,7 @@ const Pools = () => {
     refetchInterval: isUserActive && POLLING.USERS,
   });
 
-  useEffect(() => {
+  const connectionPoolListWithData = useMemo(() => {
     if (
       !(
         connectionPoolsQuery.isSuccess &&
@@ -71,18 +68,23 @@ const Pools = () => {
         databasesQuery.isSuccess
       )
     )
-      return;
-    const cpListWithData: ConnectionPoolWithData[] = connectionPoolsQuery.data.map(
-      (cp) => ({
-        ...cp,
-        user: cp.userId
-          ? usersQuery.data.find((user) => user.id === cp.userId)
-          : null,
-        database: databasesQuery.data.find((db) => db.id === cp.databaseId),
-      }),
-    );
-    setConnectionPoolListWithData(cpListWithData);
-  }, [connectionPoolsQuery.data, usersQuery.data, databasesQuery.data]);
+      return [];
+
+    return connectionPoolsQuery.data.map((cp) => ({
+      ...cp,
+      user: cp.userId
+        ? usersQuery.data.find((user) => user.id === cp.userId)
+        : null,
+      database: databasesQuery.data.find((db) => db.id === cp.databaseId),
+    }));
+  }, [
+    connectionPoolsQuery.isSuccess,
+    connectionPoolsQuery.data,
+    usersQuery.isSuccess,
+    usersQuery.data,
+    databasesQuery.isSuccess,
+    databasesQuery.data,
+  ]);
 
   const columns: ColumnDef<ConnectionPoolWithData>[] = getColumns({
     onGetInformationClick: (pool: ConnectionPoolWithData) =>
@@ -117,7 +119,7 @@ const Pools = () => {
         </Button>
       )}
       {connectionPoolsQuery.isSuccess && connectionPoolListWithData ? (
-        <DataTable
+        <DataTable.Provider
           columns={columns}
           data={connectionPoolListWithData}
           pageSize={25}

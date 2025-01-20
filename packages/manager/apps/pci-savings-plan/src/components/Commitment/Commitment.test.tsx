@@ -7,6 +7,12 @@ import '@testing-library/jest-dom';
 
 import { render } from '@/utils/testProvider';
 
+vi.mock('@ovh-ux/manager-react-components', () => ({
+  useCatalogPrice: vi.fn().mockReturnValue({
+    getTextPrice: vi.fn().mockReturnValue('€10.00'),
+  }),
+}));
+
 const defaultProps = {
   duration: 1,
   price: '1',

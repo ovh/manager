@@ -3,5 +3,5 @@ import { Query } from '@/types/cloud/project/database/service/currentqueries/Que
 /** Cloud database current queries */
 export interface CurrentQueries {
   /** Current queries list */
-  queries?: Query[];
+  queries: Query[];
 }

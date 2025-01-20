@@ -9,5 +9,5 @@ export interface RetentionCreation {
   /** Controls how far into the past writes to the namespace will be accepted */
   bufferPastDuration?: string;
   /** Controls the duration of time that M3DB will retain data for the namespace */
-  periodDuration: string;
+  periodDuration?: string;
 }

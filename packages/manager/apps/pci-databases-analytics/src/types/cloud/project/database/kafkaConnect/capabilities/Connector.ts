@@ -3,19 +3,19 @@ import { TypeEnum } from '@/types/cloud/project/database/kafkaConnect/capabiliti
 /** KafkaConnect connector capability definition */
 export interface Connector {
   /** Name of the connector's author */
-  author?: string;
+  author: string;
   /** URL of the official documentation of the connector */
-  documentationUrl?: string;
+  documentationUrl: string;
   /** Connector ID */
-  id?: string;
+  id: string;
   /** Defines whether this connector and version is the latest available */
-  latest?: boolean;
+  latest: boolean;
   /** Name of the connector */
-  name?: string;
+  name: string;
   /** Defines whether the connector is in preview */
-  preview?: boolean;
+  preview: boolean;
   /** Type of connector */
-  type?: TypeEnum;
+  type: TypeEnum;
   /** Version of the connector */
-  version?: string;
+  version: string;
 }

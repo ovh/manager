@@ -5,7 +5,7 @@ import { WaitEventTypeEnum } from '@/types/cloud/project/database/service/curren
 /** Cloud database service current queries query definition */
 export interface Query {
   /** Application name */
-  applicationName?: string;
+  applicationName: string;
   /** Backend start timestamp */
   backendStart?: string;
   /** Backend type */
@@ -23,19 +23,19 @@ export interface Query {
   /** Database ID */
   databaseId?: number;
   /** Database name */
-  databaseName?: string;
+  databaseName: string;
   /** Leader process ID */
   leaderPid?: number;
   /** Connection process ID */
-  pid?: number;
+  pid: number;
   /** Current query running on this connection */
-  query?: string;
+  query: string;
   /** Duration of the query in seconds */
-  queryDuration?: number;
+  queryDuration: number;
   /** Query start timestamp */
   queryStart?: string;
   /** Connection state */
-  state?: StateEnum;
+  state: StateEnum;
   /** Connection state change timestamp */
   stateChange?: string;
   /** Transaction start timestamp */
@@ -43,7 +43,7 @@ export interface Query {
   /** User ID */
   userId?: number;
   /** User name */
-  userName?: string;
+  userName: string;
   /** Connection wait event */
   waitEvent?: string;
   /** Connection wait event type */

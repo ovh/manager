@@ -1,19 +1,25 @@
-import { LinkType, Links } from '@ovh-ux/manager-react-components';
+import { Links, LinkType } from '@ovh-ux/manager-react-components';
 import React from 'react';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { useSavingsPlanContract } from '@/hooks/useSavingsPlan';
 
-const LegalLinks = () => {
+type TLegalLinksProps = {
+  className?: string;
+};
+
+const LegalLinks: React.FC<TLegalLinksProps> = ({ className = '' }) => {
   const { data = [] } = useSavingsPlanContract();
 
   return (
     <>
       {data.map((link) => (
         <Links
+          className={className}
+          data-testid={link.name}
+          key={link.name}
           label={link.name}
           href={link.url}
           type={LinkType.external}
-          target={OdsHTMLAnchorElementTarget._blank}
+          target="_blank"
         />
       ))}
     </>

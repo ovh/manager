@@ -1,0 +1,31 @@
+// Ugly patch for ODS to manager link like Button in ActionMenu
+.menu-item-link {
+  &::part(link) {
+    box-sizing: border-box;
+    width: 100%;
+    justify-content: left;
+    padding: 0 6px;
+    height: 32px;
+  }
+
+  &:not([is-disabled='true']) {
+    &::part(link) {
+      background-size: 0;
+
+      &:hover {
+        border-radius: 5px;
+        background-color: var(--ods-color-primary-100);
+      }
+    }
+  }
+}
+
+// Customize <OdsButton />
+.menu-item-button {
+  &::part(button) {
+    width: 100%;
+    justify-content: left;
+    height: 32px;
+    border-radius: 0;
+  }
+}

@@ -13,6 +13,7 @@ import * as serviceApi from '@/data/api/database/service.api';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedUser } from '@/__tests__/helpers/mocks/user';
 import { mockedService } from '@/__tests__/helpers/mocks/services';
+import { apiErrorMock } from '@/__tests__/helpers/mocks/cdbError';
 
 const mockedUsedNavigate = vi.fn();
 describe('Services List page', () => {
@@ -67,24 +68,12 @@ describe('Services List page', () => {
   });
 
   it('should display services pages and skeleton', async () => {
-    render(<Services />, { wrapper: RouterWithQueryClientWrapper });
-    expect(
-      screen.getByTestId('service-list-table-skeleton'),
-    ).toBeInTheDocument();
-    await waitFor(() => {
-      expect(
-        screen.getByTestId('services-guides-container'),
-      ).toBeInTheDocument();
+    vi.mocked(serviceApi.editService).mockImplementationOnce(() => {
+      throw apiErrorMock;
     });
-  });
-
-  it('should display services pages and skeleton', async () => {
-    vi.mocked(serviceApi.getServices).mockImplementationOnce(() => null);
     render(<Services />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(
-        screen.getByTestId('services-guides-container'),
-      ).toBeInTheDocument();
+      expect(screen.getByTestId('datatable.skeleton')).toBeInTheDocument();
     });
   });
 
