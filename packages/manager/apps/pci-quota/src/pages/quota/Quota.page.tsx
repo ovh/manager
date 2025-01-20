@@ -318,7 +318,13 @@ export default function QuotaPage(): JSX.Element {
           )}
         </OdsText>
       </div>
+
       <div className="mt-8">
+        <OdsText preset="heading-6">
+          {tQuota('pci_projects_project_quota_current_limit')}
+        </OdsText>
+      </div>
+      <div className="mt-4">
         <Datagrid
           columns={columns}
           items={paginatedQuotas?.rows || []}
