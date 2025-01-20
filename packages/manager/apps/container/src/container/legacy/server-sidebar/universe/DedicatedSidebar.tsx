@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useShell } from '@/context';
 import { sanitizeMenu, SidebarMenuItem } from '../sidebarMenu';
 import Sidebar from '../Sidebar';
-import useServiceLoader from "./useServiceLoader";
+import useServiceLoader from './useServiceLoader';
 import dedicatedShopConfig from '../order/shop-config/dedicated';
 import OrderTrigger from '../order/OrderTrigger';
 import { ShopItem } from '../order/OrderPopupContent';
@@ -48,7 +48,7 @@ export const features = [
   'dedicated-server:nutanixOrder',
   'carbon-calculator',
   'network-security',
-  'key-management-service'
+  'key-management-service',
 ];
 
 export default function DedicatedSidebar() {
@@ -90,9 +90,11 @@ export default function DedicatedSidebar() {
                 ...service,
                 icon: getIcon('oui-icon oui-icon-cluster_concept'),
                 async loader() {
-                  return await loadServices(`/dedicated/cluster/${service.serviceName}`);
+                  return await loadServices(
+                    `/dedicated/cluster/${service.serviceName}`,
+                  );
                 },
-              }
+              };
             }),
             ...housing,
             ...servers,
@@ -223,7 +225,15 @@ export default function DedicatedSidebar() {
       menu.push({
         id: 'dbaas-logs',
         label: t('sidebar_logs_db'),
-        icon: getIcon('fa fa-bar-chart'),
+        icon: (
+          <OsdsIcon
+            name={ODS_ICON_NAME.GRAPH_CONCEPT}
+            size={ODS_ICON_SIZE.xxs}
+            color={ODS_THEME_COLOR_INTENT.text}
+            className="mr-1 align-middle"
+            aria-hidden="true"
+          />
+        ),
         routeMatcher: new RegExp('^/dbaas/logs'),
         async loader() {
           const dbaas = await loadServices('/dbaas/logs');
@@ -246,7 +256,9 @@ export default function DedicatedSidebar() {
         label: t('sidebar_network'),
         icon: getIcon('oui-icon oui-icon-bandwidth_concept'),
         minSearchItems: 0,
-        routeMatcher: new RegExp('^(/ip(/|$)|/network-security|/vrack|/cloud-connect|/vrack-services|(/network)?/iplb)'),
+        routeMatcher: new RegExp(
+          '^(/ip(/|$)|/network-security|/vrack|/cloud-connect|/vrack-services|(/network)?/iplb)',
+        ),
         pathMatcher: new RegExp('^(/vrack-services/)'),
         subItems: [
           feature.ip && {
@@ -263,8 +275,7 @@ export default function DedicatedSidebar() {
             href: navigation.getURL('dedicated', '#/network-security'),
             routeMatcher: new RegExp('^/network-security'),
           },
-          feature['ip-load-balancer'] &&
-          {
+          feature['ip-load-balancer'] && {
             id: 'ip-loadbalancer',
             label: t('sidebar_pci_load_balancer'),
             icon: getIcon('ovh-font ovh-font-iplb'),
@@ -357,8 +368,8 @@ export default function DedicatedSidebar() {
                   `/nasha/${nashaItem.serviceName}`,
                 ),
               }));
-            }
-          }
+            },
+          },
         ],
       });
     }
@@ -374,11 +385,23 @@ export default function DedicatedSidebar() {
     }
 
     if (feature['key-management-service']) {
-      const keyIcon = <OsdsIcon name={ODS_ICON_NAME.KEY_CONCEPT} size={ODS_ICON_SIZE.xxs} color={ODS_THEME_COLOR_INTENT.text}/>
+      const keyIcon = (
+        <OsdsIcon
+          name={ODS_ICON_NAME.KEY_CONCEPT}
+          size={ODS_ICON_SIZE.xxs}
+          color={ODS_THEME_COLOR_INTENT.text}
+        />
+      );
       menu.push({
         id: 'identity-security-operations',
         label: t('sidebar_identity_security_operations'),
-        icon: <OsdsIcon name={ODS_ICON_NAME.CLOUD_EYE_CONCEPT} size={ODS_ICON_SIZE.xxs} color={ODS_THEME_COLOR_INTENT.text}/>,
+        icon: (
+          <OsdsIcon
+            name={ODS_ICON_NAME.CLOUD_EYE_CONCEPT}
+            size={ODS_ICON_SIZE.xxs}
+            color={ODS_THEME_COLOR_INTENT.text}
+          />
+        ),
         pathMatcher: new RegExp('^/key-management-service'),
         subItems: [
           {
@@ -389,7 +412,11 @@ export default function DedicatedSidebar() {
             icon: keyIcon,
             async loader() {
               const app = 'key-management-service';
-              const services = await loadServices('/okms/resource', undefined, app);
+              const services = await loadServices(
+                '/okms/resource',
+                undefined,
+                app,
+              );
 
               return [
                 {
@@ -415,7 +442,7 @@ export default function DedicatedSidebar() {
     return menu;
   };
 
-  const {data: availability} = useFeatureAvailability(features);
+  const { data: availability } = useFeatureAvailability(features);
 
   useEffect(() => {
     if (availability) {

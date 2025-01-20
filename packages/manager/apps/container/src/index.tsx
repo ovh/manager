@@ -20,7 +20,6 @@ import { setupDevApplication } from '@/core/dev';
 import { ContainerProvider } from '@/core/container';
 
 import '@ovh-ux/ui-kit/dist/css/oui.css';
-import 'font-awesome/css/font-awesome.min.css';
 import 'react-tooltip/dist/react-tooltip.css';
 import './index.scss';
 import './global.scss';
