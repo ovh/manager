@@ -23,8 +23,8 @@ export const useIpTypes = () => {
       const {
         pricings: [{ price: floatingIpPrice = '0' }],
       } = (publicCloudCatalog?.addons || []).find(
-        (addon: { product: string }) =>
-          addon.product === 'publiccloud-floatingip-floatingip',
+        (addon: { planCode: string }) =>
+          addon.planCode === 'floatingip.floatingip.hour.consumption',
       );
 
       const failoverIpPrice = `${get(
