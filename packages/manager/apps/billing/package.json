@@ -45,6 +45,7 @@
     "@ovh-ux/ng-ovh-swimming-poll": "^5.1.1",
     "@ovh-ux/ng-ovh-user-pref": "2.1.1",
     "@ovh-ux/ng-ovh-utils": "^14.5.0",
+    "@ovh-ux/ng-pagination-front": "^10.3.2",
     "@ovh-ux/ng-q-allsettled": "^2.1.2",
     "@ovh-ux/ng-shell-tracking": "^0.6.3",
     "@ovh-ux/ng-translate-async-loader": "^2.2.1",
