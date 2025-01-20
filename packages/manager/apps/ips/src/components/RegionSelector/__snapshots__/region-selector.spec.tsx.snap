@@ -1,0 +1,907 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`RegionSelector component > renders correctly 1`] = `
+<DocumentFragment>
+  <div>
+    <ods-tabs
+      class="mb-4"
+    >
+      <ods-tab
+        is-selected="true"
+      >
+        region-selector-all-locations
+      </ods-tab>
+      <ods-tab
+        is-disabled="false"
+        is-selected="false"
+      >
+        region-selector-eu-filter
+      </ods-tab>
+      <ods-tab
+        is-disabled="false"
+        is-selected="false"
+      >
+        region-selector-ca-filter
+      </ods-tab>
+      <ods-tab
+        is-disabled="false"
+        is-selected="false"
+      >
+        region-selector-us-filter
+      </ods-tab>
+    </ods-tabs>
+    <div
+      class="flex flex-wrap gap-4"
+    >
+      <ods-card
+        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
+        color="neutral"
+      >
+        <span
+          class="fi-fr w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+        />
+        <div
+          class="flex flex-col"
+        >
+          <ods-text
+            class="block"
+            preset="heading-4"
+          >
+            region-selector-country-name_fr
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            region-selector-city-name_eu-west-par
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            eu-west-par
+          </ods-text>
+        </div>
+      </ods-card>
+      <ods-card
+        class="flex items-center p-3 cursor-pointer transition-shadow region_selector_selected w-full sm:w-[245px]"
+        color="neutral"
+      >
+        <span
+          class="fi-fr w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+        />
+        <div
+          class="flex flex-col"
+        >
+          <ods-text
+            class="block"
+            preset="heading-4"
+          >
+            region-selector-country-name_fr
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            region-selector-city-name_eu-west-gra
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            eu-west-gra
+          </ods-text>
+        </div>
+      </ods-card>
+      <ods-card
+        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
+        color="neutral"
+      >
+        <span
+          class="fi-fr w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+        />
+        <div
+          class="flex flex-col"
+        >
+          <ods-text
+            class="block"
+            preset="heading-4"
+          >
+            region-selector-country-name_fr
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            region-selector-city-name_eu-west-rbx
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            eu-west-rbx
+          </ods-text>
+        </div>
+      </ods-card>
+      <ods-card
+        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
+        color="neutral"
+      >
+        <span
+          class="fi-fr w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+        />
+        <div
+          class="flex flex-col"
+        >
+          <ods-text
+            class="block"
+            preset="heading-4"
+          >
+            region-selector-country-name_fr
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            region-selector-city-name_eu-west-sbg
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            eu-west-sbg
+          </ods-text>
+        </div>
+      </ods-card>
+      <ods-card
+        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
+        color="neutral"
+      >
+        <span
+          class="fi-de w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+        />
+        <div
+          class="flex flex-col"
+        >
+          <ods-text
+            class="block"
+            preset="heading-4"
+          >
+            region-selector-country-name_de
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            region-selector-city-name_eu-west-lim
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            eu-west-lim
+          </ods-text>
+        </div>
+      </ods-card>
+      <ods-card
+        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
+        color="neutral"
+      >
+        <span
+          class="fi-pl w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+        />
+        <div
+          class="flex flex-col"
+        >
+          <ods-text
+            class="block"
+            preset="heading-4"
+          >
+            region-selector-country-name_pl
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            region-selector-city-name_eu-central-waw
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            eu-central-waw
+          </ods-text>
+        </div>
+      </ods-card>
+      <ods-card
+        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
+        color="neutral"
+      >
+        <span
+          class="fi-gb w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+        />
+        <div
+          class="flex flex-col"
+        >
+          <ods-text
+            class="block"
+            preset="heading-4"
+          >
+            region-selector-country-name_gb
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            region-selector-city-name_eu-west-eri
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            eu-west-eri
+          </ods-text>
+        </div>
+      </ods-card>
+      <ods-card
+        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
+        color="neutral"
+      >
+        <span
+          class="fi-us w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+        />
+        <div
+          class="flex flex-col"
+        >
+          <ods-text
+            class="block"
+            preset="heading-4"
+          >
+            region-selector-country-name_us
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            region-selector-city-name_us-east-vin
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            us-east-vin
+          </ods-text>
+        </div>
+      </ods-card>
+      <ods-card
+        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
+        color="neutral"
+      >
+        <span
+          class="fi-us w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+        />
+        <div
+          class="flex flex-col"
+        >
+          <ods-text
+            class="block"
+            preset="heading-4"
+          >
+            region-selector-country-name_us
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            region-selector-city-name_us-west-hil
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            us-west-hil
+          </ods-text>
+        </div>
+      </ods-card>
+      <ods-card
+        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
+        color="neutral"
+      >
+        <span
+          class="fi-ca w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+        />
+        <div
+          class="flex flex-col"
+        >
+          <ods-text
+            class="block"
+            preset="heading-4"
+          >
+            region-selector-country-name_ca
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            region-selector-city-name_ca-east-bhs
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            ca-east-bhs
+          </ods-text>
+        </div>
+      </ods-card>
+      <ods-card
+        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
+        color="neutral"
+      >
+        <span
+          class="fi-sg w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+        />
+        <div
+          class="flex flex-col"
+        >
+          <ods-text
+            class="block"
+            preset="heading-4"
+          >
+            region-selector-country-name_sg
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            region-selector-city-name_ap-southeast-sgp
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            ap-southeast-sgp
+          </ods-text>
+        </div>
+      </ods-card>
+      <ods-card
+        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
+        color="neutral"
+      >
+        <span
+          class="fi-au w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+        />
+        <div
+          class="flex flex-col"
+        >
+          <ods-text
+            class="block"
+            preset="heading-4"
+          >
+            region-selector-country-name_au
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            region-selector-city-name_ap-southeast-syd
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            ap-southeast-syd
+          </ods-text>
+        </div>
+      </ods-card>
+      <ods-card
+        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
+        color="neutral"
+      >
+        <span
+          class="fi-fr w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+        />
+        <div
+          class="flex flex-col"
+        >
+          <ods-text
+            class="block"
+            preset="heading-4"
+          >
+            region-selector-country-name_fr
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            region-selector-city-name_eu-west-rbx-snc
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            eu-west-rbx-snc
+          </ods-text>
+        </div>
+      </ods-card>
+      <ods-card
+        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
+        color="neutral"
+      >
+        <span
+          class="fi-fr w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+        />
+        <div
+          class="flex flex-col"
+        >
+          <ods-text
+            class="block"
+            preset="heading-4"
+          >
+            region-selector-country-name_fr
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            region-selector-city-name_eu-west-sbg-snc
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            eu-west-sbg-snc
+          </ods-text>
+        </div>
+      </ods-card>
+      <ods-card
+        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
+        color="neutral"
+      >
+        <span
+          class="fi-ca w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+        />
+        <div
+          class="flex flex-col"
+        >
+          <ods-text
+            class="block"
+            preset="heading-4"
+          >
+            region-selector-country-name_ca
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            region-selector-city-name_ca-east-tor
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            ca-east-tor
+          </ods-text>
+        </div>
+      </ods-card>
+      <ods-card
+        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
+        color="neutral"
+      >
+        <span
+          class="fi-in w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+        />
+        <div
+          class="flex flex-col"
+        >
+          <ods-text
+            class="block"
+            preset="heading-4"
+          >
+            region-selector-country-name_in
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            region-selector-city-name_ap-south-mum
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            ap-south-mum
+          </ods-text>
+        </div>
+      </ods-card>
+      <ods-card
+        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
+        color="neutral"
+      >
+        <span
+          class="fi-fr w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+        />
+        <div
+          class="flex flex-col"
+        >
+          <ods-text
+            class="block"
+            preset="heading-4"
+          >
+            region-selector-country-name_fr
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            region-selector-city-name_labeu-west-1-preprod
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            labeu-west-1-preprod
+          </ods-text>
+        </div>
+      </ods-card>
+      <ods-card
+        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
+        color="neutral"
+      >
+        <span
+          class="fi-fr w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+        />
+        <div
+          class="flex flex-col"
+        >
+          <ods-text
+            class="block"
+            preset="heading-4"
+          >
+            region-selector-country-name_fr
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            region-selector-city-name_labeu-west-1-dev-2
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            labeu-west-1-dev-2
+          </ods-text>
+        </div>
+      </ods-card>
+      <ods-card
+        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
+        color="neutral"
+      >
+        <span
+          class="fi-fr w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+        />
+        <div
+          class="flex flex-col"
+        >
+          <ods-text
+            class="block"
+            preset="heading-4"
+          >
+            region-selector-country-name_fr
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            region-selector-city-name_labeu-west-1-dev-1
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            labeu-west-1-dev-1
+          </ods-text>
+        </div>
+      </ods-card>
+      <ods-card
+        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
+        color="neutral"
+      >
+        <span
+          class="fi-be w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+        />
+        <div
+          class="flex flex-col"
+        >
+          <ods-text
+            class="block"
+            preset="heading-4"
+          >
+            region-selector-country-name_be
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            region-selector-city-name_eu-west-lz-bru
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            eu-west-lz-bru
+          </ods-text>
+        </div>
+      </ods-card>
+      <ods-card
+        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
+        color="neutral"
+      >
+        <span
+          class="fi-es w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+        />
+        <div
+          class="flex flex-col"
+        >
+          <ods-text
+            class="block"
+            preset="heading-4"
+          >
+            region-selector-country-name_es
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            region-selector-city-name_eu-west-lz-mad
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            eu-west-lz-mad
+          </ods-text>
+        </div>
+      </ods-card>
+      <ods-card
+        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
+        color="neutral"
+      >
+        <span
+          class="fi-fr w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+        />
+        <div
+          class="flex flex-col"
+        >
+          <ods-text
+            class="block"
+            preset="heading-4"
+          >
+            region-selector-country-name_fr
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            region-selector-city-name_eu-west-gra-snc
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            eu-west-gra-snc
+          </ods-text>
+        </div>
+      </ods-card>
+      <ods-card
+        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
+        color="neutral"
+      >
+        <span
+          class="fi-us w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+        />
+        <div
+          class="flex flex-col"
+        >
+          <ods-text
+            class="block"
+            preset="heading-4"
+          >
+            region-selector-country-name_us
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            region-selector-city-name_us-east-lz-dal
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            us-east-lz-dal
+          </ods-text>
+        </div>
+      </ods-card>
+      <ods-card
+        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
+        color="neutral"
+      >
+        <span
+          class="fi-us w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+        />
+        <div
+          class="flex flex-col"
+        >
+          <ods-text
+            class="block"
+            preset="heading-4"
+          >
+            region-selector-country-name_us
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            region-selector-city-name_us-west-lz-lax
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            us-west-lz-lax
+          </ods-text>
+        </div>
+      </ods-card>
+      <ods-card
+        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
+        color="neutral"
+      >
+        <span
+          class="fi-us w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+        />
+        <div
+          class="flex flex-col"
+        >
+          <ods-text
+            class="block"
+            preset="heading-4"
+          >
+            region-selector-country-name_us
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            region-selector-city-name_us-east-lz-chi
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            us-east-lz-chi
+          </ods-text>
+        </div>
+      </ods-card>
+      <ods-card
+        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
+        color="neutral"
+      >
+        <span
+          class="fi-us w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+        />
+        <div
+          class="flex flex-col"
+        >
+          <ods-text
+            class="block"
+            preset="heading-4"
+          >
+            region-selector-country-name_us
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            region-selector-city-name_us-east-lz-nyc
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            us-east-lz-nyc
+          </ods-text>
+        </div>
+      </ods-card>
+      <ods-card
+        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
+        color="neutral"
+      >
+        <span
+          class="fi-us w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+        />
+        <div
+          class="flex flex-col"
+        >
+          <ods-text
+            class="block"
+            preset="heading-4"
+          >
+            region-selector-country-name_us
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            region-selector-city-name_us-east-lz-mia
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            us-east-lz-mia
+          </ods-text>
+        </div>
+      </ods-card>
+      <ods-card
+        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
+        color="neutral"
+      >
+        <span
+          class="fi-us w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+        />
+        <div
+          class="flex flex-col"
+        >
+          <ods-text
+            class="block"
+            preset="heading-4"
+          >
+            region-selector-country-name_us
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            region-selector-city-name_us-west-lz-pao
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            us-west-lz-pao
+          </ods-text>
+        </div>
+      </ods-card>
+      <ods-card
+        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
+        color="neutral"
+      >
+        <span
+          class="fi-us w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+        />
+        <div
+          class="flex flex-col"
+        >
+          <ods-text
+            class="block"
+            preset="heading-4"
+          >
+            region-selector-country-name_us
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            region-selector-city-name_us-west-lz-den
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            us-west-lz-den
+          </ods-text>
+        </div>
+      </ods-card>
+      <ods-card
+        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
+        color="neutral"
+      >
+        <span
+          class="fi-us w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+        />
+        <div
+          class="flex flex-col"
+        >
+          <ods-text
+            class="block"
+            preset="heading-4"
+          >
+            region-selector-country-name_us
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            region-selector-city-name_us-east-lz-atl
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            us-east-lz-atl
+          </ods-text>
+        </div>
+      </ods-card>
+      <ods-card
+        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
+        color="neutral"
+      >
+        <span
+          class="fi-fr w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+        />
+        <div
+          class="flex flex-col"
+        >
+          <ods-text
+            class="block"
+            preset="heading-4"
+          >
+            region-selector-country-name_fr
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            region-selector-city-name_eu-west-lz-mrs
+          </ods-text>
+          <ods-text
+            preset="span"
+          >
+            eu-west-lz-mrs
+          </ods-text>
+        </div>
+      </ods-card>
+    </div>
+  </div>
+</DocumentFragment>
+`;
