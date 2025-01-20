@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.76.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.76.0...@ovh-ux/manager-pci@6.76.1) (2025-01-20)
+
+
+### Bug Fixes
+
+* **pci.instances:** windows gen 3 ([#14884](https://github.com/ovh/manager/issues/14884)) ([8c9d97d](https://github.com/ovh/manager/commit/8c9d97d3f542460d9cd0617008d4665a43a05b6b))
+* **pci:** add deutsch lang id to increase quota ([#14886](https://github.com/ovh/manager/issues/14886)) ([bc0c359](https://github.com/ovh/manager/commit/bc0c359d8bb49843324071f6295ea727139859f7))
+
+
+
+
+
 # [6.76.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.75.1...@ovh-ux/manager-pci@6.76.0) (2025-01-15)
 
 

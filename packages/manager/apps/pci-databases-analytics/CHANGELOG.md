@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.9.5...@ovh-ux/manager-pci-databases-analytics-app@1.10.0) (2025-01-20)
+
+
+### Features
+
+* **pci-databases-analytics:** refactor data table and add filtering ([#14524](https://github.com/ovh/manager/issues/14524)) ([3d3d166](https://github.com/ovh/manager/commit/3d3d16611c25d59353f0f9fd3e9686b699b603bc))
+* **pci-databases-analytics:** rename service from header ([#14727](https://github.com/ovh/manager/issues/14727)) ([70bd55d](https://github.com/ovh/manager/commit/70bd55d8e87a20af67521a529beb79830be97028))
+* **pci-databases-analytics:** update typings for databases api ([#14866](https://github.com/ovh/manager/issues/14866)) ([7dd8a5a](https://github.com/ovh/manager/commit/7dd8a5a4fc472f3674071673fbc5b5c8f8db8ff3))
+
+
+
+
+
 ## [1.9.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.9.4...@ovh-ux/manager-pci-databases-analytics-app@1.9.5) (2025-01-09)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-databases-analytics-app

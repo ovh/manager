@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.13.1...@ovh-ux/manager-pci-kubernetes-app@0.14.0) (2025-01-20)
+
+
+### Bug Fixes
+
+* **pci-kubernetes:** reset cluster ([#14731](https://github.com/ovh/manager/issues/14731)) ([1e87e1a](https://github.com/ovh/manager/commit/1e87e1aaae10c9187c1511bea5f8f0b5aa650a49))
+
+
+### Features
+
+* **pci-kubernetes:** propose option OIDC params ([#14523](https://github.com/ovh/manager/issues/14523)) ([9afac6b](https://github.com/ovh/manager/commit/9afac6b0adc8fda5536ca8584e7a68de1a6035d8))
+
+
+
+
+
 ## [0.13.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.13.0...@ovh-ux/manager-pci-kubernetes-app@0.13.1) (2025-01-09)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-kubernetes-app
