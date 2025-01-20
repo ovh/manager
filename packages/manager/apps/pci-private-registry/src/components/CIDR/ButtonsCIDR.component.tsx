@@ -27,14 +27,19 @@ const Buttons = () => {
   const { handleSubmit, formState, reset } = useFormContext();
   const { t } = useTranslation(['ip-restrictions', 'common']);
 
-  const { addSuccess, addError } = useNotifications();
+  const { addSuccess, addError, clearNotifications } = useNotifications();
 
   const onError = useCallback(
     () => addError(t('common:private_registry_crud_cidr_error')),
     [addError],
   );
+
+  const { removeDraftRow } = useDataGridContext();
+
   const onSuccess = useCallback(() => {
     reset();
+    removeDraftRow();
+    clearNotifications();
     addSuccess(t('private_registry_cidr_submit_success'), true);
   }, [addSuccess, t]);
 
@@ -44,8 +49,6 @@ const Buttons = () => {
     onError,
     onSuccess,
   });
-
-  const { removeDraftRow } = useDataGridContext();
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const categorizeByKeyResult = categorizeByKey([data], 'authorization', [
