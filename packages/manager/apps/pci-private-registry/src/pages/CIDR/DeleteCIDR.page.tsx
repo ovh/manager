@@ -73,7 +73,11 @@ export default function DeleteModal() {
   return (
     <PciModal
       type="warning"
-      title={t('ip_restrictions_delete_block')}
+      title={t(
+        totalRows > 1
+          ? 'ip_restrictions_delete_multiple_block'
+          : 'ip_restrictions_delete_block',
+      )}
       isPending={false}
       isDisabled={false}
       cancelText={t('common:private_registry_common_cancel')}
