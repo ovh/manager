@@ -7,6 +7,7 @@ import BreadcrumbTest from './_components/breadcrumb';
 import CardTest from './_components/card';
 import ClipboardTest from './_components/clipboard';
 import CheckboxTest from './_components/checkbox';
+import LinkTest from './_components/link';
 
 const TestOds = () => {
   const components = [
@@ -17,6 +18,7 @@ const TestOds = () => {
     { name: 'Card', component: CardTest },
     { name: 'Checkbox', component: CheckboxTest },
     { name: 'Clipboard', component: ClipboardTest },
+    { name: 'Link', component: LinkTest },
   ];
   const [currentComponent, setCurrentComponent] = useState(components[0]);
   return (
