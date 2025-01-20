@@ -10,6 +10,7 @@ export type TStorage = {
   storedBytes: number;
   storedObjects: number;
   objectsCount: number;
+  containerCount: number;
   usedSpace: number;
   offer?: string;
   mode?: string;
