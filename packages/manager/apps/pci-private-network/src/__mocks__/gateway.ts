@@ -1,43 +1,27 @@
+const regions = [
+  {
+    name: 'GRA-STAGING-A',
+    datacenter: 'GRA',
+    continentCode: 'EU',
+    enabled: true,
+    type: 'region',
+    availabilityZones: [],
+  },
+];
+
 const availableGateway = {
   plans: [
     {
       code: 'gateway.2xl.hour.consumption',
-      regions: [
-        {
-          name: 'GRA-STAGING-A',
-          datacenter: 'GRA',
-          continentCode: 'EU',
-          enabled: true,
-          type: 'region',
-          availabilityZones: [],
-        },
-      ],
+      regions,
     },
     {
       code: 'gateway.2xl.month.consumption',
-      regions: [
-        {
-          name: 'GRA-STAGING-A',
-          datacenter: 'GRA',
-          continentCode: 'EU',
-          enabled: true,
-          type: 'region',
-          availabilityZones: [],
-        },
-      ],
+      regions,
     },
     {
       code: 'gateway.s.hour.consumption',
-      regions: [
-        {
-          name: 'GRA-STAGING-A',
-          datacenter: 'GRA',
-          continentCode: 'EU',
-          enabled: true,
-          type: 'region',
-          availabilityZones: [],
-        },
-      ],
+      regions,
     },
     {
       code: 'gateway.s.hour.consumption.3AZ',
@@ -59,14 +43,7 @@ const availableGateway = {
     {
       code: 'gateway.s.month.consumption',
       regions: [
-        {
-          name: 'GRA-STAGING-A',
-          datacenter: 'GRA',
-          continentCode: 'EU',
-          enabled: true,
-          type: 'region',
-          availabilityZones: [],
-        },
+        ...regions,
         {
           name: 'UK1',
           datacenter: 'UK',
