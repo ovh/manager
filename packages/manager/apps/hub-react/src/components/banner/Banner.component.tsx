@@ -3,12 +3,13 @@ import {
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { OsdsLink, OsdsSkeleton } from '@ovhcloud/ods-components/react';
+import { OsdsLink } from '@ovhcloud/ods-components/react';
 import {
   OdsHTMLAnchorElementTarget,
   OdsHTMLAnchorElementRel,
 } from '@ovhcloud/ods-common-core';
 import { useFetchHubBanner } from '@/data/hooks/banner/useBanner';
+import { useHubContext } from '@/pages/layout/context';
 
 const DEFAULT_TRACKING = ['hub', 'dashboard', 'event-banner'];
 
@@ -16,13 +17,13 @@ export default function Banner() {
   const { environment } = useContext(ShellContext);
   const locale = environment.getUserLocale();
   const { trackClick } = useOvhTracking();
+  const { isLoading, isFreshCustomer } = useHubContext();
 
-  const { data: banner, isPending: isLoading } = useFetchHubBanner(locale);
+  const { data: banner, isPending } = useFetchHubBanner(locale);
 
   return (
     <>
-      {isLoading && <OsdsSkeleton data-testid="banner_skeleton" inline />}
-      {!isLoading && banner && (
+      {!isLoading && !isPending && !isFreshCustomer && banner && (
         <OsdsLink
           className="mb-4"
           onClick={() => {
