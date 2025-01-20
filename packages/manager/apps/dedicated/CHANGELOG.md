@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.12.1...@ovh-ux/manager-dedicated@20.13.0) (2025-01-20)
+
+
+### Bug Fixes
+
+* **dedicated.ips:** export csv with multiple call instead of 1 large ([#14816](https://github.com/ovh/manager/issues/14816)) ([c81275a](https://github.com/ovh/manager/commit/c81275acfae8022f6a64ae981d9d6bcbb1849d4f))
+
+
+### Features
+
+* **dedicated.server:** rbx1 eol banner ([#14742](https://github.com/ovh/manager/issues/14742)) ([acf26f4](https://github.com/ovh/manager/commit/acf26f476cde6cc1568c7686fd859e6c0755ddaa))
+
+
+
+
+
 ## [20.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.12.0...@ovh-ux/manager-dedicated@20.12.1) (2025-01-16)
 
 
