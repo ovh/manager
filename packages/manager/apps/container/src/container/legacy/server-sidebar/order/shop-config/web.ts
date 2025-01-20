@@ -58,14 +58,6 @@ const webShopConfig = (
         tracking: 'web::orders::email-pro::order',
       }
     : null,
-  features['emails:mxplan:order']
-    ? {
-        label: 'order_item_mxplan',
-        icon: OdsIconWrapper({ name: ODS_ICON_NAME.ENVELOP_CONCEPT }),
-        url: navigation.getURL('web', '#/configuration/mx_plan'),
-        tracking: 'web::orders::mx-plan::order',
-      }
-    : null,
   features['exchange:web-dashboard']
     ? {
         label: 'order_item_exchange',
