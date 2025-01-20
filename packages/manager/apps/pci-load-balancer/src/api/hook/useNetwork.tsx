@@ -80,7 +80,6 @@ export const useGetPrivateNetworkSubnets = (
     ],
     queryFn: () => getPrivateNetworkSubnets(projectId, region, networkId),
     enabled: !!projectId && !!region && !!networkId,
-    throwOnError: true,
   });
 
   const list = useMemo(() => {
@@ -106,7 +105,6 @@ export const useGetRegionPrivateNetworks = (
     queryKey: ['project', projectId, 'region', region, 'networks'],
     queryFn: () => getRegionPrivateNetworks(projectId, region),
     enabled: !!projectId && !!region,
-    throwOnError: true,
   });
 
   const list = useMemo(
