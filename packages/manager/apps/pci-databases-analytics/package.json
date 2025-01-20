@@ -22,6 +22,7 @@
     "test-ui": "vitest --ui --coverage.enabled=true"
   },
   "dependencies": {
+    "@datatr-ux/uxlib": "0.0.4",
     "@hookform/resolvers": "^3.3.4",
     "@ovh-ux/manager-config": "^8.0.2",
     "@ovh-ux/manager-core-api": "^0.9.0",

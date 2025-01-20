@@ -54,6 +54,11 @@ export default [
         ),
       },
       {
+        path: 'ods',
+        id: 'ods',
+        ...lazyRouteConfig(() => import('@/pages/testOds/TestOds.page')),
+      },
+      {
         path: 'new',
         id: 'create',
         ...lazyRouteConfig(() => import('@/pages/services/create/Create.page')),
