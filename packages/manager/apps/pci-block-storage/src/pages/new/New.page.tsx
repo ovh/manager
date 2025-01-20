@@ -23,6 +23,7 @@ import { LocationStep } from './components/LocationStep.component';
 import { useVolumeStepper } from './hooks/useVolumeStepper';
 import { useAddVolume } from '@/api/hooks/useVolume';
 import { ExtenBannerBeta } from '@/components/exten-banner-beta/ExtenBannerBeta';
+import { AvailabilityZoneStep } from '@/pages/new/components/AvailabilityZoneStep';
 
 export default function NewPage(): JSX.Element {
   const { t } = useTranslation('common');
@@ -35,14 +36,15 @@ export default function NewPage(): JSX.Element {
   const backHref = useHref('..');
   const isDiscovery = isDiscoveryProject(project);
   const { addError, addSuccess, clearNotifications } = useNotifications();
-  const stepper = useVolumeStepper();
+  const stepper = useVolumeStepper(projectId);
 
   const { addVolume } = useAddVolume({
     projectId,
     name: stepper.form.volumeName,
     regionName: stepper.form.region?.name,
     volumeCapacity: stepper.form.volumeCapacity,
-    volumeType: stepper.form.volumeType?.blobs.technical.name,
+    volumeType: stepper.form.volumeType?.name,
+    availabilityZone: stepper.form.availabilityZone,
     onSuccess: () => {
       navigate('..');
       addSuccess(
@@ -109,7 +111,7 @@ export default function NewPage(): JSX.Element {
 
       <div className="mt-8">
         <StepComponent
-          order={1}
+          order={stepper.getOrder(stepper.location.step)}
           {...stepper.location.step}
           isLocked={stepper.location.step.isLocked || isDiscovery}
           title={tAdd('pci_projects_project_storages_blocks_add_region_title')}
@@ -126,7 +128,7 @@ export default function NewPage(): JSX.Element {
           />
         </StepComponent>
         <StepComponent
-          order={2}
+          order={stepper.getOrder(stepper.volumeType.step)}
           {...stepper.volumeType.step}
           title={tAdd('pci_projects_project_storages_blocks_add_type_title')}
           edit={{
@@ -142,8 +144,30 @@ export default function NewPage(): JSX.Element {
             onSubmit={stepper.volumeType.submit}
           />
         </StepComponent>
+        {stepper.availabilityZone.step.isShown && (
+          <StepComponent
+            order={stepper.getOrder(stepper.availabilityZone.step)}
+            {...stepper.availabilityZone.step}
+            title={tAdd(
+              'pci_projects_project_storages_blocks_add_availability_zone',
+            )}
+            edit={{
+              action: stepper.availabilityZone.edit,
+              label: tStepper('common_stepper_modify_this_step'),
+              isDisabled: stepper.validation.step.isLocked,
+            }}
+          >
+            {!!stepper.form.region?.name && (
+              <AvailabilityZoneStep
+                step={stepper.availabilityZone.step}
+                region={stepper.form.region}
+                onSubmit={stepper.availabilityZone.submit}
+              />
+            )}
+          </StepComponent>
+        )}
         <StepComponent
-          order={3}
+          order={stepper.getOrder(stepper.capacity.step)}
           {...stepper.capacity.step}
           title={tAdd('pci_projects_project_storages_blocks_add_size_title')}
           edit={{
@@ -156,12 +180,13 @@ export default function NewPage(): JSX.Element {
             projectId={projectId}
             region={stepper.form.region}
             volumeType={stepper.form.volumeType}
+            pricing={stepper.form.pricing}
             step={stepper.capacity.step}
             onSubmit={stepper.capacity.submit}
           />
         </StepComponent>
         <StepComponent
-          order={4}
+          order={stepper.getOrder(stepper.volumeName.step)}
           {...stepper.volumeName.step}
           title={tAdd('pci_projects_project_storages_blocks_add_name_title')}
           edit={{
@@ -177,13 +202,13 @@ export default function NewPage(): JSX.Element {
           />
         </StepComponent>
         <StepComponent
-          order={5}
+          order={stepper.getOrder(stepper.validation.step)}
           {...stepper.validation.step}
           title={tAdd('pci_projects_project_storages_blocks_add_submit_title')}
         >
           <ValidationStep
             volumeCapacity={stepper.form.volumeCapacity}
-            volumeType={stepper.form.volumeType}
+            pricing={stepper.form.pricing}
             onSubmit={() => {
               clearNotifications();
               stepper.validation.submit();

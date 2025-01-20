@@ -7,7 +7,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_VARIANT, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Translation, useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useNotifications } from '@ovh-ux/manager-react-components';
@@ -22,9 +22,18 @@ export default function AttachStorage() {
   const { t } = useTranslation('attach');
   const { addError, addSuccess } = useNotifications();
   const { data: volume } = useVolume(projectId, volumeId);
-  const { data: instances, isPending: isInstancesPending } = useInstances(
+  const { data: dataInstances, isPending: isInstancesPending } = useInstances(
     projectId,
     volume?.region,
+  );
+  const instances = useMemo(
+    () =>
+      !!dataInstances && !!volume.availabilityZone
+        ? dataInstances.filter(
+            (i) => i.availabilityZone === volume.availabilityZone,
+          )
+        : dataInstances,
+    [dataInstances, volume],
   );
   const [selectedInstance, setSelectedInstance] = useState<Instance>(null);
   const onClose = () => navigate('..');

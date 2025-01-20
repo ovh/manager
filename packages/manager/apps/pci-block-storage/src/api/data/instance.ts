@@ -11,6 +11,7 @@ export interface Instance {
   planCode: string;
   operationIds: string[];
   currentMonthOutgoingTraffic: number;
+  availabilityZone?: string;
 }
 
 export interface MonthlyBilling {
