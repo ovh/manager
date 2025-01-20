@@ -9,11 +9,8 @@ import {
 export default class SoftphoneController {
   /* @ngInject */
   constructor(SoftphoneService, $translate, $q, TucToast) {
-    this.acceptedFormats = LOGO_FILE_FORMATS;
-    this.acceptedFormatsDesc = LOGO_FILE_FORMATS.map((format) =>
-      ['image/', format].join(''),
-    );
-    this.maxSizeLogoFile = MAX_SIZE_LOGO_FILE;
+    this.LOGO_FILE_FORMATS = LOGO_FILE_FORMATS;
+    this.MAX_SIZE_LOGO_FILE = MAX_SIZE_LOGO_FILE;
     this.SoftphoneService = SoftphoneService;
     this.$translate = $translate;
     this.TucToast = TucToast;
@@ -71,6 +68,7 @@ export default class SoftphoneController {
           this.logoFilename = filename;
 
           this.currentTheme = themeId;
+          this.selectedTheme = this.currentTheme;
         },
       )
       .finally(() => {
@@ -166,30 +164,12 @@ export default class SoftphoneController {
   }
 
   applyTheme() {
-    let promise;
-    const applyTheme = () => {
-      return this.SoftphoneService.putSoftphoneTheme(
-        this.billingAccount,
-        this.serviceName,
-        this.currentTheme,
-      );
-    };
-    if (!this.fileModel) {
-      promise = this.$q.resolve(applyTheme());
-    } else {
-      promise = this.SoftphoneService.uploadDocument(this.fileModel[0]).then(
-        (url) => {
-          this.SoftphoneService.putSoftphoneLogo(
-            this.billingAccount,
-            this.serviceName,
-            this.fileModel[0].infos.name,
-            url,
-          ).then(applyTheme());
-        },
-      );
-    }
-
-    promise
+    this.isUpdatingTheme = true;
+    return this.SoftphoneService.putSoftphoneTheme(
+      this.billingAccount,
+      this.serviceName,
+      this.selectedTheme,
+    )
       .then(() =>
         this.TucToast.success(
           this.$translate.instant(
@@ -206,7 +186,47 @@ export default class SoftphoneController {
             },
           ),
         ),
-      );
+      )
+      .finally(() => {
+        this.fetchSoftPhoneInformations();
+        this.isUpdatingTheme = false;
+      });
+  }
+
+  applyLogo() {
+    this.isUpdatingLogo = true;
+    return this.SoftphoneService.uploadDocument(this.fileModel[0]).then(
+      (url) => {
+        return this.SoftphoneService.putSoftphoneLogo(
+          this.billingAccount,
+          this.serviceName,
+          this.fileModel[0].infos.name,
+          url,
+        )
+          .then(() =>
+            this.TucToast.success(
+              this.$translate.instant(
+                'telephony_line_softphone_apply_logo_add_success',
+              ),
+            ),
+          )
+          .catch((error) =>
+            this.TucToast.error(
+              this.$translate.instant(
+                'telephony_line_softphone_apply_logo_add_error',
+                {
+                  errorMessage: error.message,
+                },
+              ),
+            ),
+          )
+          .finally(() => {
+            this.fetchSoftPhoneInformations();
+            this.fileModel = undefined;
+            this.isUpdatingLogo = false;
+          });
+      },
+    );
   }
 
   deleteLogo() {
@@ -217,20 +237,26 @@ export default class SoftphoneController {
       .then(() =>
         this.TucToast.success(
           this.$translate.instant(
-            'telephony_line_softphone_apply_logo_success',
+            'telephony_line_softphone_apply_logo_remove_success',
           ),
         ),
       )
       .catch((error) =>
         this.TucToast.error(
-          this.$translate.instant('telephony_line_softphone_apply_logo_error', {
-            errorMessage: error.message,
-          }),
+          this.$translate.instant(
+            'telephony_line_softphone_apply_logo_remove_error',
+            {
+              errorMessage: error.message,
+            },
+          ),
         ),
-      );
+      )
+      .finally(() => {
+        this.fetchSoftPhoneInformations();
+      });
   }
 
   helpTextForLogo() {
-    return `${this.acceptedFormatsDesc} (< ${this.maxSizeLogoFile / 1000} KB)`;
+    return `${this.LOGO_FILE_FORMATS} (< ${this.MAX_SIZE_LOGO_FILE / 1000} KB)`;
   }
 }
