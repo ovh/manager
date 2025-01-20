@@ -1,8 +1,11 @@
+import { NAME_PATTERN } from '../../../../constants';
+
 export default class EditNameCtrl {
   /* @ngInject */
   constructor($translate, NutanixNode) {
     this.$translate = $translate;
     this.NutanixNode = NutanixNode;
+    this.namePattern = NAME_PATTERN;
   }
 
   onUpdateDisplayNameFormSubmit() {

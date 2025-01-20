@@ -7,6 +7,7 @@
     <oui-modal
         data-heading="{{:: 'server_name_edit_title' | translate }}"
         data-primary-label="{{:: 'server_name_edit_common_submit' | translate }}"
+        data-primary-disabled="serverEditNameForm.$invalid"
         data-secondary-label="{{:: 'server_name_edit_common_cancel' | translate }}"
         data-secondary-action="$ctrl.handleCancel()"
         data-on-dismiss="$ctrl.handleCancel()"
@@ -14,6 +15,7 @@
     >
         <oui-field
             data-label="{{:: 'server_name_edit_displayname_label' | translate }}"
+            data-error-messages="{ pattern: $ctrl.validationErrorMessage }"
         >
             <input
                 class="oui-input"
@@ -21,6 +23,7 @@
                 name="server-edit-name"
                 id="server-edit-name"
                 data-ng-model="$ctrl.name"
+                data-ng-pattern="$ctrl.validationPattern"
                 required
                 autofocus
             />

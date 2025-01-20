@@ -7,8 +7,8 @@ export default /* @ngInject */ ($stateProvider) => {
       displayName: null,
     },
     resolve: {
-      displayName: /* @ngInject */ ($transition$) =>
-        $transition$.params().displayName,
+      displayName: /* @ngInject */ (serviceDetails) =>
+        serviceDetails.resource.displayName ?? serviceDetails.resource.name,
       goBack: /* @ngInject */ (goToNutanixGeneralInfo) =>
         goToNutanixGeneralInfo,
       handleError: /* @ngInject */ (Alerter, goBack) => (error) => {
