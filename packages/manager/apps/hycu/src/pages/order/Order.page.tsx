@@ -8,7 +8,10 @@ import {
   OvhSubsidiary,
   Subtitle,
 } from '@ovh-ux/manager-react-components';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import {
+  ShellContext,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
@@ -44,8 +47,10 @@ import { urls } from '@/routes/routes.constant';
 import { CONTACT_URL_BY_SUBSIDIARY } from '@/utils/contactList';
 import { sortPacksByPrice } from '@/utils/sortPacks';
 import { getRenewPrice } from '@/utils/getRenewPrice';
+import { TRACKING } from '@/tracking.constant';
 
 export default function Order() {
+  const { trackClick } = useOvhTracking();
   const { t } = useTranslation('hycu/order');
   const { t: tCommon } = useTranslation('hycu');
   const { t: tError } = useTranslation('hycu/error');
@@ -104,6 +109,9 @@ export default function Order() {
                   <OsdsLink
                     color={ODS_THEME_COLOR_INTENT.primary}
                     href={CONTACT_URL_BY_SUBSIDIARY[subsidiary]}
+                    onClick={() => {
+                      trackClick(TRACKING.order.goToSalesClick);
+                    }}
                     target={OdsHTMLAnchorElementTarget._blank}
                   ></OsdsLink>
                 ),
@@ -119,6 +127,7 @@ export default function Order() {
                 pricing={getRenewPrice(product.pricings)}
                 subsidiary={subsidiary}
                 onClick={() => {
+                  trackClick(TRACKING.order.selectPackClick(product.planCode));
                   setSelectedPack(product.planCode);
                 }}
               ></OrderTile>
@@ -129,6 +138,7 @@ export default function Order() {
               className="mr-4"
               color={ODS_THEME_COLOR_INTENT.primary}
               onClick={() => {
+                trackClick(TRACKING.order.cancelClick(selectedPack));
                 navigate(urls.listing);
               }}
               slot="actions"
@@ -140,6 +150,7 @@ export default function Order() {
               color={ODS_THEME_COLOR_INTENT.primary}
               disabled={(!selectedPack && !orderLink) || undefined}
               onClick={() => {
+                trackClick(TRACKING.order.orderClick(selectedPack));
                 setIsOrderInitiated(true);
                 redirectToOrder();
               }}
