@@ -3,11 +3,13 @@ import {
   FilterAdd,
   FilterList,
   Notifications,
+  PciMaintenanceBanner,
   RedirectionGuard,
   useColumnFilters,
   useDataGrid,
   useFeatureAvailability,
   useNotifications,
+  useProductMaintenance,
 } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { Suspense, useContext, useState } from 'react';
@@ -20,6 +22,7 @@ import {
   OdsPopover,
   OdsSpinner,
 } from '@ovhcloud/ods-components/react';
+import { PciAnnouncementBanner } from '@ovh-ux/manager-pci-common';
 import { useStorages } from '@/api/hooks/useStorages';
 import { useDatagridColumn } from './useDatagridColumn';
 import { AVAILABILITY } from '@/constants';
@@ -38,6 +41,7 @@ export default function ListingPage() {
   });
   const { filters, addFilter, removeFilter } = useColumnFilters();
   const [searchField, setSearchField] = useState('');
+  const { hasMaintenance, maintenanceURL } = useProductMaintenance(projectId);
 
   const {
     data: availability,
@@ -68,6 +72,10 @@ export default function ListingPage() {
       route="./onboarding"
     >
       <Notifications />
+      {hasMaintenance && (
+        <PciMaintenanceBanner maintenanceURL={maintenanceURL} />
+      )}
+      <PciAnnouncementBanner projectId={projectId} />
       <div className="sm:flex items-center justify-between mt-8">
         <OdsButton
           size="sm"
