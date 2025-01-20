@@ -19,12 +19,12 @@ export default /* @ngInject */ ($stateProvider) => {
                   code: 404,
                 },
                 to: {
-                  state: 'nutanix.dashboard.nodes.all',
+                  state: 'nutanix.index',
                 },
               },
             };
           }
-          return 'nutanix.dashboard.nodes.node.general-info';
+          return 'nutanix.dashboard.nodes.all';
         },
       );
     },

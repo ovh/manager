@@ -4,6 +4,7 @@ import {
   CSV_DATA_ENCODING,
   CSV_DATA_SCHEME,
   CSV_SEPARATOR,
+  FETCH_PAGE_SIZE,
 } from './ip-ip-export.constants';
 import { TRACKING_PREFIX } from '../list.constant';
 
@@ -14,6 +15,7 @@ export default /* @ngInject */ (
   Alerter,
   atInternet,
   Ip,
+  $q,
 ) => {
   let cancelFetch = null;
 
@@ -23,15 +25,45 @@ export default /* @ngInject */ (
 
   function fetchIps() {
     const { serviceType, otherParams } = $scope.currentActionData;
-    const { cancel, request } = Ip.fetchIps({
-      serviceType,
-      otherParams,
-      pageNumber: 1,
-      pageSize: 5000,
-    });
+    let pageNumber = 1;
+    const defered = $q.defer();
+    let allIps = [];
+
+    const cancel = () => {
+      defered.resolve(allIps);
+    };
+
+    try {
+      const { request: firstRequest } = Ip.fetchIps({
+        serviceType,
+        otherParams,
+        pageNumber,
+        pageSize: FETCH_PAGE_SIZE,
+      });
+
+      firstRequest.then(async ({ ips: firstIps }) => {
+        let ips = firstIps;
+        while (ips.length > 0) {
+          allIps = allIps.concat(ips);
+          pageNumber += 1;
+          const { request } = Ip.fetchIps({
+            serviceType,
+            otherParams,
+            pageNumber,
+            pageSize: FETCH_PAGE_SIZE,
+          });
+          /* eslint-disable no-await-in-loop */
+          ({ ips } = await request);
+        }
+        defered.resolve(allIps);
+      });
+    } catch (error) {
+      defered.reject(error);
+    }
+
     return {
       cancel,
-      request: request.then(({ ips }) => ips),
+      request: defered.promise,
     };
   }
 
