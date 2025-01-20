@@ -4,6 +4,8 @@ import '@uirouter/angularjs';
 import routing from './softphone.routing';
 import component from './softphone.component';
 import SoftphoneService from './softphone.service';
+import './softphone.scss';
+import deleteModalComponent from './deleteModal/delete-modal.component';
 
 const moduleName = 'ovhManagerTelecomTelephonyLineSoftphone';
 
@@ -13,10 +15,12 @@ angular
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
     'ui.router',
+    'oc.lazyLoad',
   ])
+  .component('telecomTelephonyLineSoftphoneDeleteModal', deleteModalComponent)
   .component('ovhManagerTelecomTelephonyLineSoftphoneComponent', component)
-  .config(routing)
   .service('SoftphoneService', SoftphoneService)
+  .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

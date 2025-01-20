@@ -5,6 +5,10 @@ import set from 'lodash/set';
 import slice from 'lodash/slice';
 
 import { TELEPHONY_LINE_PHONE_ADDITIONAL_INFOS } from '../../line/phone/phone.constant';
+import {
+  LOGO_FILE_FORMATS,
+  MAX_SIZE_LOGO_FILE,
+} from '../../line/softphone/softphone.constants';
 
 export default /* @ngInject */ function TelecomTelephonyBillingAccountDashboardCtrl(
   $translate,
@@ -17,13 +21,20 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountDashboardC
   billingDepositLink,
   TelephonyMediator,
   OvhApiTelephony,
+  softphoneService,
+  TucToast,
   TucToastError,
   TelephonyGroupLinePhone,
   billingAccountId,
   isSvaWalletFeatureAvailable,
   svaWallet,
+  themes,
 ) {
   const self = this;
+
+  self.LOGO_FILE_FORMATS = LOGO_FILE_FORMATS;
+  self.MAX_SIZE_LOGO_FILE = MAX_SIZE_LOGO_FILE;
+  self.themes = themes;
 
   self.svaWallet = svaWallet;
 
@@ -284,6 +295,125 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountDashboardC
     return (isExpired() || isClosed()) && shouldIncreaseDeposit();
   };
 
+  this.updateFilesList = function updateFilesList() {
+    if (this.fileModel?.length > 1) {
+      this.fileModel.shift();
+    }
+  };
+
+  this.applyThemeGlobally = function applyThemeGlobally() {
+    this.isUpdatingTheme = true;
+    softphoneService
+      .putSoftphoneThemeGlobally($stateParams.billingAccount, this.currentTheme)
+      .then(() =>
+        TucToast.success(
+          $translate.instant(
+            'telephony_group_line_softphone_apply_theme_success',
+          ),
+        ),
+      )
+      .catch(
+        (error) =>
+          new TucToastError(
+            $translate.instant(
+              'telephony_group_line_softphone_apply_theme_error',
+              {
+                errorMessage: error.message,
+              },
+            ),
+          ),
+      )
+      .finally(() => {
+        this.loadSoftphone();
+        this.isUpdatingTheme = false;
+      });
+  };
+
+  this.applyLogoGlobally = function applyLogoGlobally() {
+    this.isUpdatingLogo = true;
+    softphoneService.uploadDocument(this.fileModel[0]).then((url) => {
+      softphoneService
+        .putSoftphoneLogoGlobally(
+          $stateParams.billingAccount,
+          this.fileModel[0].infos.name,
+          url,
+        )
+        .then(() =>
+          TucToast.success(
+            $translate.instant(
+              'telephony_group_line_softphone_apply_logo_add_success',
+            ),
+          ),
+        )
+        .catch(
+          (error) =>
+            new TucToastError(
+              $translate.instant(
+                'telephony_group_line_softphone_apply_logo_add_error',
+                {
+                  errorMessage: error.message,
+                },
+              ),
+            ),
+        )
+        .finally(() => {
+          this.fileModel = undefined;
+          this.isUpdatingLogo = false;
+          this.loadSoftphone();
+        });
+    });
+  };
+
+  this.deleteGlobalLogo = function deleteGlobalLogo() {
+    softphoneService
+      .deleteSoftphoneLogoGlobally($stateParams.billingAccount)
+      .then(() =>
+        TucToast.success(
+          $translate.instant(
+            'telephony_group_line_softphone_apply_logo_remove_success',
+          ),
+        ),
+      )
+      .catch(
+        (error) =>
+          new TucToastError(
+            $translate.instant(
+              'telephony_group_line_softphone_apply_logo_remove_error',
+              {
+                errorMessage: error.message,
+              },
+            ),
+          ),
+      )
+      .finally(() => {
+        this.loadSoftphone();
+      });
+  };
+
+  this.helpTextForLogo = function helpTextForLogo() {
+    return `${this.LOGO_FILE_FORMATS} (< ${this.MAX_SIZE_LOGO_FILE / 1000} KB)`;
+  };
+
+  this.loadSoftphone = function loadSoftphone() {
+    this.isSoftphoneLoading = true;
+    $q.all({
+      logo: softphoneService.getGlobalLogo(this.billingAccountId),
+      currentTheme: softphoneService.getSoftphoneCurrentGlobalTheme(
+        this.billingAccountId,
+      ),
+    })
+      .then(({ logo: { url, filename }, currentTheme: { themeId } }) => {
+        this.logoUrl = url;
+        this.logoFilename = filename;
+
+        this.currentTheme = themeId;
+        this.selectedTheme = this.currentTheme;
+      })
+      .finally(() => {
+        this.isSoftphoneLoading = false;
+      });
+  };
+
   /*= =====================================
     =            INITIALIZATION            =
     ====================================== */
@@ -308,7 +438,7 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountDashboardC
     };
 
     self.billingDepositLink = billingDepositLink;
-
+    this.loadSoftphone();
     getGroup().then(() => {
       self.actions = [
         {

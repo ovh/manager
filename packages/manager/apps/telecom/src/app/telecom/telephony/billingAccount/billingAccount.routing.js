@@ -101,6 +101,8 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('telecom.telephony.billingAccount.svaWallet', {
           billingAccount,
         }),
+      themes: /* @ngInject */ (softphoneService) =>
+        softphoneService.getThemes(),
     },
     translations: { value: ['..', '.', './dashboard'], format: 'json' },
   });
