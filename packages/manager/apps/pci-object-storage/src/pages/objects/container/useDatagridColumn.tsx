@@ -88,12 +88,12 @@ export const useDatagridColumn = () => {
       label: t('pci_projects_project_storages_containers_offer_label'),
     },
     {
-      id: 'storedObjects',
+      id: 'containerCount',
       cell: (props: TStorage) => (
         <DataGridTextCell>
           {props.deploymentMode === OBJECT_CONTAINER_MODE_LOCAL_ZONE
             ? 'n/a'
-            : props.storedObjects || props.objectsCount || 0}
+            : props.containerCount}
         </DataGridTextCell>
       ),
       label: t('pci_projects_project_storages_containers_storedObjects_label'),
