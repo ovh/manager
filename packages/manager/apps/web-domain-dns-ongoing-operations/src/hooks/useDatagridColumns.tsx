@@ -12,6 +12,7 @@ import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components/src/components/badge/s
 import { useNavigate } from 'react-router-dom';
 import { useFormatDate } from '@/hooks/date/useFormatDate';
 import { TOngoingOperations } from '@/interface';
+import { ODS_TEXT_PRESET } from "@ovhcloud/ods-components";
 
 export const useDatagridColumn = (
   openModal: (id: number) => void,
@@ -111,7 +112,7 @@ export const useDatagridColumn = (
                   role="tooltip"
                   strategy="fixed"
                 >
-                  <OdsText>Prochaine exécution le {useFormatDate(props.todoDate)}</OdsText>
+                  <OdsText preset={ODS_TEXT_PRESET.span}>Prochaine exécution le {useFormatDate(props.todoDate)}</OdsText>
                 </OdsTooltip>
               </div>
             )}
@@ -123,7 +124,7 @@ export const useDatagridColumn = (
                   role="tooltip"
                   strategy="fixed"
                 >
-                  <OdsText>Fin de l'exécution le {props.endDate}</OdsText>
+                  <OdsText preset={ODS_TEXT_PRESET.span}>Fin de l'exécution le {props.endDate}</OdsText>
                 </OdsTooltip>
               </div>
             )}

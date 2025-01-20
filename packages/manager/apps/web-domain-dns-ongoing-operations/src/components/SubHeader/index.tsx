@@ -2,6 +2,7 @@ import { OdsLink, OdsText } from "@ovhcloud/ods-components/react";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { TOngoingOperations } from "@/interface";
+import { ODS_TEXT_PRESET } from "@ovhcloud/ods-components";
 
 interface SubHeaderProps {
   domain: TOngoingOperations;
@@ -19,7 +20,7 @@ export default function SubHeader({domain} : SubHeaderProps) {
         label="Back"
         onClick={() => navigate('..')}
       />
-      <OdsText preset="heading-3">
+      <OdsText preset={ODS_TEXT_PRESET.heading3}>
         Track domain transfer {domain?.domain}
       </OdsText>
     </section>

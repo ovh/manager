@@ -7,6 +7,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useNavigate } from "react-router-dom";
 import { TArgumentData } from '@/interface';
+import { ODS_TEXT_PRESET } from "@ovhcloud/ods-components";
 
 interface ModalContentComponentProps {
   content: TArgumentData[];
@@ -26,7 +27,7 @@ export default function ModalContentComponent({
         <div key={index}>
           {c.data.type === '/me/contact' && (
             <div>
-              <OdsText preset="span" className="mb-4">
+              <OdsText preset={ODS_TEXT_PRESET.paragraph} className="mb-4">
                 {c.data.description}
               </OdsText>
               <OdsLink
@@ -48,6 +49,7 @@ export default function ModalContentComponent({
               label={t(`domain_operations_update_nicowner_click_${c.data.key}`)}
               icon="external-link"
               className="mb-1 block"
+              href=''
             />
           )}
 

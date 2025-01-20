@@ -10,8 +10,8 @@ import {
   getmeTaskDomainArgument,
   getmeTaskDomainNicList,
 } from '@/data/api/web-domain-dns-ongoing-operations';
-import { operation } from '@/data/api/ongoing-operations-actions';
-import { TArgument, TArgumentData, TOngoingOperations } from "@/interface";
+import { useDoOperation } from '@/hooks/actions/useActions';
+import { TArgument, TArgumentData, TOngoingOperations } from '@/interface';
 
 type IsModalOpenProps = {
   isModalOpen: boolean;
@@ -32,7 +32,7 @@ export default function Modal({
   const [argument, setArgument] = useState<TArgumentData[]>([] || undefined);
   const [isLoading, setLoading] = useState<boolean>(false);
   const [isDocument, setDocument] = useState<boolean>(false);
-  const [domainId, setDomainId] = useState<number>(0)
+  const [domainId, setDomainId] = useState<number>(0);
   useEffect(() => {
     if (isModalOpen) {
       getmeTaskDomainNicList(data.id)
@@ -47,8 +47,9 @@ export default function Modal({
           setArgument(argumentsList);
           argumentsList.some((al) => {
             if (al.data.type === '/me/document') {
-              setDocument(true);
+              return setDocument(true);
             }
+            return setDocument(false);
           });
         })
         .catch((error) => {
@@ -58,16 +59,8 @@ export default function Modal({
   }, [isModalOpen, data?.id]);
 
   const doOperation = async (id: number, operationType: string) => {
-    try {
-      await operation(universe, id, operationType)
-        .then(() => setLoading(true))
-        .then(() => changeStatus('success', ''))
-        .then(() => setLoading(false))
-    } catch (e) {
-      changeStatus('warning', e.response.data.message);
-    } finally {
-      onCloseModal();
-    }
+    await useDoOperation(universe, id, operationType);
+    onCloseModal();
   };
 
   return (

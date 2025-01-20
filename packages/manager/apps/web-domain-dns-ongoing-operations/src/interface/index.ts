@@ -12,7 +12,7 @@ export interface UseResourcesIcebergType {
 }
 
 export interface TOngoingOperations {
-  id: number;
+  id: string;
   domain: string;
   zone: string;
   function: string;
@@ -32,13 +32,13 @@ export interface TArgumentData {
 }
 
 export interface TArgument {
-  acceptedFormats: null;
+  acceptedFormats: [];
   acceptedValues: null;
   description: string;
   fields: string[];
   key: string;
-  maximumSize: string;
-  minimumSize: string;
+  maximumSize: number;
+  minimumSize: null;
   readOnly: boolean;
   template: string;
   type: string;

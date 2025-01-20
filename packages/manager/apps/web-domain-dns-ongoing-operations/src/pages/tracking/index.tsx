@@ -19,6 +19,7 @@ import { getOperationTrackingStatus } from '@/data/api/tracking';
 import { getmeTaskDomainId } from '@/data/api/web-domain-dns-ongoing-operations';
 import Loading from '@/components/Loading/Loading';
 import SubHeader from "@/components/SubHeader";
+import { ODS_TEXT_PRESET } from "@ovhcloud/ods-components";
 
 export default function Track() {
   const { t } = useTranslation('dashboard');
@@ -47,10 +48,10 @@ export default function Track() {
   });
 
   useEffect(() => {
-    if (tracking?.progress === 100) {
+    if (domain?.taskStatus === 'done') {
       setTransfertFinalised(true);
     }
-  }, [tracking?.progress]);
+  }, [domain?.taskStatus]);
 
   if (isLoading) {
     return (
@@ -91,9 +92,9 @@ export default function Track() {
         <div className="flex flex-col items-center justify-center">
           <div className="flex flex-col gap-y-3 items-center justify-center mb-4">
             <OdsIcon name="check" className="success text-2xl mb-4" />
-            <OdsText preset="heading-3">Votre transfert est finalisé !</OdsText>
+            <OdsText preset={ODS_TEXT_PRESET.heading3}>Votre transfert est finalisé !</OdsText>
           </div>
-          <OdsText className="mb-8">Merci d’avoir choisi OVHcloud !</OdsText>
+          <OdsText className="mb-8" preset={ODS_TEXT_PRESET.paragraph}>Merci d’avoir choisi OVHcloud !</OdsText>
           <OdsButton
             label="Découvrez mon tableau de bord domain"
             onClick={() => navigate('/domain')}
@@ -117,12 +118,12 @@ export default function Track() {
               <div className="pl-5 mt-1">
                 {tracking?.currentStep.step === TrackingEnum.initialisation && (
                   <div>
-                    <OdsText preset="span">Votre opération a été crée.</OdsText>
-                    <OdsText preset="paragraph" className="block">
+                    <OdsText preset={ODS_TEXT_PRESET.span}>Votre opération a été crée.</OdsText>
+                    <OdsText preset={ODS_TEXT_PRESET.paragraph} className="block">
                       Neuf étapes effectuées par le robot avant envoie de la
                       demande au registre.
                     </OdsText>
-                    <OdsText preset="paragraph">
+                    <OdsText preset={ODS_TEXT_PRESET.paragraph}>
                       Last update :{' '}
                       {useFormatDateLight(tracking?.lastUpdateDate)}
                     </OdsText>
@@ -139,7 +140,7 @@ export default function Track() {
                   <OdsIcon name="circle-check" className="success" />
                 )}
                 <OdsText
-                  preset="heading-4"
+                  preset={ODS_TEXT_PRESET.heading4}
                   className={
                     tracking?.progress > 25 ? 'primary-title' : 'disabled-title'
                   }
@@ -149,25 +150,25 @@ export default function Track() {
               </div>
               {tracking?.currentStep.step === 'Contacts Confirmation' && (
                 <div className="pl-5 mt-1 flex flex-col gap-y-2">
-                  <OdsText preset="span">
+                  <OdsText preset={ODS_TEXT_PRESET.span}>
                     Pendant ce temps le domaine reste fonctionnel tant que les
                     DNS ne sont pas modifiés.
                   </OdsText>
                   <OdsMessage isDismissible={false}>
                     <div>
-                      <OdsText preset="paragraph">
+                      <OdsText preset={ODS_TEXT_PRESET.paragraph}>
                         Vous pourriez recevoir un email de votre ancien
                         registrar vous invitant à vérifier vos informations de
                         contact (cet email sera envoyé à l'adresse enregistrée
                         pour le contact administratif dans le WHOIS).
                       </OdsText>
-                      <OdsText preset="span">
+                      <OdsText preset={ODS_TEXT_PRESET.span}>
                         Merci de valider le transfert en suivant le lien ou les
                         instructions indiquées dans ce message.
                       </OdsText>
                     </div>
                   </OdsMessage>
-                  <OdsText preset="paragraph">
+                  <OdsText preset={ODS_TEXT_PRESET.paragraph}>
                     Last update : {useFormatDateLight(tracking?.lastUpdateDate)}
                   </OdsText>
                 </div>
@@ -184,7 +185,7 @@ export default function Track() {
                   <OdsIcon name="circle-check" className="success" />
                 )}
                 <OdsText
-                  preset="heading-4"
+                  preset={ODS_TEXT_PRESET.heading4}
                   className={
                     tracking?.progress > 50 ? 'primary-title' : 'disabled-title'
                   }
@@ -195,11 +196,11 @@ export default function Track() {
               {tracking?.currentStep.step ===
                 TrackingEnum.currentRegistrarConfirmation && (
                 <div className="pl-5 mt-1 flex flex-col gap-y-2">
-                  <OdsText preset="span">
+                  <OdsText preset={ODS_TEXT_PRESET.span}>
                     Ce processus peut prendre jusqu'à 5 à 7 jours selon les
                     règles du registre concerné.
                   </OdsText>
-                  <OdsText preset="paragraph" className="block">
+                  <OdsText preset={ODS_TEXT_PRESET.paragraph} className="block">
                     Last update : {useFormatDateLight(tracking?.lastUpdateDate)}
                   </OdsText>
                 </div>
@@ -212,7 +213,7 @@ export default function Track() {
                   <OdsSpinner size="xs" />
                 )}
                 <OdsText
-                  preset="heading-4"
+                  preset={ODS_TEXT_PRESET.heading4}
                   className={
                     tracking?.progress >= 75
                       ? 'primary-title'
@@ -224,7 +225,7 @@ export default function Track() {
               </div>
               {tracking?.currentStep.step === TrackingEnum.finalization && (
                 <div className="pl-5 mt-1 flex flex-col gap-y-2">
-                  <OdsText preset="span">
+                  <OdsText preset={ODS_TEXT_PRESET.span}>
                     Finalisation du transfert en cours.
                   </OdsText>
                   <ul>
@@ -234,7 +235,7 @@ export default function Track() {
                     </li>
                     <li>Génération du WHOIS</li>
                   </ul>
-                  <OdsText preset="paragraph">Last update : 12/01/25</OdsText>
+                  <OdsText preset={ODS_TEXT_PRESET.paragraph}>Last update : 12/01/25</OdsText>
                 </div>
               )}
             </div>
@@ -243,10 +244,10 @@ export default function Track() {
           {tracking?.currentStep.step !== TrackingEnum.finalization && (
             <OdsMessage isDismissible={false} className="w-full">
               <div className="flex flex-col">
-                <OdsText preset="heading-6" className="block">
+                <OdsText preset={ODS_TEXT_PRESET.heading6} className="block">
                   {t('domain_operations_progress_instructions')}
                 </OdsText>
-                <OdsText className="block">
+                <OdsText preset={ODS_TEXT_PRESET.span} className="block">
                   {t('domain_operations_progress_instructions_7')}
                 </OdsText>
               </div>
