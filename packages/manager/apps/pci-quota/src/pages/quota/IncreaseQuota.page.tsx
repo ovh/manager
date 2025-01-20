@@ -85,11 +85,18 @@ ${formData}
               name: `${TRACK.BASE_CONTACT_SUPPORT_BANNER}::${TRACK.SUCCESS}`,
             });
             addSuccess(
-              t('pci_projects_project_quota_increase_success_message', {
-                ticketUrl:
-                  SUPPORT_TICKET_ID_URL.replace('{ticketId}', ticketId) +
-                  me.ovhSubsidiary,
-              }),
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: t(
+                    'pci_projects_project_quota_increase_success_message',
+                    {
+                      ticketUrl:
+                        SUPPORT_TICKET_ID_URL.replace('{ticketId}', ticketId) +
+                        me.ovhSubsidiary,
+                    },
+                  ),
+                }}
+              ></span>,
             );
             goBack();
           } catch (e) {
