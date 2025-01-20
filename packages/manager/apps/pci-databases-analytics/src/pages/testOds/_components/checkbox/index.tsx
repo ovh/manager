@@ -17,7 +17,7 @@ const ComponentStories = () => {
     };
     loadStories();
   }, []);
-  return <Stories componentName="Clipboard" stories={stories} />;
+  return <Stories componentName="Checkbox" stories={stories} />;
 };
 
 export default ComponentStories;
