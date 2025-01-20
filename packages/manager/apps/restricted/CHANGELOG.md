@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-restricted-app@0.7.4...@ovh-ux/manager-restricted-app@0.7.5) (2025-01-20)
+
+
+### Bug Fixes
+
+* **restricted:** fix minimum rights display for US ([6ae6bcb](https://github.com/ovh/manager/commit/6ae6bcb8b0bb3ec0645580ab7692099c7f1d4c12))
+
+
+
+
+
 ## [0.7.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-restricted-app@0.7.3...@ovh-ux/manager-restricted-app@0.7.4) (2025-01-09)
 
 **Note:** Version bump only for package @ovh-ux/manager-restricted-app
