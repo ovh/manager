@@ -1,16 +1,25 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { OdsText, OdsButton, OdsMessage } from '@ovhcloud/ods-components/react';
 import {
   ODS_BUTTON_VARIANT,
   ODS_MESSAGE_COLOR,
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
+import { PageType, ShellContext } from '@ovh-ux/manager-react-shell-client';
+
+import { ErrorMessage, TRACKING_LABELS, ErrorBannerProps } from './error.types';
 import './translations/translations';
-
-import { ErrorBannerProps } from './error.types';
-import { useTranslation } from 'react-i18next';
-
 import ErrorImg from '../../../../public/assets/error-banner-oops.png';
+
+function getTrackingTypology(error: ErrorMessage) {
+  if (error?.status && Math.floor(error.status / 100) === 4) {
+    return [401, 403].includes(error.status)
+      ? TRACKING_LABELS.UNAUTHORIZED
+      : TRACKING_LABELS.SERVICE_NOT_FOUND;
+  }
+  return TRACKING_LABELS.PAGE_LOAD;
+}
 
 export const ErrorBanner = ({
   error,
@@ -19,6 +28,21 @@ export const ErrorBanner = ({
   labelTracking,
 }: ErrorBannerProps) => {
   const { t } = useTranslation('error');
+  const { shell } = React.useContext(ShellContext);
+  const env = shell?.environment?.getEnvironment();
+
+  React.useEffect(() => {
+    env?.then((response) => {
+      const { applicationName } = response;
+      const name = `errors::${getTrackingTypology(error)}::${applicationName}`;
+      shell?.tracking?.trackPage({
+        name,
+        level2: '81',
+        type: 'navigation',
+        page_category: PageType.bannerError,
+      });
+    });
+  }, []);
 
   return (
     <div className="mx-auto  w-full h-full max-w-[600px] overflow-hidden mx-autogrid p-5">

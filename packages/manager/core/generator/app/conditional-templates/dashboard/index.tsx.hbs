@@ -13,9 +13,9 @@ import {
   OdsTab,
 } from '@ovhcloud/ods-components/react';
 
-import { BaseLayout } from '@ovh-ux/manager-react-components';
+import { Breadcrumb, BaseLayout } from '@ovh-ux/manager-react-components';
 
-import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
+import appConfig from '@/{{appName}}.config';
 
 export type DashboardTabItemProps = {
   name: string;
@@ -63,7 +63,7 @@ export default function DashboardPage() {
 
   return (
     <BaseLayout
-      breadcrumb={<Breadcrumb />}
+      breadcrumb={<Breadcrumb rootLabel={appConfig.rootLabel} appName="{{appName}}" />}
       header={header}
       description="Description du {{appName}}"
       tabs={
