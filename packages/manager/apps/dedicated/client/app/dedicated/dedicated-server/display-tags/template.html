@@ -1,0 +1,21 @@
+<oui-modal
+    data-on-dismiss="$ctrl.$uibModalInstance.dismiss()"
+    data-primary-action="$ctrl.onEditTags()"
+    data-primary-label="{{:: 'display_tags_popup_edit' | translate }}"
+    data-secondary-action="$ctrl.back()"
+    data-secondary-label="{{:: 'display_tags_popup_back' | translate }}"
+    data-heading="{{:: 'display_tags_popup_title' | translate:{ 'serverName': $ctrl.serverName } }}"
+>
+    <div class="mb-4">
+        <oui-search
+            model="$ctrl.searchTag"
+            on-change="$ctrl.onSearchServerTags(modelValue)"
+            on-reset="$ctrl.onSearchReset()"
+            placeholder="{{ ::'display_tags_popup_search'| translate}}"
+        >
+        </oui-search>
+    </div>
+    <span data-ng-repeat="tag in $ctrl.serverTagList">
+        <span class="oui-badge oui-badge_info" data-ng-bind="tag"> </span>
+    </span>
+</oui-modal>

@@ -4,12 +4,18 @@ import set from 'lodash/set';
 import snakeCase from 'lodash/snakeCase';
 
 import { DC_2_ISO, MONITORING_STATUSES } from './servers.constants';
+import {
+  CONTROLLER_NAME as DISPLAY_TAG_POPUP_CONTROLLER,
+  TEMPLATE_CACHE_KEY as DISPLAY_TAG_POPUP_TEMPLATE,
+} from '../display-tags/display-tags.constants';
 
 export default class ServersCtrl {
   /* @ngInject */
-  constructor($q, $translate, ouiDatagridService) {
+  constructor($q, $state, $translate, $uibModal, ouiDatagridService) {
     this.$q = $q;
+    this.$state = $state;
     this.$translate = $translate;
+    this.$uibModal = $uibModal;
     this.ouiDatagridService = ouiDatagridService;
   }
   // comment to use staging
@@ -39,6 +45,10 @@ export default class ServersCtrl {
     this.modelEnumFilter = this.getEnumFilterFromCustomerData(
       this.dedicatedServers.data,
       'commercialRange',
+    );
+
+    this.tagEnumFilter = this.getTagEnumFilterFromCustomerData(
+      this.dedicatedServers.data,
     );
   }
 
@@ -91,6 +101,19 @@ export default class ServersCtrl {
     );
   }
 
+  getTagEnumFilterFromCustomerData(data, prefix = null) {
+    return this.getEnumFilter(
+      data
+        .filter((server) => server.iam?.tags)
+        .map((server) => Object.keys(server.iam?.tags))
+        .filter((value, index, self) => {
+          return self.indexOf(value) === index;
+        }),
+      prefix,
+      false,
+    );
+  }
+
   getEnumFilter(list, translationPrefix, toUpperSnakeCaseFlag = true) {
     if (translationPrefix === null) {
       return {
@@ -122,6 +145,32 @@ export default class ServersCtrl {
         {},
       ),
     };
+  }
+
+  getTags(tags) {
+    if (tags) {
+      this.tags = Object.keys(tags)
+        .filter((key) => !key.startsWith('ovh:'))
+        .map((key) => `${key}:${tags[key]}`);
+    }
+    return this.tags;
+  }
+
+  goToTagsModal(iamDetails) {
+    this.server_name = iamDetails.displayName;
+    this.server_tags = this.getTags(iamDetails.tags);
+    this.$uibModal.open({
+      templateUrl: DISPLAY_TAG_POPUP_TEMPLATE,
+      controller: DISPLAY_TAG_POPUP_CONTROLLER,
+      controllerAs: '$ctrl',
+      resolve: {
+        hasDefaultMeansOfPayment: () => this.hasDefaultMeansOfPayment,
+        itemName: () => this.servicePackToOrder?.displayName,
+        itemRef: () => this.servicePackToOrder?.name,
+        serverName: () => this.server_name,
+        serverTags: () => this.server_tags,
+      },
+    });
   }
 
   loadServers() {
