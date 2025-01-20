@@ -7,7 +7,7 @@ import {
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
 } from '@ovhcloud/ods-components';
-import { OdsButton, OdsPopover } from '@ovhcloud/ods-components/react';
+import { OdsButton, OdsLink, OdsPopover } from '@ovhcloud/ods-components/react';
 import { usePciUrl } from '@ovh-ux/manager-pci-common';
 import {
   ButtonType,
@@ -18,6 +18,7 @@ import {
   SavingsPlanPlanedChangeStatus,
   SavingsPlanStatus,
 } from '@/types/api.type';
+import './ActionCell.scss';
 
 interface SavingsPlanActionsCell {
   onClickEditName: (path: string) => void;
@@ -77,11 +78,12 @@ const MenuItems = ({
           />
         )}
 
-        <OdsButton
+        <OdsLink
+          href={
+            isInstance ? `${pciUrl}/instances/new` : `${pciUrl}/rancher/new`
+          }
+          className="menu-item-link"
           label={t(isInstance ? 'order_instance' : 'order_rancher')}
-          size={ODS_BUTTON_SIZE.sm}
-          variant={ODS_BUTTON_VARIANT.ghost}
-          text-align="start"
           onClick={() => {
             trackClick({
               location: PageLocation.page,
@@ -89,11 +91,6 @@ const MenuItems = ({
               actionType: 'navigation',
               actions: ['add_instance'],
             });
-            if (isInstance) {
-              navigate(`${pciUrl}/instances/new`);
-            } else {
-              navigate(`${pciUrl}/rancher/new`);
-            }
           }}
         />
       </div>
