@@ -1,4 +1,4 @@
-export default class RbxEolBannerController {
+export default class VmacUnavailableBannerController {
   /* @ngInject */
   constructor(VmacUnavailableBannerService) {
     this.VmacUnavailableBannerService = VmacUnavailableBannerService;
