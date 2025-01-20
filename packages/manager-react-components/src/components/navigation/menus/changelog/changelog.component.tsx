@@ -25,7 +25,7 @@ export interface ChangelogLinks {
 
 export interface ChangelogButtonProps {
   links: ChangelogLinks;
-  chapters: string[];
+  chapters?: string[];
 }
 
 export const CHANGELOG_PREFIXES = ['tile-changelog-roadmap', 'external-link'];
@@ -33,7 +33,7 @@ const GO_TO = (link: string) => `go-to-${link}`;
 
 export const ChangelogButton: React.FC<ChangelogButtonProps> = ({
   links,
-  chapters,
+  chapters = [],
 }) => {
   const { t } = useTranslation('buttons');
   const { trackClick } = useOvhTracking();
