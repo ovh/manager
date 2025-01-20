@@ -21,6 +21,10 @@ export const guideButton: GuideButtonProps = {
   items: guideItems,
 };
 
+export const GuideButtonLoading = () => (
+  <GuideButton isLoading items={guideItems} />
+);
+
 const meta: Meta<GuideButtonProps> = {
   title: 'Navigation/Menus',
   decorators: [(story) => <div>{story()}</div>],
