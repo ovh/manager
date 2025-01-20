@@ -5,22 +5,36 @@
 </vps-announcement-banner>
 
 <oui-message
-    data-ng-if="$ctrl.canBeMigrated()"
+    data-ng-if=":: $ctrl.canBeMigrated()"
     data-type="warning"
     class="mb-3"
 >
     <p
-        data-translate="vps_dashboard_auto_migration_warning_new"
-        data-translate-values="{ vps: $ctrl.serviceInfo.domain, expiration: $ctrl.expirationDate }"
+        data-translate="vps_dashboard_auto_migration_warning_part_1_{{ $ctrl.vpsMigration.date ? 'with' : 'without' }}_date"
+        data-translate-values="{ vps: $ctrl.serviceInfo.domain, date: $ctrl.migrationDate }"
+        class="mb-0"
+    ></p>
+    <p
+        class="d-inline"
+        data-translate="vps_dashboard_auto_migration_warning_part_2"
     ></p>
     <a
-        class="oui-tile__button oui-button oui-link_icon"
+        class="d-inline oui-link_icon"
+        data-ng-href="{{ $ctrl.migrationFAQLink }}"
+        target="_blank"
+        rel="noopener"
+    >
+        <span data-ng-bind="$ctrl.migrationFAQLink"></span>
+        <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span>
+    </a>
+    <a
+        class="d-block mt-2"
         data-ng-href="{{ $ctrl.migrationLink }}"
         data-track-on="click"
         data-track-name="{{:: $ctrl.trackingPrefix + '::migrate-my-vps-banner' }}"
         target="_top"
     >
-        <span data-translate="vps_dashboard_migration_link"></span>
+        <span data-translate="vps_dashboard_migration_banner_link"></span>
     </a>
 </oui-message>
 <oui-message data-ng-if="$ctrl.isStarter()" type="info" class="mb-3">
