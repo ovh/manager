@@ -69,6 +69,11 @@
                 data-state="{{:: $ctrl.licenseState }}"
                 ><span data-translate="dedicatedCloud_tab_license"></span
             ></oui-header-tabs-item>
+            <oui-header-tabs-item
+                data-ng-if=":: !$ctrl.dedicatedCloud.isExpired"
+                data-state="{{:: $ctrl.logsState }}"
+                ><span data-translate="dedicatedCloud_tab_logs"></span
+            ></oui-header-tabs-item>
         </oui-header-tabs>
     </header>
 
