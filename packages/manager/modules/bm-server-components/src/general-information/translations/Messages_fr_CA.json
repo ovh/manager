@@ -56,5 +56,6 @@
   "server_configuration_installation_inputs_item_number_increase_tooltip": "Cliquez ici pour incrémenter cette valeur",
   "server_configuration_installation_inputs_item_number_decrease_tooltip": "Cliquez ici pour décrémenter cette valeur",
   "server_configuration_installation_inputs_item_keyValue_add_tooltip": "Cliquez ici pour ajouter un couple clé-valeur",
-  "server_configuration_installation_inputs_item_keyValue_remove_tooltip": "Cliquez ici pour supprimer ce couple clé-valeur"
+  "server_configuration_installation_inputs_item_keyValue_remove_tooltip": "Cliquez ici pour supprimer ce couple clé-valeur",
+  "dedicated_server_dashboard_region_eu-west-hdf-backup": "Europe (France - HDF) (backup)"
 }

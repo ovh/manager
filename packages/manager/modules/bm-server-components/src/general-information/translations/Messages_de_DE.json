@@ -56,5 +56,6 @@
   "server_configuration_installation_inputs_item_keyValue_remove_tooltip": "Klicken Sie hier, um dieses Schlüssel-Wert-Paar zu löschen.",
   "dedicated_server_dashboard_region_unknown": "Information nicht verfügbar",
   "dedicated_server_dashboard_zone_unknown": "Information nicht verfügbar",
-  "server_configuration_installation_inputs_bad_hostname": "Der Hostname darf nur aus Ziffern, Buchstaben, Bindestrichen und Punkten entsprechend dem in RFC 1035 definierten Format bestehen."
+  "server_configuration_installation_inputs_bad_hostname": "Der Hostname darf nur aus Ziffern, Buchstaben, Bindestrichen und Punkten entsprechend dem in RFC 1035 definierten Format bestehen.",
+  "dedicated_server_dashboard_region_eu-west-hdf-backup": "Europa (Frankreich – HDF) (Backup)"
 }
