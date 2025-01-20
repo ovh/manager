@@ -122,6 +122,7 @@ export default function AddUserPage() {
               onSelectUser={setSelectedUser}
               users={listUsers}
               defaultUser={defaultUser}
+              selectedUser={selectedUser}
             />
           ) : (
             <StepTwoComponent
@@ -137,6 +138,7 @@ export default function AddUserPage() {
         <OdsButton
           slot="actions"
           onClick={() => setStepUser(0)}
+          isDisabled={isPendingAddUser}
           variant={ODS_BUTTON_VARIANT.outline}
           label={t(
             'pci_projects_project_storages_containers_container_addUser_back_label',
@@ -146,6 +148,7 @@ export default function AddUserPage() {
       <OdsButton
         slot="actions"
         onClick={onCancel}
+        isDisabled={isPendingAddUser}
         variant={ODS_BUTTON_VARIANT.outline}
         label={t(
           'pci_projects_project_storages_containers_container_addUser_cancel_label',
