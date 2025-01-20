@@ -328,7 +328,9 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
       <Block>
         <Subtitle>{t('select_quantity')}</Subtitle>
         <DescriptionWrapper>
-          {t('select_quantity_description')}
+          {isInstance
+            ? t('select_quantity_description_instance')
+            : t('select_quantity_description_rancher')}
         </DescriptionWrapper>
         <OsdsTile
           rounded
