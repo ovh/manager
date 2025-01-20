@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import ButtonTest from './_components/ButtonTest';
-import BadgeTest from './_components/BadgeTest';
-import AccordionTest from './_components/AccordionTest';
-import BreadcrumbTest from './_components/BreadcrumbTest';
-import CardTest from './_components/CardTest';
+import ButtonTest from './_components/button';
+import BadgeTest from './_components/badge';
+import AccordionTest from './_components/accordion';
+import BreadcrumbTest from './_components/breadcrumb';
+import CardTest from './_components/card';
+import ClipboardTest from './_components/clipboard';
 
 const TestOds = () => {
   const components = [
@@ -13,6 +14,7 @@ const TestOds = () => {
     { name: 'Breadcrumb', component: BreadcrumbTest },
     { name: 'Button', component: ButtonTest },
     { name: 'Card', component: CardTest },
+    { name: 'Clipboard', component: ClipboardTest },
   ];
   const [currentComponent, setCurrentComponent] = useState(components[0]);
   return (
