@@ -9656,6 +9656,13 @@
   dependencies:
     "@babel/runtime" "^7.12.5"
 
+"@testing-library/react@^16.1.0":
+  version "16.1.0"
+  resolved "https://registry.yarnpkg.com/@testing-library/react/-/react-16.1.0.tgz#aa0c61398bac82eaf89776967e97de41ac742d71"
+  integrity sha512-Q2ToPvg0KsVL0ohND9A3zLJWcOXXcO8IDu3fj11KhNt0UlCWyFyvnCIBkd12tidB2lkiVRG8VFqdhcqhqnAQtg==
+  dependencies:
+    "@babel/runtime" "^7.12.5"
+
 "@testing-library/user-event@^13.2.1":
   version "13.5.0"
   resolved "https://registry.yarnpkg.com/@testing-library/user-event/-/user-event-13.5.0.tgz#69d77007f1e124d55314a2b73fd204b333b13295"
@@ -17611,6 +17618,11 @@ flag-icon-css@~0.8.5:
   version "0.8.6"
   resolved "https://registry.yarnpkg.com/flag-icon-css/-/flag-icon-css-0.8.6.tgz#7dab89f99040c2a1113108132a1eab8c1dea44c4"
   integrity sha512-OQdsWTHoPB1gi79Be6mLgKD1GprOLur/Qv370nh91+Lrw0rIhGMjYc+CVgS05ZhjaMYn/CEQUNreW4SN1giQQw==
+
+flag-icons@^7.2.3:
+  version "7.2.3"
+  resolved "https://registry.yarnpkg.com/flag-icons/-/flag-icons-7.2.3.tgz#b67f379fa0ef28c4e605319a78035131bdd8ced7"
+  integrity sha512-X2gUdteNuqdNqob2KKTJTS+ZCvyWeLCtDz9Ty8uJP17Y4o82Y+U/Vd4JNrdwTAjagYsRznOn9DZ+E/Q52qbmqg==
 
 flagged-respawn@^2.0.0:
   version "2.0.0"
