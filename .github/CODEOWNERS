@@ -23,6 +23,4 @@
 
 # Continuous Integration and scripts
 /scripts/start-application.js @ovh/team-manager-dev-angularjs @ovh/team-manager-dev-reactjs
-/scripts/run-playwright.js @ovh/team-manager-dev-reactjs
-/scripts/run-playwright-bdd.js @ovh/team-manager-dev-reactjs
 /scripts/.env.development @ovh/team-manager-dev-reactjs
