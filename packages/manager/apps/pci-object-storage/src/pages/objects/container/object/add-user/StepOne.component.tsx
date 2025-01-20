@@ -10,11 +10,13 @@ import LabelComponent from '@/components/Label.component';
 type StepOneComponentProps = {
   onSelectUser: (user: TUser) => void;
   defaultUser: TUser;
+  selectedUser: TUser;
   users: TUser[];
 };
 export default function StepOneComponent({
   onSelectUser,
   defaultUser,
+  selectedUser,
   users,
 }: Readonly<StepOneComponentProps>) {
   const { t } = useTranslation('containers/add-user');
@@ -34,7 +36,7 @@ export default function StepOneComponent({
           )}
         />
         <OdsSelect
-          defaultValue={`${defaultUser?.id}`}
+          value={selectedUser ? `${selectedUser?.id}` : `${defaultUser?.id}`}
           onOdsChange={(event) => {
             const user = users.find((u) => `${u.id}` === event.detail.value);
             onSelectUser(user);

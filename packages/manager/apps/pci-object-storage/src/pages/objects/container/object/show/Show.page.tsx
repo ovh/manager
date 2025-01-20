@@ -144,10 +144,7 @@ export default function ObjectPage() {
 
   const is = {
     localZone: useMemo(
-      () =>
-        region?.services.find(
-          (service) => service.name === OBJECT_CONTAINER_MODE_LOCAL_ZONE,
-        ),
+      () => region?.type === OBJECT_CONTAINER_MODE_LOCAL_ZONE,
       [region],
     ),
     encrypted: useMemo(() => {
@@ -235,7 +232,7 @@ export default function ObjectPage() {
       )}
 
       {is.replicationRulesBannerShown && (
-        <OdsMessage color="information" className="mt-6">
+        <OdsMessage color="information" className="mt-6" isDismissible={false}>
           <OdsText>
             {tContainer(
               'pci_projects_project_storages_containers_container_add_replication_rules_info',
@@ -474,7 +471,7 @@ export default function ObjectPage() {
                       pageSize: pagination.pageSize,
                     });
                     addFilter({
-                      key: 'search',
+                      key: 'key',
                       value: searchField,
                       comparator: FilterComparator.Includes,
                       label: '',
@@ -493,7 +490,7 @@ export default function ObjectPage() {
                     pageSize: pagination.pageSize,
                   });
                   addFilter({
-                    key: 'search',
+                    key: 'key',
                     value: searchField,
                     comparator: FilterComparator.Includes,
                     label: '',
@@ -524,6 +521,13 @@ export default function ObjectPage() {
                       id: 'lastModified',
                       label: tContainer(
                         'pci_projects_project_storages_containers_container_lastModified_label',
+                      ),
+                      comparators: FilterCategories.Date,
+                    },
+                    {
+                      id: 'storageClass',
+                      label: tContainer(
+                        'pci_projects_project_storages_containers_container_storage_class_label',
                       ),
                       comparators: FilterCategories.String,
                     },

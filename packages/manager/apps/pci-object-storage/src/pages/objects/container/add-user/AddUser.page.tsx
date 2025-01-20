@@ -113,6 +113,7 @@ export default function AddUserToContainerPage() {
               onSelectUser={setSelectedUser}
               users={validUsersWithCredentials}
               defaultUser={defaultUser}
+              selectedUser={selectedUser}
             />
           ) : (
             <StepTwoComponent
