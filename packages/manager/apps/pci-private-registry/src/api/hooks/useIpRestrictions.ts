@@ -1,6 +1,6 @@
 import { useMutation, useSuspenseQuery } from '@tanstack/react-query';
 import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
-import { PaginationState } from '@ovh-ux/manager-react-components';
+import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
 import { getRegistryQueryPrefix } from './useRegistry';
 
 import {
@@ -14,7 +14,7 @@ import {
   TIPRestrictionsMethodEnum,
 } from '@/types';
 import queryClient from '@/queryClient';
-import { paginateResults } from '@/helpers';
+import { compareFunction, paginateResults } from '@/helpers';
 
 export type TUpdateIpRestrictionMutationParams = {
   cidrToUpdate: Record<FilterRestrictionsServer, TIPRestrictionsDefault[]>;
@@ -40,22 +40,48 @@ export const useIpRestrictions = <T = TIPRestrictionsData[]>(
     select,
   });
 
+export const sortIpRestrictions = (
+  cidrs: TIPRestrictionsData[],
+  sorting: ColumnSort,
+): TIPRestrictionsData[] => {
+  const data = [...cidrs];
+
+  if (sorting) {
+    const { id: sortKey, desc } = sorting;
+
+    data.sort(
+      compareFunction<TIPRestrictionsData>(
+        sortKey as keyof TIPRestrictionsData,
+      ),
+    );
+    if (desc) {
+      data.reverse();
+    }
+  }
+
+  return data;
+};
+
 export const useIpRestrictionsWithFilter = (
   projectId: string,
   registryId: string,
   type: FilterRestrictionsServer[],
   pagination: PaginationState,
   filters: Filter[],
+  sorting: ColumnSort,
 ) =>
   useIpRestrictions(projectId, registryId, type, (data) =>
     paginateResults<TIPRestrictionsData>(
       applyFilters(
-        data.map((restriction) => ({
-          ...restriction,
-          draft: false,
-          checked: false,
-          id: restriction.ipBlock,
-        })) || [],
+        sortIpRestrictions(
+          data.map((restriction) => ({
+            ...restriction,
+            draft: false,
+            checked: false,
+            id: restriction.ipBlock,
+          })) || [],
+          sorting,
+        ),
         filters,
       ),
       pagination,

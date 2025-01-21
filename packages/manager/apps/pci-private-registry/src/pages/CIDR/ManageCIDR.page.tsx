@@ -84,6 +84,7 @@ export default function BlocIPBlock() {
     ['management', 'registry'],
     dataGrid.pagination,
     columnFilters.filters,
+    dataGrid.sorting,
   );
   const methods = useForm<ConfirmCIDRSchemaType>({
     resolver: zodResolver(schemaAddCidr(dataCIDR.rows.map((e) => e.ipBlock))),

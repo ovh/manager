@@ -37,6 +37,8 @@ export default function CIDR() {
     rows,
     totalRows,
     initialData,
+    setSorting,
+    sorting,
   } = useDataGridContext();
   const { clearNotifications } = useNotifications();
 
@@ -119,6 +121,8 @@ export default function CIDR() {
           <Filters />
           <div className="mt-8">
             <Datagrid
+              sorting={sorting}
+              onSortChange={setSorting}
               columns={columns}
               items={rows}
               totalItems={totalRows || 0}

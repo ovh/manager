@@ -6,7 +6,9 @@ import {
   FilterComparator,
 } from '@ovh-ux/manager-core-api';
 
+import { ColumnSort } from '@ovh-ux/manager-react-components';
 import {
+  sortIpRestrictions,
   TUpdateIpRestrictionMutationParams,
   useIpRestrictions,
   useIpRestrictionsWithFilter,
@@ -18,7 +20,7 @@ import {
   updateIpRestriction,
 } from '../data/ip-restrictions';
 import queryClient from '@/queryClient';
-import { FilterRestrictionsServer } from '@/types';
+import { FilterRestrictionsServer, TIPRestrictionsData } from '@/types';
 import * as helpers from '@/helpers';
 
 vi.mock('../data/ip-restrictions');
@@ -160,6 +162,44 @@ describe('useUpdateIpRestriction Hook Tests', () => {
         expect(onError).toHaveBeenCalledWith(mockResponse, params, undefined);
     },
   );
+});
+
+describe('sortIpRestrictions Function', () => {
+  const mockDataCIDR = [
+    { ipBlock: '10.0.0.1/32', description: 'allow' },
+    { ipBlock: '192.168.0.0/24', description: 'deny' },
+    { ipBlock: '172.16.0.0/16', description: 'allow' },
+  ] as TIPRestrictionsData[];
+
+  test('should sort IP restrictions in ascending order by ipBlock', () => {
+    const sorting: ColumnSort = { id: 'ipBlock', desc: false };
+    const expectedResult = [
+      { ipBlock: '10.0.0.1/32', description: 'allow' },
+      { ipBlock: '172.16.0.0/16', description: 'allow' },
+      { ipBlock: '192.168.0.0/24', description: 'deny' },
+    ];
+
+    const result = sortIpRestrictions(mockDataCIDR, sorting);
+    expect(result).toEqual(expectedResult);
+  });
+
+  test('should sort IP restrictions in descending order by description', () => {
+    const sorting: ColumnSort = { id: 'description', desc: true };
+    const expectedResult = [
+      { ipBlock: '192.168.0.0/24', description: 'deny' },
+      { ipBlock: '172.16.0.0/16', description: 'allow' },
+      { ipBlock: '10.0.0.1/32', description: 'allow' },
+    ];
+
+    const result = sortIpRestrictions(mockDataCIDR, sorting);
+    expect(result).toEqual(expectedResult);
+  });
+
+  test('should return unsorted data when no sorting is provided', () => {
+    const sorting: ColumnSort = (undefined as unknown) as ColumnSort;
+    const result = sortIpRestrictions(mockDataCIDR, sorting);
+    expect(result).toEqual(mockDataCIDR);
+  });
 });
 
 describe('useIpRestrictionsWithFilter Hook Tests', () => {

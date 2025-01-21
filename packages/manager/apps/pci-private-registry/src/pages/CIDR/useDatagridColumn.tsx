@@ -35,6 +35,7 @@ export const useDatagridColumn = () => {
 
   const columns: DatagridColumn<TIPRestrictionsData>[] = [
     {
+      isSortable: false,
       id: 'check',
       cell: (props) =>
         props.checked !== null && showCheckboxes(isDraft, data.length) ? (
@@ -105,6 +106,7 @@ export const useDatagridColumn = () => {
           </div>
         ),
       label: '',
+      isSortable: false,
     },
   ];
 
