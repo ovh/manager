@@ -121,6 +121,8 @@ const Dashboard = () => {
               <OvhLink
                 application="public-cloud"
                 path={`#/pci/projects/${projectId}/billing`}
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 {t('billingLink')}
               </OvhLink>
@@ -130,7 +132,12 @@ const Dashboard = () => {
               data-testid="dashboard-support-link"
               className="flex flex-row gap-1 mt-2"
             >
-              <OvhLink application="dedicated" path={`#/support/tickets/new`}>
+              <OvhLink
+                application="dedicated"
+                path={`#/support/tickets/new`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 {t('supportLink')}
               </OvhLink>
               <ArrowRight className="w-4 h-4 ml-1 mt-1 text-primary" />
