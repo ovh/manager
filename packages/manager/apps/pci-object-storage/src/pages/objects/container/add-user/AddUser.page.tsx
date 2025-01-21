@@ -40,7 +40,7 @@ export default function AddUserToContainerPage() {
     projectId,
   );
 
-  const defaultUser = validUsersWithCredentials && validUsersWithCredentials[0];
+  const defaultUser = validUsersWithCredentials?.[0];
 
   const onCancel = () => navigate(`..`);
   const onClose = () => navigate(`..`);

@@ -14,7 +14,7 @@ import { DOWNLOAD_FILENAME, DOWNLOAD_TYPE } from '@/constants';
 import { usePostS3Secret } from '@/api/hooks/useUser';
 import { getUserStoragePolicy, TUser } from '@/api/data/user';
 
-export default function ActionsComponent({ user }: { user: TUser }) {
+export default function ActionsComponent({ user }: Readonly<{ user: TUser }>) {
   const { t } = useTranslation('objects/users');
   const { t: tContainers } = useTranslation('containers');
 

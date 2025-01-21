@@ -9,7 +9,7 @@ import { OBJECT_CONTAINER_MODE_LOCAL_ZONE } from '@/constants';
 import { isSwiftType } from '@/helpers';
 import { useUpdateStorageType } from '@/api/hooks/useStorages';
 
-export function Actions({ storage }: { storage: TStorage }) {
+export function Actions({ storage }: Readonly<{ storage: TStorage }>) {
   const { t } = useTranslation('containers');
 
   const navigate = useNavigate();
