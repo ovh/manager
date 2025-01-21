@@ -1,77 +1,28 @@
-import { FIELD_NAME_REGEX } from './add-device.constants';
-
 export default class SoftphoneAddDeviceController {
   /* @ngInject */
-  constructor(softphoneService, TucToast, $translate, $stateParams) {
+  constructor(softphoneService, TucToast, $translate) {
     this.softphoneService = softphoneService;
     this.TucToast = TucToast;
     this.$translate = $translate;
-    this.$stateParams = $stateParams;
-    this.model = { name: null };
-    this.FIELD_NAME_REGEX = FIELD_NAME_REGEX;
   }
 
-  $onInit() {
-    if (this.deviceId) {
-      this.softphoneService
-        .getSoftphoneDeviceDetail(
-          this.$stateParams.billingAccount,
-          this.$stateParams.serviceName,
-          this.deviceId,
-        )
-        .then((device) => {
-          this.model.name = device.name;
-        });
-    }
-  }
-
-  createDevice() {
-    return this.softphoneService
-      .createDevice(
-        this.$stateParams.billingAccount,
-        this.$stateParams.serviceName,
-        this.model.name,
-      )
-      .then(({ id: deviceId }) => {
-        this.deviceId = deviceId;
-      });
-  }
-
-  modifyDevice() {
-    return this.softphoneService.modifyDevice(
-      this.$stateParams.billingAccount,
-      this.$stateParams.serviceName,
-      this.model.name,
-      this.deviceId,
-    );
-  }
-
-  enrollDevice() {
-    return this.softphoneService
-      .enroll(
-        this.$stateParams.billingAccount,
-        this.$stateParams.serviceName,
-        this.deviceId,
-      )
+  createToken() {
+    this.isCreating = true;
+    this.softphoneService
+      .createToken(this.billingAccount, this.serviceName, this.email)
       .then(({ token }) => {
-        this.recordLink = token;
+        this.token = token;
+      })
+      .catch(({ data }) => {
+        this.TucToast.error(
+          this.$translate.instant(
+            'telephony_line_softphone_generate_token_error',
+            { error: data?.message },
+          ),
+        );
+      })
+      .finally(() => {
+        this.isCreating = false;
       });
-  }
-
-  generateLink() {
-    let promise;
-    if (!this.softphoneAddDeviceForm.input_name.$pristine) {
-      this.softphoneAddDeviceForm.input_name.$setPristine(true);
-      promise = Promise.resolve(
-        !this.deviceId ? this.createDevice() : this.modifyDevice(),
-      ).then(() => this.enrollDevice());
-    } else {
-      promise = this.enrollDevice();
-    }
-    promise.catch(() => {
-      this.TucToast.error(
-        this.$translate.instant('telephony_line_softphone_generate_link_error'),
-      );
-    });
   }
 }

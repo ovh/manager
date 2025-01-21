@@ -1,130 +1,52 @@
 <oui-modal
-    data-on-dismiss="$ctrl.goBack()"
-    data-heading="{{ $ctrl.deviceId ? 'telephony_line_softphone_configure':'telephony_line_softphone_add_my_device' | translate }}"
+    data-heading="{{ :: 'telephony_line_softphone_new_token' | translate }}"
+    data-on-dismiss="$ctrl.goBack(!!$ctrl.token)"
 >
-    <tuc-toast-message></tuc-toast-message>
-    <p>
-        <b
-            data-translate="telephony_line_softphone_add_device_description_bold"
-        ></b>
-        <span
-            data-translate="telephony_line_softphone_add_device_description"
-        ></span>
-    </p>
-    <div
-        class="d-flex flex-wrap w-100 minw-0 align-items-center justify-content-between"
-    >
-        <form
-            class="form-inline"
-            name="$ctrl.softphoneAddDeviceForm"
-            data-ng-submit="$ctrl.generateLink()"
-        >
-            <div class="row">
-                <oui-field
-                    class="col-md-12"
-                    data-error-messages="{required: ('telephony_line_softphone_generate_warning' | translate )}"
-                    data-label="{{ ::'telephony_line_softphone_add_device_label' | translate }}"
-                >
-                    <div class="oui-input-group oui-input-group_inline">
-                        <input
-                            type="text"
-                            id="input_name"
-                            name="input_name"
-                            class="oui-input mr-2"
-                            data-ng-model="$ctrl.model.name"
-                            data-ng-pattern="$ctrl.FIELD_NAME_REGEX"
-                            data-ng-class="{'oui-field_error': $ctrl.softphoneAddDeviceForm.input_name.$invalid}"
-                            placeholder="{{'telephony_line_softphone_device_name_placeholder'  | translate : {deviceNumber: '1'} }}"
-                            required
-                        />
-                        <oui-button
-                            data-disabled="!$ctrl.model.name || $ctrl.softphoneAddDeviceForm.$invalid"
-                            data-variant="primary"
-                            data-type="submit"
-                        >
-                            <span
-                                data-translate="telephony_line_softphone_generate_link"
-                            >
-                            </span>
-                        </oui-button>
-                    </div>
-                </oui-field>
-            </div>
-
-            <oui-message data-type="warning" data-ng-if="$ctrl.recordLink">
-                <span
-                    data-translate="telephony_line_softphone_warning_link"
-                ></span>
-            </oui-message>
-
-            <div
-                data-ng-if="$ctrl.recordLink"
-                class="d-flex justify-content-center"
+    <div data-ng-if="!$ctrl.token">
+        <form novalidate id="form" name="form">
+            <oui-field
+                data-label="{{ ::'telephony_line_softphone_new_token_label_email' | translate }}"
             >
-                <qr data-text="$ctrl.recordLink"></qr>
-            </div>
-
-            <div class="row">
-                <oui-field
-                    class="col-md-12"
-                    data-label="{{ ::'telephony_line_softphone_record_link' | translate }}"
-                >
-                    <oui-clipboard
-                        data-ng-if="$ctrl.recordLink"
-                        data-model="$ctrl.recordLink"
-                    ></oui-clipboard>
-                    <div
-                        class="oui-input-overlay"
-                        data-ng-if="!$ctrl.recordLink"
-                    >
-                        <input
-                            type="text"
-                            class="oui-input"
-                            id="recordLink"
-                            value="-"
-                            name="disabledRecordLink"
-                            disabled
-                        />
-                        <span class="oui-icon oui-icon-copy-normal"></span>
-                    </div>
-                </oui-field>
-            </div>
-            <div class="row">
-                <oui-message data-type="info">
-                    <p
-                        data-translate="telephony_line_softphone_enroll_device_theme_description"
-                    ></p>
-                    <a data-ui-sref="^">
-                        <span
-                            data-translate="telephony_line_softphone_enroll_device_theme_link"
-                        ></span>
-                        <i
-                            class="oui-icon oui-icon-arrow-right align-middle"
-                            aria-hidden="true"
-                        ></i>
-                    </a>
-                </oui-message>
-            </div>
+                <input
+                    type="email"
+                    name="email"
+                    class="oui-input"
+                    data-ng-model="$ctrl.email"
+                />
+            </oui-field>
+            <oui-form-actions
+                class="text-right"
+                data-submit-text="{{ 'telephony_line_softphone_new_token_cta_generate' | translate }}"
+                data-on-submit="$ctrl.createToken()"
+                data-disabled="form.$invalid || $ctrl.isCreating"
+            >
+            </oui-form-actions>
         </form>
     </div>
+    <div data-ng-if="$ctrl.token">
+        <oui-message data-type="warning">
+            <span
+                data-translate="telephony_line_softphone_warning_token"
+            ></span>
+        </oui-message>
 
-    <div class="text-right">
-        <oui-button
-            size="l"
-            data-disabled="!$ctrl.recordLink"
-            data-variant="secondary"
-            data-ng-click="$ctrl.goToSendLinkByMailModal($ctrl.deviceId)"
+        <div class="d-flex justify-content-center">
+            <qr data-text="$ctrl.token"></qr>
+        </div>
+
+        <oui-field
+            data-label="{{ :: 'telephony_line_softphone_token' | translate }}"
         >
-            <span data-translate="telephony_line_softphone_button_email_link">
-            </span>
-        </oui-button>
-        <oui-button
-            size="l"
-            data-disabled="!$ctrl.recordLink"
-            data-variant="primary"
-            data-ng-click="$ctrl.goBack(true)"
+            <oui-clipboard
+                name="token"
+                data-model="$ctrl.token"
+            ></oui-clipboard>
+        </oui-field>
+        <oui-form-actions
+            class="text-right"
+            data-submit-text="{{ 'close' | translate }}"
+            data-on-submit="$ctrl.goBack(true)"
         >
-            <span data-translate="telephony_line_softphone_button_save"></span>
-        </oui-button>
+        </oui-form-actions>
     </div>
 </oui-modal>
