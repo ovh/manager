@@ -830,7 +830,7 @@
   "server_datacenter_HOU": "Houston",
   "server_datacenter_SOF": "Sofia",
   "server_datacenter_OSL": "Oslo",
-  "server_datacenter_SMP": "Estocolmo",
+  "server_datacenter_STO": "Estocolmo",
   "server_datacenter_TPE": "Taipei",
   "server_datacenter_SCL": "Santiago",
   "server_datacenter_SEL": "Seul",
@@ -880,6 +880,5 @@
   "server_configuration_intervention_activate_failed": "Ocorreu um erro aquando da ativação das intervenções no local no servidor {{serverName}}",
   "server_nutanix_cluster_node_warning_1": "Este servidor dedicado faz parte de um cluster Nutanix: {{clusterName}}.",
   "server_nutanix_cluster_node_warning_2": "Recomendamos que efetue todas as alterações de configuração diretamente no painel de controlo do servidor associado ao seu cluster Nutanix: {{clusterNodeDashboardLink}}",
-  "server_nutanix_cluster_node_warning_3": "Todas as ações de faturação relacionadas com este servidor são visíveis no seu cluster Nutanix: {{clusterDashboardLink}}",
-  "server_datacenter_STO": "Estocolmo"
+  "server_nutanix_cluster_node_warning_3": "Todas as ações de faturação relacionadas com este servidor são visíveis no seu cluster Nutanix: {{clusterDashboardLink}}"
 }
