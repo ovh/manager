@@ -123,17 +123,6 @@ export default function PublicCloudSidebar() {
 
         <div className={style.projectSearch}>
           <i className="ovh-font ovh-font-search" aria-hidden="true"></i>
-          {projectSearchQuery && (
-            <button
-              className="d-block"
-              onClick={() => setProjectSearchQuery('')}
-            >
-              <i
-                className={`${style.projectSearchCancel} oui-icon oui-icon-close`}
-                aria-hidden="true"
-              ></i>
-            </button>
-          )}
           <input
             type="search"
             className="oui-input"
@@ -143,6 +132,17 @@ export default function PublicCloudSidebar() {
               setProjectSearchQuery(e.target.value);
             }}
           ></input>
+          {projectSearchQuery && (
+            <button
+              className="d-block border-none bg-transparent"
+              onClick={() => setProjectSearchQuery('')}
+            >
+              <i
+                className={`${style.projectSearchCancel} oui-icon oui-icon-close`}
+                aria-hidden="true"
+              ></i>
+            </button>
+          )}
         </div>
 
         {projects
@@ -151,7 +151,7 @@ export default function PublicCloudSidebar() {
               return (
                 (project.description || project.project_id)
                   ?.toLowerCase()
-                  .indexOf(projectSearchQuery.trim()) >= 0
+                  .indexOf(projectSearchQuery.toLowerCase().trim()) >= 0
               );
             }
             return true;
