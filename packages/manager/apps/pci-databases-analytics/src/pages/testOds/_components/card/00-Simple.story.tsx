@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { OdsCard } from '@ovhcloud/ods-components/react';
 import {
   Card,

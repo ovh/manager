@@ -5,7 +5,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
-import { ComparisonStory, StoryResult } from '../Stories';
+import { StoryResult } from '../Stories';
 
 export default {
   story: 'Tailwind',

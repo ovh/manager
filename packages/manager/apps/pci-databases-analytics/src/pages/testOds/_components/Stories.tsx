@@ -85,7 +85,7 @@ const Stories = ({ componentName, stories }: CompareProps) => {
             </TableRow>
           ))}
         </TableBody>
-        <TableFooter>
+        {/* <TableFooter>
           <TableRow>
             <TableCell colSpan={2} className="font-bold">
               Scores
@@ -97,7 +97,7 @@ const Stories = ({ componentName, stories }: CompareProps) => {
               Ods: {odsScore}
             </TableCell>
           </TableRow>
-        </TableFooter>
+        </TableFooter> */}
       </Table>
     </div>
   );
