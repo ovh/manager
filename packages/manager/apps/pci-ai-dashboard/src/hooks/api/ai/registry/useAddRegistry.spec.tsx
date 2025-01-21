@@ -16,12 +16,12 @@ vi.mock('@/data/api/ai/registry.api', () => ({
 describe('useAddRegistry', () => {
   it('should call useAddRegistry on mutation with data', async () => {
     const projectId = 'projectId';
-    const onSuccess = vi.fn();
+    const onAddSuccess = vi.fn();
     const onError = vi.fn();
 
     vi.mocked(registryApi.addRegistry).mockResolvedValue(mockedRegistry);
     const { result } = renderHook(
-      () => useAddRegistry({ onError, onSuccess }),
+      () => useAddRegistry({ onError, onAddSuccess }),
       { wrapper: QueryClientWrapper },
     );
 
@@ -33,11 +33,7 @@ describe('useAddRegistry', () => {
 
     await waitFor(() => {
       expect(registryApi.addRegistry).toHaveBeenCalledWith(addRegistryProps);
-      expect(onSuccess).toHaveBeenCalledWith(
-        mockedRegistry,
-        addRegistryProps,
-        undefined,
-      );
+      expect(onAddSuccess).toHaveBeenCalledWith(mockedRegistry);
     });
   });
 });

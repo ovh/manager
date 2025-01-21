@@ -47,12 +47,14 @@ const DashboardTabs = () => {
       href: 'users',
       label: t('usersTab'),
       count:
-        users?.filter((us: user.User) =>
-          us.roles.find(
-            (aiRole: role.Role) =>
-              aiRole.name === ai.TokenRoleEnum.ai_training_operator ||
-              aiRole.name === ai.TokenRoleEnum.ai_training_read,
-          ),
+        users?.filter(
+          (us: user.User) =>
+            us.status === user.UserStatusEnum.creating ||
+            us.roles.find(
+              (aiRole: role.Role) =>
+                aiRole.name === ai.TokenRoleEnum.ai_training_operator ||
+                aiRole.name === ai.TokenRoleEnum.ai_training_read,
+            ),
         ).length || 0,
     },
     {

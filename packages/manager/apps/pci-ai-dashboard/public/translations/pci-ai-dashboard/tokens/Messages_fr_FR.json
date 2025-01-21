@@ -30,6 +30,7 @@
   "formAddTokenFieldRegionLabel": "Région",
   "formAddTokenFieldRegionInfo": "Région pour laquelle le token sera actif",
   "formTokenErrorMinLength": "Veuillez entrer au minimum {{min}} caractères",
+  "formTokenErrorRegion": "Veuillez renseigner ce champ",
   "formTokenErrorMaxLength": "Veuillez entrer {{max}} caractères maximum",
   "formTokenNameErrorPattern": "Doit uniquement contenir des nombres, lettres, underscores ou tirets, ne doit pas commencer par un tiret.",
   "formTokenLabelErrorPattern": "Le sélecteur via label doit avoir la forme suivante : label=valeur",

@@ -1,9 +1,7 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-
 import { Button } from '@/components/ui/button';
 import {
-  Dialog,
   DialogClose,
   DialogContent,
   DialogDescription,
@@ -12,25 +10,12 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { useToast } from '@/components/ui/use-toast';
-import { ModalController } from '@/hooks/useModale.hook';
-import * as ai from '@/types/cloud/project/ai';
 import { useDeleteDatastore } from '@/hooks/api/ai/datastore/useDeleteDatastore.hook';
-import { DataStoresWithRegion } from '@/hooks/api/ai/datastore/useGetDatastoresWithRegions.hook';
+import RouteModal from '@/components/route-modal/RouteModal';
 
-interface DeleteGitModalProps {
-  git: DataStoresWithRegion;
-  controller: ModalController;
-  onSuccess?: (datastore: ai.DataStore) => void;
-  onError?: (error: Error) => void;
-}
-
-const DeleteGit = ({
-  git,
-  controller,
-  onError,
-  onSuccess,
-}: DeleteGitModalProps) => {
-  const { projectId } = useParams();
+const DeleteGit = () => {
+  const { projectId, region: gitRegion, alias: gitAlias } = useParams();
+  const navigate = useNavigate();
   const { t } = useTranslation('pci-ai-dashboard/git');
   const toast = useToast();
   const { deleteDatastore, isPending } = useDeleteDatastore({
@@ -40,32 +25,27 @@ const DeleteGit = ({
         variant: 'destructive',
         description: err.response.data.message,
       });
-      if (onError) {
-        onError(err);
-      }
     },
-    onSuccess: () => {
+    onDeleteSuccess: () => {
       toast.toast({
         title: t('deleteGitToastSuccessTitle'),
         description: t('deleteGitToastSuccessDescription', {
-          alias: git.alias,
+          alias: gitAlias,
         }),
       });
-      if (onSuccess) {
-        onSuccess(git);
-      }
+      navigate('../');
     },
   });
 
   const handleDelete = () => {
     deleteDatastore({
       projectId,
-      region: git.region,
-      alias: git.alias,
+      region: gitRegion,
+      alias: gitAlias,
     });
   };
   return (
-    <Dialog {...controller}>
+    <RouteModal backUrl="../">
       <DialogContent>
         <DialogHeader>
           <DialogTitle data-testid="delete-git-modal">
@@ -73,7 +53,7 @@ const DeleteGit = ({
           </DialogTitle>
           <DialogDescription>
             {t('deleteGitDescription', {
-              alias: git.alias,
+              alias: gitAlias,
             })}
           </DialogDescription>
         </DialogHeader>
@@ -97,7 +77,7 @@ const DeleteGit = ({
           </Button>
         </DialogFooter>
       </DialogContent>
-    </Dialog>
+    </RouteModal>
   );
 };
 

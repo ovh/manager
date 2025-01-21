@@ -2,7 +2,7 @@ import { ColumnDef } from '@tanstack/react-table';
 import { AlertCircle, Plus } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 import Guides from '@/components/guides/Guides.component';
 import OvhLink from '@/components/links/OvhLink.component';
@@ -17,9 +17,6 @@ import {
 } from '@/hooks/api/ai/datastore/useGetDatastoresWithRegions.hook';
 import * as ai from '@/types/cloud/project/ai';
 import { getColumns } from './_components/ DatastoreTableColumns.component';
-import AddDatastore from './_components/AddDatastore.component';
-import { useModale } from '@/hooks/useModale.hook';
-import DeleteDatastore from './_components/DeleteDatastore.component';
 import { GuideSections } from '@/configuration/guide';
 
 export function breadcrumb() {
@@ -34,16 +31,15 @@ export function breadcrumb() {
 const Datastore = () => {
   const { t } = useTranslation('pci-ai-dashboard/datastores');
   const { projectId } = useParams();
+  const navigate = useNavigate();
   const [regions, setRegions] = useState<ai.capabilities.Region[]>([]);
   const regionQuery = useGetRegions(projectId);
   const datastoreQuery = useGetDatastoresWithRegions(projectId, regions, {
     refetchInterval: POLLING.DATASTORE,
   });
-  const addModale = useModale('add');
-  const deleteModale = useModale('delete');
   const columns: ColumnDef<DataStoresWithRegion>[] = getColumns({
     onDeleteClick: (datastore: DataStoresWithRegion) =>
-      deleteModale.open(datastore.alias),
+      navigate(`./delete/${datastore.region}/${datastore.alias}`),
   });
 
   const userPath = `#/pci/project/${projectId}/users`;
@@ -53,14 +49,10 @@ const Datastore = () => {
     setRegions(regionQuery.data);
   }, [regionQuery.isSuccess]);
 
-  const datastoreToDelete: DataStoresWithRegion = datastoreQuery.data?.find(
-    (ds) => ds.alias === deleteModale.value,
-  );
-
   return (
     <>
       <div className="float-right">
-        <Guides section={GuideSections.tokens} />
+        <Guides section={GuideSections.datastore} />
       </div>
       <h3>{t('title')}</h3>
       <Alert variant="info">
@@ -78,7 +70,7 @@ const Datastore = () => {
       <p>{t('datastoreParagraphe3')}</p>
       <Button
         data-testid="create-datastore-button"
-        onClick={() => addModale.open()}
+        onClick={() => navigate('./add')}
         className="font-semibold"
         variant="outline"
         size="sm"
@@ -93,26 +85,7 @@ const Datastore = () => {
         )}
         pageSize={25}
       />
-      {regionQuery.isSuccess && (
-        <AddDatastore
-          regions={regionQuery.data}
-          controller={addModale.controller}
-          onSuccess={() => {
-            addModale.close();
-            datastoreQuery.refetchAll();
-          }}
-        />
-      )}
-      {datastoreToDelete && (
-        <DeleteDatastore
-          datastore={datastoreToDelete}
-          controller={deleteModale.controller}
-          onSuccess={() => {
-            deleteModale.close();
-            datastoreQuery.refetchAll();
-          }}
-        />
-      )}
+      <Outlet />
     </>
   );
 };

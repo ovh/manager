@@ -1,11 +1,18 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, waitFor } from '@testing-library/react';
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from '@testing-library/react';
 import Git, { breadcrumb as Breadcrumb } from '@/pages/dashboard/git/Git.page';
 import { Locale } from '@/hooks/useLocale.hook';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedCapabilitiesRegion } from '@/__tests__/helpers/mocks/region';
 import { mockedGitWithRegion } from '@/__tests__/helpers/mocks/datastore';
 
+const mockedUsedNavigate = vi.fn();
 describe('Git page', () => {
   beforeEach(() => {
     // Mock necessary hooks and dependencies
@@ -20,6 +27,13 @@ describe('Git page', () => {
     vi.mock('@/data/api/ai/capabilities.api', () => ({
       getRegions: vi.fn(() => [mockedCapabilitiesRegion]),
     }));
+    vi.mock('react-router-dom', async () => {
+      const mod = await vi.importActual('react-router-dom');
+      return {
+        ...mod,
+        useNavigate: () => mockedUsedNavigate,
+      };
+    });
     vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
       const mod = await importOriginal<
         typeof import('@ovh-ux/manager-react-shell-client')
@@ -51,6 +65,57 @@ describe('Git page', () => {
     expect(screen.getByTestId('create-git-button')).toBeInTheDocument();
     await waitFor(() => {
       expect(screen.getByText(mockedGitWithRegion.alias)).toBeInTheDocument();
+    });
+  });
+  it('trigger useNavigate on create button click', async () => {
+    render(<Git />, { wrapper: RouterWithQueryClientWrapper });
+    expect(screen.getByTestId('create-git-button')).toBeInTheDocument();
+    act(() => {
+      fireEvent.click(screen.getByTestId('create-git-button'));
+    });
+    await waitFor(() => {
+      expect(mockedUsedNavigate).toHaveBeenCalledWith('./add');
+    });
+  });
+});
+
+describe('Action table button', () => {
+  // Helper function to open a button in the table menu
+  const openButtonInMenu = async (buttonId: string) => {
+    act(() => {
+      const trigger = screen.getByTestId('git-action-trigger');
+      fireEvent.focus(trigger);
+      fireEvent.keyDown(trigger, {
+        key: 'Enter',
+        code: 'Enter',
+        keyCode: 13,
+        charCode: 13,
+      });
+    });
+    const actionButton = screen.getByTestId(buttonId);
+    await waitFor(() => {
+      expect(actionButton).toBeInTheDocument();
+    });
+    act(() => {
+      fireEvent.click(actionButton);
+    });
+  };
+  beforeEach(async () => {
+    render(<Git />, { wrapper: RouterWithQueryClientWrapper });
+    await waitFor(() => {
+      expect(screen.getByText(mockedGitWithRegion.alias)).toBeInTheDocument();
+    });
+  });
+  afterEach(() => {
+    vi.clearAllMocks();
+  });
+
+  it('open delete git modal', async () => {
+    await openButtonInMenu('git-action-delete-button');
+    await waitFor(() => {
+      expect(mockedUsedNavigate).toHaveBeenCalledWith(
+        `./delete/${mockedGitWithRegion.region}/${mockedGitWithRegion.alias}`,
+      );
     });
   });
 });

@@ -14,13 +14,16 @@ describe('useRenewToken', () => {
   it('should call useRenewToken on mutation with data', async () => {
     const projectId = 'projectId';
     const tokenId = 'tokenId';
-    const onSuccess = vi.fn();
+    const onAddEditSuccess = vi.fn();
     const onError = vi.fn();
 
     vi.mocked(tokenApi.renewToken).mockResolvedValue(mockedToken);
-    const { result } = renderHook(() => useRenewToken({ onError, onSuccess }), {
-      wrapper: QueryClientWrapper,
-    });
+    const { result } = renderHook(
+      () => useRenewToken({ onError, onAddEditSuccess }),
+      {
+        wrapper: QueryClientWrapper,
+      },
+    );
 
     const renewTokenProps = {
       projectId,
@@ -30,11 +33,7 @@ describe('useRenewToken', () => {
 
     await waitFor(() => {
       expect(tokenApi.renewToken).toHaveBeenCalledWith(renewTokenProps);
-      expect(onSuccess).toHaveBeenCalledWith(
-        mockedToken,
-        renewTokenProps,
-        undefined,
-      );
+      expect(onAddEditSuccess).toHaveBeenCalled();
     });
   });
 });

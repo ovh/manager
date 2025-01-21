@@ -1,6 +1,6 @@
 import { Plus } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { ColumnDef } from '@tanstack/react-table';
 import * as ai from '@/types/cloud/project/ai';
 import { Button } from '@/components/ui/button';
@@ -8,32 +8,23 @@ import { DataTable } from '@/components/ui/data-table';
 import OvhLink from '@/components/links/OvhLink.component';
 import { useGetRegistries } from '@/hooks/api/ai/registry/useGetRegistries.hook';
 import { POLLING } from '@/configuration/polling';
-import { useModale } from '@/hooks/useModale.hook';
 import { getColumns } from './_components/DockerTableColumns.component';
-import AddDocker from './_components/AddDocker.component';
-import DeleteDocker from './_components/DeleteDocker.component';
-import { useGetRegions } from '@/hooks/api/ai/capabilities/useGetRegions.hook';
 import { useUserActivityContext } from '@/contexts/UserActivity.context';
 
 const PrivateDocker = () => {
   const { t } = useTranslation('pci-ai-dashboard/docker');
   const { projectId } = useParams();
+  const navigate = useNavigate();
   const privateRegistriesPath = `#/pci/projects/${projectId}/private-registry`;
   const { isUserActive } = useUserActivityContext();
   const dockerQuery = useGetRegistries(projectId, {
     refetchInterval: isUserActive && POLLING.DOCKER,
   });
-  const regionsQuery = useGetRegions(projectId);
-  const addModale = useModale('add');
-  const deleteModale = useModale('delete');
   const columns: ColumnDef<ai.registry.Registry>[] = getColumns({
     onDeleteClick: (docker: ai.registry.Registry) =>
-      deleteModale.open(docker.id),
+      navigate(`./delete/${docker.id}`),
   });
 
-  const dockerToDelete = dockerQuery.data?.find(
-    (dk) => dk.id === deleteModale.value,
-  );
   return (
     <>
       <h4>{t('titlePrivateDocker')}</h4>
@@ -58,7 +49,7 @@ const PrivateDocker = () => {
 
       <Button
         data-testid="create-docker-button"
-        onClick={() => addModale.open()}
+        onClick={() => navigate('./add')}
         className="font-semibold"
         variant="outline"
         size="sm"
@@ -74,27 +65,7 @@ const PrivateDocker = () => {
           <DataTable.Skeleton columns={3} rows={5} width={100} height={16} />
         </div>
       )}
-
-      {regionsQuery.isSuccess && (
-        <AddDocker
-          regions={regionsQuery.data}
-          controller={addModale.controller}
-          onSuccess={() => {
-            addModale.close();
-            dockerQuery.refetch();
-          }}
-        />
-      )}
-      {dockerToDelete && (
-        <DeleteDocker
-          docker={dockerToDelete}
-          controller={deleteModale.controller}
-          onSuccess={() => {
-            deleteModale.close();
-            dockerQuery.refetch();
-          }}
-        />
-      )}
+      <Outlet />
     </>
   );
 };

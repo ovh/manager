@@ -4,14 +4,14 @@ import { AddRenewMutateTokenProps } from './useAddToken.hook';
 
 export function useRenewToken({
   onError,
-  onSuccess,
+  onAddEditSuccess,
 }: AddRenewMutateTokenProps) {
   const mutation = useMutation({
     mutationFn: (tokenId: TokenProps) => {
       return renewToken(tokenId);
     },
     onError,
-    onSuccess,
+    onSuccess: onAddEditSuccess,
   });
 
   return {

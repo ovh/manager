@@ -1,6 +1,5 @@
 import { Plus } from 'lucide-react';
-import { useParams } from 'react-router-dom';
-import { useQueryClient } from '@tanstack/react-query';
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import OvhLink from '@/components/links/OvhLink.component';
 import { Button } from '@/components/ui/button';
@@ -9,8 +8,6 @@ import { useGetUsers } from '@/hooks/api/user/useGetUsers.hook';
 import * as user from '@/types/cloud/user';
 import * as role from '@/types/cloud/role';
 import * as ai from '@/types/cloud/project/ai';
-import { useModale } from '@/hooks/useModale.hook';
-import AddUser from './_components/AddUser.component';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 import Guides from '@/components/guides/Guides.component';
 import { GuideSections } from '@/configuration/guide';
@@ -28,12 +25,11 @@ export function breadcrumb() {
 const Users = () => {
   const { t } = useTranslation('pci-ai-dashboard/users');
   const { projectId } = useParams();
-  const addModale = useModale('add');
+  const navigate = useNavigate();
   const { isUserActive } = useUserActivityContext();
   const userQuery = useGetUsers(projectId, {
     refetchInterval: isUserActive && POLLING.USERS,
   });
-  const queryClient = useQueryClient();
   const userPath = `#/pci/projects/${projectId}/users`;
   return (
     <>
@@ -58,19 +54,21 @@ const Users = () => {
             path={userPath}
           >
             {t('manageButtonLabel', {
-              number: userQuery.data?.filter((us: user.User) =>
-                us.roles.find(
-                  (aiRole: role.Role) =>
-                    aiRole.name === ai.TokenRoleEnum.ai_training_operator ||
-                    aiRole.name === ai.TokenRoleEnum.ai_training_read,
-                ),
+              number: userQuery.data?.filter(
+                (us: user.User) =>
+                  us.status === user.UserStatusEnum.creating ||
+                  us.roles.find(
+                    (aiRole: role.Role) =>
+                      aiRole.name === ai.TokenRoleEnum.ai_training_operator ||
+                      aiRole.name === ai.TokenRoleEnum.ai_training_read,
+                  ),
               ).length,
             })}
           </OvhLink>
         </Button>
         <Button
           data-testid="create-user-button"
-          onClick={() => addModale.open()}
+          onClick={() => navigate('./add')}
           className="font-semibold"
           variant="outline"
           size="sm"
@@ -79,18 +77,7 @@ const Users = () => {
           {t('addButtonLabel')}
         </Button>
       </div>
-      <AddUser
-        controller={addModale.controller}
-        onSuccess={async (newUser) => {
-          const users: user.User[] = queryClient.getQueryData([
-            projectId,
-            'user',
-          ]);
-          users.push(newUser);
-          queryClient.setQueryData([projectId, 'user'], users);
-        }}
-        onClose={() => addModale.close()}
-      />
+      <Outlet />
     </>
   );
 };

@@ -10,32 +10,11 @@ import { Locale } from '@/hooks/useLocale.hook';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import * as tokensApi from '@/data/api/ai/token.api';
 import { mockedToken } from '@/__tests__/helpers/mocks/token';
-import Tokens from '../Tokens.page';
-import { mockedCapabilitiesRegion } from '@/__tests__/helpers/mocks/region';
 import { apiErrorMock } from '@/__tests__/helpers/mocks/aiError';
 import { useToast } from '@/components/ui/use-toast';
+import RenewToken from './RenewToken.modal';
 
 describe('RenewToken modal', () => {
-  const openButtonInMenu = async (buttonId: string) => {
-    act(() => {
-      const trigger = screen.getByTestId('token-action-trigger');
-      fireEvent.focus(trigger);
-      fireEvent.keyDown(trigger, {
-        key: 'Enter',
-        code: 'Enter',
-        keyCode: 13,
-        charCode: 13,
-      });
-    });
-    const actionButton = screen.getByTestId(buttonId);
-    await waitFor(() => {
-      expect(actionButton).toBeInTheDocument();
-    });
-    act(() => {
-      fireEvent.click(actionButton);
-    });
-  };
-
   beforeEach(async () => {
     // Mock necessary hooks and dependencies
     vi.mock('react-i18next', () => ({
@@ -52,12 +31,8 @@ describe('RenewToken modal', () => {
       };
     });
     vi.mock('@/data/api/ai/token.api', () => ({
-      getTokens: vi.fn(() => [mockedToken]),
+      getToken: vi.fn(() => mockedToken),
       renewToken: vi.fn(() => mockedToken),
-    }));
-
-    vi.mock('@/data/api/ai/capabilities.api', () => ({
-      getRegions: vi.fn(() => [mockedCapabilitiesRegion]),
     }));
 
     vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
@@ -75,17 +50,20 @@ describe('RenewToken modal', () => {
         })),
       };
     });
-    render(<Tokens />, { wrapper: RouterWithQueryClientWrapper });
-    await waitFor(() => {
-      expect(screen.getByText(mockedToken.spec.name)).toBeInTheDocument();
-    });
   });
   afterEach(() => {
     vi.clearAllMocks();
   });
 
+  it('renders skeleton while loading', async () => {
+    render(<RenewToken />, { wrapper: RouterWithQueryClientWrapper });
+    await waitFor(() => {
+      expect(screen.getByTestId('dialog-container')).toBeInTheDocument();
+    });
+  });
+
   it('open and close renew token modal', async () => {
-    await openButtonInMenu('token-action-renew-button');
+    render(<RenewToken />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
       expect(screen.getByTestId('renew-token-modal')).toBeInTheDocument();
     });
@@ -106,7 +84,7 @@ describe('RenewToken modal', () => {
     vi.mocked(tokensApi.renewToken).mockImplementationOnce(() => {
       throw apiErrorMock;
     });
-    await openButtonInMenu('token-action-renew-button');
+    render(<RenewToken />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
       expect(screen.getByTestId('renew-token-modal')).toBeInTheDocument();
     });
@@ -114,6 +92,7 @@ describe('RenewToken modal', () => {
       fireEvent.click(screen.getByTestId('renew-token-submit-button'));
     });
     await waitFor(() => {
+      expect(tokensApi.renewToken).toHaveBeenCalled();
       expect(useToast().toast).toHaveBeenCalledWith(errorMsg);
     });
   });
@@ -128,10 +107,7 @@ describe('RenewToken modal', () => {
       description: 'renewTokenToastSuccessDescription',
       title: 'renewTokenToastSuccessTitle',
     };
-    await openButtonInMenu('token-action-renew-button');
-    await waitFor(() => {
-      expect(screen.getByTestId('renew-token-modal')).toBeInTheDocument();
-    });
+    render(<RenewToken />, { wrapper: RouterWithQueryClientWrapper });
     act(() => {
       fireEvent.click(screen.getByTestId('renew-token-submit-button'));
     });

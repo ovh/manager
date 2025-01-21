@@ -16,13 +16,16 @@ vi.mock('@/data/api/ai/token.api', () => ({
 describe('useAddToken', () => {
   it('should call useAddToken on mutation with data', async () => {
     const projectId = 'projectId';
-    const onSuccess = vi.fn();
+    const onAddEditSuccess = vi.fn();
     const onError = vi.fn();
 
     vi.mocked(tokenApi.addToken).mockResolvedValue(mockedToken);
-    const { result } = renderHook(() => useAddToken({ onError, onSuccess }), {
-      wrapper: QueryClientWrapper,
-    });
+    const { result } = renderHook(
+      () => useAddToken({ onError, onAddEditSuccess }),
+      {
+        wrapper: QueryClientWrapper,
+      },
+    );
 
     const addTokenProps = {
       projectId,
@@ -32,11 +35,7 @@ describe('useAddToken', () => {
 
     await waitFor(() => {
       expect(tokenApi.addToken).toHaveBeenCalledWith(addTokenProps);
-      expect(onSuccess).toHaveBeenCalledWith(
-        mockedToken,
-        addTokenProps,
-        undefined,
-      );
+      expect(onAddEditSuccess).toHaveBeenCalledWith(mockedToken);
     });
   });
 });

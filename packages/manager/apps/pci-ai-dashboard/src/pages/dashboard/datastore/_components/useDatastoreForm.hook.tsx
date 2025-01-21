@@ -2,14 +2,9 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
-import * as ai from '@/types/cloud/project/ai';
 import { DATASTORE_CONFIG } from './datastore.constant';
 
-export interface UseDatastoreFormProps {
-  regions: ai.capabilities.Region[];
-}
-
-export const useDatastoreForm = ({ regions }: UseDatastoreFormProps) => {
+export const useDatastoreForm = () => {
   const { t } = useTranslation('pci-ai-dashboard/datastores');
 
   const aliasRules = z
@@ -47,13 +42,8 @@ export const useDatastoreForm = ({ regions }: UseDatastoreFormProps) => {
     .string()
     .trim()
     .min(DATASTORE_CONFIG.region.min, {
-      message: t('formDatastoreErrorMinLength', {
+      message: t('formDatastoreErrorRegion', {
         min: DATASTORE_CONFIG.region.min,
-      }),
-    })
-    .max(DATASTORE_CONFIG.region.max, {
-      message: t('formDatastoreErrorMaxLength', {
-        max: DATASTORE_CONFIG.region.max,
       }),
     });
 
@@ -111,7 +101,7 @@ export const useDatastoreForm = ({ regions }: UseDatastoreFormProps) => {
   type ValidationSchema = z.infer<typeof schema>;
 
   const defaultValues: ValidationSchema = {
-    region: regions[0].id,
+    region: '',
     alias: '',
     endpoint: '',
     s3Region: '',

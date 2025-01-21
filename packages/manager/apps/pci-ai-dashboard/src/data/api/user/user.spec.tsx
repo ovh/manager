@@ -32,13 +32,6 @@ describe('User functions', () => {
     });
     expect(apiClient.v6.get).toHaveBeenCalledWith(
       '/cloud/project/projectId/user',
-      {
-        headers: {
-          'X-Pagination-Mode': 'CachedObjectList-Pages',
-          'X-Pagination-Size': '50000',
-          Pragma: 'no-cache',
-        },
-      },
     );
   });
 

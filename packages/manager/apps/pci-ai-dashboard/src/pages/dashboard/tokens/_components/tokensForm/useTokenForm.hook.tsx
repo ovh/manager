@@ -5,11 +5,7 @@ import { useForm } from 'react-hook-form';
 import { TOKEN_CONFIG } from './token.constant';
 import * as ai from '@/types/cloud/project/ai';
 
-export interface UseTokenFormProps {
-  regions: ai.capabilities.Region[];
-}
-
-export const useTokenForm = ({ regions }: UseTokenFormProps) => {
+export const useTokenForm = () => {
   const { t } = useTranslation('pci-ai-dashboard/tokens');
 
   const nameRules = z
@@ -49,13 +45,8 @@ export const useTokenForm = ({ regions }: UseTokenFormProps) => {
     .string()
     .trim()
     .min(TOKEN_CONFIG.region.min, {
-      message: t('formTokenErrorMinLength', {
+      message: t('formTokenErrorRegion', {
         min: TOKEN_CONFIG.region.min,
-      }),
-    })
-    .max(TOKEN_CONFIG.region.max, {
-      message: t('formTokenErrorMaxLength', {
-        max: TOKEN_CONFIG.region.max,
       }),
     });
 
@@ -72,7 +63,7 @@ export const useTokenForm = ({ regions }: UseTokenFormProps) => {
     name: '',
     label: '',
     role: ai.TokenRoleEnum.ai_training_operator,
-    region: regions[0].id,
+    region: '',
   };
 
   const form = useForm<ValidationSchema>({

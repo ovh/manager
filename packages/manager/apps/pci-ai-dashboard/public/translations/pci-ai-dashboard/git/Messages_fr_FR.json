@@ -23,6 +23,7 @@
   "formAddGitFieldPrivateKeyLabel": "Clé privée",
   "formGitErrorMinLength": "Veuillez entrer au minimum {{min}} caractères",
   "formGitErrorMaxLength": "Veuillez entrer {{max}} caractères maximum",
+  "formDatastoreErrorRegion": "Veuillez renseigner ce champ",
   "formGitNameErrorPattern": "Doit uniquement contenir des nombres, lettres, underscores ou tirets, ne doit pas commencer par un tiret.",
   "formGitErrorMandatoryField": "Veuillez renseigner ces champs",
   "formAddGitButtonCancel": "Annuler",

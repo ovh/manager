@@ -2,7 +2,7 @@ import { ColumnDef } from '@tanstack/react-table';
 import { Plus } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 import Guides from '@/components/guides/Guides.component';
 import { Button } from '@/components/ui/button';
@@ -14,10 +14,7 @@ import {
   useGetDatastoresWithRegions,
 } from '@/hooks/api/ai/datastore/useGetDatastoresWithRegions.hook';
 import * as ai from '@/types/cloud/project/ai';
-import { useModale } from '@/hooks/useModale.hook';
 import { getColumns } from './_components/GitTableColumns.component';
-import AddGit from './_components/AddGit.component';
-import DeleteGit from './_components/DeleteGit.component';
 import { GuideSections } from '@/configuration/guide';
 import { useUserActivityContext } from '@/contexts/UserActivity.context';
 
@@ -32,6 +29,7 @@ export function breadcrumb() {
 
 const Git = () => {
   const { t } = useTranslation('pci-ai-dashboard/git');
+  const navigate = useNavigate();
   const { projectId } = useParams();
   const [regions, setRegions] = useState<ai.capabilities.Region[]>([]);
   const regionQuery = useGetRegions(projectId);
@@ -39,21 +37,15 @@ const Git = () => {
   const datastoreQuery = useGetDatastoresWithRegions(projectId, regions, {
     refetchInterval: isUserActive && POLLING.DATASTORE,
   });
-  const addModale = useModale('add');
-  const deleteModale = useModale('delete');
-
   const columns: ColumnDef<DataStoresWithRegion>[] = getColumns({
-    onDeleteClick: (git: DataStoresWithRegion) => deleteModale.open(git.alias),
+    onDeleteClick: (git: DataStoresWithRegion) =>
+      navigate(`./delete/${git.region}/${git.alias}`),
   });
 
   useEffect(() => {
     if (!regionQuery.data) return;
     setRegions(regionQuery.data);
   }, [regionQuery.isSuccess]);
-
-  const gitToDelete: DataStoresWithRegion = datastoreQuery.data?.find(
-    (ds) => ds.alias === deleteModale.value,
-  );
 
   return (
     <>
@@ -65,7 +57,7 @@ const Git = () => {
       <p>{t('gitParagraphe3')}</p>
       <Button
         data-testid="create-git-button"
-        onClick={() => addModale.open()}
+        onClick={() => navigate('./add')}
         className="font-semibold"
         variant="outline"
         size="sm"
@@ -81,26 +73,7 @@ const Git = () => {
         )}
         pageSize={25}
       />
-      {regionQuery.isSuccess && (
-        <AddGit
-          regions={regionQuery.data}
-          controller={addModale.controller}
-          onSuccess={() => {
-            addModale.close();
-            datastoreQuery.refetchAll();
-          }}
-        />
-      )}
-      {gitToDelete && (
-        <DeleteGit
-          git={gitToDelete}
-          controller={deleteModale.controller}
-          onSuccess={() => {
-            deleteModale.close();
-            datastoreQuery.refetchAll();
-          }}
-        />
-      )}
+      <Outlet />
     </>
   );
 };

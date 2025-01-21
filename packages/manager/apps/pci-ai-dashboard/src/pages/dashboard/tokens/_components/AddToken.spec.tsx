@@ -13,8 +13,8 @@ import * as tokensApi from '@/data/api/ai/token.api';
 import { apiErrorMock } from '@/__tests__/helpers/mocks/aiError';
 import { useToast } from '@/components/ui/use-toast';
 import { mockedToken } from '@/__tests__/helpers/mocks/token';
-import Tokens from '../Tokens.page';
 import { mockedCapabilitiesRegion } from '@/__tests__/helpers/mocks/region';
+import AddToken from './AddToken.modal';
 
 describe('AddToken modal', () => {
   beforeEach(() => {
@@ -33,7 +33,6 @@ describe('AddToken modal', () => {
       };
     });
     vi.mock('@/data/api/ai/token.api', () => ({
-      getTokens: vi.fn(() => [mockedToken]),
       addToken: vi.fn(() => mockedToken),
     }));
 
@@ -56,16 +55,13 @@ describe('AddToken modal', () => {
         })),
       };
     });
-    render(<Tokens />, { wrapper: RouterWithQueryClientWrapper });
   });
   afterEach(() => {
     vi.clearAllMocks();
   });
 
   it('open and close add token modal', async () => {
-    act(() => {
-      fireEvent.click(screen.getByTestId('create-token-button'));
-    });
+    render(<AddToken />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
       expect(screen.getByTestId('add-token-modal')).toBeInTheDocument();
     });
@@ -86,12 +82,7 @@ describe('AddToken modal', () => {
     vi.mocked(tokensApi.addToken).mockImplementationOnce(() => {
       throw apiErrorMock;
     });
-    act(() => {
-      fireEvent.click(screen.getByTestId('create-token-button'));
-    });
-    await waitFor(() => {
-      expect(screen.getByTestId('add-token-modal')).toBeInTheDocument();
-    });
+    render(<AddToken />, { wrapper: RouterWithQueryClientWrapper });
     act(() => {
       fireEvent.change(screen.getByTestId('token-name-input'), {
         target: {
@@ -99,10 +90,30 @@ describe('AddToken modal', () => {
         },
       });
     });
+
+    // Select region
+    const regionTrigger = screen.getByTestId('select-region-trigger');
+    await waitFor(() => {
+      expect(regionTrigger).toBeInTheDocument();
+    });
+    act(() => {
+      fireEvent.focus(regionTrigger);
+      fireEvent.keyDown(regionTrigger, { key: 'Enter', code: 13 });
+    });
+    await waitFor(() => {
+      expect(regionTrigger).not.toHaveAttribute('data-state', 'closed');
+      act(() => {
+        const optionsElements = screen.getAllByRole('option');
+        const elem = optionsElements.find((e) => e.innerHTML.includes('GRA'));
+        fireEvent.keyDown(elem, { key: 'Enter', code: 13 });
+      });
+    });
+
     act(() => {
       fireEvent.click(screen.getByTestId('add-token-submit-button'));
     });
     await waitFor(() => {
+      expect(tokensApi.addToken).toHaveBeenCalled();
       expect(useToast().toast).toHaveBeenCalledWith(errorMsg);
     });
   });
@@ -117,12 +128,7 @@ describe('AddToken modal', () => {
       description: 'formTokenToastSuccessDescription',
       title: 'formTokenToastSuccessTitle',
     };
-    act(() => {
-      fireEvent.click(screen.getByTestId('create-token-button'));
-    });
-    await waitFor(() => {
-      expect(screen.getByTestId('add-token-modal')).toBeInTheDocument();
-    });
+    render(<AddToken />, { wrapper: RouterWithQueryClientWrapper });
     act(() => {
       fireEvent.change(screen.getByTestId('token-name-input'), {
         target: {
@@ -130,6 +136,24 @@ describe('AddToken modal', () => {
         },
       });
     });
+    // Select region
+    const regionTrigger = screen.getByTestId('select-region-trigger');
+    await waitFor(() => {
+      expect(regionTrigger).toBeInTheDocument();
+    });
+    act(() => {
+      fireEvent.focus(regionTrigger);
+      fireEvent.keyDown(regionTrigger, { key: 'Enter', code: 13 });
+    });
+    await waitFor(() => {
+      expect(regionTrigger).not.toHaveAttribute('data-state', 'closed');
+      act(() => {
+        const optionsElements = screen.getAllByRole('option');
+        const elem = optionsElements.find((e) => e.innerHTML.includes('GRA'));
+        fireEvent.keyDown(elem, { key: 'Enter', code: 13 });
+      });
+    });
+
     act(() => {
       fireEvent.click(screen.getByTestId('add-token-submit-button'));
     });

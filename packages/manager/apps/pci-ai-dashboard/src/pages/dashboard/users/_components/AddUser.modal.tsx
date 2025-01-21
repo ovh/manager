@@ -1,15 +1,12 @@
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useState } from 'react';
 import { Copy } from 'lucide-react';
-import { ModalController } from '@/hooks/useModale.hook';
-import * as user from '@/types/cloud/user';
 import * as ai from '@/types/cloud/project/ai';
 import { useUserForm } from './useUserForm.hook';
 import { useToast } from '@/components/ui/use-toast';
 import { MutateUserProps, useAddUser } from '@/hooks/api/user/useAddUser.hook';
 import {
-  Dialog,
   DialogClose,
   DialogContent,
   DialogDescription,
@@ -35,31 +32,13 @@ import {
 } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
 import { Alert } from '@/components/ui/alert';
+import RouteModal from '@/components/route-modal/RouteModal';
 
-interface AddUserModalProps {
-  controller: ModalController;
-  onSuccess?: (user?: user.UserDetail) => void;
-  onError?: (error: Error) => void;
-  onClose?: () => void;
-}
-
-const AddUser = ({
-  controller,
-  onSuccess,
-  onError,
-  onClose,
-}: AddUserModalProps) => {
+const AddUser = () => {
   const [newPass, setNewPass] = useState<string>();
   const { projectId } = useParams();
   const { form } = useUserForm();
-
-  useEffect(() => {
-    if (!controller.open) {
-      form.reset();
-      setNewPass(undefined);
-    }
-  }, [controller.open]);
-
+  const navigate = useNavigate();
   const { t } = useTranslation('pci-ai-dashboard/users');
   const toast = useToast();
 
@@ -70,11 +49,8 @@ const AddUser = ({
         variant: 'destructive',
         description: err.response.data.message,
       });
-      if (onError) {
-        onError(err);
-      }
     },
-    onSuccess(newUser) {
+    onAddSuccess(newUser) {
       form.reset();
       toast.toast({
         title: t('formUserToastSuccessTitle'),
@@ -83,9 +59,6 @@ const AddUser = ({
         }),
       });
       setNewPass(newUser.password);
-      if (onSuccess) {
-        onSuccess(newUser);
-      }
     },
   };
   const { addUser, isPending } = useAddUser(AddUserMutationProps);
@@ -110,11 +83,11 @@ const AddUser = ({
 
   const handleClose = () => {
     setNewPass(undefined);
-    onClose();
+    navigate('../');
   };
 
   return (
-    <Dialog {...controller}>
+    <RouteModal backUrl="../">
       <DialogContent className="sm:max-w-xl">
         <DialogHeader>
           <DialogTitle data-testid="add-user-modal">
@@ -224,7 +197,7 @@ const AddUser = ({
           </Form>
         )}
       </DialogContent>
-    </Dialog>
+    </RouteModal>
   );
 };
 
