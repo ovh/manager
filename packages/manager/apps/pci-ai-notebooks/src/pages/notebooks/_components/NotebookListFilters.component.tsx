@@ -42,7 +42,7 @@ export const getFilters = () => {
       comparators: FilterCategories.Options,
       options: Object.values(ai.notebook.NotebookStateEnum).map((state) => ({
         label: <NotebookStatusBadge status={state} />,
-        state,
+        value: state,
       })),
     },
   ];
