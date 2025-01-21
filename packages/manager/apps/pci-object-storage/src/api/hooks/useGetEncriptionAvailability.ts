@@ -7,6 +7,6 @@ export const useGetEncriptionAvailability = () => {
 
   return {
     ...result,
-    available: (result?.data || {})[`${feature}`] === true,
+    available: result?.data?.[feature] === true,
   };
 };
