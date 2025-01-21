@@ -5,6 +5,30 @@ import queryClient from '@/queryClient';
 import { useDownloadOpenStackConfig } from '@/api/hooks/useUser';
 import OpenStackDownloadModal from './OpenStackDownloadModal';
 
+vi.mock('@ovh-ux/manager-react-shell-client', async () => ({
+  useEnvironment: () => ({
+    user: {},
+    getUser: () => ({}),
+    getRegion: () => 'EU',
+  }),
+}));
+
+vi.mock('react-i18next', () => ({
+  // this mock makes sure any components using the translation hook can use it without a warning being shown
+  useTranslation: () => {
+    return {
+      t: (str: string) => str,
+      i18n: {
+        changeLanguage: () => new Promise(() => {}),
+      },
+    };
+  },
+  initReactI18next: {
+    type: '3rdParty',
+    init: () => {},
+  },
+}));
+
 vi.mock('@/api/hooks/useUser', () => {
   const download = vi.fn(() => {});
   return {
@@ -39,7 +63,7 @@ describe('OpenStack Download Modal', () => {
       onError: () => {},
     });
     renderModal();
-    const submitButton = screen.getByTestId('pciModal-button_submit');
+    const submitButton = screen.getByTestId('submitButton');
     expect(useDownloadConfig.download).not.toHaveBeenCalled();
     act(() => {
       fireEvent.click(submitButton);

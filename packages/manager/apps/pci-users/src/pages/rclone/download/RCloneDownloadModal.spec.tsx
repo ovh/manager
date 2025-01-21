@@ -68,8 +68,8 @@ describe('Rclone Download Modal', () => {
       fireEvent.click(submitButton);
     });
     const downloadSpy = vi.spyOn(useDownloadConfig, 'download');
-    await useDownloadConfig.download('BHS', 'SWIFT');
-    expect(downloadSpy).toHaveBeenCalledWith('BHS', 'SWIFT');
+    await useDownloadConfig.download('BHS', 'Swift');
+    expect(downloadSpy).toHaveBeenCalledWith('BHS', 'Swift');
     expect(downloadSpy).not.toHaveBeenCalledWith('SBG', 'S3');
   });
 });
