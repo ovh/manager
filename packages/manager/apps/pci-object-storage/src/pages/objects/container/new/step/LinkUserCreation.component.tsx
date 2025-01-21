@@ -77,18 +77,22 @@ export default function LinkUserCreation({
     poll<TUser>({
       fn: () => getUser(projectId, data.id),
       ruleFn: (user: TUser) => user.status === 'ok',
-      onSuccess: async ({ value }) => {
-        const credentials = await generateS3Credentials(projectId, value.id);
-        setNewUser({
-          ...value,
-          access: credentials.access,
-          s3Credentials: credentials,
-        });
-        setIsLoading(false);
-        queryClient.invalidateQueries({
-          queryKey: [...getQueryKeyUsers(projectId)],
-        });
-        onCreateUser(value);
+      onSuccess: ({ value }) => {
+        generateS3Credentials(projectId, value.id)
+          .then((credentials) => {
+            setNewUser({
+              ...value,
+              access: credentials.access,
+              s3Credentials: credentials,
+            });
+          })
+          .finally(() => {
+            queryClient.invalidateQueries({
+              queryKey: [...getQueryKeyUsers(projectId)],
+            });
+            onCreateUser(value);
+            setIsLoading(false);
+          });
       },
     });
   };

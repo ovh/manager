@@ -14,11 +14,11 @@ export default function ActionsComponent({
   object,
   container,
   isLocalZone,
-}: {
+}: Readonly<{
   object: TIndexedObject;
   container: TContainer;
   isLocalZone: boolean;
-}) {
+}>) {
   const { t } = useTranslation('container');
 
   const [searchParams] = useSearchParams();

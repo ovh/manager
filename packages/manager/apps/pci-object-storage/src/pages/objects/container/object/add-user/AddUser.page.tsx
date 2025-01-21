@@ -1,12 +1,12 @@
+import { ApiError } from '@ovh-ux/manager-core-api';
+import { useNotifications } from '@ovh-ux/manager-react-components';
+import { ODS_BUTTON_VARIANT, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import {
   OdsButton,
   OdsModal,
   OdsSpinner,
   OdsText,
 } from '@ovhcloud/ods-components/react';
-import { useNotifications } from '@ovh-ux/manager-react-components';
-import { ODS_BUTTON_VARIANT, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
-import { useEffect, useState } from 'react';
 import { Translation, useTranslation } from 'react-i18next';
 import {
   createSearchParams,
@@ -14,12 +14,12 @@ import {
   useParams,
   useSearchParams,
 } from 'react-router-dom';
-import { ApiError } from '@ovh-ux/manager-core-api';
-import { useUsers } from '@/api/hooks/useUser';
-import { TUser } from '@/api/data/user';
+import { useState } from 'react';
 import StepOneComponent from './StepOne.component';
 import StepTwoComponent from './StepTwo.component';
+import { useUsers } from '@/api/hooks/useUser';
 import { useAddUser } from '@/api/hooks/useObject';
+import { TUser } from '@/api/data/user';
 
 export default function AddUserPage() {
   const { t } = useTranslation('containers/add-user');
@@ -37,7 +37,7 @@ export default function AddUserPage() {
     projectId,
   );
 
-  const defaultUser = listUsers && listUsers[0];
+  const defaultUser = listUsers?.[0];
 
   const [stepUser, setStepUser] = useState(0);
   const [selectedUser, setSelectedUser] = useState<TUser>(null);
