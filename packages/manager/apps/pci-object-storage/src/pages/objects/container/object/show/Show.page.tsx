@@ -61,6 +61,7 @@ import { useAllStorages } from '@/api/hooks/useStorages';
 import { TServerContainer } from '@/api/data/container';
 import { useGetEncriptionAvailability } from '@/api/hooks/useGetEncriptionAvailability';
 import LabelComponent from '@/components/Label.component';
+import { TRegion } from '@/api/data/region';
 
 export type TContainer = {
   id: string;
@@ -69,6 +70,7 @@ export type TContainer = {
   publicUrl: string;
   s3StorageType: string;
   staticUrl: string;
+  regionDetails?: TRegion;
 } & TServerContainer;
 
 export default function ObjectPage() {
@@ -121,6 +123,9 @@ export default function ObjectPage() {
 
   const container = useMemo((): TContainer => {
     if (!serverContainer) return undefined;
+    const s3StorageType = allContainers?.resources.find(
+      (c) => c.id === storageId || c.name === storageId,
+    )?.s3StorageType;
     return {
       ...serverContainer,
       id: serverContainer?.id || targetContainer?.id,
@@ -135,9 +140,8 @@ export default function ObjectPage() {
       publicUrl: region?.services.find(
         (service) => service.name === OBJECT_CONTAINER_OFFER_STORAGE_STANDARD,
       )?.endpoint,
-      s3StorageType: allContainers?.resources.find(
-        (c) => c.id === storageId || c.name === storageId,
-      )?.s3StorageType,
+      s3StorageType,
+      regionDetails: s3StorageType ? region : undefined,
       staticUrl: serverContainer?.staticUrl || serverContainer?.virtualHost,
     };
   }, [serverContainer, region, allContainers]);
@@ -161,8 +165,9 @@ export default function ObjectPage() {
         OBJECT_CONTAINER_MODE_MONO_ZONE,
         OBJECT_CONTAINER_MODE_MULTI_ZONES,
       ];
-
-      return !hasEnabledRule && validTypes.includes(region?.type);
+      return (
+        !hasEnabledRule && validTypes.includes(container?.regionDetails?.type)
+      );
     }, [container, region]),
   };
 
