@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.2.0...@ovh-ux/manager-telecom@16.2.1) (2025-01-21)
+
+
+### Bug Fixes
+
+* **telecom:** send selected shipping contact id ([#14996](https://github.com/ovh/manager/issues/14996)) ([29d7a00](https://github.com/ovh/manager/commit/29d7a00933f94549bc0f96efc1cba5c68be34e7a))
+
+
+
+
+
 # [16.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.1.6...@ovh-ux/manager-telecom@16.2.0) (2025-01-15)
 
 

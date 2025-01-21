@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.3.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.3.8...@ovh-ux/manager-web@19.3.9) (2025-01-21)
+
+
+### Bug Fixes
+
+* **web.domain:** correcting link for terminate service ([b6ca1db](https://github.com/ovh/manager/commit/b6ca1dbb0baa88a6cbb433a09a010ad6efcad69b))
+
+
+
+
+
 ## [19.3.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.3.7...@ovh-ux/manager-web@19.3.8) (2025-01-15)
 
 
