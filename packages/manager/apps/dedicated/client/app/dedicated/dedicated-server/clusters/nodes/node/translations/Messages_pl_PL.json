@@ -840,7 +840,7 @@
   "server_datacenter_HOU": "Houston",
   "server_datacenter_SOF": "Sofia",
   "server_datacenter_OSL": "Oslo",
-  "server_datacenter_SMP": "Sztokholm",
+  "server_datacenter_STO": "Sztokholm",
   "server_datacenter_TPE": "Tajpej",
   "server_datacenter_SCL": "Santiago",
   "server_datacenter_SEL": "Seul",
@@ -891,6 +891,5 @@
   "server_configuration_intervention_activate_failed": "Wystąpił błąd podczas włączania interwencji w centrum danych dla serwera {{serverName}}",
   "server_nutanix_cluster_node_warning_1": "Ten serwer dedykowany jest częścią klastra Nutanix: {{clusterName}}.",
   "server_nutanix_cluster_node_warning_2": "Zalecamy przeprowadzenie wszystkich zmian konfiguracji bezpośrednio na dashboardzie serwera powiązanego z klastrem Nutanix: {{clusterNodeDashboardLink}}",
-  "server_nutanix_cluster_node_warning_3": "Wszystkie operacje płatnicze związane z tym serwerem są widoczne w klastrze Nutanix: {{clusterDashboardLink}}",
-  "server_datacenter_STO": "Sztokholm"
+  "server_nutanix_cluster_node_warning_3": "Wszystkie operacje płatnicze związane z tym serwerem są widoczne w klastrze Nutanix: {{clusterDashboardLink}}"
 }
