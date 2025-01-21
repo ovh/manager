@@ -15,9 +15,6 @@ export default class SoftphoneController {
     this.$translate = $translate;
     this.TucToast = TucToast;
     this.$q = $q;
-    this.showEditFormSoftphoneName = {};
-    this.model = {};
-    this.softphoneNameForm = {};
     this.STATUS_SOFTPHONE = STATUS_SOFTPHONE;
   }
 
@@ -29,7 +26,6 @@ export default class SoftphoneController {
       url: GUIDE_URL,
       external: true,
     };
-    this.isLoading = true;
     this.currentServiceIsActivate = this.softphoneStatus.activation;
     this.hasToggleSwitchActivation =
       this.softphoneStatus.infrastructure === 'LEGACY';
@@ -43,7 +39,7 @@ export default class SoftphoneController {
     this.isLoading = true;
     this.$q
       .all({
-        devicesInfos: this.SoftphoneService.getDevicesInfos(
+        devices: this.SoftphoneService.getDevices(
           this.billingAccount,
           this.serviceName,
         ),
@@ -57,12 +53,8 @@ export default class SoftphoneController {
         ),
       })
       .then(
-        ({
-          devicesInfos,
-          logo: { url, filename },
-          currentTheme: { themeId },
-        }) => {
-          this.devices = devicesInfos;
+        ({ devices, logo: { url, filename }, currentTheme: { themeId } }) => {
+          this.devices = devices;
 
           this.logoUrl = url;
           this.logoFilename = filename;
@@ -100,42 +92,6 @@ export default class SoftphoneController {
           ),
         );
       });
-  }
-
-  saveSoftphoneName(deviceId) {
-    this.showEditFormSoftphoneName[deviceId] = false;
-    this.SoftphoneService.modifyDevice(
-      this.billingAccount,
-      this.serviceName,
-      this.model[deviceId].name,
-      deviceId,
-    )
-      .then(() => {
-        this.isLoading = true;
-        this.SoftphoneService.getDevicesInfos(
-          this.billingAccount,
-          this.serviceName,
-        ).then((devices) => {
-          this.isLoading = false;
-          this.devices = devices;
-        });
-      })
-      .catch((error) =>
-        this.TucToast.error(
-          this.$translate.instant(
-            'telephony_line_softphone_change_name_error',
-            {
-              errorMessage: error.message,
-            },
-          ),
-        ),
-      );
-  }
-
-  toggleEditSoftphoneName(deviceId) {
-    this.showEditFormSoftphoneName[deviceId] = !this.showEditFormSoftphoneName[
-      deviceId
-    ];
   }
 
   getMobileOperatingSystem() {
