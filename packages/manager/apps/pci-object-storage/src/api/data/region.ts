@@ -1,6 +1,6 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 
-type TRegion = {
+export type TRegion = {
   continentCode: string;
   datacenterLocation: string;
   ipCountries: unknown[];
