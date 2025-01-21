@@ -782,6 +782,7 @@
   "streams_subscriptions_resource_products_ldp": "Logs Data Platform",
   "streams_subscriptions_resource_products_webhosting": "Webhosting",
   "streams_subscriptions_resource_products_cloud-project-kube": "Managed Kubernetes Service",
+  "streams_subscriptions_resource_products_okms": "Key Management Service",
   "streams_subscriptions_resource_products_account-api": "OVHcloud Kundencenter und OVHcloud API",
   "streams_subscriptions_resource_products_account-audit": "OVHcloud Audit-Logs",
   "logs_streams_manage_archives": "Archive verwalten",

@@ -794,5 +794,6 @@
   "streams_subscriptions_resource_products_webhosting": "Web Hosting",
   "streams_subscriptions_resource_products_account-api": "Espace client OVHcloud & OVHcloud API",
   "streams_subscriptions_resource_products_account-audit": "Audit Logs OVHcloud",
-  "streams_subscriptions_resource_products_cloud-project-kube": "Managed Kubernetes Service"
+  "streams_subscriptions_resource_products_cloud-project-kube": "Managed Kubernetes Service",
+  "streams_subscriptions_resource_products_okms": "Key Management Service"
 }
