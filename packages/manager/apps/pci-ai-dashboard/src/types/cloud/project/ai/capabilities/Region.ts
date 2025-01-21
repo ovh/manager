@@ -1,13 +1,13 @@
 /** AI Solutions Region */
 export interface Region {
   /** Client Install Url */
-  cliInstallUrl?: string;
+  cliInstallUrl: string;
   /** Documentation Url */
-  documentationUrl?: string;
+  documentationUrl: string;
   /** Region id */
-  id?: string;
+  id: string;
   /** Region Registry Url */
-  registryUrl?: string;
+  registryUrl: string;
   /** Region version */
-  version?: string;
+  version: string;
 }

@@ -6,4 +6,3 @@ export interface Guide {
   excerpt: string;
   url: string;
 }
-

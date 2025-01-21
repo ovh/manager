@@ -18,19 +18,21 @@ export interface AppSpec {
   /** GRPC Port that we want to expose in case workload HTTP & gRPC servers cannot be multiplexed to listen on the same port */
   grpcPort?: number;
   /** App image */
-  image?: string;
+  image: string;
   /** Labels for the app */
   labels?: { [key: string]: string };
+  /** App liveness probe */
+  livenessProbe?: Probe;
   /** App name */
-  name?: string;
+  name: string;
   /** Partner ID */
   partnerId?: string;
   /** App readiness probe */
   probe?: Probe;
   /** Host region of the app */
-  region?: string;
+  region: string;
   /** App resources */
-  resources?: Resources;
+  resources: Resources;
   /** App scaling strategy */
   scalingStrategy?: ScalingStrategy;
   /** True if app api port can be accessed without any authentication token, false otherwise */

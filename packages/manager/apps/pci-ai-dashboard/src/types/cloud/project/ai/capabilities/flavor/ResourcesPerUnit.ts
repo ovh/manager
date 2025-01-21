@@ -1,13 +1,13 @@
 /** AI Solutions Global Resource per flavor unit */
 export interface ResourcesPerUnit {
   /** The amount of cpu for one unit of the flavor */
-  cpu?: number;
+  cpu: number;
   /** The amount of ephemeral storage in bytes */
-  ephemeralStorage?: number;
+  ephemeralStorage: number;
   /** The amount of memory in bytes */
-  memory?: number;
+  memory: number;
   /** The guarantee private bandwidth in bytes per seconds */
-  privateNetwork?: number;
+  privateNetwork: number;
   /** The guarantee public bandwidth in bytes per seconds */
-  publicNetwork?: number;
+  publicNetwork: number;
 }

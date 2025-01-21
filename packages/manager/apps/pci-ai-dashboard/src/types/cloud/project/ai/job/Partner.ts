@@ -1,9 +1,9 @@
 /** AI Solutions Partner Object */
 export interface Partner {
   /** Partner flavor */
-  flavor?: string;
+  flavor: string;
   /** Partner ID */
-  id?: string;
+  id: string;
   /** Partner name */
-  name?: string;
+  name: string;
 }

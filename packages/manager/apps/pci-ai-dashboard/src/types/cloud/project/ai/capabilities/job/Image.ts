@@ -1,15 +1,15 @@
 /** AI Solutions Job image object */
 export interface Image {
   /** Short description of the image */
-  description?: string;
+  description: string;
   /** URL of the image documentation */
-  docUrl?: string;
+  docUrl: string;
   /** Unique identifier of the image */
-  id?: string;
+  id: string;
   /** URL of the logo of the image */
-  logoUrl?: string;
+  logoUrl: string;
   /** Name of the image */
-  name?: string;
+  name: string;
   /** List of available versions of this image */
-  versions?: string[];
+  versions: string[];
 }

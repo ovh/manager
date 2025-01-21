@@ -5,5 +5,5 @@ export interface NotebookEnv {
   /** Framework name */
   frameworkId: string;
   /** Framework version to use */
-  frameworkVersion: string;
+  frameworkVersion?: string;
 }

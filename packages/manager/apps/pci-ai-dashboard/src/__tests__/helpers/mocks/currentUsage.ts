@@ -5,6 +5,7 @@ export const mockedCurrentUsage: usage.UsageCurrent = {
     from: '2024/04/08',
     to: '2024/05/08',
   },
+  lastUpdate: '2024/05/08',
   resourcesUsage: [
     {
       totalPrice: 10,

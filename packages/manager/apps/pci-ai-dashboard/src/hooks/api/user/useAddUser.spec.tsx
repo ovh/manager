@@ -3,7 +3,10 @@ import { vi } from 'vitest';
 
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import * as userApi from '@/data/api/user/user.api';
-import { mockedUser, mockedUserCreation } from '@/__tests__/helpers/mocks/user';
+import {
+  mockedUserCreation,
+  mockedUserDetails,
+} from '@/__tests__/helpers/mocks/user';
 import { useAddUser } from './useAddUser.hook';
 
 vi.mock('@/data/api/user/user.api', () => ({
@@ -16,7 +19,7 @@ describe('useAddUSer', () => {
     const onSuccess = vi.fn();
     const onError = vi.fn();
 
-    vi.mocked(userApi.addUser).mockResolvedValue(mockedUser);
+    vi.mocked(userApi.addUser).mockResolvedValue(mockedUserDetails);
     const { result } = renderHook(() => useAddUser({ onError, onSuccess }), {
       wrapper: QueryClientWrapper,
     });
@@ -30,7 +33,7 @@ describe('useAddUSer', () => {
     await waitFor(() => {
       expect(userApi.addUser).toHaveBeenCalledWith(addUserProps);
       expect(onSuccess).toHaveBeenCalledWith(
-        mockedUser,
+        mockedUserDetails,
         addUserProps,
         undefined,
       );
