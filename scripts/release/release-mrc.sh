@@ -118,15 +118,17 @@ main() {
     # Check if the changed package is `manager-react-components`
     if [[ "$package" == *manager-react-components* ]]; then
       printf "%s\n" "New release for manager-react-components"
-      next_tag=$(get_release_name "$SEED")
+      next_tag=$(yarn info @ovh-ux/manager-react-components version | sed -n '2p')
       path_mrc=$(echo "$package" | cut -d ':' -f 1)
       name_mrc=$(echo "$package" | cut -d ':' -f 2)
+      printf "%s\n" "Versioning...."
       version_mrc "$next_tag"
+      printf "%s\n" "Versioning done and next tag is $next_tag"
       RELEASE_NOTE+="# Release $next_tag\n\n"
       # Create release note for manager-react-components
       RELEASE_NOTE+="$(create_release_note "$path_mrc" "$name_mrc")\n\n"
 
-      push_and_release "$next_tag"
+      #push_and_release "$next_tag"
     fi
   done <<< "$changed_packages"
 
