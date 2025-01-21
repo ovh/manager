@@ -1,6 +1,5 @@
 import { OdsFile } from '@ovhcloud/ods-components';
 import { OdsFileUpload } from '@ovhcloud/ods-components/react';
-import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 type FileInputComponentProps = {
