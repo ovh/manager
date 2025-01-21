@@ -1,8 +1,17 @@
-<telecom-telephony-line-softphone-delete-modal
-    data-go-back="$ctrl.goBack"
-    data-billing-account="$ctrl.billingAccount"
-    data-service-name="$ctrl.serviceName"
-    data-device-id="$ctrl.deviceId"
-    data-delete-all-devices="false"
+<oui-modal
+    type="warning"
+    data-on-dismiss="$ctrl.goBack()"
+    data-primary-action="$ctrl.deleteDevice()"
+    data-primary-label="{{:: 'telephony_line_softphone_btn_delete' | translate }}"
+    data-primary-disabled="$ctrl.deleting"
+    data-heading="{{ $ctrl.deviceId ? 'telephony_line_softphone_delete_device_modal_title' : 'telephony_line_softphone_delete_all_devices_modal_title' | translate }}"
 >
-</telecom-telephony-line-softphone-delete-modal>
+    <p>
+        <b
+            data-translate="telephony_line_softphone_delete_{{ $ctrl.deviceId ? 'device' : 'all_devices' }}_warning"
+        ></b>
+    </p>
+    <p
+        data-translate="telephony_line_softphone_delete_{{ $ctrl.deviceId ? 'device' : 'all_devices' }}_before_action"
+    ></p>
+</oui-modal>

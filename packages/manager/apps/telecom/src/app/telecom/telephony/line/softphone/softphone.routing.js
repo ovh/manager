@@ -16,14 +16,10 @@ export default /* @ngInject */ ($stateProvider) => {
           $translate.instant(
             'telephony_line_phone_actions_line_details_softphone_breadcrumb',
           ),
-        openAddDeviceModal: /* @ngInject */ ($state) => (id) =>
+        goToAddDevice: /* @ngInject */ ($state) => (id) =>
           $state.go(
             'telecom.telephony.billingAccount.line.dashboard.softphone.add',
             { deviceId: id },
-          ),
-        deleteAllDevices: /* @ngInject */ ($state) => () =>
-          $state.go(
-            'telecom.telephony.billingAccount.line.dashboard.softphone.delete-all',
           ),
         goToDeleteDevice: /* @ngInject */ ($state) => (id) =>
           $state.go(
@@ -52,19 +48,6 @@ export default /* @ngInject */ ($stateProvider) => {
         },
       },
     )
-    .state(
-      'telecom.telephony.billingAccount.line.dashboard.softphone.delete-all.**',
-      {
-        url: '/delete-all',
-        lazyLoad: ($transition$) => {
-          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
-
-          return import('./deleteAllDevice/index').then((mod) =>
-            $ocLazyLoad.inject(mod.default || mod),
-          );
-        },
-      },
-    )
     .state('telecom.telephony.billingAccount.line.dashboard.softphone.add.**', {
       url: '/add',
       lazyLoad: ($transition$) => {
@@ -74,18 +57,5 @@ export default /* @ngInject */ ($stateProvider) => {
           $ocLazyLoad.inject(mod.default || mod),
         );
       },
-    })
-    .state(
-      'telecom.telephony.billingAccount.line.dashboard.softphone.mail.**',
-      {
-        url: '/mail',
-        lazyLoad: ($transition$) => {
-          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
-
-          return import('./sendLinkByMail/index').then((mod) =>
-            $ocLazyLoad.inject(mod.default || mod),
-          );
-        },
-      },
-    );
+    });
 };

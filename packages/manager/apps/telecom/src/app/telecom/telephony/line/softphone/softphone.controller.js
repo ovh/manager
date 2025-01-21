@@ -3,7 +3,6 @@ import {
   LOGO_FILE_FORMATS,
   MAX_SIZE_LOGO_FILE,
   MOBILE_OS,
-  STATUS_SOFTPHONE,
 } from './softphone.constants';
 
 export default class SoftphoneController {
@@ -15,7 +14,6 @@ export default class SoftphoneController {
     this.$translate = $translate;
     this.TucToast = TucToast;
     this.$q = $q;
-    this.STATUS_SOFTPHONE = STATUS_SOFTPHONE;
   }
 
   $onInit() {
