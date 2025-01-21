@@ -49,9 +49,7 @@ export default function RCloneDownloadModal({
 }: RemoveRCloneDownloadModalProps) {
   const { t } = useTranslation('common');
   const { ovhSubsidiary } = useEnvironment().getUser();
-  const [fileType, setFileType] = useState<keyof typeof DOWNLOAD_FILETYPE>(
-    'SWIFT',
-  );
+  const [fileType, setFileType] = useState(DOWNLOAD_FILETYPE.SWIFT as string);
   const [region, setRegion] = useState('');
   const { download, isLoading: isLoadingDownload } = useDownloadRCloneConfig({
     projectId: `${projectId}`,
@@ -72,7 +70,8 @@ export default function RCloneDownloadModal({
         previousValue?: string;
       }>,
     ) => {
-      setFileType(event.detail.newValue as keyof typeof DOWNLOAD_FILETYPE);
+      const type = `${event.detail.newValue}` || '';
+      setFileType(type);
     },
     [setFileType],
   );
@@ -134,28 +133,42 @@ export default function RCloneDownloadModal({
                 onOdsValueChange={handleFileTypeChanged}
                 data-testid="downloadFileType"
               >
-                {Object.entries(DOWNLOAD_FILETYPE).map(([type, name]) => (
-                  <OsdsRadio
-                    key={type}
-                    value={type}
-                    name={'filetype-radiogroup'}
-                    className={'mr-4'}
+                <OsdsRadio
+                  value={DOWNLOAD_FILETYPE.SWIFT}
+                  name={'filetype-radiogroup'}
+                  className={'mr-4'}
+                  color={ODS_THEME_COLOR_INTENT.primary}
+                >
+                  <OsdsRadioButton
+                    size={ODS_RADIO_BUTTON_SIZE.sm}
                     color={ODS_THEME_COLOR_INTENT.primary}
                   >
-                    <OsdsRadioButton
-                      size={ODS_RADIO_BUTTON_SIZE.sm}
-                      color={ODS_THEME_COLOR_INTENT.primary}
+                    <OsdsText
+                      slot={'end'}
+                      size={ODS_THEME_TYPOGRAPHY_SIZE._500}
+                      color={ODS_THEME_COLOR_INTENT.text}
                     >
-                      <OsdsText
-                        slot={'end'}
-                        size={ODS_THEME_TYPOGRAPHY_SIZE._500}
-                        color={ODS_THEME_COLOR_INTENT.text}
-                      >
-                        {name}
-                      </OsdsText>
-                    </OsdsRadioButton>
-                  </OsdsRadio>
-                ))}
+                      {DOWNLOAD_FILETYPE.SWIFT}
+                    </OsdsText>
+                  </OsdsRadioButton>
+                </OsdsRadio>
+                <OsdsRadio
+                  value={DOWNLOAD_FILETYPE.S3}
+                  name={'filetype-radiogroup'}
+                >
+                  <OsdsRadioButton
+                    size={ODS_RADIO_BUTTON_SIZE.sm}
+                    color={ODS_THEME_COLOR_INTENT.primary}
+                  >
+                    <OsdsText
+                      size={ODS_THEME_TYPOGRAPHY_SIZE._500}
+                      color={ODS_THEME_COLOR_INTENT.text}
+                      slot={'end'}
+                    >
+                      {DOWNLOAD_FILETYPE.S3}
+                    </OsdsText>
+                  </OsdsRadioButton>
+                </OsdsRadio>
               </OsdsRadioGroup>
             </OsdsFormField>
             <OsdsFormField>
