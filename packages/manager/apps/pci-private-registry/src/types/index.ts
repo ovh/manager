@@ -1,3 +1,6 @@
+import z from 'zod';
+import { schemaAddCidr } from '@/schema/formSchema';
+
 export type FilterRestrictionsServer = 'management' | 'registry';
 
 export enum FilterRestrictionsEnum {
@@ -31,3 +34,5 @@ export type TIPRestrictionsDefault = TIPRestrictions & TIPRestrictionsMethod;
 export type TIPRestrictionsData = TIPRestrictions &
   TIPRestrictionsDraft &
   TIPRestrictionsMethod;
+
+export type ConfirmCIDRSchemaType = z.infer<ReturnType<typeof schemaAddCidr>>;
