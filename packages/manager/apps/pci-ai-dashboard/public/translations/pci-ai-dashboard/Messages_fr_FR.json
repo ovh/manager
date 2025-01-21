@@ -9,6 +9,6 @@
   "usersTab": "Utilisateurs",
   "tokensTab": "Tokens",
   "dockerRegistriesTab": "Docker registries",
-  "githubRegistriesTab": "Github registries",
+  "githubRegistriesTab": "Dépots Git privés",
   "datastoreTab": "Datastores S3"
 }

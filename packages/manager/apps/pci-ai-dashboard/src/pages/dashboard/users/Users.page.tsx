@@ -52,6 +52,8 @@ const Users = () => {
             className="hover:no-underline hover:text-primary-foreground"
             application="public-cloud"
             path={userPath}
+            target="_blank"
+            rel="noopener noreferrer"
           >
             {t('manageButtonLabel', {
               number: userQuery.data?.filter(

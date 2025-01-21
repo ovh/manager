@@ -6,7 +6,6 @@ import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 import Guides from '@/components/guides/Guides.component';
 import { Button } from '@/components/ui/button';
-import { DataTable } from '@/components/ui/data-table';
 import { POLLING } from '@/configuration/polling';
 import { useGetRegions } from '@/hooks/api/ai/capabilities/useGetRegions.hook';
 import {
@@ -15,8 +14,8 @@ import {
 } from '@/hooks/api/ai/datastore/useGetDatastoresWithRegions.hook';
 import * as ai from '@/types/cloud/project/ai';
 import { getColumns } from './_components/GitTableColumns.component';
-import { GuideSections } from '@/configuration/guide';
 import { useUserActivityContext } from '@/contexts/UserActivity.context';
+import DataTable from '@/components/data-table';
 
 export function breadcrumb() {
   return (
@@ -50,7 +49,7 @@ const Git = () => {
   return (
     <>
       <div className="float-right">
-        <Guides section={GuideSections.datastore} />
+        <Guides />
       </div>
       <h3>{t('title')}</h3>
       <p>{t('gitParagraphe2')}</p>
@@ -66,7 +65,7 @@ const Git = () => {
         {t('addButtonLabel')}
       </Button>
 
-      <DataTable
+      <DataTable.Provider
         columns={columns}
         data={datastoreQuery.data?.filter(
           (ds) => ds.type === ai.DataStoreTypeEnum.git,

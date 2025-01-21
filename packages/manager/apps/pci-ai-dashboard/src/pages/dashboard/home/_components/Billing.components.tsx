@@ -52,11 +52,11 @@ const Billing = () => {
       <OvhLink
         application="public-cloud"
         path={`#/pci/projects/${projectId}/billing`}
+        target="_blank"
+        rel="noopener noreferrer"
       >
-        <div className="flex flex-row gap-1 items-center">
-          {t('billingDetailsButton')}
-          <ArrowRight className="size-4" />
-        </div>
+        {t('billingDetailsButton')}
+        <ArrowRight className="size-4 inline ml-1" />
       </OvhLink>
     </>
   );
