@@ -2,22 +2,22 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
     'telecom.telephony.billingAccount.line.dashboard.softphone.delete',
     {
-      url: '/delete/:deviceId',
+      url: '/delete?deviceId',
       views: {
         modal: {
           component: 'softphoneDeleteDevice',
         },
       },
-      layout: 'modal',
+      params: {
+        deviceId: null,
+      },
       resolve: {
+        deviceId: /* @ngInject */ ($transition$) =>
+          $transition$.params().deviceId,
         goBack: /* @ngInject */ ($state) => (reload) =>
           $state.go('^', {}, { reload }),
-        breadcrumb: () => null,
-        billingAccount: /* @ngInject */ ($stateParams) =>
-          $stateParams.billingAccount,
-        serviceName: /* @ngInject */ ($stateParams) => $stateParams.serviceName,
-        deviceId: /* @ngInject */ ($stateParams) => $stateParams.deviceId,
       },
+      layout: 'modal',
     },
   );
 };
