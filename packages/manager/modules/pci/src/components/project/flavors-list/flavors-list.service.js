@@ -17,6 +17,8 @@ import {
   DEFAULT_CATALOG_ENDPOINT,
   LEGACY_FLAVORS,
   LOCAL_ZONE,
+  THREE_AZ_REGION,
+  ONE_AZ_REGION,
 } from './flavors-list.constants';
 import { TAGS_BLOB } from '../../../constants';
 
@@ -37,6 +39,8 @@ export default class FlavorsList {
     this.OvhApiCloudProjectFlavor = OvhApiCloudProjectFlavor;
     this.OvhApiOrderCatalogPublic = OvhApiOrderCatalogPublic;
     this.LOCAL_ZONE = LOCAL_ZONE;
+    this.THREE_AZ_REGION = THREE_AZ_REGION;
+    this.ONE_AZ_REGION = ONE_AZ_REGION;
   }
 
   getCatalog(endpoint, ovhSubsidiary) {
@@ -76,16 +80,11 @@ export default class FlavorsList {
         ),
       })
       .then(({ flavors, prices, catalog, productAvailability }) => {
-        // >>> MOCK
-        flavors.push({
-          ...flavors.find(({ name }) => name === 'b3-8'),
-          region: 'EU-WEST-PAR',
-        });
-        // <<< MOCK
         const hourlyPlanCodes = flavors.filter(
           ({ planCodes }) => !isNil(planCodes.hourly),
         );
         const groupedPlanCodesByName = groupBy(hourlyPlanCodes, 'name');
+
         return map(groupedPlanCodesByName, (groupedFlavors) => {
           const resource = groupedFlavors.find(
             (groupedFlavor) => !groupedFlavor?.region?.includes('LZ'),
@@ -159,7 +158,10 @@ export default class FlavorsList {
         (region) => region.type === this.LOCAL_ZONE,
       ),
       isGlobalZone: regionsAllowed?.some(
-        (region) => region.type !== this.LOCAL_ZONE,
+        (region) => region.type === this.ONE_AZ_REGION,
+      ),
+      isRegion3az: regionsAllowed?.some(
+        (region) => region.type === this.THREE_AZ_REGION,
       ),
     };
   }

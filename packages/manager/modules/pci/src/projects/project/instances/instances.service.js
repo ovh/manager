@@ -322,12 +322,22 @@ export default class PciProjectInstanceService {
   }
 
   getSnapshotMonthlyPrice(projectId, instance, catalogEndpoint) {
-    return this.CucPriceHelper.getPrices(
-      projectId,
-      catalogEndpoint,
-    ).then((catalog) =>
-      instance.isLocalZone
-        ? this.getProductAvailability(projectId).then(
+    return this.CucPriceHelper.getPrices(projectId, catalogEndpoint).then(
+      (catalog) => {
+        if (instance.planCode?.includes('3AZ')) {
+          return this.getProductAvailability(projectId).then(
+            ({ plans }) =>
+              catalog[
+                plans.find(
+                  ({ code, regions }) =>
+                    code.startsWith('snapshot.consumption') &&
+                    regions.find(({ name }) => name === instance.region),
+                )?.code
+              ] ?? catalog['snapshot.consumption.3AZ'],
+          );
+        }
+        if (instance.isLocalZone) {
+          return this.getProductAvailability(projectId).then(
             ({ plans }) =>
               catalog[
                 plans.find(
@@ -336,16 +346,18 @@ export default class PciProjectInstanceService {
                     regions.find(({ name }) => name === instance.region),
                 )?.code
               ] ?? catalog['snapshot.consumption.LZ'],
-          )
-        : get(
+          );
+        }
+        return get(
+          catalog,
+          `snapshot.monthly.postpaid.${instance.region}`,
+          get(
             catalog,
-            `snapshot.monthly.postpaid.${instance.region}`,
-            get(
-              catalog,
-              'snapshot.monthly.postpaid',
-              get(catalog, 'snapshot.monthly', false),
-            ),
+            'snapshot.monthly.postpaid',
+            get(catalog, 'snapshot.monthly', false),
           ),
+        );
+      },
     );
   }
 
@@ -537,23 +549,6 @@ export default class PciProjectInstanceService {
         regions: this.PciProjectRegions.getRegions(projectId, customerRegions),
       })
       .then(({ availableRegions, regions }) => {
-        // >>> MOCK
-        const parisRegion = regions.find(({ name }) => name === 'EU-WEST-PAR');
-        const gra11Region = regions.find(({ name }) => name === 'GRA11');
-        regions.splice(regions.indexOf(parisRegion), 1, {
-          ...parisRegion,
-          availabilityZones: [
-            'EU-WEST-PAR-A',
-            'EU-WEST-PAR-B',
-            'EU-WEST-PAR-C',
-          ],
-          services: [
-            ...parisRegion.services,
-            { name: 'instance', status: 'UP' },
-          ],
-          quota: { ...gra11Region.quota },
-        });
-        // <<< MOCK
         const supportedRegions = filter(regions, (region) =>
           some(get(region, 'services', []), { name: 'instance', status: 'UP' }),
         );
@@ -596,6 +591,7 @@ export default class PciProjectInstanceService {
       region,
       sshKeyId,
       userData,
+      availabilityZone,
     },
     number = 1,
     isPrivateMode,
@@ -615,6 +611,7 @@ export default class PciProjectInstanceService {
           sshKeyId,
           userData,
           number,
+          availabilityZone,
         })
         .then(({ data }) => {
           return data;
@@ -631,6 +628,7 @@ export default class PciProjectInstanceService {
         region,
         sshKeyId,
         userData,
+        availabilityZone,
       })
       .then(({ data }) => {
         if (isPrivateMode) {

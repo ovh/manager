@@ -3,7 +3,7 @@
     data-ng-if="$ctrl.hasOwnProperty('displayLoader') ? ($ctrl.isLoading && $ctrl.displayLoader) : $ctrl.isLoading"
 ></oui-spinner>
 
-<div class="flavors-list" data-ng-if="!$ctrl.isLoading">
+<div class="flavors-list regions-badges" data-ng-if="!$ctrl.isLoading">
     <oui-tabs
         class="mb-4"
         data-ng-if="!$ctrl.displaySelectedFlavor"
@@ -106,7 +106,7 @@
                             </div>
                         </oui-select-picker-section>
                         <oui-select-picker-section
-                            data-ng-if="flavor.locationCompatibility.isLocalZone || flavor.locationCompatibility.isGlobalZone"
+                            data-ng-if="flavor.locationCompatibility.isLocalZone || flavor.locationCompatibility.isGlobalZone || flavor.locationCompatibility.isRegion3az"
                         >
                             <strong
                                 class="d-block"
@@ -117,7 +117,7 @@
                                 <div class="d-flex">
                                     <span
                                         data-ng-if="flavor.locationCompatibility.isLocalZone"
-                                        class="oui-badge oui-badge_promotion my-1"
+                                        class="oui-badge oui-badge_promotion my-1 oui-localzone"
                                     >
                                         <span
                                             data-translate="pci_project_flavors_zone_localzone"
@@ -154,7 +154,7 @@
                                 <div class="d-flex">
                                     <span
                                         data-ng-if="flavor.locationCompatibility.isGlobalZone"
-                                        class="oui-badge oui-badge_new my-1"
+                                        class="oui-badge oui-badge_new my-1 oui-1az"
                                     >
                                         <span
                                             data-translate="pci_project_flavors_zone_global_region"
@@ -172,12 +172,50 @@
                                         >
                                             <span
                                                 class="text-center"
-                                                data-translate="pci_project_flavors_zone_globalregions_tooltip"
+                                                data-translate="{{::$ctrl.are3azRegionsAvailable ? 'pci_project_flavors_zone_globalregions_tooltip' : 'pci_project_flavors_zone_globalregions_tooltip_2'}}"
                                             ></span>
                                             <a
                                                 class="oui-link_icon"
                                                 aria-hidden="true"
                                                 data-ng-href="{{$ctrl.globalRegionsUrl}}"
+                                                target="_blank"
+                                            >
+                                                <span
+                                                    data-translate="pci_project_flavors_zone_tooltip_link"
+                                                ></span>
+                                                <span class="oui-icon oui-icon-external-link ml-0" aria-hidden="true"></span>
+                                            </a>
+                                        </script>
+                                    </span>
+                                </div>
+
+                                <div class="d-flex">
+                                    <span
+                                        data-ng-if="flavor.locationCompatibility.isRegion3az"
+                                        class="oui-badge oui-badge_new my-1 oui-3az"
+                                    >
+                                        <span
+                                            data-translate="pci_project_flavors_zone_3az_region"
+                                        ></span>
+                                        <button
+                                            type="button"
+                                            class="oui-popover-button"
+                                            data-oui-popover
+                                            data-oui-popover-scope="$ctrl"
+                                            data-oui-popover-template="pci_project_flavors_zone_3az_regions_tooltip.html"
+                                        ></button>
+                                        <script
+                                            type="text/ng-template"
+                                            id="pci_project_flavors_zone_3az_regions_tooltip.html"
+                                        >
+                                            <span
+                                                class="text-center"
+                                                data-translate="pci_project_flavors_zone_3az_tooltip"
+                                            ></span>
+                                            <a
+                                                class="oui-link_icon"
+                                                aria-hidden="true"
+                                                data-ng-href="{{$ctrl.zone3azUrl}}"
                                                 target="_blank"
                                             >
                                                 <span

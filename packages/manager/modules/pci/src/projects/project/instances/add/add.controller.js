@@ -16,6 +16,7 @@ import { TAGS_BLOB } from '../../../../constants';
 import {
   LOCAL_ZONE_REGION,
   THREE_AZ_REGION,
+  ONE_AZ_REGION,
   PCI_FEATURES,
   DEFAULT_VLAN_ID,
   DEFAULT_CIDR,
@@ -84,6 +85,7 @@ export default class PciInstancesAddController {
     this.FLOATING_IP_AVAILABILITY_INFO_LINK = FLOATING_IP_AVAILABILITY_INFO_LINK;
     this.LOCAL_ZONE_REGION = LOCAL_ZONE_REGION;
     this.THREE_AZ_REGION = THREE_AZ_REGION;
+    this.ONE_AZ_REGION = ONE_AZ_REGION;
     this.PciProject = PciProject;
     this.instancePricesLink =
       INSTANCE_PRICING_LINKS[this.user.ovhSubsidiary] ||
@@ -174,6 +176,10 @@ export default class PciInstancesAddController {
     this.addInstanceSuccessMessage =
       this.addInstanceSuccessMessage ||
       'pci_projects_project_instances_add_success_message';
+
+    this.addInstance3azSuccessMessage =
+      this.addInstance3azSuccessMessage ||
+      'pci_projects_project_instances_3az_add_success_message';
     this.addInstancesSuccessMessage =
       this.addInstancesSuccessMessage ||
       'pci_projects_project_instances_add_success_multiple_message';
@@ -209,7 +215,7 @@ export default class PciInstancesAddController {
     this.isLoadBillingStep = false;
     this.floatingIps = null;
     this.addons = [];
-    this.getSmallestGatewayInfo();
+
     this.defaultFloatingIp = this.getProductCatalog;
     this.isIpLoading = false;
     this.isAddingRegionError = false;
@@ -285,10 +291,37 @@ export default class PciInstancesAddController {
   }
 
   getSmallestGatewayInfo() {
-    return this.PciPublicGatewaysService.getSmallestGatewayInfo(
+    this.PciPublicGatewaysService.getGetwayAvalability(
+      this.projectId,
       this.user.ovhSubsidiary,
-    ).then((data) => {
-      this.defaultGateway = data;
+      this.model.datacenter.name,
+      'gateway',
+    ).then((plans) => {
+      const planOrder = ['.s.', '.m.', '.l.', '.xl.', '.2xl.', '.3xl.'];
+
+      // Find the smallest available plan based on predefined order
+      const smallestAvailablePlan = planOrder
+        .map((planCode) => plans.find(({ code }) => code.includes(planCode)))
+        .find((plan) => plan); // Get the first defined plan
+
+      this.PciPublicGatewaysService.getSmallestGatewayInfo(
+        this.user.ovhSubsidiary,
+      ).then((data) => {
+        const smallestGateway = data.find(
+          (addon) => addon.planCode === smallestAvailablePlan.code,
+        );
+
+        const pricePerHour =
+          smallestGateway.pricings.find((pricing) =>
+            pricing.description.includes('hour'),
+          )?.price || 0;
+
+        this.defaultGateway = {
+          size: smallestGateway.product.split('-').pop(), // Get the last segment of the product name
+          pricePerHour,
+        };
+        this.isLoadBillingStep = false;
+      });
     });
   }
 
@@ -309,37 +342,18 @@ export default class PciInstancesAddController {
       this.projectId,
       this.coreConfig.getUser().ovhSubsidiary,
     ).then((productCapabilities) => {
-      // >>> MOCK
-      if (productCapabilities.plans) {
-        productCapabilities.plans.forEach((plan) => {
-          if (plan.code.startsWith('b3-8.consumption')) {
-            plan.regions.push({
-              name: 'EU-WEST-PAR',
-              datacenter: 'PAR',
-              continentCode: 'EU',
-              enabled: true,
-              type: 'region-3-az',
-              availabilityZone: [
-                'EU-WEST-PAR-A',
-                'EU-WEST-PAR-B',
-                'EU-WEST-PAR-C',
-              ],
-            });
-          }
-        });
-      }
-      // <<< MOCK
-
       // New plancodes has been introduced for localzones which will have region names after plan codes names like ***.consumption.EU-WEST-LZ-BRU-A
       // So we need to consider all the plancodes which starts with "**flavorName**.consumption"
       const productCapability = productCapabilities.plans?.filter((plan) =>
         plan.code?.startsWith(planCode),
       );
+
       // After fetching all the productCapabilities we need to combine all the regions of possible plans
       // of "b38.consumption" "b38.consumption.EU-WEST-LZ-BRU-A" "b38.consumption.EU-SOUTH-LZ-MAD-A" into regionsAllowed
       const productRegionsAllowed = productCapability?.flatMap(
         ({ regions }) => regions,
       );
+
       Object.entries(this.regions).forEach(([continent, locationsMap]) => {
         // Create datacenters continent groups
         this.availableRegions[continent] = {};
@@ -362,6 +376,7 @@ export default class PciInstancesAddController {
                 ) ||
                   !productRegion.enabled),
             );
+
             if (isDatacenterAvailable) {
               this.availableRegions[continent][location].push(datacenter);
             } else {
@@ -416,6 +431,7 @@ export default class PciInstancesAddController {
   onFlavorChange() {
     this.displaySelectedFlavor = true;
     this.getFilteredRegions();
+
     this.trackAddInstance([
       'button',
       'add_instance',
@@ -491,6 +507,9 @@ export default class PciInstancesAddController {
       ]);
     }
     this.displaySelectedRegion = false;
+    if (this.instance.availabilityZone) {
+      delete this.instance.availabilityZone;
+    }
   }
 
   addRegions() {
@@ -816,6 +835,7 @@ export default class PciInstancesAddController {
       isFlex,
     );
     this.generateInstanceName();
+
     this.model.flavorGroup.prices = this.model.flavorGroup.getPriceBasedOnFlavorId(
       this.instance.flavorId,
     );
@@ -916,7 +936,8 @@ export default class PciInstancesAddController {
     this.PciProjectAdditionalIpService.getRegions(
       this.projectId,
       this.user.ovhSubsidiary,
-      'floatingip.floatingip.hour.consumption',
+      null,
+      'floatingip',
     ).then((regions) => {
       this.isFloatingIpAvailable = regions.some(
         ({ name }) => name === this.model.datacenter.name,
@@ -1165,7 +1186,8 @@ export default class PciInstancesAddController {
           .then((data) => {
             this.subnetGateways = data;
 
-            this.addPricing();
+            // TODO rework the pricing details (total, floatingIp and gateway)
+            // this.addPricing();
             if (
               this.subnetGateways.length > 0 &&
               this.selectedPrivateNetwork.subnet[0]?.gatewayIp === null
@@ -1279,6 +1301,7 @@ export default class PciInstancesAddController {
 
   onBillingFocus() {
     this.isLoadBillingStep = true;
+
     this.$q
       .all([
         this.getUAppUrl(
@@ -1286,6 +1309,17 @@ export default class PciInstancesAddController {
           `#/pci/projects/${this.projectId}/savings-plan`,
         ).then((url) => {
           this.savingsPlanUrl = url;
+
+          if (
+            (this.subnetGateways.length === 0 ||
+              this.subnetGateways.length > 1) &&
+            this.isAttachFloatingIP &&
+            !this.isAddingPrivateNetwork &&
+            !this.isAddingPrivateNetworkError
+          ) {
+            this.isLoadBillingStep = true;
+            this.getSmallestGatewayInfo();
+          }
         }),
         this.getSavingsPlanPrice(),
       ])
@@ -1373,6 +1407,10 @@ export default class PciInstancesAddController {
       };
     }
 
+    if (this.is3AZRegion() && this.model.threeAzRegion.zone) {
+      this.instance.availabilityZone = this.model.threeAzRegion.zone;
+    }
+
     // @TODO: GS Use post /cloud/project/{serviceName}/region/{regionName}/instance
     // for local zone instance creation
 
@@ -1383,12 +1421,29 @@ export default class PciInstancesAddController {
       this.isPrivateMode(),
     )
       .then((result) => {
-        const message =
-          this.model.number === 1
-            ? this.$translate.instant(this.addInstanceSuccessMessage, {
+        let availabilityZone = null;
+        availabilityZone = this.instance.availabilityZone;
+        if (result.availabilityZone) {
+          availabilityZone = result.availabilityZone;
+        }
+        let message;
+        if (this.model.number === 1) {
+          if (availabilityZone) {
+            message = this.$translate.instant(
+              this.addInstance3azSuccessMessage,
+              {
                 instance: this.instance.name,
-              })
-            : this.$translate.instant(this.addInstancesSuccessMessage);
+                zone: this.instance.availabilityZone,
+              },
+            );
+          } else {
+            message = this.$translate.instant(this.addInstanceSuccessMessage, {
+              instance: this.instance.name,
+            });
+          }
+        } else {
+          message = this.$translate.instant(this.addInstancesSuccessMessage);
+        }
 
         if (Array.isArray(result) && result.length > 1) {
           return this.goBack(message, 'success');
@@ -1441,27 +1496,22 @@ export default class PciInstancesAddController {
     this.gatewayName = getAutoGeneratedName(
       `gateway-${this.model.datacenter.name.toLowerCase()}`,
     );
-    return this.PciPublicGatewaysService.getSmallestGatewayInfo(
-      this.user.ovhSubsidiary,
+
+    this.selectedGatewaySize = this.defaultGateway.size;
+    this.gatewayModel = {
+      name: this.gatewayName,
+      model: this.selectedGatewaySize,
+    };
+    const network = this.selectedPrivateNetwork.regions.find(
+      (networkRegion) => networkRegion.region === this.model.datacenter.name,
+    );
+    return this.PciProjectsProjectInstanceService.createGateway(
+      this.projectId,
+      this.model.datacenter.name,
+      network.openstackId,
+      this.selectedPrivateNetwork?.subnet[0]?.id,
+      this.gatewayModel,
     )
-      .then((data) => {
-        this.selectedGatewaySize = data.size;
-        this.gatewayModel = {
-          name: this.gatewayName,
-          model: this.selectedGatewaySize,
-        };
-        const network = this.selectedPrivateNetwork.regions.find(
-          (networkRegion) =>
-            networkRegion.region === this.model.datacenter.name,
-        );
-        return this.PciProjectsProjectInstanceService.createGateway(
-          this.projectId,
-          this.model.datacenter.name,
-          network.openstackId,
-          this.selectedPrivateNetwork?.subnet[0]?.id,
-          this.gatewayModel,
-        );
-      })
       .then(() => this.onCreateInstanceSuccess(instanceId, ips, message))
       .catch((err) => {
         this.isLoading = false;
