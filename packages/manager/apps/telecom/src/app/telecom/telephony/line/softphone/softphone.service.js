@@ -23,14 +23,9 @@ export default class SofpthoneService {
       .then(({ data }) => data);
   }
 
-  modifyDevice(billingAccount, serviceName, name, deviceId) {
+  getDevices(billingAccount, serviceName) {
     return this.$http
-      .put(
-        `/telephony/${billingAccount}/line/${serviceName}/softphone/devices/${deviceId}`,
-        {
-          name,
-        },
-      )
+      .get(`/telephony/${billingAccount}/line/${serviceName}/softphone/devices`)
       .then(({ data }) => data);
   }
 
@@ -96,14 +91,6 @@ export default class SofpthoneService {
   getSoftphoneDevices(billingAccount, serviceName) {
     return this.$http
       .get(`/telephony/${billingAccount}/line/${serviceName}/softphone/devices`)
-      .then(({ data }) => data);
-  }
-
-  getSoftphoneDeviceDetail(billingAccount, serviceName, deviceId) {
-    return this.$http
-      .get(
-        `/telephony/${billingAccount}/line/${serviceName}/softphone/devices/${deviceId}`,
-      )
       .then(({ data }) => data);
   }
 
@@ -184,21 +171,6 @@ export default class SofpthoneService {
       .get(`/telephony/${billingAccount}/softphone/logo`)
       .then(({ data }) => data);
   }
-
-  getDevicesInfos(billingAccount, serviceName) {
-    return this.iceberg(
-      `/telephony/${billingAccount}/line/${serviceName}/softphone/devices`,
-    )
-      .query()
-      .expand('CachedObjectList-Pages')
-      .execute()
-      .$promise.then(({ data }) => data);
-  }
-
-  /*
-   * TODO: this API is not testable inside LABEU
-   * => Some tests will be needed for testing this in production
-   */
 
   uploadDocument(file) {
     let globalGetUrl = null;
