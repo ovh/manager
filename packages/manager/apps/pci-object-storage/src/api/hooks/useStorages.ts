@@ -28,6 +28,7 @@ import {
 } from '@/constants';
 import { paginateResults } from '@/helpers';
 import { addUser, deleteSwiftObject, TStorageObject } from '../data/objects';
+import { getContainerQueryKey } from './useContainer';
 
 export const sortStorages = (sorting: ColumnSort, storages: TStorage[]) => {
   const order = sorting.desc ? -1 : 1;
@@ -302,6 +303,8 @@ export const useUpdateStorage = ({
   onSuccess,
   onError,
 }: UseUpdateStorageProps) => {
+  const queryClient = useQueryClient();
+
   const mutation = useMutation({
     mutationFn: async ({ versioning }: { versioning: { status: string } }) =>
       updateStorage({
@@ -312,7 +315,17 @@ export const useUpdateStorage = ({
         s3StorageType,
       }),
     onError,
-    onSuccess,
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: getContainerQueryKey({
+          projectId,
+          region,
+          containerId: name,
+          containerName: name,
+        }),
+      });
+      onSuccess();
+    },
   });
 
   return {
