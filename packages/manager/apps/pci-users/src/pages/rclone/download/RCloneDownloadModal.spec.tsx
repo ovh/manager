@@ -2,14 +2,13 @@ import { describe, expect, vi } from 'vitest';
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import { QueryClientProvider } from '@tanstack/react-query';
 import queryClient from '@/queryClient';
-import { useDownloadOpenStackConfig } from '@/api/hooks/useUser';
-import OpenStackDownloadModal from './OpenStackDownloadModal';
+import RCloneDownloadModal from './RCloneDownloadModal';
+import { useDownloadRCloneConfig } from '@/api/hooks/useUser';
 
 vi.mock('@ovh-ux/manager-react-shell-client', async () => ({
   useEnvironment: () => ({
     user: {},
     getUser: () => ({}),
-    getRegion: () => 'EU',
   }),
 }));
 
@@ -32,7 +31,7 @@ vi.mock('react-i18next', () => ({
 vi.mock('@/api/hooks/useUser', () => {
   const download = vi.fn(() => {});
   return {
-    useDownloadOpenStackConfig: () => ({
+    useDownloadRCloneConfig: () => ({
       download,
     }),
     useUser: () => ({}),
@@ -42,21 +41,21 @@ vi.mock('@/api/hooks/useUser', () => {
 function renderModal() {
   render(
     <QueryClientProvider client={queryClient}>
-      <OpenStackDownloadModal
+      <RCloneDownloadModal
         projectId="foo"
         onClose={() => {}}
         onError={() => {}}
         onSuccess={() => {}}
         userId={'bar'}
-      ></OpenStackDownloadModal>
+      ></RCloneDownloadModal>
       ,
     </QueryClientProvider>,
   );
 }
 
-describe('OpenStack Download Modal', () => {
+describe('Rclone Download Modal', () => {
   it('should call the download function with some parameters', async () => {
-    const useDownloadConfig = useDownloadOpenStackConfig({
+    const useDownloadConfig = useDownloadRCloneConfig({
       projectId: 'foo',
       userId: 'bar',
       onSuccess: () => {},
@@ -69,9 +68,8 @@ describe('OpenStack Download Modal', () => {
       fireEvent.click(submitButton);
     });
     const downloadSpy = vi.spyOn(useDownloadConfig, 'download');
-    await useDownloadConfig.download('BHS', 3);
-    expect(downloadSpy).toHaveBeenCalledWith('BHS', 3);
-    expect(downloadSpy).not.toHaveBeenCalledWith('SBG', 2);
-    expect(downloadSpy).not.toHaveBeenCalledWith('BHS', 2);
+    await useDownloadConfig.download('BHS', 'Swift');
+    expect(downloadSpy).toHaveBeenCalledWith('BHS', 'Swift');
+    expect(downloadSpy).not.toHaveBeenCalledWith('SBG', 'S3');
   });
 });
