@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.101.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.100.0...@ovh-ux/manager-container-app@0.101.0) (2025-01-21)
+
+
+### Bug Fixes
+
+* **container:** fix project listing searchbox in legacy sidebar ([#14868](https://github.com/ovh/manager/issues/14868)) ([a272f45](https://github.com/ovh/manager/commit/a272f45236c9360dedaa9dc20659a87dee32f247))
+
+
+### Features
+
+* **container:** replace font-awesome icons with ODS ([#14846](https://github.com/ovh/manager/issues/14846)) ([a228253](https://github.com/ovh/manager/commit/a228253676b2953ab292fafd5091ee41d7d9dd51))
+
+
+
+
+
 # [0.100.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.99.1...@ovh-ux/manager-container-app@0.100.0) (2025-01-15)
 
 
