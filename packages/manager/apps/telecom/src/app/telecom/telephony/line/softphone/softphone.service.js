@@ -27,26 +27,15 @@ export default class SofpthoneService {
       .then(({ data }) => data);
   }
 
-  deleteAllDevices(billingAccount, serviceName) {
-    this.getDevicesInfos(billingAccount, serviceName)
-      .then((devices) => {
-        this.$q.all(
-          devices.map((device) =>
-            this.$http.delete(
-              `/telephony/${billingAccount}/line/${serviceName}/softphone/devices/${device.id}`,
-            ),
-          ),
+  deleteDevice(billingAccount, serviceName, deviceId = null) {
+    const promise = deviceId
+      ? this.$http.delete(
+          `/telephony/${billingAccount}/line/${serviceName}/softphone/devices/${deviceId}`,
+        )
+      : this.$http.post(
+          `/telephony/${billingAccount}/line/${serviceName}/softphone/devices/disconnect`,
         );
-      })
-      .then(({ data }) => data);
-  }
-
-  deleteDevice(billingAccount, serviceName, deviceId) {
-    return this.$http
-      .delete(
-        `/telephony/${billingAccount}/line/${serviceName}/softphone/devices/${deviceId}`,
-      )
-      .then(({ data }) => data);
+    return promise.then(({ data }) => data);
   }
 
   createToken(billingAccount, serviceName, email = '') {

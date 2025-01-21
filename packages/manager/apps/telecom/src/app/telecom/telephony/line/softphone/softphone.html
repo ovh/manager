@@ -116,7 +116,7 @@
             <oui-button
                 data-disabled="$ctrl.devices.length >= 3"
                 data-variant="primary"
-                data-on-click="$ctrl.openAddDeviceModal()"
+                data-on-click="$ctrl.goToAddDevice()"
             >
                 <span
                     data-translate="telephony_line_softphone_new_token"
@@ -125,7 +125,7 @@
             <oui-button
                 data-ng-if="$ctrl.devices.length > 0"
                 data-variant="secondary"
-                data-on-click="$ctrl.deleteAllDevices()"
+                data-on-click="$ctrl.goToDeleteDevice()"
             >
                 <span
                     data-translate="telephony_line_softphone_btn_delete_all"
@@ -192,8 +192,7 @@
                     <td class="oui-table__cell">
                         <oui-button
                             variant="link"
-                            data-on-click="$ctrl.deleteDevice()"
-                            data-disabled="$ctrl.isDevicesDeleting"
+                            data-on-click="$ctrl.goToDeleteDevice(device.id)"
                         >
                             <span class="oui-icon oui-icon-bin"></span
                         ></oui-button>
