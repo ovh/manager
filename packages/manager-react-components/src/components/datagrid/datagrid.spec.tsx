@@ -8,6 +8,7 @@ import {
   PaginationState,
 } from './datagrid.component';
 import DataGridTextCell from './text-cell.component';
+import { defaultNumberOfLoadingRows } from './datagrid.contants';
 
 vitest.mock('react-i18next', async () => {
   const originalModule = await vitest.importActual('react-i18next');
@@ -219,4 +220,54 @@ it('should disable overflow of table', async () => {
     />,
   );
   expect(container.querySelectorAll('.overflow-hidden').length).toBe(1);
+});
+
+it('should have the default number of loading row when isLoading is true and numberOfLoadingRows is not specified', async () => {
+  const { queryAllByTestId } = render(
+    <Datagrid columns={sampleColumns} items={[]} totalItems={0} isLoading />,
+  );
+  expect(queryAllByTestId('loading-row').length).toBe(
+    defaultNumberOfLoadingRows,
+  );
+});
+
+it('should display the specified number of loading rows when isLoading is true', async () => {
+  const numberOfLoadingRows = 2;
+  const { queryAllByTestId } = render(
+    <Datagrid
+      columns={sampleColumns}
+      items={[]}
+      totalItems={0}
+      numberOfLoadingRows={numberOfLoadingRows}
+      isLoading
+    />,
+  );
+  expect(queryAllByTestId('loading-row').length).toBe(numberOfLoadingRows);
+});
+
+it('should display take the pageSize and not the default one as numberOfLoadingRows when specified', async () => {
+  const pageSize = 10;
+  const { queryAllByTestId } = render(
+    <Datagrid
+      columns={sampleColumns}
+      items={[]}
+      totalItems={0}
+      pagination={{ pageIndex: 0, pageSize }}
+      isLoading
+    />,
+  );
+  expect(queryAllByTestId('loading-row').length).toBe(pageSize);
+});
+
+it('should set isLoading to load more button when isLoading is true', async () => {
+  const { getByTestId } = render(
+    <Datagrid
+      columns={sampleColumns}
+      items={[]}
+      totalItems={0}
+      isLoading
+      hasNextPage
+    />,
+  );
+  expect(getByTestId('load-more-btn')).toHaveAttribute('is-loading', 'true');
 });

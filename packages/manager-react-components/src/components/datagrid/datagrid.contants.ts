@@ -7,3 +7,5 @@ export const DEFAULT_PAGINATION: PaginationState = {
   pageIndex: 0,
   pageSize: PAGE_SIZES[0],
 };
+
+export const defaultNumberOfLoadingRows = 5;
