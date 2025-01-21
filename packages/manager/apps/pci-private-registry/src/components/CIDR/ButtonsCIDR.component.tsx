@@ -23,14 +23,8 @@ import useDataGridContext from '@/pages/CIDR/useDatagridContext';
 
 const Buttons = () => {
   const { projectId = '', registryId = '' } = useParams();
-  const { removeDraftRow, isUpdating, reset } = useDataGridContext();
-  const {
-    handleSubmit,
-    formState,
-    reset: resetForm,
-    removeDraftRow,
-    reset,
-  } = useFormContext();
+  const { removeDraftRow, isUpdating } = useDataGridContext();
+  const { handleSubmit, formState, reset: resetForm, reset } = useFormContext();
   const { t } = useTranslation(['ip-restrictions', 'common']);
 
   const { addSuccess, addError, clearNotifications } = useNotifications();
