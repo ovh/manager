@@ -76,7 +76,7 @@ const Stories = ({ componentName, stories }: CompareProps) => {
         </TableHeader>
         <TableBody>
           {stories.map((s) => (
-            <TableRow>
+            <TableRow key={s.story}>
               <TableCell>{s.story}</TableCell>
               <TableCell>{renderComponent(s.customComponentExemple)}</TableCell>
               <TableCell>{resultElem(s.customComponentResult)}</TableCell>

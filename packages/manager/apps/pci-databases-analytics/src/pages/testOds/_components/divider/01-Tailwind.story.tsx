@@ -7,7 +7,7 @@ export default {
   story: 'Tailwind',
   customComponentExemple: (
     <>
-      <p>before</p>
+      <p>Before</p>
       <Separator className="bg-red-500" />
       <p>After</p>
     </>
@@ -15,7 +15,7 @@ export default {
   customComponentResult: StoryResult.success,
   ODSComponentExemple: (
     <>
-      <p>before</p>
+      <p>Before</p>
       <OdsDivider className="bg-red-500" />
       <p>After</p>
     </>

@@ -4,7 +4,7 @@ import { StoryResult } from '../Stories';
 import { Input } from '@/components/ui/input';
 
 export default {
-  story: 'Controlled ipnut',
+  story: 'Controlled input',
   customComponentExemple: () => {
     const [v, setV] = useState('Hello world');
     return (

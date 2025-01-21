@@ -3,7 +3,7 @@ import { StoryResult } from '../Stories';
 import { Input } from '@/components/ui/input';
 
 export default {
-  story: 'Simple binding ipnut',
+  story: 'Simple binding input',
   customComponentExemple: (
     <Input placeholder="Enter something here" value={'hello world'} />
   ),
@@ -15,5 +15,5 @@ export default {
       value={'hello world'}
     />
   ),
-  ODSComponentResult: StoryResult.success,
+  ODSComponentResult: StoryResult.fail,
 };

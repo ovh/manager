@@ -7,7 +7,7 @@ export default {
   story: 'Simple divider',
   customComponentExemple: (
     <>
-      <p>before</p>
+      <p>Before</p>
       <Separator />
       <p>After</p>
     </>
@@ -15,10 +15,10 @@ export default {
   customComponentResult: StoryResult.success,
   ODSComponentExemple: (
     <>
-      <p>before</p>
+      <p>Before</p>
       <OdsDivider />
       <p>After</p>
     </>
   ),
-  ODSComponentResult: StoryResult.fail,
+  ODSComponentResult: StoryResult.success,
 };
