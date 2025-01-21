@@ -3,7 +3,7 @@ import {
   DatagridColumn,
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-import { useTranslatedBytes } from '@ovh-ux/manager-pci-block-storage-app/src/hooks/useTranslatedBytes';
+import { useBytes } from '@ovh-ux/manager-pci-common';
 import { Quota } from '@/api/data/quota';
 import { PRODUCTS } from '@/constants';
 import { LimitedQuotaBadgeComponent } from '@/pages/quota/components/LimitedQuotaBadge.component';
@@ -57,20 +57,11 @@ export const useDatagridColumn = () => {
     {
       id: 'ram',
       cell: (props: Quota) => {
-        const used = useTranslatedBytes(
-          props.instance.usedRAM * 1000000,
-          2,
-          false,
-          'B',
-          false,
-        );
-        const max = useTranslatedBytes(
-          props.instance.maxRam * 1000000,
-          2,
-          false,
-          'B',
-          false,
-        );
+        const { formatBytes } = useBytes();
+        const [used, max] = [
+          formatBytes(props.instance.usedRAM * 1000000, 2),
+          formatBytes(props.instance.maxRam * 1000000, 2),
+        ];
         return (
           <DataGridTextCell>
             <span>
@@ -93,20 +84,12 @@ export const useDatagridColumn = () => {
     {
       id: 'disk',
       cell: (props: Quota) => {
-        const used = useTranslatedBytes(
-          props.volume.usedGigabytes * 1000000000,
-          2,
-          false,
-          'B',
-          false,
-        );
-        const max = useTranslatedBytes(
-          props.volume.maxGigabytes * 1000000000,
-          2,
-          false,
-          'B',
-          false,
-        );
+        const { formatBytes } = useBytes();
+        const [used, max] = [
+          formatBytes(props.volume.usedGigabytes * 1000000000, 2),
+          formatBytes(props.volume.maxGigabytes * 1000000000, 2),
+        ];
+
         return (
           <DataGridTextCell>
             <span>
