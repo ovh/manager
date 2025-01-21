@@ -131,7 +131,6 @@ export default class FlavorsListController {
   }
 
   static isPricingComingSoon(flavor) {
-    // return flavor?.tagsBlob?.includes(TAGS_BLOB.COMING_SOON);
     return !flavor?.prices?.monthly;
   }
 
