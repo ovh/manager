@@ -6,7 +6,7 @@ export default {
   controller,
   bindings: {
     goBack: '<',
-    deviceId: '<',
-    goToSendLinkByMailModal: '<',
+    billingAccount: '<',
+    serviceName: '<',
   },
 };

@@ -1,5 +1,3 @@
-import { SOFTPHONE_TYPE } from './softphone.constants';
-
 export default class SofpthoneService {
   /* @ngInject */
   constructor($http, $q, $window, iceberg) {
@@ -51,30 +49,10 @@ export default class SofpthoneService {
       .then(({ data }) => data);
   }
 
-  createDevice(billingAccount, serviceName, name) {
+  createToken(billingAccount, serviceName, email = '') {
     return this.$http
       .post(
-        `/telephony/${billingAccount}/line/${serviceName}/softphone/devices`,
-        {
-          name,
-          type: SOFTPHONE_TYPE,
-        },
-      )
-      .then(({ data }) => data);
-  }
-
-  enroll(billingAccount, serviceName, deviceId) {
-    return this.$http
-      .post(
-        `/telephony/${billingAccount}/line/${serviceName}/devices/${deviceId}/enroll`,
-      )
-      .then(({ data }) => data);
-  }
-
-  sendProvisioningToken(billingAccount, serviceName, deviceId, email) {
-    return this.$http
-      .post(
-        `/telephony/${billingAccount}/line/${serviceName}/devices/${deviceId}/sendProvisioningToken`,
+        `/telephony/${billingAccount}/line/${serviceName}/softphone/token`,
         {
           email,
         },
@@ -85,12 +63,6 @@ export default class SofpthoneService {
   getStoreLinks() {
     return this.$http
       .get('/telephony/softphone/storeLinks')
-      .then(({ data }) => data);
-  }
-
-  getSoftphoneDevices(billingAccount, serviceName) {
-    return this.$http
-      .get(`/telephony/${billingAccount}/line/${serviceName}/softphone/devices`)
       .then(({ data }) => data);
   }
 
