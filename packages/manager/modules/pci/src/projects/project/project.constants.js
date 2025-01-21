@@ -215,6 +215,8 @@ export const LEGACY_PLAN_CODES = ['project.legacy', 'project.2018'];
 
 export const LOCAL_ZONE_REGION = 'localzone';
 
+export const ONE_AZ_REGION = 'region';
+
 export const THREE_AZ_REGION = 'region-3-az';
 
 export const LOCAL_ZONE_INFO_URL = {
@@ -241,33 +243,100 @@ export const LOCAL_ZONE_INFO_URL = {
   US: 'https://us.ovhcloud.com/public-cloud/local-zone-compute/',
 };
 
+export const REGIONS_3AZ_URL = {
+  DEFAULT:
+    'https://www.ovhcloud.com/en/about-us/global-infrastructure/expansion-regions-az/',
+  ASIA:
+    'https://www.ovhcloud.com/asia/about-us/global-infrastructure/expansion-regions-az/',
+  DE:
+    'https://www.ovhcloud.com/de/about-us/global-infrastructure/expansion-regions-az/',
+  ES:
+    'https://www.ovhcloud.com/es/about-us/global-infrastructure/expansion-regions-az/',
+  IE:
+    'https://www.ovhcloud.com/en-ie/about-us/global-infrastructure/expansion-regions-az/',
+  IT:
+    'https://www.ovhcloud.com/it/about-us/global-infrastructure/expansion-regions-az/',
+  NL:
+    'https://www.ovhcloud.com/nl/about-us/global-infrastructure/expansion-regions-az/',
+  PL:
+    'https://www.ovhcloud.com/pl/about-us/global-infrastructure/expansion-regions-az/',
+  PT:
+    'https://www.ovhcloud.com/pt/about-us/global-infrastructure/expansion-regions-az/',
+  GB:
+    'https://www.ovhcloud.com/en-gb/about-us/global-infrastructure/expansion-regions-az/',
+  CA:
+    'https://www.ovhcloud.com/en-ca/about-us/global-infrastructure/expansion-regions-az/',
+  QC:
+    'https://www.ovhcloud.com/fr-ca/about-us/global-infrastructure/expansion-regions-az/',
+  MA:
+    'https://www.ovhcloud.com/fr-ma/about-us/global-infrastructure/expansion-regions-az/',
+  SN:
+    'https://www.ovhcloud.com/fr-sn/about-us/global-infrastructure/expansion-regions-az/',
+  TN:
+    'https://www.ovhcloud.com/fr-tn/about-us/global-infrastructure/expansion-regions-az/',
+  AU:
+    'https://www.ovhcloud.com/en-au/about-us/global-infrastructure/expansion-regions-az/',
+  SG:
+    'https://www.ovhcloud.com/en-sg/about-us/global-infrastructure/expansion-regions-az/',
+  FR:
+    'https://www.ovhcloud.com/fr/about-us/global-infrastructure/expansion-regions-az/',
+  WS:
+    'https://www.ovhcloud.com/en/about-us/global-infrastructure/expansion-regions-az/',
+  US:
+    'https://www.ovhcloud.com/en/about-us/global-infrastructure/expansion-regions-az/',
+  WE:
+    'https://www.ovhcloud.com/en/about-us/global-infrastructure/expansion-regions-az/',
+};
+
 export const GLOBAL_REGIONS_INFO_URL = {
-  DEFAULT: 'https://ovhcloud.com/en/public-cloud/compute/',
-  ASIA: 'https://ovhcloud.com/asia/public-cloud/compute/',
-  DE: 'https://ovhcloud.com/de/public-cloud/compute/',
-  ES: 'https://www.ovhcloud.com/es-es/public-cloud/compute/',
-  IE: 'https://ovhcloud.com/en-ie/public-cloud/compute/',
-  IT: 'https://ovhcloud.com/it/public-cloud/compute/',
-  NL: 'https://ovhcloud.com/nl/public-cloud/compute/',
-  PL: 'https://ovhcloud.com/pl/public-cloud/compute/',
-  PT: 'https://ovhcloud.com/pt/public-cloud/compute/',
-  GB: 'https://ovhcloud.com/en-gb/public-cloud/compute/',
-  CA: 'https://ovhcloud.com/en-ca/public-cloud/compute/',
-  QC: 'https://ovhcloud.com/fr-ca/public-cloud/compute/',
-  MA: 'https://ovhcloud.com/fr-ma/public-cloud/compute/',
-  SN: 'https://ovhcloud.com/fr-sn/public-cloud/compute/',
-  TN: 'https://ovhcloud.com/fr-tn/public-cloud/compute/',
-  AU: 'https://ovhcloud.com/en-au/public-cloud/compute/',
-  SG: 'https://ovhcloud.com/en-sg/public-cloud/compute/',
-  FR: 'https://ovhcloud.com/fr/public-cloud/compute/',
-  WS: 'https://ovhcloud.com/us-en/public-cloud/compute/',
-  US: 'https://us.ovhcloud.com/public-cloud/compute/',
-  WE: 'https://ovhcloud.com/us-en/public-cloud/compute/',
+  DEFAULT:
+    'https://www.ovhcloud.com/en/about-us/global-infrastructure/expansion-regions-az/',
+  ASIA:
+    'https://www.ovhcloud.com/asia/about-us/global-infrastructure/expansion-regions-az/',
+  DE:
+    'https://www.ovhcloud.com/de/about-us/global-infrastructure/expansion-regions-az/',
+  ES:
+    'https://www.ovhcloud.com/es/about-us/global-infrastructure/expansion-regions-az/',
+  IE:
+    'https://www.ovhcloud.com/en-ie/about-us/global-infrastructure/expansion-regions-az/',
+  IT:
+    'https://www.ovhcloud.com/it/about-us/global-infrastructure/expansion-regions-az/',
+  NL:
+    'https://www.ovhcloud.com/nl/about-us/global-infrastructure/expansion-regions-az/',
+  PL:
+    'https://www.ovhcloud.com/pl/about-us/global-infrastructure/expansion-regions-az/',
+  PT:
+    'https://www.ovhcloud.com/pt/about-us/global-infrastructure/expansion-regions-az/',
+  GB:
+    'https://www.ovhcloud.com/en-gb/about-us/global-infrastructure/expansion-regions-az/',
+  CA:
+    'https://www.ovhcloud.com/en-ca/about-us/global-infrastructure/expansion-regions-az/',
+  QC:
+    'https://www.ovhcloud.com/fr-ca/about-us/global-infrastructure/expansion-regions-az/',
+  MA:
+    'https://www.ovhcloud.com/fr-ma/about-us/global-infrastructure/expansion-regions-az/',
+  SN:
+    'https://www.ovhcloud.com/fr-sn/about-us/global-infrastructure/expansion-regions-az/',
+  TN:
+    'https://www.ovhcloud.com/fr-tn/about-us/global-infrastructure/expansion-regions-az/',
+  AU:
+    'https://www.ovhcloud.com/en-au/about-us/global-infrastructure/expansion-regions-az/',
+  SG:
+    'https://www.ovhcloud.com/en-sg/about-us/global-infrastructure/expansion-regions-az/',
+  FR:
+    'https://www.ovhcloud.com/fr/about-us/global-infrastructure/expansion-regions-az/',
+  WS:
+    'https://www.ovhcloud.com/en/about-us/global-infrastructure/expansion-regions-az/',
+  US:
+    'https://www.ovhcloud.com/en/about-us/global-infrastructure/expansion-regions-az/',
+  WE:
+    'https://www.ovhcloud.com/en/about-us/global-infrastructure/expansion-regions-az/',
 };
 
 export const URL_INFO = {
   GLOBAL_REGIONS: GLOBAL_REGIONS_INFO_URL,
   LOCAL_ZONE: LOCAL_ZONE_INFO_URL,
+  REGIONS_3AZ: REGIONS_3AZ_URL,
 };
 
 export const DISCOVERY_PROJECT_PLANCODE = 'project.discovery';
@@ -294,6 +363,7 @@ export default {
   PCI_FEATURES,
   LOCAL_ZONE_REGION,
   THREE_AZ_REGION,
+  ONE_AZ_REGION,
   URL_INFO,
   DISCOVERY_PROJECT_PLANCODE,
   DISCOVERY_PROMOTION_VOUCHER,

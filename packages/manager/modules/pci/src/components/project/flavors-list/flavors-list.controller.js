@@ -31,6 +31,7 @@ export default class FlavorsListController {
     this.quotaUrl = this.$state.href('pci.projects.project.quota');
     this.globalRegionsUrl = this.PciProject.getDocumentUrl('GLOBAL_REGIONS');
     this.localZoneUrl = this.PciProject.getDocumentUrl('LOCAL_ZONE');
+    this.zone3azUrl = this.PciProject.getDocumentUrl('REGIONS_3AZ');
     this.flavorCount = this.flavorCount || 1;
     return this.load({ force: true });
   }
@@ -114,6 +115,7 @@ export default class FlavorsListController {
       this.flavors = this.PciProjectFlavors.constructor.groupByCategory(
         flavorGroups,
       );
+
       this.selectedCategory =
         this.selectedCategory || get(first(this.flavors), 'category');
       if (force && this.selectedFlavor && this.selectedCategory) {
@@ -129,7 +131,8 @@ export default class FlavorsListController {
   }
 
   static isPricingComingSoon(flavor) {
-    return flavor?.tagsBlob?.includes(TAGS_BLOB.COMING_SOON);
+    // return flavor?.tagsBlob?.includes(TAGS_BLOB.COMING_SOON);
+    return !flavor?.prices?.monthly;
   }
 
   static isNewFlavor(flavor) {

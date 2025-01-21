@@ -21,12 +21,6 @@
                         data-translate="pci_project_flavors_billing_price_hourly"
                         data-translate-values="{ price: $ctrl.formatPrice($ctrl.free ? 0 : $ctrl.prices.hourly) }"
                     ></span>
-                    <span
-                        data-ng-if="$ctrl.free"
-                        data-ng-class="{ 'text-line-through': $ctrl.free }"
-                        data-translate="pci_project_flavors_billing_price_hourly"
-                        data-translate-values="{ price: $ctrl.formatPrice($ctrl.prices.hourly) }"
-                    ></span>
                 </span>
                 <span data-ng-transclude="hourlyPrice"></span>
                 <span

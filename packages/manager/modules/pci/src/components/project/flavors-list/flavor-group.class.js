@@ -9,6 +9,7 @@ import some from 'lodash/some';
 import { DEFAULT_OS } from './flavors-list.constants';
 
 export default class FlavorGroup {
+  // ll
   constructor(flavors, image = DEFAULT_OS) {
     Object.assign(
       this,
@@ -71,6 +72,7 @@ export default class FlavorGroup {
       // then use default non-flex flavor equivalent
       flavor = this.getFlavorByOsType(osType, false);
     }
+
     return flavor ? flavor.getIdByRegion(region) : false;
   }
 
