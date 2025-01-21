@@ -61,9 +61,8 @@ describe('DeletionModal', () => {
         value: 'CONFIRM',
       } as OdsInputChangeEventDetail);
     });
-    expect(getByTestId('pciModal-button_submit')).toHaveAttribute(
+    expect(getByTestId('pciModal-button_submit')).not.toHaveAttribute(
       'is-disabled',
-      'false',
     );
   });
 
