@@ -19,7 +19,7 @@ export const RouterWithQueryClientWrapper = ({
       userLocale: 'en-GB',
       version: '1',
       user: mockedUser,
-      applicationName: 'pci-databases-analytics',
+      applicationName: 'pci-ai-notebooks',
       universe: 'pci',
       applicationURLs: {},
       message: {
@@ -77,6 +77,7 @@ export const RouterWithQueryClientWrapper = ({
         getEnvironment: vi.fn(),
         setUniverse: vi.fn(),
         setApplication: vi.fn(),
+        setUser: vi.fn(),
       },
       i18n: {
         getLocale: vi.fn(),
@@ -120,6 +121,7 @@ export const RouterWithQueryClientWrapper = ({
         stopProgress: vi.fn(),
         hidePreloader: vi.fn(),
         showPreloader: vi.fn(),
+        notifyModalActionDone: vi.fn(),
       },
       navigation: {
         getURL: vi.fn(),
@@ -140,6 +142,7 @@ export const RouterWithQueryClientWrapper = ({
         trackImpression: vi.fn(),
         trackMVTest: vi.fn(),
         trackPage: vi.fn(),
+        trackMixCommanderS3: vi.fn(),
       },
       logger: {
         log: vi.fn(),
