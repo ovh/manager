@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { AlertCircle, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
@@ -10,17 +10,13 @@ import {
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import OvhLink from '@/components/links/OvhLink.component';
 import usePciProject from '@/hooks/api/project/useGetProjects.hook';
-import { PlanCode } from '@/configuration/project';
+import { PlanCode } from '@/types/cloud/Project';
 
-interface AuthProps {
-  onSuccess?: () => void;
-}
-
-export default function Auth({ onSuccess }: AuthProps) {
+export default function Auth() {
   const { t } = useTranslation('pci-ai-dashboard/auth');
   const toast = useToast();
-  const { projectId } = useParams();
   const projectData = usePciProject();
+  const navigate = useNavigate();
 
   const isProjectDiscoveryMode =
     projectData.data?.planCode === PlanCode.DISCOVERY;
@@ -38,18 +34,14 @@ export default function Auth({ onSuccess }: AuthProps) {
         title: t('formActiveUserToastSuccessTitle'),
         description: t(`formActiveUserToastSuccessDescription`),
       });
-      if (onSuccess) {
-        onSuccess();
-      }
+      navigate('../');
     },
   };
 
   const { postAuthorization } = usePostAuthorization(PostAuthorizationProps);
 
   const activateProject = () => {
-    postAuthorization({
-      projectId,
-    });
+    postAuthorization();
   };
 
   return (

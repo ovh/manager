@@ -33,16 +33,6 @@ export default function DashboardLayout() {
   const jobs = jobsQuery.data;
   const apps = appsQuery.data;
 
-  const dashboardTabs =
-    notebooksQuery.isSuccess &&
-    jobsQuery.isSuccess &&
-    appsQuery.isSuccess &&
-    (notebooks.length > 0 || jobs.length > 0 || apps?.length > 0) ? (
-      <DashboardTabs />
-    ) : (
-      <></>
-    );
-
   const dashboardLayoutContext: DashboardLayoutContext = {
     notebooks,
     jobs,
@@ -52,7 +42,7 @@ export default function DashboardLayout() {
   return (
     <>
       <DashboardHeader />
-      {dashboardTabs}
+      <DashboardTabs />
       <div className="space-y-2">
         <Outlet context={dashboardLayoutContext} />
       </div>

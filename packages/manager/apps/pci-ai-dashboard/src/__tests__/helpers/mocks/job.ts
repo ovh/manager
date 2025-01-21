@@ -1,4 +1,5 @@
 import * as ai from '@/types/cloud/project/ai';
+import { mockedDataSync } from './datasync';
 
 export const mockedJobSpec: ai.job.JobSpec = {
   image: 'image',
@@ -15,38 +16,7 @@ export const mockedJobSpec: ai.job.JobSpec = {
   },
 };
 export const mockedJobStatus: ai.job.JobStatus = {
-  dataSync: [
-    {
-      createdAt: 'createdAt',
-      id: 'datasyncId',
-      status: {
-        info: {
-          code: ai.InfoCodeEnum.APP_RUNNING,
-          message: 'message',
-        },
-        progress: [
-          {
-            completed: 1,
-            createdAt: 'createdAt',
-            deleted: 0,
-            direction: ai.volume.DataSyncEnum.push,
-            failed: 0,
-            id: 'progressId',
-            info: 'info',
-            processed: 3,
-            skipped: 1,
-            state: ai.volume.DataSyncProgressStateEnum.DONE,
-            total: 2,
-            transferredBytes: 30,
-            updatedAt: 'updatedAt',
-          },
-        ],
-        queuedAt: 'queuedAt',
-        state: ai.volume.DataSyncStateEnum.DONE,
-      },
-      updatedAt: 'updatedAt',
-    },
-  ],
+  dataSync: [mockedDataSync],
   history: [
     {
       date: 'date',

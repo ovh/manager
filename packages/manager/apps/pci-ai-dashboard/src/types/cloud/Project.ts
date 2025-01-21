@@ -4,11 +4,11 @@ import { ProjectStatusEnum } from '@/types/cloud/project/ProjectStatusEnum';
 /** Project */
 export interface Project {
   /** Project access */
-  access?: AccessTypeEnum;
+  access: AccessTypeEnum;
   /** Project creation date */
-  creationDate?: string;
+  creationDate: string;
   /** Description of your project */
-  description: string;
+  description?: string;
   /** Expiration date of your project. After this date, your project will be deleted */
   expiration?: string;
   /** Manual quota prevent automatic quota upgrade */
@@ -16,13 +16,18 @@ export interface Project {
   /** Project order id */
   orderId?: number;
   /** Order plan code */
-  planCode?: string;
+  planCode: string;
   /** Project name */
   projectName?: string;
   /** Project id */
-  project_id?: string;
+  project_id: string;
   /** Current status */
-  status?: ProjectStatusEnum;
+  status: ProjectStatusEnum;
   /** Project unleashed */
-  unleash?: boolean;
+  unleash: boolean;
+}
+
+export enum PlanCode {
+  DISCOVERY = 'project.discovery',
+  STANDARD = 'project.2018',
 }

@@ -1,3 +1,4 @@
+import '@/vite-hmr.ts';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {
@@ -7,7 +8,6 @@ import {
 import initI18n from './i18n';
 import App from './App';
 
-import '@/vite-hmr.ts';
 import { LoadingIndicatorProvider } from './contexts/LoadingIndicator.context';
 
 const init = async (

@@ -1,20 +1,16 @@
 import { Outlet, redirect, useLocation, useParams } from 'react-router-dom';
 import { useRouting, useShell } from '@ovh-ux/manager-react-shell-client';
-
 import { useEffect } from 'react';
 import queryClient from '@/query.client';
-
 import { useLoadingIndicatorContext } from '@/contexts/LoadingIndicator.context';
 import { getProject } from '@/data/api/project/project.api';
-import Breadcrumb from '@/components/breadcrumb/Breadcrumb.component';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
-
 import { Toaster } from '@/components/ui/toaster';
 import PageLayout from '@/components/page-layout/PageLayout.component';
-import { useGetAuthorization } from '@/hooks/api/ai/authorization/useGetAuthorization.hook';
-import Auth from './auth/auth.page';
+
 import { UserActivityProvider } from '@/contexts/UserActivity.context';
 import { USER_INACTIVITY_TIMEOUT } from '@/configuration/polling';
+import { useTrackPageAuto } from '@/hooks/useTracking';
 
 export function breadcrumb() {
   return (
@@ -34,15 +30,16 @@ interface DashboardLayoutProps {
 // try to fetch the service data, redirect to service page if it fails
 export const Loader = async ({ params }: DashboardLayoutProps) => {
   const { projectId } = params;
-  return queryClient
-    .fetchQuery({
+  // check if we have a correct projectId
+  try {
+    await queryClient.fetchQuery({
       queryKey: ['projectId', projectId],
       queryFn: () => getProject(projectId),
-    })
-    .then(
-      () => null,
-      () => redirect(`/pci/projects`),
-    );
+    });
+  } catch (_error) {
+    return redirect(`/pci/projects`);
+  }
+  return null;
 };
 
 function RoutingSynchronisation() {
@@ -50,6 +47,7 @@ function RoutingSynchronisation() {
   const location = useLocation();
   const routing = useRouting();
   const shell = useShell();
+
   useEffect(() => {
     routing.stopListenForHashChange();
   }, []);
@@ -58,6 +56,9 @@ function RoutingSynchronisation() {
     setLoading(false);
     routing.onHashChange();
   }, [location]);
+
+  useTrackPageAuto();
+
   return <></>;
 }
 
@@ -67,29 +68,11 @@ export function useDashboardData() {
 }
 
 export default function Layout() {
-  const { projectId } = useParams();
-  const authorizationQuery = useGetAuthorization(projectId);
-  if (authorizationQuery.isSuccess && authorizationQuery.data.authorized) {
-    return (
-      <PageLayout>
-        <UserActivityProvider timeout={USER_INACTIVITY_TIMEOUT}>
-          <Breadcrumb />
-          <RoutingSynchronisation />
-          <Outlet />
-          <Toaster />
-        </UserActivityProvider>
-      </PageLayout>
-    );
-  }
   return (
     <PageLayout>
       <UserActivityProvider timeout={USER_INACTIVITY_TIMEOUT}>
         <RoutingSynchronisation />
-        <Auth
-          onSuccess={() => {
-            authorizationQuery.refetch();
-          }}
-        />
+        <Outlet />
         <Toaster />
       </UserActivityProvider>
     </PageLayout>

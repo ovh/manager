@@ -14,19 +14,19 @@ export interface JobSpec {
   /** GRPC Port that we want to expose in case workload HTTP & gRPC servers cannot be multiplexed to listen on the same port */
   grpcPort?: number;
   /** Job image */
-  image?: string;
+  image: string;
   /** Labels for the job */
   labels?: { [key: string]: string };
   /** Job name */
-  name?: string;
+  name: string;
   /** Partner ID */
   partnerId?: string;
   /** User ID to use to access the job */
   readUser?: string;
   /** Host region of the job */
-  region?: string;
+  region: string;
   /** Job resources */
-  resources?: Resources;
+  resources: Resources;
   /** Shutdown strategy (if any) */
   shutdown?: ShutdownStrategyEnum;
   /** SSH keys authorized to access to the job container */

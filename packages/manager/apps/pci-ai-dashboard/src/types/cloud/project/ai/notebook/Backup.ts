@@ -1,9 +1,9 @@
 /** AI Solutions Platform Notebook Backup Object */
 export interface Backup {
   /** Backup creation date */
-  createdAt?: string;
+  createdAt: string;
   /** Backup Id */
-  id?: string;
+  id: string;
   /** Backup last update date */
-  updatedAt?: string;
+  updatedAt: string;
 }
