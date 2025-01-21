@@ -123,5 +123,17 @@ export default function DatacentresListing() {
     columns,
   };
 
+  console.info('********************************');
+  console.info('********************************');
+  console.info('********************************');
+  console.info('********************************');
+  console.info('********************************');
+  console.info('********************************');
+  console.info('********************************');
+  console.info('********************************');
+  console.info('********************************');
+  console.info('********************************');
+  console.info('datagridProps :', datagridProps);
+
   return <DatagridContainer {...datagridProps} />;
 }

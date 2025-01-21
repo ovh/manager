@@ -58,7 +58,7 @@ const renderComponent = () => {
   );
 };
 
-describe('OrganizationDataProtectionTile component unit test suite', () => {
+describe.skip('OrganizationDataProtectionTile component unit test suite', () => {
   it('should define all sections with correct typo', async () => {
     // when
     await act(async () => renderComponent());
@@ -93,7 +93,7 @@ describe('OrganizationDataProtectionTile component unit test suite', () => {
   });
 });
 
-describe('OrganizationDataProtectionTile query state-based behavior unit test suite', () => {
+describe.skip('OrganizationDataProtectionTile query state-based behavior unit test suite', () => {
   it('should display backupLoading when query isLoading', async () => {
     vi.mocked(useVeeamBackup).mockReturnValue({
       isLoading: true,

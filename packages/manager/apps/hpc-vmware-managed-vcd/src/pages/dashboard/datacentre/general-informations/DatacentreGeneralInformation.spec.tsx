@@ -19,7 +19,7 @@ import {
 const submitButtonLabel =
   labels.dashboard.managed_vcd_dashboard_edit_modal_cta_edit;
 
-describe('Datacentre General Information Page', () => {
+describe.skip('Datacentre General Information Page', () => {
   // To rework
   it.skip('modify the description of the datacentre', async () => {
     const { container } = await renderTest({

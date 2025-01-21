@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import { useQueryClient } from '@tanstack/react-query';
 
 import {
   DataGridTextCell,
@@ -61,6 +62,7 @@ const DatagridWebInterfaceCell = (vdcOrg: VCDOrganization) => (
 /* ======= listing page ======= */
 export default function Listing() {
   const { t } = useTranslation('listing');
+  const client = useQueryClient();
 
   const columns = [
     {
@@ -90,15 +92,31 @@ export default function Listing() {
     },
   ];
 
-  return (
-    <DatagridContainer
-      title={MANAGED_VCD_LABEL}
-      queryKey={vcdOrganizationListQueryKey}
-      route={{
-        api: VCD_ORGANIZATION_ROUTE,
-        onboarding: urls.onboarding,
-      }}
-      columns={columns}
-    />
-  );
+  console.info('*****************');
+  console.info('*****************');
+  console.info('*****************');
+  console.info('*****************');
+  console.info('*****************');
+  console.info('*****************');
+  console.info('*****************');
+  console.info('client : ', client);
+
+  if (!client) {
+    return <div>test</div>;
+  }
+  if (client) {
+    return (
+      <DatagridContainer
+        title={MANAGED_VCD_LABEL}
+        queryKey={vcdOrganizationListQueryKey}
+        route={{
+          api: VCD_ORGANIZATION_ROUTE,
+          onboarding: urls.onboarding,
+        }}
+        columns={columns}
+      />
+    );
+  }
+
+  return <div>Loading ...</div>;
 }
