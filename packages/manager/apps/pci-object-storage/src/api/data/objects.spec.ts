@@ -33,13 +33,13 @@ describe('deleteS3Object', () => {
     expect(v6.delete).toHaveBeenCalledWith(
       '/cloud/project/projectId/region/containerRegion/s3StorageType/containerId/object/objectName',
     );
-    expect(result).toBe(mockResponse.data);
+    expect(result).toBe(mockResponse);
   });
 });
 
 describe('deleteObject', () => {
   it('should delete an object', async () => {
-    const mockResponse = { json: vi.fn().mockResolvedValue('deleted') };
+    const mockResponse = { data: 'deleted' };
     global.fetch = vi.fn().mockResolvedValue(mockResponse);
 
     const result = await deleteSwiftObject({
@@ -59,7 +59,7 @@ describe('deleteObject', () => {
         },
       },
     );
-    expect(result).toBe('deleted');
+    expect(result).toBe(mockResponse);
   });
 });
 
