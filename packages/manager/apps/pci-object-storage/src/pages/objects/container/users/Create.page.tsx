@@ -158,29 +158,27 @@ export default function UserCreatePage(): JSX.Element {
         poll<TUser>({
           fn: () => getUser(projectId, newUser.id),
           ruleFn: (user: TUser) => user.status === 'ok',
-          onSuccess: async ({ value }) => {
-            try {
-              const credentials = await generateS3Credentials(
-                projectId,
-                value.id,
-              );
-              setState({ ...state, isLoading: false });
-              onSuccess({
-                username: value.username,
-                description: value.description,
-                access: credentials.access,
-                secret: credentials.secret,
+          onSuccess: ({ value }) => {
+            generateS3Credentials(projectId, value.id)
+              .then((credentials) => {
+                setState({ ...state, isLoading: false });
+                onSuccess({
+                  username: value.username,
+                  description: value.description,
+                  access: credentials.access,
+                  secret: credentials.secret,
+                });
+              })
+              .catch(() => {
+                trackPage(`${TRACKING_S3_POLICY_ADD}-error`);
+                addError(
+                  tAdd('pci_projects_project_users_add_error_message', {
+                    user: value.description,
+                  }),
+                );
+                setState({ ...state, isLoading: false });
+                goBack();
               });
-            } catch (e) {
-              trackPage(`${TRACKING_S3_POLICY_ADD}-error`);
-              addError(
-                tAdd('pci_projects_project_users_add_error_message', {
-                  user: value.description,
-                }),
-              );
-              setState({ ...state, isLoading: false });
-              goBack();
-            }
           },
           onFail: () => {
             trackPage(`${TRACKING_S3_POLICY_ADD}-error`);
