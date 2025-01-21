@@ -130,7 +130,7 @@ export default function ObjectPage() {
       usedSpace: formatBytes(
         serverContainer?.storedBytes || serverContainer?.objectsSize,
         2,
-        1000,
+        1024,
       ),
       publicUrl: region?.services.find(
         (service) => service.name === OBJECT_CONTAINER_OFFER_STORAGE_STANDARD,
