@@ -2,6 +2,8 @@ import { Suspense, useContext, useEffect, useRef, useState } from 'react';
 import { Outlet, useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
+  ChangelogButton,
+  ChangelogLinks,
   Datagrid,
   FilterAdd,
   FilterList,
@@ -41,6 +43,8 @@ import { useDatagridColumn } from '@/hooks/useDatagridColumn';
 import HidePreloader from '@/core/HidePreloader';
 import { useAllVolumes, useVolumes } from '@/api/hooks/useVolume';
 
+import { PAGE_PREFIX } from '@/tracking.constants';
+
 export default function ListingPage() {
   const { t } = useTranslation('common');
   const { t: tFilter } = useTranslation('filter');
@@ -56,8 +60,17 @@ export default function ListingPage() {
   const { filters, addFilter, removeFilter } = useColumnFilters();
   const { clearNotifications } = useNotifications();
   const filterPopoverRef = useRef(undefined);
+  const changelogChapters = PAGE_PREFIX.split('::');
 
   const { pagination, setPagination, sorting, setSorting } = useDataGrid();
+  const changelogLinks: ChangelogLinks = {
+    changelog:
+      'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Public+Cloud+Storage',
+    roadmap:
+      'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Public+Cloud+Storage',
+    'feature-request':
+      'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+  };
 
   useEffect(() => {
     navigation
@@ -112,7 +125,15 @@ export default function ListingPage() {
         <div className="header mb-6 mt-8">
           <Headers
             title={t('pci_projects_project_storages_blocks_title')}
-            headerButton={<PciGuidesHeader category="instances" />}
+            headerButton={
+              <>
+                <ChangelogButton
+                  links={changelogLinks}
+                  chapters={changelogChapters}
+                />
+                <PciGuidesHeader category="instances" />
+              </>
+            }
           />
         </div>
         <OsdsDivider></OsdsDivider>

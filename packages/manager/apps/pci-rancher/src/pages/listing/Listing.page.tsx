@@ -14,7 +14,11 @@ import {
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHref, useNavigate, useParams } from 'react-router-dom';
-import { Title } from '@ovh-ux/manager-react-components';
+import {
+  Title,
+  ChangelogButton,
+  ChangelogLinks,
+} from '@ovh-ux/manager-react-components';
 import { RancherService } from '@/types/api.type';
 import TableContainer from '@/components/Table/TableContainer/TableContainer.component';
 import {
@@ -22,7 +26,11 @@ import {
   useTrackingPage,
 } from '@/hooks/useTrackingPage/useTrackingPage';
 import { getOnboardingUrl } from '@/utils/route';
-import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
+import {
+  TrackingEvent,
+  TrackingPageView,
+  TRACKING_PATH,
+} from '@/utils/tracking';
 import RancherTaskMessage from './RancherTaskMessage.component';
 
 export interface ListingProps {
@@ -44,9 +52,27 @@ const ListingTablePage: React.FC<ListingProps> = ({
 
   const tasks = data.map((rancher) => rancher.currentTasks).flat();
 
+  const changelogLinks: ChangelogLinks = {
+    changelog:
+      'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Managed+Rancher+Service',
+    roadmap:
+      'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Managed+Rancher+Service',
+    'feature-request':
+      'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+  };
+  const changelogChapters: string[] = TRACKING_PATH.split('::');
+
   return (
     <>
-      <Title>{t('rancherTitle')}</Title>
+      <div className="flex justify-between align-items-center">
+        <Title>{t('rancherTitle')}</Title>
+        <div className="flex flex-wrap gap-1 justify-end">
+          <ChangelogButton
+            links={changelogLinks}
+            chapters={changelogChapters}
+          />
+        </div>
+      </div>
       <div className="my-3 mt-5">
         <OsdsButton
           size={ODS_BUTTON_SIZE.sm}

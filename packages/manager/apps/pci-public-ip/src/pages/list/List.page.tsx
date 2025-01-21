@@ -1,5 +1,7 @@
 import { useNavigation } from '@ovh-ux/manager-react-shell-client';
 import {
+  ChangelogButton,
+  ChangelogLinks,
   Headers,
   PciGuidesHeader,
   useNotifications,
@@ -27,6 +29,7 @@ import { IPsTabName } from '@/constants';
 import { useProductMaintenance } from '@/components/maintenance/useMaintenance';
 import { MaintenanceBanner } from '@/components/maintenance/MaintenanceBanner.component';
 import ListGuard from './ListGuard';
+import { PAGE_PREFIX } from '@/tracking.constants';
 
 const getActiveTab = (pathname: string) => {
   if (pathname.includes('additional-ips')) {
@@ -46,6 +49,21 @@ export default function ListingPage(): JSX.Element {
   const { data: project } = useProject();
   const { hasMaintenance, maintenanceURL } = useProductMaintenance(projectId);
   const activeTab = getActiveTab(location.pathname);
+
+  const changelogLinks: ChangelogLinks = {
+    changelog:
+      'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Public+Cloud+Networking',
+    roadmap:
+      'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Public+Cloud+Networking',
+    'feature-request':
+      'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+  };
+
+  const changelogChapters = [
+    ...PAGE_PREFIX.split('::'),
+    'additional-ips',
+    'public-ips',
+  ];
 
   const handlerTabChanged = (event: CustomEvent) => {
     clearNotifications();
@@ -90,15 +108,10 @@ export default function ListingPage(): JSX.Element {
           />
         )}
         <div className="header mb-10 mt-8">
-          <div className="flex items-center justify-between">
-            <Headers title={t('pci_additional_ips_title')} />
-            <PciGuidesHeader category="instances"></PciGuidesHeader>
-          </div>
-          <div className="mt-4">
-            <Headers
-              description={t('pci_additional_ips_additional_ips_description')}
-            />
-          </div>
+            <Headers title={t('pci_additional_ips_title')} description={t('pci_additional_ips_additional_ips_description')} headerButton={<PciGuidesHeader category="instances"></PciGuidesHeader>} changelogButton={<ChangelogButton
+                links={changelogLinks}
+                chapters={changelogChapters}
+              />}/>
         </div>
 
         <PciAnnouncementBanner projectId={projectId} />

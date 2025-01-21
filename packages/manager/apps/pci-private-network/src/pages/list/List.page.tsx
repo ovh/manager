@@ -1,4 +1,6 @@
 import {
+  ChangelogButton,
+  ChangelogLinks,
   Headers,
   PciGuidesHeader,
   useNotifications,
@@ -46,6 +48,16 @@ export default function ListingPage() {
   const { hasMaintenance, maintenanceURL } = useProductMaintenance(projectId);
   const activeTab = getActiveTab(location.pathname);
 
+  const changelogLinks: ChangelogLinks = {
+    changelog:
+      'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Public+Cloud+Networking',
+    roadmap:
+      'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Public+Cloud+Networking',
+    'feature-request':
+      'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+  };
+  const changelogChapters = [];
+
   const handlerTabChanged = (event: CustomEvent) => {
     clearNotifications();
     if (event.detail?.panel === PrivateNetworkTabName.GLOBAL_REGIONS_TAB_NAME) {
@@ -81,8 +93,10 @@ export default function ListingPage() {
         )}
         <div className="header mb-10 mt-8">
           <div className="flex items-center justify-between">
-            <Headers title={t('pci_projects_project_network_private')} />
-            <PciGuidesHeader category="instances"></PciGuidesHeader>
+            <Headers title={t('pci_projects_project_network_private')} headerButton={<PciGuidesHeader category="instances"></PciGuidesHeader>} changelogButton={<ChangelogButton
+                links={changelogLinks}
+                chapters={changelogChapters}
+              />} />
           </div>
         </div>
 

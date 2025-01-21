@@ -1,5 +1,7 @@
 import { useProject } from '@ovh-ux/manager-pci-common';
 import {
+  ChangelogButton,
+  ChangelogLinks,
   Headers,
   PciGuidesHeader,
   useProjectUrl,
@@ -18,7 +20,7 @@ import {
 } from 'react-router-dom';
 import TabsPanel from '@/components/detail/TabsPanel.component';
 import { useKubeDetail } from '@/api/hooks/useKubernetes';
-import { TRACKING_TABS } from '@/tracking.constants';
+import { TRACKING_TABS, TRACKING_PREFIX } from '@/tracking.constants';
 import { useAppStore } from '@/store';
 import { REFETCH_INTERVAL_DURATION } from '@/helpers';
 
@@ -34,6 +36,16 @@ export default function DetailPage() {
   const hrefBack = useHref('..');
   const hrefService = useHref('./service');
   const location = useLocation();
+
+  const changelogLinks: ChangelogLinks = {
+    changelog:
+      'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Managed+Kubernetes+Service',
+    roadmap:
+      'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Managed+Kubernetes+Service',
+    'feature-request':
+      'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+  };
+  const changelogChapters = TRACKING_PREFIX.split('::');
 
   const tabs = [
     {
@@ -109,9 +121,15 @@ export default function DetailPage() {
         <Headers
           title={kubeDetail?.name}
           headerButton={
-            <div className="min-w-[7rem]">
-              <PciGuidesHeader category="kubernetes" />
-            </div>
+            <>
+              <ChangelogButton
+                links={changelogLinks}
+                chapters={changelogChapters}
+              />
+              <div className="min-w-[7rem]">
+                <PciGuidesHeader category="kubernetes" />
+              </div>
+            </>
           }
         />
       </div>

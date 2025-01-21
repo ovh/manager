@@ -1,6 +1,8 @@
 import { FilterComparator } from '@ovh-ux/manager-core-api';
 import { useProject } from '@ovh-ux/manager-pci-common';
 import {
+  ChangelogButton,
+  ChangelogLinks,
   Datagrid,
   FilterList,
   Headers,
@@ -36,6 +38,7 @@ import {
   useAllRegistries,
 } from '@/api/hooks/useRegistry';
 import { useDatagridColumn } from './useDatagridColumn';
+import { REGISTRY_TRACK_PREFIX } from '@/tracking.constants';
 
 export default function ListPage() {
   const { t } = useTranslation();
@@ -49,6 +52,17 @@ export default function ListPage() {
   const { clearNotifications } = useNotifications();
   const { filters, addFilter, removeFilter } = useColumnFilters();
   const [searchField, setSearchField] = useState('');
+
+  const changelogLinks: ChangelogLinks = {
+    changelog:
+      'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Managed+Private+Registry',
+    roadmap:
+      'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Managed+Private+Registry',
+    'feature-request':
+      'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+  };
+
+  const changelogChapters = REGISTRY_TRACK_PREFIX.split('::');
 
   const { data, isPending } = useAllRegistries(
     projectId,
@@ -87,9 +101,15 @@ export default function ListPage() {
         <Headers
           title={t('private_registry_title')}
           headerButton={
-            <div className="min-w-[7rem]">
-              <PciGuidesHeader category="private_registry" />
-            </div>
+            <>
+              <ChangelogButton
+                links={changelogLinks}
+                chapters={changelogChapters}
+              />
+              <div className="min-w-[7rem]">
+                <PciGuidesHeader category="private_registry" />
+              </div>
+            </>
           }
         />
       </div>

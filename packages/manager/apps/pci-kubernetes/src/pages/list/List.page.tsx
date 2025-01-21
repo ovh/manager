@@ -1,6 +1,8 @@
 import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
 import { useProject } from '@ovh-ux/manager-pci-common';
 import {
+  ChangelogButton,
+  ChangelogLinks,
   Datagrid,
   FilterAdd,
   FilterList,
@@ -35,6 +37,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useKubes } from '@/api/hooks/useKubernetes';
 import { useDatagridColumn } from './useDatagridColumn';
+import { TRACKING_PREFIX } from '@/tracking.constants';
 
 export default function ListPage() {
   const { t } = useTranslation('listing');
@@ -52,6 +55,16 @@ export default function ListPage() {
   const filterPopoverRef = useRef(undefined);
 
   const { data: allKube, isPending } = useKubes(projectId, pagination, filters);
+
+  const changelogLinks: ChangelogLinks = {
+    changelog:
+      'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Managed+Kubernetes+Service',
+    roadmap:
+      'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Managed+Kubernetes+Service',
+    'feature-request':
+      'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+  };
+  const changelogChapters = TRACKING_PREFIX.split('::');
 
   return (
     <RedirectionGuard
@@ -77,9 +90,15 @@ export default function ListPage() {
         <Headers
           title={t('kube_list_title')}
           headerButton={
-            <div className="min-w-[7rem]">
-              <PciGuidesHeader category="kubernetes" />
-            </div>
+            <>
+              <ChangelogButton
+                links={changelogLinks}
+                chapters={changelogChapters}
+              />
+              <div className="min-w-[7rem]">
+                <PciGuidesHeader category="kubernetes" />
+              </div>
+            </>
           }
         />
       </div>
