@@ -9,6 +9,8 @@ import {
   Notifications,
   Title,
   useNotifications,
+  ChangelogButton,
+  ChangelogLinks,
 } from '@ovh-ux/manager-react-components';
 
 import {
@@ -16,6 +18,7 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+
 import TableContainer from '@/components/Table/TableContainer';
 import { useSavingsPlan } from '@/hooks/useSavingsPlan';
 import { SavingsPlanService } from '@/types';
@@ -50,6 +53,13 @@ const ListingTablePage: React.FC<ListingTablePageProps> = ({
   refetchSavingsPlans,
 }) => {
   const { t } = useTranslation('listing');
+
+  const changelogLinks: ChangelogLinks = {
+    changelog: 'https://github.com/orgs/ovh/projects/16/views/6?pane=info',
+    roadmap: 'https://github.com/orgs/ovh/projects/16/views/1?pane=info',
+    'feature-request':
+      'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+  };
   const { trackClick } = useOvhTracking();
 
   const navigate = useNavigate();
@@ -69,7 +79,12 @@ const ListingTablePage: React.FC<ListingTablePageProps> = ({
 
   return (
     <>
-      <Title>{t('title')}</Title>
+      <div className="flex justify-between items-center">
+        <Title>{t('title')}</Title>
+        <div className="flex flex-wrap justify-end gap-1">
+          <ChangelogButton links={changelogLinks} />
+        </div>
+      </div>
       <div className="py-5">
         <OdsButton
           icon="plus"

@@ -32,6 +32,8 @@ import {
   FilterList,
   FilterAdd,
   useDataGrid,
+  ChangelogButton,
+  ChangelogLinks,
   Headers,
 } from '@ovh-ux/manager-react-components';
 import { PciDiscoveryBanner, useProject } from '@ovh-ux/manager-pci-common';
@@ -43,6 +45,7 @@ import Status from './Status';
 import Actions from './Actions';
 import RolesMatrix from './components/RolesMatrix/Index';
 import { useAllRoles } from '@/api/hooks/useRole';
+import { PAGE_PREFIX } from '@/tracking.constants';
 
 export default function ListingPage() {
   const { t } = useTranslation('common');
@@ -57,6 +60,15 @@ export default function ListingPage() {
   const filterPopoverRef = useRef(undefined);
 
   const { data: rolesAndServices } = useAllRoles(`${projectId}`);
+
+  const changelogLinks: ChangelogLinks = {
+    changelog: 'https://github.com/orgs/ovh/projects/16/views/6?pane=info',
+    roadmap: 'https://github.com/orgs/ovh/projects/16/views/1?pane=info',
+    'feature-request':
+      'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+  };
+
+  const changelogChapters: string[] = [...PAGE_PREFIX.split('::'), 'users'];
 
   useEffect(() => {
     navigation
@@ -163,6 +175,10 @@ export default function ListingPage() {
               <PciGuidesHeader category="instances" />
             </div>
           }
+          changelogButton={<ChangelogButton
+            links={changelogLinks}
+            chapters={changelogChapters}
+          />}
         ></Headers>
       </div>
 

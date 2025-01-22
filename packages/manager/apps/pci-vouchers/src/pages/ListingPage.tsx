@@ -1,6 +1,8 @@
 import { Outlet, useHref, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
+  ChangelogButton,
+  ChangelogLinks,
   Datagrid,
   Headers,
   Notifications,
@@ -30,6 +32,7 @@ import {
 } from '@ovh-ux/manager-pci-common';
 import { useVouchers } from '@/api/hooks/useVouchers';
 import { useDatagridColumn } from '@/hooks/UseDatagridColumn';
+import { APP_NAME, PAGE_PREFIX } from '@/tracking.constants';
 
 export default function ListingPage() {
   const { t } = useTranslation('common');
@@ -56,6 +59,15 @@ export default function ListingPage() {
   const hrefAdd = useHref('./add');
   const hrefCredit = useHref('./credit/buy');
 
+  const changelogLinks: ChangelogLinks = {
+    changelog: 'https://github.com/orgs/ovh/projects/16/views/6?pane=info',
+    roadmap: 'https://github.com/orgs/ovh/projects/16/views/1?pane=info',
+    'feature-request':
+      'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+  };
+
+  const changelogChapters: string[] = [...PAGE_PREFIX.split('::'), APP_NAME];
+
   return (
     <>
       {project && (
@@ -72,8 +84,10 @@ export default function ListingPage() {
         ></OsdsBreadcrumb>
       )}
       <div className="flex items-center justify-between mt-4">
-        <Headers title={t('cpb_project_management_credit_vouchers')} />
-        <PciGuidesHeader category="storage" />
+        <Headers title={t('cpb_project_management_credit_vouchers')} changelogButton={<ChangelogButton
+            links={changelogLinks}
+            chapters={changelogChapters}
+          />} headerButton={<PciGuidesHeader category="storage" />} />
       </div>
       <Notifications />
       <Headers description={t('cpb_vouchers_add_explain_bis')} />
