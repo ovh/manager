@@ -11,11 +11,14 @@ import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
 import { OrderSection } from '@/components/OrderSection/OrderSection.component';
 import { useOrganisationList } from '@/data/hooks/organisation';
 import { OrderContext } from '../order.context';
+import { isAvailableOrganisation } from '../order.utils';
 
 export const OrganisationSection: React.FC = () => {
-  const { selectedOrganisation, setSelectedOrganisation } = React.useContext(
-    OrderContext,
-  );
+  const {
+    selectedOrganisation,
+    setSelectedOrganisation,
+    selectedRegion,
+  } = React.useContext(OrderContext);
   const { t } = useTranslation('order');
   const { data, isLoading } = useOrganisationList();
   const { shell } = React.useContext(ShellContext);
@@ -45,11 +48,13 @@ export const OrganisationSection: React.FC = () => {
           value={selectedOrganisation}
           placeholder={t('organisation_select_placeholder')}
         >
-          {data?.data.map((orgId) => (
-            <option key={orgId} value={orgId}>
-              {orgId}
-            </option>
-          ))}
+          {data?.data
+            .filter(isAvailableOrganisation(selectedRegion))
+            .map((orgId) => (
+              <option key={orgId} value={orgId}>
+                {orgId}
+              </option>
+            ))}
         </OdsSelect>
       )}
       <Links

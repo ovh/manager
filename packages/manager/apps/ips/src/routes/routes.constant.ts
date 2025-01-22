@@ -8,5 +8,5 @@ export const urls = {
   root: subRoutes.root,
   onboarding: `${subRoutes.root}/${subRoutes.onboarding}`,
   listing: `${subRoutes.root}`,
-  order: `/${subRoutes.order}`,
+  order: `${subRoutes.root}/${subRoutes.order}`,
 };
