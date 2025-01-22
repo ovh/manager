@@ -2,7 +2,10 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { OdsBadge } from '@ovhcloud/ods-components/react';
 import { ODS_BADGE_COLOR, ODS_BADGE_SIZE } from '@ovhcloud/ods-components';
-import { OptionCard } from '@/components/OptionCard/OptionCard.component';
+import {
+  OptionCard,
+  PriceDescription,
+} from '@/components/OptionCard/OptionCard.component';
 import { IpVersion } from '../order.constant';
 import { OrderSection } from '../../../components/OrderSection/OrderSection.component';
 import { useIpv4LowestPrice } from '@/data/hooks/catalog';
@@ -22,10 +25,15 @@ export const IpVersionSection: React.FC = () => {
         <OptionCard
           title={t('ipv4_card_title')}
           description={t('ipv4_card_description')}
-          price={price}
           isSelected={ipVersion === IpVersion.ipv4}
           onClick={() => setIpVersion(IpVersion.ipv4)}
-        />
+        >
+          <PriceDescription
+            isStartingPrice
+            price={price}
+            suffix={t('per_ip')}
+          />
+        </OptionCard>
         <OptionCard
           title={
             <>
@@ -39,11 +47,12 @@ export const IpVersionSection: React.FC = () => {
             </>
           }
           description={t('ipv6_card_description')}
-          price={0}
           isDisabled
           isSelected={ipVersion === IpVersion.ipv6}
           onClick={() => setIpVersion(IpVersion.ipv6)}
-        />
+        >
+          <PriceDescription price={0} />
+        </OptionCard>
       </div>
     </OrderSection>
   );
