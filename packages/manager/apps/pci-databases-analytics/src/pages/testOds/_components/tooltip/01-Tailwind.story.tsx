@@ -9,12 +9,12 @@ import {
 } from '@/components/ui/tooltip';
 
 export default {
-  story: 'Simple tooltip',
+  story: 'Tailwind',
   customComponentExemple: (
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger>Hover</TooltipTrigger>
-        <TooltipContent>
+        <TooltipContent className="bg-orange-200 text-primary-500">
           <p>Add to library</p>
         </TooltipContent>
       </Tooltip>
@@ -23,9 +23,14 @@ export default {
   customComponentResult: StoryResult.success,
   ODSComponentExemple: (
     <>
-      <span id="trigger1">Hover me</span>
-      <OdsTooltip triggerId="trigger1">Add to library</OdsTooltip>
+      <span id="trigger2">Hover me</span>
+      <OdsTooltip
+        triggerId="trigger2"
+        className="bg-orange-200 text-primary-500"
+      >
+        Add to library
+      </OdsTooltip>
     </>
   ),
-  ODSComponentResult: StoryResult.warning,
+  ODSComponentResult: StoryResult.success,
 };
