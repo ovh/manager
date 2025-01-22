@@ -53,6 +53,17 @@
                 data-placement="end"
                 data-disabled="!$row.isDone()"
             >
+                <oui-action-menu-item
+                    data-on-click="$ctrl.gotoDiagnosticResult($row.id)"
+                    ><span
+                        data-translate="cloud_connect_diagnostics_action_result"
+                    ></span
+                ></oui-action-menu-item>
+                <oui-action-menu-item
+                    ><span
+                        data-translate="cloud_connect_diagnostics_action_download"
+                    ></span
+                ></oui-action-menu-item>
             </oui-action-menu>
         </oui-datagrid-column>
     </oui-datagrid>

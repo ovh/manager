@@ -1,0 +1,50 @@
+<oui-modal
+    id="ovh-cloudConnect-diagnostic-result-modal"
+    data-heading="{{:: 'cloud_connect_diagnostics_result' | translate }}"
+    data-secondary-label="{{:: 'cloud_connect_diagnostics_result_close' | translate }}"
+    data-secondary-action="$ctrl.goBack()"
+    data-on-dismiss="$ctrl.goBack()"
+    data-loading="$ctrl.isLoading"
+>
+    <div class="row">
+        <div class="col-sm-3">
+            <b
+                ><span
+                    data-translate="cloud_connect_diagnostics_result_id"
+                ></span
+                >:</b
+            >
+            <span data-ng-bind="$ctrl.diagnostic.id"></span>
+        </div>
+        <div class="col-sm-3">
+            <b>
+                <span
+                    data-translate="cloud_connect_diagnostics_result_date"
+                ></span
+                >:
+            </b>
+            <span data-ng-bind="$ctrl.diagnostic.date"></span>
+        </div>
+        <div class="col-sm-3">
+            <b
+                ><span
+                    data-translate="cloud_connect_diagnostics_result_name"
+                ></span
+                >:</b
+            >
+            <span data-ng-bind="$ctrl.diagnostic.description"></span>
+        </div>
+        <div class="col-sm-3">
+            <b
+                ><span
+                    data-translate="cloud_connect_diagnostics_result_source_setting"
+                ></span
+                >:</b
+            >
+            <span data-ng-bind="$ctrl.diagnostic.source"></span>
+        </div>
+    </div>
+    <div class="row result-output">
+        <div data-ng-bind="$ctrl.diagnostic.result[0].output"></div>
+    </div>
+</oui-modal>
