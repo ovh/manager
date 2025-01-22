@@ -1,6 +1,7 @@
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import {
   DefinedInitialDataOptions,
+  queryOptions,
   useQuery,
   useQueryClient,
 } from '@tanstack/react-query';
@@ -16,22 +17,15 @@ export const getServiceDetailsQueryKey = (resourceName: string) => [
   resourceName,
 ];
 
-export type UseServiceDetailsParams = {
-  queryKey?: string[];
-  resourceName: string;
-  options?: Partial<
-    DefinedInitialDataOptions<ApiResponse<ServiceDetails>, ApiError>
-  >;
-};
-
-export const useServiceDetails = ({
-  queryKey,
+export const useServiceDetailsQueryOption = ({
   resourceName,
-  options = {},
-}: UseServiceDetailsParams) => {
+}: {
+  resourceName: string;
+}) => {
   const queryClient = useQueryClient();
-  return useQuery({
-    queryKey: queryKey ?? getServiceDetailsQueryKey(resourceName),
+
+  return queryOptions({
+    queryKey: getServiceDetailsQueryKey(resourceName),
     queryFn: async () => {
       const { data } = await queryClient.fetchQuery<
         ApiResponse<number[]>,
@@ -43,6 +37,27 @@ export const useServiceDetails = ({
       return getServiceDetails(data[0]);
     },
     enabled: () => !!resourceName,
+  });
+};
+
+export type UseServiceDetailsParams = {
+  queryKey?: string[];
+  resourceName: string;
+  options?: Partial<
+    DefinedInitialDataOptions<ApiResponse<ServiceDetails>, ApiError>
+  >;
+};
+
+/**
+ * @deprecated Use useServiceDetailsQueryOption with new tanstack method : https://tanstack.com/query/v5/docs/framework/react/guides/query-options
+ */
+export const useServiceDetails = ({
+  resourceName,
+  options = {},
+}: UseServiceDetailsParams) => {
+  const serviceDetailsOptions = useServiceDetailsQueryOption({ resourceName });
+  return useQuery({
+    ...serviceDetailsOptions,
     ...options,
   });
 };
