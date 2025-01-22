@@ -16,6 +16,7 @@ import { useGetIssueTypes } from '@/api/hooks/useIssuTypes';
 import { ISSUE_TYPE_IDS } from '@/constants';
 import { useGetServiceOptions } from '@/api/hooks/useServiceOptions';
 import { TServiceOption } from '@/api/data/service-option';
+import queryClient from '@/queryClient';
 
 export type TProps = {
   type: 'support' | 'credit';
@@ -39,7 +40,6 @@ export const Modal = ({
 }: TProps): JSX.Element => {
   const { t, i18n } = useTranslation('quotas/increase');
   const { projectId } = useParams();
-  const select = useRef(null);
 
   const { data: project } = useProject(projectId);
 
@@ -49,6 +49,12 @@ export const Modal = ({
   });
 
   const { data: issueTypes } = useGetIssueTypes(i18n.language);
+
+  useEffect(() => {
+    queryClient.invalidateQueries({
+      queryKey: ['issueTypes'],
+    });
+  }, [i18n.language]);
 
   const inputLabel = useMemo(() => {
     if (type === 'support' && Array.isArray(issueTypes)) {
