@@ -13,5 +13,7 @@ export default {
     goToAddDevice: '<',
     goToDeleteDevice: '<',
     softphoneStatus: '<',
+    trackClick: '<',
+    trackPage: '<',
   },
 };
