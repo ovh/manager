@@ -67,8 +67,8 @@ export default function ListingPage() {
 
   return (
     <RedirectionGuard
-      isLoading={isPending}
-      condition={!isPending && allStorages?.resources.length === 0}
+      isLoading={isRefreshing}
+      condition={!isRefreshing && allStorages?.resources.length === 0}
       route="./onboarding"
     >
       <Notifications />
