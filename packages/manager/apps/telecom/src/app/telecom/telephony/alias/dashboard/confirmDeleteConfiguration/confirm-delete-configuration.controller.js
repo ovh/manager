@@ -1,9 +1,8 @@
 export default class TelecomTelephonyAliasConfirmDeleteConfigurationCtrl {
   /* @ngInject */
-  constructor($uibModalInstance, isObsolete, number, tucVoipServiceAlias) {
+  constructor($uibModalInstance, number, tucVoipServiceAlias) {
     this.$uibModalInstance = $uibModalInstance;
 
-    this.isObsolete = isObsolete;
     this.number = number;
     this.tucVoipServiceAlias = tucVoipServiceAlias;
   }
