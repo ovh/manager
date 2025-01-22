@@ -69,6 +69,13 @@ export const STATUS = {
   TERMINATED: 'terminated',
 };
 
+export const DIAGNOSTIC_DESC = {
+  diagPeering: 'BGP Peering Default',
+  diagRoutes: 'BGP Peering - Routes',
+  diagPeeringExtra: 'BGP Peering - Advertised Routes',
+  diagMacs: 'Mac List',
+};
+
 export default {
   GUIDELINK,
   POP_MAP,
@@ -77,5 +84,6 @@ export default {
   ASN_MIN,
   IPV4_BLOCK_REGEX,
   STATUS,
+  DIAGNOSTIC_DESC,
   CHANGE_BANDWIDTH_ALLOWED_OFFERS_REGEX,
 };
