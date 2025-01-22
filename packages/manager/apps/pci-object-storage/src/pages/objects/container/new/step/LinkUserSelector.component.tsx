@@ -137,7 +137,11 @@ export default function LinkUserSelector({
       </OdsFormField>
       <div>
         {haveShowedOrGeneratedCredentials && (
-          <UserInformationTile secretUser={secretUser} user={formUser} />
+          <UserInformationTile
+            secretUser={secretUser}
+            user={formUser}
+            onClose={() => setHaveShowedOrGeneratedCredentials(false)}
+          />
         )}
       </div>
       <div className="mt-6 flex gap-4">
