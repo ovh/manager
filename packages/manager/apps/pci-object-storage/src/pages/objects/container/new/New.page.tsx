@@ -139,7 +139,7 @@ export default function ContainerNewPage() {
         />
       </div>
 
-      <div className="my-6">
+      <div className="mb-5 sticky top-0 z-50">
         <PciDiscoveryBanner project={project} />
       </div>
 
