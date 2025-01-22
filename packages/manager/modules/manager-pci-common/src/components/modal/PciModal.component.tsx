@@ -60,7 +60,7 @@ export function PciModal({
           color="primary"
           variant="ghost"
           onClick={onCancel}
-          isDisabled={isDisabled}
+          isDisabled={isPending}
           slot="actions"
           data-testid="pciModal-button_cancel"
         />
@@ -68,7 +68,7 @@ export function PciModal({
           label={submitText || t('common_confirm')}
           color="primary"
           onClick={onConfirm}
-          isDisabled={isDisabled}
+          isDisabled={isDisabled || isPending}
           slot="actions"
           data-testid="pciModal-button_submit"
         />
