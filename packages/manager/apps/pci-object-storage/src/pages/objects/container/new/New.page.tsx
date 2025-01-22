@@ -75,19 +75,20 @@ export default function ContainerNewPage() {
         <Translation ns="containers/add">
           {(_t) =>
             _t('pci_projects_project_storages_containers_add_error_post', {
+              container: form.containerName,
               message: error?.response?.data?.message || error?.message || null,
             })
           }
         </Translation>,
         true,
       );
-      navigate('..');
       const containerTypeOffer = form.containerType
         ? `${form.containerType}::`
         : '';
       tracking?.trackPage({
         name: `${TRACKING_PREFIX}_add::${form.offer}_${form.region}::${containerTypeOffer}creation_error`,
       });
+      window.scrollTo(0, 0);
     },
   });
 
