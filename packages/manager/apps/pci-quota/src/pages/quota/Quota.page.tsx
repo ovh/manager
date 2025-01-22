@@ -42,7 +42,10 @@ import { toggleManualQuota, unleash } from '@/api/data/project';
 import { useGetServiceOptions } from '@/api/hooks/useServiceOptions';
 import { TabsComponent } from '@/components/tabs/Tabs.component';
 import { useGetValidPaymentMethodIds } from '@/api/hooks/usePaymentmethods';
-import { useProjectService } from '@/api/hooks/useService';
+import {
+  useGetProjectService,
+  useProjectService,
+} from '@/api/hooks/useService';
 
 type TState = {
   manualQuota: {
@@ -56,7 +59,9 @@ export default function QuotaPage(): JSX.Element {
   const { projectId } = useParams();
   const columns = useDatagridColumn();
 
-  const { data: service, isPending: isServicePending } = useProjectService(
+  const { data: project } = useProject(projectId);
+
+  const { data: service, isPending: isServicePending } = useGetProjectService(
     projectId,
   );
 
@@ -67,8 +72,6 @@ export default function QuotaPage(): JSX.Element {
   });
 
   const navigate = useNavigate();
-
-  const { data: project } = useProject(projectId);
 
   const { addError } = useNotifications();
 
@@ -154,7 +157,7 @@ export default function QuotaPage(): JSX.Element {
           />
         </OdsBreadcrumb>
       )}
-      {!isServicePending && !service && !serviceOptions?.length && (
+      {!isServicePending && !service && !serviceOptions && (
         <div className="mt-10">
           <OdsMessage color="danger" className="w-full" isDismissible={false}>
             <div className="p-2">
