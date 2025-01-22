@@ -12,10 +12,7 @@ import {
 } from '@ovh-ux/manager-pci-common';
 
 import { OdsSpinner, OdsText } from '@ovhcloud/ods-components/react';
-import {
-  OBJECT_CONTAINER_OFFER_STORAGE_STANDARD,
-  STORAGE_STANDARD_REGION_PLANCODE,
-} from '@/constants';
+import { OBJECT_CONTAINER_OFFER_STORAGE_STANDARD } from '@/constants';
 import { RegionLabel } from './RegionLabel.component';
 import { useColumnsCount } from '@/hooks/useColumnsCount';
 
@@ -61,7 +58,7 @@ export function ContainerRegionSelector({
     if (isPending) return [];
 
     const allRegions = availability?.plans
-      ?.filter(({ code }) => code.startsWith(STORAGE_STANDARD_REGION_PLANCODE))
+      ?.filter(({ code }) => code.startsWith('storage'))
       .reduce((acc, { regions }) => [...acc, ...regions], []);
 
     const uniqueRegions = [
