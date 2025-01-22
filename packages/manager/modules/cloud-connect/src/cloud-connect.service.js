@@ -179,6 +179,12 @@ export default class CloudConnectService {
       );
   }
 
+  getDiagnostic(cloudConnectId, diagnosticId) {
+    return this.$http
+      .get(`/ovhCloudConnect/${cloudConnectId}/diagnostic/${diagnosticId}`)
+      .then(({ data }) => data);
+  }
+
   saveDescription(cloudConnectId, description) {
     return this.$http
       .put(`/ovhCloudConnect/${cloudConnectId}`, {
