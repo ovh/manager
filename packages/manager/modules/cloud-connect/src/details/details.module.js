@@ -7,6 +7,7 @@ import overview from './overview';
 import routing from './details.routing';
 import serviceKeys from './service-keys';
 import tasks from './tasks';
+import diagnostics from './diagnostics';
 import statistics from './statistics';
 import notifications from './components/notifications';
 
@@ -19,6 +20,7 @@ angular
     overview,
     serviceKeys,
     tasks,
+    diagnostics,
     statistics,
     notifications,
   ])
