@@ -2,7 +2,6 @@ import { TabsPanel, useProject } from '@ovh-ux/manager-pci-common';
 import {
   BaseLayout,
   PciGuidesHeader,
-  RedirectionGuard,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 import { Suspense, useEffect, useState } from 'react';
@@ -14,14 +13,12 @@ import {
   OdsBreadcrumbItem,
 } from '@ovhcloud/ods-components/react';
 import { ROUTE_PATHS } from '@/routes';
-import { useAllStorages } from '@/api/hooks/useStorages';
 
 export default function ObjectsPage() {
   const { t } = useTranslation('objects');
   const location = useLocation();
   const hrefProject = useProjectUrl('public-cloud');
   const { data: project } = useProject();
-  const { data: allStorages, isPending } = useAllStorages(project.project_id);
 
   const tabs = [
     {
@@ -44,11 +41,7 @@ export default function ObjectsPage() {
   }, [location.pathname]);
 
   return (
-    <RedirectionGuard
-      isLoading={isPending}
-      condition={!isPending && allStorages?.resources.length === 0}
-      route="./onboarding"
-    >
+    <>
       <BaseLayout
         breadcrumb={
           <OdsBreadcrumb>
@@ -69,6 +62,6 @@ export default function ObjectsPage() {
           <Outlet />
         </Suspense>
       </BaseLayout>
-    </RedirectionGuard>
+    </>
   );
 }
