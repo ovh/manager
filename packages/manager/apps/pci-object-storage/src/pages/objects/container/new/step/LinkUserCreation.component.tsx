@@ -40,6 +40,7 @@ export default function LinkUserCreation({
   const [isLoading, setIsLoading] = useState(false);
   const [newUser, setNewUser] = useState<TUser>(null);
   const [secretUser, setSecretUser] = useState('');
+  const [hideCredentials, setHideCredentials] = useState(false);
 
   useEffect(() => {
     setFormState((prevState) => ({
@@ -54,6 +55,7 @@ export default function LinkUserCreation({
     userAccess: newUser?.s3Credentials?.access,
     onSuccess: ({ secret }) => {
       setSecretUser(secret);
+      setHideCredentials(false);
     },
     onError: () => {},
   });
@@ -96,9 +98,13 @@ export default function LinkUserCreation({
 
   return (
     <>
-      {newUser && secretUser ? (
+      {newUser && secretUser && !hideCredentials ? (
         <div className="mt-4">
-          <UserInformationTile user={newUser} secretUser={secretUser} />
+          <UserInformationTile
+            user={newUser}
+            secretUser={secretUser}
+            onClose={() => setHideCredentials(true)}
+          />
         </div>
       ) : (
         <OdsFormField

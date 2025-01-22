@@ -12,14 +12,21 @@ import { TUser } from '@/api/data/user';
 type UserInformationTileProps = {
   secretUser: string;
   user: TUser;
+  onClose?: () => void;
 };
+
 export default function UserInformationTile({
   secretUser,
   user,
+  onClose,
 }: Readonly<UserInformationTileProps>) {
   const { t } = useTranslation(['credential-banner', 'pci-common']);
   return (
-    <OdsMessage color="success" className="w-full my-6">
+    <OdsMessage
+      color="success"
+      className="w-full my-6"
+      onOdsRemove={() => onClose?.()}
+    >
       <div className="w-full">
         <OdsText preset="paragraph" className="block mb-4">
           <span
