@@ -1,9 +1,12 @@
+import { SOFTPHONE_TRACKING } from '../softphone.constants';
+
 export default class SoftphoneAddDeviceController {
   /* @ngInject */
   constructor(softphoneService, TucToast, $translate) {
     this.softphoneService = softphoneService;
     this.TucToast = TucToast;
     this.$translate = $translate;
+    this.SOFTPHONE_TRACKING = SOFTPHONE_TRACKING;
   }
 
   createToken() {
