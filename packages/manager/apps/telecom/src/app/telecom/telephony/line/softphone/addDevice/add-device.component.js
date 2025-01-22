@@ -8,5 +8,7 @@ export default {
     goBack: '<',
     billingAccount: '<',
     serviceName: '<',
+    trackClick: '<',
+    trackPage: '<',
   },
 };

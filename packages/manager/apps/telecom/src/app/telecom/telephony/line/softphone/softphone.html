@@ -39,25 +39,37 @@
         </p>
         <div class="container-badges mb-2">
             <div class="col-6 align-items-center">
-                <a data-ng-href="{{$ctrl.storeLinks[$ctrl.MOBILE_OS.ios]}}">
+                <a
+                    data-ng-href="{{$ctrl.storeLinks[$ctrl.MOBILE_OS.ios]}}"
+                    target="_blank"
+                    data-ng-click="$ctrl.goStoreTrackClick('app-store')"
+                >
                     <img
                         class="ios"
                         alt="{{:: 'telephony_line_softphone_store_link_ios' | translate}}"
                         src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-example-preferred.png"
                     />
                 </a>
-                <a data-ng-href="{{$ctrl.storeLinks[$ctrl.MOBILE_OS.android]}}">
+                <a
+                    data-ng-href="{{$ctrl.storeLinks[$ctrl.MOBILE_OS.android]}}"
+                    target="_blank"
+                    data-ng-click="$ctrl.goStoreTrackClick('play-store')"
+                >
                     <img
                         class="android"
                         alt="{{:: 'telephony_line_softphone_store_link_android' | translate}}"
                         src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
                     />
                 </a>
-                <a data-ng-href="{{$ctrl.storeLinks[$ctrl.MOBILE_OS.windows]}}">
+                <a
+                    data-ng-href="{{$ctrl.storeLinks[$ctrl.MOBILE_OS.windows]}}"
+                    target="_blank"
+                    data-ng-click="$ctrl.goStoreTrackClick('microsoft-store')"
+                >
                     <img
                         class="windows"
                         alt="{{:: 'telephony_line_softphone_store_link_windows'| translate}}"
-                        src="https://get.microsoft.com/images/fr-ca%20dark.svg"
+                        src="https://learn.microsoft.com/fr-fr/windows/apps/images/new-badge-light.png"
                     />
                 </a>
             </div>
@@ -87,6 +99,7 @@
                 <oui-clipboard
                     data-name="downloadLink"
                     data-model="$ctrl.storeLinks[$ctrl.osName]"
+                    data-ng-click="$ctrl.onCopyDownloadLinkClick($event)"
                 ></oui-clipboard>
             </oui-field>
         </div>
@@ -107,6 +120,7 @@
                     <oui-guide-menu-item
                         data-href="{{ ::$ctrl.guide.url }}"
                         data-external="$ctrl.guide.external"
+                        data-ng-click="$ctrl.trackClick($ctrl.SOFTPHONE_TRACKING.DEVICE_MANAGEMENT.GUIDE)"
                         ><span data-translate="{{ $ctrl.guide.title }}"></span>
                     </oui-guide-menu-item>
                 </oui-guide-menu>
@@ -116,7 +130,7 @@
             <oui-button
                 data-disabled="$ctrl.devices.length >= 3"
                 data-variant="primary"
-                data-on-click="$ctrl.goToAddDevice()"
+                data-on-click="$ctrl.trackClick($ctrl.SOFTPHONE_TRACKING.DEVICE_MANAGEMENT.NEW_TOKEN);$ctrl.goToAddDevice()"
             >
                 <span
                     data-translate="telephony_line_softphone_new_token"
@@ -125,7 +139,7 @@
             <oui-button
                 data-ng-if="$ctrl.devices.length > 0"
                 data-variant="secondary"
-                data-on-click="$ctrl.goToDeleteDevice()"
+                data-on-click="$ctrl.trackClick($ctrl.SOFTPHONE_TRACKING.DEVICE_MANAGEMENT.DELETE_ALL);$ctrl.goToDeleteDevice()"
             >
                 <span
                     data-translate="telephony_line_softphone_btn_delete_all"
@@ -133,7 +147,7 @@
             ><oui-button
                 class="float-right"
                 variant="secondary"
-                data-on-click="$ctrl.fetchSoftPhoneInformations()"
+                data-on-click="$ctrl.refreshDatagrid()"
                 data-disabled="$ctrl.isLoading"
             >
                 <span class="oui-icon oui-icon-refresh"></span
@@ -192,7 +206,7 @@
                     <td class="oui-table__cell">
                         <oui-button
                             variant="link"
-                            data-on-click="$ctrl.goToDeleteDevice(device.id)"
+                            data-on-click="$ctrl.trackClick($ctrl.SOFTPHONE_TRACKING.DEVICE_MANAGEMENT.DELETE);$ctrl.goToDeleteDevice(device.id)"
                         >
                             <span class="oui-icon oui-icon-bin"></span
                         ></oui-button>

@@ -17,7 +17,7 @@
             <oui-form-actions
                 class="text-right"
                 data-submit-text="{{ 'telephony_line_softphone_new_token_cta_generate' | translate }}"
-                data-on-submit="$ctrl.createToken()"
+                data-on-submit="$ctrl.trackClick($ctrl.SOFTPHONE_TRACKING.ADD_DEVICE.TOKEN);$ctrl.createToken()"
                 data-disabled="form.$invalid || $ctrl.isCreating"
             >
             </oui-form-actions>
