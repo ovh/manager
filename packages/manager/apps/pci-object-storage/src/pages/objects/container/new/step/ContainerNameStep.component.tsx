@@ -96,7 +96,8 @@ export function ContainerNameStep({
               setNameError(undefined);
             }
 
-            setContainerName(event.detail.value.toString());
+            if (event.detail.value)
+              setContainerName(event.detail.value.toString());
           }}
         />
 
