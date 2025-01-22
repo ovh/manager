@@ -11,16 +11,19 @@ import { useNavigate } from 'react-router-dom';
 import { getAdditionalIpsProductSettings } from '../order.utils';
 import { OrderContext } from '../order.context';
 import { urls } from '@/routes/routes.constant';
+import { ServiceType } from '@/data/api/ips';
 
 export const OrderButtonSection: React.FC = () => {
   const {
     ipVersion,
     selectedService,
+    selectedServiceType,
     selectedOffer,
     selectedRegion,
     selectedPlanCode,
     selectedGeolocation,
     selectedOrganisation,
+    ipQuantity,
   } = React.useContext(OrderContext);
   const { t } = useTranslation('order');
   const navigate = useNavigate();
@@ -30,11 +33,11 @@ export const OrderButtonSection: React.FC = () => {
   if (
     !ipVersion ||
     !selectedService ||
+    !selectedServiceType ||
     !selectedOffer ||
-    !selectedRegion ||
     !selectedPlanCode ||
     !selectedGeolocation ||
-    !selectedOrganisation
+    (!selectedOrganisation && [ServiceType.vrack].includes(selectedServiceType))
   ) {
     return <></>;
   }
@@ -54,6 +57,8 @@ export const OrderButtonSection: React.FC = () => {
             planCode: selectedPlanCode,
             region: selectedRegion,
             serviceName: selectedService,
+            serviceType: selectedServiceType,
+            quantity: ipQuantity,
           });
           window.open(
             `${orderBaseUrl}?products=~(${settings})`,
