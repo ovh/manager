@@ -14,10 +14,12 @@ export function Breadcrumb(): JSX.Element {
   const navigate = useNavigate();
 
   const pathnames = location.pathname.split('/').filter(Boolean);
-  const paths = pathnames.map((value) => ({
-    label: t(value),
-    onClick: () => navigate(`/#/${APP_NAME}/${value}`),
-  }));
+  const paths = pathnames
+    .filter((value) => value !== 'ip')
+    .map((value) => ({
+      label: t(value),
+      onClick: () => navigate(`/#/${APP_NAME}/${value}`),
+    }));
 
   const breadcrumbItems: {
     label: string;

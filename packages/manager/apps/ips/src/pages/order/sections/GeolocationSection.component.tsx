@@ -3,28 +3,21 @@ import { useTranslation } from 'react-i18next';
 import { OdsSelect } from '@ovhcloud/ods-components/react';
 import { OrderSection } from '../../../components/OrderSection/OrderSection.component';
 import { useAvailableGeolocationFromPlanCode } from '@/data/hooks/catalog';
-import { getCountryCode } from '@/components/RegionSelector/region-selector.utils';
 import { OrderContext } from '../order.context';
+import { IpOffer } from '../order.constant';
 
 export const GeolocationSection: React.FC = () => {
   const {
-    selectedRegion,
     selectedPlanCode,
     selectedGeolocation,
     setSelectedGeolocation,
+    selectedOffer,
   } = React.useContext(OrderContext);
   const { t } = useTranslation('order');
   const { t: tRegionSelector } = useTranslation('region-selector');
   const { geolocations } = useAvailableGeolocationFromPlanCode(
     selectedPlanCode,
   );
-
-  React.useEffect(() => {
-    if (selectedRegion) {
-      const code = getCountryCode(selectedRegion) || geolocations[0];
-      setSelectedGeolocation(code === 'gb' ? 'uk' : code);
-    }
-  }, [selectedRegion]);
 
   return (
     <OrderSection
@@ -35,6 +28,7 @@ export const GeolocationSection: React.FC = () => {
         key={geolocations.join('-')}
         className="block w-full max-w-[384px]"
         name="ip-geolocation"
+        isDisabled={selectedOffer === IpOffer.additionalIp}
         onOdsChange={(event) =>
           setSelectedGeolocation(event.target.value as string)
         }

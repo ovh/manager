@@ -88,3 +88,12 @@ export const getOrganisation = async (
   orgId: string,
 ): Promise<ApiResponse<Organisation>> =>
   apiClient.v6.get<Organisation>(`/me/ipOrganisation/${orgId}`);
+
+export enum ServiceType {
+  vrack = 'vrack',
+  vps = 'vps',
+  dedicatedCloud = 'dedicatedCloud',
+  ipParking = 'ipParking',
+  server = 'server',
+  unknown = 'unknown',
+}

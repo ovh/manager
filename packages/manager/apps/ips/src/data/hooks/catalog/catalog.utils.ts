@@ -1,4 +1,14 @@
+import {
+  isRegionInEu,
+  isRegionInUs,
+} from '@/components/RegionSelector/region-selector.utils';
 import { CatalogIpPlan } from '../../api/catalog';
+
+export const getContinentKeyFromRegion = (region: string) => {
+  if (isRegionInEu(region)) return 'EU';
+  if (isRegionInUs(region)) return 'US';
+  return 'CA';
+};
 
 export const IP_FAILOVER_PLANCODE = {
   EU: 'ip-failover-ripe',
