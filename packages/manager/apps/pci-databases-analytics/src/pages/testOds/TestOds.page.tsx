@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 
+export function breadcrumb() {
+  return 'ODS';
+}
+
 const TestOds = () => {
   const [components, setComponents] = useState<
     { name: string; component: React.ComponentType }[]

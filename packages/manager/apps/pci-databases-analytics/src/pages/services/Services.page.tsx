@@ -1,26 +1,18 @@
 import { Outlet, useParams } from 'react-router-dom';
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  OdsButton,
-  OdsTag,
-  OdsAccordion,
-  OdsQuantity,
-} from '@ovhcloud/ods-components/react';
 import { useGetServices } from '@/hooks/api/database/service/useGetServices.hook';
 import ServicesList from './_components/ServiceListTable.component';
 import LegalMentions from '../_components/LegalMentions.component';
 import { POLLING } from '@/configuration/polling.constants';
-import Link from '@/components/links/Link.component';
-import { Button } from '@/components/ui/button';
 import Guides from '@/components/guides/Guides.component';
 import { GuideSections } from '@/types/guide';
 import { useTrackAction } from '@/hooks/useTracking';
 import { useUserActivityContext } from '@/contexts/UserActivityContext';
 import { TRACKING } from '@/configuration/tracking.constants';
 import * as database from '@/types/cloud/project/database';
-import { Form } from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import Link from '@/components/links/Link.component';
 
 const Services = () => {
   const { t } = useTranslation('pci-databases-analytics/services');
@@ -58,6 +50,16 @@ const Services = () => {
           }
         />
       </div>
+      <Button
+        data-testid="create-service-button"
+        variant="outline"
+        size="sm"
+        className="text-base text-red-500"
+      >
+        <Link to="./ods" className="hover:no-underline">
+          Test ODS
+        </Link>
+      </Button>
       <ServicesList services={filteredServices} />
       <LegalMentions className="mt-4" />
       <Outlet />

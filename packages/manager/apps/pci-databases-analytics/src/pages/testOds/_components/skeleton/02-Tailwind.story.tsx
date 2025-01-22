@@ -4,7 +4,7 @@ import { StoryResult } from '../Stories';
 import { Skeleton } from '@/components/ui/skeleton';
 
 export default {
-  story: 'Simple progressbar',
+  story: 'Tailwind',
   customComponentExemple: (
     <div className="flex gap-2 flex-col">
       <Skeleton className="block w-full h-4" />
