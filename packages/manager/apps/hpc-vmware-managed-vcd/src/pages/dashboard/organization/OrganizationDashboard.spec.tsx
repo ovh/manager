@@ -4,11 +4,10 @@ import { organizationList } from '@ovh-ux/manager-module-vcd-api';
 import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 import { renderTest, labels } from '../../../test-utils';
 
-describe.skip('Organization Dashboard Page', () => {
+describe('Organization Dashboard Page', () => {
   it('display the dashboard page', async () => {
     await renderTest();
     const link = screen.getByText(organizationList[0].currentState.fullName);
-    expect(true).toBeTruthy();
     await waitFor(() => userEvents.click(link));
 
     await assertTextVisibility(

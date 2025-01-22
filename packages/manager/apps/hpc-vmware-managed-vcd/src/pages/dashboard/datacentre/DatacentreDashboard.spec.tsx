@@ -5,7 +5,7 @@ import {
 import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 import { labels, renderTest } from '../../../test-utils';
 
-describe.skip('Datacentre Dashboard Page', () => {
+describe('Datacentre Dashboard Page', () => {
   it('display the datacentre dashboard page', async () => {
     await renderTest({
       initialRoute: `/${organizationList[0].id}/datacentres/${datacentreList[0].id}`,

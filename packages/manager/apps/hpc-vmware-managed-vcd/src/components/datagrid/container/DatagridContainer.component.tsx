@@ -51,7 +51,6 @@ export default function DatagridContainer({
   } = useResourcesIcebergV2({
     route: api,
     queryKey: listingQueryKey,
-    pageSize: 10,
   });
 
   useAutoRefetch({

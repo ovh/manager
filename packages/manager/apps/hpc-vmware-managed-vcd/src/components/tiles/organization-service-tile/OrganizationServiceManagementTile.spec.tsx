@@ -38,7 +38,7 @@ const renderComponent = () => {
   );
 };
 
-describe.skip('ServiceManagementTile component unit test suite', () => {
+describe('ServiceManagementTile component unit test suite', () => {
   it('should define all sections with correct typo', () => {
     // when
     const { getByText } = renderComponent();
