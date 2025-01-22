@@ -1,9 +1,12 @@
+import { SOFTPHONE_TRACKING } from '../softphone.constants';
+
 export default class DeleteModalController {
   /* @ngInject */
   constructor($translate, softphoneService, TucToast) {
     this.$translate = $translate;
     this.TucToast = TucToast;
     this.softphoneService = softphoneService;
+    this.SOFTPHONE_TRACKING = SOFTPHONE_TRACKING;
   }
 
   deleteDevice() {

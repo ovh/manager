@@ -1,3 +1,5 @@
+import { SOFTPHONE_TRACKING } from '../softphone.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
     'telecom.telephony.billingAccount.line.dashboard.softphone.add',
@@ -8,6 +10,7 @@ export default /* @ngInject */ ($stateProvider) => {
           component: 'softphoneAddDevice',
         },
       },
+      layout: 'modal',
       resolve: {
         deviceId: /* @ngInject */ ($transition$) =>
           $transition$.params().deviceId,
@@ -18,7 +21,12 @@ export default /* @ngInject */ ($stateProvider) => {
         goBack: /* @ngInject */ ($state) => (reload) =>
           $state.go('^', {}, { reload }),
       },
-      layout: 'modal',
+      atInternet: {
+        ignore: true,
+      },
+      onEnter: /* @ngInject */ (trackPage) => {
+        trackPage(SOFTPHONE_TRACKING.ADD_DEVICE.PAGE);
+      },
     },
   );
 };

@@ -9,5 +9,7 @@ export default {
     goBack: '<',
     deviceId: '<?',
     serviceName: '<',
+    trackClick: '<',
+    trackPage: '<',
   },
 };
