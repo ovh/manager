@@ -18,7 +18,7 @@ const Kpi = ({
   return (
     <div className="flex flex-col gap-2 w-[200px]">
       <OdsText preset="heading-5" className="max-w-lg">
-        {title}{' '}
+        {title}
         <OdsIcon
           className="my-auto"
           aria-labelledby="tooltip-default"
