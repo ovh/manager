@@ -9,6 +9,7 @@ import {
   LOGO_FILE_FORMATS,
   MAX_SIZE_LOGO_FILE,
 } from '../../line/softphone/softphone.constants';
+import { BILLING_ACCOUNT_TRACKING } from '../billingAccount.constants';
 
 export default /* @ngInject */ function TelecomTelephonyBillingAccountDashboardCtrl(
   $translate,
@@ -18,6 +19,7 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountDashboardC
   $q,
   $window,
   $timeout,
+  atInternet,
   billingDepositLink,
   TelephonyMediator,
   OvhApiTelephony,
@@ -302,6 +304,7 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountDashboardC
   };
 
   this.applyThemeGlobally = function applyThemeGlobally() {
+    this.trackClick(BILLING_ACCOUNT_TRACKING.THEME_MANAGEMENT.APPLY);
     this.isUpdatingTheme = true;
     softphoneService
       .putSoftphoneThemeGlobally($stateParams.billingAccount, this.currentTheme)
@@ -312,16 +315,15 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountDashboardC
           ),
         ),
       )
-      .catch(
-        (error) =>
-          new TucToastError(
-            $translate.instant(
-              'telephony_group_line_softphone_apply_theme_error',
-              {
-                errorMessage: error.message,
-              },
-            ),
+      .catch((error) =>
+        TucToast.error(
+          $translate.instant(
+            'telephony_group_line_softphone_apply_theme_error',
+            {
+              errorMessage: error.message,
+            },
           ),
+        ),
       )
       .finally(() => {
         this.loadSoftphone();
@@ -338,24 +340,25 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountDashboardC
           this.fileModel[0].infos.name,
           url,
         )
-        .then(() =>
+        .then(() => {
           TucToast.success(
             $translate.instant(
               'telephony_group_line_softphone_apply_logo_add_success',
             ),
-          ),
-        )
-        .catch(
-          (error) =>
-            new TucToastError(
-              $translate.instant(
-                'telephony_group_line_softphone_apply_logo_add_error',
-                {
-                  errorMessage: error.message,
-                },
-              ),
+          );
+          this.trackBanner('info', 'success');
+        })
+        .catch(({ data }) => {
+          TucToast.error(
+            $translate.instant(
+              'telephony_group_line_softphone_apply_logo_add_error',
+              {
+                errorMessage: data?.message,
+              },
             ),
-        )
+          );
+          this.trackBanner('error', 'error');
+        })
         .finally(() => {
           this.fileModel = undefined;
           this.isUpdatingLogo = false;
@@ -365,6 +368,7 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountDashboardC
   };
 
   this.deleteGlobalLogo = function deleteGlobalLogo() {
+    this.trackClick(BILLING_ACCOUNT_TRACKING.LOGO_MANAGEMENT.DELETE);
     softphoneService
       .deleteSoftphoneLogoGlobally($stateParams.billingAccount)
       .then(() =>
@@ -374,16 +378,15 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountDashboardC
           ),
         ),
       )
-      .catch(
-        (error) =>
-          new TucToastError(
-            $translate.instant(
-              'telephony_group_line_softphone_apply_logo_remove_error',
-              {
-                errorMessage: error.message,
-              },
-            ),
+      .catch(({ data }) =>
+        TucToast.error(
+          $translate.instant(
+            'telephony_group_line_softphone_apply_logo_remove_error',
+            {
+              errorMessage: data?.message,
+            },
           ),
+        ),
       )
       .finally(() => {
         this.loadSoftphone();
@@ -412,6 +415,27 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountDashboardC
       .finally(() => {
         this.isSoftphoneLoading = false;
       });
+  };
+
+  this.trackBanner = function trackBanner(bannerType, returnType) {
+    atInternet.trackPage({
+      ...BILLING_ACCOUNT_TRACKING.LOGO_MANAGEMENT.BANNER,
+      name: BILLING_ACCOUNT_TRACKING.LOGO_MANAGEMENT.BANNER.name
+        .replace(/{{bannerType}}/g, bannerType)
+        .replace(/{{returnType}}/g, returnType),
+      page: {
+        name: BILLING_ACCOUNT_TRACKING.LOGO_MANAGEMENT.BANNER.page.name
+          .replace(/{{bannerType}}/g, bannerType)
+          .replace(/{{returnType}}/g, returnType),
+      },
+    });
+  };
+
+  this.trackClick = function trackClick(hit) {
+    atInternet.trackClick({
+      ...hit,
+      type: 'action',
+    });
   };
 
   /*= =====================================

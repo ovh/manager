@@ -3,6 +3,7 @@ import {
   LOGO_FILE_FORMATS,
   MAX_SIZE_LOGO_FILE,
   MOBILE_OS,
+  SOFTPHONE_TRACKING,
 } from './softphone.constants';
 
 export default class SoftphoneController {
@@ -10,6 +11,7 @@ export default class SoftphoneController {
   constructor(SoftphoneService, $translate, $q, TucToast) {
     this.LOGO_FILE_FORMATS = LOGO_FILE_FORMATS;
     this.MAX_SIZE_LOGO_FILE = MAX_SIZE_LOGO_FILE;
+    this.SOFTPHONE_TRACKING = SOFTPHONE_TRACKING;
     this.SoftphoneService = SoftphoneService;
     this.$translate = $translate;
     this.TucToast = TucToast;
@@ -118,6 +120,7 @@ export default class SoftphoneController {
   }
 
   applyTheme() {
+    this.trackClick(SOFTPHONE_TRACKING.THEME_MANAGEMENT.APPLY);
     this.isUpdatingTheme = true;
     return this.SoftphoneService.putSoftphoneTheme(
       this.billingAccount,
@@ -157,14 +160,15 @@ export default class SoftphoneController {
           this.fileModel[0].infos.name,
           url,
         )
-          .then(() =>
+          .then(() => {
             this.TucToast.success(
               this.$translate.instant(
                 'telephony_line_softphone_apply_logo_add_success',
               ),
-            ),
-          )
-          .catch((error) =>
+            );
+            this.trackBanner('info', 'success');
+          })
+          .catch((error) => {
             this.TucToast.error(
               this.$translate.instant(
                 'telephony_line_softphone_apply_logo_add_error',
@@ -172,8 +176,9 @@ export default class SoftphoneController {
                   errorMessage: error.message,
                 },
               ),
-            ),
-          )
+            );
+            this.trackBanner('error', 'error');
+          })
           .finally(() => {
             this.fetchSoftPhoneInformations();
             this.fileModel = undefined;
@@ -183,7 +188,31 @@ export default class SoftphoneController {
     );
   }
 
+  trackBanner(bannerType, returnType) {
+    this.trackPage({
+      ...SOFTPHONE_TRACKING.LOGO_MANAGEMENT.BANNER,
+      name: SOFTPHONE_TRACKING.LOGO_MANAGEMENT.BANNER.name
+        .replace(/{{bannerType}}/g, bannerType)
+        .replace(/{{returnType}}/g, returnType),
+      page: {
+        name: SOFTPHONE_TRACKING.LOGO_MANAGEMENT.BANNER.page.name
+          .replace(/{{bannerType}}/g, bannerType)
+          .replace(/{{returnType}}/g, returnType),
+      },
+    });
+  }
+
+  onCopyDownloadLinkClick(event) {
+    // Clipboard has 2 elements input & button. Input event handler triggers click on button.
+    // So click event-handler on oui-clipboard will be triggered twice.
+    // For the expected behavior, considering only the click event on input element.
+    if (event.target.tagName === 'INPUT') {
+      this.trackClick(SOFTPHONE_TRACKING.DOWNLOAD.LINK);
+    }
+  }
+
   deleteLogo() {
+    this.trackClick(SOFTPHONE_TRACKING.LOGO_MANAGEMENT.DELETE);
     this.SoftphoneService.deleteSoftphoneLogo(
       this.billingAccount,
       this.serviceName,
@@ -212,5 +241,27 @@ export default class SoftphoneController {
 
   helpTextForLogo() {
     return `${this.LOGO_FILE_FORMATS} (< ${this.MAX_SIZE_LOGO_FILE / 1000} KB)`;
+  }
+
+  goStoreTrackClick(store) {
+    this.trackClick({
+      ...SOFTPHONE_TRACKING.DOWNLOAD.STORE,
+      name: SOFTPHONE_TRACKING.DOWNLOAD.STORE.name.replace(
+        /{{storeName}}/g,
+        store,
+      ),
+    });
+  }
+
+  refreshDatagrid() {
+    this.trackClick(SOFTPHONE_TRACKING.DEVICE_MANAGEMENT.REFRESH);
+    this.trackPage({
+      ...SOFTPHONE_TRACKING.DEVICE_MANAGEMENT.DATAGRID,
+      name: SOFTPHONE_TRACKING.DEVICE_MANAGEMENT.DATAGRID.name.replace(
+        /{{deviceAction}}/g,
+        'refresh',
+      ),
+    });
+    this.fetchSoftPhoneInformations();
   }
 }

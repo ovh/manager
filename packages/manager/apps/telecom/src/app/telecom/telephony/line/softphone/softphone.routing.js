@@ -1,3 +1,5 @@
+import { SOFTPHONE_TRACKING } from './softphone.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
     .state('telecom.telephony.billingAccount.line.dashboard.softphone', {
@@ -33,6 +35,40 @@ export default /* @ngInject */ ($stateProvider) => {
           softphoneService.getThemes(),
         storeLinks: /* @ngInject */ (softphoneService) =>
           softphoneService.getStoreLinks(),
+        trackClick: /* @ngInject */ (atInternet, currentLine) => (hit) => {
+          atInternet.trackClick({
+            ...hit,
+            name: hit.name.replace(/{{serviceType}}/g, currentLine.serviceType),
+            page: {
+              name: hit.page.name.replace(
+                /{{serviceType}}/g,
+                currentLine.serviceType,
+              ),
+            },
+            type: 'action',
+          });
+        },
+        trackPage: /* @ngInject */ (atInternet, currentLine) => (track) => {
+          atInternet.trackPage({
+            ...track,
+            name: track.name.replace(
+              /{{serviceType}}/g,
+              currentLine.serviceType,
+            ),
+            page: {
+              name: track.page.name.replace(
+                /{{serviceType}}/g,
+                currentLine.serviceType,
+              ),
+            },
+          });
+        },
+      },
+      atInternet: {
+        ignore: true,
+      },
+      onEnter: /* @ngInject */ (trackPage) => {
+        trackPage(SOFTPHONE_TRACKING.PAGE);
       },
     })
     .state(
