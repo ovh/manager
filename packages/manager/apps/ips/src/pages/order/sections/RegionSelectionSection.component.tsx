@@ -8,9 +8,15 @@ import { RegionSelector } from '@/components/RegionSelector/region-selector.comp
 import { OrderContext } from '../order.context';
 
 export const RegionSelectionSection: React.FC = () => {
-  const { selectedRegion, setSelectedRegion } = React.useContext(OrderContext);
+  const {
+    selectedRegion,
+    setSelectedRegion,
+    selectedServiceType,
+  } = React.useContext(OrderContext);
   const { t } = useTranslation('order');
-  const { regionList, isLoading, isError, error } = useAdditionalIpsRegions();
+  const { regionList, isLoading, isError, error } = useAdditionalIpsRegions({
+    serviceType: selectedServiceType,
+  });
 
   return (
     <OrderSection title={t('region_selection_title')}>

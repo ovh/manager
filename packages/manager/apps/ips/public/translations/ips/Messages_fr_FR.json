@@ -1,6 +1,4 @@
 {
-  "per_ip": "/IP",
-  "per_ip_full": "par adresse IP",
   "breadcrumb_root_label": "Toutes les IPs",
   "order": "Commander une IP"
 }
