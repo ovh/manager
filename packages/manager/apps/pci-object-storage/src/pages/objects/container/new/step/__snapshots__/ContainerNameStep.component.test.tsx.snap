@@ -39,7 +39,6 @@ exports[`ContainerNameStep > renders the component 1`] = `
             color="primary"
             is-required="true"
             name="containerName"
-            pattern="^[a-z0-9]([a-z0-9.-]{1,61})[a-z0-9]$"
             value=""
           />
           <ods-text
