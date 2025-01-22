@@ -24,7 +24,7 @@ import { useMedia } from 'react-use';
 import { isDiscoveryProject } from '@ovh-ux/manager-pci-common/src';
 import { AvailablePart } from '@/pages/regions/Available.part';
 import { ToAddPart } from '@/pages/regions/ToAdd.part';
-import { useLocations } from '@/api/hooks/useRegions';
+import { useGetProjectRegions, useLocations } from '@/api/hooks/useRegions';
 import { addRegion } from '@/api/data/region';
 import queryClient from '@/queryClient';
 import { TabsComponent } from '@/components/tabs/Tabs.component';
@@ -52,6 +52,8 @@ export default function RegionsPage(): JSX.Element {
   const { projectId } = useParams();
   const { data: project } = useProject();
 
+  const { data: availableRegions } = useGetProjectRegions(projectId, true);
+
   const { data: locations } = useLocations(projectId, true);
 
   const [selectedLocation, setSelectedLocation] = useState<TPlainLocation>(
@@ -77,6 +79,16 @@ export default function RegionsPage(): JSX.Element {
     try {
       const code = selectedRegions[selectedLocation.name];
       await addRegion(projectId, code);
+      queryClient.setQueryData(
+        ['project', projectId, 'regions', 'available'],
+        availableRegions.filter((region) => region.name !== code),
+      );
+
+      setSelectedLocation(undefined);
+
+      await queryClient.invalidateQueries({
+        queryKey: ['project', projectId, 'regions'],
+      });
 
       addSuccess(
         <OdsText>
@@ -85,10 +97,6 @@ export default function RegionsPage(): JSX.Element {
           })}
         </OdsText>,
       );
-
-      await queryClient.invalidateQueries({
-        queryKey: ['project', projectId, 'regions'],
-      });
     } catch (e) {
       addError(
         <OdsText>

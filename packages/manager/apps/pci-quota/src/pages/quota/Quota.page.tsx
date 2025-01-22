@@ -154,7 +154,7 @@ export default function QuotaPage(): JSX.Element {
           />
         </OdsBreadcrumb>
       )}
-      {!isServicePending && !service && !serviceOptions.length && (
+      {!isServicePending && !service && !serviceOptions?.length && (
         <div className="mt-10">
           <OdsMessage color="danger" className="w-full" isDismissible={false}>
             <div className="p-2">
@@ -231,7 +231,7 @@ export default function QuotaPage(): JSX.Element {
                   }}
                 />
               )}
-              {quotas?.length > 0 && serviceOptions.length > 0 && (
+              {quotas?.length > 0 && serviceOptions?.length > 0 && (
                 <OdsButton
                   className="ml-4"
                   size="sm"
