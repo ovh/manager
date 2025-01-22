@@ -3,11 +3,7 @@ import React from 'react';
 import { Outlet, useHref, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-import {
-  ChangelogButton,
-  ChangelogLinks,
-  Title,
-} from '@ovh-ux/manager-react-components';
+import { ChangelogButton, Title } from '@ovh-ux/manager-react-components';
 import { MutationStatus, useMutationState } from '@tanstack/react-query';
 import {
   patchRancherServiceQueryKey,
@@ -20,11 +16,15 @@ import {
 } from '@/data/hooks/useEditRancher/useEditRancher';
 import { useTrackingPage } from '@/hooks/useTrackingPage/useTrackingPage';
 import { COMMON_PATH } from '@/routes/routes';
-import { TrackingPageView, TRACKING_PATH } from '@/utils/tracking';
+import { TrackingPageView } from '@/utils/tracking';
 import RancherDetail from './RancherDetail/RancherDetail.component';
 import TabBar from './TabBar/TabBar.component';
 import LinkIcon from '@/components/LinkIcon/LinkIcon.component';
 import useVersions from '@/data/hooks/useVersions/useVersions';
+import {
+  CHANGELOG_LINKS,
+  CHANGELOG_CHAPTERS,
+} from '@/utils/changelog.constants';
 
 export type DashboardTabItemProps = {
   name: string;
@@ -57,19 +57,6 @@ const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs, rancher }) => {
   const { t } = useTranslation('dashboard');
   useTrackingPage(TrackingPageView.DetailRancher);
   const hrefPrevious = useHref(`../${COMMON_PATH}/${projectId}/rancher`);
-
-  const changelogLinks: ChangelogLinks = {
-    changelog:
-      'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Managed+Rancher+Service',
-    roadmap:
-      'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Managed+Rancher+Service',
-    'feature-request':
-      'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
-  };
-  const changelogChapters: string[] = [
-    ...TRACKING_PATH.split('::'),
-    TrackingPageView.DetailRancher,
-  ];
 
   const mutationEditRancherState = useMutationState<{
     variables: {
@@ -133,8 +120,8 @@ const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs, rancher }) => {
           <Title>{rancher.currentState.name}</Title>
           <div className="flex flex-wrap justify-end gap-1">
             <ChangelogButton
-              links={changelogLinks}
-              chapters={changelogChapters}
+              links={CHANGELOG_LINKS}
+              chapters={CHANGELOG_CHAPTERS}
             />
           </div>
         </div>

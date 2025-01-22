@@ -2,10 +2,7 @@ import { useMemo } from 'react';
 import { Outlet, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Plus } from 'lucide-react';
-import {
-  ChangelogLinks,
-  ChangelogButton,
-} from '@ovh-ux/manager-react-components';
+import { ChangelogButton } from '@ovh-ux/manager-react-components';
 import { useGetServices } from '@/hooks/api/database/service/useGetServices.hook';
 import ServicesList from './_components/ServiceListTable.component';
 import LegalMentions from '../_components/LegalMentions.component';
@@ -18,6 +15,10 @@ import { useTrackAction } from '@/hooks/useTracking';
 import { useUserActivityContext } from '@/contexts/UserActivityContext';
 import { TRACKING } from '@/configuration/tracking.constants';
 import * as database from '@/types/cloud/project/database';
+import {
+  CHANGELOG_LINKS,
+  CHANGELOG_CHAPTERS,
+} from '@/configuration/changelog.constants';
 
 const Services = () => {
   const { t } = useTranslation('pci-databases-analytics/services');
@@ -27,15 +28,7 @@ const Services = () => {
   const servicesQuery = useGetServices(projectId, {
     refetchInterval: isUserActive && POLLING.SERVICES,
   });
-  const changelogLinks: ChangelogLinks = {
-    changelog:
-      'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Managed+Databases',
-    roadmap:
-      'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Managed+Databases',
-    'feature-request':
-      'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
-  };
-  const changelogChapters = TRACKING.servicesList.page().split('::');
+
   const filteredServices = useMemo(() => {
     if (!servicesQuery.data) return [];
     return servicesQuery.data.filter(
@@ -55,8 +48,8 @@ const Services = () => {
         <h2>{t('title')}</h2>
         <div className="flex flex-wrap justify-end gap-1">
           <ChangelogButton
-            links={changelogLinks}
-            chapters={changelogChapters}
+            links={CHANGELOG_LINKS}
+            chapters={CHANGELOG_CHAPTERS}
           />
           <Guides
             section={GuideSections.landing}

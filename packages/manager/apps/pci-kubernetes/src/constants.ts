@@ -1,3 +1,5 @@
+import { ChangelogLinks } from '@ovh-ux/manager-react-components';
+
 export const ANTI_AFFINITY_MAX_NODES = 5;
 
 export const NODE_RANGE = {
@@ -184,4 +186,13 @@ export const LOAD_BALANCER_DOC = {
     'https://help.ovhcloud.com/csm/en-public-cloud-network-load-balancer-concepts?id=kb_article_view&sysparm_article=KB0059277',
   WS:
     'https://help.ovhcloud.com/csm/es-public-cloud-network-load-balancer-concepts?id=kb_article_view&sysparm_article=KB0059278',
+};
+
+export const CHANGELOG_LINKS: ChangelogLinks = {
+  changelog:
+    'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Managed+Kubernetes+Service',
+  roadmap:
+    'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Managed+Kubernetes+Service',
+  'feature-request':
+    'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
 };

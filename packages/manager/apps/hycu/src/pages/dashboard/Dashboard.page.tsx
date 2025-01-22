@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import {
   useNavigate,
   useResolvedPath,
@@ -26,8 +25,9 @@ import {
   useServiceDetails,
   Notifications,
   ChangelogButton,
-  ChangelogLinks,
 } from '@ovh-ux/manager-react-components';
+
+import { CHANGELOG_LINKS } from '@/constants';
 
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb.component';
 import Errors from '@/components/Error/Error';
@@ -86,7 +86,6 @@ export default function DashboardPage() {
   const { serviceName } = useParams();
   const navigate = useNavigate();
   const { t } = useTranslation('hycu/dashboard');
-  const { trackClick } = useOvhTracking();
 
   const { data: licenseHycu } = useDetailsLicenseHYCU(serviceName);
   const { data: serviceDetails, error } = useServiceDetails({
@@ -104,15 +103,6 @@ export default function DashboardPage() {
     return null;
   }, [licenseHycu, serviceDetails]);
 
-  const changelogLinks: ChangelogLinks = {
-    changelog:
-      'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Backup+and+Disaster+Recovery',
-    roadmap:
-      'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Backup+and+Disaster+Recovery',
-    'feature-request':
-      'https://github.com/ovh/private-cloud-roadmap/issues/new',
-  };
-
   const tabsList = [
     {
       name: 'general_informations',
@@ -126,7 +116,7 @@ export default function DashboardPage() {
   const header = {
     title: serviceDetails?.data.resource.displayName,
     description: serviceName,
-    headerButton: <ChangelogButton links={changelogLinks} />,
+    headerButton: <ChangelogButton links={CHANGELOG_LINKS} />,
   };
 
   if (error) {

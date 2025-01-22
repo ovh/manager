@@ -1,6 +1,5 @@
 import {
   ChangelogButton,
-  ChangelogLinks,
   Headers,
   PciGuidesHeader,
   useNotifications,
@@ -23,10 +22,11 @@ import {
 } from '@ovh-ux/manager-pci-common';
 import GlobalRegionsComponent from '@/components/global-regions/GlobalRegions.component';
 import LocalZoneComponent from '@/components/local-zones/LocalZone.component';
-import { PrivateNetworkTabName } from '@/constants';
+import { CHANGELOG_LINKS, PrivateNetworkTabName } from '@/constants';
 import { MaintenanceBanner } from '@/components/maintenance/MaintenanceBanner.component';
 import { useProductMaintenance } from '@/components/maintenance/useMaintenance';
 import ListGuard from './ListGuard';
+import { CHANGELOG_CHAPTERS } from '@/tracking.constants';
 
 const getActiveTab = (pathname: string) => {
   if (pathname.includes('localZone')) {
@@ -47,16 +47,6 @@ export default function ListingPage() {
   const { data: project } = useProject();
   const { hasMaintenance, maintenanceURL } = useProductMaintenance(projectId);
   const activeTab = getActiveTab(location.pathname);
-
-  const changelogLinks: ChangelogLinks = {
-    changelog:
-      'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Public+Cloud+Networking',
-    roadmap:
-      'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Public+Cloud+Networking',
-    'feature-request':
-      'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
-  };
-  const changelogChapters = [];
 
   const handlerTabChanged = (event: CustomEvent) => {
     clearNotifications();
@@ -92,12 +82,10 @@ export default function ListingPage() {
           />
         )}
         <div className="header mb-10 mt-8">
-          <div className="flex items-center justify-between">
             <Headers title={t('pci_projects_project_network_private')} headerButton={<PciGuidesHeader category="instances"></PciGuidesHeader>} changelogButton={<ChangelogButton
-                links={changelogLinks}
-                chapters={changelogChapters}
+                links={CHANGELOG_LINKS}
+                chapters={CHANGELOG_CHAPTERS}
               />} />
-          </div>
         </div>
 
         <PciAnnouncementBanner projectId={projectId} />

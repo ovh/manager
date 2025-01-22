@@ -1,6 +1,5 @@
 import {
   ChangelogButton,
-  ChangelogLinks,
   Datagrid,
   FilterAdd,
   FilterList,
@@ -45,7 +44,8 @@ import { useAggregatedGateway } from '@/api/hooks/useGateway';
 import ListGuard from '@/pages/list/ListGuard';
 import { useDatagridColumn } from '@/hooks/useDatagridColumn';
 import HidePreloader from '@/core/HidePreloader';
-import { ACTION_PREFIX } from '@/tracking.constants';
+import { CHANGELOG_CHAPTERS } from '@/tracking.constants';
+import { CHANGELOG_LINKS } from '@/constants';
 
 export default function ListingPage() {
   const { t } = useTranslation('common');
@@ -62,16 +62,6 @@ export default function ListingPage() {
   const filterPopoverRef = useRef(undefined);
 
   const { pagination, setPagination } = useDataGrid();
-
-  const changelogLinks: ChangelogLinks = {
-    changelog:
-      'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Public+Cloud+Networking',
-    roadmap:
-      'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Public+Cloud+Networking',
-    'feature-request':
-      'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
-  };
-  const changelogChapters = ACTION_PREFIX.split('::');
 
   const columns = useDatagridColumn(projectId);
   const {
@@ -110,8 +100,8 @@ export default function ListingPage() {
             description={t('pci_projects_project_public_gateways_intro_part_1')}
             headerButton={<PciGuidesHeader category="instances" />}
             changelogButton={<ChangelogButton
-              links={changelogLinks}
-              chapters={changelogChapters}
+              links={CHANGELOG_LINKS}
+              chapters={CHANGELOG_CHAPTERS}
             />}
           />
           <OsdsText

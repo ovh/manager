@@ -27,7 +27,6 @@ import {
 } from '@ovhcloud/ods-components';
 import {
   ChangelogButton,
-  ChangelogLinks,
   Datagrid,
   DataGridTextCell,
   Headers,
@@ -45,7 +44,8 @@ import { TSshKey } from '@/interface';
 import { useSshKeys } from '@/api/hooks/useSsh';
 import Key from '@/components/ssh-keys/listing/Key';
 import Actions from '@/components/ssh-keys/listing/Actions';
-import { PCI_LEVEL2, PAGE_PREFIX } from '@/tracking.constants';
+import { PCI_LEVEL2, CHANGELOG_CHAPTERS } from '@/tracking.constants';
+import { CHANGELOG_LINKS } from '@/constants';
 
 export default function ListingPage() {
   const { t } = useTranslation('common');
@@ -56,13 +56,6 @@ export default function ListingPage() {
   const [searchField, setSearchField] = useState('');
   const [searchQueries, setSearchQueries] = useState<string[]>([]);
   const project = useRouteLoaderData('ssh') as TProject;
-  const changelogLinks: ChangelogLinks = {
-    changelog: 'https://github.com/orgs/ovh/projects/16/views/6?pane=info',
-    roadmap: 'https://github.com/orgs/ovh/projects/16/views/1?pane=info',
-    'feature-request':
-      'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
-  };
-  const changelogChapters: string[] = [...PAGE_PREFIX.split('::'), 'sshKeys'];
 
   const columns = [
     {
@@ -120,8 +113,8 @@ export default function ListingPage() {
           title={t('pci_projects_project_sshKeys_title')}
           headerButton={<PciGuidesHeader category="instances" />}
           changelogButton={<ChangelogButton
-            links={changelogLinks}
-            chapters={changelogChapters}
+            links={CHANGELOG_LINKS}
+            chapters={CHANGELOG_CHAPTERS}
           />}
         ></Headers>
       </div>

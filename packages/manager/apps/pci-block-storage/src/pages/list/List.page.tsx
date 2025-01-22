@@ -43,7 +43,8 @@ import { useDatagridColumn } from '@/hooks/useDatagridColumn';
 import HidePreloader from '@/core/HidePreloader';
 import { useAllVolumes, useVolumes } from '@/api/hooks/useVolume';
 
-import { PAGE_PREFIX } from '@/tracking.constants';
+import { CHANGELOG_CHAPTERS } from '@/tracking.constants';
+import { CHANGELOG_LINKS } from '@/constants';
 
 export default function ListingPage() {
   const { t } = useTranslation('common');
@@ -60,17 +61,8 @@ export default function ListingPage() {
   const { filters, addFilter, removeFilter } = useColumnFilters();
   const { clearNotifications } = useNotifications();
   const filterPopoverRef = useRef(undefined);
-  const changelogChapters = PAGE_PREFIX.split('::');
 
   const { pagination, setPagination, sorting, setSorting } = useDataGrid();
-  const changelogLinks: ChangelogLinks = {
-    changelog:
-      'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Public+Cloud+Storage',
-    roadmap:
-      'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Public+Cloud+Storage',
-    'feature-request':
-      'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
-  };
 
   useEffect(() => {
     navigation
@@ -128,8 +120,8 @@ export default function ListingPage() {
             headerButton={
               <>
                 <ChangelogButton
-                  links={changelogLinks}
-                  chapters={changelogChapters}
+                  links={CHANGELOG_LINKS}
+                  chapters={CHANGELOG_CHAPTERS}
                 />
                 <PciGuidesHeader category="instances" />
               </>

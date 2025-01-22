@@ -14,7 +14,6 @@ import {
 import { Outlet, useHref, useParams } from 'react-router-dom';
 import {
   ChangelogButton,
-  ChangelogLinks,
   Datagrid,
   DatagridColumn,
   DataGridTextCell,
@@ -47,7 +46,8 @@ import {
 } from '@/api/hooks/workflows';
 import ExecutionStatusComponent from '@/components/execution-status.component';
 import HidePreloader from '@/core/HidePreloader';
-import { PAGE_PREFIX } from '@/tracking.constants';
+import { CHANGELOG_CHAPTERS } from '@/tracking.constants';
+import { CHANGELOG_LINKS } from '@/constants';
 
 export default function ListingPage() {
   const { t } = useTranslation('listing');
@@ -69,15 +69,6 @@ export default function ListingPage() {
     filters,
     searchQueries,
   );
-
-  const changelogLinks: ChangelogLinks = {
-    changelog: 'https://github.com/orgs/ovh/projects/16/views/6?pane=info',
-    roadmap: 'https://github.com/orgs/ovh/projects/16/views/1?pane=info',
-    'feature-request':
-      'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
-  };
-
-  const changelogChapters: string[] = [...PAGE_PREFIX.split('::'), 'workflow'];
 
   const columns: DatagridColumn<TPaginatedWorkflow>[] = [
     {
@@ -181,8 +172,8 @@ export default function ListingPage() {
           headerButton={
             <>
               <ChangelogButton
-                links={changelogLinks}
-                chapters={changelogChapters}
+                links={CHANGELOG_LINKS}
+                chapters={CHANGELOG_CHAPTERS}
               />
               <PciGuidesHeader category="kubernetes" />
             </>
