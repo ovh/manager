@@ -1,10 +1,3 @@
-import assign from 'lodash/assign';
-import head from 'lodash/head';
-import includes from 'lodash/includes';
-import isNull from 'lodash/isNull';
-import snakeCase from 'lodash/snakeCase';
-import 'moment';
-
 import { DEBT_STATUS, BYOIP_SERVICE_PREFIX } from './billing-service.constants';
 
 export default class BillingService {
@@ -105,11 +98,12 @@ export default class BillingService {
   }
 
   hasDebt() {
-    return includes(DEBT_STATUS, snakeCase(this.status).toUpperCase());
+    // Format edited
+    return DEBT_STATUS.includes(this.status);
   }
 
   hasEngagement() {
-    return !isNull(this.engagedUpTo) && moment().isBefore(this.engagedUpTo);
+    return !(this.engagedUpTo === null) && moment().isBefore(this.engagedUpTo);
   }
 
   hasEngagementDetails() {
@@ -121,16 +115,16 @@ export default class BillingService {
   }
 
   setAutomaticRenew(period) {
-    assign(this.renew, {
+    Object.assign(this.renew, {
       manualPayment: false,
       automatic: true,
       deleteAtExpiration: false,
-      period: period || head(this.possibleRenewPeriod),
+      period: period || this.possibleRenewPeriod?.[0],
     });
   }
 
   setManualRenew() {
-    assign(this.renew, {
+    Object.assign(this.renew, {
       manualPayment: true,
       automatic: false,
       deleteAtExpiration: false,
@@ -279,29 +273,6 @@ export default class BillingService {
     );
   }
 
-  hasParticularRenew() {
-    return [
-      'EXCHANGE',
-      'EMAIL_EXCHANGE',
-      'SMS',
-      'EMAIL_DOMAIN',
-      'VEEAM_ENTERPRISE',
-    ].includes(this.serviceType);
-  }
-
-  canHandleRenew() {
-    return ![
-      'VIP',
-      'OVH_CLOUD_CONNECT',
-      'PACK_XDSL',
-      'XDSL',
-      'OKMS_RESOURCE',
-      'VRACK_SERVICES_RESOURCE',
-      'VMWARE_CLOUD_DIRECTOR_ORGANIZATION',
-      'VMWARE_CLOUD_DIRECTOR_BACKUP',
-    ].includes(this.serviceType);
-  }
-
   isOneShot() {
     return this.renewalType === 'oneShot';
   }
@@ -326,18 +297,6 @@ export default class BillingService {
       this.engagementDetails.endRule.possibleStrategies.includes(
         'REACTIVATE_ENGAGEMENT',
       )
-    );
-  }
-
-  canBeDeleted() {
-    return (
-      [
-        'EMAIL_DOMAIN',
-        'ENTERPRISE_CLOUD_DATABASE',
-        'HOSTING_WEB',
-        'HOSTING_PRIVATE_DATABASE',
-        'WEBCOACH',
-      ].includes(this.serviceType) && !this.isResiliated()
     );
   }
 
@@ -367,9 +326,5 @@ export default class BillingService {
       !this.hasManualRenew() &&
       !this.isResiliated()
     );
-  }
-
-  get isHostingWeb() {
-    return this.serviceType === 'HOSTING_WEB';
   }
 }

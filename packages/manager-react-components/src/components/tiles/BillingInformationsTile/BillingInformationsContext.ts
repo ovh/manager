@@ -1,4 +1,5 @@
-import { useServiceDetails } from '@ovh-ux/manager-module-common-api';
+import { useServiceDetailsQueryOption } from '@ovh-ux/manager-module-common-api';
+import { useQuery } from '@tanstack/react-query';
 import { createContext, useContext, useMemo } from 'react';
 
 export type BillingInformationContextParams = {
@@ -11,23 +12,20 @@ export const BillingInformationContext =
 export const useBillingInformationContextServiceDetails = () => {
   const { resourceName } = useContext(BillingInformationContext);
 
+  const serviceDetailsOptions = useServiceDetailsQueryOption({ resourceName });
   const {
-    data: serviceDetailsResponse,
+    data,
     isLoading: isServiceDetailsLoading,
     ...rest
-  } = useServiceDetails({
-    resourceName,
+  } = useQuery({
+    ...serviceDetailsOptions,
+    select: (response) => response.data,
   });
-
-  const data = useMemo(
-    () => serviceDetailsResponse?.data,
-    [serviceDetailsResponse],
-  );
 
   const isLoading = useMemo(
     () => isServiceDetailsLoading || !resourceName,
     [isServiceDetailsLoading, resourceName],
   );
 
-  return { data, isLoading, rest };
+  return { data, isLoading, ...rest };
 };

@@ -15,5 +15,8 @@ module.exports = {
     function ({ addVariant }) {
       addVariant('part-skeleton', '&::part(skeleton)');
     },
+    function ({ addVariant }) {
+      addVariant('part-link', '&::part(link)');
+    },
   ],
 };

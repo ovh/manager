@@ -6,6 +6,7 @@ import { BillingInformationsCreationDate } from './Items/CreationDate/CreationDa
 import { BillingInformationsEngagement } from './Items/EngagementBadge/EngagementBadge';
 import { BillingInformationsNextBilling } from './Items/NextBillingDate/NextBillingDate';
 import { BillingInformationsState } from './Items/State/State';
+import { BillingInformationsResiliateLink } from './Items/ResiliateLink/ResiliateLink';
 
 export type BillingInformationsTileProps = {
   resourceName?: string;
@@ -30,3 +31,4 @@ BillingInformationsTile.EngagementBadge = BillingInformationsEngagement;
 BillingInformationsTile.CreationDate = BillingInformationsCreationDate;
 BillingInformationsTile.NextBillingDate = BillingInformationsNextBilling;
 BillingInformationsTile.State = BillingInformationsState;
+BillingInformationsTile.ResiliateLink = BillingInformationsResiliateLink;

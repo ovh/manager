@@ -26,7 +26,7 @@ export const BillingInformationsCreationDate = () => {
               dateString={
                 serviceDetails?.billing.lifecycle.current.creationDate
               }
-              format={DateFormat.compact}
+              format={DateFormat.fullDisplay}
             />
           </OdsText>
         )}

@@ -25,7 +25,7 @@ export const BillingInformationsNextBilling = () => {
             <OdsText preset={ODS_TEXT_PRESET.span}>
               <FormattedDate
                 dateString={serviceDetails?.billing.nextBillingDate}
-                format={DateFormat.compact}
+                format={DateFormat.fullDisplay}
               />
             </OdsText>
           </div>
