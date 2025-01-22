@@ -24,7 +24,7 @@ import {
   STORAGE_ASYNC_REPLICATION_LINK,
 } from '@/constants';
 
-const validNameRegex = '^[a-z0-9]([a-z0-9.-]{1,61})[a-z0-9]$';
+const validNameRegex = /^[a-z0-9]([a-z0-9.-]{1,61})[a-z0-9]$/;
 
 interface ContainerNameStepProps {
   isCreationPending: boolean;
@@ -42,8 +42,14 @@ export function ContainerNameStep({
   const navigate = useNavigate();
   const { ovhSubsidiary } = context.environment.getUser();
   const { form, stepper, setContainerName } = useContainerCreationStore();
+  const [isTouched, setIsTouched] = useState(false);
 
-  const [nameError, setNameError] = useState(undefined);
+  let nameError: string | undefined;
+  if (isTouched && !form.containerName) {
+    nameError = t('pci-common:common_field_error_required');
+  } else if (isTouched && !validNameRegex.test(form.containerName)) {
+    nameError = t('pci-common:common_field_error_pattern');
+  }
 
   const asyncReplicationLink =
     STORAGE_ASYNC_REPLICATION_LINK[ovhSubsidiary] ||
@@ -67,7 +73,7 @@ export function ContainerNameStep({
           onSubmit(form);
         },
         label: t('pci_projects_project_storages_containers_add_submit_label'),
-        isDisabled: nameError,
+        isDisabled: !!nameError,
       }}
       skip={{
         action: () => {
@@ -86,18 +92,11 @@ export function ContainerNameStep({
           name="containerName"
           color="primary"
           isRequired
-          pattern={`${validNameRegex}`}
           onOdsChange={(event) => {
-            if (event.detail.validity?.valueMissing) {
-              setNameError(t('pci-common:common_field_error_required'));
-            } else if (event.detail.validity?.patternMismatch) {
-              setNameError(t('pci-common:common_field_error_pattern'));
-            } else {
-              setNameError(undefined);
-            }
-
-            if (event.detail.value)
-              setContainerName(event.detail.value.toString());
+            setContainerName(`${event.detail.value}`);
+          }}
+          onOdsBlur={() => {
+            setIsTouched(true);
           }}
         />
 
