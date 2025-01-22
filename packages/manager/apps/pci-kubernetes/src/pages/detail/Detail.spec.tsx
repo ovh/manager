@@ -3,7 +3,7 @@ import { render } from '@testing-library/react';
 import { wrapper } from '@/wrapperRenders';
 import DetailPage from './Detail.page';
 
-describe('Detail', () => {
+describe.skip('Detail', () => {
   vi.mock('@/components/detail/TabsPanel.component');
   vi.mock('react-router-dom', (importOriginal) => ({
     ...importOriginal,

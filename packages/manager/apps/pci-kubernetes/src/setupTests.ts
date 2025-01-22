@@ -51,10 +51,17 @@ vi.mock('@ovh-ux/manager-react-shell-client', async () => {
   const mod = await vi.importActual('@ovh-ux/manager-react-shell-client');
   return {
     ...mod,
+    useEnvironment: () => ({
+      user: {},
+      getUser: vi.fn(),
+    }),
     useTracking: vi.fn(() => ({
       trackPage: vi.fn(),
       trackClick: vi.fn(),
     })),
+    useOvhTracking: () => ({
+      trackClick: vi.fn(),
+    }),
   };
 });
 
