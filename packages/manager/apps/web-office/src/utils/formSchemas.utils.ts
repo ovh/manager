@@ -65,12 +65,14 @@ export const CHANGE_PASSWORD_USERS_FORM_SCHEMA = z
         )
         .optional(),
     ),
-    email: z
-      .string()
-      .email(i18n?.t('common:common_field_error_email'))
-      .max(255)
-      .nullable()
-      .optional(),
+    email: looseOptional(
+      z
+        .string()
+        .email(i18n?.t('common:common_field_error_email'))
+        .max(255)
+        .nullable()
+        .optional(),
+    ),
   })
   .refine(
     (data) =>

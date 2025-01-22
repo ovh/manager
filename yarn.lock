@@ -5873,18 +5873,6 @@
     tailwindcss "^3.4.4"
     uuid "^9.0.1"
 
-"@ovh-ux/manager-react-shell-client@^0.8.4":
-  version "0.8.4"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-shell-client/-/manager-react-shell-client-0.8.4.tgz#df2dfaee89fe4d2cf94c1d9e0dcf4a5e86de5258"
-  integrity sha512-ex8TwTzaOBRJIGRjeKIQgSwNSFWPxWoaiOdKXrE7eulG6mNTS2WG0b8KmM1pUWmICwfxXY4NPGWc8PqemKFQiA==
-  dependencies:
-    "@ovh-ux/manager-config" "^8.0.1"
-    "@ovh-ux/ovh-at-internet" "^0.18.0"
-    "@ovh-ux/request-tagger" "^0.4.0"
-    "@ovh-ux/shell" "^4.1.0"
-    i18next "^23.8.2"
-    i18next-http-backend "^2.4.2"
-
 "@ovh-ux/manager-react-shell-client@^0.8.5":
   version "0.8.5"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-shell-client/-/manager-react-shell-client-0.8.5.tgz#b391298e455dd79b0d29a2cfff38a677c8472ef6"
