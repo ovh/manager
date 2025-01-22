@@ -2,8 +2,13 @@ import React from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { DATACENTER_TO_REGION } from './catalog.utils';
 import { useCatalogIps } from './useCatalogIps';
+import { ServiceType } from '@/data/api/ips';
 
-export const useAdditionalIpsRegions = () => {
+export const useAdditionalIpsRegions = ({
+  serviceType,
+}: {
+  serviceType: ServiceType;
+}) => {
   const { environment } = React.useContext(ShellContext);
   const { data, ...query } = useCatalogIps(environment.user.ovhSubsidiary);
 
@@ -13,7 +18,11 @@ export const useAdditionalIpsRegions = () => {
       ? Array.from(
           new Set(
             data.data.plans
-              .filter((plan) => plan.planCode.includes('v4'))
+              .filter(({ planCode }) =>
+                serviceType === ServiceType.ipParking
+                  ? planCode.includes('failover')
+                  : planCode.includes('v4'),
+              )
               .map((plan) =>
                 plan.details.product.configurations
                   .flatMap((config) =>
