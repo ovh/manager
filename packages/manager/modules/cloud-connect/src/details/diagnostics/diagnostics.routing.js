@@ -5,6 +5,12 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       diagnosticList: /* @ngInject */ (cloudConnectService, cloudConnect) =>
         cloudConnectService.getDiagnosticsWithDetails(cloudConnect.id),
+      goToDiagnosticPage: /* @ngInject */ ($state) => () =>
+        $state.go('cloud-connect.details.diagnostics'),
+      gotoDiagnosticResult: /* @ngInject */ ($state) => (diagnosticId) =>
+        $state.go('cloud-connect.details.diagnostics.result', {
+          diagnosticId,
+        }),
       refreshDiagnostics: /* @ngInject */ ($state) => () => {
         return $state.reload();
       },

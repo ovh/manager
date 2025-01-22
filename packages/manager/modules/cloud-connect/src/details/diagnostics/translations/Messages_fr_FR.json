@@ -8,5 +8,7 @@
   "cloud_connect_diagnostics_status_doing": "En cours",
   "cloud_connect_diagnostics_status_done": "Terminé",
   "cloud_connect_diagnostics_status_error": "Erreur",
-  "cloud_connect_diagnostics_empty_datagrid": "Aucun diagnostique n'est disponible"
+  "cloud_connect_diagnostics_empty_datagrid": "Aucun diagnostique n'est disponible",
+  "cloud_connect_diagnostics_action_result": "Voir le résultat",
+  "cloud_connect_diagnostics_action_download": "Télécharger le résultat"
 }
