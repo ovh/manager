@@ -6,11 +6,13 @@ import { RegionSelectionSection } from './sections/RegionSelectionSection.compon
 import { OfferSelectionSection } from './sections/OfferSelectionSection.component';
 import { GeolocationSection } from './sections/GeolocationSection.component';
 import { OrganisationSection } from './sections/OrganisationSection.component';
+import { ServiceType } from '@/data/api/ips';
 
 export const Ipv4Order: React.FC = () => {
   const {
     ipVersion,
     selectedService,
+    selectedServiceType,
     selectedRegion,
     selectedOffer,
     selectedPlanCode,
@@ -24,13 +26,17 @@ export const Ipv4Order: React.FC = () => {
   return (
     <>
       <ServiceSelectionSection />
-      {!!selectedService && <RegionSelectionSection />}
+      {[ServiceType.ipParking, ServiceType.vrack].includes(
+        selectedServiceType,
+      ) &&
+        !!selectedService && <RegionSelectionSection />}
       {!!selectedService && !!selectedRegion && <OfferSelectionSection />}
       {!!selectedService &&
         !!selectedOffer &&
         !!selectedRegion &&
         !!selectedPlanCode && <GeolocationSection />}
-      {!!selectedService &&
+      {[ServiceType.vrack].includes(selectedServiceType) &&
+        !!selectedService &&
         !!selectedOffer &&
         !!selectedRegion &&
         !!selectedPlanCode &&
