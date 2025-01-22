@@ -19,15 +19,15 @@ import {
 import { useTranslation } from 'react-i18next';
 import './option-card.scss';
 
-export type OptionCardProps = {
+export type OptionCardProps = React.PropsWithChildren<{
   className?: string;
   isDisabled?: boolean;
   isSelected?: boolean;
   onClick?: () => void;
   title: React.ReactNode;
-  description: string;
-  price: number;
-};
+  subtitle?: React.ReactNode;
+  description?: string;
+}>;
 
 export const OptionCard: React.FC<OptionCardProps> = ({
   className,
@@ -36,10 +36,9 @@ export const OptionCard: React.FC<OptionCardProps> = ({
   onClick,
   title,
   description,
-  price,
+  subtitle,
+  children,
 }) => {
-  const { environment } = React.useContext(ShellContext);
-  const { t, i18n } = useTranslation();
   const stateStyle = isDisabled
     ? 'cursor-not-allowed bg-neutral-100'
     : 'cursor-pointer hover:shadow-md';
@@ -56,26 +55,52 @@ export const OptionCard: React.FC<OptionCardProps> = ({
       >
         {title}
       </OdsText>
-      <OdsText preset={ODS_TEXT_PRESET.paragraph}>{description}</OdsText>
+      {subtitle && (
+        <OdsText
+          preset={ODS_TEXT_PRESET.paragraph}
+          className="flex justify-center mb-4"
+        >
+          {subtitle}
+        </OdsText>
+      )}
+      {description && (
+        <OdsText preset={ODS_TEXT_PRESET.paragraph}>{description}</OdsText>
+      )}
       <OdsDivider className="block -ml-3 -mr-3 mt-auto mb-2" />
-      <OdsText
-        preset={ODS_TEXT_PRESET.paragraph}
-        className="flex justify-center"
-      >
-        {price === null ? (
-          <OdsSpinner size={ODS_SPINNER_SIZE.xs} />
-        ) : (
-          <Price
-            isStartingPrice
-            suffix={t('per_ip')}
-            value={price}
-            tax={0}
-            intervalUnit={IntervalUnitType.month}
-            ovhSubsidiary={environment.user.ovhSubsidiary as OvhSubsidiary}
-            locale={i18n.language}
-          />
-        )}
-      </OdsText>
+      {children}
     </OdsCard>
+  );
+};
+
+export type PriceFooterProps = {
+  price: number | null;
+  suffix?: string;
+  isStartingPrice?: boolean;
+};
+
+export const PriceDescription: React.FC<PriceFooterProps> = ({
+  price,
+  suffix,
+  isStartingPrice,
+}) => {
+  const { i18n } = useTranslation();
+  const { environment } = React.useContext(ShellContext);
+
+  return (
+    <OdsText preset={ODS_TEXT_PRESET.paragraph} className="flex justify-center">
+      {price === null ? (
+        <OdsSpinner size={ODS_SPINNER_SIZE.xs} />
+      ) : (
+        <Price
+          isStartingPrice={isStartingPrice}
+          suffix={suffix}
+          value={price}
+          tax={0}
+          intervalUnit={IntervalUnitType.month}
+          ovhSubsidiary={environment.user.ovhSubsidiary as OvhSubsidiary}
+          locale={i18n.language}
+        />
+      )}
+    </OdsText>
   );
 };

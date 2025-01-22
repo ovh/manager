@@ -7,20 +7,21 @@ import {
   OdsSkeleton,
 } from '@ovhcloud/ods-components/react';
 import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
-import { useQuery } from '@tanstack/react-query';
-import { OrderSection } from '../../../components/OrderSection/OrderSection.component';
-import { getVrackList } from '@/data/api/vrack';
+import { OrderSection } from '@/components/OrderSection/OrderSection.component';
+import {
+  ipParkingOptionValue,
+  useServiceList,
+} from '@/data/hooks/useServiceList';
 import { OrderContext } from '../order.context';
 
 export const ServiceSelectionSection: React.FC = () => {
-  const { selectedService, setSelectedService } = React.useContext(
-    OrderContext,
-  );
+  const {
+    selectedService,
+    setSelectedService,
+    setSelectedServiceType,
+  } = React.useContext(OrderContext);
   const { t } = useTranslation('order');
-  const { data, isLoading, isError, error } = useQuery({
-    queryKey: ['vrack'],
-    queryFn: getVrackList,
-  });
+  const { vrack, getServiceType, isLoading, isError, error } = useServiceList();
 
   return (
     <OrderSection title={t('service_selection_title')}>
@@ -41,18 +42,29 @@ export const ServiceSelectionSection: React.FC = () => {
             id="service"
             name="service"
             isDisabled={isLoading || isError}
-            onOdsChange={(event) =>
-              setSelectedService(event.target.value as string)
-            }
+            onOdsChange={(event) => {
+              const serviceId = event.target.value as string;
+              setSelectedService(serviceId);
+              setSelectedServiceType(getServiceType(serviceId));
+            }}
             value={selectedService}
             placeholder={t('service_selection_select_placeholder')}
           >
             <optgroup
+              label={t(
+                'service_selection_select_ip_parking_option_group_label',
+              )}
+            >
+              <option value={ipParkingOptionValue}>
+                {t('service_selection_select_ip_parking_option_label')}
+              </option>
+            </optgroup>
+            <optgroup
               label={t('service_selection_select_vrack_option_group_label')}
             >
-              {data?.data?.map((vrack) => (
-                <option key={vrack} value={vrack}>
-                  {vrack}
+              {vrack?.map((currentVrack) => (
+                <option key={currentVrack} value={currentVrack}>
+                  {currentVrack}
                 </option>
               ))}
             </optgroup>
