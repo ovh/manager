@@ -11,7 +11,7 @@ const hoistedMock = vi.hoisted(() => ({
 }));
 
 describe('ModalChangePasswordUsers Component', () => {
-  it('should enable save button and make API call on valid input', async () => {
+  it('should enable save button and make API call on valid input in manual mode', async () => {
     vi.mocked(useSearchParams).mockReturnValue([
       new URLSearchParams({
         activationEmail: 'activationEmail@activationEmail',
@@ -32,32 +32,72 @@ describe('ModalChangePasswordUsers Component', () => {
 
     const { getByTestId } = render(<ModalChangePasswordUsers />);
 
+    const manualRadio = getByTestId('radio-manual');
+
+    const saveButton = getByTestId('confirm-btn');
+    await act(() => {
+      fireEvent.click(manualRadio);
+      manualRadio.odsChange.emit({
+        value: 'passwordManual',
+      });
+    });
     const inputPassword = getByTestId('input-password');
     const inputConfirmPassword = getByTestId('input-confirm-password');
+    expect(inputPassword).toBeVisible();
+    expect(inputConfirmPassword).toBeVisible();
+
+    await act(() => {
+      fireEvent.change(inputPassword, { target: { value: 'newPas$word123' } });
+      fireEvent.change(inputConfirmPassword, {
+        target: { value: 'newPas$word123' },
+      });
+    });
+    expect(saveButton).toHaveAttribute('is-disabled', 'false');
+
+    await act(() => {
+      fireEvent.click(saveButton);
+    });
+    expect(postUsersPassword).toHaveBeenCalledOnce();
+  });
+
+  it('should enable save button and make API call on valid input in automatic mode', async () => {
+    vi.mocked(useSearchParams).mockReturnValue([
+      new URLSearchParams({
+        activationEmail: 'activationEmail@activationEmail',
+      }),
+      vi.fn(),
+    ]);
+    vi.mocked(useParams).mockReturnValue({
+      serviceName: 'test-service',
+    });
+
+    hoistedMock.useContext.mockReturnValue({
+      environment: {
+        user: {
+          email: 'test@ovhcloud.com',
+        },
+      },
+    });
+
+    const { getByTestId, getByText } = render(<ModalChangePasswordUsers />);
+
+    const automaticRadioSpan = getByText(
+      'dashboard_users_change_password_radio_1',
+    ).parentElement;
     const emailInput = getByTestId('input-email');
     const saveButton = getByTestId('confirm-btn');
 
-    expect(inputPassword).toHaveAttribute('has-error', 'false');
-    expect(inputConfirmPassword).toHaveAttribute('has-error', 'false');
-    expect(emailInput).toHaveAttribute('has-error', 'false');
-
-    expect(saveButton).toHaveAttribute('is-disabled', 'true');
     await act(() => {
-      fireEvent.input(inputPassword, { target: { value: 'newPas$word123' } });
-      inputPassword.odsChange.emit({
-        name: 'password',
-        value: 'newPas$word123',
-      });
-      fireEvent.input(inputConfirmPassword, {
-        target: { value: 'newPas$word123' },
-      });
-      inputConfirmPassword.odsChange.emit({
-        name: 'confirmPassword',
-        value: 'newPas$word123',
-      });
+      fireEvent.click(automaticRadioSpan);
+    });
+
+    expect(emailInput).toBeVisible();
+
+    await act(() => {
       fireEvent.input(emailInput, { target: { value: 'test@ovhcloud.com' } });
       emailInput.odsChange.emit({ name: 'email', value: 'test@ovhcloud.com' });
     });
+
     expect(saveButton).toHaveAttribute('is-disabled', 'false');
 
     await act(() => {
