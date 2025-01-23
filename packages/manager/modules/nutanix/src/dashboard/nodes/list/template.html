@@ -6,11 +6,11 @@
         data-searchable
         data-filterable
     >
-        <iam-protected-data is-hidden="$row.isHiddenNode">
+        <iam-protected-data is-hidden=":: $row.isHiddenNode">
             <a
                 class="oui-link"
                 data-ui-sref="{{:: $ctrl.constructor.getNodeDetailsState($row.name) }}"
-                data-ng-bind="$row.iam.displayName"
+                data-ng-bind=":: $row.iam.displayName"
             >
             </a>
         </iam-protected-data>
@@ -31,31 +31,20 @@
         data-type-options="$ctrl.stateColumnOptions"
         data-filterable
     >
-        <span
-            data-ng-if="!$row.isHiddenNode"
-            class="{{'oui-badge ' + $ctrl.NODE_BADGE_STATE[$row.state] }}"
-            data-translate="{{ 'nutanix_dashboard_nodes_list_status_' + $row.state }}"
-        >
-        </span>
-        <span
-            data-ng-if="$row.isHiddenNode"
-            data-translate="nutanix_dashboard_nodes_list_data_hidden"
-        >
-        </span>
+        <iam-protected-data is-hidden=":: $row.isHiddenNode">
+            <span
+                class="{{'oui-badge ' + $ctrl.NODE_BADGE_STATE[$row.state] }}"
+                data-translate="{{ 'nutanix_dashboard_nodes_list_status_' + $row.state }}"
+            >
+            </span>
+        </iam-protected-data>
     </oui-datagrid-column>
     <oui-datagrid-column
         data-title="'nutanix_dashboard_nodes_list_localisation' | translate"
         data-property="datacenter"
     >
-        <datacenter-name
-            data-ng-if="!$row.isHiddenNode"
-            datacenter="$row.datacenter"
-        >
-        </datacenter-name>
-        <span
-            data-ng-if="$row.isHiddenNode"
-            data-translate="nutanix_dashboard_nodes_list_data_hidden"
-        >
-        </span>
+        <iam-protected-data is-hidden=":: $row.isHiddenNode">
+            <datacenter-name datacenter="$row.datacenter"> </datacenter-name>
+        </iam-protected-data>
     </oui-datagrid-column>
 </oui-datagrid>
