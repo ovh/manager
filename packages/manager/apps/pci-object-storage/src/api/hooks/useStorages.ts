@@ -35,7 +35,7 @@ export const sortStorages = (sorting: ColumnSort, storages: TStorage[]) => {
   switch (sorting?.id) {
     case 'name':
     case 'region':
-    case 'deploymentMode':
+    case 'mode':
     case 'offer':
     case 'containerType':
       return storages.sort(
