@@ -13,7 +13,6 @@ import {
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useMemo } from 'react';
-import { OdsCard, OdsSelect, OdsText } from '@ovhcloud/ods-components/react';
 import { useServiceData } from '../Service.context';
 import MetricChart from '../metrics/_components/MetricChart.component';
 import * as database from '@/types/cloud/project/database';
@@ -130,23 +129,17 @@ const Dashboard = () => {
       >
         {metricsQuery.isSuccess ? (
           metricsToDispplay.map((metric) => (
-            <OdsCard
+            <Card
               data-testid={`dashboard-metrics-card-${metric.name}`}
               key={metric.name}
             >
-              <div>
-                <OdsText
-                  preset="heading-3"
-                  className="text-red hover:capitalize bg-red"
-                >
-                  hello there
-                </OdsText>
+              <CardHeader>
                 <h5>
                   {metric.icon}
                   <span>{t(metric.title)}</span>
                 </h5>
-              </div>
-              <div>
+              </CardHeader>
+              <CardContent>
                 <MetricChart
                   metric={metric.name}
                   period={database.service.MetricPeriodEnum.lastDay}
@@ -154,8 +147,8 @@ const Dashboard = () => {
                   pollInterval={POLLING.METRICS}
                   className="aspect-auto sm:h-[200px]"
                 />
-              </div>
-            </OdsCard>
+              </CardContent>
+            </Card>
           ))
         ) : (
           <div data-testid="dashboard-metrics-skeleton">
@@ -177,22 +170,15 @@ const Dashboard = () => {
             </CardContent>
           </Card>
         )}
-        <OdsCard color="primary">
-          <div>
+        <Card>
+          <CardHeader>
             <h5>
               <TrafficCone className="size-4 inline mr-2 text-amber-600" />
               <span>{t('maintenanceTitle')}</span>
             </h5>
-          </div>
-          <div>
+          </CardHeader>
+          <CardContent>
             <Maintenance />
-            <OdsSelect name={''} placeholder="Select a country">
-              <optgroup label="Europe">
-                <option value="fr">France</option>
-                <option value="it">Italy</option>
-                <option value="de">Germany</option>
-              </optgroup>
-            </OdsSelect>
             <div data-testid="dashboard-vrack-container">
               {service.networkType === database.NetworkTypeEnum.private && (
                 <div>
@@ -235,8 +221,8 @@ const Dashboard = () => {
                 </h5>
               )}
             </div>
-          </div>
-        </OdsCard>
+          </CardContent>
+        </Card>
         <Card>
           <CardHeader>
             <h5>
