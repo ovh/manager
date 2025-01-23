@@ -60,5 +60,6 @@
   "zimbra_dashboard_auto_replies_add": "Crear un contestador",
   "zimbra_dashboard_email_accounts_order": "Contratar cuentas de correo",
   "zimbra_dashboard_tile_status_ongoingTask_none": "No hay tareas en curso.",
-  "zimbra_dashboard_domains_verify": "Verificación"
+  "zimbra_dashboard_domains_verify": "Verificación",
+  "zimbra_dashboard_domains_diagnostics": "Diagnóstico"
 }
