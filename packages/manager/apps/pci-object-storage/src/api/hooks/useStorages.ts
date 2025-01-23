@@ -38,12 +38,12 @@ export const sortStorages = (sorting: ColumnSort, storages: TStorage[]) => {
     case 'mode':
     case 'offer':
     case 'containerType':
-      return storages.sort(
+      return storages?.sort(
         (a, b) => order * a[sorting.id]?.localeCompare(b[sorting.id]),
       );
     case 'usedSpace':
     case 'containerCount':
-      return storages.sort((a, b) => order * (a[sorting.id] - b[sorting.id]));
+      return storages?.sort((a, b) => order * (a[sorting.id] - b[sorting.id]));
     default:
       return storages;
   }

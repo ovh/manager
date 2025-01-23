@@ -1,3 +1,4 @@
+import { applyFilters } from '@ovh-ux/manager-core-api';
 import '@testing-library/jest-dom';
 import 'element-internals-polyfill';
 import { vi } from 'vitest';
@@ -7,7 +8,7 @@ vi.mock('react-router-dom', async () => {
   return {
     ...mod,
     useSearchParams: () => [new URLSearchParams({})],
-    useParams: () => ({ projectId: 'project-id', kubeId: 'kube-id' }),
+    useParams: () => ({ projectId: 'project-id', objectName: 'object-name' }),
     useHref: vi.fn(),
     useLocation: vi.fn(),
     useNavigate: vi.fn(),
@@ -23,7 +24,9 @@ vi.mock('@ovh-ux/manager-pci-common', async () => {
     useProject: vi.fn().mockResolvedValue({
       projectName: 'project-name',
       project_id: 'project-id',
+      description: 'description',
     }),
+    useGetProjectRegions: vi.fn(),
   };
 });
 
@@ -37,6 +40,11 @@ vi.mock('@ovh-ux/manager-react-components', async () => {
       setPagination: vi.fn(),
       sorting: vi.fn(),
       setSorting: vi.fn(),
+    }),
+    useFeatureAvailability: vi.fn(),
+    useProductMaintenance: vi.fn().mockResolvedValue({
+      hasMaintenance: false,
+      maintenanceURL: 'maintenance-url',
     }),
     PciGuidesHeader: vi.fn().mockReturnValue(<div></div>),
     Notifications: vi

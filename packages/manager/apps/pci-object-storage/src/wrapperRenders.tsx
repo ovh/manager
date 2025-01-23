@@ -13,6 +13,10 @@ export const shellContext = {
     navigation: {
       getURL: vi.fn(),
     },
+    tracking: {
+      trackPage: vi.fn(),
+      trackClick: vi.fn(),
+    },
   },
 };
 
