@@ -11,7 +11,7 @@ export function useGetSuggestions(
   const queryKey = [projectId, 'ai', 'notebook', 'suggestions'];
   return useQueryImmediateRefetch({
     queryKey,
-    queryFn: () => getSuggestions({ projectId }),
+    queryFn: () => getSuggestions(/* { projectId } */),
     ...options,
   }) as UseQueryResult<Suggestions[], Error>;
 }

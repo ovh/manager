@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import {
+  ArrowRight,
   ChevronDown,
   ChevronUp,
   HelpCircle,
@@ -55,6 +56,9 @@ import { useGetCommand } from '@/hooks/api/ai/notebook/useGetCommand.hook';
 import CliEquivalent from './CliEquivalent.component';
 import { getNotebookSpec } from '@/lib/orderFunnelHelper';
 import A from '@/components/links/A.component';
+import { getHowToManageDataInAIDocLink } from '@/configuration/guide';
+import { useLocale } from '@/hooks/useLocale';
+import OvhLink from '@/components/links/OvhLink.component';
 
 interface OrderFunnelProps {
   regions: ai.capabilities.Region[];
@@ -81,6 +85,7 @@ const OrderFunnel = ({
     suggestions,
   );
   const { t } = useTranslation('pci-ai-notebooks/notebooks/create');
+  const locale = useLocale();
   const { projectId } = useParams();
   const [showAdvancedConfiguration, setShowAdvancedConfiguration] = useState(
     false,
@@ -434,13 +439,26 @@ const OrderFunnel = ({
                             <FormLabel className={classNameLabel}>
                               {t('fieldVolumesLabel')}
                             </FormLabel>
-                            <p>{t('fieldVolumeDescription')}</p>
+                            <p>
+                              {t('fieldVolumeDescription1')}{' '}
+                              <OvhLink
+                                application="public-cloud"
+                                path={`#/pci/projects/${projectId}/ai/dashboard/datastore`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                {t('fieldVolumeDashboardLink')}
+                                <ArrowRight className="size-4 inline ml-1" />
+                              </OvhLink>
+                            </p>
+                            <p>{t('fieldVolumeDescription2')}</p>
                             <A
-                              href="https://docs.ovh.com/gb/en/publiccloud/ai/data/"
+                              href={getHowToManageDataInAIDocLink(locale)}
                               target="_blank"
                               rel="noopener noreferrer"
                             >
                               {t('fieldVolumeLink')}
+                              <ArrowRight className="size-4 inline ml-1" />
                             </A>
                             <FormControl>
                               <VolumeForm

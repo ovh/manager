@@ -10,6 +10,7 @@ import { useGetEditor } from '@/hooks/api/ai/notebook/capabilities/useGetEditor.
 import { useGetSshkey } from '@/hooks/api/sshkey/useGetSshkey.hook';
 import { useGetSuggestions } from '@/hooks/api/ai/notebook/useGetSuggestions.hook';
 import { Skeleton } from '@/components/ui/skeleton';
+import { GuideSections } from '@/configuration/guide';
 
 export function breadcrumb() {
   return (
@@ -56,7 +57,7 @@ const Notebook = () => {
     <>
       <div className="flex justify-between w-full items-center">
         <h2>{t('title')}</h2>
-        <Guides />
+        <Guides section={[GuideSections.notebooks]} />
       </div>
 
       {loading ? (

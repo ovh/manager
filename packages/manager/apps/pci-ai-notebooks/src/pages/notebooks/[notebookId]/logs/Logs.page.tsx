@@ -73,7 +73,7 @@ const Logs = () => {
 
   return (
     <>
-      <h4>{t('title')}</h4>
+      <h2>{t('title')}</h2>
       <p>{t('description')}</p>
       <div className="flex items-center space-x-2">
         <Switch

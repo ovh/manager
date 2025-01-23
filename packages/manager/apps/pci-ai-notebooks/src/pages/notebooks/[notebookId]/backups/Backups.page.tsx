@@ -27,7 +27,7 @@ const Backups = () => {
 
   return (
     <>
-      <h4>{t('title')}</h4>
+      <h2>{t('title')}</h2>
       <p>{t('description')}</p>
       {backupsQuery.isSuccess ? (
         <BackupsList backups={backupsQuery.data} />

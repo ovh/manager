@@ -20,7 +20,7 @@ const PublicGit = () => {
   );
   return (
     <>
-      <h4>{t('publicGitTitle')}</h4>
+      <h2>{t('publicGitTitle')}</h2>
       <p>{t('publicGitDescription')}</p>
       <GitList
         git={notebook.spec.volumes.filter(
