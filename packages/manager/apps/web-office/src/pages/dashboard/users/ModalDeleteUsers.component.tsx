@@ -1,12 +1,13 @@
 import React from 'react';
 import { useSearchParams, useNavigate, useParams } from 'react-router-dom';
 import { Trans, useTranslation } from 'react-i18next';
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useMutation } from '@tanstack/react-query';
 import {
   ODS_BUTTON_VARIANT,
+  ODS_MESSAGE_COLOR,
   ODS_MODAL_COLOR,
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
@@ -93,18 +94,20 @@ export default function ModalDeleteUsers() {
       }}
     >
       <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-        <p>
-          <Trans
-            t={t}
-            i18nKey="dashboard_users_delete_confirm"
-            values={{ t0: activationEmail }}
-          />
-        </p>
-        <ul>
-          <li>{t('dashboard_users_delete_info1')}</li>
-          <li>{t('dashboard_users_delete_info2')}</li>
-        </ul>
+        <Trans
+          t={t}
+          i18nKey="dashboard_users_delete_confirm"
+          values={{ t0: activationEmail }}
+        />
       </OdsText>
+      <OdsMessage color={ODS_MESSAGE_COLOR.critical} className="mt-6">
+        <div>
+          <span className="block font-bold">
+            {t('dashboard_users_delete_info1')}
+          </span>
+          <p>{t('dashboard_users_delete_info2')}</p>
+        </div>
+      </OdsMessage>
     </Modal>
   );
 }
