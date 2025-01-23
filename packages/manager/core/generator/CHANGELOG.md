@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-generator@0.20.0...@ovh-ux/manager-generator@0.21.0) (2025-01-23)
+
+
+### Features
+
+* **manager-react-components:** add breadcrumb component and update error component ([#14892](https://github.com/ovh/manager/issues/14892)) ([afa601d](https://github.com/ovh/manager/commit/afa601dc0c998c5ce7061b73450233c46432bbad))
+
+
+
+
+
 # [0.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-generator@0.19.0...@ovh-ux/manager-generator@0.20.0) (2024-12-16)
 
 

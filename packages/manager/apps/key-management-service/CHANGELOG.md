@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.15.1...@ovh-ux/manager-key-management-service-app@0.15.2) (2025-01-23)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3635] ([147aa3b](https://github.com/ovh/manager/commit/147aa3b07e678f0f9185b09da2dee61c73ff22ed))
+* **i18n:** add missing translations [CDS 3645] ([28c0558](https://github.com/ovh/manager/commit/28c055875291ff1f74236b8ed6c7b20d8ffa7492))
+
+
+
+
+
 ## [0.15.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.15.0...@ovh-ux/manager-key-management-service-app@0.15.1) (2025-01-17)
 
 **Note:** Version bump only for package @ovh-ux/manager-key-management-service-app

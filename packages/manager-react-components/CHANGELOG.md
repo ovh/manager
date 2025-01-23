@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@3.1.0...@ovh-ux/manager-react-components@3.2.0) (2025-01-23)
+
+### Bug Fixes
+
+- remove unused translations [CDS] ([623852d](https://github.com/ovh/manager/commit/623852d715f367b35acba1a04dc86178fb955155))
+
+### Features
+
+- **manager-react-components:** add breadcrumb component and update error component ([#14892](https://github.com/ovh/manager/issues/14892)) ([afa601d](https://github.com/ovh/manager/commit/afa601dc0c998c5ce7061b73450233c46432bbad))
+
 # [3.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@3.0.2...@ovh-ux/manager-react-components@3.1.0) (2025-01-23)
 
 ### Bug Fixes

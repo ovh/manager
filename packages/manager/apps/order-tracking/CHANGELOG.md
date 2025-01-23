@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.6](https://github.com/ovh/manager/compare/@ovh-ux/order-tracking-app@3.0.5...@ovh-ux/order-tracking-app@3.0.6) (2025-01-23)
+
+**Note:** Version bump only for package @ovh-ux/order-tracking-app
+
+
+
+
+
 ## [3.0.5](https://github.com/ovh/manager/compare/@ovh-ux/order-tracking-app@3.0.4...@ovh-ux/order-tracking-app@3.0.5) (2024-12-23)
 
 **Note:** Version bump only for package @ovh-ux/order-tracking-app

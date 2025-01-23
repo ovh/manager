@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.29.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.29.0...@ovh-ux/manager-new-billing@0.29.1) (2025-01-23)
+
+
+### Bug Fixes
+
+* **billing:** add forgotten services helper from dedicated ([#14995](https://github.com/ovh/manager/issues/14995)) ([ade051f](https://github.com/ovh/manager/commit/ade051ffc011d11588f7333b15aa844cac91efb2))
+* **billing:** add missing ng-pagination-front dependency ([#15016](https://github.com/ovh/manager/issues/15016)) ([63aa941](https://github.com/ovh/manager/commit/63aa941073bfdec51b9eb186c92fa3f8e76a0c85))
+* **billing:** adjust ssh key list template and fix error prone code ([#14994](https://github.com/ovh/manager/issues/14994)) ([0ab6fda](https://github.com/ovh/manager/commit/0ab6fda758841f295369a2b5e2ddb1350c8070d8))
+* **billing:** fix redirection to autorenew activation modal ([#14990](https://github.com/ovh/manager/issues/14990)) ([ace987b](https://github.com/ovh/manager/commit/ace987b003e91f19a15a64c6ebc8da07a0dd375a))
+* **i18n:** add missing translations [CDS 3629] ([adf932c](https://github.com/ovh/manager/commit/adf932c4780460a1e65e59b0eb50dcca029018f0))
+
+
+
+
+
 # [0.29.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.28.0...@ovh-ux/manager-new-billing@0.29.0) (2025-01-16)
 
 
