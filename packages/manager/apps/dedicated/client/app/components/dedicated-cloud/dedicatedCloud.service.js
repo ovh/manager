@@ -381,7 +381,7 @@ class DedicatedCloudService {
   }
 
   resizeNsxtEdgeCluster(serviceName, datacenterId, size) {
-    this.$http.post(
+    return this.$http.post(
       `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/resizeNsxtEdgeCluster`,
       { size },
     );
