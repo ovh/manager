@@ -59,7 +59,7 @@ export default function InstallationInitialStep() {
       subtitle={t('service_subtitle')}
       submitLabel={t('service_cta')}
       isSubmitDisabled={!isStepValid}
-      onClickSubmit={() => initializeAndProceed(serviceName)}
+      onSubmit={() => initializeAndProceed(serviceName)}
     >
       <SelectField
         name="serviceName"
