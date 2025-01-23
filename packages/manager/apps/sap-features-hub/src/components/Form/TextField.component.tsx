@@ -6,20 +6,25 @@ import {
   OdsText,
 } from '@ovhcloud/ods-components/react';
 import { OdsInputChangeEvent, OdsInputType } from '@ovhcloud/ods-components';
+import { FormKey } from '@/types/form.type';
 
-export type TextFieldProps = {
-  name: string;
-  value: string;
-  onOdsChange: (e: OdsInputChangeEvent) => void;
-  type?: OdsInputType;
-  label?: string;
-  placeholder?: string;
+type TextFieldValidatorProps = {
   pattern?: string;
-  error?: string;
-  helperText?: string;
   minlength?: number;
   maxlength?: number;
   isRequired?: boolean;
+};
+
+export type TextFieldProps = {
+  name: FormKey;
+  value: string;
+  label: string;
+  onOdsChange: (e: OdsInputChangeEvent) => void;
+  type?: OdsInputType;
+  placeholder?: string;
+  error?: string;
+  helperText?: string;
+  validator?: TextFieldValidatorProps;
 };
 
 export const TextField: React.FC<TextFieldProps> = ({
@@ -28,6 +33,7 @@ export const TextField: React.FC<TextFieldProps> = ({
   label,
   error,
   helperText,
+  validator = {},
   ...props
 }) => {
   const commonInputProps = {
@@ -35,29 +41,28 @@ export const TextField: React.FC<TextFieldProps> = ({
     id: name,
     hasError: !!error,
     className: 'w-full',
+    ...validator,
     ...props,
   };
 
   return (
     <OdsFormField key={name} className="w-full max-w-md" error={error}>
-      {label && (
-        <label htmlFor={name} slot="label">
-          <OdsText>{label}</OdsText>
-        </label>
-      )}
+      <label htmlFor={name} slot="label">
+        <OdsText>{label}</OdsText>
+      </label>
       {type === 'password' ? (
         <OdsPassword {...commonInputProps} />
       ) : (
         <OdsInput type={type} {...commonInputProps} />
       )}
-      {helperText && (
+      {helperText && helperText !== error && (
         <OdsText slot="helper" preset="caption" class="ods-field-helper">
           {helperText}
         </OdsText>
       )}
-      {props.maxlength && (
+      {validator.maxlength && (
         <OdsText slot="visual-hint" preset="caption">
-          {`${props.value?.length || 0}/${props.maxlength}`}
+          {`${props.value?.length || 0}/${validator.maxlength}`}
         </OdsText>
       )}
     </OdsFormField>
