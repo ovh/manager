@@ -6,6 +6,7 @@ export const ROUTE_PATHS = {
   ONBOARDING: 'onboarding',
   CONTAINER_DELETE: 'delete',
   CONTAINER_ADD_USER: 'addUser',
+  CONTAINER_EMPTY_USER: 'emptyUser',
   STORAGES: '',
   CONTAINER_NEW: 'new',
   USER_LIST: 'users',
@@ -18,6 +19,7 @@ export const ROUTE_PATHS = {
   ENABLE_VERSIONING: 'enableVersioning',
   DOWNLOAD_RCLONE: 'rclone/download',
   ADD_USER_OBJECT: `:objectName/addUser`,
+  EMPTY_USER_OBJECT: `:objectName/emptyUser`,
 };
 
 const LayoutPage = lazy(() => import('@/pages/Layout'));
@@ -43,6 +45,9 @@ const AddUserObjectPage = lazy(() =>
 );
 const AddUserToContainerPage = lazy(() =>
   import('@/pages/objects/container/add-user/AddUser.page'),
+);
+const EmptyUsersPage = lazy(() =>
+  import('@/pages/objects/container/empty-users/EmptyUsers.page'),
 );
 const UserListPage = lazy(() =>
   import('@/pages/objects/container/users/Listing.page'),
@@ -83,6 +88,10 @@ const RoutesComponent = () => (
             path={ROUTE_PATHS.CONTAINER_ADD_USER}
             Component={AddUserToContainerPage}
           />
+          <Route
+            path={ROUTE_PATHS.CONTAINER_EMPTY_USER}
+            Component={EmptyUsersPage}
+          />
         </Route>
         <Route path={ROUTE_PATHS.USER_LIST} Component={UserListPage}>
           <Route path={ROUTE_PATHS.USER_CREATE} Component={UserCreatePage} />
@@ -101,6 +110,10 @@ const RoutesComponent = () => (
         <Route
           path={ROUTE_PATHS.ADD_USER_OBJECT}
           Component={AddUserObjectPage}
+        />
+        <Route
+          path={ROUTE_PATHS.EMPTY_USER_OBJECT}
+          Component={EmptyUsersPage}
         />
         <Route path={ROUTE_PATHS.DELETE_OBJECT} Component={DeleteObjectPage} />
         <Route
