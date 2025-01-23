@@ -20,6 +20,12 @@ export const installationInitialValues: InstallationFormValues = {
   endpoint: '',
   accessKey: '',
   secretKey: '',
+  domainName: '',
+  osLicense: '',
+  osUpdate: false,
+  firewallService: false,
+  firewallServer: false,
+  firewallDatabase: false,
 } as const;
 
 export const installationInitialErrors: InstallationFormErrors = Object.keys(
