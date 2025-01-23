@@ -205,6 +205,20 @@ export default function ObjectPage() {
     filters,
   );
 
+  const handleSearch = () => {
+    setPagination({
+      pageIndex: 0,
+      pageSize: pagination.pageSize,
+    });
+    addFilter({
+      key: 'search',
+      value: searchField,
+      comparator: FilterComparator.Includes,
+      label: '',
+    });
+    setSearchField('');
+  };
+
   if (!container) {
     return <OdsSpinner size="md" />;
   }
@@ -471,17 +485,7 @@ export default function ObjectPage() {
                 }
                 onKeyDown={(event) => {
                   if (event.key === 'Enter') {
-                    setPagination({
-                      pageIndex: 0,
-                      pageSize: pagination.pageSize,
-                    });
-                    addFilter({
-                      key: 'key',
-                      value: searchField,
-                      comparator: FilterComparator.Includes,
-                      label: '',
-                    });
-                    setSearchField('');
+                    handleSearch();
                   }
                 }}
               />
@@ -489,19 +493,7 @@ export default function ObjectPage() {
                 label=""
                 icon="magnifying-glass"
                 size="sm"
-                onClick={() => {
-                  setPagination({
-                    pageIndex: 0,
-                    pageSize: pagination.pageSize,
-                  });
-                  addFilter({
-                    key: 'key',
-                    value: searchField,
-                    comparator: FilterComparator.Includes,
-                    label: '',
-                  });
-                  setSearchField('');
-                }}
+                onClick={handleSearch}
               />
 
               <OdsButton
