@@ -9,6 +9,7 @@ import {
   BaseLayout,
   DatagridColumn,
   RedirectionGuard,
+  ChangelogButton,
 } from '@ovh-ux/manager-react-components';
 import {
   VeeamBackup,
@@ -30,6 +31,7 @@ import {
 import { productName } from '@/veeam-backup.config';
 import { Loading } from '@/components/Loading/Loading';
 import { BackupStatusBadge } from '@/components/BackupStatus/BackupStatusBadge.component';
+import { CHANGELOG_LINKS } from '@/constants';
 
 export default function Listing() {
   const { t } = useTranslation('listing');
@@ -96,6 +98,11 @@ export default function Listing() {
     },
   ];
 
+  const header = {
+    title: productName,
+    changelogButton: <ChangelogButton links={CHANGELOG_LINKS} />,
+  };
+
   return (
     <RedirectionGuard
       isLoading={isLoading || (!flattenData && !isError)}
@@ -106,9 +113,7 @@ export default function Listing() {
     >
       <BaseLayout
         breadcrumb={<Breadcrumb />}
-        header={{
-          title: productName,
-        }}
+        header={header}
         description={t('description')}
         message={<SuccessMessages />}
       >

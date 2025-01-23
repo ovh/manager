@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { HeadersProps, BaseLayout } from '@ovh-ux/manager-react-components';
+import { HeadersProps, BaseLayout, ChangelogButton,
+} from '@ovh-ux/manager-react-components';
 import {
   OsdsTabBar,
   OsdsTabBarItem,
@@ -9,6 +10,7 @@ import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import Breadcrumb from '@/components/breadcrumb/Breadcrumb.component';
 import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
 import { MessageList } from '@/components/message/MessageList.component';
+import { CHANGELOG_LINKS } from '@/utils/changelog.constants';
 
 export type DashboardTabItemProps = {
   name: string;
@@ -35,6 +37,11 @@ export default function VcdDashboardLayout({
   const { pathname: path } = useLocation();
   const navigate = useNavigate();
 
+  const computedHeader = {
+    ...header,
+    headerButton: <ChangelogButton links={CHANGELOG_LINKS} />,
+  };
+
   useEffect(() => {
     const findActiveTab = (tabList: DashboardTabItemProps[]) =>
       tabList.find((tab) => tab.to === path);
@@ -53,7 +60,7 @@ export default function VcdDashboardLayout({
   return (
     <div>
       <BaseLayout
-        header={header}
+        header={computedHeader}
         tabs={
           <OsdsTabs panel={panel}>
             <OsdsTabBar slot="top">

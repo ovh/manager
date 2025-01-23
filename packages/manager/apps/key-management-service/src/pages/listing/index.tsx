@@ -9,6 +9,7 @@ import {
 import { OdsButton, OdsMessage } from '@ovhcloud/ods-components/react';
 import {
   BaseLayout,
+  ChangelogButton,
   Datagrid,
   Notifications,
   RedirectionGuard,
@@ -32,6 +33,7 @@ import { useAutoRefetch } from '@/data/hooks/useAutoRefetch';
 import { getOkmsServicesResourceListQueryKey } from '@/data/api/okms';
 import KmsActionMenu from '@/components/menu/KmsActionMenu.component';
 import kmsListingTestIds from './KmsListing.constants';
+import { CHANGELOG_LINKS } from '@/constants';
 
 export default function Listing() {
   const { t } = useTranslation('key-management-service/listing');
@@ -111,6 +113,7 @@ export default function Listing() {
         header={{
           title: t('key_management_service_listing_title'),
           headerButton: <KmsGuidesHeader />,
+          changelogButton: <ChangelogButton links={CHANGELOG_LINKS} />,
         }}
         message={<Notifications />}
       >
