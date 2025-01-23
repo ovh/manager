@@ -9,8 +9,8 @@ import {
 } from './installationStepSystemInformation.constants';
 import { useInstallationFormContext } from '@/context/InstallationForm.context';
 import { TextField } from '@/components/Form/TextField.component';
-import { getSystemFormData } from '@/utils/formStep';
-import { isValidSapPassword } from '@/utils/formValidation';
+import { getSystemFormData } from '@/utils/formStepData';
+import { isValidInput, isValidSapPassword } from '@/utils/formValidation';
 import FormLayout from '@/components/Form/FormLayout.component';
 
 export default function InstallationStepSystemInformation() {
@@ -23,8 +23,10 @@ export default function InstallationStepSystemInformation() {
     setErrors,
   } = useInstallationFormContext();
 
-  const values = getSystemFormData(formValues);
-  const errors = getSystemFormData(formErrors);
+  const { values, errors } = getSystemFormData({
+    values: formValues,
+    errors: formErrors,
+  });
 
   const isStepValid = React.useMemo(
     () =>
@@ -42,8 +44,8 @@ export default function InstallationStepSystemInformation() {
       subtitle={t('system_subtitle')}
       submitLabel={t('system_cta')}
       isSubmitDisabled={!isStepValid}
-      onClickSubmit={nextStep}
-      onClickPrevious={previousStep}
+      onSubmit={nextStep}
+      onPrevious={previousStep}
     >
       <OdsText preset="heading-3">{FORM_SAP_SIDS_LABEL}</OdsText>
       <OdsText className="italic">{sidRule}</OdsText>
@@ -52,7 +54,7 @@ export default function InstallationStepSystemInformation() {
           key={name}
           name={name}
           onOdsChange={(e) => {
-            const isValid = e.detail.validity?.valid;
+            const isValid = isValidInput(e);
             setValues((val) => ({ ...val, [name]: e.detail.value }));
             setErrors((err) => ({ ...err, [name]: isValid ? '' : sidRule }));
           }}
