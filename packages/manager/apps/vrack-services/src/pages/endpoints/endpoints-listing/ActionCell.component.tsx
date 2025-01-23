@@ -8,9 +8,10 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { ActionMenu } from '@ovh-ux/manager-react-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { isEditable, VrackServicesWithIAM } from '@/data';
 import { urls } from '@/routes/routes.constants';
 import { EndpointItem } from './useEndpointList.hook';
+import { VrackServicesWithIAM } from '@/types';
+import { isEditable } from '@/utils/vrack-services';
 
 export const ActionCell: React.FC<{
   vs: VrackServicesWithIAM;

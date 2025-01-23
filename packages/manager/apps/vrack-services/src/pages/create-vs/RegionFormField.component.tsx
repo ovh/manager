@@ -21,7 +21,7 @@ import { Region } from '@ovh-ux/manager-react-components';
 import {
   getvrackServicesReferenceRegionListQueryKey,
   getvrackServicesReferenceRegionList,
-} from '@/data';
+} from '@/data/api';
 import {
   regionInputName,
   regionNameToIsoCode,

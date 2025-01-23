@@ -1,108 +1,17 @@
 import React from 'react';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { useParams } from 'react-router-dom';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ApiResponse, ApiError } from '@ovh-ux/manager-core-api';
 import { useTask } from '@ovh-ux/manager-react-components';
 import {
   getVrackServicesResourceListQueryKey,
-  getVrackServicesResource,
-  getVrackServicesResourceQueryKey,
-  ResourceStatus,
-  VrackServices,
-  UpdateVrackServicesParams,
-  updateVrackServicesQueryKey,
   updateVrackServices,
-  ProductStatus,
+  updateVrackServicesQueryKey,
+} from '@/data/api';
+import {
+  UpdateVrackServicesParams,
+  VrackServices,
   VrackServicesWithIAM,
-  getVrackServicesResourceList,
-} from '@/data';
-
-export const useVrackServicesList = (refetchIntervalTime = 5000) => {
-  const queryClient = useQueryClient();
-
-  return useQuery<ApiResponse<VrackServicesWithIAM[]>, ApiError>({
-    queryKey: getVrackServicesResourceListQueryKey,
-    queryFn: async () => {
-      const result = await getVrackServicesResourceList();
-      result?.data.forEach((vs) => {
-        queryClient.setQueryData(getVrackServicesResourceQueryKey(vs.id), vs);
-      });
-      return result;
-    },
-    refetchInterval: (query) =>
-      query.state.data?.data?.some((vs) =>
-        vs?.currentTasks?.some((task) =>
-          ['RUNNING', 'PENDING'].includes(task.status),
-        ),
-      )
-        ? refetchIntervalTime
-        : undefined,
-  });
-};
-
-// Regular expression pattern for /24 subnet
-export const pattern =
-  '^(?:(?:25[0-5]|2[0-4]\\d|[01]?\\d\\d?).){2}(?:25[0-5]|2[0-4]\\d|[01]?\\d\\d?).0/24$';
-
-// The subnet address is limited to only "/24".
-export const isValidCidr = (subnet: string): boolean => {
-  return new RegExp(pattern).test(subnet);
-};
-
-/**
- * Query the current vRack Services and poll it if it is not ready
- */
-export const useVrackService = (refetchIntervalTime = 2000) => {
-  const { id } = useParams();
-  const queryClient = useQueryClient();
-
-  return useQuery<
-    VrackServicesWithIAM,
-    ApiError,
-    VrackServicesWithIAM,
-    string[]
-  >({
-    queryKey: getVrackServicesResourceQueryKey(id),
-    queryFn: async () => {
-      const response = await getVrackServicesResource(id);
-      queryClient.setQueryData(
-        getVrackServicesResourceListQueryKey,
-        ({ data: listingData, ...rest }: ApiResponse<VrackServices[]>) => ({
-          data: listingData.map((vrackServices) =>
-            vrackServices.id === response.data.id
-              ? response.data
-              : vrackServices,
-          ),
-          ...rest,
-        }),
-      );
-      return response.data;
-    },
-    refetchInterval: (query) =>
-      query.state.data?.currentTasks?.some((task) =>
-        ['RUNNING', 'PENDING'].includes(task.status),
-      )
-        ? refetchIntervalTime
-        : undefined,
-  });
-};
-
-export const isEditable = (vs?: VrackServicesWithIAM) =>
-  vs?.resourceStatus === ResourceStatus.READY &&
-  [ProductStatus.ACTIVE, ProductStatus.DRAFT].includes(
-    vs?.currentState.productStatus,
-  );
-
-export const hasSubnet = (vs?: VrackServicesWithIAM) =>
-  vs?.currentState.subnets.length > 0;
-
-export const getSubnetFromCidr = (vs?: VrackServicesWithIAM, cidr?: string) =>
-  vs?.currentState?.subnets.find((s) => s.cidr === cidr);
-
-export const getDisplayName = (vs?: VrackServicesWithIAM) =>
-  vs?.iam?.displayName || vs?.id;
-
-export const isValidVlanNumber = (vlan: number) => vlan >= 2 && vlan <= 4094;
+} from '@/types';
 
 /**
  * Get the function to mutate a vRack Services
