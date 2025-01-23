@@ -1,0 +1,46 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`LinkUserSelector > should display correctly 1`] = `
+<div>
+  <ods-form-field
+    class="mt-6 min-w-[40%]"
+  >
+    <div
+      class="flex gap-2 items-center"
+      slot="label"
+    >
+      <ods-text
+        class="font-bold-class"
+        preset="caption"
+      >
+        pci_projects_project_storages_containers_add_create_or_linked_user_linked_user_label
+      </ods-text>
+    </div>
+    <div
+      class="flex"
+    >
+      <ods-select
+        class="min-w-[35rem]"
+        name="selectUser"
+        value="undefined"
+      />
+    </div>
+  </ods-form-field>
+  <div />
+  <div
+    class="mt-6 flex gap-4"
+  >
+    <ods-button
+      label="pci_projects_project_storages_containers_add_create_or_linked_user_linked_user_btn_cancel"
+      size="sm"
+      variant="ghost"
+    />
+    <ods-button
+      is-disabled="true"
+      label="pci_projects_project_storages_containers_add_create_or_linked_user_linked_user_btn_linked"
+      size="sm"
+      variant="outline"
+    />
+  </div>
+</div>
+`;
