@@ -16,7 +16,6 @@ export default /* @ngInject */ ($stateProvider) => {
         OvhApiVrack.Aapi()
           .services({ serviceName: service })
           .$promise.then((allServicesParam) => {
-            console.log('>>>>>>', allServicesParam);
             const services = Object.entries(allServicesParam).filter(
               ([, value]) => {
                 return Array.isArray(value) && value.length;

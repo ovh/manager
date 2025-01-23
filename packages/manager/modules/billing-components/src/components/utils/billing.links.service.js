@@ -1,4 +1,4 @@
-import { SERVICE_TYPE } from './constants';
+import { SERVICE_TYPE, SUSPENDED_SERVICE } from './constants';
 
 export default class BillingLinksService {
   /* @ngInject */
@@ -104,7 +104,7 @@ export default class BillingLinksService {
             : `${autorenewLink}/delete-all-dom?serviceId=${service.serviceId}&serviceType=${service.serviceType}`;
           break;
         case SERVICE_TYPE.VRACK:
-          if (service.status !== 'suspended') {
+          if (service.status !== SUSPENDED_SERVICE) {
             links.resiliateLink = `${autorenewLink}/terminate-vrack?service=${service.serviceId}${serviceTypeParam}`;
           }
           break;
