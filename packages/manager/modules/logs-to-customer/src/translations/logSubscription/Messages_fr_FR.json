@@ -7,5 +7,10 @@
   "log_subscription_empty_tile_button_know_more": "En savoir plus sur Logs Data Platform",
   "log_subscription_empty_tile_button_subscribe": "S'abonner",
   "log_subscription_list_title": "Utiliser vos logs",
-  "log_subscription_list_button_subscribe_more": "S'abonner sur un autre flux de données"
+  "log_subscription_list_button_subscribe_more": "S'abonner sur un autre flux de données",
+  "log_subscription_terminate_modal_headline": "Se désabonner",
+  "log_subscription_terminate_modal_delete_input_label": "Veuillez entrer le mot « TERMINATE » pour vous désabonner du flux de données.",
+  "log_subscription_terminate_modal_confirm_button_label": "Se désabonner",
+  "log_subscription_terminate_delete_success": "Votre désabonnement est en cours de traitement.",
+  "log_subscription_terminate_delete_error": "Votre désabonnement a rencontré une erreur. {{error}}"
 }
