@@ -12,7 +12,7 @@ import {
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { MessageData, MessagesContext } from './Messages.context';
-import { useVrackServicesList } from '@/data';
+import { useVrackServicesList } from '@/data/hooks';
 
 export const SuccessMessage: React.FC<Partial<MessageData>> = ({
   id,

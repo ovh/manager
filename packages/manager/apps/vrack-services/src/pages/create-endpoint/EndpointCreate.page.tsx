@@ -9,12 +9,7 @@ import {
 } from '@ovhcloud/ods-components';
 import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { FormField } from '@/components/FormField.component';
-import {
-  getVrackServicesResourceQueryKey,
-  useServiceList,
-  useUpdateVrackServices,
-  useVrackService,
-} from '@/data';
+import { getVrackServicesResourceQueryKey } from '@/data/api';
 import { CreatePageLayout } from '@/components/layout-helpers';
 import {
   subnetSelectName,
@@ -25,6 +20,11 @@ import { ErrorPage } from '@/components/ErrorPage.component';
 import { urls } from '@/routes/routes.constants';
 import { PageName } from '@/utils/tracking';
 import { MessagesContext } from '@/components/feedback-messages/Messages.context';
+import {
+  useServiceList,
+  useUpdateVrackServices,
+  useVrackService,
+} from '@/data/hooks';
 
 export default function EndpointCreatePage() {
   const { t } = useTranslation('vrack-services/endpoints');

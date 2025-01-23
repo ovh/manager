@@ -1,18 +1,19 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { ApiResponse, ApiError } from '@ovh-ux/manager-core-api';
-import { getIamResourceQueryKey, getIamResource } from './get';
-import { IAMResource } from './iam.type';
-import { useVrackService } from '../vrack-services/vs-api-utils';
-import {
-  getEligibleManagedServiceListQueryKey,
-  getEligibleManagedServiceList,
-} from '../vrack-services/get';
 import {
   EligibleManagedService,
+  IAMResource,
   Subnet,
   VrackServicesWithIAM,
-} from '../vrack-services/vrack-services.type';
+} from '@/types';
+import {
+  getEligibleManagedServiceList,
+  getEligibleManagedServiceListQueryKey,
+  getIamResource,
+  getIamResourceQueryKey,
+} from '@/data/api';
+import { useVrackService } from '@/data/hooks';
 
 const addVrackServicesUrnToUrnList = (vrackServices: VrackServicesWithIAM) => (
   urns: string[],

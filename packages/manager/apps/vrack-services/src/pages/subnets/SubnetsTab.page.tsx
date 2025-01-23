@@ -2,7 +2,7 @@ import React from 'react';
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { OsdsSpinner } from '@ovhcloud/ods-components/react';
 import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
-import { useVrackService } from '@/data';
+import { useVrackService } from '@/data/hooks';
 import { urls } from '@/routes/routes.constants';
 
 export default function SubnetsTab() {

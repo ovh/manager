@@ -6,7 +6,7 @@ import {
   PageType,
 } from '@ovh-ux/manager-react-shell-client';
 import { defineCurrentPage } from '@ovh-ux/request-tagger';
-import { useVrackServicesList } from '@/data';
+import { useVrackServicesList } from '@/data/hooks';
 import { ErrorPage } from '@/components/ErrorPage.component';
 import { PageName } from '@/utils/tracking';
 

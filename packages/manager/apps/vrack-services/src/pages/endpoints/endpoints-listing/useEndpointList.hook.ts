@@ -1,6 +1,7 @@
 import { ColumnSort } from '@ovh-ux/manager-react-components';
 import { useParams } from 'react-router-dom';
-import { IAMResource, useServiceList, useVrackService } from '@/data';
+import { useServiceList, useVrackService } from '@/data/hooks';
+import { IAMResource } from '@/types';
 
 export type EndpointItem = {
   description: string;
