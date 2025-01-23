@@ -17,17 +17,19 @@ export enum DateFormat {
   fullDisplay = 'fullDisplay',
 }
 
+export type FormattedDateProps = {
+  dateString: string;
+  unknownDateLabel?: string;
+  defaultLocale?: string;
+  format?: DateFormat;
+};
+
 export const useFormattedDate = ({
   dateString,
   defaultLocale = 'FR-fr',
   unknownDateLabel = defaultUnknownDateLabel,
   format = DateFormat.display,
-}: {
-  dateString: string;
-  unknownDateLabel?: string;
-  defaultLocale?: string;
-  format?: DateFormat;
-}) => {
+}: FormattedDateProps) => {
   const { i18n } = useTranslation();
   const date = new Date(dateString);
   const locale = i18n?.language?.replace('_', '-') || defaultLocale;
