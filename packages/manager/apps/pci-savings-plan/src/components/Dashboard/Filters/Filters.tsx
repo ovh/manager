@@ -9,13 +9,15 @@ import { getInstancesInformation } from '@/utils/savingsPlan';
 import { InstanceTechnicalName, ResourceType } from '@/types/CreatePlan.type';
 import useTechnicalInfo from '@/hooks/useCatalogCommercial';
 
-const SelectList = <T extends string>({
+const SelectWithLabel = <T extends string>({
+  label,
   options,
   placeholder,
   name,
   onChange,
   value,
 }: {
+  label: string;
   options: T[];
   placeholder: string;
   name: string;
@@ -28,21 +30,29 @@ const SelectList = <T extends string>({
     onChange(event.target.value as T);
   };
 
-  return options.length > 0 ? (
-    <OdsSelect
-      placeholder={placeholder}
-      name={name}
-      className="w-64"
-      onOdsChange={onChangeEvent}
-      value={value}
-    >
-      {options.map((option) => (
-        <option key={option} value={option}>
-          {option}
-        </option>
-      ))}
-    </OdsSelect>
-  ) : null;
+  return (
+    <div className="flex flex-col w-64">
+      <label htmlFor={name} className="mb-1 text-sm font-medium text-[#4D5592]">
+        {label}
+      </label>
+      {options.length > 0 ? (
+        <OdsSelect
+          placeholder={placeholder}
+          name={name}
+          id={name}
+          className="w-full"
+          onOdsChange={onChangeEvent}
+          value={value}
+        >
+          {options.map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+        </OdsSelect>
+      ) : null}
+    </div>
+  );
 };
 
 const Filters = () => {
@@ -63,36 +73,40 @@ const Filters = () => {
   );
 
   return (
-    <div className="flex flex-row gap-2">
-      <SelectList
+    <div className="flex flex-row gap-4">
+      <SelectWithLabel
+        label={t('dashboard_select_label_resource')}
         value={resource}
         onChange={(value) => {
           setResource(value);
           setFlavor('');
         }}
         options={[ResourceType.instance, ResourceType.rancher]}
-        placeholder="Select a resource"
+        placeholder={t('dashboard_select_placeholder_resource')}
         name="resource"
       />
-      <SelectList
+      <SelectWithLabel
+        label={t('dashboard_select_label_flavor')}
         options={activeInformations.map((instance) => instance.label)}
-        placeholder="Gamme"
+        placeholder={t('dashboard_select_placeholder_flavor')}
         name="flavor"
         value={flavor}
         key="flavor"
         onChange={(value) => setFlavor(value)}
       />
-      <SelectList
+      <SelectWithLabel
+        label={t('dashboard_select_label_model')}
         options={['fr', 'it', 'de']}
-        placeholder="Select a country"
-        name="country"
+        placeholder={t('dashboard_select_placeholder_model')}
+        name="model"
         value="fr"
         onChange={(value) => console.log(value)}
       />
-      <SelectList
+      <SelectWithLabel
+        label={t('dashboard_select_label_period')}
         options={['fr', 'it', 'de']}
-        placeholder="Select a country"
-        name="country"
+        placeholder={t('dashboard_select_placeholder_period')}
+        name="period"
         value="fr"
         onChange={(value) => console.log(value)}
       />

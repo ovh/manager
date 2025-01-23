@@ -1,7 +1,7 @@
 {
   "dashboard_tabs": "Tableau de Bord des Savings Plan",
   "listing_tabs": "Liste des Savings Plans",
-  "dashboard": "Tableau de Bord",
+  "dashboard": "Tableau de Bord des Savings Plan",
   "dashboard_description": "Le Tableau de bord présente les détails de vos Savings Plan pour la période spécifiée, y compris l'utilisation, la couverture et la liste de vos Savings Plans",
   "dashboard_kpis_title": "Kpis",
   "dashboard_table_title": "Détail de consommation des Savings Plans",
@@ -23,5 +23,15 @@
   "dashboard_kpis_savings_tooltip": "Total des économies réalisées (sur la période sélectionnée pour la ressource sélectionnée)",
 
   "dashboard_kpis_non_discounted_name": "Montant de facture non remisé",
-  "dashboard_kpis_non_discounted_tooltip": "Montant de la facture dépassant vos configurations Savings Plans (sur la période sélectionnée pour la ressource sélectionnée)"
+  "dashboard_kpis_non_discounted_tooltip": "Montant de la facture dépassant vos configurations Savings Plans (sur la période sélectionnée pour la ressource sélectionnée)",
+
+  "dashboard_select_label_resource": "Service",
+  "dashboard_select_label_flavor": "Gamme d'instance",
+  "dashboard_select_label_model": "Modèle",
+  "dashboard_select_label_period": "Période",
+
+  "dashboard_select_placeholder_resource": "Service",
+  "dashboard_select_placeholder_flavor": "Gamme d'instance",
+  "dashboard_select_placeholder_model": "Modèle",
+  "dashboard_select_placeholder_period": "Période"
 }

@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { OdsSelect } from '@ovhcloud/ods-components/react';
+import { OdsSelect, OdsText } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import {
   OdsSelectChangeEventDetail,
@@ -45,6 +45,9 @@ const Dashboard: React.FC = () => {
   return (
     <>
       <Title>{t('dashboard')}</Title>
+      <OdsText preset="span" className="inline-block mb-4 w-[750px]">
+        {t('dashboard_description')}
+      </OdsText>
       {projectId && <TabsDashboard projectId={projectId} />}
 
       <Filters />

@@ -5,6 +5,7 @@ import {
 } from '@ovh-ux/manager-react-components';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { OdsText } from '@ovhcloud/ods-components/react';
 import { savingsPlanConsumptionMocked } from '@/_mock_/savingsPlanConsumption';
 
 const ConsumptionDatagrid = () => {
@@ -39,7 +40,9 @@ const ConsumptionDatagrid = () => {
   const items = savingsPlanConsumptionMocked.flavors[0].periods;
   return (
     <div>
-      <Title className="text-xl">{t('dashboard_table_title')}</Title>
+      <OdsText preset="heading-4" className="my-8">
+        {t('dashboard_table_title')}
+      </OdsText>
       <Datagrid columns={columns} items={items} totalItems={items.length} />
     </div>
   );
