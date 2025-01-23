@@ -10,7 +10,10 @@ import { useUpdateStorageType } from '@/api/hooks/useStorages';
 
 const PUBLIC_STORAGE_TYPES = ['public', 'static'];
 
-export function Actions({ storage }: Readonly<{ storage: TStorage }>) {
+export function Actions({
+  storage,
+  isEmptyUsers,
+}: Readonly<{ storage: TStorage; isEmptyUsers: boolean }>) {
   const { t } = useTranslation('containers');
 
   const navigate = useNavigate();
@@ -55,12 +58,14 @@ export function Actions({ storage }: Readonly<{ storage: TStorage }>) {
       id: 0,
       label: t('pci_projects_project_storages_containers_view_add_user_label'),
       onClick: () =>
-        navigate({
-          pathname: `./addUser`,
-          search: `?${createSearchParams({
-            containerId: storage.name,
-          })}`,
-        }),
+        isEmptyUsers
+          ? navigate('./emptyUser')
+          : navigate({
+              pathname: `./addUser`,
+              search: `?${createSearchParams({
+                containerId: storage.name,
+              })}`,
+            }),
       condition:
         storage.s3StorageType &&
         (!storage.deploymentMode ||
