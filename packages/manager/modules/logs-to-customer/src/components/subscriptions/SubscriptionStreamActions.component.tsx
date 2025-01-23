@@ -14,6 +14,7 @@ import {
   OsdsSpinner,
 } from '@ovhcloud/ods-components/react';
 import { useQueryClient } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
 import {
   getLogStreamUrlQueryKey,
   useLogStreamUrl,
@@ -28,6 +29,7 @@ type SubscriptionStreamItemProps = {
 const SubscriptionStreamActions = ({
   subscription,
 }: SubscriptionStreamItemProps) => {
+  const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { t } = useTranslation('logStream');
   const { t: tSubscription } = useTranslation('logSubscription');
@@ -87,6 +89,9 @@ const SubscriptionStreamActions = ({
         className="flex w-full"
         variant={ODS_BUTTON_VARIANT.ghost}
         color={ODS_THEME_COLOR_INTENT.primary}
+        onClick={() => {
+          navigate(`subscription/${subscription.subscriptionId}/terminate`);
+        }}
       >
         {tSubscription('log_subscription_button_unsubscribe_label')}
       </OsdsButton>
