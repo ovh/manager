@@ -1,7 +1,6 @@
 import { createSearchParams, useParams, useNavigate } from 'react-router-dom';
 import { ActionMenu, useNotifications } from '@ovh-ux/manager-react-components';
 import { Translation, useTranslation } from 'react-i18next';
-import { v4 as uuidV4 } from 'uuid';
 import { ApiError } from '@ovh-ux/manager-core-api';
 
 import { TStorage } from '@/api/data/storages';
@@ -113,6 +112,5 @@ export function Actions({ storage }: Readonly<{ storage: TStorage }>) {
       id: index,
       ...i,
     }));
-
-  return <ActionMenu id={uuidV4()} items={items} isCompact />;
+  return <ActionMenu id={storage.name} items={items} isCompact />;
 }
