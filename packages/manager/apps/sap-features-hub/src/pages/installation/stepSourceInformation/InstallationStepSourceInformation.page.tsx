@@ -1,6 +1,5 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { OdsInputChangeEvent } from '@ovhcloud/ods-components';
 import { useFormSteps } from '@/hooks/formStep/useFormSteps';
 import { useInstallationFormContext } from '@/context/InstallationForm.context';
 import { TextField } from '@/components/Form/TextField.component';
@@ -10,9 +9,10 @@ import {
   SOURCE_BUCKET_MIN_LENGTH,
   SOURCE_KEY_LENGTH,
 } from './installationStepSourceInformation.constants';
-import { getSourceFormData } from '@/utils/formStep';
-import { isValidUrl } from '@/utils/formValidation';
+import { getSourceFormData } from '@/utils/formStepData';
+import { isValidInput, isValidUrl } from '@/utils/formValidation';
 import FormLayout from '@/components/Form/FormLayout.component';
+import { HandleInputChangeProps } from '@/types/formChange.type';
 
 export default function InstallationStepSourceInformation() {
   const { t } = useTranslation('installation');
@@ -24,8 +24,10 @@ export default function InstallationStepSourceInformation() {
     setErrors,
   } = useInstallationFormContext();
 
-  const values = getSourceFormData(formValues);
-  const errors = getSourceFormData(formErrors);
+  const { values, errors } = getSourceFormData({
+    values: formValues,
+    errors: formErrors,
+  });
 
   const isStepValid = React.useMemo(
     () =>
@@ -34,11 +36,12 @@ export default function InstallationStepSourceInformation() {
     [values, errors],
   );
 
-  const handleChange = (e: OdsInputChangeEvent) => {
+  const handleChange = ({ e, error, isValid }: HandleInputChangeProps) => {
     const { name, value } = e.detail;
-    const isValid = e.detail.validity?.valid;
     setValues((val) => ({ ...val, [name]: value }));
-    setErrors((err) => ({ ...err, [name]: isValid ? '' : t('invalid_input') }));
+    if (error) {
+      setErrors((err) => ({ ...err, [name]: isValid ? '' : error }));
+    }
   };
 
   return (
@@ -47,34 +50,40 @@ export default function InstallationStepSourceInformation() {
       subtitle={t('source_subtitle')}
       submitLabel={t('source_cta')}
       isSubmitDisabled={!isStepValid}
-      onClickSubmit={nextStep}
-      onClickPrevious={previousStep}
+      onSubmit={nextStep}
+      onPrevious={previousStep}
     >
       <TextField
         key="bucketId"
         name="bucketId"
         label={t('source_input_container')}
-        onOdsChange={handleChange}
-        pattern={SAP_SOURCE_PATTERNS.bucket}
+        onOdsChange={(e) => {
+          handleChange({
+            e,
+            error: t('source_helper_container'),
+            isValid: isValidInput(e),
+          });
+        }}
         value={values.bucketId}
         error={values.bucketId && errors.bucketId}
         placeholder="my-sap-sources"
         helperText={t('source_helper_container')}
-        minlength={SOURCE_BUCKET_MIN_LENGTH}
-        maxlength={SOURCE_BUCKET_MAX_LENGTH}
+        validator={{
+          pattern: SAP_SOURCE_PATTERNS.bucket,
+          minlength: SOURCE_BUCKET_MIN_LENGTH,
+          maxlength: SOURCE_BUCKET_MAX_LENGTH,
+        }}
       />
       <TextField
         key="endpoint"
         name="endpoint"
         label="Endpoint"
         onOdsChange={(e) => {
-          const { name, value } = e.detail;
-          const isValid = isValidUrl(value as string);
-          setValues((val) => ({ ...val, [name]: value }));
-          setErrors((err) => ({
-            ...err,
-            [name]: isValid ? '' : t('invalid_input'),
-          }));
+          handleChange({
+            e,
+            error: t('source_helper_endpoint'),
+            isValid: isValidUrl(e.detail.value as string),
+          });
         }}
         value={values.endpoint}
         error={values.endpoint && errors.endpoint}
@@ -84,25 +93,42 @@ export default function InstallationStepSourceInformation() {
         key="accessKey"
         name="accessKey"
         label={t('source_input_access_key')}
-        onOdsChange={handleChange}
-        pattern={SAP_SOURCE_PATTERNS.key}
+        onOdsChange={(e) => {
+          handleChange({
+            e,
+            error: t('source_helper_access_key'),
+            isValid: isValidInput(e),
+          });
+        }}
         value={values.accessKey}
         error={values.accessKey && errors.accessKey}
         helperText={t('source_helper_access_key')}
-        minlength={SOURCE_KEY_LENGTH}
-        maxlength={SOURCE_KEY_LENGTH}
+        validator={{
+          pattern: SAP_SOURCE_PATTERNS.key,
+          minlength: SOURCE_KEY_LENGTH,
+          maxlength: SOURCE_KEY_LENGTH,
+        }}
       />
       <TextField
         key="secretKey"
         name="secretKey"
+        type="password"
         label={t('source_input_secret_key')}
-        onOdsChange={handleChange}
-        pattern={SAP_SOURCE_PATTERNS.key}
+        onOdsChange={(e) => {
+          handleChange({
+            e,
+            error: t('source_helper_secret_key'),
+            isValid: isValidInput(e),
+          });
+        }}
         value={values.secretKey}
         error={values.secretKey && errors.secretKey}
         helperText={t('source_helper_secret_key')}
-        minlength={SOURCE_KEY_LENGTH}
-        maxlength={SOURCE_KEY_LENGTH}
+        validator={{
+          pattern: SAP_SOURCE_PATTERNS.key,
+          minlength: SOURCE_KEY_LENGTH,
+          maxlength: SOURCE_KEY_LENGTH,
+        }}
       />
     </FormLayout>
   );
