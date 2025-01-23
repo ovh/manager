@@ -1,11 +1,9 @@
 import {
-  ODS_BUTTON_ICON_ALIGNMENT,
   ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
-import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
+import { OdsButton, OdsText, OdsLink } from '@ovhcloud/ods-components/react';
 import React, { PropsWithChildren } from 'react';
 
 import placeholderSrc from '../../../../public/assets/placeholder.png';
@@ -14,7 +12,6 @@ type OnboardingLayoutButtonProps = {
   orderButtonLabel?: string;
   orderHref?: string;
   moreInfoHref?: string;
-  moreInfoIcon?: ODS_ICON_NAME;
   moreInfoButtonLabel?: string;
   onOrderButtonClick?: () => void;
   onmoreInfoButtonClick?: () => void;
@@ -30,11 +27,10 @@ export type OnboardingLayoutProps = OnboardingLayoutButtonProps &
   }>;
 
 const OnboardingLayoutButton: React.FC<OnboardingLayoutButtonProps> = ({
-  orderButtonLabel,
   orderHref,
+  orderButtonLabel,
   moreInfoHref,
   moreInfoButtonLabel,
-  moreInfoIcon = ODS_ICON_NAME.externalLink,
   onOrderButtonClick,
   onmoreInfoButtonClick,
   isActionDisabled,
@@ -43,37 +39,21 @@ const OnboardingLayoutButton: React.FC<OnboardingLayoutButtonProps> = ({
     return <></>;
   }
   return (
-    <div className="flex flex-col gap-3 sm:gap-4 w-full sm:w-fit sm:flex-row sm:items-center sm:justify-center">
-      {orderButtonLabel && (onOrderButtonClick || orderHref) && (
-        <OdsButton
-          className="[&::part(button)]:w-full sm:w-auto"
-          size={ODS_BUTTON_SIZE.md}
-          onClick={() => {
-            onOrderButtonClick?.();
-            if (orderHref) {
-              window.open(orderHref, '_blank');
-            }
-          }}
-          label={orderButtonLabel}
-          isDisabled={isActionDisabled}
-        />
-      )}
-      {moreInfoButtonLabel && (onmoreInfoButtonClick || moreInfoHref) && (
-        <OdsButton
-          className="[&::part(button)]:w-full sm:w-auto"
-          size={ODS_BUTTON_SIZE.md}
-          variant={ODS_BUTTON_VARIANT.outline}
-          onClick={() => {
-            onmoreInfoButtonClick?.();
-            if (moreInfoHref) {
-              window.open(moreInfoHref, '_blank');
-            }
-          }}
+    <div className="flex sm:pt-8 xs:pt-2.5 flex-row items-center space-x-4 justify-center">
+      {moreInfoButtonLabel && moreInfoHref && (
+        <OdsLink
+          onClick={onmoreInfoButtonClick}
+          {...(isActionDisabled && { disabled: true })}
+          href={moreInfoHref}
           label={moreInfoButtonLabel}
-          icon={moreInfoIcon}
-          iconAlignment={ODS_BUTTON_ICON_ALIGNMENT.right}
+          icon={ODS_ICON_NAME.externalLink}
         />
       )}
+      <OdsButton
+        size={ODS_BUTTON_SIZE.md}
+        onClick={onOrderButtonClick}
+        label={orderButtonLabel}
+      />
     </div>
   );
 };
@@ -82,8 +62,8 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
   hideHeadingSection,
   title,
   description,
-  orderButtonLabel,
   orderHref,
+  orderButtonLabel,
   moreInfoHref,
   moreInfoButtonLabel,
   children,
@@ -92,28 +72,34 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
   img = {},
   isActionDisabled,
 }) => {
-  const { className: imgClassName, alt: altText, ...imgProps } = img;
+  const { className: imgClassName, ...imgProps } = img;
   return (
     <div className="flex flex-col mx-auto sm:px-10">
       {!hideHeadingSection && (
-        <section className="flex flex-col items-center gap-6 pt-6 max-w-[800px] self-center">
+        <section className="flex flex-col items-center">
           {(img?.src || placeholderSrc) && (
-            <div className="flex justify-center">
+            <div className="flex justify-center pt-8 max-h-28 w-full">
               <img
                 {...imgProps}
-                className={`max-h-[150px] ${imgClassName}`}
+                className="max-h-[150px]"
                 src={img?.src ?? placeholderSrc}
-                alt={altText ?? 'placeholder image'}
+                alt=""
+                width={img?.width}
+                height={img?.height}
               />
             </div>
           )}
           <OdsText
             preset={ODS_TEXT_PRESET.heading1}
-            className="block text-center"
+            className="block text-center sm:pt-8 xs:pt-2.5"
           >
             {title}
           </OdsText>
-          {description}
+          {description && (
+            <OdsText preset="span" className="onboarding-description">
+              {description}
+            </OdsText>
+          )}
           <OnboardingLayoutButton
             isActionDisabled={isActionDisabled}
             orderHref={orderHref}
