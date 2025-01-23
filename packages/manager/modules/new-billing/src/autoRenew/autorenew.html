@@ -55,7 +55,7 @@
             data-ng-if="!$ctrl.defaultPaymentMean"
             data-translate="billing_autorenew_service_renew_requires_mean_and_date"
         ></p>
-        <p data-ng-if="$ctrl.defaultPaymentMean && !nicRenew.active">
+        <p data-ng-if="$ctrl.defaultPaymentMean && !$ctrl.nicRenew.active">
             <span data-ng-if="$ctrl.choiceRenewDayTooltipAvailable">
                 <span
                     data-translate="billing_autorenew_service_activate_alert_renew2016"
@@ -69,7 +69,6 @@
                 data-ng-href="{{:: $ctrl.activationLink }}"
                 class="oui-link"
                 data-translate="billing_autorenew_service_enable_autorenew"
-                target="_top"
             >
             </a>
         </p>
