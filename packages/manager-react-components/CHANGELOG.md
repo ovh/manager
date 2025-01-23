@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@3.0.0...@ovh-ux/manager-react-components@3.0.1) (2025-01-23)
+
+### Reverts
+
+- Revert "fix(mrc): fix <OnboardingLayout />" ([8bb3853](https://github.com/ovh/manager/commit/8bb3853a6bf7f2dde0e9c24c84da9690fdf134cd))
+
 # [3.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.6.2...@ovh-ux/manager-react-components@3.0.0) (2025-01-23)
 
 ### Bug Fixes
