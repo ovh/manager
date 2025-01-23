@@ -27,6 +27,7 @@ export interface LinksProps {
   iconAlignment?: IconLinkAlignmentType;
   type?: LinkType;
   onClickReturn?: () => void;
+  isDisabled?: boolean;
 }
 
 export const Links: React.FC<LinksProps> = ({

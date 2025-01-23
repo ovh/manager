@@ -57,7 +57,7 @@ To consume the translations provided by the package,
 
       return (
           ...
-          <>{{t('<TRANSLATION_KEY>')}}</>
+          <>{t('<TRANSLATION_KEY>')}</>
           ...
       );
     }
