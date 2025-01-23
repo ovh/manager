@@ -263,15 +263,6 @@ const Dashboard = () => {
               </OvhLink>
               <ArrowRight className="w-4 h-4 ml-1 mt-1 text-primary" />
             </div>
-            <div
-              data-testid="dashboard-support-link"
-              className="flex flex-row gap-1 mt-2"
-            >
-              <OvhLink application="dedicated" path={`#/support/tickets/new`}>
-                {t('supportLink')}
-              </OvhLink>
-              <ArrowRight className="w-4 h-4 ml-1 mt-1 text-primary" />
-            </div>
           </CardContent>
         </Card>
       </div>
