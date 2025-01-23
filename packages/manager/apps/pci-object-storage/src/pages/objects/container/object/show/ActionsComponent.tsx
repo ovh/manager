@@ -7,6 +7,7 @@ import { addWeeks } from 'date-fns';
 import { OPENIO_PRESIGN_EXPIRE, TRACKING_PREFIX } from '@/constants';
 import { TObject } from '@/api/data/container';
 import { TContainer } from '@/pages/objects/container/object/show/Show.page';
+import { useUsers } from '@/api/hooks/useUser';
 
 type TIndexedObject = TObject & { index: string };
 
@@ -27,6 +28,8 @@ export default function ActionsComponent({
   const navigate = useNavigate();
 
   const { projectId } = useParams();
+
+  const { validUsersWithCredentials } = useUsers(projectId);
 
   const download = async () => {
     trackClick({
@@ -64,13 +67,18 @@ export default function ActionsComponent({
         label: t(
           'pci_projects_project_storages_containers_container_add_user_label',
         ),
-        onClick: () => {
-          navigate(
-            `./${encodeURIComponent(
-              object.name || object.key,
-            )}/addUser?region=${searchParams.get('region')}`,
-          );
-        },
+        onClick: () =>
+          validUsersWithCredentials?.length === 0
+            ? navigate(
+                `./${encodeURIComponent(
+                  object.name || object.key,
+                )}/emptyUser?region=${searchParams.get('region')}`,
+              )
+            : navigate(
+                `./${encodeURIComponent(
+                  object.name || object.key,
+                )}/addUser?region=${searchParams.get('region')}`,
+              ),
       },
     {
       id: 1,
