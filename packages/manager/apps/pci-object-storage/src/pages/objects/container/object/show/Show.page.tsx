@@ -82,7 +82,7 @@ export default function ObjectPage() {
 
   const { data: allContainers } = useAllStorages(project?.project_id);
   const { hasMaintenance, maintenanceURL } = useProductMaintenance(
-    project.project_id,
+    project?.project_id,
   );
 
   const { me } = useMe();
@@ -227,14 +227,14 @@ export default function ObjectPage() {
     <BaseLayout
       breadcrumb={
         <OdsBreadcrumb>
-          <OdsBreadcrumbItem href={hrefProject} label={project.description} />
+          <OdsBreadcrumbItem href={hrefProject} label={project?.description} />
           <OdsBreadcrumbItem
             href={objectStorageHref}
             label={tObjects(
               'pci_projects_project_storages_containers_object_title',
             )}
           />
-          <OdsBreadcrumbItem href="" label={project.description} />
+          <OdsBreadcrumbItem href="" label={project?.description} />
         </OdsBreadcrumb>
       }
       header={{ title: container?.name }}
