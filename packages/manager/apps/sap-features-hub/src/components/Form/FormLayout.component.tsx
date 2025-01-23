@@ -8,9 +8,8 @@ type FormLayoutProps = {
   subtitle?: string;
   submitLabel: string;
   isSubmitDisabled?: boolean;
-  onClickSubmit: () => void;
-  onClickPrevious?: () => void;
-};
+  onPrevious?: () => void;
+} & Omit<React.FormHTMLAttributes<HTMLFormElement>, 'className'>;
 
 export default function FormLayout({
   children,
@@ -18,28 +17,30 @@ export default function FormLayout({
   subtitle,
   submitLabel,
   isSubmitDisabled,
-  onClickSubmit,
-  onClickPrevious,
+  onPrevious,
+  ...props
 }: Readonly<FormLayoutProps>) {
   const { t } = useTranslation('installation');
 
   return (
-    <form className="flex flex-col gap-y-6">
-      <OdsText preset="heading-2">{title}</OdsText>
-      {subtitle && <OdsText>{subtitle}</OdsText>}
-      {children}
+    <form className="flex flex-col gap-y-6" {...props}>
+      <div className="flex flex-col gap-y-4">
+        <OdsText preset="heading-2">{title}</OdsText>
+        {subtitle && <OdsText>{subtitle}</OdsText>}
+        {children}
+      </div>
       <div className="flex gap-x-2">
-        {onClickPrevious && (
+        {onPrevious && (
           <OdsButton
             label={t('previous_step_cta')}
             variant="outline"
-            onClick={onClickPrevious}
+            onClick={onPrevious}
           />
         )}
         <OdsButton
           label={submitLabel}
           isDisabled={isSubmitDisabled}
-          onClick={onClickSubmit}
+          type="submit"
         />
       </div>
     </form>
