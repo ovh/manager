@@ -7,8 +7,8 @@
   "nutanix_dashboard_reinstall_node_label_version_aos": "Version AOS",
   "nutanix_dashboard_reinstall_node_confirm": "Ré-installer",
   "nutanix_dashboard_reinstall_node_cancel": "Annuler",
-  "nutanix_dashboard_reinstall_node_success_banner": "Votre demande d'une ré-installation a été prise en compte. Cette opération peut prendre jusqu'à 1h",
-  "nutanix_dashboard_reinstall_node_error_banner": "La demande de ré-installation n'a pas abouti. Si l'erreur persiste, merci de contacter le support",
+  "nutanix_dashboard_reinstall_node_success_banner": "Votre demande de ré-installation a été prise en compte. Cette opération peut prendre jusqu'à 1h",
+  "nutanix_dashboard_reinstall_node_error_banner": "Votre demande de ré-installation n'a pas abouti. Si l'erreur persiste, merci de contacter le support",
   "nutanix_dashboard_reinstall_form_not_valid_ip_error": "Adresse IPv4 invalide",
   "nutanix_dashboard_reinstall_form_not_private_ip_error": "Ce champ accepte uniquement les adresses IPv4 privées",
   "nutanix_dashboard_reinstall_ip_tooltip": "L'adresse IP doit être incluse dans le sous-réseau du cluster."
