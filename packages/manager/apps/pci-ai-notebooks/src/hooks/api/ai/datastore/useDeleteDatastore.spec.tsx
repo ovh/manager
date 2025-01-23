@@ -14,12 +14,12 @@ describe('useDeleteDatastore', () => {
     const projectId = 'projectId';
     const region = 'region';
     const alias = 'alias';
-    const onSuccess = vi.fn();
+    const onDeleteSuccess = vi.fn();
     const onError = vi.fn();
 
     vi.mocked(datastoreApi.deleteDatastore).mockResolvedValue(undefined);
     const { result } = renderHook(
-      () => useDeleteDatastore({ onError, onSuccess }),
+      () => useDeleteDatastore({ onError, onDeleteSuccess }),
       { wrapper: QueryClientWrapper },
     );
 
@@ -34,11 +34,7 @@ describe('useDeleteDatastore', () => {
       expect(datastoreApi.deleteDatastore).toHaveBeenCalledWith(
         deleteDatastoreProps,
       );
-      expect(onSuccess).toHaveBeenCalledWith(
-        undefined,
-        deleteDatastoreProps,
-        undefined,
-      );
+      expect(onDeleteSuccess).toHaveBeenCalled();
     });
   });
 });

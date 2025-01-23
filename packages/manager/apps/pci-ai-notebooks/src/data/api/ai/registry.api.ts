@@ -1,17 +1,10 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
-
-import * as ai from '@/types/cloud/project/ai';
 import { PCIAi } from '..';
+import * as ai from '@/types/cloud/project/ai';
 
 export const getRegistries = async ({ projectId }: PCIAi) =>
   apiClient.v6
-    .get(`/cloud/project/${projectId}/ai/registry`, {
-      headers: {
-        'X-Pagination-Mode': 'CachedObjectList-Pages',
-        'X-Pagination-Size': '50000',
-        Pragma: 'no-cache',
-      },
-    })
+    .get(`/cloud/project/${projectId}/ai/registry`)
     .then((res) => res.data as ai.registry.Registry[]);
 
 export interface AddRegistryProps extends PCIAi {

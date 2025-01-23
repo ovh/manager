@@ -35,26 +35,28 @@ export default [
         ...lazyRouteConfig(() => import('@/pages/Auth.layout')),
         children: [
           {
-            path: '',
+            path: 'notebooks',
             id: 'notebooks',
-            ...lazyRouteConfig(() => import('@/pages/Root.page')),
+            ...lazyRouteConfig(() =>
+              import('@/pages/notebooks/NotebookRoot.page'),
+            ),
             children: [
               {
-                path: 'start/:notebookId',
+                path: 'notebooks/start/:notebookId',
                 id: 'notebooks.start',
                 ...lazyRouteConfig(() =>
                   import('@/pages/notebooks/start/Start.modal'),
                 ),
               },
               {
-                path: 'stop/:notebookId',
+                path: 'notebooks/stop/:notebookId',
                 id: 'notebooks.stop',
                 ...lazyRouteConfig(() =>
                   import('@/pages/notebooks/stop/Stop.modal'),
                 ),
               },
               {
-                path: 'delete/:notebookId',
+                path: 'notebooks/delete/:notebookId',
                 id: 'notebooks.delete',
                 ...lazyRouteConfig(() =>
                   import('@/pages/notebooks/delete/Delete.modal'),
@@ -63,14 +65,14 @@ export default [
             ],
           },
           {
-            path: 'onboarding',
+            path: 'notebooks/onboarding',
             id: 'onboarding',
             ...lazyRouteConfig(() =>
               import('@/pages/notebooks/onboarding/Onboarding.page'),
             ),
           },
           {
-            path: 'new',
+            path: 'notebooks/new',
             id: 'create',
             ...lazyRouteConfig(() =>
               import('@/pages/notebooks/create/Create.page'),
@@ -86,7 +88,7 @@ export default [
             ],
           },
           {
-            path: ':notebookId',
+            path: 'notebooks/:notebookId',
             ...lazyRouteConfig(() =>
               import('@/pages/notebooks/[notebookId]/Notebook.layout'),
             ),
@@ -169,6 +171,154 @@ export default [
                     ...lazyRouteConfig(() =>
                       import(
                         '@/pages/notebooks/[notebookId]/backups/fork/Fork.modal'
+                      ),
+                    ),
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            path: 'dashboard',
+            ...lazyRouteConfig(() =>
+              import('@/pages/dashboard/Dashboard.layout'),
+            ),
+            children: [
+              {
+                path: '',
+                id: 'dashboard.home',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/dashboard/home/Home.page'),
+                ),
+              },
+              {
+                path: 'users',
+                id: 'dashboard.users',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/dashboard/users/Users.page'),
+                ),
+                children: [
+                  {
+                    id: 'dashboard.users.add',
+                    path: 'add',
+                    ...lazyRouteConfig(() =>
+                      import(
+                        '@/pages/dashboard/users/_components/AddUser.modal'
+                      ),
+                    ),
+                  },
+                ],
+              },
+              {
+                path: 'tokens',
+                id: 'dashboard.tokens',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/dashboard/tokens/Tokens.page'),
+                ),
+                children: [
+                  {
+                    path: 'add',
+                    id: 'dashboard.token.add',
+                    ...lazyRouteConfig(() =>
+                      import(
+                        '@/pages/dashboard/tokens/_components/AddToken.modal'
+                      ),
+                    ),
+                  },
+                  {
+                    path: 'delete/:tokenId',
+                    id: 'dashboard.tokens.delete',
+                    ...lazyRouteConfig(() =>
+                      import(
+                        '@/pages/dashboard/tokens/_components/DeleteToken.modal'
+                      ),
+                    ),
+                  },
+                  {
+                    path: 'renew/:tokenId',
+                    id: 'dashboard.tokens.renew',
+                    ...lazyRouteConfig(() =>
+                      import(
+                        '@/pages/dashboard/tokens/_components/RenewToken.modal'
+                      ),
+                    ),
+                  },
+                ],
+              },
+              {
+                path: 'docker-registries',
+                id: 'dashboard.docker-registries',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/dashboard/docker/Docker.page'),
+                ),
+                children: [
+                  {
+                    path: 'add',
+                    id: 'dashboard.docker-registries.add',
+                    ...lazyRouteConfig(() =>
+                      import(
+                        '@/pages/dashboard/docker/_components/privateDocker/_components/AddDocker.modal'
+                      ),
+                    ),
+                  },
+                  {
+                    path: 'delete/:dockerId',
+                    id: 'dashboard.docker-registries.delete',
+                    ...lazyRouteConfig(() =>
+                      import(
+                        '@/pages/dashboard/docker/_components/privateDocker/_components/DeleteDocker.modal'
+                      ),
+                    ),
+                  },
+                ],
+              },
+              {
+                path: 'git-registries',
+                id: 'dashboard.git-registries',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/dashboard/git/Git.page'),
+                ),
+                children: [
+                  {
+                    path: 'add',
+                    id: 'dashboard.git-registries.add',
+                    ...lazyRouteConfig(() =>
+                      import('@/pages/dashboard/git/_components/AddGit.modal'),
+                    ),
+                  },
+                  {
+                    path: 'delete/:region/:alias',
+                    id: 'dashboard.git-registries.delete',
+                    ...lazyRouteConfig(() =>
+                      import(
+                        '@/pages/dashboard/git/_components/DeleteGit.modal'
+                      ),
+                    ),
+                  },
+                ],
+              },
+              {
+                path: 'datastore',
+                id: 'dashboard.datastores',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/dashboard/datastore/Datastore.page'),
+                ),
+                children: [
+                  {
+                    path: 'add',
+                    id: 'dashboard.datastores.add',
+                    ...lazyRouteConfig(() =>
+                      import(
+                        '@/pages/dashboard/datastore/_components/AddDatastore.modal'
+                      ),
+                    ),
+                  },
+                  {
+                    path: 'delete/:region/:alias',
+                    id: 'dashboard.datastores.delete',
+                    ...lazyRouteConfig(() =>
+                      import(
+                        '@/pages/dashboard/datastore/_components/DeleteDatastore.modal'
                       ),
                     ),
                   },

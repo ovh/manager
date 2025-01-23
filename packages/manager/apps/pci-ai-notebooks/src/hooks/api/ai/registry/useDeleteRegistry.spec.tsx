@@ -13,12 +13,12 @@ describe('useDeleteRegistry', () => {
   it('should call useDeleteRegistry on mutation with data', async () => {
     const projectId = 'projectId';
     const registryId = 'registryId';
-    const onSuccess = vi.fn();
+    const onDeleteSuccess = vi.fn();
     const onError = vi.fn();
 
     vi.mocked(registryApi.deleteRegistry).mockResolvedValue(undefined);
     const { result } = renderHook(
-      () => useDeleteRegistry({ onError, onSuccess }),
+      () => useDeleteRegistry({ onError, onDeleteSuccess }),
       { wrapper: QueryClientWrapper },
     );
 
@@ -32,11 +32,7 @@ describe('useDeleteRegistry', () => {
       expect(registryApi.deleteRegistry).toHaveBeenCalledWith(
         deleteRegistryProps,
       );
-      expect(onSuccess).toHaveBeenCalledWith(
-        undefined,
-        deleteRegistryProps,
-        undefined,
-      );
+      expect(onDeleteSuccess).toHaveBeenCalled();
     });
   });
 });

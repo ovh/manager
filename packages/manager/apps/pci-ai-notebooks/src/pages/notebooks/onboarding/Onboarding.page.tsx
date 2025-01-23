@@ -35,7 +35,7 @@ const Onboarding = () => {
       <p>{t('description3')}</p>
       <Button data-testid="create-notebook-link" asChild>
         <Link
-          to="../new"
+          to="../notebooks/new"
           className="hover:no-underline hover:text-primary-foreground"
         >
           {t('createNotebookButton')}

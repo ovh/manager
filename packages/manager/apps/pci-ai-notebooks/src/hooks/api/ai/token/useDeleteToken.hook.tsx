@@ -1,19 +1,28 @@
-import { useMutation } from '@tanstack/react-query';
+import { useParams } from 'react-router-dom';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { AIError } from '@/data/api';
 import { TokenProps, deleteToken } from '@/data/api/ai/token.api';
 
 interface DeleteMutateTokenProps {
   onError: (cause: AIError) => void;
-  onSuccess: () => void;
+  onDeleteSuccess: () => void;
 }
 
-export function useDeleteToken({ onError, onSuccess }: DeleteMutateTokenProps) {
+export function useDeleteToken({
+  onError,
+  onDeleteSuccess,
+}: DeleteMutateTokenProps) {
+  const queryClient = useQueryClient();
+  const { projectId } = useParams();
   const mutation = useMutation({
     mutationFn: (tokenId: TokenProps) => {
       return deleteToken(tokenId);
     },
     onError,
-    onSuccess,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [projectId, 'ai', 'token'] });
+      onDeleteSuccess();
+    },
   });
 
   return {

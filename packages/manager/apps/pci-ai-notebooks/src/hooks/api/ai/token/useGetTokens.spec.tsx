@@ -3,9 +3,8 @@ import { vi } from 'vitest';
 
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import * as tokenApi from '@/data/api/ai/token.api';
-
-import { useGetTokens } from './useGetTokens.hook';
 import { mockedToken } from '@/__tests__/helpers/mocks/token';
+import { useGetTokens } from './useGetTokens.hook';
 
 vi.mock('@/data/api/ai/token.api', () => ({
   getTokens: vi.fn(),

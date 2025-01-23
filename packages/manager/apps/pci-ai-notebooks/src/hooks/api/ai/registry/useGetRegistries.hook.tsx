@@ -1,5 +1,4 @@
 import { QueryObserverOptions, UseQueryResult } from '@tanstack/react-query';
-
 import * as ai from '@/types/cloud/project/ai';
 import { getRegistries } from '@/data/api/ai/registry.api';
 import { useQueryImmediateRefetch } from '../../useImmediateRefetch';

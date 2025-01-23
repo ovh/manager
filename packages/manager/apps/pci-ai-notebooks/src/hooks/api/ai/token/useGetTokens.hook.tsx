@@ -1,8 +1,7 @@
 import { QueryObserverOptions, UseQueryResult } from '@tanstack/react-query';
-
+import * as ai from '@/types/cloud/project/ai';
 import { getTokens } from '@/data/api/ai/token.api';
 import { useQueryImmediateRefetch } from '../../useImmediateRefetch';
-import * as ai from '@/types/cloud/project/ai';
 
 export function useGetTokens(
   projectId: string,

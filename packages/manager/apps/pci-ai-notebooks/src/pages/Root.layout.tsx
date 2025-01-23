@@ -24,14 +24,14 @@ export function breadcrumb() {
   );
 }
 
-interface NotebooksLayoutProps {
+interface AILayoutProps {
   params: {
     projectId: string;
   };
   request: Request;
 }
 // try to get project details from project id, redirect if the projectId is invalid
-export const Loader = async ({ params }: NotebooksLayoutProps) => {
+export const Loader = async ({ params }: AILayoutProps) => {
   const { projectId } = params;
   // check if we have a correct projectId
   try {
@@ -64,7 +64,7 @@ function RoutingSynchronisation() {
   useEffect(() => {
     const match = matches.slice(-1);
     //  We cannot type properly useMatches cause it's not support type inference or passing specific type https://github.com/remix-run/react-router/discussions/10902
-    defineCurrentPage(`app.pci-databases-analytics.${match[0].id}`);
+    defineCurrentPage(`app.pci-ai-tools.${match[0].id}`);
   }, [location]);
 
   useTrackPageAuto();
@@ -72,7 +72,7 @@ function RoutingSynchronisation() {
   return <></>;
 }
 
-export function useNotebooksData() {
+export function useAIData() {
   const { projectId } = useParams();
   return { projectId };
 }

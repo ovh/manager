@@ -13,12 +13,12 @@ describe('useDeleteToken', () => {
   it('should call useDeleteToken on mutation with data', async () => {
     const projectId = 'projectId';
     const tokenId = 'tokenId';
-    const onSuccess = vi.fn();
+    const onDeleteSuccess = vi.fn();
     const onError = vi.fn();
 
     vi.mocked(tokenApi.deleteToken).mockResolvedValue(undefined);
     const { result } = renderHook(
-      () => useDeleteToken({ onError, onSuccess }),
+      () => useDeleteToken({ onError, onDeleteSuccess }),
       { wrapper: QueryClientWrapper },
     );
 
@@ -30,11 +30,7 @@ describe('useDeleteToken', () => {
 
     await waitFor(() => {
       expect(tokenApi.deleteToken).toHaveBeenCalledWith(deleteTokenProps);
-      expect(onSuccess).toHaveBeenCalledWith(
-        undefined,
-        deleteTokenProps,
-        undefined,
-      );
+      expect(onDeleteSuccess).toHaveBeenCalled();
     });
   });
 });
