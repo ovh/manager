@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { Outlet } from 'react-router-dom';
 import LogTail from '../../components/logTail/LogTail.component';
 import LogsSubscriptions from '../../components/subscriptions/Subscriptions.component';
 import { useZoomedInOut } from '../../hooks/useZoomedInOut';
@@ -18,6 +19,7 @@ export default function Logs() {
       <div className={`${subscriptionsListClasses}`}>
         <LogsSubscriptions />
       </div>
+      <Outlet />
     </div>
   );
 }
