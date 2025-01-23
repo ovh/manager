@@ -2,7 +2,7 @@ import {
   DataGridTextCell,
   DatagridColumn,
 } from '@ovh-ux/manager-react-components';
-import { createSearchParams, useHref } from 'react-router-dom';
+import { createSearchParams, useHref, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useBytes } from '@ovh-ux/manager-pci-common';
 import { OdsBadge, OdsLink } from '@ovhcloud/ods-components/react';
@@ -13,11 +13,15 @@ import {
   OBJECT_CONTAINER_MODE_MULTI_ZONES,
 } from '@/constants';
 import { Actions } from './Actions';
+import { useUsers } from '@/api/hooks/useUser';
 
 export const useDatagridColumn = () => {
   const { i18n, t } = useTranslation(['containers', 'pci-common']);
 
   const { formatBytes } = useBytes();
+  const { projectId } = useParams();
+
+  const { validUsersWithCredentials } = useUsers(projectId);
 
   const columns: DatagridColumn<TStorage>[] = [
     {
@@ -137,7 +141,12 @@ export const useDatagridColumn = () => {
     },
     {
       id: 'actions',
-      cell: (props: TStorage) => <Actions storage={props} />,
+      cell: (props: TStorage) => (
+        <Actions
+          storage={props}
+          isEmptyUsers={validUsersWithCredentials?.length === 0}
+        />
+      ),
       label: '',
       isSortable: false,
     },
