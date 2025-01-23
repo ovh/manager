@@ -22,7 +22,6 @@
     "test-ui": "vitest --ui --coverage.enabled=true"
   },
   "dependencies": {
-    "highlight.js": "^11.11.1",
     "@datatr-ux/uxlib": "0.0.4",
     "@hookform/resolvers": "^3.3.4",
     "@ovh-ux/manager-config": "^8.0.2",
@@ -61,6 +60,7 @@
     "cmdk": "^0.2.1",
     "date-fns": "^3.6.0",
     "duration-fns": "^3.0.2",
+    "highlight.js": "^11.11.1",
     "i18next": "^23.8.2",
     "i18next-http-backend": "^2.4.2",
     "lucide-react": "^0.334.0",
@@ -101,5 +101,8 @@
     "CA",
     "EU",
     "US"
+  ],
+  "universes": [
+    "@ovh-ux/manager-public-cloud"
   ]
 }
