@@ -64,4 +64,12 @@ export default class Cluster {
   setDatacenter(dcName) {
     this.datacenter = dcName;
   }
+
+  setPackType(packType) {
+    this.packType = packType;
+  }
+
+  getPackType() {
+    return this.packType;
+  }
 }

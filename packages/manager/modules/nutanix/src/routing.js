@@ -38,6 +38,36 @@ export default /* @ngInject */ ($stateProvider) => {
           return cluster;
         });
       },
+      /**
+       * To implement if we want to get packType
+       */
+      // serviceInfo: /* @ngInject */ (NutanixService, serviceName) =>
+      //   NutanixService.getServiceInfo(serviceName),
+      // serviceDetails: /* @ngInject */ (NutanixService, serviceInfo) =>
+      //   NutanixService.getServiceDetails(serviceInfo.serviceId).catch(
+      //     (error) => {
+      //       if (error.status === 403) {
+      //         return;
+      //       }
+      //       throw error;
+      //     },
+      //   ),
+      // getTechnicalDetails: /* @ngInject */ (
+      //   NutanixService,
+      //   serviceInfo,
+      //   server,
+      // ) =>
+      //   NutanixService.getClusterHardwareInfo(
+      //     serviceInfo.serviceId,
+      //     server.serviceId,
+      //   )
+      //   .then((data) => cluster.setPackType(data?.nutanixCluster?.license?.edition);
+      //   .catch((error) => {
+      //     if (error.status === 403) {
+      //       return;
+      //     }
+      //     throw error;
+      //   }),
       apiPath: () => '/nutanix',
       schema: /* @ngInject */ ($http) =>
         $http.get('/nutanix.json').then(({ data }) => data),
@@ -64,8 +94,7 @@ export default /* @ngInject */ ($stateProvider) => {
           isPackTypeAvailable && {
             title: $translate.instant('nutanix_cluster_list_pack_type'),
             property: 'targetSpec.name',
-            template:
-              "<a data-ng-href='{{ $ctrl.getServiceNameLink($row) }}' target='_top' data-translate='nutanix_cluster_list_pack_type_details'></a",
+            template: '{{::$row.getPackType()}}',
           },
           {
             title: $translate.instant('nutanix_cluster_list_status'),
