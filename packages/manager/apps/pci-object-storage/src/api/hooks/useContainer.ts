@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
 import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
 import { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { getServerContainer, TObject } from '@/api/data/container';
 import { paginateResults, sortResults } from '@/helpers';
 
@@ -51,6 +52,8 @@ export const usePaginatedObjects = (
   sorting: ColumnSort,
   filters: Filter[],
 ) => {
+  const { t } = useTranslation('container');
+
   const { data: container, error, isLoading, isPending } = useServerContainer(
     projectId,
     region,
@@ -64,7 +67,15 @@ export const usePaginatedObjects = (
       isPending,
       paginatedObjects: paginateResults<TObject | { index: string }>(
         sortResults<TObject>(
-          applyFilters<TObject>(container?.objects || [], filters),
+          applyFilters<TObject>(
+            container?.objects?.map((object) => ({
+              ...object,
+              search: `${object.key} ${t(
+                `pci_projects_project_storages_containers_container_storage_class_${object.storageClass}`,
+              )}`,
+            })) || [],
+            filters,
+          ),
           sorting,
         ).map((obj, index) => ({
           index,
