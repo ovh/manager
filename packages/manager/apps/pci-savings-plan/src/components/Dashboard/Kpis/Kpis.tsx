@@ -1,4 +1,3 @@
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OdsText, OdsTooltip, OdsIcon } from '@ovhcloud/ods-components/react';
 import React from 'react';

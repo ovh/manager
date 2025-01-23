@@ -7,7 +7,6 @@ import React, { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getInstancesInformation, isInstanceFlavor } from '@/utils/savingsPlan';
 import { InstanceTechnicalName, ResourceType } from '@/types/CreatePlan.type';
-import useTechnicalInfo from '@/hooks/useCatalogCommercial';
 import { SavingsPlanService } from '@/types';
 import { getLastTwelveMonths } from '@/utils/formatter/date';
 
