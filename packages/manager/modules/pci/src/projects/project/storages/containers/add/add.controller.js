@@ -329,6 +329,11 @@ export default class PciStoragesContainersAddController {
 
   onOfferSubmit() {
     this.displaySelectedOffer = true;
+    if (!this.isRightOffer()) {
+      this.isOffsiteReplicationEnabled = false;
+      this.forceEnableVersioning = false;
+      this.isBucketVersioningEnabled = false;
+    }
   }
 
   onContainerSolutionChange() {
@@ -426,6 +431,13 @@ export default class PciStoragesContainersAddController {
       ),
       OBJECT_CONTAINER_MODE_MULTI_ZONES,
     );
+    if (
+      this.container.deploymentMode !== this.OBJECT_CONTAINER_MODE_MULTI_ZONES
+    ) {
+      this.isOffsiteReplicationEnabled = false;
+      this.forceEnableVersioning = false;
+      this.isBucketVersioningEnabled = false;
+    }
   }
 
   handleOffsiteReplicationChange() {
