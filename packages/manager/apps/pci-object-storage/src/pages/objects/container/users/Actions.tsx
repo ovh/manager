@@ -8,7 +8,6 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useContext } from 'react';
 import { Translation, useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { v4 as uuidV4 } from 'uuid';
 import { downloadContent } from '@/utils';
 import { DOWNLOAD_FILENAME, DOWNLOAD_TYPE } from '@/constants';
 import { usePostS3Secret } from '@/api/hooks/useUser';
@@ -147,5 +146,5 @@ export default function ActionsComponent({ user }: Readonly<{ user: TUser }>) {
     },
   ];
 
-  return <ActionMenu id={uuidV4()} items={items} isCompact />;
+  return <ActionMenu id={user.id.toString()} items={items} isCompact />;
 }
