@@ -19,9 +19,9 @@ export default /* @ngInject */ ($stateProvider) => {
         Alerter.error(message, 'nutanix_dashboard_alert');
         goBack();
       },
-      installNode: /* ngInject */ (NutanixService, serviceName, nodeId) => (
+      reinstallNode: /* ngInject */ (NutanixService, serviceName, nodeId) => (
         params,
-      ) => NutanixService.installClusterNode(serviceName, nodeId, params),
+      ) => NutanixService.reinstallClusterNode(serviceName, nodeId, params),
       availableVersions: /* ngInject */ (cluster) => cluster.availableVersions,
     },
   });

@@ -20,7 +20,7 @@ export default class NutanixDashboardReinstallNodeCtrl {
 
     this.isLoading = true;
 
-    this.installNode({
+    this.reinstallNode({
       version: this.version,
     })
       .then(() => {

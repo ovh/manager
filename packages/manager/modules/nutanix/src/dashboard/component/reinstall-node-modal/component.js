@@ -5,7 +5,7 @@ export default {
   bindings: {
     goBack: '<',
     availableVersions: '<',
-    installNode: '<',
+    reinstallNode: '<',
     handleSuccess: '<',
     handleError: '<',
   },
