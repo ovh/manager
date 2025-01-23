@@ -35,8 +35,8 @@ export default function InstallationStepDeployment() {
       subtitle={t('deployment_subtitle')}
       submitLabel={t('deployment_cta')}
       isSubmitDisabled={!isStepValid}
-      onClickSubmit={nextStep}
-      onClickPrevious={previousStep}
+      onSubmit={nextStep}
+      onPrevious={previousStep}
     >
       <SelectField
         name="applicationVersion"
