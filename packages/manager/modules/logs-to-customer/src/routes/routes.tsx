@@ -17,6 +17,14 @@ export const logsRoutes: RouteObject[] = [
   {
     path: '',
     ...lazyRouteConfig(() => import('../pages/logs/Logs.page')),
+    children: [
+      {
+        path: `subscription/:subscriptionId/terminate`,
+        ...lazyRouteConfig(() =>
+          import('../pages/logs/Logs-Subscription-terminate.page'),
+        ),
+      },
+    ],
   },
   {
     path: 'streams',

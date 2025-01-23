@@ -42,3 +42,21 @@ export const getLogSubscriptionv6 = async (
   subscriptionId: string,
 ) =>
   apiClient.v6.get<LogSubscription>(`${logSubscriptionUrl}/${subscriptionId}`);
+
+/**
+ * DELETE log subscription
+ */
+
+export const deleteLogSubscriptionv2 = async (
+  logSubscriptionUrl: ApiUrls['logSubscription'],
+  subscriptionId: string,
+) => {
+  return apiClient.v2.delete(`${logSubscriptionUrl}/${subscriptionId}`);
+};
+
+export const deleteLogSubscriptionv6 = async (
+  logSubscriptionUrl: ApiUrls['logSubscription'],
+  subscriptionId: string,
+) => {
+  return apiClient.v6.delete(`${logSubscriptionUrl}/${subscriptionId}`);
+};
