@@ -1,5 +1,5 @@
 import React from 'react';
-import { OsdsButton, OsdsIcon, OsdsText } from '@ovhcloud/ods-components/react';
+import { OsdsIcon, OsdsText } from '@ovhcloud/ods-components/react';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_TYPE,
@@ -10,17 +10,21 @@ import {
   ODS_TEXT_LEVEL,
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { handleClick } from '@ovh-ux/manager-react-components';
+import { handleClick, ManagerButton } from '@ovh-ux/manager-react-components';
 
 export type EditButtonProps = React.PropsWithChildren<{
   disabled?: boolean;
   onClick: () => void;
+  iamActions?: string[];
+  urn?: string;
 }>;
 
 export const EditButton: React.FC<EditButtonProps> = ({
   children,
   disabled,
   onClick,
+  iamActions,
+  urn,
 }) => (
   <div className="flex items-center">
     <div className="grow">
@@ -33,7 +37,7 @@ export const EditButton: React.FC<EditButtonProps> = ({
       </OsdsText>
     </div>
     <div className="flex-none">
-      <OsdsButton
+      <ManagerButton
         className="ml-2"
         inline
         circle
@@ -44,13 +48,15 @@ export const EditButton: React.FC<EditButtonProps> = ({
         {...handleClick(onClick)}
         disabled={disabled || undefined}
         data-testid="edit-button"
+        iamActions={iamActions}
+        urn={urn}
       >
         <OsdsIcon
           color={ODS_THEME_COLOR_INTENT.primary}
           name={ODS_ICON_NAME.PEN}
           size={ODS_ICON_SIZE.xs}
         />
-      </OsdsButton>
+      </ManagerButton>
     </div>
   </div>
 );

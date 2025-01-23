@@ -13,6 +13,7 @@ import {
   labels,
   renderTest,
 } from '../../test-utils';
+import { IAM_ACTION } from '@/utils/iamActions.constants';
 
 describe('Vrack Services listing test suite', () => {
   it('should redirect to the onboarding page when the VRS list is empty', async () => {
@@ -99,5 +100,36 @@ describe('Vrack Services listing test suite', () => {
     await waitFor(() => fireEvent.click(goToDEtailButton));
 
     await assertTextVisibility(labels.dashboard.dashboardPageDescription);
+  });
+
+  it('should disable iam actions', async () => {
+    const { container } = await renderTest({
+      nbVs: 1,
+      unauthorizedActions: [
+        IAM_ACTION.VRACK_SERVICES_RESOURCE_EDIT,
+        IAM_ACTION.VRACK_SERVICES_VRACK_ATTACH,
+      ],
+    });
+
+    await assertTextVisibility(labels.listing.createVrackServicesButtonLabel);
+
+    const actionMenu = await getButtonByIcon({
+      container,
+      iconName: ODS_ICON_NAME.ELLIPSIS,
+    });
+
+    await waitFor(() => fireEvent.click(actionMenu));
+
+    await getButtonByLabel({
+      container,
+      label: labels.common['action-editDisplayName'],
+      disabled: true,
+    });
+
+    await getButtonByLabel({
+      container,
+      label: labels.common.associateVrackButtonLabel,
+      disabled: true,
+    });
   });
 });

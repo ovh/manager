@@ -2,6 +2,7 @@ import { vi } from 'vitest';
 import React from 'react';
 import '@testing-library/jest-dom';
 import { NavLinkProps } from 'react-router-dom';
+import { configureIamResponse } from '../../mocks/iam/iam.mock';
 
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
@@ -28,5 +29,13 @@ vi.mock('react-router-dom', async (importOriginal) => {
       pathname: 'pathname',
     }),
     NavLink: ({ ...params }: NavLinkProps) => <>{params.children}</>,
+  };
+});
+
+vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
+  const original: typeof import('@ovh-ux/manager-react-components') = await importOriginal();
+  return {
+    ...original,
+    useAuthorizationIam: vi.fn().mockReturnValue(configureIamResponse({})),
   };
 });

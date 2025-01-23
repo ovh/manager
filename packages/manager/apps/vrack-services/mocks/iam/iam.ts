@@ -1,4 +1,5 @@
 import { Handler } from '@ovh-ux/manager-core-test-utils';
+import { configureIamResponse } from './iam.mock';
 
 export const iamResources = [
   {
@@ -44,9 +45,22 @@ export const iamResources = [
 
 export type GetIamMocksParams = {
   iamKo?: boolean;
+  unauthorizedActions?: string[];
+  urn?: string;
 };
 
-export const getIamMocks = ({ iamKo }: GetIamMocksParams): Handler[] => [
+export const getIamMocks = ({
+  iamKo,
+  unauthorizedActions,
+  urn,
+}: GetIamMocksParams): Handler[] => [
+  {
+    url: '/iam/resource/:urn/authorization/check',
+    response: () => configureIamResponse({ urn, unauthorizedActions }),
+    api: 'v2',
+    method: 'post',
+    status: 200,
+  },
   {
     url: '/iam/resource',
     response: () => {
