@@ -6,12 +6,14 @@ import InstallationInitialStep from '../initialStep/InstallationInitialStep.page
 import InstallationStepDeployment from '../stepDeployment/InstallationStepDeployment.page';
 import InstallationStepSystemInformation from '../stepSystemInformation/InstallationStepSystemInformation.page';
 import InstallationStepSourceInformation from '../stepSourceInformation/InstallationStepSourceInformation.page';
+import InstallationStepOSConfig from '../stepOSConfig/InstallationStepOSConfig.page';
 
 const steps: Record<string, ReactNode> = {
   '1': <InstallationInitialStep />,
   '2': <InstallationStepDeployment />,
   '3': <InstallationStepSystemInformation />,
   '4': <InstallationStepSourceInformation />,
+  '5': <InstallationStepOSConfig />,
 } as const;
 
 export default function FormStep() {
