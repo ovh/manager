@@ -52,6 +52,13 @@ export const DOMAIN_OPTION_STATUS = {
   INACTIVE: 'released',
 };
 
+export const CONTACT_MANAGEMENT_TRACKING = {
+  name:
+    'web::domain::domain-name::main-tabnav::go-to-tab::contact-management_domain-name',
+  page_theme: 'Domains',
+  type: 'action',
+};
+
 export default {
   ALERTS,
   WHOIS_STATUS,
@@ -59,6 +66,7 @@ export default {
   DOMAIN_OPTION_STATUS,
   RENEW_URL,
   DOMAIN_SERVICE_STATUS,
+  CONTACT_MANAGEMENT_TRACKING,
 };
 
 angular.module('App').constant('DOMAIN', {
