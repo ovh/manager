@@ -9,6 +9,8 @@ import { OBJECT_CONTAINER_MODE_LOCAL_ZONE } from '@/constants';
 import { isSwiftType } from '@/helpers';
 import { useUpdateStorageType } from '@/api/hooks/useStorages';
 
+const PUBLIC_STORAGE_TYPES = ['public', 'static'];
+
 export function Actions({ storage }: Readonly<{ storage: TStorage }>) {
   const { t } = useTranslation('containers');
 
@@ -81,11 +83,13 @@ export function Actions({ storage }: Readonly<{ storage: TStorage }>) {
       onClick: () => {
         updateStorageType(
           storage.id,
-          storage.containerType === 'public' ? 'private' : 'public',
+          PUBLIC_STORAGE_TYPES.includes(storage.containerType)
+            ? 'private'
+            : 'public',
         );
       },
       label: t(
-        storage.containerType === 'public'
+        PUBLIC_STORAGE_TYPES.includes(storage.containerType)
           ? 'pci_projects_project_storages_containers_switch_to_private_label'
           : 'pci_projects_project_storages_containers_switch_to_public_label',
       ),
