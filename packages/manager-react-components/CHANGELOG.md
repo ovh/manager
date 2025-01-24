@@ -7,7 +7,19 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-- **manager-react-components:** revert manager component version ([558473b](https://github.com/ovh/manager/commit/558473bef4dc0001accd06a12cb5205d9e19f99b))
+- **mrc:** fix <OnboardingLayout /> ([69188ea](https://github.com/ovh/manager/commit/69188ead04dc05c24bdf672bf813f2c5ae807405))
+- **mrc:** fix <ActionMenu /> ([170fa23](https://github.com/ovh/manager/commit/170fa237a3df7ca42af91f3dab680fd6b2b2162b))
+- **mrc:** fix <DeleteModal /> ([4a2e449](https://github.com/ovh/manager/commit/4a2e44930c5440d9040de5695e8321fdbf7839b3))
+- **mrc:** fix <ErrorBanner /> ([32174d4](https://github.com/ovh/manager/commit/32174d470579922e37f6a6a3a3db7c3ea26ae752))
+- **mrc:** fix <GuideButton /> ([c4a12f4](https://github.com/ovh/manager/commit/c4a12f40ba1b2fd93c0af87e07e67c7e20aa9da7))
+- **mrc:** fix <Links /> ([06e04a6](https://github.com/ovh/manager/commit/06e04a6e4c464d688ce13bd455245fc99f43d058))
+- **mrc:** fix <OnboardingLayout /> ([7f4d9c8](https://github.com/ovh/manager/commit/7f4d9c8bebf25b1d572f8651b30b4b4fc551b0a8))
+- **mrc:** fix <TileBlock /> ([c9da7a5](https://github.com/ovh/manager/commit/c9da7a5130b62c016308224d5556e2113edaf4de))
+- **mrx:** fix <UpdateNameModal /> ([88408d9](https://github.com/ovh/manager/commit/88408d9a106e3b531472bbd0bb5031b3cd9babc7))
+
+### Features
+
+- **manager-react-components:** add breadcrumb component and update error component ([#14892](https://github.com/ovh/manager/issues/14892)) ([afa601d](https://github.com/ovh/manager/commit/afa601dc0c998c5ce7061b73450233c46432bbad))
 
 # [2.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.6.1...@ovh-ux/manager-react-components@2.6.2) (2025-01-16)
 
