@@ -14,6 +14,7 @@ import {
   MIGRATION_STATUS,
   RECOMMIT_IMPRESSION_TRACKING_DATA,
   SERVICE_TYPE,
+  VPS_MIGRATION_FAQ_LINKS,
 } from './vps-dashboard.constants';
 
 import { CHANGE_OWNER_URL, RENEW_URL } from '../vps/constants';
@@ -59,10 +60,15 @@ export default class {
       ip: false,
       polling: false,
     };
+
+    this.migrationFAQLink =
+      VPS_MIGRATION_FAQ_LINKS[coreConfig.getUser().ovhSubsidiary] ||
+      VPS_MIGRATION_FAQ_LINKS.DEFAULT;
   }
 
   $onInit() {
     this.expirationDate = moment(this.serviceInfo?.expiration).format('LL');
+    this.migrationDate = moment(this.vpsMigration?.date).format('LLL');
     this.vpsMigrationData = {
       inAutoMigrationPhase:
         this.vpsMigration.status === MIGRATION_STATUS.ONGOING,
@@ -92,12 +98,15 @@ export default class {
 
   static getSimpleRangeName(rangeFullName) {
     const rangesKeys = Object.values(RANGES).join('|');
-    const [simpleRangeName] = rangeFullName.match(new RegExp(rangesKeys, 'i'));
+    const [simpleRangeName] =
+      rangeFullName.match(new RegExp(rangesKeys, 'i')) || [];
     return simpleRangeName?.toLocaleLowerCase();
   }
 
   canBeMigrated() {
-    return this.vpsMigration?.status === MIGRATION_STATUS.AVAILABLE;
+    return [MIGRATION_STATUS.AVAILABLE, MIGRATION_STATUS.PLANNED].includes(
+      this.vpsMigration?.status,
+    );
   }
 
   isStarter() {

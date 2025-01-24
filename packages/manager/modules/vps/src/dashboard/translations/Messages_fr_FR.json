@@ -21,5 +21,8 @@
   "vps_dashboard_state_stopped": "Arrêté",
   "vps_dashboard_state_stopping": "En cours d'extinction",
   "vps_dashboard_state_upgrading": "En cours de changement d'offre",
-  "vps_dashboard_auto_migration_warning_new": "Votre VPS {{vps}} est éligible à la migration en un clic vers la nouvelle gamme."
+  "vps_dashboard_auto_migration_warning_part_1_without_date": "Votre VPS {{vps}} est éligible à la migration en un clic vers la nouvelle gamme.",
+  "vps_dashboard_auto_migration_warning_part_1_with_date": "Votre vps {{vps}} sera migré automatiquement à la date du {{date}}.",
+  "vps_dashboard_auto_migration_warning_part_2": "Pour plus d'informations sur la migration veuillez consulter cette page web :",
+  "vps_dashboard_migration_banner_link": "Migrer à tout moment en cliquant ici"
 }
