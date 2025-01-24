@@ -8,6 +8,8 @@ import {
   getCoreRowModel,
   useReactTable,
   getSortedRowModel,
+  ExpandedState,
+  getExpandedRowModel,
 } from '@tanstack/react-table';
 import {
   ODS_ICON_NAME,
@@ -42,7 +44,8 @@ export interface DatagridColumn<T> {
   /** unique column identifier */
   id: string;
   /** formatter function to render a column cell */
-  cell: (props: T) => JSX.Element;
+  // cell: (props: T) => JSX.Element;
+  cell: any;
   /** label displayed for the column in the table */
   label: string;
   /** is the column sortable ? (defaults is true) */
@@ -126,11 +129,15 @@ export const Datagrid = <T,>({
     ? Math.ceil(totalItems / pagination.pageSize)
     : 1;
 
+  const [expanded, setExpanded] = React.useState<ExpandedState>({});
+
+  console.info('manualSorting ', manualSorting);
   const table = useReactTable({
     columns: columns.map(
       (col): ColumnDef<T> => ({
         accessorKey: col.id,
-        cell: (props) => col.cell(props.row.original),
+        // BREAKING CHANGE
+        cell: (props) => col.cell(props),
         header: col.label,
         enableSorting: col.isSortable !== false,
       }),
@@ -142,10 +149,16 @@ export const Datagrid = <T,>({
     sortDescFirst: false,
     getCoreRowModel: getCoreRowModel(),
     pageCount,
+
+    onExpandedChange: setExpanded,
+    getExpandedRowModel: getExpandedRowModel(),
+    debugTable: true,
+
     ...(!manualSorting && {
       onSortingChange: onSortChange,
       state: {
         sorting,
+        expanded,
       },
       getSortedRowModel: getSortedRowModel(),
     }),
@@ -154,6 +167,7 @@ export const Datagrid = <T,>({
         ...(sorting && {
           sorting: [sorting],
         }),
+        expanded,
       },
       onStateChange: (updater) => {
         if (typeof updater === 'function') {
