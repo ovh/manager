@@ -19,8 +19,8 @@ import {
   DNSSEC_STATUS,
   DOMAIN_SERVICE_STATES,
   DOMAIN_STATE_TYPE,
-  PRODUCT_TYPE,
   PROTECTION_TYPES,
+  TRACKING_DOMAIN,
 } from './general-information.constants';
 
 export default class DomainTabGeneralInformationsCtrl {
@@ -52,6 +52,7 @@ export default class DomainTabGeneralInformationsCtrl {
     DOMAIN,
     goToDnsAnycast,
     goToTerminateAnycast,
+    goToContactManagement,
     shellClient,
     atInternet,
   ) {
@@ -81,6 +82,7 @@ export default class DomainTabGeneralInformationsCtrl {
     this.DOMAIN = DOMAIN;
     this.goToDnsAnycast = goToDnsAnycast;
     this.goToTerminateAnycast = goToTerminateAnycast;
+    this.goToContactManagement = goToContactManagement;
     this.DOMAIN_STATE_TYPE = DOMAIN_STATE_TYPE;
     this.shellClient = shellClient;
     this.atInternet = atInternet;
@@ -90,6 +92,7 @@ export default class DomainTabGeneralInformationsCtrl {
     this.DOMAINS_BADGES_STATUS = DOMAINS_BADGES_STATUS;
     this.domain = this.$scope.ctrlDomain.domain;
     this.domainInfos = this.$scope.ctrlDomain.domainInfos;
+    this.domainServiceInfos = this.$scope.ctrlDomain.domainServiceInfos;
     this.allDom = this.$scope.ctrlDomain.allDom;
     this.allDomInfos = this.$scope.ctrlDomain.allDomInfos;
     this.domainState = this.$scope.ctrlDomain.domainState;
@@ -234,12 +237,10 @@ export default class DomainTabGeneralInformationsCtrl {
   }
 
   initActions() {
-    const contactManagementUrl = this.coreConfig.isRegion('EU')
-      ? this.coreURLBuilder.buildURL('dedicated', '#/contacts/services', {
-          serviceName: this.domain.name,
-          category: PRODUCT_TYPE,
-        })
-      : '';
+    const contactManagementUrl = this.$state.href(
+      'app.domain.product.contact',
+      this.$stateParams,
+    );
 
     this.actions = {
       manageContact: {
@@ -568,18 +569,20 @@ export default class DomainTabGeneralInformationsCtrl {
     const ownerUrlInfo = { target: '', error: '' };
     if (has(domain, 'name') && has(domain, 'whoisOwner.id')) {
       ownerUrlInfo.target = this.coreURLBuilder.buildURL(
-        'dedicated',
-        '#/contact/:currentDomain/:contactId',
+        'web',
+        '#/domain/:currentDomain/contact-management',
         {
           currentDomain: domain.name,
-          contactId: domain.whoisOwner.id,
         },
       );
     } else if (!has(domain, 'name')) {
       ownerUrlInfo.error = this.$translate.instant(
         'domain_tab_REDIRECTION_add_step4_server_cname_error',
       );
-    } else {
+    } else if (
+      this.coreConfig.getUser().nichandle ===
+      this.domainServiceInfos.contactAdmin
+    ) {
       ownerUrlInfo.error =
         domain.whoisOwner !== this.DOMAIN.WHOIS_STATUS.PENDING &&
         domain.whoisOwner !== this.DOMAIN.WHOIS_STATUS.INVALID_CONTACT &&
@@ -695,6 +698,11 @@ export default class DomainTabGeneralInformationsCtrl {
     this.trackClick(DOMAIN_TRACKING.WEBHOSTING_ORDER);
 
     return this.goToWebhostingOrder();
+  }
+
+  onGoToContactManagement() {
+    this.trackClick(TRACKING_DOMAIN.CONTACT_MANAGEMENT);
+    return this.goToContactManagement();
   }
 }
 
