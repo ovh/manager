@@ -1,0 +1,54 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Dashboard/BillingInformationsTile/Documentation" />
+
+# BillingInformationsTile Design
+
+The `BillingInformationsTile` is a component designed using the **Compound Component** pattern, allowing for flexible and scalable composition.
+
+## Usage
+
+### Standard Implementation
+
+For common use cases, it is recommended to use the `BillingInformationsTileStandard` component. This provides a standardized result with minimal configuration:
+
+```jsx
+<BillingInformationsTileStandard resourceName="my-resource-name" />
+```
+
+### Custom Composition
+
+If customization is necessary, you can compose your own `BillingInformationsTile` using its subcomponents. However, it is advisable to follow general implementation guidelines and avoid custom compositions when possible to maintain consistency and simplify maintenance.
+
+## Data Source
+
+The primary data source for the `BillingInformationsTile` is:
+
+```
+/services/:serviceId:
+```
+
+Leveraging the extensive information available from this source allows you to implement conditions that determine what data to display, enhancing the component's flexibility and relevance.
+
+### Step-by-Step Guide
+
+1. **Determine Scope**
+   - **All Products:** If the customization benefits all products, update the tile using `BillingInformationsTileStandard`.
+   - **Specific to `services/:serviceId:`:** If related to service-specific information, add the item to `BillingInformationsTileStandard` with the necessary condition.
+   - **Specific Products with Undetermined Conditions:** Implement feature flipping on the Backend For Frontend (BFF) to facilitate easy integration.
+   - **Highly Specific Customization:** If the customization is too specific and cannot be generalized, manually compose the tile using `BillingInformationsTile`.
+
+2. **Implement Changes**
+   - Follow the chosen path from the workflow diagram to implement the necessary changes, ensuring that each step aligns with the overall architecture and design principles of the component.
+
+3. **Finalize**
+   - After implementing the customization, verify that the tile behaves as expected across all relevant products and scenarios.
+
+## Best Practices
+
+- **Reuse Standard Components:** Whenever possible, use `BillingInformationsTileStandard` to ensure consistency and reduce redundancy.
+- **Leverage Data Conditions:** Utilize the information from `/services/:serviceId:` to dynamically control what is displayed, enhancing the component's adaptability.
+- **Avoid Over-Customization:** Strive to maintain simplicity by avoiding unnecessary custom compositions, which can complicate maintenance and scalability.
+- **Implement Feature Flipping Thoughtfully:** For very custom integration try introduce feature flipping and ensure it is well-documented and integrated seamlessly with the existing BFF infrastructure.
+
+By adhering to these guidelines, you can effectively utilize and customize the `BillingInformationsTile` component to meet various requirements while maintaining a coherent and maintainable codebase.
