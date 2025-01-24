@@ -29,7 +29,7 @@ version_mrc() {
 
   if "${DRY_RELEASE}"; then
     printf "%s\n" "Dry releasing"
-    node_modules/.bin/lerna version --scope=manager-react-components --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --allow-branch="${GIT_BRANCH}" --yes
+    node_modules/.bin/lerna version --scope=@ovh-ux/manager-react-components --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --allow-branch="${GIT_BRANCH}" --yes
   else
     printf "%s\n" "Releasing"
     node_modules/.bin/lerna exec --scope=@ovh-ux/manager-react-components -- lerna version --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --no-private --ignore-changes="packages/manager/modules/manager-pci-common/**" --yes
