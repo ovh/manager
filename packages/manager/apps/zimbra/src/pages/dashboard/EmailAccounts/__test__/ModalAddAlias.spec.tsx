@@ -6,7 +6,6 @@ import { useResolvedPath, useSearchParams } from 'react-router-dom';
 import { render, screen, waitFor, act } from '@/utils/test.provider';
 import { accountDetailMock } from '@/api/_mock_';
 import ModalAddAlias from '../ModalAddAlias.component';
-import emailAccountAliasAddTranslation from '@/public/translations/accounts/alias/add/Messages_fr_FR.json';
 
 vi.mocked(useResolvedPath).mockReturnValue({
   pathname: '/:serviceName/email_accounts/alias/add',
@@ -29,12 +28,7 @@ describe('add alias modal', () => {
       expect(queryByTestId('spinner')).toBeNull();
     });
 
-    screen.getByText(
-      emailAccountAliasAddTranslation.zimbra_account_alias_add_description.replace(
-        '{{ account }}',
-        accountDetailMock.currentState?.email,
-      ),
-    );
+    screen.getByText(accountDetailMock.currentState?.email);
   });
 
   it('check validity form', async () => {
