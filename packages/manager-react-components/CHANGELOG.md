@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.6.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.6.2...@ovh-ux/manager-react-components@2.6.3) (2025-01-24)
+
+### Bug Fixes
+
+- **manager-react-components:** revert manager component version ([558473b](https://github.com/ovh/manager/commit/558473bef4dc0001accd06a12cb5205d9e19f99b))
+
 # [2.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.6.1...@ovh-ux/manager-react-components@2.6.2) (2025-01-16)
 
 ### Bug Fixes

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@1.0.11...@ovh-ux/manager-pci-common@1.0.12) (2025-01-24)
+
+
+### Bug Fixes
+
+* **manager-pci-common:** revert mrc version ([9f2cecd](https://github.com/ovh/manager/commit/9f2cecd95d3b5e9f03d307029265eadeb004fe8c))
+
+
+
+
+
 ## [1.0.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@1.0.10...@ovh-ux/manager-pci-common@1.0.11) (2025-01-23)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-common
