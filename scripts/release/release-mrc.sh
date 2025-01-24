@@ -32,13 +32,17 @@ version_mrc() {
     node_modules/.bin/lerna version --scope=@ovh-ux/manager-react-components --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --allow-branch="${GIT_BRANCH}" --yes
   else
     printf "%s\n" "Releasing"
-    node_modules/.bin/lerna version --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --no-private --ignore-changes "**/packages/manager/modules/manager-pci-common/**" --ignore-changes @ovh-ux/manager-pci-common --yes
+    node_modules/.bin/lerna version --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --no-private --yes
   fi
 }
 
 get_changed_packages() {
   node_modules/.bin/lerna changed --all -p -l
 }
+get_mrc_version(){
+  node_modules/.bin/lerna list --scope @ovh-ux/manager-react-components --json | jq -r ".[].version"
+}
+
 
 get_release_name() {
   seed="$1"
@@ -118,17 +122,19 @@ main() {
     # Check if the changed package is `manager-react-components`
     if [[ "$package" == *manager-react-components* ]]; then
       printf "%s\n" "New release for manager-react-components"
-      next_tag=$(yarn info @ovh-ux/manager-react-components version | sed -n '2p')
+      next_tag=""
       path_mrc=$(echo "$package" | cut -d ':' -f 1)
       name_mrc=$(echo "$package" | cut -d ':' -f 2)
       printf "%s\n" "Versioning...."
       version_mrc "$next_tag"
-      printf "%s\n" "Versioning done and next tag is $next_tag"
-      RELEASE_NOTE+="# Release $next_tag\n\n"
+      next_version=$(get_mrc_version)
+      release_name="@ovh-ux/manager-react-components@$next_version"
+      printf "%s\n" "Versioning done and next version is $next_version"
+      RELEASE_NOTE+="# Release @ovh-ux/manager-react-components@$next_version\n\n"
       # Create release note for manager-react-components
       RELEASE_NOTE+="$(create_release_note "$path_mrc" "$name_mrc")\n\n"
 
-      #push_and_release "$next_tag"
+      push_and_release "$release_name"
     fi
   done <<< "$changed_packages"
 
