@@ -5,7 +5,6 @@ import {
   ODS_THEME_COLOR_HUE,
   ODS_THEME_COLOR_INTENT,
 } from '@ovhcloud/ods-common-theming';
-import dialogPolyfill from 'dialog-polyfill';
 
 type ChatDialogProps = {
   url: string;
@@ -28,9 +27,14 @@ export default function ChatDialog({
 
   useEffect(() => {
     if (chatDialog.current) {
-      dialogPolyfill.registerDialog(chatDialog.current);
+      if (typeof HTMLDialogElement === 'undefined') {
+        // Import or use the dialog polyfill if HTMLDialogElement is not natively supported
+        import('dialog-polyfill').then(({ default: dialogPolyfill }) => {
+          dialogPolyfill.registerDialog(chatDialog.current);
+        });
+      }
       chatDialog.current.show();
-      chatIFrame.current.contentWindow.focus();
+      chatIFrame.current.contentWindow?.focus();
     }
   }, []);
 
@@ -80,6 +84,7 @@ export default function ChatDialog({
       <iframe
         ref={chatIFrame}
         id="livechat-iframe"
+        data-testid="live-chat-iframe"
         title={title}
         src={url}
         className={`flex-grow w-full h-full rounded-lg border-none`} // done to tw
