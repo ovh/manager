@@ -52,6 +52,9 @@ export type VMwareDatacentre = {
   isRemovable: boolean;
   name: string;
   version: string;
+  displayName: string;
+  id: number;
+  formattedName: string;
 };
 
 export type VMwareDatacentreCluster = {
