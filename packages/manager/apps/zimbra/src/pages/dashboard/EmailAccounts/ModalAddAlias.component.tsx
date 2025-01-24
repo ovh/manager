@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 
 import {
   OdsFormField,
@@ -157,6 +157,7 @@ export default function ModalAddAndEditOrganization() {
       secondaryButton={{
         label: t('zimbra_account_alias_add_btn_cancel'),
         action: handleCancelClick,
+        testid: 'cancel-btn',
       }}
       primaryButton={{
         testid: 'confirm-btn',
@@ -169,9 +170,13 @@ export default function ModalAddAndEditOrganization() {
     >
       <>
         <OdsText preset={ODS_TEXT_PRESET.paragraph} className="mt-5 mb-5">
-          {t('zimbra_account_alias_add_description', {
-            account: editAccountDetail?.currentState.email,
-          })}
+          <Trans
+            t={t}
+            i18nKey={'zimbra_account_alias_add_description'}
+            values={{
+              account: editAccountDetail?.currentState.email,
+            }}
+          />
         </OdsText>
 
         <OdsFormField>
@@ -225,16 +230,20 @@ export default function ModalAddAndEditOrganization() {
               ))}
             </OdsSelect>
           </div>
-          <div slot="helper">
-            <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+          <OdsText
+            slot="helper"
+            preset={ODS_TEXT_PRESET.caption}
+            className="flex flex-col"
+          >
+            <span className="block">
               {t('zimbra_account_alias_add_input_email_helper')}
-            </OdsText>
+            </span>
             {[1, 2, 3].map((elm) => (
-              <OdsText preset={ODS_TEXT_PRESET.paragraph} key={elm}>
-                -{t(`zimbra_account_alias_add_input_email_helper_rule_${elm}`)}
-              </OdsText>
+              <span key={elm} className="block">
+                - {t(`zimbra_account_alias_add_input_email_helper_rule_${elm}`)}
+              </span>
             ))}
-          </div>
+          </OdsText>
         </OdsFormField>
       </>
     </Modal>
