@@ -104,9 +104,25 @@ export const CTAS: Record<string, string> = {
 };
 
 export const GUIDES_LIST = {
+  office_cta_order: {
+    key: 'web-office_onboarding_cta_order',
+    url: CTAS,
+  },
   office_guides: {
     key: 'web-office_dashboard_guides',
     url: WEB_OFFICE_GUIDES,
+  },
+  office_onboarding1_guides: {
+    key: 'web-office_onboarding1_guides',
+    url: WEB_OFFICE_ONBOARDING_1,
+  },
+  office_onboarding2_guides: {
+    key: 'web-office_onboarding2_guides',
+    url: WEB_OFFICE_ONBOARDING_2,
+  },
+  office_onboarding3_guides: {
+    key: 'web-office_onboarding3_guides',
+    url: WEB_OFFICE_ONBOARDING_3,
   },
 };
 
