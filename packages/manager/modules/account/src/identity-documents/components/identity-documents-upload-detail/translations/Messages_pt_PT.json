@@ -26,11 +26,11 @@
   "upload-documents-details-acceptance-criteria-names_account": "O nome e o apelido devem corresponder à identidade da sua conta de cliente.",
   "upload-documents-details-acceptance-criteria-names_address_account": "O nome, o apelido e o endereço devem corresponder às informações contidas na conta de cliente.",
   "upload-documents-details-acceptance-criteria-less_than_three": "Comprovativo de menos de três meses.",
-  "upload-documents-details-acceptance-criteria-address_gst": "O endereço que figura no documento deve corresponder ao endereço que figura no certificado GST (imposto sobre os produtos e serviços).",
+  "upload-documents-details-acceptance-criteria-address_gst": "O endereço que figura no documento deve corresponder ao endereço que figura no certificado GST (imposto sobre produtos e serviços).",
   "upload-documents-details-acceptance-criteria-address_account": "O endereço que figura no documento deve corresponder ao endereço da conta de cliente.",
   "upload-documents-details-acceptance-criteria-company_name_vat": "Deve ser indicado o nome da empresa e o IVA.",
   "upload-documents-details-acceptance-criteria-mandatory_names": "É necessário mencionar o seu nome, o nome do representante legal ou do diretor de Operações.",
-  "upload-documents-details-acceptance-criteria-names_date_sign_gst": "Nome, sobrenome, data e assinatura do representante legal, do diretor de operações ou de qualquer outro contacto mencionado no certificado GST (imposto sobre os produtos e serviços).",
+  "upload-documents-details-acceptance-criteria-names_date_sign_gst": "O nome e o apelido, a data e a assinatura do representante legal, do diretor de operações ou de qualquer outro contacto mencionado no certificado GST (imposto sobre produtos e serviços).",
   "upload-documents-details-acceptance-criteria-delegate_dates": "Datas do período de delegação",
   "upload-documents-details-acceptance-criteria-accepted-formats": "Formatos aceites para todos os documentos: .pdf, .png, .jpg, .jpeg",
   "upload-documents-details-acceptance-criteria-maxsize": "Peso máximo de cada documento carregado: 10 MB"
