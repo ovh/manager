@@ -1,4 +1,3 @@
-import { capitalize, isString, mapValues } from 'lodash-es';
 import { OvhAtInternetConfig } from './config';
 import {
   IOvhAtInternetTrack,
@@ -13,7 +12,7 @@ import {
   AT_INTERNET_WEBSITE,
 } from './constants';
 import { loadManagerTMS } from './manager-tms';
-import { debug } from './utils';
+import { capitalize, debug, mapValues } from './utils';
 
 import initMixCommander from './mix-commander';
 
@@ -32,7 +31,7 @@ function getPageTrackingData(
 
 function filterTrackingData(data: any) {
   return mapValues(data, (value) => {
-    if (isString(value)) {
+    if (typeof value === 'string') {
       // if value is enclosed in brackets, remove then
       return value.replace(/^\[/, '').replace(/\]$/, '');
     }
