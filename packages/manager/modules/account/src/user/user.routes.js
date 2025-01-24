@@ -5,8 +5,7 @@ import { GUIDES_LIST } from './user.constants';
 import template from './user.html';
 import controller from './user.controller';
 
-const GDPR_REQUEST_MANAGEMENT_ACTION =
-  'account:apiovh:me/privacy/requests/erasure/manage';
+const GDPR_REQUEST_MANAGEMENT_ACTION = 'account:apiovh:me/privacy/requests/get';
 
 export default /* @ngInject */ ($stateProvider) => {
   const name = 'account.user';
