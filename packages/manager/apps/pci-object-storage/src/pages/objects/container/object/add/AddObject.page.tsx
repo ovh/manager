@@ -23,9 +23,10 @@ import {
 } from '@/constants';
 import LabelComponent from '@/components/Label.component';
 import FileInputComponent from '@/components/FileInput.component';
-import { useAllStorages } from '@/api/hooks/useStorages';
+import { useStorage } from '@/api/hooks/useStorages';
 import { useAddObjects } from '@/api/hooks/useObject';
 import { useAddObjectForm } from './useAddObjectsForm';
+import { useGetRegion } from '@/api/hooks/useRegion';
 
 export default function AddObjectPage() {
   const { t } = useTranslation(['objects/add', 'pci-common']);
@@ -44,7 +45,6 @@ export default function AddObjectPage() {
 
   const PRICE_LINK =
     STORAGE_PRICES_LINK[ovhSubsidiary] || STORAGE_PRICES_LINK.DEFAULT;
-  const isStorageClass = OBJECT_CONTAINER_STORAGE_CLASS.STANDARD;
 
   const {
     formState,
@@ -54,14 +54,9 @@ export default function AddObjectPage() {
     isFormValid,
   } = useAddObjectForm();
 
-  const { data: allContainers } = useAllStorages(projectId);
-
-  const targetContainer = useMemo(
-    () =>
-      allContainers?.resources.find(
-        (c) => c.id === storageId || c.name === storageId,
-      ),
-    [allContainers, storageId],
+  const { storage: container, isPending: isStoragePending } = useStorage(
+    projectId,
+    storageId,
   );
 
   const goBack = () =>
@@ -103,13 +98,26 @@ export default function AddObjectPage() {
 
   const { addObjects, isPending: isAddPending } = useAddObjects({
     projectId,
-    container: targetContainer,
+    container,
     prefix: formState.prefix,
     storageClass: formState.storageClass,
     files: formState.files,
     onSuccess: handleSuccess,
     onError: handleError,
   });
+
+  const { data: containerRegion, isPending: isRegionPending } = useGetRegion(
+    projectId,
+    region,
+  );
+
+  const showStorageClass = useMemo(
+    () =>
+      containerRegion?.services?.some(
+        (item) => item.name === 'storage-s3-high-perf' && item.status === 'UP',
+      ),
+    [containerRegion?.services],
+  );
 
   const onConfirm = () => {
     tracking?.trackClick({
@@ -136,7 +144,9 @@ export default function AddObjectPage() {
       onClose={onClose}
       onCancel={onClose}
       onConfirm={onConfirm}
-      isPending={!targetContainer || isAddPending}
+      isPending={
+        !container || isAddPending || isStoragePending || isRegionPending
+      }
       cancelText={t(
         'pci_projects_project_storages_containers_container_object_add_cancel_label',
       )}
@@ -145,15 +155,15 @@ export default function AddObjectPage() {
       )}
       isDisabled={!isFormValid}
     >
-      {targetContainer?.s3StorageType && !isStorageClass && (
-        <OdsMessage className="my-6">
+      {container?.s3StorageType && !showStorageClass && (
+        <OdsMessage className="my-6" isDismissible={false}>
           {t(
             'pci_projects_project_storages_containers_container_object_add_storage_class_info_banner',
           )}
         </OdsMessage>
       )}
 
-      {targetContainer?.s3StorageType && (
+      {container?.s3StorageType && (
         <div>
           <OdsText>
             {t(
@@ -195,7 +205,7 @@ export default function AddObjectPage() {
         />
       </OdsFormField>
 
-      {targetContainer?.s3StorageType && isStorageClass && (
+      {container?.s3StorageType && showStorageClass && (
         <div className="my-6">
           <LabelComponent
             text={t(
