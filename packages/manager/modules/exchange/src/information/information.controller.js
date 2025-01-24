@@ -63,6 +63,9 @@ export default class ExchangeTabInformationCtrl {
           this.displayGuides = this.EXCHANGE_CONFIG.URLS.GUIDES.DOCS_HOME[
             data.ovhSubsidiary
           ];
+          this.backupGuideUrl =
+            this.EXCHANGE_CONFIG.URLS.GUIDES.BACKUP[data.ovhSubsidiary] ||
+            this.EXCHANGE_CONFIG.URLS.GUIDES.BACKUP.DEFAULT;
         } catch (exception) {
           this.displayGuides = null;
         }
@@ -274,5 +277,12 @@ export default class ExchangeTabInformationCtrl {
     )} / ${this.exchange.totalDiskSize.value} ${this.$translate.instant(
       `unit_size_${this.exchange.totalDiskSize.unit}`,
     )}`;
+  }
+
+  canVeeamBackup() {
+    return (
+      this.exchangeServiceInfrastructure.isDedicated() ||
+      this.exchangeServiceInfrastructure.isDedicatedCluster()
+    );
   }
 }

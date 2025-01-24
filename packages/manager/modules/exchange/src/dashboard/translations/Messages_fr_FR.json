@@ -99,6 +99,8 @@
   "exchange_tab_INFORMATIONS_stats": "Statistiques",
   "exchange_tab_INFORMATIONS_server": "Serveur",
   "exchange_tab_INFORMATIONS_connexion": "Connexion",
+  "exchange_tab_INFORMATIONS_backup": "Sauvegarde",
+  "exchange_tab_INFORMATIONS_backup_guide_title": "Sauvegarder ses comptes e-mail",
   "exchange_tab_INFORMATIONS_sharepoint": "SharePoint associé",
   "exchange_tab_INFORMATIONS_sharepoint_url": "URL consultation",
   "exchange_tab_INFORMATIONS_wait_activation": "En attente d'activation",

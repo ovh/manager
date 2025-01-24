@@ -1689,5 +1689,7 @@
   "exchange_ACTION_order_accounts_step3_bc_ovhtel": "The purchase order has been generated. Your order is being processed.",
   "exchange_ACTION_order_accounts_step3_explication_ovhtel": "It will take around 10 minutes to set up your account.",
   "exchange_tab_RESOURCES_add_resource_company": "Company",
-  "exchange_GROUPS_add_group_company_label": "Company"
+  "exchange_GROUPS_add_group_company_label": "Company",
+  "exchange_tab_INFORMATIONS_backup": "Backup",
+  "exchange_tab_INFORMATIONS_backup_guide_title": "Backing up your email accounts"
 }
