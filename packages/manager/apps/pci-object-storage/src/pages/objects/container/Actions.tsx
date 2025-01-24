@@ -90,7 +90,7 @@ export function Actions({ storage }: Readonly<{ storage: TStorage }>) {
           : 'pci_projects_project_storages_containers_switch_to_public_label',
       ),
       condition: isSwiftType(storage),
-      disabled: isPending,
+      isDisabled: isPending,
     },
     {
       id: 3,
