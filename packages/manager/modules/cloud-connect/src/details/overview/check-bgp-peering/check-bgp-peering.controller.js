@@ -3,8 +3,9 @@ import { diagnosticTypes } from './check-pgp-peering.constants';
 
 export default class CheckBGPPeeringCtrl {
   /* @ngInject */
-  constructor($translate, cloudConnectService) {
+  constructor($state, $translate, cloudConnectService) {
     this.$translate = $translate;
+    this.$state = $state;
     this.cloudConnectService = cloudConnectService;
     this.diagnosticTypes = diagnosticTypes;
   }
@@ -28,7 +29,11 @@ export default class CheckBGPPeeringCtrl {
       )
       .then(() => {
         return this.goBack(
-          this.$translate.instant('cloud_connect_bgp_peering_success'),
+          this.$translate.instant('cloud_connect_bgp_peering_success', {
+            link: this.$state.href('cloud-connect.details.diagnostics', {
+              cloudConnect: this.cloudConnectService,
+            }),
+          }),
           'success',
           false,
         );
