@@ -33,12 +33,8 @@
     "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-config' --include-dependencies -- yarn run dev",
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-config' --include-dependencies -- yarn run dev:watch"
   },
-  "dependencies": {
-    "lodash-es": "^4.17.15"
-  },
   "devDependencies": {
-    "@ovh-ux/manager-config": "^8.0.2",
-    "@types/lodash-es": "^4.17.5"
+    "@ovh-ux/manager-config": "^8.0.2"
   },
   "peerDependencies": {
     "@ovh-ux/manager-config": "^8.0.1"
