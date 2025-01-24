@@ -14,8 +14,8 @@ export const useGenerateUrl = (
     ...(organization?.id && { organizationId: organization.id }),
   };
 
-  const fullURL = `${baseURL}?${Object.entries(queryParams)
-    .map(([key, value]) => `${key}=${value}`)
+  const fullURL = `${baseURL}${Object.entries(queryParams)
+    .map(([key, value], index) => `${index === 0 ? '?' : ''}${key}=${value}`)
     .join('&')}`;
 
   if (type === 'href') {

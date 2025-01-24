@@ -9,6 +9,7 @@ import {
   aliasMock,
   domainZone,
   orderCatalogMock,
+  domainsDiagnosticMock,
 } from '@/api/_mock_';
 import { AccountType } from '@/api/account';
 import { DomainType } from '@/api/domain';
@@ -99,6 +100,9 @@ vi.mock('@/api/domain', async (importActual) => {
     }),
     getDomainsZoneList: vi.fn(() => {
       return Promise.resolve(domainZone);
+    }),
+    postZimbraPlatformDomainsDiagnostic: vi.fn(() => {
+      return Promise.resolve(domainsDiagnosticMock);
     }),
     putZimbraDomain: vi.fn(() => {
       return Promise.resolve();

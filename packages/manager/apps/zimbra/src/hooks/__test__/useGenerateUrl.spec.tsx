@@ -20,7 +20,7 @@ describe('useGenerateUrl', () => {
       wrapper,
     });
     expect(result.current).toBe(
-      '#/00000000-0000-0000-0000-000000000001/organizations/add?',
+      '#/00000000-0000-0000-0000-000000000001/organizations/add',
     );
   });
 
@@ -43,7 +43,7 @@ describe('useGenerateUrl', () => {
     const { result } = renderHook(() => useGenerateUrl('./add', 'path'), {
       wrapper,
     });
-    expect(result.current).toBe('./add?');
+    expect(result.current).toBe('./add');
   });
 
   it('should return url path with params', async () => {

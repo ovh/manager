@@ -32,7 +32,7 @@ export default function ValidateOwnership() {
   const { trackClick } = useOvhTracking();
   const [searchParams] = useSearchParams();
   const domainId = searchParams.get('domainId');
-  const { data: domain, isFetching, isError } = useDomain(domainId);
+  const { data: domain, isFetching, isError } = useDomain({ domainId });
 
   const cname = domain?.currentState?.expectedDNSConfig?.ownership?.cname;
   const goBackUrl = useGenerateUrl('..', 'href');
