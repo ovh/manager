@@ -51,12 +51,7 @@
                 data-ng-click="$ctrl.copyToClipboard($ctrl.diagnostic)"
             >
                 <span
-                    data-ng-if="!$ctrl.copyDone"
-                    class="oui-icon oui-icon-copy"
-                ></span>
-                <span
-                    data-ng-if="$ctrl.copyDone"
-                    class="oui-icon oui-icon-check"
+                    data-ng-class="['oui-icon', {'oui-icon-copy': !$ctrl.copyDone, 'oui-icon-check': $ctrl.copyDone}]"
                 ></span>
             </button>
             <button
