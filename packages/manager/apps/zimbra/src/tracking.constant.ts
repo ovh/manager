@@ -37,6 +37,13 @@ export const ADD_DOMAIN = `add_${DOMAIN}`;
 export const EDIT_DOMAIN = `edit_${DOMAIN}`;
 export const DELETE_DOMAIN = `delete_${DOMAIN}`;
 export const VERIFY_DOMAIN = `verify_${DOMAIN}`;
+export const AUTO_CONFIGURE_DOMAIN = `auto-configure_${DOMAIN}`;
+export const DOMAIN_DIAGNOSTICS = `${DOMAIN}_diagnostics`;
+export const DOMAIN_DIAGNOSTICS_REFRESH = `${DOMAIN_DIAGNOSTICS}_refresh`;
+export const DOMAIN_DIAGNOSTICS_MX = `${DOMAIN_DIAGNOSTICS}_mx`;
+export const DOMAIN_DIAGNOSTICS_SPF = `${DOMAIN_DIAGNOSTICS}_spf`;
+export const DOMAIN_DIAGNOSTICS_SRV = `${DOMAIN_DIAGNOSTICS}_srv`;
+export const DOMAIN_DIAGNOSTICS_DKIM = `${DOMAIN_DIAGNOSTICS}_dkim`;
 
 // ORGANIZATION
 export const ORGANIZATION = 'organization';

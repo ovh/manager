@@ -62,7 +62,7 @@
     "vitest": "^2.1.2"
   },
   "regions": [
-    "CA",
-    "EU"
+    "EU",
+    "CA"
   ]
 }

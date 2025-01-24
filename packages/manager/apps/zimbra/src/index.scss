@@ -47,3 +47,27 @@ ods-tag.org-tag::part(tag) {
     }
   }
 }
+table.dns-fields {
+  border-collapse: collapse;
+
+  tr {
+    // match Clipboard fixed height + focus style
+    height: 42px;
+    td {
+      height: 42px;
+    }
+  }
+
+  td:has(ods-clipboard) {
+    display: flex;
+    align-items: center;
+    ods-clipboard {
+      flex: 1;
+      width: 100%;
+    }
+  }
+}
+
+.diag-dns-icon {
+  color: var(--ods-color-critical-400);
+}
