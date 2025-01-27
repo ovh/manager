@@ -8,7 +8,6 @@ import { TStorage } from '@/api/data/storages';
 import { OBJECT_CONTAINER_MODE_LOCAL_ZONE } from '@/constants';
 import { isSwiftType } from '@/helpers';
 import { useUpdateStorageType } from '@/api/hooks/useStorages';
-import { useUsers } from '@/api/hooks/useUser';
 
 const PUBLIC_STORAGE_TYPES = ['public', 'static'];
 
@@ -18,8 +17,6 @@ export function Actions({ storage }: Readonly<{ storage: TStorage }>) {
   const navigate = useNavigate();
   const { projectId } = useParams();
   const { addSuccess, addError } = useNotifications();
-
-  const { validUsersWithCredentials } = useUsers(projectId);
 
   const { isPending, updateStorageType } = useUpdateStorageType({
     projectId,
@@ -59,14 +56,12 @@ export function Actions({ storage }: Readonly<{ storage: TStorage }>) {
       id: 0,
       label: t('pci_projects_project_storages_containers_view_add_user_label'),
       onClick: () =>
-        validUsersWithCredentials?.length === 0
-          ? navigate('./emptyUser')
-          : navigate({
-              pathname: `./addUser`,
-              search: `?${createSearchParams({
-                containerId: storage.name,
-              })}`,
-            }),
+        navigate({
+          pathname: `./addUser`,
+          search: `?${createSearchParams({
+            containerId: storage.name,
+          })}`,
+        }),
       condition:
         storage.s3StorageType &&
         (!storage.deploymentMode ||
