@@ -19,13 +19,11 @@ import {
   ODS_TEXT_PRESET,
   OdsFile,
 } from '@ovhcloud/ods-components';
-import {
-  getmeTaskDomainArgument,
-  getmeTaskDomainId,
-} from '@/data/api/web-domain-dns-ongoing-operations';
+import { getmeTaskDomainArgument } from '@/data/api/web-domain-dns-ongoing-operations';
 import SubHeader from '@/components/SubHeader';
 import { TArgument } from '@/interface';
 import { useDoOperation } from '@/hooks/actions/useActions';
+import { useGetDomainData } from '@/hooks/data/useGetDomainData';
 
 export default function upload() {
   const { t } = useTranslation('dashboard');
@@ -39,9 +37,8 @@ export default function upload() {
   const [statusMessage, setStatusMessage] = useState<string>('');
   const [uploadedFiles, setUploadedFiles] = useState<OdsFile[]>([]);
 
-  const fetchDomainData = async (routeId: string) => {
-    const response = await getmeTaskDomainId(id);
-    return response.data;
+  const fetchDomainData = async () => {
+    return useGetDomainData(id);
   };
 
   const fetchDomainArgument = async (
@@ -54,7 +51,7 @@ export default function upload() {
 
   const { data: domain } = useQuery({
     queryKey: ['domain'],
-    queryFn: () => fetchDomainData(id),
+    queryFn: () => fetchDomainData(),
   });
 
   const { data: domainArgument } = useQuery<TArgument>({
@@ -94,7 +91,6 @@ export default function upload() {
       if (file) {
         const data = new FormData();
         data.append('file', file);
-        console.log(data);
       }
     } catch (e) {
       changeStatus('error', 'Operation done with error');
@@ -155,7 +151,7 @@ export default function upload() {
         <div className="flex flex-col gap-y-1 mb-6">
           <OdsText preset={ODS_TEXT_PRESET.paragraph}>
             Commentaire de l'opération
-            <strong>{domain?.comment}</strong>
+            <strong> {domain?.comment}</strong>
           </OdsText>
           <OdsText preset={ODS_TEXT_PRESET.paragraph}>
             Vous pouvez modifier les données relatives à l'opération{' '}
@@ -173,7 +169,14 @@ export default function upload() {
             onOdsChange={(files: OdsFile[]) => handleFileChange(files)}
             onOdsCancel={() => setUploadedFiles([])}
             maxFile={1}
-            accept=".jpg,.png,.pdf"
+            maxSize={domainArgument?.maximumSize}
+            maxSizeLabel="No file larger than"
+            accept=".jpg,.jpeg"
+            acceptedFileLabel={`Accepted file types : ${domainArgument?.acceptedFormats.map(
+              (e: string) => {
+                return `${e} `;
+              },
+            )}`}
             files={uploadedFiles}
             className="w-[384px]"
           />

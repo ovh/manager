@@ -1,8 +1,7 @@
 import { OdsModal, OdsSpinner } from '@ovhcloud/ods-components/react';
 import React, { useEffect, useState } from 'react';
 import { OdsModalCustomEvent } from '@ovhcloud/ods-components';
-import { c } from 'vite/dist/node/types.d-aGj9QkWt';
-import json from '@/json/document.json';
+import { useNavigate } from 'react-router-dom';
 import ModalHeaderComponent from '@/components/Modal/Header/ModalHeader.component';
 import ModalActionsComponent from '@/components/Modal/Actions/ModalActions.component';
 import ModalContentComponent from './Content/ModalContent.component';
@@ -11,7 +10,8 @@ import {
   getmeTaskDomainNicList,
 } from '@/data/api/web-domain-dns-ongoing-operations';
 import { useDoOperation } from '@/hooks/actions/useActions';
-import { TArgument, TArgumentData, TOngoingOperations } from '@/interface';
+import { TArgumentData, TOngoingOperations } from '@/interface';
+import { urls } from '@/routes/routes.constant';
 
 type IsModalOpenProps = {
   isModalOpen: boolean;
@@ -26,13 +26,13 @@ export default function Modal({
   isModalOpen,
   onCloseModal,
   data,
-  changeStatus,
 }: IsModalOpenProps) {
   const [nic, setNic] = useState([]);
   const [argument, setArgument] = useState<TArgumentData[]>([] || undefined);
   const [isLoading, setLoading] = useState<boolean>(false);
-  const [isDocument, setDocument] = useState<boolean>(false);
-  const [domainId, setDomainId] = useState<number>(0);
+  const [isActions, setActions] = useState<boolean>(false);
+  const [domainId, setDomainId] = useState<string>('');
+  const navigate = useNavigate();
   useEffect(() => {
     if (isModalOpen) {
       getmeTaskDomainNicList(data.id)
@@ -46,14 +46,17 @@ export default function Modal({
           );
           setArgument(argumentsList);
           argumentsList.some((al) => {
-            if (al.data.type === '/me/document') {
-              return setDocument(true);
+            if (
+              al.data.type === '/me/contact' ||
+              al.data.type === 'string' ||
+              al.data.type === '/me'
+            ) {
+              return setActions(true);
             }
-            return setDocument(false);
           });
         })
-        .catch((error) => {
-          console.error('Erreur lors des appels API:', error);
+        .catch(() => {
+          navigate(urls.error404);
         });
     }
   }, [isModalOpen, data?.id]);
@@ -71,7 +74,7 @@ export default function Modal({
           isOpen={isModalOpen}
           onOdsClose={(_: OdsModalCustomEvent<void>) => {
             onCloseModal();
-            setDocument(false);
+            setActions(false);
           }}
           className="modal"
         >
@@ -88,7 +91,7 @@ export default function Modal({
                 description={data.comment}
               />
               <ModalContentComponent content={argument} domainId={domainId} />
-              {!isDocument && (
+              {isActions && (
                 <ModalActionsComponent
                   data={data}
                   onCloseModal={onCloseModal}

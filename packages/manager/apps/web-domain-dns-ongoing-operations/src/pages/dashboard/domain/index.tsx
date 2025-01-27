@@ -10,7 +10,6 @@ import Loading from '@/components/Loading/Loading';
 import ErrorBanner from '@/components/Error/Error';
 import { useDatagridColumn } from '@/hooks/useDatagridColumns';
 import Modal from '@/components/Modal/Modal';
-import { UseResourcesIcebergType } from '@/interface';
 
 export default function Domain() {
   const {
@@ -24,7 +23,7 @@ export default function Domain() {
     sorting,
     setSorting,
     pageIndex,
-  } = useResourcesIcebergV6<UseResourcesIcebergType>({
+  } = useResourcesIcebergV6({
     route: `/me/task/domain`,
     queryKey: ['web-domain-dns-ongoing-operations', `/me/task/domain`],
   });
@@ -33,7 +32,7 @@ export default function Domain() {
   const [status, setStatus] = useState<string>();
   const [statusMessage, setStatusMessage] = useState<string>('');
 
-  const openModal = (id: number) => {
+  const openModal = (id: string) => {
     setModalOpen(!isModalOpen);
     const domainFilter = flattenData.filter(
       (element: any) => element.id === id,

@@ -59,6 +59,11 @@ export const Routes: any = [
         path: urls.upload,
         ...lazyRouteConfig(() => import('@/pages/upload')),
       },
+      {
+        id: '404',
+        path: urls.error404,
+        ...lazyRouteConfig(() => import('@/pages/404'))
+      }
     ],
   },
   {

@@ -10,12 +10,12 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components/src/components/badge/src/constants/badge-color';
 import { useNavigate } from 'react-router-dom';
+import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { useFormatDate } from '@/hooks/date/useFormatDate';
 import { TOngoingOperations } from '@/interface';
-import { ODS_TEXT_PRESET } from "@ovhcloud/ods-components";
 
 export const useDatagridColumn = (
-  openModal: (id: number) => void,
+  openModal: (id: string) => void,
   isDomain: boolean,
   flattenData: unknown[],
 ) => {
@@ -75,7 +75,7 @@ export const useDatagridColumn = (
         id: 'comment',
         cell: (props: TOngoingOperations) => (
           <DataGridTextCell>
-            {formatColumnComment(props.comment)}
+            {props.comment ? formatColumnComment(props.comment) : '-'}
           </DataGridTextCell>
         ),
         label: t('domain_operations_table_header_comment'),
@@ -116,7 +116,7 @@ export const useDatagridColumn = (
                 </OdsTooltip>
               </div>
             )}
-            {props.status === 'done' && (
+            {(props.status === 'done' && props.endDate) && (
               <div>
                 <OdsIcon id={`trigger-${props.id}`} name="circle-question" />
                 <OdsTooltip
@@ -124,7 +124,7 @@ export const useDatagridColumn = (
                   role="tooltip"
                   strategy="fixed"
                 >
-                  <OdsText preset={ODS_TEXT_PRESET.span}>Fin de l'exécution le {props.endDate}</OdsText>
+                  <OdsText preset={ODS_TEXT_PRESET.span}>Fin de l'exécution le {useFormatDate(props.endDate)}</OdsText>
                 </OdsTooltip>
               </div>
             )}

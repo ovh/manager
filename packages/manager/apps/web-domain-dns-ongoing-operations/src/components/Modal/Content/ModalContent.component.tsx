@@ -1,35 +1,31 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  OdsText,
-  OdsLink,
-  OdsInput,
-} from '@ovhcloud/ods-components/react';
-import { useNavigate } from "react-router-dom";
+import { OdsText, OdsLink, OdsInput } from '@ovhcloud/ods-components/react';
+import { useNavigate } from 'react-router-dom';
+import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { TArgumentData } from '@/interface';
-import { ODS_TEXT_PRESET } from "@ovhcloud/ods-components";
 
 interface ModalContentComponentProps {
   content: TArgumentData[];
-  domainId : number;
+  domainId: string;
 }
 
 export default function ModalContentComponent({
   content,
-  domainId
+  domainId,
 }: ModalContentComponentProps) {
   const { t } = useTranslation('dashboard');
   const navigate = useNavigate();
 
   return (
-    <div className="my-6">
+    <div className="my-6 flex flex-col gap-y-4">
       {content?.map((c, index) => (
         <div key={index}>
+          <OdsText preset={ODS_TEXT_PRESET.paragraph} className="mb-2">
+            {c.data.description}
+          </OdsText>
           {c.data.type === '/me/contact' && (
             <div>
-              <OdsText preset={ODS_TEXT_PRESET.paragraph} className="mb-4">
-                {c.data.description}
-              </OdsText>
               <OdsLink
                 href={`/manager/#/dedicated/contact/${c.data.value}/?fields[]=${c.data.fields[0]}`}
                 color="primary"
@@ -49,7 +45,7 @@ export default function ModalContentComponent({
               label={t(`domain_operations_update_nicowner_click_${c.data.key}`)}
               icon="external-link"
               className="mb-1 block"
-              href=''
+              href=""
             />
           )}
 

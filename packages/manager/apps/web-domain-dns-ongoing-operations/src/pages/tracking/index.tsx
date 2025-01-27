@@ -6,24 +6,27 @@ import {
   OdsCard,
   OdsDivider,
   OdsIcon,
-  OdsLink,
   OdsMessage,
   OdsSpinner,
   OdsText,
 } from '@ovhcloud/ods-components/react';
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
+import { ODS_CARD_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { useFormatDateLight } from '@/hooks/date/useFormatDate';
 import { TrackingEnum } from '@/enum/tracking.enum';
 import { getOperationTrackingStatus } from '@/data/api/tracking';
-import { getmeTaskDomainId } from '@/data/api/web-domain-dns-ongoing-operations';
 import Loading from '@/components/Loading/Loading';
-import SubHeader from "@/components/SubHeader";
-import { ODS_TEXT_PRESET } from "@ovhcloud/ods-components";
+import SubHeader from '@/components/SubHeader';
+import { useGetDomainData } from '@/hooks/data/useGetDomainData';
+import { TTracking } from '@/interface';
 
 export default function Track() {
   const { t } = useTranslation('dashboard');
-  const [isTransfertFinalised, setTransfertFinalised] = useState(false);
+  const [isTransfertFinalised, setTransfertFinalised] = useState<boolean>(
+    false,
+  );
+  const [isTransfertError, setTransfertError] = useState<boolean>(false);
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
 
@@ -32,26 +35,27 @@ export default function Track() {
     return response.data;
   };
 
-  const fetchDomainData = async (routeId: string) => {
-    const response = await getmeTaskDomainId(id);
-    return response.data;
+  const fetchDomainData = async () => {
+    return useGetDomainData(id);
   };
 
-  const { data: tracking, isLoading } = useQuery({
+  const { data: tracking, isLoading } = useQuery<TTracking>({
     queryKey: ['tracking'],
     queryFn: () => fetchTransfertTracking(id),
   });
 
   const { data: domain } = useQuery({
     queryKey: ['domain'],
-    queryFn: () => fetchDomainData(id),
+    queryFn: () => fetchDomainData(),
   });
 
   useEffect(() => {
-    if (domain?.taskStatus === 'done') {
+    if (domain?.status === 'done') {
       setTransfertFinalised(true);
+    } else {
+      setTransfertFinalised(false);
     }
-  }, [domain?.taskStatus]);
+  }, [domain?.status]);
 
   if (isLoading) {
     return (
@@ -59,6 +63,14 @@ export default function Track() {
         <Loading />
       </div>
     );
+  }
+
+  if(isTransfertError) {
+    return (
+      <div>
+        Error
+      </div>
+    )
   }
 
   return (
@@ -92,9 +104,13 @@ export default function Track() {
         <div className="flex flex-col items-center justify-center">
           <div className="flex flex-col gap-y-3 items-center justify-center mb-4">
             <OdsIcon name="check" className="success text-2xl mb-4" />
-            <OdsText preset={ODS_TEXT_PRESET.heading3}>Votre transfert est finalisé !</OdsText>
+            <OdsText preset={ODS_TEXT_PRESET.heading3}>
+              Votre transfert est finalisé !
+            </OdsText>
           </div>
-          <OdsText className="mb-8" preset={ODS_TEXT_PRESET.paragraph}>Merci d’avoir choisi OVHcloud !</OdsText>
+          <OdsText className="mb-8" preset={ODS_TEXT_PRESET.paragraph}>
+            Merci d’avoir choisi OVHcloud !
+          </OdsText>
           <OdsButton
             label="Découvrez mon tableau de bord domain"
             onClick={() => navigate('/domain')}
@@ -102,10 +118,10 @@ export default function Track() {
         </div>
       ) : (
         <div>
-          <OdsCard color="neutral" className="w-3/4 mb-4">
+          <OdsCard color={ODS_CARD_COLOR.neutral} className="w-3/4 mb-4">
             <div className="px-3 py-3">
               <div className="pl-4 flex items-center gap-x-2">
-                {tracking?.currentStep.step === 'initialisation' && (
+                {tracking?.currentStep.step === TrackingEnum.initialisation && (
                   <OdsSpinner size="xs" />
                 )}
                 {tracking?.progress > 0 && (
@@ -118,8 +134,13 @@ export default function Track() {
               <div className="pl-5 mt-1">
                 {tracking?.currentStep.step === TrackingEnum.initialisation && (
                   <div>
-                    <OdsText preset={ODS_TEXT_PRESET.span}>Votre opération a été crée.</OdsText>
-                    <OdsText preset={ODS_TEXT_PRESET.paragraph} className="block">
+                    <OdsText preset={ODS_TEXT_PRESET.span}>
+                      Votre opération a été crée.
+                    </OdsText>
+                    <OdsText
+                      preset={ODS_TEXT_PRESET.paragraph}
+                      className="block"
+                    >
                       Neuf étapes effectuées par le robot avant envoie de la
                       demande au registre.
                     </OdsText>
@@ -142,7 +163,9 @@ export default function Track() {
                 <OdsText
                   preset={ODS_TEXT_PRESET.heading4}
                   className={
-                    tracking?.progress > 25 ? 'primary-title' : 'disabled-title'
+                    tracking?.progress >= 25
+                      ? 'primary-title'
+                      : 'disabled-title'
                   }
                 >
                   Vérification de la validité des informations de contact.
@@ -187,7 +210,7 @@ export default function Track() {
                 <OdsText
                   preset={ODS_TEXT_PRESET.heading4}
                   className={
-                    tracking?.progress > 50 ? 'primary-title' : 'disabled-title'
+                    tracking?.progress >= 50 ? 'primary-title' : 'disabled-title'
                   }
                 >
                   Confirmation par votre ancien registrar
@@ -235,7 +258,9 @@ export default function Track() {
                     </li>
                     <li>Génération du WHOIS</li>
                   </ul>
-                  <OdsText preset={ODS_TEXT_PRESET.paragraph}>Last update : 12/01/25</OdsText>
+                  <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                    Last update : {useFormatDateLight(tracking?.lastUpdateDate)}
+                  </OdsText>
                 </div>
               )}
             </div>

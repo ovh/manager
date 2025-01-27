@@ -1,16 +1,3 @@
-export interface UseResourcesIcebergType {
-  flattenData: TOngoingOperations;
-  isError: boolean;
-  error: Error | null;
-  totalCount: number;
-  hasNextPage: boolean;
-  fetchNextPage: () => Promise<void>;
-  isLoading: boolean;
-  sorting: { field: string; order: 'asc' | 'desc' };
-  setSorting: (field: string) => void;
-  pageIndex: number;
-}
-
 export interface TOngoingOperations {
   id: string;
   domain: string;
@@ -43,4 +30,15 @@ export interface TArgument {
   template: string;
   type: string;
   value: string;
+}
+
+export interface TTrackingCurrentStep {
+  step: string;
+}
+
+export interface TTracking {
+  progress: number;
+  taskStatus: string;
+  lastUpdateDate: string;
+  currentStep: TTrackingCurrentStep;
 }

@@ -73,12 +73,13 @@
     "lastUpdate": "2024-09-03T23:39:32.165934+02:00",
     "canRelaunch": false,
     "creationDate": "2024-06-04T16:30:02.487036+02:00",
-    "canAccelerate": false
+    "canAccelerate": false,
+    "endDate": "2025-02-04T17:28:16+01:00"
   },
   {
     "id": 7,
-    "domain": "case-tracking.ovh",
-    "status": "todo",
+    "domain": "case-tracking-initialisation.ovh",
+    "status": "doing",
     "comment": "\"Domain is scheduled for deletion on 2025-02-04 17:28:16\"",
     "function": "DomainIncomingTransfer",
     "todoDate": "2025-02-04T17:28:16+01:00",
@@ -90,8 +91,8 @@
   },
   {
     "id": 8,
-    "domain": "case-tracking-is-finalised.ovh",
-    "status": "done",
+    "domain": "case-tracking-is-contactConfirmation.ovh",
+    "status": "doing",
     "comment": "\"Domain is scheduled for deletion on 2025-02-04 17:28:16\"",
     "function": "DomainIncomingTransfer",
     "todoDate": "2025-02-04T17:28:16+01:00",
@@ -103,7 +104,7 @@
   },
   {
     "id": 9,
-    "domain": "case-tracking-is-over.ovh",
+    "domain": "case-tracking-is-currentRegistrarConfirmation.ovh",
     "status": "doing",
     "comment": "\"Domain is scheduled for deletion on 2025-02-04 17:28:16\"",
     "function": "DomainIncomingTransfer",
@@ -113,5 +114,70 @@
     "canRelaunch": false,
     "creationDate": "2024-06-04T16:30:02.487036+02:00",
     "canAccelerate": true
+  },
+  {
+    "id": 10,
+    "domain": "case-tracking-is-finalization.ovh",
+    "status": "doing",
+    "comment": "\"Domain is scheduled for deletion on 2025-02-04 17:28:16\"",
+    "function": "DomainIncomingTransfer",
+    "todoDate": "2025-02-04T17:28:16+01:00",
+    "canCancel": false,
+    "lastUpdate": "2024-09-03T23:39:32.165934+02:00",
+    "canRelaunch": false,
+    "creationDate": "2024-06-04T16:30:02.487036+02:00",
+    "canAccelerate": true
+  },
+  {
+    "id": 11,
+    "domain": "case-tracking-is-done.ovh",
+    "status": "done",
+    "comment": "\"Domain is scheduled for deletion on 2025-02-04 17:28:16\"",
+    "function": "DomainIncomingTransfer",
+    "todoDate": "2025-02-04T17:28:16+01:00",
+    "canCancel": false,
+    "lastUpdate": "2024-09-03T23:39:32.165934+02:00",
+    "canRelaunch": false,
+    "creationDate": "2024-06-04T16:30:02.487036+02:00",
+    "canAccelerate": true
+  },
+  {
+    "id": 12,
+    "domain": "case-tracking-is-document-contact.ovh",
+    "status": "todo",
+    "comment": "\"Domain is scheduled for deletion on 2025-02-04 17:28:16\"",
+    "function": "DomainRegistryDelete",
+    "todoDate": "2025-02-04T17:28:16+01:00",
+    "canCancel": false,
+    "lastUpdate": "2024-09-03T23:39:32.165934+02:00",
+    "canRelaunch": true,
+    "creationDate": "2024-06-04T16:30:02.487036+02:00",
+    "canAccelerate": false
+  },
+  {
+    "id": 13,
+    "domain": "case-tracking-is-document-string.ovh",
+    "status": "todo",
+    "comment": "\"Domain is scheduled for deletion on 2025-02-04 17:28:16\"",
+    "function": "DomainRegistryDelete",
+    "todoDate": "2025-02-04T17:28:16+01:00",
+    "canCancel": false,
+    "lastUpdate": "2024-09-03T23:39:32.165934+02:00",
+    "canRelaunch": true,
+    "creationDate": "2024-06-04T16:30:02.487036+02:00",
+    "canAccelerate": false
+  },
+  {
+    "id": 14,
+    "domain": "case-tracking-is-document-string-contact.ovh",
+    "status": "todo",
+    "comment": "\"Domain is scheduled for deletion on 2025-02-04 17:28:16\"",
+    "function": "DomainRegistryDelete",
+    "todoDate": "2025-02-04T17:28:16+01:00",
+    "canCancel": false,
+    "lastUpdate": "2024-09-03T23:39:32.165934+02:00",
+    "canRelaunch": true,
+    "creationDate": "2024-06-04T16:30:02.487036+02:00",
+    "canAccelerate": false
   }
 ]
