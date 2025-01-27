@@ -10,7 +10,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { OdsSelectCustomRenderer } from '@ovhcloud/ods-components';
 import { useGetIssueTypes } from '@/api/hooks/useIssuTypes';
 import { ISSUE_TYPE_IDS } from '@/constants';
