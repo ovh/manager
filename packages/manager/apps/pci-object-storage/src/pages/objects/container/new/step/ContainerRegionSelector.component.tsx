@@ -10,6 +10,7 @@ import {
   useGetProjectRegions,
   useProductAvailability,
 } from '@ovh-ux/manager-pci-common';
+import { useMedia } from 'react-use';
 
 import { OdsSpinner, OdsText } from '@ovhcloud/ods-components/react';
 import { OBJECT_CONTAINER_OFFER_STORAGE_STANDARD } from '@/constants';
@@ -35,6 +36,7 @@ export function ContainerRegionSelector({
 
   const { projectId } = useParams();
   const columnsCount = useColumnsCount();
+  const isMobileView = useMedia(`(max-width: 768px)`);
 
   const {
     data: availability,
@@ -138,7 +140,7 @@ export function ContainerRegionSelector({
               </div>
             ),
           }}
-          isMobile={false}
+          isMobile={isMobileView}
         />
       )}
       {region && !region.enabled && (
