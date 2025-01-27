@@ -1,5 +1,10 @@
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsText, OdsTooltip, OdsIcon } from '@ovhcloud/ods-components/react';
+import {
+  OdsText,
+  OdsTooltip,
+  OdsIcon,
+  OdsSkeleton,
+} from '@ovhcloud/ods-components/react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -8,12 +13,20 @@ const Kpi = ({
   value,
   tooltip,
   index,
+  isLoading,
 }: {
   title: string;
   value: number;
   tooltip: string;
   index: number;
+  isLoading: boolean;
 }) => {
+  if (isLoading)
+    return (
+      <div className="h-16 w-[200px] mx-2 flex flex-col justify-center">
+        <OdsSkeleton />
+      </div>
+    );
   return (
     <div className="flex flex-col gap-2 w-[200px]">
       <OdsText preset="heading-5" className="max-w-lg">
@@ -38,7 +51,7 @@ const Kpi = ({
   );
 };
 
-const Kpis = () => {
+const Kpis = ({ isLoading }: Readonly<{ isLoading: boolean }>) => {
   const { t } = useTranslation('dashboard');
   const data = [
     {
@@ -62,17 +75,16 @@ const Kpis = () => {
     <div className="flex flex-row gap-4 items-center mt-7">
       {data.map((item, index) => (
         <React.Fragment key={item.title}>
-          <div key={item.title}>
-            <Kpi
-              title={item.title}
-              value={item.value}
-              tooltip={item.tooltip}
-              index={index}
-            />
-            {index < data.length - 1 && (
-              <div className="h-16 w-px bg-gray-300 mx-2"></div>
-            )}
-          </div>
+          <Kpi
+            title={item.title}
+            value={item.value}
+            tooltip={item.tooltip}
+            index={index}
+            isLoading={isLoading}
+          />
+          {index < data.length - 1 && (
+            <div className="h-16 w-px bg-gray-300 mx-2"></div>
+          )}
         </React.Fragment>
       ))}
     </div>

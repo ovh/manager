@@ -43,9 +43,10 @@ const Dashboard: React.FC = () => {
         defaultFilter={currentPlan}
         savingsPlan={savingsPlan}
         locale={locale}
+        isLoading={isLoading}
       />
-      <Kpis />
-      <ConsumptionDatagrid />
+      <Kpis isLoading={isLoading} />
+      <ConsumptionDatagrid isLoading={isLoading} />
     </>
   );
 };
