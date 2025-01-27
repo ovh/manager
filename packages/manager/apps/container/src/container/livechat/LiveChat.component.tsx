@@ -59,7 +59,7 @@ export type SnowChatContext = {
 
 export default function LiveChat({
   closeLiveChat,
-}: LiveChatProps): JSX.Element {
+}: Readonly<LiveChatProps>): JSX.Element {
   const {
     chatbotOpen,
     chatbotReduced,
@@ -100,9 +100,9 @@ export default function LiveChat({
   const handleCloseChat = () => {
     setChatbotReduced(false);
 
-    void clearSnowChatQueue();
-    void clearChatType();
-    void clearChatState();
+    clearSnowChatQueue();
+    clearChatType();
+    clearChatState();
     closeLiveChat();
   };
 
@@ -172,7 +172,7 @@ export default function LiveChat({
   return (
     <div
       data-testid="live-chat-wrapper"
-      className="absolute w-full h-full xl:h-fit xl:w-auto bottom-2 right-2 z-[960] flex flex-col justify-end pointer-events-none"
+      className="absolute w-full h-full xl:h-fit xl:w-auto bottom-0 xl:bottom-2 right-0 xl:right-2 z-[960] flex flex-col justify-end pointer-events-none"
     >
       {chatType === 'Adrielly' && (
         <ChatDialog
