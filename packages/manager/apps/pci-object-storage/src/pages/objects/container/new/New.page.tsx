@@ -165,7 +165,7 @@ export default function ContainerNewPage() {
         isCreationPending={isPending}
         onSubmit={onCreateContainer}
       />
-      <OdsText className="m-8">
+      <OdsText preset="span" className="m-8">
         {t('pci_projects_project_storages_containers_disclaimer')}
       </OdsText>
     </BaseLayout>
