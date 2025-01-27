@@ -8,8 +8,7 @@ import { useHeader } from '@/context/header';
 import useNotifications, {
   Notification as NotificationType,
 } from '@/core/notifications';
-import { fromNow } from '@/helpers/dateHelper';
-import { groupBy } from '@/helpers';
+import { groupBy, fromNow } from '@/helpers';
 
 import Notifications from './Notifications/Notifications';
 import style from './notifications-sidebar.module.scss';

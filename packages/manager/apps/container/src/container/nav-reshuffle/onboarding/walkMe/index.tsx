@@ -7,7 +7,7 @@ import React, {
 } from 'react';
 import { useTranslation } from 'react-i18next';
 import { createPopper, Instance, Placement } from '@popperjs/core';
-import { debounce } from '@/helpers';
+import { useDebounce } from 'react-use';
 
 import popoverStyle from '@/container/common/popover.module.scss';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
@@ -44,6 +44,17 @@ export const OnboardingWalkMe = () => {
 
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const [isPopoverVisible, setIsPopoverVisible] = useState(false);
+  const [windowSize, setWindowSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+
+  const onWindowResize = useCallback(() => {
+    setWindowSize({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    });
+  }, []);
 
   useEffect(() => {
     setCurrentUserNode({ ...currentNavigationNode });
@@ -272,11 +283,11 @@ export const OnboardingWalkMe = () => {
     [currentStepIndex],
   );
 
-  const onWindowResize = useCallback(() => {
+  useDebounce(() => {
     setIsPopoverVisible(false);
     calculateTargetBound();
     updatePopper();
-  }, [currentStepIndex]);
+  }, 100, [windowSize]);
 
   useEffect(() => {
     setIsPopoverVisible(false);
@@ -296,10 +307,9 @@ export const OnboardingWalkMe = () => {
       updatePopper(currentStepIndex === 0 ? 0 : 350);
     });
 
-    const resizeHandler = debounce(onWindowResize, 100);
-    window.addEventListener('resize', resizeHandler, false);
+    window.addEventListener('resize', onWindowResize, false);
 
-    return () => window.removeEventListener('resize', resizeHandler);
+    return () => window.removeEventListener('resize', onWindowResize);
   }, [currentStepIndex]);
 
   return (
