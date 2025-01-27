@@ -67,7 +67,7 @@ export function DeploymentModeStep() {
             'pci_projects_project_storages_containers_add_deployment_mode_sub_title',
           )}
           <OdsLink
-            className="mt-4"
+            className="ml-4"
             color="primary"
             href={deploymentModeLink}
             target="_blank"
