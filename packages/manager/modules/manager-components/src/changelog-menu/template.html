@@ -1,6 +1,6 @@
 <oui-dropdown>
     <button
-        class="oui-dropdown__trigger oui-button oui-button__ghost oui-button_icon-left d-flex align-items-center"
+        class="oui-dropdown__trigger oui-button oui-button_ghost oui-button_icon-left d-flex align-items-center"
         oui-dropdown-trigger
     >
         <img
@@ -13,16 +13,14 @@
         <span data-translate="changelog_menu_header"></span>
     </button>
     <oui-dropdown-content>
-        <oui-dropdown-item data-ng-repeat="item in $ctrl.items">
+        <oui-dropdown-item data-ng-repeat="(key, link) in $ctrl.links">
             <a
-                data-ng-href="{{item.href}}"
-                target="{{item.target}}"
-                rel="{{item.rel}}"
-                data-ng-click="item.onClick()"
+                data-ng-href="{{link}}"
+                target="_blank"
+                rel="external"
+                data-ng-click="$ctrl.trackClick(key)"
             >
-                <span
-                    data-translate="{{'changelog_menu_' + item.labelKey}}"
-                ></span>
+                <span data-translate="{{'changelog_menu_' + key}}"></span>
                 <span
                     class="external-link oui-icon oui-icon-external-link"
                 ></span>

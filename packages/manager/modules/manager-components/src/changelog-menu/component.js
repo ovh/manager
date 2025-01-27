@@ -3,7 +3,8 @@ import controller from './controller';
 
 export default {
   bindings: {
-    items: '<',
+    links: '<',
+    chapters: '<',
   },
   template,
   controller,

@@ -14,7 +14,7 @@ angular
     'pascalprecht.translate',
     'ngTranslateAsyncLoader',
   ])
-  .component('changelogMenu', component)
+  .component('changelogButton', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
