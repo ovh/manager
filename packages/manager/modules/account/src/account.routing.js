@@ -1,3 +1,5 @@
+import { FEATURES, KYC_INDIA_FEATURE } from './account.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   [
     {
@@ -5,16 +7,14 @@ export default /* @ngInject */ ($stateProvider) => {
       name: 'account',
       redirectTo: 'account.user',
       resolve: {
-        isKycFeatureAvailable: /* @ngInject */ ($http) => {
-          return $http
-            .get(`/feature/identity-documents/availability`, {
+        featureAvailability: /* @ngInject */ ($http) =>
+          $http
+            .get(`/feature/${FEATURES.join(',')}/availability`, {
               serviceType: 'aapi',
             })
-            .then(
-              ({ data: featureAvailability }) =>
-                featureAvailability['identity-documents'],
-            );
-        },
+            .then(({ data }) => data),
+        isKycFeatureAvailable: /* @ngInject */ (featureAvailability) =>
+          featureAvailability[KYC_INDIA_FEATURE] || false,
         getKycStatus: /* @ngInject */ (
           $http,
           $q,
