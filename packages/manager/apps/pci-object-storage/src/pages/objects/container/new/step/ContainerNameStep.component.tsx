@@ -44,10 +44,11 @@ export function ContainerNameStep({
   const { form, stepper, setContainerName } = useContainerCreationStore();
   const [isTouched, setIsTouched] = useState(false);
 
+  const isValid = validNameRegex.test(form.containerName);
   let nameError: string | undefined;
   if (isTouched && !form.containerName) {
     nameError = t('pci-common:common_field_error_required');
-  } else if (isTouched && !validNameRegex.test(form.containerName)) {
+  } else if (isTouched && !isValid) {
     nameError = t('pci-common:common_field_error_pattern');
   }
 
@@ -73,7 +74,7 @@ export function ContainerNameStep({
           onSubmit(form);
         },
         label: t('pci_projects_project_storages_containers_add_submit_label'),
-        isDisabled: !!nameError,
+        isDisabled: !isValid || !!nameError,
       }}
       skip={{
         action: () => {
@@ -93,7 +94,7 @@ export function ContainerNameStep({
           color="primary"
           isRequired
           onOdsChange={(event) => {
-            setContainerName(`${event.detail.value}`);
+            setContainerName(`${event.detail.value || ''}`);
           }}
           onOdsBlur={() => {
             setIsTouched(true);

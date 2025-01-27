@@ -60,6 +60,7 @@ exports[`ContainerNameStep > renders the component 1`] = `
           <ods-button
             class="w-fit"
             data-testid="next-cta"
+            is-disabled="true"
             label="pci_projects_project_storages_containers_add_submit_label"
             size="md"
           />
