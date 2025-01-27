@@ -7,7 +7,7 @@ import { Modal } from '@/components/Modal.component';
 import { useGetIssueTypes } from '@/api/hooks/useIssuTypes';
 import { ISSUE_TYPE_IDS, SUPPORT_TICKET_ID_URL, TRACK } from '@/constants';
 import { createTicket } from '@/api/data/ticket';
-import { createAndAssignCart } from '@/api/data/cart';
+import { checkoutCart, createAndAssignCart } from '@/api/data/cart';
 import { orderQuota } from '@/api/data/quota';
 import { useGetServiceOptions } from '@/api/hooks/useServiceOptions';
 
@@ -137,7 +137,8 @@ ${formData}
           });
           try {
             const cartId = await createAndAssignCart(me.ovhSubsidiary);
-            const { url } = await orderQuota(projectId, cartId, serviceOption);
+            await orderQuota(projectId, cartId, serviceOption);
+            const { url } = await checkoutCart(cartId);
             addSuccess(
               <span
                 dangerouslySetInnerHTML={{
