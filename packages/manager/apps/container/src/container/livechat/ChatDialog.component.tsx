@@ -21,7 +21,7 @@ export default function ChatDialog({
   visible,
   title,
   showHeader = true,
-}: ChatDialogProps): JSX.Element {
+}: Readonly<ChatDialogProps>): JSX.Element {
   const chatDialog = useRef(null);
   const chatIFrame = useRef<HTMLIFrameElement>(null);
 
