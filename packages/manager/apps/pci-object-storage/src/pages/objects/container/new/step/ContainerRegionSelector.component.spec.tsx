@@ -8,6 +8,14 @@ import { TRegion } from '@ovh-ux/manager-react-components';
 import { wrapper } from '@/wrapperRenders';
 import { ContainerRegionSelector } from './ContainerRegionSelector.component';
 
+vi.mock('react-use', async () => {
+  const mod = await vi.importActual('react-use');
+  return {
+    ...mod,
+    useMedia: () => false,
+  };
+});
+
 describe('ContainerRegionSelector', () => {
   it('should display correctly', () => {
     const region = ({
