@@ -397,10 +397,10 @@ export default function ObjectPage() {
                   ></OdsBadge>
                 </div>
               )}
-              {(is.rightOffer &&
+              {is.rightOffer &&
                 !is.localZone &&
-                container.versioning?.status === 'suspended') ||
-                (container.versioning?.status === 'disabled' && (
+                (container.versioning?.status === 'suspended' ||
+                  container.versioning?.status === 'disabled') && (
                   <Links
                     label={tVersioning(
                       'pci_projects_project_storages_containers_update_versioning_title',
@@ -408,7 +408,7 @@ export default function ObjectPage() {
                     type={LinkType.next}
                     href={enableVersioningHref}
                   />
-                ))}
+                )}
             </div>
             <div className="grid col-span-12 md:col-span-8 gap-4">
               <OdsFormField>
