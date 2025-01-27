@@ -4,6 +4,12 @@ import { GUIDES_LIST } from './user.constants';
 
 import template from './user.html';
 import controller from './user.controller';
+import { GDPR_FEATURES_FEATURE } from '../account.constants';
+
+const GDPR_REQUEST_MANAGEMENT_ACTIONS = [
+  'account:apiovh:me/privacy/requests/get',
+  'account:apiovh:me/privacy/requests/capabilities/get',
+];
 
 export default /* @ngInject */ ($stateProvider) => {
   const name = 'account.user';
@@ -42,6 +48,39 @@ export default /* @ngInject */ ($stateProvider) => {
         return atInternet.trackClick({
           name: hit,
           type: 'action',
+        });
+      },
+      areGdprFeaturesAvailable: /* @ngInject */ (featureAvailability) =>
+        featureAvailability[GDPR_FEATURES_FEATURE] || false,
+      canManageGdprRequests: /* @ngInject */ (
+        areGdprFeaturesAvailable,
+        Apiv2Service,
+      ) => {
+        if (!areGdprFeaturesAvailable) {
+          return false;
+        }
+        return Apiv2Service.httpApiv2({
+          method: 'get',
+          url: '/engine/api/v2/iam/resource?resourceType=account',
+        }).then(({ data }) => {
+          if (!data[0]?.urn) {
+            return false;
+          }
+          return Apiv2Service.httpApiv2({
+            method: 'post',
+            url: `/engine/api/v2/iam/resource/${encodeURIComponent(
+              data[0].urn,
+            )}/authorization/check`,
+            data: {
+              actions: GDPR_REQUEST_MANAGEMENT_ACTIONS,
+            },
+          })
+            .then(({ data: actions }) =>
+              GDPR_REQUEST_MANAGEMENT_ACTIONS.every((action) =>
+                actions.authorizedActions.includes(action),
+              ),
+            )
+            .catch(() => false);
         });
       },
     },
