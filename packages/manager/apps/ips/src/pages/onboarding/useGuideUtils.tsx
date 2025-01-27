@@ -2,55 +2,153 @@ import { useContext, useEffect, useState } from 'react';
 import { CountryCode } from '@ovh-ux/manager-config';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
-const docUrl = 'https://docs.ovh.com';
-
 type GuideLinks = { [key in CountryCode]: string };
 
-const GUIDE_LIST: { [guideName: string]: Partial<GuideLinks> } = {
+const URL_LIST: { [guideName: string]: Partial<GuideLinks> } = {
   guideLink1: {
-    DE: '/update-path',
-    ES: '/update-path',
-    IE: '/en/update-path',
-    IT: '/update-path',
-    PL: '/update-path',
-    PT: '/update-path',
-    FR: '/update-path',
-    GB: '/update-path',
-    CA: '/update-path',
-    QC: '/update-path',
-    WE: '/update-path',
-    WS: '/update-path',
-    US: '/update-path',
+    DE:
+      'https://help.ovhcloud.com/csm/de-dedicated-servers-ip-fo-move?id=kb_article_view&sysparm_article=KB0030741',
+    NL:
+      'https://help.ovhcloud.com/csm/en-nl-documentation-bare-metal-cloud?id=kb_browse_cat&kb_id=203c4f65551974502d4c6e78b7421996',
+    ES:
+      'https://help.ovhcloud.com/csm/es-es-dedicated-servers-ip-fo-move?id=kb_article_view&sysparm_article=KB0043712',
+    IE:
+      'https://help.ovhcloud.com/csm/en-ie-dedicated-servers-ip-fo-move?id=kb_article_view&sysparm_article=KB0043725',
+    IT:
+      'https://help.ovhcloud.com/csm/it-dedicated-servers-ip-fo-move?id=kb_article_view&sysparm_article=KB0043728',
+    PL:
+      'https://help.ovhcloud.com/csm/pl-dedicated-servers-ip-fo-move?id=kb_article_view&sysparm_article=KB0043718',
+    PT:
+      'https://help.ovhcloud.com/csm/pt-dedicated-servers-ip-fo-move?id=kb_article_view&sysparm_article=KB0043732',
+    FR:
+      'https://help.ovhcloud.com/csm/fr-dedicated-servers-ip-fo-move?id=kb_article_view&sysparm_article=KB0043717',
+    GB:
+      'https://help.ovhcloud.com/csm/en-gb-dedicated-servers-ip-fo-move?id=kb_article_view&sysparm_article=KB0043705',
+    CA:
+      'https://help.ovhcloud.com/csm/en-ca-dedicated-servers-ip-fo-move?id=kb_article_view&sysparm_article=KB0043704',
+    QC:
+      'https://help.ovhcloud.com/csm/fr-ca-dedicated-servers-ip-fo-move?id=kb_article_view&sysparm_article=KB0043716',
+    US: 'https://us.ovhcloud.com/support',
+    IN:
+      'https://help.ovhcloud.com/csm/asia-dedicated-servers-ip-fo-move?id=kb_article_view&sysparm_article=KB0043713',
+    SN:
+      'https://help.ovhcloud.com/csm/fr-dedicated-servers-ip-fo-move?id=kb_article_view&sysparm_article=KB0043717',
+    MA:
+      'https://help.ovhcloud.com/csm/fr-dedicated-servers-ip-fo-move?id=kb_article_view&sysparm_article=KB0043717',
+    TN:
+      'https://help.ovhcloud.com/csm/fr-dedicated-servers-ip-fo-move?id=kb_article_view&sysparm_article=KB0043717',
+    SG:
+      'https://help.ovhcloud.com/csm/en-sg-dedicated-servers-ip-fo-move?id=kb_article_view&sysparm_article=KB0043710',
+    ASIA:
+      'https://help.ovhcloud.com/csm/asia-dedicated-servers-ip-fo-move?id=kb_article_view&sysparm_article=KB0043713',
+    AU:
+      'https://help.ovhcloud.com/csm/en-au-dedicated-servers-ip-fo-move?id=kb_article_view&sysparm_article=KB0043714',
+    DEFAULT:
+      'https://help.ovhcloud.com/csm/en-ie-dedicated-servers-ip-fo-move?id=kb_article_view&sysparm_article=KB0043725',
   },
   guideLink2: {
-    DE: '/guide-link-2-path',
-    ES: '/guide-link-2-path',
-    IE: '/en/guide-link-2-path',
-    IT: '/guide-link-2-path',
-    PL: '/guide-link-2-path',
-    PT: '/guide-link-2-path',
-    FR: '/guide-link-2-path',
-    GB: '/guide-link-2-path',
-    CA: '/update-path',
-    QC: '/update-path',
-    WE: '/update-path',
-    WS: '/update-path',
-    US: '/update-path',
+    DE:
+      'https://help.ovhcloud.com/csm/de-dedicated-servers-ip-block-vrack?id=kb_article_view&sysparm_article=KB0043334',
+    NL:
+      'https://help.ovhcloud.com/csm/en-nl-documentation-bare-metal-cloud?id=kb_browse_cat&kb_id=203c4f65551974502d4c6e78b7421996',
+    ES:
+      'https://help.ovhcloud.com/csm/es-es-dedicated-servers-ip-block-vrack?id=kb_article_view&sysparm_article=KB0043345',
+    IE:
+      'https://help.ovhcloud.com/csm/en-ie-dedicated-servers-ip-block-vrack?id=kb_article_view&sysparm_article=KB0043339',
+    IT:
+      'https://help.ovhcloud.com/csm/it-dedicated-servers-ip-block-vrack?id=kb_article_view&sysparm_article=KB0043343',
+    PL:
+      'https://help.ovhcloud.com/csm/pl-dedicated-servers-ip-block-vrack?id=kb_article_view&sysparm_article=KB0043346',
+    PT:
+      'https://help.ovhcloud.com/csm/pt-dedicated-servers-ip-block-vrack?id=kb_article_view&sysparm_article=KB0043349',
+    FR:
+      'https://help.ovhcloud.com/csm/fr-dedicated-servers-ip-block-vrack?id=kb_article_view&sysparm_article=KB0043347',
+    GB:
+      'https://help.ovhcloud.com/csm/en-gb-dedicated-servers-ip-block-vrack?id=kb_article_view&sysparm_article=KB0043337',
+    CA:
+      'https://help.ovhcloud.com/csm/en-ca-dedicated-servers-ip-block-vrack?id=kb_article_view&sysparm_article=KB0043335',
+    QC:
+      'https://help.ovhcloud.com/csm/fr-ca-dedicated-servers-ip-block-vrack?id=kb_article_view&sysparm_article=KB0043698',
+    US: 'https://us.ovhcloud.com/support',
+    IN:
+      'https://help.ovhcloud.com/csm/asia-dedicated-servers-ip-block-vrack?id=kb_article_view&sysparm_article=KB0043336',
+    SN:
+      'https://help.ovhcloud.com/csm/fr-dedicated-servers-ip-block-vrack?id=kb_article_view&sysparm_article=KB0043347',
+    MA:
+      'https://help.ovhcloud.com/csm/fr-dedicated-servers-ip-block-vrack?id=kb_article_view&sysparm_article=KB0043347',
+    TN:
+      'https://help.ovhcloud.com/csm/fr-dedicated-servers-ip-block-vrack?id=kb_article_view&sysparm_article=KB0043347',
+    SG:
+      'https://help.ovhcloud.com/csm/en-sg-dedicated-servers-ip-block-vrack?id=kb_article_view&sysparm_article=KB0043338',
+    ASIA:
+      'https://help.ovhcloud.com/csm/asia-dedicated-servers-ip-block-vrack?id=kb_article_view&sysparm_article=KB0043336',
+    AU:
+      'https://help.ovhcloud.com/csm/en-au-dedicated-servers-ip-block-vrack?id=kb_article_view&sysparm_article=KB0030348',
+    DEFAULT:
+      'https://help.ovhcloud.com/csm/en-ie-dedicated-servers-ip-block-vrack?id=kb_article_view&sysparm_article=KB0043339',
   },
   guideLink3: {
-    DE: '/guide-link-3-path',
-    ES: '/guide-link-3-path',
-    IE: '/en/guide-link-3-path',
-    IT: '/guide-link-3-path',
-    PL: '/guide-link-3-path',
-    PT: '/guide-link-3-path',
-    FR: '/guide-link-3-path',
-    GB: '/guide-link-3-path',
-    CA: '/update-path',
-    QC: '/update-path',
-    WE: '/update-path',
-    WS: '/update-path',
-    US: '/update-path',
+    DE:
+      'https://help.ovhcloud.com/csm/de-vmware-add-ip-block?id=kb_article_view&sysparm_article=KB0032478',
+    NL:
+      'https://help.ovhcloud.com/csm/en-nl-documentation-hosted-private-cloud?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953',
+    ES:
+      'https://help.ovhcloud.com/csm/es-es-vmware-add-ip-block?id=kb_article_view&sysparm_article=KB0045310',
+    IE:
+      'https://help.ovhcloud.com/csm/en-ie-vmware-add-ip-block?id=kb_article_view&sysparm_article=KB0045314',
+    IT:
+      'https://help.ovhcloud.com/csm/it-vmware-add-ip-block?id=kb_article_view&sysparm_article=KB0045315',
+    PL:
+      'https://help.ovhcloud.com/csm/pl-vmware-add-ip-block?id=kb_article_view&sysparm_article=KB0045319',
+    PT:
+      'https://help.ovhcloud.com/csm/pt-vmware-add-ip-block?id=kb_article_view&sysparm_article=KB0045317',
+    FR:
+      'https://help.ovhcloud.com/csm/fr-vmware-add-ip-block?id=kb_article_view&sysparm_article=KB0045308',
+    GB:
+      'https://help.ovhcloud.com/csm/en-gb-vmware-add-ip-block?id=kb_article_view&sysparm_article=KB0045303',
+    CA:
+      'https://help.ovhcloud.com/csm/en-ca-vmware-add-ip-block?id=kb_article_view&sysparm_article=KB0045301',
+    QC:
+      'https://help.ovhcloud.com/csm/fr-ca-vmware-add-ip-block?id=kb_article_view&sysparm_article=KB0045313',
+    US: 'https://us.ovhcloud.com/support',
+    IN:
+      'https://help.ovhcloud.com/csm/en-in-documentation-hosted-private-cloud?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953',
+    SN:
+      'https://help.ovhcloud.com/csm/fr-sn-documentation-hosted-private-cloud?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953',
+    MA:
+      'https://help.ovhcloud.com/csm/fr-sn-documentation-hosted-private-cloud?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953',
+    TN:
+      'https://help.ovhcloud.com/csm/fr-sn-documentation-hosted-private-cloud?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953',
+    SG:
+      'https://help.ovhcloud.com/csm/en-sg-documentation-hosted-private-cloud?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953',
+    ASIA:
+      'https://help.ovhcloud.com/csm/asia-documentation-hosted-private-cloud?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953',
+    AU:
+      'https://help.ovhcloud.com/csm/en-au-documentation-hosted-private-cloud?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953',
+    DEFAULT:
+      'https://help.ovhcloud.com/csm/en-ie-vmware-add-ip-block?id=kb_article_view&sysparm_article=KB0045314',
+  },
+  presentationLink: {
+    DE: 'https://www.ovhcloud.com/de/network/additional-ip/',
+    NL: 'https://www.ovhcloud.com/nl/network/additional-ip/',
+    ES: 'https://www.ovhcloud.com/es-es/network/additional-ip/',
+    IE: 'https://www.ovhcloud.com/en-ie/network/additional-ip/',
+    IT: 'https://www.ovhcloud.com/it/network/additional-ip/',
+    PL: 'https://www.ovhcloud.com/pl/network/additional-ip/',
+    PT: 'https://www.ovhcloud.com/pt/network/additional-ip/',
+    FR: 'https://www.ovhcloud.com/fr/network/additional-ip/',
+    GB: 'https://www.ovhcloud.com/en-gb/network/additional-ip/',
+    CA: 'https://www.ovhcloud.com/en-ca/network/additional-ip/',
+    QC: 'https://www.ovhcloud.com/fr-ca/network/additional-ip/',
+    US: 'https://us.ovhcloud.com/network/additional-ip/',
+    IN: 'https://www.ovhcloud.com/en-in/network/additional-ip/',
+    SN: 'https://www.ovhcloud.com/fr-sn/network/additional-ip/',
+    MA: 'https://www.ovhcloud.com/fr-ma/network/additional-ip/',
+    TN: 'https://www.ovhcloud.com/fr-tn/network/additional-ip/',
+    SG: 'https://www.ovhcloud.com/en-sg/network/additional-ip/',
+    ASIA: 'https://www.ovhcloud.com/asia/network/additional-ip/',
+    AU: 'https://www.ovhcloud.com/en-au/network/additional-ip/',
+    DEFAULT: 'https://www.ovhcloud.com/en-ie/network/additional-ip/',
   },
   /*
   addNewGuideLink : {
@@ -69,9 +167,10 @@ type GetGuideLinkProps = {
 
 function getGuideListLink({ subsidiary }: GetGuideLinkProps) {
   const list: { [guideName: string]: string } = {};
-  const keys = Object.entries(GUIDE_LIST);
+  const keys = Object.entries(URL_LIST);
   keys.forEach((key) => {
-    list[key[0]] = docUrl + GUIDE_LIST[key[0]][subsidiary as CountryCode];
+    list[key[0]] =
+      URL_LIST[key[0]][subsidiary as CountryCode] || URL_LIST[key[0]].DEFAULT;
   });
   return list;
 }
