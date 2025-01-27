@@ -4,6 +4,7 @@ import { GUIDES_LIST } from './user.constants';
 
 import template from './user.html';
 import controller from './user.controller';
+import { GDPR_FEATURES_FEATURE } from '../account.constants';
 
 const GDPR_REQUEST_MANAGEMENT_ACTIONS = [
   'account:apiovh:me/privacy/requests/get',
@@ -49,8 +50,16 @@ export default /* @ngInject */ ($stateProvider) => {
           type: 'action',
         });
       },
-      canManageGdprRequests: /* @ngInject */ (Apiv2Service) =>
-        Apiv2Service.httpApiv2({
+      areGdprFeaturesAvailable: /* @ngInject */ (featureAvailability) =>
+        featureAvailability[GDPR_FEATURES_FEATURE] || false,
+      canManageGdprRequests: /* @ngInject */ (
+        areGdprFeaturesAvailable,
+        Apiv2Service,
+      ) => {
+        if (!areGdprFeaturesAvailable) {
+          return false;
+        }
+        return Apiv2Service.httpApiv2({
           method: 'get',
           url: '/engine/api/v2/iam/resource?resourceType=account',
         }).then(({ data }) => {
@@ -72,7 +81,8 @@ export default /* @ngInject */ ($stateProvider) => {
               ),
             )
             .catch(() => false);
-        }),
+        });
+      },
     },
   });
 };
