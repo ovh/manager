@@ -1,13 +1,17 @@
 {
-  "title": "ips",
-  "description": "Découvrez des services de stockage managés qui s’appuient sur le système de fichiers OpenZFS. Bénéficiez en quelques clics d’espaces de stockage centralisés pour entreposer ou sauvegarder vos données et fichiers.",
+  "title": "Additional IP",
+  "titlebis": "Ajoutez de la flexibilité à vos applications avec Additional IP",
+  "description": "La plupart des produits OVHcloud incluent une adresse IPv4 statique pré-configurée. Pour une flexibilité exceptionnelle, ces produits peuvent également être utilisés avec des Additional IP.",
+  "descriptionBis": "Vous pouvez attribuer une Additional IP (adresse individuel ou bloc) à tout service compatible au sein du même campus. Un campus est un groupe de datacenters partageant le même emplacement géographique. Pour plus d'informations veuillez consulter notre page dédiée :",
+  "ip_onboarding_content_list_item_1": "Adresse individuelle (/32)",
+  "ip_onboarding_content_list_item_2": "Bloc d’adresse IP (jusqu’à /24)",
   "orderButtonLabel": "Commander un ips",
-  "moreInfoButtonLabel": "En savoir plus sur ips",
+  "boyipButtonLabel": "Bring your own IP",
   "guideCategory": "Tutoriel",
-  "guide1Title": "Premiers pas avec un ips",
-  "guide1Description": "Découvrez comment gérer un NAS-HA depuis l'espace-client OVHcloud",
-  "guide2Title": "Monter votre NAS via un partage NFS",
-  "guide2Description": "Découvrez comment monter un NAS via un partage NFS",
-  "guide3Title": "Monter votre NAS sur Windows Server via CIFS",
-  "guide3Description": "Découvrez comment monter un NAS sur Windows Server via le protocole CIFS"
+  "guide1Title": "Commander une Additional IP",
+  "guide1Description": "Découvrez comment déplacer une Additional IP depuis l'espace client ou via les API OVHcloud",
+  "guide2Title": "Configurer un bloc d’IP dans le vRack",
+  "guide2Description": "Découvrez comment configurer un bloc d’adresses IP publiques dans le vRack",
+  "guide3Title": "Ajouter un bloc IP",
+  "guide3Description": "Commander un bloc IP sur votre Hosted Private Cloud"
 }
