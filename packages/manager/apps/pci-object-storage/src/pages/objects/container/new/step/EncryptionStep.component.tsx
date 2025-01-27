@@ -79,7 +79,11 @@ export function EncryptionStep() {
               </OdsText>
             </label>
             <div>
-              <OdsIcon id="trigger-popover" name="circle-question" />
+              <OdsIcon
+                id="trigger-popover"
+                name="circle-question"
+                className="text-[var(--ods-color-information-500)]"
+              />
               <OdsPopover triggerId="trigger-popover">
                 <OdsText preset="caption">
                   {t(
