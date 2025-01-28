@@ -87,8 +87,12 @@ const Block: React.FC<React.PropsWithChildren> = ({ children }) => {
   return <div className="my-8">{children}</div>;
 };
 
+type InstanceInfoWithTechnical = InstanceInfo & {
+  technical: ReturnType<typeof formatTechnicalInfo>[];
+};
+
 export type CreatePlanFormProps = {
-  instancesInfo: InstanceInfo[];
+  instancesInfo: InstanceInfoWithTechnical[];
   resources: Resource[];
   instanceCategory: InstanceTechnicalName;
   setInstanceCategory: (category: InstanceTechnicalName) => void;
@@ -528,7 +532,11 @@ export const CreatePlanFormContainer = ({
   ];
 
   const instancesInformation = useMemo(
-    () => getInstancesInformation(technicalList, t),
+    () =>
+      getInstancesInformation(t).map((i) => ({
+        ...i,
+        technical: technicalList,
+      })),
     [technicalList, t],
   );
 
