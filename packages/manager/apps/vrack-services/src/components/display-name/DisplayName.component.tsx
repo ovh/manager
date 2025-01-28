@@ -11,6 +11,7 @@ import { EditButton } from './EditButton.component';
 import { VrackServicesWithIAM, getDisplayName, isEditable } from '@/data';
 import { urls } from '@/routes/routes.constants';
 import { InfoIcon } from './InfoIcon.component';
+import { IAM_ACTION } from '@/utils/iamActions.constants';
 
 export type DisplayNameProps = {
   isListing?: boolean;
@@ -57,6 +58,8 @@ export const DisplayName: React.FC<DisplayNameProps> = ({
         navigate(urls.overviewEdit.replace(':id', vs.id));
       }}
       data-testid="display-name-edit-button"
+      iamActions={[IAM_ACTION.VRACK_SERVICES_RESOURCE_EDIT]}
+      urn={vs.iam?.urn}
     >
       {name}
     </EditButton>

@@ -18,6 +18,7 @@ import {
 import vrackServicesList from '../../../mocks/vrack-services/get-vrack-services.json';
 import { urls } from '@/routes/routes.constants';
 import { vrackList } from '../../../mocks/vrack/vrack';
+import { IAM_ACTION } from '@/utils/iamActions.constants';
 
 describe('Vrack Services associate vrack test suite', () => {
   it('from dashboard should associate vrack using vrack modal', async () => {
@@ -64,6 +65,27 @@ describe('Vrack Services associate vrack test suite', () => {
     await waitFor(() => userEvent.click(associateButton));
 
     await assertModalVisibility({ container, isVisible: false });
+  });
+
+  it('from dashboard should disable vrack association if user have not the iam right to do it', async () => {
+    const { container } = await renderTest({
+      initialRoute: urls.overview.replace(':id', vrackServicesList[0].id),
+      nbVs: 1,
+      unauthorizedActions: [IAM_ACTION.VRACK_SERVICES_VRACK_ATTACH],
+    });
+
+    const actionMenuButton = await getButtonByIcon({
+      container,
+      iconName: ODS_ICON_NAME.ELLIPSIS,
+    });
+
+    await waitFor(() => fireEvent.click(actionMenuButton));
+
+    await getButtonByLabel({
+      container,
+      label: labels.common.associateVrackButtonLabel,
+      disabled: true,
+    });
   });
 
   it('from dashboard, should propose user to create vrack if no eligible vrack', async () => {

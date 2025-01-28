@@ -11,6 +11,7 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { isEditable, VrackServicesWithIAM } from '@/data';
 import { urls } from '@/routes/routes.constants';
 import { useVrackMenuItems } from '@/components/vrack-id/useVrackMenuItems.hook';
+import { IAM_ACTION } from '@/utils/iamActions.constants';
 
 export const ActionCell: React.FC<VrackServicesWithIAM> = (vs) => {
   const navigate = useNavigate();
@@ -58,6 +59,8 @@ export const ActionCell: React.FC<VrackServicesWithIAM> = (vs) => {
             });
             navigate(urls.listingEdit.replace(':id', vs.id));
           },
+          iamActions: [IAM_ACTION.VRACK_SERVICES_RESOURCE_EDIT],
+          urn: vs.iam?.urn,
         },
         ...vrackActionsMenuItems,
         {

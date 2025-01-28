@@ -8,6 +8,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { VrackServicesWithIAM, isEditable } from '@/data';
 import { urls } from '@/routes/routes.constants';
+import { IAM_ACTION } from '@/utils/iamActions.constants';
 
 export type UseVrackMenuItemsParams = {
   vs: VrackServicesWithIAM;
@@ -44,6 +45,8 @@ export const useVrackMenuItems = ({
           ),
         );
       },
+      iamActions: [IAM_ACTION.VRACK_SERVICES_VRACK_ATTACH],
+      urn: vs.iam?.urn,
     },
     vrackId && {
       id: 5,
@@ -65,6 +68,8 @@ export const useVrackMenuItems = ({
             .replace(':vrackId', vs.currentState.vrackId),
         );
       },
+      iamActions: [IAM_ACTION.VRACK_SERVICES_VRACK_ATTACH],
+      urn: vs.iam?.urn,
     },
     vrackId && {
       id: 6,
