@@ -5,7 +5,7 @@ import { applyFilters } from '@ovh-ux/manager-core-api';
 import { Datagrid } from './datagrid.component';
 import { useDatagridSearchParams } from './useDatagridSearchParams';
 import { useColumnFilters } from '../filters';
-import { columsTmp, columsFilters, Item } from './datagrid.mock';
+import { columns as clm, columsFilters, Item } from './datagrid.mock';
 
 function sortItems(
   itemList: Item[],
@@ -24,7 +24,7 @@ const DatagridStory = ({
   items,
   isPaginated,
   isSortable,
-  columns = columsTmp,
+  columns = clm,
 }: {
   items: Item[];
   isPaginated: boolean;
@@ -75,7 +75,7 @@ const DatagridStory = ({
 export const Basic = DatagridStory.bind({});
 
 Basic.args = {
-  columns: columsTmp,
+  columns: clm,
   items: [...Array(50).keys()].map((_, i) => ({
     label: `Item #${i}`,
     price: Math.floor(1 + Math.random() * 100),
@@ -87,7 +87,7 @@ Basic.args = {
 export const Sortable = DatagridStory.bind({});
 
 Sortable.args = {
-  columns: columsTmp,
+  columns: clm,
   items: [...Array(8).keys()].map((_, i) => ({
     label: `Service #${i}`,
     price: Math.floor(1 + Math.random() * 100),

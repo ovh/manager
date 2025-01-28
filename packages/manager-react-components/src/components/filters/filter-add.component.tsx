@@ -11,7 +11,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import './translations';
 
-type ColumnFilter = {
+export type ColumnFilter = {
   id: string;
   label: string;
   comparators: FilterComparator[];
@@ -100,7 +100,7 @@ export function FilterAdd({ columns, onAddFilter }: Readonly<FilterAddProps>) {
                   >
                     {column?.comparators?.map((comp) => (
                       <option key={`${column.id}-${comp}`} value={comp}>
-                        {t(`${'common_criteria_adder_operator_'}${comp}`)}
+                        {t(`common_criteria_adder_operator_${comp}`)}
                       </option>
                     ))}
                   </OdsSelect>

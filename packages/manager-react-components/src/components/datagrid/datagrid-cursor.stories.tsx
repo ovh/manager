@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { ColumnSort } from '@tanstack/react-table';
+import { OdsDivider } from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { withRouter } from 'storybook-addon-react-router-v6';
 import { useSearchParams } from 'react-router-dom';
 import { Datagrid } from './datagrid.component';
 import { useColumnFilters } from '../filters';
-import { columsTmp, columsFilters } from './datagrid.mock';
+import { columns, columsFilters } from './datagrid.mock';
 import { ActionMenu } from '../navigation';
 
 interface Item {
@@ -34,7 +35,7 @@ const DatagridStory = (args) => {
       {`${searchParams}` && (
         <>
           <pre>Search params: ?{`${searchParams}`}</pre>
-          <hr />
+          <OdsDivider />
         </>
       )}
       <Datagrid
@@ -59,7 +60,7 @@ const DatagridStory = (args) => {
 export const Basic = DatagridStory.bind({});
 
 Basic.args = {
-  columns: columsTmp,
+  columns,
   items: [...Array(10).keys()].map((_, i) => ({
     label: `Item #${i}`,
     price: Math.floor(1 + Math.random() * 100),
@@ -72,14 +73,14 @@ Basic.args = {
 export const Empty = DatagridStory.bind({});
 
 Empty.args = {
-  columns: columsTmp,
+  columns,
   items: [],
 };
 
 export const Sortable = DatagridStory.bind({});
 
 Sortable.args = {
-  columns: columsTmp,
+  columns,
   items: [...Array(10).keys()].map((_, i) => ({
     label: `Item #${i}`,
     price: Math.floor(1 + Math.random() * 100),
@@ -98,7 +99,7 @@ const actionsColumns = {
 export const WithActions = DatagridStory.bind({});
 
 WithActions.args = {
-  columns: [...columsTmp, actionsColumns],
+  columns: [...columns, actionsColumns],
   items: [...Array(8).keys()].map((_, i) => {
     return {
       label: `Service #${i}`,

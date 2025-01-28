@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import { useMemo, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   ColumnDef,
@@ -28,6 +28,7 @@ import {
   FilterTypeCategories,
 } from '@ovh-ux/manager-core-api';
 import { FilterAdd, FilterList } from '../filters';
+import { ColumnFilter } from '../filters/filter-add.component';
 import { FilterWithLabel } from '../filters/interface';
 import { DataGridTextCell } from './text-cell.component';
 import { defaultNumberOfLoadingRows } from './datagrid.contants';
@@ -50,7 +51,7 @@ export interface DatagridColumn<T> {
   /** is the column sortable ? (defaults is true) */
   isSortable?: boolean;
   /** set column comparator for the filter */
-  comparator?: FilterComparator;
+  comparator?: FilterComparator[];
   /** Filters displayed for the column */
   type?: FilterTypeCategories;
   /** Trigger the column filter */
@@ -129,6 +130,7 @@ export const Datagrid = <T,>({
   numberOfLoadingRows,
 }: DatagridProps<T>) => {
   const { t } = useTranslation('datagrid');
+  const { t: tfilters } = useTranslation('filters');
   const filterPopoverRef = useRef(null);
   const pageCount = pagination
     ? Math.ceil(totalItems / pagination.pageSize)
@@ -174,37 +176,37 @@ export const Datagrid = <T,>({
     }),
   });
 
-  const [columnsFilters, setColumnsFilters] = useState([]);
-  useEffect(() => {
-    const clmFilters = columns
-      .filter(
-        (item) =>
-          ('comparator' in item || 'type' in item) &&
-          'isFilterable' in item &&
-          item.isFilterable,
-      )
-      .map((column) => ({
-        id: column.id,
-        label: column.label,
-        ...(column?.type && { comparators: FilterCategories[column.type] }),
-        ...(column?.comparator && { comparators: column.comparator }),
-      }));
-    setColumnsFilters(clmFilters);
-  }, [columns]);
+  const columnsFilters = useMemo<ColumnFilter[]>(
+    () =>
+      columns
+        .filter(
+          (item) =>
+            ('comparator' in item || 'type' in item) &&
+            'isFilterable' in item &&
+            item.isFilterable,
+        )
+        .map((column) => ({
+          id: column.id,
+          label: column.label,
+          ...(column?.type && { comparators: FilterCategories[column.type] }),
+          ...(column?.comparator && { comparators: column.comparator }),
+        })),
+    [columns],
+  );
 
   return (
     <div>
       {columnsFilters.length > 0 && (
         <div className="flex flex-row-reverse py-[24px]">
-          <div id="datagrid-filter-popover-trigger">
-            <OdsButton
-              slot="datagrid-filter-popover-trigger"
-              size={ODS_BUTTON_SIZE.sm}
-              variant={ODS_BUTTON_VARIANT.ghost}
-              icon={ODS_ICON_NAME.filter}
-              label=""
-            />
-          </div>
+          <OdsButton
+            id="datagrid-filter-popover-trigger"
+            slot="datagrid-filter-popover-trigger"
+            size={ODS_BUTTON_SIZE.sm}
+            variant={ODS_BUTTON_VARIANT.ghost}
+            icon={ODS_ICON_NAME.filter}
+            aria-label={tfilters('common_criteria_adder_filter_label')}
+            label=""
+          />
           <OdsPopover
             ref={filterPopoverRef}
             triggerId="datagrid-filter-popover-trigger"

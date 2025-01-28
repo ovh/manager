@@ -6,7 +6,7 @@ export interface Item {
   price: number;
 }
 
-export const columsTmp = [
+export const columns = [
   {
     id: 'label',
     cell: (item: Item) => {

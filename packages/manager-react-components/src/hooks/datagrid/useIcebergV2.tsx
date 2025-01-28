@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { IcebergFetchParamsV2, fetchIcebergV2 } from '@ovh-ux/manager-core-api';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { defaultPageSize } from './index';
-import { useColumnFilters, ColumnSort } from '../../components';
+import { ColumnSort } from '../../components';
 
 interface IcebergV2Hook<T> {
   queryKey: string[];

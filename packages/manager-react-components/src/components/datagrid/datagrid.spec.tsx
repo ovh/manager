@@ -46,8 +46,23 @@ const sampleColumns = [
   },
 ];
 
+const cols = [
+  {
+    id: 'name',
+    cell: (name: string) => {
+      return <span>{name}</span>;
+    },
+    label: 'Name',
+  },
+  {
+    id: 'another-column',
+    label: 'test',
+    cell: () => <DataGridTextCell />,
+  },
+];
+
 const DatagridTest = ({
-  columns,
+  columns = cols,
   items,
   pageIndex,
   className,
@@ -232,7 +247,7 @@ it('should disable overflow of table', async () => {
 
 it('should have the default number of loading row when isLoading is true and numberOfLoadingRows is not specified', async () => {
   const { queryAllByTestId } = render(
-    <Datagrid columns={sampleColumns} items={[]} totalItems={0} isLoading />,
+    <Datagrid columns={cols} items={[]} totalItems={0} isLoading />,
   );
   expect(queryAllByTestId('loading-row').length).toBe(
     defaultNumberOfLoadingRows,
@@ -243,7 +258,7 @@ it('should display the specified number of loading rows when isLoading is true',
   const numberOfLoadingRows = 2;
   const { queryAllByTestId } = render(
     <Datagrid
-      columns={sampleColumns}
+      columns={cols}
       items={[]}
       totalItems={0}
       numberOfLoadingRows={numberOfLoadingRows}
@@ -257,7 +272,7 @@ it('should display take the pageSize and not the default one as numberOfLoadingR
   const pageSize = 10;
   const { queryAllByTestId } = render(
     <Datagrid
-      columns={sampleColumns}
+      columns={cols}
       items={[]}
       totalItems={0}
       pagination={{ pageIndex: 0, pageSize }}
@@ -269,15 +284,11 @@ it('should display take the pageSize and not the default one as numberOfLoadingR
 
 it('should set isLoading to load more button when isLoading is true', async () => {
   const { getByTestId } = render(
-    <Datagrid
-      columns={sampleColumns}
-      items={[]}
-      totalItems={0}
-      isLoading
-      hasNextPage
-    />,
+    <Datagrid columns={cols} items={[]} totalItems={0} isLoading hasNextPage />,
   );
   expect(getByTestId('load-more-btn')).toHaveAttribute('is-loading', 'true');
+});
+
 it('should disable overflow of table', async () => {
   const { container } = render(
     <DatagridTest
