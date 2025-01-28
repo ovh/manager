@@ -1,39 +1,53 @@
-import {
-  Datagrid,
-  DataGridTextCell,
-  Title,
-} from '@ovh-ux/manager-react-components';
+import { Datagrid, DataGridTextCell } from '@ovh-ux/manager-react-components';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
 import { savingsPlanConsumptionMocked } from '@/_mock_/savingsPlanConsumption';
 
-const ConsumptionDatagrid = () => {
+const ConsumptionDatagrid = ({
+  isLoading,
+}: Readonly<{ isLoading: boolean }>) => {
   const { t } = useTranslation('dashboard');
   const columns = [
     {
       label: t('dashboard_columns_start'),
       id: 'begin',
-      cell: (props: any) => <DataGridTextCell>{props.begin}</DataGridTextCell>,
+      cell: (props: any) =>
+        isLoading ? (
+          <OdsSkeleton />
+        ) : (
+          <DataGridTextCell>{props.begin}</DataGridTextCell>
+        ),
     },
     {
       label: t('dashboard_columns_end'),
       id: 'end',
-      cell: (props: any) => <DataGridTextCell>{props.end}</DataGridTextCell>,
+      cell: (props: any) =>
+        isLoading ? (
+          <OdsSkeleton />
+        ) : (
+          <DataGridTextCell>{props.end}</DataGridTextCell>
+        ),
     },
     {
       label: t('dashboard_columns_consumption_size'),
       id: 'consumption_size',
-      cell: (props: any) => (
-        <DataGridTextCell>{props.consumption_size}</DataGridTextCell>
-      ),
+      cell: (props: any) =>
+        isLoading ? (
+          <OdsSkeleton />
+        ) : (
+          <DataGridTextCell>{props.consumption_size}</DataGridTextCell>
+        ),
     },
     {
       label: t('dashboard_columns_cumul_plan_size'),
       id: 'cumul_plan_size',
-      cell: (props: any) => (
-        <DataGridTextCell>{props.cumul_plan_size}</DataGridTextCell>
-      ),
+      cell: (props: any) =>
+        isLoading ? (
+          <OdsSkeleton />
+        ) : (
+          <DataGridTextCell>{props.cumul_plan_size}</DataGridTextCell>
+        ),
     },
   ];
 

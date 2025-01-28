@@ -2,12 +2,11 @@ import {
   OdsSelectChangeEventDetail,
   OdsSelectCustomEvent,
 } from '@ovhcloud/ods-components';
-import { OdsSelect } from '@ovhcloud/ods-components/react';
+import { OdsSelect, OdsSkeleton } from '@ovhcloud/ods-components/react';
 import React, { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getInstancesInformation, isInstanceFlavor } from '@/utils/savingsPlan';
 import { InstanceTechnicalName, ResourceType } from '@/types/CreatePlan.type';
-import useTechnicalInfo from '@/hooks/useCatalogCommercial';
 import { SavingsPlanService } from '@/types';
 import { getLastTwelveMonths } from '@/utils/formatter/date';
 
@@ -18,6 +17,7 @@ const SelectWithLabel = <T extends string>({
   name,
   onChange,
   value,
+  isLoading,
 }: {
   label: string;
   options: { label: string; value: T }[];
@@ -25,12 +25,20 @@ const SelectWithLabel = <T extends string>({
   name: string;
   onChange: (value: T) => void;
   value: T;
+  isLoading: boolean;
 }) => {
   const onChangeEvent = (
     event: OdsSelectCustomEvent<OdsSelectChangeEventDetail>,
   ) => {
     onChange(event.target.value as T);
   };
+  if (isLoading) {
+    return (
+      <div className="flex flex-col w-64">
+        <OdsSkeleton />
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col w-64">
@@ -62,9 +70,15 @@ interface FiltersProps {
   defaultFilter: SavingsPlanService;
   savingsPlan: SavingsPlanService[];
   locale: string;
+  isLoading: boolean;
 }
 
-const Filters = ({ defaultFilter, savingsPlan, locale }: FiltersProps) => {
+const Filters = ({
+  defaultFilter,
+  savingsPlan,
+  locale,
+  isLoading,
+}: FiltersProps) => {
   const lastTwelveMonths = useMemo(() => getLastTwelveMonths(locale), [locale]);
 
   const [resource, setResource] = useState<ResourceType>(ResourceType.instance);
@@ -144,6 +158,7 @@ const Filters = ({ defaultFilter, savingsPlan, locale }: FiltersProps) => {
   return (
     <div className="flex flex-row gap-4">
       <SelectWithLabel
+        isLoading={isLoading}
         label={t('dashboard_select_label_resource')}
         value={resource}
         onChange={(value) => {
@@ -155,6 +170,7 @@ const Filters = ({ defaultFilter, savingsPlan, locale }: FiltersProps) => {
         name="resource"
       />
       <SelectWithLabel
+        isLoading={isLoading}
         label={t('dashboard_select_label_flavor')}
         options={instanceRangeOptions}
         placeholder={t('dashboard_select_placeholder_flavor')}
@@ -164,6 +180,7 @@ const Filters = ({ defaultFilter, savingsPlan, locale }: FiltersProps) => {
         onChange={(value) => setFlavor(value)}
       />
       <SelectWithLabel
+        isLoading={isLoading}
         label={t('dashboard_select_label_model')}
         options={modelOptions}
         placeholder={t('dashboard_select_placeholder_model')}
@@ -172,6 +189,7 @@ const Filters = ({ defaultFilter, savingsPlan, locale }: FiltersProps) => {
         onChange={setModel}
       />
       <SelectWithLabel
+        isLoading={isLoading}
         label={t('dashboard_select_label_period')}
         options={lastTwelveMonths.map((month) => ({
           label: month,
