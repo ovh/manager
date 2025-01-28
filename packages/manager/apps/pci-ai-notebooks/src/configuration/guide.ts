@@ -7,6 +7,7 @@ export enum GuideSections {
   'registres' = 'registres',
   'products' = 'produits-ia',
   'notebooks' = 'ai-notebooks',
+  'jobs' = 'ai-training',
 }
 
 export const allGuidesSections: GuideSections[] = [

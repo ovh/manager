@@ -326,6 +326,55 @@ export default [
               },
             ],
           },
+          {
+            path: 'training',
+            id: 'training',
+            ...lazyRouteConfig(() => import('@/pages/jobs/JobRoot.page')),
+            // children: [
+            //   {
+            //     path: 'notebooks/start/:notebookId',
+            //     id: 'notebooks.start',
+            //     ...lazyRouteConfig(() =>
+            //       import('@/pages/notebooks/start/Start.modal'),
+            //     ),
+            //   },
+            //   {
+            //     path: 'notebooks/stop/:notebookId',
+            //     id: 'notebooks.stop',
+            //     ...lazyRouteConfig(() =>
+            //       import('@/pages/notebooks/stop/Stop.modal'),
+            //     ),
+            //   },
+            //   {
+            //     path: 'notebooks/delete/:notebookId',
+            //     id: 'notebooks.delete',
+            //     ...lazyRouteConfig(() =>
+            //       import('@/pages/notebooks/delete/Delete.modal'),
+            //     ),
+            //   },
+            // ],
+          },
+          // {
+          //   path: 'notebooks/onboarding',
+          //   id: 'onboarding',
+          //   ...lazyRouteConfig(() =>
+          //     import('@/pages/notebooks/onboarding/Onboarding.page'),
+          //   ),
+          // },
+          {
+            path: 'training/new',
+            id: 'create-job',
+            ...lazyRouteConfig(() => import('@/pages/jobs/create/Create.page')),
+            children: [
+              {
+                path: 'add-sshkey',
+                id: 'create-job.add-sshkey',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/_components/sshkey/AddSSHKey.modal'),
+                ),
+              },
+            ],
+          },
         ],
       },
     ],

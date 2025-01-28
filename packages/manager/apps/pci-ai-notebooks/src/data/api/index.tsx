@@ -6,6 +6,10 @@ export interface NotebookData extends PCIAi {
   notebookId: string;
 }
 
+export interface JobData extends PCIAi {
+  jobId: string;
+}
+
 export class AIError extends Error {
   code: string;
 

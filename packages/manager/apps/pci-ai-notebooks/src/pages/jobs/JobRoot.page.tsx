@@ -1,0 +1,27 @@
+import { redirect } from 'react-router-dom';
+import queryClient from '@/query.client';
+import { getJobs } from '@/data/api/ai/job/job.api';
+import Jobs from './Jobs.page';
+
+interface JobsProps {
+  params: {
+    projectId: string;
+  };
+  request: Request;
+}
+
+export const Loader = async ({ params }: JobsProps) => {
+  const { projectId } = params;
+  const notebooks = await queryClient.fetchQuery({
+    queryKey: [projectId, 'ai/jobs'],
+    queryFn: () => getJobs({ projectId }),
+  });
+  if (notebooks.length === 0) {
+    return redirect(`/pci/projects/${projectId}/ai/notebooks/jobs/onboarding`);
+  }
+  return null;
+};
+
+export default function Root() {
+  return <Jobs />;
+}
