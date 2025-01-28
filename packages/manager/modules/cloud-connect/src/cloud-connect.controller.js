@@ -3,11 +3,19 @@ import { STATUS } from './cloud-connect.constants';
 
 export default class CloudConnectCtrl extends ListLayoutHelper.ListLayoutCtrl {
   /* @ngInject */
-  constructor($q, $http, $translate, coreURLBuilder, ouiDatagridService) {
+  constructor(
+    $q,
+    $http,
+    $translate,
+    coreURLBuilder,
+    cloudConnectService,
+    ouiDatagridService,
+  ) {
     super($q, ouiDatagridService);
     this.$translate = $translate;
     this.$http = $http;
     this.coreURLBuilder = coreURLBuilder;
+    this.cloudConnectService = cloudConnectService;
   }
 
   $onInit() {
@@ -35,6 +43,36 @@ export default class CloudConnectCtrl extends ListLayoutHelper.ListLayoutCtrl {
       ...order,
       orderBillingUrl: this.buildOrderBillingUrl(order.orderId),
     }));
+  }
+
+  loadPage({ offset, pageSize }) {
+    return this.cloudConnectService
+      .getOvhCloudConnect((offset - 1) / pageSize + 1, pageSize)
+      .then(({ data }) => {
+        return this.$q.all(
+          data.map((ovhCloudConnect) => {
+            return this.cloudConnectService
+              .getActiveNotifications(ovhCloudConnect.uuid)
+              .then((notifications) => {
+                const numOfActiveNotifications = notifications.filter(
+                  (notification) => notification.activated,
+                ).length;
+                return {
+                  ...ovhCloudConnect,
+                  activeNotfications: `${numOfActiveNotifications}/${notifications.length}`,
+                };
+              });
+          }),
+        );
+      })
+      .then((result) => {
+        return {
+          data: result,
+          meta: {
+            totalCount: result.length,
+          },
+        };
+      });
   }
 
   static isWarning(value) {
