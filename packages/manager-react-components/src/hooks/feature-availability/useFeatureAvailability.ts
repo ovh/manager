@@ -1,5 +1,9 @@
 import { apiClient, ApiError } from '@ovh-ux/manager-core-api';
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
+import {
+  DefinedInitialDataOptions,
+  useQuery,
+  UseQueryResult,
+} from '@tanstack/react-query';
 
 export type UseFeatureAvailabilityResult<T = Record<string, boolean>> =
   UseQueryResult<T, ApiError>;
@@ -34,10 +38,14 @@ export const getFeatureAvailabilityQueryKey = <T extends string[]>(
  */
 export const useFeatureAvailability = <T extends string[]>(
   featureList: [...T],
+  options: Partial<
+    DefinedInitialDataOptions<Record<(typeof featureList)[number], boolean>>
+  > = {},
 ): UseFeatureAvailabilityResult<
   Record<(typeof featureList)[number], boolean>
 > =>
   useQuery<Record<(typeof featureList)[number], boolean>, ApiError>({
+    ...options,
     queryKey: getFeatureAvailabilityQueryKey(featureList),
     queryFn: () => fetchFeatureAvailabilityData(featureList),
   });
