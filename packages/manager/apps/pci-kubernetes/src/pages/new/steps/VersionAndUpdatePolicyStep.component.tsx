@@ -14,7 +14,7 @@ import { UpdatePolicySelector } from './UpdatePolicySelector.component';
 import { UpdatePolicy } from '@/types';
 
 export interface VersionStepProps {
-  onSubmit: (version: string, policy: string) => void;
+  onSubmit: (version: string, policy: UpdatePolicy) => void;
   step: StepState;
 }
 

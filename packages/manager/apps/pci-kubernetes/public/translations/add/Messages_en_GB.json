@@ -7,7 +7,7 @@
   "kubernetes_add_version_title": "Select the minor version of Kubernetes you want",
   "kubernetes_add_name_title": "Name your cluster",
   "kubernetes_add_name": "Name",
-  "kubernetes_add_billing_type_description": "All future nodes in this node pool will be billed in this way. You can then switch each of your nodes individually from hourly to monthly billing.",
+  "kubernetes_add_billing_type_description": "All future nodes in this node pool will be billed on this basis. You can later switch each of your nodes individually from hourly to monthly billing.",
   "kubernetes_add_billing_type_payment_method": "You will be billed via your default payment method.",
   "kubernetes_add_billing_anti_affinity_title": "Billing and anti-affinity",
   "kubernetes_add_region_info": "The selected region is not yet active on your project. This addition takes a few seconds, and does not affect billing.",
@@ -38,12 +38,14 @@
   "kube_add_billing_auto_scaling_monthly_warning": "Warning: You can enable auto-scaling and monthly billing at the same time for this node pool. Each time you create a node via auto-scaling, you will be billed for one node immediately on a pro rata basis for the remaining time in the current month. We recommend avoiding this combination if you anticipate that your node pool will be reduced frequently.",
   "kube_add_node_pool_name_input_pattern_validation_error": "The name must be at least two characters, start with an alphabetical character, end with an alphanumeric character, and the only special characters allowed are dashes and underscores.",
   "kube_add_billing_anti_affinity_coming_soon_message_title": "Monthly prices",
-  "kube_add_billing_anti_affinity_coming_soon_message_description": "With the launch of Saving Plans, we will soon be able to bill you monthly.",
+  "kube_add_billing_anti_affinity_coming_soon_message_description": "Monthly billing will be available soon with the arrival of the Saving Plans.",
   "kubernetes_add_version_and_upgrade_policy_title": "Select the minor version of Kubernetes and security policy you want",
   "kube_update_policy_picker_documentation_text": "Learn more about Managed Kubernetes Service security policies.",
   "kube_update_policy_picker_documentation_link": "See documentation",
   "kubernetes_add_update_policy_title": "Select security policy",
   "kubernetes_select_version_title": "Select a version",
   "kubernetes_add_billing_savings_plan_banner": "Take advantage of low monthly rates with Savings Plans—save money without sacrificing the flexibility to use instances whenever you need them.",
-  "kubernetes_add_billing_savings_plan_cta": "Set up your Savings Plan"
+  "kubernetes_add_billing_savings_plan_cta": "Set up your Savings Plan",
+  "kubernetes_add_name_placeholder": "Cluster name",
+  "kubernetes_add_nodepool_name_placeholder": "Node pool name"
 }
