@@ -18,7 +18,10 @@ import {
 } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
-import { useCatalogPrice } from '@ovh-ux/manager-react-components';
+import {
+  useCatalogPrice,
+  convertHourlyPriceToMonthly,
+} from '@ovh-ux/manager-react-components';
 import { useParams } from 'react-router-dom';
 
 import { useInstanceSnapshotPricing } from '@/api/hooks/order';
@@ -121,7 +124,9 @@ export function WorkflowName({
           {pricing && (
             <span className="font-bold">
               {t('pci_workflow_create_price_monthly', {
-                price: getFormattedCatalogPrice(pricing?.price * 730),
+                price: getFormattedCatalogPrice(
+                  convertHourlyPriceToMonthly(pricing?.price),
+                ),
               })}
             </span>
           )}

@@ -3,6 +3,7 @@ import {
   getCatalogQuery,
   getProductAvailabilityQuery,
 } from '@ovh-ux/manager-pci-common';
+import { isSnapshotConsumption } from '@/pages/new/utils/is-snapshot-consumption';
 
 export const useProjectAddons = (
   projectId: string,
@@ -16,18 +17,18 @@ export const useProjectAddons = (
     ],
 
     combine: ([
-      { data: catalog, isFetching: isCatalogFetchibng },
+      { data: catalog, isFetching: isCatalogFetching },
       { data: plans, isFetching: isPlansFetching },
     ]) => {
       const plan = plans?.plans?.find(
         ({ code, regions }) =>
-          code.startsWith('snapshot.consumption') &&
+          isSnapshotConsumption(code) &&
           regions.find(({ name }) => name === instanceRegion),
       );
       const addons = [
-        catalog?.addons.find(({ planCode }) => planCode === plan.code),
+        catalog?.addons.find(({ planCode }) => planCode === plan?.code),
       ];
-      const isFetching = isCatalogFetchibng || isPlansFetching;
+      const isFetching = isCatalogFetching || isPlansFetching;
 
       return { addons, isFetching };
     },
