@@ -1,10 +1,6 @@
-import {
-  ODS_TEXT_COLOR_INTENT,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
-import { OsdsText } from '@ovhcloud/ods-components/react';
 import React, { ReactNode } from 'react';
+import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsText } from '@ovhcloud/ods-components/react';
 
 type IdentitiesTileTextProps = {
   children: ReactNode;
@@ -12,14 +8,9 @@ type IdentitiesTileTextProps = {
 
 const IdentitiesTileText = ({ children }: IdentitiesTileTextProps) => {
   return (
-    <OsdsText
-      color={ODS_TEXT_COLOR_INTENT.text}
-      level={ODS_TEXT_LEVEL.body}
-      size={ODS_TEXT_SIZE._200}
-      className="pl-3"
-    >
+    <OdsText preset={ODS_TEXT_PRESET.paragraph} className="pl-3">
       {children}
-    </OsdsText>
+    </OdsText>
   );
 };
 

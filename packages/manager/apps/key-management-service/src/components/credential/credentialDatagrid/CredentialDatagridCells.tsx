@@ -4,16 +4,16 @@ import { useTranslation } from 'react-i18next';
 import {
   ActionMenu,
   ActionMenuItem,
-  DataGridClipboardCell,
+  Clipboard,
   DataGridTextCell,
   Links,
 } from '@ovh-ux/manager-react-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ButtonType,
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { OkmsCredential } from '@/types/okmsCredential.type';
 import { useFormattedDate } from '@/hooks/useFormattedDate';
 import { CredentialStatus } from '../credentialStatus/CredentialStatus.component';
@@ -44,7 +44,7 @@ export const DatagridCredentialCellName = (credential: OkmsCredential) => {
 };
 
 export const DatagridCredentialCellId = (credential: OkmsCredential) => {
-  return <DataGridClipboardCell text={credential.id} />;
+  return <Clipboard className="w-full" value={credential.id} />;
 };
 
 export const DatagridCredentialCellIdentities = (
@@ -91,7 +91,7 @@ export const DatagridCredentialCellExpirationDate = (
 };
 
 export const DatagridCredentialCellStatus = (credential: OkmsCredential) => {
-  return <CredentialStatus state={credential.status} inline />;
+  return <CredentialStatus state={credential.status} />;
 };
 
 export const DatagridCredentialCellActions = (credential: OkmsCredential) => {
@@ -109,7 +109,7 @@ export const DatagridCredentialCellActions = (credential: OkmsCredential) => {
       label: t('key_management_service_credential_download'),
       href,
       download: filename,
-      disabled: isDisabled,
+      isDisabled,
       onClick: () =>
         trackClick({
           location: PageLocation.datagrid,
@@ -121,7 +121,6 @@ export const DatagridCredentialCellActions = (credential: OkmsCredential) => {
     {
       id: 2,
       label: t('key_management_service_credential_delete'),
-      color: ODS_THEME_COLOR_INTENT.error,
       iamActions: [kmsIamActions.credentialDelete],
       urn: okms.iam.urn,
       onClick: () => {
@@ -136,5 +135,12 @@ export const DatagridCredentialCellActions = (credential: OkmsCredential) => {
     },
   ];
 
-  return <ActionMenu items={items} isCompact />;
+  return (
+    <ActionMenu
+      id={`credentialsActions-${credential.id}`}
+      items={items}
+      variant={ODS_BUTTON_VARIANT.ghost}
+      isCompact
+    />
+  );
 };

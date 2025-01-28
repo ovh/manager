@@ -25,9 +25,8 @@ export const useCreateOkmsServiceKey = ({
   const { t } = useTranslation('key-management-service/serviceKeys');
 
   const { mutate: createKmsServiceKey, isPending } = useMutation({
-    mutationFn: (data: OkmsServiceKeyPostPayload) => {
-      return createOkmsServiceKeyResource({ okmsId, data });
-    },
+    mutationFn: (data: OkmsServiceKeyPostPayload) =>
+      createOkmsServiceKeyResource({ okmsId, data }),
     onSuccess: async () => {
       await queryClient.invalidateQueries({
         queryKey: getOkmsServiceKeyResourceListQueryKey(okmsId),

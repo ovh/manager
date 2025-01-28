@@ -1,31 +1,16 @@
-import {
-  CommonTitle,
-  Description,
-  Subtitle,
-} from '@ovh-ux/manager-react-components';
+import React, { Dispatch, SetStateAction } from 'react';
 import {
   ButtonType,
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import {
-  ODS_THEME_TYPOGRAPHY_SIZE,
-  ODS_THEME_COLOR_INTENT,
-} from '@ovhcloud/ods-common-theming';
-import {
-  ODS_RADIO_BUTTON_SIZE,
-  OdsTextAreaValueChangeEvent,
-  OsdsTextareaCustomEvent,
-} from '@ovhcloud/ods-components';
-import {
-  OsdsFormField,
-  OsdsRadio,
-  OsdsRadioButton,
-  OsdsRadioGroup,
-  OsdsText,
-  OsdsTextarea,
+  OdsText,
+  OdsFormField,
+  OdsRadio,
+  OdsTextarea,
 } from '@ovhcloud/ods-components/react';
-import React, { Dispatch, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
 import { CSR_PLACEHOLDER } from '../CreateGeneralInformations.constants';
 import { CredentialCreationMethodErrorsType } from '@/utils/credential/validateCredentialCreationMethod';
@@ -60,17 +45,25 @@ const CreateGeneralInformationsCreationMethod = ({
   };
 
   return (
-    <div className="flex flex-col gap-5 md:gap-6">
-      <Description>
-        {t(
-          'key_management_service_credential_create_general_information_creation_method_subtitle',
-        )}
-      </Description>
-      <OsdsRadioGroup className="flex flex-col gap-6">
-        <OsdsRadio checked={!isCustomCsr}>
-          <OsdsRadioButton
-            size={ODS_RADIO_BUTTON_SIZE.sm}
-            color={ODS_THEME_COLOR_INTENT.primary}
+    <>
+      <OdsFormField>
+        <div slot="label">
+          <OdsText className="block" preset={ODS_TEXT_PRESET.heading5}>
+            {t(
+              'key_management_service_credential_create_general_creation_method_title',
+            )}
+          </OdsText>
+          <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+            {t(
+              'key_management_service_credential_create_general_information_creation_method_subtitle',
+            )}
+          </OdsText>
+        </div>
+        <div className="flex items-center">
+          <OdsRadio
+            name="creationMethod"
+            inputId="creationMethodNoKey"
+            isChecked={!isCustomCsr}
             onClick={() => {
               trackClick({
                 location: PageLocation.funnel,
@@ -80,28 +73,25 @@ const CreateGeneralInformationsCreationMethod = ({
               });
               setIsCustomCsr(false);
             }}
-          >
-            <span slot="end">
-              <OsdsText
-                color={ODS_THEME_COLOR_INTENT.text}
-                size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-              >
-                {t(
-                  'key_management_service_credential_create_general_information_creation_method_no_key',
-                )}
-              </OsdsText>
-              <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
-                {t(
-                  `key_management_service_credential_create_general_information_creation_method_no_key_desc`,
-                )}
-              </OsdsText>
-            </span>
-          </OsdsRadioButton>
-        </OsdsRadio>
-        <OsdsRadio checked={isCustomCsr}>
-          <OsdsRadioButton
-            size={ODS_RADIO_BUTTON_SIZE.sm}
-            color={ODS_THEME_COLOR_INTENT.primary}
+          />
+          <label className="ml-2" htmlFor="creationMethodNoKey">
+            <OdsText className="block" preset={ODS_TEXT_PRESET.paragraph}>
+              {t(
+                'key_management_service_credential_create_general_information_creation_method_no_key',
+              )}
+            </OdsText>
+            <OdsText preset={ODS_TEXT_PRESET.caption}>
+              {t(
+                `key_management_service_credential_create_general_information_creation_method_no_key_desc`,
+              )}
+            </OdsText>
+          </label>
+        </div>
+        <div className="flex items-center">
+          <OdsRadio
+            name="creationMethod"
+            inputId="creationMethodKey"
+            isChecked={isCustomCsr}
             onClick={() => {
               trackClick({
                 location: PageLocation.funnel,
@@ -111,55 +101,48 @@ const CreateGeneralInformationsCreationMethod = ({
               });
               setIsCustomCsr(true);
             }}
-          >
-            <span slot="end">
-              <OsdsText
-                color={ODS_THEME_COLOR_INTENT.text}
-                size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-              >
-                {t(
-                  'key_management_service_credential_create_general_information_creation_method_key',
-                )}
-              </OsdsText>
-              <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
-                {t(
-                  `key_management_service_credential_create_general_information_creation_method_key_desc`,
-                )}
-              </OsdsText>
-            </span>
-          </OsdsRadioButton>
-        </OsdsRadio>
-      </OsdsRadioGroup>
+          />
+          <label className="ml-2" htmlFor="creationMethodKey">
+            <OdsText className="block" preset={ODS_TEXT_PRESET.paragraph}>
+              {t(
+                'key_management_service_credential_create_general_information_creation_method_key',
+              )}
+            </OdsText>
+            <OdsText preset={ODS_TEXT_PRESET.caption}>
+              {t(
+                `key_management_service_credential_create_general_information_creation_method_key_desc`,
+              )}
+            </OdsText>
+          </label>
+        </div>
+      </OdsFormField>
       {isCustomCsr && (
-        <>
-          <Subtitle>
-            {t(
-              'key_management_service_credential_create_general_information_csr_title',
-            )}
-          </Subtitle>
-          <CommonTitle>
-            {t(
-              'key_management_service_credential_create_general_information_csr_subtitle',
-            )}
-          </CommonTitle>
-          <OsdsFormField
-            error={getCreationMethodErrorMessage(credentialCreationMethodError)}
-          >
-            <OsdsTextarea
-              value={csr}
-              error={!!credentialCreationMethodError || undefined}
-              placeholder={CSR_PLACEHOLDER}
-              rows={10}
-              onOdsValueChange={(
-                e: OsdsTextareaCustomEvent<OdsTextAreaValueChangeEvent>,
-              ) => {
-                return setCsr(e.detail.value);
-              }}
-            ></OsdsTextarea>
-          </OsdsFormField>
-        </>
+        <OdsFormField
+          error={getCreationMethodErrorMessage(credentialCreationMethodError)}
+        >
+          <div slot="label">
+            <OdsText className="block" preset={ODS_TEXT_PRESET.heading5}>
+              {t(
+                'key_management_service_credential_create_general_information_csr_title',
+              )}
+            </OdsText>
+            <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+              {t(
+                'key_management_service_credential_create_general_information_csr_subtitle',
+              )}
+            </OdsText>
+          </div>
+          <OdsTextarea
+            name="credentialCreationMethod"
+            value={csr}
+            hasError={!!credentialCreationMethodError}
+            placeholder={CSR_PLACEHOLDER}
+            rows={10}
+            onOdsChange={(e) => setCsr(e.detail.value)}
+          />
+        </OdsFormField>
       )}
-    </div>
+    </>
   );
 };
 

@@ -123,7 +123,7 @@ export type OkmsServiceKeyPostPayload = {
   name: string;
   context: string;
   curve?: OkmsServiceKeyTypeECCurve;
-  size?: OkmsServiceKeyTypeOctSize & OkmsServiceKeyTypeRSASize;
+  size?: OkmsServiceKeyTypeOctSize | OkmsServiceKeyTypeRSASize;
   operations: OkmsServiceKeyOperations[];
   type: OkmsKeyTypes;
 };

@@ -14,7 +14,9 @@ export type ServiceKeyNameErrorsType = typeof ServiceKeyNameErrors[keyof typeof 
 
 export const serviceKeyMaxCharacters = 32;
 
-export const validateServiceKeyName = (name: string) => {
+export const validateServiceKeyName = (name: string | null) => {
+  if (name === null) return undefined;
+
   if (name.length === 0) return ServiceKeyNameErrors.required;
 
   if (name.length > 32) return ServiceKeyNameErrors.tooManyCharacters;
