@@ -50,7 +50,6 @@ export default class ImagesListController {
     return this.PciProjectImages.getImages(this.serviceName, this.region).then(
       (images) => {
         this.images = images;
-
         this.updateImages(images);
         return images;
       },
