@@ -1,32 +1,46 @@
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { OsdsText } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useCatalogPrice } from '@ovh-ux/manager-react-components';
+import {
+  useCatalogPrice,
+  convertHourlyPriceToMonthly,
+} from '@ovh-ux/manager-react-components';
 import { TAddon } from '@/pages/create/store';
+
+const DIGIT_AFTER_DECIMAL = 4;
 
 export const LabelComponent = ({
   item,
-  isItemSelected,
 }: Readonly<{
   item: TAddon;
-  isItemSelected: boolean;
 }>) => {
   const { t: tCreate } = useTranslation('load-balancer/create');
 
-  const { getFormattedHourlyCatalogPrice } = useCatalogPrice();
+  const {
+    getFormattedHourlyCatalogPrice,
+    getFormattedMonthlyCatalogPrice,
+  } = useCatalogPrice(DIGIT_AFTER_DECIMAL);
 
-  const [priceValue, priceUnit] = getFormattedHourlyCatalogPrice(
-    item.price,
-  ).split('/');
+  const [priceValue, monthlyPrice] = useMemo(
+    () => [
+      getFormattedHourlyCatalogPrice(item.price),
+      getFormattedMonthlyCatalogPrice(convertHourlyPriceToMonthly(item.price)),
+    ],
+    [
+      getFormattedHourlyCatalogPrice,
+      getFormattedMonthlyCatalogPrice,
+      item.price,
+    ],
+  );
 
   return (
     <div className="p-4">
       <OsdsText
-        size={ODS_TEXT_SIZE._400}
-        level={ODS_TEXT_LEVEL.body}
+        size={ODS_TEXT_SIZE._200}
+        level={ODS_TEXT_LEVEL.heading}
         color={ODS_THEME_COLOR_INTENT.text}
-        className={isItemSelected ? 'font-bold' : 'font-normal'}
       >
         {tCreate('octavia_load_balancer_create_size_flavour_title', {
           sizeCode: item.label,
@@ -49,7 +63,16 @@ export const LabelComponent = ({
           level={ODS_TEXT_LEVEL.body}
           color={ODS_THEME_COLOR_INTENT.text}
         >
-          <span className="font-bold">{priceValue}</span>/{priceUnit}
+          <span className="font-bold">{priceValue}</span>
+        </OsdsText>
+      </div>
+      <div className="text-center mt-2">
+        <OsdsText
+          size={ODS_TEXT_SIZE._400}
+          level={ODS_TEXT_LEVEL.body}
+          color={ODS_THEME_COLOR_INTENT.text}
+        >
+          ~ <span>{monthlyPrice}</span>
         </OsdsText>
       </div>
     </div>
