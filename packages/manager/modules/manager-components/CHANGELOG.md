@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.22.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.22.6...@ovh-ux/manager-components@1.22.7) (2025-01-28)
+
+
+### Bug Fixes
+
+* **vps:** update translation for installed ssh key ([#14907](https://github.com/ovh/manager/issues/14907)) ([0ce8daa](https://github.com/ovh/manager/commit/0ce8daa8fbe4e6e74af0919ffcf45ecdaaf17e2b))
+
+
+
+
+
 ## [1.22.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.22.5...@ovh-ux/manager-components@1.22.6) (2025-01-23)
 
 
