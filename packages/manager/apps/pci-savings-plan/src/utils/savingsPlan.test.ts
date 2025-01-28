@@ -1,4 +1,9 @@
-import { isValidSavingsPlanName } from './savingsPlan';
+import { pciSavingsPlanListMocked } from '@/_mock_/savingsPlan';
+import {
+  getBigestActiveSavingsPlan,
+  isInstanceFlavor,
+  isValidSavingsPlanName,
+} from './savingsPlan';
 
 describe('isValidSavingsPlanName', () => {
   it('should return true for valid names', () => {
@@ -35,5 +40,27 @@ describe('isValidSavingsPlanName', () => {
         'Savings-Plan-GP-2024-09-05-dedsqdqsdqsdqsdsqdqsdqsdsqdqsdsqDd',
       ),
     ).toBe(false);
+  });
+});
+
+describe('getBigestActiveSavingsPlan', () => {
+  it('should return the biggest active savings plan', () => {
+    expect(getBigestActiveSavingsPlan([])).toBe(undefined);
+  });
+
+  it('should return the biggest active savings plan', () => {
+    expect(getBigestActiveSavingsPlan(pciSavingsPlanListMocked)).toBe(
+      pciSavingsPlanListMocked[2],
+    );
+  });
+});
+
+describe('isInstanceFlavor', () => {
+  it('should return true if the flavor is an instance', () => {
+    expect(isInstanceFlavor('b3-8')).toBe(true);
+  });
+
+  it('should return false if the flavor is not an instance', () => {
+    expect(isInstanceFlavor('Rancher')).toBe(false);
   });
 });
