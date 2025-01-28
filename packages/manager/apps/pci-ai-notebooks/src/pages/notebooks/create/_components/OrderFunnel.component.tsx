@@ -1,5 +1,9 @@
 import { useTranslation } from 'react-i18next';
 import {
+  GUIDES,
+  getGuideUrl,
+} from '@ovh-ux/manager-pci-ai-notebooks-app/src/configuration/guide';
+import {
   ArrowRight,
   ChevronDown,
   ChevronUp,
@@ -56,7 +60,6 @@ import { useGetCommand } from '@/hooks/api/ai/notebook/useGetCommand.hook';
 import CliEquivalent from './CliEquivalent.component';
 import { getNotebookSpec } from '@/lib/orderFunnelHelper';
 import A from '@/components/links/A.component';
-import { getHowToManageDataInAIDocLink } from '@/configuration/guide';
 import { useLocale } from '@/hooks/useLocale';
 import OvhLink from '@/components/links/OvhLink.component';
 
@@ -453,7 +456,10 @@ const OrderFunnel = ({
                             </p>
                             <p>{t('fieldVolumeDescription2')}</p>
                             <A
-                              href={getHowToManageDataInAIDocLink(locale)}
+                              href={getGuideUrl(
+                                GUIDES.HOW_TO_MANAGE_DATA,
+                                locale,
+                              )}
                               target="_blank"
                               rel="noopener noreferrer"
                             >

@@ -1,5 +1,3 @@
-import { Locale } from '@/hooks/useLocale';
-
 export enum GuideSections {
   'cli' = 'cli',
   'ovhaiCli' = 'ovhai-cli',
@@ -21,25 +19,38 @@ export const allGuidesSections: GuideSections[] = [
   GuideSections.notebooks,
 ];
 
-export function getGlobalAIGuideLink(local: string) {
-  return local === Locale.fr_FR || local === Locale.fr_CA
-    ? 'https://docs.ovh.com/fr/publiccloud/ai/'
-    : 'https://docs.ovh.com/gb/en/publiccloud/ai/';
-}
+export const GUIDES = {
+  GLOBAL_AI: {
+    fr_FR: 'https://docs.ovh.com/fr/publiccloud/ai/',
+    fr_CA: 'https://docs.ovh.com/fr/publiccloud/ai/',
+    default: 'https://docs.ovh.com/gb/en/publiccloud/ai/',
+  },
+  ONBOARDING_TUTO_1: {
+    fr_FR:
+      'https://help.ovhcloud.com/csm/fr-public-cloud-ai-notebooks-capabilities?id=kb_article_view&sysparm_article=KB0048247',
+    fr_CA:
+      'https://help.ovhcloud.com/csm/fr-public-cloud-ai-notebooks-capabilities?id=kb_article_view&sysparm_article=KB0048247',
+    default:
+      'https://help.ovhcloud.com/csm/en-gb-public-cloud-ai-notebooks-capabilities?id=kb_article_view&sysparm_article=KB0048238',
+  },
+  ONBOARDING_TUTO_2: {
+    fr_FR:
+      'https://help.ovhcloud.com/csm/fr-public-cloud-ai-notebooks-definition?id=kb_article_view&sysparm_article=KB0048274',
+    fr_CA:
+      'https://help.ovhcloud.com/csm/fr-public-cloud-ai-notebooks-definition?id=kb_article_view&sysparm_article=KB0048274',
+    default:
+      'https://help.ovhcloud.com/csm/en-gb-public-cloud-ai-notebooks-definition?id=kb_article_view&sysparm_article=KB0048269',
+  },
+  HOW_TO_MANAGE_DATA: {
+    fr_FR: 'https://docs.ovh.com/fr/publiccloud/ai/data/',
+    fr_CA: 'https://docs.ovh.com/fr/publiccloud/ai/data/',
+    default: 'https://docs.ovh.com/gb/en/publiccloud/ai/data/',
+  },
+};
 
-export function getOnbordingTuto1Link(local: string) {
-  return local === Locale.fr_FR || local === Locale.fr_CA
-    ? 'https://help.ovhcloud.com/csm/fr-public-cloud-ai-notebooks-capabilities?id=kb_article_view&sysparm_article=KB0048247'
-    : 'https://help.ovhcloud.com/csm/en-gb-public-cloud-ai-notebooks-capabilities?id=kb_article_view&sysparm_article=KB0048238';
-}
-export function getOnbordingTuto2Link(local: string) {
-  return local === Locale.fr_FR || local === Locale.fr_CA
-    ? 'https://help.ovhcloud.com/csm/fr-public-cloud-ai-notebooks-definition?id=kb_article_view&sysparm_article=KB0048274'
-    : 'https://help.ovhcloud.com/csm/en-gb-public-cloud-ai-notebooks-definition?id=kb_article_view&sysparm_article=KB0048269';
-}
-
-export function getHowToManageDataInAIDocLink(local: string) {
-  return local === Locale.fr_FR || local === Locale.fr_CA
-    ? 'https://help.ovhcloud.com/csm/fr-public-cloud-ai-notebooks-definition?id=kb_article_view&sysparm_article=KB0048274'
-    : 'https://help.ovhcloud.com/csm/en-gb-public-cloud-ai-notebooks-definition?id=kb_article_view&sysparm_article=KB0048269';
+export function getGuideUrl(
+  guide: typeof GUIDES[keyof typeof GUIDES],
+  locale: string,
+): string {
+  return guide[locale as keyof typeof guide] || guide.default;
 }
