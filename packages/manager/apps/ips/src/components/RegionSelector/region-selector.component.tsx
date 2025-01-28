@@ -8,6 +8,7 @@ import {
   getCityNameKey,
   getCountryCode,
   getCountryKey,
+  hasOnlyOneRegion,
   isRegionInCa,
   isRegionInEu,
   isRegionInUs,
@@ -30,14 +31,16 @@ export const RegionSelector: React.FC<RegionSelectorProps> = ({
   const { t } = useTranslation('region-selector');
   return (
     <div>
-      <RegionTabs
-        regionList={regionList}
-        currentFilter={currentFilter}
-        removeFilter={() => setCurrentFilter(RegionFilter.all)}
-        setCaFilter={() => setCurrentFilter(RegionFilter.ca)}
-        setEuFilter={() => setCurrentFilter(RegionFilter.eu)}
-        setUsFilter={() => setCurrentFilter(RegionFilter.us)}
-      />
+      {!hasOnlyOneRegion(regionList) && (
+        <RegionTabs
+          regionList={regionList}
+          currentFilter={currentFilter}
+          removeFilter={() => setCurrentFilter(RegionFilter.all)}
+          setCaFilter={() => setCurrentFilter(RegionFilter.ca)}
+          setEuFilter={() => setCurrentFilter(RegionFilter.eu)}
+          setUsFilter={() => setCurrentFilter(RegionFilter.us)}
+        />
+      )}
       <div className="flex flex-wrap gap-4">
         {regionList
           .filter((region) => {

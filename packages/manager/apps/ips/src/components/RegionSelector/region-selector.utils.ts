@@ -5,6 +5,11 @@ export const isRegionInCa = (region: string) => region.includes('ca-');
 
 export const isRegionInUs = (region: string) => region.includes('us-');
 
+export const hasOnlyOneRegion = (regionList: string[]) =>
+  regionList.every(isRegionInCa) ||
+  regionList.every(isRegionInEu) ||
+  regionList.every(isRegionInUs);
+
 export enum RegionFilter {
   all = 'all',
   eu = 'eu',
