@@ -1,5 +1,15 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`RegionSelector component > does not break if there is no region at all 1`] = `
+<DocumentFragment>
+  <div>
+    <div
+      class="flex flex-wrap gap-4"
+    />
+  </div>
+</DocumentFragment>
+`;
+
 exports[`RegionSelector component > renders correctly 1`] = `
 <DocumentFragment>
   <div>
@@ -12,19 +22,16 @@ exports[`RegionSelector component > renders correctly 1`] = `
         region-selector-all-locations
       </ods-tab>
       <ods-tab
-        is-disabled="false"
         is-selected="false"
       >
         region-selector-eu-filter
       </ods-tab>
       <ods-tab
-        is-disabled="false"
         is-selected="false"
       >
         region-selector-ca-filter
       </ods-tab>
       <ods-tab
-        is-disabled="false"
         is-selected="false"
       >
         region-selector-us-filter
