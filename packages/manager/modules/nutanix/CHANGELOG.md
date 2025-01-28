@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@2.4.1...@ovh-ux/manager-nutanix@2.4.2) (2025-01-28)
+
+
+### Bug Fixes
+
+* **nutanix:** fix listing node component with minimal iam privileges ([#14862](https://github.com/ovh/manager/issues/14862)) ([0974dfe](https://github.com/ovh/manager/commit/0974dfe4f8b323b366ab17d7bf5b9d97c9017e0f))
+
+
+
+
+
 ## [2.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@2.4.0...@ovh-ux/manager-nutanix@2.4.1) (2025-01-23)
 
 **Note:** Version bump only for package @ovh-ux/manager-nutanix

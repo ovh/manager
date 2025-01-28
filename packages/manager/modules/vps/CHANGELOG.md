@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.45.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.45.0...@ovh-ux/manager-vps@2.45.1) (2025-01-28)
+
+
+### Bug Fixes
+
+* **dedicated.vps:** change content on migration banner ([#14744](https://github.com/ovh/manager/issues/14744)) ([fff0e3b](https://github.com/ovh/manager/commit/fff0e3b6ff5044ad6e55b25b4ee7e4abeef601f1))
+
+
+
+
+
 # [2.45.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.44.0...@ovh-ux/manager-vps@2.45.0) (2024-12-23)
 
 
