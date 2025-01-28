@@ -86,7 +86,10 @@ export const OfferSelectionSection: React.FC = () => {
               name="additional_ip_quantity"
               min={1}
               max={64}
-              onOdsChange={(event) => setIpQuantity(event.target.value)}
+              onOdsChange={(event) => {
+                setSelectedOffer(IpOffer.additionalIp);
+                setIpQuantity(event.target.value);
+              }}
               value={ipQuantity}
             />
             <OdsText preset={ODS_TEXT_PRESET.heading4}>
@@ -114,9 +117,10 @@ export const OfferSelectionSection: React.FC = () => {
                 )}
                 name="ip_block_plancode_select"
                 value={selectedPlanCode}
-                onOdsChange={(event) =>
-                  setSelectedPlanCode(event.target.value as string)
-                }
+                onOdsChange={(event) => {
+                  setSelectedOffer(IpOffer.blockAdditionalIp);
+                  setSelectedPlanCode(event.target.value as string);
+                }}
               >
                 {pricingList.map(({ label, value }) => (
                   <option key={value} value={value}>
