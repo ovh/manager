@@ -7,7 +7,6 @@ import {
   RedirectionGuard,
   useColumnFilters,
   useDataGrid,
-  useFeatureAvailability,
   useNotifications,
   useProductMaintenance,
 } from '@ovh-ux/manager-react-components';
@@ -25,7 +24,7 @@ import {
 import { PciAnnouncementBanner } from '@ovh-ux/manager-pci-common';
 import { useStorages } from '@/api/hooks/useStorages';
 import { useDatagridColumn } from './useDatagridColumn';
-import { AVAILABILITY } from '@/constants';
+import { useStorageFeatures } from '@/hooks/useStorageFeatures';
 
 export default function ListingPage() {
   const { t } = useTranslation(['containers', 'containers/add', 'pci-common']);
@@ -44,9 +43,10 @@ export default function ListingPage() {
   const { hasMaintenance, maintenanceURL } = useProductMaintenance(projectId);
 
   const {
-    data: availability,
+    is3azAvailable,
+    isLocalZoneAvailable,
     isPending: isAvailabilityPending,
-  } = useFeatureAvailability([AVAILABILITY.LOCALZONE, AVAILABILITY['3AZ']]);
+  } = useStorageFeatures();
 
   const {
     allStorages,
@@ -55,8 +55,8 @@ export default function ListingPage() {
     isPending: isStoragesPending,
     refresh,
   } = useStorages(projectId, pagination, sorting, filters, {
-    isLocalZoneAvailable: availability?.[AVAILABILITY.LOCALZONE],
-    is3azAvailable: availability?.[AVAILABILITY['3AZ']],
+    isLocalZoneAvailable,
+    is3azAvailable,
   });
 
   const isPending = isAvailabilityPending || isStoragesPending;

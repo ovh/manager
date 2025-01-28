@@ -123,7 +123,7 @@ export const useStorages = (
     is3azAvailable: boolean;
   },
 ) => {
-  const { i18n, t } = useTranslation('containers');
+  const { i18n, t } = useTranslation(['containers', 'containers/add']);
   const queryClient = useQueryClient();
 
   const {
@@ -153,7 +153,7 @@ export const useStorages = (
                     'pci_projects_project_storages_containers_deployment_mode_region',
                   )
                 : t(
-                    'pci_projects_project_storages_containers_deployment_mode_flipping_region',
+                    'containers/add:pci_projects_project_storages_containers_add_deployment_mode_flipping_region',
                   );
             break;
           case OBJECT_CONTAINER_MODE_LOCAL_ZONE:
