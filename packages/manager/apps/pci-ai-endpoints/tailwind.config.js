@@ -11,4 +11,11 @@ module.exports = {
       '**/*.{js,jsx,ts,tsx}',
     ),
   ],
+  theme: {
+    extend: {
+      screens: {
+        customTabs: '470px',
+      },
+    },
+  },
 };
