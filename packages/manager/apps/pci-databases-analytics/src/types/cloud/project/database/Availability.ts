@@ -38,6 +38,10 @@ export interface Availability {
   network: NetworkTypeEnum;
   /** Plan name */
   plan: string;
+  /** Billing plan code */
+  planCode: string;
+  /** Billing plan code for storage */
+  planCodeStorage: string;
   /** Region name */
   region: string;
   /** Defines the technical specifications of the availability */

@@ -40,6 +40,8 @@ const mongo: database.Availability[] = [
     startDate: '',
     status: database.availability.StatusEnum.STABLE,
     stepDiskSize: 0,
+    planCode: 'mongodb-discovery-free',
+    planCodeStorage: 'mongodb-discovery-additionnal-storage-gb',
   },
   {
     engine: 'mongodb',
@@ -77,6 +79,8 @@ const mongo: database.Availability[] = [
     startDate: '',
     status: database.availability.StatusEnum.STABLE,
     stepDiskSize: 0,
+    planCode: 'mongodb-essential-db2',
+    planCodeStorage: 'mongodb-essential-additionnal-storage-gb',
   },
   {
     engine: 'mongodb',
@@ -114,6 +118,8 @@ const mongo: database.Availability[] = [
     startDate: '',
     status: database.availability.StatusEnum.STABLE,
     stepDiskSize: 0,
+    planCode: 'mongodb-essential-db1',
+    planCodeStorage: 'mongodb-essential-additionnal-storage-gb',
   },
   {
     engine: 'mongodb',
@@ -151,6 +157,8 @@ const mongo: database.Availability[] = [
     startDate: '',
     status: database.availability.StatusEnum.STABLE,
     stepDiskSize: 0,
+    planCode: 'mongodb-essential-db3',
+    planCodeStorage: 'mongodb-essential-additionnal-storage-gb',
   },
 ];
 
@@ -191,6 +199,8 @@ const pg: database.Availability[] = [
     startDate: '',
     status: database.availability.StatusEnum.STABLE,
     stepDiskSize: 0,
+    planCode: 'postgresql-essential-db1',
+    planCodeStorage: 'postgresql-essential-additionnal-storage-gb',
   },
   {
     engine: 'postgresql',
@@ -228,6 +238,8 @@ const pg: database.Availability[] = [
     startDate: '',
     status: database.availability.StatusEnum.STABLE,
     stepDiskSize: 0,
+    planCode: 'postgresql-essential-db1',
+    planCodeStorage: 'postgresql-essential-additionnal-storage-gb',
   },
 ];
 
@@ -263,6 +275,8 @@ const grafana = [
     startDate: '',
     status: database.availability.StatusEnum.STABLE,
     stepDiskSize: 0,
+    planCode: 'grafana-essential-db1',
+    planCodeStorage: 'grafana-essential-additionnal-storage-gb',
   },
 ];
 
