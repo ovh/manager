@@ -10,9 +10,10 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { UpdateIamNameModal } from '@ovh-ux/manager-react-components';
 import { useQueryClient } from '@tanstack/react-query';
-import { getVrackServicesResourceListQueryKey, useVrackService } from '@/data';
+import { getVrackServicesResourceListQueryKey } from '@/data/api';
 import { PageName } from '@/utils/tracking';
 import { MessagesContext } from '@/components/feedback-messages/Messages.context';
+import { useVrackService } from '@/data/hooks';
 
 const sharedTrackingParams: TrackingClickParams = {
   location: PageLocation.popup,

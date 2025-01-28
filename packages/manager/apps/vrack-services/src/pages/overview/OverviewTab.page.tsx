@@ -6,7 +6,7 @@ import { Outlet } from 'react-router-dom';
 import { ovhLocaleToI18next } from '@ovh-ux/manager-react-shell-client';
 import { DashboardTile, Region } from '@ovh-ux/manager-react-components';
 import { ErrorPage } from '@/components/ErrorPage.component';
-import { useVrackService } from '@/data';
+import { useVrackService } from '@/data/hooks';
 import { formatDateString } from '@/utils/date';
 import { VrackId } from '@/components/vrack-id/VrackId.component';
 import { DisplayName } from '@/components/display-name/DisplayName.component';

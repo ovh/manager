@@ -16,7 +16,6 @@ import {
   OsdsMessage,
 } from '@ovhcloud/ods-components/react';
 import {
-  CreateCartResult,
   OrderDescription,
   getDeliveringOrderQueryKey,
   useOrderPollingStatus,
@@ -29,14 +28,13 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { useNavigate } from 'react-router-dom';
 import { handleClick } from '@ovh-ux/manager-react-components';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { ApiError } from '@ovh-ux/manager-core-api';
-import { getVrackListQueryKey } from '@/data';
+import { useQueryClient } from '@tanstack/react-query';
+import { getVrackListQueryKey } from '@/data/api';
 import { DeliveringMessages } from '@/components/DeliveringMessages.component';
 import { MessagesContext } from './feedback-messages/Messages.context';
 import { LoadingText } from './LoadingText.component';
 import { OrderSubmitModalContent } from './OrderSubmitModalContent.component';
-import { createVrackOnlyCart } from '@/utils/cart';
+import { useCreateCartWithVrack } from '@/data/hooks';
 
 const trackingParams = {
   location: PageLocation.popup,
@@ -55,12 +53,13 @@ export const CreateVrack: React.FC<CreateVrackProps> = ({ closeModal }) => {
   const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
 
-  const { mutate: createCart, data, error, isError, isPending } = useMutation<
-    CreateCartResult,
-    ApiError
-  >({
-    mutationFn: () => createVrackOnlyCart(environment.user.ovhSubsidiary),
-  });
+  const {
+    createCart,
+    data,
+    error,
+    isError,
+    isPending,
+  } = useCreateCartWithVrack(environment.user.ovhSubsidiary);
 
   const {
     data: vrackDeliveringOrders,

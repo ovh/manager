@@ -9,8 +9,8 @@ import {
   ShellContextType,
 } from '@ovh-ux/manager-react-shell-client';
 import { VrackId } from './VrackId.component';
-import { VrackServicesWithIAM } from '@/data';
 import vrackServicesList from '../../../mocks/vrack-services/get-vrack-services.json';
+import { VrackServicesWithIAM } from '@/types';
 
 const defaultVs = vrackServicesList[5] as VrackServicesWithIAM;
 const vsWithoutVrack = vrackServicesList[0] as VrackServicesWithIAM;
