@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.29.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.29.0...@ovh-ux/manager-billing@0.29.1) (2025-01-23)
+
+
+### Bug Fixes
+
+* **billing:** adjust ssh key list template and fix error prone code ([#14994](https://github.com/ovh/manager/issues/14994)) ([0ab6fda](https://github.com/ovh/manager/commit/0ab6fda758841f295369a2b5e2ddb1350c8070d8))
+
+
+
+
+
 # [0.29.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.28.0...@ovh-ux/manager-billing@0.29.0) (2025-01-16)
 
 

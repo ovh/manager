@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@2.3.0...@ovh-ux/manager-models@2.3.1) (2025-01-23)
+
+
+### Bug Fixes
+
+* **manager:** price format currencyDisplay symbol ([7e20ff6](https://github.com/ovh/manager/commit/7e20ff642b8165684e3ee2083c4e1ad562ff7abd))
+
+
+
+
+
 # [2.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@2.2.1...@ovh-ux/manager-models@2.3.0) (2024-12-23)
 
 

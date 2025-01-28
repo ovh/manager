@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-app@0.2.13...@ovh-ux/manager-billing-app@0.2.14) (2025-01-23)
+
+
+### Bug Fixes
+
+* **billing:** add missing ng-pagination-front dependency ([#15016](https://github.com/ovh/manager/issues/15016)) ([63aa941](https://github.com/ovh/manager/commit/63aa941073bfdec51b9eb186c92fa3f8e76a0c85))
+
+
+
+
+
 ## [0.2.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-app@0.2.12...@ovh-ux/manager-billing-app@0.2.13) (2025-01-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-billing-app

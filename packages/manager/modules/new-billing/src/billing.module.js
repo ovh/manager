@@ -1,6 +1,7 @@
 import angular from 'angular';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import ngOvhWebUniverseComponents from '@ovh-ux/ng-ovh-web-universe-components';
+import ngPaginationFront from '@ovh-ux/ng-pagination-front';
 import set from 'lodash/set';
 import autorenew from './autoRenew/autorenew.module';
 import billingMain from './main/billing-main.module';
@@ -28,6 +29,7 @@ import sortingFieldButtonDirective from './components/directives/sortingFieldBut
 import renewDateComponent from './components/renewDate/billing-renew-date.component';
 import renewLabelComponent from './components/renewLabel/billing-renew-label.component';
 import renewFrequenceFilter from './components/filters/renewFrequence';
+import servicesHelper from './services/servicesHelper.service';
 
 import routing from './billing.routing';
 import billingTracking from './atInternetTracking.config';
@@ -51,6 +53,7 @@ angular
     'ui.select',
     'ngOvhFeatureFlipping',
     ngOvhWebUniverseComponents,
+    ngPaginationFront,
     autorenew,
     billingMain,
     history,
@@ -73,6 +76,7 @@ angular
   .service('BillingmessageParser', messageParser)
   .service('billingRenewHelper', renewHelper)
   .service('BillingUser', userService)
+  .service('ServicesHelper', servicesHelper)
   .config(routing)
   .directive('billingDateRange', dateRangeDirective)
   .directive('billingSortingFieldButton', sortingFieldButtonDirective)

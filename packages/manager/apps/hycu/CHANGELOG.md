@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hycu-app@0.4.0...@ovh-ux/manager-hycu-app@0.5.0) (2025-01-27)
+
+
+### Features
+
+* **hycu:** disable activate and regenerate btns when licence is pending ([95a9039](https://github.com/ovh/manager/commit/95a90390ca5e485a56881d424988c038c180d8fb))
+
+
+
+
+
 # [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hycu-app@0.3.15...@ovh-ux/manager-hycu-app@0.4.0) (2025-01-15)
 
 

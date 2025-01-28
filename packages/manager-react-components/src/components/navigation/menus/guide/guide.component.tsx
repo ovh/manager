@@ -6,10 +6,10 @@ import {
 } from '@ovhcloud/ods-components';
 import { OdsPopover, OdsButton } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import { Links, LinkType } from '../../../typography';
+import { Links, LinksProps, LinkType } from '../../../typography';
 import '../translations/translation';
 
-export interface GuideItem {
+export interface GuideItem extends Omit<LinksProps, 'id'> {
   id: number;
   href: string;
   download?: string;
@@ -21,14 +21,19 @@ export interface GuideItem {
 
 export interface GuideButtonProps {
   items: GuideItem[];
+  isLoading?: boolean;
 }
 
-export const GuideButton: React.FC<GuideButtonProps> = ({ items }) => {
+export const GuideButton: React.FC<GuideButtonProps> = ({
+  isLoading,
+  items,
+}) => {
   const { t } = useTranslation('buttons');
   return (
     <>
       <div id="navigation-menu-guide-trigger">
         <OdsButton
+          isLoading={isLoading}
           slot="menu-title"
           className="block mb-6"
           variant={ODS_BUTTON_VARIANT.ghost}
@@ -38,20 +43,17 @@ export const GuideButton: React.FC<GuideButtonProps> = ({ items }) => {
         />
       </div>
 
-      <OdsPopover triggerId="navigation-menu-guide-trigger" with-arrow="true">
-        {items.map((item) => (
-          <div key={item.id}>
+      <OdsPopover triggerId="navigation-menu-guide-trigger" withArrow>
+        <div className="flex flex-col gap-2 py-1">
+          {items.map(({ id, onClick, ...rest }) => (
             <Links
-              href={item.href}
-              target={item.target}
-              download={item.download}
-              rel={item.rel}
+              key={id}
               type={LinkType.external}
-              label={item.label}
-              onClickReturn={item.onClick}
+              onClickReturn={onClick}
+              {...rest}
             />
-          </div>
-        ))}
+          ))}
+        </div>
       </OdsPopover>
     </>
   );
