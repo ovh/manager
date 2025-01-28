@@ -101,6 +101,28 @@
                 data-loading="ctrlTabGeneralInformations.loading.domain || ctrlTabGeneralInformations.loading.serviceInfos || ctrlTabGeneralInformations.loading.urls || ctrlTabGeneralInformations.loading.serviceDetails"
                 class="h-100"
             >
+                <oui-tile-definition data-term="Webmail">
+                    <oui-tile-description>
+                        <a
+                            data-ng-href="{{ :: ctrlTabGeneralInformations.WEBMAIL_URL}}"
+                            class="d-block word-break oui-link_icon"
+                            target="_blank"
+                            rel="noopener"
+                        >
+                            <span
+                                data-ng-bind="ctrlTabGeneralInformations.WEBMAIL_TYPE"
+                            ></span>
+                            <span
+                                class="oui-icon oui-icon-external-link"
+                                aria-hidden="true"
+                            ></span>
+                            <span
+                                class="sr-only"
+                                data-translate="common_newtab"
+                            ></span>
+                        </a>
+                    </oui-tile-description>
+                </oui-tile-definition>
                 <oui-tile-definition
                     data-term="{{ ::'email_tab_domain_offer' | translate }}"
                     data-description="{{ ::ctrlTabGeneralInformations.domain.offer || '-' }}"
