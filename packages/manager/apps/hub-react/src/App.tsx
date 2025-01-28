@@ -10,6 +10,7 @@ odsSetup();
 
 function App() {
   const router = createHashRouter(Routes);
+  console.log('FAKE CHANGE');
 
   return (
     <QueryClientProvider client={queryClient}>
