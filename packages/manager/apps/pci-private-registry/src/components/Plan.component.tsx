@@ -7,7 +7,6 @@ import {
 import { OsdsSkeleton, OsdsText } from '@ovhcloud/ods-components/react';
 import { useMemo } from 'react';
 import { useBytes, useCatalog, Pricing } from '@ovh-ux/manager-pci-common';
-import clsx from 'clsx';
 import { TRegistryPlan } from '@/api/data/registry';
 
 export type TPlanComponentProps = {
@@ -54,7 +53,7 @@ export default function PlanComponent({
         >
           {plan.name[0]}
         </OsdsText>
-        <hr className="w-full border-solid border-0 border-b border-b-[#85d9fd]" />
+        <hr className="w-full border-solid border-0 border-b border-ods-primary-200" />
       </div>
       {isPending && (
         <div className="min-h-[10rem] mx-6 text-center">
@@ -152,7 +151,7 @@ export default function PlanComponent({
         </ul>
       )}
       <div data-testid="price">
-        <hr className="w-full border-solid border-0 border-b border-b-[#85d9fd]" />
+        <hr className="w-full border-solid border-0 border-b border-ods-primary-200" />
         <OsdsText
           color={ODS_THEME_COLOR_INTENT.text}
           level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
