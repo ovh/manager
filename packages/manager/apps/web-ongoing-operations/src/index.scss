@@ -1,0 +1,19 @@
+@tailwind utilities;
+
+@import '@ovhcloud/ods-themes/default';
+
+html {
+  font-family: var(--ods-font-family-default);
+}
+
+.disabled-title::part(text) {
+  color: var(--ods-color-text-disabled-default);
+}
+
+.primary-title::part(text) {
+  color: var(--ods-color-primary-800);
+}
+
+.success {
+  color: var(--ods-color-success-500);
+}
