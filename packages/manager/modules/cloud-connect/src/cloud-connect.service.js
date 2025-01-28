@@ -607,4 +607,23 @@ export default class CloudConnectService {
       .execute(null, true)
       .$promise.then(({ data }) => data);
   }
+
+  getOvhCloudConnect(pageNumber, pageSize) {
+    return this.$http.get(`/ovhCloudConnect`, {
+      headers: {
+        Pragma: 'no-cache',
+        'x-pagination-mode': 'CachedObjectList-Pages',
+        'x-pagination-number': pageNumber,
+        'x-pagination-size': pageSize,
+        'x-pagination-sort': 'lastUpdate',
+        'x-pagination-sort-order': 'DESC',
+      },
+    });
+  }
+
+  getActiveNotifications(uuid) {
+    return this.$http
+      .get(`/ovhCloudConnect/${uuid}/monitoring`)
+      .then(({ data }) => data);
+  }
 }
