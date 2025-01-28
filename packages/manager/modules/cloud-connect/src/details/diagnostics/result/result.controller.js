@@ -1,9 +1,15 @@
 export default class DiagnosticResultCtrl {
   /* @ngInject */
-  constructor($timeout, $translate, cloudConnectService) {
+  constructor(
+    $timeout,
+    $translate,
+    cloudConnectService,
+    cloudConnectDiagnosticsService,
+  ) {
     this.$timeout = $timeout;
     this.$translate = $translate;
     this.cloudConnectService = cloudConnectService;
+    this.cloudConnectDiagnosticsService = cloudConnectDiagnosticsService;
   }
 
   copyToClipboard(diagnostic) {
@@ -21,18 +27,7 @@ export default class DiagnosticResultCtrl {
     return '';
   }
 
-  static download(diagnostic) {
-    const element = document.createElement('a');
-    element.setAttribute(
-      'href',
-      `data:text/plain;charset=utf-8,${encodeURIComponent(
-        diagnostic.result[0].output,
-      )}`,
-    );
-    element.setAttribute('download', `log_${diagnostic.id}.txt`);
-    element.style.display = 'none';
-    document.body.appendChild(element);
-    element.click();
-    document.body.removeChild(element);
+  download(diagnostic) {
+    return this.cloudConnectDiagnosticsService.download(diagnostic);
   }
 }
