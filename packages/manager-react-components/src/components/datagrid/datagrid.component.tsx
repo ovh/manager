@@ -13,10 +13,12 @@ import {
   OdsButton,
   OdsIcon,
   OdsPagination,
+  OdsSkeleton,
   OdsTable,
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { DataGridTextCell } from './text-cell.component';
+import { defaultNumberOfLoadingRows } from './datagrid.contants';
 import './translations';
 
 export type ColumnSort = TanstackColumnSort;
@@ -68,6 +70,10 @@ export interface DatagridProps<T> {
   /** setSorting?: OnChangeFn<SortingState>; */
   /** label displayed if there is no item in the datagrid */
   noResultLabel?: string;
+  /** whether or not the table is in loading state */
+  isLoading?: boolean;
+  /** number of loading rows to show when table is in loading state, defaults to pagination.pageSize or 5 */
+  numberOfLoadingRows?: number;
 }
 
 export const Datagrid = <T,>({
@@ -85,6 +91,8 @@ export const Datagrid = <T,>({
   manualSorting = true,
   manualPagination = true,
   noResultLabel,
+  isLoading = false,
+  numberOfLoadingRows,
 }: DatagridProps<T>) => {
   const { t } = useTranslation('datagrid');
   const pageCount = pagination
@@ -210,7 +218,7 @@ export const Datagrid = <T,>({
                   ))}
                 </tr>
               ))}
-              {table.getRowModel().rows.length === 0 && (
+              {table.getRowModel().rows.length === 0 && !isLoading && (
                 <tr
                   className={
                     'border-solid border-[1px] h-[3.25rem] border-[--ods-color-blue-200]'
@@ -223,6 +231,27 @@ export const Datagrid = <T,>({
                   </td>
                 </tr>
               )}
+              {isLoading &&
+                Array.from({
+                  length:
+                    numberOfLoadingRows ||
+                    pagination?.pageSize ||
+                    defaultNumberOfLoadingRows,
+                }).map((_, idx) => (
+                  <tr
+                    key={`loading-row-${idx})`}
+                    className="h-[3.25rem]"
+                    data-testid="loading-row"
+                  >
+                    {table.getAllColumns().map((col) =>
+                      col.getIsVisible() ? (
+                        <td key={`loading-cell-${idx}-${col.id}`}>
+                          <OdsSkeleton />
+                        </td>
+                      ) : null,
+                    )}
+                  </tr>
+                ))}
             </tbody>
           </table>
         </OdsTable>
@@ -265,9 +294,11 @@ export const Datagrid = <T,>({
       {hasNextPage && (
         <div className="grid justify-items-center my-5">
           <OdsButton
+            data-testid="load-more-btn"
             variant={ODS_BUTTON_VARIANT.outline}
             label={t('common_pagination_load_more')}
             onClick={onFetchNextPage}
+            isLoading={isLoading}
           />
         </div>
       )}

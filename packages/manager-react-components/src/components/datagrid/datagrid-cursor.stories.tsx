@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ColumnSort } from '@tanstack/react-table';
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { withRouter } from 'storybook-addon-react-router-v6';
-import { Datagrid } from './datagrid.component';
+import { Datagrid, DatagridProps } from './datagrid.component';
 import { DataGridTextCell } from './text-cell.component';
 import { ActionMenu } from '../navigation';
 
@@ -29,9 +29,13 @@ const columns = [
   },
 ];
 
-const DatagridStory = (args) => {
+const DatagridStory = ({
+  items,
+  isSortable,
+  ...args
+}: { isSortable?: boolean } & DatagridProps<unknown>) => {
   const [sorting, setSorting] = useState<ColumnSort>();
-  const [data, setData] = useState(args.items);
+  const [data, setData] = useState(items);
 
   const fetchNextPage = () => {
     const itemsIndex = data?.length;
@@ -44,12 +48,12 @@ const DatagridStory = (args) => {
 
   return (
     <Datagrid
+      {...args}
       items={data}
-      columns={args.columns}
       hasNextPage={data?.length > 0 && data.length < 30}
       onFetchNextPage={fetchNextPage}
       totalItems={data?.length}
-      {...(args.isSortable
+      {...(isSortable
         ? {
             sorting,
             onSortChange: setSorting,
