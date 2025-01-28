@@ -9,6 +9,7 @@ type FormLayoutProps = {
   submitLabel: string;
   isSubmitDisabled?: boolean;
   onPrevious?: () => void;
+  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 } & Omit<React.FormHTMLAttributes<HTMLFormElement>, 'className'>;
 
 export default function FormLayout({
@@ -18,12 +19,18 @@ export default function FormLayout({
   submitLabel,
   isSubmitDisabled,
   onPrevious,
+  onSubmit,
   ...props
 }: Readonly<FormLayoutProps>) {
   const { t } = useTranslation('installation');
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!isSubmitDisabled) onSubmit(e);
+  };
+
   return (
-    <form className="flex flex-col gap-y-6" {...props}>
+    <form className="flex flex-col gap-y-6" onSubmit={handleSubmit} {...props}>
       <div className="flex flex-col gap-y-4">
         <OdsText preset="heading-2">{title}</OdsText>
         {subtitle && <OdsText>{subtitle}</OdsText>}
