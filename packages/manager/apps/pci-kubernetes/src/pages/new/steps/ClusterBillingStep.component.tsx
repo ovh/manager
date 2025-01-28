@@ -53,7 +53,7 @@ export function ClusterBillingStep({
           color={ODS_THEME_COLOR_INTENT.primary}
           onClick={() => onSubmit(antiAffinity, isMonthlyBilled)}
         >
-          {tStepper('common_stepper_next_button_label')}
+          {tStepper('common_stepper_submit_button_label')}
         </OsdsButton>
       )}
     </>
