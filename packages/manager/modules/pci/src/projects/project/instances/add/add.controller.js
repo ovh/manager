@@ -235,7 +235,7 @@ export default class PciInstancesAddController {
     this.isAddingPrivateNetwork = false;
     this.isAddingPrivateNetworkError = false;
 
-    this.get3AZAvailability();
+    this.fetch3AZAvailability();
   }
 
   get areLocalZonesFree() {
@@ -335,7 +335,7 @@ export default class PciInstancesAddController {
     };
   }
 
-  get3AZAvailability() {
+  fetch3AZAvailability() {
     return this.PciProjectsProjectInstanceService.getProductAvailability(
       this.projectId,
       this.coreConfig.getUser().ovhSubsidiary,
@@ -793,7 +793,7 @@ export default class PciInstancesAddController {
         this.automatedBackup.selected = false;
         this.automatedBackup.schedule = null;
         this.automatedBackup.price = null;
-        this.isgGettingBackupPrice = true;
+        this.isGettingBackupPrice = true;
         return this.getBackupPrice().then(({ price }) => {
           const { value, currencyCode } = price;
 
@@ -806,7 +806,7 @@ export default class PciInstancesAddController {
             },
           ).format(value * this.HOURS_PER_MONTH)}`;
 
-          this.isgGettingBackupPrice = false;
+          this.isGettingBackupPrice = false;
           return this.automatedBackup.price;
         });
       }
@@ -1454,11 +1454,8 @@ export default class PciInstancesAddController {
       this.isPrivateMode(),
     )
       .then((result) => {
-        let availabilityZone = null;
-        availabilityZone = this.instance.availabilityZone;
-        if (result.availabilityZone) {
-          availabilityZone = result.availabilityZone;
-        }
+        const availabilityZone =
+          result.availabilityZone ?? this.instance.availabilityZone;
         let message;
         if (this.model.number === 1) {
           if (availabilityZone) {

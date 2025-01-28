@@ -181,7 +181,7 @@
                                         >
                                             <span
                                                 class="text-center"
-                                                data-translate="{{::$ctrl.are3azRegionsAvailable ? 'pci_project_flavors_zone_globalregions_tooltip' : 'pci_project_flavors_zone_globalregions_tooltip_2'}}"
+                                                data-translate="{{$ctrl.are3azRegionsAvailable ? 'pci_project_flavors_zone_globalregions_tooltip' : 'pci_project_flavors_zone_globalregions_tooltip_2'}}"
                                             ></span>
                                             <a
                                                 class="oui-link_icon"
@@ -571,7 +571,7 @@
             <oui-spinner
                 oui-spinner
                 data-size="s"
-                data-ng-if="$ctrl.isgGettingBackupPrice"
+                data-ng-if="$ctrl.isGettingBackupPrice"
             ></oui-spinner>
             <p
                 class="font-weight-bold"
@@ -1213,7 +1213,6 @@
             data-disabled="false"
             data-on-change="$ctrl.onBillingChange(billing)"
             data-beta="$ctrl.shouldShow3AZRegionData"
-            data-free="$ctrl.shouldShow3AZRegionData"
         >
             <pci-project-flavor-billing-hourly-price
                 data-ng-if="$ctrl.shouldShowWindowsGen3Data()"

@@ -299,13 +299,14 @@
                                 data-oui-popover-scope="$ctrl"
                                 data-oui-popover-template="pci_project_flavors_zone_globalregions_tooltip.html"
                             ></button>
+
                             <script
                                 type="text/ng-template"
                                 id="pci_project_flavors_zone_globalregions_tooltip.html"
                             >
                                 <span
                                     class="text-center"
-                                    data-translate="{{::$ctrl.are3AzRegionsAvailable ? 'pci_project_flavors_zone_globalregions_tooltip' : 'pci_project_flavors_zone_globalregions_tooltip_2'}}"
+                                    data-translate="{{$ctrl.are3AzRegionsAvailable ? 'pci_project_flavors_zone_globalregions_tooltip' : 'pci_project_flavors_zone_globalregions_tooltip_2'}}"
                                 ></span>
                                 <a
                                     class="oui-link_icon"

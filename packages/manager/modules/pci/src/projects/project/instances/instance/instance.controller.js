@@ -24,10 +24,10 @@ export default class PciInstanceController {
 
     this.is3az = this.instance.planCode.includes('3AZ');
 
-    this.get3AZAvailability();
+    this.fetch3AZAvailability();
   }
 
-  get3AZAvailability() {
+  fetch3AZAvailability() {
     return this.PciProjectsProjectInstanceService.getProductAvailability(
       this.projectId,
       this.coreConfig.getUser().ovhSubsidiary,

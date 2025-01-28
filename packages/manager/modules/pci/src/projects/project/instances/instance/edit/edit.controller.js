@@ -50,7 +50,7 @@ export default class PciInstanceEditController {
     this.model = {
       isInstanceFlex: new Flavor(this.editInstance.flavor).isFlex(),
     };
-    this.get3AZAvailability();
+    this.fetch3AZAvailability();
     this.imageEditMessage =
       this.imageEditMessage ||
       'pci_projects_project_instances_instance_edit_reboot_message';
@@ -68,7 +68,7 @@ export default class PciInstanceEditController {
     });
   }
 
-  get3AZAvailability() {
+  fetch3AZAvailability() {
     return this.PciProjectsProjectInstanceService.getProductAvailability(
       this.projectId,
       this.coreConfig.getUser().ovhSubsidiary,
