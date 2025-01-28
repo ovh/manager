@@ -38,27 +38,30 @@ export const RegionTabs: React.FC<RegionTabsProps> = ({
       >
         {t('region-selector-all-locations')}
       </OdsTab>
-      <OdsTab
-        isSelected={currentFilter === RegionFilter.eu}
-        isDisabled={!hasEu}
-        onClick={() => hasEu && setEuFilter()}
-      >
-        {t('region-selector-eu-filter')}
-      </OdsTab>
-      <OdsTab
-        isSelected={currentFilter === RegionFilter.ca}
-        isDisabled={!hasCa}
-        onClick={() => hasCa && setCaFilter()}
-      >
-        {t('region-selector-ca-filter')}
-      </OdsTab>
-      <OdsTab
-        isSelected={currentFilter === RegionFilter.us}
-        isDisabled={!hasUs}
-        onClick={() => hasUs && setUsFilter()}
-      >
-        {t('region-selector-us-filter')}
-      </OdsTab>
+      {hasEu && (
+        <OdsTab
+          isSelected={currentFilter === RegionFilter.eu}
+          onClick={() => hasEu && setEuFilter()}
+        >
+          {t('region-selector-eu-filter')}
+        </OdsTab>
+      )}
+      {hasCa && (
+        <OdsTab
+          isSelected={currentFilter === RegionFilter.ca}
+          onClick={() => hasCa && setCaFilter()}
+        >
+          {t('region-selector-ca-filter')}
+        </OdsTab>
+      )}
+      {hasUs && (
+        <OdsTab
+          isSelected={currentFilter === RegionFilter.us}
+          onClick={() => hasUs && setUsFilter()}
+        >
+          {t('region-selector-us-filter')}
+        </OdsTab>
+      )}
     </OdsTabs>
   );
 };
