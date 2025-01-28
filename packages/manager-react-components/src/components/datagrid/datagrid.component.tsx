@@ -7,8 +7,10 @@ import {
   flexRender,
   getCoreRowModel,
   useReactTable,
+  ExpandedState,
   getSortedRowModel,
   Row,
+  getExpandedRowModel,
 } from '@tanstack/react-table';
 import {
   ODS_ICON_NAME,
@@ -82,7 +84,7 @@ export interface SearchProps {
 
 export interface DatagridProps<T> {
   /** list of datagrid columns */
-  columns: DatagridColumn<T>[];
+  columns: any;
   /** list of items (rows) to display in the table */
   items: T[];
   /** total number of items (in case of pagination) */
@@ -155,6 +157,8 @@ export const Datagrid = <T,>({
     ? Math.ceil(totalItems / pagination.pageSize)
     : 1;
 
+  const [expanded, setExpanded] = React.useState<ExpandedState>({});
+
   const table = useReactTable({
     columns: [
       ...(getRowCanExpand && renderSubComponent
@@ -182,7 +186,7 @@ export const Datagrid = <T,>({
       ...columns.map(
         (col): ColumnDef<T> => ({
           accessorKey: col.id,
-          cell: (props) => col.cell(props.row.original),
+          cell: (props) => col.cell(props),
           header: col.label,
           enableSorting: col.isSortable !== false,
         }),
@@ -195,11 +199,18 @@ export const Datagrid = <T,>({
     sortDescFirst: false,
     getCoreRowModel: getCoreRowModel(),
     getRowCanExpand,
+    onExpandedChange: (newExpanded) => {
+      setExpanded(newExpanded);
+    },
+    getSubRows: (row: any) => row.subRows,
+    getExpandedRowModel: getExpandedRowModel(),
+
     pageCount,
     ...(!manualSorting && {
       onSortingChange: onSortChange,
       state: {
         sorting,
+        expanded,
       },
       getSortedRowModel: getSortedRowModel(),
     }),
@@ -208,6 +219,7 @@ export const Datagrid = <T,>({
         ...(sorting && {
           sorting: [sorting],
         }),
+        expanded,
       },
       onStateChange: (updater) => {
         if (typeof updater === 'function') {
@@ -377,6 +389,7 @@ export const Datagrid = <T,>({
           </table>
         </OdsTable>
       </div>
+      <div>expanded status : {expanded ? 'true' : 'false'}</div>
       {!onFetchNextPage && items?.length > 0 && pagination ? (
         <OdsPagination
           defaultCurrentPage={pagination.pageIndex + 1}

@@ -6,8 +6,30 @@ import { Row } from '@tanstack/react-table';
 import { Datagrid } from './datagrid.component';
 import { useDatagridSearchParams } from './useDatagridSearchParams';
 import { useColumnFilters } from '../filters';
-import { columns as clm, columnsFilters, Item } from './datagrid.mock';
+import { columns as clm, columnsFilters } from './datagrid.mock';
 import DataGridTextCell from './text-cell.component';
+
+interface Item {
+  label: string;
+  price: number;
+}
+
+const columns = [
+  {
+    id: 'label',
+    cell: ({ row }: any) => (
+      <DataGridTextCell>{row.original.label}</DataGridTextCell>
+    ),
+    label: 'Label',
+  },
+  {
+    id: 'price',
+    cell: ({ row }: any) => (
+      <DataGridTextCell>{row.original.price} €</DataGridTextCell>
+    ),
+    label: 'Price',
+  },
+];
 
 function sortItems(
   itemList: Item[],

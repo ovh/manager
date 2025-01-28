@@ -7,11 +7,7 @@ import { withRouter } from 'storybook-addon-react-router-v6';
 import { useSearchParams } from 'react-router-dom';
 import { Datagrid } from './datagrid.component';
 import { useColumnFilters } from '../filters';
-import {
-  columns,
-  columnsFilters,
-  columnsSearchAndFilters,
-} from './datagrid.mock';
+import { columnsFilters, columnsSearchAndFilters } from './datagrid.mock';
 import { ActionMenu } from '../navigation';
 import DataGridTextCell from './text-cell.component';
 
@@ -20,6 +16,45 @@ interface Item {
   price: number;
   actions: React.ReactElement;
 }
+
+const columns = [
+  {
+    id: 'label',
+    cell: ({ row }: any) => (
+      <div
+        style={{
+          paddingLeft: `${row.depth * 4}rem`,
+        }}
+      >
+        <span className="mr-[10px]">
+          {row.getCanExpand() && (
+            <OdsButton
+              variant={ODS_BUTTON_VARIANT.ghost}
+              icon={
+                row.getIsExpanded()
+                  ? ODS_ICON_NAME.chevronDown
+                  : ODS_ICON_NAME.chevronRight
+              }
+              onClick={row.getToggleExpandedHandler()}
+              label=""
+            />
+          )}
+        </span>
+        <span>
+          <DataGridTextCell>{row.original.label}</DataGridTextCell>
+        </span>
+      </div>
+    ),
+    label: 'Label',
+  },
+  {
+    id: 'price',
+    cell: ({ row }) => (
+      <DataGridTextCell>{row.original.price} €</DataGridTextCell>
+    ),
+    label: 'Price',
+  },
+];
 
 const DatagridStory = (args) => {
   const [sorting, setSorting] = useState<ColumnSort>();
@@ -233,6 +268,25 @@ WithSubComponent.args = {
   renderSubComponent: (row) => (
     <DataGridTextCell>{JSON.stringify(row.original)}</DataGridTextCell>
   ),
+};
+
+const subRows = [...Array(8).keys()].map((_, index) => ({
+  label: `Service #${index}`,
+  price: Math.floor(1 + Math.random() * 100),
+}));
+
+console.info('subRows : ', subRows);
+
+export const Expanded = DatagridStory.bind({});
+
+Expanded.args = {
+  columns,
+  items: [...Array(8).keys()].map((_, i) => ({
+    label: `Service #${i}`,
+    price: Math.floor(1 + Math.random() * 100),
+    subRows: subRows,
+  })),
+  isSortable: true,
 };
 
 export default {
