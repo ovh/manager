@@ -6,12 +6,19 @@ import {
   initI18n,
 } from '@ovh-ux/manager-react-shell-client';
 import App from './App';
+import { LoadingIndicatorProvider } from './contexts/LoadingIndicator.context';
 import '@ovhcloud/ods-theme-blue-jeans/dist/index.css';
-import './index.scss';
 import './vite-hmr';
 import '@ovh-ux/manager-pci-common/dist/style.css';
 
-import { UNIVERSE, SUB_UNIVERSE, APP_NAME, LEVEL2 } from './tracking.constant';
+import './index.scss';
+
+import {
+  UNIVERSE,
+  SUB_UNIVERSE,
+  APP_NAME,
+  LEVEL2,
+} from './configuration/pci.constant';
 
 const trackingContext = {
   chapter1: UNIVERSE,
@@ -40,10 +47,12 @@ const init = async (appName: string) => {
     // nothing to do
   }
 
-  ReactDOM.createRoot(document.getElementById('root')!).render(
+  ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
       <ShellContext.Provider value={context}>
-        <App />
+        <LoadingIndicatorProvider>
+          <App />
+        </LoadingIndicatorProvider>
       </ShellContext.Provider>
     </React.StrictMode>,
   );

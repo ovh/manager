@@ -1,6 +1,7 @@
 {
   "title": "Ulepsz aplikacje za pomocą AI Endpoints",
   "description": "Dzięki naszej prostej w obsłudze platformie deweloperzy o różnym poziomie umiejętności mogą ulepszać aplikacje za pomocą najnowocześniejszych interfejsów API AI — nie jest wymagana specjalistyczna wiedza w zakresie AI.",
+  "more": "Więcej informacji",
   "descriptionBis": "Obsługa API nie wymaga <strong>specjalistycznej wiedzy z zakresu AI</strong>, ponieważ bezserwerowa platforma umożliwia dostęp <strong>do zaawansowanych modeli AI</strong>, w tym modeli językowych (LLM), przetwarzania języka naturalnego, tłumaczenia, rozpoznawania mowy, rozpoznawania obrazów i wielu innych. Deweloperzy mogą wybierać spośród wielu modeli, w szczególności opcje <strong>open source, takie jak Mistral AI, Llama i Stable Diffusion</strong>.",
   "goToAiEndpoint": "AI Endpoints",
   "guideCategory": "Przewodnik",
