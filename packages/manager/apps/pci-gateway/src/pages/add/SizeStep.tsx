@@ -5,6 +5,7 @@ import {
   StepComponent,
   TilesInputComponent,
   useCatalogPrice,
+  convertHourlyPriceToMonthly,
 } from '@ovh-ux/manager-react-components';
 import {
   ODS_THEME_COLOR_INTENT,
@@ -101,32 +102,42 @@ export const SizeStep = (): JSX.Element => {
           <div className="grid grid-cols-1 gap-2 text-left text w-full">
             <div className="">
               <OsdsText
-                level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+                level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
+                size={ODS_THEME_TYPOGRAPHY_SIZE._200}
                 color={ODS_THEME_COLOR_INTENT.text}
               >
                 {item.label}
               </OsdsText>
             </div>
-            <hr className="w-full border-solid border-0 border-b border-b-[#85d9fd]" />
-            <div className="text-sm">
+            <div className="text-sm font-normal">
               <OsdsText
-                level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+                level={ODS_THEME_TYPOGRAPHY_LEVEL.caption}
                 size={ODS_THEME_TYPOGRAPHY_SIZE._200}
                 color={ODS_THEME_COLOR_INTENT.text}
               >
                 {item.bandwidthLabel}
               </OsdsText>
             </div>
-            <div className="text-sm mt-4">
+            <hr className="w-full border-solid border-0 border-b border-[--ods-color-blue-200]" />
+            <div className="text-sm mt-4 text-center">
+              <OsdsText
+                level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+                size={ODS_THEME_TYPOGRAPHY_SIZE._200}
+                color={ODS_THEME_COLOR_INTENT.text}
+              >
+                {getFormattedHourlyCatalogPrice(item.hourlyPrice)}
+              </OsdsText>
+            </div>
+            <div className="text-sm text-center font-normal">
               <OsdsText
                 level={ODS_THEME_TYPOGRAPHY_LEVEL.caption}
                 size={ODS_THEME_TYPOGRAPHY_SIZE._200}
                 color={ODS_THEME_COLOR_INTENT.text}
               >
-                {getFormattedHourlyCatalogPrice(item.hourlyPrice)} (
-                {getFormattedMonthlyCatalogPrice(item.monthlyPrice)})
-                <span>*</span>
+                ~{' '}
+                {getFormattedMonthlyCatalogPrice(
+                  convertHourlyPriceToMonthly(item.hourlyPrice),
+                )}
               </OsdsText>
             </div>
           </div>
