@@ -16,9 +16,22 @@ export type DashboardLayoutProps = {
 };
 
 export default function DashboardPage() {
+  const [panel, setActivePanel] = useState('');
+  const location = useLocation();
+  const navigate = useNavigate();
   const { t } = useTranslation('dashboard');
 
   const tabsList: DashboardTabItemProps[] = [];
+
+  useEffect(() => {
+    const activeTab = tabsList.find((tab) => tab.to === location.pathname);
+    if (activeTab) {
+      setActivePanel(activeTab.name);
+    } else {
+      setActivePanel(tabsList[0].name);
+      navigate(`${tabsList[0].to}`);
+    }
+  }, [location.pathname]);
 
   const header = {
     title: t('title'),
@@ -29,16 +42,16 @@ export default function DashboardPage() {
       header={header}
       description="Description du web-ongoing-operations"
       tabs={
-        <OdsTabs>
-          {tabsList?.length > 0 &&
-            tabsList.map((tab: DashboardTabItemProps) => (
-              <OdsTab key={`osds-tab-bar-item-${tab.name}`}>
-                <NavLink to={tab.to} className="no-underline">
-                  {tab.title}
-                </NavLink>
-              </OdsTab>
-            ))}
-        </OdsTabs>
+  <OdsTabs>
+    {tabsList?.length > 0 &&
+      tabsList.map((tab: DashboardTabItemProps) => (
+        <OdsTab key={`osds-tab-bar-item-${tab.name}`}>
+          <NavLink to={tab.to} className="no-underline">
+            {tab.title}
+          </NavLink>
+        </OdsTab>
+      ))}
+  </OdsTabs>
       }
     >
       <Outlet />
