@@ -46,6 +46,14 @@ describe('isValidDomain test suite', () => {
     ['dashend-.com', false],
     ['double..dot.com', false],
     ['example.123', false],
+    [
+      '64caracterssubdomain-zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz.com',
+      false,
+    ],
+    [
+      '254caractersdomain-zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz.63caracterssubdomain-zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz.63caracterssubdomain-zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz.60caracterssubdomain-zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz.com',
+      false,
+    ],
   ])('should evaluate validity of domain %s as: %s', (input, expected) => {
     expect(isValidDomain(input)).toBe(expected);
   });

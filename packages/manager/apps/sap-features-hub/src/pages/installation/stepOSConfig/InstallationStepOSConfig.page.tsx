@@ -10,6 +10,7 @@ import { TextField } from '@/components/Form/TextField.component';
 import { getOSConfigFormData } from '@/utils/formStepData';
 import FormLayout from '@/components/Form/FormLayout.component';
 import {
+  OS_DOMAIN_MAX_LENGTH,
   OS_LICENCE_MAX_LENGTH,
   OS_LICENCE_MIN_LENGTH,
   OS_LICENSE_PATTERN,
@@ -71,7 +72,7 @@ export default function InstallationStepOSConfig() {
         error={values.domainName && errors.domainName}
         placeholder="mydomain.local"
         helperText={t('os_config_helper_domain')}
-        validator={{ isRequired: true }}
+        validator={{ isRequired: true, maxlength: OS_DOMAIN_MAX_LENGTH }}
       />
       <TextField
         name="osLicense"

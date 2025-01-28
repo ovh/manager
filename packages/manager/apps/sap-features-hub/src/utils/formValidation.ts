@@ -14,7 +14,9 @@ export const isValidUrl = (value: string) => {
 };
 
 export const isValidDomain = (value: string) => {
-  return /^((?!-)[A-Za-z0-9-]{1,63}(?<!-)\.)+[A-Za-z]{2,63}$/.test(value);
+  return /^(?=^.{4,253}$)((?!-)[A-Za-z0-9-]{1,63}(?<!-)\.)+[A-Za-z]{2,63}$/.test(
+    value,
+  );
 };
 
 export const isValidSapPassword = (password: string): boolean => {
