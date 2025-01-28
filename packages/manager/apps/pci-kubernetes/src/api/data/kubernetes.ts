@@ -19,20 +19,26 @@ export const getAllKube = async (projectId: string): Promise<TKube[]> => {
   return data;
 };
 
+export interface NodePool {
+  name: string;
+  antiAffinity: boolean;
+  autoscale: boolean;
+  desiredNodes: number;
+  minNodes: number;
+  localisation: string; // will change with 3AZ
+  flavorName: string;
+  maxNodes: number;
+  monthlyBilled: boolean;
+}
+
+export type NodePoolPrice = NodePool & { monthlyPrice: number };
+
 export interface KubeClusterCreationParams {
   name: string;
   region: string;
   version: string;
   updatePolicy: string;
-  nodepool: {
-    antiAffinity: boolean;
-    autoscale: boolean;
-    desiredNodes: number;
-    maxNodes?: number;
-    minNodes?: number;
-    flavorName: string;
-    monthlyBilled: boolean;
-  };
+  nodepool?: NodePool[];
   privateNetworkId: string;
   nodesSubnetId?: string;
   loadBalancersSubnetId?: string;

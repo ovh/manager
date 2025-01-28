@@ -21,7 +21,7 @@ import { useGetCloudSchema } from '@/api/hooks/useCloud';
 
 export interface VersionSelectorProps {
   onSelectVersion: (version: string) => void;
-  versionSelected: string;
+  versionSelected: string | null;
 }
 
 export function VersionSelector({

@@ -7,7 +7,7 @@
   "kubernetes_add_version_title": "Seleccione la versión menor de Kubernetes que desee",
   "kubernetes_add_name_title": "Asigne un nombre a su cluster",
   "kubernetes_add_name": "Nombre",
-  "kubernetes_add_billing_type_description": "Este modo de facturación se aplicará a todos los nodos futuros del pool. Más adelante podrá modificar la facturación de cada uno de sus nodos pasando de la modalidad por horas a la mensual.",
+  "kubernetes_add_billing_type_description": "Todos los nodos futuros de este pool de nodos estarán sujetos a este modo de facturación. Más adelante podrá pasar cada uno de sus nodos individualmente de la facturación por horas a la facturación mensual.",
   "kubernetes_add_billing_type_payment_method": "El importe se cargará en su forma de pago por defecto.",
   "kubernetes_add_billing_anti_affinity_title": "Facturación y antiafinidad",
   "kubernetes_add_region_info": "La región seleccionada todavía no está activa en su proyecto. Esta adición tardará unos segundos y no afectará a la facturación.",
@@ -38,12 +38,14 @@
   "kube_add_billing_auto_scaling_monthly_warning": "Atención: Puede activar simultáneamente el autoscaling y la tarificación mensual para este pool de nodos. Al crear un nodo a través de la funcionalidad de autoscaling, este se facturará de forma inmediata teniendo en cuenta la parte proporcional correspondiente al tiempo restante del mes en curso. Le recomendamos que evite esta combinación si prevé que el tamaño de su pool de nodos se reduzca con frecuencia.",
   "kube_add_node_pool_name_input_pattern_validation_error": "El nombre debe contener al menos dos caracteres, comenzar por un carácter alfabético y terminar por un carácter alfanumérico. Los únicos caracteres especiales permitidos son el guion y la barra baja.",
   "kube_add_billing_anti_affinity_coming_soon_message_title": "Precios mensuales",
-  "kube_add_billing_anti_affinity_coming_soon_message_description": "Los precios mensuales estarán disponibles próximamente con la llegada de los Saving Plans.",
+  "kube_add_billing_anti_affinity_coming_soon_message_description": "Los precios mensuales pronto estarán disponibles con la llegada de los Saving Planes.",
   "kubernetes_add_version_and_upgrade_policy_title": "Seleccione la versión menor de Kubernetes y la política de seguridad que desee",
   "kube_update_policy_picker_documentation_text": "Más información sobre las políticas de seguridad de Managed Kubernetes Service.",
   "kube_update_policy_picker_documentation_link": "Consulte la documentación",
   "kubernetes_add_update_policy_title": "Seleccione la política de seguridad",
   "kubernetes_select_version_title": "Seleccione una versión",
   "kubernetes_add_billing_savings_plan_banner": "Disfrute de tarifas mensuales más económicas gracias a los Savings Plans, manteniendo la flexibilidad de las instancias por horas.",
-  "kubernetes_add_billing_savings_plan_cta": "Configure sus Savings Plans"
+  "kubernetes_add_billing_savings_plan_cta": "Configure sus Savings Plans",
+  "kubernetes_add_name_placeholder": "Nombre del cluster",
+  "kubernetes_add_nodepool_name_placeholder": "Nombre del pool de nodos"
 }
