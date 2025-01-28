@@ -1,14 +1,11 @@
-import { CommonTitle, Description } from '@ovh-ux/manager-react-components';
-import {
-  OsdsDatepicker,
-  OsdsFormField,
-  OsdsSelect,
-  OsdsSelectOption,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_TEXT_LEVEL } from '@ovhcloud/ods-components';
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import {
+  OdsDatepicker,
+  OdsFormField,
+  OdsSelect,
+  OdsText,
+} from '@ovhcloud/ods-components/react';
+import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import { VALIDITY_PERIOD_PRESET } from '../CreateGeneralInformations.constants';
 import { ValidityPeriodErrorsType } from '@/utils/credential/validateValidityDate';
@@ -51,7 +48,6 @@ const CreateGeneralInformationsValidity = ({
         return t(
           'key_management_service_credential_update_validity_error_max_period',
         );
-
       default:
         return null;
     }
@@ -67,57 +63,57 @@ const CreateGeneralInformationsValidity = ({
   }, [validityPresetPeriod, validityDatepicker]);
 
   return (
-    <div className="flex flex-col gap-5 md:gap-6">
-      <CommonTitle>
-        {t(
-          'key_management_service_credential_create_general_information_validity_title',
-        )}
-      </CommonTitle>
-      <Description>
-        {t(
-          'key_management_service_credential_create_general_information_validity_subtitle',
-        )}
-      </Description>
-      <OsdsSelect
-        value={validityPresetPeriod}
-        onOdsValueChange={(v) => {
-          return setValidityPresetPeriod(Number(v.detail.value));
-        }}
-      >
-        {VALIDITY_PERIOD_PRESET.map((validityEntry) => (
-          <OsdsSelectOption value={validityEntry.days} key={validityEntry.days}>
-            {t(validityEntry.label)}
-          </OsdsSelectOption>
-        ))}
-      </OsdsSelect>
+    <>
+      <OdsFormField>
+        <div slot="label">
+          <OdsText className="block" preset={ODS_TEXT_PRESET.heading5}>
+            {t(
+              'key_management_service_credential_create_general_information_validity_title',
+            )}
+          </OdsText>
+          <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+            {t(
+              'key_management_service_credential_create_general_information_validity_subtitle',
+            )}
+          </OdsText>
+        </div>
+        <OdsSelect
+          name="validityPeriod"
+          onOdsChange={(v) => setValidityPresetPeriod(Number(v.detail.value))}
+          defaultValue={validityPresetPeriod.toString()}
+        >
+          {VALIDITY_PERIOD_PRESET.map((validityEntry) => (
+            <option value={validityEntry.days} key={validityEntry.days}>
+              {t(validityEntry.label)}
+            </option>
+          ))}
+        </OdsSelect>
+      </OdsFormField>
       {validityPresetPeriod === -1 && (
-        <OsdsFormField error={getValidityErrorMessage(credentialValidityError)}>
-          <OsdsDatepicker
-            error={!!credentialValidityError || undefined}
-            value={validityDatepicker}
-            onOdsDatepickerValueChange={(v) => {
-              setValidityDatepicker(v.detail.value);
-            }}
-            maxDate={addDaysToDate(365)}
-            minDate={addDaysToDate(1)}
-          ></OsdsDatepicker>
-          <OsdsText slot="label" color={ODS_THEME_COLOR_INTENT.text}>
+        <OdsFormField error={getValidityErrorMessage(credentialValidityError)}>
+          <OdsText slot="label" preset={ODS_TEXT_PRESET.heading5}>
             {t(
               'key_management_service_credential_create_validity_custom_date_label',
             )}
-          </OsdsText>
-          <OsdsText
-            level={ODS_TEXT_LEVEL.body}
-            color={ODS_THEME_COLOR_INTENT.text}
-            slot="helper"
-          >
+          </OdsText>
+          <OdsDatepicker
+            name="credentialValidity"
+            hasError={!!credentialValidityError}
+            value={validityDatepicker}
+            onOdsChange={(v) => {
+              setValidityDatepicker(v.detail.value);
+            }}
+            max={addDaysToDate(365)}
+            min={addDaysToDate(1)}
+          />
+          <OdsText slot="visual-hint" preset={ODS_TEXT_PRESET.span}>
             {t(
               'key_management_service_credential_update_validity_error_max_period',
             )}
-          </OsdsText>
-        </OsdsFormField>
+          </OdsText>
+        </OdsFormField>
       )}
-    </div>
+    </>
   );
 };
 

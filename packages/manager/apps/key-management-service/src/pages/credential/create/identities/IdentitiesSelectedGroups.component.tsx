@@ -56,7 +56,7 @@ const IdentitiesSelectedGroups = ({
       datagridColumns={columns}
       items={groupList}
       identityURNs={identityURNs}
-    ></IdentitiesSelectedBase>
+    />
   );
 };
 

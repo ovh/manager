@@ -17,10 +17,7 @@ export const getReferenceMock = ({
             message: 'serviceKeys error',
           },
         }
-      : () => {
-          console.log(referenceServiceKeyMock);
-          return referenceServiceKeyMock;
-        },
+      : () => referenceServiceKeyMock,
     status: isReferenceKO ? 500 : 200,
     api: 'v2',
   },

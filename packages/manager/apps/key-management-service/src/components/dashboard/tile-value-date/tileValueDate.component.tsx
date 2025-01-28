@@ -1,6 +1,7 @@
 import React from 'react';
+import { OdsText } from '@ovhcloud/ods-components/react';
+import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { useFormattedDate } from '@/hooks/useFormattedDate';
-import { TileValue } from '../tile-value/tileValue.component';
 
 type FormattedDateProps = {
   value: string;
@@ -18,5 +19,5 @@ export const TileValueDate: React.FC<FormattedDateProps> = ({
     options,
   });
 
-  return <TileValue value={formattedDate} />;
+  return <OdsText preset={ODS_TEXT_PRESET.span}>{formattedDate}</OdsText>;
 };

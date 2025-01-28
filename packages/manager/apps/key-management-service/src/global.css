@@ -1,1 +1,5 @@
 @tailwind utilities;
+
+html {
+  font-family: var(--ods-font-family-default);
+}
