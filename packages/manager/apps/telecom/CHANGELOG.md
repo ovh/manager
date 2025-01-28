@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.2.2...@ovh-ux/manager-telecom@16.2.3) (2025-01-28)
+
+
+### Bug Fixes
+
+* **telecom:** error prevent display delete modal ([#15053](https://github.com/ovh/manager/issues/15053)) ([0ad1cd9](https://github.com/ovh/manager/commit/0ad1cd9c660497dda223fe19dfc17979186c337f))
+
+
+
+
+
 ## [16.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.2.1...@ovh-ux/manager-telecom@16.2.2) (2025-01-23)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom

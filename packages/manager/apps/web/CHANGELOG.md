@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.3.10...@ovh-ux/manager-web@19.4.0) (2025-01-28)
+
+
+### Bug Fixes
+
+* **domain:** update onboarding translation text ([#14903](https://github.com/ovh/manager/issues/14903)) ([e5d15e9](https://github.com/ovh/manager/commit/e5d15e91802f127558ab20a5cdccc0c929632c04))
+
+
+### Features
+
+* **web.domain:** eligibility rules project ([#14608](https://github.com/ovh/manager/issues/14608)) ([39523e1](https://github.com/ovh/manager/commit/39523e13b3f8bf1853ee2447960e4f5bd4326ca2))
+* **web:** add startsql order ([#14636](https://github.com/ovh/manager/issues/14636)) ([bda6ae4](https://github.com/ovh/manager/commit/bda6ae4c6790ea090e83546858e51561f039a4c2))
+
+
+
+
+
 ## [19.3.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.3.9...@ovh-ux/manager-web@19.3.10) (2025-01-23)
 
 **Note:** Version bump only for package @ovh-ux/manager-web
