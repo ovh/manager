@@ -36,13 +36,13 @@ export function useClusterCreationStepper() {
     antiAffinity: false,
   });
 
+  const clusterNameStep = useStep({ isOpen: true });
   const locationStep = useStep();
   const versionStep = useStep();
   const networkStep = useStep();
   const nodeTypeStep = useStep();
   const nodeSizeStep = useStep();
   const billingStep = useStep();
-  const clusterNameStep = useStep({ isOpen: true });
 
   return {
     form,
