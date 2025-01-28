@@ -1,6 +1,7 @@
 {
   "title": "Improve your applications with AI Endpoints",
   "description": "Designed for simplicity, our platform allows developers of any skill level to enhance their applications with cutting-edge AI APIs—no AI expertise required.",
+  "more": "Find out more",
   "descriptionBis": "<strong>No AI expertise</strong> or dedicated infrastructure is needed to use these APIs. They run on a serverless platform that provides access <strong>to advanced AI models</strong>, including language models (LLM), natural language processing, translation, voice recognition, image recognition, and much more. Developers can choose from a range of models, particularly <strong>open-source options like Mistral AI, Llama and Stable Diffusion.</strong>.",
   "goToAiEndpoint": "AI Endpoints",
   "guideCategory": "Guide",
