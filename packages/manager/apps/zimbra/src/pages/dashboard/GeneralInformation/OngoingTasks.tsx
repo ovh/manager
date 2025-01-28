@@ -32,14 +32,16 @@ export const OngoingTasks: React.FC = () => {
   }, [loadMore, data]);
 
   return (
-    <div className="flex flex-col">
-      <ul data-testid="ongoingtasks" className="pl-9 flex flex-col gap-3">
-        {tasks?.map((task) => (
-          <li key={task.id}>
-            <OdsText preset={ODS_TEXT_PRESET.span}>{task.message}</OdsText>
-          </li>
-        ))}
-      </ul>
+    <div className="flex flex-col" data-testid="ongoingtasks">
+      {tasks?.length ? (
+        <ul className="pl-9 flex flex-col gap-3">
+          {tasks?.map((task) => (
+            <li key={task.id}>
+              <OdsText preset={ODS_TEXT_PRESET.span}>{task.message}</OdsText>
+            </li>
+          ))}
+        </ul>
+      ) : null}
       {ongoingTasks?.length > defaultNumberToShow && (
         <OdsLink
           className="mt-5 ml-9"
