@@ -6015,6 +6015,11 @@
   dependencies:
     "@ovhcloud/ods-common-theming" "17.2.2"
 
+"@ovhcloud/ods-themes@^18.3.0", "@ovhcloud/ods-themes@^18.5.0":
+  version "18.5.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-18.5.0.tgz#0da59e081ee1db44dadf5c3a63e49f73fc280ea3"
+  integrity sha512-PAwRtQOYQ1mVVP1RMt2J65NMf7tRbk+jDEf46jUWwRsS2gFuzNrwH3pfgKk4G/nksZ5exTKNL0MeC/fLLVr4Wg==
+
 "@ovhcloud/ods-themes@^18.4.1":
   version "18.4.1"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-18.4.1.tgz#1c8dfeff1ba0b829fd61e8dea41af4cdbed46912"
