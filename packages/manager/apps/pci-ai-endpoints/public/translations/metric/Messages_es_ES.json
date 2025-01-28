@@ -1,0 +1,9 @@
+{
+  "allModel": "Todos",
+  "metrics": "Métricas",
+  "total": "Total",
+  "totalAudio": "Duración Total De Audio (Segundos)",
+  "noData": "No hay datos disponibles para el período seleccionado",
+  "loading": "Por favor espera, estamos recopilando tus datos.",
+  "error": "Error al cargar las métricas. Por favor, vuelva a intentarlo más tarde"
+}

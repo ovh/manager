@@ -18,4 +18,11 @@ export default {
       '**/*.{js,jsx,ts,tsx}',
     ),
   ],
+  theme: {
+    extend: {
+      screens: {
+        customTabs: '470px',
+      },
+    },
+  },
 };
