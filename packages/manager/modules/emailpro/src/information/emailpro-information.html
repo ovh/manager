@@ -338,7 +338,7 @@
                                     rel="noopener"
                                 >
                                     <span
-                                        data-ng-bind="'https://' + exchange.webUrl"
+                                        data-ng-bind="exchange.isZimbra ? $ctrl.EMAIL_TYPE.ZIMBRA : $ctrl.EMAIL_TYPE.OWA"
                                     ></span>
                                     <span
                                         class="oui-icon oui-icon-external-link"

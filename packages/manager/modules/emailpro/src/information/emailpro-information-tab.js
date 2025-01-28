@@ -1,6 +1,7 @@
 import filter from 'lodash/filter';
 import get from 'lodash/get';
 import set from 'lodash/set';
+import { EMAIL_TYPE } from './emailpro-information-tab.constant';
 
 export default class EmailProTabInformationCtrl {
   /* @ngInject */
@@ -26,6 +27,7 @@ export default class EmailProTabInformationCtrl {
     this.EmailPro = EmailPro;
     this.EmailProMXPlanMailingLists = EmailProMXPlanMailingLists;
     this.WucEmails = WucEmails;
+    this.EMAIL_TYPE = EMAIL_TYPE;
   }
 
   $onInit() {
