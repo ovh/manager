@@ -6,7 +6,7 @@ import {
   Notifications,
 } from '@ovh-ux/manager-react-components';
 import { Translation, useTranslation } from 'react-i18next';
-import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
+import { OsdsBreadcrumb, OsdsText } from '@ovhcloud/ods-components/react';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useHref, useNavigate, useParams } from 'react-router-dom';
 import {
@@ -14,6 +14,11 @@ import {
   PciDiscoveryBanner,
   useProject,
 } from '@ovh-ux/manager-pci-common';
+import {
+  ODS_THEME_COLOR_INTENT,
+  ODS_THEME_TYPOGRAPHY_LEVEL,
+  ODS_THEME_TYPOGRAPHY_SIZE,
+} from '@ovhcloud/ods-common-theming';
 import HidePreloader from '@/core/HidePreloader';
 import { VolumeTypeStep } from './components/VolumeTypeStep.component';
 import { CapacityStep } from './components/CapacityStep.component';
@@ -136,6 +141,15 @@ export default function NewPage(): JSX.Element {
             label: tStepper('common_stepper_modify_this_step'),
             isDisabled: stepper.validation.step.isLocked,
           }}
+          subtitle={
+            <OsdsText
+              level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+              size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+              color={ODS_THEME_COLOR_INTENT.text}
+            >
+              {tAdd('pci_projects_project_storages_blocks_add_type_subtitle')}
+            </OsdsText>
+          }
         >
           <VolumeTypeStep
             projectId={projectId}
@@ -156,6 +170,17 @@ export default function NewPage(): JSX.Element {
               label: tStepper('common_stepper_modify_this_step'),
               isDisabled: stepper.validation.step.isLocked,
             }}
+            subtitle={
+              <OsdsText
+                level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+                size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+                color={ODS_THEME_COLOR_INTENT.text}
+              >
+                {tAdd(
+                  'pci_projects_project_storages_blocks_add_availability_zone_subtitle',
+                )}
+              </OsdsText>
+            }
           >
             {!!stepper.form.region?.name && (
               <AvailabilityZoneStep
