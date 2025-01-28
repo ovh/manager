@@ -86,7 +86,15 @@ export function RegionSelector({
                 regions={microRegions}
                 selectedRegion={selectedMicroRegion}
                 onClick={selectMicroRegion}
-                render={(region: TLocalisation) => region.name}
+                render={(region: TLocalisation, isSelected) => (
+                  <OsdsText
+                    color={ODS_THEME_COLOR_INTENT.text}
+                    level={ODS_TEXT_LEVEL.body}
+                    size={isSelected ? ODS_TEXT_SIZE._500 : ODS_TEXT_SIZE._400}
+                  >
+                    {region.name}
+                  </OsdsText>
+                )}
               />
             </>
           )}
