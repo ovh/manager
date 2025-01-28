@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Outlet, NavLink, useLocation, useNavigate } from 'react-router-dom';
+import {
+  Outlet,
+  NavLink,
+  useLocation,
+  useNavigate,
+  useResolvedPath,
+} from 'react-router-dom';
 import { OdsTabs, OdsTab } from '@ovhcloud/ods-components/react';
 
-import { Breadcrumb, BaseLayout } from '@ovh-ux/manager-react-components';
-
-import appConfig from '@/web-ongoing-operations.config';
+import { BaseLayout, GuideButton } from '@ovh-ux/manager-react-components';
 
 export type DashboardTabItemProps = {
   name: string;
@@ -18,12 +22,18 @@ export type DashboardLayoutProps = {
 };
 
 export default function DashboardPage() {
-  const [panel, setActivePanel] = useState('');
+  const [activePanel, setActivePanel] = useState<string>('');
   const location = useLocation();
   const navigate = useNavigate();
   const { t } = useTranslation('dashboard');
 
-  const tabsList: DashboardTabItemProps[] = [];
+  const tabsList: DashboardTabItemProps[] = [
+    {
+      name: 'domain',
+      title: t('domain_operations_table_header_domain'),
+      to: useResolvedPath('domain').pathname,
+    },
+  ];
 
   useEffect(() => {
     const activeTab = tabsList.find((tab) => tab.to === location.pathname);
@@ -41,18 +51,36 @@ export default function DashboardPage() {
 
   return (
     <BaseLayout
-      breadcrumb={
-        <Breadcrumb
-          rootLabel={appConfig.rootLabel}
-          appName="web-ongoing-operations"
-        />
-      }
-      header={header}
-      description="Description du web-ongoing-operations"
+      header={{
+        headerButton: (
+          <GuideButton
+            items={[
+              {
+                href: 'https://www.ovh.com',
+                id: 1,
+                label: 'ovh.com',
+                target: '_blank',
+              },
+              {
+                href:
+                  'https://help.ovhcloud.com/csm/fr-documentation?id=kb_home',
+                id: 2,
+                label: 'Guides OVH',
+                target: '_blank',
+              },
+            ]}
+          />
+        ),
+        title: t('domain_operations_dashboard_title'),
+      }}
+      description={t('domain_operations_dashboard_info')}
       tabs={
         <OdsTabs>
           {tabsList.map((tab: DashboardTabItemProps) => (
-            <OdsTab key={`osds-tab-bar-item-${tab.name}`}>
+            <OdsTab
+              key={`osds-tab-bar-item-${tab.name}`}
+              isSelected={activePanel === tab.name}
+            >
               <NavLink to={tab.to} className="no-underline">
                 {tab.title}
               </NavLink>
