@@ -1,4 +1,2 @@
-export const isSnapshotConsumption = (
-  code: string | null | undefined,
-): boolean =>
-  typeof code === 'string' && code.startsWith('snapshot.consumption');
+export const isSnapshotConsumption = (code: string): boolean =>
+  code.startsWith('snapshot.consumption');

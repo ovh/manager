@@ -15,14 +15,4 @@ describe('isSnapshotConsumption', () => {
     const result = isSnapshotConsumption('');
     expect(result).toBe(false);
   });
-
-  it('should return false for null input', () => {
-    const result = isSnapshotConsumption(null);
-    expect(result).toBe(false);
-  });
-
-  it('should return false for undefined input', () => {
-    const result = isSnapshotConsumption(undefined);
-    expect(result).toBe(false);
-  });
 });
