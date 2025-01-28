@@ -89,44 +89,65 @@ describe('RegionSelector component', () => {
   });
 
   it('does not break if there is no region at all', () => {
-    const { getByText } = render(
+    const { asFragment } = render(
       <RegionSelector regionList={[]} setSelectedRegion={vi.fn()} />,
     );
 
-    expect(getByText('region-selector-all-locations')).toBeInTheDocument();
+    expect(asFragment()).toMatchSnapshot();
+  });
+
+  it('hide all filters if there is only one kind of available region', () => {
+    const { queryByText, container } = render(
+      <RegionSelector
+        regionList={['eu-west-par', 'eu-west-gra', 'eu-west-rbx']}
+        setSelectedRegion={vi.fn()}
+      />,
+    );
+
+    expect(container.querySelectorAll('ods-card')).toHaveLength(3);
+    expect(queryByText('region-selector-eu-filter')).not.toBeInTheDocument();
+    expect(queryByText('region-selector-ca-filter')).not.toBeInTheDocument();
+    expect(queryByText('region-selector-us-filter')).not.toBeInTheDocument();
+    expect(
+      queryByText('region-selector-all-locations'),
+    ).not.toBeInTheDocument();
   });
 
   it.each([
     {
-      list: ['us-west-lz-lax', 'us-east-lz-chi', 'us-east-lz-nyc'],
-      disabledFilters: ['eu', 'ca'],
+      list: [
+        'us-west-lz-lax',
+        'us-east-lz-chi',
+        'us-east-lz-nyc',
+        'eu-west-rbx',
+      ],
+      missingFilters: ['ca'],
     },
     {
-      list: ['eu-west-par', 'eu-west-gra', 'eu-west-rbx'],
-      disabledFilters: ['us', 'ca'],
+      list: ['eu-west-par', 'eu-west-gra', 'eu-west-rbx', 'ca-east-tor'],
+      missingFilters: ['us'],
     },
     {
       list: [
-        'eu-west-par',
-        'eu-west-gra',
-        'eu-west-rbx',
+        'us-west-lz-lax',
+        'us-east-lz-chi',
+        'us-east-lz-nyc',
         'ca-east-tor',
         'ap-south-mum',
       ],
-      disabledFilters: ['us'],
+      missingFilters: ['eu'],
     },
   ])(
-    'disable filters if there is no corresponding regions',
-    ({ list, disabledFilters }) => {
-      const { getByText } = render(
+    'hide filters if there is no corresponding regions',
+    ({ list, missingFilters }) => {
+      const { queryByText } = render(
         <RegionSelector regionList={list} setSelectedRegion={vi.fn()} />,
       );
 
-      disabledFilters.forEach((tab) => {
-        expect(getByText(`region-selector-${tab}-filter`)).toHaveAttribute(
-          'is-disabled',
-          'true',
-        );
+      missingFilters.forEach((tab) => {
+        expect(
+          queryByText(`region-selector-${tab}-filter`),
+        ).not.toBeInTheDocument();
       });
     },
   );
