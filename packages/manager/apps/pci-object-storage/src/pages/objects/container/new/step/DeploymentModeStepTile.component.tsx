@@ -5,16 +5,15 @@ import { useCatalog, useProductAvailability } from '@ovh-ux/manager-pci-common';
 import {
   HOUR_IN_MONTH,
   useCatalogPrice,
-  useFeatureAvailability,
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { OdsBadge, OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
 import {
-  AVAILABILITY,
   MEGA_BYTES,
   OBJECT_CONTAINER_DEPLOYMENT_MODES_LABELS,
   STORAGE_STANDARD_REGION_PLANCODE,
 } from '@/constants';
+import { useStorageFeatures } from '@/hooks/useStorageFeatures';
 
 export function DeploymentModeStepTile({ item: mode, isItemSelected }) {
   const { t } = useTranslation('containers/add');
@@ -22,9 +21,10 @@ export function DeploymentModeStepTile({ item: mode, isItemSelected }) {
   const { data: catalog, isPending: isCatalogPending } = useCatalog('cloud');
   const { getTextPrice } = useCatalogPrice();
   const {
-    data: availability,
+    is3azAvailable,
+    isLocalZoneAvailable,
     isPending: isAvailabilityPending,
-  } = useFeatureAvailability([AVAILABILITY.LOCALZONE, AVAILABILITY['3AZ']]);
+  } = useStorageFeatures();
   const {
     data: productAvailability,
     isPending: isProductAvailabilityPending,
@@ -44,8 +44,6 @@ export function DeploymentModeStepTile({ item: mode, isItemSelected }) {
     return pricings?.sort((a, b) => a.price - b.price)?.[0];
   }, [mode, plans, catalog]);
 
-  const isLocalZoneAvailable = availability?.[AVAILABILITY.LOCALZONE];
-  const is3azAvailable = availability?.[AVAILABILITY['3AZ']];
   const isPending =
     isCatalogPending || isAvailabilityPending || isProductAvailabilityPending;
 

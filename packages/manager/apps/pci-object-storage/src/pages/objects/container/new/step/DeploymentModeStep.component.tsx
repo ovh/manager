@@ -3,16 +3,19 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { StepComponent } from '@ovh-ux/manager-react-components';
 import { TileInputChoice } from '@ovh-ux/manager-pci-common';
 import { useTranslation } from 'react-i18next';
-import { OdsLink, OdsText } from '@ovhcloud/ods-components/react';
+import { OdsLink, OdsSpinner, OdsText } from '@ovhcloud/ods-components/react';
 import {
   DEPLOYMENT_MODE_LINK,
   OBJECT_CONTAINER_DEPLOYMENT_MODES,
+  OBJECT_CONTAINER_MODE_LOCAL_ZONE,
+  OBJECT_CONTAINER_MODE_MULTI_ZONES,
   STORAGE_PRICES_LINK,
 } from '@/constants';
 
 import { useColumnsCount } from '@/hooks/useColumnsCount';
 import { DeploymentModeStepTile } from './DeploymentModeStepTile.component';
 import { useContainerCreationStore } from '../useContainerCreationStore';
+import { useStorageFeatures } from '@/hooks/useStorageFeatures';
 
 export function DeploymentModeStep() {
   const { t } = useTranslation(['containers/add', 'pci-common']);
@@ -33,13 +36,29 @@ export function DeploymentModeStep() {
     DEPLOYMENT_MODE_LINK[ovhSubsidiary] || DEPLOYMENT_MODE_LINK.DEFAULT;
   const storagePricesLink =
     STORAGE_PRICES_LINK[ovhSubsidiary] || STORAGE_PRICES_LINK.DEFAULT;
+  const {
+    is3azAvailable,
+    isLocalZoneAvailable,
+    isPending,
+  } = useStorageFeatures();
 
   const items = useMemo(
     () =>
       OBJECT_CONTAINER_DEPLOYMENT_MODES.map((offer) => ({
         id: offer,
-      })),
-    [OBJECT_CONTAINER_DEPLOYMENT_MODES],
+      })).filter((item) => {
+        if (
+          item.id === OBJECT_CONTAINER_MODE_LOCAL_ZONE &&
+          !isLocalZoneAvailable
+        ) {
+          return false;
+        }
+        if (item.id === OBJECT_CONTAINER_MODE_MULTI_ZONES && !is3azAvailable) {
+          return false;
+        }
+        return true;
+      }),
+    [OBJECT_CONTAINER_DEPLOYMENT_MODES, is3azAvailable, isLocalZoneAvailable],
   );
 
   return (
@@ -79,17 +98,23 @@ export function DeploymentModeStep() {
         </OdsText>
       )}
 
-      <TileInputChoice
-        items={items}
-        columnsCount={columnsCount}
-        selectedItem={items.find(({ id }) => id === form.deploymentMode)}
-        onSelectItem={(item) => setDeploymentMode(item.id)}
-        isSubmitted={stepper.deployment.isLocked}
-      >
-        {(item, isSelected) => (
-          <DeploymentModeStepTile item={item.id} isItemSelected={isSelected} />
-        )}
-      </TileInputChoice>
+      {isPending && <OdsSpinner className="my-6" />}
+      {!isPending && (
+        <TileInputChoice
+          items={items}
+          columnsCount={columnsCount}
+          selectedItem={items.find(({ id }) => id === form.deploymentMode)}
+          onSelectItem={(item) => setDeploymentMode(item.id)}
+          isSubmitted={stepper.deployment.isLocked}
+        >
+          {(item, isSelected) => (
+            <DeploymentModeStepTile
+              item={item.id}
+              isItemSelected={isSelected}
+            />
+          )}
+        </TileInputChoice>
+      )}
 
       {!stepper.deployment.isLocked && (
         <OdsText preset="paragraph" className="mt-8 block">
