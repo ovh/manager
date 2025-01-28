@@ -20,6 +20,8 @@ export const DEFAULT_VLAN_ID = 1;
 
 export const NETWORK_ACTIVE_STATUS = 'ACTIVE';
 
+export const PLAN_ORDER = ['.s.', '.m.', '.l.', '.xl.', '.2xl.', '.3xl.'];
+
 export const VLAN_ID = {
   MIN: 0,
   MAX: 4000,
@@ -218,6 +220,7 @@ export const LOCAL_ZONE_REGION = 'localzone';
 export const ONE_AZ_REGION = 'region';
 
 export const THREE_AZ_REGION = 'region-3-az';
+export const HOURS_PER_MONTH = 730;
 
 export const LOCAL_ZONE_INFO_URL = {
   DEFAULT: 'https://ovhcloud.com/en/public-cloud/local-zone-compute/',
@@ -364,6 +367,8 @@ export default {
   LOCAL_ZONE_REGION,
   THREE_AZ_REGION,
   ONE_AZ_REGION,
+  HOURS_PER_MONTH,
+  PLAN_ORDER,
   URL_INFO,
   DISCOVERY_PROJECT_PLANCODE,
   DISCOVERY_PROMOTION_VOUCHER,

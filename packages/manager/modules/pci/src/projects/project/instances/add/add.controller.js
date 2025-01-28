@@ -21,6 +21,8 @@ import {
   DEFAULT_VLAN_ID,
   DEFAULT_CIDR,
   VLAN_ID,
+  HOURS_PER_MONTH,
+  PLAN_ORDER,
 } from '../../project.constants';
 
 import {
@@ -85,6 +87,7 @@ export default class PciInstancesAddController {
     this.FLOATING_IP_AVAILABILITY_INFO_LINK = FLOATING_IP_AVAILABILITY_INFO_LINK;
     this.LOCAL_ZONE_REGION = LOCAL_ZONE_REGION;
     this.THREE_AZ_REGION = THREE_AZ_REGION;
+    this.HOURS_PER_MONTH = HOURS_PER_MONTH;
     this.ONE_AZ_REGION = ONE_AZ_REGION;
     this.PciProject = PciProject;
     this.instancePricesLink =
@@ -231,6 +234,8 @@ export default class PciInstancesAddController {
 
     this.isAddingPrivateNetwork = false;
     this.isAddingPrivateNetworkError = false;
+
+    this.get3AZAvailability();
   }
 
   get areLocalZonesFree() {
@@ -297,12 +302,10 @@ export default class PciInstancesAddController {
       this.model.datacenter.name,
       'gateway',
     ).then((plans) => {
-      const planOrder = ['.s.', '.m.', '.l.', '.xl.', '.2xl.', '.3xl.'];
-
       // Find the smallest available plan based on predefined order
-      const smallestAvailablePlan = planOrder
-        .map((planCode) => plans.find(({ code }) => code.includes(planCode)))
-        .find((plan) => plan); // Get the first defined plan
+      const smallestAvailablePlan = PLAN_ORDER.map((planCode) =>
+        plans.find(({ code }) => code.includes(planCode)),
+      ).find((plan) => plan); // Get the first defined plan
 
       this.PciPublicGatewaysService.getSmallestGatewayInfo(
         this.user.ovhSubsidiary,
@@ -330,6 +333,18 @@ export default class PciInstancesAddController {
       id: '',
       name: this.$translate.instant(transKey),
     };
+  }
+
+  get3AZAvailability() {
+    return this.PciProjectsProjectInstanceService.getProductAvailability(
+      this.projectId,
+      this.coreConfig.getUser().ovhSubsidiary,
+      'instance',
+    ).then(({ plans }) => {
+      this.are3AzRegionsAvailable = plans.some((plan) =>
+        plan.regions.some((region) => region.type === 'region-3-az'),
+      );
+    });
   }
 
   getFilteredRegions() {
@@ -510,6 +525,7 @@ export default class PciInstancesAddController {
     if (this.instance.availabilityZone) {
       delete this.instance.availabilityZone;
     }
+    this.model.datacenter = null;
   }
 
   addRegions() {
@@ -731,6 +747,9 @@ export default class PciInstancesAddController {
   }
 
   getBackupPrice() {
+    if (this.is3AZRegion()) {
+      this.instance.planCode = 'consumption.3AZ';
+    }
     return this.PciProjectsProjectInstanceService.getSnapshotMonthlyPrice(
       this.projectId,
       this.instance,
@@ -773,8 +792,22 @@ export default class PciInstancesAddController {
       ) {
         this.automatedBackup.selected = false;
         this.automatedBackup.schedule = null;
-        return this.getBackupPrice().then((price) => {
-          this.automatedBackup.price = price;
+        this.automatedBackup.price = null;
+        this.isgGettingBackupPrice = true;
+        return this.getBackupPrice().then(({ price }) => {
+          const { value, currencyCode } = price;
+
+          this.automatedBackup.price = `~${new Intl.NumberFormat(
+            this.coreConfig.getUserLocale().replace('_', '-'),
+            {
+              style: 'currency',
+              currency: currencyCode,
+              maximumFractionDigits: 3,
+            },
+          ).format(value * this.HOURS_PER_MONTH)}`;
+
+          this.isgGettingBackupPrice = false;
+          return this.automatedBackup.price;
         });
       }
     }

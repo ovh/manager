@@ -5,36 +5,28 @@ export default class PciProjectAdditionalIpService {
   }
 
   getRegions(projectId, ovhSubsidiary, planCode, addonFamily) {
-    const params = { ovhSubsidiary };
-
-    if (planCode) {
-      params.planCode = planCode;
-    }
-
-    if (addonFamily) {
-      params.addonFamily = addonFamily;
-    }
+    const params = { ovhSubsidiary, planCode, addonFamily };
 
     return this.$http
       .get(`/cloud/project/${projectId}/capabilities/productAvailability`, {
         params,
       })
-      .then(({ data }) => {
-        const { plans } = data;
-        let matchingPlan = [];
+      .then(({ data: { plans } }) => {
+        let regions = [];
 
         if (planCode) {
-          matchingPlan = plans.find(({ code }) => code === planCode);
+          const matchingPlan = plans.find(({ code }) => code === planCode);
+          if (matchingPlan) {
+            regions = matchingPlan.regions;
+          }
         } else if (addonFamily) {
           const filteredPlans = plans.filter(({ code }) =>
             code.includes('hour'),
           );
-          matchingPlan.regions = filteredPlans.reduce((acc, plan) => {
-            return acc.concat(plan.regions);
-          }, []);
+          regions = filteredPlans.flatMap((plan) => plan.regions);
         }
 
-        return matchingPlan?.regions.map(({ name, enabled }) => ({
+        return regions.map(({ name, enabled }) => ({
           name,
           enabled,
           hasEnoughQuota: () => true,

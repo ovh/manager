@@ -567,10 +567,17 @@
                     data-translate="pci_projects_project_instances_add_automated_backup_recommended"
                 ></span>
             </oui-checkbox>
+
+            <oui-spinner
+                oui-spinner
+                data-size="s"
+                data-ng-if="$ctrl.isgGettingBackupPrice"
+            ></oui-spinner>
             <p
                 class="font-weight-bold"
+                data-ng-if="$ctrl.automatedBackup.price"
                 data-translate="pci_workflow_create_monthly_backup_price"
-                data-translate-values="{ price : $ctrl.automatedBackup.price.price.text }"
+                data-translate-values="{ price : $ctrl.automatedBackup.price }"
             ></p>
             <pci-projects-project-workflow-schedule
                 data-ng-if="$ctrl.automatedBackup.selected"
@@ -1148,7 +1155,6 @@
             data-type="warning"
             data-ng-if="($ctrl.subnetGateways.length === 0 || $ctrl.subnetGateways.length > 1) && !$ctrl.isLoadBillingStep && $ctrl.isAttachFloatingIP && !$ctrl.isAddingPrivateNetwork && !$ctrl.isAddingPrivateNetworkError"
         >
-            <!-- <oui-message data-type="warning"> -->
             <p
                 data-translate="pci_projects_project_instances_add_billing_gateway_info"
             ></p>
