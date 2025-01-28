@@ -259,7 +259,7 @@ export const Datagrid = <T,>({
       {!onFetchNextPage && items?.length > 0 && pagination ? (
         <OdsPagination
           defaultCurrentPage={pagination.pageIndex + 1}
-          className={'flex xs:justify-start md:justify-end'}
+          className="flex xs:justify-start md:justify-end my-8"
           total-items={totalItems}
           total-pages={pageCount}
           default-items-per-page={pagination.pageSize}
