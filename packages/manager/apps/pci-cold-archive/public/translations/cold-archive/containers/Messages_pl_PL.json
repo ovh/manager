@@ -1,0 +1,11 @@
+{
+  "pci_projects_project_storages_cold_archives_guides_storage-backup_title": "Przewodniki dotyczące przestrzeni dyskowej i kopii zapasowych",
+  "pci_projects_project_storages_cold_archives_guides_storage-backup_description": "Przewodniki dotyczące przestrzeni dyskowej i kopii zapasowych",
+  "pci_projects_project_storages_cold_archives_guides_public-cloud-create-project_title": "Utwórz projekt public cloud",
+  "pci_projects_project_storages_cold_archives_guides_public-cloud-create-project_description": "Utwórz projekt public cloud",
+  "pci_projects_project_storages_cold_archives_add_container_success_secret_label": "Tajny klucz:",
+  "pci_projects_project_storages_cold_archive_containers_status_restore_date": "Do {{ date }}",
+  "pci_projects_project_storages_cold_archive_containers_status_restore_date_tooltip": "Data, w jakiej przywrócone pliki zostaną usunięte z tego kontenera.",
+  "pci_projects_project_storages_cold_archive_containers_locked_until_label": "Zablokowany do",
+  "pci_projects_project_storages_cold_archive_container_action_edit_retention": "Zmień czas retencji"
+}

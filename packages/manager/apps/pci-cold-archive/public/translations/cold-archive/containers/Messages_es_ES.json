@@ -1,0 +1,11 @@
+{
+  "pci_projects_project_storages_cold_archives_guides_storage-backup_title": "Todas las guías de almacenamiento y backup",
+  "pci_projects_project_storages_cold_archives_guides_storage-backup_description": "Todas las guías de almacenamiento y backup",
+  "pci_projects_project_storages_cold_archives_guides_public-cloud-create-project_title": "Crear un proyecto Public Cloud",
+  "pci_projects_project_storages_cold_archives_guides_public-cloud-create-project_description": "Crear un proyecto Public Cloud",
+  "pci_projects_project_storages_cold_archives_add_container_success_secret_label": "Su clave secreta:",
+  "pci_projects_project_storages_cold_archive_containers_status_restore_date": "Hasta {{ date }}",
+  "pci_projects_project_storages_cold_archive_containers_status_restore_date_tooltip": "Fecha en la que los archivos restaurados se eliminarán de este contenedor.",
+  "pci_projects_project_storages_cold_archive_containers_locked_until_label": "Bloqueado hasta el",
+  "pci_projects_project_storages_cold_archive_container_action_edit_retention": "Modificar la duración de retención"
+}
