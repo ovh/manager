@@ -1,7 +1,6 @@
 {
   "common_input_container": "ID du conteneur",
   "common_helper_container": "Le nom du conteneur doit comporter entre 3 et 63 caractères, commencer et se terminer par une lettre en minuscule ou un chiffre (de a à z, de 0 à 9), et peut inclure les signes de ponctuation « . » et « - ».",
-  "common_input_endpoint": "Endpoint",
   "common_helper_endpoint": "L'endpoint doit être au format URL.",
   "common_input_access_key": "Clé d'accès",
   "common_helper_access_key": "Une clé d'accès doit être composée de 32 caractères alphanumériques.",

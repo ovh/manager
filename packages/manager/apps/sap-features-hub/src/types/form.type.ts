@@ -48,7 +48,6 @@ export type SourceForm = {
   accessKey: string;
   secretKey: string;
 };
-
 export type OSConfigForm = {
   domainName: string;
   osLicense: string;
@@ -57,6 +56,7 @@ export type OSConfigForm = {
   firewallServer: boolean;
   firewallDatabase: boolean;
 };
+
 export type EnablementFormSchema = z.infer<typeof ENABLEMENT_FORM_SCHEMA>;
 
 export type EnablementForm = {
