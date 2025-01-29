@@ -26,6 +26,8 @@ export const installationInitialValues: InstallationFormValues = {
   firewallService: false,
   firewallServer: false,
   firewallDatabase: false,
+  bucketBackint: undefined,
+  logsDataPlatform: undefined,
 } as const;
 
 export const installationInitialErrors: InstallationFormErrors = Object.keys(

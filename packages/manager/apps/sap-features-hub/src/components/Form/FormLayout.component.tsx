@@ -20,7 +20,7 @@ export default function FormLayout({
   isSubmitDisabled,
   onPrevious,
   onSubmit,
-  ...props
+  ...rest
 }: Readonly<FormLayoutProps>) {
   const { t } = useTranslation('installation');
 
@@ -30,7 +30,7 @@ export default function FormLayout({
   };
 
   return (
-    <form className="flex flex-col gap-y-6" onSubmit={handleSubmit} {...props}>
+    <form className="flex flex-col gap-y-6" onSubmit={handleSubmit} {...rest}>
       <div className="flex flex-col gap-y-4">
         <OdsText preset="heading-2">{title}</OdsText>
         {subtitle && <OdsText>{subtitle}</OdsText>}
