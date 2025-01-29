@@ -47,7 +47,7 @@
   "zimbra_dashboard_email_accounts_redirections_delete": "Usuwanie przekierowania",
   "zimbra_dashboard_mailing_lists_add": "Utwórz listę mailingową",
   "zimbra_dashboard_mailing_lists_settings": "Zmodyfikuj listę mailingową",
-  "zimbra_dashboard_mailing_lists": "Listy mailingowe",
+  "zimbra_dashboard_mailing_lists": "Lista mailingowa",
   "zimbra_dashboard_redirections": "Przekierowywanie",
   "zimbra_dashboard_redirections_edit": "Zmodyfikuj przekierowanie",
   "zimbra_dashboard_redirections_delete": "Usuń przekierowanie",
@@ -60,5 +60,6 @@
   "zimbra_dashboard_auto_replies_add": "Utwórz autoresponder",
   "zimbra_dashboard_email_accounts_order": "Zamów konta email",
   "zimbra_dashboard_tile_status_ongoingTask_none": "Brak zadań w trakcie",
-  "zimbra_dashboard_domains_verify": "Sposób weryfikacji"
+  "zimbra_dashboard_domains_verify": "Sposób weryfikacji",
+  "zimbra_dashboard_domains_diagnostics": "Diagnozowanie"
 }

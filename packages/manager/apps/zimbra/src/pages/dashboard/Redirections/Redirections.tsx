@@ -84,7 +84,7 @@ export function Redirections() {
   const [searchParams] = useSearchParams();
   const params = Object.fromEntries(searchParams.entries());
   const editEmailAccountId = searchParams.get('editEmailAccountId');
-  const hrefAddRedirection = useGenerateUrl('./add', 'href', params);
+  const hrefAddRedirection = useGenerateUrl('./add', 'path', params);
 
   const handleAddEmailRedirectionClick = () => {
     navigate(hrefAddRedirection);
@@ -93,7 +93,7 @@ export function Redirections() {
   const isLoading = false;
 
   return (
-    <div className="py-6">
+    <div>
       <Outlet />
       {platformUrn && (
         <>

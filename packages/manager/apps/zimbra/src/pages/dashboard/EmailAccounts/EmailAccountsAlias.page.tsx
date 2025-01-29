@@ -74,7 +74,7 @@ export default function EmailAccountsAlias() {
     },
   ];
 
-  const hrefAddAlias = useGenerateUrl('./add', 'href', params);
+  const hrefAddAlias = useGenerateUrl('./add', 'path', params);
   const handleAddAliasClick = () => {
     trackClick({
       location: PageLocation.page,
@@ -92,7 +92,7 @@ export default function EmailAccountsAlias() {
     })) ?? [];
 
   return (
-    <div className="py-6 mt-8">
+    <div>
       <Outlet />
       {platformUrn && (
         <>

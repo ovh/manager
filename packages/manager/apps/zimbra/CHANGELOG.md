@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.14.3...@ovh-ux/manager-zimbra-app@0.15.0) (2025-01-28)
+
+
+### Bug Fixes
+
+* **zimbra:** various minor ui issues ([#14956](https://github.com/ovh/manager/issues/14956)) ([a9b1712](https://github.com/ovh/manager/commit/a9b1712b5fc147d1a9a67a18a9cb93564560cc7d))
+
+
+### Features
+
+* **zimbra:** initialize diagnostics page ([#14309](https://github.com/ovh/manager/issues/14309)) ([64cca75](https://github.com/ovh/manager/commit/64cca75cce2810b08cae010c76de4cdd63560dbb))
+
+
+
+
+
 ## [0.14.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.14.2...@ovh-ux/manager-zimbra-app@0.14.3) (2025-01-24)
 
 **Note:** Version bump only for package @ovh-ux/manager-zimbra-app

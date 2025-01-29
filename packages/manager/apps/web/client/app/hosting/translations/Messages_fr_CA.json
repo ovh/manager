@@ -1,6 +1,8 @@
 {
   "hostings_title": "Hébergements",
   "hostings_order": "Commander",
+  "hostings_order_hosting": "Commander un hébergement",
+  "hostings_order_sql": "Commander une base de données",
   "hostings_offer_starter": "Starter",
   "hostings_offer_perso": "Perso",
   "hostings_offer_pro": "Pro",

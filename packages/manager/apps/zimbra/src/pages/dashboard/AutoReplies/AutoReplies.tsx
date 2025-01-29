@@ -97,6 +97,7 @@ export function AutoReplies() {
   const { t } = useTranslation('autoReplies');
   const { platformUrn } = usePlatform();
   const navigate = useNavigate();
+  const location = useLocation();
   const [searchParams] = useSearchParams();
   const params = Object.fromEntries(searchParams.entries());
   const editEmailAccountId = searchParams.get('editEmailAccountId');
@@ -113,7 +114,6 @@ export function AutoReplies() {
 
     navigate(hrefAddAutoReply);
   };
-  const location = useLocation();
 
   const shouldHide = useMemo(() => location?.pathname?.endsWith('add'), [
     location,

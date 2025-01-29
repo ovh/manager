@@ -1,0 +1,87 @@
+<div
+    class="pt-2"
+    data-ng-class="{ 'oui-field': $ctrl.rule.hasBottomMargin,
+                    'col-sm-12': $ctrl.rule.label !== $ctrl.FIELD_NAME_LIST.city && $ctrl.rule.label !== $ctrl.FIELD_NAME_LIST.zip,
+                    'col-sm-6': $ctrl.rule.label === $ctrl.FIELD_NAME_LIST.city || $ctrl.rule.label === $ctrl.FIELD_NAME_LIST.zip,
+                    'oui-field mb-0': !$ctrl.rule.hasBottomMargin,
+                    'oui-field_error': $ctrl.isInvalid()
+    }"
+    data-ng-if="$ctrl.isRequired()"
+>
+    <div class="oui-field__header">
+        <label
+            class="oui-field__label"
+            data-ng-bind="$ctrl.getLabelTranslation()"
+        ></label>
+    </div>
+    <div class="oui-field__control">
+        <!-- TEXT INPUT -->
+        <input
+            data-ng-if="$ctrl.getFieldType() === 'text'"
+            type="{{ $ctrl.getFieldSubType() }}"
+            class="oui-input"
+            data-ng-attr-id="{{ 'ovh_field_' + $ctrl.rule.label }}"
+            data-ng-attr-name="{{ 'ovh_field_' + $ctrl.rule.label }}"
+            data-ng-model="$ctrl.value"
+            data-ng-model-options="{ debounce: $ctrl.debounce }"
+            data-ng-focus="$ctrl.focused = true"
+            data-ng-blur="$ctrl.focused = false"
+            data-ng-pattern="$ctrl.inputValidator()"
+            data-ng-disabled="$ctrl.isReadOnly()"
+            data-ng-required="$ctrl.isRequired()"
+            placeholder="{{ $ctrl.rule.placeholder }}"
+            data-maxlength="$ctrl.rule.maxLength"
+        />
+
+        <!-- SELECT -->
+        <oui-select
+            data-ng-if="$ctrl.getFieldType() === 'select'"
+            items="$ctrl.getTranslatedEnums()"
+            match="translated"
+            model="$ctrl.value"
+            data-ng-attr-id="{{ 'ovh_field_' + $ctrl.rule.label }}"
+            data-ng-attr-name="{{ 'ovh_field_' + $ctrl.rule.label }}"
+            data-ng-focus="$ctrl.focused = true"
+            data-ng-blur="$ctrl.focused = false"
+            data-disabled="$ctrl.isReadOnly()"
+            data-ng-required="$ctrl.isRequired()"
+            searchable
+        >
+        </oui-select>
+
+        <!-- DATE PICKER INPUT -->
+        <oui-calendar
+            data-ng-if="$ctrl.getFieldType() === 'date'"
+            data-alt-format="{{ $ctrl.dateFormat() }}"
+            placeholder="{{ 'domain_tab_CONTACT_edit_form_field_date_placeholder' | translate }}"
+            data-ng-attr-id="{{ 'ovh_field_' + $ctrl.rule.label }}"
+            data-ng-attr-name="{{ 'ovh_field_' + $ctrl.rule.label }}"
+            model="$ctrl.value"
+            model-options="{ debounce: $ctrl.debounce }"
+            data-ng-focus="$ctrl.focused = true"
+            data-ng-blur="$ctrl.focused = false"
+            data-ng-required="$ctrl.isRequired()"
+            data-disabled="$ctrl.isReadOnly()"
+            week-numbers="false"
+            data-options="{
+                    showWeeks: false,
+                    defaultDate: $ctrl.value,
+                    monthSelectorType: 'dropdown'
+                }"
+        >
+        </oui-calendar>
+
+        <p
+            class="help-block text-danger"
+            role="alert"
+            data-ng-if="$ctrl.fieldset['ovh_field_' + $ctrl.rule.label].$error.required"
+            data-translate="domain_tab_CONTACT_edit_form_required_error"
+        ></p>
+        <p
+            class="help-block text-danger"
+            role="alert"
+            data-ng-if="$ctrl.fieldset['ovh_field_' + $ctrl.rule.label].$error.pattern"
+            data-translate="domain_tab_CONTACT_edit_form_pattern_error"
+        ></p>
+    </div>
+</div>

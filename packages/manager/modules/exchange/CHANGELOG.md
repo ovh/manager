@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.10.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.10.1...@ovh-ux/manager-exchange@4.10.2) (2025-01-28)
+
+
+### Bug Fixes
+
+* **web.exchange:** add veeam backup guide link for private ([#14745](https://github.com/ovh/manager/issues/14745)) ([814881f](https://github.com/ovh/manager/commit/814881f6260f73a8b0cf7053bb34e8f5e17492a6))
+
+
+
+
+
 ## [4.10.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.10.0...@ovh-ux/manager-exchange@4.10.1) (2024-11-28)
 
 
