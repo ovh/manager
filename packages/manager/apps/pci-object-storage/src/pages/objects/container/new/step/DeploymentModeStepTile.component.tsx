@@ -39,6 +39,9 @@ export function DeploymentModeStepTile({ item: mode, isItemSelected }) {
       ?.filter((p) => p.regions.some((region) => region.type === mode))
       ?.map(({ code }) =>
         catalog?.addons.find((addon) => addon.planCode === code),
+      )
+      ?.filter(
+        ({ invoiceName }) => invoiceName === STORAGE_STANDARD_REGION_PLANCODE,
       );
     const pricings = addons?.map((addon) => addon?.pricings?.[0]);
     return pricings?.sort((a, b) => a.price - b.price)?.[0];
