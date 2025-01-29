@@ -1,44 +1,58 @@
-import { useQuery } from '@tanstack/react-query';
-import { getCatalogQuery, useProject } from '@ovh-ux/manager-pci-common';
+import { useQueries } from '@tanstack/react-query';
+import {
+  getCatalogQuery,
+  getProductAvailabilityQuery,
+} from '@ovh-ux/manager-pci-common';
+import { isSnapshotConsumption } from '@/pages/new/utils/is-snapshot-consumption';
 
-export const useProjectAddons = (projectId: string, ovhSubsidiary: string) => {
-  const { data: project } = useProject(projectId);
-  return useQuery({
-    ...getCatalogQuery(ovhSubsidiary),
-    enabled: !!project && !!ovhSubsidiary,
-    select: (catalog) => {
-      const projectPlan = catalog.plans.find(
-        ({ planCode }) => planCode === project.planCode,
+export const useProjectAddons = (
+  projectId: string,
+  ovhSubsidiary: string,
+  instanceRegion: string,
+) =>
+  useQueries({
+    queries: [
+      getCatalogQuery(ovhSubsidiary),
+      getProductAvailabilityQuery(projectId, ovhSubsidiary),
+    ],
+
+    combine: ([
+      { data: catalog, isFetching: isCatalogFetching },
+      { data: plans, isFetching: isPlansFetching },
+    ]) => {
+      const plan = plans?.plans?.find(
+        ({ code, regions }) =>
+          isSnapshotConsumption(code) &&
+          regions.find(({ name }) => name === instanceRegion),
       );
-      return [
-        ...new Set(projectPlan.addonFamilies.map((f) => f.addons).flat()),
-      ].map((addon) =>
-        catalog.addons.find(({ planCode }) => planCode === addon),
-      );
+      const addons = [
+        catalog?.addons.find(({ planCode }) => planCode === plan?.code),
+      ];
+      const isFetching = isCatalogFetching || isPlansFetching;
+
+      return { addons, isFetching };
     },
   });
-};
 
 export const useInstanceSnapshotPricing = (
   projectId: string,
   instanceRegion: string,
   ovhSubsidiary: string,
 ) => {
-  const query = useProjectAddons(projectId, ovhSubsidiary);
-  const addons = query.data;
-  const snapshotAddon =
-    addons?.find(
-      (addon) =>
-        addon.planCode === `snapshot.monthly.postpaid.${instanceRegion}`,
-    ) ||
-    addons?.find((addon) => addon.planCode === 'snapshot.monthly.postpaid') ||
-    addons?.find((addon) => addon.planCode === 'snapshot.monthly');
-  const [snapshotPricing] = (snapshotAddon?.pricings || [])?.filter(
-    (p) =>
-      p.capacities.includes('renew') || p.capacities.includes('consumption'),
+  const { addons, ...query } = useProjectAddons(
+    projectId,
+    ovhSubsidiary,
+    instanceRegion,
   );
+
+  const price = addons
+    ? addons[0]?.pricings.find((pricing) =>
+        pricing.description.includes('hour'),
+      )
+    : null;
+
   return {
     ...query,
-    data: snapshotPricing,
+    data: price,
   };
 };
