@@ -76,7 +76,20 @@ export function initStandaloneClientApi(
         url: window.location.href,
       };
     } else {
-      throw new Error(`Unknown application '${appId}'`);
+      appConfig = {
+        container: {
+          containerURL: applications[0]?.container?.containerURL,
+          enabled: true,
+          hash: '/pci/projects/:projectId/ai',
+          isDefault: false,
+          path: 'public-cloud',
+        },
+        publicURL:
+          'https://test-ai-urls-manager.eu.dtci.ovhcloud.tools/container/#/pci-ai-notebooks',
+        url: 'test-ai-urls-manager.eu.dtci.ovhcloud.tools/pci-ai-notebooks/',
+        universe: 'public-cloud',
+      };
+      //throw new Error(`Unknown application '${appId}'`);
     }
   }
 

@@ -9,10 +9,7 @@ import * as ai from '@/types/cloud/project/ai';
 import { isDataSyncNotebook } from '@/lib/notebookHelper';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 import Guides from '@/components/guides/Guides.component';
-import {
-  GuideSections,
-  getHowToManageDataInAIDocLink,
-} from '@/configuration/guide';
+import { GUIDES, GuideSections, getGuideUrl } from '@/configuration/guide';
 import { useLocale } from '@/hooks/useLocale';
 import NotebookStatusBadge from '../../_components/NotebookStatusBadge.component';
 
@@ -40,7 +37,7 @@ const Containers = () => {
       </div>
       <p>{t('attachedDataDescription')}</p>
       <A
-        href={getHowToManageDataInAIDocLink(locale)}
+        href={getGuideUrl(GUIDES.HOW_TO_MANAGE_DATA, locale)}
         target="_blank"
         rel="noopener noreferrer"
       >

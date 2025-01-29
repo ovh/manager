@@ -22,7 +22,7 @@ export const COMMON_PATH = '/pci/projects';
 
 export default [
   {
-    path: '/pci/projects/:projectId/ai/notebooks',
+    path: '/pci/projects/:projectId/ai',
     ...lazyRouteConfig(() => import('@/pages/Root.layout')),
     children: [
       {
@@ -42,21 +42,21 @@ export default [
             ),
             children: [
               {
-                path: 'notebooks/start/:notebookId',
+                path: 'start/:notebookId',
                 id: 'notebooks.start',
                 ...lazyRouteConfig(() =>
                   import('@/pages/notebooks/start/Start.modal'),
                 ),
               },
               {
-                path: 'notebooks/stop/:notebookId',
+                path: 'stop/:notebookId',
                 id: 'notebooks.stop',
                 ...lazyRouteConfig(() =>
                   import('@/pages/notebooks/stop/Stop.modal'),
                 ),
               },
               {
-                path: 'notebooks/delete/:notebookId',
+                path: 'delete/:notebookId',
                 id: 'notebooks.delete',
                 ...lazyRouteConfig(() =>
                   import('@/pages/notebooks/delete/Delete.modal'),

@@ -78,6 +78,8 @@ const Sidebar = (): JSX.Element => {
       const features = initFeatureNames(navigationTree);
 
       const results = await fetchFeatureAvailabilityData(features);
+      results['pci-ai'] = true;
+      results['pci-ai-notebooks'] = true;
 
       const region = environmentPlugin.getEnvironment().getRegion();
       const [tree] = initTree([navigationTree], results, region);

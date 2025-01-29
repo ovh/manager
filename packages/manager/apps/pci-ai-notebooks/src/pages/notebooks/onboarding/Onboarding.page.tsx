@@ -4,12 +4,7 @@ import Link from '@/components/links/Link.component';
 import { Button } from '@/components/ui/button';
 import onboardingImgSrc from '@/../public/assets/notebooks.png';
 import OnboardingTile from './OnboardingTile.component';
-import {
-  allGuidesSections,
-  getGlobalAIGuideLink,
-  getOnbordingTuto1Link,
-  getOnbordingTuto2Link,
-} from '@/configuration/guide';
+import { GUIDES, allGuidesSections, getGuideUrl } from '@/configuration/guide';
 import { useLocale } from '@/hooks/useLocale';
 
 const Onboarding = () => {
@@ -46,21 +41,21 @@ const Onboarding = () => {
           title={t('cardGuidetitle')}
           description={t('cardTuto1Description')}
           content={t('cardTuto1Content')}
-          href={getGlobalAIGuideLink(locale)}
+          href={getGuideUrl(GUIDES.GLOBAL_AI, locale)}
           linkName={t('cardLink')}
         />
         <OnboardingTile
           title={t('cardTutotitle')}
           description={t('cardTuto2Description')}
           content={t('cardTuto2Content')}
-          href={getOnbordingTuto1Link(locale)}
+          href={getGuideUrl(GUIDES.ONBOARDING_TUTO_1, locale)}
           linkName={t('cardLink')}
         />
         <OnboardingTile
           title={t('cardTutotitle')}
           description={t('cardTuto3Description')}
           content={t('cardTuto3Content')}
-          href={getOnbordingTuto2Link(locale)}
+          href={getGuideUrl(GUIDES.ONBOARDING_TUTO_2, locale)}
           linkName={t('cardLink')}
         />
       </div>

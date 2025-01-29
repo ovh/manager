@@ -96,5 +96,8 @@
   "regions": [
     "CA",
     "EU"
+  ],
+  "universes": [
+    "@ovh-ux/manager-public-cloud"
   ]
 }

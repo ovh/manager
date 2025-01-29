@@ -101,7 +101,7 @@ const AddDocker = () => {
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        {regionQuery.data.map((region) => (
+                        {regionQuery.data?.map((region) => (
                           <SelectItem key={region.id} value={region.id}>
                             {tRegions(`region_${region.id}`)}
                           </SelectItem>

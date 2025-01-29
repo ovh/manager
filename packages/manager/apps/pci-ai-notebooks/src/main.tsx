@@ -48,4 +48,4 @@ const init = async (
   );
 };
 
-init('pci-ai-notebooks');
+init('pci-ai');

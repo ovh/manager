@@ -20,6 +20,22 @@ function isStagingEnvironment() {
 
 export function initShell(): Promise<Shell> {
   return fetchConfiguration('shell').then((environment: Environment) => {
+    environment.applications['pci-ai'] = {
+      container: {
+        containerURL: environment.applications[0]?.container?.containerURL,
+        enabled: true,
+        hash: '/pci/projects/:projectId/ai',
+        isDefault: false,
+        path: 'public-cloud',
+      },
+      publicURL:
+        'https://test-ai-urls-manager.eu.dtci.ovhcloud.tools/container/#/pci-ai--notebooks',
+      url:
+        'https://test-ai-urls-manager.eu.dtci.ovhcloud.tools/pci-ai-notebooks/',
+      universe: 'public-cloud',
+    };
+    environment.applicationURLs['pci-ai'] =
+      'https://test-ai-urls-manager.eu.dtci.ovhcloud.tools/pci-ai-notebooks/';
     const shell = new Shell();
 
     if (isStagingEnvironment()) {
