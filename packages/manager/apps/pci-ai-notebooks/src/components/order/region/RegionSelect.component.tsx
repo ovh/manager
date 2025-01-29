@@ -27,6 +27,7 @@ const RegionsSelect = React.forwardRef<HTMLInputElement, RegionsSelectProps>(
           <RadioTile
             data-testid={`region-tile-radio-tile-${region.id}`}
             name="region-select"
+            key={`region-selet-${region.id}`}
             onChange={() => onChange(region.id)}
             value={region.id}
             checked={region.id === value}

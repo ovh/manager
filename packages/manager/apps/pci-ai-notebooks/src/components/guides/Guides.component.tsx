@@ -19,7 +19,7 @@ import { useGetGuides } from '@/hooks/api/ai/guide/useGetGuides.hook';
 import { useLocale } from '@/hooks/useLocale';
 
 interface GuidesProps {
-  section?: string;
+  section?: string[];
   onGuideClick?: (guide: ai.Guide) => void;
 }
 const Guides = ({ section, onGuideClick }: GuidesProps) => {
@@ -32,6 +32,7 @@ const Guides = ({ section, onGuideClick }: GuidesProps) => {
     section,
     locale.toLocaleLowerCase().replace('_', '-'),
   );
+
   // open the menu on cmd + j
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -44,6 +45,7 @@ const Guides = ({ section, onGuideClick }: GuidesProps) => {
     document.addEventListener('keydown', down);
     return () => document.removeEventListener('keydown', down);
   }, []);
+
   // open a guide in a new tab
   const openGuide = (guide: ai.Guide) => {
     if (onGuideClick) {

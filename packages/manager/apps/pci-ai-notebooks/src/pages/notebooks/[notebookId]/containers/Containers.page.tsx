@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { ArrowUpRightFromSquare, Info } from 'lucide-react';
+import { ArrowUpRightFromSquare } from 'lucide-react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useNotebookData } from '../Notebook.context';
 import A from '@/components/links/A.component';
@@ -8,6 +8,10 @@ import VolumesList from './_components/VolumesListTable.component';
 import * as ai from '@/types/cloud/project/ai';
 import { isDataSyncNotebook } from '@/lib/notebookHelper';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
+import Guides from '@/components/guides/Guides.component';
+import { GUIDES, GuideSections, getGuideUrl } from '@/configuration/guide';
+import { useLocale } from '@/hooks/useLocale';
+import NotebookStatusBadge from '../../_components/NotebookStatusBadge.component';
 
 export function breadcrumb() {
   return (
@@ -20,26 +24,43 @@ export function breadcrumb() {
 
 const Containers = () => {
   const { notebook } = useNotebookData();
+  const locale = useLocale();
   const navigate = useNavigate();
   const { t } = useTranslation(
     'pci-ai-notebooks/notebooks/notebook/containers',
   );
-  const volumeInfoLink = 'https://docs.ovh.com/gb/en/publiccloud/ai/data/';
   return (
     <>
-      <h4>{t('attachedDataTitle')}</h4>
+      <div className="flex justify-between w-full items-center">
+        <h2>{t('attachedDataTitle')}</h2>
+        <Guides section={[GuideSections.data, GuideSections.registres]} />
+      </div>
       <p>{t('attachedDataDescription')}</p>
-      <A href={volumeInfoLink} target="_blank" rel="noopener noreferrer">
+      <A
+        href={getGuideUrl(GUIDES.HOW_TO_MANAGE_DATA, locale)}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <div className="flex flex-row gap-1 items-center">
           <p>{t('attachedDataInfoLink')}</p>
           <ArrowUpRightFromSquare className="size-4" />
         </div>
       </A>
       {!isDataSyncNotebook(notebook.status.state) && (
-        <div className="flex flex-row items-center gap-2">
-          <Info className="size-4" />
-          <p>{t('synchDataButtonHelper')}</p>
-        </div>
+        <>
+          <div className="flex flex-row gap-2">
+            <p>{t('synchDataButtonHelper1')}</p>
+            <NotebookStatusBadge
+              status={ai.notebook.NotebookStateEnum.RUNNING}
+            />
+          </div>
+          <div className="flex flex-row gap-2">
+            <p>{t('synchDataButtonHelper2')}</p>
+            <NotebookStatusBadge
+              status={ai.notebook.NotebookStateEnum.SYNC_FAILED}
+            />
+          </div>
+        </>
       )}
       <div className="flex flex-row gap-3 mt-2">
         <Button

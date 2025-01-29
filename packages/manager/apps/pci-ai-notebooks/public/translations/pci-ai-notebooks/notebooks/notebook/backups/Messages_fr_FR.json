@@ -1,7 +1,7 @@
 {
   "breadcrumb": "Backups",
   "title": "Sauvegardes",
-  "description": "Vous trouverez ci-dessous la liste de vos sauvegardes. Vous pouvez créer un nouveau notebook à partir du chacune d'entre elles",
+  "description": "Vous trouverez ci-dessous la liste des sauvegardes de vos notebooks. Il est possible de créer un nouveau notebook à partir de chacune d'entre elles.",
   "tableHeaderId": "Id",
   "tableHeaderCreationDate": "Date de création",
   "tableHeaderUpdateDate": "Date de modification",

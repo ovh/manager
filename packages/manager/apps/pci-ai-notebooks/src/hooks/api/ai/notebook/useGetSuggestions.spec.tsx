@@ -22,9 +22,7 @@ describe('useGetSuggestions', () => {
     await waitFor(() => {
       expect(result.current.isSuccess).toBe(true);
       expect(result.current.data).toEqual(mockedSuggestion);
-      expect(suggestionApi.getSuggestions).toHaveBeenCalledWith({
-        projectId,
-      });
+      expect(suggestionApi.getSuggestions).toHaveBeenCalledWith();
     });
   });
 });
