@@ -6,6 +6,7 @@ import {
   licensesPrepaidExpandedMock,
   pendingTask,
   tenantPendingTask,
+  orderCatalogMock,
 } from '@/api/_mock_';
 
 const mocksAxios = vi.hoisted(() => ({
@@ -86,6 +87,18 @@ vi.mock('@/api/users', async (importActual) => {
     postUsersPassword: vi.fn(() => Promise.resolve(null)),
   };
 });
+vi.mock('@/api/order', async (importActual) => {
+  return {
+    ...(await importActual<typeof import('@/api/order')>()),
+    getOrderCatalog: vi.fn(() => {
+      return Promise.resolve(orderCatalogMock);
+    }),
+  };
+});
+
+vi.mock('@ovh-ux/manager-module-order', () => ({
+  getExpressOrderURL: vi.fn(),
+}));
 
 export const navigate = vi.fn();
 
