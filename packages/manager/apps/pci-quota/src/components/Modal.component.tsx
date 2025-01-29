@@ -160,7 +160,11 @@ export const Modal = ({
           )}
         </div>
         <div className="mt-8 text-right">
-          <OdsButton onClick={onCancel} variant="outline" label="Cancel" />
+          <OdsButton
+            onClick={onCancel}
+            variant="outline"
+            label={t('pci_projects_project_quota_increase_cancel_label')}
+          />
           <OdsButton
             onClick={() =>
               onConfirm(
@@ -169,7 +173,7 @@ export const Modal = ({
                   : state.serviceOption.planCode,
               )
             }
-            label="Confirm"
+            label={t('pci_projects_project_quota_increase_submit_label')}
             className="ml-3"
             isDisabled={
               (type === 'credit' && !state.serviceOption) ||
