@@ -4,6 +4,8 @@ export const CLOUD_INSTANCE_DEFAULTS = {
   flavor: 'b2-30',
 };
 
+export const BETA = 'beta';
+
 export const CLOUD_INSTANCE_DEFAULT_FALLBACK = {
   region: 'WAW1',
   image: 'Ubuntu 16.04',
@@ -628,4 +630,5 @@ export default {
   PCI_SPECIAL_CONDITIONS,
   TRACKING_CLOUD,
   TAGS_BLOB,
+  BETA,
 };

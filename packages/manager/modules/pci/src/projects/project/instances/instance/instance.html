@@ -211,13 +211,13 @@
                 <oui-tile-definition
                     data-term="{{:: 'pci_projects_project_instances_instance_localisation_label' | translate }}"
                 >
-                    <oui-tile-description>
+                    <oui-tile-description class="regions-badges">
                         <span
-                            data-ng-bind="$ctrl.ovhManagerRegionService.getTranslatedMicroRegion($ctrl.instance.region)"
+                            data-ng-bind="$ctrl.instance.availabilityZone ? $ctrl.instance.availabilityZone : $ctrl.ovhManagerRegionService.getTranslatedMicroRegion($ctrl.instance.region)"
                         ></span>
                         <span
                             data-ng-if="$ctrl.instance.isLocalZone"
-                            class="oui-badge oui-badge_promotion"
+                            class="oui-badge oui-badge_promotion oui-localzone"
                         >
                             <span
                                 data-translate="pci_project_flavors_zone_localzone"
@@ -251,8 +251,43 @@
                             </script>
                         </span>
                         <span
-                            data-ng-if="!$ctrl.instance.isLocalZone"
-                            class="oui-badge oui-badge_new"
+                            data-ng-if="$ctrl.is3az"
+                            class="oui-badge oui-badge_new my-1 oui-3az"
+                        >
+                            <span
+                                data-translate="pci_project_flavors_zone_3az_region"
+                            ></span>
+                            <button
+                                type="button"
+                                class="oui-popover-button"
+                                data-oui-popover
+                                data-oui-popover-scope="$ctrl"
+                                data-oui-popover-template="pci_project_flavors_zone_3az_regions_tooltip.html"
+                            ></button>
+                            <script
+                                type="text/ng-template"
+                                id="pci_project_flavors_zone_3az_regions_tooltip.html"
+                            >
+                                <span
+                                    class="text-center"
+                                    data-translate="pci_project_flavors_zone_3az_tooltip"
+                                ></span>
+                                <a
+                                    class="oui-link_icon"
+                                    aria-hidden="true"
+                                    data-ng-href="{{$ctrl.zone3azUrl}}"
+                                    target="_blank"
+                                >
+                                    <span
+                                        data-translate="pci_project_flavors_zone_tooltip_link"
+                                    ></span>
+                                    <span class="oui-icon oui-icon-external-link ml-0" aria-hidden="true"></span>
+                                </a>
+                            </script>
+                        </span>
+                        <span
+                            data-ng-if="!$ctrl.instance.isLocalZone && !$ctrl.is3az"
+                            class="oui-badge oui-badge_new oui-1az"
                         >
                             <span
                                 data-translate="pci_project_flavors_zone_global_region"
@@ -264,13 +299,14 @@
                                 data-oui-popover-scope="$ctrl"
                                 data-oui-popover-template="pci_project_flavors_zone_globalregions_tooltip.html"
                             ></button>
+
                             <script
                                 type="text/ng-template"
                                 id="pci_project_flavors_zone_globalregions_tooltip.html"
                             >
                                 <span
                                     class="text-center"
-                                    data-translate="pci_project_flavors_zone_globalregions_tooltip"
+                                    data-translate="{{$ctrl.are3AzRegionsAvailable ? 'pci_project_flavors_zone_globalregions_tooltip' : 'pci_project_flavors_zone_globalregions_tooltip_2'}}"
                                 ></span>
                                 <a
                                     class="oui-link_icon"
