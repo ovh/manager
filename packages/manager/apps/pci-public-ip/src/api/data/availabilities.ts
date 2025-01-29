@@ -13,7 +13,7 @@ export const getAvailabilitiesUrl = (
   projectId: string,
   ovhSubsidiary: string,
 ) =>
-  `/cloud/project/${projectId}/capabilities/productAvailability?ovhSubsidiary=${ovhSubsidiary}&planCode=floatingip.floatingip.hour.consumption`;
+  `/cloud/project/${projectId}/capabilities/productAvailability?ovhSubsidiary=${ovhSubsidiary}&addonFamily=floatingip`;
 
 export const getAvailabilities = async (
   projectId: string,
