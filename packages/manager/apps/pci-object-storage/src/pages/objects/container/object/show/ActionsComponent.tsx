@@ -47,7 +47,7 @@ export default function ActionsComponent({
 
       const { data } = await v6.post<{ url: string }>(url, options);
 
-      window.location.href = data.url;
+      window.open(data.url, '_parent');
     } else {
       const expirationDate = addWeeks(new Date(), 1).toISOString();
       const url = `/cloud/project/${projectId}/storage/${container.id}/publicUrl`;
