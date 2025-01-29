@@ -95,3 +95,46 @@ export const COLD_ARCHIVE_TRACKING = {
     ERROR: 'error',
   },
 };
+
+export const MANAGE_ARCHIVE_DOC_LINK = {
+  DEFAULT:
+    'https://docs.ovh.com/us/en/storage/object-storage/s3/getting-started-with-object-storage/',
+  FR:
+    'https://docs.ovh.com/fr/storage/object-storage/s3/getting-started-with-object-storage/',
+  MA:
+    'https://docs.ovh.com/fr/storage/object-storage/s3/getting-started-with-object-storage/',
+  TN:
+    'https://docs.ovh.com/fr/storage/object-storage/s3/getting-started-with-object-storage/',
+  SN:
+    'https://docs.ovh.com/fr/storage/object-storage/s3/getting-started-with-object-storage/',
+  QC:
+    'https://docs.ovh.com/ca/fr/storage/object-storage/s3/getting-started-with-object-storage/',
+  GB:
+    'https://docs.ovh.com/gb/en/storage/object-storage/s3/getting-started-with-object-storage/',
+  IE:
+    'https://docs.ovh.com/ie/en/storage/object-storage/s3/getting-started-with-object-storage/',
+  WE:
+    'https://docs.ovh.com/us/en/storage/object-storage/s3/getting-started-with-object-storage/',
+  CA:
+    'https://docs.ovh.com/ca/en/storage/object-storage/s3/getting-started-with-object-storage/',
+  AU:
+    'https://docs.ovh.com/au/en/storage/object-storage/s3/getting-started-with-object-storage/',
+  SG:
+    'https://docs.ovh.com/sg/en/storage/object-storage/s3/getting-started-with-object-storage/',
+  ASIA:
+    'https://docs.ovh.com/asia/en/storage/object-storage/s3/getting-started-with-object-storage/',
+  ES:
+    'https://docs.ovh.com/es/storage/object-storage/s3/getting-started-with-object-storage/',
+  WS:
+    'https://docs.ovh.com/us/es/storage/object-storage/s3/getting-started-with-object-storage/',
+  PT:
+    'https://docs.ovh.com/pt/storage/object-storage/s3/getting-started-with-object-storage/',
+  IT:
+    'https://docs.ovh.com/it/storage/object-storage/s3/getting-started-with-object-storage/',
+  PL:
+    'https://docs.ovh.com/pl/storage/object-storage/s3/getting-started-with-object-storage/',
+  DE:
+    'https://docs.ovh.com/de/storage/object-storage/s3/getting-started-with-object-storage/',
+  NL:
+    'https://docs.ovh.com/gb/en/storage/object-storage/s3/getting-started-with-object-storage/',
+};
