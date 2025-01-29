@@ -2425,6 +2425,72 @@ const changelogConfig = {
       'feature-request':
         'https://github.com/ovh/private-cloud-roadmap/issues/new',
     },
+    chapters: ['dedicated', 'baremetal', 'cluster'],
+  },
+  vrack: {
+    links: {
+      changelog:
+        'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Private+Network',
+      roadmap:
+        'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Private+Network  ',
+      'feature-request':
+        'https://github.com/ovh/infrastructure-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+    },
+  },
+  ip: {
+    links: {
+      changelog:
+        'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=IP',
+      roadmap:
+        'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=IP ',
+      'feature-request':
+        'https://github.com/ovh/infrastructure-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+    },
+    chapters: ['dedicated', 'network', 'ip'],
+  },
+  network_security: {
+    links: {
+      changelog:
+        'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Anti-DDoS+Infrastructure',
+      roadmap:
+        'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Anti-DDoS+Infrastructure',
+      'feature-request':
+        'https://github.com/ovh/infrastructure-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+    },
+    chapters: ['dedicated', 'network', 'network-security'],
+  },
+  cloud_connect: {
+    links: {
+      changelog:
+        'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=OVHcloud+Connect',
+      roadmap:
+        'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=OVHcloud+Connect',
+      'feature-request':
+        'https://github.com/ovh/infrastructure-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+    },
+    chapters: ['baremetal', 'network', 'cloud-connect'],
+  },
+  iplb: {
+    links: {
+      changelog:
+        'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Load+Balancer  ',
+      roadmap:
+        'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Load+Balancer  ',
+      'feature-request':
+        'https://github.com/ovh/infrastructure-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+    },
+    chapters: ['baremetal', 'network', 'iplb'],
+  },
+  cdn: {
+    links: {
+      changelog:
+        'https://github.com/orgs/ovh/projects/18/views/2?sliceBy%5Bvalue%5D=CDN&pane=info',
+      roadmap:
+        'https://github.com/orgs/ovh/projects/18/views/1?sliceBy%5Bvalue%5D=CDN&pane=info',
+      'feature-request':
+        'https://github.com/ovh/infrastructure-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+    },
+    chapters: ['baremetal', 'network', 'cdn'],
   },
 };
 constants.EU.CHANGELOG = changelogConfig;

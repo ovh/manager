@@ -9,6 +9,7 @@ export default class CdnManageCtrl {
     Cdn,
     currentActiveLink,
     domainsLink,
+    constants,
   ) {
     // injections
     this.$scope = $scope;
@@ -19,6 +20,7 @@ export default class CdnManageCtrl {
     this.Cdn = Cdn;
     this.currentActiveLink = currentActiveLink;
     this.domainsLink = domainsLink;
+    this.constants = constants;
 
     // attributes used in view
     this.cdn = null;

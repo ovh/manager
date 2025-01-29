@@ -1,6 +1,21 @@
-<oui-header
-    data-heading="{{ :: 'cloud_connect_title' | translate }}"
-></oui-header>
+<oui-header>
+    <oui-header-heading>
+        <div class="d-flex justify-content-between">
+            <h1
+                class="oui-header__title"
+                data-translate="{{ :: 'cloud_connect_title' | translate }}"
+            ></h1>
+            <div
+                class="d-flex justify-content-end align-items-center flex-wrap gap-1"
+            >
+                <changelog-button
+                    links="$ctrl.constants.CHANGELOG.cloud_connect.links"
+                    chapters="$ctrl.constants.CHANGELOG.cloud_connect.chapters"
+                ></changelog-button>
+            </div>
+        </div>
+    </oui-header-heading>
+</oui-header>
 
 <oui-tile
     data-heading="{{:: 'cloud_connect_order_follow_up_title' | translate}}"

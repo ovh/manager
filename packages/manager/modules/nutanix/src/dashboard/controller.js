@@ -5,10 +5,11 @@ import { NUTANIX_PERSONAL_LICENSE_EDITION } from './general-info/constants';
 
 export default class NutanixDashboardCtrl {
   /* @ngInject */
-  constructor($translate, atInternet, coreConfig) {
+  constructor($translate, atInternet, coreConfig, constants) {
     this.$translate = $translate;
     this.user = coreConfig.getUser();
     this.atInternet = atInternet;
+    this.constants = constants;
   }
 
   $onInit() {

@@ -9,7 +9,6 @@ export default class ListLayoutCtrl {
     this.$q = $q;
     this.ouiDatagridService = ouiDatagridService;
     this.constants = constants;
-    console.log(this.changelog);
   }
 
   $onInit() {

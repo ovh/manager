@@ -1,5 +1,17 @@
 <div>
-    <oui-header data-heading="{{:: $ctrl.serviceName }}">
+    <oui-header>
+        <oui-header-heading>
+            <div class="d-flex justify-content-between">
+                <h1
+                    class="oui-header__title"
+                    data-translate="{{:: $ctrl.serviceName }}"
+                ></h1>
+                <changelog-button
+                    links="$ctrl.constants.CHANGELOG.veeam_enterprise.links"
+                    chapters="$ctrl.constants.CHANGELOG.veeam_enterprise.chapters"
+                ></changelog-button>
+            </div>
+        </oui-header-heading>
         <oui-header-tabs>
             <oui-header-tabs-item
                 data-state="veeam-enterprise.dashboard"

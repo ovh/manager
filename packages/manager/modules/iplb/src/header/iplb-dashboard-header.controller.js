@@ -9,6 +9,7 @@ export default class IpLoadBalancerDashboardHeaderCtrl {
     CucControllerHelper,
     IpLoadBalancerHomeService,
     ovhDocUrl,
+    constants,
   ) {
     this.$injector = $injector;
     this.$stateParams = $stateParams;
@@ -17,6 +18,7 @@ export default class IpLoadBalancerDashboardHeaderCtrl {
     this.IpLoadBalancerHomeService = IpLoadBalancerHomeService;
     this.ovhDocUrl = ovhDocUrl;
     this.serviceName = $stateParams.serviceName;
+    this.constants = constants;
 
     //  No error handling since we don't want to break anything for a title.
     this.configuration = this.CucControllerHelper.request.getHashLoader({
