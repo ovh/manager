@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import isDate from 'lodash.isdate';
-import { IcebergFetchParamsV6, fetchIcebergV6 } from '@ovh-ux/manager-core-api';
+import {
+  IcebergFetchParamsV6,
+  fetchIcebergV6,
+  FilterTypeCategories,
+} from '@ovh-ux/manager-core-api';
 import { useQuery } from '@tanstack/react-query';
 import { ColumnSort } from '../../components';
 
@@ -17,8 +21,10 @@ export interface ResourcesV6Hook {
 }
 
 export function dataType(a: any) {
-  if (Number.isInteger(a)) return 'number';
-  if (isDate(a)) return 'date';
+  if (Number.isInteger(a)) return FilterTypeCategories.Numeric;
+  if (isDate(a)) return FilterTypeCategories.Date;
+  if (typeof a === 'string') return FilterTypeCategories.String;
+  if (typeof a === 'boolean') return FilterTypeCategories.Boolean;
   return typeof a;
 }
 

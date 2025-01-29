@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { ColumnSort } from '@tanstack/react-table';
+import { OdsDivider } from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { withRouter } from 'storybook-addon-react-router-v6';
-import { Datagrid, DatagridProps } from './datagrid.component';
-import { DataGridTextCell } from './text-cell.component';
+import { useSearchParams } from 'react-router-dom';
+import { Datagrid } from './datagrid.component';
+import { useColumnFilters } from '../filters';
+import { columns, columsFilters } from './datagrid.mock';
 import { ActionMenu } from '../navigation';
 
 interface Item {
@@ -12,30 +15,11 @@ interface Item {
   actions: React.ReactElement;
 }
 
-const columns = [
-  {
-    id: 'label',
-    cell: (item: Item) => {
-      return <DataGridTextCell>{item.label}</DataGridTextCell>;
-    },
-    label: 'Label',
-  },
-  {
-    id: 'price',
-    cell: (item: Item) => {
-      return <DataGridTextCell>{item.price} €</DataGridTextCell>;
-    },
-    label: 'Price',
-  },
-];
-
-const DatagridStory = ({
-  items,
-  isSortable,
-  ...args
-}: { isSortable?: boolean } & DatagridProps<unknown>) => {
+const DatagridStory = (args) => {
   const [sorting, setSorting] = useState<ColumnSort>();
-  const [data, setData] = useState(items);
+  const [data, setData] = useState(args.items);
+  const [searchParams] = useSearchParams();
+  const { filters, addFilter, removeFilter } = useColumnFilters();
 
   const fetchNextPage = () => {
     const itemsIndex = data?.length;
@@ -47,20 +31,29 @@ const DatagridStory = ({
   };
 
   return (
-    <Datagrid
-      {...args}
-      items={data}
-      hasNextPage={data?.length > 0 && data.length < 30}
-      onFetchNextPage={fetchNextPage}
-      totalItems={data?.length}
-      {...(isSortable
-        ? {
-            sorting,
-            onSortChange: setSorting,
-            manualSorting: false,
-          }
-        : {})}
-    />
+    <>
+      {`${searchParams}` && (
+        <>
+          <pre>Search params: ?{`${searchParams}`}</pre>
+          <OdsDivider />
+        </>
+      )}
+      <Datagrid
+        items={data}
+        columns={args.columns}
+        hasNextPage={data?.length > 0 && data.length < 30}
+        onFetchNextPage={fetchNextPage}
+        totalItems={data?.length}
+        filters={{ filters, add: addFilter, remove: removeFilter }}
+        {...(args.isSortable
+          ? {
+              sorting,
+              onSortChange: setSorting,
+              manualSorting: false,
+            }
+          : {})}
+      />
+    </>
   );
 };
 
@@ -141,6 +134,17 @@ WithActions.args = {
     };
   }),
   isSortable: true,
+};
+
+export const Filters = DatagridStory.bind({});
+
+Filters.args = {
+  items: [...Array(10).keys()].map((_, i) => ({
+    label: `Item #${i}`,
+    price: Math.floor(1 + Math.random() * 100),
+  })),
+  isSortable: true,
+  columns: columsFilters,
 };
 
 export default {

@@ -1,11 +1,12 @@
 import { vitest } from 'vitest';
 import React, { useState } from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
+import { FilterCategories } from '@ovh-ux/manager-core-api';
 import {
   ColumnSort,
   Datagrid,
-  DatagridColumn,
   PaginationState,
+  FilterProps,
 } from './datagrid.component';
 import DataGridTextCell from './text-cell.component';
 import { defaultNumberOfLoadingRows } from './datagrid.contants';
@@ -33,6 +34,25 @@ const sampleColumns = [
       return <span>{name}</span>;
     },
     label: 'Name',
+    comparator: FilterCategories.String,
+    isFilterable: true,
+  },
+  {
+    id: 'another-column',
+    label: 'test',
+    cell: () => <DataGridTextCell />,
+    comparator: FilterCategories.String,
+    isFilterable: true,
+  },
+];
+
+const cols = [
+  {
+    id: 'name',
+    cell: (name: string) => {
+      return <span>{name}</span>;
+    },
+    label: 'Name',
   },
   {
     id: 'another-column',
@@ -42,17 +62,19 @@ const sampleColumns = [
 ];
 
 const DatagridTest = ({
-  columns,
+  columns = cols,
   items,
   pageIndex,
   className,
   noResultLabel,
+  filters,
 }: {
-  columns: DatagridColumn<string>[];
+  columns: any;
   items: string[];
   pageIndex: number;
   className?: string;
   noResultLabel?: string;
+  filters?: FilterProps;
 }) => {
   const [pagination, setPagination] = useState<PaginationState>({
     pageIndex,
@@ -71,6 +93,7 @@ const DatagridTest = ({
       onSortChange={() => {}}
       className={className || ''}
       noResultLabel={noResultLabel}
+      filters={filters}
     />
   );
 };
@@ -224,7 +247,7 @@ it('should disable overflow of table', async () => {
 
 it('should have the default number of loading row when isLoading is true and numberOfLoadingRows is not specified', async () => {
   const { queryAllByTestId } = render(
-    <Datagrid columns={sampleColumns} items={[]} totalItems={0} isLoading />,
+    <Datagrid columns={cols} items={[]} totalItems={0} isLoading />,
   );
   expect(queryAllByTestId('loading-row').length).toBe(
     defaultNumberOfLoadingRows,
@@ -235,7 +258,7 @@ it('should display the specified number of loading rows when isLoading is true',
   const numberOfLoadingRows = 2;
   const { queryAllByTestId } = render(
     <Datagrid
-      columns={sampleColumns}
+      columns={cols}
       items={[]}
       totalItems={0}
       numberOfLoadingRows={numberOfLoadingRows}
@@ -249,7 +272,7 @@ it('should display take the pageSize and not the default one as numberOfLoadingR
   const pageSize = 10;
   const { queryAllByTestId } = render(
     <Datagrid
-      columns={sampleColumns}
+      columns={cols}
       items={[]}
       totalItems={0}
       pagination={{ pageIndex: 0, pageSize }}
@@ -261,13 +284,47 @@ it('should display take the pageSize and not the default one as numberOfLoadingR
 
 it('should set isLoading to load more button when isLoading is true', async () => {
   const { getByTestId } = render(
-    <Datagrid
-      columns={sampleColumns}
-      items={[]}
-      totalItems={0}
-      isLoading
-      hasNextPage
-    />,
+    <Datagrid columns={cols} items={[]} totalItems={0} isLoading hasNextPage />,
   );
   expect(getByTestId('load-more-btn')).toHaveAttribute('is-loading', 'true');
+});
+
+it('should disable overflow of table', async () => {
+  const { container } = render(
+    <DatagridTest
+      columns={sampleColumns}
+      items={[]}
+      pageIndex={0}
+      className={'overflow-hidden'}
+    />,
+  );
+  expect(container.querySelectorAll('.overflow-hidden').length).toBe(1);
+});
+
+it('should display filter add and filter list', async () => {
+  const filters = {
+    filters: [
+      {
+        key: 'customName',
+        comparator: 'includes',
+        value: 'coucou',
+        label: 'customName',
+      },
+    ],
+    add: null,
+    remove: null,
+  } as FilterProps;
+  const { container } = render(
+    <DatagridTest
+      columns={sampleColumns}
+      items={[]}
+      pageIndex={0}
+      className={'overflow-hidden'}
+      filters={filters}
+    />,
+  );
+  expect(
+    container.querySelectorAll('#datagrid-filter-popover-trigger').length,
+  ).toBe(1);
+  expect(container.querySelectorAll('#datagrid-filter-list').length).toBe(1);
 });

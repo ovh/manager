@@ -4,11 +4,11 @@ import { {{#if isPCI }}useParams, {{/if}} useNavigate, useLocation } from 'react
 
 import { OdsButton, OdsSpinner } from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
-
 import {
   BaseLayout,
   Breadcrumb,
   Datagrid,
+  dataType,
   DataGridTextCell,
   ErrorBanner,
   useResourcesIcebergV2,
@@ -49,6 +49,7 @@ export default function Listing() {
     navigate(`${path}${label}`);
   };
 
+  // Code to remove and declare definition columns in const variable
   useEffect(() => {
     if (status === 'success' && data?.pages[0].data.length === 0) {
       navigate(urls.onboarding);
@@ -103,7 +104,15 @@ export default function Listing() {
   };
 
   return (
-    <BaseLayout breadcrumb={<Breadcrumb rootLabel={appConfig.rootLabel} appName="{{appName}}" />} header={header}>
+    <BaseLayout
+      breadcrumb={
+        <Breadcrumb
+          rootLabel={appConfig.rootLabel}
+          appName="{{appName}}"
+        />
+      }
+      header={header}
+    >
       <React.Suspense>
         {columns && flattenData && (
           <Datagrid
