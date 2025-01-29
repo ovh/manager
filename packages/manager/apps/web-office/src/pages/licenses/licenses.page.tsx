@@ -102,7 +102,7 @@ const columns: DatagridColumn<LicenseType>[] = [
 ];
 
 export default function Licenses() {
-  const { t } = useTranslation('licenses');
+  const { t } = useTranslation(['licenses', 'common']);
   const { data, isLoading } = useOfficeLicenses();
 
   const { sorting, setSorting } = useDatagridSearchParams();
@@ -116,7 +116,7 @@ export default function Licenses() {
   };
 
   const header = {
-    title: t('microsoft_office_licenses_title'),
+    title: t('common:common_office_title'),
   };
 
   const sortedData = React.useMemo(() => {

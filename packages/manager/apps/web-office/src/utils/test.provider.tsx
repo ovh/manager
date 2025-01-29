@@ -9,9 +9,11 @@ import {
   ShellContextType,
 } from '@ovh-ux/manager-react-shell-client';
 import userEvent from '@testing-library/user-event';
-import dashboardTranslation from '@/public/translations/dashboard/Messages_fr_FR.json';
 import dashboardUsersTranslation from '@/public/translations/dashboard/users/Messages_fr_FR.json';
 import licensesTranslation from '@/public/translations/licenses/Messages_fr_FR.json';
+import dashboardUsersOrderLicensesTranslation from '@/public/translations/dashboard/users/order-licenses/Messages_fr_FR.json';
+import onboardingTranslation from '@/public/translations/onboarding/Messages_fr_FR.json';
+import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
 import '@testing-library/jest-dom';
 import 'element-internals-polyfill';
 
@@ -20,9 +22,11 @@ i18n.use(initReactI18next).init({
   fallbackLng: 'fr',
   resources: {
     fr: {
-      dashboard: dashboardTranslation,
       licenses: licensesTranslation,
       'dashboard/users': dashboardUsersTranslation,
+      'dashboard/users/order-licenses': dashboardUsersOrderLicensesTranslation,
+      onboarding: onboardingTranslation,
+      common: commonTranslation,
     },
   },
   ns: ['dashboard'],
