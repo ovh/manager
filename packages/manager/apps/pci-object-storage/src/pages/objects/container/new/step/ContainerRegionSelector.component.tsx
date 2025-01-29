@@ -67,20 +67,38 @@ export function ContainerRegionSelector({
       ...new Set(allRegions?.map(({ name }) => name)),
     ].map((regionName) => allRegions?.find(({ name }) => name === regionName));
 
-    return uniqueRegions
+    const filteredRegions = uniqueRegions
+      .filter(({ enabled }) => enabled === true)
       .filter(({ type }) => type === (deploymentMode || 'region'))
       .filter(({ name }) => {
         if (offer === OBJECT_CONTAINER_OFFER_STORAGE_STANDARD) return true;
-        return projectRegions
-          ?.find((pr) => pr.name === name)
-          ?.services.some(({ name: serviceName }) => serviceName === offer);
-      })
-      .map((reg) => ({
-        ...reg,
-        microName: translateMicroRegion(reg.name),
-        macroName: translateMacroRegion(reg.name),
-        continentName: translateContinentRegion(reg.name),
-      }));
+        return (
+          !projectRegions?.find((pr) => pr.name === name) ||
+          projectRegions
+            ?.find((pr) => pr.name === name)
+            ?.services.some(({ name: serviceName }) => serviceName === offer)
+        );
+      });
+
+    return (
+      filteredRegions
+        // remove macro regions if a micro region is available
+        .filter(({ name, datacenter }) => {
+          if (
+            name === datacenter &&
+            filteredRegions.filter(({ datacenter: dc }) => dc === datacenter)
+              .length > 1
+          )
+            return false;
+          return true;
+        })
+        .map((reg) => ({
+          ...reg,
+          microName: translateMicroRegion(reg.name),
+          macroName: translateMacroRegion(reg.name),
+          continentName: translateContinentRegion(reg.name),
+        }))
+    );
   }, [availability, projectRegions, deploymentMode, isPending]);
 
   const selectedRegion = useMemo(() => {
