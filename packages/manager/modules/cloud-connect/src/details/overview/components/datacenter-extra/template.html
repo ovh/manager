@@ -105,7 +105,7 @@
                             <oui-action-menu-item
                                 data-ng-if="extraConfig.type === 'bgp'"
                                 data-disabled="!extraConfig.isActive()"
-                                data-on-click="$ctrl.checkBgpPeering({ popConfigId: $ctrl.datacenter.popConfigId , dcConfigId: $ctrl.datacenter.id, isExtar: true, extraConfigId: extraConfig.id })"
+                                data-on-click="$ctrl.runCheckBgpPeering($ctrl.datacenter.popConfigId ,$ctrl.datacenter.id, extraConfig.id)"
                                 ><span
                                     data-translate="cloud_connect_pop_diagnostic_check"
                                 ></span

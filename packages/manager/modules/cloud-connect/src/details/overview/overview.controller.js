@@ -1,17 +1,22 @@
 import { get } from 'lodash';
 
-import { POP_MAP } from '../../cloud-connect.constants';
+import {
+  POP_MAP,
+  DIAGNOSTIC_TRACKING_PREFIX,
+} from '../../cloud-connect.constants';
 
 export default class CloudConnectOverviewCtrl {
   /* @ngInject */
   constructor(
     $state,
     $translate,
+    atInternet,
     $window,
     CucCloudMessage,
     cloudConnectService,
   ) {
     this.$state = $state;
+    this.atInternet = atInternet;
     this.$translate = $translate;
     this.$window = $window;
     this.CucCloudMessage = CucCloudMessage;
@@ -141,7 +146,30 @@ export default class CloudConnectOverviewCtrl {
       );
   }
 
+  trackDiagnosticPageLink() {
+    this.atInternet.trackClick({
+      name: `${DIAGNOSTIC_TRACKING_PREFIX}tile::button::go-to_open-diagnostic::cloud-connect`,
+      type: 'action',
+      level2: 99,
+    });
+  }
+
+  runBGPPeeringDiagnostic(popConfigId, dcConfigId) {
+    this.atInternet.trackClick({
+      name: `${DIAGNOSTIC_TRACKING_PREFIX}tile::button::bgp-peering-diagnostic::cloud-connect`,
+      type: 'action',
+      level2: 99,
+    });
+
+    return this.goToCheckBGPPeeringPage({ popConfigId, dcConfigId });
+  }
+
   getMacList(pop) {
+    this.atInternet.trackClick({
+      name: `${DIAGNOSTIC_TRACKING_PREFIX}tile::button::get-mac-list::cloud-connect`,
+      type: 'action',
+      level2: 99,
+    });
     this.CucCloudMessage.flushChildMessage();
     const diagnosticName = 'diagMacs';
     this.getMacLoading = true;

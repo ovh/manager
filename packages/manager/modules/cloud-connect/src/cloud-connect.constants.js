@@ -69,6 +69,8 @@ export const STATUS = {
   TERMINATED: 'terminated',
 };
 
+export const DIAGNOSTIC_TRACKING_PREFIX = 'Network::network::cloud-connect::';
+
 export default {
   GUIDELINK,
   POP_MAP,
@@ -78,4 +80,5 @@ export default {
   IPV4_BLOCK_REGEX,
   STATUS,
   CHANGE_BANDWIDTH_ALLOWED_OFFERS_REGEX,
+  DIAGNOSTIC_TRACKING_PREFIX,
 };

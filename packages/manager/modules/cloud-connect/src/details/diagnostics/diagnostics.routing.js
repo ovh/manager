@@ -1,7 +1,13 @@
+import { DIAGNOSTIC_TRACKING_PREFIX } from '../../cloud-connect.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('cloud-connect.details.diagnostics', {
-    url: '/diagnostics',
+    url: '/diagnostics?{fromLink:boolean}',
     component: 'cloudConnectDiagnosticsDetails',
+    atInternet: {
+      rename: `${DIAGNOSTIC_TRACKING_PREFIX}cloud-connect::dashboard::diagnostics`,
+      level2: 99,
+    },
     resolve: {
       diagnosticList: /* @ngInject */ (cloudConnectService, cloudConnect) =>
         cloudConnectService.getDiagnosticsWithDetails(cloudConnect.id),
@@ -14,6 +20,8 @@ export default /* @ngInject */ ($stateProvider) => {
       refreshDiagnostics: /* @ngInject */ ($state) => () => {
         return $state.reload();
       },
+      fromLink: /* @ngInject */ ($transition$) =>
+        $transition$.params().fromLink,
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('cloud_connect_diagnostics'),
     },

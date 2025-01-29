@@ -1,3 +1,5 @@
+import { DIAGNOSTIC_TRACKING_PREFIX } from '../../cloud-connect.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('cloud-connect.details.overview', {
     url: '/overview',
@@ -156,6 +158,10 @@ export default /* @ngInject */ ($stateProvider) => {
           });
       },
       breadcrumb: () => null,
+    },
+    atInternet: {
+      rename: `${DIAGNOSTIC_TRACKING_PREFIX}cloud-connect::dashboard::index`,
+      level2: 99,
     },
   });
 };

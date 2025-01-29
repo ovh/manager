@@ -1,3 +1,5 @@
+import { DIAGNOSTIC_TRACKING_PREFIX } from '../../../cloud-connect.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('cloud-connect.details.overview.check-bgp-peering', {
     url:
@@ -6,6 +8,10 @@ export default /* @ngInject */ ($stateProvider) => {
       modal: {
         component: 'cloudConnectCheckBgpPeering',
       },
+    },
+    atInternet: {
+      rename: `${DIAGNOSTIC_TRACKING_PREFIX}cloud-connect::pop-up::check::bgp-peering`,
+      level2: 99,
     },
     layout: 'modal',
     resolve: {
