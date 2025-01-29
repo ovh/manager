@@ -1,1 +1,48 @@
-<div class="module-useraccount-sections-advanced-container"></div>
+<div class="module-useraccount-sections-advanced-container">
+    <oui-tile
+        data-heading="{{ ::'gdpr_erasure_title' | translate }}"
+        class="h-100 oui-tile-h-100"
+    >
+        <p>
+            <strong data-translate="gdpr_erasure_description_emphasis"></strong>
+            <span data-translate="gdpr_erasure_description"></span>
+        </p>
+        <oui-button
+            type="button"
+            variant="primary"
+            data-disabled="!$ctrl.canCreateErasureRequest || $ctrl.loading.capabilities || !$ctrl.capabilities.canCreateErasureRequest"
+            data-ng-click="$ctrl.askErasureConfirmation()"
+        >
+            <oui-spinner
+                data-size="s"
+                ng-if="$ctrl.loading.capabilities"
+            ></oui-spinner>
+            <span
+                ng-if="!$ctrl.loading.capabilities"
+                data-translate="gdpr_erasure_cta"
+            ></span>
+        </oui-button>
+    </oui-tile>
+    <div data-ng-if="$ctrl.showErasureConfirmationModal">
+        <div class="modal d-block">
+            <div
+                class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+            >
+                <div class="modal-content">
+                    <oui-modal
+                        data-on-dismiss="$ctrl.closeErasureConfirmationModal()"
+                        data-primary-label="{{:: 'gdpr_erasure_confirmation_modal_confirm' | translate }}"
+                        data-primary-action="$ctrl.submitErasureRequest()"
+                        data-secondary-label="{{:: 'gdpr_erasure_confirmation_modal_cancel' | translate }}"
+                        data-secondary-action="$ctrl.closeErasureConfirmationModal()"
+                    >
+                        <span
+                            data-translate="gdpr_erasure_confirmation_modal"
+                        ></span>
+                    </oui-modal>
+                </div>
+            </div>
+        </div>
+        <div class="oui-modal-backdrop"></div>
+    </div>
+</div>
