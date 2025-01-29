@@ -40,7 +40,7 @@
   "os_config_subtitle": "Saisissez les informations et configurations optionnelles de votre OS correspondant à vos besoins",
   "os_config_input_domain": "Nom de domaine",
   "os_config_helper_domain": "Merci de renseigner un nom de domaine valide",
-  "os_config_input_suse": "Clé de licence SUSE",
+  "os_config_input_suse": "Clé de licence SUSE (facultatif)",
   "os_config_helper_suse": "La clé doit être au format alphanumérique et comprendre entre 16 et 32 caractères",
   "os_config_toggle_update": "Réaliser une mise à jour des paquets OS avant l'installation",
   "os_config_toggle_firewall_service": "Activer le firewall pour les services centraux",

@@ -112,6 +112,7 @@ export default function InstallationStepSourceInformation() {
       <TextField
         key="secretKey"
         name="secretKey"
+        type="password"
         label={t('source_input_secret_key')}
         onOdsChange={(e) => {
           handleChange({
