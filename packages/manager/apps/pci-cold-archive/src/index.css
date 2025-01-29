@@ -5,3 +5,11 @@
 .application {
   @apply md:mx-12 mt-8;
 }
+
+.font-bold-class::part(text) {
+  @apply font-bold;
+}
+
+.modal::part(dialog) {
+  @apply max-w-[30%] h-auto;
+}
