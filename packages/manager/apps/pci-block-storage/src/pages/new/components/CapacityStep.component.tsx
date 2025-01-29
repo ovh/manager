@@ -22,21 +22,22 @@ import {
 } from '@ovhcloud/ods-components';
 
 import { useTranslation } from 'react-i18next';
-import { TAddon } from '@ovh-ux/manager-pci-common';
 import { PriceEstimate } from '@/pages/new/components/PriceEstimate';
 import { HighSpeedV2Infos } from '@/pages/new/components/HighSpeedV2Infos';
-import { TLocalisation } from '@/api/hooks/useRegions';
 import { StepState } from '@/pages/new/hooks/useStep';
 import { useRegionsQuota } from '@/api/hooks/useQuota';
 import { useVolumeMaxSize } from '@/api/data/quota';
+import { TVolumeAddon, TVolumePricing } from '@/api/data/catalog';
+import { TRegion } from '@/api/data/regions';
 
 export const VOLUME_MIN_SIZE = 10; // 10 Gio
 export const VOLUME_UNLIMITED_QUOTA = -1; // Should be 10 * 1024 (but API is wrong)
 
 interface CapacityStepProps {
   projectId: string;
-  region: TLocalisation;
-  volumeType: TAddon;
+  region: TRegion;
+  volumeType: TVolumeAddon;
+  pricing: TVolumePricing;
   step: StepState;
   onSubmit: (volumeCapacity: number) => void;
 }
@@ -45,6 +46,7 @@ export function CapacityStep({
   projectId,
   region,
   volumeType,
+  pricing,
   step,
   onSubmit,
 }: Readonly<CapacityStepProps>) {
@@ -146,8 +148,9 @@ export function CapacityStep({
       <HighSpeedV2Infos
         volumeCapacity={volumeCapacity}
         volumeType={volumeType}
+        pricing={pricing}
       />
-      <PriceEstimate volumeCapacity={volumeCapacity} volumeType={volumeType} />
+      <PriceEstimate volumeCapacity={volumeCapacity} pricing={pricing} />
       <div className="my-6">
         {volumeCapacity < VOLUME_MIN_SIZE && (
           <div>
