@@ -56,18 +56,18 @@ export default function InstallationStepSourceInformation() {
       <TextField
         key="bucketId"
         name="bucketId"
-        label={t('source_input_container')}
+        label={t('common_input_container')}
         onOdsChange={(e) => {
           handleChange({
             e,
-            error: t('source_helper_container'),
+            error: t('common_helper_container'),
             isValid: isValidInput(e),
           });
         }}
         value={values.bucketId}
         error={values.bucketId && errors.bucketId}
         placeholder="my-sap-sources"
-        helperText={t('source_helper_container')}
+        helperText={t('common_helper_container')}
         validator={{
           pattern: SAP_SOURCE_PATTERNS.bucket,
           minlength: SOURCE_BUCKET_MIN_LENGTH,
@@ -81,28 +81,28 @@ export default function InstallationStepSourceInformation() {
         onOdsChange={(e) => {
           handleChange({
             e,
-            error: t('source_helper_endpoint'),
+            error: t('common_helper_endpoint'),
             isValid: isValidUrl(e.detail.value as string),
           });
         }}
         value={values.endpoint}
         error={values.endpoint && errors.endpoint}
-        helperText={t('source_helper_endpoint')}
+        helperText={t('common_helper_endpoint')}
       />
       <TextField
         key="accessKey"
         name="accessKey"
-        label={t('source_input_access_key')}
+        label={t('common_input_access_key')}
         onOdsChange={(e) => {
           handleChange({
             e,
-            error: t('source_helper_access_key'),
+            error: t('common_helper_access_key'),
             isValid: isValidInput(e),
           });
         }}
         value={values.accessKey}
         error={values.accessKey && errors.accessKey}
-        helperText={t('source_helper_access_key')}
+        helperText={t('common_helper_access_key')}
         validator={{
           pattern: SAP_SOURCE_PATTERNS.key,
           minlength: SOURCE_KEY_LENGTH,
@@ -113,17 +113,17 @@ export default function InstallationStepSourceInformation() {
         key="secretKey"
         name="secretKey"
         type="password"
-        label={t('source_input_secret_key')}
+        label={t('common_input_secret_key')}
         onOdsChange={(e) => {
           handleChange({
             e,
-            error: t('source_helper_secret_key'),
+            error: t('common_helper_secret_key'),
             isValid: isValidInput(e),
           });
         }}
         value={values.secretKey}
         error={values.secretKey && errors.secretKey}
-        helperText={t('source_helper_secret_key')}
+        helperText={t('common_helper_secret_key')}
         validator={{
           pattern: SAP_SOURCE_PATTERNS.key,
           minlength: SOURCE_KEY_LENGTH,

@@ -1,10 +1,13 @@
+import { z } from 'zod';
 import { TextFieldProps } from '@/components/Form/TextField.component';
+import { PRE_INSTALLATION_FORM_SCHEMA } from '../schema/form.schema';
 
 type InstallationForm = InitializationForm &
   DeploymentForm &
   SystemForm &
   SourceForm &
-  OSConfigForm;
+  OSConfigForm &
+  PreInstallationForm;
 export type FormKey = keyof InstallationForm;
 
 export type InstallationFormErrors = Record<FormKey, string>;
@@ -41,6 +44,7 @@ export type SourceForm = {
   accessKey: string;
   secretKey: string;
 };
+
 export type OSConfigForm = {
   domainName: string;
   osLicense: string;
@@ -49,3 +53,13 @@ export type OSConfigForm = {
   firewallServer: boolean;
   firewallDatabase: boolean;
 };
+export type PreInstallationFormSchema = z.infer<
+  typeof PRE_INSTALLATION_FORM_SCHEMA
+>;
+
+export type PreInstallationForm = Pick<
+  Partial<PreInstallationFormSchema>,
+  'bucketBackint' | 'logsDataPlatform'
+>;
+
+export type SystemFormKeys = keyof SystemForm;
