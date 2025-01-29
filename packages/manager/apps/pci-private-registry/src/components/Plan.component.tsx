@@ -44,7 +44,7 @@ export default function PlanComponent({
 
   return (
     <div className="grid grid-cols-1 gap-2 text-left text w-full">
-      <div className="text-center">
+      <div>
         <OsdsText
           data-testid="name"
           color={ODS_THEME_COLOR_INTENT.text}
@@ -65,7 +65,7 @@ export default function PlanComponent({
         </div>
       )}
       {!isPending && (
-        <ul className="list-none p-0 min-h-[8rem] mx-8">
+        <ul className="list-none p-0 min-h-[8rem]">
           <li data-testid="capacity">
             <OsdsText
               color={ODS_THEME_COLOR_INTENT.text}
@@ -150,7 +150,7 @@ export default function PlanComponent({
           )}
         </ul>
       )}
-      <div data-testid="price">
+      <div data-testid="price" className="text-center">
         <hr className="w-full border-solid border-0 border-b border-ods-primary-200" />
         <OsdsText
           color={ODS_THEME_COLOR_INTENT.text}
