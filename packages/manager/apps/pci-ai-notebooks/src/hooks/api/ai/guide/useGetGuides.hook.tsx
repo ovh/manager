@@ -5,11 +5,11 @@ import { useQueryImmediateRefetch } from '../../useImmediateRefetch';
 
 export function useGetGuides(
   projectId: string,
-  section?: string,
+  section?: string[],
   lang?: string,
   options: Omit<QueryObserverOptions, 'queryKey'> = {},
 ) {
-  const queryKey = [projectId, 'ai', 'guides', section];
+  const queryKey = [projectId, 'ai', 'guides', section, lang];
   return useQueryImmediateRefetch({
     queryKey,
     queryFn: () =>

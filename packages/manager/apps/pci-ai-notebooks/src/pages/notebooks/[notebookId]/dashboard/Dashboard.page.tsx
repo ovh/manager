@@ -25,6 +25,8 @@ import LifeCycle from './_components/LifeCycle.component';
 import Labels from './_components/Labels.component';
 import AccessLink from './_components/AccessLink.component';
 import { VOLUMES_CONFIG } from '@/components/order/volumes/volume.const';
+import Guides from '@/components/guides/Guides.component';
+import { GuideSections } from '@/configuration/guide';
 
 const Dashboard = () => {
   const { notebook, projectId } = useNotebookData();
@@ -58,7 +60,17 @@ const Dashboard = () => {
 
   return (
     <>
-      <h2>{t('dashboardTitle')}</h2>
+      <div className="flex justify-between w-full items-center">
+        <h2>{t('dashboardTitle')}</h2>
+        <Guides
+          section={[
+            GuideSections.cli,
+            GuideSections.ovhaiCli,
+            GuideSections.data,
+            GuideSections.faq,
+          ]}
+        />
+      </div>
       <div
         className="flex flex-col lg:grid lg:grid-flow-col lg:auto-cols-fr gap-2"
         data-testid="dashboard-container"
@@ -114,26 +126,27 @@ const Dashboard = () => {
             </h4>
           </CardHeader>
           <CardContent>
-            <div
-              data-testid="dashboard-billing-link"
-              className="flex flex-row gap-1 mt-3"
-            >
+            <div className="flex flex-col gap-2">
               <OvhLink
+                data-testid="dashboard-billing-link"
                 application="public-cloud"
                 path={`#/pci/projects/${projectId}/billing`}
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 {t('billingLink')}
+                <ArrowRight className="size-4 inline ml-1" />
               </OvhLink>
-              <ArrowRight className="w-4 h-4 ml-1 mt-1 text-primary" />
-            </div>
-            <div
-              data-testid="dashboard-support-link"
-              className="flex flex-row gap-1 mt-2"
-            >
-              <OvhLink application="dedicated" path={`#/support/tickets/new`}>
+              <OvhLink
+                data-testid="dashboard-support-link"
+                application="dedicated"
+                path={`#/support/tickets/new`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 {t('supportLink')}
+                <ArrowRight className="size-4 inline ml-1" />
               </OvhLink>
-              <ArrowRight className="w-4 h-4 ml-1 mt-1 text-primary" />
             </div>
           </CardContent>
           <div className="border-t my-2 pt-2 mx-6"></div>

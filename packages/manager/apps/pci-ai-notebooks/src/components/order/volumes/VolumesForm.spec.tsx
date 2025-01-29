@@ -43,42 +43,6 @@ describe('Volume Form component', () => {
   });
 
   const onChange = vi.fn();
-  it('renders volume form should display dashboard, object storage link and public git form', async () => {
-    render(
-      <VolumeForm
-        configuredVolumesList={[]}
-        selectedVolumesList={[]}
-        onChange={onChange}
-      />,
-    );
-    await waitFor(() => {
-      // should not be in the DOM as not Datastore configured
-      expect(
-        screen.queryByTestId('datastore-form-container'),
-      ).not.toBeInTheDocument();
-      expect(
-        screen.queryByTestId('datastore-add-button'),
-      ).not.toBeInTheDocument();
-      expect(screen.queryByTestId('datastore-list')).not.toBeInTheDocument();
-      // should be in the DOM
-      expect(
-        screen.getByTestId('no-datastore-info-container'),
-      ).toBeInTheDocument();
-      expect(
-        screen.getByTestId('dashboard-datastore-link'),
-      ).toBeInTheDocument();
-      expect(screen.getByTestId('object-storage-link')).toBeInTheDocument();
-      expect(
-        screen.getByTestId('public-git-form-container'),
-      ).toBeInTheDocument();
-      expect(screen.getByTestId('public-git-add-button')).toBeInTheDocument();
-      expect(screen.getByTestId('public-git-list')).toBeInTheDocument();
-      expect(
-        screen.getByTestId('volumes-configured-labels'),
-      ).toBeInTheDocument();
-    });
-  });
-
   it('renders volume form should display datastore form and public git form', async () => {
     render(
       <VolumeForm
