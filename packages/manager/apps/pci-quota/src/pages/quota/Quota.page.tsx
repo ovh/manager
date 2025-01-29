@@ -37,15 +37,13 @@ import {
   RESTRICTED_CORES,
   RESTRICTED_INSTANCES,
   RESTRICTED_RAM,
+  supportLink,
 } from '@/constants';
 import { toggleManualQuota, unleash } from '@/api/data/project';
 import { useGetServiceOptions } from '@/api/hooks/useServiceOptions';
 import { TabsComponent } from '@/components/tabs/Tabs.component';
 import { useGetValidPaymentMethodIds } from '@/api/hooks/usePaymentmethods';
-import {
-  useGetProjectService,
-  useProjectService,
-} from '@/api/hooks/useService';
+import { useGetProjectService } from '@/api/hooks/useService';
 
 type TState = {
   manualQuota: {
@@ -259,23 +257,28 @@ export default function QuotaPage(): JSX.Element {
               )}
             </div>
           ) : (
-            <div className="border border-solid border-red-500 mt-4">
-              {quotas?.length > 0 && (
-                <OdsButton
-                  className=""
-                  size="sm"
-                  label={`${tQuota(
-                    'pci_projects_project_quota_protect_more_btn',
-                  )}`}
-                />
-              )}
+            <div className="mt-4">
+              {!quotas ||
+                (quotas && quotas.length === 0 && (
+                  <OdsButton
+                    className=""
+                    size="sm"
+                    label={`${tQuota(
+                      'pci_projects_project_quota_protect_more_btn',
+                    )}`}
+                    isDisabled={true}
+                  />
+                ))}
               {quotas?.length && (
                 <OdsButton
                   className="ml-4"
                   size="sm"
-                  label={`a4 ${tQuota(
+                  label={`${tQuota(
                     'pci_projects_project_quota_protect_more_btn',
                   )}`}
+                  onClick={() => {
+                    window.open(supportLink, '_top');
+                  }}
                 />
               )}
             </div>

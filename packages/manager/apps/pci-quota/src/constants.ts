@@ -7,6 +7,7 @@ export const PRODUCTS = {
 export const QUOTA_THRESHOLD = 80;
 
 export const iamLink = 'https://www.ovh.com/manager/#/dedicated/iam/policy';
+export const supportLink = 'https://us.ovhcloud.com/manager/#/dedicated/ticket';
 
 export const RESTRICTED_CORES = 1;
 
