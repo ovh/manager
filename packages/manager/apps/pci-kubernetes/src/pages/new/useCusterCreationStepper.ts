@@ -85,7 +85,6 @@ export function useClusterCreationStepper() {
           nodeTypeStep,
           nodeSizeStep,
           billingStep,
-          clusterNameStep,
         ].forEach(stepReset);
       },
       submit: (region: TLocalisation) => {
@@ -102,13 +101,9 @@ export function useClusterCreationStepper() {
       step: versionStep,
       edit: () => {
         versionStep.unlock();
-        [
-          networkStep,
-          nodeTypeStep,
-          nodeSizeStep,
-          billingStep,
-          clusterNameStep,
-        ].forEach(stepReset);
+        [networkStep, nodeTypeStep, nodeSizeStep, billingStep].forEach(
+          stepReset,
+        );
       },
       submit: (version: string, updatePolicy: UpdatePolicy) => {
         setForm((f) => ({
@@ -125,9 +120,7 @@ export function useClusterCreationStepper() {
       step: networkStep,
       edit: () => {
         networkStep.unlock();
-        [nodeTypeStep, nodeSizeStep, billingStep, clusterNameStep].forEach(
-          stepReset,
-        );
+        [nodeTypeStep, nodeSizeStep, billingStep].forEach(stepReset);
       },
       submit: (network: TClusterCreationForm['network']) => {
         setForm((f) => ({
@@ -143,7 +136,7 @@ export function useClusterCreationStepper() {
       step: nodeTypeStep,
       edit: () => {
         nodeTypeStep.unlock();
-        [nodeSizeStep, billingStep, clusterNameStep].forEach(stepReset);
+        [nodeSizeStep, billingStep].forEach(stepReset);
       },
       submit: (flavor: KubeFlavor) => {
         setForm((f) => ({
@@ -159,7 +152,7 @@ export function useClusterCreationStepper() {
       step: nodeSizeStep,
       edit: () => {
         nodeSizeStep.unlock();
-        [billingStep, clusterNameStep].forEach(stepReset);
+        [billingStep].forEach(stepReset);
       },
       submit: (scaling: AutoscalingState) => {
         setForm((f) => ({
