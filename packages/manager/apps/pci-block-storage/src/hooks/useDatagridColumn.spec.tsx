@@ -29,6 +29,7 @@ const volumeTestData: TVolume[] = [
     planCode: 'plan-01',
     type: 'gp2',
     regionName: 'US West (Oregon)',
+    availabilityZone: 'any',
   },
 ];
 
