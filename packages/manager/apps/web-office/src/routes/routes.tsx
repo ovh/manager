@@ -46,7 +46,7 @@ export const Routes: any = [
             },
             children: [
               {
-                path: 'users/delete',
+                path: urls.users_delete,
                 ...lazyRouteConfig(() =>
                   import('@/pages/dashboard/users/ModalDeleteUsers.component'),
                 ),
@@ -58,7 +58,7 @@ export const Routes: any = [
                 },
               },
               {
-                path: 'users/edit',
+                path: urls.users_edit,
                 ...lazyRouteConfig(() =>
                   import('@/pages/dashboard/users/ModalEditUsers.component'),
                 ),
@@ -69,8 +69,9 @@ export const Routes: any = [
                   },
                 },
               },
+
               {
-                path: 'users/change-password',
+                path: urls.change_password,
                 ...lazyRouteConfig(() =>
                   import(
                     '@/pages/dashboard/users/ModalChangePasswordUsers.component'
@@ -79,6 +80,32 @@ export const Routes: any = [
                 handle: {
                   tracking: {
                     pageName: 'users-changePassword',
+                    pageType: PageType.popup,
+                  },
+                },
+              },
+              {
+                path: urls.order_licenses,
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/dashboard/users/ModalOrderLicenses.component'
+                  ),
+                ),
+                handle: {
+                  tracking: {
+                    pageName: 'users-orderLicenses',
+                    pageType: PageType.popup,
+                  },
+                },
+              },
+              {
+                path: urls.order_users,
+                ...lazyRouteConfig(() =>
+                  import('@/pages/dashboard/users/ModalOrderUsers.component'),
+                ),
+                handle: {
+                  tracking: {
+                    pageName: 'users-orderUsers',
                     pageType: PageType.popup,
                   },
                 },

@@ -14,7 +14,7 @@ export type BreadcrumbProps = {
 
 export const Breadcrumb: React.FC<BreadcrumbProps> = () => {
   const { serviceName } = useParams();
-  const { t } = useTranslation('dashboard');
+  const { t } = useTranslation('common');
   const location = useLocation();
 
   const rootUrl = serviceName
@@ -24,22 +24,25 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = () => {
   const breadcrumbItems = useMemo(() => {
     const pathParts = location.pathname.split('/').filter(Boolean);
     const breadcrumbParts = pathParts.slice(2);
+
     return [
       {
-        label: 'Mes comptes Microsoft 365',
+        label: t('common_office_title'),
         href: rootUrl,
       },
-      {
-        label: pathParts[1],
-        href: `#/${pathParts.slice(0, 2).join('/')}`,
-      },
+      pathParts.length > 1
+        ? {
+            label: pathParts[1].replace(/-/g, '_'),
+            href: `#/${pathParts.slice(0, 2).join('/')}`,
+          }
+        : null,
       ...breadcrumbParts.map((_, index) => {
         const label = t(
-          `microsoft_office_dashboard_${breadcrumbParts
+          `${breadcrumbParts
             .slice(0, index + 1)
-            .join('_')}`,
+            .join('_')
+            .replace(/-/g, '_')}`,
         );
-
         const url = `#/${pathParts.slice(0, index + 2).join('/')}`;
         return {
           label,
@@ -48,7 +51,6 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = () => {
       }),
     ].filter(Boolean);
   }, [location, serviceName, rootUrl, t]);
-
   return (
     <OdsBreadcrumb data-testid="breadcrumb" className="mb-4">
       {breadcrumbItems.map((item) => (
