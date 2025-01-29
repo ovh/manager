@@ -10,13 +10,13 @@ import {
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useTranslation } from 'react-i18next';
+import { useTranslation, Trans } from 'react-i18next';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useMe } from '@/api/hooks/useMe';
 import { useSubnets } from '@/api/hooks/useSubnets';
 import { useGateways } from '@/api/hooks/useGateways';
 import { TGateway } from '@/api/data/gateways';
-import { useSelectedGateway } from '@/api/hooks/useSelectedGateway';
+import { useSmallestGatewayByRegion } from '@/api/hooks/useAvailableGateway';
 import { CatalogPriceComponent } from '@/components/CatalogPrice.component';
 
 export const FloatingIpSummary = ({
@@ -41,7 +41,7 @@ export const FloatingIpSummary = ({
     projectId,
     networkId,
   );
-  const { state: selectedGateway } = useSelectedGateway();
+  const selectedGateway = useSmallestGatewayByRegion(ipRegion);
 
   const { t: tOrder } = useTranslation('order');
 
@@ -94,22 +94,10 @@ export const FloatingIpSummary = ({
                     color={ODS_THEME_COLOR_INTENT.text}
                     className="font-sans"
                   >
-                    {tOrder(
-                      'pci_additional_ip_create_summary_step_missing_components_description',
-                    )}
-                  </OsdsText>
-                </p>
-                <p>
-                  <OsdsText
-                    color={ODS_THEME_COLOR_INTENT.text}
-                    className="font-sans"
-                  >
-                    {tOrder(
-                      'pci_additional_ip_create_summary_step_gateway_name',
-                      {
-                        region: ipRegion,
-                      },
-                    )}
+                    <Trans
+                      t={tOrder}
+                      i18nKey="pci_additional_ip_create_summary_step_missing_components_description"
+                    />
                   </OsdsText>
                 </p>
                 {selectedGateway && (
@@ -126,21 +114,13 @@ export const FloatingIpSummary = ({
                         'pci_additional_ip_create_summary_step_price',
                       )}{' '}
                       <CatalogPriceComponent
-                        price={selectedGateway.price.month}
-                        user={me}
-                        interval="month"
-                        maximumFractionDigits={4}
-                        locale={context.environment.getUserLocale()}
-                      />{' '}
-                      {tOrder('pci_additional_ip_create_summary_step_that_is')}{' '}
-                      <CatalogPriceComponent
-                        price={selectedGateway.price.hour}
+                        price={selectedGateway.price}
                         user={me}
                         maximumFractionDigits={4}
                         interval="hour"
                         locale={context.environment.getUserLocale()}
                       />
-                      <span>)*.</span>
+                      <span>).</span>
                     </OsdsText>
                   </p>
                 )}
