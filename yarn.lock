@@ -5899,7 +5899,7 @@
   dependencies:
     lodash "^4.17.15"
 
-"@ovh-ux/ovh-at-internet@^0.18.0", "@ovh-ux/ovh-at-internet@^0.18.1":
+"@ovh-ux/ovh-at-internet@^0.18.1":
   version "0.18.1"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ovh-at-internet/-/ovh-at-internet-0.18.1.tgz#a9d0d543a187031f61b699c57aaec0529f68a790"
   integrity sha512-i0ZFNGrktTsgTw8G2Fx2pn/xkgmwhyJ7JsCx7+RkzEakcV2E3+u5yTfSNlLVyHTMiqKGyjMz330/dw221qVaDw==
