@@ -60,6 +60,9 @@ export default function ActionsComponent({
     }
   };
 
+  const encodeName = (name: string) =>
+    encodeURIComponent(name.replace(/\//, '~2F'));
+
   const items = [
     container.s3StorageType &&
       !isLocalZone && {
@@ -70,12 +73,12 @@ export default function ActionsComponent({
         onClick: () =>
           validUsersWithCredentials?.length === 0
             ? navigate(
-                `./${encodeURIComponent(
+                `./${encodeName(
                   object.name || object.key,
                 )}/emptyUser?region=${searchParams.get('region')}`,
               )
             : navigate(
-                `./${encodeURIComponent(
+                `./${encodeName(
                   object.name || object.key,
                 )}/addUser?region=${searchParams.get('region')}`,
               ),
@@ -94,7 +97,7 @@ export default function ActionsComponent({
       ),
       onClick: () => {
         navigate(
-          `./${encodeURIComponent(object.name || object.key)}/delete?region=${
+          `./${encodeName(object.name || object.key)}/delete?region=${
             container.region
           }`,
         );

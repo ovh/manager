@@ -14,7 +14,10 @@ describe('Actions', () => {
       s3StorageType: 's3StorageType',
       deploymentMode: 'deploymentMode',
     } as TStorage;
-    const { container } = render(<Actions storage={storage} />, { wrapper });
+    const { container } = render(
+      <Actions storage={storage} isEmptyUsers={false} />,
+      { wrapper },
+    );
     expect(container).toMatchSnapshot();
   });
 });
