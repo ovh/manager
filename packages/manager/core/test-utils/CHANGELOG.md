@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-test-utils@0.2.2...@ovh-ux/manager-core-test-utils@0.3.0) (2025-01-29)
+
+
+### Features
+
+* **test-utils:** add ods18 test-utils helpers ([213c27f](https://github.com/ovh/manager/commit/213c27f9a96d59b7445a3bfc92f6af2ff7aad8b1))
+
+
+
+
+
 ## [0.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-test-utils@0.2.1...@ovh-ux/manager-core-test-utils@0.2.2) (2024-12-18)
 
 **Note:** Version bump only for package @ovh-ux/manager-core-test-utils

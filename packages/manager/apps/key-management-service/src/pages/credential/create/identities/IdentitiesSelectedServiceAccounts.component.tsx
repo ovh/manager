@@ -58,7 +58,7 @@ const IdentitiesSelectedServiceAccounts = ({
       datagridColumns={columns}
       items={serviceAccountList}
       identityURNs={identityURNs}
-    ></IdentitiesSelectedBase>
+    />
   );
 };
 
