@@ -56,9 +56,10 @@ import { useGetCommand } from '@/hooks/api/ai/notebook/useGetCommand.hook';
 import CliEquivalent from './CliEquivalent.component';
 import { getNotebookSpec } from '@/lib/orderFunnelHelper';
 import A from '@/components/links/A.component';
-import { getHowToManageDataInAIDocLink } from '@/configuration/guide';
+
 import { useLocale } from '@/hooks/useLocale';
 import OvhLink from '@/components/links/OvhLink.component';
+import { GUIDES, getGuideUrl } from '@/configuration/guide';
 
 interface OrderFunnelProps {
   regions: ai.capabilities.Region[];
@@ -453,7 +454,10 @@ const OrderFunnel = ({
                             </p>
                             <p>{t('fieldVolumeDescription2')}</p>
                             <A
-                              href={getHowToManageDataInAIDocLink(locale)}
+                              href={getGuideUrl(
+                                GUIDES.HOW_TO_MANAGE_DATA,
+                                locale,
+                              )}
                               target="_blank"
                               rel="noopener noreferrer"
                             >
