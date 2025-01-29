@@ -21,6 +21,7 @@ export default class PciInstanceEditController {
     this.CucCloudMessage = CucCloudMessage;
     this.ovhManagerRegionService = ovhManagerRegionService;
     this.PciProjectsProjectInstanceService = PciProjectsProjectInstanceService;
+    this.coreConfig = coreConfig;
     this.PciProject = PciProject;
     this.EDIT_PAGE_SECTIONS = EDIT_PAGE_SECTIONS;
     this.instancePricesLink =
@@ -33,6 +34,8 @@ export default class PciInstanceEditController {
     this.instanceNamePattern = PATTERN;
     this.globalRegionsUrl = this.PciProject.getDocumentUrl('GLOBAL_REGIONS');
     this.localZoneUrl = this.PciProject.getDocumentUrl('LOCAL_ZONE');
+    this.zone3azUrl = this.PciProject.getDocumentUrl('REGIONS_3AZ');
+    this.is3az = this.instance.planCode.includes('3AZ');
 
     this.editInstance = new Instance({
       ...this.instance,
@@ -47,6 +50,7 @@ export default class PciInstanceEditController {
     this.model = {
       isInstanceFlex: new Flavor(this.editInstance.flavor).isFlex(),
     };
+    this.fetch3AZAvailability();
     this.imageEditMessage =
       this.imageEditMessage ||
       'pci_projects_project_instances_instance_edit_reboot_message';
@@ -61,6 +65,18 @@ export default class PciInstanceEditController {
       `#/pci/projects/${this.projectId}/savings-plan`,
     ).then((url) => {
       this.savingsPlanUrl = url;
+    });
+  }
+
+  fetch3AZAvailability() {
+    return this.PciProjectsProjectInstanceService.getProductAvailability(
+      this.projectId,
+      this.coreConfig.getUser().ovhSubsidiary,
+      'instance',
+    ).then(({ plans }) => {
+      this.are3AzRegionsAvailable = plans.some((plan) =>
+        plan.regions.some((region) => region.type === 'region-3-az'),
+      );
     });
   }
 
