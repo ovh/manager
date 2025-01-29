@@ -1,15 +1,12 @@
 import '@testing-library/jest-dom';
 import { describe, vi } from 'vitest';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { UseQueryResult } from '@tanstack/react-query';
 import { NewPrivateNetworkWrapper } from '@/__tests__/wrapper';
-import {
-  useGatewayCatalog,
-  TUseGatewayCatalog,
-} from '@/data/hooks/gateway/useGateway';
-import useIsPlanCodeAvailableInRegion from '@/hooks/useIsPlanCodeAvailableInRegion/useIsPlanCodeAvailableInRegion';
 import useExistingGatewayRegion from '@/hooks/useExistingGatewayRegion/useExistingGatewayRegion';
+import { useSmallestGatewayByRegion } from '@/hooks/useAvailableGateway/useAvailableGateway';
 import GatewayCreation from './GatewayCreation.component';
-import { TGateway } from '@/types/gateway.type';
+import { TGateway, TGatewayCatalog } from '@/types/gateway.type';
 
 vi.mock('@/hooks/useGuideLink/useGuideLink', () => ({
   default: () => ({
@@ -17,18 +14,15 @@ vi.mock('@/hooks/useGuideLink/useGuideLink', () => ({
     REGION_AVAILABILITY: '',
   }),
 }));
-vi.mock(
-  '@/hooks/useIsPlanCodeAvailableInRegion/useIsPlanCodeAvailableInRegion',
-);
 vi.mock('@/data/hooks/gateway/useGateway');
-vi.mocked(useGatewayCatalog).mockReturnValue({
+vi.mock('@/hooks/useAvailableGateway/useAvailableGateway');
+vi.mocked(useSmallestGatewayByRegion).mockReturnValue({
   data: {
     size: 's',
-    pricePerMonth: 0,
-    pricePerHour: 0,
+    price: 0,
   },
   isLoading: false,
-} as TUseGatewayCatalog);
+} as UseQueryResult<TGatewayCatalog>);
 vi.mock('@/hooks/useExistingGatewayRegion/useExistingGatewayRegion');
 
 vi.mock('@/hooks/usePrepareGatewayCreation/usePrepareGatewayCreation');
@@ -48,8 +42,6 @@ describe('GatewayCreation', () => {
   });
 
   it('should display gateway catalog when user check assign a gateway and there is not yet an existing gateway for the region', async () => {
-    vi.mocked(useIsPlanCodeAvailableInRegion).mockReturnValue(true);
-
     vi.mocked(useExistingGatewayRegion).mockReturnValue({
       gateway: undefined,
       isLoading: false,
@@ -67,8 +59,6 @@ describe('GatewayCreation', () => {
   });
 
   it('should display existing gateway when user check assign a gateway and exist already', async () => {
-    vi.mocked(useIsPlanCodeAvailableInRegion).mockReturnValue(true);
-
     vi.mocked(useExistingGatewayRegion).mockReturnValue({
       gateway: {
         id: 'gatewayid2',
@@ -98,8 +88,6 @@ describe('GatewayCreation', () => {
   });
 
   it('should display snat checkbox when gateway exist and has not externalInformation', async () => {
-    vi.mocked(useIsPlanCodeAvailableInRegion).mockReturnValue(true);
-
     vi.mocked(useExistingGatewayRegion).mockReturnValue({
       gateway: {
         id: 'gatewayid2',

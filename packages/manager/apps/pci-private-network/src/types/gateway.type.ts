@@ -18,6 +18,5 @@ export type TGateway = {
 
 export type TGatewayCatalog = {
   size: string;
-  pricePerMonth: number;
-  pricePerHour: number;
+  price: number;
 };
