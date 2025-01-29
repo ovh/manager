@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.15.2...@ovh-ux/manager-key-management-service-app@0.16.0) (2025-01-29)
+
+
+### Features
+
+* **key-management-service:** add KMIP RSA endpoint on dashboard ([58e2e1e](https://github.com/ovh/manager/commit/58e2e1eec6437605cbd4ed6eab35edbd2b7b2d01))
+* **kms:** ods18 migration ([#14544](https://github.com/ovh/manager/issues/14544)) ([11d03ac](https://github.com/ovh/manager/commit/11d03ac059f75eaac9c1994e4a42f246bb3afe62))
+
+
+
+
+
 ## [0.15.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.15.1...@ovh-ux/manager-key-management-service-app@0.15.2) (2025-01-23)
 
 
