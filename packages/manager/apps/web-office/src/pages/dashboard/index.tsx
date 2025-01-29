@@ -27,7 +27,7 @@ export type DashboardLayoutProps = {
 
 export default function DashboardPage() {
   const { serviceName } = useParams();
-  const { t } = useTranslation('dashboard');
+  const { t } = useTranslation('common');
   const { notifications } = useNotifications();
   const basePath = useResolvedPath('').pathname;
   const context = useContext(ShellContext);
@@ -41,13 +41,13 @@ export default function DashboardPage() {
   const tabsList: DashboardTabItemProps[] = [
     {
       name: 'licence',
-      title: t('microsoft_office_dashboard_licences'),
+      title: t('licences'),
       to: basePath,
       pathMatchers: computePathMatchers([urls.license]),
     },
     {
       name: 'consumption',
-      title: t('microsoft_office_dashboard_consumption'),
+      title: t('consumption'),
       to: `${basePath}/consumption`,
       pathMatchers: computePathMatchers([urls.consumption]),
     },
@@ -59,7 +59,7 @@ export default function DashboardPage() {
       href: (GUIDES_LIST.office_guides.url[ovhSubsidiary] ||
         GUIDES_LIST.office_guides.url.DEFAULT) as string,
       target: '_blank',
-      label: t('microsoft_office_dashboard_guides'),
+      label: t('common_guides_header'),
     },
   ];
   const header = {

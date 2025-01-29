@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Card, OnboardingLayout } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { OdsText } from '@ovhcloud/ods-components/react';
+import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { Breadcrumb } from '@/components/Breadcrumb/Breadcrumb';
 import onboardingImgSrc from './onboarding-img.png';
 import { GUIDES_LIST } from '@/guides.constants';
@@ -19,7 +21,11 @@ export default function Onboarding() {
         img={{
           src: onboardingImgSrc,
         }}
-        description={t('web_office_onboarding_description')}
+        description={
+          <OdsText preset={ODS_TEXT_PRESET.paragraph} className="text-center">
+            {t('web_office_onboarding_description')}
+          </OdsText>
+        }
         orderButtonLabel={t('web_office_onboarding_order')}
         orderHref={
           GUIDES_LIST.office_cta_order.url[ovhSubsidiary] ||
