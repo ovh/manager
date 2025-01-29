@@ -1,4 +1,5 @@
 import template from './cluster.html';
+import controller from './cluster.controller';
 
 export default {
   bindings: {
@@ -11,4 +12,5 @@ export default {
     guidesLinkOf3AZ: '<',
   },
   template,
+  controller,
 };

@@ -1,17 +1,26 @@
 <header class="oui-header" role="banner">
-    <div class="d-flex">
-        <h1 class="oui-header__title" data-ng-bind="server.displayName"></h1>
-        <button
-            type="button"
-            data-translate-attr="{ title: 'wizard_modify' }"
-            class="btn btn-icon my-auto ml-2"
-            data-ui-sref="{{$ctrl.statePrefix}}.dashboard.edit-display-name"
-        >
-            <span
-                class="oui-icon oui-icon_small oui-icon-pen_concept"
-                aria-hidden="true"
-            ></span>
-        </button>
+    <div class="d-flex justify-content-between">
+        <div class="d-flex">
+            <h1
+                class="oui-header__title"
+                data-ng-bind="server.displayName"
+            ></h1>
+            <button
+                type="button"
+                data-translate-attr="{ title: 'wizard_modify' }"
+                class="btn btn-icon my-auto ml-2"
+                data-ui-sref="{{$ctrl.statePrefix}}.dashboard.edit-display-name"
+            >
+                <span
+                    class="oui-icon oui-icon_small oui-icon-pen_concept"
+                    aria-hidden="true"
+                ></span>
+            </button>
+        </div>
+        <changelog-button
+            links="$ctrl.constants.CHANGELOG.dedicated_server.links"
+            chapters="$ctrl.constants.CHANGELOG.dedicated_server.chapters"
+        ></changelog-button>
     </div>
     <h2
         class="oui-header__description"

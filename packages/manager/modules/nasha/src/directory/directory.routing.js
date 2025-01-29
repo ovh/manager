@@ -13,6 +13,7 @@ export default /* @ngInject */ ($stateProvider) => {
       dataModel: () => 'dedicated.nasha.Storage',
       defaultFilterColumn: () => 'serviceName',
       header: () => NASHA_TITLE,
+      changelog: () => 'nasha',
       customizableColumns: () => true,
       getServiceNameLink: /* @ngInject */ ($state) => ({ serviceName }) =>
         $state.href('nasha.dashboard', { serviceName }),

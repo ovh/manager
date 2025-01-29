@@ -2307,4 +2307,128 @@ constants.US.TOP_GUIDES = defaults(
   constants.EU.TOP_GUIDES,
 );
 
+const changelogConfig = {
+  dedicated_server: {
+    links: {
+      changelog:
+        'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Baremetal',
+      roadmap:
+        'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Baremetal',
+      'feature-request':
+        'https://github.com/ovh/infrastructure-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+    },
+    chapters: ['Dedicated', 'Baremetal', 'Cluster'],
+  },
+  dedicated_cluster: {
+    links: {
+      changelog:
+        'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Baremetal',
+      roadmap:
+        'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Baremetal',
+      'feature-request':
+        'https://github.com/ovh/infrastructure-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+    },
+    chapters: ['Dedicated', 'Baremetal', 'Cluster'],
+  },
+  vps: {
+    links: {
+      changelog:
+        'https://github.com/orgs/ovh/projects/18/views/2?sliceBy%5Bvalue%5D=VPS&pane=info',
+      roadmap:
+        'https://github.com/orgs/ovh/projects/18/views/1?sliceBy%5Bvalue%5D=VPS&pane=info',
+      'feature-request':
+        'https://github.com/ovh/infrastructure-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+    },
+    chapters: ['Dedicated', 'Baremetal', 'Cluster'],
+  },
+  managed_baremetal: {
+    links: {
+      changelog:
+        'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Infrastructure+Storage',
+      roadmap:
+        'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=VMware+on+OVHcloud',
+      'feature-request':
+        'https://github.com/ovh/infrastructure-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+    },
+    chapters: ['Dedicated', 'Baremetal', 'Cluster'],
+  },
+  licenses: {
+    links: {
+      changelog: 'https://github.com/orgs/ovh/projects/16/views/6?pane=info',
+      roadmap: 'https://github.com/orgs/ovh/projects/16/views/1?pane=info',
+      'feature-request':
+        'https://github.com/ovh/infrastructure-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+    },
+    chapters: ['Dedicated', 'Baremetal', 'Cluster'],
+  },
+  nasha: {
+    links: {
+      changelog:
+        'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Infrastructure+Storage',
+      roadmap:
+        'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Infrastructure+Storage',
+      'feature-request':
+        'https://github.com/ovh/infrastructure-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+    },
+    chapters: ['Dedicated', 'Baremetal', 'Cluster'],
+  },
+  file_storage: {
+    links: {
+      changelog:
+        'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Infrastructure+Storage',
+      roadmap:
+        'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Infrastructure+Storage',
+      'feature-request':
+        'https://github.com/ovh/infrastructure-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+    },
+    chapters: ['Dedicated', 'Baremetal', 'Cluster'],
+  },
+  cloud_disk_array: {
+    links: {
+      changelog:
+        'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Infrastructure+Storage',
+      roadmap:
+        'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Infrastructure+Storage',
+      'feature-request':
+        'https://github.com/ovh/infrastructure-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+    },
+    chapters: ['Dedicated', 'Baremetal', 'Cluster'],
+  },
+  veeam_cloud_connect: {
+    links: {
+      changelog:
+        'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Backup+and+Disaster+Recovery',
+      roadmap:
+        'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Backup+and+Disaster+Recovery',
+      'feature-request':
+        'https://github.com/ovh/private-cloud-roadmap/issues/new',
+    },
+    chapters: ['Dedicated', 'Baremetal', 'Cluster'],
+  },
+  nutanix: {
+    links: {
+      changelog:
+        'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Nutanix+on+OVHcloud',
+      roadmap:
+        'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=VMware+on+OVHcloud',
+      'feature-request':
+        'https://github.com/ovh/private-cloud-roadmap/issues/new',
+    },
+    chapters: ['Dedicated', 'Baremetal', 'Cluster'],
+  },
+  veeam_enterprise: {
+    links: {
+      changelog:
+        'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Backup+and+Disaster+Recovery',
+      roadmap:
+        'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Backup+and+Disaster+Recovery',
+      'feature-request':
+        'https://github.com/ovh/private-cloud-roadmap/issues/new',
+    },
+  },
+};
+constants.EU.CHANGELOG = changelogConfig;
+constants.CA.CHANGELOG = changelogConfig;
+constants.US.CHANGELOG = changelogConfig;
+
 export default constants;

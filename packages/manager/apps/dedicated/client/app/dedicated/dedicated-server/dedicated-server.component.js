@@ -1,4 +1,5 @@
 import template from './dedicated-server.html';
+import controller from './dedicated-server.controller';
 
 export default {
   bindings: {
@@ -9,4 +10,5 @@ export default {
     allServersLink: '<',
   },
   template,
+  controller,
 };
