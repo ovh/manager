@@ -109,7 +109,9 @@ export default function ObjectPage() {
   const targetContainer = useMemo(
     () =>
       allContainers?.resources.find(
-        (c) => c.id === storageId || c.name === storageId,
+        (c) =>
+          (c.id === storageId || c.name === storageId) &&
+          c.region === searchParams.get('region'),
       ),
     [allContainers, storageId],
   );
@@ -123,9 +125,8 @@ export default function ObjectPage() {
 
   const container = useMemo((): TContainer => {
     if (!serverContainer) return undefined;
-    const s3StorageType = allContainers?.resources.find(
-      (c) => c.id === storageId || c.name === storageId,
-    )?.s3StorageType;
+    const s3StorageType = targetContainer?.s3StorageType;
+
     return {
       ...serverContainer,
       id: serverContainer?.id || targetContainer?.id,
@@ -144,7 +145,7 @@ export default function ObjectPage() {
       regionDetails: s3StorageType ? region : undefined,
       staticUrl: serverContainer?.staticUrl || serverContainer?.virtualHost,
     };
-  }, [serverContainer, region, allContainers]);
+  }, [serverContainer, region, targetContainer]);
 
   const is = {
     localZone: useMemo(
