@@ -15,6 +15,7 @@ export type Filter = {
   key: string;
   value: string | string[];
   comparator: FilterComparator;
+  operator?: string;
 };
 
 export enum FilterTypeCategories {

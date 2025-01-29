@@ -11,6 +11,7 @@ export function useColumnFilters() {
 
   return {
     filters,
+
     addFilter: (filter: FilterWithLabel) => {
       if (filter.value) {
         setFilters((previousFilters) => {
@@ -20,6 +21,8 @@ export function useColumnFilters() {
           if (previousFilters.some((f) => filterEquals(f, filter))) {
             return previousFilters;
           }
+          // filter.operator = '&';
+          filter.operator = '|';
           return [...previousFilters, filter];
         });
       }

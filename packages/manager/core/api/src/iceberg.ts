@@ -102,12 +102,18 @@ export async function fetchIcebergV6<T>({
     requestHeaders['x-pagination-sort-order'] = sortReverse ? 'DESC' : 'ASC';
   }
   if (filters?.length) {
+    console.info('iceberg filters ', filters);
     requestHeaders['x-pagination-filter'] = filters
       .map(
         ({ comparator, key, value }) =>
           `${encodeURIComponent(key)}:${icebergFilter(comparator, value)}`,
       )
+      // .join('&');
       .join('&');
+    console.info(
+      ' requestHeaders[x-pagination-filter] : ',
+      requestHeaders['x-pagination-filter'],
+    );
   }
   if (disableCache) {
     requestHeaders.Pragma = 'no-cache';
