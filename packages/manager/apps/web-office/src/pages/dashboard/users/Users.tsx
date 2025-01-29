@@ -1,5 +1,5 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { Trans, useTranslation } from 'react-i18next';
 import { Datagrid, DatagridColumn } from '@ovh-ux/manager-react-components';
 import {
@@ -8,27 +8,53 @@ import {
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
 import {
+  OdsButton,
   OdsIcon,
   OdsLink,
   OdsText,
-  OdsButton,
 } from '@ovhcloud/ods-components/react';
 import { UserNativeType } from '@/api/users/type';
 import Loading from '@/components/Loading/Loading';
-import { useOfficeLicenseDetail, useOfficeUsers } from '@/hooks';
+import {
+  useOfficeLicenseDetail,
+  useOfficeUsers,
+  useGenerateUrl,
+} from '@/hooks';
 import { BadgeStatus } from '@/components/BadgeStatus';
 import { UserStateEnum } from '@/api/api.type';
 import ActionButtonUsers from './ActionButtonUsers.component';
 
 export default function Users() {
-  const { t } = useTranslation('dashboard/users');
-
+  const { t } = useTranslation(['dashboard/users', 'common']);
   const { data: dataUsers, isLoading: isLoadingUsers } = useOfficeUsers();
+
   const {
     data: dataLicenceDetail,
     isLoading: isLoadingLicenceDetail,
   } = useOfficeLicenseDetail();
 
+  const dataServiceName = dataLicenceDetail?.serviceName;
+  const dataTenantServiceName = dataLicenceDetail?.tenantServiceName;
+
+  const hrefOrderLicenses = useGenerateUrl(
+    '/license/:serviceName/users/order-licenses',
+    'path',
+    {
+      serviceName: dataServiceName,
+      tenantServiceName: dataTenantServiceName,
+    },
+  );
+
+  const hrefOrderUsers = useGenerateUrl(
+    '/license/:serviceName/users/order-users',
+    'path',
+    {
+      serviceName: dataServiceName,
+    },
+  );
+  const navigate = useNavigate();
+  const onOrderLicenses = () => navigate(hrefOrderLicenses);
+  const onOrderUsers = () => navigate(hrefOrderUsers);
   const columns: DatagridColumn<UserNativeType>[] = [
     {
       id: 'firstName',
@@ -116,11 +142,15 @@ export default function Users() {
       ) : (
         <>
           <OdsButton
+            id={dataLicenceDetail?.iam.id}
             data-testid="user-or-licenses-order-button"
             label={
               !dataLicenceDetail?.serviceType
-                ? t('dashboard_users_order_button_licenses')
-                : t('dashboard_users_order_button_users')
+                ? t('common:users_order_licenses')
+                : t('common:users_order_users')
+            }
+            onClick={
+              !dataLicenceDetail?.serviceType ? onOrderLicenses : onOrderUsers
             }
             variant={ODS_BUTTON_VARIANT.outline}
             className="block mb-4"

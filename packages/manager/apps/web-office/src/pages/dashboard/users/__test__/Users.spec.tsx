@@ -7,6 +7,7 @@ import {
   licensesPrepaidExpandedMock,
   usersMock,
 } from '@/api/_mock_';
+import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
 
 const hoistedMock = vi.hoisted(() => ({
   useOfficeUsers: vi.fn(),
@@ -35,7 +36,7 @@ describe('Users page', () => {
 
     const { getByTestId } = render(<Users />);
     const orderButton = getByTestId('user-or-licenses-order-button');
-    expect(orderButton).toHaveAttribute('label', 'Ajouter un utilisateur');
+    expect(orderButton).toHaveAttribute('label', commonTranslation.order_users);
   });
 
   it('Page for prepaid', () => {
@@ -50,6 +51,9 @@ describe('Users page', () => {
 
     const { getByTestId } = render(<Users />);
     const orderButton = getByTestId('user-or-licenses-order-button');
-    expect(orderButton).toHaveAttribute('label', 'Commander plus de licences');
+    expect(orderButton).toHaveAttribute(
+      'label',
+      commonTranslation.order_licenses,
+    );
   });
 });
