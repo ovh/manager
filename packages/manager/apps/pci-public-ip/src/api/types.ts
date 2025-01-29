@@ -3,6 +3,12 @@ export enum IPTypeEnum {
   FLOATING = 'floating_ip',
 }
 
+export enum RegionType {
+  '1AZ' = 'region',
+  '3AZ' = 'region-3-az',
+  LZ = 'localzone',
+}
+
 export type TIpType = {
   name: string;
   label: string;
@@ -27,11 +33,12 @@ export type TCountry = {
 export type TRegion = {
   continentCode: string;
   datacenter: string;
-  enabled: string;
+  enabled: boolean;
   name: string;
   macroName: string;
   microName: string;
   continent: string;
+  type: RegionType;
 };
 
 export enum StepIdsEnum {
