@@ -7,6 +7,7 @@ import {
 } from '@/types/commercial-catalog.type';
 import { convertToDuration, convertToPrice } from '../commercial-catalog/utils';
 import { SavingsPlanService } from '@/types';
+import { SavingsPlanConsumption } from '@/types/savingsPlanConsumption.type';
 
 export const formatTechnicalInfo = (
   technicalInfo: CommercialCatalogTechnicalType,
@@ -60,34 +61,50 @@ export const formatPricingInfo = (
   }
 };
 
-export const transformData = (apiData: any) => {
-  const periods = apiData.flavors.flatMap((flavor: any) => flavor.periods);
+export const transformChart = (apiData: SavingsPlanConsumption) => {
+  console.log('data:', apiData);
 
+  // Extraction des périodes depuis les "flavors"
+  const periods = apiData.flavors.flatMap((flavor) => flavor.periods);
+
+  // Création d'une Map pour stocker les données par jour
   const daysMap = new Map();
 
-  periods.forEach(({ begin, end, consumption_size, cumul_plan_size }) => {
-    const startDate = new Date(begin);
-    const endDate = new Date(end);
-
-    while (startDate <= endDate) {
-      const day = startDate.getDate();
-      const inclus = Math.min(consumption_size, cumul_plan_size);
-      const exclus = consumption_size - inclus;
-
-      if (!daysMap.has(day)) {
-        daysMap.set(day, { day, inclus: 0, exclus: 0 });
-      }
-
-      const currentData = daysMap.get(day);
-      daysMap.set(day, {
-        day,
-        inclus: currentData.inclus + inclus,
-        exclus: currentData.exclus + exclus,
-      });
-
-      startDate.setDate(startDate.getDate() + 1);
+  // Fonction pour ajouter la consommation d'un jour donné dans la Map
+  const addConsumptionToDay = (day: number, inclus: number, exclus: number) => {
+    if (!daysMap.has(day)) {
+      daysMap.set(day, { day, inclus: 0, exclus: 0 });
     }
-  });
 
+    const currentData = daysMap.get(day);
+    daysMap.set(day, {
+      day,
+      inclus: currentData.inclus + inclus,
+      exclus: currentData.exclus + exclus,
+    });
+  };
+
+  // Traitement des périodes
+  periods.forEach(
+    ({
+      begin,
+      end,
+      consumption_size: consumptionSize,
+      cumul_plan_size: cumulPlanSize,
+    }) => {
+      const startDate = new Date(begin);
+      const endDate = new Date(end);
+      const inclus = Math.min(consumptionSize, cumulPlanSize);
+      const exclus = consumptionSize - inclus;
+
+      // Ajout des consommations pour chaque jour de la période
+      while (startDate <= endDate) {
+        addConsumptionToDay(startDate.getDate(), inclus, exclus);
+        startDate.setDate(startDate.getDate() + 1);
+      }
+    },
+  );
+
+  // Conversion de la Map en tableau
   return Array.from(daysMap.values());
 };

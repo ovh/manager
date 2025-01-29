@@ -9,6 +9,8 @@ import Filters from '@/components/Dashboard/Filters/Filters';
 import Kpis from '@/components/Dashboard/Kpis/Kpis';
 import TabsDashboard from '@/components/Dashboard/TabsDashboard/TabsDashboard';
 import { useSavingsPlan } from '@/hooks/useSavingsPlan';
+import { transformChart } from '@/utils/formatter/formatter';
+import GenericChart from '@/components/Chart/Chart';
 import { useFilteredConsumption } from '@/hooks/useFilteredConsumption';
 
 const Dashboard: React.FC = () => {
@@ -58,6 +60,11 @@ const Dashboard: React.FC = () => {
       />
     );
   }
+
+  const chartData = transformChart(consumption);
+  const maxRange = Math.max(...chartData.map((d) => d.inclus + d.exclus));
+  const savingsPlanSize = consumption.flavors[0].subscriptions[0].size;
+
   return (
     <>
       <Title>{t('dashboard')}</Title>
@@ -79,6 +86,13 @@ const Dashboard: React.FC = () => {
         isLoading={isConsumptionLoading}
         consumption={currentConsumption}
         period={period}
+      />
+      <GenericChart
+        chartTitle={'utilisation'}
+        chartData={chartData}
+        maxRange={maxRange}
+        savingsPlanSize={savingsPlanSize}
+        serviceFilter="Managed Rancher Services"
       />
       <ConsumptionDatagrid
         isLoading={isConsumptionLoading}

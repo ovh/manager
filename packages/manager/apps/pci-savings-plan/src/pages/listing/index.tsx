@@ -3,12 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 
 import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
-import {
-  OdsButton,
-  OdsTab,
-  OdsTabs,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
+import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
 
 import {
   Notifications,
@@ -25,9 +20,6 @@ import TableContainer from '@/components/Table/TableContainer';
 import { useSavingsPlan } from '@/hooks/useSavingsPlan';
 import { SavingsPlanService } from '@/types';
 import TabsDashboard from '@/components/Dashboard/TabsDashboard/TabsDashboard';
-import GenericChart from '@/components/Chart/Chart';
-import { transformData } from '@/utils/formatter/formatter';
-import { rancherData } from '@/_mock_/consumptionRancher';
 
 interface ListingTablePageProps {
   data: SavingsPlanService[];
@@ -75,11 +67,6 @@ const ListingTablePage: React.FC<ListingTablePageProps> = ({
     clearNotifications();
     navigate(`/pci/projects/${projectId}/savings-plan/new`);
   };
-
-  const chartData = transformData(rancherData);
-  const maxRange = Math.max(...chartData.map((d) => d.inclus + d.exclus)) + 5;
-  const savingsPlanSize = rancherData.flavors[0].subscriptions[0].size;
-
   return (
     <>
       <Title>{t('title')}</Title>
@@ -104,12 +91,6 @@ const ListingTablePage: React.FC<ListingTablePageProps> = ({
           {' '}
           Utilisation et Couverture des Savings Plans
         </h2>
-        <GenericChart
-          chartData={chartData}
-          maxRange={maxRange}
-          savingsPlanSize={savingsPlanSize}
-          serviceFilter="Managed Rancher Services"
-        />
         ;
       </div>
     </>

@@ -1,7 +1,7 @@
 import { SavingsPlanService } from '@/types';
 
 // Example usage with the provided Rancher dataset
-export const rancherData: any = {
+export const mockDataRancher: any = {
   flavors: [
     {
       fees: {
