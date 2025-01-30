@@ -1,8 +1,14 @@
 import apiClient, {
   fetchIcebergV2,
   fetchIcebergV6,
+  v2,
+  v6,
 } from '@ovh-ux/manager-core-api';
-import { LogKind, LogSubscription } from '../types/dbaas/logs';
+import {
+  LogKind,
+  LogSubscription,
+  LogSubscriptionResponse,
+} from '../types/dbaas/logs';
 import { ApiUrls } from '../../LogsToCustomer.module';
 
 /**
@@ -44,19 +50,39 @@ export const getLogSubscriptionv6 = async (
   apiClient.v6.get<LogSubscription>(`${logSubscriptionUrl}/${subscriptionId}`);
 
 /**
+ * POST log subscription
+ */
+export const postLogSubscriptionV2 = async (
+  logSubscriptionUrl: ApiUrls['logSubscription'],
+  logKind: LogKind,
+  streamId: string,
+) =>
+  v2.post<LogSubscriptionResponse>(logSubscriptionUrl, {
+    kind: logKind.name,
+    streamId,
+  });
+
+export const postLogSubscriptionV6 = async (
+  logSubscriptionUrl: ApiUrls['logSubscription'],
+  logKind: LogKind,
+  streamId: string,
+) =>
+  v6.post<LogSubscriptionResponse>(logSubscriptionUrl, {
+    kind: logKind.name,
+    streamId,
+  });
+
+/**
  * DELETE log subscription
  */
-
-export const deleteLogSubscriptionv2 = async (
+export const deleteLogSubscriptionV2 = async (
   logSubscriptionUrl: ApiUrls['logSubscription'],
   subscriptionId: string,
-) => {
-  return apiClient.v2.delete(`${logSubscriptionUrl}/${subscriptionId}`);
-};
+) =>
+  v2.delete<LogSubscriptionResponse>(`${logSubscriptionUrl}/${subscriptionId}`);
 
-export const deleteLogSubscriptionv6 = async (
+export const deleteLogSubscriptionV6 = async (
   logSubscriptionUrl: ApiUrls['logSubscription'],
   subscriptionId: string,
-) => {
-  return apiClient.v6.delete(`${logSubscriptionUrl}/${subscriptionId}`);
-};
+) =>
+  v6.delete<LogSubscriptionResponse>(`${logSubscriptionUrl}/${subscriptionId}`);

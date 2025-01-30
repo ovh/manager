@@ -27,11 +27,19 @@ import {
 import {
   GetLogStreamMocksParams,
   getLogStreamMocks,
+  getLogStreamsMocks,
+  GetLogStreamsMocksParams,
 } from '../data/mocks/logStream.handler';
 import {
   GetLogServiceMocksParams,
   getLogServiceMocks,
+  getLogServicesMocks,
+  GetLogServicesMocksParams,
 } from '../data/mocks/logService.handler';
+import {
+  getLogRetentionMocks,
+  GetLogRetentionMocksParams,
+} from '../data/mocks/logRetention.handler';
 
 export const renderTest = async ({
   initialRoute,
@@ -44,7 +52,10 @@ export const renderTest = async ({
   GetLogSubscriptionsMocksParams &
   GetLogStreamUrlMocksParams &
   GetLogStreamMocksParams &
-  GetLogServiceMocksParams = {}) => {
+  GetLogStreamsMocksParams &
+  GetLogServiceMocksParams &
+  GetLogRetentionMocksParams &
+  GetLogServicesMocksParams = {}) => {
   ((global as unknown) as { server: SetupServer }).server?.resetHandlers(
     ...toMswHandlers([
       ...getLogKindsMocks(mockParams),
@@ -52,7 +63,10 @@ export const renderTest = async ({
       ...getLogSubscriptionsMocks(mockParams),
       ...getLogStreamUrlMocks(mockParams),
       ...getLogStreamMocks(mockParams),
+      ...getLogStreamsMocks(mockParams),
       ...getLogServiceMocks(mockParams),
+      ...getLogServicesMocks(mockParams),
+      ...getLogRetentionMocks(mockParams),
     ]),
     getLogMessageMocks(mockParams),
   );

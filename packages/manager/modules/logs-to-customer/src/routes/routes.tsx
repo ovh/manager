@@ -28,6 +28,6 @@ export const logsRoutes: RouteObject[] = [
   },
   {
     path: 'streams',
-    ...lazyRouteConfig(() => import('../pages/data-streams/Data-streams.page')),
+    ...lazyRouteConfig(() => import('../pages/data-streams/DataStreams.page')),
   },
 ];
