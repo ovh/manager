@@ -1,14 +1,24 @@
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
 import { useMemo } from 'react';
 import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
-import { getArchiveContainers, TArchiveContainer } from '../data/archive';
+import {
+  deleteArchiveContainer,
+  getArchiveContainers,
+  TArchiveContainer,
+} from '../data/archive';
 import { paginateResults, sortResults } from '@/helpers';
 import queryClient from '@/queryClient';
 
+const getQueryKeyArchive = (projectId: string) => [
+  'projectId',
+  projectId,
+  'coldArchive',
+];
+
 export const useArchive = (projectId: string, region: string) => {
   return useQuery({
-    queryKey: ['projectId', projectId, 'coldArchive'],
+    queryKey: getQueryKeyArchive(projectId),
     queryFn: () => getArchiveContainers(projectId, region),
     enabled: !!projectId && !!region,
   });
@@ -48,11 +58,43 @@ export const usePaginatedArchive = (
       ),
       refresh: () =>
         queryClient.invalidateQueries({
-          queryKey: ['projectId', projectId, 'coldArchive'],
+          queryKey: getQueryKeyArchive(projectId),
         }),
       allArchives: archives,
       error,
     }),
     [archives, error, isLoading, isPending, pagination, sorting, filters],
   );
+};
+
+type DeleteArchiveProps = {
+  projectId: string;
+  containerName: string;
+  region: string;
+  onError: (cause: Error) => void;
+  onSuccess: () => void;
+};
+
+export const useDeleteArchiveContainer = ({
+  projectId,
+  containerName,
+  region,
+  onError,
+  onSuccess,
+}: DeleteArchiveProps) => {
+  const mutation = useMutation({
+    mutationFn: async () =>
+      deleteArchiveContainer({ projectId, region, containerName }),
+    onError,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: getQueryKeyArchive(projectId),
+      });
+      onSuccess();
+    },
+  });
+  return {
+    deleteArchiveContainer: () => mutation.mutate(),
+    ...mutation,
+  };
 };

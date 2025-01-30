@@ -27,10 +27,7 @@ export default function ActionsComponent({
         'pci_projects_project_storages_cold_archive_container_action_delete_container',
       ),
       onClick: () => {
-        navigate(
-          `./delete-container/${archive.name}
-          }`,
-        );
+        navigate(`./delete-container/${archive.name}`);
       },
     },
   ].filter(Boolean);
