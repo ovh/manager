@@ -3,7 +3,6 @@ import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
 import { order } from './type';
 
 // GET
-
 export const getOrderCatalog = async ({
   ovhSubsidiary,
   productName,
