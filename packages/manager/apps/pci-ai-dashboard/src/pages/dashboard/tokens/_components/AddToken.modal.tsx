@@ -255,7 +255,7 @@ const AddToken = () => {
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
-                          {regionsQuery.data.map((region) => (
+                          {regionsQuery.data?.map((region) => (
                             <SelectItem key={region.id} value={region.id}>
                               {tRegions(`region_${region.id}`)}
                             </SelectItem>
