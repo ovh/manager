@@ -1,0 +1,11 @@
+{
+  "pci_projects_project_storages_containers_container_cold_archive_delete_title": "Deseja eliminar o seu container?",
+  "pci_projects_project_storages_containers_container_cold_archive_delete_description": "Está prestes a eliminar o seu container: {{ containerName }}.",
+  "pci_projects_project_storages_containers_container_cold_archive_delete_terminate_input_label": "Introduza “TERMINATE” no seguinte campo para confirmar",
+  "pci_projects_project_storages_containers_container_cold_archive_delete_submit_label": "Confirmar",
+  "pci_projects_project_storages_containers_container_cold_archive_delete_cancel_label": "Anular",
+  "pci_projects_project_storages_containers_container_cold_archive_delete_archive_status_active_warning_1": "Existem ainda {{objetsCount}} objeto(s) no seu container {{containerName}}.",
+  "pci_projects_project_storages_containers_container_cold_archive_delete_archive_status_active_warning_2": "Para eliminar o seu container de forma definitiva, deve primeiro eliminar os objetos nele contidos. Consulte o nosso <a class=\"oui-link oui-link_icon\" href=\"{{ docUrl }}\" target=\"_blank\" rel=\"noopener\">guia para gerir os objetos de um arquivo com AWS CLI</a>.",
+  "pci_projects_project_storages_containers_container_cold_archive_delete_success_message": "O container {{ containerName }} está a ser eliminado.",
+  "pci_projects_project_storages_containers_container_cold_archive_delete_error_delete": "Ocorreu um erro ao eliminar o container {{ containerName }}: {{ message }}."
+}
