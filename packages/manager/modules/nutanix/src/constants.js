@@ -31,9 +31,11 @@ export const NODE_POWER_STATES = {
 export const SERVICE_STATES = {
   ACTIVE: 'active',
   SUSPENDED: 'suspended',
+  TO_SUSPEND: 'toSuspend',
   UNKNOWN: 'unknown',
 };
 
+export const MIN_NODES_BY_CLUSTER = 3;
 export const MAX_NODES_BY_CLUSTER = 15;
 
 export const NUTANIX_SERVICE_TYPE = 'NUTANIX';

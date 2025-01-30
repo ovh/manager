@@ -1,9 +1,0 @@
-{
-  "nutanix_dashboard_poweron_node_title": "Allumer le noeud",
-  "nutanix_dashboard_poweron_node_description": "Vous allez allumer votre noeud.",
-  "nutanix_dashboard_poweron_node_server_model": "Modèle de serveurs :",
-  "nutanix_dashboard_poweron_node_confirm": "Allumer",
-  "nutanix_dashboard_poweron_node_cancel": "Annuler",
-  "nutanix_dashboard_poweron_node_success_banner": "Votre demande de démarrage a été prise en compte. Cette opération peut prendre jusqu'à 15 minutes",
-  "nutanix_dashboard_poweron_node_error_banner": "Votre demande de démarrage n'a pas été prise en compte :"
-}

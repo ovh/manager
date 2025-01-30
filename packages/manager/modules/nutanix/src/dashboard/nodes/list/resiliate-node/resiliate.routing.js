@@ -2,20 +2,19 @@ import { SERVICE_TYPE } from './constant';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('nutanix.dashboard.nodes.all.resiliate-node', {
-    url: '/resiliate/:nodeName',
+    url: '/resiliate/:node',
     views: {
       modal: {
         component: 'billingAutorenewTerminateAgoraService',
       },
     },
     params: {
-      serviceName: null,
+      node: null,
     },
     layout: 'modal',
     resolve: {
       serviceType: () => SERVICE_TYPE,
-      nodeName: /* @ngInject */ ($transition$) =>
-        $transition$.params().nodeName,
+      nodeName: /* @ngInject */ ($transition$) => $transition$.params().node,
       serviceName: /* @ngInject */ (nodeName) => nodeName,
       id: /* ngInject */ (server) => server.serviceId,
       server: /* @ngInject */ (nodeName, NutanixService) =>
