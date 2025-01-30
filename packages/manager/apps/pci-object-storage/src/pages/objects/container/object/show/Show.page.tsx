@@ -1,4 +1,4 @@
-import { Suspense, useMemo, useState } from 'react';
+import { Suspense, useContext, useMemo, useState } from 'react';
 import {
   Outlet,
   useHref,
@@ -25,7 +25,7 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { useBytes, useProject } from '@ovh-ux/manager-pci-common';
-import { useTracking } from '@ovh-ux/manager-react-shell-client';
+import { ShellContext, useTracking } from '@ovh-ux/manager-react-shell-client';
 import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
 import {
   OdsBadge,
@@ -78,7 +78,7 @@ export default function ObjectPage() {
   const [searchParams] = useSearchParams();
   const { data: project } = useProject();
 
-  const { trackClick } = useTracking();
+  const { tracking } = useContext(ShellContext).shell;
 
   const { data: allContainers } = useAllStorages(project?.project_id);
   const { hasMaintenance, maintenanceURL } = useProductMaintenance(
@@ -357,7 +357,7 @@ export default function ObjectPage() {
                     onClick={() => {
                       const name = TRACKING.STORAGE_ENCRYPTION.TOOLTIP_AES256;
                       if (name) {
-                        trackClick({
+                        tracking?.trackClick({
                           name,
                           type: 'action',
                         });

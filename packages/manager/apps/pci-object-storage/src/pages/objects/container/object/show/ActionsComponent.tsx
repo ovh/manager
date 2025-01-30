@@ -1,9 +1,10 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 import { ActionMenu } from '@ovh-ux/manager-react-components';
-import { useTracking } from '@ovh-ux/manager-react-shell-client';
+import { ShellContext, useTracking } from '@ovh-ux/manager-react-shell-client';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { addWeeks } from 'date-fns';
+import { useContext } from 'react';
 import { OPENIO_PRESIGN_EXPIRE, TRACKING_PREFIX } from '@/constants';
 import { TObject } from '@/api/data/container';
 import { TContainer } from '@/pages/objects/container/object/show/Show.page';
@@ -24,7 +25,7 @@ export default function ActionsComponent({
 
   const [searchParams] = useSearchParams();
 
-  const { trackClick } = useTracking();
+  const { tracking } = useContext(ShellContext).shell;
   const navigate = useNavigate();
 
   const { projectId } = useParams();
@@ -32,7 +33,7 @@ export default function ActionsComponent({
   const { validUsersWithCredentials } = useUsers(projectId);
 
   const download = async () => {
-    trackClick({
+    tracking?.trackClick({
       name: `${TRACKING_PREFIX}object::download-file`,
       type: 'action',
     });

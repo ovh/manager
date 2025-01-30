@@ -53,7 +53,7 @@ const UserListPage = lazy(() =>
   import('@/pages/objects/container/users/Listing.page'),
 );
 const UserCreatePage = lazy(() =>
-  import('@/pages/objects/container/users/Create.page'),
+  import('@/pages/objects/container/users/create/Create.page'),
 );
 const DeleteUserPage = lazy(() =>
   import('@/pages/objects/container/users/delete/Delete.page'),

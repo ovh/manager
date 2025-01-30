@@ -8,7 +8,7 @@ import {
   useFeatureAvailability,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
-import { Suspense, useState } from 'react';
+import { Suspense, useContext, useState } from 'react';
 import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
@@ -22,32 +22,19 @@ import {
   OsdsSpinner,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import {
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-  ODS_MESSAGE_TYPE,
-  ODS_SPINNER_SIZE,
-} from '@ovhcloud/ods-components';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import { FilterCategories } from '@ovh-ux/manager-core-api';
-import { useTranslation } from 'react-i18next';
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { usePaginatedUsers } from '@/api/hooks/useUser';
 import { useDatagridColumn } from './useDatagridColumn';
 import queryClient from '@/queryClient';
-import { AVAILABILITY } from '@/constants';
+import { AVAILABILITY, TRACKING_PREFIX } from '@/constants';
 
 export default function Listing() {
   const { t } = useTranslation('objects/users');
 
   const { projectId } = useParams();
   const { pagination, setPagination, sorting, setSorting } = useDataGrid();
+
+  const { tracking } = useContext(ShellContext).shell;
 
   const navigate = useNavigate();
   const { clearNotifications } = useNotifications();
@@ -108,6 +95,11 @@ export default function Listing() {
           color="primary"
           className="xs:mb-0.5 sm:mb-0"
           onClick={() => {
+            tracking?.trackClick({
+              name: `${TRACKING_PREFIX}s3-policies-users::add`,
+              type: 'action',
+            });
+
             clearNotifications();
             navigate('./new');
           }}
