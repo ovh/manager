@@ -15,6 +15,8 @@ export default function MockedAppPage() {
           logSubscription: apiUrlMocks.logSubscription,
           logUrl: apiUrlMocks.logUrl,
         }}
+        logIamActions={{ deleteSubscription: [], postSubscription: [] }}
+        resourceURN={'urn:test'}
       />
     </div>
   );
