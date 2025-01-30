@@ -117,6 +117,9 @@ export const ShapesInputComponent = function ShapesInputComponent<T>({
     value,
     group: undefined,
   });
+  const [isAccordionOpen, setIsAccordionOpen] = useState<{
+    [groupName: string]: boolean;
+  }>({ none: true });
 
   const LabelComponent = useMemo(
     () => item?.LabelComponent || DefaultItemLabelComponent,
@@ -355,7 +358,13 @@ export const ShapesInputComponent = function ShapesInputComponent<T>({
                   isMobile={isMobile}
                 />
               }
-              isOpen={!groupName}
+              isOpen={isAccordionOpen[groupName || 'none']}
+              onToggle={() => {
+                const name = groupName || 'none';
+                setIsAccordionOpen({
+                  [name]: !isAccordionOpen[name],
+                });
+              }}
             >
               <ShapesInputComponent
                 value={state.value}
