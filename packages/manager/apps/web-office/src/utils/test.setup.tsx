@@ -7,6 +7,8 @@ import {
   pendingTask,
   tenantPendingTask,
   orderCatalogMock,
+  priceMock,
+  userDomainMock,
 } from '@/api/_mock_';
 
 const mocksAxios = vi.hoisted(() => ({
@@ -76,15 +78,17 @@ vi.mock('@/api/license', async (importActual) => {
 vi.mock('@/api/users', async (importActual) => {
   return {
     ...(await importActual<typeof import('@/api/users')>()),
+    deleteOfficeUser: vi.fn(() => Promise.resolve(tenantPendingTask)),
     getOfficeUsers: vi.fn(() => Promise.resolve(usersMock)),
     getOfficeUserDetail: vi.fn((_, activationEmail) =>
       Promise.resolve(
         usersMock.find((user) => user.activationEmail === activationEmail),
       ),
     ),
-    deleteOfficeUser: vi.fn(() => Promise.resolve(tenantPendingTask)),
-    putOfficeUserDetail: vi.fn(() => Promise.resolve(null)),
+    getOfficeUsersDomain: vi.fn(() => Promise.resolve(userDomainMock)),
     postUsersPassword: vi.fn(() => Promise.resolve(null)),
+    putOfficeUserDetail: vi.fn(() => Promise.resolve(null)),
+    postOrderUsers: vi.fn(() => Promise.resolve(null)),
   };
 });
 vi.mock('@/api/order', async (importActual) => {
@@ -93,6 +97,13 @@ vi.mock('@/api/order', async (importActual) => {
     getOrderCatalog: vi.fn(() => {
       return Promise.resolve(orderCatalogMock);
     }),
+  };
+});
+
+vi.mock('@/api/price', async (importActual) => {
+  return {
+    ...(await importActual<typeof import('@/api/price')>()),
+    getOfficePrice: vi.fn(() => Promise.resolve(priceMock)),
   };
 });
 

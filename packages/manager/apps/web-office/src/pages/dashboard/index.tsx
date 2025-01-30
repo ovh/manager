@@ -66,7 +66,6 @@ export default function DashboardPage() {
     title: serviceName,
     headerButton: <GuideButton items={guideItems} />,
   };
-
   return (
     <BaseLayout
       breadcrumb={<Breadcrumb />}

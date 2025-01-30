@@ -1,3 +1,5 @@
+import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
+
 export enum UserStateEnum {
   CREATING = 'creating',
   DELETING = 'deleting',
@@ -25,6 +27,14 @@ export type UserParamsType = {
   activationEmail: string;
   firstName: string;
   lastName: string;
+};
+export type UserOrderParamsType = {
+  domain: string;
+  firstName: string;
+  lastName: string;
+  usageLocation: OvhSubsidiary;
+  licence: string;
+  login: string;
 };
 
 export type UserChangePasswordType = {

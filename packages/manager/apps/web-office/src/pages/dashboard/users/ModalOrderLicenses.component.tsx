@@ -139,6 +139,7 @@ export default function ModalOrderLicenses() {
                   }
                   max={300}
                   min={1}
+                  className="ml-10"
                 />
               )}
             />

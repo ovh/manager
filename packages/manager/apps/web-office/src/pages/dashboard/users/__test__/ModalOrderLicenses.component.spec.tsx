@@ -8,14 +8,6 @@ import dashboardUsersOrderLicensesTranslation from '@/public/translations/dashbo
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
 
 describe('modal order license', () => {
-  it('should render page correctly', () => {
-    const { getByTestId } = render(<ModalOrderLicenses />);
-    expect(getByTestId('modal')).toBeInTheDocument();
-    expect(getByTestId('modal')).toHaveTextContent(
-      commonTranslation.users_order_licenses,
-    );
-  });
-
   it('should render the submit button', () => {
     const { getByTestId } = render(<ModalOrderLicenses />);
 

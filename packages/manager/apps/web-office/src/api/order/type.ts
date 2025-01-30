@@ -11,6 +11,11 @@ export enum OfficePrepaidPlanCodes {
   OFFICE_365_ENTERPRISE = 'microsoft-365-apps-for-enterprise-pp-nce',
 }
 
+export enum OfficeUserEnum {
+  OFFICE_365_BUSINESS = 'officeBusiness',
+  OFFICE_365_PRO_PLUS = 'officeProPlus',
+}
+
 /* eslint-disable @typescript-eslint/no-namespace */
 export namespace order {
   export namespace cart {
