@@ -71,7 +71,7 @@ describe('Docker page', () => {
   it('renders and shows buttons in the dockers page', async () => {
     render(<Docker />, { wrapper: RouterWithQueryClientWrapper });
     expect(
-      screen.getByTestId('managed-private-registries-button'),
+      screen.getByTestId('managed-private-registries-link'),
     ).toBeInTheDocument();
     expect(screen.getByTestId('create-docker-button')).toBeInTheDocument();
     expect(screen.getByText(mockedRegistry.id)).toBeInTheDocument();

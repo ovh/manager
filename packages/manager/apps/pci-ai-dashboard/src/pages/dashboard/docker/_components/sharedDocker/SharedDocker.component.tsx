@@ -40,7 +40,7 @@ const SharedDocker = ({ regions }: SharedDockerProps) => {
       <h4 data-testid="shared-docker-title">{t('titleSharedDocker')}</h4>
       <Alert variant="warning">
         <div className="flex flex-row gap-3 items-center">
-          <AlertTriangleIcon className="size-8" />
+          <AlertTriangleIcon className="size-6" />
           <p>{t('alertSharedDocker')}</p>
         </div>
       </Alert>
@@ -87,7 +87,13 @@ const SharedDocker = ({ regions }: SharedDockerProps) => {
       <CodeBlock code={dockerLogin} />
       <span>
         {t('sharedDockerParagraphe5')}
-        <OvhLink className="mx-1" application="public-cloud" path={userPath}>
+        <OvhLink
+          className="mx-1"
+          application="public-cloud"
+          path={userPath}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           {t('sharedDockerParagraphe5bis')}
         </OvhLink>
         {t('sharedDockerParagraphe5ter')}

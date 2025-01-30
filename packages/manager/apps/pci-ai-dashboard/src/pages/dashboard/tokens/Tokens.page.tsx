@@ -5,13 +5,12 @@ import { ColumnDef } from '@tanstack/react-table';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 import Guides from '@/components/guides/Guides.component';
 import { Button } from '@/components/ui/button';
-import { DataTable } from '@/components/ui/data-table';
 import { useGetTokens } from '@/hooks/api/ai/token/useGetTokens.hook';
 import * as ai from '@/types/cloud/project/ai';
 import { getColumns } from './_components/TokensTableColumns.component';
 import { POLLING } from '@/configuration/polling';
-import { GuideSections } from '@/configuration/guide';
 import { useUserActivityContext } from '@/contexts/UserActivity.context';
+import DataTable from '@/components/data-table';
 
 export function breadcrumb() {
   return (
@@ -39,7 +38,7 @@ const Tokens = () => {
   return (
     <>
       <div className="float-right">
-        <Guides section={GuideSections.tokens} />
+        <Guides />
       </div>
       <h3>{t('title')}</h3>
       <p>{t('tokenParagraphe1')}</p>
@@ -56,7 +55,11 @@ const Tokens = () => {
         {t('addButtonLabel')}
       </Button>
       {tokenQuery.isSuccess ? (
-        <DataTable columns={columns} data={tokenQuery.data} pageSize={25} />
+        <DataTable.Provider
+          columns={columns}
+          data={tokenQuery.data}
+          pageSize={25}
+        />
       ) : (
         <div data-testid="tokens-table-skeleton">
           <DataTable.Skeleton columns={3} rows={5} width={100} height={16} />

@@ -1,15 +1,15 @@
-import { Plus } from 'lucide-react';
+import { ArrowRight, Plus } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { ColumnDef } from '@tanstack/react-table';
 import * as ai from '@/types/cloud/project/ai';
 import { Button } from '@/components/ui/button';
-import { DataTable } from '@/components/ui/data-table';
 import OvhLink from '@/components/links/OvhLink.component';
 import { useGetRegistries } from '@/hooks/api/ai/registry/useGetRegistries.hook';
 import { POLLING } from '@/configuration/polling';
 import { getColumns } from './_components/DockerTableColumns.component';
 import { useUserActivityContext } from '@/contexts/UserActivity.context';
+import DataTable from '@/components/data-table';
 
 const PrivateDocker = () => {
   const { t } = useTranslation('pci-ai-dashboard/docker');
@@ -30,21 +30,18 @@ const PrivateDocker = () => {
       <h4>{t('titlePrivateDocker')}</h4>
       <p>{t('privateDockerParagraphe1')}</p>
       <p>{t('privateDockerParagraphe2')}</p>
-      <Button
-        data-testid="managed-private-registries-button"
-        variant="default"
-        type="button"
-        size="sm"
-        asChild
+
+      <OvhLink
+        data-testid="managed-private-registries-link"
+        application="public-cloud"
+        path={privateRegistriesPath}
+        target="_blank"
+        rel="noopener noreferrer"
       >
-        <OvhLink
-          className="hover:no-underline hover:text-primary-foreground"
-          application="public-cloud"
-          path={privateRegistriesPath}
-        >
-          {t('managerPrivateRegistriesButton')}
-        </OvhLink>
-      </Button>
+        {t('managerPrivateRegistriesButton')}
+        <ArrowRight className="size-4 inline ml-1" />
+      </OvhLink>
+
       <p>{t('privateDockerParagraphe3')}</p>
 
       <Button
@@ -59,7 +56,11 @@ const PrivateDocker = () => {
       </Button>
 
       {dockerQuery.isSuccess ? (
-        <DataTable columns={columns} data={dockerQuery.data} pageSize={25} />
+        <DataTable.Provider
+          columns={columns}
+          data={dockerQuery.data}
+          pageSize={25}
+        />
       ) : (
         <div data-testid="docker-table-skeleton">
           <DataTable.Skeleton columns={3} rows={5} width={100} height={16} />

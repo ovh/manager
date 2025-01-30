@@ -48,15 +48,14 @@ export const DashboardHeader = () => {
       )}
       <p>{t('paragraphe1')}</p>
       <p>{t('paragraphe2')}</p>
+
       <A
         href="https://www.ovhcloud.com/fr/public-cloud/prices/#ai-&-machine-learning"
         target="_blank"
         rel="noopener noreferrer"
       >
-        <div className="flex flex-row gap-1 items-center">
-          {t('linkPrice')}
-          <ArrowRight className="size-4 mt-1" />
-        </div>
+        {t('linkPrice')}
+        <ArrowRight className="size-4 inline ml-2" />
       </A>
     </div>
   );
