@@ -1,7 +1,11 @@
 import React from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { Trans, useTranslation } from 'react-i18next';
-import { Datagrid, DatagridColumn } from '@ovh-ux/manager-react-components';
+import {
+  Datagrid,
+  DatagridColumn,
+  ManagerButton,
+} from '@ovh-ux/manager-react-components';
 import {
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
@@ -23,6 +27,7 @@ import {
 import { BadgeStatus } from '@/components/BadgeStatus';
 import { UserStateEnum } from '@/api/api.type';
 import ActionButtonUsers from './ActionButtonUsers.component';
+import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 
 export default function Users() {
   const { t } = useTranslation(['dashboard/users', 'common']);
@@ -141,20 +146,27 @@ export default function Users() {
         <Loading />
       ) : (
         <>
-          <OdsButton
-            id={dataLicenceDetail?.iam.id}
-            data-testid="user-or-licenses-order-button"
-            label={
-              !dataLicenceDetail?.serviceType
-                ? t('common:users_order_licenses')
-                : t('common:users_order_users')
-            }
-            onClick={
-              !dataLicenceDetail?.serviceType ? onOrderLicenses : onOrderUsers
-            }
-            variant={ODS_BUTTON_VARIANT.outline}
-            className="block mb-4"
-          />
+          {!dataLicenceDetail?.serviceType ? (
+            <OdsButton
+              data-testid="licenses-order-button"
+              label={t('common:users_order_licenses')}
+              onClick={onOrderLicenses}
+              variant={ODS_BUTTON_VARIANT.outline}
+              className="block mb-4"
+            />
+          ) : (
+            <ManagerButton
+              id={dataLicenceDetail.id}
+              data-testid="users-order-button"
+              label={t('common:users_order_users')}
+              urn={dataLicenceDetail?.iam.urn}
+              onClick={onOrderUsers}
+              variant={ODS_BUTTON_VARIANT.outline}
+              className="block mb-4"
+              iamActions={[IAM_ACTIONS.user.create]}
+            />
+          )}
+
           <Datagrid
             columns={columns.map((column) => ({
               ...column,
