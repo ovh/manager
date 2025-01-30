@@ -13,7 +13,7 @@ export interface ChangelogLinks {
 
 export interface ChangelogButtonProps {
   links: ChangelogLinks;
-  chapters: string[];
+  chapters?: string[];
 }
 
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
@@ -23,7 +23,7 @@ const GO_TO = (link: string) => `go-to-${link}`;
 
 export const ChangelogButton: React.FC<ChangelogButtonProps> = ({
   links,
-  chapters,
+  chapters = [],
 }) => {
   const { t } = useTranslation('buttons');
   const { trackClick } = useOvhTracking();
