@@ -1,6 +1,6 @@
 import githubIcon from './assets/github-icon.svg';
 
-export default class ChangelogMenuCtrl {
+export default class ChangelogButtonCtrl {
   /* @ngInject */
   constructor(atInternet) {
     this.githubIcon = githubIcon;

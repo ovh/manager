@@ -7,7 +7,7 @@ import editServiceName from './edit-name';
 import taskTracker from './task-tracker';
 import sshKeySelector from './ssh-key-selector';
 import iamProtectedData from './iam-protected-data';
-import changelogButton from './changelog-menu';
+import changelogButton from './changelog-button';
 
 export {
   inlinePropertyEditor,
