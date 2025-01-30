@@ -11,10 +11,11 @@ export default class NutanixAllNodesCtrl {
   }
 
   $onInit() {
+    this.hasOnlyMinimumNode = true;
     const uniqueStates = [
       ...new Set(this.nodes.map(({ serviceStatus }) => serviceStatus)),
     ];
-    this.mapNodes = this.mapAllNodes();
+    this.mapAllNodes();
     this.mapNodesStatus();
 
     this.isMaxNodesReached = this.nodes.length >= MAX_NODES_BY_CLUSTER;
@@ -79,5 +80,28 @@ export default class NutanixAllNodesCtrl {
             ),
           },
     );
+
+    this.hasOnlyMinimumNode =
+      this.nodesMapped.filter(
+        (node) => node.serviceStatus === SERVICE_STATES.ACTIVE,
+      ).length <= this.cluster.targetSpec.metadata.initialCommitmentSize;
+  }
+
+  onPowerOn(nodeName) {
+    this.powerOnNode(nodeName)
+      .then(() => {
+        this.handleSuccess(
+          `${this.$translate.instant(
+            'nutanix_dashboard_nodes_poweron_success_banner',
+          )}`,
+        );
+      })
+      .catch((error) => {
+        this.handleError(
+          `${this.$translate.instant(
+            'nutanix_dashboard_nodes_poweron_error_banner',
+          )} ${error?.data?.message}`,
+        );
+      });
   }
 }
