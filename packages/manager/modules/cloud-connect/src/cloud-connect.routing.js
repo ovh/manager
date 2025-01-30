@@ -56,6 +56,7 @@ export default /* @ngInject */ ($stateProvider) => {
           });
           $state.go('cloud-connect.index.managenotifications', {
             uuid: service.uuid,
+            description: service.description,
           });
         },
         gotoOrder: /* @ngInject */ ($window, coreConfig, atInternet) => () => {
