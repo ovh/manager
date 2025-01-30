@@ -13,8 +13,15 @@ import { useTranslation } from 'react-i18next';
 import { useFormContext } from 'react-hook-form';
 import { NewPrivateNetworkForm } from '@/types/private-network-form.type';
 
+const isNetworkUp = (services: TRegion['services']) =>
+  services.some(
+    (service) => service.name === 'network' && service.status === 'UP',
+  );
+
 const isRegionWith3AZ = (regions: TRegion[]) =>
-  regions.some((region) => region.type === 'region-3-az');
+  regions.some(
+    (region) => region.type === 'region-3-az' && isNetworkUp(region.services),
+  );
 
 const LocalisationConfig: React.FC = () => {
   const { t } = useTranslation('new');
@@ -47,11 +54,7 @@ const LocalisationConfig: React.FC = () => {
           projectId={project.project_id}
           onSelectRegion={onSelectRegion}
           regionFilter={(region) =>
-            region.isMacro ||
-            region.services.some(
-              (service) =>
-                service.name === 'network' && service.status === 'UP',
-            )
+            region.isMacro || isNetworkUp(region.services)
           }
         />
       </PCICommonContext.Provider>
