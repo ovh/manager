@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { getOrganisationList } from '../../api/ips';
+import { getOrganisationList } from '@/data/api';
 
 export const useOrganisationList = () =>
   useQuery({
