@@ -5,11 +5,11 @@ import {
   getContinentKeyFromRegion,
   getDatacenterFromRegion,
 } from '@/data/hooks/catalog/catalog.utils';
-import { ServiceType } from '@/data/api/ips';
 import {
   isRegionInEu,
   isRegionInUs,
 } from '@/components/RegionSelector/region-selector.utils';
+import { ServiceType } from '@/types';
 
 export type OrderParams = {
   serviceName: string;
