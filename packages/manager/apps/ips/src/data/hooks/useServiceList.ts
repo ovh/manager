@@ -1,6 +1,6 @@
 import { useQueries } from '@tanstack/react-query';
 import { getVrackList } from '../api/vrack';
-import { ServiceType } from '../api/ips';
+import { ServiceType } from '@/types';
 
 export const ipParkingOptionValue = 'parking';
 
