@@ -5,6 +5,7 @@ export default {
   bindings: {
     goBack: '<',
     uuid: '<',
+    description: '<',
   },
   controller,
   template,
