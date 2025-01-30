@@ -5,9 +5,7 @@ exports[`PlanComponent > should render 1`] = `
   <div
     class="grid grid-cols-1 gap-2 text-left text w-full"
   >
-    <div
-      class="text-center"
-    >
+    <div>
       <osds-text
         color="text"
         data-testid="name"
@@ -21,7 +19,7 @@ exports[`PlanComponent > should render 1`] = `
       />
     </div>
     <ul
-      class="list-none p-0 min-h-[8rem] mx-8"
+      class="list-none p-0 min-h-[8rem]"
     >
       <li
         data-testid="capacity"
@@ -65,6 +63,7 @@ exports[`PlanComponent > should render 1`] = `
       </li>
     </ul>
     <div
+      class="text-center"
       data-testid="price"
     >
       <hr
