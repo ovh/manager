@@ -33,3 +33,5 @@ export const pendingTask: PendingTaskType = {
   status: TaskStatusEnum.TODO,
   todoDate: '2025-01-09T11:20:52+01:00',
 };
+
+export const userDomainMock = ['test.office.ovh.com'];
