@@ -6,7 +6,7 @@ import { RegionSelectionSection } from './sections/RegionSelectionSection.compon
 import { OfferSelectionSection } from './sections/OfferSelectionSection.component';
 import { GeolocationSection } from './sections/GeolocationSection.component';
 import { OrganisationSection } from './sections/OrganisationSection.component';
-import { ServiceType } from '@/data/api/ips';
+import { ServiceType } from '@/types';
 
 export const Ipv4Order: React.FC = () => {
   const {
