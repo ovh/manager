@@ -1,7 +1,7 @@
 import React from 'react';
 import { IpOffer, IpVersion } from './order.constant';
-import { ServiceType } from '@/data/api/ips';
 import { getCountryCode } from '@/components/RegionSelector/region-selector.utils';
+import { ServiceType } from '@/types';
 
 export type OrderContextType = {
   ipVersion?: IpVersion;

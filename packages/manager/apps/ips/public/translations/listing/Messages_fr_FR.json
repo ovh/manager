@@ -1,5 +1,24 @@
 {
   "title": "Listing page",
   "listing_resultats": "résultats",
-  "orderIps": "Commander des IPs"
+  "orderIps": "Commander des IPs",
+  "listingColumnsIp": "Adresse IP",
+  "listingColumnsIpType": "Type",
+  "listingColumnsIpRegion": "Régions",
+  "listingColumnsIpCountry": "Pays",
+  "listingColumnsIpAttachedService": "Service Attaché",
+  "listingColumnsIpReverseDNS": "Reverse DNS",
+  "listingColumnsIpVMac": "Mac virtuelle",
+  "listingColumnsIpAntiDDos": "Anti-DDoS",
+  "listingColumnsIpEdgeFirewall": "Edge Firewall",
+  "listingColumnsIpGameFirewall": "Game Firewall",
+  "listingColumnsIpAlerts": "Alertes",
+  "listingColumnsIpAntiDDosPermanent": "Permanent",
+  "listingColumnsIpAntiDDosAutomatic": "Automatique",
+  "listingColumnsIpEdgeFirewallEnabled": "Activé",
+  "listingColumnsIpEdgeFirewallDisabled": "Désactivé",
+  "listingColumnsIpGameFirewallAvailable": "Disponible",
+  "listingColumnsIpAlertsSpam": "Ip bloquée (anti-hack)",
+  "listingColumnsIpAlertsMitigation": "Ip attaquée (Anti-DDOS Mitigation)",
+  "listingColumnsIpAlertsAntihack": "Ip bloquée (anti-spam)"
 }

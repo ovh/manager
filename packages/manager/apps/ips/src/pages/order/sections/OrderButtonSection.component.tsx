@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import { getAdditionalIpsProductSettings } from '../order.utils';
 import { OrderContext } from '../order.context';
 import { urls } from '@/routes/routes.constant';
-import { ServiceType } from '@/data/api/ips';
+import { ServiceType } from '@/types';
 
 export const OrderButtonSection: React.FC = () => {
   const {
