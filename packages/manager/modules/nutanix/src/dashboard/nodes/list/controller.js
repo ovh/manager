@@ -14,7 +14,7 @@ export default class NutanixAllNodesCtrl {
     const uniqueStates = [
       ...new Set(this.nodes.map(({ serviceStatus }) => serviceStatus)),
     ];
-    this.mapNodes = this.mapAllNodes();
+    this.mapAllNodes();
     this.mapNodesStatus();
 
     this.isMaxNodesReached = this.nodes.length >= MAX_NODES_BY_CLUSTER;

@@ -9,6 +9,7 @@ import component from './component';
 import datacenterName from '../../component/datacenter-name/module';
 import nodeStatus from '../../component/node-os-datagrid/module';
 import nodeOsDatagrid from '../../component/service-status/module';
+import nodeActionMenu from '../../component/node-action-menu/module';
 import addNodes from './add-nodes';
 import poweronNode from './poweron-node';
 import poweroffNode from './poweroff-node';
@@ -28,6 +29,7 @@ angular
     datacenterName,
     nodeStatus,
     nodeOsDatagrid,
+    nodeActionMenu,
     addNodes,
     poweronNode,
     poweroffNode,
