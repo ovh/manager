@@ -67,7 +67,6 @@
         data-title="'nutanix_dashboard_nodes_list_os_installed' | translate"
         data-property="status"
     >
-        <oui-skeleton data-ng-if="$ctrl.loadingNodesStatus"></oui-skeleton>
         <node-os-datagrid
             data-ng-else
             data-status="$row.status"
@@ -83,8 +82,7 @@
         data-searchable
         data-filterable
     >
-        <oui-skeleton data-ng-if="$ctrl.loadingNodesStatus"></oui-skeleton>
-        <span data-ng-else data-ng-bind="$row.ahvIp"></span>
+        <span data-ng-bind="$row.ahvIp"></span>
     </oui-datagrid-column>
     <oui-datagrid-column
         data-title="'nutanix_dashboard_nodes_list_node_cvm' | translate"
@@ -93,7 +91,19 @@
         data-searchable
         data-filterable
     >
-        <oui-skeleton data-ng-if="$ctrl.loadingNodesStatus"></oui-skeleton>
-        <span data-ng-else data-ng-bind="$row.cvmIp"></span>
+        <span data-ng-bind="$row.cvmIp"></span>
+    </oui-datagrid-column>
+    <oui-datagrid-column>
+        <node-action-menu
+            data-ng-if="$row.possibleActions"
+            data-possible-actions="$row.possibleActions"
+            data-on-power-on="$ctrl.onPowerOn($row.name)"
+            data-on-power-off="$ctrl.powerOffNode($row.name)"
+            data-on-install="$ctrl.installNode($row.name)"
+            data-on-reinstall="$ctrl.reinstallNode($row.name)"
+            data-on-uninstall="$ctrl.uninstallNode($row.name)"
+            data-on-terminate="$ctrl.terminateNode($row.name)"
+        >
+        </node-action-menu>
     </oui-datagrid-column>
 </oui-datagrid>
