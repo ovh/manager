@@ -17,12 +17,23 @@ export const getArchiveContainers = async (
   projectId: string,
   region: string,
 ): Promise<TArchiveContainer[]> => {
-  //   return PciStoragesColdArchiveService.getArchiveContainers(
-  //     projectId,
-  //     regions[0],
-  //   );
   const { data } = await v6.get(
     `/cloud/project/${projectId}/region/${region}/coldArchive`,
+  );
+  return data;
+};
+
+export const deleteArchiveContainer = async ({
+  containerName,
+  projectId,
+  region,
+}: {
+  projectId: string;
+  region: string;
+  containerName: string;
+}) => {
+  const { data } = await v6.delete(
+    `/cloud/project/${projectId}/region/${region}/coldArchive/${containerName}`,
   );
   return data;
 };
