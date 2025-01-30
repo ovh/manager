@@ -2,7 +2,7 @@ import React from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { DATACENTER_TO_REGION } from './catalog.utils';
 import { useCatalogIps } from './useCatalogIps';
-import { ServiceType } from '@/data/api/ips';
+import { ServiceType } from '@/types';
 
 export const useAdditionalIpsRegions = ({
   serviceType,
