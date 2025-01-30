@@ -176,8 +176,8 @@
                     <span
                         class="oui-badge"
                         data-ng-class="{
-                        'oui-badge_success': (!$ctrl.showReplicationRulesBanner()),
-                        'oui-badge_error': ($ctrl.showReplicationRulesBanner())
+                        'oui-badge_success': !$ctrl.showReplicationRulesBanner(),
+                        'oui-badge_error': $ctrl.showReplicationRulesBanner()
                         }"
                         data-translate="{{ $ctrl.showReplicationRulesBanner() ?
                             'pci_projects_project_storages_containers_container_offsite_replication_disabled' :

@@ -330,9 +330,7 @@ export default class PciStoragesContainersAddController {
   onOfferSubmit() {
     this.displaySelectedOffer = true;
     if (!this.isRightOffer()) {
-      this.isOffsiteReplicationEnabled = false;
-      this.forceEnableVersioning = false;
-      this.isBucketVersioningEnabled = false;
+      this.resetOffsiteReplication();
     }
   }
 
@@ -434,9 +432,7 @@ export default class PciStoragesContainersAddController {
     if (
       this.container.deploymentMode !== this.OBJECT_CONTAINER_MODE_MULTI_ZONES
     ) {
-      this.isOffsiteReplicationEnabled = false;
-      this.forceEnableVersioning = false;
-      this.isBucketVersioningEnabled = false;
+      this.resetOffsiteReplication();
     }
   }
 
@@ -536,5 +532,11 @@ export default class PciStoragesContainersAddController {
       currency: this.user.currency.code,
       maximumSignificantDigits: 1,
     }).format(price);
+  }
+
+  resetOffsiteReplication() {
+    this.isOffsiteReplicationEnabled = false;
+    this.forceEnableVersioning = false;
+    this.isBucketVersioningEnabled = false;
   }
 }

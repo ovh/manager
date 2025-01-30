@@ -22,7 +22,7 @@
             ></strong>
             <span
                 class="oui-badge oui-badge_best-seller"
-                data-ng-bind=":: ('pci_projects_project_storages_containers_offsite_replication_recommanded') | translate"
+                data-translate="pci_projects_project_storages_containers_offsite_replication_recommanded"
             ></span>
         </oui-radio>
         <div class="mt-3">
@@ -38,13 +38,11 @@
         <oui-message
             data-type="info"
             class="mt-3"
-            data-ng-show="$ctrl.isOffsiteReplicationEnabled"
+            data-ng-if="$ctrl.isOffsiteReplicationEnabled"
         >
-            <p>
-                <span
-                    data-translate="pci_projects_project_storages_containers_offsite_replication_versionning_warning"
-                ></span>
-            </p>
+            <p
+                data-translate="pci_projects_project_storages_containers_offsite_replication_versionning_warning"
+            ></p>
         </oui-message>
     </oui-radio-group>
 </div>
