@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.33](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-gateway-app@0.9.32...@ovh-ux/manager-pci-gateway-app@0.9.33) (2025-01-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-gateway-app
+
+
+
+
+
 ## [0.9.32](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-gateway-app@0.9.31...@ovh-ux/manager-pci-gateway-app@0.9.32) (2025-01-20)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-gateway-app

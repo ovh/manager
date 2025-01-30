@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.45.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.45.1...@ovh-ux/manager-vps@2.45.2) (2025-01-30)
+
+
+### Bug Fixes
+
+* **dedicated:** fix minimal display with read rights ([#14980](https://github.com/ovh/manager/issues/14980)) ([d24d57e](https://github.com/ovh/manager/commit/d24d57e7b43c6b83e1d0470b35a3db6400d5834d))
+* remove unused translations [CDS] ([26f8ad0](https://github.com/ovh/manager/commit/26f8ad01af79d07f59270656477608fc7afc2d7a))
+
+
+
+
+
 ## [2.45.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.45.0...@ovh-ux/manager-vps@2.45.1) (2025-01-28)
 
 
