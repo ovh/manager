@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.102.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.101.1...@ovh-ux/manager-container-app@0.102.0) (2025-01-30)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3629] ([f7f4950](https://github.com/ovh/manager/commit/f7f4950df191b99bd9f2d8a573c5d696737de33c))
+* **i18n:** add missing translations [CDS 3635] ([7caa790](https://github.com/ovh/manager/commit/7caa7901c9ac1b192177083d738ec4cd54bf394f))
+
+
+### Features
+
+* **ovh-at-internet:** remove lodash dependency ([0deca4c](https://github.com/ovh/manager/commit/0deca4cba8f394fd52235bcd5fad54c5e198535b))
+
+
+
+
+
 ## [0.101.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.101.0...@ovh-ux/manager-container-app@0.101.1) (2025-01-23)
 
 

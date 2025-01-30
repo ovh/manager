@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [20.13.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.13.3...@ovh-ux/manager-dedicated@20.13.4) (2025-01-30)
+
+
+### Bug Fixes
+
+* **dedicated:** fix minimal display with read rights ([#14980](https://github.com/ovh/manager/issues/14980)) ([d24d57e](https://github.com/ovh/manager/commit/d24d57e7b43c6b83e1d0470b35a3db6400d5834d))
+* **i18n:** add missing translations [CDS 3629] ([f7f4950](https://github.com/ovh/manager/commit/f7f4950df191b99bd9f2d8a573c5d696737de33c))
+* remove unused translations [CDS] ([6ba617b](https://github.com/ovh/manager/commit/6ba617bc55710a1080afbed3a279c02b24edbf02))
+
+
+
+
+
 ## [20.13.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.13.2...@ovh-ux/manager-dedicated@20.13.3) (2025-01-28)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated

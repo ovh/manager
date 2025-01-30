@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.8.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.8.1...@ovh-ux/manager-billing-components@4.8.2) (2025-01-30)
+
+
+### Bug Fixes
+
+* **dedicated:** fix minimal display with read rights ([#14980](https://github.com/ovh/manager/issues/14980)) ([d24d57e](https://github.com/ovh/manager/commit/d24d57e7b43c6b83e1d0470b35a3db6400d5834d))
+* **manager:** price format currencyDisplay symbol ([24545a3](https://github.com/ovh/manager/commit/24545a3f361288178803d91e6e83b05ee00b5a72))
+
+
+
+
+
 ## [4.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.8.0...@ovh-ux/manager-billing-components@4.8.1) (2025-01-23)
 
 

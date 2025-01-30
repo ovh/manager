@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.6.3...@ovh-ux/manager-react-components@2.7.0) (2025-01-30)
+
+### Bug Fixes
+
+- **manager-react-components:** allow null value in SimpleTilesInput ([#15049](https://github.com/ovh/manager/issues/15049)) ([2434ac5](https://github.com/ovh/manager/commit/2434ac572856f5d694cfdae55b30f5338489c28a))
+- **mrc:** add margin block within pagination ([#15110](https://github.com/ovh/manager/issues/15110)) ([7aa0ec6](https://github.com/ovh/manager/commit/7aa0ec6d7d993c9302cbe9b1aea098549cca2c66))
+- **mrc:** change variant of edit btn within step component ([#15171](https://github.com/ovh/manager/issues/15171)) ([3e9eefa](https://github.com/ovh/manager/commit/3e9eefab3514cc39acb9e94de3f470345fb8b8a4))
+- **mrc:** stepper action CTA alignment ([#15108](https://github.com/ovh/manager/issues/15108)) ([b3f3d06](https://github.com/ovh/manager/commit/b3f3d06f5edb0169c4b68b46f7a96f8bc4a15c9b))
+- remove unused translations [CDS] ([6ba617b](https://github.com/ovh/manager/commit/6ba617bc55710a1080afbed3a279c02b24edbf02))
+
+### Features
+
+- **manager-react-component:** add formatted date component ([#15067](https://github.com/ovh/manager/issues/15067)) ([bccd46b](https://github.com/ovh/manager/commit/bccd46b92130fe20354c74919a9fa92027e6086e)), closes [#15069](https://github.com/ovh/manager/issues/15069)
+- **manager-react-component:** add is disabled props on link ([d2376d1](https://github.com/ovh/manager/commit/d2376d1f255aca5edb60fa59ffe728a56b0ecd03))
+- **manager-react-component:** add manager tile component ([4aae0ae](https://github.com/ovh/manager/commit/4aae0ae62cfdef9c19fcb954d5770debc453c43b)), closes [#15066](https://github.com/ovh/manager/issues/15066)
+- **manager-react-components:** add breadcrumb component and update error component ([#14892](https://github.com/ovh/manager/issues/14892)) ([e738256](https://github.com/ovh/manager/commit/e7382567e125ce035f6f6bf26d248ef83e201976))
+- **manager-react-components:** add filters in datagrid ([#14203](https://github.com/ovh/manager/issues/14203)) ([66b4715](https://github.com/ovh/manager/commit/66b4715480889077b3a0b29a76a516d6e33bc75f))
+- **manager-react-components:** add isLoading to Datagrid ([#15036](https://github.com/ovh/manager/issues/15036)) ([5434fa7](https://github.com/ovh/manager/commit/5434fa7c7ba5787aa65cb7813229006aa47b4707))
+- **manager-react-components:** datagrid filers in v6 hooks ([c63ab71](https://github.com/ovh/manager/commit/c63ab71b9b3c0e2a3f0501a72564070eca36a26f))
+- **mrc:** add fetchAll to v2 & v6 IcebergHooks ([#14946](https://github.com/ovh/manager/issues/14946)) ([6f1e872](https://github.com/ovh/manager/commit/6f1e8721db26193e4f0aa1e4227e3fba253ff367))
+- **mrc:** allow useFeatureAvailability query options override ([#14587](https://github.com/ovh/manager/issues/14587)) ([ac30a01](https://github.com/ovh/manager/commit/ac30a01952dc489ba1cc4542c47c45a8af90b612))
+
 ## [2.6.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.6.2...@ovh-ux/manager-react-components@2.6.3) (2025-01-24)
 
 ### Bug Fixes

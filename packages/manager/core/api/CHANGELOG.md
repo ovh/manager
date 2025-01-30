@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-api@0.9.0...@ovh-ux/manager-core-api@0.10.0) (2025-01-30)
+
+
+### Features
+
+* **manager-react-components:** add filters in datagrid ([#14203](https://github.com/ovh/manager/issues/14203)) ([66b4715](https://github.com/ovh/manager/commit/66b4715480889077b3a0b29a76a516d6e33bc75f))
+
+
+
+
+
 # 0.9.0 (2024-11-12)
 
 
