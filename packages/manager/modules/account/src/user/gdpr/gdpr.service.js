@@ -21,7 +21,7 @@ export default class GdprService {
 
   createErasureRequest() {
     return this.$http
-      .post(`${API_BASE_ROUTE}/me/privacy/request/erasure`, {
+      .post(`${API_BASE_ROUTE}/me/privacy/requests/erasure`, null, {
         headers: this.headers,
       })
       .then(({ data }) => data);

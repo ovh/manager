@@ -1,14 +1,28 @@
+import {
+  CREATE_ERASURE_REQUEST_MESSAGES_MAP,
+  GDPR_FEATURES_BANNER_CONTAINER,
+} from './gdpr.constants';
+
 export default class UserAccountGdprController {
   /* @ngInject */
-  constructor(gdprService) {
+  constructor($translate, gdprService, Alerter, coreConfig) {
+    this.$translate = $translate;
     this.gdprService = gdprService;
-    this.showErasureConfirmationModal = false;
+    this.Alerter = Alerter;
+    this.nic = coreConfig.getUser()?.nichandle;
   }
 
   $onInit() {
+    this.showErasureConfirmationModal = false;
     this.loading = {
-      capabilities: true,
+      capabilities: false,
+      createErasureRequest: false,
     };
+    this.getCapabilities();
+  }
+
+  getCapabilities() {
+    this.loading.capabilities = true;
     this.gdprService
       .getCapabilities()
       .then((capabilities) => {
@@ -28,19 +42,38 @@ export default class UserAccountGdprController {
   }
 
   submitErasureRequest() {
-    console.log('confirmed');
-    // TODO: add spinner in the modal while creation is in progress
+    this.loading.createErasureRequest = true;
+    this.Alerter.resetMessage(GDPR_FEATURES_BANNER_CONTAINER);
     this.gdprService
       .createErasureRequest()
       .then(() => {
-        // TODO: manage the display of a success banner
+        this.Alerter.info(
+          this.getErasureCreationSuccessMessage(),
+          GDPR_FEATURES_BANNER_CONTAINER,
+        );
+        this.getCapabilities();
+        // TODO: on success refresh requests
       })
       .catch((error) => {
-        // TODO: manage the display of an error banner
-        console.log(error);
+        this.Alerter.error(
+          this.$translate.instant(
+            CREATE_ERASURE_REQUEST_MESSAGES_MAP[error.status],
+            {
+              requestId: error.config.headers['X-OVH-MANAGER-REQUEST-ID'],
+            },
+          ),
+          GDPR_FEATURES_BANNER_CONTAINER,
+        );
       })
       .finally(() => {
+        this.loading.createErasureRequest = false;
         this.showErasureConfirmationModal = false;
       });
+  }
+
+  getErasureCreationSuccessMessage() {
+    return `<strong>${this.$translate.instant(
+      'gdpr_erasure_creation_success_emphasis',
+    )}</strong>`;
   }
 }
