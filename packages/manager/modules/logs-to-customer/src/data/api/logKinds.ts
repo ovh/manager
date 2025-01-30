@@ -1,7 +1,4 @@
-import apiClient, {
-  fetchIcebergV2,
-  fetchIcebergV6,
-} from '@ovh-ux/manager-core-api';
+import { fetchIcebergV2, fetchIcebergV6 } from '@ovh-ux/manager-core-api';
 import { LogKind } from '../types/dbaas/logs';
 import { ApiUrls } from '../../LogsToCustomer.module';
 
