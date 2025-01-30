@@ -77,14 +77,15 @@ export default class VolumeBackupCreateController {
         planCode.startsWith(volumeOption.planCode),
       );
 
-      const availableProductsInRegion = (volumeOption.id === 'volume_snapshot'
-        ? this.snapshotAvailabilityData
-        : this.backupAvailabilityData
-      ).plans.filter(({ regions }) =>
-        regions.some(
-          (r) => r.name === this.volumeBackupModel.selected.volume.region,
-        ),
-      );
+      const availableProductsInRegion =
+        (volumeOption.id === 'volume_snapshot'
+          ? this.snapshotAvailabilityData
+          : this.backupAvailabilityData
+        )?.plans.filter(({ regions }) =>
+          regions.some(
+            (r) => r.name === this.volumeBackupModel.selected.volume.region,
+          ),
+        ) || [];
 
       return addons.find(({ planCode }) =>
         availableProductsInRegion.some(({ code }) => planCode === code),
