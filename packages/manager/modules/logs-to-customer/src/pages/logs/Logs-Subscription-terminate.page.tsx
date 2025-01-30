@@ -2,8 +2,8 @@ import React, { useContext } from 'react';
 import { DeleteModal } from '@ovh-ux/manager-react-components';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useTerminateLogSubscription } from '../../data/hooks/useTerminateLogSubscription';
 import { LogsContext } from '../../LogsToCustomer.context';
+import { useDeleteLogSubscription } from '../../data/hooks/useLogSubscriptions';
 
 export default function DataStreamsTerminate() {
   const navigate = useNavigate();
@@ -11,11 +11,14 @@ export default function DataStreamsTerminate() {
   const { subscriptionId } = useParams();
   const { currentLogKind, logApiUrls, logApiVersion } = useContext(LogsContext);
 
-  const { terminateLogSubscription } = useTerminateLogSubscription(
+  const { mutate, isPending } = useDeleteLogSubscription(
     logApiUrls.logSubscription,
     logApiVersion,
     subscriptionId,
     currentLogKind,
+    () => {
+      navigate('..');
+    },
   );
   return (
     <DeleteModal
@@ -30,9 +33,9 @@ export default function DataStreamsTerminate() {
         navigate('..');
       }}
       onConfirmDelete={() => {
-        terminateLogSubscription();
-        navigate('..');
+        mutate();
       }}
+      isLoading={isPending}
     ></DeleteModal>
   );
 }
