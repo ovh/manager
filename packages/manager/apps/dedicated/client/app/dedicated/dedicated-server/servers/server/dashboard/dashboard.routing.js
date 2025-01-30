@@ -290,7 +290,12 @@ export default /* @ngInject */ ($stateProvider) => {
           productId: serverName,
         }),
       vrackInfos: /* @ngInject */ ($stateParams, Server) =>
-        Server.getVrackInfos($stateParams.productId),
+        Server.getVrackInfos($stateParams.productId).catch((error) => {
+          if (error.status === 403) {
+            return null;
+          }
+          throw error;
+        }),
       breadcrumb: () => null,
       goToUpgrade: /* @ngInject */ ($state, upgradeTask) => (upgradeType) =>
         $state.go('app.dedicated-server.server.dashboard.upgrade', {
