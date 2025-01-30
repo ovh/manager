@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/blocks';
+import { Meta, Canvas, Source } from '@storybook/blocks';
 
 <Meta title="Components/Datagrid Cursor/Documentation" />
 
@@ -34,18 +34,73 @@ Why Use TanStack Table?
 
 ---
 
-#### API V6
+#### Filters
 
-##### usage with Iceberg
+##### How to use It
 
-We provide a custom hook `useResourcesIcebergV6`
+1 - In your columns definition, fill `type` or `comparator` attributes
 
-##### usage without Iceberg
+- `type`comparator is a `FilterTypeCategories`
 
-We provide a custom hook `useResourcesV6`
+- `comparator`is a `string` of `FilterCategories`, if you fill this attribute, it override the `type` attributes
 
-#### API V2
+<Source
+  code={`
+    export const colums = [
+        {
+            id: 'label',
+            cell: (item: Item) => {
+                return <DataGridTextCell>{item.label}</DataGridTextCell>;
+            },
+            label: 'Label',
+            type: FilterTypeCategories.String
+        },
+        {
+            id: 'price',
+            cell: (item: Item) => {
+                return <DataGridTextCell>{item.price} €</DataGridTextCell>;
+            },
+            label: 'Price',
+            comparator: FilterCategories.String,
+        },
+    ];
+    `}
+  language="javascript"
+/>
 
-##### usage **_ONLY_** with Iceberg
+2 - In the datagrid component, pass `filters` object
 
-We provide a custom hook `useResourcesIcebergV2`
+<Source
+  code={`
+import { useResourcesV6, useResourcesIcebergV6 } from '@ovh-ux/manager-react-components';
+
+const { filters } = useResourcesIcebergV6({ ... });
+const { filters } = useResourcesV6({ ... });
+
+<Datagrid
+    {...}
+    filters={filters}
+/>
+    `}
+
+language="javascript"
+/>
+
+If you are using a custom hook
+
+<Source
+  code={`
+import { useColumnFilters } from '@ovh-ux/manager-react-components';
+
+const { filters, addFilter, removeFilter } = useColumnFilters();
+
+<Datagrid
+    {...}
+    filters={{filters: filters, add: addFilter, remove: removeFilter}}
+/>
+    `}
+
+language="javascript"
+/>
+
+---

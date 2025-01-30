@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import isDate from 'lodash.isdate';
-import { IcebergFetchParamsV6, fetchIcebergV6 } from '@ovh-ux/manager-core-api';
+import {
+  IcebergFetchParamsV6,
+  fetchIcebergV6,
+  applyFilters,
+  FilterTypeCategories,
+} from '@ovh-ux/manager-core-api';
 import { useQuery } from '@tanstack/react-query';
-import { ColumnSort } from '../../components';
+import { useColumnFilters, ColumnSort } from '../../components';
 
 export interface ColumnDatagrid {
   cell: (props: any) => React.JSX.Element;
@@ -13,28 +18,30 @@ export interface ColumnDatagrid {
 
 export interface ResourcesV6Hook {
   queryKey: string[];
-  columns?: ColumnDatagrid[];
+  columns: ColumnDatagrid[];
 }
 
 export function dataType(a: any) {
-  if (Number.isInteger(a)) return 'number';
-  if (isDate(a)) return 'date';
+  if (Number.isInteger(a)) return FilterTypeCategories.Numeric;
+  if (isDate(a)) return FilterTypeCategories.Date;
+  if (typeof a === 'string') return FilterTypeCategories.String;
+  if (typeof a === 'boolean') return FilterTypeCategories.Boolean;
   return typeof a;
 }
 
 function sortColumn(type: string, a: any, b: any, desc: boolean) {
   switch (type) {
-    case 'number':
+    case FilterTypeCategories.Numeric:
       return desc
         ? parseFloat(a) - parseFloat(b)
         : parseFloat(b) - parseFloat(a);
-    case 'date':
+    case FilterTypeCategories.Date:
       return desc
         ? new Date(a).getTime() - new Date(b).getTime()
         : new Date(b).getTime() - new Date(a).getTime();
-    case 'boolean':
+    case FilterTypeCategories.Boolean:
       return desc ? Number(a) - Number(b) : Number(b) - Number(a);
-    case 'string':
+    case FilterTypeCategories.String:
       return desc
         ? a
             ?.trim()
@@ -54,10 +61,6 @@ function sortColumn(type: string, a: any, b: any, desc: boolean) {
  * @deprecated use fetchIcebergV6 from @ovh-ux/manager-core-api
  */
 export const getResourcesV6 = fetchIcebergV6;
-// export const getResourcesV6 = async ({ route }: IcebergFetchParamsV6) => {
-//   const { data, status, totalCount } = (await fetchIcebergV6({ route })) as any;
-//   return { data, status, totalCount };
-// };
 
 export function useResourcesV6<T = unknown>({
   route,
@@ -75,13 +78,14 @@ export function useResourcesV6<T = unknown>({
   const [totalCount, setTotalCount] = useState(0);
   const [sortData, setSortData] = useState<T[]>([]);
   const [flattenData, setFlattenData] = useState<T[]>([]);
+  const { filters, addFilter, removeFilter } = useColumnFilters();
 
   useEffect(() => {
     if (data?.data && data?.data?.length > 0) {
       setTotalCount(data.data.length);
       setSortData(data.data);
     }
-  }, [data]);
+  }, [data, filters]);
 
   useEffect(() => {
     if (sortData) {
@@ -103,9 +107,18 @@ export function useResourcesV6<T = unknown>({
         sortColumn(type, a?.[sorting.id], b?.[sorting.id], sorting?.desc),
       );
       setFlattenData([]);
-      setSortData([...sortedDatas]);
+      setSortData(applyFilters([...sortedDatas], filters));
     }
   }, [sorting]);
+
+  useEffect(() => {
+    if (sortData.length > 0) {
+      setPageIndex(0);
+      const dataFiltered = applyFilters(data?.data, filters);
+      setFlattenData([]);
+      setSortData([...dataFiltered]);
+    }
+  }, [filters]);
 
   const onFetchNextPage = () => {
     setPageIndex(pageIndex + 1);
@@ -120,9 +133,14 @@ export function useResourcesV6<T = unknown>({
     flattenData,
     isError,
     isLoading,
-    hasNextPage: pageIndex * pageSize + pageSize <= totalCount,
+    hasNextPage: pageIndex * pageSize + pageSize <= flattenData.length,
     fetchNextPage: onFetchNextPage,
     error,
     status,
+    filters: {
+      filters,
+      add: addFilter,
+      remove: removeFilter,
+    },
   };
 }

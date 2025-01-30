@@ -17,6 +17,14 @@ export type Filter = {
   comparator: FilterComparator;
 };
 
+export enum FilterTypeCategories {
+  Numeric = 'Numeric',
+  String = 'String',
+  Date = 'Date',
+  Boolean = 'Boolean',
+  Options = 'Options',
+}
+
 export const FilterCategories = {
   Numeric: [
     FilterComparator.IsEqual,
@@ -37,6 +45,8 @@ export const FilterCategories = {
     FilterComparator.IsBefore,
     FilterComparator.IsAfter,
   ],
+  Boolean: [FilterComparator.IsEqual, FilterComparator.IsDifferent],
+  Options: [FilterComparator.IsEqual, FilterComparator.IsDifferent],
 };
 
 export function applyFilters<T>(items: T[] = [], filters: Filter[] = []) {

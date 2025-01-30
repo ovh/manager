@@ -32,7 +32,7 @@ export default class VpsDashboardTileConfigurationCtrl {
     this.isVpsStarter = this.stateVps.model.name.indexOf('starter') >= 0;
 
     this.doubleMemoryText =
-      this.configurationTile.upgrades.memory.plan && !this.isVpsStarter
+      this.configurationTile.upgrades?.memory.plan && !this.isVpsStarter
         ? this.$translate.instant(
             'vps_dashboard_tile_configuration_memory_double',
             {
@@ -46,7 +46,7 @@ export default class VpsDashboardTileConfigurationCtrl {
           )
         : '';
     this.doubleStorageText =
-      this.configurationTile.upgrades.storage.plan && !this.isVpsStarter
+      this.configurationTile.upgrades?.storage.plan && !this.isVpsStarter
         ? this.$translate.instant(
             'vps_dashboard_tile_configuration_storage_double',
             {

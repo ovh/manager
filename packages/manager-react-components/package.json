@@ -103,7 +103,7 @@
     "storybook-addon-react-router-v6": "^2.0.10",
     "ts-jest": "^29.1.1",
     "typescript": "^4.3.2",
-    "undici": "5.28.4",
+    "undici": "5.28.5",
     "vite": "^5.2.13",
     "vite-plugin-dts": "3.5.1",
     "vite-plugin-static-copy": "^2.0.0",

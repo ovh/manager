@@ -23,7 +23,7 @@
         'oui-badge_success': $ctrl.SERVICE_STATES.success.includes($ctrl.service.getRenew()),
         'oui-badge_info': $ctrl.SERVICE_STATES.info.includes($ctrl.service.getRenew()),
     }"
-        data-ng-if="!$ctrl.service.hasDebt() && !$ctrl.shouldHideAutorenewStatus()"
+        data-ng-if="!$ctrl.service.hasDebt() && !$ctrl.shouldHideAutorenewStatus() && $ctrl.service.getRenew()"
         data-translate="{{:: 'manager_billing_service_status_' + $ctrl.service.getRenew() | translate }}"
     ></span>
     <button

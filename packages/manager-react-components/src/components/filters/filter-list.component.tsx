@@ -22,7 +22,7 @@ export function FilterList({
     <>
       {filters?.map((filter, key) => (
         <OdsTag
-          className="m-3"
+          className="mr-3"
           color={ODS_TAG_COLOR.information}
           size="lg"
           key={key}

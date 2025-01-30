@@ -7,7 +7,7 @@ export default class {
 
   shouldHideAutorenewStatus() {
     return (
-      this.service.isOneShot() || ['SMS'].includes(this.service.serviceType)
+      this.service.isOneShot?.() || ['SMS'].includes(this.service.serviceType)
     );
   }
 }

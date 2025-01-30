@@ -39,7 +39,7 @@ const stackItems = function stackItems<I, U>(
 export type TSimpleProps<T, S = void> = {
   id?: (() => string) | string;
   items: T[];
-  value: T;
+  value: T | null;
   onInput: (value: T) => void;
   label: (item: T) => JSX.Element | string;
   tileClass?: {
