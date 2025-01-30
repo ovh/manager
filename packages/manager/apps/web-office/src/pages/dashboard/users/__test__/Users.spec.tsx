@@ -35,7 +35,7 @@ describe('Users page', () => {
     });
 
     const { getByTestId } = render(<Users />);
-    const orderButton = getByTestId('user-or-licenses-order-button');
+    const orderButton = getByTestId('users-order-button');
     expect(orderButton).toHaveAttribute('label', commonTranslation.order_users);
   });
 
@@ -50,7 +50,7 @@ describe('Users page', () => {
     });
 
     const { getByTestId } = render(<Users />);
-    const orderButton = getByTestId('user-or-licenses-order-button');
+    const orderButton = getByTestId('licenses-order-button');
     expect(orderButton).toHaveAttribute(
       'label',
       commonTranslation.order_licenses,

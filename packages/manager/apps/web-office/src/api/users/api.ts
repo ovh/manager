@@ -1,6 +1,10 @@
 import { fetchIcebergV6, v6 } from '@ovh-ux/manager-core-api';
 import { getApiPath } from '../utils/apiPath';
-import { UserChangePasswordType, UserParamsType } from '../api.type';
+import {
+  UserChangePasswordType,
+  UserOrderParamsType,
+  UserParamsType,
+} from '../api.type';
 import { UserNativeType } from './type';
 import { useOfficeServiceType } from '@/hooks';
 
@@ -15,7 +19,10 @@ export const getOfficeUsers = async (
   });
   return data;
 };
-
+export const getOfficeUsersDomain = async (serviceName: string) => {
+  const { data } = await v6.get(`${getApiPath(serviceName)}domain`);
+  return data?.length > 0 ? data[0] : null;
+};
 export const getOfficeUserDetail = async (
   serviceName: string,
   activationEmail: string,
@@ -43,6 +50,21 @@ export const postUsersPassword = async (
   const { data } = await v6.post(endpoint, params);
   return data;
 };
+export const postOrderUsers = async (
+  serviceName: string,
+  params: UserOrderParamsType,
+) => {
+  const modifiedParams = {
+    ...params,
+    usageLocation: params.usageLocation.toLowerCase(),
+  };
+  const { data } = await v6.post(
+    `/license/office/${serviceName}/user`,
+    modifiedParams,
+  );
+  return data;
+};
+
 // PUT
 
 export const putOfficeUserDetail = async (
