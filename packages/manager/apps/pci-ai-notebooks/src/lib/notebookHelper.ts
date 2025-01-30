@@ -31,8 +31,3 @@ export function isDataSyncNotebook(
     currentState === ai.notebook.NotebookStateEnum.SYNC_FAILED
   );
 }
-
-export const OVH_TAGS_CONFIG = {
-  id: 'ovh/id',
-  type: 'ovh/type',
-};

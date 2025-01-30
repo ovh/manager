@@ -2,6 +2,11 @@ import { redirect } from 'react-router-dom';
 import queryClient from '@/query.client';
 import { getJobs } from '@/data/api/ai/job/job.api';
 import Jobs from './Jobs.page';
+import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
+
+export function breadcrumb() {
+  return <BreadcrumbItem translationKey="Training" namespace="pci-ai-jobs" />;
+}
 
 interface JobsProps {
   params: {

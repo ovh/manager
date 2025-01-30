@@ -15,7 +15,7 @@ export const getJobs = async ({ projectId }: PCIAi) =>
 
 export const getJob = async ({ projectId, jobId }: JobData) =>
   apiClient.v6
-    .get(`/cloud/project/${projectId}/ai/notebook/${jobId}`)
+    .get(`/cloud/project/${projectId}/ai/job/${jobId}`)
     .then((res) => res.data as ai.job.Job);
 
 export interface AddJob extends PCIAi {

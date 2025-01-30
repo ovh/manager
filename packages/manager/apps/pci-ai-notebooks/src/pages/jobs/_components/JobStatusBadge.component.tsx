@@ -7,10 +7,8 @@ const JobStatusBadge = ({ status }: { status: ai.job.JobStateEnum }) => {
   let variant: string;
   switch (status) {
     case 'FINALIZING':
-    case 'RESTARTING':
     case 'INITIALIZING':
     case 'INTERRUPTING':
-    case 'PENDING':
     case 'QUEUED':
     case 'INTERRUPTED':
       variant = badgeVariants({ variant: 'warning' });
@@ -21,6 +19,8 @@ const JobStatusBadge = ({ status }: { status: ai.job.JobStateEnum }) => {
     case 'SYNC_FAILED':
       variant = badgeVariants({ variant: 'error' });
       break;
+    case 'PENDING':
+    case 'RESTARTING':
     case 'RUNNING':
     case 'DONE':
       variant = badgeVariants({ variant: 'success' });
