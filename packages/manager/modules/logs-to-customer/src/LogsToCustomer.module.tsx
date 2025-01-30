@@ -23,14 +23,23 @@ export type ApiUrls = {
   logUrl: string;
 };
 
+export type LogIamActions = {
+  postSubscription: string[];
+  deleteSubscription: string[];
+};
+
 export interface ILogsToCustomerModule {
   logApiUrls: ApiUrls;
   logApiVersion: LogApiVersion;
+  logIamActions: LogIamActions;
+  resourceURN: string;
 }
 
 export default function LogsToCustomerModule({
   logApiUrls,
   logApiVersion,
+  logIamActions,
+  resourceURN,
 }: Readonly<ILogsToCustomerModule>) {
   const queryClient = useQueryClient();
   const [currentLogKind, setCurrentLogKind] = useState<LogKind>();
@@ -50,8 +59,10 @@ export default function LogsToCustomerModule({
       currentLogKind,
       logApiUrls,
       logApiVersion,
+      logIamActions,
+      resourceURN,
     }),
-    [currentLogKind, logApiUrls, logApiVersion],
+    [currentLogKind, logApiUrls, logApiVersion, logIamActions, resourceURN],
   );
 
   if (isPending)
