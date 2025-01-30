@@ -1463,7 +1463,7 @@ export default class PciInstancesAddController {
               this.addInstance3azSuccessMessage,
               {
                 instance: this.instance.name,
-                zone: this.instance.availabilityZone,
+                zone: availabilityZone,
               },
             );
           } else {

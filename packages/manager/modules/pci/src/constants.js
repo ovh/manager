@@ -18,6 +18,9 @@ export const TAGS_BLOB = {
   COMING_SOON: 'coming_soon',
 };
 
+export const FLOATINGIP_ADDON_FAMILY = 'floatingip';
+export const FLOATINGIP_PLANCODE = 'floatingip.floatingip.hour.consumption';
+
 export const CLOUD_FLAVOR_SPECIFIC_IMAGE = ['g1', 'g2', 'g3', 't1'];
 
 export const CLOUD_INSTANCE_HAS_GUARANTEED_RESSOURCES = [
@@ -630,5 +633,7 @@ export default {
   PCI_SPECIAL_CONDITIONS,
   TRACKING_CLOUD,
   TAGS_BLOB,
+  FLOATINGIP_ADDON_FAMILY,
+  FLOATINGIP_PLANCODE,
   BETA,
 };

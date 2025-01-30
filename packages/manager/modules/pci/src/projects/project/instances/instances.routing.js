@@ -3,7 +3,11 @@ import find from 'lodash/find';
 import get from 'lodash/get';
 import map from 'lodash/map';
 
-import { TAGS_BLOB } from '../../../constants';
+import {
+  TAGS_BLOB,
+  FLOATINGIP_ADDON_FAMILY,
+  FLOATINGIP_PLANCODE,
+} from '../../../constants';
 import {
   POLLER_INSTANCE_NAMESPACE,
   TYPES_TO_EXCLUDE,
@@ -141,18 +145,19 @@ export default /* @ngInject */ ($stateProvider) => {
         coreConfig,
         projectId,
       ) => (region) => {
-        const planCode = 'floatingip.floatingip.hour.consumption';
         return $http
           .get(`/cloud/project/${projectId}/capabilities/productAvailability`, {
             params: {
-              planCode,
+              addonFamily: FLOATINGIP_ADDON_FAMILY,
               ovhSubsidiary: coreConfig.getUser().ovhSubsidiary,
             },
           })
           .then(({ data: { plans } }) => {
-            return plans
-              .find(({ code }) => code === planCode)
-              ?.regions.some(({ name }) => name === region);
+            return plans.find(
+              (plan) =>
+                plan.code.includes(FLOATINGIP_PLANCODE) &&
+                plan.regions.some(({ name }) => name === region),
+            );
           });
       },
       assignFloatingIp: /* @ngInject */ (
