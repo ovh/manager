@@ -9,7 +9,12 @@ export function isRunningNotebook(currentState: ai.notebook.NotebookStateEnum) {
 }
 
 export function isStoppedNotebook(currentState: ai.notebook.NotebookStateEnum) {
-  return currentState === ai.notebook.NotebookStateEnum.STOPPED;
+  return (
+    currentState === ai.notebook.NotebookStateEnum.STOPPED ||
+    currentState === ai.notebook.NotebookStateEnum.ERROR ||
+    currentState === ai.notebook.NotebookStateEnum.FAILED ||
+    currentState === ai.notebook.NotebookStateEnum.SYNC_FAILED
+  );
 }
 
 export function isDeletingNotebook(

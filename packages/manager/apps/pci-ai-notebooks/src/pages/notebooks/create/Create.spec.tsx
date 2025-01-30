@@ -264,6 +264,6 @@ describe('Order funnel page', () => {
     await waitFor(() => {
       expect(notebookApi.addNotebook).toHaveBeenCalled();
     });
-    expect(mockedUsedNavigate).toHaveBeenCalledWith('../undefined');
+    expect(mockedUsedNavigate).toHaveBeenCalledWith('../notebooks/undefined');
   });
 });
