@@ -1,7 +1,7 @@
 {
   "beta_modal_title": "Scopri la nuova versione del tuo Spazio Cliente",
   "beta_modal_infos": "Passa alla nuova versione e condividi la tua opinione compilando il form dedicato.",
-  "beta_modal_accept": "Provo la nuova versione",
+  "beta_modal_accept": "Lo scopro adesso",
   "beta_modal_decline": "Forse più tardi",
   "beta_modal_screenshot": "Screenshot",
   "beta_modal_new": "Versione beta",
@@ -11,5 +11,9 @@
   "beta_modal_switch_infos": "La tua opinione ci permette di offrire un servizio il più vicino possibile alle tue esigenze. Aiutaci a migliorare!",
   "beta_modal_switch_accept": "Rispondi adesso",
   "beta_switch": "Cambia versione",
-  "beta_modal_switch_later": "Ricordamelo più tardi"
+  "beta_modal_switch_later": "Ricordamelo più tardi",
+  "beta_modal_greeting": "Ciao {{user}},",
+  "beta_modal_welcome": "Benvenuto nel tuo Spazio Cliente!",
+  "beta_modal_info": "Abbiamo ripensato il design dell’interfaccia e migliorato le sue funzionalità per offrirti un'esperienza ancora più semplice e rapida.",
+  "beta_modal_explore": "Esplora subito tutte le nuove opzioni disponibili!"
 }
