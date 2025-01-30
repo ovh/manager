@@ -11,11 +11,11 @@ import {
   OdsHTMLAnchorElementRel,
   OdsHTMLAnchorElementTarget,
 } from '@ovhcloud/ods-common-core';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { useTranslation } from 'react-i18next';
 import { Links, LinkType } from '../../../typography';
 import '../translations/translation';
 import GithubIcon from './changelog.icon';
-import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 export interface ChangelogLinks {
   changelog: string;
