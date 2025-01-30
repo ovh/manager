@@ -23,7 +23,7 @@
   "scripts": {
     "build": "vite build",
     "clean": "rimraf node_modules && rimraf dist && yarn cache clean",
-    "dev": "vite build",
+    "dev": "yarn run build",
     "lint": "eslint ./src",
     "lint:fix": "eslint ./src --fix",
     "prepare": "vite build",
