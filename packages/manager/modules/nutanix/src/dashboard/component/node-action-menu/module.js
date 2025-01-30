@@ -6,7 +6,7 @@ import '@ovh-ux/ui-kit';
 
 import component from './component';
 
-const moduleName = 'ovhManagerNutanixPowerOnNutanixNodeModal';
+const moduleName = 'ovhManagerNutanixNodeActionMenu';
 
 angular
   .module(moduleName, [
@@ -15,7 +15,7 @@ angular
     'pascalprecht.translate',
     'ui.router',
   ])
-  .component('powerOnNutanixNodeModal', component)
+  .component('nodeActionMenu', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
