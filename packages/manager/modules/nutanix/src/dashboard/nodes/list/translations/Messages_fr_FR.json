@@ -10,5 +10,7 @@
   "nutanix_dashboard_nodes_list_data_hidden": "CACHÉ",
   "nutanix_dashboard_nodes_list_add_nodes": "Ajouter des noeuds",
   "nutanix_dashboard_nodes_add_node_max_node_tooltip": "Vous avez atteint le nombre maximum de noeuds autorisés dans un cluster",
-  "nutanix_dashboard_nodes_suspended_tooltip": "Pour ré-activer le noeud veuillez contacter le support"
+  "nutanix_dashboard_nodes_suspended_tooltip": "Pour ré-activer le noeud, veuillez contacter le support",
+  "nutanix_dashboard_nodes_poweron_success_banner": "Votre demande de démarrage a été prise en compte. Cette opération peut prendre jusqu'à 15 minutes",
+  "nutanix_dashboard_nodes_poweron_error_banner": "Votre demande de démarrage n'a pas été prise en compte :"
 }
