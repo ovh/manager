@@ -3,6 +3,7 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '?uuid',
     params: {
       uuid: null,
+      description: null,
     },
     views: {
       modal: {
@@ -32,6 +33,8 @@ export default /* @ngInject */ ($stateProvider) => {
         return promise;
       },
       uuid: /* @ngInject */ ($transition$) => $transition$.params().uuid,
+      description: /* @ngInject */ ($transition$) =>
+        $transition$.params().description,
       breadcrumb: () => null,
     },
     atInternet: {
