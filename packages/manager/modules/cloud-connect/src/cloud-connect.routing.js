@@ -34,6 +34,10 @@ export default /* @ngInject */ ($stateProvider) => {
             ovhCloudConnectId,
           }),
         hideBreadcrumb: () => true,
+        goToManageNotifications: /* @ngInject */ ($state) => (service) =>
+          $state.go('cloud-connect.index.managenotifications', {
+            uuid: service.uuid,
+          }),
         gotoOrder: /* @ngInject */ ($window, coreConfig, atInternet) => () => {
           atInternet.trackClick({
             name: 'cloud-connect::index::order',

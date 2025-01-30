@@ -20,6 +20,7 @@
   "cloud_connect_status_label_toDelete": "A supprimer",
   "cloud_connect_active_notifications_label": "Notifications Actives",
   "cloud_connect_view_label": "Détail du service",
+  "cloud_connect_manage_notifications_label": "Gestion des notifications",
   "cloud_connect_order_follow_up_title": "Services en cours de livraison",
   "cloud_connect_order_follow_up_documentation_title": "Documentation",
   "cloud_connect_order_follow_up_documentation_link": "Récupérer la LOA",

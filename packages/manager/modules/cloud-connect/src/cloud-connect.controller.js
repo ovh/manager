@@ -54,7 +54,7 @@ export default class CloudConnectCtrl extends ListLayoutHelper.ListLayoutCtrl {
         return this.$q.all(
           data.map((ovhCloudConnect) => {
             return this.cloudConnectService
-              .getActiveNotifications(ovhCloudConnect.uuid)
+              .getCloudConnectNotifications(ovhCloudConnect.uuid)
               .then((notifications) => {
                 const numOfActiveNotifications = notifications.filter(
                   (notification) => notification.activated,

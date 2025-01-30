@@ -621,9 +621,17 @@ export default class CloudConnectService {
     });
   }
 
-  getActiveNotifications(uuid) {
+  getCloudConnectNotifications(uuid) {
     return this.$http
       .get(`/ovhCloudConnect/${uuid}/monitoring`)
+      .then(({ data }) => data);
+  }
+
+  saveCloudConnectNotifications(uuid, notificationTypes = []) {
+    return this.$http
+      .post(`/ovhCloudConnect/${uuid}/monitoring`, {
+        subscriptions: [...notificationTypes],
+      })
       .then(({ data }) => data);
   }
 }
