@@ -77,7 +77,13 @@
         data-title="'nutanix_dashboard_nodes_list_os_installed' | translate"
         data-property="status"
     >
-        <node-os-datagrid data-ng-else data-node="$row"></node-os-datagrid>
+        <node-os-datagrid
+            data-ng-else
+            data-status="$row.status"
+            data-service-status="$row.serviceStatus"
+            data-power-state="$row.powerState"
+            data-os="$row.os"
+        ></node-os-datagrid>
     </oui-datagrid-column>
     <oui-datagrid-column
         data-title="'nutanix_dashboard_nodes_list_node_ip' | translate"
@@ -86,8 +92,7 @@
         data-searchable
         data-filterable
     >
-        <oui-skeleton data-ng-if="$ctrl.loadingNodesStatus"></oui-skeleton>
-        <span data-ng-else data-ng-bind="$row.ahvIp"></span>
+        <span data-ng-bind="$row.ahvIp"></span>
     </oui-datagrid-column>
     <oui-datagrid-column
         data-title="'nutanix_dashboard_nodes_list_node_cvm' | translate"
@@ -100,8 +105,11 @@
     </oui-datagrid-column>
     <oui-datagrid-column>
         <node-action-menu
-            data-ng-if="$row.possibleActions && $row.serviceStatus !== $ctrl.SERVICE_STATES.SUSPENDED"
-            data-possible-actions="$row.possibleActions"
+            data-ng-if="!$row.isTerminated"
+            data-service-name="$ctrl.serviceName"
+            data-server="$row.name"
+            data-has-only-minimum-node=":: $ctrl.hasOnlyMinimumNode"
+            data-initial-commitment-size="$ctrl.cluster.targetSpec.metadata.initialCommitmentSize"
             data-on-power-on="$ctrl.onPowerOn($row.name)"
             data-on-power-off="$ctrl.powerOffNode($row.name)"
             data-on-install="$ctrl.installNode($row.name)"

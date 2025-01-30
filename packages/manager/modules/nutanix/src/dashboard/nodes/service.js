@@ -54,4 +54,10 @@ export default class NutanixNodeService {
     this.pollTask(nodeId, task, pollPromise);
     return pollPromise.promise;
   }
+
+  getNodeDetails(serviceName, server) {
+    return this.$http
+      .get(`/nutanix/${serviceName}/nodes/${server}`)
+      .then(({ data }) => data);
+  }
 }
