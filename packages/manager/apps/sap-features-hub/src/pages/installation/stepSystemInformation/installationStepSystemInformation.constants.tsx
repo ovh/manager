@@ -8,13 +8,11 @@ export const SYSTEM_TEXT_INPUTS: TextInputData<keyof SystemForm>[] = [
   {
     name: 'sapSid',
     label: 'SAP SID',
-    placeholder: 'S4H',
     validator: { isRequired: true, pattern: SAP_SID_PATTERN, maxlength: 3 },
   },
   {
     name: 'sapHanaSid',
     label: 'SAP HANA SID',
-    placeholder: 'HDB',
     validator: { isRequired: true, pattern: SAP_SID_PATTERN, maxlength: 3 },
   },
 ] as const;
