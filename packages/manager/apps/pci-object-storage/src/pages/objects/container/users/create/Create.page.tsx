@@ -147,6 +147,7 @@ export default function UserCreatePage(): JSX.Element {
 
   const onConfirm = async () => {
     trackClick(`${TRACKING_S3_POLICY_ADD}::confirm`);
+
     setState({ ...state, isLoading: true });
     if (state.userType === 'new') {
       try {

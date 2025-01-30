@@ -2,12 +2,14 @@ import { PciModal } from '@ovh-ux/manager-pci-common';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { Translation, useTranslation } from 'react-i18next';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { OdsFormField, OdsText } from '@ovhcloud/ods-components/react';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import FileInputComponent from '@/components/FileInput.component';
 import { useImportPolicy, useUsers } from '@/api/hooks/useUser';
 import { TUser } from '@/api/data/user';
+import { TRACKING_PREFIX } from '@/constants';
 
 export default function ImportPolicyPage() {
   const { t } = useTranslation('objects/users/import-policy');
@@ -18,6 +20,8 @@ export default function ImportPolicyPage() {
   const userId = searchParams.get('userId');
   const [user, setUser] = useState<TUser>(undefined);
 
+  const { tracking } = useContext(ShellContext).shell;
+
   const {
     validUsersWithCredentials: listUsers,
     isPending: isPendingUsers,
@@ -27,8 +31,16 @@ export default function ImportPolicyPage() {
 
   const navigate = useNavigate();
 
-  const onCancel = () => navigate(`..`);
   const onClose = () => navigate(`..`);
+
+  const onCancel = () => {
+    tracking?.trackClick({
+      name: `${TRACKING_PREFIX}s3-policies-users::import-file::cancel`,
+      type: 'action',
+    });
+
+    onClose();
+  };
 
   const { importPolicy, isPending: isPendingImport } = useImportPolicy({
     projectId,
@@ -67,6 +79,11 @@ export default function ImportPolicyPage() {
   });
 
   const onConfirm = () => {
+    tracking?.trackClick({
+      name: `${TRACKING_PREFIX}s3-policies-users::import-file::confirm`,
+      type: 'action',
+    });
+
     importPolicy();
   };
 
