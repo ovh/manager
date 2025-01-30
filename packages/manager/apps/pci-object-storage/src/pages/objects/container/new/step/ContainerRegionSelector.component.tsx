@@ -99,7 +99,7 @@ export function ContainerRegionSelector({
           continentName: translateContinentRegion(reg.name),
         }))
     );
-  }, [availability, projectRegions, deploymentMode, isPending]);
+  }, [availability, projectRegions, deploymentMode, isPending, t]);
 
   const selectedRegion = useMemo(() => {
     const selected = allowedRegions.find(({ name }) => name === region?.name);
