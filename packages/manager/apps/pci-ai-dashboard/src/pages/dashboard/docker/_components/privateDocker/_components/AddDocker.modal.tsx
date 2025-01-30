@@ -1,10 +1,7 @@
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
-import { useEffect } from 'react';
-import { ModalController } from '@/hooks/useModale.hook';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useToast } from '@/components/ui/use-toast';
 import {
-  Dialog,
   DialogClose,
   DialogContent,
   DialogDescription,
@@ -29,35 +26,19 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
-import * as ai from '@/types/cloud/project/ai';
 import { useDockerForm } from './useDockerForm.hook';
 import {
   AddEditMutateRegistryProps,
   useAddRegistry,
 } from '@/hooks/api/ai/registry/useAddRegistry.hook';
+import { useGetRegions } from '@/hooks/api/ai/capabilities/useGetRegions.hook';
+import RouteModal from '@/components/route-modal/RouteModal';
 
-interface AddDockerModalProps {
-  regions: ai.capabilities.Region[];
-  controller: ModalController;
-  onSuccess?: (registry?: ai.registry.Registry) => void;
-  onError?: (error: Error) => void;
-}
-
-const AddDocker = ({
-  regions,
-  controller,
-  onSuccess,
-  onError,
-}: AddDockerModalProps) => {
+const AddDocker = () => {
   const { projectId } = useParams();
-  const { form } = useDockerForm({ regions });
-
-  useEffect(() => {
-    if (!controller.open) {
-      form.reset();
-    }
-  }, [controller.open]);
-
+  const { form } = useDockerForm();
+  const navigate = useNavigate();
+  const regionQuery = useGetRegions(projectId);
   const { t } = useTranslation('pci-ai-dashboard/docker');
   const { t: tRegions } = useTranslation('regions');
   const toast = useToast();
@@ -69,11 +50,8 @@ const AddDocker = ({
         variant: 'destructive',
         description: err.response.data.message,
       });
-      if (onError) {
-        onError(err);
-      }
     },
-    onSuccess(newRegistry) {
+    onAddSuccess(newRegistry) {
       form.reset();
       toast.toast({
         title: t('formDockerToastSuccessTitle'),
@@ -82,9 +60,7 @@ const AddDocker = ({
         }),
       });
       form.reset();
-      if (onSuccess) {
-        onSuccess(newRegistry);
-      }
+      navigate('../');
     },
   };
   const { addRegistry, isPending } = useAddRegistry(AddDockerMutationProps);
@@ -103,7 +79,7 @@ const AddDocker = ({
   });
 
   return (
-    <Dialog {...controller}>
+    <RouteModal backUrl="../" isLoading={!regionQuery.isSuccess}>
       <DialogContent className="sm:max-w-xl">
         <DialogHeader>
           <DialogTitle data-testid="add-docker-modal">
@@ -121,11 +97,11 @@ const AddDocker = ({
                   <FormLabel>{t('formAddDockerFieldRegionLabel')}</FormLabel>
                   <FormControl>
                     <Select value={field.value} onValueChange={field.onChange}>
-                      <SelectTrigger>
+                      <SelectTrigger data-testid="select-region-trigger">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        {regions.map((region) => (
+                        {regionQuery.data?.map((region) => (
                           <SelectItem key={region.id} value={region.id}>
                             {tRegions(`region_${region.id}`)}
                           </SelectItem>
@@ -212,7 +188,7 @@ const AddDocker = ({
           </form>
         </Form>
       </DialogContent>
-    </Dialog>
+    </RouteModal>
   );
 };
 

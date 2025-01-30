@@ -1,11 +1,9 @@
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useState } from 'react';
 import { Copy, HelpCircle } from 'lucide-react';
-import { ModalController } from '@/hooks/useModale.hook';
 import { useToast } from '@/components/ui/use-toast';
 import {
-  Dialog,
   DialogClose,
   DialogContent,
   DialogDescription,
@@ -43,32 +41,15 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
+import { useGetRegions } from '@/hooks/api/ai/capabilities/useGetRegions.hook';
+import RouteModal from '@/components/route-modal/RouteModal';
 
-interface AddTokenModalProps {
-  regions: ai.capabilities.Region[];
-  controller: ModalController;
-  onSuccess?: (token?: ai.token.Token) => void;
-  onError?: (error: Error) => void;
-  onClose?: () => void;
-}
-
-const AddToken = ({
-  regions,
-  controller,
-  onSuccess,
-  onError,
-  onClose,
-}: AddTokenModalProps) => {
+const AddToken = () => {
   const [newTokenValue, setNewTokenValue] = useState<string>();
   const { projectId } = useParams();
-  const { form } = useTokenForm({ regions });
-
-  useEffect(() => {
-    if (!controller.open) {
-      setNewTokenValue(undefined);
-    }
-  }, [controller.open]);
-
+  const regionsQuery = useGetRegions(projectId);
+  const { form } = useTokenForm();
+  const navigate = useNavigate();
   const { t } = useTranslation('pci-ai-dashboard/tokens');
   const { t: tRegions } = useTranslation('regions');
   const toast = useToast();
@@ -80,11 +61,8 @@ const AddToken = ({
         variant: 'destructive',
         description: err.response.data.message,
       });
-      if (onError) {
-        onError(err);
-      }
     },
-    onSuccess(newToken) {
+    onAddEditSuccess(newToken) {
       form.reset();
       toast.toast({
         title: t('formTokenToastSuccessTitle'),
@@ -94,9 +72,6 @@ const AddToken = ({
       });
       form.reset();
       setNewTokenValue(newToken.status.value);
-      if (onSuccess) {
-        onSuccess(newToken);
-      }
     },
   };
   const { addToken, isPending } = useAddToken(AddTokenMutationProps);
@@ -123,11 +98,11 @@ const AddToken = ({
 
   const handleClose = () => {
     setNewTokenValue(undefined);
-    onClose();
+    navigate('../');
   };
 
   return (
-    <Dialog {...controller}>
+    <RouteModal backUrl="../" isLoading={!regionsQuery.isSuccess}>
       <DialogContent className="sm:max-w-xl">
         <DialogHeader>
           <DialogTitle data-testid="add-token-modal">
@@ -276,11 +251,11 @@ const AddToken = ({
                         value={field.value}
                         onValueChange={field.onChange}
                       >
-                        <SelectTrigger>
+                        <SelectTrigger data-testid="select-region-trigger">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
-                          {regions.map((region) => (
+                          {regionsQuery.data?.map((region) => (
                             <SelectItem key={region.id} value={region.id}>
                               {tRegions(`region_${region.id}`)}
                             </SelectItem>
@@ -314,7 +289,7 @@ const AddToken = ({
           </Form>
         )}
       </DialogContent>
-    </Dialog>
+    </RouteModal>
   );
 };
 

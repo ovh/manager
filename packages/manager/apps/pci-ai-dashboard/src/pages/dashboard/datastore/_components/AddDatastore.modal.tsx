@@ -1,10 +1,7 @@
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
-import { useEffect } from 'react';
-import { ModalController } from '@/hooks/useModale.hook';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useToast } from '@/components/ui/use-toast';
 import {
-  Dialog,
   DialogClose,
   DialogContent,
   DialogDescription,
@@ -35,28 +32,14 @@ import {
   AddEditMutateDatastoreProps,
   useAddDatastore,
 } from '@/hooks/api/ai/datastore/useAddDatastore.hook';
+import { useGetRegions } from '@/hooks/api/ai/capabilities/useGetRegions.hook';
+import RouteModal from '@/components/route-modal/RouteModal';
 
-interface AddDatastoreModalProps {
-  regions: ai.capabilities.Region[];
-  controller: ModalController;
-  onSuccess?: (datastore?: ai.DataStore) => void;
-  onError?: (error: Error) => void;
-}
-
-const AddDatastore = ({
-  regions,
-  controller,
-  onSuccess,
-  onError,
-}: AddDatastoreModalProps) => {
+const AddDatastore = () => {
   const { projectId } = useParams();
-  const { form } = useDatastoreForm({ regions });
-
-  useEffect(() => {
-    if (!controller.open) {
-      form.reset();
-    }
-  }, [controller.open]);
+  const regionsQuery = useGetRegions(projectId);
+  const navigate = useNavigate();
+  const { form } = useDatastoreForm();
 
   const { t } = useTranslation('pci-ai-dashboard/datastores');
   const { t: tRegions } = useTranslation('regions');
@@ -69,20 +52,15 @@ const AddDatastore = ({
         variant: 'destructive',
         description: err.response.data.message,
       });
-      if (onError) {
-        onError(err);
-      }
     },
-    onSuccess(newDatastore) {
+    onAddSuccess() {
       form.reset();
       toast.toast({
         title: t('formDatastoreToastSuccessTitle'),
         description: t(`formDatastoreToastSuccessDescription`),
       });
       form.reset();
-      if (onSuccess) {
-        onSuccess(newDatastore);
-      }
+      navigate('../');
     },
   };
   const { addDatastore, isPending } = useAddDatastore(
@@ -111,7 +89,7 @@ const AddDatastore = ({
   });
 
   return (
-    <Dialog {...controller}>
+    <RouteModal backUrl="../" isLoading={!regionsQuery.isSuccess}>
       <DialogContent className="sm:max-w-xl">
         <DialogHeader>
           <DialogTitle data-testid="add-datastore-modal">
@@ -169,11 +147,11 @@ const AddDatastore = ({
                   <FormLabel>{t('formAddDatastoreFieldRegionLabel')}</FormLabel>
                   <FormControl>
                     <Select value={field.value} onValueChange={field.onChange}>
-                      <SelectTrigger>
+                      <SelectTrigger data-testid="select-region-trigger">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        {regions.map((region) => (
+                        {regionsQuery.data?.map((region) => (
                           <SelectItem key={region.id} value={region.id}>
                             {tRegions(`region_${region.id}`)}
                           </SelectItem>
@@ -264,7 +242,7 @@ const AddDatastore = ({
           </form>
         </Form>
       </DialogContent>
-    </Dialog>
+    </RouteModal>
   );
 };
 

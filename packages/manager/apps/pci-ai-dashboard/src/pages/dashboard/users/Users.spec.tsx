@@ -1,5 +1,11 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, waitFor } from '@testing-library/react';
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from '@testing-library/react';
 import Users, {
   breadcrumb as Breadcrumb,
 } from '@/pages/dashboard/users/Users.page';
@@ -7,6 +13,7 @@ import { Locale } from '@/hooks/useLocale.hook';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedUser } from '@/__tests__/helpers/mocks/user';
 
+const mockedUsedNavigate = vi.fn();
 describe('Users page', () => {
   beforeEach(() => {
     // Mock necessary hooks and dependencies
@@ -18,6 +25,13 @@ describe('Users page', () => {
     vi.mock('@/data/api/user/user.api', () => ({
       getUsers: vi.fn(() => [mockedUser]),
     }));
+    vi.mock('react-router-dom', async () => {
+      const mod = await vi.importActual('react-router-dom');
+      return {
+        ...mod,
+        useNavigate: () => mockedUsedNavigate,
+      };
+    });
     vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
       const mod = await importOriginal<
         typeof import('@ovh-ux/manager-react-shell-client')
@@ -48,5 +62,16 @@ describe('Users page', () => {
     render(<Users />, { wrapper: RouterWithQueryClientWrapper });
     expect(screen.getByTestId('manage-user-button')).toBeInTheDocument();
     expect(screen.getByTestId('create-user-button')).toBeInTheDocument();
+  });
+
+  it('trigger useNavigate on create button click', async () => {
+    render(<Users />, { wrapper: RouterWithQueryClientWrapper });
+    expect(screen.getByTestId('create-user-button')).toBeInTheDocument();
+    act(() => {
+      fireEvent.click(screen.getByTestId('create-user-button'));
+    });
+    await waitFor(() => {
+      expect(mockedUsedNavigate).toHaveBeenCalledWith('./add');
+    });
   });
 });

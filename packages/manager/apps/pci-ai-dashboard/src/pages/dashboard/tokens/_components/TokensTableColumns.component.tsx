@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { ColumnDef } from '@tanstack/react-table';
 import { MoreHorizontal } from 'lucide-react';
-import { SortableHeader } from '@/components/ui/data-table';
 import {
   Tooltip,
   TooltipProvider,
@@ -18,6 +17,7 @@ import { Button } from '@/components/ui/button';
 import * as ai from '@/types/cloud/project/ai';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
 import { Badge } from '@/components/ui/badge';
+import DataTable from '@/components/data-table';
 
 interface TokensTableColumnsProps {
   onRegenerateClick: (token: ai.token.Token) => void;
@@ -33,14 +33,18 @@ export const getColumns = ({
     {
       id: 'name',
       header: ({ column }) => (
-        <SortableHeader column={column}>{t('tableHeadName')}</SortableHeader>
+        <DataTable.SortableHeader column={column}>
+          {t('tableHeadName')}
+        </DataTable.SortableHeader>
       ),
       accessorFn: (row) => row.spec.name,
     },
     {
       id: 'label',
       header: ({ column }) => (
-        <SortableHeader column={column}>{t('tableHeadLabel')}</SortableHeader>
+        <DataTable.SortableHeader column={column}>
+          {t('tableHeadLabel')}
+        </DataTable.SortableHeader>
       ),
       accessorFn: (row) => row.spec.labelSelector,
       cell: ({ row }) => {
@@ -54,14 +58,18 @@ export const getColumns = ({
     {
       id: 'region',
       header: ({ column }) => (
-        <SortableHeader column={column}>{t('tableHeadRegion')}</SortableHeader>
+        <DataTable.SortableHeader column={column}>
+          {t('tableHeadRegion')}
+        </DataTable.SortableHeader>
       ),
       accessorFn: (row) => tRegions(`region_${row.spec.region}`),
     },
     {
       id: 'role',
       header: ({ column }) => (
-        <SortableHeader column={column}>{t('tableHeadRole')}</SortableHeader>
+        <DataTable.SortableHeader column={column}>
+          {t('tableHeadRole')}
+        </DataTable.SortableHeader>
       ),
       accessorFn: (row) => t(row.spec.role),
     },
@@ -69,9 +77,9 @@ export const getColumns = ({
       id: 'creation date',
       accessorFn: (row) => row.createdAt,
       header: ({ column }) => (
-        <SortableHeader column={column}>
+        <DataTable.SortableHeader column={column}>
           {t('tableHeadCreationDate')}
-        </SortableHeader>
+        </DataTable.SortableHeader>
       ),
       cell: ({ row }) => (
         <FormattedDate

@@ -2,27 +2,17 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
-import * as ai from '@/types/cloud/project/ai';
 import { DOCKER_CONFIG } from './docker.constant';
 
-export interface UseDockerFormProps {
-  regions: ai.capabilities.Region[];
-}
-
-export const useDockerForm = ({ regions }: UseDockerFormProps) => {
+export const useDockerForm = () => {
   const { t } = useTranslation('pci-ai-dashboard/docker');
 
   const regionRules = z
     .string()
     .trim()
     .min(DOCKER_CONFIG.region.min, {
-      message: t('formDockerErrorMinLength', {
+      message: t('formDockerErrorRegion', {
         min: DOCKER_CONFIG.region.min,
-      }),
-    })
-    .max(DOCKER_CONFIG.region.max, {
-      message: t('formDockerErrorMaxLength', {
-        max: DOCKER_CONFIG.region.max,
       }),
     });
 
@@ -66,7 +56,7 @@ export const useDockerForm = ({ regions }: UseDockerFormProps) => {
   type ValidationSchema = z.infer<typeof schema>;
 
   const defaultValues: ValidationSchema = {
-    region: regions[0].id,
+    region: '',
     username: '',
     password: '',
     url: '',

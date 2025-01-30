@@ -1,4 +1,5 @@
-import { useMutation } from '@tanstack/react-query';
+import { useParams } from 'react-router-dom';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { AIError } from '@/data/api';
 import {
   DeleteRegistryProps,
@@ -7,19 +8,26 @@ import {
 
 export interface DeleteMutateRegistryProps {
   onError: (cause: AIError) => void;
-  onSuccess: () => void;
+  onDeleteSuccess: () => void;
 }
 
 export function useDeleteRegistry({
   onError,
-  onSuccess,
+  onDeleteSuccess,
 }: DeleteMutateRegistryProps) {
+  const queryClient = useQueryClient();
+  const { projectId } = useParams();
   const mutation = useMutation({
     mutationFn: (registryId: DeleteRegistryProps) => {
       return deleteRegistry(registryId);
     },
     onError,
-    onSuccess,
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [projectId, 'ai', 'registry'],
+      });
+      onDeleteSuccess();
+    },
   });
 
   return {

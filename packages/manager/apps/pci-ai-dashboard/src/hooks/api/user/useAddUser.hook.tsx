@@ -1,20 +1,26 @@
-import { useMutation } from '@tanstack/react-query';
+import { useParams } from 'react-router-dom';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { AIError } from '@/data/api';
 import { AddUserProps, addUser } from '@/data/api/user/user.api';
 import * as user from '@/types/cloud/user';
 
 export interface MutateUserProps {
   onError: (cause: AIError) => void;
-  onSuccess: (user: user.UserDetail) => void;
+  onAddSuccess: (user: user.UserDetail) => void;
 }
 
-export function useAddUser({ onError, onSuccess }: MutateUserProps) {
+export function useAddUser({ onError, onAddSuccess }: MutateUserProps) {
+  const queryClient = useQueryClient();
+  const { projectId } = useParams();
   const mutation = useMutation({
     mutationFn: (userInfo: AddUserProps) => {
       return addUser(userInfo);
     },
     onError,
-    onSuccess,
+    onSuccess: (userInfo) => {
+      queryClient.invalidateQueries({ queryKey: [projectId, 'user'] });
+      onAddSuccess(userInfo);
+    },
   });
 
   return {

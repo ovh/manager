@@ -51,7 +51,7 @@ const Cli = ({ regions }: CliProps) => {
       <CodeBlock code={curlUlr} />
       <Alert variant="info">
         <div className="flex flex-row gap-3 items-center">
-          <AlertCircle className="size-6" />
+          <AlertCircle className="size-5" />
           <p>{t('alertCli')}</p>
         </div>
       </Alert>

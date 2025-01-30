@@ -12,30 +12,9 @@ import * as registryApi from '@/data/api/ai/registry.api';
 import { mockedCapabilitiesRegion } from '@/__tests__/helpers/mocks/region';
 import { apiErrorMock } from '@/__tests__/helpers/mocks/aiError';
 import { useToast } from '@/components/ui/use-toast';
-import { mockedRegistry } from '@/__tests__/helpers/mocks/registry';
-import Docker from '../../../Docker.page';
+import DeleteDocker from './DeleteDocker.modal';
 
 describe('DeleteDocker modal', () => {
-  const openButtonInMenu = async (buttonId: string) => {
-    act(() => {
-      const trigger = screen.getByTestId('docker-action-trigger');
-      fireEvent.focus(trigger);
-      fireEvent.keyDown(trigger, {
-        key: 'Enter',
-        code: 'Enter',
-        keyCode: 13,
-        charCode: 13,
-      });
-    });
-    const actionButton = screen.getByTestId(buttonId);
-    await waitFor(() => {
-      expect(actionButton).toBeInTheDocument();
-    });
-    act(() => {
-      fireEvent.click(actionButton);
-    });
-  };
-
   beforeEach(async () => {
     // Mock necessary hooks and dependencies
     vi.mock('react-i18next', () => ({
@@ -52,7 +31,6 @@ describe('DeleteDocker modal', () => {
       };
     });
     vi.mock('@/data/api/ai/registry.api', () => ({
-      getRegistries: vi.fn(() => [mockedRegistry]),
       deleteRegistry: vi.fn(),
     }));
 
@@ -75,17 +53,13 @@ describe('DeleteDocker modal', () => {
         })),
       };
     });
-    render(<Docker />, { wrapper: RouterWithQueryClientWrapper });
-    await waitFor(() => {
-      expect(screen.getByText(mockedRegistry.id)).toBeInTheDocument();
-    });
   });
   afterEach(() => {
     vi.clearAllMocks();
   });
 
   it('open and close delete docker modal', async () => {
-    await openButtonInMenu('docker-action-delete-button');
+    render(<DeleteDocker />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
       expect(screen.getByTestId('delete-docker-modal')).toBeInTheDocument();
     });
@@ -100,6 +74,7 @@ describe('DeleteDocker modal', () => {
   });
 
   it('display error on delete docker error', async () => {
+    render(<DeleteDocker />, { wrapper: RouterWithQueryClientWrapper });
     const errorMsg = {
       description: 'api error message',
       title: 'deleteDockerToastErrorTitle',
@@ -108,32 +83,26 @@ describe('DeleteDocker modal', () => {
     vi.mocked(registryApi.deleteRegistry).mockImplementationOnce(() => {
       throw apiErrorMock;
     });
-    await openButtonInMenu('docker-action-delete-button');
-    await waitFor(() => {
-      expect(screen.getByTestId('delete-docker-modal')).toBeInTheDocument();
-    });
     act(() => {
       fireEvent.click(screen.getByTestId('delete-docker-submit-button'));
     });
     await waitFor(() => {
+      expect(registryApi.deleteRegistry).toHaveBeenCalled();
       expect(useToast().toast).toHaveBeenCalledWith(errorMsg);
     });
   });
 
   it('refetch data on delete docker success', async () => {
-    await openButtonInMenu('docker-action-delete-button');
-    await waitFor(() => {
-      expect(screen.getByTestId('delete-docker-modal')).toBeInTheDocument();
-    });
+    render(<DeleteDocker />, { wrapper: RouterWithQueryClientWrapper });
     act(() => {
       fireEvent.click(screen.getByTestId('delete-docker-submit-button'));
     });
     await waitFor(() => {
-      expect(
-        screen.queryByTestId('delete-docker-modal'),
-      ).not.toBeInTheDocument();
       expect(registryApi.deleteRegistry).toHaveBeenCalled();
-      expect(registryApi.getRegistries).toHaveBeenCalled();
+      expect(useToast().toast).toHaveBeenCalledWith({
+        title: 'deleteDockerToastSuccessTitle',
+        description: 'deleteDockerToastSuccessDescription',
+      });
     });
   });
 });

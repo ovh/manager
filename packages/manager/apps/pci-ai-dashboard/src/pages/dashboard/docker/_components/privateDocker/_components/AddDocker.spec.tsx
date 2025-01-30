@@ -7,15 +7,13 @@ import {
   waitFor,
 } from '@testing-library/react';
 import { Locale } from '@/hooks/useLocale.hook';
-
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import * as registryApi from '@/data/api/ai/registry.api';
 import { apiErrorMock } from '@/__tests__/helpers/mocks/aiError';
 import { useToast } from '@/components/ui/use-toast';
-
 import { mockedCapabilitiesRegion } from '@/__tests__/helpers/mocks/region';
 import { mockedRegistry } from '@/__tests__/helpers/mocks/registry';
-import Docker from '../../../Docker.page';
+import AddDocker from './AddDocker.modal';
 
 describe('AddDocker modal', () => {
   beforeEach(() => {
@@ -34,7 +32,6 @@ describe('AddDocker modal', () => {
       };
     });
     vi.mock('@/data/api/ai/registry.api', () => ({
-      getRegistries: vi.fn(() => [mockedRegistry]),
       addRegistry: vi.fn(() => mockedRegistry),
     }));
 
@@ -57,16 +54,18 @@ describe('AddDocker modal', () => {
         })),
       };
     });
-    render(<Docker />, { wrapper: RouterWithQueryClientWrapper });
   });
   afterEach(() => {
     vi.clearAllMocks();
   });
 
+  it('renders modal skeleton while loading', async () => {
+    render(<AddDocker />, { wrapper: RouterWithQueryClientWrapper });
+    expect(screen.getByTestId('dialog-container')).toBeInTheDocument();
+  });
+
   it('open and close add docker modal', async () => {
-    act(() => {
-      fireEvent.click(screen.getByTestId('create-docker-button'));
-    });
+    render(<AddDocker />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
       expect(screen.getByTestId('add-docker-modal')).toBeInTheDocument();
     });
@@ -79,6 +78,7 @@ describe('AddDocker modal', () => {
   });
 
   it('renders addDocker and display toast error', async () => {
+    render(<AddDocker />, { wrapper: RouterWithQueryClientWrapper });
     const errorMsg = {
       description: 'api error message',
       title: 'formDockerToastErrorTitle',
@@ -87,9 +87,6 @@ describe('AddDocker modal', () => {
     vi.mocked(registryApi.addRegistry).mockImplementationOnce(() => {
       throw apiErrorMock;
     });
-    act(() => {
-      fireEvent.click(screen.getByTestId('create-docker-button'));
-    });
     await waitFor(() => {
       expect(screen.getByTestId('add-docker-modal')).toBeInTheDocument();
     });
@@ -114,18 +111,36 @@ describe('AddDocker modal', () => {
         },
       });
     });
+
+    // Select region
+    const regionTrigger = screen.getByTestId('select-region-trigger');
+    await waitFor(() => {
+      expect(regionTrigger).toBeInTheDocument();
+    });
+    act(() => {
+      fireEvent.focus(regionTrigger);
+      fireEvent.keyDown(regionTrigger, { key: 'Enter', code: 13 });
+    });
+    await waitFor(() => {
+      expect(regionTrigger).not.toHaveAttribute('data-state', 'closed');
+      act(() => {
+        const optionsElements = screen.getAllByRole('option');
+        const elem = optionsElements.find((e) => e.innerHTML.includes('GRA'));
+        fireEvent.keyDown(elem, { key: 'Enter', code: 13 });
+      });
+    });
+
     act(() => {
       fireEvent.click(screen.getByTestId('add-docker-submit-button'));
     });
     await waitFor(() => {
+      expect(registryApi.addRegistry).toHaveBeenCalled();
       expect(useToast().toast).toHaveBeenCalledWith(errorMsg);
     });
   });
 
   it('renders addToken and refresh getRegistries after added', async () => {
-    act(() => {
-      fireEvent.click(screen.getByTestId('create-docker-button'));
-    });
+    render(<AddDocker />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
       expect(screen.getByTestId('add-docker-modal')).toBeInTheDocument();
     });
@@ -150,13 +165,34 @@ describe('AddDocker modal', () => {
         },
       });
     });
+
+    // Select region
+    const regionTrigger = screen.getByTestId('select-region-trigger');
+    await waitFor(() => {
+      expect(regionTrigger).toBeInTheDocument();
+    });
+    act(() => {
+      fireEvent.focus(regionTrigger);
+      fireEvent.keyDown(regionTrigger, { key: 'Enter', code: 13 });
+    });
+    await waitFor(() => {
+      expect(regionTrigger).not.toHaveAttribute('data-state', 'closed');
+      act(() => {
+        const optionsElements = screen.getAllByRole('option');
+        const elem = optionsElements.find((e) => e.innerHTML.includes('GRA'));
+        fireEvent.keyDown(elem, { key: 'Enter', code: 13 });
+      });
+    });
+
     act(() => {
       fireEvent.click(screen.getByTestId('add-docker-submit-button'));
     });
     await waitFor(() => {
-      expect(screen.queryByTestId('add-docker-modal')).not.toBeInTheDocument();
       expect(registryApi.addRegistry).toHaveBeenCalled();
-      expect(registryApi.getRegistries).toHaveBeenCalled();
+      expect(useToast().toast).toHaveBeenCalledWith({
+        title: 'formDockerToastSuccessTitle',
+        description: 'formDockerToastSuccessDescription',
+      });
     });
   });
 });

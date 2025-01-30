@@ -16,12 +16,12 @@ describe('useAddDatastore', () => {
   it('should call useAddDatastore on mutation with data', async () => {
     const projectId = 'projectId';
     const region = 'region';
-    const onSuccess = vi.fn();
+    const onAddSuccess = vi.fn();
     const onError = vi.fn();
 
     vi.mocked(datastoreApi.addDatastore).mockResolvedValue(mockedDatastore);
     const { result } = renderHook(
-      () => useAddDatastore({ onError, onSuccess }),
+      () => useAddDatastore({ onError, onAddSuccess }),
       { wrapper: QueryClientWrapper },
     );
 
@@ -34,11 +34,7 @@ describe('useAddDatastore', () => {
 
     await waitFor(() => {
       expect(datastoreApi.addDatastore).toHaveBeenCalledWith(addDatastoreProps);
-      expect(onSuccess).toHaveBeenCalledWith(
-        mockedDatastore,
-        addDatastoreProps,
-        undefined,
-      );
+      expect(onAddSuccess).toHaveBeenCalledWith(mockedDatastore);
     });
   });
 });

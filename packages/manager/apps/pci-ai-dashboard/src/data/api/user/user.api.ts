@@ -5,13 +5,7 @@ import * as ai from '@/types/cloud/project/ai';
 
 export const getUsers = async ({ projectId }: PCIAi) =>
   apiClient.v6
-    .get(`/cloud/project/${projectId}/user`, {
-      headers: {
-        'X-Pagination-Mode': 'CachedObjectList-Pages',
-        'X-Pagination-Size': '50000',
-        Pragma: 'no-cache',
-      },
-    })
+    .get(`/cloud/project/${projectId}/user`)
     .then((res) => res.data as user.User[]);
 
 export interface AddUserProps extends PCIAi {

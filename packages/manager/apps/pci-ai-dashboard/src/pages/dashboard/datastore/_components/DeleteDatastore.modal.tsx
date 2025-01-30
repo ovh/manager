@@ -1,9 +1,7 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-
 import { Button } from '@/components/ui/button';
 import {
-  Dialog,
   DialogClose,
   DialogContent,
   DialogDescription,
@@ -12,27 +10,15 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { useToast } from '@/components/ui/use-toast';
-import { ModalController } from '@/hooks/useModale.hook';
-import * as ai from '@/types/cloud/project/ai';
 import { useDeleteDatastore } from '@/hooks/api/ai/datastore/useDeleteDatastore.hook';
-import { DataStoresWithRegion } from '@/hooks/api/ai/datastore/useGetDatastoresWithRegions.hook';
+import RouteModal from '@/components/route-modal/RouteModal';
 
-interface DeleteDatastoreModalProps {
-  datastore: DataStoresWithRegion;
-  controller: ModalController;
-  onSuccess?: (datastore: ai.DataStore) => void;
-  onError?: (error: Error) => void;
-}
-
-const DeleteDatastore = ({
-  datastore,
-  controller,
-  onError,
-  onSuccess,
-}: DeleteDatastoreModalProps) => {
-  const { projectId } = useParams();
+const DeleteDatastore = () => {
+  const { projectId, region: dsRegion, alias: dsAlias } = useParams();
   const { t } = useTranslation('pci-ai-dashboard/datastores');
   const toast = useToast();
+  const navigate = useNavigate();
+
   const { deleteDatastore, isPending } = useDeleteDatastore({
     onError: (err) => {
       toast.toast({
@@ -40,32 +26,27 @@ const DeleteDatastore = ({
         variant: 'destructive',
         description: err.response.data.message,
       });
-      if (onError) {
-        onError(err);
-      }
     },
-    onSuccess: () => {
+    onDeleteSuccess: () => {
       toast.toast({
         title: t('deleteDatastoreToastSuccessTitle'),
         description: t('deleteDatastoreToastSuccessDescription', {
-          alias: datastore.alias,
+          alias: dsAlias,
         }),
       });
-      if (onSuccess) {
-        onSuccess(datastore);
-      }
+      navigate('../');
     },
   });
 
   const handleDelete = () => {
     deleteDatastore({
       projectId,
-      region: datastore.region,
-      alias: datastore.alias,
+      region: dsRegion,
+      alias: dsAlias,
     });
   };
   return (
-    <Dialog {...controller}>
+    <RouteModal backUrl="../">
       <DialogContent>
         <DialogHeader>
           <DialogTitle data-testid="delete-datastore-modal">
@@ -73,7 +54,7 @@ const DeleteDatastore = ({
           </DialogTitle>
           <DialogDescription>
             {t('deleteDatastoreDescription', {
-              alias: datastore.alias,
+              alias: dsAlias,
             })}
           </DialogDescription>
         </DialogHeader>
@@ -97,7 +78,7 @@ const DeleteDatastore = ({
           </Button>
         </DialogFooter>
       </DialogContent>
-    </Dialog>
+    </RouteModal>
   );
 };
 

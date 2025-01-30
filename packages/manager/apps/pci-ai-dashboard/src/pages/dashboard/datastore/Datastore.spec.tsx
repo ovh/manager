@@ -1,5 +1,11 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, waitFor } from '@testing-library/react';
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from '@testing-library/react';
 import Datastore, {
   breadcrumb as Breadcrumb,
 } from '@/pages/dashboard/datastore/Datastore.page';
@@ -8,6 +14,7 @@ import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/Route
 import { mockedCapabilitiesRegion } from '@/__tests__/helpers/mocks/region';
 import { mockedDatastoreWithRegion } from '@/__tests__/helpers/mocks/datastore';
 
+const mockedUsedNavigate = vi.fn();
 describe('Datastore page', () => {
   beforeEach(() => {
     // Mock necessary hooks and dependencies
@@ -22,6 +29,13 @@ describe('Datastore page', () => {
     vi.mock('@/data/api/ai/capabilities.api', () => ({
       getRegions: vi.fn(() => [mockedCapabilitiesRegion]),
     }));
+    vi.mock('react-router-dom', async () => {
+      const mod = await vi.importActual('react-router-dom');
+      return {
+        ...mod,
+        useNavigate: () => mockedUsedNavigate,
+      };
+    });
     vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
       const mod = await importOriginal<
         typeof import('@ovh-ux/manager-react-shell-client')
@@ -55,6 +69,60 @@ describe('Datastore page', () => {
       expect(
         screen.getByText(mockedDatastoreWithRegion.alias),
       ).toBeInTheDocument();
+    });
+  });
+
+  it('trigger useNavigate on create button click', async () => {
+    render(<Datastore />, { wrapper: RouterWithQueryClientWrapper });
+    expect(screen.getByTestId('create-datastore-button')).toBeInTheDocument();
+    act(() => {
+      fireEvent.click(screen.getByTestId('create-datastore-button'));
+    });
+    await waitFor(() => {
+      expect(mockedUsedNavigate).toHaveBeenCalledWith('./add');
+    });
+  });
+});
+
+describe('Action table button', () => {
+  // Helper function to open a button in the table menu
+  const openButtonInMenu = async (buttonId: string) => {
+    act(() => {
+      const trigger = screen.getByTestId('datastore-action-trigger');
+      fireEvent.focus(trigger);
+      fireEvent.keyDown(trigger, {
+        key: 'Enter',
+        code: 'Enter',
+        keyCode: 13,
+        charCode: 13,
+      });
+    });
+    const actionButton = screen.getByTestId(buttonId);
+    await waitFor(() => {
+      expect(actionButton).toBeInTheDocument();
+    });
+    act(() => {
+      fireEvent.click(actionButton);
+    });
+  };
+  beforeEach(async () => {
+    render(<Datastore />, { wrapper: RouterWithQueryClientWrapper });
+    await waitFor(() => {
+      expect(
+        screen.getByText(mockedDatastoreWithRegion.alias),
+      ).toBeInTheDocument();
+    });
+  });
+  afterEach(() => {
+    vi.clearAllMocks();
+  });
+
+  it('open delete datastore modal', async () => {
+    await openButtonInMenu('datastore-action-delete-button');
+    await waitFor(() => {
+      expect(mockedUsedNavigate).toHaveBeenCalledWith(
+        `./delete/${mockedDatastoreWithRegion.region}/${mockedDatastoreWithRegion.alias}`,
+      );
     });
   });
 });

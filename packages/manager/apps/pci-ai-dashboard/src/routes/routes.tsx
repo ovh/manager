@@ -1,4 +1,3 @@
-import React from 'react';
 import NotFound from '@/pages/404.page';
 import ErrorBoundary from '@/components/error-boundary/ErrorBoundary.component';
 
@@ -54,6 +53,17 @@ export default [
                 ...lazyRouteConfig(() =>
                   import('@/pages/dashboard/users/Users.page'),
                 ),
+                children: [
+                  {
+                    id: 'dashboard.users.add',
+                    path: 'add',
+                    ...lazyRouteConfig(() =>
+                      import(
+                        '@/pages/dashboard/users/_components/AddUser.modal'
+                      ),
+                    ),
+                  },
+                ],
               },
               {
                 path: 'tokens',
@@ -61,6 +71,35 @@ export default [
                 ...lazyRouteConfig(() =>
                   import('@/pages/dashboard/tokens/Tokens.page'),
                 ),
+                children: [
+                  {
+                    path: 'add',
+                    id: 'dashboard.token.add',
+                    ...lazyRouteConfig(() =>
+                      import(
+                        '@/pages/dashboard/tokens/_components/AddToken.modal'
+                      ),
+                    ),
+                  },
+                  {
+                    path: 'delete/:tokenId',
+                    id: 'dashboard.tokens.delete',
+                    ...lazyRouteConfig(() =>
+                      import(
+                        '@/pages/dashboard/tokens/_components/DeleteToken.modal'
+                      ),
+                    ),
+                  },
+                  {
+                    path: 'renew/:tokenId',
+                    id: 'dashboard.tokens.renew',
+                    ...lazyRouteConfig(() =>
+                      import(
+                        '@/pages/dashboard/tokens/_components/RenewToken.modal'
+                      ),
+                    ),
+                  },
+                ],
               },
               {
                 path: 'docker-registries',
@@ -68,6 +107,26 @@ export default [
                 ...lazyRouteConfig(() =>
                   import('@/pages/dashboard/docker/Docker.page'),
                 ),
+                children: [
+                  {
+                    path: 'add',
+                    id: 'dashboard.docker-registries.add',
+                    ...lazyRouteConfig(() =>
+                      import(
+                        '@/pages/dashboard/docker/_components/privateDocker/_components/AddDocker.modal'
+                      ),
+                    ),
+                  },
+                  {
+                    path: 'delete/:dockerId',
+                    id: 'dashboard.docker-registries.delete',
+                    ...lazyRouteConfig(() =>
+                      import(
+                        '@/pages/dashboard/docker/_components/privateDocker/_components/DeleteDocker.modal'
+                      ),
+                    ),
+                  },
+                ],
               },
               {
                 path: 'git-registries',
@@ -75,6 +134,24 @@ export default [
                 ...lazyRouteConfig(() =>
                   import('@/pages/dashboard/git/Git.page'),
                 ),
+                children: [
+                  {
+                    path: 'add',
+                    id: 'dashboard.git-registries.add',
+                    ...lazyRouteConfig(() =>
+                      import('@/pages/dashboard/git/_components/AddGit.modal'),
+                    ),
+                  },
+                  {
+                    path: 'delete/:region/:alias',
+                    id: 'dashboard.git-registries.delete',
+                    ...lazyRouteConfig(() =>
+                      import(
+                        '@/pages/dashboard/git/_components/DeleteGit.modal'
+                      ),
+                    ),
+                  },
+                ],
               },
               {
                 path: 'datastore',
@@ -82,6 +159,26 @@ export default [
                 ...lazyRouteConfig(() =>
                   import('@/pages/dashboard/datastore/Datastore.page'),
                 ),
+                children: [
+                  {
+                    path: 'add',
+                    id: 'dashboard.datastores.add',
+                    ...lazyRouteConfig(() =>
+                      import(
+                        '@/pages/dashboard/datastore/_components/AddDatastore.modal'
+                      ),
+                    ),
+                  },
+                  {
+                    path: 'delete/:region/:alias',
+                    id: 'dashboard.datastores.delete',
+                    ...lazyRouteConfig(() =>
+                      import(
+                        '@/pages/dashboard/datastore/_components/DeleteDatastore.modal'
+                      ),
+                    ),
+                  },
+                ],
               },
             ],
           },

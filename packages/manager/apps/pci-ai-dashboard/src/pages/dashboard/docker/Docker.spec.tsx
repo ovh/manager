@@ -1,5 +1,11 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, waitFor } from '@testing-library/react';
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from '@testing-library/react';
 import Docker, {
   breadcrumb as Breadcrumb,
 } from '@/pages/dashboard/docker/Docker.page';
@@ -8,6 +14,7 @@ import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/Route
 import { mockedRegistry } from '@/__tests__/helpers/mocks/registry';
 import { mockedCapabilitiesRegion } from '@/__tests__/helpers/mocks/region';
 
+const mockedUsedNavigate = vi.fn();
 describe('Docker page', () => {
   beforeEach(() => {
     // Mock necessary hooks and dependencies
@@ -37,6 +44,13 @@ describe('Docker page', () => {
         })),
       };
     });
+    vi.mock('react-router-dom', async () => {
+      const mod = await vi.importActual('react-router-dom');
+      return {
+        ...mod,
+        useNavigate: () => mockedUsedNavigate,
+      };
+    });
   });
   afterEach(() => {
     vi.clearAllMocks();
@@ -57,9 +71,61 @@ describe('Docker page', () => {
   it('renders and shows buttons in the dockers page', async () => {
     render(<Docker />, { wrapper: RouterWithQueryClientWrapper });
     expect(
-      screen.getByTestId('managed-private-registries-button'),
+      screen.getByTestId('managed-private-registries-link'),
     ).toBeInTheDocument();
     expect(screen.getByTestId('create-docker-button')).toBeInTheDocument();
     expect(screen.getByText(mockedRegistry.id)).toBeInTheDocument();
+  });
+
+  it('trigger useNavigate on create button click', async () => {
+    render(<Docker />, { wrapper: RouterWithQueryClientWrapper });
+    expect(screen.getByTestId('create-docker-button')).toBeInTheDocument();
+    act(() => {
+      fireEvent.click(screen.getByTestId('create-docker-button'));
+    });
+    await waitFor(() => {
+      expect(mockedUsedNavigate).toHaveBeenCalledWith('./add');
+    });
+  });
+});
+
+describe('Action table button', () => {
+  // Helper function to open a button in the table menu
+  const openButtonInMenu = async (buttonId: string) => {
+    act(() => {
+      const trigger = screen.getByTestId('docker-action-trigger');
+      fireEvent.focus(trigger);
+      fireEvent.keyDown(trigger, {
+        key: 'Enter',
+        code: 'Enter',
+        keyCode: 13,
+        charCode: 13,
+      });
+    });
+    const actionButton = screen.getByTestId(buttonId);
+    await waitFor(() => {
+      expect(actionButton).toBeInTheDocument();
+    });
+    act(() => {
+      fireEvent.click(actionButton);
+    });
+  };
+  beforeEach(async () => {
+    render(<Docker />, { wrapper: RouterWithQueryClientWrapper });
+    await waitFor(() => {
+      expect(screen.getByText(mockedRegistry.id)).toBeInTheDocument();
+    });
+  });
+  afterEach(() => {
+    vi.clearAllMocks();
+  });
+
+  it('open delete docker modal', async () => {
+    await openButtonInMenu('docker-action-delete-button');
+    await waitFor(() => {
+      expect(mockedUsedNavigate).toHaveBeenCalledWith(
+        `./delete/${mockedRegistry.id}`,
+      );
+    });
   });
 });

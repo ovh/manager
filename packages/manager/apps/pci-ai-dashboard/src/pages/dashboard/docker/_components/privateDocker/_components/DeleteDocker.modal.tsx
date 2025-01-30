@@ -1,9 +1,8 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import { Button } from '@/components/ui/button';
 import {
-  Dialog,
   DialogClose,
   DialogContent,
   DialogDescription,
@@ -12,24 +11,12 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { useToast } from '@/components/ui/use-toast';
-import { ModalController } from '@/hooks/useModale.hook';
-import * as ai from '@/types/cloud/project/ai';
 import { useDeleteRegistry } from '@/hooks/api/ai/registry/useDeleteRegistry.hook';
+import RouteModal from '@/components/route-modal/RouteModal';
 
-interface DeleteDockerModalProps {
-  docker: ai.registry.Registry;
-  controller: ModalController;
-  onSuccess?: (docker: ai.registry.Registry) => void;
-  onError?: (error: Error) => void;
-}
-
-const DeleteDocker = ({
-  docker,
-  controller,
-  onError,
-  onSuccess,
-}: DeleteDockerModalProps) => {
-  const { projectId } = useParams();
+const DeleteDocker = () => {
+  const { projectId, dockerId } = useParams();
+  const navigate = useNavigate();
   const { t } = useTranslation('pci-ai-dashboard/docker');
   const toast = useToast();
   const { deleteRegistry, isPending } = useDeleteRegistry({
@@ -39,31 +26,26 @@ const DeleteDocker = ({
         variant: 'destructive',
         description: err.response.data.message,
       });
-      if (onError) {
-        onError(err);
-      }
     },
-    onSuccess: () => {
+    onDeleteSuccess: () => {
       toast.toast({
         title: t('deleteDockerToastSuccessTitle'),
         description: t('deleteDockerToastSuccessDescription', {
-          id: docker.id,
+          id: dockerId,
         }),
       });
-      if (onSuccess) {
-        onSuccess(docker);
-      }
+      navigate('../');
     },
   });
 
   const handleDelete = () => {
     deleteRegistry({
       projectId,
-      registryId: docker.id,
+      registryId: dockerId,
     });
   };
   return (
-    <Dialog {...controller}>
+    <RouteModal backUrl="../">
       <DialogContent>
         <DialogHeader>
           <DialogTitle data-testid="delete-docker-modal">
@@ -71,7 +53,7 @@ const DeleteDocker = ({
           </DialogTitle>
           <DialogDescription>
             {t('deleteDockerDescription', {
-              id: docker.id,
+              id: dockerId,
             })}
           </DialogDescription>
         </DialogHeader>
@@ -95,7 +77,7 @@ const DeleteDocker = ({
           </Button>
         </DialogFooter>
       </DialogContent>
-    </Dialog>
+    </RouteModal>
   );
 };
 

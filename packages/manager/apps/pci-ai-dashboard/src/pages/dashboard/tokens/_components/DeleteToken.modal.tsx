@@ -1,9 +1,7 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-
 import { Button } from '@/components/ui/button';
 import {
-  Dialog,
   DialogClose,
   DialogContent,
   DialogDescription,
@@ -12,26 +10,15 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { useToast } from '@/components/ui/use-toast';
-
-import { ModalController } from '@/hooks/useModale.hook';
-import * as ai from '@/types/cloud/project/ai';
 import { useDeleteToken } from '@/hooks/api/ai/token/useDeleteToken.hook';
+import { useGetToken } from '@/hooks/api/ai/token/useGetToken.hook';
+import RouteModal from '@/components/route-modal/RouteModal';
 
-interface DeleteTokenModalProps {
-  token: ai.token.Token;
-  controller: ModalController;
-  onSuccess?: (token: ai.token.Token) => void;
-  onError?: (error: Error) => void;
-}
-
-const DeleteToken = ({
-  token,
-  controller,
-  onError,
-  onSuccess,
-}: DeleteTokenModalProps) => {
-  const { projectId } = useParams();
+const DeleteToken = () => {
+  const { projectId, tokenId: idToken } = useParams();
   const { t } = useTranslation('pci-ai-dashboard/tokens');
+  const navigate = useNavigate();
+  const tokenQuery = useGetToken(projectId, idToken);
   const toast = useToast();
   const { deleteToken, isPending } = useDeleteToken({
     onError: (err) => {
@@ -40,31 +27,26 @@ const DeleteToken = ({
         variant: 'destructive',
         description: err.response.data.message,
       });
-      if (onError) {
-        onError(err);
-      }
     },
-    onSuccess: () => {
+    onDeleteSuccess: () => {
       toast.toast({
         title: t('deleteTokenToastSuccessTitle'),
         description: t('deleteTokenToastSuccessDescription', {
-          name: token.spec.name,
+          name: tokenQuery.data?.spec.name,
         }),
       });
-      if (onSuccess) {
-        onSuccess(token);
-      }
+      navigate('../');
     },
   });
 
   const handleDelete = () => {
     deleteToken({
       projectId,
-      tokenId: token.id,
+      tokenId: idToken,
     });
   };
   return (
-    <Dialog {...controller}>
+    <RouteModal backUrl="../" isLoading={!tokenQuery.isSuccess}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle data-testid="delete-token-modal">
@@ -72,7 +54,7 @@ const DeleteToken = ({
           </DialogTitle>
           <DialogDescription>
             {t('deleteTokenDescription', {
-              name: token.spec.name,
+              name: tokenQuery.data?.spec.name,
             })}
           </DialogDescription>
         </DialogHeader>
@@ -96,7 +78,7 @@ const DeleteToken = ({
           </Button>
         </DialogFooter>
       </DialogContent>
-    </Dialog>
+    </RouteModal>
   );
 };
 

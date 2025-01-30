@@ -14,7 +14,7 @@ import { apiErrorMock } from '@/__tests__/helpers/mocks/aiError';
 import { useToast } from '@/components/ui/use-toast';
 import { mockedCapabilitiesRegion } from '@/__tests__/helpers/mocks/region';
 import { mockedGitWithRegion } from '@/__tests__/helpers/mocks/datastore';
-import Git from '../Git.page';
+import AddGit from './AddGit.modal';
 
 describe('AddGit modal', () => {
   beforeEach(() => {
@@ -62,16 +62,18 @@ describe('AddGit modal', () => {
       disconnect: vi.fn(),
     }));
     vi.stubGlobal('ResizeObserver', ResizeObserverMock);
-    render(<Git />, { wrapper: RouterWithQueryClientWrapper });
   });
   afterEach(() => {
     vi.clearAllMocks();
   });
 
+  it('renders modal skeleton while loading', async () => {
+    render(<AddGit />, { wrapper: RouterWithQueryClientWrapper });
+    expect(screen.getByTestId('dialog-container')).toBeInTheDocument();
+  });
+
   it('open and close add git modal', async () => {
-    act(() => {
-      fireEvent.click(screen.getByTestId('create-git-button'));
-    });
+    render(<AddGit />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
       expect(screen.getByTestId('add-git-modal')).toBeInTheDocument();
     });
@@ -84,6 +86,7 @@ describe('AddGit modal', () => {
   });
 
   it('renders addGit and display toast error', async () => {
+    render(<AddGit />, { wrapper: RouterWithQueryClientWrapper });
     const errorMsg = {
       description: 'api error message',
       title: 'formGitToastErrorTitle',
@@ -93,12 +96,6 @@ describe('AddGit modal', () => {
       throw apiErrorMock;
     });
     act(() => {
-      fireEvent.click(screen.getByTestId('create-git-button'));
-    });
-    await waitFor(() => {
-      expect(screen.getByTestId('add-git-modal')).toBeInTheDocument();
-    });
-    act(() => {
       fireEvent.change(screen.getByTestId('git-alias-input'), {
         target: {
           value: 'alias',
@@ -126,21 +123,36 @@ describe('AddGit modal', () => {
         },
       });
     });
+
+    // Select region
+    const regionTrigger = screen.getByTestId('select-region-trigger');
+    await waitFor(() => {
+      expect(regionTrigger).toBeInTheDocument();
+    });
+    act(() => {
+      fireEvent.focus(regionTrigger);
+      fireEvent.keyDown(regionTrigger, { key: 'Enter', code: 13 });
+    });
+    await waitFor(() => {
+      expect(regionTrigger).not.toHaveAttribute('data-state', 'closed');
+      act(() => {
+        const optionsElements = screen.getAllByRole('option');
+        const elem = optionsElements.find((e) => e.innerHTML.includes('GRA'));
+        fireEvent.keyDown(elem, { key: 'Enter', code: 13 });
+      });
+    });
+
     act(() => {
       fireEvent.click(screen.getByTestId('add-git-submit-button'));
     });
     await waitFor(() => {
+      expect(datastoreApi.addDatastore).toHaveBeenCalled();
       expect(useToast().toast).toHaveBeenCalledWith(errorMsg);
     });
   });
 
   it('renders addToken with basic auth and refresh getRegistries after added', async () => {
-    act(() => {
-      fireEvent.click(screen.getByTestId('create-git-button'));
-    });
-    await waitFor(() => {
-      expect(screen.getByTestId('add-git-modal')).toBeInTheDocument();
-    });
+    render(<AddGit />, { wrapper: RouterWithQueryClientWrapper });
     act(() => {
       fireEvent.change(screen.getByTestId('git-alias-input'), {
         target: {
@@ -169,20 +181,39 @@ describe('AddGit modal', () => {
         },
       });
     });
+
+    // Select region
+    const regionTrigger = screen.getByTestId('select-region-trigger');
+    await waitFor(() => {
+      expect(regionTrigger).toBeInTheDocument();
+    });
+    act(() => {
+      fireEvent.focus(regionTrigger);
+      fireEvent.keyDown(regionTrigger, { key: 'Enter', code: 13 });
+    });
+    await waitFor(() => {
+      expect(regionTrigger).not.toHaveAttribute('data-state', 'closed');
+      act(() => {
+        const optionsElements = screen.getAllByRole('option');
+        const elem = optionsElements.find((e) => e.innerHTML.includes('GRA'));
+        fireEvent.keyDown(elem, { key: 'Enter', code: 13 });
+      });
+    });
+
     act(() => {
       fireEvent.click(screen.getByTestId('add-git-submit-button'));
     });
     await waitFor(() => {
-      expect(screen.queryByTestId('add-git-modal')).not.toBeInTheDocument();
       expect(datastoreApi.addDatastore).toHaveBeenCalled();
-      expect(datastoreApi.getDatastores).toHaveBeenCalled();
+      expect(useToast().toast).toHaveBeenCalledWith({
+        title: 'formGitToastSuccessTitle',
+        description: 'formGitToastSuccessDescription',
+      });
     });
   });
 
   it('renders addToken with sshkey and refresh getRegistries after added', async () => {
-    act(() => {
-      fireEvent.click(screen.getByTestId('create-git-button'));
-    });
+    render(<AddGit />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
       expect(screen.getByTestId('add-git-modal')).toBeInTheDocument();
     });
@@ -217,13 +248,34 @@ describe('AddGit modal', () => {
         },
       });
     });
+
+    // Select region
+    const regionTrigger = screen.getByTestId('select-region-trigger');
+    await waitFor(() => {
+      expect(regionTrigger).toBeInTheDocument();
+    });
+    act(() => {
+      fireEvent.focus(regionTrigger);
+      fireEvent.keyDown(regionTrigger, { key: 'Enter', code: 13 });
+    });
+    await waitFor(() => {
+      expect(regionTrigger).not.toHaveAttribute('data-state', 'closed');
+      act(() => {
+        const optionsElements = screen.getAllByRole('option');
+        const elem = optionsElements.find((e) => e.innerHTML.includes('GRA'));
+        fireEvent.keyDown(elem, { key: 'Enter', code: 13 });
+      });
+    });
+
     act(() => {
       fireEvent.click(screen.getByTestId('add-git-submit-button'));
     });
     await waitFor(() => {
-      expect(screen.queryByTestId('add-git-modal')).not.toBeInTheDocument();
       expect(datastoreApi.addDatastore).toHaveBeenCalled();
-      expect(datastoreApi.getDatastores).toHaveBeenCalled();
+      expect(useToast().toast).toHaveBeenCalledWith({
+        title: 'formGitToastSuccessTitle',
+        description: 'formGitToastSuccessDescription',
+      });
     });
   });
 });

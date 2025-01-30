@@ -16,11 +16,11 @@ vi.mock('@/data/api/user/user.api', () => ({
 describe('useAddUSer', () => {
   it('should call useAddUser on mutation with data', async () => {
     const projectId = 'projectId';
-    const onSuccess = vi.fn();
+    const onAddSuccess = vi.fn();
     const onError = vi.fn();
 
     vi.mocked(userApi.addUser).mockResolvedValue(mockedUserDetails);
-    const { result } = renderHook(() => useAddUser({ onError, onSuccess }), {
+    const { result } = renderHook(() => useAddUser({ onError, onAddSuccess }), {
       wrapper: QueryClientWrapper,
     });
 
@@ -32,11 +32,7 @@ describe('useAddUSer', () => {
 
     await waitFor(() => {
       expect(userApi.addUser).toHaveBeenCalledWith(addUserProps);
-      expect(onSuccess).toHaveBeenCalledWith(
-        mockedUserDetails,
-        addUserProps,
-        undefined,
-      );
+      expect(onAddSuccess).toHaveBeenCalledWith(mockedUserDetails);
     });
   });
 });

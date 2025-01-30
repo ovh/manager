@@ -2,14 +2,9 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
-import * as ai from '@/types/cloud/project/ai';
 import { GIT_CONFIG } from './git.constant';
 
-export interface UseGitFormProps {
-  regions: ai.capabilities.Region[];
-}
-
-export const useGitForm = ({ regions }: UseGitFormProps) => {
+export const useGitForm = () => {
   const { t } = useTranslation('pci-ai-dashboard/git');
 
   const globalRules = z
@@ -34,13 +29,8 @@ export const useGitForm = ({ regions }: UseGitFormProps) => {
     .string()
     .trim()
     .min(GIT_CONFIG.region.min, {
-      message: t('formGitErrorMinLength', {
+      message: t('formDatastoreErrorRegion', {
         min: GIT_CONFIG.region.min,
-      }),
-    })
-    .max(GIT_CONFIG.region.max, {
-      message: t('formGitErrorMaxLength', {
-        max: GIT_CONFIG.region.max,
       }),
     });
 
@@ -108,7 +98,7 @@ export const useGitForm = ({ regions }: UseGitFormProps) => {
   type ValidationSchema = z.infer<typeof schema>;
 
   const defaultValues: ValidationSchema = {
-    region: regions[0].id,
+    region: '',
     credentialsType: 'basicAuth',
     alias: '',
     endpoint: '',

@@ -1,11 +1,10 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import { useState } from 'react';
 import { Copy } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
-  Dialog,
   DialogClose,
   DialogContent,
   DialogDescription,
@@ -14,29 +13,16 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { useToast } from '@/components/ui/use-toast';
-
-import { ModalController } from '@/hooks/useModale.hook';
-import * as ai from '@/types/cloud/project/ai';
 import { useRenewToken } from '@/hooks/api/ai/token/useRenewToken.hook';
 import { Alert } from '@/components/ui/alert';
+import { useGetToken } from '@/hooks/api/ai/token/useGetToken.hook';
+import RouteModal from '@/components/route-modal/RouteModal';
 
-interface RenewTokenModalProps {
-  token: ai.token.Token;
-  controller: ModalController;
-  onSuccess?: (token: ai.token.Token) => void;
-  onError?: (error: Error) => void;
-  onClose?: () => void;
-}
-
-const RenewToken = ({
-  token,
-  controller,
-  onError,
-  onSuccess,
-  onClose,
-}: RenewTokenModalProps) => {
+const RenewToken = () => {
   const [newTokenValue, setNewTokenValue] = useState<string>();
-  const { projectId } = useParams();
+  const { projectId, tokenId: idToken } = useParams();
+  const navigate = useNavigate();
+  const tokenQuery = useGetToken(projectId, idToken);
   const { t } = useTranslation('pci-ai-dashboard/tokens');
   const toast = useToast();
   const { renewToken, isPending } = useRenewToken({
@@ -46,28 +32,22 @@ const RenewToken = ({
         variant: 'destructive',
         description: err.response.data.message,
       });
-      if (onError) {
-        onError(err);
-      }
     },
-    onSuccess: (newToken) => {
+    onAddEditSuccess: (newToken) => {
       toast.toast({
         title: t('renewTokenToastSuccessTitle'),
         description: t('renewTokenToastSuccessDescription', {
-          name: token.spec.name,
+          name: tokenQuery.data?.spec.name,
         }),
       });
       setNewTokenValue(newToken.status.value);
-      if (onSuccess) {
-        onSuccess(token);
-      }
     },
   });
 
   const handleRenew = () => {
     renewToken({
       projectId,
-      tokenId: token.id,
+      tokenId: idToken,
     });
   };
 
@@ -78,11 +58,10 @@ const RenewToken = ({
     });
   };
 
-  const handleClose = () => {
-    onClose();
-  };
+  const handleClose = () => navigate('../');
+
   return (
-    <Dialog {...controller}>
+    <RouteModal backUrl="../" isLoading={!tokenQuery.isSuccess}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle data-testid="renew-token-modal">
@@ -91,7 +70,7 @@ const RenewToken = ({
           {!newTokenValue && (
             <DialogDescription>
               {t('renewTokenDescription', {
-                name: token.spec.name,
+                name: tokenQuery.data?.spec.name,
               })}
             </DialogDescription>
           )}
@@ -150,7 +129,7 @@ const RenewToken = ({
           </div>
         )}
       </DialogContent>
-    </Dialog>
+    </RouteModal>
   );
 };
 

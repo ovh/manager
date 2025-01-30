@@ -1,10 +1,7 @@
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
-import { useEffect } from 'react';
-import { ModalController } from '@/hooks/useModale.hook';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useToast } from '@/components/ui/use-toast';
 import {
-  Dialog,
   DialogClose,
   DialogContent,
   DialogDescription,
@@ -36,31 +33,17 @@ import {
   useAddDatastore,
 } from '@/hooks/api/ai/datastore/useAddDatastore.hook';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import RouteModal from '@/components/route-modal/RouteModal';
+import { useGetRegions } from '@/hooks/api/ai/capabilities/useGetRegions.hook';
 
-interface AddGitModalProps {
-  regions: ai.capabilities.Region[];
-  controller: ModalController;
-  onSuccess?: (git?: ai.DataStore) => void;
-  onError?: (error: Error) => void;
-}
-
-const AddGit = ({
-  regions,
-  controller,
-  onSuccess,
-  onError,
-}: AddGitModalProps) => {
+const AddGit = () => {
   const { projectId } = useParams();
-  const { form } = useGitForm({ regions });
-  useEffect(() => {
-    if (!controller.open) {
-      form.reset();
-    }
-  }, [controller.open]);
-
+  const { form } = useGitForm();
+  const navigate = useNavigate();
   const { t } = useTranslation('pci-ai-dashboard/git');
   const { t: tRegions } = useTranslation('regions');
   const toast = useToast();
+  const regionsQuery = useGetRegions(projectId);
 
   const AddGitMutationPropos: AddEditMutateDatastoreProps = {
     onError(err) {
@@ -69,20 +52,15 @@ const AddGit = ({
         variant: 'destructive',
         description: err.response.data.message,
       });
-      if (onError) {
-        onError(err);
-      }
     },
-    onSuccess(newGit) {
+    onAddSuccess() {
       form.reset();
       toast.toast({
         title: t('formGitToastSuccessTitle'),
         description: t(`formGitToastSuccessDescription`),
       });
       form.reset();
-      if (onSuccess) {
-        onSuccess(newGit);
-      }
+      navigate('../');
     },
   };
   const { addDatastore, isPending } = useAddDatastore(AddGitMutationPropos);
@@ -122,7 +100,7 @@ const AddGit = ({
   });
 
   return (
-    <Dialog {...controller}>
+    <RouteModal backUrl="../" isLoading={!regionsQuery.isSuccess}>
       <DialogContent className="sm:max-w-xl">
         <DialogHeader>
           <DialogTitle data-testid="add-git-modal">
@@ -176,11 +154,11 @@ const AddGit = ({
                   <FormLabel>{t('formAddGitFieldRegionLabel')}</FormLabel>
                   <FormControl>
                     <Select value={field.value} onValueChange={field.onChange}>
-                      <SelectTrigger>
+                      <SelectTrigger data-testid="select-region-trigger">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        {regions.map((region) => (
+                        {regionsQuery.data?.map((region) => (
                           <SelectItem key={region.id} value={region.id}>
                             {tRegions(`region_${region.id}`)}
                           </SelectItem>
@@ -343,7 +321,7 @@ const AddGit = ({
           </form>
         </Form>
       </DialogContent>
-    </Dialog>
+    </RouteModal>
   );
 };
 

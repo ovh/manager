@@ -6,13 +6,13 @@ import {
   screen,
   waitFor,
 } from '@testing-library/react';
-import Users from '@/pages/dashboard/users/Users.page';
 import { Locale } from '@/hooks/useLocale.hook';
 import * as usersApi from '@/data/api/user/user.api';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
-import { mockedUser, mockedUserDetails } from '@/__tests__/helpers/mocks/user';
+import { mockedUserDetails } from '@/__tests__/helpers/mocks/user';
 import { apiErrorMock } from '@/__tests__/helpers/mocks/aiError';
 import { useToast } from '@/components/ui/use-toast';
+import AddUser from './AddUser.modal';
 
 describe('AddUser modal', () => {
   beforeEach(() => {
@@ -31,9 +31,17 @@ describe('AddUser modal', () => {
       };
     });
     vi.mock('@/data/api/user/user.api', () => ({
-      getUsers: vi.fn(() => [mockedUser]),
       addUser: vi.fn(() => mockedUserDetails),
     }));
+    vi.mock('react-router-dom', async () => {
+      const mod = await vi.importActual('react-router-dom');
+      return {
+        ...mod,
+        useParams: () => ({
+          projectId: 'projectID',
+        }),
+      };
+    });
     vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
       const mod = await importOriginal<
         typeof import('@ovh-ux/manager-react-shell-client')
@@ -49,20 +57,13 @@ describe('AddUser modal', () => {
         })),
       };
     });
-    render(<Users />, { wrapper: RouterWithQueryClientWrapper });
   });
   afterEach(() => {
     vi.clearAllMocks();
   });
-  it('renders and shows buttons', async () => {
-    expect(screen.getByTestId('manage-user-button')).toBeInTheDocument();
-    expect(screen.getByTestId('create-user-button')).toBeInTheDocument();
-  });
 
   it('open and close add user modal', async () => {
-    act(() => {
-      fireEvent.click(screen.getByTestId('create-user-button'));
-    });
+    render(<AddUser />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
       expect(screen.getByTestId('add-user-modal')).toBeInTheDocument();
     });
@@ -83,12 +84,7 @@ describe('AddUser modal', () => {
     vi.mocked(usersApi.addUser).mockImplementationOnce(() => {
       throw apiErrorMock;
     });
-    act(() => {
-      fireEvent.click(screen.getByTestId('create-user-button'));
-    });
-    await waitFor(() => {
-      expect(screen.getByTestId('add-user-modal')).toBeInTheDocument();
-    });
+    render(<AddUser />, { wrapper: RouterWithQueryClientWrapper });
     act(() => {
       fireEvent.change(screen.getByTestId('user-description-input'), {
         target: {
@@ -100,6 +96,7 @@ describe('AddUser modal', () => {
       fireEvent.click(screen.getByTestId('add-user-submit-button'));
     });
     await waitFor(() => {
+      expect(usersApi.addUser).toHaveBeenCalled();
       expect(useToast().toast).toHaveBeenCalledWith(errorMsg);
     });
   });
@@ -114,12 +111,7 @@ describe('AddUser modal', () => {
       description: 'formUserToastSuccessDescription',
       title: 'formUserToastSuccessTitle',
     };
-    act(() => {
-      fireEvent.click(screen.getByTestId('create-user-button'));
-    });
-    await waitFor(() => {
-      expect(screen.getByTestId('add-user-modal')).toBeInTheDocument();
-    });
+    render(<AddUser />, { wrapper: RouterWithQueryClientWrapper });
     act(() => {
       fireEvent.change(screen.getByTestId('user-description-input'), {
         target: {
