@@ -435,7 +435,7 @@
                                         <a
                                             class="oui-link_icon"
                                             data-ng-href="$ctrl.goToDiagnosticPage()"
-                                            data-on-click="$ctrl.goToDiagnosticPage()"
+                                            data-ng-click="$ctrl.goToDiagnosticPage()"
                                         >
                                             <span
                                                 data-translate="cloud_connect_pop_diagnostic_link"
@@ -453,14 +453,14 @@
                                         >
                                             <oui-action-menu-item
                                                 data-ng-if="$pop.isL3Type()"
-                                                data-on-click="$ctrl.goToCheckBGPPeeringPage({popConfigId: $pop.id , dcConfigId: $ctrl.datacenters.id })"
+                                                data-ng-click="$ctrl.goToCheckBGPPeeringPage({popConfigId: $pop.id , dcConfigId: $ctrl.datacenters.id })"
                                                 ><span
                                                     data-translate="cloud_connect_pop_diagnostic_check"
                                                 ></span
                                             ></oui-action-menu-item>
                                             <oui-action-menu-item
                                                 data-ng-if="$pop.isL2Type()"
-                                                data-on-click="$ctrl.getMacList($pop)"
+                                                data-ng-click="$ctrl.getMacList($pop)"
                                                 data-disabled="$ctrl.getMacLoading"
                                                 ><span
                                                     data-translate="cloud_connect_pop_get_mac_list"
