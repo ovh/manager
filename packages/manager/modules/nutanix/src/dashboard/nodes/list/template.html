@@ -93,16 +93,16 @@
     >
         <span data-ng-bind="$row.cvmIp"></span>
     </oui-datagrid-column>
-    <oui-datagrid-column data-title="" data-property="">
+    <oui-datagrid-column>
         <node-action-menu
             data-ng-if="$row.possibleActions"
             data-possible-actions="$row.possibleActions"
-            data-on-click-power-on="$ctrl.powerOnNode($row.serviceId)"
-            data-on-click-power-off="$ctrl.powerOffNode($row.serviceId)"
-            data-on-click-install="$ctrl.installNode($row.serviceId)"
-            data-on-click-reinstall="$ctrl.reinstallNode($row.serviceId)"
-            data-on-click-uninstall="$ctrl.uninstallNode($row.serviceId)"
-            data-on-click-terminate="$ctrl.terminateNode($row.serviceId)"
+            data-on-power-on="$ctrl.onPowerOn($row.name)"
+            data-on-power-off="$ctrl.powerOffNode($row.name)"
+            data-on-install="$ctrl.installNode($row.name)"
+            data-on-reinstall="$ctrl.reinstallNode($row.name)"
+            data-on-uninstall="$ctrl.uninstallNode($row.name)"
+            data-on-terminate="$ctrl.terminateNode($row.name)"
         >
         </node-action-menu>
     </oui-datagrid-column>

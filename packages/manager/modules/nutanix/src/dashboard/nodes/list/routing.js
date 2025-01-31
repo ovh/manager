@@ -6,30 +6,34 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: /* @ngInject */ () => null,
       goToAddNode: /* @ngInject */ ($state) => () =>
         $state.go('nutanix.dashboard.nodes.all.add-nodes'),
-      powerOnNode: /* @ngInject */ ($state) => (nodeName) =>
-        $state.go('nutanix.dashboard.nodes.all.poweron-node', {
-          node: nodeName,
-        }),
-      powerOffNode: /* @ngInject */ ($state) => (nodeName) =>
+      powerOffNode: /* @ngInject */ ($state) => (node) =>
         $state.go('nutanix.dashboard.nodes.all.poweroff-node', {
-          node: nodeName,
+          node,
         }),
-      installNode: /* @ngInject */ ($state) => (nodeName) =>
+      installNode: /* @ngInject */ ($state) => (node) =>
         $state.go('nutanix.dashboard.nodes.all.install-node', {
-          node: nodeName,
+          node,
         }),
-      reinstallNode: /* @ngInject */ ($state) => (nodeName) =>
+      reinstallNode: /* @ngInject */ ($state) => (node) =>
         $state.go('nutanix.dashboard.nodes.all.reinstall-node', {
-          node: nodeName,
+          node,
         }),
-      uninstallNode: /* @ngInject */ ($state) => (nodeName) =>
+      uninstallNode: /* @ngInject */ ($state) => (node) =>
         $state.go('nutanix.dashboard.nodes.all.uninstall-node', {
-          node: nodeName,
+          node,
         }),
-      terminateNode: /* @ngInject */ ($state) => (nodeName) =>
+      terminateNode: /* @ngInject */ ($state) => (node) =>
         $state.go('nutanix.dashboard.nodes.all.resiliate-node', {
-          nodeName,
+          node,
         }),
+      powerOnNode: /* ngInject */ (NutanixService) => (nodeName) =>
+        NutanixService.updateClusterNodePowerStateOn(nodeName),
+      handleSuccess: /* @ngInject */ (Alerter) => (message) => {
+        Alerter.success(message, 'nutanix_dashboard_alert');
+      },
+      handleError: /* @ngInject */ (Alerter) => (message) => {
+        Alerter.error(message, 'nutanix_dashboard_alert');
+      },
     },
     atInternet: {
       rename: 'hpc::nutanix::cluster::dashboard::nodes',

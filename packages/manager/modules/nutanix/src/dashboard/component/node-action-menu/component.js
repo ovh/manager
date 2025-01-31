@@ -4,12 +4,12 @@ import controller from './controller';
 export default {
   bindings: {
     possibleActions: '<',
-    onClickPowerOn: '&',
-    onClickPowerOff: '&',
-    onClickInstall: '&',
-    onClickReinstall: '&',
-    onClickUninstall: '&',
-    onClickTerminate: '&',
+    onPowerOn: '&',
+    onPowerOff: '&',
+    onInstall: '&',
+    onReinstall: '&',
+    onUninstall: '&',
+    onTerminate: '&',
   },
   template,
   controller,

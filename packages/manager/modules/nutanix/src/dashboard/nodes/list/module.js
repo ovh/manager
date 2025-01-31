@@ -11,7 +11,6 @@ import nodeStatus from '../../component/node-os-datagrid/module';
 import nodeOsDatagrid from '../../component/service-status/module';
 import nodeActionMenu from '../../component/node-action-menu/module';
 import addNodes from './add-nodes';
-import poweronNode from './poweron-node';
 import poweroffNode from './poweroff-node';
 import installNode from './install-node';
 import reinstallNode from './reinstall-node';
@@ -31,7 +30,6 @@ angular
     nodeOsDatagrid,
     nodeActionMenu,
     addNodes,
-    poweronNode,
     poweroffNode,
     installNode,
     reinstallNode,

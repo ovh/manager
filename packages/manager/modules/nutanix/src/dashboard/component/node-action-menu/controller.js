@@ -1,4 +1,5 @@
 import { POSSIBLE_ACTIONS } from './constants';
+import { MIN_NODES_BY_CLUSTER } from '../../../constants';
 
 export default class NutanixDashboardNodeActionMenu {
   /* ngInject */
@@ -19,18 +20,13 @@ export default class NutanixDashboardNodeActionMenu {
   }
 
   getReasonTranslation(reason) {
-    if (!reason || reason.lenght === 0) return '';
+    if (!reason?.length) return '';
 
     const reasonTrimed = reason.replace('{{ ', '').replace(' }}', '');
 
     return this.$translate.instant(
       `nutanix_node_disable_reason_${reasonTrimed}`,
+      { nb_nodes_minimal: MIN_NODES_BY_CLUSTER },
     );
   }
 }
-
-// Une tâche de démarrage est déjà en cours sur ce serveur
-// Une tâche d'extinction est déjà en cours sur ce serveur
-// Une tâche d'installation est déjà en cours sur le noeud
-// Une tâche d'installation doit être effectuée d'abord
-// Vous devez préalablement éteindre le serveur avant de lancer la désinstallation
