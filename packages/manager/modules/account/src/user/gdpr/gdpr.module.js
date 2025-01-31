@@ -2,6 +2,8 @@ import component from './gdpr.component';
 import routing from './gdpr.routing';
 import service from './gdpr.service';
 
+import './gdpr.scss';
+
 const moduleName = 'ovhManagerAccountGdprModule';
 
 angular
