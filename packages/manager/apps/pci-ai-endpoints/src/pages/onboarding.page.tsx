@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import {
@@ -13,11 +14,34 @@ import {
 import { ODS_TEXT_LEVEL } from '@ovhcloud/ods-components';
 import useGuideUtils from '@/hooks/guide/useGuideUtils';
 import onboardingImgSrc from '@/assets/onboarding-img.png';
+import { MetricData } from '@/types/cloud/project/database/metric';
+import { useGetMetrics } from '@/hooks/api/database/metric/useGetMetrics.hook';
 
 export default function Onboarding() {
   const { t } = useTranslation('onboarding');
   const link = useGuideUtils();
   const { projectId } = useParams();
+  const [metricsData, setMetricsData] = useState<{ data: MetricData[] }>({
+    data: [],
+  });
+
+  const metricsQuery = useGetMetrics(
+    projectId,
+    encodeURIComponent(new Date(2024, 0, 1).toISOString()),
+    encodeURIComponent(
+      new Date(
+        new Date().getFullYear(),
+        new Date().getMonth() + 1,
+        0,
+      ).toISOString(),
+    ),
+  );
+
+  useEffect(() => {
+    if (Array.isArray(metricsQuery?.data)) {
+      setMetricsData({ data: metricsQuery.data });
+    }
+  }, [metricsQuery?.data]);
 
   const guideList = [
     {
@@ -58,8 +82,8 @@ export default function Onboarding() {
   return (
     <RedirectionGuard
       isLoading={false}
-      route={`/pci/projects/${projectId}/ai/endpoints`}
-      condition={false}
+      route={`/pci/projects/${projectId}/ai/endpoints/metrics`}
+      condition={metricsData.data.length > 0}
     >
       <OnboardingLayout
         title={title}
