@@ -117,5 +117,12 @@ export function Actions({
       id: index,
       ...i,
     }));
-  return <ActionMenu id={storage.name} items={items} isCompact />;
+
+  return (
+    <ActionMenu
+      id={`${storage.name}-${storage.deploymentMode}-${storage?.region}`}
+      items={items}
+      isCompact
+    />
+  );
 }
