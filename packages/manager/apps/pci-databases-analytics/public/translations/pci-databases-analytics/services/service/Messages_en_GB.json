@@ -29,5 +29,6 @@
   "deleteServiceButtonConfirm": "Delete",
   "deleteServiceIntegrationDescription": "Deleting this service will delete the following integration association:",
   "deleteServiceIntegrationsDescription": "Deleting this service will delete the following integration associations:",
-  "deleteServiceConfirmation": "Enter “TERMINATE” to confirm your choice."
+  "deleteServiceConfirmation": "Enter “TERMINATE” to confirm your choice.",
+  "IndexPatternsTab": "Index patterns"
 }

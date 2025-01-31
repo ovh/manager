@@ -21,6 +21,7 @@ import { useTrackAction } from '@/hooks/useTracking';
 import { TRACKING } from '@/configuration/tracking.constants';
 import { formatStorage } from '@/lib/bytesHelper';
 import { MENU_COLUMN_ID } from '@/components/data-table/DataTable.component';
+import { EngineIcon } from '@/components/engine-icon/EngineIcon.component';
 
 interface ServiceListColumnsProps {
   onRenameClicked: (service: database.Service) => void;
@@ -86,12 +87,10 @@ export const getColumns = ({
         </DataTable.SortableHeader>
       ),
       cell: ({ row }) => {
-        const { engine, version } = row.original;
+        const { engine, version, category } = row.original;
         return (
           <div className="flex gap-2 items-center">
-            <div className="w-[50px] h-[33px]">
-              <img src={`./assets/engines/${engine}.png`} alt={engine} />
-            </div>
+            <EngineIcon engine={engine} category={category} />
             <span className="whitespace-nowrap">{humanizeEngine(engine)}</span>
             <span>{version}</span>
           </div>

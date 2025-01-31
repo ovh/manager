@@ -91,5 +91,21 @@
   "formUserRoleInputAdminRoles": "Administrator Roles",
   "formUserRoleInputCustomRoles": "Custom Roles",
   "formUserRoleDatabaseInputPlaceholder": "Custom database",
-  "formUserRoleDatabaseConfiguredRoles": "Configured roles:"
+  "formUserRoleDatabaseConfiguredRoles": "Configured roles:",
+  "tableHeadACLs": "ACLs",
+  "tableHeadPattern": "Pattern",
+  "tableHeadPermission": "Permission",
+  "toggleACLsLabel": "Enable ACLs",
+  "toggleAclErrorTitle": "An error has occurred updating your service",
+  "toggleAclSuccessTitle": "Success",
+  "toggleAclEnabledSuccessDescription": "ACLs are now enabled for your service",
+  "toggleAclADisabledSuccessDescription": "ACLs are now disabled for your service",
+  "formUserFieldAclsLabel": "ACLs",
+  "formUserAclPatternAlertInfo": "Patterns use the standard matching system, also called the standard glob pattern ('*' works for any number of characters and '?' for any character). For example, the 'logs_200?' template will work for matching the 'logs_200904' index, but not 'logs_201904'.",
+  "formUserAclPatternInputLabel": "Pattern",
+  "formUserAclPermissionInputLabel": "Permission",
+  "formUserAclConfiguredAcls": "Configured ACLs",
+  "formUseAclPatternErrorPattern": "The pattern can only contain letters, numbers, dashes, underscores, periods, asterisks or question marks.",
+  "formUserInvalidPermission": "Please choose a valid permission from the following list: {values}",
+  "formUserAclDuplicate": "A similar ACL is already configured"
 }

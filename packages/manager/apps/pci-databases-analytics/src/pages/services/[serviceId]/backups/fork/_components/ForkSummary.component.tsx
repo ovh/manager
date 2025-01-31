@@ -31,6 +31,7 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
+import { EngineIcon } from '@/components/engine-icon/EngineIcon.component';
 
 interface ForkSummaryProps {
   order: {
@@ -139,10 +140,10 @@ const EngineDetails = ({ order }: ForkSummaryProps) => {
             <span>
               {humanizeEngine(order.engine.name as database.EngineEnum)}
             </span>
-            <img
-              className="inline-block w-9 h-6"
-              src={`./assets/engines/${order.engine.name}.png`}
-              alt={order.engine.name}
+            <EngineIcon
+              engine={order.engine.name as database.EngineEnum}
+              category={order.engine.category}
+              iconSize={10}
             />
           </>
         )}

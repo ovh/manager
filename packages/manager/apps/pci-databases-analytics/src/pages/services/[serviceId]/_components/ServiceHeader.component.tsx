@@ -1,4 +1,3 @@
-import { Database } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import * as database from '@/types/cloud/project/database';
 import ServiceStatusBadge from '../../_components/ServiceStatusBadge.component';
@@ -6,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
 import { humanizeEngine } from '@/lib/engineNameHelper';
 import ServiceNameWithUpdate from './ServiceNameWithUpdate.component';
+import { EngineIcon } from '@/components/engine-icon/EngineIcon.component';
 
 export const ServiceHeader = ({ service }: { service: database.Service }) => {
   const { t } = useTranslation('regions');
@@ -14,9 +14,12 @@ export const ServiceHeader = ({ service }: { service: database.Service }) => {
       data-testid="service-header-container"
       className="flex gap-2 items-center mt-4 mb-6"
     >
-      <div className="rounded-full bg-gradient-to-tr from-primary to-slate-50 text-white p-2">
-        <Database width={40} height={40} />
-      </div>
+      <EngineIcon
+        engine={service.engine}
+        category={service.category}
+        iconSize={40}
+        className="p-2"
+      />
       <div>
         <ServiceNameWithUpdate service={service} />
         <div className="flex gap-2 flex-wrap">

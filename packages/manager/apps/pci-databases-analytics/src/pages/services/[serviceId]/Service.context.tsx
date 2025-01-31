@@ -4,12 +4,16 @@ import * as database from '@/types/cloud/project/database';
 import { useGetService } from '@/hooks/api/database/service/useGetService.hook';
 
 // Share data with the child routes
-export type ServiceLayoutContext = {
-  service: database.Service;
-  serviceQuery: UseQueryResult<database.Service, Error>;
+export type ServiceLayoutContext<
+  T extends database.Service = database.Service
+> = {
+  service: T;
+  serviceQuery: UseQueryResult<T, Error>;
 };
-export const useServiceData = () => {
+export const useServiceData = <
+  T extends database.Service = database.Service
+>() => {
   const { projectId, category, serviceId } = useParams();
-  const serviceQuery = useGetService(projectId, serviceId);
+  const serviceQuery = useGetService<T>(projectId, serviceId);
   return { projectId, category, service: serviceQuery.data, serviceQuery };
 };
