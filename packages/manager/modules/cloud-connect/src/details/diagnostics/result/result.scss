@@ -9,5 +9,17 @@
     max-height: 400px;
     overflow: auto;
     word-wrap: break-word;
+    position: relative;
+
+    .action-button {
+      position: absolute;
+      top: 0.2em;
+      right: 0.2em;
+      display: flex;
+      button {
+        background-color: white;
+        margin: 0.1em;
+      }
+    }
   }
 }
