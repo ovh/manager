@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { v6 } from '@ovh-ux/manager-core-api';
 import { Environment } from '@ovh-ux/manager-config';
 import { OsdsButton, OsdsText, OsdsIcon } from '@ovhcloud/ods-components/react';
@@ -20,6 +20,7 @@ import {
   LiveChatType,
   LiveChatState,
   ApiV6AuthToken,
+  SnowChatContext
 } from '@/types/live-chat.type';
 import {
   ADRIELLY_CHAT_URL_TEMPLATE,
@@ -45,18 +46,6 @@ const fetchAuthToken = async (): Promise<string | null> => {
   }
 };
 
-export type SnowChatContext = {
-  skip_load_history?: string;
-  live_agent_only?: string;
-  language?: string;
-  region?: string;
-  queue: string;
-  branding_key?: string;
-  session_id: string;
-  interface_type?: string;
-  interface_name?: string;
-};
-
 export default function LiveChat({
   closeLiveChat,
 }: Readonly<LiveChatProps>): JSX.Element {
@@ -74,6 +63,7 @@ export default function LiveChat({
   const region = environment.getRegion();
   const language = environment.getUserLanguage();
   const { ovhSubsidiary, supportLevel } = environment.getUser();
+  const chatIFrame = useRef<HTMLIFrameElement>(null);
 
   const [
     snowChatQueue,
@@ -99,6 +89,13 @@ export default function LiveChat({
 
   const handleCloseChat = () => {
     setChatbotReduced(false);
+
+    if (chatType === 'SNOW' && chatIFrame.current) {
+      chatIFrame.current.contentWindow?.postMessage(
+        { action: 'endConversation' },
+        '*',
+      );
+    }
 
     clearSnowChatQueue();
     clearChatType();
@@ -177,6 +174,7 @@ export default function LiveChat({
       {chatType === 'Adrielly' && (
         <ChatDialog
           title="OVHcloud Chat"
+          chatIFrame={chatIFrame}
           visible={!chatbotReduced}
           url={`https://chat.${'ovh'.toLocaleLowerCase()}.com/system/templates/pre-prod/prepa_prod/STD/FR_fr/docs/index2.html`}
           key={chatType}
@@ -185,6 +183,7 @@ export default function LiveChat({
       {chatType === 'SNOW' && snowContext.session_id && snowContext.queue && (
         <ChatDialog
           title={chatType}
+          chatIFrame={chatIFrame}
           showHeader={false}
           visible={!chatbotReduced}
           url={generateSnowChatUrl(SNOW_INSTANCE_URL, snowContext)}
