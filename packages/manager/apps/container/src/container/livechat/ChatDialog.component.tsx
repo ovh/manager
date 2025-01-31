@@ -10,6 +10,7 @@ type ChatDialogProps = {
   url: string;
   visible: boolean;
   title: string;
+  chatIFrame: React.MutableRefObject<HTMLIFrameElement>;
   showHeader?: boolean;
 };
 
@@ -20,10 +21,10 @@ export default function ChatDialog({
   url,
   visible,
   title,
+  chatIFrame,
   showHeader = true,
 }: Readonly<ChatDialogProps>): JSX.Element {
   const chatDialog = useRef(null);
-  const chatIFrame = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
     if (chatDialog.current) {
