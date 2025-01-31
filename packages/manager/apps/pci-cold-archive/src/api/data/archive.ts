@@ -7,7 +7,6 @@ export type TArchiveContainer = {
   ownerId: number;
   objectsCount: number;
   objectsSize: number;
-  objects: any[];
   createdAt: string;
   automaticDeletionAt: string | null;
   lockedUntil: string | null;
@@ -34,6 +33,28 @@ export const deleteArchiveContainer = async ({
 }) => {
   const { data } = await v6.delete(
     `/cloud/project/${projectId}/region/${region}/coldArchive/${containerName}`,
+  );
+  return data;
+};
+
+export const addUserToContainer = async ({
+  projectId,
+  region,
+  storageId,
+  userId,
+  role,
+}: {
+  projectId: string;
+  region: string;
+  storageId: string;
+  userId: number;
+  role: string;
+}) => {
+  const { data } = await v6.post(
+    `/cloud/project/${projectId}/region/${region}/storage/${storageId}/policy/${userId}`,
+    {
+      roleName: role,
+    },
   );
   return data;
 };
