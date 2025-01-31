@@ -1,0 +1,42 @@
+<manager-on-boarding-layout
+    data-guides=":: $ctrl.guides"
+    data-image-source=":: $ctrl.illustration"
+>
+    <onboarding-title>
+        <p
+            data-translate="dedicatedCloud_datacenter_network_onboarding_title"
+        ></p>
+    </onboarding-title>
+    <onboarding-description>
+        <div
+            data-translate="dedicatedCloud_datacenter_network_onboarding_description1"
+        ></div>
+        <div
+            data-translate="dedicatedCloud_datacenter_network_onboarding_description2"
+            class="mt-2 mb-4"
+        ></div>
+        <div class="d-flex justify-content-center">
+            <a
+                class="oui-button oui-button_primary oui-button_l text-light"
+                data-translate="dedicatedCloud_datacenter_network_onboarding_cta_start"
+                data-ng-href="{{:: $ctrl.orderLink }}"
+                target="_blank"
+                rel="noopener"
+            >
+            </a>
+            <div>
+                <a
+                    class="oui-button oui-button_secondary oui-button_l oui-button_icon-right ml-3"
+                    data-ng-href="{{:: $ctrl.ctaMore }}"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    <span
+                        data-translate="dedicatedCloud_datacenter_network_onboarding_cta_more"
+                    ></span>
+                    <i class="oui-icon oui-icon-external-link"></i>
+                </a>
+            </div>
+        </div>
+    </onboarding-description>
+</manager-on-boarding-layout>

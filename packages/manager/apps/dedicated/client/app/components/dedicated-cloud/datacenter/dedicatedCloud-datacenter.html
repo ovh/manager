@@ -49,6 +49,11 @@
         >
             <span data-translate="dedicatedCloud_tab_drp"></span>
         </oui-header-tabs-item>
+        <oui-header-tabs-item
+            data-ng-if=":: $ctrl.isNsxtCompatible"
+            data-state="{{:: $ctrl.networkState }}"
+            ><span data-translate="dedicatedCloud_tab_network"></span
+        ></oui-header-tabs-item>
     </oui-header-tabs>
 </header>
 
