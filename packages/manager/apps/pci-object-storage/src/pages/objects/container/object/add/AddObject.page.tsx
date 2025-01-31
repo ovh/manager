@@ -57,6 +57,7 @@ export default function AddObjectPage() {
   const { storage: container, isPending: isStoragePending } = useStorage(
     projectId,
     storageId,
+    searchParams.get('region'),
   );
 
   const goBack = () =>

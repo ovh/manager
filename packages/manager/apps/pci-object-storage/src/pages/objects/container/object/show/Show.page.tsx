@@ -57,7 +57,7 @@ import {
   TRACKING,
 } from '@/constants';
 import { useGetRegion } from '@/api/hooks/useRegion';
-import { useAllStorages } from '@/api/hooks/useStorages';
+import { useAllStorages, useStorage } from '@/api/hooks/useStorages';
 import { TServerContainer } from '@/api/data/container';
 import { useGetEncriptionAvailability } from '@/api/hooks/useGetEncriptionAvailability';
 import LabelComponent from '@/components/Label.component';
@@ -80,7 +80,6 @@ export default function ObjectPage() {
 
   const { tracking } = useContext(ShellContext).shell;
 
-  const { data: allContainers } = useAllStorages(project?.project_id);
   const { hasMaintenance, maintenanceURL } = useProductMaintenance(
     project?.project_id,
   );
@@ -106,14 +105,10 @@ export default function ObjectPage() {
     searchParams.get('region'),
   );
 
-  const targetContainer = useMemo(
-    () =>
-      allContainers?.resources.find(
-        (c) =>
-          (c.id === storageId || c.name === storageId) &&
-          c.region === searchParams.get('region'),
-      ),
-    [allContainers, storageId],
+  const { storage: targetContainer } = useStorage(
+    project?.project_id,
+    storageId,
+    searchParams.get('region'),
   );
 
   const { data: serverContainer, isPending } = useServerContainer(

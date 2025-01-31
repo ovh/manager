@@ -268,7 +268,11 @@ export const useDeleteStorage = ({
   };
 };
 
-export const useStorage = (projectId: string, storageId: string) => {
+export const useStorage = (
+  projectId: string,
+  storageId: string,
+  storageRegion: string,
+) => {
   const {
     data: storages,
     error: errorStorages,
@@ -279,7 +283,9 @@ export const useStorage = (projectId: string, storageId: string) => {
     return {
       isPending: isStoragesPending,
       storage: storages?.resources.find(
-        (s) => s.id === storageId || s.name === storageId,
+        (c) =>
+          (c.id === storageId || c.name === storageId) &&
+          c.region === storageRegion,
       ),
       error: errorStorages,
     };

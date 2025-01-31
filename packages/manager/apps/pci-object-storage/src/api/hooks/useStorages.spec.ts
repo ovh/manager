@@ -187,6 +187,8 @@ describe('useStorage', () => {
   it('fetches a single storage', async () => {
     const projectId = 'test-project';
     const storageId = 'storage1';
+    const storageRegion = 'region1';
+
     const storages = {
       resources: [
         {
@@ -197,9 +199,13 @@ describe('useStorage', () => {
       ],
     } as TStoragesAapiResult;
     vi.mocked(getStorages).mockResolvedValueOnce(storages);
-    const { result } = renderHook(() => useStorage(projectId, storageId), {
-      wrapper,
-    });
+
+    const { result } = renderHook(
+      () => useStorage(projectId, storageId, storageRegion),
+      {
+        wrapper,
+      },
+    );
 
     await waitFor(() => expect(result.current.isPending).toBe(false));
     expect(result.current.storage).toEqual({
