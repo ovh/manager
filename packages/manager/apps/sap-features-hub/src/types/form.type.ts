@@ -1,13 +1,13 @@
 import { z } from 'zod';
 import { TextFieldProps } from '@/components/Form/TextField.component';
-import { PRE_INSTALLATION_FORM_SCHEMA } from '../schema/form.schema';
+import { ENABLEMENT_FORM_SCHEMA } from '../schema/form.schema';
 
 type InstallationForm = InitializationForm &
   DeploymentForm &
   SystemForm &
   SourceForm &
   OSConfigForm &
-  PreInstallationForm;
+  EnablementForm;
 export type FormKey = keyof InstallationForm;
 
 export type InstallationFormErrors = Record<FormKey, string>;
@@ -53,12 +53,10 @@ export type OSConfigForm = {
   firewallServer: boolean;
   firewallDatabase: boolean;
 };
-export type PreInstallationFormSchema = z.infer<
-  typeof PRE_INSTALLATION_FORM_SCHEMA
->;
+export type EnablementFormSchema = z.infer<typeof ENABLEMENT_FORM_SCHEMA>;
 
-export type PreInstallationForm = Pick<
-  Partial<PreInstallationFormSchema>,
+export type EnablementForm = Pick<
+  Partial<EnablementFormSchema>,
   'bucketBackint' | 'logsDataPlatform'
 >;
 
