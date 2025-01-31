@@ -10,6 +10,7 @@ import {
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 import { useFormSteps } from '@/hooks/formStep/useFormSteps';
 import { InstallationFormContextProvider } from '@/context/InstallationForm.context';
+import { INSTALLATION_STEPS } from './installation.constants';
 
 export type DashboardTabItemProps = {
   name: string;
@@ -29,7 +30,12 @@ export default function InstallationDashboard() {
     <InstallationFormContextProvider>
       <BaseLayout
         breadcrumb={<Breadcrumb />}
-        header={{ title: t('title', { step: currentStep }) }}
+        header={{
+          title: t('title', {
+            step: currentStep,
+            total: Object.keys(INSTALLATION_STEPS).length,
+          }),
+        }}
         backLinkLabel={t('backlink_label')}
         onClickReturn={() => {}}
         description={t('description')}
