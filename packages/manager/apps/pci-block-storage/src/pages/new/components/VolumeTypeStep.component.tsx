@@ -1,37 +1,111 @@
-import {
-  OsdsButton,
-  OsdsSpinner,
-  OsdsText,
-  OsdsChip,
-} from '@ovhcloud/ods-components/react';
+import { OsdsButton, OsdsText, OsdsChip } from '@ovhcloud/ods-components/react';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
-import {
-  ODS_CHIP_SIZE,
-  ODS_BUTTON_SIZE,
-  ODS_SPINNER_SIZE,
-} from '@ovhcloud/ods-components';
+import { ODS_CHIP_SIZE, ODS_BUTTON_SIZE } from '@ovhcloud/ods-components';
 import {
   TilesInputComponent,
   useCatalogPrice,
 } from '@ovh-ux/manager-react-components';
 
 import { useTranslation } from 'react-i18next';
-import { useState } from 'react';
-import { TAddon, TCatalog } from '@ovh-ux/manager-pci-common';
+import { useMemo, useState } from 'react';
 import { useTranslateBytes } from '@/pages/new/hooks/useTranslateBytes';
-import { useConsumptionVolumesAddon } from '@/api/hooks/useConsumptionVolumesAddon';
 import { StepState } from '@/pages/new/hooks/useStep';
-import { TLocalisation } from '@/api/hooks/useRegions';
+import { useVolumeCatalog } from '@/api/hooks/useCatalog';
+import { TVolumeAddon } from '@/api/data/catalog';
+import { TRegion } from '@/api/data/regions';
+
+const BETA_TAG = 'is_new';
+
+function VolumeTypeTile({
+  volumeType,
+  is3AZRegionSelected,
+}: Readonly<{ volumeType: TVolumeAddon; is3AZRegionSelected: boolean }>) {
+  const { t } = useTranslation(['add', 'common']);
+  const tBytes = useTranslateBytes();
+  const { getFormattedCatalogPrice } = useCatalogPrice(6, {
+    hideTaxLabel: true,
+  });
+
+  const pricing = volumeType.pricings[0];
+
+  const isNew = useMemo(() => volumeType.tags.includes(BETA_TAG), [volumeType]);
+
+  return (
+    <div className="w-full">
+      <div className="border-solid border-0 border-b border-b-[#85d9fd] py-3 d-flex">
+        <OsdsText
+          level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
+          size={ODS_THEME_TYPOGRAPHY_SIZE._300}
+          color={ODS_THEME_COLOR_INTENT.text}
+        >
+          {volumeType.name === 'classic' && is3AZRegionSelected
+            ? 'Classic 3AZ'
+            : volumeType.name}
+        </OsdsText>
+        {isNew && (
+          <OsdsChip
+            className="ms-3"
+            color={ODS_THEME_COLOR_INTENT.success}
+            size={ODS_CHIP_SIZE.sm}
+            inline
+          >
+            {t('common:pci_projects_project_storages_blocks_new')}
+          </OsdsChip>
+        )}
+      </div>
+      <div className="py-3">
+        <OsdsText
+          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+          color={ODS_THEME_COLOR_INTENT.text}
+        >
+          {pricing.specs.volume.iops.guaranteed
+            ? t(
+                'pci_projects_project_storages_blocks_add_type_addon_iops_guaranteed',
+                {
+                  iops: pricing.specs.volume.iops.level,
+                  separator: ', ',
+                },
+              )
+            : t(
+                'pci_projects_project_storages_blocks_add_type_addon_iops_not_guaranteed',
+                {
+                  iops:
+                    pricing.specs.volume.iops.max ||
+                    pricing.specs.volume.iops.level,
+                  separator: ', ',
+                },
+              )}
+          {t(
+            'pci_projects_project_storages_blocks_add_type_addon_capacity_max',
+            {
+              capacity: tBytes(
+                pricing.specs.volume.capacity.max,
+                0,
+                false,
+                'GB',
+                false,
+              ),
+            },
+          )}{' '}
+          <br />
+          {t('pci_projects_project_storages_blocks_add_type_addon_price', {
+            price: getFormattedCatalogPrice(volumeType.pricings[0]?.price),
+          })}
+        </OsdsText>
+      </div>
+    </div>
+  );
+}
 
 export interface VolumeTypeStepProps {
   projectId: string;
-  region: TLocalisation;
+  region: TRegion;
   step: StepState;
-  onSubmit: (volumeType: TAddon) => void;
+  onSubmit: (volumeType: TVolumeAddon) => void;
 }
 
 export function VolumeTypeStep({
@@ -40,97 +114,35 @@ export function VolumeTypeStep({
   step,
   onSubmit,
 }: Readonly<VolumeTypeStepProps>) {
-  const { t } = useTranslation('add');
-  const { t: tStepper } = useTranslation('stepper');
-  const { t: tCommon } = useTranslation('common');
-  const [volumeType, setVolumeType] = useState<TAddon>(undefined);
-  const tBytes = useTranslateBytes();
-  const { getFormattedCatalogPrice } = useCatalogPrice(6, {
-    hideTaxLabel: true,
-  });
+  const { t } = useTranslation('stepper');
+  const { data } = useVolumeCatalog(projectId);
 
-  const { volumeTypes, isPending } = useConsumptionVolumesAddon(
-    projectId,
-    region,
+  const [volumeType, setVolumeType] = useState<TVolumeAddon>(undefined);
+
+  const volumeTypes = useMemo(
+    () =>
+      data?.models
+        .map((m) => ({
+          ...m,
+          pricings: m.pricings.filter((p) => p.regions.includes(region.name)),
+        }))
+        .filter((m) => m.pricings.length > 0) || [],
+    [data, region],
   );
 
   const displayedTypes =
     volumeType && step.isLocked ? [volumeType] : volumeTypes;
 
-  if (isPending) {
-    return <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />;
-  }
-
   return (
     <>
-      <TilesInputComponent<TCatalog['addons'][0]>
+      <TilesInputComponent<TVolumeAddon>
         value={volumeType}
         items={displayedTypes || []}
-        label={(vType: TCatalog['addons'][0]) => (
-          <div className="w-full">
-            <div className="border-solid border-0 border-b border-b-[#85d9fd] py-3 d-flex">
-              <OsdsText
-                level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-                size={ODS_THEME_TYPOGRAPHY_SIZE._300}
-                color={ODS_THEME_COLOR_INTENT.text}
-              >
-                {vType.blobs.technical.name}
-              </OsdsText>
-              {vType.blobs.tags.includes('is_new') && (
-                <OsdsChip
-                  className="ms-3"
-                  color={ODS_THEME_COLOR_INTENT.success}
-                  size={ODS_CHIP_SIZE.sm}
-                  inline
-                >
-                  {tCommon('pci_projects_project_storages_blocks_new')}
-                </OsdsChip>
-              )}
-            </div>
-            <div className="py-3">
-              <OsdsText
-                level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                color={ODS_THEME_COLOR_INTENT.text}
-              >
-                {vType.blobs.technical.volume.iops.guaranteed
-                  ? t(
-                      'pci_projects_project_storages_blocks_add_type_addon_iops_guaranteed',
-                      {
-                        iops: vType.blobs.technical.volume.iops.level,
-                        separator: ', ',
-                      },
-                    )
-                  : t(
-                      'pci_projects_project_storages_blocks_add_type_addon_iops_not_guaranteed',
-                      {
-                        iops:
-                          vType.blobs.technical.volume.iops.max ||
-                          vType.blobs.technical.volume.iops.level,
-                        separator: ', ',
-                      },
-                    )}
-                {t(
-                  'pci_projects_project_storages_blocks_add_type_addon_capacity_max',
-                  {
-                    capacity: tBytes(
-                      vType.blobs.technical.volume.capacity.max,
-                      0,
-                      false,
-                      'GB',
-                      false,
-                    ),
-                  },
-                )}{' '}
-                <br />
-                {t(
-                  'pci_projects_project_storages_blocks_add_type_addon_price',
-                  {
-                    price: getFormattedCatalogPrice(vType.pricings[0]?.price),
-                  },
-                )}
-              </OsdsText>
-            </div>
-          </div>
+        label={(vType: TVolumeAddon) => (
+          <VolumeTypeTile
+            volumeType={vType}
+            is3AZRegionSelected={region.type === 'region-3-az'}
+          />
         )}
         onInput={setVolumeType}
       />
@@ -142,7 +154,7 @@ export function VolumeTypeStep({
             onClick={() => onSubmit(volumeType)}
             className="w-fit"
           >
-            {tStepper('common_stepper_next_button_label')}
+            {t('common_stepper_next_button_label')}
           </OsdsButton>
         </div>
       )}

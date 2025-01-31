@@ -13,8 +13,9 @@ export const useFloatingRegions = (projectId: string) => {
   useEffect(() => {
     if (availabilities) {
       const plansRegions = availabilities.plans
-        .find(({ code }) => code === 'floatingip.floatingip.hour.consumption')
-        ?.regions.map((region: TRegion) => {
+        .filter(({ code }) => code.includes('hour'))
+        .flatMap((plan) => plan.regions)
+        .map((region: TRegion) => {
           return {
             ...region,
             macroName: tRegion(

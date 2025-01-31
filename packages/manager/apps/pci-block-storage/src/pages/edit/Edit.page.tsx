@@ -34,7 +34,11 @@ import {
   OsdsSpinner,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { useProject } from '@ovh-ux/manager-pci-common';
+import {
+  PCICommonContext,
+  usePCICommonContextFactory,
+  useProject,
+} from '@ovh-ux/manager-pci-common';
 import { VOLUME_MIN_SIZE, VOLUME_UNLIMITED_QUOTA } from '@/constants';
 import ChipRegion from '@/components/edit/ChipRegion.component';
 import { TVolume } from '@/api/data/volume';
@@ -43,7 +47,8 @@ import HidePreloader from '@/core/HidePreloader';
 import { useVolumeMaxSize } from '@/api/data/quota';
 import { useRegionsQuota } from '@/api/hooks/useQuota';
 import { PriceEstimate } from '@/pages/new/components/PriceEstimate';
-import { useCatalog } from '@/api/hooks/useCatalog';
+import { useVolumeCatalog } from '@/api/hooks/useCatalog';
+import { useHas3AZRegion } from '@/api/hooks/useHas3AZRegion';
 
 type TFormState = {
   name: string;
@@ -84,25 +89,33 @@ export default function EditPage() {
     isLoading: isLoadingVolume,
     isPending: isPendingVolume,
   } = useVolume(projectId, volumeId);
-  const { data: catalog } = useCatalog();
+  const { data: catalog } = useVolumeCatalog(projectId);
+  const { has3AZ } = useHas3AZRegion(projectId);
+  const pciCommonProperties = usePCICommonContextFactory({ has3AZ });
 
   const catalogVolume = useMemo(() => {
     if (!!catalog && !!volume) {
-      return (
-        catalog.addons.find((addon) => addon.planCode === volume.planCode) ||
-        null
-      );
+      return catalog.models.find((addon) => addon.name === volume.type) || null;
     }
     return null;
   }, [catalog, volume]);
 
-  const { volumeMaxSize } = useVolumeMaxSize(volume?.region);
+  const region = useMemo(() => {
+    if (!!catalog && !!volume) {
+      return catalog.regions.find((r) => r.name === volume.region) || null;
+    }
+    return null;
+  }, [catalog, volume]);
 
-  const {
-    data: localRegions,
-    isPending: isPendingLocal,
-    isLoading: isLoadingLocal,
-  } = useProjectLocalRegions(projectId || '');
+  const pricing = useMemo(
+    () =>
+      catalogVolume
+        ? catalogVolume.pricings.find((p) => p.regions.includes(volume.region))
+        : null,
+    [catalogVolume, volume],
+  );
+
+  const { volumeMaxSize } = useVolumeMaxSize(volume?.region);
 
   const [formState, setFormState] = useState<TFormState>({
     name: volume?.name,
@@ -174,12 +187,7 @@ export default function EditPage() {
     return volumeMaxSize;
   };
 
-  const isLoading =
-    isLoadingVolume ||
-    isPendingVolume ||
-    isPendingLocal ||
-    isLoadingLocal ||
-    isPendingQuota;
+  const isLoading = isLoadingVolume || isPendingVolume || isPendingQuota;
 
   useEffect(() => {
     if (volume && regionQuota) {
@@ -209,7 +217,7 @@ export default function EditPage() {
   const hasError = errorState.isMinError || errorState.isMaxError;
 
   return (
-    <>
+    <PCICommonContext.Provider value={pciCommonProperties}>
       <HidePreloader />
       {project && (
         <OsdsBreadcrumb
@@ -271,7 +279,7 @@ export default function EditPage() {
             >
               {translateMicroRegion(volume?.region)}
             </OsdsText>
-            <ChipRegion region={volume?.region} localRegions={localRegions} />
+            {!!region && <ChipRegion region={region} />}
           </div>
 
           <OsdsText
@@ -427,7 +435,7 @@ export default function EditPage() {
             <div className="mb-6">
               <PriceEstimate
                 volumeCapacity={formState.size.value}
-                volumeType={catalogVolume}
+                pricing={pricing}
               />
             </div>
           )}
@@ -495,6 +503,6 @@ export default function EditPage() {
           </div>
         </>
       )}
-    </>
+    </PCICommonContext.Provider>
   );
 }

@@ -14,39 +14,27 @@ import {
   ODS_SPINNER_SIZE,
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import {
-  Links,
-  LinkType,
-  useCatalogPrice,
-} from '@ovh-ux/manager-react-components';
+import { Links, LinkType } from '@ovh-ux/manager-react-components';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { useTranslation, Trans } from 'react-i18next';
-import useIsPlanCodeAvailableInRegion from '@/hooks/useIsPlanCodeAvailableInRegion/useIsPlanCodeAvailableInRegion';
 import { NewPrivateNetworkForm } from '@/types/private-network-form.type';
 import useGuideLink from '@/hooks/useGuideLink/useGuideLink';
-import { GATEWAY_HOURLY_PLAN_CODE } from '../../../new.constants';
 import useGetExistingGatewayRegion from '@/hooks/useExistingGatewayRegion/useExistingGatewayRegion';
-import { useGatewayCatalog } from '@/data/hooks/gateway/useGateway';
 import AvailableGatewayMessage from '../message/AvailableGatewayMessage.component';
 import ExistingGatewayMessage from '../message/ExistingGatewayMessage.component';
 import usePrepareGatewayCreation from '@/hooks/usePrepareGatewayCreation/usePrepareGatewayCreation';
+import { useSmallestGatewayByRegion } from '@/hooks/useAvailableGateway/useAvailableGateway';
 
 const GatewayCreation: React.FC = () => {
   const { t } = useTranslation(['new', 'common']);
   const guides = useGuideLink();
   const { watch, unregister } = useFormContext<NewPrivateNetworkForm>();
   const region = watch('region');
-  const isGatewayAvailable = useIsPlanCodeAvailableInRegion(
-    region,
-    GATEWAY_HOURLY_PLAN_CODE,
-  );
-
-  const { data: catalog, isLoading: isCatalogLoading } = useGatewayCatalog();
 
   const {
-    getFormattedHourlyCatalogPrice,
-    getFormattedMonthlyCatalogPrice,
-  } = useCatalogPrice(4);
+    isLoading: isCatalogLoading,
+    data: catalog,
+  } = useSmallestGatewayByRegion(region);
 
   const {
     gateway,
@@ -73,9 +61,7 @@ const GatewayCreation: React.FC = () => {
     ) : (
       <AvailableGatewayMessage
         size={catalog?.size.toUpperCase()}
-        region={region}
-        monthlyPrice={getFormattedMonthlyCatalogPrice(catalog?.pricePerMonth)}
-        hourlyPrice={getFormattedHourlyCatalogPrice(catalog?.pricePerHour)}
+        price={catalog?.price}
       />
     );
   };
@@ -85,15 +71,13 @@ const GatewayCreation: React.FC = () => {
     unregister('enableSnat');
   }, [region, gateway, createGateway]);
 
-  const isGatewayReady = isGatewayAvailable && (gateway || catalog);
-
   return (
     <>
       <OsdsCheckbox
         data-testid="create-public-gateway"
         name="create-public-gateway"
         checked={createGateway}
-        disabled={!isGatewayReady}
+        disabled={!gateway && !catalog}
         onOdsCheckedChange={(event: CustomEvent) =>
           setCreateGateway(event.detail.checked)
         }

@@ -82,7 +82,7 @@
   "pci_projects_project_instances_add_billing_gateway_info": "Hemos detectado que faltan los siguientes componentes: <strong>Gateway</strong>",
   "pci_projects_project_instances_add_billing_gateway_detail": "El flavor seleccionado es:",
   "pci_projects_project_instances_add_billing_gateway_detail_s_size": "Tamaño S",
-  "pci_projects_project_instances_add_billing_gateway_detail_price_monthly": "(por {{gatewayPrice}}/mes facturados por horas)",
+  "pci_projects_project_instances_add_billing_gateway_detail_price_monthly": "(por {{gatewayPrice}}/hora + IVA)",
   "pci_projects_project_instances_add_billing_gateway_snat_info": "Hemos detectado el uso de una pasarela existente, pero sin la opción SNAT activada. OVHcloud deberá activarla por usted.",
   "pci_projects_project_instances_add_billing_gateway_DHCP_info": "Hemos detectado una pasarela existente, pero sin la opción de ruta DHCP anunciada por defecto. OVHcloud deberá activarla por usted.",
   "pci_projects_project_instances_add_privateNetwork_next": "Siguiente",
@@ -127,5 +127,12 @@
   "pci_projects_project_instances_add_billing_savings_plan_banner_windows_gen_3": "Disfrute de tarifas mensuales más económicas gracias a los Savings Plans, manteniendo la flexibilidad de las instancias por horas. Tenga en cuenta que los costes de las licencias Windows no se incluyen en los Savings Plans.",
   "pci_projects_project_instances_add_windows_gen3_license_unit": "/hora + IVA",
   "pci_projects_project_instances_add_windows_gen3_license_unit_w_core": "/hora + IVA por vCore",
-  "pci_projects_project_instances_add_windows_gen3_license_total_price_label": "Precio de la licencia:"
+  "pci_projects_project_instances_add_windows_gen3_license_total_price_label": "Precio de la licencia:",
+  "pci_project_instances_instance_add_3_az_region_select_title": "Elija su zona de disponibilidad",
+  "pci_project_instances_instance_add_3_az_region_select_description": "Se ha seleccionado un área de disponibilidad predeterminada. Puede personalizar esta opción.",
+  "pci_project_instances_instance_add_3_az_region_select_auto_title": "Elegir para mí",
+  "pci_project_instances_instance_add_3_az_region_select_auto_description": "Si elegimos por usted, no podrá cambiar la instancia de zona. A continuación, deberá detenerla y volver a crearla en el área que desee.",
+  "pci_project_instances_instance_add_3_az_region_select_manual_title": "Elija el área de disponibilidad",
+  "pci_projects_project_instances_3az_add_success_message": "La instancia {{ instance }} se ha añadido correctamente a la zona de disponibilidad: {{ zone }}",
+  "pci_projects_project_instances_add_billing_gateway_detail_price_monthly_3az": "(por {{gatewayPrice}}/hora + IVA durante la fase beta de {{location}} ({{datacenter}}))"
 }

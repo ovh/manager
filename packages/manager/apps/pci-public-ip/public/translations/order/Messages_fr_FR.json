@@ -28,7 +28,7 @@
   "pci_additional_ip_create_step_select_region_description_floating_ip": "Vous ne trouvez pas la région que vous désirez dans la liste ? Pour en savoir plus sur la disponibilité des produits par région, <a href=\"{{ guideLink }}\" target=\"_blank\" data-track-name=\"{{ trackLabel }}\" data-track-on=\"click\" data-track-type=\"action\">cliquez ici.</a>",
   "pci_additional_ip_create_step_attach_instance_description_floating_ip": "Seules les instances avec des réseaux privés sont affichées",
   "pci_additional_ip_create_no_instance_message_floating_ip": "Aucune instance avec réseau privé n'a été trouvée dans la région sélectionnée. Veuillez en créer un avant d'attacher une floating IP.",
-  "pci_additional_ip_create_summary_step_missing_components_description": "Nous avons détecté des composants manquants.",
+  "pci_additional_ip_create_summary_step_missing_components_description": "Nous avons détecté des composants manquants: <strong>Gateway</strong>.",
   "pci_additional_ip_create_summary_step_gateway_name": "Une nouvelle instance Gateway est en cours de création dans le datacenter {{ region }}.",
   "pci_additional_ip_create_summary_step_gateway_size_and_price": "La taille sélectionnée est : {{ size }}",
   "pci_additional_ip_create_summary_step_price": "au prix de",
@@ -39,5 +39,6 @@
   "pci_additional_ip_price_per_month": "{{ price }}/mois",
   "pci_additional_ip_creating_floating_ip": "Créer une floating IP",
   "pci_additional_ip_create_floating_ip_success": "Une nouvelle floating IP est en cours d'attribution...",
-  "pci_additional_ip_create_floating_ip_error": "Échec de l'attribution d'une adresse floating IP : {{ message }}"
+  "pci_additional_ip_create_floating_ip_error": "Échec de l'attribution d'une adresse floating IP : {{ message }}",
+  "pci_additional_ip_create_3az_price": "Floating IP est actuellement en phase Beta dans la zone Paris (EU-WEST-PAR) et est donc gratuite durant cette période."
 }

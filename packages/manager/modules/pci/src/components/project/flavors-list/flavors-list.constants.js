@@ -49,6 +49,10 @@ export const DEFAULT_CATALOG_ENDPOINT = '/order/catalog/public/cloud';
 
 export const LOCAL_ZONE = 'localzone';
 
+export const ONE_AZ_REGION = 'region';
+
+export const THREE_AZ_REGION = 'region-3-az';
+
 export default {
   CATEGORIES,
   DEFAULT_OS,
@@ -57,4 +61,6 @@ export default {
   SSD_DISK_TYPES,
   DEFAULT_CATALOG_ENDPOINT,
   LOCAL_ZONE,
+  THREE_AZ_REGION,
+  ONE_AZ_REGION,
 };

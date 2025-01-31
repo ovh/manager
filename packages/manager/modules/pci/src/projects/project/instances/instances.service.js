@@ -322,12 +322,21 @@ export default class PciProjectInstanceService {
   }
 
   getSnapshotMonthlyPrice(projectId, instance, catalogEndpoint) {
-    return this.CucPriceHelper.getPrices(
-      projectId,
-      catalogEndpoint,
-    ).then((catalog) =>
-      instance.isLocalZone
-        ? this.getProductAvailability(projectId).then(
+    return this.CucPriceHelper.getPrices(projectId, catalogEndpoint).then(
+      (catalog) => {
+        if (instance.planCode?.includes('3AZ')) {
+          return this.getProductAvailability(projectId).then(({ plans }) => {
+            const plan = plans.find(
+              ({ code, regions }) =>
+                code.startsWith('snapshot.consumption') &&
+                regions.find(({ name }) => name === instance.region),
+            );
+
+            return catalog[plan?.code] ?? catalog['snapshot.consumption.3AZ'];
+          });
+        }
+        if (instance.isLocalZone) {
+          return this.getProductAvailability(projectId).then(
             ({ plans }) =>
               catalog[
                 plans.find(
@@ -336,16 +345,20 @@ export default class PciProjectInstanceService {
                     regions.find(({ name }) => name === instance.region),
                 )?.code
               ] ?? catalog['snapshot.consumption.LZ'],
-          )
-        : get(
-            catalog,
-            `snapshot.monthly.postpaid.${instance.region}`,
-            get(
-              catalog,
-              'snapshot.monthly.postpaid',
-              get(catalog, 'snapshot.monthly', false),
-            ),
-          ),
+          );
+        }
+
+        return this.getProductAvailability(projectId).then(
+          ({ plans }) =>
+            catalog[
+              plans.find(
+                ({ code, regions }) =>
+                  code.startsWith('snapshot.consumption') &&
+                  regions.find(({ name }) => name === instance.region),
+              )?.code
+            ],
+        );
+      },
     );
   }
 
@@ -557,11 +570,13 @@ export default class PciProjectInstanceService {
   getProductAvailability(
     projectId,
     ovhSubsidiary = this.coreConfig.getUser().ovhSubsidiary,
+    addonFamily,
   ) {
     return this.$http
       .get(`/cloud/project/${projectId}/capabilities/productAvailability`, {
         params: {
           ovhSubsidiary,
+          addonFamily,
         },
       })
       .then(({ data }) => data);
@@ -579,6 +594,7 @@ export default class PciProjectInstanceService {
       region,
       sshKeyId,
       userData,
+      availabilityZone,
     },
     number = 1,
     isPrivateMode,
@@ -598,6 +614,7 @@ export default class PciProjectInstanceService {
           sshKeyId,
           userData,
           number,
+          availabilityZone,
         })
         .then(({ data }) => {
           return data;
@@ -614,6 +631,7 @@ export default class PciProjectInstanceService {
         region,
         sshKeyId,
         userData,
+        availabilityZone,
       })
       .then(({ data }) => {
         if (isPrivateMode) {

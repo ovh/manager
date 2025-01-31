@@ -9,34 +9,31 @@ import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { useMemo } from 'react';
 import { FA_EXTEN_BANNER } from '@/api/data/quota';
-import { useProjectsAvailableVolumes } from '@/api/hooks/useProjectsAvailableVolumes';
+import { useVolumeCatalog } from '@/api/hooks/useCatalog';
 
-const extenProducts = [
-  'volume.high-speed-BETA.consumption',
-  'volume.classic-BETA.consumption',
-];
+const extenProducts = ['high-speed-BETA', 'classic-BETA'];
 
 function Banner() {
   const { t } = useTranslation('exten-banner-beta');
   const { projectId } = useParams();
-  const { data: availableVolumes } = useProjectsAvailableVolumes(projectId);
+  const { data: volumeCatalog } = useVolumeCatalog(projectId);
 
   const regionsString = useMemo(
     () =>
-      availableVolumes
+      volumeCatalog
         ? [
             ...new Set(
-              availableVolumes.plans
-                .filter((p) => extenProducts.includes(p.code))
-                .flatMap((p) => p.regions)
-                .map((r) => r.name),
+              volumeCatalog.models
+                .filter((p) => extenProducts.includes(p.name))
+                .flatMap((p) => p.pricings)
+                .flatMap((p) => p.regions),
             ),
           ].join(', ')
         : '',
-    [availableVolumes],
+    [volumeCatalog],
   );
 
-  if (!availableVolumes) return null;
+  if (!volumeCatalog) return null;
 
   return (
     <OsdsMessage type={ODS_MESSAGE_TYPE.info}>
