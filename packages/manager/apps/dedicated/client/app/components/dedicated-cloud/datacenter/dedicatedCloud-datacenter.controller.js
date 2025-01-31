@@ -6,6 +6,7 @@ import {
   TRACKING_NEW_PRODUCT_BANNER,
 } from './dedicatedCloud-datacenter.constants';
 import { VDC_TYPE } from './vmware-vdc-add/dedicatedCloud-vmware-vdc-add.constants';
+import { NETWORK_LABEL } from '../../../dedicatedCloud/datacenter/dedicatedCloud-datacenter.constants';
 
 export default class {
   /* @ngInject */
@@ -15,6 +16,7 @@ export default class {
     this.ovhManagerPccDatacenterService = ovhManagerPccDatacenterService;
     this.ovhSubsidiary = coreConfig.getUser().ovhSubsidiary;
     this.TRACKING_NEW_PRODUCT_BANNER = TRACKING_NEW_PRODUCT_BANNER;
+    this.NETWORK_LABEL = NETWORK_LABEL;
   }
 
   $onInit() {
