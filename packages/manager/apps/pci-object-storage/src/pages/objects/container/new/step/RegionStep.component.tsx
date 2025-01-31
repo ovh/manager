@@ -4,16 +4,19 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   StepComponent,
   useNotifications,
+  useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 import { Translation, useTranslation } from 'react-i18next';
 import {
   useAddProjectRegion,
   useRefreshProductAvailability,
+  useProject,
+  isDiscoveryProject,
 } from '@ovh-ux/manager-pci-common';
 import { useParams } from 'react-router-dom';
 import { ApiError } from '@ovh-ux/manager-core-api';
 
-import { OdsSpinner } from '@ovhcloud/ods-components/react';
+import { OdsLink, OdsSpinner, OdsText } from '@ovhcloud/ods-components/react';
 import { useContainerCreationStore } from '../useContainerCreationStore';
 import { OBJECT_CONTAINER_OFFER_SWIFT } from '@/constants';
 import { ContainerRegionSelector } from './ContainerRegionSelector.component';
@@ -35,9 +38,11 @@ export function RegionStep() {
   } = useContainerCreationStore();
 
   const { projectId } = useParams();
+  const { data: project, isPending: isProjectPending } = useProject(projectId);
+  const projectUrl = useProjectUrl('public-cloud');
   const { refresh } = useRefreshProductAvailability(projectId, ovhSubsidiary);
 
-  const { addRegion, isPending } = useAddProjectRegion({
+  const { addRegion, isPending: isAddProjectPending } = useAddProjectRegion({
     projectId,
     onSuccess: () => {
       refresh();
@@ -95,6 +100,8 @@ export function RegionStep() {
     }
   }, [stepper.region.isLocked]);
 
+  const isPending = isProjectPending || isAddProjectPending;
+
   return (
     <StepComponent
       title={t('pci_projects_project_storages_containers_add_region_title')}
@@ -105,7 +112,7 @@ export function RegionStep() {
       next={{
         action: submitRegionHandler,
         label: t('pci-common:common_stepper_next_button_label'),
-        isDisabled: !form.region || isPending,
+        isDisabled: !form.region || isPending || isDiscoveryProject(project),
       }}
       edit={{
         action: editRegion,
@@ -122,6 +129,22 @@ export function RegionStep() {
             onSelectRegion={setRegion}
             isSubmitted={stepper.region.isLocked}
           />
+        )}
+        {!isPending && isDiscoveryProject(project) && (
+          <div className="mt-6">
+            <OdsText className="text-critical font-bold-class">
+              {t(
+                'pci_projects_project_storages_containers_project_banner_message',
+              )}
+            </OdsText>{' '}
+            <OdsLink
+              color="primary"
+              href={`${projectUrl}/activate`}
+              label={t(
+                'pci_projects_project_storages_containers_project_banner_link_text',
+              )}
+            ></OdsLink>
+          </div>
         )}
       </>
     </StepComponent>
