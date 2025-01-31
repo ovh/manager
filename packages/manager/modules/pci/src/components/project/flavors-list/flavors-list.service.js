@@ -86,9 +86,7 @@ export default class FlavorsList {
         const groupedPlanCodesByName = groupBy(hourlyPlanCodes, 'name');
 
         return map(groupedPlanCodesByName, (groupedFlavors) => {
-          const resource = groupedFlavors.find(
-            (groupedFlavor) => !groupedFlavor?.region?.includes('LZ'),
-          );
+          const resource = groupedFlavors[0];
           const planCodeList = groupedFlavors.map(
             (flavor) => flavor.planCodes.hourly,
           );
