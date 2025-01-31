@@ -8,7 +8,7 @@ export function RhfPassword({
 }: Readonly<Omit<ComponentProps<typeof OdsInput>, 'name' | 'id'>>) {
   const {
     id,
-    controller: { field },
+    controller: { field, fieldState },
   } = useRhfFieldContext();
 
   return (
@@ -18,6 +18,7 @@ export function RhfPassword({
       {...field}
       isMasked
       className={`w-full ${className}`}
+      hasError={!!fieldState.error}
       onOdsBlur={field.onBlur}
       onOdsChange={field.onChange}
     />

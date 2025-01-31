@@ -11,7 +11,7 @@ import {
   CONTAINER_ID_MAX_LENGTH,
 } from '../constants/form.constants';
 
-export const PRE_INSTALLATION_FORM_SCHEMA = z.object({
+export const ENABLEMENT_FORM_SCHEMA = z.object({
   hasBackup: z
     .boolean()
     .nullable()

@@ -3,7 +3,7 @@ import '@testing-library/jest-dom';
 import React from 'react';
 import { render, waitFor } from '@testing-library/react';
 import { describe, expect, vi } from 'vitest';
-import InstallationStepPreInstallation from './InstallationStepEnablement.page';
+import InstallationStepEnablement from './InstallationStepEnablement.page';
 import { installationInitialValues } from '@/context/installationInitialValues.constants';
 
 vi.mock('react-router-dom', () => ({
@@ -19,7 +19,7 @@ vi.mock('@/context/InstallationForm.context', () => ({
   }),
 }));
 
-describe('InstallationStepPreInstallation page unit test suite', () => {
+describe('InstallationStepEnablement page unit test suite', () => {
   it('should render field with correct titles and inputs', async () => {
     vi.mock('@/context/InstallationForm.context', () => ({
       useInstallationFormContext: () => ({
@@ -28,7 +28,7 @@ describe('InstallationStepPreInstallation page unit test suite', () => {
       }),
     }));
 
-    const { getByText } = render(<InstallationStepPreInstallation />);
+    const { getByText } = render(<InstallationStepEnablement />);
 
     const elementsPreVisible = [
       'enablement_input_has_backup',
@@ -60,7 +60,7 @@ describe('InstallationStepPreInstallation page unit test suite', () => {
       }),
     }));
 
-    const { getByText } = render(<InstallationStepPreInstallation />);
+    const { getByText } = render(<InstallationStepEnablement />);
 
     const elements = [
       'enablement_input_has_backup',

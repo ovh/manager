@@ -1,6 +1,6 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FormProvider, useForm } from 'react-hook-form';
+import { FormProvider, Path, useForm, UseFormTrigger } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { OdsIcon, OdsTooltip } from '@ovhcloud/ods-components/react';
@@ -8,11 +8,29 @@ import { useFormSteps } from '@/hooks/formStep/useFormSteps';
 import FormLayout from '@/components/Form/FormLayout.component';
 import { RhfField } from '@/components/Fields';
 import { useInstallationFormContext } from '@/context/InstallationForm.context';
-import { PRE_INSTALLATION_FORM_SCHEMA } from '@/schema/form.schema';
+import { ENABLEMENT_FORM_SCHEMA } from '@/schema/form.schema';
 import {
   BACKUP_KEY_LENGTH,
   CONTAINER_ID_MAX_LENGTH,
 } from '@/constants/form.constants';
+
+const triggerFilledInput = <T,>({
+  getValues,
+  trigger,
+  prefix,
+}: {
+  getValues: (params: T | Path<T>) => { [key: string]: unknown };
+  trigger: UseFormTrigger<T>;
+  prefix: T | Path<T>;
+}) => {
+  const objectValues = getValues(prefix);
+
+  Object.keys(objectValues || {}).forEach((key) => {
+    if (objectValues[key]) {
+      trigger(`${prefix}.${key}` as Path<T>);
+    }
+  });
+};
 
 export default function InstallationStepEnablement() {
   const { t } = useTranslation('installation');
@@ -30,21 +48,32 @@ export default function InstallationStepEnablement() {
   );
 
   const {
+    getValues,
+    setValue,
+    trigger,
     register,
     unregister,
     watch,
     formState,
     handleSubmit,
     ...restForm
-  } = useForm<z.infer<typeof PRE_INSTALLATION_FORM_SCHEMA>>({
+  } = useForm<z.infer<typeof ENABLEMENT_FORM_SCHEMA>>({
     mode: 'onTouched',
-    resolver: zodResolver(PRE_INSTALLATION_FORM_SCHEMA),
+    resolver: zodResolver(ENABLEMENT_FORM_SCHEMA),
     defaultValues,
   });
+  const triggerFilledInputOfForm = (
+    prefix: Path<z.infer<typeof ENABLEMENT_FORM_SCHEMA>>,
+  ) =>
+    triggerFilledInput<z.infer<typeof ENABLEMENT_FORM_SCHEMA>>({
+      getValues,
+      trigger,
+      prefix,
+    });
 
   useEffect(() => {
     if (defaultValues.bucketBackint || defaultValues.logsDataPlatform) {
-      restForm.trigger();
+      trigger();
     }
   }, [defaultValues]);
 
@@ -52,20 +81,32 @@ export default function InstallationStepEnablement() {
 
   const [hasBackup, hasLogsInLdpOvh] = watch(['hasBackup', 'hasLogsInLdpOvh']);
 
+  const [oldBucketBackint, setOldBucketBackint] = useState(undefined);
+  const [oldLogsDataPlatform, setOldLogsDataPlatform] = useState(undefined);
+
   useEffect(() => {
     if (!hasBackup) {
+      setOldBucketBackint(getValues('bucketBackint'));
       unregister('bucketBackint');
+    } else {
+      setValue('bucketBackint', oldBucketBackint);
+      triggerFilledInputOfForm('bucketBackint');
+      trigger('bucketBackint');
     }
   }, [hasBackup]);
 
   useEffect(() => {
     if (!hasLogsInLdpOvh) {
+      setOldLogsDataPlatform(getValues('logsDataPlatform'));
       unregister('logsDataPlatform');
+    } else {
+      setValue('logsDataPlatform', oldLogsDataPlatform);
+      triggerFilledInputOfForm('logsDataPlatform');
     }
   }, [hasLogsInLdpOvh]);
 
   const saveFormOnContext = () => {
-    setValues((prev) => ({ ...prev, ...restForm.getValues() }));
+    setValues((prev) => ({ ...prev, ...getValues() }));
   };
 
   const handleSubmitCustom = () => {
@@ -85,6 +126,9 @@ export default function InstallationStepEnablement() {
       watch={watch}
       formState={formState}
       handleSubmit={handleSubmit}
+      trigger={trigger}
+      getValues={getValues}
+      setValue={setValue}
       {...restForm}
     >
       <FormLayout
@@ -108,8 +152,8 @@ export default function InstallationStepEnablement() {
               controllerParams={register('bucketBackint.id')}
               helperMessage={t('common_helper_container')}
             >
-              <RhfField.Label className="flex gap-2 items-center">
-                <span>{t('common_input_container')}</span>
+              <RhfField.Label className="flex gap-2 items-center align-middle">
+                {t('common_input_container')}
                 <OdsIcon
                   id="id-container-tooltip-trigger"
                   name="circle-question"
@@ -157,8 +201,8 @@ export default function InstallationStepEnablement() {
           controllerParams={register('hasLogsInLdpOvh')}
           className="w-full max-w-md flex flex-row items-center gap-x-2"
         >
-          <RhfField.Label className="flex gap-2 items-center  ">
-            <span>{t('enablement_input_has_logs_ldp_ovh')}</span>
+          <RhfField.Label className="flex gap-2 items-center">
+            {t('enablement_input_has_logs_ldp_ovh')}
             <OdsIcon
               id="has-logs-ldp-ovh-tooltip-trigger"
               name="circle-question"
