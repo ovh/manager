@@ -102,36 +102,142 @@ exports[`ListingPage > sould display datagrid 1`] = `
                 common_criteria_adder_operator_label
               </span>
             </div>
-            <ods-select
-              name="add-operator"
-              value="includes"
+            <div
+              class=""
             >
-              <option
+              <ods-select
+                name="add-operator-name"
                 value="includes"
               >
-                common_criteria_adder_operator_includes
-              </option>
-              <option
-                value="starts_with"
+                <option
+                  value="includes"
+                >
+                  common_criteria_adder_operator_includes
+                </option>
+                <option
+                  value="starts_with"
+                >
+                  common_criteria_adder_operator_starts_with
+                </option>
+                <option
+                  value="ends_with"
+                >
+                  common_criteria_adder_operator_ends_with
+                </option>
+                <option
+                  value="is_equal"
+                >
+                  common_criteria_adder_operator_is_equal
+                </option>
+                <option
+                  value="is_different"
+                >
+                  common_criteria_adder_operator_is_different
+                </option>
+              </ods-select>
+            </div>
+            <div
+              class="hidden"
+            >
+              <ods-select
+                name="add-operator-region"
+                value="includes"
               >
-                common_criteria_adder_operator_starts_with
-              </option>
-              <option
-                value="ends_with"
+                <option
+                  value="includes"
+                >
+                  common_criteria_adder_operator_includes
+                </option>
+                <option
+                  value="starts_with"
+                >
+                  common_criteria_adder_operator_starts_with
+                </option>
+                <option
+                  value="ends_with"
+                >
+                  common_criteria_adder_operator_ends_with
+                </option>
+                <option
+                  value="is_equal"
+                >
+                  common_criteria_adder_operator_is_equal
+                </option>
+                <option
+                  value="is_different"
+                >
+                  common_criteria_adder_operator_is_different
+                </option>
+              </ods-select>
+            </div>
+            <div
+              class="hidden"
+            >
+              <ods-select
+                name="add-operator-mode"
+                value="includes"
               >
-                common_criteria_adder_operator_ends_with
-              </option>
-              <option
-                value="is_equal"
+                <option
+                  value="includes"
+                >
+                  common_criteria_adder_operator_includes
+                </option>
+                <option
+                  value="starts_with"
+                >
+                  common_criteria_adder_operator_starts_with
+                </option>
+                <option
+                  value="ends_with"
+                >
+                  common_criteria_adder_operator_ends_with
+                </option>
+                <option
+                  value="is_equal"
+                >
+                  common_criteria_adder_operator_is_equal
+                </option>
+                <option
+                  value="is_different"
+                >
+                  common_criteria_adder_operator_is_different
+                </option>
+              </ods-select>
+            </div>
+            <div
+              class="hidden"
+            >
+              <ods-select
+                name="add-operator-offer"
+                value="includes"
               >
-                common_criteria_adder_operator_is_equal
-              </option>
-              <option
-                value="is_different"
-              >
-                common_criteria_adder_operator_is_different
-              </option>
-            </ods-select>
+                <option
+                  value="includes"
+                >
+                  common_criteria_adder_operator_includes
+                </option>
+                <option
+                  value="starts_with"
+                >
+                  common_criteria_adder_operator_starts_with
+                </option>
+                <option
+                  value="ends_with"
+                >
+                  common_criteria_adder_operator_ends_with
+                </option>
+                <option
+                  value="is_equal"
+                >
+                  common_criteria_adder_operator_is_equal
+                </option>
+                <option
+                  value="is_different"
+                >
+                  common_criteria_adder_operator_is_different
+                </option>
+              </ods-select>
+            </div>
           </ods-form-field>
         </div>
         <div>
@@ -345,7 +451,7 @@ exports[`ListingPage > sould display datagrid 1`] = `
             </thead>
             <tbody>
               <tr
-                class="border-[1px] h-[3.25rem] border-[--ods-color-blue-200]"
+                class="border-solid border-[1px] h-[3.25rem] border-[--ods-color-blue-200]"
               >
                 <td
                   class="text-center"
