@@ -34,6 +34,8 @@ import ShellRoutingSync from '@/core/ShellRoutingSync';
 import usePageTracking from '@/hooks/usePageTracking';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 import EndpointsGuide from '@/components/Guides';
+import { useGetMetrics } from '@/hooks/api/database/metric/useGetMetrics.hook';
+import { MetricData } from '@/types/cloud/project/database/metric';
 
 export type TabItemProps = {
   name: string;
@@ -54,20 +56,41 @@ export type BreadcrumbItem = {
 };
 
 export default function Layout() {
-  const { projectId } = useParams();
+  const { projectId } = useParams<{ projectId: string }>();
   const { t } = useTranslation('metric');
-  const { isSuccess } = useProject(projectId || '', { retry: false });
-  const [panel, setActivePanel] = useState('');
-  const [titleHeader, setTitleHeader] = useState('');
+  const { isSuccess } = useProject(projectId ?? '', { retry: false });
+  const [panel, setActivePanel] = useState<string>('');
+  const [titleHeader, setTitleHeader] = useState<string>('');
   const navigate = useNavigate();
   const { pathname: path } = useLocation();
+  const [metricsData, setMetricsData] = useState<{ data: MetricData[] }>({
+    data: [],
+  });
 
-  const tabsList = [
-    /*  {
-      name: 'dashboard',
-      title: 'Dashboard',
-      to: useResolvedPath('dashboard').pathname,
-    }, */
+  const metricsQuery = useGetMetrics(
+    projectId,
+    encodeURIComponent(new Date(2024, 0, 1).toISOString()),
+    encodeURIComponent(
+      new Date(
+        new Date().getFullYear(),
+        new Date().getMonth() + 1,
+        0,
+      ).toISOString(),
+    ),
+  );
+
+  useEffect(() => {
+    if (Array.isArray(metricsQuery?.data)) {
+      setMetricsData({ data: metricsQuery.data });
+    }
+  }, [metricsQuery?.data]);
+
+  const tabsList: Readonly<TabItemProps[]> = [
+    {
+      name: 'onboarding',
+      title: 'Onboarding',
+      to: useResolvedPath('').pathname,
+    },
     {
       name: 'metrics',
       title: t('metrics'),
@@ -81,21 +104,30 @@ export default function Layout() {
   };
 
   useEffect(() => {
+    const visibleTabs = tabsList.filter((tab) =>
+      metricsData.data.length === 0
+        ? tab.name === 'onboarding'
+        : tab.name === 'metrics',
+    );
+
     const findActiveTab = (tabList: TabItemProps[]) =>
       tabList.find((tab) => tab.to === path);
     const findActiveParentTab = (tabList: TabItemProps[]) =>
       tabList.find((tab) => tab.to === path.slice(0, path.lastIndexOf('/')));
 
-    const activeTab = findActiveTab(tabsList) || findActiveParentTab(tabsList);
+    let activeTab: TabItemProps | undefined =
+      findActiveTab(visibleTabs) || findActiveParentTab(visibleTabs);
+
+    if (!activeTab && visibleTabs.length > 0) {
+      [activeTab] = visibleTabs;
+      navigate(activeTab.to);
+    }
+
     if (activeTab) {
       setActivePanel(activeTab.name);
       setTitleHeader(activeTab.title);
-    } else {
-      setActivePanel(tabsList[0].name);
-      navigate(`${tabsList[0].to}`);
-      setTitleHeader('Onboarding');
     }
-  }, [path]);
+  }, [path, metricsData.data.length, tabsList, navigate]);
 
   usePageTracking();
 
@@ -104,69 +136,79 @@ export default function Layout() {
       <Suspense
         fallback={
           <div className="flex justify-center" data-testid="loading-container">
-            <div>
-              <OsdsSpinner
-                data-testid="osds-spinner"
-                className="w-16 h-16 my-20"
-              />
-            </div>
+            <OsdsSpinner className="w-16 h-16 my-20" />
           </div>
         }
       >
         <ShellRoutingSync />
-        {isSuccess && (
-          <div className="relative">
-            <BaseLayout
-              header={headerProps}
-              tabs={
-                <OsdsTabs panel={panel} className="-ml-2">
-                  <OsdsTabBar slot="top">
-                    {tabsList.map((tab: TabItemProps) => (
-                      <NavLink
-                        to={tab.to}
-                        className="no-underline"
-                        key={tab.name}
-                      >
-                        <OsdsTabBarItem
-                          key={`osds-tab-bar-item-${tab.name}`}
-                          panel={tab.name}
-                        >
-                          {tab.title}
-                        </OsdsTabBarItem>
-                      </NavLink>
-                    ))}
-                  </OsdsTabBar>
-                </OsdsTabs>
-              }
-              breadcrumb={<Breadcrumb />}
-            />
-            <div className="customTabs:flex self-end customTabs:-mt-[85px] md:-mt-[89px] customTabs:ml-[170px] customTabs:absolute">
-              <OsdsButton
-                className=""
-                inline
-                color={ODS_THEME_COLOR_INTENT.primary}
-                size={ODS_BUTTON_SIZE.sm}
-                variant={ODS_BUTTON_VARIANT.ghost}
-                href={'https://endpoints.ai.cloud.ovh.net/'}
-                target={OdsHTMLAnchorElementTarget._blank}
-              >
-                {'AI Endpoints'}
-                <span slot="end">
-                  <OsdsIcon
-                    aria-hidden="true"
-                    className="ml-1"
-                    name={ODS_ICON_NAME.EXTERNAL_LINK}
-                    hoverable
-                    size={ODS_ICON_SIZE.xxs}
-                    color={ODS_THEME_COLOR_INTENT.primary}
-                  />
-                </span>
-              </OsdsButton>
-            </div>
-            <div className="py-8 px-4 md:pb-9 md:pt-0 md:px-10">
-              <Outlet />
-            </div>
+        {metricsQuery.isLoading ? (
+          <div className="flex justify-center">
+            <OsdsSpinner className="w-16 h-16 mt-[45vh]" />
           </div>
+        ) : (
+          isSuccess && (
+            <div className="relative opacity-0 animate-fade-in">
+              <BaseLayout
+                header={headerProps}
+                tabs={
+                  <OsdsTabs panel={panel} className="-ml-2">
+                    <OsdsTabBar slot="top">
+                      {tabsList
+                        .filter((tab) =>
+                          metricsData.data.length === 0
+                            ? tab.name === 'onboarding'
+                            : tab.name === 'metrics',
+                        )
+                        .map((tab) => (
+                          <NavLink
+                            to={tab.to}
+                            key={tab.name}
+                            className={({ isActive }) =>
+                              `no-underline ${
+                                isActive ? 'selected-tab-class' : ''
+                              }`
+                            }
+                          >
+                            <OsdsTabBarItem
+                              panel={tab.name}
+                              active={tab.name === panel}
+                            >
+                              {tab.title}
+                            </OsdsTabBarItem>
+                          </NavLink>
+                        ))}
+                    </OsdsTabBar>
+                  </OsdsTabs>
+                }
+                breadcrumb={<Breadcrumb />}
+              />
+              <div className="customTabs:flex self-end customTabs:-mt-[85px] md:-mt-[89px] customTabs:ml-[170px] customTabs:absolute">
+                <OsdsButton
+                  inline
+                  color={ODS_THEME_COLOR_INTENT.primary}
+                  size={ODS_BUTTON_SIZE.sm}
+                  variant={ODS_BUTTON_VARIANT.ghost}
+                  href="https://endpoints.ai.cloud.ovh.net/"
+                  target={OdsHTMLAnchorElementTarget._blank}
+                >
+                  {'AI Endpoints'}
+                  <span slot="end">
+                    <OsdsIcon
+                      aria-hidden="true"
+                      className="ml-1"
+                      name={ODS_ICON_NAME.EXTERNAL_LINK}
+                      hoverable
+                      size={ODS_ICON_SIZE.xxs}
+                      color={ODS_THEME_COLOR_INTENT.primary}
+                    />
+                  </span>
+                </OsdsButton>
+              </div>
+              <div className="py-8 px-4 md:pb-9 md:pt-0 md:px-10">
+                <Outlet />
+              </div>
+            </div>
+          )
         )}
         <HidePreloader />
       </Suspense>
@@ -178,21 +220,11 @@ export const ErrorBoundary = () => {
   const error = useRouteError() as ApiError;
   const { navigation } = useContext(ShellContext).shell;
 
-  const redirectionApplication = 'public-cloud';
-
-  const navigateToHomePage = () => {
-    navigation.navigateTo(redirectionApplication, '', {});
-  };
-
-  const reloadPage = () => {
-    navigation.reload();
-  };
-
   return (
     <Suspense>
       <ErrorBanner
-        onReloadPage={reloadPage}
-        onRedirectHome={navigateToHomePage}
+        onReloadPage={() => navigation.reload()}
+        onRedirectHome={() => navigation.navigateTo('public-cloud', '', {})}
         error={{
           data: { message: error.response?.data?.message || error.message },
           headers: error.response?.headers || {},
