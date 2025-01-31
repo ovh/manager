@@ -3,6 +3,7 @@ import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
 import { useMemo } from 'react';
 import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
 import {
+  addUserToContainer,
   deleteArchiveContainer,
   getArchiveContainers,
   TArchiveContainer,
@@ -10,15 +11,17 @@ import {
 import { paginateResults, sortResults } from '@/helpers';
 import queryClient from '@/queryClient';
 
-const getQueryKeyArchive = (projectId: string) => [
+const getQueryKeyArchive = (projectId: string, region: string) => [
   'projectId',
   projectId,
+  'region',
+  region,
   'coldArchive',
 ];
 
-export const useArchive = (projectId: string, region: string) => {
+export const useArchives = (projectId: string, region?: string) => {
   return useQuery({
-    queryKey: getQueryKeyArchive(projectId),
+    queryKey: getQueryKeyArchive(projectId, region),
     queryFn: () => getArchiveContainers(projectId, region),
     enabled: !!projectId && !!region,
   });
@@ -38,7 +41,7 @@ export const usePaginatedArchive = (
     isPending,
     isSuccess,
     isFetching,
-  } = useArchive(projectId, region);
+  } = useArchives(projectId, region);
 
   return useMemo(
     () => ({
@@ -58,7 +61,7 @@ export const usePaginatedArchive = (
       ),
       refresh: () =>
         queryClient.invalidateQueries({
-          queryKey: getQueryKeyArchive(projectId),
+          queryKey: getQueryKeyArchive(projectId, region),
         }),
       allArchives: archives,
       error,
@@ -88,13 +91,50 @@ export const useDeleteArchiveContainer = ({
     onError,
     onSuccess: async () => {
       await queryClient.invalidateQueries({
-        queryKey: getQueryKeyArchive(projectId),
+        queryKey: getQueryKeyArchive(projectId, region),
       });
       onSuccess();
     },
   });
   return {
     deleteArchiveContainer: () => mutation.mutate(),
+    ...mutation,
+  };
+};
+
+type AddUserProps = {
+  projectId: string;
+  storageId: string;
+  region: string;
+  userId: number;
+  role: string;
+  onError: (cause: Error) => void;
+  onSuccess: () => void;
+};
+
+export const useAddUser = ({
+  projectId,
+  storageId,
+  region,
+  userId,
+  role,
+  onError,
+  onSuccess,
+}: AddUserProps) => {
+  const mutation = useMutation({
+    mutationFn: () =>
+      addUserToContainer({ projectId, region, storageId, userId, role }),
+    onError,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: getQueryKeyArchive(projectId, region),
+      });
+      onSuccess();
+    },
+  });
+
+  return {
+    addUser: () => mutation.mutate(),
     ...mutation,
   };
 };
