@@ -19,27 +19,48 @@
             name="oui-radio-diagnostic"
             data-value="$ctrl.diagnosticTypes.default"
         >
-            <span
-                data-translate="cloud_connect_bgp_peering_choice_default"
-            ></span>
+            <oui-radio-label>
+                <span
+                    data-translate="cloud_connect_bgp_peering_choice_default"
+                ></span>
+            </oui-radio-label>
+            <oui-radio-description>
+                <span
+                    data-translate="cloud_connect_bgp_peering_choice_default_description"
+                ></span>
+            </oui-radio-description>
         </oui-radio>
         <oui-radio
             data-model="$ctrl.diagnosticType"
             name="oui-radio-diagnostic"
             data-value="$ctrl.diagnosticTypes.routes"
         >
-            <span
-                data-translate="cloud_connect_bgp_peering_choice_routes"
-            ></span>
+            <oui-radio-label>
+                <span
+                    data-translate="cloud_connect_bgp_peering_choice_routes"
+                ></span>
+            </oui-radio-label>
+            <oui-radio-description>
+                <span
+                    data-translate="cloud_connect_bgp_peering_choice_routes_description"
+                ></span>
+            </oui-radio-description>
         </oui-radio>
         <oui-radio
             data-model="$ctrl.diagnosticType"
             name="oui-radio-diagnostic"
             data-value="$ctrl.diagnosticTypes.sdvertisedRoutes"
         >
-            <span
-                data-translate="cloud_connect_bgp_peering_choice_advertised_routes"
-            ></span>
+            <oui-radio-label>
+                <span
+                    data-translate="cloud_connect_bgp_peering_choice_advertised_routes"
+                ></span>
+            </oui-radio-label>
+            <oui-radio-description>
+                <span
+                    data-translate="cloud_connect_bgp_peering_choice_advertised_routes_description"
+                ></span>
+            </oui-radio-description>
         </oui-radio>
     </oui-modal>
 </form>

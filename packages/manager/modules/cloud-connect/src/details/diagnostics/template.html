@@ -54,13 +54,14 @@
                 data-disabled="!$row.isDone()"
             >
                 <oui-action-menu-item
-                    data-on-click="$ctrl.gotoDiagnosticResult($row.id)"
+                    data-ng-click="$ctrl.gotoDiagnosticResult($row.id)"
                     ><span
                         data-translate="cloud_connect_diagnostics_action_result"
                     ></span
                 ></oui-action-menu-item>
                 <oui-action-menu-item
                     ><span
+                        data-ng-click="$ctrl.downloadResult($row.id)"
                         data-translate="cloud_connect_diagnostics_action_download"
                     ></span
                 ></oui-action-menu-item>
