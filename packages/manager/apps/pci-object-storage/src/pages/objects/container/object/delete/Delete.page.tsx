@@ -20,6 +20,7 @@ export default function DeletePage() {
   const { storage, isPending: isPendingStorage } = useStorage(
     projectId,
     storageId,
+    region,
   );
 
   const goBack = () => navigate(`../?region=${region}`);
