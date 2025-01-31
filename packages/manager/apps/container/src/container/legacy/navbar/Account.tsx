@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { capitalize, truncate } from 'lodash-es';
 import { useTranslation } from 'react-i18next';
 
 import { OsdsIcon, OsdsText } from '@ovhcloud/ods-components/react';
@@ -12,7 +11,6 @@ import {
 } from '@ovhcloud/ods-components/';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 
-import { User } from '@ovh-ux/manager-config';
 import { TRANSLATE_NAMESPACE } from './constants';
 import style from './navbar.module.scss';
 
@@ -26,13 +24,6 @@ function NavbarAccount(): JSX.Element {
   const shell = useShell();
   const uxPlugin = shell.getPlugin('ux');
   const user = useUser();
-
-  const firstName = capitalize(user.firstname).replace(/-[a-z]/g, (match) =>
-    match.toUpperCase(),
-  );
-  const lastName = truncate(capitalize(user.name), {
-    length: 10,
-  });
 
   const {
     setIsAccountSidebarVisible,
@@ -70,8 +61,9 @@ function NavbarAccount(): JSX.Element {
           level={ODS_TEXT_LEVEL.button}
           size={ODS_TEXT_SIZE._200}
         >
-          {user.legalform === LEGAL_FORMS.CORPORATION ?
-            user.organisation : `${user.firstname} ${user.name}`}
+          {user.legalform === LEGAL_FORMS.CORPORATION
+            ? user.organisation
+            : `${user.firstname} ${user.name}`}
         </OsdsText>
       </span>
     </button>

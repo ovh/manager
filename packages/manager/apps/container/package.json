@@ -55,7 +55,6 @@
     "framer-motion": "^7.0.0",
     "i18next": "^23.8.2",
     "i18next-http-backend": "^2.4.3",
-    "lodash-es": "^4.17.15",
     "office-ui-fabric-core": "^11.0.0",
     "ovh-manager-webfont": "^1.2.0",
     "piano-analytics-js": "^6.12.0",
