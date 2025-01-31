@@ -115,7 +115,7 @@ const Service = () => {
           catalog={catalogQuery.data}
         />
       )}
-      <LegalMentions className="mt-4" />
+      <LegalMentions />
     </>
   );
 };

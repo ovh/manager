@@ -5,7 +5,7 @@ export function humanizeEngine(engine: database.EngineEnum) {
     case database.EngineEnum.cassandra:
       return 'Cassandra';
     case database.EngineEnum.grafana:
-      return 'Grafana';
+      return 'Dashboard';
     case database.EngineEnum.kafka:
       return 'Kafka';
     case database.EngineEnum.kafkaConnect:

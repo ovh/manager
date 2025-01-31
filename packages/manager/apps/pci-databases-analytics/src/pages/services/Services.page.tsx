@@ -1,13 +1,10 @@
 import { useMemo } from 'react';
 import { Outlet, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Plus } from 'lucide-react';
 import { useGetServices } from '@/hooks/api/database/service/useGetServices.hook';
 import ServicesList from './_components/ServiceListTable.component';
 import LegalMentions from '../_components/LegalMentions.component';
 import { POLLING } from '@/configuration/polling.constants';
-import Link from '@/components/links/Link.component';
-import { Button } from '@/components/ui/button';
 import Guides from '@/components/guides/Guides.component';
 import { GuideSections } from '@/types/guide';
 import { useTrackAction } from '@/hooks/useTracking';
@@ -49,7 +46,7 @@ const Services = () => {
         />
       </div>
       <ServicesList services={filteredServices} />
-      <LegalMentions className="mt-4" />
+      <LegalMentions />
       <Outlet />
     </>
   );

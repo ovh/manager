@@ -1,5 +1,4 @@
 import { Outlet } from 'react-router-dom';
-import { AccordionItem } from '@radix-ui/react-accordion';
 import { useTranslation } from 'react-i18next';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { useServiceData } from '../Service.context';
@@ -9,6 +8,7 @@ import AdvancedConfigurationUpdate from './_components/AdvancedConfigurationUpda
 import {
   Accordion,
   AccordionContent,
+  AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
 import UpdateTable from './_components/UpdateTable.component';

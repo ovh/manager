@@ -1,0 +1,73 @@
+import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Label } from '@/components/ui/label';
+import { Switch } from '@/components/ui/switch';
+import { useServiceData } from '../../Service.context';
+import { useToast } from '@/components/ui/use-toast';
+import { useEditService } from '@/hooks/api/database/service/useEditService.hook';
+import * as database from '@/types/cloud/project/database';
+
+const ToggleAcl = () => {
+  const { t } = useTranslation(
+    'pci-databases-analytics/services/service/users',
+  );
+  const { projectId, service, serviceQuery } = useServiceData();
+  const aclsEnabled = !!('aclsEnabled' in service && service.aclsEnabled);
+  const [switchState, setSwitchState] = useState(aclsEnabled);
+
+  const toast = useToast();
+  const { editService, isPending } = useEditService({
+    onError: (err) => {
+      toast.toast({
+        title: t('toggleAclErrorTitle'),
+        variant: 'destructive',
+        description: err.response.data.message,
+      });
+      setSwitchState(aclsEnabled);
+    },
+    onEditSuccess: (updatedService) => {
+      toast.toast({
+        title: t('toggleAclSuccessTitle'),
+        description: ((updatedService as unknown) as database.opensearch.Service)
+          .aclsEnabled
+          ? t('toggleAclEnabledSuccessDescription')
+          : t('toggleAclADisabledSuccessDescription'),
+      });
+      serviceQuery.refetch();
+    },
+  });
+
+  useEffect(() => {
+    setSwitchState(
+      ((service as unknown) as database.opensearch.Service).aclsEnabled,
+    );
+  }, [((service as unknown) as database.opensearch.Service).aclsEnabled]);
+
+  const handleSwitchChange = (newValue: boolean) => {
+    setSwitchState(newValue);
+    editService({
+      serviceId: service.id,
+      projectId,
+      engine: service.engine,
+      data: {
+        aclsEnabled: newValue,
+      },
+    });
+  };
+  return (
+    <div className="flex items-center gap-2 !mb-4" data-testid="toggle-acl">
+      <Switch
+        checked={switchState}
+        disabled={
+          isPending ||
+          service.capabilities.userAcls?.update !==
+            database.service.capability.StateEnum.enabled
+        }
+        onCheckedChange={(newVal) => handleSwitchChange(newVal)}
+      />
+      <Label htmlFor="airplane-mode">{t('toggleACLsLabel')}</Label>
+    </div>
+  );
+};
+
+export default ToggleAcl;

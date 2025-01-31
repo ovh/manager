@@ -80,7 +80,7 @@ export default function ServiceLayout() {
       <div className="space-y-2">
         <Outlet context={serviceLayoutContext} />
       </div>
-      <LegalMentions className="mt-4" />
+      <LegalMentions />
     </>
   );
 }
