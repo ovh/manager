@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import React, { Suspense, useCallback, useState } from 'react';
 
 import { Environment } from '@ovh-ux/manager-config';
 
@@ -7,7 +7,6 @@ import { TRANSLATE_NAMESPACE } from './constants';
 
 import Account from './Account';
 import Brand from './Brand';
-import Hamburger from './HamburgerMenu';
 import style from './navbar.module.scss';
 import Search from './Search';
 import Universes from './Universes';
@@ -21,7 +20,9 @@ import { useShell } from '@/context';
 import { useHeader } from '@/context/header';
 import { useUniverses } from '@/hooks/useUniverses';
 import { useMediaQuery } from 'react-responsive';
-import { SMALL_DEVICE_MAX_SIZE } from '@/container/common/constants';
+import { SMALL_DEVICE_MAX_SIZE, MOBILE_WIDTH_RESOLUTION } from '@/container/common/constants';
+
+const HamburgerMenu = React.lazy(() => import('./HamburgerMenu'));
 
 type Props = {
   environment: Environment;
@@ -36,6 +37,10 @@ function Navbar({ environment }: Props): JSX.Element {
   );
   const isSmallDevice = useMediaQuery({
     query: `(max-width: ${SMALL_DEVICE_MAX_SIZE})`,
+  });
+
+  const isMobile = useMediaQuery({
+    query: `(max-width: ${MOBILE_WIDTH_RESOLUTION}px)`,
   });
 
   const [searchURL] = useState<string>();
@@ -74,7 +79,14 @@ function Navbar({ environment }: Props): JSX.Element {
         role="navigation"
         aria-label={t('navbar_menu_name')}
       >
-        <Hamburger universe={universe} universes={getUniverses()} />
+        {isMobile && (
+          <Suspense fallback={<></>}>
+            <HamburgerMenu
+              universe={universe}
+              universes={getUniverses()}
+            />
+          </Suspense>
+        )}
         <Brand
           targetURL={getHubUniverse()?.url || '#'}
           onClick={brandClickHandler}
