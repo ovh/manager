@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-gateway-app@0.9.33...@ovh-ux/manager-pci-gateway-app@0.10.0) (2025-01-31)
+
+
+### Features
+
+* **pci-gateway:** add 3AZ beta ([#14706](https://github.com/ovh/manager/issues/14706)) ([a257e5a](https://github.com/ovh/manager/commit/a257e5af88888e2967daaa4883bb4270ae1a831c))
+
+
+
+
+
 ## [0.9.33](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-gateway-app@0.9.32...@ovh-ux/manager-pci-gateway-app@0.9.33) (2025-01-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-gateway-app

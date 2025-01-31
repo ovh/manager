@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-workflow-app@0.1.21...@ovh-ux/manager-pci-workflow-app@0.2.0) (2025-01-31)
+
+
+### Features
+
+* **pci-workflow:** add price estimation ([#15153](https://github.com/ovh/manager/issues/15153)) ([7324225](https://github.com/ovh/manager/commit/7324225739c9c38f95eb8dc1550af1c0fb902ac2))
+
+
+
+
+
 ## [0.1.21](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-workflow-app@0.1.20...@ovh-ux/manager-pci-workflow-app@0.1.21) (2025-01-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-workflow-app
