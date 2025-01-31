@@ -36,4 +36,36 @@ export default class GdprService {
         .then(({ data }) => data)
     );
   }
+
+  getRequests() {
+    return this.$http
+      .get(`${API_BASE_ROUTE}/me/privacy/requests`, {
+        headers: this.headers,
+      })
+      .then(({ data }) => data);
+  }
+
+  cancelRequestErasure(requestPublicId) {
+    return this.$http
+      .post(
+        `${API_BASE_ROUTE}/me/privacy/requests/erasure/${requestPublicId}/cancel`,
+        null,
+        {
+          headers: this.headers,
+        },
+      )
+      .then(({ data }) => data);
+  }
+
+  confirmationEmailRequestErasure(requestPublicId) {
+    return this.$http
+      .post(
+        `${API_BASE_ROUTE}/me/privacy/requests/erasure/${requestPublicId}/confirmationEmail`,
+        null,
+        {
+          headers: this.headers,
+        },
+      )
+      .then(({ data }) => data);
+  }
 }

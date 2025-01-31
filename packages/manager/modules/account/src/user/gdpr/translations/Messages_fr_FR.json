@@ -12,5 +12,47 @@
   "gdpr_erasure_creation_error": "Une erreur est survenue. Si elle persiste, merci de prendre contact avec l'équipe Support.",
   "gdpr_erasure_creation_unsuccessful": "Votre demande ne peut aboutir. Si l’erreur persiste, merci de prendre contact avec l'équipe Support.",
   "gdpr_erasure_creation_retryable": "Une erreur est survenue et votre demande n'a pas pu aboutir. Merci d'essayer de nouveau dans quelques minutes.",
-  "gdpr_error_identifier": "Code d'erreur:"
+
+  "gdpr_error_identifier": "Code d'erreur:",
+
+  "gdpr_erasure_requests_grid_title": "Vos demandes",
+  "gdpr_erasure_requests_grid_date_column": "Date",
+  "gdpr_erasure_requests_grid_type_column": "Demande",
+  "gdpr_erasure_requests_grid_status_column": "Statut",
+  "gdpr_erasure_requests_grid_ticket_column": "Ticket support",
+  "gdpr_erasure_requests_grid_reasons_column": "Raison",
+  "gdpr_erasure_requests_grid_actions_column": "Actions",
+
+  "gdpr_erasure_requests_grid_action_confirm": "Confirmer la demande",
+  "gdpr_erasure_requests_grid_action_resend_code": "Récupérer votre code",
+  "gdpr_erasure_requests_grid_action_resend_cancel": "Annuler la demande",
+
+  "gdpr_erasure_right_request_type": "Droit d'effacement",
+
+  "gdpr_erasure_request_status_blocked": "En cours avec l'équipe support",
+  "gdpr_erasure_request_status_cancelled": "Annulé",
+  "gdpr_erasure_request_status_completed": "Terminé",
+  "gdpr_erasure_request_status_confirm_verification_code": "Confirmer le code de vérification",
+  "gdpr_erasure_request_status_in_progress": "En cours",
+
+  "gdpr_erasure_request_reason_pending_processing": "La prise en compte de votre demande de suppression de vos données personnelles nécessite un traitement particulier de la part de nos équipes. Un ticket a été créé afin que vous puissiez suivre l'évolution de votre demande.",
+  "gdpr_erasure_request_reason_active_services": "Vous disposez d'un ou plusieurs services actifs sur ce compte, en conséquence nous ne sommes pas en mesure de procéder à la suppression de celui-ci et l'ensemble des données personnelles vous concernant. Pour en savoir plus consultez votre ticket.",
+  "gdpr_erasure_request_reason_credit_balance": "Vous disposez d’un solde créditeur sur ce compte. En conséquence, nous ne pourrons procéder à la suppression de ce compte qu'une fois ce crédit épuisé. Pour connaitre les modalités d’utilisation ou, lorsque cela est possible, de récupération de celui-ci, veuillez contacter notre service support.",
+  "gdpr_erasure_request_reason_debit_balance": "Ce compte présente un solde débiteur qui doit impérativement être réglé afin de pouvoir être supprimé. Vous pouvez contacter notre service support afin de procéder au règlement des sommes dues. Une fois les sommes perçues, vous pourrez effectuer une nouvelle demande de suppression de ce compte.",
+  "gdpr_erasure_request_reason_open_ticket": "Vous avez un (ticket/réclamation) ouvert auprès de nos services. Nous ne pouvons supprimer votre compte tant que ce ticket est ouvert. Nous vous invitons à renouveler votre demande une fois ce ticket fermé.",
+  "gdpr_erasure_request_reason_cancelled": "Demande annulée",
+
+  "gdpr_erasure_cancel_success": "Votre demande a été annulée avec succès.",
+  "gdpr_erasure_cancel_error_missing_nic_or_invalid_request": "Une erreur est survenue. Si l’erreur persiste, merci de prendre contact avec l'équipe Support.",
+  "gdpr_erasure_cancel_already_cancelled": "Votre demande a déjà été annulée.",
+  "gdpr_erasure_cancel_no_longer_possible": "Votre demande ne peut plus être annulée.",
+  "gdpr_erasure_cancel_retryable": "Une erreur est survenue et votre demande n'a pas pu aboutir. Merci d'essayer de nouveau dans quelques minutes.",
+
+  "gdpr_erasure_confirmation_email_sent_success_title": "Vérifiez votre boîte mail.",
+  "gdpr_erasure_confirmation_email_sent_success_description": "Vous allez recevoir (à l'adresse mail principale renseignée dans le compte) un courriel contenant la procédure à suivre. Si le message n’apparaît pas dans votre boîte de réception, recherchez-le dans vos autres dossiers.",
+  "gdpr_erasure_confirmation_email_error_bad_request": "Une erreur est survenue.",
+  "gdpr_erasure_confirmation_email_error_not_found": "Une erreur est survenue. Merci de prendre contact avec l'équipe Support.",
+  "gdpr_erasure_confirmation_email_error_invalid_status": "Le statut de votre demande ne permet pas l'envoi d'une confirmation.",
+  "gdpr_erasure_confirmation_email_error_max_attempts": "Vous avez reçu le nombre maximal de nouveaux e-mails de confirmation. Vous pouvez confirmer votre demande avec l’e-mail de confirmation déjà reçu. Dans le cas contraire nous vous invitons à annuler la demande actuelle ou de prendre contact avec l’équipe Support.",
+  "gdpr_erasure_confirmation_email_error_retryable": "Une erreur est survenue et votre demande n'a pas pu aboutir. Merci d'essayer de nouveau dans quelques minutes."
 }
