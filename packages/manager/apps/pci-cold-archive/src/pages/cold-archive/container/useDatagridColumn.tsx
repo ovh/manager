@@ -4,11 +4,10 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { useBytes } from '@ovh-ux/manager-pci-common';
-import { format } from 'date-fns';
-import { OdsBadge } from '@ovhcloud/ods-components/react';
 import { TArchiveContainer } from '@/api/data/archive';
 import StatusComponent from './Status.components';
 import ActionsComponent from './ActionsComponent';
+import { useFormattedDate } from '@/hooks/useFormattedDate';
 
 export const useDatagridColumn = () => {
   const { t } = useTranslation([
@@ -33,7 +32,7 @@ export const useDatagridColumn = () => {
       id: 'createdAt',
       cell: (props: TArchiveContainer) => (
         <DataGridTextCell>
-          {format(new Date(props.createdAt), 'dd/MM/yyyy HH:mm')}
+          {useFormattedDate(props.createdAt, 'Pp')}
         </DataGridTextCell>
       ),
       label: t(
@@ -71,7 +70,7 @@ export const useDatagridColumn = () => {
         if (props.lockedUntil) {
           return (
             <DataGridTextCell>
-              {format(new Date(props.lockedUntil), 'dd/MM/yyyy HH:mm')}
+              {useFormattedDate(props.lockedUntil, 'Pp')}
             </DataGridTextCell>
           );
         }
@@ -86,6 +85,7 @@ export const useDatagridColumn = () => {
       cell: (props: TArchiveContainer) => (
         <StatusComponent
           status={props.status}
+          name={props.name}
           automaticDeletionAt={props.automaticDeletionAt}
         />
       ),
