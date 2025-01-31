@@ -6,7 +6,7 @@ type EngineTestCase = [database.EngineEnum | string, string];
 
 const testCases: EngineTestCase[] = [
   [database.EngineEnum.cassandra, 'Cassandra'],
-  [database.EngineEnum.grafana, 'Grafana'],
+  [database.EngineEnum.grafana, 'Dashboard'],
   [database.EngineEnum.kafka, 'Kafka'],
   [database.EngineEnum.kafkaConnect, 'Kafka Connect'],
   [database.EngineEnum.kafkaMirrorMaker, 'Kafka MirrorMaker'],

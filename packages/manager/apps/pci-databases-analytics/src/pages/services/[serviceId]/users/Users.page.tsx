@@ -14,6 +14,10 @@ import { useUserActivityContext } from '@/contexts/UserActivityContext';
 import { POLLING } from '@/configuration/polling.constants';
 import { FilterCategories } from '@/lib/filters';
 import UserStatusBadge from './_components/UserStatusBadge.component';
+import { Badge } from '@/components/ui/badge';
+import { DatatableSortableHeader } from '@/components/data-table/DatatableSortableHeader.component';
+import ToggleAcl from './_components/ToggleAcl.component';
+import PatternSubRow from './_components/PatternsSubRow.component';
 
 export function breadcrumb() {
   return (
@@ -34,8 +38,11 @@ const Users = () => {
   const usersQuery = useGetUsers(projectId, service.engine, service.id, {
     refetchInterval: isUserActive && POLLING.USERS,
   });
+  const aclsEnabled = !!('aclsEnabled' in service && service.aclsEnabled);
+
   const columns: ColumnDef<GenericUser>[] = getColumns({
     displayGroupCol: service.engine === database.EngineEnum.m3db,
+    displayACLSCol: aclsEnabled,
     displayRolesCol: [
       database.EngineEnum.mongodb,
       database.EngineEnum.postgresql,
@@ -54,6 +61,15 @@ const Users = () => {
       navigate(`./edit/${user.id}`);
     },
   });
+  let rowExpension = null;
+
+  if (aclsEnabled) {
+    rowExpension = (user: GenericUser) => (
+      <div className="p-4">
+        {'acls' in user && <PatternSubRow user={user} />}
+      </div>
+    );
+  }
 
   const filters = [
     {
@@ -80,6 +96,8 @@ const Users = () => {
   return (
     <>
       <h2>{t('title')}</h2>
+      {service.capabilities.userAcls?.read ===
+        database.service.capability.StateEnum.enabled && <ToggleAcl />}
       {usersQuery.isSuccess ? (
         <DataTable.Provider
           columns={columns}
@@ -108,7 +126,7 @@ const Users = () => {
             <DataTable.FiltersButton />
           </DataTable.Header>
           <DataTable.FiltersList />
-          <DataTable.Table />
+          <DataTable.Table renderRowExpansion={rowExpension} />
           <DataTable.Pagination />
         </DataTable.Provider>
       ) : (
