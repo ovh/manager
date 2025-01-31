@@ -78,6 +78,7 @@
                 <oui-tile-button
                     data-ng-repeat="shortcut in ::$ctrl.shortcuts track by $index"
                     data-href="{{:: shortcut.href }}"
+                    external="shortcut.isExternal"
                 >
                     <span
                         data-translate="{{:: 'user_account_dashboard_shortcut_' + shortcut.key }}"
