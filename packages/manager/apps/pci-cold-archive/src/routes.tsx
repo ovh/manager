@@ -7,6 +7,7 @@ export const ROUTE_PATHS = {
   USER_LIST: 'users',
   MANAGE_CONTAINER: 'manage',
   DELETE_CONTAINER: 'delete-container/:archiveName',
+  ADD_USER_CONTAINER: 'add-user/:archiveName',
 };
 
 const LayoutPage = lazy(() => import('@/pages/Layout'));
@@ -19,6 +20,9 @@ const ManageContainerPage = lazy(() =>
 );
 const DeleteContainerPage = lazy(() =>
   import('@/pages/cold-archive/container/delete/Delete.page'),
+);
+const AddUserContainerPage = lazy(() =>
+  import('@/pages/cold-archive/container/add-user/AddUser.page'),
 );
 
 const RoutesComponent = () => (
@@ -33,6 +37,10 @@ const RoutesComponent = () => (
           <Route
             path={ROUTE_PATHS.DELETE_CONTAINER}
             Component={DeleteContainerPage}
+          />
+          <Route
+            path={ROUTE_PATHS.ADD_USER_CONTAINER}
+            Component={AddUserContainerPage}
           />
         </Route>
       </Route>
