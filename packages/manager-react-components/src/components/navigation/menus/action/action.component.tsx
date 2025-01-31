@@ -31,7 +31,7 @@ export interface ActionMenuItem {
 export interface ActionMenuProps {
   items: ActionMenuItem[];
   isCompact?: boolean;
-  icon?: ODS_ICON_NAME;
+  icon?: any;
   variant?: ODS_BUTTON_VARIANT;
   id: string;
   isDisabled?: boolean;
