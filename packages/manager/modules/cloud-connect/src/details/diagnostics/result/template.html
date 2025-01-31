@@ -45,6 +45,22 @@
         </div>
     </div>
     <div class="row result-output">
+        <div class="action-button">
+            <button
+                class="oui-button oui-button_s oui-button_ghost"
+                data-ng-click="$ctrl.copyToClipboard($ctrl.diagnostic)"
+            >
+                <span
+                    data-ng-class="['oui-icon', {'oui-icon-copy': !$ctrl.copyDone, 'oui-icon-check': $ctrl.copyDone}]"
+                ></span>
+            </button>
+            <button
+                class="oui-button oui-button_s oui-button_ghost"
+                data-ng-click="$ctrl.download($ctrl.diagnostic)"
+            >
+                <span class="fa fa-download"></span>
+            </button>
+        </div>
         <div data-ng-bind="$ctrl.diagnostic.result[0].output"></div>
     </div>
 </oui-modal>

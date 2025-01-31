@@ -26,7 +26,7 @@ export default /* @ngInject */ ($stateProvider) => {
           allowedPopType: cloudConnect.getAllowedPopType(),
         }),
       goToDiagnosticPage: /* @ngInject */ ($state) => (cloudConnect) =>
-        $state.go('cloud-connect.details.diagnostic', {
+        $state.go('cloud-connect.details.diagnostics', {
           cloudConnect,
         }),
       goToRemovePopConfigurationPage: /* @ngInject */ (
@@ -120,6 +120,7 @@ export default /* @ngInject */ ($stateProvider) => {
         cloudConnectId,
         cloudConnectService,
       ) => (message = false, type = 'success', reload = false, vrackId) => {
+        CucCloudMessage.flushChildMessage();
         const state = 'cloud-connect.details.overview';
 
         return $state
