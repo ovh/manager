@@ -90,11 +90,7 @@ export default function MetricPage() {
   }
 
   return (
-    <RedirectionGuard
-      isLoading={false}
-      route={`/pci/projects/${projectId}/ai/endpoints`}
-      condition={false}
-    >
+    <>
       <div className="flex flex-col">
         <div className="flex flex-col md:flex-row">
           <div className="flex mr-8 max-lg:pb-4">
@@ -178,6 +174,6 @@ export default function MetricPage() {
           )}
         </>
       )}
-    </RedirectionGuard>
+    </>
   );
 }

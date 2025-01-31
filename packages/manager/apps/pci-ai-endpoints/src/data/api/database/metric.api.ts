@@ -1,5 +1,10 @@
 import { v6 } from '@ovh-ux/manager-core-api';
-import { PCIEndpoints } from './index';
+
+interface PCIEndpoints {
+  projectId: string;
+  startTime: string;
+  endTime: string;
+}
 
 export const getMetrics = async ({
   projectId,
