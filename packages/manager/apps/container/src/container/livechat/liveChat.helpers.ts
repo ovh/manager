@@ -1,4 +1,4 @@
-import { SnowChatContext } from './LiveChat.component';
+import { SnowChatContext } from '@/types/live-chat.type';
 
 /**
  * Utility function to construct query parameters
