@@ -1,0 +1,15 @@
+{
+  "gdpr_erasure_title": "Supprimer mon compte OVHcloud",
+  "gdpr_erasure_description_emphasis": "Si vous choisissez de supprimer votre compte, vous ne pourrez plus le réactiver. Nous procéderons à la suppression de votre compte après la confirmation.",
+  "gdpr_erasure_description": "Conformément à notre politique d’utilisation des données, certaines des données (notamment logs de connexion, données comptables et financières, etc.) resterons dans nos bases de données afin de nous conformer à nos obligations légales et faire valoir nos droits, et ce, conformément à la réglementation en vigueur.",
+  "gdpr_erasure_cta": "Supprimer mon compte",
+  "gdpr_erasure_confirmation_modal": "Confirmer que vous souhaitez demander la suppression du compte {{nic}}",
+  "gdpr_erasure_confirmation_modal_confirm": "Confirmer la demande",
+  "gdpr_erasure_confirmation_modal_cancel": "Annuler",
+  "gdpr_erasure_creation_success_emphasis": "Nous vous confirmons que votre demande de suppression de compte nous a bien été transmise. Vous recevrez un courriel sur votre adresse de contact principale avec un code vous permettant de confirmer votre demande.",
+  "gdpr_erasure_creation_success_info_1": "Si nous pouvons effacer automatiquement votre compte, vous recevrez un courriel sur votre adresse de contact principale avec un code vous permettant de confirmer la demande d'effacement ;",
+  "gdpr_erasure_creation_success_info_2": "Si nous ne sommes pas en mesure d’effacer votre compte, les motifs vous seront communiqués au sein de l’espace client OVHcloud.",
+  "gdpr_erasure_creation_error": "Une erreur est survenue. Si elle persiste, merci de prendre contact avec l'équipe Support.",
+  "gdpr_erasure_creation_unsuccessful": "Votre demande ne peut aboutir. Si l’erreur persiste, merci de prendre contact avec l'équipe Support.",
+  "gdpr_erasure_creation_retryable": "Une erreur est survenue et votre demande n'a pas pu aboutir. Merci d'essayer de nouveau dans quelques minutes."
+}
