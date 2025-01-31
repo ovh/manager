@@ -1,4 +1,9 @@
 #ovh-cloudConnect-diagnostic-result-modal {
+  @media (min-width: 768px) {
+    width: 1024px;
+    margin: 30px auto;
+  }
+
   .result-output {
     border-radius: 0;
     background-color: black;

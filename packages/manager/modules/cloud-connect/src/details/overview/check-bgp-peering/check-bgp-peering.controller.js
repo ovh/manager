@@ -27,15 +27,28 @@ export default class CheckBGPPeeringCtrl {
         this.diagnosticType,
         this.extraConfigId,
       )
-      .then(() => {
-        return this.goBack(
-          this.$translate.instant('cloud_connect_bgp_peering_success', {
-            link: this.$state.href('cloud-connect.details.diagnostics', {
-              cloudConnect: this.cloudConnectService,
+      .then((response) => {
+        if (response.status === 'todo') {
+          return this.goBack(
+            this.$translate.instant('cloud_connect_bgp_peering_success', {
+              link: this.$state.href('cloud-connect.details.diagnostics', {
+                cloudConnect: this.cloudConnectService,
+              }),
             }),
-          }),
-          'success',
-          false,
+            'success',
+            false,
+          );
+        }
+        if (response.status === 'denied') {
+          return this.goBack(
+            this.$translate.instant('cloud_connect_bgp_peering_denied'),
+            'error',
+            false,
+          );
+        }
+        return this.goBack(
+          this.$translate.instant('cloud_connect_bgp_peering_faild'),
+          'error',
         );
       })
       .catch((error) =>

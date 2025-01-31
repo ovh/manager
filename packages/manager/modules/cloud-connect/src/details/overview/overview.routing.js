@@ -26,7 +26,7 @@ export default /* @ngInject */ ($stateProvider) => {
           allowedPopType: cloudConnect.getAllowedPopType(),
         }),
       goToDiagnosticPage: /* @ngInject */ ($state) => (cloudConnect) =>
-        $state.go('cloud-connect.details.diagnostics', {
+        $state.href('cloud-connect.details.diagnostics', {
           cloudConnect,
         }),
       goToRemovePopConfigurationPage: /* @ngInject */ (

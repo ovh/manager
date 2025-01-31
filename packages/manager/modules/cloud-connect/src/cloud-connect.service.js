@@ -175,7 +175,11 @@ export default class CloudConnectService {
       .expand('CachedObjectList-Pages')
       .execute(null, true)
       .$promise.then(({ data: result }) =>
-        result.map((item) => new CloudConnectDiagnostics(item)),
+        result
+          .sort(function(a, b) {
+            return new Date(b.date) - new Date(a.date);
+          })
+          .map((item) => new CloudConnectDiagnostics(item)),
       );
   }
 
