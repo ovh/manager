@@ -5,11 +5,7 @@ import { GUIDES_LIST } from './user.constants';
 import template from './user.html';
 import controller from './user.controller';
 import { GDPR_FEATURES_FEATURE } from '../account.constants';
-
-const GDPR_REQUEST_MANAGEMENT_ACTIONS = [
-  'account:apiovh:me/privacy/requests/get',
-  'account:apiovh:me/privacy/requests/capabilities/get',
-];
+import { GDPR_REQUEST_MANAGEMENT_ACTIONS } from './gdpr/gdpr.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   const name = 'account.user';
@@ -52,7 +48,7 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       areGdprFeaturesAvailable: /* @ngInject */ (featureAvailability) =>
         featureAvailability[GDPR_FEATURES_FEATURE] || false,
-      canManageGdprRequests: /* @ngInject */ (
+      iamAuthorizations: /* @ngInject */ (
         areGdprFeaturesAvailable,
         Apiv2Service,
       ) => {
@@ -72,17 +68,21 @@ export default /* @ngInject */ ($stateProvider) => {
               data[0].urn,
             )}/authorization/check`,
             data: {
-              actions: GDPR_REQUEST_MANAGEMENT_ACTIONS,
+              actions: GDPR_REQUEST_MANAGEMENT_ACTIONS.map(
+                ({ name: actionName }) => actionName,
+              ),
             },
           })
-            .then(({ data: actions }) =>
-              GDPR_REQUEST_MANAGEMENT_ACTIONS.every((action) =>
-                actions.authorizedActions.includes(action),
-              ),
-            )
-            .catch(() => false);
+            .then(({ data: actions }) => actions)
+            .catch(() => []);
         });
       },
+      canManageGdprRequests: /* @ngInject */ (iamAuthorizations) =>
+        GDPR_REQUEST_MANAGEMENT_ACTIONS.every(
+          (action) =>
+            !action.mandatory ||
+            iamAuthorizations.authorizedActions.includes(action.name),
+        ),
     },
   });
 };
