@@ -40,6 +40,11 @@
         <oui-header-tabs-item data-state="{{:: $ctrl.datastoresState }}"
             ><span data-translate="dedicatedCloud_tab_datastore"></span
         ></oui-header-tabs-item>
+        <oui-header-tabs-item
+            data-ng-if=":: $ctrl.isNsxtCompatible"
+            data-state="{{:: $ctrl.networkState }}"
+            ><span data-ng-bind=":: $ctrl.NETWORK_LABEL"></span
+        ></oui-header-tabs-item>
         <oui-header-tabs-item data-state="{{:: $ctrl.backupState }}"
             ><span data-translate="dedicatedCloud_tab_backup"></span
         ></oui-header-tabs-item>
