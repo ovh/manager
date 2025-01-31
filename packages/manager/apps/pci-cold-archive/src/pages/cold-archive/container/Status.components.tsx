@@ -1,7 +1,13 @@
 import { DataGridTextCell } from '@ovh-ux/manager-react-components';
-import { OdsBadge, OdsText } from '@ovhcloud/ods-components/react';
+import {
+  OdsBadge,
+  OdsPopover,
+  OdsText,
+  OdsTooltip,
+} from '@ovhcloud/ods-components/react';
 import { format } from 'date-fns';
 import { useTranslation } from 'react-i18next';
+import { useFormattedDate } from '@/hooks/useFormattedDate';
 
 export const COLD_ARCHIVE_CONTAINER_STATUS_LABEL = {
   ARCHIVED: 'success',
@@ -25,8 +31,9 @@ export const COLD_ARCHIVE_CONTAINER_STATUS = {
 
 export default function StatusComponent({
   status,
+  name,
   automaticDeletionAt,
-}: Readonly<{ status: string; automaticDeletionAt: string }>) {
+}: Readonly<{ status: string; name: string; automaticDeletionAt: string }>) {
   const { t } = useTranslation('cold-archive, cold-archive/containers');
   return (
     <DataGridTextCell>
@@ -39,14 +46,25 @@ export default function StatusComponent({
       />
       {status === COLD_ARCHIVE_CONTAINER_STATUS.RESTORED &&
         automaticDeletionAt && (
-          <OdsText preset="span" className="block mt-4">
-            {t(
-              'cold-archive/containers:pci_projects_project_storages_cold_archive_containers_status_restore_date',
-              {
-                date: format(new Date(automaticDeletionAt), 'dd/MM/yyyy HH:mm'),
-              },
-            )}
-          </OdsText>
+          <>
+            <OdsText
+              preset="span"
+              className="block mt-4"
+              id={`popover-${name}`}
+            >
+              {t(
+                'cold-archive/containers:pci_projects_project_storages_cold_archive_containers_status_restore_date',
+                {
+                  date: useFormattedDate(automaticDeletionAt, 'Pp'),
+                },
+              )}
+            </OdsText>
+            <OdsTooltip triggerId={`popover-${name}`} withArrow>
+              {t(
+                'cold-archive/containers:pci_projects_project_storages_cold_archive_containers_status_restore_date_tooltip',
+              )}
+            </OdsTooltip>
+          </>
         )}
     </DataGridTextCell>
   );
