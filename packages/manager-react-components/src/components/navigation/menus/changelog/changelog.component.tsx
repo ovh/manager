@@ -2,6 +2,7 @@ import React from 'react';
 import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { OdsPopover, OdsButton } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { Links, LinkType } from '../../../typography';
 import '../translations/translation';
 
@@ -15,8 +16,6 @@ export interface ChangelogButtonProps {
   links: ChangelogLinks;
   chapters?: string[];
 }
-
-import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 export const CHANGELOG_PREFIXES = ['tile-changelog-roadmap', 'external-link'];
 const GO_TO = (link: string) => `go-to-${link}`;
