@@ -51,10 +51,9 @@ exports[`ContainerNameStep > renders the component 1`] = `
         </ods-form-field>
       </div>
       <div
-        class="flex mt-6"
+        class="flex items-center gap-6 mt-6"
       >
         <div
-          class="mt-6"
           data-testid="next"
         >
           <ods-button
