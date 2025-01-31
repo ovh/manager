@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.77.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.76.2...@ovh-ux/manager-pci@6.77.0) (2025-01-31)
+
+
+### Bug Fixes
+
+* **pci-volume-backup:** handle volumeId selection error ([#15204](https://github.com/ovh/manager/issues/15204)) ([ccc2328](https://github.com/ovh/manager/commit/ccc2328db1b57b889d2724bea2af9fd206f3d13e))
+
+
+### Features
+
+* **pci-volume-backup:** configure volume backup and snapshot for 3AZ ([#15035](https://github.com/ovh/manager/issues/15035)) ([b27938a](https://github.com/ovh/manager/commit/b27938ae5dcb8f9a8ee69fe470084de102e0636d))
+* **pci.instances:** add 3AZ region selector ([#15026](https://github.com/ovh/manager/issues/15026)) ([a6bff48](https://github.com/ovh/manager/commit/a6bff4897e2394ea97b327eba9f6ec1f3024dd39))
+* **pci.instances:** assign floatingip ([#15203](https://github.com/ovh/manager/issues/15203)) ([f117d3d](https://github.com/ovh/manager/commit/f117d3d5200c5bd1979b80873f50003898b7156a))
+
+
+
+
+
 ## [6.76.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.76.1...@ovh-ux/manager-pci@6.76.2) (2025-01-23)
 
 

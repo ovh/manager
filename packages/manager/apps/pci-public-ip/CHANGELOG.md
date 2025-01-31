@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.9.10...@ovh-ux/manager-pci-public-ip-app@0.10.0) (2025-01-31)
+
+
+### Bug Fixes
+
+* **pci-public-ip:** select gateway by region & lowest price ([#14983](https://github.com/ovh/manager/issues/14983)) ([3d1325c](https://github.com/ovh/manager/commit/3d1325ceede07633b37f4369435e957ca598c302))
+
+
+### Features
+
+* **pci-public-ip:** add 3AZ beta ([#14708](https://github.com/ovh/manager/issues/14708)) ([a095819](https://github.com/ovh/manager/commit/a095819d2a3f5efc5283eb23c774f13b728bdb6b))
+* **pci.public-ip:** get hourly price by plan code ([#14955](https://github.com/ovh/manager/issues/14955)) ([e5c9d80](https://github.com/ovh/manager/commit/e5c9d809b24ee7902781748bb203881755444f50))
+
+
+
+
+
 ## [0.9.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.9.9...@ovh-ux/manager-pci-public-ip-app@0.9.10) (2025-01-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-public-ip-app
