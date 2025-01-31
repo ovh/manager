@@ -14,3 +14,4 @@ packages/manager/apps/**/dev.proxy.config.mjs
 playwright-helpers/config.ts
 test-results
 e2e-dist
+coverage
