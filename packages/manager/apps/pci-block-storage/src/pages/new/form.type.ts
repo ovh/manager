@@ -1,9 +1,11 @@
-import { TAddon } from '@ovh-ux/manager-pci-common';
-import { TLocalisation } from '@/api/hooks/useRegions';
+import { TVolumeAddon, TVolumePricing } from '@/api/data/catalog';
+import { TRegion } from '@/api/data/regions';
 
 export type TFormState = {
-  region: TLocalisation;
-  volumeType: TAddon;
+  region: TRegion;
+  volumeType: TVolumeAddon;
+  pricing: TVolumePricing;
   volumeName: string;
   volumeCapacity: number;
+  availabilityZone: string;
 };

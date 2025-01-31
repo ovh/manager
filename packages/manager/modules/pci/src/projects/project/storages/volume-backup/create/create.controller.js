@@ -15,11 +15,14 @@ export default class VolumeBackupCreateController {
     CucCloudMessage,
     CucCurrencyService,
     VolumeBackupService,
+    coreConfig,
   ) {
     this.$translate = $translate;
     this.cucCloudMessage = CucCloudMessage;
     this.cucCurrencyService = CucCurrencyService;
     this.volumeBackupService = VolumeBackupService;
+    this.coreConfig = coreConfig;
+    this.user = coreConfig.getUser();
   }
 
   $onInit() {
@@ -28,6 +31,12 @@ export default class VolumeBackupCreateController {
 
     this.isCreating = false;
     this.loadMessages();
+    this.volumePrices = {};
+    this.computeVolumePrices();
+    this.snapshotAvailabilityData = null;
+    this.loadSnapshotAvailability();
+    this.backupAvailabilityData = null;
+    this.loadBackupAvailability();
   }
 
   loadMessages() {
@@ -44,18 +53,70 @@ export default class VolumeBackupCreateController {
     this.messages = this.messageHandler.getMessages();
   }
 
+  loadSnapshotAvailability() {
+    this.volumeBackupService
+      .getSnapshotProductAvailability(this.projectId, this.user.ovhSubsidiary)
+      .then((data) => {
+        this.snapshotAvailabilityData = data;
+        this.computeVolumePrices();
+      });
+  }
+
+  loadBackupAvailability() {
+    this.volumeBackupService
+      .getBackupProductAvailability(this.projectId, this.user.ovhSubsidiary)
+      .then((data) => {
+        this.backupAvailabilityData = data;
+        this.computeVolumePrices();
+      });
+  }
+
   getVolumeAddon(volumeOption) {
+    if (this.volumeBackupModel.selected.volume) {
+      const addons = this.volumesAddons.filter(({ planCode }) =>
+        planCode.startsWith(volumeOption.planCode),
+      );
+
+      const availableProductsInRegion =
+        (volumeOption.id === 'volume_snapshot'
+          ? this.snapshotAvailabilityData
+          : this.backupAvailabilityData
+        )?.plans.filter(({ regions }) =>
+          regions.some(
+            (r) => r.name === this.volumeBackupModel.selected.volume.region,
+          ),
+        ) || [];
+
+      return addons.find(({ planCode }) =>
+        availableProductsInRegion.some(({ code }) => planCode === code),
+      );
+    }
     return this.volumesAddons.find(
       ({ planCode }) => planCode === volumeOption.planCode,
     );
   }
 
   formatVolumePrice(volumeOption) {
-    const { price } = this.getVolumeAddon(volumeOption).pricings[0];
-    const convertPrice = this.cucCurrencyService.convertUcentsToCurrency(price);
-    const priceCurrency = this.cucCurrencyService.getCurrentCurrency();
+    const volumeAddon = this.getVolumeAddon(volumeOption);
+    const price = volumeAddon?.pricings[0]?.price;
+    if (typeof price === 'number') {
+      const convertPrice = this.cucCurrencyService.convertUcentsToCurrency(
+        price * 730,
+      );
+      const priceCurrency = this.cucCurrencyService.getCurrentCurrency();
 
-    return `${convertPrice}${priceCurrency}`;
+      return `${convertPrice}${priceCurrency}`;
+    }
+    return null;
+  }
+
+  computeVolumePrices() {
+    this.volumePrices = Object.fromEntries(
+      VOLUMES_OPTIONS.map((volumeOption) => [
+        volumeOption.id,
+        this.formatVolumePrice(volumeOption),
+      ]),
+    );
   }
 
   isVolumeBackupOption() {
@@ -216,6 +277,7 @@ export default class VolumeBackupCreateController {
       volume,
       this.volumeBackupModel.selected.volumeOption,
     );
+    this.computeVolumePrices();
   }
 
   onVolumeTypeChange(volumeType) {

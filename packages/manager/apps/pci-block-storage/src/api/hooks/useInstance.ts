@@ -11,8 +11,7 @@ export const getInstanceQueryKey = (projectId: string, instanceId: string) => [
 export const useInstance = (projectId: string, instanceId: string) =>
   useQuery({
     queryKey: getInstanceQueryKey(projectId, instanceId),
-    queryFn: (): Promise<Required<Instance>> =>
-      getInstance(projectId, instanceId),
+    queryFn: (): Promise<Instance> => getInstance(projectId, instanceId),
     enabled: !!instanceId,
   });
 
@@ -25,7 +24,7 @@ export const getInstancesQueryKey = (projectId: string, region: string) => [
 export const useInstances = (projectId: string, region: string) =>
   useQuery({
     queryKey: getInstancesQueryKey(projectId, region),
-    queryFn: (): Promise<Required<Instance>[]> =>
-      getInstancesByRegion(projectId, region) as Promise<Required<Instance>[]>,
+    queryFn: (): Promise<Instance[]> =>
+      getInstancesByRegion(projectId, region) as Promise<Instance[]>,
     enabled: !!region,
   });

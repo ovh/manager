@@ -36,7 +36,6 @@ export const useGetFloatingIps = (projectId: string, region: string) => {
     queryKey: ['project', projectId, 'region', region, 'floating-ips'],
     queryFn: () => getFloatingIps(projectId, region),
     enabled: !!projectId && !!region,
-    throwOnError: true,
   });
 
   const defaultFloatingIp = useDefaultFloatingIp();

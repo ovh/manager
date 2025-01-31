@@ -4,6 +4,8 @@ export const CLOUD_INSTANCE_DEFAULTS = {
   flavor: 'b2-30',
 };
 
+export const BETA = 'beta';
+
 export const CLOUD_INSTANCE_DEFAULT_FALLBACK = {
   region: 'WAW1',
   image: 'Ubuntu 16.04',
@@ -15,6 +17,9 @@ export const TAGS_BLOB = {
   IS_NEW: 'is_new',
   COMING_SOON: 'coming_soon',
 };
+
+export const FLOATINGIP_ADDON_FAMILY = 'floatingip';
+export const FLOATINGIP_PLANCODE = 'floatingip.floatingip.hour.consumption';
 
 export const CLOUD_FLAVOR_SPECIFIC_IMAGE = ['g1', 'g2', 'g3', 't1'];
 
@@ -628,4 +633,7 @@ export default {
   PCI_SPECIAL_CONDITIONS,
   TRACKING_CLOUD,
   TAGS_BLOB,
+  FLOATINGIP_ADDON_FAMILY,
+  FLOATINGIP_PLANCODE,
+  BETA,
 };
