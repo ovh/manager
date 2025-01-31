@@ -81,7 +81,7 @@ const ServiceKeyStateActions = ({
             variant={ODS_BUTTON_VARIANT.ghost}
             size={ODS_BUTTON_SIZE.sm}
             iconAlignment={ODS_BUTTON_ICON_ALIGNMENT.right}
-            icon={getActionIcon(action.id)}
+            icon={getActionIcon(action.id) as any}
           />
         ))}
     </div>
