@@ -55,12 +55,18 @@ export /* @ngInject */ function trackOnDirective(atInternet) {
       trackOn: '@',
       trackName: '@',
       trackType: '@',
+      trackCategory: '@',
+      trackTheme: '@',
+      trackPage: '@',
     },
     link($scope, $element, $attr) {
       $element.on($scope.trackOn, () => {
         const clickData = {
           name: $attr.trackName || `${$attr.id}-${$scope.trackOn}`,
           type: $attr.trackType || 'action',
+          page_category: $attr.trackCategory,
+          page_theme: $attr.trackTheme,
+          page: { name: $attr.trackPage },
         };
 
         atInternet.trackClick(clickData);
