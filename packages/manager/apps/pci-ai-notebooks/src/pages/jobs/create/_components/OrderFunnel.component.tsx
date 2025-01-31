@@ -49,7 +49,6 @@ import { useModale } from '@/hooks/useModale';
 import CliEquivalent from './CliEquivalent.component';
 import { getJobSpec } from '@/lib/orderFunnelHelper';
 import A from '@/components/links/A.component';
-import { getHowToManageDataInAIDocLink } from '@/configuration/guide';
 import { useLocale } from '@/hooks/useLocale';
 import OvhLink from '@/components/links/OvhLink.component';
 import { useOrderFunnel } from './useOrderFunnel.hook';
@@ -58,6 +57,7 @@ import OrderSummary from './OrderSummary.component';
 import { useAddJob } from '@/hooks/api/ai/job/useAddJob.hook';
 import ImagesSelect from '@/components/order/docker-image/DockerImageSelect.component';
 import DockerCommand from '@/components/order/docker-command/DockerCommand.component';
+import { GUIDES, getGuideUrl } from '@/configuration/guide';
 
 interface OrderJobsFunnelProps {
   regions: ai.capabilities.Region[];
@@ -442,7 +442,10 @@ const OrderFunnel = ({
                             </p>
                             <p>{t('fieldVolumeDescription2')}</p>
                             <A
-                              href={getHowToManageDataInAIDocLink(locale)}
+                              href={getGuideUrl(
+                                GUIDES.HOW_TO_MANAGE_DATA,
+                                locale,
+                              )}
                               target="_blank"
                               rel="noopener noreferrer"
                             >
