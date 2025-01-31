@@ -1,11 +1,11 @@
 import { useTranslation } from 'react-i18next';
 import {
-  OdsClipboard,
   OdsFormField,
   OdsMessage,
   OdsPassword,
   OdsText,
 } from '@ovhcloud/ods-components/react';
+import { Clipboard } from '@ovh-ux/manager-react-components';
 import LabelComponent from '@/components/Label.component';
 import { TUser } from '@/api/data/user';
 
@@ -48,7 +48,7 @@ export default function UserInformationTile({
                 'pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_username_label',
               )}
             />
-            <OdsClipboard className="w-[100%]" value={user.username} />
+            <Clipboard className="w-[100%]" value={user.username} />
           </OdsFormField>
 
           <OdsFormField>
@@ -57,7 +57,7 @@ export default function UserInformationTile({
                 'pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_access-key_label',
               )}
             />
-            <OdsClipboard
+            <Clipboard
               className="w-[100%]"
               value={user.s3Credentials?.access}
             />
@@ -69,7 +69,7 @@ export default function UserInformationTile({
                 'pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_description_label',
               )}
             />
-            <OdsClipboard className="w-[100%]" value={user.description} />
+            <Clipboard className="w-[100%]" value={user.description} />
           </OdsFormField>
 
           <OdsFormField>
