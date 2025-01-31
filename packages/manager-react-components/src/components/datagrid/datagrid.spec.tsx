@@ -105,6 +105,7 @@ describe('Paginated datagrid component', () => {
       // Mock the properties or methods used from internals
       setValidity: vitest.fn(),
       states: new Set(),
+      setFormValue: vitest.fn(),
     }));
   });
 
