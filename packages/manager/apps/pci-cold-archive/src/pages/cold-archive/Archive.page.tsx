@@ -1,4 +1,8 @@
-import { TabsPanel, useProject } from '@ovh-ux/manager-pci-common';
+import {
+  TabsPanel,
+  useProductRegionsAvailability,
+  useProject,
+} from '@ovh-ux/manager-pci-common';
 import {
   BaseLayout,
   PciGuidesHeader,
@@ -15,8 +19,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { ROUTE_PATHS } from '@/routes';
-import { useArchive } from '@/api/hooks/useArchive';
-import { useProductRegionsAvailability } from '@/api/hooks/useProductRegionsAvailability';
+import { useArchives } from '@/api/hooks/useArchive';
 
 export default function ObjectsPage() {
   const { t } = useTranslation('cold-archive');
@@ -27,10 +30,13 @@ export default function ObjectsPage() {
   const {
     data: regions,
     isPending: isRegionsPending,
-  } = useProductRegionsAvailability(ovhSubsidiary);
-  const { data: allArchives, isPending: isPendingArchive } = useArchive(
+  } = useProductRegionsAvailability(
+    ovhSubsidiary,
+    'coldarchive.archive.hour.consumption',
+  );
+  const { data: allArchives, isPending: isPendingArchive } = useArchives(
     project.project_id,
-    regions ? regions[0] : '',
+    regions?.[0],
   );
 
   const tabs = [
@@ -65,7 +71,10 @@ export default function ObjectsPage() {
         breadcrumb={
           <OdsBreadcrumb>
             <OdsBreadcrumbItem label={project.description} href={hrefProject} />
-            <OdsBreadcrumbItem label={activePanelTranslation} href="#" />
+            <OdsBreadcrumbItem
+              label={t('pci_projects_project_storages_cold_archive_label')}
+              href="#"
+            />
           </OdsBreadcrumb>
         }
         header={{
