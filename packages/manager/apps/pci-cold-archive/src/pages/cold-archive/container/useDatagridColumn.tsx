@@ -5,7 +5,6 @@ import {
 import { useTranslation } from 'react-i18next';
 import { useBytes } from '@ovh-ux/manager-pci-common';
 import { format } from 'date-fns';
-import { OdsBadge } from '@ovhcloud/ods-components/react';
 import { TArchiveContainer } from '@/api/data/archive';
 import StatusComponent from './Status.components';
 import ActionsComponent from './ActionsComponent';
@@ -86,6 +85,7 @@ export const useDatagridColumn = () => {
       cell: (props: TArchiveContainer) => (
         <StatusComponent
           status={props.status}
+          name={props.name}
           automaticDeletionAt={props.automaticDeletionAt}
         />
       ),
