@@ -17,7 +17,7 @@ import {
 import { COMPUTE_LABEL } from '../datacentreDashboard.constants';
 import { VHOSTS_LABEL } from '../compute/datacentreCompute.constants';
 
-describe.skip('Datacentre Compute Listing Page', () => {
+describe('Datacentre Compute Listing Page', () => {
   it('access and display compute listing page', async () => {
     const { container } = await renderTest({
       initialRoute: `/${organizationList[0].id}/datacentres/${datacentreList[0].id}`,

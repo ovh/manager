@@ -16,7 +16,7 @@ import {
 } from '../../../../test-utils';
 import { STORAGE_LABEL } from '../datacentreDashboard.constants';
 
-describe.skip('Datacentre Storage Listing Page', () => {
+describe('Datacentre Storage Listing Page', () => {
   it('access and display storage listing page', async () => {
     const { container } = await renderTest({
       initialRoute: `/${organizationList[0].id}/datacentres/${datacentreList[0].id}`,

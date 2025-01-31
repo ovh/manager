@@ -33,7 +33,7 @@ export default function EditableTileItem({
         <Suspense>
           <ManagerButton
             className="ml-6"
-            data-testid="editIcon"
+            data-testid="editButton"
             iamActions={iamActions}
             urn={urn}
             onClick={onClickEdit}
@@ -47,6 +47,7 @@ export default function EditableTileItem({
               name={ODS_ICON_NAME.PEN}
               size={ODS_ICON_SIZE.xs}
               color={ODS_THEME_COLOR_INTENT.primary}
+              data-testid="editIcon"
             />
           </ManagerButton>
         </Suspense>

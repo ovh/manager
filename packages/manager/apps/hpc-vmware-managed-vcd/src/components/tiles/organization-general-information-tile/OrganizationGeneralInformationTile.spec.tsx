@@ -6,6 +6,8 @@ import {
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
 import React from 'react';
+import { VCDOrganization } from '@ovh-ux/manager-module-vcd-api';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import OrganizationGeneralInformationTile from './OrganizationGeneralInformationTile.component';
 
 vi.mock('react-router-dom', () => ({
@@ -13,7 +15,7 @@ vi.mock('react-router-dom', () => ({
   useParams: () => ({ id: 'id' }),
 }));
 
-describe.skip('OrganizationGeneralInformationTile component unit test suite', () => {
+describe('OrganizationGeneralInformationTile component unit test suite', () => {
   it('should define all sections with correct typo', () => {
     // given
     const vcdOrg = {
@@ -39,9 +41,17 @@ describe.skip('OrganizationGeneralInformationTile component unit test suite', ()
     };
 
     // when
-    const { getByText } = render(
-      <OrganizationGeneralInformationTile vcdOrganization={vcdOrg} />,
-    );
+    const renderComponent = () => {
+      const queryClient = new QueryClient();
+      return render(
+        <QueryClientProvider client={queryClient}>
+          <OrganizationGeneralInformationTile
+            vcdOrganization={vcdOrg as VCDOrganization}
+          />
+        </QueryClientProvider>,
+      );
+    };
+    const { getByText } = renderComponent();
 
     // then
     const title = getByText('managed_vcd_dashboard_general_information');

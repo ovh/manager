@@ -29,6 +29,7 @@ import {
   getAuthenticationMocks,
   toMswHandlers,
 } from '@ovh-ux/manager-core-test-utils';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { translations } from './test-i18n';
 import { TestApp } from './TestApp';
 import { APP_NAME } from '@/tracking.constant';
@@ -67,12 +68,16 @@ export const renderTest = async ({
     i18nState = await initTestI18n(APP_NAME, translations);
   }
 
+  const queryClient = new QueryClient();
+
   const result = render(
-    <I18nextProvider i18n={i18nState}>
-      <ShellContext.Provider value={context}>
-        <TestApp initialRoute={initialRoute} />
-      </ShellContext.Provider>
-    </I18nextProvider>,
+    <QueryClientProvider client={queryClient}>
+      <I18nextProvider i18n={i18nState}>
+        <ShellContext.Provider value={context}>
+          <TestApp initialRoute={initialRoute} />
+        </ShellContext.Provider>
+      </I18nextProvider>
+    </QueryClientProvider>,
   );
 
   if (!initialRoute || initialRoute === '/') {

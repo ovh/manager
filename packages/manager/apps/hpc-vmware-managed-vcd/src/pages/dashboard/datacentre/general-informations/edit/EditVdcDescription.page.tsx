@@ -9,7 +9,6 @@ import {
 import { validateDescription } from '@/utils/formValidation';
 import { EditDetailModal } from '@/components/modal/EditDetailModal';
 import { useMessageContext } from '@/context/Message.context';
-import { subRoutes } from '@/routes/routes.constant';
 
 export default function EditVdcDescription() {
   const { t } = useTranslation('dashboard');
@@ -24,8 +23,7 @@ export default function EditVdcDescription() {
     onSuccess: () => {
       addSuccess({
         content: t('managed_vcd_dashboard_edit_description_modal_success'),
-        includedSubRoutes: [id],
-        excludedSubRoutes: [subRoutes.datacentres],
+        includedSubRoutes: [vdcId],
       });
       closeModal();
     },

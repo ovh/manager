@@ -14,14 +14,14 @@ import {
   mockEditInputValue,
   renderTest,
   mockSubmitNewValue,
-} from '@/test-utils';
+} from '../../../../test-utils';
 
 const submitButtonLabel =
   labels.dashboard.managed_vcd_dashboard_edit_modal_cta_edit;
 
-describe.skip('Datacentre General Information Page', () => {
+describe('Datacentre General Information Page', () => {
   // To rework
-  it.skip('modify the description of the datacentre', async () => {
+  it('modify the description of the datacentre', async () => {
     const { container } = await renderTest({
       initialRoute: `/${organizationList[0].id}/datacentres/${datacentreList[0].id}`,
     });
@@ -54,7 +54,7 @@ describe.skip('Datacentre General Information Page', () => {
               .managed_vcd_dashboard_edit_description_modal_success,
           ),
         ).toBeVisible(),
-      { timeout: DEFAULT_TIMEOUT },
+      WAIT_FOR_DEFAULT_OPTIONS,
     );
   });
 

@@ -11,7 +11,7 @@ const orderCTA = labels.datacentresStorage.managed_vcd_vdc_storage_order_cta;
 const orderTitle = labels.datacentresOrder.managed_vcd_vdc_order_storage_title;
 const orderError = labels.datacentresOrder.managed_vcd_vdc_order_unavailable;
 
-describe.skip('Datacentre Storage Order Page', () => {
+describe('Datacentre Storage Order Page', () => {
   it('access and display storage order page', async () => {
     await renderTest({
       initialRoute: `/${organizationList[0].id}/datacentres/${datacentreList[0].id}/storage`,

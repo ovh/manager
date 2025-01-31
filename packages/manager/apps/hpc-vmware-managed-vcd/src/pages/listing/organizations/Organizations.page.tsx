@@ -92,15 +92,6 @@ export default function Listing() {
     },
   ];
 
-  console.info('*****************');
-  console.info('*****************');
-  console.info('*****************');
-  console.info('*****************');
-  console.info('*****************');
-  console.info('*****************');
-  console.info('*****************');
-  console.info('client : ', client);
-
   if (!client) {
     return <div>test</div>;
   }
