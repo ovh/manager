@@ -1,5 +1,5 @@
 {
-  "title": "Assistant de pré-installation SAP - Étape {{step}}/8",
+  "title": "Assistant de pré-installation SAP - Étape {{step}}/{{total}}",
   "description": "Cet assistant vous guide pour réaliser une pré-installation d'un système SAP.",
   "backlink_label": "Retour au SAP Features Hub",
   "invalid_input": "Veuillez saisir une valeur correcte selon le format attendu.",
