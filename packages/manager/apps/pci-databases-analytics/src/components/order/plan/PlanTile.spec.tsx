@@ -61,7 +61,11 @@ describe('PlanTile component', () => {
     );
     await waitFor(() => {
       const BadgeTestId = `plan-tile-badge-${fullPlan.tags[0]}`;
-      expect(screen.getByTestId('plan-tile-radio-tile')).toBeInTheDocument();
+      expect(
+        screen.getByTestId(
+          `plan-tile-radio-tile-${mockedBasicOrderFunnelPlan.name}`,
+        ),
+      ).toBeInTheDocument();
       expect(screen.getByTestId(BadgeTestId)).toBeInTheDocument();
       expect(screen.getByTestId('plan-tile-ram-range')).toBeInTheDocument();
       expect(screen.getByTestId('plan-tile-cpu-range')).toBeInTheDocument();
@@ -144,7 +148,11 @@ describe('PlanTile component', () => {
       />,
     );
     act(() => {
-      fireEvent.click(screen.getByTestId('plan-tile-radio-tile'));
+      fireEvent.click(
+        screen.getByTestId(
+          `plan-tile-radio-tile-${mockedBasicOrderFunnelPlan.name}`,
+        ),
+      );
     });
     await waitFor(() => {
       expect(onChange).toHaveBeenCalled();

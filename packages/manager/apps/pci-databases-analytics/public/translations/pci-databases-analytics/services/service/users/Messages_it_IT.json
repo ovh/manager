@@ -65,5 +65,21 @@
   "formUserRoleInputAdminRoles": "Ruoli di amministratore",
   "formUserRoleInputCustomRoles": "Ruoli personalizzati",
   "formUserRoleDatabaseInputPlaceholder": "Database personalizzati",
-  "formUserRoleDatabaseConfiguredRoles": "Ruoli configurati:"
+  "formUserRoleDatabaseConfiguredRoles": "Ruoli configurati:",
+  "tableHeadACLs": "ACL",
+  "tableHeadPattern": "Pattern",
+  "tableHeadPermission": "Permesso",
+  "toggleACLsLabel": "Attiva le ACL",
+  "toggleAclErrorTitle": "Si è verificato un errore durante l'aggiornamento del servizio",
+  "toggleAclSuccessTitle": "Risultato",
+  "toggleAclEnabledSuccessDescription": "Le ACL sono attivate per il tuo servizio",
+  "toggleAclADisabledSuccessDescription": "Le ACL sono ora disattivate per il tuo servizio",
+  "formUserFieldAclsLabel": "ACL",
+  "formUserAclPatternAlertInfo": "I pattern utilizzano il sistema standard di corrispondenza, noto anche come standard glob pattern ('*' funziona per qualsiasi numero di caratteri e '?' per qualsiasi carattere). Ad esempio, il modello 'logs_200?' funzionerà per la corrispondenza dell'indice 'logs_200904' ma non 'logs_201904'.",
+  "formUserAclPatternInputLabel": "Pattern",
+  "formUserAclPermissionInputLabel": "Permesso",
+  "formUserAclConfiguredAcls": "ACL configurati",
+  "formUseAclPatternErrorPattern": "Il pattern può contenere solo lettere, cifre, trattini, underscore, punti, asterischi o punti interrogativi.",
+  "formUserInvalidPermission": "Seleziona un permesso valido dalla lista: {values}",
+  "formUserAclDuplicate": "Una ACL simile è già configurata"
 }
