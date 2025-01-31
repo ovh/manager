@@ -5,17 +5,17 @@ import {
   OdsSpinner,
   OdsLink,
   OdsFormField,
-  OdsClipboard,
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useContext } from 'react';
-import { MANAGE_ARCHIVE_DOC_LINK } from '@/constants';
+import { Clipboard } from '@ovh-ux/manager-react-components';
 import {
-  useArchiveRegionDetails,
   useProductRegionsAvailability,
-} from '@/api/hooks/useProductRegionsAvailability';
+  useProjectRegionDetails,
+} from '@ovh-ux/manager-pci-common';
+import { MANAGE_ARCHIVE_DOC_LINK } from '@/constants';
 import LabelComponent from '@/components/Label.component';
 
 export default function Manage() {
@@ -34,15 +34,16 @@ export default function Manage() {
   const {
     data: regions,
     isPending: isRegionsPending,
-  } = useProductRegionsAvailability(ovhSubsidiary);
+  } = useProductRegionsAvailability(
+    ovhSubsidiary,
+    'coldarchive.archive.hour.consumption',
+  );
 
   const {
     data: archiveRegion,
     isPending: isArchiveRegionPending,
-  } = useArchiveRegionDetails(projectId, regions ? regions[0] : '');
-  const getDocumentationUrl = () => {
-    return MANAGE_ARCHIVE_DOC_LINK[ovhSubsidiary];
-  };
+  } = useProjectRegionDetails(projectId, regions?.[0]);
+  const documentationUrl = MANAGE_ARCHIVE_DOC_LINK[ovhSubsidiary];
 
   const endpoint = archiveRegion?.services[0]?.endpoint;
 
@@ -60,49 +61,39 @@ export default function Manage() {
             data-testid="pciModal-spinner"
           />
         ) : (
-          <div className="mt-6 mb-8">
+          <div className="flex flex-col gap-6 mt-6 mb-8">
             <OdsLink
               icon="external-link"
-              href={getDocumentationUrl()}
+              href={documentationUrl}
               label={t(
                 'pci_projects_project_storages_cold_archive_container_manage_documentation_link',
               )}
             />
-            <OdsText preset="paragraph" className="mt-6">
+            <OdsText preset="paragraph">
               {t(
                 'pci_projects_project_storages_cold_archive_container_manage_description_1',
               )}
             </OdsText>
-            <OdsText preset="paragraph" className="mt-6">
+            <OdsText preset="paragraph">
               {t(
                 'pci_projects_project_storages_cold_archive_container_manage_description_2',
               )}
             </OdsText>
-            <OdsFormField className="w-full mt-6">
+            <OdsFormField className="w-full">
               <LabelComponent
                 text={t(
                   'pci_projects_project_storages_cold_archive_containers_container_manage_endpoint_label',
                 )}
               />
-              <OdsClipboard
-                value={endpoint}
-                className="w-full"
-                labelCopy={t('pci-common:common_clipboard_copy_to_clipboard')}
-                labelCopySuccess={t('pci-common:common_clipboard_copied')}
-              />
+              <Clipboard value={endpoint} className="w-full" />
             </OdsFormField>
-            <OdsFormField className="w-full mt-6">
+            <OdsFormField className="w-full">
               <LabelComponent
                 text={t(
                   'pci_projects_project_storages_cold_archive_containers_container_manage_region_label',
                 )}
               />
-              <OdsClipboard
-                value={regions[0].toLowerCase()}
-                className="w-full"
-                labelCopy={t('pci-common:common_clipboard_copy_to_clipboard')}
-                labelCopySuccess={t('pci-common:common_clipboard_copied')}
-              />
+              <Clipboard value={regions[0].toLowerCase()} className="w-full" />
             </OdsFormField>
           </div>
         )}
