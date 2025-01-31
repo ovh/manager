@@ -4,7 +4,14 @@ import { POP_MAP } from '../../cloud-connect.constants';
 
 export default class CloudConnectOverviewCtrl {
   /* @ngInject */
-  constructor($translate, $window, CucCloudMessage, cloudConnectService) {
+  constructor(
+    $state,
+    $translate,
+    $window,
+    CucCloudMessage,
+    cloudConnectService,
+  ) {
+    this.$state = $state;
     this.$translate = $translate;
     this.$window = $window;
     this.CucCloudMessage = CucCloudMessage;
@@ -135,14 +142,22 @@ export default class CloudConnectOverviewCtrl {
   }
 
   getMacList(pop) {
+    this.CucCloudMessage.flushChildMessage();
     const diagnosticName = 'diagMacs';
     this.getMacLoading = true;
     this.cloudConnectService
       .runDiagnostic(this.cloudConnect.id, diagnosticName, pop.id)
       .then(() => {
-        this.CucCloudMessage.success(
-          this.$translate.instant('cloud_connect_bgp_peering_success'),
-        );
+        this.CucCloudMessage.success({
+          textHtml: this.$translate.instant(
+            'cloud_connect_bgp_peering_success',
+            {
+              link: this.$state.href('cloud-connect.details.diagnostics', {
+                cloudConnect: this.cloudConnectService,
+              }),
+            },
+          ),
+        });
       })
       .catch((error) =>
         this.CucCloudMessage.error(

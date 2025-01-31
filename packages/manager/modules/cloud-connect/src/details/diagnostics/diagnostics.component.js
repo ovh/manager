@@ -1,4 +1,5 @@
 import template from './template.html';
+import controller from './diagnostics.controller';
 
 export default {
   bindings: {
@@ -7,5 +8,6 @@ export default {
     diagnosticList: '<',
     gotoDiagnosticResult: '<',
   },
+  controller,
   template,
 };
