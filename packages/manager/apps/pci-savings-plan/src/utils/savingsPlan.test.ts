@@ -1,9 +1,9 @@
-import { pciSavingsPlanListMocked } from '@/_mock_/savingsPlan';
 import {
-  getBigestActiveSavingsPlan,
+  getBigestConsumption,
   isInstanceFlavor,
   isValidSavingsPlanName,
 } from './savingsPlan';
+import { savingsPlanConsumptionMocked } from '@/_mock_/savingsPlanConsumption';
 
 describe('isValidSavingsPlanName', () => {
   it('should return true for valid names', () => {
@@ -43,14 +43,14 @@ describe('isValidSavingsPlanName', () => {
   });
 });
 
-describe('getBigestActiveSavingsPlan', () => {
+describe('getBigestConsumption', () => {
   it('should return the biggest active savings plan', () => {
-    expect(getBigestActiveSavingsPlan([])).toBe(undefined);
+    expect(getBigestConsumption([])).toBe(undefined);
   });
 
   it('should return the biggest active savings plan', () => {
-    expect(getBigestActiveSavingsPlan(pciSavingsPlanListMocked)).toBe(
-      pciSavingsPlanListMocked[2],
+    expect(getBigestConsumption(savingsPlanConsumptionMocked.flavors)).toBe(
+      savingsPlanConsumptionMocked.flavors[1],
     );
   });
 });

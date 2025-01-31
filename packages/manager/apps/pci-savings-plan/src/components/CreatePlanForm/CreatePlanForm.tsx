@@ -69,6 +69,7 @@ import Commitment from '../Commitment/Commitment';
 import SimpleTile from '../SimpleTile/SimpleTile';
 import { TileTechnicalInfo } from '../TileTechnicalInfo/TileTechnicalInfo';
 import LegalLinks from '../LegalLinks/LegalLinks';
+import { formatTechnicalInfo } from '@/utils/formatter/formatter';
 
 const COMMON_SPACING = 'my-4';
 

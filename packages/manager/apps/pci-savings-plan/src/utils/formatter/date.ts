@@ -11,16 +11,20 @@ export const toLocalDateUTC = (date: string, locale: string) =>
     timeZoneName: 'short',
   });
 
-const MONTHS_IN_YEAR = 12;
+const DEFAULT_MONTHS = 6;
 
-export const getLastTwelveMonths = (locale: string) => {
-  const months = new Array(MONTHS_IN_YEAR);
+export const getLastXMonths = (
+  locale: string,
+  nbrMonths: number = DEFAULT_MONTHS,
+) => {
+  const months: string[] = new Array(nbrMonths);
   const date = new Date();
+  date.setDate(1);
   const formatter = new Intl.DateTimeFormat(locale.replace('_', '-'), {
     month: 'long',
     year: 'numeric',
   });
-  for (let i = 0; i < MONTHS_IN_YEAR; i += 1) {
+  for (let i = 0; i < nbrMonths; i += 1) {
     months[i] = formatter.format(date);
     date.setMonth(date.getMonth() - 1);
   }

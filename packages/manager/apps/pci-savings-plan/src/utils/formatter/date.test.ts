@@ -1,4 +1,4 @@
-import { formatDate, getLastTwelveMonths } from './date';
+import { formatDate, getLastXMonths } from './date';
 
 describe('Date helper', () => {
   describe('formatDate', () => {
@@ -15,9 +15,9 @@ describe('Date helper', () => {
     });
   });
 
-  describe('getLastTwelveMonths', () => {
+  describe('getLastXMonths', () => {
     it('should return the last 12 months', () => {
-      const lastTwelveMonths = getLastTwelveMonths('en-US');
+      const lastTwelveMonths = getLastXMonths('en-US', 12);
       expect(lastTwelveMonths).toHaveLength(12);
     });
   });

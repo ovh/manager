@@ -86,7 +86,7 @@ export const postSavingsPlan = async ({
 export const useServiceId = () => {
   const { projectId } = useParams();
   const { data: services } = useServices({
-    projectId: projectId as string,
+    projectId,
   });
   return services?.[0];
 };

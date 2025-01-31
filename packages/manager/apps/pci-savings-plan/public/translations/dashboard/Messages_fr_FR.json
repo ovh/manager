@@ -25,13 +25,8 @@
   "dashboard_kpis_non_discounted_name": "Montant de facture non remisé",
   "dashboard_kpis_non_discounted_tooltip": "Montant de la facture dépassant vos configurations Savings Plans (sur la période sélectionnée pour la ressource sélectionnée)",
 
-  "dashboard_select_label_resource": "Service",
-  "dashboard_select_label_flavor": "Gamme d'instance",
-  "dashboard_select_label_model": "Modèle",
+  "dashboard_select_label_flavor": "Modèle",
   "dashboard_select_label_period": "Période",
 
-  "dashboard_select_placeholder_resource": "Service",
-  "dashboard_select_placeholder_flavor": "Gamme d'instance",
-  "dashboard_select_placeholder_model": "Modèle",
-  "dashboard_select_placeholder_period": "Période"
+  "dashboard_select_placeholder_flavor": "Modèle"
 }
