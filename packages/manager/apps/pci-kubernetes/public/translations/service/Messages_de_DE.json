@@ -98,6 +98,6 @@
   "kube_service_cluster_etcd_quota_info": "Das ETCD-Quota stellt den der ETCD-Datenbank Ihres verwalteten Clusters zugewiesenen Speicherplatz dar.",
   "kube_service_etcd_quota_error": "Dieser Cluster verwendet mehr als 80% des zugewiesenen ETCD-Speicherplatzes.",
   "kube_service_etcd_quota_error_link": "Wie verwalte ich meine ETCD-Ressourcen?",
-  "kube_service_show_optional": "Weitere Einstellungen anzeigen",
-  "kube_service_hide_optional": "Weniger Einstellungen anzeigen"
+  "kube_service_show_optional": "Weitere Parameter anzeigen",
+  "kube_service_hide_optional": "Weniger Parameter anzeigen"
 }

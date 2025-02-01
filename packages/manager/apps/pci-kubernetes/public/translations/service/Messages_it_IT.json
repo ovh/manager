@@ -98,6 +98,6 @@
   "kube_service_cluster_etcd_quota_info": "La quota ETCD rappresenta lo spazio assegnato al database ETCD del cluster gestito.",
   "kube_service_etcd_quota_error": "Questo cluster utilizza oltre l'80% dello spazio ETCD assegnato.",
   "kube_service_etcd_quota_error_link": "Come si gestiscono le risorse ETCD?",
-  "kube_service_show_optional": "Visualizza più parametri",
-  "kube_service_hide_optional": "Visualizza meno parametri"
+  "kube_service_show_optional": "Mostra più parametri",
+  "kube_service_hide_optional": "Mostra meno parametri"
 }
