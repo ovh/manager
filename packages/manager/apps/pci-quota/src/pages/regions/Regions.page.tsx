@@ -151,7 +151,9 @@ export default function RegionsPage(): JSX.Element {
         </OdsText>
       </div>
 
-      <PciDiscoveryBanner project={project} />
+      <div className={isMobile ? 'mb-5 sticky top-0 z-50' : ''}>
+        <PciDiscoveryBanner project={project} />
+      </div>
 
       <OdsText preset="paragraph" className="pt-6">
         {t('pci_projects_project_regions_description')}
