@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.44.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.43.1...@ovh-ux/manager-react-components@1.44.0) (2025-02-03)
+
+### Features
+
+- **mrc:** allow useFeatureAvailability query options override ([#14586](https://github.com/ovh/manager/issues/14586)) ([1de48af](https://github.com/ovh/manager/commit/1de48afcee05aacd53627fa4dc6ce9f66ee17e97))
+
 # [1.43.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@1.43.0...@ovh-ux/manager-react-components@1.43.1) (2025-01-16)
 
 ### Bug Fixes
