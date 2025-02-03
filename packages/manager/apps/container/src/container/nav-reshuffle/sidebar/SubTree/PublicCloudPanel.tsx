@@ -19,6 +19,8 @@ import {
   ODS_BUTTON_TYPE,
   ODS_BUTTON_VARIANT,
 } from '@ovhcloud/ods-components';
+import { OsdsIcon, OsdsText } from '@ovhcloud/ods-components/react';
+import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
 
 export interface PublicCloudPanelProps {
   rootNode: Node;
@@ -55,7 +57,7 @@ export const PublicCloudPanel: React.FC<ComponentProps<
   const {
     data: pciProjects,
     isError: pciError,
-    isSuccess: pciSuccess,
+    isLoading: pciIsLoading,
     refetch: refetchPciProjects,
   } = useQuery({
     queryKey: ['pci-projects'],
@@ -144,7 +146,7 @@ export const PublicCloudPanel: React.FC<ComponentProps<
     <>
       <li className="px-3" data-testid="public-cloud-panel">
         <ProjectSelector
-          isLoading={!pciSuccess}
+          isLoading={pciIsLoading}
           projects={pciProjects}
           selectedProject={selectedPciProject}
           onProjectChange={(option: typeof selectedPciProject) => {
@@ -168,16 +170,13 @@ export const PublicCloudPanel: React.FC<ComponentProps<
           seeAllLabel={t('sidebar_pci_all')}
         />
         {pciError && (
-          <button
-            className={style.sidebar_pci_refresh}
-            onClick={() => refetchPciProjects()}
-            role="button"
-            title={t('sidebar_pci_load_error')}
-          >
-            <span>{t('sidebar_pci_load_error')}</span>
-            <span className="oui-icon oui-icon-refresh"></span>
-          </button>
-        )}
+          <div className='flex cursor-pointer  align-middle gap-2 mt-2 justify-between' title={t('sidebar_clipboard_copy')}
+            onClick={() =>
+              navigator.clipboard.writeText(selectedPciProject.project_id)
+            }>
+            <OsdsText contrasted>{selectedPciProject.project_id}</OsdsText>
+            <OsdsIcon name={ODS_ICON_NAME.COPY} contrasted size={ODS_ICON_SIZE.xs} />
+          </div>)}
         {selectedPciProject && (
           <button
             className={`d-flex ${style['button-as-div']} ${style.sidebar_clipboard}`}

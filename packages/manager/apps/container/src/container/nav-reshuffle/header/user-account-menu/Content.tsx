@@ -7,12 +7,13 @@ import { links, tracking } from './constants';
 
 import { useShell } from '@/context';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
-import { OsdsChip } from '@ovhcloud/ods-components/react';
+import { OsdsChip, OsdsButton, OsdsText } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { fetchFeatureAvailabilityData } from '@ovh-ux/manager-react-components';
 
 import { useReket } from '@ovh-ux/ovh-reket';
 import { UserLink } from './UserLink';
+import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 
 type Props = {
   defaultPaymentMethod?: unknown;
@@ -143,9 +144,9 @@ const UserAccountMenu = ({
         data-navi-id="account-sidebar-block"
       >
         <div className="border-bottom pb-2 pt-2">
-          <h1 className={displayUserName.className}>
+          <OsdsText className={`${displayUserName.className} block`}>
             {displayUserName.userName}
-          </h1>
+          </OsdsText>
           <p
             className={`${style.ellipsis} mb-0`}
             data-navi-id="account-email"
@@ -246,17 +247,18 @@ const UserAccountMenu = ({
           )}
         </div>
         <div>
-          <button
-            type="button"
+          <OsdsButton
+            size={ODS_BUTTON_SIZE.sm}
             role="button"
-            className="w-100 oui-button oui-button_link mt-3 center"
+            variant={ODS_BUTTON_VARIANT.ghost}
+            color={ODS_THEME_COLOR_INTENT.primary}
             onClick={onLogoutBtnClick}
             aria-label={t('user_account_menu_logout')}
             title={t('user_account_menu_logout')}
             data-navi-id="logout"
           >
             {t('user_account_menu_logout')}
-          </button>
+          </OsdsButton>
         </div>
       </div>
     </div>

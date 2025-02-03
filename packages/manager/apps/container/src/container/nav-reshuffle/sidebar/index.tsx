@@ -30,6 +30,8 @@ import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
 import { OsdsButton } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import { OsdsText } from '@ovhcloud/ods-components/react';
+import { ODS_THEME_TYPOGRAPHY_LEVEL, ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
 
 interface ServicesCountError {
   url: string;
@@ -290,7 +292,7 @@ const Sidebar = (): JSX.Element => {
             href={logoLink}
           >
             <img
-              className={`${open ? 'mx-4' : 'mx-2'} my-3`}
+              className={`${open ? 'mx-4 w-[11.25rem]' : 'mx-2'} my-3`}
               src={open ? logo : shortLogo}
               alt="OVHcloud"
               aria-hidden="true"
@@ -303,13 +305,15 @@ const Sidebar = (): JSX.Element => {
           role="menubar"
         >
           <ul id="menu" role="menu">
-
-          <li className="px-3 mb-3 mt-2 h-8">
-              {open && currentNavigationNode && (
-                <h2>{t(currentNavigationNode.translation)}</h2>
-              )}
-          </li>
-
+            {open && currentNavigationNode && (
+              <li className="px-3 mb-3 mt-2">
+                <OsdsText
+                  level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
+                  size={ODS_THEME_TYPOGRAPHY_SIZE._400} contrasted>
+                  {t(currentNavigationNode.translation)}
+                </OsdsText>
+              </li>
+            )}
             {currentNavigationNode?.children
               ?.filter((node) => !shouldHideElement(node, node.count))
               .map((node: Node) => (

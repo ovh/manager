@@ -1,3 +1,5 @@
+import { ODS_THEME_COLOR_INTENT, ODS_THEME_TYPOGRAPHY_LEVEL, ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
+import { OsdsText } from '@ovhcloud/ods-components/react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -6,7 +8,13 @@ const WelcomeMessage = (): JSX.Element => {
   return (
     <>
       <p>{t('welcome_title')}</p>
-      <h1>{t('welcome_subtitle')}</h1>
+      <OsdsText
+        className='font-normal'
+        size={ODS_THEME_TYPOGRAPHY_SIZE._700}
+        color={ODS_THEME_COLOR_INTENT.text}
+        level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}>
+        {t('welcome_subtitle')}
+      </OsdsText>
     </>
   );
 };
