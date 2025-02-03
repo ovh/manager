@@ -11,7 +11,7 @@ import {
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { Suspense, useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { Translation, useTranslation } from 'react-i18next';
 import {
   OdsBreadcrumb,
   OdsBreadcrumbItem,
@@ -107,9 +107,25 @@ export default function QuotaPage(): JSX.Element {
       } catch (e) {
         const error = e as ApiError;
         if (error.response.status === 403) {
-          addError(tQuota('pci_projects_project_quota_already_unleashed'));
+          addError(
+            <Translation ns="quotas">
+              {(_t) => (
+                <OdsText>
+                  {_t('pci_projects_project_quota_already_unleashed')},
+                </OdsText>
+              )}
+            </Translation>,
+          );
         } else {
-          addError(tQuota('pci_projects_project_quota_unleash_error'));
+          addError(
+            <Translation ns="quotas">
+              {(_t) => (
+                <OdsText>
+                  {_t('pci_projects_project_quota_unleash_error')},
+                </OdsText>
+              )}
+            </Translation>,
+          );
         }
       }
     },
@@ -124,7 +140,15 @@ export default function QuotaPage(): JSX.Element {
           },
         }));
       } catch (e) {
-        addError('pci_projects_project_quota_autoscaling_error');
+        addError(
+          <Translation ns="quotas">
+            {(_t) => (
+              <OdsText>
+                {_t('pci_projects_project_quota_autoscaling_error')},
+              </OdsText>
+            )}
+          </Translation>,
+        );
       }
     },
   };
@@ -209,9 +233,6 @@ export default function QuotaPage(): JSX.Element {
             <OdsText preset="heading-6">
               {tQuota('pci_projects_project_quota_protect_explain')}
             </OdsText>
-            {
-              // TODO write-right-required
-            }
             <div className="mt-6">
               <OdsText preset="paragraph">
                 {tQuota('pci_projects_project_quota_protect_more')}
