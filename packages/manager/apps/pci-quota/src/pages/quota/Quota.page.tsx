@@ -30,6 +30,7 @@ import {
   PciDiscoveryBanner,
   useProject,
 } from '@ovh-ux/manager-pci-common';
+import { useMedia } from 'react-use';
 import { useQuotas } from '@/api/hooks/useQuotas';
 import { useDatagridColumn } from './components/useDatagridColumn';
 import {
@@ -53,6 +54,7 @@ type TState = {
 };
 
 export default function QuotaPage(): JSX.Element {
+  const isMobile: boolean = useMedia(`(max-width: 760px)`);
   const { t: tQuota } = useTranslation('quotas');
   const { projectId } = useParams();
   const columns = useDatagridColumn();
@@ -202,7 +204,9 @@ export default function QuotaPage(): JSX.Element {
           }
         />
       </div>
-      <PciDiscoveryBanner project={project} />
+      <div className={isMobile ? 'mb-5 sticky top-0 z-50' : ''}>
+        <PciDiscoveryBanner project={project} />
+      </div>
       <PciAnnouncementBanner projectId={projectId} />
       <div className="my-10 mt-8">
         <TabsComponent activeTab={'quota'} />
