@@ -26,6 +26,14 @@ export type ProductAvailabilityFilter = {
   product?: string;
 };
 
+type TProductRegionAvailability = {
+  plans: { code: string; regions: string[] }[];
+  products: {
+    name: string;
+    regions: string[];
+  }[];
+};
+
 export const getProductAvailability = async (
   projectId: string,
   params: {
@@ -39,4 +47,14 @@ export const getProductAvailability = async (
     },
   );
   return data;
+};
+
+export const getProductRegionsAvailability = async (
+  ovhSubsidiary: string,
+  planCode: string,
+): Promise<string[]> => {
+  const { data } = await v6.get<TProductRegionAvailability>(
+    `/cloud/order/rule/availability?ovhSubsidiary=${ovhSubsidiary}&planCode=${planCode}`,
+  );
+  return data?.plans[0]?.regions;
 };
