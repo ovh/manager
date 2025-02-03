@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.15.2...@ovh-ux/manager-zimbra-app@0.15.3) (2025-02-03)
+
+
+### Bug Fixes
+
+* **zimbra:** missing trans delete domain cancel ([214d2dc](https://github.com/ovh/manager/commit/214d2dcb08b3fa2473617134ec45853e448fcb96))
+* **zimbra:** unwanted padding ongoingtasks chrome ([762f681](https://github.com/ovh/manager/commit/762f681065d6853a9ee5f805471b92d5ad259ae8))
+
+
+
+
+
 ## [0.15.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.15.1...@ovh-ux/manager-zimbra-app@0.15.2) (2025-01-31)
 
 **Note:** Version bump only for package @ovh-ux/manager-zimbra-app
