@@ -58,3 +58,18 @@ export const addUser = async ({
   );
   return data;
 };
+
+export const restoreArchiveContainer = async ({
+  projectId,
+  region,
+  containerName,
+}: {
+  projectId: string;
+  region: string;
+  containerName: string;
+}) => {
+  const { data } = await v6.post(
+    `/cloud/project/${projectId}/region/${region}/coldArchive/${containerName}/restore`,
+  );
+  return data;
+};

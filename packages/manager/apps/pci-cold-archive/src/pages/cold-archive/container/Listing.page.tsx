@@ -99,7 +99,7 @@ export default function ListingPage() {
               clearNotifications();
               tracking?.trackClick({
                 name: `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.ADD_CONTAINER}`,
-                type: 'navigaton',
+                type: 'navigation',
               });
               navigate('./new');
             }}
@@ -116,7 +116,7 @@ export default function ListingPage() {
               clearNotifications();
               tracking?.trackClick({
                 name: `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.MANAGE_CONTAINER}`,
-                type: 'navigaton',
+                type: 'navigation',
               });
               navigate('./manage');
             }}
