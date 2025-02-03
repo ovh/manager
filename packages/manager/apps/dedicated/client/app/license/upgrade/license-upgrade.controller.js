@@ -294,6 +294,12 @@ export default /* @ngInject */ (
     );
   };
 
+  $scope.getPriceInformation = function getPriceInformation(orderDetails) {
+    return orderDetails?.find(
+      (orderDetail) => orderDetail.detailType === 'DURATION',
+    )?.totalPrice.text;
+  };
+
   $scope.openBc = function openBc() {
     window.open($scope.order.url);
   };
