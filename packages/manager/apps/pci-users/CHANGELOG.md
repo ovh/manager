@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-users-app@0.12.6...@ovh-ux/manager-pci-users-app@0.12.7) (2025-02-03)
+
+
+### Bug Fixes
+
+* **pci-users:** change S3 to S3 Compatible wording ([#15080](https://github.com/ovh/manager/issues/15080)) ([ea885ee](https://github.com/ovh/manager/commit/ea885eeac9c1d455beee838f553585e62e4eb2f7))
+
+
+
+
+
 ## [0.12.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-users-app@0.12.5...@ovh-ux/manager-pci-users-app@0.12.6) (2025-01-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-users-app

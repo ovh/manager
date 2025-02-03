@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.78.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.77.0...@ovh-ux/manager-pci@6.78.0) (2025-02-03)
+
+
+### Features
+
+* **pci-object-storage:** add offsite replication ([#14712](https://github.com/ovh/manager/issues/14712)) ([169490f](https://github.com/ovh/manager/commit/169490f51bd1016fb051d4a3dbc5e21753af21ba))
+
+
+
+
+
 # [6.77.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.76.2...@ovh-ux/manager-pci@6.77.0) (2025-01-31)
 
 
