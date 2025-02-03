@@ -6,7 +6,7 @@ import {
   OdsBreadcrumbItem,
 } from '@ovhcloud/ods-components/react';
 import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { Translation, useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import {
   Headers,
@@ -91,20 +91,28 @@ export default function RegionsPage(): JSX.Element {
       });
 
       addSuccess(
-        <OdsText>
-          {t('pci_projects_project_regions_add_region_success', {
-            code,
-          })}
-        </OdsText>,
+        <Translation ns="regions">
+          {(_t) => (
+            <OdsText>
+              {_t('pci_projects_project_regions_add_region_success', {
+                code,
+              })}
+            </OdsText>
+          )}
+        </Translation>,
       );
     } catch (e) {
       addError(
-        <OdsText>
-          {t('pci_projects_project_regions_add_region_error', {
-            message: e?.response?.data?.message,
-          })}
-          ,
-        </OdsText>,
+        <Translation ns="regions">
+          {(_t) => (
+            <OdsText>
+              {_t('pci_projects_project_regions_add_region_error', {
+                message: e?.response?.data?.message,
+              })}
+              ,
+            </OdsText>
+          )}
+        </Translation>,
       );
     } finally {
       setState({ ...state, isAddingRegion: false });

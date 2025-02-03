@@ -1,4 +1,4 @@
-import { useTranslation } from 'react-i18next';
+import { Translation, useTranslation } from 'react-i18next';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useMemo, useState } from 'react';
 import { useMe, useNotifications } from '@ovh-ux/manager-react-components';
@@ -58,9 +58,13 @@ export default function IncreaseQuotaPage(): JSX.Element {
           });
 
           addError(
-            t('pci_projects_project_quota_increase_error_message', {
-              message: '',
-            }),
+            <Translation ns="quotas/increase">
+              {(_t) =>
+                t('pci_projects_project_quota_increase_error_message', {
+                  message: '',
+                })
+              }
+            </Translation>,
           );
         } else {
           setIsLoading(true);
@@ -85,18 +89,24 @@ ${formData}
               name: `${TRACK.BASE_CONTACT_SUPPORT_BANNER}::${TRACK.SUCCESS}`,
             });
             addSuccess(
-              <span
-                dangerouslySetInnerHTML={{
-                  __html: t(
-                    'pci_projects_project_quota_increase_success_message',
-                    {
-                      ticketUrl:
-                        SUPPORT_TICKET_ID_URL.replace('{ticketId}', ticketId) +
-                        me.ovhSubsidiary,
-                    },
-                  ),
-                }}
-              ></span>,
+              <Translation ns="quotas/increase">
+                {(_t) => (
+                  <span
+                    dangerouslySetInnerHTML={{
+                      __html: _t(
+                        'pci_projects_project_quota_increase_success_message',
+                        {
+                          ticketUrl:
+                            SUPPORT_TICKET_ID_URL.replace(
+                              '{ticketId}',
+                              ticketId,
+                            ) + me.ovhSubsidiary,
+                        },
+                      ),
+                    }}
+                  ></span>
+                )}
+              </Translation>,
             );
             goBack();
           } catch (e) {
@@ -104,9 +114,13 @@ ${formData}
               name: `${TRACK.BASE_CONTACT_SUPPORT_BANNER}::${TRACK.ERROR}`,
             });
             addError(
-              t('pci_projects_project_quota_increase_error_message', {
-                message: (e as { data: { message: string } }).data?.message,
-              }),
+              <Translation ns="quotas/increase">
+                {(_t) =>
+                  _t('pci_projects_project_quota_increase_error_message', {
+                    message: (e as { data: { message: string } }).data?.message,
+                  })
+                }
+              </Translation>,
             );
             goBack();
           } finally {
@@ -125,9 +139,13 @@ ${formData}
             name: `${TRACK.BASE_SELECT_PLAN_BANNER}::${TRACK.ERROR}::${planCode}`,
           });
           addError(
-            t('pci_projects_project_quota_increase_error_message', {
-              message: '',
-            }),
+            <Translation ns="quotas/increase">
+              {(_t) =>
+                _t('pci_projects_project_quota_increase_error_message', {
+                  message: '',
+                })
+              }
+            </Translation>,
           );
         } else {
           setIsLoading(true);
@@ -140,16 +158,20 @@ ${formData}
             await orderQuota(projectId, cartId, serviceOption);
             const { url } = await checkoutCart(cartId);
             addSuccess(
-              <span
-                dangerouslySetInnerHTML={{
-                  __html: t(
-                    'pci_projects_project_quota_increase_buy_success_message',
-                    {
-                      billingUrl: url,
-                    },
-                  ),
-                }}
-              ></span>,
+              <Translation ns="quotas/increase">
+                {(_t) => (
+                  <span
+                    dangerouslySetInnerHTML={{
+                      __html: _t(
+                        'pci_projects_project_quota_increase_buy_success_message',
+                        {
+                          billingUrl: url,
+                        },
+                      ),
+                    }}
+                  ></span>
+                )}
+              </Translation>,
             );
             goBack();
           } catch (e) {
@@ -157,9 +179,13 @@ ${formData}
               name: `${TRACK.BASE_SELECT_PLAN_BANNER}::${TRACK.SUCCESS}::${planCode}`,
             });
             addError(
-              t('pci_projects_project_quota_increase_error_message', {
-                message: (e as { data: { message: string } }).data?.message,
-              }),
+              <Translation ns="quotas/increase">
+                {(_t) =>
+                  _t('pci_projects_project_quota_increase_error_message', {
+                    message: (e as { data: { message: string } }).data?.message,
+                  })
+                }
+              </Translation>,
             );
             goBack();
           } finally {
