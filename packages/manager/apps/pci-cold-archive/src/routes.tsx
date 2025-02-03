@@ -8,6 +8,7 @@ export const ROUTE_PATHS = {
   MANAGE_CONTAINER: 'manage',
   DELETE_CONTAINER: 'delete-container/:archiveName',
   ADD_USER_CONTAINER: 'add-user/:archiveName',
+  ONBOARDING: 'onboarding',
 };
 
 const LayoutPage = lazy(() => import('@/pages/Layout'));
@@ -24,6 +25,7 @@ const DeleteContainerPage = lazy(() =>
 const AddUserContainerPage = lazy(() =>
   import('@/pages/cold-archive/container/add-user/AddUser.page'),
 );
+const OnboardingPage = lazy(() => import('@/pages/onboarding/Onboarding.page'));
 
 const RoutesComponent = () => (
   <Routes>
@@ -44,6 +46,7 @@ const RoutesComponent = () => (
           />
         </Route>
       </Route>
+      <Route path={ROUTE_PATHS.ONBOARDING} Component={OnboardingPage} />
     </Route>
     <Route path="" element={<>Page not found</>}></Route>
   </Routes>
