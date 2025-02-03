@@ -107,18 +107,16 @@ export default function OnBoardingPage() {
           )}
           description={
             <div className="text-center">
-              <>
-                <OdsText className="mt-8 block">
-                  {t(
-                    'pci_projects_project_storages_cold_archives_onboarding_content1',
-                  )}
-                </OdsText>
-                <OdsText className="mt-6 block">
-                  {t(
-                    'pci_projects_project_storages_cold_archives_onboarding_content2',
-                  )}
-                </OdsText>
-              </>
+              <OdsText className="mt-8 block">
+                {t(
+                  'pci_projects_project_storages_cold_archives_onboarding_content1',
+                )}
+              </OdsText>
+              <OdsText className="mt-6 block">
+                {t(
+                  'pci_projects_project_storages_cold_archives_onboarding_content2',
+                )}
+              </OdsText>
             </div>
           }
           orderButtonLabel={t(
