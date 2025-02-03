@@ -10,25 +10,43 @@ export const ROUTE_PATHS = {
   ADD_USER_CONTAINER: 'add-user/:archiveName',
   ONBOARDING: 'onboarding',
   RESTORE_CONTAINER: 'restore/:archiveName',
+  CONTAINER_LISTING: '',
+  USERS_LISTING: 'users',
+  USER_CREATE: 'new',
+  USER_DELETE: ':userId/delete',
+  USER_IMPORT_POLICY: 'import-policy',
+  USER_R_CLONE_DOWNLOAD: 'rclone/download',
 };
 
 const LayoutPage = lazy(() => import('@/pages/Layout'));
-const StoragePage = lazy(() => import('@/pages/cold-archive/Archive.page'));
+const StoragePage = lazy(() => import('@/pages/Archive.page'));
+
 const ListingContainerPage = lazy(() =>
-  import('@/pages/cold-archive/container/Listing.page'),
+  import('@/pages/containers/Listing.page'),
 );
 const ManageContainerPage = lazy(() =>
-  import('@/pages/cold-archive/container/manage/Manage.page'),
+  import('@/pages/containers/manage/Manage.page'),
 );
 const DeleteContainerPage = lazy(() =>
-  import('@/pages/cold-archive/container/delete/Delete.page'),
+  import('@/pages/containers/delete/Delete.page'),
 );
 const AddUserContainerPage = lazy(() =>
-  import('@/pages/cold-archive/container/add-user/AddUser.page'),
+  import('@/pages/containers/add-user/AddUser.page'),
 );
-const OnboardingPage = lazy(() => import('@/pages/onboarding/Onboarding.page'));
 const RestoreContainerPage = lazy(() =>
-  import('@/pages/cold-archive/container/restore/Restore.page'),
+  import('@/pages/containers/restore/Restore.page'),
+);
+
+const OnboardingPage = lazy(() => import('@/pages/onboarding/Onboarding.page'));
+
+const UserListingPage = lazy(() => import('@/pages/users/Listing.page'));
+const UserCreationPage = lazy(() => import('@/pages/users/create/Create.page'));
+const UserDeletionPage = lazy(() => import('@/pages/users/delete/Delete.page'));
+const UserImportPolicyPage = lazy(() =>
+  import('@/pages/users/import-policy/ImportPolicy.page'),
+);
+const UserRCloneDownloadPage = lazy(() =>
+  import('@/pages/users/rclone-download/RCloneDownload.page'),
 );
 
 const RoutesComponent = () => (
@@ -53,7 +71,21 @@ const RoutesComponent = () => (
             Component={RestoreContainerPage}
           />
         </Route>
+
+        <Route path={ROUTE_PATHS.USERS_LISTING} Component={UserListingPage}>
+          <Route path={ROUTE_PATHS.USER_CREATE} Component={UserCreationPage} />
+          <Route path={ROUTE_PATHS.USER_DELETE} Component={UserDeletionPage} />
+          <Route
+            path={ROUTE_PATHS.USER_IMPORT_POLICY}
+            Component={UserImportPolicyPage}
+          />
+          <Route
+            path={ROUTE_PATHS.USER_R_CLONE_DOWNLOAD}
+            Component={UserRCloneDownloadPage}
+          />
+        </Route>
       </Route>
+
       <Route path={ROUTE_PATHS.ONBOARDING} Component={OnboardingPage} />
     </Route>
     <Route path="" element={<>Page not found</>}></Route>
