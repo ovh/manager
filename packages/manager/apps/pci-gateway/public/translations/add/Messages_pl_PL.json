@@ -40,5 +40,5 @@
   "pci_projects_project_public_gateways_add_region_activate_line1": "Ten region nie został jeszcze włączony. Możesz go włączyć w zakładce ",
   "pci_projects_project_public_gateways_add_region_activate_line2": "Limit i lokalizacja ",
   "pci_projects_project_public_gateways_add_region_activate_line3": "a następnie powrócić do tworzenia Gateway.",
-  "pci_projects_project_public_gateways_3az_price": "Gateway znajduje się obecnie w fazie beta w strefie paryskiej (EU-WEST-PAR) i w tym czasie jest bezpłatny."
+  "pci_projects_project_public_gateways_3az_price": "Usługa Gateway udostępniona jest obecnie w regionie Paryż (EU-WEST-PAR) bezpłatnie w wersji beta."
 }

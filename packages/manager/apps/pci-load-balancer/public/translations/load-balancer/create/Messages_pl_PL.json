@@ -42,7 +42,7 @@
   "octavia_load_balancer_create_size_flavour_description_xl": "Idealna dla aplikacji generujących duży ruch, które  potrzebują zwiększonej przepustowości, aby utrzymać wysoką wydajność.",
   "octavia_load_balancer_create_size_flavour_description_2xl": "Idealna do realizacji projektów generujących bardzo duży ruch, zapewnia wysoką przepustowość i stałą wydajność.",
   "octavia_load_balancer_create_size_flavour_description_3xl": "Zaprojektowana dla środowisk o krytycznym znaczeniu generujących duży ruch, gwarantuje maksymalną wydajność dzięki zwiększonej przepustowości.",
-  "octavia_load_balancer_create_private_network": "Brak prywatnej sieci w wybranym regionie. Upewnij się, że <link /> przed utworzeniem Load Balancera.",
-  "octavia_load_balancer_create_private_network_label": "Utwórz prywatną sieć",
-  "octavia_load_balancer_create_region_3az_price": "Load Balancer znajduje się obecnie w fazie beta w strefie paryskiej (EU-WEST-PAR) i w tym czasie jest bezpłatny."
+  "octavia_load_balancer_create_private_network": "Brak prywatnej sieci w wybranym regionie. Pamiętaj, aby <link /> przed utworzeniem Load Balancera.",
+  "octavia_load_balancer_create_private_network_label": "utworzyć sieć prywatną",
+  "octavia_load_balancer_create_region_3az_price": "Usługa Load Balancer udostępniona jest obecnie w regionie Paryż (EU-WEST-PAR) bezpłatnie w wersji beta."
 }
