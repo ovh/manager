@@ -497,7 +497,7 @@ exports[`Show page > sould display datagrid 1`] = `
               </thead>
               <tbody>
                 <tr
-                  class="border-solid border-[1px] h-[3.25rem] border-[--ods-color-blue-200]"
+                  class="border-[1px] h-[3.25rem] border-[--ods-color-blue-200]"
                 >
                   <td
                     class="text-left pl-4"
