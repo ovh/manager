@@ -6,8 +6,11 @@ import {
   getVersion,
   isValidRancherName,
   getI18nextDriverError,
+  sortVersions,
+  compareVersions,
 } from './rancher';
 import { versionsMocked } from '@/_mock_/version';
+import { RancherVersion } from '@/types/api.type';
 
 describe('Should validate rancher name', () => {
   it('When i add a valid rancher name', () => {
@@ -169,4 +172,80 @@ describe('getI18nextDriverError', () => {
       expect(result).toEqual(expectedOutput);
     },
   );
+});
+describe('sortVersions', () => {
+  test.each([
+    [
+      'Standard version sorting',
+      [
+        { name: '1.20.3' },
+        { name: '1.19.5' },
+        { name: '1.21.0' },
+        { name: '1.19.10' },
+        { name: '1.20.1' },
+      ],
+      [
+        { name: '1.19.5' },
+        { name: '1.19.10' },
+        { name: '1.20.1' },
+        { name: '1.20.3' },
+        { name: '1.21.0' },
+      ],
+    ],
+    ['Empty version list', [], []],
+    ['Single version', [{ name: '1.22.1' }], [{ name: '1.22.1' }]],
+    [
+      'Versions with different lengths',
+      [
+        { name: '1.2.0' },
+        { name: '1.10.0' },
+        { name: '1.2.5' },
+        { name: '1.2.10' },
+        { name: '1.9.0' },
+      ],
+      [
+        { name: '1.2.0' },
+        { name: '1.2.5' },
+        { name: '1.2.10' },
+        { name: '1.9.0' },
+        { name: '1.10.0' },
+      ],
+    ],
+    [
+      'Complex version sorting',
+      [
+        { name: '2.0.1' },
+        { name: '1.10.2' },
+        { name: '1.9.9' },
+        { name: '2.0.0' },
+        { name: '1.9.10' },
+      ],
+      [
+        { name: '1.9.9' },
+        { name: '1.9.10' },
+        { name: '1.10.2' },
+        { name: '2.0.0' },
+        { name: '2.0.1' },
+      ],
+    ],
+  ])('%s', (_, input, expected) => {
+    expect(sortVersions(input as RancherVersion[])).toEqual(expected);
+  });
+});
+
+describe('compareVersions', () => {
+  test.each([
+    ['1.2.3', '1.2.3', 0], // Identical versions
+    ['2.0.0', '1.9.9', 1], // v1 > v2
+    ['1.10.0', '1.2.0', 1],
+    ['1.2.3', '1.2', 1],
+    ['1.0.0', '1.1.0', -1], // v1 < v2
+    ['1.2.3', '2.0.0', -1],
+    ['1.2', '1.2.3', -1],
+    ['1.02.3', '1.2.3', 0], // Handling leading zeros
+    ['1.2.03', '1.2.3', 0],
+    ['1.2', '1.2.0', 0], // Handling incomplete versions
+  ])('compareVersions(%s, %s) should return %d', (v1, v2, expected) => {
+    expect(compareVersions(v1, v2)).toBe(expected);
+  });
 });
