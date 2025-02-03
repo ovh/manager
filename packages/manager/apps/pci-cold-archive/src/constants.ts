@@ -1,3 +1,10 @@
+export const DOWNLOAD_FILENAME = 'import.json';
+export const DOWNLOAD_TYPE = 'application/json';
+
+export const OBJECT_STORAGE_USER_ROLE = 'objectstore_operator';
+export const TRACKING_S3_POLICY_ADD = 's3-policies-users::add';
+export const OPENIO_DEFAULT_REGION = 'SBG';
+
 export const COLD_ARCHIVE_TRACKING = {
   CLICK_PREFIX: 'PublicCloud::pci::projects::project::storages::cold_archive',
   PAGE_PREFIX: 'pci::projects::project::storages::cold_archive',
