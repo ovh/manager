@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.13.1...@ovh-ux/manager-emailpro@3.14.0) (2025-02-03)
+
+
+### Features
+
+* **web.email:** add type of email in webmail link ([200a42c](https://github.com/ovh/manager/commit/200a42c8bbde0271aaa457a024db85e4c6e17112))
+
+
+
+
+
 ## [3.13.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.13.0...@ovh-ux/manager-emailpro@3.13.1) (2024-12-19)
 
 
