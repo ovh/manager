@@ -90,7 +90,7 @@ export default function ListingPage() {
             navigate('./new');
             tracking?.trackClick({
               name: 'PCI_PROJECTS_CONTAINERS_ADD',
-              type: 'navigaton',
+              type: 'navigation',
             });
           }}
         />
