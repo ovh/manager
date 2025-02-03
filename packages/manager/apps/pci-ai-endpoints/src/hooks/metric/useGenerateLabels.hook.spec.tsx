@@ -3,13 +3,11 @@ import { describe, it, expect } from 'vitest';
 import useGenerateLabels from './useGenerateLabels.hook';
 
 describe('useGenerateLabels', () => {
-  const formatDate = (date: Date) => {
-    const day = date.getDate();
-    const month = date.getMonth() + 1;
+  const formatDate = (date: Date): string => {
+    const day = String(date.getDate()).padStart(2, '0'); // Ajouter un zéro devant les jours < 10
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Ajouter un zéro devant les mois < 10
     const year = date.getFullYear();
-    return `${day < 10 ? `0${day}` : day}/${
-      month < 10 ? `0${month}` : month
-    }/${year}`;
+    return `${day}/${month}/${year}`;
   };
 
   const initialStartDate = new Date(2025, 0, 1);

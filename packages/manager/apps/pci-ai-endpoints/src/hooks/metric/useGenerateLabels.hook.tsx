@@ -1,51 +1,71 @@
 import { useMemo } from 'react';
 
-/*
- Hook to generate labels and map metric data based on time range.
- It supports daily, weekly, and monthly label generation.
-*/
+// Function to format a Date object into a string in the format DD/MM/YYYY
+const formatDate = (date: Date): string => {
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const year = date.getFullYear();
+  return `${day}/${month}/${year}`;
+};
 
+// Function to convert a string date in the format DD/MM/YYYY to a Date object
+const parseDate = (dateString: string | Date): Date => {
+  if (typeof dateString === 'string') {
+    const [day, month, year] = dateString.split('/').map(Number);
+    return new Date(year, month - 1, day);
+  }
+  return dateString;
+};
+
+// Main hook to generate labels based on a range of dates
 const useGenerateLabels = (
-  start: Date,
-  end: Date,
+  start: string | Date,
+  end: string | Date,
   metrics?: {
     unit?: string;
     data?: { timestamp?: number; value?: number }[];
   }[],
 ): { labels: string[]; dataMap: { [key: string]: number[] } } => {
-  // Determine if the start and end dates are the same day
-  const isSameDay = start.toDateString() === end.toDateString();
+  // Convert the start and end date into Date objects
+  const startDate = parseDate(start);
+  const endDate = parseDate(end);
 
+  // Check if the start and end date are on the same day
+  const isSameDay = startDate.toDateString() === endDate.toDateString();
+
+  // Check if the date range is more than 2 months
   const isMoreThan2Months =
-    end.getFullYear() * 12 +
-      end.getMonth() -
-      (start.getFullYear() * 12 + start.getMonth()) >
+    endDate.getFullYear() * 12 +
+      endDate.getMonth() -
+      (startDate.getFullYear() * 12 + startDate.getMonth()) >
       2 ||
-    (end.getFullYear() * 12 +
-      end.getMonth() -
-      (start.getFullYear() * 12 + start.getMonth()) ===
+    (endDate.getFullYear() * 12 +
+      endDate.getMonth() -
+      (startDate.getFullYear() * 12 + startDate.getMonth()) ===
       2 &&
-      end.getDate() > start.getDate());
+      endDate.getDate() > startDate.getDate());
 
+  // Check if the date range is more than 12 months
   const isMoreThan12Months =
-    end.getFullYear() * 12 +
-      end.getMonth() -
-      (start.getFullYear() * 12 + start.getMonth()) >=
+    endDate.getFullYear() * 12 +
+      endDate.getMonth() -
+      (startDate.getFullYear() * 12 + startDate.getMonth()) >=
     12;
 
-  // useMemo hook to generate the labels depending on the time range (daily, weekly, or monthly)
+  // Generate the labels based on the date range
   const labels = useMemo(() => {
     if (isSameDay) {
+      // If the start and end date are the same day, generate hourly labels
       return Array.from({ length: 24 }, (_, i) => `${i}:00`);
     }
 
     if (isMoreThan12Months) {
+      // If the date range is more than 12 months, generate monthly labels
       const generatedLabels: string[] = [];
-      const current = new Date(start);
-      current.setDate(1); // Start from the first day of the month
+      const current = new Date(startDate);
+      current.setDate(1);
 
-      // Loop through each month from the start to the end date
-      while (current <= end) {
+      while (current <= endDate) {
         generatedLabels.push(
           `${current.getFullYear()}-${String(current.getMonth() + 1).padStart(
             2,
@@ -57,43 +77,38 @@ const useGenerateLabels = (
       return generatedLabels;
     }
 
-    // If the range is more than 2 months but less than 12, generate weekly
     if (isMoreThan2Months) {
+      // If the date range is more than 2 months but less than or equal to 12 months, generate weekly labels
       const generatedLabels: string[] = [];
-      const current = new Date(start);
-      current.setDate(current.getDate() - current.getDay()); // Align to the start of the week (Sunday)
+      const current = new Date(startDate);
+      current.setDate(current.getDate() - current.getDay());
 
-      // Loop through each week from the start to the end date
-      while (current <= end) {
-        generatedLabels.push(current.toLocaleDateString());
-        current.setDate(current.getDate() + 7); // Move to the next week
+      while (current <= endDate) {
+        generatedLabels.push(formatDate(current));
+        current.setDate(current.getDate() + 7);
       }
       return generatedLabels;
     }
 
-    // If the range is less than 2 months, generate daily labels
+    // If the date range is less than 2 months, generate daily labels
     const generatedLabels: string[] = [];
-    const currentDate = new Date(start);
+    const currentDate = new Date(startDate);
 
-    // Loop through each day from the start to the end date
-    while (currentDate <= end) {
-      generatedLabels.push(currentDate.toLocaleDateString());
+    while (currentDate <= endDate) {
+      generatedLabels.push(formatDate(currentDate));
       currentDate.setDate(currentDate.getDate() + 1);
 
-      if (currentDate > end) break;
+      if (currentDate > endDate) break;
     }
 
-    // Explicitly add the last day of the period to the labels
-    if (
-      generatedLabels[generatedLabels.length - 1] !== end.toLocaleDateString()
-    ) {
-      generatedLabels.push(end.toLocaleDateString());
+    if (generatedLabels[generatedLabels.length - 1] !== formatDate(endDate)) {
+      generatedLabels.push(formatDate(endDate));
     }
 
     return generatedLabels;
-  }, [start, end, isSameDay, isMoreThan12Months, isMoreThan2Months]);
+  }, [startDate, endDate, isSameDay, isMoreThan12Months, isMoreThan2Months]);
 
-  // useMemo hook to map the metric data to the generated labels
+  // Generate a data map based on the metrics provided
   const dataMap = useMemo(() => {
     if (!metrics || metrics.length === 0) {
       return {};
@@ -101,25 +116,20 @@ const useGenerateLabels = (
 
     const map: { [key: string]: number[] } = {};
 
-    // Loop through each metric entry
     metrics.forEach((metricEntry) => {
       const { unit, data } = metricEntry;
 
       if (unit === 'num_requests') return;
-
-      // Initialize the array
       if (!map[unit]) {
         map[unit] = new Array(labels.length).fill(0);
       }
 
-      // Loop through each data point for the current metric
       data?.forEach((point) => {
         if (!point.timestamp) return;
 
         const pointDate = new Date(point.timestamp * 1000);
         let label: string;
 
-        // Assign the appropriate label based on the time range
         if (isSameDay) {
           label = `${pointDate.getHours()}:00`;
         } else if (isMoreThan12Months) {
@@ -129,12 +139,11 @@ const useGenerateLabels = (
         } else if (isMoreThan2Months) {
           const weekStart = new Date(pointDate);
           weekStart.setDate(weekStart.getDate() - weekStart.getDay());
-          label = weekStart.toLocaleDateString();
+          label = formatDate(weekStart);
         } else {
-          label = pointDate.toLocaleDateString();
+          label = formatDate(pointDate);
         }
 
-        // Find the index of the generated label and update the corresponding value in the map
         const index = labels.indexOf(label);
         if (index !== -1) {
           map[unit][index] += point.value || 0;
@@ -145,7 +154,7 @@ const useGenerateLabels = (
     return map;
   }, [metrics, labels, isSameDay, isMoreThan12Months, isMoreThan2Months]);
 
-  return { labels, dataMap };
+  return { labels, dataMap }; // Return the generated labels and the data map
 };
 
 export default useGenerateLabels;
