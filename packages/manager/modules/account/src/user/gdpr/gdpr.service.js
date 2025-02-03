@@ -15,6 +15,7 @@ export default class GdprService {
     return this.$http
       .get(`${API_BASE_ROUTE}/me/privacy/requests/capabilities`, {
         headers: this.headers,
+        serviceType: 'apiv6',
       })
       .then(({ data }) => data);
   }
@@ -23,6 +24,7 @@ export default class GdprService {
     return this.$http
       .post(`${API_BASE_ROUTE}/me/privacy/requests/erasure`, null, {
         headers: this.headers,
+        serviceType: 'apiv6',
       })
       .then(({ data }) => data);
   }
