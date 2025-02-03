@@ -17,7 +17,7 @@ vi.mock('react-router-dom', () => ({
 }));
 
 vi.mock('@ovh-ux/manager-pci-common', async (actual) => ({
-  ...(await actual()),
+  ...((await actual()) as Record<string, unknown>),
   isDiscoveryProject: vi.fn(),
   useProject: vi.fn(),
 }));
