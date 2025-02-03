@@ -1,7 +1,5 @@
-import { render, screen, waitFor } from '@testing-library/react';
-import { ApiError } from '@ovh-ux/manager-core-api';
-import userEvent from '@testing-library/user-event';
-import { useContext } from 'react';
+import { render, screen } from '@testing-library/react';
+
 import { useHref, useNavigate, useParams } from 'react-router-dom';
 import { vi } from 'vitest';
 import { useProject } from '@ovh-ux/manager-pci-common';
