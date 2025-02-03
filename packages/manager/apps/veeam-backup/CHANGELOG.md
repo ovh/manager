@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.3.14...@ovh-ux/manager-veeam-backup-app@0.4.0) (2025-02-03)
+
+
+### Features
+
+* **veeam:** replace offer price translation ([078c01b](https://github.com/ovh/manager/commit/078c01b783d6aa94acf87d64adeb6390669d6e1c))
+
+
+
+
+
 ## [0.3.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.3.13...@ovh-ux/manager-veeam-backup-app@0.3.14) (2025-01-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-veeam-backup-app
