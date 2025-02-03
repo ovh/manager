@@ -2,6 +2,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useMe } from '@ovh-ux/manager-react-components';
 import {
   getProductAvailability,
+  getProductRegionsAvailability,
   ProductAvailabilityFilter,
 } from '../data/availability';
 
@@ -60,3 +61,13 @@ export const useRefreshProductAvailability = (
       }),
   };
 };
+
+export const useProductRegionsAvailability = (
+  ovhSubsidiary: string,
+  planCode: string,
+) =>
+  useQuery({
+    queryKey: ['ovhSubsidiary', ovhSubsidiary, 'planCode', planCode],
+    queryFn: () => getProductRegionsAvailability(ovhSubsidiary, planCode),
+    enabled: !!ovhSubsidiary,
+  });
