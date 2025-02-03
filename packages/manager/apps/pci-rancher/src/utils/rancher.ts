@@ -1,4 +1,5 @@
 import { TOptions } from 'i18next';
+import semver from 'semver';
 import {
   OVHError,
   RancherPlan,
@@ -26,26 +27,9 @@ export const getCurrentVersionInfo = (
   return getVersionInfoByName(currentVersion, versions);
 };
 
-export const compareVersions = (v1: string, v2: string): number => {
-  const parts1 = v1.split('.').map(Number);
-  const parts2 = v2.split('.').map(Number);
-
-  const length = Math.max(parts1.length, parts2.length);
-
-  for (let i = 0; i < length; i += 1) {
-    const num1 = parts1[i] ?? 0;
-    const num2 = parts2[i] ?? 0;
-
-    if (num1 > num2) return 1;
-    if (num1 < num2) return -1;
-  }
-
-  return 0;
-};
-
 export const sortVersions = (versions: RancherVersion[]): RancherVersion[] => {
-  return [...versions].sort((a, b) => {
-    return compareVersions(a.name, b.name);
+  return versions.sort((a, b) => {
+    return semver.compare(a.name, b.name);
   });
 };
 
@@ -65,8 +49,8 @@ export const getLatestVersions = (
     return null;
   }
 
-  const filteredVersions = sortedVersions.filter(
-    (v) => compareVersions(v.name, currentVersion) > 0,
+  const filteredVersions = sortedVersions.filter((v) =>
+    semver.lt(currentVersion, v.name),
   );
 
   return filteredVersions.length > 0 ? filteredVersions : null;

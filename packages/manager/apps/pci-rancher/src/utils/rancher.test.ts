@@ -7,7 +7,6 @@ import {
   isValidRancherName,
   getI18nextDriverError,
   sortVersions,
-  compareVersions,
 } from './rancher';
 import { versionsMocked } from '@/_mock_/version';
 import { RancherVersion } from '@/types/api.type';
@@ -230,22 +229,5 @@ describe('sortVersions', () => {
     ],
   ])('%s', (_, input, expected) => {
     expect(sortVersions(input as RancherVersion[])).toEqual(expected);
-  });
-});
-
-describe('compareVersions', () => {
-  test.each([
-    ['1.2.3', '1.2.3', 0], // Identical versions
-    ['2.0.0', '1.9.9', 1], // v1 > v2
-    ['1.10.0', '1.2.0', 1],
-    ['1.2.3', '1.2', 1],
-    ['1.0.0', '1.1.0', -1], // v1 < v2
-    ['1.2.3', '2.0.0', -1],
-    ['1.2', '1.2.3', -1],
-    ['1.02.3', '1.2.3', 0], // Handling leading zeros
-    ['1.2.03', '1.2.3', 0],
-    ['1.2', '1.2.0', 0], // Handling incomplete versions
-  ])('compareVersions(%s, %s) should return %d', (v1, v2, expected) => {
-    expect(compareVersions(v1, v2)).toBe(expected);
   });
 });
