@@ -3,7 +3,7 @@ import { describe, it, expect } from 'vitest';
 import useGenerateLabels from './useGenerateLabels.hook';
 
 describe('useGenerateLabels', () => {
-  const formatDate = (date) => {
+  const formatDate = (date: Date) => {
     const day = date
       .getDate()
       .toString()
