@@ -22,6 +22,7 @@ export default /* @ngInject */ ($stateProvider) => {
       defaultFilterColumn: () => 'domain',
       header: /* @ngInject */ ($translate) =>
         $translate.instant('emails_domain_title'),
+      changelog: () => 'mx_plan',
       customizableColumns: () => true,
       getServiceNameLink: /* @ngInject */ ($state) => ({ domain: productId }) =>
         $state.href('app.email.domain', {
@@ -67,6 +68,7 @@ export default /* @ngInject */ ($stateProvider) => {
       defaultFilterColumn: () => 'domain',
       header: /* @ngInject */ ($translate) =>
         $translate.instant('emails_domain_delegate_title'),
+      changelog: () => 'email_delegate',
       customizableColumns: () => true,
       getServiceNameLink: /* @ngInject */ ($state) => ({ domain: productId }) =>
         $state.href('app.email-delegate.dashboard', {

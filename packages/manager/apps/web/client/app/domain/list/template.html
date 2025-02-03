@@ -1,9 +1,20 @@
 <div class="list-domains">
-    <oui-header
-        data-ng-if="$ctrl.header"
-        class="mb-2"
-        data-heading="{{:: $ctrl.header }}"
-    ></oui-header>
+    <oui-header data-ng-if="$ctrl.header" class="mb-2">
+        <oui-header-heading>
+            <div class="d-flex justify-content-between">
+                <h1
+                    class="oui-header__title"
+                    data-translate="{{:: $ctrl.header }}"
+                ></h1>
+                <div class="d-flex align-items-center flex-wrap gap-1">
+                    <changelog-button
+                        links="$ctrl.constants.CHANGELOG.domain_name.links"
+                        chapters="$ctrl.constants.CHANGELOG.domain_name.chapters"
+                    ></changelog-button>
+                </div>
+            </div>
+        </oui-header-heading>
+    </oui-header>
     <div data-ng-bind-html="$ctrl.description"></div>
 
     <oui-datagrid

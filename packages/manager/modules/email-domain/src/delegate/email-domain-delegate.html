@@ -1,7 +1,24 @@
 <div class="email-domain">
     <div data-ovh-alert="{{alerts.page}}"></div>
 
-    <oui-header heading="{{:: ctrlEmailDelegate.domain }}"> </oui-header>
+    <oui-header>
+        <oui-header-heading>
+            <div class="d-flex justify-content-between">
+                <h1
+                    class="oui-title__header"
+                    data-translate="{{:: ctrlEmailDelegate.domain }}"
+                ></h1>
+                <div
+                    class="d-flex justify-content-end flex-wrap gap-1 align-items-center"
+                >
+                    <changelog-button
+                        links="ctrlEmailDelegate.constants.CHANGELOG.email_delegate.links"
+                        chapters="ctrlEmailDelegate.constants.CHANGELOG.email_delegate.chapters"
+                    ></changelog-button>
+                </div>
+            </div>
+        </oui-header-heading>
+    </oui-header>
 
     <div ui-view>
         <div class="row">

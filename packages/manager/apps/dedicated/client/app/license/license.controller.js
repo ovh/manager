@@ -30,7 +30,6 @@ export default /* @ngInject */ (
   $scope.$state = $state;
   $scope.iceberg = iceberg;
   $scope.constants = constants;
-  console.log(constants.CHANGELOG);
 
   /**
    * Search

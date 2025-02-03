@@ -7,7 +7,7 @@
         <div class="oui-header__container">
             <div class="oui-header__content">
                 <div class="row">
-                    <div class="col-sm-9">
+                    <div class="col-sm-8">
                         <div class="mb-2">
                             <span data-ng-if="ctrlDomain.isAllDom">AllDom</span>
                             <h1
@@ -32,56 +32,69 @@
                         >
                         </wuc-service-expiration-date>
                     </div>
-                    <div class="col-sm-3 d-flex">
-                        <div class="btn-group ml-auto mt-4" data-uib-dropdown>
-                            <button
-                                class="oui-button oui-button_dropdown mb-0"
-                                type="button"
-                                aria-haspopup="true"
-                                aria-expanded="false"
-                                data-uib-dropdown-toggle
+                    <div class="col-sm-4 d-flex">
+                        <div
+                            class="d-flex align-items-center justify-content-end flex-wrap gap-1 mt-4"
+                        >
+                            <changelog-button
+                                links="ctrlDomain.constants.CHANGELOG.domain_name.links"
+                                chapters="ctrlDomain.constants.CHANGELOG.domain_name.chapters"
+                            ></changelog-button>
+                            <div
+                                class="btn-group ml-auto mt-1"
+                                data-uib-dropdown
                             >
-                                <span data-translate="common_actions"></span>
-                                <span
-                                    class="oui-icon oui-icon-chevron-down"
-                                    aria-hidden="true"
-                                ></span>
-                            </button>
-                            <ul
-                                class="dropdown-menu dropdown-menu-right"
-                                data-uib-dropdown-menu
-                            >
-                                <li
-                                    data-ng-if="ctrlDomain.canOrderHosting && ctrlDomain.isAdminOrBilling && !ctrlDomain.domain.isExpired"
+                                <button
+                                    class="oui-button oui-button_dropdown mb-0"
+                                    type="button"
+                                    aria-haspopup="true"
+                                    aria-expanded="false"
+                                    data-uib-dropdown-toggle
                                 >
-                                    <button
-                                        class="btn btn-link"
-                                        type="button"
-                                        data-ng-click="ctrlDomain.goToWebhostingOrder()"
-                                        data-track-on="click"
-                                        data-track-name="web::domain::order-pack-hosting"
-                                        data-track-click="action"
+                                    <span
+                                        data-translate="common_actions"
+                                    ></span>
+                                    <span
+                                        class="oui-icon oui-icon-chevron-down"
+                                        aria-hidden="true"
+                                    ></span>
+                                </button>
+                                <ul
+                                    class="dropdown-menu dropdown-menu-right"
+                                    data-uib-dropdown-menu
+                                >
+                                    <li
+                                        data-ng-if="ctrlDomain.canOrderHosting && ctrlDomain.isAdminOrBilling && !ctrlDomain.domain.isExpired"
                                     >
-                                        <span
-                                            data-translate="domain_configuration_enable_web_hosting"
-                                        ></span>
-                                    </button>
-                                </li>
-                                <li>
-                                    <button
-                                        class="btn btn-link"
-                                        type="button"
-                                        data-ng-click="setAction('subdomain/add/domain-subdomain-add', { domain: ctrlDomain.domain })"
-                                        data-track-on="click"
-                                        data-track-name="web::domain::add-subdomain"
-                                        data-track-click="action"
-                                    >
-                                        <span
-                                            data-translate="domain_configuration_add_subdomain"
-                                        ></span>
-                                    </button>
-                                </li>
-                            </ul>
+                                        <button
+                                            class="btn btn-link"
+                                            type="button"
+                                            data-ng-click="ctrlDomain.goToWebhostingOrder()"
+                                            data-track-on="click"
+                                            data-track-name="web::domain::order-pack-hosting"
+                                            data-track-click="action"
+                                        >
+                                            <span
+                                                data-translate="domain_configuration_enable_web_hosting"
+                                            ></span>
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button
+                                            class="btn btn-link"
+                                            type="button"
+                                            data-ng-click="setAction('subdomain/add/domain-subdomain-add', { domain: ctrlDomain.domain })"
+                                            data-track-on="click"
+                                            data-track-name="web::domain::add-subdomain"
+                                            data-track-click="action"
+                                        >
+                                            <span
+                                                data-translate="domain_configuration_add_subdomain"
+                                            ></span>
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
