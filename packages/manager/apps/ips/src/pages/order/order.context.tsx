@@ -22,6 +22,8 @@ export type OrderContextType = {
   setSelectedGeolocation: React.Dispatch<React.SetStateAction<string>>;
   selectedOrganisation?: string;
   setSelectedOrganisation: React.Dispatch<React.SetStateAction<string>>;
+  disabledServices: string[];
+  addDisabledService?: (serviceName: string) => void;
 };
 
 export const OrderContext = React.createContext<OrderContextType>({
@@ -36,6 +38,7 @@ export const OrderContext = React.createContext<OrderContextType>({
   setIpQuantity: () => null,
   setSelectedGeolocation: () => null,
   setSelectedOrganisation: () => null,
+  disabledServices: [],
 });
 
 export const OrderContextProvider: React.FC<React.PropsWithChildren> = ({
@@ -52,6 +55,7 @@ export const OrderContextProvider: React.FC<React.PropsWithChildren> = ({
   const [ipQuantity, setIpQuantity] = React.useState(1);
   const [selectedGeolocation, setSelectedGeolocation] = React.useState(null);
   const [selectedOrganisation, setSelectedOrganisation] = React.useState(null);
+  const [disabledServices, setDisabledServices] = React.useState([]);
 
   const value = React.useMemo(
     () => ({
@@ -61,9 +65,10 @@ export const OrderContextProvider: React.FC<React.PropsWithChildren> = ({
       setSelectedService,
       selectedServiceType,
       setSelectedServiceType: (serviceType: ServiceType) => {
-        setSelectedServiceType(serviceType);
         setSelectedRegion(null);
         setSelectedOffer(null);
+        setSelectedPlanCode(null);
+        setSelectedServiceType(serviceType);
       },
       selectedRegion,
       setSelectedRegion: (newRegion: string) => {
@@ -84,6 +89,11 @@ export const OrderContextProvider: React.FC<React.PropsWithChildren> = ({
       setSelectedGeolocation,
       selectedOrganisation,
       setSelectedOrganisation,
+      disabledServices,
+      addDisabledService: (serviceName: string) =>
+        setDisabledServices((serviceList) =>
+          Array.from(new Set([...serviceList, serviceName])),
+        ),
     }),
     [
       ipVersion,
@@ -95,6 +105,7 @@ export const OrderContextProvider: React.FC<React.PropsWithChildren> = ({
       ipQuantity,
       selectedGeolocation,
       selectedOrganisation,
+      disabledServices,
     ],
   );
 
