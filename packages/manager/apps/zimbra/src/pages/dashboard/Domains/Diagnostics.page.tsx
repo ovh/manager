@@ -298,7 +298,9 @@ const TabContent = ({
                         {t('zimbra_domain_diagnostic_type')}
                       </strong>
                       <OdsText preset={ODS_TEXT_PRESET.span}>
-                        {recordType === DnsRecordType.DKIM ? 'TXT' : recordType}
+                        {recordType === DnsRecordType.DKIM
+                          ? 'CNAME'
+                          : recordType}
                       </OdsText>
                     </OdsText>
                   </td>
@@ -404,13 +406,10 @@ export default function DomainDiagnostics() {
     {
       name: DnsRecordType.DKIM,
       trackingName: DOMAIN_DIAGNOSTICS_DKIM,
-      isDisabled: true,
       title: (
         <TabTitle
           title={DnsRecordType.DKIM}
-          hasError={
-            false /* DKIM IS NOT READY !isFetching && isDiagnosticError(domain?.result?.dkim) */
-          }
+          hasError={!isFetching && isDiagnosticError(domain?.result?.dkim)}
         />
       ),
       to: useGenerateUrl('../diagnostics/dkim', 'path', params),
