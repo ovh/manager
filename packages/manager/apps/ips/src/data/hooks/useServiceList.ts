@@ -1,6 +1,7 @@
 import { useQueries } from '@tanstack/react-query';
 import { getVrackList } from '../api/vrack';
 import { ServiceType } from '@/types';
+import { getServiceList } from '../api/get/serviceList';
 
 export const ipParkingOptionValue = 'parking';
 
@@ -12,15 +13,15 @@ export const useServiceList = () => {
     queries: [
       {
         queryKey: ['dedicatedCloud'],
-        queryFn: () => [],
+        queryFn: () => getServiceList(ServiceType.dedicatedCloud),
       },
       {
         queryKey: ['server'],
-        queryFn: () => [],
+        queryFn: () => getServiceList(ServiceType.server),
       },
       {
         queryKey: ['vps'],
-        queryFn: () => [],
+        queryFn: () => getServiceList(ServiceType.vps),
       },
       {
         queryKey: ['vrack'],
@@ -34,22 +35,34 @@ export const useServiceList = () => {
       if (serviceId === ipParkingOptionValue) {
         return ServiceType.ipParking;
       }
-      if (queries[0]?.data?.includes(serviceId)) {
+      if (
+        queries[0]?.data?.data?.results[0]?.services?.some(
+          ({ serviceName }) => serviceName === serviceId,
+        )
+      ) {
         return ServiceType.dedicatedCloud;
       }
-      if (queries[1]?.data?.includes(serviceId)) {
+      if (
+        queries[1]?.data?.data?.results[0]?.services?.some(
+          ({ serviceName }) => serviceName === serviceId,
+        )
+      ) {
         return ServiceType.server;
       }
-      if (queries[2]?.data?.includes(serviceId)) {
+      if (
+        queries[2]?.data?.data?.results[0]?.services?.some(
+          ({ serviceName }) => serviceName === serviceId,
+        )
+      ) {
         return ServiceType.vps;
       }
       return queries[3]?.data?.data?.includes(serviceId)
         ? ServiceType.vrack
         : ServiceType.unknown;
     },
-    dedicatedCloud: queries[0]?.data,
-    server: queries[1],
-    vps: queries[2],
+    dedicatedCloud: queries[0]?.data?.data?.results[0]?.services,
+    server: queries[1]?.data?.data?.results[0]?.services,
+    vps: queries[2]?.data?.data?.results[0]?.services,
     vrack: queries[3]?.data?.data,
     isError: queries.some((query) => query.isError),
     error: queries.find((query) => query.error),
