@@ -37,7 +37,7 @@ export function NodeTypeStep({
   const { t: tNodePool } = useTranslation('node-pool');
   const { t: tStepper } = useTranslation('stepper');
   const [nodePoolEnabled, setNodePoolEnabled] = useState(true);
-  const [flavor, setFlavor] = useState<KubeFlavor>(null);
+  const [flavor, setFlavor] = useState<KubeFlavor | null>(null);
 
   useEffect(() => {
     if (!nodePoolEnabled) setFlavor(null);
