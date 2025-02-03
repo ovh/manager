@@ -62,7 +62,7 @@ export default function DeletePage() {
     isPending: isPendingDelete,
   } = useDeleteArchiveContainer({
     projectId,
-    region: regions ? regions[0] : '',
+    region: regions?.[0],
     containerName: archiveName,
     onError(error: ApiError) {
       addError(
