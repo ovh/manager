@@ -1,7 +1,7 @@
 import React from 'react';
 import { ServiceSelectionSection } from './sections/ServiceSelectionSection.component';
 import { OrderContext } from './order.context';
-import { IpVersion } from './order.constant';
+import { IpOffer, IpVersion } from './order.constant';
 import { RegionSelectionSection } from './sections/RegionSelectionSection.component';
 import { OfferSelectionSection } from './sections/OfferSelectionSection.component';
 import { GeolocationSection } from './sections/GeolocationSection.component';
@@ -35,7 +35,7 @@ export const Ipv4Order: React.FC = () => {
         !!selectedOffer &&
         !!selectedRegion &&
         !!selectedPlanCode && <GeolocationSection />}
-      {[ServiceType.vrack].includes(selectedServiceType) &&
+      {selectedOffer === IpOffer.blockAdditionalIp &&
         !!selectedService &&
         !!selectedOffer &&
         !!selectedRegion &&
