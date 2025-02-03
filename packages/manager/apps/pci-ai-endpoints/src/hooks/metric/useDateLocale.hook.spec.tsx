@@ -61,7 +61,9 @@ describe('useDateLocale', () => {
       expectedEndTime.toISOString(),
     );
 
-    expect(expectedStartTime.toISOString()).toBe('2024-12-31T21:01:00.000Z');
+    expect(expectedStartTime.toISOString()).toBe(
+      new Date(initialStartTime.getTime() - utcOffset).toISOString(),
+    );
   });
 
   it('should update startTime when handleStartTimeChange is called', () => {

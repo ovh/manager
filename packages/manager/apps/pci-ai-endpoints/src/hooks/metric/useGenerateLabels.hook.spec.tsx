@@ -3,6 +3,16 @@ import { describe, it, expect } from 'vitest';
 import useGenerateLabels from './useGenerateLabels.hook';
 
 describe('useGenerateLabels', () => {
+  const formatDate = (date) => {
+    const day = date
+      .getDate()
+      .toString()
+      .padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Les mois commencent à 0
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+  };
+
   const initialStartDate = new Date(2025, 0, 1);
   const initialEndDate = new Date(2025, 0, 10);
 
@@ -13,8 +23,8 @@ describe('useGenerateLabels', () => {
     const { labels } = result.current;
 
     expect(labels.length).toBe(10);
-    expect(labels[0]).toBe('01/01/2025');
-    expect(labels[labels.length - 1]).toBe('10/01/2025');
+    expect(labels[0]).toBe(formatDate(new Date(2025, 0, 1))); // Utilisation de la fonction de formatage
+    expect(labels[labels.length - 1]).toBe(formatDate(new Date(2025, 0, 10)));
   });
 
   it('should generate weekly labels for a time range greater than 2 months but less than 12 months', () => {
@@ -25,9 +35,9 @@ describe('useGenerateLabels', () => {
     );
     const { labels } = result.current;
 
-    expect(labels).toContain('01/06/2024');
-    expect(labels).toContain('08/06/2024');
-    expect(labels).toContain('06/07/2024');
+    expect(labels).toContain(formatDate(new Date(2024, 5, 1)));
+    expect(labels).toContain(formatDate(new Date(2024, 5, 8)));
+    expect(labels).toContain(formatDate(new Date(2024, 6, 6)));
   });
 
   it('should generate monthly labels for a range longer than 12 months', () => {
@@ -46,7 +56,7 @@ describe('useGenerateLabels', () => {
   it('should map data correctly to labels', () => {
     const metrics = [
       {
-        unit: 'temperature',
+        unit: 'input_token',
         data: [
           {
             timestamp: Math.floor(new Date('2025-01-01').getTime() / 1000),
@@ -65,10 +75,10 @@ describe('useGenerateLabels', () => {
     );
     const { dataMap } = result.current;
 
-    expect(dataMap).toHaveProperty('temperature');
-    expect(dataMap.temperature.length).toBe(10);
-    expect(dataMap.temperature[0]).toBe(22);
-    expect(dataMap.temperature[1]).toBe(24);
+    expect(dataMap).toHaveProperty('input_token');
+    expect(dataMap.input_token.length).toBe(10);
+    expect(dataMap.input_token[0]).toBe(22);
+    expect(dataMap.input_token[1]).toBe(24);
   });
 
   it('should generate hourly labels for the same day', () => {
@@ -108,8 +118,8 @@ describe('useGenerateLabels', () => {
     const { labels } = result.current;
 
     expect(labels.length).toBeGreaterThan(0);
-    expect(labels).toContain('01/01/2025');
-    expect(labels).not.toContain('10/01/2025');
+    expect(labels).toContain(formatDate(new Date(2025, 0, 1))); // 01/01/2025
+    expect(labels).not.toContain(formatDate(new Date(2025, 0, 10))); // 10/01/2025
     expect(labels.length).toBe(1);
   });
 });
