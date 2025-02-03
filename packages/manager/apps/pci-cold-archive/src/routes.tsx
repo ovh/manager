@@ -9,6 +9,7 @@ export const ROUTE_PATHS = {
   DELETE_CONTAINER: 'delete-container/:archiveName',
   ADD_USER_CONTAINER: 'add-user/:archiveName',
   ONBOARDING: 'onboarding',
+  RESTORE_CONTAINER: 'restore/:archiveName',
 };
 
 const LayoutPage = lazy(() => import('@/pages/Layout'));
@@ -26,6 +27,9 @@ const AddUserContainerPage = lazy(() =>
   import('@/pages/cold-archive/container/add-user/AddUser.page'),
 );
 const OnboardingPage = lazy(() => import('@/pages/onboarding/Onboarding.page'));
+const RestoreContainerPage = lazy(() =>
+  import('@/pages/cold-archive/container/restore/Restore.page'),
+);
 
 const RoutesComponent = () => (
   <Routes>
@@ -43,6 +47,10 @@ const RoutesComponent = () => (
           <Route
             path={ROUTE_PATHS.ADD_USER_CONTAINER}
             Component={AddUserContainerPage}
+          />
+          <Route
+            path={ROUTE_PATHS.RESTORE_CONTAINER}
+            Component={RestoreContainerPage}
           />
         </Route>
       </Route>

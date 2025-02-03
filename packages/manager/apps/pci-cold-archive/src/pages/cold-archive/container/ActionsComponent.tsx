@@ -16,16 +16,18 @@ export default function ActionsComponent({
   const navigate = useNavigate();
   const { tracking } = useContext(ShellContext).shell;
 
-  const isActionAddUserAvailable = () => {
-    return [
-      COLD_ARCHIVE_CONTAINER_STATUS.NONE,
-      COLD_ARCHIVE_CONTAINER_STATUS.ARCHIVED,
-      COLD_ARCHIVE_CONTAINER_STATUS.RESTORED,
-    ].includes(archive.status);
-  };
+  const isActionAddUserAvailable = [
+    COLD_ARCHIVE_CONTAINER_STATUS.NONE,
+    COLD_ARCHIVE_CONTAINER_STATUS.ARCHIVED,
+    COLD_ARCHIVE_CONTAINER_STATUS.RESTORED,
+  ].includes(archive.status);
+
+  const isActionRestoredAvailable = [
+    COLD_ARCHIVE_CONTAINER_STATUS.ARCHIVED,
+  ].includes(archive.status);
 
   const items = [
-    isActionAddUserAvailable()
+    isActionAddUserAvailable
       ? {
           id: 0,
           label: t(
@@ -37,6 +39,21 @@ export default function ActionsComponent({
               type: 'navigaton',
             });
             navigate(`./add-user/${archive.name}`);
+          },
+        }
+      : undefined,
+    isActionRestoredAvailable
+      ? {
+          id: 1,
+          label: t(
+            'pci_projects_project_storages_cold_archive_container_action_restore',
+          ),
+          onClick: () => {
+            tracking?.trackClick({
+              name: `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.RESTORE}`,
+              type: 'navigaton',
+            });
+            navigate(`./restore/${archive.name}`);
           },
         }
       : undefined,

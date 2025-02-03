@@ -6,6 +6,7 @@ import {
   addUser,
   deleteArchiveContainer,
   getArchiveContainers,
+  restoreArchiveContainer,
   TArchiveContainer,
 } from '../data/archive';
 import { paginateResults, sortResults } from '@/helpers';
@@ -84,7 +85,7 @@ export const useDeleteArchiveContainer = ({
   region,
   onError,
   onSuccess,
-}: DeleteArchiveProps) => {
+}: Readonly<DeleteArchiveProps>) => {
   const mutation = useMutation({
     mutationFn: async () =>
       deleteArchiveContainer({ projectId, region, containerName }),
@@ -98,6 +99,38 @@ export const useDeleteArchiveContainer = ({
   });
   return {
     deleteArchiveContainer: () => mutation.mutate(),
+    ...mutation,
+  };
+};
+
+type RestoreArchiveProps = {
+  projectId: string;
+  containerName: string;
+  region: string;
+  onError: (cause: Error) => void;
+  onSuccess: () => void;
+};
+
+export const useRestoreArchiveContainer = ({
+  projectId,
+  containerName,
+  region,
+  onError,
+  onSuccess,
+}: Readonly<RestoreArchiveProps>) => {
+  const mutation = useMutation({
+    mutationFn: async () =>
+      restoreArchiveContainer({ projectId, region, containerName }),
+    onError,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: getQueryKeyArchive(projectId, region),
+      });
+      onSuccess();
+    },
+  });
+  return {
+    restoreArchiveContainer: () => mutation.mutate(),
     ...mutation,
   };
 };
