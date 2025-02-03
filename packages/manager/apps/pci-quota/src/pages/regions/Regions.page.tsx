@@ -39,6 +39,8 @@ type TState = {
   isAddingRegion: boolean;
 };
 
+const DISCOVERY_PROJECT_PLAN_CODE = 'project.discovery';
+
 export default function RegionsPage(): JSX.Element {
   const { t } = useTranslation('regions');
   const [state, setState] = useState<TState>({ isAddingRegion: false });
@@ -159,15 +161,17 @@ export default function RegionsPage(): JSX.Element {
         {t('pci_projects_project_regions_description')}
       </OdsText>
 
-      <div>
-        <OdsMessage
-          color="information"
-          className="mt-6 mb-6 w-full"
-          isDismissible={false}
-        >
-          {t('pci_projects_project_regions_info_message')}
-        </OdsMessage>
-      </div>
+      {project.planCode !== DISCOVERY_PROJECT_PLAN_CODE && (
+        <div>
+          <OdsMessage
+            color="information"
+            className="mt-6 mb-6 w-full"
+            isDismissible={false}
+          >
+            {t('pci_projects_project_regions_info_message')}
+          </OdsMessage>
+        </div>
+      )}
 
       <div>
         <AvailablePart isMobile={isMobile} />
