@@ -64,3 +64,7 @@ const savingsPlanConsumptionSchema = z.object({
 export type SavingsPlanConsumption = z.infer<
   typeof savingsPlanConsumptionSchema
 >;
+
+export type SavingsPlanFlavorConsumption = z.infer<typeof flavorSchema>;
+
+export type SavingsPlanPeriodConsumption = z.infer<typeof periodSchema>;

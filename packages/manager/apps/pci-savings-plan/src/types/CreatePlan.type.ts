@@ -1,5 +1,3 @@
-import { formatTechnicalInfo } from '@/utils/formatter/formatter';
-
 export enum ResourceType {
   instance = 'instance',
   rancher = 'rancher',

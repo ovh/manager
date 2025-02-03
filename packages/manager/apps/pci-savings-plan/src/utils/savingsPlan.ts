@@ -5,6 +5,7 @@ import {
   ResourceType,
 } from '@/types/CreatePlan.type';
 import { SavingsPlanPlanedChangeStatus, SavingsPlanService } from '@/types';
+import { SavingsPlanFlavorConsumption } from '@/types/savingsPlanConsumption.type';
 
 export const REGEX = '^[a-zA-Z0-9_-]{1,60}$';
 
@@ -39,18 +40,17 @@ export const getInstancesInformation = (t: TFunction): InstanceInfo[] => [
   },
 ];
 
-export const getBigestActiveSavingsPlan = (
-  savingsPlan: SavingsPlanService[],
-) => {
-  const onlyActivePlanBySize = savingsPlan
-    ?.filter(
-      (plan) =>
-        plan.periodEndAction === SavingsPlanPlanedChangeStatus.REACTIVATE,
-    )
-    .sort((a, b) => b.size - a.size);
+export const getActiveSavingsPlan = (savingsPlan: SavingsPlanService[]) =>
+  savingsPlan?.filter(
+    (plan) => plan.periodEndAction === SavingsPlanPlanedChangeStatus.REACTIVATE,
+  );
 
-  return onlyActivePlanBySize?.[0];
-};
+export const getBigestConsumption = (
+  consumption: SavingsPlanFlavorConsumption[],
+) =>
+  [...consumption]?.sort(
+    (a, b) => b.periods[0]?.consumption_size - a.periods[0]?.consumption_size,
+  )?.[0];
 
 // We don't have a better way to check that, api return only a specific code and not an id related to scope (instance, rancher),
 // So if we have number in the flavor (b3-8, c3-16) it's an instance else it's a Rancher

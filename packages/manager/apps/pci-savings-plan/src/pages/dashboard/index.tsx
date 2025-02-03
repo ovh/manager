@@ -1,5 +1,5 @@
 import { Title } from '@ovh-ux/manager-react-components';
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
@@ -9,17 +9,32 @@ import Filters from '@/components/Dashboard/Filters/Filters';
 import Kpis from '@/components/Dashboard/Kpis/Kpis';
 import TabsDashboard from '@/components/Dashboard/TabsDashboard/TabsDashboard';
 import { useSavingsPlan } from '@/hooks/useSavingsPlan';
-import { useSavingsPlanConsumption } from '@/hooks/useSavingsPlanConsumption';
-import { getBigestActiveSavingsPlan } from '@/utils/savingsPlan';
+import { useFilteredConsumption } from '@/hooks/useFilteredConsumption';
 
 const Dashboard: React.FC = () => {
   const { projectId } = useParams();
   const navigate = useNavigate();
-  const { data: savingsPlan, isLoading, isPending } = useSavingsPlan();
   const { environment } = useContext(ShellContext);
   const locale = environment.getUserLocale();
-  const { data: consumption } = useSavingsPlanConsumption();
   const { t } = useTranslation(['dashboard']);
+
+  const { data: savingsPlan, isLoading, isPending } = useSavingsPlan();
+
+  const {
+    flavor,
+    period,
+    setFlavor,
+    setPeriod,
+    consumption,
+    isConsumptionLoading,
+    periodOptions,
+    flavorOptions,
+  } = useFilteredConsumption(locale);
+
+  const currentConsumption = useMemo(
+    () => consumption?.flavors?.find((f) => f.flavor === flavor),
+    [consumption, flavor],
+  );
 
   useEffect(() => {
     if (!isLoading && !isPending && savingsPlan?.length === 0) {
@@ -27,11 +42,6 @@ const Dashboard: React.FC = () => {
     }
   }, [isLoading, isPending, savingsPlan]);
 
-  const currentPlan = getBigestActiveSavingsPlan(savingsPlan);
-
-  if (!currentPlan) {
-    return <div>No current plan</div>;
-  }
   return (
     <>
       <Title>{t('dashboard')}</Title>
@@ -40,13 +50,19 @@ const Dashboard: React.FC = () => {
       </OdsText>
       {projectId && <TabsDashboard projectId={projectId} />}
       <Filters
-        defaultFilter={currentPlan}
-        savingsPlan={savingsPlan}
-        locale={locale}
-        isLoading={isLoading}
+        flavorOptions={flavorOptions}
+        isLoading={isConsumptionLoading}
+        period={period}
+        flavor={flavor}
+        setFlavor={setFlavor}
+        setPeriod={setPeriod}
+        periodOptions={periodOptions}
       />
-      <Kpis isLoading={isLoading} />
-      <ConsumptionDatagrid isLoading={isLoading} />
+      <Kpis isLoading={isConsumptionLoading} />
+      <ConsumptionDatagrid
+        isLoading={isConsumptionLoading}
+        consumption={currentConsumption}
+      />
     </>
   );
 };
