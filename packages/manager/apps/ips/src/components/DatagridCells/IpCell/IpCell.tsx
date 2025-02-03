@@ -1,5 +1,7 @@
 import React from 'react';
+import { OdsSkeleton } from '@ovhcloud/ods-components/react';
 import { ipFormatter } from '@/utils/ipFormatter';
+import { useGetIpdetails } from '@/data/hooks/ip';
 
 export type IpCellProps = {
   ipGroup: string;
@@ -13,5 +15,16 @@ export type IpCellProps = {
  * @returns React Component
  */
 export const IpCell = ({ ipGroup }: IpCellProps) => {
-  return <div>{ipFormatter(ipGroup).ip}</div>;
+  const { ipDetails, isLoading, error } = useGetIpdetails({ ip: ipGroup });
+
+  return (
+    <>
+      <div>{ipFormatter(ipGroup).ip}</div>
+      {isLoading ? (
+        <OdsSkeleton></OdsSkeleton>
+      ) : (
+        <small>{ipDetails?.description}</small>
+      )}
+    </>
+  );
 };
