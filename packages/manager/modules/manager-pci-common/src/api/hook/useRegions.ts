@@ -1,6 +1,8 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import {
   addProjectRegion,
+  getArchiveRegionDetails,
+  getProductRegionsAvailability,
   getProjectRegions,
   getS3StorageRegions,
   getStorageRegions,
@@ -65,3 +67,20 @@ export const useAddProjectRegion = ({
     ...mutation,
   };
 };
+
+export const useProductRegionsAvailability = (
+  ovhSubsidiary: string,
+  planCode: string,
+) =>
+  useQuery({
+    queryKey: ['ovhSubsidiary', ovhSubsidiary],
+    queryFn: () => getProductRegionsAvailability(ovhSubsidiary, planCode),
+    enabled: !!ovhSubsidiary,
+  });
+
+export const useArchiveRegionDetails = (projectId: string, region: string) =>
+  useQuery({
+    queryKey: ['projectId', projectId, 'region', region],
+    queryFn: () => getArchiveRegionDetails(projectId, region),
+    enabled: !!projectId && !!region,
+  });
