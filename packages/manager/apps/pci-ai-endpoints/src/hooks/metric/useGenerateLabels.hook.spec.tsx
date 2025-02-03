@@ -4,13 +4,12 @@ import useGenerateLabels from './useGenerateLabels.hook';
 
 describe('useGenerateLabels', () => {
   const formatDate = (date: Date) => {
-    const day = date
-      .getDate()
-      .toString()
-      .padStart(2, '0');
-    const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Les mois commencent à 0
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
     const year = date.getFullYear();
-    return `${day}/${month}/${year}`;
+    return `${day < 10 ? `0${day}` : day}/${
+      month < 10 ? `0${month}` : month
+    }/${year}`;
   };
 
   const initialStartDate = new Date(2025, 0, 1);
@@ -23,7 +22,7 @@ describe('useGenerateLabels', () => {
     const { labels } = result.current;
 
     expect(labels.length).toBe(10);
-    expect(labels[0]).toBe(formatDate(new Date(2025, 0, 1))); // Utilisation de la fonction de formatage
+    expect(labels[0]).toBe(formatDate(new Date(2025, 0, 1)));
     expect(labels[labels.length - 1]).toBe(formatDate(new Date(2025, 0, 10)));
   });
 
@@ -118,8 +117,8 @@ describe('useGenerateLabels', () => {
     const { labels } = result.current;
 
     expect(labels.length).toBeGreaterThan(0);
-    expect(labels).toContain(formatDate(new Date(2025, 0, 1))); // 01/01/2025
-    expect(labels).not.toContain(formatDate(new Date(2025, 0, 10))); // 10/01/2025
+    expect(labels).toContain(formatDate(new Date(2025, 0, 1)));
+    expect(labels).not.toContain(formatDate(new Date(2025, 0, 10)));
     expect(labels.length).toBe(1);
   });
 });
