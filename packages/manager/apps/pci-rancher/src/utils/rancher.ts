@@ -45,10 +45,6 @@ export const getLatestVersions = (
 
   const sortedVersions = sortVersions(versions);
 
-  if (sortedVersions.length === 0) {
-    return null;
-  }
-
   const filteredVersions = sortedVersions.filter((v) =>
     semver.lt(currentVersion, v.name),
   );
