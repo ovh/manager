@@ -1,0 +1,17 @@
+{
+  "pci_projects_project_users_add_title": "Object Storage User hinzufügen",
+  "pci_projects_project_users_add_short_description": "Der Zugang zu Ihren Archiven lässt sich für Ihre vordefinierten Nutzer festlegen. Erstellen Sie bei Bedarf neue Nutzer, Sie erhalten dann die entsprechenden Zugangsschlüssel.",
+  "pci_projects_project_users_add_submit_label": "Erstellen",
+  "pci_projects_project_users_add_cancel_label": "Abbrechen",
+  "pci_projects_project_users_add_description_label": "Beschreibung des Nutzers",
+  "pci_projects_project_users_add_existing_user": "Einen bestehenden Nutzer auswählen",
+  "pci_projects_project_users_add_create_user": "Einen neuen Nutzer erstellen",
+  "pci_projects_project_users_add_success_message": "Die Object Storage Login-Daten für den User{{user}} wurden generiert.",
+  "pci_projects_project_users_add_error_message": "Die Object Storage Login-Daten für den User {{user}} konnten nicht generiert werden.",
+  "pci_projects_project_users_add_username": "Ihr OpenStack-Nutzername:",
+  "pci_projects_project_users_add_description": "Ihre Beschreibung:",
+  "pci_projects_project_users_add_accesskey": "Ihr Zugangsschlüssel:",
+  "pci_projects_project_users_add_secretkey": "Ihr geheimer Schlüssel:",
+  "pci_projects_project_users_add_as_no_credentials": "Keine Zugangsdaten",
+  "pci_projects_project_users_add_as_credentials": "Erstellte Zugangsdaten"
+}
