@@ -12,28 +12,39 @@ export const useAdditionalIpsRegions = ({
   const { environment } = React.useContext(ShellContext);
   const { data, ...query } = useCatalogIps(environment.user.ovhSubsidiary);
 
+  const configurationName =
+    serviceType === ServiceType.vrack ? 'ip_region' : 'datacenter';
+
   return {
     ...query,
     regionList: data?.data?.plans
       ? Array.from(
           new Set(
             data.data.plans
-              .filter(({ planCode }) =>
-                serviceType === ServiceType.ipParking
-                  ? planCode.includes('failover')
-                  : planCode.includes('v4'),
-              )
+              .filter(({ planCode }) => {
+                switch (serviceType) {
+                  case ServiceType.ipParking:
+                    return planCode.includes('failover');
+                  case ServiceType.vrack:
+                    return planCode.includes('ip-v6');
+                  default:
+                    return planCode.includes('ip-v4');
+                }
+              })
               .map((plan) =>
                 plan.details.product.configurations
                   .flatMap((config) =>
-                    config.name === 'datacenter' ? config : undefined,
+                    config.name === configurationName ? config : undefined,
                   )
                   .filter(Boolean)
                   .flatMap((config) => config.values),
               )
               .flat(),
           ),
-        ).map((datacenter) => DATACENTER_TO_REGION[datacenter])
+        ).map(
+          (regionOrDatacenter) =>
+            DATACENTER_TO_REGION[regionOrDatacenter] || regionOrDatacenter,
+        )
       : [],
   };
 };
