@@ -56,7 +56,7 @@ export default function ListingPage() {
     refresh,
   } = usePaginatedArchive(
     projectId,
-    regions ? regions[0] : '',
+    regions?.[0],
     pagination,
     sorting,
     filters,
