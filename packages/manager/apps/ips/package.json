@@ -23,6 +23,7 @@
     "@ovh-ux/manager-config": "*",
     "@ovh-ux/manager-core-api": "*",
     "@ovh-ux/manager-core-utils": "*",
+    "@ovh-ux/manager-module-common-api": "0.2.3",
     "@ovh-ux/manager-module-order": "0.9.3",
     "@ovh-ux/manager-react-components": "^2.6.2",
     "@ovh-ux/manager-react-core-application": "*",

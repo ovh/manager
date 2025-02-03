@@ -12,11 +12,13 @@ export type CountrySelectorProps = {
   onChange?: (event: OdsSelectCustomEvent<OdsSelectChangeEventDetail>) => void;
   value?: string;
   isDisabled?: boolean;
+  className?: string;
 };
 
 export const CountrySelector: React.FC<CountrySelectorProps> = ({
   countryCodeList,
   onChange,
+  className,
   ...props
 }) => {
   const { t } = useTranslation('region-selector');
@@ -24,7 +26,7 @@ export const CountrySelector: React.FC<CountrySelectorProps> = ({
   return (
     <OdsSelect
       key={countryCodeList.join('-')}
-      className="block w-full max-w-[384px]"
+      className={`block w-full ${className}`}
       onOdsChange={onChange}
       customRenderer={{
         option: (data) => `<div style="display: flex">
