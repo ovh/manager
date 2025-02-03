@@ -34,6 +34,7 @@ export type IpDetails = {
   campus: string;
   routedTo?: IpRoutedToType;
   version: number;
+  description: string;
 };
 
 export const getIpDetailsQueryKey = (params: GetIpDetailsParams) => [
