@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.13.4...@ovh-ux/manager-dedicated@20.14.0) (2025-02-03)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3661] ([4c13c97](https://github.com/ovh/manager/commit/4c13c97260474e41e8fe1550110a321de299c57b))
+* **i18n:** add missing translations [CDS 3679] ([de056eb](https://github.com/ovh/manager/commit/de056eb3f8ba64aa6dfb756ff2d44445bb9b7462))
+
+
+### Features
+
+* **dedicated.license:** include dynamic pricing mode value ([ddb125e](https://github.com/ovh/manager/commit/ddb125efd08e2b011c278caa15ceacd9330e0b74))
+* **dedicated.license:** license upgrade on us side ([4a12ab9](https://github.com/ovh/manager/commit/4a12ab977c1c13a6d012d9d2ccb366e5ce836a49))
+* **dedicated.pcc:** move terminate action menu to tile button ([bac31b3](https://github.com/ovh/manager/commit/bac31b3ab9aca7ba01a795e971234c113d7e77e0))
+* **dedicated:** disable validate in user rights when no changes ([db80de2](https://github.com/ovh/manager/commit/db80de2fd76a42412c3f46459833c2f347cdaa5e))
+
+
+
+
+
 ## [20.13.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.13.3...@ovh-ux/manager-dedicated@20.13.4) (2025-01-30)
 
 
