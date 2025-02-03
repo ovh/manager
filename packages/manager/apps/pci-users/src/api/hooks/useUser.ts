@@ -18,6 +18,7 @@ import {
   UsersOptions,
 } from '@/api/data/user';
 import {
+  DOWNLOAD_FILETYPE,
   DOWNLOAD_RCLONE_FILENAME,
   DOWNLOAD_RCLONE_FILETYPE,
   RCLONE_SERVICE_TYPE,
@@ -129,11 +130,13 @@ export const useDownloadRCloneConfig = ({
   onSuccess,
 }: DownloadRCloneConfigProps) => {
   const [isLoading, setIsLoading] = useState(false);
-  const download = async (region: string, fileType: string) => {
+  const download = async (
+    region: string,
+    fileType: keyof typeof DOWNLOAD_FILETYPE,
+  ) => {
     try {
       setIsLoading(true);
-      const service =
-        RCLONE_SERVICE_TYPE[fileType.toUpperCase()] || RCLONE_SERVICE_TYPE.S3;
+      const service = RCLONE_SERVICE_TYPE[fileType] || RCLONE_SERVICE_TYPE.S3;
       const { content } = await downloadRCloneConfig(
         projectId,
         userId,

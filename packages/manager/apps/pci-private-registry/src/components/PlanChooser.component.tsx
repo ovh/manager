@@ -21,7 +21,6 @@ export default function PlanChooser({
         onInput(v);
       }}
       label={(item) => <PlanComponent plan={item} />}
-      tileClass={{ active: 'p-0', inactive: 'p-0' }}
     />
   );
 }
