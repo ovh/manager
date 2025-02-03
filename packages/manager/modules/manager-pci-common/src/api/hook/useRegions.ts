@@ -1,6 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import {
   addProjectRegion,
+  getProjectRegionDetails,
   getProjectRegions,
   getS3StorageRegions,
   getStorageRegions,
@@ -65,3 +66,10 @@ export const useAddProjectRegion = ({
     ...mutation,
   };
 };
+
+export const useProjectRegionDetails = (projectId: string, region: string) =>
+  useQuery({
+    queryKey: ['projectId', projectId, 'region', region],
+    queryFn: () => getProjectRegionDetails(projectId, region),
+    enabled: !!projectId && !!region,
+  });
