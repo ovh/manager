@@ -21,6 +21,8 @@ import {
   PriceDescription,
 } from '@/components/OptionCard/OptionCard.component';
 import {
+  IP_FAILOVER_PLANCODE,
+  getContinentKeyFromRegion,
   useAdditionalIpBlockPricings,
   useIpv4LowestPrice,
 } from '@/data/hooks/catalog';
@@ -51,14 +53,17 @@ export const OfferSelectionSection: React.FC = () => {
   );
 
   React.useEffect(() => {
-    if (
-      pricingList &&
-      (!selectedPlanCode ||
-        !pricingList.some(({ value }) => value === selectedPlanCode))
-    ) {
+    if (!hasAdditionalIpBlockOffer(selectedServiceType)) {
+      setSelectedOffer(IpOffer.additionalIp);
+      setSelectedPlanCode(
+        IP_FAILOVER_PLANCODE[getContinentKeyFromRegion(selectedRegion)],
+      );
+    }
+    if (!hasAdditionalIpOffer(selectedServiceType)) {
+      setSelectedOffer(IpOffer.blockAdditionalIp);
       setSelectedPlanCode(pricingList?.[0]?.value);
     }
-  }, [pricingList, selectedPlanCode]);
+  }, [selectedServiceType, pricingList, selectedRegion]);
 
   return (
     <OrderSection title={t('offer_selection_title')}>
@@ -80,16 +85,18 @@ export const OfferSelectionSection: React.FC = () => {
               },
             )}
             isSelected={selectedOffer === IpOffer.additionalIp}
-            onClick={() => setSelectedOffer(IpOffer.additionalIp)}
+            onClick={() => {
+              setSelectedOffer(IpOffer.additionalIp);
+              setSelectedPlanCode(
+                IP_FAILOVER_PLANCODE[getContinentKeyFromRegion(selectedRegion)],
+              );
+            }}
           >
             <OdsQuantity
               name="additional_ip_quantity"
               min={1}
               max={64}
-              onOdsChange={(event) => {
-                setSelectedOffer(IpOffer.additionalIp);
-                setIpQuantity(event.target.value);
-              }}
+              onOdsChange={(event) => setIpQuantity(event.target.value)}
               value={ipQuantity}
             />
             <OdsText preset={ODS_TEXT_PRESET.heading4}>
@@ -105,7 +112,16 @@ export const OfferSelectionSection: React.FC = () => {
               <PriceDescription suffix={t('per_ip_full')} price={price} />
             }
             isSelected={selectedOffer === IpOffer.blockAdditionalIp}
-            onClick={() => setSelectedOffer(IpOffer.blockAdditionalIp)}
+            onClick={() => {
+              setSelectedOffer(IpOffer.blockAdditionalIp);
+              if (
+                pricingList.every(
+                  (pricing) => pricing.value !== selectedPlanCode,
+                )
+              ) {
+                setSelectedPlanCode(pricingList[0].value);
+              }
+            }}
           >
             {isLoading ? (
               <OdsSkeleton />
@@ -118,8 +134,14 @@ export const OfferSelectionSection: React.FC = () => {
                 name="ip_block_plancode_select"
                 value={selectedPlanCode}
                 onOdsChange={(event) => {
-                  setSelectedOffer(IpOffer.blockAdditionalIp);
-                  setSelectedPlanCode(event.target.value as string);
+                  if (
+                    pricingList.some(
+                      (pricing) => pricing.value === event.target.value,
+                    )
+                  ) {
+                    setSelectedOffer(IpOffer.blockAdditionalIp);
+                    setSelectedPlanCode(event.target.value as string);
+                  }
                 }}
               >
                 {pricingList.map(({ label, value }) => (
