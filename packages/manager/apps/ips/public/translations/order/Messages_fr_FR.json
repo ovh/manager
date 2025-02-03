@@ -16,6 +16,11 @@
   "service_selection_select_vrack_option_group_label": "Réseau Privé vRack",
   "service_selection_select_ip_parking_option_group_label": "IP Parking",
   "service_selection_select_ip_parking_option_label": "IP Parking",
+  "service_selection_select_dedicated_server_option_group_label": "Serveurs dédiés",
+  "service_selection_select_vps_option_group_label": "Serveurs privés virtuels",
+  "service_selection_select_dedicated_cloud_option_group_label": "Hosted Private Cloud (VMware)",
+  "service_selection_region_helper": "Région: ",
+  "service_selection_unknown_region": "Inconnue",
   "region_selection_title": "Sélectionnez une région pour votre nouvelle Additional IP",
   "offer_selection_title": "Choisissez votre offre",
   "additional_ip_block_card_title": "Block Additional IP",
@@ -32,5 +37,6 @@
   "go_to_organisation_list_link_label": "Cliquez ici pour accéder à la gestion des organisations.",
   "order_button_label": "Continuer ma commande",
   "cancel_button_label": "Retour",
-  "error_message": "Une erreur est survenue: {{error}}"
+  "error_message": "Une erreur est survenue: {{error}}",
+  "service_selection_dedicated_server_expired_error_message": "Le service est expiré"
 }
