@@ -5,8 +5,10 @@ import {
   OdsIcon,
   OdsSkeleton,
 } from '@ovhcloud/ods-components/react';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { formatUsagePercent, getUsagePercent } from '@/utils/kpi/utils';
+import { SavingsPlanFlavorConsumption } from '@/types/savingsPlanConsumption.type';
 
 const Kpi = ({
   title,
@@ -16,7 +18,7 @@ const Kpi = ({
   isLoading,
 }: {
   title: string;
-  value: number;
+  value: number | string;
   tooltip: string;
   index: number;
   isLoading: boolean;
@@ -32,7 +34,7 @@ const Kpi = ({
       <OdsText preset="heading-5" className="max-w-lg">
         {title}
         <OdsIcon
-          className="my-auto"
+          className="my-auto ml-2"
           aria-labelledby="tooltip-default"
           name="circle-question"
           id={`trigger-${index}`}
@@ -51,9 +53,25 @@ const Kpi = ({
   );
 };
 
-const Kpis = ({ isLoading }: Readonly<{ isLoading: boolean }>) => {
+const Kpis = ({
+  isLoading,
+  consumption,
+}: Readonly<{
+  isLoading: boolean;
+  consumption: SavingsPlanFlavorConsumption;
+}>) => {
   const { t } = useTranslation('dashboard');
-  const data = [
+
+  const computedUsagePercent = useMemo(
+    () =>
+      formatUsagePercent(
+        getUsagePercent(consumption),
+        t('dashboard_kpis_not_available'),
+      ),
+    [consumption, t],
+  );
+
+  const kpiData = [
     {
       title: t('dashboard_kpis_active_plans_name'),
       tooltip: t('dashboard_kpis_active_plans_tooltip'),
@@ -62,18 +80,18 @@ const Kpis = ({ isLoading }: Readonly<{ isLoading: boolean }>) => {
     {
       title: t('dashboard_kpis_usage_percent_name'),
       tooltip: t('dashboard_kpis_usage_percent_tooltip'),
-      value: 12,
+      value: computedUsagePercent,
     },
     {
       title: t('dashboard_kpis_coverage_percent_name'),
       tooltip: t('dashboard_kpis_coverage_percent_tooltip'),
-      value: 5,
+      value: 10,
     },
   ];
 
   return (
     <div className="flex flex-row gap-4 items-center mt-7">
-      {data.map((item, index) => (
+      {kpiData.map((item, index) => (
         <React.Fragment key={item.title}>
           <Kpi
             title={item.title}
@@ -82,7 +100,7 @@ const Kpis = ({ isLoading }: Readonly<{ isLoading: boolean }>) => {
             index={index}
             isLoading={isLoading}
           />
-          {index < data.length - 1 && (
+          {index < kpiData.length - 1 && (
             <div className="h-16 w-px bg-gray-300 mx-2"></div>
           )}
         </React.Fragment>
