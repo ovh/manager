@@ -1,4 +1,5 @@
 import {
+  BaseLayout,
   Datagrid,
   Headers,
   Notifications,
@@ -171,8 +172,8 @@ export default function QuotaPage(): JSX.Element {
     return <OdsSpinner size={ODS_SPINNER_SIZE.md} />;
   }
   return (
-    <div>
-      {project && (
+    <BaseLayout
+      breadcrumb={
         <OdsBreadcrumb>
           <OdsBreadcrumbItem href={hrefProject} label={project.description} />
           <OdsBreadcrumbItem
@@ -180,7 +181,12 @@ export default function QuotaPage(): JSX.Element {
             href={''}
           />
         </OdsBreadcrumb>
-      )}
+      }
+      header={{
+        headerButton: <PciGuidesHeader category="instances" />,
+      }}
+      tabs={<TabsComponent activeTab={'quota'} />}
+    >
       {!isServicePending && !service && !serviceOptions && (
         <div className="mt-10">
           <OdsMessage color="danger" className="w-full" isDismissible={false}>
@@ -195,22 +201,11 @@ export default function QuotaPage(): JSX.Element {
           </OdsMessage>
         </div>
       )}
-      <div className="header mt-8">
-        <Headers
-          headerButton={
-            <div className="min-w-[7rem]">
-              <PciGuidesHeader category="instances" />
-            </div>
-          }
-        />
-      </div>
+
       <div className={isMobile ? 'mb-5 sticky top-0 z-50' : ''}>
         <PciDiscoveryBanner project={project} />
       </div>
       <PciAnnouncementBanner projectId={projectId} />
-      <div className="my-10 mt-8">
-        <TabsComponent activeTab={'quota'} />
-      </div>
       <Notifications />
       {is.quotaRestricted && is.defaultPaymentMethodAvailable && (
         <div className="mt-8 p-8 rounded-md border border-solid border-[#bef1ff] bg-[#f5feff]">
@@ -370,6 +365,6 @@ export default function QuotaPage(): JSX.Element {
       <Suspense>
         <Outlet />
       </Suspense>
-    </div>
+    </BaseLayout>
   );
 }

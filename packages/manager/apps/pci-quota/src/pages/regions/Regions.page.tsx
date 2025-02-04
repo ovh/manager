@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 import { Translation, useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import {
-  Headers,
+  BaseLayout,
   Notifications,
   PciGuidesHeader,
   useNotifications,
@@ -43,6 +43,7 @@ const DISCOVERY_PROJECT_PLAN_CODE = 'project.discovery';
 
 export default function RegionsPage(): JSX.Element {
   const { t } = useTranslation('regions');
+
   const [state, setState] = useState<TState>({ isAddingRegion: false });
 
   const isMobile: boolean = useMedia(`(max-width: 760px)`);
@@ -122,8 +123,8 @@ export default function RegionsPage(): JSX.Element {
   };
 
   return (
-    <div>
-      {project && (
+    <BaseLayout
+      breadcrumb={
         <OdsBreadcrumb>
           <OdsBreadcrumbItem href={hrefProject} label={project.description} />
           <OdsBreadcrumbItem
@@ -131,21 +132,14 @@ export default function RegionsPage(): JSX.Element {
             href={''}
           />
         </OdsBreadcrumb>
-      )}
-
-      <div className="header mt-8">
-        <Headers
-          headerButton={
-            <div className="min-w-[7rem]">
-              <PciGuidesHeader category="instances" />
-            </div>
-          }
-        />
-      </div>
+      }
+      header={{
+        headerButton: <PciGuidesHeader category="instances" />,
+      }}
+      tabs={<TabsComponent activeTab={'regions'} />}
+    >
       <PciAnnouncementBanner projectId={projectId} />
-      <div className="my-10 mt-8">
-        <TabsComponent activeTab={'regions'} />
-      </div>
+
       <Notifications />
       <div>
         <OdsText preset="heading-3">
@@ -195,6 +189,6 @@ export default function RegionsPage(): JSX.Element {
           />
         </div>
       )}
-    </div>
+    </BaseLayout>
   );
 }
