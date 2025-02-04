@@ -1,28 +1,6 @@
 import { screen, waitFor } from '@testing-library/react';
-import React from 'react';
-import { vi } from 'vitest';
 import { logStreamsMock } from '../../data/mocks/logStream.mock';
 import { renderTest } from '../../test-utils';
-
-vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
-  const mod = await importOriginal<
-    typeof import('@ovh-ux/manager-react-shell-client')
-  >();
-  const navigateTo = vi.fn();
-  return {
-    ...mod,
-    ShellContext: React.createContext({
-      shell: {
-        navigation: {
-          getURL: vi.fn().mockResolvedValue('mocked-url'),
-        },
-      },
-    }),
-    useNavigation: () => ({
-      navigateTo,
-    }),
-  };
-});
 
 describe('dataStreams page test suite', () => {
   it('should display an error if /log/services api is KO', async () => {

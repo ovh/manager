@@ -4,6 +4,7 @@ import React, {
   useMemo,
   useRef,
   useState,
+  useContext,
 } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useVirtualizer } from '@tanstack/react-virtual';
@@ -21,10 +22,16 @@ import {
   ODS_INPUT_TYPE,
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { useLogTailMessages } from '../../../data/hooks/useLogTailMessages';
 import { Log } from './log/Log.component';
 import { TemporaryLogsLink } from '../../../data/types/dbaas/logs';
 import { useZoomedInOut } from '../../../hooks/useZoomedInOut';
+import { LogsContext } from '../../../LogsToCustomer.context';
 
 interface ISearchContext {
   query: string;
@@ -51,6 +58,8 @@ export const LogMessages = ({ logTailMessageUrl }: ILogTailMessageUrl) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [autoScroll, setAutoScroll] = useState(true);
   const { isZoomedIn, toggleZoom } = useZoomedInOut();
+  const { trackingOptions } = useContext(LogsContext);
+  const { trackClick } = useOvhTracking();
   const {
     messages,
     error,
@@ -74,6 +83,12 @@ export const LogMessages = ({ logTailMessageUrl }: ILogTailMessageUrl) => {
   const resetSession = async () => {
     setAutoScroll(true);
     clearLogs();
+    trackClick({
+      location: PageLocation.page,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: trackingOptions?.trackClickMap.clear_session_logs_access,
+    });
   };
 
   useEffect(() => {
