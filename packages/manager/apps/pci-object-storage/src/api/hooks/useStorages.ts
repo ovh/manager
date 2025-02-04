@@ -29,6 +29,7 @@ import {
 import { paginateResults } from '@/helpers';
 import { addUser, deleteSwiftObject, TStorageObject } from '../data/objects';
 import { getContainerQueryKey } from './useContainer';
+import { useGetRegion } from './useRegion';
 
 export const sortStorages = (sorting: ColumnSort, storages: TStorage[]) => {
   const order = sorting.desc ? -1 : 1;
@@ -492,5 +493,34 @@ export const useUpdateStorageType = ({
       return mutation.mutate({ containerId, containerType });
     },
     ...mutation,
+  };
+};
+
+export const useStorageAccess = (projectId: string, storage: TStorage) => {
+  return useQuery({
+    queryKey: ['project', projectId, 'storage-access'],
+    queryFn: () => getStorageAccess({ projectId }),
+    enabled: !!projectId && !!storage && !storage?.s3StorageType,
+  });
+};
+
+export const useStorageEndpoint = (projectId: string, storage: TStorage) => {
+  const { data: region, isPending: isRegionPending } = useGetRegion(
+    projectId,
+    storage?.region,
+  );
+  const { data: access, isPending: isAccessPending } = useStorageAccess(
+    projectId,
+    storage,
+  );
+  const isPending = isRegionPending || isAccessPending;
+  return {
+    isPending,
+    region,
+    url: storage?.s3StorageType
+      ? region?.services.find(
+          (service) => service.name === OBJECT_CONTAINER_OFFER_STORAGE_STANDARD,
+        )?.endpoint
+      : access?.endpoints?.find(({ region: reg }) => reg === region?.name)?.url,
   };
 };

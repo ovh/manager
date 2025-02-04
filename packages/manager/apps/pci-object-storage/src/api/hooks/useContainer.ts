@@ -70,7 +70,7 @@ export const usePaginatedObjects = (
           applyFilters<TObject>(
             container?.objects?.map((object) => ({
               ...object,
-              search: `${object.key} ${t(
+              search: `${object.key} ${object.name} ${t(
                 `pci_projects_project_storages_containers_container_storage_class_${object.storageClass}`,
               )}`,
             })) || [],
