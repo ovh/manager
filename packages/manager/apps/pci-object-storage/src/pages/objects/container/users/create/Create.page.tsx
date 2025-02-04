@@ -3,7 +3,11 @@ import { useTranslation } from 'react-i18next';
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { useNotifications, Clipboard } from '@ovh-ux/manager-react-components';
+import {
+  useNotifications,
+  Clipboard,
+  useFeatureAvailability,
+} from '@ovh-ux/manager-react-components';
 import {
   OdsFormField,
   OdsInput,
@@ -20,7 +24,11 @@ import {
   TUser,
 } from '@/api/data/user';
 import { poll } from '@/utils';
-import { TRACKING_PREFIX, TRACKING_S3_POLICY_ADD } from '@/constants';
+import {
+  AVAILABILITY,
+  TRACKING_PREFIX,
+  TRACKING_S3_POLICY_ADD,
+} from '@/constants';
 import queryClient from '@/queryClient';
 import LabelComponent from '@/components/Label.component';
 
@@ -37,6 +45,7 @@ type TState = {
 export default function UserCreatePage(): JSX.Element {
   const { t: tAdd } = useTranslation('objects/users/add');
   const { t: tCredential } = useTranslation('credential-banner');
+  const { t: tUsers } = useTranslation('objects/users');
 
   const navigate = useNavigate();
 
@@ -71,6 +80,9 @@ export default function UserCreatePage(): JSX.Element {
   };
 
   const { projectId } = useParams();
+  const { data: availability, isPending } = useFeatureAvailability([
+    AVAILABILITY.LOCALZONE,
+  ]);
 
   const { validUsersWithoutCredentials } = useUsers(projectId);
 
@@ -262,13 +274,25 @@ export default function UserCreatePage(): JSX.Element {
       onConfirm={onConfirm}
       onClose={onClose}
       onCancel={onCancel}
-      isPending={state.isLoading}
+      isPending={state.isLoading || isPending}
     >
       {validUsersWithoutCredentials?.length > 0 && (
         <OdsMessage color="information" isDismissible={false}>
           <OdsText preset="paragraph">
             {tAdd('pci_projects_project_users_add_info_banner')}
           </OdsText>
+        </OdsMessage>
+      )}
+
+      {availability?.[AVAILABILITY.LOCALZONE] && (
+        <OdsMessage
+          color="information"
+          className="mt-6 w-full"
+          isDismissible={false}
+        >
+          {tUsers(
+            'objects/users:pci_projects_project_storages_containers_users_user_info_banner',
+          )}
         </OdsMessage>
       )}
 
