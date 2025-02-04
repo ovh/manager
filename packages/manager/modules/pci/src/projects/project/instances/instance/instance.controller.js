@@ -1,3 +1,5 @@
+import { THREE_AZ_REGION } from '../../project.constants';
+
 export default class PciInstanceController {
   /* @ngInject */
   constructor(
@@ -14,6 +16,7 @@ export default class PciInstanceController {
     this.ovhManagerRegionService = ovhManagerRegionService;
     this.PciProjectsProjectInstanceService = PciProjectsProjectInstanceService;
     this.PciProject = PciProject;
+    this.THREE_AZ_REGION = THREE_AZ_REGION;
   }
 
   $onInit() {
@@ -24,19 +27,14 @@ export default class PciInstanceController {
 
     this.is3az = this.instance.planCode.includes('3AZ');
 
-    this.fetch3AZAvailability();
+    this.regionAvailability = {};
+    this.fetchRegionTypeAvailability();
   }
 
-  fetch3AZAvailability() {
-    return this.PciProjectsProjectInstanceService.getProductAvailability(
+  async fetchRegionTypeAvailability() {
+    this.regionAvailability = await this.PciProjectsProjectInstanceService.getRegionTypeAvailability(
       this.projectId,
-      this.coreConfig.getUser().ovhSubsidiary,
-      'instance',
-    ).then(({ plans }) => {
-      this.are3AzRegionsAvailable = plans.some((plan) =>
-        plan.regions.some((region) => region.type === 'region-3-az'),
-      );
-    });
+    );
   }
 
   displayBillingActionButton() {
