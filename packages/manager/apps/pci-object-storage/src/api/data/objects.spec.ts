@@ -1,4 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
+import axios from 'axios';
 import { v6 } from '@ovh-ux/manager-core-api';
 import {
   deleteS3Object,
@@ -40,18 +41,17 @@ describe('deleteS3Object', () => {
 describe('deleteObject', () => {
   it('should delete an object', async () => {
     const mockResponse = { data: 'deleted' };
-    global.fetch = vi.fn().mockResolvedValue(mockResponse);
+    vi.spyOn(axios, 'delete').mockResolvedValue(mockResponse);
 
     const result = await deleteSwiftObject({
-      projectId: 'projectId',
       storageName: 'storageName',
       objectName: 'objectName',
       token: 'token',
-      region: 'region',
+      url: 'https://api.ovh.com',
     });
 
-    expect(global.fetch).toHaveBeenCalledWith(
-      'https://storage.region.cloud.ovh.net/v1/AUTH_projectId/storageName/objectName',
+    expect(axios.delete).toHaveBeenCalledWith(
+      'https://api.ovh.com/storageName/objectName',
       {
         method: 'DELETE',
         headers: {
@@ -119,8 +119,7 @@ describe('addObjects', () => {
   it('should add objects', async () => {
     const mockResponse = { data: 'uploaded' };
     vi.mocked(v6.post).mockReset();
-    vi.mocked(v6.put).mockReset();
-    vi.mocked(v6.put).mockResolvedValue(mockResponse);
+    vi.spyOn(axios, 'put').mockResolvedValue(mockResponse);
     vi.spyOn(storages, 'getStorageAccess').mockResolvedValue({
       token: 'token',
       endpoints: [
