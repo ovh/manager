@@ -8,5 +8,6 @@ html {
 
 .ods-field-helper::part(text) {
   width: 100%;
+  display: inline-block;
   text-align: start;
 }
