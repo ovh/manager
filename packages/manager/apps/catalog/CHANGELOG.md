@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.15.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.15.0...@ovh-ux/manager-catalog-app@1.15.1) (2025-02-04)
+
+
+### Reverts
+
+* Revert "feat(catalog, restricted): test comments to remove" ([d9ea358](https://github.com/ovh/manager/commit/d9ea358a809f960dc0f162a40f78cbede15868a0))
+
+
+
+
+
 # [1.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.14.37...@ovh-ux/manager-catalog-app@1.15.0) (2025-02-04)
 
 
