@@ -1,5 +1,13 @@
 {
-  "title": "Zimbra",
-  "description": "L'offre email Zimbra sera bientôt disponible. Vous souhaitez rejoindre la Beta Zimbra ?",
-  "orderButtonLabel": "Rejoindre la beta"
+  "title": "Suite collaborative Zimbra",
+  "description": "Communiquer et collaborer en entreprise grâce à la suite Zimbra",
+  "orderButtonLabel": "Commander",
+  "moreInfoButtonLabel": "Découvrir la solution Zimbra",
+  "card_guide_category": "Tutoriel",
+  "card_guide_title_1": "Premiers pas avec l'offre Zimbra",
+  "card_guide_title_2": "Configurer son compte Zimbra",
+  "card_guide_title_3": "Maitriser le webmail Zimbra",
+  "card_guide_description_1": "Découvrez comment créer vos premières boites mail et administrer votre service",
+  "card_guide_description_2": "Apprenez à configurer et utiliser votre compre Zimbra sur un terminal externe (PC ou smartphone)",
+  "card_guide_description_3": "Découvrez les fonctionnalités de l'interface web Zimbra"
 }
