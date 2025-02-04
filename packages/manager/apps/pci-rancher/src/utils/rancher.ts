@@ -27,9 +27,12 @@ export const getCurrentVersionInfo = (
   return getVersionInfoByName(currentVersion, versions);
 };
 
-export const sortVersions = (versions: RancherVersion[]): RancherVersion[] => {
+export const sortVersions = (
+  versions: RancherVersion[],
+  order: 'asc' | 'desc' = 'asc',
+): RancherVersion[] => {
   return versions.sort((a, b) => {
-    return semver.compare(a.name, b.name);
+    return (order === 'asc' ? semver.compare : semver.rcompare)(a.name, b.name);
   });
 };
 

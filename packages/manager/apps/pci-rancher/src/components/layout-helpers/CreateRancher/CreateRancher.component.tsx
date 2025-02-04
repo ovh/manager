@@ -152,7 +152,7 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
       (version) => version.status === 'AVAILABLE',
     );
     if (availableVersions?.length) {
-      return sortVersions(availableVersions)[availableVersions.length - 1];
+      return sortVersions(availableVersions, 'desc')[0];
     }
     return null;
   }, [versions]);
@@ -312,7 +312,7 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
         </Block>
         <div className="flex my-5">
           {versions &&
-            sortVersions(versions).map((version) => (
+            sortVersions(versions, 'desc').map((version) => (
               <TileSection
                 key={version.name}
                 isActive={version.name === selectedVersion?.name}
