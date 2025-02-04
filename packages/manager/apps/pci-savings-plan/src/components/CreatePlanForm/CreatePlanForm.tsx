@@ -356,7 +356,7 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
         <DescriptionWrapper className="mb-[12px]">
           {t('select_quantity_description')}
         </DescriptionWrapper>
-        <OdsCard className="flex flex-row items-center mr-5 p-4 text-center justify-between w-full mb-[32px] mt-[16px]">
+        <OdsCard className="flex flex-row items-center mr-5 p-4 text-center justify-between w-full mb-[32px] mt-[16px] border border-[--ods-color-neutral-200]">
           <OdsText>{t('quantity_label')}</OdsText>
           <OdsQuantity
             onOdsChange={handleQuantityChange}

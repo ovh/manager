@@ -71,6 +71,9 @@ const ListingTablePage: React.FC<ListingTablePageProps> = ({
   return (
     <>
       <Title>{t('title')}</Title>
+      <OdsText preset="span" className="inline-block mb-4 w-[750px]">
+        {t('informationMessage')}
+      </OdsText>
       {projectId && <TabsDashboard projectId={projectId} />}
       <div className="py-5">
         <OdsButton
@@ -81,9 +84,7 @@ const ListingTablePage: React.FC<ListingTablePageProps> = ({
           label={t('createSavingsPlan')}
         />
       </div>
-      <OdsText preset="span" className="inline-block my-4">
-        {t('informationMessage')}
-      </OdsText>
+
       <Notifications />
       <TableContainer data={data} refetchSavingsPlans={refetchSavingsPlans} />
     </>

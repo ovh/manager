@@ -1,4 +1,5 @@
 import { OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
+import { TFunction } from 'i18next';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -12,9 +13,9 @@ import { InstanceTechnicalName } from '@/types/CreatePlan.type';
 
 type Option = { label: string; value: string; prefix?: string };
 
-const getSelectText = (value: string, options: Option[]) => {
+const getSelectText = (value: string, options: Option[], t: TFunction) => {
   if (options.length === 0) {
-    return 'No options';
+    return t('dashboard_select_no_service');
   }
 
   const selectedOption = options.find((v) => v.value === value);
@@ -30,6 +31,7 @@ const SelectWithLabel = <T extends string>({
   value,
   isLoading,
   isDisabled,
+  className,
 }: {
   label: string;
   options: Option[];
@@ -38,7 +40,9 @@ const SelectWithLabel = <T extends string>({
   value: T;
   isLoading?: boolean;
   isDisabled?: boolean;
+  className?: string;
 }) => {
+  const { t } = useTranslation(['dashboard']);
   if (isLoading) {
     return (
       <div className="flex flex-col w-64 justify-center">
@@ -59,15 +63,17 @@ const SelectWithLabel = <T extends string>({
         value={value}
         disabled={isDisabled}
       >
-        <SelectTrigger className="text-foreground" id={name}>
-          <span>{getSelectText(value, options)}</span>
+        <SelectTrigger className={`text-foreground ${className}`} id={name}>
+          <span>{getSelectText(value, options, t)}</span>
         </SelectTrigger>
         <SelectContent>
           {options.map((option) => (
             <SelectItem key={option.value} value={option.value}>
               <div className="flex flex-col items-start">
                 <div>
-                  <OdsText className="text-bold text-l">{option.label}</OdsText>
+                  <OdsText className={`text-bold text-l ${className}`}>
+                    {option.label}
+                  </OdsText>
                 </div>
 
                 {option.prefix && (
@@ -113,12 +119,13 @@ const Filters = ({
         name="period"
         value={period}
         onChange={setPeriod}
+        className="capitalize"
       />
 
       <SelectWithLabel
         isDisabled={flavorOptions.length === 0}
         isLoading={isLoading}
-        label={t('dashboard_select_label_flavor')}
+        label={t('dashboard_select_label_service')}
         options={flavorOptions}
         name="flavor"
         value={flavor}

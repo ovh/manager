@@ -1,15 +1,24 @@
 import {
+  ButtonType,
+  PageLocation,
+  ShellContext,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
+import { useNavigate, useParams } from 'react-router-dom';
+import {
   Datagrid,
   DataGridTextCell,
   useDataGrid,
+  useNotifications,
 } from '@ovh-ux/manager-react-components';
-import React from 'react';
+import { OdsText, OdsButton } from '@ovhcloud/ods-components/react';
+import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { OdsText } from '@ovhcloud/ods-components/react';
 import {
   SavingsPlanFlavorConsumption,
   SavingsPlanPeriodConsumption,
 } from '@/types/savingsPlanConsumption.type';
+import { toLocalDateUTC } from '@/utils/formatter/date';
 
 type ConsumptionDatagridProps = {
   isLoading: boolean;
@@ -24,22 +33,28 @@ const ConsumptionDatagrid = ({
   isLoading,
   consumption,
 }: ConsumptionDatagridProps) => {
-  const { t } = useTranslation('dashboard');
   const { pagination, setPagination } = useDataGrid();
+  const { environment } = useContext(ShellContext);
+  const locale = environment.getUserLocale();
+  const { t } = useTranslation(['dashboard', 'listing']);
+  const { trackClick } = useOvhTracking();
 
+  const navigate = useNavigate();
+  const { projectId } = useParams();
+  const { clearNotifications } = useNotifications();
   const columns = [
     {
       label: t('dashboard_columns_start'),
       id: 'begin',
       cell: (props: SavingsPlanPeriodConsumption) => (
-        <CellText text={props.begin} />
+        <CellText text={toLocalDateUTC(props.begin, locale)} />
       ),
     },
     {
       label: t('dashboard_columns_end'),
       id: 'end',
       cell: (props: SavingsPlanPeriodConsumption) => (
-        <CellText text={props.end} />
+        <CellText text={toLocalDateUTC(props.end, locale)} />
       ),
     },
     {
@@ -58,12 +73,32 @@ const ConsumptionDatagrid = ({
     },
   ];
 
+  const handleClick = () => {
+    trackClick({
+      location: PageLocation.page,
+      buttonType: ButtonType.button,
+      actionType: 'navigation',
+      actions: ['add_savings_plan'],
+    });
+    clearNotifications();
+    navigate(`/pci/projects/${projectId}/savings-plan/new`);
+  };
+
   const items = consumption?.periods ?? [];
   return (
     <div>
-      <OdsText preset="heading-4" className="my-8">
+      <OdsText preset="heading-4" className="mt-8">
         {t('dashboard_table_title')}
       </OdsText>
+      <div className="py-5">
+        <OdsButton
+          icon="plus"
+          size="sm"
+          variant={'outline'}
+          onClick={handleClick}
+          label={t('listing:createSavingsPlan')}
+        />
+      </div>
       <Datagrid
         columns={columns}
         items={items}
