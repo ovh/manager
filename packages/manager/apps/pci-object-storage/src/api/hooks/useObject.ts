@@ -46,13 +46,15 @@ export const useDeleteObject = ({
         });
       }
 
-      const { token } = await getStorageAccess({ projectId });
+      const { endpoints, token } = await getStorageAccess({ projectId });
+      const url = endpoints?.find(
+        ({ region: endpointRegion }) => endpointRegion === region,
+      )?.url;
       return deleteSwiftObject({
-        projectId,
         storageName: storage.name,
         objectName,
         token,
-        region,
+        url,
       });
     },
     onError,
