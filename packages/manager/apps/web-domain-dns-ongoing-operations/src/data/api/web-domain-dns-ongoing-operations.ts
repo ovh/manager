@@ -25,10 +25,6 @@ export type GetmeTaskDomainIdParams = {
   id?: number;
 };
 
-export const getmeTaskDomainIdQueryKey = (params: GetmeTaskDomainIdParams) => [
-  `get/me/task/domain/${params.id}`,
-];
-
 /**
  * Get information about domain related tasks : Get this object properties
  */
@@ -70,4 +66,15 @@ export const getListingIcebergV6 = async ({
   return { data, status, totalCount };
 };
 
+export type UpdateTaskBody = {
+  value: string;
+};
+
+export const updateTask = async (
+  taskID: number,
+  key: string,
+  body: UpdateTaskBody,
+): Promise<void> => {
+  return apiClient.v6.put(`/me/task/domain/${taskID}/argument/${key}`, body);
+};
 // === DNS === //

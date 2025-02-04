@@ -18,18 +18,23 @@ import {
   ODS_MESSAGE_COLOR,
   ODS_TEXT_PRESET,
   OdsFile,
+  OdsFileChangeEventDetail,
+  OdsFileUploadCustomEvent,
 } from '@ovhcloud/ods-components';
-import { getmeTaskDomainArgument } from '@/data/api/web-domain-dns-ongoing-operations';
+import {
+  getmeTaskDomainArgument,
+  updateTask,
+} from '@/data/api/web-domain-dns-ongoing-operations';
 import SubHeader from '@/components/SubHeader';
 import { TArgument } from '@/interface';
-import { useDoOperation } from '@/hooks/actions/useActions';
 import { useGetDomainData } from '@/hooks/data/useGetDomainData';
+import { saveFile } from '@/data/api/document';
+import { useDoOperation } from '@/hooks/actions/useActions';
 
 export default function upload() {
   const { t } = useTranslation('dashboard');
   const navigate = useNavigate();
-  const { id } = useParams<{ id: string }>();
-  const { type } = useParams<{ type: string }>();
+  const { id, type } = useParams<{ id: string; type: string }>();
   const [canRelaunch, setCanRelaunch] = useState<boolean>(false);
   const [canAccelerate, setCanAccelerate] = useState<boolean>(false);
   const [canCancel, setCanCancel] = useState(false);
@@ -38,7 +43,9 @@ export default function upload() {
   const [uploadedFiles, setUploadedFiles] = useState<OdsFile[]>([]);
 
   const fetchDomainData = async () => {
-    return useGetDomainData(id);
+    const data = await useGetDomainData(id);
+    setCanRelaunch(data?.canRelaunch);
+    return data;
   };
 
   const fetchDomainArgument = async (
@@ -77,29 +84,36 @@ export default function upload() {
     }
   };
 
-  const handleOperation = async (
-    universe: string,
-    domainId: number,
-    operation: string,
-  ) => {
-    try {
-      const response = await useDoOperation('domain', domainId, operation);
-      if (response.status === 200) {
-        changeStatus('success', 'Operation done with success');
-      }
-      const file = uploadedFiles[0];
-      if (file) {
-        const data = new FormData();
-        data.append('file', file);
-      }
-    } catch (e) {
-      changeStatus('error', 'Operation done with error');
-    }
+  const executeActionOnOperation = async (operationID: number) => {
+    await useDoOperation('domain', operationID, operationType());
+    navigate(`/domain`);
   };
 
-  const handleFileChange = (files: OdsFile[] | OdsFile) => {
-    const updatedFiles: OdsFile[] = files?.detail.files;
-    setUploadedFiles(updatedFiles);
+  const saveFileAndUpdateOperation = async (
+    operationID: number,
+    file: OdsFile,
+  ) => {
+    const documentId = await saveFile(file);
+    const body = { value: documentId };
+    await updateTask(operationID, type, body);
+  };
+
+  const onValidate = (operationID: number) => {
+    const promiseArray = [];
+    changeStatus('success', t('domain_operations_upload_doing'));
+    for (let i = 0; i < uploadedFiles.length; i += 1) {
+      promiseArray.push(
+        saveFileAndUpdateOperation(operationID, uploadedFiles[i]),
+      );
+    }
+    Promise.all(promiseArray)
+      .then(async () => {
+        changeStatus('success', t('domain_operations_upload_success'));
+        executeActionOnOperation(operationID);
+      })
+      .catch(() => {
+        changeStatus('error', t('domain_operations_upload_error'));
+      });
   };
   return (
     <BaseLayout
@@ -166,8 +180,16 @@ export default function upload() {
             <strong>{domainArgument?.description}</strong>
           </OdsText>
           <OdsFileUpload
-            onOdsChange={(files: OdsFile[]) => handleFileChange(files)}
-            onOdsCancel={() => setUploadedFiles([])}
+            onOdsChange={(
+              e: OdsFileUploadCustomEvent<OdsFileChangeEventDetail>,
+            ) => {
+              setUploadedFiles(e.detail.files);
+              setCanRelaunch(true);
+            }}
+            onOdsCancel={() => {
+              setUploadedFiles([]);
+              setCanRelaunch(false);
+            }}
             maxFile={1}
             maxSize={domainArgument?.maximumSize}
             maxSizeLabel="No file larger than"
@@ -197,7 +219,7 @@ export default function upload() {
                 setCanCancel(false);
                 setCanAccelerate(false);
               }}
-              isDisabled={!domain?.canRelaunch}
+              isDisabled={!canRelaunch}
             ></OdsRadio>
             <label
               htmlFor="radio-relaunch"
@@ -267,9 +289,7 @@ export default function upload() {
               label={t('wizard_confirm')}
               slot="actions"
               isDisabled={!canRelaunch && !canAccelerate && !canCancel}
-              onClick={() =>
-                handleOperation('domain', domain?.id, operationType())
-              }
+              onClick={() => onValidate(domain.id)}
             />
           </div>
         </div>
