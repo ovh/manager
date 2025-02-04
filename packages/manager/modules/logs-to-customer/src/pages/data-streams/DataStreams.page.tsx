@@ -28,7 +28,6 @@ export default function DataStreams() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const { t } = useTranslation('logStreams');
-
   const [currentService, setCurrentService] = useState<Service>();
 
   const { data: logsServices, isPending, error } = useLogServices();

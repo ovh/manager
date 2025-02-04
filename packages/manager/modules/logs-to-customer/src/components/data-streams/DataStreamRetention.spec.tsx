@@ -33,6 +33,7 @@ const shellContext = {
   environment: {
     getUser: vi.fn(),
     getUserLocale: vi.fn().mockReturnValue('fr_FR'),
+    getRegion: vi.fn(),
   },
 };
 

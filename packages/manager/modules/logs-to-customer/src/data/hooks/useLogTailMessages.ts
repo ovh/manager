@@ -1,5 +1,10 @@
 import { useContext, useEffect, useRef, useState } from 'react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { TemporaryLogsLink } from '../types/dbaas/logs';
 import { getLogTailMessages, Tmessage } from '../api/logTailMessages';
 import { LogsContext } from '../../LogsToCustomer.context';
@@ -11,12 +16,12 @@ export const getLogTailMessageQueryKey = (
 export const useLogTailMessages = (
   logTailMessageUrl: TemporaryLogsLink['url'],
 ) => {
-  const { currentLogKind } = useContext(LogsContext);
+  const { currentLogKind, trackingOptions } = useContext(LogsContext);
+  const { trackClick } = useOvhTracking();
   const [messages, setMessages] = useState<Tmessage[]>([]);
   const messageIds = useRef(new Set());
   const [isPolling, setIsPolling] = useState(true);
   const queryClient = useQueryClient();
-
   const { data, error, isPending } = useQuery({
     queryKey: getLogTailMessageQueryKey(logTailMessageUrl),
     queryFn: () => getLogTailMessages({ logTailMessageUrl }),
@@ -31,6 +36,12 @@ export const useLogTailMessages = (
         queryKey: getLogTailMessageQueryKey(logTailMessageUrl),
       });
       setIsPolling(false);
+      trackClick({
+        location: PageLocation.page,
+        buttonType: ButtonType.button,
+        actionType: 'action',
+        actions: trackingOptions?.trackClickMap.pause_logs_access,
+      });
       return;
     }
     setIsPolling(true);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   ODS_BUTTON_VARIANT,
@@ -16,11 +16,17 @@ import {
 import { useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
+import {
   getLogStreamUrlQueryKey,
   useLogStreamUrl,
 } from '../../data/hooks/useLogStreamUrl';
 import { LogSubscription } from '../../data/types/dbaas/logs';
 import ApiError from '../apiError/ApiError.component';
+import { LogsContext } from '../../LogsToCustomer.context';
 
 type SubscriptionStreamItemProps = {
   subscription: LogSubscription;
@@ -37,6 +43,8 @@ const SubscriptionStreamActions = ({
     subscription.serviceName,
     subscription.streamId,
   );
+  const { trackingOptions } = useContext(LogsContext);
+  const { trackClick } = useOvhTracking();
 
   if (isLoading || isPending) {
     return (
@@ -75,6 +83,14 @@ const SubscriptionStreamActions = ({
         color={ODS_THEME_COLOR_INTENT.primary}
         variant={ODS_BUTTON_VARIANT.stroked}
         target={OdsHTMLAnchorElementTarget._blank}
+        onClick={() => {
+          trackClick({
+            location: PageLocation.page,
+            buttonType: ButtonType.button,
+            actionType: 'action',
+            actions: trackingOptions?.trackClickMap.graylog_observe_logs_access,
+          });
+        }}
       >
         {t('log_stream_button_graylog_watch_label')}
         <span slot="end">
@@ -90,6 +106,12 @@ const SubscriptionStreamActions = ({
         variant={ODS_BUTTON_VARIANT.ghost}
         color={ODS_THEME_COLOR_INTENT.primary}
         onClick={() => {
+          trackClick({
+            location: PageLocation.page,
+            buttonType: ButtonType.button,
+            actionType: 'action',
+            actions: trackingOptions?.trackClickMap.unsubscribe_logs_access,
+          });
           navigate(`subscription/${subscription.subscriptionId}/terminate`);
         }}
       >

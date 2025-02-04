@@ -5,6 +5,11 @@ import {
   RouteObject,
   RouterProvider,
 } from 'react-router-dom';
+import { vi } from 'vitest';
+import {
+  ShellContext,
+  ShellContextType,
+} from '@ovh-ux/manager-react-shell-client';
 import { logsRoutes } from '../routes/routes';
 
 const lazyRouteConfig = (importFn: CallableFunction) => {
@@ -28,6 +33,25 @@ const appRoutes: RouteObject[] = [
   },
 ];
 
+const shellContext = {
+  environment: {
+    getUser: vi.fn(),
+    getUserLocale: vi.fn().mockReturnValue('fr_FR'),
+    getRegion: vi.fn(),
+  },
+  shell: {
+    navigation: {
+      getURL: vi.fn().mockResolvedValue('mocked-url'),
+    },
+    tracking: {
+      trackClick: vi.fn(),
+    },
+  },
+  useNavigation: () => ({
+    navigateTo: vi.fn(),
+  }),
+};
+
 export function TestApp({ initialRoute = '/' }) {
   const router = createMemoryRouter(appRoutes, {
     initialEntries: [initialRoute],
@@ -40,7 +64,11 @@ export function TestApp({ initialRoute = '/' }) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
+      <ShellContext.Provider
+        value={(shellContext as unknown) as ShellContextType}
+      >
+        <RouterProvider router={router} />
+      </ShellContext.Provider>
     </QueryClientProvider>
   );
 }
