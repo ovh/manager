@@ -4,6 +4,7 @@ import {
 } from '@ovh-ux/manager-product-offers';
 
 import {
+  ORDER_CDN_TRACKING,
   HOSTING_CDN_CHANGE_TYPE,
   HOSTING_CDN_ORDER_CATALOG_ADDONS_PLAN_CODE_CDN_BUSINESS,
   HOSTING_CDN_ORDER_CATALOG_ADDONS_PLAN_CODE_CDN_BUSINESS_FREE,
@@ -136,13 +137,6 @@ export default /* @ngInject */ ($stateProvider) => {
       });
       return goBackWithError(error.data?.message || error);
     },
-
-    trackClick: /* @ngInject */ (atInternet) => (hit) => {
-      atInternet.trackClick({
-        name: hit,
-        type: 'action',
-      });
-    },
   };
 
   const resolveOrder = {
@@ -176,8 +170,14 @@ export default /* @ngInject */ ($stateProvider) => {
     ) => ({
       catalog,
       catalogItemTypeName: workflowConstants.CATALOG_ITEM_TYPE_NAMES.ADDON,
-      onPricingSubmit: () => {
-        trackClick('web::hosting::cdn::order::next');
+      onPricingSubmit: (pricing) => {
+        trackClick({
+          ...ORDER_CDN_TRACKING.PRICING.NEXT,
+          name: ORDER_CDN_TRACKING.PRICING.NEXT.name.replace(
+            /{{pricing}}/g,
+            `${pricing.interval}M`,
+          ),
+        });
       },
       onValidateSubmit() {
         const newPlanCode = this.getPlanCode();
@@ -189,10 +189,30 @@ export default /* @ngInject */ ($stateProvider) => {
       serviceNameToAddProduct: serviceName,
       expressOrder: true,
     }),
-
+    trackClick: /* @ngInject */ (atInternet) => (hit) => {
+      atInternet.trackClick({
+        ...hit,
+        type: 'action',
+      });
+    },
+    onOptionSubmit: /* @ngInject */ (trackClick) => (option) => {
+      trackClick({
+        ...ORDER_CDN_TRACKING.OPTION.NEXT,
+        name: ORDER_CDN_TRACKING.OPTION.NEXT.name.replace(
+          /{{cdnOption}}/g,
+          option,
+        ),
+      });
+    },
+    onOptionEdit: /* @ngInject */ (trackClick) => (option) => {
+      if (option) {
+        trackClick(ORDER_CDN_TRACKING.OPTION.EDIT);
+      }
+    },
     breadcrumb: /* @ngInject */ ($translate) =>
       $translate.instant('hosting_cdn_order_breadcrumb'),
   };
+
   const resolveUpgrade = {
     onSuccess: /* @ngInject */ (
       $translate,
@@ -269,16 +289,23 @@ export default /* @ngInject */ ($stateProvider) => {
       $transition$.params().planToPreselect,
 
     alerts: /* @ngInject */ ($transition$) => $transition$.params().alerts,
+    trackClick: /* @ngInject */ (atInternet) => (hit) => {
+      atInternet.trackClick({
+        name: hit,
+        type: 'action',
+      });
+    },
   };
-  const atInternet = {
-    rename: 'web::hosting::cdn::order',
-  };
-
   $stateProvider.state('app.hosting.dashboard.cdn.order', {
     url: '/order',
     component: 'hostingCdnOrder',
     resolve: { ...resolve, ...resolveOrder },
-    atInternet,
+    atInternet: {
+      ignore: true,
+    },
+    onEnter: /* @ngInject */ (atInternet) => {
+      atInternet.trackPage(ORDER_CDN_TRACKING.PAGE);
+    },
   });
 
   $stateProvider.state('app.hosting.dashboard.cdn.upgrade', {
@@ -288,6 +315,8 @@ export default /* @ngInject */ ($stateProvider) => {
       planToPreselect: '',
     },
     resolve: { ...resolve, ...resolveUpgrade },
-    atInternet,
+    atInternet: {
+      rename: 'web::hosting::cdn::order',
+    },
   });
 };

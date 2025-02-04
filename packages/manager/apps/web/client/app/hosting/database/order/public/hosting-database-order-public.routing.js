@@ -1,4 +1,5 @@
 import component from './hosting-database-order-public.component';
+import { ORDER_DATABASE_TRACKING } from './hosting-database-order-public.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.hosting.dashboard.database.order-public', {
@@ -65,6 +66,12 @@ export default /* @ngInject */ ($stateProvider) => {
           user.ovhSubsidiary,
         );
       },
+    },
+    atInternet: {
+      ignore: true,
+    },
+    onEnter: /* @ngInject */ (atInternet) => {
+      atInternet.trackPage(ORDER_DATABASE_TRACKING.PAGE);
     },
   });
 };

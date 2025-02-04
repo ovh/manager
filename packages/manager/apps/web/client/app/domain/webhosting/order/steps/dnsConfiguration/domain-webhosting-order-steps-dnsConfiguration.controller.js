@@ -1,4 +1,4 @@
-import { DOMAIN_TRACKING } from '../../../../../hosting/hosting.constants';
+import { ORDER_WEBHOSTING_TRACKING } from '../../domain-webhosting-order.constants';
 
 export default class {
   /* @ngInject */
@@ -8,6 +8,7 @@ export default class {
   }
 
   $onInit() {
+    this.dnsConfiguration = {};
     const emailDnsConfigurationFeature = 'hosting:email-dns-configuration';
 
     this.ovhFeatureFlipping
@@ -22,6 +23,9 @@ export default class {
   enableHelpers() {
     this.isHostingHelpOpen = undefined;
     this.isEmailHelpOpen = undefined;
+    if (this.stepper.cartOption.dnsConfiguration) {
+      this.trackClick(ORDER_WEBHOSTING_TRACKING.DNS.EDIT);
+    }
   }
 
   updateDnsConfiguration() {
@@ -32,22 +36,27 @@ export default class {
 
   trackClick(hit) {
     return this.atInternet.trackClick({
-      name: hit,
+      ...hit,
       type: 'action',
     });
   }
 
-  onDnsConfigClick() {
-    this.trackClick(DOMAIN_TRACKING.STEP_3.ACTIVATE_DNS);
-  }
-
-  onEmailConfigClick() {
-    this.trackClick(DOMAIN_TRACKING.STEP_3.ACTIVATE_EMAIL);
-  }
-
   onGoToNextStepClick() {
-    this.trackClick(DOMAIN_TRACKING.STEP_3.GO_TO_NEXT_STEP);
+    const { enableHosting, enableEmails } = this.dnsConfiguration;
+    const dnsConfig = [
+      enableHosting && 'hosting-dns',
+      enableEmails && 'email-dns',
+    ]
+      .filter(Boolean)
+      .join('-');
 
+    this.trackClick({
+      ...ORDER_WEBHOSTING_TRACKING.DNS.NEXT,
+      name: ORDER_WEBHOSTING_TRACKING.DNS.NEXT.name.replace(
+        /{{dnsConfig}}/g,
+        dnsConfig,
+      ),
+    });
     this.updateDnsConfiguration();
   }
 }
