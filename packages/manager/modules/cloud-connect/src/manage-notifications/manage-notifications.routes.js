@@ -34,5 +34,8 @@ export default /* @ngInject */ ($stateProvider) => {
       uuid: /* @ngInject */ ($transition$) => $transition$.params().uuid,
       breadcrumb: () => null,
     },
+    atInternet: {
+      ignore: true,
+    },
   });
 };

@@ -1,5 +1,9 @@
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
-import { STATUS } from './cloud-connect.constants';
+import {
+  STATUS,
+  TRACKING_PREFIX,
+  TRACKING_CONTEXT,
+} from './cloud-connect.constants';
 
 export default class CloudConnectCtrl extends ListLayoutHelper.ListLayoutCtrl {
   /* @ngInject */
@@ -16,6 +20,8 @@ export default class CloudConnectCtrl extends ListLayoutHelper.ListLayoutCtrl {
     this.$http = $http;
     this.coreURLBuilder = coreURLBuilder;
     this.cloudConnectService = cloudConnectService;
+    this.TRACKING_PREFIX = TRACKING_PREFIX;
+    this.TRACKING_CONTEXT = TRACKING_CONTEXT;
   }
 
   $onInit() {
