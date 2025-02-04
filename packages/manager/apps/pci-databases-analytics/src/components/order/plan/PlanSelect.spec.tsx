@@ -57,7 +57,11 @@ describe('PlansSelect component', () => {
       />,
     );
     act(() => {
-      fireEvent.click(screen.getByTestId('plan-tile-radio-tile'));
+      fireEvent.click(
+        screen.getByTestId(
+          `plan-tile-radio-tile-${mockedBasicOrderFunnelPlan.name}`,
+        ),
+      );
     });
     await waitFor(() => {
       expect(onChange).toHaveBeenCalled();

@@ -26,7 +26,7 @@ const RouteModal = ({
   return (
     <Dialog defaultOpen onOpenChange={onOpenChange}>
       {isLoading ? (
-        <DialogContent>
+        <DialogContent data-testid="dialog-container">
           <DialogHeader>
             <Skeleton className="w-3/5 h-5" />
           </DialogHeader>

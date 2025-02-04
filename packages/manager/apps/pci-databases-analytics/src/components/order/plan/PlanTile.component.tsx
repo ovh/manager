@@ -26,7 +26,7 @@ export const PlanTile = ({
   );
   return (
     <RadioTile
-      data-testid="plan-tile-radio-tile"
+      data-testid={`plan-tile-radio-tile-${plan.name}`}
       name="plan-select"
       onChange={() => onChange(plan.name)}
       value={plan.name}

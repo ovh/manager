@@ -191,7 +191,11 @@ const UpdatePlan = () => {
                   {t('updatePlanCancelButton')}
                 </Button>
               </DialogClose>
-              <Button form="updatePlanForm" disabled={isPending}>
+              <Button
+                form="updatePlanForm"
+                disabled={isPending}
+                data-testid="update-plan-submit-button"
+              >
                 {t('updatePlanSubmitButton')}
               </Button>
             </div>

@@ -1,11 +1,19 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
-import Root from '@/pages/Root.page';
+import Root, { Loader } from '@/pages/Root.page';
 import { Locale } from '@/hooks/useLocale';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedService } from '@/__tests__/helpers/mocks/services';
 import * as serviceApi from '@/data/api/database/service.api';
 import * as database from '@/types/cloud/project/database';
+
+const ServiceProps = {
+  params: {
+    projectId: 'projectId',
+    category: 'operational',
+  },
+  request: new Request('https://my-api.com/endpoint'),
+};
 
 describe('Home page', () => {
   beforeEach(() => {
@@ -47,6 +55,13 @@ describe('Home page', () => {
           },
         })),
       };
+    });
+  });
+
+  it('fetches services data', async () => {
+    Loader(ServiceProps);
+    await waitFor(() => {
+      expect(serviceApi.getServices).toHaveBeenCalled();
     });
   });
 
