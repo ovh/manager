@@ -78,6 +78,7 @@
                 <oui-tile-button
                     data-ng-repeat="shortcut in ::$ctrl.shortcuts track by $index"
                     data-href="{{:: shortcut.href }}"
+                    external="shortcut.isExternal"
                 >
                     <span
                         data-translate="{{:: 'user_account_dashboard_shortcut_' + shortcut.key }}"
@@ -92,7 +93,7 @@
             </oui-tile>
         </div>
 
-        <div class="col-md-4 mb-4" data-ng-if="!$ctrl.user.isEnterprise">
+        <div class="col-md-4 mb-4" data-ng-if="!$ctrl.user.enterprise">
             <oui-tile
                 data-heading="{{:: 'user_account_dashboard_last_bill' | translate }}"
             >
