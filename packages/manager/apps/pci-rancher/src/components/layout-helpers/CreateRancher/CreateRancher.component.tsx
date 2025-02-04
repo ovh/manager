@@ -155,7 +155,7 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
       return sortVersions(availableVersions)[availableVersions.length - 1];
     }
     return null;
-  }, [versions, selectedVersion]);
+  }, [versions]);
 
   useEffect(() => {
     if (selectedPlan === null && plans?.length) {
