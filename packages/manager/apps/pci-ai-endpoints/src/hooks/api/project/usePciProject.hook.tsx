@@ -1,11 +1,11 @@
 import { useParams } from 'react-router-dom';
-import { useQueryImmediateRefetch } from '@/hooks/api/useImmediateRefetch';
+import { useQuery } from '@tanstack/react-query';
 import { getProject } from '@/data/api/project/project.api';
 
 const usePciProject = () => {
   const { projectId } = useParams();
 
-  return useQueryImmediateRefetch({
+  return useQuery({
     queryKey: ['projectId', projectId],
     queryFn: () => getProject(projectId),
   });

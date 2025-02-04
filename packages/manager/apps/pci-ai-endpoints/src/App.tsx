@@ -14,7 +14,7 @@ const router = createHashRouter(appRoutes);
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 60_000,
+      staleTime: 300_000,
     },
   },
 });

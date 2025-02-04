@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
 import { useProjectUrl } from '@ovh-ux/manager-react-components';
@@ -17,26 +17,19 @@ function Breadcrumb() {
   const { t } = useTranslation('metric');
   const { data: project } = useProject();
   const location = useLocation();
-  const [path, setPath] = useState('');
 
-  useEffect(() => {
+  const path = useMemo(() => {
     const pathSegments = location.pathname.split('/').filter(Boolean);
 
-    // Met à jour l'état `path` en fonction du segment de chemin
-    if (pathSegments[5]) {
-      switch (pathSegments[5]) {
-        case 'metrics':
-          setPath('metrics');
-          break;
-        case 'dashboard':
-          setPath('dashboard');
-          break;
-        default:
-          setPath('');
-          break;
-      }
+    switch (pathSegments[5]) {
+      case 'metrics':
+        return 'metrics';
+      case 'dashboard':
+        return 'dashboard';
+      default:
+        return '';
     }
-  }, [location.pathname]); // Dépendance sur `location.pathname` pour exécuter cet effet lorsque le chemin change
+  }, [location.pathname]);
 
   const capitalize = (name: string) => {
     if (!name) return '';

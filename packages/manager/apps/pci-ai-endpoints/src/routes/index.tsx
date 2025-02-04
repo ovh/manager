@@ -37,16 +37,6 @@ export default [
         },
       },
       {
-        path: 'dashboard',
-        ...lazyRouteConfig(() => import('@/pages/dashboard.page')),
-        handle: {
-          tracking: {
-            pageName: Route.Dashboard,
-            pageType: PageType.dashboard,
-          },
-        },
-      },
-      {
         path: 'metrics',
         ...lazyRouteConfig(() => import('@/pages/metrics.page')),
         handle: {

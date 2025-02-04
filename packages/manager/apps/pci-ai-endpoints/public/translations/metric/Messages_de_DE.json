@@ -5,5 +5,7 @@
   "totalAudio": "Gesamtdauer der Audiodaten (Sekunden)",
   "noData": "Für den ausgewählten Zeitraum sind keine Daten verfügbar",
   "loading": "Bitte warten Sie, wir erfassen Ihre Daten",
-  "error": "Fehler beim Laden der Metriken. Bitte versuchen Sie es später erneut"
+  "error": "Fehler beim Laden der Metriken. Bitte versuchen Sie es später erneut",
+  "input": "Input token",
+  "output": "Output token"
 }

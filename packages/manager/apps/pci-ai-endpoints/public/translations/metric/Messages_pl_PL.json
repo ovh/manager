@@ -5,5 +5,7 @@
   "totalAudio": "Całkowity Czas Audio (Sekundy)",
   "noData": "Brak danych dla wybranego okresu",
   "loading": "Proszę czekać, zbieramy Twoje dane",
-  "error": "Błąd podczas pobierania metryk. Spróbuj ponownie później"
+  "error": "Błąd podczas pobierania metryk. Spróbuj ponownie później",
+  "input": "Input token",
+  "output": "Output token"
 }

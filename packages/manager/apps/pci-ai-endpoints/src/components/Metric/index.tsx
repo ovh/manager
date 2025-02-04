@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { Line } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -23,8 +23,9 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { useGetMetric } from '@/hooks/api/database/metric/useGetMetric.hook';
-import useGenerateLabels from '@/hooks/metric/useGenerateLabels.hook';
+import useGenerateMetricData from '@/hooks/metric/useGenerateMetricData.hook';
 import useCalculateTotals from '@/hooks/metric/useCalculateTotal.hook';
+import useChartData from '@/hooks/metric/useChartData.hook';
 
 ChartJS.register(
   CategoryScale,
@@ -59,7 +60,7 @@ const Metric: React.FC<MetricProps> = ({
   );
   const { t } = useTranslation('metric');
 
-  const { labels, dataMap } = useGenerateLabels(
+  const { labels, dataMap } = useGenerateMetricData(
     startTime,
     endTime,
     metricResponse?.metrics,
@@ -71,54 +72,16 @@ const Metric: React.FC<MetricProps> = ({
     totalSeconds,
   } = useCalculateTotals(metricResponse?.metrics || [], startTime, endTime);
 
-  const chartData = useMemo(() => {
-    if (!dataMap || Object.keys(dataMap).length === 0) return null;
+  const chartData = useChartData(dataMap, labels, isLoading, t);
 
-    return {
-      labels,
-      datasets: Object.keys(dataMap).map((unit) => {
-        let color = '';
-        let label = '';
-
-        switch (unit) {
-          case 'input_tokens':
-            color = '#0050D7';
-            label = 'Input Tokens';
-            break;
-          case 'output_tokens':
-            color = '#A5E9FF';
-            label = 'Output Tokens';
-            break;
-          case 'seconds':
-            color = '#0050D7';
-            label = t('totalAudio');
-            break;
-          default:
-            break;
-        }
-
-        return {
-          label,
-          data: dataMap[unit],
-          borderColor: color,
-          backgroundColor: color.replace('1)', '0.2)'),
-          tension: 0.4,
-        };
-      }),
-    };
-  }, [dataMap, labels, t]);
-
-  const options = useMemo(
-    () => ({
-      responsive: true,
-      plugins: {
-        legend: {
-          position: 'top' as const,
-        },
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top' as const,
       },
-    }),
-    [],
-  );
+    },
+  };
 
   if (isLoading && isFirstLoading) {
     return (
@@ -162,7 +125,7 @@ const Metric: React.FC<MetricProps> = ({
   }
 
   return (
-    <div className="max-w-full mx-auto my-12 2xl:ml-0 2xl:mr-auto">
+    <div className="max-w-full mx-auto my-12 2xl:ml-0 2xl:mr-auto opacity-0 animate-fade-in">
       <OsdsText
         color={ODS_THEME_COLOR_INTENT.primary}
         level={ODS_TEXT_LEVEL.heading}
@@ -179,14 +142,14 @@ const Metric: React.FC<MetricProps> = ({
         {(totalInputTokens > 0 || totalOutputTokens > 0) && (
           <div className="flex flex-col">
             <OsdsText>
-              {`${t(
-                'total',
-              )} Input Tokens: ${totalInputTokens.toLocaleString()}`}
+              {`${t('total')} ${t(
+                'input',
+              )}: ${totalInputTokens.toLocaleString()}`}
             </OsdsText>
             <OsdsText className="pt-2">
-              {`${t(
-                'total',
-              )} Output Tokens: ${totalOutputTokens.toLocaleString()}`}
+              {`${t('total')} ${t(
+                'output',
+              )}: ${totalOutputTokens.toLocaleString()}`}
             </OsdsText>
           </div>
         )}
