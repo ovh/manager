@@ -1,9 +1,9 @@
 {
-  "title": "Zimbra",
-  "description": "A oferta de e-mail Zimbra estará disponível em breve. Quer fazer parte do Zimbra Beta?",
-  "orderButtonLabel": "Integrar a fase beta",
+  "title": "Suite colaborativa Zimbra",
+  "description": "Comunicar e colaborar em empresas graças à suite Zimbra",
+  "orderButtonLabel": "Encomendar",
   "orderButtonLink": "/#/dedicated/zimbra/order",
-  "moreInfoButtonLabel": "Saber mais sobre Zimbra",
+  "moreInfoButtonLabel": "Descobrir a solução Zimbra",
   "moreInfoButtonLink": "/#/dedicated/zimbra/info",
   "guideCategory": "Tutorial",
   "guide1Title": "Primeiros passos com um Zimbra",
@@ -14,5 +14,12 @@
   "guide2Link": "https://help.ovhcloud.com/csm/pt-public-cloud-storage-nas-nfs?id=kb_article_view&amp;sysparm_article=KB0046743",
   "guide3Title": "Configure o seu NAS-HA no Windows Server através do CIFS",
   "guide3Description": "Saiba como montar um NAS no Windows Server através do protocolo CIFS",
-  "guide3Link": "https://help.ovhcloud.com/csm/pt-public-cloud-storage-nas-cifs?id=kb_article_view&amp;sysparm_article=KB0046676"
+  "guide3Link": "https://help.ovhcloud.com/csm/pt-public-cloud-storage-nas-cifs?id=kb_article_view&amp;sysparm_article=KB0046676",
+  "card_guide_category": "Tutorial",
+  "card_guide_title_1": "Primeiros passos com a oferta Zimbra",
+  "card_guide_title_2": "Configurar a sua conta Zimbra",
+  "card_guide_title_3": "Dominar o webmail Zimbra",
+  "card_guide_description_1": "Saiba como criar as suas primeiras caixas de email e administrar o seu serviço",
+  "card_guide_description_2": "Saiba como configurar e utilizar a sua conta Zimbra num terminal externo (PC ou smartphone)",
+  "card_guide_description_3": "Descubra as funcionalidades da interface web Zimbra"
 }
