@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   LinkType,
   Links,
@@ -50,6 +50,7 @@ import {
   useOrganizationList,
   usePlatform,
   useGenerateUrl,
+  useDomains,
 } from '@/hooks';
 import {
   DomainBodyParamsType,
@@ -95,10 +96,32 @@ export default function AddDomain() {
   const onClose = () => navigate(goBackUrl);
   const backLinkUrl = useGenerateUrl('..', 'href');
 
-  const { data: domains, isLoading: isLoadingDomain } = useQuery({
+  const { data: domainZones, isLoading: isLoadingDomainZones } = useQuery({
     queryKey: getDomainsZoneListQueryKey,
     queryFn: () => getDomainsZoneList(),
   });
+
+  const {
+    data: existingDomains,
+    isLoading: isLoadingExistingDomains,
+  } = useDomains({
+    shouldFetchAll: true,
+  });
+
+  const domains = useMemo(() => {
+    // this is necessary otherwise app crashes
+    // with error "Failed to execute removeChild on Node"
+    // because of OdsSelect
+    if (!existingDomains) {
+      return [];
+    }
+    return (domainZones || []).filter(
+      (zone: string) =>
+        !existingDomains.find((d) => zone === d.currentState.name),
+    );
+  }, [domainZones, existingDomains]);
+
+  const isLoadingDomains = isLoadingDomainZones || isLoadingExistingDomains;
 
   const [domainType, setDomainType] = useState(DomainOwnership.OVH);
 
@@ -319,7 +342,7 @@ export default function AddDomain() {
           </div>
         )}
       </OdsFormField>
-      {selectedOrganization && !isLoadingDomain && (
+      {selectedOrganization && (
         <OdsFormField className="w-full gap-4">
           <div className="flex leading-none gap-4">
             <OdsRadio
@@ -349,14 +372,6 @@ export default function AddDomain() {
               </OdsText>
             </label>
           </div>
-          {isLoadingDomain && (
-            <div slot="helper">
-              <OdsSpinner
-                color={ODS_SPINNER_COLOR.primary}
-                size={ODS_SPINNER_SIZE.sm}
-              />
-            </div>
-          )}
         </OdsFormField>
       )}
       {selectedOrganization && domainType && (
@@ -364,23 +379,34 @@ export default function AddDomain() {
           <label htmlFor="form-field-input" slot="label">
             {t('zimbra_domains_add_domain_title')}
           </label>
-          {ovhDomain && domains ? (
-            <OdsSelect
-              name={'domain'}
-              value={selectedDomainName}
-              defaultValue=""
-              data-testid="select-domain"
-              onOdsChange={(
-                event: OdsSelectCustomEvent<OdsSelectChangeEventDetail>,
-              ) => handleDomainOvhChange(event)}
-              placeholder={t('zimbra_domains_add_domain_select')}
-            >
-              {domains.map((domain: string) => (
-                <option key={domain} value={domain}>
-                  {domain}
-                </option>
-              ))}
-            </OdsSelect>
+          {ovhDomain ? (
+            <>
+              <OdsSelect
+                name={'domain'}
+                value={selectedDomainName}
+                defaultValue=""
+                data-testid="select-domain"
+                onOdsChange={(
+                  event: OdsSelectCustomEvent<OdsSelectChangeEventDetail>,
+                ) => handleDomainOvhChange(event)}
+                placeholder={t('zimbra_domains_add_domain_select')}
+                isDisabled={isLoadingDomains}
+              >
+                {domains?.map((domain: string, index: number) => (
+                  <option key={index} value={domain}>
+                    {domain}
+                  </option>
+                ))}
+              </OdsSelect>
+              {isLoadingDomains && (
+                <div slot="helper">
+                  <OdsSpinner
+                    color={ODS_SPINNER_COLOR.primary}
+                    size={ODS_SPINNER_SIZE.sm}
+                  />
+                </div>
+              )}
+            </>
           ) : (
             <>
               <OdsInput
