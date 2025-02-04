@@ -77,6 +77,12 @@ describe('useObject hooks', () => {
 
       vi.mocked(getStorageAccess).mockResolvedValue({
         token: 'token',
+        endpoints: [
+          {
+            region,
+            url: 'https://api.ovh.com',
+          },
+        ],
       } as TStorageAccess);
 
       const { result } = renderHook(
@@ -93,15 +99,14 @@ describe('useObject hooks', () => {
       );
 
       await act(async () => {
-        await result.current.deleteObject();
+        result.current.deleteObject();
       });
 
       expect(deleteSwiftObject).toHaveBeenCalledWith({
-        projectId,
         storageName: storage.name,
         objectName,
         token: 'token',
-        region,
+        url: 'https://api.ovh.com',
       });
       expect(onSuccess).toHaveBeenCalled();
       expect(onError).not.toHaveBeenCalled();

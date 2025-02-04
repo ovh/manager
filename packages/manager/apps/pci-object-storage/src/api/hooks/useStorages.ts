@@ -231,21 +231,22 @@ export const useDeleteStorage = ({
           storage.name,
         );
       }
-      const { token } = await getStorageAccess({ projectId });
+      const { endpoints, token } = await getStorageAccess({ projectId });
+      const url = endpoints?.find(
+        ({ region: endpointRegion }) => endpointRegion === storage.region,
+      )?.url;
 
       const deletePromises = objects.map((object) =>
         deleteSwiftObject({
-          projectId,
           storageName: storage.name,
           objectName: object.name,
-          region: storage.region,
           token,
+          url,
         }),
       );
 
-      return Promise.all(deletePromises).then(() => {
-        return deleteSwiftContainer(projectId, storage.id);
-      });
+      await Promise.all(deletePromises);
+      return deleteSwiftContainer(projectId, storage.id);
     },
     onError,
     onSuccess: async () => {
