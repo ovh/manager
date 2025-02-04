@@ -19,6 +19,7 @@
   "kubernetes_add_update_policy_title": "Sélectionnez la politique de sécurité",
   "kubernetes_select_version_title": "Sélectionnez une version",
   "kubernetes_add_name_title": "Nommez votre cluster",
+  "kubernetes_add_name_placeholder": "Nom du cluster",
   "kubernetes_add_name": "Nom",
   "kubernetes_add_cluster_name_input_pattern_validation_error": "Le nom doit commencer par un caractère alphabétique, se terminer par un caractère alphanumérique et les seuls caractères spéciaux autorisés sont les tirets et les underscores.",
   "kubernetes_add_billing_type_description": "Tous les nœuds futurs de ce pool de nœuds se verront appliquer ce mode de facturation. Vous pourrez ultérieurement passer chacun de vos nœuds individuellement de la facturation horaire à mensuelle.",

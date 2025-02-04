@@ -118,7 +118,7 @@ export default function NewPage() {
     },
   });
 
-  const nodePoolEnabled = stepper.form.flavor;
+  const nodePoolEnabled = !!stepper.form.flavor;
 
   const createNewCluster = () => {
     tracking.trackClick({

@@ -28,11 +28,11 @@ export function ClusterBillingStep({
     TAGS_BLOB.COMING_SOON,
   );
 
-  const getPrice = useMemo(() => {
+  const price = useMemo(() => {
     if (form.flavor) {
       return {
-        price: form.flavor.pricingsHourly.price * form.scaling.quantity.desired,
-        monthyPrice:
+        hour: form.flavor.pricingsHourly.price * form.scaling.quantity.desired,
+        month:
           form.flavor.pricingsMonthly?.price * form.scaling.quantity.desired,
       };
     }
@@ -45,8 +45,8 @@ export function ClusterBillingStep({
         <Estimation />
       ) : (
         <BillingStep
-          price={getPrice.price}
-          monthlyPrice={getPrice.monthyPrice}
+          price={price.hour}
+          monthlyPrice={price.month}
           antiAffinity={{
             isChecked: antiAffinity,
             isEnabled: !form.scaling?.isAutoscale,
