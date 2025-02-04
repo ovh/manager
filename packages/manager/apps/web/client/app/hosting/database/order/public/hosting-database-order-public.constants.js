@@ -30,6 +30,43 @@ export const OFFERS_WITHOUT_START_SQL = [
 
 export const REGEX_DB_OFFER_SORT = /(?:-|_)(\d+)(?:-|_)/;
 
+const TRACKING_PREFIX = 'web::hosting::database::';
+
+const TRACKING_CATEGORY_PAGE_AND_THEME = {
+  page_category: 'funnel',
+  page_theme: 'Hosting',
+  page: {
+    name: `${TRACKING_PREFIX}database::funnel::add::database`,
+  },
+};
+
+export const ORDER_DATABASE_TRACKING = {
+  PAGE: {
+    name: `${TRACKING_PREFIX}database::funnel::add::database`,
+    ...TRACKING_CATEGORY_PAGE_AND_THEME,
+  },
+  GO_BACK: {
+    name: `${TRACKING_PREFIX}funnel::link::add_database::go_back`,
+    ...TRACKING_CATEGORY_PAGE_AND_THEME,
+  },
+  OPTION: {
+    NEXT: {
+      name: `${TRACKING_PREFIX}funnel::button::add_database::select_solution::next_{{databaseSolution}}`,
+      ...TRACKING_CATEGORY_PAGE_AND_THEME,
+    },
+    EDIT: {
+      name: `${TRACKING_PREFIX}funnel::button::add_database::edit_step_database_solution`,
+      ...TRACKING_CATEGORY_PAGE_AND_THEME,
+    },
+  },
+  PRICING: {
+    NEXT: {
+      name: `${TRACKING_PREFIX}funnel::button::add_database::confirm_{{databaseSolution}}_{{pricing}}`,
+      ...TRACKING_CATEGORY_PAGE_AND_THEME,
+    },
+  },
+};
+
 export default {
   PRODUCT_NAME,
   DB_OFFERS,
@@ -37,4 +74,5 @@ export default {
   OFFERS_WITHOUT_START_SQL,
   DATACENTER_CONFIGURATION_KEY,
   ENGINE_CONFIGURATION_KEY,
+  ORDER_DATABASE_TRACKING,
 };
