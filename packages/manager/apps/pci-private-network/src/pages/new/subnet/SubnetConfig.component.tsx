@@ -16,6 +16,11 @@ import {
 } from '@ovhcloud/ods-components';
 import { Subtitle } from '@ovh-ux/manager-react-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { useTranslation } from 'react-i18next';
 import { NewPrivateNetworkForm } from '@/types/private-network-form.type';
 import GatewayConfig from './gateway/GatewayConfig.component';
@@ -34,6 +39,8 @@ const SubnetConfig: React.FC = () => {
   const cidr = watch('subnet.cidr');
 
   const cidrHasError = touched?.cidr && !!error?.cidr;
+
+  const { trackClick } = useOvhTracking();
 
   return (
     <div className="flex flex-col gap-6 my-8">
@@ -83,9 +90,23 @@ const SubnetConfig: React.FC = () => {
       </OsdsFormField>
       <OsdsCheckbox
         checked={dhcp}
-        onOdsCheckedChange={(event: CustomEvent) =>
-          setValue('subnet.enableDhcp', event.detail.checked)
-        }
+        onOdsCheckedChange={(event: CustomEvent) => {
+          const isDhcpEnabled = event.detail.checked;
+
+          setValue('subnet.enableDhcp', isDhcpEnabled);
+
+          trackClick({
+            location: PageLocation.funnel,
+            buttonType: ButtonType.select,
+            actionType: 'action',
+            actions: [
+              'add_privateNetwork',
+              isDhcpEnabled
+                ? 'activate_dhcp_private_network'
+                : 'desactivate_dhcp_private_network',
+            ],
+          });
+        }}
       >
         <OsdsCheckboxButton
           size={ODS_CHECKBOX_BUTTON_SIZE.sm}

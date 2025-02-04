@@ -21,6 +21,11 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { useHref } from 'react-router-dom';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { TSubnet } from '@/api/data/subnets';
 import { TAggregatedNetwork } from '@/api/data/network';
 
@@ -34,6 +39,7 @@ export default function DataGridBodyRow({
   network,
 }: Readonly<TDataGridBodyRow>) {
   const { t } = useTranslation('listing');
+  const { trackClick } = useOvhTracking();
 
   const renderText = (
     text: string | number | JSX.Element,
@@ -63,6 +69,7 @@ export default function DataGridBodyRow({
     icon: ODS_ICON_NAME,
     tooltipContent: string,
     href?: string,
+    handleButtonClick?: () => void,
   ) => (
     <OsdsTooltip>
       <OsdsButton
@@ -71,6 +78,7 @@ export default function DataGridBodyRow({
         color={ODS_THEME_COLOR_INTENT.primary}
         data-testid="dataGridBodyRow-delete_button"
         href={href}
+        onClick={handleButtonClick}
       >
         <OsdsIcon
           name={icon}
@@ -103,6 +111,14 @@ export default function DataGridBodyRow({
             href={`${projectUrl}/gateway`}
             color={ODS_THEME_COLOR_INTENT.primary}
             className="block"
+            onClick={() =>
+              trackClick({
+                location: PageLocation.datagrid,
+                buttonType: ButtonType.button,
+                actionType: 'action',
+                actions: ['details_gateway'],
+              })
+            }
           >
             {subnetDetail.gatewayName}
           </OsdsLink>
@@ -131,6 +147,13 @@ export default function DataGridBodyRow({
             ODS_ICON_NAME.SETTINGS,
             t('pci_projects_project_network_private_assign_gateway'),
             `${projectUrl}/gateway/new?network=${subnetDetail.networkId}&region=${subnetDetail.region}`,
+            () =>
+              trackClick({
+                location: PageLocation.datagrid,
+                buttonType: ButtonType.button,
+                actionType: 'action',
+                actions: ['add_gateway'],
+              }),
           )}
         {renderTooltipButton(
           ODS_ICON_NAME.BIN,
@@ -138,6 +161,13 @@ export default function DataGridBodyRow({
           useHref(
             `./delete?networkId=${subnetDetail.networkId}&region=${subnetDetail.region}`,
           ),
+          () =>
+            trackClick({
+              location: PageLocation.datagrid,
+              buttonType: ButtonType.button,
+              actionType: 'action',
+              actions: ['delete_privateNetwork'],
+            }),
         )}
       </td>
     </tr>

@@ -19,6 +19,11 @@ import {
 } from '@ovhcloud/ods-components';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { useTranslation } from 'react-i18next';
 import { useFormContext } from 'react-hook-form';
 import { NewPrivateNetworkForm } from '@/types/private-network-form.type';
@@ -48,6 +53,8 @@ const PrivateNetworkConfig: React.FC = () => {
 
   const hasError = useMemo(() => touched && !!error, [touched, error]);
 
+  const { trackClick } = useOvhTracking();
+
   const onDefineVlanId = (event: CustomEvent) => {
     const value = event.detail.checked;
 
@@ -58,6 +65,16 @@ const PrivateNetworkConfig: React.FC = () => {
     }
 
     setDefineVlanId(value);
+
+    trackClick({
+      location: PageLocation.funnel,
+      buttonType: ButtonType.select,
+      actionType: 'action',
+      actions: [
+        'add_privateNetwork',
+        value ? 'set_vlan_id' : 'uncheck_set_vlan_id',
+      ],
+    });
   };
 
   return (
