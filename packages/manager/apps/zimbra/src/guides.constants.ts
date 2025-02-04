@@ -80,6 +80,36 @@ export const ZIMBRA_ADMINISTRATOR_GUIDE: GuideLinks = {
   SN: `${helpRoot}fr-zimbra-getting-started?id=kb_article_view&sysparm_article=KB0064591`,
 };
 
+export const ZIMBRA_HOW_TO_CONFIGURE_GUIDE: GuideLinks = {
+  FR: `${helpRoot}fr-zimbra-mail-apps?id=kb_article_view&sysparm_article=KB0064901`,
+  GB: `${helpRoot}en-gb-zimbra-mail-apps?id=kb_article_view&sysparm_article=KB0064928`,
+  DE: `${helpRoot}de-zimbra-mail-apps?id=kb_article_view&sysparm_article=KB0064933`,
+  ES: `${helpRoot}es-es-zimbra-mail-apps?id=kb_article_view&sysparm_article=KB0064934`,
+  IT: `${helpRoot}it-zimbra-mail-apps?id=kb_article_view&sysparm_article=KB0064927`,
+  PL: `${helpRoot}pl-zimbra-mail-apps?id=kb_article_view&sysparm_article=KB0064931`,
+  PT: `${helpRoot}pt-zimbra-mail-apps?id=kb_article_view&sysparm_article=KB0064932`,
+  IE: `${helpRoot}en-ie-zimbra-mail-apps?id=kb_article_view&sysparm_article=KB0064929`,
+  DEFAULT: `${helpRoot}en-ie-zimbra-mail-apps?id=kb_article_view&sysparm_article=KB0064929`,
+  MA: `${helpRoot}fr-zimbra-mail-apps?id=kb_article_view&sysparm_article=KB0064901`,
+  TN: `${helpRoot}fr-zimbra-mail-apps?id=kb_article_view&sysparm_article=KB0064901`,
+  SN: `${helpRoot}fr-zimbra-mail-apps?id=kb_article_view&sysparm_article=KB0064901`,
+};
+
+export const ZIMBRA_WEBMAIL_GUIDE: GuideLinks = {
+  FR: `${helpRoot}fr-mx-plan-zimbra?id=kb_article_view&sysparm_article=KB0062063`,
+  GB: `${helpRoot}en-gb-mx-plan-zimbra?id=kb_article_view&sysparm_article=KB0062062`,
+  DE: `${helpRoot}de-mx-plan-zimbra-faq?id=kb_article_view&sysparm_article=KB0061403`,
+  ES: `${helpRoot}es-es-mx-plan-zimbra?id=kb_article_view&sysparm_article=KB0062060`,
+  IT: `${helpRoot}it-mx-plan-zimbra?id=kb_article_view&sysparm_article=KB0062058`,
+  PL: `${helpRoot}pl-mx-plan-zimbra?id=kb_article_view&sysparm_article=KB0062061`,
+  PT: `${helpRoot}pt-mx-plan-zimbra?id=kb_article_view&sysparm_article=KB0062056`,
+  IE: `${helpRoot}en-ie-mx-plan-zimbra?id=kb_article_view&sysparm_article=KB0062057`,
+  DEFAULT: `${helpRoot}en-ie-mx-plan-zimbra?id=kb_article_view&sysparm_article=KB0062057`,
+  MA: `${helpRoot}fr-mx-plan-zimbra?id=kb_article_view&sysparm_article=KB0062063`,
+  TN: `${helpRoot}fr-mx-plan-zimbra?id=kb_article_view&sysparm_article=KB0062063`,
+  SN: `${helpRoot}fr-mx-plan-zimbra?id=kb_article_view&sysparm_article=KB0062063`,
+};
+
 export const ZIMBRA_DNS_CONFIGURATION_GUIDE: GuideLinks = {
   FR: `${helpRoot}`,
   GB: `${helpRoot}`,
