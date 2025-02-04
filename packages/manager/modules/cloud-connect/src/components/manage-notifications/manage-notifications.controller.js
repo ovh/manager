@@ -1,14 +1,21 @@
 import { UUID } from './manage-notifications.constant';
+import { TRACKING_CONTEXT } from '../../cloud-connect.constants';
 
 export default class {
   /* @ngInject */
-  constructor($translate, cloudConnectService) {
+  constructor($translate, atInternet, cloudConnectService) {
     this.$translate = $translate;
+    this.atInternet = atInternet;
     this.cloudConnectService = cloudConnectService;
     this.UUID = UUID;
   }
 
   $onInit() {
+    this.atInternet.trackPage({
+      name: TRACKING_CONTEXT.trackingPageLabel,
+      type: 'navigation',
+      ...TRACKING_CONTEXT,
+    });
     this.loading = true;
     this.disableConfirm = true;
     this.cloudConnectService
