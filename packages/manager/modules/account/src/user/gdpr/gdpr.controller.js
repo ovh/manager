@@ -38,10 +38,21 @@ export default class UserAccountGdprController {
   }
 
   closeErasureConfirmationModal() {
+    if (this.loading.createErasureRequest) {
+      return;
+    }
     this.showErasureConfirmationModal = false;
   }
 
   submitErasureRequest() {
+    if (
+      !(
+        this.canCreateErasureRequest &&
+        this.capabilities.canCreateErasureRequest
+      )
+    ) {
+      return;
+    }
     this.loading.createErasureRequest = true;
     this.Alerter.resetMessage(GDPR_FEATURES_BANNER_CONTAINER);
     this.gdprService

@@ -15,7 +15,7 @@
             type="button"
             variant="primary"
             data-disabled="!$ctrl.canCreateErasureRequest || $ctrl.loading.capabilities || !$ctrl.capabilities.canCreateErasureRequest"
-            data-ng-click="$ctrl.askErasureConfirmation()"
+            data-on-click="$ctrl.askErasureConfirmation()"
         >
             <oui-spinner
                 data-size="s"
@@ -42,7 +42,7 @@
                     ></p>
                     <div class="d-flex justify-content-end">
                         <oui-button
-                            data-ng-click="$ctrl.closeErasureConfirmationModal()"
+                            data-on-click="$ctrl.closeErasureConfirmationModal()"
                             data-disabled="$ctrl.loading.createErasureRequest"
                         >
                             <span
@@ -52,7 +52,7 @@
                         <oui-button
                             class="ml-4"
                             data-variant="primary"
-                            data-ng-click="$ctrl.submitErasureRequest()"
+                            data-on-click="$ctrl.submitErasureRequest()"
                             data-disabled="$ctrl.loading.createErasureRequest"
                         >
                             <oui-spinner
