@@ -123,6 +123,14 @@ export default class PciStoragesContainersAddController {
         maximumFractionDigits: 2,
       },
     );
+    this.OffsiteReplicationPriceFormatter = new Intl.NumberFormat(
+      this.coreConfig.getUserLocale().replace('_', '-'),
+      {
+        style: 'currency',
+        currency: this.coreConfig.getUser().currency.code,
+        maximumFractionDigits: 0,
+      },
+    );
 
     this.featureFlipLocalzoneContainer();
     this.setOffersPrices();
