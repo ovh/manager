@@ -8,13 +8,21 @@ import {
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { OsdsTile, OsdsText, OsdsButton } from '@ovhcloud/ods-components/react';
-import React from 'react';
+import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
+import { LogsContext } from '../../LogsToCustomer.context';
 
 const SubscriptionEmpty = () => {
   const navigate = useNavigate();
   const { t } = useTranslation('logSubscription');
+  const { trackingOptions } = useContext(LogsContext);
+  const { trackClick } = useOvhTracking();
 
   return (
     <OsdsTile rounded inline className="flex flex-col">
@@ -36,7 +44,15 @@ const SubscriptionEmpty = () => {
           variant={ODS_BUTTON_VARIANT.stroked}
           color={ODS_THEME_COLOR_INTENT.primary}
           size={ODS_BUTTON_SIZE.sm}
-          onClick={() => navigate('streams')}
+          onClick={() => {
+            trackClick({
+              location: PageLocation.page,
+              buttonType: ButtonType.button,
+              actionType: 'action',
+              actions: trackingOptions?.trackClickMap.subscribe_logs_access,
+            });
+            navigate('streams');
+          }}
         >
           {t('log_subscription_empty_tile_button_subscribe')}
         </OsdsButton>
