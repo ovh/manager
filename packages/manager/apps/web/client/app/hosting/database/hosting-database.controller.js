@@ -46,8 +46,6 @@ angular.module('App').controller(
     }
 
     $onInit() {
-      this.atInternet.trackPage({ name: 'web::hosting::databases' });
-
       this.hosting = this.$scope.hosting;
       this.hostingProxy = this.$scope.hostingProxy;
       this.canCreateDatabase =

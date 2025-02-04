@@ -4,6 +4,7 @@ import {
   workflowConstants,
 } from '@ovh-ux/manager-product-offers';
 import {
+  ORDER_WEBCLOUD_DATABASE_TRACKING,
   PRESELECTED_DB_CATEGORY,
   PRODUCT_NAME,
 } from './private-database-order-clouddb.constants';
@@ -12,7 +13,6 @@ import {
   DB_OFFERS,
   ENGINE_CONFIGURATION_KEY,
 } from '../../../hosting/database/order/public/hosting-database-order-public.constants';
-import { DATABASES_TRACKING } from '../../../hosting/hosting.constants';
 
 export default class PrivateDatabaseOrderCloudDbCtrl {
   /* @ngInject */
@@ -37,6 +37,14 @@ export default class PrivateDatabaseOrderCloudDbCtrl {
         getPlanCode: this.getPlanCode.bind(this),
         getRightCatalogConfig: this.getRightCatalogConfig.bind(this),
         onGetConfiguration: this.getConfiguration.bind(this),
+        onPricingSubmit: (pricing) => {
+          this.trackClick({
+            ...ORDER_WEBCLOUD_DATABASE_TRACKING.PRICING.NEXT,
+            name: ORDER_WEBCLOUD_DATABASE_TRACKING.PRICING.NEXT.name
+              .replace(/{{pricing}}/g, `${pricing.interval}M`)
+              .replace(/{{databaseSolution}}/g, this.databaseSolution()),
+          });
+        },
       },
       workflowType: workflowConstants.WORKFLOW_TYPES.ORDER,
     };
@@ -47,7 +55,7 @@ export default class PrivateDatabaseOrderCloudDbCtrl {
 
   trackClick(hit) {
     this.atInternet.trackClick({
-      name: hit,
+      ...hit,
       type: 'action',
     });
   }
@@ -133,10 +141,6 @@ export default class PrivateDatabaseOrderCloudDbCtrl {
 
   onDbCategoryClick(dbCategory) {
     this.model.dbCategory = { ...this.model.dbCategory, ...dbCategory };
-
-    this.trackClick(
-      `${DATABASES_TRACKING.STEP_1.SELECT_DB_CATEGORY}_${dbCategory.tracking}`,
-    );
   }
 
   onDbCategoryEngineClick(db) {
@@ -144,12 +148,26 @@ export default class PrivateDatabaseOrderCloudDbCtrl {
       dbGroup: db.dbName,
       selectEngineVersion: db,
     };
-    this.trackClick(
-      `${DATABASES_TRACKING.STEP_2.SELECT_DB_ENGINE}_${db.dbName}`,
-    );
   }
 
   onGoToNextStepClick() {
-    this.trackClick(DATABASES_TRACKING.STEP_2.GO_TO_NEXT_STEP);
+    this.trackClick({
+      ...ORDER_WEBCLOUD_DATABASE_TRACKING.OPTION.NEXT,
+      name: ORDER_WEBCLOUD_DATABASE_TRACKING.OPTION.NEXT.name.replace(
+        /{{databaseSolution}}/g,
+        this.databaseSolution(),
+      ),
+    });
+  }
+
+  onOptionEdit() {
+    if (Object.keys(this.model.dbCategory).length > 0) {
+      this.trackClick(ORDER_WEBCLOUD_DATABASE_TRACKING.OPTION.EDIT);
+    }
+  }
+
+  databaseSolution() {
+    const { selectEngine, selectVersion } = this.model.dbCategory;
+    return `${selectEngine.dbGroup}-${selectVersion.productSize}`;
   }
 }
