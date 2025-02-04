@@ -25,7 +25,7 @@ export default /* @ngInject */ ($stateProvider) => {
           isDirectService: cloudConnect.isDirectService(),
           allowedPopType: cloudConnect.getAllowedPopType(),
         }),
-      goToDiagnosticPage: /* @ngInject */ ($state) => (cloudConnect) =>
+      diagnosticPageUrl: /* @ngInject */ ($state, cloudConnect) => () =>
         $state.href('cloud-connect.details.diagnostics', {
           cloudConnect,
         }),

@@ -7,7 +7,7 @@ export default class CloudConnectDiagnostics {
   }
 
   canDownload() {
-    return !!(this.result && this.result[0]);
+    return !!this.result?.length;
   }
 
   isDone() {

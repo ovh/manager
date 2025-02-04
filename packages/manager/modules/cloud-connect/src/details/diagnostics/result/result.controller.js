@@ -13,7 +13,7 @@ export default class DiagnosticResultCtrl {
   }
 
   $onInit() {
-    this.canDownload = !!(this.diagnostic.result && this.diagnostic.result[0]);
+    this.canDownload = !!(this.diagnostic.result?.length > 0);
     $('.modal-dialog').attr('id', 'ovh-cloudConnect-diagnostic-result-modal');
   }
 

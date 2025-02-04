@@ -3,3 +3,8 @@ export const diagnosticTypes = {
   routes: 'routes',
   advertisedRoutes: 'AdvertisedRoutes',
 };
+
+export const ApiDiagnosticStatus = {
+  TODO: 'todo',
+  DENIED: 'denied',
+};
