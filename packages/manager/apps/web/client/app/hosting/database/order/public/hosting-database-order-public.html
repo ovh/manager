@@ -1,4 +1,6 @@
-<oui-back-button data-on-click=":: $ctrl.goBack()"></oui-back-button>
+<oui-back-button
+    data-on-click="$ctrl.trackClick($ctrl.ORDER_DATABASE_TRACKING.GO_BACK); $ctrl.goBack()"
+></oui-back-button>
 
 <!--Title + description-->
 <div class="ml-2">
@@ -22,6 +24,7 @@
         data-valid="$ctrl.isValidDbConfig()"
         data-prevent-next="true"
         data-on-submit="$ctrl.onGoToNextStepClick()"
+        data-on-focus="$ctrl.onOptionEdit()"
     >
         <web-hosting-database-order-db-categories-offers
             data-user="$ctrl.user"
