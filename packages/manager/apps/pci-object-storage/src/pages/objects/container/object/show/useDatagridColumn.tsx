@@ -5,6 +5,9 @@ import {
 import { useTranslation } from 'react-i18next';
 import { useBytes } from '@ovh-ux/manager-pci-common';
 import { format } from 'date-fns';
+import { getDateFnsLocale } from '@ovh-ux/manager-core-utils';
+import * as dateFnsLocales from 'date-fns/locale';
+import { useRef } from 'react';
 import ActionsComponent from './ActionsComponent';
 import { TObject } from '@/api/data/container';
 import { TContainer } from '@/pages/objects/container/object/show/Show.page';
@@ -18,9 +21,10 @@ export const useDatagridColumn = ({
   container: TContainer;
   isLocalZone: boolean;
 }) => {
-  const { t } = useTranslation('container');
-
+  const { i18n, t } = useTranslation('container');
   const { formatBytes } = useBytes();
+  const locales = useRef({ ...dateFnsLocales }).current;
+  const userLocale = getDateFnsLocale(i18n.language);
 
   const columns: DatagridColumn<TIndexedObject>[] = [
     {
@@ -34,7 +38,9 @@ export const useDatagridColumn = ({
       id: 'lastModified',
       cell: (props: TIndexedObject) => (
         <DataGridTextCell>
-          {format(new Date(props.lastModified), 'dd MMM yyyy HH:mm:ss')}
+          {format(props.lastModified, 'dd MMM yyyy HH:mm:ss', {
+            locale: locales[userLocale],
+          })}
         </DataGridTextCell>
       ),
       label: t(

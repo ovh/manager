@@ -1,11 +1,9 @@
 import { renderHook, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
-import { applyFilters } from '@ovh-ux/manager-core-api';
 import { getServerContainer, TServerContainer } from '@/api/data/container';
 import { usePaginatedObjects, useServerContainer } from './useContainer';
 
 import { wrapper } from '@/wrapperRenders';
-import { paginateResults, sortResults } from '@/helpers';
 
 vi.mock('@/api/data/container');
 
@@ -50,7 +48,7 @@ describe('usePaginatedObjects', () => {
           key: 'key',
           storageClass: 'storageClass',
           search:
-            'key pci_projects_project_storages_containers_container_storage_class_storageClass',
+            'key object1 pci_projects_project_storages_containers_container_storage_class_storageClass',
         },
       ],
     } as unknown) as TServerContainer;

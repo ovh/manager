@@ -9,11 +9,20 @@ import {
 } from '@/api/hooks/useContainer';
 import ShowPage from './Show.page';
 import { wrapper } from '@/wrapperRenders';
+import { useStorageEndpoint } from '@/api/hooks/useStorages';
 
 vi.mock('@/api/hooks/useContainer', () => {
   return {
     useServerContainer: vi.fn(),
     usePaginatedObjects: vi.fn(),
+  };
+});
+
+vi.mock('@/api/hooks/useStorages', async () => {
+  const mod = await vi.importActual('@/api/hooks/useStorages');
+  return {
+    ...mod,
+    useStorageEndpoint: vi.fn(),
   };
 });
 
@@ -25,7 +34,7 @@ vi.mock('date-fns', () => {
 });
 
 describe('Show page', () => {
-  it('sould display spinner', () => {
+  it('should display spinner', () => {
     vi.fn(useProductMaintenance).mockReturnValue({
       hasMaintenance: false,
     } as never);
@@ -36,11 +45,14 @@ describe('Show page', () => {
     vi.mocked(usePaginatedObjects).mockReturnValue({
       isPending: true,
     } as never);
+    vi.mocked(useStorageEndpoint).mockReturnValue({
+      isPending: true,
+    } as never);
     const { container } = render(<ShowPage />, { wrapper });
     expect(container).toMatchSnapshot();
   });
 
-  it('sould display datagrid', () => {
+  it('should display datagrid', () => {
     const serverContainer = ({
       name: 'name',
       id: 'id',
@@ -67,6 +79,10 @@ describe('Show page', () => {
     } as never);
     vi.fn(useProductMaintenance).mockReturnValue({
       hasMaintenance: false,
+    } as never);
+    vi.mocked(useStorageEndpoint).mockReturnValue({
+      url: 'https://api.ovh.com',
+      isPending: false,
     } as never);
     const { container } = render(<ShowPage />, { wrapper });
     expect(container).toMatchSnapshot();
