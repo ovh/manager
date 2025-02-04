@@ -11,6 +11,11 @@ import {
 } from '@ovh-ux/manager-pci-common';
 import { useTranslation } from 'react-i18next';
 import { useFormContext } from 'react-hook-form';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { NewPrivateNetworkForm } from '@/types/private-network-form.type';
 
 const isNetworkUp = (services: TRegion['services']) =>
@@ -35,6 +40,8 @@ const LocalisationConfig: React.FC = () => {
   ]);
   const pciCommonProperties = usePCICommonContextFactory({ has3AZ });
 
+  const { trackClick } = useOvhTracking();
+
   const onSelectRegion = (region: TLocalisation) => {
     unregister('region');
 
@@ -42,6 +49,13 @@ const LocalisationConfig: React.FC = () => {
       setValue('region', region.name, { shouldValidate: true });
       setValue('isLocalZone', region.isLocalZone, {
         shouldValidate: true,
+      });
+
+      trackClick({
+        location: PageLocation.funnel,
+        buttonType: ButtonType.tile,
+        actionType: 'action',
+        actions: ['add_privateNetwork', 'select_localisation', region.name],
       });
     }
   };

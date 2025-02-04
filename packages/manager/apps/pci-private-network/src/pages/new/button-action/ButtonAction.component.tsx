@@ -13,6 +13,12 @@ import {
   ODS_SPINNER_SIZE,
 } from '@ovhcloud/ods-components';
 import { isDiscoveryProject, useProject } from '@ovh-ux/manager-pci-common';
+import {
+  ButtonType,
+  PageLocation,
+  PageType,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { useNavigate } from 'react-router-dom';
 import { useFormContext } from 'react-hook-form';
 import { ErrorResponse } from '@/types/network.type';
@@ -36,6 +42,8 @@ const ButtonAction: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const navigate = useNavigate();
 
+  const { trackClick, trackPage } = useOvhTracking();
+
   const onSuccess = async (
     privateNetworkName: string,
     isLocalZone: boolean,
@@ -48,6 +56,11 @@ const ButtonAction: React.FC = () => {
       </span>,
       true,
     );
+
+    trackPage({
+      pageName: 'add_privateNetwork',
+      pageType: PageType.bannerSuccess,
+    });
 
     const redirectPath = isLocalZone
       ? ROUTE_PATHS.localZone
@@ -65,10 +78,26 @@ const ButtonAction: React.FC = () => {
       </span>,
       true,
     );
+
+    trackPage({
+      pageName: 'add_privateNetwork',
+      pageType: PageType.bannerError,
+    });
   };
 
   const create = async (values: NewPrivateNetworkForm) => {
     setIsLoading(true);
+
+    trackClick({
+      location: PageLocation.funnel,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [
+        'add_privateNetwork',
+        'confirm',
+        `privateNetwork_added_${values.region}_${values.name}`,
+      ],
+    });
 
     try {
       await createPrivateNetwork(values, projectId);

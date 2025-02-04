@@ -28,7 +28,11 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { useNavigate } from 'react-router-dom';
 import { useProjectRegions } from '@/api/hooks/useRegions';
 import {
@@ -73,6 +77,8 @@ export default function GlobalRegionsComponent({
     filters,
   );
 
+  const { trackClick } = useOvhTracking();
+
   return (
     <div>
       <Notifications />
@@ -85,7 +91,15 @@ export default function GlobalRegionsComponent({
           size={ODS_BUTTON_SIZE.sm}
           variant={ODS_BUTTON_VARIANT.flat}
           color={ODS_THEME_COLOR_INTENT.primary}
-          onClick={() => navigate('./new')}
+          onClick={() => {
+            navigate('./new');
+            trackClick({
+              location: PageLocation.page,
+              buttonType: ButtonType.button,
+              actionType: 'action',
+              actions: ['add_privateNetwork'],
+            });
+          }}
         >
           <OsdsIcon
             name={ODS_ICON_NAME.ADD}
