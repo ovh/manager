@@ -1,4 +1,3 @@
-import { applyFilters } from '@ovh-ux/manager-core-api';
 import '@testing-library/jest-dom';
 import 'element-internals-polyfill';
 import { vi } from 'vitest';

@@ -1,4 +1,5 @@
 import { v6 } from '@ovh-ux/manager-core-api';
+import axios from 'axios';
 import {
   OPENIO_DEFAULT_REGION,
   OPENIO_PRESIGN_EXPIRE,
@@ -34,26 +35,22 @@ export const deleteS3Object = async ({
 };
 
 export const deleteSwiftObject = async ({
-  projectId,
   storageName,
   objectName,
   token,
-  region,
+  url,
 }: {
-  projectId: string;
   storageName: string;
   objectName: string;
   token: string;
-  region: string;
+  url: string;
 }): Promise<Response> => {
-  return fetch(
-    `https://storage.${region}.cloud.ovh.net/v1/AUTH_${projectId}/${storageName}/${encodeURIComponent(
-      objectName,
-    )}`,
+  return axios.delete(
+    `${url}/${storageName}/${encodeURIComponent(objectName)}`,
     {
       method: 'DELETE',
       headers: {
-        'X-Auth-Token': token,
+        [X_AUTH_TOKEN]: token,
       },
     },
   );
@@ -187,7 +184,7 @@ const getContainerUrl = async (
 };
 
 const upload = (url: string, file: File, accessToken: TStorageAccess) => {
-  return v6.put(url, file, {
+  return axios.put(url, file, {
     headers: {
       'Content-Type': file.type,
       [X_AUTH_TOKEN]: accessToken.token,
