@@ -35,5 +35,9 @@
   "pci_projects_project_storages_blocks_add_deployment_mode_title_localzone": "Local Zone",
   "pci_projects_project_storages_blocks_add_deployment_mode_description_localzone": "Implementação das suas aplicações mais próxima dos seus utilizadores para uma baixa latência e residência dos dados.",
   "pci_projects_project_storages_blocks_add_deployment_mode_price_from": "A partir de {{price}} /hora + IVA por GB",
-  "pci_projects_project_storages_blocks_add_beta_free": "Grátis"
+  "pci_projects_project_storages_blocks_add_beta_free": "Grátis",
+  "pci_projects_project_storages_blocks_add_type_subtitle": "Escolha uma solução de armazenamento em blocos adaptada ao seu caso de utilização, tendo em conta os níveis desejados de desempenho e de resiliência dos dados.",
+  "pci_projects_project_storages_blocks_add_type_availability_zone_one": "Dados localizados em {{count}} zona de disponibilidade",
+  "pci_projects_project_storages_blocks_add_type_availability_zone_other": "Dados localizados em {{count}} zonas de disponibilidade",
+  "pci_projects_project_storages_blocks_add_availability_zone_subtitle": "A escolha de uma zona de disponibilidade é definitiva. Se pretender alterar o volume de zona, deverá eliminá-lo e criá-lo novamente na nova zona desejada."
 }
