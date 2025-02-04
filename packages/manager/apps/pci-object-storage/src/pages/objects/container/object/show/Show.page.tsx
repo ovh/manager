@@ -57,7 +57,7 @@ import {
   TRACKING,
 } from '@/constants';
 import { useGetRegion } from '@/api/hooks/useRegion';
-import { useAllStorages, useStorage } from '@/api/hooks/useStorages';
+import { useStorage, useStorageEndpoint } from '@/api/hooks/useStorages';
 import { TServerContainer } from '@/api/data/container';
 import { useGetEncriptionAvailability } from '@/api/hooks/useGetEncriptionAvailability';
 import LabelComponent from '@/components/Label.component';
@@ -111,6 +111,8 @@ export default function ObjectPage() {
     searchParams.get('region'),
   );
 
+  const { url } = useStorageEndpoint(project?.project_id, targetContainer);
+
   const { data: serverContainer, isPending } = useServerContainer(
     project?.project_id,
     searchParams.get('region'),
@@ -133,14 +135,12 @@ export default function ObjectPage() {
         2,
         1024,
       ),
-      publicUrl: region?.services.find(
-        (service) => service.name === OBJECT_CONTAINER_OFFER_STORAGE_STANDARD,
-      )?.endpoint,
+      publicUrl: url,
       s3StorageType,
       regionDetails: s3StorageType ? region : undefined,
       staticUrl: serverContainer?.staticUrl || serverContainer?.virtualHost,
     };
-  }, [serverContainer, region, targetContainer]);
+  }, [serverContainer, region, targetContainer, url]);
 
   const is = {
     localZone: useMemo(
@@ -215,7 +215,7 @@ export default function ObjectPage() {
     setSearchField('');
   };
 
-  if (!container) {
+  if (!container || !url) {
     return <OdsSpinner size="md" />;
   }
 
@@ -230,7 +230,7 @@ export default function ObjectPage() {
               'pci_projects_project_storages_containers_object_title',
             )}
           />
-          <OdsBreadcrumbItem href="" label={project?.description} />
+          <OdsBreadcrumbItem href="" label={container?.name} />
         </OdsBreadcrumb>
       }
       header={{ title: container?.name }}
