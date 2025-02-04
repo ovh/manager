@@ -34,7 +34,7 @@ export default class NutanixAllNodesCtrl {
   mapAllNodes() {
     this.nodesMapped = this.nodes.map((node) =>
       node.displayName !== null
-        ? { node }
+        ? node
         : {
             isHiddenNode: true,
             iam: {
