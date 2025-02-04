@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
-import useGenerateMetricData from './useGenerateMetricData.hook'; // Import the new hook
+import useGenerateMetricData from './useGenerateMetricData.hook';
 
 describe('useGenerateMetricData', () => {
   const formatDate = (date: Date): string => {
@@ -73,7 +73,7 @@ describe('useGenerateMetricData', () => {
     const { dataMap } = result.current;
 
     expect(dataMap).toHaveProperty('input_tokens');
-    expect(dataMap.input_tokens.length).toBe(10); // Should have 10 entries (one for each day)
+    expect(dataMap.input_tokens.length).toBe(10);
     expect(dataMap.input_tokens[0]).toBe(22);
     expect(dataMap.input_tokens[1]).toBe(24);
   });
@@ -138,9 +138,8 @@ describe('useGenerateMetricData', () => {
     );
     const { dataMap } = result.current;
 
-    // Verifying that the unit 'input' is correctly mapped to 'Input Tokens'
     expect(dataMap).toHaveProperty('input_tokens');
-    expect(dataMap.input_tokens.length).toBe(10); // Should have 10 entries (one for each day)
+    expect(dataMap.input_tokens.length).toBe(10);
     expect(dataMap.input_tokens[0]).toBe(15);
   });
 });

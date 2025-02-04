@@ -11,7 +11,7 @@ const mockT = (key: string) => {
     output: 'Output Tokens',
     totalAudio: 'Total Audio',
   };
-  return translations[key] || key; // fallback to key if translation doesn't exist
+  return translations[key] || key;
 };
 
 describe('useChartData', () => {
@@ -70,7 +70,7 @@ describe('useChartData', () => {
   it('should filter out unknown units', () => {
     const mockDataMap = {
       input_tokens: [10, 20, 30],
-      unknown_unit: [1, 2, 3], // Unité inconnue
+      unknown_unit: [1, 2, 3],
     };
     const labels = ['Jan', 'Feb', 'Mar'];
 
@@ -78,7 +78,7 @@ describe('useChartData', () => {
       useChartData(mockDataMap, labels, false, mockT),
     );
 
-    expect(result.current?.datasets).toHaveLength(1); // Seulement input_tokens doit être là
+    expect(result.current?.datasets).toHaveLength(1);
     expect(result.current?.datasets[0].label).toBe('Input Tokens');
   });
 });

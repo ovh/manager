@@ -4,7 +4,6 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import * as databaseAPI from '@/data/api/database/metric.api';
 import { useGetMetrics } from './useGetMetrics.hook';
 
-// Mock the `getMetrics` function from the databaseAPI
 vi.mock('@/data/api/database/metric.api', () => ({
   getMetrics: vi.fn(),
 }));
