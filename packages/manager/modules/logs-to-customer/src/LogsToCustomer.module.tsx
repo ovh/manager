@@ -9,6 +9,11 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { Description } from '@ovh-ux/manager-react-components';
+import {
+  PageLocation,
+  ButtonType,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { getLogKindsQueryKey, useLogKinds } from './data/hooks/useLogKinds';
 import { LogKind } from './data/types/dbaas/logs';
 import { LogApiVersion } from './data/types/apiVersion';
@@ -16,6 +21,7 @@ import { LogsContext } from './LogsToCustomer.context';
 import ApiError from './components/apiError/ApiError.component';
 import './translations';
 import { ZoomedInOutProvider } from './hooks/useZoomedInOut';
+import { LogsActionName } from './types/logsTracking';
 
 export type ApiUrls = {
   logKind: string;
@@ -33,6 +39,9 @@ export interface ILogsToCustomerModule {
   logApiVersion: LogApiVersion;
   logIamActions: LogIamActions;
   resourceURN: string;
+  trackingOptions?: {
+    trackClickMap: Record<LogsActionName, string[]>;
+  };
 }
 
 export default function LogsToCustomerModule({
@@ -40,11 +49,12 @@ export default function LogsToCustomerModule({
   logApiVersion,
   logIamActions,
   resourceURN,
+  trackingOptions,
 }: Readonly<ILogsToCustomerModule>) {
   const queryClient = useQueryClient();
   const [currentLogKind, setCurrentLogKind] = useState<LogKind>();
   const { t } = useTranslation('logKind');
-
+  const { trackClick } = useOvhTracking();
   const { data: logKinds, error, isPending } = useLogKinds({
     logKindUrl: logApiUrls.logKind,
     apiVersion: logApiVersion,
@@ -61,8 +71,16 @@ export default function LogsToCustomerModule({
       logApiVersion,
       logIamActions,
       resourceURN,
+      trackingOptions,
     }),
-    [currentLogKind, logApiUrls, logApiVersion, logIamActions, resourceURN],
+    [
+      currentLogKind,
+      logApiUrls,
+      logApiVersion,
+      logIamActions,
+      resourceURN,
+      trackingOptions,
+    ],
   );
 
   if (isPending)
@@ -106,7 +124,16 @@ export default function LogsToCustomerModule({
               const newLogKind = logKinds.find(
                 (k) => k.kindId === event.detail.value,
               );
-              if (newLogKind) setCurrentLogKind(newLogKind);
+              if (newLogKind) {
+                setCurrentLogKind(newLogKind);
+                trackClick({
+                  location: PageLocation.page,
+                  buttonType: ButtonType.button,
+                  actionType: 'action',
+                  actions:
+                    trackingOptions?.trackClickMap.select_kind_logs_access,
+                });
+              }
             }}
             data-testid={'logKindSelect'}
           >
