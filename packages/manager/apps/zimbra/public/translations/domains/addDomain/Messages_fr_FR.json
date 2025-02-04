@@ -34,6 +34,7 @@
   "zimbra_domains_add_domain_configuration_part_2": "Vous pourrez trouver les informations requises dans la page diagnostic du domaine associé.",
   "zimbra_domains_add_domain_configuration_guides_referee": "Veuillez vous référer à notre guide",
   "zimbra_domains_add_domain_warning_modification_domain": "Vous devez vous assurer que la zone DNS du domaine choisi peut être modifiée par son administrateur.",
+  "zimbra_domains_add_domain_warning_configuration_standard": "En optant pour la configuration recommandée, vous acceptez que l'ensemble de vos emails soient à l'avenir acheminés vers le service Zimbra. Si vous refusez cela, veuillez décocher la case MX dans la configuration personnalisée.",
   "zimbra_domains_add_domain_success_message": "Votre demande d'ajout a bien été prise en compte. Elle sera exécutée d'ici quelques instants.",
   "zimbra_domains_add_domain_error_message": "Votre demande d'ajout n'a pas pu aboutir. {{ error }}"
 }
