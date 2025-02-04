@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import LogsToCustomerModule from '@ovh-ux/logs-to-customer/src/LogsToCustomer.module';
 import { Description } from '@ovh-ux/manager-react-components';
 import { useOKMSById } from '@/data/hooks/useOKMS';
+import { trackClickMap } from './LogsTracking.constant';
 
 export default function KmsLogs() {
   const { t } = useTranslation('key-management-service/logs');
@@ -26,6 +27,7 @@ export default function KmsLogs() {
           deleteSubscription: ['okms:apiovh:log/subscription/delete'],
         }}
         resourceURN={okms.data.iam.urn}
+        trackingOptions={{ trackClickMap }}
       />
     </div>
   );
