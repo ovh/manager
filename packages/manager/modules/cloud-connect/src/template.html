@@ -127,6 +127,12 @@
                 <a
                     data-ng-href="{{ $ctrl.getServiceNameLink($row) }}"
                     data-ng-bind="$value"
+                    data-track-on="click"
+                    data-track-name="{{:: $ctrl.TRACKING_PREFIX + 'datagrid::link::details_cloud-connect' }}"
+                    data-track-category="{{:: $ctrl.TRACKING_CONTEXT.page_category}}"
+                    data-track-page="{{:: $ctrl.TRACKING_CONTEXT.trackingPageLabel}}"
+                    data-track-theme="{{:: $ctrl.TRACKING_CONTEXT.page_theme}}"
+                    data-track-level2="{{:: $ctrl.TRACKING_CONTEXT.level2}} "
                 ></a>
             </oui-datagrid-column>
             <oui-datagrid-column

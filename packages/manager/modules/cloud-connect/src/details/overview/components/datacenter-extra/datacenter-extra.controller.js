@@ -1,5 +1,5 @@
 import {
-  DIAGNOSTIC_TRACKING_PREFIX,
+  TRACKING_PREFIX,
   getDiagnosticDashboardTrackingContext,
 } from '../../../../cloud-connect.constants';
 
@@ -15,7 +15,7 @@ export default class DatacenterExtraConfiguration {
 
   runCheckBgpPeering(popConfigId, dcConfigId, extraConfigId) {
     this.atInternet.trackClick({
-      name: `${DIAGNOSTIC_TRACKING_PREFIX}tile::button::check-bgp-peering::cloud-connect`,
+      name: `${TRACKING_PREFIX}tile::button::check-bgp-peering::cloud-connect`,
       type: 'action',
       ...getDiagnosticDashboardTrackingContext(
         'cloud-connect::dashboard::configure',
