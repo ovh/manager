@@ -1,5 +1,5 @@
 import sortBy from 'lodash/sortBy';
-import { DOMAIN_TRACKING } from '../../../../../hosting/hosting.constants';
+import { ORDER_WEBHOSTING_TRACKING } from '../../domain-webhosting-order.constants';
 
 export default class {
   /* @ngInject */
@@ -9,6 +9,7 @@ export default class {
   }
 
   $onInit() {
+    this.offer = undefined;
     this.showDetails = true;
     this.availableOffers = sortBy(
       this.availableOffers.map((offer) =>
@@ -22,7 +23,7 @@ export default class {
 
   trackClick(hit) {
     return this.atInternet.trackClick({
-      name: hit,
+      ...hit,
       type: 'action',
     });
   }
@@ -32,25 +33,35 @@ export default class {
     this.stepper.currentIndex += 1;
   }
 
-  trackOffer(groupOffer, versionOffer) {
-    const { category, selectedVersion } = groupOffer;
-    const { value } = selectedVersion;
-
-    if (versionOffer) {
-      this.trackClick(`${DOMAIN_TRACKING.STEP_1.SELECT_OFFER_LIST}${category}`);
-    }
-
-    this.trackClick(`${DOMAIN_TRACKING.STEP_1.SELECT_OFFER}${value}`);
-  }
-
-  onHostingGroupOfferClick(groupOffer, versionOffer) {
+  onHostingGroupOfferClick(groupOffer) {
     this.offer = groupOffer.selectedVersion;
     this.stepper.cartOption.offer = groupOffer.selectedVersion;
+  }
 
-    this.trackOffer(groupOffer, versionOffer);
+  onOptionEdit() {
+    if (this.offer) {
+      this.trackClick(ORDER_WEBHOSTING_TRACKING.OPTION.EDIT);
+    }
   }
 
   onOfferNextStepClick() {
-    this.trackClick(DOMAIN_TRACKING.STEP_1.GO_TO_NEXT_STEP);
+    this.trackClick({
+      ...ORDER_WEBHOSTING_TRACKING.OPTION.NEXT,
+      name: ORDER_WEBHOSTING_TRACKING.OPTION.NEXT.name.replace(
+        /{{hostingSolution}}/g,
+        this.offer.planCode,
+      ),
+    });
+  }
+
+  onChangeSwitchDetail() {
+    this.showDetails = !this.showDetails;
+    this.trackClick({
+      ...ORDER_WEBHOSTING_TRACKING.OPTION.DETAIL,
+      name: ORDER_WEBHOSTING_TRACKING.OPTION.DETAIL.name.replace(
+        /{{status}}/g,
+        this.showDetails ? 'on' : 'off',
+      ),
+    });
   }
 }

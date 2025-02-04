@@ -1,3 +1,5 @@
+import { ACTIVATION_DATABASE_TRACKING } from './private-sql-activation.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
     'app.hosting.dashboard.database.private-sql-activation',
@@ -57,6 +59,12 @@ export default /* @ngInject */ ($stateProvider) => {
           ),
         breadcrumb: /* @ngInject */ ($translate) =>
           $translate.instant('privatesql_activation_breadcrumb'),
+      },
+      atInternet: {
+        ignore: true,
+      },
+      onEnter: /* @ngInject */ (atInternet) => {
+        atInternet.trackPage(ACTIVATION_DATABASE_TRACKING.PAGE);
       },
     },
   );

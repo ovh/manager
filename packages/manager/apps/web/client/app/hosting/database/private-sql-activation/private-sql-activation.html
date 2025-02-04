@@ -1,4 +1,6 @@
-<oui-back-button data-on-click=":: $ctrl.goToHosting()">
+<oui-back-button
+    data-on-click="$ctrl.trackClick($ctrl.ACTIVATION_DATABASE_TRACKING.GO_BACK); $ctrl.goToHosting()"
+>
     <span data-translate="privatesql_activation_back"></span>
 </oui-back-button>
 
@@ -14,6 +16,8 @@
         data-header="{{:: 'privatesql_activation_step_1' | translate }}"
         data-valid="$ctrl.isValidDbConfig()"
         data-prevent-next="true"
+        data-on-submit="$ctrl.onGoToNextStepClick()"
+        data-on-focus="$ctrl.onOptionEdit()"
     >
         <web-hosting-database-order-db-categories-offers
             data-user="$ctrl.me"
