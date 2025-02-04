@@ -1,11 +1,12 @@
 export default class ExchangeTabTasksCtrl {
   /* @ngInject */
-  constructor($scope, wucExchange, messaging, $translate) {
+  constructor($scope, wucExchange, messaging, $translate, $stateParams) {
     this.services = {
       $scope,
       wucExchange,
       messaging,
       $translate,
+      $stateParams,
     };
   }
 
@@ -15,11 +16,11 @@ export default class ExchangeTabTasksCtrl {
     this.productId = params.productId;
 
     this.states = {
-      doing: 'DOING',
-      error: 'ERROR',
-      done: 'DONE',
-      cancelled: 'CANCELLED',
-      todo: 'TODO',
+      doing: 'doing',
+      error: 'error',
+      done: 'done',
+      cancelled: 'cancelled',
+      todo: 'todo',
     };
 
     this.services.$scope.$on(
@@ -28,28 +29,35 @@ export default class ExchangeTabTasksCtrl {
     );
   }
 
-  getTasks({ pageSize, offset }) {
-    return this.services.wucExchange.getTasks(
-      this.organization,
-      this.productId,
-      pageSize,
-      offset - 1,
-    );
+  static toUpperSnakeCase(str) {
+    return str
+      .replace(/([a-z])([A-Z])/g, '$1_$2')
+      .replace(/\s+/g, '_')
+      .toUpperCase();
   }
 
-  loadPaginated($config) {
-    this.tasksList = null;
-    this.pageSize = $config.pageSize;
-    this.offset = $config.offset;
-    return this.getTasks($config)
-      .then((response) => {
-        this.tasksList = response.list;
-        return {
-          data: response.list.results,
-          meta: {
-            totalCount: response.count,
-          },
-        };
+  getTasks({ pageSize, offset }) {
+    return this.services.wucExchange
+      .getTasks(
+        this.organization,
+        this.productId,
+        pageSize,
+        Math.ceil(offset / pageSize),
+      )
+      .then(({ tasks }) => {
+        this.tasksList = tasks;
+        return tasks;
+      });
+  }
+
+  loadPaginated({ pageSize, offset }) {
+    this.isLoading = true;
+    const { organization, productId } = this.services.$stateParams;
+    return this.services.wucExchange
+      .getTasks(organization, productId, pageSize, Math.ceil(offset / pageSize))
+      .then((tasks) => {
+        this.tasksList = tasks;
+        return tasks;
       })
       .catch((error) => {
         this.services.messaging.writeError(
