@@ -3,12 +3,19 @@ import { IpOffer, IpVersion } from './order.constant';
 import { getCountryCode } from '@/components/RegionSelector/region-selector.utils';
 import { ServiceType } from '@/types';
 
+export enum ServiceStatus {
+  ok = 'ok',
+  expired = 'expired',
+}
+
 export type OrderContextType = {
   ipVersion?: IpVersion;
   setIpVersion: React.Dispatch<React.SetStateAction<IpVersion>>;
   selectedService?: string;
   setSelectedService: React.Dispatch<React.SetStateAction<string>>;
   selectedServiceType: ServiceType;
+  selectedServiceStatus?: ServiceStatus;
+  setSelectedServiceStatus: React.Dispatch<React.SetStateAction<ServiceStatus>>;
   setSelectedServiceType: React.Dispatch<React.SetStateAction<ServiceType>>;
   selectedRegion?: string;
   setSelectedRegion: React.Dispatch<React.SetStateAction<string>>;
@@ -30,6 +37,7 @@ export const OrderContext = React.createContext<OrderContextType>({
   setIpVersion: () => null,
   setSelectedService: () => null,
   selectedServiceType: ServiceType.unknown,
+  setSelectedServiceStatus: () => null,
   setSelectedServiceType: () => null,
   setSelectedRegion: () => null,
   setSelectedOffer: () => null,
@@ -46,6 +54,9 @@ export const OrderContextProvider: React.FC<React.PropsWithChildren> = ({
 }) => {
   const [ipVersion, setIpVersion] = React.useState(null);
   const [selectedService, setSelectedService] = React.useState(null);
+  const [selectedServiceStatus, setSelectedServiceStatus] = React.useState(
+    ServiceStatus.ok,
+  );
   const [selectedServiceType, setSelectedServiceType] = React.useState(
     ServiceType.unknown,
   );
@@ -60,9 +71,23 @@ export const OrderContextProvider: React.FC<React.PropsWithChildren> = ({
   const value = React.useMemo(
     () => ({
       ipVersion,
-      setIpVersion,
+      setIpVersion: (version: IpVersion) => {
+        setIpVersion(version);
+        setSelectedService(null);
+        setSelectedServiceType(null);
+        setSelectedServiceStatus(ServiceStatus.ok);
+        setSelectedRegion(null);
+      },
       selectedService,
-      setSelectedService,
+      setSelectedService: (service: string) => {
+        setSelectedService(service);
+        setSelectedServiceStatus(ServiceStatus.ok);
+      },
+      selectedServiceStatus,
+      setSelectedServiceStatus: (status: ServiceStatus) => {
+        setSelectedServiceStatus(status);
+        setSelectedRegion(null);
+      },
       selectedServiceType,
       setSelectedServiceType: (serviceType: ServiceType) => {
         setSelectedRegion(null);
@@ -98,6 +123,7 @@ export const OrderContextProvider: React.FC<React.PropsWithChildren> = ({
     [
       ipVersion,
       selectedService,
+      selectedServiceStatus,
       selectedServiceType,
       selectedRegion,
       selectedOffer,
