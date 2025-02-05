@@ -2,7 +2,7 @@ import { POSSIBLE_ACTIONS } from './constants';
 import { MIN_NODES_BY_CLUSTER } from '../../../constants';
 
 export default class NutanixDashboardNodeActionMenu {
-  /* ngInject */
+  /* @ngInject */
   constructor($translate) {
     this.$translate = $translate;
   }
