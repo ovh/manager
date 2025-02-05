@@ -1,5 +1,8 @@
 import get from 'lodash/get';
-import { diagnosticTypes } from './check-pgp-peering.constants';
+import {
+  diagnosticTypes,
+  ApiDiagnosticStatus,
+} from './check-pgp-peering.constants';
 
 export default class CheckBGPPeeringCtrl {
   /* @ngInject */
@@ -27,15 +30,28 @@ export default class CheckBGPPeeringCtrl {
         this.diagnosticType,
         this.extraConfigId,
       )
-      .then(() => {
-        return this.goBack(
-          this.$translate.instant('cloud_connect_bgp_peering_success', {
-            link: this.$state.href('cloud-connect.details.diagnostics', {
-              cloudConnect: this.cloudConnectService,
+      .then(({ status }) => {
+        if (status === ApiDiagnosticStatus.TODO) {
+          return this.goBack(
+            this.$translate.instant('cloud_connect_bgp_peering_success', {
+              link: this.$state.href('cloud-connect.details.diagnostics', {
+                cloudConnect: this.cloudConnectService,
+              }),
             }),
-          }),
-          'success',
-          false,
+            'success',
+            false,
+          );
+        }
+        if (status === ApiDiagnosticStatus.DENIED) {
+          return this.goBack(
+            this.$translate.instant('cloud_connect_bgp_peering_denied'),
+            'error',
+            false,
+          );
+        }
+        return this.goBack(
+          this.$translate.instant('cloud_connect_bgp_peering_faild'),
+          'error',
         );
       })
       .catch((error) =>

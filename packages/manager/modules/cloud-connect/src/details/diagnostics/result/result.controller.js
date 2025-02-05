@@ -12,6 +12,11 @@ export default class DiagnosticResultCtrl {
     this.cloudConnectDiagnosticsService = cloudConnectDiagnosticsService;
   }
 
+  $onInit() {
+    this.canDownload = !!(this.diagnostic.result?.length > 0);
+    $('.modal-dialog').attr('id', 'ovh-cloudConnect-diagnostic-result-modal');
+  }
+
   copyToClipboard(diagnostic) {
     if (navigator.clipboard && navigator.clipboard.writeText) {
       try {
@@ -28,6 +33,16 @@ export default class DiagnosticResultCtrl {
   }
 
   download(diagnostic) {
-    return this.cloudConnectDiagnosticsService.download(diagnostic);
+    return this.cloudConnectDiagnosticsService.download(
+      this.cloudConnect.id,
+      diagnostic,
+    );
+  }
+
+  getLog() {
+    if (this.canDownload) {
+      return this.diagnostic.result[0].output;
+    }
+    return this.$translate.instant('cloud_connect_diagnostics_result_no_log');
   }
 }
