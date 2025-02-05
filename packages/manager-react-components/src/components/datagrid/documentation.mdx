@@ -34,9 +34,9 @@ Why Use TanStack Table?
 
 ---
 
-#### Filters
+### Filters
 
-##### How to use It
+#### How to use It
 
 1 - In your columns definition, fill `type` or `comparator` attributes
 
@@ -104,3 +104,78 @@ language="javascript"
 />
 
 ---
+
+### Search
+
+#### How to use It
+
+1 - In your columns definition, fill `isFilterable` attribute, it will display the search bearch in datagrid topbar.
+
+<Source
+  code={`
+    export const colums = [
+        {
+            id: 'label',
+            cell: (item: Item) => {
+                return <DataGridTextCell>{item.label}</DataGridTextCell>;
+            },
+            label: 'Label',
+            isFilterable: true,
+        }
+    ];
+    `}
+  language="javascript"
+/>
+
+2 - Pass `search` object to Datagrid component
+
+<Source
+  code={`
+<Datagrid
+    {...}
+    search={search}
+/>`}
+  language="javascript"
+/>
+
+What contains `search` object :
+
+- **searchInput**: react state, can be string | number | null
+- **setSearchInput**: setter of search input state
+- **onSearch**: handler when user click on the button search.
+
+#### Search with useResourcesIcebergV6
+
+**_note : apiv6 only support operator `&`, we can't combine multiple search_**
+
+1 - Fill `columns` attribute with your columns definition
+
+<Source
+  code={`
+import {
+  useResourcesIcebergV6,
+} from '@ovh-ux/manager-react-components';
+  const {
+    {...}
+    search, // it return search object
+  } = useResourcesIcebergV6({
+    {...}
+    columns, // you have to pass the columns definition now
+  });
+    `}
+  language="javascript"
+/>
+
+2 - `search` object return by `useResourcesIcebergV6` must be use in your datagrid component
+
+<Source
+  code={`
+<Datagrid
+    {...}
+    filters={filters}
+    search={search}
+    isLoading={isLoading}
+/>
+    `}
+  language="javascript"
+/>
