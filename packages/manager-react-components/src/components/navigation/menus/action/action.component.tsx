@@ -104,7 +104,7 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
         />
       </div>
       <OdsPopover
-        className="py-[8px] px-0"
+        className="py-[8px] px-0 w-max"
         triggerId={`navigation-action-trigger-${id}`}
         with-arrow
       >
