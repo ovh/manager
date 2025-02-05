@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { FilterCategories } from '@ovh-ux/manager-core-api';
 import { {{#if isPCI }} useParams, {{/if}} useNavigate, useLocation } from 'react-router-dom';
 
-import { OdsButton, OdsSpinner } from '@ovhcloud/ods-components/react';
+import { OdsButton } from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import {
   Breadcrumb,
@@ -36,11 +36,12 @@ export default function Listing() {
     fetchNextPage,
     isLoading,
     status,
+    search,
     sorting,
     setSorting,
-    pageIndex,
     filters,
   } = useResourcesIcebergV6({
+    columns,
     route: `{{#if this.isPCI }}{{this.mainApiPathPci}}{{else}}{{this.mainApiPath}}{{/if}}`,
     queryKey: ['{{appName}}', `{{#if this.isPCI }}{{this.mainApiPathPci}}{{else}}{{this.mainApiPath}}{{/if}}`],
   });
@@ -69,6 +70,7 @@ export default function Listing() {
           id: element,
           label: element,
           isFilterable: true,
+          isSearchable: true,
           // @ts-ignore
           type: dataType(flattenData[0][element]),
           // @ts-ignore
@@ -112,14 +114,6 @@ export default function Listing() {
     );
   }
 
-  if (isLoading && pageIndex === 1) {
-    return (
-      <div className="flex justify-center" data-testid="listing-page-spinner">
-        <OdsSpinner />
-      </div>
-    );
-  }
-
   const header = {
     title: t('title'),
   };
@@ -145,6 +139,8 @@ export default function Listing() {
             sorting={sorting}
             onSortChange={setSorting}
             filters={filters}
+            search={search}
+            isLoading={isLoading}
           />
         )}
       </React.Suspense>
