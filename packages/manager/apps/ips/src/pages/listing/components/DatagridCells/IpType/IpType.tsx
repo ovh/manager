@@ -1,6 +1,6 @@
-import { OdsSkeleton } from '@ovhcloud/ods-components/react';
 import React from 'react';
 import { useGetIpdetails } from '@/data/hooks/ip';
+import { SkeletonCell } from '../SkeletonCell/SkeletonCell';
 
 export type IpTypeProps = {
   ip: string;
@@ -14,7 +14,9 @@ export type IpTypeProps = {
 export const IpType = ({ ip }: IpTypeProps) => {
   const { ipDetails, isLoading } = useGetIpdetails({ ip });
 
-  if (isLoading) return <OdsSkeleton></OdsSkeleton>;
-  if (!ipDetails?.type) return <>-</>;
-  return <div>{ipDetails.type}</div>;
+  return (
+    <SkeletonCell isLoading={isLoading}>
+      {ipDetails?.type ? ipDetails.type : <>-</>}
+    </SkeletonCell>
+  );
 };
