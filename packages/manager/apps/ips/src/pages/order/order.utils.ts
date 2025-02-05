@@ -5,10 +5,6 @@ import {
   getContinentKeyFromRegion,
   getDatacenterFromRegion,
 } from '@/data/hooks/catalog/catalog.utils';
-import {
-  isRegionInEu,
-  isRegionInUs,
-} from '@/components/RegionSelector/region-selector.utils';
 import { ServiceType } from '@/types';
 
 export type OrderParams = {
@@ -86,12 +82,10 @@ export const hasAdditionalIpBlockOffer = (serviceType: ServiceType) =>
 /**
  * Returns a function that returns true if the current organisation is available for the provided region
  */
-export const isAvailableOrganisation = (selectedRegion: string) => {
-  const isEu = isRegionInEu(selectedRegion);
-  const isUs = isRegionInUs(selectedRegion);
-
-  return (organisation: string) =>
-    isEu
-      ? organisation.includes('RIPE')
-      : isUs || organisation.includes('ARIN');
+export const isAvailableOrganisation = (selectedPlanCode: string) => (
+  organisation: string,
+) => {
+  if (selectedPlanCode.includes('ripe')) return organisation.includes('RIPE');
+  if (selectedPlanCode.includes('arin')) return organisation.includes('ARIN');
+  return true;
 };
