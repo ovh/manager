@@ -1,10 +1,10 @@
-export const ipFormatter = (ipGroup: string) =>
-  ipGroup.indexOf('/32') !== -1
+export const ipFormatter = (ip: string) =>
+  ip.indexOf('/32') !== -1
     ? {
-        ip: ipGroup.replace('/32', ''),
+        ip: ip.replace('/32', ''),
         isGroup: false,
       }
     : {
-        ip: ipGroup.replace('/32', ''),
+        ip,
         isGroup: true,
       };
