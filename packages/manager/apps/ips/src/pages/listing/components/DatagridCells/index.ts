@@ -9,3 +9,4 @@ export * from './IpRegion/IpRegion';
 export * from './IpReverse/IpReverse';
 export * from './IpType/IpType';
 export * from './IpVmac/IpVmac';
+export * from './SkeletonCell/SkeletonCell';

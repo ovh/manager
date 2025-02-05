@@ -2,7 +2,7 @@ import { IcebergFetchResultV6, fetchIcebergV6 } from '@ovh-ux/manager-core-api';
 
 export type GetIpSpamParams = {
   /**  */
-  ipGroup: string;
+  ip: string;
 };
 
 export enum IpSpamStateEnum {
@@ -19,7 +19,7 @@ export type IpSpamType = {
 };
 
 export const getIpSpamQueryKey = (params: GetIpSpamParams) => [
-  `get/ip/${encodeURIComponent(params.ipGroup)}/spam`,
+  `get/ip/${encodeURIComponent(params.ip)}/spam`,
 ];
 
 /**
@@ -29,6 +29,6 @@ export const getIpSpam = async (
   params: GetIpSpamParams,
 ): Promise<IcebergFetchResultV6<IpSpamType>> =>
   fetchIcebergV6<IpSpamType>({
-    route: `/ip/${encodeURIComponent(params.ipGroup)}/spam`,
+    route: `/ip/${encodeURIComponent(params.ip)}/spam`,
     page: 1,
   });

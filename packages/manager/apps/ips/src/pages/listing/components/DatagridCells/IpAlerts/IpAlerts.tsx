@@ -1,33 +1,41 @@
 import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
-import { OdsBadge, OdsSkeleton } from '@ovhcloud/ods-components/react';
-import React from 'react';
+import { OdsBadge } from '@ovhcloud/ods-components/react';
+import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useIpHasAlerts } from '@/data/hooks/ip/useIpHasAlerts';
+import { SkeletonCell } from '../SkeletonCell/SkeletonCell';
+import { ListingContext } from '@/pages/listing/listingContext';
 
 export type IpAlertsProps = {
-  ipGroup: string;
+  ip: string;
 };
 
 /**
  * Component to display the cell content for alerts.
  * If ip has alert display the corresponding badge
- * @param ipGroup the ip with mask
+ * @param ip the ip with mask
  * @returns React component
  */
-export const IpAlerts = ({ ipGroup }: IpAlertsProps) => {
+export const IpAlerts = ({ ip }: IpAlertsProps) => {
+  const { expiredIps } = useContext(ListingContext);
   const { t } = useTranslation('listing');
 
-  const { hasAlerts, isLoading } = useIpHasAlerts({ ipGroup });
+  const { hasAlerts, isLoading } = useIpHasAlerts({
+    ip,
+    enabled: expiredIps.indexOf(ip) === -1,
+  });
 
-  if (isLoading) return <OdsSkeleton></OdsSkeleton>;
   if (
-    !hasAlerts?.antihack?.length &&
-    !hasAlerts?.spam?.length &&
-    !hasAlerts?.mitigation?.length
+    expiredIps.indexOf(ip) !== -1 ||
+    (!isLoading &&
+      !hasAlerts?.antihack?.length &&
+      !hasAlerts?.spam?.length &&
+      !hasAlerts?.mitigation?.length)
   )
     return null;
+
   return (
-    <>
+    <SkeletonCell isLoading={isLoading}>
       {hasAlerts?.antihack?.length && (
         <OdsBadge
           label={t('listingColumnsIpAlertsAntihack')}
@@ -46,6 +54,6 @@ export const IpAlerts = ({ ipGroup }: IpAlertsProps) => {
           color={ODS_BADGE_COLOR.critical}
         ></OdsBadge>
       )}
-    </>
+    </SkeletonCell>
   );
 };

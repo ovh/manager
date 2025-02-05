@@ -2,7 +2,7 @@ import { IcebergFetchResultV6, fetchIcebergV6 } from '@ovh-ux/manager-core-api';
 
 export type GetIpGameFirewallParams = {
   /**  */
-  ipGroup: string;
+  ip: string;
 };
 
 export enum IpGameFirewallStateEnum {
@@ -20,13 +20,13 @@ export type IpGameFirewallType = {
 };
 
 export const getIpGameFirewallQueryKey = (params: GetIpGameFirewallParams) => [
-  `get/ip/${encodeURIComponent(params.ipGroup)}/game`,
+  `get/ip/${encodeURIComponent(params.ip)}/game`,
 ];
 
 export const getIpGameFirewall = async (
   params: GetIpGameFirewallParams,
 ): Promise<IcebergFetchResultV6<IpGameFirewallType>> =>
   fetchIcebergV6<IpGameFirewallType>({
-    route: `/ip/${encodeURIComponent(params.ipGroup)}/game`,
+    route: `/ip/${encodeURIComponent(params.ip)}/game`,
     page: 1,
   });

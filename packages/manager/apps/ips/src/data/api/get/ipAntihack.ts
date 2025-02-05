@@ -1,7 +1,7 @@
 import { IcebergFetchResultV6, fetchIcebergV6 } from '@ovh-ux/manager-core-api';
 
 export type GetIpAntihackParams = {
-  ipGroup: string;
+  ip: string;
 };
 
 export enum IpAntihackStateEnum {
@@ -18,7 +18,7 @@ export type IpAntihackType = {
 };
 
 export const getIpAntihackQueryKey = (params: GetIpAntihackParams) => [
-  `get/ip/${encodeURIComponent(params.ipGroup)}/antihack`,
+  `get/ip/${encodeURIComponent(params.ip)}/antihack`,
 ];
 
 /**
@@ -28,6 +28,6 @@ export const getIpAntihack = async (
   params: GetIpAntihackParams,
 ): Promise<IcebergFetchResultV6<IpAntihackType>> =>
   fetchIcebergV6<IpAntihackType>({
-    route: `/ip/${encodeURIComponent(params.ipGroup)}/antihack`,
+    route: `/ip/${encodeURIComponent(params.ip)}/antihack`,
     page: 1,
   });
