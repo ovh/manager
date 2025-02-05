@@ -46,7 +46,7 @@ Why Use TanStack Table?
 
 <Source
   code={`
-    export const colums = [
+    export const columns = [
         {
             id: 'label',
             cell: (item: Item) => {
@@ -109,11 +109,11 @@ language="javascript"
 
 #### How to use It
 
-1 - In your columns definition, fill `isFilterable` attribute, it will display the search bearch in datagrid topbar.
+1 - In your columns definition, fill `isSearchable` attribute, it will display the search bearch in datagrid topbar.
 
 <Source
   code={`
-    export const colums = [
+    export const columns = [
         {
             id: 'label',
             cell: (item: Item) => {
@@ -121,6 +121,7 @@ language="javascript"
             },
             label: 'Label',
             isFilterable: true,
+            isSearchable: true,
         }
     ];
     `}
