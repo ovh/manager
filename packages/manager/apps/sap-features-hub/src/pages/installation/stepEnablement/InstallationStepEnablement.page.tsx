@@ -49,16 +49,16 @@ export default function InstallationStepEnablement() {
 
   const {
     getValues,
-    setValue,
     trigger,
     register,
     unregister,
     watch,
+    resetField,
     formState,
     handleSubmit,
     ...restForm
   } = useForm<z.infer<typeof ENABLEMENT_FORM_SCHEMA>>({
-    mode: 'onTouched',
+    mode: 'onChange',
     resolver: zodResolver(ENABLEMENT_FORM_SCHEMA),
     defaultValues,
   });
@@ -81,17 +81,20 @@ export default function InstallationStepEnablement() {
 
   const [hasBackup, hasLogsInLdpOvh] = watch(['hasBackup', 'hasLogsInLdpOvh']);
 
-  const [oldBucketBackint, setOldBucketBackint] = useState(undefined);
-  const [oldLogsDataPlatform, setOldLogsDataPlatform] = useState(undefined);
+  const [oldBucketBackint, setOldBucketBackint] = useState<
+    z.infer<typeof ENABLEMENT_FORM_SCHEMA>['bucketBackint']
+  >();
+  const [oldLogsDataPlatform, setOldLogsDataPlatform] = useState<
+    z.infer<typeof ENABLEMENT_FORM_SCHEMA>['logsDataPlatform']
+  >(undefined);
 
   useEffect(() => {
     if (!hasBackup) {
       setOldBucketBackint(getValues('bucketBackint'));
       unregister('bucketBackint');
     } else {
-      setValue('bucketBackint', oldBucketBackint);
+      resetField('bucketBackint', { defaultValue: oldBucketBackint });
       triggerFilledInputOfForm('bucketBackint');
-      trigger('bucketBackint');
     }
   }, [hasBackup]);
 
@@ -100,24 +103,29 @@ export default function InstallationStepEnablement() {
       setOldLogsDataPlatform(getValues('logsDataPlatform'));
       unregister('logsDataPlatform');
     } else {
-      setValue('logsDataPlatform', oldLogsDataPlatform);
+      resetField('logsDataPlatform', { defaultValue: oldLogsDataPlatform });
       triggerFilledInputOfForm('logsDataPlatform');
     }
   }, [hasLogsInLdpOvh]);
 
   const saveFormOnContext = () => {
-    setValues((prev) => ({ ...prev, ...getValues() }));
+    setValues((prev) => {
+      const [bucketBackint, logsDataPlatform] = getValues([
+        'bucketBackint',
+        'logsDataPlatform',
+      ]);
+
+      return {
+        ...prev,
+        bucketBackint,
+        logsDataPlatform,
+      };
+    });
   };
 
-  const handleSubmitCustom = () => {
-    saveFormOnContext();
-    nextStep();
-  };
-
-  const handlePreviousCustom = () => {
-    saveFormOnContext();
-    previousStep();
-  };
+  useEffect(() => {
+    return saveFormOnContext;
+  }, []);
 
   return (
     <FormProvider
@@ -128,7 +136,7 @@ export default function InstallationStepEnablement() {
       handleSubmit={handleSubmit}
       trigger={trigger}
       getValues={getValues}
-      setValue={setValue}
+      resetField={resetField}
       {...restForm}
     >
       <FormLayout
@@ -136,8 +144,8 @@ export default function InstallationStepEnablement() {
         subtitle={t('enablement_subtitle')}
         submitLabel={t('enablement_cta')}
         isSubmitDisabled={!isValid}
-        onSubmit={handleSubmitCustom}
-        onPrevious={handlePreviousCustom}
+        onSubmit={nextStep}
+        onPrevious={previousStep}
       >
         <RhfField
           controllerParams={register('hasBackup')}

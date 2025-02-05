@@ -58,7 +58,7 @@
   "enablement_input_endpoint": "Endpoint",
   "enablement_input_endpoint_helper": "L'endpoint doit être au format URL.",
   "enablement_input_has_logs_ldp_ovh": "Logs SAP via Logs Data Platform d'OVHcloud",
-  "enablement_input_has_logs_ldp_ovh_helper": "Réalise la configuration de l'OS sur tous les serveurs du SID pour exporter les logs SAP (y compris \"Security Audit Log\") vers le Logstash mentionné ci-dessous (nécessite des post-configurations manuelles supplémentaires).",
+  "enablement_input_has_logs_ldp_ovh_helper": "Réalise la configuration de l'OS sur tous les serveurs du SID pour exporter les logs SAP (y compris \"Security Audit Log\") vers le Logstash précisé ci-dessous (nécessite des post-configurations manuelles supplémentaires).",
   "enablement_input_logstash_entrypoint": "Point d'entrée Logstash",
   "enablement_input_logstash_entrypoint_helper": "L'entrypoint doit être au format URL et se terminer par \".logs.ovh.com\".",
   "enablement_input_logstash_certificat": "Certificat Logstash",

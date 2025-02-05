@@ -18,7 +18,7 @@ export function RhfPassword({
       {...field}
       isMasked
       className={`w-full ${className}`}
-      hasError={!!fieldState.error}
+      hasError={fieldState.isDirty && !!fieldState.error}
       onOdsBlur={field.onBlur}
       onOdsChange={field.onChange}
     />

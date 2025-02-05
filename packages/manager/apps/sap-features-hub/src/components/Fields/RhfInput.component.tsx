@@ -15,7 +15,7 @@ export function RhfInput(
       id={id}
       {...props}
       {...field}
-      hasError={!!fieldState.error}
+      hasError={fieldState.isDirty && !!fieldState.error}
       onOdsBlur={field.onBlur}
       onOdsChange={field.onChange}
     />

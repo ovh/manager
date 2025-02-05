@@ -4,8 +4,6 @@ import {
   BACKUP_KEY_LENGTH,
   ALPHANUMERIC_REGEX,
   OVH_URL_REGEX,
-  LOGSTASH_CERTIFICAT_MIN_LENGTH,
-  LOGSTASH_CERTIFICAT_MAX_LENGTH,
   CERTIFICAT_REGEX,
   CONTAINER_ID_MIN_LENGTH,
   CONTAINER_ID_MAX_LENGTH,
@@ -47,8 +45,6 @@ export const ENABLEMENT_FORM_SCHEMA = z.object({
       certificate: z
         .string()
         .trim()
-        .min(LOGSTASH_CERTIFICAT_MIN_LENGTH)
-        .max(LOGSTASH_CERTIFICAT_MAX_LENGTH)
         .regex(CERTIFICAT_REGEX),
     })
     .optional(),

@@ -38,6 +38,7 @@ export const RhfField = ({
       <OdsFormField
         className={`max-w-md ${className}`}
         error={
+          (controller.fieldState?.isDirty || undefined) &&
           controller.fieldState?.error &&
           (helperMessage ?? controller.fieldState?.error?.message)
         }
@@ -76,9 +77,12 @@ export const RhfHelper = ({
 export const RhfHelperAuto = (
   props: Readonly<Omit<React.ComponentProps<typeof OdsText>, 'children'>>,
 ) => {
-  const { helperMessage, controller } = useRhfFieldContext();
+  const {
+    helperMessage,
+    controller: { fieldState },
+  } = useRhfFieldContext();
 
-  if (!controller.fieldState.error) {
+  if (!fieldState.isDirty || !fieldState.error) {
     return <RhfHelper {...props}>{helperMessage}</RhfHelper>;
   }
 
