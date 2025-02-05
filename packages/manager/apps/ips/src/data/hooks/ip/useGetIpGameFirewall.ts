@@ -7,22 +7,24 @@ import {
 } from '@/data/api';
 
 export type UseGetIpGameFirewallParams = {
-  ipGroup: string;
+  ip: string;
   enabled?: boolean;
 };
 
 // get ip game firewall infos for
 export const useGetIpGameFirewall = ({
-  ipGroup,
+  ip,
   enabled = true,
 }: UseGetIpGameFirewallParams) => {
   const { data: ipGameFirewallResponse, isLoading, isError, error } = useQuery<
     IcebergFetchResultV6<IpGameFirewallType>,
     ApiError
   >({
-    queryKey: getIpGameFirewallQueryKey({ ipGroup }),
-    queryFn: () => getIpGameFirewall({ ipGroup }),
+    queryKey: getIpGameFirewallQueryKey({ ip }),
+    queryFn: () => getIpGameFirewall({ ip }),
     enabled,
+    staleTime: Number.POSITIVE_INFINITY,
+    retry: false,
   });
 
   return {
