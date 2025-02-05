@@ -7,7 +7,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { formatUsagePercent, getUsagePercent } from '@/utils/kpi/utils';
+import { getPercentValue } from '@/utils/kpi/utils';
 import { SavingsPlanFlavorConsumption } from '@/types/savingsPlanConsumption.type';
 
 const Kpi = ({
@@ -61,15 +61,24 @@ const Kpis = ({
   consumption: SavingsPlanFlavorConsumption;
 }>) => {
   const { t } = useTranslation('dashboard');
+  const defaultMessage = t('dashboard_kpis_not_available');
 
-  const computedUsagePercent = useMemo(
-    () =>
-      formatUsagePercent(
-        getUsagePercent(consumption),
-        t('dashboard_kpis_not_available'),
-      ),
-    [consumption, t],
-  );
+  const computedPercents = useMemo(() => {
+    if (!consumption.periods?.length) {
+      return {
+        computedUsagePercent: defaultMessage,
+        computedCoveragePercent: defaultMessage,
+      };
+    }
+    return {
+      computedUsagePercent:
+        getPercentValue(consumption, 'utilization') || defaultMessage,
+      computedCoveragePercent:
+        getPercentValue(consumption, 'coverage') || defaultMessage,
+    };
+  }, [consumption, defaultMessage]);
+
+  const { computedUsagePercent, computedCoveragePercent } = computedPercents;
 
   const kpiData = [
     {
@@ -85,7 +94,7 @@ const Kpis = ({
     {
       title: t('dashboard_kpis_coverage_percent_name'),
       tooltip: t('dashboard_kpis_coverage_percent_tooltip'),
-      value: 10,
+      value: computedCoveragePercent,
     },
   ];
 

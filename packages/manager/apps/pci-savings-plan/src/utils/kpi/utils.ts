@@ -1,22 +1,17 @@
 import { SavingsPlanFlavorConsumption } from '@/types/savingsPlanConsumption.type';
 
-export const calculateAverageUsage = (
-  flavor: SavingsPlanFlavorConsumption,
-): number | null => {
-  const utilizationValues = flavor.periods
-    .map(({ utilization }) => parseFloat(utilization.replace('%', '')))
+export const getPercentValue = (
+  consumption: SavingsPlanFlavorConsumption,
+  key: 'utilization' | 'coverage',
+): string => {
+  const values = consumption.periods
+    .map((period) => parseFloat(period[key].replace('%', '')))
     .filter((value) => !Number.isNaN(value));
 
-  return utilizationValues.length
-    ? utilizationValues.reduce((sum, value) => sum + value, 0) /
-        utilizationValues.length
-    : null;
+  if (!values.length) {
+    return '';
+  }
+
+  const average = values.reduce((sum, value) => sum + value, 0) / values.length;
+  return `${Math.floor(average)}%`;
 };
-
-export const getUsagePercent = (consumption: SavingsPlanFlavorConsumption) =>
-  consumption?.periods?.length ? calculateAverageUsage(consumption) : null;
-
-export const formatUsagePercent = (
-  usagePercent: number | null,
-  message: string,
-) => (usagePercent ? `${Math.floor(usagePercent)}%` : message);
