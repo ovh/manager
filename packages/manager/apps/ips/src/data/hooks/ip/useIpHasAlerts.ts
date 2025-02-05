@@ -8,18 +8,23 @@ import { useGetIpMitigation } from './useGetIpMitigation';
 import { useGetIpSpam } from './useGetIpSpam';
 
 export type UseIpHasAlertsParams = {
-  ipGroup: string;
+  ip: string;
+  enabled?: boolean;
 };
 
-export const useIpHasAlerts = ({ ipGroup }: UseIpHasAlertsParams) => {
+export const useIpHasAlerts = ({
+  ip,
+  enabled = true,
+}: UseIpHasAlertsParams) => {
   const { ipAntihack, isLoading: isIpAntihackLoading } = useGetIpAntihack({
-    ipGroup,
+    ip,
+    enabled,
   });
-  const { ipSpam, isLoading: isIpSpamLoading } = useGetIpSpam({ ipGroup });
+  const { ipSpam, isLoading: isIpSpamLoading } = useGetIpSpam({ ip, enabled });
   const {
     ipMitigation,
     isLoading: isIpMitigationLoading,
-  } = useGetIpMitigation({ ipGroup });
+  } = useGetIpMitigation({ ip, enabled });
 
   return {
     isLoading: isIpAntihackLoading && isIpMitigationLoading && isIpSpamLoading,

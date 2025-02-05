@@ -2,7 +2,7 @@ import { IcebergFetchResultV6, fetchIcebergV6 } from '@ovh-ux/manager-core-api';
 
 export type GetIpEdgeFirewallParams = {
   /**  */
-  ipGroup: string;
+  ip: string;
 };
 
 export enum IpEdgeFirewallStateEnum {
@@ -18,13 +18,13 @@ export type IpEdgeFirewallType = {
 };
 
 export const getIpEdgeFirewallQueryKey = (params: GetIpEdgeFirewallParams) => [
-  `get/ip/${encodeURIComponent(params.ipGroup)}/firewall`,
+  `get/ip/${encodeURIComponent(params.ip)}/firewall`,
 ];
 
 export const getIpEdgeFirewall = async (
   params: GetIpEdgeFirewallParams,
 ): Promise<IcebergFetchResultV6<IpEdgeFirewallType>> =>
   fetchIcebergV6<IpEdgeFirewallType>({
-    route: `/ip/${encodeURIComponent(params.ipGroup)}/firewall`,
+    route: `/ip/${encodeURIComponent(params.ip)}/firewall`,
     page: 1,
   });
