@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.78.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.78.0...@ovh-ux/manager-pci@6.78.1) (2025-02-05)
+
+
+### Bug Fixes
+
+* **pci-object-storage:** round price to integer ([bed02fe](https://github.com/ovh/manager/commit/bed02fe70f0016c5bec5dcdb84179ab72bee74bf))
+
+
+
+
+
 # [6.78.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.77.0...@ovh-ux/manager-pci@6.78.0) (2025-02-03)
 
 
