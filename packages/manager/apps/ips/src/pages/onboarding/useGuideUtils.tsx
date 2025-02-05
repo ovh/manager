@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import { CountryCode } from '@ovh-ux/manager-config';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
-type GuideLinks = { [key in CountryCode]: string };
+type GuideLinks = { [key in CountryCode | 'DEFAULT']: string };
 
 const URL_LIST: { [guideName: string]: Partial<GuideLinks> } = {
   guideLink1: {
