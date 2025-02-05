@@ -9,7 +9,10 @@ export default class DiagnosticsResultCtrl {
     this.cloudConnectService
       .getDiagnostic(this.cloudConnect.id, diagnosticId)
       .then((diagnostic) => {
-        this.cloudConnectDiagnosticsService.download(diagnostic);
+        this.cloudConnectDiagnosticsService.download(
+          this.cloudConnect.id,
+          diagnostic,
+        );
       });
   }
 }

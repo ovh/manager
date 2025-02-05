@@ -1,6 +1,6 @@
 export default class DiagnosticsService {
   /* eslint-disable class-methods-use-this */
-  download(diagnostic) {
+  download(cloudConnectId, diagnostic) {
     const element = document.createElement('a');
     element.setAttribute(
       'href',
@@ -8,7 +8,12 @@ export default class DiagnosticsService {
         diagnostic.result[0].output,
       )}`,
     );
-    element.setAttribute('download', `log_${diagnostic.id}.txt`);
+    element.setAttribute(
+      'download',
+      `log-${cloudConnectId}-${diagnostic.id}-${moment(diagnostic.date).format(
+        'YYYY-MM-DD',
+      )}.txt`,
+    );
     element.style.display = 'none';
     document.body.appendChild(element);
     element.click();

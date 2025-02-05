@@ -173,6 +173,7 @@ export default class CloudConnectService {
     return this.iceberg(`/ovhCloudConnect/${cloudConnectId}/diagnostic`)
       .query()
       .expand('CachedObjectList-Pages')
+      .sort('date', 'desc')
       .execute(null, true)
       .$promise.then(({ data: result }) =>
         result.map((item) => new CloudConnectDiagnostics(item)),

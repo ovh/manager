@@ -1,4 +1,4 @@
-import { STATUS, DIAGNOSTIC_DESC } from './cloud-connect.constants';
+import { STATUS } from './cloud-connect.constants';
 
 export default class CloudConnectDiagnostics {
   constructor(diagnostic) {
@@ -6,8 +6,8 @@ export default class CloudConnectDiagnostics {
     this.name = this.description;
   }
 
-  getDescription() {
-    return DIAGNOSTIC_DESC[this.function];
+  canDownload() {
+    return !!this.result?.length;
   }
 
   isDone() {
