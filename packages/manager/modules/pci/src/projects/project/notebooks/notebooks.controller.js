@@ -2,12 +2,13 @@ import capitalize from 'lodash/capitalize';
 
 export default class {
   /* @ngInject */
-  constructor($translate, CucCloudMessage, ovhManagerRegionService) {
+  constructor($translate, CucCloudMessage, ovhManagerRegionService, CHANGELOG) {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.ovhManagerRegionService = ovhManagerRegionService;
 
     this.capitalize = capitalize;
+    this.CHANGELOG = CHANGELOG;
   }
 
   $onInit() {

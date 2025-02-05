@@ -5,9 +5,10 @@ import {
 
 export default class VolumeBackupListController {
   /* @ngInject */
-  constructor($translate, CucCloudMessage) {
+  constructor($translate, CucCloudMessage, CHANGELOG) {
     this.$translate = $translate;
     this.cucCloudMessage = CucCloudMessage;
+    this.CHANGELOG = CHANGELOG;
   }
 
   $onInit() {

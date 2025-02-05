@@ -1,4 +1,5 @@
 import template from './cold-archive.html';
+import controller from './cold-archive.controller';
 
 export default {
   bindings: {
@@ -23,4 +24,5 @@ export default {
     regions: '<',
   },
   template,
+  controller,
 };

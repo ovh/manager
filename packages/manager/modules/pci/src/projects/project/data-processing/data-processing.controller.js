@@ -1,8 +1,9 @@
 export default class DataProcessingController {
   /* @ngInject */
-  constructor(CucCloudMessage, ovhManagerRegionService) {
+  constructor(CucCloudMessage, ovhManagerRegionService, CHANGELOG) {
     this.CucCloudMessage = CucCloudMessage;
     this.ovhManagerRegionService = ovhManagerRegionService;
+    this.CHANGELOG = CHANGELOG;
   }
 
   $onInit() {

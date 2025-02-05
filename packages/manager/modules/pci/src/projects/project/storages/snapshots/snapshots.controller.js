@@ -7,11 +7,13 @@ export default class PciStorageSnapshotsController {
     CucCloudMessage,
     ovhManagerRegionService,
     PciProjectStorageSnapshotsService,
+    CHANGELOG,
   ) {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.ovhManagerRegionService = ovhManagerRegionService;
     this.PciProjectStorageSnapshotsService = PciProjectStorageSnapshotsService;
+    this.CHANGELOG = CHANGELOG;
   }
 
   $onInit() {
