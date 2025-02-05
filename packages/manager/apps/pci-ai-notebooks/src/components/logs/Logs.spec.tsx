@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
 import * as ai from '@/types/cloud/project/ai';
 import { Locale } from '@/hooks/useLocale';
@@ -24,10 +24,6 @@ describe('Logs page', () => {
         notebook: mockedNotebook,
         serviceQuery: {} as UseQueryResult<ai.notebook.Notebook, Error>,
       })),
-    }));
-
-    vi.mock('@/data/api/ai/notebook/logs/logs.api', () => ({
-      getLogs: vi.fn(() => mockedLogs),
     }));
 
     const mockScrollIntoView = vi.fn();
@@ -59,21 +55,17 @@ describe('Logs page', () => {
     vi.clearAllMocks();
   });
 
-  // it('renders the breadcrumb component', async () => {
-  //   const translationKey = 'breadcrumb';
-  //   render(<Breadcrumb />, { wrapper: RouterWithQueryClientWrapper });
-  //   await waitFor(() => {
-  //     expect(screen.getByText(translationKey)).toBeInTheDocument();
-  //   });
-  // });
+  it('renders skeleton while loading', async () => {
+    render(<Logs.Skeleton itemCount={24} maxWidth={17} minWidth={9} />, {
+      wrapper: RouterWithQueryClientWrapper,
+    });
+    expect(screen.getByTestId('skeleton-container')).toBeInTheDocument();
+  });
 
-  //   it('renders skeleton while loading', async () => {
-  //     render(<Logs />, { wrapper: RouterWithQueryClientWrapper });
-  //     expect(screen.getByTestId('skeleton-container')).toBeInTheDocument();
-  //   });
-
-  //   it('renders Logs', async () => {
-  //     render(<Logs />, { wrapper: RouterWithQueryClientWrapper });
-  //     expect(screen.getByTestId('logs-area')).toBeInTheDocument();
-  //   });
+  it('renders Logs', async () => {
+    render(<Logs logs={mockedLogs} />, {
+      wrapper: RouterWithQueryClientWrapper,
+    });
+    expect(screen.getByTestId('logs-area')).toBeInTheDocument();
+  });
 });

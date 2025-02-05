@@ -6,42 +6,14 @@ import {
   screen,
   waitFor,
 } from '@testing-library/react';
-import { useParams } from 'react-router-dom';
-import { UseQueryResult } from '@tanstack/react-query';
-import * as ai from '@/types/cloud/project/ai';
-import {
-  mockedNotebook,
-  mockedNotebookSpec,
-  mockedNotebookStatus,
-} from '@/__tests__/helpers/mocks/notebook';
 import { Locale } from '@/hooks/useLocale';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
-import * as datasyncAPI from '@/data/api/ai/notebook/datasync/datasync.api';
-import { useToast } from '@/components/ui/use-toast';
-import { apiErrorMock } from '@/__tests__/helpers/mocks/aiError';
-import { mockedDatastoreVolume } from '@/__tests__/helpers/mocks/volume';
-import DataSync from '../../pages/notebooks/[notebookId]/containers/dataSync/DataSync.modal';
+import { mockedStatusVolume } from '@/__tests__/helpers/mocks/volume';
+import DataSyncModal from './DataSync.component';
+import { handleSelectOption } from '@/__tests__/helpers/unitTestHelper';
 
-const mockedNotebookWithVol: ai.notebook.Notebook = {
-  ...mockedNotebook,
-  spec: {
-    ...mockedNotebookSpec,
-    volumes: [mockedDatastoreVolume],
-  },
-  status: {
-    ...mockedNotebookStatus,
-    state: ai.notebook.NotebookStateEnum.RUNNING,
-    volumes: [
-      {
-        id: 'volumeId',
-        mountPath: '/demo1',
-        userVolumeId: 'userVolumeId',
-      },
-    ],
-  },
-};
-
-describe('Data Sync Modal', () => {
+const onSubmit = vi.fn();
+describe('Data Sync Component', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
     // Mock necessary hooks and dependencies
@@ -49,18 +21,6 @@ describe('Data Sync Modal', () => {
       useTranslation: () => ({
         t: (key: string) => key,
       }),
-    }));
-
-    vi.mock('@/pages/notebooks/[notebookId]/Notebook.context', () => ({
-      useNotebookData: vi.fn(() => ({
-        projectId: 'projectId',
-        notebook: mockedNotebookWithVol,
-        serviceQuery: {} as UseQueryResult<ai.notebook.Notebook, Error>,
-      })),
-    }));
-
-    vi.mock('@/data/api/ai/notebook/datasync/datasync.api', () => ({
-      dataSync: vi.fn((sync) => sync),
     }));
 
     vi.mock('react-router-dom', async () => {
@@ -91,16 +51,6 @@ describe('Data Sync Modal', () => {
         }),
       };
     });
-
-    vi.mock('@/components/ui/use-toast', () => {
-      const toastMock = vi.fn();
-      return {
-        useToast: vi.fn(() => ({
-          toast: toastMock,
-        })),
-      };
-    });
-
     const mockScrollIntoView = vi.fn();
     window.HTMLElement.prototype.scrollIntoView = mockScrollIntoView;
   });
@@ -109,93 +59,57 @@ describe('Data Sync Modal', () => {
     vi.clearAllMocks();
   });
 
-  it('renders Fork modal', async () => {
-    vi.mocked(useParams).mockReturnValue({ volumeId: 'volumeId' });
-    render(<DataSync />, { wrapper: RouterWithQueryClientWrapper });
+  it('renders Data Sync component', async () => {
+    render(
+      <DataSyncModal
+        onSubmitSync={onSubmit}
+        pending={true}
+        volume={mockedStatusVolume}
+      />,
+      { wrapper: RouterWithQueryClientWrapper },
+    );
     expect(screen.getByTestId('datasync-modal')).toBeInTheDocument();
     expect(
       screen.getByText('dataSyncMountPathAlertDescription'),
     ).toBeInTheDocument();
   });
 
-  it('renders Fork modal', async () => {
-    vi.mocked(useParams).mockReturnValue({});
-    render(<DataSync />, { wrapper: RouterWithQueryClientWrapper });
+  it('renders Data sync Component', async () => {
+    render(<DataSyncModal onSubmitSync={onSubmit} pending={false} />, {
+      wrapper: RouterWithQueryClientWrapper,
+    });
     expect(screen.getByTestId('datasync-modal')).toBeInTheDocument();
     expect(
       screen.getByText('dataSyncGlobalAlertDescription'),
     ).toBeInTheDocument();
   });
 
-  it('trigger onError on API Error', async () => {
-    vi.mocked(useParams).mockReturnValue({});
-    vi.mocked(datasyncAPI.dataSync).mockImplementation(() => {
-      throw apiErrorMock;
+  it('expect submit button to be disabled', async () => {
+    render(<DataSyncModal onSubmitSync={onSubmit} pending={true} />, {
+      wrapper: RouterWithQueryClientWrapper,
     });
-    render(<DataSync />, { wrapper: RouterWithQueryClientWrapper });
+    expect(screen.getByTestId('datasync-modal')).toBeInTheDocument();
     act(() => {
       fireEvent.click(screen.getByTestId('datasync-submit-button'));
     });
     await waitFor(() => {
-      expect(datasyncAPI.dataSync).toHaveBeenCalled();
-      expect(useToast().toast).toHaveBeenCalledWith({
-        title: 'dataSyncToastErrorTitle',
-        description: apiErrorMock.response.data.message,
-        variant: 'destructive',
-      });
+      expect(screen.getByTestId('datasync-submit-button')).toBeInTheDocument();
+      expect(screen.getByTestId('datasync-submit-button')).toBeDisabled();
     });
   });
 
   it('trigger onSuccess on summit click', async () => {
-    vi.mocked(useParams).mockReturnValue({ volumeId: 'volumeId' });
-    render(<DataSync />, { wrapper: RouterWithQueryClientWrapper });
+    render(<DataSyncModal onSubmitSync={onSubmit} pending={false} />, {
+      wrapper: RouterWithQueryClientWrapper,
+    });
     expect(screen.getByTestId('datasync-modal')).toBeInTheDocument();
+    await handleSelectOption('select-datasync-trigger', 'push');
+
     act(() => {
       fireEvent.click(screen.getByTestId('datasync-submit-button'));
     });
     await waitFor(() => {
-      expect(datasyncAPI.dataSync).toHaveBeenCalled();
-      expect(useToast().toast).toHaveBeenCalledWith({
-        title: 'dataSyncToastSuccessTitle',
-        description: 'dataSyncMountPathToastSuccessDescription',
-      });
-    });
-  });
-
-  it('change Datasync type and trigger onSuccess on summit click', async () => {
-    vi.mocked(useParams).mockReturnValue({});
-    render(<DataSync />, { wrapper: RouterWithQueryClientWrapper });
-    expect(screen.getByTestId('datasync-modal')).toBeInTheDocument();
-
-    // Select Push option
-    const actionTrigger = screen.getByTestId('select-datasync-trigger');
-    await waitFor(() => {
-      expect(actionTrigger).toBeInTheDocument();
-    });
-    act(() => {
-      fireEvent.focus(actionTrigger);
-      fireEvent.keyDown(actionTrigger, { key: 'Enter', code: 13 });
-    });
-    await waitFor(() => {
-      expect(actionTrigger).not.toHaveAttribute('data-state', 'closed');
-
-      act(() => {
-        const optionsElements = screen.getAllByRole('option');
-        const elem = optionsElements.find((e) =>
-          e.innerHTML.includes(ai.volume.DataSyncEnum.push),
-        );
-        fireEvent.keyDown(elem, { key: 'Enter', code: 13 });
-      });
-    });
-    act(() => {
-      fireEvent.click(screen.getByTestId('datasync-submit-button'));
-    });
-    await waitFor(() => {
-      expect(datasyncAPI.dataSync).toHaveBeenCalled();
-      expect(useToast().toast).toHaveBeenCalledWith({
-        title: 'dataSyncToastSuccessTitle',
-        description: 'dataSyncGlobalToastSuccessDescription',
-      });
+      expect(onSubmit).toHaveBeenCalledWith('push');
     });
   });
 });

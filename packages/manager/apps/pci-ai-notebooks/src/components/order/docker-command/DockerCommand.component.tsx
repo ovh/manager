@@ -52,7 +52,7 @@ const DockerCommand = React.forwardRef<
     <Form {...form}>
       <div
         className="flex w-full items-start gap-2"
-        data-testid="labels-form-container"
+        data-testid="docker-command-form-container"
       >
         <div className="w-full">
           <FormField
@@ -75,7 +75,11 @@ const DockerCommand = React.forwardRef<
                   </Popover>
                 </div>
                 <FormControl>
-                  <Input data-testid="key-input-field" {...field} ref={ref} />
+                  <Input
+                    data-testid="command-input-field"
+                    {...field}
+                    ref={ref}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -83,7 +87,7 @@ const DockerCommand = React.forwardRef<
           />
         </div>
         <Button
-          data-testid="label-add-button"
+          data-testid="docker-command-button"
           variant={'ghost'}
           onClick={form.handleSubmit(onSubmit)}
           className="mt-[1.875rem] text-primary rounded-full p-2 ml-2 hover:text-primary"
@@ -93,7 +97,7 @@ const DockerCommand = React.forwardRef<
         </Button>
       </div>
       <div>
-        <ul data-testid="datastore-list" className="list-disc">
+        <ul data-testid="docker-command-list" className="list-disc">
           <div className="flex flex-row flex-wrap gap-4">
             {commands.map((command, index) => (
               <li key={index} className="ml-8 text-sm">

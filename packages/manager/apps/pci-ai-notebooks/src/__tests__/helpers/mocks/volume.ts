@@ -35,3 +35,9 @@ export const mockedPublicGitVolume: ai.volume.Volume = {
     },
   },
 };
+
+export const mockedStatusVolume: ai.volume.VolumeStatus = {
+  id: 'volumeId',
+  mountPath: 'volumeMountPaht',
+  userVolumeId: 'userVolumeId',
+};

@@ -56,7 +56,10 @@ Logs.Skeleton = function logsSkeleton({
       `${Math.floor(Math.random() * (maxWidth - minWidth + 1)) + minWidth}rem`,
   );
   return (
-    <ScrollArea className="p-2 h-[500px] bg-[#122844]">
+    <ScrollArea
+      data-testid="skeleton-container"
+      className="p-2 h-[500px] bg-[#122844]"
+    >
       <ul>
         {randomWidths.map((width, index) => (
           <li className="mt-1" key={index}>

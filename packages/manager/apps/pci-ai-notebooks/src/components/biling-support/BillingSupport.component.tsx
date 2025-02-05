@@ -7,7 +7,10 @@ const BillingSupport = () => {
   const projectId = useParams();
   const { t } = useTranslation('components/billing-support');
   return (
-    <div className="flex flex-col gap-2">
+    <div
+      className="flex flex-col gap-2"
+      data-testid="billing-support-container"
+    >
       <OvhLink
         data-testid="dashboard-billing-link"
         application="public-cloud"
