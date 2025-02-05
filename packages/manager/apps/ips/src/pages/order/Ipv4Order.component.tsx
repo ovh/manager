@@ -1,6 +1,6 @@
 import React from 'react';
 import { ServiceSelectionSection } from './sections/ServiceSelectionSection.component';
-import { OrderContext } from './order.context';
+import { OrderContext, ServiceStatus } from './order.context';
 import { IpOffer, IpVersion } from './order.constant';
 import { RegionSelectionSection } from './sections/RegionSelectionSection.component';
 import { OfferSelectionSection } from './sections/OfferSelectionSection.component';
@@ -12,6 +12,7 @@ export const Ipv4Order: React.FC = () => {
   const {
     ipVersion,
     selectedService,
+    selectedServiceStatus,
     selectedServiceType,
     selectedRegion,
     selectedOffer,
@@ -30,13 +31,17 @@ export const Ipv4Order: React.FC = () => {
         selectedServiceType,
       ) &&
         !!selectedService && <RegionSelectionSection />}
-      {!!selectedService && !!selectedRegion && <OfferSelectionSection />}
       {!!selectedService &&
+        selectedServiceStatus === ServiceStatus.ok &&
+        !!selectedRegion && <OfferSelectionSection />}
+      {!!selectedService &&
+        selectedServiceStatus === ServiceStatus.ok &&
         !!selectedOffer &&
         !!selectedRegion &&
         !!selectedPlanCode && <GeolocationSection />}
       {selectedOffer === IpOffer.blockAdditionalIp &&
         !!selectedService &&
+        selectedServiceStatus === ServiceStatus.ok &&
         !!selectedOffer &&
         !!selectedRegion &&
         !!selectedPlanCode &&
