@@ -7,21 +7,23 @@ import {
 } from '@/data/api';
 
 export type UseGetIpEdgeFirewallParams = {
-  ipGroup: string;
+  ip: string;
   enabled?: boolean;
 };
 
 export const useGetIpEdgeFirewall = ({
-  ipGroup,
+  ip,
   enabled = true,
 }: UseGetIpEdgeFirewallParams) => {
   const { data: ipEdgeFirewallResponse, isLoading, isError, error } = useQuery<
     IcebergFetchResultV6<IpEdgeFirewallType>,
     ApiError
   >({
-    queryKey: getIpEdgeFirewallQueryKey({ ipGroup }),
-    queryFn: () => getIpEdgeFirewall({ ipGroup }),
+    queryKey: getIpEdgeFirewallQueryKey({ ip }),
+    queryFn: () => getIpEdgeFirewall({ ip }),
     enabled,
+    staleTime: Number.POSITIVE_INFINITY,
+    retry: false,
   });
 
   return {
