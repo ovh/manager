@@ -1,3 +1,5 @@
+import angular from 'angular';
+
 export default class {
   /* @ngInject */
   constructor($q, $translate, DedicatedCloud) {
@@ -24,17 +26,16 @@ export default class {
         ),
         models: this.DedicatedCloud.getModels(),
       })
-      .then((response) => {
-        this.right = response.right;
-        this.oldRight = angular.copy(this.right);
+      .then(({ right, models }) => {
+        this.right = right;
+        this.oldRight = angular.copy(right);
 
         this.enums = {
-          right: response.models.models['dedicatedCloud.right.RightEnum'].enum,
+          right: models.models['dedicatedCloud.right.RightEnum'].enum,
           networkRole:
-            response.models.models['dedicatedCloud.right.NetworkRoleEnum'].enum,
+            models.models['dedicatedCloud.right.NetworkRoleEnum'].enum,
           vmNetworkRole:
-            response.models.models['dedicatedCloud.right.VmNetworkRoleEnum']
-              .enum,
+            models.models['dedicatedCloud.right.VmNetworkRoleEnum'].enum,
         };
 
         return this.DedicatedCloud.getDatacenterInfoProxy(
@@ -85,10 +86,6 @@ export default class {
   }
 
   rightsHaveChanged() {
-    return (
-      this.oldRight.right !== this.right.right ||
-      this.oldRight.vmNetworkRole !== this.right.vmNetworkRole ||
-      this.oldRight.networkRole !== this.right.networkRole
-    );
+    return !angular.equals(this.right, this.oldRight);
   }
 }
