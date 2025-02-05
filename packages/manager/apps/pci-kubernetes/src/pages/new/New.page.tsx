@@ -118,6 +118,47 @@ export default function NewPage() {
     },
   });
 
+  const nodePoolEnabled = stepper.form.flavor;
+
+  const createNewCluster = () => {
+    tracking.trackClick({
+      name: `${PAGE_PREFIX}::kubernetes::add::confirm`,
+    });
+    createCluster({
+      name: stepper.form.clusterName,
+      region: stepper.form.region?.name,
+      version: stepper.form.version,
+      updatePolicy: stepper.form.updatePolicy,
+      ...(nodePoolEnabled && {
+        nodepool: {
+          antiAffinity: stepper.form.antiAffinity,
+          autoscale: stepper.form.scaling?.isAutoscale,
+          desiredNodes: stepper.form.scaling?.quantity.desired,
+          minNodes: stepper.form.scaling?.quantity.min,
+          maxNodes: stepper.form.antiAffinity
+            ? Math.min(
+                ANTI_AFFINITY_MAX_NODES,
+                stepper.form.scaling?.quantity.max,
+              )
+            : stepper.form.scaling?.quantity.max,
+          flavorName: stepper.form.flavor.name,
+          monthlyBilled: stepper.form.isMonthlyBilled,
+        },
+      }),
+      privateNetworkId:
+        stepper.form.network?.privateNetwork?.clusterRegion?.openstackId ||
+        undefined,
+      loadBalancersSubnetId:
+        stepper.form.network?.loadBalancersSubnet?.id || undefined,
+      nodesSubnetId: stepper.form.network?.subnet?.id || undefined,
+      privateNetworkConfiguration: {
+        defaultVrackGateway: stepper.form.network?.gateway?.ip || '',
+        privateNetworkRoutingAsDefault:
+          stepper.form.network?.gateway?.isEnabled,
+      },
+    });
+  };
+
   return (
     <>
       {project && (
@@ -150,6 +191,22 @@ export default function NewPage() {
       <div className="mt-8">
         <StepComponent
           order={1}
+          {...stepper.clusterName.step}
+          title={t('kubernetes_add_name_title')}
+          edit={{
+            action: stepper.clusterName.edit,
+            label: tStepper('common_stepper_modify_this_step'),
+            isDisabled: isDiscovery || isCreationPending,
+          }}
+        >
+          <ClusterNameStep
+            step={stepper.clusterName.step}
+            onNameChange={stepper.clusterName.update}
+            onSubmit={stepper.clusterName.submit}
+          />
+        </StepComponent>
+        <StepComponent
+          order={2}
           {...stepper.location.step}
           isLocked={stepper.location.step.isLocked || isDiscovery}
           title={t('kubernetes_add_region_title')}
@@ -166,7 +223,7 @@ export default function NewPage() {
           />
         </StepComponent>
         <StepComponent
-          order={2}
+          order={3}
           {...stepper.version.step}
           title={t('kubernetes_add_version_and_upgrade_policy_title')}
           edit={{
@@ -181,7 +238,7 @@ export default function NewPage() {
           />
         </StepComponent>
         <StepComponent
-          order={3}
+          order={4}
           {...stepper.network.step}
           title={tListing('kubernetes_add_private_network')}
           edit={{
@@ -197,7 +254,7 @@ export default function NewPage() {
           />
         </StepComponent>
         <StepComponent
-          order={4}
+          order={5}
           {...stepper.nodeType.step}
           title={tListing('kube_common_node_pool_title')}
           edit={{
@@ -213,24 +270,26 @@ export default function NewPage() {
             step={stepper.nodeType.step}
           />
         </StepComponent>
+        {nodePoolEnabled && (
+          <StepComponent
+            order={6}
+            {...stepper.nodeSize.step}
+            title={tListing('kube_common_node_pool_autoscaling_title')}
+            edit={{
+              action: stepper.nodeSize.edit,
+              label: tStepper('common_stepper_modify_this_step'),
+              isDisabled: isCreationPending,
+            }}
+          >
+            <NodeSizeStep
+              isMonthlyBilling={stepper.form.isMonthlyBilled}
+              onSubmit={stepper.nodeSize.submit}
+              step={stepper.nodeSize.step}
+            />
+          </StepComponent>
+        )}
         <StepComponent
-          order={5}
-          {...stepper.nodeSize.step}
-          title={tListing('kube_common_node_pool_autoscaling_title')}
-          edit={{
-            action: stepper.nodeSize.edit,
-            label: tStepper('common_stepper_modify_this_step'),
-            isDisabled: isCreationPending,
-          }}
-        >
-          <NodeSizeStep
-            isMonthlyBilling={stepper.form.isMonthlyBilled}
-            onSubmit={stepper.nodeSize.submit}
-            step={stepper.nodeSize.step}
-          />
-        </StepComponent>
-        <StepComponent
-          order={6}
+          order={nodePoolEnabled ? 7 : 6}
           {...stepper.billing.step}
           title={t('kubernetes_add_billing_anti_affinity_title')}
           edit={{
@@ -239,61 +298,17 @@ export default function NewPage() {
             isDisabled: isCreationPending,
           }}
         >
-          <ClusterBillingStep
-            form={stepper.form}
-            onSubmit={stepper.billing.submit}
-            step={stepper.billing.step}
-          />
-        </StepComponent>
-        <StepComponent
-          order={7}
-          {...stepper.clusterName.step}
-          title={t('kubernetes_add_name_title')}
-        >
-          {!stepper.clusterName.step.isLocked && (
-            <ClusterNameStep
-              onNameChange={stepper.clusterName.update}
-              onSubmit={() => {
-                stepper.clusterName.step.lock();
-                createCluster({
-                  name: stepper.form.clusterName,
-                  region: stepper.form.region?.name,
-                  version: stepper.form.version,
-                  updatePolicy: stepper.form.updatePolicy,
-                  nodepool: {
-                    antiAffinity: stepper.form.antiAffinity,
-                    autoscale: stepper.form.scaling?.isAutoscale,
-                    desiredNodes: stepper.form.scaling?.quantity.desired,
-                    minNodes: stepper.form.scaling?.quantity.min,
-                    maxNodes: stepper.form.antiAffinity
-                      ? Math.min(
-                          ANTI_AFFINITY_MAX_NODES,
-                          stepper.form.scaling?.quantity.max,
-                        )
-                      : stepper.form.scaling?.quantity.max,
-                    flavorName: stepper.form.flavor?.name,
-                    monthlyBilled: stepper.form.isMonthlyBilled,
-                  },
-                  privateNetworkId:
-                    stepper.form.network?.privateNetwork?.clusterRegion
-                      ?.openstackId || undefined,
-                  loadBalancersSubnetId:
-                    stepper.form.network?.loadBalancersSubnet?.id || undefined,
-                  nodesSubnetId: stepper.form.network?.subnet?.id || undefined,
-                  privateNetworkConfiguration: {
-                    defaultVrackGateway:
-                      stepper.form.network?.gateway?.ip || '',
-                    privateNetworkRoutingAsDefault:
-                      stepper.form.network?.gateway?.isEnabled,
-                  },
-                });
-                tracking.trackClick({
-                  name: `${PAGE_PREFIX}::kubernetes::add::confirm`,
-                });
+          {!stepper.billing.step.isLocked && (
+            <ClusterBillingStep
+              form={stepper.form}
+              onSubmit={(...args) => {
+                stepper.billing.submit(...args);
+                createNewCluster();
               }}
+              step={stepper.billing.step}
             />
           )}
-          {stepper.clusterName.step.isLocked && (
+          {stepper.billing.step.isLocked && (
             <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
           )}
         </StepComponent>

@@ -5,6 +5,7 @@ import {
 import {
   ODS_BUTTON_SIZE,
   ODS_INPUT_TYPE,
+  ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import {
@@ -15,31 +16,32 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { StepState } from '../useStep';
 
 export interface ClusterNameStepProps {
-  initialName?: string;
+  step: StepState;
   onNameChange: (name: string) => void;
-  onSubmit: () => void;
+  onSubmit: (name: string) => void;
 }
 
 const MAX_LENGTH = 64;
 const NAME_PATTERN = /^[a-zA-Z](([a-zA-Z0-9-]|_|-)*)[a-zA-Z0-9]$/;
 
 export function ClusterNameStep({
-  initialName,
   onNameChange,
   onSubmit,
+  step,
 }: Readonly<ClusterNameStepProps>) {
   const { t } = useTranslation('add');
   const { t: tCommon } = useTranslation('common');
-  const [name, setName] = useState(initialName || '');
+  const [name, setName] = useState('');
   const [isTouched, setIsTouched] = useState(false);
   const isValidName = name?.length <= MAX_LENGTH && NAME_PATTERN.test(name);
   const hasError = isTouched && !isValidName;
   useEffect(() => {
     onNameChange(isValidName ? name : '');
   }, [name]);
-  return (
+  return !step.isLocked ? (
     <>
       <OsdsFormField
         class="mt-6"
@@ -74,10 +76,19 @@ export function ClusterNameStep({
         size={ODS_BUTTON_SIZE.md}
         color={ODS_THEME_COLOR_INTENT.primary}
         disabled={isValidName ? undefined : true}
-        onClick={() => isValidName && onSubmit()}
+        onClick={() => isValidName && onSubmit(name)}
       >
-        {tCommon('common_stepper_submit_button_label')}
+        {tCommon('common_stepper_next_button_label')}
       </OsdsButton>
     </>
+  ) : (
+    <OsdsText
+      className="block w-[20rem]"
+      level={ODS_TEXT_LEVEL.heading}
+      size={ODS_TEXT_SIZE._200}
+      color={ODS_THEME_COLOR_INTENT.text}
+    >
+      {name}
+    </OsdsText>
   );
 }
