@@ -43,3 +43,26 @@ export const columsFilters = [
     comparator: FilterCategories.String,
   },
 ];
+
+export const columsSearchAndFilters = [
+  {
+    id: 'label',
+    cell: (item: Item) => {
+      return <DataGridTextCell>{item.label}</DataGridTextCell>;
+    },
+    label: 'Label',
+    isFilterable: true,
+    isSearchable: true,
+    comparator: FilterCategories.String,
+  },
+  {
+    id: 'price',
+    cell: (item: Item) => {
+      return <DataGridTextCell>{item.price} €</DataGridTextCell>;
+    },
+    label: 'Price',
+    isFilterable: true,
+    isSearchable: true,
+    comparator: FilterCategories.String,
+  },
+];

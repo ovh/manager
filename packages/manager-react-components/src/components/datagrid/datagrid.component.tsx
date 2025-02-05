@@ -1,4 +1,4 @@
-import { useMemo, useRef } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   ColumnDef,
@@ -9,13 +9,8 @@ import {
   useReactTable,
   getSortedRowModel,
 } from '@tanstack/react-table';
+import { ODS_ICON_NAME, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import {
-  ODS_ICON_NAME,
-  ODS_BUTTON_VARIANT,
-  ODS_BUTTON_SIZE,
-} from '@ovhcloud/ods-components';
-import {
-  OdsPopover,
   OdsButton,
   OdsIcon,
   OdsPagination,
@@ -24,14 +19,12 @@ import {
 } from '@ovhcloud/ods-components/react';
 import {
   FilterComparator,
-  FilterCategories,
   FilterTypeCategories,
 } from '@ovh-ux/manager-core-api';
-import { FilterAdd, FilterList } from '../filters';
-import { ColumnFilter } from '../filters/filter-add.component';
 import { FilterWithLabel } from '../filters/interface';
 import { DataGridTextCell } from './text-cell.component';
 import { defaultNumberOfLoadingRows } from './datagrid.contants';
+import { DatagridTopbar } from './datagrid-topbar.component';
 import './translations';
 
 export type ColumnSort = TanstackColumnSort;
@@ -56,6 +49,8 @@ export interface DatagridColumn<T> {
   type?: FilterTypeCategories;
   /** Trigger the column filter */
   isFilterable?: boolean;
+  /** Trigger the column search */
+  isSearchable?: boolean;
 }
 
 type ColumnFilterProps = {
@@ -69,6 +64,12 @@ export interface FilterProps {
   filters: FilterWithLabel[];
   add: (filters: ColumnFilterProps) => void;
   remove: (filter: FilterWithLabel) => void;
+}
+
+export interface SearchProps {
+  searchInput: string;
+  setSearchInput: React.Dispatch<React.SetStateAction<string>>;
+  onSearch: (search: string) => void;
 }
 
 export interface DatagridProps<T> {
@@ -108,6 +109,8 @@ export interface DatagridProps<T> {
   numberOfLoadingRows?: number;
   /** List of filters and handlers to add, remove */
   filters?: FilterProps;
+  /** search text input and handlers to onSearh and setSearch */
+  search?: SearchProps;
 }
 
 export const Datagrid = <T,>({
@@ -116,6 +119,7 @@ export const Datagrid = <T,>({
   filters,
   totalItems,
   pagination,
+  search,
   sorting,
   className,
   onPaginationChange,
@@ -130,8 +134,6 @@ export const Datagrid = <T,>({
   numberOfLoadingRows,
 }: DatagridProps<T>) => {
   const { t } = useTranslation('datagrid');
-  const { t: tfilters } = useTranslation('filters');
-  const filterPopoverRef = useRef(null);
   const pageCount = pagination
     ? Math.ceil(totalItems / pagination.pageSize)
     : 1;
@@ -176,63 +178,9 @@ export const Datagrid = <T,>({
     }),
   });
 
-  const columnsFilters = useMemo<ColumnFilter[]>(
-    () =>
-      columns
-        .filter(
-          (item) =>
-            ('comparator' in item || 'type' in item) &&
-            'isFilterable' in item &&
-            item.isFilterable,
-        )
-        .map((column) => ({
-          id: column.id,
-          label: column.label,
-          ...(column?.type && { comparators: FilterCategories[column.type] }),
-          ...(column?.comparator && { comparators: column.comparator }),
-        })),
-    [columns],
-  );
-
   return (
     <div>
-      {columnsFilters.length > 0 && (
-        <div className="flex flex-row-reverse py-[24px]">
-          <OdsButton
-            id="datagrid-filter-popover-trigger"
-            slot="datagrid-filter-popover-trigger"
-            size={ODS_BUTTON_SIZE.sm}
-            variant={ODS_BUTTON_VARIANT.ghost}
-            icon={ODS_ICON_NAME.filter}
-            aria-label={tfilters('common_criteria_adder_filter_label')}
-            label=""
-          />
-          <OdsPopover
-            ref={filterPopoverRef}
-            triggerId="datagrid-filter-popover-trigger"
-            with-arrow
-          >
-            <FilterAdd
-              columns={columnsFilters}
-              onAddFilter={(addedFilter, column) => {
-                filters.add({
-                  ...addedFilter,
-                  label: column.label,
-                });
-                filterPopoverRef.current?.hide();
-              }}
-            />
-          </OdsPopover>
-        </div>
-      )}
-      {filters?.filters.length > 0 && (
-        <div id="datagrid-filter-list" className="mb-[24px]">
-          <FilterList
-            filters={filters.filters}
-            onRemoveFilter={filters.remove}
-          />
-        </div>
-      )}
+      <DatagridTopbar filters={filters} columns={columns} search={search} />
 
       <div className={`contents px-[1px] ${className || ''}`}>
         <OdsTable className="overflow-x-visible">
