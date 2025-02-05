@@ -7,7 +7,6 @@ import {
 } from '@/data/api';
 
 export type UseGetIpVmacParams = {
-  ipGroup: string;
   serviceName: string;
   enabled?: boolean;
 };
@@ -26,6 +25,8 @@ export const useGetIpVmac = ({
     queryKey: getdedicatedServerVmacQueryKey({ serviceName }),
     queryFn: () => getdedicatedServerVmac({ serviceName }),
     enabled,
+    staleTime: Number.POSITIVE_INFINITY,
+    retry: false,
   });
 
   return {

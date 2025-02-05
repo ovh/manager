@@ -7,21 +7,23 @@ import {
 } from '@/data/api';
 
 export type UseGetIpMitigationParams = {
-  ipGroup: string;
+  ip: string;
   enabled?: boolean;
 };
 
 export const useGetIpMitigation = ({
-  ipGroup,
+  ip,
   enabled = true,
 }: UseGetIpMitigationParams) => {
   const { data: ipMitigationResponse, isLoading, isError, error } = useQuery<
     IcebergFetchResultV6<IpMitigationType>,
     ApiError
   >({
-    queryKey: getIpMitigationQueryKey({ ipGroup }),
-    queryFn: () => getIpMitigation({ ipGroup }),
+    queryKey: getIpMitigationQueryKey({ ip }),
+    queryFn: () => getIpMitigation({ ip }),
     enabled,
+    staleTime: Number.POSITIVE_INFINITY,
+    retry: false,
   });
 
   return {
