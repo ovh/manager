@@ -46,7 +46,8 @@
     "react-i18next": "^14.0.5",
     "react-router": "^6.21.3",
     "react-router-dom": "^6.3.0",
-    "react-use": "^17.5.0"
+    "react-use": "^17.5.0",
+    "semver": "^7.7.0"
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",

@@ -130,14 +130,16 @@ const UpdateSoftware: FC<UpdateSoftwareProps> = ({
 
   useEffect(() => {
     if (versions?.length > 0) {
-      setSelectedVersion(versions[versions.length - 1].name);
+      setSelectedVersion(
+        versions.find((version) => version.status === 'AVAILABLE')?.name,
+      );
     }
   }, [versions]);
 
   const content = (
     <div className="max-w-3xl">
       <div className="overflow-hidden text-ellipsis">
-        <Title>{rancher.currentState.name}</Title>
+        <Title>{rancher?.currentState.name}</Title>
       </div>
       <LinkIcon
         href={hrefRancherById}
