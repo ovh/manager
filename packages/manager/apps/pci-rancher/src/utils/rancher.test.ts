@@ -6,8 +6,10 @@ import {
   getVersion,
   isValidRancherName,
   getI18nextDriverError,
+  sortVersions,
 } from './rancher';
 import { versionsMocked } from '@/_mock_/version';
+import { RancherVersion } from '@/types/api.type';
 
 describe('Should validate rancher name', () => {
   it('When i add a valid rancher name', () => {
@@ -169,4 +171,63 @@ describe('getI18nextDriverError', () => {
       expect(result).toEqual(expectedOutput);
     },
   );
+});
+describe('sortVersions', () => {
+  test.each([
+    [
+      'Standard version sorting',
+      [
+        { name: '1.20.3' },
+        { name: '1.19.5' },
+        { name: '1.21.0' },
+        { name: '1.19.10' },
+        { name: '1.20.1' },
+      ],
+      [
+        { name: '1.19.5' },
+        { name: '1.19.10' },
+        { name: '1.20.1' },
+        { name: '1.20.3' },
+        { name: '1.21.0' },
+      ],
+    ],
+    ['Empty version list', [], []],
+    ['Single version', [{ name: '1.22.1' }], [{ name: '1.22.1' }]],
+    [
+      'Versions with different lengths',
+      [
+        { name: '1.2.0' },
+        { name: '1.10.0' },
+        { name: '1.2.5' },
+        { name: '1.2.10' },
+        { name: '1.9.0' },
+      ],
+      [
+        { name: '1.2.0' },
+        { name: '1.2.5' },
+        { name: '1.2.10' },
+        { name: '1.9.0' },
+        { name: '1.10.0' },
+      ],
+    ],
+    [
+      'Complex version sorting',
+      [
+        { name: '2.0.1' },
+        { name: '1.10.2' },
+        { name: '1.9.9' },
+        { name: '2.0.0' },
+        { name: '1.9.10' },
+      ],
+      [
+        { name: '1.9.9' },
+        { name: '1.9.10' },
+        { name: '1.10.2' },
+        { name: '2.0.0' },
+        { name: '2.0.1' },
+      ],
+    ],
+  ])('%s', (_, input, expected) => {
+    expect(sortVersions(input as RancherVersion[])).toEqual(expected);
+  });
 });

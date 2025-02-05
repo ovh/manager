@@ -28,13 +28,17 @@ import {
   useProject,
   usePciUrl,
 } from '@ovh-ux/manager-pci-common';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useMedia } from 'react-use';
 
 import clsx from 'clsx';
 
-import { getRancherPlanDescription, isValidRancherName } from '@/utils/rancher';
+import {
+  getRancherPlanDescription,
+  isValidRancherName,
+  sortVersions,
+} from '@/utils/rancher';
 import { getRanchersUrl } from '@/utils/route';
 import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
 
@@ -143,6 +147,16 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
   const isDesktop: boolean = useMedia(`(min-width: 760px)`);
   const formattedPrices = useFormattedRancherPrices(plans, pricing);
 
+  const recommendedVersion = useMemo(() => {
+    const availableVersions = versions?.filter(
+      (version) => version.status === 'AVAILABLE',
+    );
+    if (availableVersions?.length) {
+      return sortVersions(availableVersions, 'desc')[0];
+    }
+    return null;
+  }, [versions]);
+
   useEffect(() => {
     if (selectedPlan === null && plans?.length) {
       setSelectedPlan(
@@ -152,19 +166,7 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
       );
     }
     if (selectedVersion === null && versions?.length) {
-      const availableVersions = versions.filter(
-        (version) => version.status === 'AVAILABLE',
-      );
-      const versionToBeSelected = availableVersions.reduce(
-        (maxVersion, currentVersion) => {
-          return currentVersion.name > maxVersion.name
-            ? currentVersion
-            : maxVersion;
-        },
-        availableVersions[0],
-      );
-      versionToBeSelected.description = t('createRancherRecomendedVersion');
-      setSelectedVersion(versionToBeSelected);
+      setSelectedVersion(recommendedVersion);
     }
   }, [versions, plans]);
 
@@ -181,10 +183,6 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
     trackAction(TrackingPageView.CreateRancher, TrackingEvent.cancel);
     navigate(getRanchersUrl(projectId));
   };
-
-  const sortedVersions: RancherVersion[] = versions?.sort((a, b) =>
-    b.name.localeCompare(a.name),
-  );
 
   return (
     <div>
@@ -313,16 +311,21 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
           </div>
         </Block>
         <div className="flex my-5">
-          {sortedVersions?.map((version) => (
-            <TileSection
-              key={version.name}
-              isActive={version.name === selectedVersion?.name}
-              name={version.name}
-              description={version.description}
-              isDisabled={version.status !== 'AVAILABLE'}
-              onClick={() => setSelectedVersion(version)}
-            />
-          ))}
+          {versions &&
+            sortVersions(versions, 'desc').map((version) => (
+              <TileSection
+                key={version.name}
+                isActive={version.name === selectedVersion?.name}
+                name={version.name}
+                description={
+                  recommendedVersion?.name === version.name
+                    ? t('createRancherRecomendedVersion')
+                    : version.description
+                }
+                isDisabled={version.status !== 'AVAILABLE'}
+                onClick={() => setSelectedVersion(version)}
+              />
+            ))}
         </div>
         <div
           className={clsx(
