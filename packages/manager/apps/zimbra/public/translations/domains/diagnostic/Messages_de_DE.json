@@ -32,5 +32,6 @@
   "zimbra_domain_diagnostic_information_message_dkim_error": "Es wurde eine DKIM-Konfiguration gefunden, die nicht der erwarteten Konfiguration für Ihren E-Mail-Dienst entspricht.<br/><br/>Wenn Sie Schwierigkeiten haben, E-Mails an Ihre Empfänger zu versenden, folgen Sie bitte den unten stehenden Anweisungen, um Ihre DNS Zone mit den richtigen Informationen neu zu konfigurieren.",
   "zimbra_domain_diagnostic_information_message_dkim_warning": "Es wurde eine DKIM-Konfiguration gefunden, die nicht der erwarteten Konfiguration für Ihren E-Mail-Dienst entspricht.<br/><br/>Wenn Sie Schwierigkeiten haben, E-Mails an Ihre Empfänger zu versenden, folgen Sie bitte den unten stehenden Anweisungen, um Ihre DNS Zone mit den richtigen Informationen neu zu konfigurieren.",
   "zimbra_domain_diagnostic_information_banner_dkim_error": "Fehler bei der DKIM-Konfiguration. Möglicherweise können Sie Probleme bei der Zustellung Ihrer E-Mails an Ihre Empfänger haben.",
-  "zimbra_domain_diagnostic_information_banner_dkim_warning": "Ungewöhnliche DKIM-Konfiguration"
+  "zimbra_domain_diagnostic_information_banner_dkim_warning": "Ungewöhnliche DKIM-Konfiguration",
+  "zimbra_domain_diagnostic_field_subdomain": "Subdomain:"
 }

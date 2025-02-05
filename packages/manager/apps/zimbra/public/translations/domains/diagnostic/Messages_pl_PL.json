@@ -32,5 +32,6 @@
   "zimbra_domain_diagnostic_information_message_dkim_error": "Wykryliśmy, że konfiguracja DKIM nie jest zgodna z oczekiwaną konfiguracją Twojej usługi poczty e-mail.<br/><br/>Jeśli masz trudności z dostarczaniem e-maili do odbiorców, postępuj zgodnie z poniższymi instrukcjami, aby ponownie skonfigurować strefę DNS z poprawnymi informacjami.",
   "zimbra_domain_diagnostic_information_message_dkim_warning": "Wykryliśmy, że konfiguracja DKIM nie jest zgodna z oczekiwaną konfiguracją Twojej usługi poczty e-mail.<br/><br/>Jeśli masz trudności z dostarczaniem e-maili do odbiorców, postępuj zgodnie z poniższymi instrukcjami, aby ponownie skonfigurować strefę DNS z poprawnymi informacjami.",
   "zimbra_domain_diagnostic_information_banner_dkim_error": "Błąd konfiguracji DKIM, może wystąpić problem z dostarczaniem e-maili do odbiorców.",
-  "zimbra_domain_diagnostic_information_banner_dkim_warning": "Nieprawidłowa konfiguracja DKIM"
+  "zimbra_domain_diagnostic_information_banner_dkim_warning": "Nieprawidłowa konfiguracja DKIM",
+  "zimbra_domain_diagnostic_field_subdomain": "Subdomena:"
 }

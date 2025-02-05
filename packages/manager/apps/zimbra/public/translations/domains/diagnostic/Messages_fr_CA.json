@@ -28,6 +28,7 @@
   "zimbra_domain_diagnostic_subtitle": "Diagnostics du domaine {{domain}}",
   "zimbra_domain_diagnostic_field_host": "Nom/Hôte :",
   "zimbra_domain_diagnostic_field_name": "Nom :",
+  "zimbra_domain_diagnostic_field_subdomain": "Sous-domaine :",
   "zimbra_domain_diagnostic_field_value": "Valeur :",
   "zimbra_domain_diagnostic_field_priority": "Priorité :",
   "zimbra_domain_diagnostic_field_weight": "Poids :",

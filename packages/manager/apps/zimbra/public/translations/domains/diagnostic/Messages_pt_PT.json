@@ -32,5 +32,6 @@
   "zimbra_domain_diagnostic_information_message_dkim_error": "Detetámos uma configuração DKIM que não corresponde à configuração esperada para o seu serviço de mensagens.<br/><br/>Se encontrar dificuldades em entregar e-mails aos seus destinatários, siga as instruções abaixo para reconfigurar a sua Zona DNS com as informações corretas.",
   "zimbra_domain_diagnostic_information_message_dkim_warning": "Detetámos uma configuração DKIM que não corresponde à configuração esperada para o seu serviço de mensagens.<br/><br/>Se encontrar dificuldades em entregar e-mails aos seus destinatários, siga as instruções abaixo para reconfigurar a sua Zona DNS com as informações corretas.",
   "zimbra_domain_diagnostic_information_banner_dkim_error": "Erro de configuração DKIM, pode encontrar dificuldades em entregar os seus e-mails aos destinatários.",
-  "zimbra_domain_diagnostic_information_banner_dkim_warning": "Configuração DKIM anormal"
+  "zimbra_domain_diagnostic_information_banner_dkim_warning": "Configuração DKIM anormal",
+  "zimbra_domain_diagnostic_field_subdomain": "Subdomínio:"
 }
