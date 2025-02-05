@@ -2,7 +2,7 @@ import { IcebergFetchResultV6, fetchIcebergV6 } from '@ovh-ux/manager-core-api';
 
 export type GetIpMitigationParams = {
   /**  */
-  ipGroup: string;
+  ip: string;
 };
 
 export enum IpMitigationStateEnum {
@@ -19,7 +19,7 @@ export type IpMitigationType = {
 };
 
 export const getIpMitigationQueryKey = (params: GetIpMitigationParams) => [
-  `get/ip/${encodeURIComponent(params.ipGroup)}/mitigation`,
+  `get/ip/${encodeURIComponent(params.ip)}/mitigation`,
 ];
 
 /**
@@ -29,6 +29,6 @@ export const getIpMitigation = async (
   params: GetIpMitigationParams,
 ): Promise<IcebergFetchResultV6<IpMitigationType>> =>
   fetchIcebergV6<IpMitigationType>({
-    route: `/ip/${encodeURIComponent(params.ipGroup)}/mitigation`,
+    route: `/ip/${encodeURIComponent(params.ip)}/mitigation`,
     page: 1,
   });
