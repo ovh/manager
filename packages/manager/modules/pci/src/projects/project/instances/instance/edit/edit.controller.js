@@ -51,8 +51,8 @@ export default class PciInstanceEditController {
     this.model = {
       isInstanceFlex: new Flavor(this.editInstance.flavor).isFlex(),
     };
-    this.regionAvailability = {};
-    this.fetchRegionTypeAvailability();
+    this.regionsTypesAvailability = {};
+    this.fetchRegionsTypesAvailability();
     this.imageEditMessage =
       this.imageEditMessage ||
       'pci_projects_project_instances_instance_edit_reboot_message';
@@ -70,8 +70,8 @@ export default class PciInstanceEditController {
     });
   }
 
-  async fetchRegionTypeAvailability() {
-    this.regionAvailability = await this.PciProjectsProjectInstanceService.getRegionTypeAvailability(
+  async fetchRegionsTypesAvailability() {
+    this.regionsTypesAvailability = await this.PciProjectsProjectInstanceService.getRegionsTypesAvailability(
       this.projectId,
     );
   }

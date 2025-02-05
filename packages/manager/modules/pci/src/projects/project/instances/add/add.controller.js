@@ -234,8 +234,8 @@ export default class PciInstancesAddController {
     this.isAddingPrivateNetwork = false;
     this.isAddingPrivateNetworkError = false;
 
-    this.regionAvailability = {};
-    this.fetchRegionTypeAvailability();
+    this.regionsTypesAvailability = {};
+    this.fetchRegionsTypesAvailability();
   }
 
   get areLocalZonesFree() {
@@ -335,8 +335,8 @@ export default class PciInstancesAddController {
     };
   }
 
-  async fetchRegionTypeAvailability() {
-    this.regionAvailability = await this.PciProjectsProjectInstanceService.getRegionTypeAvailability(
+  async fetchRegionsTypesAvailability() {
+    this.regionsTypesAvailability = await this.PciProjectsProjectInstanceService.getRegionsTypesAvailability(
       this.projectId,
     );
   }
@@ -1892,6 +1892,6 @@ export default class PciInstancesAddController {
   }
 
   get shouldShow3AZRegionData() {
-    return this.regionAvailability[THREE_AZ_REGION] && this.is3AZRegion();
+    return this.regionsTypesAvailability[THREE_AZ_REGION] && this.is3AZRegion();
   }
 }

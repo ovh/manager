@@ -582,7 +582,7 @@ export default class PciProjectInstanceService {
       .then(({ data }) => data);
   }
 
-  getRegionTypeAvailability(projectId) {
+  getRegionsTypesAvailability(projectId) {
     return this.getProductAvailability(
       projectId,
       this.coreConfig.getUser().ovhSubsidiary,

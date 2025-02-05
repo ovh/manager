@@ -27,12 +27,12 @@ export default class PciInstanceController {
 
     this.is3az = this.instance.planCode.includes('3AZ');
 
-    this.regionAvailability = {};
-    this.fetchRegionTypeAvailability();
+    this.regionsTypesAvailability = {};
+    this.fetchRegionsTypesAvailability();
   }
 
-  async fetchRegionTypeAvailability() {
-    this.regionAvailability = await this.PciProjectsProjectInstanceService.getRegionTypeAvailability(
+  async fetchRegionsTypesAvailability() {
+    this.regionsTypesAvailability = await this.PciProjectsProjectInstanceService.getRegionsTypesAvailability(
       this.projectId,
     );
   }

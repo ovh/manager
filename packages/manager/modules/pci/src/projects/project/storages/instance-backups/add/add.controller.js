@@ -65,12 +65,12 @@ export default class PciInstancesAddController {
 
     this.loadMessages();
 
-    this.regionAvailability = {};
-    this.fetchRegionTypeAvailability();
+    this.regionsTypesAvailability = {};
+    this.fetchRegionsTypesAvailability();
   }
 
-  async fetchRegionTypeAvailability() {
-    this.regionAvailability = await this.PciProjectsProjectInstanceService.getRegionTypeAvailability(
+  async fetchRegionsTypesAvailability() {
+    this.regionsTypesAvailability = await this.PciProjectsProjectInstanceService.getRegionsTypesAvailability(
       this.projectId,
     );
   }

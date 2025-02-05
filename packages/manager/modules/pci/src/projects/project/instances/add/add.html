@@ -35,7 +35,7 @@
             data-reload="$ctrl.reloadFlavorList"
             data-load-end="$ctrl.onFlavorListLoadEnd()"
             data-display-loader="$ctrl.currentStep < 2"
-            data-are-3az-regions-available="$ctrl.regionAvailability[$ctrl.THREE_AZ_REGION]"
+            data-are-3az-regions-available="$ctrl.regionsTypesAvailability[$ctrl.THREE_AZ_REGION]"
         >
         </pci-project-flavors-list>
     </oui-step-form>
@@ -181,7 +181,7 @@
                                         >
                                             <span
                                                 class="text-center"
-                                                data-translate="{{$ctrl.regionAvailability[$ctrl.THREE_AZ_REGION] ? 'pci_project_flavors_zone_globalregions_tooltip' : 'pci_project_flavors_zone_globalregions_tooltip_2'}}"
+                                                data-translate="{{$ctrl.regionsTypesAvailability[$ctrl.THREE_AZ_REGION] ? 'pci_project_flavors_zone_globalregions_tooltip' : 'pci_project_flavors_zone_globalregions_tooltip_2'}}"
                                             ></span>
                                             <a
                                                 class="oui-link_icon"
