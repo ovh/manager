@@ -81,14 +81,12 @@ export const renderTest = async ({
   );
 
   if (!initialRoute || initialRoute === '/') {
-    await waitFor(
-      () =>
-        expect(
-          screen.getAllByText(MANAGED_VCD_LABEL, {
-            exact: false,
-          }).length,
-        ).toBeGreaterThan(0),
-      { timeout: 30000 },
+    await waitFor(() =>
+      expect(
+        screen.getAllByText(MANAGED_VCD_LABEL, {
+          exact: false,
+        }).length,
+      ).toBeGreaterThan(0),
     );
   }
 

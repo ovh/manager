@@ -23,7 +23,6 @@ export default defineConfig({
         'src/**/*.spec.tsx',
       ],
     },
-    testTimeout: 60000,
     fileParallelism: false,
     maxWorkers: 1,
     pollOptions: {

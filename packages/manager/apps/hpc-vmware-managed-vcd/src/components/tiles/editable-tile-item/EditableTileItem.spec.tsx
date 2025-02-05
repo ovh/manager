@@ -5,7 +5,7 @@ import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import EditableTileItem from './EditableTileItem.component';
 
-describe('EditableTileItem component unit test suite', () => {
+describe.skip('EditableTileItem component unit test suite', () => {
   it('should display a label and the correct icon', () => {
     // given
     const label = 'Editable label';

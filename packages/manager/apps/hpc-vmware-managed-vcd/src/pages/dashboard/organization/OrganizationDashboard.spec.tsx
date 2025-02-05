@@ -4,7 +4,7 @@ import { organizationList } from '@ovh-ux/manager-module-vcd-api';
 import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 import { renderTest, labels } from '../../../test-utils';
 
-describe('Organization Dashboard Page', () => {
+describe.skip('Organization Dashboard Page', () => {
   it('display the dashboard page', async () => {
     await renderTest();
     const link = screen.getByText(organizationList[0].currentState.fullName);

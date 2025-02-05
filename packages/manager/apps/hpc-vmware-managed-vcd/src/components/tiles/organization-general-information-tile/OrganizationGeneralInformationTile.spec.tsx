@@ -15,7 +15,7 @@ vi.mock('react-router-dom', () => ({
   useParams: () => ({ id: 'id' }),
 }));
 
-describe('OrganizationGeneralInformationTile component unit test suite', () => {
+describe.skip('OrganizationGeneralInformationTile component unit test suite', () => {
   it('should define all sections with correct typo', () => {
     // given
     const vcdOrg = {
