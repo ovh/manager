@@ -1,35 +1,36 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Outlet, Navigate, useLocation } from 'react-router-dom';
 import {
   useOvhTracking,
-  useRouteSynchro,
-  useRouting,
+  ShellContext,
 } from '@ovh-ux/manager-react-shell-client';
-import Loading from '@/components/Loading/Loading';
 import ErrorBanner from '@/components/Error/Error';
 import { usePlatform } from '@/hooks';
 
 export default function Layout() {
   const location = useLocation();
-  const routing = useRouting();
   const { trackCurrentPage } = useOvhTracking();
+  const { shell } = useContext(ShellContext);
 
   const { platformId, isLoading, isError, error } = usePlatform();
   useEffect(() => {
     trackCurrentPage();
-    routing.onHashChange();
-  }, [location]);
+    shell.routing.onHashChange();
+  }, [location.pathname]);
 
-  useRouteSynchro();
+  useEffect(() => {
+    shell.ux.hidePreloader();
+  }, []);
 
   return (
     <>
       <Outlet />
-      {isLoading && <Loading />}
       {isError && <ErrorBanner error={error} />}
-      {!platformId && !isLoading && <Navigate to="onboarding" />}
+      {!platformId && !isLoading && (
+        <Navigate key={location.pathname} to="onboarding" replace={true} />
+      )}
       {platformId && location.pathname === '/' && location.search === '' && (
-        <Navigate to={platformId} />
+        <Navigate to={platformId} replace={true} />
       )}
     </>
   );
