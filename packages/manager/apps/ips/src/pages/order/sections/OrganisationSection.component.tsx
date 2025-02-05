@@ -17,7 +17,7 @@ export const OrganisationSection: React.FC = () => {
   const {
     selectedOrganisation,
     setSelectedOrganisation,
-    selectedRegion,
+    selectedPlanCode,
   } = React.useContext(OrderContext);
   const { t } = useTranslation('order');
   const { data, isLoading } = useOrganisationList();
@@ -49,7 +49,7 @@ export const OrganisationSection: React.FC = () => {
           placeholder={t('organisation_select_placeholder')}
         >
           {data?.data
-            .filter(isAvailableOrganisation(selectedRegion))
+            .filter(isAvailableOrganisation(selectedPlanCode))
             .map((orgId) => (
               <option key={orgId} value={orgId}>
                 {orgId}
