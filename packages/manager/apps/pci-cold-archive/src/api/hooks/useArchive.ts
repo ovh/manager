@@ -9,6 +9,7 @@ import {
   deleteArchiveContainer,
   getArchiveContainers,
   restoreArchiveContainer,
+  startArchiveContainer,
   TArchiveContainer,
 } from '../data/archive';
 import { paginateResults, sortResults } from '@/helpers';
@@ -195,6 +196,45 @@ export const useAddUser = ({
 
   return {
     addUser: () => mutation.mutate(),
+    ...mutation,
+  };
+};
+
+type StartArchiveContainerProps = {
+  projectId: string;
+  containerName: string;
+  region: string;
+  lockedUntilDays?: number;
+  onError: (cause: Error) => void;
+  onSuccess: () => void;
+};
+
+export const useStartArchiveContainer = ({
+  projectId,
+  containerName,
+  region,
+  lockedUntilDays,
+  onError,
+  onSuccess,
+}: Readonly<StartArchiveContainerProps>) => {
+  const mutation = useMutation({
+    mutationFn: () =>
+      startArchiveContainer({
+        projectId,
+        region,
+        archiveName: containerName,
+        lockedUntilDays,
+      }),
+    onError,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: getQueryKeyArchive(projectId, region),
+      });
+      onSuccess();
+    },
+  });
+  return {
+    startArchiveContainer: () => mutation.mutate(),
     ...mutation,
   };
 };
