@@ -1,9 +1,5 @@
 {
   "dashboard_users_edit_title": "Éditer un utilisateur",
-  "dashboard_users_edit_mandatory_field": "Les champs mentionnés avec un astérisque * sont obligatoires.",
-  "dashboard_users_edit_form_label_firstname": "Prénom",
-  "dashboard_users_edit_form_label_lastname": "Nom",
-  "dashboard_users_edit_form_label_login": "Login",
   "dashboard_users_edit_form_helper_login_conditions": "Votre login doit contenir entre 3 et 20 caractères maximum. Il peut inclure des chiffres, des lettres et les caractères suivants : - _ ! # $ % &amp; ' ^ ` { }",
   "dashboard_users_edit_form_helper_login_condition_exception": "Il peut également contenir des points, à condition qu'ils soient précédés d'un caractère autorisé et qu'ils ne soient pas suivis d'un autre point.",
   "dashboard_users_edit_message_success": "Les modifications sur l'utilisateur ont été appliquées.",

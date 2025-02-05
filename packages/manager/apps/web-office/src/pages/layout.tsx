@@ -1,32 +1,31 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
-import {
-  useRouteSynchro,
-  useRouting,
-} from '@ovh-ux/manager-react-shell-client';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useOfficeLicenses } from '@/hooks';
 import Loading from '@/components/Loading/Loading';
 
 export default function Layout() {
   const location = useLocation();
-  const routing = useRouting();
-
+  const { shell } = useContext(ShellContext);
   const { data, isLoading } = useOfficeLicenses();
 
   useEffect(() => {
-    routing.onHashChange();
-  }, [location]);
+    shell.routing.onHashChange();
+  }, [location.pathname]);
 
-  useRouteSynchro();
-
+  useEffect(() => {
+    shell.ux.hidePreloader();
+  }, []);
   return (
     <>
       <Outlet />
       {isLoading && <Loading />}
-      {!data && !isLoading && <Navigate to="onboarding" />}
-      {data && location.pathname === '/' && location.search === '' && (
-        <Navigate to="/license" />
+      {data?.length === 0 && !isLoading && (
+        <Navigate key={location.pathname} to="/onboarding" replace />
       )}
+      {data?.length > 0 &&
+        location.pathname === '/' &&
+        location.search === '' && <Navigate to="/license" />}
     </>
   );
 }
