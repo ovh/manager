@@ -13,7 +13,6 @@ import {
   Notifications,
   useNotifications,
   ChangelogButton,
-  ChangelogLinks,
 } from '@ovh-ux/manager-react-components';
 
 import { useTranslation } from 'react-i18next';
@@ -27,7 +26,7 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import TabsPanel, { computePathMatchers, TabItemProps } from './TabsPanel';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
-import { GUIDES_LIST } from '@/guides.constants';
+import { GUIDES_LIST, CHANGELOG_LINKS } from '@/guides.constants';
 import { urls } from '@/routes/routes.constants';
 import { FEATURE_FLAGS } from '@/utils';
 import { useGenerateUrl, useOrganization, useOverridePage } from '@/hooks';
@@ -74,15 +73,6 @@ export const Dashboard: React.FC = () => {
       },
     },
   ];
-
-  const changelogLinks: ChangelogLinks = {
-    changelog:
-      'https://github.com/orgs/ovh/projects/18/views/2?sliceBy%5Bvalue%5D=Collaboration&pane=info',
-    roadmap:
-      'https://github.com/orgs/ovh/projects/18/views/1?sliceBy%5Bvalue%5D=Collaboration&pane=info',
-    'feature-request':
-      'https://github.com/ovh/collaborative-tools-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
-  };
 
   const [searchParams, setSearchParams] = useSearchParams();
   const selectedOrganizationId = searchParams.get('organizationId');
@@ -178,7 +168,7 @@ export const Dashboard: React.FC = () => {
         title: 'Zimbra',
         headerButton: (
           <>
-            <ChangelogButton links={changelogLinks} />
+            <ChangelogButton links={CHANGELOG_LINKS} />
             <GuideButton items={guideItems} />
           </>
         ),
