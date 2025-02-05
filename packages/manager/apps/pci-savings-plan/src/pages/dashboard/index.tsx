@@ -38,7 +38,7 @@ const Dashboard: React.FC = () => {
   } = useFilteredConsumption(locale);
 
   const currentConsumption = useMemo(
-    () => consumption?.flavors?.find((f) => f.flavor === flavor),
+    () => consumption?.flavors?.find((f) => f.flavor === flavor) ?? {},
     [consumption, flavor],
   );
 

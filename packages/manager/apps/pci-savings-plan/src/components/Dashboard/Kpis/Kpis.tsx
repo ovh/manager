@@ -75,16 +75,21 @@ const Kpis = ({
         getPercentValue(consumption, 'utilization') || defaultMessage,
       computedCoveragePercent:
         getPercentValue(consumption, 'coverage') || defaultMessage,
+      computedActivePlans: consumption.subscriptions.length || defaultMessage,
     };
   }, [consumption, defaultMessage]);
 
-  const { computedUsagePercent, computedCoveragePercent } = computedPercents;
+  const {
+    computedUsagePercent,
+    computedCoveragePercent,
+    computedActivePlans,
+  } = computedPercents;
 
   const kpiData = [
     {
       title: t('dashboard_kpis_active_plans_name'),
       tooltip: t('dashboard_kpis_active_plans_tooltip'),
-      value: 5,
+      value: computedActivePlans,
     },
     {
       title: t('dashboard_kpis_usage_percent_name'),
