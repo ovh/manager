@@ -20,5 +20,7 @@
   "listingColumnsIpGameFirewallAvailable": "Disponible",
   "listingColumnsIpAlertsSpam": "Ip bloquée (anti-hack)",
   "listingColumnsIpAlertsMitigation": "Ip attaquée (Anti-DDOS Mitigation)",
-  "listingColumnsIpAlertsAntihack": "Ip bloquée (anti-spam)"
+  "listingColumnsIpAlertsAntihack": "Ip bloquée (anti-spam)",
+  "listingFilterIp": "Cherchez une ip",
+  "listingFilterType": "Sélectionnez un type d'IP"
 }
