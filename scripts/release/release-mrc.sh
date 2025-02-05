@@ -20,7 +20,7 @@ version_mrc() {
     exit 1
   fi
 
-  if [[ "${GIT_BRANCH}" != "master" && ! "${DRY_RELEASE}" ]]; then
+  if [[ "${GIT_BRANCH}" != "maintenance/manager-react-components-v1.x" && ! "${DRY_RELEASE}" ]]; then
     printf "%s\n" "Only dry releases are allowed on side branches"
     exit 1
   fi
@@ -67,9 +67,12 @@ create_release_note() (
 
 push_and_release() {
   printf "%s\n" "Commit and tag"
-  git git add packages/manager-react-components/package.json packages/manager-react-components/CHANGELOG.md
+  git add packages/manager-react-components/package.json packages/manager-react-components/CHANGELOG.md
   git commit -s -m "release: $1"
   git tag -a -m "release: $1" "$1"
+  if [[ "${GIT_BRANCH}" == "maintenance/manager-react-components-v1.x" ]]; then
+    git push origin "${GIT_BRANCH}" --tags
+  fi
 }
 
 update_sonar_version() {
