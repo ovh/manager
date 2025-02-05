@@ -1,4 +1,4 @@
-import React from 'react';
+import { useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
@@ -23,6 +23,7 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { ApiError } from '@ovh-ux/manager-core-api';
+import { zodResolver } from '@hookform/resolvers/zod';
 import Modal from '@/components/Modals/Modal';
 import { useGenerateUrl } from '@/hooks';
 import {
@@ -33,6 +34,7 @@ import {
 import { getOfficePrice, getOfficePriceQueryKey } from '@/api/price';
 import { OfficeUserEnum } from '@/api/order/type';
 import { UserOrderParamsType } from '@/api/api.type';
+import { POST_USERS_FORM_SCHEMA } from '@/utils/formSchemas.utils';
 
 export default function ModalOrderUsers() {
   const { t } = useTranslation(['dashboard/users/order-users', 'common']);
@@ -40,7 +42,7 @@ export default function ModalOrderUsers() {
   const goBackUrl = useGenerateUrl('..', 'path');
   const onClose = () => navigate(goBackUrl);
   const { serviceName } = useParams();
-  const { environment } = React.useContext(ShellContext);
+  const { environment } = useContext(ShellContext);
   const { ovhSubsidiary } = environment.getUser();
   const userLocale = environment.getUserLocale();
   const { addError, addSuccess } = useNotifications();
@@ -59,17 +61,18 @@ export default function ModalOrderUsers() {
     handleSubmit,
     control,
     watch,
-    formState: { isValid },
+    formState: { isValid, isDirty, errors },
   } = useForm({
     defaultValues: {
       licence: '',
       login: '',
-      domain,
+      domain: '',
       firstName: '',
       lastName: '',
       usageLocation: ovhSubsidiary,
     },
-    mode: 'onChange',
+    mode: 'onBlur',
+    resolver: zodResolver(POST_USERS_FORM_SCHEMA),
   });
 
   const selectedlicenseType = watch('licence');
@@ -148,23 +151,25 @@ export default function ModalOrderUsers() {
       primaryButton={{
         label: t('common:cta_confirm'),
         action: handleSubmit(handleSaveClick),
+        isDisabled: !isDirty || !isValid,
+
         testid: 'confirm-btn',
-        isDisabled: !isValid,
       }}
     >
       <form
-        className="flex flex-col text-left "
+        className="flex flex-col text-left gap-y-5"
         onSubmit={handleSubmit(handleSaveClick)}
       >
+        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+          {t('common:common_field_label_mandatory')}
+        </OdsText>
         <Controller
           name="firstName"
           control={control}
           rules={{ required: true }}
           render={({ field }) => (
-            <OdsFormField>
-              <label slot="label">
-                {t('dashboard_users_order_users_firstname_label')}*
-              </label>
+            <OdsFormField error={errors?.firstName?.message as string}>
+              <label slot="label">{t('common:firstname')}*</label>
               <OdsInput
                 type={ODS_INPUT_TYPE.text}
                 name="firstName"
@@ -179,56 +184,59 @@ export default function ModalOrderUsers() {
           control={control}
           rules={{ required: true }}
           render={({ field }) => (
-            <OdsFormField>
-              <label slot="label">
-                {t('dashboard_users_order_users_lastname_label')}*
-              </label>
+            <OdsFormField error={errors?.lastName?.message as string}>
+              <label slot="label">{t('common:lastname')}*</label>
               <OdsInput
                 type={ODS_INPUT_TYPE.text}
                 name="lastName"
                 data-testid="input-lastName"
                 onOdsChange={(event) => field.onChange(event.target.value)}
-              ></OdsInput>
+              />
             </OdsFormField>
           )}
         />
 
-        <OdsFormField className="w-full">
-          <label slot="label">
-            {t('dashboard_users_order_users_login_label')}*
-          </label>
+        <OdsFormField error={errors?.login?.message as string}>
+          <label slot="label">{t('common:login')}*</label>
           <div className="flex">
             <Controller
               name="login"
               control={control}
               rules={{ required: true }}
-              render={({ field }) => (
+              render={({ field: { name, value, onBlur, onChange } }) => (
                 <OdsInput
-                  className="w-full mr-6"
                   type={ODS_INPUT_TYPE.text}
-                  name="login"
+                  name={name}
+                  value={value}
                   data-testid="input-login"
-                  onOdsChange={(event) => field.onChange(event.target.value)}
-                ></OdsInput>
+                  onOdsBlur={onBlur}
+                  onOdsChange={onChange}
+                  className="w-full mr-6"
+                />
               )}
             />
             <Controller
               name="domain"
               control={control}
-              render={() => (
+              render={({ field: { name } }) => (
                 <OdsInput
+                  className="w-full"
                   type={ODS_INPUT_TYPE.text}
-                  name="domain"
+                  name={name}
                   data-testid="input-domain"
                   isDisabled
                   value={`@${domain}`}
-                  className="w-full"
-                ></OdsInput>
+                />
               )}
             />
           </div>
         </OdsFormField>
-
+        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+          <ul className="mt-0">
+            <li>{t('common:form_helper_login_conditions')}</li>
+            <li>{t('common:form_helper_login_condition_exception')}</li>
+          </ul>
+        </OdsText>
         <div className="flex w-full">
           <OdsFormField className="w-full">
             <label slot="label">{t('dashboard_users_order_users_type')}</label>
@@ -269,9 +277,6 @@ export default function ModalOrderUsers() {
         <OdsMessage className="mt-6 mb-6" isDismissible={false}>
           {t('dashboard_users_order_users_message')}
         </OdsMessage>
-        <OdsText preset={ODS_TEXT_PRESET.caption}>
-          {t('common:common_field_label_mandatory')}
-        </OdsText>
       </form>
     </Modal>
   );
