@@ -71,6 +71,7 @@ export enum DomainOwnership {
 const defaultExpertConfState = {
   [DnsRecordType.MX]: true,
   [DnsRecordType.SPF]: true,
+  [DnsRecordType.DKIM]: true,
 };
 
 export default function AddDomain() {
@@ -138,7 +139,6 @@ export default function AddDomain() {
     {
       name: DnsRecordType.DKIM,
       label: t('zimbra_domains_add_domain_configuration_expert_configure_dkim'),
-      isDisabled: true,
     },
   ];
 
@@ -245,6 +245,11 @@ export default function AddDomain() {
         (configurationType === DNS_CONFIG_TYPE.STANDARD && ovhDomain) ||
         (configurationType === DNS_CONFIG_TYPE.EXPERT &&
           expertConfState[DnsRecordType.SPF]) ||
+        false,
+      autoConfigureDKIM:
+        (configurationType === DNS_CONFIG_TYPE.STANDARD && ovhDomain) ||
+        (configurationType === DNS_CONFIG_TYPE.EXPERT &&
+          expertConfState[DnsRecordType.DKIM]) ||
         false,
     };
     trackClick({
