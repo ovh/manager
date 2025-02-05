@@ -1,28 +1,8 @@
 import { Navigate } from 'react-router-dom';
-import { useAppStore } from './store';
-import HidePreloader from './core/HidePreloader';
 
-interface LazyRouteOptions {
-  disabledRegions: string | string[];
-}
-
-const lazyRouteConfig = (
-  importFn: CallableFunction,
-  options?: LazyRouteOptions,
-) => ({
+const lazyRouteConfig = (importFn: CallableFunction) => ({
   lazy: async () => {
     const { default: moduleDefault, ...moduleExports } = await importFn();
-    const { region } = useAppStore.getState();
-
-    if (region && [].concat(options?.disabledRegions).includes(region))
-      return {
-        element: (
-          <>
-            <HidePreloader />
-            <Navigate to="/404" />
-          </>
-        ),
-      };
 
     return {
       Component: moduleDefault,
@@ -215,21 +195,14 @@ export default [
             handle: {
               tracking: 'logs',
             },
-            ...lazyRouteConfig(() => import('@/pages/detail/log/Logs.page'), {
-              disabledRegions: 'US',
-            }),
+            ...lazyRouteConfig(() => import('@/pages/detail/log/Logs.page')),
           },
           {
             path: 'logs/streams',
             handle: {
               tracking: 'streams',
             },
-            ...lazyRouteConfig(
-              () => import('@/pages/detail/log/Streams.page'),
-              {
-                disabledRegions: 'US',
-              },
-            ),
+            ...lazyRouteConfig(() => import('@/pages/detail/log/Streams.page')),
           },
         ],
       },

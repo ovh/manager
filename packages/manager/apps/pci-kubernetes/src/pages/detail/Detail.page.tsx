@@ -19,7 +19,6 @@ import {
 import TabsPanel from '@/components/detail/TabsPanel.component';
 import { useKubeDetail } from '@/api/hooks/useKubernetes';
 import { TRACKING_TABS } from '@/tracking.constants';
-import { useAppStore } from '@/store';
 import { REFETCH_INTERVAL_DURATION } from '@/helpers';
 
 export default function DetailPage() {
@@ -27,7 +26,6 @@ export default function DetailPage() {
   const { t: tDetail } = useTranslation('detail');
   const [activePanelTranslation, setActivePanelTranslation] = useState(null);
 
-  const { region } = useAppStore();
   const { data: project } = useProject();
   const { projectId, kubeId } = useParams();
   const hrefProject = useProjectUrl('public-cloud');
@@ -71,7 +69,6 @@ export default function DetailPage() {
       ),
       to: useResolvedPath('logs').pathname,
       tracking: TRACKING_TABS.LOGS,
-      isHidden: region === 'US',
     },
   ];
 
