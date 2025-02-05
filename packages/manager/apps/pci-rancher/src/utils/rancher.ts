@@ -1,4 +1,5 @@
 import { TOptions } from 'i18next';
+import semver from 'semver';
 import {
   OVHError,
   RancherPlan,
@@ -26,6 +27,15 @@ export const getCurrentVersionInfo = (
   return getVersionInfoByName(currentVersion, versions);
 };
 
+export const sortVersions = (
+  versions: RancherVersion[],
+  order: 'asc' | 'desc' = 'asc',
+): RancherVersion[] => {
+  return versions.sort((a, b) => {
+    return (order === 'asc' ? semver.compare : semver.rcompare)(a.name, b.name);
+  });
+};
+
 export const getLatestVersions = (
   rancher?: RancherService,
   versions?: RancherVersion[],
@@ -36,21 +46,13 @@ export const getLatestVersions = (
     return null;
   }
 
-  const sortedVersions = [...versions].sort((a, b) => {
-    if (a.name > b.name) {
-      return 1;
-    }
-    if (a.name < b.name) {
-      return -1;
-    }
-    return 0;
-  });
+  const sortedVersions = sortVersions(versions);
 
-  const latestVersionsAvailable = sortedVersions.filter(
-    (version) => version.name > currentVersion,
+  const filteredVersions = sortedVersions.filter((v) =>
+    semver.lt(currentVersion, v.name),
   );
 
-  return latestVersionsAvailable ?? null;
+  return filteredVersions.length > 0 ? filteredVersions : null;
 };
 
 export const getLatestVersionAvailable = (
