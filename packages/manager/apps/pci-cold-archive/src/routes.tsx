@@ -16,11 +16,11 @@ export const ROUTE_PATHS = {
   USER_DELETE: ':userId/delete',
   USER_IMPORT_POLICY: 'import-policy',
   USER_R_CLONE_DOWNLOAD: 'rclone/download',
+  ARCHIVE_CONTAINER: 'archive/:archiveName',
 };
 
 const LayoutPage = lazy(() => import('@/pages/Layout'));
 const StoragePage = lazy(() => import('@/pages/Archive.page'));
-
 const ListingContainerPage = lazy(() =>
   import('@/pages/containers/Listing.page'),
 );
@@ -38,6 +38,9 @@ const RestoreContainerPage = lazy(() =>
 );
 
 const OnboardingPage = lazy(() => import('@/pages/onboarding/Onboarding.page'));
+const ArchivePage = lazy(() =>
+  import('@/pages/containers/archive/Archive.page'),
+);
 
 const UserListingPage = lazy(() => import('@/pages/users/Listing.page'));
 const UserCreationPage = lazy(() => import('@/pages/users/create/Create.page'));
@@ -70,8 +73,8 @@ const RoutesComponent = () => (
             path={ROUTE_PATHS.RESTORE_CONTAINER}
             Component={RestoreContainerPage}
           />
+          <Route path={ROUTE_PATHS.ARCHIVE_CONTAINER} Component={ArchivePage} />
         </Route>
-
         <Route path={ROUTE_PATHS.USERS_LISTING} Component={UserListingPage}>
           <Route path={ROUTE_PATHS.USER_CREATE} Component={UserCreationPage} />
           <Route path={ROUTE_PATHS.USER_DELETE} Component={UserDeletionPage} />
