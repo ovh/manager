@@ -7,7 +7,10 @@ export function RhfInput(
 ) {
   const {
     id,
-    controller: { field, fieldState },
+    controller: {
+      field,
+      fieldState: { error },
+    },
   } = useRhfFieldContext();
 
   return (
@@ -15,7 +18,7 @@ export function RhfInput(
       id={id}
       {...props}
       {...field}
-      hasError={fieldState.isDirty && !!fieldState.error}
+      hasError={!!error}
       onOdsBlur={field.onBlur}
       onOdsChange={field.onChange}
     />

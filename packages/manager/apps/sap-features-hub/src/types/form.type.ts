@@ -1,6 +1,10 @@
 import { z } from 'zod';
 import { TextFieldProps } from '@/components/Form/TextField.component';
-import { ENABLEMENT_FORM_SCHEMA } from '../schema/form.schema';
+import {
+  ENABLEMENT_BUCKET_BACKINT,
+  ENABLEMENT_FORM_SCHEMA,
+  ENABLEMENT_LOGS_DATA_PLATFORM,
+} from '../schema/form.schema';
 
 type InstallationForm = InitializationForm &
   DeploymentForm &
@@ -55,9 +59,9 @@ export type OSConfigForm = {
 };
 export type EnablementFormSchema = z.infer<typeof ENABLEMENT_FORM_SCHEMA>;
 
-export type EnablementForm = Pick<
-  Partial<EnablementFormSchema>,
-  'bucketBackint' | 'logsDataPlatform'
->;
+export type EnablementForm = {
+  bucketBackint?: z.infer<typeof ENABLEMENT_BUCKET_BACKINT>;
+  logsDataPlatform?: z.infer<typeof ENABLEMENT_LOGS_DATA_PLATFORM>;
+};
 
 export type SystemFormKeys = keyof SystemForm;

@@ -13,16 +13,18 @@ import { RhfFieldContext, useRhfFieldContext } from './RhfField.context';
 type RhfFieldProps = React.ComponentProps<typeof OdsFormField> & {
   controllerParams: UseControllerProps<FieldValues, string>;
   helperMessage?: string;
+  isHiddenError?: boolean;
 };
 
 export const RhfField = ({
   controllerParams,
   className,
   helperMessage,
+  isHiddenError,
   ...rest
 }: Readonly<RhfFieldProps>) => {
   const id = useId();
-  const controller = useController({ ...controllerParams });
+  const controller = useController(controllerParams);
 
   const contextValues = useMemo(
     () => ({
@@ -33,15 +35,14 @@ export const RhfField = ({
     [id, controller],
   );
 
+  const hasError = !isHiddenError && !!controller.fieldState?.error;
+  const errorMessage = helperMessage || controller.fieldState?.error?.message;
+
   return (
     <RhfFieldContext.Provider value={contextValues}>
       <OdsFormField
         className={`max-w-md ${className}`}
-        error={
-          (controller.fieldState?.isDirty || undefined) &&
-          controller.fieldState?.error &&
-          (helperMessage ?? controller.fieldState?.error?.message)
-        }
+        error={hasError ? errorMessage : undefined}
         {...rest}
       ></OdsFormField>
     </RhfFieldContext.Provider>
@@ -77,12 +78,9 @@ export const RhfHelper = ({
 export const RhfHelperAuto = (
   props: Readonly<Omit<React.ComponentProps<typeof OdsText>, 'children'>>,
 ) => {
-  const {
-    helperMessage,
-    controller: { fieldState },
-  } = useRhfFieldContext();
+  const { helperMessage, controller } = useRhfFieldContext();
 
-  if (!fieldState.isDirty || !fieldState.error) {
+  if (!controller.fieldState.error) {
     return <RhfHelper {...props}>{helperMessage}</RhfHelper>;
   }
 
