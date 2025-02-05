@@ -1,6 +1,6 @@
-import { OdsSkeleton } from '@ovhcloud/ods-components/react';
 import React from 'react';
 import { useGetIpdetails } from '@/data/hooks/ip';
+import { SkeletonCell } from '../SkeletonCell/SkeletonCell';
 
 export type IpRegionProps = {
   ip: string;
@@ -16,13 +16,12 @@ export type IpRegionProps = {
 export const IpRegion = ({ ip }: IpRegionProps) => {
   const { ipDetails, isLoading } = useGetIpdetails({ ip });
 
-  if (isLoading) return <OdsSkeleton></OdsSkeleton>;
-  if (!ipDetails?.regions) return <>-</>;
   return (
-    <div>
-      {ipDetails.regions?.map((region) => (
+    <SkeletonCell isLoading={isLoading}>
+      {!ipDetails?.regions && <>-</>}
+      {ipDetails?.regions?.map((region) => (
         <div key={region}>{region}</div>
       ))}
-    </div>
+    </SkeletonCell>
   );
 };
