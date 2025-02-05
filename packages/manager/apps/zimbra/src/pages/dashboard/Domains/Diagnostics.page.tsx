@@ -176,7 +176,7 @@ const useDNSRecordConfigHelp = ({
             <td>
               <OdsText preset={ODS_TEXT_PRESET.paragraph}>
                 <strong className="mr-4">
-                  {t('zimbra_domain_diagnostic_field_name')}
+                  {t('zimbra_domain_diagnostic_field_subdomain')}
                 </strong>
               </OdsText>
               <Clipboard value={cname?.name} />
