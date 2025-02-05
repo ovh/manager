@@ -14,8 +14,8 @@ import * as ai from '@/types/cloud/project/ai';
 import { Button } from '@/components/ui/button';
 import JobStatusBadge from '../../_components/JobStatusBadge.component';
 import KillJob from './KillJob.component';
-import { isStoppedJob } from '@/lib/jobHelper';
 import RestartJob from './RestartJob.component';
+import { isStoppedJob } from '@/lib/statusHelper';
 
 export const JobHeader = ({ job }: { job: ai.job.Job }) => {
   const { t } = useTranslation('pci-ai-training/jobs/job');

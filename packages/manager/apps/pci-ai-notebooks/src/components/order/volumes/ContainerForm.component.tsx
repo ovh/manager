@@ -46,7 +46,7 @@ interface ContainerFormProps {
 
 const ContainerForm = React.forwardRef<HTMLInputElement, ContainerFormProps>(
   ({ configuredVolumesList, selectedVolumesList, onChange, disabled }, ref) => {
-    const { t } = useTranslation('pci-ai-notebooks/components/volumes');
+    const { t } = useTranslation('components/volumes');
     const [selectedVolume, setSelectedVolume] = useState<
       DataStoresWithContainers
     >();

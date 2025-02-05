@@ -1,36 +1,16 @@
 import { useTranslation } from 'react-i18next';
-import { Check } from 'lucide-react';
-import { format } from 'date-fns';
 import { convertSecondsToTimeString } from '@/lib/durationHelper';
-import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table';
-import { TIMELINE_MAX } from '@/configuration/polling.constants';
-import { useDateFnsLocale } from '@/hooks/useDateFnsLocale.hook';
 import { useJobData } from '../../Job.context';
+import StatusHistory from '@/components/status-history/status-history.component';
 
 const LifeCycle = () => {
   const { job } = useJobData();
   const { t } = useTranslation('pci-ai-training/jobs/job/dashboard');
-  const dateLocale = useDateFnsLocale();
   return (
     <>
       <h5>{t('durationTitle')}</h5>
       {convertSecondsToTimeString(job.status.duration, false)}
-      <h5 className="mt-2">{t('timeLineTitle')}</h5>
-      <Table data-testid="info-pools-table">
-        <TableBody>
-          {job.status?.history?.slice(TIMELINE_MAX).map((state) => (
-            <TableRow key={`${state.date}-${state.state}`} className="text-sm">
-              <TableCell>
-                <Check className="size-4 text-sky-600" />
-              </TableCell>
-              <TableCell className="font-semibold">{state.state}</TableCell>
-              <TableCell className="font-semibold">
-                {format(state.date, 'PPpp', { locale: dateLocale })}
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+      <StatusHistory history={job.status.history} />
     </>
   );
 };

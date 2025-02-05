@@ -25,7 +25,7 @@ interface FlavorsSelectProps {
 
 const FlavorsSelect = React.forwardRef<HTMLTableElement, FlavorsSelectProps>(
   ({ flavors, value, resourcesQuantity, onChange, className }, ref) => {
-    const { t } = useTranslation('pci-ai-notebooks/components/flavor');
+    const { t } = useTranslation('components/flavor');
 
     flavors.sort((a, b) => a.pricing[0].price - b.pricing[0].price);
 

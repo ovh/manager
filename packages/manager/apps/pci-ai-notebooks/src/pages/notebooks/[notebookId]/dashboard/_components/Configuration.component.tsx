@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useNotebookData } from '../../Notebook.context';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
-import { isStoppedNotebook } from '@/lib/notebookHelper';
+import { isStoppedNotebook } from '@/lib/statusHelper';
 
 const Configurations = () => {
   const { notebook } = useNotebookData();

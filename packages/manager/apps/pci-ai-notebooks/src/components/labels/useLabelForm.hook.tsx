@@ -7,7 +7,7 @@ export interface UseLabelFormProps {
   configuredLabel: string[];
 }
 export const useLabelForm = ({ configuredLabel }: UseLabelFormProps) => {
-  const { t } = useTranslation('pci-ai-notebooks/components/configuration');
+  const { t } = useTranslation('components/configuration');
   const labelSchema = z.object({
     name: z
       .string()

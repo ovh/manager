@@ -34,7 +34,7 @@ interface ImageSelectProps {
 
 const ImagesSelect = React.forwardRef<HTMLInputElement, ImageSelectProps>(
   ({ images, value, onChange, className }, ref) => {
-    const { t } = useTranslation('pci-ai-training/components/images');
+    const { t } = useTranslation('components/images');
     const personalImageRules = z
       .string()
       .trim()

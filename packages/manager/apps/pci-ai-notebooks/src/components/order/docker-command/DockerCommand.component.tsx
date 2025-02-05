@@ -30,7 +30,7 @@ const DockerCommand = React.forwardRef<
   HTMLInputElement,
   DockerCommandFormProps
 >(({ commands, onChange, disabled }, ref) => {
-  const { t } = useTranslation('pci-ai-training/components/docker-command');
+  const { t } = useTranslation('components/docker-command');
   const commandRules = z
     .string()
     .trim()

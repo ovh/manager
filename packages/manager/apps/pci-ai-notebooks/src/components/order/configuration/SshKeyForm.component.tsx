@@ -33,7 +33,7 @@ interface SshKeyFormProps {
 
 const SshKeyForm = React.forwardRef<HTMLInputElement, SshKeyFormProps>(
   ({ configuredSshKeys, sshKeyList, onChange, disabled }, ref) => {
-    const { t } = useTranslation('pci-ai-notebooks/components/configuration');
+    const { t } = useTranslation('components/configuration');
     const [selectedSSH, setSelectedSSH] = useState<sshkey.SshKey>();
     const sshKeySchema = z.object({
       name: z

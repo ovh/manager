@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next';
 import {
-  ArrowRight,
   Atom,
   Link,
   RefreshCcwDot,
@@ -12,13 +11,11 @@ import {
 import { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import Resources from './_components/Resources.component';
 import Configurations from './_components/Configuration.component';
 import { getAIApiErrorMessage } from '@/lib/apiHelper';
 import { useToast } from '@/components/ui/use-toast';
 import * as ai from '@/types/cloud/project/ai';
 import CliCodeBlock from '@/components/cli-code-block/CliCodeBlock.component';
-import OvhLink from '@/components/links/OvhLink.component';
 import LifeCycle from './_components/LifeCycle.component';
 import Labels from './_components/Labels.component';
 import AccessLink from './_components/AccessLink.component';
@@ -26,6 +23,8 @@ import Guides from '@/components/guides/Guides.component';
 import { GuideSections } from '@/configuration/guide';
 import { useJobData } from '../Job.context';
 import { useGetCommand } from '@/hooks/api/ai/job/useGetCommand.hook';
+import ResourcesSpec from '@/components/resources-spec/ResourcesSpec.component';
+import BillingSupport from '@/components/biling-support/BillingSupport.component';
 
 const Dashboard = () => {
   const { job, projectId } = useJobData();
@@ -108,7 +107,7 @@ const Dashboard = () => {
             </h4>
           </CardHeader>
           <CardContent>
-            <Resources />
+            <ResourcesSpec resources={job.spec.resources} />
           </CardContent>
         </Card>
       </div>
@@ -121,35 +120,13 @@ const Dashboard = () => {
             </h4>
           </CardHeader>
           <CardContent>
-            <div className="flex flex-col gap-2">
-              <OvhLink
-                data-testid="dashboard-billing-link"
-                application="public-cloud"
-                path={`#/pci/projects/${projectId}/billing`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {t('billingLink')}
-                <ArrowRight className="size-4 inline ml-1" />
-              </OvhLink>
-              <OvhLink
-                data-testid="dashboard-support-link"
-                application="dedicated"
-                path={`#/support/tickets/new`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {t('supportLink')}
-                <ArrowRight className="size-4 inline ml-1" />
-              </OvhLink>
-            </div>
+            <BillingSupport />
           </CardContent>
           <div className="border-t my-2 pt-2 mx-6"></div>
           <h4 className="px-6 mb-4">
             <Settings2 className="inline size-4 mr-2 mb-1" />
             {t('configurationTitle')}
           </h4>
-
           <CardContent>
             <Configurations />
           </CardContent>
