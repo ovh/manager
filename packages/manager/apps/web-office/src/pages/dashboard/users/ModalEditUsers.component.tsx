@@ -1,16 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
   OdsFormField,
-  OdsIcon,
   OdsInput,
   OdsText,
-  OdsTooltip,
 } from '@ovhcloud/ods-components/react';
 import {
   ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
   ODS_INPUT_TYPE,
   ODS_MODAL_COLOR,
   ODS_TEXT_PRESET,
@@ -18,7 +15,7 @@ import {
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useGenerateUrl, useOfficeUserDetail } from '@/hooks';
 import Modal from '@/components/Modals/Modal';
@@ -28,7 +25,12 @@ import {
   getOfficeLicenseQueryKey,
   putOfficeLicenseDetails,
 } from '@/api/license';
-import { getOfficeUsersQueryKey, putOfficeUserDetail } from '@/api/users';
+import {
+  getOfficeUserDomainQueryKey,
+  getOfficeUsersDomain,
+  getOfficeUsersQueryKey,
+  putOfficeUserDetail,
+} from '@/api/users';
 import { UserParamsType } from '@/api/api.type';
 
 export default function ModalEditUsers() {
@@ -39,6 +41,7 @@ export default function ModalEditUsers() {
   const [searchParams] = useSearchParams();
   const activationEmail = searchParams.get('activationEmail');
   const licencePrepaidName = searchParams.get('licencePrepaidName');
+  const { serviceName } = useParams();
 
   const { addError, addSuccess } = useNotifications();
 
@@ -50,6 +53,10 @@ export default function ModalEditUsers() {
     isLoading: isUserDetailLoading,
   } = useOfficeUserDetail(activationEmail, licencePrepaidName);
 
+  const { data: domain } = useQuery({
+    queryKey: [getOfficeUserDomainQueryKey(serviceName)],
+    queryFn: () => getOfficeUsersDomain(serviceName),
+  });
   const [isLoading, setIsLoading] = useState(
     !userDetail || isUserDetailLoading,
   );
@@ -128,7 +135,6 @@ export default function ModalEditUsers() {
   const handleCancelClick = () => {
     onClose();
   };
-
   return (
     <Modal
       isOpen
@@ -155,7 +161,7 @@ export default function ModalEditUsers() {
         onSubmit={handleSubmit(handleSaveClick)}
       >
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {t('dashboard_users_edit_mandatory_field')}
+          {t('common:common_field_label_mandatory')}
         </OdsText>
 
         <Controller
@@ -164,9 +170,7 @@ export default function ModalEditUsers() {
           rules={{ required: true }}
           render={({ field: { name, value, onBlur, onChange } }) => (
             <OdsFormField error={errors?.firstname?.message as string}>
-              <label slot="label">
-                {t('dashboard_users_edit_form_label_firstname')} *
-              </label>
+              <label slot="label">{t('common:lastname')} *</label>
 
               <OdsInput
                 type={ODS_INPUT_TYPE.text}
@@ -187,9 +191,7 @@ export default function ModalEditUsers() {
           rules={{ required: true }}
           render={({ field: { name, value, onBlur, onChange } }) => (
             <OdsFormField error={errors?.lastname?.message as string}>
-              <label slot="label">
-                {t('dashboard_users_edit_form_label_lastname')} *
-              </label>
+              <label slot="label">{t('common:firstname')} *</label>
 
               <OdsInput
                 type={ODS_INPUT_TYPE.text}
@@ -211,41 +213,38 @@ export default function ModalEditUsers() {
           render={({ field: { name, value, onBlur, onChange } }) => (
             <OdsFormField error={errors?.login?.message as string}>
               <label htmlFor="label" slot="label">
-                {t('dashboard_users_edit_form_label_login')} *
-                <OdsIcon
-                  id="tooltip-trigger"
-                  className="ml-3 text-xs"
-                  name={ODS_ICON_NAME.circleQuestion}
-                ></OdsIcon>
-                <OdsTooltip
-                  role="tooltip"
-                  strategy="fixed"
-                  triggerId="tooltip-trigger"
-                >
-                  <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-                    <p className="m-0">
-                      {t('dashboard_users_edit_form_helper_login_conditions')}
-                    </p>
-                    <p className="m-0">
-                      {t(
-                        'dashboard_users_edit_form_helper_login_condition_exception',
-                      )}
-                    </p>
-                  </OdsText>
-                </OdsTooltip>
+                {t('common:login')} *
               </label>
-              <OdsInput
-                type={ODS_INPUT_TYPE.text}
-                name={name}
-                value={value}
-                data-testid="input-login"
-                hasError={!!errors.login}
-                onOdsBlur={onBlur}
-                onOdsChange={onChange}
-              ></OdsInput>
+              <div className="flex">
+                <OdsInput
+                  type={ODS_INPUT_TYPE.text}
+                  name={name}
+                  value={value}
+                  data-testid="input-login"
+                  hasError={!!errors.login}
+                  onOdsBlur={onBlur}
+                  onOdsChange={onChange}
+                  className="w-full mr-6"
+                ></OdsInput>
+                <OdsInput
+                  type={ODS_INPUT_TYPE.text}
+                  name="domain"
+                  data-testid="input-domain"
+                  isDisabled
+                  value={`@${userDetail.activationEmail.split('@')[1] ||
+                    domain}`}
+                  className="w-full"
+                ></OdsInput>
+              </div>
             </OdsFormField>
           )}
         />
+        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+          <ul className="mt-0">
+            <li>{t('common:form_helper_login_conditions')}</li>
+            <li>{t('common:form_helper_login_condition_exception')}</li>
+          </ul>
+        </OdsText>
       </form>
     </Modal>
   );

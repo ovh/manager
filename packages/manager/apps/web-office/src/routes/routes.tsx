@@ -124,18 +124,17 @@ export const Routes: any = [
           },
         ],
       },
-    ],
-  },
-  {
-    id: 'onboarding',
-    path: urls.onboarding,
-    ...lazyRouteConfig(() => import('@/pages/onboarding')),
-    handle: {
-      tracking: {
-        pageName: 'onboarding',
-        pageType: PageType.onboarding,
+      {
+        path: urls.onboarding,
+        ...lazyRouteConfig(() => import('@/pages/onboarding')),
+        handle: {
+          tracking: {
+            pageName: 'onboarding',
+            pageType: PageType.onboarding,
+          },
+        },
       },
-    },
+    ],
   },
   {
     path: '*',
