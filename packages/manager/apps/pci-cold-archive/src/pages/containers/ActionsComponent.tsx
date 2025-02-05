@@ -26,6 +26,45 @@ export default function ActionsComponent({
     COLD_ARCHIVE_CONTAINER_STATUS.ARCHIVED,
   ].includes(archive.status);
 
+  const isActionArchiveAvailable =
+    archive.objectsCount > 0 &&
+    [COLD_ARCHIVE_CONTAINER_STATUS.NONE].includes(archive.status);
+
+  const isActionEditRetentionContainerAvailable = [
+    COLD_ARCHIVE_CONTAINER_STATUS.ARCHIVED,
+    COLD_ARCHIVE_CONTAINER_STATUS.RESTORED,
+  ].includes(archive.status);
+
+  const isActionFlushContainerAvailable = () => {
+    const validStatuses = [
+      COLD_ARCHIVE_CONTAINER_STATUS.ARCHIVED,
+      COLD_ARCHIVE_CONTAINER_STATUS.RESTORED,
+    ];
+
+    if (archive.lockedUntil) {
+      return (
+        new Date(archive.lockedUntil) < new Date() &&
+        validStatuses.includes(archive.status)
+      );
+    }
+
+    return validStatuses.includes(archive.status);
+  };
+
+  const isActionDeleteContainerAvailable = [
+    COLD_ARCHIVE_CONTAINER_STATUS.NONE,
+    COLD_ARCHIVE_CONTAINER_STATUS.FLUSHED,
+  ].includes(archive.status);
+
+  const isActionsAvailable = [
+    isActionAddUserAvailable,
+    isActionArchiveAvailable,
+    isActionRestoredAvailable,
+    isActionFlushContainerAvailable(),
+    isActionEditRetentionContainerAvailable,
+    isActionDeleteContainerAvailable,
+  ].some((isActionAvailable) => isActionAvailable === true);
+
   const items = [
     isActionAddUserAvailable
       ? {
@@ -57,20 +96,41 @@ export default function ActionsComponent({
           },
         }
       : undefined,
-    {
-      id: 2,
-      label: t(
-        'pci_projects_project_storages_cold_archive_container_action_delete_container',
-      ),
-      onClick: () => {
-        tracking?.trackClick({
-          name: `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.DELETE_CONTAINER}`,
-          type: 'navigation',
-        });
-        navigate(`./delete-container/${archive.name}`);
-      },
-    },
+    isActionArchiveAvailable
+      ? {
+          id: 1,
+          label: t(
+            'pci_projects_project_storages_cold_archive_container_action_archive',
+          ),
+          onClick: () => {
+            tracking?.trackClick({
+              name: `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.ARCHIVE}`,
+              type: 'navigaton',
+            });
+            navigate(`./archive/${archive.name}`);
+          },
+        }
+      : undefined,
+    isActionDeleteContainerAvailable
+      ? {
+          id: 2,
+          label: t(
+            'pci_projects_project_storages_cold_archive_container_action_delete_container',
+          ),
+          onClick: () => {
+            tracking?.trackClick({
+              name: `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.DELETE_CONTAINER}`,
+              type: 'navigation',
+            });
+            navigate(`./delete-container/${archive.name}`);
+          },
+        }
+      : undefined,
   ].filter(Boolean);
 
-  return <ActionMenu id={archive.name} items={items} isCompact />;
+  return isActionsAvailable ? (
+    <ActionMenu id={archive.name} items={items} isCompact />
+  ) : (
+    <></>
+  );
 }

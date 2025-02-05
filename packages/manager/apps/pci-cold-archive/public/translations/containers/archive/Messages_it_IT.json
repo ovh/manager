@@ -1,0 +1,15 @@
+{
+  "pci_projects_project_storages_cold_archive_containers_container_archive_title": "Archiviare il container",
+  "pci_projects_project_storages_cold_archive_containers_container_archive_description": "Stai per archiviare il container {{ containerName }}.",
+  "pci_projects_project_storages_cold_archive_containers_container_archive_submit_label": "Archivia",
+  "pci_projects_project_storages_cold_archive_containers_container_archive_cancel_label": "Annullare",
+  "pci_projects_project_storages_cold_archive_containers_container_archive_success_message": "Archiviazione del container {{ containerName }} in corso...",
+  "pci_projects_project_storages_cold_archive_containers_container_archive_error_message": "Si è verificato un errore durante l'archiviazione del container {{ containerName }}: {{ message }}",
+  "pci_projects_project_storages_cold_archive_containers_container_archive_description_2": "Impostando una durata di conservazione, l'archivio verrà bloccato e non sarà possibile eliminare i dati per l'intero periodo di conservazione.",
+  "pci_projects_project_storages_cold_archive_containers_container_archive_has_retention": "Pianificare un periodo di conservazione",
+  "pci_projects_project_storages_cold_archive_containers_container_archive_has_no_retention": "Non pianificare periodi di conservazione",
+  "pci_projects_project_storages_cold_archive_containers_container_archive_retention_days": "Aggiungi il numero di giorni di retention",
+  "pci_projects_project_storages_cold_archive_containers_container_retention_warning": "Il periodo di retention terminerà il <strong>{{ date }}</strong> .",
+  "pci_projects_project_storages_cold_archive_containers_container_retention_warning_2": "I tuoi dati potranno essere cancellati solo dopo questa data.",
+  "pci_projects_project_storages_cold_archive_containers_container_retention_retention_value_wartning": "Aggiungere il numero di giorni di retention (minimo 1 giorno, massimo 4500 giorni)"
+}

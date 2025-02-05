@@ -73,3 +73,23 @@ export const restoreArchiveContainer = async ({
   );
   return data;
 };
+
+export const startArchiveContainer = async ({
+  projectId,
+  region,
+  archiveName,
+  lockedUntilDays,
+}: {
+  projectId: string;
+  region: string;
+  archiveName: string;
+  lockedUntilDays: number;
+}) => {
+  const params = lockedUntilDays ? { lockedUntilDays } : {};
+
+  const { data } = await v6.post(
+    `/cloud/project/${projectId}/region/${region}/coldArchive/${archiveName}/archive`,
+    params,
+  );
+  return data;
+};
