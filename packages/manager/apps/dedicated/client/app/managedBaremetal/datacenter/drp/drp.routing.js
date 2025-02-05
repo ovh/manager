@@ -24,16 +24,6 @@ export default /* @ngInject */ ($stateProvider) => {
           DedicatedCloud.getDatacenters($stateParams.productId).then(
             ({ results }) => results,
           ),
-        getIpOrderLink: /* @ngInject */ ($state) => (
-          drpType,
-          isLegacyOrder,
-          pccStep,
-        ) =>
-          $state.href(
-            `app.managedBaremetal.details.datacenters.datacenter.drp.${drpType}.${pccStep}.${
-              isLegacyOrder ? 'legacyOrderIp' : 'orderIp'
-            }`,
-          ),
         setDisableSuccessAlertPreference: /* @ngInject */ (
           dedicatedCloudDrp,
         ) => (pccId, value) =>
