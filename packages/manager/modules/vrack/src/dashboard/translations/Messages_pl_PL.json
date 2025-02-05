@@ -36,7 +36,6 @@
   "vrack_menu_add": "Utwórz vRack",
   "vrack_menu_project_num": "vRack {{num}}",
   "vrack_service_type_dedicatedserver": "Serwer dedykowany",
-  "vrack_service_type_ovhcloudconnect": "OVHcloud Connect",
   "vrack_service_type_dedicatedcloud": "Private Cloud",
   "vrack_service_type_managedbaremetal": "Managed Bare Metal",
   "vrack_service_type_dedicatedconnect": "OVHcloud Connect",
@@ -46,11 +45,14 @@
   "vrack_service_type_ip": "Adresy IP",
   "vrack_service_type_cloudproject": "Projekt Cloud",
   "vrack_service_type_iploadbalancing": "Load Balancer",
-  "vrack_service_type_vrackservices": "Usługi vRack",
-  "vrack_select_dialog_modal_description_for_ipv6": "Dodatkowe bloki IPv6 można dodawać/usuwać tylko raz.",
-  "vrack_select_dialog_modal_description_for_vs": "Pamiętaj, że dodawanie i usuwanie produktów vRack Services może odbywać się tylko raz.",
   "vrack_add_dialog_modal_title": "Dodaj jedną lub kilka usług",
   "vrack_add_dialog_modal_description": "Czy na pewno chcesz dodać {{services}} do Twojej sieci vRack?",
   "vrack_delete_dialog_modal_title": "Usuń jedną lub kilka usług",
-  "vrack_delete_dialog_modal_description": "Czy na pewno chcesz usunąć {{services}} z Twojej usługi vRack?"
+  "vrack_delete_dialog_modal_description": "Czy na pewno chcesz usunąć {{services}} z Twojej usługi vRack?",
+  "vrack_service_type_ovhcloudconnect": "OVHcloud Connect",
+  "vrack_service_type_vrackservices": "Usługi vRack",
+  "vrack_select_dialog_modal_description_for_ipv6": "Dodatkowe bloki IPv6 można dodawać/usuwać tylko raz.",
+  "vrack_select_dialog_modal_description_for_vs": "Pamiętaj, że dodawanie i usuwanie produktów vRack Services może odbywać się tylko raz.",
+  "vrack_terminate_modal_success_banner": "Dyspozycja usunięcia vRacka została przyjęta. Otrzymasz e-mail z opisem dalszej procedury.",
+  "vrack_terminate_modal_error_banner": "Nie udało się usunąć usługi vRrack. Sprawdź, czy vRack jest pusty."
 }

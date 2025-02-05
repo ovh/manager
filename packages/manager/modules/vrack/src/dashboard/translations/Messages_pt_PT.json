@@ -36,7 +36,6 @@
   "vrack_menu_add": "Criar um vRack",
   "vrack_menu_project_num": "vRack {{num}}",
   "vrack_service_type_dedicatedserver": "Servidor dedicado",
-  "vrack_service_type_ovhcloudconnect": "OVHcloud Connect",
   "vrack_service_type_dedicatedcloud": "Private Cloud",
   "vrack_service_type_managedbaremetal": "Managed Bare Metal",
   "vrack_service_type_dedicatedconnect": "Dedicated connect",
@@ -46,11 +45,14 @@
   "vrack_service_type_ip": "IP",
   "vrack_service_type_cloudproject": "Projeto cloud",
   "vrack_service_type_iploadbalancing": "Load Balancer",
-  "vrack_service_type_vrackservices": "vRack Services",
-  "vrack_select_dialog_modal_description_for_ipv6": "Tenha em conta que os blocos IPv6 adicionais só podem ser adicionados/eliminados um de cada vez.",
-  "vrack_select_dialog_modal_description_for_vs": "Tenha em conta que a adição e a eliminação dos produtos vRack Services só podem ser efetuadas um de cada vez.",
   "vrack_add_dialog_modal_title": "Adicionar um ou vários serviços",
   "vrack_add_dialog_modal_description": "Quer mesmo adicionar {{ services }} do seu vRack?",
   "vrack_delete_dialog_modal_title": "Retirar um ou vários serviços",
-  "vrack_delete_dialog_modal_description": "Quer mesmo retirar {{ services }} do seu vRack?"
+  "vrack_delete_dialog_modal_description": "Quer mesmo retirar {{ services }} do seu vRack?",
+  "vrack_service_type_ovhcloudconnect": "OVHcloud Connect",
+  "vrack_service_type_vrackservices": "vRack Services",
+  "vrack_select_dialog_modal_description_for_ipv6": "Tenha em conta que os blocos IPv6 adicionais só podem ser adicionados/eliminados um de cada vez.",
+  "vrack_select_dialog_modal_description_for_vs": "Tenha em conta que a adição e a eliminação dos produtos vRack Services só podem ser efetuadas um de cada vez.",
+  "vrack_terminate_modal_success_banner": "O seu pedido de eliminação do seu vRack foi registado. Um e-mail com o procedimento foi-lhe enviado.",
+  "vrack_terminate_modal_error_banner": "A eliminação do seu vRack falhou, queira verificar se o seu vRack está vazio."
 }
