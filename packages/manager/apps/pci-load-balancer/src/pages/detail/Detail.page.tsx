@@ -2,7 +2,6 @@ import { useProject } from '@ovh-ux/manager-pci-common';
 import {
   Headers,
   Notifications,
-  useFeatureAvailability,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
@@ -24,7 +23,6 @@ import {
 import { ROUTE_PATHS } from '@/routes';
 import { useLoadBalancer } from '@/api/hook/useLoadBalancer';
 import TabsPanel, { TabsProps } from '@/components/detail/TabsPanel.component';
-import { LOGS_FEATURE_AVAILABILITY_KEY } from '@/constants';
 
 export default function DetailPage() {
   const { t } = useTranslation('load-balancer');
@@ -37,11 +35,6 @@ export default function DetailPage() {
   const hrefProject = useProjectUrl('public-cloud');
   const hrefBack = useHref('..');
   const hrefGeneralInformation = useHref(ROUTE_PATHS.GENERAL_INFORMATION);
-  const logsPath = useResolvedPath(ROUTE_PATHS.LOGS).pathname;
-
-  const { data: availability } = useFeatureAvailability([
-    LOGS_FEATURE_AVAILABILITY_KEY,
-  ]);
 
   const tabs: TabsProps['tabs'] = [
     {
@@ -69,10 +62,7 @@ export default function DetailPage() {
       title: t('octavia_load_balancer_certificates_tab_title'),
       isDisabled: true,
     },
-  ];
-
-  if (availability?.[LOGS_FEATURE_AVAILABILITY_KEY]) {
-    tabs.push({
+    {
       name: 'octavia_load_balancer_logs_tab_title',
       title: (
         <span>
@@ -87,9 +77,9 @@ export default function DetailPage() {
           </OsdsChip>
         </span>
       ),
-      to: logsPath,
-    });
-  }
+      to: useResolvedPath(ROUTE_PATHS.LOGS).pathname,
+    },
+  ];
 
   const { data: loadBalancerDetail, isPending, error } = useLoadBalancer({
     projectId,
