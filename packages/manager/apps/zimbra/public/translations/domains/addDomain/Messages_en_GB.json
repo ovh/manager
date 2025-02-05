@@ -35,5 +35,6 @@
   "zimbra_domains_add_domain_configuration_cname_not_found": "We couldn't find any information related to this domain ID.",
   "zimbra_domains_add_domain_configuration_cname_field_type": "Record type:",
   "zimbra_domains_add_domain_configuration_cname_field_subdomain": "Sub-domain:",
-  "zimbra_domains_add_domain_configuration_cname_field_target": "Target:"
+  "zimbra_domains_add_domain_configuration_cname_field_target": "Target:",
+  "zimbra_domains_add_domain_warning_configuration_standard": "By opting for the recommended configuration, you agree that all of your emails will be routed to the Zimbra service in the future. If you refuse this, please untick the MX box in the custom configuration."
 }

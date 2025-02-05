@@ -35,5 +35,6 @@
   "zimbra_domains_add_domain_configuration_cname_not_found": "Es wurden keine Informationen zu dieser Domänen-ID gefunden.",
   "zimbra_domains_add_domain_configuration_cname_field_type": "Eintragstyp:",
   "zimbra_domains_add_domain_configuration_cname_field_subdomain": "Subdomain:",
-  "zimbra_domains_add_domain_configuration_cname_field_target": "Ziel"
+  "zimbra_domains_add_domain_configuration_cname_field_target": "Ziel",
+  "zimbra_domains_add_domain_warning_configuration_standard": "Wenn Sie sich für die empfohlene Konfiguration entscheiden, stimmen Sie zu, dass alle Ihre E-Mails in Zukunft an den Zimbra Dienst weitergeleitet werden. Wenn Sie dies ablehnen, deaktivieren Sie bitte das Kontrollkästchen MX in der personalisierten Konfiguration."
 }
