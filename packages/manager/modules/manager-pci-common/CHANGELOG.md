@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@0.15.0...@ovh-ux/manager-pci-common@0.15.1) (2025-02-05)
+
+### Bug Fixes
+
+- **pci-common:** add missing translations ([3962803](https://github.com/ovh/manager/commit/39628030eab5e8e6642466b604b1b9447d50b98f))
+
 ## [0.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@0.14.4...@ovh-ux/manager-pci-common@0.15.0) (2025-01-15)
 
 ### Features
