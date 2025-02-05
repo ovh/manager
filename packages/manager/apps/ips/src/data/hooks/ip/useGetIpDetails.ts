@@ -18,6 +18,8 @@ export const useGetIpdetails = ({
     queryKey: getIpDetailsQueryKey({ ip }),
     queryFn: () => getIpdetails({ ip }),
     enabled,
+    staleTime: Number.POSITIVE_INFINITY,
+    retry: false,
   });
 
   return { ipDetails: ipDetailsResponse?.data, isLoading, isError, error };
