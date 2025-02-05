@@ -2,7 +2,7 @@ import { IcebergFetchResultV6, fetchIcebergV6 } from '@ovh-ux/manager-core-api';
 
 export type GetIpReverseParams = {
   /**  */
-  ipGroup: string;
+  ip: string;
 };
 
 export type IpReverseType = {
@@ -11,7 +11,7 @@ export type IpReverseType = {
 };
 
 export const getIpReverseQueryKey = (params: GetIpReverseParams) => [
-  `get/ip/${encodeURIComponent(params.ipGroup)}/reverse`,
+  `get/ip/${encodeURIComponent(params.ip)}/reverse`,
 ];
 
 /**
@@ -21,6 +21,6 @@ export const getIpReverse = async (
   params: GetIpReverseParams,
 ): Promise<IcebergFetchResultV6<IpReverseType>> =>
   fetchIcebergV6<IpReverseType>({
-    route: `/ip/${encodeURIComponent(params.ipGroup)}/reverse`,
+    route: `/ip/${encodeURIComponent(params.ip)}/reverse`,
     page: 1,
   });
