@@ -14,15 +14,18 @@ import {
   ipParkingOptionValue,
   useServiceList,
 } from '@/data/hooks/useServiceList';
-import { OrderContext } from '../order.context';
+import { OrderContext, ServiceStatus } from '../order.context';
 import { ServiceType } from '@/types';
-import { useCheckServiceAvailability } from '@/data/hooks/ip/useCheckServiceAvailability';
+import { useCheckServiceAvailability } from '@/data/hooks/useCheckServiceAvailability';
+import { useServiceRegion } from '@/data/hooks/useServiceRegion';
 
 export const ServiceSelectionSection: React.FC = () => {
   const {
     selectedService,
+    selectedServiceStatus,
     selectedServiceType,
     setSelectedService,
+    setSelectedRegion,
     setSelectedServiceType,
     disabledServices,
   } = React.useContext(OrderContext);
@@ -35,13 +38,16 @@ export const ServiceSelectionSection: React.FC = () => {
     isError,
     error,
   } = useServiceList();
+  const { isServiceInfoLoading } = useCheckServiceAvailability();
   const {
-    isServiceInfoLoading,
-    serviceInfo,
-    hasServiceInfoError,
-    serviceInfoError,
-    errorKind,
-  } = useCheckServiceAvailability();
+    isServiceRegionLoading,
+    serviceRegion,
+    serviceRegionError,
+  } = useServiceRegion();
+
+  React.useEffect(() => {
+    setSelectedRegion(serviceRegion);
+  }, [serviceRegion]);
 
   return (
     <OrderSection title={t('service_selection_title')}>
@@ -117,38 +123,38 @@ export const ServiceSelectionSection: React.FC = () => {
             </optgroup>
           </OdsSelect>
         )}
-        {[ServiceType.server].includes(selectedServiceType) && (
-          <div slot="helper">
-            <div className="mt-1">
-              {hasServiceInfoError && errorKind && (
-                <OdsMessage
-                  className="block max-w-[384px]"
-                  color={ODS_MESSAGE_COLOR.danger}
-                  isDismissible={false}
-                >
-                  {t(
-                    `service_selection_dedicated_server_${errorKind}_error_message`,
-                  )}
-                </OdsMessage>
-              )}
-              {isServiceInfoLoading && (
+        <div slot="helper">
+          <div className="mt-1">
+            {isServiceInfoLoading ||
+              (isServiceRegionLoading && (
                 <OdsSpinner size={ODS_SPINNER_SIZE.sm} />
-              )}
-              {[ServiceType.server].includes(selectedServiceType) &&
-                serviceInfo?.region &&
-                !serviceInfoError && (
-                  <>
-                    {t('service_selection_region_helper')}
-                    {serviceInfo?.region === 'unknown' ? (
-                      t('service_selection_unknown_region')
-                    ) : (
-                      <Region name={serviceInfo?.region} mode="region" />
-                    )}
-                  </>
+              ))}
+            {selectedServiceStatus !== ServiceStatus.ok && (
+              <OdsMessage
+                className="block max-w-[384px]"
+                color={ODS_MESSAGE_COLOR.danger}
+                isDismissible={false}
+              >
+                {t(
+                  `service_selection_dedicated_server_${selectedServiceStatus}_error_message`,
                 )}
-            </div>
+              </OdsMessage>
+            )}
+            {[ServiceType.server].includes(selectedServiceType) &&
+              serviceRegion &&
+              selectedServiceStatus === ServiceStatus.ok &&
+              !serviceRegionError && (
+                <>
+                  {t('service_selection_region_helper')}
+                  {serviceRegion === 'unknown' ? (
+                    t('service_selection_unknown_region')
+                  ) : (
+                    <Region name={serviceRegion} mode="region" />
+                  )}
+                </>
+              )}
           </div>
-        )}
+        </div>
       </OdsFormField>
     </OrderSection>
   );
