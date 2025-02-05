@@ -29,10 +29,51 @@ export type DedicatedServer = {
   iam: IamObject;
 };
 
-export const getDedicatedServerInfo = (
+export const getDedicatedServerData = (
   serverName: string,
 ): Promise<ApiResponse<DedicatedServer>> =>
   apiClient.v6.get(`/dedicated/server/${serverName}`);
+
+export type DedicatedServerServiceInfos = {
+  canDeleteAtExpiration: boolean;
+  contactAdmin: string;
+  contactBilling: string;
+  contactTech: string;
+  creation: string;
+  domain: string;
+  engagedUpTo: string;
+  expiration: string;
+  possibleRenewPeriod: number[];
+  renew: {
+    automatic: boolean;
+    deleteAtExpiration: boolean;
+    forced: boolean;
+    manualPayment: boolean | null;
+    period: number | null;
+  } | null;
+  renewalType:
+    | 'automaticForcedProduct'
+    | 'automaticV2012'
+    | 'automaticV2014'
+    | 'automaticV2016'
+    | 'automaticV2024'
+    | 'manual'
+    | 'oneShot'
+    | 'option';
+  serviceId: number;
+  status:
+    | 'autorenewInProgress'
+    | 'expired'
+    | 'inCreation'
+    | 'ok'
+    | 'pendingDebt'
+    | 'unPaid';
+};
+
+export const getDedicatedServerServiceInfos = (
+  serviceName: string,
+): Promise<ApiResponse<DedicatedServerServiceInfos>> =>
+  apiClient.v6.get(`/dedicated/server/${serviceName}/serviceInfos`);
 
 export type OrderableIp = {
   optionRequired?: 'professionalUse' | null;
