@@ -241,7 +241,7 @@ const mapFlavor = (
 
 // handle plan code with or without .apac
 const getPlanCodeFromString = (planCode: string) => {
-  const hasApac = planCode.includes('.apac');
+  const hasApac = planCode.includes(`.${PRICING_APAC_SUFFIX}`);
   const normalizedPlanCode = hasApac
     ? planCode.replace(`.${PRICING_APAC_SUFFIX}`, '')
     : planCode;
@@ -259,7 +259,10 @@ const setPrices = (
   flavor: Flavor,
 ) => {
   // Default pricing if not found in the catalog
-  const defaultPricing = { price: NaN, tax: 0 } as order.publicOrder.Pricing;
+  const defaultPricing = {
+    price: undefined,
+    tax: 0,
+  } as order.publicOrder.Pricing;
 
   const planCode = getPlanCodeFromString(availability.planCode);
   const planCodeStorage = getPlanCodeFromString(availability.planCodeStorage);

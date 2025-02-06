@@ -1,25 +1,28 @@
-import { useEffect, useRef } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 const useHorizontalScroll = () => {
-  const ref = useRef(null);
+  const [element, setElement] = useState<HTMLElement | null>(null);
+
+  const ref = useCallback((node: HTMLElement | null) => {
+    setElement(node);
+  }, []);
 
   useEffect(() => {
-    const scrollContainer = ref.current;
-    if (!scrollContainer) return undefined;
+    if (!element) return undefined;
 
     const handleWheel = (e: WheelEvent) => {
       e.preventDefault();
-      if (scrollContainer.children[1]) {
-        scrollContainer.children[1].scrollLeft += e.deltaY;
+      if (element.children[1]) {
+        element.children[1].scrollLeft += e.deltaY;
       }
     };
 
-    scrollContainer.addEventListener('wheel', handleWheel, { passive: false });
+    element.addEventListener('wheel', handleWheel, { passive: false });
 
     return () => {
-      scrollContainer.removeEventListener('wheel', handleWheel);
+      element.removeEventListener('wheel', handleWheel);
     };
-  }, []);
+  }, [element]);
 
   return ref;
 };
