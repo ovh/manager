@@ -24,8 +24,8 @@ export interface ClusterNameStepProps {
   onSubmit: (name: string) => void;
 }
 
-const MAX_LENGTH = 64;
-const NAME_PATTERN = /^[a-zA-Z](([a-zA-Z0-9-]|_|-)*)[a-zA-Z0-9]$/;
+export const MAX_LENGTH = 64;
+export const NAME_PATTERN = /^[a-zA-Z](([a-zA-Z0-9-]|_|-)*)[a-zA-Z0-9]$/;
 
 export function ClusterNameStep({
   onNameChange,
