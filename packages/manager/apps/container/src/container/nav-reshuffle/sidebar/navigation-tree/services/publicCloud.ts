@@ -192,7 +192,7 @@ pciNode.children = [
         },
         features: ['archive'],
         forceVisibility: true,
-      }   
+      }
     ],
   },
   {
@@ -468,7 +468,7 @@ pciNode.children = [
         idAttr: 'pci-analytics-data-platform-link',
         universe: PUBLICCLOUD_UNIVERSE_ID,
         translation: 'sidebar_pci_analytics_data_platform',
-        count: false,
+        hasService: false,
         url: 'https://hq-api.eu.dataplatform.ovh.net/iam/v4/login?authentication_provider=ovh&project={projectId}&app_id=forepaas&&response_type=token&redirect_uri=https%3A%2F%2Feu.dataplatform.ovh.net&authorize_bypass=true&token_mode=cookie&force_auth=false',
         features: ['data-platform'],
         tag: NodeTag.BETA,
@@ -570,14 +570,14 @@ pciNode.children = [
     universe: PUBLICCLOUD_UNIVERSE_ID,
     translation: 'sidebar_pci_management',
     features: ['horizon'],
-    count: false,
+    hasService: false,
     children: [
       {
         id: 'pci-horizon',
         idAttr: 'pci-horizon-link',
         universe: PUBLICCLOUD_UNIVERSE_ID,
         translation: 'sidebar_pci_horizon',
-        count: false,
+        hasService: false,
         url: {
           CA:
             'https://auth.cloud.ovh.net/v3/auth/OS-FEDERATION/identity_providers/ovhcloud-world/protocols/openid/websso?origin=https://horizon.cloud.ovh.net/auth/websso/',
@@ -596,7 +596,7 @@ pciNode.children = [
     idAttr: 'pci-settings-link',
     universe: PUBLICCLOUD_UNIVERSE_ID,
     translation: 'sidebar_pci_settings',
-    count: false,
+    hasService: false,
     features: [
       'public-cloud:users',
       'public-cloud:quota',
@@ -617,7 +617,7 @@ pciNode.children = [
           application: 'public-cloud',
           hash: '#/pci/projects/{projectId}/users',
         },
-        count: false,
+        hasService: false,
         features: ['public-cloud:users'],
       },
       {
@@ -629,7 +629,7 @@ pciNode.children = [
           application: 'public-cloud',
           hash: '#/pci/projects/{projectId}/quota',
         },
-        count: false,
+        hasService: false,
         features: ['public-cloud:quota'],
       },
       {
@@ -641,7 +641,7 @@ pciNode.children = [
           application: 'public-cloud',
           hash: '#/pci/projects/{projectId}/ssh',
         },
-        count: false,
+        hasService: false,
         features: ['public-cloud:ssh-keys'],
       },
       {
@@ -653,7 +653,7 @@ pciNode.children = [
           application: 'public-cloud',
           hash: '#/pci/projects/{projectId}/billing',
         },
-        count: false,
+        hasService: false,
         features: ['public-cloud:billing'],
       },
       {
@@ -666,7 +666,7 @@ pciNode.children = [
           application: 'public-cloud',
           hash: '#/pci/projects/{projectId}/vouchers',
         },
-        count: false,
+        hasService: false,
         features: ['public-cloud:vouchers'],
       },
       {
@@ -678,7 +678,7 @@ pciNode.children = [
           application: 'public-cloud',
           hash: '#/pci/projects/{projectId}/savings-plan',
         },
-        count: false,
+        hasService: false,
         tag: NodeTag.NEW,
         features: ['pci-savings-plan'],
       },
@@ -691,7 +691,7 @@ pciNode.children = [
           application: 'public-cloud',
           hash: '#/pci/projects/{projectId}/contacts',
         },
-        count: false,
+        hasService: false,
         features: ['public-cloud:contacts'],
       },
       {
@@ -703,7 +703,7 @@ pciNode.children = [
           application: 'public-cloud',
           hash: '#/pci/projects/{projectId}/edit',
         },
-        count: false,
+        hasService: false,
         features: ['public-cloud:project-settings'],
       },
     ],

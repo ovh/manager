@@ -12,7 +12,7 @@ const sunriseUniverse: Node = {
   routing: {
     application: 'sunrise',
   },
-  count: false,
+  hasService: false,
   features: ['sunrise'],
 };
 

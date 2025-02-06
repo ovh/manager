@@ -113,7 +113,7 @@ const SubTree = ({
             />
           ) : (
             rootNode?.children
-              ?.filter((childNode) => !shouldHideElement(childNode, 1))
+              ?.filter((childNode) => !shouldHideElement(childNode, true))
               .map((node) => (
                 <li
                   key={node.id}
