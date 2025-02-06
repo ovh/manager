@@ -1,7 +1,4 @@
-import {
-  DeletionModal,
-  useProductRegionsAvailability,
-} from '@ovh-ux/manager-pci-common';
+import { DeletionModal } from '@ovh-ux/manager-pci-common';
 import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 import { Translation, useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -9,7 +6,10 @@ import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useContext } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { useArchives, useDeleteArchiveContainer } from '@/api/hooks/useArchive';
+import {
+  useDeleteArchiveContainer,
+  useGetArchiveByName,
+} from '@/api/hooks/useArchive';
 import { COLD_ARCHIVE_TRACKING, MANAGE_ARCHIVE_DOC_LINK } from '@/constants';
 
 export default function DeletePage() {
@@ -25,12 +25,14 @@ export default function DeletePage() {
   };
 
   const { tracking } = useContext(ShellContext).shell;
+
   const trackDeleteContainerModalClick = (action: string) => {
     tracking?.trackClick({
       name: `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.DELETE_CONTAINER}::${action}`,
       type: 'action',
     });
   };
+
   const trackDeleteContainerModalPage = (action: string) => {
     tracking?.trackPage({
       name: `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.DELETE_CONTAINER}_${action}`,
@@ -42,28 +44,16 @@ export default function DeletePage() {
     trackDeleteContainerModalClick(COLD_ARCHIVE_TRACKING.ACTIONS.CANCEL);
     navigate('..');
   };
-  const onClose = () => onCancel();
 
-  const {
-    data: regions,
-    isPending: isRegionsPending,
-  } = useProductRegionsAvailability(
-    ovhSubsidiary,
-    'coldarchive.archive.hour.consumption',
-  );
+  const onClose = onCancel;
 
-  const { data: allArchives, isPending: isPendingAllArchives } = useArchives(
-    projectId,
-    regions?.[0],
-  );
-  const archive = allArchives?.find((a) => a.name === archiveName);
+  const archive = useGetArchiveByName(projectId, archiveName);
+
   const {
     deleteArchiveContainer,
     isPending: isPendingDelete,
   } = useDeleteArchiveContainer({
     projectId,
-    region: regions?.[0],
-    containerName: archiveName,
     onError(error: ApiError) {
       addError(
         <Translation ns="containers/delete">
@@ -104,9 +94,10 @@ export default function DeletePage() {
 
   const onConfirm = () => {
     trackDeleteContainerModalClick(COLD_ARCHIVE_TRACKING.ACTIONS.CONFIRM);
-    deleteArchiveContainer();
+    deleteArchiveContainer(archiveName);
   };
-  const isPending = isPendingDelete || isRegionsPending || isPendingAllArchives;
+
+  const isPending = isPendingDelete || !archive;
 
   return (
     <DeletionModal
@@ -116,12 +107,12 @@ export default function DeletePage() {
       confirmationLabel={t(
         'pci_projects_project_storages_containers_container_cold_archive_delete_terminate_input_label',
       )}
-      confirmationText={archive.objectsCount > 0 ? undefined : 'TERMINATE'}
+      confirmationText={archive?.objectsCount > 0 ? undefined : 'TERMINATE'}
       cancelText={t(
         'pci_projects_project_storages_containers_container_cold_archive_delete_cancel_label',
       )}
       isPending={isPending}
-      isDisabled={archive.objectsCount > 0 || isPending}
+      isDisabled={archive?.objectsCount > 0 || isPending}
       onCancel={onCancel}
       submitText={t(
         'pci_projects_project_storages_containers_container_cold_archive_delete_submit_label',
@@ -129,7 +120,7 @@ export default function DeletePage() {
       onClose={onClose}
       onConfirm={onConfirm}
     >
-      {archive.objectsCount > 0 ? (
+      {archive?.objectsCount > 0 ? (
         <OdsMessage color="warning" className="block">
           <div>
             <span className="block w-full">
@@ -137,7 +128,7 @@ export default function DeletePage() {
                 'pci_projects_project_storages_containers_container_cold_archive_delete_archive_status_active_warning_1',
                 {
                   containerName: archiveName,
-                  objetsCount: archive.objectsCount,
+                  objetsCount: archive?.objectsCount,
                 },
               )}
             </span>
