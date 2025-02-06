@@ -1,5 +1,5 @@
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { Suspense, useContext, useState } from 'react';
+import { useContext, useState } from 'react';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import {
   Datagrid,
@@ -56,6 +56,7 @@ export default function ListingPage() {
     sorting,
     filters,
   );
+
   const onHandleSearch = () => {
     setPagination({
       pageIndex: 0,
@@ -69,6 +70,7 @@ export default function ListingPage() {
     });
     setSearchField('');
   };
+
   const columns = useDatagridColumn();
   const isPending = isRegionsPending || isContainersPending;
 
@@ -78,152 +80,154 @@ export default function ListingPage() {
       condition={!isPending && allArchives?.length === 0}
       route="./onboarding"
     >
-      <Notifications />
-      <div className="sm:flex items-center justify-between mt-8">
-        <div className="sm:flex">
-          <OdsButton
-            size="sm"
-            color="primary"
-            variant="outline"
-            className="xs:mb-0.5 sm:mb-0"
-            icon="plus"
-            label={t(
-              'pci_projects_project_storages_cold_archive_containers_add_container_label',
-            )}
-            onClick={() => {
-              clearNotifications();
-              tracking?.trackClick({
-                name: `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.ADD_CONTAINER}`,
-                type: 'navigation',
-              });
-              navigate('./new');
-            }}
-          />
-          <OdsButton
-            size="sm"
-            color="primary"
-            className="xs:mb-0.5 sm:mb-0 sm:ml-5"
-            icon="circle-info"
-            label={t(
-              'pci_projects_project_storages_cold_archive_containers_manage_container_label',
-            )}
-            onClick={() => {
-              clearNotifications();
-              tracking?.trackClick({
-                name: `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.MANAGE_CONTAINER}`,
-                type: 'navigation',
-              });
-              navigate('./manage');
-            }}
-          />
+      <div className="flex flex-col gap-8">
+        <div>
+          <Notifications />
         </div>
-        <div className="flex justify-center gap-4">
-          <OdsButton
-            size="sm"
-            variant="outline"
-            color="primary"
-            className="xs:mb-0.5 sm:mb-0"
-            isDisabled={isFetching}
-            onClick={refresh}
-            icon="refresh"
-            label=""
-          />
-          <OdsInput
-            name="searchField"
-            className="min-w-[15rem]"
-            value={searchField}
-            onKeyDown={(event) => {
-              if (event.key === 'Enter') {
-                onHandleSearch();
-              }
-            }}
-            onOdsChange={({ detail }) => setSearchField(detail.value as string)}
-          />
-          <OdsButton
-            label=""
-            icon="magnifying-glass"
-            size="sm"
-            onClick={onHandleSearch}
-          />
 
-          <OdsButton
-            slot="popover-trigger"
-            id="popover-filter"
-            size="sm"
-            color="primary"
-            label={t('pci-common:common_criteria_adder_filter_label')}
-            variant="outline"
-            icon="filter"
-          />
-
-          <OdsPopover triggerId="popover-filter">
-            <FilterAdd
-              columns={[
-                {
-                  id: 'name',
-                  label: t(
-                    'containers:pci_projects_project_storages_containers_name_label',
-                  ),
-                  comparators: FilterCategories.String,
-                },
-                {
-                  id: 'createdAt',
-                  label: t(
-                    'pci_projects_project_storages_cold_archive_containers_creation_date_label',
-                  ),
-                  comparators: FilterCategories.Date,
-                },
-                {
-                  id: 'objectsCount',
-                  label: t(
-                    'containers:pci_projects_project_storages_containers_storedObjects_label',
-                  ),
-                  comparators: FilterCategories.Numeric,
-                },
-                {
-                  id: 'objectsSize',
-                  label: t(
-                    'containers:pci_projects_project_storages_containers_storedBytes_label',
-                  ),
-                  comparators: FilterCategories.Numeric,
-                },
-                {
-                  id: 'lockedUntil',
-                  label: t(
-                    'containers:pci_projects_project_storages_cold_archive_containers_locked_until_label',
-                  ),
-                  comparators: FilterCategories.Date,
-                },
-                {
-                  id: 'status',
-                  label: t(
-                    'pci_projects_project_storages_cold_archive_containers_status_label',
-                  ),
-                  comparators: FilterCategories.String,
-                },
-              ]}
-              onAddFilter={(addedFilter, column) => {
-                setPagination({
-                  pageIndex: 0,
-                  pageSize: pagination.pageSize,
+        <div className="sm:flex items-center justify-between">
+          <div className="sm:flex">
+            <OdsButton
+              size="sm"
+              color="primary"
+              variant="outline"
+              className="xs:mb-0.5 sm:mb-0"
+              icon="plus"
+              label={t(
+                'pci_projects_project_storages_cold_archive_containers_add_container_label',
+              )}
+              onClick={() => {
+                clearNotifications();
+                tracking?.trackClick({
+                  name: `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.ADD_CONTAINER}`,
+                  type: 'navigation',
                 });
-                addFilter({
-                  ...addedFilter,
-                  label: column.label,
-                });
+                navigate('./new');
               }}
             />
-          </OdsPopover>
-        </div>
-      </div>
+            <OdsButton
+              size="sm"
+              color="primary"
+              className="xs:mb-0.5 sm:mb-0 sm:ml-5"
+              icon="circle-info"
+              label={t(
+                'pci_projects_project_storages_cold_archive_containers_manage_container_label',
+              )}
+              onClick={() => {
+                clearNotifications();
+                tracking?.trackClick({
+                  name: `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.MANAGE_CONTAINER}`,
+                  type: 'navigation',
+                });
+                navigate('./manage');
+              }}
+            />
+          </div>
 
-      {filters?.length > 0 && (
-        <div className="my-5">
-          <FilterList filters={filters} onRemoveFilter={removeFilter} />
-        </div>
-      )}
+          <div className="flex justify-center gap-4">
+            <OdsButton
+              size="sm"
+              variant="outline"
+              color="primary"
+              className="xs:mb-0.5 sm:mb-0"
+              isDisabled={isFetching}
+              onClick={refresh}
+              icon="refresh"
+              label=""
+            />
+            <OdsInput
+              name="searchField"
+              className="min-w-[15rem]"
+              value={searchField}
+              onKeyDown={(event) => {
+                if (event.key === 'Enter') {
+                  onHandleSearch();
+                }
+              }}
+              onOdsChange={({ detail }) =>
+                setSearchField(detail.value as string)
+              }
+            />
+            <OdsButton
+              label=""
+              icon="magnifying-glass"
+              size="sm"
+              onClick={onHandleSearch}
+            />
 
-      <div className="mt-8">
+            <OdsButton
+              slot="popover-trigger"
+              id="popover-filter"
+              size="sm"
+              color="primary"
+              label={t('pci-common:common_criteria_adder_filter_label')}
+              variant="outline"
+              icon="filter"
+            />
+
+            <OdsPopover triggerId="popover-filter">
+              <FilterAdd
+                columns={[
+                  {
+                    id: 'name',
+                    label: t(
+                      'containers:pci_projects_project_storages_containers_name_label',
+                    ),
+                    comparators: FilterCategories.String,
+                  },
+                  {
+                    id: 'createdAt',
+                    label: t(
+                      'pci_projects_project_storages_cold_archive_containers_creation_date_label',
+                    ),
+                    comparators: FilterCategories.Date,
+                  },
+                  {
+                    id: 'objectsCount',
+                    label: t(
+                      'containers:pci_projects_project_storages_containers_storedObjects_label',
+                    ),
+                    comparators: FilterCategories.Numeric,
+                  },
+                  {
+                    id: 'objectsSize',
+                    label: t(
+                      'containers:pci_projects_project_storages_containers_storedBytes_label',
+                    ),
+                    comparators: FilterCategories.Numeric,
+                  },
+                  {
+                    id: 'lockedUntil',
+                    label: t(
+                      'containers:pci_projects_project_storages_cold_archive_containers_locked_until_label',
+                    ),
+                    comparators: FilterCategories.Date,
+                  },
+                  {
+                    id: 'status',
+                    label: t(
+                      'pci_projects_project_storages_cold_archive_containers_status_label',
+                    ),
+                    comparators: FilterCategories.String,
+                  },
+                ]}
+                onAddFilter={(addedFilter, column) => {
+                  setPagination({
+                    pageIndex: 0,
+                    pageSize: pagination.pageSize,
+                  });
+                  addFilter({
+                    ...addedFilter,
+                    label: column.label,
+                  });
+                }}
+              />
+            </OdsPopover>
+          </div>
+        </div>
+
+        <FilterList filters={filters} onRemoveFilter={removeFilter} />
+
         <Datagrid
           columns={columns}
           items={paginatedArchives?.rows || []}
@@ -233,11 +237,8 @@ export default function ListingPage() {
           sorting={sorting}
           onSortChange={setSorting}
         />
-      </div>
-
-      <Suspense>
         <Outlet />
-      </Suspense>
+      </div>
     </RedirectionGuard>
   );
 }
