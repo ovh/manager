@@ -27,13 +27,13 @@
   "pci_projects_project_storages_blocks_add_size_iops": "IOPS: {{iops}}",
   "pci_projects_project_storages_blocks_add_availability_zone": "Selecione uma zona de disponibilidade",
   "pci_projects_project_storages_blocks_add_deployment_mode_title": "Selecione um modo de implementação",
-  "pci_projects_project_storages_blocks_add_deployment_mode_description": "Escolha uma configuração ótima para assegurar a disponibilidade, a resiliência e a latência adequadas aos seus dados, consoante o seu caso de utilização. <Link>Saber mais</Link>",
+  "pci_projects_project_storages_blocks_add_deployment_mode_description": "Escolha uma configuração ideal para assegurar a disponibilidade, a resiliência e a latência adequadas aos seus dados, consoante as sua utilização. <Link>Saber mais</Link>",
   "pci_projects_project_storages_blocks_add_deployment_mode_title_region": "Região 1-AZ",
-  "pci_projects_project_storages_blocks_add_deployment_mode_description_region": "Implementação resiliente e económica numa zona de disponibilidade.",
+  "pci_projects_project_storages_blocks_add_deployment_mode_description_region": "Implementação resiliente e económica em 1 zona de disponibilidade.",
   "pci_projects_project_storages_blocks_add_deployment_mode_title_region-3-az": "Região 3-AZ",
   "pci_projects_project_storages_blocks_add_deployment_mode_description_region-3-az": "Implementação de alta resiliência/alta disponibilidade para as suas aplicações críticas em 3 zonas de disponibilidade.",
   "pci_projects_project_storages_blocks_add_deployment_mode_title_localzone": "Local Zone",
   "pci_projects_project_storages_blocks_add_deployment_mode_description_localzone": "Implementação das suas aplicações mais próxima dos seus utilizadores para uma baixa latência e residência dos dados.",
-  "pci_projects_project_storages_blocks_add_deployment_mode_price_from": "A partir de {{price}} /GB/hora + IVA",
+  "pci_projects_project_storages_blocks_add_deployment_mode_price_from": "A partir de {{price}} /hora + IVA por GB",
   "pci_projects_project_storages_blocks_add_beta_free": "Grátis"
 }

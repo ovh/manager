@@ -23,7 +23,7 @@
   "pci_projects_project_network_private_create_announce_first_address": "Ustaw pierwszy adres danego CIDR jako bramę domyślną (DHCP opcja 3)",
   "pci_projects_project_network_private_create_summary_step_title": "Podsumowanie",
   "pci_projects_project_network_private_create_summary_step": "Niektóre z powyższych opcji mogą wymagać konfiguracji lub utworzenia dodatkowych produktów. W takim przypadku wszystkie szczegóły zostaną wyświetlone w tej sekcji.",
-  "pci_projects_project_network_private_create_summary_step_missing_components_description": "Wykryliśmy brakujące składniki: <strong> Gateway</strong>.",
+  "pci_projects_project_network_private_create_summary_step_missing_components_description": "Wykryliśmy brakujące komponenty: <strong>Gateway</strong>.",
   "pci_projects_project_network_private_create_summary_step_gateway_name": "W centrum danych {{region}} trwa tworzenie instancji Gateway.",
   "pci_projects_project_network_private_create_summary_step_gateway_size_and_price": "Wybrany rozmiar to: <strong>{{size}}</strong> ",
   "pci_projects_project_network_private_create_summary_step_price": "(w cenie <strong>{{price}}</strong> ).",

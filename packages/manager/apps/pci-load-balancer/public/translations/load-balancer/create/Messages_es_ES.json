@@ -42,7 +42,7 @@
   "octavia_load_balancer_create_size_flavour_description_xl": "Perfecto para aplicaciones con mucho tráfico que requieren un ancho de banda superior para mantener un alto rendimiento.",
   "octavia_load_balancer_create_size_flavour_description_2xl": "Perfecto para proyectos de tráfico muy exigentes. Ofrecen una gran capacidad de ancho de banda para un rendimiento constante.",
   "octavia_load_balancer_create_size_flavour_description_3xl": "Diseñado para entornos críticos con mucho tráfico. Ofrece el máximo rendimiento gracias al ancho de banda ampliado.",
-  "octavia_load_balancer_create_private_network": "No hay ninguna red privada en la región seleccionada. Asegúrese de <link /> antes de crear el Load Balancer.",
+  "octavia_load_balancer_create_private_network": "No hay ninguna red privada en la región seleccionada. Por favor, asegúrese de <link /> antes de crear el Load Balancer.",
   "octavia_load_balancer_create_private_network_label": "crear una red privada",
-  "octavia_load_balancer_create_region_3az_price": "Load Balancer está actualmente en fase beta en la zona de París (EU-WEST-PAR) y, por lo tanto, es gratuito durante este período."
+  "octavia_load_balancer_create_region_3az_price": "El servicio Load Balancer se encuentra actualmente en fase beta en la región de París (EU-WEST-PAR) y, por lo tanto, es gratuito durante este período."
 }

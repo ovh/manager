@@ -14,5 +14,5 @@
   "zimbra_domains_datagrid_cname_label": "CNAME",
   "zimbra_domains_datagrid_cname_tooltip_title": "Weryfikacja domeny",
   "zimbra_domains_datagrid_cname_tooltip": "Aby potwierdzić, że jesteś właścicielem tej domeny, utwórz wpis CNAME: <br/><br/><strong>{{cname}}</strong> na <strong>ovh.com</strong> <br/><br/>Masz 48 godzin na ukończenie tego etapu.",
-  "zimbra_domains_tooltip_diagnostics": "Diagnozowanie"
+  "zimbra_domains_tooltip_diagnostics": "Raporty diagnostyczne"
 }
