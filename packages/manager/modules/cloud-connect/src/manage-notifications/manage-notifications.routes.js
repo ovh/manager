@@ -27,7 +27,11 @@ export default /* @ngInject */ ($stateProvider) => {
 
         if (message) {
           promise.then(() =>
-            $timeout(() => Alerter.set(`alert-${type}`, message, null)),
+            $timeout(() =>
+              type === 'success'
+                ? Alerter.success(message, 'cloud_connect_alert')
+                : Alerter.error(message, 'cloud_connect_alert'),
+            ),
           );
         }
         return promise;

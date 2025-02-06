@@ -39,6 +39,7 @@ export default class {
           this.$translate.instant(
             'cloud_connect_manage_notifications_save_success',
           ),
+          'success',
         ),
       )
       .catch((err) =>
@@ -50,7 +51,7 @@ export default class {
               queryId: err.headers('X-Ovh-Queryid'),
             },
           ),
-          'danger',
+          'error',
         ),
       )
       .finally(() => {
