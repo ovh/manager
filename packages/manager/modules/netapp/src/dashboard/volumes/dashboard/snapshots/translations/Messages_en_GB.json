@@ -34,5 +34,6 @@
   "netapp_volumes_snapshots_actions_hold": "Save",
   "netapp_volumes_snapshots_hold_action_doing": "Your snapshot backup has been processed, and will be active shortly.",
   "netapp_volumes_snapshots_hold_action_success": "Your snapshot has been backed up.",
-  "netapp_volumes_snapshots_hold_action_error": "An error has occurred backing up your snapshot"
+  "netapp_volumes_snapshots_hold_action_error": "An error has occurred backing up your snapshot",
+  "netapp_volumes_snapshots_actions_create_volume": "Create a volume "
 }

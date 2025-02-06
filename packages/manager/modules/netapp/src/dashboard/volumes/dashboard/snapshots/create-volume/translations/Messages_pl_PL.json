@@ -1,0 +1,10 @@
+{
+  "netapp_volumes_snapshots_create_volume_title": "Utwórz wolumen",
+  "netapp_volumes_snapshots_create_volume_description": "Chcesz utworzyć wolumen na podstawie snapshota {{snapshot}}",
+  "netapp_volumes_snapshots_create_volume_name_label": "Nazwa wolumenu (opcjonalnie)",
+  "netapp_volumes_snapshots_create_volume_description_label": "Opis (opcjonalnie)",
+  "netapp_volumes_snapshots_create_volume_confirm": "Zatwierdź",
+  "netapp_volumes_snapshots_create_volume_cancel": "Anuluj",
+  "netapp_volumes_snapshots_create_volume_success": "Wolumen został utworzony.",
+  "netapp_volumes_snapshots_create_volume_error": "Wystąpił błąd podczas tworzenia wolumenu. <br> {{message}} <br> {{requestId}}"
+}

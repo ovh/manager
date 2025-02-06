@@ -34,5 +34,6 @@
   "netapp_volumes_snapshots_actions_hold": "Salva",
   "netapp_volumes_snapshots_hold_action_doing": "Il backup del tuo Snapshot è stato preso in carico e sarà effettivo entro pochi istanti.",
   "netapp_volumes_snapshots_hold_action_success": "Il backup del tuo Snapshot è stato effettuato correttamente.",
-  "netapp_volumes_snapshots_hold_action_error": "Si è verificato un problema durante il backup del tuo Snapshot"
+  "netapp_volumes_snapshots_hold_action_error": "Si è verificato un problema durante il backup del tuo Snapshot",
+  "netapp_volumes_snapshots_actions_create_volume": "Creare un volume"
 }
