@@ -12,7 +12,8 @@
   "zimbra_account_datagrid_tooltip_modification": "Modificar",
   "zimbra_account_datagrid_tooltip_delete": "Eliminar",
   "zimbra_account_account_add": "Crear una cuenta",
-  "zimbra_domains_tooltip_need_domain": "En primer lugar, debe configurar un dominio",
+  "zimbra_domains_tooltip_need_domain": "En primer lugar, configure un dominio.",
   "zimbra_account_datagrid_status_label": "Estado",
-  "zimbra_account_account_order": "Contratar una cuenta"
+  "zimbra_account_account_order": "Contratar una cuenta",
+  "zimbra_domains_tooltip_need_slot": "No hay ninguna cuenta disponible, contrate una."
 }

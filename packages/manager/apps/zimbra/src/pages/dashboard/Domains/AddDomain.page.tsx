@@ -62,6 +62,7 @@ import queryClient from '@/queryClient';
 import { DomainType } from '@/api/domain/type';
 import { DNS_CONFIG_TYPE, DnsRecordType } from '@/utils';
 import { ADD_DOMAIN, CONFIRM, BACK_PREVIOUS_PAGE } from '@/tracking.constant';
+import { ResourceStatus } from '@/api/api.type';
 
 export enum DomainOwnership {
   OVH = 'ovhDomain',
@@ -301,11 +302,13 @@ export default function AddDomain() {
           data-testid="select-organization"
           placeholder={t('zimbra_domains_add_domain_organization_select')}
         >
-          {organizations?.map((item) => (
-            <option key={item.id} value={item.id}>
-              {item.targetSpec?.name}
-            </option>
-          ))}
+          {organizations
+            ?.filter((org) => org.resourceStatus === ResourceStatus.READY)
+            .map((item) => (
+              <option key={item.id} value={item.id}>
+                {item.targetSpec?.name}
+              </option>
+            ))}
         </OdsSelect>
         {isLoading && (
           <div slot="helper">
