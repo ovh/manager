@@ -15,7 +15,8 @@ const getSavingsPlanConsumption = async ({
 }): Promise<SavingsPlanConsumption> => {
   const response = await fetch(
     // TODO: replace with the correct url  when it will be available
-    `http://localhost:8080/proxy?flavor=${flavor}&projectId=${projectId}&year=${year}&month=${month}`,
+    `http://localhost:8080/proxy`,
+    // `http://localhost:8080/proxy?flavor=${flavor}&projectId=${projectId}&year=${year}&month=${month}`,
   );
 
   return response.json();
