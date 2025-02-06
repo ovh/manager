@@ -39,6 +39,7 @@ import { ClusterBillingStep } from './steps/ClusterBillingStep.component';
 import { useCreateKubernetesCluster } from '@/api/hooks/useKubernetes';
 import { PAGE_PREFIX } from '@/tracking.constants';
 import { ANTI_AFFINITY_MAX_NODES } from '@/constants';
+import NodePoolStep from './steps/NodePoolStep.component';
 
 export default function NewPage() {
   const { t } = useTranslation('add');
@@ -255,22 +256,23 @@ export default function NewPage() {
         </StepComponent>
         <StepComponent
           order={5}
-          {...stepper.nodeType.step}
+          {...stepper.node.step}
           title={tListing('kube_common_node_pool_title')}
           edit={{
-            action: stepper.nodeType.edit,
+            action: stepper.node.edit,
             label: tStepper('common_stepper_modify_this_step'),
             isDisabled: isCreationPending,
           }}
         >
-          <NodeTypeStep
+          <NodePoolStep stepper={stepper} onSubmit={stepper.node.submit} />
+          {/* <NodeTypeStep
             projectId={projectId}
             region={stepper.form.region?.name}
             onSubmit={stepper.nodeType.submit}
             step={stepper.nodeType.step}
-          />
+          /> */}
         </StepComponent>
-        {nodePoolEnabled && (
+        {/* {nodePoolEnabled && (
           <StepComponent
             order={6}
             {...stepper.nodeSize.step}
@@ -287,28 +289,27 @@ export default function NewPage() {
               step={stepper.nodeSize.step}
             />
           </StepComponent>
-        )}
+        )} */}
         <StepComponent
           order={nodePoolEnabled ? 7 : 6}
-          {...stepper.billing.step}
+          {...stepper.confirm.step}
           title={t('kubernetes_add_billing_anti_affinity_title')}
           edit={{
-            action: stepper.billing.edit,
+            action: stepper.confirm.edit,
             label: tStepper('common_stepper_modify_this_step'),
             isDisabled: isCreationPending,
           }}
         >
-          {!stepper.billing.step.isLocked && (
+          {!stepper.confirm.step.isLocked && (
             <ClusterBillingStep
               form={stepper.form}
-              onSubmit={(...args) => {
-                stepper.billing.submit(...args);
+              onSubmit={() => {
                 createNewCluster();
               }}
-              step={stepper.billing.step}
+              step={stepper.confirm.step}
             />
           )}
-          {stepper.billing.step.isLocked && (
+          {stepper.confirm.step.isLocked && (
             <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
           )}
         </StepComponent>

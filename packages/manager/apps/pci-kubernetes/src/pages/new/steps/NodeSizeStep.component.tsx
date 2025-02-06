@@ -21,19 +21,6 @@ export function NodeSizeStep({
   onSubmit,
   step,
 }: Readonly<NodeSizeStepProps>) {
-  const { t: tStepper } = useTranslation('stepper');
-  const [scaling, setScaling] = useState<AutoscalingState>();
-
-  // The maxValue is NODE_RANGE.MAX cause isAntiAffinity is hardcoded to false
-  // change to ANTI_AFFINITY_MAX_NODES otherwise
-  const isNextDisabled =
-    !scaling ||
-    (!scaling.isAutoscale && scaling.quantity.desired > NODE_RANGE.MAX) ||
-    (scaling.isAutoscale &&
-      (scaling.quantity.min > NODE_RANGE.MAX ||
-        scaling.quantity.max > NODE_RANGE.MAX ||
-        scaling.quantity.min >= scaling.quantity.max));
-
   return (
     <>
       <div className="mb-8">
@@ -44,17 +31,6 @@ export function NodeSizeStep({
           isMonthlyBilling={isMonthlyBilling}
         />
       </div>
-      {!step.isLocked && (
-        <OsdsButton
-          className="mt-4 w-fit"
-          size={ODS_BUTTON_SIZE.md}
-          color={ODS_THEME_COLOR_INTENT.primary}
-          {...(isNextDisabled ? { disabled: true } : {})}
-          onClick={() => scaling && onSubmit(scaling)}
-        >
-          {tStepper('common_stepper_next_button_label')}
-        </OsdsButton>
-      )}
     </>
   );
 }

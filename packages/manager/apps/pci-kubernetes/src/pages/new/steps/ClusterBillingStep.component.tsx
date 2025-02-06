@@ -24,42 +24,8 @@ export function ClusterBillingStep({
   const [antiAffinity, setIsAntiaffinity] = useState(false);
   const [isMonthlyBilled, setIsMonthlyBilled] = useState(false);
 
-  const isPricingComingSoon = form.flavor?.blobs?.tags?.includes(
-    TAGS_BLOB.COMING_SOON,
-  );
-
-  const price = useMemo(() => {
-    if (form.flavor) {
-      return {
-        hour: form.flavor.pricingsHourly.price * form.scaling.quantity.desired,
-        month:
-          form.flavor.pricingsMonthly?.price * form.scaling.quantity.desired,
-      };
-    }
-    return { price: 0, monthyPrice: 0 };
-  }, [form.flavor, form.scaling?.quantity.desired]);
-
   return (
     <>
-      {!form.flavor ? (
-        <Estimation />
-      ) : (
-        <BillingStep
-          price={price.hour}
-          monthlyPrice={price.month}
-          antiAffinity={{
-            isChecked: antiAffinity,
-            isEnabled: !form.scaling?.isAutoscale,
-            onChange: setIsAntiaffinity,
-          }}
-          monthlyBilling={{
-            isComingSoon: isPricingComingSoon,
-            isChecked: isMonthlyBilled,
-            check: setIsMonthlyBilled,
-          }}
-          warn={form.scaling?.isAutoscale && isMonthlyBilled}
-        />
-      )}
       {!step.isLocked && (
         <OsdsButton
           className="mt-4 w-fit"
