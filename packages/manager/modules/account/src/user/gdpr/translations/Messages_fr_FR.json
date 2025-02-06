@@ -11,5 +11,6 @@
   "gdpr_erasure_creation_success_info_2": "Si nous ne sommes pas en mesure d’effacer votre compte, les motifs vous seront communiqués au sein de l’espace client OVHcloud.",
   "gdpr_erasure_creation_error": "Une erreur est survenue. Si elle persiste, merci de prendre contact avec l'équipe Support.",
   "gdpr_erasure_creation_unsuccessful": "Votre demande ne peut aboutir. Si l’erreur persiste, merci de prendre contact avec l'équipe Support.",
-  "gdpr_erasure_creation_retryable": "Une erreur est survenue et votre demande n'a pas pu aboutir. Merci d'essayer de nouveau dans quelques minutes."
+  "gdpr_erasure_creation_retryable": "Une erreur est survenue et votre demande n'a pas pu aboutir. Merci d'essayer de nouveau dans quelques minutes.",
+  "gdpr_error_identifier": "Code d'erreur:"
 }
