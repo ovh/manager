@@ -90,13 +90,13 @@ const FlavorDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
         >
           {t('summaryFieldFlavorLabel')}
         </Button>
-        {order.flavor && order.resourcesQuantity ? (
+        {order.flavor ? (
           <span className="capitalize">{`${order.resourcesQuantity} ${order.flavor.id}`}</span>
         ) : (
           <Skeleton className="h-4 w-20" />
         )}
       </div>
-      {order.flavor && order.resourcesQuantity && (
+      {order.flavor && (
         <div>
           <div className="flex items-center pl-4 gap-2">
             <Cpu className="size-4" />

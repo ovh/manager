@@ -66,7 +66,7 @@ export function convertDurationStringToISODuration(durationTime: string) {
 }
 
 export function convertSecondsToTimeString(seconds: number, short: boolean) {
-  const { t } = useTranslation('pci-ai-notebooks/components/configuration');
+  const { t } = useTranslation('components/configuration');
 
   if (seconds < 60)
     return short

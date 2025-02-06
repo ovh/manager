@@ -15,6 +15,7 @@ import {
   mockedOrderVolumesGit,
   mockedOrderVolumesS3,
 } from '@/__tests__/helpers/mocks/datastore';
+import { handleSelectText } from '@/__tests__/helpers/unitTestHelper';
 
 describe('Volume Form component', () => {
   afterEach(() => {
@@ -96,22 +97,10 @@ describe('Volume Form component', () => {
     );
 
     // Select S3 Datastore
-    const containerTrigger = screen.getByTestId('select-container-trigger');
-    await waitFor(() => {
-      expect(containerTrigger).toBeInTheDocument();
-    });
-    act(() => {
-      fireEvent.focus(containerTrigger);
-      fireEvent.keyDown(containerTrigger, { key: 'Enter', code: 13 });
-    });
-    await waitFor(() => {
-      expect(containerTrigger).not.toHaveAttribute('data-state', 'closed');
-
-      const containerToSelect = screen.getByText(
-        mockedDatastoreWithContainerS3.id,
-      );
-      fireEvent.keyDown(containerToSelect, { key: 'Enter', code: 13 });
-    });
+    await handleSelectText(
+      'select-container-trigger',
+      mockedDatastoreWithContainerS3.id,
+    );
 
     // Chech that Branch input is not displayed
     expect(
@@ -150,22 +139,10 @@ describe('Volume Form component', () => {
     );
 
     // Select GIT Datastore
-    const containerTrigger = screen.getByTestId('select-container-trigger');
-    await waitFor(() => {
-      expect(containerTrigger).toBeInTheDocument();
-    });
-    act(() => {
-      fireEvent.focus(containerTrigger);
-      fireEvent.keyDown(containerTrigger, { key: 'Enter', code: 13 });
-    });
-    await waitFor(() => {
-      expect(containerTrigger).not.toHaveAttribute('data-state', 'closed');
-
-      const containerToSelect = screen.getByText(
-        mockedDatastoreWithContainerGit.id,
-      );
-      fireEvent.keyDown(containerToSelect, { key: 'Enter', code: 13 });
-    });
+    await handleSelectText(
+      'select-container-trigger',
+      mockedDatastoreWithContainerGit.id,
+    );
 
     // Chech that Branch input is displayed
     expect(screen.getByTestId('git-branch-input-field')).toBeInTheDocument();

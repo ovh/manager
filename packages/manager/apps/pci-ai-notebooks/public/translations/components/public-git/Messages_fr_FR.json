@@ -1,0 +1,11 @@
+{
+  "publicGitTitle": "Dépôt Git Public",
+  "publicGitDescription": "Vous pouvez attacher des dépôts Git public.",
+  "tableHeaderUrl": "URL du dépôt Git",
+  "tableHeaderMountPath": "Répertoire de montage",
+  "tableHeaderPermission": "Permission",
+  "mountPathCopyToast": "Le répertoire de montage a été copié",
+  "permission_RO": "Lecture Seule",
+  "permission_RW": "Lecture & Ecriture",
+  "permission_RWD": "Lecture & Ecriture & Suppression"
+}

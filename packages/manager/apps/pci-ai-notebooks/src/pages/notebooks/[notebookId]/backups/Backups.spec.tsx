@@ -1,11 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import {
-  act,
-  fireEvent,
-  render,
-  screen,
-  waitFor,
-} from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
 import * as ai from '@/types/cloud/project/ai';
 import { mockedNotebook } from '@/__tests__/helpers/mocks/notebook';
@@ -13,6 +7,7 @@ import { Locale } from '@/hooks/useLocale';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedBackup } from '@/__tests__/helpers/mocks/backup';
 import Backups, { breadcrumb as Breadcrumb } from './Backups.page';
+import { openButtonInMenu } from '@/__tests__/helpers/unitTestHelper';
 
 const mockedUsedNavigate = vi.fn();
 describe('Backups page', () => {
@@ -85,45 +80,18 @@ describe('Backups page', () => {
     render(<Backups />, { wrapper: RouterWithQueryClientWrapper });
     expect(screen.getByText(mockedBackup.id)).toBeInTheDocument();
   });
-});
 
-describe('Action table button', () => {
-  // Helper function to open a button in the table menu
-  const openButtonInMenu = async (buttonId: string) => {
-    act(() => {
-      const trigger = screen.getByTestId('backup-action-trigger');
-      fireEvent.focus(trigger);
-      fireEvent.keyDown(trigger, {
-        key: 'Enter',
-        code: 'Enter',
-        keyCode: 13,
-        charCode: 13,
-      });
-    });
-    const actionButton = screen.getByTestId(buttonId);
-    await waitFor(() => {
-      expect(actionButton).toBeInTheDocument();
-    });
-    act(() => {
-      fireEvent.click(actionButton);
-    });
-  };
-  beforeEach(async () => {
+  it('open fork backup modal using action table', async () => {
     render(<Backups />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
       expect(screen.getByText(mockedBackup.id)).toBeInTheDocument();
     });
-  });
-  afterEach(() => {
-    vi.clearAllMocks();
-  });
-
-  it('open fork backup modal', async () => {
-    await openButtonInMenu('backup-action-fork-button');
-    await waitFor(() => {
-      expect(mockedUsedNavigate).toHaveBeenCalledWith(
-        `./fork/${mockedBackup.id}`,
-      );
-    });
+    await openButtonInMenu(
+      'backup-action-trigger',
+      'backup-action-fork-button',
+    );
+    expect(mockedUsedNavigate).toHaveBeenCalledWith(
+      `./fork/${mockedBackup.id}`,
+    );
   });
 });

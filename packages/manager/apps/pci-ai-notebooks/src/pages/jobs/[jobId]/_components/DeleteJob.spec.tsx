@@ -1,0 +1,96 @@
+import { describe, it, expect, vi, beforeEach } from 'vitest';
+import {
+  render,
+  screen,
+  waitFor,
+  fireEvent,
+  act,
+} from '@testing-library/react';
+import * as jobApi from '@/data/api/ai/job/job.api';
+import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
+import { useToast } from '@/components/ui/use-toast';
+import { apiErrorMock } from '@/__tests__/helpers/mocks/aiError';
+import DeleteJob from './DeleteJob.component';
+import { mockedJob } from '@/__tests__/helpers/mocks/job';
+
+const onSuccess = vi.fn();
+const onError = vi.fn();
+describe('Delete job modal', () => {
+  beforeEach(() => {
+    vi.mock('react-router-dom', async () => {
+      const mod = await vi.importActual('react-router-dom');
+      return {
+        ...mod,
+        useParams: () => ({
+          projectId: 'projectId',
+        }),
+      };
+    });
+    vi.mock('react-i18next', () => ({
+      useTranslation: () => ({
+        t: (key: string) => key,
+      }),
+    }));
+    vi.mock('@/data/api/ai/job/job.api', () => ({
+      deleteJob: vi.fn(),
+    }));
+    vi.mock('@/components/ui/use-toast', () => {
+      const toastMock = vi.fn();
+      return {
+        useToast: vi.fn(() => ({
+          toast: toastMock,
+        })),
+      };
+    });
+  });
+  afterEach(() => {
+    vi.clearAllMocks();
+  });
+
+  it('should open the modal', async () => {
+    render(<DeleteJob job={mockedJob} />, {
+      wrapper: RouterWithQueryClientWrapper,
+    });
+    await waitFor(() => {
+      expect(screen.queryByTestId('delete-job-modal')).toBeInTheDocument();
+    });
+  });
+
+  it('should delete the job on submit', async () => {
+    render(<DeleteJob job={mockedJob} onSuccess={onSuccess} />, {
+      wrapper: RouterWithQueryClientWrapper,
+    });
+    act(() => {
+      fireEvent.click(screen.getByTestId('delete-job-submit-button'));
+    });
+    await waitFor(() => {
+      expect(jobApi.deleteJob).toHaveBeenCalled();
+      expect(useToast().toast).toHaveBeenCalledWith({
+        title: 'jobToastSuccessTitle',
+        description: 'deleteJobToastSuccessDescription',
+      });
+    });
+    expect(onSuccess).toHaveBeenCalled();
+  });
+
+  it('should call onError when API fails', async () => {
+    vi.mocked(jobApi.deleteJob).mockImplementation(() => {
+      throw apiErrorMock;
+    });
+    render(<DeleteJob job={mockedJob} onError={onError} />, {
+      wrapper: RouterWithQueryClientWrapper,
+    });
+    act(() => {
+      fireEvent.click(screen.getByTestId('delete-job-submit-button'));
+    });
+    await waitFor(() => {
+      expect(jobApi.deleteJob).toHaveBeenCalled();
+      expect(useToast().toast).toHaveBeenCalledWith({
+        title: 'jobToastErrorTitle',
+        description: apiErrorMock.response.data.message,
+        variant: 'destructive',
+      });
+      expect(onError).toHaveBeenCalled();
+    });
+  });
+});

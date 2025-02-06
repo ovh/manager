@@ -53,7 +53,7 @@ const SharedDocker = ({ regions }: SharedDockerProps) => {
           setSelectedRegion(regions.find((reg) => reg.id === region))
         }
       >
-        <SelectTrigger>
+        <SelectTrigger data-testid="select-region-trigger">
           <SelectValue />
         </SelectTrigger>
         <SelectContent>

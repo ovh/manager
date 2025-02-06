@@ -37,7 +37,7 @@ interface PublicGitFormProps {
 
 const PublicGitForm = React.forwardRef<HTMLInputElement, PublicGitFormProps>(
   ({ selectedVolumesList, onChange, disabled }, ref) => {
-    const { t } = useTranslation('pci-ai-notebooks/components/volumes');
+    const { t } = useTranslation('components/volumes');
     const { publicGitForm } = useVolumesForm({
       selectedVolumesList,
     });

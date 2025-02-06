@@ -4,7 +4,11 @@ import Link from '@/components/links/Link.component';
 import { Button } from '@/components/ui/button';
 import onboardingImgSrc from '@/../public/assets/notebooks.png';
 import OnboardingTile from './OnboardingTile.component';
-import { GUIDES, allGuidesSections, getGuideUrl } from '@/configuration/guide';
+import {
+  GUIDES,
+  getGuideUrl,
+  notebookGuidesSections,
+} from '@/configuration/guide';
 import { useLocale } from '@/hooks/useLocale';
 
 const Onboarding = () => {
@@ -17,7 +21,7 @@ const Onboarding = () => {
       className="flex flex-col items-center gap-4"
     >
       <div className="w-full text-right">
-        <Guides section={allGuidesSections} />
+        <Guides section={notebookGuidesSections} />
       </div>
       <h2>{t('title')}</h2>
       <img
@@ -48,14 +52,14 @@ const Onboarding = () => {
           title={t('cardTutotitle')}
           description={t('cardTuto2Description')}
           content={t('cardTuto2Content')}
-          href={getGuideUrl(GUIDES.ONBOARDING_TUTO_1, locale)}
+          href={getGuideUrl(GUIDES.NOTEBOOK_ONBOARDING_TUTO_1, locale)}
           linkName={t('cardLink')}
         />
         <OnboardingTile
           title={t('cardTutotitle')}
           description={t('cardTuto3Description')}
           content={t('cardTuto3Content')}
-          href={getGuideUrl(GUIDES.ONBOARDING_TUTO_2, locale)}
+          href={getGuideUrl(GUIDES.NOTEBOOK_ONBOARDING_TUTO_2, locale)}
           linkName={t('cardLink')}
         />
       </div>

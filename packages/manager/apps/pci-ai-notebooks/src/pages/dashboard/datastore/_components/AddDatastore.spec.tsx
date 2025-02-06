@@ -14,6 +14,7 @@ import { useToast } from '@/components/ui/use-toast';
 import { mockedCapabilitiesRegionGRA } from '@/__tests__/helpers/mocks/region';
 import { mockedDatastoreWithRegion } from '@/__tests__/helpers/mocks/datastore';
 import AddDatastore from './AddDatastore.modal';
+import { handleSelectOption } from '@/__tests__/helpers/unitTestHelper';
 
 describe('AddDatastore modal', () => {
   beforeEach(() => {
@@ -140,23 +141,8 @@ describe('AddDatastore modal', () => {
       });
     });
 
-    // Select region
-    const regionTrigger = screen.getByTestId('select-region-trigger');
-    await waitFor(() => {
-      expect(regionTrigger).toBeInTheDocument();
-    });
-    act(() => {
-      fireEvent.focus(regionTrigger);
-      fireEvent.keyDown(regionTrigger, { key: 'Enter', code: 13 });
-    });
-    await waitFor(() => {
-      expect(regionTrigger).not.toHaveAttribute('data-state', 'closed');
-      act(() => {
-        const optionsElements = screen.getAllByRole('option');
-        const elem = optionsElements.find((e) => e.innerHTML.includes('GRA'));
-        fireEvent.keyDown(elem, { key: 'Enter', code: 13 });
-      });
-    });
+    // select region
+    await handleSelectOption('select-region-trigger', 'GRA');
 
     act(() => {
       fireEvent.click(screen.getByTestId('add-datastore-submit-button'));
@@ -208,23 +194,9 @@ describe('AddDatastore modal', () => {
       });
     });
 
-    // Select region
-    const regionTrigger = screen.getByTestId('select-region-trigger');
-    await waitFor(() => {
-      expect(regionTrigger).toBeInTheDocument();
-    });
-    act(() => {
-      fireEvent.focus(regionTrigger);
-      fireEvent.keyDown(regionTrigger, { key: 'Enter', code: 13 });
-    });
-    await waitFor(() => {
-      expect(regionTrigger).not.toHaveAttribute('data-state', 'closed');
-      act(() => {
-        const optionsElements = screen.getAllByRole('option');
-        const elem = optionsElements.find((e) => e.innerHTML.includes('GRA'));
-        fireEvent.keyDown(elem, { key: 'Enter', code: 13 });
-      });
-    });
+    // select region
+    await handleSelectOption('select-region-trigger', 'GRA');
+
     act(() => {
       fireEvent.click(screen.getByTestId('add-datastore-submit-button'));
     });

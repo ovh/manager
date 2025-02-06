@@ -1,12 +1,12 @@
 import { useTranslation } from 'react-i18next';
 import { useMemo } from 'react';
 import { useNotebookData } from '../../Notebook.context';
-import { OVH_TAGS_CONFIG } from '@/lib/notebookHelper';
 import { useEditLabel } from '@/hooks/api/ai/notebook/label/useEditLabel.hook';
 import { useToast } from '@/components/ui/use-toast';
 import { getAIApiErrorMessage } from '@/lib/apiHelper';
 import * as ai from '@/types/cloud/project/ai';
 import LabelsForm from '@/components/labels/LabelsForm.component';
+import { OVH_TAGS_CONFIG } from '@/configuration/label';
 
 const Labels = () => {
   const { notebook, notebookQuery, projectId } = useNotebookData();

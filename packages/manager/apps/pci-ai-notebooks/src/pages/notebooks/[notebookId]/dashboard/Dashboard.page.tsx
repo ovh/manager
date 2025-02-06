@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next';
 import {
-  ArrowRight,
   Atom,
   Link,
   RefreshCcwDot,
@@ -20,13 +19,13 @@ import { getAIApiErrorMessage } from '@/lib/apiHelper';
 import { useToast } from '@/components/ui/use-toast';
 import * as ai from '@/types/cloud/project/ai';
 import CliCodeBlock from '@/components/cli-code-block/CliCodeBlock.component';
-import OvhLink from '@/components/links/OvhLink.component';
 import LifeCycle from './_components/LifeCycle.component';
 import Labels from './_components/Labels.component';
 import AccessLink from './_components/AccessLink.component';
 import { VOLUMES_CONFIG } from '@/components/order/volumes/volume.const';
 import Guides from '@/components/guides/Guides.component';
 import { GuideSections } from '@/configuration/guide';
+import BillingSupport from '@/components/biling-support/BillingSupport.component';
 
 const Dashboard = () => {
   const { notebook, projectId } = useNotebookData();
@@ -126,28 +125,7 @@ const Dashboard = () => {
             </h4>
           </CardHeader>
           <CardContent>
-            <div className="flex flex-col gap-2">
-              <OvhLink
-                data-testid="dashboard-billing-link"
-                application="public-cloud"
-                path={`#/pci/projects/${projectId}/billing`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {t('billingLink')}
-                <ArrowRight className="size-4 inline ml-1" />
-              </OvhLink>
-              <OvhLink
-                data-testid="dashboard-support-link"
-                application="dedicated"
-                path={`#/support/tickets/new`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {t('supportLink')}
-                <ArrowRight className="size-4 inline ml-1" />
-              </OvhLink>
-            </div>
+            <BillingSupport />
           </CardContent>
           <div className="border-t my-2 pt-2 mx-6"></div>
           <h4 className="px-6 mb-4">

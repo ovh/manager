@@ -12,6 +12,7 @@ import Tokens, {
 import { Locale } from '@/hooks/useLocale';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedToken } from '@/__tests__/helpers/mocks/token';
+import { openButtonInMenu } from '@/__tests__/helpers/unitTestHelper';
 
 const mockedUsedNavigate = vi.fn();
 describe('Tokens page', () => {
@@ -81,53 +82,27 @@ describe('Tokens page', () => {
       expect(mockedUsedNavigate).toHaveBeenCalledWith('./add');
     });
   });
-});
-
-describe('Action table button', () => {
-  // Helper function to open a button in the table menu
-  const openButtonInMenu = async (buttonId: string) => {
-    act(() => {
-      const trigger = screen.getByTestId('token-action-trigger');
-      fireEvent.focus(trigger);
-      fireEvent.keyDown(trigger, {
-        key: 'Enter',
-        code: 'Enter',
-        keyCode: 13,
-        charCode: 13,
-      });
-    });
-    const actionButton = screen.getByTestId(buttonId);
-    await waitFor(() => {
-      expect(actionButton).toBeInTheDocument();
-    });
-    act(() => {
-      fireEvent.click(actionButton);
-    });
-  };
-  beforeEach(async () => {
+  it('open delete token modal', async () => {
     render(<Tokens />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
       expect(screen.getByText(mockedToken.spec.name)).toBeInTheDocument();
     });
-  });
-  afterEach(() => {
-    vi.clearAllMocks();
-  });
-
-  it('open delete token modal', async () => {
-    await openButtonInMenu('token-action-delete-button');
-    await waitFor(() => {
-      expect(mockedUsedNavigate).toHaveBeenCalledWith(
-        `./delete/${mockedToken.id}`,
-      );
-    });
+    await openButtonInMenu(
+      'token-action-trigger',
+      'token-action-delete-button',
+    );
+    expect(mockedUsedNavigate).toHaveBeenCalledWith(
+      `./delete/${mockedToken.id}`,
+    );
   });
   it('open renew token modal', async () => {
-    await openButtonInMenu('token-action-renew-button');
+    render(<Tokens />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(mockedUsedNavigate).toHaveBeenCalledWith(
-        `./renew/${mockedToken.id}`,
-      );
+      expect(screen.getByText(mockedToken.spec.name)).toBeInTheDocument();
     });
+    await openButtonInMenu('token-action-trigger', 'token-action-renew-button');
+    expect(mockedUsedNavigate).toHaveBeenCalledWith(
+      `./renew/${mockedToken.id}`,
+    );
   });
 });

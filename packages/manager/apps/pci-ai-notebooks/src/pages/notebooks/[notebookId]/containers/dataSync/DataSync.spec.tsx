@@ -21,6 +21,7 @@ import { useToast } from '@/components/ui/use-toast';
 import { apiErrorMock } from '@/__tests__/helpers/mocks/aiError';
 import { mockedDatastoreVolume } from '@/__tests__/helpers/mocks/volume';
 import DataSync from './DataSync.modal';
+import { handleSelectOption } from '@/__tests__/helpers/unitTestHelper';
 
 const mockedNotebookWithVol: ai.notebook.Notebook = {
   ...mockedNotebook,
@@ -41,7 +42,7 @@ const mockedNotebookWithVol: ai.notebook.Notebook = {
   },
 };
 
-describe('Data Sync Modal', () => {
+describe('Data Sync', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
     // Mock necessary hooks and dependencies
@@ -109,7 +110,7 @@ describe('Data Sync Modal', () => {
     vi.clearAllMocks();
   });
 
-  it('renders Fork modal', async () => {
+  it('renders DataSync modal', async () => {
     vi.mocked(useParams).mockReturnValue({ volumeId: 'volumeId' });
     render(<DataSync />, { wrapper: RouterWithQueryClientWrapper });
     expect(screen.getByTestId('datasync-modal')).toBeInTheDocument();
@@ -118,7 +119,7 @@ describe('Data Sync Modal', () => {
     ).toBeInTheDocument();
   });
 
-  it('renders Fork modal', async () => {
+  it('renders Data sync modal', async () => {
     vi.mocked(useParams).mockReturnValue({});
     render(<DataSync />, { wrapper: RouterWithQueryClientWrapper });
     expect(screen.getByTestId('datasync-modal')).toBeInTheDocument();
@@ -168,25 +169,11 @@ describe('Data Sync Modal', () => {
     expect(screen.getByTestId('datasync-modal')).toBeInTheDocument();
 
     // Select Push option
-    const actionTrigger = screen.getByTestId('select-datasync-trigger');
-    await waitFor(() => {
-      expect(actionTrigger).toBeInTheDocument();
-    });
-    act(() => {
-      fireEvent.focus(actionTrigger);
-      fireEvent.keyDown(actionTrigger, { key: 'Enter', code: 13 });
-    });
-    await waitFor(() => {
-      expect(actionTrigger).not.toHaveAttribute('data-state', 'closed');
+    await handleSelectOption(
+      'select-datasync-trigger',
+      ai.volume.DataSyncEnum.push,
+    );
 
-      act(() => {
-        const optionsElements = screen.getAllByRole('option');
-        const elem = optionsElements.find((e) =>
-          e.innerHTML.includes(ai.volume.DataSyncEnum.push),
-        );
-        fireEvent.keyDown(elem, { key: 'Enter', code: 13 });
-      });
-    });
     act(() => {
       fireEvent.click(screen.getByTestId('datasync-submit-button'));
     });

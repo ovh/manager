@@ -62,6 +62,16 @@ export interface Suggestions {
   unsecureHttp: boolean;
 }
 
+export interface JobSuggestions {
+  region: string;
+  ressources: {
+    nb: number;
+    flavor: string;
+  };
+  image: string;
+  unsecureHttp: boolean;
+}
+
 export interface NotebookOrderResult {
   region: ai.capabilities.Region;
   flavor: Flavor;
@@ -76,4 +86,16 @@ export interface NotebookOrderResult {
   };
   sshKey: string[];
   volumes: OrderVolumes[];
+}
+
+export interface JobOrderResult {
+  region: ai.capabilities.Region;
+  flavor: Flavor;
+  resourcesQuantity: number;
+  image: string;
+  jobName: string;
+  unsecureHttp: boolean;
+  sshKey: string[];
+  volumes: OrderVolumes[];
+  dockerCommand: string[];
 }

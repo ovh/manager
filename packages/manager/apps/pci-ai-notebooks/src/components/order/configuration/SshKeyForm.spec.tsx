@@ -12,6 +12,7 @@ import {
   mockedSshKey,
   mockedSshKeyBis,
 } from '@/__tests__/helpers/mocks/sshkey';
+import { handleSelectText } from '@/__tests__/helpers/unitTestHelper';
 
 describe('SSHKey Form component', () => {
   afterEach(() => {
@@ -51,26 +52,7 @@ describe('SSHKey Form component', () => {
         onChange={onChange}
       />,
     );
-
-    await waitFor(() => {
-      expect(screen.getByTestId('select-sshKey-trigger')).toBeInTheDocument();
-    });
-    const triggerSelect = screen.getByTestId('select-sshKey-trigger');
-
-    // Open select
-    act(() => {
-      fireEvent.focus(triggerSelect);
-      fireEvent.keyDown(triggerSelect, { key: 'Enter', code: 13 });
-    });
-
-    // Check if select has the options
-    await waitFor(() => {
-      expect(triggerSelect).not.toHaveAttribute('data-state', 'closed');
-
-      const optionToSelect = screen.getByText(mockedSshKeyBis.name);
-      fireEvent.keyDown(optionToSelect, { key: 'Enter', code: 13 });
-    });
-
+    await handleSelectText('select-sshKey-trigger', mockedSshKeyBis.name);
     act(() => {
       fireEvent.click(screen.getByTestId('ssh-key-add-button'));
     });

@@ -13,6 +13,7 @@ import { Locale } from '@/hooks/useLocale';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedCapabilitiesRegionGRA } from '@/__tests__/helpers/mocks/region';
 import { mockedDatastoreWithRegion } from '@/__tests__/helpers/mocks/datastore';
+import { openButtonInMenu } from '@/__tests__/helpers/unitTestHelper';
 
 const mockedUsedNavigate = vi.fn();
 describe('Datastore page', () => {
@@ -82,47 +83,20 @@ describe('Datastore page', () => {
       expect(mockedUsedNavigate).toHaveBeenCalledWith('./add');
     });
   });
-});
 
-describe('Action table button', () => {
-  // Helper function to open a button in the table menu
-  const openButtonInMenu = async (buttonId: string) => {
-    act(() => {
-      const trigger = screen.getByTestId('datastore-action-trigger');
-      fireEvent.focus(trigger);
-      fireEvent.keyDown(trigger, {
-        key: 'Enter',
-        code: 'Enter',
-        keyCode: 13,
-        charCode: 13,
-      });
-    });
-    const actionButton = screen.getByTestId(buttonId);
-    await waitFor(() => {
-      expect(actionButton).toBeInTheDocument();
-    });
-    act(() => {
-      fireEvent.click(actionButton);
-    });
-  };
-  beforeEach(async () => {
+  it('open delete datastore modal using action table button', async () => {
     render(<Datastore />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
       expect(
         screen.getByText(mockedDatastoreWithRegion.alias),
       ).toBeInTheDocument();
     });
-  });
-  afterEach(() => {
-    vi.clearAllMocks();
-  });
-
-  it('open delete datastore modal', async () => {
-    await openButtonInMenu('datastore-action-delete-button');
-    await waitFor(() => {
-      expect(mockedUsedNavigate).toHaveBeenCalledWith(
-        `./delete/${mockedDatastoreWithRegion.region}/${mockedDatastoreWithRegion.alias}`,
-      );
-    });
+    await openButtonInMenu(
+      'datastore-action-trigger',
+      'datastore-action-delete-button',
+    );
+    expect(mockedUsedNavigate).toHaveBeenCalledWith(
+      `./delete/${mockedDatastoreWithRegion.region}/${mockedDatastoreWithRegion.alias}`,
+    );
   });
 });
