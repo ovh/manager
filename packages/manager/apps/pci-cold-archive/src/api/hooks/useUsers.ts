@@ -3,6 +3,7 @@ import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
 import { useMutation, useQueries, useQuery } from '@tanstack/react-query';
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { TFunction } from 'i18next';
 import { isJson, paginateResults, sortResults } from '@/helpers';
 
 import queryClient from '@/queryClient';
@@ -114,6 +115,7 @@ export const usePaginatedUsers = (
         ),
         pagination,
       ),
+      refetch: () => invalidateGetUsersCache(projectId),
       error,
     }),
     [
@@ -204,20 +206,22 @@ type ImportPolicyProps = {
   onSuccess: () => void;
 };
 
-const readFileAsJSON = (file: File, t): Promise<string> => {
+const readFileAsJSON = (file: File, t: TFunction): Promise<string> => {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
-    reader.onloadend = () => {
+    reader.onerror = () => {
+      reject(
+        new Error(
+          t(
+            'pci_projects_project_storages_containers_users_import_read_page_error',
+          ),
+        ),
+      );
+    };
+
+    reader.onload = () => {
       if (isJson(reader.result.toString())) {
         resolve(reader.result.toString());
-      } else {
-        reject(
-          new Error(
-            t(
-              'pci_projects_project_storages_containers_users_import_read_page_error',
-            ),
-          ),
-        );
       }
     };
 

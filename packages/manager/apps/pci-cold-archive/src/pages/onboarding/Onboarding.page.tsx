@@ -29,20 +29,10 @@ export default function OnBoardingPage() {
   const urlProject = useProjectUrl('public-cloud');
   const navigate = useNavigate();
 
-  const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
   const { tracking } = useContext(ShellContext).shell;
-  const {
-    data: regions,
-    isPending: isRegionsPending,
-  } = useProductRegionsAvailability(
-    ovhSubsidiary,
-    'coldarchive.archive.hour.consumption',
-  );
+  const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
 
-  const { data: allArchives, isPending: isArchivesPending } = useArchives(
-    projectId,
-    regions?.[0],
-  );
+  const { data: allArchives, isPending } = useArchives(projectId);
 
   const guides = ONBOARDING_DOC_LINKS.reduce(
     (list, guide) => [
@@ -78,8 +68,6 @@ export default function OnBoardingPage() {
       ),
     },
   }));
-
-  const isPending = isArchivesPending || isRegionsPending;
 
   return (
     <RedirectionGuard
@@ -133,9 +121,8 @@ export default function OnBoardingPage() {
             <Card key={tile.id} href={tile.href} texts={tile.texts} />
           ))}
         </OnboardingLayout>
-        <Suspense>
-          <Outlet />
-        </Suspense>
+
+        <Outlet />
       </BaseLayout>
     </RedirectionGuard>
   );

@@ -13,16 +13,12 @@ import {
   OdsButton,
   OdsInput,
   OdsPopover,
-  OdsSpinner,
   OdsText,
 } from '@ovhcloud/ods-components/react';
-import { Suspense, useState } from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
-import {
-  invalidateGetUsersCache,
-  usePaginatedUsers,
-} from '@/api/hooks/useUsers';
+import { usePaginatedUsers } from '@/api/hooks/useUsers';
 import { useDatagridColumn } from './useDatagridColumn';
 
 export default function UsersListing() {
@@ -41,7 +37,7 @@ export default function UsersListing() {
 
   const columns = useDatagridColumn();
 
-  const { paginatedUsers, isPending } = usePaginatedUsers(
+  const { paginatedUsers, refetch, isLoading } = usePaginatedUsers(
     projectId,
     pagination,
     sorting,
@@ -54,8 +50,8 @@ export default function UsersListing() {
       pageSize: pagination.pageSize,
     });
     addFilter({
-      key: 'search',
-      value: searchField,
+      key: 'username',
+      value: searchField.trim(),
       comparator: FilterComparator.Includes,
       label: '',
     });
@@ -64,7 +60,9 @@ export default function UsersListing() {
 
   return (
     <div className="flex flex-col gap-8">
-      <Notifications />
+      <div>
+        <Notifications />
+      </div>
 
       <OdsText preset="heading-4">
         {t('pci_projects_project_storages_containers_users_title')}
@@ -93,7 +91,7 @@ export default function UsersListing() {
             variant="outline"
             color="primary"
             className="xs:mb-0.5 sm:mb-0"
-            onClick={() => invalidateGetUsersCache(projectId)}
+            onClick={refetch}
             icon="refresh"
             label=""
           />
@@ -146,22 +144,18 @@ export default function UsersListing() {
 
       <FilterList filters={filters} onRemoveFilter={removeFilter} />
 
-      {isPending ? (
-        <OdsSpinner size="md" />
-      ) : (
-        <Datagrid
-          columns={columns}
-          items={paginatedUsers?.rows || []}
-          totalItems={paginatedUsers?.totalRows || 0}
-          pagination={pagination}
-          onPaginationChange={setPagination}
-          sorting={sorting}
-          onSortChange={setSorting}
-        />
-      )}
-      <Suspense>
-        <Outlet />
-      </Suspense>
+      <Datagrid
+        columns={columns}
+        items={paginatedUsers?.rows || []}
+        totalItems={paginatedUsers?.totalRows || 0}
+        pagination={pagination}
+        onPaginationChange={setPagination}
+        sorting={sorting}
+        onSortChange={setSorting}
+        isLoading={isLoading}
+      />
+
+      <Outlet />
     </div>
   );
 }
