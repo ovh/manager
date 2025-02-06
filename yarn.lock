@@ -6004,7 +6004,7 @@
 
 "@ovhcloud/ods-components@^18.5.1":
   version "18.5.1"
-  resolved "https://registry.npmjs.org/@ovhcloud/ods-components/-/ods-components-18.5.1.tgz#2cd471856178f6f49c5056658626c27d8f86f020"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-18.5.1.tgz#2cd471856178f6f49c5056658626c27d8f86f020"
   integrity sha512-PrwAuXAVF8CwhdVQGOO59ZVVlmP05WBsLDmoorGkw57qb9rodggdUYFwocmAuntAf7bzMc//oi1oFf78znQkzA==
   dependencies:
     "@floating-ui/dom" "1.6.11"
@@ -6040,7 +6040,7 @@
 
 "@ovhcloud/ods-themes@^18.5.1":
   version "18.5.1"
-  resolved "https://registry.npmjs.org/@ovhcloud/ods-themes/-/ods-themes-18.5.1.tgz#392a5b3c380d1ea2b4195242a1a70dfdba0e0c6d"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-18.5.1.tgz#392a5b3c380d1ea2b4195242a1a70dfdba0e0c6d"
   integrity sha512-5LRplIJcchtgx8qBvs/XR0FkGxd1QM/xt6+otGJsJj/G8/0ZVT6gQGlJ6Pim/5yUfZCtXKFX79+56jS9fHXRVA==
 
 "@ovhcloud/reket-axios-client@^0.2.1":
@@ -27741,17 +27741,6 @@ vite@^5.0.0:
   optionalDependencies:
     fsevents "~2.3.3"
 
-vite@^5.2.13, vite@^5.4.12:
-  version "5.4.14"
-  resolved "https://registry.yarnpkg.com/vite/-/vite-5.4.14.tgz#ff8255edb02134df180dcfca1916c37a6abe8408"
-  integrity sha512-EK5cY7Q1D8JNhSaPKVK4pwBFvaTmZxEnoKXLG/U9gmdDcihQGNzFlgIvaxezFR4glP1LsuiedwMBqCXH3wZccA==
-  dependencies:
-    esbuild "^0.21.3"
-    postcss "^8.4.43"
-    rollup "^4.20.0"
-  optionalDependencies:
-    fsevents "~2.3.3"
-
 vite@^5.2.2:
   version "5.3.5"
   resolved "https://registry.yarnpkg.com/vite/-/vite-5.3.5.tgz#b847f846fb2b6cb6f6f4ed50a830186138cb83d8"
@@ -27771,6 +27760,17 @@ vite@^5.3.3:
     esbuild "^0.21.3"
     postcss "^8.4.40"
     rollup "^4.13.0"
+  optionalDependencies:
+    fsevents "~2.3.3"
+
+vite@^5.4.12:
+  version "5.4.14"
+  resolved "https://registry.yarnpkg.com/vite/-/vite-5.4.14.tgz#ff8255edb02134df180dcfca1916c37a6abe8408"
+  integrity sha512-EK5cY7Q1D8JNhSaPKVK4pwBFvaTmZxEnoKXLG/U9gmdDcihQGNzFlgIvaxezFR4glP1LsuiedwMBqCXH3wZccA==
+  dependencies:
+    esbuild "^0.21.3"
+    postcss "^8.4.43"
+    rollup "^4.20.0"
   optionalDependencies:
     fsevents "~2.3.3"
 
