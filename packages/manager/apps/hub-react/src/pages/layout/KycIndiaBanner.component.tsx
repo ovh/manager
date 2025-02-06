@@ -23,15 +23,24 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { useKyc } from '@/data/hooks/kyc/useKyc';
 import { KycProcedures, KycStatuses } from '@/types/kyc.type';
+import { useHubContext } from '@/pages/layout/context';
+import { KYC_INDIA_FEATURE } from '@/pages/layout/layout.constants';
 
 export default function KycIndiaBanner() {
   const { t } = useTranslation('hub/kyc');
   const {
     shell: { navigation },
   } = useContext(ShellContext);
+  const { availability, isLoading, isFreshCustomer } = useHubContext();
   const { trackClick, trackPage } = useOvhTracking();
   const { useKycStatus } = useKyc(KycProcedures.INDIA);
-  const { data } = useKycStatus();
+  const { data } = useKycStatus({
+    enabled: !(
+      isLoading ||
+      isFreshCustomer ||
+      availability?.[KYC_INDIA_FEATURE]
+    ),
+  });
 
   const shouldBeDisplayed = useMemo(
     () => data?.status === KycStatuses.REQUIRED,
