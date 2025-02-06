@@ -91,7 +91,7 @@ describe('Add Pattern modal', () => {
     });
   });
 
-  it('display error on delete pattenr error', async () => {
+  it('display error on delete pattern error', async () => {
     const errorMsg = {
       description: 'api error message',
       title: 'addPatternToastErrorTitle',
