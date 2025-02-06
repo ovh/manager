@@ -10,7 +10,6 @@ import {
   OdsPassword,
   OdsSelect,
   OdsText,
-  OdsTextarea,
 } from '@ovhcloud/ods-components/react';
 import {
   ODS_BUTTON_COLOR,
@@ -31,7 +30,6 @@ import { useGenerateUrl, usePlatform } from '@/hooks';
 import {
   AccountBodyParamsType,
   AccountType,
-  getZimbraPlatformAccountsQueryKey,
   postZimbraPlatformAccount,
   putZimbraPlatformAccount,
 } from '@/api/account';
@@ -45,6 +43,8 @@ import {
   EDIT_EMAIL_ACCOUNT,
 } from '@/tracking.constant';
 import { FormTypeInterface, useForm } from '@/hooks/useForm';
+import { ResourceStatus } from '@/api/api.type';
+import { getZimbraPlatformListQueryKey } from '@/api/platform';
 
 export default function EmailAccountSettings({
   domainList = [],
@@ -104,12 +104,6 @@ export default function EmailAccountSettings({
         validate: PASSWORD_REGEX,
       },
     },
-    ...(editEmailAccountId && {
-      description: {
-        value: '',
-        defaultValue: '',
-      },
-    }),
   });
 
   useEffect(() => {
@@ -120,7 +114,6 @@ export default function EmailAccountSettings({
         lastName,
         firstName,
         displayName,
-        description,
       } = editAccountDetail.currentState;
       const [account, domain] = email.split('@');
       newForm.account.value = account;
@@ -128,7 +121,6 @@ export default function EmailAccountSettings({
       newForm.lastName.value = lastName;
       newForm.firstName.value = firstName;
       newForm.displayName.value = displayName;
-      newForm.description.value = description;
       setForm((oldForm) => ({ ...oldForm, ...newForm }));
     }
   }, []);
@@ -184,7 +176,7 @@ export default function EmailAccountSettings({
     },
     onSettled: () => {
       queryClient.invalidateQueries({
-        queryKey: getZimbraPlatformAccountsQueryKey(platformId),
+        queryKey: getZimbraPlatformListQueryKey(),
       });
       onClose();
     },
@@ -276,11 +268,15 @@ export default function EmailAccountSettings({
             onOdsChange={(e) => handleDomainChange(e.detail.value)}
             data-testid="select-domain"
           >
-            {domainList?.map(({ currentState: domain }) => (
-              <option key={domain.name} value={domain.name}>
-                {domain.name}
-              </option>
-            ))}
+            {domainList
+              ?.filter(
+                (domain) => domain.resourceStatus === ResourceStatus.READY,
+              )
+              .map(({ currentState: domain }) => (
+                <option key={domain.name} value={domain.name}>
+                  {domain.name}
+                </option>
+              ))}
           </OdsSelect>
         </div>
         <OdsText
@@ -348,8 +344,7 @@ export default function EmailAccountSettings({
           ></OdsInput>
         </OdsFormField>
       </div>
-
-      <div className={'flex w-full md:w-1/2'}>
+      <div className="flex w-full md:w-1/2">
         <OdsFormField className="w-full md:pr-6">
           <label slot="label">
             {t('zimbra_account_add_input_displayName_label')}
@@ -370,32 +365,6 @@ export default function EmailAccountSettings({
           ></OdsInput>
         </OdsFormField>
       </div>
-
-      {editAccountDetail && (
-        <div className="flex">
-          <OdsFormField className="w-full">
-            <label slot="label">
-              {t('zimbra_account_add_input_description_label')}
-            </label>
-            <OdsTextarea
-              name="description"
-              placeholder={t(
-                'zimbra_account_add_input_description_placeholder',
-              )}
-              isResizable
-              value={form.description.value}
-              defaultValue={form.description.defaultValue}
-              onOdsBlur={({ target: { name, value } }) =>
-                setValue(name, value.toString(), true)
-              }
-              onOdsChange={({ detail: { name, value } }) => {
-                setValue(name, value);
-              }}
-            ></OdsTextarea>
-          </OdsFormField>
-        </div>
-      )}
-
       <div className="flex w-full md:w-1/2">
         <OdsFormField className="w-full md:pr-6">
           <label slot="label">
