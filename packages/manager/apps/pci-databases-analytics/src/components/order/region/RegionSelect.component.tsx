@@ -5,6 +5,8 @@ import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Region } from '@/types/orderFunnel';
 import { Badge } from '@/components/ui/badge';
 import { getTagVariant } from '@/lib/tagsHelper';
+import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
+import useHorizontalScroll from '@/hooks/useHorizontalScroll.hook';
 
 interface RegionsSelectProps {
   regions: Region[];
@@ -15,6 +17,7 @@ const RegionsSelect = React.forwardRef<HTMLInputElement, RegionsSelectProps>(
   ({ regions, value, onChange }, ref) => {
     const [selectedContinentIndex, setSelectedContinentIndex] = useState(0);
     const { t } = useTranslation('regions');
+    const scrollRef = useHorizontalScroll();
 
     const mappedRegions = regions.map((r) => ({
       name: r.name,
@@ -34,17 +37,20 @@ const RegionsSelect = React.forwardRef<HTMLInputElement, RegionsSelectProps>(
           defaultValue="0"
           onValueChange={(v) => setSelectedContinentIndex(+v)}
         >
-          <TabsList className="bg-white justify-start p-0 hidden md:flex">
-            {continents.map((continent, index) => (
-              <TabsTrigger
-                key={continent}
-                value={`${index}`}
-                className="-mb-[1px] px-4 text-lg text-primary-600 font-semibold h-full bg-white border border-primary-100 rounded-t-md rounded-b-none data-[state=active]:bg-background data-[state=active]:shadow-none data-[state=active]:bg-primary-50 data-[state=active]:border-b-primary-50 data-[state=active]:font-bold data-[state=active]:text-primary-800"
-              >
-                {continent}
-              </TabsTrigger>
-            ))}
-          </TabsList>
+          <ScrollArea data-testid="scrollbar" ref={scrollRef}>
+            <TabsList className="bg-white justify-start p-0 hidden md:flex overflow-y-hidden rounded-none rounded-t-md">
+              {continents.map((continent, index) => (
+                <TabsTrigger
+                  key={continent}
+                  value={`${index}`}
+                  className="-mb-[1px] px-4 text-lg text-primary-600 font-semibold h-full bg-white border border-primary-100 rounded-t-md rounded-b-none data-[state=active]:bg-background data-[state=active]:shadow-none data-[state=active]:bg-primary-50 data-[state=active]:border-b-primary-50 data-[state=active]:font-bold data-[state=active]:text-primary-800"
+                >
+                  {continent}
+                </TabsTrigger>
+              ))}
+            </TabsList>
+            <ScrollBar orientation="horizontal" />
+          </ScrollArea>
           <div className="p-4 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2 bg-primary-50 border border-primary-100 rounded-b-md">
             {mappedRegions
               .filter((r) =>
