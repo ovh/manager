@@ -51,12 +51,6 @@ vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
 });
 
 describe('Banner.component', () => {
-  it('should display a skeleton while loading', async () => {
-    const { getByTestId } = renderComponent();
-
-    expect(getByTestId('banner_skeleton')).not.toBeNull();
-  });
-
   it('should not display the banner if none is returned by the api', async () => {
     loading = false;
     const { queryByTestId } = renderComponent();

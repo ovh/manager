@@ -10,14 +10,16 @@ export default function TileSkeleton() {
           className="flex mb-2 gap-4 justify-between ovh-manager-hub-tile__header"
           data-testid="tile_skeleton_header"
         >
-          <OsdsSkeleton inline size={ODS_SKELETON_SIZE.sm} />
+          <OsdsSkeleton className="mb-8" inline size={ODS_SKELETON_SIZE.sm} />
           <OsdsSkeleton
+            className="mb-8 float-right"
             inline
             size={ODS_SKELETON_SIZE.xs}
-            className="float-right"
           />
         </div>
         <div data-testid="tile_skeleton_content">
+          <OsdsSkeleton inline randomized className="list-none list-item" />
+          <OsdsSkeleton inline randomized className="list-none list-item" />
           <OsdsSkeleton inline randomized className="list-none list-item" />
           <OsdsSkeleton inline randomized className="list-none list-item" />
         </div>
