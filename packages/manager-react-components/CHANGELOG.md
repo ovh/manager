@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.7.1...@ovh-ux/manager-react-components@2.8.0) (2025-02-06)
+
+### Bug Fixes
+
+- **menus.action:** apply width-max-content ([#15336](https://github.com/ovh/manager/issues/15336)) ([481c936](https://github.com/ovh/manager/commit/481c936c0ad9d3fec1251b3eaf9b40eff2ad4c6b))
+- **mrc:** not render TileBlock optional label ([#15261](https://github.com/ovh/manager/issues/15261)) ([bddfed2](https://github.com/ovh/manager/commit/bddfed2823508c5cba106cd6cac5bdca699056ff))
+
+### Features
+
+- **mrc:** add order config/summary component ([#15056](https://github.com/ovh/manager/issues/15056)) ([c198439](https://github.com/ovh/manager/commit/c198439fc5f2a3525a3dfd2734eec00f1f6a50bd))
+
 ## [2.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.7.0...@ovh-ux/manager-react-components@2.7.1) (2025-01-31)
 
 **Note:** Version bump only for package @ovh-ux/manager-react-components
