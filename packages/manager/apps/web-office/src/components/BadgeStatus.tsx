@@ -13,6 +13,8 @@ const getStatusColor = (status: string) => {
   switch (status) {
     case UserStateEnum.OK:
       return ODS_BADGE_COLOR.success;
+    case UserStateEnum.UNCONFIGURED:
+      return ODS_BADGE_COLOR.warning;
     case UserStateEnum.DELETING:
       return ODS_BADGE_COLOR.critical;
     default:
