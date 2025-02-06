@@ -1,16 +1,17 @@
 {
-  "title": "AI Notebooks",
-  "description1": "Vos notebooks opérationnels et entièrement gérés en quelques secondes.",
-  "description2": "Accélérez le démarrage de vos projets et modèles avec des notebooks.",
-  "description3": "Vous êtes data scientist ou développeur et souhaitez lancer un notebook en quelques minutes? Accédez rapidement à Jupyter ou VS Code et démarrez-le instantanément avec les ressources nécessaires, grâce à notre solution AI Notebooks. Pour développer votre activité, vous bénéficiez également d’un accès utilisateur sécurisé, de l’utilisation simplifiée de vos données et des plus grands frameworks d’intelligence artificielle (TensorFlow, PyTorch, Hugging Face ou encore Scikit-learn).",
-  "createNotebookButton": "Créer un Notebook",
+  "title": "AI Training",
+  "description1": "Entraîner des algorithmes de machine learning depuis des conteneurs Docker n'a jamais été aussi simple.",
+  "description2": "Fournissez les données à utiliser et l'image Docker à démarrer. Puis indiquez la quantité de ressources désirée (RAM, CPU, GPU).",
+  "description3": "Nous planifions alors automatiquement le job sur le matériel approprié et nous nous occupons de tout.",
+  "description4": "En poursuivant, vous autorisez le service AI Training d’OVHcloud à accéder au contenu de vos conteneurs d'objets au sein de votre projet. Cet accès sera exclusivement utilisé pour synchroniser vos données.",
+  "createJobButton": "Créer mon premier job",
   "cardTutotitle": "Tutoriels",
   "cardGuidetitle": "Guides",
   "cardLink": "En savoir plus",
-  "cardTuto1Description": "Documentation complète AI Notebooks",
-  "cardTuto1Content": "Retrouvez toute la documentation d'AI Notebooks.",
+  "cardTuto1Description": "Documentation complète AI Training",
+  "cardTuto1Content": "Retrouvez toute la documentation d'AI Training.",
   "cardTuto2Description": "Caractéristiques, capacités et limites",
-  "cardTuto2Content": "Découvrez ce qu'est un AI Notebook chez OVHcloud.",
-  "cardTuto3Description": "Démarrer avec AI Notebooks",
-  "cardTuto3Content": "Apprenez comment démarrer votre Notebook rapidement depuis votre espace client, ligne de commande ou API."
+  "cardTuto2Content": "Découvrez ce qu'est AI Training chez OVHcloud.",
+  "cardTuto3Description": "Démarrer avec AI Training",
+  "cardTuto3Content": "Apprenez comment démarrer votre Job rapidement depuis votre espace client, ligne de commande ou API."
 }

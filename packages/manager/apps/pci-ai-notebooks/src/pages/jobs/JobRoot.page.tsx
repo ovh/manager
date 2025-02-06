@@ -22,7 +22,9 @@ export const Loader = async ({ params }: JobsProps) => {
     queryFn: () => getJobs({ projectId }),
   });
   if (jobs.length === 0) {
-    return redirect(`/pci/projects/${projectId}/ai/notebooks/jobs/onboarding`);
+    return redirect(
+      `/pci/projects/${projectId}/ai/notebooks/training/onboarding`,
+    );
   }
   return null;
 };

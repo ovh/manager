@@ -66,7 +66,7 @@ export default [
           },
           {
             path: 'notebooks/onboarding',
-            id: 'onboarding',
+            id: 'notebooks.onboarding',
             ...lazyRouteConfig(() =>
               import('@/pages/notebooks/onboarding/Onboarding.page'),
             ),
@@ -354,13 +354,13 @@ export default [
               },
             ],
           },
-          // {
-          //   path: 'notebooks/onboarding',
-          //   id: 'onboarding',
-          //   ...lazyRouteConfig(() =>
-          //     import('@/pages/notebooks/onboarding/Onboarding.page'),
-          //   ),
-          // },
+          {
+            path: 'training/onboarding',
+            id: 'training.onboarding',
+            ...lazyRouteConfig(() =>
+              import('@/pages/jobs/onboarding/Onboarding.page'),
+            ),
+          },
           {
             path: 'training/new',
             id: 'create-job',

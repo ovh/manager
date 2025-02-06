@@ -5,7 +5,7 @@ import { useUserActivityContext } from '@/contexts/UserActivityContext';
 import { useGetNotebooks } from '@/hooks/api/ai/notebook/useGetNotebooks.hook';
 import Guides from '@/components/guides/Guides.component';
 import NotebooksList from './_components/NotebooksListTable.component';
-import { allGuidesSections } from '@/configuration/guide';
+import { notebookGuidesSections } from '@/configuration/guide';
 
 const Notebooks = () => {
   const { t } = useTranslation('pci-ai-notebooks/notebooks');
@@ -23,7 +23,7 @@ const Notebooks = () => {
         className="flex justify-between w-full items-center"
       >
         <h2>{t('title')}</h2>
-        <Guides section={allGuidesSections} />
+        <Guides section={notebookGuidesSections} />
       </div>
       <NotebooksList notebooks={notebooksQuery.data} />
       <Outlet />
