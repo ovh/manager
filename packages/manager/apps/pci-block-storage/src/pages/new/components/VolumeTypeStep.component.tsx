@@ -57,6 +57,19 @@ function VolumeTypeTile({
           </OsdsChip>
         )}
       </div>
+      {is3AZRegionSelected && (
+        <div className="py-3">
+          <OsdsText
+            level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+            color={ODS_THEME_COLOR_INTENT.text}
+          >
+            {t(
+              'pci_projects_project_storages_blocks_add_type_availability_zone',
+              { count: pricing.showAvailabilityZones ? 1 : 3 },
+            )}
+          </OsdsText>
+        </div>
+      )}
       <div className="py-3">
         <OsdsText
           level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
