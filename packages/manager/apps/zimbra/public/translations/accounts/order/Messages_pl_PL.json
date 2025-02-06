@@ -13,5 +13,6 @@
   "zimbra_account_order_cta_done": "Powrót",
   "zimbra_account_order_initiated_title": "Zamówienie kont Zimbra zostało rozpoczęte!",
   "zimbra_account_order_initiated_subtitle": "Jeśli nie jesteś w stanie sfinalizować zamówienia, uzupełnij je, klikając link:",
-  "zimbra_account_order_initiated_info": "Powiadomimy Cię e-mailem o dostępności Twoich kont."
+  "zimbra_account_order_initiated_info": "Powiadomimy Cię e-mailem o dostępności Twoich kont.",
+  "zimbra_account_order_initiated_link_label": "Link do zamówienia"
 }
