@@ -11,12 +11,12 @@
   "zimbra_domain_diagnostic_information_message_mx_ok": "A configuração da sua conta Zimbra na OVHcloud está funcional: os e-mails endereçados ao seu domínio são corretamente encaminhados para as suas caixas de correio Zimbra.<br/><br/>Não hesite em consultar regularmente os diagnósticos para assegurar o bom funcionamento do seu serviço.",
   "zimbra_domain_diagnostic_information_message_mx_error": "Constatamos uma configuração MX que não corresponde à esperada pelo seu serviço de e-mail.<br/><br/>Se não receber os seus e-mails nas caixas de destino, é favor proceder a uma reconfiguração da sua Zona DNS com as informações abaixo.",
   "zimbra_domain_diagnostic_information_message_mx_warning": "Constatamos uma configuração MX que não corresponde à esperada pelo seu serviço de e-mail.<br/><br/>Se nenhum e-mail chegar às suas caixas de email, proceda a uma reconfiguração.<br/><br/>Caso contrário, esta configuração é provavelmente voluntária. Contacte o administrador do seu serviço para obter mais informações.",
-  "zimbra_domain_diagnostic_information_banner_mx_error": "Erro de configuração MX, os seus emails provavelmente não chegarão às suas caixas de email",
+  "zimbra_domain_diagnostic_information_banner_mx_error": "Erro de configuração MX, os seus emails provavelmente não chegarão às suas caixas de email.",
   "zimbra_domain_diagnostic_information_banner_mx_warning": "Configuração MX anormal",
   "zimbra_domain_diagnostic_information_message_spf_ok": "O protocolo SPF está corretamente configurado no seu domínio.<br/><br/>O mecanismo SPF (Sender Policy Framework) é um mecanismo de autenticação de e-mail que permite aos titulares de domínios especificar os servidores que podem enviar e-mails em seu nome para ajudar a prevenir o roubo de identidade de e-mails e de spam.<br/><br/>A sua configuração atual autoriza o envio de e-mails através dos servidores Zimbra.",
-  "zimbra_domain_diagnostic_information_message_spf_error": "Constatamos uma configuração SPF que não corresponde à esperada pelo seu Serviço de e-mail.<br/><br/>O Sender Policy Framework (SPF) é um mecanismo de autenticação de correio eletrónico que permite aos titulares de domínios especificar os servidores que podem enviar e-mails em nome de um servidor, de modo a ajudar a impedir o furto de identidade de e-mails e o spam.<br/><br/>A sua configuração atual não autoriza os servidores Zimbra a enviar e-mails que utilizem o seu nome de domínio.<br/><br/>Preencha a Zona DNS do seu domínio com as informações abaixo.",
+  "zimbra_domain_diagnostic_information_message_spf_error": "Constatamos uma configuração SPF que não corresponde à esperada pelo seu Serviço de e-mail.<br/><br/>O mecanismo SPF (Sender Policy Framework) é um mecanismo de autenticação de e-mail que permite aos titulares de domínios especificar os servidores que podem enviar e-mails em seu nome para ajudar a prevenir o roubo de identidade de e-mails e de spam.<br/><br/>A sua configuração atual não autoriza os servidores Zimbra a enviar e-mails que utilizem o seu nome de domínio.<br/><br/>Preencha a Zona DNS do seu domínio com as informações abaixo.",
   "zimbra_domain_diagnostic_information_message_spf_warning": "Não detetamos qualquer configuração SPF no seu domínio.",
-  "zimbra_domain_diagnostic_information_banner_spf_error": "Erro de configuração SPF, os seus e-mails emitidos podem ser recusados pelos destinatários.",
+  "zimbra_domain_diagnostic_information_banner_spf_error": "Erro de configuração SPF: os destinatários poderão recusar os seus e-mails emitidos.",
   "zimbra_domain_diagnostic_information_banner_spf_warning": "Configuração SPF anormal",
   "zimbra_domain_diagnostic_type": "Tipo :",
   "zimbra_domain_diagnostic_access_guide": "Aceder ao guia",
@@ -27,5 +27,11 @@
   "zimbra_domain_diagnostic_field_priority": "Prioridade :",
   "zimbra_domain_diagnostic_field_weight": "Peso :",
   "zimbra_domain_diagnostic_field_port": "Porta :",
-  "zimbra_domain_diagnostic_field_target": "Destino :"
+  "zimbra_domain_diagnostic_field_target": "Destino :",
+  "zimbra_domain_diagnostic_information_message_dkim_ok": "A configuração da sua conta Zimbra na OVHcloud está funcional: os e-mails endereçados ao seu domínio são corretamente encaminhados para as suas caixas de correio Zimbra.<br/><br/>Não hesite em consultar regularmente os diagnósticos para assegurar o bom funcionamento do seu serviço.",
+  "zimbra_domain_diagnostic_information_message_dkim_error": "Detetámos uma configuração DKIM que não corresponde à configuração esperada para o seu serviço de mensagens.<br/><br/>Se encontrar dificuldades em entregar e-mails aos seus destinatários, siga as instruções abaixo para reconfigurar a sua Zona DNS com as informações corretas.",
+  "zimbra_domain_diagnostic_information_message_dkim_warning": "Detetámos uma configuração DKIM que não corresponde à configuração esperada para o seu serviço de mensagens.<br/><br/>Se encontrar dificuldades em entregar e-mails aos seus destinatários, siga as instruções abaixo para reconfigurar a sua Zona DNS com as informações corretas.",
+  "zimbra_domain_diagnostic_information_banner_dkim_error": "Erro de configuração DKIM, pode encontrar dificuldades em entregar os seus e-mails aos destinatários.",
+  "zimbra_domain_diagnostic_information_banner_dkim_warning": "Configuração DKIM anormal",
+  "zimbra_domain_diagnostic_field_subdomain": "Subdomínio:"
 }
