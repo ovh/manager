@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { IpTypeEnum } from '@/data/api';
 import { useGetIpVmac, useGetIpdetails } from '@/data/hooks/ip';
-import { FailoverRoutedServiceType, getTypeByServiceName } from '@/utils';
+import { IPRoutedServiceType, getTypeByServiceName } from '@/utils';
 import { ipFormatter } from '@/utils/ipFormatter';
 import { SkeletonCell } from '../SkeletonCell/SkeletonCell';
 import { ListingContext } from '@/pages/listing/listingContext';
@@ -34,9 +34,8 @@ export const IpVmac = ({ ip }: IpDdosProps) => {
     !isIpDetailsLoading &&
     (ipDetails?.type === IpTypeEnum.ADDITIONAL ||
       ipDetails?.type === IpTypeEnum.DEDICATED) &&
-    !!ipDetails.routedTo?.serviceName &&
-    getTypeByServiceName({ serviceName: ipDetails.routedTo.serviceName }) ===
-      FailoverRoutedServiceType.DEDICATED;
+    getTypeByServiceName({ serviceName: ipDetails?.routedTo?.serviceName }) ===
+      IPRoutedServiceType.DEDICATED;
 
   // get vmacs if ip is routed to a dedicated server
   const { vmacs, isLoading, error } = useGetIpVmac({
