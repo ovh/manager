@@ -14,7 +14,7 @@ interface VolumesFormProps {
 
 const VolumeForm = React.forwardRef<HTMLInputElement, VolumesFormProps>(
   ({ configuredVolumesList, selectedVolumesList, onChange }, ref) => {
-    const { t } = useTranslation('pci-ai-notebooks/components/volumes');
+    const { t } = useTranslation('components/volumes');
 
     return (
       <>

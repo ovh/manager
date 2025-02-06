@@ -18,6 +18,7 @@ import DataTable from '@/components/data-table';
 
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
 import JobStatusBadge from './JobStatusBadge.component';
+import { isRunningJob, isStoppedJob } from '@/lib/statusHelper';
 
 interface JobsListColumnsProps {
   onRestartClicked: (job: ai.job.Job) => void;
@@ -111,12 +112,12 @@ export const getColumns = ({
       id: 'actions',
       enableGlobalFilter: false,
       cell: ({ row }) => {
-        // const job = row.original;
+        const job = row.original;
         return (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button
-                data-testid="notebooks-action-trigger"
+                data-testid="jobs-action-trigger"
                 variant="menu"
                 size="menu"
               >
@@ -130,18 +131,14 @@ export const getColumns = ({
             >
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
               <DropdownMenuItem
-                data-testid="notebook-action-manage-button"
+                data-testid="job-action-manage-button"
                 variant="primary"
                 onClick={() => navigate(`./${row.original.id}`)}
               >
                 {t('tableActionManage')}
               </DropdownMenuItem>
               <DropdownMenuItem
-                data-testid="notebook-action-start-button"
-                // disabled={
-                //   isRunningNotebook(notebook.status.state) ||
-                //   isDeletingNotebook(notebook.status.state)
-                // }
+                data-testid="job-action-restart-button"
                 variant="primary"
                 onClick={() => {
                   onRestartClicked(row.original);
@@ -150,11 +147,8 @@ export const getColumns = ({
                 {t('tableActionRestart')}
               </DropdownMenuItem>
               <DropdownMenuItem
-                data-testid="notebook-action-stop-button"
-                // disabled={
-                //   !isRunningNotebook(notebook.status.state) ||
-                //   isDeletingNotebook(notebook.status.state)
-                // }
+                data-testid="job-action-stop-button"
+                disabled={isRunningJob(job.status.state)}
                 variant="primary"
                 onClick={() => {
                   onStopClicked(row.original);
@@ -164,12 +158,9 @@ export const getColumns = ({
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem
-                data-testid="notebook-action-delete-button"
+                data-testid="job-action-delete-button"
                 variant="destructive"
-                // disabled={
-                //   !isStoppedNotebook(notebook.status.state) ||
-                //   isDeletingNotebook(notebook.status.state)
-                // }
+                disabled={!isStoppedJob(job.status.state)}
                 onClick={() => {
                   onDeleteClicked(row.original);
                 }}

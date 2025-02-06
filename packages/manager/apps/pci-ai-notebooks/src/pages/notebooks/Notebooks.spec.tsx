@@ -1,16 +1,11 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import {
-  act,
-  fireEvent,
-  render,
-  screen,
-  waitFor,
-} from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { Locale } from '@/hooks/useLocale';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedUser } from '@/__tests__/helpers/mocks/user';
 import { mockedNotebook } from '@/__tests__/helpers/mocks/notebook';
 import Notebooks from './Notebooks.page';
+import { openButtonInMenu } from '@/__tests__/helpers/unitTestHelper';
 
 const mockedUsedNavigate = vi.fn();
 describe('Notebooks List page', () => {
@@ -82,64 +77,52 @@ describe('Notebooks List page', () => {
       expect(screen.getByText(mockedNotebook.spec.name)).toBeInTheDocument();
     });
   });
-});
 
-describe('Action table button', () => {
-  // Helper function to open a button in the table menu
-  const openButtonInMenu = async (buttonId: string) => {
-    act(() => {
-      const trigger = screen.getByTestId('notebooks-action-trigger');
-      fireEvent.focus(trigger);
-      fireEvent.keyDown(trigger, {
-        key: 'Enter',
-        code: 'Enter',
-        keyCode: 13,
-        charCode: 13,
-      });
-    });
-    const actionButton = screen.getByTestId(buttonId);
-    await waitFor(() => {
-      expect(actionButton).toBeInTheDocument();
-    });
-    act(() => {
-      fireEvent.click(actionButton);
-    });
-  };
-  beforeEach(async () => {
+  it('open start notebook modal from action table button', async () => {
     render(<Notebooks />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
       expect(screen.getByText(mockedNotebook.id)).toBeInTheDocument();
     });
-  });
-  afterEach(() => {
-    vi.clearAllMocks();
-  });
-
-  it('open start notebook modal', async () => {
-    await openButtonInMenu('notebook-action-start-button');
-    await waitFor(() => {
-      expect(mockedUsedNavigate).toHaveBeenCalledWith('./start/notebookId');
-    });
+    await openButtonInMenu(
+      'notebooks-action-trigger',
+      'notebook-action-start-button',
+    );
+    expect(mockedUsedNavigate).toHaveBeenCalledWith('./start/notebookId');
   });
 
-  it('open stop notebook modal', async () => {
-    await openButtonInMenu('notebook-action-stop-button');
+  it('open stop notebook modal from action table button', async () => {
+    render(<Notebooks />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(mockedUsedNavigate).toHaveBeenCalledWith('./stop/notebookId');
+      expect(screen.getByText(mockedNotebook.id)).toBeInTheDocument();
     });
+    await openButtonInMenu(
+      'notebooks-action-trigger',
+      'notebook-action-stop-button',
+    );
+    expect(mockedUsedNavigate).toHaveBeenCalledWith('./stop/notebookId');
   });
 
-  it('open delete notebook Modal', async () => {
-    await openButtonInMenu('notebook-action-delete-button');
+  it('open delete notebook Modal from action table button', async () => {
+    render(<Notebooks />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(mockedUsedNavigate).toHaveBeenCalledWith('./delete/notebookId');
+      expect(screen.getByText(mockedNotebook.id)).toBeInTheDocument();
     });
+    await openButtonInMenu(
+      'notebooks-action-trigger',
+      'notebook-action-delete-button',
+    );
+    expect(mockedUsedNavigate).toHaveBeenCalledWith('./delete/notebookId');
   });
 
-  it('go to manage notebook', async () => {
-    await openButtonInMenu('notebook-action-manage-button');
+  it('go to manage notebook from action table button', async () => {
+    render(<Notebooks />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(mockedUsedNavigate).toHaveBeenCalledWith('./notebookId');
+      expect(screen.getByText(mockedNotebook.id)).toBeInTheDocument();
     });
+    await openButtonInMenu(
+      'notebooks-action-trigger',
+      'notebook-action-manage-button',
+    );
+    expect(mockedUsedNavigate).toHaveBeenCalledWith('./notebookId');
   });
 });

@@ -30,7 +30,7 @@ const VersionSelector = ({
   onChange,
 }: VersionSelectorProps) => {
   const [open, setOpen] = useState(false);
-  const { t } = useTranslation('pci-ai-notebooks/components/framework');
+  const { t } = useTranslation('components/framework');
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <div data-testid="fmk-tile-version-container" className="hidden">

@@ -12,7 +12,7 @@ export interface UseVolumesFormProps {
 export const useVolumesForm = ({
   selectedVolumesList,
 }: UseVolumesFormProps) => {
-  const { t } = useTranslation('pci-ai-notebooks/components/volumes');
+  const { t } = useTranslation('components/volumes');
 
   const gitBranchRules = z.string().optional();
 

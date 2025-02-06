@@ -2,7 +2,6 @@ import { renderHook, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import * as notebookApi from '@/data/api/ai/notebook/logs/logs.api';
-import { mockedNotebook } from '@/__tests__/helpers/mocks/notebook';
 import { mockedLogs } from '@/__tests__/helpers/mocks/logs';
 import { useGetLogs } from './useGetLogs.hook';
 
@@ -10,7 +9,7 @@ vi.mock('@/data/api/ai/notebook/logs/logs.api', () => ({
   getLogs: vi.fn(),
 }));
 
-describe('useGetNotebook', () => {
+describe('useGetLogs', () => {
   it('should return Logs', async () => {
     const projectId = 'projectId';
     const notebookId = 'notebookId';

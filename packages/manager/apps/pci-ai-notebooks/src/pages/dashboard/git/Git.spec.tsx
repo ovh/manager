@@ -11,6 +11,7 @@ import { Locale } from '@/hooks/useLocale';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedCapabilitiesRegionGRA } from '@/__tests__/helpers/mocks/region';
 import { mockedGitWithRegion } from '@/__tests__/helpers/mocks/datastore';
+import { openButtonInMenu } from '@/__tests__/helpers/unitTestHelper';
 
 const mockedUsedNavigate = vi.fn();
 describe('Git page', () => {
@@ -77,45 +78,14 @@ describe('Git page', () => {
       expect(mockedUsedNavigate).toHaveBeenCalledWith('./add');
     });
   });
-});
-
-describe('Action table button', () => {
-  // Helper function to open a button in the table menu
-  const openButtonInMenu = async (buttonId: string) => {
-    act(() => {
-      const trigger = screen.getByTestId('git-action-trigger');
-      fireEvent.focus(trigger);
-      fireEvent.keyDown(trigger, {
-        key: 'Enter',
-        code: 'Enter',
-        keyCode: 13,
-        charCode: 13,
-      });
-    });
-    const actionButton = screen.getByTestId(buttonId);
-    await waitFor(() => {
-      expect(actionButton).toBeInTheDocument();
-    });
-    act(() => {
-      fireEvent.click(actionButton);
-    });
-  };
-  beforeEach(async () => {
+  it('open delete git modal using action table menu', async () => {
     render(<Git />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
       expect(screen.getByText(mockedGitWithRegion.alias)).toBeInTheDocument();
     });
-  });
-  afterEach(() => {
-    vi.clearAllMocks();
-  });
-
-  it('open delete git modal', async () => {
-    await openButtonInMenu('git-action-delete-button');
-    await waitFor(() => {
-      expect(mockedUsedNavigate).toHaveBeenCalledWith(
-        `./delete/${mockedGitWithRegion.region}/${mockedGitWithRegion.alias}`,
-      );
-    });
+    await openButtonInMenu('git-action-trigger', 'git-action-delete-button');
+    expect(mockedUsedNavigate).toHaveBeenCalledWith(
+      `./delete/${mockedGitWithRegion.region}/${mockedGitWithRegion.alias}`,
+    );
   });
 });

@@ -1,5 +1,6 @@
 export const POLLING = {
   JOBS: 30_000,
+  JOB: 30_000,
   APPS: 30_000,
   NOTEBOOKS: 30_000,
   NOTEBOOK: 30_000,

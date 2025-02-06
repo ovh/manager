@@ -18,6 +18,7 @@ import {
 import { useToast } from '@/components/ui/use-toast';
 import { mockedDatastoreVolume } from '@/__tests__/helpers/mocks/volume';
 import Containers, { breadcrumb as Breadcrumb } from './Containers.page';
+import { openButtonInMenu } from '@/__tests__/helpers/unitTestHelper';
 
 const mockedNotebookWithVol: ai.notebook.Notebook = {
   ...mockedNotebook,
@@ -107,13 +108,6 @@ describe('Containers page', () => {
     });
   });
 
-  it('renders Public Git page', async () => {
-    render(<Containers />, { wrapper: RouterWithQueryClientWrapper });
-    expect(
-      screen.getByText(mockedDatastoreVolume.mountPath),
-    ).toBeInTheDocument();
-  });
-
   it('renders and trigger copy mountpath in clipboard', async () => {
     Object.assign(window.navigator, {
       clipboard: {
@@ -148,45 +142,18 @@ describe('Containers page', () => {
       expect(mockedUsedNavigate).toHaveBeenCalledWith('./data-sync');
     });
   });
-});
 
-describe('Action table button', () => {
-  // Helper function to open a button in the table menu
-  const openButtonInMenu = async (buttonId: string) => {
-    act(() => {
-      const trigger = screen.getByTestId('container-action-trigger');
-      fireEvent.focus(trigger);
-      fireEvent.keyDown(trigger, {
-        key: 'Enter',
-        code: 'Enter',
-        keyCode: 13,
-        charCode: 13,
-      });
-    });
-    const actionButton = screen.getByTestId(buttonId);
-    await waitFor(() => {
-      expect(actionButton).toBeInTheDocument();
-    });
-    act(() => {
-      fireEvent.click(actionButton);
-    });
-  };
-  beforeEach(async () => {
+  it('open data sync modal from action table button', async () => {
     render(<Containers />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
       expect(
         screen.getByText(mockedDatastoreVolume.mountPath),
       ).toBeInTheDocument();
     });
-  });
-  afterEach(() => {
-    vi.clearAllMocks();
-  });
-
-  it('open data sync modal', async () => {
-    await openButtonInMenu('container-action-data-sync-button');
-    await waitFor(() => {
-      expect(mockedUsedNavigate).toHaveBeenCalledWith('./data-sync/volumeId');
-    });
+    await openButtonInMenu(
+      'container-action-trigger',
+      'container-action-data-sync-button',
+    );
+    expect(mockedUsedNavigate).toHaveBeenCalledWith('./data-sync/volumeId');
   });
 });

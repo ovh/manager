@@ -20,6 +20,7 @@ export default defineConfig({
         'src/index.tsx',
         'src/query.client.ts',
         'src/components/ui',
+        'src/components/data-table/translations',
         'src/configuration',
         'src/**/*constants.ts',
         'src/main.tsx',

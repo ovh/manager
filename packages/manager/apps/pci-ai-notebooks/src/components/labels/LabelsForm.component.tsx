@@ -27,7 +27,7 @@ interface LabelsFormProps {
 
 const LabelsForm = React.forwardRef<HTMLInputElement, LabelsFormProps>(
   ({ configuredLabels, onAdd, onDelete, onChange, disabled }, ref) => {
-    const { t } = useTranslation('pci-ai-notebooks/components/configuration');
+    const { t } = useTranslation('components/configuration');
 
     const { form } = useLabelForm({
       configuredLabel: configuredLabels.map((label) => label.name),

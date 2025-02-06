@@ -7,6 +7,7 @@ import { Volume } from '@/types/cloud/project/ai/volume/Volume';
 export interface JobSpec {
   /** Job command */
   command?: string[];
+  deletionRequested?: boolean;
   /** Port use as the default one to access http service inside job */
   defaultHttpPort?: number;
   /** List of environment variable to be set inside job */

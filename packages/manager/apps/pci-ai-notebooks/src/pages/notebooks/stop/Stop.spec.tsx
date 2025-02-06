@@ -5,7 +5,7 @@ import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/Route
 import { mockedNotebook } from '@/__tests__/helpers/mocks/notebook';
 import StopNotebookModal from './Stop.modal';
 
-describe('Notebooks list delete modal', () => {
+describe('Notebooks list stop modal', () => {
   beforeEach(() => {
     vi.mock('@/data/api/ai/notebook/notebook.api', () => ({
       getNotebook: vi.fn(() => mockedNotebook),
@@ -16,7 +16,7 @@ describe('Notebooks list delete modal', () => {
     vi.clearAllMocks();
   });
 
-  it('should render delete modal', async () => {
+  it('should render stop modal', async () => {
     render(<StopNotebookModal />, {
       wrapper: RouterWithQueryClientWrapper,
     });

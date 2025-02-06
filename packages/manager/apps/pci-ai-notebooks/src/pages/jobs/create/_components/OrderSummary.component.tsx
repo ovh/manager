@@ -149,7 +149,7 @@ const ImageDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
     <div className="flex flex-col gap-2">
       <div className="flex items-center gap-2">
         <Button
-          data-testid="editor-section-button"
+          data-testid="image-section-button"
           variant={'link'}
           size={'link'}
           type="button"
@@ -161,13 +161,6 @@ const ImageDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
         {order.image && (
           <>
             <span>{order.image}</span>
-            {/* {order.editor.logoUrl && (
-              <img
-                className="block w-6 h-6"
-                src={order.editor.logoUrl}
-                alt={order.editor.name}
-              />
-            )} */}
           </>
         )}
       </div>

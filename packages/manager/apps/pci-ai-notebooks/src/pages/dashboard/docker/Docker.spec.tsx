@@ -13,6 +13,7 @@ import { Locale } from '@/hooks/useLocale';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedRegistry } from '@/__tests__/helpers/mocks/registry';
 import { mockedCapabilitiesRegionGRA } from '@/__tests__/helpers/mocks/region';
+import { openButtonInMenu } from '@/__tests__/helpers/unitTestHelper';
 
 const mockedUsedNavigate = vi.fn();
 describe('Docker page', () => {
@@ -87,45 +88,18 @@ describe('Docker page', () => {
       expect(mockedUsedNavigate).toHaveBeenCalledWith('./add');
     });
   });
-});
 
-describe('Action table button', () => {
-  // Helper function to open a button in the table menu
-  const openButtonInMenu = async (buttonId: string) => {
-    act(() => {
-      const trigger = screen.getByTestId('docker-action-trigger');
-      fireEvent.focus(trigger);
-      fireEvent.keyDown(trigger, {
-        key: 'Enter',
-        code: 'Enter',
-        keyCode: 13,
-        charCode: 13,
-      });
-    });
-    const actionButton = screen.getByTestId(buttonId);
-    await waitFor(() => {
-      expect(actionButton).toBeInTheDocument();
-    });
-    act(() => {
-      fireEvent.click(actionButton);
-    });
-  };
-  beforeEach(async () => {
+  it('open delete docker modal using action table menu', async () => {
     render(<Docker />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
       expect(screen.getByText(mockedRegistry.id)).toBeInTheDocument();
     });
-  });
-  afterEach(() => {
-    vi.clearAllMocks();
-  });
-
-  it('open delete docker modal', async () => {
-    await openButtonInMenu('docker-action-delete-button');
-    await waitFor(() => {
-      expect(mockedUsedNavigate).toHaveBeenCalledWith(
-        `./delete/${mockedRegistry.id}`,
-      );
-    });
+    await openButtonInMenu(
+      'docker-action-trigger',
+      'docker-action-delete-button',
+    );
+    expect(mockedUsedNavigate).toHaveBeenCalledWith(
+      `./delete/${mockedRegistry.id}`,
+    );
   });
 });
