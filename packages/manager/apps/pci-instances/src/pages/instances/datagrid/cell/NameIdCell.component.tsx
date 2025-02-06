@@ -2,9 +2,9 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { OsdsLink } from '@ovhcloud/ods-components/react';
 import { FC } from 'react';
 import { useHref } from 'react-router-dom';
+import { TInstance } from '@ovh-ux/manager-pci-common';
 import { BaseTextCell } from '@/components/datagrid/cell/TextCell.component';
 import { LoadingCell } from '@/components/datagrid/cell/LoadingCell.component';
-import { TInstance } from '@/data/hooks/instance/useInstances';
 
 type TNameIdCellProps = {
   instance: TInstance;

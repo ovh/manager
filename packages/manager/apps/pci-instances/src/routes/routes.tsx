@@ -62,7 +62,9 @@ const routes: RouteObject[] = [
     children: [
       {
         path: '',
-        ...lazyRouteConfig(() => import('@/pages/instances/Instances.page')),
+        ...lazyRouteConfig(() =>
+          import('@/pages/instances/InstancesSimple.page'),
+        ),
         children: [...instanceActionLegacyRoutes, ...instanceActionRoutes],
       },
       {
