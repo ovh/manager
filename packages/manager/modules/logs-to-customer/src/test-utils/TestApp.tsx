@@ -46,6 +46,12 @@ const shellContext = {
     tracking: {
       trackClick: vi.fn(),
     },
+    environment: {
+      getEnvironment: () => ({
+        getRegion: vi.fn(() => 'EU'),
+        getUser: vi.fn(() => ({ ovhSubsidiary: 'FR' })),
+      }),
+    },
   },
   useNavigation: () => ({
     navigateTo: vi.fn(),
