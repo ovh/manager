@@ -1839,24 +1839,17 @@ export default class PciInstancesAddController {
       return false;
     }
 
-    const isWindowsDistribution = Boolean(distribution.match(/^windows/i));
-    const hasWindowsServerImages =
-      isWindowsDistribution &&
-      images.some(({ name }) => name.match(/20(16|19|22)/));
-    const isLicensedFlavor = Boolean(
-      this.catalog.addons
-        .find(({ planCode }) => planCode === flavorGroup?.planCodes.hourly)
-        ?.addonFamilies.some(({ addons }) =>
-          addons.includes(WINDOWS_GEN_3_ADDON_PLANCODE),
-        ),
-    );
-    const is1AZRegion = !this.isLocalZone();
+    const flavor = flavorGroup.getFlavorByOsType('windows');
 
     return (
-      isWindowsDistribution &&
-      hasWindowsServerImages &&
-      isLicensedFlavor &&
-      is1AZRegion
+      flavor &&
+      Boolean(distribution.match(/^windows/i)) &&
+      images.some(({ name }) => name.match(/20(16|19|22)/)) &&
+      this.catalog.addons
+        .find(({ planCode }) => planCode === flavor.planCodes.hourly)
+        ?.addonFamilies.some(({ addons }) =>
+          addons.includes(WINDOWS_GEN_3_ADDON_PLANCODE),
+        )
     );
   }
 
