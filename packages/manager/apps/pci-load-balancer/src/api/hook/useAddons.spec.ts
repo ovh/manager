@@ -22,16 +22,19 @@ describe('useGetAddons', () => {
       addons: [
         {
           planCode: 'octavia-loadbalancer.loadbalancer-s.hour.consumption',
+          product: 'publiccloud-octavia-loadbalancer-loadbalancer-s',
           pricings: [{ price: 10 }],
           blobs: { technical: { name: 'small-addon' } },
         },
         {
           planCode: 'octavia-loadbalancer.loadbalancer-m.hour.consumption',
+          product: 'publiccloud-octavia-loadbalancer-loadbalancer-m',
           pricings: [{ price: 20 }],
           blobs: { technical: { name: 'medium-addon' } },
         },
         {
           planCode: 'octavia-loadbalancer.loadbalancer-l.hour.consumption',
+          product: 'publiccloud-octavia-loadbalancer-loadbalancer-l',
           pricings: [{ price: 30 }],
           blobs: { technical: { name: 'large-addon' } },
         },
@@ -69,11 +72,13 @@ describe('useGetAddons', () => {
       addons: [
         {
           planCode: 'octavia-loadbalancer.loadbalancer-s.hour.consumption',
+          product: 'publiccloud-octavia-loadbalancer-loadbalancer-s',
           pricings: [{ price: 10 }],
           blobs: { technical: { name: 'small-addon' } },
         },
         {
           planCode: 'some-other-plan-code',
+          product: 'publiccloud-other-product',
           pricings: [{ price: 15 }],
           blobs: { technical: { name: 'other-addon' } },
         },
