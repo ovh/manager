@@ -38,7 +38,6 @@
     "react-i18next": "^14.0.5",
     "react-router-dom": "^6.24.1",
     "react-use": "^17.5.0",
-    "uuid": "^10.0.0",
     "zustand": "^4.5.5"
   },
   "devDependencies": {

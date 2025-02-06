@@ -1,7 +1,9 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
-import { useMemo } from 'react';
+import { useContext, useMemo } from 'react';
 import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
+import { useProductRegionsAvailability } from '@ovh-ux/manager-pci-common';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   addUserToContainer,
   deleteArchiveContainer,
@@ -20,12 +22,30 @@ const getQueryKeyArchive = (projectId: string, region: string) => [
   'coldArchive',
 ];
 
-export const useArchives = (projectId: string, region?: string) => {
+export const useArchives = (projectId: string) => {
+  const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
+
+  const { data: regions } = useProductRegionsAvailability(
+    ovhSubsidiary,
+    'coldarchive.archive.hour.consumption',
+  );
+
+  const region = regions?.[0];
+
   return useQuery({
     queryKey: getQueryKeyArchive(projectId, region),
     queryFn: () => getArchiveContainers(projectId, region),
     enabled: !!projectId && !!region,
   });
+};
+
+export const useGetArchiveByName = (projectId: string, archiveName: string) => {
+  const { data, isPending } = useArchives(projectId);
+
+  return useMemo(() => data?.find((a) => a.name === archiveName), [
+    data,
+    isPending,
+  ]);
 };
 
 export const usePaginatedArchive = (
@@ -42,7 +62,7 @@ export const usePaginatedArchive = (
     isPending,
     isSuccess,
     isFetching,
-  } = useArchives(projectId, region);
+  } = useArchives(projectId);
 
   return useMemo(
     () => ({
@@ -73,21 +93,27 @@ export const usePaginatedArchive = (
 
 type DeleteArchiveProps = {
   projectId: string;
-  containerName: string;
-  region: string;
+
   onError: (cause: Error) => void;
   onSuccess: () => void;
 };
 
 export const useDeleteArchiveContainer = ({
   projectId,
-  containerName,
-  region,
   onError,
   onSuccess,
 }: Readonly<DeleteArchiveProps>) => {
+  const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
+
+  const { data: regions } = useProductRegionsAvailability(
+    ovhSubsidiary,
+    'coldarchive.archive.hour.consumption',
+  );
+
+  const region = regions?.[0];
+
   const mutation = useMutation({
-    mutationFn: () =>
+    mutationFn: (containerName: string) =>
       deleteArchiveContainer({ projectId, region, containerName }),
     onError,
     onSuccess: async () => {
@@ -98,7 +124,8 @@ export const useDeleteArchiveContainer = ({
     },
   });
   return {
-    deleteArchiveContainer: () => mutation.mutate(),
+    deleteArchiveContainer: (containerName: string) =>
+      mutation.mutate(containerName),
     ...mutation,
   };
 };
