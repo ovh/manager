@@ -1,6 +1,5 @@
 import { OdsModal, OdsSpinner } from '@ovhcloud/ods-components/react';
 import React, { useEffect, useState } from 'react';
-import { OdsModalCustomEvent } from '@ovhcloud/ods-components';
 import { useNavigate } from 'react-router-dom';
 import ModalHeaderComponent from '@/components/Modal/Header/ModalHeader.component';
 import ModalActionsComponent from '@/components/Modal/Actions/ModalActions.component';
@@ -8,6 +7,7 @@ import ModalContentComponent from './Content/ModalContent.component';
 import {
   getmeTaskDomainArgument,
   getmeTaskDomainNicList,
+  updateTask,
 } from '@/data/api/web-domain-dns-ongoing-operations';
 import { useDoOperation } from '@/hooks/actions/useActions';
 import { TArgumentData, TOngoingOperations } from '@/interface';
@@ -28,11 +28,18 @@ export default function Modal({
   data,
 }: IsModalOpenProps) {
   const [nic, setNic] = useState([]);
-  const [argument, setArgument] = useState<TArgumentData[]>([] || undefined);
+  const [operationArguments, setOperationArguments] = useState<TArgumentData[]>(
+    [],
+  );
+  const [operationArgumentsUpdated, setOperationArgumentsUpdated] = useState<
+    Record<string, string>
+  >();
+
   const [isLoading, setLoading] = useState<boolean>(false);
   const [isActions, setActions] = useState<boolean>(false);
   const [domainId, setDomainId] = useState<string>('');
   const navigate = useNavigate();
+
   useEffect(() => {
     if (isModalOpen) {
       getmeTaskDomainNicList(data.id)
@@ -44,7 +51,7 @@ export default function Modal({
               return getmeTaskDomainArgument(data.id, element);
             }),
           );
-          setArgument(argumentsList);
+          setOperationArguments(argumentsList);
           argumentsList.some((al) => {
             if (
               al.data.type === '/me/contact' ||
@@ -53,6 +60,7 @@ export default function Modal({
             ) {
               return setActions(true);
             }
+            return null;
           });
         })
         .catch(() => {
@@ -62,8 +70,27 @@ export default function Modal({
   }, [isModalOpen, data?.id]);
 
   const doOperation = async (id: number, operationType: string) => {
-    await useDoOperation(universe, id, operationType);
-    onCloseModal();
+    const promiseArray: Promise<void>[] = [];
+    Object.entries(operationArgumentsUpdated).forEach(([key, value]) => {
+      promiseArray.push(updateTask(id, key, { value }));
+    });
+
+    Promise.all(promiseArray)
+      .then(() => {
+        useDoOperation(universe, id, operationType).then(() => {
+          onCloseModal();
+        });
+      })
+      .catch(() => {
+        // TODO print error to customer
+      });
+  };
+
+  const onChange = (key: string, value: string) => {
+    setOperationArgumentsUpdated({
+      ...operationArgumentsUpdated,
+      [key]: value,
+    });
   };
 
   return (
@@ -72,7 +99,7 @@ export default function Modal({
         <OdsModal
           color="neutral"
           isOpen={isModalOpen}
-          onOdsClose={(_: OdsModalCustomEvent<void>) => {
+          onOdsClose={() => {
             onCloseModal();
             setActions(false);
           }}
@@ -90,7 +117,17 @@ export default function Modal({
                 heading={data.domain}
                 description={data.comment}
               />
-              <ModalContentComponent content={argument} domainId={domainId} />
+              <div className="my-6 flex flex-col gap-y-4">
+                {operationArguments?.map((argument, index) => (
+                  <div key={`${domainId}-${index}`}>
+                    <ModalContentComponent
+                      data={argument.data}
+                      domainId={domainId}
+                      onChange={onChange}
+                    />
+                  </div>
+                ))}
+              </div>
               {isActions && (
                 <ModalActionsComponent
                   data={data}

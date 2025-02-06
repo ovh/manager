@@ -99,7 +99,7 @@ export default function upload() {
   };
 
   const onValidate = (operationID: number) => {
-    const promiseArray = [];
+    const promiseArray: Promise<void>[] = [];
     changeStatus('success', t('domain_operations_upload_doing'));
     for (let i = 0; i < uploadedFiles.length; i += 1) {
       promiseArray.push(
