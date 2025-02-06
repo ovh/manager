@@ -1,5 +1,5 @@
 <oui-modal
-    data-heading="{{'cloud_connect_manage_notifications_title' | translate }}"
+    data-heading="{{:: ('cloud_connect_manage_notifications_title' | translate) + $ctrl.description}}"
     data-primary-action="$ctrl.saveNotification()"
     data-primary-label="{{:: 'common_confirm' | translate }}"
     data-primary-disabled="$ctrl.disableConfirm"
@@ -8,8 +8,7 @@
     data-loading="$ctrl.loading"
     data-on-dismiss="$ctrl.goBack()"
 >
-    <p data-ng-bind="'(' + $ctrl.UUID + ' : '+$ctrl.uuid + ')'"></p>
-    <p data-ng-bind="'&quot;' + $ctrl.description + '&quot;'"></p>
+    <p data-ng-bind="$ctrl.UUID + ' : '+$ctrl.uuid"></p>
     <div class="form-group">
         <div class="row">
             <div class="col">
