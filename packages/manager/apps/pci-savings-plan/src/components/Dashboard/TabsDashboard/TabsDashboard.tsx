@@ -15,7 +15,7 @@ const TabsDashboard: React.FC<{ projectId: string }> = ({ projectId }) => {
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <OdsTabs className="my-tabs mb-8" id="css-tabs">
+      <OdsTabs className="my-tabs mb-4" id="css-tabs">
         <OdsTab
           className="my-tab"
           id="css-tab-1"

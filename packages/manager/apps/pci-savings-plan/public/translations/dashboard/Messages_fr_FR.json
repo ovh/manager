@@ -27,6 +27,8 @@
 
   "dashboard_kpis_not_available": "Non disponible",
 
-  "dashboard_select_label_flavor": "Modèle",
-  "dashboard_select_label_period": "Période"
+  "dashboard_select_label_service": "Service",
+  "dashboard_select_label_period": "Période",
+
+  "dashboard_select_no_service": "Aucun service"
 }
