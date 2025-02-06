@@ -397,74 +397,86 @@ export default function AddDomain() {
                 className="mt-6"
                 color={ODS_MESSAGE_COLOR.information}
               >
-                <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-                  {t('zimbra_domains_add_domain_warning_modification_domain')}
-                </OdsText>
+                {t('zimbra_domains_add_domain_warning_modification_domain')}
               </OdsMessage>
             </>
           )}
         </OdsFormField>
       )}
       {domainType && ovhDomain && selectedDomainName && (
-        <OdsFormField className="w-full">
-          <label htmlFor="form-field-input" slot="label">
-            {t('zimbra_domains_add_domain_configuration_title')}
-          </label>
-          <OdsText className="mb-4" preset={ODS_TEXT_PRESET.paragraph}>
-            {t('zimbra_domains_add_domain_configuration_description')}
-          </OdsText>
-          {[DNS_CONFIG_TYPE.STANDARD, DNS_CONFIG_TYPE.EXPERT].map((type) => (
-            <div key={type} className="flex leading-none gap-4">
-              <OdsRadio
-                key={type}
-                inputId={type}
-                name="domainConfigurationType"
-                value={type}
-                isChecked={type === configurationType}
-                onOdsChange={(value) => handleConfigurationTypeChange(value)}
-                data-testid={`radio-config-${type}`}
-              ></OdsRadio>
-              <label htmlFor={type} className="flex flex-col w-full">
-                <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-                  {t(`zimbra_domains_add_domain_configuration_choice_${type}`)}
-                </OdsText>
-                <OdsText preset={ODS_TEXT_PRESET.caption}>
-                  {t(
-                    `zimbra_domains_add_domain_configuration_choice_${type}_info`,
-                  )}
-                </OdsText>
-              </label>
-            </div>
-          ))}
-        </OdsFormField>
-      )}
-      {isExpertConfSelected && (
-        <OdsFormField className="w-full space-y-4">
-          <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-            <Trans
-              t={t}
-              i18nKey="zimbra_domains_add_domain_configuration_expert_title"
-              values={{ domain: selectedDomainName }}
-            />
-          </OdsText>
-          {expertConfigItems.map(({ name, label, isDisabled }) =>
-            isDisabled ? null : (
-              <div key={name} className="flex leading-none gap-4">
-                <OdsCheckbox
-                  inputId={name}
-                  key={name}
-                  isChecked={expertConfState[name]}
-                  name={name}
-                  onOdsChange={handleExpertConfChange}
-                  isDisabled={isDisabled}
-                ></OdsCheckbox>
-                <label htmlFor={name}>
-                  <OdsText preset={ODS_TEXT_PRESET.paragraph}>{label}</OdsText>
+        <>
+          <OdsFormField className="w-full">
+            <label htmlFor="form-field-input" slot="label">
+              {t('zimbra_domains_add_domain_configuration_title')}
+            </label>
+            <OdsText className="mb-4" preset={ODS_TEXT_PRESET.paragraph}>
+              {t('zimbra_domains_add_domain_configuration_description')}
+            </OdsText>
+            {[DNS_CONFIG_TYPE.STANDARD, DNS_CONFIG_TYPE.EXPERT].map((type) => (
+              <div key={type} className="flex leading-none gap-4">
+                <OdsRadio
+                  key={type}
+                  inputId={type}
+                  name="domainConfigurationType"
+                  value={type}
+                  isChecked={type === configurationType}
+                  onOdsChange={(value) => handleConfigurationTypeChange(value)}
+                  data-testid={`radio-config-${type}`}
+                ></OdsRadio>
+                <label htmlFor={type} className="flex flex-col w-full">
+                  <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                    {t(
+                      `zimbra_domains_add_domain_configuration_choice_${type}`,
+                    )}
+                  </OdsText>
+                  <OdsText preset={ODS_TEXT_PRESET.caption}>
+                    {t(
+                      `zimbra_domains_add_domain_configuration_choice_${type}_info`,
+                    )}
+                  </OdsText>
                 </label>
               </div>
-            ),
+            ))}
+          </OdsFormField>
+          {isExpertConfSelected ? (
+            <OdsFormField className="w-full space-y-4">
+              <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                <Trans
+                  t={t}
+                  i18nKey="zimbra_domains_add_domain_configuration_expert_title"
+                  values={{ domain: selectedDomainName }}
+                />
+              </OdsText>
+              {expertConfigItems.map(({ name, label, isDisabled }) =>
+                isDisabled ? null : (
+                  <div key={name} className="flex leading-none gap-4">
+                    <OdsCheckbox
+                      inputId={name}
+                      key={name}
+                      isChecked={expertConfState[name]}
+                      name={name}
+                      onOdsChange={handleExpertConfChange}
+                      isDisabled={isDisabled}
+                    ></OdsCheckbox>
+                    <label htmlFor={name}>
+                      <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                        {label}
+                      </OdsText>
+                    </label>
+                  </div>
+                ),
+              )}
+            </OdsFormField>
+          ) : (
+            <OdsMessage
+              isDismissible={false}
+              className="w-full"
+              color={ODS_MESSAGE_COLOR.warning}
+            >
+              {t('zimbra_domains_add_domain_warning_configuration_standard')}
+            </OdsMessage>
           )}
-        </OdsFormField>
+        </>
       )}
       <OdsFormField>
         <OdsButton
