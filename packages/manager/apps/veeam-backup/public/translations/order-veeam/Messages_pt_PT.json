@@ -5,7 +5,7 @@
   "offer_title": "Ativar {{productName}}",
   "offer_content_part1": "O serviço Veeam Data Platform dispõe de um plugin VCD para salvaguardar as MV e as vApps a partir de qualquer Virtual Data Center (VDC) da organização.",
   "offer_content_part2": "Está disponível ao nível da organização para qualquer utilizador do VMware Cloud Director que tenha o papel de administrador.",
-  "offer_price": "/VM/mês + consumo de armazenamento",
+  "offer_price": "/mês por VM + consumo de armazenamento",
   "next_step": "Seguinte",
   "choose_org_title": "Escolha uma organização VMware Cloud Director",
   "all_organization_backed_up_message_fetch_next_page": "Todas as organizações VCD já estão associadas ao serviço Managed Veeam for VCD. Faça o upload de mais organizações.",
