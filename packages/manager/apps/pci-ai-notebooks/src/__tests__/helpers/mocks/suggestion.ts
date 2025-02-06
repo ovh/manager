@@ -63,7 +63,7 @@ export const mockedTempJobSuggestionForOrderFunnel: JobSuggestions[] = [
     region: 'GRA',
     ressources: {
       nb: 1,
-      flavor: 'ai1-1-cpu',
+      flavor: 'flavorCPUId',
     },
     image: 'ovhcom/ai-training-mxnet:1.5.0',
     unsecureHttp: false,

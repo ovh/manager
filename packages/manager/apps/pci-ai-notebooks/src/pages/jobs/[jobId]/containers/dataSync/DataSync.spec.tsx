@@ -9,29 +9,29 @@ import {
 import { useParams } from 'react-router-dom';
 import { UseQueryResult } from '@tanstack/react-query';
 import * as ai from '@/types/cloud/project/ai';
-import {
-  mockedNotebook,
-  mockedNotebookSpec,
-  mockedNotebookStatus,
-} from '@/__tests__/helpers/mocks/notebook';
 import { Locale } from '@/hooks/useLocale';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
-import * as datasyncAPI from '@/data/api/ai/notebook/datasync/datasync.api';
+import * as datasyncAPI from '@/data/api/ai/job/datasync/datasync.api';
 import { useToast } from '@/components/ui/use-toast';
 import { apiErrorMock } from '@/__tests__/helpers/mocks/aiError';
 import { mockedDatastoreVolume } from '@/__tests__/helpers/mocks/volume';
 import DataSync from './DataSync.modal';
 import { handleSelectOption } from '@/__tests__/helpers/unitTestHelper';
+import {
+  mockedJob,
+  mockedJobSpec,
+  mockedJobStatus,
+} from '@/__tests__/helpers/mocks/job';
 
-const mockedNotebookWithVol: ai.notebook.Notebook = {
-  ...mockedNotebook,
+const mockedJobWithVol: ai.job.Job = {
+  ...mockedJob,
   spec: {
-    ...mockedNotebookSpec,
+    ...mockedJobSpec,
     volumes: [mockedDatastoreVolume],
   },
   status: {
-    ...mockedNotebookStatus,
-    state: ai.notebook.NotebookStateEnum.RUNNING,
+    ...mockedJobStatus,
+    state: ai.job.JobStateEnum.RUNNING,
     volumes: [
       {
         id: 'volumeId',
@@ -41,7 +41,6 @@ const mockedNotebookWithVol: ai.notebook.Notebook = {
     ],
   },
 };
-
 describe('Data Sync', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
@@ -52,15 +51,15 @@ describe('Data Sync', () => {
       }),
     }));
 
-    vi.mock('@/pages/notebooks/[notebookId]/Notebook.context', () => ({
-      useNotebookData: vi.fn(() => ({
+    vi.mock('@/pages/jobs/[jobId]/Job.context', () => ({
+      useJobData: vi.fn(() => ({
         projectId: 'projectId',
-        notebook: mockedNotebookWithVol,
-        serviceQuery: {} as UseQueryResult<ai.notebook.Notebook, Error>,
+        job: mockedJobWithVol,
+        jobQuery: {} as UseQueryResult<ai.job.Job, Error>,
       })),
     }));
 
-    vi.mock('@/data/api/ai/notebook/datasync/datasync.api', () => ({
+    vi.mock('@/data/api/ai/job/datasync/datasync.api', () => ({
       dataSync: vi.fn((sync) => sync),
     }));
 
@@ -119,7 +118,7 @@ describe('Data Sync', () => {
     ).toBeInTheDocument();
   });
 
-  it('renders Data sync modal', async () => {
+  it('renders Datasync modal', async () => {
     vi.mocked(useParams).mockReturnValue({});
     render(<DataSync />, { wrapper: RouterWithQueryClientWrapper });
     expect(screen.getByTestId('datasync-modal')).toBeInTheDocument();

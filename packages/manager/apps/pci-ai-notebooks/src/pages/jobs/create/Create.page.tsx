@@ -20,7 +20,7 @@ export function breadcrumb() {
   );
 }
 
-const Notebook = () => {
+const Job = () => {
   const { t } = useTranslation('pci-ai-training/jobs/create');
   const { projectId } = useParams();
 
@@ -86,4 +86,4 @@ const Notebook = () => {
   );
 };
 
-export default Notebook;
+export default Job;
