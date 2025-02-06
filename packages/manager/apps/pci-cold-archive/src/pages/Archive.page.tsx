@@ -5,51 +5,67 @@ import {
   RedirectionGuard,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
-import { Suspense, useEffect, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
-import { Outlet, useLocation, useResolvedPath } from 'react-router-dom';
+import {
+  Outlet,
+  useHref,
+  useLocation,
+  useResolvedPath,
+} from 'react-router-dom';
 import {
   OdsBreadcrumb,
   OdsBreadcrumbItem,
 } from '@ovhcloud/ods-components/react';
 import { ROUTE_PATHS } from '@/routes';
+import { useArchives } from '@/api/hooks/useArchive';
 
 export default function ColdArchivePage() {
   const { t } = useTranslation('cold-archive');
 
   const location = useLocation();
-  const hrefProject = useProjectUrl('public-cloud');
+  const showUsersTab = location.pathname.includes('users');
 
+  const hrefProject = useProjectUrl('public-cloud');
   const { data: project } = useProject();
+
+  const { data: allArchives, isPending } = useArchives(project.project_id);
 
   const tabs = [
     {
-      name: 'pci_projects_project_storages_cold_archive_tabs_tab_archives',
-      title: t('pci_projects_project_storages_cold_archive_tabs_tab_archives'),
-      to: useResolvedPath(ROUTE_PATHS.CONTAINER_LISTING).pathname,
+      name: 'pci_projects_project_storages_cold_archive_label',
+      title: t('pci_projects_project_storages_cold_archive_label'),
+      to: useResolvedPath(ROUTE_PATHS.STORAGES).pathname,
     },
     {
       name: 'pci_projects_project_storages_cold_archive_tabs_tab_users',
       title: t('pci_projects_project_storages_cold_archive_tabs_tab_users'),
-      to: useResolvedPath(ROUTE_PATHS.USERS_LISTING).pathname,
+      to: useResolvedPath(ROUTE_PATHS.USER_LIST).pathname,
     },
   ];
 
-  const [activePanelTranslation, setActivePanelTranslation] = useState(null);
-
-  useEffect(() => {
-    const activeTab = tabs.find((tab) => location.pathname === tab.to);
-    setActivePanelTranslation(t(activeTab?.name));
-  }, [location.pathname]);
-
   return (
-    <RedirectionGuard isLoading={false} condition={false} route="./onboarding">
+    <RedirectionGuard
+      isLoading={isPending}
+      condition={!isPending && allArchives?.length === 0}
+      route="./onboarding"
+    >
       <BaseLayout
         breadcrumb={
           <OdsBreadcrumb>
             <OdsBreadcrumbItem label={project.description} href={hrefProject} />
-            <OdsBreadcrumbItem label={activePanelTranslation} href="#" />
+            <OdsBreadcrumbItem
+              label={t('pci_projects_project_storages_cold_archive_label')}
+              href={useHref(ROUTE_PATHS.STORAGES)}
+            />
+            {showUsersTab && (
+              <OdsBreadcrumbItem
+                label={t(
+                  'pci_projects_project_storages_cold_archive_tabs_tab_users',
+                )}
+                href="#"
+              />
+            )}
           </OdsBreadcrumb>
         }
         header={{
@@ -57,13 +73,13 @@ export default function ColdArchivePage() {
           description: t(
             'pci_projects_project_storages_cold_archive_description',
           ),
-          headerButton: <PciGuidesHeader category="storage" />,
+          // @TODO add link to consult price
+          // @TODO Use correct guide  from cold archive
+          headerButton: <PciGuidesHeader category="objectStorage" />,
         }}
         tabs={<TabsPanel tabs={tabs} />}
       >
-        <Suspense>
-          <Outlet />
-        </Suspense>
+        <Outlet />
       </BaseLayout>
     </RedirectionGuard>
   );
