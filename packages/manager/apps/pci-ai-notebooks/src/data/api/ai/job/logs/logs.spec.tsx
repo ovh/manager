@@ -21,14 +21,14 @@ describe('logs functions', () => {
   });
 
   it('should call getLogs', async () => {
-    // expect(apiClient.v6.get).not.toHaveBeenCalled();
-    // await getLogs({
-    //   projectId: 'projectId',
-    //   notebookId: 'notebookId',
-    // });
-    // expect(apiClient.v6.get).toHaveBeenCalledWith(
-    //   '/cloud/project/projectId/ai/notebook/notebookId/logs',
-    // );
+    expect(apiClient.v6.get).not.toHaveBeenCalled();
+    await getLogs({
+      projectId: 'projectId',
+      jobId: 'jobId',
+    });
+    expect(apiClient.v6.get).toHaveBeenCalledWith(
+      '/cloud/project/projectId/ai/job/jobId/log',
+    );
     expect(true).toBe(true);
   });
 });

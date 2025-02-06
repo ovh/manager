@@ -28,7 +28,7 @@ export default [
       {
         path: 'auth',
         id: 'auth',
-        ...lazyRouteConfig(() => import('@/pages/notebooks/auth/Auth.page')),
+        ...lazyRouteConfig(() => import('@/pages/auth/Auth.page')),
       },
       {
         path: '',
