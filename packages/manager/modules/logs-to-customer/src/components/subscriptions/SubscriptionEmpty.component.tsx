@@ -1,19 +1,43 @@
 import { LinkType, Links } from '@ovh-ux/manager-react-components';
 import { OdsText, OdsButton, OdsCard } from '@ovhcloud/ods-components/react';
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import {
   ButtonType,
   PageLocation,
   useOvhTracking,
+  ShellContext,
 } from '@ovh-ux/manager-react-shell-client';
+import { CountryCode } from '@ovh-ux/manager-config';
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { LogsContext } from '../../LogsToCustomer.context';
+import {
+  KNOW_MORE_BASE_URL,
+  KNOW_MORE_LIST,
+} from './SubscriptionEmpty.constants';
 
 const SubscriptionEmpty = () => {
   const navigate = useNavigate();
   const { t } = useTranslation('logSubscription');
   const { trackingOptions } = useContext(LogsContext);
+  const { shell } = useContext(ShellContext);
+  const { environment } = shell;
+  const [knowMoreLink, setKnowMoreLink] = useState('');
+
+  useEffect(() => {
+    const getSubSidiary = async () => {
+      const env = await environment.getEnvironment();
+      const { ovhSubsidiary } = env.getUser();
+      const guide =
+        KNOW_MORE_LIST[ovhSubsidiary as CountryCode] || KNOW_MORE_LIST.GB;
+      const knowMoreUrl =
+        KNOW_MORE_BASE_URL[ovhSubsidiary] ?? KNOW_MORE_BASE_URL.EU;
+      setKnowMoreLink(`${knowMoreUrl}${guide}`);
+    };
+    getSubSidiary();
+  }, []);
+
   const { trackClick } = useOvhTracking();
 
   return (
@@ -28,6 +52,8 @@ const SubscriptionEmpty = () => {
         <Links
           type={LinkType.external}
           label={t('log_subscription_empty_tile_button_know_more')}
+          href={knowMoreLink}
+          target={OdsHTMLAnchorElementTarget._blank}
         />
         <OdsButton
           variant="outline"
