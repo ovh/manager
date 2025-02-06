@@ -15,6 +15,7 @@ import {
   OdsButton,
   OdsIcon,
   OdsLink,
+  OdsMessage,
   OdsText,
 } from '@ovhcloud/ods-components/react';
 import { UserNativeType } from '@/api/users/type';
@@ -140,7 +141,9 @@ export default function Users() {
           }}
         />
         <p>{t('dashboard_users_download_info')}</p>
-        <strong>{t('dashboard_users_download_id')}</strong>
+        <OdsMessage isDismissible={false}>
+          {t('dashboard_users_download_id')}
+        </OdsMessage>
       </OdsText>
       {isLoadingUsers || isLoadingLicenceDetail ? (
         <Loading />
