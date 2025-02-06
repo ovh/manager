@@ -1,5 +1,5 @@
 export default class DedicatedClusterCtrl {
-  constructor /* @ngInject */(constants) {
+  /* @ngInject */ constructor(constants) {
     this.constants = constants;
   }
 }
