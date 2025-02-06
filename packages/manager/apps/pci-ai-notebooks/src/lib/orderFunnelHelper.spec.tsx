@@ -1,5 +1,9 @@
 import { mockedFramework } from '@/__tests__/helpers/mocks/notebook/framework';
-import { getNotebookSpec, humanizeFramework } from './orderFunnelHelper';
+import {
+  getJobSpec,
+  getNotebookSpec,
+  humanizeFramework,
+} from './orderFunnelHelper';
 import * as ai from '@/types/cloud/project/ai';
 import { mockedCapabilitiesRegionGRA } from '@/__tests__/helpers/mocks/region';
 import {
@@ -12,7 +16,7 @@ import {
   mockedOrderVolumesGit,
   mockedOrderVolumesS3,
 } from '@/__tests__/helpers/mocks/datastore';
-import { NotebookOrderResult } from '@/types/orderFunnel';
+import { JobOrderResult, NotebookOrderResult } from '@/types/orderFunnel';
 
 describe('orderFunnelHelper', () => {
   it('humanizeFramework', () => {
@@ -124,5 +128,84 @@ describe('orderFunnelHelper', () => {
     };
     expect(getNotebookSpec(orderResultCPU)).toStrictEqual(notebookSpecInputCPU);
     expect(getNotebookSpec(orderResultGPU)).toStrictEqual(notebookSpecInputGPU);
+  });
+
+  it('getJobSpec', () => {
+    const jobOrderResultCPU: JobOrderResult = {
+      region: mockedCapabilitiesRegionGRA,
+      flavor: mockedOrderFlavorCPU,
+      resourcesQuantity: 2,
+      jobName: 'myNewJob',
+      unsecureHttp: false,
+      image: 'myImage',
+      sshKey: ['myNewSshKey'],
+      volumes: [mockedOrderVolumesS3, mockedOrderVolumesGit],
+      dockerCommand: ['command', 'docker'],
+    };
+
+    const jobOrderResultGPU: JobOrderResult = {
+      ...jobOrderResultCPU,
+      flavor: mockedOrderFlavorGPU,
+      volumes: [mockedOrderPublicGit],
+    };
+
+    const jobSpecInputCPU: ai.job.JobSpecInput = {
+      name: 'myNewJob',
+      region: 'GRA',
+      image: 'myImage',
+      resources: {
+        cpu: 2,
+        flavor: 'flavorCPUId',
+      },
+      sshPublicKeys: ['myNewSshKey'],
+      unsecureHttp: false,
+      command: ['command', 'docker'],
+      volumes: [
+        {
+          cache: false,
+          mountPath: '/s3',
+          permission: ai.VolumePermissionEnum.RWD,
+          volumeSource: {
+            dataStore: {
+              alias: 'alias',
+              container: 'container',
+            },
+          },
+        },
+        {
+          cache: true,
+          mountPath: '/git',
+          permission: ai.VolumePermissionEnum.RWD,
+          volumeSource: {
+            dataStore: {
+              alias: 'alias',
+              container: 'develop',
+            },
+          },
+        },
+      ],
+    };
+
+    const jobSpecInputGPU: ai.job.JobSpecInput = {
+      ...jobSpecInputCPU,
+      resources: {
+        gpu: 2,
+        flavor: 'flavorGPUId',
+      },
+      volumes: [
+        {
+          cache: false,
+          mountPath: '/demo',
+          permission: ai.VolumePermissionEnum.RO,
+          volumeSource: {
+            publicGit: {
+              url: 'https://repo.git',
+            },
+          },
+        },
+      ],
+    };
+    expect(getJobSpec(jobOrderResultCPU)).toStrictEqual(jobSpecInputCPU);
+    expect(getJobSpec(jobOrderResultGPU)).toStrictEqual(jobSpecInputGPU);
   });
 });

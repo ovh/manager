@@ -34,7 +34,7 @@ interface ImageSelectProps {
 
 const ImagesSelect = React.forwardRef<HTMLInputElement, ImageSelectProps>(
   ({ images, value, onChange, className }, ref) => {
-    const { t } = useTranslation('pci-ai-training/components/images');
+    const { t } = useTranslation('components/images');
     const personalImageRules = z
       .string()
       .trim()
@@ -59,10 +59,10 @@ const ImagesSelect = React.forwardRef<HTMLInputElement, ImageSelectProps>(
     return (
       <Tabs defaultValue="ovhImage">
         <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="ovhImage">
+          <TabsTrigger value="ovhImage" data-testid="ovh-image-trigger">
             {t('presetImageTabsLabel')}
           </TabsTrigger>
-          <TabsTrigger value="customerImage">
+          <TabsTrigger value="customerImage" data-testid="custom-image-trigger">
             {t('customImageTabsLabel')}
           </TabsTrigger>
         </TabsList>
@@ -189,7 +189,7 @@ const ImagesSelect = React.forwardRef<HTMLInputElement, ImageSelectProps>(
                     />
                   </div>
                   <Button
-                    data-testid="label-add-button"
+                    data-testid="image-add-button"
                     variant={'ghost'}
                     onClick={imageForm.handleSubmit(onSubmit)}
                     className="mt-[1.875rem] text-primary rounded-full p-2 ml-2 hover:text-primary"

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
 import { useJobData } from '../../Job.context';
-import { isStoppedJob } from '@/lib/jobHelper';
+import { isStoppedJob } from '@/lib/statusHelper';
 
 const Configurations = () => {
   const { job } = useJobData();

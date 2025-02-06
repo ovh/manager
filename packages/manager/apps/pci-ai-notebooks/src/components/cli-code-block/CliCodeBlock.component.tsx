@@ -17,7 +17,7 @@ const CliCodeBlock = ({
   toastMessage,
   size,
 }: CliCodeBlockProps) => {
-  const { t } = useTranslation('pci-ai-notebooks/components/configuration');
+  const { t } = useTranslation('components/configuration');
   const toast = useToast();
   const handleCopyPass = (valueToCopy: string) => {
     navigator.clipboard.writeText(valueToCopy);

@@ -13,10 +13,10 @@ import { Skeleton } from '@/components/ui/skeleton';
 import * as ai from '@/types/cloud/project/ai';
 import NotebookStatusBadge from '../../_components/NotebookStatusBadge.component';
 import { Button } from '@/components/ui/button';
-import { isDeletingNotebook, isRunningNotebook } from '@/lib/notebookHelper';
 import A from '@/components/links/A.component';
 import StartNotebook from './StartNotebook.component';
 import StopNotebook from './StopNotebook.component';
+import { isDeletingNotebook, isRunningNotebook } from '@/lib/statusHelper';
 
 export const NotebookHeader = ({
   notebook,

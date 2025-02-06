@@ -28,7 +28,7 @@ export default [
       {
         path: 'auth',
         id: 'auth',
-        ...lazyRouteConfig(() => import('@/pages/notebooks/auth/Auth.page')),
+        ...lazyRouteConfig(() => import('@/pages/auth/Auth.page')),
       },
       {
         path: '',
@@ -124,7 +124,7 @@ export default [
                 children: [
                   {
                     path: 'data-sync',
-                    id: 'notebook.attach-data.data-sync',
+                    id: 'notebook.containers.data-sync',
                     ...lazyRouteConfig(() =>
                       import(
                         '@/pages/notebooks/[notebookId]/containers/dataSync/DataSync.modal'
@@ -133,7 +133,7 @@ export default [
                   },
                   {
                     path: 'data-sync/:volumeId?',
-                    id: 'notebook.attach-data.data-sync.volume',
+                    id: 'notebook.containers.data-sync.volume',
                     ...lazyRouteConfig(() =>
                       import(
                         '@/pages/notebooks/[notebookId]/containers/dataSync/DataSync.modal'
@@ -397,51 +397,47 @@ export default [
                   },
                 ],
               },
-              // {
-              //   path: 'containers',
-              //   id: 'notebook.containers',
-              //   ...lazyRouteConfig(() =>
-              //     import(
-              //       '@/pages/notebooks/[notebookId]/containers/Containers.page'
-              //     ),
-              //   ),
-              //   children: [
-              //     {
-              //       path: 'data-sync',
-              //       id: 'notebook.attach-data.data-sync',
-              //       ...lazyRouteConfig(() =>
-              //         import(
-              //           '@/pages/notebooks/[notebookId]/containers/dataSync/DataSync.modal'
-              //         ),
-              //       ),
-              //     },
-              //     {
-              //       path: 'data-sync/:volumeId?',
-              //       id: 'notebook.attach-data.data-sync.volume',
-              //       ...lazyRouteConfig(() =>
-              //         import(
-              //           '@/pages/notebooks/[notebookId]/containers/dataSync/DataSync.modal'
-              //         ),
-              //       ),
-              //     },
-              //   ],
-              // },
-              // {
-              //   path: 'public-git',
-              //   id: 'notebook.public-git',
-              //   ...lazyRouteConfig(() =>
-              //     import(
-              //       '@/pages/notebooks/[notebookId]/public-git/PublicGit.page'
-              //     ),
-              //   ),
-              // },
-              // {
-              //   path: 'logs',
-              //   id: 'notebook.logs',
-              //   ...lazyRouteConfig(() =>
-              //     import('@/pages/notebooks/[notebookId]/logs/Logs.page'),
-              //   ),
-              // },
+              {
+                path: 'containers',
+                id: 'training.containers',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/jobs/[jobId]/containers/Containers.page'),
+                ),
+                children: [
+                  {
+                    path: 'data-sync',
+                    id: 'training.containers.data-sync',
+                    ...lazyRouteConfig(() =>
+                      import(
+                        '@/pages/jobs/[jobId]/containers/dataSync/DataSync.modal'
+                      ),
+                    ),
+                  },
+                  {
+                    path: 'data-sync/:volumeId?',
+                    id: 'training.containers.data-sync.volume',
+                    ...lazyRouteConfig(() =>
+                      import(
+                        '@/pages/jobs/[jobId]/containers/dataSync/DataSync.modal'
+                      ),
+                    ),
+                  },
+                ],
+              },
+              {
+                path: 'public-git',
+                id: 'training.public-git',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/jobs/[jobId]/public-git/PublicGit.page'),
+                ),
+              },
+              {
+                path: 'logs',
+                id: 'training.logs',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/jobs/[jobId]/logs/Logs.page'),
+                ),
+              },
             ],
           },
         ],

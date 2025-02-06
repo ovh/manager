@@ -64,7 +64,7 @@ JobsList.Skeleton = function JobsListSkeleton() {
   return (
     <>
       <div
-        data-testid="job-list-table-skeleton"
+        data-testid="jobs-list-table-skeleton"
         className="flex justify-between w-100 mb-2 items-end"
       >
         <Skeleton className="h-20 w-48" />

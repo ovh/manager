@@ -1,8 +1,7 @@
-import { useTranslation } from 'react-i18next';
 import { useNotebookData } from '../Notebook.context';
 import * as ai from '@/types/cloud/project/ai';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
-import GitList from './_components/GitListTable.component';
+import PublicGit from '@/components/public-git/PublicGit.component';
 
 export function breadcrumb() {
   return (
@@ -13,22 +12,15 @@ export function breadcrumb() {
   );
 }
 
-const PublicGit = () => {
+const PublicGitJob = () => {
   const { notebook } = useNotebookData();
-  const { t } = useTranslation(
-    'pci-ai-notebooks/notebooks/notebook/public-git',
-  );
   return (
-    <>
-      <h2>{t('publicGitTitle')}</h2>
-      <p>{t('publicGitDescription')}</p>
-      <GitList
-        git={notebook.spec.volumes.filter(
-          (vol: ai.volume.Volume) => vol.volumeSource.publicGit,
-        )}
-      />
-    </>
+    <PublicGit
+      gitVolumes={notebook.spec.volumes.filter(
+        (vol: ai.volume.Volume) => vol.volumeSource.publicGit,
+      )}
+    />
   );
 };
 
-export default PublicGit;
+export default PublicGitJob;

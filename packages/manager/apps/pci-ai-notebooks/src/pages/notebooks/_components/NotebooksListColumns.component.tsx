@@ -23,13 +23,14 @@ import {
 import Link from '@/components/links/Link.component';
 import { convertSecondsToTimeString } from '@/lib/durationHelper';
 import NotebookStatusBadge from './NotebookStatusBadge.component';
+
+import A from '@/components/links/A.component';
+import DataTable from '@/components/data-table';
 import {
   isDeletingNotebook,
   isRunningNotebook,
   isStoppedNotebook,
-} from '@/lib/notebookHelper';
-import A from '@/components/links/A.component';
-import DataTable from '@/components/data-table';
+} from '@/lib/statusHelper';
 
 interface NotebooksListColumnsProps {
   onStartClicked: (notebook: ai.notebook.Notebook) => void;
