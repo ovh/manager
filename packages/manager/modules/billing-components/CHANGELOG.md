@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.8.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.8.2...@ovh-ux/manager-billing-components@4.8.3) (2025-02-06)
+
+
+### Bug Fixes
+
+* **billing:** hide autorenew links for us ([#15191](https://github.com/ovh/manager/issues/15191)) ([e7ea50f](https://github.com/ovh/manager/commit/e7ea50f72ab6bfd0e3a9f2459d15777fec1779c9))
+
+
+
+
+
 ## [4.8.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.8.1...@ovh-ux/manager-billing-components@4.8.2) (2025-01-30)
 
 

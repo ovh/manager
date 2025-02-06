@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.6.5...@ovh-ux/manager-account@0.6.6) (2025-02-06)
+
+
+### Bug Fixes
+
+* **account:** hide latest bill tile for enterprise users ([#15216](https://github.com/ovh/manager/issues/15216)) ([50a7c04](https://github.com/ovh/manager/commit/50a7c0420185ef690d72a41b1d60888c833389a5))
+
+
+
+
+
 ## [0.6.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.6.4...@ovh-ux/manager-account@0.6.5) (2025-02-03)
 
 **Note:** Version bump only for package @ovh-ux/manager-account
