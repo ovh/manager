@@ -38,10 +38,21 @@ export default class UserAccountGdprController {
   }
 
   closeErasureConfirmationModal() {
+    if (this.loading.createErasureRequest) {
+      return;
+    }
     this.showErasureConfirmationModal = false;
   }
 
   submitErasureRequest() {
+    if (
+      !(
+        this.canCreateErasureRequest &&
+        this.capabilities.canCreateErasureRequest
+      )
+    ) {
+      return;
+    }
     this.loading.createErasureRequest = true;
     this.Alerter.resetMessage(GDPR_FEATURES_BANNER_CONTAINER);
     this.gdprService
@@ -56,12 +67,7 @@ export default class UserAccountGdprController {
       })
       .catch((error) => {
         this.Alerter.error(
-          this.$translate.instant(
-            CREATE_ERASURE_REQUEST_MESSAGES_MAP[error.status],
-            {
-              requestId: error.config.headers['X-OVH-MANAGER-REQUEST-ID'],
-            },
-          ),
+          this.getErasureCreationErrorMessage(error),
           GDPR_FEATURES_BANNER_CONTAINER,
         );
       })
@@ -75,5 +81,21 @@ export default class UserAccountGdprController {
     return `<strong>${this.$translate.instant(
       'gdpr_erasure_creation_success_emphasis',
     )}</strong>`;
+  }
+
+  getErasureCreationErrorMessage(error) {
+    const requestId = error.headers('x-ovh-queryid');
+    return `
+        <p>${this.$translate.instant(
+          CREATE_ERASURE_REQUEST_MESSAGES_MAP[error.status],
+        )}</p>
+        ${
+          requestId
+            ? `<p>${this.$translate.instant(
+                'gdpr_error_identifier',
+              )} ${requestId}</p>`
+            : ''
+        }
+    `;
   }
 }
