@@ -135,7 +135,7 @@ export default function Users() {
                 referrerpolicy="strict-origin-when-cross-origin"
                 href={'https://portal.office.com/'}
                 icon={ODS_ICON_NAME.externalLink}
-                label={'Office'}
+                label={'Microsoft Office'}
               ></OdsLink>
             ),
           }}
@@ -145,41 +145,40 @@ export default function Users() {
           {t('dashboard_users_download_id')}
         </OdsMessage>
       </OdsText>
+      <div className="flex">
+        {!dataLicenceDetail?.serviceType ? (
+          <OdsButton
+            data-testid="licenses-order-button"
+            label={t('common:users_order_licenses')}
+            onClick={onOrderLicenses}
+            variant={ODS_BUTTON_VARIANT.outline}
+            className="block mb-4"
+          />
+        ) : (
+          <ManagerButton
+            id={dataLicenceDetail.id}
+            data-testid="users-order-button"
+            label={t('common:users_order_users')}
+            urn={dataLicenceDetail?.iam.urn}
+            onClick={onOrderUsers}
+            variant={ODS_BUTTON_VARIANT.outline}
+            className="block mb-4"
+            iamActions={[IAM_ACTIONS.user.create]}
+          />
+        )}
+      </div>
       {isLoadingUsers || isLoadingLicenceDetail ? (
         <Loading />
       ) : (
-        <>
-          {!dataLicenceDetail?.serviceType ? (
-            <OdsButton
-              data-testid="licenses-order-button"
-              label={t('common:users_order_licenses')}
-              onClick={onOrderLicenses}
-              variant={ODS_BUTTON_VARIANT.outline}
-              className="block mb-4"
-            />
-          ) : (
-            <ManagerButton
-              id={dataLicenceDetail.id}
-              data-testid="users-order-button"
-              label={t('common:users_order_users')}
-              urn={dataLicenceDetail?.iam.urn}
-              onClick={onOrderUsers}
-              variant={ODS_BUTTON_VARIANT.outline}
-              className="block mb-4"
-              iamActions={[IAM_ACTIONS.user.create]}
-            />
-          )}
-
-          <Datagrid
-            columns={columns.map((column) => ({
-              ...column,
-              label: t(column.label),
-            }))}
-            items={dataUsers || []}
-            totalItems={dataUsers?.length || 0}
-            className="mt-4"
-          />
-        </>
+        <Datagrid
+          columns={columns.map((column) => ({
+            ...column,
+            label: t(column.label),
+          }))}
+          items={dataUsers || []}
+          totalItems={dataUsers?.length || 0}
+          className="mt-4"
+        />
       )}
     </div>
   );

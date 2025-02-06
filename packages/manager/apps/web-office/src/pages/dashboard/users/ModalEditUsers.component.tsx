@@ -170,7 +170,7 @@ export default function ModalEditUsers() {
           rules={{ required: true }}
           render={({ field: { name, value, onBlur, onChange } }) => (
             <OdsFormField error={errors?.firstname?.message as string}>
-              <label slot="label">{t('common:lastname')} *</label>
+              <label slot="label">{t('common:firstname')}*</label>
 
               <OdsInput
                 type={ODS_INPUT_TYPE.text}
@@ -184,14 +184,13 @@ export default function ModalEditUsers() {
             </OdsFormField>
           )}
         />
-
         <Controller
           control={control}
           name="lastname"
           rules={{ required: true }}
           render={({ field: { name, value, onBlur, onChange } }) => (
             <OdsFormField error={errors?.lastname?.message as string}>
-              <label slot="label">{t('common:firstname')} *</label>
+              <label slot="label">{t('common:lastname')}*</label>
 
               <OdsInput
                 type={ODS_INPUT_TYPE.text}
@@ -205,7 +204,6 @@ export default function ModalEditUsers() {
             </OdsFormField>
           )}
         />
-
         <Controller
           control={control}
           name="login"
@@ -213,7 +211,7 @@ export default function ModalEditUsers() {
           render={({ field: { name, value, onBlur, onChange } }) => (
             <OdsFormField error={errors?.login?.message as string}>
               <label htmlFor="label" slot="label">
-                {t('common:login')} *
+                {t('common:login')}*
               </label>
               <div className="flex">
                 <OdsInput
