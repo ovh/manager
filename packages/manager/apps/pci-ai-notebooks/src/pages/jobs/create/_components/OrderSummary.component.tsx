@@ -87,7 +87,7 @@ const FlavorDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
           <Skeleton className="h-4 w-20" />
         )}
       </div>
-      {order.flavor && order.resourcesQuantity && (
+      {order.flavor && (
         <div>
           <div className="flex items-center pl-4 gap-2">
             <Cpu className="size-4" />
