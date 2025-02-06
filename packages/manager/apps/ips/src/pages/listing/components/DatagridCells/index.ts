@@ -10,3 +10,5 @@ export * from './IpReverse/IpReverse';
 export * from './IpType/IpType';
 export * from './IpVmac/IpVmac';
 export * from './SkeletonCell/SkeletonCell';
+export * from './IconCell/IconCell';
+export * from './ActionsCell/ActionsCell';
