@@ -35,6 +35,7 @@ export type IpDetails = {
   routedTo?: IpRoutedToType;
   version: number;
   description: string;
+  country: string;
 };
 
 export const getIpDetailsQueryKey = (params: GetIpDetailsParams) => [
