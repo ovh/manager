@@ -1,11 +1,14 @@
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { IpTypeEnum } from '@/data/api';
+import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { IpGameFirewallStateEnum, IpTypeEnum } from '@/data/api';
 import { useGetIpGameFirewall, useGetIpdetails } from '@/data/hooks/ip';
-import { FailoverRoutedServiceType, getTypeByServiceName } from '@/utils';
+import { IPRoutedServiceType, getTypeByServiceName } from '@/utils';
 import { ipFormatter } from '@/utils/ipFormatter';
 import { SkeletonCell } from '../SkeletonCell/SkeletonCell';
 import { ListingContext } from '@/pages/listing/listingContext';
+import { datagridCellStyle } from '../datagridCellStyles';
+import { IconCell } from '../IconCell/IconCell';
 
 export type IpGameFirewallProps = {
   ip: string;
@@ -21,6 +24,7 @@ export type IpGameFirewallProps = {
  * @returns React component
  */
 export const IpGameFirewall = ({ ip }: IpGameFirewallProps) => {
+  const id = `gamefirewall-${ip.replace(/\/|\./g, '-')}`;
   const { expiredIps } = useContext(ListingContext);
   const { t } = useTranslation('listing');
 
@@ -38,9 +42,8 @@ export const IpGameFirewall = ({ ip }: IpGameFirewallProps) => {
     !isIpDetailsLoading &&
     (ipDetails?.type === IpTypeEnum.ADDITIONAL ||
       ipDetails?.type === IpTypeEnum.DEDICATED) &&
-    !!ipDetails?.routedTo?.serviceName &&
-    getTypeByServiceName({ serviceName: ipDetails.routedTo.serviceName }) ===
-      FailoverRoutedServiceType.DEDICATED;
+    getTypeByServiceName({ serviceName: ipDetails?.routedTo?.serviceName }) ===
+      IPRoutedServiceType.DEDICATED;
 
   // Get game firewall info
   const { ipGameFirewall, isLoading, error } = useGetIpGameFirewall({
@@ -55,9 +58,23 @@ export const IpGameFirewall = ({ ip }: IpGameFirewallProps) => {
       error={error}
       ip={ip}
     >
-      {enabled && ipGameFirewall?.length ? (
-        <div> {t('listingColumnsIpGameFirewallAvailable')}</div>
-      ) : null}
+      {enabled && ipGameFirewall?.[0]?.state === IpGameFirewallStateEnum.OK && (
+        <IconCell
+          icon={ODS_ICON_NAME.gameControllerAlt}
+          text={t('listingColumnsIpGameFirewallAvailable')}
+        />
+      )}
+      {enabled &&
+        !!ipGameFirewall?.length &&
+        ipGameFirewall?.[0]?.state !== IpGameFirewallStateEnum.OK && (
+          <IconCell
+            icon={ODS_ICON_NAME.gameControllerAlt}
+            text={t('listingColumnsIpGameFirewallPending')}
+            tooltip={t('listingColumnsIpGameFirewallPendingTooltip')}
+            trigger={id}
+            style={datagridCellStyle.iconWarning}
+          />
+        )}
     </SkeletonCell>
   );
 };
