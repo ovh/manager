@@ -31,7 +31,7 @@ export const EDIT_USERS_FORM_SCHEMA = z.object({
     .min(3, i18n?.t('common:common_field_error_minlength', { minlength: 3 }))
     .max(20, i18n?.t('common:common_field_error_maxlength', { maxlength: 20 }))
     .regex(
-      /^(?!\.)(?:[-!#$%&'^_`{}~A-Za-z\d]|\.(?!\.))+(?!\.)$/,
+      /^(?!\.)(?:[-_.'A-Za-z\d]|\.(?!\.))+(?!\.)$/,
       i18n?.t('common:common_field_error_pattern'),
     ),
 });
@@ -57,7 +57,7 @@ export const POST_USERS_FORM_SCHEMA = z.object({
     .min(3, i18n?.t('common:common_field_error_minlength', { minlength: 3 }))
     .max(20, i18n?.t('common:common_field_error_maxlength', { maxlength: 20 }))
     .regex(
-      /^(?!\.)(?:[-!#$%&'^_`{}~A-Za-z\d]|\.(?!\.))+(?!\.)$/,
+      /^(?!\.)(?:[-_.'A-Za-z\d]|\.(?!\.))+(?!\.)$/,
       i18n?.t('common:common_field_error_pattern'),
     ),
 
