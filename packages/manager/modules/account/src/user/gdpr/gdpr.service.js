@@ -39,31 +39,27 @@ export default class GdprService {
 
   getRequests() {
     return this.$http
-      .get(`${API_BASE_ROUTE}/me/privacy/requests`, {
-        headers: this.headers,
+      .get('/me/privacy/requests', {
+        serviceType: 'apiv6',
       })
       .then(({ data }) => data);
   }
 
   cancelRequestErasure(requestPublicId) {
     return this.$http
-      .post(
-        `${API_BASE_ROUTE}/me/privacy/requests/erasure/${requestPublicId}/cancel`,
-        null,
-        {
-          headers: this.headers,
-        },
-      )
+      .post(`/me/privacy/requests/erasure/${requestPublicId}/cancel`, null, {
+        serviceType: 'apiv6',
+      })
       .then(({ data }) => data);
   }
 
-  confirmationEmailRequestErasure(requestPublicId) {
+  sendErasureRequestConfirmationEmail(requestPublicId) {
     return this.$http
       .post(
-        `${API_BASE_ROUTE}/me/privacy/requests/erasure/${requestPublicId}/confirmationEmail`,
+        `/me/privacy/requests/erasure/${requestPublicId}/confirmationEmail`,
         null,
         {
-          headers: this.headers,
+          serviceType: 'apiv6',
         },
       )
       .then(({ data }) => data);

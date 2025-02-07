@@ -60,7 +60,7 @@
                 data-property="csmTicket"
             >
                 <a
-                    data-ng-href="{{:: $ctrl.getViewTicketsUrl() }}"
+                    data-ng-href="{{:: $ctrl.viewTicketsUrl }}"
                     class="oui-link"
                     target="_blank"
                 >
@@ -82,10 +82,7 @@
             <oui-datagrid-column
                 data-title="::'gdpr_erasure_requests_grid_actions_column' | translate"
             >
-                <oui-action-menu
-                    data-disabled="!$ctrl.canCreateErasureRequest"
-                    data-compact
-                >
+                <oui-action-menu data-compact>
                     <oui-action-menu-item
                         disabled="!$row.canConfirm"
                         data-href="{{ $ctrl.$state.href('account.user.gdpr.confirm', {
@@ -99,7 +96,7 @@
 
                     <oui-action-menu-item
                         disabled="!$row.canResendCode"
-                        data-on-click="$ctrl.confirmationEmailRequestErasure($row)"
+                        data-on-click="$ctrl.sendErasureRequestConfirmationEmail($row)"
                     >
                         <span
                             data-translate="gdpr_erasure_requests_grid_action_resend_code"
