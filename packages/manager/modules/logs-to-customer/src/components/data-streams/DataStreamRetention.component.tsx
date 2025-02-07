@@ -1,7 +1,7 @@
 import * as dateFnsLocales from 'date-fns/locale';
 import { useTranslation } from 'react-i18next';
+import { OdsSkeleton } from '@ovhcloud/ods-components/react';
 import { getDateFnsLocale } from '@ovh-ux/manager-core-utils';
-import { OsdsSkeleton } from '@ovhcloud/ods-components/react';
 import React, { useRef } from 'react';
 import { useLogRetention } from '../../data/hooks/useLogRetention';
 import { Service, Stream } from '../../data/types/dbaas/logs';
@@ -33,7 +33,7 @@ const DataStreamRetention = ({
   );
 
   if (isPending)
-    return <OsdsSkeleton data-testid={DATA_STREAM_RETENTION_LOADING_TEST_ID} />;
+    return <OdsSkeleton data-testid={DATA_STREAM_RETENTION_LOADING_TEST_ID} />;
 
   if (error) return <span>{t('error_datagrid_cell')}</span>;
 
