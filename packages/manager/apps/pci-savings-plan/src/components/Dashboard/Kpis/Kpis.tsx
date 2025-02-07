@@ -105,6 +105,13 @@ const Kpis = ({
             valueSavedWithoutAmount:
               computedPercents.computedWithoutSavedAmount,
           },
+          {
+            title: t('dashboard_kpis_amount_outiside'),
+            tooltip: t('dashboard_kpis_amount_outiside_tooltip'),
+            value: computedPercents.computedSavedAmount,
+            valueSavedWithoutAmount:
+              computedPercents.computedWithoutSavedAmount,
+          },
         ]
       : []),
   ];
