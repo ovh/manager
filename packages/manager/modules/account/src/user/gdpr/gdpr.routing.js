@@ -1,6 +1,4 @@
 import { CREATE_ERASURE_REQUEST_ACTION } from './gdpr.constants';
-import confirmRequestController from './confirm/confirm-request-erasure.controller.js';
-import confirmRequestTemplate from './confirm/confirm-request-erasure.html';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('account.user.gdpr', {
@@ -13,18 +11,6 @@ export default /* @ngInject */ ($stateProvider) => {
         iamAuthorizations.authorizedActions.includes(
           CREATE_ERASURE_REQUEST_ACTION,
         ),
-    },
-  });
-
-  $stateProvider.state('account.user.gdpr.confirm', {
-    url: '/:publicId/confirm-request-erasure',
-    template: confirmRequestTemplate,
-    controller: confirmRequestController,
-    controllerAs: '$ctrl',
-    resolve: {
-      publicId: /* @ngInject */ ($transition$) =>
-        $transition$.params().publicId,
-      breadcrumb: /* @ngInject */ () => null,
     },
   });
 };
