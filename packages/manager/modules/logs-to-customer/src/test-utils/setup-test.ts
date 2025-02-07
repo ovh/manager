@@ -1,12 +1,11 @@
 import { beforeAll, afterAll } from 'vitest';
-import { odsSetup } from '@ovhcloud/ods-common-core';
 import { SetupServer, setupServer } from 'msw/node';
-import { getAuthenticationMocks } from '../../../../../../playwright-helpers/mocks/auth';
-import { toMswHandlers } from '../../../../../../playwright-helpers';
 import '@testing-library/jest-dom';
 import 'element-internals-polyfill';
-
-odsSetup();
+import {
+  getAuthenticationMocks,
+  toMswHandlers,
+} from '@ovh-ux/manager-core-test-utils';
 
 declare global {
   // eslint-disable-next-line vars-on-top, no-var

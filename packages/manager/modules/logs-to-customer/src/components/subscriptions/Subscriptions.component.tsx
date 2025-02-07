@@ -1,8 +1,6 @@
 import React, { useContext } from 'react';
-import { OsdsSpinner } from '@ovhcloud/ods-components/react';
-import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+import { OdsSpinner, OdsText } from '@ovhcloud/ods-components/react';
 import { useQueryClient } from '@tanstack/react-query';
-import { CommonTitle } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { LogsContext } from '../../LogsToCustomer.context';
 import {
@@ -28,11 +26,7 @@ export default function LogsSubscriptions() {
   if (!currentLogKind) {
     return (
       <div className="flex py-8">
-        <OsdsSpinner
-          inline
-          size={ODS_SPINNER_SIZE.md}
-          data-testid="logCurrentLogKind-spinner"
-        />
+        <OdsSpinner size="md" data-testid="logCurrentLogKind-spinner" />
       </div>
     );
   }
@@ -40,17 +34,14 @@ export default function LogsSubscriptions() {
   if (isLoading || isPending)
     return (
       <div className="flex py-8">
-        <OsdsSpinner
-          inline
-          size={ODS_SPINNER_SIZE.md}
-          data-testid="logSubscriptions-spinner"
-        />
+        <OdsSpinner size="md" data-testid="logSubscriptions-spinner" />
       </div>
     );
 
   if (error)
     return (
       <ApiError
+        testId="logSubscriptions-error"
         error={error}
         onRetry={() =>
           queryClient.refetchQueries({
@@ -60,13 +51,12 @@ export default function LogsSubscriptions() {
             ),
           })
         }
-        testId="logSubscriptions-error"
       />
     );
 
   return (
-    <div className="flex flex-col gap-6">
-      <CommonTitle>{t('log_subscription_list_title')}</CommonTitle>
+    <div className="flex flex-col gap-4">
+      <OdsText preset="heading-3">{t('log_subscription_list_title')}</OdsText>
       <div
         className={
           isZoomedIn
