@@ -32,6 +32,7 @@ import {
 } from './liveChat.constants';
 import { generateSnowChatUrl } from './liveChat.helpers';
 import ChatDialog from './ChatDialog.component';
+import { useTranslation } from 'react-i18next';
 
 type LiveChatProps = {
   closeLiveChat: () => void;
@@ -59,6 +60,8 @@ export default function LiveChat({
   const environment: Environment = useShell()
     .getPlugin('environment')
     .getEnvironment();
+
+  const { t } = useTranslation('livechat');
 
   const region = environment.getRegion();
   const language = environment.getUserLanguage();
@@ -198,7 +201,7 @@ export default function LiveChat({
           <>
             <OsdsButton
               className="hidden xl:flex"
-              aria-label="Reduce Live Chat"
+              aria-label={t('livechat_reduce')}
               data-testid="live-chat-desktop-reduce-button"
               circle
               color={ODS_THEME_COLOR_INTENT.primary}
@@ -210,11 +213,11 @@ export default function LiveChat({
                 className="m-2"
                 contrasted
               />
-              <span className="sr-only">{`Reduce Live Chat`}</span>
+              <span className="sr-only">{t('livechat_reduce')}</span>
             </OsdsButton>
             <OsdsButton
               className="xl:hidden"
-              aria-label="Reduce Live Chat"
+              aria-label={t('livechat_reduce')}
               data-testid="live-chat-mobile-reduce-button"
               variant={ODS_BUTTON_VARIANT.ghost}
               circle
@@ -227,7 +230,7 @@ export default function LiveChat({
                 size={ODS_ICON_SIZE.md}
                 contrasted
               />
-              <span className="sr-only">{`Reduce Live Chat`}</span>
+              <span className="sr-only">{t('livechat_reduce')}</span>
             </OsdsButton>
             {chatType === 'Adrielly' && (
               <OsdsText
@@ -246,7 +249,7 @@ export default function LiveChat({
           <>
             {/* Mobile view: Close Chat */}
             <OsdsButton
-              aria-label="Close Live Chat"
+              aria-label={t('livechat_close')}
               variant={ODS_BUTTON_VARIANT.ghost}
               data-testid="live-chat-mobile-close-button"
               circle
@@ -259,12 +262,12 @@ export default function LiveChat({
                 size={ODS_ICON_SIZE.md}
                 contrasted
               />
-              <span className="sr-only">{`Close Live Chat`}</span>
+              <span className="sr-only">{t('livechat_close')}</span>
             </OsdsButton>
 
             {/* Desktop view: Open Chat */}
             <OsdsButton
-              aria-label="Open Live Chat"
+              aria-label={t('livechat_open')}
               data-testid="live-chat-desktop-open-button"
               circle
               color={ODS_THEME_COLOR_INTENT.primary}
@@ -277,7 +280,7 @@ export default function LiveChat({
                 contrasted
                 className="m-2"
               />
-              <span className="sr-only">{`Open Live Chat`}</span>
+              <span className="sr-only">{t('livechat_open')}</span>
             </OsdsButton>
             <OsdsIcon
               name={ODS_ICON_NAME.SPEECH_BUBBLE_CONCEPT}
@@ -288,7 +291,7 @@ export default function LiveChat({
 
             {/* Desktop view: Close Chat */}
             <OsdsButton
-              aria-label="Close Live Chat"
+              aria-label={t('livechat_close')}
               data-testid="live-chat-desktop-close-button"
               circle
               contrasted
@@ -300,12 +303,12 @@ export default function LiveChat({
                 size={ODS_ICON_SIZE.xxs}
                 color={ODS_THEME_COLOR_INTENT.primary}
               />
-              <span className="sr-only">{`Close Live Chat`}</span>
+              <span className="sr-only">{t('livechat_close')}</span>
             </OsdsButton>
 
             {/* Mobile view: Open Chat */}
             <OsdsButton
-              aria-label="Open Live Chat"
+              aria-label={t('livechat_open')}
               data-testid="live-chat-mobile-open-button"
               circle
               variant={ODS_BUTTON_VARIANT.ghost}
@@ -318,7 +321,7 @@ export default function LiveChat({
                 size={ODS_ICON_SIZE.md}
                 contrasted
               />
-              <span className="sr-only">{`Open Live Chat`}</span>
+              <span className="sr-only">{t('livechat_open')}</span>
             </OsdsButton>
           </>
         )}
