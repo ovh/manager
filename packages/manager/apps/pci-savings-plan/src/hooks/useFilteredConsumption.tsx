@@ -1,24 +1,23 @@
 import { useEffect, useMemo, useState } from 'react';
 import { SavingsPlanFlavorConsumption } from '@/types/savingsPlanConsumption.type';
-import { getLastXMonths } from '@/utils/formatter/date';
+import { getLastXMonths, toMonthYear } from '@/utils/formatter/date';
 import { useSavingsPlanConsumption } from './useSavingsPlanConsumption';
 import { getBigestConsumption, isInstanceFlavor } from '@/utils/savingsPlan';
 
 export const useFilteredConsumption = (locale: string) => {
-  const lastXMonths = useMemo(() => getLastXMonths(locale), [locale]);
+  const lastXMonths = useMemo(() => getLastXMonths(), []);
   const [period, setPeriod] = useState(lastXMonths[0]);
   const [flavor, setFlavor] = useState('');
 
-  const [monthName, year] = period.split(' ');
-  const date = new Date(Date.parse(`${monthName} 1, ${year}`));
-  const monthNumber = date.getMonth() + 1;
+  const month = new Date(period).getMonth() + 1;
+  const year = new Date(period).getFullYear();
 
   const {
     data: consumption,
     isLoading: isConsumptionLoading,
   } = useSavingsPlanConsumption({
-    year: Number(year),
-    month: monthNumber,
+    year,
+    month,
   });
 
   const setFilterByPlan = (consumptionFlavor: SavingsPlanFlavorConsumption) => {
@@ -48,12 +47,14 @@ export const useFilteredConsumption = (locale: string) => {
       : [];
   }, [consumption]);
 
-  const periodOptions = useMemo(() => {
-    return lastXMonths.map((month) => ({
-      label: month,
-      value: month,
-    }));
-  }, [lastXMonths]);
+  const periodOptions = useMemo(
+    () =>
+      lastXMonths.map((date) => ({
+        label: toMonthYear(new Date(date), locale),
+        value: date,
+      })),
+    [lastXMonths],
+  );
 
   return {
     consumption,

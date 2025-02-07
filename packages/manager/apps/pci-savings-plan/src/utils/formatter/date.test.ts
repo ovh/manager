@@ -17,7 +17,7 @@ describe('Date helper', () => {
 
   describe('getLastXMonths', () => {
     it('should return the last 12 months', () => {
-      const lastTwelveMonths = getLastXMonths('en-US', 12);
+      const lastTwelveMonths = getLastXMonths(12);
       expect(lastTwelveMonths).toHaveLength(12);
     });
   });

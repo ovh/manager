@@ -64,7 +64,7 @@ const Kpis = ({
   const defaultMessage = t('dashboard_kpis_not_available');
 
   const computedPercents = useMemo(() => {
-    if (!consumption.periods?.length) {
+    if (!consumption?.periods?.length) {
       return {
         computedUsagePercent: defaultMessage,
         computedCoveragePercent: defaultMessage,

@@ -2,6 +2,7 @@ import React from 'react';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 import NotFound from '@/pages/404';
 import { urls } from '@/routes/routes.constant';
+import { Error } from '../Error';
 
 const lazyRouteConfig = (importFn: CallableFunction) => {
   return {
@@ -19,6 +20,7 @@ export const Routes = [
   {
     path: '/pci/projects/:projectId/savings-plan',
     ...lazyRouteConfig(() => import('@/pages/layout')),
+    errorElement: <Error />,
     children: [
       {
         id: 'dashboard',

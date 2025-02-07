@@ -10,6 +10,7 @@ import {
 } from '@/components/Select/Select';
 
 import { InstanceTechnicalName } from '@/types/CreatePlan.type';
+import { toMonthYear } from '@/utils/formatter/date';
 
 type Option = { label: string; value: string; prefix?: string };
 
@@ -32,6 +33,7 @@ const SelectWithLabel = <T extends string>({
   isLoading,
   isDisabled,
   className,
+  formatter,
 }: {
   label: string;
   options: Option[];
@@ -41,6 +43,7 @@ const SelectWithLabel = <T extends string>({
   isLoading?: boolean;
   isDisabled?: boolean;
   className?: string;
+  formatter?: (value: T) => string;
 }) => {
   const { t } = useTranslation(['dashboard']);
   if (isLoading) {
@@ -64,7 +67,9 @@ const SelectWithLabel = <T extends string>({
         disabled={isDisabled}
       >
         <SelectTrigger className={`text-foreground ${className}`} id={name}>
-          <span>{getSelectText(value, options, t)}</span>
+          <span>
+            {getSelectText(formatter ? formatter(value) : value, options, t)}
+          </span>
         </SelectTrigger>
         <SelectContent>
           {options.map((option) => (
@@ -91,6 +96,7 @@ const SelectWithLabel = <T extends string>({
 };
 
 interface FiltersProps {
+  locale: string;
   period: string;
   flavor: string;
   setFlavor: (f: InstanceTechnicalName) => void;
@@ -101,6 +107,7 @@ interface FiltersProps {
 }
 
 const Filters = ({
+  locale,
   period,
   flavor,
   setFlavor,
@@ -111,12 +118,15 @@ const Filters = ({
 }: FiltersProps) => {
   const { t } = useTranslation(['dashboard', 'listing', 'create']);
 
+  const formatterDate = (date: string) => toMonthYear(new Date(date), locale);
+
   return (
     <div className="flex flex-row gap-4">
       <SelectWithLabel
         label={t('dashboard_select_label_period')}
         options={periodOptions}
         name="period"
+        formatter={formatterDate}
         value={period}
         onChange={setPeriod}
         className="capitalize"
