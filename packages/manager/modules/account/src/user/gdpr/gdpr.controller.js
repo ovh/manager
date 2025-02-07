@@ -14,18 +14,21 @@ export default class UserAccountGdprController {
     this.$translate = $translate;
     this.gdprService = gdprService;
     this.Alerter = Alerter;
-    this.user = coreConfig.getUser();
-    this.nic = this.user?.nichandle;
+    const user = coreConfig.getUser();
+    this.nic = user?.nichandle;
+    this.ovhSubsidiary = user?.ovhSubsidiary;
     this.$state = $state;
   }
 
   $onInit() {
+    this.viewTicketsUrl = this.getViewTicketsUrl();
     this.showErasureConfirmationModal = false;
     this.loading = {
       capabilities: false,
       createErasureRequest: false,
     };
     this.getCapabilities();
+    this.getErasureRequests();
   }
 
   getCapabilities() {
@@ -38,8 +41,6 @@ export default class UserAccountGdprController {
       .finally(() => {
         this.loading.capabilities = false;
       });
-
-    this.getErasureRequests();
   }
 
   askErasureConfirmation() {
@@ -76,10 +77,7 @@ export default class UserAccountGdprController {
       })
       .catch((error) => {
         this.Alerter.error(
-          this.buildErrorMessage(
-            error,
-            CREATE_ERASURE_REQUEST_MESSAGES_MAP,
-          ),
+          this.buildErrorMessage(error, CREATE_ERASURE_REQUEST_MESSAGES_MAP),
           GDPR_FEATURES_BANNER_CONTAINER,
         );
       })
@@ -124,23 +122,21 @@ export default class UserAccountGdprController {
 
   static getErasureRequestReasonMessage(reasons) {
     if (!reasons) return '';
-    const reasonsKey = reasons.map((m) => m.key);
-
-    if (reasonsKey?.length > 1)
+    if (reasons.length > 1)
       return ERASURE_INELIGIBILITY_REASON_MESSAGES_MAP.multiple_reasons;
-    if (reasonsKey?.length === 1)
-      return ERASURE_INELIGIBILITY_REASON_MESSAGES_MAP[reasonsKey[0]];
+    if (reasons.length === 1)
+      return ERASURE_INELIGIBILITY_REASON_MESSAGES_MAP[reasons[0].key];
     return '';
   }
 
   getViewTicketsUrl() {
-    return SUPPORT_URLS.viewTickets + this.user?.ovhSubsidiary;
+    return SUPPORT_URLS.viewTickets + this.ovhSubsidiary;
   }
 
-  confirmationEmailRequestErasure(request) {
+  sendErasureRequestConfirmationEmail(request) {
     this.Alerter.resetMessage(GDPR_FEATURES_BANNER_CONTAINER);
     this.gdprService
-      .confirmationEmailRequestErasure(request.publicId)
+      .sendErasureRequestConfirmationEmail(request.publicId)
       .then(() => {
         this.Alerter.info(
           `<strong>${this.$translate.instant(
@@ -159,10 +155,6 @@ export default class UserAccountGdprController {
           ),
           GDPR_FEATURES_BANNER_CONTAINER,
         );
-      })
-      .finally(() => {
-        this.getErasureRequests();
-        this.getCapabilities();
       });
   }
 
@@ -175,16 +167,14 @@ export default class UserAccountGdprController {
           this.buildSuccessMessage('gdpr_erasure_cancel_success'),
           GDPR_FEATURES_BANNER_CONTAINER,
         );
+        this.getErasureRequests();
+        this.getCapabilities();
       })
       .catch((error) => {
         this.Alerter.error(
           this.buildErrorMessage(error, CANCEL_ERASURE_REQUEST_MESSAGES_MAP),
           GDPR_FEATURES_BANNER_CONTAINER,
         );
-      })
-      .finally(() => {
-        this.getErasureRequests();
-        this.getCapabilities();
       });
   }
 }
