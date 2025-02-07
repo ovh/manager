@@ -440,6 +440,46 @@ export default [
               },
             ],
           },
+          {
+            path: 'deploy',
+            id: 'deploy',
+            ...lazyRouteConfig(() => import('@/pages/apps/AppRoot.page')),
+            children: [
+              // {
+              //   path: 'start/:appId',
+              //   id: 'deploy.start',
+              //   ...lazyRouteConfig(() =>
+              //     import('@/pages/jobs/restart/Restart.modal'),
+              //   ),
+              // },
+              // {
+              //   path: 'stop/:jobId',
+              //   id: 'training.stop',
+              //   ...lazyRouteConfig(() =>
+              //     import('@/pages/jobs/kill/Kill.modal'),
+              //   ),
+              // },
+              // {
+              //   path: 'delete/:jobId',
+              //   id: 'training.delete',
+              //   ...lazyRouteConfig(() =>
+              //     import('@/pages/jobs/delete/Delete.modal'),
+              //   ),
+              // },
+            ],
+          },
+          // {
+          //   path: 'training/onboarding',
+          //   id: 'training.onboarding',
+          //   ...lazyRouteConfig(() =>
+          //     import('@/pages/jobs/onboarding/Onboarding.page'),
+          //   ),
+          // },
+          {
+            path: 'deploy/new',
+            id: 'create-app',
+            ...lazyRouteConfig(() => import('@/pages/apps/create/Create.page')),
+          },
         ],
       },
     ],

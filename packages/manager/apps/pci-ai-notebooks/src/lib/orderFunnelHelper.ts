@@ -1,5 +1,6 @@
 import * as ai from '@/types/cloud/project/ai';
 import {
+  AppOrderResult,
   JobOrderResult,
   NotebookOrderResult,
   OrderVolumes,
@@ -118,4 +119,46 @@ export function getJobSpec(formResult: JobOrderResult) {
     });
   }
   return jobInfos;
+}
+
+export function getAppSpec(formResult: AppOrderResult) {
+  const appResource: ai.ResourcesInput =
+    formResult.flavor.type === ai.capabilities.FlavorTypeEnum.cpu
+      ? {
+          flavor: formResult.flavor.id,
+          cpu: Number(formResult.resourcesQuantity),
+        }
+      : {
+          flavor: formResult.flavor.id,
+          gpu: Number(formResult.resourcesQuantity),
+        };
+
+  const appInfos: ai.app.AppSpecInput = {
+    resources: appResource,
+    name: formResult.appName,
+    image: formResult.image,
+    region: formResult.region.id,
+    unsecureHttp: formResult.unsecureHttp,
+    labels: formResult.labels,
+    command: formResult.dockerCommand,
+  };
+
+  if (formResult.volumes.length > 0) {
+    appInfos.volumes = formResult.volumes.map((volume: OrderVolumes) => {
+      return {
+        cache: volume.cache,
+        mountPath: volume.mountPath,
+        permission: volume.permission,
+        volumeSource: volume.publicGit
+          ? { publicGit: volume.publicGit }
+          : {
+              dataStore: {
+                alias: volume.dataStore.alias,
+                container: volume.dataStore.container,
+              },
+            },
+      };
+    });
+  }
+  return appInfos;
 }

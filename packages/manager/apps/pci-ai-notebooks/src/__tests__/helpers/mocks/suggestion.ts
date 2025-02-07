@@ -1,4 +1,8 @@
-import { JobSuggestions, Suggestions } from '@/types/orderFunnel';
+import {
+  AppSuggestions,
+  JobSuggestions,
+  Suggestions,
+} from '@/types/orderFunnel';
 
 export const mockedSuggestion: Suggestions[] = [
   {
@@ -75,6 +79,25 @@ export const mockedTempJobSuggestionForOrderFunnel: JobSuggestions[] = [
       flavor: 'ai1-le-1-gpu',
     },
     image: 'ovhcom/ai-training-mxnet:1.5.0',
+    unsecureHttp: false,
+  },
+];
+
+export const mockedTempAppSuggestions: AppSuggestions[] = [
+  {
+    region: 'GRA',
+    ressources: {
+      nb: 1,
+      flavor: 'ai1-1-cpu',
+    },
+    unsecureHttp: false,
+  },
+  {
+    region: 'BHS',
+    ressources: {
+      nb: 1,
+      flavor: 'ai1-le-1-gpu',
+    },
     unsecureHttp: false,
   },
 ];

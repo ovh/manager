@@ -8,6 +8,7 @@ export enum GuideSections {
   'products' = 'produits-ia',
   'notebooks' = 'ai-notebooks',
   'jobs' = 'ai-training',
+  'apps' = 'ai-deploy',
 }
 
 export const notebookGuidesSections: GuideSections[] = [
@@ -24,6 +25,15 @@ export const jobGuidesSections: GuideSections[] = [
   GuideSections.data,
   GuideSections.faq,
   GuideSections.jobs,
+  GuideSections.ovhaiCli,
+  GuideSections.products,
+];
+
+export const appGuidesSections: GuideSections[] = [
+  GuideSections.cli,
+  GuideSections.data,
+  GuideSections.faq,
+  GuideSections.apps,
   GuideSections.ovhaiCli,
   GuideSections.products,
 ];
