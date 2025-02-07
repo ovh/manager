@@ -1,16 +1,5 @@
-import {
-  CommonTitle,
-  Description,
-  Links,
-  LinkType,
-} from '@ovh-ux/manager-react-components';
-import { ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
-import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
-import {
-  OsdsSelect,
-  OsdsSelectOption,
-  OsdsSpinner,
-} from '@ovhcloud/ods-components/react';
+import { Links, LinkType } from '@ovh-ux/manager-react-components';
+import { OdsSelect, OdsSpinner, OdsText } from '@ovhcloud/ods-components/react';
 import { useQueryClient } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -30,22 +19,18 @@ export default function DataStreams() {
   const { t } = useTranslation('logStreams');
   const [currentService, setCurrentService] = useState<Service>();
 
-  const { data: logsServices, isPending, error } = useLogServices();
+  const { data: logServices, isPending, error } = useLogServices();
 
   useEffect(() => {
-    if (!isPending && logsServices?.length > 0) {
-      setCurrentService(logsServices[0]);
+    if (!isPending && logServices?.length > 0) {
+      setCurrentService(logServices[0]);
     }
-  }, [logsServices, isPending]);
+  }, [logServices, isPending]);
 
   if (isPending)
     return (
       <div className="flex py-8">
-        <OsdsSpinner
-          inline
-          size={ODS_SPINNER_SIZE.md}
-          data-testid="logServices-spinner"
-        />
+        <OdsSpinner size="md" data-testid="logServices-spinner" />
       </div>
     );
 
@@ -62,11 +47,17 @@ export default function DataStreams() {
       />
     );
 
-  if (logsServices.length === 0)
-    return <Description>{t('log_kind_empty_state_description')}</Description>;
+  if (logServices.length === 0)
+    return (
+      <OdsText preset="paragraph">
+        {t('log_kind_empty_state_description')}
+      </OdsText>
+    );
 
   if (!currentService)
-    return <Description>{t('log_kind_no_kind_selected')}</Description>;
+    return (
+      <OdsText preset="paragraph">{t('log_kind_no_kind_selected')}</OdsText>
+    );
 
   return (
     <div className="flex flex-col gap-4">
@@ -75,31 +66,32 @@ export default function DataStreams() {
         label={t('log_streams_back_link')}
         onClickReturn={() => navigate('..')}
       />
-      <CommonTitle typoSize={ODS_THEME_TYPOGRAPHY_SIZE._500}>
-        {t('log_streams_title')}
-      </CommonTitle>
-      <Description>{t('log_streams_back_description')}</Description>
-      {logsServices.length > 1 && (
-        <div className="flex flex-col gap-4 ">
-          <OsdsSelect
-            value={currentService?.serviceName}
-            onOdsValueChange={(event) => {
-              const newLogService = logsServices.find(
-                (k) => k.serviceName === event.detail.value,
-              );
-              if (newLogService) setCurrentService(newLogService);
-            }}
-            data-testid={'logKindSelect'}
-          >
-            {logsServices.map((s) => (
-              <OsdsSelectOption key={s.serviceName} value={s.serviceName}>
-                {`${s.serviceName}${
-                  s.displayName ? ` - ${s.displayName}` : ''
-                }`}
-              </OsdsSelectOption>
-            ))}
-          </OsdsSelect>
-        </div>
+      <OdsText preset="heading-3">{t('log_streams_title')}</OdsText>
+      <OdsText preset="paragraph">{t('log_streams_back_description')}</OdsText>
+      {logServices.length > 1 && (
+        <OdsSelect
+          value={currentService?.serviceName}
+          onOdsChange={(event) => {
+            const newLogService = logServices.find(
+              (k) => k.serviceName === event.detail.value,
+            );
+            if (newLogService) setCurrentService(newLogService);
+          }}
+          data-testid={'logKindSelect'}
+          name="select-log-service"
+        >
+          {logServices.map((s) => {
+            const optionLabel = s.displayName
+              ? `${s.serviceName} - ${s.displayName}`
+              : s.serviceName;
+
+            return (
+              <option key={s.serviceName} value={s.serviceName}>
+                {optionLabel}
+              </option>
+            );
+          })}
+        </OdsSelect>
       )}
       <DataStreamsDatagrid service={currentService} />
     </div>
