@@ -6,6 +6,7 @@ export default /* @ngInject */ function PackInformationCtrl(
   $scope,
   $translate,
   $q,
+  $state,
   $stateParams,
   TucToast,
   OvhApiPackXdsl,

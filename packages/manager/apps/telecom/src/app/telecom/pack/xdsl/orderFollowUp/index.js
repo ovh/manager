@@ -20,6 +20,9 @@ angular
     'ui.router',
   ])
   .config(routing)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .run(/* @ngTranslationsInject:json ./translations */)
+  .run(($state) => {
+    console.log('Registered states:', $state.get());
+  });
 
 export default moduleName;
