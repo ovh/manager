@@ -3,7 +3,6 @@ import angular from 'angular';
 import access from './access';
 import modem from './modem';
 import resiliation from './resiliation';
-import orderFollowUp from './orderFollowUp';
 import tasks from './tasks';
 import missingRio from './missingRio';
 
@@ -14,14 +13,7 @@ import service from './xdsl-task-poller.service';
 const moduleName = 'ovhManagerTelecomPackXdsl';
 
 angular
-  .module(moduleName, [
-    access,
-    missingRio,
-    modem,
-    orderFollowUp,
-    resiliation,
-    tasks,
-  ])
+  .module(moduleName, [access, missingRio, modem, resiliation, tasks])
   .component('packXdsl', component)
   .service('XdslTaskPoller', service)
   .config(routing)
