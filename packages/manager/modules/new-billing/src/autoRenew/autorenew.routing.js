@@ -223,7 +223,7 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
               ovhFeatureFlipping
                 .checkFeatureAvailability(['billing:choiceRenewDayTooltip'])
                 .then((commitmentAvailability) =>
-                  commitmentAvailability.isFeatureAvailable(
+                  commitmentAvailability?.isFeatureAvailable(
                     'billing:choiceRenewDayTooltip',
                   ),
                 ),
