@@ -15,3 +15,11 @@ export const getPercentValue = (
   const average = values.reduce((sum, value) => sum + value, 0) / values.length;
   return `${Math.floor(average)}%`;
 };
+export const isCurrentPeriod = (period: string): boolean => {
+  const now = new Date();
+  const currentPeriod = now.toLocaleString('fr-FR', {
+    month: 'long',
+    year: 'numeric',
+  });
+  return period.toLowerCase() === currentPeriod.toLowerCase();
+};
