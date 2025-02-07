@@ -1,26 +1,118 @@
 # Default owners
-* @ovh/team-manager-dev-angularjs @ovh/team-manager-dev-reactjs
+* @ovh/team-manager-control-tower
 
 # Components
-/packages/components/ @ovh/team-manager-dev-angularjs
+/packages/components/ @ovh/team-manager-control-tower
 
-# Packages
-/packages/manager/apps/ @ovh/team-manager-dev-angularjs
-/packages/manager/core/ @ovh/team-manager-dev-reactjs
-/packages/manager/modules/ @ovh/team-manager-dev-angularjs
+# Apps
+/packages/manager/apps/account @dev-manager-gcj-all
+/packages/manager/apps/billing @dev-manager-gcj-all
+/packages/manager/apps/carbon-calculator @dev-manager-enabler-all
+/packages/manager/apps/carrier-sip @dev-manager-web-all
+/packages/manager/apps/catalog @dev-manager-gcj-all
+/packages/manager/apps/cda @dev-manager-infra-all
+/packages/manager/apps/cloud-connect @dev-manager-infra-all
+/packages/manager/apps/container @dev-manager-gcj-all
+/packages/manager/apps/dbaas-logs @dev-manager-enabler-all
+/packages/manager/apps/dedicated @dev-manager-infra-all
+/packages/manager/apps/dedicated-server @dev-manager-infra-all
+/packages/manager/apps/email-domain @dev-manager-web-all
+/packages/manager/apps/email-pro @dev-manager-web-all
+/packages/manager/apps/exchange @dev-manager-web-all
+/packages/manager/apps/freefax @dev-manager-web-all
+/packages/manager/apps/hpc-vmware-managed-vcd @dev-manager-hpc-all
+/packages/manager/apps/hub @dev-manager-gcj-all
+/packages/manager/apps/hub-react @dev-manager-gcj-all
+/packages/manager/apps/hycu @dev-manager-hpc-all
+/packages/manager/apps/iam @dev-manager-enabler-all
+/packages/manager/apps/iplb @dev-manager-infra-all
+/packages/manager/apps/key-management-service @dev-manager-enabler-all
+/packages/manager/apps/metrics @dev-manager-infra-all
+/packages/manager/apps/nasha @dev-manager-infra-all
+/packages/manager/apps/netapp @dev-manager-infra-all
+/packages/manager/apps/nutanix @dev-manager-hpc-all
+/packages/manager/apps/octavia-load-balancer @dev-manager-pci-all
+/packages/manager/apps/office @dev-manager-web-all
+/packages/manager/apps/overthebox @dev-manager-web-all
+/packages/manager/apps/pci @dev-manager-pci-all
+/packages/manager/apps/pci-* @dev-manager-pci-all
+/packages/manager/apps/pci-ai-endpoints @dev-manager-pci-all
+/packages/manager/apps/pci-databases-analytics @dev-manager-pci-aidatabase
+/packages/manager/apps/procedures @dev-manager-gcj-all
+/packages/manager/apps/public-cloud @dev-manager-pci-all
+/packages/manager/apps/restricted @dev-manager-enabler-all
+/packages/manager/apps/sharepoint @dev-manager-web-all
+/packages/manager/apps/sign-up @dev-manager-gcj-all
+/packages/manager/apps/sms @dev-manager-web-all
+/packages/manager/apps/support @dev-manager-gcj-all
+/packages/manager/apps/telecom @dev-manager-web-all
+/packages/manager/apps/telecom-dashboard @dev-manager-web-all
+/packages/manager/apps/telecom-task @dev-manager-web-all
+/packages/manager/apps/veeam-backup @dev-manager-hpc-all
+/packages/manager/apps/veeam-cloud-connect @dev-manager-infra-all
+/packages/manager/apps/veeam-enterprise @dev-manager-infra-all
+/packages/manager/apps/vps @dev-manager-web-all
+/packages/manager/apps/vrack @dev-manager-infra-all
+/packages/manager/apps/vrack-services @dev-manager-infra-all
+/packages/manager/apps/web @dev-manager-web-all
+/packages/manager/apps/web-paas @dev-manager-web-all
+/packages/manager/apps/zimbra @dev-manager-web-all
 
-# React Stack
-*.jsx @ovh/team-manager-dev-reactjs @ovh/su-digital-tools-core-stack
-*.tsx @ovh/team-manager-dev-reactjs @ovh/su-digital-tools-core-stack
-/playwright-helpers/ @ovh/team-manager-dev-reactjs
+# Core
+/packages/manager/core @ovh/team-manager-control-tower
 
-# Manager-pci-common
-# TODO: Update owners to be TAPC & Core-stack groups instead of particular users.
-/packages/manager/modules/manager-pci-common/ @fredericvilcot @frenautvh
+# Modules
+/packages/manager/modules @ovh/team-manager-control-tower
+/packages/manager/modules/account @dev-manager-gcj-all
+/packages/manager/modules/billing @dev-manager-gcj-all
+/packages/manager/modules/bm-server-components @dev-manager-infra-all @dev-manager-hpc-all
+/packages/manager/modules/carbon-calculator @dev-manager-enabler-all
+/packages/manager/modules/carrier-sip @dev-manager-web-all
+/packages/manager/modules/cda @dev-manager-infra-all
+/packages/manager/modules/cloud-connect @dev-manager-infra-all
+/packages/manager/modules/dbaas-logs @dev-manager-enabler-all
+/packages/manager/modules/email-domain @dev-manager-web-all
+/packages/manager/modules/emailpro @dev-manager-web-all
+/packages/manager/modules/exchange @dev-manager-web-all
+/packages/manager/modules/freefax @dev-manager-web-all
+/packages/manager/modules/hub @dev-manager-gcj-all
+/packages/manager/modules/iam @dev-manager-enabler-all
+/packages/manager/modules/iplb @dev-manager-infra-all
+/packages/manager/modules/log-to-customer @dev-manager-enabler-all
+/packages/manager/modules/manager-pci-common @dev-manager-tapc-admin
+/packages/manager/modules/metrics @dev-manager-infra-all
+/packages/manager/modules/nasha @dev-manager-infra-all
+/packages/manager/modules/netapp @dev-manager-infra-all
+/packages/manager/modules/new-billing @dev-manager-gcj-all
+/packages/manager/modules/nutanix @dev-manager-hpc-all
+/packages/manager/modules/octavia-load-balancer @dev-manager-tapc-all
+/packages/manager/modules/office @dev-manager-web-all
+/packages/manager/modules/overthebox @dev-manager-web-all
+/packages/manager/modules/pci-universe-components @dev-manager-tapc-all
+/packages/manager/modules/phone-prefix @dev-manager-web-all
+/packages/manager/modules/product-offers @dev-manager-web-all
+/packages/manager/modules/sharepoint @dev-manager-web-all
+/packages/manager/modules/sign-up @dev-manager-gcj-all
+/packages/manager/modules/sms @dev-manager-web-all
+/packages/manager/modules/support @dev-manager-gcj-all
+/packages/manager/modules/telecom-dashboard @dev-manager-web-all
+/packages/manager/modules/telecom-styles @dev-manager-web-all
+/packages/manager/modules/telecom-task @dev-manager-web-all
+/packages/manager/modules/telecom-universe-components @dev-manager-web-all
+/packages/manager/modules/vcd-api @dev-manager-hpc-all
+/packages/manager/modules/vcd-api @dev-manager-hpc-all
+/packages/manager/modules/veeam-cloud-connect @dev-manager-infra-all
+/packages/manager/modules/veeam-enterprise @dev-manager-infra-all
+/packages/manager/modules/vps @dev-manager-web-all
+/packages/manager/modules/vrack @dev-manager-infra-all
+/packages/manager/modules/web-paas @dev-manager-web-all
+/packages/manager/modules/web-universe-components @dev-manager-web-all
+
+# Tools
+/packages/manager/tools @ovh/team-manager-control-tower
 
 # Manager-components
 /packages/manager-components @ovh/team-manager-control-tower
 
-# Continuous Integration and scripts
-/scripts/start-application.js @ovh/team-manager-dev-angularjs @ovh/team-manager-dev-reactjs
-/scripts/.env.development @ovh/team-manager-dev-reactjs
+# Scripts
+/scripts @ovh/team-manager-control-tower
