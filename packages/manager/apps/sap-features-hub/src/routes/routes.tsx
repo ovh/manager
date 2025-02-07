@@ -23,8 +23,10 @@ export const Routes: any = [
     children: [
       {
         id: 'listing',
-        path: urls.listing,
-        ...lazyRouteConfig(() => import('@/pages/listing')),
+        path: urls.installation,
+        ...lazyRouteConfig(() =>
+          import('@/pages/listing/InstallationHistory.page'),
+        ),
         handle: {
           tracking: {
             pageName: 'listing',
