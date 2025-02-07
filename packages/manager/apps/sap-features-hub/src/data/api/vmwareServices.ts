@@ -5,6 +5,7 @@ import {
   VMwareDatacentreCluster,
   VMwareService,
 } from '@/types/vmwareService.type';
+import { TSAPInstallation } from '@/types/installation.type';
 
 export type GetClustersIdsProps = {
   serviceName: string;
@@ -17,6 +18,9 @@ const vmwareServicesRoute =
 
 const getVMwareDatacentreRoute = (serviceName: string) =>
   `/sws/dedicatedCloud/${serviceName}/datacenters-summary`;
+
+const getVMwareSAPInstallationsRoute = (serviceName: string) =>
+  `/dedicatedCloud/${serviceName}/sap`;
 
 const getDatacentreClusterIdsRoute = ({
   serviceName,
@@ -52,3 +56,8 @@ export const getDatacentreCluster = async ({
   clusterId,
 }: GetOneClusterProps): Promise<ApiResponse<VMwareDatacentreCluster>> =>
   v6.get(getDatacentreClusterRoute({ serviceName, datacenterId, clusterId }));
+
+export const getSAPInstallations = async (
+  serviceName: string,
+): Promise<ApiResponse<TSAPInstallation[]>> =>
+  v6.get(getVMwareSAPInstallationsRoute(serviceName));
