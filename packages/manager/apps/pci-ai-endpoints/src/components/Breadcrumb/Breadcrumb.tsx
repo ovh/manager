@@ -12,6 +12,11 @@ export interface BreadcrumbProps {
   items?: BreadcrumbItem[];
 }
 
+const capitalize = (name: string) => {
+  if (!name) return '';
+  return name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+};
+
 function Breadcrumb() {
   const hrefProject = useProjectUrl('public-cloud');
   const { t } = useTranslation('metric');
@@ -30,11 +35,6 @@ function Breadcrumb() {
         return '';
     }
   }, [location.pathname]);
-
-  const capitalize = (name: string) => {
-    if (!name) return '';
-    return name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
-  };
 
   return (
     <OsdsBreadcrumb
