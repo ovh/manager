@@ -1,8 +1,8 @@
 import React from 'react';
 import { SetupServer } from 'msw/node';
+import { toMswHandlers } from '@ovh-ux/manager-core-test-utils';
 import { render, waitFor, screen } from '@testing-library/react';
 import { TestApp } from './TestApp';
-import { toMswHandlers } from '../../../../../../playwright-helpers';
 import { MockedAppPageLabel } from './MockedAppPage';
 import {
   getLogKindsMocks,

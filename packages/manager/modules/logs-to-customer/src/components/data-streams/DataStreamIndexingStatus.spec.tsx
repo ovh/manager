@@ -1,6 +1,6 @@
 import {
-  OdsChipAttribute,
-  ODS_TEXT_COLOR_INTENT,
+  OdsBadge as OdsBadgeType,
+  ODS_BADGE_COLOR,
 } from '@ovhcloud/ods-components';
 import { render } from '@testing-library/react';
 import React from 'react';
@@ -12,19 +12,19 @@ import DataStreamIndexingStatus, {
 describe('data-stream indexing status', () => {
   type TTestCases = {
     indexingEnabled: Stream['indexingEnabled'];
-    color: OdsChipAttribute['color'];
+    color: OdsBadgeType['color'];
     label: string;
   };
 
   const testCases: TTestCases[] = [
     {
       indexingEnabled: false,
-      color: ODS_TEXT_COLOR_INTENT.warning,
+      color: ODS_BADGE_COLOR.warning,
       label: 'log_stream_indexing_inactive',
     },
     {
       indexingEnabled: true,
-      color: ODS_TEXT_COLOR_INTENT.success,
+      color: ODS_BADGE_COLOR.success,
       label: 'log_stream_indexing_active',
     },
   ];
@@ -37,7 +37,7 @@ describe('data-stream indexing status', () => {
       );
 
       const comp = getByTestId(DATA_STREAM_INDEXING_STATUS_TEST_ID);
-      expect(comp).toHaveTextContent(label);
+      expect(comp).toHaveAttribute('label', label);
       expect(comp).toHaveAttribute('color', color);
     },
   );

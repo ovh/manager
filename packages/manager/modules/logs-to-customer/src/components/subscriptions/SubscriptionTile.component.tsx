@@ -1,7 +1,5 @@
 import React from 'react';
-import { CommonTitle } from '@ovh-ux/manager-react-components';
-import { OsdsDivider, OsdsTile } from '@ovhcloud/ods-components/react';
-import { ODS_DIVIDER_SIZE } from '@ovhcloud/ods-components';
+import { OdsCard, OdsDivider, OdsText } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { LogSubscription } from '../../data/types/dbaas/logs';
 import SubscriptionStreamTitle from './SubscriptionStreamTitle.component';
@@ -16,21 +14,21 @@ const SubscriptionTile = ({ subscription }: SubscriptionTileProps) => {
   const { t } = useTranslation('logSubscription');
 
   return (
-    <OsdsTile rounded inline className="flex flex-col w-full h-fit">
-      <div className="flex flex-col gap-6">
-        <CommonTitle>{t('log_subscription_tile_title')}</CommonTitle>
+    <OdsCard className="flex flex-col w-full h-fit p-4">
+      <div className="flex flex-col gap-4">
+        <OdsText preset="heading-4">{t('log_subscription_tile_title')}</OdsText>
         <SubscriptionLogService
           subscription={subscription}
         ></SubscriptionLogService>
         <SubscriptionStreamTitle
           subscription={subscription}
         ></SubscriptionStreamTitle>
-        <OsdsDivider separator size={ODS_DIVIDER_SIZE.one} />
+        <OdsDivider />
         <SubscriptionStreamActions
           subscription={subscription}
         ></SubscriptionStreamActions>
       </div>
-    </OsdsTile>
+    </OdsCard>
   );
 };
 
