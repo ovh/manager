@@ -66,7 +66,7 @@ const DatagridStory = ({
         totalItems={items.length}
         {...paginationAttrs}
         {...sortingAttrs}
-        filters={{ filters, add: addFilter, remove: removeFilter }}
+        // filters={{ filters, add: addFilter, remove: removeFilter }}
       />
     </>
   );
@@ -95,17 +95,17 @@ Sortable.args = {
   isSortable: true,
 };
 
-export const Filters = DatagridStory.bind({});
+// export const Filters = DatagridStory.bind({});
 
-Filters.args = {
-  items: [...Array(50).keys()].map((_, i) => ({
-    label: `Item #${i}`,
-    price: Math.floor(1 + Math.random() * 100),
-  })),
-  isPaginated: true,
-  isSortable: true,
-  columns: columsFilters,
-};
+// Filters.args = {
+//   items: [...Array(50).keys()].map((_, i) => ({
+//     label: `Item #${i}`,
+//     price: Math.floor(1 + Math.random() * 100),
+//   })),
+//   isPaginated: true,
+//   isSortable: true,
+//   columns: columsFilters,
+// };
 
 export default {
   title: 'Components/Datagrid Paginated',

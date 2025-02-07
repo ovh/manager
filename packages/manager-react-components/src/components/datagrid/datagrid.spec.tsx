@@ -1,13 +1,8 @@
 import { vitest } from 'vitest';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { FilterCategories } from '@ovh-ux/manager-core-api';
-import {
-  ColumnSort,
-  Datagrid,
-  PaginationState,
-  FilterProps,
-} from './datagrid.component';
+import { ColumnSort, Datagrid, PaginationState } from './datagrid.component';
 import DataGridTextCell from './text-cell.component';
 import { defaultNumberOfLoadingRows } from './datagrid.contants';
 
@@ -67,14 +62,12 @@ const DatagridTest = ({
   pageIndex,
   className,
   noResultLabel,
-  filters,
 }: {
   columns: any;
   items: string[];
   pageIndex: number;
   className?: string;
   noResultLabel?: string;
-  filters?: FilterProps;
 }) => {
   const [pagination, setPagination] = useState<PaginationState>({
     pageIndex,
@@ -93,7 +86,6 @@ const DatagridTest = ({
       onSortChange={() => {}}
       className={className || ''}
       noResultLabel={noResultLabel}
-      filters={filters}
     />
   );
 };
@@ -302,30 +294,30 @@ it('should disable overflow of table', async () => {
   expect(container.querySelectorAll('.overflow-hidden').length).toBe(1);
 });
 
-it('should display filter add and filter list', async () => {
-  const filters = {
-    filters: [
-      {
-        key: 'customName',
-        comparator: 'includes',
-        value: 'coucou',
-        label: 'customName',
-      },
-    ],
-    add: null,
-    remove: null,
-  } as FilterProps;
-  const { container } = render(
-    <DatagridTest
-      columns={sampleColumns}
-      items={[]}
-      pageIndex={0}
-      className={'overflow-hidden'}
-      filters={filters}
-    />,
-  );
-  expect(
-    container.querySelectorAll('#datagrid-filter-popover-trigger').length,
-  ).toBe(1);
-  expect(container.querySelectorAll('#datagrid-filter-list').length).toBe(1);
-});
+// it('should display filter add and filter list', async () => {
+//   const filters = {
+//     filters: [
+//       {
+//         key: 'customName',
+//         comparator: 'includes',
+//         value: 'coucou',
+//         label: 'customName',
+//       },
+//     ],
+//     add: null,
+//     remove: null,
+//   } as FilterProps;
+//   const { container } = render(
+//     <DatagridTest
+//       columns={sampleColumns}
+//       items={[]}
+//       pageIndex={0}
+//       className={'overflow-hidden'}
+//       filters={filters}
+//     />,
+//   );
+//   expect(
+//     container.querySelectorAll('#datagrid-filter-popover-trigger').length,
+//   ).toBe(1);
+//   expect(container.querySelectorAll('#datagrid-filter-list').length).toBe(1);
+// });

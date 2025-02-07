@@ -77,16 +77,16 @@ const DatagridStory = (args) => {
         hasNextPage={data?.length > 0 && data.length < 30}
         onFetchNextPage={fetchNextPage}
         totalItems={data?.length}
-        filters={{ filters, add: addFilter, remove: removeFilter }}
-        {...(args.search
-          ? {
-              search: {
-                searchInput,
-                setSearchInput,
-                onSearch,
-              },
-            }
-          : {})}
+        // filters={{ filters, add: addFilter, remove: removeFilter }}
+        // {...(args.search
+        //   ? {
+        //       search: {
+        //         searchInput,
+        //         setSearchInput,
+        //         onSearch,
+        //       },
+        //     }
+        //   : {})}
         {...(args.isSortable
           ? {
               sorting,

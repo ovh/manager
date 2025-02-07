@@ -2,7 +2,7 @@ import { vitest } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { FilterCategories } from '@ovh-ux/manager-core-api';
 import DataGridTextCell from './text-cell.component';
-import { FilterProps } from './datagrid.component';
+import { FilterProps } from './datagrid-topbar.component';
 import { DatagridTopbar } from './datagrid-topbar.component';
 
 vitest.mock('react-i18next', async () => {
