@@ -1,20 +1,9 @@
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-  ODS_SPINNER_SIZE,
-} from '@ovhcloud/ods-components';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import {
-  OsdsButton,
-  OsdsIcon,
-  OsdsSpinner,
-} from '@ovhcloud/ods-components/react';
+import { OdsButton, OdsSpinner } from '@ovhcloud/ods-components/react';
 import { useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
+import { Links, LinkType } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
@@ -49,11 +38,7 @@ const SubscriptionStreamActions = ({
   if (isLoading || isPending) {
     return (
       <div className="flex justify-center w-full py-4">
-        <OsdsSpinner
-          inline
-          size={ODS_SPINNER_SIZE.md}
-          data-testid="logStreamUrl-spinner"
-        />
+        <OdsSpinner size="md" data-testid="logStreamUrl-spinner" />
       </div>
     );
   }
@@ -75,15 +60,12 @@ const SubscriptionStreamActions = ({
     );
 
   return (
-    <>
-      <OsdsButton
+    <div className="flex flex-col gap-4 ">
+      <Links
         href={data?.streamURL?.address}
-        disabled={!data?.streamURL || undefined}
-        className="flex w-full"
-        color={ODS_THEME_COLOR_INTENT.primary}
-        variant={ODS_BUTTON_VARIANT.stroked}
-        target={OdsHTMLAnchorElementTarget._blank}
-        onClick={() => {
+        type={LinkType.external}
+        target="_blank"
+        onClickReturn={() => {
           trackClick({
             location: PageLocation.page,
             buttonType: ButtonType.button,
@@ -91,20 +73,12 @@ const SubscriptionStreamActions = ({
             actions: trackingOptions?.trackClickMap.graylog_observe_logs_access,
           });
         }}
-      >
-        {t('log_stream_button_graylog_watch_label')}
-        <span slot="end">
-          <OsdsIcon
-            name={ODS_ICON_NAME.EXTERNAL_LINK}
-            size={ODS_ICON_SIZE.xs}
-            color={ODS_THEME_COLOR_INTENT.primary}
-          ></OsdsIcon>
-        </span>
-      </OsdsButton>
-      <OsdsButton
-        className="flex w-full"
-        variant={ODS_BUTTON_VARIANT.ghost}
-        color={ODS_THEME_COLOR_INTENT.primary}
+        label={t('log_stream_button_graylog_watch_label')}
+      />
+      <OdsButton
+        className="[&::part(button)]:w-full"
+        variant="outline"
+        size="sm"
         onClick={() => {
           trackClick({
             location: PageLocation.page,
@@ -114,10 +88,9 @@ const SubscriptionStreamActions = ({
           });
           navigate(`subscription/${subscription.subscriptionId}/terminate`);
         }}
-      >
-        {tSubscription('log_subscription_button_unsubscribe_label')}
-      </OsdsButton>
-    </>
+        label={tSubscription('log_subscription_button_unsubscribe_label')}
+      />
+    </div>
   );
 };
 

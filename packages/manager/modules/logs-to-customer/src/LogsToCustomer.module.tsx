@@ -2,13 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useQueryClient } from '@tanstack/react-query';
-import {
-  OsdsSelect,
-  OsdsSelectOption,
-  OsdsSpinner,
-} from '@ovhcloud/ods-components/react';
-import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
-import { Description } from '@ovh-ux/manager-react-components';
+import { OdsSelect, OdsSpinner, OdsText } from '@ovhcloud/ods-components/react';
 import {
   PageLocation,
   ButtonType,
@@ -86,11 +80,7 @@ export default function LogsToCustomerModule({
   if (isPending)
     return (
       <div className="flex py-8">
-        <OsdsSpinner
-          inline
-          size={ODS_SPINNER_SIZE.md}
-          data-testid="logKinds-spinner"
-        />
+        <OdsSpinner size="md" data-testid="logKinds-spinner" />
       </div>
     );
 
@@ -108,19 +98,28 @@ export default function LogsToCustomerModule({
     );
 
   if (logKinds.length === 0)
-    return <Description>{t('log_kind_empty_state_description')}</Description>;
+    return (
+      <OdsText preset="paragraph">
+        {t('log_kind_empty_state_description')}
+      </OdsText>
+    );
 
   if (!currentLogKind)
-    return <Description>{t('log_kind_no_kind_selected')}</Description>;
+    return (
+      <OdsText preset="paragraph">{t('log_kind_no_kind_selected')}</OdsText>
+    );
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-6">
       {logKinds.length > 1 && (
-        <div className="flex flex-col gap-4 ">
-          <Description>{t('log_kind_selector_select_label')}</Description>
-          <OsdsSelect
+        <div className="flex flex-col gap-2 ">
+          <OdsText preset="paragraph">
+            {t('log_kind_selector_select_label')}
+          </OdsText>
+          <OdsSelect
+            name="select-log-kind"
             value={currentLogKind?.kindId}
-            onOdsValueChange={(event) => {
+            onOdsChange={(event) => {
               const newLogKind = logKinds.find(
                 (k) => k.kindId === event.detail.value,
               );
@@ -138,15 +137,15 @@ export default function LogsToCustomerModule({
             data-testid={'logKindSelect'}
           >
             {logKinds.map((k) => (
-              <OsdsSelectOption
+              <option
                 key={k.kindId}
                 value={k.kindId}
                 data-testid={'logKindOption'}
               >
                 {k.displayName}
-              </OsdsSelectOption>
+              </option>
             ))}
-          </OsdsSelect>
+          </OdsSelect>
         </div>
       )}
       <LogsContext.Provider value={LogsContextValues}>

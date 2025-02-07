@@ -22,6 +22,7 @@ export default function DataStreamsTerminate() {
   );
   return (
     <DeleteModal
+      isOpen
       headline={t('log_subscription_terminate_modal_headline')}
       deleteInputLabel={t(
         'log_subscription_terminate_modal_delete_input_label',

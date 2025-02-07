@@ -1,9 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { CommonTitle } from '@ovh-ux/manager-react-components';
-import { ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
-import { OsdsSpinner } from '@ovhcloud/ods-components/react';
-import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+import { OdsSpinner, OdsText } from '@ovhcloud/ods-components/react';
 import { useQueryClient } from '@tanstack/react-query';
 import {
   getLogServiceQueryKey,
@@ -28,11 +25,7 @@ const SubscriptionLogService = ({
   if (isLoading || isPending) {
     return (
       <div className="flex justify-center w-full py-4">
-        <OsdsSpinner
-          inline
-          size={ODS_SPINNER_SIZE.md}
-          data-testid="logService-spinner"
-        />
+        <OdsSpinner size="sm" data-testid="logService-spinner" />
       </div>
     );
   }
@@ -54,18 +47,18 @@ const SubscriptionLogService = ({
     <>
       <div className="flex flex-col gap-3">
         <div className="flex flex-row justify-between ">
-          <CommonTitle typoSize={ODS_THEME_TYPOGRAPHY_SIZE._200}>
+          <OdsText preset="heading-6">
             {data?.data.displayName || subscription.serviceName}
-          </CommonTitle>
-          {subscription.serviceName}
+          </OdsText>
+          <OdsText preset="span">{subscription.serviceName}</OdsText>
         </div>
       </div>
       <div className="flex flex-col gap-3">
         <div className="flex flex-row justify-between ">
-          <CommonTitle typoSize={ODS_THEME_TYPOGRAPHY_SIZE._200}>
+          <OdsText preset="heading-6">
             {t('log_service_username_tile_label')}
-          </CommonTitle>
-          {data?.data.username}
+          </OdsText>
+          <OdsText preset="span">{data?.data.username}</OdsText>
         </div>
       </div>
     </>

@@ -1,22 +1,23 @@
+import { OdsBadge } from '@ovhcloud/ods-components/react';
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import {
-  OdsChipAttribute,
-  ODS_CHIP_SIZE,
-  ODS_TEXT_COLOR_INTENT,
+  OdsBadge as OdsBadgeType,
+  ODS_BADGE_COLOR,
 } from '@ovhcloud/ods-components';
-import { OsdsChip } from '@ovhcloud/ods-components/react';
+import { useTranslation } from 'react-i18next';
 import { Stream } from '../../data/types/dbaas/logs';
 
 export const DATA_STREAM_INDEXING_STATUS_TEST_ID =
   'data-stream-indexing-status-test-id';
 
-export type DataStreamIndexingProps = Omit<OdsChipAttribute, 'color'> &
+export type DataStreamIndexingProps = Partial<
+  Omit<OdsBadgeType, 'color' | 'label'>
+> &
   Pick<Stream, 'indexingEnabled'>;
 
 const DataStreamIndexingStatus = ({
   indexingEnabled,
-  size = ODS_CHIP_SIZE.sm,
+  size = 'md',
   ...props
 }: DataStreamIndexingProps) => {
   const { t } = useTranslation('logStream');
@@ -24,19 +25,18 @@ const DataStreamIndexingStatus = ({
   const label = indexingEnabled
     ? t('log_stream_indexing_active')
     : t('log_stream_indexing_inactive');
-  const color: ODS_TEXT_COLOR_INTENT = indexingEnabled
-    ? ODS_TEXT_COLOR_INTENT.success
-    : ODS_TEXT_COLOR_INTENT.warning;
+  const color: ODS_BADGE_COLOR = indexingEnabled
+    ? ODS_BADGE_COLOR.success
+    : ODS_BADGE_COLOR.warning;
 
   return (
-    <OsdsChip
+    <OdsBadge
+      label={label}
       size={size}
       color={color}
       data-testid={DATA_STREAM_INDEXING_STATUS_TEST_ID}
       {...props}
-    >
-      {label}
-    </OsdsChip>
+    />
   );
 };
 

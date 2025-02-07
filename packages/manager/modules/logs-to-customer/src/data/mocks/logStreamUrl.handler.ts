@@ -1,4 +1,4 @@
-import { Handler } from '../../../../../../../playwright-helpers';
+import { Handler } from '@ovh-ux/manager-core-test-utils';
 import { logStreamUrlMock } from './logStreamUrl.mock';
 
 export type GetLogStreamUrlMocksParams = {
