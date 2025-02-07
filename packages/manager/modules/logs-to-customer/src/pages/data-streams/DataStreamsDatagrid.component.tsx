@@ -9,16 +9,9 @@ import {
   useDataGrid,
 } from '@ovh-ux/manager-react-components';
 import {
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_SPINNER_SIZE,
-} from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import {
-  OsdsButton,
-  OsdsPopover,
-  OsdsPopoverContent,
-  OsdsSpinner,
+  OdsButton,
+  OdsPopover,
+  OdsSpinner,
 } from '@ovhcloud/ods-components/react';
 import { FilterCategories } from '@ovh-ux/manager-core-api';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
@@ -63,11 +56,7 @@ const DataStreamsDatagrid = ({ service }: { service: Service }) => {
   if (isPending)
     return (
       <div className="flex py-8">
-        <OsdsSpinner
-          inline
-          size={ODS_SPINNER_SIZE.md}
-          data-testid="logKinds-spinner"
-        />
+        <OdsSpinner size="md" data-testid="logKinds-spinner" />
       </div>
     );
 
@@ -110,10 +99,7 @@ const DataStreamsDatagrid = ({ service }: { service: Service }) => {
     {
       id: STREAM_LIST_COLUMN_ID.indexation,
       cell: (stream) => (
-        <DataStreamIndexingStatus
-          indexingEnabled={stream.indexingEnabled}
-          inline
-        />
+        <DataStreamIndexingStatus indexingEnabled={stream.indexingEnabled} />
       ),
       label: t('log_streams_colomn_indexation'),
       isSortable: false,
@@ -151,12 +137,10 @@ const DataStreamsDatagrid = ({ service }: { service: Service }) => {
   ];
 
   return (
-    <>
+    <div className="flex flex-col gap-2">
       <div className="flex justify-between">
-        <OsdsButton
-          variant={ODS_BUTTON_VARIANT.flat}
-          color={ODS_THEME_COLOR_INTENT.primary}
-          size={ODS_BUTTON_SIZE.sm}
+        <OdsButton
+          size="sm"
           onClick={() => {
             navigation
               .getURL(
@@ -166,42 +150,35 @@ const DataStreamsDatagrid = ({ service }: { service: Service }) => {
               )
               .then((url: string) => window.open(url, '_blank'));
           }}
-        >
-          {t('log_streams_add_stream')}
-        </OsdsButton>
-        <OsdsPopover>
-          <span slot="popover-trigger">
-            <OsdsButton
-              variant={ODS_BUTTON_VARIANT.stroked}
-              color={ODS_THEME_COLOR_INTENT.primary}
-              size={ODS_BUTTON_SIZE.sm}
-            >
-              {t('log_streams_filter')}
-            </OsdsButton>
-          </span>
-
-          <OsdsPopoverContent>
-            <FilterAdd
-              columns={[
-                {
-                  id: STREAM_LIST_COLUMN_ID.title,
-                  label: t('log_streams_colomn_name'),
-                  comparators: FilterCategories.String,
-                },
-              ]}
-              onAddFilter={(addedFilter, column) => {
-                setPagination({
-                  pageIndex: 0,
-                  pageSize: pagination.pageSize,
-                });
-                addFilter({
-                  ...addedFilter,
-                  label: column.label,
-                });
-              }}
-            />
-          </OsdsPopoverContent>
-        </OsdsPopover>
+          label={t('log_streams_add_stream')}
+        />
+        <OdsButton
+          variant="outline"
+          size="sm"
+          label={t('log_streams_filter')}
+          id="trigger-filter-popover"
+        ></OdsButton>
+        <OdsPopover triggerId={'trigger-filter-popover'}>
+          <FilterAdd
+            columns={[
+              {
+                id: STREAM_LIST_COLUMN_ID.title,
+                label: t('log_streams_colomn_name'),
+                comparators: FilterCategories.String,
+              },
+            ]}
+            onAddFilter={(addedFilter, column) => {
+              setPagination({
+                pageIndex: 0,
+                pageSize: pagination.pageSize,
+              });
+              addFilter({
+                ...addedFilter,
+                label: column.label,
+              });
+            }}
+          />
+        </OdsPopover>
       </div>
       <div>
         <FilterList filters={filters} onRemoveFilter={removeFilter} />
@@ -213,7 +190,7 @@ const DataStreamsDatagrid = ({ service }: { service: Service }) => {
         pagination={pagination}
         onPaginationChange={setPagination}
       />
-    </>
+    </div>
   );
 };
 
