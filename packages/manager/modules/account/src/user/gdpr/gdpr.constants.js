@@ -21,16 +21,16 @@ export const GDPR_FEATURES_BANNER_CONTAINER = 'gdpr-features.alerts.global';
 export const CREATE_ERASURE_REQUEST_MESSAGES_MAP = {
   400: 'gdpr_erasure_creation_error',
   429: 'gdpr_erasure_creation_unsuccessful',
-  500: 'gdpr_erasure_creation_retryable',
-  503: 'gdpr_erasure_creation_retryable',
+  500: 'gdpr_erasure_retryable',
+  503: 'gdpr_erasure_retryable',
 };
 
 export const CANCEL_ERASURE_REQUEST_MESSAGES_MAP = {
   400: 'gdpr_erasure_cancel_error_missing_nic_or_invalid_request',
   404: 'gdpr_erasure_cancel_already_cancelled',
   409: 'gdpr_erasure_cancel_no_longer_possible',
-  500: 'gdpr_erasure_cancel_retryable',
-  503: 'gdpr_erasure_cancel_retryable',
+  500: 'gdpr_erasure_retryable',
+  503: 'gdpr_erasure_retryable',
 };
 
 export const CONFIRMATION_EMAIL_ERASURE_REQUEST_MESSAGES_MAP = {
@@ -38,8 +38,8 @@ export const CONFIRMATION_EMAIL_ERASURE_REQUEST_MESSAGES_MAP = {
   404: 'gdpr_erasure_confirmation_email_error_not_found',
   409: 'gdpr_erasure_confirmation_email_error_invalid_status',
   429: 'gdpr_erasure_confirmation_email_error_max_attempts',
-  500: 'gdpr_erasure_confirmation_email_error_retryable',
-  503: 'gdpr_erasure_confirmation_email_error_retryable',
+  500: 'gdpr_erasure_retryable',
+  503: 'gdpr_erasure_retryable',
 };
 
 export const ERASURE_REQUEST_STATUS_MESSAGES_COLORS_MAP = {
