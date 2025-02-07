@@ -1,4 +1,4 @@
-import { Title } from '@ovh-ux/manager-react-components';
+import { Title, ErrorBanner } from '@ovh-ux/manager-react-components';
 import React, { useContext, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -18,7 +18,13 @@ const Dashboard: React.FC = () => {
   const locale = environment.getUserLocale();
   const { t } = useTranslation(['dashboard']);
 
-  const { data: savingsPlan, isLoading, isPending } = useSavingsPlan();
+  const {
+    data: savingsPlan,
+    isLoading,
+    isPending,
+    isError,
+    error,
+  } = useSavingsPlan();
 
   const {
     flavor,
@@ -42,6 +48,16 @@ const Dashboard: React.FC = () => {
     }
   }, [isLoading, isPending, savingsPlan]);
 
+  if (isError) {
+    return (
+      <ErrorBanner
+        error={{
+          status: 500,
+          data: { message: error.message },
+        }}
+      />
+    );
+  }
   return (
     <>
       <Title>{t('dashboard')}</Title>
@@ -50,6 +66,7 @@ const Dashboard: React.FC = () => {
       </OdsText>
       {projectId && <TabsDashboard projectId={projectId} />}
       <Filters
+        locale={locale}
         flavorOptions={flavorOptions}
         isLoading={isConsumptionLoading}
         period={period}
