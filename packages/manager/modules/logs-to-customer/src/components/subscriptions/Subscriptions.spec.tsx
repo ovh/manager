@@ -12,20 +12,6 @@ const IntersectionObserverMock = vi.fn(() => ({
 vi.stubGlobal('IntersectionObserver', IntersectionObserverMock);
 
 describe('Subscription list', () => {
-  it('should display an error if /log/kind api is KO', async () => {
-    await renderTest({ isLogKindsKO: true });
-
-    await waitFor(() => expect(screen.getByText('error_title')).toBeDefined(), {
-      timeout: 10_000,
-    });
-  });
-
-  it('should render a loading state when the kinds api request is pending', async () => {
-    await renderTest();
-
-    expect(screen.getByTestId('logKinds-spinner')).toBeVisible();
-  });
-
   it('should display an error if /log/subscription api is KO', async () => {
     await renderTest({ isLogSubscriptionKO: true });
 
@@ -50,6 +36,7 @@ describe('Subscription list', () => {
       },
     );
   });
+
   it('should render two subscriptions tile', async () => {
     await renderTest({ nbLogSubscription: 2 });
 

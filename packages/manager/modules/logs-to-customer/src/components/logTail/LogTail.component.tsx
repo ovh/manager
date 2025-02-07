@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
-import { OsdsSpinner } from '@ovhcloud/ods-components/react';
+import { OdsSpinner } from '@ovhcloud/ods-components/react';
 import { LogsContext } from '../../LogsToCustomer.context';
 import ApiError from '../apiError/ApiError.component';
 import {
@@ -25,7 +25,10 @@ export default function LogTail() {
         className={`h-[--tail-height] bg-slate-800 text-gray-200 flex items-center justify-center`}
       >
         {isPending && (
-          <OsdsSpinner inline contrasted data-testid="logTail-spinner" />
+          <OdsSpinner
+            data-testid="logTail-spinner"
+            className=" [&::part(spinner)]:fill-white"
+          />
         )}
         {error && (
           <ApiError

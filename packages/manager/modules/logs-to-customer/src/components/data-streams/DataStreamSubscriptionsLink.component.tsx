@@ -1,6 +1,5 @@
 import { Links, LinkType } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import React, { useContext, useEffect, useState } from 'react';
 import { Service, Stream } from '../../data/types/dbaas/logs';
 
@@ -33,9 +32,9 @@ const DataStreamSubscriptionsLink = ({
   return (
     <Links
       href={subscriptionsURL}
-      label={nbSubscription}
+      label={nbSubscription.toString()}
       type={LinkType.external}
-      target={OdsHTMLAnchorElementTarget._blank}
+      target="_blank"
     />
   );
 };
