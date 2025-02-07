@@ -28,12 +28,7 @@ describe('useCalculateTotals', () => {
   ];
 
   it('should calculate totals for input tokens, output tokens, and seconds', async () => {
-    const start = new Date('2023-01-01');
-    const end = new Date('2023-01-02');
-
-    const { result } = renderHook(() =>
-      useCalculateTotals(mockMetrics, start, end),
-    );
+    const { result } = renderHook(() => useCalculateTotals(mockMetrics));
 
     await waitFor(() => {
       expect(result.current.totalInputTokens).toBe(80);
@@ -43,10 +38,7 @@ describe('useCalculateTotals', () => {
   });
 
   it('should handle empty metrics gracefully', async () => {
-    const start = new Date('2023-01-01');
-    const end = new Date('2023-01-02');
-
-    const { result } = renderHook(() => useCalculateTotals([], start, end));
+    const { result } = renderHook(() => useCalculateTotals([]));
 
     await waitFor(() => {
       expect(result.current.totalInputTokens).toBe(0);
@@ -56,9 +48,6 @@ describe('useCalculateTotals', () => {
   });
 
   it('should ignore metrics with unsupported units', async () => {
-    const start = new Date('2023-01-01');
-    const end = new Date('2023-01-02');
-
     const metrics = [
       {
         unit: 'unsupported_unit',
@@ -66,9 +55,7 @@ describe('useCalculateTotals', () => {
       },
     ];
 
-    const { result } = renderHook(() =>
-      useCalculateTotals(metrics, start, end),
-    );
+    const { result } = renderHook(() => useCalculateTotals(metrics));
 
     await waitFor(() => {
       expect(result.current.totalInputTokens).toBe(0);
@@ -78,10 +65,8 @@ describe('useCalculateTotals', () => {
   });
 
   it('should update totals when metrics change', async () => {
-    const start = new Date('2023-01-01');
-    const end = new Date('2023-01-02');
     const { result, rerender } = renderHook(
-      ({ metrics }) => useCalculateTotals(metrics, start, end),
+      ({ metrics }) => useCalculateTotals(metrics),
       {
         initialProps: { metrics: mockMetrics },
       },

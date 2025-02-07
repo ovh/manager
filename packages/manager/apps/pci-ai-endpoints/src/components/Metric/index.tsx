@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Line } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -37,6 +37,15 @@ ChartJS.register(
   Legend,
 );
 
+const chartOptions = {
+  responsive: true,
+  plugins: {
+    legend: {
+      position: 'top' as const,
+    },
+  },
+};
+
 type MetricProps = {
   projectId: string;
   metric: string;
@@ -52,11 +61,20 @@ const Metric: React.FC<MetricProps> = ({
   endTime,
   isFirstLoading,
 }) => {
+  const encodedStartTime = useMemo(
+    () => encodeURIComponent(startTime.toISOString()),
+    [startTime],
+  );
+  const encodedEndTime = useMemo(
+    () => encodeURIComponent(endTime.toISOString()),
+    [endTime],
+  );
+
   const { data: metricResponse, isLoading, isError } = useGetMetric(
     projectId,
     metric,
-    encodeURIComponent(startTime.toISOString()),
-    encodeURIComponent(endTime.toISOString()),
+    encodedStartTime,
+    encodedEndTime,
   );
   const { t } = useTranslation('metric');
 
@@ -70,18 +88,9 @@ const Metric: React.FC<MetricProps> = ({
     totalInputTokens,
     totalOutputTokens,
     totalSeconds,
-  } = useCalculateTotals(metricResponse?.metrics || [], startTime, endTime);
+  } = useCalculateTotals(metricResponse?.metrics || []);
 
   const chartData = useChartData(dataMap, labels, isLoading, t);
-
-  const options = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: 'top' as const,
-      },
-    },
-  };
 
   if (isLoading && isFirstLoading) {
     return (
@@ -160,7 +169,7 @@ const Metric: React.FC<MetricProps> = ({
         )}
       </div>
       <div className="pt-8 w-[90vw] 2xl:w-[45vw]">
-        <Line data={chartData} options={options} />
+        <Line data={chartData} options={chartOptions} />
       </div>
     </div>
   );

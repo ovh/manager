@@ -1,4 +1,4 @@
-import { Suspense, useContext, useState, useEffect } from 'react';
+import { Suspense, useContext, useState, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ErrorBanner, BaseLayout } from '@ovh-ux/manager-react-components';
 import {
@@ -35,7 +35,6 @@ import usePageTracking from '@/hooks/usePageTracking';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 import EndpointsGuide from '@/components/Guides';
 import { useGetMetrics } from '@/hooks/api/database/metric/useGetMetrics.hook';
-import { MetricData } from '@/types/cloud/project/database/metric';
 
 export type TabItemProps = {
   name: string;
@@ -63,9 +62,6 @@ export default function Layout() {
   const [titleHeader, setTitleHeader] = useState<string>('');
   const navigate = useNavigate();
   const { pathname: path } = useLocation();
-  const [metricsData, setMetricsData] = useState<{ data: MetricData[] }>({
-    data: [],
-  });
 
   const metricsQuery = useGetMetrics(
     projectId,
@@ -79,10 +75,11 @@ export default function Layout() {
     ),
   );
 
-  useEffect(() => {
+  const metricsData = useMemo(() => {
     if (Array.isArray(metricsQuery?.data)) {
-      setMetricsData({ data: metricsQuery.data });
+      return { data: metricsQuery.data };
     }
+    return { data: [] };
   }, [metricsQuery?.data]);
 
   const tabsList: Readonly<TabItemProps[]> = [
@@ -98,13 +95,8 @@ export default function Layout() {
     },
   ];
 
-  const headerProps: HeadersProps = {
-    title: titleHeader,
-    headerButton: <EndpointsGuide />,
-  };
-
-  useEffect(() => {
-    const visibleTabs = tabsList.filter((tab) =>
+  const { visibleTabs, activeTab } = useMemo(() => {
+    const filteredTabs = tabsList.filter((tab) =>
       metricsData.data.length === 0
         ? tab.name === 'onboarding'
         : tab.name === 'metrics',
@@ -112,22 +104,32 @@ export default function Layout() {
 
     const findActiveTab = (tabList: TabItemProps[]) =>
       tabList.find((tab) => tab.to === path);
+
     const findActiveParentTab = (tabList: TabItemProps[]) =>
       tabList.find((tab) => tab.to === path.slice(0, path.lastIndexOf('/')));
 
-    let activeTab: TabItemProps | undefined =
-      findActiveTab(visibleTabs) || findActiveParentTab(visibleTabs);
+    let currentActiveTab: TabItemProps | undefined =
+      findActiveTab(filteredTabs) || findActiveParentTab(filteredTabs);
 
-    if (!activeTab && visibleTabs.length > 0) {
-      [activeTab] = visibleTabs;
-      navigate(activeTab.to);
+    if (!currentActiveTab && filteredTabs.length > 0) {
+      [currentActiveTab] = filteredTabs;
+      navigate(currentActiveTab.to);
     }
 
+    return { visibleTabs: filteredTabs, activeTab: currentActiveTab };
+  }, [metricsData.data, path, tabsList, navigate]);
+
+  const headerProps: HeadersProps = {
+    title: titleHeader,
+    headerButton: <EndpointsGuide />,
+  };
+
+  useEffect(() => {
     if (activeTab) {
       setActivePanel(activeTab.name);
       setTitleHeader(activeTab.title);
     }
-  }, [path, metricsData.data.length, tabsList, navigate]);
+  }, [activeTab]);
 
   usePageTracking();
 
@@ -153,30 +155,24 @@ export default function Layout() {
                 tabs={
                   <OsdsTabs panel={panel} className="-ml-2">
                     <OsdsTabBar slot="top">
-                      {tabsList
-                        .filter((tab) =>
-                          metricsData.data.length === 0
-                            ? tab.name === 'onboarding'
-                            : tab.name === 'metrics',
-                        )
-                        .map((tab) => (
-                          <NavLink
-                            to={tab.to}
-                            key={tab.name}
-                            className={({ isActive }) =>
-                              `no-underline ${
-                                isActive ? 'selected-tab-class' : ''
-                              }`
-                            }
+                      {visibleTabs.map((tab: TabItemProps) => (
+                        <NavLink
+                          to={tab.to}
+                          key={tab.name}
+                          className={({ isActive }) =>
+                            `no-underline ${
+                              isActive ? 'selected-tab-class' : ''
+                            }`
+                          }
+                        >
+                          <OsdsTabBarItem
+                            panel={tab.name}
+                            active={tab.name === panel}
                           >
-                            <OsdsTabBarItem
-                              panel={tab.name}
-                              active={tab.name === panel}
-                            >
-                              {tab.title}
-                            </OsdsTabBarItem>
-                          </NavLink>
-                        ))}
+                            {tab.title}
+                          </OsdsTabBarItem>
+                        </NavLink>
+                      ))}
                     </OsdsTabBar>
                   </OsdsTabs>
                 }

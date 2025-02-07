@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import {
   ShellContext,
@@ -6,7 +6,6 @@ import {
   initI18n,
 } from '@ovh-ux/manager-react-shell-client';
 import App from './App';
-import { LoadingIndicatorProvider } from './contexts/LoadingIndicator.context';
 import '@ovhcloud/ods-theme-blue-jeans/dist/index.css';
 import './vite-hmr';
 import '@ovh-ux/manager-pci-common/dist/style.css';
@@ -50,9 +49,9 @@ const init = async (appName: string) => {
   ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
       <ShellContext.Provider value={context}>
-        <LoadingIndicatorProvider>
+        <Suspense>
           <App />
-        </LoadingIndicatorProvider>
+        </Suspense>
       </ShellContext.Provider>
     </React.StrictMode>,
   );

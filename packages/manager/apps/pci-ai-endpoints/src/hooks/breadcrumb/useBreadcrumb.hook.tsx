@@ -40,7 +40,8 @@ export const usePciBreadcrumb = ({ projectId, appName }: BreadcrumbProps) => {
           },
         ]);
       } catch (error) {
-        console.error('Error fetching root URL:', error);
+        setRoot([]);
+        setAppRoot([]);
       }
     };
     if (project) fetchRoot();
@@ -66,7 +67,7 @@ export const useBreadcrumb = ({ rootLabel, appName }: BreadcrumbProps) => {
         };
         setRoot([rootItem]);
       } catch (error) {
-        console.error('Error fetching root URL:', error);
+        setRoot([]);
       }
     };
     fetchRoot();

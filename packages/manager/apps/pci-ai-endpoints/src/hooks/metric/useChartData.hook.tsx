@@ -15,8 +15,8 @@ const useChartData = (
 
     return {
       labels,
-      datasets: Object.keys(dataMap)
-        .map((unit) => {
+      datasets: Object.entries(dataMap)
+        .map(([unit]) => {
           let color = '';
           let label = '';
 
@@ -41,7 +41,7 @@ const useChartData = (
             label,
             data: dataMap[unit],
             borderColor: color,
-            backgroundColor: color.replace('1)', '0.2)'),
+            backgroundColor: color,
             tension: 0.4,
           };
         })

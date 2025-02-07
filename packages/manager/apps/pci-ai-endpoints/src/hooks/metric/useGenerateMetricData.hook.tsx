@@ -5,11 +5,11 @@ import {
   isSameDay,
   differenceInMonths,
   startOfWeek,
-  addDays,
-  addWeeks,
   addMonths,
   startOfMonth,
-  isAfter,
+  eachWeekOfInterval,
+  differenceInDays,
+  eachDayOfInterval,
 } from 'date-fns';
 import { HostMetric } from '@/types/cloud/project/database/metric';
 
@@ -25,61 +25,57 @@ const parseDate = (dateString: string | Date): Date => {
 };
 
 // Define a mapping for units to human-readable labels
-// Define a type for the unit labels
 type UnitLabels = 'input' | 'output' | 'num_requests';
 
-// Map the units to their expected labels
 const unitLabels: Record<UnitLabels, string> = {
   input: 'input_tokens',
   output: 'output_tokens',
   num_requests: 'num_requests',
 };
 
-// Hook to generate labels based on the selected date range
-const useGenerateLabels = (start: string | Date, end: string | Date) => {
+// Custom hook to parse dates before passing them to other hooks
+export const useParseDates = (start: string | Date, end: string | Date) => {
   const startDate = parseDate(start);
   const endDate = parseDate(end);
 
-  const isSingleDay = isSameDay(startDate, endDate);
+  return { startDate, endDate };
+};
+
+export const useGenerateLabels = (startDate: Date, endDate: Date) => {
+  if (startDate > endDate) {
+    return {
+      labels: [],
+      isSingleDay: false,
+      isMoreThan2Months: false,
+      isMoreThan12Months: false,
+    };
+  }
+
   const monthsDifference = differenceInMonths(endDate, startDate);
-  const isMoreThan2Months = monthsDifference > 2;
+  const isSingleDay = isSameDay(startDate, endDate);
+  const isMoreThan2Months = differenceInDays(endDate, startDate) >= 62;
   const isMoreThan12Months = monthsDifference >= 12;
 
   const labels = useMemo(() => {
     if (isSingleDay) {
-      // If the range is a single day, generate hourly labels
       return Array.from({ length: 24 }, (_, i) => `${i}:00`);
     }
 
     if (isMoreThan12Months) {
-      // If the range is more than 12 months, generate monthly labels
-      return Array.from({ length: monthsDifference + 1 }, (_, i) => {
-        return format(addMonths(startOfMonth(startDate), i), 'yyyy-MM');
-      });
+      return Array.from({ length: monthsDifference + 1 }, (_, i) =>
+        format(addMonths(startOfMonth(startDate), i), 'yyyy-MM'),
+      );
     }
 
     if (isMoreThan2Months) {
-      // If the range is more than 2 months but less than 12 months, generate weekly labels
-      const generatedLabels: string[] = [];
-      let current = startOfWeek(startDate, { weekStartsOn: 1 }); // Start on Monday
-
-      while (!isAfter(current, endDate)) {
-        generatedLabels.push(formatDate(current));
-        current = addWeeks(current, 1);
-      }
-
-      return generatedLabels;
+      return eachWeekOfInterval(
+        { start: startDate, end: endDate },
+        { weekStartsOn: 1 },
+      ).map(formatDate);
     }
 
-    // If the range is less than 2 months, generate daily labels
-    return Array.from(
-      {
-        length:
-          Math.ceil(
-            (endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24),
-          ) + 1,
-      },
-      (_, i) => format(addDays(startDate, i), 'dd/MM/yyyy'),
+    return eachDayOfInterval({ start: startDate, end: endDate }).map(
+      formatDate,
     );
   }, [
     startDate,
@@ -107,22 +103,22 @@ const useGenerateDataMap = (
   return useMemo(() => {
     if (!metrics || metrics.length === 0) return {};
 
-    const map: { [key: string]: number[] } = {};
+    return metrics.reduce((map, { unit, data }) => {
+      if (unit === 'num_requests') return map;
 
-    metrics.forEach(({ unit, data }) => {
-      if (unit === 'num_requests') return; // Ignore 'num_requests' unit
-      const humanReadableUnit = unitLabels[unit as UnitLabels] || unit; // Map to 'input_tokens', 'output_tokens', etc.
+      const humanReadableUnit = unitLabels[unit as UnitLabels] || unit;
 
-      if (!map[humanReadableUnit]) {
-        map[humanReadableUnit] = new Array(labels.length).fill(0);
+      const currentMap = { ...map };
+      if (!currentMap[humanReadableUnit]) {
+        currentMap[humanReadableUnit] = new Array(labels.length).fill(0);
       }
 
-      data?.forEach(({ timestamp, value }) => {
-        if (!timestamp) return;
+      data?.reduce((acc, { timestamp, value }) => {
+        if (!timestamp) return acc;
+
         const pointDate = new Date(timestamp * 1000);
         let label: string;
 
-        // Determine the label format based on the date range
         if (isSingleDay) {
           label = format(pointDate, 'H:00');
         } else if (isMoreThan12Months) {
@@ -131,20 +127,20 @@ const useGenerateDataMap = (
           label = format(
             startOfWeek(pointDate, { weekStartsOn: 1 }),
             'dd/MM/yyyy',
-          ); // Start week on Monday
+          );
         } else {
           label = formatDate(pointDate);
         }
 
-        // Update the corresponding value in the data map
         const index = labels.indexOf(label);
         if (index !== -1) {
-          map[humanReadableUnit][index] += value || 0;
+          acc[index] += value || 0;
         }
-      });
-    });
+        return acc;
+      }, currentMap[humanReadableUnit]);
 
-    return map;
+      return currentMap;
+    }, {} as { [key: string]: number[] });
   }, [metrics, labels, isSingleDay, isMoreThan2Months, isMoreThan12Months]);
 };
 
@@ -154,17 +150,20 @@ const useGenerateMetricData = (
   end: string | Date,
   metrics?: HostMetric[],
 ) => {
+  const { startDate, endDate } = useParseDates(start, end);
+
   const {
     labels,
     isSingleDay,
     isMoreThan2Months,
     isMoreThan12Months,
-  } = useGenerateLabels(start, end);
+  } = useGenerateLabels(startDate, endDate);
 
   if (labels.length === 0) {
     return { labels: [], dataMap: {} };
   }
 
+  // Generate the dataMap based on the labels and metrics
   const dataMap = useGenerateDataMap(
     labels,
     metrics,

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { endOfDay } from 'date-fns';
 
 export function useDateLocale() {
   const [timeZone, setTimeZone] = useState<string>('');
@@ -23,8 +24,7 @@ export function useDateLocale() {
   };
 
   const handleEndTimeChange = (value: Date) => {
-    const updatedEndTime = new Date(value);
-    updatedEndTime.setHours(23, 59, 59, 999);
+    const updatedEndTime = endOfDay(value);
     setEndTime(updatedEndTime);
   };
 

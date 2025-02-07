@@ -9,13 +9,12 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_SIZE, ODS_TEXT_LEVEL } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { RedirectionGuard } from '@ovh-ux/manager-react-components';
-import { ODS_LOCALE } from '@ovhcloud/ods-common-core';
 import { useGetMetrics } from '@/hooks/api/database/metric/useGetMetrics.hook';
 import Metric from '@/components/Metric';
 import { useDateLocale } from '@/hooks/metric/useDateLocale.hook';
 import { useDateFnsLocale } from '@/hooks/useDateFnsLocale.hook';
 import { MetricData } from '@/types/cloud/project/database/metric';
+import getLocaleForDatePicker from '@/components//utils/getLocaleForDatepicker';
 
 export default function MetricPage() {
   const { projectId } = useParams();
@@ -23,7 +22,7 @@ export default function MetricPage() {
   const [metricsData, setMetricsData] = useState<{ data: MetricData[] }>({
     data: [],
   });
-  const [selectedModel, setSelectedModel] = useState<string>(t('allModel')); // Valeur par défaut "All Models"
+  const [selectedModel, setSelectedModel] = useState<string>(t('allModel'));
   const locale = useDateFnsLocale();
 
   const {
@@ -57,37 +56,7 @@ export default function MetricPage() {
       ? metricsData.data.filter((metric) => metric.model === selectedModel)
       : metricsData.data;
 
-  let localDatePicker;
-
-  switch (locale.code) {
-    case 'enGB':
-      localDatePicker = ODS_LOCALE.EN;
-      break;
-    case 'fr':
-      localDatePicker = ODS_LOCALE.FR;
-      break;
-    case 'frCA':
-      localDatePicker = ODS_LOCALE.FR;
-      break;
-    case 'it':
-      localDatePicker = ODS_LOCALE.IT;
-      break;
-    case 'de':
-      localDatePicker = ODS_LOCALE.DE;
-      break;
-    case 'pl':
-      localDatePicker = ODS_LOCALE.PL;
-      break;
-    case 'es':
-      localDatePicker = ODS_LOCALE.ES;
-      break;
-    case 'pt':
-      localDatePicker = ODS_LOCALE.PT;
-      break;
-    default:
-      localDatePicker = ODS_LOCALE.EN;
-      break;
-  }
+  const localDatePicker = getLocaleForDatePicker(locale.code);
 
   return (
     <>

@@ -22,8 +22,7 @@ export function useLocale() {
   // fetch initial locale
   useEffect(() => {
     const fetchLocale = async () => {
-      const l = (await shellCtx.i18n.getLocale()) as Locale;
-      setLocale(l);
+      setLocale((await shellCtx.i18n.getLocale()) as Locale);
     };
     fetchLocale();
   }, [shellCtx.i18n]);
