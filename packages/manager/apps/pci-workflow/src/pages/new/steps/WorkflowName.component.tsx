@@ -18,14 +18,19 @@ import {
 } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
-import { useCatalogPrice, useMe } from '@ovh-ux/manager-react-components';
+import {
+  useCatalogPrice,
+  convertHourlyPriceToMonthly,
+} from '@ovh-ux/manager-react-components';
 import { useParams } from 'react-router-dom';
+
 import { useInstanceSnapshotPricing } from '@/api/hooks/order';
 import { StepState } from '@/pages/new/hooks/useStep';
 
 interface WorkflowNameProps {
   name: string;
   region: string;
+  ovhSubsidiary: string;
   step: StepState;
   onNameChange: (name: string) => void;
   onSubmit: () => void;
@@ -37,6 +42,7 @@ const VALID_NAME_PATTERN = /^[a-zA-Z0-9_.-]+$/;
 export function WorkflowName({
   name,
   region,
+  ovhSubsidiary,
   step,
   onNameChange,
   onSubmit,
@@ -48,17 +54,17 @@ export function WorkflowName({
   const [workflowName, setWorkflowName] = useState(name);
   const [hasError, setHasError] = useState(false);
   const isValid = VALID_NAME_PATTERN.test(workflowName);
-  const { me } = useMe();
-  const { getFormattedCatalogPrice } = useCatalogPrice(2, {
+
+  const { getFormattedCatalogPrice } = useCatalogPrice(3, {
     hideTaxLabel: true,
   });
-  const { data: pricing, isPending } = useInstanceSnapshotPricing(
+  const { data: pricing, isFetching } = useInstanceSnapshotPricing(
     projectId,
     region,
-    me?.ovhSubsidiary,
+    ovhSubsidiary,
   );
 
-  if (isPending) {
+  if (isFetching) {
     return (
       <OsdsSpinner
         inline
@@ -118,7 +124,9 @@ export function WorkflowName({
           {pricing && (
             <span className="font-bold">
               {t('pci_workflow_create_price_monthly', {
-                price: getFormattedCatalogPrice(pricing.price),
+                price: getFormattedCatalogPrice(
+                  convertHourlyPriceToMonthly(pricing?.price),
+                ),
               })}
             </span>
           )}

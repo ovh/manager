@@ -1,6 +1,5 @@
-import { isEmpty } from 'lodash-es';
 import { LegacyTrackingData, PciProjectModeParams } from './track';
-import { debug } from './utils';
+import { debug, isEmpty } from './utils';
 import { PCI_PROJECT_MODE_VALUES } from './constants';
 
 export type TrackingDefaults = Partial<LegacyTrackingData>;

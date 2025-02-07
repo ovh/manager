@@ -3,6 +3,56 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.103.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.103.1...@ovh-ux/manager-container-app@0.103.2) (2025-02-06)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+## [0.103.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.103.0...@ovh-ux/manager-container-app@0.103.1) (2025-02-03)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+# [0.103.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.102.0...@ovh-ux/manager-container-app@0.103.0) (2025-02-03)
+
+
+### Bug Fixes
+
+* **pnr:** change universe is broken on mobile ([#15173](https://github.com/ovh/manager/issues/15173)) ([7f803e4](https://github.com/ovh/manager/commit/7f803e4030050e5f6528fdc5db00e39436eb72b4))
+
+
+### Features
+
+* **container:** add lazy loading to hamburger menu on mobile devices ([#15147](https://github.com/ovh/manager/issues/15147)) ([5007c8b](https://github.com/ovh/manager/commit/5007c8bd87d626dc2f770c15db0d115e7b01fa59))
+* **container:** replace lodash with built-in functions and helpers ([#14853](https://github.com/ovh/manager/issues/14853)) ([002b4c9](https://github.com/ovh/manager/commit/002b4c94e4d2d24f72cbc4ea31dc87b8324ae832))
+
+
+
+
+
+# [0.102.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.101.1...@ovh-ux/manager-container-app@0.102.0) (2025-01-30)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3629] ([f7f4950](https://github.com/ovh/manager/commit/f7f4950df191b99bd9f2d8a573c5d696737de33c))
+* **i18n:** add missing translations [CDS 3635] ([7caa790](https://github.com/ovh/manager/commit/7caa7901c9ac1b192177083d738ec4cd54bf394f))
+
+
+### Features
+
+* **ovh-at-internet:** remove lodash dependency ([0deca4c](https://github.com/ovh/manager/commit/0deca4cba8f394fd52235bcd5fad54c5e198535b))
+
+
+
+
+
 ## [0.101.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.101.0...@ovh-ux/manager-container-app@0.101.1) (2025-01-23)
 
 

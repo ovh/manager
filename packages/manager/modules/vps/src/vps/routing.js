@@ -30,7 +30,7 @@ export default /* @ngInject */ ($stateProvider) => {
             capabilities.map((capability) => kebabCase(capability)),
           ),
       defaultPaymentMethod: /* @ngInject */ (ovhPaymentMethod) =>
-        ovhPaymentMethod.getDefaultPaymentMethod(),
+        ovhPaymentMethod.getDefaultPaymentMethod().catch(() => null),
       engagement: /* @ngInject */ (vps) =>
         vps.engagement ? new EngagementConfiguration(vps.engagement) : null,
       hasCloudDatabaseFeature: /* @ngInject */ (

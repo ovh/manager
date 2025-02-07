@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.4.0...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.4.1) (2025-02-06)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3700] ([1cc177e](https://github.com/ovh/manager/commit/1cc177e259ca2017d51c922f183a83afb77d6e9d))
+
+
+
+
+
+# [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.3.14...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.4.0) (2025-02-03)
+
+
+### Features
+
+* **hpc-managed-vcd:** add delete button for storage & compute ([5ae7d45](https://github.com/ovh/manager/commit/5ae7d45d4e16fecc9daceb3e346fb467a3ade8fb))
+
+
+
+
+
+## [0.3.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.3.13...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.3.14) (2025-01-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-managed-vcd-app
+
+
+
+
+
 ## [0.3.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.3.12...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.3.13) (2025-01-29)
 
 **Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-managed-vcd-app

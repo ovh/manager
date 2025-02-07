@@ -91,7 +91,7 @@ export default /* @ngInject */ ($stateProvider) => {
         const planCodes = VOLUMES_OPTIONS.map(({ planCode }) => planCode);
 
         return catalog.addons.filter(({ planCode }) => {
-          return planCodes.includes(planCode);
+          return planCodes.some((p) => planCode.startsWith(p));
         });
       },
 

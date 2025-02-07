@@ -18,7 +18,6 @@ export default {
 
     isDrpActionPossible: '<',
     onMlSubscribe: '<',
-    onTerminate: '<',
     orderSecurityOption: '<',
     orderVmwareOption: '<',
     productId: '<',

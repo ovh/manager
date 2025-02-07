@@ -1,13 +1,11 @@
 import template from './template.html';
-import controller from './controller';
 
 const component = {
   bindings: {
-    isBucketVersioningEnabled: '<',
-    onBucketVersioningChange: '&',
+    isBucketVersioningEnabled: '=',
+    forceEnableVersioning: '<',
   },
   template,
-  controller,
 };
 
 export default component;

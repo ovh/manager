@@ -3,6 +3,60 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.78.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.78.1...@ovh-ux/manager-pci@6.78.2) (2025-02-06)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3683] ([074da5d](https://github.com/ovh/manager/commit/074da5d4944d236d9f9afb9726b0aa7598d0a35e))
+* **i18n:** add missing translations [CDS 3686] ([9b48552](https://github.com/ovh/manager/commit/9b485525782195d34d91ff13e08dabe8e827ff89))
+* **i18n:** add missing translations [CDS 3688] ([1ac2218](https://github.com/ovh/manager/commit/1ac221843fb7dc5509bb8a9e46ecf9c18174bf7b))
+* remove unused translations [CDS] ([6f1fd0f](https://github.com/ovh/manager/commit/6f1fd0f7102bd8ad218c2a4a5a7ae4328b26b78c))
+
+
+
+
+
+## [6.78.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.78.0...@ovh-ux/manager-pci@6.78.1) (2025-02-05)
+
+
+### Bug Fixes
+
+* **pci-object-storage:** round price to integer ([bed02fe](https://github.com/ovh/manager/commit/bed02fe70f0016c5bec5dcdb84179ab72bee74bf))
+
+
+
+
+
+# [6.78.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.77.0...@ovh-ux/manager-pci@6.78.0) (2025-02-03)
+
+
+### Features
+
+* **pci-object-storage:** add offsite replication ([#14712](https://github.com/ovh/manager/issues/14712)) ([169490f](https://github.com/ovh/manager/commit/169490f51bd1016fb051d4a3dbc5e21753af21ba))
+
+
+
+
+
+# [6.77.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.76.2...@ovh-ux/manager-pci@6.77.0) (2025-01-31)
+
+
+### Bug Fixes
+
+* **pci-volume-backup:** handle volumeId selection error ([#15204](https://github.com/ovh/manager/issues/15204)) ([ccc2328](https://github.com/ovh/manager/commit/ccc2328db1b57b889d2724bea2af9fd206f3d13e))
+
+
+### Features
+
+* **pci-volume-backup:** configure volume backup and snapshot for 3AZ ([#15035](https://github.com/ovh/manager/issues/15035)) ([b27938a](https://github.com/ovh/manager/commit/b27938ae5dcb8f9a8ee69fe470084de102e0636d))
+* **pci.instances:** add 3AZ region selector ([#15026](https://github.com/ovh/manager/issues/15026)) ([a6bff48](https://github.com/ovh/manager/commit/a6bff4897e2394ea97b327eba9f6ec1f3024dd39))
+* **pci.instances:** assign floatingip ([#15203](https://github.com/ovh/manager/issues/15203)) ([f117d3d](https://github.com/ovh/manager/commit/f117d3d5200c5bd1979b80873f50003898b7156a))
+
+
+
+
+
 ## [6.76.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.76.1...@ovh-ux/manager-pci@6.76.2) (2025-01-23)
 
 

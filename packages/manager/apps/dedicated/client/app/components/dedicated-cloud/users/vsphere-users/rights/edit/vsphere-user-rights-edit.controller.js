@@ -26,6 +26,8 @@ export default class {
       })
       .then((response) => {
         this.right = response.right;
+        this.oldRight = angular.copy(this.right);
+
         this.enums = {
           right: response.models.models['dedicatedCloud.right.RightEnum'].enum,
           networkRole:
@@ -80,5 +82,13 @@ export default class {
           'danger',
         );
       });
+  }
+
+  rightsHaveChanged() {
+    return (
+      this.oldRight.right !== this.right.right ||
+      this.oldRight.vmNetworkRole !== this.right.vmNetworkRole ||
+      this.oldRight.networkRole !== this.right.networkRole
+    );
   }
 }

@@ -6,7 +6,11 @@
 >
     <div
         data-wizard-step
-        data-wizard-step-valid="!$ctrl.loading.init && !$ctrl.loading.save"
+        data-wizard-step-valid="
+            !$ctrl.loading.init &&
+            !$ctrl.loading.save &&
+            $ctrl.rightsHaveChanged()
+        "
     >
         <div
             class="text-center"

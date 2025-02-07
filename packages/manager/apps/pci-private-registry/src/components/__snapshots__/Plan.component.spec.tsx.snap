@@ -3,11 +3,9 @@
 exports[`PlanComponent > should render 1`] = `
 <div>
   <div
-    class="w-full"
+    class="grid grid-cols-1 gap-2 text-left text w-full"
   >
-    <div
-      class="border-solid border border-t-0 border-x-0 border-[--ods-color-blue-200] my-4 py-4 mx-8"
-    >
+    <div>
       <osds-text
         color="text"
         data-testid="name"
@@ -16,9 +14,12 @@ exports[`PlanComponent > should render 1`] = `
       >
         S
       </osds-text>
+      <hr
+        class="w-full border-solid border-0 border-b border-ods-primary-200"
+      />
     </div>
     <ul
-      class="list-none p-0 m-0 min-h-[8rem] mx-8"
+      class="list-none p-0 min-h-[8rem]"
     >
       <li
         data-testid="capacity"
@@ -62,9 +63,12 @@ exports[`PlanComponent > should render 1`] = `
       </li>
     </ul>
     <div
-      class="border-solid border border-b-0 border-x-0 border-[--ods-color-blue-200] mb-2 pt-4 mt-9 text-center py-4"
+      class="text-center"
       data-testid="price"
     >
+      <hr
+        class="w-full border-solid border-0 border-b border-ods-primary-200"
+      />
       <osds-text
         color="text"
         level="body"

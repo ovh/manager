@@ -75,17 +75,15 @@ export default class PciInstanceBackupController {
 
   formatPrice() {
     const { price } = this.monthlyPrice;
-    if (this.instance.isLocalZone) {
-      const { value, currencyCode } = price;
-      return `~${new Intl.NumberFormat(
-        this.coreConfig.getUserLocale().replace('_', '-'),
-        {
-          style: 'currency',
-          currency: currencyCode,
-          maximumFractionDigits: 3,
-        },
-      ).format(value * HOURS_PER_MONTH)}`;
-    }
-    return price.text;
+
+    const { value, currencyCode } = price;
+    return `~${new Intl.NumberFormat(
+      this.coreConfig.getUserLocale().replace('_', '-'),
+      {
+        style: 'currency',
+        currency: currencyCode,
+        maximumFractionDigits: 3,
+      },
+    ).format(value * HOURS_PER_MONTH)}`;
   }
 }

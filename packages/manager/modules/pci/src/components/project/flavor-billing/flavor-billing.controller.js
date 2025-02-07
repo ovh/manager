@@ -1,9 +1,10 @@
-import { TAGS_BLOB } from '../../../constants';
+import { TAGS_BLOB, BETA } from '../../../constants';
 
 export default class FlavorBillingController {
   /* @ngInject */
   constructor(coreConfig) {
     this.coreConfig = coreConfig;
+    this.BETA = BETA;
   }
 
   $onInit() {

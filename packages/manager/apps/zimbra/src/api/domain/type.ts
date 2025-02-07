@@ -5,6 +5,7 @@ export type DomainBodyParamsType = {
   name: string;
   autoConfigureMX: boolean;
   autoConfigureSPF: boolean;
+  autoConfigureDKIM: boolean;
 };
 
 export type DomainType = {

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-email-domain@1.8.0...@ovh-ux/manager-email-domain@1.9.0) (2025-02-03)
+
+
+### Features
+
+* **web.email:** add type of email in webmail link ([200a42c](https://github.com/ovh/manager/commit/200a42c8bbde0271aaa457a024db85e4c6e17112))
+
+
+
+
+
 # [1.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-email-domain@1.7.3...@ovh-ux/manager-email-domain@1.8.0) (2025-01-07)
 
 

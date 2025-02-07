@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.12.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-office@2.12.1...@ovh-ux/manager-office@2.12.2) (2025-02-03)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3669] ([#15137](https://github.com/ovh/manager/issues/15137)) ([7bc98e8](https://github.com/ovh/manager/commit/7bc98e810b4cb17a9bb19dd0ef477f7ab06b521d))
+
+
+
+
+
 ## [2.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-office@2.12.0...@ovh-ux/manager-office@2.12.1) (2024-11-28)
 
 **Note:** Version bump only for package @ovh-ux/manager-office

@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.20.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.19.0...@ovh-ux/ovh-at-internet@0.20.0) (2025-02-03)
+
+
+### Features
+
+* **hycu:** add click tracking ([4dc035a](https://github.com/ovh/manager/commit/4dc035a504c813e1ad52c6c2ffd0d22ddc99f69f))
+
+
+
+
+
+# [0.19.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.18.1...@ovh-ux/ovh-at-internet@0.19.0) (2025-01-30)
+
+
+### Features
+
+* **ovh-at-internet:** remove lodash dependency ([0deca4c](https://github.com/ovh/manager/commit/0deca4cba8f394fd52235bcd5fad54c5e198535b))
+
+
+
+
+
 ## [0.18.1](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.18.0...@ovh-ux/ovh-at-internet@0.18.1) (2024-12-19)
 
 **Note:** Version bump only for package @ovh-ux/ovh-at-internet

@@ -19,11 +19,14 @@ export const S3_REGION_CAPACITY = [
   'storage-s3-standard',
 ];
 
-export const DOWNLOAD_FILETYPE: Record<string, string> = {
+export const DOWNLOAD_FILETYPE = {
   SWIFT: 'Swift',
-  S3: 'S3',
+  S3: 'S3 Compatible',
 };
-export const RCLONE_SERVICE_TYPE: Record<string, string> = {
+export const RCLONE_SERVICE_TYPE: Record<
+  keyof typeof DOWNLOAD_FILETYPE,
+  string
+> = {
   SWIFT: 'storage',
   S3: 'storage-s3',
 };

@@ -17,6 +17,7 @@ import { IdentityOauthClient } from '@/types/identity.type';
 import { useIdentityData } from '@/hooks/credential/useIdentityData';
 import { useIdentityServiceAccountList } from '@/data/hooks/useIdentity';
 import IdentitiesServiceAccountList from '@/pages/credential/create/identities/list/IdentitiesServiceAccountList.component';
+import '../CreateCommonModal.scss';
 
 const CreateCredentialIdentityServiceAccountList = () => {
   const { t } = useTranslation('key-management-service/credential');
@@ -30,13 +31,18 @@ const CreateCredentialIdentityServiceAccountList = () => {
   const closeModal = () => navigate('..');
 
   return (
-    <OdsModal isOpen isDismissible onOdsClose={closeModal}>
+    <OdsModal
+      isOpen
+      isDismissible
+      onOdsClose={closeModal}
+      className="ods-identity-modal"
+    >
       <OdsText preset={ODS_TEXT_PRESET.heading3}>
         {t(
           'key_management_service_credentials_identity_modal_user_list_headline',
         )}
       </OdsText>
-      <div className="mt-4">
+      <div className="mt-4 max-h-[400px] h-full overflow-y-auto">
         {isLoading ? (
           <div className="flex justify-center">
             <OdsSpinner size={ODS_SPINNER_SIZE.md} />

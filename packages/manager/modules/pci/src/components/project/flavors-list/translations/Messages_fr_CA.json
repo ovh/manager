@@ -22,12 +22,15 @@
   "pci_project_flavors_price_hourly_from": "À partir de {{price}} HT/heure",
   "pci_project_flavors_price_monthly": "À partir de {{price}} HT/mois",
   "pci_project_flavors_zone_compatible": "Compatible avec",
-  "pci_project_flavors_zone_localzone": "Local Zones",
-  "pci_project_flavors_zone_global_region": "Régions",
-  "pci_project_flavors_zone_localzone_tooltip": "Les Local Zones sont un nouveau type de localisation, qui prennent en charge une partie de notre portefeuille de produits Public Cloud. Nous allons progressivement augmenter le nombre total de Local Zones dans le monde au cours des prochaines années.",
-  "pci_project_flavors_zone_globalregions_tooltip": "Les Régions sont supportées par un ou plusieurs datacenters gérés par OVHCloud. Chaque région fournit une ou plusieurs Availability Zone avec le portefeuille complet de services OVHCloud.",
+  "pci_project_flavors_zone_localzone": "Local Zone",
+  "pci_project_flavors_zone_global_region": "1-AZ",
+  "pci_project_flavors_zone_localzone_tooltip": "Une Local Zone correspond à un mode de déploiement des produits Public Cloud d’OVHcloud dans des datacenters situés au plus près des utilisateurs finaux.",
+  "pci_project_flavors_zone_globalregions_tooltip": "Une région 1-AZ (zone de disponibilité) regroupe un ou plusieurs datacenters localisés sur un même site.",
+  "pci_project_flavors_zone_globalregions_tooltip_2": "Avec l'arrivée prochaine des régions 3-AZ, le type de déploiement 'Régions' change de nom ! Une région 1-AZ (zone de disponibilité) regroupe un ou plusieurs datacenters localisés sur un même site.",
   "pci_project_flavors_zone_tooltip_link": "En savoir plus",
   "pci_project_flavors_quota": "Augmenter mon quota",
   "pci_project_flavors_quota_info": "Le quota de votre projet ne vous permet pas d’ajouter ce type de machine dans cette région.",
-  "pci_project_flavors_quota_manage": "Gérer mon quota"
+  "pci_project_flavors_quota_manage": "Gérer mon quota",
+  "pci_project_flavors_zone_3az_region": "3-AZ",
+  "pci_project_flavors_zone_3az_tooltip": "Une région 3-AZ comprend trois zones de disponibilités situées dans une même aire métropolitaine, séparées par quelques kilomètres. Elle répond aux exigences les plus élevées en matière de résilience tout en garantissant une latence extrêmement faible entre les AZ."
 }

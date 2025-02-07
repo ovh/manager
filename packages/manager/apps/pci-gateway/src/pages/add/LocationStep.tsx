@@ -1,10 +1,11 @@
+import { StepComponent } from '@ovh-ux/manager-react-components';
 import {
-  StepComponent,
-  TilesInputComponent,
-  useProjectUrl,
-} from '@ovh-ux/manager-react-components';
+  RegionSelector,
+  usePCICommonContextFactory,
+  PCICommonContext,
+} from '@ovh-ux/manager-pci-common';
 import { useTranslation } from 'react-i18next';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useMemo, useState } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
 import {
   OsdsIcon,
@@ -17,20 +18,26 @@ import {
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
-import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
+import {
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
+} from '@ovhcloud/ods-components';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { clsx } from 'clsx';
 import { StepsEnum, useNewGatewayStore } from '@/pages/add/useStore';
 import { TAvailableRegion, useData } from '@/api/hooks/data';
+import { RegionType } from '@/types/region';
 
 type IState = {
   regions: TAvailableRegion[];
   region: TAvailableRegion;
   regionsLink: string;
-  selectedContinent: string;
-  selectedMacroName: string;
 };
+
+const isRegionWith3AZ = (regions: TAvailableRegion[]) =>
+  regions.some((region) => region.type === RegionType['3AZ']);
 
 /**
  *
@@ -40,15 +47,11 @@ type IState = {
  * TODO : move groups(continent) from translation files
  */
 export const LocationStep = () => {
-  const { t: tStepper } = useTranslation('stepper');
-  const { t: tAdd } = useTranslation('add');
-  const { t: tRegionsList } = useTranslation('regions-list');
+  const { t } = useTranslation(['stepper', 'add']);
   const { projectId } = useParams();
   const [searchParams] = useSearchParams();
   const { tracking } = useContext(ShellContext).shell;
   const store = useNewGatewayStore();
-
-  const projectUrl = useProjectUrl('public-cloud');
 
   const sizes = useData(projectId);
 
@@ -56,8 +59,6 @@ export const LocationStep = () => {
     region: undefined,
     regions: [],
     regionsLink: '',
-    selectedContinent: undefined,
-    selectedMacroName: undefined,
   });
 
   useEffect(() => {
@@ -98,6 +99,10 @@ export const LocationStep = () => {
     }
   }, [searchParams, state.regions]);
 
+  const has3AZ = useMemo(() => isRegionWith3AZ(state.regions), [state.regions]);
+
+  const metaProps = usePCICommonContextFactory({ has3AZ });
+
   return (
     <StepComponent
       id={StepsEnum.LOCATION}
@@ -105,14 +110,14 @@ export const LocationStep = () => {
       isOpen={store.steps.get(StepsEnum.LOCATION).isOpen}
       isChecked={store.steps.get(StepsEnum.LOCATION).isChecked}
       isLocked={store.steps.get(StepsEnum.LOCATION).isLocked}
-      title={tAdd('pci_projects_project_public_gateways_add_region_title')}
+      title={t('add:pci_projects_project_public_gateways_add_region_title')}
       subtitle={
         <OsdsText
           level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
           size={ODS_THEME_TYPOGRAPHY_SIZE._400}
           color={ODS_THEME_COLOR_INTENT.text}
         >
-          {tAdd('pci_projects_project_public_gateways_add_description3')}
+          {t('add:pci_projects_project_public_gateways_add_description3')}
           <OsdsLink
             color={ODS_THEME_COLOR_INTENT.primary}
             target={OdsHTMLAnchorElementTarget._blank}
@@ -138,8 +143,8 @@ export const LocationStep = () => {
               });
             }
           : undefined,
-        label: tStepper('Next'),
-        isDisabled: state.region && !state.region.active,
+        label: t('stepper:Next'),
+        isDisabled: !state.region?.enabled,
       }}
       edit={{
         action: (id) => {
@@ -151,81 +156,31 @@ export const LocationStep = () => {
           store.updateForm.name(undefined);
           store.updateForm.network(undefined, undefined);
         },
-        label: tStepper('common_stepper_modify_this_step'),
+        label: t('stepper:common_stepper_modify_this_step'),
         isDisabled: false,
       }}
     >
-      <TilesInputComponent<TAvailableRegion, string, string>
-        value={state.region}
-        items={state.regions}
-        label={(region) => region.microName}
-        onInput={(region) => {
-          store.updateForm.regionName(region?.name);
-        }}
-        stack={{
-          by: (region) => region?.macroName,
-          label: (macroName) => macroName,
-          title: () => tRegionsList('pci_project_regions_list_region'),
-          onChange: (language) =>
-            setState({ ...state, selectedMacroName: language }),
-        }}
-        group={{
-          by: (region) => region.continent,
-          label: (continent) => (
-            <OsdsText
-              breakSpaces={false}
-              size={ODS_THEME_TYPOGRAPHY_SIZE._600}
-              color={
-                continent === state.selectedContinent
-                  ? ODS_THEME_COLOR_INTENT.text
-                  : ODS_THEME_COLOR_INTENT.primary
-              }
-            >
-              <div
-                className={clsx(
-                  continent === state.selectedContinent && 'font-bold',
-                  'whitespace-nowrap px-2 text-lg',
-                )}
-              >
-                {undefined === continent
-                  ? tRegionsList('pci_project_regions_list_continent_all')
-                  : continent}
-              </div>
-            </OsdsText>
-          ),
-          showAllTab: true,
-          onChange: (continent) =>
-            setState({ ...state, selectedContinent: continent }),
-        }}
-      />
-      {state.region && !state.region.active && (
+      <PCICommonContext.Provider value={metaProps}>
+        <RegionSelector
+          projectId={projectId}
+          onSelectRegion={(region) => store.updateForm.regionName(region?.name)}
+          regionFilter={(r) =>
+            r.isMacro || state.regions.some(({ name }) => name === r.name)
+          }
+        />
+      </PCICommonContext.Provider>
+      {state.region?.type === RegionType['3AZ'] && (
         <OsdsMessage
           color={ODS_THEME_COLOR_INTENT.warning}
           icon={ODS_ICON_NAME.WARNING}
           className="mt-6"
         >
           <OsdsText
-            level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-            size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+            level={ODS_TEXT_LEVEL.body}
+            size={ODS_TEXT_SIZE._400}
             color={ODS_THEME_COLOR_INTENT.text}
           >
-            {tAdd(
-              'pci_projects_project_public_gateways_add_region_activate_line1',
-            )}
-
-            <OsdsLink
-              color={ODS_THEME_COLOR_INTENT.primary}
-              href={`${projectUrl}/regions`}
-              className="mx-3"
-            >
-              {tAdd(
-                'pci_projects_project_public_gateways_add_region_activate_line2',
-              )}
-            </OsdsLink>
-
-            {tAdd(
-              'pci_projects_project_public_gateways_add_region_activate_line3',
-            )}
+            {t('add:pci_projects_project_public_gateways_3az_price')}
           </OsdsText>
         </OsdsMessage>
       )}

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.30.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.29.1...@ovh-ux/manager-billing@0.30.0) (2025-02-03)
+
+
+### Features
+
+* **billing:** improve billing title and description texts ([#14854](https://github.com/ovh/manager/issues/14854)) ([99b5d52](https://github.com/ovh/manager/commit/99b5d521c1e77802f6569b3c8a827a7ccdf4be5e))
+
+
+
+
+
 ## [0.29.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.29.0...@ovh-ux/manager-billing@0.29.1) (2025-01-23)
 
 

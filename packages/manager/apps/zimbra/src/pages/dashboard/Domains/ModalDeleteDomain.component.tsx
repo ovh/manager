@@ -27,7 +27,7 @@ import queryClient from '@/queryClient';
 import { CANCEL, CONFIRM, DELETE_DOMAIN } from '@/tracking.constant';
 
 export default function ModalDeleteDomain() {
-  const { t } = useTranslation('domains/delete');
+  const { t } = useTranslation(['domains/delete', 'domains/edit']);
   const navigate = useNavigate();
   const { trackClick, trackPage } = useOvhTracking();
   const [searchParams] = useSearchParams();
@@ -111,7 +111,7 @@ export default function ModalDeleteDomain() {
       isLoading={isLoading}
       isOpen
       secondaryButton={{
-        label: t('zimbra_domain_delete_cancel'),
+        label: t('zimbra_domain_edit_cancel', { ns: 'domains/edit' }),
         action: handleCancelClick,
       }}
       primaryButton={{
