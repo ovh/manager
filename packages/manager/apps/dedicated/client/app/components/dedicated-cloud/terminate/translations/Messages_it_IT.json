@@ -14,7 +14,7 @@
   "dedicatedCloud_close_service_question": "Vuoi continuare?",
   "server_close_service_form_option_terminate": "Disattivare il servizio immediatamente",
   "server_close_service_form_option_delete_at_expiration": "Disattivare il servizio alla data di scadenza",
-  "server_close_service_form_option_cancel": "Annulla la disattivazione del servizio",
+  "server_close_service_form_option_cancel": "Annullare la disattivazione del servizio",
   "dedicatedCloud_close_service_success": "La richiesta di disattivazione di questa infrastruttura è stata presa in carico. Riceverai un’email con la procedura da seguire.",
   "dedicatedCloud_close_service_error": "Si è verificato un errore durante la richiesta di disattivazione di questa infrastruttura:",
   "server_close_service_delete_at_expiration_activate_success": "La richiesta di disattivazione del server alla data di scadenza è stata presa in carico.",

@@ -1424,6 +1424,6 @@
   "license_designation_CPANEL_version_version-plus-cloud": "Licencja cPanel Plus Cloud",
   "license_order_step4_pay_upgrade_amount": "Do zapłaty: {{price}}",
   "license_designation_CPANEL_version_version-premier-cloud-150": "Licencja cPanel Premier Cloud 150",
-  "license_designation_CPANEL_version_version-premier-metal-900": "Licencja cPanel Premier Metal 900",
+  "license_designation_CPANEL_version_version-premier-metal-900": "Licencja cPanel Premier Cloud 900",
   "license_designation_CPANEL_version_version-premier-cloud-300": "Licencja cPanel Premier Cloud 300"
 }
