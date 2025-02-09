@@ -1,16 +1,20 @@
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { subRoutes, urls } from '@/routes/routes.constant';
+import { StepId } from '@/types/formStep.type';
 
-const createStepUrl = (stepNumber: number, serviceName: string) =>
-  urls.installationStep
-    .replace(':stepId', stepNumber.toString())
-    .replace(':serviceName', serviceName);
+const createStepUrl = (stepNumber: number, serviceName?: string) =>
+  stepNumber === 1 || !serviceName
+    ? urls.installationInitialStep
+    : urls.installationStep
+        .replace(':stepId', stepNumber.toString())
+        .replace(':serviceName', serviceName);
 
 export const useFormSteps = () => {
   const { stepId, serviceName } = useParams();
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const isInitialStep = pathname.includes(subRoutes.initialStep);
+  const currentStep: StepId = isInitialStep ? '1' : (stepId as StepId);
 
   const initializeAndProceed = (selectedServiceName: string) => {
     if (isInitialStep && selectedServiceName)
@@ -31,10 +35,15 @@ export const useFormSteps = () => {
     }
   };
 
+  const goToStep = (step: StepId) =>
+    navigate(createStepUrl(Number(step), serviceName));
+
   return {
     initializeAndProceed,
     nextStep,
     previousStep,
-    currentStep: isInitialStep ? '1' : stepId,
+    goToStep,
+    currentStep,
+    serviceName,
   };
 };
