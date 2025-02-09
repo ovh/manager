@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Outlet } from 'react-router-dom';
 
-import { BaseLayout } from '@ovh-ux/manager-react-components';
+import { BaseLayout, Notifications } from '@ovh-ux/manager-react-components';
 
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 import { useFormSteps } from '@/hooks/formStep/useFormSteps';
@@ -36,6 +36,7 @@ export default function InstallationDashboard() {
         backLinkLabel={t('backlink_label')}
         onClickReturn={() => {}}
         description={t('description')}
+        message={<Notifications />}
       >
         <Outlet />
       </BaseLayout>
