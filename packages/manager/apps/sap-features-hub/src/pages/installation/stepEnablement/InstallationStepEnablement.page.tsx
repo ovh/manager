@@ -155,7 +155,7 @@ export default function InstallationStepEnablement() {
             controllerParams={register('bucketBackint.endpoint')}
             helperMessage={t('common_helper_endpoint')}
           >
-            <RhfField.Label>{t('enablement_input_endpoint')}</RhfField.Label>
+            <RhfField.Label>{t('common_input_endpoint')}</RhfField.Label>
             <RhfField.Input />
             <RhfField.HelperAuto />
           </RhfField>

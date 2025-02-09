@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { useFormSteps } from '@/hooks/formStep/useFormSteps';
 import {
-  FORM_SAP_SIDS_LABEL,
   SYSTEM_PASSWORD_INPUTS,
   SYSTEM_TEXT_INPUTS,
 } from './installationStepSystemInformation.constants';
@@ -12,6 +11,7 @@ import { TextField } from '@/components/Form/TextField.component';
 import { getSystemFormData } from '@/utils/formStepData';
 import { isValidInput, isValidSapPassword } from '@/utils/formValidation';
 import FormLayout from '@/components/Form/FormLayout.component';
+import { FORM_LABELS } from '@/constants/form.constants';
 
 export default function InstallationStepSystemInformation() {
   const { t } = useTranslation('installation');
@@ -47,7 +47,7 @@ export default function InstallationStepSystemInformation() {
       onSubmit={nextStep}
       onPrevious={previousStep}
     >
-      <OdsText preset="heading-3">{FORM_SAP_SIDS_LABEL}</OdsText>
+      <OdsText preset="heading-3">{FORM_LABELS.sids}</OdsText>
       <OdsText className="italic">{sidRule}</OdsText>
       {SYSTEM_TEXT_INPUTS.map(({ name, helperKey, ...inputProps }) => (
         <TextField

@@ -63,5 +63,3 @@ export type EnablementForm = {
   bucketBackint?: z.infer<typeof ENABLEMENT_BUCKET_BACKINT>;
   logsDataPlatform?: z.infer<typeof ENABLEMENT_LOGS_DATA_PLATFORM>;
 };
-
-export type SystemFormKeys = keyof SystemForm;
