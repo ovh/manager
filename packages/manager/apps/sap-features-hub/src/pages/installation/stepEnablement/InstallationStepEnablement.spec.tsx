@@ -5,6 +5,7 @@ import { render, waitFor } from '@testing-library/react';
 import { describe, expect, vi } from 'vitest';
 import InstallationStepEnablement from './InstallationStepEnablement.page';
 import { installationInitialValues } from '@/context/installationInitialValues.constants';
+import { FORM_LABELS } from '@/constants/form.constants';
 
 vi.mock('react-router-dom', () => ({
   useLocation: () => ({ pathname: '/somewhere' }),
@@ -67,7 +68,7 @@ describe('InstallationStepEnablement page unit test suite', () => {
       'common_input_container',
       'enablement_input_id_container_tooltip',
       'common_helper_container',
-      'enablement_input_endpoint',
+      FORM_LABELS.endpoint,
       'common_helper_endpoint',
       'common_input_access_key',
       'common_helper_access_key',

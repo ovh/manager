@@ -75,7 +75,7 @@ export default function InstallationStepOSConfig() {
       />
       <TextField
         name="osLicense"
-        label={t('os_config_input_suse')}
+        label={`${t('os_config_input_suse')} (${t('optional_label')})`}
         onOdsChange={(e) => {
           const { value } = e.detail;
           handleChange({
