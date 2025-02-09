@@ -5,12 +5,15 @@ import InstallationStepOSConfig from './stepOSConfig/InstallationStepOSConfig.pa
 import InstallationStepSourceInformation from './stepSourceInformation/InstallationStepSourceInformation.page';
 import InstallationStepSystemInformation from './stepSystemInformation/InstallationStepSystemInformation.page';
 import InstallationStepEnablement from './stepEnablement/InstallationStepEnablement.page';
+import InstallationStepSummary from './stepSummary/InstallationStepSummary.page';
+import { StepId } from '@/types/formStep.type';
 
-export const INSTALLATION_STEPS: Record<string, ReactNode> = {
+export const INSTALLATION_STEPS: Record<StepId, ReactNode> = {
   '1': <InstallationInitialStep />,
   '2': <InstallationStepDeployment />,
   '3': <InstallationStepSystemInformation />,
   '4': <InstallationStepSourceInformation />,
   '5': <InstallationStepOSConfig />,
-  '7': <InstallationStepEnablement />,
+  '6': <InstallationStepEnablement />,
+  '7': <InstallationStepSummary />,
 } as const;

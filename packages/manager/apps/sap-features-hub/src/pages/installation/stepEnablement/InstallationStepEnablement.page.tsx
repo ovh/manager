@@ -12,6 +12,7 @@ import { ENABLEMENT_FORM_SCHEMA } from '@/schema/form.schema';
 import {
   BACKUP_KEY_LENGTH,
   CONTAINER_ID_MAX_LENGTH,
+  FORM_LABELS,
 } from '@/constants/form.constants';
 
 const triggerFilledInput = <T,>({
@@ -155,7 +156,7 @@ export default function InstallationStepEnablement() {
             controllerParams={register('bucketBackint.endpoint')}
             helperMessage={t('common_helper_endpoint')}
           >
-            <RhfField.Label>{t('enablement_input_endpoint')}</RhfField.Label>
+            <RhfField.Label>{FORM_LABELS.endpoint}</RhfField.Label>
             <RhfField.Input />
             <RhfField.HelperAuto />
           </RhfField>
