@@ -70,11 +70,16 @@ export default function InstallationInitialStep() {
         optionLabelKey="displayName"
         isDisabled={isLoadingServices || isServicesError}
         isLoading={isLoadingServices}
-        handleChange={(event) => {
+        defaultValue={serviceName}
+        handleChange={({ detail }) => {
           setValues((prev) => ({
             ...prev,
-            serviceName: event.detail.value,
+            serviceName: detail.value,
+            serviceDisplayName:
+              services?.find((service) => service.serviceName === detail.value)
+                ?.displayName || '',
             datacenterId: null,
+            datacenterName: null,
             clusterName: null,
           }));
         }}
@@ -88,10 +93,14 @@ export default function InstallationInitialStep() {
         optionLabelKey="name"
         isDisabled={!serviceName || isLoadingDatacentres || isDatacentresError}
         isLoading={isLoadingDatacentres}
-        handleChange={(event) => {
+        defaultValue={datacenterId ? `${datacenterId}` : undefined}
+        handleChange={({ detail }) => {
           setValues((prev) => ({
             ...prev,
-            datacenterId: Number(event.detail.value),
+            datacenterId: Number(detail.value),
+            datacenterName:
+              datacentres?.find((vdc) => `${vdc.datacenterId}` === detail.value)
+                ?.name || '',
             clusterName: null,
           }));
         }}
@@ -109,8 +118,9 @@ export default function InstallationInitialStep() {
           !datacenterId || isLoadingClusters || isClustersError || isError
         }
         isLoading={!!datacenterId && isLoadingClusters}
-        handleChange={(event) =>
-          setValues((prev) => ({ ...prev, clusterName: event.detail.value }))
+        defaultValue={clusterName}
+        handleChange={({ detail }) =>
+          setValues((prev) => ({ ...prev, clusterName: detail.value }))
         }
       />
     </InstallationFormLayout>

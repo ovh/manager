@@ -5,7 +5,9 @@ import {
 
 export const installationInitialValues: InstallationFormValues = {
   serviceName: '',
+  serviceDisplayName: '',
   datacenterId: null,
+  datacenterName: '',
   clusterName: '',
   applicationVersion: '',
   applicationType: '',
