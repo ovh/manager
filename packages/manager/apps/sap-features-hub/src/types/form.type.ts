@@ -26,7 +26,9 @@ export type TextInputData<T = string> = {
 
 export type InitializationForm = {
   serviceName: string;
+  serviceDisplayName: string;
   datacenterId: number;
+  datacenterName: string;
   clusterName: string;
 };
 export type DeploymentForm = {
@@ -48,7 +50,6 @@ export type SourceForm = {
   accessKey: string;
   secretKey: string;
 };
-
 export type OSConfigForm = {
   domainName: string;
   osLicense: string;
@@ -57,11 +58,10 @@ export type OSConfigForm = {
   firewallServer: boolean;
   firewallDatabase: boolean;
 };
+
 export type EnablementFormSchema = z.infer<typeof ENABLEMENT_FORM_SCHEMA>;
 
 export type EnablementForm = {
   bucketBackint?: z.infer<typeof ENABLEMENT_BUCKET_BACKINT>;
   logsDataPlatform?: z.infer<typeof ENABLEMENT_LOGS_DATA_PLATFORM>;
 };
-
-export type SystemFormKeys = keyof SystemForm;

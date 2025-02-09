@@ -1,27 +1,41 @@
 import { InstallationFormValues } from '@/types/form.type';
-import {
-  installationInitialValues,
-  installationInitialErrors,
-} from '@/context/installationInitialValues.constants';
+import { installationInitialErrors } from '@/context/installationInitialValues.constants';
 
 export const mockedValues: InstallationFormValues = {
-  ...installationInitialValues,
-  sapSid: 'sapSid',
-  sapHanaSid: 'sapHanaSid',
-  masterSapPassword: 'masterSapPassword',
-  masterSapHanaPassword: 'masterSapHanaPassword',
-  sidamnPassword: 'sidamnPassword',
-  systemPassword: 'systemPassword',
-  bucketId: 'bucketId',
-  endpoint: 'endpoint',
-  accessKey: 'accessKey',
-  secretKey: 'secretKey',
-  domainName: 'domainName',
-  osLicense: 'osLicense',
+  serviceName: 'pcc-145-239-132-226',
+  serviceDisplayName: 'PRE48 NSX',
+  datacenterId: 869,
+  datacenterName: 'datacenter869GG',
+  clusterName: 'Cluster1',
+  applicationVersion: 'S/4HANA 2023',
+  applicationType: 'JAVA',
+  deploymentType: 'High Availability',
+  sapSid: 'SAP',
+  sapHanaSid: 'HAN',
+  masterSapPassword: 'PasswordMaster1!',
+  masterSapHanaPassword: 'PasswordHana1!',
+  sidadmPassword: 'PasswordSidadm1!',
+  systemPassword: 'PasswordSystem1!',
+  bucketId: 'bucketContainerId',
+  endpoint: 'https://bucket.endpoint.ok',
+  accessKey: 'bucketAccessKeyzzzzzzzzzzzzzzzzz',
+  secretKey: 'bucketSecretKeyzzzzzzzzzzzzzzzzz',
+  domainName: 'osconfig.domain',
+  osLicense: 'osconfigLicenseSuse',
   osUpdate: true,
   firewallService: true,
   firewallServer: false,
   firewallDatabase: false,
+  bucketBackint: {
+    id: 'backintContainerId',
+    endpoint: 'https://backint.endpoint.ok',
+    accessKey: 'backintAccessKeyzzzzzzzzzzzzzzzz',
+    secretKey: 'backintSecretKeyzzzzzzzzzzzzzzzz',
+  },
+  logsDataPlatform: {
+    entrypoint: 'https://logstashentrypoint.logs.ovh.com',
+    certificate: 'certificate',
+  },
 };
 
 export const mockedErrors = {

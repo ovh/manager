@@ -5,6 +5,7 @@ import { Outlet } from 'react-router-dom';
 import {
   BaseLayout,
   IconLinkAlignmentType,
+  Notifications,
 } from '@ovh-ux/manager-react-components';
 
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
@@ -40,6 +41,7 @@ export default function InstallationDashboard() {
         onClickReturn={() => {}}
         description={t('description')}
         iconAlignment={IconLinkAlignmentType.left}
+        message={<Notifications />}
       >
         <Outlet />
       </BaseLayout>
