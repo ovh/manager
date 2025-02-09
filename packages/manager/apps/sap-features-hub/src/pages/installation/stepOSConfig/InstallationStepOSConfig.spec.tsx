@@ -24,7 +24,7 @@ describe('InstallationStepOSConfig page unit test suite', () => {
       'os_config_title',
       'os_config_subtitle',
       'os_config_input_domain',
-      'os_config_input_suse',
+      'os_config_input_suse (optional_label)',
       'os_config_toggle_update',
       'os_config_toggle_firewall_service',
       'os_config_toggle_firewall_server',

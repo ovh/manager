@@ -67,7 +67,7 @@ describe('InstallationStepEnablement page unit test suite', () => {
       'common_input_container',
       'enablement_input_id_container_tooltip',
       'common_helper_container',
-      'enablement_input_endpoint',
+      'common_input_endpoint',
       'common_helper_endpoint',
       'common_input_access_key',
       'common_helper_access_key',
