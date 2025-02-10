@@ -35,3 +35,13 @@ vi.mock(import('@tanstack/react-query'), async (importOriginal) => {
     useQuery: vi.fn(),
   };
 });
+
+vi.mock('@/utils/utils', () => ({
+  formatDate: vi.fn(),
+  removeString: vi.fn(),
+}));
+
+vi.mock('@/utils/utils', () => ({
+  formatDate: vi.fn(),
+  removeString: vi.fn(),
+}));

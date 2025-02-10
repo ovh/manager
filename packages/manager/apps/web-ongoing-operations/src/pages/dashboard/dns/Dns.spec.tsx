@@ -8,19 +8,15 @@ import {
 } from '@tanstack/react-query';
 import { vi } from 'vitest';
 import { render, waitFor, screen } from '@testing-library/react';
-import { domain } from '@/__mocks__/domain';
-import Domain from '@/pages/dashboard/domain/Domain';
-
-vi.mock('@/utils/utils', () => ({
-  formatDate: vi.fn(),
-}));
+import { dns } from '@/__mocks__/dns';
+import Dns from '@/pages/dashboard/dns/Dns';
 
 vi.mock('react-router-dom', () => ({
   useNavigate: vi.fn(),
 }));
 
 vi.mock('@/data/api/web-ongoing-operations', () => ({
-  getmeTaskDomainList: vi.fn(),
+  getmeTaskDnsList: vi.fn(),
 }));
 
 const queryClient = new QueryClient();
@@ -28,16 +24,16 @@ const wrapper = ({ children }: any) => (
   <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
 );
 
-describe('Domain datagrid', () => {
+describe('Dns datagrid', () => {
   it('displays loading spinner while main request are loading', async () => {
     (useQuery as jest.Mock).mockReturnValue({ data: [], isLoading: true });
 
-    const { getByTestId } = render(<Domain />, { wrapper });
+    const { getByTestId } = render(<Dns />, { wrapper });
     expect(getByTestId('listing-page-spinner')).toBeInTheDocument();
   });
 
   it('fetch in a good way using useQuery', () => {
-    const mockData = { data: domain };
+    const mockData = { data: dns };
     (useQuery as jest.Mock).mockReturnValue({
       data: mockData,
       isLoading: false,
@@ -45,30 +41,30 @@ describe('Domain datagrid', () => {
 
     expect(useQuery).toHaveBeenCalledWith(
       expect.objectContaining({
-        queryKey: ['domainList'],
+        queryKey: ['dnsList'],
         queryFn: expect.any(Function),
       }),
     );
   });
 
   it('Display the datagrid element', async () => {
-    const mockData = { data: domain };
+    const mockData = { data: dns };
     (useQuery as jest.Mock).mockReturnValue({
       data: mockData,
       isLoading: false,
     });
 
-    const { getByTestId } = render(<Domain />, { wrapper });
+    const { getByTestId } = render(<Dns />, { wrapper });
     await waitFor(() => {
-      expect(getByTestId('datagrid')).toBeInTheDocument();
+      expect(getByTestId('dns')).toBeInTheDocument();
 
-      const domainName = getByTestId('case-where-modal-cant-be-open.ovh');
-      expect(domainName).toBeInTheDocument();
-      expect(domainName).toHaveAttribute(
+      const dnsName = getByTestId('testpuwebdomain.us');
+      expect(dnsName).toBeInTheDocument();
+      expect(dnsName).toHaveAttribute(
         'href',
-        'https://www.ovh.com/manager/#/web/domain/case-where-modal-cant-be-open.ovh/information',
+        'https://www.ovh.com/manager/#/web/domain/testpuwebdomain.us/information',
       );
-      expect(domainName).toHaveAttribute('target', '_blank');
+      expect(dnsName).toHaveAttribute('target', '_blank');
 
       // We test the status
       const statusCancelled = getByTestId('status-1');

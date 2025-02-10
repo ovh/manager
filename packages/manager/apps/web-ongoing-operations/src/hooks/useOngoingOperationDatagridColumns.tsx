@@ -22,10 +22,12 @@ export const useOngoingOperationDatagridColumns = (
         cell: (props: TOngoingOperations) => (
           <DataGridTextCell>
             <OdsLink
-              href={`https://www.ovh.com/manager/#/web/domain/${props.domain}/information`}
-              label={props.domain}
+              href={`https://www.ovh.com/manager/#/web/domain/${
+                isDomain ? props.domain : props.zone
+              }/information`}
+              label={isDomain ? props.domain : props.zone}
               target="_blank"
-              data-testid={props.domain}
+              data-testid={isDomain ? props.domain : props.zone}
             />
           </DataGridTextCell>
         ),
