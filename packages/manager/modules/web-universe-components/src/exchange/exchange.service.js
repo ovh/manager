@@ -308,21 +308,39 @@ export default class Exchange {
   /**
    * Return the last 2 days task list for the selected exchange
    */
-  getTasks(organization, serviceName, count = 10, offset = 0) {
-    return this.services.OvhHttp.get(
-      '/sws/exchange/{organization}/{exchange}/tasks',
-      {
-        rootPath: '2api',
-        urlParams: {
-          organization,
-          exchange: serviceName,
+  /*
+
+  /**
+   * Get tasks list
+   * @param {string} organizationName
+   * @param {string} exchangeService
+   * @param {integer} pageSize
+   * @param {integer} offset
+   */
+  getTasks(
+    organizationName,
+    exchangeService,
+    pageSize = 25,
+    offset = 0,
+    sort = { name: 'finishDate', dir: 'desc' },
+  ) {
+    return this.services
+      .iceberg(
+        `/email/exchange/${organizationName}/service/${exchangeService}/task`,
+      )
+      .query()
+      .expand('CachedObjectList-Pages')
+      .limit(pageSize)
+      .offset(offset)
+      .sort(sort.name, sort.dir)
+      .execute(null, true)
+      .$promise.then((response) => ({
+        data: response.data,
+        meta: {
+          totalCount:
+            parseInt(response.headers['x-pagination-elements'], 10) || 0,
         },
-        params: {
-          count,
-          offset,
-        },
-      },
-    );
+      }));
   }
 
   /**

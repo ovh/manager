@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.10.2...@ovh-ux/manager-exchange@4.11.0) (2025-02-10)
+
+
+### Features
+
+* **exchange:** migrate task to iceberg ([baf4e42](https://github.com/ovh/manager/commit/baf4e42809b97154fdc1893134c9abb5de59674c))
+
+
+
+
+
 ## [4.10.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.10.1...@ovh-ux/manager-exchange@4.10.2) (2025-01-28)
 
 

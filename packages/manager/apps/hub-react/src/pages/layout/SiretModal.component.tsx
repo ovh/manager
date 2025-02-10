@@ -16,6 +16,8 @@ import {
   useOvhTracking,
   PageType,
 } from '@ovh-ux/manager-react-shell-client';
+import { useHubContext } from '@/pages/layout/context';
+import { SIRET_MODAL_FEATURE } from '@/pages/layout/layout.constants';
 
 export default function SiretModal() {
   const { t } = useTranslation('hub/siret');
@@ -23,16 +25,20 @@ export default function SiretModal() {
     shell: { navigation },
     environment: { user },
   } = useContext(ShellContext);
+  const { availability, isLoading, isFreshCustomer } = useHubContext();
   const { trackClick, trackPage } = useOvhTracking();
   const modal = useRef<HTMLOsdsModalElement>(null);
   const [isClosed, setIsClosed] = useState(false);
 
   const shouldBeDisplayed = useMemo(
     () =>
+      !isLoading &&
+      !isFreshCustomer &&
+      availability?.[SIRET_MODAL_FEATURE] &&
       !user.companyNationalIdentificationNumber &&
       user.legalform === 'corporation' &&
       user.country === 'FR',
-    [user],
+    [isLoading, isFreshCustomer, availability, user],
   );
 
   const link = navigation.getURL('dedicated', '#/useraccount/infos', {

@@ -8,6 +8,7 @@
   "managed_vcd_vdc_order_ram_value": "{{ram}} Go",
   "managed_vcd_vdc_order_vcpu_count": "Nombre de vCPU",
   "managed_vcd_vdc_order_type": "Type",
+  "managed_vcd_vdc_order_performance_class": "{{performanceClass}}/To",
   "managed_vcd_vdc_order_price": "Prix",
   "managed_vcd_vdc_order_price_detail": "Prix pour 1 mois",
   "managed_vcd_vdc_order_quantity_title": "Choisir une quantité",
