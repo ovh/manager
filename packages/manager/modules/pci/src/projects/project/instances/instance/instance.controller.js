@@ -31,10 +31,12 @@ export default class PciInstanceController {
     this.fetchRegionsTypesAvailability();
   }
 
-  async fetchRegionsTypesAvailability() {
-    this.regionsTypesAvailability = await this.PciProjectsProjectInstanceService.getRegionsTypesAvailability(
+  fetchRegionsTypesAvailability() {
+    this.PciProjectsProjectInstanceService.getRegionsTypesAvailability(
       this.projectId,
-    );
+    ).then((regionsTypesAvailability) => {
+      this.regionsTypesAvailability = regionsTypesAvailability;
+    });
   }
 
   displayBillingActionButton() {

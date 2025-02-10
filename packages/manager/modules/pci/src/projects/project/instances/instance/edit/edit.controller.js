@@ -70,10 +70,12 @@ export default class PciInstanceEditController {
     });
   }
 
-  async fetchRegionsTypesAvailability() {
-    this.regionsTypesAvailability = await this.PciProjectsProjectInstanceService.getRegionsTypesAvailability(
+  fetchRegionsTypesAvailability() {
+    this.PciProjectsProjectInstanceService.getRegionsTypesAvailability(
       this.projectId,
-    );
+    ).then((regionsTypesAvailability) => {
+      this.regionsTypesAvailability = regionsTypesAvailability;
+    });
   }
 
   updateInstanceFlavor() {
