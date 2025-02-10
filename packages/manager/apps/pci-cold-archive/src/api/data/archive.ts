@@ -93,3 +93,18 @@ export const startArchiveContainer = async ({
   );
   return data;
 };
+
+export const flushArchive = async ({
+  projectId,
+  region,
+  archiveName,
+}: {
+  projectId: string;
+  region: string;
+  archiveName: string;
+}) => {
+  const { data } = await v6.post(
+    `/cloud/project/${projectId}/region/${region}/coldArchive/${archiveName}/destroy`,
+  );
+  return data;
+};
