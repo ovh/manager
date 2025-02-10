@@ -1,0 +1,18 @@
+{
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_title": "Nutzer zuweisen",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_description": "Der Zugang zu Ihren Containern lässt sich für Ihre vordefinierten Nutzer festlegen. Erstellen Sie bei Bedarf neue Nutzer, Sie erhalten dann die entsprechenden Zugangsschlüssel.",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_select_field_user_label": "Nutzer auswählen",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_select_list_has_credential": "Erstellte Zugangsdaten",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_select_list_has_no_credential": "Keine Zugangsdaten",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_select_field_user_cta_cancel": "Abbrechen",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_select_field_user_cta_linked": "Die Zugangsdaten anzeigen",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_create": "Einen neuen Nutzer erstellen",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_create_field_user_label": "Beschreibung des Nutzers",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_create_field_user_cta_create": "Erstellen",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_create_field_user_cta_cancel": "Abbrechen",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_user_description_label": "Nutzerbeschreibung:",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_user_credential_banner_secret_key_field_label": "Ihr geheimer Object Storage Schlüssel:",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_request_success": "Die Object Storage Login-Daten für den User {{userName}} wurden generiert.",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_request_fail": "Die Object Storage Login-Daten wurden nicht generiert.",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_select": "Einen bestehenden Nutzer auswählen"
+}

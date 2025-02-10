@@ -1,0 +1,5 @@
+{
+  "pci_projects_project_storages_cold_archive_add_step_name_archive_title": "Asigne un nombre al contenedor",
+  "pci_projects_project_storages_cold_archive_add_step_name_archive_description": "El nombre del contenedor debe tener entre 3 y 63 caracteres, y debe empezar y terminar por caracteres alfanuméricos en minúsculas (de la «a» a la «z» y de 0 a 9) y puede contener los siguientes signos de puntuación: punto («.») y guion («-»).",
+  "pci_projects_project_storages_cold_archive_add_step_name_archive_field_name": "Nombre del contenedor"
+}
