@@ -32,10 +32,8 @@ import { useClusterCreationStepper } from './useCusterCreationStepper';
 import { LocationStep } from './steps/LocationStep.component';
 import { VersionAndUpdatePolicyStep } from './steps/VersionAndUpdatePolicyStep.component';
 import { NetworkStep } from './steps/NetworkStep.component';
-import { NodeTypeStep } from './steps/NodeTypeStep.component';
-import { NodeSizeStep } from './steps/NodeSizeStep.component';
 import { ClusterNameStep } from './steps/ClusterNameStep.component';
-import { ClusterBillingStep } from './steps/ClusterBillingStep.component';
+import { ClusterConfirmationStep } from './steps/ClusterConfirmStep.component';
 import { useCreateKubernetesCluster } from '@/api/hooks/useKubernetes';
 import { PAGE_PREFIX } from '@/tracking.constants';
 import { ANTI_AFFINITY_MAX_NODES } from '@/constants';
@@ -132,6 +130,7 @@ export default function NewPage() {
       updatePolicy: stepper.form.updatePolicy,
       ...(nodePoolEnabled && {
         nodepool: {
+          name: stepper.form.nodePoolName,
           antiAffinity: stepper.form.antiAffinity,
           autoscale: stepper.form.scaling?.isAutoscale,
           desiredNodes: stepper.form.scaling?.quantity.desired,
@@ -264,36 +263,13 @@ export default function NewPage() {
             isDisabled: isCreationPending,
           }}
         >
-          <NodePoolStep stepper={stepper} onSubmit={stepper.node.submit} />
-          {/* <NodeTypeStep
-            projectId={projectId}
-            region={stepper.form.region?.name}
-            onSubmit={stepper.nodeType.submit}
-            step={stepper.nodeType.step}
-          /> */}
+          <NodePoolStep stepper={stepper} />
         </StepComponent>
-        {/* {nodePoolEnabled && (
-          <StepComponent
-            order={6}
-            {...stepper.nodeSize.step}
-            title={tListing('kube_common_node_pool_autoscaling_title')}
-            edit={{
-              action: stepper.nodeSize.edit,
-              label: tStepper('common_stepper_modify_this_step'),
-              isDisabled: isCreationPending,
-            }}
-          >
-            <NodeSizeStep
-              isMonthlyBilling={stepper.form.isMonthlyBilled}
-              onSubmit={stepper.nodeSize.submit}
-              step={stepper.nodeSize.step}
-            />
-          </StepComponent>
-        )} */}
+
         <StepComponent
-          order={nodePoolEnabled ? 7 : 6}
+          order={6}
           {...stepper.confirm.step}
-          title={t('kubernetes_add_billing_anti_affinity_title')}
+          title={tStepper('common_stepper_submit_button_cluster')}
           edit={{
             action: stepper.confirm.edit,
             label: tStepper('common_stepper_modify_this_step'),
@@ -301,7 +277,7 @@ export default function NewPage() {
           }}
         >
           {!stepper.confirm.step.isLocked && (
-            <ClusterBillingStep
+            <ClusterConfirmationStep
               form={stepper.form}
               onSubmit={() => {
                 createNewCluster();

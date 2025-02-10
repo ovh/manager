@@ -161,11 +161,6 @@ export function Autoscaling({
             min={quantity.min > maxValue ? maxValue : quantity.min}
             max={maxValue}
           />
-          {isMonthlyBilling && isAutoscale && (
-            <OsdsMessage className="mt-8" type={ODS_MESSAGE_TYPE.warning}>
-              {t('kubernetes_node_pool_billing_auto_scaling_monthly_warning')}
-            </OsdsMessage>
-          )}
         </>
       )}
 
