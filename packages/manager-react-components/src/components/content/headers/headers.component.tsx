@@ -25,7 +25,7 @@ export const Headers: React.FC<HeadersProps> = ({
           <Description className="mb-6">{description}</Description>
         )}
       </div>
-      {headerButton && (
+      {(headerButton || changelogButton) && (
         <div className="flex flex-wrap justify-end">
           {changelogButton}
           {headerButton}
