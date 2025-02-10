@@ -1,5 +1,5 @@
 import { PciModal } from '@ovh-ux/manager-pci-common';
-import { Clipboard, useNotifications } from '@ovh-ux/manager-react-components';
+import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   OdsFormField,
@@ -21,6 +21,7 @@ import {
   getUser,
   TUser,
 } from '@/api/data/users';
+import UserInformationTile from '@/components/UserInformationTile.component';
 
 const RadioOption = ({ checked, value, label, onChange, name }) => (
   <div className="flex items-center my-2">
@@ -89,56 +90,26 @@ export default function UserCreatePage(): JSX.Element {
     secret: string;
   }) => {
     addSuccess(
-      <div className="w-full">
-        <OdsText>
-          <span
-            dangerouslySetInnerHTML={{
-              __html: t(
-                'users/credentials:pci_projects_project_storages_containers_add_linked_user_success_message',
-                { username: `<strong> ${username}</strong>` },
-              ),
-            }}
-          />
-        </OdsText>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 mt-8 gap-6">
-          <OdsFormField>
-            <LabelComponent
-              text={t(
-                'users/credentials:pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_username_label',
-              )}
+      <UserInformationTile
+        title={
+          <OdsText preset="paragraph">
+            <span
+              dangerouslySetInnerHTML={{
+                __html: t(
+                  'users/credentials:pci_projects_project_storages_containers_add_linked_user_success_message',
+                  {
+                    username: `<strong>${username}</strong>`,
+                  },
+                ),
+              }}
             />
-            <Clipboard className="w-[100%]" value={username} />
-          </OdsFormField>
-
-          <OdsFormField>
-            <LabelComponent
-              text={t(
-                'users/credentials:pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_access-key_label',
-              )}
-            />
-            <Clipboard className="w-[100%]" value={access} />
-          </OdsFormField>
-
-          <OdsFormField>
-            <LabelComponent
-              text={t(
-                'users/credentials:pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_description_label',
-              )}
-            />
-            <Clipboard className="w-[100%]" value={description} />
-          </OdsFormField>
-
-          <OdsFormField>
-            <LabelComponent
-              text={t(
-                'users/credentials:pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_secret-key_label',
-              )}
-            />
-            <Clipboard className="w-[100%]" value={secret} />
-          </OdsFormField>
-        </div>
-      </div>,
+          </OdsText>
+        }
+        username={username}
+        description={description}
+        accessKey={access}
+        secret={secret}
+      />,
       false,
     );
 
