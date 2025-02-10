@@ -62,6 +62,7 @@
     "@ovh-ux/ng-ovh-timeline": "^2.1.2",
     "@ovh-ux/ng-ovh-ui-confirm-modal": "^2.1.2",
     "@ovh-ux/ng-ovh-user-pref": "^2.1.2",
+    "@ovh-ux/ng-ovh-utils": "^14.4.1",
     "@ovh-ux/ng-pagination-front": "^10.3.2",
     "@ovh-ux/ng-q-allsettled": "^2.1.2",
     "@ovh-ux/ng-shell-tracking": "^0.7.5",

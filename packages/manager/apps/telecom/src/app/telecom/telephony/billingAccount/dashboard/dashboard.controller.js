@@ -394,7 +394,13 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountDashboardC
   };
 
   this.helpTextForLogo = function helpTextForLogo() {
-    return `${this.LOGO_FILE_FORMATS} (< ${this.MAX_SIZE_LOGO_FILE / 1000} KB)`;
+    return $translate.instant('telephony_group_line_softphone_logo_format', {
+      format: LOGO_FILE_FORMATS,
+      weight: `${MAX_SIZE_LOGO_FILE / 1000000} ${$translate.instant(
+        'ua_unit_size_MB',
+      )}`,
+      size: '512x512',
+    });
   };
 
   this.loadSoftphone = function loadSoftphone() {

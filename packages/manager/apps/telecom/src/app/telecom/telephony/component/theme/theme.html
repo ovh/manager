@@ -13,6 +13,9 @@
             'background-color': $ctrl.color
         }"
     ></div>
-    <span data-ng-if="$ctrl.themeId!==1" data-ng-bind="$ctrl.themeId"></span>
-    <span data-ng-if="$ctrl.themeId===1" data-ng-bind="'OVHcloud'"></span>
+    <span data-ng-bind="$ctrl.themeId"></span>
+    <span
+        data-ng-if="$ctrl.themeId===1"
+        data-translate="telephony_group_line_softphone_theme_by_default"
+    ></span>
 </div>
