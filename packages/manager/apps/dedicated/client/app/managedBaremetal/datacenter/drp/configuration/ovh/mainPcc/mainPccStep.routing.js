@@ -21,7 +21,6 @@ export default /* @ngInject */ ($stateProvider) => {
           },
         },
         resolve: {
-          configurationStepName: () => 'mainPccStep',
           datacenterId: /* @ngInject */ ($transition$) =>
             $transition$.params().datacenterId,
           drpInformations: /* @ngInject */ ($transition$) =>
