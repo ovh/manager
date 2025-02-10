@@ -375,3 +375,13 @@ export const ONBOARDING_DOC_LINKS = [
     links: MANAGE_ARCHIVE_DOC_LINK,
   },
 ];
+
+export const COLD_ARCHIVE_CONTAINER_STATUS = {
+  ARCHIVED: 'archived',
+  ARCHIVING: 'archiving',
+  DELETING: 'deleting',
+  FLUSHED: 'flushed',
+  NONE: 'none',
+  RESTORED: 'restored',
+  RESTORING: 'restoring',
+};
