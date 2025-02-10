@@ -9,6 +9,7 @@ import { isJson, paginateResults, sortResults } from '@/helpers';
 import queryClient from '@/queryClient';
 import {
   deleteUser,
+  generateS3Credentials,
   getAllUsers,
   getS3Credentials,
   importUserPolicy,
@@ -176,7 +177,7 @@ type UsePostS3SecretParams = {
   userId: number;
   userAccess: string;
   onSuccess: ({ secret }: { secret: string }) => void;
-  onError: (cause: ApiError) => void;
+  onError?: (cause: ApiError) => void;
 };
 
 export const usePostS3Secret = ({
@@ -194,6 +195,32 @@ export const usePostS3Secret = ({
 
   return {
     postS3Secret: () => mutation.mutate(),
+    ...mutation,
+  };
+};
+
+type UseGenerateCredentialsParams = {
+  projectId: string;
+  onSuccess: (credentials: TS3Credentials) => void;
+  onError?: (cause: ApiError) => void;
+};
+
+export const useGenerateS3Credentials = ({
+  projectId,
+  onSuccess,
+  onError,
+}: UseGenerateCredentialsParams) => {
+  const mutation = useMutation({
+    mutationFn: (userId: number) => generateS3Credentials(projectId, userId),
+    onSuccess: (credentials) => {
+      onSuccess(credentials);
+      invalidateGetUsersCache(projectId);
+    },
+    onError,
+  });
+
+  return {
+    generateS3Credentials: (userId: number) => mutation.mutate(userId),
     ...mutation,
   };
 };

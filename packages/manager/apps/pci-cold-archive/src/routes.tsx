@@ -13,6 +13,7 @@ export const ROUTE_PATHS = {
   EDIT_RETENTION: 'edit-retention/:archiveName',
   FLUSH_ARCHIVE: 'flush-archive/:archiveName',
   CONTAINER_LISTING: '',
+  NEW_CONTAINER: 'new',
   USERS_LISTING: 'users',
   USER_CREATE: 'new',
   USER_DELETE: ':userId/delete',
@@ -26,6 +27,7 @@ const StoragePage = lazy(() => import('@/pages/Archive.page'));
 const ListingContainerPage = lazy(() =>
   import('@/pages/containers/Listing.page'),
 );
+const NewContainerPage = lazy(() => import('@/pages/containers/new/New.page'));
 const ManageContainerPage = lazy(() =>
   import('@/pages/containers/manage/Manage.page'),
 );
@@ -104,6 +106,8 @@ const RoutesComponent = () => (
           />
         </Route>
       </Route>
+
+      <Route path={ROUTE_PATHS.NEW_CONTAINER} Component={NewContainerPage} />
 
       <Route path={ROUTE_PATHS.ONBOARDING} Component={OnboardingPage} />
     </Route>

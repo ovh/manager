@@ -1,0 +1,18 @@
+{
+  "pci_projects_project_storages_cold_archive_add_breadcrumb": "Créer une archive",
+  "pci_projects_project_storages_cold_archive_add_title": "Créer une archive",
+  "pci_projects_project_storages_cold_archive_add_description": "Une archive est un conteneur (un bucket) conçu pour contenir des objets et des fichiers destinés à être immuables et sauvegardés sur un support de stockage long terme et résilient.",
+  "pci_projects_project_storages_cold_archive_add_description_link": "Consultez les prix.",
+  "pci_projects_project_storages_cold_archive_add_guides_title": "Guides",
+  "pci_projects_project_storages_cold_archive_add_step_name_archive_header": "Nommez votre conteneur",
+  "pci_projects_project_storages_cold_archive_add_step_name_archive_header_selected": "Nom du conteneur : {{archiveName}}",
+  "pci_projects_project_storages_cold_archive_add_step_name_archive_localisation_banner_info": "Votre conteneur sera créé sur la localisation : Roubaix (RBX).",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_header": "Associez un utilisateur à votre conteneur",
+  "pci_projects_project_storages_cold_archive_add_action_create": "Créer un conteneur",
+  "pci_projects_project_storages_cold_archive_add_action_cancel": "Annuler",
+  "pci_projects_project_storages_cold_archive_add_action_create_pending": "Conteneur en cours de création",
+  "pci_projects_project_storages_cold_archive_add_action_create_archive_create_request_success_linked_user": "Le conteneur {{container}} a été créé avec succès. L'utilisateur Object Storage {{ userName }} est administrateur de ce conteneur.",
+  "pci_projects_project_storages_cold_archive_add_action_create_archive_create_request_success_no_linked_user": "Le conteneur {{container}} a été créé.",
+  "pci_projects_project_storages_cold_archive_add_action_create_archive_create_request_success": "Le conteneur {{containerName}} a été créé avec succès. L'utilisateur Object Storage {{ userName }} est administrateur de ce conteneur.",
+  "pci_projects_project_storages_cold_archive_add_action_create_archive_create_request_failed": "Une erreur est survenue lors de la création du conteneur {{ containerName }} : {{ message }}."
+}
