@@ -3,7 +3,6 @@ import { useReket } from '@ovh-ux/ovh-reket';
 import { Application } from '@ovh-ux/manager-config';
 import {fetchFeatureAvailabilityData} from '@ovh-ux/manager-react-components'
 import {
-  getBetaAvailabilityFromLocalStorage,
   setBetaAvailabilityToLocalStorage,
   isBetaForced,
 } from './localStorage';
@@ -23,7 +22,7 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
   const [application, setApplication] = useState<Application>(undefined);
   const [universe, setUniverse] = useState<string>();
 
-  // true if we should we ask the user if he want to test beta version
+  // true if we should we ask the user if they want to test beta version
   const [askBeta, setAskBeta] = useState(false);
 
   // 1 for beta, otherwise null if not a beta tester
@@ -55,27 +54,6 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
         version: '',
         livechat: undefined
       }));
-  };
-
-  const fetchBetaChoice = async () => {
-    const betaValue = getBetaAvailabilityFromLocalStorage();
-    const fetchPromise = betaValue
-      ? Promise.resolve({ value: betaValue })
-      : (reketInstance.get(
-          `/me/preferences/manager/${preferenceKey}`,
-        ) as Promise<{ value: string }>);
-
-    return fetchPromise
-      .then(({ value }) => {
-        setUseBeta(value === 'true');
-      })
-      .catch((error) => {
-        if (error?.status === 404) {
-          setAskBeta(true);
-        } else {
-          throw error;
-        }
-      });
   };
 
   const updateBetaChoice = async (accept = false) => {
@@ -120,7 +98,7 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
         setIsLivechatEnabled(livechat);
 
         if (version) {
-          return fetchBetaChoice();
+          return setUseBeta(true);
         }
 
         return null;
