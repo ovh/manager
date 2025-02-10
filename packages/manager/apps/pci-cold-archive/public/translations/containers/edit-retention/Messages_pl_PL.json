@@ -1,0 +1,15 @@
+{
+  "pci_projects_project_storages_cold_archive_containers_container_edit_retention_title": "Zmień czas retencji",
+  "pci_projects_project_storages_cold_archive_containers_container_edit_retention_description": "Chcesz zmienić czas retencji kontenera {{ containerName }}.",
+  "pci_projects_project_storages_cold_archive_containers_container_edit_retention_description_2": "Po skonfigurowaniu czasu retencji Twoje archiwum zostanie zablokowane i nie będziesz mógł usunąć danych przez cały okres retencji.",
+  "pci_projects_project_storages_cold_archive_containers_container_edit_retention_submit_label": "Zmień",
+  "pci_projects_project_storages_cold_archive_containers_container_edit_retention_cancel_label": "Anuluj",
+  "pci_projects_project_storages_cold_archive_containers_container_edit_retention_success_message": "Czas retencji kontenera {{ containerName }} został zmieniony.",
+  "pci_projects_project_storages_cold_archive_containers_container_edit_retention_error_message": "Wystąpił błąd podczas zmiany czasu retencji kontenera {{ containerName }}: {{ message }}.",
+  "pci_projects_project_storages_cold_archive_containers_container_edit_retention_has_retention": "Zaplanuj czas retencji",
+  "pci_projects_project_storages_cold_archive_containers_container_edit_retention_retention_days": "Dodaj liczbę dni retencji",
+  "pci_projects_project_storages_cold_archive_containers_container_edit_retention_retention_help": "Nowy czas retencji wygaśnie w dniu <strong>{{ date }}</strong>.",
+  "pci_projects_project_storages_cold_archive_containers_container_edit_retention_retention_help_2": "Nie będziesz mógł usunąć danych, dopóki nie upłynie ta data.",
+  "pci_projects_project_storages_cold_archive_containers_container_edit_retention_retention_wartning_help": "Nowy czas przechowywania jest nieprawidłowy, ponieważ nowa data zakończenia przechowywania jest mniejsza lub równa już zaplanowanej.",
+  "pci_projects_project_storages_cold_archive_containers_container_edit_retention_retention_value_wartning": "Dodaj liczbę dni retencji (minimum 1 dzień, maksimum 4500 dni)"
+}
