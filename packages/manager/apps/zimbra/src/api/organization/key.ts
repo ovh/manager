@@ -4,13 +4,14 @@ export const getZimbraPlatformOrganizationQueryKey = (
 ) =>
   [
     'get',
-    'organization',
     'zimbra',
+    'platform',
     platformId,
+    'organization',
     shouldFetchAll ? 'all' : '',
   ].filter(Boolean);
 
 export const getZimbraPlatformOrganizationDetailsQueryKey = (
   platformId: string,
   organizationId: string,
-) => ['get', 'organization', 'zimbra', platformId, organizationId];
+) => ['get', 'zimbra', 'platform', platformId, 'organization', organizationId];

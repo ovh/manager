@@ -28,10 +28,7 @@ import {
 import ActionButtonDomain from './ActionButtonDomain.component';
 import LabelChip from '@/components/LabelChip';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
-import {
-  DATAGRID_REFRESH_INTERVAL,
-  DATAGRID_REFRESH_ON_MOUNT,
-} from '@/utils';
+import { DATAGRID_REFRESH_INTERVAL, DATAGRID_REFRESH_ON_MOUNT } from '@/utils';
 import Loading from '@/components/Loading/Loading';
 import { DomainType } from '@/api/domain/type';
 import { AccountStatistics, ResourceStatus } from '@/api/api.type';
@@ -126,11 +123,11 @@ export default function Domains() {
   const items: DomainsItem[] = useMemo(() => {
     return (
       domains?.map((item: DomainType) => ({
-        name: item.currentState.name,
+        name: item.currentState?.name,
         id: item.id,
-        organizationId: item.currentState.organizationId,
-        organizationLabel: item.currentState.organizationLabel,
-        account: item.currentState.accountsStatistics.reduce(
+        organizationId: item.currentState?.organizationId,
+        organizationLabel: item.currentState?.organizationLabel,
+        account: item.currentState?.accountsStatistics.reduce(
           (acc: number, current: AccountStatistics) =>
             acc + current.configuredAccountsCount,
           0,

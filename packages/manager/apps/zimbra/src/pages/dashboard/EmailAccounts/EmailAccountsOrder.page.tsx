@@ -76,12 +76,11 @@ function OrderGeneratedTile({ orderURL }: Readonly<OrderGeneratedTileProps>) {
             {t('zimbra_account_order_initiated_subtitle')}
           </OdsText>
           <OdsLink
-            className="break-all"
             target="_blank"
             referrerpolicy="strict-origin-when-cross-origin"
             href={orderURL}
             icon={ODS_ICON_NAME.externalLink}
-            label={orderURL}
+            label={t('zimbra_account_order_initiated_link_label')}
           ></OdsLink>
           <OdsText preset={ODS_TEXT_PRESET.paragraph}>
             {t('zimbra_account_order_initiated_info')}

@@ -191,13 +191,13 @@ angular
             .then((options) => {
               $scope.model.options = options;
             })
-            .catch((err) => {
+            .catch(({ data }) => {
               $scope.resetAction();
               Alerter.alertFromSWS(
                 $translate.instant(
                   'hosting_tab_DOMAINS_configuration_add_loading_error',
                 ),
-                get(err, 'data', err),
+                data?.message,
                 $scope.alerts.main,
               );
             });
@@ -207,13 +207,13 @@ angular
               $scope.model.hosting = hosting;
               $scope.hosting = hosting;
             })
-            .catch((err) => {
+            .catch(({ data }) => {
               $scope.resetAction();
               Alerter.alertFromSWS(
                 $translate.instant(
                   'hosting_tab_DOMAINS_configuration_add_loading_error',
                 ),
-                get(err, 'data', err),
+                data?.message,
                 $scope.alerts.main,
               );
             });
@@ -222,13 +222,13 @@ angular
             .then((options) => {
               $scope.model.options = options;
             })
-            .catch((err) => {
+            .catch(({ data }) => {
               $scope.resetAction();
               Alerter.alertFromSWS(
                 $translate.instant(
                   'hosting_tab_DOMAINS_configuration_add_loading_error',
                 ),
-                get(err, 'data', err),
+                data?.message,
                 $scope.alerts.main,
               );
             });
@@ -237,13 +237,13 @@ angular
             .then((hosting) => {
               $scope.model.hosting = hosting;
             })
-            .catch((err) => {
+            .catch(({ data }) => {
               $scope.resetAction();
               Alerter.alertFromSWS(
                 $translate.instant(
                   'hosting_tab_DOMAINS_configuration_add_loading_error',
                 ),
-                get(err, 'data', err),
+                data?.message,
                 $scope.alerts.main,
               );
             });
@@ -302,13 +302,13 @@ angular
               );
             }
           })
-          .catch((err) => {
+          .catch(({ data }) => {
             $scope.resetAction();
             Alerter.alertFromSWS(
               $translate.instant(
                 'hosting_tab_DOMAINS_configuration_add_loading_error',
               ),
-              err,
+              data?.message,
               $scope.alerts.main,
             );
           });
@@ -362,12 +362,12 @@ angular
               $scope.alerts.main,
             );
           })
-          .catch((err) => {
+          .catch(({ data }) => {
             Alerter.alertFromSWS(
               $translate.instant(
                 'hosting_tab_DOMAINS_configuration_add_failure',
               ),
-              { message: get(err, 'data', err), type: 'ERROR' },
+              { message: data?.message, type: 'ERROR' },
               $scope.alerts.main,
             );
           })
@@ -396,13 +396,13 @@ angular
             $scope.model.token = data.token;
             $scope.model.tokenSubdomain = data.tokenSubdomain;
           })
-          .catch((err) => {
+          .catch(({ data }) => {
             $scope.resetAction();
             Alerter.alertFromSWS(
               $translate.instant(
                 'hosting_tab_DOMAINS_configuration_add_loading_error',
               ),
-              get(err, 'data', err),
+              data?.message,
               $scope.alerts.main,
             );
           });
@@ -438,12 +438,12 @@ angular
                     $scope.loaders.runtimes = false;
                   });
                 })
-                .catch((err) => {
+                .catch(({ data }) => {
                   Alerter.alertFromSWS(
                     $translate.instant(
                       'hosting_tab_DOMAINS_configuration_add_loading_error',
                     ),
-                    get(err, 'data', err),
+                    data?.message,
                     $scope.alerts.main,
                   );
 
@@ -451,12 +451,12 @@ angular
                 });
             }
           })
-          .catch((err) => {
+          .catch(({ data }) => {
             Alerter.alertFromSWS(
               $translate.instant(
                 'hosting_tab_DOMAINS_configuration_add_loading_error',
               ),
-              get(err, 'data', err),
+              data?.message,
               $scope.alerts.main,
             );
 
@@ -516,7 +516,6 @@ angular
         if ($scope.selected.mode === $scope.model.mode.OVH) {
           $scope.loadingConflicts = true;
           HostingDomain.getExistingConfiguration(
-            $stateParams.productId,
             $scope.selected.baseDomain.name,
             $scope.selected.domain,
             $scope.needWwwDomain(),
@@ -526,13 +525,13 @@ angular
                 $scope.model.conflicts = data;
               }
             })
-            .catch((err) => {
+            .catch(({ data }) => {
               $scope.resetAction();
               Alerter.alertFromSWS(
                 $translate.instant(
                   'hosting_tab_DOMAINS_configuration_add_loading_error',
                 ),
-                get(err, 'data', err),
+                data?.message,
                 $scope.alerts.main,
               );
             })

@@ -69,11 +69,21 @@ export default class XdslAccessListCtrl {
         : ELIGIBILITY.not_eligible;
     });
 
-    // Order each group and add them to the sorted services list
-    const sortedServicesList = [
-      ...this.sortList(accessTypeGroupBy.eligible),
-      ...this.sortList(accessTypeGroupBy.not_eligible),
-    ];
+    let sortedServicesList = [];
+
+    if (accessTypeGroupBy.eligible && accessTypeGroupBy.not_eligible) {
+      // Order each group and add them to the sorted services list
+      sortedServicesList = [
+        ...this.sortList(accessTypeGroupBy.eligible),
+        ...this.sortList(accessTypeGroupBy.not_eligible),
+      ];
+    } else if (accessTypeGroupBy.eligible && !accessTypeGroupBy.not_eligible) {
+      // Order eligible group and add to the sorted services list
+      sortedServicesList = [...this.sortList(accessTypeGroupBy.eligible)];
+    } else {
+      // Order not eligible group and add to the sorted services list
+      sortedServicesList = [...this.sortList(accessTypeGroupBy.not_eligible)];
+    }
     return sortedServicesList;
   }
 

@@ -35,5 +35,6 @@
   "zimbra_domains_add_domain_configuration_cname_not_found": "No se ha encontrado información relativa a este ID de dominio.",
   "zimbra_domains_add_domain_configuration_cname_field_type": "Tipo de registro:",
   "zimbra_domains_add_domain_configuration_cname_field_subdomain": "Subdominio:",
-  "zimbra_domains_add_domain_configuration_cname_field_target": "Destino:"
+  "zimbra_domains_add_domain_configuration_cname_field_target": "Destino:",
+  "zimbra_domains_add_domain_warning_configuration_standard": "Al elegir la configuración recomendada, acepta que todos sus mensajes de correo se enruten hacia el servicio Zimbra en el futuro. Si no acepta esta opción, desmarque la casilla MX en la configuración personalizada."
 }
