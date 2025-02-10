@@ -9,13 +9,14 @@ import {
 
 export default class {
   /* @ngInject */
-  constructor(ipFeatureAvailability, OvhApiDedicatedCloud) {
+  constructor(ipFeatureAvailability, OvhApiDedicatedCloud, coreURLBuilder) {
     this.ipFeatureAvailability = ipFeatureAvailability;
     this.OvhApiDedicatedCloud = OvhApiDedicatedCloud;
     this.IP_BLOCK_REG_EXP = DEDICATEDCLOUD_DATACENTER_DRP_IP_BLOCK_REG_EXP;
     this.DRP_OPTIONS = DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS;
     this.MAC_ADDRESS_REG_EXP = DEDICATEDCLOUD_DATACENTER_DRP_IP_USAGE_MAC_ADDRESS_REG_EXP;
     this.UNAVAILABLE_IP_STATUSES = DEDICATEDCLOUD_DATACENTER_DRP_UNAVAILABLE_IP_STATUS;
+    this.coreURLBuilder = coreURLBuilder;
   }
 
   $onInit() {
@@ -44,10 +45,9 @@ export default class {
       ].includes(ip),
     );
 
-    this.ipOrderLink = this.getIpOrderLink(
-      this.drpInformations.drpType,
-      this.ipFeatureAvailability.allowIPFailoverOrder(),
-      this.configurationStepName,
+    this.ipOrderLink = this.coreURLBuilder.buildURL(
+      'dedicated',
+      '#/ip/agoraOrder',
     );
   }
 
