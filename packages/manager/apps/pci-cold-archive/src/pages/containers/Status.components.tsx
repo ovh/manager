@@ -2,6 +2,7 @@ import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import { OdsBadge, OdsText, OdsTooltip } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { useFormattedDate } from '@/hooks/useFormattedDate';
+import { COLD_ARCHIVE_CONTAINER_STATUS } from '@/constants';
 
 export const COLD_ARCHIVE_CONTAINER_STATUS_LABEL = {
   ARCHIVED: 'success',
@@ -11,16 +12,6 @@ export const COLD_ARCHIVE_CONTAINER_STATUS_LABEL = {
   NONE: 'neutral',
   RESTORED: 'success',
   RESTORING: 'information',
-};
-
-export const COLD_ARCHIVE_CONTAINER_STATUS = {
-  ARCHIVED: 'archived',
-  ARCHIVING: 'archiving',
-  DELETING: 'deleting',
-  FLUSHED: 'flushed',
-  NONE: 'none',
-  RESTORED: 'restored',
-  RESTORING: 'restoring',
 };
 
 export default function StatusComponent({
