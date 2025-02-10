@@ -28,7 +28,7 @@ export default function ModalDeleteEmailAccount() {
   const { trackClick, trackPage } = useOvhTracking();
   const [searchParams] = useSearchParams();
   const deleteEmailAccountId = searchParams.get('deleteEmailAccountId');
-  const { t } = useTranslation('accounts/delete');
+  const { t } = useTranslation(['accounts', 'common']);
   const { platformId } = usePlatform();
   const { addError, addSuccess } = useNotifications();
   const navigate = useNavigate();
@@ -50,7 +50,7 @@ export default function ModalDeleteEmailAccount() {
       });
       addSuccess(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {t('zimbra_account_delete_success_message')}
+          {t('common:add_success_message')}
         </OdsText>,
         true,
       );
@@ -62,7 +62,7 @@ export default function ModalDeleteEmailAccount() {
       });
       addError(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {t('zimbra_account_delete_error_message', {
+          {t('common:add_error_message', {
             error: error?.response?.data?.message,
           })}
         </OdsText>,
@@ -100,18 +100,18 @@ export default function ModalDeleteEmailAccount() {
 
   return (
     <Modal
-      title={t('zimbra_account_delete_modal_title')}
+      title={t('common:delete_email_account')}
       color={ODS_MODAL_COLOR.critical}
       onClose={onClose}
       isLoading={isLoading}
       isDismissible
       isOpen
       secondaryButton={{
-        label: t('zimbra_account_delete_button_cancel'),
+        label: t('common:cancel'),
         action: handleCancelClick,
       }}
       primaryButton={{
-        label: t('zimbra_account_delete_button_delete'),
+        label: t('common:delete'),
         action: step === 1 ? () => setStep(2) : handleDeleteClick,
         isLoading: step === 1 ? false : isSending,
         variant: ODS_BUTTON_VARIANT.default,
@@ -133,10 +133,10 @@ export default function ModalDeleteEmailAccount() {
                   preset={ODS_TEXT_PRESET.paragraph}
                   className="font-bold"
                 >
-                  {t('zimbra_account_delete_modal_mail_label')}
+                  {t('common:email_account')}
+                  {' :'}
                 </OdsText>
               </span>
-
               <span slot="main" className="ml-5">
                 <OdsText preset={ODS_TEXT_PRESET.paragraph}>
                   {data?.currentState.email}

@@ -21,7 +21,7 @@ interface ActionButtonOrganizationProps {
 const ActionButtonOrganization: React.FC<ActionButtonOrganizationProps> = ({
   organizationItem,
 }) => {
-  const { t } = useTranslation('organizations');
+  const { t } = useTranslation('common');
   const { trackClick } = useOvhTracking();
   const { platformUrn } = usePlatform();
   const navigate = useNavigate();
@@ -60,14 +60,14 @@ const ActionButtonOrganization: React.FC<ActionButtonOrganizationProps> = ({
       onClick: handleEditOrganizationClick,
       urn: platformUrn,
       iamActions: [IAM_ACTIONS.organization.edit],
-      label: t('zimbra_organization_edit'),
+      label: t('modify'),
     },
     {
       id: 2,
       onClick: handleDeleteOrganizationClick,
       urn: platformUrn,
       iamActions: [IAM_ACTIONS.organization.delete],
-      label: t('zimbra_organization_delete'),
+      label: t('delete'),
       color: ODS_BUTTON_COLOR.critical,
     },
   ];

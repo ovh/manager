@@ -5,7 +5,6 @@ import {
   useParams,
   useSearchParams,
 } from 'react-router-dom';
-
 import {
   BaseLayout,
   GuideButton,
@@ -14,7 +13,6 @@ import {
   useNotifications,
   ChangelogButton,
 } from '@ovh-ux/manager-react-components';
-
 import { useTranslation } from 'react-i18next';
 import { OdsTag } from '@ovhcloud/ods-components/react';
 import { ODS_TAG_COLOR, ODS_TAG_SIZE } from '@ovhcloud/ods-components';
@@ -51,7 +49,7 @@ export const Dashboard: React.FC = () => {
   const { notifications } = useNotifications();
   const { data: organization } = useOrganization();
   const isOverridePage = useOverridePage();
-  const { t } = useTranslation('dashboard');
+  const { t } = useTranslation(['dashboard', 'common']);
   const context = useContext(ShellContext);
   const { ovhSubsidiary } = context.environment.getUser();
   const basePath = useResolvedPath('').pathname;
@@ -89,14 +87,14 @@ export const Dashboard: React.FC = () => {
     {
       name: 'general_informations',
       trackingName: GENERAL_INFORMATIONS,
-      title: t('zimbra_dashboard_general_informations'),
+      title: t('common:general_informations'),
       to: useGenerateUrl(basePath, 'path', params),
       pathMatchers: computePathMatchers([urls.dashboard], platformId),
     },
     {
       name: 'organization',
       trackingName: ORGANIZATION,
-      title: t('zimbra_dashboard_organizations'),
+      title: t('common:organization'),
       to: useGenerateUrl(`${basePath}/organizations`, 'path', params),
       pathMatchers: computePathMatchers(
         [urls.organizations, urls.organizationsDelete],
@@ -107,7 +105,7 @@ export const Dashboard: React.FC = () => {
     {
       name: 'domain',
       trackingName: DOMAIN,
-      title: t('zimbra_dashboard_domains'),
+      title: t('common:domain'),
       to: useGenerateUrl(`${basePath}/domains`, 'path', params),
       pathMatchers: computePathMatchers(
         [
@@ -125,14 +123,14 @@ export const Dashboard: React.FC = () => {
     {
       name: 'email_account',
       trackingName: EMAIL_ACCOUNT,
-      title: t('zimbra_dashboard_email_accounts'),
+      title: t('common:email_account'),
       to: useGenerateUrl(`${basePath}/email_accounts`, 'path', params),
       pathMatchers: computePathMatchers([urls.email_accounts], platformId),
     },
     {
       name: 'mailing_list',
       trackingName: MAILING_LIST,
-      title: t('zimbra_dashboard_mailing_lists'),
+      title: t('common:mailing_list'),
       to: useGenerateUrl(`${basePath}/mailing_lists`, 'path', params),
       pathMatchers: computePathMatchers(
         [urls.mailing_lists, urls.mailing_lists_delete],
@@ -143,7 +141,7 @@ export const Dashboard: React.FC = () => {
     {
       name: 'redirection',
       trackingName: REDIRECTION,
-      title: t('zimbra_dashboard_redirections'),
+      title: t('common:redirection'),
       to: useGenerateUrl(`${basePath}/redirections`, 'path', params),
       pathMatchers: computePathMatchers(
         [urls.redirections, urls.redirections_delete, urls.redirections_edit],
@@ -154,7 +152,7 @@ export const Dashboard: React.FC = () => {
     {
       name: 'auto_reply',
       trackingName: AUTO_REPLY,
-      title: t('zimbra_dashboard_auto_replies'),
+      title: t('common:auto_reply'),
       to: useGenerateUrl(`${basePath}/auto_replies`, 'path', params),
       pathMatchers: computePathMatchers([urls.auto_replies], platformId),
       hidden: !FEATURE_FLAGS.AUTOREPLIES,

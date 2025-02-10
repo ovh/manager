@@ -27,7 +27,7 @@ import queryClient from '@/queryClient';
 import { CANCEL, CONFIRM, DELETE_DOMAIN } from '@/tracking.constant';
 
 export default function ModalDeleteDomain() {
-  const { t } = useTranslation(['domains/delete', 'domains/edit']);
+  const { t } = useTranslation(['domains', 'common']);
   const navigate = useNavigate();
   const { trackClick, trackPage } = useOvhTracking();
   const [searchParams] = useSearchParams();
@@ -54,7 +54,7 @@ export default function ModalDeleteDomain() {
       });
       addSuccess(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {t('zimbra_domain_delete_success_message')}
+          {t('common:delete_success_message')}
         </OdsText>,
         true,
       );
@@ -66,7 +66,7 @@ export default function ModalDeleteDomain() {
       });
       addError(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {t('zimbra_domain_delete_error_message', {
+          {t('common:delete_error_message', {
             error: error?.response?.data?.message,
           })}
         </OdsText>,
@@ -104,18 +104,18 @@ export default function ModalDeleteDomain() {
 
   return (
     <Modal
-      title={t('zimbra_domain_delete_modal_title')}
+      title={t('common:delete_domain')}
       color={ODS_MODAL_COLOR.critical}
       onClose={onClose}
       isDismissible
       isLoading={isLoading}
       isOpen
       secondaryButton={{
-        label: t('zimbra_domain_edit_cancel', { ns: 'domains/edit' }),
+        label: t('common:cancel'),
         action: handleCancelClick,
       }}
       primaryButton={{
-        label: t('zimbra_domain_delete'),
+        label: t('common:delete'),
         variant: ODS_BUTTON_VARIANT.default,
         action: handleDeleteClick,
         isDisabled: accounts?.length > 0 || !deleteDomainId,
@@ -125,7 +125,7 @@ export default function ModalDeleteDomain() {
     >
       <>
         <OdsText preset={ODS_TEXT_PRESET.span} className="mb-4">
-          {t('zimbra_domain_delete_modal_content')}
+          {t('zimbra_domains_delete_modal_content')}
         </OdsText>
         {accounts?.length > 0 && (
           <OdsMessage
@@ -136,10 +136,10 @@ export default function ModalDeleteDomain() {
           >
             <div className="flex flex-col text-left ml-4">
               <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-                {t('zimbra_domain_delete_modal_message_disabled_part1')}
+                {t('zimbra_domains_delete_modal_message_disabled_part1')}
               </OdsText>
               <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-                {t('zimbra_domain_delete_modal_message_disabled_part2')}
+                {t('zimbra_domains_delete_modal_message_disabled_part2')}
               </OdsText>
             </div>
           </OdsMessage>

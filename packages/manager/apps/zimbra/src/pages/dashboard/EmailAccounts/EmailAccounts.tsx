@@ -68,14 +68,14 @@ const columns: DatagridColumn<EmailsItem>[] = [
     cell: (item) => (
       <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.email}</OdsText>
     ),
-    label: 'zimbra_account_datagrid_email_label',
+    label: 'common:email_account',
   },
   {
     id: 'organization',
     cell: (item) => (
       <LabelChip id={item.organizationId}>{item.organizationLabel}</LabelChip>
     ),
-    label: 'zimbra_account_datagrid_organization_label',
+    label: 'common:organization',
   },
   {
     id: 'offer',
@@ -96,7 +96,7 @@ const columns: DatagridColumn<EmailsItem>[] = [
   {
     id: 'status',
     cell: (item) => <BadgeStatus itemStatus={item.status}></BadgeStatus>,
-    label: 'zimbra_account_datagrid_status_label',
+    label: 'common:status',
   },
   {
     id: 'tooltip',
@@ -106,7 +106,7 @@ const columns: DatagridColumn<EmailsItem>[] = [
 ];
 
 export default function EmailAccounts() {
-  const { t } = useTranslation(['accounts', 'dashboard']);
+  const { t } = useTranslation(['accounts', 'common']);
   const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
   const [hasADeletingAccount, setHasADeletingAccount] = useState(false);
@@ -213,7 +213,8 @@ export default function EmailAccounts() {
                 preset={ODS_TEXT_PRESET.heading6}
                 className="font-bold mr-4"
               >
-                {t('zimbra_account_datagrid_webmail_label')}
+                {t('common:webmail')}
+                {' :'}
               </OdsText>
               <Links
                 iconAlignment={IconLinkAlignmentType.right}
@@ -245,10 +246,7 @@ export default function EmailAccounts() {
                           stats.availableAccountsCount}`}</span>
                       </div>
                     ))
-                  : t(
-                      'zimbra_dashboard_tile_serviceConsumption_noAccountOffer',
-                      { ns: 'dashboard' },
-                    )}
+                  : t('common:no_email_account_available')}
               </ManagerText>
             </div>
           </div>
@@ -272,8 +270,8 @@ export default function EmailAccounts() {
                 <OdsText preset={ODS_TEXT_PRESET.paragraph}>
                   {t(
                     domains?.length === 0
-                      ? 'zimbra_domains_tooltip_need_domain'
-                      : 'zimbra_domains_tooltip_need_slot',
+                      ? 'zimbra_account_tooltip_need_domain'
+                      : 'zimbra_account_tooltip_need_slot',
                   )}
                 </OdsText>
               </OdsTooltip>

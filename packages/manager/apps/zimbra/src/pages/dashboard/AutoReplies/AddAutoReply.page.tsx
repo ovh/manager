@@ -83,7 +83,7 @@ const durationChoices = [
 
 export default function AddAutoReply() {
   const { trackClick, trackPage } = useOvhTracking();
-  const { t } = useTranslation('autoReplies/add');
+  const { t } = useTranslation(['auto-replies/form', 'common']);
   const navigate = useNavigate();
   const { addError, addSuccess } = useNotifications();
   const context = useContext(ShellContext);
@@ -319,7 +319,7 @@ export default function AddAutoReply() {
         iconAlignment={IconLinkAlignmentType.left}
         label={t('zimbra_auto_replies_add_cta_back')}
       />
-      <Subtitle>{t('zimbra_auto_replies_add_title')}</Subtitle>
+      <Subtitle>{t('common:add_auto_reply')}</Subtitle>
       {editEmailAccountId && account && !isLoadingAccount && (
         <OdsText
           data-testid="create-for-account"
@@ -333,7 +333,7 @@ export default function AddAutoReply() {
         {t('zimbra_auto_replies_add_header')}
       </OdsText>
       <OdsText preset={ODS_TEXT_PRESET.caption}>
-        {t('zimbra_auto_replies_mandatory_fields')}
+        {t('common:form_mandatory_fields')}
       </OdsText>
       {!editEmailAccountId && (
         <OdsFormField>
@@ -390,9 +390,7 @@ export default function AddAutoReply() {
                 setValue('domain', event.detail.value as string)
               }
               data-testid="select-domain"
-              placeholder={t(
-                'zimbra_auto_replies_add_select_domain_placeholder',
-              )}
+              placeholder={t('common:select_domain')}
             >
               {(domains || []).map(({ currentState: domain }, index) => (
                 <option
@@ -430,7 +428,7 @@ export default function AddAutoReply() {
         <div className="flex gap-4">
           <OdsFormField className="w-1/2">
             <label htmlFor="from" slot="label">
-              {t('zimbra_auto_replies_add_from_label')} *
+              {t('common:from')} *
             </label>
             <OdsDatepicker
               name="from"
@@ -449,7 +447,7 @@ export default function AddAutoReply() {
           </OdsFormField>
           <OdsFormField className="w-1/2">
             <label htmlFor="until" slot="label">
-              {t('zimbra_auto_replies_add_until_label')} *
+              {t('common:until')} *
             </label>
             <OdsDatepicker
               name="until"
@@ -542,14 +540,14 @@ export default function AddAutoReply() {
           isLoading={isSending}
           onClick={handleSavelick}
           data-testid="confirm-btn"
-          label={t('zimbra_auto_replies_add_button_confirm')}
+          label={t('common:confirm')}
         ></OdsButton>
         <OdsButton
           slot="actions"
           onClick={handleCancelClick}
           color={ODS_BUTTON_COLOR.primary}
           variant={ODS_BUTTON_VARIANT.outline}
-          label={t('zimbra_auto_replies_add_button_cancel')}
+          label={t('common:cancel')}
         ></OdsButton>
       </div>
     </div>

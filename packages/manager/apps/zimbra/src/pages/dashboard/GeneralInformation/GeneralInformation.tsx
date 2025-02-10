@@ -11,12 +11,12 @@ import { BadgeStatus } from '@/components/BadgeStatus';
 import { OngoingTasks } from './OngoingTasks';
 
 function GeneralInformation() {
-  const { t } = useTranslation('dashboard');
+  const { t } = useTranslation(['dashboard', 'common']);
   const { data: platform, platformUrn } = usePlatform();
   const { data: organisation } = useOrganization();
 
   const links: Record<string, Guide> = {
-    zimbra_dashboard_webmail: GUIDES_LIST.webmail,
+    'common:webmail': GUIDES_LIST.webmail,
     zimbra_dashboard_administrator_guide: GUIDES_LIST.administrator_guide,
     zimbra_dashboard_user_guides: GUIDES_LIST.user_guide,
   };
@@ -77,7 +77,7 @@ function GeneralInformation() {
                   } / ${stats.configuredAccountsCount +
                     stats.availableAccountsCount} ${stats.offer}`}</span>
                 ))
-              : t('zimbra_dashboard_tile_serviceConsumption_noAccountOffer')}
+              : t('common:no_email_account')}
           </ManagerText>
         ) : null,
       },
@@ -109,7 +109,7 @@ function GeneralInformation() {
       <div className="p-3">
         <DashboardTile
           data-testid="status"
-          title={t('zimbra_dashboard_tile_status_title')}
+          title={t('common:status')}
           items={itemsStatus}
         />
       </div>
@@ -123,7 +123,7 @@ function GeneralInformation() {
       <div className="p-3">
         <DashboardTile
           data-testid="useful-links"
-          title={t('zimbra_dashboard_tile_usefulLinks_title')}
+          title={t('common:useful_links')}
           items={itemsUsefulLinks}
         />
       </div>

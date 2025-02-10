@@ -27,7 +27,7 @@ import {
 
 export default function ModalDeleteAutoReply() {
   const { trackClick, trackPage } = useOvhTracking();
-  const { t } = useTranslation('autoReplies/delete');
+  const { t } = useTranslation(['auto-replies', 'common']);
   const navigate = useNavigate();
 
   const [searchParams] = useSearchParams();
@@ -58,7 +58,7 @@ export default function ModalDeleteAutoReply() {
       });
       addSuccess(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {t('zimbra_auto_replies_delete_success_message')}
+          {t('common:delete_success_message')}
         </OdsText>,
         true,
       );
@@ -70,7 +70,7 @@ export default function ModalDeleteAutoReply() {
       });
       addError(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {t('zimbra_auto_replies_delete_error_message', {
+          {t('common:delete_error_message', {
             error: error?.response?.data?.message,
           })}
         </OdsText>,
@@ -108,19 +108,19 @@ export default function ModalDeleteAutoReply() {
 
   return (
     <Modal
-      title={t('zimbra_auto_replies_delete_modal_title')}
+      title={t('common:delete_auto_reply')}
       color={ODS_MODAL_COLOR.critical}
       onClose={onClose}
       isDismissible
       isOpen
       secondaryButton={{
-        label: t('zimbra_auto_replies_delete_cancel'),
+        label: t('common:cancel'),
         action: handleCancelClick,
         testid: 'cancel-btn',
         variant: ODS_BUTTON_VARIANT.outline,
       }}
       primaryButton={{
-        label: t('zimbra_auto_replies_delete_cta'),
+        label: t('common:delete'),
         action: handleDeleteClick,
         isDisabled: !deleteAutoReplyId,
         isLoading: isSending,

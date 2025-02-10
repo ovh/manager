@@ -52,21 +52,21 @@ const columns: DatagridColumn<DomainsItem>[] = [
     cell: (item) => (
       <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.name}</OdsText>
     ),
-    label: 'zimbra_domains_datagrid_domain_label',
+    label: 'common:domain',
   },
   {
     id: 'organization',
     cell: (item) => (
       <LabelChip id={item.organizationId}>{item.organizationLabel}</LabelChip>
     ),
-    label: 'zimbra_domains_datagrid_organization_label',
+    label: 'common:organization',
   },
   {
     id: 'account',
     cell: (item) => (
       <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.account}</OdsText>
     ),
-    label: 'zimbra_domains_datagrid_account_number',
+    label: 'common:number_of_accounts',
   },
   {
     id: 'status',
@@ -76,7 +76,7 @@ const columns: DatagridColumn<DomainsItem>[] = [
       ) : (
         <BadgeStatus itemStatus={item.status}></BadgeStatus>
       ),
-    label: 'zimbra_domains_datagrid_status_label',
+    label: 'common:status',
   },
   {
     id: 'tooltip',
@@ -86,7 +86,7 @@ const columns: DatagridColumn<DomainsItem>[] = [
 ];
 
 export default function Domains() {
-  const { t } = useTranslation('domains');
+  const { t } = useTranslation(['domains', 'common']);
   const { trackClick } = useOvhTracking();
   const { platformUrn } = usePlatform();
   const navigate = useNavigate();
@@ -156,7 +156,7 @@ export default function Domains() {
                 className="mb-6"
                 isDisabled={isLoading || organizations?.length === 0}
                 icon={ODS_ICON_NAME.plus}
-                label={t('zimbra_domains_add_domain_title')}
+                label={t('common:add_domain')}
               />
             </div>
             {(isLoading || organizations?.length === 0) && (

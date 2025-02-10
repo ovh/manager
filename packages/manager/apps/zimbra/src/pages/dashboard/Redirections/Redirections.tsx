@@ -58,12 +58,12 @@ const columns: DatagridColumn<RedirectionsItem>[] = [
   {
     id: 'organization',
     cell: (item) => <div>{item.organization}</div>,
-    label: 'zimbra_redirections_organization',
+    label: 'common:organization',
   },
   {
     id: 'status',
     cell: (item) => <BadgeStatus itemStatus={item.status}></BadgeStatus>,
-    label: 'zimbra_redirections_status',
+    label: 'common:status',
   },
   {
     id: 'tooltip',
@@ -78,7 +78,7 @@ const columns: DatagridColumn<RedirectionsItem>[] = [
 ];
 
 export function Redirections() {
-  const { t } = useTranslation('redirections');
+  const { t } = useTranslation(['redirections', 'common']);
   const navigate = useNavigate();
   const { platformUrn } = usePlatform();
   const [searchParams] = useSearchParams();
@@ -114,7 +114,7 @@ export function Redirections() {
               id="add-redirection-btn"
               className="mb-6"
               icon={ODS_ICON_NAME.plus}
-              label={t('zimbra_redirections_cta')}
+              label={t('common:add_redirection')}
             />
           </div>
           {isLoading ? (

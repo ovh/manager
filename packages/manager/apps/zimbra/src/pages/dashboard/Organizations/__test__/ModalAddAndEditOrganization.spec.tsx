@@ -5,7 +5,7 @@ import { vi, describe, expect } from 'vitest';
 import { useSearchParams } from 'react-router-dom';
 import { fireEvent, render, act, waitFor } from '@/utils/test.provider';
 import ModalAddAndEditOrganization from '../ModalAddAndEditOrganization.page';
-import organizationsAddAndEditTranslation from '@/public/translations/organizations/addAndEdit/Messages_fr_FR.json';
+import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
 import { organizationDetailMock } from '@/api/_mock_';
 import {
   postZimbraPlatformOrganization,
@@ -15,11 +15,7 @@ import {
 describe('Organizations add and edit modal', () => {
   it('if i have not editOrganizationId params', async () => {
     const { findByText } = render(<ModalAddAndEditOrganization />);
-    expect(
-      await findByText(
-        organizationsAddAndEditTranslation.zimbra_organization_add_modal_title,
-      ),
-    ).toBeVisible();
+    expect(await findByText(commonTranslation.add_organization)).toBeVisible();
   });
 
   it('if i have editOrganizationId params', async () => {
@@ -31,11 +27,7 @@ describe('Organizations add and edit modal', () => {
     ]);
 
     const { findByText } = render(<ModalAddAndEditOrganization />);
-    expect(
-      await findByText(
-        organizationsAddAndEditTranslation.zimbra_organization_edit_modal_title,
-      ),
-    ).toBeVisible();
+    expect(await findByText(commonTranslation.edit_organization)).toBeVisible();
   });
 
   it('check validity form', async () => {

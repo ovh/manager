@@ -27,7 +27,7 @@ const ActionButtonMailingList: React.FC<ActionButtonMailingListProps> = ({
   mailingListItem,
 }) => {
   const { trackClick } = useOvhTracking();
-  const { t } = useTranslation('mailinglists');
+  const { t } = useTranslation('common');
   const { platformUrn } = usePlatform();
   const navigate = useNavigate();
 
@@ -101,28 +101,28 @@ const ActionButtonMailingList: React.FC<ActionButtonMailingListProps> = ({
       onClick: handleEditMailingListClick,
       urn: platformUrn,
       iamActions: [IAM_ACTIONS.mailingList.edit],
-      label: t('zimbra_mailinglists_datagrid_action_edit'),
+      label: t('edit_mailing_list'),
     },
     {
       id: 2,
       onClick: handleDefineMembersMailingListClick,
       urn: platformUrn,
       iamActions: [IAM_ACTIONS.mailingList.edit],
-      label: t('zimbra_mailinglists_datagrid_action_define_members'),
+      label: t('define_members_mailing_list'),
     },
     {
       id: 3,
       onClick: handleDefineConfigureDelegationMailingList,
       urn: platformUrn,
       iamActions: [IAM_ACTIONS.mailingList.edit],
-      label: t('zimbra_mailinglists_datagrid_action_configure_delegation'),
+      label: t('configure_delegation_mailing_list'),
     },
     {
       id: 4,
       onClick: handleDeleteMailingListClick,
       urn: platformUrn,
       iamActions: [IAM_ACTIONS.mailingList.delete],
-      label: t('zimbra_mailinglists_datagrid_action_delete'),
+      label: t('delete'),
       color: ODS_BUTTON_COLOR.critical,
     },
   ];

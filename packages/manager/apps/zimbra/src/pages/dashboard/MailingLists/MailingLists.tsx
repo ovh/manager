@@ -52,7 +52,7 @@ const columns: DatagridColumn<MailingListItem>[] = [
     cell: (item) => (
       <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.name}</OdsText>
     ),
-    label: 'zimbra_mailinglists_datagrid_name_label',
+    label: 'common:mailing_list',
   },
   {
     id: 'organization',
@@ -60,21 +60,21 @@ const columns: DatagridColumn<MailingListItem>[] = [
       item.organizationLabel && (
         <LabelChip id={item.organizationId}>{item.organizationLabel}</LabelChip>
       ),
-    label: 'zimbra_mailinglists_datagrid_organization_label',
+    label: 'common:organization',
   },
   {
     id: 'owner',
     cell: (item) => (
       <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.owner}</OdsText>
     ),
-    label: 'zimbra_mailinglists_datagrid_owner_label',
+    label: 'common:owner',
   },
   {
-    id: 'aliases',
+    id: 'alias',
     cell: (item) => (
       <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.aliases}</OdsText>
     ),
-    label: 'zimbra_mailinglists_datagrid_aliases_label',
+    label: 'common:alias',
   },
   {
     id: 'moderators',
@@ -93,7 +93,7 @@ const columns: DatagridColumn<MailingListItem>[] = [
   {
     id: 'status',
     cell: (item) => <BadgeStatus itemStatus={item.status}></BadgeStatus>,
-    label: 'zimbra_mailinglists_datagrid_status_label',
+    label: 'common:status',
   },
   {
     id: 'tooltip',
@@ -124,7 +124,7 @@ export const getMailingListItems = (
 
 export default function MailingLists() {
   const { trackClick } = useOvhTracking();
-  const { t } = useTranslation('mailinglists');
+  const { t } = useTranslation('mailing-lists');
   const navigate = useNavigate();
   const { platformUrn, data: platformData } = usePlatform();
   const { data, isLoading } = useMailingLists({
@@ -175,7 +175,7 @@ export default function MailingLists() {
               data-testid="add-mailinglist-btn"
               className="mb-6"
               icon={ODS_ICON_NAME.plus}
-              label={t('zimbra_mailinglists_datagrid_cta')}
+              label={t('common:add_mailing_list')}
             />
           </div>
           {isLoading ? (
