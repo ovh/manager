@@ -67,7 +67,7 @@ export default function ArchivePage() {
     ...(hasRetention && { lockedUntilDays }),
     onError(error: ApiError) {
       addError(
-        <Translation ns="cold-archive/archive">
+        <Translation ns="containers/archive">
           {(_t) =>
             _t(
               'pci_projects_project_storages_cold_archive_containers_container_archive_error_message',
@@ -86,7 +86,7 @@ export default function ArchivePage() {
     },
     onSuccess() {
       addSuccess(
-        <Translation ns="cold-archive/archive">
+        <Translation ns="containers/archive">
           {(_t) =>
             _t(
               'pci_projects_project_storages_cold_archive_containers_container_archive_success_message',
