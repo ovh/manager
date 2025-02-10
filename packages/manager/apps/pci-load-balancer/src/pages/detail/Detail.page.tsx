@@ -39,6 +39,7 @@ export default function DetailPage() {
   const hrefGeneralInformation = useHref(ROUTE_PATHS.GENERAL_INFORMATION);
   const logsPath = useResolvedPath(ROUTE_PATHS.LOGS).pathname;
 
+  // open for nic US
   const { data: availability } = useFeatureAvailability([
     LOGS_FEATURE_AVAILABILITY_KEY,
   ]);
