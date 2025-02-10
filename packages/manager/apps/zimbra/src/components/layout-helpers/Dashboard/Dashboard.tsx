@@ -166,12 +166,8 @@ export const Dashboard: React.FC = () => {
       breadcrumb={<Breadcrumb />}
       header={{
         title: 'Zimbra',
-        headerButton: (
-          <>
-            <ChangelogButton links={CHANGELOG_LINKS} />
-            <GuideButton items={guideItems} />
-          </>
-        ),
+        headerButton: <GuideButton items={guideItems} />,
+        changelogButton: <ChangelogButton links={CHANGELOG_LINKS} />,
       }}
       subtitle={
         organization &&
