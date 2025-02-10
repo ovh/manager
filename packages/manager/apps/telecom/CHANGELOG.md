@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.2.6...@ovh-ux/manager-telecom@16.3.0) (2025-02-10)
+
+
+### Bug Fixes
+
+* **pack.access-list:** call sort list function on not empty list ([b4a42b9](https://github.com/ovh/manager/commit/b4a42b9159071d07a5673b990ae900d060440b3a))
+* **xdsl.move:** set buildingReference from api result endpoint ([18ff179](https://github.com/ovh/manager/commit/18ff1794605775c70364cfe9ed493493e624e783))
+
+
+### Features
+
+* **xdsl.move:** remove useless portline cost label  on pack move ([d0042d9](https://github.com/ovh/manager/commit/d0042d9638f7beac6f83e19b1624eb8b964a3fb6))
+
+
+
+
+
 ## [16.2.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.2.5...@ovh-ux/manager-telecom@16.2.6) (2025-02-03)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom

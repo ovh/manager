@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.16.1...@ovh-ux/manager-zimbra-app@0.17.0) (2025-02-10)
+
+
+### Bug Fixes
+
+* **zimbra:** domain currentState could be empty ([6b3414d](https://github.com/ovh/manager/commit/6b3414dc79f8cf5ea2019ae68ead0d0abcf49948))
+* **zimbra:** feedbacks from launch ([#15343](https://github.com/ovh/manager/issues/15343)) ([41b7d89](https://github.com/ovh/manager/commit/41b7d89fa1e345d09658d16129bd7738ed0e436f))
+* **zimbra:** fix reload onboarding page ([9bc1775](https://github.com/ovh/manager/commit/9bc177577f708267a02b6cf2b1c546d97b20dbff))
+* **zimbra:** unselect organization ([cf91dd9](https://github.com/ovh/manager/commit/cf91dd98803eece1cc55ce3fce5bab8b02c14c76))
+
+
+### Features
+
+* **zimbra:** add diagnostic DKIM ([#15275](https://github.com/ovh/manager/issues/15275)) ([8cba252](https://github.com/ovh/manager/commit/8cba2529c89a9fd6e17ad4f32c83c92f032e2c67))
+* **zimbra:** filter already used domain zones ([18b4243](https://github.com/ovh/manager/commit/18b4243d2feb9844028c9bcea859c62fb6c5fb2b))
+* **zimbra:** warning on standard domain addition ([#15283](https://github.com/ovh/manager/issues/15283)) ([feefb8f](https://github.com/ovh/manager/commit/feefb8ffcb1becb45bd4f6256d5150d1ebc1c1d7))
+
+
+
+
+
 ## [0.16.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.16.0...@ovh-ux/manager-zimbra-app@0.16.1) (2025-02-06)
 
 
