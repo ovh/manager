@@ -1,0 +1,18 @@
+{
+  "pci_projects_project_storages_cold_archive_add_breadcrumb": "Crear un archivo",
+  "pci_projects_project_storages_cold_archive_add_title": "Crear un archivo",
+  "pci_projects_project_storages_cold_archive_add_description": "Un archivo es un contenedor («bucket») diseñado para contener objetos y documentos, con carácter inmutable, que se almacenan en un soporte de almacenamiento a largo plazo y resiliente.",
+  "pci_projects_project_storages_cold_archive_add_description_link": "Consulte los precios.",
+  "pci_projects_project_storages_cold_archive_add_guides_title": "Guías",
+  "pci_projects_project_storages_cold_archive_add_step_name_archive_header": "Asigne un nombre al contenedor",
+  "pci_projects_project_storages_cold_archive_add_step_name_archive_header_selected": "Nombre del contenedor: {{archiveName}}",
+  "pci_projects_project_storages_cold_archive_add_step_name_archive_localisation_banner_info": "El contenedor se creará en la siguiente localización: Roubaix (RBX).",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_header": "Asocie un usuario al contenedor",
+  "pci_projects_project_storages_cold_archive_add_action_create": "Crear un contenedor",
+  "pci_projects_project_storages_cold_archive_add_action_cancel": "Cancelar",
+  "pci_projects_project_storages_cold_archive_add_action_create_pending": "Creando el contenedor...",
+  "pci_projects_project_storages_cold_archive_add_action_create_archive_create_request_success_linked_user": "El contenedor {{container}} se ha creado correctamente. El usuario Object Storage {{ userName }} es el administrador de este contenedor.",
+  "pci_projects_project_storages_cold_archive_add_action_create_archive_create_request_success_no_linked_user": "El contenedor {{container}} se ha creado.",
+  "pci_projects_project_storages_cold_archive_add_action_create_archive_create_request_success": "El contenedor {{containerName}} se ha creado correctamente. El usuario Object Storage {{ userName }} es el administrador de este contenedor.",
+  "pci_projects_project_storages_cold_archive_add_action_create_archive_create_request_failed": "Se ha producido un error al crear el contenedor {{ containerName }}: {{ message }}."
+}

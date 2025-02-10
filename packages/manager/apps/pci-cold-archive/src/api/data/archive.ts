@@ -91,6 +91,28 @@ export const startArchiveContainer = async ({
     `/cloud/project/${projectId}/region/${region}/coldArchive/${archiveName}/archive`,
     params,
   );
+
+  return data;
+};
+
+export const createArchiveContainer = async ({
+  projectId,
+  region,
+  ownerId,
+  name,
+}: {
+  projectId: string;
+  region: string;
+  ownerId: number;
+  name: string;
+}) => {
+  const { data } = await v6.post(
+    `/cloud/project/${projectId}/region/${region}/coldArchive`,
+    {
+      name,
+      ownerId,
+    },
+  );
   return data;
 };
 
