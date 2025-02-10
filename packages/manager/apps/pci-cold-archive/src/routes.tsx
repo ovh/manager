@@ -11,6 +11,7 @@ export const ROUTE_PATHS = {
   ONBOARDING: 'onboarding',
   RESTORE_CONTAINER: 'restore/:archiveName',
   EDIT_RETENTION: 'edit-retention/:archiveName',
+  FLUSH_ARCHIVE: 'flush-archive/:archiveName',
   CONTAINER_LISTING: '',
   USERS_LISTING: 'users',
   USER_CREATE: 'new',
@@ -39,6 +40,9 @@ const RestoreContainerPage = lazy(() =>
 );
 const EditRetentionPage = lazy(() =>
   import('@/pages/containers/edit-retention/EditRetention.page'),
+);
+const FlushArchivePage = lazy(() =>
+  import('@/pages/containers/flush-archive/FlushArchive.page'),
 );
 
 const OnboardingPage = lazy(() => import('@/pages/onboarding/Onboarding.page'));
@@ -81,6 +85,10 @@ const RoutesComponent = () => (
           <Route
             path={ROUTE_PATHS.EDIT_RETENTION}
             Component={EditRetentionPage}
+          />
+          <Route
+            path={ROUTE_PATHS.FLUSH_ARCHIVE}
+            Component={FlushArchivePage}
           />
         </Route>
         <Route path={ROUTE_PATHS.USERS_LISTING} Component={UserListingPage}>
