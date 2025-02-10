@@ -25,6 +25,7 @@ export interface KubeClusterCreationParams {
   version: string;
   updatePolicy: string;
   nodepool: {
+    name: string;
     antiAffinity: boolean;
     autoscale: boolean;
     desiredNodes: number;
