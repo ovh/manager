@@ -7,6 +7,7 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   addUserToContainer,
   deleteArchiveContainer,
+  flushArchive,
   getArchiveContainers,
   restoreArchiveContainer,
   startArchiveContainer,
@@ -235,6 +236,42 @@ export const useStartArchiveContainer = ({
   });
   return {
     startArchiveContainer: () => mutation.mutate(),
+    ...mutation,
+  };
+};
+
+type FlushArchiveProps = {
+  projectId: string;
+  containerName: string;
+  region: string;
+  onError: (cause: Error) => void;
+  onSuccess: () => void;
+};
+
+export const useFlushArchive = ({
+  projectId,
+  containerName,
+  region,
+  onError,
+  onSuccess,
+}: Readonly<FlushArchiveProps>) => {
+  const mutation = useMutation({
+    mutationFn: () =>
+      flushArchive({
+        projectId,
+        region,
+        archiveName: containerName,
+      }),
+    onError,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: getQueryKeyArchive(projectId, region),
+      });
+      onSuccess();
+    },
+  });
+  return {
+    flushArchive: () => mutation.mutate(),
     ...mutation,
   };
 };
