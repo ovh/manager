@@ -1,0 +1,9 @@
+{
+  "autorenew_agora_terminate_vrack_blocked_title": "Mein vRack löschen",
+  "autorenew_agora_terminate_vrack_blocked_description": "Um Ihr vRack zu löschen, müssen Sie zuerst alle damit verbundenen Dienste trennen.",
+  "autorenew_agora_terminate_vrack_blocked_close": "Schließen",
+  "autorenew_agora_terminate_service_VRACK": "vRack löschen",
+  "autorenew_agora_terminate_service_warning_VRACK": "Bitte bestätigen Sie die Löschung des vRack.",
+  "autorenew_agora_terminate_service_success_VRACK": "Ihre Anfrage zur Löschung Ihres vRack wurde registriert. Eine E-Mail mit weiteren Informationen zur Vorgehensweise wurde soeben an Sie versandt.",
+  "autorenew_agora_terminate_service_error_VRACK": "Bei der Anfrage zur Löschung Ihres vRacks ist ein Fehler aufgetreten. {{error}}"
+}

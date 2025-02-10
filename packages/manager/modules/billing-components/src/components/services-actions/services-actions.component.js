@@ -4,6 +4,7 @@ import template from './services-actions.html';
 export default {
   bindings: {
     billingManagementAvailability: '<',
+    deleteVrackAvailability: '<',
     service: '<',
     trackingPrefix: '@?',
     trackingPage: '@?',

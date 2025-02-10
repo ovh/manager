@@ -65,9 +65,12 @@ export default class ServicesActionsCtrl {
   }
 
   canResiliate() {
+    if (this.service.serviceType === this.SERVICE_TYPE.VRACK) {
+      return this.deleteVrackAvailability && !!this.resiliateLink;
+    }
+
     return ![
       SERVICE_TYPE.PACK_XDSL,
-      SERVICE_TYPE.VRACK,
       SERVICE_TYPE.VMWARE_CLOUD_DIRECTOR_ORGANIZATION,
     ].includes(this.service.serviceType);
   }
