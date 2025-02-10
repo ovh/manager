@@ -165,6 +165,7 @@ angular
             'common_file_attachmentsHeading',
           ),
           dropArea: $translate.instant('common_file_dropArea'),
+          dropAreaSingle: $translate.instant('common_file_dropAreaSingle'),
           dropAreaSelector: $translate.instant('common_file_dropAreaSelector'),
           fileSelector: $translate.instant('common_file_fileSelector'),
           filesSelector: $translate.instant('common_file_filesSelector'),
