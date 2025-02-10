@@ -1,11 +1,12 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
 import { useContext, useMemo } from 'react';
-import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
+import { ApiError, applyFilters, Filter } from '@ovh-ux/manager-core-api';
 import { useProductRegionsAvailability } from '@ovh-ux/manager-pci-common';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   addUserToContainer,
+  createArchiveContainer,
   deleteArchiveContainer,
   flushArchive,
   getArchiveContainers,
@@ -270,8 +271,44 @@ export const useFlushArchive = ({
       onSuccess();
     },
   });
+
   return {
     flushArchive: () => mutation.mutate(),
+    ...mutation,
+  };
+};
+
+export interface UseCreateContainerArgs {
+  name: string;
+  ownerId: number;
+}
+
+export const useCreateContainer = ({
+  projectId,
+  region,
+  onSuccess,
+  onError,
+}: {
+  projectId: string;
+  region: string;
+  onSuccess: (container: TArchiveContainer) => void;
+  onError: (error: ApiError) => void;
+}) => {
+  const mutation = useMutation({
+    mutationFn: (container: UseCreateContainerArgs) =>
+      createArchiveContainer({ projectId, region, ...container }),
+    onError,
+    onSuccess: async (result) => {
+      await queryClient.invalidateQueries({
+        queryKey: getQueryKeyArchive(projectId, region),
+      });
+      onSuccess(result);
+    },
+  });
+
+  return {
+    createContainer: (container: UseCreateContainerArgs) =>
+      mutation.mutate(container),
     ...mutation,
   };
 };
