@@ -1,0 +1,9 @@
+{
+  "autorenew_agora_terminate_vrack_blocked_title": "Eliminare la tua vRack",
+  "autorenew_agora_terminate_vrack_blocked_description": "Per eliminare la tua vRrack è prima necessario disconnettere tutti i servizi ad essa associati.",
+  "autorenew_agora_terminate_vrack_blocked_close": "Chiudere",
+  "autorenew_agora_terminate_service_VRACK": "Eliminare la vRack",
+  "autorenew_agora_terminate_service_warning_VRACK": "Conferma l'eliminazione della vRack",
+  "autorenew_agora_terminate_service_success_VRACK": "La tua richiesta di eliminazione della vRack è stata presa in carico. Ti abbiamo inviato un’email con la procedura da seguire.",
+  "autorenew_agora_terminate_service_error_VRACK": "Si è verificato un errore durante la richiesta di eliminazione della tua vRack: {{error}}"
+}
