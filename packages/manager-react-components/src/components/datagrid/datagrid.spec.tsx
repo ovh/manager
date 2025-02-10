@@ -99,16 +99,6 @@ const DatagridTest = ({
 };
 
 describe('Paginated datagrid component', () => {
-  beforeAll(() => {
-    // Mock attachInternals method for all instances of custom elements
-    (HTMLElement.prototype.attachInternals as unknown) = vitest.fn(() => ({
-      // Mock the properties or methods used from internals
-      setValidity: vitest.fn(),
-      states: new Set(),
-      setFormValue: vitest.fn(),
-    }));
-  });
-
   it('should display the correct number of columns', async () => {
     const { container } = render(
       <DatagridTest
