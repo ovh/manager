@@ -4,8 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { TArchiveContainer } from '@/api/data/archive';
-import { COLD_ARCHIVE_TRACKING } from '@/constants';
-import { COLD_ARCHIVE_CONTAINER_STATUS } from './Status.components';
+import {
+  COLD_ARCHIVE_CONTAINER_STATUS,
+  COLD_ARCHIVE_TRACKING,
+} from '@/constants';
 
 export default function ActionsComponent({
   archive,
@@ -108,6 +110,21 @@ export default function ActionsComponent({
               type: 'navigation',
             });
             navigate(`./edit-retention/${archive.name}`);
+          },
+        }
+      : undefined,
+    isActionFlushContainerAvailable()
+      ? {
+          id: 6,
+          label: t(
+            'pci_projects_project_storages_cold_archive_container_action_flush_archive',
+          ),
+          onClick: () => {
+            tracking?.trackClick({
+              name: `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.FLUSH_CONTAINER}`,
+              type: 'navigation',
+            });
+            navigate(`./flush-archive/${archive.name}`);
           },
         }
       : undefined,
