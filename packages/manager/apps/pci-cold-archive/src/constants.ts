@@ -409,3 +409,8 @@ export const CHECK_PRICES_DOC_LINK = {
   DE: 'https://www.ovhcloud.com/de/public-cloud/prices/#11500',
   NL: 'https://www.ovhcloud.com/nl/public-cloud/prices/#11500',
 };
+
+export const CONTAINER_USER_ASSOCIATION_MODES = {
+  LINKED: 'LINKED',
+  CREATE: 'CREATE',
+};
