@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-react-app@0.6.7...@ovh-ux/manager-hub-react-app@0.6.8) (2025-02-10)
+
+
+### Bug Fixes
+
+* **hub-react:** adapted skeletons display to reduce cls kpi ([#14275](https://github.com/ovh/manager/issues/14275)) ([015316c](https://github.com/ovh/manager/commit/015316c25e6d05ea1f9eeaf751d53a620c823fda))
+
+
+
+
+
 ## [0.6.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-react-app@0.6.6...@ovh-ux/manager-hub-react-app@0.6.7) (2025-02-06)
 
 **Note:** Version bump only for package @ovh-ux/manager-hub-react-app
