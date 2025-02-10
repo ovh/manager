@@ -3,7 +3,10 @@ import {
   diagnosticTypes,
   ApiDiagnosticStatus,
 } from './check-pgp-peering.constants';
-import { DIAGNOSTIC_TRACKING_PREFIX } from '../../../cloud-connect.constants';
+import {
+  DIAGNOSTIC_TRACKING_PREFIX,
+  DIAGNOSTIC_DASHBOARD_TRACKING_CONTEXT,
+} from '../../../cloud-connect.constants';
 
 export default class CheckBGPPeeringCtrl {
   /* @ngInject */
@@ -25,7 +28,7 @@ export default class CheckBGPPeeringCtrl {
     this.atInternet.trackClick({
       name: `${DIAGNOSTIC_TRACKING_PREFIX}pop-up::button::check_bgp-peering::cancel`,
       type: 'action',
-      level2: 99,
+      ...DIAGNOSTIC_DASHBOARD_TRACKING_CONTEXT,
     });
     return this.goBack();
   }
@@ -34,7 +37,7 @@ export default class CheckBGPPeeringCtrl {
     this.atInternet.trackClick({
       name: `${DIAGNOSTIC_TRACKING_PREFIX}pop-up::button::check_bgp-peering-${this.diagnosticType}::confirm`,
       type: 'action',
-      level2: 99,
+      ...DIAGNOSTIC_DASHBOARD_TRACKING_CONTEXT,
     });
     this.isLoading = true;
     this.cloudConnectService
@@ -51,7 +54,7 @@ export default class CheckBGPPeeringCtrl {
           this.atInternet.trackPage({
             name: `${DIAGNOSTIC_TRACKING_PREFIX}cloud-connect::banner-info::::create_diagnostic_pending`,
             type: 'display',
-            level2: 99,
+            ...DIAGNOSTIC_DASHBOARD_TRACKING_CONTEXT,
           });
           return this.goBack(
             this.$translate.instant('cloud_connect_bgp_peering_success', {
@@ -79,7 +82,7 @@ export default class CheckBGPPeeringCtrl {
         this.atInternet.trackPage({
           name: `${DIAGNOSTIC_TRACKING_PREFIX}cloud-connect::banner-error::::create_diagnostic_error`,
           type: 'display',
-          level2: 99,
+          ...DIAGNOSTIC_DASHBOARD_TRACKING_CONTEXT,
         });
         this.goBack(
           this.$translate.instant('cloud_connect_bgp_peering_error', {

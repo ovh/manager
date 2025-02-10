@@ -3,6 +3,7 @@ import { get } from 'lodash';
 import {
   POP_MAP,
   DIAGNOSTIC_TRACKING_PREFIX,
+  DIAGNOSTIC_DASHBOARD_TRACKING_CONTEXT,
 } from '../../cloud-connect.constants';
 
 export default class CloudConnectOverviewCtrl {
@@ -150,7 +151,7 @@ export default class CloudConnectOverviewCtrl {
     this.atInternet.trackClick({
       name: `${DIAGNOSTIC_TRACKING_PREFIX}tile::button::go-to_open-diagnostic::cloud-connect`,
       type: 'action',
-      level2: 99,
+      ...DIAGNOSTIC_DASHBOARD_TRACKING_CONTEXT,
     });
   }
 
@@ -158,7 +159,7 @@ export default class CloudConnectOverviewCtrl {
     this.atInternet.trackClick({
       name: `${DIAGNOSTIC_TRACKING_PREFIX}tile::button::bgp-peering-diagnostic::cloud-connect`,
       type: 'action',
-      level2: 99,
+      ...DIAGNOSTIC_DASHBOARD_TRACKING_CONTEXT,
     });
 
     return this.goToCheckBGPPeeringPage({ popConfigId, dcConfigId });
@@ -168,7 +169,7 @@ export default class CloudConnectOverviewCtrl {
     this.atInternet.trackClick({
       name: `${DIAGNOSTIC_TRACKING_PREFIX}tile::button::get-mac-list::cloud-connect`,
       type: 'action',
-      level2: 99,
+      ...DIAGNOSTIC_DASHBOARD_TRACKING_CONTEXT,
     });
     this.CucCloudMessage.flushChildMessage();
     const diagnosticName = 'diagMacs';

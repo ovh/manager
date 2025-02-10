@@ -70,6 +70,17 @@ export const STATUS = {
 };
 
 export const DIAGNOSTIC_TRACKING_PREFIX = 'Network::network::cloud-connect::';
+export const DIAGNOSTIC_LISTING_TRACKING_CONTEXT = {
+  page_theme: 'Network',
+  page_category: 'listing',
+  level2: 99,
+};
+
+export const DIAGNOSTIC_DASHBOARD_TRACKING_CONTEXT = {
+  page_theme: 'Network',
+  page_category: 'dashboard',
+  level2: 99,
+};
 
 export default {
   GUIDELINK,
@@ -81,4 +92,6 @@ export default {
   STATUS,
   CHANGE_BANDWIDTH_ALLOWED_OFFERS_REGEX,
   DIAGNOSTIC_TRACKING_PREFIX,
+  DIAGNOSTIC_LISTING_TRACKING_CONTEXT,
+  DIAGNOSTIC_DASHBOARD_TRACKING_CONTEXT,
 };

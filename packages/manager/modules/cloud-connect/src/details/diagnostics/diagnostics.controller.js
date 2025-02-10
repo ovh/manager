@@ -1,4 +1,8 @@
-import { DIAGNOSTIC_TRACKING_PREFIX } from '../../cloud-connect.constants';
+import {
+  DIAGNOSTIC_TRACKING_PREFIX,
+  DIAGNOSTIC_DASHBOARD_TRACKING_CONTEXT,
+  DIAGNOSTIC_LISTING_TRACKING_CONTEXT,
+} from '../../cloud-connect.constants';
 
 export default class DiagnosticsResultCtrl {
   /* @ngInject */
@@ -13,7 +17,7 @@ export default class DiagnosticsResultCtrl {
       this.atInternet.trackClick({
         name: `${DIAGNOSTIC_TRACKING_PREFIX}banner::link::go-to-diagnostic-results`,
         type: 'action',
-        level2: 99,
+        ...DIAGNOSTIC_DASHBOARD_TRACKING_CONTEXT,
       });
     }
   }
@@ -33,7 +37,7 @@ export default class DiagnosticsResultCtrl {
     this.atInternet.trackClick({
       name: `${DIAGNOSTIC_TRACKING_PREFIX}datagrid::button::${option}::${diagnosticFunction}`,
       type: 'action',
-      level2: 99,
+      ...DIAGNOSTIC_LISTING_TRACKING_CONTEXT,
     });
   }
 }

@@ -1,4 +1,7 @@
-import { DIAGNOSTIC_TRACKING_PREFIX } from '../../cloud-connect.constants';
+import {
+  DIAGNOSTIC_TRACKING_PREFIX,
+  DIAGNOSTIC_DASHBOARD_TRACKING_CONTEXT,
+} from '../../cloud-connect.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('cloud-connect.details.diagnostics', {
@@ -6,7 +9,7 @@ export default /* @ngInject */ ($stateProvider) => {
     component: 'cloudConnectDiagnosticsDetails',
     atInternet: {
       rename: `${DIAGNOSTIC_TRACKING_PREFIX}cloud-connect::dashboard::diagnostics`,
-      level2: 99,
+      ...DIAGNOSTIC_DASHBOARD_TRACKING_CONTEXT,
     },
     resolve: {
       diagnosticList: /* @ngInject */ (cloudConnectService, cloudConnect) =>

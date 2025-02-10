@@ -1,4 +1,7 @@
-import { DIAGNOSTIC_TRACKING_PREFIX } from '../../../cloud-connect.constants';
+import {
+  DIAGNOSTIC_TRACKING_PREFIX,
+  DIAGNOSTIC_LISTING_TRACKING_CONTEXT,
+} from '../../../cloud-connect.constants';
 
 export default class DiagnosticResultCtrl {
   /* @ngInject */
@@ -22,7 +25,7 @@ export default class DiagnosticResultCtrl {
     this.atInternet.trackPage({
       name: `${DIAGNOSTIC_TRACKING_PREFIX}cloud-connect::pop-up::see::diagnostic-results-${this.diagnostic.function}`,
       type: 'navigation',
-      level2: 99,
+      ...DIAGNOSTIC_LISTING_TRACKING_CONTEXT,
     });
   }
 
@@ -30,7 +33,7 @@ export default class DiagnosticResultCtrl {
     this.atInternet.trackClick({
       name: `${DIAGNOSTIC_TRACKING_PREFIX}pop-up::button::copy_diagnostic-results-${this.diagnostic.function}`,
       type: 'action',
-      level2: 99,
+      ...DIAGNOSTIC_LISTING_TRACKING_CONTEXT,
     });
     if (navigator.clipboard && navigator.clipboard.writeText) {
       try {
@@ -50,7 +53,7 @@ export default class DiagnosticResultCtrl {
     this.atInternet.trackClick({
       name: `${DIAGNOSTIC_TRACKING_PREFIX}pop-up::button::download_diagnostic-results-${this.diagnostic.function}`,
       type: 'action',
-      level2: 99,
+      ...DIAGNOSTIC_LISTING_TRACKING_CONTEXT,
     });
     return this.cloudConnectDiagnosticsService.download(
       this.cloudConnect.id,
