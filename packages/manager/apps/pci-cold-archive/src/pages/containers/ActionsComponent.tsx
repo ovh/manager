@@ -12,7 +12,7 @@ export default function ActionsComponent({
 }: Readonly<{
   archive: TArchiveContainer;
 }>) {
-  const { t } = useTranslation('cold-archive');
+  const { t } = useTranslation(['cold-archive', 'containers']);
   const navigate = useNavigate();
   const { tracking } = useContext(ShellContext).shell;
 
@@ -96,9 +96,24 @@ export default function ActionsComponent({
           },
         }
       : undefined,
+    isActionEditRetentionContainerAvailable
+      ? {
+          id: 2,
+          label: t(
+            'containers:pci_projects_project_storages_cold_archive_container_action_edit_retention',
+          ),
+          onClick: () => {
+            tracking?.trackClick({
+              name: `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.EDIT_RETENTION}`,
+              type: 'navigation',
+            });
+            navigate(`./edit-retention/${archive.name}`);
+          },
+        }
+      : undefined,
     isActionArchiveAvailable
       ? {
-          id: 1,
+          id: 3,
           label: t(
             'pci_projects_project_storages_cold_archive_container_action_archive',
           ),
@@ -113,7 +128,7 @@ export default function ActionsComponent({
       : undefined,
     isActionDeleteContainerAvailable
       ? {
-          id: 2,
+          id: 4,
           label: t(
             'pci_projects_project_storages_cold_archive_container_action_delete_container',
           ),
