@@ -1,7 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { vi } from 'vitest';
-import { NodeTypeStep } from './NodeTypeStep.component';
-import { StepState } from '../useStep';
+import { NodeTypeStep } from './NodePoolType.component';
+import { StepState } from '../../useStep';
 import { wrapper } from '@/wrapperRenders';
 
 const mockOnSubmit = vi.fn();

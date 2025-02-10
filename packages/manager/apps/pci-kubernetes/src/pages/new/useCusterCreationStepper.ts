@@ -12,6 +12,7 @@ export type TClusterCreationForm = {
   network: TNetworkFormState;
   flavor: KubeFlavor;
   scaling: AutoscalingState;
+  nodePoolName: string;
   clusterName: string;
   isMonthlyBilled: boolean;
   antiAffinity: boolean;
@@ -34,14 +35,13 @@ export function useClusterCreationStepper() {
     clusterName: '',
     isMonthlyBilled: false,
     antiAffinity: false,
+    nodePoolName: '',
   });
 
   const clusterNameStep = useStep({ isOpen: true });
   const locationStep = useStep();
   const versionStep = useStep();
   const networkStep = useStep();
-  // const nodeTypeStep = useStep();
-  // const nodeSizeStep = useStep();
   const nodeStep = useStep();
   const confirmStep = useStep();
 
@@ -132,11 +132,13 @@ export function useClusterCreationStepper() {
         scaling,
         antiAffinity,
         isMonthlyBilled,
+        nodePoolName,
       }: {
         flavor: KubeFlavor;
         scaling: AutoscalingState;
         antiAffinity: boolean;
         isMonthlyBilled: boolean;
+        nodePoolName: string;
       }) => {
         setForm((f) => ({
           ...f,
@@ -144,6 +146,7 @@ export function useClusterCreationStepper() {
           scaling,
           antiAffinity,
           isMonthlyBilled,
+          nodePoolName,
         }));
         nodeStep.check();
         nodeStep.lock();
