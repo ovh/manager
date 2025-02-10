@@ -111,12 +111,8 @@ export default function DashboardPage() {
 
   const headerProps: HeadersProps = {
     title: displayName,
-    headerButton: (
-      <>
-        <ChangelogButton links={CHANGELOG_LINKS} />
-        <KmsGuidesHeader />
-      </>
-    ),
+    headerButton: <KmsGuidesHeader />,
+    changelogButton: <ChangelogButton links={CHANGELOG_LINKS} />,
   };
 
   return (

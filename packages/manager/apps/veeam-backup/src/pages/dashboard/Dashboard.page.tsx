@@ -45,7 +45,7 @@ export default function DashboardPage() {
   const header = {
     title: displayName,
     description: displayName !== data?.data?.id ? data?.data?.id : null,
-    headerButton: <ChangelogButton links={CHANGELOG_LINKS} />,
+    changelogButton: <ChangelogButton links={CHANGELOG_LINKS} />,
   };
 
   return (

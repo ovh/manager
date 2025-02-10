@@ -39,7 +39,7 @@ export default function VcdDashboardLayout({
 
   const computedHeader = {
     ...header,
-    headerButton: <ChangelogButton links={CHANGELOG_LINKS} />,
+    changelogButton: <ChangelogButton links={CHANGELOG_LINKS} />,
   };
 
   useEffect(() => {

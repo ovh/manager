@@ -14,6 +14,7 @@ import {
   Notifications,
   RedirectionGuard,
   useNotifications,
+  HeadersProps
 } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
@@ -92,6 +93,11 @@ export default function Listing() {
     enabled: isRefetchEnabled,
     onFinish: () => setIsRefetchEnabled(false),
   });
+  const headerProps: HeadersProps = {
+    title: t('key_management_service_listing_title'),
+    headerButton: <KmsGuidesHeader />,
+    changelogButton: <ChangelogButton links={CHANGELOG_LINKS} />,
+  };
 
   return (
     <RedirectionGuard
@@ -110,11 +116,7 @@ export default function Listing() {
       }
     >
       <BaseLayout
-        header={{
-          title: t('key_management_service_listing_title'),
-          headerButton: <KmsGuidesHeader />,
-          changelogButton: <ChangelogButton links={CHANGELOG_LINKS} />,
-        }}
+        header={headerProps}
         message={<Notifications />}
       >
         <div className="flex flex-col gap-4">

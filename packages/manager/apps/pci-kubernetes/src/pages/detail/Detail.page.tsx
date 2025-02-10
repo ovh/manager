@@ -112,14 +112,16 @@ export default function DetailPage() {
           title={kubeDetail?.name}
           headerButton={
             <>
-              <ChangelogButton
-                links={CHANGELOG_LINKS}
-                chapters={CHANGELOG_CHAPTERS}
-              />
               <div className="min-w-[7rem]">
                 <PciGuidesHeader category="kubernetes" />
               </div>
             </>
+          }
+          changelogButton={
+            <ChangelogButton
+              links={CHANGELOG_LINKS}
+              chapters={CHANGELOG_CHAPTERS}
+            />
           }
         />
       </div>

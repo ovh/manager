@@ -117,14 +117,12 @@ export default function ListingPage() {
         <div className="header mb-6 mt-8">
           <Headers
             title={t('pci_projects_project_storages_blocks_title')}
-            headerButton={
-              <>
-                <ChangelogButton
-                  links={CHANGELOG_LINKS}
-                  chapters={CHANGELOG_CHAPTERS}
-                />
-                <PciGuidesHeader category="instances" />
-              </>
+            headerButton={<PciGuidesHeader category="instances" />}
+            changelogButton={
+              <ChangelogButton
+                links={CHANGELOG_LINKS}
+                chapters={CHANGELOG_CHAPTERS}
+              />
             }
           />
         </div>

@@ -116,7 +116,7 @@ export default function DashboardPage() {
   const header = {
     title: serviceDetails?.data.resource.displayName,
     description: serviceName,
-    headerButton: <ChangelogButton links={CHANGELOG_LINKS} />,
+    changelogButton: <ChangelogButton links={CHANGELOG_LINKS} />,
   };
 
   if (error) {
