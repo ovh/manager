@@ -66,6 +66,7 @@ const getBaseConfig = (config) => {
       compression({
         algorithm: 'brotliCompress',
         deleteOriginalAssets: true,
+        exclude: /index[.]html$/,
       }),
       legacy({
         targets: ['defaults'],
