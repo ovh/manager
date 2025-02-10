@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.7.2...@ovh-ux/manager-pci-block-storage-app@0.8.0) (2025-02-10)
+
+
+### Features
+
+* **pci-block-storage:** add wording hints on new page ([#15161](https://github.com/ovh/manager/issues/15161)) ([5ccbd90](https://github.com/ovh/manager/commit/5ccbd90b9d8819666e8491e13aad8a543cc31fa4))
+
+
+
+
+
 ## [0.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.7.1...@ovh-ux/manager-pci-block-storage-app@0.7.2) (2025-02-06)
 
 

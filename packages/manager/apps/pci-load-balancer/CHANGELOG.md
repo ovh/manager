@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-load-balancer-app@0.3.2...@ovh-ux/manager-pci-load-balancer-app@0.3.3) (2025-02-10)
+
+
+### Bug Fixes
+
+* **pci.load-balancer:** sort addons by the size of load balancer ([#15189](https://github.com/ovh/manager/issues/15189)) ([3f9262b](https://github.com/ovh/manager/commit/3f9262b501b02eebaf5ebb56a2cdb9366d1eab33))
+
+
+
+
+
 ## [0.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-load-balancer-app@0.3.1...@ovh-ux/manager-pci-load-balancer-app@0.3.2) (2025-02-06)
 
 

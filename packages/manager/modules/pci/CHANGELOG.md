@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.78.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.78.2...@ovh-ux/manager-pci@6.78.3) (2025-02-10)
+
+
+### Bug Fixes
+
+* **pci-instances:** use os flavor for license pricing ([#15248](https://github.com/ovh/manager/issues/15248)) ([2575db7](https://github.com/ovh/manager/commit/2575db781fcf24b9a4f0c21124be630f34a42083))
+* **pci.instances:** handle monthly card ([#15235](https://github.com/ovh/manager/issues/15235)) ([7bc2d8b](https://github.com/ovh/manager/commit/7bc2d8baedd67a919b47c84d5e227a7f8aa23ddd))
+* **quotas:** increase quotas ([#15120](https://github.com/ovh/manager/issues/15120)) ([4d2ad10](https://github.com/ovh/manager/commit/4d2ad10f0c2719501697d0b2c0d22ab9765ee328))
+
+
+
+
+
 ## [6.78.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.78.1...@ovh-ux/manager-pci@6.78.2) (2025-02-06)
 
 
