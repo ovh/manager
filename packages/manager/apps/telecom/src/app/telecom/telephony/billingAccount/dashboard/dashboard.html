@@ -395,7 +395,7 @@
             data-translate="telephony_group_line_softphone_apply_theme_globally"
         ></h3>
         <p
-            data-translate="telephony_group_line_line_softphone_save_theme_description"
+            data-translate="telephony_group_line_softphone_save_theme_description"
         ></p>
         <form name="form" data-ng-submit="DashboardCtrl.applyThemeGlobally()">
             <div style class="d-flex flex-wrap w-100 align-items-center">
@@ -420,14 +420,11 @@
         <p data-translate="telephony_group_line_softphone_save_theme"></p>
     </div>
     <div class="oui-tile mb-5">
-        <h3 data-translate="telephony_group_line_softphone_upload_logo"></h3>
+        <h3 data-translate="telephony_group_line_softphone_logo_title"></h3>
         <form name="form" data-ng-submit="DashboardCtrl.applyLogoGlobally()">
             <div class="row">
                 <oui-field
-                    data-ng-class="{
-                                    'col-md-10': DashboardCtrl.logoFilename!=='',
-                                    'col-md-12': DashboardCtrl.logoFilename===''
-                                }"
+                    class="col-md-6"
                     data-label="{{ 'telephony_group_line_softphone_your_logo' | translate }}"
                     data-help-text="{{ DashboardCtrl.helpTextForLogo() }}"
                 >
@@ -455,7 +452,7 @@
                 class="btn btn-default"
             >
                 <span
-                    data-translate="telephony_group_line_softphone_upload_logo"
+                    data-translate="telephony_group_line_softphone_logo_title"
                 ></span>
             </button>
             <button

@@ -240,7 +240,13 @@ export default class SoftphoneController {
   }
 
   helpTextForLogo() {
-    return `${this.LOGO_FILE_FORMATS} (< ${this.MAX_SIZE_LOGO_FILE / 1000} KB)`;
+    return this.$translate.instant('telephony_line_softphone_logo_format', {
+      format: this.LOGO_FILE_FORMATS,
+      weight: `${this.MAX_SIZE_LOGO_FILE / 1000000} ${this.$translate.instant(
+        'ua_unit_size_MB',
+      )}`,
+      size: '512x512',
+    });
   }
 
   goStoreTrackClick(store) {
