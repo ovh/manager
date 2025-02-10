@@ -1,0 +1,11 @@
+{
+  "iplb_listing_action_delete": "Eliminar el servicio",
+  "iplb_listing_action_detail": "Ver los detalles de mi servicio",
+  "iplb_terminate_service": "Eliminar el servicio",
+  "iplb_terminate_service_warning": "Por favor, confirme la eliminación del servicio.",
+  "iplb_terminate_service_success": "La solicitud de eliminación del servicio se ha enviado correctamente. Le hemos enviado un mensaje de correo electrónico con el procedimiento que debe seguir.",
+  "iplb_terminate_service_error": "Se ha producido un error al solicitar la eliminación del servicio. {{error}}",
+  "iplb_terminate_service_confirm_input": "Introduzca «TERMINATE» en el siguiente campo para confirmar la operación.",
+  "iplb_terminate_service_terminate_valid": "Confirmar",
+  "iplb_terminate_service_terminate_cancel": "Cancelar"
+}
