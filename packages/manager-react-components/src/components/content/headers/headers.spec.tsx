@@ -49,7 +49,9 @@ describe('Headers component', () => {
     render(headerWithHeaderButtons());
     await waitFor(() => {
       expect(
-        screen.getByText('Example for header with header buttons'),
+        screen.getByText(
+          'Example for header with header button and changelog button',
+        ),
       ).toBeInTheDocument();
       expect(screen.getByText('description for subheader')).toBeInTheDocument();
     });

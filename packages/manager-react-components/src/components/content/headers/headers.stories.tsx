@@ -63,13 +63,11 @@ const HeadingWithActionButton: HeadersProps = {
   headerButton: <ActionMenu items={actionItems} />,
 };
 const HeadingWithHeaderButtons: HeadersProps = {
-  title: 'Example for header with header buttons',
+  title: 'Example for header with header button and changelog button',
   description: 'description for subheader',
-  headerButton: (
-    <>
-      <ChangelogButton links={changelogLinks} chapters={changelogChapters} />
-      <GuideButton items={guideItems} />
-    </>
+  headerButton: <GuideButton items={guideItems} />,
+  changelogButton: (
+    <ChangelogButton links={changelogLinks} chapters={changelogChapters} />
   ),
 };
 
