@@ -1,0 +1,18 @@
+{
+  "pci_projects_project_storages_cold_archive_add_breadcrumb": "Archiv erstellen",
+  "pci_projects_project_storages_cold_archive_add_title": "Archiv erstellen",
+  "pci_projects_project_storages_cold_archive_add_description": "Ein Archiv ist ein Container (Bucket) und für Objekte und Dateien konzipiert, die unverändert langfristig und auf verlässliche Weise gespeichert werden sollen.",
+  "pci_projects_project_storages_cold_archive_add_description_link": "Zu den Preisen.",
+  "pci_projects_project_storages_cold_archive_add_guides_title": "Anleitungen",
+  "pci_projects_project_storages_cold_archive_add_step_name_archive_header": "Benennen Sie Ihren Container",
+  "pci_projects_project_storages_cold_archive_add_step_name_archive_header_selected": "Name des Containers: {{archiveName}}",
+  "pci_projects_project_storages_cold_archive_add_step_name_archive_localisation_banner_info": "Ihr Container wird an diesem Standort erstellt: Roubaix (RBX).",
+  "pci_projects_project_storages_cold_archive_add_step_link_user_archive_header": "Weisen Sie Ihrem Container einen Nutzer zu",
+  "pci_projects_project_storages_cold_archive_add_action_create": "Container erstellen",
+  "pci_projects_project_storages_cold_archive_add_action_cancel": "Abbrechen",
+  "pci_projects_project_storages_cold_archive_add_action_create_pending": "Der Container wird gerade erstellt",
+  "pci_projects_project_storages_cold_archive_add_action_create_archive_create_request_success_linked_user": "Der Container {{container}} wurde erfolgreich erstellt. Der Object Storage User {{ userName }} ist Administrator dieses Containers.",
+  "pci_projects_project_storages_cold_archive_add_action_create_archive_create_request_success_no_linked_user": "Der Container {{container}} wurde erstellt.",
+  "pci_projects_project_storages_cold_archive_add_action_create_archive_create_request_success": "Der Container {{containerName}} wurde erstellt. Der Object Storage User {{ userName }} ist Administrator dieses Containers.",
+  "pci_projects_project_storages_cold_archive_add_action_create_archive_create_request_failed": "Bei der Erstellung des Containers {{ containerName }} ist ein Fehler aufgetreten: {{ message }}"
+}
