@@ -1,6 +1,7 @@
 import { renderHook, waitFor } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
 import * as ApiKubernetesModule from '@/api/data/kubernetes';
+import * as ApiNetworksModule from '@/api/data/network';
 import {
   useAllKube,
   useGetClusterEtcdUsage,
@@ -29,6 +30,19 @@ describe('useKubes', () => {
       { id: 'kube1', name: 'Kube 1', privateNetworkId: 'net1' },
     ] as TKube[];
     vi.spyOn(ApiKubernetesModule, 'getAllKube').mockResolvedValueOnce(mockData);
+    const mockPrivateNetworksData = [
+      {
+        id: 'net1',
+        name: 'Private Network 1',
+        vlanId: 100,
+        type: 'private',
+        status: 'active',
+        regions: [{ region: 'region1', status: 'active', openstackId: 'os1' }],
+      },
+    ];
+    vi.spyOn(ApiNetworksModule, 'getAllPrivateNetworks').mockResolvedValueOnce(
+      mockPrivateNetworksData,
+    );
     const { result } = renderHook(
       () =>
         useKubes(

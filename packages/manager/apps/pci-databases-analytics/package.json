@@ -91,7 +91,7 @@
     "@vitest/ui": "^1.4.0",
     "typescript": "^5.3.3",
     "vite": "^5.4.12",
-    "vitest": "^1.4.0"
+    "vitest": "^2.1.9"
   },
   "regions": [
     "CA",
