@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@0.15.1...@ovh-ux/manager-pci-common@0.15.2) (2025-02-10)
+
+### Bug Fixes
+
+- **pci-common:** use correct style for micro regions ([7e699c4](https://github.com/ovh/manager/commit/7e699c421969d9fc7638a2c97590cca16b142921))
+
 ## [0.15.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@0.15.0...@ovh-ux/manager-pci-common@0.15.1) (2025-02-05)
 
 ### Bug Fixes
