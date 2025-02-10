@@ -142,7 +142,7 @@
                 data-on-click="$ctrl.trackClick($ctrl.SOFTPHONE_TRACKING.DEVICE_MANAGEMENT.DELETE_ALL);$ctrl.goToDeleteDevice()"
             >
                 <span
-                    data-translate="telephony_line_softphone_btn_delete_all"
+                    data-translate="telephony_line_softphone_delete_all"
                 ></span></oui-button
             ><oui-button
                 class="float-right"
@@ -250,10 +250,7 @@
         <form name="formLogo" data-ng-submit="$ctrl.applyLogo()">
             <div class="row">
                 <oui-field
-                    data-ng-class="{
-                                    'col-md-10': $ctrl.logoFilename !== '',
-                                    'col-md-12': $ctrl.logoFilename === ''
-                                }"
+                    class="col-md-6"
                     data-label="{{ 'telephony_line_softphone_your_logo' | translate }}"
                     data-help-text="{{ $ctrl.helpTextForLogo() }}"
                 >
