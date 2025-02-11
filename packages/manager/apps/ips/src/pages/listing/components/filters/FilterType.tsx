@@ -20,6 +20,7 @@ export const TypeFilter = () => {
   return (
     <OdsSelect
       name="search-type"
+      data-testid="search-type"
       onOdsChange={(e: OdsSelectCustomEvent<OdsSelectChangeEventDetail>) => {
         setApiFilter({ ...apiFilter, type: e.target.value as IpTypeEnum });
       }}

@@ -5,3 +5,4 @@ export * from './useGetIpVmac';
 export * from './useGetIpMitigation';
 export * from './useGetIpEdgeFirewall';
 export * from './useGetIpGameFirewall';
+export * from './useIpHasAlerts';
