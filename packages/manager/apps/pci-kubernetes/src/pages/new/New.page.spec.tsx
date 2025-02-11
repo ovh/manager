@@ -38,7 +38,6 @@ describe('NewPage', () => {
   const mockUseCreateKubernetesCluster = vi.fn();
 
   beforeEach(() => {
-    // Mock the return values of the hooks
     mockUseHref.mockReturnValue('..');
     mockUseParams.mockReturnValue({ projectId: '123' });
     mockUseTranslation.mockReturnValue({
@@ -52,6 +51,7 @@ describe('NewPage', () => {
         step: { isLocked: false, unlock: vi.fn() },
         update: vi.fn(),
         submit: vi.fn(),
+        edit: vi.fn(),
       },
       location: {
         step: { isLocked: false },
@@ -68,19 +68,12 @@ describe('NewPage', () => {
         submit: vi.fn(),
         edit: vi.fn(),
       },
-      nodeType: {
+      node: {
         step: { isLocked: false },
-        submit: vi.fn(),
         edit: vi.fn(),
       },
-      nodeSize: {
-        step: { isLocked: false },
-        submit: vi.fn(),
-        edit: vi.fn(),
-      },
-      billing: {
-        step: { isLocked: false },
-        submit: vi.fn(),
+      confirm: {
+        step: { isLocked: false, lock: vi.fn() },
         edit: vi.fn(),
       },
       form: {
@@ -124,11 +117,7 @@ describe('NewPage', () => {
 
   it('renders the component correctly', async () => {
     render(<NewPage />, { wrapper });
-
-    // Check if the title is rendered
     expect(screen.getByText('kubernetes_add')).toBeInTheDocument();
-
-    // Check if the steps are rendered
     expect(screen.getByText('kubernetes_add_name_title')).toBeInTheDocument();
     expect(screen.getByText('kubernetes_add_region_title')).toBeInTheDocument();
     expect(
@@ -138,11 +127,5 @@ describe('NewPage', () => {
       screen.getByText('kubernetes_add_private_network'),
     ).toBeInTheDocument();
     expect(screen.getByText('kube_common_node_pool_title')).toBeInTheDocument();
-    expect(
-      screen.getByText('kube_common_node_pool_autoscaling_title'),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText('kubernetes_add_billing_anti_affinity_title'),
-    ).toBeInTheDocument();
   });
 });

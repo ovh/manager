@@ -11,7 +11,7 @@ import { AutoscalingState } from '@/components/Autoscaling.component';
 import { NAME_INPUT_CONSTRAINTS, NODE_RANGE, TAGS_BLOB } from '@/constants';
 import { useClusterCreationStepper } from '../useCusterCreationStepper';
 import BillingStep from '@/components/create/BillingStep.component';
-import { MAX_LENGTH, NAME_PATTERN } from './ClusterNameStep.component';
+import { MAX_LENGTH } from './ClusterNameStep.component';
 import NodePoolToggle from './node-pool/NodePoolToggle.component';
 import NodePoolName from './node-pool/NodePoolName.component';
 import NodePoolType from './node-pool/NodePoolType.component';
@@ -38,21 +38,30 @@ const NodePoolStep = ({
 
   const [nodePoolEnabled, setNodePoolEnabled] = useState(true);
 
-  const isNodePoolValid = !nodePoolEnabled || (flavor && isValidName);
+  const isNodePoolValid = !nodePoolEnabled || (Boolean(flavor) && isValidName);
 
   const exceedsMaxNodes = (quantity) => quantity > NODE_RANGE.MAX;
   const { projectId } = useParams();
   // The maxValue is NODE_RANGE.MAX cause isAntiAffinity is hardcoded to false
   // change to ANTI_AFFINITY_MAX_NODES otherwise
-  const isScalingValid =
-    !scaling ||
-    (!scaling.isAutoscale && exceedsMaxNodes(scaling.quantity.desired)) ||
-    (scaling.isAutoscale &&
-      (exceedsMaxNodes(scaling.quantity.min) ||
-        exceedsMaxNodes(scaling.quantity.max) ||
-        scaling.quantity.min >= scaling.quantity.max));
+  const isScalingValid = useMemo(() => {
+    if (!scaling) return true;
 
-  const isButtonDisabled = !isScalingValid && !isNodePoolValid;
+    const { isAutoscale, quantity } = scaling;
+    const { desired, min, max } = quantity;
+
+    if (!isAutoscale) {
+      return !exceedsMaxNodes(desired);
+    }
+
+    const isMinValid = min >= 0 && min <= max;
+    const isMaxValid = max <= NODE_RANGE.MAX;
+    const isDesiredInRange = min <= desired && max >= desired;
+
+    return isMinValid && isMaxValid && isDesiredInRange;
+  }, [scaling]);
+
+  const isButtonDisabled = !isScalingValid || !isNodePoolValid;
 
   const price = useMemo(() => {
     if (flavor) {
@@ -108,7 +117,6 @@ const NodePoolStep = ({
           </div>
           <div className="mb-8">
             <NodePoolAntiAffinity
-              nodePoolEnabled={nodePoolEnabled}
               isChecked={antiAffinity}
               isEnabled={!scaling?.isAutoscale}
               onChange={setIsAntiaffinity}
