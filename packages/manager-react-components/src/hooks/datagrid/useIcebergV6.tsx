@@ -79,7 +79,7 @@ export function useResourcesIcebergV6<T = unknown>({
     },
   });
 
-  const columnSearchable = useMemo(
+  const searchableColumn = useMemo(
     () =>
       columns?.find((item) =>
         Object.prototype.hasOwnProperty.call(item, 'isSearchable'),
@@ -94,15 +94,15 @@ export function useResourcesIcebergV6<T = unknown>({
   }, [dataSelected]);
 
   const onSearch = (search: string) => {
-    if (columnSearchable) {
+    if (searchableColumn) {
       setSearchFilter(
         !search || search.length === 0
           ? null
           : {
-              key: columnSearchable.id,
+              key: searchableColumn.id,
               value: searchInput,
               comparator: FilterComparator.Includes,
-              label: columnSearchable.id,
+              label: searchableColumn.id,
             },
       );
     }

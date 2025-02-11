@@ -1,4 +1,3 @@
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   ColumnDef,
@@ -21,10 +20,13 @@ import {
   FilterComparator,
   FilterTypeCategories,
 } from '@ovh-ux/manager-core-api';
-import { FilterWithLabel } from '../filters/interface';
+import {
+  DatagridTopbar,
+  FilterProps,
+  SearchProps,
+} from './datagrid-topbar.component';
 import { DataGridTextCell } from './text-cell.component';
 import { defaultNumberOfLoadingRows } from './datagrid.contants';
-import { DatagridTopbar } from './datagrid-topbar.component';
 import './translations';
 
 export type ColumnSort = TanstackColumnSort;
@@ -51,25 +53,6 @@ export interface DatagridColumn<T> {
   isFilterable?: boolean;
   /** Trigger the column search */
   isSearchable?: boolean;
-}
-
-type ColumnFilterProps = {
-  key: string;
-  value: string | string[];
-  comparator: FilterComparator;
-  label: string;
-};
-
-export interface FilterProps {
-  filters: FilterWithLabel[];
-  add: (filters: ColumnFilterProps) => void;
-  remove: (filter: FilterWithLabel) => void;
-}
-
-export interface SearchProps {
-  searchInput: string;
-  setSearchInput: React.Dispatch<React.SetStateAction<string>>;
-  onSearch: (search: string) => void;
 }
 
 export interface DatagridProps<T> {
@@ -109,17 +92,19 @@ export interface DatagridProps<T> {
   numberOfLoadingRows?: number;
   /** List of filters and handlers to add, remove */
   filters?: FilterProps;
-  /** search text input and handlers to onSearh and setSearch */
+  /** Trigger the column search. In case of backend search, make sure to add this on columns on which API supports the search option. */
   search?: SearchProps;
+  /** Add react element at left in the datagrid topbar */
+  topbar?: JSX.Element | JSX.Element[];
 }
-
 export const Datagrid = <T,>({
   columns,
   items,
   filters,
+  search,
+  topbar,
   totalItems,
   pagination,
-  search,
   sorting,
   className,
   onPaginationChange,
@@ -180,8 +165,12 @@ export const Datagrid = <T,>({
 
   return (
     <div>
-      <DatagridTopbar filters={filters} columns={columns} search={search} />
-
+      <DatagridTopbar
+        columns={columns}
+        filters={filters}
+        search={search}
+        topbar={topbar}
+      />
       <div className={`contents px-[1px] ${className || ''}`}>
         <OdsTable className="overflow-x-visible">
           <table className="w-full border-collapse">
