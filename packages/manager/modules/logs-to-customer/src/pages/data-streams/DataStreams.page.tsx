@@ -1,10 +1,15 @@
-import { Links, LinkType } from '@ovh-ux/manager-react-components';
-import { OdsSelect, OdsSpinner, OdsText } from '@ovhcloud/ods-components/react';
+import {
+  OdsButton,
+  OdsSelect,
+  OdsSpinner,
+  OdsText,
+} from '@ovhcloud/ods-components/react';
 import { useQueryClient } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import ApiError from '../../components/apiError/ApiError.component';
+import DataStreamAccountLink from '../../components/data-streams/DataStreamAccountLink.component';
 import {
   getLogServicesQueryKey,
   useLogServices,
@@ -61,38 +66,51 @@ export default function DataStreams() {
 
   return (
     <div className="flex flex-col gap-4">
-      <Links
-        type={LinkType.back}
-        label={t('log_streams_back_link')}
-        onClickReturn={() => navigate('..')}
-      />
       <OdsText preset="heading-3">{t('log_streams_title')}</OdsText>
-      <OdsText preset="paragraph">{t('log_streams_back_description')}</OdsText>
-      {logServices.length > 1 && (
-        <OdsSelect
-          value={currentService?.serviceName}
-          onOdsChange={(event) => {
-            const newLogService = logServices.find(
-              (k) => k.serviceName === event.detail.value,
-            );
-            if (newLogService) setCurrentService(newLogService);
-          }}
-          data-testid={'logKindSelect'}
-          name="select-log-service"
-        >
-          {logServices.map((s) => {
-            const optionLabel = s.displayName
-              ? `${s.serviceName} - ${s.displayName}`
-              : s.serviceName;
+      <div className="flex flex-col gap-2">
+        <OdsText preset="paragraph">{t('log_streams_select_account')}</OdsText>
+        <div className="flex flex-col md:flex-row gap-3 ">
+          <OdsSelect
+            className="w-full md:w-96"
+            value={currentService?.serviceName}
+            isDisabled={logServices.length === 1}
+            onOdsChange={(event) => {
+              const newLogService = logServices.find(
+                (k) => k.serviceName === event.detail.value,
+              );
+              if (newLogService) setCurrentService(newLogService);
+            }}
+            data-testid={'logKindSelect'}
+            name="select-log-service"
+          >
+            {logServices.map((s) => {
+              const optionLabel = s.displayName ? (
+                <div>{`${s.serviceName} - ${s.displayName}`}</div>
+              ) : (
+                s.serviceName
+              );
 
-            return (
-              <option key={s.serviceName} value={s.serviceName}>
-                {optionLabel}
-              </option>
-            );
-          })}
-        </OdsSelect>
-      )}
+              return (
+                <option key={s.serviceName} value={s.serviceName}>
+                  {optionLabel}
+                </option>
+              );
+            })}
+          </OdsSelect>
+          <OdsButton
+            size="sm"
+            variant="outline"
+            label={t('log_streams_back_button')}
+            onClick={() => {
+              navigate('..');
+            }}
+          />
+        </div>
+      </div>
+      <div className="flex gap-3">
+        <OdsText>{t('log_streams_account_label')}</OdsText>
+        <DataStreamAccountLink service={currentService} />
+      </div>
       <DataStreamsDatagrid service={currentService} />
     </div>
   );

@@ -110,44 +110,43 @@ export default function LogsToCustomerModule({
     );
 
   return (
-    <div className="flex flex-col gap-6">
-      {logKinds.length > 1 && (
-        <div className="flex flex-col gap-2 ">
-          <OdsText preset="paragraph">
-            {t('log_kind_selector_select_label')}
-          </OdsText>
-          <OdsSelect
-            name="select-log-kind"
-            value={currentLogKind?.kindId}
-            onOdsChange={(event) => {
-              const newLogKind = logKinds.find(
-                (k) => k.kindId === event.detail.value,
-              );
-              if (newLogKind) {
-                setCurrentLogKind(newLogKind);
-                trackClick({
-                  location: PageLocation.page,
-                  buttonType: ButtonType.button,
-                  actionType: 'action',
-                  actions:
-                    trackingOptions?.trackClickMap.select_kind_logs_access,
-                });
-              }
-            }}
-            data-testid={'logKindSelect'}
-          >
-            {logKinds.map((k) => (
-              <option
-                key={k.kindId}
-                value={k.kindId}
-                data-testid={'logKindOption'}
-              >
-                {k.displayName}
-              </option>
-            ))}
-          </OdsSelect>
-        </div>
-      )}
+    <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-2">
+        <OdsText preset="paragraph">
+          {t('log_kind_selector_select_label')}
+        </OdsText>
+        <OdsSelect
+          className="w-full md:w-96 "
+          name="select-log-kind"
+          isDisabled={logKinds.length === 1}
+          value={currentLogKind?.kindId}
+          onOdsChange={(event) => {
+            const newLogKind = logKinds.find(
+              (k) => k.kindId === event.detail.value,
+            );
+            if (newLogKind) {
+              setCurrentLogKind(newLogKind);
+              trackClick({
+                location: PageLocation.page,
+                buttonType: ButtonType.button,
+                actionType: 'action',
+                actions: trackingOptions?.trackClickMap.select_kind_logs_access,
+              });
+            }
+          }}
+          data-testid={'logKindSelect'}
+        >
+          {logKinds.map((k) => (
+            <option
+              key={k.kindId}
+              value={k.kindId}
+              data-testid={'logKindOption'}
+            >
+              {k.displayName}
+            </option>
+          ))}
+        </OdsSelect>
+      </div>
       <LogsContext.Provider value={LogsContextValues}>
         <ZoomedInOutProvider>
           <Outlet />

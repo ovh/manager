@@ -9,11 +9,9 @@ import {
   useServiceDetails,
   ChangelogButton,
 } from '@ovh-ux/manager-react-components';
+import { OdsBadge } from '@ovhcloud/ods-components/react';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
 import KmsGuidesHeader from '@/components/Guide/KmsGuidesHeader';
-import Dashboard, {
-  DashboardTabItemProps,
-} from '@/components/layout-helpers/Dashboard/Dashboard';
 import Loading from '@/components/Loading/Loading';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 import { ROUTES_URLS } from '@/routes/routes.constants';
@@ -22,6 +20,9 @@ import { getOkmsResourceQueryKey } from '@/data/api/okms';
 import { OKMS } from '@/types/okms.type';
 import { useOKMSById } from '@/data/hooks/useOKMS';
 import { CHANGELOG_LINKS } from '@/constants';
+import KmsTabs, {
+  KmsTabProps,
+} from '@/components/layout-helpers/Dashboard/KmsTabs';
 
 export const OkmsContext = createContext<OKMS>(null);
 
@@ -73,22 +74,32 @@ export default function DashboardPage() {
 
   const displayName = okmsServiceInfos?.data?.resource.displayName;
 
-  const tabsList: DashboardTabItemProps[] = [
+  const tabsList: KmsTabProps[] = [
     {
       url: '',
-      title: tDashboard('general_informations'),
+      content: <>{tDashboard('general_informations')}</>,
     },
     {
       url: ROUTES_URLS.keys,
-      title: tDashboard('encrypted_keys'),
+      content: <>{tDashboard('encrypted_keys')}</>,
     },
     {
       url: ROUTES_URLS.credentials,
-      title: tDashboard('access_certificates'),
+      content: <>{tDashboard('access_certificates')}</>,
     },
     {
       url: ROUTES_URLS.logs,
-      title: tDashboard('logs'),
+      content: (
+        <div className="flex gap-2">
+          {tDashboard('logs')}{' '}
+          <OdsBadge
+            size="sm"
+            label="beta"
+            color="information"
+            className="font-normal"
+          />
+        </div>
+      ),
     },
   ];
 
@@ -139,7 +150,7 @@ export default function DashboardPage() {
           )}
           breadcrumb={<Breadcrumb items={breadcrumbItems} />}
           message={<Notifications />}
-          tabs={<Dashboard tabs={tabsList} />}
+          tabs={<KmsTabs tabs={tabsList} />}
         >
           <Outlet />
         </BaseLayout>
