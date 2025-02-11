@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.14.2...@ovh-ux/manager-vrack@1.15.0) (2025-02-11)
+
+
+### Features
+
+* **dedicated:** add terminate modal for vrack ([#13483](https://github.com/ovh/manager/issues/13483)) ([11d40d5](https://github.com/ovh/manager/commit/11d40d528124cbeb6f8083280f51fde6a9323084))
+
+
+
+
+
 ## [1.14.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.14.1...@ovh-ux/manager-vrack@1.14.2) (2025-01-02)
 
 

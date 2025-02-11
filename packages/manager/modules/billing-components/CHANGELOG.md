@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.8.3...@ovh-ux/manager-billing-components@4.9.0) (2025-02-11)
+
+
+### Features
+
+* **dedicated:** delete vrack from billing autorenew page ([#14977](https://github.com/ovh/manager/issues/14977)) ([04c2d09](https://github.com/ovh/manager/commit/04c2d09f15f06795311b5854da77284933d65212))
+
+
+
+
+
 ## [4.8.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.8.2...@ovh-ux/manager-billing-components@4.8.3) (2025-02-06)
 
 

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [20.14.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.14.5...@ovh-ux/manager-dedicated@20.14.6) (2025-02-11)
+
+
+### Bug Fixes
+
+* **dedicated.pcc:** fix ip order link in drp configuration ([#15335](https://github.com/ovh/manager/issues/15335)) ([4db7538](https://github.com/ovh/manager/commit/4db7538aea3c184c5d4a5ee6bac2da13e050878e))
+* **dedicated.pcc:** fix user right 'add resources' not updatable ([#15329](https://github.com/ovh/manager/issues/15329)) ([83113c4](https://github.com/ovh/manager/commit/83113c40b7b01918dbe30d4a39ffb6c8c79bbdeb))
+
+
+
+
+
 ## [20.14.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.14.4...@ovh-ux/manager-dedicated@20.14.5) (2025-02-10)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated

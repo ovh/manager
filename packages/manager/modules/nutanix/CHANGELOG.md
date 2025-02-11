@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@2.4.2...@ovh-ux/manager-nutanix@2.5.0) (2025-02-11)
+
+
+### Features
+
+* **nutanix:** fix node listing page ([#15308](https://github.com/ovh/manager/issues/15308)) ([3dfb929](https://github.com/ovh/manager/commit/3dfb9290c104adff68816745203b35f3888681ad))
+
+
+
+
+
 ## [2.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@2.4.1...@ovh-ux/manager-nutanix@2.4.2) (2025-01-28)
 
 
