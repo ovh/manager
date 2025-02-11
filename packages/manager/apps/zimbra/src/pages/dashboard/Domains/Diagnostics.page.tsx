@@ -48,7 +48,6 @@ import { DnsRecordType } from '@/utils/dnsconfig.constants';
 import GuideLink from '@/components/GuideLink';
 import { Guide, GUIDES_LIST } from '@/guides.constants';
 import { FEATURE_FLAGS } from '@/utils';
-import queryClient from '@/queryClient';
 import {
   AUTO_CONFIGURE_DOMAIN,
   BACK_PREVIOUS_PAGE,
@@ -325,7 +324,12 @@ export default function DomainDiagnostics() {
   const domainId = searchParams.get('domainId');
   const goBackUrl = useGenerateUrl('../..', 'href');
 
-  const { data: domain, isFetching, isError } = useDomainDiagnostic({
+  const {
+    data: domain,
+    isFetching,
+    isError,
+    refetch: refreshDiagnostic,
+  } = useDomainDiagnostic({
     domainId,
   });
 
@@ -437,7 +441,7 @@ export default function DomainDiagnostics() {
   );
 
   const handleRefreshClick = () => {
-    queryClient.invalidateQueries({ queryKey: ['get', 'domain'] });
+    refreshDiagnostic();
     trackClick({
       location: PageLocation.page,
       buttonType: ButtonType.button,
