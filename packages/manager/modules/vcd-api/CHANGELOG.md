@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-vcd-api@0.1.8...@ovh-ux/manager-module-vcd-api@0.2.0) (2025-02-10)
+
+
+### Features
+
+* **hpc-managed-vcd:** add storage performance data in order page ([8cc3507](https://github.com/ovh/manager/commit/8cc350777abc79c5ebcc9bc2b05dbd3a9d9a953a))
+
+
+
+
+
+## [0.1.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-vcd-api@0.1.7...@ovh-ux/manager-module-vcd-api@0.1.8) (2025-02-06)
+
+**Note:** Version bump only for package @ovh-ux/manager-module-vcd-api
+
+
+
+
+
 ## [0.1.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-vcd-api@0.1.6...@ovh-ux/manager-module-vcd-api@0.1.7) (2025-01-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-module-vcd-api

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.30.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.30.0...@ovh-ux/manager-new-billing@0.30.1) (2025-02-06)
+
+
+### Bug Fixes
+
+* **billing:** standardize and fix redirection to order tracking ([#15290](https://github.com/ovh/manager/issues/15290)) ([a243c15](https://github.com/ovh/manager/commit/a243c15c8ff08ab9fee4b3686304e8e5f59c07be))
+
+
+
+
+
 # [0.30.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.29.1...@ovh-ux/manager-new-billing@0.30.0) (2025-02-03)
 
 

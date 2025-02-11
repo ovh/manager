@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [20.14.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.14.4...@ovh-ux/manager-dedicated@20.14.5) (2025-02-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+## [20.14.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.14.3...@ovh-ux/manager-dedicated@20.14.4) (2025-02-06)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([6f1fd0f](https://github.com/ovh/manager/commit/6f1fd0f7102bd8ad218c2a4a5a7ae4328b26b78c))
+
+
+
+
+
+## [20.14.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.14.2...@ovh-ux/manager-dedicated@20.14.3) (2025-02-06)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
 ## [20.14.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.14.1...@ovh-ux/manager-dedicated@20.14.2) (2025-02-03)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated

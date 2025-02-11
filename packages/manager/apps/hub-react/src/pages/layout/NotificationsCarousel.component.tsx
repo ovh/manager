@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
   OsdsIcon,
   OsdsLink,
   OsdsMessage,
+  OsdsSkeleton,
   OsdsText,
+  OsdsTile,
 } from '@ovhcloud/ods-components/react';
 import {
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
   ODS_MESSAGE_TYPE,
+  ODS_SKELETON_SIZE,
   ODS_TEXT_COLOR_INTENT,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
@@ -21,6 +24,7 @@ import { useFetchHubNotifications } from '@/data/hooks/notifications/useNotifica
 import { Notification, NotificationType } from '@/types/notifications.type';
 import useGuideUtils from '@/hooks/guides/useGuideUtils';
 import { NOTIFICATIONS_LINKS } from '@/pages/layout/layout.constants';
+import { useHubContext } from '@/pages/layout/context';
 
 const getMessageColor = (type: NotificationType) => {
   switch (type) {
@@ -70,7 +74,13 @@ const getTextColor = (type: NotificationType) => {
 export default function NotificationsCarousel() {
   const { t } = useTranslation('hub/notifications');
   const { trackClick } = useOvhTracking();
-  const { data: notifications } = useFetchHubNotifications();
+  const { isLoading, isFreshCustomer } = useHubContext();
+  const {
+    data: notifications,
+    isLoading: areNotificationsLoading,
+  } = useFetchHubNotifications({
+    enabled: !(isLoading || isFreshCustomer),
+  });
   const [currentIndex, setCurrentIndex] = useState(0);
   const notificationsLinks = useGuideUtils(NOTIFICATIONS_LINKS);
 
@@ -88,7 +98,12 @@ export default function NotificationsCarousel() {
     notifications?.[currentIndex] &&
     notificationsLinks[notifications[currentIndex].id];
 
-  return (
+  return isLoading || areNotificationsLoading ? (
+    <OsdsTile className="p-6">
+      <OsdsSkeleton inline size={ODS_SKELETON_SIZE.sm} />
+      <OsdsSkeleton />
+    </OsdsTile>
+  ) : (
     <>
       {notifications?.length > 0 && (
         <OsdsMessage

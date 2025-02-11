@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-vouchers-app",
-  "version": "0.8.42",
+  "version": "0.8.43",
   "private": true,
   "description": "PCI Vouchers react app",
   "type": "module",
