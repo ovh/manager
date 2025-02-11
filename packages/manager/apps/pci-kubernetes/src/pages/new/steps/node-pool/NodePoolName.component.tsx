@@ -1,9 +1,7 @@
 import {
-  OsdsButton,
   OsdsText,
   OsdsInput,
   OsdsFormField,
-  OsdsToggle,
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -37,7 +35,7 @@ const NodePoolName = ({
       class="mt-6"
       error={
         hasError
-          ? tAdd('kubernetes_add_cluster_name_input_pattern_validation_error')
+          ? tAdd('kube_add_node_pool_name_input_pattern_validation_error')
           : ''
       }
       inline

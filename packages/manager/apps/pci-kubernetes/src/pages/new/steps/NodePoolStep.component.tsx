@@ -8,12 +8,12 @@ import {
 } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import { AutoscalingState } from '@/components/Autoscaling.component';
-import { NODE_RANGE, TAGS_BLOB } from '@/constants';
+import { NAME_INPUT_CONSTRAINTS, NODE_RANGE, TAGS_BLOB } from '@/constants';
 import { useClusterCreationStepper } from '../useCusterCreationStepper';
 import BillingStep from '@/components/create/BillingStep.component';
 import { MAX_LENGTH, NAME_PATTERN } from './ClusterNameStep.component';
-import NodePoolToggle from './node-pool/nodePoolToggle.component';
-import NodePoolName from './node-pool/nodePoolName.component';
+import NodePoolToggle from './node-pool/NodePoolToggle.component';
+import NodePoolName from './node-pool/NodePoolName.component';
 import NodePoolType from './node-pool/NodePoolType.component';
 import NodePoolSize from './node-pool/NodePoolSize.component';
 import NodePoolAntiAffinity from './node-pool/NodePoolAntiAffinity.component';
@@ -29,14 +29,16 @@ const NodePoolStep = ({
   const [antiAffinity, setIsAntiaffinity] = useState(false);
   const [name, setName] = useState('');
   const [isTouched, setIsTouched] = useState(false);
-  const isValidName = name?.length <= MAX_LENGTH && NAME_PATTERN.test(name);
+
+  const isValidName =
+    name?.length <= MAX_LENGTH && NAME_INPUT_CONSTRAINTS.PATTERN.exec(name);
   const hasError = isTouched && !isValidName;
   const [isMonthlyBilled, setIsMonthlyBilled] = useState(false);
   const [flavor, setFlavor] = useState<KubeFlavor | null>(null);
 
   const [nodePoolEnabled, setNodePoolEnabled] = useState(true);
 
-  const isNodePoolValid = !nodePoolEnabled || !!flavor;
+  const isNodePoolValid = !nodePoolEnabled || (flavor && isValidName);
 
   const exceedsMaxNodes = (quantity) => quantity > NODE_RANGE.MAX;
   const { projectId } = useParams();
@@ -50,8 +52,7 @@ const NodePoolStep = ({
         exceedsMaxNodes(scaling.quantity.max) ||
         scaling.quantity.min >= scaling.quantity.max));
 
-  const isButtonDisabled =
-    (!isScalingValid && !isNodePoolValid) || !isValidName;
+  const isButtonDisabled = !isScalingValid && !isNodePoolValid;
 
   const price = useMemo(() => {
     if (flavor) {
@@ -102,6 +103,7 @@ const NodePoolStep = ({
             <NodePoolSize
               isMonthlyBilled={isMonthlyBilled}
               onScaleChange={setScaling}
+              antiAffinity={antiAffinity}
             />
           </div>
           <div className="mb-8">
