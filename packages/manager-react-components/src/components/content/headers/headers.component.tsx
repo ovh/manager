@@ -6,6 +6,7 @@ export interface HeadersProps {
   subtitle?: string;
   description?: string;
   headerButton?: React.ReactElement;
+  changelogButton?: React.ReactElement;
 }
 
 export const Headers: React.FC<HeadersProps> = ({
@@ -13,6 +14,7 @@ export const Headers: React.FC<HeadersProps> = ({
   subtitle,
   description,
   headerButton,
+  changelogButton,
 }) => {
   return (
     <div className="flex items-center justify-between">
@@ -23,7 +25,12 @@ export const Headers: React.FC<HeadersProps> = ({
           <Description className="mb-6">{description}</Description>
         )}
       </div>
-      {headerButton && <div>{headerButton}</div>}
+      {(headerButton || changelogButton) && (
+        <div className="flex flex-wrap justify-end">
+          {changelogButton}
+          {headerButton}
+        </div>
+      )}
     </div>
   );
 };

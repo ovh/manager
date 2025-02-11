@@ -4,6 +4,9 @@ import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import Headers, { HeadersProps } from './headers.component';
 import ActionMenu from '../../navigation/menus/action/action.component';
 import GuideButton from '../../navigation/menus/guide/guide.component';
+import ChangelogButton, {
+  ChangelogLinks,
+} from '../../navigation/menus/changelog/changelog.component';
 
 const Heading: HeadersProps = {
   title: 'Example for header',
@@ -44,20 +47,35 @@ const guideItems = [
   },
 ];
 
+const changelogChapters: string[] = ['baremetal', 'server', 'dedicated'];
+const changelogLinks: ChangelogLinks = {
+  roadmap:
+    'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Baremetal',
+  changelog:
+    'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Baremetal',
+  'feature-request':
+    'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Baremetal',
+};
+
 const HeadingWithActionButton: HeadersProps = {
   title: 'Example for header with actions ',
   description: 'description for header',
   headerButton: <ActionMenu items={actionItems} />,
 };
-const HeadingWithGuideButton: HeadersProps = {
-  title: 'Example for header with guides',
+const HeadingWithHeaderButtons: HeadersProps = {
+  title: 'Example for header with header button and changelog button',
   description: 'description for subheader',
   headerButton: <GuideButton items={guideItems} />,
+  changelogButton: (
+    <ChangelogButton links={changelogLinks} chapters={changelogChapters} />
+  ),
 };
 
 export const header = () => <Headers {...Heading} />;
 export const subHeader = () => <Headers {...SubHeading} />;
-export const headerWithGuides = () => <Headers {...HeadingWithGuideButton} />;
+export const headerWithHeaderButtons = () => (
+  <Headers {...HeadingWithHeaderButtons} />
+);
 export const headerWithActions = () => <Headers {...HeadingWithActionButton} />;
 
 const meta: Meta = {
