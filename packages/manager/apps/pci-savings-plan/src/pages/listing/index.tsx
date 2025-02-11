@@ -86,13 +86,6 @@ const ListingTablePage: React.FC<ListingTablePageProps> = ({
 
       <Notifications />
       <TableContainer data={data} refetchSavingsPlans={refetchSavingsPlans} />
-      <div className="h-[300px]">
-        <h2 className="text-blue-700 font-bold text-lg mb-4">
-          {' '}
-          Utilisation et Couverture des Savings Plans
-        </h2>
-        ;
-      </div>
     </>
   );
 };

@@ -12,13 +12,14 @@ import {
   useNotifications,
 } from '@ovh-ux/manager-react-components';
 import { OdsText, OdsButton } from '@ovhcloud/ods-components/react';
-import React, { useContext } from 'react';
+import React, { useContext, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   SavingsPlanFlavorConsumption,
   SavingsPlanPeriodConsumption,
 } from '@/types/savingsPlanConsumption.type';
 import { toLocalDateUTC } from '@/utils/formatter/date';
+import { paginateResults } from '@/utils/paginate/utils';
 
 type ConsumptionDatagridProps = {
   isLoading: boolean;
@@ -85,6 +86,11 @@ const ConsumptionDatagrid = ({
   };
 
   const items = consumption?.periods ?? [];
+
+  const paginatedItems = useMemo(() => paginateResults(items, pagination), [
+    items,
+    pagination,
+  ]);
   return (
     <div>
       <OdsText preset="heading-4" className="mt-8">
@@ -101,8 +107,8 @@ const ConsumptionDatagrid = ({
       </div>
       <Datagrid
         columns={columns}
-        items={items}
-        totalItems={items.length}
+        items={paginatedItems.rows}
+        totalItems={paginatedItems.totalRows}
         pagination={pagination}
         onPaginationChange={setPagination}
         isLoading={isLoading}

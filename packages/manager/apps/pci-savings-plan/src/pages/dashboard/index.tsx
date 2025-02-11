@@ -3,13 +3,12 @@ import React, { useContext, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { OdsText, OdsMessage } from '@ovhcloud/ods-components/react';
 import ConsumptionDatagrid from '@/components/Dashboard/ConsumptionDatagrid/ConsumptionDatagrid';
 import Filters from '@/components/Dashboard/Filters/Filters';
 import Kpis from '@/components/Dashboard/Kpis/Kpis';
 import TabsDashboard from '@/components/Dashboard/TabsDashboard/TabsDashboard';
 import { useSavingsPlan } from '@/hooks/useSavingsPlan';
-import { transformChart } from '@/utils/formatter/formatter';
 import GenericChart from '@/components/Chart/Chart';
 import { useFilteredConsumption } from '@/hooks/useFilteredConsumption';
 
@@ -18,7 +17,7 @@ const Dashboard: React.FC = () => {
   const navigate = useNavigate();
   const { environment } = useContext(ShellContext);
   const locale = environment.getUserLocale();
-  const { t } = useTranslation(['dashboard']);
+  const { t } = useTranslation(['dashboard', 'listing']);
 
   const {
     data: savingsPlan,
@@ -61,17 +60,19 @@ const Dashboard: React.FC = () => {
     );
   }
 
-  const chartData = transformChart(consumption);
-  const maxRange = Math.max(...chartData.map((d) => d.inclus + d.exclus));
-  const savingsPlanSize = consumption.flavors[0].subscriptions[0].size;
-
   return (
     <>
-      <Title>{t('dashboard')}</Title>
+      <Title>{t('listing:title')}</Title>
       <OdsText preset="span" className="inline-block mb-4 w-[750px]">
         {t('dashboard_description')}
       </OdsText>
+
       {projectId && <TabsDashboard projectId={projectId} />}
+      {!isConsumptionLoading && flavorOptions.length === 0 && (
+        <OdsMessage color="information" className="inline-block mb-4 w-[750px]">
+          {t('dashboard_banner_no_savings_plan')}
+        </OdsMessage>
+      )}
       <Filters
         locale={locale}
         flavorOptions={flavorOptions}
@@ -87,13 +88,13 @@ const Dashboard: React.FC = () => {
         consumption={currentConsumption}
         period={period}
       />
-      <GenericChart
-        chartTitle={'utilisation'}
-        chartData={chartData}
-        maxRange={maxRange}
-        savingsPlanSize={savingsPlanSize}
-        serviceFilter="Managed Rancher Services"
-      />
+      {currentConsumption && (
+        <GenericChart
+          flavor={flavor}
+          consumption={currentConsumption}
+          chartTitle={t('dashboard_graph_title')}
+        />
+      )}
       <ConsumptionDatagrid
         isLoading={isConsumptionLoading}
         consumption={currentConsumption}

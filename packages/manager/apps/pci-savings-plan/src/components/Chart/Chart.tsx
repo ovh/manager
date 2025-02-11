@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import { OdsText } from '@ovhcloud/ods-components/react';
 import React, { useMemo } from 'react';
 import {
@@ -8,34 +10,53 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
-  ReferenceLine,
   Legend,
 } from 'recharts';
+import { SavingsPlanFlavorConsumption } from '@/types/savingsPlanConsumption.type';
+import { getChartsData } from '@/utils/formatter/formatter';
+import { isInstanceFlavor } from '@/utils/savingsPlan';
 
 interface ChartProps {
   chartTitle: string;
-  chartData: { day: string; inclus: number; exclus: number }[];
-  maxRange: number;
-  savingsPlanSize: number;
-  serviceFilter: 'Instances' | 'Managed Rancher Services';
+  consumption: SavingsPlanFlavorConsumption;
+  flavor: string;
 }
+
+const GRAPH_SIZE_ZOOM = 1.1;
+
+const getMaxRangeGraph = (maxValue: number) =>
+  Math.round(maxValue * GRAPH_SIZE_ZOOM);
+
+const INCLUDED_COLOR = 'rgba(0, 128, 0, 0.6)';
+const EXCLUDED_COLOR = 'rgba(255, 192, 203, 0.6)';
 
 const GenericChart: React.FC<ChartProps> = ({
   chartTitle,
-  chartData,
-  maxRange,
-  savingsPlanSize,
-  serviceFilter,
+  consumption,
+  flavor,
 }) => {
-  const yAxisLabel =
-    serviceFilter === 'Instances'
-      ? "Nombre d'instance(s)"
-      : 'Nombre de vCPU(s)';
+  const { t } = useTranslation('dashboard');
+
+  const chartData = useMemo(() => getChartsData(consumption.periods ?? []), [
+    consumption.periods,
+  ]);
+
+  const maxRange = useMemo(
+    () =>
+      getMaxRangeGraph(
+        Math.max(
+          ...chartData.map((d) => d.included + d.excluded + d.cumulPlanSize),
+        ),
+      ),
+    [chartData],
+  );
+  const yAxisLabel = isInstanceFlavor(flavor)
+    ? t('dashboard_graph_y_axis_label')
+    : t('dashboard_graph_y_axis_label_vcpu');
 
   return (
     <>
       <OdsText preset="heading-4" className="my-8">
-        {/* {t(chartTitle)} */}
         {chartTitle}
       </OdsText>
       <ResponsiveContainer width="100%" height={400} className="ods-font">
@@ -51,8 +72,12 @@ const GenericChart: React.FC<ChartProps> = ({
           <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
           <XAxis
             dataKey="day"
-            label={{ value: 'Jour', position: 'insideBottom', offset: -10 }}
-            tick={{ fontSize: 12 }}
+            label={{
+              value: t('dashboard_graph_x_axis_label'),
+              position: 'insideBottom',
+              offset: -10,
+              fontSize: 12,
+            }}
           />
           <YAxis
             domain={[0, maxRange]}
@@ -61,56 +86,52 @@ const GenericChart: React.FC<ChartProps> = ({
               angle: -90,
               position: 'insideLeft',
               offset: -10,
+              fontSize: 12,
             }}
-            // tickFormatter={(value) => value.toFixed(0)}
-            tick={{ fontSize: 12 }}
           />
-          <Tooltip formatter={(value: number) => value.toFixed(2)} />
+          <Tooltip />
           <Legend
             verticalAlign="top"
             align="center"
-            wrapperStyle={{ fontSize: '12px', marginBottom: '10px' }}
+            wrapperStyle={{ fontSize: '10px', paddingBottom: '20px' }}
             payload={[
               {
-                value: 'Inclus dans les Savings Plans',
+                value: t('dashboard_graph_included'),
                 type: 'square',
-                color: 'rgba(0, 128, 0, 0.6)',
+                color: INCLUDED_COLOR,
               },
               {
-                value: 'Exclus des Savings Plans',
+                value: t('dashboard_graph_excluded'),
                 type: 'square',
-                color: 'rgba(255, 192, 203, 0.6)',
+                color: EXCLUDED_COLOR,
               },
             ]}
           />
+
           <Area
             type="step"
-            dataKey="inclus"
-            stackId="1"
+            dataKey="included"
+            stackId="2"
             stroke="#008000"
-            fill="rgba(0, 128, 0, 0.6)"
-            name="Inclus dans les Savings Plans"
+            fill={INCLUDED_COLOR}
+            name={t('dashboard_graph_included')}
           />
           <Area
             type="step"
-            dataKey="exclus"
-            stackId="1"
+            dataKey="excluded"
+            stackId="2"
             stroke="#FFC0CB"
-            fill="rgba(255, 192, 203, 0.6)"
-            name="Exclus des Savings Plans"
+            fill={EXCLUDED_COLOR}
+            name={t('dashboard_graph_excluded')}
           />
-          <ReferenceLine
-            y={savingsPlanSize}
+          <Area
+            type="step"
+            dataKey="cumulPlanSize"
+            stackId="1"
             stroke="red"
             strokeWidth={2}
-            label={{
-              position: 'right',
-              value: `${savingsPlanSize} ${
-                serviceFilter === 'Instances' ? 'instance(s)' : 'vCPU(s)'
-              }`,
-              className: 'font-bold text-xs text-red-500',
-              offset: 10,
-            }}
+            fill="white"
+            name={t('dashboard_columns_cumul_plan_size')}
           />
         </AreaChart>
       </ResponsiveContainer>
@@ -119,6 +140,3 @@ const GenericChart: React.FC<ChartProps> = ({
 };
 
 export default GenericChart;
-function useTranslation(arg0: string): { t: any } {
-  throw new Error('Function not implemented.');
-}

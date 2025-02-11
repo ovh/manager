@@ -1,4 +1,5 @@
 import z from 'zod';
+import { eachDayOfInterval, sub } from 'date-fns';
 import {
   CommercialCatalogPricingSchema,
   CommercialCatalogPricingType,
@@ -6,8 +7,7 @@ import {
   CommercialCatalogTechnicalType,
 } from '@/types/commercial-catalog.type';
 import { convertToDuration, convertToPrice } from '../commercial-catalog/utils';
-import { SavingsPlanService } from '@/types';
-import { SavingsPlanConsumption } from '@/types/savingsPlanConsumption.type';
+import { SavingsPlanPeriodConsumption } from '@/types/savingsPlanConsumption.type';
 
 export const formatTechnicalInfo = (
   technicalInfo: CommercialCatalogTechnicalType,
@@ -61,50 +61,61 @@ export const formatPricingInfo = (
   }
 };
 
-export const transformChart = (apiData: SavingsPlanConsumption) => {
-  console.log('data:', apiData);
-
-  // Extraction des périodes depuis les "flavors"
-  const periods = apiData.flavors.flatMap((flavor) => flavor.periods);
-
-  // Création d'une Map pour stocker les données par jour
-  const daysMap = new Map();
-
-  // Fonction pour ajouter la consommation d'un jour donné dans la Map
-  const addConsumptionToDay = (day: number, inclus: number, exclus: number) => {
-    if (!daysMap.has(day)) {
-      daysMap.set(day, { day, inclus: 0, exclus: 0 });
-    }
-
-    const currentData = daysMap.get(day);
-    daysMap.set(day, {
-      day,
-      inclus: currentData.inclus + inclus,
-      exclus: currentData.exclus + exclus,
-    });
-  };
-
-  // Traitement des périodes
-  periods.forEach(
-    ({
-      begin,
-      end,
-      consumption_size: consumptionSize,
-      cumul_plan_size: cumulPlanSize,
-    }) => {
-      const startDate = new Date(begin);
-      const endDate = new Date(end);
-      const inclus = Math.min(consumptionSize, cumulPlanSize);
-      const exclus = consumptionSize - inclus;
-
-      // Ajout des consommations pour chaque jour de la période
-      while (startDate <= endDate) {
-        addConsumptionToDay(startDate.getDate(), inclus, exclus);
-        startDate.setDate(startDate.getDate() + 1);
-      }
-    },
-  );
-
-  // Conversion de la Map en tableau
-  return Array.from(daysMap.values());
+type DayData = {
+  day: number;
+  included: number;
+  excluded: number;
+  cumulPlanSize: number;
 };
+
+const filterMaxIncludedPerDay = (data: DayData[]): DayData[] => {
+  const maxIncludedMap: Record<number, DayData> = {};
+
+  data.forEach((entry) => {
+    const existingEntry = maxIncludedMap[entry.day];
+    if (!existingEntry || entry.included > existingEntry.included) {
+      maxIncludedMap[entry.day] = entry;
+    }
+  });
+
+  return Object.values(maxIncludedMap);
+};
+
+export const getChartsData = (
+  periods: SavingsPlanPeriodConsumption[],
+): DayData[] =>
+  filterMaxIncludedPerDay(
+    periods
+      .map((period) => {
+        const startDate = period.begin;
+        const endDate = period.end;
+        const computedEndDate = sub(endDate, { minutes: 1 }).toISOString();
+        const adjustedEndDate = new Date(computedEndDate);
+        adjustedEndDate.setUTCHours(0, 0, 0, 0);
+
+        const consumptionSizeFormatted = period.consumption_size ?? 0;
+        const cumulPlanSizeFormatted = period.cumul_plan_size ?? 0;
+
+        const included = Math.min(
+          consumptionSizeFormatted,
+          cumulPlanSizeFormatted,
+        );
+        const excluded =
+          consumptionSizeFormatted > cumulPlanSizeFormatted
+            ? consumptionSizeFormatted - cumulPlanSizeFormatted
+            : 0;
+
+        const daysInterval = eachDayOfInterval({
+          start: startDate,
+          end: adjustedEndDate,
+        });
+
+        return daysInterval.map((day) => ({
+          day: day.getDate(),
+          included,
+          excluded,
+          cumulPlanSize: cumulPlanSizeFormatted,
+        }));
+      })
+      .flat(),
+  );

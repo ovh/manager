@@ -93,7 +93,6 @@ export const useServiceId = () => {
 
 export const useSavingsPlan = () => {
   const serviceId = useServiceId();
-  console.log('service id', serviceId);
 
   return useQuery({
     queryKey: ['savings-plan', serviceId],
