@@ -1423,7 +1423,7 @@
   "license_designation_CPANEL_version_version-admin-cloud": "cPanel Admin Cloud licence",
   "license_designation_CPANEL_version_version-plus-cloud": "cPanel Plus Cloud licence",
   "license_order_step4_pay_upgrade_amount": "Pay: {{ price }}",
-  "license_designation_CPANEL_version_version-premier-cloud-150": "cPanel Premier Cloud 150 licence",
-  "license_designation_CPANEL_version_version-premier-metal-900": "cPanel Premier Metal 900 licence",
-  "license_designation_CPANEL_version_version-premier-cloud-300": "cPanel Premier Cloud 300 licence"
+  "license_designation_CPANEL_version_version-premier-cloud-150": "cPanel Premier Cloud 150 license",
+  "license_designation_CPANEL_version_version-premier-metal-900": "cPanel Premier Metal 900 license",
+  "license_designation_CPANEL_version_version-premier-cloud-300": "cPanel Premier Cloud 300 license"
 }
