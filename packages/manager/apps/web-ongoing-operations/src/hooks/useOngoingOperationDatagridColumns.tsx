@@ -21,12 +21,21 @@ export const useOngoingOperationDatagridColumns = (
         id: 'domain',
         cell: (props: TOngoingOperations) => (
           <DataGridTextCell>
-            <OdsLink
-              href={`https://www.ovh.com/manager/#/web/domain/${props.domain}/information`}
-              label={props.domain}
-              target="_blank"
-              data-testid={props.domain}
-            />
+            {isDomain ? (
+              <OdsLink
+                href={`https://www.ovh.com/manager/#/web/domain/${props.domain}/information`}
+                label={props.domain}
+                target="_blank"
+                data-testid={props.domain}
+              />
+            ) : (
+              <OdsLink
+                href={`https://www.ovh.com/manager/#/web/domain/${props.zone}/information`}
+                label={props.zone}
+                target="_blank"
+                data-testid={props.zone}
+              />
+            )}
           </DataGridTextCell>
         ),
         label: isDomain
