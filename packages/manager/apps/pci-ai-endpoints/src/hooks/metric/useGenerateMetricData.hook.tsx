@@ -13,10 +13,8 @@ import {
 } from 'date-fns';
 import { HostMetric } from '@/types/cloud/project/database/metric';
 
-// Function to format a Date object into "DD/MM/YYYY" format
 const formatDate = (date: Date): string => format(date, 'dd/MM/yyyy');
 
-// Function to parse a "DD/MM/YYYY" formatted string into a Date object
 const parseDate = (dateString: string | Date): Date => {
   if (typeof dateString === 'string') {
     return parse(dateString, 'dd/MM/yyyy', new Date());
@@ -24,7 +22,6 @@ const parseDate = (dateString: string | Date): Date => {
   return dateString;
 };
 
-// Define a mapping for units to human-readable labels
 type UnitLabels = 'input' | 'output' | 'num_requests';
 
 const unitLabels: Record<UnitLabels, string> = {
@@ -41,6 +38,7 @@ export const useParseDates = (start: string | Date, end: string | Date) => {
   return { startDate, endDate };
 };
 
+// Hook to generate labels for data visualization based on the date range
 export const useGenerateLabels = (startDate: Date, endDate: Date) => {
   const monthsDifference = differenceInMonths(endDate, startDate);
   const isSingleDay = isSameDay(startDate, endDate);
@@ -49,7 +47,7 @@ export const useGenerateLabels = (startDate: Date, endDate: Date) => {
 
   const labels = useMemo(() => {
     if (startDate > endDate) {
-      return []; // On retourne un tableau vide si la période est invalide
+      return [];
     }
 
     if (isSingleDay) {
@@ -81,11 +79,10 @@ export const useGenerateLabels = (startDate: Date, endDate: Date) => {
     monthsDifference,
   ]);
 
-  // Retourner l'objet normalement après que tous les hooks ont été appelés
   return { labels, isSingleDay, isMoreThan2Months, isMoreThan12Months };
 };
 
-// Hook to generate the dataMap based on labels and metrics
+// Hook to generate a mapping of metric values based on time labels
 const useGenerateDataMap = (
   labels: string[],
   metrics?: {
@@ -97,7 +94,7 @@ const useGenerateDataMap = (
   isMoreThan12Months?: boolean,
 ) => {
   return useMemo(() => {
-    if (!metrics || metrics.length === 0) {
+    if (!metrics || metrics.length === 0 || labels.length === 0) {
       return {};
     }
 
@@ -142,7 +139,7 @@ const useGenerateDataMap = (
   }, [metrics, labels, isSingleDay, isMoreThan2Months, isMoreThan12Months]);
 };
 
-// Main hook that combines label and dataMap generation
+// Main hook that combines label and data map generation
 const useGenerateMetricData = (
   start: string | Date,
   end: string | Date,
@@ -157,6 +154,7 @@ const useGenerateMetricData = (
     isMoreThan12Months,
   } = useGenerateLabels(startDate, endDate);
 
+  // Always call useGenerateDataMap, even if labels are empty
   const dataMap = useGenerateDataMap(
     labels,
     metrics,
@@ -165,7 +163,7 @@ const useGenerateMetricData = (
     isMoreThan12Months,
   );
 
-  return { labels, dataMap: labels.length === 0 ? {} : dataMap };
+  return { labels, dataMap };
 };
 
 export default useGenerateMetricData;
