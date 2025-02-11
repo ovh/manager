@@ -1,3 +1,3 @@
 {
-  "rbx1_eol_banner_title": "ATTENZIONE: Per consentirti di trasferire i tuoi servizi da RBX1, la cui modernizzazione è prevista quest'anno, il periodo di migrazione dei server sarà esteso fino al 30 giugno 2025. Per maggiori dettagli, consulta l'email ricevuta e la nostra <a href=\"{{guideLink}}\" target=\"_blank\">guida alla migrazione</a>."
+  "rbx1_eol_banner_title": "ATTENZIONE: Per consentirti di trasferire i tuoi servizi da RBX1, la cui modernizzazione è prevista quest'anno, il periodo di migrazione dei server sarà esteso fino al 30 giugno 2025. Per maggiori dettagli, consulta l'email ricevuta e la nostra <a href=\"{{guideLink}}\" target=\"_blank\" data-track-name=\"{{ trackLabel }}\" data-track-category=\"{{ trackCategory }}\" data-track-page=\"{{ trackPage }}\" data-track-theme=\"{{ trackTheme }}\" data-track-on=\"click\" data-track-type=\"action\">guida alla migrazione</a>."
 }
