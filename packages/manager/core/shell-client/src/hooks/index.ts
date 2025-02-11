@@ -1,3 +1,4 @@
+export * from './useNavigationGetUrl';
 export * from './useOvhTracking';
 export * from './useRouteSynchro';
 export * from './useRouting';
