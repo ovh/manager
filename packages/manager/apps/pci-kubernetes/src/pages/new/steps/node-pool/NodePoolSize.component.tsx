@@ -1,12 +1,3 @@
-import { OsdsText } from '@ovhcloud/ods-components/react';
-
-import {
-  ODS_TEXT_COLOR_INTENT,
-  ODS_TEXT_LEVEL,
-} from '@ovhcloud/ods-components';
-import { useTranslation } from 'react-i18next';
-import { ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
-
 import {
   Autoscaling,
   AutoscalingState,
@@ -14,18 +5,20 @@ import {
 
 export interface NodeSizeStepProps {
   isMonthlyBilled: boolean;
+  antiAffinity: boolean;
   onScaleChange: (scaling: AutoscalingState) => void;
 }
 
 export default function NodePoolSize({
   onScaleChange,
   isMonthlyBilled,
+  antiAffinity,
 }: Readonly<NodeSizeStepProps>) {
   return (
     <div className="mb-8">
       <Autoscaling
         autoscale={false}
-        isAntiAffinity={false}
+        isAntiAffinity={antiAffinity}
         onChange={onScaleChange}
         isMonthlyBilling={isMonthlyBilled}
       />

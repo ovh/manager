@@ -280,6 +280,7 @@ export default function NewPage() {
             <ClusterConfirmationStep
               form={stepper.form}
               onSubmit={() => {
+                stepper.confirm.step.lock();
                 createNewCluster();
               }}
               step={stepper.confirm.step}
