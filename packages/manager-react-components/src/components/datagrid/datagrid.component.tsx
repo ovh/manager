@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   ColumnDef,
@@ -18,9 +18,11 @@ import {
   OdsTable,
 } from '@ovhcloud/ods-components/react';
 import {
+  FilterCategories,
   FilterComparator,
   FilterTypeCategories,
 } from '@ovh-ux/manager-core-api';
+import { ColumnFilter } from '../filters/filter-add.component';
 import { FilterWithLabel } from '../filters/interface';
 import { DataGridTextCell } from './text-cell.component';
 import { defaultNumberOfLoadingRows } from './datagrid.contants';
@@ -109,17 +111,20 @@ export interface DatagridProps<T> {
   numberOfLoadingRows?: number;
   /** List of filters and handlers to add, remove */
   filters?: FilterProps;
-  /** search text input and handlers to onSearh and setSearch */
+  /** Trigger the column search. In case of backend search, make sure to add this on columns on which API supports the search option. */
   search?: SearchProps;
+  /** Add react element at left in the datagrid topbar */
+  topbar?: React.ReactNode;
 }
 
 export const Datagrid = <T,>({
   columns,
   items,
   filters,
+  search,
+  topbar,
   totalItems,
   pagination,
-  search,
   sorting,
   className,
   onPaginationChange,
@@ -178,10 +183,38 @@ export const Datagrid = <T,>({
     }),
   });
 
+  const filtersColumns = useMemo<ColumnFilter[]>(
+    () =>
+      columns
+        ?.filter(
+          (item) =>
+            ('comparator' in item || 'type' in item) &&
+            'isFilterable' in item &&
+            item.isFilterable,
+        )
+        .map((column) => ({
+          id: column.id,
+          label: column.label,
+          ...(column?.type && { comparators: FilterCategories[column.type] }),
+          ...(column?.comparator && { comparators: column.comparator }),
+        })),
+    [columns],
+  );
+
+  const searchColumns = useMemo(
+    () => columns?.find((item) => item?.isSearchable),
+    [columns],
+  );
+
   return (
     <div>
-      <DatagridTopbar filters={filters} columns={columns} search={search} />
-
+      <DatagridTopbar
+        filtersColumns={filtersColumns}
+        isSearchable={!!searchColumns}
+        filters={filters}
+        search={search}
+        topbar={topbar}
+      />
       <div className={`contents px-[1px] ${className || ''}`}>
         <OdsTable className="overflow-x-visible">
           <table className="w-full border-collapse">

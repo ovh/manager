@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { ColumnSort } from '@tanstack/react-table';
-import { OdsDivider } from '@ovhcloud/ods-components/react';
-import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import { OdsDivider, OdsButton } from '@ovhcloud/ods-components/react';
+import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { FilterComparator, applyFilters } from '@ovh-ux/manager-core-api';
 import { withRouter } from 'storybook-addon-react-router-v6';
 import { useSearchParams } from 'react-router-dom';
@@ -9,8 +9,8 @@ import { Datagrid } from './datagrid.component';
 import { useColumnFilters } from '../filters';
 import {
   columns,
-  columsFilters,
-  columsSearchAndFilters,
+  columnsFilters,
+  columnsSearchAndFilters,
 } from './datagrid.mock';
 import { ActionMenu } from '../navigation';
 
@@ -78,6 +78,7 @@ const DatagridStory = (args) => {
         onFetchNextPage={fetchNextPage}
         totalItems={data?.length}
         filters={{ filters, add: addFilter, remove: removeFilter }}
+        topbar={args.topbar}
         {...(args.search
           ? {
               search: {
@@ -185,22 +186,27 @@ Filters.args = {
     label: `Item #${i}`,
     price: Math.floor(1 + Math.random() * 100),
   })),
-  columns: columsFilters,
+  columns: columnsFilters,
 };
 
-export const SearchAndFilters = DatagridStory.bind({});
+export const Topbar = DatagridStory.bind({});
 
-SearchAndFilters.args = {
+const TopbarComponent = () => (
+  <OdsButton label="Add item" icon={ODS_ICON_NAME.plus} />
+);
+
+Topbar.args = {
   items: [...Array(10).keys()].map((_, i) => ({
     label: `Item #${i}`,
     price: Math.floor(1 + Math.random() * 100),
   })),
-  columns: columsSearchAndFilters,
+  columns: columnsSearchAndFilters,
   search: {
     searchInput: '',
     setSearchInput: () => {},
     onSearch: () => {},
   },
+  topbar: <TopbarComponent />,
 };
 
 export default {

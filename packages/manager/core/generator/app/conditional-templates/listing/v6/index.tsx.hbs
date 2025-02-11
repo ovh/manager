@@ -4,7 +4,11 @@ import { FilterCategories } from '@ovh-ux/manager-core-api';
 import { {{#if isPCI }} useParams, {{/if}} useNavigate, useLocation } from 'react-router-dom';
 
 import { OdsButton } from '@ovhcloud/ods-components/react';
-import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import {
+  ODS_BUTTON_VARIANT,
+  ODS_BUTTON_SIZE,
+  ODS_ICON_NAME,
+} from '@ovhcloud/ods-components';
 import {
   Breadcrumb,
   Datagrid,
@@ -118,6 +122,16 @@ export default function Listing() {
     title: t('title'),
   };
 
+  const TopbarCTA = () => (
+    <div>
+      <OdsButton
+        icon={ODS_ICON_NAME.plus}
+        size={ODS_BUTTON_SIZE.sm}
+        label="Add service"
+      />
+    </div>
+  );
+
   return (
     <BaseLayout
       breadcrumb={
@@ -138,9 +152,10 @@ export default function Listing() {
             onFetchNextPage={fetchNextPage}
             sorting={sorting}
             onSortChange={setSorting}
+            isLoading={isLoading}
             filters={filters}
             search={search}
-            isLoading={isLoading}
+            topbar={<TopbarCTA />}
           />
         )}
       </React.Suspense>
