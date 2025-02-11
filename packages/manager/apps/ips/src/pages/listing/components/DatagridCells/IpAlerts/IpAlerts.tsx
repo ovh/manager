@@ -2,7 +2,7 @@ import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
 import { OdsBadge } from '@ovhcloud/ods-components/react';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useIpHasAlerts } from '@/data/hooks/ip/useIpHasAlerts';
+import { useIpHasAlerts } from '@/data/hooks/ip';
 import { SkeletonCell } from '../SkeletonCell/SkeletonCell';
 import { ListingContext } from '@/pages/listing/listingContext';
 
