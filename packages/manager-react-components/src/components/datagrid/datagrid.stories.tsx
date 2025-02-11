@@ -5,7 +5,7 @@ import { applyFilters } from '@ovh-ux/manager-core-api';
 import { Datagrid } from './datagrid.component';
 import { useDatagridSearchParams } from './useDatagridSearchParams';
 import { useColumnFilters } from '../filters';
-import { columns as clm, columsFilters, Item } from './datagrid.mock';
+import { columns as clm, columnsFilters, Item } from './datagrid.mock';
 
 function sortItems(
   itemList: Item[],
@@ -104,7 +104,7 @@ Filters.args = {
   })),
   isPaginated: true,
   isSortable: true,
-  columns: columsFilters,
+  columns: columnsFilters,
 };
 
 export default {

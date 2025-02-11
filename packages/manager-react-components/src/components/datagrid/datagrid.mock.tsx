@@ -23,7 +23,7 @@ export const columns = [
   },
 ];
 
-export const columsFilters = [
+export const columnsFilters = [
   {
     id: 'label',
     cell: (item: Item) => {
@@ -44,7 +44,7 @@ export const columsFilters = [
   },
 ];
 
-export const columsSearchAndFilters = [
+export const columnsSearchAndFilters = [
   {
     id: 'label',
     cell: (item: Item) => {
