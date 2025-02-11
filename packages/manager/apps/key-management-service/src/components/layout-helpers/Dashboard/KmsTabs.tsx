@@ -9,17 +9,17 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 
-export type DashboardTabItemProps = {
+export type KmsTabProps = {
   url: string;
-  title: string;
+  content: React.ReactElement;
   disabled?: boolean;
 };
 
-export type DashboardLayoutProps = {
-  tabs: DashboardTabItemProps[];
+export type KmsTabsProps = {
+  tabs: KmsTabProps[];
 };
 
-const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs }) => {
+const KmsTabs: React.FC<KmsTabsProps> = ({ tabs }) => {
   const [activePanel, setActivePanel] = useState('');
   const { trackClick } = useOvhTracking();
   const location = useLocation();
@@ -57,16 +57,15 @@ const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs }) => {
           navigate(url);
         }}
       >
-        {tabs.map((tab: DashboardTabItemProps) => (
+        {tabs.map((tab: KmsTabProps) => (
           <OdsTab
             key={`ods-tab-bar-item-${tab.url}`}
             id={tab.url}
             isSelected={activePanel === tab.url}
             isDisabled={tab.disabled}
             className="flex items-center justify-center"
-            title={tab.title}
           >
-            {tab.title}
+            {tab.content}
             {tab.disabled && (
               <OdsBadge
                 size={ODS_BADGE_SIZE.sm}
@@ -81,4 +80,4 @@ const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs }) => {
   );
 };
 
-export default Dashboard;
+export default KmsTabs;
