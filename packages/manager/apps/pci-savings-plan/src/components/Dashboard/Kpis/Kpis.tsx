@@ -5,20 +5,23 @@ import {
   OdsIcon,
   OdsSkeleton,
 } from '@ovhcloud/ods-components/react';
-import React, { useMemo } from 'react';
-import { useTranslation } from 'react-i18next';
-import { getPercentValue } from '@/utils/kpi/utils';
+import React, { useCallback, useMemo } from 'react';
+import { Trans, useTranslation } from 'react-i18next';
+import { usePricing } from '@ovh-ux/manager-pci-common';
+import { getPercentValue, isCurrentPeriod } from '@/utils/kpi/utils';
 import { SavingsPlanFlavorConsumption } from '@/types/savingsPlanConsumption.type';
 
 const Kpi = ({
   title,
   value,
+  valueWithoutAmount,
   tooltip,
   index,
   isLoading,
 }: {
   title: string;
-  value: number | string;
+  value: string | number;
+  valueWithoutAmount?: string | number;
   tooltip: string;
   index: number;
   isLoading: boolean;
@@ -30,7 +33,7 @@ const Kpi = ({
       </div>
     );
   return (
-    <div className="flex flex-col gap-2 w-[200px]">
+    <div className="flex flex-col gap-2 w-auto">
       <OdsText preset="heading-5" className="max-w-lg">
         {title}
         <OdsIcon
@@ -49,6 +52,21 @@ const Kpi = ({
         </OdsTooltip>
       </OdsText>
       <span className="text-[20px] font-bold mb-0 text-[#0050D7]">{value}</span>
+      {!!value && !!valueWithoutAmount && (
+        <div className="flex items-center">
+          <span className="text-[15px] mb-0 text-[#666ca1] mr-2">
+            <Trans
+              i18nKey="dashboard:dashboard_kpis_saved_strikethrough"
+              values={{ pricing: valueWithoutAmount }}
+              components={{
+                price: (
+                  <span className="line-through text-[15px] mb-0 text-[#666ca1]" />
+                ),
+              }}
+            />
+          </span>
+        </div>
+      )}
     </div>
   );
 };
@@ -56,51 +74,88 @@ const Kpi = ({
 const Kpis = ({
   isLoading,
   consumption,
+  period,
 }: Readonly<{
   isLoading: boolean;
-  consumption: SavingsPlanFlavorConsumption;
+  consumption: SavingsPlanFlavorConsumption | null | undefined;
+  period: string;
 }>) => {
+  const currentDate = new Date(period);
+
+  const isCurrentMonth = useMemo(() => isCurrentPeriod(currentDate), [
+    currentDate,
+  ]);
+  const { formatPrice } = usePricing();
   const { t } = useTranslation('dashboard');
-  const defaultMessage = t('dashboard_kpis_not_available');
 
-  const computedPercents = useMemo(() => {
-    if (!consumption?.periods?.length) {
-      return {
-        computedUsagePercent: defaultMessage,
-        computedCoveragePercent: defaultMessage,
-      };
-    }
-    return {
-      computedUsagePercent:
-        getPercentValue(consumption, 'utilization') || defaultMessage,
-      computedCoveragePercent:
-        getPercentValue(consumption, 'coverage') || defaultMessage,
-      computedActivePlans: consumption.subscriptions.length || defaultMessage,
-    };
-  }, [consumption, defaultMessage]);
+  const getFormattedFee = useCallback(
+    (fee: number | undefined): string | number => {
+      if (!fee || fee <= 0) return null;
+      return formatPrice(fee, { decimals: 2, unit: 1 });
+    },
+    [formatPrice],
+  );
 
-  const {
-    computedUsagePercent,
-    computedCoveragePercent,
-    computedActivePlans,
-  } = computedPercents;
+  const formatKpiValue = useCallback(
+    (value: number | string, percentage: boolean): string => {
+      if (!value) {
+        return t('dashboard_kpis_not_available');
+      }
+      return percentage ? `${value} %` : value.toString();
+    },
+    [t],
+  );
+
+  const savedAmount = useMemo(
+    () => getFormattedFee(consumption?.fees?.saved_amount),
+    [consumption, getFormattedFee],
+  );
+
+  const withoutSavedAmount = useMemo(
+    () => getFormattedFee(consumption?.fees?.total_price),
+    [consumption, getFormattedFee],
+  );
+
+  const totalActivePlans = useMemo(() => consumption?.subscriptions?.length, [
+    consumption,
+  ]);
+
+  const usage = useMemo(
+    () => getPercentValue(consumption?.periods?.map((p) => p.utilization)),
+    [consumption],
+  );
+
+  const coverage = useMemo(
+    () => getPercentValue(consumption?.periods?.map((p) => p.coverage)),
+    [consumption],
+  );
 
   const kpiData = [
     {
       title: t('dashboard_kpis_active_plans_name'),
       tooltip: t('dashboard_kpis_active_plans_tooltip'),
-      value: computedActivePlans,
+      value: formatKpiValue(totalActivePlans, false),
     },
     {
       title: t('dashboard_kpis_usage_percent_name'),
       tooltip: t('dashboard_kpis_usage_percent_tooltip'),
-      value: computedUsagePercent,
+      value: formatKpiValue(usage, true),
     },
     {
       title: t('dashboard_kpis_coverage_percent_name'),
       tooltip: t('dashboard_kpis_coverage_percent_tooltip'),
-      value: computedCoveragePercent,
+      value: formatKpiValue(coverage, true),
     },
+    ...(!isCurrentMonth
+      ? [
+          {
+            title: t('dashboard_kpis_saved_amount_name'),
+            tooltip: t('dashboard_kpis_saved_amount_name_tooltip'),
+            value: formatKpiValue(savedAmount, false),
+            valueWithoutAmount: withoutSavedAmount,
+          },
+        ]
+      : []),
   ];
 
   return (
@@ -113,6 +168,7 @@ const Kpis = ({
             tooltip={item.tooltip}
             index={index}
             isLoading={isLoading}
+            valueWithoutAmount={item.valueWithoutAmount}
           />
           {index < kpiData.length - 1 && (
             <div className="h-16 w-px bg-gray-300 mx-2"></div>

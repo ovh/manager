@@ -51,10 +51,9 @@ describe('useFilteredConsumption', () => {
 
   it('should provide correct period options', () => {
     const { result } = renderHook(() => useFilteredConsumption(mockLocale));
-
     expect(result.current.periodOptions).toEqual([
-      { label: 'January 2023', value: 'January 2023' },
-      { label: 'December 2022', value: 'December 2022' },
+      { value: 'January 2023' },
+      { value: 'December 2022' },
     ]);
   });
 

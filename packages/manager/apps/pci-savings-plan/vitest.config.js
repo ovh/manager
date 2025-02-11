@@ -26,6 +26,7 @@ export default defineConfig({
         'src/routes.tsx',
       ],
     },
+    setupFiles: ['./src/utils/test/setupTests.tsx'],
   },
   resolve: {
     alias: {

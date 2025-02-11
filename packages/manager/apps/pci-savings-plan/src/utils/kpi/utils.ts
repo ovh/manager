@@ -1,17 +1,27 @@
-import { SavingsPlanFlavorConsumption } from '@/types/savingsPlanConsumption.type';
+export const getPercentValue = (percentValues: string[]): number => {
+  if (!percentValues || percentValues.length === 0) return 0;
 
-export const getPercentValue = (
-  consumption: SavingsPlanFlavorConsumption,
-  key: 'utilization' | 'coverage',
-): string => {
-  const values = consumption.periods
-    .map((period) => parseFloat(period[key].replace('%', '')))
+  const validValues = percentValues
+    .map((value) => parseFloat(value.replace('%', '')))
     .filter((value) => !Number.isNaN(value));
 
-  if (!values.length) {
-    return '';
+  if (validValues.length === 0) return 0;
+
+  const average =
+    validValues.reduce((sum, value) => sum + value, 0) / validValues.length;
+  return Math.floor(average);
+};
+
+export const isCurrentPeriod = (period: Date): boolean => {
+  const now = new Date();
+  const periodDate = new Date(period);
+
+  if (Number.isNaN(periodDate.getTime())) {
+    return false;
   }
 
-  const average = values.reduce((sum, value) => sum + value, 0) / values.length;
-  return `${Math.floor(average)}%`;
+  return (
+    periodDate.getFullYear() === now.getFullYear() &&
+    periodDate.getMonth() === now.getMonth()
+  );
 };
