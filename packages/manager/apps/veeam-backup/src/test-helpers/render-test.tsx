@@ -25,7 +25,7 @@ import {
   toMswHandlers,
   getAuthenticationMocks,
 } from '@ovh-ux/manager-core-test-utils';
-import { getIamMocks } from '../../mocks';
+import { getIamMocks, getServiceConsumptionMocks } from '../../mocks';
 import { appName, productName } from '../veeam-backup.config';
 import { translations } from './labels';
 import { TestApp } from './TestApp';
@@ -48,6 +48,7 @@ export const renderTest = async ({
       ...getCatalogMocks(mockParams),
       ...getIamMocks(),
       ...getServicesMocks(mockParams),
+      ...getServiceConsumptionMocks(),
     ]),
   );
 
