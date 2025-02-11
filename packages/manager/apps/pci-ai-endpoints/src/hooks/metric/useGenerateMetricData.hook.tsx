@@ -157,11 +157,6 @@ const useGenerateMetricData = (
     isMoreThan12Months,
   } = useGenerateLabels(startDate, endDate);
 
-  if (labels.length === 0) {
-    return { labels: [], dataMap: {} };
-  }
-
-  // Generate the dataMap based on the labels and metrics
   const dataMap = useGenerateDataMap(
     labels,
     metrics,
@@ -170,7 +165,7 @@ const useGenerateMetricData = (
     isMoreThan12Months,
   );
 
-  return { labels, dataMap };
+  return { labels, dataMap: labels.length === 0 ? {} : dataMap };
 };
 
 export default useGenerateMetricData;
