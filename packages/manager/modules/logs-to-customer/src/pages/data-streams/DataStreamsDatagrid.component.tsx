@@ -26,11 +26,9 @@ import DataStreamIndexingStatus from '../../components/data-streams/DataStreamIn
 import DataStreamRetention from '../../components/data-streams/DataStreamRetention.component';
 import DataStreamSubscriptionsLink from '../../components/data-streams/DataStreamSubscriptionsLink.component';
 import DataStreamActions from '../../components/data-streams/DataStreamActions.component';
-import DataStreamAccountLink from '../../components/data-streams/DataStreamAccountLink.component';
 
 const STREAM_LIST_COLUMN_ID = {
   title: 'title',
-  service: 'service',
   description: 'description',
   indexation: 'indexation',
   retention: 'retention',
@@ -82,12 +80,6 @@ const DataStreamsDatagrid = ({ service }: { service: Service }) => {
       id: STREAM_LIST_COLUMN_ID.title,
       cell: (stream) => <div>{stream.title}</div>,
       label: t('log_streams_colomn_name'),
-      isSortable: false,
-    },
-    {
-      id: STREAM_LIST_COLUMN_ID.service,
-      cell: () => <DataStreamAccountLink service={service} />,
-      label: t('log_streams_colomn_account'),
       isSortable: false,
     },
     {

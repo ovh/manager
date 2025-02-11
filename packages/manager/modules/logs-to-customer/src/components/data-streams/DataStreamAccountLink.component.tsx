@@ -1,6 +1,5 @@
 import { Links, LinkType } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import React, { useContext, useEffect, useState } from 'react';
 import { Service } from '../../data/types/dbaas/logs';
 
@@ -21,7 +20,7 @@ const DataStreamAccountLink = ({ service }: { service: Service }) => {
       href={accountURL}
       label={service.serviceName}
       type={LinkType.external}
-      target={OdsHTMLAnchorElementTarget._blank}
+      target="_blank"
     />
   );
 };
