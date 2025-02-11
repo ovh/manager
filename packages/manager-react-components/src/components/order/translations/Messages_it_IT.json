@@ -1,9 +1,9 @@
 {
-  "order_configuration_cancel": "Annulla",
-  "order_configuration_order": "Ordina",
-  "order_summary_finish": "Termina",
+  "order_configuration_cancel": "Annullare",
+  "order_configuration_order": "Ordinare",
+  "order_summary_finish": "Terminare",
   "order_summary_product_default_label": "servizio",
-  "order_summary_order_initiated_title": "Ordine del {{product}} avviato",
-  "order_summary_order_initiated_subtitle": "Se non sei riuscito a completare l'ordine, clicca sul <OrderLink label='lien suivant' />",
+  "order_summary_order_initiated_title": "Ordine del tuo {{product}} avviato",
+  "order_summary_order_initiated_subtitle": "Se non hai potuto finalizzare l’ordine, completalo cliccando su <OrderLink label=\"lien suivant\">{{label}}</OrderLink>",
   "order_summary_order_initiated_info": "Ti informeremo della disponibilità del tuo {{product}} via email."
 }
