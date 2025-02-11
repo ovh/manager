@@ -27,7 +27,7 @@ export default function NodePoolType({
   return (
     <div>
       <OsdsText
-        className="ml-4 font-bold"
+        className="ml-4 block font-bold"
         color={ODS_TEXT_COLOR_INTENT.text}
         level={ODS_TEXT_LEVEL.body}
         size={ODS_THEME_TYPOGRAPHY_SIZE._400}
