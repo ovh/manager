@@ -1,4 +1,5 @@
 import React from 'react';
+// import { vi } from 'vitest';
 import { useNavigate, useParams, useResolvedPath } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
@@ -18,6 +19,7 @@ function DatacentreDashboardPage() {
   const { t } = useTranslation('dashboard');
   const { data: vcdDatacentre } = useVcdDatacentre(id, vdcId);
   const { data: vcdOrganization } = useVcdOrganization({ id });
+
   const navigate = useNavigate();
   useAutoRefetch({
     queryKey: getVcdDatacentreListQueryKey(id),

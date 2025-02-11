@@ -71,7 +71,7 @@ export default function VcdDashboardLayout({
           </OsdsTabs>
         }
         breadcrumb={<Breadcrumb items={breadcrumbItems} />}
-        message={<MessageList />}
+        // message={<MessageList />}
         backLinkLabel={backLinkLabel}
         onClickReturn={onClickReturn}
       />

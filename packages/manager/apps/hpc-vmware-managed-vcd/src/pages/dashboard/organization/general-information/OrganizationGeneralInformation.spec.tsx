@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import userEvents from '@testing-library/user-event';
 import { screen, waitFor } from '@testing-library/react';
 import { organizationList } from '@ovh-ux/manager-module-vcd-api';
@@ -12,6 +13,33 @@ import { renderTest, labels, mockSubmitNewValue } from '../../../../test-utils';
 
 const submitButtonLabel =
   labels.dashboard.managed_vcd_dashboard_edit_modal_cta_edit;
+
+vi.mock('@ovh-ux/manager-react-components', async (managerComonents) => {
+  const module = await managerComonents<
+    typeof import('@ovh-ux/manager-react-components')
+  >();
+  return {
+    ...module,
+    useInfiniteQuery: vi.fn(),
+    useResourcesIcebergV2: vi.fn().mockReturnValue({
+      data: {
+        pages: [
+          {
+            data: organizationList,
+            status: 200,
+            cursorNext: 'P9/pJ3+99fFh2OXXXXX',
+          },
+        ],
+      },
+      status: 'success',
+      fetchNextPage: vi.fn(),
+      hasNextPage: false,
+      cursorNext: 'P9/pJ3+99fFh2OXXXXX',
+      isLoading: false,
+      isFetchingNextPage: false,
+    }),
+  };
+});
 
 describe('Organization General Information Page', () => {
   it('modify the name of the organization', async () => {

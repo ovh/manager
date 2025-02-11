@@ -8,7 +8,7 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'jsdom',
-    setupFiles: '@ovh-ux/manager-core-test-utils/setup-file-msw-ods17.tsx',
+    setupFiles: './src/test-utils/setupTest.ts',
     coverage: {
       include: ['src'],
       exclude: [

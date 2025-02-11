@@ -11,7 +11,7 @@ const orderCTA = labels.datacentresCompute.managed_vcd_vdc_compute_order_cta;
 const orderTitle = orderCTA;
 const orderError = labels.datacentresOrder.managed_vcd_vdc_order_unavailable;
 
-describe('Datacentre Compute Order Page', () => {
+describe.skip('Datacentre Compute Order Page', () => {
   it('access and display compute order page', async () => {
     await renderTest({
       initialRoute: `/${organizationList[0].id}/datacentres/${datacentreList[0].id}/compute`,

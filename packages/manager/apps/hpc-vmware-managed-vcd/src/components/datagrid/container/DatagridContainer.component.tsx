@@ -70,6 +70,7 @@ export default function DatagridContainer({
     ) {
       navigate(onboarding);
     }
+
     const flatten = data?.pages.map((page: any) => page.data).flat();
     setFlattenData(flatten ?? []);
   }, [data]);

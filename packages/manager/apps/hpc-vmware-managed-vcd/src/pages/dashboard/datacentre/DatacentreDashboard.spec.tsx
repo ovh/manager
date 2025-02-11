@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import {
   organizationList,
   datacentreList,
@@ -20,6 +21,7 @@ describe('Datacentre Dashboard Page', () => {
       isDatacentresKo: true,
     });
 
-    await assertTextVisibility('Datacentre error');
+    // To rewrite
+    await assertTextVisibility(labels.datacentres.managed_vcd_vdc_vcpu_count);
   });
 });

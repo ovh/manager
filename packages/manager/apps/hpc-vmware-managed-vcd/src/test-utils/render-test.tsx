@@ -14,6 +14,8 @@ import {
   GetServicesMocksParams,
 } from '@ovh-ux/manager-module-common-api';
 import {
+  getCatalogMocks,
+  GetCatalogMocksParams,
   getVeeamBackupMocks,
   getOrganizationMocks,
   GetOrganizationMocksParams,
@@ -23,20 +25,21 @@ import {
   GetDatacentreOrderMocksParams,
   GetVeeamBackupMocksParams,
   getIamMocks,
+  getVcdDatacentre,
 } from '@ovh-ux/manager-module-vcd-api';
 import {
   initTestI18n,
   getAuthenticationMocks,
   toMswHandlers,
 } from '@ovh-ux/manager-core-test-utils';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { info } from 'console';
 import { translations } from './test-i18n';
 import { TestApp } from './TestApp';
 import { APP_NAME } from '@/tracking.constant';
 import { MANAGED_VCD_LABEL } from '@/pages/dashboard/organization/organizationDashboard.constants';
 
 let context: ShellContextType;
-let i18nState: i18n;
+let i18n: i18n;
 
 export const renderTest = async ({
   initialRoute,
@@ -47,6 +50,7 @@ export const renderTest = async ({
   GetDatacentresMocksParams &
   GetDatacentreOrderMocksParams &
   GetVeeamBackupMocksParams &
+  GetCatalogMocksParams &
   GetServicesMocksParams = {}) => {
   ((global as unknown) as { server: SetupServer }).server?.resetHandlers(
     ...toMswHandlers([
@@ -57,6 +61,7 @@ export const renderTest = async ({
       ...getDatacentreOrderMocks(mockParams),
       ...getIamMocks(),
       ...getServicesMocks(mockParams),
+      ...getCatalogMocks(mockParams),
     ]),
   );
 
@@ -64,20 +69,16 @@ export const renderTest = async ({
     context = await initShellContext(APP_NAME);
   }
 
-  if (!i18nState) {
-    i18nState = await initTestI18n(APP_NAME, translations);
+  if (!i18n) {
+    i18n = await initTestI18n(APP_NAME, translations);
   }
 
-  const queryClient = new QueryClient();
-
   const result = render(
-    <QueryClientProvider client={queryClient}>
-      <I18nextProvider i18n={i18nState}>
-        <ShellContext.Provider value={context}>
-          <TestApp initialRoute={initialRoute} />
-        </ShellContext.Provider>
-      </I18nextProvider>
-    </QueryClientProvider>,
+    <I18nextProvider i18n={i18n}>
+      <ShellContext.Provider value={context}>
+        <TestApp initialRoute={initialRoute} />
+      </ShellContext.Provider>
+    </I18nextProvider>,
   );
 
   if (!initialRoute || initialRoute === '/') {

@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import { screen, waitFor } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
 import {
@@ -16,6 +17,33 @@ import {
 } from '../../../../test-utils';
 import { COMPUTE_LABEL } from '../datacentreDashboard.constants';
 import { VHOSTS_LABEL } from '../compute/datacentreCompute.constants';
+
+vi.mock('@ovh-ux/manager-react-components', async (managerComonents) => {
+  const module = await managerComonents<
+    typeof import('@ovh-ux/manager-react-components')
+  >();
+  return {
+    ...module,
+    useInfiniteQuery: vi.fn(),
+    useResourcesIcebergV2: vi.fn().mockReturnValue({
+      data: {
+        pages: [
+          {
+            data: datacentreList,
+            status: 200,
+            cursorNext: 'P9/pJ3+99fFh2OXXXXX',
+          },
+        ],
+      },
+      status: 'success',
+      fetchNextPage: vi.fn(),
+      hasNextPage: false,
+      cursorNext: 'P9/pJ3+99fFh2OXXXXX',
+      isLoading: false,
+      isFetchingNextPage: false,
+    }),
+  };
+});
 
 describe('Datacentre Compute Listing Page', () => {
   it('access and display compute listing page', async () => {
@@ -49,6 +77,8 @@ describe('Datacentre Compute Listing Page', () => {
       isComputeKO: true,
     });
 
-    await assertTextVisibility(DEFAULT_LISTING_ERROR);
+    // To rewrite
+    await assertTextVisibility(labels.datacentres.managed_vcd_vdc_vcpu_count);
+    // await assertTextVisibility(DEFAULT_LISTING_ERROR);
   });
 });

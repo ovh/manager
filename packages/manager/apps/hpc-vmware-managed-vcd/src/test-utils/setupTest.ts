@@ -2,9 +2,9 @@ import { vi } from 'vitest';
 import {
   organizationList,
   datacentreList,
+  backupList,
 } from '@ovh-ux/manager-module-vcd-api';
-import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
-import { renderTest, labels } from '../../../test-utils';
+import '@ovh-ux/manager-core-test-utils/setup-file-msw-ods17.tsx';
 
 vi.mock('@ovh-ux/manager-react-components', async (managerComonents) => {
   const module = await managerComonents<
@@ -17,7 +17,7 @@ vi.mock('@ovh-ux/manager-react-components', async (managerComonents) => {
       data: {
         pages: [
           {
-            data: organizationList,
+            data: datacentreList,
             status: 200,
             cursorNext: 'P9/pJ3+99fFh2OXXXXX',
           },
@@ -33,12 +33,18 @@ vi.mock('@ovh-ux/manager-react-components', async (managerComonents) => {
   };
 });
 
-describe('Organizations Listing Page', () => {
-  it('display the listing page if there is at least one organization', async () => {
-    await renderTest({ nbOrganization: 1 });
-
-    await assertTextVisibility(labels.listing.managed_vcd_listing_description);
-
-    await assertTextVisibility(organizationList[0].currentState.fullName);
-  });
+vi.mock(import('@ovh-ux/manager-module-vcd-api'), async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...actual,
+    useVcdDatacentre: vi.fn().mockImplementation(() => ({
+      data: datacentreList,
+    })),
+    useVcdOrganization: vi.fn().mockImplementation(() => ({
+      data: organizationList,
+    })),
+    useVeeamBackup: vi.fn().mockImplementation(() => ({
+      data: backupList,
+    })),
+  };
 });

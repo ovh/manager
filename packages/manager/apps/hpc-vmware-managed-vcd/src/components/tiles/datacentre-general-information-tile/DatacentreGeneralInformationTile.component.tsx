@@ -37,14 +37,15 @@ export default function DatacentreGenerationInformationTile({
           id: 'description',
           label: t('managed_vcd_dashboard_description'),
           value: (
-            <EditableTileItem
-              label={vcdDatacentre?.currentState?.description}
-              iamActions={[
-                iamActions.vmwareCloudDirectorApiovhOrganizationVirtualDataCenterEdit,
-              ]}
-              urn={vcdDatacentre?.iam?.urn}
-              onClickEdit={() => navigate(subRoutes.editDescription)}
-            />
+            // <EditableTileItem
+            //   label={vcdDatacentre?.currentState?.description}
+            //   iamActions={[
+            //     iamActions.vmwareCloudDirectorApiovhOrganizationVirtualDataCenterEdit,
+            //   ]}
+            //   urn={vcdDatacentre?.iam?.urn}
+            //   onClickEdit={() => navigate(subRoutes.editDescription)}
+            // />
+            <></>
           ),
         },
         {

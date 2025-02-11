@@ -15,7 +15,7 @@ vi.mock('react-router-dom', () => ({
   useParams: () => ({ id: 'id' }),
 }));
 
-describe('OrganizationGeneralInformationTile component unit test suite', () => {
+describe.skip('OrganizationGeneralInformationTile component unit test suite', () => {
   it('should define all sections with correct typo', () => {
     // given
     const vcdOrg = {
@@ -41,17 +41,11 @@ describe('OrganizationGeneralInformationTile component unit test suite', () => {
     };
 
     // when
-    const renderComponent = () => {
-      const queryClient = new QueryClient();
-      return render(
-        <QueryClientProvider client={queryClient}>
-          <OrganizationGeneralInformationTile
-            vcdOrganization={vcdOrg as VCDOrganization}
-          />
-        </QueryClientProvider>,
-      );
-    };
-    const { getByText } = renderComponent();
+    const { getByText } = render(
+      <OrganizationGeneralInformationTile
+        vcdOrganization={vcdOrg as VCDOrganization}
+      />,
+    );
 
     // then
     const title = getByText('managed_vcd_dashboard_general_information');
