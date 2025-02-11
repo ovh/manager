@@ -1,7 +1,6 @@
 import { TabsPanel, useProject } from '@ovh-ux/manager-pci-common';
 import {
   BaseLayout,
-  PciGuidesHeader,
   RedirectionGuard,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
@@ -16,9 +15,15 @@ import {
 import {
   OdsBreadcrumb,
   OdsBreadcrumbItem,
+  OdsLink,
+  OdsText,
 } from '@ovhcloud/ods-components/react';
+import { useContext } from 'react';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { ROUTE_PATHS } from '@/routes';
 import { useArchives } from '@/api/hooks/useArchive';
+import { CHECK_PRICES_DOC_LINK } from '@/constants';
+import GuideMenu from '@/components/GuideMenu.component';
 
 export default function ColdArchivePage() {
   const { t } = useTranslation('cold-archive');
@@ -30,6 +35,7 @@ export default function ColdArchivePage() {
   const { data: project } = useProject();
 
   const { data: allArchives, isPending } = useArchives(project.project_id);
+  const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
 
   const tabs = [
     {
@@ -43,6 +49,9 @@ export default function ColdArchivePage() {
       to: useResolvedPath(ROUTE_PATHS.USER_LIST).pathname,
     },
   ];
+
+  const priceLink =
+    CHECK_PRICES_DOC_LINK[ovhSubsidiary] || CHECK_PRICES_DOC_LINK.DEFAULT;
 
   return (
     <RedirectionGuard
@@ -70,12 +79,22 @@ export default function ColdArchivePage() {
         }
         header={{
           title: t('pci_projects_project_storages_cold_archive_label'),
-          description: t(
-            'pci_projects_project_storages_cold_archive_description',
-          ),
-          // @TODO add link to consult price
-          // @TODO Use correct guide  from cold archive
-          headerButton: <PciGuidesHeader category="objectStorage" />,
+          headerButton: <GuideMenu />,
+          description: ((
+            <>
+              <OdsText preset="paragraph" className="block mb-8">
+                {t('pci_projects_project_storages_cold_archive_description')}
+              </OdsText>
+              <OdsLink
+                label={t(
+                  'pci_projects_project_storages_cold_archive_price_link',
+                )}
+                target="_blank"
+                icon="external-link"
+                href={priceLink}
+              />
+            </>
+          ) as unknown) as string,
         }}
         tabs={<TabsPanel tabs={tabs} />}
       >
