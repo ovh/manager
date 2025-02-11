@@ -63,12 +63,6 @@ export function Autoscaling({
   const maxValue = isAntiAffinity ? ANTI_AFFINITY_MAX_NODES : NODE_RANGE.MAX;
 
   useEffect(() => {
-    if (isAntiAffinity) {
-      setIsAutoscale(!isAntiAffinity);
-    }
-  }, [isAntiAffinity]);
-
-  useEffect(() => {
     onChange?.({
       quantity,
       isAutoscale,
@@ -81,7 +75,7 @@ export function Autoscaling({
       min: initialScaling ? initialScaling.min : 0,
       max: initialScaling ? initialScaling.max : NODE_RANGE.MAX,
     });
-  }, [isAutoscale, maxValue]);
+  }, []);
 
   return (
     <>
@@ -164,7 +158,7 @@ export function Autoscaling({
               }))
             }
             min={0}
-            max={quantity.max < maxValue ? quantity.max : maxValue}
+            max={quantity.max <= maxValue ? quantity.desired : maxValue}
           />
           <QuantitySelector
             className="mt-8"
@@ -176,7 +170,7 @@ export function Autoscaling({
                 max,
               }))
             }
-            min={quantity.min > maxValue ? maxValue : quantity.min}
+            min={quantity.min >= maxValue ? maxValue : quantity.desired}
             max={maxValue}
           />
         </>
