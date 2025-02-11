@@ -385,3 +385,27 @@ export const COLD_ARCHIVE_CONTAINER_STATUS = {
   RESTORED: 'restored',
   RESTORING: 'restoring',
 };
+
+export const CHECK_PRICES_DOC_LINK = {
+  DEFAULT: 'https://www.ovhcloud.com/en/public-cloud/prices/#11500',
+  FR: 'https://www.ovhcloud.com/fr/public-cloud/prices/#11500',
+  MA: 'https://www.ovhcloud.com/fr-ma/public-cloud/prices/#11500',
+  TN: 'https://www.ovhcloud.com/fr-tn/public-cloud/prices/#11500',
+  SN: 'https://www.ovhcloud.com/fr-sn/public-cloud/prices/#11500',
+  QC: 'https://www.ovhcloud.com/fr-ca/public-cloud/prices/#11500',
+  GB: 'https://www.ovhcloud.com/en-gb/public-cloud/prices/#11500',
+  IE: 'https://www.ovhcloud.com/en-ie/public-cloud/prices/#11500',
+  WE: 'https://www.ovhcloud.com/en/public-cloud/prices/#11500',
+  CA: 'https://www.ovhcloud.com/en-ca/public-cloud/prices/#11500',
+  AU: 'https://www.ovhcloud.com/en-au/public-cloud/prices/#11500',
+  SG: 'https://www.ovhcloud.com/en-sg/public-cloud/prices/#11500',
+  ASIA: 'https://www.ovhcloud.com/asia/public-cloud/prices/#11500',
+  IN: 'https://www.ovhcloud.com/en-in/public-cloud/prices/#11500',
+  ES: 'https://www.ovhcloud.com/es-es/public-cloud/prices/#11500',
+  WS: 'https://www.ovhcloud.com/es/public-cloud/prices/#11500',
+  PT: 'https://www.ovhcloud.com/pt/public-cloud/prices/#11500',
+  IT: 'https://www.ovhcloud.com/it/public-cloud/prices/#11500',
+  PL: 'https://www.ovhcloud.com/pl/public-cloud/prices/#11500',
+  DE: 'https://www.ovhcloud.com/de/public-cloud/prices/#11500',
+  NL: 'https://www.ovhcloud.com/nl/public-cloud/prices/#11500',
+};

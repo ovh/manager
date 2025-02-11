@@ -7,12 +7,8 @@ import {
   RedirectionGuard,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
-import {
-  PciAnnouncementBanner,
-  useProductRegionsAvailability,
-  useProject,
-} from '@ovh-ux/manager-pci-common';
-import { Suspense, useContext } from 'react';
+import { PciAnnouncementBanner, useProject } from '@ovh-ux/manager-pci-common';
+import { useContext } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   OdsBreadcrumb,
