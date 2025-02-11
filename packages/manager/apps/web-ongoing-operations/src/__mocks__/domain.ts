@@ -1,4 +1,6 @@
-export const domain = [
+import { TOngoingOperations } from '@/types';
+
+export const domain: TOngoingOperations[] = [
   {
     id: 1,
     domain: 'case-where-modal-cant-be-open.ovh',
