@@ -28,6 +28,10 @@ export const useOngoingOperationDatagridColumns = (
               label={isDomain ? props.domain : props.zone}
               target="_blank"
               data-testid={isDomain ? props.domain : props.zone}
+              href={`https://www.ovh.com/manager/#/web/domain/${props.domain}/information`}
+              label={props.domain}
+              target="_blank"
+              data-testid={props.domain}
             />
           </DataGridTextCell>
         ),

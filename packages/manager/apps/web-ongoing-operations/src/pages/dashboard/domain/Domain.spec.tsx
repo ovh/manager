@@ -11,10 +11,6 @@ import { render, waitFor, screen } from '@testing-library/react';
 import { domain } from '@/__mocks__/domain';
 import Domain from '@/pages/dashboard/domain/Domain';
 
-vi.mock('@/utils/utils', () => ({
-  formatDate: vi.fn(),
-}));
-
 vi.mock('react-router-dom', () => ({
   useNavigate: vi.fn(),
 }));

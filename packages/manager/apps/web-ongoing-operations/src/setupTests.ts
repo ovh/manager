@@ -40,8 +40,3 @@ vi.mock('@/utils/utils', () => ({
   formatDate: vi.fn(),
   removeString: vi.fn(),
 }));
-
-vi.mock('@/utils/utils', () => ({
-  formatDate: vi.fn(),
-  removeString: vi.fn(),
-}));
