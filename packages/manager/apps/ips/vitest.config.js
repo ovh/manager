@@ -8,11 +8,12 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'jsdom',
-    setupFiles: ['./setup-test.tsx'],
+    setupFiles: ['setupTest.tsx'],
     coverage: {
       include: ['src'],
       exclude: [
         'src/App.tsx',
+        'src/test-utils',
         'src/index.tsx',
         'src/tracking.constant.ts',
         'src/vite-hmr.ts',
