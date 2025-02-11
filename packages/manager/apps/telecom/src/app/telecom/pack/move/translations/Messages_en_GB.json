@@ -39,7 +39,6 @@
   "pack_move_cannot_validate_move": "We are unable to move your pack: {{message}}",
   "pack_move_line_current_address": "Current address",
   "pack_move_line_future_address": "Future address",
-  "pack_move_portLine_cost": "You will be charged <span class=\"font-weight-bold text-price\">€50</span> to keep your number.",
   "pack_move_eligibility_error": "An error occurred during the eligibility test:",
   "pack_move_eligibility_no_offers": "The line {{ number }} is not eligible for any of our plans.",
   "pack_move_portLine_disabled": "You cannot move your number.",
