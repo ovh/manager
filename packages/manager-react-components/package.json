@@ -108,17 +108,24 @@
     "vite-plugin-dts": "3.5.1",
     "vite-plugin-static-copy": "^2.0.0",
     "vitest": "^1.2.0",
-    "zustand": "^4.5.5"
+    "zustand": "^4.5.5",
+    "axios-mock-adapter": "^2.1.0",
+    "@ovh-ux/manager-common-translations": "*",
+    "date-fns": "^2.24.0",
+    "@testing-library/user-event": "^14.5.2",
+    "@ovh-ux/manager-module-common-api": "*"
   },
   "peerDependencies": {
     "@ovh-ux/manager-core-api": "^0.9.0-alpha.0",
     "@ovh-ux/manager-react-shell-client": "^0.8.5",
+    "@ovh-ux/manager-module-common-api": "*",
     "@ovhcloud/ods-components": "^18.3.0",
     "@ovhcloud/ods-themes": "^18.3.0",
     "i18next": "^23.8.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.3.0",
-    "zustand": "^4.5.5"
+    "zustand": "^4.5.5",
+    "date-fns": "^2.24.0"
   }
 }
