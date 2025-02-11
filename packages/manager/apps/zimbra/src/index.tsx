@@ -9,6 +9,7 @@ import App from './App';
 import './index.scss';
 import './vite-hmr';
 import { APP_NAME, LEVEL2, SUB_UNIVERSE, UNIVERSE } from './tracking.constant';
+import 'element-internals-polyfill';
 
 const trackingContext = {
   chapter1: UNIVERSE,
