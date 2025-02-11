@@ -79,4 +79,18 @@ export default class Vrack {
       `/vrack/${vrackId}/vrackServices/${vrackServicesId}`,
     );
   }
+
+  getVrackStatus(vrackId) {
+    return this.$http
+      .get(`/services?resourceName=${vrackId}`)
+      .then(({ data }) => {
+        const [serviceId] = data;
+        return this.$http.get(`/services/${serviceId}`);
+      })
+      .then(({ data }) => data?.resource?.state);
+  }
+
+  terminateVrack(serviceName) {
+    return this.$http.post(`/vrack/${serviceName}/terminate`);
+  }
 }

@@ -15,6 +15,7 @@ export default class {
     dedicatedCloudDrp,
     ipFeatureAvailability,
     OvhApiDedicatedCloud,
+    coreURLBuilder,
   ) {
     this.$q = $q;
     this.$translate = $translate;
@@ -24,6 +25,7 @@ export default class {
     this.OvhApiDedicatedCloud = OvhApiDedicatedCloud;
     this.MAC_ADDRESS_REG_EXP = DEDICATEDCLOUD_DATACENTER_DRP_IP_USAGE_MAC_ADDRESS_REG_EXP;
     this.UNAVAILABLE_IP_STATUSES = DEDICATEDCLOUD_DATACENTER_DRP_UNAVAILABLE_IP_STATUS;
+    this.coreURLBuilder = coreURLBuilder;
   }
 
   updateOptions(secondaryPcc) {
@@ -33,10 +35,9 @@ export default class {
     this.drpInformations.secondaryDatacenter = null;
     this.selectedSecondaryIpAddress = null;
 
-    this.ipOrderLink = this.getIpOrderLink(
-      this.drpInformations.drpType,
-      this.ipFeatureAvailability.allowIPFailoverOrder(),
-      this.configurationStepName,
+    this.ipOrderLink = this.coreURLBuilder.buildURL(
+      'dedicated',
+      '#/ip/agoraOrder',
     );
 
     this.OvhApiDedicatedCloud.Ip()

@@ -36,7 +36,6 @@
   "vrack_menu_add": "vRack erstellen",
   "vrack_menu_project_num": "vRack {{num}}",
   "vrack_service_type_dedicatedserver": "Dedicated Server",
-  "vrack_service_type_ovhcloudconnect": "OVHcloud Connect",
   "vrack_service_type_dedicatedcloud": "Private Cloud",
   "vrack_service_type_managedbaremetal": "Managed Bare Metal",
   "vrack_service_type_dedicatedconnect": "Dedicated Connect",
@@ -46,11 +45,14 @@
   "vrack_service_type_ip": "IP",
   "vrack_service_type_cloudproject": "Cloud Projekt",
   "vrack_service_type_iploadbalancing": "Loadbalancer",
-  "vrack_service_type_vrackservices": "vRack Services",
-  "vrack_select_dialog_modal_description_for_ipv6": "Bitte beachten Sie, dass zusätzliche IPv6-Blöcke immer nur einmal hinzugefügt/entfernt werden können.",
-  "vrack_select_dialog_modal_description_for_vs": "Bitte beachten Sie, dass das Hinzufügen und Entfernen von vRack Services-Produkten immer nur einmal möglich ist.",
   "vrack_add_dialog_modal_title": "Einen oder mehrere Dienst(e) hinzufügen",
   "vrack_add_dialog_modal_description": "Sind Sie sicher, dass Sie {{ services }} zu Ihrem vRack hinzufügen möchten?",
   "vrack_delete_dialog_modal_title": "Einen oder mehrere Dienst(e) entfernen",
-  "vrack_delete_dialog_modal_description": "Sind Sie sicher, dass Sie {{ services }} aus Ihrem vRack entfernen möchten?"
+  "vrack_delete_dialog_modal_description": "Sind Sie sicher, dass Sie {{ services }} aus Ihrem vRack entfernen möchten?",
+  "vrack_service_type_ovhcloudconnect": "OVHcloud Connect",
+  "vrack_service_type_vrackservices": "vRack Services",
+  "vrack_select_dialog_modal_description_for_ipv6": "Bitte beachten Sie, dass zusätzliche IPv6-Blöcke immer nur einmal hinzugefügt/entfernt werden können.",
+  "vrack_select_dialog_modal_description_for_vs": "Bitte beachten Sie, dass das Hinzufügen und Entfernen von vRack Services-Produkten immer nur einmal möglich ist.",
+  "vrack_terminate_modal_success_banner": "Ihre Anfrage zur Löschung Ihres vRack wurde registriert. Eine E-Mail mit weiteren Informationen zur Vorgehensweise wurde soeben an Sie versandt.",
+  "vrack_terminate_modal_error_banner": "Das Löschen Ihres vRack ist fehlgeschlagen. Bitte überprüfen Sie, ob Ihr vRack leer ist."
 }

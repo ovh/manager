@@ -34,5 +34,6 @@
   "netapp_volumes_snapshots_actions_hold": "Zapisz",
   "netapp_volumes_snapshots_hold_action_doing": "Dyspozycja wykonania snapshota została przyjęta. Będzie on dostępny w ciągu kilku minut.",
   "netapp_volumes_snapshots_hold_action_success": "Snapshot został wykonany.",
-  "netapp_volumes_snapshots_hold_action_error": "Wystąpił błąd podczas wykonywania snapshota."
+  "netapp_volumes_snapshots_hold_action_error": "Wystąpił błąd podczas wykonywania snapshota.",
+  "netapp_volumes_snapshots_actions_create_volume": "Utwórz wolumen"
 }
