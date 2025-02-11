@@ -27,6 +27,7 @@ describe('useClusterCreationStepper', () => {
       network: null,
       flavor: null,
       scaling: null,
+      nodePoolName: '',
       clusterName: '',
       isMonthlyBilled: false,
       antiAffinity: false,

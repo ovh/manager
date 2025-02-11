@@ -18,12 +18,12 @@ import { ANTI_AFFINITY_MAX_NODES } from '@/constants';
 type NodePoolAntiAffinityProps = {
   isChecked: boolean;
   isEnabled: boolean;
-  nodePoolEnabled;
   onChange: (val: boolean) => void;
 };
 const NodePoolAntiAffinity = ({
   isChecked,
   onChange,
+  isEnabled,
 }: NodePoolAntiAffinityProps) => {
   const { t } = useTranslation('billing-anti-affinity');
   const { t: tNodePool } = useTranslation('node-pool');
@@ -49,9 +49,11 @@ const NodePoolAntiAffinity = ({
       </OsdsText>
       <OsdsFormField className="mt-8" inline>
         <OsdsToggle
+          data-testid="toggle-anti-affinity"
+          disabled={!isEnabled || undefined}
           color={ODS_THEME_COLOR_INTENT.primary}
           checked={isChecked || undefined}
-          onClick={() => onChange(!isChecked)}
+          onClick={() => isEnabled && onChange(!isChecked)}
         >
           <OsdsText
             className="ml-4 font-bold"
