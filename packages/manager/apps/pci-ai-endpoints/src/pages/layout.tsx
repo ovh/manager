@@ -113,11 +113,16 @@ export default function Layout() {
 
     if (!currentActiveTab && filteredTabs.length > 0) {
       [currentActiveTab] = filteredTabs;
-      navigate(currentActiveTab.to);
     }
 
     return { visibleTabs: filteredTabs, activeTab: currentActiveTab };
-  }, [metricsData.data, path, tabsList, navigate]);
+  }, [metricsData.data, path, tabsList]);
+
+  useEffect(() => {
+    if (!activeTab && visibleTabs.length > 0) {
+      navigate(visibleTabs[0].to);
+    }
+  }, [activeTab, visibleTabs, navigate]);
 
   const headerProps: HeadersProps = {
     title: titleHeader,

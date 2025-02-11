@@ -42,21 +42,16 @@ export const useParseDates = (start: string | Date, end: string | Date) => {
 };
 
 export const useGenerateLabels = (startDate: Date, endDate: Date) => {
-  if (startDate > endDate) {
-    return {
-      labels: [],
-      isSingleDay: false,
-      isMoreThan2Months: false,
-      isMoreThan12Months: false,
-    };
-  }
-
   const monthsDifference = differenceInMonths(endDate, startDate);
   const isSingleDay = isSameDay(startDate, endDate);
   const isMoreThan2Months = differenceInDays(endDate, startDate) >= 62;
   const isMoreThan12Months = monthsDifference >= 12;
 
   const labels = useMemo(() => {
+    if (startDate > endDate) {
+      return []; // On retourne un tableau vide si la période est invalide
+    }
+
     if (isSingleDay) {
       return Array.from({ length: 24 }, (_, i) => `${i}:00`);
     }
@@ -86,6 +81,7 @@ export const useGenerateLabels = (startDate: Date, endDate: Date) => {
     monthsDifference,
   ]);
 
+  // Retourner l'objet normalement après que tous les hooks ont été appelés
   return { labels, isSingleDay, isMoreThan2Months, isMoreThan12Months };
 };
 
@@ -101,7 +97,9 @@ const useGenerateDataMap = (
   isMoreThan12Months?: boolean,
 ) => {
   return useMemo(() => {
-    if (!metrics || metrics.length === 0) return {};
+    if (!metrics || metrics.length === 0) {
+      return {};
+    }
 
     return metrics.reduce((map, { unit, data }) => {
       if (unit === 'num_requests') return map;
