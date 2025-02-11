@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.18.0...@ovh-ux/manager-iplb@1.19.0) (2025-02-11)
+
+
+### Features
+
+* **dedicated:** add iplb delete option for us ([#14243](https://github.com/ovh/manager/issues/14243)) ([6a7ee2e](https://github.com/ovh/manager/commit/6a7ee2e34fd29c9ae7daf18e0a934bda410b1ace))
+
+
+
+
+
 # [1.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.17.1...@ovh-ux/manager-iplb@1.18.0) (2024-12-11)
 
 
