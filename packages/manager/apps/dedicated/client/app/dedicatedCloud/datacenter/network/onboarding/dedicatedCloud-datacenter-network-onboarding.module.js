@@ -3,9 +3,6 @@ import routing from './dedicatedCloud-datacenter-network-onboarding.routing';
 
 const moduleName = 'ovhManagerDedicatedCloudDatacenterNetworkOnboardingModule';
 
-angular
-  .module(moduleName, [networkOnboardingComponent])
-  .config(routing)
-  .run(/* @ngTranslationsInject:json ./translations */);
+angular.module(moduleName, [networkOnboardingComponent]).config(routing);
 
 export default moduleName;

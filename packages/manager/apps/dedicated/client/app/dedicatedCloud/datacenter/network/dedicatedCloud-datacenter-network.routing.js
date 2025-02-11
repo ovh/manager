@@ -1,4 +1,5 @@
 import { NSXT_EDGE_PLAN_CODE } from '../../../components/dedicated-cloud/datacenter/network/onboarding/dedicatedCloud-datacenter-network-onboarding.constants';
+import { NETWORK_LABEL } from '../dedicatedCloud-datacenter.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
@@ -43,8 +44,7 @@ export default /* @ngInject */ ($stateProvider) => {
           serviceOptions.some(
             (option) => option.billing.plan.code === NSXT_EDGE_PLAN_CODE,
           ),
-        breadcrumb: /* @ngInject */ ($translate) =>
-          $translate.instant('dedicated_cloud_datacenters_datacenter_network'),
+        breadcrumb: () => NETWORK_LABEL,
       },
     },
   );

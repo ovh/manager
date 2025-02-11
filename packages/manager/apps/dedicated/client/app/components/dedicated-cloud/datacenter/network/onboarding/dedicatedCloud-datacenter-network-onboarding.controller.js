@@ -4,6 +4,7 @@ import {
   NSXT_EDGE_PLAN_CODE,
   NSXT_EDGE_PRICING_MODE,
 } from './dedicatedCloud-datacenter-network-onboarding.constants';
+import { NETWORK_LABEL } from '../../../../../dedicatedCloud/datacenter/dedicatedCloud-datacenter.constants';
 import NETWORK_LOGO from './assets/network.png';
 
 export default class {
@@ -13,6 +14,7 @@ export default class {
     this.coreConfig = coreConfig;
     this.illustration = NETWORK_LOGO;
     this.expressOrderUrl = RedirectionService.getURL('expressOrder');
+    this.NETWORK_LABEL = NETWORK_LABEL;
   }
 
   $onInit() {
@@ -31,12 +33,12 @@ export default class {
       description: this.$translate.instant(guide.description),
     }));
 
-    this.orderLink = `${this.expressOrderUrl}?=products=${JSURL.stringify([
+    this.orderLink = `${this.expressOrderUrl}?products=${JSURL.stringify([
       {
         productId: 'privateCloud',
         serviceName: this.productId,
         planCode: NSXT_EDGE_PLAN_CODE,
-        duration: '1PM',
+        duration: 'P1M',
         pricingMode: NSXT_EDGE_PRICING_MODE,
         quantity: 1,
       },

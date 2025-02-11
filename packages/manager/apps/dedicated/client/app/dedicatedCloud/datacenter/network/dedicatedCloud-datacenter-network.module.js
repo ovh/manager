@@ -6,7 +6,6 @@ const moduleName = 'ovhManagerDedicatedCloudDatacenterNetworkModule';
 
 angular
   .module(moduleName, [networkComponent, onboardingModule])
-  .config(routing)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .config(routing);
 
 export default moduleName;

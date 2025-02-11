@@ -1,3 +1,4 @@
+export const NETWORK_LABEL = 'Network';
 export const NSX_COMPATIBLE_COMMERCIAL_RANGE = [
   'NSX',
   'NSX-T',
@@ -7,4 +8,5 @@ export const NSX_COMPATIBLE_COMMERCIAL_RANGE = [
 
 export default {
   NSX_COMPATIBLE_COMMERCIAL_RANGE,
+  NETWORK_LABEL,
 };
