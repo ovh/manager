@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-restricted-app@0.9.1...@ovh-ux/manager-restricted-app@0.10.0) (2025-02-11)
+
+
+### Features
+
+* dummy changes to test new deploy method ([f3f3f31](https://github.com/ovh/manager/commit/f3f3f311485dcbd149f22801d8381e2cc5303ff4))
+
+
+
+
+
 ## [0.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-restricted-app@0.9.0...@ovh-ux/manager-restricted-app@0.9.1) (2025-02-06)
 
 **Note:** Version bump only for package @ovh-ux/manager-restricted-app
