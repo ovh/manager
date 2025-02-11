@@ -21,11 +21,13 @@ export default /* @ngInject */ ($stateProvider) => {
       defaultFilterColumn: () => 'name',
       header: /* @ngInject */ ($translate) => $translate.instant('zones_title'),
       customizableColumns: () => true,
+      domaine: /* @ngInject */ ($http) =>
+        $http.get('/domain').then(({ data }) => data),
       columns: /* @ngInject */ ($translate) => [
         {
           property: 'name',
           title: $translate.instant('zones_domain_name'),
-          template: `<a data-ng-href="{{ $ctrl.getServiceNameLink($row) }}" data-ng-bind="$row.name"></a>`,
+          template: `<a data-ng-href="{{ :: $ctrl.getServiceNameLink($row) }}" data-ng-bind="$row.name"></a>`,
           searchable: true,
           sortable: 'asc',
           filterable: true,
@@ -67,10 +69,16 @@ export default /* @ngInject */ ($stateProvider) => {
           },
         },
       ],
-      getServiceNameLink: /* @ngInject */ ($state) => ({ name: productId }) =>
-        $state.href('app.zone.details', {
-          productId,
-        }),
+      getServiceNameLink: /* @ngInject */ (
+        $state,
+        domaine,
+        coreURLBuilder,
+      ) => ({ name: productId }) =>
+        domaine.find((item) => item === productId)
+          ? coreURLBuilder.buildURL('web', `#/domain/${productId}/zone`)
+          : $state.href('app.zone.details', {
+              productId,
+            }),
       topbarOptions: /* @ngInject */ ($translate, $state, atInternet) => ({
         cta: {
           type: 'button',
