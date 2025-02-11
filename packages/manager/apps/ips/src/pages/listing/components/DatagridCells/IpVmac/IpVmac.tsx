@@ -6,7 +6,7 @@ import { ipFormatter } from '@/utils/ipFormatter';
 import { SkeletonCell } from '../SkeletonCell/SkeletonCell';
 import { ListingContext } from '@/pages/listing/listingContext';
 
-export type IpDdosProps = {
+export type IpVmacProps = {
   ip: string;
 };
 
@@ -18,7 +18,7 @@ export type IpDdosProps = {
  * @param ip the ip with mask
  * @returns React Component
  */
-export const IpVmac = ({ ip }: IpDdosProps) => {
+export const IpVmac = ({ ip }: IpVmacProps) => {
   const { expiredIps } = useContext(ListingContext);
   // Check if ip is a group
   const { isGroup } = ipFormatter(ip);
