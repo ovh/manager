@@ -30,8 +30,8 @@ export const SYSTEM_PASSWORD_INPUTS: TextInputData<keyof SystemForm>[] = [
     validator: { isRequired: true },
   },
   {
-    name: 'sidamnPassword',
-    label: FORM_LABELS.sidamnPassword,
+    name: 'sidadmPassword',
+    label: FORM_LABELS.sidadmPassword,
     validator: { isRequired: true },
   },
   {
