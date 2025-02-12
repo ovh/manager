@@ -75,7 +75,11 @@ const Dashboard: React.FC = () => {
         setPeriod={setPeriod}
         periodOptions={periodOptions}
       />
-      <Kpis isLoading={isConsumptionLoading} consumption={currentConsumption} />
+      <Kpis
+        isLoading={isConsumptionLoading}
+        consumption={currentConsumption}
+        period={period}
+      />
       <ConsumptionDatagrid
         isLoading={isConsumptionLoading}
         consumption={currentConsumption}
