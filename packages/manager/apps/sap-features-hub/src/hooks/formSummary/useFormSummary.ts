@@ -54,8 +54,8 @@ export const useFormSummary = () => {
           isSecretValue: true,
         },
         {
-          value: values.sidamnPassword,
-          label: FORM_LABELS.sidamnPassword,
+          value: values.sidadmPassword,
+          label: FORM_LABELS.sidadmPassword,
           isSecretValue: true,
         },
         {

@@ -14,7 +14,7 @@ export const installationInitialValues: InstallationFormValues = {
   sapHanaSid: '',
   masterSapPassword: '',
   masterSapHanaPassword: '',
-  sidamnPassword: '',
+  sidadmPassword: '',
   systemPassword: '',
   bucketId: '',
   endpoint: '',
