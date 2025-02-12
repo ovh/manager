@@ -1,0 +1,30 @@
+<oui-dropdown class="d-flex">
+    <button
+        class="oui-dropdown__trigger oui-button oui-button_ghost oui-button_icon-left d-flex align-items-center"
+        oui-dropdown-trigger
+    >
+        <img
+            data-ng-src="{{:: $ctrl.githubIcon }}"
+            style="height:18px"
+            class="mr-1"
+            alt="github icon"
+            aria-hidden="true"
+        />
+        <span data-translate="changelog_menu_header"></span>
+    </button>
+    <oui-dropdown-content>
+        <oui-dropdown-item data-ng-repeat="(key, link) in $ctrl.links">
+            <a
+                data-ng-href="{{link}}"
+                target="_blank"
+                rel="external"
+                data-ng-click="$ctrl.trackClick(key)"
+            >
+                <span data-translate="{{'changelog_menu_' + key}}"></span>
+                <span
+                    class="external-link oui-icon oui-icon-external-link"
+                ></span>
+            </a>
+        </oui-dropdown-item>
+    </oui-dropdown-content>
+</oui-dropdown>
