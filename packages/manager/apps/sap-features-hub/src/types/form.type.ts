@@ -26,7 +26,9 @@ export type TextInputData<T = string> = {
 
 export type InitializationForm = {
   serviceName: string;
+  serviceDisplayName: string;
   datacenterId: number;
+  datacenterName: string;
   clusterName: string;
 };
 export type DeploymentForm = {

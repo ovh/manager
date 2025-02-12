@@ -14,7 +14,7 @@ export default function InstallationStepSummary() {
   const { t } = useTranslation('installation');
   const { previousStep, nextStep } = useFormSteps();
   const { values, errors } = useInstallationFormContext();
-  const { formSummary } = useFormSummary();
+  const { formSummary } = useFormSummary(values);
 
   const isStepValid = useMemo(
     () => Object.values(errors).some((err) => !!err),
