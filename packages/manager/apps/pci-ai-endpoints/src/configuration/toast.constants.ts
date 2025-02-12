@@ -1,3 +1,3 @@
 export const TOAST = {
-  ERROR_DURATION: 15000,
+  ERROR_DURATION: 15_000,
 };

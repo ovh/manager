@@ -12,9 +12,10 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useGetMetrics } from '@/hooks/api/database/metric/useGetMetrics.hook';
 import Metric from '@/components/Metric';
 import { useDateLocale } from '@/hooks/metric/useDateLocale.hook';
-import { useDateFnsLocale } from '@/hooks/useDateFnsLocale.hook';
 import { MetricData } from '@/types/cloud/project/database/metric';
 import getLocaleForDatePicker from '@/components//utils/getLocaleForDatepicker';
+
+const PRIMARY_BORDER_COLOR = '#0050D7';
 
 export default function MetricPage() {
   const { projectId } = useParams();
@@ -23,7 +24,6 @@ export default function MetricPage() {
     data: [],
   });
   const [selectedModel, setSelectedModel] = useState<string>(t('allModel'));
-  const locale = useDateFnsLocale();
 
   const {
     timeZone,
@@ -56,7 +56,7 @@ export default function MetricPage() {
       ? metricsData.data.filter((metric) => metric.model === selectedModel)
       : metricsData.data;
 
-  const localDatePicker = getLocaleForDatePicker(locale.code);
+  const localDatePicker = getLocaleForDatePicker();
 
   return (
     <>
@@ -115,7 +115,7 @@ export default function MetricPage() {
             <div
               className="mt-[150px] flex justify-center rounded-[10px] w-[70vw] mx-auto"
               style={{
-                border: '1px solid #0050D7',
+                border: `1px solid ${PRIMARY_BORDER_COLOR}`,
               }}
             >
               <OsdsText

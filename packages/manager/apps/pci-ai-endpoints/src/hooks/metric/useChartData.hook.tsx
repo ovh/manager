@@ -1,6 +1,13 @@
 import { useMemo } from 'react';
 
-type DataMap = Record<string, number[]>;
+const COLORS_ELEMENTS = {
+  input_tokens: { color: '#0050D7', labelKey: 'input' },
+  output_tokens: { color: '#A5E9FF', labelKey: 'output' },
+  seconds: { color: '#0050D7', labelKey: 'totalAudio' },
+} as const;
+
+type UnitType = keyof typeof COLORS_ELEMENTS;
+type DataMap = Partial<Record<UnitType, number[]>>;
 
 const useChartData = (
   dataMap: DataMap,
@@ -16,32 +23,16 @@ const useChartData = (
     return {
       labels,
       datasets: Object.entries(dataMap)
-        .map(([unit]) => {
-          let color = '';
-          let label = '';
+        .map(([unit, data]) => {
+          if (!(unit in COLORS_ELEMENTS)) return null;
 
-          switch (unit) {
-            case 'input_tokens':
-              color = '#0050D7';
-              label = t('input');
-              break;
-            case 'output_tokens':
-              color = '#A5E9FF';
-              label = t('output');
-              break;
-            case 'seconds':
-              color = '#0050D7';
-              label = t('totalAudio');
-              break;
-            default:
-              return null;
-          }
+          const element = COLORS_ELEMENTS[unit as UnitType];
 
           return {
-            label,
-            data: dataMap[unit],
-            borderColor: color,
-            backgroundColor: color,
+            label: t(element.labelKey),
+            data,
+            borderColor: element.color,
+            backgroundColor: element.color,
             tension: 0.4,
           };
         })

@@ -94,7 +94,7 @@ const Metric: React.FC<MetricProps> = ({
 
   if (isLoading && isFirstLoading) {
     return (
-      <div className="max-w-full mx-auto my-[150px]">
+      <div className="max-w-full mx-auto my-[9rem]">
         <div className="flex flex-col">
           <OsdsText
             className="flex justify-center text-center"
@@ -105,7 +105,7 @@ const Metric: React.FC<MetricProps> = ({
             {t('loading')}
           </OsdsText>
           <div className="flex justify-center pt-8">
-            <OsdsSpinner className="w-[50px]" size={ODS_SPINNER_SIZE.sm} />
+            <OsdsSpinner className="w-[3rem]" size={ODS_SPINNER_SIZE.sm} />
           </div>
         </div>
       </div>
@@ -114,7 +114,7 @@ const Metric: React.FC<MetricProps> = ({
 
   if (isError) {
     return (
-      <div className="max-w-full mx-auto my-[150px]">
+      <div className="max-w-full mx-auto my-[9rem]">
         <div className="flex flex-col">
           <OsdsText
             className="flex justify-center text-center"

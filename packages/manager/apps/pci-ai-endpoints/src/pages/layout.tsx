@@ -54,6 +54,9 @@ export type BreadcrumbItem = {
   label: string | undefined;
 };
 
+const AI_ENDPOINTS_LABEL = 'AI Endpoints';
+const AI_ENDPOINTS_URL = 'https://endpoints.ai.cloud.ovh.net/';
+
 export default function Layout() {
   const { projectId } = useParams<{ projectId: string }>();
   const { t } = useTranslation('metric');
@@ -63,16 +66,22 @@ export default function Layout() {
   const navigate = useNavigate();
   const { pathname: path } = useLocation();
 
-  const metricsQuery = useGetMetrics(
-    projectId,
-    encodeURIComponent(new Date(2024, 0, 1).toISOString()),
-    encodeURIComponent(
+  const dateParams = useMemo(() => {
+    const startDate = encodeURIComponent(new Date(2024, 0, 1).toISOString());
+    const endDate = encodeURIComponent(
       new Date(
         new Date().getFullYear(),
         new Date().getMonth() + 1,
         0,
       ).toISOString(),
-    ),
+    );
+    return { startDate, endDate };
+  }, []);
+
+  const metricsQuery = useGetMetrics(
+    projectId,
+    dateParams.startDate,
+    dateParams.endDate,
   );
 
   const metricsData = useMemo(() => {
@@ -189,10 +198,10 @@ export default function Layout() {
                   color={ODS_THEME_COLOR_INTENT.primary}
                   size={ODS_BUTTON_SIZE.sm}
                   variant={ODS_BUTTON_VARIANT.ghost}
-                  href="https://endpoints.ai.cloud.ovh.net/"
+                  href={AI_ENDPOINTS_URL}
                   target={OdsHTMLAnchorElementTarget._blank}
                 >
-                  {'AI Endpoints'}
+                  {AI_ENDPOINTS_LABEL}
                   <span slot="end">
                     <OsdsIcon
                       aria-hidden="true"
