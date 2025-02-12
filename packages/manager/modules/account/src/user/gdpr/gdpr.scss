@@ -5,3 +5,11 @@
   margin: 0;
   padding: 0;
 }
+
+oui-modal {
+  p.confirmation-message {
+    span {
+      white-space: nowrap;
+    }
+  }
+}

@@ -12,5 +12,12 @@ export default /* @ngInject */ ($stateProvider) => {
           CREATE_ERASURE_REQUEST_ACTION,
         ),
     },
+    redirectTo: (transition) =>
+      transition
+        .injector()
+        .getAsync('canManageGdprRequests')
+        .then((canManageGdprRequests) =>
+          !canManageGdprRequests ? { state: 'account.user' } : false,
+        ),
   });
 };
