@@ -49,7 +49,11 @@ export const getAdditionalIpsProductSettings = ({
       { label: 'destination', value: serviceName },
       geolocation && { label: 'country', value: geolocation.toUpperCase() },
       organisation && { label: 'organisation', value: organisation },
-      region && { label: 'datacenter', value: getDatacenterFromRegion(region) },
+      region &&
+        serviceType !== ServiceType.vps && {
+          label: 'datacenter',
+          value: getDatacenterFromRegion(region),
+        },
     ].filter(Boolean),
     duration: 'P1M',
     planCode: getPlanCode(planCode, serviceType, region),
