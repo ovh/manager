@@ -17,5 +17,8 @@
   "kube_node_pool_enabled": "Enabled",
   "kube_node_pool_disabled": "Disabled",
   "kube_node_pool_autoscale_true": "Enabled",
-  "kube_node_pool_autoscale_false": "Disabled"
+  "kube_node_pool_autoscale_false": "Inactive",
+  "kube_common_node_pool_configure_true": "Configure node pools",
+  "kube_common_node_pool_configure_false": " Create a cluster without a node pool",
+  "kube_common_node_pool_estimated_cost": "Tentative cluster cost price:"
 }

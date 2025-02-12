@@ -10,7 +10,7 @@ export type TClusterCreationForm = {
   version: string;
   updatePolicy: UpdatePolicy;
   network: TNetworkFormState;
-  flavor: KubeFlavor;
+  flavor?: KubeFlavor;
   scaling: AutoscalingState;
   clusterName: string;
   isMonthlyBilled: boolean;
@@ -138,14 +138,12 @@ export function useClusterCreationStepper() {
         nodeTypeStep.unlock();
         [nodeSizeStep, billingStep].forEach(stepReset);
       },
-      submit: (flavor: KubeFlavor) => {
-        setForm((f) => ({
-          ...f,
-          flavor,
-        }));
+      submit: (flavor?: KubeFlavor) => {
+        setForm(({ flavor: _, ...f }) => (flavor ? { ...f, flavor } : f));
+
         nodeTypeStep.check();
         nodeTypeStep.lock();
-        nodeSizeStep.open();
+        (flavor ? nodeSizeStep : billingStep).open();
       },
     },
     nodeSize: {
