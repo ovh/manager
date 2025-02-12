@@ -1,7 +1,7 @@
 <div class="nasha-dashboard">
     <header class="oui-header" role="banner">
-        <div class="d-flex flex-row justify-content-between">
-            <div class="d-flex pt-4">
+        <div class="d-flex flex-row justify-content-between ">
+            <div class="d-flex">
                 <h1
                     class="word-break mb-0 oui-header-2"
                     data-ng-bind="$ctrl.name"
@@ -18,18 +18,28 @@
                     ></span>
                 </button>
             </div>
-            <!-- <Guide> -->
-            <oui-guide-menu
-                data-text="{{:: 'nasha_dashboard_guides_header' | translate }}"
+            <div
+                class="d-flex flex-wrap justify-content-end align-items-center gap-1 h-fit-content"
             >
-                <oui-guide-menu-item
-                    href="{{ $ctrl.nashaGuidesUrl }}"
-                    data-external
+                <changelog-button
+                    links="$ctrl.constants.CHANGELOG.nasha.links"
+                    chapters="$ctrl.constants.CHANGELOG.nasha.chapters"
+                ></changelog-button>
+                <!-- <Guide> -->
+                <oui-guide-menu
+                    data-text="{{:: 'nasha_dashboard_guides_header' | translate }}"
                 >
-                    <span data-translate="nasha_dashboard_guides_title"></span>
-                </oui-guide-menu-item>
-            </oui-guide-menu>
-            <!-- </Guide> -->
+                    <oui-guide-menu-item
+                        href="{{ $ctrl.nashaGuidesUrl }}"
+                        data-external
+                    >
+                        <span
+                            data-translate="nasha_dashboard_guides_title"
+                        ></span>
+                    </oui-guide-menu-item>
+                </oui-guide-menu>
+                <!-- </Guide> -->
+            </div>
         </div>
         <p data-ng-bind="$ctrl.serviceName"></p>
 

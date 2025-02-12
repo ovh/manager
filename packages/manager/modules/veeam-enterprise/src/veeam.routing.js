@@ -22,6 +22,7 @@ export default /* @ngInject */ ($stateProvider) => {
       defaultFilterColumn: () => 'serviceName',
       header: /* @ngInject */ ($translate) =>
         $translate.instant('veeam_enterprise_title'),
+      changelog: () => 'veeam_enterprise',
       customizableColumns: () => true,
       getServiceNameLink: /* @ngInject */ ($state) => ({ serviceName }) =>
         $state.href('veeam-enterprise.details', {

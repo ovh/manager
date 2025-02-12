@@ -3,20 +3,35 @@
         class="mb-3"
         data-ng-if="$ctrl.containers.length"
         id="cold-archive-guide-header"
-        data-heading="{{:: 'pci_projects_project_storages_cold_archive_label' | translate }}"
     >
-        <oui-guide-menu
-            data-text="{{:: 'pci_project_guides_header' | translate }}"
-        >
-            <oui-guide-menu-item
-                data-ng-repeat="guide in $ctrl.guideMenu track by $index"
-                data-href="{{:: guide.link }}"
-                data-on-click="$ctrl.onGuideClick(guide.id)"
-                data-external
-            >
-                <span data-ng-bind=":: guide.title"></span>
-            </oui-guide-menu-item>
-        </oui-guide-menu>
+        <oui-header-heading>
+            <div class="d-flex justify-content-between">
+                <h1
+                    class="oui-header__title"
+                    data-translate="{{:: 'pci_projects_project_storages_cold_archive_label' | translate }}"
+                ></h1>
+                <div
+                    class="d-flex align-items-center gap-1 flex-wrap justify-content-end"
+                >
+                    <changelog-button
+                        links="$ctrl.CHANGELOG.cold_archive.links"
+                        chapters="$ctrl.CHANGELOG.cold_archive.chapters"
+                    ></changelog-button>
+                    <oui-guide-menu
+                        data-text="{{:: 'pci_project_guides_header' | translate }}"
+                    >
+                        <oui-guide-menu-item
+                            data-ng-repeat="guide in $ctrl.guideMenu track by $index"
+                            data-href="{{:: guide.link }}"
+                            data-on-click="$ctrl.onGuideClick(guide.id)"
+                            data-external
+                        >
+                            <span data-ng-bind=":: guide.title"></span>
+                        </oui-guide-menu-item>
+                    </oui-guide-menu>
+                </div>
+            </div>
+        </oui-header-heading>
     </oui-header>
 
     <div>

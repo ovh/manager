@@ -1,8 +1,18 @@
-<oui-header
-    data-ng-if="$ctrl.header"
-    class="mb-2"
-    data-heading="{{:: $ctrl.header }}"
-></oui-header>
+<oui-header data-ng-if="$ctrl.header" class="mb-2">
+    <oui-header-heading>
+        <div class="d-flex justify-content-between">
+            <h1
+                class="oui-header__title"
+                data-translate="{{:: $ctrl.header }}"
+            ></h1>
+            <changelog-button
+                data-ng-if="$ctrl.changelog"
+                links="$ctrl.constants.CHANGELOG[$ctrl.changelog].links"
+                chapters="$ctrl.constants.CHANGELOG[$ctrl.changelog].chapters"
+            ></changelog-button>
+        </div>
+    </oui-header-heading>
+</oui-header>
 <div data-ng-bind-html="$ctrl.description"></div>
 <oui-datagrid
     data-ng-if="$ctrl.staticResources"

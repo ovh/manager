@@ -18,6 +18,8 @@ import partitionModule from './partition';
 import component from './dashboard.component';
 import routing from './dashboard.routing';
 
+import './styles.less';
+
 const moduleName = 'ovhManagerNashaDashboard';
 
 angular

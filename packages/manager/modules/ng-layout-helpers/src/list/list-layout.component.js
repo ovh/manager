@@ -7,6 +7,7 @@ export default {
     ...componentBindings,
     staticResources: '<?',
     header: '@?',
+    changelog: '@?',
     id: '@',
     description: '<',
     loadResource: '<?',

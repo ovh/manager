@@ -1,23 +1,35 @@
 <div data-ui-view>
     <section>
-        <oui-header
-            data-heading="{{:: 'pci_projects_project_storages_snapshots_title' | translate }}"
-            class="mb-3"
-        >
-            <oui-guide-menu
-                data-text="{{:: 'pci_project_guides_header' | translate }}"
-            >
-                <oui-guide-menu-item
-                    data-ng-repeat="guide in $ctrl.guideUrl.storage track by $index"
-                    data-href="{{:: guide.url }}"
-                    data-on-click="$ctrl.trackClick($ctrl.guideTrackingSectionTags.volume_snapshot + guide.tracking)"
-                    data-external
-                >
-                    <span
-                        data-translate="{{:: 'pci_project_guides_header_' + guide.key }}"
-                    ></span>
-                </oui-guide-menu-item>
-            </oui-guide-menu>
+        <oui-header class="mb-3">
+            <oui-header-heading>
+                <div class="d-flex justify-content-between">
+                    <h1
+                        class="oui-header__title"
+                        data-translate="{{:: 'pci_projects_project_storages_snapshots_title' | translate }}"
+                    ></h1>
+                    <div
+                        class="d-flex align-items-center gap-1 flex-wrap justify-content-end"
+                    >
+                        <changelog-button
+                            links="$ctrl.CHANGELOG.volume_snapshot.links"
+                            chapters="$ctrl.CHANGELOG.volume_snapshot.chapters"
+                        ></changelog-button>
+                        <oui-guide-menu
+                            data-text="{{:: 'pci_project_guides_header' | translate }}"
+                        >
+                            <oui-guide-menu-item
+                                data-ng-repeat="guide in $ctrl.guideUrl.storage track by $index"
+                                data-href="{{:: guide.url }}"
+                                data-on-click="$ctrl.trackClick($ctrl.guideTrackingSectionTags.volume_snapshot + guide.tracking)"
+                                data-external
+                            >
+                                <span
+                                    data-translate="{{:: 'pci_project_guides_header_' + guide.key }}"
+                                ></span>
+                            </oui-guide-menu-item>
+                        </oui-guide-menu>
+                    </div></div
+            ></oui-header-heading>
         </oui-header>
 
         <!--Banner section messages-->

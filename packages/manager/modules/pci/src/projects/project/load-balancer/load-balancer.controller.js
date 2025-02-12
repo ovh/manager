@@ -8,9 +8,10 @@ import { getCriteria } from '../project.utils';
 
 export default class {
   /* @ngInject */
-  constructor(CucCloudMessage, PciLoadBalancerService) {
+  constructor(CucCloudMessage, PciLoadBalancerService, CHANGELOG) {
     this.CucCloudMessage = CucCloudMessage;
     this.PciLoadBalancerService = PciLoadBalancerService;
+    this.CHANGELOG = CHANGELOG;
   }
 
   $onInit() {

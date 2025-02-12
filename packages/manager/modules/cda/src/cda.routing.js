@@ -39,6 +39,7 @@ export default /* @ngInject */ ($stateProvider) => {
         ],
       }),
       header: /* @ngInject */ ($translate) => $translate.instant('cda_title'),
+      changelog: () => 'cloud_disk_array',
       customizableColumns: () => true,
       getServiceNameLink: /* @ngInject */ ($state) => ({ serviceName }) =>
         $state.href('cda.dashboard', {

@@ -26,6 +26,7 @@ export default /* @ngInject */ function IpMainCtrl(
   trackPage,
   isRepricingBannerShown,
   openBannerRepricePage,
+  constants,
 ) {
   $scope.currentUser = currentUser;
   $scope.goToOrganisation = goToOrganisation;
@@ -40,6 +41,7 @@ export default /* @ngInject */ function IpMainCtrl(
   $scope.worldPart = coreConfig.getRegion();
   $scope.BRING_YOUR_OWN_IP = BRING_YOUR_OWN_IP;
   $scope.ADDITIONAL_IP = ADDITIONAL_IP;
+  $scope.constants = constants;
 
   $scope.isRepricingBannerShown = isRepricingBannerShown;
   $scope.onRepricingBannerClick = function onRepricingBannerClick() {

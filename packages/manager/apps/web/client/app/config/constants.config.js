@@ -1,3 +1,65 @@
+const links = {
+  domain_name: {
+    changelog:
+      'https://github.com/orgs/ovh/projects/18/views/2?sliceBy%5Bvalue%5D=Domain+Names&pane=info',
+    roadmap:
+      'https://github.com/orgs/ovh/projects/18/views/1?sliceBy%5Bvalue%5D=Domain+Names&pane=info',
+    'feature-request':
+      'https://github.com/ovh/hosting-domain-names-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+  },
+  web_hosting: {
+    changelog:
+      'https://github.com/orgs/ovh/projects/18/views/2?sliceBy%5Bvalue%5D=Web+Hosting&pane=info',
+    roadmap:
+      'https://github.com/orgs/ovh/projects/18/views/1?sliceBy%5Bvalue%5D=Web+Hosting&pane=info',
+    'feature-request':
+      'https://github.com/ovh/hosting-domain-names-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+  },
+  collaborations: {
+    changelog:
+      'https://github.com/orgs/ovh/projects/18/views/2?sliceBy%5Bvalue%5D=Collaboration&pane=info',
+    roadmap:
+      'https://github.com/orgs/ovh/projects/18/views/1?sliceBy%5Bvalue%5D=Collaboration&pane=info',
+    'feature-request':
+      'https://github.com/ovh/collaborative-tools-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+  },
+};
+
+const changelogConfig = {
+  domain_name: {
+    links: links.domain_name,
+    chapters: ['Domains', 'domains', 'domains'],
+  },
+  dns_zones: {
+    links: links.domain_name,
+    chapters: ['Domains', 'domains', 'dns-zones'],
+  },
+  hosting_plan: {
+    links: links.web_hosting,
+    chapters: ['Hosting', 'hosting', ''],
+  },
+  web_cloud_databases: {
+    links: links.web_hosting,
+    chapters: ['Hosting', 'web_databases', ''],
+  },
+  email_pro: {
+    links: links.collaborations,
+    chapters: ['Emails', 'emails', 'emails-pro'],
+  },
+  mx_plan: {
+    links: links.collaborations,
+    chapters: ['Emails', 'emails', 'mxplan'],
+  },
+  email_delegate: {
+    links: links.collaborations,
+    chapters: ['Emails', 'emails', 'emails-delegate'],
+  },
+  exchange: {
+    links: links.collaborations,
+    chapters: ['Microsoft', 'microsoft', 'exchange'],
+  },
+};
+
 module.exports = {
   EU: {
     RENEW_URL:
@@ -838,6 +900,7 @@ module.exports = {
       SN: 'https://www.ovh.sn/order/express/#/express/review?products=',
       TN: 'https://www.ovh.com/tn/order/express/#/express/review?products=',
     },
+    CHANGELOG: changelogConfig,
   },
   CA: {
     RENEW_URL:
@@ -1252,5 +1315,6 @@ module.exports = {
       WE: 'https://us.ovh.com/us/order/express/#/express/review?products=',
       WS: 'https://us.ovh.com/es/order/express/#/express/review?products=',
     },
+    CHANGELOG: changelogConfig,
   },
 };

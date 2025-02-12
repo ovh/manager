@@ -5,9 +5,10 @@ import { NUMBER_COLUMN_OPTIONS, STRING_COLUMN_OPTIONS } from './constants';
 
 export default class ListLayoutCtrl {
   /* @ngInject */
-  constructor($q, ouiDatagridService) {
+  constructor($q, ouiDatagridService, constants) {
     this.$q = $q;
     this.ouiDatagridService = ouiDatagridService;
+    this.constants = constants;
   }
 
   $onInit() {

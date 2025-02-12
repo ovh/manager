@@ -105,40 +105,52 @@
                         </wuc-service-expiration-date>
                     </form>
                 </div>
-                <div class="col-sm-3 d-flex" data-ng-if="!hosting.isExpired">
-                    <div class="btn-group ml-auto mt-4" data-uib-dropdown>
-                        <button
-                            type="button"
-                            class="oui-button oui-button_dropdown mb-0"
-                            aria-haspopup="true"
-                            aria-expanded="false"
-                            data-uib-dropdown-toggle
+                <div class="col-sm-3 d-flex">
+                    <div
+                        class="d-flex align-items-center justify-content-end flex-wrap gap-1 mt-4"
+                    >
+                        <changelog-button
+                            links="$ctrl.constants.CHANGELOG.hosting_plan.links"
+                            chapters="$ctrl.constants.CHANGELOG.hosting_plan.chapters"
+                        ></changelog-button>
+                        <div
+                            class="btn-group ml-auto mt-1"
+                            data-uib-dropdown
+                            data-ng-if="!hosting.isExpired"
                         >
-                            <span data-translate="common_actions"></span>
-                            <span
-                                class="oui-icon oui-icon-chevron-down"
-                                aria-hidden="true"
-                            ></span>
-                        </button>
-                        <ul
-                            class="dropdown-menu dropdown-menu-right"
-                            data-uib-dropdown-menu
-                        >
-                            <li data-ng-if="urlDomainOrder">
-                                <button
-                                    class="btn btn-link"
-                                    type="button"
-                                    data-ng-click="setAction('multisite/order/hosting-multisite-order', {domains: domains})"
-                                    data-track-on="click"
-                                    data-track-name="web::hosting::add-domain"
-                                    data-track-click="action"
-                                >
-                                    <span
-                                        data-translate="hosting_dashboard_add_domain"
-                                    ></span>
-                                </button>
-                            </li>
-                        </ul>
+                            <button
+                                type="button"
+                                class="oui-button oui-button_dropdown mb-0"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                                data-uib-dropdown-toggle
+                            >
+                                <span data-translate="common_actions"></span>
+                                <span
+                                    class="oui-icon oui-icon-chevron-down"
+                                    aria-hidden="true"
+                                ></span>
+                            </button>
+                            <ul
+                                class="dropdown-menu dropdown-menu-right"
+                                data-uib-dropdown-menu
+                            >
+                                <li data-ng-if="urlDomainOrder">
+                                    <button
+                                        class="btn btn-link"
+                                        type="button"
+                                        data-ng-click="setAction('multisite/order/hosting-multisite-order', {domains: domains})"
+                                        data-track-on="click"
+                                        data-track-name="web::hosting::add-domain"
+                                        data-track-click="action"
+                                    >
+                                        <span
+                                            data-translate="hosting_dashboard_add_domain"
+                                        ></span>
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>

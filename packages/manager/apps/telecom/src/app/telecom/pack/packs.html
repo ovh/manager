@@ -1,6 +1,21 @@
-<oui-header
-    data-heading="{{ :: 'pack_internet_access_title' | translate }}"
-></oui-header>
+<oui-header>
+    <oui-header-heading>
+        <div class="d-flex justify-content-between">
+            <h1
+                class="oui-header__title"
+                data-translate="{{ :: 'pack_internet_access_title' | translate }}"
+            ></h1>
+            <div
+                class="d-flex align-items-center gap-1 flex-wrap justify-content-end"
+            >
+                <changelog-button
+                    links="$ctrl.CHANGELOG.pack.links"
+                    chapters="$ctrl.CHANGELOG.pack.chapters"
+                ></changelog-button>
+            </div>
+        </div>
+    </oui-header-heading>
+</oui-header>
 <div class="container-fluid my-5">
     <oui-datagrid
         id="dg-telephony-packs"

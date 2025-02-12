@@ -1,29 +1,39 @@
 <header class="oui-header">
     <div class="oui-header__container">
         <div class="oui-header__content">
-            <h1
-                class="oui-header__title"
-                data-ng-bind="$ctrl.notebook.spec.name"
-            ></h1>
+            <div class="d-flex justify-content-between">
+                <h1
+                    class="oui-header__title"
+                    data-ng-bind="$ctrl.notebook.spec.name"
+                ></h1>
+                <div
+                    class="d-flex align-items-center gap-1 flex-wrap jusitfy-content-end"
+                >
+                    <changelog-button
+                        links="$ctrl.CHANGELOG.ai_notebooks.links"
+                        chapters="$ctrl.CHANGELOG.ai_notebooks.chapters"
+                    ></changelog-button>
+                    <oui-guide-menu
+                        data-text="{{:: 'pci_project_guides_header' | translate }}"
+                    >
+                        <oui-guide-menu-item
+                            data-ng-repeat="guide in $ctrl.guideUrl.ai_notenooks track by $index"
+                            data-href="{{:: guide.url }}"
+                            data-on-click="$ctrl.trackClick($ctrl.guideTrackingSectionTags.ai_notebooks + guide.tracking)"
+                            data-external
+                        >
+                            <span
+                                data-translate="{{:: 'pci_project_guides_header_' + guide.key }}"
+                            ></span>
+                        </oui-guide-menu-item>
+                    </oui-guide-menu>
+                </div>
+            </div>
             <h2
                 class="oui-header__description"
                 data-ng-bind="$ctrl.notebook.id"
             ></h2>
         </div>
-        <oui-guide-menu
-            data-text="{{:: 'pci_project_guides_header' | translate }}"
-        >
-            <oui-guide-menu-item
-                data-ng-repeat="guide in $ctrl.guideUrl.ai_notenooks track by $index"
-                data-href="{{:: guide.url }}"
-                data-on-click="$ctrl.trackClick($ctrl.guideTrackingSectionTags.ai_notebooks + guide.tracking)"
-                data-external
-            >
-                <span
-                    data-translate="{{:: 'pci_project_guides_header_' + guide.key }}"
-                ></span>
-            </oui-guide-menu-item>
-        </oui-guide-menu>
     </div>
     <oui-message class="mt-2 mb-0" data-type="info" dismissable>
         <span
