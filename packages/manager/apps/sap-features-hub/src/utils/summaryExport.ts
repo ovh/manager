@@ -1,6 +1,6 @@
 import { InstallationFormValues } from '@/types/form.type';
 
-const getSummaryJSON = (form: InstallationFormValues) => {
+export const getSummaryJSON = (form: InstallationFormValues) => {
   return JSON.stringify({
     applicationServers: [{}], // step not developed yet
     applicationType: form.applicationType,
