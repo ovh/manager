@@ -1,1 +1,89 @@
-<div data-ui-view>Network Page</div>
+<div class="d-flex flex-column gap-4">
+    <div>
+        <div class="d-flex justify-content-between">
+            <h2 data-ng-bind="$ctrl.NETWORK_LABEL"></h2>
+
+            <oui-guide-menu
+                class="mt-2"
+                data-text="{{:: 'dedicatedCloud_datacenter_network_guides' | translate }}"
+            >
+                <oui-guide-menu-item
+                    data-ng-href="{{:: $ctrl.guideUrl }}"
+                    data-external="true"
+                >
+                    <span data-ng-bind="$ctrl.NETWORK_LABEL"></span>
+                </oui-guide-menu-item>
+            </oui-guide-menu>
+        </div>
+        <p
+            data-translate="dedicatedCloud_network_description"
+            data-translate-values="{ price: $ctrl.vcpuTextPrice }"
+        ></p>
+    </div>
+    <div>
+        <h3
+            class="oui-heading_4"
+            data-translate="dedicatedCloud_network_facturation_summary_title"
+        ></h3>
+        <dl class="row">
+            <dt
+                class="col-md-2"
+                data-translate="dedicatedCloud_network_option_price_label"
+            ></dt>
+            <dd data-ng-if="$ctrl.consumptionLoading" class="col-md-3">
+                <oui-skeleton size="xs"></oui-skeleton>
+            </dd>
+            <dd
+                data-ng-else
+                class="col-md-3"
+                data-ng-bind="$ctrl.consumption.price.text"
+            ></dd>
+        </dl>
+    </div>
+    <div>
+        <button
+            class="oui-button oui-button_primary"
+            data-translate="dedicatedCloud_network_add_edge_cta"
+        ></button>
+        <button
+            class="oui-button oui-button_secondary"
+            data-translate="dedicatedCloud_network_resize_edge_cta"
+        ></button>
+    </div>
+
+    <oui-datagrid data-rows-loader="$ctrl.loadNsxEdgeNetworks($config)">
+        <oui-datagrid-column
+            data-title=":: 'dedicatedCloud_network_id' | translate"
+            data-property="nsxtEdgeId"
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'dedicatedCloud_network_name' | translate"
+            data-property="name"
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'dedicatedCloud_network_vm_list' | translate"
+            data-property="moRef"
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'dedicatedCloud_network_sizing' | translate"
+            data-property="size"
+        >
+        </oui-datagrid-column>
+
+        <oui-action-menu data-compact data-placement="end">
+            <oui-action-menu-item data-on-click=""
+                ><span
+                    data-translate="dedicatedCloud_network_relocate_action"
+                ></span
+            ></oui-action-menu-item>
+            <oui-action-menu-item data-on-click=""
+                ><span
+                    data-translate="dedicatedCloud_network_delete_action"
+                ></span
+            ></oui-action-menu-item>
+        </oui-action-menu>
+    </oui-datagrid>
+</div>

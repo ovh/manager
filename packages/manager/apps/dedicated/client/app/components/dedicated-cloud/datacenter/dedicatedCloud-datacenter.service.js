@@ -5,9 +5,10 @@ import map from 'lodash/map';
 
 export default class OvhManagerPccDatacenterService {
   /* @ngInject */
-  constructor($http, OvhApiMe) {
+  constructor($http, OvhApiMe, icerbergUtils) {
     this.OvhApiMe = OvhApiMe;
     this.$http = $http;
+    this.icerbergUtils = icerbergUtils;
   }
 
   getCommercialRangeName(serviceName, datacenterId) {
@@ -56,5 +57,24 @@ export default class OvhManagerPccDatacenterService {
 
   static keepOnlyElement(id) {
     return (element) => element.uniqueId.split('@')[0] === `${id}`;
+  }
+
+  getNsxEdgeByDatacenter(serviceName, datacenterId, paginationParams) {
+    return this.icerbergUtils.icebergQuery(
+      `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/nsxtEdge`,
+      paginationParams,
+    );
+  }
+
+  getConsumptionForecastByServiceId(serviceId) {
+    return this.$http
+      .get(`/services/${serviceId}/consumption/forecast`)
+      .then(({ data }) => data);
+  }
+
+  getOrderCatalog(catalog, subsidiary) {
+    return this.$http
+      .get(`/order/catalog/public/${catalog}?ovhSubsidiary=${subsidiary}`)
+      .then(({ data }) => data);
   }
 }
