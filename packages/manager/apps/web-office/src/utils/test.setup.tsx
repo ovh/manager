@@ -1,4 +1,5 @@
 import { vi } from 'vitest';
+import { ResponsiveContainerProps } from 'recharts';
 import {
   usersMock,
   licensesMock,
@@ -9,6 +10,8 @@ import {
   orderCatalogMock,
   priceMock,
   userDomainMock,
+  mockOfficeLicenseServiceInfos,
+  mockUsageStatistics,
 } from '@/api/_mock_';
 
 const mocksAxios = vi.hoisted(() => ({
@@ -48,6 +51,15 @@ vi.mock('@/hooks', async (importActual) => {
   };
 });
 
+vi.mock('@/api/serviceInfos', async (importActual) => {
+  const actual = await importActual<typeof import('@/api/serviceInfos')>();
+  return {
+    ...actual,
+    getOfficeLicenseServiceInfos: vi.fn(() =>
+      Promise.resolve(mockOfficeLicenseServiceInfos),
+    ),
+  };
+});
 vi.mock('@/api/license', async (importActual) => {
   return {
     ...(await importActual<typeof import('@/api/license')>()),
@@ -107,6 +119,16 @@ vi.mock('@/api/price', async (importActual) => {
   };
 });
 
+vi.mock('@/api/usageStatistics', async (importActual) => {
+  return {
+    ...(await importActual<typeof import('@/api/usageStatistics')>()),
+    getOfficeUsageStatistics: vi.fn(() => Promise.resolve(mockUsageStatistics)),
+    getOfficeTenantUsageStatistics: vi.fn(() =>
+      Promise.resolve(mockUsageStatistics),
+    ),
+  };
+});
+
 vi.mock('@ovh-ux/manager-module-order', () => ({
   getExpressOrderURL: vi.fn(),
 }));
@@ -129,6 +151,27 @@ vi.mock('react-router-dom', async (importActual) => {
     useParams: vi.fn(() => []),
   };
 });
+
+vi.mock('recharts', async () => {
+  const mockRecharts = await vi.importActual<typeof import('recharts')>(
+    'recharts',
+  );
+  return {
+    ...mockRecharts,
+    ResponsiveContainer: ({ children }: ResponsiveContainerProps) => (
+      <mockRecharts.ResponsiveContainer>
+        {children}
+      </mockRecharts.ResponsiveContainer>
+    ),
+  };
+});
+const ResizeObserverMock = vi.fn(() => ({
+  observe: vi.fn(),
+  unobserve: vi.fn(),
+  disconnect: vi.fn(),
+}));
+
+vi.stubGlobal('ResizeObserver', ResizeObserverMock);
 
 afterEach(() => {
   vi.clearAllMocks();
