@@ -17,6 +17,6 @@ export const FORM_LABELS = {
   sapHanaSid: 'SAP HANA SID',
   masterSapPassword: 'SAP MASTER',
   masterSapHanaPassword: 'SAP HANA MASTER',
-  sidamnPassword: 'SIDadm',
+  sidadmPassword: 'SIDadm',
   systemPassword: 'SAP HANA SYSTEM',
 };
