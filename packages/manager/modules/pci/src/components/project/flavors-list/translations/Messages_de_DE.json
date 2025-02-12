@@ -24,11 +24,11 @@
   "pci_project_flavors_zone_compatible": "Kompatibel mit",
   "pci_project_flavors_zone_localzone": "Local Zone",
   "pci_project_flavors_zone_global_region": "1-AZ",
-  "pci_project_flavors_zone_localzone_tooltip": "Eine Local Zone entspricht einer Methode zur Bereitstellung der Public Cloud Produkte von OVHcloud in Rechenzentren, die sich in unmittelbarer Nähe der Endbenutzer befinden.",
-  "pci_project_flavors_zone_globalregions_tooltip": "Eine 1-AZ-Region (Verfügbarkeitszone) besteht aus einem oder mehreren Rechenzentren, die sich an einem Standort befinden.",
+  "pci_project_flavors_zone_localzone_tooltip": "Eine Local Zone ermöglicht die Bereitstellung der Public-Cloud-Produkte von OVHcloud in Rechenzentren, die sich in unmittelbarer Nähe der Endnutzer:innen befinden.",
+  "pci_project_flavors_zone_globalregions_tooltip": "Eine 1-AZ-Region („AZ“ steht für „Availability Zone“) besteht aus einem oder mehreren Rechenzentren, die sich am gleichen Standort befinden.",
   "pci_project_flavors_zone_tooltip_link": "Mehr erfahren",
   "pci_project_flavors_price_hourly_from": "Ab {{price}} / Stunde (zzgl. MwSt.)",
-  "pci_project_flavors_zone_globalregions_tooltip_2": "Mit dem baldigen Eintreffen der 3-AZ Regionen ändert sich der Bereitstellungstyp „Regionen“! Eine 1-AZ-Region (Verfügbarkeitszone) besteht aus einem oder mehreren Rechenzentren, die sich an einem Standort befinden.",
+  "pci_project_flavors_zone_globalregions_tooltip_2": "Mit der bevorstehenden Einführung der 3-AZ-Regionen ändern wir den Namen des Bereitstellungstyps „Regionen“! Eine 1-AZ-Region („AZ“ steht für „Availability Zone“) besteht aus einem oder mehreren Rechenzentren, die sich am gleichen Standort befinden.",
   "pci_project_flavors_zone_3az_region": "3-AZ",
-  "pci_project_flavors_zone_3az_tooltip": "Eine 3-AZ-Region besteht aus drei Verfügbarkeitszonen, die sich innerhalb eines einzigen großstädtischen Ballungsgebiets befinden und wenige Kilometer voneinander entfernt sind. Sie erfüllt höchste Anforderungen an die Resilienz und gewährleistet gleichzeitig extrem geringe Latenzen zwischen AZ."
+  "pci_project_flavors_zone_3az_tooltip": "Eine 3-AZ-Region besteht aus drei Availability Zones, die sich innerhalb des gleichen Ballungsgebiets befinden, aber einige Kilometer voneinander entfernt sind. Sie erfüllt höchste Anforderungen in puncto Resilienz und gewährleistet gleichzeitig eine extrem niedrige Latenz zwischen den AZs."
 }
