@@ -1,9 +1,11 @@
 import {
   DATACENTER_NETWORK_ONBOARDING_GUIDES,
-  DATACENTER_NETWORK_ONBOARDING_MORE_CTA,
   NSXT_EDGE_PLAN_CODE,
-  NSXT_EDGE_PRICING_MODE,
 } from './dedicatedCloud-datacenter-network-onboarding.constants';
+import {
+  DATACENTER_NETWORK_SITE_WEB_LINK,
+  NSXT_EDGE_PRICING_MODE,
+} from '../dedicatedCloud-datacenter-network.constants';
 import { NETWORK_LABEL } from '../../../../../dedicatedCloud/datacenter/dedicatedCloud-datacenter.constants';
 import NETWORK_LOGO from './assets/network.png';
 
@@ -23,8 +25,8 @@ export default class {
     this.ovhSubsidiary = user.ovhSubsidiary;
 
     this.ctaMore =
-      DATACENTER_NETWORK_ONBOARDING_MORE_CTA[this.ovhSubsidiary] ||
-      DATACENTER_NETWORK_ONBOARDING_MORE_CTA.DEFAULT;
+      DATACENTER_NETWORK_SITE_WEB_LINK[this.ovhSubsidiary] ||
+      DATACENTER_NETWORK_SITE_WEB_LINK.DEFAULT;
 
     this.guides = DATACENTER_NETWORK_ONBOARDING_GUIDES.map((guide) => ({
       id: guide.id,
