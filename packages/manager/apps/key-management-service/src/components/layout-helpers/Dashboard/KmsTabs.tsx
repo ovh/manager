@@ -32,9 +32,7 @@ const KmsTabs: React.FC<KmsTabsProps> = ({ tabs }) => {
       (tab) =>
         tab.url !== '' && location.pathname.startsWith(`/${okmsId}/${tab.url}`),
     );
-
-    if (!activeTab) return;
-    setActivePanel(activeTab?.url);
+    setActivePanel(activeTab?.url || '');
   }, [location]);
 
   return (
