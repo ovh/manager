@@ -4,28 +4,23 @@ import {
   OdsFormField,
   OdsMessage,
   OdsSelect,
-  OdsSkeleton,
   OdsSpinner,
 } from '@ovhcloud/ods-components/react';
 import { ODS_MESSAGE_COLOR, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
-import { Region } from '@ovh-ux/manager-react-components';
 import { OrderSection } from '@/components/OrderSection/OrderSection.component';
 import {
   ipParkingOptionValue,
   useServiceList,
 } from '@/data/hooks/useServiceList';
 import { OrderContext, ServiceStatus } from '../order.context';
-import { ServiceType } from '@/types';
 import { useCheckServiceAvailability } from '@/data/hooks/useCheckServiceAvailability';
-import { useServiceRegion } from '@/data/hooks/useServiceRegion';
+import { ServiceRegion } from '@/pages/order/ServiceRegion.component';
 
 export const ServiceSelectionSection: React.FC = () => {
   const {
     selectedService,
     selectedServiceStatus,
-    selectedServiceType,
     setSelectedService,
-    setSelectedRegion,
     setSelectedServiceType,
     disabledServices,
   } = React.useContext(OrderContext);
@@ -33,21 +28,13 @@ export const ServiceSelectionSection: React.FC = () => {
   const {
     server,
     vrack,
+    vps,
     getServiceType,
     isLoading,
     isError,
     error,
   } = useServiceList();
   const { isServiceInfoLoading } = useCheckServiceAvailability();
-  const {
-    isServiceRegionLoading,
-    serviceRegion,
-    serviceRegionError,
-  } = useServiceRegion();
-
-  React.useEffect(() => {
-    setSelectedRegion(serviceRegion);
-  }, [serviceRegion]);
 
   return (
     <OrderSection title={t('service_selection_title')}>
@@ -61,7 +48,7 @@ export const ServiceSelectionSection: React.FC = () => {
           {t('service_selection_select_label')}
         </label>
         {isLoading ? (
-          <OdsSkeleton />
+          <OdsSpinner size={ODS_SPINNER_SIZE.md} />
         ) : (
           <OdsSelect
             className="w-full max-w-[384px]"
@@ -98,7 +85,17 @@ export const ServiceSelectionSection: React.FC = () => {
             </optgroup>
             <optgroup
               label={t('service_selection_select_vps_option_group_label')}
-            ></optgroup>
+            >
+              {vps.map(({ serviceName, displayName }) => (
+                <option
+                  key={serviceName}
+                  value={serviceName}
+                  disabled={disabledServices.includes(serviceName)}
+                >
+                  {displayName}
+                </option>
+              ))}
+            </optgroup>
             <optgroup
               label={t(
                 'service_selection_select_ip_parking_option_group_label',
@@ -125,10 +122,6 @@ export const ServiceSelectionSection: React.FC = () => {
         )}
         <div slot="helper">
           <div className="mt-1">
-            {isServiceInfoLoading ||
-              (isServiceRegionLoading && (
-                <OdsSpinner size={ODS_SPINNER_SIZE.sm} />
-              ))}
             {selectedServiceStatus !== ServiceStatus.ok && (
               <OdsMessage
                 className="block max-w-[384px]"
@@ -140,19 +133,11 @@ export const ServiceSelectionSection: React.FC = () => {
                 )}
               </OdsMessage>
             )}
-            {[ServiceType.server].includes(selectedServiceType) &&
-              serviceRegion &&
-              selectedServiceStatus === ServiceStatus.ok &&
-              !serviceRegionError && (
-                <>
-                  {t('service_selection_region_helper')}
-                  {serviceRegion === 'unknown' ? (
-                    t('service_selection_unknown_region')
-                  ) : (
-                    <Region name={serviceRegion} mode="region" />
-                  )}
-                </>
-              )}
+            {isServiceInfoLoading ? (
+              <OdsSpinner size={ODS_SPINNER_SIZE.sm} />
+            ) : (
+              <ServiceRegion />
+            )}
           </div>
         </div>
       </OdsFormField>
