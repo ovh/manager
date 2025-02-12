@@ -12,6 +12,7 @@ export default /* @ngInject */ ($stateProvider) => {
       dataModel: () => 'cdnanycast.Anycast',
       defaultFilterColumn: () => 'service',
       header: /* @ngInject */ ($translate) => $translate.instant('cdn_title'),
+      changelog: () => 'cdn',
       customizableColumns: () => true,
       getServiceNameLink: /* @ngInject */ ($state) => ({
         service: productId,

@@ -65,6 +65,7 @@ export default class VrackMoveDialogCtrl {
     vrackService,
     atInternet,
     coreConfig,
+    constants,
   ) {
     this.$scope = $scope;
     this.$q = $q;
@@ -82,6 +83,7 @@ export default class VrackMoveDialogCtrl {
     this.coreConfig = coreConfig;
     this.user = coreConfig.getUser();
     this.changeOwnerTrackLabel = `${VRACK_DASHBOARD_TRACKING_PREFIX}::change-owner`;
+    this.constants = constants;
   }
 
   $onInit() {

@@ -1,22 +1,35 @@
 <div data-ui-view>
-    <oui-header
-        data-heading="{{:: 'pci_projects_project_load_balancer_list_title' | translate }}"
-        class="mb-3"
-    >
-        <oui-guide-menu
-            data-text="{{:: 'pci_project_guides_header' | translate }}"
-        >
-            <oui-guide-menu-item
-                data-ng-repeat="guide in $ctrl.GUIDES track by guide.id"
-                data-href="{{ $ctrl.getGuideUrl(guide) }}"
-                data-external
-                data-on-click="$ctrl.trackGuideClick(guide)"
-            >
-                <span
-                    data-translate="{{ 'pci_projects_project_load_balancer_guide_' + guide.id.toLowerCase() }}"
-                ></span>
-            </oui-guide-menu-item>
-        </oui-guide-menu>
+    <oui-header class="mb-3">
+        <oui-header-heading>
+            <div class="d-flex justify-content-between">
+                <h1
+                    class="oui-header__title"
+                    data-translate="{{:: 'pci_projects_project_load_balancer_list_title' | translate }}"
+                ></h1>
+                <div
+                    class="d-flex align-items-center gap-1 flex-wrap justify-content-end"
+                >
+                    <changelog-button
+                        links="$ctrl.CHANGELOG.load_balancer.links"
+                        chapters="$ctrl.CHANGELOG.load_balancer.chapters"
+                    ></changelog-button>
+                    <oui-guide-menu
+                        data-text="{{:: 'pci_project_guides_header' | translate }}"
+                    >
+                        <oui-guide-menu-item
+                            data-ng-repeat="guide in $ctrl.GUIDES track by guide.id"
+                            data-href="{{ $ctrl.getGuideUrl(guide) }}"
+                            data-external
+                            data-on-click="$ctrl.trackGuideClick(guide)"
+                        >
+                            <span
+                                data-translate="{{ 'pci_projects_project_load_balancer_guide_' + guide.id.toLowerCase() }}"
+                            ></span>
+                        </oui-guide-menu-item>
+                    </oui-guide-menu>
+                </div>
+            </div>
+        </oui-header-heading>
     </oui-header>
     <div class="container-fluid px-0">
         <pci-maintenance-banner

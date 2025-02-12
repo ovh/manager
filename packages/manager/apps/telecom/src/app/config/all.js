@@ -241,4 +241,50 @@ angular
     wsRouteBase: '/engine/ws',
     loginUrl: WEBPACK_ENV.production ? '/auth' : 'https://www.ovh.com/auth',
     cookieSessionName: 'APIV6_SESSION',
+  })
+  .constant('CHANGELOG', {
+    pack: {
+      links: {
+        changelog:
+          'https://github.com/orgs/ovh/projects/18/views/2?pane=info&sliceBy%5Bvalue%5D=Connectivity',
+        roadmap:
+          'https://github.com/orgs/ovh/projects/18/views/1?sliceBy%5Bvalue%5D=Connectivity&pane=info',
+        'feature-request':
+          'https://github.com/ovh/collaborative-tools-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+      },
+      chapters: ['telecom', 'pack', ''],
+    },
+    overTheBox: {
+      links: {
+        changelog:
+          'https://github.com/orgs/ovh/projects/18/views/2?pane=info&sliceBy%5Bvalue%5D=Connectivity',
+        roadmap:
+          'https://github.com/orgs/ovh/projects/18/views/1?sliceBy%5Bvalue%5D=Connectivity&pane=info',
+        'feature-request':
+          'https://github.com/ovh/collaborative-tools-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+      },
+      chapters: ['telecom', 'overTheBox', ''],
+    },
+    telephony: {
+      links: {
+        changelog:
+          'https://github.com/orgs/ovh/projects/18/views/2?pane=info&sliceBy%5Bvalue%5D=VoIP',
+        roadmap:
+          'https://github.com/orgs/ovh/projects/18/views/1?pane=info&sliceBy%5Bvalue%5D=VoIP',
+        'feature-request':
+          'https://github.com/ovh/collaborative-tools-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+      },
+      chapters: ['telecom', 'telephony', ''],
+    },
+    sms: {
+      links: {
+        changelog:
+          'https://github.com/orgs/ovh/projects/18/views/2?pane=info&sliceBy%5Bvalue%5D=VoIP',
+        roadmap:
+          'https://github.com/orgs/ovh/projects/18/views/1?pane=info&sliceBy%5Bvalue%5D=VoIP',
+        'feature-request':
+          'https://github.com/ovh/collaborative-tools-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+      },
+      chapters: ['telecom', 'sms', ''],
+    },
   });

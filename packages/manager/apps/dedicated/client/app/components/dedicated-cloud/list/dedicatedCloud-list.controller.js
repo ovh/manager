@@ -2,12 +2,20 @@ import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 
 export default class extends ListLayoutHelper.ListLayoutCtrl {
   /* @ngInject */
-  constructor($q, $translate, DedicatedCloud, Alerter, ouiDatagridService) {
+  constructor(
+    $q,
+    $translate,
+    DedicatedCloud,
+    Alerter,
+    ouiDatagridService,
+    constants,
+  ) {
     super($q, ouiDatagridService);
     this.$translate = $translate;
     this.DedicatedCloud = DedicatedCloud;
     this.Alerter = Alerter;
     this.locationInfo = {};
+    this.constants = constants;
   }
 
   $onInit() {

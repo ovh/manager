@@ -23,6 +23,7 @@ export default class DnsZoneCtrl {
     currentSection,
     emailLink,
     isEmailDomainAvailable,
+    constants,
   ) {
     this.$scope = $scope;
     this.$stateParams = $stateParams;
@@ -35,6 +36,7 @@ export default class DnsZoneCtrl {
     this.currentSection = currentSection;
     this.emailLink = emailLink;
     this.isEmailDomainAvailable = isEmailDomainAvailable;
+    this.constants = constants;
   }
 
   $onInit() {

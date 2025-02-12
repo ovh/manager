@@ -9,7 +9,7 @@
         <div class="oui-header">
             <div class="oui-header__container">
                 <div class="oui-header__content row">
-                    <div class="col-md-9">
+                    <div class="col-sm-8">
                         <strong
                             data-translate="privateDatabase_order_sql_type_dbaas_label"
                         ></strong>
@@ -117,60 +117,73 @@
                         </div>
                     </div>
 
-                    <div class="col-md-3 d-flex">
-                        <div class="btn-group ml-auto mt-4" data-uib-dropdown>
-                            <button
-                                type="button"
-                                class="oui-button oui-button_dropdown mb-0"
-                                aria-expanded="false"
-                                aria-haspopup="true"
-                                data-uib-dropdown-toggle
+                    <div class="col-sm-4 d-flex">
+                        <div
+                            class="d-flex align-items-center justify-content-end flex-wrap gap-1 mt-4"
+                        >
+                            <changelog-button
+                                links="taskState.constants.CHANGELOG.web_cloud_databases.links"
+                                chapters="taskState.constants.CHANGELOG.web_cloud_databases.chapters"
+                            ></changelog-button>
+                            <div
+                                class="btn-group ml-auto mt-1"
+                                data-uib-dropdown
                             >
-                                <span data-translate="common_actions"></span>
-                                <span
-                                    class="oui-icon oui-icon-chevron-down"
-                                    aria-hidden="true"
-                                ></span>
-                            </button>
-                            <ul
-                                class="dropdown-menu dropdown-menu-right"
-                                data-uib-dropdown-menu
-                            >
-                                <li data-ng-if="!ctrl.isExpired">
-                                    <button
-                                        class="btn btn-link"
-                                        type="button"
-                                        title="{{ 'privateDatabase_restart' | translate }}"
-                                        data-translate="privateDatabase_restart"
-                                        data-ng-click="setAction('database/restart/private-database-database-restart')"
-                                        data-ng-disabled="taskState.lockAction"
-                                    ></button>
-                                </li>
-                                <li
-                                    class="dropdown-divider"
-                                    data-ng-if="!ctrl.isExpired && (changeOwnerUrl || ctrl.contactManagementLink)"
+                                <button
+                                    type="button"
+                                    class="oui-button oui-button_dropdown mb-0"
+                                    aria-expanded="false"
+                                    aria-haspopup="true"
+                                    data-uib-dropdown-toggle
                                 >
-                                    <a
-                                        data-ng-if="changeOwnerUrl"
-                                        class="btn btn-link"
-                                        title="{{:: 'core_change_owner' | translate }} ({{:: 'core_new_window' | translate }})"
-                                        target="_blank"
-                                        data-ng-href="{{::changeOwnerUrl}}"
-                                        data-translate="core_change_owner"
+                                    <span
+                                        data-translate="common_actions"
+                                    ></span>
+                                    <span
+                                        class="oui-icon oui-icon-chevron-down"
+                                        aria-hidden="true"
+                                    ></span>
+                                </button>
+                                <ul
+                                    class="dropdown-menu dropdown-menu-right"
+                                    data-uib-dropdown-menu
+                                >
+                                    <li data-ng-if="!ctrl.isExpired">
+                                        <button
+                                            class="btn btn-link"
+                                            type="button"
+                                            title="{{ 'privateDatabase_restart' | translate }}"
+                                            data-translate="privateDatabase_restart"
+                                            data-ng-click="setAction('database/restart/private-database-database-restart')"
+                                            data-ng-disabled="taskState.lockAction"
+                                        ></button>
+                                    </li>
+                                    <li
+                                        class="dropdown-divider"
+                                        data-ng-if="!ctrl.isExpired && (changeOwnerUrl || ctrl.contactManagementLink)"
                                     >
-                                    </a>
-                                </li>
-                                <li data-ng-if="ctrl.contactManagementLink">
-                                    <a
-                                        class="btn btn-link"
-                                        data-ng-href="{{:: ctrl.contactManagementLink }}"
-                                        data-translate="contacts_management"
-                                        data-ng-hide="database.isExpired"
-                                        target="_top"
-                                    >
-                                    </a>
-                                </li>
-                            </ul>
+                                        <a
+                                            data-ng-if="changeOwnerUrl"
+                                            class="btn btn-link"
+                                            title="{{:: 'core_change_owner' | translate }} ({{:: 'core_new_window' | translate }})"
+                                            target="_blank"
+                                            data-ng-href="{{::changeOwnerUrl}}"
+                                            data-translate="core_change_owner"
+                                        >
+                                        </a>
+                                    </li>
+                                    <li data-ng-if="ctrl.contactManagementLink">
+                                        <a
+                                            class="btn btn-link"
+                                            data-ng-href="{{:: ctrl.contactManagementLink }}"
+                                            data-translate="contacts_management"
+                                            data-ng-hide="database.isExpired"
+                                            target="_top"
+                                        >
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>

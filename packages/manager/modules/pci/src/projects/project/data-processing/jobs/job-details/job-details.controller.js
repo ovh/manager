@@ -12,6 +12,7 @@ export default class {
     CucCloudMessage,
     dataProcessingService,
     ovhManagerRegionService,
+    CHANGELOG,
   ) {
     this.$state = $state; // router state
     this.cucCloudMessage = CucCloudMessage;
@@ -20,5 +21,6 @@ export default class {
     this.DATA_PROCESSING_STATUS_TO_CLASS = DATA_PROCESSING_STATUS_TO_CLASS;
     this.getDataProcessingUiUrl = getDataProcessingUiUrl;
     this.guideUrl = DATA_PROCESSING_GUIDE_URL;
+    this.CHANGELOG = CHANGELOG;
   }
 }

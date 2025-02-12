@@ -17,6 +17,7 @@ export default /* @ngInject */ ($stateProvider) => {
       defaultFilterColumn: () => 'serviceName',
       header: /* @ngInject */ ($translate) =>
         $translate.instant('veeam_cc_title'),
+      changelog: () => 'veeam_cloud_connect',
       customizableColumns: () => true,
       getServiceNameLink: /* @ngInject */ ($state) => ({ serviceName }) =>
         $state.href('veeam-cloud-connect.detail', {

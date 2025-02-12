@@ -21,6 +21,7 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountCtrl(
   TucToast,
   OvhApiOrder,
   OvhApiTelephony,
+  CHANGELOG,
 ) {
   const self = this;
 
@@ -42,6 +43,8 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountCtrl(
 
   self.group = null;
   self.terminationTask = null;
+
+  self.CHANGELOG = CHANGELOG;
 
   /*= ==============================
   =            ACTIONS            =

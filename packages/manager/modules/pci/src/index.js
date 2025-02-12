@@ -27,7 +27,7 @@ import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 import 'font-awesome/css/font-awesome.css';
 import 'ovh-common-style/dist/ovh-common-style.css';
 
-import { region } from '@ovh-ux/manager-components';
+import { region, changelogButton } from '@ovh-ux/manager-components';
 import components from './components';
 import error from './error';
 import projects from './projects';
@@ -36,6 +36,7 @@ import template from './template.html';
 import './index.scss';
 
 import {
+  CHANGELOG,
   CLOUD_INSTANCE_DEFAULTS,
   CLOUD_INSTANCE_DEFAULT_FALLBACK,
   CLOUD_FLAVOR_SPECIFIC_IMAGE,
@@ -77,6 +78,7 @@ angular
     'ui.bootstrap',
     'ovhManagerBanner',
     region,
+    changelogButton,
   ])
   .config(
     /* @ngInject */ ($stateProvider) => {
@@ -90,6 +92,7 @@ angular
       });
     },
   )
+  .constant('CHANGELOG', CHANGELOG)
   .constant('CLOUD_INSTANCE_DEFAULTS', CLOUD_INSTANCE_DEFAULTS)
   .constant('CLOUD_INSTANCE_DEFAULT_FALLBACK', CLOUD_INSTANCE_DEFAULT_FALLBACK)
   .constant('CLOUD_FLAVOR_SPECIFIC_IMAGE', CLOUD_FLAVOR_SPECIFIC_IMAGE)

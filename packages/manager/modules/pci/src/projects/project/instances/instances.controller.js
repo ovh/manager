@@ -16,6 +16,7 @@ export default class CloudProjectComputeInfrastructureListCtrl {
     ovhManagerRegionService,
     ovhUserPref,
     PciProjectsProjectInstanceService,
+    CHANGELOG,
   ) {
     this.$q = $q;
     this.$translate = $translate;
@@ -24,6 +25,7 @@ export default class CloudProjectComputeInfrastructureListCtrl {
     this.ovhManagerRegionService = ovhManagerRegionService;
     this.ovhUserPref = ovhUserPref;
     this.PciProjectsProjectInstanceService = PciProjectsProjectInstanceService;
+    this.CHANGELOG = CHANGELOG;
   }
 
   $onInit() {

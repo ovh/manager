@@ -83,6 +83,7 @@ import WebPaas from '@ovh-ux/manager-web-paas';
 import '@ovh-ux/manager-filters';
 import { isTopLevelApplication } from '@ovh-ux/manager-config';
 
+import { changelogButton } from '@ovh-ux/manager-components';
 import getConfig from './config/config';
 import domain from './domain';
 import domainDnsZone from './dns-zone';
@@ -189,6 +190,7 @@ export default async (containerEl, shellClient) => {
         emailpro,
         exchange,
         office,
+        changelogButton,
         domain,
         domainDnsZone,
         emailDomain,
@@ -231,6 +233,7 @@ export default async (containerEl, shellClient) => {
       WEBSITE_URLS: config.constants.website_url,
       new_bdd_user_grant_options: config.constants.new_bdd_user_grant_options,
       ORDER_URL: config.constants.ORDER_URL,
+      CHANGELOG: config.constants.CHANGELOG,
     })
     .constant('website_url', config.constants.website_url)
     .factory('serviceTypeInterceptor', () => ({

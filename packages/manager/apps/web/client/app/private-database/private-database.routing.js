@@ -23,6 +23,7 @@ export default /* @ngInject */ ($stateProvider) => {
       defaultFilterColumn: () => 'serviceName',
       header: /* @ngInject */ ($translate) =>
         $translate.instant('private_databases_title'),
+      changelog: () => 'web_cloud_databases',
       customizableColumns: () => true,
       getServiceNameLink: /* @ngInject */ ($state) => ({
         serviceName: productId,

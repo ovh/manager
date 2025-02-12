@@ -1,4 +1,28 @@
 <oui-header class="mb-3">
+    <oui-header-heading>
+        <div
+            class="d-flex flex-grow-1 justify-content-end align-items-center gap-1 flex-wrap"
+        >
+            <changelog-button
+                links="$ctrl.CHANGELOG.quota_and_regions.links"
+                chapters="$ctrl.CHANGELOG.quota_and_regions.chapters"
+            ></changelog-button>
+            <oui-guide-menu
+                data-text="{{:: 'pci_project_guides_header' | translate }}"
+            >
+                <oui-guide-menu-item
+                    data-ng-repeat="guide in $ctrl.guideUrl.instances track by $index"
+                    data-href="{{:: guide.url }}"
+                    data-on-click="$ctrl.trackClick('_' + $ctrl.guideTrackingSectionTags.quota_and_regions + guide.tracking)"
+                    data-external
+                >
+                    <span
+                        data-translate="{{:: 'pci_project_guides_header_' + guide.key }}"
+                    ></span>
+                </oui-guide-menu-item>
+            </oui-guide-menu>
+        </div>
+    </oui-header-heading>
     <oui-header-tabs>
         <oui-header-tabs-item
             state="pci.projects.project.quota"
@@ -11,16 +35,4 @@
             ><span data-translate="pci_project_region_header"></span>
         </oui-header-tabs-item>
     </oui-header-tabs>
-    <oui-guide-menu data-text="{{:: 'pci_project_guides_header' | translate }}">
-        <oui-guide-menu-item
-            data-ng-repeat="guide in $ctrl.guideUrl.instances track by $index"
-            data-href="{{:: guide.url }}"
-            data-on-click="$ctrl.trackClick('_' + $ctrl.guideTrackingSectionTags.quota_and_regions + guide.tracking)"
-            data-external
-        >
-            <span
-                data-translate="{{:: 'pci_project_guides_header_' + guide.key }}"
-            ></span>
-        </oui-guide-menu-item>
-    </oui-guide-menu>
 </oui-header>

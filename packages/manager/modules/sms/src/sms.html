@@ -1,13 +1,31 @@
-<oui-header data-heading="{{ :: 'sms_title' | translate }}">
-    <oui-guide-menu data-text="{{ 'sms_header_guide' | translate }}">
-        <oui-guide-menu-item
-            data-ng-repeat="guideLink in $ctrl.headerGuideLink track by $index"
-            data-href="{{:: guideLink.url }}"
-            data-external
-        >
-            <span data-ng-bind=":: guideLink.label"></span>
-        </oui-guide-menu-item>
-    </oui-guide-menu>
+<oui-header>
+    <oui-header-heading>
+        <div class="d-flex justify-content-between">
+            <h1
+                class="oui-header__title"
+                data-translate="{{ :: 'sms_title' | translate }}"
+            ></h1>
+            <div
+                class="d-flex justify-content-end align-items-center gap-1 flex-wrap"
+            >
+                <changelog-button
+                    links="$ctrl.CHANGELOG.sms.links"
+                    chapters="$ctrl.CHANGELOG.sms.chapters"
+                ></changelog-button>
+                <oui-guide-menu
+                    data-text="{{ 'sms_header_guide' | translate }}"
+                >
+                    <oui-guide-menu-item
+                        data-ng-repeat="guideLink in $ctrl.headerGuideLink track by $index"
+                        data-href="{{:: guideLink.url }}"
+                        data-external
+                    >
+                        <span data-ng-bind=":: guideLink.label"></span>
+                    </oui-guide-menu-item>
+                </oui-guide-menu>
+            </div>
+        </div>
+    </oui-header-heading>
 </oui-header>
 
 <div class="container-fluid my-5">

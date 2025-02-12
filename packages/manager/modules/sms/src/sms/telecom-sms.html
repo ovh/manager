@@ -1,16 +1,3 @@
-<oui-guide-menu
-    data-text="{{ 'sms_header_guide' | translate }}"
-    class="float-right"
-    data-placement="end"
->
-    <oui-guide-menu-item
-        data-ng-repeat="guideLink in $ctrl.headerGuideLink track by $index"
-        data-href="{{:: guideLink.url }}"
-        data-external
-    >
-        <span data-ng-bind=":: guideLink.label"></span>
-    </oui-guide-menu-item>
-</oui-guide-menu>
 <section class="telecom-legacy telecom-sms" data-ui-view="smsView">
     <!-- LOADING -->
     <div class="text-center" data-ng-if="$ctrl.loading.init">
@@ -21,14 +8,38 @@
         <header class="oui-header">
             <div class="oui-header__container">
                 <div class="oui-header__content d-inline">
-                    <tuc-editable-service-name
-                        data-tuc-editable-service-name-title="$ctrl.service.getDisplayedName()"
-                        data-tuc-editable-service-name-title-on-save="$ctrl.serviceNameSave"
-                        data-tuc-editable-service-name-service-name="$ctrl.service.name"
-                        data-service-name-appendix="{{ $ctrl.serviceNameAppendix }}"
-                        data-maxlength="25"
-                    >
-                    </tuc-editable-service-name>
+                    <div class="d-flex justify-content-between">
+                        <tuc-editable-service-name
+                            data-tuc-editable-service-name-title="$ctrl.service.getDisplayedName()"
+                            data-tuc-editable-service-name-title-on-save="$ctrl.serviceNameSave"
+                            data-tuc-editable-service-name-service-name="$ctrl.service.name"
+                            data-service-name-appendix="{{ $ctrl.serviceNameAppendix }}"
+                            data-maxlength="25"
+                        >
+                        </tuc-editable-service-name>
+                        <div
+                            class="d-flex justify-content-end align-items-center gap-1 flex-wrap"
+                        >
+                            <changelog-button
+                                links="$ctrl.CHANGELOG.sms.links"
+                                chapters="$ctrl.CHANGELOG.sms.chapters"
+                            ></changelog-button>
+                            <oui-guide-menu
+                                data-text="{{ 'sms_header_guide' | translate }}"
+                                data-placement="end"
+                            >
+                                <oui-guide-menu-item
+                                    data-ng-repeat="guideLink in $ctrl.headerGuideLink track by $index"
+                                    data-href="{{:: guideLink.url }}"
+                                    data-external
+                                >
+                                    <span
+                                        data-ng-bind=":: guideLink.label"
+                                    ></span>
+                                </oui-guide-menu-item>
+                            </oui-guide-menu>
+                        </div>
+                    </div>
                 </div>
             </div>
         </header>
