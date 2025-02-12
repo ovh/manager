@@ -1,9 +1,6 @@
 import { InstallationFormValues } from '@/types/form.type';
 
-export const getSummaryFileName = (sapSid: string) =>
-  `my-sap-installation-${sapSid || 'sapSid'}`;
-
-export const getSummaryJSON = (form: InstallationFormValues) => {
+const getSummaryJSON = (form: InstallationFormValues) => {
   return JSON.stringify({
     applicationServers: {}, // step not developed yet
     applicationType: form.applicationType,
@@ -49,3 +46,9 @@ export const getSummaryJSON = (form: InstallationFormValues) => {
     vdcId: form.datacenterId,
   });
 };
+
+export const getSummaryFileName = (sapSid: string) =>
+  `my-sap-installation-${sapSid || 'sapSid'}`;
+
+export const getSummaryBlob = (form: InstallationFormValues) =>
+  new Blob([getSummaryJSON(form)], { type: 'application/json' });
