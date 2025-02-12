@@ -44,7 +44,7 @@ export const mockedErrors = {
   sapHanaSid: 'sapHanaSid is not valid',
   masterSapPassword: '',
   masterSapHanaPassword: 'masterSapHanaPassword is not valid',
-  sidamnPassword: 'sidamnPassword is not valid',
+  sidadmPassword: 'sidadmPassword is not valid',
   systemPassword: 'systemPassword is not valid',
   bucketId: '',
   endpoint: 'endpoint format is not valid',
