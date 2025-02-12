@@ -1,7 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
 import { useTranslatedMicroRegions } from '@ovh-ux/manager-react-components';
-import { getRegions } from '@/api/data/region';
+import { getProjectRegions } from '@ovh-ux/manager-pci-common';
+import { getAvailableRegions } from '@/api/data/region';
 
 type TLocation = {
   continent: string;
@@ -14,22 +15,22 @@ type TPlainLocation = {
   regions: string[];
 };
 
-export const useGetProjectRegions = (
-  projectId: string,
-  onlyAvailable = false,
-) =>
+export const useGetRegions = (projectId: string) =>
   useQuery({
-    queryKey: [
-      'project',
-      projectId,
-      'regions',
-      onlyAvailable ? 'available' : 'all',
-    ],
-    queryFn: () => getRegions(projectId, onlyAvailable),
+    queryKey: ['project', projectId, 'regions'],
+    queryFn: () => getProjectRegions(projectId),
+  });
+
+export const useGetAvailableRegions = (projectId: string) =>
+  useQuery({
+    queryKey: ['project', projectId, 'availableRegions'],
+    queryFn: () => getAvailableRegions(projectId),
   });
 
 export const useLocations = (projectId: string, onlyAvailable = false) => {
-  const query = useGetProjectRegions(projectId, onlyAvailable);
+  const query = onlyAvailable
+    ? useGetAvailableRegions(projectId)
+    : useGetRegions(projectId);
 
   const {
     translateContinentRegion,
@@ -42,6 +43,7 @@ export const useLocations = (projectId: string, onlyAvailable = false) => {
       const payload = query.data?.reduce(
         (acc: Map<string, TLocation>, region) => {
           const continent = translateContinentRegion(region.name);
+          // TODO investigate, le cap, le caire
           const location = translateMacroRegion(region.name).split(' ')[0];
 
           if (!acc.has(location)) {
@@ -50,7 +52,7 @@ export const useLocations = (projectId: string, onlyAvailable = false) => {
               regions: new Set<string>().add(region.name),
             });
           } else {
-            acc.get(location)?.regions.add(region.name);
+            acc.get(location).regions.add(region.name);
           }
 
           return acc;
@@ -58,6 +60,7 @@ export const useLocations = (projectId: string, onlyAvailable = false) => {
         new Map<string, TLocation>(),
       );
 
+      // TODO may be a map
       return Array.from(payload?.keys() || []).reduce(
         (acc: TPlainLocation[], name) => {
           return [

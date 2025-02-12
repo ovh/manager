@@ -4,13 +4,18 @@ export type TRegion = {
   name: string;
 };
 
-export const getRegions = async (
+export type TAddRegionResponse = {
+  continentCode: string;
+  countryCode: string;
+  name: string;
+  status: string;
+  type: string;
+};
+
+export const getAvailableRegions = async (
   projectId: string,
-  onlyAvailable = false,
 ): Promise<TRegion[]> => {
-  const url = !onlyAvailable
-    ? `/cloud/project/${projectId}/region`
-    : `/cloud/project/${projectId}/regionAvailable`;
+  const url = `/cloud/project/${projectId}/regionAvailable`;
   const { data } = await v6.get<TRegion[]>(url, {
     headers: {
       'X-Pagination-Mode': 'CachedObjectList-Pages',
@@ -20,7 +25,13 @@ export const getRegions = async (
   return data;
 };
 
-export const addRegion = async (projectId: string, regionCode: string) => {
+export const addRegion = async (
+  projectId: string,
+  regionCode: string,
+): Promise<TAddRegionResponse> => {
   const url = `/cloud/project/${projectId}/region`;
-  await v6.post(url, { region: regionCode });
+  const { data } = await v6.post<TAddRegionResponse>(url, {
+    region: regionCode,
+  });
+  return data;
 };

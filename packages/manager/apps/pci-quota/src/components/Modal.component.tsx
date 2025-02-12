@@ -10,13 +10,12 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { OdsSelectCustomRenderer } from '@ovhcloud/ods-components';
 import { useGetIssueTypes } from '@/api/hooks/useIssuTypes';
-import { ISSUE_TYPE_IDS } from '@/constants';
-import { useGetServiceOptions } from '@/api/hooks/useServiceOptions';
+import { useGetFilteredServiceOptions } from '@/api/hooks/useServiceOptions';
 import { TServiceOption } from '@/api/data/service-option';
-import queryClient from '@/queryClient';
+import { SUPPORT_ISSUE_TYPE_IDS } from '@/constants';
 
 export type TProps = {
   type: 'support' | 'credit';
@@ -31,6 +30,19 @@ type TState = {
   description: string;
 };
 
+const selectCustomRenderer: OdsSelectCustomRenderer = {
+  item: (data: { text: string }) => {
+    return `<span>${data.text}</span>`;
+  },
+  option: (data: { text: string }) => {
+    return `<div style="display:flex;"><div style="flex-basis: 50%;">${data.text
+      .split('-')[0]
+      .trim()}</div><div style="flex-basis: 50%;text-align:right;">${data.text
+      .split('-')[1]
+      .trim()}</div></div>`;
+  },
+};
+
 export const Modal = ({
   type,
   onConfirm,
@@ -43,6 +55,7 @@ export const Modal = ({
 
   const { data: project } = useProject(projectId);
 
+  // TODO two states
   const [state, setState] = useState<TState>({
     serviceOption: undefined,
     description: '',
@@ -50,43 +63,27 @@ export const Modal = ({
 
   const { data: issueTypes } = useGetIssueTypes(i18n.language);
 
-  useEffect(() => {
-    queryClient.invalidateQueries({
-      queryKey: ['issueTypes'],
-    });
-  }, [i18n.language]);
-
   const inputLabel = useMemo(() => {
     if (type === 'support' && Array.isArray(issueTypes)) {
       const targetIssueType = issueTypes.find(({ id }) =>
-        ISSUE_TYPE_IDS.includes(id),
+        SUPPORT_ISSUE_TYPE_IDS.includes(id),
       );
 
       if (targetIssueType) {
+        // TODO move this to view instead
         return targetIssueType.fields.map(({ label }) => label).join('\n\n');
       }
     }
     return '';
   }, [issueTypes]);
 
-  const { data: serviceOptions } = useGetServiceOptions(projectId);
+  const { data: serviceOptions } = useGetFilteredServiceOptions(projectId);
 
-  const selectCustomRenderer: OdsSelectCustomRenderer = {
-    item: (data: { text: string }) => {
-      return `<span>${data.text}</span>`;
-    },
-    option: (data: { text: string }) => {
-      return `<div style="display:flex;"><div style="flex-basis: 50%;">${data.text
-        .split('-')[0]
-        .trim()}</div><div style="flex-basis: 50%;text-align:right;">${data.text
-        .split('-')[1]
-        .trim()}</div></div>`;
-    },
-  };
+  // TODO move outside the component
 
   return (
     <OdsModal isOpen={true} onOdsClose={onClose}>
-      <div className="">
+      <div>
         <div>
           <OdsText preset="heading-4">
             {t('pci_projects_project_quota_increase_title')}
@@ -107,6 +104,7 @@ export const Modal = ({
               </div>
             </>
           )}
+          {/* TODO use interpolation */}
           <OdsText preset="paragraph" className="mt-4">
             <span
               dangerouslySetInnerHTML={{
@@ -116,6 +114,7 @@ export const Modal = ({
               }}
             ></span>
           </OdsText>
+
           {type === 'support' && (
             <OdsFormField className="mt-4">
               <OdsText slot="label" className="text-base">
@@ -150,10 +149,9 @@ export const Modal = ({
             >
               {serviceOptions?.map(({ planCode, prices }) => (
                 <option key={planCode} value={planCode}>
-                  {t(
+                  {`${t(
                     `pci_projects_project_quota_increase_select_volume_${planCode}`,
-                  )}{' '}
-                  {` - ${prices[0]?.price.text}`}
+                  )} - ${prices[0]?.price.text}`}
                 </option>
               ))}
             </OdsSelect>

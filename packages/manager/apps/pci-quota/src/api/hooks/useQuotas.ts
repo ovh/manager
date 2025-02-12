@@ -1,18 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
 import { ColumnSort } from '@tanstack/react-table';
-import { PaginationState } from '@ovh-ux/manager-react-components';
 import { useMemo } from 'react';
 import { getQuotas, Quota } from '@/api/data/quota';
 import { useLocations } from '@/api/hooks/useRegions';
-
-const paginateResults = <T>(items: T[], pagination: PaginationState) => ({
-  rows: items.slice(
-    pagination.pageIndex * pagination.pageSize,
-    (pagination.pageIndex + 1) * pagination.pageSize,
-  ),
-  pageCount: Math.ceil(items.length / pagination.pageSize),
-  totalRows: items.length,
-});
 
 export const sortQuotas = (quotas: Quota[], sorting: ColumnSort) => {
   const { id: sortKey, desc } = sorting;
@@ -27,11 +17,7 @@ export const sortQuotas = (quotas: Quota[], sorting: ColumnSort) => {
   return quotas;
 };
 
-export const useQuotas = (
-  projectId: string,
-  pagination: PaginationState,
-  sorting: ColumnSort,
-) => {
+export const useQuotas = (projectId: string) => {
   const query = useQuery({
     queryKey: ['project', projectId, 'quotas'],
     queryFn: () => getQuotas(projectId),
@@ -56,9 +42,6 @@ export const useQuotas = (
 
   return {
     ...query,
-    paginatedData: paginateResults<Quota>(
-      sortQuotas(quotas || [], sorting),
-      pagination,
-    ),
+    quotas,
   };
 };

@@ -6,8 +6,9 @@ export const PRODUCTS = {
 
 export const QUOTA_THRESHOLD = 80;
 
-export const iamLink = 'https://www.ovh.com/manager/#/dedicated/iam/policy';
-export const supportLink = 'https://us.ovhcloud.com/manager/#/dedicated/ticket';
+export const IAM_LINK = 'https://www.ovh.com/manager/#/dedicated/iam/policy';
+export const SUPPORT_LINK =
+  'https://us.ovhcloud.com/manager/#/dedicated/ticket';
 
 export const RESTRICTED_CORES = 1;
 
@@ -15,7 +16,15 @@ export const RESTRICTED_RAM = 2048;
 
 export const RESTRICTED_INSTANCES = 1;
 
-export const ISSUE_TYPE_IDS = [33381, 33382, 43227, 44486, 44800, 44801];
+export const SUPPORT_ISSUE_TYPE_IDS = [
+  33381,
+  33382,
+  43227,
+  44486,
+  44800,
+  44801,
+  43228,
+];
 
 export const RX_PLAN_CODE_PATTERN = /quota-([0-9]+)vms/;
 
