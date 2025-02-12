@@ -1,6 +1,7 @@
 import JSURL from 'jsurl';
 import { uniq } from 'lodash';
 import { CatalogPricing } from '@ovh-ux/manager-models';
+import { init, loadRemote } from '@module-federation/runtime';
 
 import {
   FORMAT_DURATION_TRACKING_ORDER,
@@ -58,13 +59,56 @@ export default class NashaOrderController {
   }
 
   $onInit() {
-    this.plans.forEach((plan) => {
-      const key = `nasha_order_capacity_description_${plan.planCode}`;
-      const description = this.$translate.instant(key);
-      Object.assign(plan.capacity, {
-        description: (description !== key && description) || '',
-      });
+    init({
+      remotes: [
+        {
+          name: '@order/ConfigoNasHa',
+          alias: 'order_fm',
+          type: 'module',
+          entry:
+            'https://www.ovhcloud.com/order/configos/assets/remoteEntry.js',
+        },
+      ],
     });
+    const element = document.getElementById('nasha-order-container');
+    loadRemote('order_fm/ConfigoNasHa')
+      .then((module) => {
+        const setupNasHa = module;
+        setupNasHa(element, {
+          options: {
+            assets: {
+              flagsPath: '/assets/flags',
+            },
+            orderId: 'nasha',
+            usePreprod: false,
+            useLab: false,
+            language: this.userLocale.substring(0, 2),
+            subsidiary: this.user.ovhSubsidiary,
+            navbar: {
+              enable: true,
+            },
+            cart: {
+              enable: false,
+            },
+          },
+          callbacks: {
+            error: () => {},
+            ready: () => {},
+            update: () => {},
+            navigation: () => {
+              // finishing the order
+              this.trackClick(PREFIX_TRACKING_ORDER, 'confirm');
+              this.goToNasha();
+            },
+          },
+          parameters: null,
+          selections: null,
+        });
+      })
+      .catch(() => {
+        element.innerText =
+          'Order could not be loaded. Please try again later (and/or) report the issue.';
+      });
   }
 
   get plan() {
