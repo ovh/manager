@@ -1,10 +1,14 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { ApiError } from '@ovh-ux/manager-core-api';
+import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import { OrderContext, ServiceStatus } from '@/pages/order/order.context';
 import { ServiceType } from '@/types';
-import { getDedicatedServerServiceInfos } from '@/data/api/dedicated-server';
-import { getVrackServiceInfos } from '@/data/api/vrack';
+import {
+  DedicatedServerServiceInfos,
+  getDedicatedServerServiceInfos,
+} from '@/data/api/dedicated-server';
+import { VrackServiceInfos, getVrackServiceInfos } from '@/data/api/vrack';
+import { VpsServiceInfos, getVpsServiceInfos } from '../api/vps';
 
 export const useCheckServiceAvailability = () => {
   const {
@@ -18,27 +22,29 @@ export const useCheckServiceAvailability = () => {
     queryKey: [selectedServiceType, selectedService, 'serviceInfos'],
     queryFn: async () => {
       try {
-        if (selectedServiceType === ServiceType.server) {
-          const serviceInfos = await getDedicatedServerServiceInfos(
-            selectedService,
-          );
-          if (serviceInfos.data.status === 'expired') {
-            setSelectedServiceStatus(ServiceStatus.expired);
-            addDisabledService(selectedService);
-          }
-          // Check if we can order an IP on this service
-          // await getOrderableIpInfo(selectedService);
-          return serviceInfos;
+        let serviceInfos: ApiResponse<
+          DedicatedServerServiceInfos | VpsServiceInfos | VrackServiceInfos
+        > = null;
+        switch (selectedServiceType) {
+          case ServiceType.server:
+            serviceInfos = await getDedicatedServerServiceInfos(
+              selectedService,
+            );
+            break;
+          case ServiceType.vps:
+            serviceInfos = await getVpsServiceInfos(selectedService);
+            break;
+          case ServiceType.vrack:
+            serviceInfos = await getVrackServiceInfos(selectedService);
+            break;
+          default:
+            serviceInfos = null;
         }
-        if (selectedServiceType === ServiceType.vrack) {
-          const serviceInfos = await getVrackServiceInfos(selectedService);
-          if (serviceInfos.data.status === 'expired') {
-            setSelectedServiceStatus(ServiceStatus.expired);
-            addDisabledService(selectedService);
-          }
-          return serviceInfos;
+        if (serviceInfos.data.status === 'expired') {
+          setSelectedServiceStatus(ServiceStatus.expired);
+          addDisabledService(selectedService);
         }
-        return null;
+        return serviceInfos;
       } catch (err) {
         addDisabledService(selectedService);
         if ((err as ApiError)?.response?.status === 460) {
@@ -50,7 +56,9 @@ export const useCheckServiceAvailability = () => {
     },
     enabled:
       !!selectedService &&
-      [ServiceType.server, ServiceType.vrack].includes(selectedServiceType),
+      [ServiceType.server, ServiceType.vrack, ServiceType.vps].includes(
+        selectedServiceType,
+      ),
     retry: false,
   });
 
