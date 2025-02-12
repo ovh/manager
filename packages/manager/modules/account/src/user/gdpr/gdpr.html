@@ -9,8 +9,8 @@
     >
         <p>
             <strong data-translate="gdpr_erasure_description_emphasis"></strong>
-            <span data-translate="gdpr_erasure_description"></span>
         </p>
+        <p data-translate="gdpr_erasure_description"></p>
         <oui-button
             type="button"
             variant="primary"
@@ -127,7 +127,7 @@
                     data-on-dismiss="$ctrl.closeErasureConfirmationModal()"
                 >
                     <p
-                        class="mb-4"
+                        class="mb-4 confirmation-message"
                         data-translate="gdpr_erasure_confirmation_modal"
                         data-translate-values="{ nic: $ctrl.nic }"
                     ></p>
