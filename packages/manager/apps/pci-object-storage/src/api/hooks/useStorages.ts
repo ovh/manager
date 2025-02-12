@@ -244,8 +244,9 @@ export const useDeleteStorage = ({
           url,
         }),
       );
-
       await Promise.all(deletePromises);
+      // adding some delay to avoid api deletion error
+      await new Promise((resolve) => setTimeout(resolve, 1000));
       return deleteSwiftContainer(projectId, storage.id);
     },
     onError,
