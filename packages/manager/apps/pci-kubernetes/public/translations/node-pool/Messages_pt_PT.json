@@ -17,5 +17,8 @@
   "kube_node_pool_enabled": "Ativado",
   "kube_node_pool_disabled": "Desativado",
   "kube_node_pool_autoscale_true": "Ativo",
-  "kube_node_pool_autoscale_false": "Inativo"
+  "kube_node_pool_autoscale_false": "Inativo",
+  "kube_common_node_pool_configure_true": "Configurar pools de nós",
+  "kube_common_node_pool_configure_false": " Criar um cluster sem pool de nós",
+  "kube_common_node_pool_estimated_cost": "Preço indicativo dos custos do cluster:"
 }

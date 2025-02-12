@@ -45,5 +45,6 @@
   "kubernetes_add_update_policy_title": "Select security policy",
   "kubernetes_select_version_title": "Select a version",
   "kubernetes_add_billing_savings_plan_banner": "Take advantage of low monthly rates with Savings Plans—save money without sacrificing the flexibility to use instances whenever you need them.",
-  "kubernetes_add_billing_savings_plan_cta": "Set up your Savings Plan"
+  "kubernetes_add_billing_savings_plan_cta": "Set up your Savings Plan",
+  "kubernetes_add_name_placeholder": "Cluster name"
 }
