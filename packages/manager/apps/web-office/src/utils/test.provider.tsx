@@ -16,6 +16,7 @@ import dashboardUsersOrderUsersTranslation from '@/public/translations/dashboard
 
 import onboardingTranslation from '@/public/translations/onboarding/Messages_fr_FR.json';
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
+import consumptionTranslation from '@/public/translations/dashboard/consumption/Messages_fr_FR.json';
 import '@testing-library/jest-dom';
 import 'element-internals-polyfill';
 
@@ -26,6 +27,7 @@ i18n.use(initReactI18next).init({
     fr: {
       licenses: licensesTranslation,
       'dashboard/users': dashboardUsersTranslation,
+      'dashboard/consumption': consumptionTranslation,
       'dashboard/users/order-licenses': dashboardUsersOrderLicensesTranslation,
       'dashboard/users/order-users': dashboardUsersOrderUsersTranslation,
       onboarding: onboardingTranslation,
