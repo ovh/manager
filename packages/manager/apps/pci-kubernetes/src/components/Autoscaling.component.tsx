@@ -4,6 +4,7 @@ import {
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
   ODS_MESSAGE_TYPE,
+  ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import {
@@ -79,6 +80,49 @@ export function Autoscaling({
 
   return (
     <>
+      <QuantitySelector
+        className="mt-8"
+        label={t('kubernetes_node_pool_autoscaling_desired_nodes_size')}
+        value={quantity.desired}
+        onValueChange={(desired) => {
+          setQuantity((_quantity) => ({
+            ..._quantity,
+            desired,
+          }));
+        }}
+        min={0}
+        max={maxValue}
+      />
+      <OsdsFormField className="mt-8" inline>
+        <OsdsText
+          className="mb-4 font-bold"
+          color={ODS_TEXT_COLOR_INTENT.text}
+          level={ODS_TEXT_LEVEL.heading}
+          size={ODS_TEXT_SIZE._400}
+          slot="label"
+        >
+          {t('kubernetes_node_pool_autoscaling_autoscale')}
+        </OsdsText>
+
+        <OsdsToggle
+          disabled={isAntiAffinity || undefined}
+          color={ODS_THEME_COLOR_INTENT.primary}
+          checked={isAutoscale || undefined}
+          onClick={() => !isAntiAffinity && setIsAutoscale((auto) => !auto)}
+        >
+          <OsdsText
+            className="ml-4 font-bold"
+            color={ODS_TEXT_COLOR_INTENT.text}
+            level={ODS_TEXT_LEVEL.body}
+            size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+            slot="end"
+          >
+            {t(
+              `kubernetes_node_pool_autoscaling_autoscale_toggle_${isAutoscale}`,
+            )}
+          </OsdsText>
+        </OsdsToggle>
+      </OsdsFormField>
       <OsdsText
         color={ODS_TEXT_COLOR_INTENT.text}
         level={ODS_TEXT_LEVEL.body}
@@ -104,47 +148,6 @@ export function Autoscaling({
           </OsdsLink>
         )}
       </OsdsText>
-      <QuantitySelector
-        className="mt-8"
-        label={t('kubernetes_node_pool_autoscaling_desired_nodes_size')}
-        value={quantity.desired}
-        onValueChange={(desired) => {
-          setQuantity((_quantity) => ({
-            ..._quantity,
-            desired,
-          }));
-        }}
-        min={0}
-        max={maxValue}
-      />
-      <OsdsFormField className="mt-8" inline>
-        <OsdsText
-          color={ODS_TEXT_COLOR_INTENT.text}
-          size={ODS_THEME_TYPOGRAPHY_SIZE._200}
-          slot="label"
-        >
-          {t('kubernetes_node_pool_autoscaling_autoscale')}
-        </OsdsText>
-
-        <OsdsToggle
-          disabled={isAntiAffinity || undefined}
-          color={ODS_THEME_COLOR_INTENT.primary}
-          checked={isAutoscale || undefined}
-          onClick={() => !isAntiAffinity && setIsAutoscale((auto) => !auto)}
-        >
-          <OsdsText
-            className="ml-4 font-bold"
-            color={ODS_TEXT_COLOR_INTENT.text}
-            level={ODS_TEXT_LEVEL.body}
-            size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-            slot="end"
-          >
-            {t(
-              `kubernetes_node_pool_autoscaling_autoscale_toggle_${isAutoscale}`,
-            )}
-          </OsdsText>
-        </OsdsToggle>
-      </OsdsFormField>
       {isAutoscale && (
         <>
           <QuantitySelector
