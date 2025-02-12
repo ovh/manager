@@ -45,5 +45,6 @@
   "kubernetes_add_update_policy_title": "Wybierz politykę bezpieczeństwa",
   "kubernetes_select_version_title": "Wybierz wersję",
   "kubernetes_add_billing_savings_plan_banner": "Dzięki Savings Plan zyskujesz korzystne opłaty miesięczne, a jednocześnie zachowujesz możliwość płatności za instancje w trybie za godzinę.",
-  "kubernetes_add_billing_savings_plan_cta": "Skonfiguruj Savings Plans"
+  "kubernetes_add_billing_savings_plan_cta": "Skonfiguruj Savings Plans",
+  "kubernetes_add_name_placeholder": "Nazwa klastra"
 }

@@ -45,5 +45,6 @@
   "kubernetes_add_update_policy_title": "Selecione a política de segurança",
   "kubernetes_select_version_title": "Selecione uma versão",
   "kubernetes_add_billing_savings_plan_banner": "Graças aos Savings Plans, beneficie de preços mensais vantajosos, enquanto conserva a flexibilidade das instâncias à hora.",
-  "kubernetes_add_billing_savings_plan_cta": "Configure os seus Savings Plans"
+  "kubernetes_add_billing_savings_plan_cta": "Configure os seus Savings Plans",
+  "kubernetes_add_name_placeholder": "Nome do cluster"
 }
