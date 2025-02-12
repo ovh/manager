@@ -114,7 +114,9 @@ export const Routes: any = [
           },
           {
             path: 'consumption',
-            ...lazyRouteConfig(() => import('@/pages/dashboard/consumption')),
+            ...lazyRouteConfig(() =>
+              import('@/pages/dashboard/consumption/Consumption'),
+            ),
             handle: {
               tracking: {
                 pageName: 'consumption',
