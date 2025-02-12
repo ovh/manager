@@ -1,14 +1,12 @@
 import { Dispatch, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
-
 import { FlavorSelector, KubeFlavor } from '@ovh-ux/manager-pci-common';
 import { OsdsText } from '@ovhcloud/ods-components/react';
-
 import {
   ODS_TEXT_COLOR_INTENT,
   ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-import { ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
 
 export interface NodeTypeStepProps {
   projectId: string;
@@ -27,12 +25,12 @@ export default function NodePoolType({
   return (
     <div>
       <OsdsText
-        className="ml-4 block font-bold"
+        className="mb-4 font-bold block"
         color={ODS_TEXT_COLOR_INTENT.text}
-        level={ODS_TEXT_LEVEL.body}
-        size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+        level={ODS_TEXT_LEVEL.heading}
+        size={ODS_TEXT_SIZE._400}
       >
-        {tAddForm('kubernetes_add_node_pool_node_type')}
+        {tAddForm('kube_common_node_pool_model_type_selector')}
       </OsdsText>
       <FlavorSelector
         projectId={projectId}

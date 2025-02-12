@@ -31,10 +31,10 @@ const NodePoolAntiAffinity = ({
   return (
     <div className="mb-6">
       <OsdsText
+        className="mb-4 font-bold block"
         color={ODS_TEXT_COLOR_INTENT.text}
-        level={ODS_TEXT_LEVEL.body}
-        size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-        className="block"
+        level={ODS_TEXT_LEVEL.heading}
+        size={ODS_TEXT_SIZE._400}
       >
         {t('kubernetes_node_pool_anti_affinity')}
       </OsdsText>

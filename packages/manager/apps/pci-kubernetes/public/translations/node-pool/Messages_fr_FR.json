@@ -23,5 +23,6 @@
   "kube_common_node_pool_estimated_cost": "Estimation coût mensuel du cluster :",
   "kube_common_node_pool_estimation_text": "Cette estimation n'inclut pas une éventuelle réduction liée aux Savings Plans.",
   "kube_common_node_pool_estimation_price": "Pools de nœuds :  x,xx € HT/mois",
-  "kube_common_node_pool_estimation_text_end": "Le coût exact dépend de l'utilisation réelle des ressources, qui ne peut être précisément estimée avant la création d'un cluster."
+  "kube_common_node_pool_estimation_text_end": "Le coût exact dépend de l'utilisation réelle des ressources, qui ne peut être précisément estimée avant la création d'un cluster.",
+  "kube_common_node_pool_size_title": "Taille du pool de nœuds"
 }

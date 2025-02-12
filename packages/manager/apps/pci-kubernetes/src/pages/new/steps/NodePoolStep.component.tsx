@@ -8,7 +8,12 @@ import {
 } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import { AutoscalingState } from '@/components/Autoscaling.component';
-import { NAME_INPUT_CONSTRAINTS, NODE_RANGE, TAGS_BLOB } from '@/constants';
+import {
+  ANTI_AFFINITY_MAX_NODES,
+  NAME_INPUT_CONSTRAINTS,
+  NODE_RANGE,
+  TAGS_BLOB,
+} from '@/constants';
 import { useClusterCreationStepper } from '../useCusterCreationStepper';
 import BillingStep from '@/components/create/BillingStep.component';
 import { MAX_LENGTH } from './ClusterNameStep.component';
@@ -61,7 +66,11 @@ const NodePoolStep = ({
     return isMinValid && isMaxValid && isDesiredInRange;
   }, [scaling]);
 
-  const isButtonDisabled = !isScalingValid || !isNodePoolValid;
+  const hasMax5NodesAntiAffinity =
+    !antiAffinity ||
+    (antiAffinity && scaling.quantity.desired <= ANTI_AFFINITY_MAX_NODES);
+  const isButtonDisabled =
+    !isScalingValid || !isNodePoolValid || !hasMax5NodesAntiAffinity;
 
   const price = useMemo(() => {
     if (flavor) {
@@ -76,6 +85,8 @@ const NodePoolStep = ({
   const isPricingComingSoon = flavor?.blobs?.tags?.includes(
     TAGS_BLOB.COMING_SOON,
   );
+
+  useEffect(() => setIsMonthlyBilled(false), [flavor]);
 
   useEffect(() => {
     if (!nodePoolEnabled) {
