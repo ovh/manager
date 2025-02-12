@@ -17,5 +17,8 @@
   "kube_node_pool_enabled": "Aktywny",
   "kube_node_pool_disabled": "Wyłączony",
   "kube_node_pool_autoscale_true": "Aktywny",
-  "kube_node_pool_autoscale_false": "Nieaktywny"
+  "kube_node_pool_autoscale_false": "Nieaktywny",
+  "kube_common_node_pool_configure_true": "Konfigurowanie pul węzłów",
+  "kube_common_node_pool_configure_false": " Utwórz klaster bez puli węzłów",
+  "kube_common_node_pool_estimated_cost": "Orientacyjna cena kosztów klastra:"
 }
