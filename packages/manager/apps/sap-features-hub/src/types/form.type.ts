@@ -41,7 +41,7 @@ export type SystemForm = {
   sapHanaSid: string;
   masterSapPassword: string;
   masterSapHanaPassword: string;
-  sidamnPassword: string;
+  sidadmPassword: string;
   systemPassword: string;
 };
 export type SourceForm = {
