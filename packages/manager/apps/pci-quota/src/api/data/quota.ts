@@ -1,6 +1,5 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 import { QUOTA_THRESHOLD } from '@/constants';
-import { TServiceOption } from '@/api/data/service-option';
 
 export interface IQuota {
   region: string;
@@ -182,24 +181,20 @@ export const getQuotas = async (projectId: string): Promise<IQuota[]> => {
 
 export const orderQuota = async (
   projectId: string,
-  cartId: number | string,
-  serviceOption: TServiceOption,
+  cartId: string | number,
+  planCode: string,
+  duration: string,
+  pricingMode: string,
 ): Promise<{ url: string }> => {
-  const installationPrice = serviceOption.prices?.find((price) =>
-    price.capacities.includes('installation'),
-  );
-
   const { data } = await v6.post<{ url: string }>(
     `/order/cartServiceOption/cloud/${projectId}`,
     {
       cartId,
       quantity: 1,
-      planCode: serviceOption.planCode,
-      duration: installationPrice.duration,
-      pricingMode: installationPrice.pricingMode,
+      planCode,
+      duration,
+      pricingMode,
     },
   );
-  return {
-    url: data.url,
-  };
+  return data;
 };

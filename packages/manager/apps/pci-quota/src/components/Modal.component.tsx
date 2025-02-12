@@ -10,13 +10,12 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
-import { useEffect, useMemo, useState } from 'react';
+import { useState } from 'react';
 import { OdsSelectCustomRenderer } from '@ovhcloud/ods-components';
-import { useGetIssueTypes } from '@/api/hooks/useIssuTypes';
-import { ISSUE_TYPE_IDS } from '@/constants';
-import { useGetServiceOptions } from '@/api/hooks/useServiceOptions';
+import { useGetIssueTypes } from '@/api/hooks/useIssueTypes';
+import { useGetFilteredServiceOptions } from '@/api/hooks/useServiceOptions';
 import { TServiceOption } from '@/api/data/service-option';
-import queryClient from '@/queryClient';
+import useInputLabel from '@/hooks/useInputLabel';
 
 export type TProps = {
   type: 'support' | 'credit';
@@ -26,9 +25,17 @@ export type TProps = {
   isLoading: boolean;
 };
 
-type TState = {
-  serviceOption: TServiceOption;
-  description: string;
+const selectCustomRenderer: OdsSelectCustomRenderer = {
+  item: (data: { text: string }) => {
+    return `<span>${data.text}</span>`;
+  },
+  option: (data: { text: string }) => {
+    return `<div style="display:flex;"><div style="flex-basis: 50%;">${data.text
+      .split('-')[0]
+      .trim()}</div><div style="flex-basis: 50%;text-align:right;">${data.text
+      .split('-')[1]
+      .trim()}</div></div>`;
+  },
 };
 
 export const Modal = ({
@@ -43,50 +50,20 @@ export const Modal = ({
 
   const { data: project } = useProject(projectId);
 
-  const [state, setState] = useState<TState>({
-    serviceOption: undefined,
-    description: '',
-  });
+  const [serviceOption, setServiceOption] = useState<TServiceOption>();
+  const [description, setDescription] = useState<string>();
 
   const { data: issueTypes } = useGetIssueTypes(i18n.language);
 
-  useEffect(() => {
-    queryClient.invalidateQueries({
-      queryKey: ['issueTypes'],
-    });
-  }, [i18n.language]);
+  const inputLabel = useInputLabel(type, issueTypes);
 
-  const inputLabel = useMemo(() => {
-    if (type === 'support' && Array.isArray(issueTypes)) {
-      const targetIssueType = issueTypes.find(({ id }) =>
-        ISSUE_TYPE_IDS.includes(id),
-      );
+  const { data: serviceOptions } = useGetFilteredServiceOptions(projectId);
 
-      if (targetIssueType) {
-        return targetIssueType.fields.map(({ label }) => label).join('\n\n');
-      }
-    }
-    return '';
-  }, [issueTypes]);
-
-  const { data: serviceOptions } = useGetServiceOptions(projectId);
-
-  const selectCustomRenderer: OdsSelectCustomRenderer = {
-    item: (data: { text: string }) => {
-      return `<span>${data.text}</span>`;
-    },
-    option: (data: { text: string }) => {
-      return `<div style="display:flex;"><div style="flex-basis: 50%;">${data.text
-        .split('-')[0]
-        .trim()}</div><div style="flex-basis: 50%;text-align:right;">${data.text
-        .split('-')[1]
-        .trim()}</div></div>`;
-    },
-  };
+  // TODO move outside the component
 
   return (
     <OdsModal isOpen={true} onOdsClose={onClose}>
-      <div className="">
+      <div>
         <div>
           <OdsText preset="heading-4">
             {t('pci_projects_project_quota_increase_title')}
@@ -107,6 +84,7 @@ export const Modal = ({
               </div>
             </>
           )}
+          {/* TODO use interpolation */}
           <OdsText preset="paragraph" className="mt-4">
             <span
               dangerouslySetInnerHTML={{
@@ -116,6 +94,7 @@ export const Modal = ({
               }}
             ></span>
           </OdsText>
+
           {type === 'support' && (
             <OdsFormField className="mt-4">
               <OdsText slot="label" className="text-base">
@@ -123,12 +102,9 @@ export const Modal = ({
               </OdsText>
               <OdsTextarea
                 name="description"
-                value={state.description}
+                value={description}
                 onOdsChange={(event) => {
-                  setState((prev) => ({
-                    ...prev,
-                    description: event.target.value,
-                  }));
+                  setDescription(event.target.value);
                 }}
               ></OdsTextarea>
             </OdsFormField>
@@ -144,16 +120,15 @@ export const Modal = ({
                 const target = serviceOptions.find(
                   (s) => s.planCode === event.target.value,
                 );
-                setState((prev) => ({ ...prev, serviceOption: target }));
+                setServiceOption(target);
               }}
               customRenderer={selectCustomRenderer}
             >
               {serviceOptions?.map(({ planCode, prices }) => (
                 <option key={planCode} value={planCode}>
-                  {t(
+                  {`${t(
                     `pci_projects_project_quota_increase_select_volume_${planCode}`,
-                  )}{' '}
-                  {` - ${prices[0]?.price.text}`}
+                  )} - ${prices[0]?.price.text}`}
                 </option>
               ))}
             </OdsSelect>
@@ -168,16 +143,14 @@ export const Modal = ({
           <OdsButton
             onClick={() =>
               onConfirm(
-                type === 'support'
-                  ? state.description
-                  : state.serviceOption.planCode,
+                type === 'support' ? description : serviceOption.planCode,
               )
             }
             label={t('pci_projects_project_quota_increase_submit_label')}
             className="ml-3"
             isDisabled={
-              (type === 'credit' && !state.serviceOption) ||
-              (type === 'support' && !state.description)
+              (type === 'credit' && !serviceOption) ||
+              (type === 'support' && !description)
             }
             isLoading={isLoading}
           />

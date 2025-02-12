@@ -38,7 +38,7 @@ export const AvailablePart = ({
                   isGroupSelected ? 'active' : ''
                 }`}
               >
-                {groupName || 'All locations'}
+                {groupName || t('pci_projects_project_regions_all_added')}
               </OdsText>
             ),
           }}

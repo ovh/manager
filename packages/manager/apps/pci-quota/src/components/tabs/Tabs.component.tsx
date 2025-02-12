@@ -3,9 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './style.scss';
 import { useTranslation } from 'react-i18next';
 
-const allowedTabs = ['quota', 'regions'];
-
-type TAllowedTabs = typeof allowedTabs[number];
+type TAllowedTabs = 'quota' | 'regions';
 
 export type TTabItem = {
   id: TAllowedTabs;
@@ -16,18 +14,17 @@ export type TTabItem = {
 export const TabsComponent = ({ activeTab }: { activeTab: TAllowedTabs }) => {
   const navigate = useNavigate();
 
-  const { t: tRegions } = useTranslation('regions');
-  const { t: tQuotas } = useTranslation('quotas');
+  const { t } = useTranslation(['regions', 'quotas']);
 
   const items: TTabItem[] = [
     {
       id: 'quota',
-      label: tQuotas('pci_projects_project_quota'),
+      label: t('pci_projects_project_quota', { ns: 'quotas' }),
       href: '../quota',
     },
     {
       id: 'regions',
-      label: tRegions('pci_projects_project_regions'),
+      label: t('pci_projects_project_regions', { ns: 'regions' }),
       href: '../regions',
     },
   ];
@@ -39,9 +36,8 @@ export const TabsComponent = ({ activeTab }: { activeTab: TAllowedTabs }) => {
           key={item.href}
           isSelected={item.id === activeTab}
           onClick={() => navigate(item.href)}
-          className=""
         >
-          <div className="">{item.label}</div>
+          <div>{item.label}</div>
         </OdsTab>
       ))}
     </OdsTabs>
