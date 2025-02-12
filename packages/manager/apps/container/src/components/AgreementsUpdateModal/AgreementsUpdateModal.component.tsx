@@ -17,35 +17,30 @@ import {
   ODS_BUTTON_VARIANT,
   ODS_TEXT_LEVEL,
 } from '@ovhcloud/ods-components';
-import { useAuthorizationIam } from '@ovh-ux/manager-react-components';
-import usePendingAgreements from '@/hooks/agreements/usePendingAgreements';
+import { usePendingAgreements, useAgreementsUpdate } from '@/hooks/agreements/usePendingAgreements';
 import ApplicationContext from '@/context';
 import ovhCloudLogo from '@/assets/images/logo-ovhcloud.png';
-import useAccountUrn from '@/hooks/accountUrn/useAccountUrn';
-import { ModalTypes } from '@/context/modals/modals.context';
-import { useModals } from '@/context/modals';
 
 export default function AgreementsUpdateModal () {
   const { shell } = useContext(ApplicationContext);
   const environment = shell
     .getPlugin('environment')
     .getEnvironment();
-  const region: string = environment.getRegion();
+  const ux = shell.getPlugin('ux');
   const navigation = shell.getPlugin('navigation');
-  const { current } = useModals();
+
   // TODO: simplify this once new-billing is fully open to the public
   const isNewBillingAvailable = Boolean(environment.getApplicationURL('new-billing'));
   const billingAppName = isNewBillingAvailable ? 'new-billing' : 'dedicated';
   const billingAppPath = `#/${isNewBillingAvailable ? '' : 'billing/'}autorenew/agreements`;
   const myContractsLink = navigation.getURL(billingAppName, billingAppPath);
-  const [ showModal, setShowModal ] = useState(false);
-  const isCurrentModalActive = useMemo(() => current === ModalTypes.agreements, [current]);
-  const isOnAgreementsPage = useMemo(() => window.location.href === myContractsLink, [window.location.href]);
-  const isFeatureAvailable = useMemo(() => region !== 'US', [region]);
+
   const { t } = useTranslation('agreements-update-modal');
-  const { data: urn } = useAccountUrn({ enabled: isCurrentModalActive && !isOnAgreementsPage && isFeatureAvailable });
-  const { isAuthorized: canUserAcceptAgreements, isLoading: isAuthorizationLoading } = useAuthorizationIam(['account:apiovh:me/agreements/accept'], urn);
-  const { data: agreements, isLoading: areAgreementsLoading } = usePendingAgreements({ enabled: canUserAcceptAgreements });
+  const { isReady, shouldBeDisplayed } = useAgreementsUpdate(myContractsLink);
+  const [ showModal, setShowModal ] = useState(true);
+
+
+
   const goToContractPage = () => {
     setShowModal(false);
     navigation.navigateTo(billingAppName, billingAppPath);
@@ -62,36 +57,14 @@ export default function AgreementsUpdateModal () {
     - Once we have the data, check if they allow the display of the modal (IAM authorized + at least one non-validated
     agreement), if the conditions are met, we show the modal, otherwise we switch to the next one
    */
+
   useEffect(() => {
-    if (!isCurrentModalActive) return;
-
-    if (isFeatureAvailable) {
-      const hasFullyLoaded =
-        urn &&
-        !isAuthorizationLoading &&
-        (!canUserAcceptAgreements || !areAgreementsLoading);
-      if (isOnAgreementsPage || !hasFullyLoaded) return;
-
-      if (!agreements?.length) {
-        shell.getPlugin('ux').notifyModalActionDone();
-      } else {
-        setShowModal(true);
-      }
-    } else {
-      shell.getPlugin('ux').notifyModalActionDone();
+    if (isReady && !shouldBeDisplayed) {
+      ux.notifyModalActionDone();
     }
-    return;
-  }, [
-    isCurrentModalActive,
-    isFeatureAvailable,
-    isOnAgreementsPage,
-    isAuthorizationLoading,
-    canUserAcceptAgreements,
-    areAgreementsLoading,
-    agreements,
-  ]);
+  }, [isReady]);
 
-  return showModal ? (
+  return shouldBeDisplayed && showModal ? (
     <>
       <OsdsModal
         dismissible={false}
