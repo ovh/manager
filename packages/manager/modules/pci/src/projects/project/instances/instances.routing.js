@@ -18,7 +18,7 @@ import { PCI_FEATURES } from '../../projects.constant';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.instances', {
-    url: '/instances?help&id',
+    url: '/ovh/instances?help&id',
     component: 'pciProjectsProjectInstances',
     params: {
       id: {
