@@ -11,7 +11,7 @@ export default class NetAppVolumesDashboardSnapshotsDeleteController {
 
   deleteSnapshot() {
     this.isDeleting = true;
-    this.trackClick('delete::confirm');
+    this.trackClick('delete_snapshot::confirm');
     return this.$http
       .delete(
         `/storage/netapp/${this.serviceName}/share/${this.volumeId}/snapshot/${this.snapshot.id}`,
@@ -35,7 +35,7 @@ export default class NetAppVolumesDashboardSnapshotsDeleteController {
   }
 
   goBack() {
-    this.trackClick('delete::cancel');
+    this.trackClick('delete_snapshot::cancel');
     return this.goToSnapshots();
   }
 }
