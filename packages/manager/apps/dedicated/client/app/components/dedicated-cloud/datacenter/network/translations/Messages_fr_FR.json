@@ -1,0 +1,18 @@
+{
+  "dedicatedCloud_network_description": "Cette interface vous permet de redimensionner ou d’ajouter des nœuds Edge. Ceux-ci sont facturés au tarif de {{price}} par vCPU et par mois. Des remises peuvent s’appliquer en fonction de votre engagement contractuel. Pour en savoir plus, consultez notre site web : ",
+  "dedicatedCloud_network_nsx_edge_summary_title": "NSX Edges",
+  "dedicatedCloud_network_nsx_edge_size_label": "Taille NSX Edge",
+  "dedicatedCloud_network_facturation_summary_title": "Facturation",
+  "dedicatedCloud_network_option_price_label": "Prix de l'option",
+  "dedicatedCloud_network_website_link_label": "Lien du site web",
+  "dedicatedCloud_network_website_link": "Site web",
+  "dedicatedCloud_network_id": "ID",
+  "dedicatedCloud_network_name": "Nom",
+  "dedicatedCloud_network_vm_list": "Liste VM",
+  "dedicatedCloud_network_sizing": "Taille",
+  "dedicatedCloud_network_relocate_action": "Relocaliser",
+  "dedicatedCloud_network_delete_action": "Supprimer",
+  "dedicatedCloud_network_add_edge_cta": "Ajouter un Edge",
+  "dedicatedCloud_network_resize_edge_cta": "Redimensionner",
+  "dedicatedCloud_datacenter_network_guides": "Guides"
+}
