@@ -1,16 +1,21 @@
-import { vitest } from 'vitest';
+import { vitest, vi } from 'vitest';
 import { waitFor, screen } from '@testing-library/react';
 import { render } from '../../../utils/test.provider';
 import {
   header,
   subHeader,
-  headerWithGuides,
+  headerWithHeaderButtons,
   headerWithActions,
 } from './headers.stories';
 import { IamAuthorizationResponse } from '../../../hooks/iam/iam.interface';
 import { useAuthorizationIam } from '../../../hooks/iam';
 
 vitest.mock('../../../hooks/iam');
+vitest.mock('@ovh-ux/manager-react-shell-client', () => ({
+  useOvhTracking: () => ({
+    trackClick: vi.fn(),
+  }),
+}));
 
 const mockedHook =
   useAuthorizationIam as unknown as jest.Mock<IamAuthorizationResponse>;
@@ -40,11 +45,11 @@ describe('Headers component', () => {
     });
   });
 
-  it('renders header with guides correctly', async () => {
-    render(headerWithGuides());
+  it('renders header with header buttons correctly', async () => {
+    render(headerWithHeaderButtons());
     await waitFor(() => {
       expect(
-        screen.getByText('Example for header with guides'),
+        screen.getByText('Example for header with header buttons'),
       ).toBeInTheDocument();
       expect(screen.getByText('description for subheader')).toBeInTheDocument();
     });
