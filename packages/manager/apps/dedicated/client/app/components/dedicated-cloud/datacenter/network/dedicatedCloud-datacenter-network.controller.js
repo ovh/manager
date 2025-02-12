@@ -1,16 +1,25 @@
-export default class {
+import {
+  NSXT_EDGE_CATALOG,
+  DATACENTER_NETWORK_SITE_WEB_LINK,
+  NSXT_EDGE_CORE_PLAN_CODE,
+  NSXT_EDGE_PRICING_MODE,
+} from './dedicatedCloud-datacenter-network.constants';
+import { NETWORK_LABEL } from '../../../../dedicatedCloud/datacenter/dedicatedCloud-datacenter.constants.js';
+
+export default class DedicatedCloudDatacenterNetworkTab {
   /* @ngInject */
-  constructor($translate) {
+  constructor($translate, ovhManagerPccDatacenterService, coreConfig) {
+    this.coreConfig = coreConfig;
     this.$translate = $translate;
     this.ovhManagerPccDatacenterService = ovhManagerPccDatacenterService;
     this.vcpuTextPrice = '-';
     this.userLanguage = coreConfig.getUserLocale().replace('_', '-');
 
     this.NETWORK_LABEL = NETWORK_LABEL;
-    this.MIN_NSX_EDGES = MIN_NSX_EDGES;
   }
 
   $onInit() {
+    this.fetchNsxEdgeReference();
     this.loadComsumptionOfOption();
     const { ovhSubsidiary } = this.coreConfig.getUser();
     this.fetchVcpuPrice(ovhSubsidiary);
@@ -47,6 +56,16 @@ export default class {
     );
   }
 
+  fetchNsxEdgeReference() {
+    return this.ovhManagerPccDatacenterService
+      .getNsxEdgeByDatacenter(this.serviceName, this.datacenterId, {
+        pageSize: 1,
+      })
+      .then(({ data }) => {
+        this.nsxEdgeNetworkReference = data?.[0];
+      });
+  }
+
   setVcpuTextPrice(price, currency) {
     this.vcpuTextPrice = new Intl.NumberFormat(this.userLanguage, {
       style: 'currency',
@@ -68,13 +87,6 @@ export default class {
         const currency = data.locale.currencyCode;
 
         this.setVcpuTextPrice(price, currency);
-      })
-      .catch((error) => {
-        if (error.status === 404) {
-          this.setVcpuTextPrice(0, 'EUR');
-        } else {
-          throw error;
-        }
       });
   }
 }
