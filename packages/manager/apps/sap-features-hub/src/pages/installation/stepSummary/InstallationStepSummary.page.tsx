@@ -1,15 +1,19 @@
 import React from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { Links, useNotifications } from '@ovh-ux/manager-react-components';
+import { saveAs } from 'file-saver';
 import { useFormSteps } from '@/hooks/formStep/useFormSteps';
 import { useInstallationFormContext } from '@/context/InstallationForm.context';
 import FormLayout from '@/components/Form/FormLayout.component';
 import { FormStepSummary } from '@/components/Form/FormStepSummary.component';
 import { useFormSummary } from '@/hooks/formSummary/useFormSummary';
 import { testIds } from '@/utils/testIds.constants';
-import { useDownloadSummary } from '@/hooks/downloadSummary/useDownloadSummary';
-import { getSummaryJSON } from '@/utils/summaryExport';
 import { useApiValidation } from '@/hooks/apiValidation/useApiValidation';
+import {
+  getSummaryBlob,
+  getSummaryFileName,
+  getSummaryJSON,
+} from '@/utils/summaryExport';
 
 export default function InstallationStepSummary() {
   const { t } = useTranslation('installation');
@@ -17,7 +21,6 @@ export default function InstallationStepSummary() {
   const { values } = useInstallationFormContext();
   const { formSummary } = useFormSummary(values);
   const { addError, clearNotifications } = useNotifications();
-  const { downloadSummary } = useDownloadSummary();
   const { mutate: validateForm } = useApiValidation({
     serviceName,
     onMutate: () => clearNotifications(),
@@ -37,7 +40,12 @@ export default function InstallationStepSummary() {
           components={{
             DownloadLink: (
               <Links
-                onClickReturn={downloadSummary}
+                onClickReturn={() =>
+                  saveAs(
+                    getSummaryBlob(values),
+                    getSummaryFileName(values.sapSid),
+                  )
+                }
                 data-testid={testIds.summaryDownloadLink}
               />
             ),
