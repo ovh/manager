@@ -1,6 +1,6 @@
 import { SupportLevel } from '@ovh-ux/manager-models';
 import { API_MODEL_SUPPORT_LEVEL } from './support-level/support-level.constants';
-import { GUIDES_LIST } from './user.constants';
+import { DEFAULT_AUTHORIZATIONS, GUIDES_LIST } from './user.constants';
 
 import template from './user.html';
 import controller from './user.controller';
@@ -53,14 +53,14 @@ export default /* @ngInject */ ($stateProvider) => {
         Apiv2Service,
       ) => {
         if (!areGdprFeaturesAvailable) {
-          return false;
+          return DEFAULT_AUTHORIZATIONS;
         }
         return Apiv2Service.httpApiv2({
           method: 'get',
           url: '/engine/api/v2/iam/resource?resourceType=account',
         }).then(({ data }) => {
           if (!data[0]?.urn) {
-            return false;
+            return DEFAULT_AUTHORIZATIONS;
           }
           return Apiv2Service.httpApiv2({
             method: 'post',
@@ -81,7 +81,7 @@ export default /* @ngInject */ ($stateProvider) => {
         GDPR_REQUEST_MANAGEMENT_ACTIONS.every(
           (action) =>
             !action.mandatory ||
-            iamAuthorizations.authorizedActions.includes(action.name),
+            iamAuthorizations.authorizedActions?.includes(action.name),
         ),
     },
   });
