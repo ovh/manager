@@ -1,4 +1,3 @@
-import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 import assign from 'lodash/assign';
 import camelCase from 'lodash/camelCase';
 import flatten from 'lodash/flatten';
@@ -22,6 +21,7 @@ import {
 import { VM_ENCRYPTION_KMS } from './security/dedicatedCloud-security.constants';
 import VCDMigrationState from './vcdMigrationState.class';
 import PCCMigrationState from './pccMigrationState.class';
+import IcebergUtilsService from '../../icebergUtils.services';
 
 const moduleName = 'ovhManagerPccService';
 
@@ -32,18 +32,17 @@ class DedicatedCloudService {
     $q,
     $cacheFactory,
     $rootScope,
-    iceberg,
+    icerbergUtils,
     OvhApiDedicatedCloud,
     OvhHttp,
     Poll,
     Poller,
     coreConfig,
   ) {
-    this.ListLayoutHelper = ListLayoutHelper;
     this.$http = $http;
     this.$q = $q;
     this.$rootScope = $rootScope;
-    this.iceberg = iceberg;
+    this.icerbergUtils = icerbergUtils;
     this.OvhApiDedicatedCloud = OvhApiDedicatedCloud;
     this.OvhHttp = OvhHttp;
     this.Poll = Poll;
@@ -338,22 +337,26 @@ class DedicatedCloudService {
   }
 
   getDatacenterInfoNsxt(serviceName, datacenterId, params = {}) {
-    return this.icebergQuery(
-      `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/nsxtEdge`,
-      params,
-    ).then(({ data }) => data.filter((item) => item !== null));
+    return this.icerbergUtils
+      .icebergQuery(
+        `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/nsxtEdge`,
+        params,
+      )
+      .then(({ data }) => data.filter((item) => item !== null));
   }
 
   getDatacenterPendingResizeNsxTask(serviceName, datacenterId, params = {}) {
-    return this.icebergQuery(
-      `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/task`,
-      params,
-      {
-        name: 'resizeNsxtEdgeCluster',
-      },
-    ).then(({ data }) =>
-      data.filter((item) => item.state !== TASK_STATUS.DONE),
-    );
+    return this.icerbergUtils
+      .icebergQuery(
+        `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/task`,
+        params,
+        {
+          name: 'resizeNsxtEdgeCluster',
+        },
+      )
+      .then(({ data }) =>
+        data.filter((item) => item.state !== TASK_STATUS.DONE),
+      );
   }
 
   datacenterResizeNsxTaskPoller(serviceName, taskId) {
@@ -593,55 +596,13 @@ class DedicatedCloudService {
       .then(({ data }) => data);
   }
 
-  /* ------- ICEBERG -------*/
-
-  icebergQuery(url, paginationParams, urlParams) {
-    const {
-      filters,
-      pageSize,
-      offset,
-      sort,
-      sortOrder,
-      defaultFilterColumn,
-    } = paginationParams;
-
-    let request = this.iceberg(url, urlParams)
-      .query()
-      .expand('CachedObjectList-Pages')
-      .limit(pageSize)
-      .offset(Math.ceil(offset / (pageSize || 1)))
-      .sort(sort || defaultFilterColumn, sortOrder);
-
-    if (filters?.length > 0) {
-      request = this.filterIceberg(request, filters);
-    }
-
-    return this.$q
-      .resolve(request.execute(urlParams, true).$promise)
-      .then(({ data, headers }) => ({
-        data,
-        meta: {
-          totalCount: headers['x-pagination-elements'],
-        },
-      }));
-  }
-
-  filterIceberg(request, filters) {
-    let filterRequest = request;
-    filters.forEach(({ field, comparator, reference }) => {
-      filterRequest = filterRequest.addFilter(
-        field,
-        this.ListLayoutHelper.FILTER_OPERATORS[comparator],
-        this.ListLayoutHelper.mapFilterForIceberg(comparator, reference),
-      );
-    });
-    return filterRequest;
-  }
-
   /* ------- USER -------*/
 
   getUserDetails(serviceName, params = {}) {
-    return this.icebergQuery(`/dedicatedCloud/${serviceName}/user`, params);
+    return this.icerbergUtils.icebergQuery(
+      `/dedicatedCloud/${serviceName}/user`,
+      params,
+    );
   }
 
   getUsers(serviceName, name) {
@@ -1513,7 +1474,7 @@ class DedicatedCloudService {
   /* ------- Operations -------*/
 
   getOperations(serviceName, paginationParams, urlParams) {
-    return this.icebergQuery(
+    return this.icerbergUtils.icebergQuery(
       `/dedicatedCloud/${serviceName}/task`,
       paginationParams,
       urlParams,
@@ -1767,6 +1728,8 @@ class DedicatedCloudService {
   }
 }
 
-angular.module(moduleName, []).service('DedicatedCloud', DedicatedCloudService);
+angular
+  .module(moduleName, [IcebergUtilsService])
+  .service('DedicatedCloud', DedicatedCloudService);
 
 export default moduleName;
