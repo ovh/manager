@@ -1,12 +1,14 @@
 import React, { useMemo } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { Links } from '@ovh-ux/manager-react-components';
+import { saveAs } from 'file-saver';
 import { useFormSteps } from '@/hooks/formStep/useFormSteps';
 import { useInstallationFormContext } from '@/context/InstallationForm.context';
 import FormLayout from '@/components/Form/FormLayout.component';
 import { FormStepSummary } from '@/components/Form/FormStepSummary.component';
 import { useFormSummary } from '@/hooks/formSummary/useFormSummary';
 import { testIds } from '@/utils/testIds.constants';
+import { getSummaryBlob, getSummaryFileName } from '@/utils/summaryExport';
 
 export default function InstallationStepSummary() {
   const { t } = useTranslation('installation');
@@ -29,7 +31,12 @@ export default function InstallationStepSummary() {
           components={{
             DownloadLink: (
               <Links
-                onClickReturn={downloadSummary}
+                onClickReturn={() =>
+                  saveAs(
+                    getSummaryBlob(values),
+                    getSummaryFileName(values.sapSid),
+                  )
+                }
                 data-testid={testIds.summaryDownloadLink}
               />
             ),
