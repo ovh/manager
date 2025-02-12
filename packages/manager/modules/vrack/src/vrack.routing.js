@@ -60,6 +60,7 @@ export default /* @ngInject */ ($stateProvider) => {
         ],
       }),
       header: /* @ngInject */ ($translate) => $translate.instant('vrack_title'),
+      changelog: () => 'vrack',
       customizableColumns: () => true,
       getServiceNameLink: /* @ngInject */ ($state) => ({
         serviceName: vrackId,

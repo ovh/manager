@@ -57,7 +57,7 @@
         </header>
 
         <header
-            class="oui-header mx-0 col-md-9 col-xs-9 cloud-legacy"
+            class="oui-header mx-0 col-md-8 col-xs-8 cloud-legacy"
             data-ng-if="!$ctrl.nameEditing"
         >
             <div class="oui-header__container">
@@ -86,9 +86,16 @@
                 ></span>
             </button>
         </header>
-        <div data-ng-if="$ctrl.surveyUrl" class="col-md-3 col-xs-3">
+        <div
+            class="col-md-4 col-xs-4 d-flex justify-content-end flex-wrap h-fit-content"
+        >
+            <changelog-button
+                links="$ctrl.constants.CHANGELOG.vrack.links"
+                chapters="$ctrl.constants.CHANGELOG.vrack.chapters"
+            ></changelog-button>
             <a
-                class="btn btn-link"
+                data-ng-if="$ctrl.surveyUrl"
+                class="btn btn-link h-fit-content"
                 target="_blank"
                 data-ng-href="{{ $ctrl.surveyUrl }}"
                 data-oui-tooltip="{{:: 'list_layout_like_this_tooltip' | translate }}"

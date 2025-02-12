@@ -7,6 +7,22 @@
 <!-- Section Content -->
 <div data-ng-if="!$ctrl.loading">
     <oui-header heading="{{:: $ctrl.cdn.serviceName }}">
+        <oui-header-heading>
+            <div class="d-flex justify-content-between">
+                <h1
+                    class="oui-header__title"
+                    data-translate="{{:: $ctrl.cdn.serviceName }}"
+                ></h1>
+                <div
+                    class="d-flex justify-content-end align-items-center flex-wrap gap-1"
+                >
+                    <changelog-button
+                        links="$ctrl.constants.CHANGELOG.cdn.links"
+                        chapters="$ctrl.constants.CHANGELOG.cdn.chapters"
+                    ></changelog-button>
+                </div>
+            </div>
+        </oui-header-heading>
         <oui-header-tabs>
             <oui-header-tabs-item
                 state="app.networks.cdn.dedicated.manage.statistics"

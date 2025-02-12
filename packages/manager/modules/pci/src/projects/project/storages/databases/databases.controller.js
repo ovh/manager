@@ -14,6 +14,7 @@ export default class {
     CucCloudMessage,
     ovhManagerRegionService,
     DatabaseService,
+    CHANGELOG,
   ) {
     this.$translate = $translate;
     this.capitalize = capitalize;
@@ -22,6 +23,7 @@ export default class {
     this.ENGINE_LOGOS = ENGINE_LOGOS;
     this.NODES_PER_ROW = NODES_PER_ROW;
     this.DatabaseService = DatabaseService;
+    this.CHANGELOG = CHANGELOG;
   }
 
   $onInit() {

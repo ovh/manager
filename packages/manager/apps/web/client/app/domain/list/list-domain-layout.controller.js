@@ -44,6 +44,7 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
     $timeout,
     $window,
     atInternet,
+    constants,
   ) {
     super($q, ouiDatagridService);
     this.$translate = $translate;
@@ -71,6 +72,7 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
     this.$timeout = $timeout;
     this.$window = $window;
     this.atInternet = atInternet;
+    this.constants = constants;
   }
 
   $onInit() {

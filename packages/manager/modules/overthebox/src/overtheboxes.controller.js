@@ -2,9 +2,10 @@ import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 
 export default class OverTheBoxesCtrl extends ListLayoutHelper.ListLayoutCtrl {
   /* @ngInject */
-  constructor($q, $translate, ouiDatagridService) {
+  constructor($q, $translate, ouiDatagridService, CHANGELOG) {
     super($q, ouiDatagridService);
     this.$translate = $translate;
+    this.CHANGELOG = CHANGELOG;
   }
 
   $onInit() {

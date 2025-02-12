@@ -614,7 +614,208 @@ export const TRACKING_CLOUD = {
   pci_menu_header_contracts: 'cloud::pci::menu::contracts',
 };
 
+const changelogLinks = {
+  compute: {
+    changelog:
+      'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Public+Cloud+Compute',
+    roadmap:
+      'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Public+Cloud+Compute',
+    'feature-request':
+      'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+  },
+  storage: {
+    changelog:
+      'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Public+Cloud+Storage',
+    roadmap:
+      'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Public+Cloud+Storage',
+    'feature-request':
+      'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+  },
+  default: {
+    changelog: 'https://github.com/orgs/ovh/projects/16/views/6?pane=info',
+    roadmap: 'https://github.com/orgs/ovh/projects/16/views/1?pane=info',
+    'feature-request':
+      'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+  },
+  network: {
+    changelog:
+      'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Public+Cloud+Networking',
+    roadmap:
+      'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Public+Cloud+Networking',
+    'feature-request':
+      'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+  },
+  rancher: {
+    changelog:
+      'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Managed+Rancher+Service',
+    roadmap:
+      'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Managed+Rancher+Service',
+    'feature-request':
+      'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+  },
+  kubernetes: {
+    changelog:
+      'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Managed+Kubernetes+Service',
+    roadmap:
+      'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Managed+Kubernetes+Service',
+    'feature-request':
+      'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+  },
+  private_registry: {
+    changelog:
+      'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Managed+Private+Registry',
+    roadmap:
+      'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Managed+Private+Registry',
+    'feature-request':
+      'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+  },
+  databases: {
+    changelog:
+      'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Managed+Databases',
+    roadmap:
+      'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Managed+Databases',
+    'feature-request':
+      'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+  },
+  data_processing: {
+    changelog:
+      'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Data+Processing',
+    roadmap:
+      'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Data+Processing',
+    'feature-request':
+      'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+  },
+  data_platform: {
+    changelog:
+      'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Data+Platform',
+    roadmap:
+      'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Data+Platform',
+    'feature-request':
+      'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+  },
+  log_data_platform: {
+    changelog:
+      'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Logs+Data+Platform',
+    roadmap:
+      'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Logs+Data+Platform',
+    'feature-request':
+      'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+  },
+  ai_tools: {
+    changelog:
+      'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=AI+Tools',
+    roadmap:
+      'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=AI+Tools',
+    'feature-request':
+      'https://github.com/ovh/management-security-operations-roadmap/issues/new',
+  },
+  ai_notebooks: {
+    changelog:
+      'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=AI+Notebooks',
+    roadmap:
+      'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=AI+Notebooks',
+    'feature-request':
+      'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+  },
+  ai_training: {
+    changelog:
+      'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=AI+Training',
+    roadmap:
+      'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=AI+Training',
+    'feature-request':
+      'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+  },
+  ai_deploy: {
+    changelog:
+      'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=AI+Deploy',
+    roadmap:
+      'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=AI+Deploy',
+    'feature-request':
+      'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+  },
+};
+
+export const CHANGELOG = {
+  instances: {
+    links: changelogLinks.compute,
+    chapters: ['PublicCloud', 'compute', 'instances'],
+  },
+  object_storage: {
+    links: changelogLinks.storage,
+    chapters: ['PublicCloud', 'storages', 'objects_storage_container'],
+  },
+  cloud_archive: {
+    links: changelogLinks.storage,
+    chapters: ['PublicCloud', 'storages', 'cloud_archives_container'],
+  },
+  cold_archive: {
+    links: changelogLinks.storage,
+    chapters: ['PublicCloud', 'storages', 'cold_archive'],
+  },
+  volume_snapshot: {
+    links: changelogLinks.default,
+    chapters: ['PublicCloud', 'storages', 'volume_snapshot'],
+  },
+  volume_backup: {
+    links: changelogLinks.default,
+    chapters: ['PublicCloud', 'storages', 'volume-backup'],
+  },
+  instance_backup: {
+    links: changelogLinks.default,
+    chapters: ['PublicCloud', 'storages', 'instance-backups'],
+  },
+  load_balancer: {
+    links: changelogLinks.network,
+    chapters: ['PublicCloud', 'network', 'octavia-loadbalancer'],
+  },
+  data_streaming: {
+    links: changelogLinks.databases,
+    chapters: ['PublicCloud', 'databases_analytics', 'data_streaming'],
+  },
+  data_processing: {
+    links: changelogLinks.data_processing,
+    chapters: ['PublicCloud', 'databases_analytics', 'data_processing'],
+  },
+  data_analysis: {
+    links: changelogLinks.databases,
+    chapters: ['PublicCloud', 'databases_analytics', 'data_analysis'],
+  },
+  logs_data_platform: {
+    links: changelogLinks.logs_data_platform,
+    chapters: ['PublicCloud', 'databases_analytics', 'logs_data_platorm'],
+  },
+  ai_dashboard: {
+    links: changelogLinks.ai_tools,
+    chapters: ['PublicCloud', 'ai_machine_learning', 'ai_dashboard'],
+  },
+  ai_notebooks: {
+    links: changelogLinks.ai_notebooks,
+    chapters: ['PublicCloud', 'ai_machine_learning', 'ai_notebooks'],
+  },
+  ai_training: {
+    links: changelogLinks.ai_training,
+    chapters: ['PublicCloud', 'ai_machine_learning', 'ai_training'],
+  },
+  ai_deploy: {
+    links: changelogLinks.ai_deploy,
+    chapters: ['PublicCloud', 'ai_machine_learning', 'ai_deploy'],
+  },
+  quota_and_regions: {
+    links: changelogLinks.default,
+    chapters: ['PublicCloud', 'project_management', 'quota'],
+  },
+  contacts: {
+    links: changelogLinks.default,
+    chapters: ['PublicCloud', 'project_management', 'contacts_rights'],
+  },
+  edit: {
+    links: changelogLinks.default,
+    chapters: ['PublicCloud', 'project_management', 'project'],
+  },
+};
+
 export default {
+  CHANGELOG,
   CLOUD_INSTANCE_DEFAULTS,
   CLOUD_INSTANCE_DEFAULT_FALLBACK,
   CLOUD_FLAVOR_SPECIFIC_IMAGE,

@@ -20,6 +20,7 @@ export default class {
     CucProductsService,
     OvhApiMe,
     VpsNotificationIpv6,
+    constants,
   ) {
     this.$rootScope = $rootScope;
     this.$translate = $translate;
@@ -28,6 +29,7 @@ export default class {
     this.CucProductsService = CucProductsService;
     this.OvhApiMe = OvhApiMe;
     this.VpsNotificationIpv6 = VpsNotificationIpv6;
+    this.constants = constants;
 
     this.description = this.serviceName;
 

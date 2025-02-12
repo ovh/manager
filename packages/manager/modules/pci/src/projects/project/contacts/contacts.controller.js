@@ -10,9 +10,11 @@ export default /* @ngInject */ function(
   CucControllerHelper,
   OvhApiCloud,
   OvhApiCloudProjectServiceInfos,
+  CHANGELOG,
 ) {
   const self = this;
   const serviceName = $stateParams.projectId;
+  self.CHANGELOG = CHANGELOG;
 
   self.model = {
     owner: '',

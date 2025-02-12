@@ -20,6 +20,7 @@ export default class ProjectController {
     ovhFeatureFlipping,
     PciProject,
     CucCloudMessage,
+    CHANGELOG,
   ) {
     this.$scope = $scope;
     this.$state = $state;
@@ -32,6 +33,7 @@ export default class ProjectController {
     this.ovhFeatureFlipping = ovhFeatureFlipping;
     this.PciProject = PciProject;
     this.CucCloudMessage = CucCloudMessage;
+    this.CHANGELOG = CHANGELOG;
 
     const filterByRegion = (list) =>
       list.filter(

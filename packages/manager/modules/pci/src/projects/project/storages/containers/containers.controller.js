@@ -16,6 +16,7 @@ export default class PciStoragesContainersController {
     $http,
     CucCloudMessage,
     PciProjectStorageContainersService,
+    CHANGELOG,
   ) {
     this.$translate = $translate;
     this.$http = $http;
@@ -26,6 +27,7 @@ export default class PciStoragesContainersController {
     this.OBJECT_CONTAINER_MODE_MONO_ZONE = OBJECT_CONTAINER_MODE_MONO_ZONE;
     this.OBJECT_CONTAINER_MODE_MULTI_ZONES = OBJECT_CONTAINER_MODE_MULTI_ZONES;
     this.OBJECT_CONTAINER_MODE_LOCAL_ZONE = OBJECT_CONTAINER_MODE_LOCAL_ZONE;
+    this.CHANGELOG = CHANGELOG;
   }
 
   $onInit() {

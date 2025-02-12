@@ -23,6 +23,7 @@ export default /* @ngInject */ ($stateProvider) => {
       noFiltersEmailPro: /* @ngInject */ ($http) => $http.get('/email/pro'),
       header: /* @ngInject */ ($translate) =>
         $translate.instant('email_pro_title'),
+      changelog: () => 'email_pro',
       customizableColumns: () => true,
       getServiceNameLink: /* @ngInject */ ($state) => ({ domain: productId }) =>
         $state.href('email-pro.dashboard', {

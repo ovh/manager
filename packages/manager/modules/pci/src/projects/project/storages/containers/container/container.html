@@ -1,27 +1,43 @@
 <div data-ui-view ovh-scroll-top>
-    <oui-header
-        heading="{{ :: $ctrl.container.name }}"
-        data-ng-if="$ctrl.archive"
-    >
-        <oui-guide-menu
-            data-text="{{:: 'pci_project_guides_header' | translate }}"
-        >
-            <oui-guide-menu-item
-                data-ng-repeat="guide in $ctrl.guideUrl.storage track by $index"
-                data-href="{{:: guide.url }}"
-                data-on-click="$ctrl.trackClick($ctrl.guideTrackingSectionTags.cloud_archive + guide.tracking)"
-                data-external
-            >
-                <span
-                    data-translate="{{:: 'pci_project_guides_header_' + guide.key }}"
-                ></span>
-            </oui-guide-menu-item>
-        </oui-guide-menu>
+    <oui-header>
+        <oui-header-heading>
+            <div class="d-flex justify-content-between">
+                <h1
+                    class="oui-header__title"
+                    data-translate="{{ :: $ctrl.container.name }}"
+                ></h1>
+                <div
+                    class="d-flex align-items-center gap-1 flex-wrap justify-content-end"
+                >
+                    <changelog-button
+                        links="$ctrl.CHANGELOG.object_storage.links"
+                        chapters="$ctrl.CHANGELOG.object_storage.chapters"
+                        data-ng-if="!$ctrl.archive"
+                    ></changelog-button>
+                    <changelog-button
+                        links="$ctrl.CHANGELOG.cloud_archive.links"
+                        chapters="$ctrl.CHANGELOG.cloud_archive.chapters"
+                        data-ng-if="$ctrl.archive"
+                    ></changelog-button>
+                    <oui-guide-menu
+                        data-text="{{:: 'pci_project_guides_header' | translate }}"
+                        data-ng-if="$ctrl.archive"
+                    >
+                        <oui-guide-menu-item
+                            data-ng-repeat="guide in $ctrl.guideUrl.storage track by $index"
+                            data-href="{{:: guide.url }}"
+                            data-on-click="$ctrl.trackClick($ctrl.guideTrackingSectionTags.cloud_archive + guide.tracking)"
+                            data-external
+                        >
+                            <span
+                                data-translate="{{:: 'pci_project_guides_header_' + guide.key }}"
+                            ></span>
+                        </oui-guide-menu-item>
+                    </oui-guide-menu>
+                </div>
+            </div>
+        </oui-header-heading>
     </oui-header>
-    <oui-header
-        heading="{{ :: $ctrl.container.name }}"
-        data-ng-if="!$ctrl.archive"
-    ></oui-header>
     <!--return to conatiner-->
     <oui-back-button
         data-ng-if="!$ctrl.archive"

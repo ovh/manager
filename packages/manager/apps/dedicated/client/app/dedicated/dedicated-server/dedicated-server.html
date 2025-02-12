@@ -1,8 +1,17 @@
 <div data-ui-view>
-    <oui-header
-        class="mb-3"
-        data-heading="{{:: 'dedicated_servers_title' | translate }}"
-    >
+    <oui-header class="mb-3">
+        <oui-header-heading>
+            <div class="d-flex justify-content-between">
+                <h1
+                    class="oui-header__title"
+                    data-translate="{{:: 'dedicated_servers_title' | translate }}"
+                ></h1>
+                <changelog-button
+                    links="$ctrl.constants.CHANGELOG.dedicated_server.links"
+                    chapters="$ctrl.constants.CHANGELOG.dedicated_server.chapters"
+                ></changelog-button>
+            </div>
+        </oui-header-heading>
         <oui-header-tabs>
             <oui-header-tabs-item
                 data-href="{{:: $ctrl.allServersLink }}"

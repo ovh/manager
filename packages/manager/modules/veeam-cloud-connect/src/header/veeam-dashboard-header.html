@@ -1,4 +1,16 @@
-<oui-header heading="{{ VeeamCloudConnectDashboardHeaderCtrl.serviceName }}">
+<oui-header>
+    <oui-header-heading>
+        <div class="d-flex justify-content-between">
+            <h1
+                class="oui-header__title"
+                data-translate="{{ VeeamCloudConnectDashboardHeaderCtrl.serviceName }}"
+            ></h1>
+            <changelog-button
+                links="VeeamCloudConnectDashboardHeaderCtrl.constants.CHANGELOG.veeam_cloud_connect.links"
+                chapters="VeeamCloudConnectDashboardHeaderCtrl.constants.CHANGELOG.veeam_cloud_connect.chapters"
+            ></changelog-button>
+        </div>
+    </oui-header-heading>
     <oui-header-tabs>
         <oui-header-tabs-item
             state="veeam-cloud-connect.detail.dashboard"

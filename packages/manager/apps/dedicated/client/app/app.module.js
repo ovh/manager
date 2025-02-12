@@ -79,7 +79,7 @@ import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import ovhContacts from '@ovh-ux/ng-ovh-contacts';
 import ovhManagerAtInternetConfiguration from '@ovh-ux/manager-at-internet-configuration';
 import { registerCoreModule } from '@ovh-ux/manager-core';
-import { serverBandwidth } from '@ovh-ux/manager-components';
+import { serverBandwidth, changelogButton } from '@ovh-ux/manager-components';
 import ovhManagerBanner from '@ovh-ux/manager-banner';
 import ovhManagerBilling from '@ovh-ux/manager-billing';
 import ovhManagerDbaasLogs from '@ovh-ux/manager-dbaas-logs';
@@ -242,6 +242,7 @@ export default async (containerEl, shellClient) => {
         'xeditable',
         ovhManagerCda,
         networkSecurity,
+        changelogButton,
       ].filter(isString),
     )
     .service('Polling', pollingService)
@@ -265,6 +266,7 @@ export default async (containerEl, shellClient) => {
       FALLBACK_LANGUAGE: configConstants.FALLBACK_LANGUAGE,
       SUPPORT: configConstants.SUPPORT,
       SECTIONS_UNIVERSE_MAP: configConstants.SECTIONS_UNIVERSE_MAP,
+      CHANGELOG: configConstants.CHANGELOG,
     })
     .constant('website_url', configConstants.website_url)
     .config(

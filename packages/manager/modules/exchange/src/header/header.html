@@ -98,65 +98,75 @@
                         ></span>
                     </div>
                 </div>
-                <oui-action-menu
-                    class="col-sm-offset-1 col-sm-1"
-                    data-text="{{:: 'common_actions' | translate }}"
-                >
-                    <oui-action-menu-item
-                        data-ng-if="$ctrl.canSubscribeToOfficeAttach"
-                        href="{{:: $ctrl.URLS.ORDER_OFFICE_LICENCE }}"
-                        top
+                <div class="col-sm-3">
+                    <div
+                        class="d-flex align-items-center flex-wrap gap-1 justify-content-end"
                     >
-                        <span
-                            data-translate="exchange_tab_INFORMATIONS_order_office"
-                        ></span>
-                    </oui-action-menu-item>
-                    <oui-action-menu-item
-                        data-ng-if="$ctrl.canSubscribeToOfficeAttach"
-                        data-on-click="$ctrl.navigation.setAction('exchange/office-attach/dialog/office-attach-dialog', $ctrl.exchangeService)"
-                    >
-                        <span
-                            data-translate="exchange_ACTION_export_accounts_office_attached_button"
-                        ></span>
-                    </oui-action-menu-item>
-                    <oui-action-menu-divider
-                        data-ng-if="$ctrl.canSubscribeToSharepoint || $ctrl.canSubscribeToOfficeAttach"
-                    ></oui-action-menu-divider>
+                        <changelog-button
+                            links="$ctrl.constants.CHANGELOG.exchange.links"
+                            chapters="$ctrl.constants.CHANGELOG.exchange.chapters"
+                        ></changelog-button>
+                        <oui-action-menu
+                            class="mt-1"
+                            data-text="{{:: 'common_actions' | translate }}"
+                        >
+                            <oui-action-menu-item
+                                data-ng-if="$ctrl.canSubscribeToOfficeAttach"
+                                href="{{:: $ctrl.URLS.ORDER_OFFICE_LICENCE }}"
+                                top
+                            >
+                                <span
+                                    data-translate="exchange_tab_INFORMATIONS_order_office"
+                                ></span>
+                            </oui-action-menu-item>
+                            <oui-action-menu-item
+                                data-ng-if="$ctrl.canSubscribeToOfficeAttach"
+                                data-on-click="$ctrl.navigation.setAction('exchange/office-attach/dialog/office-attach-dialog', $ctrl.exchangeService)"
+                            >
+                                <span
+                                    data-translate="exchange_ACTION_export_accounts_office_attached_button"
+                                ></span>
+                            </oui-action-menu-item>
+                            <oui-action-menu-divider
+                                data-ng-if="$ctrl.canSubscribeToSharepoint || $ctrl.canSubscribeToOfficeAttach"
+                            ></oui-action-menu-divider>
 
-                    <oui-action-menu-item
-                        data-on-click="$ctrl.navigation.setAction('exchange/header/license/service-license-history', $ctrl.exchangeService)"
-                    >
-                        <span
-                            data-translate="exchange_action_license_history_button"
-                        ></span>
-                    </oui-action-menu-item>
-                    <oui-action-menu-item
-                        data-ng-if="$ctrl.exchangeService.renewOptionAvailable"
-                        data-href="{{:: $ctrl.URLS.AUTORENEW }}"
-                        top
-                    >
-                        <span
-                            data-translate="exchange_update_billing_button_title"
-                        ></span>
-                    </oui-action-menu-item>
+                            <oui-action-menu-item
+                                data-on-click="$ctrl.navigation.setAction('exchange/header/license/service-license-history', $ctrl.exchangeService)"
+                            >
+                                <span
+                                    data-translate="exchange_action_license_history_button"
+                                ></span>
+                            </oui-action-menu-item>
+                            <oui-action-menu-item
+                                data-ng-if="$ctrl.exchangeService.renewOptionAvailable"
+                                data-href="{{:: $ctrl.URLS.AUTORENEW }}"
+                                top
+                            >
+                                <span
+                                    data-translate="exchange_update_billing_button_title"
+                                ></span>
+                            </oui-action-menu-item>
 
-                    <oui-action-menu-divider
-                        data-ng-if="$ctrl.exchangeService.deleteOptionAvailable"
-                    ></oui-action-menu-divider>
-                    <oui-action-menu-item
-                        data-ng-if="$ctrl.exchangeService.deleteOptionAvailable"
-                        data-on-click="$ctrl.navigation.setAction('exchange/header/remove/exchange-remove', $ctrl.exchangeService)"
-                    >
-                        <span
-                            data-ng-if="$ctrl.exchangeService.renewType.deleteAtExpiration"
-                            data-translate="exchange_resilitation_action_button_cancel"
-                        ></span>
-                        <span
-                            data-ng-if="!$ctrl.exchangeService.renewType.deleteAtExpiration"
-                            data-translate="exchange_resilitation_action_menu_terminate_button"
-                        ></span>
-                    </oui-action-menu-item>
-                </oui-action-menu>
+                            <oui-action-menu-divider
+                                data-ng-if="$ctrl.exchangeService.deleteOptionAvailable"
+                            ></oui-action-menu-divider>
+                            <oui-action-menu-item
+                                data-ng-if="$ctrl.exchangeService.deleteOptionAvailable"
+                                data-on-click="$ctrl.navigation.setAction('exchange/header/remove/exchange-remove', $ctrl.exchangeService)"
+                            >
+                                <span
+                                    data-ng-if="$ctrl.exchangeService.renewType.deleteAtExpiration"
+                                    data-translate="exchange_resilitation_action_button_cancel"
+                                ></span>
+                                <span
+                                    data-ng-if="!$ctrl.exchangeService.renewType.deleteAtExpiration"
+                                    data-translate="exchange_resilitation_action_menu_terminate_button"
+                                ></span>
+                            </oui-action-menu-item>
+                        </oui-action-menu>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

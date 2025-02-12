@@ -8,11 +8,17 @@
     <div class="oui-header">
         <div class="oui-header__container">
             <div class="oui-header__content">
-                <h1
-                    class="oui-header__title"
-                    data-translate="domain_tab_ZONE_named"
-                    data-translate-values="{ t0: ctrlDomain.constructor.convertToPunycode(ctrlDomain.domain.displayName) }"
-                ></h1>
+                <div class="d-flex justify-content-between">
+                    <h1
+                        class="oui-header__title"
+                        data-translate="domain_tab_ZONE_named"
+                        data-translate-values="{ t0: ctrlDomain.constructor.convertToPunycode(ctrlDomain.domain.displayName) }"
+                    ></h1>
+                    <changelog-button
+                        links="ctrlDomain.constants.CHANGELOG.dns_zones.links"
+                        chapters="ctrlDomain.constants.CHANGELOG.dns_zones.chapters"
+                    ></changelog-button>
+                </div>
                 <dl
                     class="oui-header__description "
                     data-ng-if="ctrlDomain.domain.nameServers && ctrlDomain.domain.nameServers.length > 0"

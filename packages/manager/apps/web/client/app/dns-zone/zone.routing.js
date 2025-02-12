@@ -20,6 +20,7 @@ export default /* @ngInject */ ($stateProvider) => {
       dataModel: () => 'domain.zone.Zone',
       defaultFilterColumn: () => 'name',
       header: /* @ngInject */ ($translate) => $translate.instant('zones_title'),
+      changelog: () => 'dns_zones',
       customizableColumns: () => true,
       columns: /* @ngInject */ ($translate) => [
         {
