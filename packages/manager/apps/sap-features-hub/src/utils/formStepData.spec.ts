@@ -33,7 +33,7 @@ describe('getSystemFormData test suite', () => {
         sapHanaSid: values.sapHanaSid,
         masterSapPassword: values.masterSapPassword,
         masterSapHanaPassword: values.masterSapHanaPassword,
-        sidamnPassword: values.sidamnPassword,
+        sidadmPassword: values.sidadmPassword,
         systemPassword: values.systemPassword,
       },
       errors: {
@@ -41,7 +41,7 @@ describe('getSystemFormData test suite', () => {
         sapHanaSid: errors.sapHanaSid,
         masterSapPassword: errors.masterSapPassword,
         masterSapHanaPassword: errors.masterSapHanaPassword,
-        sidamnPassword: errors.sidamnPassword,
+        sidadmPassword: errors.sidadmPassword,
         systemPassword: errors.systemPassword,
       },
     });

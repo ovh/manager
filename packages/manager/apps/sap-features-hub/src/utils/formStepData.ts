@@ -41,7 +41,7 @@ export const getSystemFormData = ({
     'sapHanaSid',
     'masterSapPassword',
     'masterSapHanaPassword',
-    'sidamnPassword',
+    'sidadmPassword',
     'systemPassword',
   ];
   return getFormData({ values, errors, keys });
