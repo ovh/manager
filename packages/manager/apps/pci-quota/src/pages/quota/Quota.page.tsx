@@ -1,8 +1,8 @@
 import {
   BaseLayout,
   Datagrid,
-  Headers,
   Notifications,
+  PaginationState,
   PciGuidesHeader,
   useDataGrid,
   useMe,
@@ -11,7 +11,7 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense, useEffect, useMemo, useState } from 'react';
 import { Translation, useTranslation } from 'react-i18next';
 import {
   OdsBreadcrumb,
@@ -32,20 +32,21 @@ import {
   useProject,
 } from '@ovh-ux/manager-pci-common';
 import { useMedia } from 'react-use';
-import { useQuotas } from '@/api/hooks/useQuotas';
+import { sortQuotas, useQuotas } from '@/api/hooks/useQuotas';
 import { useDatagridColumn } from './components/useDatagridColumn';
 import {
-  iamLink,
+  IAM_LINK,
   RESTRICTED_CORES,
   RESTRICTED_INSTANCES,
   RESTRICTED_RAM,
-  supportLink,
+  SUPPORT_LINK,
 } from '@/constants';
 import { toggleManualQuota, unleash } from '@/api/data/project';
-import { useGetServiceOptions } from '@/api/hooks/useServiceOptions';
+import { useGetFilteredServiceOptions } from '@/api/hooks/useServiceOptions';
 import { TabsComponent } from '@/components/tabs/Tabs.component';
 import { useGetValidPaymentMethodIds } from '@/api/hooks/usePaymentmethods';
 import { useGetProjectService } from '@/api/hooks/useService';
+import { Quota } from '@/api/data/quota';
 
 type TState = {
   manualQuota: {
@@ -53,6 +54,17 @@ type TState = {
     isToggling: boolean;
   };
 };
+
+function paginateResults<T>(items: T[], pagination: PaginationState) {
+  return {
+    rows: items.slice(
+      pagination.pageIndex * pagination.pageSize,
+      (pagination.pageIndex + 1) * pagination.pageSize,
+    ),
+    pageCount: Math.ceil(items.length / pagination.pageSize),
+    totalRows: items.length,
+  };
+}
 
 export default function QuotaPage(): JSX.Element {
   const isMobile: boolean = useMedia(`(max-width: 760px)`);
@@ -68,6 +80,7 @@ export default function QuotaPage(): JSX.Element {
 
   const hrefProject = useProjectUrl('public-cloud');
 
+  // TODO split into two states
   const [state, setState] = useState<TState>({
     manualQuota: { isActive: false, isToggling: false },
   });
@@ -83,10 +96,11 @@ export default function QuotaPage(): JSX.Element {
     desc: false,
   });
 
-  const { data: quotas, paginatedData: paginatedQuotas, isPending } = useQuotas(
-    projectId,
-    pagination,
-    sorting,
+  const { quotas, isPending } = useQuotas(projectId);
+
+  const paginatedQuotas = useMemo(
+    () => paginateResults<Quota>(sortQuotas(quotas || [], sorting), pagination),
+    [quotas, sorting, pagination],
   );
 
   const { isValid } = useGetValidPaymentMethodIds();
@@ -101,7 +115,7 @@ export default function QuotaPage(): JSX.Element {
     defaultPaymentMethodAvailable: isValid,
   };
 
-  const { data: serviceOptions } = useGetServiceOptions(projectId);
+  const { data: serviceOptions } = useGetFilteredServiceOptions(projectId);
 
   const Do = {
     unleash: async () => {
@@ -195,7 +209,7 @@ export default function QuotaPage(): JSX.Element {
                 {tQuota('pci_projects_project_quota_error_forbidden')}
               </OdsText>
               <div className="mt-4">
-                <OdsLink href={iamLink} label={iamLink}></OdsLink>
+                <OdsLink href={IAM_LINK} label={IAM_LINK}></OdsLink>
               </div>
             </div>
           </OdsMessage>
@@ -242,7 +256,6 @@ export default function QuotaPage(): JSX.Element {
             <div className="mt-4">
               {quotas?.length > 0 && (
                 <OdsButton
-                  className=""
                   size="sm"
                   label={`${tQuota(
                     'pci_projects_project_quota_protect_contact_support',
@@ -281,7 +294,6 @@ export default function QuotaPage(): JSX.Element {
               {!quotas ||
                 (quotas && quotas.length === 0 && (
                   <OdsButton
-                    className=""
                     size="sm"
                     label={`${tQuota(
                       'pci_projects_project_quota_protect_more_btn',
@@ -297,7 +309,7 @@ export default function QuotaPage(): JSX.Element {
                     'pci_projects_project_quota_protect_more_btn',
                   )}`}
                   onClick={() => {
-                    window.open(supportLink, '_top');
+                    window.open(SUPPORT_LINK, '_top');
                   }}
                 />
               )}

@@ -3,9 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './style.scss';
 import { useTranslation } from 'react-i18next';
 
-const allowedTabs = ['quota', 'regions'];
-
-type TAllowedTabs = typeof allowedTabs[number];
+type TAllowedTabs = 'quota' | 'regions';
 
 export type TTabItem = {
   id: TAllowedTabs;
@@ -39,9 +37,8 @@ export const TabsComponent = ({ activeTab }: { activeTab: TAllowedTabs }) => {
           key={item.href}
           isSelected={item.id === activeTab}
           onClick={() => navigate(item.href)}
-          className=""
         >
-          <div className="">{item.label}</div>
+          <div>{item.label}</div>
         </OdsTab>
       ))}
     </OdsTabs>

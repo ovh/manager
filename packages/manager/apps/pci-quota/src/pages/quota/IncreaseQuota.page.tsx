@@ -5,11 +5,15 @@ import { useMe, useNotifications } from '@ovh-ux/manager-react-components';
 import { useTracking } from '@ovh-ux/manager-react-shell-client';
 import { Modal } from '@/components/Modal.component';
 import { useGetIssueTypes } from '@/api/hooks/useIssuTypes';
-import { ISSUE_TYPE_IDS, SUPPORT_TICKET_ID_URL, TRACK } from '@/constants';
+import {
+  SUPPORT_ISSUE_TYPE_IDS,
+  SUPPORT_TICKET_ID_URL,
+  TRACK,
+} from '@/constants';
 import { createTicket } from '@/api/data/ticket';
 import { checkoutCart, createAndAssignCart } from '@/api/data/cart';
 import { orderQuota } from '@/api/data/quota';
-import { useGetServiceOptions } from '@/api/hooks/useServiceOptions';
+import { useGetFilteredServiceOptions } from '@/api/hooks/useServiceOptions';
 
 export default function IncreaseQuotaPage(): JSX.Element {
   const location = useLocation();
@@ -31,15 +35,16 @@ export default function IncreaseQuotaPage(): JSX.Element {
   const { data: issueTypes } = useGetIssueTypes(i18n.language);
 
   const issueType = useMemo(() => {
-    return issueTypes?.find(({ id }) => ISSUE_TYPE_IDS.includes(id));
+    return issueTypes?.find(({ id }) => SUPPORT_ISSUE_TYPE_IDS.includes(id));
   }, [issueTypes]);
 
-  const { data: serviceOptions } = useGetServiceOptions(projectId);
+  const { data: serviceOptions } = useGetFilteredServiceOptions(projectId);
 
+  // TODO duplicate
   const inputLabel = useMemo(() => {
     if (type === 'support' && Array.isArray(issueTypes)) {
       const targetIssueType = issueTypes.find(({ id }) =>
-        ISSUE_TYPE_IDS.includes(id),
+        SUPPORT_ISSUE_TYPE_IDS.includes(id),
       );
 
       if (targetIssueType) {
@@ -49,6 +54,7 @@ export default function IncreaseQuotaPage(): JSX.Element {
     return '';
   }, [issueTypes]);
 
+  // TODO split and usecallback
   const on = {
     confirm: async (formData: string) => {
       if (type === 'support') {
@@ -155,7 +161,16 @@ ${formData}
           });
           try {
             const cartId = await createAndAssignCart(me.ovhSubsidiary);
-            await orderQuota(projectId, cartId, serviceOption);
+            const targetInstallationPrice = serviceOption.prices?.find(
+              (price) => price.capacities.includes('installation'),
+            );
+            await orderQuota(
+              projectId,
+              cartId,
+              serviceOption.planCode,
+              targetInstallationPrice.duration,
+              targetInstallationPrice.pricingMode,
+            );
             const { url } = await checkoutCart(cartId);
             addSuccess(
               <Translation ns="quotas/increase">

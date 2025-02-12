@@ -24,7 +24,7 @@ import { useMedia } from 'react-use';
 import { isDiscoveryProject } from '@ovh-ux/manager-pci-common/src';
 import { AvailablePart } from '@/pages/regions/Available.part';
 import { ToAddPart } from '@/pages/regions/ToAdd.part';
-import { useGetProjectRegions, useLocations } from '@/api/hooks/useRegions';
+import { useGetAvailableRegions, useLocations } from '@/api/hooks/useRegions';
 import { addRegion } from '@/api/data/region';
 import queryClient from '@/queryClient';
 import { TabsComponent } from '@/components/tabs/Tabs.component';
@@ -38,8 +38,6 @@ export type TPlainLocation = {
 type TState = {
   isAddingRegion: boolean;
 };
-
-const DISCOVERY_PROJECT_PLAN_CODE = 'project.discovery';
 
 export default function RegionsPage(): JSX.Element {
   const { t } = useTranslation('regions');
@@ -55,7 +53,7 @@ export default function RegionsPage(): JSX.Element {
   const { projectId } = useParams();
   const { data: project } = useProject();
 
-  const { data: availableRegions } = useGetProjectRegions(projectId, true);
+  const { data: availableRegions } = useGetAvailableRegions(projectId);
 
   const { data: locations, isPending } = useLocations(projectId, true);
 
@@ -155,7 +153,7 @@ export default function RegionsPage(): JSX.Element {
         {t('pci_projects_project_regions_description')}
       </OdsText>
 
-      {project.planCode !== DISCOVERY_PROJECT_PLAN_CODE && (
+      {isDiscoveryProject(project) && (
         <div>
           <OdsMessage
             color="information"
