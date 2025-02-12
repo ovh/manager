@@ -522,6 +522,9 @@ export const useStorageEndpoint = (projectId: string, storage: TStorage) => {
       ? region?.services.find(
           (service) => service.name === OBJECT_CONTAINER_OFFER_STORAGE_STANDARD,
         )?.endpoint
-      : access?.endpoints?.find(({ region: reg }) => reg === region?.name)?.url,
+      : `${
+          access?.endpoints?.find(({ region: reg }) => reg === region?.name)
+            ?.url
+        }/${storage?.name}`,
   };
 };
