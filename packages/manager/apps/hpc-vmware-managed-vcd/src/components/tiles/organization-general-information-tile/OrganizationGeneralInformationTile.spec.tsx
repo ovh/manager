@@ -6,6 +6,8 @@ import {
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
 import React from 'react';
+import { VCDOrganization } from '@ovh-ux/manager-module-vcd-api';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import OrganizationGeneralInformationTile from './OrganizationGeneralInformationTile.component';
 
 vi.mock('react-router-dom', () => ({
@@ -13,21 +15,23 @@ vi.mock('react-router-dom', () => ({
   useParams: () => ({ id: 'id' }),
 }));
 
-describe.skip('OrganizationGeneralInformationTile component unit test suite', () => {
+describe('OrganizationGeneralInformationTile component unit test suite', () => {
   it('should define all sections with correct typo', () => {
     // given
-    const vcdOrg = {
+    const vcdOrg: VCDOrganization = {
       currentState: {
         apiUrl: 'https://vcd.my.demo.lab',
         description: 'My demo VCD Organization',
         fullName: 'Demo VCD',
         region: 'CA-EAST-BHS',
+        billingType: 'MONTHLY',
         name: 'org-ca-east-bhs-61ebdcec-0623-4a61-834f-a1719cd475b4',
         spla: true,
         webInterfaceUrl: 'https://vcd.my.second.lab',
       },
       id: '61ebdcec-0623-4a61-834f-a1719cd475b4',
       resourceStatus: 'READY',
+      updatedAt: '2023-01-01T00:00:00Z',
       targetSpec: {
         description: 'My demo VCD Organization',
         fullName: 'Demo VCD',
@@ -40,7 +44,9 @@ describe.skip('OrganizationGeneralInformationTile component unit test suite', ()
 
     // when
     const { getByText } = render(
-      <OrganizationGeneralInformationTile vcdOrganization={vcdOrg} />,
+      <QueryClientProvider client={new QueryClient()}>
+        <OrganizationGeneralInformationTile vcdOrganization={vcdOrg} />,
+      </QueryClientProvider>,
     );
 
     // then

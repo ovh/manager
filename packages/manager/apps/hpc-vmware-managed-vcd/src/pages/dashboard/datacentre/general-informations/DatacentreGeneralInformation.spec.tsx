@@ -1,19 +1,21 @@
-import userEvent from '@testing-library/user-event';
-import { screen, waitFor } from '@testing-library/react';
 import {
-  organizationList,
-  datacentreList,
-} from '@ovh-ux/manager-module-vcd-api';
-import {
-  assertModalVisibility,
   assertModalText,
+  assertModalVisibility,
+  getButtonByIcon,
   WAIT_FOR_DEFAULT_OPTIONS,
 } from '@ovh-ux/manager-core-test-utils';
 import {
+  datacentreList,
+  organizationList,
+} from '@ovh-ux/manager-module-vcd-api';
+import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import {
   labels,
   mockEditInputValue,
-  renderTest,
   mockSubmitNewValue,
+  renderTest,
 } from '@/test-utils';
 
 const submitButtonLabel =
@@ -33,11 +35,10 @@ describe('Datacentre General Information Page', () => {
       WAIT_FOR_DEFAULT_OPTIONS,
     );
 
-    let editButton;
-    await waitFor(() => {
-      editButton = screen.getByTestId('editIcon');
-      return expect(editButton).toBeEnabled();
-    }, WAIT_FOR_DEFAULT_OPTIONS);
+    const editButton = await getButtonByIcon({
+      container,
+      iconName: ODS_ICON_NAME.PEN,
+    });
 
     await waitFor(() => userEvent.click(editButton));
     await assertModalVisibility({ container, isVisible: true });
