@@ -78,46 +78,55 @@
                     data-ng-if="exchange.displayName != null && exchange.displayName !== exchange.domain"
                 ></h2>
             </div>
-            <oui-action-menu
-                data-ng-if="!currentRegionCA"
-                data-text="{{:: 'common_actions' | translate }}"
-                data-placement="end"
+            <div
+                class="d-flex align-items-center gap-1 flex-wrap justify-content-end"
             >
-                <div data-ng-if="!exchange.isMXPlan">
-                    <oui-action-menu-item
-                        data-ng-if="exchange.renewOptionAvailable || is25g()"
-                        data-on-click="setAction('emailpro/update/renew/emailpro-update-renew', exchange)"
-                    >
-                        <span
-                            data-translate="emailpro_update_billing_button_title"
-                        ></span>
-                    </oui-action-menu-item>
-                    <oui-action-menu-divider></oui-action-menu-divider>
-                    <oui-action-menu-item
-                        data-ng-if="exchange.deleteOptionAvailable"
-                        data-on-click="setAction('emailpro/remove/emailpro-remove', exchange)"
-                    >
-                        <span
-                            data-translate="emailpro_resilitation_action_button"
-                            data-ng-if="!exchange.renewType.deleteAtExpiration"
-                        ></span>
-                        <span
-                            data-translate="emailpro_resilitation_action_button_cancel"
-                            data-ng-if="exchange.renewType.deleteAtExpiration"
-                        ></span>
-                    </oui-action-menu-item>
-                </div>
-                <div data-ng-if="exchange.isMXPlan">
-                    <oui-action-menu-item
-                        data-href="{{:: MXPLAN_AUTORENEW_URL }}"
-                        data-external
-                    >
-                        <span
-                            data-translate="emailpro_delete_action_button"
-                        ></span>
-                    </oui-action-menu-item>
-                </div>
-            </oui-action-menu>
+                <changelog-button
+                    links="constants.CHANGELOG.email_pro.links"
+                    chapters="constants.CHANGELOG.email_pro.chapters"
+                ></changelog-button>
+                <oui-action-menu
+                    class="mt-1"
+                    data-ng-if="!currentRegionCA"
+                    data-text="{{:: 'common_actions' | translate }}"
+                    data-placement="end"
+                >
+                    <div data-ng-if="!exchange.isMXPlan">
+                        <oui-action-menu-item
+                            data-ng-if="exchange.renewOptionAvailable || is25g()"
+                            data-on-click="setAction('emailpro/update/renew/emailpro-update-renew', exchange)"
+                        >
+                            <span
+                                data-translate="emailpro_update_billing_button_title"
+                            ></span>
+                        </oui-action-menu-item>
+                        <oui-action-menu-divider></oui-action-menu-divider>
+                        <oui-action-menu-item
+                            data-ng-if="exchange.deleteOptionAvailable"
+                            data-on-click="setAction('emailpro/remove/emailpro-remove', exchange)"
+                        >
+                            <span
+                                data-translate="emailpro_resilitation_action_button"
+                                data-ng-if="!exchange.renewType.deleteAtExpiration"
+                            ></span>
+                            <span
+                                data-translate="emailpro_resilitation_action_button_cancel"
+                                data-ng-if="exchange.renewType.deleteAtExpiration"
+                            ></span>
+                        </oui-action-menu-item>
+                    </div>
+                    <div data-ng-if="exchange.isMXPlan">
+                        <oui-action-menu-item
+                            data-href="{{:: MXPLAN_AUTORENEW_URL }}"
+                            data-external
+                        >
+                            <span
+                                data-translate="emailpro_delete_action_button"
+                            ></span>
+                        </oui-action-menu-item>
+                    </div>
+                </oui-action-menu>
+            </div>
         </div>
         <div data-ng-if="!exchange.isExpired">
             <oui-header-tabs>

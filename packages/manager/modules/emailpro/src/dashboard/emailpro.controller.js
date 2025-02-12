@@ -26,11 +26,13 @@ export default /* @ngInject */ function EmailProCtrl(
   EMAILPRO_CONFIG,
   coreConfig,
   coreURLBuilder,
+  constants,
 ) {
   $scope.currentRegionCA = coreConfig.isRegion('CA');
   $scope.accountTypeDedicated = EmailPro.accountTypeDedicated;
   $scope.accountTypeHosted = EmailPro.accountTypeHosted;
   $scope.accountTypeProvider = EmailPro.accountTypeProvider;
+  $scope.constants = constants;
 
   $scope.alerts = {
     main: 'emailproDashboardAlert',

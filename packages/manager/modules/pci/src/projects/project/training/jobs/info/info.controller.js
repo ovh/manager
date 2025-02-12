@@ -8,11 +8,13 @@ export default class PciTrainingJobsInfoController {
     ovhManagerRegionService,
     $interval,
     PciProjectTrainingJobService,
+    CHANGELOG,
   ) {
     this.CucCloudMessage = CucCloudMessage;
     this.ovhManagerRegionService = ovhManagerRegionService;
     this.$interval = $interval;
     this.PciProjectTrainingJobService = PciProjectTrainingJobService;
+    this.CHANGELOG = CHANGELOG;
   }
 
   $onDestroy() {

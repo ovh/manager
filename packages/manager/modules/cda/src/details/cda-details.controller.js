@@ -11,12 +11,14 @@ export default class CdaDetailsCtrl {
     CdaService,
     CucCloudMessage,
     OvhApiMe,
+    constants,
   ) {
     const self = this;
 
     self.CdaService = CdaService;
     self.serviceName = '';
     self.messages = [];
+    self.constants = constants;
 
     self.loading = true;
 

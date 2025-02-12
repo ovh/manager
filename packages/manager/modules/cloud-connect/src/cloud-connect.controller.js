@@ -3,11 +3,19 @@ import { STATUS } from './cloud-connect.constants';
 
 export default class CloudConnectCtrl extends ListLayoutHelper.ListLayoutCtrl {
   /* @ngInject */
-  constructor($q, $http, $translate, coreURLBuilder, ouiDatagridService) {
+  constructor(
+    $q,
+    $http,
+    $translate,
+    coreURLBuilder,
+    ouiDatagridService,
+    constants,
+  ) {
     super($q, ouiDatagridService);
     this.$translate = $translate;
     this.$http = $http;
     this.coreURLBuilder = coreURLBuilder;
+    this.constants = constants;
   }
 
   $onInit() {

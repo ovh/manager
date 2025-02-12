@@ -24,6 +24,7 @@ export default class PackCtrl {
     shellClient,
     TucToast,
     tucValidator,
+    CHANGELOG,
   ) {
     this.$q = $q;
     this.$scope = $scope;
@@ -36,6 +37,7 @@ export default class PackCtrl {
     this.shellClient = shellClient;
     this.TucToast = TucToast;
     this.validator = tucValidator;
+    this.CHANGELOG = CHANGELOG;
   }
 
   $onInit() {

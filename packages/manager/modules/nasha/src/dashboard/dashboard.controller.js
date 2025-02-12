@@ -8,10 +8,11 @@ import {
 
 export default class NashaDashboardController {
   /* @ngInject */
-  constructor(coreConfig) {
+  constructor(coreConfig, constants) {
     this.RECOMMIT_IMPRESSION_TRACKING_DATA = RECOMMIT_IMPRESSION_TRACKING_DATA;
     this.COMMIT_IMPRESSION_TRACKING_DATA = COMMIT_IMPRESSION_TRACKING_DATA;
     this.user = coreConfig.getUser();
+    this.constants = constants;
   }
 
   $onInit() {

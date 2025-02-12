@@ -1,8 +1,17 @@
 <div>
-    <oui-header
-        heading="{{:: $ctrl.storage.name }}"
-        description="{{ $ctrl.storage.id }}"
-    >
+    <oui-header description="{{ $ctrl.storage.id }}">
+        <oui-header-heading>
+            <div class="d-flex justify-content-between">
+                <h1
+                    class="oui-header__title"
+                    data-translate="{{:: $ctrl.storage.name }}"
+                ></h1>
+                <changelog-button
+                    links="$ctrl.constants.CHANGELOG.file_storage.links"
+                    chapters="$ctrl.constants.CHANGELOG.file_storage.chapters"
+                ></changelog-button>
+            </div>
+        </oui-header-heading>
         <oui-header-tabs>
             <oui-header-tabs-item
                 href="{{:: $ctrl.dashboardLink }}"

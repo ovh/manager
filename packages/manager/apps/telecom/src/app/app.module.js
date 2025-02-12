@@ -104,6 +104,7 @@ import { isTopLevelApplication } from '@ovh-ux/manager-config';
 import ovhManagerAtInternetConfiguration from '@ovh-ux/manager-at-internet-configuration';
 
 import uiRouter, { RejectType } from '@uirouter/angularjs';
+import { changelogButton } from '@ovh-ux/manager-components';
 import TelecomAppCtrl from './app.controller';
 import pack from './telecom/pack';
 import accessList from './telecom/pack/access-list';
@@ -230,6 +231,7 @@ export default async (containerEl, shellClient) => {
         searchPage,
         ngOvhFeatureFlipping,
         accessList,
+        changelogButton,
         ...get(__NG_APP_INJECTIONS__, environment.getRegion(), []),
       ].filter(isString),
     )

@@ -2,9 +2,10 @@ import { GUIDE_LINKS } from './network-security.constant';
 
 export default class NetworkSecurityController {
   /* @ngInject */
-  constructor(coreConfig, networkSecurityService) {
+  constructor(coreConfig, networkSecurityService, constants) {
     this.coreConfig = coreConfig;
     this.networkSecurityService = networkSecurityService;
+    this.constants = constants;
   }
 
   $onInit() {

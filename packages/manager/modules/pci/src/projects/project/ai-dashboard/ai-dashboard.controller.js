@@ -2,10 +2,11 @@ import { AI_PRICES_URL, GUIDES } from './ai-dashboard.constants';
 
 export default class AiDashboardCtrl {
   /* @ngInject */
-  constructor(CucCloudMessage, coreConfig, atInternet) {
+  constructor(CucCloudMessage, coreConfig, atInternet, CHANGELOG) {
     this.cucCloudMessage = CucCloudMessage;
     this.coreConfig = coreConfig;
     this.atInternet = atInternet;
+    this.CHANGELOG = CHANGELOG;
   }
 
   $onInit() {

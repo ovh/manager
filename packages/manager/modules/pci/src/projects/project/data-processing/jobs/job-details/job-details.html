@@ -1,23 +1,34 @@
-<oui-header
-    class="job-title__header"
-    data-heading="{{ $ctrl.job.name }}"
-    data-description="{{ $ctrl.job.id }}"
->
-    <oui-guide-menu
-        data-text="{{ :: 'pci_project_guides_header' | translate }}"
-    >
-        <oui-guide-menu-item
-            data-ng-repeat="guide in $ctrl.guideUrl.data_processing track by $index"
-            data-href="{{:: guide.url }}"
-            data-on-click="$ctrl.trackClick($ctrl.guideTrackingSectionTags.data_processing + guide.tracking)"
-            data-external
-        >
-            <span
-                data-translate="{{:: 'pci_project_guides_header_' + guide.key }}"
-            ></span>
-        </oui-guide-menu-item>
-    </oui-guide-menu>
-
+<oui-header class="job-title__header" data-description="{{ $ctrl.job.id }}">
+    <oui-header-heading>
+        <div class="d-flex justify-content-between">
+            <h1
+                class="oui-header__title"
+                data-translate="{{ $ctrl.job.name }}"
+            ></h1>
+            <div
+                class="d-flex align-items-center gap-1 flex-wrap justify-content-end"
+            >
+                <changelog-button
+                    links="$ctrl.CHANGELOG.data_processing.links"
+                    chapters="$ctrl.CHANGELOG.data_processing.chapters"
+                ></changelog-button>
+                <oui-guide-menu
+                    data-text="{{ :: 'pci_project_guides_header' | translate }}"
+                >
+                    <oui-guide-menu-item
+                        data-ng-repeat="guide in $ctrl.guideUrl.data_processing track by $index"
+                        data-href="{{:: guide.url }}"
+                        data-on-click="$ctrl.trackClick($ctrl.guideTrackingSectionTags.data_processing + guide.tracking)"
+                        data-external
+                    >
+                        <span
+                            data-translate="{{:: 'pci_project_guides_header_' + guide.key }}"
+                        ></span>
+                    </oui-guide-menu-item>
+                </oui-guide-menu>
+            </div>
+        </div>
+    </oui-header-heading>
     <oui-header-tabs>
         <oui-header-tabs-item
             data-state="pci.projects.project.data-processing.jobs.job-details.dashboard"

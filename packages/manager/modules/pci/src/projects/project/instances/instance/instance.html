@@ -1,4 +1,20 @@
-<oui-header data-heading="{{ $ctrl.instance.name }}">
+<oui-header>
+    <oui-header-heading>
+        <div class="d-flex justify-content-between">
+            <h1
+                class="oui-header__title"
+                data-translate="{{ $ctrl.instance.name }}"
+            ></h1>
+            <div
+                class="d-flex align-items-center justify-content-end gap-1 flex-wrap"
+            >
+                <changelog-button
+                    links="$ctrl.CHANGELOG.instances.links"
+                    chapters="$ctrl.CHANGELOG.instances.chapters"
+                ></changelog-button>
+            </div>
+        </div>
+    </oui-header-heading>
     <oui-header-tabs>
         <oui-header-tabs-item
             data-href="{{ $ctrl.instanceLink }}"

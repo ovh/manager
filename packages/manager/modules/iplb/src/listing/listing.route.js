@@ -15,6 +15,9 @@ export default /* @ngInject */ ($stateProvider) => {
       apiPath: () => '/ipLoadbalancing',
       dataModel: () => 'ipLoadbalancing.Ip',
       defaultFilterColumn: () => 'serviceName',
+      header: /* @ngInject */ ($translate) => $translate.instant('iplb_title'),
+      changelog: () => 'iplb',
+      customizableColumns: () => true,
       getServiceNameLink: /* @ngInject */ ($state) => ({ serviceName }) =>
         $state.href('iplb.detail', {
           serviceName,
@@ -29,7 +32,6 @@ export default /* @ngInject */ ($stateProvider) => {
           )
           .catch(() => false);
       },
-      header: /* @ngInject */ ($translate) => $translate.instant('iplb_title'),
     },
     redirectTo: (transition) =>
       transition

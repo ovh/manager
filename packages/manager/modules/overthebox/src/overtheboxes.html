@@ -1,6 +1,21 @@
-<oui-header
-    data-heading="{{ :: 'overtheboxes_title' | translate }}"
-></oui-header>
+<oui-header>
+    <oui-header-heading>
+        <div class="d-flex justify-content-between">
+            <h1
+                class="oui-header__title"
+                data-translate="{{ :: 'overtheboxes_title' | translate }}"
+            ></h1>
+            <div
+                class="d-flex align-items-center flex-wrap gap-1 justify-content-end"
+            >
+                <changelog-button
+                    links="$ctrl.CHANGELOG.overTheBox.links"
+                    chapters="$ctrl.CHANGELOG.overTheBox.chapters"
+                ></changelog-button>
+            </div>
+        </div>
+    </oui-header-heading>
+</oui-header>
 
 <div class="container-fluid my-5">
     <oui-datagrid
