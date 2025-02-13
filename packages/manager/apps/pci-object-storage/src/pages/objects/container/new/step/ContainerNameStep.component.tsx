@@ -118,7 +118,7 @@ export function ContainerNameStep({
           <OdsText preset="paragraph">
             {t(
               'pci_projects_project_storages_containers_add_replication_rules_info',
-            )}
+            )}{' '}
             <OdsLink
               color="primary"
               href={asyncReplicationLink}
