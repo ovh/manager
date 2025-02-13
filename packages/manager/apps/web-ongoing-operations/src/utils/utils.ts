@@ -9,6 +9,15 @@ export const formatDatagridDate = (date: string, locale: string) => {
   });
 };
 
+export const formatDate = (date: string, locale: string) => {
+  const formattedDate = new Date(date);
+  return formattedDate.toLocaleString(locale.replace('_', '-'), {
+    day: 'numeric',
+    month: 'numeric',
+    year: 'numeric',
+  });
+};
+
 export const removeQuotes = (comment: string) => {
   if (
     comment &&
