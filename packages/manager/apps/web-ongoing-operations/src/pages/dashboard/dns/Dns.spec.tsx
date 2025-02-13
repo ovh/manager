@@ -32,7 +32,7 @@ describe('Dns datagrid', () => {
     expect(getByTestId('listing-page-spinner')).toBeInTheDocument();
   });
 
-  it('fetch in a good way using useQuery', () => {
+  it('fetch in a good way using useResourcesIcebergV6', () => {
     (useResourcesIcebergV6 as jest.Mock).mockReturnValue({
       flattenData: dns,
       isLoading: false,
