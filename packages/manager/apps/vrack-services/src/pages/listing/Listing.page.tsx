@@ -41,6 +41,7 @@ import { betaVrackServicesLimit } from './listing.constants';
 import { urls } from '@/routes/routes.constants';
 import { SuccessMessages } from '@/components/feedback-messages/SuccessMessage.component';
 import { CHANGELOG_LINKS } from '@/utils/constants';
+import { getVrackServicesResourceListQueryKey } from '@/data/api';
 
 export default function Listing() {
   const { t } = useTranslation('vrack-services/listing');

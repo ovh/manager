@@ -15,7 +15,7 @@ import {
 import {
   ButtonType,
   PageLocation,
-  useOvhTracking
+  useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 
 import TableContainer from '@/components/Table/TableContainer';
@@ -23,6 +23,14 @@ import { useSavingsPlan } from '@/hooks/useSavingsPlan';
 import { SavingsPlanService } from '@/types';
 
 import { CHANGELOG_LINKS } from '@/constants';
+
+interface ListingTablePageProps {
+  data: SavingsPlanService[];
+  refetchSavingsPlans: () => void;
+}
+interface ListingProps {
+  refetchSavingsPlans: () => void;
+}
 
 export const formatDateString = (dateString: string, locale?: string) => {
   const date = new Date(dateString);
