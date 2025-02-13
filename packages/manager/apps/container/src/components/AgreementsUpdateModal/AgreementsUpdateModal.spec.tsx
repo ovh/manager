@@ -1,12 +1,12 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { render } from '@testing-library/react';
+import { act, fireEvent, render } from '@testing-library/react';
 import { vi } from 'vitest';
 import {
   ShellContext,
   ShellContextType,
 } from '@ovh-ux/manager-react-shell-client';
 import AgreementsUpdateModal from '@/components/AgreementsUpdateModal/AgreementsUpdateModal.component';
-import { ModalTypes } from '@/context/modals/modals.context';
+import * as useAgreementsUpdateModule from '@/hooks/agreements/useAgreements';
 
 const mocks = vi.hoisted(() => ({
   isAuthorized: false,
@@ -25,6 +25,7 @@ const shellContext = {
                 setTimeout(() => resolve('http://fakelink.com'), 50);
               }),
           ),
+          navigateTo: vi.fn(() => mocks.region),
         };
         case 'ux': return {
           notifyModalActionDone: vi.fn(),
@@ -61,40 +62,46 @@ vi.mock('react', async (importOriginal) => {
   }
 });
 
-vi.mock('@/hooks/accountUrn/useAccountUrn', () => ({
-  default: () => ({ data: 'urn' }),
-}));
-
-vi.mock('@ovh-ux/manager-react-components', () => ({
-  useAuthorizationIam: () => ({ isAuthorized: mocks.isAuthorized })
-}));
-
-vi.mock('@/context/modals', () => ({
-  useModals: () => ({ current: ModalTypes.agreements })
-}));
-
-vi.mock('@/hooks/agreements/usePendingAgreements', () => ({
-  default: () => ({ data: mocks.agreements })
-}));
+const mockedUseAgreementsUpdate = vi.spyOn(useAgreementsUpdateModule, 'useAgreementsUpdate');
 
 describe('AgreementsUpdateModal', () => {
-  it('should display nothing for US customers', () => {
+  it('should not display if agreements update are not ready', () => {
+    mockedUseAgreementsUpdate.mockReturnValue({
+      isReady: false,
+      shouldBeDisplayed: false,
+      updatePreference: vi.fn(),
+    });
     const { queryByTestId } = renderComponent();
     expect(queryByTestId('agreements-update-modal')).not.toBeInTheDocument();
   });
-  it('should display nothing for non US and non authorized customers', () => {
-    mocks.region = 'EU';
+  it('should display nothing if agreements update are not to be displayed', () => {
+    mockedUseAgreementsUpdate.mockReturnValue({
+      isReady: true,
+      shouldBeDisplayed: false,
+      updatePreference: vi.fn(),
+    });
     const { queryByTestId } = renderComponent();
     expect(queryByTestId('agreements-update-modal')).not.toBeInTheDocument();
   });
-  it('should display nothing for non US and authorized customers without new contract', () => {
-    mocks.isAuthorized = true;
-    const { queryByTestId } = renderComponent();
-    expect(queryByTestId('agreements-update-modal')).not.toBeInTheDocument();
-  });
-  it('should display a modal for non US and authorized customers', () => {
-    mocks.agreements.push({ agreed: false, id: 9999, contractId: 9999 });
+  it('should display a modal if agreements update are ready and to be displayed', () => {
+    mockedUseAgreementsUpdate.mockReturnValue({
+      isReady: true,
+      shouldBeDisplayed: true,
+      updatePreference: vi.fn(),
+    });
     const { getByTestId } = renderComponent();
     expect(getByTestId('agreements-update-modal')).not.toBeNull();
+  });
+  it('should not reopen once closed', async () => {
+    mockedUseAgreementsUpdate.mockReturnValue({
+      isReady: true,
+      shouldBeDisplayed: true,
+      updatePreference: vi.fn(),
+    });
+    const { getByTestId, queryByTestId, queryByText } = renderComponent();
+    expect(getByTestId('agreements-update-modal')).not.toBeNull();
+    const button = queryByText('agreements_update_modal_action');
+    await act(() => fireEvent.click(button));
+    expect(queryByTestId('agreements-update-modal')).not.toBeInTheDocument();
   });
 })

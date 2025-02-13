@@ -4,6 +4,8 @@ import { PAYMENT_ALERTS } from './constants';
 import PaymentModal, { IPaymentMethod } from './PaymentModal';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import * as ManagerApi from '@ovh-ux/manager-core-api';
+import * as useModalsModule from '@/context/modals';
+import { ModalTypes } from '@/context/modals/modals.context';
 
 vi.mock('@/context', () => ({
   useShell: () => ({
@@ -72,10 +74,26 @@ const renderPaymentModal = () => {
   )
 }
 
+const mockedUseModalsModule = vi.spyOn(useModalsModule, 'useModals').mockReturnValue({
+  current: ModalTypes.payment,
+});
+
 describe('PaymentModel.component', () => {
 
   afterEach(() => {
     vi.clearAllMocks();
+  });
+
+  it('should render no modal if the payment modal is not the current one', async () => {
+    mockedUseModalsModule.mockReturnValueOnce({
+      current: ModalTypes.kyc,
+    });
+    const spy = vi.spyOn(ManagerApi, 'fetchIcebergV6').mockResolvedValue(mockValidResponse);
+    const { queryByTestId } = renderPaymentModal();
+    await waitFor(() => {
+        expect(spy).not.toHaveBeenCalled();
+        expect(queryByTestId('paymentModal')).toBeNull();
+    }, { timeout: 2000 });
   });
 
   it('should render no modal if card is valid', async () => {

@@ -12,4 +12,10 @@ export const fetchPreferences = async (preference: string): Promise<any | null> 
     }
     throw e;
   }
-}
+};
+
+export const createPreferences = async (preference: string, value: any = ''): Promise<any | null> =>
+  v6.post<Preference>('/me/preferences/manager', {
+    key: preference,
+    value: value.toString()
+  });
