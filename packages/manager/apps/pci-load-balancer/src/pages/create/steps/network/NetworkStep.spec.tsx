@@ -110,6 +110,17 @@ vi.mock('@ovh-ux/manager-pci-common', async () => {
   };
 });
 
+vi.mock('@/api/hook/useGateways', async () => {
+  const actual = await vi.importActual('@/api/hook/useGateways');
+
+  return {
+    ...actual,
+    useSmallestGatewayByRegion: vi
+      .fn()
+      .mockReturnValue({ data: { price: 0, size: 's' } }),
+  };
+});
+
 const renderStep = (subnetsList: TSubnet[] = [], isLoading = false) =>
   render(<NetworkStep subnetsList={subnetsList} isLoading={isLoading} />, {
     wrapper,
