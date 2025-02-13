@@ -158,8 +158,15 @@
             </div>
         </div>
 
-        <div data-wizard-step>
-            <form name="emailProAddDomainStep2Form">
+        <div
+            data-wizard-step
+            data-wizard-step-on-load="checkDomain"
+            data-wizard-step-valid="!loading"
+        >
+            <div class="text-center" data-ng-if="loading">
+                <oui-spinner></oui-spinner>
+            </div>
+            <form name="emailProAddDomainStep2Form" data-ng-if="!loading">
                 <p data-translate="emailpro_tab_domain_add_step2bis_intro"></p>
                 <div class="oui-radio">
                     <input
@@ -220,7 +227,9 @@
                         class="mt-3"
                         data-ng-if="model.configMode === CONFIGURATION_MODE.PERSONALIZED"
                     >
-                        <p data-translate="emailpro_tab_domain_mode_personalized_intro"></p>
+                        <p
+                            data-translate="emailpro_tab_domain_mode_personalized_intro"
+                        ></p>
                         <label
                             for="targetMailServer"
                             data-translate="emailpro_tab_domain_target_mail_server_label"

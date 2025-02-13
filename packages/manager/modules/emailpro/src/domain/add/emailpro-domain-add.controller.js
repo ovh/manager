@@ -105,11 +105,9 @@ export default /* @ngInject */ (
     $scope.model.srvParam = shouldConfigureRecord($scope.model.srvParam);
     $scope.model.mxParam = shouldConfigureRecord($scope.model.mxParam);
 
-    $scope.model.type =
-      $scope.model.configMode === CONFIGURATION_MODE.PERSONALIZED &&
-      $scope.model.mxRelay
-        ? DOMAIN_MODE.NON_AUTHORITATIVE
-        : DOMAIN_MODE.AUTHORITATIVE;
+    $scope.model.type = $scope.model.mxRelay
+      ? DOMAIN_MODE.NON_AUTHORITATIVE
+      : DOMAIN_MODE.AUTHORITATIVE;
 
     delete $scope.model.displayName;
     delete $scope.model.domainType;
@@ -138,6 +136,29 @@ export default /* @ngInject */ (
     );
 
     check2010Provider();
+  };
+
+  $scope.checkDomain = function checkDomain() {
+    $scope.loading = true;
+    // check if domain has MxPlan already configured
+    EmailProDomains.checkMxPlan($scope.model.name)
+      .then(() => {
+        $scope.model.mxRelay = DEFAULT_OVH_TARGET_SERVER_URL;
+        $scope.loading = false;
+      })
+      .catch(() => {
+        // check zimbra only if MxPlan not configured
+        // because zimbra domain call is slow
+        EmailProDomains.checkZimbra($scope.model.name)
+          .then((found) => {
+            if (found) {
+              $scope.model.mxRelay = DEFAULT_OVH_TARGET_SERVER_URL;
+            }
+          })
+          .finally(() => {
+            $scope.loading = false;
+          });
+      });
   };
 
   $scope.resetSearchValue = function resetSearchValue() {
