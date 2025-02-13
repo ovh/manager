@@ -1,10 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 import {
   getmeTaskDnsList,
+  getmeTaskDomainArgument,
   getmeTaskDomainId,
   getmeTaskDomainList,
 } from '@/data/api/web-ongoing-operations';
-import { TOngoingOperations, TTracking } from '@/types';
+import { TArgument, TOngoingOperations, TTracking } from '@/types';
 import { getOperationTrackingStatus } from '@/data/api/tracking';
 
 export const useDomainList = () => {
@@ -32,5 +33,12 @@ export const useDomain = (id: number) => {
   return useQuery<TOngoingOperations>({
     queryKey: ['domain'],
     queryFn: () => getmeTaskDomainId(id),
+  });
+};
+
+export const useDomainArgument = (id: number, argumentType: string) => {
+  return useQuery<TArgument>({
+    queryKey: ['argument'],
+    queryFn: () => getmeTaskDomainArgument(id, argumentType),
   });
 };
