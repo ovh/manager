@@ -31,6 +31,7 @@ export default class {
       link: guide.links[this.ovhSubsidiary] || guide.links.DEFAULT,
       title: this.$translate.instant(guide.title),
       description: this.$translate.instant(guide.description),
+      category: this.$translate.instant(guide.category),
     }));
 
     this.orderLink = `${this.expressOrderUrl}?products=${JSURL.stringify([

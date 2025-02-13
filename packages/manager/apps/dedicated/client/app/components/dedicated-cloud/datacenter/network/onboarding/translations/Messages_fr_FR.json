@@ -5,10 +5,10 @@
   "dedicatedCloud_datacenter_network_onboarding_cta_more": "En savoir plus",
   "dedicatedCloud_datacenter_network_onboarding_doc_category_tutorial": "Tutoriel",
   "dedicatedCloud_datacenter_network_onboarding_doc_category_faq": "FAQ",
-  "dedicatedCloud_datacenter_network_onboarding_doc1_title": "Premier pas avec NSX",
+  "dedicatedCloud_datacenter_network_onboarding_doc1_title": "Premiers pas avec NSX",
   "dedicatedCloud_datacenter_network_onboarding_doc1_description": "Découvrez NSX, la solution de gestion de réseau Software-Defined Networking (SDN) fournie par VMware.",
   "dedicatedCloud_datacenter_network_onboarding_doc2_title": "Comment activer NSX-T sur la solution VMware on OVHcloud",
-  "dedicatedCloud_datacenter_network_onboarding_doc2_description": "Découvrez comment attribuer des droits à un utilisateur et aux datacenters pour NSX-T",
+  "dedicatedCloud_datacenter_network_onboarding_doc2_description": "Découvrez comment attribuer des droits à un utilisateur et aux datacenters pour NSX-T.",
   "dedicatedCloud_datacenter_network_onboarding_doc3_title": "NSX - FAQ",
   "dedicatedCloud_datacenter_network_onboarding_doc3_description": "Retrouvez les réponses aux questions les plus fréquentes sur l'utilisation de NSX au sein de l'écosystème Hosted Private Cloud."
 }
