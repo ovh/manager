@@ -87,6 +87,9 @@ export const getShellContext = () => {
         stopListenForHashChange: () => undefined,
         listenForHashChange: () => undefined,
       },
+      ux: {
+        hidePreloader: () => undefined,
+      },
     },
   } as ShellContextType;
 };

@@ -1,4 +1,4 @@
-import { Suspense, useContext, useMemo } from 'react';
+import { lazy, Suspense, useContext, useMemo } from 'react';
 import {
   OsdsChip,
   OsdsIcon,
@@ -14,6 +14,7 @@ import {
   ODS_TEXT_SIZE,
   ODS_ICON_SIZE,
   ODS_TEXT_COLOR_HUE,
+  ODS_SKELETON_SIZE,
 } from '@ovhcloud/ods-components';
 import {
   ODS_THEME_COLOR_INTENT,
@@ -37,15 +38,18 @@ import {
 } from '@/data/api/apiOrder/apiOrder.constants';
 import useDateFormat from '@/hooks/dateFormat/useDateFormat';
 import { LastOrderTrackingResponse, OrderHistory } from '@/types/order.type';
-import { Skeletons } from '@/components/skeletons/Skeletons.component';
-// FIXME: lazy load these comoponents
-import TileError from '@/components/tile-error/TileError.component';
+import { useHubContext } from '@/pages/layout/context';
+
+const TileError = lazy(() =>
+  import('@/components/tile-error/TileError.component'),
+);
 
 export default function HubOrderTracking() {
   const { t } = useTranslation('hub/order');
+  const { isLoading, isFreshCustomer } = useHubContext();
   const {
     data: orderDataResponse,
-    isLoading,
+    isLoading: isLastOrderLoading,
     error,
     refetch,
   } = useFetchLastOrder();
@@ -118,25 +122,30 @@ export default function HubOrderTracking() {
     );
 
   return (
-    <OsdsTile
-      className="block p-1 bg-[var(--ods-color-primary-200)] p-6"
-      variant={ODS_TILE_VARIANT.ghost}
-      inline
-    >
-      <div className="bg-500 !flex flex-col gap-1 items-center justifier-center">
-        <OsdsText
-          color={ODS_THEME_COLOR_INTENT.primary}
-          level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-          className="block"
-          size={ODS_TEXT_SIZE._300}
-        >
-          {t('hub_order_tracking_title')}
-        </OsdsText>
+    (isLoading || !isFreshCustomer) && (
+      <OsdsTile
+        className="block p-1 bg-[var(--ods-color-primary-200)] p-6"
+        variant={ODS_TILE_VARIANT.ghost}
+        inline
+      >
+        <div className="bg-500 !flex flex-col gap-1 items-center justifier-center">
+          <OsdsText
+            color={ODS_THEME_COLOR_INTENT.primary}
+            level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
+            className="block"
+            size={ODS_TEXT_SIZE._300}
+          >
+            {t('hub_order_tracking_title')}
+          </OsdsText>
 
-        {isLoading ? (
-          <Skeletons />
-        ) : (
-          <>
+          {isLoading || isLastOrderLoading ? (
+            <OsdsSkeleton
+              data-testid="order_link_skeleton"
+              className="font-bold text-right flex flex-col items-center justifier-center mb-6"
+              inline
+              size={ODS_SKELETON_SIZE.sm}
+            />
+          ) : (
             <Suspense fallback={<OsdsSkeleton inline randomized />}>
               <Await
                 resolve={orderTrackingLinkAsync}
@@ -165,37 +174,59 @@ export default function HubOrderTracking() {
                 )}
               />
             </Suspense>
-
-            <div className="mb-6 flex justify-center gap-3 items-center flex-wrap">
-              <OsdsText
-                level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                hue={ODS_TEXT_COLOR_HUE._800}
-                color={ODS_THEME_COLOR_INTENT.primary}
-                className="block font-bold mr-1"
+          )}
+          <div className="mb-6 flex justify-center gap-3 items-center flex-wrap">
+            {isLoading || isLastOrderLoading ? (
+              <OsdsSkeleton
+                data-testid="order_info_skeleton"
+                className="font-bold text-right flex flex-col items-center justifier-center"
+                inline
+                size={ODS_SKELETON_SIZE.sm}
+              />
+            ) : (
+              <>
+                <OsdsText
+                  level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+                  hue={ODS_TEXT_COLOR_HUE._800}
+                  color={ODS_THEME_COLOR_INTENT.primary}
+                  className="block font-bold mr-1"
+                >
+                  {format(new Date(currentStatus.date))}
+                </OsdsText>
+                <OsdsText
+                  level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+                  hue={ODS_TEXT_COLOR_HUE._800}
+                  color={ODS_THEME_COLOR_INTENT.primary}
+                  className="block mr-1"
+                >
+                  {t(`order_tracking_history_${currentStatus.label}`)}
+                </OsdsText>
+                <OsdsIcon
+                  size={ODS_ICON_SIZE.xxs}
+                  color={ODS_THEME_COLOR_INTENT.text}
+                  name={
+                    !ERROR_STATUS.includes(currentStatus.label) &&
+                    !isWaitingPayment
+                      ? ODS_ICON_NAME.OK
+                      : ODS_ICON_NAME.CLOSE
+                  }
+                ></OsdsIcon>
+              </>
+            )}
+          </div>
+          <div>
+            {isLoading || isLastOrderLoading ? (
+              <div className="mb-6 flex justify-center gap-3 items-center flex-wrap">
+                <OsdsSkeleton
+                  data-testid="orders_link_skeleton"
+                  inline
+                  size={ODS_SKELETON_SIZE.sm}
+                />
+              </div>
+            ) : (
+              <Suspense
+                fallback={<OsdsSkeleton inline size={ODS_SKELETON_SIZE.sm} />}
               >
-                {format(new Date(currentStatus.date))}
-              </OsdsText>
-              <OsdsText
-                level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                hue={ODS_TEXT_COLOR_HUE._800}
-                color={ODS_THEME_COLOR_INTENT.primary}
-                className="block mr-1"
-              >
-                {t(`order_tracking_history_${currentStatus.label}`)}
-              </OsdsText>
-              <OsdsIcon
-                size={ODS_ICON_SIZE.xxs}
-                color={ODS_THEME_COLOR_INTENT.text}
-                name={
-                  !ERROR_STATUS.includes(currentStatus.label) &&
-                  !isWaitingPayment
-                    ? ODS_ICON_NAME.OK
-                    : ODS_ICON_NAME.CLOSE
-                }
-              ></OsdsIcon>
-            </div>
-            <div>
-              <Suspense fallback={<OsdsSkeleton inline randomized />}>
                 <Await
                   resolve={ordersTrackingLinkAsync}
                   children={(ordersTrackingLink: string) => (
@@ -218,10 +249,10 @@ export default function HubOrderTracking() {
                   )}
                 />
               </Suspense>
-            </div>
-          </>
-        )}
-      </div>
-    </OsdsTile>
+            )}
+          </div>
+        </div>
+      </OsdsTile>
+    )
   );
 }

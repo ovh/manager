@@ -1,0 +1,29 @@
+<oui-modal
+    data-heading="{{:: 'iplb_terminate_service' | translate}}"
+    data-primary-action="$ctrl.terminate()"
+    data-primary-disabled="!$ctrl.terminateConfirmation"
+    data-primary-label="{{:: 'iplb_terminate_service_terminate_valid' | translate }}"
+    data-secondary-action="$ctrl.close()"
+    data-secondary-label="{{:: 'iplb_terminate_service_terminate_cancel' | translate }}"
+    data-on-dismiss="$ctrl.close()"
+>
+    <div>
+        <oui-message data-type="warning" class="mb-2">
+            <span
+                data-translate="{{:: 'iplb_terminate_service_warning' }}"
+            ></span>
+        </oui-message>
+        <oui-field
+            data-label="{{:: 'iplb_terminate_service_confirm_input' | translate }}"
+        >
+            <input
+                type="text"
+                class="oui-input"
+                name="terminateInput"
+                data-ng-model="$ctrl.terminateConfirmation"
+                data-ng-pattern="$ctrl.TERMINATE_PATTERN"
+                required
+            />
+        </oui-field>
+    </div>
+</oui-modal>

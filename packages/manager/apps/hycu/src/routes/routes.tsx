@@ -3,6 +3,7 @@ import { RouteObject } from 'react-router-dom';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 import NotFound from '@/pages/404';
 import { urls } from '@/routes/routes.constant';
+import { APP_NAME } from '@/tracking.constant';
 
 const lazyRouteConfig = (importFn: CallableFunction): Partial<RouteObject> => {
   return {
@@ -36,7 +37,6 @@ export const Routes: any = [
         ],
         handle: {
           tracking: {
-            pageName: 'listing',
             pageType: PageType.listing,
           },
         },
@@ -55,7 +55,7 @@ export const Routes: any = [
             ),
             handle: {
               tracking: {
-                pageName: 'dashboard',
+                pageName: 'general_informations',
                 pageType: PageType.dashboard,
               },
             },
@@ -104,7 +104,6 @@ export const Routes: any = [
         ...lazyRouteConfig(() => import('@/pages/onboarding/Onboarding.page')),
         handle: {
           tracking: {
-            pageName: 'onboarding',
             pageType: PageType.onboarding,
           },
         },
@@ -115,8 +114,8 @@ export const Routes: any = [
         ...lazyRouteConfig(() => import('@/pages/order/Order.page')),
         handle: {
           tracking: {
-            pageName: 'order',
-            pageType: PageType.dashboard,
+            pageName: `order_${APP_NAME}`,
+            pageType: PageType.funnel,
           },
         },
       },
@@ -124,12 +123,6 @@ export const Routes: any = [
         id: 'edit-pack',
         path: urls.editPack,
         ...lazyRouteConfig(() => import('@/pages/edit-pack/EditPack.page')),
-        handle: {
-          tracking: {
-            pageName: 'edit-pack',
-            pageType: PageType.dashboard,
-          },
-        },
       },
     ],
   },

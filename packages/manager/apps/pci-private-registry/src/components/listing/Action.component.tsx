@@ -15,7 +15,7 @@ type ActionComponentProps = {
 export default function ActionComponent({
   registry,
 }: Readonly<ActionComponentProps>) {
-  const { t } = useTranslation();
+  const { t } = useTranslation(['common', 'ip-restrictions']);
 
   const { projectId } = useParams();
   const { data: registryPlan } = useGetRegistryPlan(projectId, registry?.id);
@@ -26,6 +26,7 @@ export default function ActionComponent({
   const hrefHarborUI = registry?.url;
   const hrefHarborAPI = useHref(`${registry?.id}/api-url`);
   const hrefRegenerateCredentials = useHref(`${registry?.id}/credentials`);
+  const hrefManageCIDR = useHref(`${registry?.id}/manage-cidr`);
   const hrefDelete = useHref(`./delete?registryId=${registry.id}`);
 
   const items = [
@@ -89,6 +90,19 @@ export default function ActionComponent({
     },
     {
       id: 5,
+      label: t('ip-restrictions:private_registry_cidr_manage_title'),
+      href: hrefManageCIDR,
+      disabled:
+        registry.status !== PRIVATE_REGISTRY_STATUS.READY &&
+        registry.status !== PRIVATE_REGISTRY_STATUS.ERROR,
+      onClick: () =>
+        tracking?.trackClick({
+          name: 'PCI_PROJECTS_PRIVATEREGISTRY_MANAGE_CIDR',
+          type: 'action',
+        }),
+    },
+    {
+      id: 6,
       label: t('private_registry_common_delete'),
       href: hrefDelete,
       disabled:

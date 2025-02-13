@@ -1,4 +1,3 @@
-import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -8,48 +7,20 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   getVcdDatacentreStorageRoute,
   getVdcStorageQueryKey,
-  VCDStorage,
 } from '@ovh-ux/manager-module-vcd-api';
 import DatagridContainer from '@/components/datagrid/container/DatagridContainer.component';
 import { STORAGE_LABEL } from '../datacentreDashboard.constants';
 import { subRoutes, urls } from '@/routes/routes.constant';
-import { capitalize } from '@/utils/capitalize';
 import { ID_LABEL } from '../../dashboard.constants';
-
-const DatagridIdCell = (vcdStorage: VCDStorage) => (
-  <DataGridTextCell>{vcdStorage?.id}</DataGridTextCell>
-);
-const DatagridNameCell = (vcdStorage: VCDStorage) => (
-  <DataGridTextCell>{vcdStorage?.currentState?.name}</DataGridTextCell>
-);
-const DatagridProfileCell = (vcdStorage: VCDStorage) => (
-  <DataGridTextCell>{vcdStorage?.currentState?.profile}</DataGridTextCell>
-);
-const DatagridTypeCell = (vcdStorage: VCDStorage) => (
-  <DataGridTextCell>
-    {capitalize(vcdStorage?.currentState?.type)}
-  </DataGridTextCell>
-);
-const DatagridCapacityCell = (vcdStorage: VCDStorage) => {
-  const { t } = useTranslation('datacentres');
-  return (
-    <DataGridTextCell>
-      {t('managed_vcd_vdc_quota_value', {
-        quota: vcdStorage?.currentState.capacity,
-      })}
-    </DataGridTextCell>
-  );
-};
-const DatagridBillingCell = (vcdStorage: VCDStorage) => {
-  const { t } = useTranslation('datacentres/compute');
-  return (
-    <DataGridTextCell>
-      {t(
-        `managed_vcd_vdc_compute_billing_${vcdStorage?.currentState?.billingType}`,
-      )}
-    </DataGridTextCell>
-  );
-};
+import { ActionDeleteCell } from '@/components/datagrid/compute/ComputeCells.component';
+import {
+  DatagridBillingCell,
+  DatagridCapacityCell,
+  DatagridIdCell,
+  DatagridNameCell,
+  DatagridProfileCell,
+  DatagridTypeCell,
+} from '@/components/datagrid/storage/StorageCells.component';
 
 export default function StorageListingPage() {
   const { id, vdcId } = useParams();
@@ -92,6 +63,11 @@ export default function StorageListingPage() {
       id: 'billing',
       cell: DatagridBillingCell,
       label: tCompute('managed_vcd_vdc_compute_billing'),
+      isSortable: false,
+    },
+    {
+      id: 'actions',
+      cell: ActionDeleteCell,
       isSortable: false,
     },
   ];

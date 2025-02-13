@@ -1,0 +1,11 @@
+{
+  "vrack_terminate": "Delete",
+  "vrack_terminate_title": "Delete my vRack",
+  "vrack_terminate_description": "To delete your vRack, you have to first disconnect all of the services linked to it",
+  "vrack_terminate_modal_description": "Please enter the word “TERMINATE” to confirm the deletion of your Vrack",
+  "vrack_terminate_modal_cancel": "Cancel",
+  "vrack_terminate_modal_confirm": "Terminate",
+  "vrack_terminate_modal_success_banner": "Your vRack deletion request has been submitted. You have been sent an email detailing the steps to follow.",
+  "vrack_terminate_modal_vack_deleted_info_banner": "Your vRack service has expired and is being deleted. This operation may take up to 7 days.",
+  "vrack_terminate_modal_error_banner": "Your Vrack could not be deleted. Please check if your Vrack is empty."
+}

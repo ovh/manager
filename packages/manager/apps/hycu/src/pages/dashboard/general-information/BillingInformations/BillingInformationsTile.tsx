@@ -6,7 +6,7 @@ import {
   useServiceDetails,
 } from '@ovh-ux/manager-react-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
+import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import {
   OsdsIcon,
   OsdsLink,
@@ -15,11 +15,14 @@ import {
 import { useNavigate } from 'react-router-dom';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { useNavigationGetUrl } from '@/hooks/shell/useNavigationGetUrl';
 import { subRoutes, urls } from '@/routes/routes.constant';
 import { ManagerLink } from '@/components/ManagerLink/ManagerLink.component';
+import { TRACKING } from '@/tracking.constant';
 
 const BillingInformationsTile = ({ serviceName }: { serviceName: string }) => {
+  const { trackClick } = useOvhTracking();
   const { t } = useTranslation('hycu/dashboard');
   const navigate = useNavigate();
 
@@ -62,6 +65,13 @@ const BillingInformationsTile = ({ serviceName }: { serviceName: string }) => {
               href={(renewUrl as string) ?? '#'}
               className={isRenewUrlLoading ? 'cursor-wait' : ''}
               color={ODS_THEME_COLOR_INTENT.info}
+              onClick={() => {
+                trackClick(
+                  TRACKING.dashboard.autorenewClick(
+                    serviceDetails?.data.billing.plan.code,
+                  ),
+                );
+              }}
             >
               {renewDate}
             </OsdsLink>
@@ -81,7 +91,14 @@ const BillingInformationsTile = ({ serviceName }: { serviceName: string }) => {
           value: (
             <ManagerLink
               color={ODS_THEME_COLOR_INTENT.primary}
-              onClick={openTerminateModal}
+              onClick={() => {
+                trackClick(
+                  TRACKING.dashboard.resiliateClick(
+                    serviceDetails?.data.billing.plan.code,
+                  ),
+                );
+                openTerminateModal();
+              }}
               disabled={serviceDetails?.data.resource.state === 'suspended'}
             >
               <div className="flex items-center">

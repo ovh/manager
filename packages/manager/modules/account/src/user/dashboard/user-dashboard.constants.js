@@ -11,6 +11,7 @@ export const USER_DASHBOARD_SHORTCUTS = [
     key: 'ALL_BILLS',
     href: 'https://billing.us.ovhcloud.com/login',
     isAvailable: (user) => user.enterprise,
+    isExternal: true,
   },
   {
     key: 'PAYMENT_FOLLOW_UP',
@@ -24,6 +25,7 @@ export const USER_DASHBOARD_SHORTCUTS = [
     key: 'ALL_BILLS',
     href: 'https://billing.us.ovhcloud.com/login',
     isAvailable: (user) => user.enterprise,
+    isExternal: true,
   },
   {
     key: 'ADD_PAYMENT_METHOD',
@@ -37,6 +39,7 @@ export const USER_DASHBOARD_SHORTCUTS = [
     key: 'ADD_PAYMENT_METHOD',
     href: 'https://billing.us.ovhcloud.com/login',
     isAvailable: (user) => user.enterprise,
+    isExternal: true,
   },
   {
     key: 'MANAGE_SERVICES',

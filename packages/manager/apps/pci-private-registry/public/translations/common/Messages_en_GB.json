@@ -73,5 +73,6 @@
   "private_registry_guide_using_the_helm_chart_museum": "Using Helm ChartMuseum",
   "private_registry_common_cancel": "Cancel",
   "private_registry_region": "Region",
-  "common_clipboard_copied": "Copied"
+  "common_clipboard_copied": "Copied",
+  "private_registry_crud_cidr_error": "An error occurred while updating the CIDRs"
 }

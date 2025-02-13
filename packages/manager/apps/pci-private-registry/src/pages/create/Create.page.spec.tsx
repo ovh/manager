@@ -58,14 +58,6 @@ describe('CreatePage', () => {
     default: () => <div data-testid="plan-step">PlanStep</div>,
   }));
 
-  vi.mock('react-i18next', () => ({
-    useTranslation: vi.fn().mockImplementation(() => ({
-      t(key: string) {
-        return key;
-      },
-    })),
-  }));
-
   it('should render', () => {
     const { container } = render(<CreatePage />, { wrapper });
     expect(container).toMatchSnapshot();
@@ -123,9 +115,5 @@ describe('CreatePage', () => {
 
       expect(queryByTestId('breadcrumb')).not.toBeInTheDocument();
     });
-  });
-
-  describe.skip('Tracking', () => {
-    it('should', () => {});
   });
 });

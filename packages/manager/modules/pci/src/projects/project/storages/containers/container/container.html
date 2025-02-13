@@ -131,9 +131,9 @@
                     <span
                         class="oui-badge"
                         data-ng-class="{
-                        'oui-badge_success': ($ctrl.container.versioning.status === 'enabled'),
-                        'oui-badge_warning': ($ctrl.container.versioning.status === 'suspended'),
-                        'oui-badge_error': ($ctrl.container.versioning.status === 'disabled')
+                        'oui-badge_success': $ctrl.container.versioning.status === 'enabled',
+                        'oui-badge_warning': $ctrl.container.versioning.status === 'suspended',
+                        'oui-badge_error': $ctrl.container.versioning.status === 'disabled'
                         }"
                         data-translate="{{ 'pci_projects_project_storages_containers_update_versioning_' + $ctrl.container.versioning.status + '_label'}}"
                     >
@@ -153,6 +153,37 @@
                             aria-hidden="true"
                         ></span>
                     </button>
+                </p>
+
+                <!-- offsite replication -->
+                <p
+                    data-ng-if="$ctrl.isRightOffer() && $ctrl.container.regionDetails.type === $ctrl.OBJECT_CONTAINER_MODE_MULTI_ZONES"
+                >
+                    <span
+                        data-translate="pci_projects_project_storages_containers_container_offsite_replication_title"
+                    ></span>
+                    <span>
+                        <button
+                            type="button"
+                            class="pl-1 oui-color-p-500 oui-popover-button"
+                            data-oui-popover="{{:: 'pci_projects_project_storages_containers_container_offsite_replication_tooltip' | translate }}"
+                        ></button>
+                    </span>
+                    &nbsp;
+                    <span
+                        data-translate="pci_projects_project_storages_containers_container_offsite_replication_title_part_2"
+                    ></span>
+                    <span
+                        class="oui-badge"
+                        data-ng-class="{
+                        'oui-badge_success': !$ctrl.showReplicationRulesBanner(),
+                        'oui-badge_error': $ctrl.showReplicationRulesBanner()
+                        }"
+                        data-translate="{{ $ctrl.showReplicationRulesBanner() ?
+                            'pci_projects_project_storages_containers_container_offsite_replication_disabled' :
+                            'pci_projects_project_storages_containers_container_offsite_replication_enabled' }}"
+                    >
+                    </span>
                 </p>
             </div>
 

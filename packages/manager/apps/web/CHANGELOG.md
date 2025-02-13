@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.5.0...@ovh-ux/manager-web@19.5.1) (2025-02-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+# [19.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.4.3...@ovh-ux/manager-web@19.5.0) (2025-02-10)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3690] ([#15292](https://github.com/ovh/manager/issues/15292)) ([77cf340](https://github.com/ovh/manager/commit/77cf34033e765b19a8c4be2dc7b2c16f12b4415f))
+* **web.hosting:** change 2api call by iceberg on domain configuration ([ce458fe](https://github.com/ovh/manager/commit/ce458fed2b7fa8a4ed8c5fce4bb46d4f11c12ae7))
+
+
+### Features
+
+* **web:** correct message displayed on hosting page inviting to migrate ([#15130](https://github.com/ovh/manager/issues/15130)) ([554af82](https://github.com/ovh/manager/commit/554af82e8153ec0693dd4295f816bb131a8dfab6))
+
+
+
+
+
+## [19.4.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.4.2...@ovh-ux/manager-web@19.4.3) (2025-02-03)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
 ## [19.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.4.1...@ovh-ux/manager-web@19.4.2) (2025-02-03)
 
 

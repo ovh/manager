@@ -13,5 +13,6 @@
   "zimbra_account_order_cta_done": "Indietro",
   "zimbra_account_order_initiated_title": "Ordine dei vostri account Zimbra avviato!",
   "zimbra_account_order_initiated_subtitle": "Per completare l’ordine, clicca su questo link:",
-  "zimbra_account_order_initiated_info": "Ti informeremo della disponibilità dei tuoi account tramite email."
+  "zimbra_account_order_initiated_info": "Ti informeremo della disponibilità dei tuoi account tramite email.",
+  "zimbra_account_order_initiated_link_label": "Link al tuo ordine"
 }

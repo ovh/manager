@@ -59,6 +59,10 @@ const items: DashboardTileBlockItem[] = [
       </div>
     ),
   },
+  {
+    id: 'without-label',
+    value: <OdsText preset="span">Without label</OdsText>,
+  },
 ];
 
 export const WithTitle = () => <DashboardTile title="Title" items={items} />;

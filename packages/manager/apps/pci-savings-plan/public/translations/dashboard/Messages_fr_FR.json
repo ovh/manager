@@ -1,7 +1,6 @@
 {
   "dashboard_tabs": "Tableau de Bord des Savings Plan",
   "listing_tabs": "Mes Savings Plans",
-  "dashboard": "Tableau de Bord des Savings Plan",
   "dashboard_description": "Le Tableau de bord présente les détails de vos Savings Plan pour la période spécifiée, y compris l'utilisation, la couverture et la liste de vos Savings Plans",
   "dashboard_kpis_title": "Kpis",
   "dashboard_table_title": "Détail de consommation des Savings Plans",
@@ -29,6 +28,14 @@
 
   "dashboard_select_label_service": "Service",
   "dashboard_select_label_period": "Période",
+  "dashboard_select_no_service": "Aucun service",
 
-  "dashboard_select_no_service": "Aucun service"
+  "dashboard_banner_no_savings_plan": "Vous n'avez pas de Savings Plan actif pour ce mois, vous pouvez consulter vos consommations passées en changeant la période.",
+
+  "dashboard_graph_title": "Utilisation et couverture des Savings Plans",
+  "dashboard_graph_y_axis_label": "Nombre d'instance(s)",
+  "dashboard_graph_y_axis_label_vcpu": "Nombre de vCPU(s)",
+  "dashboard_graph_x_axis_label": "Jour",
+  "dashboard_graph_included": "Inclus dans les Savings Plans",
+  "dashboard_graph_excluded": "Exclus des Savings Plans"
 }

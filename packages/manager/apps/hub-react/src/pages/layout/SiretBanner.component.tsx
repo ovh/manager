@@ -24,6 +24,8 @@ import {
   useOvhTracking,
   PageType,
 } from '@ovh-ux/manager-react-shell-client';
+import { useHubContext } from '@/pages/layout/context';
+import { SIRET_BANNER_FEATURE } from '@/pages/layout/layout.constants';
 
 export default function SiretBanner() {
   const { t } = useTranslation('hub/siret');
@@ -31,14 +33,18 @@ export default function SiretBanner() {
     shell: { navigation },
     environment: { user },
   } = useContext(ShellContext);
+  const { availability, isLoading, isFreshCustomer } = useHubContext();
   const { trackClick, trackPage } = useOvhTracking();
 
   const shouldBeDisplayed = useMemo(
     () =>
+      !isLoading &&
+      !isFreshCustomer &&
+      availability?.[SIRET_BANNER_FEATURE] &&
       !user.companyNationalIdentificationNumber &&
       user.legalform === 'corporation' &&
       user.country === 'FR',
-    [user],
+    [user, isLoading, isFreshCustomer, availability],
   );
 
   const link = navigation.getURL('dedicated', '#/useraccount/infos', {

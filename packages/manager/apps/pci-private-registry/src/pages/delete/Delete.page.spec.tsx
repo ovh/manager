@@ -1,6 +1,6 @@
 import { act, fireEvent, render } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
-import { UseMutationResult, UseQueryResult } from '@tanstack/react-query';
+import { UseQueryResult } from '@tanstack/react-query';
 import {
   OdsInputValueChangeEventDetail,
   OsdsInput,
@@ -21,7 +21,7 @@ describe('DeletePage', () => {
 
     expect(getByTestId('pciModal-spinner')).toBeInTheDocument();
   });
-
+  // to migrate to pci-common
   it('disables submit button when confirmation text does not match', () => {
     vi.spyOn(ApiRegistryModule, 'useGetAllRegistries').mockReturnValueOnce({
       isPending: false,
@@ -42,7 +42,7 @@ describe('DeletePage', () => {
 
     expect(getByTestId('pciModal-button_submit')).toBeDisabled();
   });
-
+  // to migrate to pci-common
   it('enables submit button when confirmation text matches', () => {
     vi.spyOn(ApiRegistryModule, 'useGetAllRegistries').mockReturnValueOnce({
       isPending: false,

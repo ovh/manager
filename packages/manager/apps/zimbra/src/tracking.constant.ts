@@ -27,7 +27,7 @@ export const BACK_PREVIOUS_PAGE = 'back_previous-page';
 export const TO_BE_DEFINED = 'to-be-defined';
 
 export const ONBOARDING = 'onboarding';
-export const JOIN_ZIMBRA_BETA = 'join_zimbra_beta';
+export const ONBOARDING_ORDER_CTA = 'onboarding_order_cta';
 
 export const GENERAL_INFORMATIONS = 'general-informations';
 
@@ -102,4 +102,5 @@ export const GUIDE_ADMINISTRATOR = 'administrator-guide';
 export const GUIDE_USER = 'user-guide';
 export const GUIDE_CNAME = 'cname-guide';
 export const GUIDE_DNS_CONFIG = 'dns-configuration-guide';
+export const GUIDE_HOW_TO_CONFIGURE = 'how-to-configure-guide';
 export const GO_TO = (link: string) => `go-to-${link}`;

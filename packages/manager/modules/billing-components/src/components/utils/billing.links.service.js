@@ -1,4 +1,4 @@
-import { SERVICE_TYPE } from './constants';
+import { SERVICE_TYPE, SUSPENDED_SERVICE } from './constants';
 
 export default class BillingLinksService {
   /* @ngInject */
@@ -11,6 +11,7 @@ export default class BillingLinksService {
 
   generateAutorenewLinks(service, options) {
     const {
+      billingManagementAvailability,
       getCommitmentLink,
       getCancelCommitmentLink,
       getCancelResiliationLink,
@@ -20,7 +21,9 @@ export default class BillingLinksService {
     const links = {};
     const fetchAutoRenewLink = this.$q.defer();
 
-    if (this.$injector.has('shellClient')) {
+    if (!billingManagementAvailability) {
+      fetchAutoRenewLink.resolve(null);
+    } else if (this.$injector.has('shellClient')) {
       this.$injector
         .get('shellClient')
         .navigation.getURL('dedicated', '#/billing/autorenew')
@@ -100,6 +103,11 @@ export default class BillingLinksService {
             ? resiliationByEndRuleLink
             : `${autorenewLink}/delete-all-dom?serviceId=${service.serviceId}&serviceType=${service.serviceType}`;
           break;
+        case SERVICE_TYPE.VRACK:
+          if (service.status !== SUSPENDED_SERVICE) {
+            links.resiliateLink = `${autorenewLink}/terminate-vrack?service=${service.serviceId}${serviceTypeParam}`;
+          }
+          break;
         case SERVICE_TYPE.OKMS:
         case SERVICE_TYPE.VRACK_SERVICES:
         case SERVICE_TYPE.LICENSE_HYCU:
@@ -109,7 +117,8 @@ export default class BillingLinksService {
         default:
           links.resiliateLink = service.canResiliateByEndRule()
             ? resiliationByEndRuleLink
-            : `${links.autorenewLink}/delete?serviceId=${service.serviceId}${serviceTypeParam}`;
+            : autorenewLink &&
+              `${autorenewLink}/delete?serviceId=${service.serviceId}${serviceTypeParam}`;
           break;
       }
 

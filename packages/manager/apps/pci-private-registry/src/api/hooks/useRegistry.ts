@@ -1,6 +1,6 @@
 import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
 import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useSuspenseQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
 import { compareFunction, paginateResults } from '@/helpers';
 import {
@@ -13,6 +13,7 @@ import {
   getRegistryAvailablePlans,
   updatePlan,
   TRegistryCredentials,
+  getRegistry,
 } from '../data/registry';
 import queryClient from '@/queryClient';
 
@@ -24,6 +25,11 @@ export const getRegistryQueryPrefix = (projectId: string) => [
 
 export const getAllRegistriesQueryKey = (projectId: string) => [
   ...getRegistryQueryPrefix(projectId),
+];
+
+export const getRegistryQueryKey = (projectId: string, registryId: string) => [
+  ...getRegistryQueryPrefix(projectId),
+  registryId,
 ];
 
 export const getRegistryPlanQueryKey = (
@@ -51,6 +57,19 @@ export const useGetAllRegistries = (projectId: string) =>
         search: `${registry.name} ${registry.id} ${registry.region} ${registry.version}`,
       })) as TRegistry[],
   });
+
+export const useSuspenseRegistry = (
+  projectId: string,
+  registryId: string,
+  select?: (data: TRegistry) => TRegistry,
+) => {
+  const params = {
+    queryKey: getRegistryQueryKey(projectId, registryId),
+    queryFn: () => getRegistry(projectId, registryId),
+    select,
+  };
+  return useSuspenseQuery(params);
+};
 
 export const useGetRegistryPlan = (projectId: string, registryId: string) =>
   useQuery({

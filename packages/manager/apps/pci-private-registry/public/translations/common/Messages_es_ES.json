@@ -73,5 +73,7 @@
   "private_registry_guide_using_the_helm_chart_museum": "Utilización de Helm ChartMuseum",
   "private_registry_common_cancel": "Cancelar",
   "private_registry_region": "Región",
-  "common_clipboard_copied": "Copiado"
+  "common_clipboard_copied": "Copiado",
+  "private_registry_crud_cidr_error": "Se ha producido un error al actualizar los CIDR",
+  "common_criteria_adder_filter_label": "Filtrar"
 }

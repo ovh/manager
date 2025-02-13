@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-shell-tracking@0.6.5...@ovh-ux/ng-shell-tracking@0.7.0) (2025-02-11)
+
+
+### Features
+
+* **ng-shell-tracking:** add page details for click event ([#15231](https://github.com/ovh/manager/issues/15231)) ([cc5b6b0](https://github.com/ovh/manager/commit/cc5b6b01c4bc77323c4758f10915b8004e02e495))
+
+
+
+
+
+## [0.6.5](https://github.com/ovh/manager/compare/@ovh-ux/ng-shell-tracking@0.6.4...@ovh-ux/ng-shell-tracking@0.6.5) (2025-02-03)
+
+**Note:** Version bump only for package @ovh-ux/ng-shell-tracking
+
+
+
+
+
 ## [0.6.4](https://github.com/ovh/manager/compare/@ovh-ux/ng-shell-tracking@0.6.3...@ovh-ux/ng-shell-tracking@0.6.4) (2025-01-30)
 
 **Note:** Version bump only for package @ovh-ux/ng-shell-tracking

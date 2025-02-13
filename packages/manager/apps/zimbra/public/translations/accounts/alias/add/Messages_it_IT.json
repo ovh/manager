@@ -1,6 +1,6 @@
 {
   "zimbra_account_alias_add_modal_title": "Creare un alias",
-  "zimbra_account_alias_add_description": "Crea un alias per l’account <strong> {{ account }}</strong> ",
+  "zimbra_account_alias_add_description": "Creare un alias per l’account <strong>{{ account }}</strong>",
   "zimbra_account_alias_add_input_email_placeholder": "Alias",
   "zimbra_account_alias_add_input_email_helper": "La parte locale del tuo alias (il testo che precede \"@\") deve rispettare i seguenti requisiti:",
   "zimbra_account_alias_add_input_email_helper_rule_1": "deve terminare con una lettera o un numero",

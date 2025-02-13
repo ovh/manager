@@ -24,11 +24,11 @@
   "pci_project_flavors_zone_compatible": "Kompatybilny z",
   "pci_project_flavors_zone_localzone": "Local Zone",
   "pci_project_flavors_zone_global_region": "1-AZ",
-  "pci_project_flavors_zone_localzone_tooltip": "Strefa lokalna to tryb wdrażania produktów Public Cloud OVHcloud w centrach danych zlokalizowanych jak najbliżej użytkowników końcowych.",
-  "pci_project_flavors_zone_globalregions_tooltip": "Region 1-AZ (strefa dostępności) to jeden lub więcej centrów danych zlokalizowanych w tym samym miejscu.",
+  "pci_project_flavors_zone_localzone_tooltip": "Local Zone umożliwia wdrażanie produktów Public Cloud OVHcloud w centrach danych zlokalizowanych jak najbliżej użytkowników końcowych.",
+  "pci_project_flavors_zone_globalregions_tooltip": "Region 1-AZ (Availability Zone, strefa dostępności) to jedno lub więcej centrów danych zlokalizowanych w tym samym miejscu.",
   "pci_project_flavors_zone_tooltip_link": "Dowiedz się więcej",
   "pci_project_flavors_price_hourly_from": "Od {{price}} netto/godz",
-  "pci_project_flavors_zone_globalregions_tooltip_2": "Wraz ze zbliżającym się pojawieniem się regionów 3-AZ, typ wdrożenia 'Regiony' zmienia nazwę! Region 1-AZ (strefa dostępności) to jeden lub więcej centrów danych zlokalizowanych w tym samym miejscu.",
+  "pci_project_flavors_zone_globalregions_tooltip_2": "Wraz z pojawieniem się regionów 3-AZ, typ wdrożenia „Regiony” zmienia nazwę. Region 1-AZ (Availability Zone, strefa dostępności) to jedno lub więcej centrów danych zlokalizowanych w tym samym miejscu.",
   "pci_project_flavors_zone_3az_region": "3-AZ",
-  "pci_project_flavors_zone_3az_tooltip": "Region 3-AZ obejmuje trzy strefy dostępności w tym samym obszarze metropolitalnym, oddzielone kilkoma kilometrami. Spełnia najwyższe wymagania w zakresie odporności, jednocześnie gwarantując wyjątkowo krótki czas odpowiedzi między AZ."
+  "pci_project_flavors_zone_3az_tooltip": "Region 3-AZ składa się z trzech stref dostępności zlokalizowanych w tej samej aglomeracji, oddalonych od siebie o kilka kilometrów. Spełnia on najwyższe wymagania w zakresie odporności i gwarantuje wyjątkowo krótki czas odpowiedzi między AZ."
 }

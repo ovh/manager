@@ -1,6 +1,6 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { OdsButton, OdsText, OdsTooltip } from '@ovhcloud/ods-components/react';
+import { OdsText, OdsTooltip } from '@ovhcloud/ods-components/react';
 import {
   ODS_BUTTON_COLOR,
   ODS_BUTTON_SIZE,
@@ -39,7 +39,6 @@ import {
   convertOctets,
   DATAGRID_REFRESH_INTERVAL,
   DATAGRID_REFRESH_ON_MOUNT,
-  FEATURE_FLAGS,
 } from '@/utils';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import Loading from '@/components/Loading/Loading';
@@ -49,6 +48,8 @@ import {
   ADD_EMAIL_ACCOUNT,
   ORDER_ZIMBRA_EMAIL_ACCOUNT,
 } from '@/tracking.constant';
+import { getZimbraPlatformListQueryKey } from '@/api/platform';
+import queryClient from '@/queryClient';
 
 export type EmailsItem = {
   id: string;
@@ -108,11 +109,12 @@ export default function EmailAccounts() {
   const { t } = useTranslation(['accounts', 'dashboard']);
   const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
+  const [hasADeletingAccount, setHasADeletingAccount] = useState(false);
   const { data: platform, platformUrn } = usePlatform();
   const { data: organisation } = useOrganization();
   const isOverridedPage = useOverridePage();
   const {
-    data,
+    data: accounts,
     fetchNextPage,
     hasNextPage,
     isLoading,
@@ -123,12 +125,32 @@ export default function EmailAccounts() {
     enabled: !isOverridedPage,
   });
 
-  const { data: dataDomains } = useDomains({
-    enabled: !isLoading && data?.length === 0,
+  /* This is necessary to enable back the "Create account" button when your
+   * slots are full and you delete an account and the account goes
+   * from "DELETING" state to actually being deleted, because we invalidate
+   * the cache when sending the delete request of the account but when it is
+   * in "DELETING" state the slot is not yet freed, to me it should be
+   * but it requires changes on backend side */
+  useEffect(() => {
+    const current = accounts?.some(
+      (account) => account.resourceStatus === ResourceStatus.DELETING,
+    );
+    if (hasADeletingAccount !== current) {
+      if (!current) {
+        queryClient.invalidateQueries({
+          queryKey: getZimbraPlatformListQueryKey(),
+        });
+      }
+      setHasADeletingAccount(current);
+    }
+  }, [accounts]);
+
+  const { data: domains, isLoading: isLoadingDomains } = useDomains({
+    enabled: !isLoading && accounts?.length === 0,
   });
 
   const items: EmailsItem[] =
-    data?.map((item: AccountType) => ({
+    accounts?.map((item: AccountType) => ({
       id: item.id,
       email: item.currentState.email,
       offer: item.currentState.offer,
@@ -144,6 +166,17 @@ export default function EmailAccounts() {
       ? organisation.currentState?.accountsStatistics
       : platform?.currentState?.accountsStatistics;
   }, [organisation, platform]);
+
+  const hasAvailableAccounts = useMemo(() => {
+    return accountsStatistics
+      ?.map((stats) => {
+        return stats.availableAccountsCount > 0;
+      })
+      .some(Boolean);
+  }, [accountsStatistics, platform, organisation]);
+
+  const isAddAccountDisabled =
+    isLoadingDomains || domains?.length === 0 || !hasAvailableAccounts;
 
   const webmailUrl = GUIDES_LIST.webmail.url.DEFAULT;
 
@@ -220,7 +253,7 @@ export default function EmailAccounts() {
             </div>
           </div>
           <div className="mb-6 flex gap-6">
-            {(data?.length > 0 || dataDomains?.length > 0) && (
+            <div id="add-account-tooltip-trigger">
               <ManagerButton
                 id="add-account-btn"
                 color={ODS_BUTTON_COLOR.primary}
@@ -231,36 +264,30 @@ export default function EmailAccounts() {
                 data-testid="add-account-btn"
                 icon={ODS_ICON_NAME.plus}
                 label={t('zimbra_account_account_add')}
+                isDisabled={isAddAccountDisabled}
               />
-            )}
-            {dataDomains?.length === 0 && (
-              <OdsTooltip triggerId="tooltip-trigger">
-                <OdsButton
-                  color={ODS_BUTTON_COLOR.primary}
-                  size={ODS_BUTTON_SIZE.sm}
-                  isDisabled
-                  icon={ODS_ICON_NAME.plus}
-                  label={t('zimbra_account_account_add')}
-                ></OdsButton>
-                <div id="tooltip-trigger">
-                  <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-                    {t('zimbra_domains_tooltip_need_domain')}
-                  </OdsText>
-                </div>
+            </div>
+            {isAddAccountDisabled && (
+              <OdsTooltip triggerId="add-account-tooltip-trigger">
+                <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                  {t(
+                    domains?.length === 0
+                      ? 'zimbra_domains_tooltip_need_domain'
+                      : 'zimbra_domains_tooltip_need_slot',
+                  )}
+                </OdsText>
               </OdsTooltip>
             )}
-            {FEATURE_FLAGS.ORDER && (
-              <ManagerButton
-                id="order-account-btn"
-                urn={platformUrn}
-                iamActions={[IAM_ACTIONS.account.create]}
-                data-testid="order-account-btn"
-                color={ODS_BUTTON_COLOR.primary}
-                size={ODS_BUTTON_SIZE.sm}
-                onClick={handleOrderEmailAccountClick}
-                label={t('zimbra_account_account_order')}
-              />
-            )}
+            <ManagerButton
+              id="order-account-btn"
+              urn={platformUrn}
+              iamActions={[IAM_ACTIONS.account.create]}
+              data-testid="order-account-btn"
+              color={ODS_BUTTON_COLOR.primary}
+              size={ODS_BUTTON_SIZE.sm}
+              onClick={handleOrderEmailAccountClick}
+              label={t('zimbra_account_account_order')}
+            />
           </div>
           {isLoading ? (
             <Loading />

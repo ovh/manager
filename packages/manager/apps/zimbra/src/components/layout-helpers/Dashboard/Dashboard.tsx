@@ -2,9 +2,7 @@ import React, { useContext, useMemo } from 'react';
 import {
   Outlet,
   useResolvedPath,
-  useLocation,
   useParams,
-  useNavigate,
   useSearchParams,
 } from 'react-router-dom';
 
@@ -52,11 +50,9 @@ export const Dashboard: React.FC = () => {
   const { notifications } = useNotifications();
   const { data: organization } = useOrganization();
   const isOverridePage = useOverridePage();
-  const navigate = useNavigate();
   const { t } = useTranslation('dashboard');
   const context = useContext(ShellContext);
   const { ovhSubsidiary } = context.environment.getUser();
-  const location = useLocation();
   const basePath = useResolvedPath('').pathname;
 
   const guideItems: GuideItem[] = [
@@ -77,8 +73,9 @@ export const Dashboard: React.FC = () => {
     },
   ];
 
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const selectedOrganizationId = searchParams.get('organizationId');
+
   const params = useMemo(() => {
     return Object.fromEntries(
       Array.from(searchParams.entries()).filter(([key]) =>
@@ -184,7 +181,10 @@ export const Dashboard: React.FC = () => {
                   actionType: 'navigation',
                   actions: [UNSELECT_ORGANIZATION],
                 });
-                navigate(location.pathname);
+                if (searchParams.has('organizationId')) {
+                  searchParams.delete('organizationId');
+                  setSearchParams(searchParams);
+                }
               }}
               className="ml-6 font-normal org-tag"
               size={ODS_TAG_SIZE.lg}

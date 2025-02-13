@@ -237,6 +237,7 @@ const Sidebar = (): JSX.Element => {
   const closeSubMenu = () => {
     setShowSubTree(false);
     setIsManuallyClosed(true);
+    if (isMobile) setSelectedNode(null);
   };
 
   const menuClickHandler = (node: Node) => {
@@ -385,9 +386,6 @@ const Sidebar = (): JSX.Element => {
       </div>
       {showSubTree && !isManuallyClosed && (
         <SubTree
-          handleBackNavigation={() => {
-            if (isMobile) setSelectedNode(null);
-          }}
           selectedNode={selectedSubMenu}
           handleCloseSideBar={closeSubMenu}
           handleOnSubMenuClick={selectSubMenu}

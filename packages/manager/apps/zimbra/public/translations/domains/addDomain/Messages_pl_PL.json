@@ -35,5 +35,6 @@
   "zimbra_domains_add_domain_configuration_cname_not_found": "Nie można odnaleźć informacji związanych z tym identyfikatorem domeny.",
   "zimbra_domains_add_domain_configuration_cname_field_type": "Typ rekordu:",
   "zimbra_domains_add_domain_configuration_cname_field_subdomain": "Subdomena:",
-  "zimbra_domains_add_domain_configuration_cname_field_target": "Adres docelowy:"
+  "zimbra_domains_add_domain_configuration_cname_field_target": "Adres docelowy:",
+  "zimbra_domains_add_domain_warning_configuration_standard": "Wybierając zalecaną konfigurację, wyrażasz zgodę na kierowanie wszystkich e-maili w przyszłości do usługi Zimbra. Jeśli nie zgadzasz się na to, usuń zaznaczenie pola MX w konfiguracji niestandardowej."
 }

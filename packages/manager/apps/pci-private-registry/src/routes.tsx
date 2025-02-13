@@ -37,6 +37,7 @@ export default [
             },
             ...lazyRouteConfig(() => import('@/pages/api-url/APIUrl.page')),
           },
+
           {
             path: ':registryId/credentials',
             handle: {
@@ -46,6 +47,7 @@ export default [
               import('@/pages/credentials/Credentials.page'),
             ),
           },
+
           {
             id: 'delete',
             path: 'delete',
@@ -64,6 +66,14 @@ export default [
           // tracking: 'registries',
         },
         ...lazyRouteConfig(() => import('@/pages/create/Create.page')),
+      },
+      {
+        path: ':registryId/manage-cidr/delete',
+        ...lazyRouteConfig(() => import('@/pages/CIDR/DeleteCIDR.page')),
+      },
+      {
+        path: ':registryId/manage-cidr',
+        ...lazyRouteConfig(() => import('@/pages/CIDR/ManageCIDR.page')),
       },
       {
         id: 'onboarding',

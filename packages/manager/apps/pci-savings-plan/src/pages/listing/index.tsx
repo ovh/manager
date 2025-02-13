@@ -67,7 +67,6 @@ const ListingTablePage: React.FC<ListingTablePageProps> = ({
     clearNotifications();
     navigate(`/pci/projects/${projectId}/savings-plan/new`);
   };
-
   return (
     <>
       <Title>{t('title')}</Title>

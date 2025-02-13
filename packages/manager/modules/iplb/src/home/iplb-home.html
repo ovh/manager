@@ -393,6 +393,15 @@
                                     data-ng-bind="::$ctrl.actions.manageAutorenew.text"
                                 ></span>
                             </oui-action-menu-item>
+
+                            <oui-action-menu-item
+                                aria-label="{{::$ctrl.actions.deleteService.text}}"
+                                data-ng-if="$ctrl.actions.deleteService.isAvailable()"
+                                data-on-click="$ctrl.actions.deleteService.callback()"
+                                ><span
+                                    data-ng-bind="::$ctrl.actions.deleteService.text"
+                                ></span>
+                            </oui-action-menu-item>
                         </oui-action-menu>
                     </oui-tile-definition>
                     <oui-tile-definition

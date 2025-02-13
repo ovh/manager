@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-registry-app@0.4.1...@ovh-ux/manager-pci-private-registry-app@0.4.2) (2025-02-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-private-registry-app
+
+
+
+
+
+## [0.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-registry-app@0.4.0...@ovh-ux/manager-pci-private-registry-app@0.4.1) (2025-02-03)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-private-registry-app
+
+
+
+
+
+# [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-registry-app@0.3.9...@ovh-ux/manager-pci-private-registry-app@0.4.0) (2025-02-03)
+
+
+### Bug Fixes
+
+* **pci.private-registry:** update stylings on PlanChooser Tile ([#15057](https://github.com/ovh/manager/issues/15057)) ([e69e930](https://github.com/ovh/manager/commit/e69e93029a6d26c5e5c174c83269af00b466bb1f))
+
+
+### Features
+
+* **pci.private-registry:** add CIDR ([#14492](https://github.com/ovh/manager/issues/14492)) ([2909ab6](https://github.com/ovh/manager/commit/2909ab610599d90f73e49977b1211ad8f5d59afe))
+
+
+
+
+
 ## [0.3.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-registry-app@0.3.8...@ovh-ux/manager-pci-private-registry-app@0.3.9) (2025-01-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-private-registry-app

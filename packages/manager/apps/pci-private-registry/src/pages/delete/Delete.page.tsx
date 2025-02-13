@@ -19,7 +19,7 @@ import {
 export default function DeletePage() {
   const { addSuccess, addError } = useNotifications();
   const { t } = useTranslation();
-  const { t: tField } = useTranslation('common_field');
+
   const { tracking } = useContext(ShellContext)?.shell || {};
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();

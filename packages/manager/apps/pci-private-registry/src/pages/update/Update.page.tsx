@@ -6,7 +6,7 @@ import {
   ODS_TEXT_SIZE,
   OdsInputValueChangeEvent,
 } from '@ovhcloud/ods-components';
-import React, { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   OsdsFormField,

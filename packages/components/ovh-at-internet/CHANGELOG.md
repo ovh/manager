@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.21.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.20.0...@ovh-ux/ovh-at-internet@0.21.0) (2025-02-11)
+
+
+### Features
+
+* **ng-shell-tracking:** add page details for click event ([#15231](https://github.com/ovh/manager/issues/15231)) ([cc5b6b0](https://github.com/ovh/manager/commit/cc5b6b01c4bc77323c4758f10915b8004e02e495))
+
+
+
+
+
+# [0.20.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.19.0...@ovh-ux/ovh-at-internet@0.20.0) (2025-02-03)
+
+
+### Features
+
+* **hycu:** add click tracking ([4dc035a](https://github.com/ovh/manager/commit/4dc035a504c813e1ad52c6c2ffd0d22ddc99f69f))
+
+
+
+
+
 # [0.19.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.18.1...@ovh-ux/ovh-at-internet@0.19.0) (2025-01-30)
 
 

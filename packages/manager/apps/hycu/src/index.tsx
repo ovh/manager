@@ -10,14 +10,20 @@ import '@ovhcloud/ods-theme-blue-jeans/dist/index.css';
 import './index.scss';
 import './vite-hmr';
 
-import { UNIVERSE, SUB_UNIVERSE, APP_NAME, LEVEL2 } from './tracking.constant';
+import {
+  UNIVERSE,
+  SUB_UNIVERSE,
+  APP_NAME,
+  LEVEL2,
+  THEME,
+} from './tracking.constant';
 
 const trackingContext = {
   chapter1: UNIVERSE,
   chapter2: SUB_UNIVERSE,
   chapter3: APP_NAME,
   appName: APP_NAME,
-  pageTheme: UNIVERSE,
+  pageTheme: THEME,
   level2Config: LEVEL2,
 };
 

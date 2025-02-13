@@ -23,6 +23,7 @@ import {
   SWIFT_PLANCODE,
   OBJECT_CONTAINER_MODE_LOCAL_ZONE,
   DEPLOYMENT_MODE_LINK,
+  OFFSITE_REPLICATION_CODE,
 } from '../containers.constants';
 
 import { CONTAINER_USER_ASSOCIATION_MODES } from './components/associate-user-to-container/constant';
@@ -94,6 +95,9 @@ export default class PciStoragesContainersAddController {
     this.container.offer = this.archive
       ? null
       : OBJECT_CONTAINER_OFFER_STORAGE_STANDARD;
+    this.isOffsiteReplicationEnabled = false;
+    this.forceEnableVersioning = false;
+    this.isBucketVersioningEnabled = false;
 
     this.userModel = {
       linkedMode: {
@@ -117,6 +121,14 @@ export default class PciStoragesContainersAddController {
         style: 'currency',
         currency: this.coreConfig.getUser().currency.code,
         maximumFractionDigits: 2,
+      },
+    );
+    this.OffsiteReplicationPriceFormatter = new Intl.NumberFormat(
+      this.coreConfig.getUserLocale().replace('_', '-'),
+      {
+        style: 'currency',
+        currency: this.coreConfig.getUser().currency.code,
+        maximumFractionDigits: 0,
       },
     );
 
@@ -179,6 +191,8 @@ export default class PciStoragesContainersAddController {
       .filter((addon) => addon.planCode === planCode)
       .map((addon) => addon.pricings[0].price)[0];
 
+    if (!hourlyPrice) return null;
+
     return hourlyPrice * 730 * 1024 * 0.00000001;
   }
 
@@ -204,6 +218,10 @@ export default class PciStoragesContainersAddController {
     this.OBJECT_CONTAINER_OFFERS_LABELS[
       OBJECT_CONTAINER_OFFER_SWIFT
     ].price = this.PriceFormatter.format(this.calculatePrice(SWIFT_PLANCODE));
+
+    this.OFFSITE_REPLICATION_PRICE = this.calculatePrice(
+      OFFSITE_REPLICATION_CODE,
+    );
   }
 
   getLowestPriceAddon(productCapability, regionType) {
@@ -239,6 +257,7 @@ export default class PciStoragesContainersAddController {
       this.projectId,
       this.coreConfig.getUser().ovhSubsidiary,
     ).then((productCapabilities) => {
+      this.productCapabilities = productCapabilities;
       const productCapability = productCapabilities.plans?.filter((plan) =>
         plan.code?.startsWith(STORAGE_STANDARD_REGION_PLANCODE),
       );
@@ -318,6 +337,9 @@ export default class PciStoragesContainersAddController {
 
   onOfferSubmit() {
     this.displaySelectedOffer = true;
+    if (!this.isRightOffer()) {
+      this.resetOffsiteReplication();
+    }
   }
 
   onContainerSolutionChange() {
@@ -408,11 +430,24 @@ export default class PciStoragesContainersAddController {
     this.container.containerType = this.selectedType.id;
   }
 
-  handleBucketVersioningChange(versioning) {
-    if (versioning?.status === 'enabled') {
-      this.container.versioning = versioning;
-    } else {
-      delete this.container.versioning;
+  onDeploymentModeSubmit() {
+    this.DEPLOYMENT_PRICE = this.getLowestPriceAddon(
+      this.productCapabilities.plans?.filter((plan) =>
+        plan.code?.startsWith(STORAGE_STANDARD_REGION_PLANCODE),
+      ),
+      OBJECT_CONTAINER_MODE_MULTI_ZONES,
+    );
+    if (
+      this.container.deploymentMode !== this.OBJECT_CONTAINER_MODE_MULTI_ZONES
+    ) {
+      this.resetOffsiteReplication();
+    }
+  }
+
+  handleOffsiteReplicationChange() {
+    this.forceEnableVersioning = this.isOffsiteReplicationEnabled;
+    if (this.forceEnableVersioning) {
+      this.isBucketVersioningEnabled = true;
     }
   }
 
@@ -431,6 +466,25 @@ export default class PciStoragesContainersAddController {
     });
     this.isLoading = true;
     this.container.ownerId = this.getUserOwnerId();
+    if (this.isOffsiteReplicationEnabled) {
+      this.container.replication = {
+        rules: [
+          {
+            id: '',
+            status: 'enabled',
+            priority: 1,
+            deleteMarkerReplication: 'disabled',
+          },
+        ],
+      };
+    } else {
+      this.container.replication = undefined;
+    }
+    if (this.isBucketVersioningEnabled) {
+      this.container.versioning = { status: 'enabled' };
+    } else {
+      this.container.versioning = undefined;
+    }
     return this.PciProjectStorageContainersService.addContainer(
       this.projectId,
       this.container,
@@ -486,5 +540,11 @@ export default class PciStoragesContainersAddController {
       currency: this.user.currency.code,
       maximumSignificantDigits: 1,
     }).format(price);
+  }
+
+  resetOffsiteReplication() {
+    this.isOffsiteReplicationEnabled = false;
+    this.forceEnableVersioning = false;
+    this.isBucketVersioningEnabled = false;
   }
 }

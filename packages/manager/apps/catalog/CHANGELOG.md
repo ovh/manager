@@ -3,6 +3,66 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.16.1...@ovh-ux/manager-catalog-app@1.17.0) (2025-02-11)
+
+
+### Features
+
+* dummy changes to test new deploy method ([f3f3f31](https://github.com/ovh/manager/commit/f3f3f311485dcbd149f22801d8381e2cc5303ff4))
+
+
+
+
+
+## [1.16.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.16.0...@ovh-ux/manager-catalog-app@1.16.1) (2025-02-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-catalog-app
+
+
+
+
+
+# [1.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.15.1...@ovh-ux/manager-catalog-app@1.16.0) (2025-02-06)
+
+
+### Features
+
+* **catalog, restricted:** test comments to remove ([1430ebc](https://github.com/ovh/manager/commit/1430ebcf906fa498bfe06c6bc9dd17e43fcf5a8e))
+
+
+
+
+
+## [1.15.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.15.0...@ovh-ux/manager-catalog-app@1.15.1) (2025-02-04)
+
+
+### Reverts
+
+* Revert "feat(catalog, restricted): test comments to remove" ([d9ea358](https://github.com/ovh/manager/commit/d9ea358a809f960dc0f162a40f78cbede15868a0))
+
+
+
+
+
+# [1.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.14.37...@ovh-ux/manager-catalog-app@1.15.0) (2025-02-04)
+
+
+### Features
+
+* **catalog, restricted:** test comments to remove ([f949a43](https://github.com/ovh/manager/commit/f949a43718ef51f1d2fda74a6730a6b047122f09))
+
+
+
+
+
+## [1.14.37](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.14.36...@ovh-ux/manager-catalog-app@1.14.37) (2025-02-03)
+
+**Note:** Version bump only for package @ovh-ux/manager-catalog-app
+
+
+
+
+
 ## [1.14.36](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.14.35...@ovh-ux/manager-catalog-app@1.14.36) (2025-01-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-catalog-app

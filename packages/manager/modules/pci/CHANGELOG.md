@@ -3,6 +3,55 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.78.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.78.2...@ovh-ux/manager-pci@6.78.3) (2025-02-10)
+
+
+### Bug Fixes
+
+* **pci-instances:** use os flavor for license pricing ([#15248](https://github.com/ovh/manager/issues/15248)) ([2575db7](https://github.com/ovh/manager/commit/2575db781fcf24b9a4f0c21124be630f34a42083))
+* **pci.instances:** handle monthly card ([#15235](https://github.com/ovh/manager/issues/15235)) ([7bc2d8b](https://github.com/ovh/manager/commit/7bc2d8baedd67a919b47c84d5e227a7f8aa23ddd))
+* **quotas:** increase quotas ([#15120](https://github.com/ovh/manager/issues/15120)) ([4d2ad10](https://github.com/ovh/manager/commit/4d2ad10f0c2719501697d0b2c0d22ab9765ee328))
+
+
+
+
+
+## [6.78.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.78.1...@ovh-ux/manager-pci@6.78.2) (2025-02-06)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3683] ([074da5d](https://github.com/ovh/manager/commit/074da5d4944d236d9f9afb9726b0aa7598d0a35e))
+* **i18n:** add missing translations [CDS 3686] ([9b48552](https://github.com/ovh/manager/commit/9b485525782195d34d91ff13e08dabe8e827ff89))
+* **i18n:** add missing translations [CDS 3688] ([1ac2218](https://github.com/ovh/manager/commit/1ac221843fb7dc5509bb8a9e46ecf9c18174bf7b))
+* remove unused translations [CDS] ([6f1fd0f](https://github.com/ovh/manager/commit/6f1fd0f7102bd8ad218c2a4a5a7ae4328b26b78c))
+
+
+
+
+
+## [6.78.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.78.0...@ovh-ux/manager-pci@6.78.1) (2025-02-05)
+
+
+### Bug Fixes
+
+* **pci-object-storage:** round price to integer ([bed02fe](https://github.com/ovh/manager/commit/bed02fe70f0016c5bec5dcdb84179ab72bee74bf))
+
+
+
+
+
+# [6.78.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.77.0...@ovh-ux/manager-pci@6.78.0) (2025-02-03)
+
+
+### Features
+
+* **pci-object-storage:** add offsite replication ([#14712](https://github.com/ovh/manager/issues/14712)) ([169490f](https://github.com/ovh/manager/commit/169490f51bd1016fb051d4a3dbc5e21753af21ba))
+
+
+
+
+
 # [6.77.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.76.2...@ovh-ux/manager-pci@6.77.0) (2025-01-31)
 
 

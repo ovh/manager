@@ -138,6 +138,7 @@ const Kpis = ({
     [consumption, getFormattedFee],
   );
 
+
   const kpiData = [
     {
       title: t('dashboard_kpis_active_plans_name'),

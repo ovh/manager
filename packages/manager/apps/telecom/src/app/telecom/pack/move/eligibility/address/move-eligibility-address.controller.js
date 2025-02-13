@@ -1,6 +1,9 @@
 import assign from 'lodash/assign';
 
-import { AUTHORIZED_ABBREVIATIONS } from './move-eligibility-address.constants';
+import {
+  AUTHORIZED_ABBREVIATIONS,
+  BUILDING,
+} from './move-eligibility-address.constants';
 import { ELIGIBILITY_LINE_STATUS } from '../../pack-move.constant';
 
 export default class {
@@ -397,7 +400,10 @@ export default class {
           address: copper.result.endpoint.address,
         });
       }
-      offer.buildingReference = fiber.fiberInfo.buildingReference;
+      offer.buildingReference =
+        fiber.referenceTypeFiber === BUILDING
+          ? fiber.referenceFiber
+          : fiber.fiberInfo.buildingReference;
     } else {
       assign(offer.endpoint, {
         address: copper.result.endpoint.address,

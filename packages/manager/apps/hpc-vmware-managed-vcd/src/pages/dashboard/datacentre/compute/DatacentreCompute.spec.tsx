@@ -4,7 +4,11 @@ import {
   organizationList,
   datacentreList,
 } from '@ovh-ux/manager-module-vcd-api';
-import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
+import {
+  assertTextVisibility,
+  getButtonByIcon,
+} from '@ovh-ux/manager-core-test-utils';
+import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import {
   DEFAULT_LISTING_ERROR,
   labels,
@@ -15,7 +19,7 @@ import { VHOSTS_LABEL } from '../compute/datacentreCompute.constants';
 
 describe('Datacentre Compute Listing Page', () => {
   it('access and display compute listing page', async () => {
-    await renderTest({
+    const { container } = await renderTest({
       initialRoute: `/${organizationList[0].id}/datacentres/${datacentreList[0].id}`,
     });
 
@@ -28,6 +32,14 @@ describe('Datacentre Compute Listing Page', () => {
     await assertTextVisibility(VHOSTS_LABEL);
     await assertTextVisibility(
       labels.datacentresCompute.managed_vcd_vdc_compute_order_cta,
+    );
+    const deleteButton = await getButtonByIcon({
+      container,
+      iconName: ODS_ICON_NAME.BIN,
+      disabled: true,
+    });
+    expect(deleteButton.closest('osds-tooltip')).toHaveTextContent(
+      labels.datacentres.managed_vcd_vdc_contact_support,
     );
   });
 

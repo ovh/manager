@@ -128,11 +128,11 @@
   "pci_projects_project_instances_add_windows_gen3_license_unit": "+IVA/ora",
   "pci_projects_project_instances_add_windows_gen3_license_unit_w_core": "+IVA/vCore/ora",
   "pci_projects_project_instances_add_windows_gen3_license_total_price_label": "Prezzo della licenza:",
-  "pci_project_instances_instance_add_3_az_region_select_title": "Seleziona la zona di disponibilità",
-  "pci_project_instances_instance_add_3_az_region_select_description": "È stata selezionata un'area di disponibilità predefinita. È possibile personalizzare la scelta.",
+  "pci_project_instances_instance_add_3_az_region_select_title": "Scegli la zona di disponibilità",
+  "pci_project_instances_instance_add_3_az_region_select_description": "È stata selezionata una zona di disponibilità predefinita. Puoi personalizzare questa scelta.",
   "pci_project_instances_instance_add_3_az_region_select_auto_title": "Scegli per me",
-  "pci_project_instances_instance_add_3_az_region_select_auto_description": "Se scegliamo per te, non potrai cambiare l'istanza della zona. In questo caso, è necessario interromperlo e ricrearlo nella zona scelta.",
-  "pci_project_instances_instance_add_3_az_region_select_manual_title": "Scegli la tua zona di disponibilità",
-  "pci_projects_project_instances_3az_add_success_message": "L’istanza {{ instance }} è stata aggiunta correttamente alla casella di disponibilità: {{ zone }}",
-  "pci_projects_project_instances_add_billing_gateway_detail_price_monthly_3az": "(al prezzo di {{gatewayPrice}} +IVA/ora durante la fase Beta di {{location}} ({{datacenter}}))"
+  "pci_project_instances_instance_add_3_az_region_select_auto_description": "Se scegliamo per te, non potrai cambiare l'istanza di zona. Dovrai arrestarla e ricrearla nella zona scelta.",
+  "pci_project_instances_instance_add_3_az_region_select_manual_title": "Scelgo la mia zona di disponibilità",
+  "pci_projects_project_instances_3az_add_success_message": "L’istanza {{ instance }} è stata aggiunta correttamente nella zona di disponibilità: {{ zone }}",
+  "pci_projects_project_instances_add_billing_gateway_detail_price_monthly_3az": "(al prezzo di {{gatewayPrice}} +IVA/ora durante la fase Beta di {{location}} ({{datacenter}})"
 }

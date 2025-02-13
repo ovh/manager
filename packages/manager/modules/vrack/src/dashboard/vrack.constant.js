@@ -95,6 +95,8 @@ export const DEDICATED_CLOUD_PRODUCT = {
   mbm: 'MBM',
 };
 
+export const SUSPENDED = 'suspended';
+
 export default {
   API_STATUS,
   DEDICATED_CLOUD_PRODUCT,
@@ -107,4 +109,5 @@ export default {
   VRACK_DASHBOARD_TRACKING_PREFIX,
   VRACK_ACTIONS_SUFFIX,
   ELIGIBLE_POLLING_INTERVAL,
+  SUSPENDED,
 };

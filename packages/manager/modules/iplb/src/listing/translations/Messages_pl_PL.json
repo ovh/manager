@@ -1,0 +1,11 @@
+{
+  "iplb_listing_action_delete": "Rezygnuję z serwera",
+  "iplb_listing_action_detail": "Wyświetl szczegóły dotyczące usługi",
+  "iplb_terminate_service": "Rezygnuję z serwera",
+  "iplb_terminate_service_warning": "Potwierdź usunięcie usługi",
+  "iplb_terminate_service_success": "Dyspozycja usunięcia usługi została przyjęta. Otrzymasz e-mail z opisem dalszej procedury.",
+  "iplb_terminate_service_error": "Wystąpił błąd podczas składania dyspozycji usunięcia usługi. {{error}}",
+  "iplb_terminate_service_confirm_input": "Aby potwierdzić, wprowadź „TERMINATE” w poniższym polu",
+  "iplb_terminate_service_terminate_valid": "Zatwierdź",
+  "iplb_terminate_service_terminate_cancel": "Anuluj"
+}

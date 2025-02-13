@@ -24,11 +24,11 @@
   "pci_project_flavors_zone_compatible": "Compatibile con",
   "pci_project_flavors_zone_localzone": "Local Zone",
   "pci_project_flavors_zone_global_region": "1-AZ",
-  "pci_project_flavors_zone_localzone_tooltip": "Una Local Zone corrisponde a un metodo di implementazione dei prodotti Public Cloud di OVHcloud in datacenter situati il più vicino possibile agli utenti finali.",
-  "pci_project_flavors_zone_globalregions_tooltip": "Una Region 1-AZ (zona di disponibilità) raggruppa uno o più datacenter localizzati sullo stesso sito.",
+  "pci_project_flavors_zone_localzone_tooltip": "Una Local Zone corrisponde a una modalità di deploy dei servizi Public Cloud di OVHcloud in datacenter localizzati il più vicino possibile agli utenti finali.",
+  "pci_project_flavors_zone_globalregions_tooltip": "Una Region 1-AZ (zona di disponibilità) raggruppa uno o più datacenter presenti nella stessa localizzazione.",
   "pci_project_flavors_zone_tooltip_link": "Scopri di più",
   "pci_project_flavors_price_hourly_from": "A partire da {{price}} +IVA/ora",
-  "pci_project_flavors_zone_globalregions_tooltip_2": "Con il prossimo arrivo delle regioni 3-AZ, il tipo di installazione 'Regioni' cambia nome! Una Region 1-AZ (zona di disponibilità) raggruppa uno o più datacenter localizzati sullo stesso sito.",
+  "pci_project_flavors_zone_globalregions_tooltip_2": "Con l’arrivo delle Region 3-AZ, il tipo di deploy “Region” cambia nome! Una Region 1-AZ (zona di disponibilità) raggruppa uno o più datacenter presenti nella stessa localizzazione.",
   "pci_project_flavors_zone_3az_region": "3-AZ",
-  "pci_project_flavors_zone_3az_tooltip": "Una regione 3-AZ comprende tre zone di disponibilità situate nella stessa area metropolitana, separate da pochi chilometri. Soddisfa i più elevati requisiti di resilienza, garantendo al tempo stesso una latenza estremamente bassa tra gli AZ."
+  "pci_project_flavors_zone_3az_tooltip": "Una Region 3-AZ comprende tre zone di disponibilità presenti in una stessa area metropolitana, separate da alcuni chilometri. Risponde alle esigenze più rigorose in materia di resilienza, garantendo una latenza estremamente ridotta tra le AZ."
 }

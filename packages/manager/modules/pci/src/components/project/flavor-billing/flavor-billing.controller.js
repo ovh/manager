@@ -1,4 +1,4 @@
-import { TAGS_BLOB, BETA } from '../../../constants';
+import { BETA } from '../../../constants';
 
 export default class FlavorBillingController {
   /* @ngInject */
@@ -38,7 +38,7 @@ export default class FlavorBillingController {
   }
 
   isPricingComingSoon() {
-    return this.tagsBlob?.includes(TAGS_BLOB.COMING_SOON);
+    return !this.flavor?.prices?.monthly;
   }
 
   getPrice(price) {

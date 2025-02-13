@@ -12,7 +12,8 @@
   "zimbra_account_datagrid_tooltip_modification": "Edit",
   "zimbra_account_datagrid_tooltip_delete": "Delete",
   "zimbra_account_account_add": "Create an account",
-  "zimbra_domains_tooltip_need_domain": "Please configure a domain first",
+  "zimbra_domains_tooltip_need_domain": "Please configure a domain first.",
   "zimbra_account_datagrid_status_label": "Status",
-  "zimbra_account_account_order": "Order an account"
+  "zimbra_account_account_order": "Order an account",
+  "zimbra_domains_tooltip_need_slot": "No account available, please order one."
 }

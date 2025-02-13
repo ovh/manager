@@ -19,7 +19,7 @@ const IdentitiesBaseTile = ({
   children,
 }: IdentitiesBaseTileProps) => (
   <OdsCard
-    className="p-3 cursor-pointer"
+    className="p-3 cursor-pointer hover:bg-[var(--ods-color-primary-200)]"
     color={isChecked ? ODS_CARD_COLOR.primary : ODS_CARD_COLOR.neutral}
     onClick={() => {
       setIsChecked(!isChecked);

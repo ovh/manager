@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.17.1...@ovh-ux/manager-key-management-service-app@0.17.2) (2025-02-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-key-management-service-app
+
+
+
+
+
+## [0.17.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.17.0...@ovh-ux/manager-key-management-service-app@0.17.1) (2025-02-06)
+
+**Note:** Version bump only for package @ovh-ux/manager-key-management-service-app
+
+
+
+
+
+# [0.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.16.2...@ovh-ux/manager-key-management-service-app@0.17.0) (2025-02-03)
+
+
+### Features
+
+* **kms:** change the format of the identities modals ([3dd6570](https://github.com/ovh/manager/commit/3dd657077cfbca9427bac889c043c344c82f516e))
+
+
+
+
+
 ## [0.16.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.16.1...@ovh-ux/manager-key-management-service-app@0.16.2) (2025-01-31)
 
 **Note:** Version bump only for package @ovh-ux/manager-key-management-service-app

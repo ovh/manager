@@ -82,7 +82,7 @@
   "pci_projects_project_instances_add_billing_gateway_info": "Detetámos componentes em falta: <strong>Gateway</strong>",
   "pci_projects_project_instances_add_billing_gateway_detail": "A flavor escolhida é:",
   "pci_projects_project_instances_add_billing_gateway_detail_s_size": "Tamanho S",
-  "pci_projects_project_instances_add_billing_gateway_detail_price_monthly": "(ao preço de {{gatewayPrice}} + IVA/hora)",
+  "pci_projects_project_instances_add_billing_gateway_detail_price_monthly": "(ao preço de {{gatewayPrice}} /hora + IVA)",
   "pci_projects_project_instances_add_billing_gateway_snat_info": "Detetámos a utilização de um Gateway existente, mas sem a opção SNAT ativada. Temos de a ativar por si.",
   "pci_projects_project_instances_add_billing_gateway_DHCP_info": "Detetámos um Gateway existente, mas sem a opção de rota DHCP predefinida anunciada. Temos de a ativar por si.",
   "pci_projects_project_instances_add_privateNetwork_next": "Seguinte",
@@ -131,8 +131,8 @@
   "pci_project_instances_instance_add_3_az_region_select_title": "Escolha a sua zona de disponibilidade",
   "pci_project_instances_instance_add_3_az_region_select_description": "Foi selecionada uma zona de disponibilidade predefinida. Tem a possibilidade de personalizar esta escolha.",
   "pci_project_instances_instance_add_3_az_region_select_auto_title": "Escolher por mim",
-  "pci_project_instances_instance_add_3_az_region_select_auto_description": "Se escolhermos por si, não poderá alterar a instância de zona. Deverá interrompê-la e voltar a criá-la na zona que preferir.",
+  "pci_project_instances_instance_add_3_az_region_select_auto_description": "Se escolhermos por si, não poderá alterar a instância da zona. Deverá interrompê-la e voltar a criá-la na zona que preferir.",
   "pci_project_instances_instance_add_3_az_region_select_manual_title": "Escolher a minha zona de disponibilidade",
   "pci_projects_project_instances_3az_add_success_message": "A instância {{ instance }} foi adicionada com êxito na zona de disponibilidade: {{ zone }}",
-  "pci_projects_project_instances_add_billing_gateway_detail_price_monthly_3az": "(ao preço de {{gatewayPrice}} + IVA/hora durante a fase Beta de {{location}} ({{datacenter}}))"
+  "pci_projects_project_instances_add_billing_gateway_detail_price_monthly_3az": "(ao preço de {{gatewayPrice}} /hora + IVA durante a fase beta de {{location}} ({{datacenter}}))"
 }

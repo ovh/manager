@@ -3,6 +3,61 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [20.14.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.14.5...@ovh-ux/manager-dedicated@20.14.6) (2025-02-11)
+
+
+### Bug Fixes
+
+* **dedicated.pcc:** fix ip order link in drp configuration ([#15335](https://github.com/ovh/manager/issues/15335)) ([4db7538](https://github.com/ovh/manager/commit/4db7538aea3c184c5d4a5ee6bac2da13e050878e))
+* **dedicated.pcc:** fix user right 'add resources' not updatable ([#15329](https://github.com/ovh/manager/issues/15329)) ([83113c4](https://github.com/ovh/manager/commit/83113c40b7b01918dbe30d4a39ffb6c8c79bbdeb))
+
+
+
+
+
+## [20.14.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.14.4...@ovh-ux/manager-dedicated@20.14.5) (2025-02-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+## [20.14.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.14.3...@ovh-ux/manager-dedicated@20.14.4) (2025-02-06)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([6f1fd0f](https://github.com/ovh/manager/commit/6f1fd0f7102bd8ad218c2a4a5a7ae4328b26b78c))
+
+
+
+
+
+## [20.14.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.14.2...@ovh-ux/manager-dedicated@20.14.3) (2025-02-06)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+## [20.14.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.14.1...@ovh-ux/manager-dedicated@20.14.2) (2025-02-03)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+## [20.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.14.0...@ovh-ux/manager-dedicated@20.14.1) (2025-02-03)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
 # [20.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.13.4...@ovh-ux/manager-dedicated@20.14.0) (2025-02-03)
 
 

@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hycu-app@0.6.1...@ovh-ux/manager-hycu-app@0.6.2) (2025-02-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-hycu-app
+
+
+
+
+
+## [0.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hycu-app@0.6.0...@ovh-ux/manager-hycu-app@0.6.1) (2025-02-06)
+
+**Note:** Version bump only for package @ovh-ux/manager-hycu-app
+
+
+
+
+
+# [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hycu-app@0.5.1...@ovh-ux/manager-hycu-app@0.6.0) (2025-02-03)
+
+
+### Features
+
+* **hycu:** add click tracking ([4dc035a](https://github.com/ovh/manager/commit/4dc035a504c813e1ad52c6c2ffd0d22ddc99f69f))
+
+
+
+
+
 ## [0.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hycu-app@0.5.0...@ovh-ux/manager-hycu-app@0.5.1) (2025-01-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-hycu-app

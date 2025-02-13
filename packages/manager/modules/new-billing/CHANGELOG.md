@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.31.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.30.1...@ovh-ux/manager-new-billing@0.31.0) (2025-02-11)
+
+
+### Features
+
+* **dedicated:** delete vrack from billing autorenew page ([#14977](https://github.com/ovh/manager/issues/14977)) ([04c2d09](https://github.com/ovh/manager/commit/04c2d09f15f06795311b5854da77284933d65212))
+
+
+
+
+
+## [0.30.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.30.0...@ovh-ux/manager-new-billing@0.30.1) (2025-02-06)
+
+
+### Bug Fixes
+
+* **billing:** standardize and fix redirection to order tracking ([#15290](https://github.com/ovh/manager/issues/15290)) ([a243c15](https://github.com/ovh/manager/commit/a243c15c8ff08ab9fee4b3686304e8e5f59c07be))
+
+
+
+
+
+# [0.30.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.29.1...@ovh-ux/manager-new-billing@0.30.0) (2025-02-03)
+
+
+### Features
+
+* **billing:** improve billing title and description texts ([#14854](https://github.com/ovh/manager/issues/14854)) ([99b5d52](https://github.com/ovh/manager/commit/99b5d521c1e77802f6569b3c8a827a7ccdf4be5e))
+
+
+
+
+
 ## [0.29.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.29.0...@ovh-ux/manager-new-billing@0.29.1) (2025-01-23)
 
 
