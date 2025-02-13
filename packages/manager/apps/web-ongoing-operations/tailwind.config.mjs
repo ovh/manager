@@ -13,6 +13,11 @@ export default {
     ),
   ],
   theme: {
+    colors: {
+      success: {
+        DEFAULT: 'var(--ods-color-success-500)',
+      },
+    },
     screens: {
       xs: '0',
       sm: '36em',

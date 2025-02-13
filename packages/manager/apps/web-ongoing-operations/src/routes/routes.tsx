@@ -48,6 +48,11 @@ export const Routes = [
           },
         ],
       },
+      {
+        id: 'track',
+        path: urls.track,
+        ...lazyRouteConfig(() => import('@/pages/tracking/Tracking')),
+      },
     ],
   },
   {
