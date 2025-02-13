@@ -128,6 +128,7 @@ export function RegionStep() {
             region={form.region}
             onSelectRegion={setRegion}
             isSubmitted={stepper.region.isLocked}
+            isSwiftOffer={form.offer === OBJECT_CONTAINER_OFFER_SWIFT}
           />
         )}
         {!isPending && isDiscoveryProject(project) && (
