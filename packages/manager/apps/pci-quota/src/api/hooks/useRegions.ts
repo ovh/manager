@@ -40,7 +40,7 @@ export const useLocations = (projectId: string, onlyAvailable = false) => {
   return {
     ...query,
     data: useMemo<TPlainLocation[]>(() => {
-      const payload = query.data?.reduce(
+      const payload = (query.data || []).reduce(
         (acc: Map<string, TLocation>, region) => {
           const continent = translateContinentRegion(region.name);
           // TODO investigate, le cap, le caire
