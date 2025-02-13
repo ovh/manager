@@ -33,6 +33,10 @@ import { translations } from './test-i18n';
 import { TestApp } from './TestApp';
 import { APP_NAME } from '@/tracking.constant';
 import { MANAGED_VCD_LABEL } from '@/pages/dashboard/organization/organizationDashboard.constants';
+import {
+  getFeatureAvailabilityMocks,
+  TFeatureAvailabilityMockParams,
+} from '@/mocks/feature-availability';
 
 let context: ShellContextType;
 let i18nState: i18n;
@@ -46,6 +50,7 @@ export const renderTest = async ({
   GetDatacentresMocksParams &
   GetDatacentreOrderMocksParams &
   GetVeeamBackupMocksParams &
+  TFeatureAvailabilityMockParams &
   GetServicesMocksParams = {}) => {
   ((global as unknown) as { server: SetupServer }).server?.resetHandlers(
     ...toMswHandlers([
@@ -56,6 +61,7 @@ export const renderTest = async ({
       ...getDatacentreOrderMocks(mockParams),
       ...getIamMocks(),
       ...getServicesMocks(mockParams),
+      ...getFeatureAvailabilityMocks(mockParams),
     ]),
   );
 
