@@ -23,7 +23,7 @@ const nodeWithoutTag: Node = {
   id: 'help',
   translation: 'sidebar_assistance_help_center',
   url: 'help',
-  count: false,
+  hasService: false,
   isExternal: true,
 };
 

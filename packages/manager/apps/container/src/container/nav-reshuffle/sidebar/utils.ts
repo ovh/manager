@@ -50,47 +50,40 @@ export function initTree(
   }, []);
 }
 
-export interface IServicesCount {
-  total: number;
-  serviceTypes: Record<string, number>;
-}
+export type ServicesTypes = Record<string, number>;
+
 /**
  * Given the servicesCount data, a navigation node and a list of node ids to exclude
- * traverse the navigation tree and sum the count of services for this navigation node
+ * traverse the navigation tree and return true if the customer has a service for this navigation node
  */
-export function countServices(
-  servicesCount: IServicesCount,
-  navigationNode: Node,
-  excludeIds: string[] = [],
-): number {
+export function hasService(serviceTypes: ServicesTypes, navigationNode: Node, excludeIds: string[] = []): boolean {
   if (excludeIds.includes(navigationNode.id)) {
-    return 0;
+    return false;
   }
-  if (navigationNode.count) {
-    return navigationNode.count as number;
+  if (navigationNode.hasService) {
+    return true;
   }
+
   // exclude public cloud from services count since we are counting projects
   if (navigationNode.id === 'services') {
     excludeIds.push('pci');
   }
   if (navigationNode.id === 'pci') {
-    return servicesCount.serviceTypes.CLOUD_PROJECT;
+    return !!serviceTypes.CLOUD_PROJECT;
   }
-  if (!servicesCount) return 0;
+  if (!serviceTypes) return false;
   if (navigationNode.serviceType) {
     const types = [].concat(navigationNode.serviceType);
-    return types.reduce(
-      (acc, type) => acc + (servicesCount.serviceTypes[type] || 0),
-      0,
+    return types.some(
+      (type) => serviceTypes[type] > 0,
     );
   }
   if (navigationNode.children && navigationNode.children.length) {
-    return navigationNode.children.reduce(
-      (acc, child) => acc + countServices(servicesCount, child, excludeIds),
-      0,
+    return navigationNode.children.some(
+      (child) => hasService(serviceTypes, child, excludeIds),
     );
   }
-  return 0;
+  return false;
 }
 
 /**
@@ -172,8 +165,8 @@ export function findPathToNodeByApp(
   return path;
 }
 
-export const shouldHideElement = (node: Node, count: number | boolean) => {
-  if (node.hideIfEmpty && !count) {
+export const shouldHideElement = (node: Node, hasService:boolean) => {
+  if (node.hideIfEmpty && !hasService) {
     return true;
   }
 
@@ -234,7 +227,7 @@ export const findNodeByRouting = (root: Node, locationPath: string) => {
       ? node.routing.hash.replace('#', node.routing.application)
       : '/' + node.routing.application;
     const parsedPath = splitPathIntoSegmentsWithoutRouteParams(nodePath).map((path) => path.includes('/') ? path.replace('/', '') : path);
-    
+
     return {
       value: parsedPath.reduce(
         (acc: boolean, segment: string) => {
@@ -284,12 +277,4 @@ export const findNodeByRouting = (root: Node, locationPath: string) => {
       };
   }
   return null;
-};
-
-export default {
-  initTree,
-  countServices,
-  findNodeById,
-  findPathToNode,
-  findPathToNodeByApp,
 };

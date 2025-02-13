@@ -9,7 +9,7 @@ const externalNode: Node = {
   idAttr: 'help-link',
   translation: 'sidebar_assistance_help_center',
   url: 'help',
-  count: false,
+  hasService: false,
   isExternal: true,
   svgIcon: OvhProductName.HELPECENTER,
 };
@@ -18,7 +18,7 @@ const node: Node = {
   id: 'carbon_calculator',
   features: ['carbon-calculator'],
   translation: 'sidebar_assistance_carbon_calculator',
-  count: false,
+  hasService: false,
   routing: {
     application: 'carbon-calculator',
     hash: '#',

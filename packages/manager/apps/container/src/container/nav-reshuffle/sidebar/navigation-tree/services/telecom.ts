@@ -104,7 +104,7 @@ telecomUniverse.children = [
       application: 'telecom',
       hash: '#/task',
     },
-    count: false,
+    hasService: false,
   },
 ];
 

@@ -13,7 +13,7 @@ export type Node = {
   children?: Node[];
   parent?: Node;
   universe?: string;
-  count?: number | boolean;
+  hasService?: boolean;
   id?: string;
   path?: string;
   serviceType?: string | string[];
