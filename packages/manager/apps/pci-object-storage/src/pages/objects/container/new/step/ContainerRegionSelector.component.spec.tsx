@@ -35,6 +35,7 @@ describe('ContainerRegionSelector', () => {
         region={region}
         isSubmitted={false}
         onSelectRegion={vi.fn()}
+        isSwiftOffer={false}
       />,
       { wrapper },
     );
