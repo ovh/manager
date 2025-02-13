@@ -237,4 +237,39 @@ export default class ExchangeDomains {
       )
       .then(({ data }) => data);
   }
+
+  checkMxPlan(domain) {
+    return this.services.$http.get(`/email/domain/${domain}`);
+  }
+
+  checkZimbra(domain) {
+    return this.services
+      .$http({
+        url: '/engine/api/v2/zimbra/platform',
+        serviceType: 'apiv2',
+        headers: { 'X-Pagination-Size': 9999 },
+      })
+      .then(({ data }) => {
+        return Promise.allSettled(
+          data?.map((platform) => this.checkZimbraDomain(platform.id, domain)),
+        ).then((res) => {
+          return res.some((result) => result.status === 'fulfilled');
+        });
+      });
+  }
+
+  checkZimbraDomain(platformId, domain) {
+    return this.services
+      .$http({
+        url: `/engine/api/v2/zimbra/platform/${platformId}/domain`,
+        serviceType: 'apiv2',
+        headers: { 'X-Pagination-Size': 9999 },
+      })
+      .then(({ data }) => {
+        return (
+          data?.some((d) => d?.currentState?.name === domain) ||
+          Promise.reject()
+        );
+      });
+  }
 }

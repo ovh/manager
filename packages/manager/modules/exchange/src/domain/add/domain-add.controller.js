@@ -88,6 +88,7 @@ export default class ExchangeAddDomainController {
     $scope.loadDomainData = () => this.loadDomainData();
     $scope.addDomain = () => this.addDomain();
     $scope.isNonOvhDomainValid = () => this.isNonOvhDomainValid();
+    $scope.checkDomain = () => this.checkDomain();
 
     WucUser.getUser().then((currentUser) => {
       this.canOpenWizard = currentUser.ovhSubsidiary !== 'CA';
@@ -175,11 +176,9 @@ export default class ExchangeAddDomainController {
     );
     this.model.autoEnableDKIM = this.model.configureDKIM;
 
-    this.model.type =
-      this.model.configMode === CONFIGURATION_MODE.PERSONALIZED &&
-      this.model.mxRelay
-        ? DOMAIN_MODE.NON_AUTHORITATIVE
-        : DOMAIN_MODE.AUTHORITATIVE;
+    this.model.type = this.model.mxRelay
+      ? DOMAIN_MODE.NON_AUTHORITATIVE
+      : DOMAIN_MODE.AUTHORITATIVE;
 
     delete this.model.domainType;
     delete this.model.isUTF8Domain;
@@ -213,6 +212,29 @@ export default class ExchangeAddDomainController {
           this.services.$translate.instant('exchange_tab_domain_add_failure'),
           failure,
         );
+      });
+  }
+
+  checkDomain() {
+    this.loading = true;
+    // check if domain has MxPlan already configured
+    this.services.ExchangeDomains.checkMxPlan(this.model.name)
+      .then(() => {
+        this.model.mxRelay = DEFAULT_OVH_TARGET_SERVER_URL;
+        this.loading = false;
+      })
+      .catch(() => {
+        // check zimbra only if MxPlan not configured
+        // because zimbra domain call is slow
+        this.services.ExchangeDomains.checkZimbra(this.model.name)
+          .then((found) => {
+            if (found) {
+              this.model.mxRelay = DEFAULT_OVH_TARGET_SERVER_URL;
+            }
+          })
+          .finally(() => {
+            this.loading = false;
+          });
       });
   }
 

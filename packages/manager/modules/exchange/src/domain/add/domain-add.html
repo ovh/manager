@@ -11,7 +11,9 @@
             data-wizard-step-on-load="loadDomainData"
             data-wizard-step-valid="isNonOvhDomainValid()"
         >
-            <oui-spinner data-ng-if="ctrl.loading"></oui-spinner>
+            <div class="text-center" data-ng-if="ctrl.loading">
+                <oui-spinner></oui-spinner>
+            </div>
 
             <div data-ng-if="!ctrl.loading">
                 <oui-message type="info" data-ng-if="ctrl.noDomainAttached">
@@ -246,10 +248,16 @@
             </div>
         </div>
 
-        <div data-wizard-step>
-            <p data-translate="exchange_tab_domain_add_step2bis_intro"></p>
-
-            <form name="exchangeAddDomainStep2Form">
+        <div
+            data-wizard-step
+            data-wizard-step-on-load="checkDomain"
+            data-wizard-step-valid="!ctrl.loading"
+        >
+            <div class="text-center" data-ng-if="ctrl.loading">
+                <oui-spinner></oui-spinner>
+            </div>
+            <form name="exchangeAddDomainStep2Form" data-ng-if="!ctrl.loading">
+                <p data-translate="exchange_tab_domain_add_step2bis_intro"></p>
                 <div class="oui-radio">
                     <input
                         type="radio"
