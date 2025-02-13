@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useMemo, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import {
   ODS_THEME_COLOR_HUE,
@@ -17,10 +17,18 @@ import {
   ODS_BUTTON_VARIANT,
   ODS_TEXT_LEVEL,
 } from '@ovhcloud/ods-components';
-import { usePendingAgreements, useAgreementsUpdate } from '@/hooks/agreements/usePendingAgreements';
+import { useAgreementsUpdate } from '@/hooks/agreements/useAgreements';
 import ApplicationContext from '@/context';
 import ovhCloudLogo from '@/assets/images/logo-ovhcloud.png';
 
+/*
+ Lifecycle management:
+  - If user is on the agreements page, we will not display the modal and let the page notify for modal change
+  once the user accept non-validated agreements or leave the page
+  - Wait until all necessary data (IAM authorization, non-validated agreements list) are loaded
+  - Once we have the data, check if they allow the display of the modal (IAM authorized + at least one non-validated
+  agreement), if the conditions are met, we show the modal, otherwise we switch to the next one
+*/
 export default function AgreementsUpdateModal () {
   const { shell } = useContext(ApplicationContext);
   const environment = shell
@@ -36,10 +44,8 @@ export default function AgreementsUpdateModal () {
   const myContractsLink = navigation.getURL(billingAppName, billingAppPath);
 
   const { t } = useTranslation('agreements-update-modal');
-  const { isReady, shouldBeDisplayed } = useAgreementsUpdate(myContractsLink);
+  const { isReady, shouldBeDisplayed, updatePreference } = useAgreementsUpdate(myContractsLink);
   const [ showModal, setShowModal ] = useState(true);
-
-
 
   const goToContractPage = () => {
     setShowModal(false);
@@ -50,17 +56,15 @@ export default function AgreementsUpdateModal () {
    Since we don't want to display multiple modals at the same time we "watch" the `current` modal, and once it is
    the agreements modal turn, we will try to display it (if conditions are met) or switch to the next one otherwise.
    As a result, only once the agreements modal is the current one will we manage the modal lifecycle.
-   Lifecycle management:
-    - If user is on the agreements page, we will not display the modal and let the page notify for modal change
-    once the user accept non-validated agreements or leave the page
-    - Wait until all necessary data (IAM authorization, non-validated agreements list) are loaded
-    - Once we have the data, check if they allow the display of the modal (IAM authorized + at least one non-validated
-    agreement), if the conditions are met, we show the modal, otherwise we switch to the next one
-   */
-
+  */
   useEffect(() => {
-    if (isReady && !shouldBeDisplayed) {
-      ux.notifyModalActionDone();
+    if (isReady) {
+      if (shouldBeDisplayed) {
+        updatePreference();
+      }
+      else {
+        ux.notifyModalActionDone();
+      }
     }
   }, [isReady]);
 
