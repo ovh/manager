@@ -23,6 +23,7 @@ interface RegionSelectorProps {
   region: TRegionAvailability;
   onSelectRegion: (region: TRegionAvailability) => void;
   isSubmitted: boolean;
+  isSwiftOffer: boolean;
 }
 
 export function ContainerRegionSelector({
@@ -31,6 +32,7 @@ export function ContainerRegionSelector({
   region,
   onSelectRegion,
   isSubmitted,
+  isSwiftOffer,
 }: Readonly<RegionSelectorProps>) {
   const { t } = useTranslation(['containers/add', 'pci-common']);
 
@@ -68,7 +70,7 @@ export function ContainerRegionSelector({
     ].map((regionName) => allRegions?.find(({ name }) => name === regionName));
 
     const filteredRegions = uniqueRegions
-      .filter(({ enabled }) => enabled === true)
+      .filter(({ enabled }) => !isSwiftOffer || enabled === true)
       .filter(({ type }) => type === (deploymentMode || 'region'))
       .filter(({ name }) => {
         if (offer === OBJECT_CONTAINER_OFFER_STORAGE_STANDARD) return true;
