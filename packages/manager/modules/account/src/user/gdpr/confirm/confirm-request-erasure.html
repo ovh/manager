@@ -1,0 +1,74 @@
+<div>
+    <div
+        data-ovh-alert="gdpr-features-confirm.alerts.global"
+        data-ovh-alert-hide-remove-button="true"
+    ></div>
+
+    <oui-message type="info" class="mb-3">
+        <strong data-translate="gdpr_erasure_confirm_banner_title"></strong>
+        <span data-translate="gdpr_erasure_confirm_banner_description"></span>
+    </oui-message>
+
+    <oui-tile class="h-100 oui-tile-h-100">
+        <div class="d-flex align-items-center mb-4">
+            <span
+                data-translate="gdpr_erasure_confirm_input_code_prompt"
+            ></span>
+            <oui-button
+                type="button"
+                variant="link"
+                data-on-click="$ctrl.sendErasureRequestConfirmationEmail()"
+                data-disabled="$ctrl.loading.sendConfirmEmail"
+            >
+                <oui-spinner
+                    data-size="s"
+                    ng-if="$ctrl.loading.sendConfirmEmail"
+                ></oui-spinner>
+                <span
+                    ng-if="!$ctrl.loading.sendConfirmEmail"
+                    data-translate="gdpr_erasure_confirm_resend_code"
+                ></span>
+            </oui-button>
+        </div>
+
+        <form name="confirmForm">
+            <input
+                type="text"
+                class="oui-input oui-input_xl mb-4"
+                name="confirm_code"
+                id="confirm_code"
+                data-ng-model="$ctrl.model.confirm_code"
+                required
+                ng-pattern="/^[^{}]*$/"
+            />
+
+            <div class="mt-3">
+                <oui-button
+                    type="reset"
+                    variant="secondary"
+                    data-disabled="$ctrl.loading.confirm"
+                    data-on-click="$ctrl.cancelConfirmation()"
+                >
+                    <span
+                        data-translate="gdpr_erasure_confirm_form_cancel"
+                    ></span>
+                </oui-button>
+                <oui-button
+                    type="submit"
+                    variant="primary"
+                    data-on-click="$ctrl.submitConfirmation()"
+                    data-disabled="confirmForm.$invalid || $ctrl.loading.confirm"
+                >
+                    <oui-spinner
+                        data-size="s"
+                        ng-if="$ctrl.loading.confirm"
+                    ></oui-spinner>
+                    <span
+                        ng-if="!$ctrl.loading.confirm"
+                        data-translate="gdpr_erasure_confirm_form_submit"
+                    ></span>
+                </oui-button>
+            </div>
+        </form>
+    </oui-tile>
+</div>
