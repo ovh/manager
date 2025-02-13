@@ -35,6 +35,17 @@ export const Routes = [
               },
             },
           },
+          {
+            id: 'dashboard.dns',
+            path: urls.dns,
+            ...lazyRouteConfig(() => import('@/pages/dashboard/dns/Dns')),
+            handle: {
+              tracking: {
+                pageName: 'dns',
+                pageType: PageType.dashboard,
+              },
+            },
+          },
         ],
       },
     ],
