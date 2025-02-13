@@ -20,7 +20,7 @@
 
   "dashboard_kpis_non_discounted_name": "Montant de facture non remisé",
   "dashboard_kpis_non_discounted_tooltip": "Montant de la facture dépassant vos configurations Savings Plans (sur la période sélectionnée pour la ressource sélectionnée)",
-  "dashboard_kpis_saved_amount_name": "Economies réalisées",
+  "dashboard_kpis_saved_amount_name": "Économies réalisées",
   "dashboard_kpis_saved_amount_name_tooltip": "Total des économies réalisées (sur la période sélectionnée pour la ressource sélectionnée)",
   "dashboard_kpis_saved_strikethrough": "Au lieu de <price>{{pricing}}</price>",
 
