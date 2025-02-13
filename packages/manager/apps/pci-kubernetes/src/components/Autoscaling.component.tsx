@@ -94,16 +94,6 @@ export function Autoscaling({
         max={maxValue}
       />
       <OsdsFormField className="mt-8" inline>
-        <OsdsText
-          className="mb-4 font-bold"
-          color={ODS_TEXT_COLOR_INTENT.text}
-          level={ODS_TEXT_LEVEL.heading}
-          size={ODS_TEXT_SIZE._400}
-          slot="label"
-        >
-          {t('kubernetes_node_pool_autoscaling_autoscale')}
-        </OsdsText>
-
         <OsdsToggle
           disabled={isAntiAffinity || undefined}
           color={ODS_THEME_COLOR_INTENT.primary}
@@ -149,7 +139,7 @@ export function Autoscaling({
         )}
       </OsdsText>
       {isAutoscale && (
-        <>
+        <div className="flex gap-4">
           <QuantitySelector
             className="mt-8"
             label={t('kubernetes_node_pool_autoscaling_lowest_nodes_size')}
@@ -176,7 +166,7 @@ export function Autoscaling({
             min={quantity.min >= maxValue ? maxValue : quantity.desired}
             max={maxValue}
           />
-        </>
+        </div>
       )}
 
       {quantity.desired < NODE_RANGE.MIN && (
