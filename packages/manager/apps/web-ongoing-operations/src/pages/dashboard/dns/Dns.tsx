@@ -7,19 +7,17 @@ import {
   ParentEnum,
   useOngoingOperationDatagridColumns,
 } from '@/hooks/useOngoingOperationDatagridColumns';
-import { getmeTaskDomainList } from '@/data/api/web-ongoing-operations';
+import { getmeTaskDnsList } from '@/data/api/web-ongoing-operations';
 
 export default function Domain() {
-  const { data: domainList, isLoading } = useQuery<TOngoingOperationsData>({
-    queryKey: ['domainList'],
-    queryFn: () => getmeTaskDomainList(),
+  const { data: dnsList, isLoading } = useQuery<TOngoingOperationsData>({
+    queryKey: ['dnsList'],
+    queryFn: () => getmeTaskDnsList(),
   });
-
   const columns = useOngoingOperationDatagridColumns(
-    ParentEnum.Domain,
-    domainList as TOngoingOperations[],
+    ParentEnum.Zone,
+    dnsList as TOngoingOperations[],
   );
-
   if (isLoading) {
     return (
       <div data-testid="listing-page-spinner">
@@ -27,15 +25,14 @@ export default function Domain() {
       </div>
     );
   }
-
   return (
     <React.Suspense>
-      {domainList && (
-        <div data-testid="datagrid">
+      {dnsList && (
+        <div data-testid="dns">
           <Datagrid
             columns={columns}
-            items={domainList.data}
-            totalItems={domainList?.data.length}
+            items={dnsList.data}
+            totalItems={dnsList?.data.length}
           />
         </div>
       )}

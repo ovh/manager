@@ -62,7 +62,7 @@ describe('Domain datagrid', () => {
       expect(domainName).toBeInTheDocument();
       expect(domainName).toHaveAttribute(
         'href',
-        'https://www.ovh.com/manager/#/web/domain/case-where-modal-cant-be-open.ovh/information',
+        'https://ovh.test/#/web/domain/case-where-modal-cant-be-open.ovh/information',
       );
       expect(domainName).toHaveAttribute('target', '_blank');
 
