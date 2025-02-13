@@ -29,6 +29,19 @@ export default async (containerEl, shellClient) => {
   const moduleName = 'BillingApp';
 
   const routingConfig = /* @ngInject */ ($urlRouterProvider) => {
+    $urlRouterProvider.when('/order/:id', ($location) => {
+      $location.url($location.url().replace('/order', '/orders'));
+    });
+
+    $urlRouterProvider.when(
+      /\/(credits|fidelity|mean|method|ovhaccount|vouchers)$/,
+      ($location, $state) => {
+        const [, subroute] = $location.$$path.match(
+          /\/(credits|fidelity|mean|method|ovhaccount|vouchers)(\/.*)?/,
+        );
+        return $state.go(`billing.payment.${subroute}`);
+      },
+    );
     $urlRouterProvider.otherwise('/');
   };
 
