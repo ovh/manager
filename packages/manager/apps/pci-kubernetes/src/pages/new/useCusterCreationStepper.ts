@@ -1,21 +1,18 @@
 import { useState } from 'react';
-import { KubeFlavor, TLocalisation } from '@ovh-ux/manager-pci-common';
+import { TLocalisation } from '@ovh-ux/manager-pci-common';
 import { useStep } from './useStep';
-import { AutoscalingState } from '@/components/Autoscaling.component';
 import { TNetworkFormState } from './steps/NetworkClusterStep.component';
 import { UpdatePolicy } from '@/types';
+import { NodePool } from '@/api/data/kubernetes';
 
 export type TClusterCreationForm = {
   region: TLocalisation;
   version: string;
   updatePolicy: UpdatePolicy;
   network: TNetworkFormState;
-  flavor: KubeFlavor;
-  scaling: AutoscalingState;
+  nodePools?: NodePool[];
   nodePoolName: string;
   clusterName: string;
-  isMonthlyBilled: boolean;
-  antiAffinity: boolean;
 };
 
 const stepReset = (step: ReturnType<typeof useStep>) => {
@@ -30,12 +27,8 @@ export function useClusterCreationStepper() {
     version: '',
     updatePolicy: null,
     network: null,
-    flavor: null,
-    scaling: null,
-    clusterName: '',
-    isMonthlyBilled: false,
-    antiAffinity: false,
     nodePoolName: '',
+    clusterName: '',
   });
 
   const clusterNameStep = useStep({ isOpen: true });
@@ -127,26 +120,10 @@ export function useClusterCreationStepper() {
         nodeStep.unlock();
         [confirmStep].forEach(stepReset);
       },
-      submit: ({
-        flavor,
-        scaling,
-        antiAffinity,
-        isMonthlyBilled,
-        nodePoolName,
-      }: {
-        flavor: KubeFlavor;
-        scaling: AutoscalingState;
-        antiAffinity: boolean;
-        isMonthlyBilled: boolean;
-        nodePoolName: string;
-      }) => {
+      submit: (nodePools: NodePool[]) => {
         setForm((f) => ({
           ...f,
-          flavor,
-          scaling,
-          antiAffinity,
-          isMonthlyBilled,
-          nodePoolName,
+          nodePools,
         }));
         nodeStep.check();
         nodeStep.lock();
