@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Datagrid,
   ErrorBanner,
@@ -12,9 +12,17 @@ import {
 } from '@/hooks/useOngoingOperationDatagridColumns';
 import { taskMeDomain } from '@/constants';
 import { TOngoingOperations } from '@/types';
+import Modal from '@/components/Modal/Modal';
+import Notification from '@/components/Notification/Notification.component';
 
 export default function Domain() {
   const { t: tError } = useTranslation('web-ongoing-operations/error');
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const defaultStatus = { label: '', message: '' };
+  const [status, setStatus] = useState(defaultStatus);
+  const [filterDomain, setFilterDomain] = useState<TOngoingOperations | null>(
+    null,
+  );
 
   const {
     flattenData: domainList,
@@ -32,9 +40,26 @@ export default function Domain() {
     pageSize: 30,
   });
 
+  const openModal = (id: number) => {
+    setModalOpen(true);
+    setFilterDomain(
+      domainList.find((element: TOngoingOperations) => element.id === id),
+    );
+  };
+
+  const closeModal = () => {
+    setModalOpen(!modalOpen);
+    setFilterDomain(null);
+  };
+
+  const changeStatus = (label: string, message: string) => {
+    setStatus({ label, message });
+  };
+
   const columns = useOngoingOperationDatagridColumns(
     ParentEnum.Domain,
     domainList,
+    openModal,
   );
 
   if (isLoading) {
@@ -45,7 +70,6 @@ export default function Domain() {
     );
   }
 
-  // TODO trad
   if (isError) {
     return (
       <ErrorBanner
@@ -59,6 +83,23 @@ export default function Domain() {
 
   return (
     <React.Suspense>
+      {modalOpen && (
+        <Modal
+          universe="domain"
+          onCloseModal={closeModal}
+          data={filterDomain}
+          changeStatus={changeStatus}
+        />
+      )}
+
+      {status.label && (
+        <Notification
+          label={status.label}
+          message={status.message}
+          removeMessage={() => setStatus(defaultStatus)}
+        />
+      )}
+
       {domainList && (
         <div data-testid="datagrid">
           <Datagrid

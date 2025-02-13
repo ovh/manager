@@ -25,17 +25,6 @@ vi.mock('react-router-dom', () => ({
   },
 }));
 
-vi.mock('@ovhcloud/ods-components/react', async () => {
-  const originalModule = await vi.importActual(
-    '@ovhcloud/ods-components/react',
-  );
-
-  return {
-    ...originalModule,
-    OdsRadio: () => <input type="radio" />,
-  };
-});
-
 describe('Upload page', () => {
   const queryClient = new QueryClient();
   const wrapper = ({ children }: PropsWithChildren) => (
