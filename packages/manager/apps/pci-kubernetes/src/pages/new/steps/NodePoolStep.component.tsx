@@ -7,6 +7,7 @@ import {
   ODS_TEXT_COLOR_INTENT,
 } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
+import { Datagrid } from '@ovh-ux/manager-react-components';
 import { AutoscalingState } from '@/components/Autoscaling.component';
 import {
   ANTI_AFFINITY_MAX_NODES,
@@ -17,11 +18,14 @@ import {
 import { useClusterCreationStepper } from '../useCusterCreationStepper';
 import BillingStep from '@/components/create/BillingStep.component';
 import { MAX_LENGTH } from './ClusterNameStep.component';
+import { useDatagridColumn } from './node-pool/useDataGridColumn';
 import NodePoolToggle from './node-pool/NodePoolToggle.component';
 import NodePoolName from './node-pool/NodePoolName.component';
 import NodePoolType from './node-pool/NodePoolType.component';
 import NodePoolSize from './node-pool/NodePoolSize.component';
 import NodePoolAntiAffinity from './node-pool/NodePoolAntiAffinity.component';
+
+import { NodePool } from '@/api/data/kubernetes';
 
 const NodePoolStep = ({
   stepper,
@@ -40,8 +44,9 @@ const NodePoolStep = ({
   const hasError = isTouched && !isValidName;
   const [isMonthlyBilled, setIsMonthlyBilled] = useState(false);
   const [flavor, setFlavor] = useState<KubeFlavor | null>(null);
-
+  const columns = useDatagridColumn();
   const [nodePoolEnabled, setNodePoolEnabled] = useState(true);
+  const [nodes, setNodes] = useState<NodePool[]>([]);
 
   const isNodePoolValid = !nodePoolEnabled || (Boolean(flavor) && isValidName);
 
@@ -90,6 +95,7 @@ const NodePoolStep = ({
 
   useEffect(() => {
     if (!nodePoolEnabled) {
+      setNodes(null);
       setScaling(null);
       setFlavor(null);
     }
@@ -147,21 +153,44 @@ const NodePoolStep = ({
           </div>
         </>
       )}
+      <OsdsButton
+        className="mt-4 w-fit"
+        size={ODS_BUTTON_SIZE.md}
+        color={ODS_TEXT_COLOR_INTENT.primary}
+        {...(isButtonDisabled ? { disabled: true } : {})}
+        onClick={() => {
+          const newNodePool = {
+            name,
+            antiAffinity,
+            autoscale: Boolean(scaling?.isAutoscale),
+            desiredNodes: scaling?.quantity.desired,
+            minNodes: scaling?.quantity.min,
+            flavorName: flavor?.name,
+            maxNodes: antiAffinity
+              ? Math.min(ANTI_AFFINITY_MAX_NODES, scaling?.quantity.max)
+              : scaling?.quantity.max,
+            monthlyBilled: isMonthlyBilled,
+          };
+
+          setNodes([...nodes, newNodePool]);
+        }}
+      >
+        Add Node Pool
+      </OsdsButton>
+
+      <Datagrid
+        columns={columns}
+        items={nodes}
+        totalItems={nodes.length}
+        className="overflow-x-visible"
+      />
+
       {!stepper.node.step.isLocked && (
         <OsdsButton
-          onClick={() =>
-            stepper.node.submit({
-              flavor,
-              scaling,
-              isMonthlyBilled,
-              antiAffinity,
-              nodePoolName: name,
-            })
-          }
+          onClick={() => stepper.node.submit(nodes)}
           className="mt-4 w-fit"
           size={ODS_BUTTON_SIZE.md}
           color={ODS_TEXT_COLOR_INTENT.primary}
-          {...(isButtonDisabled ? { disabled: true } : {})}
         >
           {tStepper('common_stepper_next_button_label')}
         </OsdsButton>

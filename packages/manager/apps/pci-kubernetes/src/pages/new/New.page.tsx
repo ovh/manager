@@ -36,7 +36,6 @@ import { ClusterNameStep } from './steps/ClusterNameStep.component';
 import { ClusterConfirmationStep } from './steps/ClusterConfirmStep.component';
 import { useCreateKubernetesCluster } from '@/api/hooks/useKubernetes';
 import { PAGE_PREFIX } from '@/tracking.constants';
-import { ANTI_AFFINITY_MAX_NODES } from '@/constants';
 import NodePoolStep from './steps/NodePoolStep.component';
 
 export default function NewPage() {
@@ -117,7 +116,7 @@ export default function NewPage() {
     },
   });
 
-  const nodePoolEnabled = !!stepper.form.flavor;
+  const nodePoolEnabled = !!stepper.form.nodePools;
 
   const createNewCluster = () => {
     tracking.trackClick({
@@ -129,21 +128,7 @@ export default function NewPage() {
       version: stepper.form.version,
       updatePolicy: stepper.form.updatePolicy,
       ...(nodePoolEnabled && {
-        nodepool: {
-          name: stepper.form.nodePoolName,
-          antiAffinity: stepper.form.antiAffinity,
-          autoscale: stepper.form.scaling?.isAutoscale,
-          desiredNodes: stepper.form.scaling?.quantity.desired,
-          minNodes: stepper.form.scaling?.quantity.min,
-          maxNodes: stepper.form.antiAffinity
-            ? Math.min(
-                ANTI_AFFINITY_MAX_NODES,
-                stepper.form.scaling?.quantity.max,
-              )
-            : stepper.form.scaling?.quantity.max,
-          flavorName: stepper.form.flavor.name,
-          monthlyBilled: stepper.form.isMonthlyBilled,
-        },
+        nodepools: stepper.form.nodePools,
       }),
       privateNetworkId:
         stepper.form.network?.privateNetwork?.clusterRegion?.openstackId ||
