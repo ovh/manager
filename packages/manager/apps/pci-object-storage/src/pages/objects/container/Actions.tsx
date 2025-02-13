@@ -18,7 +18,7 @@ export function Actions({
 
   const navigate = useNavigate();
   const { projectId } = useParams();
-  const { addSuccess, addError } = useNotifications();
+  const { addSuccess, addError, clearNotifications } = useNotifications();
 
   const { isPending, updateStorageType } = useUpdateStorageType({
     projectId,
@@ -85,6 +85,7 @@ export function Actions({
     {
       id: 2,
       onClick: () => {
+        clearNotifications();
         updateStorageType(
           storage.id,
           PUBLIC_STORAGE_TYPES.includes(storage.containerType)
