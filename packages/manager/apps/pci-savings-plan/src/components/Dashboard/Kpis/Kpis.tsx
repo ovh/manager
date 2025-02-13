@@ -28,13 +28,13 @@ const Kpi = ({
 }) => {
   if (isLoading)
     return (
-      <div className="h-16 w-[200px] mx-2 flex flex-col justify-center">
+      <div className="h-16 w-[250px] mx-2 flex flex-col justify-center">
         <OdsSkeleton />
       </div>
     );
   return (
     <div className="flex flex-col gap-2 w-auto">
-      <OdsText preset="heading-5" className="max-w-lg">
+      <OdsText preset="heading-5" className="max-w-lg whitespace-no-wrap">
         {title}
         <OdsIcon
           className="my-auto ml-2"
@@ -112,7 +112,10 @@ const Kpis = ({
   );
 
   const withoutSavedAmount = useMemo(
-    () => getFormattedFee(consumption?.fees?.total_price),
+    () =>
+      getFormattedFee(
+        consumption?.fees?.saved_amount + consumption?.fees?.total_price,
+      ),
     [consumption, getFormattedFee],
   );
 
@@ -128,6 +131,11 @@ const Kpis = ({
   const coverage = useMemo(
     () => getPercentValue(consumption?.periods?.map((p) => p.coverage)),
     [consumption],
+  );
+
+  const totalAmountOutside = useMemo(
+    () => getFormattedFee(consumption?.fees?.over_quota?.total_price),
+    [consumption, getFormattedFee],
   );
 
   const kpiData = [
@@ -154,12 +162,17 @@ const Kpis = ({
             value: formatKpiValue(savedAmount, false),
             valueWithoutAmount: withoutSavedAmount,
           },
+          {
+            title: t('dashboard_kpis_non_discounted_name'),
+            tooltip: t('dashboard_kpis_non_discounted_tooltip'),
+            value: formatKpiValue(totalAmountOutside, false),
+          },
         ]
       : []),
   ];
 
   return (
-    <div className="flex flex-row gap-4 items-center mt-7">
+    <div className="flex flex-row gap-4 mt-7">
       {kpiData.map((item, index) => (
         <React.Fragment key={item.title}>
           <Kpi
@@ -171,7 +184,7 @@ const Kpis = ({
             valueWithoutAmount={item.valueWithoutAmount}
           />
           {index < kpiData.length - 1 && (
-            <div className="h-16 w-px bg-gray-300 mx-2"></div>
+            <div className="h-30 w-px bg-gray-300 mx-2"></div>
           )}
         </React.Fragment>
       ))}
