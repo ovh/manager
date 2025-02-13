@@ -9,6 +9,7 @@ import {
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
   ODS_MESSAGE_TYPE,
+  ODS_TEXT_COLOR_INTENT,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
@@ -62,6 +63,16 @@ export default function BillingStep(props: TBillingStepProps): JSX.Element {
   return (
     <>
       <div className="my-6">
+        <OsdsText
+          className="mb-4 font-bold block"
+          color={ODS_TEXT_COLOR_INTENT.text}
+          level={ODS_TEXT_LEVEL.heading}
+          size={ODS_TEXT_SIZE._400}
+        >
+          {tFlavourBilling(
+            'pci_projects_project_instances_configure_billing_type',
+          )}
+        </OsdsText>
         {props.monthlyBilling.isComingSoon ? (
           <OsdsMessage
             data-testid="coming_soon_message"
