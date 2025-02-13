@@ -1,6 +1,6 @@
 {
   "kubernetes_add_node_pool_description": "Po utworzeniu klastra skonfiguruj pierwszą pulę węzłów. Pula węzłów to zestaw węzłów roboczych tego samego typu. Następnie będziesz mógł tworzyć wiele puli węzłów, usuwać je lub zmieniać ich wielkość.",
-  "kubernetes_add_node_pool_node_count": "Liczba węzłów w puli",
+  "kubernetes_add_node_pool_node_count": "Liczba węzłów",
   "kubernetes_add_node_pool_node_type": "Rodzaj węzła",
   "kube_node_pool_name": "Nazwa puli",
   "kube_node_pool_creation_date": "Data utworzenia",
@@ -20,5 +20,9 @@
   "kube_node_pool_autoscale_false": "Nieaktywny",
   "kube_common_node_pool_configure_true": "Konfigurowanie pul węzłów",
   "kube_common_node_pool_configure_false": " Utwórz klaster bez puli węzłów",
-  "kube_common_node_pool_estimated_cost": "Orientacyjna cena kosztów klastra:"
+  "kube_common_node_pool_estimated_cost": "Oszacowanie miesięcznego kosztu klastra:",
+  "kube_common_node_pool_estimation_text": "Szacunek ten nie obejmuje ewentualnej redukcji związanej z planami Savings.",
+  "kube_common_node_pool_estimation_price": "Pule węzłów: x,xx € netto/m-c",
+  "kube_common_node_pool_estimation_text_end": "Dokładny koszt zależy od rzeczywistego wykorzystania zasobów, którego nie można dokładnie oszacować przed utworzeniem klastra.",
+  "kube_common_node_pool_size_title": "Rozmiar puli węzłów"
 }

@@ -1,6 +1,6 @@
 {
   "kubernetes_add_node_pool_description": "Sobald das Cluster erstellt wurde, können Sie einen ersten Node-Pool konfigurieren. Ein Node-Pool bezeichnet eine Gruppe von Worker-Nodes des gleichen Typs. Anschließend können Sie mehrere Node-Pools erstellen, löschen oder deren Größe anpassen.",
-  "kubernetes_add_node_pool_node_count": "Anzahl der Nodes im Pool",
+  "kubernetes_add_node_pool_node_count": "Anzahl der Nodes",
   "kubernetes_add_node_pool_node_type": "Node-Typ",
   "kube_node_pool_name": "Pool-Name",
   "kube_node_pool_creation_date": "Erstellungsdatum",
@@ -20,5 +20,9 @@
   "kube_node_pool_autoscale_false": "Inaktiv",
   "kube_common_node_pool_configure_true": "Node-Pools konfigurieren",
   "kube_common_node_pool_configure_false": " Cluster ohne Node-Pool erstellen",
-  "kube_common_node_pool_estimated_cost": "Unverbindlicher Preis der Cluster-Kosten:"
+  "kube_common_node_pool_estimated_cost": "Geschätzte monatliche Kosten des Clusters:",
+  "kube_common_node_pool_estimation_text": "In dieser Schätzung sind etwaige Rabatte im Zusammenhang mit den Savings Plans nicht berücksichtigt.",
+  "kube_common_node_pool_estimation_price": "Node-Pools: x,xx € inkl. MwSt / Monat",
+  "kube_common_node_pool_estimation_text_end": "Die genauen Kosten hängen von der tatsächlichen Ressourcennutzung ab, die vor der Erstellung eines Clusters nicht genau geschätzt werden kann.",
+  "kube_common_node_pool_size_title": "Größe des Node-Pools"
 }

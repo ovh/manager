@@ -1,6 +1,6 @@
 {
   "kubernetes_add_node_pool_description": "Configure an initial node pool when creating the cluster. A node pool is a group of worker nodes that all have the same configuration. You can then create, delete or resize multiple node pools.",
-  "kubernetes_add_node_pool_node_count": "Number of nodes in the pool",
+  "kubernetes_add_node_pool_node_count": "Number of nodes",
   "kubernetes_add_node_pool_node_type": "Node type",
   "kube_node_pool_name": "Pool name",
   "kube_node_pool_creation_date": "Creation date",
@@ -20,5 +20,9 @@
   "kube_node_pool_autoscale_false": "Inactive",
   "kube_common_node_pool_configure_true": "Configure node pools",
   "kube_common_node_pool_configure_false": " Create a cluster without a node pool",
-  "kube_common_node_pool_estimated_cost": "Tentative cluster cost price:"
+  "kube_common_node_pool_estimated_cost": "Estimated monthly cost of the cluster:",
+  "kube_common_node_pool_estimation_text": "This estimate does not include a potential Savings Plan discount.",
+  "kube_common_node_pool_estimation_price": "Node pools: £x.xx ex. VAT/month",
+  "kube_common_node_pool_estimation_text_end": "The exact cost depends on the actual resource usage, which cannot be accurately estimated before a cluster is created.",
+  "kube_common_node_pool_size_title": "Node pool size"
 }

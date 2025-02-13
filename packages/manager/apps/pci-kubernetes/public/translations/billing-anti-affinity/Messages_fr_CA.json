@@ -23,5 +23,7 @@
   "kubernetes_add_billing_savings_plan_banner": "Bénéficiez de tarifs mensuels avantageux grâce aux Savings Plans, tout en gardant la flexibilité des instances à l'heure.",
   "kubernetes_add_billing_savings_plan_cta": "Configurez vos Savings Plans",
   "kubernetes_node_pool_anti_affinity": "Anti-affinité",
-  "kubernetes_node_pool_anti_affinity_description": "En activant l'anti-affinité, les nœuds présents et futurs seront lancés sur des hyperviseurs (serveurs physiques) différents, garantissant une plus grande tolérance à la panne. Les pools de nœuds avec anti-affinité ne peuvent compter que jusque {{ maxNodes }} nœuds."
+  "kubernetes_node_pool_anti_affinity_description": "En activant l'anti-affinité, les nœuds présents et futurs seront lancés sur des hyperviseurs (serveurs physiques) différents, garantissant une plus grande tolérance à la panne. Les pools de nœuds avec anti-affinité ne peuvent compter que jusque {{ maxNodes }} nœuds.",
+  "kubernetes_node_pool_anti_affinity_true": "Anti-affinité active",
+  "kubernetes_node_pool_anti_affinity_false": "Anti-affinité inactive"
 }

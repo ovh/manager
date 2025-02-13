@@ -1,6 +1,6 @@
 {
   "kubernetes_add_node_pool_description": "Una volta creato il cluster è possibile configurare un primo pool di nodi. Un pool di nodi indica un insieme di nodi di lavoro dello stesso tipo. In seguito sarà possibile creare pool di nodi multipli, eliminarli o ridimensionarli.",
-  "kubernetes_add_node_pool_node_count": "Numero di nodi nel pool",
+  "kubernetes_add_node_pool_node_count": "Numero di nodi",
   "kubernetes_add_node_pool_node_type": "Tipo di nodi",
   "kube_node_pool_name": "Nome del pool",
   "kube_node_pool_creation_date": "Data di creazione",
@@ -20,5 +20,9 @@
   "kube_node_pool_enabled": "Attivato",
   "kube_common_node_pool_configure_true": "Configura pool di nodi",
   "kube_common_node_pool_configure_false": " Crea un cluster senza pool di nodi",
-  "kube_common_node_pool_estimated_cost": "Prezzo indicativo dei costi del cluster:"
+  "kube_common_node_pool_estimated_cost": "Costo mensile stimato del cluster:",
+  "kube_common_node_pool_estimation_text": "Tale stima non include un'eventuale riduzione legata ai Savings Plans.",
+  "kube_common_node_pool_estimation_price": "Pool di nodi: x,xx € +IVA/mese",
+  "kube_common_node_pool_estimation_text_end": "Il costo esatto dipende dall'utilizzo reale delle risorse, che non può essere stimato con precisione prima della creazione di un cluster.",
+  "kube_common_node_pool_size_title": "Dimensione del pool di nodi"
 }
