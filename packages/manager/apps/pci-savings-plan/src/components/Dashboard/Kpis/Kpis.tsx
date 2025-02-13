@@ -155,6 +155,11 @@ const Kpis = ({
             tooltip: t('dashboard_kpis_non_discounted_tooltip'),
             value: formatKpiValue(totalAmountOutside, false),
           },
+          {
+            title: t('dashboard_kpis_non_discounted_name'),
+            tooltip: t('dashboard_kpis_non_discounted_tooltip'),
+            value: formatKpiValue(totalAmountOutside, false),
+          },
         ]
       : []),
   ];
