@@ -3,18 +3,23 @@ import React, { PropsWithChildren } from 'react';
 import '@testing-library/jest-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { vi } from 'vitest';
-import { render, waitFor, screen } from '@testing-library/react';
 import { useResourcesIcebergV6 } from '@ovh-ux/manager-react-components';
+import { render, waitFor, screen, fireEvent } from '@testing-library/react';
 import { domain } from '@/__mocks__/domain';
 import Domain from '@/pages/dashboard/domain/Domain';
 import { taskMeDomain } from '@/constants';
+import { modalOpen } from '@/__mocks__/modal';
 
 vi.mock('react-router-dom', () => ({
-  useNavigate: vi.fn(),
+  useNavigate: () => vi.fn(() => null),
+  Navigate: vi.fn(() => null),
 }));
 
 vi.mock('@/data/api/web-ongoing-operations', () => ({
   getmeTaskDomainList: vi.fn(),
+  getmeTaskDomainNicList: vi
+    .fn()
+    .mockImplementation(() => Promise.resolve(['nic1', 'nic2'])),
 }));
 
 const queryClient = new QueryClient();
@@ -33,7 +38,7 @@ describe('Domain datagrid', () => {
     expect(getByTestId('listing-page-spinner')).toBeInTheDocument();
   });
 
-  it('fetch in a good way using useQuery', () => {
+  it('fetch in a good way using useResourcesIcebergV6', () => {
     (useResourcesIcebergV6 as jest.Mock).mockReturnValue({
       flattenData: domain,
       isLoading: false,
@@ -117,6 +122,27 @@ describe('Domain datagrid', () => {
 
       const ableButton = buttons[1]; // The button comes from the mock, it's the mock's second element
       expect(ableButton).toHaveAttribute('is-disabled', 'false');
+    });
+  });
+});
+
+describe('Modal Operations domain', () => {
+  it('Display the modal', async () => {
+    (useResourcesIcebergV6 as jest.Mock).mockReturnValue({
+      flattenData: modalOpen,
+      isLoading: false,
+      totalCount: modalOpen.length,
+    });
+
+    const { container } = render(<Domain />, { wrapper });
+    fireEvent.click(screen.getByTestId('navigation-action-trigger-action'));
+    const openModalButton = container.querySelector('.openModal');
+    fireEvent.click(openModalButton);
+
+    waitFor(() => {
+      expect(
+        screen.getByText('domain_operations_modal_title'),
+      ).toBeInTheDocument();
     });
   });
 });

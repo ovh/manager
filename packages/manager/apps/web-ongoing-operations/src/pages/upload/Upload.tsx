@@ -3,15 +3,12 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import {
-  OdsButton,
   OdsDivider,
   OdsFileUpload,
   OdsMessage,
-  OdsRadio,
   OdsText,
 } from '@ovhcloud/ods-components/react';
 import {
-  ODS_BUTTON_VARIANT,
   ODS_DIVIDER_COLOR,
   ODS_DIVIDER_SPACING,
   ODS_MESSAGE_COLOR,
@@ -31,6 +28,8 @@ import { useDomain, useDomainArgument } from '@/hooks/data/data';
 import { updateOperationStatus } from '@/data/api/ongoing-operations-actions';
 import { OperationName } from '@/enum/operationName.enum';
 import { ParentEnum } from '@/hooks/useOngoingOperationDatagridColumns';
+import OperationActions from '@/components/Actions/OperationsActions.component';
+import Notification from '@/components/Notification/Notification.component';
 
 export default function Upload() {
   const { t } = useTranslation('dashboard');
@@ -50,6 +49,10 @@ export default function Upload() {
     data: domainArgument,
     isLoading: argumentLoading,
   } = useDomainArgument(paramId, type);
+
+  const putOperationName = (label: OperationName) => {
+    setOperationName(label);
+  };
 
   const { mutate: executeActionOnOperation } = useMutation({
     mutationFn: (operationID: number) =>
@@ -112,13 +115,11 @@ export default function Upload() {
       }}
     >
       {status.label && (
-        <OdsMessage
-          color={status.label as 'information' | 'success' | 'warning'}
-          onOdsRemove={() => setStatus(defaultStatus)}
-          className="mb-4 w-full"
-        >
-          {status.message}
-        </OdsMessage>
+        <Notification
+          label={status.label}
+          message={status.message}
+          removeMessage={() => setStatus(defaultStatus)}
+        />
       )}
 
       <SubHeader domain={domain} />
@@ -180,82 +181,14 @@ export default function Upload() {
           spacing={ODS_DIVIDER_SPACING._48}
         />
 
-        <div className="flex flex-col gap-y-2">
-          <div className="flex items-center gap-x-1">
-            <OdsRadio
-              inputId="radio-relaunch"
-              name="radio-format"
-              onOdsChange={() => {
-                setOperationName(OperationName.CanRelaunch);
-              }}
-              isDisabled={operationName !== OperationName.CanRelaunch}
-            ></OdsRadio>
-            <label
-              htmlFor="radio-relaunch"
-              className="form-field__radio__field__label"
-            >
-              {t('domain_operations_relaunch_title')}
-            </label>
-          </div>
-
-          <div className="flex items-center gap-x-1">
-            <OdsRadio
-              inputId="radio-accelerate"
-              name="radio-format"
-              isDisabled={!domain.canAccelerate}
-              onOdsChange={() => {
-                setOperationName(OperationName.CanAccelerate);
-              }}
-            ></OdsRadio>
-            <label
-              htmlFor="radio-accelerate"
-              className="form-field__radio__field__label"
-            >
-              {t('domain_operations_accelerate_title')}
-            </label>
-          </div>
-
-          <div className="flex items-center gap-x-1">
-            <OdsRadio
-              inputId="radio-cancel"
-              name="radio-format"
-              isDisabled={!domain.canCancel}
-              onOdsChange={() => {
-                setOperationName(OperationName.CanCancel);
-              }}
-            ></OdsRadio>
-            <label
-              htmlFor="radio-cancel"
-              className="form-field__radio__field__label"
-            >
-              {t('domain_operations_cancel_title')}
-            </label>
-          </div>
-
-          {operationName === OperationName.CanAccelerate && (
-            <OdsMessage color="warning" isDismissible={false}>
-              {t('domain_operations_accelerate_warning')}
-            </OdsMessage>
-          )}
-
-          <div className="flex justify-start gap-x-2">
-            <OdsButton
-              label={t('wizard_cancel')}
-              slot="actions"
-              onClick={() => {
-                setOperationName(null);
-                navigate(urls.root);
-              }}
-              variant={ODS_BUTTON_VARIANT.outline}
-            />
-            <OdsButton
-              label={t('wizard_confirm')}
-              slot="actions"
-              onClick={() => onValidate(domain.id as number)}
-              isDisabled={operationName == null && uploadedFiles.length === 0}
-            />
-          </div>
-        </div>
+        <OperationActions
+          data={domain}
+          operationName={operationName}
+          disabled={uploadedFiles.length === 0}
+          onValidate={onValidate}
+          putOperationName={putOperationName}
+          justify="start"
+        />
       </section>
     </BaseLayout>
   );

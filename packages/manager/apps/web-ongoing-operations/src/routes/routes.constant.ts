@@ -4,4 +4,5 @@ export const urls = {
   dns: 'dns',
   track: 'tracking/:id',
   upload: 'upload/:id/:type',
+  error404: '404',
 };
