@@ -67,3 +67,14 @@ vi.mock('@ovh-ux/manager-react-shell-client', () => ({
     shell: mocks.shell,
   }),
 }));
+
+vi.mock('@ovhcloud/ods-components/react', async () => {
+  const originalModule = await vi.importActual(
+    '@ovhcloud/ods-components/react',
+  );
+
+  return {
+    ...originalModule,
+    OdsRadio: () => <input type="radio" />,
+  };
+});

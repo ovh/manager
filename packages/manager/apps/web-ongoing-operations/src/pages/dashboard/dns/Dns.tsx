@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Datagrid,
   ErrorBanner,
@@ -11,10 +11,16 @@ import {
   ParentEnum,
   useOngoingOperationDatagridColumns,
 } from '@/hooks/useOngoingOperationDatagridColumns';
+import Modal from '@/components/Modal/Modal';
+import Notification from '@/components/Notification/Notification.component';
 import { taskMeDns } from '@/constants';
 
 export default function Domain() {
   const { t: tError } = useTranslation('web-ongoing-operations/error');
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const defaultStatus = { label: '', message: '' };
+  const [status, setStatus] = useState(defaultStatus);
+  const [filterDns, setFilterDns] = useState<TOngoingOperations | null>(null);
 
   const {
     flattenData: dnsList,
@@ -32,9 +38,26 @@ export default function Domain() {
     pageSize: 30,
   });
 
+  const openModal = (id: number) => {
+    setModalOpen(true);
+    setFilterDns(
+      dnsList.find((element: TOngoingOperations) => element.id === id),
+    );
+  };
+
+  const closeModal = () => {
+    setModalOpen(!modalOpen);
+    setFilterDns(null);
+  };
+
+  const changeStatus = (label: string, message: string) => {
+    setStatus({ label, message });
+  };
+
   const columns = useOngoingOperationDatagridColumns(
     ParentEnum.Zone,
     dnsList as TOngoingOperations[],
+    openModal,
   );
 
   if (isLoading) {
@@ -58,6 +81,23 @@ export default function Domain() {
 
   return (
     <React.Suspense>
+      {modalOpen && (
+        <Modal
+          universe="dns"
+          onCloseModal={closeModal}
+          data={filterDns}
+          changeStatus={changeStatus}
+        />
+      )}
+
+      {status.label && (
+        <Notification
+          label={status.label}
+          message={status.message}
+          removeMessage={() => setStatus(defaultStatus)}
+        />
+      )}
+
       {dnsList && (
         <div data-testid="dns">
           <Datagrid
