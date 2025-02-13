@@ -6,8 +6,8 @@ import { Mock, vitest } from 'vitest';
 import '@testing-library/jest-dom';
 
 export const sharedProps: {
-  closeModal: Mock<unknown[], unknown>;
-  onConfirmDelete: Mock<unknown[], unknown>;
+  closeModal: Mock;
+  onConfirmDelete: Mock;
   headline: 'headline';
   description: 'description';
   deleteInputLabel: 'deleteInputLabel';

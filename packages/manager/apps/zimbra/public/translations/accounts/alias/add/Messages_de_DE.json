@@ -1,6 +1,6 @@
 {
   "zimbra_account_alias_add_modal_title": "Alias erstellen",
-  "zimbra_account_alias_add_description": "Alias für den Account <strong> {{ account }} erstellen</strong> ",
+  "zimbra_account_alias_add_description": "Alias für den Account <strong>{{ account }}</strong> erstellen",
   "zimbra_account_alias_add_input_email_placeholder": "Alias",
   "zimbra_account_alias_add_input_email_helper": "Der lokale Teil Ihres Alias (der Text vor dem „@“) muss den folgenden Richtlinien entsprechen:",
   "zimbra_account_alias_add_input_email_helper_rule_1": "Er muss mit einem Buchstaben oder einer Zahl enden.",

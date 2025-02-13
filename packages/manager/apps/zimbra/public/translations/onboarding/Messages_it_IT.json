@@ -1,9 +1,9 @@
 {
   "title": "Suite collaborativa Zimbra",
-  "description": "Comunicare e collaborare in azienda con la suite Zimbra",
-  "orderButtonLabel": "Ordina",
+  "description": "Comunicare e collaborare in azienda grazie alla suite Zimbra",
+  "orderButtonLabel": "Ordinare",
   "orderButtonLink": "/#/dedicated/zimbra/order",
-  "moreInfoButtonLabel": "Scopri Zimbra",
+  "moreInfoButtonLabel": "Scopri la soluzione Zimbra",
   "moreInfoButtonLink": "/#/dedicated/zimbra/info",
   "guideCategory": "Tutorial",
   "guide1Title": "Iniziare a utilizzare zimbra",
@@ -16,10 +16,10 @@
   "guide3Description": "Come effettuare il mount di un NAS su Windows Server tramite il protocollo CIFS",
   "guide3Link": "https://help.ovhcloud.com/csm/it-public-cloud-storage-nas-cifs?id=kb_article_view&amp;sysparm_article=KB0046671",
   "card_guide_category": "Tutorial",
-  "card_guide_title_1": "Iniziare a utilizzare l'offerta Zimbra",
-  "card_guide_title_2": "Configura il tuo account Zimbra",
-  "card_guide_title_3": "Gestisci la Webmail Zimbra",
+  "card_guide_title_1": "Iniziare a utilizzare la soluzione Zimbra",
+  "card_guide_title_2": "Configurare il tuo account Zimbra",
+  "card_guide_title_3": "Gestire la webmail Zimbra",
   "card_guide_description_1": "Scopri come creare le tue prime caselle email e amministrare il tuo servizio",
-  "card_guide_description_2": "Scopri come configurare e utilizzare il tuo account Zimbra su un terminale esterno (PC o smartphone)",
-  "card_guide_description_3": "Scopri le funzionalità dell'interfaccia Web Zimbra"
+  "card_guide_description_2": "Impara a configurare e utilizzare il tuo account Zimbra su un dispositivo esterno (PC o smartphone)",
+  "card_guide_description_3": "Scopri le funzionalità dell'interfaccia web Zimbra"
 }
