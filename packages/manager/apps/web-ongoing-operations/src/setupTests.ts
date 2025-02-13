@@ -39,6 +39,7 @@ vi.mock(import('@tanstack/react-query'), async (importOriginal) => {
 
 vi.mock('@/utils/utils', () => ({
   formatDatagridDate: vi.fn(),
+  formatDate: vi.fn(),
   removeQuotes: vi.fn(),
 }));
 

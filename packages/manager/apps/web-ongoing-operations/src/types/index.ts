@@ -1,3 +1,5 @@
+import { TrackingEnum } from '@/enum/tracking.enum';
+
 export interface TOngoingOperations {
   id: number;
   domain?: string;
@@ -14,6 +16,20 @@ export interface TOngoingOperations {
   canAccelerate: boolean;
 }
 
-export interface TOngoingOperationsData {
-  data?: TOngoingOperations[];
+export interface TTrackingCurrentStep {
+  step:
+    | TrackingEnum.Initialisation
+    | TrackingEnum.AskForAuthInfo
+    | TrackingEnum.ContactConfirmation
+    | TrackingEnum.CurrentRegistrarConfirmation
+    | TrackingEnum.Finalization;
+}
+
+export interface TTracking {
+  progress: number;
+  taskStatus: string;
+  lastUpdateDate: string;
+  currentStep: TTrackingCurrentStep;
+  expectedDoneDate: string;
+  taskActions: string[];
 }

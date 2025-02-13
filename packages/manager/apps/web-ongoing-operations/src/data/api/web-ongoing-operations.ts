@@ -1,29 +1,26 @@
 import { fetchIcebergV6, apiClient } from '@ovh-ux/manager-core-api';
 import { taskMeDns, taskMeDomain } from '@/constants';
+import { TOngoingOperations } from '@/types';
 
 export const getmeTaskDomainListQueryKey = ['get', 'me', 'task', 'domain'];
 
 /**
  * Get information about domain related tasks : List of domain tasks
  */
-export const getmeTaskDomainList = async (): Promise<any> =>
-  apiClient.v6.get(taskMeDomain);
+export const getmeTaskDomainList = async (): Promise<TOngoingOperations[]> =>
+  apiClient.v6.get(taskMeDomain).then((res) => res.data);
 
-export type GetmeTaskDomainIdParams = {
-  /** Id */
-  id?: any;
-};
-
-export const getmeTaskDomainIdQueryKey = (params: GetmeTaskDomainIdParams) => [
-  ['get', 'me', 'task', 'domain', params.id],
+export const getmeTaskDomainIdQueryKey = (id: number) => [
+  ['get', 'me', 'task', 'domain', id],
 ];
 
 /**
  * Get information about domain related tasks : Get this object properties
  */
 export const getmeTaskDomainId = async (
-  params: GetmeTaskDomainIdParams,
-): Promise<any> => apiClient.v6.get(`${taskMeDomain}/${params.id}`);
+  id: number,
+): Promise<TOngoingOperations> =>
+  apiClient.v6.get(`${taskMeDomain}/${id}`).then((res) => res.data);
 
 /**
  *  Get listing with iceberg V6
@@ -50,5 +47,5 @@ export const getListingIcebergV6 = async ({
 /**
  * Get information about dns related tasks : List of dns tasks
  */
-export const getmeTaskDnsList = async (): Promise<any> =>
-  apiClient.v6.get(taskMeDns);
+export const getmeTaskDnsList = async (): Promise<TOngoingOperations[]> =>
+  apiClient.v6.get(taskMeDns).then((res) => res.data);

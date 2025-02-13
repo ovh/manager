@@ -1,6 +1,5 @@
 import React from 'react';
 import { Datagrid } from '@ovh-ux/manager-react-components';
-import { TOngoingOperations, TOngoingOperationsData } from 'src/types';
 import { useQuery } from '@tanstack/react-query';
 import Loading from '@/components/Loading/Loading';
 import {
@@ -8,16 +7,17 @@ import {
   useOngoingOperationDatagridColumns,
 } from '@/hooks/useOngoingOperationDatagridColumns';
 import { getmeTaskDomainList } from '@/data/api/web-ongoing-operations';
+import { TOngoingOperations } from '@/types';
 
 export default function Domain() {
-  const { data: domainList, isLoading } = useQuery<TOngoingOperationsData>({
+  const { data: domainList, isLoading } = useQuery<TOngoingOperations[]>({
     queryKey: ['domainList'],
     queryFn: () => getmeTaskDomainList(),
   });
 
   const columns = useOngoingOperationDatagridColumns(
     ParentEnum.Domain,
-    domainList as TOngoingOperations[],
+    domainList,
   );
 
   if (isLoading) {
@@ -34,8 +34,8 @@ export default function Domain() {
         <div data-testid="datagrid">
           <Datagrid
             columns={columns}
-            items={domainList.data}
-            totalItems={domainList?.data.length}
+            items={domainList}
+            totalItems={domainList.length}
           />
         </div>
       )}
