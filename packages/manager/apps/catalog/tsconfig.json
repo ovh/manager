@@ -21,7 +21,8 @@
     "paths": {
       "@/*": ["./src/*"],
       "@playwright-helpers": ["../../../../playwright-helpers/index"],
-      "@playwright-helpers/*": ["../../../../playwright-helpers/*"]
+      "@playwright-helpers/*": ["../../../../playwright-helpers/*"],
+      "order_fm/ConfigoNasHa": ["./src/types/orderConfigos.d.ts"]
     }
   },
   "include": ["**/*.ts", "**/*.tsx"],
