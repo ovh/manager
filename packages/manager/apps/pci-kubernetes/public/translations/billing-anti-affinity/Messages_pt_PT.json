@@ -23,7 +23,9 @@
   "kubernetes_add_billing_anti_affinity_coming_soon_message_title": "Preços mensais",
   "kubernetes_add_billing_anti_affinity_coming_soon_message_description": "Os preços mensais estarão disponíveis em breve com a chegada dos Saving Plans.",
   "kubernetes_node_pool_anti_affinity": "Anti-afinidade",
-  "kubernetes_node_pool_anti_affinity_description": "Ao ativar a anti-afinidade, os nós presentes e futuros serão lançados em hipervisores (servidores físicos) diferentes, garantindo uma maior tolerância às falhas. Os pools de nós com anti-afinidade só podem conter até {{ maxNodes }} nós.",
+  "kubernetes_node_pool_anti_affinity_description": "Ao ativar a anti-afinidade, os nós presentes e futuros serão lançados em hipervisores (servidores físicos) diferentes, garantindo uma maior tolerância às falhas. Os pools de nós com anti-afinidade só podem contar até {{ maxNodes }} nós.",
   "kubernetes_add_billing_savings_plan_banner": "Graças aos Savings Plans, beneficie de preços mensais vantajosos, enquanto conserva a flexibilidade das instâncias à hora.",
-  "kubernetes_add_billing_savings_plan_cta": "Configure os seus Savings Plans"
+  "kubernetes_add_billing_savings_plan_cta": "Configure os seus Savings Plans",
+  "kubernetes_node_pool_anti_affinity_true": "Anti-afinidade ativa",
+  "kubernetes_node_pool_anti_affinity_false": "Anti-afinidade inativa"
 }
