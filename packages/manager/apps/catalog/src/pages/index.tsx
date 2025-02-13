@@ -75,6 +75,16 @@ export default function Catalog() {
         {isLoading && <Loading />}
         {!isLoading && results.length > 0 && (
           <>
+            {/* Just for testing */}
+            <Card
+              texts={{
+                title: 'Nas-HA',
+                category: 'Storage and Backup',
+                description: '',
+              }}
+              href="/#/catalog/nasha"
+              hoverable
+            />
             {results.map((item: Product) => (
               <Card
                 key={`${item.productName
