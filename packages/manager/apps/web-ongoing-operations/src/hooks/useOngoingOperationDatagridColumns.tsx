@@ -6,10 +6,16 @@ import { useNavigate } from 'react-router-dom';
 import { TOngoingOperations } from 'src/types';
 import { formatDatagridDate, removeQuotes } from '@/utils/utils';
 import OngoingOperationDatagridBadge from '@/components/OngoingOperationDatagridBadge/OngoingOperationDatagridBadge';
+import { UseManagerUrl } from '@/hooks/url/useManagerUrl';
+
+export enum ParentEnum {
+  Domain = 'domain',
+  Zone = 'zone',
+}
 
 export const useOngoingOperationDatagridColumns = (
-  isDomain: boolean,
-  data: any,
+  parent: ParentEnum.Domain | ParentEnum.Zone,
+  data: TOngoingOperations[],
 ) => {
   const { t } = useTranslation('dashboard');
   const l = getI18n();
@@ -18,20 +24,25 @@ export const useOngoingOperationDatagridColumns = (
   return useMemo(
     () => [
       {
-        id: 'domain',
-        cell: (props: TOngoingOperations) => (
-          <DataGridTextCell>
-            <OdsLink
-              href={`https://www.ovh.com/manager/#/web/domain/${props.domain}/information`}
-              label={props.domain}
-              target="_blank"
-              data-testid={props.domain}
-            />
-          </DataGridTextCell>
-        ),
-        label: isDomain
-          ? t('domain_operations_table_header_domain')
-          : t('dns_operations_table_header_domain'),
+        id: parent,
+        cell: (props: TOngoingOperations) => {
+          const value: string = props[parent];
+          const url: string = UseManagerUrl(parent, value);
+          return (
+            <DataGridTextCell>
+              <OdsLink
+                href={url}
+                label={value}
+                target="_blank"
+                data-testid={value}
+              />
+            </DataGridTextCell>
+          );
+        },
+        label:
+          parent === ParentEnum.Domain
+            ? t('domain_operations_table_header_domain')
+            : t('dns_operations_table_header_domain'),
       },
       {
         id: 'operation',

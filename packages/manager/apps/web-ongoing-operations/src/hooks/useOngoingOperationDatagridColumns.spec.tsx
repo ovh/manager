@@ -4,7 +4,10 @@ import '@testing-library/jest-dom';
 import { renderHook } from '@testing-library/react';
 import { NavLinkProps } from 'react-router-dom';
 import { vi } from 'vitest';
-import { useOngoingOperationDatagridColumns } from '@/hooks/useOngoingOperationDatagridColumns';
+import {
+  ParentEnum,
+  useOngoingOperationDatagridColumns,
+} from '@/hooks/useOngoingOperationDatagridColumns';
 import { domain } from '@/__mocks__/domain';
 
 vi.mock('react-router-dom', async (importOriginal) => {
@@ -23,7 +26,7 @@ vi.mock('react-router-dom', async (importOriginal) => {
 describe('useDatagridColumn', () => {
   it('should return the correct columns', () => {
     const { result } = renderHook(() =>
-      useOngoingOperationDatagridColumns(true, domain),
+      useOngoingOperationDatagridColumns(ParentEnum.Domain, domain),
     );
     const columns = result.current;
 
