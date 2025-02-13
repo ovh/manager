@@ -1,0 +1,11 @@
+{
+  "vrack_terminate": "Supprimer",
+  "vrack_terminate_title": "Supprimer mon Vrack",
+  "vrack_terminate_description": "Afin de supprimer votre Vrack vous devez au préalable deconnecter tous les services qui y sont ratachés",
+  "vrack_terminate_modal_description": "Veuillez entrer le mot « TERMINATE » pour confirmer la suppression de votre Vrack",
+  "vrack_terminate_modal_cancel": "Annuler",
+  "vrack_terminate_modal_confirm": "Résilier",
+  "vrack_terminate_modal_success_banner": "Votre demande de suppression de votre Vrack a été prise en compte. Un e-mail contenant la procédure vous a été envoyé.",
+  "vrack_terminate_modal_vack_deleted_info_banner": "Votre service vRack est expiré et en cours de suppression. Cette opération peut prendre jusqu'a 7 jours.",
+  "vrack_terminate_modal_error_banner": "La suppression de votre Vrack à échoué, veuillez vérifier si votre Vrack est vide."
+}

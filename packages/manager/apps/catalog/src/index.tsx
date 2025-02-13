@@ -38,3 +38,5 @@ const init = async (appName: string) => {
 };
 
 init('catalog');
+
+// Test Comment to verify new deploy model on 11/02

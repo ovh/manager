@@ -20,7 +20,7 @@ describe('WorkflowName', () => {
     });
     vi.mocked(useInstanceSnapshotPricing).mockReturnValueOnce({
       data: { price: 0 },
-      isPending: true,
+      isFetching: true,
     } as ReturnType<typeof useInstanceSnapshotPricing>);
   });
 
@@ -29,6 +29,7 @@ describe('WorkflowName', () => {
       <WorkflowName
         name="foo"
         region="EU"
+        ovhSubsidiary="FR"
         step={{ isOpen: true, isChecked: false, isLocked: false }}
         onNameChange={null}
         onSubmit={null}

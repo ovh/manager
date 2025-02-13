@@ -15,7 +15,6 @@ import useProductNavReshuffle from '@/core/product-nav-reshuffle/useProductNavRe
 
 interface SubTreeProps {
   rootNode: Node;
-  handleBackNavigation(): void;
   handleCloseSideBar(): void;
   handleOnSubMenuClick(node: Node): void;
   selectedNode: Node;
@@ -23,7 +22,6 @@ interface SubTreeProps {
 
 const SubTree = ({
   rootNode,
-  handleBackNavigation,
   handleOnSubMenuClick,
   selectedNode,
   handleCloseSideBar,
@@ -49,7 +47,7 @@ const SubTree = ({
             setFocusOnLast(false);
             return;
           }
-          handleBackNavigation();
+          handleCloseSideBar();
         }
       }}
     >
@@ -73,7 +71,7 @@ const SubTree = ({
 
       <button
         className={style.subtree_back_btn}
-        onClick={handleBackNavigation}
+        onClick={handleCloseSideBar}
         title={t('sidebar_back_menu')}
         role="button"
       >
@@ -83,38 +81,38 @@ const SubTree = ({
         ></span>
         {t('sidebar_back_menu')}
       </button>
-      {rootNode.illustration && (
+      {rootNode?.illustration && (
         <div
-          aria-label={t(rootNode.translation)}
+          aria-label={t(rootNode?.translation)}
           className={`d-block py-3 ${style.subtree_illustration}`}
           role="img"
         >
           <img
-            src={rootNode.illustration}
-            alt={t(rootNode.translation)}
+            src={rootNode?.illustration}
+            alt={t(rootNode?.translation)}
             aria-hidden="true"
           />
         </div>
       )}
 
-      <div className={rootNode.illustration ? '' : 'pt-4'}>
+      <div className={rootNode?.illustration ? '' : 'pt-4'}>
         <ul
           className={`${style.subtree_list}`}
           role="menu"
-          aria-label={t(rootNode.translation)}
+          aria-label={t(rootNode?.translation)}
         >
           <li className="mb-4 px-3">
-            <h2>{t(rootNode.translation)}</h2>
+            <h2>{t(rootNode?.translation)}</h2>
           </li>
 
-          {rootNode.id.startsWith('pci') ? (
+          {rootNode?.id.startsWith('pci') ? (
             <PublicCloudPanel
               rootNode={rootNode}
               selectedNode={selectedNode}
               handleOnSubMenuClick={handleOnSubMenuClick}
             />
           ) : (
-            rootNode.children
+            rootNode?.children
               ?.filter((childNode) => !shouldHideElement(childNode, 1))
               .map((node) => (
                 <li

@@ -1689,5 +1689,7 @@
   "exchange_ACTION_order_accounts_step3_bc_ovhtel": "La orden de pedido se ha generado correctamente. El pedido se está procesando.",
   "exchange_ACTION_order_accounts_step3_explication_ovhtel": "La cuenta tardará aproximadamente unos 10 minutos en terminar de crearse.",
   "exchange_tab_RESOURCES_add_resource_company": "Empresa",
-  "exchange_GROUPS_add_group_company_label": "Empresa"
+  "exchange_GROUPS_add_group_company_label": "Empresa",
+  "exchange_tab_INFORMATIONS_backup": "Copia de seguridad",
+  "exchange_tab_INFORMATIONS_backup_guide_title": "Guardar una copia de seguridad de sus cuentas de correo"
 }

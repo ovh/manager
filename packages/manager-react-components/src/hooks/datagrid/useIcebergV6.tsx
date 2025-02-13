@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { IcebergFetchParamsV6, fetchIcebergV6 } from '@ovh-ux/manager-core-api';
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { ColumnSort } from '../../components';
 import { defaultPageSize } from './index';
+import { useColumnFilters, ColumnSort } from '../../components';
 
 interface IcebergV6Hook {
   queryKey: string[];
@@ -25,6 +25,7 @@ export function useResourcesIcebergV6<T = unknown>({
   shouldFetchAll = false,
 }: IcebergFetchParamsV6 & IcebergV6Hook) {
   const [sorting, setSorting] = useState<ColumnSort>(defaultSorting);
+  const { filters, addFilter, removeFilter } = useColumnFilters();
 
   const {
     data: dataSelected,
@@ -33,7 +34,12 @@ export function useResourcesIcebergV6<T = unknown>({
     ...rest
   } = useInfiniteQuery({
     initialPageParam: 1,
-    queryKey: [...queryKey, shouldFetchAll ? 'all' : pageSize, sorting],
+    queryKey: [
+      ...queryKey,
+      shouldFetchAll ? 'all' : pageSize,
+      sorting,
+      filters,
+    ],
     staleTime: Infinity,
     retry: false,
     queryFn: ({ pageParam: pageIndex }) =>
@@ -43,6 +49,7 @@ export function useResourcesIcebergV6<T = unknown>({
         page: pageIndex,
         sortBy: sorting?.id || null,
         sortReverse: sorting?.desc,
+        filters,
       }),
     getNextPageParam: (lastPage, _allPages, lastPageIndex) => {
       if (lastPage.totalCount / pageSize > lastPageIndex) {
@@ -76,5 +83,10 @@ export function useResourcesIcebergV6<T = unknown>({
     ...rest,
     sorting,
     setSorting,
+    filters: {
+      filters,
+      add: addFilter,
+      remove: removeFilter,
+    },
   };
 }

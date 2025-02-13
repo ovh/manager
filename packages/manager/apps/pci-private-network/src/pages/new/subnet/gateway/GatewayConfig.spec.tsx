@@ -1,16 +1,15 @@
 import '@testing-library/jest-dom';
 import { describe, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
+import { UseQueryResult } from '@tanstack/react-query';
 import { FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { NewPrivateNetworkForm } from '@/types/private-network-form.type';
 import GatewayConfig from './GatewayConfig.component';
 import { NEW_PRIVATE_NETWORK_FORM_SCHEMA } from '../../new.constants';
 import { NewPrivateNetworkWrapper } from '@/__tests__/wrapper';
-import {
-  useGatewayCatalog,
-  TUseGatewayCatalog,
-} from '@/data/hooks/gateway/useGateway';
+import { useSmallestGatewayByRegion } from '@/hooks/useAvailableGateway/useAvailableGateway';
+import { TGatewayCatalog } from '@/types/gateway.type';
 
 vi.mock('@/hooks/useGuideLink/useGuideLink', () => ({
   default: () => ({
@@ -18,14 +17,12 @@ vi.mock('@/hooks/useGuideLink/useGuideLink', () => ({
     REGION_AVAILABILITY: '',
   }),
 }));
-vi.mock(
-  '@/hooks/useIsPlanCodeAvailableInRegion/useIsPlanCodeAvailableInRegion',
-);
 vi.mock('@/data/hooks/gateway/useGateway');
-vi.mocked(useGatewayCatalog).mockResolvedValue({
+vi.mock('@/hooks/useAvailableGateway/useAvailableGateway');
+vi.mocked(useSmallestGatewayByRegion).mockReturnValue({
   data: undefined,
   isLoading: false,
-} as TUseGatewayCatalog);
+} as UseQueryResult<TGatewayCatalog>);
 vi.mock('@/hooks/useExistingGatewayRegion/useExistingGatewayRegion', () => ({
   default: () => ({ gateway: undefined, isLoading: false }),
 }));

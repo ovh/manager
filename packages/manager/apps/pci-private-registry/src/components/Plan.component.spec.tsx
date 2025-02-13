@@ -79,14 +79,6 @@ describe('PlanComponent', () => {
     };
   });
 
-  it('should render', () => {
-    const { container } = render(<PlanComponent plan={defaultPlan} />, {
-      wrapper,
-    });
-
-    expect(container).toMatchSnapshot();
-  });
-
   it('should render plan name', () => {
     const { getByTestId } = render(<PlanComponent plan={defaultPlan} />, {
       wrapper,

@@ -23,7 +23,6 @@ export default class TelecomTelephonyAliasConfigurationContactCenterSolutionCtrl
         backdrop: 'static',
         resolve: {
           number: this.alias,
-          isObsolete: false,
         },
       })
       .result.then(() => {

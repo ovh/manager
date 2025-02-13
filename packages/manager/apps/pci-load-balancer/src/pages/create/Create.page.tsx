@@ -11,7 +11,6 @@ import { useTranslation } from 'react-i18next';
 import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useEffect } from 'react';
-import { useMedia } from 'react-use';
 import { useCreateStore } from './store';
 import {
   useGetPrivateNetworkSubnets,
@@ -32,7 +31,6 @@ import { useGetFloatingIps } from '@/api/hook/useFloatingIps';
 export default function CreatePage(): JSX.Element {
   const { me } = useMe();
   const { data: addons, isPending: isAddonsPending } = useGetAddons();
-  const isMobile = useMedia(`(max-width: 768px)`);
 
   const projectHref = useProjectUrl('public-cloud');
 
@@ -161,7 +159,6 @@ export default function CreatePage(): JSX.Element {
           isLoading={isRegionsPending}
           regions={regions}
           ovhSubsidiary={me?.ovhSubsidiary}
-          isMobile={isMobile}
         />
         <IpStep
           floatingIps={filteredFloatingIps}

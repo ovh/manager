@@ -1,0 +1,10 @@
+{
+  "netapp_volumes_snapshots_create_volume_title": "Criar um volume",
+  "netapp_volumes_snapshots_create_volume_description": "Vai criar um volume a partir da snapshot {{ snapshot }}",
+  "netapp_volumes_snapshots_create_volume_name_label": "Nome do volume (opcional)",
+  "netapp_volumes_snapshots_create_volume_description_label": "Descrição (opcional)",
+  "netapp_volumes_snapshots_create_volume_confirm": "Confirmar",
+  "netapp_volumes_snapshots_create_volume_cancel": "Anular",
+  "netapp_volumes_snapshots_create_volume_success": "O seu volume foi criado com sucesso!",
+  "netapp_volumes_snapshots_create_volume_error": "Ocorreu um erro aquando da criação do volume. <br> {{message}} <br> {{ requestId }}"
+}

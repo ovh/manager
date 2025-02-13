@@ -1,5 +1,6 @@
 export const DEFAULT_DURATION = 'P1M';
 export const DEFAULT_TYPE = 'periodic';
+export const SUSPENDED_SERVICE = 'suspended';
 
 export const SERVICE_TYPE = {
   EMAIL_DOMAIN: 'EMAIL_DOMAIN',

@@ -19,7 +19,7 @@
   "telephony_alias_administration_terminate_reason_technicalDifficulties": "Technical issues",
   "telephony_alias_administration_terminate_reason_moveToCompetitor": "Switching to a competitor",
   "telephony_alias_administration_terminate_pool_warning": "All numbers in this pool will be terminated.",
-  "telephony_alias_administration_terminate": "Cancel",
+  "telephony_alias_administration_terminate": "Terminate",
   "telephony_alias_administration_terminate_success": "Termination successfully scheduled.",
   "telephony_alias_administration_cancel_termination": "Cancel termination",
   "telephony_alias_administration_cancel_termination_success": "Termination cancelled.",

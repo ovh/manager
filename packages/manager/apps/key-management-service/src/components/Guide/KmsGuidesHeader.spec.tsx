@@ -5,7 +5,7 @@ import { describe, it, vi } from 'vitest';
 import {
   useFeatureAvailability,
   UseFeatureAvailabilityResult,
-} from '@ovh-ux/manager-react-components';
+} from '@ovh-ux/manager-module-common-api';
 import KmsGuidesHeader from './KmsGuidesHeader';
 import { FEATURES } from '@/utils/feature-availability/feature-availability.constants';
 import { GUIDE_LIST, SUPPORT_URL } from '@/hooks/guide/guidesLinks.constant';
@@ -34,9 +34,9 @@ vi.mock('@ovh-ux/manager-react-shell-client', () => ({
   }),
 }));
 
-vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
+vi.mock('@ovh-ux/manager-module-common-api', async (importOriginal) => {
   const module = await importOriginal<
-    typeof import('@ovh-ux/manager-react-components')
+    typeof import('@ovh-ux/manager-module-common-api')
   >();
   return { ...module, useFeatureAvailability: vi.fn() };
 });
@@ -62,30 +62,30 @@ describe('KMS Guides Header tests suite', () => {
     } as UseFeatureAvailabilityResult);
 
     // act
-    const { getByText } = renderComponent();
+    const { getByTestId } = renderComponent();
 
     // then
     await waitFor(() => {
-      let guideElement = getByText('guides_header_quick_start');
+      let guideElement = getByTestId('guides_header_quick_start');
       expect(guideElement).toBeInTheDocument();
-      let osdsLinkElement = guideElement.closest('osds-link');
-      expect(osdsLinkElement).toHaveAttribute(
+      let odsLinkElement = guideElement.closest('ods-link');
+      expect(odsLinkElement).toHaveAttribute(
         'href',
         `${SUPPORT_URL.EU}${GUIDE_LIST.quickStart.FR}`,
       );
 
-      guideElement = getByText('guides_header_kms_usage');
+      guideElement = getByTestId('guides_header_kms_usage');
       expect(guideElement).toBeInTheDocument();
-      osdsLinkElement = guideElement.closest('osds-link');
-      expect(osdsLinkElement).toHaveAttribute(
+      odsLinkElement = guideElement.closest('ods-link');
+      expect(odsLinkElement).toHaveAttribute(
         'href',
         `${SUPPORT_URL.EU}${GUIDE_LIST.usage.FR}`,
       );
 
-      guideElement = getByText('guides_header_connect_kmip_product');
+      guideElement = getByTestId('guides_header_connect_kmip_product');
       expect(guideElement).toBeInTheDocument();
-      osdsLinkElement = guideElement.closest('osds-link');
-      expect(osdsLinkElement).toHaveAttribute(
+      odsLinkElement = guideElement.closest('ods-link');
+      expect(odsLinkElement).toHaveAttribute(
         'href',
         `${SUPPORT_URL.EU}${GUIDE_LIST.kmip.FR}`,
       );
@@ -102,14 +102,14 @@ describe('KMS Guides Header tests suite', () => {
     } as UseFeatureAvailabilityResult);
 
     // act
-    const { getByText, queryByText } = renderComponent();
+    const { getByTestId, queryByTestId } = renderComponent();
 
     // then
     await waitFor(() => {
-      expect(getByText('guides_header_quick_start')).toBeInTheDocument();
-      expect(queryByText('guides_header_kms_usage')).not.toBeInTheDocument();
+      expect(getByTestId('guides_header_quick_start')).toBeInTheDocument();
+      expect(queryByTestId('guides_header_kms_usage')).not.toBeInTheDocument();
       expect(
-        queryByText('guides_header_connect_kmip_product'),
+        queryByTestId('guides_header_connect_kmip_product'),
       ).not.toBeInTheDocument();
     });
   });

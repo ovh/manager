@@ -1,17 +1,11 @@
 import React, { Dispatch, SetStateAction } from 'react';
-import { CommonTitle } from '@ovh-ux/manager-react-components';
 import {
-  OsdsFormField,
-  OsdsText,
-  OsdsTextarea,
+  OdsFormField,
+  OdsText,
+  OdsTextarea,
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import {
-  ODS_TEXT_LEVEL,
-  OdsTextAreaValueChangeEvent,
-  OsdsTextareaCustomEvent,
-} from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import {
   CredentialDescriptionErrorsType,
   CredentialDescriptionMaxCharacters,
@@ -24,7 +18,7 @@ type CreateGeneralInformationsDescriptionProps = {
 };
 
 const CreateGeneralInformationsDescription = ({
-  description,
+  description = '',
   setDescription,
   credentialDescriptionError,
 }: CreateGeneralInformationsDescriptionProps) => {
@@ -42,41 +36,31 @@ const CreateGeneralInformationsDescription = ({
         return t(
           'key_management_service_credential_update_description_error_max',
         );
-
       default:
         return null;
     }
   };
 
   return (
-    <div className="flex flex-col gap-5 md:gap-6">
-      <CommonTitle>
+    <OdsFormField
+      error={getDescriptionErrorMessage(credentialDescriptionError)}
+    >
+      <OdsText slot="label" preset={ODS_TEXT_PRESET.heading5}>
         {t(
           'key_management_service_credential_create_general_information_description_title',
         )}
-      </CommonTitle>
-      <OsdsFormField
-        error={getDescriptionErrorMessage(credentialDescriptionError)}
-      >
-        <OsdsTextarea
-          value={description || ''}
-          error={!!credentialDescriptionError || undefined}
-          onOdsValueChange={(
-            e: OsdsTextareaCustomEvent<OdsTextAreaValueChangeEvent>,
-          ) => {
-            return setDescription(e.detail.value);
-          }}
-        ></OsdsTextarea>
-        <OsdsText
-          slot="helper"
-          color={ODS_THEME_COLOR_INTENT.text}
-          level={ODS_TEXT_LEVEL.body}
-          className="text-right"
-        >
-          {description?.length || 0}/{CredentialDescriptionMaxCharacters}
-        </OsdsText>
-      </OsdsFormField>
-    </div>
+      </OdsText>
+      <OdsTextarea
+        name="credentialDescription"
+        value={description}
+        hasError={!!credentialDescriptionError}
+        onOdsChange={(e) => setDescription(e.detail.value)}
+        rows={4}
+      />
+      <OdsText slot="visual-hint" preset={ODS_TEXT_PRESET.span}>
+        {description?.length || 0}/{CredentialDescriptionMaxCharacters}
+      </OdsText>
+    </OdsFormField>
   );
 };
 

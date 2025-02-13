@@ -6,7 +6,6 @@ import Quota from '../../../../../components/project/instance/quota/quota.class'
 import { PATTERN } from '../../../../../components/project/instance/name/constants';
 import Instance from '../../../../../components/project/instance/instance.class';
 import { BAREMETAL_LABEL, PUBLIC_NETWORK_TYPE_NAMES } from './add.constants';
-import { TAGS_BLOB } from '../../../../../constants';
 
 export default class PciInstancesAddController {
   /* @ngInject */
@@ -66,7 +65,7 @@ export default class PciInstancesAddController {
   }
 
   IsComingSoonPricingBannerDisplayed() {
-    return this.model.flavorGroup?.tagsBlob?.includes(TAGS_BLOB.COMING_SOON);
+    return !this.model.flavorGroup?.prices?.monthly;
   }
 
   onFlavorChange(flavor) {

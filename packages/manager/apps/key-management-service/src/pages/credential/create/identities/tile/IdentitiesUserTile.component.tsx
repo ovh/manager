@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import { OsdsText } from '@ovhcloud/ods-components/react';
+import { OdsText } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import { ODS_CHIP_SIZE, ODS_TEXT_COLOR_INTENT } from '@ovhcloud/ods-components';
+import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { IdentityUser } from '@/types/identity.type';
 import IdentitiesTileText from './IdentitiesTileText.component';
 import IdentitiesBaseTile from './IdentitiesBaseTile.component';
@@ -45,40 +45,34 @@ const IdentitiesUserTile = ({
       isChecked={isChecked}
       setIsChecked={setIsChecked}
     >
-      <span>
-        <OsdsText color={ODS_TEXT_COLOR_INTENT.text}>
+      <div>
+        <OdsText preset={ODS_TEXT_PRESET.caption}>
           {t(
             'key_management_service_credential_create_identities_user_tile_email_label',
           )}
           :
-        </OsdsText>
+        </OdsText>
         <IdentitiesTileText>{user.email}</IdentitiesTileText>
-      </span>
-      <span>
-        <OsdsText color={ODS_TEXT_COLOR_INTENT.text}>
+      </div>
+      <div>
+        <OdsText preset={ODS_TEXT_PRESET.caption}>
           {t(
             'key_management_service_credential_create_identities_user_tile_group_label',
           )}
           :
-        </OsdsText>
+        </OdsText>
         <IdentitiesTileText>{user.group} </IdentitiesTileText>
-      </span>
-      <span>
-        <OsdsText color={ODS_TEXT_COLOR_INTENT.text}>
+      </div>
+      <div>
+        <OdsText preset={ODS_TEXT_PRESET.caption}>
           {t(
             'key_management_service_credential_create_identities_user_tile_identity_label',
           )}
           :
-        </OsdsText>
+        </OdsText>
         <IdentitiesTileText>{user.urn}</IdentitiesTileText>
-      </span>
-      <span>
-        <IdentitiesStatusBadge
-          status={user.status}
-          inline
-          size={ODS_CHIP_SIZE.sm}
-        />
-      </span>
+      </div>
+      <IdentitiesStatusBadge status={user.status} />
     </IdentitiesBaseTile>
   );
 };

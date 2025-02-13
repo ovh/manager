@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { urls } from '@/routes/routes.constant';
+import { TRACKING } from '@/tracking.constant';
 
 export type BreadcrumbItem = {
   id: string;
@@ -18,6 +20,7 @@ export interface BreadcrumbProps {
 }
 
 export const useBreadcrumb = ({ rootLabel, items }: BreadcrumbProps) => {
+  const { trackClick } = useOvhTracking();
   const [paths, setPaths] = useState<BreadcrumbItem[]>([]);
   const location = useLocation();
   const navigate = useNavigate();
@@ -26,7 +29,10 @@ export const useBreadcrumb = ({ rootLabel, items }: BreadcrumbProps) => {
   const root: BreadcrumbItem = {
     id: rootLabel,
     label: rootLabel,
-    onClick: () => navigate(urls.root),
+    onClick: () => {
+      trackClick(TRACKING.breadcrumb.hycuClick);
+      navigate(urls.root);
+    },
   };
 
   useEffect(() => {

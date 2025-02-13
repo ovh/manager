@@ -7,6 +7,7 @@ import historyModule from '../../dns-zone/history/history.module';
 import anycast from '../anycast';
 import domainDnsModify from '../dns-modify/domain-dns-modify.module';
 import domainDns from '../dns/domain-dns.module';
+import contact from '../contact/contact.module';
 import dnssec from '../dnssec/dnssec.module';
 import dynhost from '../dynhost/dynhost.module';
 import emailObfuscation from '../email-obfuscation/index';
@@ -25,6 +26,7 @@ const moduleName = 'ovhManagerWebDomainModule';
 angular
   .module(moduleName, [
     anycast,
+    contact,
     domainDns,
     dnssec,
     dnsZone,

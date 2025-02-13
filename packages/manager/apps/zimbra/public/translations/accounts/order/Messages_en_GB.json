@@ -13,5 +13,6 @@
   "zimbra_account_order_cta_done": "Back",
   "zimbra_account_order_initiated_title": "Order your Zimbra accounts!",
   "zimbra_account_order_initiated_subtitle": "If you have been unable to complete your order, please complete it by clicking on the following link:",
-  "zimbra_account_order_initiated_info": "We will notify you via email about the availability of your accounts."
+  "zimbra_account_order_initiated_info": "We will notify you via email about the availability of your accounts.",
+  "zimbra_account_order_initiated_link_label": "Link to your order"
 }

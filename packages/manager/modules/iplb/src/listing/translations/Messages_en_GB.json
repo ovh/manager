@@ -1,0 +1,11 @@
+{
+  "iplb_listing_action_delete": "Delete my service",
+  "iplb_listing_action_detail": "View my service details",
+  "iplb_terminate_service": "Delete my service",
+  "iplb_terminate_service_warning": "Please confirm that you want to delete your service",
+  "iplb_terminate_service_success": "Your request to delete your service has been processed. You have been sent an email detailing the steps to follow.",
+  "iplb_terminate_service_error": "An error has occurred requesting to delete your service. {{error}}",
+  "iplb_terminate_service_confirm_input": "Enter “TERMINATE” in the field below to confirm",
+  "iplb_terminate_service_terminate_valid": "Confirm",
+  "iplb_terminate_service_terminate_cancel": "Cancel"
+}

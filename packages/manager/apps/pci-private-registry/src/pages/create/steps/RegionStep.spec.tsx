@@ -88,7 +88,7 @@ describe('NameStep', () => {
       );
     });
     describe('Items', () => {
-      it.skip("should render 'TilesInputComponent' with empty array if localisations regions is not valid", () => {
+      it("should render 'TilesInputComponent' with empty array if localisations regions is not valid", () => {
         (useProjectLocalisation as Mock).mockReturnValueOnce({
           data: null,
         });

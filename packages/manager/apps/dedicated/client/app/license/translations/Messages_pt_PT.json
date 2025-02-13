@@ -1422,5 +1422,8 @@
   "license_designation_CPANEL_version_version-solo-cloud": "Licença cPanel Solo Cloud",
   "license_designation_CPANEL_version_version-admin-cloud": "Licença cPanel Admin Cloud",
   "license_designation_CPANEL_version_version-plus-cloud": "Licença cPanel Plus Cloud",
-  "license_order_step4_pay_upgrade_amount": "Preço: {{ price }}"
+  "license_order_step4_pay_upgrade_amount": "Preço: {{ price }}",
+  "license_designation_CPANEL_version_version-premier-cloud-150": "Licença cPanel Premier Cloud 150",
+  "license_designation_CPANEL_version_version-premier-metal-900": "Licença cPanel Premier Metal 900",
+  "license_designation_CPANEL_version_version-premier-cloud-300": "Licença cPanel Premier Cloud 300"
 }

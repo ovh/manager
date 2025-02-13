@@ -1,0 +1,48 @@
+<div class="mb-3">
+    <p
+        data-translate="pci_projects_project_storages_containers_offsite_replication_description"
+    ></p>
+
+    <oui-radio-group
+        data-model="$ctrl.isOffsiteReplicationEnabled"
+        data-on-change="$ctrl.onOffsiteReplicationChange()"
+    >
+        <oui-radio value="false">
+            <span
+                data-translate="pci_projects_project_storages_containers_offsite_replication_disabled"
+            ></span>
+        </oui-radio>
+        <oui-radio value="true">
+            <span
+                data-translate="pci_projects_project_storages_containers_offsite_replication_enabled"
+            ></span>
+            <strong
+                data-translate="pci_projects_project_storages_containers_offsite_replication_price_estimation"
+                data-translate-values="{price: $ctrl.offsiteReplicationPrice ? $ctrl.priceFormatter.format($ctrl.offsiteReplicationPrice) : '?'}"
+            ></strong>
+            <span
+                class="oui-badge oui-badge_best-seller"
+                data-translate="pci_projects_project_storages_containers_offsite_replication_recommanded"
+            ></span>
+        </oui-radio>
+        <div class="mt-3">
+            <span
+                data-translate="pci_projects_project_storages_containers_offsite_replication_final_price_estimation"
+            ></span>
+            <strong
+                class="blue"
+                data-translate="pci_projects_project_storages_containers_offsite_replication_final_price_estimation_value"
+                data-translate-values="{price: !!$ctrl.offsiteReplicationPrice && !!$ctrl.estimatedPrice && $ctrl.priceFormatter.format(($ctrl.isOffsiteReplicationEnabled ? $ctrl.offsiteReplicationPrice : 0) + $ctrl.estimatedPrice) || '?'}"
+            ></strong>
+        </div>
+        <oui-message
+            data-type="info"
+            class="mt-3"
+            data-ng-if="$ctrl.isOffsiteReplicationEnabled"
+        >
+            <p
+                data-translate="pci_projects_project_storages_containers_offsite_replication_versionning_warning"
+            ></p>
+        </oui-message>
+    </oui-radio-group>
+</div>

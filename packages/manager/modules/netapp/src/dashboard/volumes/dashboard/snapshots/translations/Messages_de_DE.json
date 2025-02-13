@@ -34,5 +34,6 @@
   "netapp_volumes_snapshots_actions_hold": "Speichern",
   "netapp_volumes_snapshots_hold_action_doing": "Das Backup Ihres Snapshots wurde registriert und wird in wenigen Augenblicken ausgeführt.",
   "netapp_volumes_snapshots_hold_action_success": "Das Backup Ihres Snapshots wurde erfolgreich durchgeführt.",
-  "netapp_volumes_snapshots_hold_action_error": "Beim Backup Ihres Snapshots ist ein Problem aufgetreten."
+  "netapp_volumes_snapshots_hold_action_error": "Beim Backup Ihres Snapshots ist ein Problem aufgetreten.",
+  "netapp_volumes_snapshots_actions_create_volume": "Volume erstellen"
 }

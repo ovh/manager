@@ -6,7 +6,7 @@ import {
 
 export const usePlatform = () => {
   const { data, isLoading, isError, error, ...rest } = useQuery({
-    queryKey: [getZimbraPlatformListQueryKey],
+    queryKey: getZimbraPlatformListQueryKey(),
     queryFn: () => getZimbraPlatformList(),
   });
 

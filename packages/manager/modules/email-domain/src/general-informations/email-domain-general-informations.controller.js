@@ -50,6 +50,8 @@ export default class EmailTabGeneralInformationsCtrl {
     this.WucUser = WucUser;
     this.WucEmails = WucEmails;
     this.DKIM_STATUS_CLASS = DKIM_STATUS_CLASS;
+    this.WEBMAIL_URL = 'https://webmail.mail.ovh.net';
+    this.WEBMAIL_TYPE = 'Roundcube';
   }
 
   $onInit() {

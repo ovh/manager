@@ -1,4 +1,4 @@
-import { Handler } from '../../../../../../../playwright-helpers';
+import { Handler } from '@ovh-ux/manager-core-test-utils';
 import { referenceServiceKeyMock } from './reference.mock';
 
 export type GetReferenceMockParams = {
@@ -17,10 +17,7 @@ export const getReferenceMock = ({
             message: 'serviceKeys error',
           },
         }
-      : () => {
-          console.log(referenceServiceKeyMock);
-          return referenceServiceKeyMock;
-        },
+      : () => referenceServiceKeyMock,
     status: isReferenceKO ? 500 : 200,
     api: 'v2',
   },

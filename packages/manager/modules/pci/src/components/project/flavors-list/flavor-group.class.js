@@ -107,6 +107,6 @@ export default class FlavorGroup {
   getPriceBasedOnFlavorId(flavorId) {
     return find(this.flavors, (flavor) =>
       flavor.containsFlavor(flavorId),
-    ).priceInformation.find(({ id }) => id === flavorId)?.prices;
+    )?.priceInformation.find(({ id }) => id === flavorId)?.prices;
   }
 }

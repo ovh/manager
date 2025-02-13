@@ -78,6 +78,7 @@
                 type="button"
                 aria-label="{{:: 'vrack_cloud_modiy_name' | translate }}"
                 data-ng-click="$ctrl.editName()"
+                data-ng-disabled="$ctrl.serviceExpired"
             >
                 <span
                     class="oui-icon oui-icon-pen_concept"
@@ -105,7 +106,7 @@
         ></cui-message-container>
     </div>
 
-    <div>
+    <div data-ng-if="!$ctrl.serviceExpired">
         <section>
             <div ng-if="$ctrl.description || $ctrl.descriptionEditing">
                 <h3 data-translate="vrack_description_title"></h3>
@@ -247,6 +248,22 @@
                     </ng-include>
                 </div>
             </div>
+        </section>
+        <section>
+            <h3 data-translate="vrack_terminate_title"></h3>
+            <p data-translate="vrack_terminate_description"></p>
+            <button
+                type="button"
+                class="btn btn-link"
+                data-ng-click="$ctrl.openTerminateVrackModal()"
+                data-translate="vrack_terminate"
+                data-ng-disabled="$ctrl.disableTerminate"
+            ></button>
+            <ovh-manager-vrack-terminate-component
+                data-is-open-modal="$ctrl.terminateVrackModalOpen"
+                data-on-confirm="$ctrl.terminateVrack()"
+                data-on-cancel="$ctrl.resetAction()"
+            ></ovh-manager-vrack-terminate-component>
         </section>
     </div>
 </section>

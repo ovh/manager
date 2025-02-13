@@ -3,21 +3,18 @@ import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
 import {
-  ODS_MESSAGE_TYPE,
+  ODS_MESSAGE_COLOR,
   ODS_BUTTON_SIZE,
-  ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-  ODS_BUTTON_VARIANT,
+  ODS_TEXT_PRESET,
+  ODS_BUTTON_COLOR,
 } from '@ovhcloud/ods-components';
-import { OsdsMessage, OsdsIcon } from '@ovhcloud/ods-components/react';
+import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 import {
   Datagrid,
-  Description,
   ErrorBanner,
   ManagerButton,
   useDatagridSearchParams,
 } from '@ovh-ux/manager-react-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ButtonType,
   PageLocation,
@@ -37,6 +34,7 @@ import { OkmsContext } from '..';
 import Loading from '@/components/Loading/Loading';
 import { getOkmsServiceKeyResourceListQueryKey } from '@/data/api/okmsServiceKey';
 import { kmsIamActions } from '@/utils/iam/iam.constants';
+import { SERVICE_KEY_LIST_TEST_IDS } from './ServiceKeyList.constants';
 
 export default function Keys() {
   const { t } = useTranslation('key-management-service/serviceKeys');
@@ -102,44 +100,34 @@ export default function Keys() {
     );
 
   return (
-    <div className="flex flex-col gap-8">
-      <Description>
+    <div className="flex flex-col gap-4">
+      <OdsText preset={ODS_TEXT_PRESET.paragraph}>
         {t('key_management_service_service-keys_headline')}
-      </Description>
+      </OdsText>
       {error && (
-        <OsdsMessage className="mt-4" type={ODS_MESSAGE_TYPE.error}>
+        <OdsMessage className="mt-4" color={ODS_MESSAGE_COLOR.critical}>
           {tError('manager_error_page_default')}
-        </OsdsMessage>
+        </OdsMessage>
       )}
-      <div>
-        <ManagerButton
-          size={ODS_BUTTON_SIZE.sm}
-          inline
-          color={ODS_THEME_COLOR_INTENT.primary}
-          variant={ODS_BUTTON_VARIANT.stroked}
-          onClick={() => {
-            trackClick({
-              location: PageLocation.page,
-              buttonType: ButtonType.button,
-              actionType: 'action',
-              actions: ['create_encryption_key'],
-            });
-            navigate(ROUTES_URLS.createKmsServiceKey);
-          }}
-          urn={okms.iam.urn}
-          iamActions={[kmsIamActions.serviceKeyCreate]}
-        >
-          <span slot="start">
-            <OsdsIcon
-              name={ODS_ICON_NAME.ADD}
-              size={ODS_ICON_SIZE.xs}
-              color={ODS_THEME_COLOR_INTENT.primary}
-            ></OsdsIcon>
-          </span>
-
-          {t('key_management_service_service-keys_cta_create')}
-        </ManagerButton>
-      </div>
+      <ManagerButton
+        id="createEncryptionKey"
+        data-testid={SERVICE_KEY_LIST_TEST_IDS.ctaCreateKey}
+        size={ODS_BUTTON_SIZE.sm}
+        color={ODS_BUTTON_COLOR.primary}
+        className="w-fit"
+        onClick={() => {
+          trackClick({
+            location: PageLocation.page,
+            buttonType: ButtonType.button,
+            actionType: 'action',
+            actions: ['create_encryption_key'],
+          });
+          navigate(ROUTES_URLS.createKmsServiceKey);
+        }}
+        urn={okms.iam.urn}
+        iamActions={[kmsIamActions.serviceKeyCreate]}
+        label={t('key_management_service_service-keys_cta_create')}
+      />
       <Datagrid
         columns={columns}
         items={okmsServiceKey || []}

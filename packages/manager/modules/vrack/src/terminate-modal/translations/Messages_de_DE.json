@@ -1,0 +1,11 @@
+{
+  "vrack_terminate": "Löschen",
+  "vrack_terminate_title": "Mein vRack löschen",
+  "vrack_terminate_description": "Um Ihr vRack zu löschen, müssen Sie zuerst alle damit verbundenen Dienste trennen.",
+  "vrack_terminate_modal_description": "Bitte geben Sie das Wort „TERMINATE“ ein, um die Löschung Ihres vRack zu bestätigen",
+  "vrack_terminate_modal_cancel": "Abbrechen",
+  "vrack_terminate_modal_confirm": "Kündigen",
+  "vrack_terminate_modal_success_banner": "Ihre Anfrage zur Löschung Ihres vRack wurde registriert. Eine E-Mail mit weiteren Informationen zur Vorgehensweise wurde soeben an Sie versandt.",
+  "vrack_terminate_modal_vack_deleted_info_banner": "Ihr vRack Dienst ist abgelaufen und wird gelöscht. Dieser Vorgang kann bis zu 7 Tage dauern.",
+  "vrack_terminate_modal_error_banner": "Das Löschen Ihres vRack ist fehlgeschlagen. Bitte überprüfen Sie, ob Ihr vRack leer ist."
+}

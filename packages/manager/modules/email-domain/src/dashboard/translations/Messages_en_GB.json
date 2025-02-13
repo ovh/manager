@@ -78,7 +78,7 @@
   "email_tab_popover_filters": "Manage filters",
   "email_tab_popover_update_account": "Modify the account",
   "email_tab_popover_change_password_account": "Change password",
-  "email_tab_popover_delete_account": "Disable account ",
+  "email_tab_popover_delete_account": "Delete account",
   "email_tab_popover_delegate": "Delegation management ",
   "email_tab_popover_migrate": "Migrate account",
   "email_tab_modal_change_password_title": "Change the account password",

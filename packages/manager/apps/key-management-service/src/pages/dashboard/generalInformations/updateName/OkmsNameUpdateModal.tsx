@@ -26,6 +26,7 @@ const OkmsNameUpdateModal = () => {
 
   return (
     <UpdateNameModal
+      isOpen
       headline={tDashboard('key_management_service_dashboard_modal_title')}
       inputLabel={tCredential(
         'key_management_service_credential_dashboard_name',
@@ -36,10 +37,10 @@ const OkmsNameUpdateModal = () => {
       closeModal={() => {
         navigate('..');
       }}
-      updateDisplayName={(newDisplayName: string) => {
-        updateKmsName({ okms: okmsId, displayName: newDisplayName });
-      }}
-    ></UpdateNameModal>
+      updateDisplayName={(newDisplayName: string) =>
+        updateKmsName({ okms: okmsId, displayName: newDisplayName })
+      }
+    />
   );
 };
 

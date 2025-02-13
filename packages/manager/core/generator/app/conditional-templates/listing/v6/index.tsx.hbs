@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { FilterCategories } from '@ovh-ux/manager-core-api';
 import { {{#if isPCI }} useParams, {{/if}} useNavigate, useLocation } from 'react-router-dom';
 
 import { OdsButton, OdsSpinner } from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
-
 import {
   Breadcrumb,
   Datagrid,
@@ -39,6 +39,7 @@ export default function Listing() {
     sorting,
     setSorting,
     pageIndex,
+    filters,
   } = useResourcesIcebergV6({
     route: `{{#if this.isPCI }}{{this.mainApiPathPci}}{{else}}{{this.mainApiPath}}{{/if}}`,
     queryKey: ['{{appName}}', `{{#if this.isPCI }}{{this.mainApiPathPci}}{{else}}{{this.mainApiPath}}{{/if}}`],
@@ -50,15 +51,31 @@ export default function Listing() {
     navigate(`${path}${label}`);
   };
 
+  // Code to remove
+  const comparatorType = {
+    Number: FilterCategories.Numeric,
+    Date: FilterCategories.Date,
+    String: FilterCategories.String,
+    Boolean: FilterCategories.Boolean,
+    Options: FilterCategories.Options,
+  };
+
+  // Code to remove and declare definition columns in const variable
   useEffect(() => {
-    if (columns && status === 'success' && flattenData?.length > 0) {
+    if (columns.length === 0 && status === 'success' && flattenData?.length > 0) {
       const newColumns = Object.keys(flattenData[0])
         .filter((element) => element !== 'iam')
         .map((element) => ({
           id: element,
           label: element,
+          isFilterable: true,
           // @ts-ignore
           type: dataType(flattenData[0][element]),
+          // @ts-ignore
+          ...(comparatorType[dataType(flattenData[0][element])] && {
+            // @ts-ignore
+            comparator: comparatorType[dataType(flattenData[0][element])],
+          }),
           cell: (props: any) => {
             const label = props[element] as string;
             if (typeof label === 'string' || typeof label === 'number') {
@@ -108,7 +125,15 @@ export default function Listing() {
   };
 
   return (
-    <BaseLayout breadcrumb={<Breadcrumb rootLabel={appConfig.rootLabel} appName="{{appName}}" />} header={header}>} header={header}>
+    <BaseLayout
+      breadcrumb={
+        <Breadcrumb
+          rootLabel={appConfig.rootLabel}
+          appName="{{appName}}"
+        />
+      }
+      header={header}
+    >
       <React.Suspense>
         {columns && flattenData && (
           <Datagrid
@@ -119,6 +144,7 @@ export default function Listing() {
             onFetchNextPage={fetchNextPage}
             sorting={sorting}
             onSortChange={setSorting}
+            filters={filters}
           />
         )}
       </React.Suspense>

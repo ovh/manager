@@ -1,23 +1,12 @@
-import { fetchIcebergV6 } from '@ovh-ux/manager-core-api';
+import { TVolumeCatalogElementFilter } from '@/api/data/catalog';
 
 export type TRegion = {
   name: string;
-  type: string;
-  status: string;
-  continentCode: string;
-  services: {
-    name: string;
-    status: string;
-    endpoint: string;
-  }[];
-  datacenterLocation: string;
-};
-
-export const getProjectRegions = async (
-  projectId: string,
-): Promise<TRegion[]> => {
-  const { data } = await fetchIcebergV6<TRegion>({
-    route: `/cloud/project/${projectId}/region`,
-  });
-  return data;
+  type: 'region-3-az' | 'region' | 'localzone';
+  availabilityZones: string[];
+  isInMaintenance: boolean;
+  isActivated: boolean;
+  country: string;
+  filters: TVolumeCatalogElementFilter;
+  datacenter: string;
 };

@@ -167,16 +167,12 @@
         data-name="storage_select_deployment_mode"
         data-header="{{:: 'pci_projects_project_storages_containers_deployment_mode_title' | translate }}"
         data-navigation="$ctrl.container.deploymentMode"
-        data-on-focus="$ctrl.displaySelectedDeploymentMode=false"
-        data-on-submit="$ctrl.displaySelectedDeploymentMode=true"
+        data-on-submit="$ctrl.onDeploymentModeSubmit()"
         data-editable="!$ctrl.isLoading"
         data-valid="$ctrl.container.deploymentMode"
         data-prevent-next
     >
-        <div
-            data-ng-if="!$ctrl.displaySelectedDeploymentMode"
-            class="container-fluid px-0"
-        >
+        <div class="container-fluid px-0">
             <p>
                 <span
                     data-translate="pci_projects_project_storages_containers_add_deployment_mode_sub_title"
@@ -280,7 +276,6 @@
                     data-model="$ctrl.container.deploymentMode"
                     data-values="[$ctrl.container.deploymentMode]"
                     data-variant="light"
-                    data-on-change="$ctrl.onContainerSolutionChange()"
                     data-required
                 >
                     <oui-select-picker-label>
@@ -390,9 +385,43 @@
         </div>
     </oui-step-form>
 
-    <!--Create/Linked user-->
+    <!--offsite replication-->
     <oui-step-form
         data-position="3"
+        data-ng-if="!$ctrl.archive && $ctrl.isRightOffer() && !$ctrl.isLocalZone() && $ctrl.container.deploymentMode === $ctrl.OBJECT_CONTAINER_MODE_MULTI_ZONES"
+        data-on-focus="$ctrl.onOffsiteReplicationFocus()"
+        data-header="{{:: 'pci_projects_project_storages_containers_offsite_replication_title' | translate }}"
+        data-editable="!$ctrl.isLoading"
+        data-name="storage_container_replication"
+    >
+        <pci-project-storages-offsite-replication
+            data-is-offsite-replication-enabled="$ctrl.isOffsiteReplicationEnabled"
+            data-on-offsite-replication-change="$ctrl.handleOffsiteReplicationChange(replication)"
+            data-offsite-replication-price="$ctrl.OFFSITE_REPLICATION_PRICE"
+            data-estimated-price="$ctrl.DEPLOYMENT_PRICE"
+            data-price-formatter="$ctrl.OffsiteReplicationPriceFormatter"
+        ></pci-project-storages-offsite-replication>
+    </oui-step-form>
+
+    <!-- bucket versioning -->
+
+    <oui-step-form
+        data-position="{{!$ctrl.archive && $ctrl.isRightOffer() && $ctrl.container.deploymentMode === $ctrl.OBJECT_CONTAINER_MODE_MULTI_ZONES ? 4 : 3}}"
+        data-ng-if="!$ctrl.archive && $ctrl.isRightOffer() && !$ctrl.isLocalZone()"
+        data-on-focus="$ctrl.onBucketVersioningFocus()"
+        data-header="{{:: 'pci_projects_project_storages_containers_bucket_versioning_title' | translate }}"
+        data-editable="!$ctrl.isLoading"
+        data-name="storage_container_bucket_versioning"
+    >
+        <pci-project-storages-bucket-versioning
+            data-is-bucket-versioning-enabled="$ctrl.isBucketVersioningEnabled"
+            data-force-enable-versioning="$ctrl.forceEnableVersioning"
+        ></pci-project-storages-bucket-versioning>
+    </oui-step-form>
+
+    <!--Create/Linked user-->
+    <oui-step-form
+        data-position="{{ !$ctrl.archive && $ctrl.isRightOffer() && $ctrl.container.deploymentMode === $ctrl.OBJECT_CONTAINER_MODE_MULTI_ZONES ? 5 : 4}}"
         data-ng-if="!$ctrl.archive && $ctrl.isRightOffer() && !$ctrl.isLocalZone()"
         data-header="{{:: 'pci_projects_project_storages_containers_add_create_or_linked_user_title' | translate }}"
         data-navigation="$ctrl.isReadyForValidation()"
@@ -412,24 +441,9 @@
         ></oui-spinner>
     </oui-step-form>
 
-    <!-- bucket versioning -->
-
-    <oui-step-form
-        data-position="4"
-        data-ng-if="!$ctrl.archive && $ctrl.isRightOffer() && !$ctrl.isLocalZone()"
-        data-header="{{:: 'pci_projects_project_storages_containers_bucket_versioning_title' | translate }}"
-        data-editable="!$ctrl.isLoading"
-        data-name="storage_container_bucket_versioning"
-    >
-        <pci-project-storages-bucket-versioning
-            is-bucket-versioning-enabled="$ctrl.container.isBucketVersioningEnabled"
-            on-bucket-versioning-change="$ctrl.handleBucketVersioningChange(versioning)"
-        ></pci-project-storages-bucket-versioning>
-    </oui-step-form>
-
     <!-- Data encryption -->
     <oui-step-form
-        data-position="{{!$ctrl.archive && $ctrl.isRightOffer() ? 5 : 4}}"
+        data-position="{{ !$ctrl.archive && $ctrl.isRightOffer() && $ctrl.container.deploymentMode === $ctrl.OBJECT_CONTAINER_MODE_MULTI_ZONES ? 6 : !$ctrl.archive && $ctrl.isRightOffer() ? 5 :4}}"
         data-ng-if="!$ctrl.archive && $ctrl.encryptionAvailable && $ctrl.isRightOffer() && !$ctrl.isLocalZone()"
         data-header="{{:: 'pci_projects_project_storages_containers_data_encryption_title' | translate }}"
         data-editable="!$ctrl.isLoading"
@@ -445,7 +459,7 @@
 
     <!--Container name-->
     <oui-step-form
-        data-position="{{!$ctrl.archive && $ctrl.isRightOffer() ? 6 : 3}}"
+        data-position="{{ !$ctrl.archive && $ctrl.isRightOffer() && $ctrl.container.deploymentMode === $ctrl.OBJECT_CONTAINER_MODE_MULTI_ZONES ? 7 : !$ctrl.archive && $ctrl.isRightOffer() ? 6 : 3}}"
         data-ng-if="!$ctrl.archive && $ctrl.currentStep > 0"
         data-header="{{:: 'pci_projects_project_storages_containers_add_name_title' | translate }}"
         data-editable="!$ctrl.isLoading"
@@ -477,7 +491,7 @@
 
         <oui-message
             data-type="info"
-            data-ng-if="$ctrl.container.deploymentMode === $ctrl.OBJECT_CONTAINER_MODE_MONO_ZONE || $ctrl.container.deploymentMode === $ctrl.OBJECT_CONTAINER_MODE_MULTI_ZONES"
+            data-ng-if="$ctrl.container.deploymentMode === $ctrl.OBJECT_CONTAINER_MODE_MONO_ZONE || $ctrl.container.deploymentMode === $ctrl.OBJECT_CONTAINER_MODE_MULTI_ZONES && !$ctrl.isOffsiteReplicationEnabled"
         >
             <p>
                 <span

@@ -3,6 +3,70 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.8.0...@ovh-ux/manager-pci-block-storage-app@0.8.1) (2025-02-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-block-storage-app
+
+
+
+
+
+# [0.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.7.2...@ovh-ux/manager-pci-block-storage-app@0.8.0) (2025-02-10)
+
+
+### Features
+
+* **pci-block-storage:** add wording hints on new page ([#15161](https://github.com/ovh/manager/issues/15161)) ([5ccbd90](https://github.com/ovh/manager/commit/5ccbd90b9d8819666e8491e13aad8a543cc31fa4))
+
+
+
+
+
+## [0.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.7.1...@ovh-ux/manager-pci-block-storage-app@0.7.2) (2025-02-06)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3683] ([074da5d](https://github.com/ovh/manager/commit/074da5d4944d236d9f9afb9726b0aa7598d0a35e))
+* **i18n:** add missing translations [CDS 3686] ([9b48552](https://github.com/ovh/manager/commit/9b485525782195d34d91ff13e08dabe8e827ff89))
+* **i18n:** add missing translations [CDS 3688] ([1ac2218](https://github.com/ovh/manager/commit/1ac221843fb7dc5509bb8a9e46ecf9c18174bf7b))
+
+
+
+
+
+## [0.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.7.0...@ovh-ux/manager-pci-block-storage-app@0.7.1) (2025-02-03)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-block-storage-app
+
+
+
+
+
+# [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.6.24...@ovh-ux/manager-pci-block-storage-app@0.7.0) (2025-01-31)
+
+
+### Bug Fixes
+
+* **pci-block-storage:** use 1AZ region in edit page ([#15202](https://github.com/ovh/manager/issues/15202)) ([0596863](https://github.com/ovh/manager/commit/05968634efe79a88d5251c9caeef358af50fa0fb))
+
+
+### Features
+
+* **pci-block-storage:** add availability zone step for 3AZ region ([#14406](https://github.com/ovh/manager/issues/14406)) ([ff88262](https://github.com/ovh/manager/commit/ff88262fe3d1fd8a242fedd1f3bd6859a349226b))
+
+
+
+
+
+## [0.6.24](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.6.23...@ovh-ux/manager-pci-block-storage-app@0.6.24) (2025-01-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-block-storage-app
+
+
+
+
+
 ## [0.6.23](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.6.22...@ovh-ux/manager-pci-block-storage-app@0.6.23) (2025-01-20)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-block-storage-app

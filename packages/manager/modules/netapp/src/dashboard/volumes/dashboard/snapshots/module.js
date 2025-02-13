@@ -15,6 +15,7 @@ import restoreModule from './restore';
 import editModule from './edit';
 import deleteModule from './delete';
 import service from './service';
+import createVolumeModule from './create-volume';
 
 const moduleName = 'ovhManagerNetAppVolumesDashboardSnapshots';
 
@@ -31,6 +32,7 @@ angular
     editModule,
     deleteModule,
     snapshotPolicies,
+    createVolumeModule,
   ])
   .config(routing)
   .component('ovhManagerNetAppVolumesDashboardSnapshots', component)

@@ -3,6 +3,75 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.5.0...@ovh-ux/manager-web@19.5.1) (2025-02-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+# [19.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.4.3...@ovh-ux/manager-web@19.5.0) (2025-02-10)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3690] ([#15292](https://github.com/ovh/manager/issues/15292)) ([77cf340](https://github.com/ovh/manager/commit/77cf34033e765b19a8c4be2dc7b2c16f12b4415f))
+* **web.hosting:** change 2api call by iceberg on domain configuration ([ce458fe](https://github.com/ovh/manager/commit/ce458fed2b7fa8a4ed8c5fce4bb46d4f11c12ae7))
+
+
+### Features
+
+* **web:** correct message displayed on hosting page inviting to migrate ([#15130](https://github.com/ovh/manager/issues/15130)) ([554af82](https://github.com/ovh/manager/commit/554af82e8153ec0693dd4295f816bb131a8dfab6))
+
+
+
+
+
+## [19.4.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.4.2...@ovh-ux/manager-web@19.4.3) (2025-02-03)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.4.1...@ovh-ux/manager-web@19.4.2) (2025-02-03)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3668] ([#15136](https://github.com/ovh/manager/issues/15136)) ([a6d8742](https://github.com/ovh/manager/commit/a6d8742f2038045baba1708309414fa206724c60))
+
+
+
+
+
+## [19.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.4.0...@ovh-ux/manager-web@19.4.1) (2025-01-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+# [19.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.3.10...@ovh-ux/manager-web@19.4.0) (2025-01-28)
+
+
+### Bug Fixes
+
+* **domain:** update onboarding translation text ([#14903](https://github.com/ovh/manager/issues/14903)) ([e5d15e9](https://github.com/ovh/manager/commit/e5d15e91802f127558ab20a5cdccc0c929632c04))
+
+
+### Features
+
+* **web.domain:** eligibility rules project ([#14608](https://github.com/ovh/manager/issues/14608)) ([39523e1](https://github.com/ovh/manager/commit/39523e13b3f8bf1853ee2447960e4f5bd4326ca2))
+* **web:** add startsql order ([#14636](https://github.com/ovh/manager/issues/14636)) ([bda6ae4](https://github.com/ovh/manager/commit/bda6ae4c6790ea090e83546858e51561f039a4c2))
+
+
+
+
+
 ## [19.3.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.3.9...@ovh-ux/manager-web@19.3.10) (2025-01-23)
 
 **Note:** Version bump only for package @ovh-ux/manager-web

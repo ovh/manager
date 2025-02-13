@@ -129,11 +129,13 @@
                 </p>
             </oui-select-picker-section>
 
-            <oui-select-picker-footer>
+            <oui-select-picker-footer
+                data-ng-if="$ctrl.volumePrices[volumeOption.id] !== null"
+            >
                 <p
                     class="text-center my-1"
                     data-translate="pci_projects_project_storages_volume_backup_create_step_2_option_price"
-                    data-translate-values="{ priceValue: '<strong>'+ $ctrl.formatVolumePrice(volumeOption) +'</strong>'}"
+                    data-translate-values="{ priceValue: '<strong>'+ $ctrl.volumePrices[volumeOption.id] +'</strong>'}"
                 ></p>
             </oui-select-picker-footer>
         </oui-select-picker>

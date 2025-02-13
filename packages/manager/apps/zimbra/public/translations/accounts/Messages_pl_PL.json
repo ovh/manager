@@ -12,7 +12,8 @@
   "zimbra_account_datagrid_tooltip_modification": "Edytuj",
   "zimbra_account_datagrid_tooltip_delete": "Usuń",
   "zimbra_account_account_add": "Załóż konto",
-  "zimbra_domains_tooltip_need_domain": "Najpierw skonfiguruj domenę",
+  "zimbra_domains_tooltip_need_domain": "Skonfiguruj najpierw domenę.",
   "zimbra_account_datagrid_status_label": "Status",
-  "zimbra_account_account_order": "Zamów konto"
+  "zimbra_account_account_order": "Zamów konto",
+  "zimbra_domains_tooltip_need_slot": "Brak dostępnych kont. Zamów konto."
 }

@@ -249,4 +249,26 @@ export default class VolumeBackupService {
       ),
     });
   }
+
+  getSnapshotProductAvailability(projectId, ovhSubsidiary) {
+    return this.$http
+      .get(`/cloud/project/${projectId}/capabilities/productAvailability`, {
+        params: {
+          ovhSubsidiary,
+          addonFamily: 'snapshot',
+        },
+      })
+      .then(({ data }) => data);
+  }
+
+  getBackupProductAvailability(projectId, ovhSubsidiary) {
+    return this.$http
+      .get(`/cloud/project/${projectId}/capabilities/productAvailability`, {
+        params: {
+          ovhSubsidiary,
+          addonFamily: 'volume-backup',
+        },
+      })
+      .then(({ data }) => data);
+  }
 }

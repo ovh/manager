@@ -1,0 +1,9 @@
+{
+  "autorenew_agora_terminate_vrack_blocked_title": "Eliminar mi vRack",
+  "autorenew_agora_terminate_vrack_blocked_description": "Para eliminar el vRack, deberá desconectar previamente todos los servicios asociados.",
+  "autorenew_agora_terminate_vrack_blocked_close": "Cerrar",
+  "autorenew_agora_terminate_service_VRACK": "Eliminar vRack",
+  "autorenew_agora_terminate_service_warning_VRACK": "Por favor, confirme la eliminación del Vrack",
+  "autorenew_agora_terminate_service_success_VRACK": "La solicitud de eliminación del vRack se ha enviado correctamente. Le hemos enviado un mensaje de correo electrónico con el procedimiento que debe seguir.",
+  "autorenew_agora_terminate_service_error_VRACK": "Se ha producido un error al solicitar la eliminación del vRack. {{error}}"
+}

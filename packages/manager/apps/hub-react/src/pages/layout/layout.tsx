@@ -1,4 +1,12 @@
-import { useEffect, useContext, useRef, Suspense, lazy, useState } from 'react';
+import React, {
+  useEffect,
+  useContext,
+  useRef,
+  Suspense,
+  lazy,
+  useState,
+  useMemo,
+} from 'react';
 import { useLocation } from 'react-router-dom';
 import {
   useOvhTracking,
@@ -21,17 +29,12 @@ import {
 import { defineCurrentPage } from '@ovh-ux/request-tagger';
 import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-import {
-  features,
-  BILLING_FEATURE,
-  SIRET_BANNER_FEATURE,
-  SIRET_MODAL_FEATURE,
-} from '@/pages/layout/layout.constants';
+import { features } from '@/pages/layout/layout.constants';
 import { useFetchHubServices } from '@/data/hooks/services/useServices';
 import { useFetchHubLastOrder } from '@/data/hooks/lastOrder/useLastOrder';
 // Components used in Suspense's fallback cannot be lazy loaded (break testing)
 import TileGridSkeleton from '@/components/tile-grid-skeleton/TileGridSkeleton.component';
-import TileSkeleton from '@/components/tile-grid-skeleton/tile-skeleton/TileSkeleton.component';
+import { Context } from '@/pages/layout/context';
 
 const Welcome = lazy(() => import('@/components/welcome/Welcome.component'));
 const Banner = lazy(() => import('@/components/banner/Banner.component'));
@@ -91,10 +94,7 @@ export default function Layout() {
     getIsAccountSidebarVisible();
   }, []);
 
-  const {
-    data: availability,
-    isPending: isAvailabilityLoading,
-  } = useFeatureAvailability(features);
+  const { data: availability } = useFeatureAvailability(features);
   const {
     data: services,
     isPending: areServicesLoading,
@@ -113,9 +113,17 @@ export default function Layout() {
     services?.data?.count ||
     (lastOrder?.status === 'OK' && lastOrder?.data)
   );
+  const context = useMemo(
+    () => ({
+      isLoading,
+      isFreshCustomer,
+      availability,
+    }),
+    [isLoading, isFreshCustomer, availability],
+  );
 
   return (
-    <>
+    <Context.Provider value={context}>
       <div className="skipnav">
         <OsdsButton
           inline
@@ -157,87 +165,24 @@ export default function Layout() {
                   >
                     <Welcome />
                   </Suspense>
-                  <div className="flex flex-wrap w-full minw-0 items-center justify-between">
-                    {isLoading && (
-                      <OsdsSkeleton data-testid="banners_skeleton" />
-                    )}
-                    {!isLoading && !isFreshCustomer && (
-                      <>
-                        <Suspense
-                          fallback={
-                            <OsdsSkeleton
-                              data-testid="banner_skeleton"
-                              inline
-                            />
-                          }
-                        >
-                          <Banner />
-                        </Suspense>
-                        <Suspense
-                          fallback={
-                            <OsdsSkeleton
-                              data-testid="notifications_carousel_skeleton"
-                              inline
-                            />
-                          }
-                        >
-                          <NotificationsCarousel />
-                        </Suspense>
-                      </>
-                    )}
-                  </div>
-                  {isLoading && (
-                    <>
-                      <OsdsSkeleton />
-                      <OsdsSkeleton />
-                      <OsdsSkeleton />
-                      <OsdsSkeleton />
-                    </>
-                  )}
-                  {!isLoading && !isFreshCustomer && (
-                    <>
-                      {availability?.[SIRET_BANNER_FEATURE] && (
-                        <Suspense
-                          fallback={
-                            <OsdsSkeleton data-testid="siret-banner-skeleton" />
-                          }
-                        >
-                          <SiretBanner />
-                        </Suspense>
-                      )}
-                      {availability?.[SIRET_MODAL_FEATURE] && (
-                        <Suspense
-                          fallback={
-                            <OsdsSkeleton data-testid="siret-banner-skeleton" />
-                          }
-                        >
-                          <SiretModal />
-                        </Suspense>
-                      )}
-                    </>
-                  )}
-                  {!isLoading && (
-                    <>
-                      {availability?.['identity-documents'] && (
-                        <Suspense
-                          fallback={
-                            <OsdsSkeleton data-testid="kyc_india_banner_skeleton" />
-                          }
-                        >
-                          <KycIndiaBanner />
-                        </Suspense>
-                      )}
-                      {availability?.['procedures:fraud'] && (
-                        <Suspense
-                          fallback={
-                            <OsdsSkeleton data-testid="kyc_fraud_banner_skeleton" />
-                          }
-                        >
-                          <KycFraudBanner />
-                        </Suspense>
-                      )}
-                    </>
-                  )}
+                  <Suspense>
+                    <Banner />
+                  </Suspense>
+                  <Suspense>
+                    <NotificationsCarousel />
+                  </Suspense>
+                  <Suspense>
+                    <SiretBanner />
+                  </Suspense>
+                  <Suspense>
+                    <SiretModal />
+                  </Suspense>
+                  <Suspense>
+                    <KycIndiaBanner />
+                  </Suspense>
+                  <Suspense>
+                    <KycFraudBanner />
+                  </Suspense>
                   {!isFreshCustomer && (
                     <OsdsText
                       className="inline-block my-6"
@@ -250,58 +195,28 @@ export default function Layout() {
                     </OsdsText>
                   )}
                   <div className={`flex flex-wrap ${isLoading ? '' : '-mx-6'}`}>
-                    {isLoading && <TileSkeleton />}
-                    {!isLoading && !isFreshCustomer && (
-                      <>
-                        <div className="md:w-8/12 mb-6 md:mb-8 px-6 box-border">
-                          <Suspense fallback={<TileSkeleton />}>
-                            <PaymentStatus
-                              canManageBilling={availability?.[BILLING_FEATURE]}
-                            />
-                          </Suspense>
-                        </div>
-                        <div className="md:w-4/12 mb-6 md:mb-8 order-3 md:order-2 px-6 box-border">
-                          <Suspense
-                            fallback={
-                              <TileSkeleton data-testid="billing_summary_skeleton" />
-                            }
-                          >
-                            {user.enterprise ? (
-                              <EnterpriseBillingSummary />
-                            ) : (
-                              <BillingSummary />
-                            )}
-                          </Suspense>
-                        </div>
-                      </>
-                    )}
-                    {!isLoading && (
-                      <>
-                        <div className="md:w-8/12 mb-6 md:mb-8 order-2 md:order-3 px-6 box-border">
-                          <Suspense
-                            fallback={
-                              <TileSkeleton data-testid="support_skeleton" />
-                            }
-                          >
-                            <HubSupport />
-                          </Suspense>
-                        </div>
-                        {!isFreshCustomer && (
-                          <div className="md:w-4/12 order-4 px-6 box-border">
-                            <Suspense
-                              fallback={
-                                <OsdsSkeleton
-                                  data-testid="order_tracking_skeleton"
-                                  inline
-                                />
-                              }
-                            >
-                              <OrderTracking />
-                            </Suspense>
-                          </div>
+                    <div className="md:w-8/12 mb-6 md:mb-8 px-6 box-border">
+                      <PaymentStatus />
+                    </div>
+                    <div className="md:w-4/12 mb-6 md:mb-8 order-3 md:order-2 px-6 box-border">
+                      <Suspense>
+                        {user.enterprise ? (
+                          <EnterpriseBillingSummary />
+                        ) : (
+                          <BillingSummary />
                         )}
-                      </>
-                    )}
+                      </Suspense>
+                    </div>
+                    <div className="md:w-8/12 mb-6 md:mb-8 order-2 md:order-3 px-6 box-border">
+                      <Suspense>
+                        <HubSupport />
+                      </Suspense>
+                    </div>
+                    <div className="md:w-4/12 order-4 px-6 box-border">
+                      <Suspense>
+                        <OrderTracking />
+                      </Suspense>
+                    </div>
                   </div>
                   <div className="hub-dashboard-product">
                     {isLoading && <TileGridSkeleton />}
@@ -322,6 +237,6 @@ export default function Layout() {
           </div>
         </div>
       </div>
-    </>
+    </Context.Provider>
   );
 }

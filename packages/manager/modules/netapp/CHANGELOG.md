@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.4.1...@ovh-ux/manager-netapp@2.5.0) (2025-02-11)
+
+
+### Features
+
+* **dedicated.netapp:** create volume from snapshot ([#14721](https://github.com/ovh/manager/issues/14721)) ([15ade00](https://github.com/ovh/manager/commit/15ade00417a523d4caa80b4618e61caf89d19277))
+
+
+
+
+
 ## [2.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.4.0...@ovh-ux/manager-netapp@2.4.1) (2025-01-02)
 
 

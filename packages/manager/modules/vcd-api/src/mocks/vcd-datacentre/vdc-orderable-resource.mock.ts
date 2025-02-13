@@ -30,6 +30,7 @@ export const orderableResourceData: VCDOrderableResourceData = {
       name: 'vcd-datastore-1000',
       profile: 'vcd-datastore-1000',
       type: 'storage',
+      performanceClass: '250',
     },
   ],
 };

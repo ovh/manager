@@ -96,6 +96,7 @@ export const StepComponent = ({
             <div className="text-2xl w-full md:w-1/6" data-testid="edit">
               <OdsButton
                 label={edit.label as string}
+                variant="outline"
                 data-testid="edit-cta"
                 className="float-left md:float-right"
                 isDisabled={edit.isDisabled || undefined}

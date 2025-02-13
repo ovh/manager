@@ -12,7 +12,7 @@ export const TileBlock: React.FC<React.PropsWithChildren<TileBlockProps>> = ({
 }) => (
   <dl className="flex flex-col gap-1 m-0">
     <dt>
-      <OdsText preset={ODS_TEXT_PRESET.heading6}>{label}</OdsText>
+      {!!label && <OdsText preset={ODS_TEXT_PRESET.heading6}>{label}</OdsText>}
     </dt>
     <dd className="m-0">{children}</dd>
   </dl>

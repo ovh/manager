@@ -34,5 +34,6 @@
   "netapp_volumes_snapshots_actions_hold": "Guardar",
   "netapp_volumes_snapshots_hold_action_doing": "La copia de seguridad del snapshot se ha registrado y será efectiva en unos instantes.",
   "netapp_volumes_snapshots_hold_action_success": "La copia de seguridad del snapshot se ha realizado correctamente.",
-  "netapp_volumes_snapshots_hold_action_error": "Se ha producido un problema al realizar la copia de seguridad del snapshot."
+  "netapp_volumes_snapshots_hold_action_error": "Se ha producido un problema al realizar la copia de seguridad del snapshot.",
+  "netapp_volumes_snapshots_actions_create_volume": "Crear un volumen"
 }

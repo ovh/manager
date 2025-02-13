@@ -337,24 +337,25 @@ angular.module('services').service(
     }
 
     /**
-     *
-     * @param {string} serviceName
      * @param {string} domain
      * @param {string} subDomain
      * @param {boolean} wwwNeeded
      */
-    getExistingConfiguration(serviceName, domain, subDomain, wwwNeeded) {
-      return this.$http
-        .get(
-          `${this.aapiHostingPath}/${serviceName}/domains/${domain}/configuration`,
-          {
-            params: {
-              domainName: subDomain,
-              wwwNeeded,
-            },
-          },
-        )
-        .then((response) => response.data);
+    getExistingConfiguration(domain, subDomain, wwwNeeded) {
+      return this.iceberg(`/domain/zone/${domain}/record`)
+        .query()
+        .expand('CachedObjectList-Pages')
+        .addFilter('fieldType', 'eq', 'A')
+        .execute()
+        .$promise.then(({ data }) =>
+          data.filter(
+            (record) =>
+              record.subDomain === subDomain ||
+              (wwwNeeded &&
+                record.subDomain ===
+                  ['www', subDomain].filter(Boolean).join('.')),
+          ),
+        );
     }
 
     /**

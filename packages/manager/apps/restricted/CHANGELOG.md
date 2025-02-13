@@ -3,6 +3,58 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-restricted-app@0.9.1...@ovh-ux/manager-restricted-app@0.10.0) (2025-02-11)
+
+
+### Features
+
+* dummy changes to test new deploy method ([f3f3f31](https://github.com/ovh/manager/commit/f3f3f311485dcbd149f22801d8381e2cc5303ff4))
+
+
+
+
+
+## [0.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-restricted-app@0.9.0...@ovh-ux/manager-restricted-app@0.9.1) (2025-02-06)
+
+**Note:** Version bump only for package @ovh-ux/manager-restricted-app
+
+
+
+
+
+# [0.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-restricted-app@0.8.1...@ovh-ux/manager-restricted-app@0.9.0) (2025-02-06)
+
+
+### Features
+
+* **catalog, restricted:** test comments to remove ([1430ebc](https://github.com/ovh/manager/commit/1430ebcf906fa498bfe06c6bc9dd17e43fcf5a8e))
+
+
+
+
+
+## [0.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-restricted-app@0.8.0...@ovh-ux/manager-restricted-app@0.8.1) (2025-02-04)
+
+
+### Reverts
+
+* Revert "feat(catalog, restricted): test comments to remove" ([d9ea358](https://github.com/ovh/manager/commit/d9ea358a809f960dc0f162a40f78cbede15868a0))
+
+
+
+
+
+# [0.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-restricted-app@0.7.5...@ovh-ux/manager-restricted-app@0.8.0) (2025-02-04)
+
+
+### Features
+
+* **catalog, restricted:** test comments to remove ([f949a43](https://github.com/ovh/manager/commit/f949a43718ef51f1d2fda74a6730a6b047122f09))
+
+
+
+
+
 ## [0.7.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-restricted-app@0.7.4...@ovh-ux/manager-restricted-app@0.7.5) (2025-01-20)
 
 

@@ -1689,5 +1689,7 @@
   "exchange_ACTION_order_accounts_step3_bc_ovhtel": "Zamówienie zostało wygenerowane. Trwa przetwarzanie Twojego zamówienia.",
   "exchange_ACTION_order_accounts_step3_explication_ovhtel": "Utworzenie konta zajmie około 10 minut.",
   "exchange_tab_RESOURCES_add_resource_company": "Firma",
-  "exchange_GROUPS_add_group_company_label": "Firma"
+  "exchange_GROUPS_add_group_company_label": "Firma",
+  "exchange_tab_INFORMATIONS_backup": "Kopie zapasowe",
+  "exchange_tab_INFORMATIONS_backup_guide_title": "Tworzenie kopii zapasowych kont e-mail"
 }

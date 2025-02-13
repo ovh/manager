@@ -36,7 +36,6 @@
   "vrack_menu_add": "Crea una vRack",
   "vrack_menu_project_num": "vRack {{num}}",
   "vrack_service_type_dedicatedserver": "Server dedicato",
-  "vrack_service_type_ovhcloudconnect": "OVHcloud Connect",
   "vrack_service_type_dedicatedcloud": "Private Cloud",
   "vrack_service_type_managedbaremetal": "Managed Bare Metal",
   "vrack_service_type_dedicatedconnect": "Dedicated Connect",
@@ -46,11 +45,14 @@
   "vrack_service_type_ip": "IP",
   "vrack_service_type_cloudproject": "Progetto Cloud",
   "vrack_service_type_iploadbalancing": "Load Balancer",
-  "vrack_service_type_vrackservices": "vRack Services",
-  "vrack_select_dialog_modal_description_for_ipv6": "Ti ricordiamo che i blocchi IPv6 aggiuntivi possono essere aggiunti o eliminati solo uno alla volta.",
-  "vrack_select_dialog_modal_description_for_vs": "Ti ricordiamo che l'aggiunta e l'eliminazione dei prodotti vRack Services può avvenire solo uno alla volta.",
   "vrack_add_dialog_modal_title": "Aggiungere uno o più servizi",
   "vrack_add_dialog_modal_description": "Vuoi davvero aggiungere {{ services }} alla tua vRack?",
   "vrack_delete_dialog_modal_title": "Rimuovere uno o più servizi",
-  "vrack_delete_dialog_modal_description": "Vuoi davvero rimuovere {{ services }} dalla tua vRack?"
+  "vrack_delete_dialog_modal_description": "Vuoi davvero rimuovere {{ services }} dalla tua vRack?",
+  "vrack_service_type_ovhcloudconnect": "OVHcloud Connect",
+  "vrack_service_type_vrackservices": "vRack Services",
+  "vrack_select_dialog_modal_description_for_ipv6": "Ti ricordiamo che i blocchi IPv6 aggiuntivi possono essere aggiunti o eliminati solo uno alla volta.",
+  "vrack_select_dialog_modal_description_for_vs": "Ti ricordiamo che l'aggiunta e l'eliminazione dei prodotti vRack Services può avvenire solo uno alla volta.",
+  "vrack_terminate_modal_success_banner": "La tua richiesta di eliminazione della vRack è stata presa in carico. Ti abbiamo inviato un’email con la procedura da seguire.",
+  "vrack_terminate_modal_error_banner": "L’eliminazione della vRack non è andata a buon fine. Verifica che la tua vRack sia vuota."
 }

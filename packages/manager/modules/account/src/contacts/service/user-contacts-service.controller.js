@@ -25,4 +25,8 @@ export default class UserContactsServiceController {
   onCriteriaChange(criteria) {
     this.updateCriteria(criteria);
   }
+
+  static isContactEditDisabled(service) {
+    return service.status === 'inCreation';
+  }
 }

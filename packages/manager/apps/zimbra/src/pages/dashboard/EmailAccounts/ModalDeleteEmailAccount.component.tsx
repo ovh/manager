@@ -19,12 +19,10 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { useAccount, useGenerateUrl, usePlatform } from '@/hooks';
 import Modal from '@/components/Modals/Modal';
-import {
-  deleteZimbraPlatformAccount,
-  getZimbraPlatformAccountsQueryKey,
-} from '@/api/account';
+import { deleteZimbraPlatformAccount } from '@/api/account';
 import queryClient from '@/queryClient';
 import { CANCEL, CONFIRM, DELETE_EMAIL_ACCOUNT } from '@/tracking.constant';
+import { getZimbraPlatformListQueryKey } from '@/api/platform';
 
 export default function ModalDeleteEmailAccount() {
   const { trackClick, trackPage } = useOvhTracking();
@@ -73,7 +71,7 @@ export default function ModalDeleteEmailAccount() {
     },
     onSettled: () => {
       queryClient.invalidateQueries({
-        queryKey: getZimbraPlatformAccountsQueryKey(platformId),
+        queryKey: getZimbraPlatformListQueryKey(),
       });
 
       onClose();

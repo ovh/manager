@@ -23,5 +23,6 @@ export default {
     reload: '<',
     loadEnd: '&',
     displayLoader: '<?',
+    are3azRegionsAvailable: '<?',
   },
 };

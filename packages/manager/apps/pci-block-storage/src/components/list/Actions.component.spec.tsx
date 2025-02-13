@@ -25,6 +25,7 @@ const mockVolume: TVolume = {
   planCode: 'plan',
   type: 'ssd',
   regionName: 'US West 2',
+  availabilityZone: 'any',
 };
 const mockVolumeDetach: TVolume = {
   id: '1',
@@ -40,6 +41,7 @@ const mockVolumeDetach: TVolume = {
   planCode: 'plan',
   type: 'ssd',
   regionName: 'US West 2',
+  availabilityZone: 'any',
 };
 describe('ActionsComponent', () => {
   it('ActionsComponent renders correct button with correct links', () => {

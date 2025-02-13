@@ -11,6 +11,7 @@ import regionsList from '../../../../../components/project/regions-list';
 import associateUserToContainer from './components/associate-user-to-container';
 import dataEncryption from '../container/data-encryption';
 import bucketVersioning from '../container/bucket-versioning';
+import offsiteReplication from '../container/offsite-replication';
 
 import component from './add.component';
 
@@ -29,6 +30,7 @@ angular
     associateUserToContainer,
     dataEncryption,
     bucketVersioning,
+    offsiteReplication,
   ])
   .component('pciProjectStorageContainersAdd', component)
   .run(/* @ngTranslationsInject:json ./translations */);

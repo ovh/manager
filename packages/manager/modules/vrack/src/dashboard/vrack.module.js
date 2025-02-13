@@ -36,6 +36,7 @@ import vrackDeleteModal from '../vrack-associated-services/ipv6/delete-dialog';
 import vrackAddModal from '../vrack-associated-services/ipv6/add-dialog';
 import IPv6SubnetAddModal from '../vrack-associated-services/ipv6/add-subnet';
 import IPv6SubnetDeleteModal from '../vrack-associated-services/ipv6/delete-subnet';
+import vrackTerminateModal from '../terminate-modal';
 
 const moduleName = 'ovhManagerVrackDetails';
 
@@ -61,6 +62,7 @@ angular
     vrackAddModal,
     vrackDeleteModal,
     ApiV2ListHelper.moduleName,
+    vrackTerminateModal,
   ])
   .service('vrackService', service)
   .component('ovhManagerVrackComponent', component)

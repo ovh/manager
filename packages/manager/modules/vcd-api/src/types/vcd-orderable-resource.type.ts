@@ -5,7 +5,9 @@ import { VCDCatalogProductPricing } from './vcd-catalog.type';
 export type VCDOrderableVHost = Omit<VCDComputeState, 'billingType'> & {
   vCPUSpeed: number;
 };
-export type VCDOrderableStorage = Omit<VCDStorageState, 'billingType'>;
+export type VCDOrderableStorage = Omit<VCDStorageState, 'billingType'> & {
+  performanceClass: string;
+};
 
 type WithPricing<T> = T & { pricing: VCDCatalogProductPricing };
 

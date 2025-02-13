@@ -3,6 +3,61 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.17.1...@ovh-ux/manager-key-management-service-app@0.17.2) (2025-02-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-key-management-service-app
+
+
+
+
+
+## [0.17.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.17.0...@ovh-ux/manager-key-management-service-app@0.17.1) (2025-02-06)
+
+**Note:** Version bump only for package @ovh-ux/manager-key-management-service-app
+
+
+
+
+
+# [0.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.16.2...@ovh-ux/manager-key-management-service-app@0.17.0) (2025-02-03)
+
+
+### Features
+
+* **kms:** change the format of the identities modals ([3dd6570](https://github.com/ovh/manager/commit/3dd657077cfbca9427bac889c043c344c82f516e))
+
+
+
+
+
+## [0.16.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.16.1...@ovh-ux/manager-key-management-service-app@0.16.2) (2025-01-31)
+
+**Note:** Version bump only for package @ovh-ux/manager-key-management-service-app
+
+
+
+
+
+## [0.16.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.16.0...@ovh-ux/manager-key-management-service-app@0.16.1) (2025-01-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-key-management-service-app
+
+
+
+
+
+# [0.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.15.2...@ovh-ux/manager-key-management-service-app@0.16.0) (2025-01-29)
+
+
+### Features
+
+* **key-management-service:** add KMIP RSA endpoint on dashboard ([58e2e1e](https://github.com/ovh/manager/commit/58e2e1eec6437605cbd4ed6eab35edbd2b7b2d01))
+* **kms:** ods18 migration ([#14544](https://github.com/ovh/manager/issues/14544)) ([11d03ac](https://github.com/ovh/manager/commit/11d03ac059f75eaac9c1994e4a42f246bb3afe62))
+
+
+
+
+
 ## [0.15.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.15.1...@ovh-ux/manager-key-management-service-app@0.15.2) (2025-01-23)
 
 

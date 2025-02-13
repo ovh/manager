@@ -39,7 +39,6 @@
   "pack_move_cannot_validate_move": "Il nous est impossible de déménager votre pack: {{message}}",
   "pack_move_line_current_address": "Adresse actuelle",
   "pack_move_line_future_address": "Adresse future",
-  "pack_move_portLine_cost": "La conservation vous sera facturée <span class=\"font-weight-bold text-price\">50€</span>",
   "pack_move_eligibility_error": "Une erreur est survenue durant le test d’éligibilité:",
   "pack_move_eligibility_no_offers": "La ligne {{ number }} n'est éligible à aucune de nos offres.",
   "pack_move_portLine_disabled": "Vous ne pouvez pas porter votre numéro.",

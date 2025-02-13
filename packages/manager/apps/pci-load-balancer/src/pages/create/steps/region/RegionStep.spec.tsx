@@ -1,22 +1,24 @@
 import { describe, Mock, vi } from 'vitest';
+import {
+  ResponseAPIError,
+  TProject,
+  useProject,
+} from '@ovh-ux/manager-pci-common';
+import { UseQueryResult } from '@tanstack/react-query';
 import { StepComponent, TStepProps } from '@ovh-ux/manager-react-components';
 import { render, renderHook } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
 import { OsdsLink, OsdsSpinner } from '@ovhcloud/ods-components/react';
-import {
-  ShapesInputComponent,
-  TShapesInputProps,
-} from '@ovh-ux/manager-pci-common';
 import { wrapper } from '@/wrapperRenders';
 import { RegionStep, TRegionStepProps } from './RegionStep';
-import { StepsEnum, TAddon, useCreateStore } from '@/pages/create/store';
+import { StepsEnum, useCreateStore } from '@/pages/create/store';
 import { REGION_AVAILABILITY_LINK } from '@/constants';
-import { TRegion } from '@/api/hook/useRegions';
-import { useTracking } from '../../hooks/useTracking';
-import { LabelComponent } from '@/pages/create/steps/region/components/Label.component';
-import { StackLabelComponent } from '@/pages/create/steps/region/components/StackLabel.component';
-import { StackTitleComponent } from '@/pages/create/steps/region/components/StackTitle.component';
-import { GroupLabelComponent } from '@/pages/create/steps/region/components/GroupLabel.component';
+
+vi.mock('@ovh-ux/manager-pci-common');
+
+vi.mocked(useProject).mockReturnValue({
+  data: { project_id: 'project_id' },
+} as UseQueryResult<TProject, ResponseAPIError>);
 
 vi.mock('react-i18next', async () => {
   const { ...rest } = await vi.importActual('react-i18next');
@@ -63,35 +65,20 @@ vi.mock('@ovh-ux/manager-react-components', async () => {
   );
   return {
     ...rest,
+    useProjectUrl: vi.fn(),
     StepComponent: vi
       .fn()
       .mockImplementation(ActualStepComponent as typeof StepComponent),
-  };
-});
-vi.mock('@ovh-ux/manager-pci-common', async () => {
-  const {
-    ShapesInputComponent: ActualShapesInputComponent,
-    ...rest
-  } = await vi.importActual('@ovh-ux/manager-pci-common');
-  return {
-    ...rest,
-    ShapesInputComponent: vi
-      .fn()
-      .mockImplementation(
-        ActualShapesInputComponent as typeof ShapesInputComponent,
-      ),
   };
 });
 
 const renderStep = (
   {
     isLoading = false,
-    isMobile = false,
     regions = undefined,
     ovhSubsidiary = undefined,
   }: Partial<TRegionStepProps> = {
     isLoading: false,
-    isMobile: false,
     regions: undefined,
     ovhSubsidiary: undefined,
   },
@@ -99,7 +86,6 @@ const renderStep = (
   render(
     <RegionStep
       isLoading={isLoading}
-      isMobile={isMobile}
       regions={regions}
       ovhSubsidiary={ovhSubsidiary}
     />,
@@ -128,7 +114,7 @@ describe('RegionStep', () => {
       const call = calls[calls.length - 1][0] as TStepProps;
 
       expect(call.title).toBe(
-        'load-balancer/create | octavia_load_balancer_create_region_title',
+        'load-balancer/create,pci-common | octavia_load_balancer_create_region_title',
       );
 
       expect(call.isOpen).toBe(true);
@@ -140,12 +126,12 @@ describe('RegionStep', () => {
       expect(call.order).toBe(2);
 
       expect(call.next.label).toBe(
-        'pci-common | common_stepper_next_button_label',
+        'load-balancer/create,pci-common | pci-common:common_stepper_next_button_label',
       );
       expect(call.next.isDisabled).toBe(true);
 
       expect(call.edit.label).toBe(
-        'pci-common | common_stepper_modify_this_step',
+        'load-balancer/create,pci-common | pci-common:common_stepper_modify_this_step',
       );
     });
 
@@ -153,12 +139,12 @@ describe('RegionStep', () => {
       const { getByText } = renderStep();
       expect(
         getByText(
-          'load-balancer/create | octavia_load_balancer_create_region_intro',
+          'load-balancer/create,pci-common | octavia_load_balancer_create_region_intro',
         ),
       ).toBeInTheDocument();
       expect(
         getByText(
-          'load-balancer/create | octavia_load_balancer_create_region_link',
+          'load-balancer/create,pci-common | octavia_load_balancer_create_region_link',
         ),
       ).toBeInTheDocument();
     });
@@ -198,225 +184,6 @@ describe('RegionStep', () => {
         const { getByTestId } = renderStep({ isLoading: true });
 
         expect(getByTestId('spinner')).toBeInTheDocument();
-      });
-
-      describe('isLoading is false', () => {
-        beforeAll(() => {
-          ((ShapesInputComponent as unknown) as Mock).mockImplementationOnce(
-            () => <div data-testid="input"></div>,
-          );
-        });
-        it('should show input if regions are not pending and data is defined', () => {
-          const regions: TRegion[] = [
-            { name: 'test', isEnabled: true, continent: 'Europe' },
-            { name: 'test2', isEnabled: true, continent: 'Asia' },
-          ] as Array<TRegion>;
-
-          const { result } = renderStore();
-
-          act(() => result.current.set.addon({ code: 's' } as TAddon));
-
-          renderStep({ regions: new Map([['s', regions]]) });
-
-          const { calls } = (ShapesInputComponent as Mock).mock;
-          const call = calls[calls.length - 1][0] as TShapesInputProps<TRegion>;
-
-          expect(call.items).toEqual(regions);
-          expect(call.value).toBe(null);
-
-          expect(call.item.LabelComponent).toEqual(LabelComponent);
-          expect(call.item.getId({ name: 'test' } as TRegion)).toBe('test');
-          expect(call.item.isDisabled({ isEnabled: true } as TRegion)).toBe(
-            false,
-          );
-
-          expect(call.stack.by({ macroName: 'test' } as TRegion)).toBe('test');
-          expect(call.stack.by({} as TRegion)).toBe('');
-          expect(call.stack.LabelComponent).toEqual(StackLabelComponent);
-          expect(call.stack.TitleComponent).toEqual(StackTitleComponent);
-
-          expect(call.group.by({ continent: 'Europe' } as TRegion)).toBe(
-            'Europe',
-          );
-          expect(call.group.LabelComponent).toEqual(GroupLabelComponent);
-        });
-      });
-    });
-  });
-
-  describe('Actions', () => {
-    beforeAll(() => {
-      (ShapesInputComponent as Mock).mockImplementationOnce(() => (
-        <div data-testid="input"></div>
-      ));
-    });
-
-    describe('next', () => {
-      describe('render', () => {
-        test('Next button should be disabled if region is not set', () => {
-          const { getByText } = renderStep();
-
-          const nextButton = getByText(
-            'pci-common | common_stepper_next_button_label',
-          );
-          expect(
-            nextButton.attributes.getNamedItem('disabled').value,
-          ).toBeTruthy();
-        });
-
-        test('Next button should be enabled if region is set', () => {
-          (ShapesInputComponent as Mock).mockImplementationOnce(() => (
-            <div data-testid="input"></div>
-          ));
-
-          const { result } = renderStore();
-          act(() => result.current.set.region({} as TRegion));
-
-          const { getByText } = renderStep();
-          const nextButton = getByText(
-            'pci-common | common_stepper_next_button_label',
-          );
-          expect(
-            nextButton.attributes.getNamedItem('disabled')?.value,
-          ).toBeFalsy();
-        });
-      });
-      describe('click', () => {
-        beforeEach(() => {
-          const { result } = renderStore();
-          act(() => {
-            result.current.set.region({} as TRegion);
-          });
-        });
-        it('Should track on next click', async () => {
-          (ShapesInputComponent as Mock).mockImplementationOnce(() => (
-            <div data-testid="input"></div>
-          ));
-          const trackStepSpy = vi.fn();
-
-          (useTracking as Mock).mockImplementationOnce(() => ({
-            trackStep: trackStepSpy,
-          }));
-
-          const { result } = renderStore();
-
-          act(() => {
-            result.current.set.region({} as TRegion);
-          });
-
-          const { getByText } = renderStep();
-
-          const nextButton = getByText(
-            'pci-common | common_stepper_next_button_label',
-          );
-
-          act(() => nextButton.click());
-
-          expect(trackStepSpy).toHaveBeenCalledWith(2);
-        });
-
-        it('Should prepare next step on next click', async () => {
-          (ShapesInputComponent as Mock).mockImplementationOnce(() => (
-            <div data-testid="input"></div>
-          ));
-
-          const { result } = renderStore();
-
-          act(() => {
-            result.current.set.region({} as TRegion);
-          });
-
-          const { getByText } = renderStep();
-
-          const nextButton = getByText(
-            'pci-common | common_stepper_next_button_label',
-          );
-
-          const { check, lock, open } = { ...result.current };
-
-          result.current.check = vi.fn();
-          result.current.lock = vi.fn();
-          result.current.open = vi.fn();
-
-          act(() => nextButton.click());
-
-          expect(result.current.check).toHaveBeenCalledWith(StepsEnum.REGION);
-          expect(result.current.lock).toHaveBeenCalledWith(StepsEnum.REGION);
-          expect(result.current.open).toHaveBeenCalledWith(StepsEnum.IP);
-
-          result.current.check = check;
-          result.current.lock = lock;
-          result.current.open = open;
-        });
-      });
-    });
-
-    describe('edit', () => {
-      describe('render', () => {
-        it('should not display if step is not checked', () => {
-          const { queryByText } = renderStep();
-
-          const editButton = queryByText(
-            'pci-common | common_stepper_modify_this_step',
-          );
-          expect(editButton).not.toBeInTheDocument();
-        });
-        it('should have the right label', () => {
-          const { result } = renderStore();
-          act(() => result.current.lock(StepsEnum.REGION));
-
-          ((OsdsLink as unknown) as Mock).mockImplementation(
-            ({ href, ...props }) => (
-              <a href={href} data-testid="link" {...props}></a>
-            ),
-          );
-
-          const { queryByText } = renderStep();
-
-          const editButton = queryByText(
-            'pci-common | common_stepper_modify_this_step',
-          );
-
-          expect(editButton).toBeInTheDocument();
-        });
-      });
-
-      describe('click', () => {
-        it('should prepare steps on click', () => {
-          const { result } = renderStore();
-
-          const { unlock, uncheck, open, reset } = { ...result.current };
-
-          act(() => result.current.lock(StepsEnum.REGION));
-
-          result.current.unlock = vi.fn();
-          result.current.uncheck = vi.fn();
-          result.current.open = vi.fn();
-          result.current.reset = vi.fn();
-
-          const { getByText } = renderStep();
-
-          const editButton = getByText(
-            'pci-common | common_stepper_modify_this_step',
-          );
-
-          act(() => editButton.click());
-
-          expect(result.current.unlock).toHaveBeenCalledWith(StepsEnum.REGION);
-          expect(result.current.uncheck).toHaveBeenCalledWith(StepsEnum.REGION);
-          expect(result.current.open).toHaveBeenCalledWith(StepsEnum.REGION);
-          expect(result.current.reset).toHaveBeenCalledWith(
-            StepsEnum.IP,
-            StepsEnum.NETWORK,
-            StepsEnum.INSTANCE,
-            StepsEnum.NAME,
-          );
-
-          result.current.unlock = unlock;
-          result.current.uncheck = uncheck;
-          result.current.open = open;
-          result.current.reset = reset;
-        });
       });
     });
   });

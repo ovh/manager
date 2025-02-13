@@ -1,0 +1,11 @@
+{
+  "vrack_terminate": "Eliminare",
+  "vrack_terminate_title": "Eliminare la tua vRack",
+  "vrack_terminate_description": "Per eliminare la tua vRrack è prima necessario disconnettere tutti i servizi ad essa associati.",
+  "vrack_terminate_modal_description": "Inserisci la parola \"TERMINATE\" per confermare l'eliminazione della tua vRack.",
+  "vrack_terminate_modal_cancel": "Annullare",
+  "vrack_terminate_modal_confirm": "Disattivare",
+  "vrack_terminate_modal_success_banner": "La tua richiesta di eliminazione della vRack è stata presa in carico. Ti abbiamo inviato un’email con la procedura da seguire.",
+  "vrack_terminate_modal_vack_deleted_info_banner": "Il tuo servizio vRack è scaduto e in corso di eliminazione. Questa operazione può richiedere fino a 7 giorni.",
+  "vrack_terminate_modal_error_banner": "L’eliminazione della vRack non è andata a buon fine. Verifica che la tua vRack sia vuota."
+}

@@ -27,7 +27,7 @@ export const BACK_PREVIOUS_PAGE = 'back_previous-page';
 export const TO_BE_DEFINED = 'to-be-defined';
 
 export const ONBOARDING = 'onboarding';
-export const JOIN_ZIMBRA_BETA = 'join_zimbra_beta';
+export const ONBOARDING_ORDER_CTA = 'onboarding_order_cta';
 
 export const GENERAL_INFORMATIONS = 'general-informations';
 
@@ -37,6 +37,13 @@ export const ADD_DOMAIN = `add_${DOMAIN}`;
 export const EDIT_DOMAIN = `edit_${DOMAIN}`;
 export const DELETE_DOMAIN = `delete_${DOMAIN}`;
 export const VERIFY_DOMAIN = `verify_${DOMAIN}`;
+export const AUTO_CONFIGURE_DOMAIN = `auto-configure_${DOMAIN}`;
+export const DOMAIN_DIAGNOSTICS = `${DOMAIN}_diagnostics`;
+export const DOMAIN_DIAGNOSTICS_REFRESH = `${DOMAIN_DIAGNOSTICS}_refresh`;
+export const DOMAIN_DIAGNOSTICS_MX = `${DOMAIN_DIAGNOSTICS}_mx`;
+export const DOMAIN_DIAGNOSTICS_SPF = `${DOMAIN_DIAGNOSTICS}_spf`;
+export const DOMAIN_DIAGNOSTICS_SRV = `${DOMAIN_DIAGNOSTICS}_srv`;
+export const DOMAIN_DIAGNOSTICS_DKIM = `${DOMAIN_DIAGNOSTICS}_dkim`;
 
 // ORGANIZATION
 export const ORGANIZATION = 'organization';
@@ -95,4 +102,5 @@ export const GUIDE_ADMINISTRATOR = 'administrator-guide';
 export const GUIDE_USER = 'user-guide';
 export const GUIDE_CNAME = 'cname-guide';
 export const GUIDE_DNS_CONFIG = 'dns-configuration-guide';
+export const GUIDE_HOW_TO_CONFIGURE = 'how-to-configure-guide';
 export const GO_TO = (link: string) => `go-to-${link}`;

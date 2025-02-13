@@ -14,5 +14,6 @@
   "managed_vcd_vdc_order_quantity_title": "Wybierz ilość",
   "managed_vcd_vdc_order_quantity_label": "Ilość",
   "managed_vcd_vdc_order_cancel_cta": "Anuluj",
-  "managed_vcd_vdc_order_confirm_cta": "Zamów"
+  "managed_vcd_vdc_order_confirm_cta": "Zamów",
+  "managed_vcd_vdc_order_performance_class": "{{performanceClass}}/TB"
 }
