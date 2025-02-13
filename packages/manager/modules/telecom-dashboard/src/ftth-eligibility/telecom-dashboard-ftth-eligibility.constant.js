@@ -2,6 +2,7 @@ export const ELIGIBILITY = {
   not_eligible: 'not_eligible',
   eligible: 'eligible',
   not_concerned: 'not_concerned',
+  no_building: 'no_building',
 };
 
 export const ACCESS_TYPE = {

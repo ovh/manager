@@ -91,6 +91,18 @@
                     data-translate="telecom_dashboard_ftth_eligibility_migrate"
                 ></span>
             </a>
+            <a
+                class="oui-button oui-button_secondary"
+                href="{{FtthEligibilityCtrl.supportUrl}}"
+                target="_blank"
+                rel="noopener"
+                data-ng-if="$row.migrationAvailable === FtthEligibilityCtrl.ELIGIBILITY.no_building"
+                data-translate-attr="{'title': 'telecom_dashboard_ftth_eligibility_support'}"
+            >
+                <span
+                    data-translate="telecom_dashboard_ftth_eligibility_support"
+                ></span>
+            </a>
         </oui-datagrid-column>
     </oui-datagrid>
 

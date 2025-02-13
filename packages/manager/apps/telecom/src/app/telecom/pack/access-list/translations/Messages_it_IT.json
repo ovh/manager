@@ -13,5 +13,7 @@
   "xdsl_access_list_eligible": "Ammissibile",
   "xdsl_access_list_not_concerned": "Non applicabile",
   "xdsl_access_list_not_available": "Non disponibile",
-  "xdsl_access_list_migrate": "Passa alla fibra"
+  "xdsl_access_list_migrate": "Passa alla fibra",
+  "xdsl_access_list_support": "Contatta il supporto",
+  "xdsl_access_list_not_yet_eligible": "Non disponibile al momento"
 }
