@@ -110,6 +110,7 @@ export const DATACENTER_NETWORK_ONBOARDING_GUIDES = [
   {
     id: 'dedicatedCloud_datacenter_network_onboarding_doc3_title',
     title: 'dedicatedCloud_datacenter_network_onboarding_doc3_title',
+    category: 'dedicatedCloud_datacenter_network_onboarding_doc_category_faq',
     description:
       'dedicatedCloud_datacenter_network_onboarding_doc3_description',
     links: {
