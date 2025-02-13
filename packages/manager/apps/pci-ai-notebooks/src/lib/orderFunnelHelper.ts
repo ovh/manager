@@ -160,5 +160,23 @@ export function getAppSpec(formResult: AppOrderResult) {
       };
     });
   }
+
+  if (formResult.scaling.autoScaling) {
+    appInfos.scalingStrategy = {
+      automatic: {
+        replicasMin: formResult.scaling.replicasMin,
+        replicasMax: formResult.scaling.replicasMax,
+        averageUsageTarget: formResult.scaling.averageUsageTarget,
+        resourceType: formResult.scaling.resourceType,
+      },
+    };
+  } else {
+    appInfos.scalingStrategy = {
+      fixed: {
+        replicas: formResult.scaling.replicas,
+      },
+    };
+  }
+
   return appInfos;
 }

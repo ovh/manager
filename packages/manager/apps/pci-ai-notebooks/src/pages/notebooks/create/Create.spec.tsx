@@ -17,7 +17,7 @@ import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/Route
 import { mockedUser } from '@/__tests__/helpers/mocks/user';
 import { mockedCatalog } from '@/__tests__/helpers/mocks/catalog';
 import { mockedPciProject } from '@/__tests__/helpers/mocks/project';
-import { mockedSuggestion } from '@/__tests__/helpers/mocks/suggestion';
+import { mockedNotebookSuggestion } from '@/__tests__/helpers/mocks/suggestion';
 import {
   mockedCapabilitiesRegionBHS,
   mockedCapabilitiesRegionGRA,
@@ -107,7 +107,7 @@ describe('Order funnel page', () => {
     }));
 
     vi.mock('@/data/api/ai/notebook/suggestions.api', () => ({
-      getSuggestions: vi.fn(() => mockedSuggestion),
+      getSuggestions: vi.fn(() => mockedNotebookSuggestion),
     }));
 
     vi.mock('@/data/api/catalog/catalog.api', () => ({

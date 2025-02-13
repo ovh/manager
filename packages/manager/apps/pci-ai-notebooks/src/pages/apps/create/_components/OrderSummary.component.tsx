@@ -1,10 +1,17 @@
-import { Cpu, Globe, HardDrive, LockKeyhole, MemoryStick } from 'lucide-react';
+import {
+  Cpu,
+  Globe,
+  HardDrive,
+  Hash,
+  LockKeyhole,
+  MemoryStick,
+} from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
 import { bytesConverter } from '@/lib/bytesHelper';
 import * as ai from '@/types/cloud/project/ai';
-import { OrderVolumes } from '@/types/orderFunnel';
+import { OrderVolumes, Scaling } from '@/types/orderFunnel';
 
 interface OrderSummaryProps {
   order: {
@@ -12,8 +19,10 @@ interface OrderSummaryProps {
     flavor: ai.capabilities.Flavor;
     resourcesQuantity: number;
     image: string;
+    version?: string;
     appName: string;
     unsecureHttp: boolean;
+    scaling: Scaling;
     labels: { [key: string]: string };
     volumes: OrderVolumes[];
     dockerCommand: string[];
@@ -21,7 +30,7 @@ interface OrderSummaryProps {
   onSectionClicked?: (target: string) => void;
 }
 const NameDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
-  const { t } = useTranslation('pci-ai-training/jobs/create');
+  const { t } = useTranslation('pci-ai-deploy/apps/create');
   return (
     <div className="flex flex-col gap-2">
       <div className="flex items-center gap-2">
@@ -42,7 +51,7 @@ const NameDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
 };
 
 const RegionDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
-  const { t } = useTranslation('pci-ai-training/jobs/create');
+  const { t } = useTranslation('pci-ai-deploy/apps/create');
   const { t: tRegions } = useTranslation('regions');
   return (
     <div className="flex items-center gap-2">
@@ -66,7 +75,7 @@ const RegionDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
 };
 
 const FlavorDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
-  const { t } = useTranslation('pci-ai-training/jobs/create');
+  const { t } = useTranslation('pci-ai-deploy/apps/create');
   return (
     <div className="flex flex-col gap-2">
       <div className="flex items-center gap-2">
@@ -143,32 +152,108 @@ const FlavorDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
 };
 
 const ImageDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
-  const { t } = useTranslation('pci-ai-training/jobs/create');
+  const { t } = useTranslation('pci-ai-deploy/apps/create');
+  return (
+    <div className="flex flex-col gap-2">
+      {order.image && (
+        <div className="flex items-center gap-2">
+          <Button
+            data-testid="image-section-button"
+            variant={'link'}
+            size={'link'}
+            type="button"
+            onClick={() => onSectionClicked('image')}
+            className="font-bold"
+          >
+            {t('summaryFieldImageLabel')}
+          </Button>
+
+          <>
+            <span>{order.image}</span>
+          </>
+        </div>
+      )}
+      {order.version && (
+        <div className="flex items-center pl-4 gap-2">
+          <Hash className="size-4" />
+          <span>{order.version}</span>
+        </div>
+      )}
+    </div>
+  );
+};
+
+const ScalingStrategy = ({ order, onSectionClicked }: OrderSummaryProps) => {
+  const { t } = useTranslation('pci-ai-deploy/apps/create');
   return (
     <div className="flex flex-col gap-2">
       <div className="flex items-center gap-2">
         <Button
-          data-testid="image-section-button"
+          data-testid="scaling-section-button"
           variant={'link'}
           size={'link'}
           type="button"
-          onClick={() => onSectionClicked('image')}
+          onClick={() => onSectionClicked('scaling')}
           className="font-bold"
         >
-          {t('summaryFieldEditorLabel')}
+          {t('summaryFieldScalingLabel')}
         </Button>
-        {order.image && (
-          <>
-            <span>{order.image}</span>
-          </>
-        )}
       </div>
+      {order.scaling.autoScaling ? (
+        <div>
+          <div className="flex items-center pl-4 gap-2">
+            <span>{t('scalingAutoOn')}</span>
+          </div>
+          <div className="flex items-center pl-4 gap-2">
+            <span>
+              {t('summaryMinimumReplicas', {
+                rep: order.scaling.replicasMin,
+              })}
+            </span>
+          </div>
+          <div className="flex items-center pl-4 gap-2">
+            <span>
+              {t('summaryMaximumReplicas', {
+                rep: order.scaling.replicasMax,
+              })}
+            </span>
+          </div>
+          <div className="flex items-center pl-4 gap-2">
+            <span>
+              {t('summaryScalingResource', {
+                resource: order.scaling.resourceType,
+              })}
+            </span>
+          </div>
+          <div className="flex items-center pl-4 gap-2">
+            <span>
+              {t('summaryScalingAverage', {
+                tresh: order.scaling.averageUsageTarget,
+              })}
+            </span>
+          </div>
+        </div>
+      ) : (
+        <div>
+          <div className="flex items-center pl-4 gap-2">
+            <span>{t('scalingAutoOff')}</span>
+            <span></span>
+          </div>
+          <div className="flex items-center pl-4 gap-2">
+            <span>
+              {t('summaryReplicas', {
+                count: order.scaling.replicas,
+              })}
+            </span>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
 
 const PrivacyDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
-  const { t } = useTranslation('pci-ai-training/jobs/create');
+  const { t } = useTranslation('pci-ai-deploy/apps/create');
   return (
     <div className="flex flex-col gap-2">
       <div className="flex items-center gap-2">
@@ -202,7 +287,7 @@ const DockerCommandDetails = ({
   order,
   onSectionClicked,
 }: OrderSummaryProps) => {
-  const { t } = useTranslation('pci-ai-training/jobs/create');
+  const { t } = useTranslation('pci-ai-deploy/apps/create');
   return (
     <div className="flex items-center gap-2">
       <Button
@@ -226,7 +311,7 @@ const DockerCommandDetails = ({
 };
 
 const VolumesDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
-  const { t } = useTranslation('pci-ai-training/jobs/create');
+  const { t } = useTranslation('pci-ai-deploy/apps/create');
   return (
     <div className="flex flex-col gap-2">
       <div className="flex items-center gap-2">
@@ -252,7 +337,7 @@ const VolumesDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
 };
 
 const LabelsDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
-  const { t } = useTranslation('pci-ai-training/jobs/create');
+  const { t } = useTranslation('pci-ai-deploy/apps/create');
   return (
     <div className="flex items-center gap-2">
       <Button
@@ -282,6 +367,7 @@ const OrderSummary = ({ order, onSectionClicked }: OrderSummaryProps) => {
       <RegionDetails order={order} onSectionClicked={onSectionClicked} />
       <FlavorDetails order={order} onSectionClicked={onSectionClicked} />
       <ImageDetails order={order} onSectionClicked={onSectionClicked} />
+      <ScalingStrategy order={order} onSectionClicked={onSectionClicked} />
       <PrivacyDetails order={order} onSectionClicked={onSectionClicked} />
       {order.volumes.length > 0 && (
         <VolumesDetails order={order} onSectionClicked={onSectionClicked} />

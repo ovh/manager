@@ -1,0 +1,11 @@
+{
+  "customImageTitle": "Image Docker personnalisée",
+  "privateImageDesc": "Utiliser votre image Docker en renseignant ci-dessous son chemin d'accès. Elle peut provenir d'un registre public (Github, Gitlab, Dockerhub) comme privée.",
+  "privateImageDesc1": "Si votre image Docker est dans un registre privé, veillez à l'ajouter avant comme registre autorisé.",
+  "privateImageDesc2": "Veuillez noter que votre image doit être construite avec la plateforme Docker ‘linux/AMD64’. L'utilisation de docker-compose n'est pas possible.",
+  "privateImageDesc3": "Veillez à vous assurer que l'utilisateur OVHcloud (42420:42420) a les permissions nécessaires pour lancer les process de votre image.",
+  "privateImageDesc4": "Pour plus d'infomation, n'hésitez pas à consulter notre documentation",
+  "privateImageLink": "Créer une image personnalisée",
+  "priaveImageInputLabel": "Chemin d'accès à votre image Docker",
+  "formDatastoreErrorMinLength": "Ce champ est obligatoire"
+}

@@ -2,8 +2,24 @@ import { order } from '../catalog';
 import * as ai from '@/types/cloud/project/ai';
 import { PublicGit } from '../cloud/project/ai/volume';
 
+export interface AppPricing {
+  price: number;
+  tax: number;
+}
+
+export interface AppGlobalPricing {
+  resourcePricing?: AppPricing;
+  scalingPricing?: AppPricing;
+  partnerLicence?: AppPricing;
+}
+
 export interface Flavor extends ai.capabilities.Flavor {
   pricing: order.publicOrder.Pricing[];
+}
+
+export interface ImagePartnerApp extends ai.capabilities.app.Image {
+  pricingCpu: AppPricing;
+  pricingGpu: AppPricing;
 }
 
 export interface FrameworkWithVersion {
@@ -117,8 +133,18 @@ export interface AppOrderResult {
   appName: string;
   unsecureHttp: boolean;
   volumes: OrderVolumes[];
+  scaling: Scaling;
   labels: {
     [key: string]: string;
   };
   dockerCommand: string[];
+}
+
+export interface Scaling {
+  autoScaling: boolean;
+  replicas: number;
+  averageUsageTarget: number;
+  replicasMax: number;
+  replicasMin: number;
+  resourceType: ai.app.ScalingAutomaticStrategyResourceTypeEnum;
 }

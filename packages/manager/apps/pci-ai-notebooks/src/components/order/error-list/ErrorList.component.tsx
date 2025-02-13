@@ -6,7 +6,11 @@ const ErrorList = ({ error }: { error: FieldErrors }) => {
       if (typeof value === 'object' && value !== null) {
         if ('message' in value) {
           // Direct error message
-          return <li key={key}>{(value as FieldError).message}</li>;
+          return (
+            <li key={key}>
+              {key} : {(value as FieldError).message}
+            </li>
+          );
         }
         // Nested errors or array errors
         const nestedErrors = renderErrorMessages(value as FieldErrors);

@@ -4,7 +4,6 @@ import {
   ChevronDown,
   ChevronUp,
   HelpCircle,
-  Plus,
   TerminalSquare,
 } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -30,7 +29,6 @@ import { Button } from '@/components/ui/button';
 import RegionsSelect from '@/components/order/region/RegionSelect.component';
 import FlavorsSelect from '@/components/order/flavor/FlavorSelect.component';
 import { Input } from '@/components/ui/input';
-import OrderPrice from '@/components/order/price/OrderPrice.component';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import {
   Popover,
@@ -38,17 +36,11 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 import { Label } from '@/components/ui/label';
-import SshKeyForm from '@/components/order/configuration/SshKeyForm.component';
-import { SshKey } from '@/types/cloud/sshkey';
 import VolumeForm from '@/components/order/volumes/VolumesForm.component';
 import { useToast } from '@/components/ui/use-toast';
 import { getAIApiErrorMessage } from '@/lib/apiHelper';
 import ErrorList from '@/components/order/error-list/ErrorList.component';
-import {
-  AppSuggestions,
-  JobSuggestions,
-  PrivacyEnum,
-} from '@/types/orderFunnel';
+import { AppSuggestions, PrivacyEnum } from '@/types/orderFunnel';
 import { useModale } from '@/hooks/useModale';
 import CliEquivalent from './CliEquivalent.component';
 import A from '@/components/links/A.component';
@@ -56,7 +48,6 @@ import { useLocale } from '@/hooks/useLocale';
 import OvhLink from '@/components/links/OvhLink.component';
 import { useOrderFunnel } from './useOrderFunnel.hook';
 import OrderSummary from './OrderSummary.component';
-import ImagesSelect from '@/components/order/docker-image/DockerImageSelect.component';
 import DockerCommand from '@/components/order/docker-command/DockerCommand.component';
 import { GUIDES, getGuideUrl } from '@/configuration/guide';
 import AppImagesSelect from '@/components/order/app-image/AppImageSelect.component';
@@ -64,8 +55,11 @@ import LabelsForm from '@/components/labels/LabelsForm.component';
 import { useAddApp } from '@/hooks/api/ai/app/useAddApp.hook';
 import { useGetCommand } from '@/hooks/api/ai/app/useGetCommand.hook';
 import { getAppSpec } from '@/lib/orderFunnelHelper';
+import ScalingStrategy from '@/components/order/app-scaling/ScalingStrategy.component';
+import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table';
+import Price from '@/components/price/Price.component';
 
-interface OrderJobsFunnelProps {
+interface OrderAppsFunnelProps {
   regions: ai.capabilities.Region[];
   catalog: order.publicOrder.Catalog;
   suggestions: AppSuggestions[];
@@ -75,9 +69,8 @@ const OrderFunnel = ({
   regions,
   catalog,
   suggestions,
-}: OrderJobsFunnelProps) => {
+}: OrderAppsFunnelProps) => {
   const model = useOrderFunnel(regions, catalog, suggestions);
-
   const { t } = useTranslation('pci-ai-deploy/apps/create');
   const locale = useLocale();
   const { projectId } = useParams();
@@ -118,6 +111,7 @@ const OrderFunnel = ({
     },
     onSuccess: (cliCommand) => {
       setCommand(cliCommand);
+      cliEquivalentModale.open();
     },
   });
 
@@ -251,7 +245,7 @@ const OrderFunnel = ({
                 name="flavorWithQuantity.quantity"
                 render={({ field }) => (
                   <FormItem>
-                    <p className="mt-2">
+                    <p className="mt-2 text-sm">
                       {t('fieldFlavorQuantityDescription')}
                     </p>
                     <FormControl>
@@ -284,7 +278,7 @@ const OrderFunnel = ({
             <section id="image" data-testid="image-section">
               <FormField
                 control={model.form.control}
-                name="image"
+                name="image.name"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className={classNameLabel}>
@@ -293,10 +287,38 @@ const OrderFunnel = ({
                     <FormControl>
                       <AppImagesSelect
                         {...field}
-                        // images={model.lists.presetImage}
+                        appImages={model.lists.appImages}
+                        version={model.form.getValues('image.version')}
                         value={field.value}
-                        onChange={(newImage) =>
-                          model.form.setValue('image', newImage)
+                        onChange={(newImage, newVersion) => {
+                          model.form.setValue('image.name', newImage);
+                          model.form.setValue('image.version', newVersion);
+                          // remove errors onChange
+                          model.form.trigger('image.name');
+                        }}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </section>
+
+            <section id="scaling">
+              <FormField
+                control={model.form.control}
+                name="scaling"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className={classNameLabel}>
+                      {t('fielddScalingLabel')}
+                    </FormLabel>
+                    <FormControl>
+                      <ScalingStrategy
+                        {...field}
+                        scaling={field.value}
+                        onChange={(newScaling) =>
+                          model.form.setValue('scaling', newScaling)
                         }
                       />
                     </FormControl>
@@ -329,7 +351,6 @@ const OrderFunnel = ({
                             value={PrivacyEnum.private}
                             id="private-access-radio"
                           />
-
                           <Label>{t('privateAccess')}</Label>
                           <Popover>
                             <PopoverTrigger>
@@ -401,9 +422,9 @@ const OrderFunnel = ({
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel className={classNameLabel}>
-                              {t('fielddDockerCommandLabel')}
+                              {t('fieldDockerCommandLabel')}
                             </FormLabel>
-                            <p>{t('fieldDockerCommandDescription')}</p>
+                            <p>{t('fieldDockedCommandDescription')}</p>
                             <FormControl>
                               <DockerCommand
                                 {...field}
@@ -505,19 +526,88 @@ const OrderFunnel = ({
               <OrderSummary
                 order={model.result}
                 onSectionClicked={(target) => {
-                  if (['volumes', 'commandDocker', 'sshKey'].includes(target)) {
+                  if (
+                    ['scaling', 'volumes', 'commandDocker', 'sshKey'].includes(
+                      target,
+                    )
+                  ) {
                     setShowAdvancedConfiguration(true);
                   }
                   scrollToDiv(target);
                 }}
               />
-              {model.result.flavor && (
-                <OrderPrice
-                  minuteConverter={60} // affichage du prix à l'heure
-                  price={model.result.flavor.pricing[0]}
-                  quantity={model.result.resourcesQuantity}
-                />
-              )}
+              <Table>
+                <TableBody>
+                  {model.result.pricing?.resourcePricing && (
+                    <TableRow className="text-sm">
+                      <TableCell>Resources</TableCell>
+                      <TableCell>
+                        <Price
+                          decimals={2}
+                          priceInUcents={
+                            model.result.pricing.resourcePricing?.price
+                          }
+                          taxInUcents={
+                            model.result.pricing.resourcePricing?.tax
+                          }
+                          displayInHour={true}
+                        />
+                      </TableCell>
+                    </TableRow>
+                  )}
+                  {model.result.pricing?.scalingPricing && (
+                    <TableRow className="text-sm">
+                      <TableCell>Scaling</TableCell>
+                      <TableCell>
+                        <Price
+                          decimals={2}
+                          priceInUcents={
+                            model.result.pricing.scalingPricing.price
+                          }
+                          taxInUcents={model.result.pricing.scalingPricing.tax}
+                          displayInHour={true}
+                        />
+                      </TableCell>
+                    </TableRow>
+                  )}
+                  {model.result.pricing?.partnerLicence && (
+                    <TableRow className="text-sm">
+                      <TableCell>Licence</TableCell>
+                      <TableCell>
+                        <Price
+                          decimals={2}
+                          priceInUcents={
+                            model.result.pricing.partnerLicence.price
+                          }
+                          taxInUcents={model.result.pricing.partnerLicence.tax}
+                          displayInHour={true}
+                        />
+                      </TableCell>
+                    </TableRow>
+                  )}
+                  {model.result.pricing?.resourcePricing && (
+                    <TableRow>
+                      <TableCell className="font-bold">Total</TableCell>
+                      <TableCell>
+                        <Price
+                          decimals={2}
+                          priceInUcents={
+                            model.result.pricing.resourcePricing.price +
+                            (model.result.pricing?.partnerLicence?.price || 0) +
+                            (model.result.pricing?.scalingPricing?.price || 0)
+                          }
+                          taxInUcents={
+                            model.result.pricing.resourcePricing.tax +
+                            (model.result.pricing?.partnerLicence?.tax || 0) +
+                            (model.result.pricing?.scalingPricing?.tax || 0)
+                          }
+                          displayInHour={true}
+                        />
+                      </TableCell>
+                    </TableRow>
+                  )}
+                </TableBody>
+              </Table>
             </CardContent>
             <CardFooter className="flex flex-col">
               <Button
@@ -527,7 +617,6 @@ const OrderFunnel = ({
                 disabled={isPendingCommand}
                 onClick={() => {
                   getCliCommand();
-                  cliEquivalentModale.open();
                 }}
                 className="flex flex-row gap-2 items-center font-semibold"
               >

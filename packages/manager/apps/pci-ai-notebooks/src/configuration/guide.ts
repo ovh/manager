@@ -81,6 +81,14 @@ export const GUIDES = {
     fr_CA: 'https://docs.ovh.com/fr/publiccloud/ai/data/',
     default: 'https://docs.ovh.com/gb/en/publiccloud/ai/data/',
   },
+  HOW_TO_MANAGE_SCALING: {
+    fr_FR:
+      'https://help.ovhcloud.com/csm/fr-public-cloud-ai-deploy-apps-deployments?id=kb_article_view&sysparm_article=KB0048006',
+    fr_CA:
+      'https://help.ovhcloud.com/csm/fr-public-cloud-ai-deploy-apps-deployments?id=kb_article_view&sysparm_article=KB0048006',
+    default:
+      'https://help.ovhcloud.com/csm/en-gb-public-cloud-ai-deploy-apps-deployments?id=kb_article_view&sysparm_article=KB0047997',
+  },
 };
 
 export function getGuideUrl(

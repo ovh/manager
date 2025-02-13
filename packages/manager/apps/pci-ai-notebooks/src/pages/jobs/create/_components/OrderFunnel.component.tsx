@@ -55,9 +55,10 @@ import { useOrderFunnel } from './useOrderFunnel.hook';
 import { useGetCommand } from '@/hooks/api/ai/job/useGetCommand.hook';
 import OrderSummary from './OrderSummary.component';
 import { useAddJob } from '@/hooks/api/ai/job/useAddJob.hook';
-import ImagesSelect from '@/components/order/docker-image/DockerImageSelect.component';
+import ImagesSelect from '@/components/order/docker-custom-image/DockerCutomImage';
 import DockerCommand from '@/components/order/docker-command/DockerCommand.component';
 import { GUIDES, getGuideUrl } from '@/configuration/guide';
+import JobImagesSelect from '@/components/order/job-image/JobImageSelect.component';
 
 interface OrderJobsFunnelProps {
   regions: ai.capabilities.Region[];
@@ -289,7 +290,7 @@ const OrderFunnel = ({
                       {t('fieldImageLabel')}
                     </FormLabel>
                     <FormControl>
-                      <ImagesSelect
+                      <JobImagesSelect
                         {...field}
                         images={model.lists.presetImage}
                         value={field.value}

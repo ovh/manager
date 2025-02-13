@@ -7,7 +7,7 @@ import {
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, it, vi } from 'vitest';
-import ImagesSelect from './DockerImageSelect.component';
+import ImagesSelect from './JobImageSelect.component';
 import {
   mockedPresetImage,
   mockedPresetImageBis,

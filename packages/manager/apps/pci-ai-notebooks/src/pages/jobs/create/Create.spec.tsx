@@ -31,7 +31,7 @@ import {
 import * as jobApi from '@/data/api/ai/job/job.api';
 import { apiErrorMock } from '@/__tests__/helpers/mocks/aiError';
 import { useToast } from '@/components/ui/use-toast';
-import { mockedTempJobSuggestionForOrderFunnel } from '@/__tests__/helpers/mocks/suggestion';
+import { mockedJobSuggetions } from '@/__tests__/helpers/mocks/suggestion';
 import Job, { breadcrumb as Breadcrumb } from './Create.page';
 import {
   mockedPresetImage,
@@ -101,7 +101,7 @@ describe('Order funnel page', () => {
     }));
 
     vi.mock('@/data/api/ai/job/suggestions.api', () => ({
-      getSuggestions: vi.fn(() => mockedTempJobSuggestionForOrderFunnel),
+      getSuggestions: vi.fn(() => mockedJobSuggetions),
     }));
 
     vi.mock('@/data/api/ai/job/capabilities/image.api', () => ({

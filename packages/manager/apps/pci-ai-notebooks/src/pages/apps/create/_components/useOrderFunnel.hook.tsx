@@ -3,17 +3,27 @@ import { useEffect, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 import { z } from 'zod';
+import { useTranslation } from 'react-i18next';
 import { useGetFlavor } from '@/hooks/api/ai/capabilities/useGetFlavor.hook';
 import { generateName } from '@/lib/nameGenerator';
 import { createFlavorPricingList } from '@/lib/priceFlavorHelper';
 import { order } from '@/types/catalog';
 import * as ai from '@/types/cloud/project/ai';
-import { AppSuggestions, Flavor, PrivacyEnum } from '@/types/orderFunnel';
+import {
+  AppGlobalPricing,
+  AppSuggestions,
+  Flavor,
+  ImagePartnerApp,
+  PrivacyEnum,
+} from '@/types/orderFunnel';
 import { useGetDatastores } from '@/hooks/api/ai/datastore/useGetDatastores.hook';
 import {
   DataStoresWithContainers,
   useGetDatastoresWithContainers,
 } from '@/hooks/api/ai/datastore/useGetDatastoresWithContainers.hook';
+import { useGetAppImages } from '@/hooks/api/ai/capabilities/useGetAppImage.hook';
+import { createAppImagePricingList } from '@/lib/priceParnterImageHelper';
+import { createAppPriceObject } from '@/lib/priceAppHelper';
 
 export function useOrderFunnel(
   regions: ai.capabilities.Region[],
@@ -21,21 +31,39 @@ export function useOrderFunnel(
   suggestions: AppSuggestions[],
 ) {
   const { projectId } = useParams();
+  const { t } = useTranslation('pci-ai-deploy/apps/create');
   const orderSchema = z.object({
     region: z.string(),
     flavorWithQuantity: z.object({
       flavor: z.string(),
       quantity: z.coerce.number(),
     }),
-    image: z
-      .string()
-      .trim()
-      .min(1),
+    image: z.object({
+      name: z
+        .string()
+        .trim()
+        .min(1, {
+          message: t('errorFormEmptyImageApp'),
+        }),
+      version: z.string().optional(),
+    }),
     appName: z
       .string()
       .trim()
       .min(1),
     privacy: z.nativeEnum(PrivacyEnum),
+    scaling: z
+      .object({
+        scalingStrag: z.boolean().optional(),
+        replicas: z.number().optional(),
+        averageUsageTarget: z.number().optional(),
+        replicasMax: z.number().optional(),
+        replicasMin: z.number().optional(),
+        resourceType: z
+          .nativeEnum(ai.app.ScalingAutomaticStrategyResourceTypeEnum)
+          .optional(),
+      })
+      .optional(),
     labels: z
       .array(
         z.object({
@@ -70,9 +98,17 @@ export function useOrderFunnel(
     defaultValues: {
       region: suggestions[0].region,
       flavorWithQuantity: { flavor: '', quantity: 1 },
-      image: '',
+      image: { name: '', version: '' },
       appName: generateName(),
       privacy: PrivacyEnum.private,
+      scaling: {
+        autoScaling: false,
+        replicas: 1,
+        averageUsageTarget: 75,
+        replicasMax: 1,
+        replicasMin: 1,
+        resourceType: ai.app.ScalingAutomaticStrategyResourceTypeEnum.CPU,
+      },
       labels: [],
       dockerCommand: [],
       volumes: [],
@@ -81,9 +117,10 @@ export function useOrderFunnel(
 
   const region = form.watch('region');
   const flavorWithQuantity = form.watch('flavorWithQuantity');
-  const image = form.watch('image');
+  const imageWithVersion = form.watch('image');
   const appName = form.watch('appName');
   const unsecureHttp = form.watch('privacy');
+  const scaling = form.watch('scaling');
   const labels = form.watch('labels');
   const volumes = form.watch('volumes');
   const dockerCommand = form.watch('dockerCommand');
@@ -95,6 +132,8 @@ export function useOrderFunnel(
     region,
     datastoreQuery.data,
   );
+
+  const appImagesQuery = useGetAppImages(projectId, region);
 
   const regionObject: ai.capabilities.Region | undefined = useMemo(
     () => regions.find((r) => r.id === region),
@@ -110,6 +149,11 @@ export function useOrderFunnel(
     () => listFlavor.find((f) => f.id === flavorWithQuantity.flavor),
     [region, listFlavor, flavorWithQuantity.flavor],
   );
+
+  const listAppImages: ImagePartnerApp[] = useMemo(() => {
+    if (appImagesQuery.isLoading) return [];
+    return createAppImagePricingList(appImagesQuery.data, catalog);
+  }, [region, appImagesQuery.isSuccess]);
 
   const listDatastores: DataStoresWithContainers[] = useMemo(() => {
     if (datastoreQuery.isLoading) return [];
@@ -138,13 +182,22 @@ export function useOrderFunnel(
     form.setValue('flavorWithQuantity.quantity', 1);
   }, [regionObject, region, flavorQuery.isSuccess]);
 
-  // // Change editors when region change?
-  // useEffect(() => {
-  //   const suggestedImage =
-  //     suggestions.find((sug) => sug.region === regionObject.id).image ??
-  //     presetImage[0].id;
-  //   form.setValue('image', suggestedImage);
-  // }, [regionObject, region]);
+  // Pricing Object
+  const pricingObject: AppGlobalPricing = useMemo(() => {
+    if (!flavorObject || !flavorWithQuantity.quantity) return {};
+    return createAppPriceObject(
+      imageWithVersion,
+      listAppImages,
+      scaling,
+      flavorObject,
+      flavorWithQuantity.quantity,
+    );
+  }, [
+    imageWithVersion.name,
+    scaling,
+    flavorObject,
+    flavorWithQuantity.quantity,
+  ]);
 
   return {
     form,
@@ -152,17 +205,21 @@ export function useOrderFunnel(
       regions,
       flavors: listFlavor,
       volumes: listDatastores,
+      appImages: listAppImages,
     },
     result: {
       region: regionObject,
       flavor: flavorObject,
       resourcesQuantity: flavorWithQuantity.quantity,
-      image,
+      image: imageWithVersion.name,
+      version: imageWithVersion.version,
       appName,
       unsecureHttp: unsecureHttpObject,
       volumes,
+      scaling,
       labels: labelsObject,
       dockerCommand,
+      pricing: pricingObject,
     },
   };
 }
