@@ -1,6 +1,7 @@
 export interface TOngoingOperations {
   id: number;
-  domain: string;
+  domain?: string;
+  zone?: string;
   function: string;
   comment?: string;
   creationDate: string;

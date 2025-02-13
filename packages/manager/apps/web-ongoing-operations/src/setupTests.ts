@@ -1,6 +1,7 @@
 import '@testing-library/jest-dom';
 import 'element-internals-polyfill';
 import { vi } from 'vitest';
+import React from 'react';
 
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
@@ -39,4 +40,22 @@ vi.mock(import('@tanstack/react-query'), async (importOriginal) => {
 vi.mock('@/utils/utils', () => ({
   formatDatagridDate: vi.fn(),
   removeQuotes: vi.fn(),
+}));
+
+const mocks = vi.hoisted(() => ({
+  shell: {
+    navigation: {
+      getURL: (_: unknown, path: string): Promise<string> => {
+        return new Promise<string>((resolve) => {
+          return resolve(`https://ovh.test/${path}`);
+        });
+      },
+    },
+  },
+}));
+
+vi.mock('@ovh-ux/manager-react-shell-client', () => ({
+  ShellContext: React.createContext({
+    shell: mocks.shell,
+  }),
 }));

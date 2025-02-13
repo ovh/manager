@@ -1,5 +1,5 @@
 import { fetchIcebergV6, apiClient } from '@ovh-ux/manager-core-api';
-import { taskMeDomain } from '@/constants';
+import { taskMeDns, taskMeDomain } from '@/constants';
 
 export const getmeTaskDomainListQueryKey = ['get', 'me', 'task', 'domain'];
 
@@ -45,3 +45,10 @@ export const getListingIcebergV6 = async ({
   }
   return { data, status, totalCount };
 };
+
+// DNS
+/**
+ * Get information about dns related tasks : List of dns tasks
+ */
+export const getmeTaskDnsList = async (): Promise<any> =>
+  apiClient.v6.get(taskMeDns);

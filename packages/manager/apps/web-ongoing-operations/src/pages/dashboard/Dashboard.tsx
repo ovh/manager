@@ -33,6 +33,11 @@ export default function DashboardPage() {
       title: t('domain_operations_table_header_domain'),
       to: useResolvedPath('domain').pathname,
     },
+    {
+      name: 'dns',
+      title: t('dns_operations_table_header_domain'),
+      to: useResolvedPath('dns').pathname,
+    },
   ];
 
   useEffect(() => {
