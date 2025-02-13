@@ -62,7 +62,7 @@ const SubTreeSection: React.FC<ComponentProps<SubTreeSectionProps>> = ({
           </li>
 
           {node.children
-            ?.filter((childNode) => !shouldHideElement(childNode, 1))
+            ?.filter((childNode) => !shouldHideElement(childNode, true))
             .map((childNode, index) => (
               <li
                 key={childNode.id + index}
@@ -79,7 +79,7 @@ const SubTreeSection: React.FC<ComponentProps<SubTreeSectionProps>> = ({
                       projectId: selectedPciProject,
                     }}
                     node={childNode}
-                    count={childNode.count}
+                    hasService={childNode.hasService}
                     handleOnClick={() => menuClickHandler(childNode)}
                     id={childNode.idAttr}
                     className="px-3"
@@ -102,7 +102,7 @@ const SubTreeSection: React.FC<ComponentProps<SubTreeSectionProps>> = ({
               projectId: selectedPciProject,
             }}
             node={node}
-            count={node.count}
+            hasService={node.hasService}
             handleOnClick={() => menuClickHandler(node)}
             id={node.idAttr}
           />

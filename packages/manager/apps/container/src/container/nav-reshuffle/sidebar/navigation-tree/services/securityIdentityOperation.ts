@@ -12,7 +12,7 @@ const sioUniverse : Node = {
   routing: {
     application: 'iam',
   },
-  count: false,
+  hasService: false,
   features: ['iam', 'key-management-service', 'logs-data-platform'],
 };
 

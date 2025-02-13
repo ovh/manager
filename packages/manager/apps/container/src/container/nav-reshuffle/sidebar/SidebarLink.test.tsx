@@ -11,7 +11,7 @@ const handleOnEnter = vi.fn();
 const node: Node = {
   id: 'pci-rancher',
   idAttr: 'pci-rancher-link',
-  count: 0,
+  hasService: false,
   universe: 'pci',
   translation: 'sidebar_pci_rancher',
   serviceType: 'CLOUD_PROJECT_KUBE',
@@ -28,13 +28,13 @@ const externalNode: Node = {
   idAttr: 'help-link',
   translation: 'sidebar_assistance_help_center',
   url: 'help',
-  count: false,
+  hasService: false,
   isExternal: true,
   svgIcon: OvhProductName.HELPECENTER,
 };
 
 const props: SidebarLinkProps = {
-  count: 0,
+  hasService: false,
   node: node,
   linkParams: null,
   handleOnClick: handleOnClick,
@@ -51,7 +51,7 @@ vi.mock('@/container/nav-reshuffle/sidebar/StaticLink', () => ({
 const renderSidebarLinkComponent = (props: SidebarLinkProps) => {
   return render(
     <SidebarLink
-      count={props.count}
+      hasService={props.hasService}
       node={props.node}
       linkParams={props.linkParams}
       handleOnClick={props.handleOnClick}
