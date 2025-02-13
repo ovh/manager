@@ -5831,7 +5831,7 @@
     date-fns "^3.6.0"
     lodash.isequal "^4.5.0"
 
-"@ovh-ux/manager-react-components@^1.45.0":
+"@ovh-ux/manager-react-components@^1.41.1", "@ovh-ux/manager-react-components@^1.45.0":
   version "1.45.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-components/-/manager-react-components-1.45.0.tgz#e48f51c2d225660fbd37a99e9eda5a8e86262ab3"
   integrity sha512-Uf/ojrsHiT8GDV+VkqJDeMa1HsqTijxNHsxBLDDJfylofc0eDU5C4ZTHEtjljaJ7e0xfzbQGZolAWx0/qdNMPg==

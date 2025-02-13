@@ -34,7 +34,6 @@ import Errors from '@/components/Error/Error';
 import { urls } from '@/routes/routes.constant';
 import { useDetailsLicenseHYCU } from '@/hooks/api/license';
 import { IHycuDetails, LicenseStatus } from '@/types/hycu.details.interface';
-import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 export type DashboardTabItemProps = {
   name: string;
