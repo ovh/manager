@@ -1,3 +1,4 @@
+import { SUPPORT_URLS } from '../../../../apps/telecom/src/app/app.constants';
 import {
   ELIGIBILITY,
   ACCESS_TYPE,
@@ -6,8 +7,15 @@ import {
 
 export default class FtthEligibilityCtrl {
   /* @ngInject */
-  constructor($q, coreURLBuilder, FtthEligibilityService, TucToastError) {
+  constructor(
+    $q,
+    coreConfig,
+    coreURLBuilder,
+    FtthEligibilityService,
+    TucToastError,
+  ) {
     this.$q = $q;
+    this.coreConfig = coreConfig;
     this.coreURLBuilder = coreURLBuilder;
     this.FtthEligibilityService = FtthEligibilityService;
     this.TucToastError = TucToastError;
@@ -22,6 +30,9 @@ export default class FtthEligibilityCtrl {
     };
     this.amountServicesDisplayed = 5;
     this.servicesLength = 0;
+
+    this.user = this.coreConfig.getUser();
+    this.supportUrl = SUPPORT_URLS.createTicket + this.user.ovhSubsidiary;
 
     this.getAllServices();
   }
