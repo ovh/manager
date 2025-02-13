@@ -52,6 +52,7 @@ vi.mock('@ovh-ux/manager-react-components', async () => {
     useNotifications: () => ({
       addError: vi.fn(),
       addSuccess: vi.fn(),
+      clearNotifications: vi.fn(),
     }),
   };
 });

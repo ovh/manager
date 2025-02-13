@@ -1,4 +1,4 @@
-import { Suspense, useContext, useMemo, useState } from 'react';
+import { Suspense, useContext, useEffect, useMemo, useState } from 'react';
 import {
   Outlet,
   useHref,
@@ -51,7 +51,6 @@ import {
   OBJECT_CONTAINER_MODE_LOCAL_ZONE,
   OBJECT_CONTAINER_MODE_MONO_ZONE,
   OBJECT_CONTAINER_MODE_MULTI_ZONES,
-  OBJECT_CONTAINER_OFFER_STORAGE_STANDARD,
   OBJECT_CONTAINER_S3_STATIC_URL_INFO,
   STORAGE_ASYNC_REPLICATION_LINK,
   TRACKING,
@@ -214,6 +213,10 @@ export default function ObjectPage() {
     });
     setSearchField('');
   };
+
+  useEffect(() => {
+    clearNotifications();
+  }, []);
 
   if (!container || !url) {
     return <OdsSpinner size="md" />;
