@@ -1,5 +1,5 @@
 import '@/setupTests';
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import '@testing-library/jest-dom';
 import {
   QueryClient,
@@ -20,7 +20,7 @@ vi.mock('@/data/api/web-ongoing-operations', () => ({
 }));
 
 const queryClient = new QueryClient();
-const wrapper = ({ children }: any) => (
+const wrapper = ({ children }: PropsWithChildren) => (
   <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
 );
 
@@ -33,9 +33,8 @@ describe('Domain datagrid', () => {
   });
 
   it('fetch in a good way using useQuery', () => {
-    const mockData = { data: domain };
     (useQuery as jest.Mock).mockReturnValue({
-      data: mockData,
+      data: domain,
       isLoading: false,
     });
 
@@ -48,9 +47,8 @@ describe('Domain datagrid', () => {
   });
 
   it('Display the datagrid element', async () => {
-    const mockData = { data: domain };
     (useQuery as jest.Mock).mockReturnValue({
-      data: mockData,
+      data: domain,
       isLoading: false,
     });
 
