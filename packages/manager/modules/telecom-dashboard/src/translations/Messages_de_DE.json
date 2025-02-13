@@ -54,5 +54,7 @@
   "telecom_dashboard_ftth_eligibility_not_concerned": "Betrifft mich nicht",
   "telecom_dashboard_ftth_eligibility_not_available": "Nicht verfügbar",
   "telecom_dashboard_ftth_eligibility_migrate": "Zur Glasfaser migrieren",
-  "telecom_dashboard_ftth_eligibility_access_more": "Mehr Zugang anzeigen"
+  "telecom_dashboard_ftth_eligibility_access_more": "Mehr Zugang anzeigen",
+  "telecom_dashboard_ftth_eligibility_support": "Den Support kontaktieren",
+  "telecom_dashboard_ftth_eligibility_not_yet_eligible": "Derzeit nicht wählbar"
 }

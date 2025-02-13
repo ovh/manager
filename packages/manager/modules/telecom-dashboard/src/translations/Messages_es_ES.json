@@ -54,5 +54,7 @@
   "telecom_dashboard_ftth_eligibility_not_concerned": "NS/NC",
   "telecom_dashboard_ftth_eligibility_not_available": "No disponible",
   "telecom_dashboard_ftth_eligibility_migrate": "Migrar a fibra",
-  "telecom_dashboard_ftth_eligibility_access_more": "Ver más accesos"
+  "telecom_dashboard_ftth_eligibility_access_more": "Ver más accesos",
+  "telecom_dashboard_ftth_eligibility_support": "Contactar con el soporte",
+  "telecom_dashboard_ftth_eligibility_not_yet_eligible": "No apto en este momento"
 }
