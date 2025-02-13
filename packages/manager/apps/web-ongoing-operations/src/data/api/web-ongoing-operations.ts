@@ -10,8 +10,13 @@ export const getmeTaskDomainListQueryKey = ['get', 'me', 'task', 'domain'];
 export const getmeTaskDomainList = async (): Promise<TOngoingOperations[]> =>
   apiClient.v6.get(taskMeDomain).then((res) => res.data);
 
-export const getmeTaskDomainIdQueryKey = (id: number) => [
-  ['get', 'me', 'task', 'domain', id],
+export type GetmeTaskDomainIdParams = {
+  /** Id */
+  id?: any;
+};
+
+export const getmeTaskDomainIdQueryKey = (params: GetmeTaskDomainIdParams) => [
+  ['get', 'me', 'task', 'domain', params.id],
 ];
 
 /**
