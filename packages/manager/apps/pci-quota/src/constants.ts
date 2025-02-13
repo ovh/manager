@@ -16,6 +16,8 @@ export const RESTRICTED_RAM = 2048;
 
 export const RESTRICTED_INSTANCES = 1;
 
+const DEUTSCH_ID = 43228;
+// This is the list of issue type ids for the quota increase request for each different language
 export const SUPPORT_ISSUE_TYPE_IDS = [
   33381,
   33382,
@@ -23,7 +25,8 @@ export const SUPPORT_ISSUE_TYPE_IDS = [
   44486,
   44800,
   44801,
-  43228,
+  44485,
+  DEUTSCH_ID,
 ];
 
 export const RX_PLAN_CODE_PATTERN = /quota-([0-9]+)vms/;

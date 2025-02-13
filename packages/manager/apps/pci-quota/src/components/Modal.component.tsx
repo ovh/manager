@@ -10,12 +10,12 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import { OdsSelectCustomRenderer } from '@ovhcloud/ods-components';
-import { useGetIssueTypes } from '@/api/hooks/useIssuTypes';
+import { useGetIssueTypes } from '@/api/hooks/useIssueTypes';
 import { useGetFilteredServiceOptions } from '@/api/hooks/useServiceOptions';
 import { TServiceOption } from '@/api/data/service-option';
-import { SUPPORT_ISSUE_TYPE_IDS } from '@/constants';
+import useInputLabel from '@/hooks/useInputLabel';
 
 export type TProps = {
   type: 'support' | 'credit';
@@ -23,11 +23,6 @@ export type TProps = {
   onCancel: () => void;
   onClose: () => void;
   isLoading: boolean;
-};
-
-type TState = {
-  serviceOption: TServiceOption;
-  description: string;
 };
 
 const selectCustomRenderer: OdsSelectCustomRenderer = {
@@ -55,27 +50,12 @@ export const Modal = ({
 
   const { data: project } = useProject(projectId);
 
-  // TODO two states
-  const [state, setState] = useState<TState>({
-    serviceOption: undefined,
-    description: '',
-  });
+  const [serviceOption, setServiceOption] = useState<TServiceOption>();
+  const [description, setDescription] = useState<string>();
 
   const { data: issueTypes } = useGetIssueTypes(i18n.language);
 
-  const inputLabel = useMemo(() => {
-    if (type === 'support' && Array.isArray(issueTypes)) {
-      const targetIssueType = issueTypes.find(({ id }) =>
-        SUPPORT_ISSUE_TYPE_IDS.includes(id),
-      );
-
-      if (targetIssueType) {
-        // TODO move this to view instead
-        return targetIssueType.fields.map(({ label }) => label).join('\n\n');
-      }
-    }
-    return '';
-  }, [issueTypes]);
+  const inputLabel = useInputLabel(type, issueTypes);
 
   const { data: serviceOptions } = useGetFilteredServiceOptions(projectId);
 
@@ -122,12 +102,9 @@ export const Modal = ({
               </OdsText>
               <OdsTextarea
                 name="description"
-                value={state.description}
+                value={description}
                 onOdsChange={(event) => {
-                  setState((prev) => ({
-                    ...prev,
-                    description: event.target.value,
-                  }));
+                  setDescription(event.target.value);
                 }}
               ></OdsTextarea>
             </OdsFormField>
@@ -143,7 +120,7 @@ export const Modal = ({
                 const target = serviceOptions.find(
                   (s) => s.planCode === event.target.value,
                 );
-                setState((prev) => ({ ...prev, serviceOption: target }));
+                setServiceOption(target);
               }}
               customRenderer={selectCustomRenderer}
             >
@@ -166,16 +143,14 @@ export const Modal = ({
           <OdsButton
             onClick={() =>
               onConfirm(
-                type === 'support'
-                  ? state.description
-                  : state.serviceOption.planCode,
+                type === 'support' ? description : serviceOption.planCode,
               )
             }
             label={t('pci_projects_project_quota_increase_submit_label')}
             className="ml-3"
             isDisabled={
-              (type === 'credit' && !state.serviceOption) ||
-              (type === 'support' && !state.description)
+              (type === 'credit' && !serviceOption) ||
+              (type === 'support' && !description)
             }
             isLoading={isLoading}
           />

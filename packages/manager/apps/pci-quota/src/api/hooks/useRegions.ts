@@ -44,7 +44,7 @@ export const useLocations = (projectId: string, onlyAvailable = false) => {
         (acc: Map<string, TLocation>, region) => {
           const continent = translateContinentRegion(region.name);
           // TODO investigate, le cap, le caire
-          const location = translateMacroRegion(region.name).split(' ')[0];
+          const location = translateMacroRegion(region.name);
 
           if (!acc.has(location)) {
             acc.set(location, {
@@ -61,14 +61,14 @@ export const useLocations = (projectId: string, onlyAvailable = false) => {
       );
 
       // TODO may be a map
-      return Array.from(payload?.keys() || []).reduce(
-        (acc: TPlainLocation[], name) => {
+      return Array.from(payload.entries() || []).reduce(
+        (acc: TPlainLocation[], [name, { continent, regions }]) => {
           return [
             ...acc,
             {
               name,
-              continent: payload.get(name).continent,
-              regions: Array.from(payload.get(name).regions),
+              continent,
+              regions: Array.from(regions),
             },
           ];
         },

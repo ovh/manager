@@ -1,6 +1,5 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 import { QUOTA_THRESHOLD } from '@/constants';
-import { TServiceOption } from '@/api/data/service-option';
 
 export interface IQuota {
   region: string;
