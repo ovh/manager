@@ -1,6 +1,6 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 
-type TIssueType = {
+export type TIssueType = {
   fields: {
     default: string;
     description: string;

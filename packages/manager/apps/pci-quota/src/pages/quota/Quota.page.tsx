@@ -48,13 +48,6 @@ import { useGetValidPaymentMethodIds } from '@/api/hooks/usePaymentmethods';
 import { useGetProjectService } from '@/api/hooks/useService';
 import { Quota } from '@/api/data/quota';
 
-type TState = {
-  manualQuota: {
-    isActive: boolean;
-    isToggling: boolean;
-  };
-};
-
 function paginateResults<T>(items: T[], pagination: PaginationState) {
   return {
     rows: items.slice(
@@ -80,10 +73,12 @@ export default function QuotaPage(): JSX.Element {
 
   const hrefProject = useProjectUrl('public-cloud');
 
-  // TODO split into two states
-  const [state, setState] = useState<TState>({
-    manualQuota: { isActive: false, isToggling: false },
-  });
+  const [manualQuotaIsActive, setManualQuotaIsActive] = useState<boolean>(
+    false,
+  );
+  const [manualQuotaIsToggling, setManualQuotaIsToggling] = useState<boolean>(
+    false,
+  );
 
   const navigate = useNavigate();
 
@@ -148,14 +143,8 @@ export default function QuotaPage(): JSX.Element {
     },
     toggleManualQuota: async () => {
       try {
-        await toggleManualQuota(projectId, state.manualQuota.isActive);
-        setState((prev) => ({
-          ...prev,
-          manualQuota: {
-            ...prev.manualQuota,
-            isActive: !prev.manualQuota.isActive,
-          },
-        }));
+        await toggleManualQuota(projectId, manualQuotaIsActive);
+        setManualQuotaIsActive((isActive) => !isActive);
       } catch (e) {
         addError(
           <Translation ns="quotas">
@@ -172,13 +161,7 @@ export default function QuotaPage(): JSX.Element {
 
   useEffect(() => {
     if (project) {
-      setState((prev) => ({
-        ...prev,
-        manualQuota: {
-          ...prev.manualQuota,
-          isActive: !project.manualQuota,
-        },
-      }));
+      setManualQuotaIsActive(!project.manualQuota);
     }
   }, [project]);
 
@@ -325,32 +308,20 @@ export default function QuotaPage(): JSX.Element {
         </OdsPopover>
         <OdsToggle
           name="auto-scaling"
-          value={state.manualQuota.isActive}
-          isDisabled={state.manualQuota.isToggling}
+          value={manualQuotaIsActive}
+          isDisabled={manualQuotaIsToggling}
           onClick={(event) => {
             event.preventDefault();
-            setState((prev) => ({
-              ...prev,
-              manualQuota: {
-                ...prev.manualQuota,
-                isToggling: true,
-              },
-            }));
+            setManualQuotaIsToggling(true);
 
             Do.toggleManualQuota().finally(() => {
-              setState((prev) => ({
-                ...prev,
-                manualQuota: {
-                  ...prev.manualQuota,
-                  isToggling: false,
-                },
-              }));
+              setManualQuotaIsToggling(false);
             });
           }}
         />
         <OdsText className="pl-4">
           {tQuota(
-            state.manualQuota.isActive
+            manualQuotaIsActive
               ? 'pci_projects_project_quota_autoscaling_on'
               : 'pci_projects_project_quota_autoscaling_off',
           )}

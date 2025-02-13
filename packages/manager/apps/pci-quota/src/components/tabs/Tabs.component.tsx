@@ -14,18 +14,17 @@ export type TTabItem = {
 export const TabsComponent = ({ activeTab }: { activeTab: TAllowedTabs }) => {
   const navigate = useNavigate();
 
-  const { t: tRegions } = useTranslation('regions');
-  const { t: tQuotas } = useTranslation('quotas');
+  const { t } = useTranslation(['regions', 'quotas']);
 
   const items: TTabItem[] = [
     {
       id: 'quota',
-      label: tQuotas('pci_projects_project_quota'),
+      label: t('pci_projects_project_quota', { ns: 'quotas' }),
       href: '../quota',
     },
     {
       id: 'regions',
-      label: tRegions('pci_projects_project_regions'),
+      label: t('pci_projects_project_regions', { ns: 'regions' }),
       href: '../regions',
     },
   ];
