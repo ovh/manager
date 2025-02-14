@@ -8,22 +8,20 @@ import { Translation, useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import useTracking from '@/hooks/useTracking';
 import { COLD_ARCHIVE_TRACKING, MANAGE_ARCHIVE_DOC_LINK } from '@/constants';
-import {
-  useDeleteArchiveContainer,
-  useGetArchiveByName,
-} from '@/api/hooks/useArchive';
+import { useDeleteArchive, useGetArchiveByName } from '@/api/hooks/useArchive';
 
 export default function DeletePage() {
-  const navigate = useNavigate();
-  const { addSuccess, addError } = useNotifications();
-  const { projectId } = useParams();
-  const { archiveName } = useParams();
   const { t } = useTranslation('containers/delete');
+
+  const navigate = useNavigate();
+  const goBack = () => navigate('..');
+
+  const { addSuccess, addError } = useNotifications();
+  const { projectId, archiveName } = useParams();
+
   const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
 
-  const getDocumentationUrl = () => {
-    return MANAGE_ARCHIVE_DOC_LINK[ovhSubsidiary];
-  };
+  const documentationUrl = MANAGE_ARCHIVE_DOC_LINK[ovhSubsidiary];
 
   const {
     trackConfirmAction,
@@ -31,8 +29,6 @@ export default function DeletePage() {
     trackSuccessPage,
     trackErrorPage,
   } = useTracking(COLD_ARCHIVE_TRACKING.CONTAINERS.DELETE_CONTAINER);
-
-  const goBack = () => navigate('..');
 
   const onCancel = () => {
     trackCancelAction();
@@ -43,57 +39,56 @@ export default function DeletePage() {
 
   const archive = useGetArchiveByName(projectId, archiveName);
 
-  const {
-    deleteArchiveContainer,
-    isPending: isPendingDelete,
-  } = useDeleteArchiveContainer({
-    projectId,
-    onError(error: ApiError) {
-      addError(
-        <Translation ns="containers/delete">
-          {(_t) =>
-            _t(
-              'pci_projects_project_storages_containers_container_cold_archive_delete_error_delete',
-              {
-                containerName: archiveName,
-                message:
-                  error?.response?.data?.message || error?.message || null,
-              },
-            )
-          }
-        </Translation>,
-        true,
-      );
+  const { deleteArchive, isPending: isDeleteArchivePending } = useDeleteArchive(
+    {
+      projectId,
+      onError(error: ApiError) {
+        addError(
+          <Translation ns="containers/delete">
+            {(_t) =>
+              _t(
+                'pci_projects_project_storages_containers_container_cold_archive_delete_error_delete',
+                {
+                  containerName: archiveName,
+                  message:
+                    error?.response?.data?.message || error?.message || null,
+                },
+              )
+            }
+          </Translation>,
+          true,
+        );
 
-      trackSuccessPage();
-      goBack();
-    },
-    onSuccess() {
-      addSuccess(
-        <Translation ns="containers/delete">
-          {(_t) =>
-            _t(
-              'pci_projects_project_storages_containers_container_cold_archive_delete_success_message',
-              {
-                containerName: archiveName,
-              },
-            )
-          }
-        </Translation>,
-        true,
-      );
+        trackSuccessPage();
+        goBack();
+      },
+      onSuccess() {
+        addSuccess(
+          <Translation ns="containers/delete">
+            {(_t) =>
+              _t(
+                'pci_projects_project_storages_containers_container_cold_archive_delete_success_message',
+                {
+                  containerName: archiveName,
+                },
+              )
+            }
+          </Translation>,
+          true,
+        );
 
-      trackErrorPage();
-      goBack();
+        trackErrorPage();
+        goBack();
+      },
     },
-  });
+  );
 
   const onConfirm = () => {
     trackConfirmAction();
-    deleteArchiveContainer(archiveName);
+    deleteArchive(archiveName);
   };
 
-  const isPending = isPendingDelete || !archive;
+  const isPending = isDeleteArchivePending || !archive;
 
   return (
     <DeletionModal
@@ -133,7 +128,7 @@ export default function DeletePage() {
                 __html: t(
                   'pci_projects_project_storages_containers_container_cold_archive_delete_archive_status_active_warning_2',
                   {
-                    docUrl: getDocumentationUrl(),
+                    docUrl: documentationUrl(),
                   },
                 ),
               }}
