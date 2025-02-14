@@ -14,7 +14,7 @@ import { UpdatePolicySelector } from './UpdatePolicySelector.component';
 import { UpdatePolicy } from '@/types';
 
 export interface VersionStepProps {
-  onSubmit: (version: string, policy: string) => void;
+  onSubmit: (version: string, policy: UpdatePolicy) => void;
   step: StepState;
 }
 
@@ -30,7 +30,7 @@ export function VersionAndUpdatePolicyStep({
       <div className={clsx(step.isLocked && 'hidden')}>
         <VersionSelector
           key={version}
-          versionSelected={version}
+          versionSelected={version as string}
           onSelectVersion={setVersion}
         />
         <UpdatePolicySelector policy={policy} onPolicyChange={setPolicy} />

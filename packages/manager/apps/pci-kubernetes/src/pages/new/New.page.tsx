@@ -5,6 +5,7 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import {
   PciDiscoveryBanner,
+  TProject,
   isDiscoveryProject,
   useProject,
 } from '@ovh-ux/manager-pci-common';
@@ -50,13 +51,13 @@ export default function NewPage() {
   const hrefProject = useProjectUrl('public-cloud');
   const stepper = useClusterCreationStepper();
   const { addError, addSuccess } = useNotifications();
-  const isDiscovery = isDiscoveryProject(project);
+  const isDiscovery = isDiscoveryProject(project as TProject);
 
   const {
     createCluster,
     isPending: isCreationPending,
   } = useCreateKubernetesCluster({
-    projectId: project?.project_id,
+    projectId: project?.project_id ?? '',
     onSuccess: () => {
       navigate('..');
       addSuccess(
@@ -261,19 +262,21 @@ export default function NewPage() {
             isDisabled: isCreationPending,
           }}
         >
-          {!stepper.confirm.step.isLocked && (
-            <ClusterConfirmationStep
-              form={stepper.form}
-              onSubmit={() => {
-                stepper.confirm.step.lock();
-                createNewCluster();
-              }}
-              step={stepper.confirm.step}
-            />
-          )}
-          {stepper.confirm.step.isLocked && (
-            <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
-          )}
+          <>
+            {!stepper.confirm.step.isLocked && (
+              <ClusterConfirmationStep
+                form={stepper.form}
+                onSubmit={() => {
+                  stepper.confirm.step.lock();
+                  createNewCluster();
+                }}
+                step={stepper.confirm.step}
+              />
+            )}
+            {stepper.confirm.step.isLocked && (
+              <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
+            )}
+          </>
         </StepComponent>
       </div>
     </>
