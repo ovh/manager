@@ -1,7 +1,10 @@
 {
   "dedicatedCloud_datacenter_no_name": "Datacenter {{t0}}",
   "dedicatedCloud_datacenter_no_description": "Ajouter une description",
+  "dedicatedCloud_datacenter_activate": "Activer",
   "dedicatedCloud_datacenter_resize": "Redimensionner",
+  "dedicatedCloud_datacenter_add_edge": "Ajouter un Edge",
+  "dedicatedCloud_datacenter_modify_datastore": "Modifier le datastore",
   "dedicatedCloud_tab_dashboard": "Informations générales",
   "dedicatedCloud_tab_host": "Hosts",
   "dedicatedCloud_tab_datastore": "Datastores",
