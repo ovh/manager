@@ -4,9 +4,9 @@ import template from './order.template.html';
 export default {
   bindings: {
     goToNasha: '<',
-    plans: '<',
     trackClick: '<',
-    trackClickConfirmOrder: '<',
+    nashaPublicUrl: '<',
+    setupNasHa: '<',
   },
   controller,
   template,
