@@ -20,14 +20,18 @@ import LabelComponent from '@/components/Label.component';
 import { COLD_ARCHIVE_TRACKING } from '@/constants';
 import { useFormattedDate } from '@/hooks/useFormattedDate';
 import { useStartArchiveContainer } from '@/api/hooks/useArchive';
+import useTracking from '@/hooks/useTracking';
 
 export default function ArchivePage() {
-  const { addSuccess, addError } = useNotifications();
-  const navigate = useNavigate();
-  const { projectId, archiveName } = useParams();
   const { t } = useTranslation(['containers/archive', 'pci-common']);
+
+  const { addSuccess, addError } = useNotifications();
+  const { projectId, archiveName } = useParams();
+
+  const navigate = useNavigate();
+  const goBack = () => navigate('..');
+
   const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
-  const { tracking } = useContext(ShellContext).shell;
 
   const [lockedUntilDays, setLockedUntilDays] = useState(1);
   const [hasRetention, setHasRetention] = useState(true);
@@ -36,18 +40,12 @@ export default function ArchivePage() {
     'P',
   );
 
-  const trackStartArchiveModalClick = (action: string) => {
-    tracking?.trackClick({
-      name: `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.ARCHIVE}::${action}`,
-      type: 'action',
-    });
-  };
-  const trackStartArchiveModalPage = (action: string) => {
-    tracking?.trackPage({
-      name: `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.ARCHIVE}_${action}`,
-      type: 'navigation',
-    });
-  };
+  const {
+    trackConfirmAction,
+    trackCancelAction,
+    trackSuccessPage,
+    trackErrorPage,
+  } = useTracking(COLD_ARCHIVE_TRACKING.CONTAINERS.ARCHIVE);
 
   const {
     data: regions,
@@ -81,8 +79,9 @@ export default function ArchivePage() {
         </Translation>,
         true,
       );
-      trackStartArchiveModalPage(COLD_ARCHIVE_TRACKING.STATUS.ERROR);
-      navigate('..');
+
+      trackErrorPage();
+      goBack();
     },
     onSuccess() {
       addSuccess(
@@ -98,20 +97,24 @@ export default function ArchivePage() {
         </Translation>,
         true,
       );
-      trackStartArchiveModalPage(COLD_ARCHIVE_TRACKING.STATUS.SUCCESS);
-      navigate('..');
+
+      trackSuccessPage();
+      goBack();
     },
   });
 
   const onConfirm = () => {
-    trackStartArchiveModalClick(COLD_ARCHIVE_TRACKING.ACTIONS.CONFIRM);
+    trackConfirmAction();
     startArchiveContainer();
   };
+
   const onCancel = () => {
-    trackStartArchiveModalClick(COLD_ARCHIVE_TRACKING.ACTIONS.CANCEL);
-    navigate('..');
+    trackCancelAction();
+    goBack();
   };
-  const onClose = () => onCancel();
+
+  const onClose = onCancel;
+
   const isPending = isRegionsPending || isPendingStartArchive;
   const error = {
     min: lockedUntilDays < 1,

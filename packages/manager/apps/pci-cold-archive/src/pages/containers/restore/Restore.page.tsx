@@ -9,16 +9,21 @@ import { OdsText } from '@ovhcloud/ods-components/react';
 import { useContext } from 'react';
 import { Translation, useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useRestoreArchiveContainer } from '@/api/hooks/useArchive';
+import useTracking from '@/hooks/useTracking';
 import { COLD_ARCHIVE_TRACKING } from '@/constants';
+import { useRestoreArchiveContainer } from '@/api/hooks/useArchive';
 
 export default function Restore() {
-  const { addSuccess, addError } = useNotifications();
-  const navigate = useNavigate();
-  const { projectId, archiveName } = useParams();
   const { t } = useTranslation('containers/restore');
+
+  const { addSuccess, addError } = useNotifications();
+  const { projectId, archiveName } = useParams();
+
+  const navigate = useNavigate();
+  const goBack = () => navigate('..');
+
   const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
-  const { tracking } = useContext(ShellContext).shell;
+
   const {
     data: regions,
     isPending: isRegionsPending,
@@ -27,18 +32,12 @@ export default function Restore() {
     'coldarchive.archive.hour.consumption',
   );
 
-  const trackRestoreContainerModalClick = (action: string) => {
-    tracking?.trackClick({
-      name: `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.RESTORE}::${action}`,
-      type: 'action',
-    });
-  };
-  const trackRestoreContainerModalPage = (action: string) => {
-    tracking?.trackPage({
-      name: `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.RESTORE}_${action}`,
-      type: 'navigation',
-    });
-  };
+  const {
+    trackConfirmAction,
+    trackCancelAction,
+    trackSuccessPage,
+    trackErrorPage,
+  } = useTracking(COLD_ARCHIVE_TRACKING.CONTAINERS.RESTORE);
 
   const {
     restoreArchiveContainer,
@@ -63,8 +62,9 @@ export default function Restore() {
         </Translation>,
         true,
       );
-      trackRestoreContainerModalPage(COLD_ARCHIVE_TRACKING.STATUS.ERROR);
-      navigate('..');
+
+      trackErrorPage();
+      goBack();
     },
     onSuccess() {
       addSuccess(
@@ -80,21 +80,26 @@ export default function Restore() {
         </Translation>,
         true,
       );
-      trackRestoreContainerModalPage(COLD_ARCHIVE_TRACKING.STATUS.SUCCESS);
-      navigate('..');
+
+      trackSuccessPage();
+      goBack();
     },
   });
+
   const onConfirm = () => {
-    trackRestoreContainerModalClick(COLD_ARCHIVE_TRACKING.ACTIONS.CONFIRM);
+    trackConfirmAction();
     restoreArchiveContainer();
   };
+
   const onCancel = () => {
-    trackRestoreContainerModalPage(COLD_ARCHIVE_TRACKING.ACTIONS.CANCEL);
-    navigate('..');
+    trackCancelAction();
+    goBack();
   };
-  const onClose = () => onCancel();
+
+  const onClose = onCancel;
 
   const isPending = isPendingRestore || isRegionsPending;
+
   return (
     <PciModal
       title={t(
