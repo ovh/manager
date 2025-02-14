@@ -11,6 +11,7 @@ import {
   Tooltip,
   ResponsiveContainer,
   Legend,
+  Line,
 } from 'recharts';
 import { SavingsPlanFlavorConsumption } from '@/types/savingsPlanConsumption.type';
 import { getChartsData } from '@/utils/formatter/formatter';
@@ -28,7 +29,7 @@ const getMaxRangeGraph = (maxValue: number) =>
   Math.round(maxValue * GRAPH_SIZE_ZOOM);
 
 const INCLUDED_COLOR = 'rgba(0, 128, 0, 0.6)';
-const EXCLUDED_COLOR = 'rgba(255, 192, 203, 0.6)';
+const EXCLUDED_COLOR = '#EF99AB';
 
 const GenericChart: React.FC<ChartProps> = ({
   chartTitle,
@@ -88,9 +89,13 @@ const GenericChart: React.FC<ChartProps> = ({
               offset: -10,
               fontSize: 12,
             }}
+            {...(maxRange <= 1 ? { ticks: [0, 1] } : {})}
           />
-          <Tooltip />
+          <Tooltip formatter={(value) => <OdsText>{value}</OdsText>} />
           <Legend
+            formatter={(value) => (
+              <span className="text-[--ods-color-blue-800]">{value}</span>
+            )}
             verticalAlign="top"
             align="center"
             wrapperStyle={{ fontSize: '10px', paddingBottom: '20px' }}
@@ -133,6 +138,8 @@ const GenericChart: React.FC<ChartProps> = ({
             fill="white"
             name={t('dashboard_columns_cumul_plan_size')}
           />
+
+          <Line type="basis" dataKey="date" fillOpacity={0} strokeOpacity={0} />
         </AreaChart>
       </ResponsiveContainer>
     </>
