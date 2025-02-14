@@ -17,6 +17,8 @@ export const GDPR_REQUEST_MANAGEMENT_ACTIONS = [
 ];
 
 export const GDPR_FEATURES_BANNER_CONTAINER = 'gdpr-features.alerts.global';
+export const GDPR_FEATURES_CONFIRM_BANNER_CONTAINER =
+  'gdpr-features-confirm.alerts.global';
 
 export const CREATE_ERASURE_REQUEST_MESSAGES_MAP = {
   400: 'gdpr_erasure_creation_error',
@@ -38,6 +40,14 @@ export const CONFIRMATION_EMAIL_ERASURE_REQUEST_MESSAGES_MAP = {
   404: 'gdpr_erasure_confirmation_email_error_not_found',
   409: 'gdpr_erasure_confirmation_email_error_invalid_status',
   429: 'gdpr_erasure_confirmation_email_error_max_attempts',
+  500: 'gdpr_erasure_retryable',
+  503: 'gdpr_erasure_retryable',
+};
+
+export const CONFIRM_ERASURE_REQUEST_MESSAGES_MAP = {
+  400: 'gdpr_erasure_confirm_error_invalid_code',
+  404: 'gdpr_erasure_cancel_error_missing_nic_or_invalid_request',
+  409: 'gdpr_erasure_confirm_error_exhausted_attempts',
   500: 'gdpr_erasure_retryable',
   503: 'gdpr_erasure_retryable',
 };
@@ -89,6 +99,7 @@ export default {
   GDPR_REQUEST_MANAGEMENT_ACTIONS,
   CREATE_ERASURE_REQUEST_ACTION,
   GDPR_FEATURES_BANNER_CONTAINER,
+  GDPR_FEATURES_CONFIRM_BANNER_CONTAINER,
   CREATE_ERASURE_REQUEST_MESSAGES_MAP,
   ERASURE_REQUEST_STATUS_MESSAGES_COLORS_MAP,
   ERASURE_INELIGIBILITY_REASON_MESSAGES_MAP,

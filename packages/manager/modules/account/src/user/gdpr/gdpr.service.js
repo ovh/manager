@@ -64,4 +64,16 @@ export default class GdprService {
       )
       .then(({ data }) => data);
   }
+
+  confirmErasure(requestPublicId, code) {
+    return this.$http.post(
+      `/me/privacy/requests/erasure/${requestPublicId}/confirm`,
+      {
+        code,
+      },
+      {
+        serviceType: 'apiv6',
+      },
+    );
+  }
 }
