@@ -12,6 +12,7 @@ import { getAdditionalIpsProductSettings } from '../order.utils';
 import { OrderContext } from '../order.context';
 import { urls } from '@/routes/routes.constant';
 import { ServiceType } from '@/types';
+import { MAX_IP_QUANTITY } from '../order.constant';
 
 export const OrderButtonSection: React.FC = () => {
   const {
@@ -45,6 +46,7 @@ export const OrderButtonSection: React.FC = () => {
   return (
     <div className="flex gap-3">
       <OdsButton
+        isDisabled={ipQuantity > MAX_IP_QUANTITY}
         color={ODS_BUTTON_COLOR.primary}
         size={ODS_BUTTON_SIZE.md}
         label={t('order_button_label')}
