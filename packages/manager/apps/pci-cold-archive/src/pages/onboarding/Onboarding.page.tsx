@@ -17,6 +17,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useArchives } from '@/api/hooks/useArchive';
 import { COLD_ARCHIVE_TRACKING, ONBOARDING_DOC_LINKS } from '@/constants';
+import useTracking from '@/hooks/useTracking';
 
 export default function OnBoardingPage() {
   const { t } = useTranslation(['onboarding', 'cold-archive']);
@@ -25,8 +26,11 @@ export default function OnBoardingPage() {
   const urlProject = useProjectUrl('public-cloud');
   const navigate = useNavigate();
 
-  const { tracking } = useContext(ShellContext).shell;
   const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
+
+  const { trackActionClick } = useTracking(
+    COLD_ARCHIVE_TRACKING.ONBOARDING.MAIN,
+  );
 
   const { data: allArchives, isPending } = useArchives(projectId);
 
@@ -107,10 +111,8 @@ export default function OnBoardingPage() {
             'pci_projects_project_storages_cold_archives_onboarding_action_label',
           )}
           onOrderButtonClick={() => {
+            trackActionClick(COLD_ARCHIVE_TRACKING.ONBOARDING.ADD_CONTAINER);
             navigate('../new');
-            tracking?.trackClick({
-              name: `${COLD_ARCHIVE_TRACKING.ONBOARDING.MAIN}::${COLD_ARCHIVE_TRACKING.ONBOARDING.ADD_CONTAINER}`,
-            });
           }}
         >
           {tileItems.map((tile) => (

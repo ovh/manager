@@ -1,16 +1,17 @@
+import { ApiError } from '@ovh-ux/manager-core-api';
 import { DeletionModal } from '@ovh-ux/manager-pci-common';
+import { useNotifications } from '@ovh-ux/manager-react-components';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
+import { useContext } from 'react';
 import { Translation, useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useNotifications } from '@ovh-ux/manager-react-components';
-import { useContext } from 'react';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { ApiError } from '@ovh-ux/manager-core-api';
+import useTracking from '@/hooks/useTracking';
+import { COLD_ARCHIVE_TRACKING, MANAGE_ARCHIVE_DOC_LINK } from '@/constants';
 import {
   useDeleteArchiveContainer,
   useGetArchiveByName,
 } from '@/api/hooks/useArchive';
-import { COLD_ARCHIVE_TRACKING, MANAGE_ARCHIVE_DOC_LINK } from '@/constants';
 
 export default function DeletePage() {
   const navigate = useNavigate();
@@ -24,25 +25,18 @@ export default function DeletePage() {
     return MANAGE_ARCHIVE_DOC_LINK[ovhSubsidiary];
   };
 
-  const { tracking } = useContext(ShellContext).shell;
+  const {
+    trackConfirmAction,
+    trackCancelAction,
+    trackSuccessPage,
+    trackErrorPage,
+  } = useTracking(COLD_ARCHIVE_TRACKING.CONTAINERS.DELETE_CONTAINER);
 
-  const trackDeleteContainerModalClick = (action: string) => {
-    tracking?.trackClick({
-      name: `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.DELETE_CONTAINER}::${action}`,
-      type: 'action',
-    });
-  };
-
-  const trackDeleteContainerModalPage = (action: string) => {
-    tracking?.trackPage({
-      name: `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.DELETE_CONTAINER}_${action}`,
-      type: 'navigation',
-    });
-  };
+  const goBack = () => navigate('..');
 
   const onCancel = () => {
-    trackDeleteContainerModalClick(COLD_ARCHIVE_TRACKING.ACTIONS.CANCEL);
-    navigate('..');
+    trackCancelAction();
+    goBack();
   };
 
   const onClose = onCancel;
@@ -70,8 +64,9 @@ export default function DeletePage() {
         </Translation>,
         true,
       );
-      trackDeleteContainerModalPage(COLD_ARCHIVE_TRACKING.STATUS.SUCCESS);
-      navigate('..');
+
+      trackSuccessPage();
+      goBack();
     },
     onSuccess() {
       addSuccess(
@@ -87,13 +82,14 @@ export default function DeletePage() {
         </Translation>,
         true,
       );
-      trackDeleteContainerModalPage(COLD_ARCHIVE_TRACKING.STATUS.ERROR);
-      navigate('..');
+
+      trackErrorPage();
+      goBack();
     },
   });
 
   const onConfirm = () => {
-    trackDeleteContainerModalClick(COLD_ARCHIVE_TRACKING.ACTIONS.CONFIRM);
+    trackConfirmAction();
     deleteArchiveContainer(archiveName);
   };
 

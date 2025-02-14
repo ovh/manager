@@ -1,25 +1,25 @@
+import { ApiError } from '@ovh-ux/manager-core-api';
+import { useProductRegionsAvailability } from '@ovh-ux/manager-pci-common';
+import { useNotifications } from '@ovh-ux/manager-react-components';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { ODS_BUTTON_VARIANT, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import {
   OdsButton,
   OdsModal,
   OdsSpinner,
   OdsText,
 } from '@ovhcloud/ods-components/react';
-import { useNotifications } from '@ovh-ux/manager-react-components';
-import { ODS_BUTTON_VARIANT, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { useContext, useState } from 'react';
 import { Translation, useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { ApiError } from '@ovh-ux/manager-core-api';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { useProductRegionsAvailability } from '@ovh-ux/manager-pci-common';
+import useTracking from '@/hooks/useTracking';
+import { COLD_ARCHIVE_TRACKING } from '@/constants';
+import { useUsers } from '@/api/hooks/useUser';
+import { useAddUser } from '@/api/hooks/useArchive';
+import { TUser } from '@/api/data/user';
 import StepOneComponent from './StepOne.component';
 import StepTwoComponent from './StepTwo.component';
-import { useUsers } from '@/api/hooks/useUser';
-import { TUser } from '@/api/data/user';
-import { useAddUser } from '@/api/hooks/useArchive';
-import { COLD_ARCHIVE_TRACKING } from '@/constants';
 
-// TODO Refactor with object storage when object storage is prodded because the code is duplicated
 export default function AddUserToContainerPage() {
   const { t } = useTranslation('containers/add-user');
 
@@ -31,7 +31,6 @@ export default function AddUserToContainerPage() {
   const navigate = useNavigate();
 
   const { projectId, archiveName } = useParams();
-  const { tracking } = useContext(ShellContext).shell;
 
   const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
   const {
@@ -48,25 +47,21 @@ export default function AddUserToContainerPage() {
 
   const defaultUser = validUsersWithCredentials?.[0];
 
-  const trackAddUserModalClick = (action: string) => {
-    tracking?.trackClick({
-      name: `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.ADD_USER}::${action}`,
-      type: 'action',
-    });
-  };
+  const {
+    trackConfirmAction,
+    trackCancelAction,
+    trackSuccessPage,
+    trackErrorPage,
+  } = useTracking(COLD_ARCHIVE_TRACKING.CONTAINERS.ADD_USER);
 
-  const trackAddUserModalPage = (action: string) => {
-    tracking?.trackClick({
-      name: `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.ADD_USER}_${action}`,
-      type: 'navigation',
-    });
-  };
+  const goBack = () => navigate('..');
 
   const onCancel = () => {
-    trackAddUserModalClick(COLD_ARCHIVE_TRACKING.ACTIONS.CANCEL);
-    navigate(`..`);
+    trackCancelAction();
+    goBack();
   };
-  const onClose = () => onCancel();
+
+  const onClose = onCancel;
 
   const { addUser, isPending: isPendingAddUser } = useAddUser({
     projectId,
@@ -90,8 +85,9 @@ export default function AddUserToContainerPage() {
         </Translation>,
         true,
       );
-      trackAddUserModalPage(COLD_ARCHIVE_TRACKING.STATUS.ERROR);
-      navigate('..');
+
+      trackErrorPage();
+      goBack();
     },
     onSuccess: () => {
       addSuccess(
@@ -111,8 +107,9 @@ export default function AddUserToContainerPage() {
         </Translation>,
         true,
       );
-      trackAddUserModalPage(COLD_ARCHIVE_TRACKING.STATUS.SUCCESS);
-      navigate(`..`);
+
+      trackSuccessPage();
+      goBack();
     },
   });
 
@@ -120,7 +117,7 @@ export default function AddUserToContainerPage() {
     if (stepUser === 0) {
       setStepUser(1);
     } else {
-      trackAddUserModalClick(COLD_ARCHIVE_TRACKING.ACTIONS.CONFIRM);
+      trackConfirmAction();
       addUser();
     }
   };
