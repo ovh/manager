@@ -1,5 +1,4 @@
 import angular from 'angular';
-import '@ovh-ux/manager-core';
 import '@uirouter/angularjs';
 import 'angular-translate';
 import { region, iamProtectedData } from '@ovh-ux/manager-components';
@@ -10,6 +9,7 @@ import datacenterName from '../../component/datacenter-name/module';
 import nodeStatus from '../../component/node-os-datagrid/module';
 import nodeOsDatagrid from '../../component/service-status/module';
 import nodeActionMenu from '../../component/node-action-menu/module';
+import nodeActionMenuTerminated from '../../component/node-action-menu-terminated/module';
 import addNodes from './add-nodes';
 import poweroffNode from './poweroff-node';
 import installNode from './install-node';
@@ -21,7 +21,6 @@ const moduleName = 'ovhManagerNutanixAllNodes';
 
 angular
   .module(moduleName, [
-    'ovhManagerCore',
     'pascalprecht.translate',
     'ui.router',
     region,
@@ -30,6 +29,7 @@ angular
     nodeStatus,
     nodeOsDatagrid,
     nodeActionMenu,
+    nodeActionMenuTerminated,
     addNodes,
     poweroffNode,
     installNode,

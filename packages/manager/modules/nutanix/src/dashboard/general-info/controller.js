@@ -40,7 +40,6 @@ export default class NutanixGeneralInfoCtrl {
 
   $onInit() {
     this.loadServicesDetails();
-    this.loadNodesStatus();
     this.setPrivateBandwidthServiceId();
     this.clusterRedeploying = this.cluster.status === CLUSTER_STATUS.DEPLOYING;
     this.showRedeployWarningModal = false;

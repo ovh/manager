@@ -105,7 +105,7 @@
     </oui-datagrid-column>
     <oui-datagrid-column>
         <node-action-menu
-            data-ng-if="$row.possibleActions && !$row.isResiliated"
+            data-ng-if="$row.possibleActions && !$row.isTerminated"
             data-possible-actions="$row.possibleActions"
             data-service-name="$ctrl.serviceName"
             data-server="$row.name"
@@ -119,7 +119,7 @@
             data-on-terminate="$ctrl.terminateNode($row.name)"
         >
         </node-action-menu>
-        <node-action-menu-resiliated data-ng-if="$row.isResiliated">
-        </node-action-menu-resiliated>
+        <node-action-menu-terminated data-ng-if="$row.isTerminated">
+        </node-action-menu-terminated>
     </oui-datagrid-column>
 </oui-datagrid>
