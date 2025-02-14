@@ -196,18 +196,26 @@ export default class NutanixService {
       .then(({ data }) => data);
   }
 
-  getNodeDetails(nodes) {
+  getNodeDetails(cluster) {
     return this.$q
-      .all(nodes.map((node) => this.getServer(node.server)))
-      .then((res) => res);
-  }
+      .all(cluster.getNodes().map((node) => this.getServer(node.server)))
+      .then((nodes) => {
+        const nodesWithStatus = nodes;
+        cluster.getNodes().forEach((nodeDetail) => {
+          const nodeIndex = nodesWithStatus.findIndex(
+            (node) => node.name === nodeDetail.server,
+          );
 
-  getNodesWithState(serviceName) {
-    return this.$http
-      .get(`/nutanix/${serviceName}/nodes`, {
-        serviceType: 'apiv6',
-      })
-      .then(({ data }) => data.map((node) => new Node(node)));
+          if (nodeIndex < 0) return;
+
+          nodesWithStatus[nodeIndex] = new Node({
+            ...nodes[nodeIndex],
+            ...nodeDetail,
+          });
+        });
+
+        return nodesWithStatus;
+      });
   }
 
   getServer(nodeId) {
