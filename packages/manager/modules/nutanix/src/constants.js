@@ -36,7 +36,7 @@ export const SERVICE_STATES = {
 };
 
 export const MIN_NODES_BY_CLUSTER = 3;
-export const MAX_NODES_BY_CLUSTER = 15;
+export const MAX_NODES_BY_CLUSTER = 4;
 
 export const NUTANIX_SERVICE_TYPE = 'NUTANIX';
 
