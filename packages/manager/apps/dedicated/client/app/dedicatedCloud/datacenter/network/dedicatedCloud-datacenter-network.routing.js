@@ -43,10 +43,10 @@ export default /* @ngInject */ ($stateProvider) => {
         nsxEdgeOptionServiceId: /* @ngInject */ (serviceOptions) =>
           serviceOptions.find(
             (option) => option.billing.plan.code === NSXT_EDGE_PLAN_CODE,
-          ).serviceId,
-        hasSubscribedToNsxt: /* @ngInject */ (serviceOptions) =>
-          serviceOptions.some(
-            (option) => option.billing.plan.code === NSXT_EDGE_PLAN_CODE,
+          )?.serviceId,
+        hasSubscribedToNsxt: /* @ngInject */ (DedicatedCloud, serviceName) =>
+          DedicatedCloud.getDatacenterNsxtOptionState(serviceName).then(
+            ({ enabled }) => enabled,
           ),
         breadcrumb: () => NETWORK_LABEL,
       },
