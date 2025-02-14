@@ -50,7 +50,7 @@ export default /* @ngInject */ ($stateProvider) => {
           service,
         ) => {
           atInternet.trackClick({
-            name: `${TRACKING_PREFIX}'::datagrid::button::goToManageNotifications'`,
+            name: `${TRACKING_PREFIX}'::datagrid::button::gotomanagenotifications'`,
             type: 'action',
             ...TRACKING_CONTEXT,
           });
