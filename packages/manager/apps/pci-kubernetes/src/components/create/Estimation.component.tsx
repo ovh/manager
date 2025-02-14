@@ -9,8 +9,9 @@ import {
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
+import { NodePool } from '@/api/data/kubernetes';
 
-const Estimation = () => {
+const Estimation = ({ nodePools }: { nodePools: NodePool[] }) => {
   const { t } = useTranslation('node-pool');
 
   return (
@@ -18,7 +19,7 @@ const Estimation = () => {
       <OsdsText
         className="font-bold"
         color={ODS_TEXT_COLOR_INTENT.text}
-        level={ODS_TEXT_LEVEL.body}
+        level={ODS_TEXT_LEVEL.heading}
         size={ODS_THEME_TYPOGRAPHY_SIZE._400}
         slot="end"
       >
@@ -36,7 +37,9 @@ const Estimation = () => {
         level={ODS_TEXT_LEVEL.body}
         size={ODS_TEXT_SIZE._400}
       >
-        {t('kube_common_node_pool_estimation_price')}
+        {t('kube_common_node_pool_estimation_price', {
+          estimation: 'x,xx € HT/mois',
+        })}
       </OsdsText>
       <OsdsText
         color={ODS_THEME_COLOR_INTENT.text}

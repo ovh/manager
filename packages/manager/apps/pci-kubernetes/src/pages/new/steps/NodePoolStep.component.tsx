@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { OsdsButton, OsdsText } from '@ovhcloud/ods-components/react';
 import { KubeFlavor } from '@ovh-ux/manager-pci-common';
+
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
@@ -10,7 +11,7 @@ import {
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
-import { Datagrid } from '@ovh-ux/manager-react-components';
+import { Datagrid, useDataGrid } from '@ovh-ux/manager-react-components';
 import { AutoscalingState } from '@/components/Autoscaling.component';
 import {
   ANTI_AFFINITY_MAX_NODES,
@@ -51,7 +52,7 @@ const NodePoolStep = ({
   const [flavor, setFlavor] = useState<KubeFlavor | null>(null);
 
   const [nodePoolEnabled, setNodePoolEnabled] = useState(true);
-
+  const { sorting, setSorting } = useDataGrid();
   const [nodes, setNodes] = useState<NodePool[] | null>(null);
   const onDelete = useCallback(
     (nameToDelete: string) =>
@@ -105,6 +106,12 @@ const NodePoolStep = ({
     TAGS_BLOB.COMING_SOON,
   );
 
+  const isStepUnlocked = !stepper.node.step.isLocked;
+
+  const canSubmit =
+    (isStepUnlocked && !nodePoolEnabled) ||
+    (isStepUnlocked && nodePoolEnabled && nodes?.length > 0);
+
   useEffect(() => setIsMonthlyBilled(false), [flavor]);
 
   useEffect(() => {
@@ -112,6 +119,7 @@ const NodePoolStep = ({
     if (!nodePoolEnabled) {
       setScaling(null);
       setFlavor(null);
+      setName('');
     }
   }, [nodePoolEnabled]);
 
@@ -167,64 +175,72 @@ const NodePoolStep = ({
             </div>
           </>
         )}
-        {!stepper.node.step.isLocked && nodes && scaling && flavor && (
+        {!stepper.node.step.isLocked && (
           <OsdsButton
             variant={ODS_BUTTON_VARIANT.stroked}
             className="my-6 w-fit"
+            disabled={!nodes || !scaling || !flavor || undefined}
             size={ODS_BUTTON_SIZE.sm}
             color={ODS_TEXT_COLOR_INTENT.primary}
             {...(isButtonDisabled ? { disabled: true } : {})}
             onClick={() => {
-              const newNodePool: NodePool = {
-                name: generateUniqueName(name, nodes),
-                antiAffinity,
-                autoscale: scaling.isAutoscale,
-                localisation: stepper.form.region.name,
-                desiredNodes: scaling.quantity.desired,
-                minNodes: scaling.quantity.min,
-                flavorName: flavor.name,
-                maxNodes: antiAffinity
-                  ? Math.min(ANTI_AFFINITY_MAX_NODES, scaling.quantity.max)
-                  : scaling.quantity.max,
-                monthlyBilled: isMonthlyBilled,
-              };
+              if (nodes || scaling || flavor) {
+                const newNodePool: NodePool = {
+                  name: generateUniqueName(name, nodes as NodePool[]),
+                  antiAffinity,
+                  autoscale: scaling.isAutoscale,
+                  localisation: stepper.form.region.name,
+                  desiredNodes: scaling.quantity.desired,
+                  minNodes: scaling.quantity.min,
+                  flavorName: flavor.name,
+                  maxNodes: antiAffinity
+                    ? Math.min(ANTI_AFFINITY_MAX_NODES, scaling.quantity.max)
+                    : scaling.quantity.max,
+                  monthlyBilled: isMonthlyBilled,
+                };
 
-              setNodes([...nodes, newNodePool]);
+                setNodes([...nodes, newNodePool]);
+              }
             }}
           >
             Add Node Pool
           </OsdsButton>
         )}
-        <OsdsText
-          className="mb-4 font-bold"
-          color={ODS_TEXT_COLOR_INTENT.text}
-          level={ODS_TEXT_LEVEL.heading}
-          size={ODS_TEXT_SIZE._400}
-          slot="label"
-        >
-          {tNodePool('kube_common_node_pool_liste')}
-        </OsdsText>
 
         {nodes && (
-          <Datagrid
-            columns={columns}
-            items={nodes}
-            totalItems={nodes.length}
-            className="overflow-x-visible"
-          />
+          <>
+            <OsdsText
+              className="mb-4 font-bold"
+              color={ODS_TEXT_COLOR_INTENT.text}
+              level={ODS_TEXT_LEVEL.heading}
+              size={ODS_TEXT_SIZE._400}
+              slot="label"
+            >
+              {tNodePool('kube_common_node_pool_liste')}
+            </OsdsText>
+            <Datagrid
+              sorting={sorting}
+              columns={columns}
+              onSortChange={setSorting}
+              items={nodes}
+              totalItems={nodes.length}
+              className="overflow-x-visible"
+            />
+          </>
         )}
-        {!stepper.node.step.isLocked &&
-          (!nodePoolEnabled ||
-            (nodePoolEnabled && nodes && nodes.length > 0 && (
-              <OsdsButton
-                onClick={() => stepper.node.submit(nodes)}
-                className="mt-4 w-fit"
-                size={ODS_BUTTON_SIZE.md}
-                color={ODS_TEXT_COLOR_INTENT.primary}
-              >
-                {tStepper('common_stepper_next_button_label')}
-              </OsdsButton>
-            )))}
+        {canSubmit && (
+          <OsdsButton
+            onClick={() => {
+              stepper.node.submit(nodes);
+              setName('');
+            }}
+            className="mt-4 w-fit"
+            size={ODS_BUTTON_SIZE.md}
+            color={ODS_TEXT_COLOR_INTENT.primary}
+          >
+            {tStepper('common_stepper_next_button_label')}
+          </OsdsButton>
+        )}
       </div>
     </>
   );
