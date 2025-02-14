@@ -1,3 +1,5 @@
+import { THREE_AZ_REGION } from '../../project.constants';
+
 export default class PciInstanceController {
   /* @ngInject */
   constructor(
@@ -14,6 +16,7 @@ export default class PciInstanceController {
     this.ovhManagerRegionService = ovhManagerRegionService;
     this.PciProjectsProjectInstanceService = PciProjectsProjectInstanceService;
     this.PciProject = PciProject;
+    this.THREE_AZ_REGION = THREE_AZ_REGION;
   }
 
   $onInit() {
@@ -24,18 +27,15 @@ export default class PciInstanceController {
 
     this.is3az = this.instance.planCode.includes('3AZ');
 
-    this.fetch3AZAvailability();
+    this.regionsTypesAvailability = {};
+    this.fetchRegionsTypesAvailability();
   }
 
-  fetch3AZAvailability() {
-    return this.PciProjectsProjectInstanceService.getProductAvailability(
+  fetchRegionsTypesAvailability() {
+    this.PciProjectsProjectInstanceService.getRegionsTypesAvailability(
       this.projectId,
-      this.coreConfig.getUser().ovhSubsidiary,
-      'instance',
-    ).then(({ plans }) => {
-      this.are3AzRegionsAvailable = plans.some((plan) =>
-        plan.regions.some((region) => region.type === 'region-3-az'),
-      );
+    ).then((regionsTypesAvailability) => {
+      this.regionsTypesAvailability = regionsTypesAvailability;
     });
   }
 

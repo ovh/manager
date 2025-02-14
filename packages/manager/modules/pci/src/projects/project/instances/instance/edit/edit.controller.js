@@ -5,7 +5,7 @@ import Flavor from '../../../../../components/project/flavors-list/flavor.class'
 import Instance from '../../../../../components/project/instance/instance.class';
 import { EDIT_PAGE_SECTIONS } from '../instance.constants';
 import { INSTANCE_PRICING_LINKS } from '../../instances.constants';
-import { PCI_FEATURES } from '../../../project.constants';
+import { PCI_FEATURES, THREE_AZ_REGION } from '../../../project.constants';
 
 export default class PciInstanceEditController {
   /* @ngInject */
@@ -27,6 +27,7 @@ export default class PciInstanceEditController {
     this.instancePricesLink =
       INSTANCE_PRICING_LINKS[coreConfig.getUser().ovhSubsidiary] ||
       INSTANCE_PRICING_LINKS.DEFAULT;
+    this.THREE_AZ_REGION = THREE_AZ_REGION;
   }
 
   $onInit() {
@@ -50,7 +51,8 @@ export default class PciInstanceEditController {
     this.model = {
       isInstanceFlex: new Flavor(this.editInstance.flavor).isFlex(),
     };
-    this.fetch3AZAvailability();
+    this.regionsTypesAvailability = {};
+    this.fetchRegionsTypesAvailability();
     this.imageEditMessage =
       this.imageEditMessage ||
       'pci_projects_project_instances_instance_edit_reboot_message';
@@ -68,15 +70,11 @@ export default class PciInstanceEditController {
     });
   }
 
-  fetch3AZAvailability() {
-    return this.PciProjectsProjectInstanceService.getProductAvailability(
+  fetchRegionsTypesAvailability() {
+    this.PciProjectsProjectInstanceService.getRegionsTypesAvailability(
       this.projectId,
-      this.coreConfig.getUser().ovhSubsidiary,
-      'instance',
-    ).then(({ plans }) => {
-      this.are3AzRegionsAvailable = plans.some((plan) =>
-        plan.regions.some((region) => region.type === 'region-3-az'),
-      );
+    ).then((regionsTypesAvailability) => {
+      this.regionsTypesAvailability = regionsTypesAvailability;
     });
   }
 
