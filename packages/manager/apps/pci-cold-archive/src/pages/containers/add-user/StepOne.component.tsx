@@ -4,8 +4,8 @@ import {
   OdsSelect,
   OdsText,
 } from '@ovhcloud/ods-components/react';
-import { TUser } from '@/api/data/user';
 import LabelComponent from '@/components/Label.component';
+import { TUser } from '@/api/data/users';
 
 type StepOneComponentProps = {
   onSelectUser: (user: TUser) => void;
