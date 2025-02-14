@@ -1,10 +1,6 @@
-import {
-  PciModal,
-  useProductRegionsAvailability,
-} from '@ovh-ux/manager-pci-common';
 import { ApiError } from '@ovh-ux/manager-core-api';
+import { PciModal } from '@ovh-ux/manager-pci-common';
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   OdsFormField,
   OdsMessage,
@@ -12,15 +8,15 @@ import {
   OdsRadio,
   OdsText,
 } from '@ovhcloud/ods-components/react';
-import { useContext, useMemo, useState } from 'react';
+import { add } from 'date-fns';
+import { useMemo, useState } from 'react';
 import { Translation, useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { add } from 'date-fns';
-import LabelComponent from '@/components/Label.component';
-import { COLD_ARCHIVE_TRACKING } from '@/constants';
-import { useFormattedDate } from '@/hooks/useFormattedDate';
-import { useStartArchiveContainer } from '@/api/hooks/useArchive';
 import useTracking from '@/hooks/useTracking';
+import { useFormattedDate } from '@/hooks/useFormattedDate';
+import { COLD_ARCHIVE_TRACKING } from '@/constants';
+import LabelComponent from '@/components/Label.component';
+import { useStartArchive } from '@/api/hooks/useArchive';
 
 export default function ArchivePage() {
   const { t } = useTranslation(['containers/archive', 'pci-common']);
@@ -31,10 +27,9 @@ export default function ArchivePage() {
   const navigate = useNavigate();
   const goBack = () => navigate('..');
 
-  const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
-
   const [lockedUntilDays, setLockedUntilDays] = useState(1);
   const [hasRetention, setHasRetention] = useState(true);
+
   const retentionDate = useFormattedDate(
     add(new Date(), { days: lockedUntilDays }).toString(),
     'P',
@@ -47,22 +42,8 @@ export default function ArchivePage() {
     trackErrorPage,
   } = useTracking(COLD_ARCHIVE_TRACKING.CONTAINERS.ARCHIVE);
 
-  const {
-    data: regions,
-    isPending: isRegionsPending,
-  } = useProductRegionsAvailability(
-    ovhSubsidiary,
-    'coldarchive.archive.hour.consumption',
-  );
-
-  const {
-    startArchiveContainer,
-    isPending: isPendingStartArchive,
-  } = useStartArchiveContainer({
+  const { startArchive, isPending } = useStartArchive({
     projectId,
-    region: regions?.[0],
-    containerName: archiveName,
-    ...(hasRetention && { lockedUntilDays }),
     onError(error: ApiError) {
       addError(
         <Translation ns="containers/archive">
@@ -105,7 +86,10 @@ export default function ArchivePage() {
 
   const onConfirm = () => {
     trackConfirmAction();
-    startArchiveContainer();
+    startArchive({
+      name: archiveName,
+      ...(hasRetention && { lockedUntilDays }),
+    });
   };
 
   const onCancel = () => {
@@ -115,7 +99,6 @@ export default function ArchivePage() {
 
   const onClose = onCancel;
 
-  const isPending = isRegionsPending || isPendingStartArchive;
   const error = {
     min: lockedUntilDays < 1,
     max: lockedUntilDays > 365,
