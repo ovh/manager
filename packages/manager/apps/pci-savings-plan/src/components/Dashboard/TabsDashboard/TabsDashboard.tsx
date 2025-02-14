@@ -2,8 +2,14 @@ import React, { Suspense } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { OdsTabs, OdsTab } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 
 const TabsDashboard: React.FC<{ projectId: string }> = ({ projectId }) => {
+  const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
   const location = useLocation();
   const { t } = useTranslation('dashboard');
@@ -20,7 +26,15 @@ const TabsDashboard: React.FC<{ projectId: string }> = ({ projectId }) => {
           className="my-tab"
           id="css-tab-1"
           isSelected={isDashboard}
-          onClick={() => navigate(`/pci/projects/${projectId}/savings-plan`)}
+          onClick={() => {
+            navigate(`/pci/projects/${projectId}/savings-plan`);
+            trackClick({
+              location: PageLocation.page,
+              buttonType: ButtonType.tab,
+              actionType: 'navigation',
+              actions: ['dashboard'],
+            });
+          }}
         >
           {t('dashboard_tabs')}
         </OdsTab>
