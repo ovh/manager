@@ -37,7 +37,7 @@ export default /* @ngInject */ ($stateProvider) => {
           uuid: ovhCloudConnectId,
         }) => {
           atInternet.trackClick({
-            name: `${TRACKING_PREFIX}'::datagrid::button::viewDetail'`,
+            name: `${TRACKING_PREFIX}'::datagrid::button::viewdetail`,
             type: 'action',
             ...TRACKING_CONTEXT,
           });
