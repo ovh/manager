@@ -9,7 +9,6 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import ApiError from '../../components/apiError/ApiError.component';
-import DataStreamAccountLink from '../../components/data-streams/DataStreamAccountLink.component';
 import {
   getLogServicesQueryKey,
   useLogServices,
@@ -17,6 +16,8 @@ import {
 
 import { Service } from '../../data/types/dbaas/logs';
 import DataStreamsDatagrid from './DataStreamsDatagrid.component';
+import getServiceLabel from '../../helpers/getServiceLabel';
+import ServiceLink from '../../components/services/ServiceLink.component';
 
 export default function DataStreams() {
   const queryClient = useQueryClient();
@@ -84,15 +85,9 @@ export default function DataStreams() {
             name="select-log-service"
           >
             {logServices.map((s) => {
-              const optionLabel = s.displayName ? (
-                <div>{`${s.serviceName} - ${s.displayName}`}</div>
-              ) : (
-                s.serviceName
-              );
-
               return (
                 <option key={s.serviceName} value={s.serviceName}>
-                  {optionLabel}
+                  {getServiceLabel(s)}
                 </option>
               );
             })}
@@ -109,7 +104,7 @@ export default function DataStreams() {
       </div>
       <div className="flex gap-3">
         <OdsText>{t('log_streams_account_label')}</OdsText>
-        <DataStreamAccountLink service={currentService} />
+        <ServiceLink service={currentService} />
       </div>
       <DataStreamsDatagrid service={currentService} />
     </div>
