@@ -9,7 +9,6 @@ import {
   Links,
   LinkType,
   Notifications,
-  PciGuidesHeader,
   useNotifications,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
@@ -24,14 +23,15 @@ import { useContext, useEffect } from 'react';
 import { Translation, useTranslation } from 'react-i18next';
 import { useHref, useNavigate } from 'react-router-dom';
 import { ROUTE_PATHS } from '@/routes';
-import { COLD_ARCHIVE_TRACKING, CHECK_PRICES_DOC_LINK } from '@/constants';
-import { TArchiveContainer } from '@/api/data/archive';
-import { ContainerNameStep } from './steps/ContainerNameStep.component';
-import { useContainerCreationStore } from './useContainerCreationStore';
-import { useCreateContainer } from '@/api/hooks/useArchive';
-import { LinkUserStep } from './steps/LinkUserStep.component';
+import useTracking from '@/hooks/useTracking';
+import { CHECK_PRICES_DOC_LINK, COLD_ARCHIVE_TRACKING } from '@/constants';
 import UserInformationTile from '@/components/UserInformationTile.component';
 import GuideMenu from '@/components/GuideMenu.component';
+import { useCreateContainer } from '@/api/hooks/useArchive';
+import { TArchiveContainer } from '@/api/data/archive';
+import { ContainerNameStep } from './steps/ContainerNameStep.component';
+import { LinkUserStep } from './steps/LinkUserStep.component';
+import { useContainerCreationStore } from './useContainerCreationStore';
 
 export default function ContainerNewPage() {
   const { t } = useTranslation(['cold-archive/new', 'cold-archive']);
@@ -43,21 +43,9 @@ export default function ContainerNewPage() {
   const context = useContext(ShellContext);
   const navigate = useNavigate();
 
-  const { tracking } = context.shell;
-
-  const trackAddContainerClick = (action: string) => {
-    tracking?.trackClick({
-      name: `${COLD_ARCHIVE_TRACKING.CLICK_PREFIX}::${COLD_ARCHIVE_TRACKING.CONTAINERS.ADD_CONTAINER}::${action}`,
-      type: 'click',
-    });
-  };
-
-  const trackAddContainerPage = (action: string) => {
-    tracking?.trackPage({
-      name: `${COLD_ARCHIVE_TRACKING.CLICK_PREFIX}::${COLD_ARCHIVE_TRACKING.CONTAINERS.ADD_CONTAINER}_${action}`,
-      type: 'navigation',
-    });
-  };
+  const { trackConfirmAction, trackSuccessPage, trackErrorPage } = useTracking(
+    COLD_ARCHIVE_TRACKING.CONTAINERS.ADD_CONTAINER,
+  );
 
   const { addError, addSuccess } = useNotifications();
   const { ovhSubsidiary } = context.environment.getUser();
@@ -106,7 +94,7 @@ export default function ContainerNewPage() {
         false,
       );
 
-      trackAddContainerPage(COLD_ARCHIVE_TRACKING.STATUS.SUCCESS);
+      trackSuccessPage();
       goBack();
     },
     onError: (error: ApiError) => {
@@ -126,14 +114,13 @@ export default function ContainerNewPage() {
         true,
       );
 
-      trackAddContainerPage(COLD_ARCHIVE_TRACKING.STATUS.ERROR);
+      trackErrorPage();
       window.scrollTo(0, 0);
     },
   });
 
   const onCreateContainer = () => {
-    trackAddContainerClick(COLD_ARCHIVE_TRACKING.ACTIONS.CONFIRM);
-
+    trackConfirmAction();
     createContainer({
       ownerId: form.ownerId,
       name: form.containerName,
