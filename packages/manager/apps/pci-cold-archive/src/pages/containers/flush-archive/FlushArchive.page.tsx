@@ -1,20 +1,15 @@
-import {
-  DeletionModal,
-  useProductRegionsAvailability,
-} from '@ovh-ux/manager-pci-common';
 import { ApiError } from '@ovh-ux/manager-core-api';
+import { DeletionModal } from '@ovh-ux/manager-pci-common';
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { OdsMessage } from '@ovhcloud/ods-components/react';
-import { useContext } from 'react';
 import { Translation, useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
+import useTracking from '@/hooks/useTracking';
 import {
   COLD_ARCHIVE_CONTAINER_STATUS,
   COLD_ARCHIVE_TRACKING,
 } from '@/constants';
-import { useArchives, useFlushArchive } from '@/api/hooks/useArchive';
-import useTracking from '@/hooks/useTracking';
+import { useFlushArchive, useGetArchiveByName } from '@/api/hooks/useArchive';
 
 export default function FlushArchivePage() {
   const { t } = useTranslation('containers/flush-archive');
@@ -25,20 +20,7 @@ export default function FlushArchivePage() {
   const navigate = useNavigate();
   const goBack = () => navigate('..');
 
-  const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
-
-  const {
-    data: regions,
-    isPending: isRegionsPending,
-  } = useProductRegionsAvailability(
-    ovhSubsidiary,
-    'coldarchive.archive.hour.consumption',
-  );
-
-  const { data: allArchives, isPending: isPendingArchive } = useArchives(
-    projectId,
-  );
-  const archive = allArchives?.find((a) => a.name === archiveName);
+  const archive = useGetArchiveByName(projectId, archiveName);
 
   const {
     trackConfirmAction,
@@ -47,10 +29,8 @@ export default function FlushArchivePage() {
     trackErrorPage,
   } = useTracking(COLD_ARCHIVE_TRACKING.CONTAINERS.FLUSH_CONTAINER);
 
-  const { flushArchive, isPending: isPendingStartArchive } = useFlushArchive({
+  const { flushArchive, isPending: isFlushArchivePending } = useFlushArchive({
     projectId,
-    region: regions?.[0],
-    containerName: archiveName,
     onError(error: ApiError) {
       addError(
         <Translation ns="containers/flush-archive">
@@ -93,7 +73,7 @@ export default function FlushArchivePage() {
 
   const onConfirm = () => {
     trackConfirmAction();
-    flushArchive();
+    flushArchive(archiveName);
   };
 
   const onCancel = () => {
@@ -103,8 +83,7 @@ export default function FlushArchivePage() {
 
   const onClose = onCancel;
 
-  const isPending =
-    isPendingArchive || isRegionsPending || isPendingStartArchive;
+  const isPending = isFlushArchivePending || !archive;
 
   return (
     <DeletionModal
