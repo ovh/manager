@@ -12,6 +12,7 @@ export type TVolumePricing = Pick<TAddon['pricings'][number], 'price'> & {
   showAvailabilityZones: boolean;
   interval: 'day' | 'hour' | 'month' | 'none';
   specs: TAddon['blobs']['technical'];
+  areIOPSDynamic: boolean;
 };
 
 export type TVolumeCatalogFilter = {
