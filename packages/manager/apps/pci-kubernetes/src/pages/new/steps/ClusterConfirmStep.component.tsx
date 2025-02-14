@@ -31,7 +31,7 @@ export function ClusterConfirmationStep({
     <>
       {!step.isLocked && (
         <>
-          {!form.flavor && <Estimation />}
+          {!form.nodePools?.length && <Estimation />}
           <OsdsText
             color={ODS_TEXT_COLOR_INTENT.text}
             level={ODS_TEXT_LEVEL.body}

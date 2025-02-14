@@ -52,17 +52,17 @@ const NodePoolStep = ({
 
   const [nodePoolEnabled, setNodePoolEnabled] = useState(true);
 
-  const [nodes, setNodes] = useState<NodePool[]>([]);
+  const [nodes, setNodes] = useState<NodePool[] | null>(null);
   const onDelete = useCallback(
     (nameToDelete: string) =>
-      setNodes(nodes.filter((node) => node.name !== nameToDelete)),
+      nodes && setNodes(nodes.filter((node) => node.name !== nameToDelete)),
     [nodes],
   );
   const columns = useDatagridColumn({ onDelete });
 
   const isNodePoolValid = !nodePoolEnabled || (Boolean(flavor) && isValidName);
 
-  const exceedsMaxNodes = (quantity) => quantity > NODE_RANGE.MAX;
+  const exceedsMaxNodes = (quantity: number) => quantity > NODE_RANGE.MAX;
   const { projectId } = useParams();
   // The maxValue is NODE_RANGE.MAX cause isAntiAffinity is hardcoded to false
   // change to ANTI_AFFINITY_MAX_NODES otherwise
@@ -85,12 +85,14 @@ const NodePoolStep = ({
 
   const hasMax5NodesAntiAffinity =
     !antiAffinity ||
-    (antiAffinity && scaling.quantity.desired <= ANTI_AFFINITY_MAX_NODES);
+    (antiAffinity &&
+      scaling &&
+      scaling.quantity.desired <= ANTI_AFFINITY_MAX_NODES);
   const isButtonDisabled =
     !isScalingValid || !isNodePoolValid || !hasMax5NodesAntiAffinity;
 
   const price = useMemo(() => {
-    if (flavor) {
+    if (flavor && scaling) {
       return {
         hour: flavor.pricingsHourly.price * scaling.quantity.desired,
         month: flavor.pricingsMonthly?.price * scaling.quantity.desired,
@@ -106,8 +108,8 @@ const NodePoolStep = ({
   useEffect(() => setIsMonthlyBilled(false), [flavor]);
 
   useEffect(() => {
+    setNodes(!nodePoolEnabled ? null : []);
     if (!nodePoolEnabled) {
-      setNodes(null);
       setScaling(null);
       setFlavor(null);
     }
@@ -132,7 +134,7 @@ const NodePoolStep = ({
             </div>
             <div className="mb-8">
               <NodePoolType
-                projectId={projectId}
+                projectId={projectId as string}
                 region={stepper.form.region.name}
                 onFlavorChange={setFlavor}
               />
@@ -156,16 +158,16 @@ const NodePoolStep = ({
                 price={price.hour}
                 monthlyPrice={price.month}
                 monthlyBilling={{
-                  isComingSoon: isPricingComingSoon,
+                  isComingSoon: isPricingComingSoon ?? false,
                   isChecked: isMonthlyBilled,
                   check: setIsMonthlyBilled,
                 }}
-                warn={scaling?.isAutoscale && isMonthlyBilled}
+                warn={(scaling?.isAutoscale && isMonthlyBilled) ?? false}
               />
             </div>
           </>
         )}
-        {!stepper.node.step.isLocked && (
+        {!stepper.node.step.isLocked && nodes && scaling && flavor && (
           <OsdsButton
             variant={ODS_BUTTON_VARIANT.stroked}
             className="my-6 w-fit"
@@ -176,14 +178,14 @@ const NodePoolStep = ({
               const newNodePool: NodePool = {
                 name: generateUniqueName(name, nodes),
                 antiAffinity,
-                autoscale: Boolean(scaling?.isAutoscale),
-                localisation: stepper.form.region?.name,
-                desiredNodes: scaling?.quantity.desired,
-                minNodes: scaling?.quantity.min,
-                flavorName: flavor?.name,
+                autoscale: scaling.isAutoscale,
+                localisation: stepper.form.region.name,
+                desiredNodes: scaling.quantity.desired,
+                minNodes: scaling.quantity.min,
+                flavorName: flavor.name,
                 maxNodes: antiAffinity
-                  ? Math.min(ANTI_AFFINITY_MAX_NODES, scaling?.quantity.max)
-                  : scaling?.quantity.max,
+                  ? Math.min(ANTI_AFFINITY_MAX_NODES, scaling.quantity.max)
+                  : scaling.quantity.max,
                 monthlyBilled: isMonthlyBilled,
               };
 
@@ -203,22 +205,26 @@ const NodePoolStep = ({
           {tNodePool('kube_common_node_pool_liste')}
         </OsdsText>
 
-        <Datagrid
-          columns={columns}
-          items={nodes}
-          totalItems={nodes.length}
-          className="overflow-x-visible"
-        />
-        {!stepper.node.step.isLocked && nodes.length > 0 && (
-          <OsdsButton
-            onClick={() => stepper.node.submit(nodes)}
-            className="mt-4 w-fit"
-            size={ODS_BUTTON_SIZE.md}
-            color={ODS_TEXT_COLOR_INTENT.primary}
-          >
-            {tStepper('common_stepper_next_button_label')}
-          </OsdsButton>
+        {nodes && (
+          <Datagrid
+            columns={columns}
+            items={nodes}
+            totalItems={nodes.length}
+            className="overflow-x-visible"
+          />
         )}
+        {!stepper.node.step.isLocked &&
+          (!nodePoolEnabled ||
+            (nodePoolEnabled && nodes && nodes.length > 0 && (
+              <OsdsButton
+                onClick={() => stepper.node.submit(nodes)}
+                className="mt-4 w-fit"
+                size={ODS_BUTTON_SIZE.md}
+                color={ODS_TEXT_COLOR_INTENT.primary}
+              >
+                {tStepper('common_stepper_next_button_label')}
+              </OsdsButton>
+            )))}
       </div>
     </>
   );
