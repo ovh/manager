@@ -15,7 +15,6 @@ export default class NutanixAllNodesCtrl {
       ...new Set(this.nodes.map(({ serviceStatus }) => serviceStatus)),
     ];
     this.mapAllNodes();
-    this.mapNodesStatus();
 
     this.isMaxNodesReached = this.nodes.length >= MAX_NODES_BY_CLUSTER;
     this.addNodeTooltipContent = this.isMaxNodesReached
@@ -41,26 +40,12 @@ export default class NutanixAllNodesCtrl {
     return `nutanix.dashboard.nodes.node.general-info({ nodeId: '${nodeId}'})`;
   }
 
-  mapNodesStatus() {
-    this.cluster.getNodes().forEach((nodeDetail) => {
-      const nodeIndex = this.nodesMapped.findIndex(
-        (node) => node.name === nodeDetail.server,
-      );
-
-      if (nodeIndex < 0) return;
-
-      this.nodesMapped[nodeIndex] = {
-        ...this.nodesMapped[nodeIndex],
-        ...nodeDetail,
-      };
-    });
-  }
-
   mapAllNodes() {
     this.nodesMapped = this.nodes.map((node) =>
       node.displayName !== null
         ? node
         : {
+            ...node,
             isHiddenNode: true,
             iam: {
               displayName: this.$translate.instant(

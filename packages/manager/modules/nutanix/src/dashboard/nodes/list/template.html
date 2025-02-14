@@ -1,3 +1,13 @@
+<oui-message data-ng-if="$ctrl.hasErrorInstall" class="mb-3" type="error">
+    <span
+        data-translate="nutanix_dashboard_nodes_state_banner_error_install"
+    ></span>
+</oui-message>
+<oui-message data-ng-if="$ctrl.hasErrorUninstall" class="mb-3" type="error">
+    <span
+        data-translate="nutanix_dashboard_nodes_state_banner_error_uninstall"
+    ></span>
+</oui-message>
 <oui-datagrid rows="$ctrl.nodesMapped" data-page-size="25" class="mt-5">
     <oui-datagrid-topbar>
         <oui-button
@@ -67,13 +77,7 @@
         data-title="'nutanix_dashboard_nodes_list_os_installed' | translate"
         data-property="status"
     >
-        <node-os-datagrid
-            data-ng-else
-            data-status="$row.status"
-            data-service-status="$row.serviceStatus"
-            data-power-state="$row.powerState"
-            data-os="$row.os"
-        ></node-os-datagrid>
+        <node-os-datagrid data-ng-else data-node="$row"></node-os-datagrid>
     </oui-datagrid-column>
     <oui-datagrid-column
         data-title="'nutanix_dashboard_nodes_list_node_ip' | translate"
@@ -95,7 +99,7 @@
     </oui-datagrid-column>
     <oui-datagrid-column>
         <node-action-menu
-            data-ng-if="$row.possibleActions"
+            data-ng-if="$row.possibleActions && $row.serviceStatus !== $ctrl.SERVICE_STATES.SUSPENDED"
             data-possible-actions="$row.possibleActions"
             data-on-power-on="$ctrl.onPowerOn($row.name)"
             data-on-power-off="$ctrl.powerOffNode($row.name)"
@@ -105,5 +109,7 @@
             data-on-terminate="$ctrl.terminateNode($row.name)"
         >
         </node-action-menu>
+        <node-action-menu-resiliated data-ng-if="$row.isResiliated">
+        </node-action-menu-resiliated>
     </oui-datagrid-column>
 </oui-datagrid>
