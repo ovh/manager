@@ -22,8 +22,14 @@ vi.mock('@ovh-ux/manager-pci-common', async () => {
     ...mod,
     useProject: vi.fn().mockResolvedValue({
       projectName: 'project-name',
+      description: 'project-description',
       project_id: 'project-id',
     }),
+    getProjectRegions: vi.fn(),
+    PciDiscoveryBanner: vi.fn().mockReturnValue(<div>Discovery Banner</div>),
+    PciAnnouncementBanner: vi
+      .fn()
+      .mockReturnValue(<div>Annoucement Banner</div>),
   };
 });
 
@@ -38,6 +44,7 @@ vi.mock('@ovh-ux/manager-react-components', async () => {
       sorting: vi.fn(),
       setSorting: vi.fn(),
     }),
+    useMe: vi.fn().mockReturnValue({ me: { ovhSubsidiary: 'US' } }),
     PciGuidesHeader: vi.fn().mockReturnValue(<div></div>),
     Notifications: vi
       .fn()

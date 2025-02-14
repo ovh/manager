@@ -24,7 +24,7 @@ export const AvailablePart = ({
         </OdsText>
       </div>
       {isPending ? (
-        <OdsSpinner />
+        <OdsSpinner data-testid="available-spinner" />
       ) : (
         <ShapesInputComponent<TPlainLocation>
           className="mt-6"

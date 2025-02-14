@@ -124,7 +124,7 @@ export default function RegionsPage(): JSX.Element {
     <BaseLayout
       breadcrumb={
         <OdsBreadcrumb>
-          <OdsBreadcrumbItem href={hrefProject} label={project.description} />
+          <OdsBreadcrumbItem href={hrefProject} label={project?.description} />
           <OdsBreadcrumbItem
             label={t('pci_projects_project_regions')}
             href={''}
@@ -166,7 +166,7 @@ export default function RegionsPage(): JSX.Element {
       )}
 
       <div>
-        <AvailablePart isMobile={isMobile} />
+        <AvailablePart isMobile={isMobile} data-testid="available-part" />
         <ToAddPart
           selectedRegions={selectedRegions}
           setSelectedRegion={setSelectedRegion}
@@ -181,6 +181,7 @@ export default function RegionsPage(): JSX.Element {
         <div className="mt-12">
           <OdsButton
             label={t('pci_projects_project_regions_add_region')}
+            data-testid="add-region-button"
             onClick={doAddRegion}
             isDisabled={!selectedLocation || isDiscoveryProject(project)}
             isLoading={state.isAddingRegion}
