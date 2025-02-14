@@ -52,5 +52,8 @@
   "gdpr_erasure_confirmation_email_error_bad_request": "Une erreur est survenue.",
   "gdpr_erasure_confirmation_email_error_not_found": "Une erreur est survenue. Merci de prendre contact avec l'équipe Support.",
   "gdpr_erasure_confirmation_email_error_invalid_status": "Le statut de votre demande ne permet pas l'envoi d'une confirmation.",
-  "gdpr_erasure_confirmation_email_error_max_attempts": "Vous avez reçu le nombre maximal de nouveaux e-mails de confirmation. Vous pouvez confirmer votre demande avec l’e-mail de confirmation déjà reçu. Dans le cas contraire nous vous invitons à annuler la demande actuelle ou de prendre contact avec l’équipe Support."
+  "gdpr_erasure_confirmation_email_error_max_attempts": "Vous avez reçu le nombre maximal de nouveaux e-mails de confirmation. Vous pouvez confirmer votre demande avec l’e-mail de confirmation déjà reçu. Dans le cas contraire nous vous invitons à annuler la demande actuelle ou de prendre contact avec l’équipe Support.",
+
+  "gdpr_erasure_confirm_error_invalid_code": "Le code de confirmation est erroné.",
+  "gdpr_erasure_confirm_error_exhausted_attempts": "Votre demande a été annulée à la suite de plusieurs saisies erronées du code de confirmation."
 }
