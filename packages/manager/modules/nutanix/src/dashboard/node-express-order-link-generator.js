@@ -2,18 +2,12 @@ import JSURL from 'jsurl';
 import { PRODUCT_ID, DEFAULT_OS_NODE_NUTANIX } from '../constants';
 
 export default class NodeExpressOrderLinkGenerator {
-  constructor(
-    serviceName,
-    nodeTechnicalDetails,
-    nodeOptionsDetails,
-    zone,
-    quantity = 1,
-  ) {
+  constructor(serviceName, nodeDetails, zone, quantity = 1) {
     this.serviceName = serviceName;
-    this.nodeTechnicalDetails = nodeTechnicalDetails;
+    this.nodeTechnicalDetails = nodeDetails.nodeTechnicalDetails;
     this.zone = zone;
     this.quantity = quantity;
-    this.options = this.generateOptions(nodeOptionsDetails);
+    this.options = this.generateOptions(nodeDetails.nodeOptionsDetails);
   }
 
   setQuantity(quantity) {

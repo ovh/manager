@@ -7,7 +7,7 @@ export default /* @ngInject */ ($stateProvider) => {
 
       return Promise.all([$translatePromise, serviceInfoPromise]).then(
         ([$translate, serviceInfo]) => {
-          if (serviceInfo.isResiliated()) {
+          if (serviceInfo.isTerminated()) {
             return {
               state: 'error',
               params: {
