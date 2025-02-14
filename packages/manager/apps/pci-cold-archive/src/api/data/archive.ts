@@ -22,18 +22,19 @@ export const getArchiveContainers = async (
   return data;
 };
 
-export const deleteArchiveContainer = async ({
-  containerName,
+export const deleteArchive = async ({
+  name,
   projectId,
   region,
 }: {
   projectId: string;
   region: string;
-  containerName: string;
+  name: string;
 }) => {
   const { data } = await v6.delete(
-    `/cloud/project/${projectId}/region/${region}/coldArchive/${containerName}`,
+    `/cloud/project/${projectId}/region/${region}/coldArchive/${name}`,
   );
+
   return data;
 };
 
@@ -59,36 +60,37 @@ export const addUserToContainer = async ({
   return data;
 };
 
-export const restoreArchiveContainer = async ({
+export const restoreArchive = async ({
   projectId,
   region,
-  containerName,
+  name,
 }: {
   projectId: string;
   region: string;
-  containerName: string;
+  name: string;
 }) => {
   const { data } = await v6.post(
-    `/cloud/project/${projectId}/region/${region}/coldArchive/${containerName}/restore`,
+    `/cloud/project/${projectId}/region/${region}/coldArchive/${name}/restore`,
   );
+
   return data;
 };
 
-export const startArchiveContainer = async ({
+export const startArchive = async ({
   projectId,
   region,
-  archiveName,
+  name,
   lockedUntilDays,
 }: {
   projectId: string;
   region: string;
-  archiveName: string;
+  name: string;
   lockedUntilDays: number;
 }) => {
   const params = lockedUntilDays ? { lockedUntilDays } : {};
 
   const { data } = await v6.post(
-    `/cloud/project/${projectId}/region/${region}/coldArchive/${archiveName}/archive`,
+    `/cloud/project/${projectId}/region/${region}/coldArchive/${name}/archive`,
     params,
   );
 
@@ -119,14 +121,15 @@ export const createArchiveContainer = async ({
 export const flushArchive = async ({
   projectId,
   region,
-  archiveName,
+  name,
 }: {
   projectId: string;
   region: string;
-  archiveName: string;
+  name: string;
 }) => {
   const { data } = await v6.post(
-    `/cloud/project/${projectId}/region/${region}/coldArchive/${archiveName}/destroy`,
+    `/cloud/project/${projectId}/region/${region}/coldArchive/${name}/destroy`,
   );
+
   return data;
 };

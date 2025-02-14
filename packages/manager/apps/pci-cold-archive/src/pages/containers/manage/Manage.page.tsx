@@ -1,53 +1,44 @@
+import { useProjectRegionDetails } from '@ovh-ux/manager-pci-common';
+import { Clipboard } from '@ovh-ux/manager-react-components';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   OdsButton,
-  OdsModal,
-  OdsText,
-  OdsSpinner,
-  OdsLink,
   OdsFormField,
+  OdsLink,
+  OdsModal,
+  OdsSpinner,
+  OdsText,
 } from '@ovhcloud/ods-components/react';
+import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { useContext } from 'react';
-import { Clipboard } from '@ovh-ux/manager-react-components';
-import {
-  useProductRegionsAvailability,
-  useProjectRegionDetails,
-} from '@ovh-ux/manager-pci-common';
 import { MANAGE_ARCHIVE_DOC_LINK } from '@/constants';
 import LabelComponent from '@/components/Label.component';
+import { useArchiveRegion } from '@/api/hooks/useArchive';
 
 export default function Manage() {
   const { t } = useTranslation(['cold-archive', 'pci-common']);
   const { projectId } = useParams();
+
   const navigate = useNavigate();
-  const onClose = () => {
-    navigate('..');
-  };
-  const onCancel = () => {
-    navigate('..');
-  };
+  const goBack = () => navigate('..');
+
+  const onClose = goBack;
+  const onCancel = goBack;
 
   const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
 
-  const {
-    data: regions,
-    isPending: isRegionsPending,
-  } = useProductRegionsAvailability(
-    ovhSubsidiary,
-    'coldarchive.archive.hour.consumption',
+  const region = useArchiveRegion();
+
+  const { data: archiveRegion, isPending } = useProjectRegionDetails(
+    projectId,
+    region,
   );
 
-  const {
-    data: archiveRegion,
-    isPending: isArchiveRegionPending,
-  } = useProjectRegionDetails(projectId, regions?.[0]);
   const documentationUrl = MANAGE_ARCHIVE_DOC_LINK[ovhSubsidiary];
 
   const endpoint = archiveRegion?.services[0]?.endpoint;
 
-  const isPending = isArchiveRegionPending || isRegionsPending;
   return (
     <OdsModal isOpen onOdsClose={onClose} className="modal">
       <OdsText preset="heading-3">
@@ -93,7 +84,7 @@ export default function Manage() {
                   'pci_projects_project_storages_cold_archive_containers_container_manage_region_label',
                 )}
               />
-              <Clipboard value={regions[0].toLowerCase()} className="w-full" />
+              <Clipboard value={region?.toLowerCase()} className="w-full" />
             </OdsFormField>
           </div>
         )}
@@ -106,7 +97,7 @@ export default function Manage() {
         variant="ghost"
         className="mt-6"
         onClick={onCancel}
-        isDisabled={isRegionsPending}
+        isDisabled={!region}
         slot="actions"
       />
     </OdsModal>
