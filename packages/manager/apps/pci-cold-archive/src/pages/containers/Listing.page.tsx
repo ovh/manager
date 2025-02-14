@@ -22,10 +22,12 @@ import { useProductRegionsAvailability } from '@ovh-ux/manager-pci-common';
 import { usePaginatedArchive } from '@/api/hooks/useArchive';
 import { useDatagridColumn } from './useDatagridColumn';
 import { COLD_ARCHIVE_TRACKING } from '@/constants';
+import useTracking from '@/hooks/useTracking';
 
 export default function ListingPage() {
-  const { projectId } = useParams();
   const { t } = useTranslation(['cold-archive', 'containers']);
+
+  const { projectId } = useParams();
   const navigate = useNavigate();
   const { clearNotifications } = useNotifications();
   const { filters, addFilter, removeFilter } = useColumnFilters();
@@ -34,8 +36,13 @@ export default function ListingPage() {
     id: 'name',
     desc: false,
   });
+
   const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
-  const { tracking } = useContext(ShellContext).shell;
+
+  const { trackNavigationClick } = useTracking(
+    COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN,
+  );
+
   const {
     data: regions,
     isPending: isRegionsPending,
@@ -43,6 +50,7 @@ export default function ListingPage() {
     ovhSubsidiary,
     'coldarchive.archive.hour.consumption',
   );
+
   const {
     paginatedArchives,
     allArchives,
@@ -98,10 +106,9 @@ export default function ListingPage() {
               )}
               onClick={() => {
                 clearNotifications();
-                tracking?.trackClick({
-                  name: `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.ADD_CONTAINER}`,
-                  type: 'navigation',
-                });
+                trackNavigationClick(
+                  COLD_ARCHIVE_TRACKING.CONTAINERS.ADD_CONTAINER,
+                );
                 navigate('./new');
               }}
             />
@@ -115,10 +122,9 @@ export default function ListingPage() {
               )}
               onClick={() => {
                 clearNotifications();
-                tracking?.trackClick({
-                  name: `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.MANAGE_CONTAINER}`,
-                  type: 'navigation',
-                });
+                trackNavigationClick(
+                  COLD_ARCHIVE_TRACKING.CONTAINERS.MANAGE_CONTAINER,
+                );
                 navigate('./manage');
               }}
             />

@@ -14,13 +14,17 @@ import {
   COLD_ARCHIVE_TRACKING,
 } from '@/constants';
 import { useArchives, useFlushArchive } from '@/api/hooks/useArchive';
+import useTracking from '@/hooks/useTracking';
 
 export default function FlushArchivePage() {
-  const { addSuccess, addError } = useNotifications();
-  const nagivate = useNavigate();
-  const { projectId, archiveName } = useParams();
   const { t } = useTranslation('containers/flush-archive');
-  const { tracking } = useContext(ShellContext).shell;
+
+  const { addSuccess, addError } = useNotifications();
+  const { projectId, archiveName } = useParams();
+
+  const navigate = useNavigate();
+  const goBack = () => navigate('..');
+
   const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
 
   const {
@@ -36,18 +40,12 @@ export default function FlushArchivePage() {
   );
   const archive = allArchives?.find((a) => a.name === archiveName);
 
-  const trackFlushArchiveModalClick = (action: string) => {
-    tracking?.trackClick({
-      name: `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.FLUSH_CONTAINER}::${action}`,
-      type: 'action',
-    });
-  };
-  const trackFlushArchiveModalPage = (action: string) => {
-    tracking?.trackPage({
-      name: `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.FLUSH_CONTAINER}_${action}`,
-      type: 'navigation',
-    });
-  };
+  const {
+    trackConfirmAction,
+    trackCancelAction,
+    trackSuccessPage,
+    trackErrorPage,
+  } = useTracking(COLD_ARCHIVE_TRACKING.CONTAINERS.FLUSH_CONTAINER);
 
   const { flushArchive, isPending: isPendingStartArchive } = useFlushArchive({
     projectId,
@@ -69,8 +67,9 @@ export default function FlushArchivePage() {
         </Translation>,
         true,
       );
-      trackFlushArchiveModalPage(COLD_ARCHIVE_TRACKING.STATUS.ERROR);
-      nagivate('..');
+
+      trackErrorPage();
+      goBack();
     },
     onSuccess() {
       addSuccess(
@@ -86,23 +85,27 @@ export default function FlushArchivePage() {
         </Translation>,
         true,
       );
-      trackFlushArchiveModalPage(COLD_ARCHIVE_TRACKING.STATUS.SUCCESS);
-      nagivate('..');
+
+      trackSuccessPage();
+      goBack();
     },
   });
 
   const onConfirm = () => {
-    trackFlushArchiveModalClick(COLD_ARCHIVE_TRACKING.ACTIONS.CONFIRM);
+    trackConfirmAction();
     flushArchive();
   };
+
   const onCancel = () => {
-    trackFlushArchiveModalClick(COLD_ARCHIVE_TRACKING.ACTIONS.CANCEL);
-    nagivate(`..`);
+    trackCancelAction();
+    goBack();
   };
-  const onClose = () => onCancel();
+
+  const onClose = onCancel;
 
   const isPending =
     isPendingArchive || isRegionsPending || isPendingStartArchive;
+
   return (
     <DeletionModal
       title={t(
