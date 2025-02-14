@@ -351,7 +351,7 @@ class DedicatedCloudService {
         params: { resourceName: `${serviceName}/option/edgensxt` },
       })
       .catch(() => ({ data: [] }))
-      .then(({ data }) => ({ enabled: data?.length !== 0 }));
+      .then(({ data }) => ({ enabled: !!data?.length }));
   }
 
   getDatacenterPendingResizeNsxTask(serviceName, datacenterId, params = {}) {
