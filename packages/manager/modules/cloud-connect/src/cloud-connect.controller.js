@@ -11,6 +11,7 @@ export default class CloudConnectCtrl extends ListLayoutHelper.ListLayoutCtrl {
     $q,
     $http,
     $translate,
+    atInternet,
     coreURLBuilder,
     ouiDatagridService,
     constants,
@@ -19,6 +20,7 @@ export default class CloudConnectCtrl extends ListLayoutHelper.ListLayoutCtrl {
     super($q, ouiDatagridService);
     this.$translate = $translate;
     this.$http = $http;
+    this.atInternet = atInternet;
     this.coreURLBuilder = coreURLBuilder;
     this.constants = constants;
     this.cloudConnectService = cloudConnectService;
@@ -27,6 +29,11 @@ export default class CloudConnectCtrl extends ListLayoutHelper.ListLayoutCtrl {
   }
 
   $onInit() {
+    this.atInternet.trackPage({
+      name: TRACKING_CONTEXT.trackingPageLabel,
+      type: 'navigation',
+      ...TRACKING_CONTEXT,
+    });
     this.datagridId = 'dg-cloudconnect';
     this.defaultFilterColumn = 'uuid';
 

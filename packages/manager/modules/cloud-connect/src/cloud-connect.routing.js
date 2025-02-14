@@ -86,5 +86,8 @@ export default /* @ngInject */ ($stateProvider) => {
               ? { state: 'cloud-connect.onboarding' }
               : false,
           ),
+      atInternet: {
+        ignore: true,
+      },
     });
 };
