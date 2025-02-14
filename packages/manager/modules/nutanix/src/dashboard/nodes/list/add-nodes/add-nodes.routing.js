@@ -29,6 +29,7 @@ export default /* @ngInject */ ($stateProvider) => {
         new NodeExpressOrderLinkGenerator(
           serviceName,
           nodeServicesDetails.serviceDetails,
+          nodeServicesDetails.optionsDetails,
           server.availabilityZone,
         ),
       handleSuccess: /* @ngInject */ (Alerter, goBack) => (message) => {
