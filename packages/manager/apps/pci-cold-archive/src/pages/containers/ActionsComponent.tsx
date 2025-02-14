@@ -1,13 +1,12 @@
 import { ActionMenu } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { TArchiveContainer } from '@/api/data/archive';
 import {
   COLD_ARCHIVE_CONTAINER_STATUS,
   COLD_ARCHIVE_TRACKING,
 } from '@/constants';
+import useTracking from '@/hooks/useTracking';
 
 export default function ActionsComponent({
   archive,
@@ -16,7 +15,6 @@ export default function ActionsComponent({
 }>) {
   const { t } = useTranslation(['cold-archive', 'containers']);
   const navigate = useNavigate();
-  const { tracking } = useContext(ShellContext).shell;
 
   const isActionAddUserAvailable = [
     COLD_ARCHIVE_CONTAINER_STATUS.NONE,
@@ -67,6 +65,10 @@ export default function ActionsComponent({
     isActionDeleteContainerAvailable,
   ].some((isActionAvailable) => isActionAvailable === true);
 
+  const { trackNavigationClick } = useTracking(
+    COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN,
+  );
+
   const items = [
     isActionAddUserAvailable
       ? {
@@ -75,10 +77,7 @@ export default function ActionsComponent({
             'pci_projects_project_storages_cold_archive_container_action_add_user',
           ),
           onClick: () => {
-            tracking?.trackClick({
-              name: `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.ADD_USER}`,
-              type: 'navigation',
-            });
+            trackNavigationClick(COLD_ARCHIVE_TRACKING.CONTAINERS.ADD_USER);
             navigate(`./add-user/${archive.name}`);
           },
         }
@@ -90,10 +89,7 @@ export default function ActionsComponent({
             'pci_projects_project_storages_cold_archive_container_action_restore',
           ),
           onClick: () => {
-            tracking?.trackClick({
-              name: `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.RESTORE}`,
-              type: 'navigation',
-            });
+            trackNavigationClick(COLD_ARCHIVE_TRACKING.CONTAINERS.RESTORE);
             navigate(`./restore/${archive.name}`);
           },
         }
@@ -105,10 +101,9 @@ export default function ActionsComponent({
             'containers:pci_projects_project_storages_cold_archive_container_action_edit_retention',
           ),
           onClick: () => {
-            tracking?.trackClick({
-              name: `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.EDIT_RETENTION}`,
-              type: 'navigation',
-            });
+            trackNavigationClick(
+              COLD_ARCHIVE_TRACKING.CONTAINERS.EDIT_RETENTION,
+            );
             navigate(`./edit-retention/${archive.name}`);
           },
         }
@@ -120,10 +115,9 @@ export default function ActionsComponent({
             'pci_projects_project_storages_cold_archive_container_action_flush_archive',
           ),
           onClick: () => {
-            tracking?.trackClick({
-              name: `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.FLUSH_CONTAINER}`,
-              type: 'navigation',
-            });
+            trackNavigationClick(
+              COLD_ARCHIVE_TRACKING.CONTAINERS.FLUSH_CONTAINER,
+            );
             navigate(`./flush-archive/${archive.name}`);
           },
         }
@@ -135,10 +129,7 @@ export default function ActionsComponent({
             'pci_projects_project_storages_cold_archive_container_action_archive',
           ),
           onClick: () => {
-            tracking?.trackClick({
-              name: `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.ARCHIVE}`,
-              type: 'navigaton',
-            });
+            trackNavigationClick(COLD_ARCHIVE_TRACKING.CONTAINERS.ARCHIVE);
             navigate(`./archive/${archive.name}`);
           },
         }
@@ -150,19 +141,18 @@ export default function ActionsComponent({
             'pci_projects_project_storages_cold_archive_container_action_delete_container',
           ),
           onClick: () => {
-            tracking?.trackClick({
-              name: `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.DELETE_CONTAINER}`,
-              type: 'navigation',
-            });
+            trackNavigationClick(
+              COLD_ARCHIVE_TRACKING.CONTAINERS.DELETE_CONTAINER,
+            );
             navigate(`./delete-container/${archive.name}`);
           },
         }
       : undefined,
   ].filter(Boolean);
 
-  return isActionsAvailable ? (
-    <ActionMenu id={archive.name} items={items} isCompact />
-  ) : (
-    <></>
-  );
+  if (!isActionsAvailable) {
+    return null;
+  }
+
+  return <ActionMenu id={archive.name} items={items} isCompact />;
 }

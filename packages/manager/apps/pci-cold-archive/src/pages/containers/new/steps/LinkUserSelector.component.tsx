@@ -27,6 +27,7 @@ type LinkUserSelectorProps = {
   onSelectOwner: (user: TUser) => void;
   onCancel: () => void;
 };
+
 export default function LinkUserSelector({
   userId,
   onSelectOwner,

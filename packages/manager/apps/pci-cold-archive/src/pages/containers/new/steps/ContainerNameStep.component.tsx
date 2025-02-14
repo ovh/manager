@@ -13,6 +13,8 @@ import {
   ContainerCreationForm,
   useContainerCreationStore,
 } from '../useContainerCreationStore';
+import useTracking from '@/hooks/useTracking';
+import { COLD_ARCHIVE_TRACKING } from '@/constants';
 
 const COLD_ARCHIVE_NAME_ARCHIVE_PATTERN = /^[a-z0-9]([a-z0-9.-]{1,61})[a-z0-9]$/;
 
@@ -33,7 +35,16 @@ export function ContainerNameStep({
 
   const navigate = useNavigate();
 
+  const { trackCancelAction } = useTracking(
+    COLD_ARCHIVE_TRACKING.CONTAINERS.ADD_CONTAINER,
+  );
+
   const goBack = () => navigate('..');
+
+  const onCreationCancel = () => {
+    trackCancelAction();
+    goBack();
+  };
 
   const { form, stepper, setContainerName } = useContainerCreationStore();
   const [isTouched, setIsTouched] = useState(false);
@@ -65,7 +76,7 @@ export function ContainerNameStep({
         isDisabled: !isValid || !!nameError,
       }}
       skip={{
-        action: goBack,
+        action: onCreationCancel,
         label: t(
           'cold-archive/new:pci_projects_project_storages_cold_archive_add_action_cancel',
         ),
