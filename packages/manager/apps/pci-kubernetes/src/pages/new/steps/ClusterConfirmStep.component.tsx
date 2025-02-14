@@ -1,14 +1,7 @@
 import { useTranslation } from 'react-i18next';
-import { OsdsButton, OsdsText } from '@ovhcloud/ods-components/react';
-import {
-  ODS_BUTTON_SIZE,
-  ODS_TEXT_COLOR_INTENT,
-  ODS_TEXT_LEVEL,
-} from '@ovhcloud/ods-components';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
+import { OsdsButton } from '@ovhcloud/ods-components/react';
+import { ODS_BUTTON_SIZE } from '@ovhcloud/ods-components';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { StepState } from '../useStep';
 import { TClusterCreationForm } from '../useCusterCreationStepper';
 
@@ -31,13 +24,7 @@ export function ClusterConfirmationStep({
     <>
       {!step.isLocked && (
         <>
-          {!form.nodePools?.length && <Estimation />}
-          <OsdsText
-            color={ODS_TEXT_COLOR_INTENT.text}
-            level={ODS_TEXT_LEVEL.body}
-            size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-            className="block"
-          ></OsdsText>
+          <Estimation nodePools={form.nodePools} />
           <OsdsButton
             className="mt-4 w-fit"
             size={ODS_BUTTON_SIZE.md}
