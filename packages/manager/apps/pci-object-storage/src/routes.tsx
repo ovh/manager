@@ -1,5 +1,6 @@
 import { lazy } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route } from 'react-router-dom';
+import { ErrorBoundary } from '@/pages/ErrorBoundary';
 
 export const ROUTE_PATHS = {
   ROOT: '/pci/projects/:projectId/storages/objects',
@@ -73,58 +74,53 @@ const AddObjectPage = lazy(() =>
   import('@/pages/objects/container/object/add/AddObject.page'),
 );
 
-const RoutesComponent = () => (
-  <Routes>
-    <Route id="root" path={ROUTE_PATHS.ROOT} Component={LayoutPage}>
-      <Route path={ROUTE_PATHS.ONBOARDING} Component={OnboardingPage} />
-      <Route path={ROUTE_PATHS.CONTAINER_NEW} Component={ContainerNewPage} />
-      <Route path={ROUTE_PATHS.STORAGES} Component={StoragePage}>
-        <Route path={ROUTE_PATHS.STORAGES} Component={ContainerListPage}>
-          <Route
-            path={ROUTE_PATHS.CONTAINER_DELETE}
-            Component={DeleteContainerPage}
-          />
-          <Route
-            path={ROUTE_PATHS.CONTAINER_ADD_USER}
-            Component={AddUserToContainerPage}
-          />
-          <Route
-            path={ROUTE_PATHS.CONTAINER_EMPTY_USER}
-            Component={EmptyUsersPage}
-          />
-        </Route>
-        <Route path={ROUTE_PATHS.USER_LIST} Component={UserListPage}>
-          <Route path={ROUTE_PATHS.USER_CREATE} Component={UserCreatePage} />
-          <Route
-            path={ROUTE_PATHS.USER_IMPORT_POLICY}
-            Component={ImportPolicyPage}
-          />
-          <Route path={ROUTE_PATHS.USER_DELETE} Component={DeleteUserPage} />
-          <Route
-            path={ROUTE_PATHS.DOWNLOAD_RCLONE}
-            Component={DownloadRClonePage}
-          />
-        </Route>
-      </Route>
-      <Route path={ROUTE_PATHS.OBJECTS} Component={ObjectPage}>
+export default (
+  <Route
+    id="root"
+    path={ROUTE_PATHS.ROOT}
+    Component={LayoutPage}
+    errorElement={<ErrorBoundary />}
+  >
+    <Route path={ROUTE_PATHS.ONBOARDING} Component={OnboardingPage} />
+    <Route path={ROUTE_PATHS.CONTAINER_NEW} Component={ContainerNewPage} />
+    <Route path={ROUTE_PATHS.STORAGES} Component={StoragePage}>
+      <Route path={ROUTE_PATHS.STORAGES} Component={ContainerListPage}>
         <Route
-          path={ROUTE_PATHS.ADD_USER_OBJECT}
-          Component={AddUserObjectPage}
+          path={ROUTE_PATHS.CONTAINER_DELETE}
+          Component={DeleteContainerPage}
         />
         <Route
-          path={ROUTE_PATHS.EMPTY_USER_OBJECT}
+          path={ROUTE_PATHS.CONTAINER_ADD_USER}
+          Component={AddUserToContainerPage}
+        />
+        <Route
+          path={ROUTE_PATHS.CONTAINER_EMPTY_USER}
           Component={EmptyUsersPage}
         />
-        <Route path={ROUTE_PATHS.DELETE_OBJECT} Component={DeleteObjectPage} />
-        <Route
-          path={ROUTE_PATHS.ENABLE_VERSIONING}
-          Component={EnableVersioningPage}
-        />
-        <Route path={ROUTE_PATHS.ADD_OBJECT} Component={AddObjectPage} />
       </Route>
-      <Route path="" element={<>Page not found</>}></Route>
+      <Route path={ROUTE_PATHS.USER_LIST} Component={UserListPage}>
+        <Route path={ROUTE_PATHS.USER_CREATE} Component={UserCreatePage} />
+        <Route
+          path={ROUTE_PATHS.USER_IMPORT_POLICY}
+          Component={ImportPolicyPage}
+        />
+        <Route path={ROUTE_PATHS.USER_DELETE} Component={DeleteUserPage} />
+        <Route
+          path={ROUTE_PATHS.DOWNLOAD_RCLONE}
+          Component={DownloadRClonePage}
+        />
+      </Route>
     </Route>
-  </Routes>
+    <Route path={ROUTE_PATHS.OBJECTS} Component={ObjectPage}>
+      <Route path={ROUTE_PATHS.ADD_USER_OBJECT} Component={AddUserObjectPage} />
+      <Route path={ROUTE_PATHS.EMPTY_USER_OBJECT} Component={EmptyUsersPage} />
+      <Route path={ROUTE_PATHS.DELETE_OBJECT} Component={DeleteObjectPage} />
+      <Route
+        path={ROUTE_PATHS.ENABLE_VERSIONING}
+        Component={EnableVersioningPage}
+      />
+      <Route path={ROUTE_PATHS.ADD_OBJECT} Component={AddObjectPage} />
+    </Route>
+    <Route path="" element={<>Page not found</>}></Route>
+  </Route>
 );
-
-export default RoutesComponent;
