@@ -1,3 +1,5 @@
+import { TRACKING_PREFIX, TRACKING_CONTEXT } from '../cloud-connect.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('cloud-connect.index.managenotifications', {
     url: '?uuid',
@@ -12,10 +14,17 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     layout: 'modal',
     resolve: {
-      goBack: /* @ngInject */ ($state, $timeout, Alerter) => (
+      goBack: /* @ngInject */ ($state, $timeout, Alerter, atInternet) => (
         message = false,
         type = 'success',
       ) => {
+        const TRACKING_ACTION = message ? 'confirm' : 'cancel';
+        atInternet.trackClick({
+          name: `${TRACKING_PREFIX}'::pop-up::button::edit_notification-settings::${TRACKING_ACTION}'`,
+          type: 'action',
+          ...TRACKING_CONTEXT,
+        });
+
         const reload = message && type === 'success';
         const promise = $state.go(
           'cloud-connect.index',
