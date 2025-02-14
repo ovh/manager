@@ -4,6 +4,11 @@ import * as database from '@/types/cloud/project/database';
 import { Engine, Flavor, Plan, Region, Version } from '@/types/orderFunnel';
 import { compareStorage } from './bytesHelper';
 import { FullCapabilities } from '@/hooks/api/database/capabilities/useGetFullCapabilities.hook';
+import {
+  PRICING_APAC_SUFFIX,
+  PRICING_PREFIX,
+  PRICING_SUFFIX,
+} from '@/configuration/pricing.constants';
 
 function updatePlanStorage(
   availability: database.Availability,
@@ -234,48 +239,56 @@ const mapFlavor = (
   return treeFlavor;
 };
 
+// handle plan code with or without .apac
+const getPlanCodeFromString = (planCode: string) => {
+  const hasApac = planCode.includes(`.${PRICING_APAC_SUFFIX}`);
+  const normalizedPlanCode = hasApac
+    ? planCode.replace(`.${PRICING_APAC_SUFFIX}`, '')
+    : planCode;
+
+  return (consumption: string) =>
+    `${PRICING_PREFIX}.${normalizedPlanCode}.${consumption}${
+      hasApac ? `.${PRICING_APAC_SUFFIX}` : ''
+    }`;
+};
+
 const setPrices = (
   availability: database.Availability,
   catalog: order.publicOrder.Catalog,
   plan: Plan,
   flavor: Flavor,
 ) => {
-  const prefix = `databases.${availability.engine.toLowerCase()}-${
-    availability.plan
-  }-${availability.specifications.flavor}`;
-  [flavor.pricing.hourly] = catalog.addons.find(
-    (a) => a.planCode === `${prefix}.hour.consumption`,
-  ).pricings;
+  // Default pricing if not found in the catalog
+  const defaultPricing = {
+    price: undefined,
+    tax: 0,
+  } as order.publicOrder.Pricing;
 
-  [flavor.pricing.monthly] = catalog.addons.find(
-    (a) => a.planCode === `${prefix}.month.consumption`,
-  ).pricings;
+  const planCode = getPlanCodeFromString(availability.planCode);
+  const planCodeStorage = getPlanCodeFromString(availability.planCodeStorage);
 
-  if (
-    !plan.minPricing ||
-    plan.minPricing.hourly.price > flavor.pricing.hourly.price
-  ) {
-    plan.minPricing = {
-      hourly: flavor.pricing.hourly,
-      monthly: flavor.pricing.monthly,
-    };
+  const findPricing = (pricingPlanCode: string) =>
+    catalog.addons.find((addon) => addon.planCode === pricingPlanCode)
+      ?.pricings?.[0] || defaultPricing;
+
+  // Extract pricing for hourly and monthly consumption
+  const hourlyPricing = findPricing(planCode(PRICING_SUFFIX.HOUR));
+  const monthlyPricing = findPricing(planCode(PRICING_SUFFIX.MONTH));
+
+  // Assign extracted pricing to the flavor
+  flavor.pricing.hourly = hourlyPricing;
+  flavor.pricing.monthly = monthlyPricing;
+
+  // Update plan's minimum pricing if needed
+  if (!plan.minPricing || plan.minPricing.hourly.price > hourlyPricing.price) {
+    plan.minPricing = { hourly: hourlyPricing, monthly: monthlyPricing };
   }
 
+  // Handle storage pricing if flavor has storage with step
   if (flavor.storage?.step) {
-    const storagePrefix = `databases.${availability.engine.toLowerCase()}-${
-      availability.plan
-    }`;
     flavor.storage.pricing = {
-      hourly: catalog.addons.find(
-        (a) =>
-          a.planCode ===
-          `${storagePrefix}-additionnal-storage-gb.hour.consumption`,
-      ).pricings[0],
-      monthly: catalog.addons.find(
-        (a) =>
-          a.planCode ===
-          `${storagePrefix}-additionnal-storage-gb.month.consumption`,
-      ).pricings[0],
+      hourly: findPricing(planCodeStorage(PRICING_SUFFIX.HOUR)),
+      monthly: findPricing(planCodeStorage(PRICING_SUFFIX.MONTH)),
     };
   }
 };
