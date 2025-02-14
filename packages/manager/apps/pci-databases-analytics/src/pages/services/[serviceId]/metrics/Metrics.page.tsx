@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Outlet } from 'react-router-dom';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 import { useServiceData } from '../Service.context';
 import * as database from '@/types/cloud/project/database';
@@ -12,6 +13,8 @@ import { POLLING } from '@/configuration/polling.constants';
 import Guides from '@/components/guides/Guides.component';
 import { GuideSections } from '@/types/guide';
 import { useGetMetrics } from '@/hooks/api/database/metric/useGetMetrics.hook';
+import PrometheusConfigTile from './prometheus/PrometheusConfigTile.component';
+import { Card, CardContent } from '@/components/ui/card';
 
 export function breadcrumb() {
   return (
@@ -40,6 +43,10 @@ const Metrics = () => {
         <Guides section={GuideSections.metrics} engine={service.engine} />
       </div>
       <p>{t('description')}</p>
+      {service.capabilities.prometheus?.read ===
+        database.service.capability.StateEnum.enabled && (
+        <PrometheusConfigTile />
+      )}
       {metricsQuery.isSuccess ? (
         <>
           <div className="flex w-full justify-between mb-2">
@@ -74,19 +81,25 @@ const Metrics = () => {
               <Label htmlFor="poll-metrics">{t('autoRefreshInputLabel')}</Label>
             </div>
           </div>
-          {metricsQuery.data.map((metric) => (
-            <MetricChart
-              key={metric}
-              metric={metric}
-              period={period}
-              poll={poll}
-              pollInterval={POLLING.METRICS}
-            />
-          ))}
+          <div className="grid grid-cols-1 xl:grid-cols-2 gap-2">
+            {metricsQuery.data.map((metric) => (
+              <Card key={metric}>
+                <CardContent>
+                  <MetricChart
+                    metric={metric}
+                    period={period}
+                    poll={poll}
+                    pollInterval={POLLING.METRICS}
+                  />
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </>
       ) : (
         <p>Loading</p>
       )}
+      <Outlet />
     </>
   );
 };
