@@ -37,7 +37,7 @@ export default /* @ngInject */ ($stateProvider) => {
           uuid: ovhCloudConnectId,
         }) => {
           atInternet.trackClick({
-            name: `${TRACKING_PREFIX} + '::datagrid::button::viewDetail'`,
+            name: `${TRACKING_PREFIX}'::datagrid::button::viewDetail'`,
             type: 'action',
             ...TRACKING_CONTEXT,
           });
@@ -50,7 +50,7 @@ export default /* @ngInject */ ($stateProvider) => {
           service,
         ) => {
           atInternet.trackClick({
-            name: `${TRACKING_PREFIX} + '::datagrid::button::goToManageNotifications'`,
+            name: `${TRACKING_PREFIX}'::datagrid::button::goToManageNotifications'`,
             type: 'action',
             ...TRACKING_CONTEXT,
           });
@@ -61,7 +61,7 @@ export default /* @ngInject */ ($stateProvider) => {
         },
         gotoOrder: /* @ngInject */ ($window, coreConfig, atInternet) => () => {
           atInternet.trackClick({
-            name: `${TRACKING_PREFIX} + '::page::button::go-to-order_cloud-connect'`,
+            name: `${TRACKING_PREFIX}'::page::button::go-to-order_cloud-connect'`,
             type: 'action',
             ...TRACKING_CONTEXT,
           });
@@ -86,5 +86,8 @@ export default /* @ngInject */ ($stateProvider) => {
               ? { state: 'cloud-connect.onboarding' }
               : false,
           ),
+      atInternet: {
+        ignore: true,
+      },
     });
 };
