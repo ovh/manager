@@ -1,8 +1,8 @@
-import { useRef } from 'react';
 import { Skeleton } from '../ui/skeleton';
 import { ScrollArea, ScrollBar } from '../ui/scroll-area';
 import NavLink from '@/components/links/NavLink.component';
 import { Badge } from '../ui/badge';
+import useHorizontalScroll from '@/hooks/useHorizontalScroll.hook';
 
 export interface Tab {
   href: string;
@@ -15,16 +15,9 @@ interface TabsMenuProps {
   tabs: Tab[];
 }
 const TabsMenu = ({ tabs }: TabsMenuProps) => {
-  const s = useRef(null);
+  const scrollRef = useHorizontalScroll();
   return (
-    <ScrollArea
-      data-testid="scrollbar"
-      className="py-2"
-      ref={s}
-      onWheel={(e) => {
-        s.current.children[1].scrollLeft += e.deltaY;
-      }}
-    >
+    <ScrollArea data-testid="scrollbar" className="py-2" ref={scrollRef}>
       <div
         className="flex border-b border-[#e6f5fc]"
         data-testid="tab-container"
