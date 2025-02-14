@@ -66,7 +66,7 @@ export function ClusterNameStep({
           color={ODS_THEME_COLOR_INTENT.primary}
           type={ODS_INPUT_TYPE.text}
           onOdsValueChange={(e) => {
-            setName(e.detail.value);
+            setName(e.detail.value ?? '');
           }}
           onOdsInputBlur={() => setIsTouched(true)}
           error={hasError}

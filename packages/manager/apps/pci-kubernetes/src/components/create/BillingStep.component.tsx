@@ -184,7 +184,7 @@ export default function BillingStep(props: TBillingStepProps): JSX.Element {
                     'pci_project_flavors_billing_price_monthly_instance_price_label',
                   )}
                 </strong>
-                {` ${getFormattedMonthlyCatalogPrice(props.monthlyPrice)}`}
+                {` ${getFormattedMonthlyCatalogPrice(props.monthlyPrice ?? 0)}`}
               </OsdsText>
             </div>
           </OsdsTile>

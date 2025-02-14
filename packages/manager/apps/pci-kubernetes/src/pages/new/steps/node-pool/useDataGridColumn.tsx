@@ -9,7 +9,11 @@ import { useTranslation } from 'react-i18next';
 import { NodePool } from '@/api/data/kubernetes';
 import RestrictionAction from '@/components/restriction/RestrictionAction.component';
 
-export const useDatagridColumn = ({ onDelete }) => {
+export const useDatagridColumn = ({
+  onDelete,
+}: {
+  onDelete: (name: string) => void;
+}) => {
   const { t } = useTranslation([
     'node-pool',
     'kube-nodes',
