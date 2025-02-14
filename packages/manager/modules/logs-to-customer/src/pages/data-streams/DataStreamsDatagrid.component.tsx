@@ -181,6 +181,7 @@ const DataStreamsDatagrid = ({ service }: { service: Service }) => {
         totalItems={streams.length || 0}
         pagination={pagination}
         onPaginationChange={setPagination}
+        noResultLabel={t('log_streams_no_results')}
       />
     </div>
   );

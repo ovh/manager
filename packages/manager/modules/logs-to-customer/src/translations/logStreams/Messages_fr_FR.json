@@ -10,6 +10,7 @@
   "log_streams_colomn_indexation": "Indexation",
   "log_streams_colomn_retention": "Rétention",
   "log_streams_colomn_subscriptions": "Abonnements",
+  "log_streams_no_results": "Aucun Flux de données sur ce compte LDP",
   "log_streams_subscribe": "S'abonner",
   "log_streams_unsubscribe": "Se désabonner"
 }

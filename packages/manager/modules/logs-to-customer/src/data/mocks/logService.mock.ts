@@ -18,7 +18,7 @@ export const logServicesMock: Service[] = [
   },
   {
     createdAt: '2019-10-22T16:40:54.418224+02:00',
-    displayName: null,
+    displayName: 'Custom Name',
     isClusterOwner: false,
     isIamEnabled: false,
     plan: ServicePlanEnum.STANDARD,

@@ -2,9 +2,10 @@ import { Links, LinkType } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import React, { useContext, useEffect, useState } from 'react';
 import { Service } from '../../data/types/dbaas/logs';
+import getServiceLabel from '../../helpers/getServiceLabel';
 
-const DataStreamAccountLink = ({ service }: { service: Service }) => {
-  const [accountURL, setAccountURL] = useState('');
+const ServiceLink = ({ service }: { service: Service }) => {
+  const [serviceUrl, setServiceUrl] = useState('');
   const {
     shell: { navigation },
   } = useContext(ShellContext);
@@ -12,17 +13,17 @@ const DataStreamAccountLink = ({ service }: { service: Service }) => {
   useEffect(() => {
     navigation
       .getURL('dedicated', `#/dbaas/logs/${service.serviceName}`, {})
-      .then(setAccountURL);
-  }, [navigation]);
+      .then(setServiceUrl);
+  }, [navigation, service]);
 
   return (
     <Links
-      href={accountURL}
-      label={service.serviceName}
+      href={serviceUrl}
+      label={getServiceLabel(service)}
       type={LinkType.external}
       target="_blank"
     />
   );
 };
 
-export default DataStreamAccountLink;
+export default ServiceLink;
