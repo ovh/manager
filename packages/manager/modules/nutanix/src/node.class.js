@@ -18,7 +18,7 @@ export default class Node {
   }
 
   get isResiliated() {
-    return this.serviceStatus !== SERVICE_STATES.SUSPENDED;
+    return this.serviceStatus === SERVICE_STATES.SUSPENDED;
   }
 
   get isError() {
