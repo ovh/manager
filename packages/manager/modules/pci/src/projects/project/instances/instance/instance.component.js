@@ -48,7 +48,6 @@ export default {
     guideTrackingSectionTags: '<',
     trackClick: '<',
     vncDisabled: '<',
-    hourlyPriceInformation: '<',
     isInstanceLocalZoneBackupAvailable: '<',
   },
 };

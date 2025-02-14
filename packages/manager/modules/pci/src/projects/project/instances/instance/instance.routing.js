@@ -78,16 +78,6 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           instanceId: instance.id,
         }),
-      hourlyPriceInformation: /* @ngInject */ (
-        CucPriceHelper,
-        projectId,
-        instance,
-      ) => {
-        const catalogEndpoint = '/order/catalog/public/cloud';
-        return CucPriceHelper.getPrices(projectId, catalogEndpoint).then(
-          (prices) => prices[instance.planCode]?.price,
-        );
-      },
       enableMonthlyBillingInstance: /* @ngInject */ (
         $state,
         instance,
