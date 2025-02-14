@@ -14,11 +14,11 @@ import { Translation, useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import useTracking from '@/hooks/useTracking';
 import { COLD_ARCHIVE_TRACKING } from '@/constants';
-import { useUsers } from '@/api/hooks/useUser';
 import { useAddUser } from '@/api/hooks/useArchive';
-import { TUser } from '@/api/data/user';
 import StepOneComponent from './StepOne.component';
 import StepTwoComponent from './StepTwo.component';
+import { useUsers } from '@/api/hooks/useUsers';
+import { TUser } from '@/api/data/users';
 
 export default function AddUserToContainerPage() {
   const { t } = useTranslation('containers/add-user');

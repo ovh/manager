@@ -4,9 +4,9 @@ import { useTranslation } from 'react-i18next';
 import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
 import { useContainerCreationStore } from '../useContainerCreationStore';
 import LinkUserSelector from './LinkUserSelector.component';
-import { TUser } from '@/api/data/user';
 import { CONTAINER_USER_ASSOCIATION_MODES } from '@/constants';
 import LinkUserCreation from './LinkUserCreation.component';
+import { TUser } from '@/api/data/users';
 
 export function LinkUserStep() {
   const { t } = useTranslation([
