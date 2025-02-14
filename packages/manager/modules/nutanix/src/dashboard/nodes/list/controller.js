@@ -2,10 +2,8 @@ import { MAX_NODES_BY_CLUSTER, SERVICE_STATES } from '../../../constants';
 
 export default class NutanixAllNodesCtrl {
   /* @ngInject */
-  constructor(NutanixService, ovhManagerRegionService, $translate) {
-    this.ovhManagerRegionService = ovhManagerRegionService;
+  constructor($translate) {
     this.$translate = $translate;
-    this.NutanixService = NutanixService;
     this.nodesMapped = [];
     this.SERVICE_STATES = SERVICE_STATES;
   }

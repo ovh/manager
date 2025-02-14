@@ -31,10 +31,14 @@ export default class Node {
   }
 
   get isDeployed() {
-    return (
-      this.status === NODE_STATUS.DEPLOYED &&
-      !this.os.startsWith(DEFAULT_OS_NODE_NUTANIX.split('_')[0])
-    );
+    if (
+      this.status === NODE_STATUS.UNKNOWN &&
+      this.os.startWith(DEFAULT_OS_NODE_NUTANIX.split('.')[0])
+    ) {
+      return true;
+    }
+
+    return this.status === NODE_STATUS.DEPLOYED;
   }
 
   get isWaitForConfigure() {
