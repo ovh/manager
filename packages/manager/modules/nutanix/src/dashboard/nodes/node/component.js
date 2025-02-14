@@ -7,7 +7,7 @@ export default {
     serviceName: '<',
     nodeId: '<',
     node: '<',
-    isResiliated: '<',
+    isTerminated: '<',
     trackingPrefix: '<',
   },
   controller,
