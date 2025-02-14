@@ -14,6 +14,7 @@
                 ><span data-translate="nutanix_node_general_info"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
+                data-disabled="$ctrl.isResiliated"
                 state="nutanix.dashboard.nodes.node.interventions"
                 state-params="{
                 serviceName: $ctrl.serviceName,
@@ -22,6 +23,7 @@
                 ><span data-translate="nutanix_node_interventions"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
+                data-disabled="$ctrl.isResiliated"
                 state="nutanix.dashboard.nodes.node.ipmi"
                 state-params="{
                 serviceName: $ctrl.serviceName,
@@ -30,6 +32,7 @@
                 ><span>IPMI</span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
+                data-disabled="$ctrl.isResiliated"
                 state="nutanix.dashboard.nodes.node.tasks"
                 state-params="{
                 serviceName: $ctrl.serviceName,
