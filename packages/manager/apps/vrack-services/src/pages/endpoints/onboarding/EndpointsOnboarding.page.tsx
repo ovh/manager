@@ -5,6 +5,7 @@ import { OnboardingLayout } from '@/components/layout-helpers/OnboardingLayout.c
 import onboardingImgSrc from '@/assets/onboarding-img.png';
 import { hasSubnet, isEditable, useVrackService } from '@/data';
 import { useNavigateToCreateEndpointPage } from '../endpoints.hook';
+import { IAM_ACTION } from '@/utils/iamActions.constants';
 
 export default function EndpointsOnboarding() {
   const { t } = useTranslation('vrack-services/endpoints');
@@ -25,6 +26,11 @@ export default function EndpointsOnboarding() {
       description={t('endpointsOnboardingDescription')}
       imageSrc={onboardingImgSrc}
       noBreadcrumb
+      iamActions={[
+        IAM_ACTION.VRACK_SERVICES_RESOURCE_EDIT,
+        IAM_ACTION.VRACK_SERVICES_ELIGIBLE_MANAGED_SERVICE_RESOURCE_GET,
+      ]}
+      urn={vrackServices.iam?.urn}
     />
   );
 }

@@ -18,6 +18,7 @@ import {
 } from '../../test-utils';
 import vrackServicesList from '../../../mocks/vrack-services/get-vrack-services.json';
 import { urls } from '@/routes/routes.constants';
+import { IAM_ACTION } from '@/utils/iamActions.constants';
 
 describe('Vrack Services subnets page test suite', () => {
   it('should display the subnets onboarding if no subnet exist', async () => {
@@ -227,5 +228,51 @@ describe('Vrack Services subnets page test suite', () => {
     await waitFor(() => fireEvent.click(submitButton));
 
     await assertModalVisibility({ container, isVisible: false });
+  });
+
+  it('should disable edit a subnet action if user have not the iam right to do it', async () => {
+    const { container } = await renderTest({
+      nbVs: 2,
+      initialRoute: urls.subnetsListing.replace(':id', vrackServicesList[1].id),
+      unauthorizedActions: [IAM_ACTION.VRACK_SERVICES_RESOURCE_EDIT],
+    });
+
+    await assertTextVisibility(labels.subnets['action-editSubnet']);
+
+    const actionMenu = await getButtonByIcon({
+      container,
+      iconName: ODS_ICON_NAME.ELLIPSIS,
+    });
+
+    await waitFor(() => fireEvent.click(actionMenu));
+
+    await getButtonByLabel({
+      container,
+      label: labels.subnets['action-editSubnet'],
+      disabled: true,
+    });
+  });
+
+  it('should disable delete a subnet action if user have not the iam right to do it', async () => {
+    const { container } = await renderTest({
+      nbVs: 2,
+      initialRoute: urls.subnetsListing.replace(':id', vrackServicesList[1].id),
+      unauthorizedActions: [IAM_ACTION.VRACK_SERVICES_RESOURCE_EDIT],
+    });
+
+    await assertTextVisibility(labels.subnets['action-deleteSubnet']);
+
+    const actionMenu = await getButtonByIcon({
+      container,
+      iconName: ODS_ICON_NAME.ELLIPSIS,
+    });
+
+    await waitFor(() => fireEvent.click(actionMenu));
+
+    await getButtonByLabel({
+      container,
+      label: labels.subnets['action-deleteSubnet'],
+      disabled: true,
+    });
   });
 });

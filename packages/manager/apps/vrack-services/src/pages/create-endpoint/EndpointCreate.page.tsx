@@ -7,6 +7,7 @@ import {
   ODS_SELECT_SIZE,
   OdsSelectValueChangeEvent,
 } from '@ovhcloud/ods-components';
+import { useAuthorizationIam } from '@ovh-ux/manager-react-components';
 import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { FormField } from '@/components/FormField.component';
 import {
@@ -25,6 +26,7 @@ import { ErrorPage } from '@/components/ErrorPage.component';
 import { urls } from '@/routes/routes.constants';
 import { PageName } from '@/utils/tracking';
 import { MessagesContext } from '@/components/feedback-messages/Messages.context';
+import { IAM_ACTION } from '@/utils/iamActions.constants';
 
 export default function EndpointCreatePage() {
   const { t } = useTranslation('vrack-services/endpoints');
@@ -80,6 +82,11 @@ export default function EndpointCreatePage() {
     },
   });
 
+  const { isAuthorized } = useAuthorizationIam(
+    [IAM_ACTION.VRACK_SERVICES_ENTERPRISE_FILE_STORAGE_RESOURCE_ATTACH],
+    vrackServices.data?.iam.urn,
+  );
+
   React.useEffect(() => {
     setServiceType(serviceListResponse?.data?.[0]?.managedServiceType);
   }, [
@@ -119,7 +126,9 @@ export default function EndpointCreatePage() {
       <FormField label={t('serviceTypeLabel')} isLoading={isServiceListLoading}>
         <OsdsSelect
           inline
-          disabled={isPending || isServiceListLoading || undefined}
+          disabled={
+            isPending || isServiceListLoading || !isAuthorized || undefined
+          }
           id={serviceTypeSelectName}
           value={serviceType}
           onOdsValueChange={(e: OdsSelectValueChangeEvent) =>
