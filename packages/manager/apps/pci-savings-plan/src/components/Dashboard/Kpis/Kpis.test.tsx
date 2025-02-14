@@ -35,6 +35,12 @@ vi.mock('@ovh-ux/manager-pci-common', () => ({
   }),
 }));
 
+vi.mock('@ovh-ux/manager-react-shell-client', () => ({
+  useOvhTracking: () => ({
+    trackClick: vi.fn(),
+  }),
+}));
+
 describe('Kpis Component', () => {
   beforeAll(() => {
     vi.useFakeTimers();
