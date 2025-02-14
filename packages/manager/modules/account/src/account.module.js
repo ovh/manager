@@ -3,6 +3,7 @@ import contactUpdate from './contacts/update';
 import redirection from './account.redirection';
 import routing from './account.routing';
 import user from './user';
+import ExitGuardService from './utils/exitGuard.service';
 import identityDocuments from './identity-documents';
 import kycDocuments from './kyc-documents';
 
@@ -33,6 +34,7 @@ angular
   ])
   .config(redirection)
   .config(routing)
+  .service('ExitGuardService', ExitGuardService)
   .run(/* @ngTranslationsInject:json ./common/translations */)
   .run(
     /* @ngInject */ ($translate) => {
