@@ -25,12 +25,8 @@ describe('useClusterCreationStepper', () => {
       version: '',
       updatePolicy: null,
       network: null,
-      flavor: null,
-      scaling: null,
-      nodePoolName: '',
+
       clusterName: '',
-      isMonthlyBilled: false,
-      antiAffinity: false,
     });
   });
 

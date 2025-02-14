@@ -1,10 +1,13 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { OsdsButton, OsdsTile } from '@ovhcloud/ods-components/react';
+import { OsdsButton, OsdsText } from '@ovhcloud/ods-components/react';
 import { KubeFlavor } from '@ovh-ux/manager-pci-common';
 import {
   ODS_BUTTON_SIZE,
+  ODS_BUTTON_VARIANT,
   ODS_TEXT_COLOR_INTENT,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import { Datagrid } from '@ovh-ux/manager-react-components';
@@ -26,6 +29,7 @@ import NodePoolSize from './node-pool/NodePoolSize.component';
 import NodePoolAntiAffinity from './node-pool/NodePoolAntiAffinity.component';
 
 import { NodePool } from '@/api/data/kubernetes';
+import { generateUniqueName } from '@/helpers';
 
 const NodePoolStep = ({
   stepper,
@@ -33,6 +37,7 @@ const NodePoolStep = ({
   stepper: ReturnType<typeof useClusterCreationStepper>;
 }) => {
   const { t: tStepper } = useTranslation('stepper');
+  const { t: tNodePool } = useTranslation('node-pool');
 
   const [scaling, setScaling] = useState<AutoscalingState | null>(null);
   const [antiAffinity, setIsAntiaffinity] = useState(false);
@@ -44,9 +49,16 @@ const NodePoolStep = ({
   const hasError = isTouched && !isValidName;
   const [isMonthlyBilled, setIsMonthlyBilled] = useState(false);
   const [flavor, setFlavor] = useState<KubeFlavor | null>(null);
-  const columns = useDatagridColumn();
+
   const [nodePoolEnabled, setNodePoolEnabled] = useState(true);
+
   const [nodes, setNodes] = useState<NodePool[]>([]);
+  const onDelete = useCallback(
+    (nameToDelete: string) =>
+      setNodes(nodes.filter((node) => node.name !== nameToDelete)),
+    [nodes],
+  );
+  const columns = useDatagridColumn({ onDelete });
 
   const isNodePoolValid = !nodePoolEnabled || (Boolean(flavor) && isValidName);
 
@@ -155,15 +167,17 @@ const NodePoolStep = ({
         )}
         {!stepper.node.step.isLocked && (
           <OsdsButton
-            className="mt-4 w-fit"
-            size={ODS_BUTTON_SIZE.md}
-            color={ODS_TEXT_COLOR_INTENT.text}
+            variant={ODS_BUTTON_VARIANT.stroked}
+            className="my-6 w-fit"
+            size={ODS_BUTTON_SIZE.sm}
+            color={ODS_TEXT_COLOR_INTENT.primary}
             {...(isButtonDisabled ? { disabled: true } : {})}
             onClick={() => {
-              const newNodePool = {
-                name,
+              const newNodePool: NodePool = {
+                name: generateUniqueName(name, nodes),
                 antiAffinity,
                 autoscale: Boolean(scaling?.isAutoscale),
+                localisation: stepper.form.region?.name,
                 desiredNodes: scaling?.quantity.desired,
                 minNodes: scaling?.quantity.min,
                 flavorName: flavor?.name,
@@ -179,17 +193,23 @@ const NodePoolStep = ({
             Add Node Pool
           </OsdsButton>
         )}
+        <OsdsText
+          className="mb-4 font-bold"
+          color={ODS_TEXT_COLOR_INTENT.text}
+          level={ODS_TEXT_LEVEL.heading}
+          size={ODS_TEXT_SIZE._400}
+          slot="label"
+        >
+          {tNodePool('kube_common_node_pool_liste')}
+        </OsdsText>
+
         <Datagrid
           columns={columns}
-          items={nodes.map((node) => ({
-            ...node,
-            localisation: stepper.form.region?.name,
-          }))}
+          items={nodes}
           totalItems={nodes.length}
           className="overflow-x-visible"
         />
-
-        {!stepper.node.step.isLocked && nodes.length && (
+        {!stepper.node.step.isLocked && nodes.length > 0 && (
           <OsdsButton
             onClick={() => stepper.node.submit(nodes)}
             className="mt-4 w-fit"

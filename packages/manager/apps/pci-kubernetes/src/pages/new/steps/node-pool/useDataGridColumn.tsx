@@ -6,9 +6,6 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_CHIP_SIZE, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { OsdsChip } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import ActionsComponent from '@/components/listing/actions.component';
-import { TKube } from '@/types';
-
 import { NodePool } from '@/api/data/kubernetes';
 import RestrictionAction from '@/components/restriction/RestrictionAction.component';
 
@@ -110,7 +107,7 @@ export const useDatagridColumn = ({ onDelete }) => {
       cell: (props) => (
         <div className="min-w-16">
           <RestrictionAction
-            onClick={() => onDelete(props.id)}
+            onClick={() => onDelete(props.name)}
             disabled={false}
             iconName={ODS_ICON_NAME.TRASH}
           />
