@@ -63,7 +63,7 @@ export const useDatagridColumn = ({
     {
       id: 'size',
       cell: (props: TIndexedObject) => (
-        <DataGridTextCell>{formatBytes(props.size, 2)}</DataGridTextCell>
+        <DataGridTextCell>{formatBytes(props.size, 2, 1024)}</DataGridTextCell>
       ),
       label: t('pci_projects_project_storages_containers_container_size_label'),
     },
