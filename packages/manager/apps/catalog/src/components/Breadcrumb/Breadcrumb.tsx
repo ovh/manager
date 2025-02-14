@@ -1,5 +1,8 @@
 import React from 'react';
-import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
+import {
+  OdsBreadcrumb,
+  OdsBreadcrumbItem,
+} from '@ovhcloud/ods-components/react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
@@ -37,7 +40,19 @@ function Breadcrumb() {
     });
   }
 
-  return <OsdsBreadcrumb items={items} />;
+  return (
+    <>
+      Running ODS18
+      <OdsBreadcrumb>
+        <OdsBreadcrumbItem href="/" label="Home">
+          Home
+        </OdsBreadcrumbItem>
+        <OdsBreadcrumbItem href="/nasha" label="NAS-HA">
+          NAS-HA
+        </OdsBreadcrumbItem>
+      </OdsBreadcrumb>
+    </>
+  );
 }
 
 export default Breadcrumb;

@@ -23,7 +23,7 @@ export const routes: RouteObject[] = [
     children: [
       {
         path: '/',
-        ...lazyRouteConfig(() => import('@/pages/index')),
+        ...lazyRouteConfig(() => import('@/pages/nasHaOrder/NasHaOrder.page')),
       },
       {
         path: '/nasha',

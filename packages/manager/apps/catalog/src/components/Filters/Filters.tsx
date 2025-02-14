@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { OsdsButton, OsdsText, OsdsLink } from '@ovhcloud/ods-components/react';
+import { OdsButton, OdsText, OdsLink } from '@ovhcloud/ods-components/react';
 import { useSearchParams } from 'react-router-dom';
-import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 
 import FilterItem from './FilterItem';
 import LoadingFilterItem from './LoadingFilterItem';
@@ -104,14 +102,9 @@ const Filters: React.FC<FiltersProps> = ({
     <>
       <span className="filters-container filters-container grid grid-cols-1 md:flex text-left">
         <span className="filters-universes flex-[2]">
-          <OsdsText
-            level={ODS_TEXT_LEVEL.heading}
-            size={ODS_TEXT_SIZE._400}
-            color={ODS_THEME_COLOR_INTENT.text}
-            className="inline-block"
-          >
+          <OdsText className="inline-block">
             {t('manager_catalog_filters_universes')}
-          </OsdsText>
+          </OdsText>
           <span className="grid grid-cols-1">
             {universes.length ? (
               universes.map((item) => {
@@ -135,14 +128,9 @@ const Filters: React.FC<FiltersProps> = ({
           </span>
         </span>
         <span className="filters-categories grid flex-[4]">
-          <OsdsText
-            level={ODS_TEXT_LEVEL.heading}
-            size={ODS_TEXT_SIZE._400}
-            color={ODS_THEME_COLOR_INTENT.text}
-            className="title"
-          >
+          <OdsText className="title">
             {t('manager_catalog_filters_categories')}
-          </OsdsText>
+          </OdsText>
           <span className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {categories.length ? (
               categories.map((item: { category: string; count: number }) => {
@@ -167,8 +155,8 @@ const Filters: React.FC<FiltersProps> = ({
       </span>
       <span className="filters-footer-container">
         <span className="filters-footer flex justify-end gap-x-5">
-          <OsdsLink
-            color={ODS_THEME_COLOR_INTENT.primary}
+          <OdsLink
+            href="#"
             onClick={() => resetFilters()}
             onKeyDown={(event: React.KeyboardEvent) =>
               event.key === 'Enter' && resetFilters()
@@ -176,10 +164,10 @@ const Filters: React.FC<FiltersProps> = ({
             data-tracking="filter::reset"
           >
             {t('manager_catalog_filters_reset')}
-          </OsdsLink>
-          <OsdsButton
-            disabled={!hasInteracted || undefined}
-            color={ODS_THEME_COLOR_INTENT.primary}
+          </OdsLink>
+          <OdsButton
+            label="Apply"
+            isDisabled={!hasInteracted || undefined}
             onClick={() => setFilters()}
             onKeyDown={(event: React.KeyboardEvent) =>
               event.key === 'Enter' && setFilters()
@@ -187,7 +175,7 @@ const Filters: React.FC<FiltersProps> = ({
             data-tracking="filter::apply"
           >
             {t('manager_catalog_filters_button_apply')}
-          </OsdsButton>
+          </OdsButton>
         </span>
       </span>
     </>
