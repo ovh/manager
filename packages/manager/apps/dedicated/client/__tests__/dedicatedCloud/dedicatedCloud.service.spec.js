@@ -140,4 +140,32 @@ describe('DedicatedCloud service test suites', () => {
       $httpBackend.flush();
     },
   );
+
+  it.each([
+    { options: [], optionIsEnabled: false },
+    { options: [123], optionIsEnabled: true },
+  ])(
+    'should return option nsxt enabled=$optionIsEnabled',
+    ({ options, optionIsEnabled }) => {
+      $httpBackend
+        .expectGET('/services?resourceName=serviceName%2Foption%2Fedgensxt')
+        .respond(options);
+
+      const promise = DedicatedCloud.getDatacenterNsxtOptionState(serviceName);
+
+      promise.then(({ enabled }) => expect(enabled).toBe(optionIsEnabled));
+      $httpBackend.flush();
+    },
+  );
+
+  it('should return option nsxt disabled when an error occurs', () => {
+    $httpBackend
+      .expectGET('/services?resourceName=serviceName%2Foption%2Fedgensxt')
+      .respond(404);
+
+    const promise = DedicatedCloud.getDatacenterNsxtOptionState(serviceName);
+
+    promise.then(({ enabled }) => expect(enabled).toBeFalsy());
+    $httpBackend.flush();
+  });
 });
