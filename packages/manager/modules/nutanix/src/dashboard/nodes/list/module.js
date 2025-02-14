@@ -10,6 +10,7 @@ import datacenterName from '../../component/datacenter-name/module';
 import nodeStatus from '../../component/node-os-datagrid/module';
 import nodeOsDatagrid from '../../component/service-status/module';
 import nodeActionMenu from '../../component/node-action-menu/module';
+import nodeActionMenuResiliated from '../../component/node-action-menu-resiliated/module';
 import addNodes from './add-nodes';
 import poweroffNode from './poweroff-node';
 import installNode from './install-node';
@@ -30,6 +31,7 @@ angular
     nodeStatus,
     nodeOsDatagrid,
     nodeActionMenu,
+    nodeActionMenuResiliated,
     addNodes,
     poweroffNode,
     installNode,
