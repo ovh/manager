@@ -1,5 +1,8 @@
 import { UUID } from './manage-notifications.constant';
-import { TRACKING_CONTEXT } from '../../cloud-connect.constants';
+import {
+  TRACKING_CONTEXT,
+  TRACKING_PREFIX,
+} from '../../cloud-connect.constants';
 
 export default class {
   /* @ngInject */
@@ -12,9 +15,10 @@ export default class {
 
   $onInit() {
     this.atInternet.trackPage({
-      name: TRACKING_CONTEXT.trackingPageLabel,
+      name: `${TRACKING_PREFIX}::cloud-connect::pop-up::edit::notifications::settings`,
       type: 'navigation',
       ...TRACKING_CONTEXT,
+      page_category: 'pop-up',
     });
     this.loading = true;
     this.disableConfirm = true;
