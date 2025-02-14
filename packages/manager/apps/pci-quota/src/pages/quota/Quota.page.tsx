@@ -171,7 +171,7 @@ export default function QuotaPage(): JSX.Element {
     <BaseLayout
       breadcrumb={
         <OdsBreadcrumb>
-          <OdsBreadcrumbItem href={hrefProject} label={project.description} />
+          <OdsBreadcrumbItem href={hrefProject} label={project?.description} />
           <OdsBreadcrumbItem
             label={tQuota('pci_projects_project_quota')}
             href={''}

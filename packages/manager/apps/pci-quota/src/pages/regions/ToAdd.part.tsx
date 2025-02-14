@@ -30,7 +30,7 @@ export const ToAddPart = ({
         </OdsText>
       </div>
       {isPending ? (
-        <OdsSpinner />
+        <OdsSpinner data-testid="toadd-spinner" />
       ) : (
         <>
           {locations?.length ? (
@@ -68,6 +68,7 @@ export const ToAddPart = ({
                       ) : (
                         <OdsSelect
                           name="region"
+                          data-testid="region-select"
                           value={selectedRegions[item.name]}
                           onOdsChange={(event) => {
                             if (
