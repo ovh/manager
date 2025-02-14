@@ -38,7 +38,7 @@ export default class FlavorBillingController {
   }
 
   isPricingComingSoon() {
-    return !this.flavor?.prices?.monthly;
+    return !this.prices?.monthly;
   }
 
   getPrice(price) {
