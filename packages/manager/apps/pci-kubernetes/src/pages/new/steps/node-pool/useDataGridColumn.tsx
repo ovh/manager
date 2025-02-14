@@ -3,32 +3,37 @@ import {
   DataGridTextCell,
 } from '@ovh-ux/manager-react-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_CHIP_SIZE } from '@ovhcloud/ods-components';
+import { ODS_CHIP_SIZE, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { OsdsChip } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import ActionsComponent from '@/components/listing/actions.component';
 import { TKube } from '@/types';
 
 import { NodePool } from '@/api/data/kubernetes';
+import RestrictionAction from '@/components/restriction/RestrictionAction.component';
 
-export const useDatagridColumn = () => {
+export const useDatagridColumn = ({ onDelete }) => {
   const { t } = useTranslation([
     'node-pool',
     'kube-nodes',
     'autoscaling',
     'flavor-billing',
+    'listing',
+    'billing-anti-affinity',
   ]);
 
   const columns: DatagridColumn<NodePool>[] = [
     {
       id: 'name',
       cell: (props) => <DataGridTextCell>{props.name}</DataGridTextCell>,
-      label: t('kube_list_name'),
+      label: t('listing:kube_list_name'),
     },
 
     {
       id: 'localisation',
-      cell: (props) => <DataGridTextCell>{props.region}</DataGridTextCell>,
+      cell: (props) => (
+        <DataGridTextCell>{props.localisation}</DataGridTextCell>
+      ),
       label: t('kube_common_node_pool_localisation'),
     },
     {
@@ -70,12 +75,22 @@ export const useDatagridColumn = () => {
       id: 'anti-affinity',
       cell: (props) => (
         <DataGridTextCell>
-          <OsdsChip className="w-fit" data-testid="clusterStatus-chip">
-            {props.antiAffinity}
-          </OsdsChip>
+          <span className="whitespace-nowrap">
+            <OsdsChip
+              color={
+                props.antiAffinity
+                  ? ODS_THEME_COLOR_INTENT.success
+                  : ODS_THEME_COLOR_INTENT.error
+              }
+              inline
+              size={ODS_CHIP_SIZE.sm}
+            >
+              {t(`kube_node_pool_autoscale_${props.antiAffinity}`)}
+            </OsdsChip>
+          </span>
         </DataGridTextCell>
       ),
-      label: t('autoscaling:kubernetes_node_pool_autoscaling_autoscale'),
+      label: t('billing-anti-affinity:kubernetes_node_pool_anti_affinity'),
     },
     {
       id: 'billing',
@@ -92,9 +107,13 @@ export const useDatagridColumn = () => {
     },
     {
       id: 'actions',
-      cell: (props: TKube) => (
+      cell: (props) => (
         <div className="min-w-16">
-          <ActionsComponent kubeId={props.id} />
+          <RestrictionAction
+            onClick={() => onDelete(props.id)}
+            disabled={false}
+            iconName={ODS_ICON_NAME.TRASH}
+          />
         </div>
       ),
       label: '',
