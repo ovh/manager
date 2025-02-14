@@ -23,6 +23,10 @@ export default /* @ngInject */ ($stateProvider) => {
           name: `${TRACKING_PREFIX}'::pop-up::button::edit_notification-settings::${TRACKING_ACTION}'`,
           type: 'action',
           ...TRACKING_CONTEXT,
+          page: {
+            name: `${TRACKING_PREFIX}::cloud-connect::pop-up::edit::notifications::settings`,
+          },
+          page_category: 'pop-up',
         });
 
         const reload = message && type === 'success';
