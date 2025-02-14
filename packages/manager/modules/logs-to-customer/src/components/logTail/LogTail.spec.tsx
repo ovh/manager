@@ -1,4 +1,4 @@
-import { screen, waitFor } from '@testing-library/react';
+import { act, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
 import { renderTest } from '../../test-utils';
@@ -111,7 +111,7 @@ describe('LogTail test suite', () => {
 
     expect(screen.getByTestId('logTail-polling')).toBeVisible();
 
-    await user.click(screen.getByTestId('logTail-togglePolling'));
+    await act(() => user.click(screen.getByTestId('logTail-togglePolling')));
 
     expect(screen.queryAllByTestId('logTail-polling')).toHaveLength(0);
   });
@@ -138,8 +138,8 @@ describe('LogTail test suite', () => {
       },
     );
 
-    await user.click(screen.getByTestId('logTail-togglePolling'));
-    await user.click(screen.getByTestId('logTail-clearSession'));
+    await act(() => user.click(screen.getByTestId('logTail-togglePolling')));
+    await act(() => user.click(screen.getByTestId('logTail-clearSession')));
 
     await waitFor(
       () => expect(screen.queryAllByTestId('logTail-item')).toHaveLength(0),
