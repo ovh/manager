@@ -35,7 +35,19 @@ export default class {
     this.listOfActiveNotifications = this.notifications
       .filter((notification) => notification.activated)
       .map(({ type }) => type);
-
+    this.selectedOptions =
+      this.listOfActiveNotifications.length === 0
+        ? 'none'
+        : this.listOfActiveNotifications.join('::option-');
+    this.atInternet.trackClick({
+      name: `${TRACKING_PREFIX}::pop-up::button::edit_notification-settings::accept-option-${this.selectedOptions}`,
+      type: 'action',
+      ...TRACKING_CONTEXT,
+      page: {
+        name: `${TRACKING_PREFIX}::cloud-connect::pop-up::edit::notifications::settings`,
+      },
+      page_category: 'pop-up',
+    });
     return this.cloudConnectService
       .saveCloudConnectNotifications(this.uuid, this.listOfActiveNotifications)
       .then(() =>
