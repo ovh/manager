@@ -18,16 +18,22 @@ export default /* @ngInject */ ($stateProvider) => {
         message = false,
         type = 'success',
       ) => {
-        const TRACKING_ACTION = message ? 'confirm' : 'cancel';
-        atInternet.trackClick({
-          name: `${TRACKING_PREFIX}'::pop-up::button::edit_notification-settings::${TRACKING_ACTION}'`,
-          type: 'action',
-          ...TRACKING_CONTEXT,
-          page: {
-            name: `${TRACKING_PREFIX}::cloud-connect::pop-up::edit::notifications::settings`,
-          },
-          page_category: 'pop-up',
-        });
+        if (!message) {
+          atInternet.trackClick({
+            name: `${TRACKING_PREFIX}::pop-up::button::edit_notification-settings::cancel`,
+            type: 'action',
+            ...TRACKING_CONTEXT,
+            page: {
+              name: `${TRACKING_PREFIX}::cloud-connect::pop-up::edit::notifications::settings`,
+            },
+            page_category: 'pop-up',
+          });
+          atInternet.trackPage({
+            name: TRACKING_CONTEXT.trackingPageLabel,
+            type: 'navigation',
+            ...TRACKING_CONTEXT,
+          });
+        }
 
         const reload = message && type === 'success';
         const promise = $state.go(
