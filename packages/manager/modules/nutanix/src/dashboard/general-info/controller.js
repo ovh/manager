@@ -45,6 +45,12 @@ export default class NutanixGeneralInfoCtrl {
     this.clusterRedeploying = this.cluster.status === CLUSTER_STATUS.DEPLOYING;
     this.showRedeployWarningModal = false;
     this.TRACKING = TRACKING;
+    this.isMaxNodesReached = this.nodes.length >= MAX_NODES_BY_CLUSTER;
+    this.addNodeTooltipContent = this.isMaxNodesReached
+      ? this.$translate.instant(
+          'nutanix_dashboard_cluster_add_node_max_node_tooltip',
+        )
+      : null;
 
     const { ovhSubsidiary } = this.coreConfig.getUser();
     this.NUTANIX_LINK =
@@ -70,29 +76,12 @@ export default class NutanixGeneralInfoCtrl {
       });
   }
 
-  loadNodesStatus() {
-    this.loadingNodesStatus = true;
-    return this.NutanixService.getNodesWithState(this.serviceName)
-      .then((nodesDetails) => {
-        this.nodesDetails = nodesDetails;
-        this.isMaxNodesReached = nodesDetails.length >= MAX_NODES_BY_CLUSTER;
-        this.addNodeTooltipContent = this.isMaxNodesReached
-          ? this.$translate.instant(
-              'nutanix_dashboard_cluster_add_node_max_node_tooltip',
-            )
-          : null;
-      })
-      .finally(() => {
-        this.loadingNodesStatus = false;
-      });
-  }
-
   get numberNodesDeployed() {
-    return this.nodesDetails.filter((node) => node.isDeployed).length;
+    return this.nodes.filter((node) => node.isDeployed).length;
   }
 
   get numberNodesToDeploy() {
-    return this.nodesDetails.filter((node) => node.isWaitForConfigure).length;
+    return this.nodes.filter((node) => node.isWaitForConfigure).length;
   }
 
   setPrivateBandwidthServiceId() {

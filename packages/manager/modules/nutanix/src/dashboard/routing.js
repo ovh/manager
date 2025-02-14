@@ -47,7 +47,7 @@ export default /* @ngInject */ ($stateProvider) => {
           },
         ),
       nodes: /* @ngInject */ (cluster, NutanixService) =>
-        NutanixService.getNodeDetails(cluster.getNodes()),
+        NutanixService.getNodeDetails(cluster),
       nodeId: /* @ngInject */ (cluster) => cluster.getFirstNode(),
       server: /* @ngInject */ (nodes) => nodes[0],
       serviceName: /* @ngInject */ ($transition$) =>

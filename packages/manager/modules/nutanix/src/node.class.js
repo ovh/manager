@@ -1,21 +1,47 @@
-import { NODE_STATUS } from './constants';
+import {
+  NODE_STATUS,
+  SERVICE_STATES,
+  DEFAULT_OS_NODE_NUTANIX,
+} from './constants';
 
 export default class Node {
-  constructor({ ahvIp, cvmIp, server, status }) {
+  constructor({ ahvIp, cvmIp, server, status, os, ...extraInformation }) {
     Object.assign(this, {
       ahvIp,
       cvmIp,
       server,
+      os,
+      ...extraInformation,
     });
 
     this.status = NODE_STATUS[status] ?? NODE_STATUS.UNKNOWN;
   }
 
+  get isResiliated() {
+    return this.serviceStatus !== SERVICE_STATES.SUSPENDED;
+  }
+
+  get isError() {
+    return [
+      NODE_STATUS.DEPLOY_FAILURE,
+      NODE_STATUS.UNDEPLOY_FAILURE,
+      NODE_STATUS.UNDEPLOY_CANCELLED,
+      NODE_STATUS.DEPLOY_CANCELLED,
+    ].includes(this.status);
+  }
+
   get isDeployed() {
+    if (
+      this.status === NODE_STATUS.UNKNOWN &&
+      this.os !== DEFAULT_OS_NODE_NUTANIX
+    ) {
+      return true;
+    }
+
     return this.status === NODE_STATUS.DEPLOYED;
   }
 
   get isWaitForConfigure() {
-    return [NODE_STATUS.UNKNOWN, NODE_STATUS.UNDEPLOYED].includes(this.status);
+    return !this.isResilied && !this.isDeployed;
   }
 }
