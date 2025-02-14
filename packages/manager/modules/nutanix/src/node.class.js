@@ -17,7 +17,7 @@ export default class Node {
     this.status = NODE_STATUS[status] ?? NODE_STATUS.UNKNOWN;
   }
 
-  get isResiliated() {
+  get isTerminated() {
     return this.serviceStatus === SERVICE_STATES.SUSPENDED;
   }
 
