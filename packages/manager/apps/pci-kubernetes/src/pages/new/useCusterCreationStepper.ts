@@ -11,7 +11,6 @@ export type TClusterCreationForm = {
   updatePolicy: UpdatePolicy;
   network: TNetworkFormState;
   nodePools?: NodePool[];
-  nodePoolName: string;
   clusterName: string;
 };
 
@@ -27,7 +26,7 @@ export function useClusterCreationStepper() {
     version: '',
     updatePolicy: null,
     network: null,
-    nodePoolName: '',
+
     clusterName: '',
   });
 
