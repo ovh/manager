@@ -1,10 +1,6 @@
-import {
-  PciModal,
-  useProductRegionsAvailability,
-} from '@ovh-ux/manager-pci-common';
-import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { PciModal } from '@ovh-ux/manager-pci-common';
+import { useNotifications } from '@ovh-ux/manager-react-components';
 import {
   OdsFormField,
   OdsMessage,
@@ -12,30 +8,31 @@ import {
   OdsText,
 } from '@ovhcloud/ods-components/react';
 
-import { useContext, useState } from 'react';
+import { add } from 'date-fns';
+import { useState } from 'react';
 import { Translation, useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { add } from 'date-fns';
-import { useArchives, useStartArchiveContainer } from '@/api/hooks/useArchive';
+import { useGetArchiveByName, useStartArchive } from '@/api/hooks/useArchive';
 import LabelComponent from '@/components/Label.component';
-import { useFormattedDate } from '@/hooks/useFormattedDate';
 import { COLD_ARCHIVE_TRACKING } from '@/constants';
+import { useFormattedDate } from '@/hooks/useFormattedDate';
 import useTracking from '@/hooks/useTracking';
 
 export default function EditRetentionPage() {
   const { t } = useTranslation('containers/edit-retention');
 
   const { addSuccess, addError } = useNotifications();
-  const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
+
   const { projectId, archiveName } = useParams();
-  const { data: allArchives, isPending: isPendingArchive } = useArchives(
-    projectId,
-  );
-  const archive = allArchives?.find((a) => a.name === archiveName);
+
+  const archive = useGetArchiveByName(projectId, archiveName);
+
   const [lockedUntilDays, setLockedUntilDays] = useState(1);
+
   const newRetentionDate = add(new Date(), {
     days: lockedUntilDays,
   });
+
   const formattedRetentionDate = useFormattedDate(
     newRetentionDate.toString(),
     'P',
@@ -52,22 +49,8 @@ export default function EditRetentionPage() {
     trackErrorPage,
   } = useTracking(COLD_ARCHIVE_TRACKING.CONTAINERS.EDIT_RETENTION);
 
-  const {
-    data: regions,
-    isPending: isRegionsPending,
-  } = useProductRegionsAvailability(
-    ovhSubsidiary,
-    'coldarchive.archive.hour.consumption',
-  );
-
-  const {
-    startArchiveContainer,
-    isPending: isPendingStartArchive,
-  } = useStartArchiveContainer({
+  const { startArchive, isPending: isPendingStartArchive } = useStartArchive({
     projectId,
-    region: regions?.[0],
-    containerName: archiveName,
-    lockedUntilDays,
     onError(error: ApiError) {
       addError(
         <Translation ns="containers/edit-retention">
@@ -110,7 +93,7 @@ export default function EditRetentionPage() {
 
   const onConfirm = () => {
     trackConfirmAction();
-    startArchiveContainer();
+    startArchive({ name: archiveName, lockedUntilDays });
   };
 
   const onCancel = () => {
@@ -120,8 +103,7 @@ export default function EditRetentionPage() {
 
   const onClose = onCancel;
 
-  const isPending =
-    isPendingArchive || isPendingStartArchive || isRegionsPending;
+  const isPending = !archive || isPendingStartArchive;
 
   const isDisabled = isPending || hasWarning || !lockedUntilDays;
 

@@ -1,17 +1,12 @@
 import { ApiError } from '@ovh-ux/manager-core-api';
-import {
-  PciModal,
-  useProductRegionsAvailability,
-} from '@ovh-ux/manager-pci-common';
+import { PciModal } from '@ovh-ux/manager-pci-common';
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { OdsText } from '@ovhcloud/ods-components/react';
-import { useContext } from 'react';
 import { Translation, useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import useTracking from '@/hooks/useTracking';
 import { COLD_ARCHIVE_TRACKING } from '@/constants';
-import { useRestoreArchiveContainer } from '@/api/hooks/useArchive';
+import { useRestoreArchive } from '@/api/hooks/useArchive';
 
 export default function Restore() {
   const { t } = useTranslation('containers/restore');
@@ -22,16 +17,6 @@ export default function Restore() {
   const navigate = useNavigate();
   const goBack = () => navigate('..');
 
-  const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
-
-  const {
-    data: regions,
-    isPending: isRegionsPending,
-  } = useProductRegionsAvailability(
-    ovhSubsidiary,
-    'coldarchive.archive.hour.consumption',
-  );
-
   const {
     trackConfirmAction,
     trackCancelAction,
@@ -39,13 +24,8 @@ export default function Restore() {
     trackErrorPage,
   } = useTracking(COLD_ARCHIVE_TRACKING.CONTAINERS.RESTORE);
 
-  const {
-    restoreArchiveContainer,
-    isPending: isPendingRestore,
-  } = useRestoreArchiveContainer({
+  const { restoreArchive, isPending } = useRestoreArchive({
     projectId,
-    region: regions?.[0],
-    containerName: archiveName,
     onError(error: ApiError) {
       addError(
         <Translation ns="containers/restore">
@@ -88,7 +68,7 @@ export default function Restore() {
 
   const onConfirm = () => {
     trackConfirmAction();
-    restoreArchiveContainer();
+    restoreArchive(archiveName);
   };
 
   const onCancel = () => {
@@ -97,8 +77,6 @@ export default function Restore() {
   };
 
   const onClose = onCancel;
-
-  const isPending = isPendingRestore || isRegionsPending;
 
   return (
     <PciModal

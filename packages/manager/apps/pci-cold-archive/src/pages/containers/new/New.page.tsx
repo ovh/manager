@@ -1,9 +1,5 @@
 import { ApiError } from '@ovh-ux/manager-core-api';
-import {
-  PciDiscoveryBanner,
-  useProductRegionsAvailability,
-  useProject,
-} from '@ovh-ux/manager-pci-common';
+import { PciDiscoveryBanner, useProject } from '@ovh-ux/manager-pci-common';
 import {
   BaseLayout,
   Links,
@@ -37,10 +33,8 @@ export default function ContainerNewPage() {
   const { t } = useTranslation(['cold-archive/new', 'cold-archive']);
 
   const projectHref = useProjectUrl('public-cloud');
-
   const { data: project } = useProject();
 
-  const context = useContext(ShellContext);
   const navigate = useNavigate();
 
   const { trackConfirmAction, trackSuccessPage, trackErrorPage } = useTracking(
@@ -48,7 +42,7 @@ export default function ContainerNewPage() {
   );
 
   const { addError, addSuccess } = useNotifications();
-  const { ovhSubsidiary } = context.environment.getUser();
+  const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
 
   const pricesLink =
     CHECK_PRICES_DOC_LINK[ovhSubsidiary] || CHECK_PRICES_DOC_LINK.DEFAULT;
@@ -57,16 +51,8 @@ export default function ContainerNewPage() {
 
   const goBack = () => navigate('..');
 
-  const { data: regions } = useProductRegionsAvailability(
-    ovhSubsidiary,
-    'coldarchive.archive.hour.consumption',
-  );
-
-  const region = regions?.[0];
-
   const { createContainer, isPending } = useCreateContainer({
     projectId: project.project_id,
-    region,
     onSuccess: (container: TArchiveContainer) => {
       addSuccess(
         <UserInformationTile
