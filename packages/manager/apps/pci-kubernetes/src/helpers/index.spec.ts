@@ -11,6 +11,7 @@ import {
   filterSchemaKeys,
   isBase64,
   parseCommaSeparated,
+  generateUniqueName,
 } from '@/helpers/index';
 
 describe('helper', () => {
@@ -167,4 +168,31 @@ describe('isBase64', () => {
   it('invalidates a malformed Base64 string', () => {
     expect(isBase64('SGVsbG8gd29ybGQ')).toBe(false);
   });
+});
+
+describe('generateUniqueName', () => {
+  it.each([
+    ['NodePool-2', [{ name: 'NodePool-1' }], 'NodePool-2'],
+    ['NodePool-2', [{ name: 'NodePool-2' }], 'NodePool-2-copie 1'],
+    [
+      'NodePool-2',
+      [
+        { name: 'NodePool-2' },
+        { name: 'NodePool-2-copie 1' },
+        { name: 'NodePool-2-copie 2' },
+      ],
+      'NodePool-2-copie 3',
+    ],
+    [
+      'UniquePool',
+      [{ name: 'AnotherPool' }, { name: 'NodePool-2' }],
+      'UniquePool',
+    ],
+  ])(
+    'should return %s for baseName "%s" with existing nodes %j',
+    (baseName, existingNodePools, expectedResult) => {
+      const result = generateUniqueName(baseName, existingNodePools);
+      expect(result).toBe(expectedResult);
+    },
+  );
 });
