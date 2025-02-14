@@ -1,6 +1,6 @@
-export const CONTACT_US_LINK = {
+export const HELP_LINK = {
   DE: 'https://help.ovhcloud.com/csm/de-home?id=csm_index',
-  'ES-ES': 'https://help.ovhcloud.com/csm/es-es-home?id=csm_index',
+  ES: 'https://help.ovhcloud.com/csm/es-es-home?id=csm_index',
   FR: 'https://help.ovhcloud.com/csm/fr-home?id=csm_index',
   IE: 'https://help.ovhcloud.com/csm/en-ie-home?id=csm_index',
   IT: 'https://help.ovhcloud.com/csm/it-home?id=csm_index',
@@ -24,5 +24,5 @@ export const CONTACT_US_LINK = {
 };
 
 export default {
-  CONTACT_US_LINK,
+  HELP_LINK,
 };

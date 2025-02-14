@@ -1,4 +1,4 @@
-import { CONTACT_US_LINK } from './constants';
+import { HELP_LINK } from './constants';
 
 export default class NutanixDashboardNodeActionMenuResiliated {
   /* @ngInject */
@@ -9,7 +9,6 @@ export default class NutanixDashboardNodeActionMenuResiliated {
   $onInit() {
     const { ovhSubsidiary } = this.coreConfig.getUser();
 
-    this.contactUsUrl =
-      CONTACT_US_LINK[ovhSubsidiary] || CONTACT_US_LINK.DEFAULT;
+    this.contactUsUrl = HELP_LINK[ovhSubsidiary] || HELP_LINK.DEFAULT;
   }
 }
