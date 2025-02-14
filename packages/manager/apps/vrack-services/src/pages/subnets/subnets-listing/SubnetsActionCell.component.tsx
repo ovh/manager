@@ -10,6 +10,7 @@ import { ActionMenu } from '@ovh-ux/manager-react-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { isEditable, VrackServicesWithIAM } from '@/data';
 import { urls } from '@/routes/routes.constants';
+import { IAM_ACTION } from '@/utils/iamActions.constants';
 
 export type SubnetsActionCellProps = {
   vs: VrackServicesWithIAM;
@@ -46,6 +47,8 @@ export const SubnetsActionCell: React.FC<SubnetsActionCellProps> = ({
                 .replace(':cidr', cidr.replace('/', '_')),
             );
           },
+          iamActions: [IAM_ACTION.VRACK_SERVICES_RESOURCE_EDIT],
+          urn: vs.iam?.urn,
         },
         {
           id: 2,
@@ -64,6 +67,8 @@ export const SubnetsActionCell: React.FC<SubnetsActionCellProps> = ({
                 .replace(':cidr', cidr.replace('/', '_')),
             );
           },
+          iamActions: [IAM_ACTION.VRACK_SERVICES_RESOURCE_EDIT],
+          urn: vs.iam?.urn,
         },
       ]}
     />

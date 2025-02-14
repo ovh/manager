@@ -11,9 +11,9 @@ import {
 import {
   OsdsMessage,
   OsdsIcon,
-  OsdsButton,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
+import { ManagerButton } from '@ovh-ux/manager-react-components';
 import { Outlet, Navigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
@@ -22,6 +22,7 @@ import { SubnetDatagrid } from './SubnetDatagrid.component';
 import { useNavigateToCreateSubnetPage } from '../subnets.hook';
 import { hasSubnet, useVrackService } from '@/data';
 import { urls } from '@/routes/routes.constants';
+import { IAM_ACTION } from '@/utils/iamActions.constants';
 
 export default function SubnetsListing() {
   const { id } = useParams();
@@ -46,7 +47,7 @@ export default function SubnetsListing() {
             {t('betaSubnetLimitMessage')}
           </OsdsText>
         </OsdsMessage>
-        <OsdsButton
+        <ManagerButton
           // Disabled because for the beta user can only have 1 subnet per vRack Services
           disabled={hasSubnet(vs) || undefined}
           // TODO: Uncomment after the beta
@@ -57,6 +58,8 @@ export default function SubnetsListing() {
           variant={ODS_BUTTON_VARIANT.stroked}
           color={ODS_THEME_COLOR_INTENT.primary}
           onClick={navigateToCreateSubnetPage}
+          iamActions={[IAM_ACTION.VRACK_SERVICES_RESOURCE_GET]}
+          urn={vs.iam?.urn}
         >
           {t('createSubnetButtonLabel')}
           <span slot="start">
@@ -66,7 +69,7 @@ export default function SubnetsListing() {
               color={ODS_THEME_COLOR_INTENT.primary}
             />
           </span>
-        </OsdsButton>
+        </ManagerButton>
 
         <section>
           <SubnetDatagrid />

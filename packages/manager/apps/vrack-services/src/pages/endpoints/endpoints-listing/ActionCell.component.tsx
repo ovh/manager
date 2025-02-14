@@ -11,6 +11,7 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { isEditable, VrackServicesWithIAM } from '@/data';
 import { urls } from '@/routes/routes.constants';
 import { EndpointItem } from './useEndpointList.hook';
+import { IAM_ACTION } from '@/utils/iamActions.constants';
 
 export const ActionCell: React.FC<{
   vs: VrackServicesWithIAM;
@@ -41,6 +42,8 @@ export const ActionCell: React.FC<{
                 .replace(':urn', endpoint.managedServiceURN),
             );
           },
+          iamActions: [IAM_ACTION.VRACK_SERVICES_RESOURCE_EDIT],
+          urn: vs.iam?.urn,
         },
         {
           id: 1,
@@ -59,6 +62,8 @@ export const ActionCell: React.FC<{
                 .replace(':urn', endpoint.managedServiceURN),
             );
           },
+          iamActions: [IAM_ACTION.VRACK_SERVICES_RESOURCE_EDIT],
+          urn: vs.iam?.urn,
         },
       ]}
     />

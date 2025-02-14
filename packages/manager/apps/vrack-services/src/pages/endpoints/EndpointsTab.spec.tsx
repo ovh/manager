@@ -18,6 +18,7 @@ import {
 import vrackServicesList from '../../../mocks/vrack-services/get-vrack-services.json';
 import { iamResources } from '../../../mocks/iam/iam';
 import { urls } from '@/routes/routes.constants';
+import { IAM_ACTION } from '@/utils/iamActions.constants';
 
 describe('Vrack Services endpoints page test suite', () => {
   it('should display the endpoints onboarding if no endpoint exist', async () => {
@@ -159,5 +160,53 @@ describe('Vrack Services endpoints page test suite', () => {
     await waitFor(() => fireEvent.click(submitButton));
 
     await assertModalVisibility({ container, isVisible: false });
+  });
+
+  it('should disable edit service display name action if user have not the iam right to do it', async () => {
+    const { container } = await renderTest({
+      nbVs: 2,
+      initialRoute: urls.endpointsListing.replace(
+        ':id',
+        vrackServicesList[1].id,
+      ),
+      unauthorizedActions: [IAM_ACTION.VRACK_SERVICES_RESOURCE_EDIT],
+    });
+
+    const actionMenu = await getButtonByIcon({
+      container,
+      iconName: ODS_ICON_NAME.ELLIPSIS,
+    });
+
+    await waitFor(() => fireEvent.click(actionMenu));
+
+    await getButtonByLabel({
+      container,
+      label: labels.endpoints['action-editServiceDisplayName'],
+      disabled: true,
+    });
+  });
+
+  it('should disable delete service endpoint action if user have not the iam right to do it', async () => {
+    const { container } = await renderTest({
+      nbVs: 2,
+      initialRoute: urls.endpointsListing.replace(
+        ':id',
+        vrackServicesList[1].id,
+      ),
+      unauthorizedActions: [IAM_ACTION.VRACK_SERVICES_RESOURCE_EDIT],
+    });
+
+    const actionMenu = await getButtonByIcon({
+      container,
+      iconName: ODS_ICON_NAME.ELLIPSIS,
+    });
+
+    await waitFor(() => fireEvent.click(actionMenu));
+
+    await getButtonByLabel({
+      container,
+      label: labels.endpoints['action-deleteServiceEndpoint'],
+      disabled: true,
+    });
   });
 });
