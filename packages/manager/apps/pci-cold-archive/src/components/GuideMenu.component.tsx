@@ -6,8 +6,14 @@ import { COLD_ARCHIVE_TRACKING, GUIDE_MENU_ITEMS } from '@/constants';
 
 export default function GuideMenu() {
   const { t } = useTranslation(['cold-archive', 'pci-guides-header']);
-  const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
-  const { tracking } = useContext(ShellContext).shell;
+
+  const {
+    shell: { tracking },
+    environment,
+  } = useContext(ShellContext);
+
+  const { ovhSubsidiary } = environment.getUser();
+
   const onGuideClick = (guideId: string) => {
     tracking?.trackClick({
       name: `${COLD_ARCHIVE_TRACKING.GUIDE}_${guideId}`,
