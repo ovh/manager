@@ -21,6 +21,7 @@ export default {
     serviceName: '<',
     setMessage: '<',
     goToResizeNsxEdge: '<',
+    goToDatacenterNetwork: '<',
   },
   controller,
   template,
