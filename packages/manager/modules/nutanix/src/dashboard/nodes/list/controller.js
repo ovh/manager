@@ -1,4 +1,8 @@
-import { MAX_NODES_BY_CLUSTER, SERVICE_STATES } from '../../../constants';
+import {
+  MAX_NODES_BY_CLUSTER,
+  NODE_STATUS,
+  SERVICE_STATES,
+} from '../../../constants';
 
 export default class NutanixAllNodesCtrl {
   /* @ngInject */
@@ -34,6 +38,13 @@ export default class NutanixAllNodesCtrl {
         {},
       ),
     };
+
+    this.hasErrorInstall = this.nodes.some(
+      (node) => node.status === NODE_STATUS.DEPLOY_FAILURE,
+    );
+    this.hasErrorUninstall = this.nodes.some(
+      (node) => node.status === NODE_STATUS.UNDEPLOY_FAILURE,
+    );
   }
 
   static getNodeDetailsState(nodeId) {
