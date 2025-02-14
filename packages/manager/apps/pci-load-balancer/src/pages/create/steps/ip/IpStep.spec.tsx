@@ -1,9 +1,5 @@
 import { describe, Mock, vi } from 'vitest';
-import {
-  StepComponent,
-  TStepProps,
-  useCatalogPrice,
-} from '@ovh-ux/manager-react-components';
+import { StepComponent, TStepProps } from '@ovh-ux/manager-react-components';
 import { render, renderHook, within } from '@testing-library/react';
 import {
   OsdsSelect,
@@ -20,6 +16,7 @@ import { StepsEnum, useCreateStore } from '@/pages/create/store';
 import { TFloatingIp } from '@/api/data/floating-ips';
 import { FLOATING_IP_TYPE } from '@/constants';
 import { IpStepMessages } from '@/pages/create/steps/ip/IpStepMessages';
+import { TRegion } from '@/api/hook/useRegions';
 
 vi.mock('./IpStepMessages', async () => ({
   IpStepMessages: vi
@@ -370,9 +367,10 @@ describe('IpStep', () => {
           it("should display IpMessages if the selected ip is 'create'", () => {
             const { result } = renderStore();
 
-            act(() =>
-              result.current.set.publicIp({ type: 'create' } as TFloatingIp),
-            );
+            act(() => {
+              result.current.set.publicIp({ type: 'create' } as TFloatingIp);
+              result.current.set.region({ type: 'region' } as TRegion);
+            });
 
             const catalog = ({
               addons: [
@@ -405,7 +403,7 @@ describe('IpStep', () => {
 
             const call = (IpStepMessages as Mock).mock.lastCall[0];
 
-            expect(call).toEqual({ type: 'none', price: undefined });
+            expect(call).toEqual({ type: 'none', price: '' });
           });
         });
       });

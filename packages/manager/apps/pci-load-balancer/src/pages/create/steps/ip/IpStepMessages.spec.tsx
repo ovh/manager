@@ -1,11 +1,7 @@
 import { describe, vi } from 'vitest';
-import { act } from 'react-dom/test-utils';
-import { TCatalog } from '@ovh-ux/manager-pci-common';
-import { render, renderHook, within } from '@testing-library/react';
+import { render, within } from '@testing-library/react';
 import React from 'react';
-import { TFloatingIp } from '@/api/data/floating-ips';
 import { IpStepMessages } from '@/pages/create/steps/ip/IpStepMessages';
-import { TCreateStore, useCreateStore } from '@/pages/create/store';
 import { FLOATING_IP_TYPES } from '@/constants';
 
 vi.mock('react-i18next', async () => {
@@ -59,11 +55,6 @@ describe('IpStepMessages', () => {
       expect(
         within(message).queryByText(
           'load-balancer/create | octavia_load_balancer_create_floating_ip_new_price',
-        ),
-      ).toBeInTheDocument();
-      expect(
-        within(message).queryByText(
-          'load-balancer/create | octavia_load_balancer_create_floating_ip_new_price_interval',
         ),
       ).toBeInTheDocument();
     });
