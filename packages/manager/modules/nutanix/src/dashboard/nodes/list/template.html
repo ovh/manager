@@ -99,7 +99,7 @@
     </oui-datagrid-column>
     <oui-datagrid-column>
         <node-action-menu
-            data-ng-if="$row.possibleActions && $row.serviceStatus !== $ctrl.SERVICE_STATES.SUSPENDED"
+            data-ng-if="$row.possibleActions && !$row.isResiliated"
             data-possible-actions="$row.possibleActions"
             data-on-power-on="$ctrl.onPowerOn($row.name)"
             data-on-power-off="$ctrl.powerOffNode($row.name)"
