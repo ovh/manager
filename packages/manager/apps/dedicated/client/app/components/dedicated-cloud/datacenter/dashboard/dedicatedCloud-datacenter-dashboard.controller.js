@@ -1,5 +1,4 @@
-import get from 'lodash/get';
-import last from 'lodash/last';
+import { get, last, capitalize } from 'lodash';
 
 import {
   DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS,
@@ -28,6 +27,7 @@ export default class {
         this.getNsxDetails(),
         this.getNsxEdgePendingTask(),
         this.checkForZertoOptionOrder(),
+        this.getNsxtOption(),
       ])
       .finally(() => {
         this.loading = false;
@@ -38,6 +38,14 @@ export default class {
     if (this.pollNsxTaskId) {
       this.DedicatedCloud.stopResizeNsxTaskPoller(this.pollNsxTaskId);
     }
+  }
+
+  getNsxtOption() {
+    return this.DedicatedCloud.getDatacenterNsxtOptionState(
+      this.serviceName,
+    ).then(({ enabled }) => {
+      this.isNsxtEnabled = enabled;
+    });
   }
 
   pollNsxTask(taskId) {
@@ -68,7 +76,9 @@ export default class {
       this.datacenter.model.id,
     ).then((data) => {
       this.datacenter.model.edgesCount = data.length;
-      this.datacenter.model.edgesLevel = data[0] ? data[0].size : '';
+      this.datacenter.model.edgesLevel = data[0]
+        ? capitalize(data[0].size)
+        : '';
       this.datacenter.model.edgesStatus = data[0] ? data[0].state : '';
     });
   }

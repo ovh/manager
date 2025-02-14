@@ -201,8 +201,8 @@
                             data-ng-if="$ctrl.datacenter.model.edgesStatus"
                             data-ng-class="{
                                 'oui-badge_error': ($ctrl.datacenter.model.edgesStatus === 'error'),
-                                'oui-badge_warning': ($ctrl.datacenter.model.edgesStatus === 'disabling'||'migrating'||'provisionning'||'recycling'||'upgrading'),
-                                'oui-badge_success': ($ctrl.datacenter.model.edgesStatus === 'available'||'delivered')
+                                'oui-badge_warning': ['disabling','migrating','provisionning','recycling','upgrading'].includes($ctrl.datacenter.model.edgesStatus),
+                                'oui-badge_success': ['available','delivered'].includes($ctrl.datacenter.model.edgesStatus)
                             }"
                         >
                             <span
@@ -210,17 +210,40 @@
                             ></span>
                         </span>
                     </oui-tile-description>
-                    <oui-action-menu
-                        aria-label="{{:: 'dedicatedCloud_datacenter_resize' | translate}}"
-                        data-compact
-                        data-placement="end"
-                    >
+                    <oui-action-menu data-compact data-placement="end">
+                        <oui-action-menu-item
+                            aria-label="{{:: 'dedicatedCloud_datacenter_activate' | translate }}"
+                            data-ng-click="$ctrl.goToDatacenterNetwork()"
+                            data-ng-if="!$ctrl.isNsxtEnabled"
+                        >
+                            <span
+                                data-translate="dedicatedCloud_datacenter_activate"
+                            ></span>
+                        </oui-action-menu-item>
                         <oui-action-menu-item
                             aria-label="{{:: 'dedicatedCloud_datacenter_resize' | translate }}"
                             data-ng-click="$ctrl.goToResizeNsxEdge($ctrl.datacenter.model.id)"
+                            data-disabled="!$ctrl.isNsxtEnabled"
                         >
                             <span
                                 data-translate="dedicatedCloud_datacenter_resize"
+                            ></span>
+                        </oui-action-menu-item>
+                        <oui-action-menu-item
+                            aria-label="{{:: 'dedicatedCloud_datacenter_add_edge' | translate }}"
+                            data-ng-click=""
+                            data-disabled="!$ctrl.isNsxtEnabled"
+                        >
+                            <span
+                                data-translate="dedicatedCloud_datacenter_add_edge"
+                            ></span>
+                        </oui-action-menu-item>
+                        <oui-action-menu-item
+                            aria-label="{{:: 'dedicatedCloud_datacenter_modify_datastore' | translate }}"
+                            data-ng-click=""
+                        >
+                            <span
+                                data-translate="dedicatedCloud_datacenter_modify_datastore"
                             ></span>
                         </oui-action-menu-item>
                     </oui-action-menu>
