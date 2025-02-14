@@ -1,6 +1,4 @@
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { useContext, useState } from 'react';
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
+import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
 import {
   Datagrid,
   FilterAdd,
@@ -11,18 +9,18 @@ import {
   useDataGrid,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
-import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
 import {
   OdsButton,
   OdsInput,
   OdsPopover,
 } from '@ovhcloud/ods-components/react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useProductRegionsAvailability } from '@ovh-ux/manager-pci-common';
-import { usePaginatedArchive } from '@/api/hooks/useArchive';
-import { useDatagridColumn } from './useDatagridColumn';
-import { COLD_ARCHIVE_TRACKING } from '@/constants';
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import useTracking from '@/hooks/useTracking';
+import { COLD_ARCHIVE_TRACKING } from '@/constants';
+import { useArchiveRegion, usePaginatedArchive } from '@/api/hooks/useArchive';
+import { useDatagridColumn } from './useDatagridColumn';
 
 export default function ListingPage() {
   const { t } = useTranslation(['cold-archive', 'containers']);
@@ -37,19 +35,11 @@ export default function ListingPage() {
     desc: false,
   });
 
-  const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
-
   const { trackNavigationClick } = useTracking(
     COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN,
   );
 
-  const {
-    data: regions,
-    isPending: isRegionsPending,
-  } = useProductRegionsAvailability(
-    ovhSubsidiary,
-    'coldarchive.archive.hour.consumption',
-  );
+  const region = useArchiveRegion();
 
   const {
     paginatedArchives,
@@ -57,13 +47,7 @@ export default function ListingPage() {
     isPending: isContainersPending,
     isFetching,
     refresh,
-  } = usePaginatedArchive(
-    projectId,
-    regions?.[0],
-    pagination,
-    sorting,
-    filters,
-  );
+  } = usePaginatedArchive(projectId, region, pagination, sorting, filters);
 
   const onHandleSearch = () => {
     setPagination({
@@ -80,7 +64,8 @@ export default function ListingPage() {
   };
 
   const columns = useDatagridColumn();
-  const isPending = isRegionsPending || isContainersPending;
+
+  const isPending = !region || isContainersPending;
 
   return (
     <RedirectionGuard

@@ -7,25 +7,38 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   addUserToContainer,
   createArchiveContainer,
-  deleteArchiveContainer,
+  deleteArchive,
   flushArchive,
   getArchiveContainers,
-  restoreArchiveContainer,
-  startArchiveContainer,
+  restoreArchive,
+  startArchive,
   TArchiveContainer,
 } from '../data/archive';
 import { paginateResults, sortResults } from '@/helpers';
 import queryClient from '@/queryClient';
 
-const getQueryKeyArchive = (projectId: string, region: string) => [
-  'projectId',
+type TBaseProps = Readonly<{
+  projectId: string;
+  onSuccess: () => void;
+  onError: (cause: ApiError) => void;
+}>;
+
+const getArchivesCacheKey = (projectId: string, region: string) => [
   projectId,
-  'region',
   region,
-  'coldArchive',
+  'allArchives',
 ];
 
-export const useArchives = (projectId: string) => {
+export const invalidateGetArchivesCache = (
+  projectId: string,
+  region: string,
+) => {
+  queryClient.invalidateQueries({
+    queryKey: getArchivesCacheKey(projectId, region),
+  });
+};
+
+export const useArchiveRegion = () => {
   const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
 
   const { data: regions } = useProductRegionsAvailability(
@@ -33,10 +46,14 @@ export const useArchives = (projectId: string) => {
     'coldarchive.archive.hour.consumption',
   );
 
-  const region = regions?.[0];
+  return regions?.[0];
+};
+
+export const useArchives = (projectId: string) => {
+  const region = useArchiveRegion();
 
   return useQuery({
-    queryKey: getQueryKeyArchive(projectId, region),
+    queryKey: getArchivesCacheKey(projectId, region),
     queryFn: () => getArchiveContainers(projectId, region),
     enabled: !!projectId && !!region,
   });
@@ -83,10 +100,7 @@ export const usePaginatedArchive = (
         })),
         pagination,
       ),
-      refresh: () =>
-        queryClient.invalidateQueries({
-          queryKey: getQueryKeyArchive(projectId, region),
-        }),
+      refresh: () => invalidateGetArchivesCache(projectId, region),
       allArchives: archives,
       error,
     }),
@@ -94,73 +108,46 @@ export const usePaginatedArchive = (
   );
 };
 
-type DeleteArchiveProps = {
-  projectId: string;
-
-  onError: (cause: Error) => void;
-  onSuccess: () => void;
-};
-
-export const useDeleteArchiveContainer = ({
+export const useDeleteArchive = ({
   projectId,
   onError,
   onSuccess,
-}: Readonly<DeleteArchiveProps>) => {
-  const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
-
-  const { data: regions } = useProductRegionsAvailability(
-    ovhSubsidiary,
-    'coldarchive.archive.hour.consumption',
-  );
-
-  const region = regions?.[0];
+}: TBaseProps) => {
+  const region = useArchiveRegion();
 
   const mutation = useMutation({
-    mutationFn: (containerName: string) =>
-      deleteArchiveContainer({ projectId, region, containerName }),
+    mutationFn: (name: string) => deleteArchive({ projectId, region, name }),
     onError,
-    onSuccess: async () => {
-      await queryClient.invalidateQueries({
-        queryKey: getQueryKeyArchive(projectId, region),
-      });
+    onSuccess: () => {
+      invalidateGetArchivesCache(projectId, region);
       onSuccess();
     },
   });
+
   return {
-    deleteArchiveContainer: (containerName: string) =>
-      mutation.mutate(containerName),
+    deleteArchive: (name: string) => mutation.mutate(name),
     ...mutation,
   };
 };
 
-type RestoreArchiveProps = {
-  projectId: string;
-  containerName: string;
-  region: string;
-  onError: (cause: Error) => void;
-  onSuccess: () => void;
-};
-
-export const useRestoreArchiveContainer = ({
+export const useRestoreArchive = ({
   projectId,
-  containerName,
-  region,
   onError,
   onSuccess,
-}: Readonly<RestoreArchiveProps>) => {
+}: TBaseProps) => {
+  const region = useArchiveRegion();
+
   const mutation = useMutation({
-    mutationFn: () =>
-      restoreArchiveContainer({ projectId, region, containerName }),
+    mutationFn: (name: string) => restoreArchive({ projectId, region, name }),
     onError,
-    onSuccess: async () => {
-      await queryClient.invalidateQueries({
-        queryKey: getQueryKeyArchive(projectId, region),
-      });
+    onSuccess: () => {
+      invalidateGetArchivesCache(projectId, region);
       onSuccess();
     },
   });
+
   return {
-    restoreArchiveContainer: () => mutation.mutate(),
+    restoreArchive: (name: string) => mutation.mutate(name),
     ...mutation,
   };
 };
@@ -190,7 +177,7 @@ export const useAddUser = ({
     onError,
     onSuccess: async () => {
       await queryClient.invalidateQueries({
-        queryKey: getQueryKeyArchive(projectId, region),
+        queryKey: getArchivesCacheKey(projectId, region),
       });
       onSuccess();
     },
@@ -202,78 +189,69 @@ export const useAddUser = ({
   };
 };
 
-type StartArchiveContainerProps = {
-  projectId: string;
-  containerName: string;
-  region: string;
-  lockedUntilDays?: number;
-  onError: (cause: Error) => void;
-  onSuccess: () => void;
-};
-
-export const useStartArchiveContainer = ({
+export const useStartArchive = ({
   projectId,
-  containerName,
-  region,
-  lockedUntilDays,
   onError,
   onSuccess,
-}: Readonly<StartArchiveContainerProps>) => {
+}: TBaseProps) => {
+  const region = useArchiveRegion();
+
   const mutation = useMutation({
-    mutationFn: () =>
-      startArchiveContainer({
+    mutationFn: ({
+      name,
+      lockedUntilDays,
+    }: {
+      name: string;
+      lockedUntilDays?: number;
+    }) =>
+      startArchive({
         projectId,
         region,
-        archiveName: containerName,
+        name,
         lockedUntilDays,
       }),
     onError,
-    onSuccess: async () => {
-      await queryClient.invalidateQueries({
-        queryKey: getQueryKeyArchive(projectId, region),
-      });
+    onSuccess: () => {
+      invalidateGetArchivesCache(projectId, region);
       onSuccess();
     },
   });
+
   return {
-    startArchiveContainer: () => mutation.mutate(),
+    startArchive: ({
+      name,
+      lockedUntilDays,
+    }: {
+      name: string;
+      lockedUntilDays?: number;
+    }) => mutation.mutate({ name, lockedUntilDays }),
     ...mutation,
   };
 };
 
-type FlushArchiveProps = {
-  projectId: string;
-  containerName: string;
-  region: string;
-  onError: (cause: Error) => void;
-  onSuccess: () => void;
-};
-
 export const useFlushArchive = ({
   projectId,
-  containerName,
-  region,
   onError,
   onSuccess,
-}: Readonly<FlushArchiveProps>) => {
+}: TBaseProps) => {
+  const region = useArchiveRegion();
+
   const mutation = useMutation({
-    mutationFn: () =>
+    mutationFn: (name: string) =>
       flushArchive({
         projectId,
         region,
-        archiveName: containerName,
+        name,
       }),
     onError,
-    onSuccess: async () => {
-      await queryClient.invalidateQueries({
-        queryKey: getQueryKeyArchive(projectId, region),
-      });
+    onSuccess: () => {
+      invalidateGetArchivesCache(projectId, region);
       onSuccess();
     },
   });
 
   return {
-    flushArchive: () => mutation.mutate(),
+    flushArchive: (name: string) => mutation.mutate(name),
     ...mutation,
   };
 };
@@ -285,23 +263,21 @@ export interface UseCreateContainerArgs {
 
 export const useCreateContainer = ({
   projectId,
-  region,
   onSuccess,
   onError,
 }: {
   projectId: string;
-  region: string;
   onSuccess: (container: TArchiveContainer) => void;
   onError: (error: ApiError) => void;
 }) => {
+  const region = useArchiveRegion();
+
   const mutation = useMutation({
     mutationFn: (container: UseCreateContainerArgs) =>
       createArchiveContainer({ projectId, region, ...container }),
     onError,
-    onSuccess: async (result) => {
-      await queryClient.invalidateQueries({
-        queryKey: getQueryKeyArchive(projectId, region),
-      });
+    onSuccess: (result) => {
+      invalidateGetArchivesCache(projectId, region);
       onSuccess(result);
     },
   });
