@@ -112,7 +112,7 @@
                         >
                             <span
                                 class="text-center"
-                                data-translate="{{$ctrl.are3AzRegionsAvailable ? 'pci_project_flavors_zone_globalregions_tooltip' : 'pci_project_flavors_zone_globalregions_tooltip_2'}}"
+                                data-translate="{{$ctrl.regionsTypesAvailability[$ctrl.THREE_AZ_REGION] ? 'pci_project_flavors_zone_globalregions_tooltip' : 'pci_project_flavors_zone_globalregions_tooltip_2'}}"
                             ></span>
                             <a
                                 class="oui-link_icon"
@@ -287,6 +287,7 @@
                         data-display-selected-flavor="false"
                         data-single-flavor-warning="{{ ::'pci_projects_project_instances_instance_edit_flavor_single_available' | translate }}"
                         data-catalog-endpoint="$ctrl.catalogEndpoint"
+                        data-are-3az-regions-available="$ctrl.regionsTypesAvailability[$ctrl.THREE_AZ_REGION]"
                     >
                         <span
                             data-translate="pci_projects_project_instances_instance_edit_flavor_not_available"

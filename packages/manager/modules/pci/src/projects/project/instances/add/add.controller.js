@@ -234,7 +234,8 @@ export default class PciInstancesAddController {
     this.isAddingPrivateNetwork = false;
     this.isAddingPrivateNetworkError = false;
 
-    this.fetch3AZAvailability();
+    this.regionsTypesAvailability = {};
+    this.fetchRegionsTypesAvailability();
   }
 
   get areLocalZonesFree() {
@@ -334,15 +335,11 @@ export default class PciInstancesAddController {
     };
   }
 
-  fetch3AZAvailability() {
-    return this.PciProjectsProjectInstanceService.getProductAvailability(
+  fetchRegionsTypesAvailability() {
+    this.PciProjectsProjectInstanceService.getRegionsTypesAvailability(
       this.projectId,
-      this.coreConfig.getUser().ovhSubsidiary,
-      'instance',
-    ).then(({ plans }) => {
-      this.are3AzRegionsAvailable = plans.some((plan) =>
-        plan.regions.some((region) => region.type === 'region-3-az'),
-      );
+    ).then((regionsTypesAvailability) => {
+      this.regionsTypesAvailability = regionsTypesAvailability;
     });
   }
 
@@ -1897,6 +1894,6 @@ export default class PciInstancesAddController {
   }
 
   get shouldShow3AZRegionData() {
-    return this.are3AzRegionsAvailable && this.is3AZRegion();
+    return this.regionsTypesAvailability[THREE_AZ_REGION] && this.is3AZRegion();
   }
 }
