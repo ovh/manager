@@ -1,7 +1,9 @@
 import { odsSetup } from '@ovhcloud/ods-common-core';
 import { SetupServer, setupServer } from 'msw/node';
-import { toMswHandlers } from '../../../../../playwright-helpers';
-import { getAuthenticationMocks } from '../../../../../playwright-helpers/mocks/auth';
+import {
+  toMswHandlers,
+  getAuthenticationMocks,
+} from '@ovh-ux/manager-core-test-utils';
 import '@testing-library/jest-dom';
 import 'element-internals-polyfill';
 

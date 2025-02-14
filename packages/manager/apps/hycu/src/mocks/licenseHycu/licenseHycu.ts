@@ -1,6 +1,6 @@
 import { PathParams } from 'msw';
+import { Handler } from '@ovh-ux/manager-core-test-utils';
 import { LicenseStatus } from '@/types/hycu.details.interface';
-import { Handler } from '../../../../../../../playwright-helpers';
 import { licensesHycu } from './licenseHycu.data';
 
 export type GetLicenseHycuMocksParams = {
