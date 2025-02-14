@@ -27,7 +27,7 @@ describe('NodePoolType', () => {
     );
 
     expect(
-      screen.getByText('kubernetes_add_node_pool_node_type'),
+      screen.getByText('kube_common_node_pool_model_type_selector'),
     ).toBeInTheDocument();
   });
 

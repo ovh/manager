@@ -20,6 +20,7 @@ export const getAllKube = async (projectId: string): Promise<TKube[]> => {
 };
 
 export interface NodePool {
+  id?: string;
   name: string;
   antiAffinity: boolean;
   autoscale: boolean;

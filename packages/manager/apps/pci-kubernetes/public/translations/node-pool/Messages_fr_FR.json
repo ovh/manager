@@ -28,5 +28,6 @@
   "kube_common_node_pool_desired_node": "Desired node",
   "kube_common_node_pool_autoscaling": "Autoscaling",
   "kube_common_node_pool_localisation": "Localisation",
-  "kube_common_node_pool_model": "Model"
+  "kube_common_node_pool_model": "Model",
+  "kube_common_node_pool_liste": "Liste des pools de nœuds"
 }
