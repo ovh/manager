@@ -345,6 +345,15 @@ class DedicatedCloudService {
       .then(({ data }) => data.filter((item) => item !== null));
   }
 
+  getDatacenterNsxtOptionState(serviceName) {
+    return this.$http
+      .get('/services', {
+        params: { resourceName: `${serviceName}/option/edgensxt` },
+      })
+      .catch(() => ({ data: [] }))
+      .then(({ data }) => ({ enabled: data?.length !== 0 }));
+  }
+
   getDatacenterPendingResizeNsxTask(serviceName, datacenterId, params = {}) {
     return this.icerbergUtils
       .icebergQuery(
