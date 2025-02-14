@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { OsdsButton } from '@ovhcloud/ods-components/react';
+import { OsdsButton, OsdsTile } from '@ovhcloud/ods-components/react';
 import { KubeFlavor } from '@ovh-ux/manager-pci-common';
 import {
   ODS_BUTTON_SIZE,
@@ -107,94 +107,99 @@ const NodePoolStep = ({
         nodePoolEnabled={nodePoolEnabled}
         onNodePoolEnabledChange={setNodePoolEnabled}
       />
+      <div className="bo border-">
+        {!stepper.node.step.isLocked && nodePoolEnabled && (
+          <>
+            <div className="mb-8">
+              <NodePoolName
+                onTouched={setIsTouched}
+                hasError={hasError}
+                onNameChange={setName}
+                name={name}
+              />
+            </div>
+            <div className="mb-8">
+              <NodePoolType
+                projectId={projectId}
+                region={stepper.form.region.name}
+                onFlavorChange={setFlavor}
+              />
+            </div>
+            <div className="mb-8">
+              <NodePoolSize
+                isMonthlyBilled={isMonthlyBilled}
+                onScaleChange={setScaling}
+                antiAffinity={antiAffinity}
+              />
+            </div>
+            <div className="mb-8">
+              <NodePoolAntiAffinity
+                isChecked={antiAffinity}
+                isEnabled={!scaling?.isAutoscale}
+                onChange={setIsAntiaffinity}
+              />
+            </div>
+            <div className="mb-8">
+              <BillingStep
+                price={price.hour}
+                monthlyPrice={price.month}
+                monthlyBilling={{
+                  isComingSoon: isPricingComingSoon,
+                  isChecked: isMonthlyBilled,
+                  check: setIsMonthlyBilled,
+                }}
+                warn={scaling?.isAutoscale && isMonthlyBilled}
+              />
+            </div>
+          </>
+        )}
+        {!stepper.node.step.isLocked && (
+          <OsdsButton
+            className="mt-4 w-fit"
+            size={ODS_BUTTON_SIZE.md}
+            color={ODS_TEXT_COLOR_INTENT.text}
+            {...(isButtonDisabled ? { disabled: true } : {})}
+            onClick={() => {
+              const newNodePool = {
+                name,
+                antiAffinity,
+                autoscale: Boolean(scaling?.isAutoscale),
+                desiredNodes: scaling?.quantity.desired,
+                minNodes: scaling?.quantity.min,
+                flavorName: flavor?.name,
+                maxNodes: antiAffinity
+                  ? Math.min(ANTI_AFFINITY_MAX_NODES, scaling?.quantity.max)
+                  : scaling?.quantity.max,
+                monthlyBilled: isMonthlyBilled,
+              };
 
-      {nodePoolEnabled && (
-        <>
-          <div className="mb-8">
-            <NodePoolName
-              onTouched={setIsTouched}
-              hasError={hasError}
-              onNameChange={setName}
-              name={name}
-            />
-          </div>
-          <div className="mb-8">
-            <NodePoolType
-              projectId={projectId}
-              region={stepper.form.region.name}
-              onFlavorChange={setFlavor}
-            />
-          </div>
-          <div className="mb-8">
-            <NodePoolSize
-              isMonthlyBilled={isMonthlyBilled}
-              onScaleChange={setScaling}
-              antiAffinity={antiAffinity}
-            />
-          </div>
-          <div className="mb-8">
-            <NodePoolAntiAffinity
-              isChecked={antiAffinity}
-              isEnabled={!scaling?.isAutoscale}
-              onChange={setIsAntiaffinity}
-            />
-          </div>
-          <div className="mb-8">
-            <BillingStep
-              price={price.hour}
-              monthlyPrice={price.month}
-              monthlyBilling={{
-                isComingSoon: isPricingComingSoon,
-                isChecked: isMonthlyBilled,
-                check: setIsMonthlyBilled,
-              }}
-              warn={scaling?.isAutoscale && isMonthlyBilled}
-            />
-          </div>
-        </>
-      )}
-      <OsdsButton
-        className="mt-4 w-fit"
-        size={ODS_BUTTON_SIZE.md}
-        color={ODS_TEXT_COLOR_INTENT.primary}
-        {...(isButtonDisabled ? { disabled: true } : {})}
-        onClick={() => {
-          const newNodePool = {
-            name,
-            antiAffinity,
-            autoscale: Boolean(scaling?.isAutoscale),
-            desiredNodes: scaling?.quantity.desired,
-            minNodes: scaling?.quantity.min,
-            flavorName: flavor?.name,
-            maxNodes: antiAffinity
-              ? Math.min(ANTI_AFFINITY_MAX_NODES, scaling?.quantity.max)
-              : scaling?.quantity.max,
-            monthlyBilled: isMonthlyBilled,
-          };
+              setNodes([...nodes, newNodePool]);
+            }}
+          >
+            Add Node Pool
+          </OsdsButton>
+        )}
+        <Datagrid
+          columns={columns}
+          items={nodes.map((node) => ({
+            ...node,
+            localisation: stepper.form.region?.name,
+          }))}
+          totalItems={nodes.length}
+          className="overflow-x-visible"
+        />
 
-          setNodes([...nodes, newNodePool]);
-        }}
-      >
-        Add Node Pool
-      </OsdsButton>
-
-      <Datagrid
-        columns={columns}
-        items={nodes}
-        totalItems={nodes.length}
-        className="overflow-x-visible"
-      />
-
-      {!stepper.node.step.isLocked && (
-        <OsdsButton
-          onClick={() => stepper.node.submit(nodes)}
-          className="mt-4 w-fit"
-          size={ODS_BUTTON_SIZE.md}
-          color={ODS_TEXT_COLOR_INTENT.primary}
-        >
-          {tStepper('common_stepper_next_button_label')}
-        </OsdsButton>
-      )}
+        {!stepper.node.step.isLocked && nodes.length && (
+          <OsdsButton
+            onClick={() => stepper.node.submit(nodes)}
+            className="mt-4 w-fit"
+            size={ODS_BUTTON_SIZE.md}
+            color={ODS_TEXT_COLOR_INTENT.primary}
+          >
+            {tStepper('common_stepper_next_button_label')}
+          </OsdsButton>
+        )}
+      </div>
     </>
   );
 };

@@ -25,6 +25,7 @@ export interface NodePool {
   autoscale: boolean;
   desiredNodes: number;
   minNodes: number;
+  localisation: string; // will change with 3AZ
   flavorName: string;
   maxNodes: number;
   monthlyBilled: boolean;
