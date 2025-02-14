@@ -3,12 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
 
 import { Card } from '@ovh-ux/manager-react-components';
-import { OsdsText, OsdsDivider } from '@ovhcloud/ods-components/react';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
+import { OdsText, OdsDivider } from '@ovhcloud/ods-components/react';
 
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 import { Product } from '@/api';
@@ -52,15 +47,10 @@ export default function Catalog() {
     <div className="m-10">
       <Breadcrumb />
       <br />
-      <OsdsText
-        level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-        size={ODS_THEME_TYPOGRAPHY_SIZE._600}
-        color={ODS_THEME_COLOR_INTENT.text}
-        className="mb-3"
-      >
+      <OdsText className="mb-3">
         {t('title')}
         {isLoading ? '' : ` (${results.length})`}
-      </OsdsText>
+      </OdsText>
       <SearchBar
         products={products}
         universes={universes}
@@ -70,7 +60,7 @@ export default function Catalog() {
         setSearchValue={setSearchText}
         setIsRouterInitialized={setIsRouterInitialized}
       />
-      <OsdsDivider separator />
+      <OdsDivider />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-5 pt-3">
         {isLoading && <Loading />}
         {!isLoading && results.length > 0 && (
@@ -104,9 +94,7 @@ export default function Catalog() {
         )}
       </div>
       {!isLoading && results.length === 0 && (
-        <OsdsText className="text-center grid w-full">
-          {t('no_result')}
-        </OsdsText>
+        <OdsText className="text-center grid w-full">{t('no_result')}</OdsText>
       )}
     </div>
   );

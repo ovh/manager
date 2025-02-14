@@ -1,5 +1,5 @@
 import React from 'react';
-import { OsdsSkeleton } from '@ovhcloud/ods-components/react/';
+import { OdsSkeleton } from '@ovhcloud/ods-components/react/';
 
 export default function Loading() {
   return (
@@ -9,7 +9,7 @@ export default function Loading() {
           key={`skeleton${i}`}
           className="break-words p-4 border-2 border-solid border-cyan-200 rounded-xl"
         >
-          <OsdsSkeleton />
+          <OdsSkeleton />
         </div>
       ))}
     </>

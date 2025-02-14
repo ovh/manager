@@ -1,21 +1,8 @@
 import React, { useEffect, useState, KeyboardEvent } from 'react';
 import { useLocation } from 'react-router-dom';
-import {
-  OsdsSearchBar,
-  OsdsButton,
-  OsdsIcon,
-} from '@ovhcloud/ods-components/react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { OdsInput, OdsButton, OdsIcon } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import {
-  ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_TYPE,
-  OsdsSearchBarCustomEvent,
-  OdsInputValueChangeEventDetail,
-} from '@ovhcloud/ods-components';
+import { ODS_ICON_NAME, ODS_BUTTON_SIZE } from '@ovhcloud/ods-components';
 import Filters from '@/components/Filters/Filters';
 import { Product } from '@/api';
 import FilterChip from '../Filters/FilterChip';
@@ -61,9 +48,7 @@ const SearchBar: React.FC<SearchbarProps> = ({
     setSearchValue(event.detail.inputValue.trim());
   };
 
-  const onSearchChanged = (
-    event: OsdsSearchBarCustomEvent<OdsInputValueChangeEventDetail>,
-  ) => {
+  const onSearchChanged = (event: any) => {
     setLocalSearchValue(event.detail.value);
     setSearchValue(event.detail.value);
   };
@@ -78,11 +63,11 @@ const SearchBar: React.FC<SearchbarProps> = ({
     <form>
       <div className="grid gap-4 md:flex md:justify-end md:pt-4">
         <span className="w-full md:w-[300px]">
-          <OsdsSearchBar
+          <OdsInput
+            name="searchbar"
             value={localSearchValue}
             placeholder={t('manager_catalog_search_placeholder')}
-            onOdsSearchSubmit={onSearchSubmit}
-            onOdsValueChange={onSearchChanged}
+            onChange={onSearchChanged}
             data-tracking={`searchbar::${localSearchValue}`}
             onKeyDown={(event: KeyboardEvent) =>
               event.key === 'Enter' &&
@@ -93,11 +78,9 @@ const SearchBar: React.FC<SearchbarProps> = ({
           />
         </span>
         <span>
-          <OsdsButton
+          <OdsButton
             size={ODS_BUTTON_SIZE.sm}
-            type={ODS_BUTTON_TYPE.button}
-            variant={ODS_BUTTON_VARIANT.stroked}
-            color={ODS_THEME_COLOR_INTENT.primary}
+            label="Apply"
             onKeyDown={(event: KeyboardEvent) =>
               event.key === 'Enter' &&
               setShowFilters((filterState) => !filterState)
@@ -107,14 +90,9 @@ const SearchBar: React.FC<SearchbarProps> = ({
               showFilters ? 'show-filter' : 'hide-filter'
             }`}
           >
-            <OsdsIcon
-              name={ODS_ICON_NAME.FILTER}
-              size={ODS_ICON_SIZE.xs}
-              color={ODS_THEME_COLOR_INTENT.primary}
-              className="mr-2"
-            />
+            <OdsIcon name={ODS_ICON_NAME.filter} className="mr-2" />
             {t('manager_catalog_search_filter_button')}
-          </OsdsButton>
+          </OdsButton>
         </span>
       </div>
       {!showFilters && (
