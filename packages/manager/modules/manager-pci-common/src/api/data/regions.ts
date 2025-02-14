@@ -1,4 +1,4 @@
-import { fetchIcebergV6 } from '@ovh-ux/manager-core-api';
+import { fetchIcebergV6, v6 } from '@ovh-ux/manager-core-api';
 
 export type TRegion = {
   name: string;
@@ -18,6 +18,16 @@ export const getProjectRegions = async (
 ): Promise<TRegion[]> => {
   const { data } = await fetchIcebergV6<TRegion>({
     route: `/cloud/project/${projectId}/region`,
+  });
+  return data;
+};
+
+export const addProjectRegion = async (
+  projectId: string,
+  region: string,
+): Promise<void> => {
+  const { data } = await v6.post<void>(`/cloud/project/${projectId}/region`, {
+    region,
   });
   return data;
 };

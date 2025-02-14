@@ -73,6 +73,8 @@ type TState<T> = {
   group: string;
 };
 
+type TAccordionState = { none: boolean } & { [key: string]: boolean };
+
 /**
  * ShapesInputComponent
  * An input component that allows the user to select an item from a list of items
@@ -116,6 +118,9 @@ export const ShapesInputComponent = function ShapesInputComponent<T>({
   const [state, setState] = useState<TState<T>>({
     value,
     group: undefined,
+  });
+  const [isAccordionOpen, setIsAccordionOpen] = useState<TAccordionState>({
+    none: true,
   });
 
   const LabelComponent = useMemo(
@@ -230,7 +235,7 @@ export const ShapesInputComponent = function ShapesInputComponent<T>({
                 <li
                   key={groupName || 'none'}
                   className={clsx(
-                    'border border-solid border-[#bef1ff] rounded-t-lg overflow-hidden',
+                    'border border-solid border-[#bef1ff] rounded-t-md overflow-hidden',
                     groupName === state.group
                       ? 'border-b-0 bg-[#F5FEFF] m-t[1px]'
                       : 'border-b bg-white',
@@ -355,7 +360,14 @@ export const ShapesInputComponent = function ShapesInputComponent<T>({
                   isMobile={isMobile}
                 />
               }
-              isOpen={!groupName}
+              isOpen={isAccordionOpen[groupName || 'none']}
+              onToggle={() => {
+                const name = groupName || 'none';
+                setIsAccordionOpen({
+                  none: false,
+                  [name]: !isAccordionOpen[name],
+                });
+              }}
             >
               <ShapesInputComponent
                 value={state.value}
