@@ -13,7 +13,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { IpOffer } from '../order.constant';
+import { IpOffer, MAX_IP_QUANTITY } from '../order.constant';
 import { isRegionInEu } from '@/components/RegionSelector/region-selector.utils';
 import { OrderSection } from '@/components/OrderSection/OrderSection.component';
 import {
@@ -95,7 +95,7 @@ export const OfferSelectionSection: React.FC = () => {
             <OdsQuantity
               name="additional_ip_quantity"
               min={1}
-              max={64}
+              max={MAX_IP_QUANTITY}
               onOdsChange={(event) => setIpQuantity(event.target.value)}
               value={ipQuantity}
             />
