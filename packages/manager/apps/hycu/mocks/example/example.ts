@@ -1,4 +1,4 @@
-import { Handler } from '../../../../../../playwright-helpers';
+import { Handler } from '@ovh-ux/manager-core-test-utils';
 import exampleList from './example-data.json';
 
 export type GetExampleMocksParams = { isKo?: boolean; nb?: number };
