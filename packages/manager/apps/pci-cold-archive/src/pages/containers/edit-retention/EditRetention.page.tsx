@@ -20,12 +20,13 @@ import { useArchives, useStartArchiveContainer } from '@/api/hooks/useArchive';
 import LabelComponent from '@/components/Label.component';
 import { useFormattedDate } from '@/hooks/useFormattedDate';
 import { COLD_ARCHIVE_TRACKING } from '@/constants';
+import useTracking from '@/hooks/useTracking';
 
 export default function EditRetentionPage() {
-  const { addSuccess, addError } = useNotifications();
   const { t } = useTranslation('containers/edit-retention');
+
+  const { addSuccess, addError } = useNotifications();
   const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
-  const { tracking } = useContext(ShellContext).shell;
   const { projectId, archiveName } = useParams();
   const { data: allArchives, isPending: isPendingArchive } = useArchives(
     projectId,
@@ -40,20 +41,16 @@ export default function EditRetentionPage() {
     'P',
   );
   const hasWarning = newRetentionDate < new Date(archive?.lockedUntil);
-  const navigate = useNavigate();
 
-  const trackEditRetentionModalClick = (action: string) => {
-    tracking?.trackClick({
-      name: `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.EDIT_RETENTION}::${action}`,
-      type: 'action',
-    });
-  };
-  const trackEditRetentionModalPage = (action: string) => {
-    tracking?.trackPage({
-      name: `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.EDIT_RETENTION}_${action}`,
-      type: 'navigation',
-    });
-  };
+  const navigate = useNavigate();
+  const goBack = () => navigate('..');
+
+  const {
+    trackConfirmAction,
+    trackCancelAction,
+    trackSuccessPage,
+    trackErrorPage,
+  } = useTracking(COLD_ARCHIVE_TRACKING.CONTAINERS.EDIT_RETENTION);
 
   const {
     data: regions,
@@ -87,8 +84,9 @@ export default function EditRetentionPage() {
         </Translation>,
         true,
       );
-      trackEditRetentionModalPage(COLD_ARCHIVE_TRACKING.STATUS.ERROR);
-      navigate('..');
+
+      trackErrorPage();
+      goBack();
     },
     onSuccess() {
       addSuccess(
@@ -104,23 +102,29 @@ export default function EditRetentionPage() {
         </Translation>,
         true,
       );
-      trackEditRetentionModalPage(COLD_ARCHIVE_TRACKING.STATUS.SUCCESS);
-      navigate('..');
+
+      trackSuccessPage();
+      goBack();
     },
   });
 
   const onConfirm = () => {
-    trackEditRetentionModalClick(COLD_ARCHIVE_TRACKING.ACTIONS.CONFIRM);
+    trackConfirmAction();
     startArchiveContainer();
   };
+
   const onCancel = () => {
-    trackEditRetentionModalClick(COLD_ARCHIVE_TRACKING.ACTIONS.CANCEL);
-    navigate(`..`);
+    trackCancelAction();
+    goBack();
   };
-  const onClose = () => onCancel();
+
+  const onClose = onCancel;
+
   const isPending =
     isPendingArchive || isPendingStartArchive || isRegionsPending;
+
   const isDisabled = isPending || hasWarning || !lockedUntilDays;
+
   return (
     <PciModal
       title={t(

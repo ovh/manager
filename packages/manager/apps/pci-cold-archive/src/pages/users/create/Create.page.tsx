@@ -1,6 +1,5 @@
 import { PciModal } from '@ovh-ux/manager-pci-common';
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   OdsFormField,
   OdsInput,
@@ -8,20 +7,21 @@ import {
   OdsSelect,
   OdsText,
 } from '@ovhcloud/ods-components/react';
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { poll } from '@/helpers';
-import { COLD_ARCHIVE_TRACKING } from '@/constants';
-import LabelComponent from '@/components/Label.component';
-import { invalidateGetUsersCache, useUsers } from '@/api/hooks/useUsers';
 import {
   createUser,
   generateS3Credentials,
   getUser,
   TUser,
 } from '@/api/data/users';
+import { invalidateGetUsersCache, useUsers } from '@/api/hooks/useUsers';
+import LabelComponent from '@/components/Label.component';
 import UserInformationTile from '@/components/UserInformationTile.component';
+import { COLD_ARCHIVE_TRACKING } from '@/constants';
+import { poll } from '@/helpers';
+import useTracking from '@/hooks/useTracking';
 
 const RadioOption = ({ checked, value, label, onChange, name }) => (
   <div className="flex items-center my-2">
@@ -52,10 +52,9 @@ type TState = {
 export default function UserCreatePage(): JSX.Element {
   const { t } = useTranslation(['users/create', 'users/credentials']);
 
-  const { tracking } = useContext(ShellContext).shell;
+  const { projectId } = useParams();
 
   const navigate = useNavigate();
-
   const goBack = () => navigate('..');
 
   const { addSuccess, addError } = useNotifications();
@@ -68,13 +67,9 @@ export default function UserCreatePage(): JSX.Element {
     isLoading: false,
   });
 
-  const trackClick = (name: string) =>
-    tracking?.trackClick({
-      name: `${COLD_ARCHIVE_TRACKING.USER.MAIN}::${COLD_ARCHIVE_TRACKING.USER.ADD_USER}::${name}`,
-      type: 'action',
-    });
-
-  const { projectId } = useParams();
+  const { trackActionClick, trackCancelAction, trackErrorPage } = useTracking(
+    COLD_ARCHIVE_TRACKING.USER.ADD_USER,
+  );
 
   const { validUsersWithoutCredentials } = useUsers(projectId);
 
@@ -118,8 +113,6 @@ export default function UserCreatePage(): JSX.Element {
   };
 
   const addNewUser = async () => {
-    trackClick(COLD_ARCHIVE_TRACKING.USER.CREATE_USER_MODES.NEW_USER);
-
     try {
       const newUser = await createUser(projectId, state.userDescription.value);
 
@@ -138,41 +131,36 @@ export default function UserCreatePage(): JSX.Element {
               });
             })
             .catch(() => {
-              tracking?.trackPage({
-                name: `${COLD_ARCHIVE_TRACKING.USER.MAIN}::${COLD_ARCHIVE_TRACKING.USER.ADD_USER}_${COLD_ARCHIVE_TRACKING.STATUS.ERROR}`,
-                action: 'navigation',
-              });
               addError(
                 t('pci_projects_project_users_add_error_message', {
                   user: value.description,
                 }),
               );
               setState({ ...state, isLoading: false });
+              trackErrorPage();
               goBack();
             });
         },
         onFail: () => {
-          tracking?.trackPage({
-            name: `${COLD_ARCHIVE_TRACKING.USER.MAIN}::${COLD_ARCHIVE_TRACKING.USER.ADD_USER}_${COLD_ARCHIVE_TRACKING.STATUS.ERROR}`,
-            action: 'navigation',
-          });
           addError(
             t('pci_projects_project_users_add_error_message', {
               user: newUser.description,
             }),
           );
           setState({ ...state, isLoading: false });
+          trackErrorPage();
           goBack();
         },
       });
     } catch (e) {
       addError(t('pci_projects_project_users_add_error_message'));
+      setState({ ...state, isLoading: false });
+      trackErrorPage();
+      goBack();
     }
   };
 
   const addExistingUser = async () => {
-    trackClick(COLD_ARCHIVE_TRACKING.USER.CREATE_USER_MODES.EXISTING_USER);
-
     const targetUser = validUsersWithoutCredentials?.find(
       (user) => user.id === state.selectedUserId,
     );
@@ -204,21 +192,26 @@ export default function UserCreatePage(): JSX.Element {
 
   const onConfirm = async () => {
     setState({ ...state, isLoading: true });
+
     if (state.userType === 'NEW') {
+      trackActionClick(COLD_ARCHIVE_TRACKING.USER.CREATE_USER_MODES.NEW_USER);
       addNewUser();
     }
 
     if (state.userType === 'EXISTING') {
+      trackActionClick(
+        COLD_ARCHIVE_TRACKING.USER.CREATE_USER_MODES.EXISTING_USER,
+      );
       addExistingUser();
     }
   };
 
   const onCancel = () => {
-    trackClick(COLD_ARCHIVE_TRACKING.ACTIONS.CANCEL);
+    trackCancelAction();
     goBack();
   };
 
-  const onClose = goBack;
+  const onClose = onCancel;
 
   useEffect(() => {
     if (
