@@ -1,15 +1,15 @@
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { DeletionModal } from '@ovh-ux/manager-pci-common';
-import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 import { useContext } from 'react';
-import { Translation, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
+import { COLD_ARCHIVE_TRACKING } from '@/tracking.constants';
 import { useTracking } from '@/hooks/useTracking';
+import { useNotifications } from '@/hooks/useNotifications';
 import { MANAGE_ARCHIVE_DOC_LINK } from '@/constants';
 import { useDeleteArchive, useGetArchiveByName } from '@/api/hooks/useArchive';
-import { COLD_ARCHIVE_TRACKING } from '@/tracking.constants';
 
 export default function DeletePage() {
   const { t } = useTranslation('containers/delete');
@@ -17,11 +17,13 @@ export default function DeletePage() {
   const navigate = useNavigate();
   const goBack = () => navigate('..');
 
-  const { addSuccess, addError } = useNotifications();
+  const { addSuccessMessage, addErrorMessage } = useNotifications({
+    ns: 'containers/delete',
+  });
+
   const { projectId, archiveName } = useParams();
 
   const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
-
   const documentationUrl = MANAGE_ARCHIVE_DOC_LINK[ovhSubsidiary];
 
   const {
@@ -44,41 +46,28 @@ export default function DeletePage() {
     {
       projectId,
       onError(error: ApiError) {
-        addError(
-          <Translation ns="containers/delete">
-            {(_t) =>
-              _t(
-                'pci_projects_project_storages_containers_container_cold_archive_delete_error_delete',
-                {
-                  containerName: archiveName,
-                  message:
-                    error?.response?.data?.message || error?.message || null,
-                },
-              )
-            }
-          </Translation>,
-          true,
-        );
+        addErrorMessage({
+          i18nKey:
+            'pci_projects_project_storages_containers_container_cold_archive_delete_error_delete',
+          error,
+          values: {
+            containerName: archiveName,
+          },
+        });
 
-        trackSuccessPage();
+        trackErrorPage();
         goBack();
       },
       onSuccess() {
-        addSuccess(
-          <Translation ns="containers/delete">
-            {(_t) =>
-              _t(
-                'pci_projects_project_storages_containers_container_cold_archive_delete_success_message',
-                {
-                  containerName: archiveName,
-                },
-              )
-            }
-          </Translation>,
-          true,
-        );
+        addSuccessMessage({
+          i18nKey:
+            'pci_projects_project_storages_containers_container_cold_archive_delete_success_message',
+          values: {
+            containerName: archiveName,
+          },
+        });
 
-        trackErrorPage();
+        trackSuccessPage();
         goBack();
       },
     },
