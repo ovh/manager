@@ -13,6 +13,7 @@ import {
   parseCommaSeparated,
   generateUniqueName,
 } from '@/helpers/index';
+import { NodePool } from '@/api/data/kubernetes';
 
 describe('helper', () => {
   it('compares two objects based on a key', () => {
@@ -191,7 +192,10 @@ describe('generateUniqueName', () => {
   ])(
     'should return %s for baseName "%s" with existing nodes %j',
     (baseName, existingNodePools, expectedResult) => {
-      const result = generateUniqueName(baseName, existingNodePools);
+      const result = generateUniqueName(
+        baseName,
+        existingNodePools as NodePool[],
+      );
       expect(result).toBe(expectedResult);
     },
   );
