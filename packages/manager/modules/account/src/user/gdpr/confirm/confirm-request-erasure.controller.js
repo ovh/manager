@@ -2,6 +2,9 @@ import {
   GDPR_FEATURES_CONFIRM_BANNER_CONTAINER,
   CONFIRMATION_EMAIL_ERASURE_REQUEST_MESSAGES_MAP,
   CONFIRM_ERASURE_REQUEST_MESSAGES_MAP,
+  TRACKING_CONFIRM_PAGE_CATEGORY,
+  TRACKING_CONFIRM_PAGE,
+  TRACKING_PREFIX,
 } from '../gdpr.constants';
 
 export default class ConfirmRequestErasureController {
@@ -13,6 +16,7 @@ export default class ConfirmRequestErasureController {
     $state,
     ssoAuthentication,
     $window,
+    atInternet,
   ) {
     this.Alerter = Alerter;
     this.$translate = $translate;
@@ -20,6 +24,7 @@ export default class ConfirmRequestErasureController {
     this.$state = $state;
     this.ssoAuthentication = ssoAuthentication;
     this.$window = $window;
+    this.atInternet = atInternet;
   }
 
   $onInit() {
@@ -80,6 +85,7 @@ export default class ConfirmRequestErasureController {
     if (this.model.confirm_code) {
       this.loading.confirm = true;
       this.Alerter.resetMessage(GDPR_FEATURES_CONFIRM_BANNER_CONTAINER);
+      this.trackAction('button::delete_account::confirm');
 
       this.gdprService
         .confirmErasure(this.publicId, this.model.confirm_code)
@@ -97,6 +103,18 @@ export default class ConfirmRequestErasureController {
   }
 
   cancelConfirmation() {
+    this.trackAction('button::delete_account::cancel');
     this.$window.location.href = this.$state.href('account.user.gdpr');
+  }
+
+  trackAction(actionName) {
+    this.atInternet.trackClick({
+      name: `${TRACKING_PREFIX}::tile::${actionName}`,
+      type: 'action',
+      page_category: TRACKING_CONFIRM_PAGE_CATEGORY,
+      page: {
+        name: TRACKING_CONFIRM_PAGE,
+      },
+    });
   }
 }
