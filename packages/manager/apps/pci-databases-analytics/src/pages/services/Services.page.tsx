@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 import { Outlet, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Plus } from 'lucide-react';
+import { ChangelogButton } from '@ovh-ux/manager-react-components';
 import { useGetServices } from '@/hooks/api/database/service/useGetServices.hook';
 import ServicesList from './_components/ServiceListTable.component';
 import LegalMentions from '../_components/LegalMentions.component';
@@ -14,6 +15,10 @@ import { useTrackAction } from '@/hooks/useTracking';
 import { useUserActivityContext } from '@/contexts/UserActivityContext';
 import { TRACKING } from '@/configuration/tracking.constants';
 import * as database from '@/types/cloud/project/database';
+import {
+  CHANGELOG_LINKS,
+  CHANGELOG_CHAPTERS,
+} from '@/configuration/changelog.constants';
 
 const Services = () => {
   const { t } = useTranslation('pci-databases-analytics/services');
@@ -23,6 +28,7 @@ const Services = () => {
   const servicesQuery = useGetServices(projectId, {
     refetchInterval: isUserActive && POLLING.SERVICES,
   });
+
   const filteredServices = useMemo(() => {
     if (!servicesQuery.data) return [];
     return servicesQuery.data.filter(
@@ -40,13 +46,19 @@ const Services = () => {
         className="flex justify-between w-full items-center"
       >
         <h2>{t('title')}</h2>
-        <Guides
-          section={GuideSections.landing}
-          noEngineFilter
-          onGuideClick={(guide) =>
-            track(TRACKING.servicesList.guideClick(guide.title))
-          }
-        />
+        <div className="flex flex-wrap justify-end gap-1">
+          <ChangelogButton
+            links={CHANGELOG_LINKS}
+            chapters={CHANGELOG_CHAPTERS}
+          />
+          <Guides
+            section={GuideSections.landing}
+            noEngineFilter
+            onGuideClick={(guide) =>
+              track(TRACKING.servicesList.guideClick(guide.title))
+            }
+          />
+        </div>
       </div>
       <ServicesList services={filteredServices} />
       <LegalMentions className="mt-4" />

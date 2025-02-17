@@ -9,7 +9,10 @@ exports[`Detail > should render correctly 1`] = `
       class="flex items-center justify-between"
     >
       <div />
-      <div>
+      <div
+        class="flex flex-wrap justify-end"
+      >
+        <div />
         <div
           class="min-w-[7rem]"
         >

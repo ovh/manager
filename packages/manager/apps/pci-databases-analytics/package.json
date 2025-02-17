@@ -25,6 +25,7 @@
     "@hookform/resolvers": "^3.3.4",
     "@ovh-ux/manager-config": "^8.0.2",
     "@ovh-ux/manager-core-api": "^0.10.0",
+    "@ovh-ux/manager-react-components": "^1.45.0",
     "@ovh-ux/manager-react-shell-client": "^0.8.5",
     "@ovh-ux/request-tagger": "^0.4.0",
     "@ovh-ux/shell": "^4.1.5",

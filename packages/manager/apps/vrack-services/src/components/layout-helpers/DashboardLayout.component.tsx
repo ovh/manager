@@ -15,10 +15,12 @@ import {
 import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
+import { ChangelogButton } from '@ovh-ux/manager-react-components';
 import { PageLayout } from './PageLayout.component';
 import { DashboardTabItemProps } from './layout-helpers.type';
 import { OperationMessages } from '../feedback-messages/OperationMessages.component';
 import { SuccessMessages } from '../feedback-messages/SuccessMessage.component';
+import { CHANGELOG_LINKS } from '@/utils/constants';
 
 export type DashboardLayoutProps = {
   tabs: DashboardTabItemProps[];
@@ -52,14 +54,18 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ tabs }) => {
   return (
     <PageLayout>
       <div className="py-4">
-        <OsdsText
-          className="block mb-5"
-          level={ODS_TEXT_LEVEL.heading}
-          color={ODS_THEME_COLOR_INTENT.text}
-          size={ODS_TEXT_SIZE._600}
-        >
-          {t('dashboardPageTitle')}
-        </OsdsText>
+        <div className="flex items-center justify-between">
+          <OsdsText
+            className="block mb-5"
+            level={ODS_TEXT_LEVEL.heading}
+            color={ODS_THEME_COLOR_INTENT.text}
+            size={ODS_TEXT_SIZE._600}
+          >
+            {t('dashboardPageTitle')}
+          </OsdsText>
+          <ChangelogButton links={CHANGELOG_LINKS} />
+        </div>
+
         <OsdsText
           className="block mb-8"
           level={ODS_TEXT_LEVEL.body}

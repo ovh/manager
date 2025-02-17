@@ -12,6 +12,19 @@ import { TWorkflow, usePaginatedWorkflows } from '@/api/hooks/workflows';
 import ListingPage from './List.page';
 import { wrapper } from '@/wrapperRenders';
 
+vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
+  const actual: any = await importOriginal();
+  return {
+    ...actual,
+    ChangelogButton: vi.fn().mockReturnValue(<div></div>),
+    PciGuidesHeader: vi.fn().mockReturnValue(<div></div>),
+    useProjectUrl: vi.fn(() => 'project_url'),
+    Notifications: vi
+      .fn()
+      .mockReturnValue(<div data-testid="notifications"></div>),
+  };
+});
+
 describe('ListPage', () => {
   vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
     const actual = (await importOriginal()) as Record<string, unknown>;

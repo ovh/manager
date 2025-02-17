@@ -13,6 +13,10 @@ import {
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useMemo } from 'react';
+import {
+  ChangelogLinks,
+  ChangelogButton,
+} from '@ovh-ux/manager-react-components';
 import { useServiceData } from '../Service.context';
 import MetricChart from '../metrics/_components/MetricChart.component';
 import * as database from '@/types/cloud/project/database';
@@ -31,6 +35,7 @@ import { GuideSections } from '@/types/guide';
 import { useGetVrack } from '@/hooks/api/network/useGetVrack.hook';
 import { useGetMetrics } from '@/hooks/api/database/metric/useGetMetrics.hook';
 import { useGetServiceSubnet } from '@/hooks/api/network/useGetServiceSubnet.hook';
+import { TRACKING } from '@/configuration/tracking.constants';
 
 interface MetricTile {
   name: string;
@@ -46,6 +51,15 @@ const Dashboard = () => {
   const { t } = useTranslation(
     'pci-databases-analytics/services/service/dashboard',
   );
+  const changelogLinks: ChangelogLinks = {
+    changelog:
+      'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Managed+Databases',
+    roadmap:
+      'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Managed+Databases',
+    'feature-request':
+      'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+  };
+  const changelogChapters = TRACKING.servicesList.page().split('::');
 
   const metricsToDispplay: MetricTile[] = useMemo(
     () =>
@@ -96,7 +110,13 @@ const Dashboard = () => {
     <>
       <div className="flex justify-between w-full items-center">
         <h2>{t('title')}</h2>
-        <Guides section={GuideSections.dashboard} engine={service.engine} />
+        <div className="flex flex-wrap justify-end gap-1">
+          <ChangelogButton
+            links={changelogLinks}
+            chapters={changelogChapters}
+          />
+          <Guides section={GuideSections.dashboard} engine={service.engine} />
+        </div>
       </div>
       <Alert variant="info">
         <AlertDescription className="text-base">

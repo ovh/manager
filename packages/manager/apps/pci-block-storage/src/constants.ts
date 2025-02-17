@@ -1,3 +1,5 @@
+import { ChangelogLinks } from '@ovh-ux/manager-react-components';
+
 export const LOCAL_ZONE_INFO_URL = {
   DEFAULT: 'https://ovhcloud.com/en/public-cloud/local-zone-compute/',
   ASIA: 'https://ovhcloud.com/asia/public-cloud/local-zone-compute/',
@@ -55,3 +57,12 @@ export const VOLUME_MIN_SIZE = 10; // 10 Gio
 export const VOLUME_UNLIMITED_QUOTA = -1; // Should be 10 * 1024 (but API is wrong)
 export const ALPHA_CHARACTERS_REGEX = /^[a-zA-Z-]+$/;
 export const VOLUME_ADDON_FAMILY = 'volume';
+
+export const CHANGELOG_LINKS: ChangelogLinks = {
+  changelog:
+    'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Public+Cloud+Storage',
+  roadmap:
+    'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Public+Cloud+Storage',
+  'feature-request':
+    'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+};

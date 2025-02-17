@@ -13,6 +13,11 @@ const defaultProps = {
 const setupSpecTest = async (props: ListingProps = defaultProps) =>
   waitFor(() => render(<Listing {...props} />));
 
+jest.mock('@ovh-ux/manager-react-components', () => ({
+  ...jest.requireActual('@ovh-ux/manager-react-components'),
+  ChangelogButton: jest.fn(),
+}));
+
 describe('Listing Page', () => {
   it('Page should display correctly', async () => {
     const screen = await setupSpecTest({
