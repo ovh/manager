@@ -20,6 +20,6 @@
   "lastname": "Nom",
   "firstname": "Prénom",
   "login": "Identifiant",
-  "form_helper_login_conditions": "Votre identifiant doit contenir entre 3 et 20 caractères. Il peut inclure des lettres, des chiffres et les caractères spéciaux suivants : - _ '",
+  "form_helper_login_conditions": "Votre identifiant doit contenir entre 3 et 20 caractères. Il peut inclure des lettres, des chiffres et les caractères spéciaux suivants : - _ ",
   "form_helper_login_condition_exception": "Il peut également contenir des points, à condition qu'ils soient précédés d'un caractère autorisé et qu'ils ne soient pas suivis d'un autre point."
 }
