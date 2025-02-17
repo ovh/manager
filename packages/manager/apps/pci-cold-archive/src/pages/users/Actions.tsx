@@ -8,12 +8,9 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useContext } from 'react';
 import { Translation, useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
+import { COLD_ARCHIVE_TRACKING } from '@/tracking.constants';
 import { downloadContent } from '@/helpers';
-import {
-  COLD_ARCHIVE_TRACKING,
-  DOWNLOAD_FILENAME,
-  DOWNLOAD_TYPE,
-} from '@/constants';
+import { DOWNLOAD_FILENAME, DOWNLOAD_TYPE } from '@/constants';
 import { usePostS3Secret } from '@/api/hooks/useUsers';
 import { getUserStoragePolicy, TUser } from '@/api/data/users';
 

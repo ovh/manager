@@ -4,8 +4,8 @@ import { useNotifications } from '@ovh-ux/manager-react-components';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { Translation, useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import useTracking from '@/hooks/useTracking';
-import { COLD_ARCHIVE_TRACKING } from '@/constants';
+import { useTracking } from '@/hooks/useTracking';
+import { COLD_ARCHIVE_TRACKING } from '@/tracking.constants';
 import { useRestoreArchive } from '@/api/hooks/useArchive';
 
 export default function Restore() {

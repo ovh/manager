@@ -19,9 +19,9 @@ import {
 import { invalidateGetUsersCache, useUsers } from '@/api/hooks/useUsers';
 import LabelComponent from '@/components/Label.component';
 import UserInformationTile from '@/components/UserInformationTile.component';
-import { COLD_ARCHIVE_TRACKING } from '@/constants';
+import { COLD_ARCHIVE_TRACKING } from '@/tracking.constants';
 import { poll } from '@/helpers';
-import useTracking from '@/hooks/useTracking';
+import { useTracking } from '@/hooks/useTracking';
 
 const RadioOption = ({ checked, value, label, onChange, name }) => (
   <div className="flex items-center my-2">
@@ -54,8 +54,19 @@ export default function UserCreatePage(): JSX.Element {
 
   const { projectId } = useParams();
 
+  const { trackActionClick, trackCancelAction, trackErrorPage } = useTracking(
+    COLD_ARCHIVE_TRACKING.USER.ADD_USER,
+  );
+
   const navigate = useNavigate();
   const goBack = () => navigate('..');
+
+  const onCancel = () => {
+    trackCancelAction();
+    goBack();
+  };
+
+  const onClose = onCancel;
 
   const { addSuccess, addError } = useNotifications();
 
@@ -66,10 +77,6 @@ export default function UserCreatePage(): JSX.Element {
     },
     isLoading: false,
   });
-
-  const { trackActionClick, trackCancelAction, trackErrorPage } = useTracking(
-    COLD_ARCHIVE_TRACKING.USER.ADD_USER,
-  );
 
   const { validUsersWithoutCredentials } = useUsers(projectId);
 
@@ -205,13 +212,6 @@ export default function UserCreatePage(): JSX.Element {
       addExistingUser();
     }
   };
-
-  const onCancel = () => {
-    trackCancelAction();
-    goBack();
-  };
-
-  const onClose = onCancel;
 
   useEffect(() => {
     if (

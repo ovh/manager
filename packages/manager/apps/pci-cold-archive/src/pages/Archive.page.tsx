@@ -5,13 +5,11 @@ import {
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 
-import { useTranslation } from 'react-i18next';
-import {
-  Outlet,
-  useHref,
-  useLocation,
-  useResolvedPath,
-} from 'react-router-dom';
+import { useArchives } from '@/api/hooks/useArchive';
+import GuideMenu from '@/components/GuideMenu.component';
+import { CHECK_PRICES_DOC_LINK } from '@/constants';
+import { ROUTE_PATHS } from '@/routes';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   OdsBreadcrumb,
   OdsBreadcrumbItem,
@@ -19,17 +17,18 @@ import {
   OdsText,
 } from '@ovhcloud/ods-components/react';
 import { useContext } from 'react';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { ROUTE_PATHS } from '@/routes';
-import { useArchives } from '@/api/hooks/useArchive';
-import { CHECK_PRICES_DOC_LINK } from '@/constants';
-import GuideMenu from '@/components/GuideMenu.component';
+import { useTranslation } from 'react-i18next';
+import { Outlet, useHref, useMatch, useResolvedPath } from 'react-router-dom';
 
 export default function ColdArchivePage() {
   const { t } = useTranslation('cold-archive');
 
-  const location = useLocation();
-  const showUsersTab = location.pathname.includes('users');
+  const usersMatch = useMatch({
+    path: `${ROUTE_PATHS.ROOT}/${ROUTE_PATHS.USER_LIST}/*`,
+    end: false,
+  });
+
+  const showUsersTab = Boolean(usersMatch);
 
   const hrefProject = useProjectUrl('public-cloud');
   const { data: project } = useProject();
