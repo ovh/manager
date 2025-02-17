@@ -203,7 +203,7 @@ const NodePoolStep = ({
               }
             }}
           >
-            Add Node Pool
+            {tNodePool('kube_common_add_node_pool')}
           </OsdsButton>
         )}
 
