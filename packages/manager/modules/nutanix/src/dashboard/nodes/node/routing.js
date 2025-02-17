@@ -10,11 +10,13 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     redirectTo: (transition) => {
       const $translatePromise = transition.injector().getAsync('$translate');
-      const serviceInfoPromise = transition.injector().getAsync('serviceInfo');
+      const isTerminatedPromise = transition
+        .injector()
+        .getAsync('isTerminated');
 
-      return Promise.all([$translatePromise, serviceInfoPromise]).then(
-        ([$translate, serviceInfo]) => {
-          if (serviceInfo.isTerminated()) {
+      return Promise.all([$translatePromise, isTerminatedPromise]).then(
+        ([$translate, isTerminated]) => {
+          if (isTerminated) {
             return {
               state: 'error',
               params: {
