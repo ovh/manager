@@ -1,6 +1,5 @@
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useProductRegionsAvailability } from '@ovh-ux/manager-pci-common';
-import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { ODS_BUTTON_VARIANT, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import {
@@ -10,15 +9,16 @@ import {
   OdsText,
 } from '@ovhcloud/ods-components/react';
 import { useContext, useState } from 'react';
-import { Translation, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useTracking } from '@/hooks/useTracking';
 import { COLD_ARCHIVE_TRACKING } from '@/tracking.constants';
+import { useTracking } from '@/hooks/useTracking';
+import { useNotifications } from '@/hooks/useNotifications';
+import { useUsers } from '@/api/hooks/useUsers';
 import { useAddUser } from '@/api/hooks/useArchive';
+import { TUser } from '@/api/data/users';
 import StepOneComponent from './StepOne.component';
 import StepTwoComponent from './StepTwo.component';
-import { useUsers } from '@/api/hooks/useUsers';
-import { TUser } from '@/api/data/users';
 
 export default function AddUserToContainerPage() {
   const { t } = useTranslation('containers/add-user');
@@ -27,8 +27,12 @@ export default function AddUserToContainerPage() {
   const [selectedUser, setSelectedUser] = useState<TUser>(null);
   const [selectedRole, setSelectedRole] = useState<string>(null);
 
-  const { addSuccess, addError } = useNotifications();
+  const { addSuccessMessage, addErrorMessage } = useNotifications({
+    ns: 'containers/add-user',
+  });
+
   const navigate = useNavigate();
+  const goBack = () => navigate('..');
 
   const { projectId, archiveName } = useParams();
 
@@ -54,8 +58,6 @@ export default function AddUserToContainerPage() {
     trackErrorPage,
   } = useTracking(COLD_ARCHIVE_TRACKING.CONTAINERS.ADD_USER);
 
-  const goBack = () => navigate('..');
-
   const onCancel = () => {
     trackCancelAction();
     goBack();
@@ -70,43 +72,30 @@ export default function AddUserToContainerPage() {
     role: selectedRole,
     region: regions ? regions[0] : '',
     onError: (error: ApiError) => {
-      addError(
-        <Translation ns="containers/add-user">
-          {(_t) =>
-            _t(
-              'pci_projects_project_storages_coldArchive_containers_addUser_error_addUser',
-              {
-                value: archiveName,
-                message:
-                  error?.response?.data?.message || error?.message || null,
-              },
-            )
-          }
-        </Translation>,
-        true,
-      );
+      addErrorMessage({
+        i18nKey:
+          'pci_projects_project_storages_coldArchive_containers_addUser_error_addUser',
+        error,
+        values: {
+          value: archiveName,
+        },
+      });
 
       trackErrorPage();
       goBack();
     },
     onSuccess: () => {
-      addSuccess(
-        <Translation ns="containers/add-user">
-          {(_t) =>
-            _t(
-              'pci_projects_project_storages_coldArchive_containers_addUser_success_message',
-              {
-                value: archiveName,
-                name: selectedUser?.description,
-                role: t(
-                  `pci_projects_project_storages_coldArchive_containers_addUser_right_${selectedRole}`,
-                ),
-              },
-            )
-          }
-        </Translation>,
-        true,
-      );
+      addSuccessMessage({
+        i18nKey:
+          'pci_projects_project_storages_coldArchive_containers_addUser_success_message',
+        values: {
+          value: archiveName,
+          name: selectedUser?.description,
+          role: t(
+            `pci_projects_project_storages_coldArchive_containers_addUser_right_${selectedRole}`,
+          ),
+        },
+      });
 
       trackSuccessPage();
       goBack();

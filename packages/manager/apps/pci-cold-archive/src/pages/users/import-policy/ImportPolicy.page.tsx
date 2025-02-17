@@ -1,17 +1,19 @@
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { PciModal } from '@ovh-ux/manager-pci-common';
-import { useNotifications } from '@ovh-ux/manager-react-components';
 import { OdsFormField, OdsText } from '@ovhcloud/ods-components/react';
 import { useState } from 'react';
-import { Translation, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { useNotifications } from '@/hooks/useNotifications';
 import FileInputComponent from '@/components/FileInput.component';
 import { useGetUser, useImportPolicy } from '@/api/hooks/useUsers';
 
 export default function ImportPolicyPage() {
   const { t } = useTranslation('users/import-policy');
 
-  const { addSuccess, addError } = useNotifications();
+  const { addSuccessMessage, addErrorMessage } = useNotifications({
+    ns: 'users/import-policy',
+  });
 
   const { projectId } = useParams();
 
@@ -35,34 +37,20 @@ export default function ImportPolicyPage() {
     projectId,
     userId,
     files: selectedFiles,
-    onError(error: ApiError) {
-      addError(
-        <Translation ns="users/import-policy">
-          {(_t) =>
-            _t('pci_projects_project_storages_containers_users_import_error', {
-              message: error?.response?.data?.message || error?.message || null,
-              username: user?.username,
-            })
-          }
-        </Translation>,
-        true,
-      );
+    onError: (error: ApiError) => {
+      addErrorMessage({
+        i18nKey: 'pci_projects_project_storages_containers_users_import_error',
+        error,
+        values: { username: user?.username },
+      });
       onClose();
     },
-    onSuccess() {
-      addSuccess(
-        <Translation ns="users/import-policy">
-          {(_t) =>
-            _t(
-              'pci_projects_project_storages_containers_users_import_success',
-              {
-                username: user?.username,
-              },
-            )
-          }
-        </Translation>,
-        true,
-      );
+    onSuccess: () => {
+      addSuccessMessage({
+        i18nKey:
+          'pci_projects_project_storages_containers_users_import_success',
+        values: { username: user?.username },
+      });
       onClose();
     },
   });
