@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useState } from 'react';
-import { SavingsPlanFlavorConsumption } from '@/types/savingsPlanConsumption.type';
 import { getLastXMonths, toMonthYear } from '@/utils/formatter/date';
 import { useSavingsPlanConsumption } from './useSavingsPlanConsumption';
-import { getBigestConsumption, isInstanceFlavor } from '@/utils/savingsPlan';
+import { isInstanceFlavor } from '@/utils/savingsPlan';
+import { getTotalActivePlans } from '@/utils/kpi/utils';
 
 export const useFilteredConsumption = (locale: string) => {
   const lastXMonths = useMemo(() => getLastXMonths(), []);
@@ -20,31 +20,20 @@ export const useFilteredConsumption = (locale: string) => {
     month,
   });
 
-  const setFilterByPlan = (consumptionFlavor: SavingsPlanFlavorConsumption) => {
-    const defaultFlavor = consumptionFlavor.flavor;
-    setFlavor(defaultFlavor);
-  };
-
-  useEffect(() => {
-    if (consumption && consumption.flavors?.length > 0) {
-      setFilterByPlan(getBigestConsumption(consumption.flavors));
-    }
-  }, [consumption]);
-
-  const newFlavors = [
-    ...new Set(consumption?.flavors?.map((f) => f.flavor.toLowerCase())),
-  ];
+  const flavorsSize =
+    consumption?.flavors
+      ?.map((f) => ({
+        flavor: f.flavor.toLowerCase(),
+        totalActivePlans: getTotalActivePlans(f),
+      }))
+      .sort((a, b) => b.totalActivePlans - a.totalActivePlans) ?? [];
 
   const flavorOptions = useMemo(() => {
-    return newFlavors.length
-      ? newFlavors
-          ?.map((f) => ({
-            label: f,
-            value: f,
-            prefix: isInstanceFlavor(f) ? 'Instance' : 'Rancher',
-          }))
-          .sort((a, b) => a.label.localeCompare(b.label))
-      : [];
+    return flavorsSize.map((f) => ({
+      label: f.flavor,
+      value: f.flavor,
+      prefix: isInstanceFlavor(f.flavor) ? 'Instance' : 'Rancher',
+    }));
   }, [consumption]);
 
   const periodOptions = useMemo(
@@ -55,6 +44,12 @@ export const useFilteredConsumption = (locale: string) => {
       })),
     [lastXMonths],
   );
+
+  useEffect(() => {
+    if (flavorOptions && flavorOptions.length > 0) {
+      setFlavor(flavorOptions[0].value);
+    }
+  }, [flavorOptions]);
 
   return {
     consumption,

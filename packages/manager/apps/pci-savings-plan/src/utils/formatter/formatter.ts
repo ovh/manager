@@ -116,6 +116,7 @@ export const getChartsData = (
           included,
           excluded,
           cumulPlanSize: cumulPlanSizeFormatted,
+          date: day,
         }));
       })
       .flat(),
