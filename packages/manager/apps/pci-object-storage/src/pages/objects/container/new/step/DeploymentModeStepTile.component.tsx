@@ -14,6 +14,7 @@ import {
   STORAGE_STANDARD_REGION_PLANCODE,
 } from '@/constants';
 import { useStorageFeatures } from '@/hooks/useStorageFeatures';
+//
 
 export function DeploymentModeStepTile({ item: mode, isItemSelected }) {
   const { t } = useTranslation('containers/add');

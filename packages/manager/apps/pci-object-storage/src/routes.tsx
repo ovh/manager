@@ -18,6 +18,7 @@ export const ROUTE_PATHS = {
   ADD_OBJECT: 'new',
   DELETE_OBJECT: `:objectName/delete`,
   ENABLE_VERSIONING: 'enableVersioning',
+  ENABLE_ENCRYPTION: 'enableEncryption',
   DOWNLOAD_RCLONE: 'rclone/download',
   ADD_USER_OBJECT: `:objectName/addUser`,
   EMPTY_USER_OBJECT: `:objectName/emptyUser`,
@@ -64,6 +65,9 @@ const ImportPolicyPage = lazy(() =>
 );
 const EnableVersioningPage = lazy(() =>
   import('@/pages/objects/container/enable-versioning/EnableVersioning.page'),
+);
+const EnableEncryptiongPage = lazy(() =>
+  import('@/pages/objects/container/enable-encryption/EnableEncryption.page'),
 );
 
 const DownloadRClonePage = lazy(() =>
@@ -118,6 +122,10 @@ export default (
       <Route
         path={ROUTE_PATHS.ENABLE_VERSIONING}
         Component={EnableVersioningPage}
+      />
+      <Route
+        path={ROUTE_PATHS.ENABLE_ENCRYPTION}
+        Component={EnableEncryptiongPage}
       />
       <Route path={ROUTE_PATHS.ADD_OBJECT} Component={AddObjectPage} />
     </Route>

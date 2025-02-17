@@ -23,6 +23,7 @@ import {
   OBJECT_CONTAINER_OFFER_SWIFT,
   STORAGE_PRICES_LINK,
   TRACKING_PREFIX,
+  OBJECT_CONTAINER_MODE_MULTI_ZONES,
 } from '@/constants';
 import { SolutionStepComponent } from './step/SolutionStep.component';
 import { DeploymentModeStep } from './step/DeploymentModeStep.component';
@@ -35,6 +36,8 @@ import { VersioningStep } from './step/VersioningStep.component';
 import { EncryptionStep } from './step/EncryptionStep.component';
 import { useCreateContainer } from '@/api/hooks/useStorages';
 import { TStorage } from '@/api/data/storages';
+import { OffsiteReplication } from './step/OffsiteReplicationStep.component';
+import './style.scss';
 
 export default function ContainerNewPage() {
   const { t } = useTranslation('containers/add');
@@ -156,8 +159,12 @@ export default function ContainerNewPage() {
       {form.offer === OBJECT_CONTAINER_OFFER_STORAGE_STANDARD &&
         form.deploymentMode !== OBJECT_CONTAINER_MODE_LOCAL_ZONE && (
           <>
-            <LinkUserStep />
+            {form.deploymentMode === OBJECT_CONTAINER_MODE_MULTI_ZONES && (
+              <OffsiteReplication />
+            )}
             <VersioningStep />
+            <LinkUserStep />
+
             <EncryptionStep />
           </>
         )}

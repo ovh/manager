@@ -113,24 +113,29 @@ export function ContainerNameStep({
       </OdsFormField>
 
       {(form.deploymentMode === OBJECT_CONTAINER_MODE_MONO_ZONE ||
-        form.deploymentMode === OBJECT_CONTAINER_MODE_MULTI_ZONES) && (
-        <OdsMessage className="my-8" color="information" isDismissible={false}>
-          <OdsText preset="paragraph">
-            {t(
-              'pci_projects_project_storages_containers_add_replication_rules_info',
-            )}{' '}
-            <OdsLink
-              color="primary"
-              href={asyncReplicationLink}
-              target="_blank"
-              icon="external-link"
-              label={t(
-                'pci_projects_project_storages_containers_add_replication_rules_info_link',
-              )}
-            />
-          </OdsText>
-        </OdsMessage>
-      )}
+        form.deploymentMode === OBJECT_CONTAINER_MODE_MULTI_ZONES) &&
+        !form.offsiteReplication && (
+          <OdsMessage
+            className="my-8"
+            color="information"
+            isDismissible={false}
+          >
+            <OdsText preset="paragraph">
+              {t(
+                'pci_projects_project_storages_containers_add_replication_rules_info',
+              )}{' '}
+              <OdsLink
+                color="primary"
+                href={asyncReplicationLink}
+                target="_blank"
+                icon="external-link"
+                label={t(
+                  'pci_projects_project_storages_containers_add_replication_rules_info_link',
+                )}
+              />
+            </OdsText>
+          </OdsMessage>
+        )}
 
       {isCreationPending && (
         <div className="my-4">

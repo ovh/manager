@@ -5,13 +5,26 @@ import {
   OBJECT_CONTAINER_MODE_LOCAL_ZONE,
   OBJECT_CONTAINER_OFFER_STORAGE_STANDARD,
   OBJECT_CONTAINER_OFFER_SWIFT,
+  OBJECT_CONTAINER_MODE_MULTI_ZONES,
 } from '@/constants';
 
+export interface ReplicationRule {
+  id: string;
+  status: 'enabled' | 'disabled';
+  priority: number;
+  deleteMarkerReplication: 'enabled' | 'disabled';
+}
+
+export interface Replication {
+  rules: ReplicationRule[];
+}
 export interface ContainerCreationForn {
   offer: string;
   deploymentMode: string;
   region: TRegionAvailability;
   ownerId: number;
+  offsiteReplication: boolean;
+  replication?: Replication;
   versioning: boolean;
   encryption: string;
   containerName: string;
@@ -30,8 +43,9 @@ export interface ContainerStore {
     offer: StepState;
     deployment: StepState;
     region: StepState;
-    ownerId: StepState;
+    offsiteReplication: StepState;
     versioning: StepState;
+    ownerId: StepState;
     encryption: StepState;
     containerName: StepState;
     containerType: StepState;
@@ -51,13 +65,17 @@ export interface ContainerStore {
   editRegion: () => void;
   submitRegion: () => void;
 
-  setOwnerId: (ownerId: number) => void;
-  editOwnerId: () => void;
-  submitOwnerId: () => void;
+  setOffsiteReplication: (versioning: boolean) => void;
+  editOffsiteReplication: () => void;
+  submitOffsiteReplication: () => void;
 
   setVersioning: (versioning: boolean) => void;
   editVersioning: () => void;
   submitVersioning: () => void;
+
+  setOwnerId: (ownerId: number) => void;
+  editOwnerId: () => void;
+  submitOwnerId: () => void;
 
   setEncryption: (encryption: string) => void;
   editEncryption: () => void;
@@ -74,8 +92,9 @@ const initialForm = {
   offer: OBJECT_CONTAINER_OFFER_STORAGE_STANDARD,
   deploymentMode: undefined,
   region: undefined,
-  ownerId: undefined,
+  offsiteReplication: false,
   versioning: false,
+  ownerId: undefined,
   encryption: NO_ENCRYPTION_VALUE,
   containerName: '',
   containerType: undefined,
@@ -85,8 +104,9 @@ const initialStepper = {
   offer: { isOpen: true },
   deployment: {},
   region: {},
-  ownerId: {},
+  offsiteReplication: {},
   versioning: {},
+  ownerId: {},
   encryption: {},
   containerName: {},
   containerType: {},
@@ -200,6 +220,7 @@ export const useContainerCreationStore = create<ContainerStore>()(
             ...state.form,
             deploymentMode,
             region: undefined,
+            offsiteReplication: false,
             ownerId: undefined,
             versioning: false,
             encryption: NO_ENCRYPTION_VALUE,
@@ -211,6 +232,7 @@ export const useContainerCreationStore = create<ContainerStore>()(
       editDeploymentMode: () =>
         editStep('deployment', [
           'region',
+          'offsiteReplication',
           'ownerId',
           'versioning',
           'encryption',
@@ -222,8 +244,9 @@ export const useContainerCreationStore = create<ContainerStore>()(
           form: {
             ...state.form,
             region,
-            ownerId: undefined,
             versioning: false,
+            offsiteReplication: false,
+            ownerId: undefined,
             encryption: NO_ENCRYPTION_VALUE,
             containerName: '',
             containerType: undefined,
@@ -235,47 +258,83 @@ export const useContainerCreationStore = create<ContainerStore>()(
           submitStep('region', 'containerType');
         } else if (form.deploymentMode === OBJECT_CONTAINER_MODE_LOCAL_ZONE) {
           submitStep('region', 'containerName');
+        } else if (form.deploymentMode === OBJECT_CONTAINER_MODE_MULTI_ZONES) {
+          submitStep('region', 'offsiteReplication');
         } else {
-          submitStep('region', 'ownerId');
+          submitStep('region', 'versioning');
         }
       },
       editRegion: () =>
         editStep('region', [
-          'ownerId',
+          'offsiteReplication',
           'versioning',
+          'ownerId',
           'encryption',
           'containerName',
           'containerType',
         ]),
 
-      setOwnerId: (ownerId: number) =>
+      setOffsiteReplication: (offsiteReplication: boolean) =>
         set((state) => ({
           form: {
             ...state.form,
-            ownerId,
-            versioning: false,
+            offsiteReplication,
+            replication: offsiteReplication
+              ? {
+                  rules: [
+                    {
+                      id: '',
+                      status: 'enabled',
+                      priority: 1,
+                      deleteMarkerReplication: 'enabled',
+                    },
+                  ],
+                }
+              : undefined,
+            versioning: offsiteReplication,
+            ownerId: undefined,
             encryption: NO_ENCRYPTION_VALUE,
             containerName: '',
             containerType: undefined,
           },
         })),
-      editOwnerId: () =>
-        editStep('ownerId', ['versioning', 'encryption', 'containerName']),
-      submitOwnerId: () => submitStep('ownerId', 'versioning'),
+      editOffsiteReplication: () =>
+        editStep('offsiteReplication', [
+          'versioning',
+          'ownerId',
+          'encryption',
+          'containerName',
+        ]),
+      submitOffsiteReplication: () =>
+        submitStep('offsiteReplication', 'versioning'),
 
       setVersioning: (versioning: boolean) =>
         set((state) => ({
           form: {
             ...state.form,
             versioning,
+            ownerId: undefined,
             encryption: NO_ENCRYPTION_VALUE,
             containerName: '',
             containerType: undefined,
           },
         })),
       editVersioning: () =>
-        editStep('versioning', ['encryption', 'containerName']),
-      submitVersioning: () => submitStep('versioning', 'encryption'),
+        editStep('versioning', ['ownerId', 'encryption', 'containerName']),
+      submitVersioning: () => submitStep('versioning', 'ownerId'),
+
+      setOwnerId: (ownerId: number) =>
+        set((state) => ({
+          form: {
+            ...state.form,
+            ownerId,
+            encryption: NO_ENCRYPTION_VALUE,
+            containerName: '',
+            containerType: undefined,
+          },
+        })),
+      editOwnerId: () => editStep('ownerId', ['encryption', 'containerName']),
+      submitOwnerId: () => submitStep('ownerId', 'encryption'),
 
       setEncryption: (encryption: string) =>
         set((state) => ({
