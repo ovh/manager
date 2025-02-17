@@ -51,7 +51,7 @@ export const useCatalogPrice = (
     const numberFormatOptions = {
       style: 'currency',
       currency: me?.currency?.code,
-      ...(maximumFractionDigits ? { maximumFractionDigits } : {}),
+      ...(maximumFractionDigits !== undefined ? { maximumFractionDigits } : {}),
     };
     return me
       ? new Intl.NumberFormat(
