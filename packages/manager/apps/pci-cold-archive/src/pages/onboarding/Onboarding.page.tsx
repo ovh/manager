@@ -16,8 +16,9 @@ import {
   OdsText,
 } from '@ovhcloud/ods-components/react';
 import { useArchives } from '@/api/hooks/useArchive';
-import { COLD_ARCHIVE_TRACKING, ONBOARDING_DOC_LINKS } from '@/constants';
-import useTracking from '@/hooks/useTracking';
+import { ONBOARDING_DOC_LINKS } from '@/constants';
+import { useTracking } from '@/hooks/useTracking';
+import { COLD_ARCHIVE_TRACKING } from '@/tracking.constants';
 
 export default function OnBoardingPage() {
   const { t } = useTranslation(['onboarding', 'cold-archive']);

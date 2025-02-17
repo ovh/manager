@@ -21,9 +21,10 @@ export default function ImportPolicyPage() {
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
 
   const navigate = useNavigate();
+  const goBack = () => navigate('..');
 
-  const onCancel = () => navigate(`..`);
-  const onClose = () => navigate(`..`);
+  const onCancel = goBack;
+  const onClose = goBack;
 
   const { user, isPending: isUserPending } = useGetUser(
     projectId,
@@ -66,9 +67,7 @@ export default function ImportPolicyPage() {
     },
   });
 
-  const onConfirm = () => {
-    importPolicy();
-  };
+  const onConfirm = importPolicy;
 
   const isPending = isUserPending || isImportPending;
 
