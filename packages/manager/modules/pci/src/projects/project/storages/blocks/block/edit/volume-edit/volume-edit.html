@@ -22,10 +22,12 @@
                     data-ng-bind="$ctrl.ovhManagerRegionService.getTranslatedMicroRegion($ctrl.storage.region)"
                 ></span>
                 <span
-                    data-ng-if="$ctrl.storage.isLocalZone"
-                    class="oui-badge oui-badge_promotion"
+                    data-ng-if="$ctrl.regionType === $ctrl.LOCAL_ZONE_REGION"
+                    class="oui-badge oui-badge_promotion oui-background-p-100 oui-color-p-700"
                 >
-                    <span data-translate="pci_project_project_localzone"></span>
+                    <span
+                        data-translate="pci_project_flavors_zone_localzone"
+                    ></span>
                     <button
                         type="button"
                         class="oui-popover-button"
@@ -39,7 +41,7 @@
                     >
                         <span
                             class="text-center"
-                            data-translate="pci_project_project_localzone_tooltip"
+                            data-translate="pci_project_flavors_zone_localzone_tooltip"
                         ></span>
                         <a
                             class="oui-link_icon"
@@ -55,11 +57,11 @@
                     </script>
                 </span>
                 <span
-                    data-ng-if="!$ctrl.storage.isLocalZone"
-                    class="oui-badge oui-badge_new"
+                    data-ng-if="$ctrl.regionType === $ctrl.ONE_AZ_REGION"
+                    class="oui-badge oui-badge_new oui-background-p-400 oui-color-p-000"
                 >
                     <span
-                        data-translate="pci_project_project_global_region"
+                        data-translate="pci_project_flavors_zone_global_region"
                     ></span>
                     <button
                         type="button"
@@ -74,7 +76,42 @@
                     >
                         <span
                             class="text-center"
-                            data-translate="pci_project_project_globalregions_tooltip"
+                            data-translate="{{$ctrl.are3azRegionsAvailable ? 'pci_project_flavors_zone_globalregions_tooltip' : 'pci_project_flavors_zone_globalregions_tooltip_2'}}"
+                        ></span>
+                        <a
+                            class="oui-link_icon"
+                            aria-hidden="true"
+                            data-ng-href="{{$ctrl.globalRegionsUrl}}"
+                            target="_blank"
+                        >
+                            <span
+                                data-translate="pci_project_project_tooltip_link"
+                            ></span>
+                            <span class="oui-icon oui-icon-external-link ml-0" aria-hidden="true"></span>
+                        </a>
+                    </script>
+                </span>
+                <span
+                    data-ng-if="$ctrl.regionType === $ctrl.THREE_AZ_REGION"
+                    class="oui-badge oui-badge_new oui-background-p-500 oui-color-p-000"
+                >
+                    <span
+                        data-translate="pci_project_flavors_zone_3az_region"
+                    ></span>
+                    <button
+                        type="button"
+                        class="oui-popover-button"
+                        data-oui-popover
+                        data-oui-popover-scope="$ctrl"
+                        data-oui-popover-template="pci_project_flavors_zone_3az_regions_tooltip.html"
+                    ></button>
+                    <script
+                        type="text/ng-template"
+                        id="pci_project_flavors_zone_3az_regions_tooltip.html"
+                    >
+                        <span
+                            class="text-center"
+                            data-translate="pci_project_flavors_zone_3az_tooltip"
                         ></span>
                         <a
                             class="oui-link_icon"

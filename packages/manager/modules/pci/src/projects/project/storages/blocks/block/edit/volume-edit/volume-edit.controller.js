@@ -1,7 +1,12 @@
 import angular from 'angular';
 
 import { VOLUME_MIN_SIZE } from '../../../block.constants';
-import { HOURS_PER_MONTH } from '../../../../../project.constants';
+import {
+  HOURS_PER_MONTH,
+  LOCAL_ZONE_REGION,
+  THREE_AZ_REGION,
+  ONE_AZ_REGION,
+} from '../../../../../project.constants';
 
 export default class PciProjectStorageVolumeEditController {
   /* @ngInject */
@@ -29,6 +34,9 @@ export default class PciProjectStorageVolumeEditController {
         maximumFractionDigits: 3,
       },
     );
+    this.LOCAL_ZONE_REGION = LOCAL_ZONE_REGION;
+    this.THREE_AZ_REGION = THREE_AZ_REGION;
+    this.ONE_AZ_REGION = ONE_AZ_REGION;
   }
 
   $onInit() {
@@ -53,11 +61,15 @@ export default class PciProjectStorageVolumeEditController {
     this.localZoneUrl = this.PciProject.getDocumentUrl('LOCAL_ZONE');
 
     this.loading = true;
+    this.are3azRegionsAvailable = false;
+    this.regionType = null;
     return this.$q
       .all([
         this.$translate.refresh(),
         this.getAvailableQuota(),
         this.estimatePrice(),
+        this.fetch3azAvailability(),
+        this.fetchRegionType(),
       ])
       .finally(() => {
         this.loading = false;
@@ -92,6 +104,24 @@ export default class PciProjectStorageVolumeEditController {
             this.storage.size,
         );
       });
+  }
+
+  fetch3azAvailability() {
+    return this.PciProjectStorageBlockService.get3azAvailability(
+      this.projectId,
+    ).then((are3azRegionsAvailable) => {
+      this.are3azRegionsAvailable = are3azRegionsAvailable;
+    });
+  }
+
+  fetchRegionType() {
+    return this.PciProjectStorageBlockService.getProjectRegions(
+      this.projectId,
+    ).then((regions) => {
+      this.regionType = regions.find(
+        (r) => r.name === this.storage.region,
+      )?.type;
+    });
   }
 
   save() {

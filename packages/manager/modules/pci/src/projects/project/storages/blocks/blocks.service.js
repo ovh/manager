@@ -299,6 +299,16 @@ export default class PciProjectStorageBlockService {
       .then(({ data }) => data);
   }
 
+  get3azAvailability(projectId) {
+    return this.getCatalog(projectId).then((catalog) => {
+      return catalog.filters.deployment.some((d) => d.name === 'region-3-az');
+    });
+  }
+
+  getProjectRegions(projectId) {
+    return this.getCatalog(projectId).then((catalog) => catalog.regions);
+  }
+
   static getVolumePriceEstimationFromCatalog(catalog, storage) {
     const relatedCatalog = get(
       catalog,
