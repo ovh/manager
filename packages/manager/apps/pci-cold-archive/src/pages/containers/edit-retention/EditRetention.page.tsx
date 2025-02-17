@@ -14,9 +14,9 @@ import { Translation, useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useGetArchiveByName, useStartArchive } from '@/api/hooks/useArchive';
 import LabelComponent from '@/components/Label.component';
-import { COLD_ARCHIVE_TRACKING } from '@/constants';
+import { COLD_ARCHIVE_TRACKING } from '@/tracking.constants';
 import { useFormattedDate } from '@/hooks/useFormattedDate';
-import useTracking from '@/hooks/useTracking';
+import { useTracking } from '@/hooks/useTracking';
 
 export default function EditRetentionPage() {
   const { t } = useTranslation('containers/edit-retention');

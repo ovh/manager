@@ -4,12 +4,10 @@ import { useNotifications } from '@ovh-ux/manager-react-components';
 import { OdsMessage } from '@ovhcloud/ods-components/react';
 import { Translation, useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import useTracking from '@/hooks/useTracking';
-import {
-  COLD_ARCHIVE_CONTAINER_STATUS,
-  COLD_ARCHIVE_TRACKING,
-} from '@/constants';
+import { useTracking } from '@/hooks/useTracking';
+import { COLD_ARCHIVE_CONTAINER_STATUS } from '@/constants';
 import { useFlushArchive, useGetArchiveByName } from '@/api/hooks/useArchive';
+import { COLD_ARCHIVE_TRACKING } from '@/tracking.constants';
 
 export default function FlushArchivePage() {
   const { t } = useTranslation('containers/flush-archive');

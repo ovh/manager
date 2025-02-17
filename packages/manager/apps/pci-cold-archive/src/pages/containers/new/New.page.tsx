@@ -1,3 +1,10 @@
+import { TArchiveContainer } from '@/api/data/archive';
+import { useCreateContainer } from '@/api/hooks/useArchive';
+import GuideMenu from '@/components/GuideMenu.component';
+import UserInformationTile from '@/components/UserInformationTile.component';
+import { CHECK_PRICES_DOC_LINK } from '@/constants';
+import { useTracking } from '@/hooks/useTracking';
+import { COLD_ARCHIVE_TRACKING } from '@/tracking.constants';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { PciDiscoveryBanner, useProject } from '@ovh-ux/manager-pci-common';
 import {
@@ -18,13 +25,6 @@ import {
 import { useContext, useEffect } from 'react';
 import { Translation, useTranslation } from 'react-i18next';
 import { useHref, useNavigate } from 'react-router-dom';
-import { ROUTE_PATHS } from '@/routes';
-import useTracking from '@/hooks/useTracking';
-import { CHECK_PRICES_DOC_LINK, COLD_ARCHIVE_TRACKING } from '@/constants';
-import UserInformationTile from '@/components/UserInformationTile.component';
-import GuideMenu from '@/components/GuideMenu.component';
-import { useCreateContainer } from '@/api/hooks/useArchive';
-import { TArchiveContainer } from '@/api/data/archive';
 import { ContainerNameStep } from './steps/ContainerNameStep.component';
 import { LinkUserStep } from './steps/LinkUserStep.component';
 import { useContainerCreationStore } from './useContainerCreationStore';
@@ -42,8 +42,8 @@ export default function ContainerNewPage() {
   );
 
   const { addError, addSuccess } = useNotifications();
-  const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
 
+  const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
   const pricesLink =
     CHECK_PRICES_DOC_LINK[ovhSubsidiary] || CHECK_PRICES_DOC_LINK.DEFAULT;
 
@@ -126,7 +126,7 @@ export default function ContainerNewPage() {
             label={t(
               'cold-archive:pci_projects_project_storages_cold_archive_label',
             )}
-            href={useHref(ROUTE_PATHS.STORAGES)}
+            href={useHref('..')}
           />
 
           <OdsBreadcrumbItem
