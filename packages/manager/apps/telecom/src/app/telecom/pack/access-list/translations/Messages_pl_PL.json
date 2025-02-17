@@ -13,5 +13,7 @@
   "xdsl_access_list_eligible": "Kwalifikujące się",
   "xdsl_access_list_not_concerned": "Nie dotyczy",
   "xdsl_access_list_not_available": "Niedostępne",
-  "xdsl_access_list_migrate": "Przejdź na światłowód"
+  "xdsl_access_list_migrate": "Przejdź na światłowód",
+  "xdsl_access_list_support": "Kontakt z BOK",
+  "xdsl_access_list_not_yet_eligible": "Aktualnie nie kwalifikuje się"
 }

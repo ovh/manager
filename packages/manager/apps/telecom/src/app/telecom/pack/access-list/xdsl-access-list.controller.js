@@ -1,3 +1,4 @@
+import { SUPPORT_URLS } from '../../../app.constants';
 import {
   ELIGIBILITY,
   PAGE_SIZE,
@@ -11,6 +12,7 @@ export default class XdslAccessListCtrl {
     $filter,
     $q,
     $translate,
+    coreConfig,
     coreURLBuilder,
     XdslAccessListService,
     TucToastError,
@@ -18,6 +20,7 @@ export default class XdslAccessListCtrl {
     this.$filter = $filter;
     this.$q = $q;
     this.$translate = $translate;
+    this.coreConfig = coreConfig;
     this.coreURLBuilder = coreURLBuilder;
     this.XdslAccessListService = XdslAccessListService;
     this.TucToastError = TucToastError;
@@ -31,6 +34,9 @@ export default class XdslAccessListCtrl {
     this.links = {
       copperClosureMore: URL_CLOSURE_INFO,
     };
+
+    this.user = this.coreConfig.getUser();
+    this.supportUrl = SUPPORT_URLS.createTicket + this.user.ovhSubsidiary;
 
     this.getServices();
   }
