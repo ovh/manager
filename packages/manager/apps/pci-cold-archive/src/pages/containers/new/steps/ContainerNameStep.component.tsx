@@ -13,8 +13,8 @@ import {
   ContainerCreationForm,
   useContainerCreationStore,
 } from '../useContainerCreationStore';
-import useTracking from '@/hooks/useTracking';
-import { COLD_ARCHIVE_TRACKING } from '@/constants';
+import { useTracking } from '@/hooks/useTracking';
+import { COLD_ARCHIVE_TRACKING } from '@/tracking.constants';
 
 const COLD_ARCHIVE_NAME_ARCHIVE_PATTERN = /^[a-z0-9]([a-z0-9.-]{1,61})[a-z0-9]$/;
 

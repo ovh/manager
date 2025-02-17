@@ -12,9 +12,9 @@ import { add } from 'date-fns';
 import { useMemo, useState } from 'react';
 import { Translation, useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import useTracking from '@/hooks/useTracking';
+import { useTracking } from '@/hooks/useTracking';
 import { useFormattedDate } from '@/hooks/useFormattedDate';
-import { COLD_ARCHIVE_TRACKING } from '@/constants';
+import { COLD_ARCHIVE_TRACKING } from '@/tracking.constants';
 import LabelComponent from '@/components/Label.component';
 import { useStartArchive } from '@/api/hooks/useArchive';
 

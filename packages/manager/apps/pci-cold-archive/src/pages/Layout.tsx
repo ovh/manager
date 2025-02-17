@@ -8,11 +8,13 @@ import { useProject } from '@ovh-ux/manager-pci-common';
 import ShellRoutingSync from '@/core/ShellRoutingSync';
 import HidePreloader from '@/core/HidePreloader';
 
-import usePageTracking from '@/hooks/usePageTracking';
+import { usePageTracking } from '@/hooks/useTracking';
 
 export default function Layout() {
   const { isSuccess } = useProject();
+
   usePageTracking();
+
   return (
     <div className="application">
       <Suspense>
@@ -41,6 +43,7 @@ export const ErrorBoundary = () => {
   const reloadPage = () => {
     nav.reload();
   };
+
   return (
     <Suspense>
       <ErrorBanner

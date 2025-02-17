@@ -6,9 +6,10 @@ import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 import { useContext } from 'react';
 import { Translation, useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import useTracking from '@/hooks/useTracking';
-import { COLD_ARCHIVE_TRACKING, MANAGE_ARCHIVE_DOC_LINK } from '@/constants';
+import { useTracking } from '@/hooks/useTracking';
+import { MANAGE_ARCHIVE_DOC_LINK } from '@/constants';
 import { useDeleteArchive, useGetArchiveByName } from '@/api/hooks/useArchive';
+import { COLD_ARCHIVE_TRACKING } from '@/tracking.constants';
 
 export default function DeletePage() {
   const { t } = useTranslation('containers/delete');

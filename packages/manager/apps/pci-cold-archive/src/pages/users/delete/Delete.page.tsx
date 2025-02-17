@@ -10,10 +10,12 @@ export default function UserDelete() {
 
   const { addSuccess, addError } = useNotifications();
   const { projectId, userId } = useParams();
-  const navigate = useNavigate();
 
-  const onClose = () => navigate(`..`);
-  const onCancel = () => navigate(`..`);
+  const navigate = useNavigate();
+  const goBack = () => navigate('..');
+
+  const onCancel = goBack;
+  const onClose = goBack;
 
   const { user, isPending: isUserPending } = useGetUser(
     projectId,
