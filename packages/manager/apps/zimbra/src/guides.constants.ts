@@ -1,3 +1,4 @@
+import { ChangelogLinks } from '@ovh-ux/manager-react-components';
 import {
   GUIDE_ADMINISTRATOR,
   GUIDE_CNAME,
@@ -151,6 +152,15 @@ export const GUIDES_LIST = {
     url: ZIMBRA_DNS_CONFIGURATION_GUIDE,
     tracking: GUIDE_DNS_CONFIG,
   },
+};
+
+export const CHANGELOG_LINKS: ChangelogLinks = {
+  changelog:
+    'https://github.com/orgs/ovh/projects/18/views/2?sliceBy%5Bvalue%5D=Collaboration&pane=info',
+  roadmap:
+    'https://github.com/orgs/ovh/projects/18/views/1?sliceBy%5Bvalue%5D=Collaboration&pane=info',
+  'feature-request':
+    'https://github.com/ovh/collaborative-tools-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
 };
 
 export default {
