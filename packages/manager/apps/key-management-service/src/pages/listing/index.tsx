@@ -9,10 +9,12 @@ import {
 import { OdsButton, OdsMessage } from '@ovhcloud/ods-components/react';
 import {
   BaseLayout,
+  ChangelogButton,
   Datagrid,
   Notifications,
   RedirectionGuard,
   useNotifications,
+  HeadersProps
 } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
@@ -32,6 +34,7 @@ import { useAutoRefetch } from '@/data/hooks/useAutoRefetch';
 import { getOkmsServicesResourceListQueryKey } from '@/data/api/okms';
 import KmsActionMenu from '@/components/menu/KmsActionMenu.component';
 import kmsListingTestIds from './KmsListing.constants';
+import { CHANGELOG_LINKS } from '@/constants';
 
 export default function Listing() {
   const { t } = useTranslation('key-management-service/listing');
@@ -90,6 +93,11 @@ export default function Listing() {
     enabled: isRefetchEnabled,
     onFinish: () => setIsRefetchEnabled(false),
   });
+  const headerProps: HeadersProps = {
+    title: t('key_management_service_listing_title'),
+    headerButton: <KmsGuidesHeader />,
+    changelogButton: <ChangelogButton links={CHANGELOG_LINKS} />,
+  };
 
   return (
     <RedirectionGuard
@@ -108,10 +116,7 @@ export default function Listing() {
       }
     >
       <BaseLayout
-        header={{
-          title: t('key_management_service_listing_title'),
-          headerButton: <KmsGuidesHeader />,
-        }}
+        header={headerProps}
         message={<Notifications />}
       >
         <div className="flex flex-col gap-4">

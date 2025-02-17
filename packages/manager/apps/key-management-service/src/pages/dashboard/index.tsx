@@ -7,6 +7,7 @@ import {
   HeadersProps,
   ErrorBanner,
   useServiceDetails,
+  ChangelogButton,
 } from '@ovh-ux/manager-react-components';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
 import KmsGuidesHeader from '@/components/Guide/KmsGuidesHeader';
@@ -20,6 +21,7 @@ import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
 import { getOkmsResourceQueryKey } from '@/data/api/okms';
 import { OKMS } from '@/types/okms.type';
 import { useOKMSById } from '@/data/hooks/useOKMS';
+import { CHANGELOG_LINKS } from '@/constants';
 
 export const OkmsContext = createContext<OKMS>(null);
 
@@ -110,6 +112,7 @@ export default function DashboardPage() {
   const headerProps: HeadersProps = {
     title: displayName,
     headerButton: <KmsGuidesHeader />,
+    changelogButton: <ChangelogButton links={CHANGELOG_LINKS} />,
   };
 
   return (

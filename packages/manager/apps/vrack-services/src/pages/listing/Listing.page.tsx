@@ -29,6 +29,7 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import {
+  ChangelogButton,
   handleClick,
   useFeatureAvailability,
 } from '@ovh-ux/manager-react-components';
@@ -39,6 +40,7 @@ import { DeliveringMessages } from '@/components/DeliveringMessages.component';
 import { betaVrackServicesLimit } from './listing.constants';
 import { urls } from '@/routes/routes.constants';
 import { SuccessMessages } from '@/components/feedback-messages/SuccessMessage.component';
+import { CHANGELOG_LINKS } from '@/utils/constants';
 import { getVrackServicesResourceListQueryKey } from '@/data/api';
 
 export default function Listing() {
@@ -77,14 +79,17 @@ export default function Listing() {
 
   return (
     <PageLayout noBreacrumb>
-      <OsdsText
-        color={ODS_THEME_COLOR_INTENT.text}
-        level={ODS_TEXT_LEVEL.heading}
-        size={ODS_TEXT_SIZE._600}
-        className="block mt-7 mb-5"
-      >
-        {t('listingTitle')}
-      </OsdsText>
+      <div className="flex items-center justify-between">
+        <OsdsText
+          color={ODS_THEME_COLOR_INTENT.text}
+          level={ODS_TEXT_LEVEL.heading}
+          size={ODS_TEXT_SIZE._600}
+          className="block mt-7 mb-5"
+        >
+          {t('listingTitle')}
+        </OsdsText>
+        <ChangelogButton links={CHANGELOG_LINKS} />
+      </div>
       <OsdsText
         color={ODS_THEME_COLOR_INTENT.text}
         level={ODS_TEXT_LEVEL.body}

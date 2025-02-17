@@ -1,3 +1,5 @@
+import { ChangelogLinks } from '@ovh-ux/manager-react-components';
+
 export enum PrivateNetworkTabName {
   GLOBAL_REGIONS_TAB_NAME = 'GLOBAL_REGIONS',
   LOCAL_ZONE_TAB_NAME = 'LOCAL_ZONE',
@@ -63,4 +65,13 @@ export const GLOBAL_REGIONS_INFO_URL = {
 export const URL_INFO = {
   GLOBAL_REGIONS: GLOBAL_REGIONS_INFO_URL,
   LOCAL_ZONE: LOCAL_ZONE_INFO_URL,
+};
+
+export const CHANGELOG_LINKS: ChangelogLinks = {
+  changelog:
+    'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Public+Cloud+Networking',
+  roadmap:
+    'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Public+Cloud+Networking',
+  'feature-request':
+    'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
 };

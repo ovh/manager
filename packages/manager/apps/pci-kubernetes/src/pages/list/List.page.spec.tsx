@@ -12,6 +12,19 @@ type TKubesPaginated = {
   error: Error;
 };
 
+vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
+  const actual: any = await importOriginal();
+  return {
+    ...actual,
+    ChangelogButton: vi.fn().mockReturnValue(<div></div>),
+    Notifications: vi.fn().mockReturnValue(<div></div>),
+    useNotifications: vi.fn(() => ({
+      clearNotifications: vi.fn(),
+    })),
+    useProjectUrl: vi.fn(),
+  };
+});
+
 describe('ListPage', () => {
   it('renders page correctly', () => {
     vi.spyOn(useKubernetesModule, 'useKubes').mockReturnValue(({

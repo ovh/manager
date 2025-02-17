@@ -1,6 +1,8 @@
 import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
 import { useProject } from '@ovh-ux/manager-pci-common';
 import {
+  ChangelogButton,
+  ChangelogLinks,
   Datagrid,
   FilterAdd,
   FilterList,
@@ -35,6 +37,8 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useKubes } from '@/api/hooks/useKubernetes';
 import { useDatagridColumn } from './useDatagridColumn';
+import { CHANGELOG_CHAPTERS } from '@/tracking.constants';
+import { CHANGELOG_LINKS } from '@/constants';
 
 export default function ListPage() {
   const { t } = useTranslation('listing');
@@ -77,9 +81,17 @@ export default function ListPage() {
         <Headers
           title={t('kube_list_title')}
           headerButton={
-            <div className="min-w-[7rem]">
-              <PciGuidesHeader category="kubernetes" />
-            </div>
+            <>
+              <div className="min-w-[7rem]">
+                <PciGuidesHeader category="kubernetes" />
+              </div>
+            </>
+          }
+          changelogButton={
+            <ChangelogButton
+              links={CHANGELOG_LINKS}
+              chapters={CHANGELOG_CHAPTERS}
+            />
           }
         />
       </div>

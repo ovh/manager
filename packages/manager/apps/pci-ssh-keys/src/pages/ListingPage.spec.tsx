@@ -23,6 +23,7 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
   Headers: vi.fn().mockReturnValue(<div>Headers</div>),
   Datagrid: vi.fn().mockReturnValue(<div>Datagrid</div>),
   PciDiscoveryBanner: vi.fn().mockReturnValue(<div>Discovery</div>),
+  ChangelogButton: vi.fn().mockReturnValue(<div>ChangelogButton</div>),
 }));
 
 vi.mock('@/api/hooks/useSsh');

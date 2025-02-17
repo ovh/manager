@@ -1,5 +1,6 @@
 import { useNavigation } from '@ovh-ux/manager-react-shell-client';
 import {
+  ChangelogButton,
   Headers,
   PciGuidesHeader,
   useNotifications,
@@ -23,10 +24,11 @@ import {
 import HidePreloader from '@/core/HidePreloader';
 import FloatingIPComponent from '@/components/list/FloatingIP.component';
 import FailoverIPComponent from '@/components/list/FailoverIP.component';
-import { IPsTabName } from '@/constants';
+import { CHANGELOG_LINKS, IPsTabName } from '@/constants';
 import { useProductMaintenance } from '@/components/maintenance/useMaintenance';
 import { MaintenanceBanner } from '@/components/maintenance/MaintenanceBanner.component';
 import ListGuard from './ListGuard';
+import { CHANGELOG_CHAPTERS } from '@/tracking.constants';
 
 const getActiveTab = (pathname: string) => {
   if (pathname.includes('additional-ips')) {
@@ -90,15 +92,10 @@ export default function ListingPage(): JSX.Element {
           />
         )}
         <div className="header mb-10 mt-8">
-          <div className="flex items-center justify-between">
-            <Headers title={t('pci_additional_ips_title')} />
-            <PciGuidesHeader category="instances"></PciGuidesHeader>
-          </div>
-          <div className="mt-4">
-            <Headers
-              description={t('pci_additional_ips_additional_ips_description')}
-            />
-          </div>
+            <Headers title={t('pci_additional_ips_title')} description={t('pci_additional_ips_additional_ips_description')} headerButton={<PciGuidesHeader category="instances"></PciGuidesHeader>} changelogButton={<ChangelogButton
+                links={CHANGELOG_LINKS}
+                chapters={CHANGELOG_CHAPTERS}
+              />}/>
         </div>
 
         <PciAnnouncementBanner projectId={projectId} />

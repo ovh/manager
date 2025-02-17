@@ -1,4 +1,5 @@
 import {
+  ChangelogButton,
   Headers,
   PciGuidesHeader,
   useNotifications,
@@ -21,10 +22,11 @@ import {
 } from '@ovh-ux/manager-pci-common';
 import GlobalRegionsComponent from '@/components/global-regions/GlobalRegions.component';
 import LocalZoneComponent from '@/components/local-zones/LocalZone.component';
-import { PrivateNetworkTabName } from '@/constants';
+import { CHANGELOG_LINKS, PrivateNetworkTabName } from '@/constants';
 import { MaintenanceBanner } from '@/components/maintenance/MaintenanceBanner.component';
 import { useProductMaintenance } from '@/components/maintenance/useMaintenance';
 import ListGuard from './ListGuard';
+import { CHANGELOG_CHAPTERS } from '@/tracking.constants';
 
 const getActiveTab = (pathname: string) => {
   if (pathname.includes('localZone')) {
@@ -80,10 +82,10 @@ export default function ListingPage() {
           />
         )}
         <div className="header mb-10 mt-8">
-          <div className="flex items-center justify-between">
-            <Headers title={t('pci_projects_project_network_private')} />
-            <PciGuidesHeader category="instances"></PciGuidesHeader>
-          </div>
+            <Headers title={t('pci_projects_project_network_private')} headerButton={<PciGuidesHeader category="instances"></PciGuidesHeader>} changelogButton={<ChangelogButton
+                links={CHANGELOG_LINKS}
+                chapters={CHANGELOG_CHAPTERS}
+              />} />
         </div>
 
         <PciAnnouncementBanner projectId={projectId} />
