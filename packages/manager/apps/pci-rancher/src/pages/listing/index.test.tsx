@@ -11,6 +11,11 @@ const defaultProps = {
   refetchRanchers: jest.fn(),
 };
 
+jest.mock('@ovh-ux/manager-react-components', () => ({
+  ...jest.requireActual('@ovh-ux/manager-react-components'),
+  ChangelogButton: jest.fn(),
+}));
+
 const setupSpecTest = async (props: ListingProps = defaultProps) =>
   waitFor(() => render(<Listing {...props} />));
 
