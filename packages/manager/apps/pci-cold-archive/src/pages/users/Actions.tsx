@@ -2,23 +2,29 @@ import { ApiError } from '@ovh-ux/manager-core-api';
 import {
   ActionMenu,
   ActionMenuItem,
-  useNotifications,
+  useNotifications as useMRCNotifications,
 } from '@ovh-ux/manager-react-components';
+
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { saveAs } from 'file-saver';
 import { useContext } from 'react';
 import { Translation, useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { COLD_ARCHIVE_TRACKING } from '@/tracking.constants';
-import { DOWNLOAD_FILENAME, DOWNLOAD_TYPE } from '@/constants';
-import { usePostS3Secret } from '@/api/hooks/useUsers';
 import { getUserStoragePolicy, TUser } from '@/api/data/users';
+import { usePostS3Secret } from '@/api/hooks/useUsers';
+import { DOWNLOAD_FILENAME, DOWNLOAD_TYPE } from '@/constants';
+import { useNotifications } from '@/hooks/useNotifications';
+import { COLD_ARCHIVE_TRACKING } from '@/tracking.constants';
 
 export default function ActionsComponent({ user }: Readonly<{ user: TUser }>) {
   const { t } = useTranslation(['users', 'containers']);
 
   const { projectId } = useParams();
-  const { addSuccess, addInfo, addError } = useNotifications();
+
+  const { addInfo } = useMRCNotifications();
+  const { addSuccessMessage, addErrorMessage } = useNotifications({
+    ns: 'users',
+  });
 
   const navigate = useNavigate();
 
@@ -63,25 +69,14 @@ export default function ActionsComponent({ user }: Readonly<{ user: TUser }>) {
       );
     },
     onError: (error: ApiError) => {
-      addError(
-        <Translation ns="users">
-          {(_t) => (
-            <span
-              dangerouslySetInnerHTML={{
-                __html: _t(
-                  'pci_projects_project_storages_containers_users_show_secret_key_error',
-                  {
-                    user: `<strong>${user.username}</strong>`,
-                    message:
-                      error?.response?.data?.message || error?.message || null,
-                  },
-                ),
-              }}
-            />
-          )}
-        </Translation>,
-        true,
-      );
+      addErrorMessage({
+        i18nKey:
+          'pci_projects_project_storages_containers_users_show_secret_key_error',
+        values: {
+          user: `<strong>${user.username}</strong>`,
+        },
+        error,
+      });
     },
   });
 
@@ -92,39 +87,27 @@ export default function ActionsComponent({ user }: Readonly<{ user: TUser }>) {
         trackS3UsersPage(
           `${COLD_ARCHIVE_TRACKING.USER.ACTIONS.DOWNLOAD_POLICY}_${COLD_ARCHIVE_TRACKING.STATUS.SUCCESS}`,
         );
-
         saveAs(new Blob([policy], { type: DOWNLOAD_TYPE }), DOWNLOAD_FILENAME);
 
-        addSuccess(
-          <Translation ns="users">
-            {(_t) =>
-              _t(
-                'pci_projects_project_storages_containers_users_import_success_message',
-                { user: user.username },
-              )
-            }
-          </Translation>,
-          true,
-        );
+        addSuccessMessage({
+          i18nKey:
+            'pci_projects_project_storages_containers_users_import_success_message',
+          values: { user: user.username },
+        });
       })
       .catch((error: ApiError) => {
         trackS3UsersPage(
           `${COLD_ARCHIVE_TRACKING.USER.ACTIONS.DOWNLOAD_POLICY}_${COLD_ARCHIVE_TRACKING.STATUS.ERROR}`,
         );
-        addError(
-          <Translation ns="users">
-            {(_t) =>
-              _t(
-                'pci_projects_project_storages_containers_users_import_error_message',
-                {
-                  message:
-                    error?.response?.data?.message || error?.message || null,
-                },
-              )
-            }
-          </Translation>,
-          true,
-        );
+
+        addErrorMessage({
+          i18nKey:
+            'pci_projects_project_storages_containers_users_import_error_message',
+          values: {
+            user: `<strong>${user.username}</strong>`,
+          },
+          error,
+        });
       });
   };
 
