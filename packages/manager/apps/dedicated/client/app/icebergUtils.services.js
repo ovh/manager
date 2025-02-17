@@ -4,6 +4,7 @@ const moduleName = 'ovhManagerDedicatedIcebergUtilsServices';
 export const name = 'icerbergUtils';
 
 class IcebergUtilsServices {
+  /* @ngInject */
   constructor($q, iceberg) {
     this.iceberg = iceberg;
     this.$q = $q;
