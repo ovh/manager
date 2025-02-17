@@ -1,3 +1,5 @@
+import { SavingsPlanFlavorConsumption } from '@/types/savingsPlanConsumption.type';
+
 export const getPercentValue = (percentValues: string[]): number => {
   if (!percentValues || percentValues.length === 0) return 0;
 
@@ -25,3 +27,7 @@ export const isCurrentPeriod = (period: Date): boolean => {
     periodDate.getMonth() === now.getMonth()
   );
 };
+
+export const getTotalActivePlans = (
+  consumption: SavingsPlanFlavorConsumption,
+): number => consumption?.subscriptions.length ?? 0;

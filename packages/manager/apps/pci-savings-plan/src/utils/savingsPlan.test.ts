@@ -1,9 +1,4 @@
-import {
-  getBigestConsumption,
-  isInstanceFlavor,
-  isValidSavingsPlanName,
-} from './savingsPlan';
-import { savingsPlanConsumptionMocked } from '@/_mock_/savingsPlanConsumption';
+import { isInstanceFlavor, isValidSavingsPlanName } from './savingsPlan';
 
 describe('isValidSavingsPlanName', () => {
   it('should return true for valid names', () => {
@@ -40,18 +35,6 @@ describe('isValidSavingsPlanName', () => {
         'Savings-Plan-GP-2024-09-05-dedsqdqsdqsdqsdsqdqsdqsdsqdqsdsqDd',
       ),
     ).toBe(false);
-  });
-});
-
-describe('getBigestConsumption', () => {
-  it('should return the biggest active savings plan', () => {
-    expect(getBigestConsumption([])).toBe(undefined);
-  });
-
-  it('should return the biggest active savings plan', () => {
-    expect(getBigestConsumption(savingsPlanConsumptionMocked.flavors)).toBe(
-      savingsPlanConsumptionMocked.flavors[1],
-    );
   });
 });
 
