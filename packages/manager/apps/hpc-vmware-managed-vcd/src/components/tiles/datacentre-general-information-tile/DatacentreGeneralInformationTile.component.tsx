@@ -1,5 +1,4 @@
 import {
-  Description,
   LinkType,
   Links,
   Clipboard,
@@ -8,13 +7,14 @@ import {
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { VCDDatacentre, VCDOrganization } from '@ovh-ux/manager-module-vcd-api';
+import { OdsText } from '@ovhcloud/ods-components/react';
 import { subRoutes } from '@/routes/routes.constant';
 import { iamActions } from '@/utils/iam.constants';
 import EditableTileItem from '../editable-tile-item/EditableTileItem.component';
 import { capitalize } from '@/utils/capitalize';
 import { ID_LABEL } from '@/pages/dashboard/dashboard.constants';
+import TEST_IDS from '@/utils/testIds.constants';
 
 type TTileProps = {
   vcdDatacentre: VCDDatacentre;
@@ -38,7 +38,8 @@ export default function DatacentreGenerationInformationTile({
           label: t('managed_vcd_dashboard_description'),
           value: (
             <EditableTileItem
-              label={vcdDatacentre?.currentState?.description}
+              value={vcdDatacentre?.currentState?.description}
+              name="vdcDescription"
               iamActions={[
                 iamActions.vmwareCloudDirectorApiovhOrganizationVirtualDataCenterEdit,
               ]}
@@ -51,40 +52,40 @@ export default function DatacentreGenerationInformationTile({
           id: 'commercialRange',
           label: tVdc('managed_vcd_vdc_commercial_range'),
           value: (
-            <Description>
+            <OdsText>
               {capitalize(vcdDatacentre?.currentState?.commercialRange)}
-            </Description>
+            </OdsText>
           ),
         },
         {
           id: 'cpuCount',
           label: tVdc('managed_vcd_vdc_vcpu_count'),
           value: (
-            <Description>
+            <OdsText>
               {vcdDatacentre?.currentState.vCPUCount?.toString()}
-            </Description>
+            </OdsText>
           ),
         },
         {
           id: 'ramCount',
           label: tVdc('managed_vcd_vdc_ram_count'),
           value: (
-            <Description>
+            <OdsText>
               {tVdc('managed_vcd_vdc_quota_value', {
                 quota: vcdDatacentre?.currentState?.memoryQuota,
               })}
-            </Description>
+            </OdsText>
           ),
         },
         {
           id: 'vcpuSpeed',
           label: tVdc('managed_vcd_vdc_vcpu_speed'),
           value: (
-            <Description>
+            <OdsText>
               {tVdc('managed_vcd_vdc_vcpu_value', {
                 speed: vcdDatacentre?.currentState.vCPUSpeed,
               })}
-            </Description>
+            </OdsText>
           ),
         },
         {
@@ -95,19 +96,25 @@ export default function DatacentreGenerationInformationTile({
               type={LinkType.external}
               href={vcdOrganization?.currentState?.webInterfaceUrl}
               label={t('managed_vcd_dashboard_management_interface_access')}
-              target={OdsHTMLAnchorElementTarget._blank}
+              target="_blank"
+              data-testid={TEST_IDS.dashboardDatacentreInterfaceLink}
             />
           ),
         },
         {
           id: 'apiUrl',
           label: t('managed_vcd_dashboard_api_url'),
-          value: <Clipboard value={vcdOrganization?.currentState?.apiUrl} />,
+          value: (
+            <Clipboard
+              value={vcdOrganization?.currentState?.apiUrl}
+              className="w-full"
+            />
+          ),
         },
         {
           id: 'vdcId',
           label: ID_LABEL,
-          value: <Clipboard value={vcdDatacentre?.id} />,
+          value: <Clipboard value={vcdDatacentre?.id} className="w-full" />,
         },
       ]}
     />
