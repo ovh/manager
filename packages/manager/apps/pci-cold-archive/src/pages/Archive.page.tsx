@@ -5,10 +5,6 @@ import {
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 
-import { useArchives } from '@/api/hooks/useArchive';
-import GuideMenu from '@/components/GuideMenu.component';
-import { CHECK_PRICES_DOC_LINK } from '@/constants';
-import { ROUTE_PATHS } from '@/routes';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   OdsBreadcrumb,
@@ -19,6 +15,10 @@ import {
 import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useHref, useMatch, useResolvedPath } from 'react-router-dom';
+import { ROUTE_PATHS } from '@/routes';
+import { CHECK_PRICES_DOC_LINK } from '@/constants';
+import GuideMenu from '@/components/GuideMenu.component';
+import { useArchives } from '@/api/hooks/useArchive';
 
 export default function ColdArchivePage() {
   const { t } = useTranslation('cold-archive');
