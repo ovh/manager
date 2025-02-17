@@ -3942,7 +3942,7 @@
     "@floating-ui/core" "^1.6.0"
     "@floating-ui/utils" "^0.2.8"
 
-"@floating-ui/dom@^1.0.1", "@floating-ui/dom@^1.6.1":
+"@floating-ui/dom@1.6.3", "@floating-ui/dom@^1.0.1", "@floating-ui/dom@^1.6.1":
   version "1.6.3"
   resolved "https://registry.yarnpkg.com/@floating-ui/dom/-/dom-1.6.3.tgz#954e46c1dd3ad48e49db9ada7218b0985cee75ef"
   integrity sha512-RnDthu3mzPlQ31Ss/BTwQ1zjzIhr3lk1gZB1OC56h/1vEtaXkESrOqL5fQVMfXpwGtRwX+YsZBdyHtJMQnkArw==
@@ -5811,6 +5811,20 @@
   resolved "https://registry.yarnpkg.com/@orchidjs/unicode-variants/-/unicode-variants-1.1.2.tgz#1fd71791a67fdd1591ebe0dcaadd3964537a824e"
   integrity sha512-5DobW1CHgnBROOEpFlEXytED5OosEWESFvg/VYmH0143oXcijYTprRYJTs+55HzGM4IqxiLFSuqEzu9mPNwVsA==
 
+"@ovh-ux/manager-core-api@^0.8.0":
+  version "0.8.2"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core-api/-/manager-core-api-0.8.2.tgz#c8c21587dd9ab37c8f6d534fe51ce195da9f59a1"
+  integrity sha512-AkgcDnAGq9DbztQPFcKzbyiQ15c8n+NdU/t148UEbTpz2yxLR7EIQqaW6ZO/Y+M2ST5YuLxyodV2RrVoOR7p7Q==
+  dependencies:
+    "@ovh-ux/manager-core-sso" "^0.2.3"
+    "@ovh-ux/request-tagger" "^0.3.2"
+    axios "^1.1.2"
+
+"@ovh-ux/manager-core-sso@^0.2.3":
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core-sso/-/manager-core-sso-0.2.3.tgz#674961865a16ceb78e7195171033902d81407286"
+  integrity sha512-VZ7YkAIDf3uD3BGRIs8y0e1xwb7WMrMJrL8ZaJ60dpJSNKkaCty7uBQqarpuAymVMoWQLoWVxYQ3JfCSXnxW2Q==
+
 "@ovh-ux/manager-pci-common@^0.14.4":
   version "0.14.4"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-pci-common/-/manager-pci-common-0.14.4.tgz#1de97298b0041e42829e4390423986daabcb442b"
@@ -5831,7 +5845,44 @@
     date-fns "^3.6.0"
     lodash.isequal "^4.5.0"
 
-"@ovh-ux/manager-react-components@^1.41.1", "@ovh-ux/manager-react-components@^1.45.0":
+"@ovh-ux/manager-react-components@2.8.1":
+  version "2.8.1"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-components/-/manager-react-components-2.8.1.tgz#32d110569413c7becd601230af1f950a52ec8963"
+  integrity sha512-bWvEon6W4nEpJjVCtSp1OgZWyl+sqmTeQgGwQKtxRR3nbn6Cusn6RZvo95mFTk4JUp2GNL77I2Q1zxxt2tuafA==
+  dependencies:
+    "@babel/plugin-proposal-private-property-in-object" "^7.21.11"
+    "@tanstack/react-query" "^5.51.21"
+    "@tanstack/react-table" "^8.20.1"
+    clsx "^2.1.1"
+    lodash.isdate "^4.0.1"
+    lodash.isequal "^4.5.0"
+    react-i18next "^14.0.5"
+    react-use "^17.5.0"
+    sass "1.71.0"
+    tailwindcss "^3.4.4"
+    uuid "^9.0.1"
+
+"@ovh-ux/manager-react-components@^1.41.1":
+  version "1.41.2"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-components/-/manager-react-components-1.41.2.tgz#087cacbbff37c594201851f5f27d2a0c524545b5"
+  integrity sha512-Yl7lWtGGqw3CUeVMaCMwkoTWomxlbCT2hD+Q2h8zgclnsyfEbTvQT6iFVpueiFwhTikCRm+oFsbRy3gL8XOOzw==
+  dependencies:
+    "@ovhcloud/ods-common-core" "17.2.2"
+    "@ovhcloud/ods-common-theming" "17.2.2"
+    "@ovhcloud/ods-components" "17.2.2"
+    "@ovhcloud/ods-theme-blue-jeans" "17.2.2"
+    "@tanstack/react-query" "^5.51.21"
+    "@tanstack/react-table" "^8.20.1"
+    clsx "^2.1.1"
+    lodash.isdate "^4.0.1"
+    lodash.isequal "^4.5.0"
+    react-i18next "^14.0.5"
+    react-use "^17.5.0"
+    sass "1.71.0"
+    tailwindcss "^3.4.4"
+    uuid "^9.0.1"
+
+"@ovh-ux/manager-react-components@^1.45.0":
   version "1.45.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-components/-/manager-react-components-1.45.0.tgz#e48f51c2d225660fbd37a99e9eda5a8e86262ab3"
   integrity sha512-Uf/ojrsHiT8GDV+VkqJDeMa1HsqTijxNHsxBLDDJfylofc0eDU5C4ZTHEtjljaJ7e0xfzbQGZolAWx0/qdNMPg==
@@ -5851,7 +5902,7 @@
     tailwindcss "^3.4.4"
     uuid "^9.0.1"
 
-"@ovh-ux/manager-react-shell-client@^0.8.5":
+"@ovh-ux/manager-react-shell-client@^0.7.2", "@ovh-ux/manager-react-shell-client@^0.8.5":
   version "0.8.5"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-shell-client/-/manager-react-shell-client-0.8.5.tgz#b391298e455dd79b0d29a2cfff38a677c8472ef6"
   integrity sha512-e5L8F6ZciX1gDacWCR67zkKXT1R9iNTag1atL+NFnx2MpB4NJBWq5ro6tUVg3q5DBkToYNsdiz1MGG6HxhSfiw==
@@ -5883,6 +5934,9 @@
   integrity sha512-i0ZFNGrktTsgTw8G2Fx2pn/xkgmwhyJ7JsCx7+RkzEakcV2E3+u5yTfSNlLVyHTMiqKGyjMz330/dw221qVaDw==
   dependencies:
     lodash-es "^4.17.15"
+
+"@ovh-ux/request-tagger@^0.3.2":
+  version "0.4.0"
 
 "@ovh-ux/rollup-plugin-less-inject@^1.0.5":
   version "1.0.6"
@@ -5965,6 +6019,30 @@
     "@ovhcloud/ods-common-stencil" "17.2.2"
     "@ovhcloud/ods-common-theming" "17.2.2"
 
+"@ovhcloud/ods-components@18.0.0":
+  version "18.0.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-18.0.0.tgz#b0e4da6c35c19004f35bac6b34abb1f78c6d1af0"
+  integrity sha512-Nhgi8iMX/+tWJb6D8WSN8qNqC32XEwdDL0rc7o9V0OwcXPwSqu7QtTYKB+1s1kGTDxfyl7HGrSDYbqgUI0niMw==
+  dependencies:
+    "@floating-ui/dom" "1.6.3"
+    "@stencil/core" "4.16.0"
+    google-libphonenumber "3.2.35"
+    tom-select "2.3.1"
+    tslib "2.6.3"
+    vanillajs-datepicker "1.3.4"
+
+"@ovhcloud/ods-components@18.5.1", "@ovhcloud/ods-components@^18.5.1":
+  version "18.5.1"
+  resolved "https://registry.npmjs.org/@ovhcloud/ods-components/-/ods-components-18.5.1.tgz#2cd471856178f6f49c5056658626c27d8f86f020"
+  integrity sha512-PrwAuXAVF8CwhdVQGOO59ZVVlmP05WBsLDmoorGkw57qb9rodggdUYFwocmAuntAf7bzMc//oi1oFf78znQkzA==
+  dependencies:
+    "@floating-ui/dom" "1.6.11"
+    "@stencil/core" "4.16.0"
+    google-libphonenumber "3.2.35"
+    tom-select "2.3.1"
+    tslib "2.6.3"
+    vanillajs-datepicker "1.3.4"
+
 "@ovhcloud/ods-components@^18.4.1":
   version "18.4.1"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-18.4.1.tgz#44e21d23fbf844348e94b966d2aa5c38d8376dc8"
@@ -5989,18 +6067,6 @@
     tslib "2.6.3"
     vanillajs-datepicker "1.3.4"
 
-"@ovhcloud/ods-components@^18.5.1":
-  version "18.5.1"
-  resolved "https://registry.npmjs.org/@ovhcloud/ods-components/-/ods-components-18.5.1.tgz#2cd471856178f6f49c5056658626c27d8f86f020"
-  integrity sha512-PrwAuXAVF8CwhdVQGOO59ZVVlmP05WBsLDmoorGkw57qb9rodggdUYFwocmAuntAf7bzMc//oi1oFf78znQkzA==
-  dependencies:
-    "@floating-ui/dom" "1.6.11"
-    "@stencil/core" "4.16.0"
-    google-libphonenumber "3.2.35"
-    tom-select "2.3.1"
-    tslib "2.6.3"
-    vanillajs-datepicker "1.3.4"
-
 "@ovhcloud/ods-theme-blue-jeans@17.2.1":
   version "17.2.1"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-theme-blue-jeans/-/ods-theme-blue-jeans-17.2.1.tgz#6495afedce96505481f38ea072177d5be8ff4446"
@@ -6014,6 +6080,11 @@
   integrity sha512-0Fr6ZJ10btgkGAXJDun5tftlV1gYFevB7piQiYT4kFjfVXmxmpSw9A1nusPHiZfmV+Dnzv3/+SVxpYK/uccYXw==
   dependencies:
     "@ovhcloud/ods-common-theming" "17.2.2"
+
+"@ovhcloud/ods-themes@18.3.0":
+  version "18.3.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-18.3.0.tgz#804e3502e6791f7ec2efc24abb107d27cd4e02e0"
+  integrity sha512-mTxtcM4tCUPk98x65PeslXqGONJraTryXgkbgbZuvtOYf9SgVl+zFJfyisD2sYGuJvVf6hJP1NvJkyrxOUqtSw==
 
 "@ovhcloud/ods-themes@^18.4.1":
   version "18.4.1"
@@ -23408,7 +23479,7 @@ react-use@^17.4.0, react-use@^17.5.0:
     ts-easing "^0.2.0"
     tslib "^2.1.0"
 
-react@^18.2.0:
+react@18.2.0, react@^18.2.0:
   version "18.2.0"
   resolved "https://registry.yarnpkg.com/react/-/react-18.2.0.tgz#555bd98592883255fa00de14f1151a917b5d77d5"
   integrity sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==
@@ -27360,6 +27431,11 @@ use-sync-external-store@1.2.2:
   resolved "https://registry.yarnpkg.com/use-sync-external-store/-/use-sync-external-store-1.2.2.tgz#c3b6390f3a30eba13200d2302dcdf1e7b57b2ef9"
   integrity sha512-PElTlVMwpblvbNqQ82d2n6RjStvdSoNe9FG28kNfz3WiXilJm4DdNkEzRhCZuIDwY8U08WVihhGR5iRqAwfDiw==
 
+use-sync-external-store@^1.2.2:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/use-sync-external-store/-/use-sync-external-store-1.4.0.tgz#adbc795d8eeb47029963016cefdf89dc799fcebc"
+  integrity sha512-9WXSPC5fMv61vaupRkCKCxsPxBocVnwakBEkMIHHpkTTg6icbJtg6jzgtLDm4bl3cSHAca52rYWih0k4K3PfHw==
+
 use@^3.1.0:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/use/-/use-3.1.1.tgz#d50c8cac79a19fbc20f2911f56eb973f4e10070f"
@@ -28552,6 +28628,13 @@ zod@^3.24.1:
   version "3.24.1"
   resolved "https://registry.yarnpkg.com/zod/-/zod-3.24.1.tgz#27445c912738c8ad1e9de1bea0359fa44d9d35ee"
   integrity sha512-muH7gBL9sI1nciMZV67X5fTKKBLtwpZ5VBp1vsOQzj1MhrBZ4wlVCm3gedKZWLp0Oyel8sIGfeiz54Su+OVT+A==
+
+zustand@^4.5.0:
+  version "4.5.6"
+  resolved "https://registry.yarnpkg.com/zustand/-/zustand-4.5.6.tgz#6857d52af44874a79fb3408c9473f78367255c96"
+  integrity sha512-ibr/n1hBzLLj5Y+yUcU7dYw8p6WnIVzdJbnX+1YpaScvZVF2ziugqHs+LAmHw4lWO9c/zRj+K1ncgWDQuthEdQ==
+  dependencies:
+    use-sync-external-store "^1.2.2"
 
 zustand@^4.5.5:
   version "4.5.5"
