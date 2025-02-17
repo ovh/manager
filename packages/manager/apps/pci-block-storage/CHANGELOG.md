@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.8.2...@ovh-ux/manager-pci-block-storage-app@0.8.3) (2025-02-17)
+
+
+### Bug Fixes
+
+* **pci:** implement manual translations from pci-common ([#15387](https://github.com/ovh/manager/issues/15387)) ([838a326](https://github.com/ovh/manager/commit/838a326a8008e708b8703551980d18b8b460299a))
+
+
+
+
+
 ## [0.8.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.8.1...@ovh-ux/manager-pci-block-storage-app@0.8.2) (2025-02-13)
 
 

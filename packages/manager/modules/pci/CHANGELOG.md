@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.79.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.78.4...@ovh-ux/manager-pci@6.79.0) (2025-02-17)
+
+
+### Bug Fixes
+
+* **pci-instance:** add 3az availability's object instead of primitives ([#15282](https://github.com/ovh/manager/issues/15282)) ([f3fcef0](https://github.com/ovh/manager/commit/f3fcef01d6b7464386706f352d786455ac4e7c58))
+* **pci-instance:** remove specific condition for LZ prices ([#15295](https://github.com/ovh/manager/issues/15295)) ([f15230b](https://github.com/ovh/manager/commit/f15230b48c597679c1bacf488d71d2950bd5f006))
+* **pci-instances:** patch monthly billing typo ([#15464](https://github.com/ovh/manager/issues/15464)) ([78611fe](https://github.com/ovh/manager/commit/78611fe5c752551be93e7685c6e66793bfbd9ab0))
+
+
+### Features
+
+* **pci.instances:** disable assign floating ip when public ([#15383](https://github.com/ovh/manager/issues/15383)) ([03af07b](https://github.com/ovh/manager/commit/03af07b173ef0da2f4836abe4ea8ee8985177c7e))
+
+
+
+
+
 ## [6.78.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.78.3...@ovh-ux/manager-pci@6.78.4) (2025-02-13)
 
 

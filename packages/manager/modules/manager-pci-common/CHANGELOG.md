@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@1.0.16...@ovh-ux/manager-pci-common@2.0.0) (2025-02-17)
+
+
+### Features
+
+* **pci-common:** introduce object storage uapp changes ([#15244](https://github.com/ovh/manager/issues/15244)) ([081e511](https://github.com/ovh/manager/commit/081e5117ea8b9aa238bd59d6f0495347d8109224))
+
+
+### BREAKING CHANGES
+
+* **pci-common:** Accordion onToggle is now mandatory
+
+
+
+
+
 ## [1.0.16](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@1.0.15...@ovh-ux/manager-pci-common@1.0.16) (2025-02-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-common
