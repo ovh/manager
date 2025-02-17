@@ -25,9 +25,11 @@
   "kube_common_node_pool_estimation_price": "Node pools: {{estimation}}",
   "kube_common_node_pool_estimation_text_end": "The exact cost depends on the actual resource usage, which cannot be accurately estimated before a cluster is created.",
   "kube_common_node_pool_size_title": "Node pool size",
-  "kube_common_node_pool_desired_node": "Desired node",
+  "kube_common_node_pool_desired_node": "Number of nodes",
   "kube_common_node_pool_autoscaling": "Auto-scaling",
   "kube_common_node_pool_localisation": "Location",
   "kube_common_node_pool_model": "Model",
-  "kube_common_node_pool_liste": "List of node pools"
+  "kube_common_node_pool_liste": "List of node pools",
+  "kube_common_add_node_pool": "Add node pool",
+  "kube_common_min_max_nodes": "Min {{minNodes}}, Max {{maxNodes}}"
 }
