@@ -1,17 +1,20 @@
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { PciModal } from '@ovh-ux/manager-pci-common';
-import { useNotifications } from '@ovh-ux/manager-react-components';
 import { OdsText } from '@ovhcloud/ods-components/react';
-import { Translation, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useTracking } from '@/hooks/useTracking';
 import { COLD_ARCHIVE_TRACKING } from '@/tracking.constants';
+import { useTracking } from '@/hooks/useTracking';
+import { useNotifications } from '@/hooks/useNotifications';
 import { useRestoreArchive } from '@/api/hooks/useArchive';
 
 export default function Restore() {
   const { t } = useTranslation('containers/restore');
 
-  const { addSuccess, addError } = useNotifications();
+  const { addSuccessMessage, addErrorMessage } = useNotifications({
+    ns: 'containers/restore',
+  });
+
   const { projectId, archiveName } = useParams();
 
   const navigate = useNavigate();
@@ -26,40 +29,23 @@ export default function Restore() {
 
   const { restoreArchive, isPending } = useRestoreArchive({
     projectId,
-    onError(error: ApiError) {
-      addError(
-        <Translation ns="containers/restore">
-          {(_t) =>
-            _t(
-              'pci_projects_project_storages_cold_archive_containers_container_restore_error_message',
-              {
-                containerName: archiveName,
-                message:
-                  error?.response?.data?.message || error?.message || null,
-              },
-            )
-          }
-        </Translation>,
-        true,
-      );
+    onError: (error: ApiError) => {
+      addErrorMessage({
+        i18nKey:
+          'pci_projects_project_storages_cold_archive_containers_container_restore_error_message',
+        values: { containerName: archiveName },
+        error,
+      });
 
       trackErrorPage();
       goBack();
     },
-    onSuccess() {
-      addSuccess(
-        <Translation ns="containers/restore">
-          {(_t) =>
-            _t(
-              'pci_projects_project_storages_cold_archive_containers_container_restore_success_message',
-              {
-                containerName: archiveName,
-              },
-            )
-          }
-        </Translation>,
-        true,
-      );
+    onSuccess: () => {
+      addSuccessMessage({
+        i18nKey:
+          'pci_projects_project_storages_cold_archive_containers_container_restore_success_message',
+        values: { containerName: archiveName },
+      });
 
       trackSuccessPage();
       goBack();

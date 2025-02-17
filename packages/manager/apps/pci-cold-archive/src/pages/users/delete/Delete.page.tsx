@@ -1,15 +1,19 @@
+import { ApiError } from '@ovh-ux/manager-core-api';
 import { DeletionModal } from '@ovh-ux/manager-pci-common';
-import { useNotifications } from '@ovh-ux/manager-react-components';
 import { OdsText } from '@ovhcloud/ods-components/react';
-import { Translation, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useNotifications } from '@/hooks/useNotifications';
 import { useDeleteUser, useGetUser } from '@/api/hooks/useUsers';
 
 export default function UserDelete() {
   const { t } = useTranslation('users/delete');
 
-  const { addSuccess, addError } = useNotifications();
   const { projectId, userId } = useParams();
+
+  const { addSuccessMessage, addErrorMessage } = useNotifications({
+    ns: 'users/delete',
+  });
 
   const navigate = useNavigate();
   const goBack = () => navigate('..');
@@ -26,31 +30,23 @@ export default function UserDelete() {
     projectId,
     userId: user?.id,
     access: user?.access,
-    onError() {
-      addError(
-        <Translation ns="users/delete">
-          {(_t) =>
-            _t('pci_projects_project_storages_containers_users_delete_error')
-          }
-        </Translation>,
-        true,
-      );
+    onError: (error: ApiError) => {
+      addErrorMessage({
+        i18nKey: 'pci_projects_project_storages_containers_users_delete_error',
+        error,
+      });
       onClose();
     },
-    onSuccess() {
-      addSuccess(
-        <Translation ns="users/delete">
-          {(_t) =>
-            _t('pci_projects_project_storages_containers_users_delete_success')
-          }
-        </Translation>,
-        true,
-      );
+    onSuccess: () => {
+      addSuccessMessage({
+        i18nKey:
+          'pci_projects_project_storages_containers_users_delete_success',
+      });
       onClose();
     },
   });
 
-  const onConfirm = () => deleteUser();
+  const onConfirm = deleteUser;
 
   const isPending = isDeletePending || isUserPending;
 

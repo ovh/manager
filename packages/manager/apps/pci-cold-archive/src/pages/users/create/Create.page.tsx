@@ -1,5 +1,4 @@
 import { PciModal } from '@ovh-ux/manager-pci-common';
-import { useNotifications } from '@ovh-ux/manager-react-components';
 import {
   OdsFormField,
   OdsInput,
@@ -10,6 +9,7 @@ import {
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useNotifications as useMRCNotifications } from '@ovh-ux/manager-react-components';
 import {
   createUser,
   generateS3Credentials,
@@ -22,6 +22,7 @@ import UserInformationTile from '@/components/UserInformationTile.component';
 import { COLD_ARCHIVE_TRACKING } from '@/tracking.constants';
 import { poll } from '@/helpers';
 import { useTracking } from '@/hooks/useTracking';
+import { useNotifications } from '@/hooks/useNotifications';
 
 const RadioOption = ({ checked, value, label, onChange, name }) => (
   <div className="flex items-center my-2">
@@ -68,7 +69,10 @@ export default function UserCreatePage(): JSX.Element {
 
   const onClose = onCancel;
 
-  const { addSuccess, addError } = useNotifications();
+  const { addSuccess } = useMRCNotifications();
+  const { addErrorMessage } = useNotifications({
+    ns: 'users/create',
+  });
 
   const [state, setState] = useState<TState>({
     userDescription: {
@@ -138,29 +142,30 @@ export default function UserCreatePage(): JSX.Element {
               });
             })
             .catch(() => {
-              addError(
-                t('pci_projects_project_users_add_error_message', {
-                  user: value.description,
-                }),
-              );
+              addErrorMessage({
+                i18nKey: 'pci_projects_project_users_add_error_message',
+                values: { user: value.description },
+              });
               setState({ ...state, isLoading: false });
               trackErrorPage();
               goBack();
             });
         },
         onFail: () => {
-          addError(
-            t('pci_projects_project_users_add_error_message', {
-              user: newUser.description,
-            }),
-          );
+          addErrorMessage({
+            i18nKey: 'pci_projects_project_users_add_error_message',
+            values: { user: newUser.description },
+          });
           setState({ ...state, isLoading: false });
           trackErrorPage();
           goBack();
         },
       });
     } catch (e) {
-      addError(t('pci_projects_project_users_add_error_message'));
+      addErrorMessage({
+        i18nKey: 'pci_projects_project_users_add_error_message',
+        values: { user: state.userDescription.value },
+      });
       setState({ ...state, isLoading: false });
       trackErrorPage();
       goBack();
@@ -186,11 +191,10 @@ export default function UserCreatePage(): JSX.Element {
           secret: credentials.secret,
         });
       } catch (e) {
-        addError(
-          t('pci_projects_project_users_add_error_message', {
-            user: targetUser.description,
-          }),
-        );
+        addErrorMessage({
+          i18nKey: 'pci_projects_project_users_add_error_message',
+          values: { user: targetUser.description },
+        });
         setState({ ...state, isLoading: false });
         goBack();
       }
