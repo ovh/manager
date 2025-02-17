@@ -194,7 +194,7 @@
                 >
                     <oui-tile-description>
                         <span
-                            data-ng-bind=":: $ctrl.datacenter.model.edgesLevel"
+                            data-ng-bind="$ctrl.datacenter.model.edgesLevel"
                         ></span>
                         <span
                             class="oui-badge"
@@ -206,7 +206,7 @@
                             }"
                         >
                             <span
-                                data-ng-bind=":: $ctrl.datacenter.model.edgesStatus"
+                                data-ng-bind="$ctrl.datacenter.model.edgesStatus"
                             ></span>
                         </span>
                     </oui-tile-description>
@@ -263,7 +263,8 @@
                 </oui-tile-definition>
                 <oui-tile-definition
                     data-term="{{:: 'dedicatedCloud_nsx_edge_quantity' | translate }}"
-                    data-description="{{:: $ctrl.datacenter.model.edgesCount }}"
+                    data-description="{{ $ctrl.datacenter.model.edgesCount }}"
+                    data-ng-if="!$ctrl.pollNsxTaskId"
                 >
                 </oui-tile-definition>
             </oui-tile>
