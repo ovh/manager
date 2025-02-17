@@ -71,7 +71,11 @@ export const mockedFormSummary: { formSummary: StepSummary[] } = {
         { value: mock.bucketId, label: l.common_input_container },
         { value: mock.endpoint, label: FORM_LABELS.endpoint },
         { value: mock.accessKey, label: l.common_input_access_key },
-        { value: mock.secretKey, label: l.common_input_secret_key },
+        {
+          value: mock.secretKey,
+          label: l.common_input_secret_key,
+          isSecretValue: true,
+        },
       ],
     },
     {

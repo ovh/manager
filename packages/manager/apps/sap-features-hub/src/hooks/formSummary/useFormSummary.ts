@@ -76,7 +76,11 @@ export const useFormSummary = (values: InstallationFormValues) => {
           { value: values.bucketId, label: t('common_input_container') },
           { value: values.endpoint, label: FORM_LABELS.endpoint },
           { value: values.accessKey, label: t('common_input_access_key') },
-          { value: values.secretKey, label: t('common_input_secret_key') },
+          {
+            value: values.secretKey,
+            label: t('common_input_secret_key'),
+            isSecretValue: true,
+          },
         ],
       },
       {
