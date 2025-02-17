@@ -26,6 +26,7 @@ import {
   ODS_SPINNER_SIZE,
 } from '@ovhcloud/ods-components';
 import {
+  ChangelogButton,
   Datagrid,
   DataGridTextCell,
   Headers,
@@ -43,7 +44,8 @@ import { TSshKey } from '@/interface';
 import { useSshKeys } from '@/api/hooks/useSsh';
 import Key from '@/components/ssh-keys/listing/Key';
 import Actions from '@/components/ssh-keys/listing/Actions';
-import { PCI_LEVEL2 } from '@/tracking.constants';
+import { PCI_LEVEL2, CHANGELOG_CHAPTERS } from '@/tracking.constants';
+import { CHANGELOG_LINKS } from '@/constants';
 
 export default function ListingPage() {
   const { t } = useTranslation('common');
@@ -110,6 +112,10 @@ export default function ListingPage() {
         <Headers
           title={t('pci_projects_project_sshKeys_title')}
           headerButton={<PciGuidesHeader category="instances" />}
+          changelogButton={<ChangelogButton
+            links={CHANGELOG_LINKS}
+            chapters={CHANGELOG_CHAPTERS}
+          />}
         ></Headers>
       </div>
       <OsdsDivider />

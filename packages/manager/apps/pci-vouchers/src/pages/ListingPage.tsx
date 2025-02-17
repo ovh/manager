@@ -1,6 +1,7 @@
 import { Outlet, useHref, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
+  ChangelogButton,
   Datagrid,
   Headers,
   Notifications,
@@ -30,6 +31,8 @@ import {
 } from '@ovh-ux/manager-pci-common';
 import { useVouchers } from '@/api/hooks/useVouchers';
 import { useDatagridColumn } from '@/hooks/UseDatagridColumn';
+import { CHANGELOG_LINKS } from '@/constants';
+import { CHANGELOG_CHAPTERS } from '@/tracking.constants';
 
 export default function ListingPage() {
   const { t } = useTranslation('common');
@@ -72,8 +75,10 @@ export default function ListingPage() {
         ></OsdsBreadcrumb>
       )}
       <div className="flex items-center justify-between mt-4">
-        <Headers title={t('cpb_project_management_credit_vouchers')} />
-        <PciGuidesHeader category="storage" />
+        <Headers title={t('cpb_project_management_credit_vouchers')} changelogButton={<ChangelogButton
+            links={CHANGELOG_LINKS}
+            chapters={CHANGELOG_CHAPTERS}
+          />} headerButton={<PciGuidesHeader category="storage" />} />
       </div>
       <Notifications />
       <Headers description={t('cpb_vouchers_add_explain_bis')} />

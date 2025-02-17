@@ -16,3 +16,5 @@ export const TRACKING_TABS = {
 
 export const KUBE_TRACK_PREFIX =
   'PublicCloud::pci::projects::project::kubernetes';
+
+export const CHANGELOG_CHAPTERS = TRACKING_PREFIX.split('::');

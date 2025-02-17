@@ -9,6 +9,7 @@ import {
   Notifications,
   Title,
   useNotifications,
+  ChangelogButton,
 } from '@ovh-ux/manager-react-components';
 
 import {
@@ -16,9 +17,12 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+
 import TableContainer from '@/components/Table/TableContainer';
 import { useSavingsPlan } from '@/hooks/useSavingsPlan';
 import { SavingsPlanService } from '@/types';
+
+import { CHANGELOG_LINKS } from '@/constants';
 
 interface ListingTablePageProps {
   data: SavingsPlanService[];
@@ -69,7 +73,12 @@ const ListingTablePage: React.FC<ListingTablePageProps> = ({
 
   return (
     <>
-      <Title>{t('title')}</Title>
+      <div className="flex justify-between items-center">
+        <Title>{t('title')}</Title>
+        <div className="flex flex-wrap justify-end gap-1">
+          <ChangelogButton links={CHANGELOG_LINKS} />
+        </div>
+      </div>
       <div className="py-5">
         <OdsButton
           icon="plus"

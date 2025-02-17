@@ -32,6 +32,7 @@ import {
   FilterList,
   FilterAdd,
   useDataGrid,
+  ChangelogButton,
   Headers,
 } from '@ovh-ux/manager-react-components';
 import { PciDiscoveryBanner, useProject } from '@ovh-ux/manager-pci-common';
@@ -43,6 +44,8 @@ import Status from './Status';
 import Actions from './Actions';
 import RolesMatrix from './components/RolesMatrix/Index';
 import { useAllRoles } from '@/api/hooks/useRole';
+import { CHANGELOG_CHAPTERS } from '@/tracking.constants';
+import { CHANGELOG_LINKS } from '@/constants';
 
 export default function ListingPage() {
   const { t } = useTranslation('common');
@@ -163,6 +166,10 @@ export default function ListingPage() {
               <PciGuidesHeader category="instances" />
             </div>
           }
+          changelogButton={<ChangelogButton
+            links={CHANGELOG_LINKS}
+            chapters={CHANGELOG_CHAPTERS}
+          />}
         ></Headers>
       </div>
 

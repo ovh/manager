@@ -13,6 +13,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { Outlet, useHref, useParams } from 'react-router-dom';
 import {
+  ChangelogButton,
   Datagrid,
   DatagridColumn,
   DataGridTextCell,
@@ -45,6 +46,8 @@ import {
 } from '@/api/hooks/workflows';
 import ExecutionStatusComponent from '@/components/execution-status.component';
 import HidePreloader from '@/core/HidePreloader';
+import { CHANGELOG_CHAPTERS } from '@/tracking.constants';
+import { CHANGELOG_LINKS } from '@/constants';
 
 export default function ListingPage() {
   const { t } = useTranslation('listing');
@@ -167,6 +170,12 @@ export default function ListingPage() {
         <Headers
           title={t('pci_workflow_title')}
           headerButton={<PciGuidesHeader category="kubernetes" />}
+          changelogButton={
+            <ChangelogButton
+              links={CHANGELOG_LINKS}
+              chapters={CHANGELOG_CHAPTERS}
+            />
+          }
         />
       </div>
 

@@ -6,12 +6,14 @@ import {
   useVcdDatacentre,
   getVcdDatacentreListQueryKey,
 } from '@ovh-ux/manager-module-vcd-api';
+import { ChangelogButton } from '@ovh-ux/manager-react-components';
 import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
 import VcdDashboardLayout from '@/components/dashboard/layout/VcdDashboardLayout.component';
 import { COMPUTE_LABEL, STORAGE_LABEL } from './datacentreDashboard.constants';
 import { subRoutes, urls } from '@/routes/routes.constant';
 import { useAutoRefetch } from '@/data/hooks/useAutoRefetch';
 import { isUpdatingTargetSpec } from '@/utils/refetchConditions';
+import { CHANGELOG_LINKS } from '@/utils/changelog.constants';
 
 function DatacentreDashboardPage() {
   const { id, vdcId } = useParams();
@@ -50,8 +52,12 @@ function DatacentreDashboardPage() {
     ? {
         description: vdcId,
         title: serviceName,
+        changelogButton: <ChangelogButton links={CHANGELOG_LINKS} />,
       }
-    : { title: vdcId };
+    : {
+        title: vdcId,
+        changelogButton: <ChangelogButton links={CHANGELOG_LINKS} />,
+      };
 
   const breadcrumbItems: BreadcrumbItem[] = [
     {

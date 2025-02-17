@@ -14,7 +14,7 @@ import {
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHref, useNavigate, useParams } from 'react-router-dom';
-import { Title } from '@ovh-ux/manager-react-components';
+import { Title, ChangelogButton } from '@ovh-ux/manager-react-components';
 import { RancherService } from '@/types/api.type';
 import TableContainer from '@/components/Table/TableContainer/TableContainer.component';
 import {
@@ -24,6 +24,10 @@ import {
 import { getOnboardingUrl } from '@/utils/route';
 import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
 import RancherTaskMessage from './RancherTaskMessage.component';
+import {
+  CHANGELOG_CHAPTERS,
+  CHANGELOG_LINKS,
+} from '@/utils/changelog.constants';
 
 export interface ListingProps {
   data: RancherService[];
@@ -46,7 +50,15 @@ const ListingTablePage: React.FC<ListingProps> = ({
 
   return (
     <>
-      <Title>{t('rancherTitle')}</Title>
+      <div className="flex justify-between align-items-center">
+        <Title>{t('rancherTitle')}</Title>
+        <div className="flex flex-wrap gap-1 justify-end">
+          <ChangelogButton
+            links={CHANGELOG_LINKS}
+            chapters={CHANGELOG_CHAPTERS}
+          />
+        </div>
+      </div>
       <div className="my-3 mt-5">
         <OsdsButton
           size={ODS_BUTTON_SIZE.sm}
