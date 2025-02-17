@@ -2,10 +2,12 @@ import React from 'react';
 import { withRouter } from 'storybook-addon-react-router-v6';
 import { useSearchParams } from 'react-router-dom';
 import { applyFilters } from '@ovh-ux/manager-core-api';
+import { Row } from '@tanstack/react-table';
 import { Datagrid } from './datagrid.component';
 import { useDatagridSearchParams } from './useDatagridSearchParams';
 import { useColumnFilters } from '../filters';
 import { columns as clm, columnsFilters, Item } from './datagrid.mock';
+import DataGridTextCell from './text-cell.component';
 
 function sortItems(
   itemList: Item[],
@@ -25,11 +27,15 @@ const DatagridStory = ({
   isPaginated,
   isSortable,
   columns = clm,
+  getRowCanExpand,
+  renderSubComponent,
 }: {
   items: Item[];
   isPaginated: boolean;
   isSortable: boolean;
   columns?: any;
+  renderSubComponent?: (props: Row<any>) => JSX.Element;
+  getRowCanExpand?: (row: Row<any>) => boolean;
 }) => {
   const [searchParams] = useSearchParams();
   const { pagination, setPagination, sorting, setSorting } =
@@ -67,6 +73,8 @@ const DatagridStory = ({
         {...paginationAttrs}
         {...sortingAttrs}
         filters={{ filters, add: addFilter, remove: removeFilter }}
+        getRowCanExpand={getRowCanExpand}
+        renderSubComponent={renderSubComponent}
       />
     </>
   );
@@ -105,6 +113,20 @@ Filters.args = {
   isPaginated: true,
   isSortable: true,
   columns: columnsFilters,
+};
+
+export const WithSubComponent = DatagridStory.bind({});
+
+WithSubComponent.args = {
+  columns: clm,
+  items: [...Array(10).keys()].map((_, i) => ({
+    label: `Item #${i}`,
+    price: Math.floor(1 + Math.random() * 100),
+  })),
+  getRowCanExpand: () => true,
+  renderSubComponent: (row) => (
+    <DataGridTextCell>{JSON.stringify(row.original)}</DataGridTextCell>
+  ),
 };
 
 export default {

@@ -1,7 +1,8 @@
 import { vitest } from 'vitest';
 import React, { useState } from 'react';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { act, fireEvent, render, screen } from '@testing-library/react';
 import { FilterCategories } from '@ovh-ux/manager-core-api';
+import { Row } from '@tanstack/react-table';
 import {
   ColumnSort,
   Datagrid,
@@ -68,6 +69,8 @@ const DatagridTest = ({
   className,
   noResultLabel,
   filters,
+  getRowCanExpand,
+  renderSubComponent,
 }: {
   columns: any;
   items: string[];
@@ -75,6 +78,8 @@ const DatagridTest = ({
   className?: string;
   noResultLabel?: string;
   filters?: FilterProps;
+  getRowCanExpand?: (props: Row<any>) => boolean;
+  renderSubComponent?: (row: Row<any>) => JSX.Element;
 }) => {
   const [pagination, setPagination] = useState<PaginationState>({
     pageIndex,
@@ -94,6 +99,8 @@ const DatagridTest = ({
       className={className || ''}
       noResultLabel={noResultLabel}
       filters={filters}
+      getRowCanExpand={getRowCanExpand}
+      renderSubComponent={renderSubComponent}
     />
   );
 };
@@ -318,4 +325,33 @@ it('should display filter add and filter list', async () => {
     container.querySelectorAll('#datagrid-filter-popover-trigger').length,
   ).toBe(1);
   expect(container.querySelectorAll('#datagrid-filter-list').length).toBe(1);
+});
+
+it('should display new column to expand a row sub component', async () => {
+  const { container } = render(
+    <DatagridTest
+      columns={sampleColumns}
+      items={['foo', 'bar', 'hello']}
+      pageIndex={0}
+      className={'overflow-hidden'}
+      getRowCanExpand={() => true}
+      renderSubComponent={(row) => (
+        <span id={`sub-${row.original}`}>{`sub-${row.original}`}</span>
+      )}
+    />,
+  );
+
+  expect(
+    container.querySelectorAll('ods-button[icon=chevron-right]').length,
+  ).toBe(2);
+
+  const button = container.querySelectorAll(
+    'ods-button[icon=chevron-right]',
+  )[0];
+  await act(() => fireEvent.click(button));
+  expect(
+    container.querySelectorAll('ods-button[icon=chevron-down]').length,
+  ).toBe(1);
+
+  expect(container.querySelector('#sub-foo')).toBeDefined();
 });
