@@ -85,6 +85,7 @@
                 <oui-action-menu data-compact>
                     <oui-action-menu-item
                         disabled="!$row.canConfirm"
+                        data-on-click="$ctrl.trackAction('datagrid::button::confirm::delete_account')"
                         data-href="{{ $ctrl.$state.href('account.user.gdpr.confirm', {
                         publicId: $row.publicId,
                       }) }}"
