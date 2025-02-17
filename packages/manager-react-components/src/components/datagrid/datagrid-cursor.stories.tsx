@@ -13,6 +13,7 @@ import {
   columnsSearchAndFilters,
 } from './datagrid.mock';
 import { ActionMenu } from '../navigation';
+import DataGridTextCell from './text-cell.component';
 
 interface Item {
   label: string;
@@ -88,6 +89,8 @@ const DatagridStory = (args) => {
               },
             }
           : {})}
+        getRowCanExpand={args.getRowCanExpand}
+        renderSubComponent={args.renderSubComponent}
         {...(args.isSortable
           ? {
               sorting,
@@ -207,6 +210,20 @@ Topbar.args = {
     onSearch: () => {},
   },
   topbar: <TopbarComponent />,
+};
+
+export const WithSubComponent = DatagridStory.bind({});
+
+WithSubComponent.args = {
+  columns,
+  items: [...Array(10).keys()].map((_, i) => ({
+    label: `Item #${i}`,
+    price: Math.floor(1 + Math.random() * 100),
+  })),
+  getRowCanExpand: () => true,
+  renderSubComponent: (row) => (
+    <DataGridTextCell>{JSON.stringify(row.original)}</DataGridTextCell>
+  ),
 };
 
 export default {

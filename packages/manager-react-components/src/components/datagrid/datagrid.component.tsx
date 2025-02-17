@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { Fragment, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   ColumnDef,
@@ -8,8 +8,13 @@ import {
   getCoreRowModel,
   useReactTable,
   getSortedRowModel,
+  Row,
 } from '@tanstack/react-table';
-import { ODS_ICON_NAME, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import {
+  ODS_ICON_NAME,
+  ODS_BUTTON_VARIANT,
+  ODS_BUTTON_SIZE,
+} from '@ovhcloud/ods-components';
 import {
   OdsButton,
   OdsIcon,
@@ -22,6 +27,7 @@ import {
   FilterComparator,
   FilterTypeCategories,
 } from '@ovh-ux/manager-core-api';
+import { clsx } from 'clsx';
 import { ColumnFilter } from '../filters/filter-add.component';
 import { FilterWithLabel } from '../filters/interface';
 import { DataGridTextCell } from './text-cell.component';
@@ -115,6 +121,10 @@ export interface DatagridProps<T> {
   search?: SearchProps;
   /** Add react element at left in the datagrid topbar */
   topbar?: React.ReactNode;
+  /** Function to render sub component as row child */
+  renderSubComponent?: (row: Row<T>) => JSX.Element;
+  /** function to define if row can be expanded or not */
+  getRowCanExpand?: (row: Row<T>) => boolean;
 }
 
 export const Datagrid = <T,>({
@@ -137,6 +147,8 @@ export const Datagrid = <T,>({
   noResultLabel,
   isLoading = false,
   numberOfLoadingRows,
+  renderSubComponent,
+  getRowCanExpand,
 }: DatagridProps<T>) => {
   const { t } = useTranslation('datagrid');
   const pageCount = pagination
@@ -144,20 +156,45 @@ export const Datagrid = <T,>({
     : 1;
 
   const table = useReactTable({
-    columns: columns.map(
-      (col): ColumnDef<T> => ({
-        accessorKey: col.id,
-        cell: (props) => col.cell(props.row.original),
-        header: col.label,
-        enableSorting: col.isSortable !== false,
-      }),
-    ),
+    columns: [
+      ...(getRowCanExpand && renderSubComponent
+        ? [
+            {
+              id: 'expander',
+              cell: ({ row }) => {
+                return row.getCanExpand() ? (
+                  <OdsButton
+                    label=""
+                    onClick={row.getToggleExpandedHandler()}
+                    icon={
+                      row.getIsExpanded()
+                        ? ODS_ICON_NAME.chevronDown
+                        : ODS_ICON_NAME.chevronRight
+                    }
+                    variant={ODS_BUTTON_VARIANT.ghost}
+                    size={ODS_BUTTON_SIZE.xs}
+                  />
+                ) : null;
+              },
+            },
+          ]
+        : []),
+      ...columns.map(
+        (col): ColumnDef<T> => ({
+          accessorKey: col.id,
+          cell: (props) => col.cell(props.row.original),
+          header: col.label,
+          enableSorting: col.isSortable !== false,
+        }),
+      ),
+    ],
     data: items,
     manualPagination,
     manualSorting,
     enableSortingRemoval: false,
     sortDescFirst: false,
     getCoreRowModel: getCoreRowModel(),
+    getRowCanExpand,
     pageCount,
     ...(!manualSorting && {
       onSortingChange: onSortChange,
@@ -273,24 +310,34 @@ export const Datagrid = <T,>({
             </thead>
             <tbody>
               {table.getRowModel().rows.map((row) => (
-                <tr
-                  key={row.id}
-                  className="border-solid border-[1px] h-[3.25rem] border-[--ods-color-blue-200]"
-                >
-                  {row.getVisibleCells().map((cell) => (
-                    <td
-                      key={cell.id}
-                      className={
-                        contentAlignLeft ? 'text-left pl-4' : 'text-center'
-                      }
-                    >
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext(),
-                      )}
-                    </td>
-                  ))}
-                </tr>
+                <Fragment key={row.id}>
+                  <tr className="border-solid border-[1px] h-[3.25rem] border-[--ods-color-blue-200]">
+                    {row.getVisibleCells().map((cell) => (
+                      <td
+                        key={cell.id}
+                        className={clsx(
+                          contentAlignLeft ? 'text-left pl-4' : 'text-center',
+                          {
+                            'w-[2rem]': cell.id.indexOf('expander') !== -1,
+                          },
+                        )}
+                      >
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext(),
+                        )}
+                      </td>
+                    ))}
+                  </tr>
+                  {row.getIsExpanded() && !!renderSubComponent && (
+                    <tr>
+                      {/* 2nd row is a custom 1 cell row */}
+                      <td colSpan={row.getVisibleCells().length}>
+                        {renderSubComponent(row)}
+                      </td>
+                    </tr>
+                  )}
+                </Fragment>
               ))}
               {table.getRowModel().rows.length === 0 && !isLoading && (
                 <tr
