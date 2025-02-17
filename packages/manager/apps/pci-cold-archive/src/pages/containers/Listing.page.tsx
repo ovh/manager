@@ -17,8 +17,8 @@ import {
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
-import useTracking from '@/hooks/useTracking';
-import { COLD_ARCHIVE_TRACKING } from '@/constants';
+import { useTracking } from '@/hooks/useTracking';
+import { COLD_ARCHIVE_TRACKING } from '@/tracking.constants';
 import { useArchiveRegion, usePaginatedArchive } from '@/api/hooks/useArchive';
 import { useDatagridColumn } from './useDatagridColumn';
 
@@ -56,7 +56,7 @@ export default function ListingPage() {
     });
     addFilter({
       key: 'name',
-      value: searchField,
+      value: searchField.trim(),
       comparator: FilterComparator.Includes,
       label: '',
     });

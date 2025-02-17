@@ -1,5 +1,6 @@
+import { ErrorBoundary } from '@/pages/Layout';
 import { lazy } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 export const ROUTE_PATHS = {
   ROOT: '/pci/projects/:projectId/storages/cold-archive',
@@ -62,57 +63,83 @@ const UserRCloneDownloadPage = lazy(() =>
   import('@/pages/users/rclone-download/RCloneDownload.page'),
 );
 
-const RoutesComponent = () => (
-  <Routes>
-    <Route id="root" path={ROUTE_PATHS.ROOT} Component={LayoutPage}>
-      <Route path={ROUTE_PATHS.STORAGES} Component={StoragePage}>
-        <Route path={ROUTE_PATHS.STORAGES} Component={ListingContainerPage}>
-          <Route
-            path={ROUTE_PATHS.MANAGE_CONTAINER}
-            Component={ManageContainerPage}
-          />
-          <Route
-            path={ROUTE_PATHS.DELETE_CONTAINER}
-            Component={DeleteContainerPage}
-          />
-          <Route
-            path={ROUTE_PATHS.ADD_USER_CONTAINER}
-            Component={AddUserContainerPage}
-          />
-          <Route
-            path={ROUTE_PATHS.RESTORE_CONTAINER}
-            Component={RestoreContainerPage}
-          />
-          <Route path={ROUTE_PATHS.ARCHIVE_CONTAINER} Component={ArchivePage} />
-          <Route
-            path={ROUTE_PATHS.EDIT_RETENTION}
-            Component={EditRetentionPage}
-          />
-          <Route
-            path={ROUTE_PATHS.FLUSH_ARCHIVE}
-            Component={FlushArchivePage}
-          />
-        </Route>
-        <Route path={ROUTE_PATHS.USERS_LISTING} Component={UserListingPage}>
-          <Route path={ROUTE_PATHS.USER_CREATE} Component={UserCreationPage} />
-          <Route path={ROUTE_PATHS.USER_DELETE} Component={UserDeletionPage} />
-          <Route
-            path={ROUTE_PATHS.USER_IMPORT_POLICY}
-            Component={UserImportPolicyPage}
-          />
-          <Route
-            path={ROUTE_PATHS.USER_R_CLONE_DOWNLOAD}
-            Component={UserRCloneDownloadPage}
-          />
-        </Route>
+export default (
+  <Route
+    id="root"
+    path={ROUTE_PATHS.ROOT}
+    Component={LayoutPage}
+    errorElement={<ErrorBoundary />}
+  >
+    <Route path="notFound" element={<>Page not found</>}></Route>
+    <Route path={ROUTE_PATHS.ONBOARDING} Component={OnboardingPage} />
+    <Route
+      id="new"
+      path={ROUTE_PATHS.NEW_CONTAINER}
+      Component={NewContainerPage}
+    />
+    <Route path={ROUTE_PATHS.STORAGES} Component={StoragePage}>
+      <Route id="" path={ROUTE_PATHS.STORAGES} Component={ListingContainerPage}>
+        <Route
+          id="manage"
+          path={ROUTE_PATHS.MANAGE_CONTAINER}
+          Component={ManageContainerPage}
+        />
+        <Route
+          id="delete"
+          path={ROUTE_PATHS.DELETE_CONTAINER}
+          Component={DeleteContainerPage}
+        />
+        <Route
+          id="add-user"
+          path={ROUTE_PATHS.ADD_USER_CONTAINER}
+          Component={AddUserContainerPage}
+        />
+        <Route
+          id="restore"
+          path={ROUTE_PATHS.RESTORE_CONTAINER}
+          Component={RestoreContainerPage}
+        />
+        <Route
+          id="archive"
+          path={ROUTE_PATHS.ARCHIVE_CONTAINER}
+          Component={ArchivePage}
+        />
+        <Route
+          id="edit"
+          path={ROUTE_PATHS.EDIT_RETENTION}
+          Component={EditRetentionPage}
+        />
+        <Route
+          id="flush"
+          path={ROUTE_PATHS.FLUSH_ARCHIVE}
+          Component={FlushArchivePage}
+        />
       </Route>
-
-      <Route path={ROUTE_PATHS.NEW_CONTAINER} Component={NewContainerPage} />
-
-      <Route path={ROUTE_PATHS.ONBOARDING} Component={OnboardingPage} />
+      <Route
+        id="users"
+        path={ROUTE_PATHS.USERS_LISTING}
+        Component={UserListingPage}
+      >
+        <Route
+          id="create"
+          path={ROUTE_PATHS.USER_CREATE}
+          Component={UserCreationPage}
+        />
+        <Route
+          id="delete-user"
+          path={ROUTE_PATHS.USER_DELETE}
+          Component={UserDeletionPage}
+        />
+        <Route
+          path={ROUTE_PATHS.USER_IMPORT_POLICY}
+          Component={UserImportPolicyPage}
+        />
+        <Route
+          id="rclone"
+          path={ROUTE_PATHS.USER_R_CLONE_DOWNLOAD}
+          Component={UserRCloneDownloadPage}
+        />
+      </Route>
     </Route>
-    <Route path="" element={<>Page not found</>}></Route>
-  </Routes>
+  </Route>
 );
-
-export default RoutesComponent;
