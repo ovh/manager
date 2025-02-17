@@ -5,11 +5,11 @@ import {
   useNotifications,
 } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { saveAs } from 'file-saver';
 import { useContext } from 'react';
 import { Translation, useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { COLD_ARCHIVE_TRACKING } from '@/tracking.constants';
-import { downloadContent } from '@/helpers';
 import { DOWNLOAD_FILENAME, DOWNLOAD_TYPE } from '@/constants';
 import { usePostS3Secret } from '@/api/hooks/useUsers';
 import { getUserStoragePolicy, TUser } from '@/api/data/users';
@@ -92,11 +92,8 @@ export default function ActionsComponent({ user }: Readonly<{ user: TUser }>) {
         trackS3UsersPage(
           `${COLD_ARCHIVE_TRACKING.USER.ACTIONS.DOWNLOAD_POLICY}_${COLD_ARCHIVE_TRACKING.STATUS.SUCCESS}`,
         );
-        downloadContent({
-          fileContent: policy,
-          fileName: DOWNLOAD_FILENAME,
-          downloadType: DOWNLOAD_TYPE,
-        });
+
+        saveAs(new Blob([policy], { type: DOWNLOAD_TYPE }), DOWNLOAD_FILENAME);
 
         addSuccess(
           <Translation ns="users">
