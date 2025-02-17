@@ -2,7 +2,6 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { OsdsButton, OsdsText } from '@ovhcloud/ods-components/react';
 import { KubeFlavor } from '@ovh-ux/manager-pci-common';
-
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
@@ -11,7 +10,7 @@ import {
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
-import { Datagrid, useDataGrid } from '@ovh-ux/manager-react-components';
+import { Datagrid } from '@ovh-ux/manager-react-components';
 import { AutoscalingState } from '@/components/Autoscaling.component';
 import {
   ANTI_AFFINITY_MAX_NODES,
@@ -52,7 +51,6 @@ const NodePoolStep = ({
   const [flavor, setFlavor] = useState<KubeFlavor | null>(null);
 
   const [nodePoolEnabled, setNodePoolEnabled] = useState(true);
-  const { sorting, setSorting } = useDataGrid();
   const [nodes, setNodes] = useState<NodePool[] | null>(null);
   const onDelete = useCallback(
     (nameToDelete: string) =>
@@ -120,6 +118,7 @@ const NodePoolStep = ({
       setScaling(null);
       setFlavor(null);
       setName('');
+      setIsTouched(false);
     }
   }, [nodePoolEnabled]);
 
@@ -198,7 +197,8 @@ const NodePoolStep = ({
                     : scaling.quantity.max,
                   monthlyBilled: isMonthlyBilled,
                 };
-
+                setName('');
+                setIsTouched(false);
                 setNodes([...nodes, newNodePool]);
               }
             }}
@@ -219,9 +219,7 @@ const NodePoolStep = ({
               {tNodePool('kube_common_node_pool_liste')}
             </OsdsText>
             <Datagrid
-              sorting={sorting}
               columns={columns}
-              onSortChange={setSorting}
               items={nodes}
               totalItems={nodes.length}
               className="overflow-x-visible"
@@ -232,7 +230,6 @@ const NodePoolStep = ({
           <OsdsButton
             onClick={() => {
               stepper.node.submit(nodes);
-              setName('');
             }}
             className="mt-4 w-fit"
             size={ODS_BUTTON_SIZE.md}
