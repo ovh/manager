@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.4.4...@ovh-ux/manager-veeam-backup-app@0.5.0) (2025-02-17)
+
+
+### Features
+
+* **veeam-backup:** display real values of storage consumption ([31ae483](https://github.com/ovh/manager/commit/31ae48312f2a17a14e44a5dd04f517b835897923))
+
+
+
+
+
 ## [0.4.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.4.3...@ovh-ux/manager-veeam-backup-app@0.4.4) (2025-02-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-veeam-backup-app
