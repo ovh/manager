@@ -94,10 +94,7 @@ export const usePaginatedArchive = (
         sortResults<TArchiveContainer>(
           applyFilters<TArchiveContainer>(archives || [], filters),
           sorting,
-        ).map((obj, index) => ({
-          index,
-          ...obj,
-        })),
+        ),
         pagination,
       ),
       refresh: () => invalidateGetArchivesCache(projectId, region),
@@ -256,11 +253,6 @@ export const useFlushArchive = ({
   };
 };
 
-export interface UseCreateContainerArgs {
-  name: string;
-  ownerId: number;
-}
-
 export const useCreateContainer = ({
   projectId,
   onSuccess,
@@ -273,7 +265,7 @@ export const useCreateContainer = ({
   const region = useArchiveRegion();
 
   const mutation = useMutation({
-    mutationFn: (container: UseCreateContainerArgs) =>
+    mutationFn: (container: { name: string; ownerId: number }) =>
       createArchiveContainer({ projectId, region, ...container }),
     onError,
     onSuccess: (result) => {
@@ -283,7 +275,7 @@ export const useCreateContainer = ({
   });
 
   return {
-    createContainer: (container: UseCreateContainerArgs) =>
+    createContainer: (container: { name: string; ownerId: number }) =>
       mutation.mutate(container),
     ...mutation,
   };

@@ -12,8 +12,8 @@ import {
 import { useContext, useState } from 'react';
 import { Translation, useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import useTracking from '@/hooks/useTracking';
-import { COLD_ARCHIVE_TRACKING } from '@/constants';
+import { useTracking } from '@/hooks/useTracking';
+import { COLD_ARCHIVE_TRACKING } from '@/tracking.constants';
 import { useAddUser } from '@/api/hooks/useArchive';
 import StepOneComponent from './StepOne.component';
 import StepTwoComponent from './StepTwo.component';

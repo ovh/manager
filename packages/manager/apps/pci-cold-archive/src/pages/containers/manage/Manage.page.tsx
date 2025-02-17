@@ -27,6 +27,7 @@ export default function Manage() {
   const onCancel = goBack;
 
   const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
+  const documentationUrl = MANAGE_ARCHIVE_DOC_LINK[ovhSubsidiary];
 
   const region = useArchiveRegion();
 
@@ -34,8 +35,6 @@ export default function Manage() {
     projectId,
     region,
   );
-
-  const documentationUrl = MANAGE_ARCHIVE_DOC_LINK[ovhSubsidiary];
 
   const endpoint = archiveRegion?.services[0]?.endpoint;
 
@@ -55,6 +54,7 @@ export default function Manage() {
           <div className="flex flex-col gap-6 mt-6 mb-8">
             <OdsLink
               icon="external-link"
+              target="_blank"
               href={documentationUrl}
               label={t(
                 'pci_projects_project_storages_cold_archive_container_manage_documentation_link',
