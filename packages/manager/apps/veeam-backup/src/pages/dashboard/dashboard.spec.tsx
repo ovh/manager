@@ -1,4 +1,5 @@
-import { screen, waitFor, vi } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
+import { vi } from 'vitest';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import {
   WAIT_FOR_DEFAULT_OPTIONS,
@@ -14,12 +15,6 @@ vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
   const actual: any = await importOriginal();
   return {
     ...actual,
-    DashboardGridLayout: vi.fn().mockReturnValue(<div></div>),
-    BaseLayout: vi.fn().mockReturnValue(<div></div>),
-    DashboardTile: vi.fn().mockReturnValue(<div></div>),
-    Description: vi.fn().mockReturnValue(<div></div>),
-    RedirectionGuard: vi.fn().mockReturnValue(<div></div>),
-    Region: vi.fn().mockReturnValue(<div></div>),
     ChangelogButton: vi.fn().mockReturnValue(<div></div>),
   };
 });

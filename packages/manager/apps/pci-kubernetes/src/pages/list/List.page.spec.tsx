@@ -12,20 +12,18 @@ type TKubesPaginated = {
   error: Error;
 };
 
-vi.mock('@ovh-ux/manager-react-components', () => ({
-  ChangelogButton: vi.fn().mockReturnValue(<div>ChangelogButton</div>),
-  Datagrid: vi.fn().mockReturnValue(<div>ChangelogButton</div>),
-  FilterAdd: vi.fn().mockReturnValue(<div>ChangelogButton</div>),
-  FilterList: vi.fn().mockReturnValue(<div>ChangelogButton</div>),
-  Headers: vi.fn().mockReturnValue(<div>ChangelogButton</div>),
-  Notifications: vi.fn().mockReturnValue(<div>ChangelogButton</div>),
-  PciGuidesHeader: vi.fn().mockReturnValue(<div>ChangelogButton</div>),
-  RedirectionGuard: vi.fn().mockReturnValue(<div>ChangelogButton</div>),
-  useColumnFilters: vi.fn(),
-  useDataGrid: vi.fn(),
-  useNotifications: vi.fn(),
-  useProjectUrl: vi.fn(),
-}));
+vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
+  const actual: any = await importOriginal();
+  return {
+    ...actual,
+    ChangelogButton: vi.fn().mockReturnValue(<div></div>),
+    Notifications: vi.fn().mockReturnValue(<div></div>),
+    useNotifications: vi.fn(() => ({
+      clearNotifications: vi.fn(),
+    })),
+    useProjectUrl: vi.fn(),
+  };
+});
 
 describe('ListPage', () => {
   it('renders page correctly', () => {
