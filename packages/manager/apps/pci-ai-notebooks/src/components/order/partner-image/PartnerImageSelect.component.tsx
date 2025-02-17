@@ -23,7 +23,7 @@ const PartnerImageSelect = React.forwardRef<
 >(({ images, value, onChange, version, className }, ref) => {
   const { t } = useTranslation('components/partner-image');
   return (
-    <Card>
+    <Card data-testid="partner-image-select">
       <CardHeader>
         <CardTitle>{t('partnerImageTitle')}</CardTitle>
         <p className="pt-4">{t('partnerImageDesc')}</p>

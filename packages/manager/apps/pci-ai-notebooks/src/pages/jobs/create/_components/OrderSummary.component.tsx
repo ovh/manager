@@ -1,4 +1,11 @@
-import { Cpu, Globe, HardDrive, LockKeyhole, MemoryStick } from 'lucide-react';
+import {
+  ChevronRightSquare,
+  Cpu,
+  Globe,
+  HardDrive,
+  LockKeyhole,
+  MemoryStick,
+} from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -205,23 +212,28 @@ const DockerCommandDetails = ({
 }: OrderSummaryProps) => {
   const { t } = useTranslation('pci-ai-training/jobs/create');
   return (
-    <div className="flex items-center gap-2">
-      <Button
-        data-testid="dockerCommand-section-button"
-        variant={'link'}
-        size={'link'}
-        type="button"
-        onClick={() => onSectionClicked('dockerCommand')}
-        className="font-bold"
-      >
-        {t('summaryDockerCommandLabel')}
-      </Button>
-      <span>
-        {t(`summaryFieldDockerCommand`, {
-          count: order.dockerCommand.length,
-          context: `${order.dockerCommand.length}`,
-        })}
-      </span>
+    <div className="flex flex-col gap-2">
+      <div className="flex items-center gap-2">
+        <Button
+          data-testid="dockerCommand-section-button"
+          variant={'link'}
+          size={'link'}
+          type="button"
+          onClick={() => onSectionClicked('dockerCommand')}
+          className="font-bold"
+        >
+          {t('fieldDockerCommandLabel')}
+        </Button>
+      </div>
+      <div className="flex items-center pl-4 gap-2">
+        <ChevronRightSquare className="size-4" />
+        <span>
+          {t(`summaryFieldDockerCommand`, {
+            count: order.dockerCommand.length,
+            context: `${order.dockerCommand.length}`,
+          })}
+        </span>
+      </div>
     </div>
   );
 };

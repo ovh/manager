@@ -1,4 +1,5 @@
 import {
+  ChevronRightSquare,
   Cpu,
   Globe,
   HardDrive,
@@ -289,23 +290,28 @@ const DockerCommandDetails = ({
 }: OrderSummaryProps) => {
   const { t } = useTranslation('pci-ai-deploy/apps/create');
   return (
-    <div className="flex items-center gap-2">
-      <Button
-        data-testid="dockerCommand-section-button"
-        variant={'link'}
-        size={'link'}
-        type="button"
-        onClick={() => onSectionClicked('dockerCommand')}
-        className="font-bold"
-      >
-        {t('summaryDockerCommandLabel')}
-      </Button>
-      <span>
-        {t(`summaryFieldDockerCommand`, {
-          count: order.dockerCommand.length,
-          context: `${order.dockerCommand.length}`,
-        })}
-      </span>
+    <div className="flex flex-col gap-2">
+      <div className="flex items-center gap-2">
+        <Button
+          data-testid="dockerCommand-section-button"
+          variant={'link'}
+          size={'link'}
+          type="button"
+          onClick={() => onSectionClicked('dockerCommand')}
+          className="font-bold"
+        >
+          {t('fieldDockerCommandLabel')}
+        </Button>
+      </div>
+      <div className="flex items-center pl-4 gap-2">
+        <ChevronRightSquare className="size-4" />
+        <span>
+          {t(`summaryFieldDockerCommand`, {
+            count: order.dockerCommand.length,
+            context: `${order.dockerCommand.length}`,
+          })}
+        </span>
+      </div>
     </div>
   );
 };

@@ -17,14 +17,14 @@ import {
 } from '@/components/ui/form';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
-interface ImageSelectProps {
+interface DockerCustomImageProps {
   value: string;
   onChange: (newImage: string) => void;
 }
 
 const DockerCustomImageInput = React.forwardRef<
   HTMLInputElement,
-  ImageSelectProps
+  DockerCustomImageProps
 >(({ value, onChange }, ref) => {
   const { t } = useTranslation('components/docker-custom-image');
   const personalImageRules = z
@@ -52,7 +52,7 @@ const DockerCustomImageInput = React.forwardRef<
   });
 
   return (
-    <Card>
+    <Card data-testid="docker-custom-image">
       <CardHeader>
         <CardTitle>{t('customImageTitle')}</CardTitle>
         <div className="pt-4 text-sm">

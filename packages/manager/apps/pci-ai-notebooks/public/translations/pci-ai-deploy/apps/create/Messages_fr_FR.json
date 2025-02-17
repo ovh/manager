@@ -43,7 +43,6 @@
   "formButtonAdvancedConfiguration": "Configuration avancée",
   "fieldDockerCommandLabel": "Commandes Docker",
   "fieldDockedCommandDescription": "Renseigner la commande Docker à lancer dans le conteneur.",
-  "summaryDockerCommandLabel": "Commandes Docker:",
   "summaryFieldDockerCommand_one": "{{count}} commande",
   "summaryFieldDockerCommand_other": "{{count}} commandes",
   "fieldVolumesLabel": "Volumes",
