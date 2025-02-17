@@ -6,16 +6,11 @@ import '@ovh-ux/ui-kit';
 
 import component from './component';
 
-const moduleName = 'ovhManagerNutanixNodeActionMenuResiliated';
+const moduleName = 'ovhManagerNutanixNodeActionMenuTerminated';
 
 angular
-  .module(moduleName, [
-    'oui',
-    'ovhManagerCore',
-    'pascalprecht.translate',
-    'ui.router',
-  ])
-  .component('nodeActionMenuResiliated', component)
+  .module(moduleName, ['oui', 'pascalprecht.translate', 'ui.router'])
+  .component('nodeActionMenuTerminated', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
