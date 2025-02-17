@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-dashboard@6.7.3...@ovh-ux/manager-telecom-dashboard@6.8.0) (2025-02-17)
+
+
+### Features
+
+* **access-list:** display support link if no building on elig ([#15364](https://github.com/ovh/manager/issues/15364)) ([c13b657](https://github.com/ovh/manager/commit/c13b657bf6e029604289fed900fa587686db0c8a))
+
+
+
+
+
 ## [6.7.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-dashboard@6.7.2...@ovh-ux/manager-telecom-dashboard@6.7.3) (2024-11-28)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom-dashboard

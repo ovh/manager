@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.5.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.5.2...@ovh-ux/manager-web@19.5.3) (2025-02-17)
+
+
+### Bug Fixes
+
+* **web.zone:** fix href if not standalone zone ([ff62356](https://github.com/ovh/manager/commit/ff62356d881af9aeecfc5b767651d59a8f429260))
+
+
+
+
+
 ## [19.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.5.1...@ovh-ux/manager-web@19.5.2) (2025-02-13)
 
 

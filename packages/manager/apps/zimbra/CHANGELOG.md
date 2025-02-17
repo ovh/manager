@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.17.2...@ovh-ux/manager-zimbra-app@0.17.3) (2025-02-17)
+
+
+### Bug Fixes
+
+* **zimbra:** import element internals polyfills ([71cb1ee](https://github.com/ovh/manager/commit/71cb1eeb460a003555341030175985ff769304c0))
+* **zimbra:** refresh domain diagnostics ([b1f80b3](https://github.com/ovh/manager/commit/b1f80b32eebca6a35a562520dc3b4204a4a47316))
+
+
+
+
+
 ## [0.17.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.17.1...@ovh-ux/manager-zimbra-app@0.17.2) (2025-02-13)
 
 
