@@ -2,7 +2,8 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { OdsButton, OdsLink, OdsPopover } from '@ovhcloud/ods-components/react';
 import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { COLD_ARCHIVE_TRACKING, GUIDE_MENU_ITEMS } from '@/constants';
+import { GUIDE_MENU_ITEMS } from '@/constants';
+import { COLD_ARCHIVE_TRACKING } from '@/tracking.constants';
 
 export default function GuideMenu() {
   const { t } = useTranslation(['cold-archive', 'pci-guides-header']);

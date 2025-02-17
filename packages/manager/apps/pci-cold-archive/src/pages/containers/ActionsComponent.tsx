@@ -2,11 +2,9 @@ import { ActionMenu } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { TArchiveContainer } from '@/api/data/archive';
-import {
-  COLD_ARCHIVE_CONTAINER_STATUS,
-  COLD_ARCHIVE_TRACKING,
-} from '@/constants';
-import useTracking from '@/hooks/useTracking';
+import { COLD_ARCHIVE_CONTAINER_STATUS } from '@/constants';
+import { useTracking } from '@/hooks/useTracking';
+import { COLD_ARCHIVE_TRACKING } from '@/tracking.constants';
 
 export default function ActionsComponent({
   archive,
