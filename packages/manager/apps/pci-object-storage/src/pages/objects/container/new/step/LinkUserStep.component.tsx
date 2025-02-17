@@ -41,7 +41,7 @@ export function LinkUserStep() {
       isOpen={stepper.ownerId.isOpen || stepper.ownerId.isLocked}
       isChecked={stepper.ownerId.isChecked}
       isLocked={stepper.ownerId.isLocked}
-      order={4}
+      order={5}
       next={{
         action: submitOwnerId,
         label: t('pci-common:common_stepper_next_button_label'),

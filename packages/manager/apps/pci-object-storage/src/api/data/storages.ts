@@ -1,5 +1,6 @@
 import { aapi, v6 } from '@ovh-ux/manager-core-api';
 import { TStorageObject } from './objects';
+import { Replication } from '@/pages/objects/container/new/useContainerCreationStore';
 
 export type TStorage = {
   archive?: boolean;
@@ -88,12 +89,14 @@ export const updateStorage = async ({
   region,
   name,
   versioning,
+  encryption,
   s3StorageType,
 }: {
   projectId: string;
   region: string;
   name: string;
-  versioning: { status: string };
+  versioning?: { status: string };
+  encryption?: { sseAlgorithm: string };
   s3StorageType: string;
 }) => {
   const url =
@@ -101,7 +104,11 @@ export const updateStorage = async ({
       ? `/cloud/project/${projectId}/region/${region}/storage/${name}`
       : `/cloud/project/${projectId}/region/${region}/storageStandard/${name}`;
 
-  const { data } = await v6.put(url, { versioning });
+  const payload: any = {};
+  if (versioning) payload.versioning = versioning;
+  if (encryption) payload.encryption = encryption;
+
+  const { data } = await v6.put(url, payload);
 
   return data;
 };
@@ -136,6 +143,7 @@ export const createS3Storage = async ({
   region,
   encryption,
   versioning,
+  replication,
 }: {
   projectId: string;
   containerName: string;
@@ -143,6 +151,7 @@ export const createS3Storage = async ({
   ownerId: number;
   encryption: string;
   versioning: boolean;
+  replication?: Replication;
 }) => {
   const { data } = await v6.post<TStorage>(
     `/cloud/project/${projectId}/region/${region}/storage`,
@@ -152,6 +161,7 @@ export const createS3Storage = async ({
       encryption: {
         sseAlgorithm: encryption,
       },
+      replication,
       ...(versioning
         ? {
             versioning: {

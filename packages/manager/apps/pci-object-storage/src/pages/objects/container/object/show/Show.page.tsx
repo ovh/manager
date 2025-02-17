@@ -98,6 +98,9 @@ export default function ObjectPage() {
   const enableVersioningHref = useHref(
     `./enableVersioning?region=${searchParams.get('region')}`,
   );
+  const enableEncryptionHref = useHref(
+    `./enableEncryption?region=${searchParams.get('region')}`,
+  );
 
   const { data: region } = useGetRegion(
     project?.project_id,
@@ -272,7 +275,7 @@ export default function ObjectPage() {
         <>
           <div className="grid grid-cols-12 gap-4 border border-solid border-[#bef1ff] bg-[#f5feff] rounded-md mt-6 py-8 px-12">
             <div className="grid gap-2 col-span-12 md:col-span-4">
-              <div>
+              <div className="mb-4">
                 <OdsText>
                   <span
                     dangerouslySetInnerHTML={{
@@ -286,7 +289,7 @@ export default function ObjectPage() {
               </div>
 
               {!is.localZone && (
-                <div>
+                <div className="mb-4">
                   <OdsText>
                     <span
                       dangerouslySetInnerHTML={{
@@ -307,7 +310,7 @@ export default function ObjectPage() {
               )}
 
               {!is.localZone && (
-                <div>
+                <div className="mb-4">
                   <OdsText>
                     <span
                       dangerouslySetInnerHTML={{
@@ -324,7 +327,7 @@ export default function ObjectPage() {
               )}
 
               {displayEncryptionData && !is.encrypted && !is.localZone && (
-                <div>
+                <div className="mb-4">
                   <OdsText>
                     <span
                       dangerouslySetInnerHTML={{
@@ -334,11 +337,23 @@ export default function ObjectPage() {
                       }}
                     ></span>
                   </OdsText>
+
+                  {is.rightOffer && !is.localZone && !is.encrypted && (
+                    <div>
+                      <Links
+                        label={tContainer(
+                          'pci_projects_project_storages_containers_container_enable_encryption',
+                        )}
+                        type={LinkType.next}
+                        href={enableEncryptionHref}
+                      />
+                    </div>
+                  )}
                 </div>
               )}
 
               {displayEncryptionData && is.encrypted && (
-                <div>
+                <div className="mb-4">
                   <OdsText>
                     <span
                       dangerouslySetInnerHTML={{
@@ -379,8 +394,7 @@ export default function ObjectPage() {
                     )}
                   </OdsText>
                   <OdsBadge
-                    size="md"
-                    className="font-bold"
+                    size="sm"
                     label={tVersioning(
                       `pci_projects_project_storages_containers_update_versioning_${container.versioning.status}_label`,
                     )}
@@ -407,6 +421,52 @@ export default function ObjectPage() {
                     type={LinkType.next}
                     href={enableVersioningHref}
                   />
+                )}
+
+              {is.rightOffer &&
+                !is.localZone &&
+                container.regionDetails?.type ===
+                  OBJECT_CONTAINER_MODE_MULTI_ZONES && (
+                  <div className="flex gap-4 mb-4 mt-4">
+                    <OdsText>
+                      {tContainer(
+                        'pci_projects_project_storages_containers_container_offsite_replication_title',
+                      )}
+                    </OdsText>
+
+                    <OdsBadge
+                      size="sm"
+                      label={
+                        is.replicationRulesBannerShown
+                          ? tContainer(
+                              'pci_projects_project_storages_containers_container_offsite_replication_disabled',
+                            )
+                          : tContainer(
+                              'pci_projects_project_storages_containers_container_offsite_replication_enabled',
+                            )
+                      }
+                      color={(() => {
+                        if (!is.replicationRulesBannerShown) return 'success';
+                        if (is.replicationRulesBannerShown) return 'critical';
+
+                        return 'information';
+                      })()}
+                    ></OdsBadge>
+                    <div>
+                      <OdsIcon
+                        id="trigger-popover"
+                        name="circle-question"
+                        className="text-[var(--ods-color-information-500)]"
+                      />
+                      <OdsPopover triggerId="trigger-popover">
+                        <OdsText preset="caption">
+                          {tContainer(
+                            'pci_projects_project_storages_containers_container_offsite_replication_tooltip',
+                          )}
+                        </OdsText>
+                      </OdsPopover>
+                    </div>
+                  </div>
                 )}
             </div>
             <div className="grid col-span-12 md:col-span-8 gap-4">
