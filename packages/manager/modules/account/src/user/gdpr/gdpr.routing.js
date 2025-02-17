@@ -1,4 +1,8 @@
-import { CREATE_ERASURE_REQUEST_ACTION } from './gdpr.constants';
+import {
+  CREATE_ERASURE_REQUEST_ACTION,
+  TRACKING_PAGE_CATEGORY,
+  TRACKING_PAGE,
+} from './gdpr.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('account.user.gdpr', {
@@ -19,5 +23,14 @@ export default /* @ngInject */ ($stateProvider) => {
         .then((canManageGdprRequests) =>
           !canManageGdprRequests ? { state: 'account.user' } : false,
         ),
+    atInternet: {
+      ignore: true,
+    },
+    onEnter: /* @ngInject */ (atInternet) => {
+      atInternet.trackPage({
+        name: TRACKING_PAGE,
+        page_category: TRACKING_PAGE_CATEGORY,
+      });
+    },
   });
 };
