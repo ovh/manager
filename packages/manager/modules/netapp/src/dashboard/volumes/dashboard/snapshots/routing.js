@@ -158,9 +158,7 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
     },
     atInternet: {
-      rename: `${SNAPSHOT_TRACKING_PREFIX}netapp::listing::snapshots`,
-      ...SNAPSHOT_LISTING_TRACKING_CONTEXT,
-      page_category: 'listing',
+      ignore: true,
     },
   });
 };

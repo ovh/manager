@@ -9,6 +9,7 @@ export const SNAPSHOT_TYPE = {
 export const SNAPSHOT_TRACKING_PREFIX =
   'Storage_backup::storage_backup::netapp::';
 export const SNAPSHOT_LISTING_TRACKING_CONTEXT = {
+  page: { name: `${SNAPSHOT_TRACKING_PREFIX}volumes::listing::snapshots` },
   page_theme: 'Storage_backup',
   page_category: 'pop-up',
   level2: 130,
