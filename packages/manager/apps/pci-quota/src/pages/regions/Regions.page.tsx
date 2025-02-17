@@ -16,12 +16,12 @@ import {
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 import {
+  isDiscoveryProject,
   PciAnnouncementBanner,
   PciDiscoveryBanner,
   useProject,
 } from '@ovh-ux/manager-pci-common';
 import { useMedia } from 'react-use';
-import { isDiscoveryProject } from '@ovh-ux/manager-pci-common/src';
 import { AvailablePart } from '@/pages/regions/Available.part';
 import { ToAddPart } from '@/pages/regions/ToAdd.part';
 import { useGetAvailableRegions, useLocations } from '@/api/hooks/useRegions';
@@ -145,15 +145,15 @@ export default function RegionsPage(): JSX.Element {
         </OdsText>
       </div>
 
-      <div className={isMobile ? 'mb-5 sticky top-0 z-50' : ''}>
-        <PciDiscoveryBanner project={project} />
-      </div>
-
       <OdsText preset="paragraph" className="pt-6">
         {t('pci_projects_project_regions_description')}
       </OdsText>
 
-      {isDiscoveryProject(project) && (
+      <div className={isMobile ? 'mb-5 sticky top-0 z-50' : ''}>
+        <PciDiscoveryBanner project={project} />
+      </div>
+
+      {!isDiscoveryProject(project) && (
         <div>
           <OdsMessage
             color="information"

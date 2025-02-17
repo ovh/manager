@@ -5,6 +5,11 @@
 @tailwind components;
 @tailwind utilities;
 
+html,
+button {
+  font-family: var(--ods-font-family-default);
+}
+
 .shape-input-group-label {
   &::part(text) {
     @apply text-[#0050d7];
@@ -14,4 +19,8 @@
       @apply text-[#4d5592];
     }
   }
+}
+
+.font-bold-class::part(text) {
+  @apply font-bold;
 }

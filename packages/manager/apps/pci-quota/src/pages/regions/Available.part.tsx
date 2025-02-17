@@ -19,7 +19,7 @@ export const AvailablePart = ({
   return (
     <div>
       <div>
-        <OdsText preset="heading-6" className="text-[#00185e]">
+        <OdsText preset="heading-6">
           {t('pci_projects_project_regions_added_title')}
         </OdsText>
       </div>
