@@ -22,7 +22,12 @@
   "kube_common_node_pool_configure_false": " Create a cluster without a node pool",
   "kube_common_node_pool_estimated_cost": "Estimated monthly cost of the cluster:",
   "kube_common_node_pool_estimation_text": "This estimate does not include a potential Savings Plan discount.",
-  "kube_common_node_pool_estimation_price": "Node pools: £x.xx ex. VAT/month",
+  "kube_common_node_pool_estimation_price": "Node pools: {{estimation}}",
   "kube_common_node_pool_estimation_text_end": "The exact cost depends on the actual resource usage, which cannot be accurately estimated before a cluster is created.",
-  "kube_common_node_pool_size_title": "Node pool size"
+  "kube_common_node_pool_size_title": "Node pool size",
+  "kube_common_node_pool_desired_node": "Desired node",
+  "kube_common_node_pool_autoscaling": "Auto-scaling",
+  "kube_common_node_pool_localisation": "Location",
+  "kube_common_node_pool_model": "Model",
+  "kube_common_node_pool_liste": "List of node pools"
 }
