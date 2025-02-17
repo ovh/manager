@@ -11,8 +11,6 @@ export default {
     monthlyBilling: '=?',
     disabled: '<?',
     addons: '<?',
-    isLocalZone: '<',
-    hourlyPriceInformation: '<',
     onChange: '&',
     beta: '<',
   },

@@ -582,6 +582,21 @@ export default class PciProjectInstanceService {
       .then(({ data }) => data);
   }
 
+  getRegionsTypesAvailability(projectId) {
+    return this.getProductAvailability(
+      projectId,
+      this.coreConfig.getUser().ovhSubsidiary,
+      'instance',
+    ).then(({ plans }) => {
+      return plans
+        .flatMap((plan) => plan.regions)
+        .reduce((acc, region) => {
+          acc[region.type] = true;
+          return acc;
+        }, {});
+    });
+  }
+
   save(
     serviceName,
     {

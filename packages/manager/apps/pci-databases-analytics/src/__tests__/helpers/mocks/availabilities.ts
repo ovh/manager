@@ -49,6 +49,8 @@ export const mockedAvailabilities: database.Availability = {
   startDate: '1989/04/08',
   status: database.availability.StatusEnum.STABLE,
   stepDiskSize: 10,
+  planCode: 'mongodb-plan-flavor',
+  planCodeStorage: 'mongodb-plan-additionnal-storage-gb',
 };
 
 export const mockedSuggestions: database.availability.Suggestion = {
@@ -198,4 +200,6 @@ export const mockedAvailabilitiesUpdate: database.Availability = {
   startDate: '1989/04/08',
   status: database.availability.StatusEnum.STABLE,
   stepDiskSize: 10,
+  planCode: 'mongodb-plan-flavor',
+  planCodeStorage: 'mongodb-plan-additionnal-storage-gb',
 };

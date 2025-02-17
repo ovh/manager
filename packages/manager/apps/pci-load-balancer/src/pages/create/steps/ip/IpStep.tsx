@@ -20,13 +20,17 @@ import { TFloatingIp } from '@/api/data/floating-ips';
 import { TPrivateNetwork } from '@/api/data/network';
 import { defaultFloatingIps } from '@/api/hook/useFloatingIps';
 import { IpStepMessages } from '@/pages/create/steps/ip/IpStepMessages';
-import { AGORA_FLOATING_IP_REGEX } from '@/constants';
 
 export type TIpStepProps = {
   floatingIps: TFloatingIp[];
   privateNetworksList: TPrivateNetwork[];
   catalog: TCatalog;
   isLoading: boolean;
+};
+
+const FLOATING_IP_PLAN_CODE = {
+  region: 'floatingip.floatingip.hour.consumption',
+  'region-3-az': 'floatingip.floatingip.hour.consumption.3AZ',
 };
 
 export const IpStep = ({
@@ -54,6 +58,16 @@ export const IpStep = ({
     ],
     [floatingIps],
   );
+
+  const price = useMemo(() => {
+    const hourlyPrice = catalog?.addons.find(
+      (addon) => addon.planCode === FLOATING_IP_PLAN_CODE[store.region?.type],
+    )?.pricings[0].price;
+
+    return store.publicIp?.type === 'create' && hourlyPrice !== undefined
+      ? getFormattedHourlyCatalogPrice(hourlyPrice)
+      : '';
+  }, [store.publicIp, store.region, catalog, getFormattedHourlyCatalogPrice]);
 
   return (
     <StepComponent
@@ -138,18 +152,7 @@ export const IpStep = ({
         </OsdsFormField>
       )}
       {['create', 'none'].includes(store.publicIp?.type) && (
-        <IpStepMessages
-          type={store.publicIp?.type}
-          price={
-            store.publicIp?.type === 'create'
-              ? getFormattedHourlyCatalogPrice(
-                  catalog?.addons.filter((addon) =>
-                    addon.planCode.match(AGORA_FLOATING_IP_REGEX),
-                  )[0].pricings[0].price,
-                )?.split('/')[0]
-              : undefined
-          }
-        />
+        <IpStepMessages type={store.publicIp?.type} price={price} />
       )}
     </StepComponent>
   );

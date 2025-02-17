@@ -1,10 +1,4 @@
 import {
-  ODS_BUTTON_COLOR,
-  ODS_BUTTON_VARIANT,
-  ODS_MODAL_COLOR,
-  ODS_SPINNER_SIZE,
-} from '@ovhcloud/ods-components';
-import {
   OdsButton,
   OdsModal,
   OdsSpinner,
@@ -42,12 +36,9 @@ export function PciModal({
 
   return (
     <OdsModal
-      color={
-        type === 'warning'
-          ? ODS_MODAL_COLOR.warning
-          : ODS_MODAL_COLOR.information
-      }
+      color={type === 'warning' ? 'warning' : 'information'}
       data-testid="pciModal-modal"
+      isOpen
       onOdsClose={onClose}
     >
       <>
@@ -55,27 +46,30 @@ export function PciModal({
         <slot name="content">
           {isPending ? (
             <OdsSpinner
-              size={ODS_SPINNER_SIZE.md}
-              className="block text-center mt-6"
+              size="md"
+              className="block text-center mt-6 mb-8"
               data-testid="pciModal-spinner"
             />
           ) : (
-            <div className="mt-6">{children}</div>
+            <div className="mt-6 mb-8">{children}</div>
           )}
         </slot>
 
         <OdsButton
           label={cancelText || t('common_cancel')}
-          color={ODS_BUTTON_COLOR.primary}
-          variant={ODS_BUTTON_VARIANT.ghost}
+          color="primary"
+          variant="ghost"
           onClick={onCancel}
+          isDisabled={isPending}
+          slot="actions"
           data-testid="pciModal-button_cancel"
         />
         <OdsButton
           label={submitText || t('common_confirm')}
-          color={ODS_BUTTON_COLOR.primary}
+          color="primary"
           onClick={onConfirm}
-          isDisabled={isDisabled}
+          isDisabled={isDisabled || isPending}
+          slot="actions"
           data-testid="pciModal-button_submit"
         />
       </>

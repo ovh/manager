@@ -52,7 +52,7 @@ export const computeStoragePrice = ({
   storageMode = database.capabilities.engine.storage.StrategyEnum.distributed,
   additionalStorage = 0,
 }: ComputeStoragePriceProps) => {
-  if (!storagePricing)
+  if (!storagePricing?.hourly)
     return {
       hourly: {
         price: 0,

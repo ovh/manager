@@ -19,5 +19,6 @@
   "octavia_load_balancer_overview_config_private_network": "Privates Netzwerk",
   "octavia_load_balancer_overview_config_subnet": "Subnet",
   "octavia_load_balancer_overview_config_private_ip": "Private IP-Adresse",
-  "octavia_load_balancer_edit_name_success": "Der Name Ihres Loadbalancers wurde geändert."
+  "octavia_load_balancer_edit_name_success": "Der Name Ihres Loadbalancers wurde geändert.",
+  "octavia_load_balancer_overview_config_size_xl": "XL"
 }
