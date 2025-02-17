@@ -264,6 +264,7 @@
                 <oui-tile-definition
                     data-term="{{:: 'dedicatedCloud_nsx_edge_quantity' | translate }}"
                     data-description="{{:: $ctrl.datacenter.model.edgesCount }}"
+                    data-ng-if="!$ctrl.pollNsxTaskId"
                 >
                 </oui-tile-definition>
             </oui-tile>
