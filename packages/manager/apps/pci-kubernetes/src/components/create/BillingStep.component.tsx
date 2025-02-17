@@ -1,6 +1,4 @@
 import {
-  OsdsCheckbox,
-  OsdsCheckboxButton,
   OsdsIcon,
   OsdsLink,
   OsdsMessage,
@@ -8,10 +6,10 @@ import {
   OsdsTile,
 } from '@ovhcloud/ods-components/react';
 import {
-  ODS_CHECKBOX_BUTTON_SIZE,
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
   ODS_MESSAGE_TYPE,
+  ODS_TEXT_COLOR_INTENT,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
@@ -27,7 +25,6 @@ import {
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-import { ANTI_AFFINITY_MAX_NODES } from '@/constants';
 
 const checkedClass =
   'cursor-pointer font-bold bg-[--ods-color-blue-100] border-[--ods-color-blue-600]';
@@ -36,7 +33,7 @@ const uncheckedClass =
 const separatorClass = 'h-px my-5 bg-[#85d9fd] border-0';
 
 export type TBillingStepProps = {
-  antiAffinity: {
+  antiAffinity?: {
     isEnabled: boolean;
     isChecked: boolean;
     onChange: (val: boolean) => void;
@@ -65,45 +62,17 @@ export default function BillingStep(props: TBillingStepProps): JSX.Element {
 
   return (
     <>
-      <div className="mb-6">
-        <OsdsCheckbox
-          data-testid="checkbox"
-          name="kube_anti_affinity"
-          checked={props.antiAffinity.isChecked}
-          disabled={!props.antiAffinity.isEnabled}
-          onOdsCheckedChange={(e) =>
-            props.antiAffinity.onChange(e.detail.checked)
-          }
-          className="mb-4"
-        >
-          <OsdsCheckboxButton
-            interactive
-            size={ODS_CHECKBOX_BUTTON_SIZE.sm}
-            color={ODS_THEME_COLOR_INTENT.primary}
-          >
-            <div slot="end">
-              <OsdsText
-                color={ODS_THEME_COLOR_INTENT.text}
-                level={ODS_TEXT_LEVEL.body}
-                size={ODS_TEXT_SIZE._400}
-              >
-                {t('kubernetes_node_pool_anti_affinity')}
-              </OsdsText>
-              <OsdsText
-                color={ODS_THEME_COLOR_INTENT.text}
-                level={ODS_TEXT_LEVEL.body}
-                size={ODS_TEXT_SIZE._100}
-              >
-                {t('kubernetes_node_pool_anti_affinity_description', {
-                  maxNodes: ANTI_AFFINITY_MAX_NODES,
-                })}
-              </OsdsText>
-            </div>
-          </OsdsCheckboxButton>
-        </OsdsCheckbox>
-      </div>
-
       <div className="my-6">
+        <OsdsText
+          className="mb-4 font-bold block"
+          color={ODS_TEXT_COLOR_INTENT.text}
+          level={ODS_TEXT_LEVEL.heading}
+          size={ODS_TEXT_SIZE._400}
+        >
+          {tFlavourBilling(
+            'pci_projects_project_instances_configure_billing_type',
+          )}
+        </OsdsText>
         {props.monthlyBilling.isComingSoon ? (
           <OsdsMessage
             data-testid="coming_soon_message"

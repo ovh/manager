@@ -44,5 +44,6 @@
   "kube_add_billing_type_payment_method": "Vous serez facturé sur votre mode de paiement par défaut",
   "kube_add_billing_anti_affinity_title": "Facturation et anti-affinité",
   "kube_add_billing_anti_affinity_coming_soon_message_title": "Prix mensuels",
-  "kube_add_billing_anti_affinity_coming_soon_message_description": "Les tarifications mensuelles seront prochainement disponibles avec l'arrivée des Saving Plans."
+  "kube_add_billing_anti_affinity_coming_soon_message_description": "Les tarifications mensuelles seront prochainement disponibles avec l'arrivée des Saving Plans.",
+  "kubernetes_add_nodepool_name_placeholder": "Nom du pool de nœuds"
 }
