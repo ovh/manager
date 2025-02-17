@@ -32,15 +32,21 @@
         </div>
 
         <form name="confirmForm">
-            <input
-                type="text"
-                class="oui-input oui-input_xl mb-4"
-                name="confirm_code"
-                id="confirm_code"
-                data-ng-model="$ctrl.model.confirm_code"
-                required
-                ng-pattern="/^[^{}]*$/"
-            />
+            <oui-field
+                data-size="xl"
+                data-error-messages="{ 'pattern': ('gdpr_erasure_confirm_form_message_invalid_format' | translate) }"
+                class="mb-4"
+            >
+                <input
+                    type="text"
+                    class="oui-input"
+                    name="confirm_code"
+                    id="confirm_code"
+                    data-ng-model="$ctrl.model.confirm_code"
+                    required
+                    ng-pattern="/^[^<>]*$/"
+                />
+            </oui-field>
 
             <div class="mt-3">
                 <oui-button
