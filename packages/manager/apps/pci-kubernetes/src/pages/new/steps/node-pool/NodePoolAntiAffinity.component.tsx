@@ -26,7 +26,6 @@ const NodePoolAntiAffinity = ({
   isEnabled,
 }: NodePoolAntiAffinityProps) => {
   const { t } = useTranslation('billing-anti-affinity');
-  const { t: tNodePool } = useTranslation('node-pool');
 
   return (
     <div className="mb-6">
@@ -66,15 +65,6 @@ const NodePoolAntiAffinity = ({
           </OsdsText>
         </OsdsToggle>
       </OsdsFormField>
-      <p>
-        <OsdsText
-          level={ODS_TEXT_LEVEL.body}
-          size={ODS_TEXT_SIZE._400}
-          color={ODS_THEME_COLOR_INTENT.text}
-        >
-          {tNodePool('kubernetes_add_node_pool_description')}
-        </OsdsText>
-      </p>
     </div>
   );
 };

@@ -4,8 +4,8 @@ import {
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
   ODS_MESSAGE_TYPE,
-  ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
+import clsx from 'clsx';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import {
   OsdsFormField,
@@ -36,6 +36,15 @@ export interface AutoscalingState {
     max: number;
   };
   isAutoscale: boolean;
+}
+
+function calculateQuantity(
+  quantity: { min: number; desired: number },
+  maxValue: number,
+) {
+  if (quantity.min >= NODE_RANGE.MAX) return 0;
+  if (quantity.min >= maxValue) return maxValue;
+  return quantity.desired;
 }
 
 export interface AutoscalingProps {
@@ -77,6 +86,12 @@ export function Autoscaling({
       max: initialScaling ? initialScaling.max : NODE_RANGE.MAX,
     });
   }, []);
+
+  const hasError =
+    quantity.min >= NODE_RANGE.MAX ||
+    quantity.min >= maxValue ||
+    quantity.desired > maxValue ||
+    quantity.min > quantity.desired;
 
   return (
     <>
@@ -139,7 +154,7 @@ export function Autoscaling({
         )}
       </OsdsText>
       {isAutoscale && (
-        <div className="flex gap-4">
+        <div className={clsx('gap-4', hasError ? 'block' : 'flex')}>
           <QuantitySelector
             className="mt-8"
             label={t('kubernetes_node_pool_autoscaling_lowest_nodes_size')}
@@ -163,7 +178,7 @@ export function Autoscaling({
                 max,
               }))
             }
-            min={quantity.min >= maxValue ? maxValue : quantity.desired}
+            min={calculateQuantity(quantity, maxValue)}
             max={maxValue}
           />
         </div>
