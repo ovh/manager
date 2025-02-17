@@ -20,6 +20,10 @@ version_mrc() {
     exit 1
   fi
 
+  if [[ "${GIT_BRANCH}" == "maintenance/manager-react-components-v1.x" ]]; then
+    DRY_RELEASE=false # To release MRCv1
+  fi
+
   if [[ "${GIT_BRANCH}" != "maintenance/manager-react-components-v1.x" && ! "${DRY_RELEASE}" ]]; then
     printf "%s\n" "Only dry releases are allowed on side branches"
     exit 1
@@ -29,12 +33,12 @@ version_mrc() {
 
   if "${DRY_RELEASE}"; then
     printf "%s\n" "Dry releasing"
-    node_modules/.bin/lerna version --scope=@ovh-ux/manager-react-components --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --allow-branch="${GIT_BRANCH}" --yes
+    node_modules/.bin/lerna version --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --allow-branch="${GIT_BRANCH}" --yes
   else
     printf "%s\n" "Releasing"
     node_modules/.bin/lerna version --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --no-private --yes
   fi
-}
+} 
 
 get_changed_packages() {
   node_modules/.bin/lerna changed --all -p -l
