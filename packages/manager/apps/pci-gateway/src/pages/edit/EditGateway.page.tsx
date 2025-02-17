@@ -10,6 +10,7 @@ import {
   OsdsIcon,
   OsdsInput,
   OsdsLink,
+  OsdsMessage,
   OsdsSpinner,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
@@ -18,13 +19,15 @@ import {
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
   ODS_INPUT_TYPE,
   ODS_SPINNER_SIZE,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import {
   useHref,
@@ -38,6 +41,7 @@ import { useEditGateway, useGateway } from '@/api/hooks/useGateways';
 import { TSizeItem, useData } from '@/api/hooks/data';
 import { SizeLabelComponent } from '@/pages/edit/SizeLabel.component';
 import HidePreloader from '@/core/HidePreloader';
+import { RegionType } from '@/types/region';
 
 type TState = {
   size: TSizeItem;
@@ -46,9 +50,7 @@ type TState = {
 
 export default function EditGatewayPage(): JSX.Element {
   const { navigation } = useContext(ShellContext).shell;
-  const { t: tEdit } = useTranslation('edit');
-  const { t } = useTranslation('global');
-  const { t: tCommon } = useTranslation('common');
+  const { t } = useTranslation(['edit', 'common', 'add', 'global']);
   const { projectId } = useParams();
   const [searchParams] = useSearchParams();
   const { addError, addSuccess, clearNotifications } = useNotifications();
@@ -59,9 +61,19 @@ export default function EditGatewayPage(): JSX.Element {
 
   const sizes = useData(projectId);
 
+  const regionName = searchParams.get('region');
+
+  const region = useMemo(
+    () =>
+      sizes[0]?.availableRegions.find(
+        (availableRegion) => availableRegion.name === regionName,
+      ),
+    [sizes, regionName],
+  );
+
   const { data: gateway, isPending: isGatewayLoading } = useGateway(
     projectId,
-    searchParams.get('region'),
+    regionName,
     searchParams.get('gatewayId'),
   );
 
@@ -75,12 +87,12 @@ export default function EditGatewayPage(): JSX.Element {
 
   const { updateGateway, isPending: isGatewayUpdating } = useEditGateway({
     projectId,
-    regionName: searchParams.get('region'),
+    regionName,
     gatewayId: searchParams.get('gatewayId'),
     onSuccess: () => {
       clearNotifications();
       addSuccess(
-        tEdit('pci_projects_project_public_gateway_edit_success', {
+        t('pci_projects_project_public_gateway_edit_success', {
           name: state.name,
         }),
         true,
@@ -90,7 +102,7 @@ export default function EditGatewayPage(): JSX.Element {
     onError: () => {
       clearNotifications();
       addError(
-        tEdit('pci_projects_project_public_gateway_edit_error', {
+        t('pci_projects_project_public_gateway_edit_error', {
           name: state.name,
         }),
         true,
@@ -126,7 +138,7 @@ export default function EditGatewayPage(): JSX.Element {
             },
             {
               href: `${projectUrl}/gateway`,
-              label: tCommon('pci_projects_project_public_gateway_title'),
+              label: t('common:pci_projects_project_public_gateway_title'),
             },
           ]}
         />
@@ -145,7 +157,7 @@ export default function EditGatewayPage(): JSX.Element {
           color={ODS_THEME_COLOR_INTENT.primary}
           slot="start"
         />
-        {tEdit('pci_projects_project_public_gateway_edit_go_back')}
+        {t('pci_projects_project_public_gateway_edit_go_back')}
       </OsdsLink>
       {isGatewayLoading ? (
         <OsdsSpinner
@@ -170,14 +182,14 @@ export default function EditGatewayPage(): JSX.Element {
             isOpen
             isChecked={isGatewayUpdating}
             isLocked={isGatewayUpdating}
-            title={tEdit('pci_projects_project_public_gateway_edit_title')}
+            title={t('pci_projects_project_public_gateway_edit_title')}
             subtitle={
               <OsdsText
                 level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
                 size={ODS_THEME_TYPOGRAPHY_SIZE._400}
                 color={ODS_THEME_COLOR_INTENT.text}
               >
-                {tEdit('pci_projects_project_public_gateway_edit_info')}
+                {t('pci_projects_project_public_gateway_edit_info')}
               </OsdsText>
             }
             next={{
@@ -190,14 +202,16 @@ export default function EditGatewayPage(): JSX.Element {
                     };
                     updateGateway(payload);
                   },
-              label: tEdit(
+              label: t(
                 'pci_projects_project_public_gateway_edit_submit_action',
               ),
               isDisabled: false,
             }}
           >
             <OsdsFormField
-              error={state.name.length ? '' : t('common_field_error_required')}
+              error={
+                state.name.length ? '' : t('global:common_field_error_required')
+              }
             >
               <OsdsText
                 level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
@@ -205,13 +219,13 @@ export default function EditGatewayPage(): JSX.Element {
                 color={ODS_THEME_COLOR_INTENT.text}
                 slot="label"
               >
-                {tEdit(
+                {t(
                   'pci_projects_project_public_gateways_edit_public_gateway_field_label',
                 )}
               </OsdsText>
               <OsdsInput
                 value={state.name}
-                placeholder={tEdit(
+                placeholder={t(
                   'pci_projects_project_public_gateways_edit_public_gateway_field_placeholder',
                 )}
                 error={!state.name.length}
@@ -236,6 +250,21 @@ export default function EditGatewayPage(): JSX.Element {
                 setState({ ...state, size: item });
               }}
             />
+            {region?.type === RegionType['3AZ'] && (
+              <OsdsMessage
+                color={ODS_THEME_COLOR_INTENT.warning}
+                icon={ODS_ICON_NAME.WARNING}
+                className="mb-6"
+              >
+                <OsdsText
+                  level={ODS_TEXT_LEVEL.body}
+                  size={ODS_TEXT_SIZE._400}
+                  color={ODS_THEME_COLOR_INTENT.text}
+                >
+                  {t('add:pci_projects_project_public_gateways_3az_price')}
+                </OsdsText>
+              </OsdsMessage>
+            )}
           </StepComponent>
         </>
       )}
