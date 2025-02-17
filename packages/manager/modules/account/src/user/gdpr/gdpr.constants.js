@@ -95,6 +95,21 @@ export const SUPPORT_URLS = {
   viewTickets: `${rootSupportUrl}csm?id=csm_cases_requests&ovhSubsidiary=`,
 };
 
+const TRACKING_CHAPTER_1 = 'Hub';
+const TRACKING_CHAPTER_2 = 'account';
+const TRACKING_CHAPTER_3 = 'user';
+
+const TRACKING_PAGE_SUFFIX = 'user::listing::account-management';
+const TRACKING_CONFIRM_PAGE_SUFFIX =
+  'user::funnel::account-management::confirmation-code';
+export const TRACKING_PREFIX = `${TRACKING_CHAPTER_1}::${TRACKING_CHAPTER_2}::${TRACKING_CHAPTER_3}`;
+
+export const TRACKING_PAGE_CATEGORY = 'listing';
+export const TRACKING_CONFIRM_PAGE_CATEGORY = 'funnel';
+
+export const TRACKING_PAGE = `${TRACKING_PREFIX}::${TRACKING_PAGE_SUFFIX}`;
+export const TRACKING_CONFIRM_PAGE = `${TRACKING_PREFIX}::${TRACKING_CONFIRM_PAGE_SUFFIX}`;
+
 export default {
   GDPR_REQUEST_MANAGEMENT_ACTIONS,
   CREATE_ERASURE_REQUEST_ACTION,
@@ -104,4 +119,9 @@ export default {
   ERASURE_REQUEST_STATUS_MESSAGES_COLORS_MAP,
   ERASURE_INELIGIBILITY_REASON_MESSAGES_MAP,
   SUPPORT_URLS,
+  TRACKING_PAGE,
+  TRACKING_PAGE_CATEGORY,
+  TRACKING_CONFIRM_PAGE,
+  TRACKING_CONFIRM_PAGE_CATEGORY,
+  TRACKING_PREFIX,
 };

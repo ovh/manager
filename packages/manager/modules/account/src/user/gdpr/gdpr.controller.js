@@ -6,11 +6,21 @@ import {
   SUPPORT_URLS,
   CANCEL_ERASURE_REQUEST_MESSAGES_MAP,
   CONFIRMATION_EMAIL_ERASURE_REQUEST_MESSAGES_MAP,
+  TRACKING_PAGE_CATEGORY,
+  TRACKING_PAGE,
+  TRACKING_PREFIX,
 } from './gdpr.constants';
 
 export default class UserAccountGdprController {
   /* @ngInject */
-  constructor($translate, gdprService, Alerter, coreConfig, $state) {
+  constructor(
+    $translate,
+    gdprService,
+    Alerter,
+    coreConfig,
+    $state,
+    atInternet,
+  ) {
     this.$translate = $translate;
     this.gdprService = gdprService;
     this.Alerter = Alerter;
@@ -18,6 +28,7 @@ export default class UserAccountGdprController {
     this.nic = user?.nichandle;
     this.ovhSubsidiary = user?.ovhSubsidiary;
     this.$state = $state;
+    this.atInternet = atInternet;
   }
 
   $onInit() {
@@ -45,6 +56,7 @@ export default class UserAccountGdprController {
 
   askErasureConfirmation() {
     this.showErasureConfirmationModal = true;
+    this.trackAction('tile::button::delete_account');
   }
 
   closeErasureConfirmationModal() {
@@ -52,6 +64,7 @@ export default class UserAccountGdprController {
       return;
     }
     this.showErasureConfirmationModal = false;
+    this.trackAction('tile::button::delete_account::cancel');
   }
 
   submitErasureRequest() {
@@ -63,12 +76,13 @@ export default class UserAccountGdprController {
     ) {
       return;
     }
+    this.trackAction('tile::button::delete_account::confirm');
     this.loading.createErasureRequest = true;
     this.Alerter.resetMessage(GDPR_FEATURES_BANNER_CONTAINER);
     this.gdprService
       .createErasureRequest()
       .then(() => {
-        this.Alerter.info(
+        this.alerterInfo(
           this.buildSuccessMessage('gdpr_erasure_creation_success_emphasis'),
           GDPR_FEATURES_BANNER_CONTAINER,
         );
@@ -76,7 +90,7 @@ export default class UserAccountGdprController {
         this.getCapabilities();
       })
       .catch((error) => {
-        this.Alerter.error(
+        this.alerterError(
           this.buildErrorMessage(error, CREATE_ERASURE_REQUEST_MESSAGES_MAP),
           GDPR_FEATURES_BANNER_CONTAINER,
         );
@@ -134,11 +148,12 @@ export default class UserAccountGdprController {
   }
 
   sendErasureRequestConfirmationEmail(request) {
+    this.trackAction('datagrid::button::get-code::delete_account');
     this.Alerter.resetMessage(GDPR_FEATURES_BANNER_CONTAINER);
     this.gdprService
       .sendErasureRequestConfirmationEmail(request.publicId)
       .then(() => {
-        this.Alerter.info(
+        this.alerterInfo(
           `<strong>${this.$translate.instant(
             'gdpr_erasure_confirmation_email_sent_success_title',
           )}</strong> ${this.$translate.instant(
@@ -148,7 +163,7 @@ export default class UserAccountGdprController {
         );
       })
       .catch((error) => {
-        this.Alerter.error(
+        this.alerterError(
           this.buildErrorMessage(
             error,
             CONFIRMATION_EMAIL_ERASURE_REQUEST_MESSAGES_MAP,
@@ -159,11 +174,12 @@ export default class UserAccountGdprController {
   }
 
   cancelRequestErasure(request) {
+    this.trackAction('datagrid::button::cancel::delete_account');
     this.Alerter.resetMessage(GDPR_FEATURES_BANNER_CONTAINER);
     this.gdprService
       .cancelRequestErasure(request.publicId)
       .then(() => {
-        this.Alerter.info(
+        this.alerterInfo(
           this.buildSuccessMessage('gdpr_erasure_cancel_success'),
           GDPR_FEATURES_BANNER_CONTAINER,
         );
@@ -171,10 +187,38 @@ export default class UserAccountGdprController {
         this.getCapabilities();
       })
       .catch((error) => {
-        this.Alerter.error(
+        this.alerterError(
           this.buildErrorMessage(error, CANCEL_ERASURE_REQUEST_MESSAGES_MAP),
           GDPR_FEATURES_BANNER_CONTAINER,
         );
       });
+  }
+
+  trackAction(actionName) {
+    this.atInternet.trackClick({
+      name: `${TRACKING_PREFIX}::${actionName}`,
+      type: 'action',
+      page_category: TRACKING_PAGE_CATEGORY,
+      page: {
+        name: TRACKING_PAGE,
+      },
+    });
+  }
+
+  trackBannerDisplay(bannerType, status) {
+    this.atInternet.trackPage({
+      name: `${TRACKING_PREFIX}::banner::${bannerType}::delete-account_${status}`,
+      page_category: 'banner',
+    });
+  }
+
+  alerterInfo(message, alertId) {
+    this.Alerter.info(message, alertId);
+    this.trackBannerDisplay('info', 'success');
+  }
+
+  alerterError(message, alertId) {
+    this.Alerter.error(message, alertId);
+    this.trackBannerDisplay('error', 'error');
   }
 }
