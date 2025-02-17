@@ -1,9 +1,5 @@
-import { act, render, screen } from '@testing-library/react';
-import { describe, expect, it, vi } from 'vitest';
-import {
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
+import { render } from '@testing-library/react';
+import { describe, it, vi } from 'vitest';
 import React from 'react';
 import {
   QueryClient,
@@ -16,12 +12,23 @@ import {
   ShellContextType,
 } from '@ovh-ux/manager-react-shell-client';
 import {
-  ResourceStatus,
   useVeeamBackup,
   VeeamBackup,
   organizationList,
 } from '@ovh-ux/manager-module-vcd-api';
+import {
+  assertElementLabel,
+  assertElementVisibility,
+  assertTextVisibility,
+  getElementByTestId,
+} from '@ovh-ux/manager-core-test-utils';
 import OrganizationDataProtectionTile from './OrganizationDataProtectionTile.component';
+import { labels } from '../../../test-utils';
+import {
+  DATA_PROTECTION_BACKUP_LABEL,
+  DATA_PROTECTION_RECOVERY_LABEL,
+} from '../../../pages/dashboard/organization/organizationDashboard.constants';
+import TEST_IDS from '../../../utils/testIds.constants';
 
 vi.mock('@ovh-ux/manager-module-vcd-api', async (original) => {
   const actual: any = await original();
@@ -59,37 +66,18 @@ const renderComponent = () => {
 };
 
 describe('OrganizationDataProtectionTile component unit test suite', () => {
-  it('should define all sections with correct typo', async () => {
+  it('should define tileTitle and sections', async () => {
     // when
-    await act(async () => renderComponent());
-    const { getByText } = screen;
+    renderComponent();
 
     // then
-    const dataTitle = getByText('managed_vcd_dashboard_data_protection');
-    expect(dataTitle).toHaveAttribute('size', ODS_THEME_TYPOGRAPHY_SIZE._400);
-    expect(dataTitle).toHaveAttribute(
-      'level',
-      ODS_THEME_TYPOGRAPHY_LEVEL.heading,
-    );
+    const elements = [
+      labels.dashboard.managed_vcd_dashboard_data_protection,
+      DATA_PROTECTION_BACKUP_LABEL,
+      DATA_PROTECTION_RECOVERY_LABEL,
+    ];
 
-    // and
-    const backupTitle = getByText('Managed Backup');
-    expect(backupTitle).toHaveAttribute('size', ODS_THEME_TYPOGRAPHY_SIZE._200);
-    expect(backupTitle).toHaveAttribute(
-      'level',
-      ODS_THEME_TYPOGRAPHY_LEVEL.heading,
-    );
-
-    // and
-    const recoveryTitle = getByText('Managed Backup');
-    expect(recoveryTitle).toHaveAttribute(
-      'size',
-      ODS_THEME_TYPOGRAPHY_SIZE._200,
-    );
-    expect(recoveryTitle).toHaveAttribute(
-      'level',
-      ODS_THEME_TYPOGRAPHY_LEVEL.heading,
-    );
+    elements.forEach(async (element) => assertTextVisibility(element));
   });
 });
 
@@ -100,11 +88,11 @@ describe('OrganizationDataProtectionTile query state-based behavior unit test su
     } as UseQueryResult<ApiResponse<VeeamBackup>, ApiError>);
 
     // when
-    await act(async () => renderComponent());
-    const { getByTestId } = screen;
+    renderComponent();
 
     // then
-    expect(getByTestId('backupLoading')).toBeInTheDocument();
+    const loading = await getElementByTestId(TEST_IDS.backupBadgeLoading);
+    await assertElementVisibility(loading);
   });
 
   it('should display backupError when query isError', async () => {
@@ -113,13 +101,15 @@ describe('OrganizationDataProtectionTile query state-based behavior unit test su
     } as UseQueryResult<ApiResponse<VeeamBackup>, ApiError>);
 
     // when
-    await act(async () => renderComponent());
-    const { getByTestId } = screen;
+    renderComponent();
 
     // then
-    expect(getByTestId('backupError')).toHaveTextContent(
-      'managed_vcd_dashboard_backup_status_error',
-    );
+    const badge = await getElementByTestId(TEST_IDS.backupBadgeError);
+    await assertElementVisibility(badge);
+    await assertElementLabel({
+      element: badge,
+      label: 'managed_vcd_dashboard_backup_status_error',
+    });
   });
 
   it('should display noBackup when query isError 404', async () => {
@@ -129,25 +119,32 @@ describe('OrganizationDataProtectionTile query state-based behavior unit test su
     } as UseQueryResult<ApiResponse<VeeamBackup>, ApiError>);
 
     // when
-    await act(async () => renderComponent());
-    const { getByTestId } = screen;
+    renderComponent();
 
     // then
-    expect(getByTestId('noBackup')).toBeInTheDocument();
+    const badge = await getElementByTestId(TEST_IDS.backupBadgeNone);
+    await assertElementVisibility(badge);
+    await assertElementLabel({
+      element: badge,
+      label: 'managed_vcd_dashboard_backup_status_unsubscribed',
+    });
   });
 
   it('should display backupStatus when query isSuccess', async () => {
-    const testStatus: ResourceStatus = 'READY';
     vi.mocked(useVeeamBackup).mockReturnValue({
       isSuccess: true,
-      data: { data: { resourceStatus: testStatus } },
+      data: { data: { resourceStatus: 'READY' } },
     } as UseQueryResult<ApiResponse<VeeamBackup>, ApiError>);
 
     // when
-    await act(async () => renderComponent());
-    const { getByTestId } = screen;
+    renderComponent();
 
     // then
-    expect(getByTestId('backupStatus')).toBeInTheDocument();
+    const badge = await getElementByTestId(TEST_IDS.backupBadgeStatus);
+    await assertElementVisibility(badge);
+    await assertElementLabel({
+      element: badge,
+      label: 'managed_vcd_dashboard_backup_status_subscribed',
+    });
   });
 });

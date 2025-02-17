@@ -8,7 +8,6 @@ import {
   LinkType,
   Region,
 } from '@ovh-ux/manager-react-components';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import {
   vcdOrganizationListQueryKey,
   VCD_ORGANIZATION_ROUTE,
@@ -17,6 +16,7 @@ import {
 import DatagridContainer from '@/components/datagrid/container/DatagridContainer.component';
 import { urls } from '@/routes/routes.constant';
 import { MANAGED_VCD_LABEL } from '@/pages/dashboard/organization/organizationDashboard.constants';
+import TEST_IDS from '@/utils/testIds.constants';
 
 /* ========= datagrid cells ========== */
 const DatagridIdCell = (vdcOrg: VCDOrganization) => {
@@ -26,6 +26,7 @@ const DatagridIdCell = (vdcOrg: VCDOrganization) => {
       <Links
         onClickReturn={() => navigate(`/${vdcOrg.id}`)}
         label={vdcOrg.currentState?.fullName}
+        data-testid={TEST_IDS.listingVcdNameLink}
       ></Links>
     </DataGridTextCell>
   );
@@ -53,7 +54,7 @@ const DatagridWebInterfaceCell = (vdcOrg: VCDOrganization) => (
       href={vdcOrg.currentState?.webInterfaceUrl}
       type={LinkType.external}
       label={vdcOrg.currentState?.webInterfaceUrl}
-      target={OdsHTMLAnchorElementTarget._blank}
+      target="_blank"
     />
   </DataGridTextCell>
 );
