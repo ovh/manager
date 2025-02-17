@@ -27,7 +27,7 @@ export const useDatagridColumn = ({
     {
       id: 'name',
       cell: (props) => <DataGridTextCell>{props.name}</DataGridTextCell>,
-      label: t('listing:kube_list_name'),
+      label: t('add:kubernetes_add_name'),
     },
 
     {
@@ -51,8 +51,12 @@ export const useDatagridColumn = ({
     },
     {
       id: 'autoscaling',
-      cell: (props) => (
-        <DataGridTextCell>
+      cell: (props) =>
+        props.autoscale ? (
+          <DataGridTextCell>
+            Min {props.minNodes}, Max {props.maxNodes}
+          </DataGridTextCell>
+        ) : (
           <DataGridTextCell>
             <span className="whitespace-nowrap">
               <OsdsChip
@@ -68,8 +72,7 @@ export const useDatagridColumn = ({
               </OsdsChip>
             </span>
           </DataGridTextCell>
-        </DataGridTextCell>
-      ),
+        ),
       label: t('autoscaling:kubernetes_node_pool_autoscaling_autoscale'),
     },
     {
