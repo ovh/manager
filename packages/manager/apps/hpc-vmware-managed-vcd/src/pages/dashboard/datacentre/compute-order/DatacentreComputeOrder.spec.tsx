@@ -1,11 +1,15 @@
-import { screen, waitFor } from '@testing-library/dom';
+import { waitFor } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
 import {
   organizationList,
   datacentreList,
 } from '@ovh-ux/manager-module-vcd-api';
-import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
+import {
+  assertTextVisibility,
+  getElementByTestId,
+} from '@ovh-ux/manager-core-test-utils';
 import { labels, renderTest } from '../../../../test-utils';
+import TEST_IDS from '../../../../utils/testIds.constants';
 
 const orderCTA = labels.datacentresCompute.managed_vcd_vdc_compute_order_cta;
 const orderTitle = orderCTA;
@@ -17,8 +21,7 @@ describe('Datacentre Compute Order Page', () => {
       initialRoute: `/${organizationList[0].id}/datacentres/${datacentreList[0].id}/compute`,
     });
 
-    await assertTextVisibility(orderCTA);
-    const orderButton = screen.getByText(orderCTA);
+    const orderButton = await getElementByTestId(TEST_IDS.computeOrderCta);
     await waitFor(() => userEvent.click(orderButton));
 
     await assertTextVisibility(orderTitle);

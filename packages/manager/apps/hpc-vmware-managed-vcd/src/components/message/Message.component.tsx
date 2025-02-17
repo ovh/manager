@@ -1,22 +1,10 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
-import { ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
-import {
-  ODS_MESSAGE_TYPE,
-  ODS_TEXT_COLOR_INTENT,
-} from '@ovhcloud/ods-components';
+import { OdsMessage } from '@ovhcloud/ods-components/react';
 import { MessageType, useMessageContext } from '@/context/Message.context';
 
 type MessageProps = {
   message: MessageType;
-};
-
-const textColors = {
-  [ODS_MESSAGE_TYPE.success]: ODS_TEXT_COLOR_INTENT.success,
-  [ODS_MESSAGE_TYPE.error]: ODS_TEXT_COLOR_INTENT.error,
-  [ODS_MESSAGE_TYPE.warning]: ODS_TEXT_COLOR_INTENT.warning,
-  [ODS_MESSAGE_TYPE.info]: ODS_TEXT_COLOR_INTENT.info,
 };
 
 export const Message: React.FC<MessageProps> = ({ message }) => {
@@ -25,8 +13,8 @@ export const Message: React.FC<MessageProps> = ({ message }) => {
   const {
     content,
     uid,
-    type = ODS_MESSAGE_TYPE.info,
-    persistent,
+    type = 'information',
+    isDismissible,
     includedSubRoutes,
     excludedSubRoutes,
     duration,
@@ -50,22 +38,13 @@ export const Message: React.FC<MessageProps> = ({ message }) => {
   }, [duration]);
 
   return (
-    <OsdsMessage
+    <OdsMessage
       className="mb-2"
-      type={type}
-      {...(persistent
-        ? {}
-        : {
-            removable: true,
-            onOdsRemoveClick: () => clearMessage(uid),
-          })}
+      color={type}
+      isDismissible={isDismissible}
+      onOdsRemove={isDismissible ? () => clearMessage(uid) : null}
     >
-      <OsdsText
-        color={textColors[type] || ODS_TEXT_COLOR_INTENT.info}
-        size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-      >
-        {content}
-      </OsdsText>
-    </OsdsMessage>
+      {content}
+    </OdsMessage>
   );
 };

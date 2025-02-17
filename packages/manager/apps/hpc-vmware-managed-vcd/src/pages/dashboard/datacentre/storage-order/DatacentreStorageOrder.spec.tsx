@@ -1,15 +1,20 @@
-import { screen, waitFor } from '@testing-library/dom';
+import { waitFor } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
 import {
   organizationList,
   datacentreList,
   orderableResourceData,
 } from '@ovh-ux/manager-module-vcd-api';
-import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
+import {
+  assertElementLabel,
+  assertTextVisibility,
+  getElementByTestId,
+} from '@ovh-ux/manager-core-test-utils';
 import { labels, renderTest } from '../../../../test-utils';
 import { PERFORMANCE_CLASS_LABEL } from './datacentreStorageOrder.constants';
+import TEST_IDS from '../../../../utils/testIds.constants';
 
-const orderCTA = labels.datacentresStorage.managed_vcd_vdc_storage_order_cta;
+const orderLabel = labels.datacentresStorage.managed_vcd_vdc_storage_order_cta;
 const orderTitle = labels.datacentresOrder.managed_vcd_vdc_order_storage_title;
 const orderError = labels.datacentresOrder.managed_vcd_vdc_order_unavailable;
 
@@ -22,29 +27,25 @@ describe('Datacentre Storage Order Page', () => {
     const { name, performanceClass } = orderableResourceData.storage[0];
 
     // checks CTA
-    await assertTextVisibility(orderCTA);
-    const orderButton = screen.getByText(orderCTA);
+    const orderButton = await getElementByTestId(TEST_IDS.storageOrderCta);
+    await assertElementLabel({ element: orderButton, label: orderLabel });
     await waitFor(() => userEvent.click(orderButton));
 
     await assertTextVisibility(orderTitle);
 
     // check datagrid content
-    await assertTextVisibility(
+    const datagridElements = [
       labels.datacentresOrder.managed_vcd_vdc_order_type,
-    );
-    await assertTextVisibility(name);
-
-    await assertTextVisibility(PERFORMANCE_CLASS_LABEL);
-    await assertTextVisibility(
+      name,
+      PERFORMANCE_CLASS_LABEL,
       labels.datacentresOrder.managed_vcd_vdc_order_performance_class
         .toString()
         .replace('{{performanceClass}}', performanceClass),
-    );
-
-    await assertTextVisibility(
       labels.datacentresOrder.managed_vcd_vdc_order_price,
-    );
-    await assertTextVisibility('80.00 €');
+      '80.00 €',
+    ];
+
+    datagridElements.forEach(async (element) => assertTextVisibility(element));
   });
 
   it('display an error if orderableResource service is KO', async () => {
