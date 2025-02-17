@@ -3,7 +3,7 @@ import React from 'react';
 import { Outlet, useHref, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-import { Title } from '@ovh-ux/manager-react-components';
+import { ChangelogButton, Title } from '@ovh-ux/manager-react-components';
 import { MutationStatus, useMutationState } from '@tanstack/react-query';
 import {
   patchRancherServiceQueryKey,
@@ -21,6 +21,10 @@ import RancherDetail from './RancherDetail/RancherDetail.component';
 import TabBar from './TabBar/TabBar.component';
 import LinkIcon from '@/components/LinkIcon/LinkIcon.component';
 import useVersions from '@/data/hooks/useVersions/useVersions';
+import {
+  CHANGELOG_LINKS,
+  CHANGELOG_CHAPTERS,
+} from '@/utils/changelog.constants';
 
 export type DashboardTabItemProps = {
   name: string;
@@ -111,8 +115,16 @@ const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs, rancher }) => {
 
   return (
     <>
-      <div className="py-4 overflow-hidden text-ellipsis">
-        <Title>{rancher.currentState.name}</Title>
+      <div className="py-4 text-ellipsis">
+        <div className="flex justify-between align-items-center">
+          <Title>{rancher.currentState.name}</Title>
+          <div className="flex flex-wrap justify-end gap-1">
+            <ChangelogButton
+              links={CHANGELOG_LINKS}
+              chapters={CHANGELOG_CHAPTERS}
+            />
+          </div>
+        </div>
       </div>
       <LinkIcon
         href={hrefPrevious}

@@ -15,6 +15,7 @@ import {
   Description,
   RedirectionGuard,
   Region,
+  ChangelogButton,
 } from '@ovh-ux/manager-react-components';
 import {
   ODS_MESSAGE_TYPE,
@@ -40,6 +41,7 @@ import { Loading } from '@/components/Loading/Loading';
 import { BackupStatusBadge } from '@/components/BackupStatus/BackupStatusBadge.component';
 import useVeeamBackupConsumption from '@/data/hooks/useVeeamBackupConsumption';
 import { VEEAM_BACKUP_CONSUMPTION_PLAN_CODE } from '@/pages/dashboard/Dashboard.constants';
+import { CHANGELOG_LINKS } from '@/constants';
 
 export default function DashboardPage() {
   const { id } = useParams();
@@ -61,13 +63,16 @@ export default function DashboardPage() {
     );
     return { ...offer, usedSpaceInGB: consumption?.quantity ?? 0 };
   };
+  
+  const header = {
+    title: displayName,
+    description: displayName !== data?.data?.id ? data?.data?.id : null,
+    changelogButton: <ChangelogButton links={CHANGELOG_LINKS} />,
+  };
 
   return (
     <BaseLayout
-      header={{
-        title: displayName,
-        description: displayName !== data?.data?.id ? data?.data?.id : null,
-      }}
+      header={header}
       breadcrumb={<Breadcrumb />}
       message={
         <>

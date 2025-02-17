@@ -2,6 +2,8 @@ import { Suspense, useContext, useEffect, useRef, useState } from 'react';
 import { Outlet, useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
+  ChangelogButton,
+  ChangelogLinks,
   Datagrid,
   FilterAdd,
   FilterList,
@@ -40,6 +42,9 @@ import { useDatagridColumn } from '@/hooks/useDatagridColumn';
 
 import HidePreloader from '@/core/HidePreloader';
 import { useAllVolumes, useVolumes } from '@/api/hooks/useVolume';
+
+import { CHANGELOG_CHAPTERS } from '@/tracking.constants';
+import { CHANGELOG_LINKS } from '@/constants';
 
 export default function ListingPage() {
   const { t } = useTranslation('common');
@@ -113,6 +118,12 @@ export default function ListingPage() {
           <Headers
             title={t('pci_projects_project_storages_blocks_title')}
             headerButton={<PciGuidesHeader category="instances" />}
+            changelogButton={
+              <ChangelogButton
+                links={CHANGELOG_LINKS}
+                chapters={CHANGELOG_CHAPTERS}
+              />
+            }
           />
         </div>
         <OsdsDivider></OsdsDivider>

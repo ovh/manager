@@ -1,5 +1,6 @@
 import { useProject } from '@ovh-ux/manager-pci-common';
 import {
+  ChangelogButton,
   Headers,
   PciGuidesHeader,
   useProjectUrl,
@@ -18,8 +19,9 @@ import {
 } from 'react-router-dom';
 import TabsPanel from '@/components/detail/TabsPanel.component';
 import { useKubeDetail } from '@/api/hooks/useKubernetes';
-import { TRACKING_TABS } from '@/tracking.constants';
+import { TRACKING_TABS, CHANGELOG_CHAPTERS } from '@/tracking.constants';
 import { useAppStore } from '@/store';
+import { CHANGELOG_LINKS } from '@/constants';
 import { REFETCH_INTERVAL_DURATION } from '@/helpers';
 
 export default function DetailPage() {
@@ -109,9 +111,17 @@ export default function DetailPage() {
         <Headers
           title={kubeDetail?.name}
           headerButton={
-            <div className="min-w-[7rem]">
-              <PciGuidesHeader category="kubernetes" />
-            </div>
+            <>
+              <div className="min-w-[7rem]">
+                <PciGuidesHeader category="kubernetes" />
+              </div>
+            </>
+          }
+          changelogButton={
+            <ChangelogButton
+              links={CHANGELOG_LINKS}
+              chapters={CHANGELOG_CHAPTERS}
+            />
           }
         />
       </div>

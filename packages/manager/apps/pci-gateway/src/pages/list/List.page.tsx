@@ -1,4 +1,5 @@
 import {
+  ChangelogButton,
   Datagrid,
   FilterAdd,
   FilterList,
@@ -43,6 +44,8 @@ import { useAggregatedGateway } from '@/api/hooks/useGateway';
 import ListGuard from '@/pages/list/ListGuard';
 import { useDatagridColumn } from '@/hooks/useDatagridColumn';
 import HidePreloader from '@/core/HidePreloader';
+import { CHANGELOG_CHAPTERS } from '@/tracking.constants';
+import { CHANGELOG_LINKS } from '@/constants';
 
 export default function ListingPage() {
   const { t } = useTranslation('common');
@@ -96,6 +99,10 @@ export default function ListingPage() {
             title={t('pci_projects_project_public_gateway_title')}
             description={t('pci_projects_project_public_gateways_intro_part_1')}
             headerButton={<PciGuidesHeader category="instances" />}
+            changelogButton={<ChangelogButton
+              links={CHANGELOG_LINKS}
+              chapters={CHANGELOG_CHAPTERS}
+            />}
           />
           <OsdsText
             color={ODS_THEME_COLOR_INTENT.text}

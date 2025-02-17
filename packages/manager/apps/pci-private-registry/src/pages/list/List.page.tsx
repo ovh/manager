@@ -1,6 +1,7 @@
 import { FilterComparator } from '@ovh-ux/manager-core-api';
 import { useProject } from '@ovh-ux/manager-pci-common';
 import {
+  ChangelogButton,
   Datagrid,
   FilterList,
   Headers,
@@ -36,6 +37,8 @@ import {
   useAllRegistries,
 } from '@/api/hooks/useRegistry';
 import { useDatagridColumn } from './useDatagridColumn';
+import { CHANGELOG_CHAPTERS } from '@/tracking.constants';
+import { CHANGELOG_LINKS } from '@/constants';
 
 export default function ListPage() {
   const { t } = useTranslation();
@@ -87,9 +90,17 @@ export default function ListPage() {
         <Headers
           title={t('private_registry_title')}
           headerButton={
-            <div className="min-w-[7rem]">
-              <PciGuidesHeader category="private_registry" />
-            </div>
+            <>
+              <div className="min-w-[7rem]">
+                <PciGuidesHeader category="private_registry" />
+              </div>
+            </>
+          }
+          changelogButton={
+            <ChangelogButton
+              links={CHANGELOG_LINKS}
+              chapters={CHANGELOG_CHAPTERS}
+            />
           }
         />
       </div>
