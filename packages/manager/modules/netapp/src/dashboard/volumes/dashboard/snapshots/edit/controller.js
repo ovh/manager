@@ -1,11 +1,16 @@
 import { PATTERN } from './constants';
+import {
+  SNAPSHOT_TRACKING_PREFIX,
+  SNAPSHOT_LISTING_TRACKING_CONTEXT,
+} from '../constants';
 
 export default class NetAppVolumesDashboardSnapshotsEditController {
   /* @ngInject */
-  constructor($http, $translate) {
+  constructor($http, $translate, atInternet) {
     this.$http = $http;
     this.$translate = $translate;
     this.PATTERN = PATTERN;
+    this.atInternet = atInternet;
   }
 
   $onInit() {
@@ -14,6 +19,10 @@ export default class NetAppVolumesDashboardSnapshotsEditController {
     this.id = id;
     this.name = name;
     this.description = description;
+    this.atInternet.trackPage({
+      name: `${SNAPSHOT_TRACKING_PREFIX}netapp::pop-up::edit::snapshot`,
+      ...SNAPSHOT_LISTING_TRACKING_CONTEXT,
+    });
   }
 
   editSnapshot() {

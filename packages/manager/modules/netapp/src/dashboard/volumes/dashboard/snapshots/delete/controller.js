@@ -1,12 +1,22 @@
+import {
+  SNAPSHOT_TRACKING_PREFIX,
+  SNAPSHOT_LISTING_TRACKING_CONTEXT,
+} from '../constants';
+
 export default class NetAppVolumesDashboardSnapshotsDeleteController {
   /* @ngInject */
-  constructor($http, $translate) {
+  constructor($http, $translate, atInternet) {
     this.$http = $http;
     this.$translate = $translate;
+    this.atInternet = atInternet;
   }
 
   $onInit() {
     this.isDeleting = false;
+    this.atInternet.trackPage({
+      name: `${SNAPSHOT_TRACKING_PREFIX}netapp::pop-up::delete::snapshot`,
+      ...SNAPSHOT_LISTING_TRACKING_CONTEXT,
+    });
   }
 
   deleteSnapshot() {
