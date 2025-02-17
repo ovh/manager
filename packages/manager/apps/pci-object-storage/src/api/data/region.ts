@@ -7,7 +7,7 @@ export type TRegion = {
   name: string;
   services: { name: string; status: 'UP'; endpoint: string }[];
   status: 'UP';
-  type: 'region' | 'localzone';
+  type: 'region' | 'localzone' | 'region-3-az';
 };
 
 export const getRegion = async (

@@ -30,6 +30,7 @@ import { paginateResults } from '@/helpers';
 import { addUser, deleteSwiftObject, TStorageObject } from '../data/objects';
 import { getContainerQueryKey } from './useContainer';
 import { useGetRegion } from './useRegion';
+import { Replication } from '@/pages/objects/container/new/useContainerCreationStore';
 
 export const sortStorages = (sorting: ColumnSort, storages: TStorage[]) => {
   const order = sorting.desc ? -1 : 1;
@@ -315,13 +316,16 @@ export const useUpdateStorage = ({
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
-    mutationFn: async ({ versioning }: { versioning: { status: string } }) =>
+    mutationFn: async (updateData: {
+      versioning?: { status: string };
+      encryption?: { sseAlgorithm: string };
+    }) =>
       updateStorage({
         projectId,
         region,
         name,
-        versioning,
         s3StorageType,
+        ...updateData,
       }),
     onError,
     onSuccess: () => {
@@ -338,8 +342,10 @@ export const useUpdateStorage = ({
   });
 
   return {
-    updateContainer: ({ versioning }: { versioning: { status: string } }) =>
-      mutation.mutate({ versioning }),
+    updateContainer: (updateData: {
+      versioning?: { status: string };
+      encryption?: { sseAlgorithm: string };
+    }) => mutation.mutate(updateData),
     ...mutation,
   };
 };
@@ -353,6 +359,7 @@ export interface UseCreateContainerArgs {
   encryption?: string;
   versioning?: boolean;
   containerType?: string;
+  replication?: Replication;
 }
 
 export const useCreateContainer = ({
@@ -383,6 +390,7 @@ export const useCreateContainer = ({
           region: args.region,
           encryption: args.encryption,
           versioning: args.versioning,
+          replication: args.replication,
         });
       }
       if (!result) throw new Error(`${args.offer}: unknown container offer!`);
