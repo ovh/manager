@@ -1,13 +1,10 @@
 import React from 'react';
-import {
-  ActionMenu,
-  DashboardTile,
-  Description,
-} from '@ovh-ux/manager-react-components';
+import { ActionMenu, DashboardTile } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { useParams } from 'react-router-dom';
 import { useVcdOrder } from '@ovh-ux/manager-module-vcd-api';
+import { OdsText } from '@ovhcloud/ods-components/react';
+import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { WINDOWS_LICENSE_PLANCODE } from '@/utils/planCode.constants';
 
 export default function OrganizationOptionsTile({
@@ -31,15 +28,19 @@ export default function OrganizationOptionsTile({
             id: 'license',
             label: t('managed_vcd_dashboard_windows_license'),
             value: isLicenseActive ? (
-              <Description>
+              <OdsText>
                 {t('managed_vcd_dashboard_windows_license_active')}
-              </Description>
+              </OdsText>
             ) : (
               <div className="flex justify-between items-center">
-                <Description>
+                <OdsText>
                   {t('managed_vcd_dashboard_windows_license_unactive')}
-                </Description>
+                </OdsText>
                 <ActionMenu
+                  id="license_menu"
+                  isCompact
+                  variant={ODS_BUTTON_VARIANT.ghost}
+                  icon={ODS_ICON_NAME.ellipsisVertical}
                   items={[
                     {
                       id: 1,
@@ -49,8 +50,6 @@ export default function OrganizationOptionsTile({
                       onClick: redirectToOrder,
                     },
                   ]}
-                  isCompact
-                  icon={ODS_ICON_NAME.ELLIPSIS_VERTICAL}
                 />
               </div>
             ),

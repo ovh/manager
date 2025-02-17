@@ -6,10 +6,10 @@ export const MessageList: React.FC = () => {
   const { messages } = useMessageContext();
 
   return (
-    <>
+    <div className="flex flex-col">
       {messages.map((message) => (
         <Message key={message.uid} message={message} />
       ))}
-    </>
+    </div>
   );
 };
