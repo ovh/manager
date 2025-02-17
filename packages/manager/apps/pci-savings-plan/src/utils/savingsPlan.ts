@@ -80,13 +80,6 @@ export const getActiveSavingsPlan = (savingsPlan: SavingsPlanService[]) =>
     (plan) => plan.periodEndAction === SavingsPlanPlanedChangeStatus.REACTIVATE,
   );
 
-export const getBigestConsumption = (
-  consumption: SavingsPlanFlavorConsumption[],
-) =>
-  [...consumption]?.sort(
-    (a, b) => b.periods[0]?.consumption_size - a.periods[0]?.consumption_size,
-  )?.[0];
-
 // We don't have a better way to check that, api return only a specific code and not an id related to scope (instance, rancher),
 // So if we have number in the flavor (b3-8, c3-16) it's an instance else it's a Rancher
 export const isInstanceFlavor = (flavor: string) => /\d/.test(flavor);
