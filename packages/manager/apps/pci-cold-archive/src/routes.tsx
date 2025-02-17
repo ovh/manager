@@ -73,19 +73,23 @@ export default (
     <Route path="notFound" element={<>Page not found</>}></Route>
     <Route path={ROUTE_PATHS.ONBOARDING} Component={OnboardingPage} />
     <Route
-      id="new"
+      id="add"
       path={ROUTE_PATHS.NEW_CONTAINER}
       Component={NewContainerPage}
     />
     <Route path={ROUTE_PATHS.STORAGES} Component={StoragePage}>
-      <Route id="" path={ROUTE_PATHS.STORAGES} Component={ListingContainerPage}>
+      <Route
+        id="containers"
+        path={ROUTE_PATHS.STORAGES}
+        Component={ListingContainerPage}
+      >
         <Route
-          id="manage"
+          id="manage-container"
           path={ROUTE_PATHS.MANAGE_CONTAINER}
           Component={ManageContainerPage}
         />
         <Route
-          id="delete"
+          id="delete-container"
           path={ROUTE_PATHS.DELETE_CONTAINER}
           Component={DeleteContainerPage}
         />
@@ -105,18 +109,18 @@ export default (
           Component={ArchivePage}
         />
         <Route
-          id="edit"
+          id="edit-retention"
           path={ROUTE_PATHS.EDIT_RETENTION}
           Component={EditRetentionPage}
         />
         <Route
-          id="flush"
+          id="flush-container"
           path={ROUTE_PATHS.FLUSH_ARCHIVE}
           Component={FlushArchivePage}
         />
       </Route>
       <Route
-        id="users"
+        id="add_user"
         path={ROUTE_PATHS.USERS_LISTING}
         Component={UserListingPage}
       >
@@ -126,16 +130,17 @@ export default (
           Component={UserCreationPage}
         />
         <Route
-          id="delete-user"
+          id="delete_s3_policy"
           path={ROUTE_PATHS.USER_DELETE}
           Component={UserDeletionPage}
         />
         <Route
+          id="import_s3_policy"
           path={ROUTE_PATHS.USER_IMPORT_POLICY}
           Component={UserImportPolicyPage}
         />
         <Route
-          id="rclone"
+          id="download_rClone_file"
           path={ROUTE_PATHS.USER_R_CLONE_DOWNLOAD}
           Component={UserRCloneDownloadPage}
         />
