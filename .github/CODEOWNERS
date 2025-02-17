@@ -19,7 +19,7 @@
 /packages/manager/modules/manager-pci-common/ @fredericvilcot @frenautvh
 
 # Manager-components
-/packages/manager-components @ovh/team-manager-control-tower
+/packages/manager-components @ovh/dev-manager-control-tower
 
 # Continuous Integration and scripts
 /scripts/start-application.js @ovh/team-manager-dev-angularjs @ovh/team-manager-dev-reactjs
