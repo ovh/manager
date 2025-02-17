@@ -1,6 +1,6 @@
-import { ErrorBoundary } from '@/pages/Layout';
 import { lazy } from 'react';
 import { Route } from 'react-router-dom';
+import { ErrorBoundary } from '@/pages/Layout';
 
 export const ROUTE_PATHS = {
   ROOT: '/pci/projects/:projectId/storages/cold-archive',
