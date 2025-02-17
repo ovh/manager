@@ -10,10 +10,19 @@ import {
 
 export default class CheckBGPPeeringCtrl {
   /* @ngInject */
-  constructor(atInternet, $state, $translate, cloudConnectService) {
+  constructor(
+    atInternet,
+    $state,
+    $timeout,
+    $translate,
+    cloudConnectService,
+    $sce,
+  ) {
     this.atInternet = atInternet;
     this.$translate = $translate;
     this.$state = $state;
+    this.$sce = $sce;
+    this.$timeout = $timeout;
     this.cloudConnectService = cloudConnectService;
     this.diagnosticTypes = diagnosticTypes;
   }
@@ -22,14 +31,21 @@ export default class CheckBGPPeeringCtrl {
     this.diagnosticName = this.isExtra ? 'diagPeeringExtra' : 'diagPeering';
     this.diagnosticType = this.diagnosticTypes.default;
     this.isLoading = false;
+    this.optionSelected = false;
+  }
+
+  selectOption() {
+    this.optionSelected = true;
   }
 
   cancel() {
-    this.atInternet.trackClick({
-      name: `${DIAGNOSTIC_TRACKING_PREFIX}pop-up::button::check_bgp-peering::cancel`,
-      type: 'action',
-      ...DIAGNOSTIC_DASHBOARD_TRACKING_CONTEXT,
-    });
+    if (this.optionSelected) {
+      this.atInternet.trackClick({
+        name: `${DIAGNOSTIC_TRACKING_PREFIX}pop-up::button::check_bgp-peering::cancel`,
+        type: 'action',
+        ...DIAGNOSTIC_DASHBOARD_TRACKING_CONTEXT,
+      });
+    }
     return this.goBack();
   }
 
@@ -57,14 +73,26 @@ export default class CheckBGPPeeringCtrl {
             ...DIAGNOSTIC_DASHBOARD_TRACKING_CONTEXT,
           });
           return this.goBack(
-            this.$translate.instant('cloud_connect_bgp_peering_success', {
-              link: this.$state.href('cloud-connect.details.diagnostics', {
-                cloudConnect: this.cloudConnectService,
+            this.$sce.trustAsHtml(
+              this.$translate.instant('cloud_connect_bgp_peering_success', {
+                link: this.$state.href('cloud-connect.details.diagnostics', {
+                  cloudConnect: this.cloudConnectService,
+                }),
               }),
-            }),
+            ),
             'success',
             false,
-          );
+          ).then(() => {
+            this.$timeout(() => {
+              $('#diagnostic-success-link').bind('click', () => {
+                this.atInternet.trackClick({
+                  name: `${DIAGNOSTIC_TRACKING_PREFIX}banner::link::go-to-diagnostic-results-${this.diagnosticType}`,
+                  type: 'action',
+                  ...DIAGNOSTIC_DASHBOARD_TRACKING_CONTEXT,
+                });
+              });
+            });
+          });
         }
         if (status === ApiDiagnosticStatus.DENIED) {
           return this.goBack(

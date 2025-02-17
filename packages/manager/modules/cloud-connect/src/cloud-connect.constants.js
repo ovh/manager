@@ -76,6 +76,14 @@ export const DIAGNOSTIC_LISTING_TRACKING_CONTEXT = {
   level2: 99,
 };
 
+export const CLOUD_CONNECT_TRACKING_PREFIX =
+  'Network::network::cloud-connect::';
+export const CLOUD_CONNECT_LISTING_TRACKING_CONTEXT = {
+  page_theme: 'Network',
+  page_category: 'listing',
+  level2: 99,
+};
+
 export const DIAGNOSTIC_DASHBOARD_TRACKING_CONTEXT = {
   page_theme: 'Network',
   page_category: 'dashboard',
@@ -90,6 +98,8 @@ export default {
   ASN_MIN,
   IPV4_BLOCK_REGEX,
   STATUS,
+  CLOUD_CONNECT_TRACKING_PREFIX,
+  CLOUD_CONNECT_LISTING_TRACKING_CONTEXT,
   CHANGE_BANDWIDTH_ALLOWED_OFFERS_REGEX,
   DIAGNOSTIC_TRACKING_PREFIX,
   DIAGNOSTIC_LISTING_TRACKING_CONTEXT,

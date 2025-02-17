@@ -1,6 +1,6 @@
 import {
-  DIAGNOSTIC_TRACKING_PREFIX,
-  DIAGNOSTIC_DASHBOARD_TRACKING_CONTEXT,
+  CLOUD_CONNECT_TRACKING_PREFIX,
+  CLOUD_CONNECT_LISTING_TRACKING_CONTEXT,
 } from '../../cloud-connect.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -163,8 +163,8 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: () => null,
     },
     atInternet: {
-      rename: `${DIAGNOSTIC_TRACKING_PREFIX}cloud-connect::dashboard::index`,
-      ...DIAGNOSTIC_DASHBOARD_TRACKING_CONTEXT,
+      rename: `${CLOUD_CONNECT_TRACKING_PREFIX}cloud-connect::dashboard::index`,
+      ...CLOUD_CONNECT_LISTING_TRACKING_CONTEXT,
     },
   });
 };
