@@ -1,6 +1,5 @@
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { PciModal } from '@ovh-ux/manager-pci-common';
-import { useNotifications } from '@ovh-ux/manager-react-components';
 import {
   OdsFormField,
   OdsMessage,
@@ -10,18 +9,21 @@ import {
 
 import { add } from 'date-fns';
 import { useState } from 'react';
-import { Translation, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useGetArchiveByName, useStartArchive } from '@/api/hooks/useArchive';
 import LabelComponent from '@/components/Label.component';
-import { COLD_ARCHIVE_TRACKING } from '@/tracking.constants';
 import { useFormattedDate } from '@/hooks/useFormattedDate';
+import { useNotifications } from '@/hooks/useNotifications';
 import { useTracking } from '@/hooks/useTracking';
+import { COLD_ARCHIVE_TRACKING } from '@/tracking.constants';
 
 export default function EditRetentionPage() {
   const { t } = useTranslation('containers/edit-retention');
 
-  const { addSuccess, addError } = useNotifications();
+  const { addSuccessMessage, addErrorMessage } = useNotifications({
+    ns: 'containers/edit-retention',
+  });
 
   const { projectId, archiveName } = useParams();
 
@@ -51,40 +53,23 @@ export default function EditRetentionPage() {
 
   const { startArchive, isPending: isPendingStartArchive } = useStartArchive({
     projectId,
-    onError(error: ApiError) {
-      addError(
-        <Translation ns="containers/edit-retention">
-          {(_t) =>
-            _t(
-              'pci_projects_project_storages_cold_archive_containers_container_edit_retention_error_message',
-              {
-                containerName: archiveName,
-                message:
-                  error?.response?.data?.message || error?.message || null,
-              },
-            )
-          }
-        </Translation>,
-        true,
-      );
+    onError: (error: ApiError) => {
+      addErrorMessage({
+        i18nKey:
+          'pci_projects_project_storages_cold_archive_containers_container_edit_retention_error_message',
+        values: { containerName: archiveName },
+        error,
+      });
 
       trackErrorPage();
       goBack();
     },
     onSuccess() {
-      addSuccess(
-        <Translation ns="containers/edit-retention">
-          {(_t) =>
-            _t(
-              'pci_projects_project_storages_cold_archive_containers_container_edit_retention_success_message',
-              {
-                containerName: archiveName,
-              },
-            )
-          }
-        </Translation>,
-        true,
-      );
+      addSuccessMessage({
+        i18nKey:
+          'pci_projects_project_storages_cold_archive_containers_container_edit_retention_success_message',
+        values: { containerName: archiveName },
+      });
 
       trackSuccessPage();
       goBack();
@@ -104,7 +89,6 @@ export default function EditRetentionPage() {
   const onClose = onCancel;
 
   const isPending = !archive || isPendingStartArchive;
-
   const isDisabled = isPending || hasWarning || !lockedUntilDays;
 
   return (
