@@ -30,7 +30,7 @@ export function VersionAndUpdatePolicyStep({
       <div className={clsx(step.isLocked && 'hidden')}>
         <VersionSelector
           key={version}
-          versionSelected={version as string}
+          versionSelected={version}
           onSelectVersion={setVersion}
         />
         <UpdatePolicySelector policy={policy} onPolicyChange={setPolicy} />

@@ -16,10 +16,10 @@ export const useDatagridColumn = ({
 }) => {
   const { t } = useTranslation([
     'node-pool',
+    'add',
     'kube-nodes',
     'autoscaling',
     'flavor-billing',
-    'listing',
     'billing-anti-affinity',
   ]);
 
