@@ -1,4 +1,4 @@
-import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components';
+import { OdsMessageColor } from '@ovhcloud/ods-components';
 import React, {
   createContext,
   FC,
@@ -12,22 +12,23 @@ import React, {
 export type MessageType = {
   uid: number;
   content: ReactNode;
-  type: ODS_MESSAGE_TYPE;
-  persistent?: boolean;
+  type: OdsMessageColor;
+  isDismissible?: boolean;
   includedSubRoutes?: string[];
   excludedSubRoutes?: string[];
   duration?: number;
 };
 
-type AddMessageProps = Omit<MessageType, 'uid'>;
-type AddSpecificMessageProps = Omit<AddMessageProps, 'type'>;
+type AddGenericMessageProps = Omit<MessageType, 'uid'>;
+type AddMessageProps = Omit<AddGenericMessageProps, 'type'>;
 
 export type MessageContextType = {
   messages: MessageType[];
-  addSuccess: (props: AddSpecificMessageProps) => void;
-  addError: (props: AddSpecificMessageProps) => void;
-  addWarning: (props: AddSpecificMessageProps) => void;
-  addInfo: (props: AddSpecificMessageProps) => void;
+  addSuccess: (props: AddMessageProps) => void;
+  addError: (props: AddMessageProps) => void;
+  addWarning: (props: AddMessageProps) => void;
+  addInfo: (props: AddMessageProps) => void;
+  addCritical: (props: AddMessageProps) => void;
   clearMessage: (uid: number) => void;
   clearMessages: () => void;
 };
@@ -38,6 +39,7 @@ const MessageContext = createContext<MessageContextType>({
   addError: () => null,
   addWarning: () => null,
   addInfo: () => null,
+  addCritical: () => null,
   clearMessage: () => null,
   clearMessages: () => null,
 });
@@ -45,7 +47,7 @@ const MessageContext = createContext<MessageContextType>({
 export const MessageContextProvider: FC<PropsWithChildren> = ({ children }) => {
   const [messages, setMessages] = useState<MessageType[]>([]);
 
-  const addMessage = (props: AddMessageProps) => {
+  const addMessage = (props: AddGenericMessageProps) => {
     setMessages((prevList) => [
       ...prevList,
       {
@@ -63,14 +65,11 @@ export const MessageContextProvider: FC<PropsWithChildren> = ({ children }) => {
   const messageContextValue: MessageContextType = useMemo(
     () => ({
       messages,
-      addSuccess: (props: AddSpecificMessageProps) =>
-        addMessage({ type: ODS_MESSAGE_TYPE.success, ...props }),
-      addError: (props: AddSpecificMessageProps) =>
-        addMessage({ type: ODS_MESSAGE_TYPE.error, ...props }),
-      addInfo: (props: AddSpecificMessageProps) =>
-        addMessage({ type: ODS_MESSAGE_TYPE.info, ...props }),
-      addWarning: (props: AddSpecificMessageProps) =>
-        addMessage({ type: ODS_MESSAGE_TYPE.warning, ...props }),
+      addSuccess: (props) => addMessage({ type: 'success', ...props }),
+      addError: (props) => addMessage({ type: 'danger', ...props }),
+      addInfo: (props) => addMessage({ type: 'information', ...props }),
+      addWarning: (props) => addMessage({ type: 'warning', ...props }),
+      addCritical: (props) => addMessage({ type: 'critical', ...props }),
       clearMessage: (id) => deleteMessage(id),
       clearMessages: () => setMessages([]),
     }),

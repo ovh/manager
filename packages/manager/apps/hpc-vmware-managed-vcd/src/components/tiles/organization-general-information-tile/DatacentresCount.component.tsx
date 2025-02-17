@@ -1,8 +1,10 @@
 import React from 'react';
-import { Description } from '@ovh-ux/manager-react-components';
 import { useParams } from 'react-router-dom';
-import { OsdsSkeleton, OsdsMessage } from '@ovhcloud/ods-components/react';
-import { ODS_MESSAGE_TYPE, ODS_SKELETON_SIZE } from '@ovhcloud/ods-components';
+import {
+  OdsSkeleton,
+  OdsText,
+  OdsMessage,
+} from '@ovhcloud/ods-components/react';
 import { useVcdDatacentres } from '@ovh-ux/manager-module-vcd-api';
 
 export const DatacentresCount: React.FC = () => {
@@ -13,16 +15,14 @@ export const DatacentresCount: React.FC = () => {
 
   if (isError) {
     return (
-      <OsdsMessage type={ODS_MESSAGE_TYPE.error}>
-        {error?.response?.data?.message}
-      </OsdsMessage>
+      <OdsMessage color="danger">{error?.response?.data?.message}</OdsMessage>
     );
   }
 
   return isLoading ? (
-    <OsdsSkeleton size={ODS_SKELETON_SIZE.xs} />
+    <OdsSkeleton />
   ) : (
-    <Description>{vDatacentres?.data?.length.toString()}</Description>
+    <OdsText>{vDatacentres?.data?.length.toString()}</OdsText>
   );
 };
 

@@ -1,17 +1,10 @@
 import React from 'react';
 import { vi } from 'vitest';
 import { render } from '@testing-library/react';
-import {
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
 import { datacentreList } from '@ovh-ux/manager-module-vcd-api';
+import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 import DatacentreUsageTile from './DatacentreUsageTile.component';
-
-type TTileItem = {
-  label: HTMLElement;
-  value: HTMLElement;
-};
+import { labels } from '../../../test-utils';
 
 const testVDC = datacentreList[0];
 
@@ -27,40 +20,19 @@ vi.mock('react-i18next', () => ({
 }));
 
 describe('DatacentreUsageTile component unit test suite', () => {
-  it('should define all sections with correct typo', () => {
+  it('should define tileTitle and sections', async () => {
     // when
-    const { getByText } = render(
-      <DatacentreUsageTile vcdDatacentre={testVDC} />,
-    );
+    render(<DatacentreUsageTile vcdDatacentre={testVDC} />);
 
     // then
-    const usageTitle = getByText('managed_vcd_vdc_usage');
-    expect(usageTitle).toBeVisible();
-
-    // and
-    const tileItems: TTileItem[] = [
-      {
-        label: getByText('managed_vcd_vdc_vcpu_speed'),
-        value: getByText(`${testVDC.currentState.vCPUSpeed} GHz`),
-      },
-      {
-        label: getByText('managed_vcd_vdc_vcpu_count'),
-        value: getByText(testVDC.currentState.vCPUCount),
-      },
+    const elements = [
+      labels.datacentres.managed_vcd_vdc_usage,
+      labels.datacentres.managed_vcd_vdc_vcpu_speed,
+      labels.datacentres.managed_vcd_vdc_vcpu_count,
+      `${testVDC.currentState.vCPUSpeed} GHz`,
+      testVDC.currentState.vCPUCount.toString(),
     ];
 
-    tileItems.forEach((item: TTileItem) => {
-      expect(item.label).toBeVisible();
-      expect(item.value).toBeVisible();
-
-      expect(item.label).toHaveAttribute(
-        'size',
-        ODS_THEME_TYPOGRAPHY_SIZE._200,
-      );
-      expect(item.label).toHaveAttribute(
-        'level',
-        ODS_THEME_TYPOGRAPHY_LEVEL.heading,
-      );
-    });
+    elements.forEach(async (element) => assertTextVisibility(element));
   });
 });

@@ -1,12 +1,8 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  ActionMenu,
-  DashboardTile,
-  Description,
-} from '@ovh-ux/manager-react-components';
-import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { ActionMenu, DashboardTile } from '@ovh-ux/manager-react-components';
 import { VCDDatacentre } from '@ovh-ux/manager-module-vcd-api';
+import { OdsText } from '@ovhcloud/ods-components/react';
 
 type TTileProps = {
   vcdDatacentre: VCDDatacentre;
@@ -27,25 +23,19 @@ export default function DatacentreUsageTile({
             label: t('managed_vcd_vdc_vcpu_speed'),
             value: (
               <div className="flex items-center justify-between">
-                <Description>
+                <OdsText>
                   {t('managed_vcd_vdc_vcpu_value', {
                     speed: vcdDatacentre?.currentState.vCPUSpeed,
                   })}
-                </Description>
-                <ActionMenu
-                  items={[]}
-                  icon={ODS_ICON_NAME.ELLIPSIS_VERTICAL}
-                  isCompact
-                />
+                </OdsText>
+                <ActionMenu id="usage_menu" items={[]} isCompact />
               </div>
             ),
           },
           {
             id: 'vcpuCount',
             label: t('managed_vcd_vdc_vcpu_count'),
-            value: (
-              <Description>{vcdDatacentre?.currentState.vCPUCount}</Description>
-            ),
+            value: <OdsText>{vcdDatacentre?.currentState.vCPUCount}</OdsText>,
           },
         ]}
       />
