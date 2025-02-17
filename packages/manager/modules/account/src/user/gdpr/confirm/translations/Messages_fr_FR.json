@@ -5,5 +5,6 @@
   "gdpr_erasure_confirm_resend_code": "Récupérer votre code",
   "gdpr_erasure_confirm_input_code_prompt": "Renseignez le code que vous avez reçu par e-mail.",
   "gdpr_erasure_confirm_form_submit": "Confirmer",
-  "gdpr_erasure_confirm_form_cancel": "Annuler"
+  "gdpr_erasure_confirm_form_cancel": "Annuler",
+  "gdpr_erasure_confirm_form_message_invalid_format": "Veuillez saisir un format valide. Vérifiez que le champ ne contient pas un chevron ouvrant (<) ou un chevron fermant (>)."
 }
