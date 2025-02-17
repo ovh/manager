@@ -17,10 +17,8 @@ import {
   OdsBreadcrumb,
   OdsBreadcrumbItem,
   OdsButton,
-  OdsIcon,
   OdsLink,
   OdsMessage,
-  OdsPopover,
   OdsSpinner,
   OdsText,
   OdsToggle,
@@ -47,6 +45,7 @@ import { TabsComponent } from '@/components/tabs/Tabs.component';
 import { useGetValidPaymentMethodIds } from '@/api/hooks/usePaymentmethods';
 import { useGetProjectService } from '@/api/hooks/useService';
 import { Quota } from '@/api/data/quota';
+import LabelComponent from '@/components/Label.component';
 
 function paginateResults<T>(items: T[], pagination: PaginationState) {
   return {
@@ -300,12 +299,13 @@ export default function QuotaPage(): JSX.Element {
           )}
         </div>
       )}
-      <div className="text-right mt-6 pr-2">
-        <OdsText>{tQuota('pci_projects_project_quota_autoscaling')}</OdsText>
-        <OdsIcon name="circle-question" className="text-xs px-4" id="trigger" />
-        <OdsPopover triggerId="trigger">
-          {tQuota('pci_projects_project_quota_autoscaling_help')}
-        </OdsPopover>
+      <div className="flex justify-end mt-6 pr-2">
+        <LabelComponent
+          text={tQuota('pci_projects_project_quota_autoscaling')}
+          helpText={tQuota('pci_projects_project_quota_autoscaling_help')}
+          triggerId="quota-autoscaling-help"
+          className="pr-4"
+        />
         <OdsToggle
           name="auto-scaling"
           value={manualQuotaIsActive}
@@ -319,13 +319,14 @@ export default function QuotaPage(): JSX.Element {
             });
           }}
         />
-        <OdsText className="pl-4">
-          {tQuota(
+        <LabelComponent
+          text={tQuota(
             manualQuotaIsActive
               ? 'pci_projects_project_quota_autoscaling_on'
               : 'pci_projects_project_quota_autoscaling_off',
           )}
-        </OdsText>
+          className="pl-4"
+        />
       </div>
 
       <div className="mt-8">

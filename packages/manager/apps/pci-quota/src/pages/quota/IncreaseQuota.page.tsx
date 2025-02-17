@@ -52,7 +52,7 @@ export default function IncreaseQuotaPage(): JSX.Element {
 
         addError(
           <Translation ns="quotas/increase">
-            {(_t) =>
+            {() =>
               t('pci_projects_project_quota_increase_error_message', {
                 message: '',
               })
@@ -202,6 +202,6 @@ ${formData}
       onClose={goBack}
       onCancel={goBack}
       isLoading={isLoading}
-    ></Modal>
+    />
   );
 }
