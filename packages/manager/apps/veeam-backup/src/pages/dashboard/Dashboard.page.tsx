@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import {
   OsdsChip,
   OsdsMessage,
+  OsdsSkeleton,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
@@ -15,11 +16,16 @@ import {
   RedirectionGuard,
   Region,
 } from '@ovh-ux/manager-react-components';
-import { ODS_MESSAGE_TYPE, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+import {
+  ODS_MESSAGE_TYPE,
+  ODS_SKELETON_SIZE,
+  ODS_TEXT_SIZE,
+} from '@ovhcloud/ods-components';
 import {
   getRegionNameFromAzName,
   getVeeamBackupDisplayName,
   useVeeamBackup,
+  VeeamBackupOffer,
 } from '@ovh-ux/manager-module-vcd-api';
 import { Breadcrumb } from '@/components/Breadcrumb/Breadcrumb';
 import { urls } from '@/routes/routes.constant';
@@ -32,13 +38,29 @@ import { ComingSoonBadge } from '@/components/ComingSoonBadge/ComingSoonBadge';
 import { BillingLink } from '@/components/Links/BillingLink.component';
 import { Loading } from '@/components/Loading/Loading';
 import { BackupStatusBadge } from '@/components/BackupStatus/BackupStatusBadge.component';
+import useVeeamBackupConsumption from '@/data/hooks/useVeeamBackupConsumption';
+import { VEEAM_BACKUP_CONSUMPTION_PLAN_CODE } from '@/pages/dashboard/Dashboard.constants';
 
 export default function DashboardPage() {
   const { id } = useParams();
   const { data, isLoading, isError } = useVeeamBackup(id);
+  const {
+    data: consumptions,
+    isLoading: isLoadingConsumption,
+  } = useVeeamBackupConsumption(id);
   const navigate = useNavigate();
   const { t } = useTranslation('dashboard');
   const displayName = getVeeamBackupDisplayName(data?.data);
+
+  const getRealOfferConsumption = (
+    offer: VeeamBackupOffer,
+  ): VeeamBackupOffer => {
+    const consumption = consumptions.find(
+      ({ planCode }) =>
+        planCode === VEEAM_BACKUP_CONSUMPTION_PLAN_CODE[offer.name],
+    );
+    return { ...offer, usedSpaceInGB: consumption?.quantity ?? 0 };
+  };
 
   return (
     <BaseLayout
@@ -145,7 +167,14 @@ export default function DashboardPage() {
                   label: `${offer.name
                     .at(0)
                     .toUpperCase()}${offer.name.substring(1).toLowerCase()}`,
-                  value: <OfferProgress {...offer} />,
+                  value: isLoadingConsumption ? (
+                    <>
+                      <OsdsSkeleton inline size={ODS_SKELETON_SIZE.sm} />
+                      <OsdsSkeleton size={ODS_SKELETON_SIZE.md} />
+                    </>
+                  ) : (
+                    <OfferProgress {...getRealOfferConsumption(offer)} />
+                  ),
                 })) || []),
                 data?.data?.currentState.offers.every(
                   (offer) => offer.name !== 'GOLD',
