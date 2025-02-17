@@ -36,6 +36,7 @@ import BillingStep, {
 import { ANTI_AFFINITY_MAX_NODES, NODE_RANGE } from '@/constants';
 import queryClient from '@/queryClient';
 import { useTrack } from '@/hooks/track';
+import NodePoolAntiAffinity from '@/pages/new/steps/node-pool/NodePoolAntiAffinity.component';
 
 export default function NewPage(): JSX.Element {
   const { t: tCommon } = useTranslation('common');
@@ -368,7 +369,9 @@ export default function NewPage(): JSX.Element {
           label: tCommon('common_stepper_modify_this_step'),
         }}
       >
+        <NodePoolAntiAffinity {...billingState.antiAffinity} />
         <Autoscaling
+          isAntiAffinity={billingState.antiAffinity.isChecked}
           autoscale={false}
           onChange={(auto) => store.set.autoScaling(auto)}
         />
@@ -383,7 +386,6 @@ export default function NewPage(): JSX.Element {
         order={4}
       >
         <BillingStep
-          antiAffinity={billingState.antiAffinity}
           price={billingState.price}
           monthlyPrice={billingState.monthlyPrice}
           monthlyBilling={billingState.monthlyBilling}

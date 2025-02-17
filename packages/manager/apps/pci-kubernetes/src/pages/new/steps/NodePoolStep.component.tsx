@@ -140,6 +140,7 @@ const NodePoolStep = ({
               />
             </div>
             <div className="mb-8">
+              ^
               <NodePoolType
                 projectId={projectId as string}
                 region={stepper.form.region.name}

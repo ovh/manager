@@ -242,7 +242,7 @@ export default function NewPage() {
         <StepComponent
           order={5}
           {...stepper.node.step}
-          title={tListing('kube_common_node_pool_title')}
+          title={tListing('kube_common_node_pool_title_mulitple')}
           edit={{
             action: stepper.node.edit,
             label: tStepper('common_stepper_modify_this_step'),
