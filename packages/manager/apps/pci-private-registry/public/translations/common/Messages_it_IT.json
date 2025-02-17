@@ -75,5 +75,5 @@
   "private_registry_region": "Region",
   "common_clipboard_copied": "Copiato",
   "private_registry_crud_cidr_error": "Si è verificato un errore durante l'aggiornamento dei CIDR",
-  "common_criteria_adder_filter_label": "Aggiungi filtri"
+  "common_criteria_adder_filter_label": "Filtra"
 }
