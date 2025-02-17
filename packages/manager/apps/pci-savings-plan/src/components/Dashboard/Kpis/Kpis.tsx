@@ -8,7 +8,11 @@ import {
 import React, { useCallback, useMemo } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { usePricing } from '@ovh-ux/manager-pci-common';
-import { getPercentValue, isCurrentPeriod } from '@/utils/kpi/utils';
+import {
+  getPercentValue,
+  getTotalActivePlans,
+  isCurrentPeriod,
+} from '@/utils/kpi/utils';
 import { SavingsPlanFlavorConsumption } from '@/types/savingsPlanConsumption.type';
 
 const Kpi = ({
@@ -119,7 +123,7 @@ const Kpis = ({
     [consumption, getFormattedFee],
   );
 
-  const totalActivePlans = useMemo(() => consumption?.subscriptions?.length, [
+  const totalActivePlans = useMemo(() => getTotalActivePlans(consumption), [
     consumption,
   ]);
 

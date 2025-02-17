@@ -12,7 +12,7 @@ import {
   useNotifications,
 } from '@ovh-ux/manager-react-components';
 import { OdsText, OdsButton } from '@ovhcloud/ods-components/react';
-import React, { useContext, useMemo } from 'react';
+import React, { useContext, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   SavingsPlanFlavorConsumption,
@@ -91,6 +91,14 @@ const ConsumptionDatagrid = ({
     items,
     pagination,
   ]);
+
+  useEffect(() => {
+    setPagination({
+      pageIndex: 0,
+      pageSize: 10,
+    });
+  }, [items]);
+
   return (
     <div>
       <OdsText preset="heading-4" className="mt-8">

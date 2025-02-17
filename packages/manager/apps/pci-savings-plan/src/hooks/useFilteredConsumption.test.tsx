@@ -1,9 +1,10 @@
 import { act, renderHook } from '@testing-library/react-hooks';
 import { vi } from 'vitest';
 import { getLastXMonths } from '@/utils/formatter/date';
-import { getBigestConsumption, isInstanceFlavor } from '@/utils/savingsPlan';
+import { isInstanceFlavor } from '@/utils/savingsPlan';
 import { useFilteredConsumption } from './useFilteredConsumption';
 import { useSavingsPlanConsumption } from './useSavingsPlanConsumption';
+import { savingsPlanConsumptionMocked } from '@/_mock_/savingsPlanConsumption';
 
 vi.mock('./useSavingsPlanConsumption');
 vi.mock('@/utils/formatter/date');
@@ -11,12 +12,7 @@ vi.mock('@/utils/savingsPlan');
 
 describe('useFilteredConsumption', () => {
   const mockLocale = 'en-US';
-  const mockConsumptionData = {
-    flavors: [
-      { flavor: 'b3-8', consumption: 100 },
-      { flavor: 'c3-16', consumption: 200 },
-    ],
-  };
+  const mockConsumptionData = savingsPlanConsumptionMocked;
 
   beforeEach(() => {
     vi.mocked(useSavingsPlanConsumption).mockReturnValue({
@@ -32,20 +28,16 @@ describe('useFilteredConsumption', () => {
       'December 2022',
     ]);
 
-    vi.mocked(getBigestConsumption).mockReturnValue(
-      mockConsumptionData.flavors[1],
-    );
-
     vi.mocked(isInstanceFlavor).mockImplementation((flavor) =>
       flavor.startsWith('b'),
     );
   });
 
-  it('should initialize with default values', () => {
+  it('should initialize with default values the first flavor', () => {
     const { result } = renderHook(() => useFilteredConsumption(mockLocale));
 
     expect(result.current.period).toBe('January 2023');
-    expect(result.current.flavor).toBe('c3-16');
+    expect(result.current.flavor).toBe('b3-8');
     expect(result.current.isConsumptionLoading).toBe(false);
   });
 
@@ -62,7 +54,7 @@ describe('useFilteredConsumption', () => {
 
     expect(result.current.flavorOptions).toEqual([
       { label: 'b3-8', value: 'b3-8', prefix: 'Instance' },
-      { label: 'c3-16', value: 'c3-16', prefix: 'Rancher' },
+      { label: 'b3-16', value: 'b3-16', prefix: 'Instance' },
     ]);
   });
 

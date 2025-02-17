@@ -66,10 +66,11 @@ const SelectWithLabel = <T extends string>({
         value={value}
         disabled={isDisabled}
       >
-        <SelectTrigger className={`text-foreground ${className}`} id={name}>
-          <span>
-            {getSelectText(formatter ? formatter(value) : value, options, t)}
-          </span>
+        <SelectTrigger
+          className={`text-foreground ${className} whitespace-nowrap overflow-hidden text-ellipsis`}
+          id={name}
+        >
+          {getSelectText(formatter ? formatter(value) : value, options, t)}
         </SelectTrigger>
         <SelectContent>
           {options.map((option) => (
