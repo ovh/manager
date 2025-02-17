@@ -1,8 +1,8 @@
-import { COLD_ARCHIVE_TRACKING } from '@/tracking.constants';
 import { useProject } from '@ovh-ux/manager-pci-common';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useContext, useEffect } from 'react';
 import { useLocation, useMatches } from 'react-router-dom';
+import { COLD_ARCHIVE_TRACKING } from '@/tracking.constants';
 
 const DISCOVERY_PLAN_CODE = 'project.discovery';
 
