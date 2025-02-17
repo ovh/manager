@@ -29,7 +29,7 @@ export const SUPPORT_ISSUE_TYPE_IDS = [
   DEUTSCH_ID,
 ];
 
-export const RX_PLAN_CODE_PATTERN = /quota-([0-9]+)vms/;
+export const RX_PLAN_CODE_PATTERN = /quota-(\d+)vms/;
 
 export const TRACK = {
   BASE: 'PublicCloud::pci::projects::project::quota',

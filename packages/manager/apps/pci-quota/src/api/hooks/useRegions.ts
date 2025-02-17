@@ -43,7 +43,6 @@ export const useLocations = (projectId: string, onlyAvailable = false) => {
       const payload = (query.data || []).reduce(
         (acc: Map<string, TLocation>, region) => {
           const continent = translateContinentRegion(region.name);
-          // TODO investigate, le cap, le caire
           const location = translateMacroRegion(region.name);
 
           if (!acc.has(location)) {
@@ -60,7 +59,6 @@ export const useLocations = (projectId: string, onlyAvailable = false) => {
         new Map<string, TLocation>(),
       );
 
-      // TODO may be a map
       return Array.from(payload.entries() || []).reduce(
         (acc: TPlainLocation[], [name, { continent, regions }]) => {
           return [

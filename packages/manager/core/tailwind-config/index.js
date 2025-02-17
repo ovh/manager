@@ -32,7 +32,7 @@ const config = {
       sm: 'var(--ods-border-radius-sm)',
       DEFAULT: 'var(--ods-border-radius-sm)',
       md: 'var(--ods-border-radius-md)',
-      lg: 'var(--ods-border-radius-lg)',
+      lg: 'var(--ods-border-radius-md)',
       full: '50%',
     },
   },

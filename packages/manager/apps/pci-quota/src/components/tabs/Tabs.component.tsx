@@ -1,6 +1,5 @@
 import { OdsTab, OdsTabs } from '@ovhcloud/ods-components/react';
 import { useNavigate } from 'react-router-dom';
-import './style.scss';
 import { useTranslation } from 'react-i18next';
 
 type TAllowedTabs = 'quota' | 'regions';
