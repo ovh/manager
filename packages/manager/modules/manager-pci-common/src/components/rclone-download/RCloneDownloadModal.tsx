@@ -35,7 +35,7 @@ import '../../index.css';
 
 type RCloneDownloadModalProps = { userId: string };
 
-export default function RCloneDownloadModal({
+export function RCloneDownloadModal({
   userId,
 }: Readonly<RCloneDownloadModalProps>) {
   const { t } = useTranslation('pci-rclone-download');

@@ -1,1 +1,1 @@
-export * from './RCloneDownload';
+export * from './RCloneDownloadModal';
