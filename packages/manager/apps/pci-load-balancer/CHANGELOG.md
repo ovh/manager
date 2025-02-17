@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-load-balancer-app@0.3.5...@ovh-ux/manager-pci-load-balancer-app@0.4.0) (2025-02-17)
+
+
+### Bug Fixes
+
+* **pci.load-balancer:** display floating price for selected region ([#15262](https://github.com/ovh/manager/issues/15262)) ([f53bf42](https://github.com/ovh/manager/commit/f53bf4261f8c229882ffc3dcec8981a60fa111f7))
+* **pci:** implement manual translations from pci-common ([#15387](https://github.com/ovh/manager/issues/15387)) ([838a326](https://github.com/ovh/manager/commit/838a326a8008e708b8703551980d18b8b460299a))
+
+
+### Features
+
+* **pci.load-balancer:** display monthly price with mrc function ([#15150](https://github.com/ovh/manager/issues/15150)) ([65d5086](https://github.com/ovh/manager/commit/65d5086a79fdb1b348c6336e12bb58dd2972cce9))
+* **pic-load-balancer:** add missing translation for size in Dashboard ([#15169](https://github.com/ovh/manager/issues/15169)) ([5becddc](https://github.com/ovh/manager/commit/5becddc142f444d4e66cb4515e73b51b0c0c0379))
+
+
+
+
+
 ## [0.3.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-load-balancer-app@0.3.4...@ovh-ux/manager-pci-load-balancer-app@0.3.5) (2025-02-13)
 
 

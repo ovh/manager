@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-gateway-app@0.10.4...@ovh-ux/manager-pci-gateway-app@0.11.0) (2025-02-17)
+
+
+### Bug Fixes
+
+* **pci:** implement manual translations from pci-common ([#15387](https://github.com/ovh/manager/issues/15387)) ([838a326](https://github.com/ovh/manager/commit/838a326a8008e708b8703551980d18b8b460299a))
+
+
+### Features
+
+* **pci.gateway:** use mrc function to display monthly price ([#15145](https://github.com/ovh/manager/issues/15145)) ([b38900b](https://github.com/ovh/manager/commit/b38900bae8a2cc81ef5a1dbb50e378c69dbbd963))
+
+
+
+
+
 ## [0.10.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-gateway-app@0.10.3...@ovh-ux/manager-pci-gateway-app@0.10.4) (2025-02-13)
 
 

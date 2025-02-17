@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.10.5...@ovh-ux/manager-pci-databases-analytics-app@1.11.0) (2025-02-17)
+
+
+### Features
+
+* add prometheus metrics integration ([#14949](https://github.com/ovh/manager/issues/14949)) ([d8569b9](https://github.com/ovh/manager/commit/d8569b9a3c95df6d0980e19c33802eac2910ccff))
+* **pci-databases:** get prices planCodes from api to prepare sgp region ([#15144](https://github.com/ovh/manager/issues/15144)) ([9001fe3](https://github.com/ovh/manager/commit/9001fe362ebef9d98837e06b3c67891990b9fb02))
+
+
+
+
+
 ## [1.10.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.10.4...@ovh-ux/manager-pci-databases-analytics-app@1.10.5) (2025-02-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-databases-analytics-app
