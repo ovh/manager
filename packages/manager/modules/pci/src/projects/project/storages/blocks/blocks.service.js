@@ -287,12 +287,10 @@ export default class PciProjectStorageBlockService {
       }).$promise;
   }
 
-  getCatalog(endpoint, ovhSubsidiary) {
+  getCatalog(projectId, cache = true) {
     return this.$http
-      .get(endpoint, {
-        params: {
-          ovhSubsidiary,
-        },
+      .get(`/cloud/project/${projectId}/catalog/volume`, {
+        cache,
       })
       .then(({ data }) => data);
   }
@@ -338,16 +336,11 @@ export default class PciProjectStorageBlockService {
     };
   }
 
-  getVolumePriceEstimation(projectId, storage, catalogEndpoint) {
-    return this.CucPriceHelper.getPrices(
-      projectId,
-      catalogEndpoint,
-    ).then((catalog) =>
-      PciProjectStorageBlockService.getVolumePriceEstimationFromCatalog(
-        catalog,
-        storage,
-        catalogEndpoint,
-      ),
+  getVolumePriceEstimation(projectId, storage) {
+    return this.getCatalog(projectId).then((catalog) =>
+      catalog.models
+        .find((model) => model.name === storage.type)
+        .pricings.find((p) => p.regions.includes(storage.region)),
     );
   }
 

@@ -1,34 +1,20 @@
+import pick from 'lodash/pick';
+import BlockStorage from '../../../blocks/block.class';
 import { VOLUME_BACKUP_TRACKING } from '../../volume-backup.constants';
-
-const VOLUME_SIZE = {
-  MIN: 10,
-  MAX: 4000,
-};
 
 export default class VolumeBackupListCreateVolumeController {
   /* @ngInject */
-  constructor($translate, ovhManagerRegionService, VolumeBackupService) {
+  constructor($q, $timeout, $translate, VolumeBackupService) {
+    this.$q = $q;
+    this.$timeout = $timeout;
     this.$translate = $translate;
-    this.ovhManagerRegionService = ovhManagerRegionService;
     this.volumeBackupService = VolumeBackupService;
-
-    this.VOLUME_SIZE = VOLUME_SIZE;
   }
 
   $onInit() {
     this.isCreating = false;
-    this.createVolumeModel = {
-      name: this.volume.name,
-      size: this.volume.size || VOLUME_SIZE.MIN,
-    };
-  }
-
-  onVolumeSizeChange(size) {
-    this.getVolumePriceEstimation({
-      ...this.volume,
-      size,
-    }).then((volumePrice) => {
-      this.volumePrice = volumePrice;
+    this.storage = new BlockStorage({
+      ...pick(this.volume, ['region', 'name', 'size', 'type']),
     });
   }
 
@@ -41,7 +27,7 @@ export default class VolumeBackupListCreateVolumeController {
         this.projectId,
         this.volumeBackup.region,
         this.volumeBackup.id,
-        this.createVolumeModel.name,
+        this.storage.name,
       )
       .then(() => {
         this.trackPage(VOLUME_BACKUP_TRACKING.CREATE_VOLUME.REQUEST_SUCCESS);
@@ -52,7 +38,7 @@ export default class VolumeBackupListCreateVolumeController {
             this.$translate.instant(
               'pci_projects_project_storages_volume_backup_list_create_volume_request_success',
               {
-                volumeName: `<strong>${this.createVolumeModel.name}</strong>`,
+                volumeName: `<strong>${this.storage.name}</strong>`,
               },
             ),
           ),
@@ -67,8 +53,8 @@ export default class VolumeBackupListCreateVolumeController {
             this.$translate.instant(
               'pci_projects_project_storages_volume_backup_list_create_volume_request_fail',
               {
-                volumeName: this.createVolumeModel.name,
-                message: data.message,
+                volumeName: this.storage.name,
+                message: data?.message,
               },
             ),
           ),
@@ -77,11 +63,5 @@ export default class VolumeBackupListCreateVolumeController {
       .finally(() => {
         this.isCreating = false;
       });
-  }
-
-  onCreateVolumeCancelClick() {
-    this.trackClick(VOLUME_BACKUP_TRACKING.CREATE_VOLUME.CTA_CANCEL);
-
-    return this.goBack();
   }
 }

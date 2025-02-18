@@ -1,21 +1,34 @@
 import angular from 'angular';
 
 import { VOLUME_MAX_SIZE, VOLUME_MIN_SIZE } from '../../../block.constants';
+import { HOURS_PER_MONTH } from '../../../../../project.constants';
 
 export default class PciProjectStorageVolumeEditController {
   /* @ngInject */
   constructor(
     $timeout,
     $translate,
+    $q,
     ovhManagerRegionService,
     PciProjectStorageBlockService,
     PciProject,
+    coreConfig,
   ) {
     this.$timeout = $timeout;
     this.$translate = $translate;
+    this.$q = $q;
     this.ovhManagerRegionService = ovhManagerRegionService;
     this.PciProjectStorageBlockService = PciProjectStorageBlockService;
     this.PciProject = PciProject;
+    this.coreConfig = coreConfig;
+    this.priceFormatter = new Intl.NumberFormat(
+      this.coreConfig.getUserLocale().replace('_', '-'),
+      {
+        style: 'currency',
+        currency: coreConfig.getUser().currency.code,
+        maximumFractionDigits: 3,
+      },
+    );
   }
 
   $onInit() {
@@ -41,10 +54,12 @@ export default class PciProjectStorageVolumeEditController {
     this.localZoneUrl = this.PciProject.getDocumentUrl('LOCAL_ZONE');
 
     this.loading = true;
-    return this.$translate
-      .refresh()
-      .then(() => this.getAvailableQuota())
-      .then(() => this.estimatePrice())
+    return this.$q
+      .all([
+        this.$translate.refresh(),
+        this.getAvailableQuota(),
+        this.estimatePrice(),
+      ])
       .finally(() => {
         this.loading = false;
       });
@@ -67,11 +82,14 @@ export default class PciProjectStorageVolumeEditController {
         this.PciProjectStorageBlockService.getVolumePriceEstimation(
           this.projectId,
           this.storage,
-          this.catalogEndpoint,
         ),
       )
       .then((estimatedPrice) => {
-        this.estimatedPrice = estimatedPrice;
+        this.estimatedPrice = this.priceFormatter.format(
+          (estimatedPrice.price / 100000000) *
+            HOURS_PER_MONTH *
+            this.storage.size,
+        );
       });
   }
 
