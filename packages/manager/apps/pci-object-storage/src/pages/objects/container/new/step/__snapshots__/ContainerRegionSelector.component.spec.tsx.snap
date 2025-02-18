@@ -3,10 +3,5 @@
 exports[`ContainerRegionSelector > should display correctly 1`] = `
 <DocumentFragment>
   <ods-spinner />
-  <ods-text
-    class="my-6 text-critical font-bold-class"
-  >
-    pci_projects_project_storages_containers_add_add_region_activate
-  </ods-text>
 </DocumentFragment>
 `;
