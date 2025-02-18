@@ -22,14 +22,12 @@ export function Actions({
 
   const { isPending, updateStorageType } = useUpdateStorageType({
     projectId,
-    onSuccess() {
+    onSuccess: (containerType) => {
       addSuccess(
         <Translation ns="containers">
           {(_t) =>
             _t(
-              storage.containerType === 'public'
-                ? 'pci_projects_project_storages_containers_toggle_private_succeed'
-                : 'pci_projects_project_storages_containers_toggle_public_succeed',
+              `pci_projects_project_storages_containers_toggle_${containerType}_succeed`,
               {
                 name: storage.name,
               },
