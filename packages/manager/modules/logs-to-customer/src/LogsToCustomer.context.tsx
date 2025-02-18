@@ -2,7 +2,6 @@ import { createContext } from 'react';
 import { LogKind } from './data/types/dbaas/logs';
 import { ApiUrls, LogIamActions } from './LogsToCustomer.module';
 import { LogApiVersion } from './data/types/apiVersion';
-import { LogsActionName } from './types/logsTracking';
 
 export interface LogProviderProps {
   currentLogKind?: LogKind;
@@ -11,7 +10,7 @@ export interface LogProviderProps {
   logIamActions?: LogIamActions;
   resourceURN?: string;
   trackingOptions?: {
-    trackClickMap: Record<LogsActionName, string[]>;
+    trackingSuffix: string;
   };
 }
 

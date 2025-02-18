@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { OdsButton, OdsSpinner } from '@ovhcloud/ods-components/react';
 import { useQueryClient } from '@tanstack/react-query';
@@ -15,7 +15,8 @@ import {
 } from '../../data/hooks/useLogStreamUrl';
 import { LogSubscription } from '../../data/types/dbaas/logs';
 import ApiError from '../apiError/ApiError.component';
-import { LogsContext } from '../../LogsToCustomer.context';
+import { LogsActionEnum } from '../../types/logsTracking';
+import useLogTrackingActions from '../../hooks/useLogTrackingActions';
 
 type SubscriptionStreamItemProps = {
   subscription: LogSubscription;
@@ -32,7 +33,12 @@ const SubscriptionStreamActions = ({
     subscription.serviceName,
     subscription.streamId,
   );
-  const { trackingOptions } = useContext(LogsContext);
+  const graylogObserveLogsAccess = useLogTrackingActions(
+    LogsActionEnum.graylog_observe_logs_access,
+  );
+  const unsubscribeLogsAccess = useLogTrackingActions(
+    LogsActionEnum.unsubscribe_logs_access,
+  );
   const { trackClick } = useOvhTracking();
 
   if (isLoading || isPending) {
@@ -70,7 +76,7 @@ const SubscriptionStreamActions = ({
             location: PageLocation.page,
             buttonType: ButtonType.button,
             actionType: 'action',
-            actions: trackingOptions?.trackClickMap.graylog_observe_logs_access,
+            actions: [graylogObserveLogsAccess],
           });
         }}
         label={t('log_stream_button_graylog_watch_label')}
@@ -84,7 +90,7 @@ const SubscriptionStreamActions = ({
             location: PageLocation.page,
             buttonType: ButtonType.button,
             actionType: 'action',
-            actions: trackingOptions?.trackClickMap.unsubscribe_logs_access,
+            actions: [unsubscribeLogsAccess],
           });
           navigate(`subscription/${subscription.subscriptionId}/terminate`);
         }}
