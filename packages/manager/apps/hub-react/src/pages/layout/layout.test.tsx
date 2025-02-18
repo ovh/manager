@@ -33,7 +33,7 @@ import { Notification, NotificationType } from '@/types/notifications.type';
 import { CatalogItem } from '@/types/catalog';
 import { ApiEnvelope } from '@/types/apiEnvelope.type';
 import { KycStatus } from '@/types/kyc.type';
-import { LastOrder } from '@/types/lastOrder.type';
+import { LastOrder } from '@/types/order.type';
 import { ProductList } from '@/types/services.type';
 
 import {
@@ -236,7 +236,7 @@ vi.mock('@/data/hooks/services/useServices', () => ({
 }));
 
 vi.mock('@/data/hooks/lastOrder/useLastOrder', () => ({
-  useFetchHubLastOrder: (): { data: LastOrder; isPending: boolean } => ({
+  useLastOrder: (): { data: LastOrder; isPending: boolean } => ({
     data: mocks.lastOrder,
     isPending: mocks.isLastOrderLoading,
   }),
