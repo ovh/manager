@@ -12,7 +12,7 @@ import {
 import { SvgIconWrapper } from '@ovh-ux/ovh-product-icons/utils/SvgIconWrapper';
 
 export type SidebarLinkProps = {
-  count?: number | boolean;
+  hasService?: boolean;
   node?: Node;
   linkParams?: Record<string, string>;
   handleOnClick?(): void;
@@ -22,7 +22,7 @@ export type SidebarLinkProps = {
 };
 
 const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
-  count = 0,
+  hasService = false,
   node = {},
   linkParams = {},
   handleOnClick = () => { },
@@ -36,7 +36,7 @@ const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
     <StaticLink
       handleClick={handleOnClick}
       handleOnEnter={handleOnEnter}
-      count={count}
+      hasService={hasService}
       node={node}
       linkParams={linkParams}
       id={id}
@@ -61,7 +61,7 @@ const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
         {!isShortText && <span>{t(node.translation)}</span>}
       </span>
       <span className="flex justify-end align-items-center">
-        {(count as number) > 0 && (
+        {hasService && (
           <OsdsIcon
             name={ODS_ICON_NAME.SHAPE_DOT}
             size={ODS_ICON_SIZE.xs}

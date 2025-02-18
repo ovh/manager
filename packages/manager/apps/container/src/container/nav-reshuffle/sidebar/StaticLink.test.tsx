@@ -3,13 +3,12 @@ import { render, fireEvent, act } from '@testing-library/react';
 import StaticLink from './StaticLink';
 import { Node, NodeTag } from './navigation-tree/node';
 import { StaticLinkProps } from './StaticLink';
-import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
 import { mockShell } from './mocks/sidebarMocks';
 
 const node: Node = {
   id: 'pci-rancher',
   idAttr: 'pci-rancher-link',
-  count: 0,
+  hasService: false,
   universe: 'pci',
   translation: 'sidebar_pci_rancher',
   serviceType: 'CLOUD_PROJECT_KUBE',
@@ -19,16 +18,6 @@ const node: Node = {
   },
   features: ['pci-rancher'],
   forceVisibility: true,
-};
-
-const externalNode: Node = {
-  id: 'help',
-  idAttr: 'help-link',
-  translation: 'sidebar_assistance_help_center',
-  url: 'help',
-  count: false,
-  isExternal: true,
-  svgIcon: OvhProductName.HELPECENTER,
 };
 
 const handleClick: (e: React.MouseEvent) => void = vi.fn((e) => {e.preventDefault()});
@@ -54,7 +43,7 @@ const renderStaticLinkComponent = (props: StaticLinkProps) => {
   return render(
     <StaticLink
       node={props.node}
-      count={props.count}
+      hasService={props.hasService}
       linkParams={props.linkParams}
       handleClick={props.handleClick}
       handleOnEnter={props.handleOnEnter}
@@ -99,7 +88,7 @@ describe('StaticLink.component', () => {
   });
 
   it('Static link with count should render icon', () => {
-    props.count = 1;
+    props.hasService = true;
     const { queryByTestId } = renderStaticLinkComponent(props);
     expect(queryByTestId(`static-link-count-${node.id}`)).not.toBeNull();
   })

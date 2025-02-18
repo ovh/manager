@@ -23,7 +23,7 @@ webCloudUniverse.children = [
       universe: webCloudUniverse.id,
       translation: 'sidebar_domain_dns',
       features: ['web:domains', 'web:domains:zone'],
-      count: false,
+      hasService: false,
       children: [
         {
           id: 'domains-operations',
@@ -34,7 +34,7 @@ webCloudUniverse.children = [
             application: 'web',
             hash: '#/domain/operation',
           },
-          count: false,
+          hasService: false,
           features: ['web:domains'],
         },
         {
@@ -134,7 +134,7 @@ webCloudUniverse.children = [
             hash: '#/',
           },
           features: ['zimbra'],
-          count: false,
+          hasService: false,
         },
         {
           id: 'email-pro',

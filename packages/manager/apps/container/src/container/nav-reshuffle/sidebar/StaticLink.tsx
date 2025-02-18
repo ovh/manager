@@ -10,7 +10,7 @@ import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 
 export interface StaticLinkProps {
-  count?: number | boolean;
+  hasService?: boolean;
   node?: Node;
   linkParams?: Record<string, string>;
   handleClick?(e?:React.MouseEvent): void;
@@ -20,7 +20,7 @@ export interface StaticLinkProps {
 }
 
 const StaticLink: React.FC<ComponentProps<StaticLinkProps>> = ({
-  count = 0,
+  hasService = false,
   node = {},
   linkParams = {},
   handleClick = () => {},
@@ -81,7 +81,7 @@ const StaticLink: React.FC<ComponentProps<StaticLinkProps>> = ({
         />
       )}
       {!isShortText && <SidebarLinkTag node={node} />}
-      {!isShortText && (count as number) > 0 && (
+      {!isShortText && hasService && (
           <OsdsIcon
             name={ODS_ICON_NAME.SHAPE_DOT}
             size={ODS_ICON_SIZE.xs}

@@ -57,7 +57,7 @@ angular
     ovhManagerAccountMigration,
   ])
   .config(
-    /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
+    /* @ngInject */ ($stateProvider) => {
       $stateProvider.state('billing.**', {
         url: '/',
         lazyLoad: ($transition$) => {
@@ -68,19 +68,6 @@ angular
           );
         },
       });
-      $urlRouterProvider.when('/order/:id', ($location) => {
-        $location.url($location.url().replace('/order', '/orders'));
-      });
-
-      $urlRouterProvider.when(
-        /\/(credits|fidelity|mean|method|ovhaccount|vouchers)$/,
-        ($location, $state) => {
-          const [, subroute] = $location.$$path.match(
-            /\/(credits|fidelity|mean|method|ovhaccount|vouchers)(\/.*)?/,
-          );
-          return $state.go(`billing.payment.${subroute}`);
-        },
-      );
     },
   );
 
