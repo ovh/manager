@@ -35,7 +35,7 @@ export default function ObjectsPage() {
   useEffect(() => {
     const activeTab = tabs.find((tab) => location.pathname === tab.to);
     setActivePanelTranslation(t(activeTab?.name));
-  }, [location.pathname]);
+  }, [location.pathname, t]);
 
   return (
     <>
