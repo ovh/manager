@@ -25,7 +25,7 @@ export default function NodePoolSize({
   return (
     <div className="mb-8">
       <OsdsText
-        className="mb-4 font-bold"
+        className="font-bold"
         color={ODS_TEXT_COLOR_INTENT.text}
         level={ODS_TEXT_LEVEL.heading}
         size={ODS_TEXT_SIZE._400}

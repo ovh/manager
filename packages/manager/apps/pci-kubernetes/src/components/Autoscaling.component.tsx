@@ -87,16 +87,10 @@ export function Autoscaling({
     });
   }, []);
 
-  const hasError =
-    quantity.min >= NODE_RANGE.MAX ||
-    quantity.min >= maxValue ||
-    quantity.desired > maxValue ||
-    quantity.min > quantity.desired;
-
   return (
     <>
       <QuantitySelector
-        className="mt-8"
+        className="mt-4"
         label={t('kubernetes_node_pool_autoscaling_desired_nodes_size')}
         value={quantity.desired}
         onValueChange={(desired) => {
@@ -154,9 +148,9 @@ export function Autoscaling({
         )}
       </OsdsText>
       {isAutoscale && (
-        <div className={clsx('gap-4', hasError ? 'block' : 'flex')}>
+        <div className={clsx('gap-4 flex')}>
           <QuantitySelector
-            className="mt-8"
+            className="mt-8 max-w-32"
             label={t('kubernetes_node_pool_autoscaling_lowest_nodes_size')}
             value={quantity.min}
             onValueChange={(min) =>
@@ -169,7 +163,7 @@ export function Autoscaling({
             max={quantity.max <= maxValue ? quantity.desired : maxValue}
           />
           <QuantitySelector
-            className="mt-8"
+            className="mt-8 max-w-32"
             label={t('kubernetes_node_pool_autoscaling_highest_nodes_size')}
             value={quantity.max}
             onValueChange={(max) =>
