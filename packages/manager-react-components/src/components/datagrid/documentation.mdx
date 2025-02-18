@@ -145,11 +145,11 @@ What contains `search` object :
 - **setSearchInput**: setter of search input state
 - **onSearch**: handler when user click on the button search.
 
-#### Search with useResourcesIcebergV6
+#### With useResourcesIcebergV6 hook
 
 **_note : apiv6 only support operator `&`, we can't combine multiple search_**
 
-1 - Fill `columns` attribute with your columns definition
+1 - Fill `columns` attribute with your columns definition. The`search` object returned by the `useResourcesIcebergV6` hook must be passed to your `Datagrid`'s props
 
 <Source
   code={`
@@ -163,20 +163,106 @@ import {
     {...}
     columns, // you have to pass the columns definition now
   });
+
+<Datagrid
+    {...}
+    filters={filters}
+    search={search} // pass the params search here
+    isLoading={isLoading}
+/>
     `}
   language="javascript"
 />
 
-2 - The`search` object returned by the `useResourcesIcebergV6` hook must be passed to your `Datagrid`'s props
+Exemple of column definition
 
 <Source
   code={`
+    const columns = [
+        {
+            id: 'label',
+            cell: (item: Item) => {
+                return <DataGridTextCell>{item.label}</DataGridTextCell>;
+            },
+            label: 'Label',
+            isFilterable: true,
+            isSearchable: true,
+            comparator: FilterCategories.String,
+        },
+        {
+            id: 'ip',
+            cell: (item: Item) => {
+                return <DataGridTextCell>{item.ip}</DataGridTextCell>;
+            },
+            label: 'ip',
+            isFilterable: true,
+            isSearchable: false, // only one column can be searchable
+            comparator: FilterCategories.String,
+        }
+    ];
+    `}
+  language="javascript"
+/>
+
+#### With useResourcesV6 hook
+
+**_note : You can apply search in multiples columns and type attribute is mandatory in your column definition_**
+
+Fill `columns` attribute with your columns definition. The`search` object returned by the `useResourcesV6` hook must be passed to your `Datagrid`'s props
+
+<Source
+  code={`
+import {
+  useResourcesV6,
+} from '@ovh-ux/manager-react-components';
+  const {
+    {...}
+    search, // it return search object
+  } = useResourcesV6({
+    {...}
+    columns, // you have to pass the columns definition now
+  });
+]
+
 <Datagrid
     {...}
     filters={filters}
-    search={search}
+    search={search} // pass the params search here
     isLoading={isLoading}
 />
+`}
+
+language="javascript"
+/>
+
+Exemple of column definition
+
+<Source
+  code={`
+    const columns = [
+        {
+            id: 'label',
+            cell: (item: Item) => {
+                return <DataGridTextCell>{item.label}</DataGridTextCell>;
+            },
+            label: 'Label',
+            isFilterable: true,
+            isSearchable: true, // you can define multiple searchable column
+            comparator: FilterCategories.String,
+            type: FilterTypeCategories.String // type attribute is mandatory
+        },
+        {
+            id: 'ip',
+            cell: (item: Item) => {
+                return <DataGridTextCell>{item.ip}</DataGridTextCell>;
+            },
+            label: 'ip',
+            isFilterable: true,
+            isSearchable: true, // you can define multiple searchable column
+            comparator: FilterCategories.String,
+            type: FilterTypeCategories.String // type attribute is mandatory
+        }
+    ];
     `}
   language="javascript"
 />
