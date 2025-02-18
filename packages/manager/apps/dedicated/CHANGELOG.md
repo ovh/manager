@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [20.14.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.14.7...@ovh-ux/manager-dedicated@20.14.8) (2025-02-18)
+
+
+### Bug Fixes
+
+* **dedicated-cloud:** use good id on pcc datastore operation ([3d5a9c5](https://github.com/ovh/manager/commit/3d5a9c56bdb98f0f7ad8f91efedcbb85e847b6d5))
+
+
+
+
+
 ## [20.14.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.14.6...@ovh-ux/manager-dedicated@20.14.7) (2025-02-13)
 
 

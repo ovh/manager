@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.4.1...@ovh-ux/manager-bm-server-components@2.5.0) (2025-02-18)
+
+
+### Features
+
+* **dedicated:** implement new tracking nomenclature for rbx1 eol ([#15163](https://github.com/ovh/manager/issues/15163)) ([46189b0](https://github.com/ovh/manager/commit/46189b0b99b61f37abb4dab42d4b66c7e55502f6))
+
+
+
+
+
 ## [2.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.4.0...@ovh-ux/manager-bm-server-components@2.4.1) (2025-02-06)
 
 
