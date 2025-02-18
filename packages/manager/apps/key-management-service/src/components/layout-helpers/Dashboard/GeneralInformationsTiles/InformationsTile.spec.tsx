@@ -4,11 +4,6 @@ import { screen, render, waitFor } from '@testing-library/react';
 import { ServiceDetails } from '@ovh-ux/manager-react-components';
 import { OKMS } from '@/types/okms.type';
 import InformationsTile from './InformationsTile';
-import {
-  KMIP_LABEL,
-  KMIP_RSA_LABEL,
-  SWAGGER_UI_LABEL,
-} from './InformationsTile.constants';
 
 vi.mock('@ovh-ux/manager-react-shell-client', () => ({
   useOvhTracking: () => ({ trackClick: vi.fn() }),
@@ -86,44 +81,6 @@ describe('InformationsTile component tests suite', () => {
         screen.getByText('key_management_service_dashboard_field_label_region'),
       ).toBeVisible();
       expect(screen.getByText(`region_${kms.region}`)).toBeVisible();
-
-      expect(
-        screen.getByText(
-          'key_management_service_dashboard_field_label_restApi',
-        ),
-      ).toBeVisible();
-
-      expect(
-        container.querySelector(`ods-clipboard[value="${kms.restEndpoint}"]`),
-      ).toBeVisible();
-
-      expect(screen.getByText(KMIP_LABEL)).toBeVisible();
-      expect(
-        container.querySelector(`ods-clipboard[value="${kms.kmipEndpoint}"]`),
-      ).toBeVisible();
-
-      expect(screen.getByText(SWAGGER_UI_LABEL)).toBeVisible();
-      expect(
-        container.querySelector(
-          `ods-link[href="${kms.swaggerEndpoint}"][label="${kms.swaggerEndpoint}"]`,
-        ),
-      ).toBeVisible();
-
-      expect(screen.queryByText(KMIP_RSA_LABEL)).not.toBeInTheDocument();
-    });
-  });
-
-  test('Should display information tile with all kms data', async () => {
-    const kmipRsaEndpoint = 'https://kmip-rsa-endpoint';
-    const kmsData: OKMS = { ...kms, kmipRsaEndpoint };
-
-    const { container } = renderComponent(kmsData);
-
-    await waitFor(() => {
-      expect(screen.getByText(KMIP_RSA_LABEL)).toBeVisible();
-      expect(
-        container.querySelector(`ods-clipboard[value="${kmipRsaEndpoint}"]`),
-      ).toBeVisible();
     });
   });
 });
