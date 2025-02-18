@@ -14,7 +14,6 @@ export interface BillingStepProps {
 }
 
 export function ClusterConfirmationStep({
-  form,
   onSubmit,
   step,
 }: Readonly<BillingStepProps>) {
@@ -24,7 +23,7 @@ export function ClusterConfirmationStep({
     <>
       {!step.isLocked && (
         <>
-          <Estimation nodePools={form.nodePools} />
+          <Estimation />
           <OsdsButton
             className="mt-4 w-fit"
             size={ODS_BUTTON_SIZE.md}
