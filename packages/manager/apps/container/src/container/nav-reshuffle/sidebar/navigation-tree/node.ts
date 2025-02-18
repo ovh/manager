@@ -25,6 +25,7 @@ export type Node = {
   separator?: boolean;
   idAttr?: string;
   hideIfEmpty?: boolean;
+  hideIfFeatures?: string[];
   badge?: string;
   forceVisibility?: boolean;
   forceNavigate?: boolean;
