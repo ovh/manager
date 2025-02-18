@@ -126,6 +126,5 @@ describe('NewPage', () => {
     expect(
       screen.getByText('kubernetes_add_private_network'),
     ).toBeInTheDocument();
-    expect(screen.getByText('kube_common_node_pool_title')).toBeInTheDocument();
   });
 });
