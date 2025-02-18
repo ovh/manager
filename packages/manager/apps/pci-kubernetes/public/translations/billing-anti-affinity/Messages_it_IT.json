@@ -16,7 +16,7 @@
   "kubernetes_add_error_InsufficientPortsQuota": "La quota delle porte del tuo progetto non è sufficiente per eseguire l'operazione. Ti consigliamo di aumentare la quota disponibile o richiedere meno risorse.",
   "kubernetes_add_error_InsufficientInstancesQuota": "La quota di istanze del tuo progetto non è sufficiente per eseguire l'operazione. Ti consigliamo di aumentare la quota disponibile o richiedere meno risorse.",
   "kubernetes_add_error_quota_link": "Aumenta la tua quota",
-  "kubernetes_add_billing_auto_scaling_monthly_warning": "Attenzione: stai attivando simultaneamente l'autoscaling e il forfait mensile per questo nodepool. La creazione di nodi tramite autoscaling comporta la fatturazione immediata di un nodo, calcolata in base al tempo restante per il mese in corso. Consigliamo di evitare questa combinazione se si prevede che la dimensione del nodepool verrà ridotta frequentemente.",
+  "kubernetes_add_billing_auto_scaling_monthly_warning": "Per questo pool di nodi attivi contemporaneamente l'autoscaling e il forfait mensile. Ogni creazione di nodi da parte dell'autoscaling comporta la fatturazione immediata di un nodo, calcolata proporzionalmente al tempo restante sul mese in corso. Consigliamo di evitare questa combinazione se si prevede di ridurre frequentemente la dimensione del pool di nodi.",
   "kubernetes_add_cluster_name_input_pattern_validation_error": "Il nome deve iniziare con un carattere alfabetico, terminare con un carattere alfanumerico e gli unici caratteri speciali ammessi sono trattini e underscore.",
   "kubernetes_add_billing_type_payment_method": "L’importo verrà addebitato sul metodo di pagamento predefinito.",
   "kubernetes_add_billing_anti_affinity_title": "Fatturazione e anti-affinità",
