@@ -16,7 +16,6 @@ export function SolutionStepTileComponent({ item, isItemSelected }) {
   const { t } = useTranslation('containers/add');
   const { data: catalog, isPending } = useCatalog('cloud');
   const { getTextPrice } = useCatalogPrice();
-  //
   const hourlyPrice =
     catalog?.addons.find((addon) => addon.planCode === PLAN_CODES[item])
       ?.pricings?.[0]?.price *

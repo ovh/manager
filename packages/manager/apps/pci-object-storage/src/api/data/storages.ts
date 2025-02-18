@@ -84,6 +84,28 @@ export const getStorage = async (
   return data;
 };
 
+interface Versioning {
+  status: string;
+}
+
+interface Encryption {
+  sseAlgorithm: string;
+}
+
+interface UpdateStorageParams {
+  projectId: string;
+  region: string;
+  name: string;
+  versioning?: Versioning;
+  encryption?: Encryption;
+  s3StorageType: string;
+}
+
+interface Payload {
+  versioning?: Versioning;
+  encryption?: Encryption;
+}
+
 export const updateStorage = async ({
   projectId,
   region,
@@ -91,20 +113,13 @@ export const updateStorage = async ({
   versioning,
   encryption,
   s3StorageType,
-}: {
-  projectId: string;
-  region: string;
-  name: string;
-  versioning?: { status: string };
-  encryption?: { sseAlgorithm: string };
-  s3StorageType: string;
-}) => {
+}: UpdateStorageParams) => {
   const url =
     s3StorageType === 'storage'
       ? `/cloud/project/${projectId}/region/${region}/storage/${name}`
       : `/cloud/project/${projectId}/region/${region}/storageStandard/${name}`;
 
-  const payload: any = {};
+  const payload: Payload = {};
   if (versioning) payload.versioning = versioning;
   if (encryption) payload.encryption = encryption;
 
