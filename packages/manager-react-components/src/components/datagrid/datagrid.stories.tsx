@@ -26,11 +26,13 @@ const DatagridStory = ({
   items,
   isPaginated,
   isSortable,
+  isLoading = false,
   columns = clm,
   getRowCanExpand,
   renderSubComponent,
 }: {
   items: Item[];
+  isLoading: boolean;
   isPaginated: boolean;
   isSortable: boolean;
   columns?: any;
@@ -70,6 +72,7 @@ const DatagridStory = ({
           filters,
         )}
         totalItems={items.length}
+        isLoading={isLoading}
         {...paginationAttrs}
         {...sortingAttrs}
         filters={{ filters, add: addFilter, remove: removeFilter }}
@@ -90,6 +93,14 @@ Basic.args = {
   })),
   isPaginated: true,
   isSortable: true,
+};
+
+export const Loading = DatagridStory.bind({});
+
+Loading.args = {
+  columns: clm,
+  items: [],
+  isLoading: true,
 };
 
 export const Sortable = DatagridStory.bind({});
