@@ -13,6 +13,7 @@ export default class DedicatedCloudDatacenterNetworkTab {
     this.$translate = $translate;
     this.ovhManagerPccDatacenterService = ovhManagerPccDatacenterService;
     this.vcpuTextPrice = '-';
+    this.userLanguage = coreConfig.getUserLocale().replace('_', '-');
 
     this.NETWORK_LABEL = NETWORK_LABEL;
   }
