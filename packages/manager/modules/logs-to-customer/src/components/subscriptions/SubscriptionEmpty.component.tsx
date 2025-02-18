@@ -10,17 +10,19 @@ import {
   ShellContext,
 } from '@ovh-ux/manager-react-shell-client';
 import { CountryCode } from '@ovh-ux/manager-config';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-import { LogsContext } from '../../LogsToCustomer.context';
 import {
   KNOW_MORE_BASE_URL,
   KNOW_MORE_LIST,
 } from './SubscriptionEmpty.constants';
+import { LogsActionEnum } from '../../types/logsTracking';
+import useLogTrackingActions from '../../hooks/useLogTrackingActions';
 
 const SubscriptionEmpty = () => {
   const navigate = useNavigate();
   const { t } = useTranslation('logSubscription');
-  const { trackingOptions } = useContext(LogsContext);
+  const subscribeLogsAccess = useLogTrackingActions(
+    LogsActionEnum.subscribe_logs_access,
+  );
   const { shell } = useContext(ShellContext);
   const { environment } = shell;
   const [knowMoreLink, setKnowMoreLink] = useState('');
@@ -53,7 +55,7 @@ const SubscriptionEmpty = () => {
           type={LinkType.external}
           label={t('log_subscription_empty_tile_button_know_more')}
           href={knowMoreLink}
-          target={OdsHTMLAnchorElementTarget._blank}
+          target="_blank"
         />
         <OdsButton
           variant="outline"
@@ -64,7 +66,7 @@ const SubscriptionEmpty = () => {
               location: PageLocation.page,
               buttonType: ButtonType.button,
               actionType: 'action',
-              actions: trackingOptions?.trackClickMap.subscribe_logs_access,
+              actions: [subscribeLogsAccess],
             });
             navigate('streams');
           }}

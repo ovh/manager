@@ -14,7 +14,12 @@ import {
   OdsSpinner,
 } from '@ovhcloud/ods-components/react';
 import { FilterCategories } from '@ovh-ux/manager-core-api';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import {
+  ShellContext,
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { useQueryClient } from '@tanstack/react-query';
 import ApiError from '../../components/apiError/ApiError.component';
 import {
@@ -26,6 +31,8 @@ import DataStreamIndexingStatus from '../../components/data-streams/DataStreamIn
 import DataStreamRetention from '../../components/data-streams/DataStreamRetention.component';
 import DataStreamSubscriptionsLink from '../../components/data-streams/DataStreamSubscriptionsLink.component';
 import DataStreamActions from '../../components/data-streams/DataStreamActions.component';
+import useLogTrackingActions from '../../hooks/useLogTrackingActions';
+import { LogsActionEnum } from '../../types/logsTracking';
 
 const STREAM_LIST_COLUMN_ID = {
   title: 'title',
@@ -42,7 +49,10 @@ const DataStreamsDatagrid = ({ service }: { service: Service }) => {
   const {
     shell: { navigation },
   } = useContext(ShellContext);
-
+  const { trackClick } = useOvhTracking();
+  const addDatastreamLogsAccess = useLogTrackingActions(
+    LogsActionEnum.add_datastream_logs_access,
+  );
   const { pagination, setPagination } = useDataGrid();
   const { filters, addFilter, removeFilter } = useColumnFilters();
   const { data: streams, isPending, error } = useLogStreams(
@@ -134,6 +144,12 @@ const DataStreamsDatagrid = ({ service }: { service: Service }) => {
         <OdsButton
           size="sm"
           onClick={() => {
+            trackClick({
+              location: PageLocation.datagrid,
+              buttonType: ButtonType.button,
+              actionType: 'action',
+              actions: [addDatastreamLogsAccess],
+            });
             navigation
               .getURL(
                 'dedicated',
