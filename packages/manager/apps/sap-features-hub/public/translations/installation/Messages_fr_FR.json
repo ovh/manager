@@ -73,5 +73,6 @@
   "enablement_input_logstash_certificat_error": "Le certificat fourni n'est pas au bon format.",
   "summary_title": "Validez la configuration de l'installation",
   "summary_subtitle": "Vérifiez les informations saisies avant de lancer l'installation. Vous pouvez également télécharger le fichier de la configuration de votre installation <DownloadLink label=\"ici\">{{label}}</DownloadLink>. Vous pourrez le réutiliser ultérieurement pour initialiser une nouvelle installation.",
-  "summary_cta_submit": "Lancer l'installation"
+  "summary_cta_submit": "Lancer l'installation",
+  "summary_api_error": "Le lancement de l'installation a échoué : {{ error }}"
 }

@@ -44,5 +44,6 @@ export const useFormSteps = () => {
     previousStep,
     goToStep,
     currentStep,
+    serviceName,
   };
 };

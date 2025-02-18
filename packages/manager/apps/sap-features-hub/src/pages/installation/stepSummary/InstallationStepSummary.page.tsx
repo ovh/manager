@@ -1,6 +1,6 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { Trans, useTranslation } from 'react-i18next';
-import { Links } from '@ovh-ux/manager-react-components';
+import { Links, useNotifications } from '@ovh-ux/manager-react-components';
 import { saveAs } from 'file-saver';
 import { useFormSteps } from '@/hooks/formStep/useFormSteps';
 import { useInstallationFormContext } from '@/context/InstallationForm.context';
@@ -8,18 +8,27 @@ import FormLayout from '@/components/Form/FormLayout.component';
 import { FormStepSummary } from '@/components/Form/FormStepSummary.component';
 import { useFormSummary } from '@/hooks/formSummary/useFormSummary';
 import { testIds } from '@/utils/testIds.constants';
-import { getSummaryBlob, getSummaryFileName } from '@/utils/summaryExport';
+import {
+  getSummaryBlob,
+  getSummaryFileName,
+  getSummaryJSON,
+} from '@/utils/summaryExport';
+import { useApiValidation } from '@/hooks/apiValidation/useApiValidation';
 
 export default function InstallationStepSummary() {
   const { t } = useTranslation('installation');
-  const { previousStep, nextStep } = useFormSteps();
-  const { values, errors } = useInstallationFormContext();
+  const { previousStep, serviceName } = useFormSteps();
+  const { values } = useInstallationFormContext();
   const { formSummary } = useFormSummary(values);
-
-  const isStepValid = useMemo(
-    () => Object.values(errors).some((err) => !!err),
-    [errors],
-  );
+  const { addError, clearNotifications } = useNotifications();
+  const { mutate: validateForm } = useApiValidation({
+    serviceName,
+    onMutate: () => clearNotifications(),
+    onError: (err) => {
+      const error = err?.response?.data?.message || err?.message;
+      addError(t('summary_api_error', { error }), true);
+    },
+  });
 
   return (
     <FormLayout
@@ -44,8 +53,7 @@ export default function InstallationStepSummary() {
         ></Trans>
       }
       submitLabel={t('summary_cta_submit')}
-      isSubmitDisabled={!isStepValid}
-      onSubmit={nextStep}
+      onSubmit={() => validateForm(getSummaryJSON(values))}
       onPrevious={previousStep}
     >
       <div className="flex flex-col gap-y-8">

@@ -70,6 +70,7 @@ export default function InstallationInitialStep() {
         optionLabelKey="displayName"
         isDisabled={isLoadingServices || isServicesError}
         isLoading={isLoadingServices}
+        defaultValue={serviceName}
         handleChange={({ detail }) => {
           setValues((prev) => ({
             ...prev,
@@ -92,6 +93,7 @@ export default function InstallationInitialStep() {
         optionLabelKey="name"
         isDisabled={!serviceName || isLoadingDatacentres || isDatacentresError}
         isLoading={isLoadingDatacentres}
+        defaultValue={datacenterId ? `${datacenterId}` : undefined}
         handleChange={({ detail }) => {
           setValues((prev) => ({
             ...prev,
@@ -116,6 +118,7 @@ export default function InstallationInitialStep() {
           !datacenterId || isLoadingClusters || isClustersError || isError
         }
         isLoading={!!datacenterId && isLoadingClusters}
+        defaultValue={clusterName}
         handleChange={({ detail }) =>
           setValues((prev) => ({ ...prev, clusterName: detail.value }))
         }
