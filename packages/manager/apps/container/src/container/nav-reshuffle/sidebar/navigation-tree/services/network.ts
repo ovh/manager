@@ -40,10 +40,23 @@ networkUniverse.children = [
     translation: 'sidebar_ip',
     serviceType: 'IP_SERVICE',
     routing: {
+      application: '/network/ip',
+      hash: '#/ip',
+    },
+    features: ['ips'],
+  },
+  {
+    id: 'ip',
+    idAttr: 'ip-link',
+    universe: networkUniverse.id,
+    translation: 'sidebar_ip',
+    serviceType: 'IP_SERVICE',
+    routing: {
       application: 'dedicated',
       hash: '#/ip',
     },
-    features: ['ip'],
+    features: ['ip',],
+    hideIfFeatures: ['ips'],
   },
   {
     id: 'dedicated-network-security',
