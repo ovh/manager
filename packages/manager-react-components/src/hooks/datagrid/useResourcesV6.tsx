@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import isDate from 'lodash.isdate';
 import {
   IcebergFetchParamsV6,
   fetchIcebergV6,
   applyFilters,
   FilterTypeCategories,
+  FilterComparator,
 } from '@ovh-ux/manager-core-api';
 import { useQuery } from '@tanstack/react-query';
 import { useColumnFilters, ColumnSort } from '../../components';
@@ -14,6 +15,7 @@ export interface ColumnDatagrid {
   id: string;
   label: string;
   type: string;
+  isSearchable?: boolean;
 }
 
 export interface ResourcesV6Hook {
@@ -21,7 +23,7 @@ export interface ResourcesV6Hook {
   columns: ColumnDatagrid[];
 }
 
-export function dataType(a: any) {
+export function dataType(a) {
   if (Number.isInteger(a)) return FilterTypeCategories.Numeric;
   if (isDate(a)) return FilterTypeCategories.Date;
   if (typeof a === 'string') return FilterTypeCategories.String;
@@ -30,6 +32,7 @@ export function dataType(a: any) {
 }
 
 function sortColumn(type: string, a: any, b: any, desc: boolean) {
+  if (!a || !b) return -1;
   switch (type) {
     case FilterTypeCategories.Numeric:
       return desc
@@ -57,6 +60,16 @@ function sortColumn(type: string, a: any, b: any, desc: boolean) {
   }
 }
 
+function applySearch(items, filters) {
+  if (!filters?.length) return items;
+  return items.filter((item) =>
+    filters.some(
+      ({ key, value }) =>
+        item[key]?.toString()?.toLowerCase().includes(value.toLowerCase()),
+    ),
+  );
+}
+
 /**
  * @deprecated use fetchIcebergV6 from @ovh-ux/manager-core-api
  */
@@ -68,6 +81,8 @@ export function useResourcesV6<T = unknown>({
   pageSize = 10,
   columns = [],
 }: IcebergFetchParamsV6 & ResourcesV6Hook) {
+  const [searchInput, setSearchInput] = useState('');
+  const [searchFilter, setSearchFilter] = useState<any>(null);
   const { data, isError, isLoading, error, status } = useQuery({
     queryKey: [queryKey],
     queryFn: () => fetchIcebergV6<T>({ route }),
@@ -76,53 +91,62 @@ export function useResourcesV6<T = unknown>({
   const [sorting, setSorting] = useState<ColumnSort>();
   const [pageIndex, setPageIndex] = useState(0);
   const [totalCount, setTotalCount] = useState(0);
-  const [sortData, setSortData] = useState<T[]>([]);
   const [flattenData, setFlattenData] = useState<T[]>([]);
   const { filters, addFilter, removeFilter } = useColumnFilters();
 
-  useEffect(() => {
-    if (data?.data && data?.data?.length > 0) {
-      setTotalCount(data.data.length);
-      setSortData(data.data);
+  const searchedData = useMemo(() => {
+    if (!data?.data) return [];
+    let processedData = data?.data;
+    if (searchFilter) {
+      processedData = applySearch(data?.data, searchFilter);
     }
-  }, [data, filters]);
+    if (filters) {
+      processedData = applyFilters(processedData, filters);
+    }
+    return processedData;
+  }, [searchFilter, data?.data, filters]);
+
+  const sortedData = useMemo(() => {
+    if (sorting) {
+      const columnType = columns.find((col) => col.id === sorting.id)?.type;
+      const array = searchedData.length > 0 ? searchedData : data?.data;
+      return [...array].sort((a, b) =>
+        sortColumn(columnType, a?.[sorting.id], b?.[sorting.id], sorting.desc),
+      );
+    }
+    return searchedData.length > 0 ? searchedData : data?.data;
+  }, [sorting, searchedData]);
 
   useEffect(() => {
-    if (sortData) {
-      const currentPosition = pageIndex * pageSize;
-      const slice = sortData?.slice(
-        currentPosition,
-        currentPosition + pageSize,
-      );
-      setFlattenData([...flattenData, ...slice]);
+    if (data?.data && data?.data?.length > 0 && totalCount === 0) {
+      setTotalCount(data.data.length);
+      setFlattenData(data?.data);
     }
-  }, [pageIndex, sortData]);
+  }, [data]);
 
   useEffect(() => {
     setPageIndex(0);
+    setFlattenData(sortedData);
+  }, [sortedData]);
 
-    if (sortData && sorting) {
-      const type = columns?.find((element) => element.id === sorting.id)?.type;
-      const sortedDatas = sortData?.sort((a: any, b: any) =>
-        sortColumn(type, a?.[sorting.id], b?.[sorting.id], sorting?.desc),
-      );
-      setFlattenData([]);
-      setSortData(applyFilters([...sortedDatas], filters));
-    }
-  }, [sorting]);
+  const fetchNextPage = useCallback(() => setPageIndex((prev) => prev + 1), []);
 
-  useEffect(() => {
-    if (sortData.length > 0) {
-      setPageIndex(0);
-      const dataFiltered = applyFilters(data?.data, filters);
-      setFlattenData([]);
-      setSortData([...dataFiltered]);
-    }
-  }, [filters]);
+  const searchableColumns = useMemo(
+    () => columns.filter((col: ColumnDatagrid) => col.isSearchable),
+    [columns],
+  );
 
-  const onFetchNextPage = () => {
-    setPageIndex(pageIndex + 1);
-  };
+  const onSearch = useCallback((search) => {
+    setSearchFilter(
+      !search
+        ? null
+        : searchableColumns.map(({ id }) => ({
+            key: id,
+            value: search,
+            comparator: FilterComparator.Includes,
+          })),
+    );
+  }, []);
 
   return {
     data,
@@ -130,17 +154,22 @@ export function useResourcesV6<T = unknown>({
     setSorting,
     pageIndex,
     totalCount,
-    flattenData,
+    flattenData: flattenData?.slice(0, (pageIndex + 1) * pageSize),
     isError,
     isLoading,
-    hasNextPage: pageIndex * pageSize + pageSize <= flattenData.length,
-    fetchNextPage: onFetchNextPage,
+    hasNextPage: pageIndex * pageSize + pageSize <= flattenData?.length,
+    fetchNextPage,
     error,
     status,
     filters: {
       filters,
       add: addFilter,
       remove: removeFilter,
+    },
+    search: {
+      onSearch,
+      searchInput,
+      setSearchInput,
     },
   };
 }
