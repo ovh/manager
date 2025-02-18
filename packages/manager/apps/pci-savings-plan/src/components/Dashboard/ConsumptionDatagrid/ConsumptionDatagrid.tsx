@@ -93,10 +93,12 @@ const ConsumptionDatagrid = ({
   ]);
 
   useEffect(() => {
-    setPagination({
-      pageIndex: 0,
-      pageSize: 10,
-    });
+    if (pagination.pageIndex !== 0) {
+      setPagination({
+        pageIndex: 0,
+        pageSize: 10,
+      });
+    }
   }, [items]);
 
   return (
