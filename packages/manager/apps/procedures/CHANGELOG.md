@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.8.5...@ovh-ux/manager-procedures-app@0.9.0) (2025-02-18)
+
+
+### Features
+
+* **procedures:** set up sentry ([#15347](https://github.com/ovh/manager/issues/15347)) ([6e453e5](https://github.com/ovh/manager/commit/6e453e5496419f9692aa49df520ecf277eaf2dd8))
+
+
+
+
+
 ## [0.8.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.8.4...@ovh-ux/manager-procedures-app@0.8.5) (2025-02-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-procedures-app

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.104.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.103.3...@ovh-ux/manager-container-app@0.104.0) (2025-02-18)
+
+
+### Features
+
+* **container:** optimize pnr performance by removing services count ([#15351](https://github.com/ovh/manager/issues/15351)) ([65668c2](https://github.com/ovh/manager/commit/65668c2e42b4527709c5ab0ae82e03b919ccfd1b))
+
+
+
+
+
 ## [0.103.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.103.2...@ovh-ux/manager-container-app@0.103.3) (2025-02-11)
 
 **Note:** Version bump only for package @ovh-ux/manager-container-app

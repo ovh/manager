@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.23](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-app@0.2.22...@ovh-ux/manager-billing-app@0.2.23) (2025-02-18)
+
+
+### Bug Fixes
+
+* **billing:** put redirections on app definition level ([#15357](https://github.com/ovh/manager/issues/15357)) ([badce06](https://github.com/ovh/manager/commit/badce06aad331ac563c5121cd94f16ea020c1114))
+
+
+
+
+
 ## [0.2.22](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-app@0.2.21...@ovh-ux/manager-billing-app@0.2.22) (2025-02-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-billing-app
