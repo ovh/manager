@@ -4,7 +4,6 @@ import React, {
   useMemo,
   useRef,
   useState,
-  useContext,
 } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useVirtualizer } from '@tanstack/react-virtual';
@@ -19,7 +18,8 @@ import { useLogTailMessages } from '../../../data/hooks/useLogTailMessages';
 import { Log } from './log/Log.component';
 import { TemporaryLogsLink } from '../../../data/types/dbaas/logs';
 import { useZoomedInOut } from '../../../hooks/useZoomedInOut';
-import { LogsContext } from '../../../LogsToCustomer.context';
+import { LogsActionEnum } from '../../../types/logsTracking';
+import useLogTrackingActions from '../../../hooks/useLogTrackingActions';
 
 interface ISearchContext {
   query: string;
@@ -46,7 +46,9 @@ export const LogMessages = ({ logTailMessageUrl }: ILogTailMessageUrl) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [autoScroll, setAutoScroll] = useState(true);
   const { isZoomedIn, toggleZoom } = useZoomedInOut();
-  const { trackingOptions } = useContext(LogsContext);
+  const clearSessionLogsAccess = useLogTrackingActions(
+    LogsActionEnum.clear_session_logs_access,
+  );
   const { trackClick } = useOvhTracking();
   const {
     messages,
@@ -75,7 +77,7 @@ export const LogMessages = ({ logTailMessageUrl }: ILogTailMessageUrl) => {
       location: PageLocation.page,
       buttonType: ButtonType.button,
       actionType: 'action',
-      actions: trackingOptions?.trackClickMap.clear_session_logs_access,
+      actions: [clearSessionLogsAccess],
     });
   };
 
