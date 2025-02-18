@@ -45,7 +45,6 @@ type TState = {
 export default function UserCreatePage(): JSX.Element {
   const { t: tAdd } = useTranslation('objects/users/add');
   const { t: tCredential } = useTranslation('credential-banner');
-  const { t: tUsers } = useTranslation('objects/users');
 
   const navigate = useNavigate();
 
@@ -276,23 +275,10 @@ export default function UserCreatePage(): JSX.Element {
       onCancel={onCancel}
       isPending={state.isLoading || isPending}
     >
-      {validUsersWithoutCredentials?.length > 0 && (
+      {(availability?.[AVAILABILITY.LOCALZONE] ||
+        validUsersWithoutCredentials?.length > 0) && (
         <OdsMessage color="information" isDismissible={false}>
-          <OdsText preset="paragraph">
-            {tAdd('pci_projects_project_users_add_info_banner')}
-          </OdsText>
-        </OdsMessage>
-      )}
-
-      {availability?.[AVAILABILITY.LOCALZONE] && (
-        <OdsMessage
-          color="information"
-          className="mt-6 w-full"
-          isDismissible={false}
-        >
-          {tUsers(
-            'objects/users:pci_projects_project_storages_containers_users_user_info_banner',
-          )}
+          {tAdd('pci_projects_project_users_add_info_banner')}
         </OdsMessage>
       )}
 
