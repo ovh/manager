@@ -3,6 +3,7 @@ import { ActionMenu, useNotifications } from '@ovh-ux/manager-react-components';
 import { Translation, useTranslation } from 'react-i18next';
 import { ApiError } from '@ovh-ux/manager-core-api';
 
+import { useMemo } from 'react';
 import { TStorage } from '@/api/data/storages';
 import { OBJECT_CONTAINER_MODE_LOCAL_ZONE } from '@/constants';
 import { isSwiftType } from '@/helpers';
@@ -50,6 +51,15 @@ export function Actions({
       );
     },
   });
+
+  const uid = useMemo(
+    () =>
+      `${storage.name}-${storage.deploymentMode}-${storage.region}`.replace(
+        /\./g,
+        '-',
+      ),
+    [storage],
+  );
 
   const items = [
     {
@@ -117,11 +127,5 @@ export function Actions({
       ...i,
     }));
 
-  return (
-    <ActionMenu
-      id={`${storage.name}-${storage.deploymentMode}-${storage?.region}`}
-      items={items}
-      isCompact
-    />
-  );
+  return <ActionMenu id={uid} items={items} isCompact />;
 }
