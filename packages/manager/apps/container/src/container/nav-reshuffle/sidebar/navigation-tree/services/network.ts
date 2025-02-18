@@ -43,7 +43,7 @@ networkUniverse.children = [
       application: 'dedicated',
       hash: '#/ip',
     },
-    features: ['ip'],
+    features: ['ip', 'ips'],
   },
   {
     id: 'dedicated-network-security',
