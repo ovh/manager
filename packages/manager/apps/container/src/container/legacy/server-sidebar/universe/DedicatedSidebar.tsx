@@ -247,12 +247,17 @@ export default function DedicatedSidebar() {
         ),
         pathMatcher: new RegExp('^(/vrack-services/)'),
         subItems: [
-          feature.ip && {
+          (feature['ip'] || feature['ips']) && {
             id: 'dedicated-ip',
             label: t('sidebar_ip_short'),
             icon: getIcon('ovh-font ovh-font-ip'),
-            href: navigation.getURL('dedicated', '#/ip'),
-            routeMatcher: new RegExp('/ip(/|$)'),
+            ...(feature['ips'] ? {
+              href: navigation.getURL('network', '#/ip'),
+              pathMatcher: new RegExp('/ip(/|$)'),
+            } : {
+              href: navigation.getURL('dedicated', '#/ip'),
+              routeMatcher: new RegExp('/ip(/|$)'),
+            })
           },
           feature['network-security'] && {
             id: 'dedicated-network-security',

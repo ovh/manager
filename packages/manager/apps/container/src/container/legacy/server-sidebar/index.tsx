@@ -23,7 +23,7 @@ export default function ServerSidebarIndex() {
   const [isAccountMenu, setIsAccountMenu] = useState(false);
   const location = useLocation();
   const isUniverseMenu =
-    ['public-cloud', 'server', 'telecom', 'web'].indexOf(universe) >= 0;
+    ['public-cloud', 'server', 'telecom', 'web', 'dedicated'].indexOf(universe) >= 0;
   const accountMenuPath: Record<string, string[] | '*'> = {
     dedicated: [
       '/billing',
@@ -102,7 +102,7 @@ export default function ServerSidebarIndex() {
         }`}
       >
         {universe === 'public-cloud' && <PublicCloudSidebar />}
-        {universe === 'server' && <DedicatedSidebar />}
+        {universe === 'server' || universe === 'dedicated' && <DedicatedSidebar />}
         {universe === 'telecom' && <TelecomSidebar />}
         {universe === 'web' && <WebSidebar />}
       </div>
