@@ -24,6 +24,7 @@ interface RegionSelectorProps {
   onSelectRegion: (region: TRegionAvailability) => void;
   isSubmitted: boolean;
   isSwiftOffer: boolean;
+  canActivateRegion?: boolean;
 }
 
 export function ContainerRegionSelector({
@@ -33,6 +34,7 @@ export function ContainerRegionSelector({
   onSelectRegion,
   isSubmitted,
   isSwiftOffer,
+  canActivateRegion,
 }: Readonly<RegionSelectorProps>) {
   const { t } = useTranslation(['containers/add', 'pci-common']);
 
@@ -163,7 +165,7 @@ export function ContainerRegionSelector({
           isMobile={isMobileView}
         />
       )}
-      {region && !region.enabled && (
+      {canActivateRegion && region && !region.enabled && (
         <OdsText className="my-6 text-critical font-bold-class">
           {t(
             'pci_projects_project_storages_containers_add_add_region_activate',

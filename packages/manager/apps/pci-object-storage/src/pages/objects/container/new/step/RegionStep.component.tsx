@@ -100,6 +100,7 @@ export function RegionStep() {
     }
   }, [stepper.region.isLocked]);
 
+  const isDiscovery = isDiscoveryProject(project);
   const isPending = isProjectPending || isAddProjectPending;
 
   return (
@@ -112,7 +113,7 @@ export function RegionStep() {
       next={{
         action: submitRegionHandler,
         label: t('pci-common:common_stepper_next_button_label'),
-        isDisabled: !form.region || isPending || isDiscoveryProject(project),
+        isDisabled: !form.region || isPending || isDiscovery,
       }}
       edit={{
         action: editRegion,
@@ -129,9 +130,10 @@ export function RegionStep() {
             onSelectRegion={setRegion}
             isSubmitted={stepper.region.isLocked}
             isSwiftOffer={form.offer === OBJECT_CONTAINER_OFFER_SWIFT}
+            canActivateRegion={!isDiscovery}
           />
         )}
-        {!isPending && isDiscoveryProject(project) && (
+        {!isPending && isDiscovery && (
           <div className="mt-6">
             <OdsText className="text-critical font-bold-class">
               {t(
