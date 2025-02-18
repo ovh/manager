@@ -473,7 +473,7 @@ export const useAddUser = ({
 
 export interface UpdateStorageTypeProps {
   projectId: string;
-  onSuccess: () => void;
+  onSuccess: (containerType: TStorage['containerType']) => void;
   onError: (error: ApiError) => void;
 }
 
@@ -495,13 +495,13 @@ export const useUpdateStorageType = ({
         projectId,
         containerId,
         containerType,
-      }),
+      }).then(() => containerType),
     onError,
-    onSuccess: async () => {
+    onSuccess: async (containerType) => {
       await queryClient.invalidateQueries({
         queryKey: getAllStoragesQueryKey(projectId),
       });
-      onSuccess();
+      onSuccess(containerType);
     },
   });
   return {
