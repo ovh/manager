@@ -24,7 +24,6 @@ export interface ContainerCreationForn {
   region: TRegionAvailability;
   ownerId: number;
   offsiteReplication: boolean;
-  replication?: Replication;
   versioning: boolean;
   encryption: string;
   containerName: string;
@@ -279,18 +278,6 @@ export const useContainerCreationStore = create<ContainerStore>()(
           form: {
             ...state.form,
             offsiteReplication,
-            replication: offsiteReplication
-              ? {
-                  rules: [
-                    {
-                      id: '',
-                      status: 'enabled',
-                      priority: 1,
-                      deleteMarkerReplication: 'enabled',
-                    },
-                  ],
-                }
-              : undefined,
             versioning: offsiteReplication,
             ownerId: undefined,
             encryption: NO_ENCRYPTION_VALUE,
