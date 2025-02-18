@@ -1,5 +1,7 @@
 import { useTranslation } from 'react-i18next';
-
+import { format } from 'date-fns';
+import * as dateFnsLocales from 'date-fns/locale';
+import { getDateFnsLocale } from '@ovh-ux/manager-core-utils';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import React, { useMemo } from 'react';
 import {
@@ -37,7 +39,8 @@ const GenericChart: React.FC<ChartProps> = ({
   flavor,
 }) => {
   const { t } = useTranslation('dashboard');
-
+  const { i18n } = useTranslation('pci-common');
+  const userLocale = getDateFnsLocale(i18n.language);
   const chartData = useMemo(() => getChartsData(consumption.periods ?? []), [
     consumption.periods,
   ]);
@@ -91,7 +94,21 @@ const GenericChart: React.FC<ChartProps> = ({
             }}
             {...(maxRange <= 1 ? { ticks: [0, 1] } : {})}
           />
-          <Tooltip formatter={(value) => <OdsText>{value}</OdsText>} />
+          <Tooltip
+            formatter={(value) => <OdsText>{value}</OdsText>}
+            labelFormatter={(_, payload) => {
+              const date = payload?.[0]?.payload?.date ?? null;
+
+              const formattedText = date
+                ? format(date, 'd MMM yyyy', {
+                    locale:
+                      dateFnsLocales[userLocale as keyof typeof dateFnsLocales],
+                  })
+                : '';
+              return <OdsText>{formattedText}</OdsText>;
+            }}
+          />
+
           <Legend
             formatter={(value) => (
               <span className="text-[--ods-color-blue-800]">{value}</span>
