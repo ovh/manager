@@ -8,6 +8,8 @@ import {
 import { TemporaryLogsLink } from '../types/dbaas/logs';
 import { getLogTailMessages, Tmessage } from '../api/logTailMessages';
 import { LogsContext } from '../../LogsToCustomer.context';
+import useLogTrackingActions from '../../hooks/useLogTrackingActions';
+import { LogsActionEnum } from '../../types/logsTracking';
 
 export const getLogTailMessageQueryKey = (
   logTailMessageUrl: TemporaryLogsLink['url'],
@@ -16,7 +18,10 @@ export const getLogTailMessageQueryKey = (
 export const useLogTailMessages = (
   logTailMessageUrl: TemporaryLogsLink['url'],
 ) => {
-  const { currentLogKind, trackingOptions } = useContext(LogsContext);
+  const { currentLogKind } = useContext(LogsContext);
+  const pauseLogsAccess = useLogTrackingActions(
+    LogsActionEnum.pause_logs_access,
+  );
   const { trackClick } = useOvhTracking();
   const [messages, setMessages] = useState<Tmessage[]>([]);
   const messageIds = useRef(new Set());
@@ -40,7 +45,7 @@ export const useLogTailMessages = (
         location: PageLocation.page,
         buttonType: ButtonType.button,
         actionType: 'action',
-        actions: trackingOptions?.trackClickMap.pause_logs_access,
+        actions: [pauseLogsAccess],
       });
       return;
     }

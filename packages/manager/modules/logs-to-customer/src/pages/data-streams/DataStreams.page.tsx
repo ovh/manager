@@ -8,22 +8,32 @@ import { useQueryClient } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import ApiError from '../../components/apiError/ApiError.component';
 import {
   getLogServicesQueryKey,
   useLogServices,
 } from '../../data/hooks/useLogService';
-
 import { Service } from '../../data/types/dbaas/logs';
 import DataStreamsDatagrid from './DataStreamsDatagrid.component';
 import getServiceLabel from '../../helpers/getServiceLabel';
 import ServiceLink from '../../components/services/ServiceLink.component';
+import { LogsActionEnum } from '../../types/logsTracking';
+import useLogTrackingActions from '../../hooks/useLogTrackingActions';
 
 export default function DataStreams() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const { t } = useTranslation('logStreams');
+  const { trackClick } = useOvhTracking();
   const [currentService, setCurrentService] = useState<Service>();
+  const subscribeLogsAccessAction = useLogTrackingActions(
+    LogsActionEnum.subscribe_logs_access,
+  );
 
   const { data: logServices, isPending, error } = useLogServices();
 
@@ -97,6 +107,12 @@ export default function DataStreams() {
             variant="outline"
             label={t('log_streams_back_button')}
             onClick={() => {
+              trackClick({
+                location: PageLocation.page,
+                buttonType: ButtonType.button,
+                actionType: 'action',
+                actions: [subscribeLogsAccessAction],
+              });
               navigate('..');
             }}
           />
