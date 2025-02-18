@@ -29,6 +29,14 @@ vi.mock('@/data/hooks', async (importOriginal) => {
   };
 });
 
+vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
+  const actual: any = await importOriginal();
+  return {
+    ...actual,
+    ChangelogButton: vi.fn().mockReturnValue(<div></div>),
+  };
+});
+
 const renderComponent = ({ ...args }: DashboardLayoutProps) => {
   return render(
     <QueryClientProvider client={queryClient}>
