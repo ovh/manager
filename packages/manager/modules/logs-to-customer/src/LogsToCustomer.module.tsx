@@ -15,7 +15,8 @@ import { LogsContext } from './LogsToCustomer.context';
 import ApiError from './components/apiError/ApiError.component';
 import './translations';
 import { ZoomedInOutProvider } from './hooks/useZoomedInOut';
-import { LogsActionName } from './types/logsTracking';
+import useLogTrackingActions from './hooks/useLogTrackingActions';
+import { LogsActionEnum } from './types/logsTracking';
 
 export type ApiUrls = {
   logKind: string;
@@ -34,7 +35,7 @@ export interface ILogsToCustomerModule {
   logIamActions: LogIamActions;
   resourceURN: string;
   trackingOptions?: {
-    trackClickMap: Record<LogsActionName, string[]>;
+    trackingSuffix: string;
   };
 }
 
@@ -49,6 +50,9 @@ export default function LogsToCustomerModule({
   const [currentLogKind, setCurrentLogKind] = useState<LogKind>();
   const { t } = useTranslation('logKind');
   const { trackClick } = useOvhTracking();
+  const selectKindLogsAccess = useLogTrackingActions(
+    LogsActionEnum.select_kind_logs_access,
+  );
   const { data: logKinds, error, isPending } = useLogKinds({
     logKindUrl: logApiUrls.logKind,
     apiVersion: logApiVersion,
@@ -130,7 +134,7 @@ export default function LogsToCustomerModule({
                 location: PageLocation.page,
                 buttonType: ButtonType.button,
                 actionType: 'action',
-                actions: trackingOptions?.trackClickMap.select_kind_logs_access,
+                actions: [selectKindLogsAccess],
               });
             }
           }}
