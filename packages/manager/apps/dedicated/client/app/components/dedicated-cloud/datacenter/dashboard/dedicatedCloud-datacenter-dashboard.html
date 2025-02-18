@@ -213,7 +213,7 @@
                     <oui-action-menu data-compact data-placement="end">
                         <oui-action-menu-item
                             aria-label="{{:: 'dedicatedCloud_datacenter_activate' | translate }}"
-                            data-ng-click=""
+                            data-ng-click="$ctrl.goToDatacenterNetwork()"
                             data-ng-if="!$ctrl.isNsxtEnabled"
                         >
                             <span
