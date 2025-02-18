@@ -58,17 +58,13 @@ export function VersioningStep() {
               name="versioning"
               inputId="versioning-false"
               onOdsChange={() => setVersioning(false)}
-              isDisabled={
-                form.offsiteReplication && form.replication?.rules.length > 0
-              }
+              isDisabled={form.offsiteReplication}
             />
             <label htmlFor="versioning-false">
               <OdsText>
                 <span
                   className={clsx({
-                    'text-disabled':
-                      form.offsiteReplication &&
-                      form.replication?.rules.length > 0,
+                    'text-disabled': form.offsiteReplication,
                   })}
                 >
                   {t(
@@ -101,10 +97,7 @@ export function VersioningStep() {
               onOdsChange={() => setVersioning(true)}
               inputId="versioning-true"
               isChecked={
-                (form.offsiteReplication &&
-                  form.replication?.rules.length > 0) ||
-                form.versioning ||
-                undefined
+                form.offsiteReplication || form.versioning || undefined
               }
             />
             <label htmlFor="versioning-true">
