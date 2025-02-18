@@ -3,7 +3,7 @@ import { PciModal } from '@ovh-ux/manager-pci-common';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { OdsText } from '@ovhcloud/ods-components/react';
-import { useContext } from 'react';
+import { useContext, useMemo } from 'react';
 import { Translation, useTranslation } from 'react-i18next';
 import {
   createSearchParams,
@@ -28,7 +28,9 @@ export default function EnableVersioningPage() {
     projectId,
   );
 
-  const storageDetail = storages?.resources.find((s) => s.name === storageId);
+  const storageDetail = useMemo(() => {
+    return storages?.resources.find((s) => s.name === storageId);
+  }, [storages?.resources, storageId]);
 
   const onClose = () =>
     navigate({

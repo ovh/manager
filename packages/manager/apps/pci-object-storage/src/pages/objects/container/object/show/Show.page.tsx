@@ -436,21 +436,14 @@ export default function ObjectPage() {
 
                     <OdsBadge
                       size="sm"
-                      label={
+                      label={tContainer(
                         is.replicationRulesBannerShown
-                          ? tContainer(
-                              'pci_projects_project_storages_containers_container_offsite_replication_disabled',
-                            )
-                          : tContainer(
-                              'pci_projects_project_storages_containers_container_offsite_replication_enabled',
-                            )
+                          ? 'pci_projects_project_storages_containers_container_offsite_replication_disabled'
+                          : 'pci_projects_project_storages_containers_container_offsite_replication_enabled',
+                      )}
+                      color={
+                        !is.replicationRulesBannerShown ? 'success' : 'critical'
                       }
-                      color={(() => {
-                        if (!is.replicationRulesBannerShown) return 'success';
-                        if (is.replicationRulesBannerShown) return 'critical';
-
-                        return 'information';
-                      })()}
                     ></OdsBadge>
                     <div>
                       <OdsIcon

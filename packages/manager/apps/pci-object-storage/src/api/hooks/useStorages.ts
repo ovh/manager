@@ -359,6 +359,7 @@ export interface UseCreateContainerArgs {
   encryption?: string;
   versioning?: boolean;
   containerType?: string;
+  offsiteReplication?: boolean;
   replication?: Replication;
 }
 
@@ -390,7 +391,18 @@ export const useCreateContainer = ({
           region: args.region,
           encryption: args.encryption,
           versioning: args.versioning,
-          replication: args.replication,
+          ...(args.offsiteReplication && {
+            replication: {
+              rules: [
+                {
+                  id: '',
+                  status: 'enabled',
+                  priority: 1,
+                  deleteMarkerReplication: 'enabled',
+                },
+              ],
+            },
+          }),
         });
       }
       if (!result) throw new Error(`${args.offer}: unknown container offer!`);
