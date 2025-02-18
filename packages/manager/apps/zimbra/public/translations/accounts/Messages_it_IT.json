@@ -15,5 +15,5 @@
   "zimbra_domains_tooltip_need_domain": "Configura prima un dominio.",
   "zimbra_account_datagrid_status_label": "Stato",
   "zimbra_account_account_order": "Ordina un account",
-  "zimbra_domains_tooltip_need_slot": "Nessun account disponibile, ordinalo."
+  "zimbra_domains_tooltip_need_slot": "Nessun account disponibile, registrane uno."
 }

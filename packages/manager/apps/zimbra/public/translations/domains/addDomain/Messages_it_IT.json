@@ -36,5 +36,5 @@
   "zimbra_domains_add_domain_configuration_cname_field_type": "Tipo di record:",
   "zimbra_domains_add_domain_configuration_cname_field_subdomain": "Sottodominio:",
   "zimbra_domains_add_domain_configuration_cname_field_target": "Destinazione:",
-  "zimbra_domains_add_domain_warning_configuration_standard": "Optando per la configurazione consigliata, accetti che tutte le tue email siano in futuro instradate verso il servizio Zimbra. In caso contrario, deseleziona la casella MX nella configurazione personalizzata."
+  "zimbra_domains_add_domain_warning_configuration_standard": "Optando per la configurazione consigliata, accetti che tutte le tue email siano in futuro inoltrate verso il servizio Zimbra. In alternativa, deseleziona la casella MX nella configurazione personalizzata."
 }
