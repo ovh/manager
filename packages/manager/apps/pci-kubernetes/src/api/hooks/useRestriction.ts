@@ -56,6 +56,7 @@ export const useMappedRestrictions = (
     () => ({
       isLoading,
       isPending,
+      mappedData,
       data: paginateResults<TMappedRestriction>(mappedData || [], pagination),
       error,
       addEmptyRow,
