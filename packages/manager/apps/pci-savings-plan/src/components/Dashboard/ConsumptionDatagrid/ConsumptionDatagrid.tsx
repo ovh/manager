@@ -60,16 +60,16 @@ const ConsumptionDatagrid = ({
     },
     {
       label: t('dashboard_columns_consumption_size'),
-      id: 'consumption_size',
+      id: 'consumptionSize',
       cell: (props: SavingsPlanPeriodConsumption) => (
-        <CellText text={props.consumption_size?.toString()} />
+        <CellText text={props.consumptionSize?.toString()} />
       ),
     },
     {
       label: t('dashboard_columns_cumul_plan_size'),
-      id: 'cumul_plan_size',
+      id: 'cumulPlanSize',
       cell: (props: SavingsPlanPeriodConsumption) => (
-        <CellText text={props.cumul_plan_size?.toString()} />
+        <CellText text={props.cumulPlanSize?.toString()} />
       ),
     },
   ];
