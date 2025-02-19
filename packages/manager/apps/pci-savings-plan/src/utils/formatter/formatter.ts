@@ -94,8 +94,8 @@ export const getChartsData = (
         const adjustedEndDate = new Date(computedEndDate);
         adjustedEndDate.setUTCHours(0, 0, 0, 0);
 
-        const consumptionSizeFormatted = period.consumption_size ?? 0;
-        const cumulPlanSizeFormatted = period.cumul_plan_size ?? 0;
+        const consumptionSizeFormatted = period.consumptionSize ?? 0;
+        const cumulPlanSizeFormatted = period.cumulPlanSize ?? 0;
 
         const included = Math.min(
           consumptionSizeFormatted,
