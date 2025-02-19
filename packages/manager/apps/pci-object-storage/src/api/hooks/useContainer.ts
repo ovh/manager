@@ -40,6 +40,7 @@ export const useServerContainer = (
     }),
     queryFn: () => getServerContainer(projectId, region, name, id),
     enabled: !!projectId && !!name && !!region,
+    staleTime: 0,
   });
 };
 
