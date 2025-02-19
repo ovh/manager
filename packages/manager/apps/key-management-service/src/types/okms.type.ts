@@ -7,6 +7,8 @@ export type OKMS = {
   kmipRsaEndpoint?: string;
   restEndpoint: string;
   swaggerEndpoint: string;
+  serviceKeyCount: number;
+  kmipObjectCount: number;
   iam: IAM;
 };
 

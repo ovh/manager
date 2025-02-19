@@ -31,6 +31,8 @@ describe('InformationsTile component tests suite', () => {
     kmipEndpoint: 'https://kmip-endpoint',
     restEndpoint: 'https://rest-endpoint',
     swaggerEndpoint: 'https://swagger-endpoint',
+    kmipObjectCount: 1,
+    serviceKeyCount: 2,
     iam: {
       displayName: 'name',
       id: 'id',
