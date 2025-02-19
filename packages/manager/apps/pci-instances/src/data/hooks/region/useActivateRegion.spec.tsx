@@ -3,7 +3,7 @@ import { SetupServer } from 'msw/lib/node';
 import { FC, PropsWithChildren } from 'react';
 import { describe, test, vi } from 'vitest';
 import { act, renderHook, waitFor } from '@testing-library/react';
-import { AxiosError } from 'axios';
+import { isAxiosError } from 'axios';
 import { setupRegionServer } from '@/__mocks__/region/node';
 import { useActivateRegion } from './useActivateRegion';
 import regionActivated from '@/__mocks__/region/regionActivated.json';
@@ -92,7 +92,9 @@ describe('Considering the useActivateRegion hook', () => {
             'response.status',
             500,
           );
-          expect(useActivateRegionResult.current.error).instanceOf(AxiosError);
+          expect(
+            isAxiosError(useActivateRegionResult.current.error),
+          ).toBeTruthy();
           expect(handleError).toHaveBeenCalled();
         } else {
           await waitFor(() =>
