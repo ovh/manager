@@ -111,14 +111,14 @@ const Kpis = ({
   );
 
   const savedAmount = useMemo(
-    () => getFormattedFee(consumption?.fees?.saved_amount),
+    () => getFormattedFee(consumption?.fees?.savedAmount),
     [consumption, getFormattedFee],
   );
 
   const withoutSavedAmount = useMemo(
     () =>
       getFormattedFee(
-        consumption?.fees?.saved_amount + consumption?.fees?.total_price,
+        consumption?.fees?.savedAmount + consumption?.fees?.totalPrice,
       ),
     [consumption, getFormattedFee],
   );
@@ -138,7 +138,7 @@ const Kpis = ({
   );
 
   const totalAmountOutside = useMemo(
-    () => getFormattedFee(consumption?.fees?.over_quota?.total_price),
+    () => getFormattedFee(consumption?.fees?.overQuota?.totalPrice),
     [consumption, getFormattedFee],
   );
 

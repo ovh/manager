@@ -1,7 +1,7 @@
 import { MutationStatus } from '@tanstack/react-query';
 
 export interface PciProject {
-  project_id: string;
+  projectId: string;
   projectName: string;
   description: string;
   planCode: PciProjectPlanCode;
