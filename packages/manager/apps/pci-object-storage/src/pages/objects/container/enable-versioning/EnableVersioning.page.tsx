@@ -29,8 +29,10 @@ export default function EnableVersioningPage() {
   );
 
   const storageDetail = useMemo(() => {
-    return storages?.resources.find((s) => s.name === storageId);
-  }, [storages?.resources, storageId]);
+    return storages?.resources.find(
+      (s) => s.name === storageId && s.region === searchParams.get('region'),
+    );
+  }, [storages, storageId]);
 
   const onClose = () =>
     navigate({
