@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-import { VOLUME_MAX_SIZE, VOLUME_MIN_SIZE } from '../../../block.constants';
+import { VOLUME_MIN_SIZE } from '../../../block.constants';
 import { HOURS_PER_MONTH } from '../../../../../project.constants';
 
 export default class PciProjectStorageVolumeEditController {
@@ -34,7 +34,6 @@ export default class PciProjectStorageVolumeEditController {
   $onInit() {
     this.size = {
       min: VOLUME_MIN_SIZE,
-      max: VOLUME_MAX_SIZE,
     };
 
     if (angular.isUndefined(this.sizeEditable)) {
@@ -71,7 +70,9 @@ export default class PciProjectStorageVolumeEditController {
       this.storage,
     ).then((availableQuota) => {
       this.size.min = this.storage.size;
-      this.size.max = availableQuota;
+      if (this.sizeEditable) {
+        this.size.max = availableQuota;
+      }
     });
   }
 

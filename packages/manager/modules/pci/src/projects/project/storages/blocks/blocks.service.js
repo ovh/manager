@@ -16,7 +16,6 @@ import Region from './region.class';
 
 import {
   VOLUME_ADDON_FAMILY,
-  VOLUME_MAX_SIZE,
   VOLUME_MIN_SIZE,
   VOLUME_SNAPSHOT_CONSUMPTION,
   VOLUME_UNLIMITED_QUOTA,
@@ -192,20 +191,25 @@ export default class PciProjectStorageBlockService {
       );
   }
 
-  getAvailableQuota(projectId, { region }) {
-    return this.getProjectQuota(projectId, region).then((quota) => {
-      if (quota && quota.volume) {
-        let availableGigabytes = VOLUME_MAX_SIZE;
+  getAvailableQuota(projectId, { region, type }) {
+    return this.$q
+      .all([
+        this.getProjectQuota(projectId, region),
+        this.getCatalog(projectId),
+      ])
+      .then(([quota, catalog]) => {
+        let availableGigabytes = catalog.models
+          .find((m) => m.name === type)
+          .pricings.find((p) => p.regions.includes(region)).specs.volume
+          .capacity.max;
         if (quota.volume.maxGigabytes !== VOLUME_UNLIMITED_QUOTA) {
           availableGigabytes = Math.min(
-            VOLUME_MAX_SIZE,
+            availableGigabytes,
             quota.volume.maxGigabytes - quota.volume.usedGigabytes,
           );
         }
         return availableGigabytes;
-      }
-      return VOLUME_MAX_SIZE;
-    });
+      });
   }
 
   getProjectQuota(projectId, region = null) {
