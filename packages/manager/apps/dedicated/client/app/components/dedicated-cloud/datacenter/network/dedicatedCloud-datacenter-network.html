@@ -51,7 +51,7 @@
         ></button>
     </div>
 
-    <oui-datagrid data-rows-loader="$ctrl.loadNsxEdgeNetworks($config)">
+    <oui-datagrid data-rows-loader="$ctrl.loadNsxtEdgeNetworks($config)">
         <oui-datagrid-column
             data-title=":: 'dedicatedCloud_network_id' | translate"
             data-property="nsxtEdgeId"
@@ -74,7 +74,8 @@
         </oui-datagrid-column>
 
         <oui-action-menu data-compact data-placement="end">
-            <oui-action-menu-item data-on-click=""
+            <oui-action-menu-item
+                data-on-click="$ctrl.goToRelocate($row.nsxtEdgeId)"
                 ><span
                     data-translate="dedicatedCloud_network_relocate_action"
                 ></span

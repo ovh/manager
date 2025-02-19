@@ -2,6 +2,7 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
     'app.dedicatedCloud.details.datacenter.details.dashboard',
     {
+      url: '',
       views: {
         'pccDatacenterView@app.dedicatedCloud.details.datacenter.details':
           'ovhManagerDedicatedCloudDatacenterDashboard',
@@ -73,6 +74,11 @@ export default /* @ngInject */ ($stateProvider) => {
           }
 
           return promise;
+        },
+        goToRelocateNsxtEdge: ($state) => () => {
+          $state.go(
+            'app.dedicatedCloud.details.datacenter.details.dashboard.move-nsxt-edge',
+          );
         },
       },
     },
