@@ -1,6 +1,5 @@
 import { aapi, v6 } from '@ovh-ux/manager-core-api';
 import { TStorageObject } from './objects';
-import { Replication } from '@/pages/objects/container/new/useContainerCreationStore';
 
 export type TStorage = {
   archive?: boolean;
@@ -31,6 +30,17 @@ export type TStoragesAapiResult = {
   resources: TStorage[];
   errors: unknown[];
 };
+
+export interface ReplicationRule {
+  id: string;
+  status: 'enabled' | 'disabled';
+  priority: number;
+  deleteMarkerReplication: 'enabled' | 'disabled';
+}
+
+export interface Replication {
+  rules: ReplicationRule[];
+}
 
 export const getStorages = async (
   projectId: string,
@@ -119,11 +129,7 @@ export const updateStorage = async ({
       ? `/cloud/project/${projectId}/region/${region}/storage/${name}`
       : `/cloud/project/${projectId}/region/${region}/storageStandard/${name}`;
 
-  const payload: Payload = {};
-  if (versioning) payload.versioning = versioning;
-  if (encryption) payload.encryption = encryption;
-
-  const { data } = await v6.put(url, payload);
+  const { data } = await v6.put(url, { versioning, encryption });
 
   return data;
 };

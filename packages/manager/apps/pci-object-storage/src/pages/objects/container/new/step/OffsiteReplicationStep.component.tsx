@@ -12,7 +12,11 @@ import {
   OdsSkeleton,
   OdsText,
 } from '@ovhcloud/ods-components/react';
-import { useCatalog, useProductAvailability } from '@ovh-ux/manager-pci-common';
+import {
+  useCatalog,
+  useProductAvailability,
+  TRegionAvailability,
+} from '@ovh-ux/manager-pci-common';
 import { useMemo, useCallback } from 'react';
 import { useContainerCreationStore } from '../useContainerCreationStore';
 import {
@@ -21,15 +25,6 @@ import {
   MEGA_BYTES,
   OFFSITE_REPLICATION_CODE,
 } from '@/constants';
-
-interface Region {
-  type: 'localzone' | 'region' | 'region-3-az';
-}
-
-interface Plan {
-  code: string;
-  regions: Region[];
-}
 
 export function OffsiteReplication() {
   const { t } = useTranslation(['containers/add', 'pci-common']);
@@ -47,7 +42,7 @@ export function OffsiteReplication() {
 
   const plans = useMemo(
     () =>
-      productAvailability?.plans?.filter((plan: Plan) =>
+      productAvailability?.plans?.filter((plan) =>
         plan.code?.startsWith(STORAGE_STANDARD_REGION_PLANCODE),
       ) || [],
     [productAvailability],
@@ -57,7 +52,8 @@ export function OffsiteReplication() {
     const eligibleAddons = plans
       .filter((plan) =>
         plan.regions.some(
-          (region: Region) => region.type === OBJECT_CONTAINER_MODE_MULTI_ZONES,
+          (region: TRegionAvailability) =>
+            region.type === OBJECT_CONTAINER_MODE_MULTI_ZONES,
         ),
       )
       .map(({ code }) =>
@@ -110,7 +106,7 @@ export function OffsiteReplication() {
       }
       isChecked={stepper.offsiteReplication.isChecked}
       isLocked={stepper.offsiteReplication.isLocked}
-      order={5}
+      order={4}
       next={{
         action: submitOffsiteReplication,
         label: t('pci-common:common_stepper_next_button_label'),

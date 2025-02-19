@@ -16,6 +16,7 @@ import {
   setContainerAsPublic,
   updateStorageType,
   getStorageAccess,
+  Replication,
 } from '../data/storages';
 import {
   OBJECT_CONTAINER_MODE_LOCAL_ZONE,
@@ -30,7 +31,6 @@ import { paginateResults } from '@/helpers';
 import { addUser, deleteSwiftObject, TStorageObject } from '../data/objects';
 import { getContainerQueryKey } from './useContainer';
 import { useGetRegion } from './useRegion';
-import { Replication } from '@/pages/objects/container/new/useContainerCreationStore';
 
 export const sortStorages = (sorting: ColumnSort, storages: TStorage[]) => {
   const order = sorting.desc ? -1 : 1;

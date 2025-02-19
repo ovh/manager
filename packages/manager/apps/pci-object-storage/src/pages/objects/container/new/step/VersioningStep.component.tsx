@@ -8,6 +8,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 import clsx from 'clsx';
 import { useContainerCreationStore } from '../useContainerCreationStore';
+import { OBJECT_CONTAINER_MODE_MULTI_ZONES } from '@/constants';
 
 export function VersioningStep() {
   const { t } = useTranslation([
@@ -32,7 +33,7 @@ export function VersioningStep() {
       isOpen={stepper.versioning.isOpen || stepper.versioning.isLocked}
       isChecked={stepper.versioning.isChecked}
       isLocked={stepper.versioning.isLocked}
-      order={4}
+      order={form.deploymentMode === OBJECT_CONTAINER_MODE_MULTI_ZONES ? 5 : 4}
       next={{
         action: submitVersioning,
         label: t('pci-common:common_stepper_next_button_label'),
