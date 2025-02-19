@@ -3,7 +3,7 @@ import { SetupServer } from 'msw/lib/node';
 import { FC, PropsWithChildren } from 'react';
 import { describe, test, vi } from 'vitest';
 import { act, renderHook, waitFor } from '@testing-library/react';
-import { AxiosError } from 'axios';
+import { isAxiosError } from 'axios';
 import {
   TInstance,
   updateDeletedInstanceStatus,
@@ -51,6 +51,7 @@ const fakeInstancesDto: TInstanceDto[] = [
     region: `fake-region-1`,
     status: 'ACTIVE',
     addresses: [],
+    volumes: [],
   },
   {
     id: `fake-id-2`,
@@ -62,6 +63,7 @@ const fakeInstancesDto: TInstanceDto[] = [
     region: `fake-region-2`,
     status: 'ACTIVE',
     addresses: [],
+    volumes: [],
   },
 ];
 
@@ -146,9 +148,9 @@ describe('Considering the useInstanceAction hook', () => {
               'response.status',
               500,
             );
-            expect(useInstanceActionResult.current.error).instanceOf(
-              AxiosError,
-            );
+            expect(
+              isAxiosError(useInstanceActionResult.current.error),
+            ).toBeTruthy();
           }
           expect(handleError).toHaveBeenCalled();
         } else {

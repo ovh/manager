@@ -13,6 +13,7 @@ export const mockedInstance: TInstance = {
     ['private', [{ ip: '123.000.00', version: 1, gatewayIp: '' }]],
     ['public', [{ ip: '777.000.00', version: 2, gatewayIp: '' }]],
   ]),
+  volumes: [],
 };
 
 export const mockedInstanceWithEmptyRegion: TInstance = {

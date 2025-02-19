@@ -9,6 +9,11 @@ export type TInstanceDtoAddress = {
   gatewayIp: string;
 };
 
+export type TInstanceVolumeDto = {
+  id: string;
+  name: string;
+};
+
 export type TInstanceStatusDto =
   | 'ACTIVE'
   | 'BUILDING'
@@ -52,6 +57,7 @@ export type TInstanceDto = DeepReadonly<{
   name: string;
   region: string;
   status: TInstanceStatusDto;
+  volumes: TInstanceVolumeDto[];
 }>;
 
 export type TRetrieveInstancesQueryParams = DeepReadonly<{

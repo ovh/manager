@@ -1,4 +1,4 @@
-import { AxiosError } from 'axios';
+import { isAxiosError } from 'axios';
 import { SetupServer } from 'msw/node';
 import { FC, PropsWithChildren } from 'react';
 import { describe, expect, test, afterEach } from 'vitest';
@@ -29,6 +29,7 @@ const instanceDtoBuilder = (
   region: `fake-region`,
   status,
   addresses,
+  volumes: [],
 });
 
 const instanceBuilder = (
@@ -257,7 +258,7 @@ describe('UseInstances hook', () => {
           } else {
             await waitFor(() => expect(result.current.isError).toBe(true));
             expect(result.current.error).toHaveProperty('response.status', 500);
-            expect(result.current.error).instanceOf(AxiosError);
+            expect(isAxiosError(result.current.error)).toBeTruthy();
           }
 
           const queryCache = queryClient.getQueryCache();
