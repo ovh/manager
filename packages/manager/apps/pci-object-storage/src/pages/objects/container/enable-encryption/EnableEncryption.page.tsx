@@ -57,7 +57,7 @@ export default function EnableEncryptionPage() {
     });
   };
 
-  const { updateContainer, isPending } = useUpdateStorage({
+  const { updateContainer, isPending: isUpdatePending } = useUpdateStorage({
     projectId,
     region: storageDetail.region,
     name: storageId,
@@ -113,8 +113,8 @@ export default function EnableEncryptionPage() {
       onCancel={onCancel}
       onClose={onClose}
       onConfirm={onConfirm}
-      isPending={isPending || isStoragesPending}
-      isDisabled={isPending || isStoragesPending}
+      isPending={isUpdatePending || isStoragesPending}
+      isDisabled={isUpdatePending || isStoragesPending}
       submitText={t(
         'pci_projects_project_storages_containers_update_encryption_enable_label',
       )}
