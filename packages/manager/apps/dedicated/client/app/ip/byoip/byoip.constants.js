@@ -4,6 +4,27 @@ export const CONFIG_NAME = {
   IPRIR: 'ipRir',
 };
 
+export const GUIDELINK = {
+  GB:
+    'https://help.ovhcloud.com/csm/en-gb-network-bring-your-own-ip?id=kb_article_view&sysparm_article=KB0044849',
+  FR:
+    'https://help.ovhcloud.com/csm/fr-network-bring-your-own-ip?id=kb_article_view&sysparm_article=KB0044867',
+  IT:
+    'https://help.ovhcloud.com/csm/it-network-bring-your-own-ip?id=kb_article_view&sysparm_article=KB0044860',
+  CA:
+    'https://help.ovhcloud.com/csm/fr-ca-network-bring-your-own-ip?id=kb_article_view&sysparm_article=KB0044857',
+  ASIA:
+    'https://help.ovhcloud.com/csm/asia-network-bring-your-own-ip?id=kb_article_view&sysparm_article=KB0044845',
+  AU:
+    'https://help.ovhcloud.com/csm/en-au-network-bring-your-own-ip?id=kb_article_view&sysparm_article=KB0044847',
+  SG:
+    'https://help.ovhcloud.com/csm/en-sg-network-bring-your-own-ip?id=kb_article_view&sysparm_article=KB0044855',
+  IN:
+    'https://help.ovhcloud.com/csm/en-ie-network-bring-your-own-ip?id=kb_article_view&sysparm_article=KB0044851',
+  PT:
+    'https://help.ovhcloud.com/csm/pt-network-bring-your-own-ip?id=kb_article_view&sysparm_article=KB0044863',
+};
+
 export const STEP_NAME = {
   RIR: 'select-rir',
   LOCATION: 'select-location',

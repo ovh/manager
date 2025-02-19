@@ -4,6 +4,7 @@ import template from './byoip.html';
 export default {
   bindings: {
     plan: '<',
+    guideUrl: '<',
     getToken: '<',
     goToDisclaimer: '<',
     goBack: '<',

@@ -1,4 +1,5 @@
 import ipByoipComponent from './byoip.component';
+import { GUIDELINK } from './byoip.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.ip.byoip', {
@@ -8,6 +9,9 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       plan: /* @ngInject */ (ByoipService) => ByoipService.getCatalog(),
+      user: /* @ngInject */ (OvhApiMe) => OvhApiMe.v6().get().$promise,
+      guideUrl: /* @ngInject */ (user) =>
+        GUIDELINK[user.ovhSubsidiary] || GUIDELINK.GB,
       getToken: /* @ngInject */ (ByoipService) => (region) =>
         ByoipService.getToken(region),
       goToDisclaimer: /* @ngInject */ ($state) => (payload) =>
