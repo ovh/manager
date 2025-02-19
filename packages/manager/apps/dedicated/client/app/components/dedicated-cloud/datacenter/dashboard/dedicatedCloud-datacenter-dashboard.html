@@ -222,7 +222,7 @@
                         </oui-action-menu-item>
                         <oui-action-menu-item
                             aria-label="{{:: 'dedicatedCloud_datacenter_resize' | translate }}"
-                            data-ng-click="$ctrl.goToResizeNsxEdge($ctrl.datacenter.model.id)"
+                            data-ng-click="$ctrl.goToResizeNsxtEdge($ctrl.datacenter.model.id)"
                             data-disabled="!$ctrl.isNsxtEnabled"
                         >
                             <span
@@ -239,11 +239,11 @@
                             ></span>
                         </oui-action-menu-item>
                         <oui-action-menu-item
-                            aria-label="{{:: 'dedicatedCloud_datacenter_modify_datastore' | translate }}"
-                            data-ng-click=""
+                            aria-label="{{:: 'dedicatedCloud_datacenter_relocate_datastore' | translate }}"
+                            data-ng-click="$ctrl.goToRelocateNsxtEdge()"
                         >
                             <span
-                                data-translate="dedicatedCloud_datacenter_modify_datastore"
+                                data-translate="dedicatedCloud_datacenter_relocate_datastore"
                             ></span>
                         </oui-action-menu-item>
                     </oui-action-menu>
