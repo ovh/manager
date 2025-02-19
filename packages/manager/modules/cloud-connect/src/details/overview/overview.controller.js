@@ -4,6 +4,8 @@ import {
   POP_MAP,
   DIAGNOSTIC_TRACKING_PREFIX,
   DIAGNOSTIC_DASHBOARD_TRACKING_CONTEXT,
+  CLOUD_CONNECT_TRACKING_PREFIX,
+  CLOUD_CONNECT_LISTING_TRACKING_CONTEXT,
 } from '../../cloud-connect.constants';
 
 export default class CloudConnectOverviewCtrl {
@@ -42,6 +44,11 @@ export default class CloudConnectOverviewCtrl {
     if (!this.cloudConnect.isDirectService()) {
       this.loadServiceKeys();
     }
+
+    this.atInternet.trackPage({
+      name: `${CLOUD_CONNECT_TRACKING_PREFIX}cloud-connect::dashboard::configure`,
+      ...CLOUD_CONNECT_LISTING_TRACKING_CONTEXT,
+    });
   }
 
   refreshMessages() {

@@ -20,6 +20,11 @@ export default class DiagnosticsResultCtrl {
         ...DIAGNOSTIC_DASHBOARD_TRACKING_CONTEXT,
       });
     }
+
+    this.atInternet.trackPage({
+      name: `${DIAGNOSTIC_TRACKING_PREFIX}cloud-connect::dashboard::diagnostics`,
+      ...DIAGNOSTIC_DASHBOARD_TRACKING_CONTEXT,
+    });
   }
 
   downloadResult(diagnosticId) {

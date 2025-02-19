@@ -68,7 +68,7 @@ export default class CheckBGPPeeringCtrl {
       .then(({ status }) => {
         if (status === ApiDiagnosticStatus.TODO) {
           this.atInternet.trackPage({
-            name: `${DIAGNOSTIC_TRACKING_PREFIX}cloud-connect::banner-info::::create_diagnostic_pending`,
+            name: `${DIAGNOSTIC_TRACKING_PREFIX}cloud-connect::banner-info::create_diagnostic_pending`,
             type: 'display',
             ...DIAGNOSTIC_DASHBOARD_TRACKING_CONTEXT,
           });
@@ -108,7 +108,7 @@ export default class CheckBGPPeeringCtrl {
       })
       .catch((error) => {
         this.atInternet.trackPage({
-          name: `${DIAGNOSTIC_TRACKING_PREFIX}cloud-connect::banner-error::::create_diagnostic_error`,
+          name: `${DIAGNOSTIC_TRACKING_PREFIX}cloud-connect::banner-error::create_diagnostic_error`,
           type: 'display',
           ...DIAGNOSTIC_DASHBOARD_TRACKING_CONTEXT,
         });

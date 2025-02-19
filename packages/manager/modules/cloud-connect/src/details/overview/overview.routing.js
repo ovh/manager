@@ -1,8 +1,3 @@
-import {
-  CLOUD_CONNECT_TRACKING_PREFIX,
-  CLOUD_CONNECT_LISTING_TRACKING_CONTEXT,
-} from '../../cloud-connect.constants';
-
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('cloud-connect.details.overview', {
     url: '/overview',
@@ -163,8 +158,7 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: () => null,
     },
     atInternet: {
-      rename: `${CLOUD_CONNECT_TRACKING_PREFIX}cloud-connect::dashboard::index`,
-      ...CLOUD_CONNECT_LISTING_TRACKING_CONTEXT,
+      ignore: true,
     },
   });
 };
