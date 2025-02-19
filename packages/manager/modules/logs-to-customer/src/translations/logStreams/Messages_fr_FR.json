@@ -1,0 +1,16 @@
+{
+  "log_streams_title": "Flux de données",
+  "log_streams_back_button": "Retour aux logs",
+  "log_streams_select_account": "Sélectionner le compte LDP",
+  "log_streams_account_label": "Compte LDP",
+  "log_streams_add_stream": "Créer un flux de données",
+  "log_streams_filter": "Filtrer",
+  "log_streams_colomn_name": "Flux de données",
+  "log_streams_colomn_description": "Description",
+  "log_streams_colomn_indexation": "Indexation",
+  "log_streams_colomn_retention": "Rétention",
+  "log_streams_colomn_subscriptions": "Abonnements",
+  "log_streams_no_results": "Aucun Flux de données sur ce compte LDP",
+  "log_streams_subscribe": "S'abonner",
+  "log_streams_unsubscribe": "Se désabonner"
+}
