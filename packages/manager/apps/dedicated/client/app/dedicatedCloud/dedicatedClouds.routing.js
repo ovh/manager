@@ -3,7 +3,7 @@ import { getDedicatedCloudOrderUrl } from './dedicatedClouds-order';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.dedicatedCloud.index', {
-    url: `?${ListLayoutHelper.urlQueryParams}`,
+    url: `/?${ListLayoutHelper.urlQueryParams}`,
     component: 'ovhManagerPccList',
     params: ListLayoutHelper.stateParams,
     redirectTo: (transition) =>

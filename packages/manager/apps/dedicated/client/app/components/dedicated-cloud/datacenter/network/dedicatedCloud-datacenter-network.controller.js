@@ -19,7 +19,7 @@ export default class DedicatedCloudDatacenterNetworkTab {
   }
 
   $onInit() {
-    this.fetchNsxEdgeReference();
+    this.fetchNsxtEdgeReference();
     this.loadComsumptionOfOption();
     const { ovhSubsidiary } = this.coreConfig.getUser();
     this.fetchVcpuPrice(ovhSubsidiary);
@@ -32,7 +32,7 @@ export default class DedicatedCloudDatacenterNetworkTab {
   loadComsumptionOfOption() {
     this.consumptionLoading = true;
     return this.ovhManagerPccDatacenterService
-      .getConsumptionForecastByServiceId(this.nsxEdgeOptionServiceId)
+      .getConsumptionForecastByServiceId(this.nsxtEdgeOptionServiceId)
       .then((consumption) => {
         this.consumption = consumption;
       })
@@ -41,17 +41,17 @@ export default class DedicatedCloudDatacenterNetworkTab {
       });
   }
 
-  loadNsxEdgeNetworks(paginationParams) {
-    return this.ovhManagerPccDatacenterService.getNsxEdgeByDatacenter(
+  loadNsxtEdgeNetworks(paginationParams) {
+    return this.ovhManagerPccDatacenterService.getNsxtEdgeByDatacenter(
       this.serviceName,
       this.datacenterId,
       paginationParams,
     );
   }
 
-  fetchNsxEdgeReference() {
+  fetchNsxtEdgeReference() {
     return this.ovhManagerPccDatacenterService
-      .getNsxEdgeByDatacenter(this.serviceName, this.datacenterId, {
+      .getNsxtEdgeByDatacenter(this.serviceName, this.datacenterId, {
         pageSize: 1,
       })
       .then(({ data }) => {
