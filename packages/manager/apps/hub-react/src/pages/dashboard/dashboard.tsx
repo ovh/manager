@@ -69,7 +69,7 @@ const NotificationsCarousel = lazy(() =>
   import('@/pages/dashboard/NotificationsCarousel.component'),
 );
 
-export default function Layout() {
+export default function Dashboard() {
   const location = useLocation();
   const {
     shell,
