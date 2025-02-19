@@ -27,7 +27,7 @@
   "octavia_load_balancer_create_private_network_field_subnet": "Select a subnet",
   "octavia_load_balancer_create_private_network_no_subnet_text": "The private network selected does not have a subnet with an IP gateway defined: choose or <a href=\"{{ createPrivateNetworkLink }}\" target=\"_blank\" data-track-name=\"{{ trackLabel }}\" data-track-on=\"click\" data-track-type=\"action\">Create another private network.</a>",
   "octavia_load_balancer_create_private_network_no_gateway_text": "We have detected a missing gateway in the selected private network/subnet. We will set up one for you when you create the load balancer",
-  "octavia_load_balancer_create_private_network_no_gateway_text_price": "Price of the new gateway:",
+  "octavia_load_balancer_create_private_network_no_gateway_text_price": "The selected size is: {{ size }} (for {{ price }})",
   "octavia_load_balancer_create_gateway_price_interval": " /hour",
   "octavia_load_balancer_create_instance_title": "Add instances",
   "octavia_load_balancer_create_instance_intro": "To configure your Load Balancer, define your front-end listeners with a port and a protocol. Then assign it to a pool of instances (back ends) that can be reached on a specific port and protocol. If you have multiple protocols and/or ports per instance, you can configure multiple pools per listener. <a href=\"{{ linkUrl }}\" target=\"_blank\" data-track-name=\"{{ trackLabel }}\" data-track-on=\"click\" data-track-type=\"action\">Please refer to the documentation</a>",
