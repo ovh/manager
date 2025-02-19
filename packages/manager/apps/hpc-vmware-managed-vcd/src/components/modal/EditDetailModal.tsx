@@ -1,22 +1,11 @@
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
-  ODS_BUTTON_VARIANT,
-  ODS_INPUT_TYPE,
-  ODS_MESSAGE_TYPE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-  OdsInputValueChangeEventDetail,
-  OsdsInputCustomEvent,
-} from '@ovhcloud/ods-components';
-import {
-  OsdsButton,
-  OsdsFormField,
-  OsdsInput,
-  OsdsMessage,
-  OsdsModal,
-  OsdsSpinner,
-  OsdsText,
+  OdsButton,
+  OdsFormField,
+  OdsInput,
+  OdsMessage,
+  OdsModal,
+  OdsText,
 } from '@ovhcloud/ods-components/react';
 import { AxiosResponse } from 'axios';
 import React, { useState } from 'react';
@@ -65,77 +54,52 @@ export const EditDetailModal = ({
   };
 
   return (
-    <OsdsModal
-      color={ODS_THEME_COLOR_INTENT.info}
-      onOdsModalClose={onCloseModal}
-      dismissible
-      headline={headline}
-    >
+    <OdsModal onOdsClose={onCloseModal}>
+      <OdsText preset="heading-3">{headline}</OdsText>
       {!!error && isErrorVisible && (
-        <OsdsMessage
-          type={ODS_MESSAGE_TYPE.error}
-          removable
-          onOdsRemoveClick={() => setIsErrorVisible(false)}
+        <OdsMessage
+          color="danger"
+          isDismissible
+          onOdsRemove={() => setIsErrorVisible(false)}
         >
-          <OsdsText
-            level={ODS_TEXT_LEVEL.body}
-            size={ODS_TEXT_SIZE._400}
-            color={ODS_THEME_COLOR_INTENT.text}
-          >
-            {t('managed_vcd_dashboard_edit_modal_error', {
-              error: error.response?.data?.message,
-            })}
-          </OsdsText>
-        </OsdsMessage>
+          {t('managed_vcd_dashboard_edit_modal_error', {
+            error: error.response?.data?.message,
+          })}
+        </OdsMessage>
       )}
-      <OsdsFormField>
-        <OsdsText
-          color={ODS_THEME_COLOR_INTENT.text}
-          className="mt-6"
-          slot="label"
-        >
+      <OdsFormField>
+        <OdsText className="mt-6" slot="label">
           {inputLabel}
-        </OsdsText>
-        <OsdsInput
-          ariaLabel="edit-input"
-          type={ODS_INPUT_TYPE.text}
+        </OdsText>
+        <OdsInput
+          name="edit-detail"
+          type="text"
           value={newDetail}
-          onOdsValueChange={(
-            e: OsdsInputCustomEvent<OdsInputValueChangeEventDetail>,
-          ) => setNewDetail(e.target.value as string)}
-          color={
-            isValidDetail
-              ? ODS_THEME_COLOR_INTENT.info
-              : ODS_THEME_COLOR_INTENT.error
-          }
+          onOdsChange={(e) => setNewDetail(e.target.value as string)}
+          hasError={!isValidDetail}
+          ariaLabel="edit-input"
         />
-        <OsdsText
+        <OdsText
           slot="helper"
-          color={ODS_THEME_COLOR_INTENT.error}
+          // color={ODS_THEME_COLOR_INTENT.error} // TODO : use CSS variables
           className={isValidDetail ? 'invisible' : 'visible'}
         >
           {errorHelper}
-        </OsdsText>
-      </OsdsFormField>
+        </OdsText>
+      </OdsFormField>
 
       {isLoading && <Loading slot="actions" className="w-9 mr-4" />}
-      <OsdsButton
-        slot="actions"
-        color={ODS_THEME_COLOR_INTENT.primary}
-        variant={ODS_BUTTON_VARIANT.stroked}
+      <OdsButton
+        label={t('managed_vcd_dashboard_edit_modal_cta_cancel')}
+        variant="outline"
         onClick={onCloseModal}
-      >
-        {t('managed_vcd_dashboard_edit_modal_cta_cancel')}
-      </OsdsButton>
-      <OsdsButton
-        disabled={!isButtonEnabled || undefined}
-        slot="actions"
-        color={ODS_THEME_COLOR_INTENT.primary}
-        variant={ODS_BUTTON_VARIANT.flat}
+      />
+      <OdsButton
+        label={t('managed_vcd_dashboard_edit_modal_cta_edit')}
+        variant="ghost"
         onClick={handleSubmit}
-      >
-        {t('managed_vcd_dashboard_edit_modal_cta_edit')}
-      </OsdsButton>
-    </OsdsModal>
+        isDisabled={!isButtonEnabled || undefined}
+      />
+    </OdsModal>
   );
 };

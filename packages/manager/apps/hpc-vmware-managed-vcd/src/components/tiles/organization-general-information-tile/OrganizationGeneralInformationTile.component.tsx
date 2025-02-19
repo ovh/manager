@@ -4,19 +4,11 @@ import {
   Clipboard,
   DashboardTile,
   Region,
-  Description,
 } from '@ovh-ux/manager-react-components';
-import {
-  ODS_THEME_COLOR_HUE,
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import { OsdsText } from '@ovhcloud/ods-components/react';
+import { OdsText } from '@ovhcloud/ods-components/react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { VCDOrganization } from '@ovh-ux/manager-module-vcd-api';
 import { subRoutes } from '@/routes/routes.constant';
 import { iamActions } from '@/utils/iam.constants';
@@ -69,26 +61,21 @@ export default function OrganizationGenerationInformationTile({
           id: 'location',
           label: t('managed_vcd_dashboard_location'),
           value: (
-            <OsdsText
-              level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-              size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-              color={ODS_THEME_COLOR_INTENT.text}
-              hue={ODS_THEME_COLOR_HUE._500}
-            >
+            <OdsText>
               <Region
                 name={vcdOrganization.currentState?.region?.toLowerCase()}
                 mode="region"
               />
-            </OsdsText>
+            </OdsText>
           ),
         },
         {
           id: 'region',
           label: t('managed_vcd_dashboard_region'),
           value: (
-            <Description>
+            <OdsText>
               {vcdOrganization?.currentState?.region?.toLowerCase()}
-            </Description>
+            </OdsText>
           ),
         },
         {
@@ -104,7 +91,7 @@ export default function OrganizationGenerationInformationTile({
               type={LinkType.external}
               href={vcdOrganization.currentState?.webInterfaceUrl}
               label={t('managed_vcd_dashboard_management_interface_access')}
-              target={OdsHTMLAnchorElementTarget._blank}
+              target="_blank"
             />
           ),
         },

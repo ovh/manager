@@ -1,17 +1,10 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
-  ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-  ODS_CHIP_SIZE,
-} from '@ovhcloud/ods-components';
-import {
-  OsdsChip,
-  OsdsIcon,
-  OsdsLink,
-  OsdsTooltip,
-  OsdsTooltipContent,
+  OdsBadge,
+  OdsIcon,
+  OdsLink,
+  OdsTooltip,
 } from '@ovhcloud/ods-components/react';
 
 export default function ServicePasswordTileItem() {
@@ -20,29 +13,26 @@ export default function ServicePasswordTileItem() {
   return (
     <div className="flex-wrap">
       <div className="flex items-center gap-x-2">
-        <OsdsLink disabled>
+        <OdsLink isDisabled href="/">
           {t('managed_vcd_dashboard_password_renew')}
-        </OsdsLink>
-        <OsdsTooltip className="flex items-center">
-          <OsdsIcon
+        </OdsLink>
+
+        <>
+          <OdsIcon
+            id="password-tooltip-trigger"
             className="cursor-pointer"
-            name={ODS_ICON_NAME.HELP}
-            size={ODS_ICON_SIZE.xxs}
-            color={ODS_THEME_COLOR_INTENT.text}
+            name="question"
           />
-          <OsdsTooltipContent slot="tooltip-content" className="break-normal">
+          <OdsTooltip triggerId="password-tooltip-trigger">
             {t('managed_vcd_dashboard_password_tooltip')}
-          </OsdsTooltipContent>
-        </OsdsTooltip>
+          </OdsTooltip>
+        </>
       </div>
-      <OsdsChip
-        inline
-        color={ODS_THEME_COLOR_INTENT.primary}
+      <OdsBadge
+        label={t('managed_vcd_dashboard_coming_soon')}
         className="ml-3 mt-3"
-        size={ODS_CHIP_SIZE.sm}
-      >
-        {t('managed_vcd_dashboard_coming_soon')}
-      </OsdsChip>
+        size="sm"
+      />
     </div>
   );
 }
