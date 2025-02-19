@@ -29,6 +29,7 @@ import {
   SNOW_CHAT_QUEUE_STORAGE_KEY,
   CHAT_STATE_STORAGE_KEY,
   CHAT_TYPE_STORAGE_KEY,
+  ADRIELLY_LABEU_CHAT_URL,
 } from './liveChat.constants';
 import { generateSnowChatUrl } from './liveChat.helpers';
 import ChatDialog from './ChatDialog.component';
@@ -91,19 +92,33 @@ export default function LiveChat({
   });
 
   const handleCloseChat = () => {
-    setChatbotReduced(false);
 
     if (chatType === 'SNOW' && chatIFrame.current) {
-      chatIFrame.current.contentWindow?.postMessage(
+      // console.log('sending EndCall message to', chatIFrame.current.contentWindow, chatIFrame.current.contentWindow?.window)
+      if (!chatIFrame.current.contentWindow) {
+        console.error('chatIFrame.current.contentWindow is null');
+        const frame = document.getElementById('livechat-iframe') as HTMLIFrameElement;
+        if (frame && frame.contentWindow) {
+          frame.contentWindow.postMessage({ action: 'endConversation' }, '*')
+        }
+        else {
+          console.error('frame is null');
+          return;
+        }
+      }
+      chatIFrame.current.contentWindow.postMessage(
         { action: 'endConversation' },
         '*',
       );
     }
-
-    clearSnowChatQueue();
-    clearChatType();
-    clearChatState();
-    closeLiveChat();
+    // Introduce the delay before executing these operations
+    setTimeout(() => {
+      setChatbotReduced(false);
+      clearSnowChatQueue();
+      clearChatType();
+      clearChatState();
+      closeLiveChat();
+    }, 500); // Wait for 500 milliseconds
   };
 
   const handleReduceChat = (reduceChat: boolean) => {
@@ -126,7 +141,7 @@ export default function LiveChat({
     ) => {
       // TODO: Add back after testing
       // if (ev.origin !== ADRIELLY_CHAT_ORIGIN) return;
-      ev.stopPropagation();
+      //ev.stopPropagation();
 
       if (typeof ev.data !== 'object' || ev.data.event !== 'open_agent_chat')
         return;
@@ -167,6 +182,11 @@ export default function LiveChat({
   if (region === 'US') return null;
 
   // const url = `https://chat.ovh.com/system/templates/liveChat-manager/${customerLevel}/${subsidiary}_${language}/docs/index2.html`;
+  let url = 'https://chat.ovh.com/system/templates/pre-prod/prepa_prod/STD/FR_fr/docs/index2.html';
+
+  if (window.location.hostname.includes('labeu')) {
+    url = ADRIELLY_LABEU_CHAT_URL;
+  }
 
   if (!chatbotOpen) return null;
   return (
@@ -179,7 +199,7 @@ export default function LiveChat({
           title="OVHcloud Chat"
           chatIFrame={chatIFrame}
           visible={!chatbotReduced}
-          url={`https://chat.${'ovh'.toLocaleLowerCase()}.com/system/templates/pre-prod/prepa_prod/STD/FR_fr/docs/index2.html`}
+          url={url}
           key={chatType}
         />
       )}
