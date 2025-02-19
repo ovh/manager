@@ -309,9 +309,16 @@
                             ></span>
                         </span>
                         <span
+                            data-ng-if="ctrl.isOvhDomain"
                             class="oui-radio__description"
                             id="configurationPersonalizedHelp"
-                            data-translate="exchange_tab_domain_mode_personalized_info"
+                            data-translate="exchange_tab_domain_mode_personalized_info_internal"
+                        ></span>
+                        <span
+                            data-ng-if="!ctrl.isOvhDomain"
+                            class="oui-radio__description"
+                            id="configurationPersonalizedHelp"
+                            data-translate="exchange_tab_domain_mode_personalized_info_external"
                         ></span>
                     </label>
                     <div
@@ -332,7 +339,6 @@
                             maxlength="256"
                             name="targetMailServer"
                             data-ng-model="ctrl.model.mxRelay"
-                            placeholder="{{ ctrl.DEFAULT_OVH_TARGET_SERVER_URL }}"
                         />
                         <div class="mt-3" data-ng-if="ctrl.isOvhDomain">
                             <oui-checkbox

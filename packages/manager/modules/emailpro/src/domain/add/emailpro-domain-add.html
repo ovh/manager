@@ -218,9 +218,16 @@
                             ></span>
                         </span>
                         <span
+                            data-ng-if="isOvhDomain"
                             class="oui-radio__description"
                             id="configurationPersonalizedHelp"
-                            data-translate="emailpro_tab_domain_mode_personalized_info"
+                            data-translate="emailpro_tab_domain_mode_personalized_info_internal"
+                        ></span>
+                        <span
+                            data-ng-if="!isOvhDomain"
+                            class="oui-radio__description"
+                            id="configurationPersonalizedHelp"
+                            data-translate="emailpro_tab_domain_mode_personalized_info_external"
                         ></span>
                     </label>
                     <div
@@ -241,7 +248,6 @@
                             id="targetMailServer"
                             aria-describedby="helpBlock"
                             data-ng-model="model.mxRelay"
-                            placeholder="{{ DEFAULT_OVH_TARGET_SERVER_URL }}"
                         />
                         <div class="mt-3" data-ng-if="isOvhDomain">
                             <oui-checkbox
