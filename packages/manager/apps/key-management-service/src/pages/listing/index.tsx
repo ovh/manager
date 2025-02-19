@@ -28,6 +28,8 @@ import {
   DatagridCellName,
   DatagridCellRegion,
   DatagridCellStatus,
+  DatagridResourceKmipCountCell,
+  DatagridResourceServiceKeyCountCell,
 } from '@/components/Listing/ListingCells';
 import KmsGuidesHeader from '@/components/Guide/KmsGuidesHeader';
 import { useAutoRefetch } from '@/data/hooks/useAutoRefetch';
@@ -57,6 +59,21 @@ export default function Listing() {
       id: 'id',
       cell: DatagridCellId,
       label: t('key_management_service_listing_id_cell'),
+    },
+    {
+      id: 'region',
+      cell: DatagridCellRegion,
+      label: t('key_management_service_listing_region_cell'),
+    },
+    {
+      id: 'kmip_count',
+      cell: DatagridResourceKmipCountCell,
+      label: t('key_management_service_listing_kmip_cell'),
+    },
+    {
+      id: 'servicekey_count',
+      cell: DatagridResourceServiceKeyCountCell,
+      label: t('key_management_service_listing_service_key_cell'),
     },
     {
       id: 'region',
