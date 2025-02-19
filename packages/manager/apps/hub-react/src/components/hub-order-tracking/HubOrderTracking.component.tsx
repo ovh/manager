@@ -38,7 +38,7 @@ import {
 } from '@/data/api/apiOrder/apiOrder.constants';
 import useDateFormat from '@/hooks/dateFormat/useDateFormat';
 import { LastOrderTrackingResponse, OrderHistory } from '@/types/order.type';
-import { useHubContext } from '@/pages/layout/context';
+import { useHubContext } from '@/pages/dashboard/context';
 
 const TileError = lazy(() =>
   import('@/components/tile-error/TileError.component'),
