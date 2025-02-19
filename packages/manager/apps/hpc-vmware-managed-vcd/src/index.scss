@@ -5,3 +5,16 @@
 html {
   font-family: var(--ods-font-family-default);
 }
+
+.semibold::part(text) {
+  font-weight: 600;
+}
+
+.clipboard__full-width::part(tooltip) {
+  width: max-content;
+}
+
+.ods-field-helper::part(text) {
+  width: 100%;
+  text-align: start;
+}

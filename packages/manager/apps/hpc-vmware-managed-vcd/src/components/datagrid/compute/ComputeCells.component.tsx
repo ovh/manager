@@ -1,7 +1,7 @@
 import React from 'react';
 import { OdsButton, OdsTooltip, OdsText } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import { VCDCompute } from '@ovh-ux/manager-module-vcd-api';
+import { VCDCompute, VCDStorage } from '@ovh-ux/manager-module-vcd-api';
 import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 
 export const DatagridIdCell = (vcdCompute: VCDCompute) => (
@@ -39,21 +39,21 @@ export const DatagridRamCountCell = (vcdCompute: VCDCompute) => {
   );
 };
 
-export const ActionDeleteCell = () => {
+export const ActionDeleteCell = (resource: VCDCompute | VCDStorage) => {
   const { t } = useTranslation('datacentres');
 
   return (
     <>
       <OdsButton
-        id="delete-tooltip-trigger"
+        id={`delete-tooltip-trigger-${resource?.id}`}
         size="sm"
         variant="ghost"
-        color="primary"
         isDisabled
         label=""
-        icon="trash" // TODO: size xs + color default
+        icon="trash"
+        aria-label="delete-datacentre-resource"
       />
-      <OdsTooltip triggerId="delete-tooltip-trigger">
+      <OdsTooltip triggerId={`delete-tooltip-trigger-${resource?.id}`}>
         <OdsText>{t('managed_vcd_vdc_contact_support')}</OdsText>
       </OdsTooltip>
     </>

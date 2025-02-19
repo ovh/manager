@@ -78,7 +78,6 @@ export default function ComputeListingPage() {
       orderButton={
         <OdsButton
           label={t('managed_vcd_vdc_compute_order_cta')}
-          size="sm"
           variant="outline"
           onClick={() => navigate(subRoutes.order)}
         />

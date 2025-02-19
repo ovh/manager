@@ -85,7 +85,6 @@ export default function StorageListingPage() {
       orderButton={
         <OdsButton
           label={t('managed_vcd_vdc_storage_order_cta')}
-          size="sm"
           variant="outline"
           onClick={() => navigate(subRoutes.order)}
         />

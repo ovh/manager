@@ -52,10 +52,12 @@ export const ComputeOrderPriceCell = (vHost: VCDOrderableVhostPriced) => {
   const { t } = useTranslation('datacentres/order');
   return (
     <DataGridTextCell>
-      <OdsText className="font-semibold">
-        {getVdcResourcePriceLabel(vHost)}
-      </OdsText>
-      <OdsText>{t('managed_vcd_vdc_order_price_detail')}</OdsText>
+      <div className="flex flex-col">
+        <OdsText className="semibold">
+          {getVdcResourcePriceLabel(vHost)}
+        </OdsText>
+        <OdsText>{t('managed_vcd_vdc_order_price_detail')}</OdsText>
+      </div>
     </DataGridTextCell>
   );
 };

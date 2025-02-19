@@ -1,4 +1,4 @@
-import { OdsButtonColor } from '@ovhcloud/ods-components';
+import { OdsButtonColor, OdsButtonSize } from '@ovhcloud/ods-components';
 import { OdsButton, OdsPopover } from '@ovhcloud/ods-components/react';
 import React from 'react';
 
@@ -10,10 +10,17 @@ type MenuProps = {
   }[];
   name?: string;
   label?: string;
+  size?: OdsButtonSize;
   withArrow?: boolean;
 };
 
-export const Menu = ({ items, name, label, withArrow }: MenuProps) => {
+export const Menu = ({
+  items,
+  name,
+  label,
+  size = 'md',
+  withArrow = false,
+}: MenuProps) => {
   const menuName = name || 'menu';
 
   return (
@@ -23,6 +30,7 @@ export const Menu = ({ items, name, label, withArrow }: MenuProps) => {
         id={`trigger-${menuName}`}
         icon="ellipsis-vertical"
         variant="outline"
+        size={size}
       />
       <OdsPopover triggerId={`trigger-${menuName}`} withArrow={withArrow}>
         {items.map((item, i) => (

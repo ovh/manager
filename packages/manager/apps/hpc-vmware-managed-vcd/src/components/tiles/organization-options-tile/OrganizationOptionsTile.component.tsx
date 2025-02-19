@@ -37,6 +37,7 @@ export default function OrganizationOptionsTile({
                   {t('managed_vcd_dashboard_windows_license_unactive')}
                 </OdsText>
                 <Menu
+                  size="sm"
                   items={[
                     {
                       label: t(

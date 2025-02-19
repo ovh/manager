@@ -25,8 +25,7 @@ export default function OrganizationServiceManagementTile() {
             value: (
               <OdsBadge
                 label={t('managed_vcd_dashboard_coming_soon')}
-                className="ml-3"
-                size="sm"
+                className="mt-1"
               />
             ),
           },
