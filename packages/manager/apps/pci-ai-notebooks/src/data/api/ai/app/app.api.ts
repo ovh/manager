@@ -12,3 +12,17 @@ export const getApps = async ({ projectId }: PCIAi) =>
       },
     })
     .then((res) => res.data as ai.app.App[]);
+
+export interface AddApp extends PCIAi {
+  appInfo: ai.app.AppSpecInput;
+}
+
+export const addApp = async ({ projectId, appInfo }: AddApp) =>
+  apiClient.v6
+    .post(`/cloud/project/${projectId}/ai/app`, appInfo)
+    .then((res) => res.data as ai.app.App);
+
+export const getCommand = async ({ projectId, appInfo }: AddApp) =>
+  apiClient.v6
+    .post(`/cloud/project/${projectId}/ai/app/command`, appInfo)
+    .then((res) => res.data as ai.Command);

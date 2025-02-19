@@ -1,5 +1,6 @@
 {
   "commandInputLabel": "Commandes Docker",
   "commandInputHelper": "Renseigner les arguments (séparés par des espaces) qui seront passés à la commande Docker. Les apostrophes simples (`) ne sont pas supportées et à remplacer par des guillemets.",
-  "commandSumupTitle": "Commande spécifique"
+  "commandSumupTitle": "Commande spécifique",
+  "formDockerCommandErrorPattern": "Les apostrophes simples (`) ne sont pas supportées et à remplacer par des guillemets."
 }

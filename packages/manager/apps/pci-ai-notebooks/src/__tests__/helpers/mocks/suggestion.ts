@@ -1,6 +1,6 @@
 import { JobSuggestions, Suggestions } from '@/types/orderFunnel';
 
-export const mockedSuggestion: Suggestions[] = [
+export const mockedNotebookSuggestion: Suggestions[] = [
   {
     region: 'GRA',
     ressources: {
@@ -29,36 +29,7 @@ export const mockedSuggestion: Suggestions[] = [
   },
 ];
 
-export const mockedTempSuggestionForOrderFunnel: Suggestions[] = [
-  {
-    region: 'GRA',
-    ressources: {
-      nb: 1,
-      flavor: 'ai1-1-cpu',
-    },
-    framework: {
-      id: 'one-for-all',
-      version: 'v98-ovh.beta.1',
-    },
-    editorId: 'jupyterlab',
-    unsecureHttp: false,
-  },
-  {
-    region: 'BHS',
-    ressources: {
-      nb: 1,
-      flavor: 'ai1-le-1-gpu',
-    },
-    framework: {
-      id: 'one-for-all',
-      version: 'v98-ovh.beta.1',
-    },
-    editorId: 'jupyterlab',
-    unsecureHttp: false,
-  },
-];
-
-export const mockedTempJobSuggestionForOrderFunnel: JobSuggestions[] = [
+export const mockedJobSuggetions: JobSuggestions[] = [
   {
     region: 'GRA',
     ressources: {

@@ -2,7 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { HelpCircle, PlusCircle } from 'lucide-react';
+import { HelpCircle, PlusCircle, TrashIcon } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -19,6 +19,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
+import { DOCKER_CONFIG } from '@/configuration/docker-command';
 
 interface DockerCommandFormProps {
   commands: string[];
@@ -34,8 +35,10 @@ const DockerCommand = React.forwardRef<
   const commandRules = z
     .string()
     .trim()
-    .min(1);
-
+    .min(DOCKER_CONFIG.command.min)
+    .regex(DOCKER_CONFIG.command.pattern, {
+      message: t('formDockerCommandErrorPattern'),
+    });
   const commandSchema = z.object({
     command: commandRules,
   });
@@ -45,8 +48,20 @@ const DockerCommand = React.forwardRef<
   });
 
   const onSubmit = form.handleSubmit((formValues) => {
-    onChange(formValues.command.split(' '));
+    const dockerCommands: string[] = Array.from(
+      new Set(
+        formValues.command
+          .split(' ')
+          .filter((cmd: string) => cmd.trim() !== ''),
+      ),
+    );
+    onChange(dockerCommands);
   });
+
+  const removeCommand = () => {
+    onChange([]);
+    form.reset();
+  };
 
   return (
     <Form {...form}>
@@ -95,6 +110,17 @@ const DockerCommand = React.forwardRef<
         >
           <PlusCircle />
         </Button>
+        {commands.length > 0 && (
+          <Button
+            data-testid="docker-command-remove-button"
+            type="button"
+            variant={'ghost'}
+            onClick={() => removeCommand()}
+            className="mt-[1.875rem] text-red-400 rounded-full p-2 ml-2 hover:text-red-400"
+          >
+            <TrashIcon />
+          </Button>
+        )}
       </div>
       <div>
         <ul data-testid="docker-command-list" className="list-disc">
