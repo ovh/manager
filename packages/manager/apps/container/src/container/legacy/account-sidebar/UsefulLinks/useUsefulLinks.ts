@@ -30,23 +30,12 @@ const useUsefulLinks = (): UseUsefulLinks => {
     const trackingPrefix = 'hub::sidebar::useful-links';
     return [
       {
-        id: 'cloud_changelog',
+        id: 'roadmap_changelog',
         external: true,
-        href: constants[region]?.cloud_changelog,
+        href: navigation.getURL('hub', '#/roadmap-changelog'),
         tracking: `${trackingPrefix}::go-to-cloud-changelog`,
-        icon: getSvgIcon(OvhProductName.CLOUD_CHANGELOG),
+        icon: getSvgIcon(OvhProductName.CLOUD_CHANGELOG)
       },
-      ...(isEUOrCA
-        ? [
-            {
-              id: 'hosting_and_collab_changelog',
-              external: true,
-              href: constants[region]?.hosting_and_collab_changelog,
-              tracking: `${trackingPrefix}::go-to-hosting-and-collab-changelog`,
-              icon: getSvgIcon(OvhProductName.HOSTING_CHANGELOG),
-            },
-          ]
-        : []),
       {
         id: 'helpCenter',
         external: true,
