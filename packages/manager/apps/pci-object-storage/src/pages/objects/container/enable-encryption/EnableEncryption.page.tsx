@@ -61,7 +61,7 @@ export default function EnableEncryptionPage() {
     projectId,
     region: storageDetail.region,
     name: storageId,
-    s3StorageType: storageDetail?.s3StorageType,
+    s3StorageType: storageDetail.s3StorageType,
     onError(error: ApiError) {
       addError(
         <Translation ns="containers/enable-encryption">
