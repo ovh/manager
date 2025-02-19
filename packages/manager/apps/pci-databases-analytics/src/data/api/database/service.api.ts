@@ -16,10 +16,29 @@ export const getServices = async ({ projectId }: PCIData) =>
 export const getService = async ({
   projectId,
   serviceId,
-}: Omit<ServiceData, 'engine'>) =>
-  apiClient.v6
+}: Omit<ServiceData, 'engine'>) => {
+  // first fetch the basic info in services endpoint
+  const serviceInfo = await apiClient.v6
     .get(`/cloud/project/${projectId}/database/service/${serviceId}`)
     .then((res) => res.data as database.Service);
+  // then get the engine's specific information
+  const serviceData = await apiClient.v6
+    .get(
+      `/cloud/project/${projectId}/database/${
+        (await serviceInfo).engine
+      }/${serviceId}`,
+    )
+    .then((res) => res.data);
+
+  switch (serviceInfo.engine) {
+    case database.EngineEnum.kafka:
+      return serviceData as database.kafka.Service;
+    case database.EngineEnum.opensearch:
+      return serviceData as database.opensearch.Service;
+    default:
+      return serviceData as database.Service;
+  }
+};
 
 interface AddService extends Omit<ServiceData, 'serviceId'> {
   serviceInfo: Partial<database.ServiceCreation>;
@@ -48,6 +67,8 @@ export interface EditService extends ServiceData {
       | 'enablePrometheus'
     > & {
       backups?: Pick<database.service.Backup, 'time'>;
+    } & {
+      aclsEnabled?: boolean;
     }
   >;
 }

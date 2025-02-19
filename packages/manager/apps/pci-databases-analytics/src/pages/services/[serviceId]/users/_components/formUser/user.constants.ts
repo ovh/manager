@@ -36,4 +36,14 @@ export const USER_CONFIG = {
     max: 254,
     pattern: /^\S{1,254}$/,
   },
+  acls: {
+    pattern: {
+      min: 1,
+      max: 254,
+      pattern: /^[A-Za-z0-9-_.*?]+$/,
+    },
+    permission: {
+      values: ['admin', 'read', 'write', 'readwrite', 'deny'],
+    },
+  },
 };

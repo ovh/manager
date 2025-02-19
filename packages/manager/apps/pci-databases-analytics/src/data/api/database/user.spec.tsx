@@ -68,11 +68,11 @@ describe('user management functions', () => {
     await expect(async () =>
       getUsers({
         projectId: 'projectId',
-        engine: database.EngineEnum.grafana,
+        engine: database.EngineEnum.kafkaMirrorMaker,
         serviceId: 'serviceId',
       }),
     ).rejects.toThrowError(
-      'The engine grafana does not implement the resource /cloud/project/projectId/database/grafana/serviceId/user',
+      'The engine kafkaMirrorMaker does not implement the resource /cloud/project/projectId/database/kafkaMirrorMaker/serviceId/user',
     );
   });
 
