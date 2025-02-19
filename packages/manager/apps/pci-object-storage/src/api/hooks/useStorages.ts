@@ -342,10 +342,7 @@ export const useUpdateStorage = ({
   });
 
   return {
-    updateContainer: (updateData: {
-      versioning?: { status: string };
-      encryption?: { sseAlgorithm: string };
-    }) => mutation.mutate(updateData),
+    updateContainer: mutation.mutate,
     ...mutation,
   };
 };
