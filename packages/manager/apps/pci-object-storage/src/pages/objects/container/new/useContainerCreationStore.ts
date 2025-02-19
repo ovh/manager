@@ -8,16 +8,6 @@ import {
   OBJECT_CONTAINER_MODE_MULTI_ZONES,
 } from '@/constants';
 
-export interface ReplicationRule {
-  id: string;
-  status: 'enabled' | 'disabled';
-  priority: number;
-  deleteMarkerReplication: 'enabled' | 'disabled';
-}
-
-export interface Replication {
-  rules: ReplicationRule[];
-}
 export interface ContainerCreationForn {
   offer: string;
   deploymentMode: string;
