@@ -69,6 +69,17 @@ export const STATUS = {
   TERMINATED: 'terminated',
 };
 
+export const TRACKING_PREFIX = 'Network::network::cloud-connect';
+export const TRACKING_CONTEXT = {
+  trackingPageLabel: `${TRACKING_PREFIX}::cloud-connect::listing::services`,
+  page_theme: 'Network',
+  page_category: 'listing',
+  level2: 99,
+  page: {
+    name: `${TRACKING_PREFIX}::cloud-connect::listing::services`,
+  },
+};
+
 export default {
   GUIDELINK,
   POP_MAP,
@@ -78,4 +89,6 @@ export default {
   IPV4_BLOCK_REGEX,
   STATUS,
   CHANGE_BANDWIDTH_ALLOWED_OFFERS_REGEX,
+  TRACKING_PREFIX,
+  TRACKING_CONTEXT,
 };
