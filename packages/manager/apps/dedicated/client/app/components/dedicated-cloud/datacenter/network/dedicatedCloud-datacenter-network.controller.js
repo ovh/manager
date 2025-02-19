@@ -19,7 +19,7 @@ export default class DedicatedCloudDatacenterNetworkTab {
   }
 
   $onInit() {
-    this.fetchNsxEdgeReference();
+    this.fetchNsxtEdgeReference();
     this.loadComsumptionOfOption();
     const { ovhSubsidiary } = this.coreConfig.getUser();
     this.fetchVcpuPrice(ovhSubsidiary);
@@ -56,9 +56,9 @@ export default class DedicatedCloudDatacenterNetworkTab {
     );
   }
 
-  fetchNsxEdgeReference() {
+  fetchNsxtEdgeReference() {
     return this.ovhManagerPccDatacenterService
-      .getNsxEdgeByDatacenter(this.serviceName, this.datacenterId, {
+      .getNsxtEdgeByDatacenter(this.serviceName, this.datacenterId, {
         pageSize: 1,
       })
       .then(({ data }) => {

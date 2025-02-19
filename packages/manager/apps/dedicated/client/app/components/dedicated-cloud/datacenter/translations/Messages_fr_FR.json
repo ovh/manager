@@ -4,7 +4,7 @@
   "dedicatedCloud_datacenter_activate": "Activer",
   "dedicatedCloud_datacenter_resize": "Redimensionner",
   "dedicatedCloud_datacenter_add_edge": "Ajouter un Edge",
-  "dedicatedCloud_datacenter_modify_datastore": "Modifier le datastore",
+  "dedicatedCloud_datacenter_relocate_datastore": "Relocaliser un NSX Edge",
   "dedicatedCloud_tab_dashboard": "Informations générales",
   "dedicatedCloud_tab_host": "Hosts",
   "dedicatedCloud_tab_datastore": "Datastores",

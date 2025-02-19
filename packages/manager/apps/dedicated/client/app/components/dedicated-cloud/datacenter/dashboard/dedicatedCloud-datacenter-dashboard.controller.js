@@ -24,8 +24,8 @@ export default class {
     this.pollNsxTaskId = null;
     this.$q
       .all([
-        this.getNsxDetails(),
-        this.getNsxEdgePendingTask(),
+        this.getNsxtDetails(),
+        this.getNsxtEdgePendingTask(),
         this.checkForZertoOptionOrder(),
         this.getNsxtOption(),
       ])
@@ -48,7 +48,7 @@ export default class {
     });
   }
 
-  pollNsxTask(taskId) {
+  pollNsxtTask(taskId) {
     this.pollNsxTaskId = taskId;
     this.DedicatedCloud.datacenterResizeNsxTaskPoller(this.serviceName, taskId)
       .then(() => {
@@ -59,7 +59,7 @@ export default class {
       });
   }
 
-  getNsxEdgePendingTask() {
+  getNsxtEdgePendingTask() {
     return this.DedicatedCloud.getDatacenterPendingResizeNsxTask(
       this.serviceName,
       this.datacenter.model.id,
@@ -70,7 +70,7 @@ export default class {
     });
   }
 
-  getNsxDetails() {
+  getNsxtDetails() {
     return this.DedicatedCloud.getDatacenterInfoNsxt(
       this.serviceName,
       this.datacenter.model.id,

@@ -6,7 +6,7 @@ import '@ovh-ux/ng-translate-async-loader';
 
 import component from './dedicatedCloud-datacenter-manage-nsx.component';
 
-const moduleName = 'ovhManagerDedicatedCloudDatacenterManageNsxEdgeComponent';
+const moduleName = 'ovhManagerDedicatedCloudDatacenterManageNsxtEdgeComponent';
 
 angular
   .module(moduleName, [
@@ -14,7 +14,7 @@ angular
     'oui',
     'pascalprecht.translate',
   ])
-  .component('ovhManagerDedicatedCloudDatacenterManageNsxEdges', component)
+  .component('ovhManagerDedicatedCloudDatacenterManageNsxtEdges', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

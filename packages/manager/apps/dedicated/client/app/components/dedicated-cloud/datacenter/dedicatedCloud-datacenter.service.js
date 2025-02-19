@@ -59,7 +59,7 @@ export default class OvhManagerPccDatacenterService {
     return (element) => element.uniqueId.split('@')[0] === `${id}`;
   }
 
-  getNsxEdgeByDatacenter(serviceName, datacenterId, paginationParams) {
+  getNsxtEdgeByDatacenter(serviceName, datacenterId, paginationParams) {
     return this.icerbergUtils.icebergQuery(
       `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/nsxtEdge`,
       paginationParams,
@@ -76,5 +76,14 @@ export default class OvhManagerPccDatacenterService {
     return this.$http
       .get(`/order/catalog/public/${catalog}?ovhSubsidiary=${subsidiary}`)
       .then(({ data }) => data);
+  }
+
+  postRelocateNsxtEdge({ serviceName, datacenterId, nsxtEdgeId, datastore }) {
+    return this.$http.post(
+      `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/nsxtEdge/${nsxtEdgeId}/relocateEdge`,
+      {
+        datastore,
+      },
+    );
   }
 }
