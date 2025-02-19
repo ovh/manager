@@ -4,14 +4,16 @@ import { ManagerButton } from '@ovh-ux/manager-react-components';
 import { OdsText } from '@ovhcloud/ods-components/react';
 
 type EditableTileItemProps = {
-  label: string;
+  value: string;
+  name?: string;
   urn: string;
   iamActions: string[];
   onClickEdit: () => void;
 };
 
 export default function EditableTileItem({
-  label,
+  value,
+  name,
   urn,
   iamActions,
   onClickEdit,
@@ -20,12 +22,12 @@ export default function EditableTileItem({
 
   return (
     <div className="flex justify-between items-center">
-      <OdsText className="break-all">{label}</OdsText>
+      <OdsText className="break-all">{value}</OdsText>
       <div className="min-w-fit">
         <Suspense>
           <ManagerButton
             className="ml-6"
-            data-testid="editIcon"
+            data-testid="editButton"
             iamActions={iamActions}
             urn={urn}
             onClick={onClickEdit}
@@ -33,7 +35,7 @@ export default function EditableTileItem({
             size="sm"
             icon="pen"
             label=""
-            id={`editIcon-${label}`}
+            id={`editButton-${name || value}`}
             aria-label={t('managed_vcd_dashboard_edit_modal_cta_edit')}
           />
         </Suspense>

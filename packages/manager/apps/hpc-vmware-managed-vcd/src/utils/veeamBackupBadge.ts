@@ -1,25 +1,25 @@
 import { ResourceStatus } from '@ovh-ux/manager-module-vcd-api';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { OdsBadgeColor } from '@ovhcloud/ods-components';
 
 type BadgeStatus = ResourceStatus | 'none' | 'error';
 export type BackupBadgeParams = {
-  color: ODS_THEME_COLOR_INTENT;
+  color: OdsBadgeColor;
   translationKey: string;
   testIdLabel: string;
 };
 
 const getBadgeColor = (status: BadgeStatus) => {
-  const colors: Record<BadgeStatus, ODS_THEME_COLOR_INTENT> = {
-    error: ODS_THEME_COLOR_INTENT.error,
-    none: ODS_THEME_COLOR_INTENT.default,
-    DISABLED: ODS_THEME_COLOR_INTENT.default,
-    REMOVED: ODS_THEME_COLOR_INTENT.default,
-    CREATING: ODS_THEME_COLOR_INTENT.primary,
-    DISABLING: ODS_THEME_COLOR_INTENT.primary,
-    UPDATING: ODS_THEME_COLOR_INTENT.primary,
-    READY: ODS_THEME_COLOR_INTENT.success,
+  const colors: Record<BadgeStatus, OdsBadgeColor> = {
+    error: 'critical',
+    none: 'neutral',
+    DISABLED: 'neutral',
+    REMOVED: 'neutral',
+    CREATING: 'information',
+    DISABLING: 'information',
+    UPDATING: 'information',
+    READY: 'success',
   };
-  return colors[status] || ODS_THEME_COLOR_INTENT.default;
+  return colors[status] || 'neutral';
 };
 
 const getBadgeTranslationKey = (status: BadgeStatus) => {

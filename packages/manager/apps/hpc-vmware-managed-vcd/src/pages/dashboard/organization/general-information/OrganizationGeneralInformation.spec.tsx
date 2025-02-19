@@ -25,7 +25,7 @@ describe('Organization General Information Page', () => {
 
     let editButton;
     await waitFor(() => {
-      editButton = screen.getAllByTestId('editIcon').at(0);
+      editButton = screen.getAllByTestId('editButton').at(0);
       return expect(editButton).toBeEnabled();
     }, WAIT_FOR_DEFAULT_OPTIONS);
     await waitFor(() => userEvents.click(editButton));
@@ -65,7 +65,7 @@ describe('Organization General Information Page', () => {
 
     let editButton;
     await waitFor(() => {
-      editButton = screen.getAllByTestId('editIcon').at(1);
+      editButton = screen.getAllByTestId('editButton').at(1);
       return expect(editButton).toBeEnabled();
     }, WAIT_FOR_DEFAULT_OPTIONS);
     await waitFor(() => userEvents.click(editButton));

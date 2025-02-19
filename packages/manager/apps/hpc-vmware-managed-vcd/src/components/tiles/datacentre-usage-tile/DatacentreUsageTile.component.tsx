@@ -1,9 +1,8 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { DashboardTile } from '@ovh-ux/manager-react-components';
+import { ActionMenu, DashboardTile } from '@ovh-ux/manager-react-components';
 import { VCDDatacentre } from '@ovh-ux/manager-module-vcd-api';
 import { OdsText } from '@ovhcloud/ods-components/react';
-import { Menu } from '@/components/menu/Menu.component';
 
 type TTileProps = {
   vcdDatacentre: VCDDatacentre;
@@ -29,7 +28,7 @@ export default function DatacentreUsageTile({
                     speed: vcdDatacentre?.currentState.vCPUSpeed,
                   })}
                 </OdsText>
-                <Menu items={[]} />
+                <ActionMenu id="usage_menu" items={[]} isCompact />
               </div>
             ),
           },

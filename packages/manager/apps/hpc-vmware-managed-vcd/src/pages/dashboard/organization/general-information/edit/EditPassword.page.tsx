@@ -32,7 +32,7 @@ export default function EditPassword() {
   );
 
   return (
-    <OdsModal onOdsClose={closeModal}>
+    <OdsModal onOdsClose={closeModal} isOpen isDismissible>
       <OdsText preset="heading-3">
         {t('managed_vcd_dashboard_password_modal_title')}
       </OdsText>

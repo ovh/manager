@@ -34,7 +34,7 @@ export default function DataProtectionTile({
             value: (
               <OdsBadge
                 label={t('managed_vcd_dashboard_coming_soon')}
-                size="sm"
+                className="mt-1"
               />
             ),
           },

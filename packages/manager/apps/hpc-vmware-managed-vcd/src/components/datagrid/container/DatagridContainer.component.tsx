@@ -1,14 +1,14 @@
 import {
+  ChangelogButton,
   Datagrid,
   ErrorBanner,
-  Subtitle,
-  Title,
   useResourcesIcebergV2,
 } from '@ovh-ux/manager-react-components';
 import { OdsDivider } from '@ovhcloud/ods-components/react';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { icebergListingQueryKey } from '@ovh-ux/manager-module-vcd-api';
+import { OdsText } from '@ovhcloud/ods-components/react';
 import Loading from '@/components/loading/Loading.component';
 import TDatagridRoute from '@/types/datagrid-route.type';
 import { useAutoRefetch } from '@/data/hooks/useAutoRefetch';
@@ -16,6 +16,7 @@ import {
   hasResourceUpdatingTargetSpec,
   UpdatableResource,
 } from '@/utils/refetchConditions';
+import { CHANGELOG_LINKS } from '@/utils/changelog.constants';
 
 export type TDatagridContainerProps = {
   route: TDatagridRoute;
@@ -96,17 +97,18 @@ export default function DatagridContainer({
 
   const layoutCss = `px-10 pt-${isEmbedded ? '0' : '5'}`;
 
-  const header = isEmbedded ? (
-    <Subtitle>{title}</Subtitle>
-  ) : (
-    <Title>{title}</Title>
-  );
-
   return (
     <div className={layoutCss}>
-      <div className="flex items-center justify-between mt-4">{header}</div>
-      <OdsDivider />
-      {orderButton && <div className="w-fit mb-8">{orderButton}</div>}
+      <div className="flex items-center justify-between mt-4">
+        <OdsText
+          preset={isEmbedded ? 'heading-3' : 'heading-1'}
+          className={isEmbedded ? '' : 'mb-8'}
+        >
+          {title}
+        </OdsText>
+        <ChangelogButton links={CHANGELOG_LINKS} />
+      </div>
+      {orderButton && <div className="w-fit mt-4 mb-8">{orderButton}</div>}
       <React.Suspense>
         {flattenData.length && (
           <Datagrid

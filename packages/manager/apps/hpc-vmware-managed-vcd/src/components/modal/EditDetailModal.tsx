@@ -38,12 +38,11 @@ export const EditDetailModal = ({
   const { t } = useTranslation('dashboard');
   const [newDetail, setNewDetail] = useState<string>(detailValue || '');
   const [isErrorVisible, setIsErrorVisible] = useState(false);
-  const isValidDetail = validateDetail(newDetail);
-  const isButtonEnabled =
-    isValidDetail && newDetail !== detailValue && !isLoading;
+  const isValid = validateDetail(newDetail);
+  const isButtonEnabled = isValid && newDetail !== detailValue && !isLoading;
 
   const handleSubmit = async () => {
-    if (isValidDetail) {
+    if (isValid) {
       setIsErrorVisible(false);
       try {
         await onEdit(newDetail);
@@ -54,20 +53,25 @@ export const EditDetailModal = ({
   };
 
   return (
-    <OdsModal onOdsClose={onCloseModal}>
-      <OdsText preset="heading-3">{headline}</OdsText>
-      {!!error && isErrorVisible && (
-        <OdsMessage
-          color="danger"
-          isDismissible
-          onOdsRemove={() => setIsErrorVisible(false)}
-        >
-          {t('managed_vcd_dashboard_edit_modal_error', {
-            error: error.response?.data?.message,
-          })}
-        </OdsMessage>
-      )}
-      <OdsFormField>
+    <OdsModal onOdsClose={onCloseModal} isOpen isDismissible>
+      <div className="flex flex-col">
+        <OdsText preset="heading-3">{headline}</OdsText>
+        {!!error && isErrorVisible && (
+          <OdsMessage
+            color="danger"
+            isDismissible
+            onOdsRemove={() => setIsErrorVisible(false)}
+          >
+            {t('managed_vcd_dashboard_edit_modal_error', {
+              error: error.response?.data?.message || error?.message,
+            })}
+          </OdsMessage>
+        )}
+      </div>
+      <OdsFormField
+        className="flex flex-col"
+        error={isValid ? undefined : errorHelper}
+      >
         <OdsText className="mt-6" slot="label">
           {inputLabel}
         </OdsText>
@@ -76,30 +80,30 @@ export const EditDetailModal = ({
           type="text"
           value={newDetail}
           onOdsChange={(e) => setNewDetail(e.target.value as string)}
-          hasError={!isValidDetail}
+          hasError={!isValid}
           ariaLabel="edit-input"
         />
         <OdsText
           slot="helper"
-          // color={ODS_THEME_COLOR_INTENT.error} // TODO : use CSS variables
-          className={isValidDetail ? 'invisible' : 'visible'}
+          preset="caption"
+          className={`ods-field-helper ${isValid ? 'block' : 'hidden'}`}
         >
           {errorHelper}
         </OdsText>
       </OdsFormField>
-
       {isLoading && <Loading slot="actions" className="w-9 mr-4" />}
-      <OdsButton
-        label={t('managed_vcd_dashboard_edit_modal_cta_cancel')}
-        variant="outline"
-        onClick={onCloseModal}
-      />
-      <OdsButton
-        label={t('managed_vcd_dashboard_edit_modal_cta_edit')}
-        variant="ghost"
-        onClick={handleSubmit}
-        isDisabled={!isButtonEnabled || undefined}
-      />
+      <div className="flex gap-x-2 w-fit justify-self-center ml-auto mt-6">
+        <OdsButton
+          label={t('managed_vcd_dashboard_edit_modal_cta_cancel')}
+          variant="outline"
+          onClick={onCloseModal}
+        />
+        <OdsButton
+          label={t('managed_vcd_dashboard_edit_modal_cta_edit')}
+          onClick={handleSubmit}
+          isDisabled={!isButtonEnabled || undefined}
+        />
+      </div>
     </OdsModal>
   );
 };

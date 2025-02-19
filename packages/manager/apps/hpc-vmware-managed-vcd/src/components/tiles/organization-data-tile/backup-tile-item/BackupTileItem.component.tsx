@@ -43,15 +43,15 @@ export default function BackupTileItem({
 
   return (
     <div className="flex flex-col items-start">
-      <div className="my-3">
+      <div>
         {isLoading ? (
           <OdsSkeleton data-testid="backupLoading" />
         ) : (
           <OdsBadge
             label={t(badgeParams.translationKey)}
             data-testid={badgeParams.testIdLabel}
-            size="sm"
-            // color={badgeParams.color} // TODO : handle dynamic colors
+            className="my-1"
+            color={badgeParams.color}
           />
         )}
       </div>

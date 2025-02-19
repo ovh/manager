@@ -34,7 +34,8 @@ export default function OrganizationGenerationInformationTile({
           label: t('managed_vcd_dashboard_name'),
           value: (
             <EditableTileItem
-              label={vcdOrganization.currentState?.fullName}
+              value={vcdOrganization.currentState?.fullName}
+              name="vcdName"
               urn={vcdOrganization.iam?.urn}
               iamActions={[
                 iamActions.vmwareCloudDirectorApiovhOrganizationEdit,
@@ -48,7 +49,8 @@ export default function OrganizationGenerationInformationTile({
           label: t('managed_vcd_dashboard_description'),
           value: (
             <EditableTileItem
-              label={vcdOrganization.currentState?.description}
+              value={vcdOrganization.currentState?.description}
+              name="vcdDescription"
               urn={vcdOrganization.iam.urn}
               iamActions={[
                 iamActions.vmwareCloudDirectorApiovhOrganizationEdit,
@@ -98,7 +100,12 @@ export default function OrganizationGenerationInformationTile({
         {
           id: 'apiUrl',
           label: t('managed_vcd_dashboard_api_url'),
-          value: <Clipboard value={vcdOrganization.currentState?.apiUrl} />,
+          value: (
+            <Clipboard
+              value={vcdOrganization.currentState?.apiUrl}
+              className="clipboard__full-width"
+            />
+          ),
         },
       ]}
     />

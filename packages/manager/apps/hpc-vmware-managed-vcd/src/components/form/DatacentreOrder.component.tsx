@@ -110,7 +110,7 @@ export const DatacentreOrder = <T extends OrderType>({
   return (
     <React.Suspense>
       <div className="px-10 my-4 flex flex-col">
-        <Subtitle>{title}</Subtitle>
+        <OdsText preset="heading-3">{title}</OdsText>
         <OdsText className="my-6">{subtitle}</OdsText>
         <Datagrid
           columns={columns}
@@ -119,30 +119,32 @@ export const DatacentreOrder = <T extends OrderType>({
           contentAlignLeft
         />
         <div className="mt-10">
-          <Subtitle>{t('managed_vcd_vdc_order_quantity_title')}</Subtitle>
-          <OdsText class="my-4">
-            {t('managed_vcd_vdc_order_quantity_label')}
+          <OdsText preset="heading-3">
+            {t('managed_vcd_vdc_order_quantity_title')}
           </OdsText>
-          <OdsQuantity
-            name="order-quantity"
-            min={minQuantity}
-            max={maxQuantity}
-            hasError={!isValidQuantity}
-            value={selectedQuantity}
-            onOdsChange={(e) => setSelectedQuantity(e.detail.value)}
-          />
+          <div className="flex flex-col items-start">
+            <OdsText class="my-2">
+              {t('managed_vcd_vdc_order_quantity_label')}
+            </OdsText>
+            <OdsQuantity
+              name="order-quantity"
+              min={minQuantity}
+              max={maxQuantity}
+              hasError={!isValidQuantity}
+              value={selectedQuantity}
+              onOdsChange={(e) => setSelectedQuantity(e.detail.value)}
+            />
+          </div>
         </div>
         <div className="flex items-center gap-x-4 mt-10">
           <OdsButton
             label={t('managed_vcd_vdc_order_cancel_cta')}
-            size="sm"
             variant="ghost"
             onClick={() => navigate(backLink)}
           />
           <OdsButton
             label={t('managed_vcd_vdc_order_confirm_cta')}
-            size="sm"
-            isDisabled={!isValidQuantity || undefined}
+            isDisabled={!isValidQuantity}
             onClick={isValidQuantity ? redirectToOrder : null}
           />
         </div>

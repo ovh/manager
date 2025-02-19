@@ -27,7 +27,7 @@ export default function ServiceContactsTileItem() {
   }
 
   return (
-    <>
+    <div className="flex flex-col">
       {contactList.map((contact) => (
         <OdsText key={contact.type}>
           {t(`managed_vcd_dashboard_contact_list_${contact.type}`, {
@@ -35,6 +35,6 @@ export default function ServiceContactsTileItem() {
           })}
         </OdsText>
       ))}
-    </>
+    </div>
   );
 }
