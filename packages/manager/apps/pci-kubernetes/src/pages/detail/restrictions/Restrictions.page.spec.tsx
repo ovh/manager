@@ -65,7 +65,7 @@ describe('RestrictionsPage', () => {
 
     vi.mocked(useMappedRestrictions).mockReturnValue(({
       data: {
-        rows: [paginateResults(allData, { pageIndex: 0, pageSize: 10 })],
+        rows: [paginateResults(allData, { pageIndex: 0, pageSize: 50 })],
         totalRows: allData.length,
       },
       mappedData: allData,
@@ -91,19 +91,7 @@ describe('RestrictionsPage', () => {
       screen.getByText('kube_restrictions_manage_description'),
     ).toBeInTheDocument();
   });
-  it.skip('calls deleteRestriction when delete function is triggered', async () => {
-    const deleteRestrictionMock = vi.fn();
 
-    vi.mocked(useDeleteRestriction).mockReturnValueOnce(({
-      deleteRestriction: deleteRestrictionMock,
-      isPending: false,
-    } as unknown) as ReturnType<typeof useDeleteRestriction>);
-    const { getByTestId } = render(<RestrictionsPage />, { wrapper });
-    fireEvent.click(getByTestId('trash-icon-delete'));
-    await waitFor(() =>
-      expect(deleteRestrictionMock).toHaveBeenCalledWith('192.168.1.1'),
-    );
-  });
   it('calls addEmptyRow when add button is clicked', () => {
     const addEmptyRowMock = vi.fn();
     vi.mocked(useMappedRestrictions).mockReturnValueOnce({
@@ -116,31 +104,5 @@ describe('RestrictionsPage', () => {
     render(<RestrictionsPage />, { wrapper });
     fireEvent.click(screen.getByText('kube_restrictions_add'));
     expect(addEmptyRowMock).toHaveBeenCalled();
-  });
-
-  it.skip('calls updateRestriction when update function is triggered', async () => {
-    const updateRestrictionMock = vi.fn();
-    vi.mocked(useUpdateRestriction).mockReturnValueOnce(({
-      updateRestriction: updateRestrictionMock,
-      isPending: false,
-    } as unknown) as ReturnType<typeof useUpdateRestriction>);
-    const { getByTestId } = render(<RestrictionsPage />, { wrapper });
-    fireEvent.click(screen.getByText('kube_restrictions_add'));
-    const input = (getByTestId('input-ip') as unknown) as OsdsInput;
-    act(() => {
-      input.odsValueChange.emit({
-        value: '10.0.0.1',
-      } as OdsInputValueChangeEventDetail);
-    });
-
-    fireEvent.click(getByTestId('pen-icon-save'));
-    await waitFor(() =>
-      expect(updateRestrictionMock).toHaveBeenCalledWith([
-        ...allData.map((elem) => elem.value),
-        '10.0.0.1',
-      ]),
-    );
-
-    await waitFor(() => expect(updateRestrictionMock).toHaveBeenCalled());
   });
 });
