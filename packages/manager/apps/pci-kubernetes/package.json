@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-kubernetes-app",
-  "version": "0.14.6",
+  "version": "0.15.0",
   "private": true,
   "description": "PCI Kubernetes react app",
   "type": "module",
@@ -49,7 +49,7 @@
   },
   "devDependencies": {
     "@jest/globals": "^29.7.0",
-    "@ovh-ux/manager-vite-config": "^0.9.0",
+    "@ovh-ux/manager-vite-config": "^0.9.1",
     "@tanstack/react-query-devtools": "^5.51.21",
     "@testing-library/dom": "^10.1.0",
     "@testing-library/jest-dom": "^6.4.5",

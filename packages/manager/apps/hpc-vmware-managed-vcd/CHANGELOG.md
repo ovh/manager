@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.5.2...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.6.0) (2025-02-19)
+
+
+### Bug Fixes
+
+* **pci-kubernetes:** update test skip ([edfce8a](https://github.com/ovh/manager/commit/edfce8a650bba1fc1b87ba05ef7c8dbaf1352ce8))
+
+
+### Features
+
+* update tailwing config export ([0325dde](https://github.com/ovh/manager/commit/0325ddeb69d5c38a18b06de729916641629e3e73))
+* update tailwing config path import ([6d26123](https://github.com/ovh/manager/commit/6d2612322cb7499f4fc8138b2c4de10c15b5e50c))
+
+
+
+
+
 ## [0.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.5.1...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.5.2) (2025-02-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-managed-vcd-app

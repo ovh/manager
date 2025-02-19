@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@2.0.0...@ovh-ux/manager-pci-common@2.1.0) (2025-02-19)
+
+
+### Features
+
+* update tailwing config export ([0325dde](https://github.com/ovh/manager/commit/0325ddeb69d5c38a18b06de729916641629e3e73))
+* update tailwing config path import ([6d26123](https://github.com/ovh/manager/commit/6d2612322cb7499f4fc8138b2c4de10c15b5e50c))
+
+
+
+
+
 # [2.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@1.0.16...@ovh-ux/manager-pci-common@2.0.0) (2025-02-17)
 
 

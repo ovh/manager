@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-veeam-backup-app",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "private": true,
   "description": "veeam backup app",
   "repository": {
@@ -49,7 +49,7 @@
   },
   "devDependencies": {
     "@ovh-ux/manager-core-test-utils": "^0.3.3",
-    "@ovh-ux/manager-vite-config": "^0.9.0",
+    "@ovh-ux/manager-vite-config": "^0.9.1",
     "@testing-library/jest-dom": "^6.5.0",
     "@testing-library/react": "^16.0.1",
     "@testing-library/user-event": "^14.5.2",

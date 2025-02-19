@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.1.13...@ovh-ux/manager-pci-billing-app@0.2.0) (2025-02-19)
+
+
+### Features
+
+* **restricted:** update rights typing ([0c37e20](https://github.com/ovh/manager/commit/0c37e20b7c96a66775f2e9c18c32c702ca524e22))
+* update tailwing config path import ([6d26123](https://github.com/ovh/manager/commit/6d2612322cb7499f4fc8138b2c4de10c15b5e50c))
+
+
+
+
+
 ## [0.1.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.1.12...@ovh-ux/manager-pci-billing-app@0.1.13) (2025-02-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-billing-app
