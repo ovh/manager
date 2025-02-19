@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { format } from 'date-fns';
 import { useTranslation } from 'react-i18next';
-import { ArrowUpRightFromSquare } from 'lucide-react';
+import { ArrowUpRightFromSquare, ExternalLink } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import RadioTile from '@/components/radio-tile/RadioTile.component';
 import A from '@/components/links/A.component';
@@ -8,11 +9,18 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ImagePartnerApp } from '@/types/orderFunnel';
 import ParnterOrderPrice from '../price/OrderPricePartner.component';
 import ImageVersionSelector from './PartnerImageVersion.component';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Contract } from '@/types/cloud/project/ai/partner';
+import { useLocale } from '@/hooks/useLocale';
 
 interface PartnerImageSelectProps {
   images: ImagePartnerApp[];
   value: string;
-  onChange: (newImage: string, newVersion?: string) => void;
+  onChange: (
+    newImage: string,
+    newVersion?: string,
+    contractChecked?: boolean,
+  ) => void;
   version?: string;
   className?: string;
 }
@@ -22,16 +30,25 @@ const PartnerImageSelect = React.forwardRef<
   PartnerImageSelectProps
 >(({ images, value, onChange, version, className }, ref) => {
   const { t } = useTranslation('components/partner-image');
+  const [contract, setContract] = useState<Contract>();
+  const [isChecked, setIsChecked] = useState(false);
+
+  const locale = useLocale();
+  useEffect(() => {
+    if (!value) return;
+    setIsChecked(!!images.find((im) => im.id === value)?.contract.signedAt);
+    setContract(images.find((im) => im.id === value)?.contract);
+  }, [value, images]);
+
   return (
     <Card data-testid="partner-image-select">
       <CardHeader>
         <CardTitle>{t('partnerImageTitle')}</CardTitle>
         <p className="pt-4">{t('partnerImageDesc')}</p>
       </CardHeader>
-      <CardContent className="space-y-2">
+      <CardContent ref={ref} className="space-y-2">
         <div
           data-testid="images-select-container"
-          ref={ref}
           className={cn('grid grid-cols-1 md:grid-cols-2 gap-2', className)}
         >
           {images.map((image) => (
@@ -40,7 +57,11 @@ const PartnerImageSelect = React.forwardRef<
               name="image-select"
               key={image.id}
               onChange={() => {
-                onChange(image.id, image.versions[0]);
+                onChange(
+                  image.id,
+                  image.versions[0],
+                  !!image.contract.signedAt,
+                );
               }}
               value={image.id}
               checked={image.id === value}
@@ -80,7 +101,9 @@ const PartnerImageSelect = React.forwardRef<
                       : image.versions[0]
                   }
                   isImageSelected={image.id === value}
-                  onChange={(versionName) => onChange(image.id, versionName)}
+                  onChange={(versionName) =>
+                    onChange(image.id, versionName, isChecked)
+                  }
                 />
                 <RadioTile.Separator />
                 <div className="text-xs">
@@ -119,6 +142,43 @@ const PartnerImageSelect = React.forwardRef<
             </RadioTile>
           ))}
         </div>
+      </CardContent>
+      <CardContent>
+        {value && (
+          <div>
+            <div className="flex flex-row items-center gap-2">
+              <Checkbox
+                checked={isChecked}
+                disabled={isChecked && !!contract.signedAt}
+                onCheckedChange={() => {
+                  setIsChecked(!isChecked);
+                  onChange(value, version, !isChecked);
+                }}
+              />
+              <p
+                className={`${
+                  contract?.signedAt ? 'font-bold' : 'font-normal'
+                }`}
+              >
+                {!contract?.signedAt
+                  ? t('partnerContractSignedOff')
+                  : t('partnerContractSignedOn', {
+                      signedDate: format(contract.signedAt, 'dd MMM yyyy'),
+                    })}
+              </p>
+            </div>
+            <A
+              href={contract?.termsOfService[locale].url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div className="inline-flex items-center gap-2">
+                <span>{t('partnerConditionLink')}</span>
+                <ExternalLink className="size-4" />
+              </div>
+            </A>
+          </div>
+        )}
       </CardContent>
     </Card>
   );

@@ -1,9 +1,11 @@
 import { order } from '@/types/catalog';
 import * as ai from '@/types/cloud/project/ai';
+import { Contract } from '@/types/cloud/project/ai/partner';
 import { AppPricing, ImagePartnerApp } from '@/types/orderFunnel';
 
 export function createAppImagePricingList(
   appImage: ai.capabilities.app.Image[],
+  partnerContract: ai.partner.Partner[],
   catalog: order.publicOrder.Catalog,
 ): ImagePartnerApp[] {
   return appImage.map((app) => {
@@ -32,8 +34,13 @@ export function createAppImagePricingList(
       (ad) => ad.planCode === appGpuPlanCode,
     )?.pricings;
 
+    const contractPart: Contract = partnerContract?.find(
+      (partner) => partner.id === app.partnerId,
+    )?.contract;
+
     return {
       ...app,
+      contract: contractPart,
       pricingCpu: appCpuPrice
         ? {
             // if per-second-bracket, price must be * 60

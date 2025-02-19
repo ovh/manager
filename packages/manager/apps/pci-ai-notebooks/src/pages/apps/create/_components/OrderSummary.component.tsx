@@ -6,6 +6,7 @@ import {
   Hash,
   LockKeyhole,
   MemoryStick,
+  MonitorCheck,
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
@@ -24,9 +25,11 @@ interface OrderSummaryProps {
     appName: string;
     unsecureHttp: boolean;
     scaling: Scaling;
+    httpPort: number;
     labels: { [key: string]: string };
     volumes: OrderVolumes[];
     dockerCommand: string[];
+    probe: ai.app.ProbeInput;
   };
   onSectionClicked?: (target: string) => void;
 }
@@ -253,6 +256,27 @@ const ScalingStrategy = ({ order, onSectionClicked }: OrderSummaryProps) => {
   );
 };
 
+const HttpPortDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
+  const { t } = useTranslation('pci-ai-deploy/apps/create');
+  return (
+    <div className="flex flex-col gap-2">
+      <div className="flex items-center gap-2">
+        <Button
+          data-testid="access-section-button"
+          variant={'link'}
+          size={'link'}
+          type="button"
+          onClick={() => onSectionClicked('httpPort')}
+          className="font-bold"
+        >
+          {t('summaryFieldHttpPortLabel')}
+        </Button>
+        <span>{order.httpPort}</span>
+      </div>
+    </div>
+  );
+};
+
 const PrivacyDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
   const { t } = useTranslation('pci-ai-deploy/apps/create');
   return (
@@ -366,6 +390,32 @@ const LabelsDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
   );
 };
 
+const ProbeDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
+  const { t } = useTranslation('pci-ai-deploy/apps/create');
+  return (
+    <div className="flex flex-col gap-2">
+      <div className="flex items-center gap-2">
+        <Button
+          data-testid="probe-section-button"
+          variant={'link'}
+          size={'link'}
+          type="button"
+          onClick={() => onSectionClicked('probe')}
+          className="font-bold"
+        >
+          {t('fieldConfigurationProbeLabel')}
+        </Button>
+        <MonitorCheck className="size-4" />
+      </div>
+      <div className="flex items-center pl-4 gap-2">
+        <span>
+          {order.probe.path}:{order.probe.port}
+        </span>
+      </div>
+    </div>
+  );
+};
+
 const OrderSummary = ({ order, onSectionClicked }: OrderSummaryProps) => {
   return (
     <div className="grid grid-cols-1 gap-2">
@@ -375,6 +425,7 @@ const OrderSummary = ({ order, onSectionClicked }: OrderSummaryProps) => {
       <ImageDetails order={order} onSectionClicked={onSectionClicked} />
       <ScalingStrategy order={order} onSectionClicked={onSectionClicked} />
       <PrivacyDetails order={order} onSectionClicked={onSectionClicked} />
+      <HttpPortDetails order={order} onSectionClicked={onSectionClicked} />
       {order.volumes.length > 0 && (
         <VolumesDetails order={order} onSectionClicked={onSectionClicked} />
       )}
@@ -386,6 +437,9 @@ const OrderSummary = ({ order, onSectionClicked }: OrderSummaryProps) => {
           order={order}
           onSectionClicked={onSectionClicked}
         />
+      )}
+      {order.probe.path && (
+        <ProbeDetails order={order} onSectionClicked={onSectionClicked} />
       )}
     </div>
   );

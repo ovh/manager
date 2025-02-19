@@ -9,7 +9,11 @@ interface AppImageSelectProps {
   appImages: ImagePartnerApp[];
   value: string;
   version?: string;
-  onChange: (newImage: string, newVersion?: string) => void;
+  onChange: (
+    newImage: string,
+    newVersion?: string,
+    contractChecked?: boolean,
+  ) => void;
   className?: string;
 }
 

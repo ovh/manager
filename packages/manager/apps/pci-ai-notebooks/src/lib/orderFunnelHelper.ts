@@ -1,6 +1,7 @@
 import * as ai from '@/types/cloud/project/ai';
 import {
   AppOrderResult,
+  ImagePartnerApp,
   JobOrderResult,
   NotebookOrderResult,
   OrderVolumes,
@@ -121,7 +122,10 @@ export function getJobSpec(formResult: JobOrderResult) {
   return jobInfos;
 }
 
-export function getAppSpec(formResult: AppOrderResult) {
+export function getAppSpec(
+  formResult: AppOrderResult,
+  listAppPartner: ImagePartnerApp[],
+) {
   const appResource: ai.ResourcesInput =
     formResult.flavor.type === ai.capabilities.FlavorTypeEnum.cpu
       ? {
@@ -136,12 +140,21 @@ export function getAppSpec(formResult: AppOrderResult) {
   const appInfos: ai.app.AppSpecInput = {
     resources: appResource,
     name: formResult.appName,
-    image: formResult.image,
+    image: formResult.version
+      ? `${formResult.image}:${formResult.version}`
+      : formResult.image,
     region: formResult.region.id,
     unsecureHttp: formResult.unsecureHttp,
     labels: formResult.labels,
     command: formResult.dockerCommand,
+    defaultHttpPort: Number(formResult.httpPort),
   };
+
+  if (formResult.version) {
+    appInfos.partnerId = listAppPartner?.find(
+      (app) => app.id === formResult.image,
+    )?.partnerId;
+  }
 
   if (formResult.volumes.length > 0) {
     appInfos.volumes = formResult.volumes.map((volume: OrderVolumes) => {
@@ -175,6 +188,13 @@ export function getAppSpec(formResult: AppOrderResult) {
       fixed: {
         replicas: formResult.scaling.replicas,
       },
+    };
+  }
+
+  if (formResult.probe.path) {
+    appInfos.probe = {
+      path: formResult.probe.path,
+      port: formResult.probe.port,
     };
   }
 

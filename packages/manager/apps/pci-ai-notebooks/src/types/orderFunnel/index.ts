@@ -1,6 +1,7 @@
 import { order } from '../catalog';
 import * as ai from '@/types/cloud/project/ai';
 import { PublicGit } from '../cloud/project/ai/volume';
+import { Contract } from '@/types/cloud/project/ai/partner/Contract';
 
 export interface AppPricing {
   price: number;
@@ -20,6 +21,7 @@ export interface Flavor extends ai.capabilities.Flavor {
 export interface ImagePartnerApp extends ai.capabilities.app.Image {
   pricingCpu: AppPricing;
   pricingGpu: AppPricing;
+  contract?: Contract;
 }
 
 export interface FrameworkWithVersion {
@@ -130,14 +132,20 @@ export interface AppOrderResult {
   flavor: Flavor;
   resourcesQuantity: number;
   image: string;
+  version: string;
   appName: string;
   unsecureHttp: boolean;
   volumes: OrderVolumes[];
   scaling: Scaling;
+  httpPort: number;
   labels: {
     [key: string]: string;
   };
   dockerCommand: string[];
+  probe: {
+    path: string;
+    port: number;
+  };
 }
 
 export interface Scaling {

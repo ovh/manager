@@ -62,41 +62,39 @@ const LabelsForm = React.forwardRef<HTMLInputElement, LabelsFormProps>(
     return (
       <Form {...form}>
         <div
-          className="flex w-full items-start gap-2"
+          className="w-full grid grid-cols-1 gap-4 sm:grid-cols-[1fr_1fr_auto]"
           data-testid="labels-form-container"
         >
-          <div className="grid grid-cols-2 gap-2 w-full">
-            <FormField
-              control={form.control}
-              name="name"
-              defaultValue=""
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel data-testid="name-field-label">
-                    {t('keyFieldLabel')}
-                  </FormLabel>
-                  <FormControl>
-                    <Input data-testid="key-input-field" {...field} ref={ref} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="value"
-              defaultValue=""
-              render={({ field }) => (
-                <FormItem data-testid="value-field-label">
-                  <FormLabel>{t('valueFieldLabel')}</FormLabel>
-                  <FormControl>
-                    <Input data-testid="value-input-field" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
+          <FormField
+            control={form.control}
+            name="name"
+            defaultValue=""
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel data-testid="name-field-label">
+                  {t('keyFieldLabel')}
+                </FormLabel>
+                <FormControl>
+                  <Input data-testid="key-input-field" {...field} ref={ref} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="value"
+            defaultValue=""
+            render={({ field }) => (
+              <FormItem data-testid="value-field-label">
+                <FormLabel>{t('valueFieldLabel')}</FormLabel>
+                <FormControl>
+                  <Input data-testid="value-input-field" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
           <Button
             data-testid="label-add-button"
             variant={'ghost'}

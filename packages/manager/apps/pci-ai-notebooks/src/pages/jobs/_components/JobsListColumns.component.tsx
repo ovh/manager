@@ -148,7 +148,7 @@ export const getColumns = ({
               </DropdownMenuItem>
               <DropdownMenuItem
                 data-testid="job-action-stop-button"
-                disabled={isRunningJob(job.status.state)}
+                disabled={!isRunningJob(job.status.state)}
                 variant="primary"
                 onClick={() => {
                   onStopClicked(row.original);

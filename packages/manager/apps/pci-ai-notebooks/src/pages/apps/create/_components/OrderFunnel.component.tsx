@@ -56,8 +56,19 @@ import { useAddApp } from '@/hooks/api/ai/app/useAddApp.hook';
 import { useGetCommand } from '@/hooks/api/ai/app/useGetCommand.hook';
 import { getAppSpec } from '@/lib/orderFunnelHelper';
 import ScalingStrategy from '@/components/order/app-scaling/ScalingStrategy.component';
-import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table';
 import Price from '@/components/price/Price.component';
+import { APP_CONFIG } from '@/configuration/app';
+import ProbeForm from '@/components/order/app-probe/ProbeForm.component';
+import { useSignPartnerContract } from '@/hooks/api/ai/partner/useSignPartnerContract.hook';
+import { PartnerApp } from '@/data/api/ai/partner.api';
 
 interface OrderAppsFunnelProps {
   regions: ai.capabilities.Region[];
@@ -83,6 +94,16 @@ const OrderFunnel = ({
 
   const { toast } = useToast();
   const [command, setCommand] = useState<ai.Command>({ command: '' });
+
+  const { signPartnerContract } = useSignPartnerContract({
+    onError: (err) => {
+      toast({
+        title: t('errorSigningContract'),
+        variant: 'destructive',
+        description: getAIApiErrorMessage(err),
+      });
+    },
+  });
 
   const { addApp, isPending: isPendingAddApp } = useAddApp({
     onError: (err) => {
@@ -116,13 +137,56 @@ const OrderFunnel = ({
   });
 
   const getCliCommand = () => {
-    const appInfo: ai.app.AppSpecInput = getAppSpec(model.result);
+    const appInfo: ai.app.AppSpecInput = getAppSpec(
+      model.result,
+      model.lists.appImages,
+    );
     getCommand({ projectId, appInfo });
+  };
+
+  const scrollToDiv = (target: string) => {
+    const div = document.getElementById(target);
+    if (div) {
+      div.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   const onSubmit = model.form.handleSubmit(
     () => {
-      const appInfo: ai.app.AppSpecInput = getAppSpec(model.result);
+      // Final check to make sure that partner contract is sign
+      if (model.result.version && !model.result.contract) {
+        scrollToDiv('image');
+        model.form.setError('image.name', {
+          type: 'custom',
+          message: t('formErrorPartnerContractNotSign'),
+        });
+        toast({
+          title: t('errorFormTitle'),
+          variant: 'destructive',
+          description: (
+            <ErrorList error={model.form.control._formState.errors} />
+          ),
+        });
+        return;
+      }
+
+      // Post on partner Contract to sign it
+      if (model.result.version && model.result.contract) {
+        const signPartnerInfo: PartnerApp = {
+          projectId,
+          region: model.result.region.id,
+          partnerId: model.lists.appImages.find(
+            (app) => app.id === model.result.image,
+          ).partnerId,
+        };
+        signPartnerContract(signPartnerInfo);
+      }
+
+      // Deploy the app
+      const appInfo: ai.app.AppSpecInput = getAppSpec(
+        model.result,
+        model.lists.appImages,
+      );
       addApp(appInfo);
     },
     (error) => {
@@ -133,13 +197,6 @@ const OrderFunnel = ({
       });
     },
   );
-
-  const scrollToDiv = (target: string) => {
-    const div = document.getElementById(target);
-    if (div) {
-      div.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
 
   useEffect(() => {
     if (accordionContentRef?.current) {
@@ -290,9 +347,13 @@ const OrderFunnel = ({
                         appImages={model.lists.appImages}
                         version={model.form.getValues('image.version')}
                         value={field.value}
-                        onChange={(newImage, newVersion) => {
+                        onChange={(newImage, newVersion, contractChecked) => {
                           model.form.setValue('image.name', newImage);
                           model.form.setValue('image.version', newVersion);
+                          model.form.setValue(
+                            'image.contractChecked',
+                            contractChecked,
+                          );
                           // remove errors onChange
                           model.form.trigger('image.name');
                         }}
@@ -320,6 +381,31 @@ const OrderFunnel = ({
                         onChange={(newScaling) =>
                           model.form.setValue('scaling', newScaling)
                         }
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </section>
+
+            <section id="httpPort">
+              <FormField
+                control={model.form.control}
+                name="httpPort"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className={classNameLabel}>
+                      {t('fieldHttpPortLabel')}
+                    </FormLabel>
+                    <p className="text-sm">{t('fieldHttpPortDescription')}</p>
+                    <FormControl>
+                      <Input
+                        type="number"
+                        max={APP_CONFIG.port.max}
+                        min={APP_CONFIG.port.min}
+                        value={field.value}
+                        {...field}
                       />
                     </FormControl>
                     <FormMessage />
@@ -513,6 +599,36 @@ const OrderFunnel = ({
                         )}
                       />
                     </section>
+                    <section id="probe">
+                      <FormField
+                        control={model.form.control}
+                        name="probe"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className={classNameLabel}>
+                              {t('fieldConfigurationProbeLabel')}
+                            </FormLabel>
+                            <FormControl>
+                              <ProbeForm
+                                probeValue={field.value}
+                                onChange={(newProbe) => {
+                                  model.form.setValue(
+                                    'probe.path',
+                                    newProbe.path,
+                                  );
+                                  model.form.setValue(
+                                    'probe.port',
+                                    newProbe.port,
+                                  );
+                                }}
+                                disabled={isPendingAddApp}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </section>
                   </div>
                 </CardContent>
               </Card>
@@ -537,10 +653,16 @@ const OrderFunnel = ({
                 }}
               />
               <Table>
+                <TableHeader>
+                  <TableRow className="text-sm">
+                    <TableHead>{t('priceDetailsLabel')}</TableHead>
+                    <TableHead>{t('priceUnitLabel')}</TableHead>
+                  </TableRow>
+                </TableHeader>
                 <TableBody>
                   {model.result.pricing?.resourcePricing && (
                     <TableRow className="text-sm">
-                      <TableCell>Resources</TableCell>
+                      <TableCell>{t('priceRessourceLabel')}</TableCell>
                       <TableCell>
                         <Price
                           decimals={2}
@@ -550,14 +672,14 @@ const OrderFunnel = ({
                           taxInUcents={
                             model.result.pricing.resourcePricing?.tax
                           }
-                          displayInHour={true}
+                          displayInHour={false}
                         />
                       </TableCell>
                     </TableRow>
                   )}
                   {model.result.pricing?.scalingPricing && (
                     <TableRow className="text-sm">
-                      <TableCell>Scaling</TableCell>
+                      <TableCell>{t('priceScalingLabel')}</TableCell>
                       <TableCell>
                         <Price
                           decimals={2}
@@ -565,14 +687,14 @@ const OrderFunnel = ({
                             model.result.pricing.scalingPricing.price
                           }
                           taxInUcents={model.result.pricing.scalingPricing.tax}
-                          displayInHour={true}
+                          displayInHour={false}
                         />
                       </TableCell>
                     </TableRow>
                   )}
                   {model.result.pricing?.partnerLicence && (
                     <TableRow className="text-sm">
-                      <TableCell>Licence</TableCell>
+                      <TableCell>{t('priceLicenceLabel')}</TableCell>
                       <TableCell>
                         <Price
                           decimals={2}
@@ -580,14 +702,16 @@ const OrderFunnel = ({
                             model.result.pricing.partnerLicence.price
                           }
                           taxInUcents={model.result.pricing.partnerLicence.tax}
-                          displayInHour={true}
+                          displayInHour={false}
                         />
                       </TableCell>
                     </TableRow>
                   )}
                   {model.result.pricing?.resourcePricing && (
                     <TableRow>
-                      <TableCell className="font-bold">Total</TableCell>
+                      <TableCell className="font-bold">
+                        {t('priceTotalLabel')}
+                      </TableCell>
                       <TableCell>
                         <Price
                           decimals={2}
@@ -601,7 +725,7 @@ const OrderFunnel = ({
                             (model.result.pricing?.partnerLicence?.tax || 0) +
                             (model.result.pricing?.scalingPricing?.tax || 0)
                           }
-                          displayInHour={true}
+                          displayInHour={false}
                         />
                       </TableCell>
                     </TableRow>

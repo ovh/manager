@@ -24,6 +24,8 @@ import {
 import { useGetAppImages } from '@/hooks/api/ai/capabilities/useGetAppImage.hook';
 import { createAppImagePricingList } from '@/lib/priceParnterImageHelper';
 import { createAppPriceObject } from '@/lib/priceAppHelper';
+import { APP_CONFIG } from '@/configuration/app';
+import { useGetPartner } from '@/hooks/api/ai/partner/useGetPartner.hook';
 
 export function useOrderFunnel(
   regions: ai.capabilities.Region[],
@@ -32,6 +34,7 @@ export function useOrderFunnel(
 ) {
   const { projectId } = useParams();
   const { t } = useTranslation('pci-ai-deploy/apps/create');
+
   const orderSchema = z.object({
     region: z.string(),
     flavorWithQuantity: z.object({
@@ -46,6 +49,7 @@ export function useOrderFunnel(
           message: t('errorFormEmptyImageApp'),
         }),
       version: z.string().optional(),
+      contractChecked: z.boolean().optional(),
     }),
     appName: z
       .string()
@@ -73,6 +77,10 @@ export function useOrderFunnel(
       )
       .optional(),
     dockerCommand: z.array(z.string()).optional(),
+    httpPort: z.coerce
+      .number()
+      .min(APP_CONFIG.port.min)
+      .max(APP_CONFIG.port.max),
     volumes: z.array(
       z.object({
         cache: z.boolean().optional(),
@@ -91,6 +99,15 @@ export function useOrderFunnel(
         permission: z.nativeEnum(ai.VolumePermissionEnum),
       }),
     ),
+    probe: z
+      .object({
+        path: z
+          .string()
+          .trim()
+          .optional(),
+        port: z.coerce.number().optional(),
+      })
+      .optional(),
   });
 
   const form = useForm({
@@ -98,7 +115,7 @@ export function useOrderFunnel(
     defaultValues: {
       region: suggestions[0].region,
       flavorWithQuantity: { flavor: '', quantity: 1 },
-      image: { name: '', version: '' },
+      image: { name: '', version: '', contractChecked: false },
       appName: generateName(),
       privacy: PrivacyEnum.private,
       scaling: {
@@ -109,9 +126,11 @@ export function useOrderFunnel(
         replicasMin: 1,
         resourceType: ai.app.ScalingAutomaticStrategyResourceTypeEnum.CPU,
       },
+      httpPort: 8080,
       labels: [],
       dockerCommand: [],
       volumes: [],
+      probe: { path: '', port: 8080 },
     },
   });
 
@@ -121,9 +140,11 @@ export function useOrderFunnel(
   const appName = form.watch('appName');
   const unsecureHttp = form.watch('privacy');
   const scaling = form.watch('scaling');
+  const httpPort = form.watch('httpPort');
   const labels = form.watch('labels');
   const volumes = form.watch('volumes');
   const dockerCommand = form.watch('dockerCommand');
+  const probe = form.watch('probe');
 
   const flavorQuery = useGetFlavor(projectId, region);
   const datastoreQuery = useGetDatastores(projectId, region);
@@ -134,6 +155,7 @@ export function useOrderFunnel(
   );
 
   const appImagesQuery = useGetAppImages(projectId, region);
+  const appPartnerContractQuery = useGetPartner(projectId, region);
 
   const regionObject: ai.capabilities.Region | undefined = useMemo(
     () => regions.find((r) => r.id === region),
@@ -152,8 +174,19 @@ export function useOrderFunnel(
 
   const listAppImages: ImagePartnerApp[] = useMemo(() => {
     if (appImagesQuery.isLoading) return [];
-    return createAppImagePricingList(appImagesQuery.data, catalog);
-  }, [region, appImagesQuery.isSuccess]);
+    if (appPartnerContractQuery.isLoading) return [];
+    return createAppImagePricingList(
+      appImagesQuery.data,
+      appPartnerContractQuery.data,
+      catalog,
+    );
+  }, [
+    region,
+    appImagesQuery.isSuccess,
+    appPartnerContractQuery.isSuccess,
+    appImagesQuery.data,
+    appPartnerContractQuery.data,
+  ]);
 
   const listDatastores: DataStoresWithContainers[] = useMemo(() => {
     if (datastoreQuery.isLoading) return [];
@@ -213,13 +246,16 @@ export function useOrderFunnel(
       resourcesQuantity: flavorWithQuantity.quantity,
       image: imageWithVersion.name,
       version: imageWithVersion.version,
+      contract: imageWithVersion.contractChecked,
       appName,
       unsecureHttp: unsecureHttpObject,
+      httpPort,
       volumes,
       scaling,
       labels: labelsObject,
       dockerCommand,
       pricing: pricingObject,
+      probe,
     },
   };
 }

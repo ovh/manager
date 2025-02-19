@@ -60,7 +60,6 @@ import A from '@/components/links/A.component';
 import { useLocale } from '@/hooks/useLocale';
 import OvhLink from '@/components/links/OvhLink.component';
 import { GUIDES, getGuideUrl } from '@/configuration/guide';
-import Link from '@/components/links/Link.component';
 
 interface OrderFunnelProps {
   regions: ai.capabilities.Region[];
@@ -443,13 +442,6 @@ const OrderFunnel = ({
                             </FormLabel>
                             <p>
                               {t('fieldVolumeDescription1')}{' '}
-                              <Link
-                                className="mx-1"
-                                to={'../dashboard/datastore'}
-                              >
-                                {t('fieldVolumeDashboardLink')}
-                              </Link>
-                              ﬂ
                               <OvhLink
                                 application="public-cloud"
                                 path={`#/pci/projects/${projectId}/ai/dashboard/datastore`}
