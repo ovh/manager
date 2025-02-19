@@ -33,7 +33,7 @@ export default class Node {
   get isDeployed() {
     if (
       this.status === NODE_STATUS.UNKNOWN &&
-      this.os !== DEFAULT_OS_NODE_NUTANIX
+      this.os.startWith(DEFAULT_OS_NODE_NUTANIX.split('.')[0])
     ) {
       return true;
     }
