@@ -38,6 +38,11 @@ export type TAddress = {
   gatewayIp: string;
 };
 
+export type TVolume = {
+  id: string;
+  name: string;
+};
+
 export type TInstance = DeepReadonly<{
   id: string;
   name: string;
@@ -48,6 +53,7 @@ export type TInstance = DeepReadonly<{
   imageId: string;
   imageName: string;
   addresses: Map<TAddressType, TAddress[]>;
+  volumes: TVolume[];
 }>;
 
 const listQueryKeyPredicate = (projectId: string) => (query: Query) =>

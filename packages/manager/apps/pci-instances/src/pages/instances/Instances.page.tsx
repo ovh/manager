@@ -52,8 +52,9 @@ import {
 } from './datagrid/cell/ActionsCell.component';
 import { NameIdCell } from './datagrid/cell/NameIdCell.component';
 import { TextCell } from '@/components/datagrid/cell/TextCell.component';
-import { AddressesCell } from './datagrid/cell/AddressesCell.component';
+import { ListCell } from './datagrid/cell/ListCell.component';
 import NotFoundPage from '../404/NotFound.page';
+import { mapAddressesToListItems } from './mapper';
 
 const initialSorting = {
   id: 'name',
@@ -155,9 +156,9 @@ const Instances: FC = () => {
       {
         id: 'publicIPs',
         cell: (instance) => (
-          <AddressesCell
+          <ListCell
             isLoading={isRefetching}
-            addresses={instance.addresses.get('public') ?? []}
+            items={mapAddressesToListItems(instance.addresses.get('public'))}
           />
         ),
         label: t('pci_instances_list_column_public_IPs'),
@@ -166,12 +167,20 @@ const Instances: FC = () => {
       {
         id: 'privateIPs',
         cell: (instance) => (
-          <AddressesCell
+          <ListCell
             isLoading={isRefetching}
-            addresses={instance.addresses.get('private') ?? []}
+            items={mapAddressesToListItems(instance.addresses.get('private'))}
           />
         ),
         label: t('pci_instances_list_column_private_IPs'),
+        isSortable: false,
+      },
+      {
+        id: 'volumes',
+        cell: (instance) => (
+          <ListCell isLoading={isRefetching} items={instance.volumes} />
+        ),
+        label: t('pci_instances_list_column_volumes'),
         isSortable: false,
       },
       {
