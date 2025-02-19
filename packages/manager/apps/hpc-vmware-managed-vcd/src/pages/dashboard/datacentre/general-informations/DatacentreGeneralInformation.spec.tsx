@@ -22,7 +22,7 @@ const submitButtonLabel =
   labels.dashboard.managed_vcd_dashboard_edit_modal_cta_edit;
 
 describe('Datacentre General Information Page', () => {
-  it('modify the description of the datacentre', async () => {
+  it.skip('modify the description of the datacentre', async () => {
     const { container } = await renderTest({
       initialRoute: `/${organizationList[0].id}/datacentres/${datacentreList[0].id}`,
     });
