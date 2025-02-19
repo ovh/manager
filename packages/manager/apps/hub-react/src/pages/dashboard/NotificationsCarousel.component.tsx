@@ -23,8 +23,8 @@ import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { useFetchHubNotifications } from '@/data/hooks/notifications/useNotifications';
 import { Notification, NotificationType } from '@/types/notifications.type';
 import useGuideUtils from '@/hooks/guides/useGuideUtils';
-import { NOTIFICATIONS_LINKS } from '@/pages/layout/layout.constants';
-import { useHubContext } from '@/pages/layout/context';
+import { NOTIFICATIONS_LINKS } from '@/pages/dashboard/dashboard.constants';
+import { useHubContext } from '@/pages/dashboard/context';
 
 const getMessageColor = (type: NotificationType) => {
   switch (type) {
