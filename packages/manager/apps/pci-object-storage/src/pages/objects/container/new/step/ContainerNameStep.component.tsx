@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { StepComponent } from '@ovh-ux/manager-react-components';
-import { useContext, useState } from 'react';
+import { useContext, useMemo, useState } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -52,6 +52,20 @@ export function ContainerNameStep({
     nameError = t('pci-common:common_field_error_pattern');
   }
 
+  const order = useMemo(() => {
+    if (
+      form.offer === OBJECT_CONTAINER_OFFER_SWIFT ||
+      (form.offer === OBJECT_CONTAINER_OFFER_STORAGE_STANDARD &&
+        form.deploymentMode === OBJECT_CONTAINER_MODE_LOCAL_ZONE)
+    ) {
+      return 4;
+    }
+    if (form.deploymentMode === OBJECT_CONTAINER_MODE_MULTI_ZONES) {
+      return 8;
+    }
+    return 7;
+  }, [form.offer, form.deploymentMode]);
+
   const asyncReplicationLink =
     STORAGE_ASYNC_REPLICATION_LINK[ovhSubsidiary] ||
     STORAGE_ASYNC_REPLICATION_LINK.DEFAULT;
@@ -62,13 +76,7 @@ export function ContainerNameStep({
       isOpen={stepper.containerName.isOpen || stepper.containerName.isLocked}
       isChecked={stepper.containerName.isChecked}
       isLocked={stepper.containerName.isLocked || isCreationPending}
-      order={
-        form.offer === OBJECT_CONTAINER_OFFER_SWIFT ||
-        (form.offer === OBJECT_CONTAINER_OFFER_STORAGE_STANDARD &&
-          form.deploymentMode === OBJECT_CONTAINER_MODE_LOCAL_ZONE)
-          ? 4
-          : 7
-      }
+      order={order}
       next={{
         action: () => {
           onSubmit(form);

@@ -3,7 +3,7 @@ import { PciModal } from '@ovh-ux/manager-pci-common';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { OdsLink, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
-import { useContext } from 'react';
+import { useContext, useMemo } from 'react';
 import { Translation, useTranslation } from 'react-i18next';
 import {
   createSearchParams,
@@ -32,7 +32,11 @@ export default function EnableEncryptionPage() {
 
   const { ovhSubsidiary } = context.environment.getUser();
 
-  const storageDetail = storages?.resources.find((s) => s.name === storageId);
+  const storageDetail = useMemo(() => {
+    return storages?.resources.find(
+      (s) => s.name === storageId && s.region === searchParams.get('region'),
+    );
+  }, [storages, storageId]);
 
   const enableEncryptionLink =
     ENABLE_ENCRYPTION_LINK[ovhSubsidiary] || ENABLE_ENCRYPTION_LINK.DEFAULT;
@@ -41,7 +45,7 @@ export default function EnableEncryptionPage() {
     navigate({
       pathname: `..`,
       search: `?${createSearchParams({
-        region: searchParams.get('region'),
+        region: storageDetail.region,
       })}`,
     });
 
@@ -55,7 +59,7 @@ export default function EnableEncryptionPage() {
 
   const { updateContainer, isPending } = useUpdateStorage({
     projectId,
-    region: searchParams.get('region'),
+    region: storageDetail.region,
     name: storageId,
     s3StorageType: storageDetail?.s3StorageType,
     onError(error: ApiError) {
