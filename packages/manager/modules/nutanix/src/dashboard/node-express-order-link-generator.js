@@ -4,10 +4,10 @@ import { PRODUCT_ID, DEFAULT_OS_NODE_NUTANIX } from '../constants';
 export default class NodeExpressOrderLinkGenerator {
   constructor(serviceName, nodeDetails, zone, quantity = 1) {
     this.serviceName = serviceName;
-    this.nodeTechnicalDetails = nodeDetails.nodeTechnicalDetails;
+    this.nodeTechnicalDetails = nodeDetails.serviceDetails;
     this.zone = zone;
     this.quantity = quantity;
-    this.options = this.generateOptions(nodeDetails.nodeOptionsDetails);
+    this.options = this.generateOptions(nodeDetails.optionsDetails);
   }
 
   setQuantity(quantity) {
