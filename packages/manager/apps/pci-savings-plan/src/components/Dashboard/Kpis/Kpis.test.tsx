@@ -55,8 +55,8 @@ describe('Kpis Component', () => {
       { utilization: '100%', coverage: '90%' },
     ],
     fees: {
-      saved_amount: 50,
-      total_price: 100,
+      savedAmount: 50,
+      totalPrice: 100,
     },
   } as SavingsPlanFlavorConsumption;
 
