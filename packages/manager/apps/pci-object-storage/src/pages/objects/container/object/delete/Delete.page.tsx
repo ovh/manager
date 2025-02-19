@@ -71,7 +71,6 @@ export default function DeletePage() {
 
   const onConfirm = () => {
     deleteObject();
-    goBack();
   };
 
   const isPending = isPendingStorage || isPendingDelete;
