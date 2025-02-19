@@ -17,12 +17,27 @@ const lazyRouteConfig = (importFn: CallableFunction): Partial<RouteObject> => {
 export const Routes: any = [
   {
     path: '/',
-    ...lazyRouteConfig(() => import('@/pages/layout/layout')),
-    handle: {
-      tracking: {
-        pageName: 'dashboard',
+    ...lazyRouteConfig(() => import('@/pages/layout')),
+    children: [
+      {
+        path: '',
+        ...lazyRouteConfig(() => import('@/pages/dashboard/dashboard')),
+        handle: {
+          tracking: {
+            pageName: 'dashboard',
+          },
+        },
       },
-    },
+      {
+        path: 'roadmap-changelog',
+        ...lazyRouteConfig(() => import('@/pages/changelog/changelog')),
+        handle: {
+          tracking: {
+            pageName: 'roadmap-changelog',
+          },
+        },
+      },
+    ],
   },
   {
     path: '*',

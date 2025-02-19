@@ -19,12 +19,12 @@ import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { defineCurrentPage } from '@ovh-ux/request-tagger';
 import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-import { features } from '@/pages/layout/layout.constants';
+import { features } from '@/pages/dashboard/dashboard.constants';
 import { useFetchHubServices } from '@/data/hooks/services/useServices';
 import { useLastOrder } from '@/data/hooks/lastOrder/useLastOrder';
 // Components used in Suspense's fallback cannot be lazy loaded (break testing)
 import TileGridSkeleton from '@/components/tile-grid-skeleton/TileGridSkeleton.component';
-import { Context } from '@/pages/layout/context';
+import { Context } from '@/pages/dashboard/context';
 
 import Welcome from '@/components/welcome/Welcome.component';
 import Banner from '@/components/banner/Banner.component';
@@ -39,12 +39,34 @@ import OrderTracking from '@/components/hub-order-tracking/HubOrderTracking.comp
 import HubDashboardSubtitle from '@/pages/layout/HubDashboardSubtitle';
 
 const Products = lazy(() => import('@/components/products/Products.component'));
-const Catalog = lazy(() => import('@/pages/layout/Catalog.component'));
+const Catalog = lazy(() => import('@/pages/dashboard/Catalog.component'));
+const OrderTracking = lazy(() =>
+  import('@/components/hub-order-tracking/HubOrderTracking.component'),
+);
+const HubSupport = lazy(() =>
+  import('@/components/hub-support/HubSupport.component'),
+);
 const BillingSummary = lazy(() =>
-  import('@/pages/layout/BillingSummary.component'),
+  import('@/pages/dashboard/BillingSummary.component'),
 );
 const EnterpriseBillingSummary = lazy(() =>
-  import('@/pages/layout/EnterpriseBillingSummary.component'),
+  import('@/pages/dashboard/EnterpriseBillingSummary.component'),
+);
+const PaymentStatus = lazy(() =>
+  import('@/pages/dashboard/PaymentStatus.component'),
+);
+const SiretBanner = lazy(() =>
+  import('@/pages/dashboard/SiretBanner.component'),
+);
+const SiretModal = lazy(() => import('@/pages/dashboard/SiretModal.component'));
+const KycIndiaBanner = lazy(() =>
+  import('@/pages/dashboard/KycIndiaBanner.component'),
+);
+const KycFraudBanner = lazy(() =>
+  import('@/pages/dashboard/KycFraudBanner.component'),
+);
+const NotificationsCarousel = lazy(() =>
+  import('@/pages/dashboard/NotificationsCarousel.component'),
 );
 
 export default function Layout() {

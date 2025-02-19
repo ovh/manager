@@ -23,8 +23,8 @@ import { SUPPORT_URLS } from '@/components/hub-support/HubSupport.constants';
 import {
   KYC_FRAUD_FEATURE,
   KYC_FRAUD_TRACK_IMPRESSION,
-} from '@/pages/layout/layout.constants';
-import { useHubContext } from '@/pages/layout/context';
+} from '@/pages/dashboard/dashboard.constants';
+import { useHubContext } from '@/pages/dashboard/context';
 
 export default function KycFraudBanner() {
   const { t } = useTranslation('hub/kyc');
