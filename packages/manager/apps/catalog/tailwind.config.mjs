@@ -1,11 +1,14 @@
 import path from 'path';
+import { createRequire } from 'node:module';
+
+const require = createRequire(import.meta.url);
 
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
     './src/**/*.{js,jsx,ts,tsx}',
     path.join(
-      path.dirname(import.meta.resolve('@ovh-ux/manager-react-components')),
+      path.dirname(require.resolve('@ovh-ux/manager-react-components')),
       '**/*.{js,jsx,ts,tsx}',
     ),
   ],
