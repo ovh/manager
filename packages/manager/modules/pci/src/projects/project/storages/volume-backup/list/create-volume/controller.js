@@ -4,9 +4,7 @@ import { VOLUME_BACKUP_TRACKING } from '../../volume-backup.constants';
 
 export default class VolumeBackupListCreateVolumeController {
   /* @ngInject */
-  constructor($q, $timeout, $translate, VolumeBackupService) {
-    this.$q = $q;
-    this.$timeout = $timeout;
+  constructor($translate, VolumeBackupService) {
     this.$translate = $translate;
     this.volumeBackupService = VolumeBackupService;
   }
