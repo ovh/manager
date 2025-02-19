@@ -33,6 +33,11 @@ vi.mock('@ovh-ux/manager-react-components', async () => {
     ...mod,
     useProjectUrl: vi.fn().mockReturnValue('mockProjectUrl'),
     Notifications: vi.fn(),
+    useTracking: vi.fn(() => ({
+      trackPage: vi.fn(),
+      trackClick: vi.fn(),
+    })),
+    PciGuidesHeader: vi.fn().mockReturnValue(null),
   };
 });
 
