@@ -145,7 +145,7 @@
   "hosting_dashboard_service_offer_KIMSUFI_2015_support": "Kimsufi web hosting: support is only offered via the ticketing system (Assistance menu)",
   "hosting_dashboard_service_offer_60_FREE_end": "The 60free solution will be closed on 01 May 2017. You can migrate your ovh.org domain to another web hosting plan (Migrate ovh.org domain button)",
   "hosting_dashboard_service_offer_DEMO_1_G_end": "The demo1g offer will be closed on 01 May, 2017. You can migrate your ovh.org domain to another web hosting plan (Migrate ovh.org domain button)",
-  "hosting_dashboard_service_offer_recommanded": "OVHcloud recommends the {{t0}} service.",
+  "hosting_dashboard_service_offer_recommanded": "OVHcloud recommends the {{t0}} solution.",
   "hosting_dashboard_service_offer_recommanded_actions": "You can change your solution in the general information tab, or you can view the list of solutions on our <a href=\"{{t0}}\" target=\"{{t1}}\">website</a>.",
   "hosting_dashboard_add_domain": "Add a domain",
   "hosting_dashboard_migrate_my_ovh_org": "Migrate an ovh.org domain",
