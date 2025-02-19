@@ -122,7 +122,7 @@ const Filters = ({
   const formatterDate = (date: string) => toMonthYear(new Date(date), locale);
 
   return (
-    <div className="flex flex-row gap-4">
+    <div className="flex flex-row gap-4 mt-6">
       <SelectWithLabel
         label={t('dashboard_select_label_period')}
         options={periodOptions}
