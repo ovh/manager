@@ -1,9 +1,7 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { OsdsButton } from '@ovhcloud/ods-components/react';
-import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { OdsButton } from '@ovhcloud/ods-components/react';
 import {
   getVcdDatacentreStorageRoute,
   getVdcStorageQueryKey,
@@ -85,14 +83,12 @@ export default function StorageListingPage() {
       }}
       isEmbedded
       orderButton={
-        <OsdsButton
-          size={ODS_BUTTON_SIZE.sm}
-          variant={ODS_BUTTON_VARIANT.stroked}
-          color={ODS_THEME_COLOR_INTENT.primary}
+        <OdsButton
+          label={t('managed_vcd_vdc_storage_order_cta')}
+          size="sm"
+          variant="outline"
           onClick={() => navigate(subRoutes.order)}
-        >
-          {t('managed_vcd_vdc_storage_order_cta')}
-        </OsdsButton>
+        />
       }
     />
   );

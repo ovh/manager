@@ -1,12 +1,11 @@
 import {
-  ChangelogButton,
   Datagrid,
   ErrorBanner,
   Subtitle,
   Title,
   useResourcesIcebergV2,
 } from '@ovh-ux/manager-react-components';
-import { OsdsDivider } from '@ovhcloud/ods-components/react';
+import { OdsDivider } from '@ovhcloud/ods-components/react';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { icebergListingQueryKey } from '@ovh-ux/manager-module-vcd-api';
@@ -17,7 +16,6 @@ import {
   hasResourceUpdatingTargetSpec,
   UpdatableResource,
 } from '@/utils/refetchConditions';
-import { CHANGELOG_LINKS } from '@/utils/changelog.constants';
 
 export type TDatagridContainerProps = {
   route: TDatagridRoute;
@@ -106,11 +104,8 @@ export default function DatagridContainer({
 
   return (
     <div className={layoutCss}>
-      <div className="flex items-center justify-between mt-4">
-        {header}
-        <ChangelogButton links={CHANGELOG_LINKS} />
-      </div>
-      <OsdsDivider />
+      <div className="flex items-center justify-between mt-4">{header}</div>
+      <OdsDivider />
       {orderButton && <div className="w-fit mb-8">{orderButton}</div>}
       <React.Suspense>
         {flattenData.length && (
