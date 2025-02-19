@@ -3,7 +3,7 @@ import { FC, PropsWithChildren } from 'react';
 import { describe, expect, test, afterEach } from 'vitest';
 import { act, renderHook, waitFor } from '@testing-library/react';
 import { SetupServer } from 'msw/lib/node';
-import { AxiosError } from 'axios';
+import { isAxiosError } from 'axios';
 import { TUseCatalogSelector, useCatalog } from './useCatalog';
 import { TModelEntity, TRegionEntity } from '@/types/catalog/entity.types';
 import { setupCatalogServer } from '@/__mocks__/catalog/node';
@@ -91,7 +91,7 @@ describe('Considering the useCatalog() hook', () => {
           } else if (!queryPayload) {
             await waitFor(() => expect(result.current.isError).toBe(true));
             expect(result.current.error).toHaveProperty('response.status', 500);
-            expect(result.current.error).instanceOf(AxiosError);
+            expect(isAxiosError(result.current.error)).toBeTruthy();
           } else {
             await expectStrictEqual(result, expectedRawData);
             expect(
