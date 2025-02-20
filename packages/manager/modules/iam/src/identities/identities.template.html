@@ -1,0 +1,34 @@
+<div>
+    <oui-header data-heading="{{:: 'iam_identities' | translate }}">
+        <!-- <Tabs> -->
+        <oui-header-tabs>
+            <oui-header-tabs-item data-state="iam.identities.users"
+                ><span data-translate="iam_identities_users"></span
+            ></oui-header-tabs-item>
+            <oui-header-tabs-item data-state="iam.identities.user-groups"
+                ><span data-translate="iam_identities_user_groups"></span
+            ></oui-header-tabs-item>
+            <oui-header-tabs-item data-state="iam.identities.sso"
+                ><span data-translate="iam_identities_sso"></span
+            ></oui-header-tabs-item>
+        </oui-header-tabs>
+        <!-- </Tabs> -->
+
+        <!-- <Guide> -->
+        <oui-guide-menu
+            data-text="{{:: 'iam_identities_header_guide_text' | translate }}"
+        >
+            <oui-guide-menu-item
+                data-ng-repeat="guide in $ctrl.identitiesGuides track by $index"
+                data-href="{{:: guide.link }}"
+                data-on-click="$ctrl.onGuideClick(guide.key)"
+                data-external
+            >
+                <span data-ng-bind=":: guide.title"></span>
+            </oui-guide-menu-item>
+        </oui-guide-menu>
+        <!-- </Guide> --->
+    </oui-header>
+
+    <div data-ui-view></div>
+</div>
