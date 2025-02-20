@@ -20,7 +20,7 @@ export default function ImportPolicyPage() {
   const { projectId } = useParams();
 
   const [searchParams] = useSearchParams();
-  const userId = searchParams.get('userId');
+  const userId = Number(searchParams.get('userId'));
 
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
 
@@ -42,10 +42,7 @@ export default function ImportPolicyPage() {
   };
   const onClose = onCancel;
 
-  const { data: user, isPending: isUserPending } = useUser(
-    projectId,
-    Number(userId),
-  );
+  const { data: user, isPending: isUserPending } = useUser(projectId, userId);
 
   const { importPolicy, isPending: isImportPending } = useImportPolicy({
     projectId,

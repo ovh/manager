@@ -21,8 +21,9 @@ export default function StepOneComponent({
   users,
 }: Readonly<StepOneComponentProps>) {
   const { t } = useTranslation('containers/add-user');
+
   return (
-    <>
+    <div data-testid="addUser_stepOne">
       <OdsText>
         {t(
           'pci_projects_project_storages_coldArchive_containers_addUser_description_container_step_0',
@@ -36,6 +37,7 @@ export default function StepOneComponent({
           )}
         />
         <OdsSelect
+          data-testid="addUser-user_select"
           value={selectedUser ? `${selectedUser?.id}` : `${defaultUser?.id}`}
           onOdsChange={(event) => {
             const user = users.find((u) => `${u.id}` === event.detail.value);
@@ -68,6 +70,6 @@ export default function StepOneComponent({
           ))}
         </OdsSelect>
       </OdsFormField>
-    </>
+    </div>
   );
 }
