@@ -16,7 +16,7 @@ export default /* @ngInject */ ($stateProvider) => {
         .getAsync('features')
         .then((featureAvailabilityResult) =>
           featureAvailabilityResult.isFeatureAvailable(constants.FEATURE.MAIN)
-            ? 'iam.dashboard'
+            ? 'iam.identities'
             : { state: constants.UNAVAILABLE_STATE_NAME },
         ),
     resolve: {
@@ -102,16 +102,17 @@ export default /* @ngInject */ ($stateProvider) => {
         });
       },
 
+      // TODO: commented for now, remove when working on policies pages MANAGER-16217
       /**
        * Whether there are any policies given the read-only flag (a.k.a advanced mode)
        * @returns {boolean}
        */
-      hasPolicies: /* @ngInject */ (IAMService, advancedMode) =>
-        IAMService.getPolicies({
-          ...(!advancedMode && { readOnly: false }),
-        })
-          .then(({ data }) => data.length > 0)
-          .catch(() => false),
+      // hasPolicies: /* @ngInject */ (IAMService, advancedMode) =>
+      //   IAMService.getPolicies({
+      //     ...(!advancedMode && { readOnly: false }),
+      //   })
+      //     .then(({ data }) => data.length > 0)
+      //     .catch(() => false),
 
       /**
        * The onboarding guides
