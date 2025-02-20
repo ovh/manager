@@ -49,12 +49,13 @@ const FormCreateRequest = () => {
   );
   const [showConfirmModal, setShowConfirmModal] = useState<boolean>(false);
   const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false);
+  const [processStarted, setProcessStarted] = useState<boolean>(false);
   const { useUploadDocuments, useUploadLinks } = useProcedures('2FA');
 
   const files = flatFiles(watch());
   const isAnyFileSelected = files.length > 0;
 
-  // We split the CTA action into two mutation, as once the first is done the API will start
+  // We split the CTA action into two mutations, as once the first one is done the API will start
   // to send us errors if we retry it
   // The following mutation cover the upload of the document as well as the finalization of the request
   const {
@@ -66,6 +67,7 @@ const FormCreateRequest = () => {
     onSuccess: () => {
       setShowSuccessModal(true);
       setShowConfirmModal(false);
+      setProcessStarted(false);
     },
     onError: () => {
       setShowConfirmModal(false);
@@ -84,6 +86,7 @@ const FormCreateRequest = () => {
     },
     onError: () => {
       setShowConfirmModal(false);
+      setProcessStarted(false);
     },
   });
 
@@ -102,7 +105,7 @@ const FormCreateRequest = () => {
 
   return (
     <form onSubmit={handleSubmit(() => setShowConfirmModal(true))}>
-      {isPending && <ExitGuard />}
+      {processStarted && <ExitGuard />}
       {isOtherLegalFormForFR && (
         <div className="my-6">
           <OsdsText
@@ -176,6 +179,7 @@ const FormCreateRequest = () => {
             if (links) {
               uploadDocuments({ files, links });
             } else {
+              setProcessStarted(true);
               getUploadLinks({ numberOfDocuments: files.length });
             }
           }}
