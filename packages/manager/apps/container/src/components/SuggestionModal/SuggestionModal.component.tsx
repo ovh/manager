@@ -5,12 +5,12 @@ import {
   OsdsText,
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import { useShell } from '@/context';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
 import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import { useShell } from '@/context';
 import { useSuggestionForUserProfile } from '@/hooks/suggestion/useSuggestion';
 
 const SuggestionModal = (): JSX.Element => {
@@ -21,14 +21,19 @@ const SuggestionModal = (): JSX.Element => {
     .getPlugin('navigation')
     .getURL('dedicated', '#/useraccount/infos');
 
-  const { isReady, shouldBeDisplayed, updatePreference, suggestions } = useSuggestionForUserProfile(accountEditionLink);
+  const {
+    isReady,
+    shouldBeDisplayed,
+    updatePreference,
+    suggestions,
+  } = useSuggestionForUserProfile(accountEditionLink);
   const [showModal, setShowModal] = useState(true);
 
   const onClose = () => {
     setShowModal(false);
     // @ TODO: Handle tracking (ECAN-2228)
   };
-  const onAccept = () =>  {
+  const onAccept = () => {
     setShowModal(false);
     // @ TODO: Handle tracking (ECAN-2228)
     window.top.location.href = `${accountEditionLink}?fieldToFocus=siretForm`;
@@ -43,8 +48,7 @@ const SuggestionModal = (): JSX.Element => {
       if (shouldBeDisplayed) {
         // @ TODO: Handle tracking (ECAN-2228)
         updatePreference();
-      }
-      else {
+      } else {
         ux.notifyModalActionDone();
       }
     }
@@ -64,7 +68,15 @@ const SuggestionModal = (): JSX.Element => {
         <p>{t('suggestion_modal_description')}</p>
         <ul>
           {suggestions?.map((suggestion) => (
-            <li>{t(`suggestion_modal_listed_type_${suggestion.type.replace(' ', '_')}`)} : {suggestion.id}</li>
+            <li key={`suggestion_${suggestion.type}`}>
+              {t(
+                `suggestion_modal_listed_type_${suggestion.type.replace(
+                  ' ',
+                  '_',
+                )}`,
+              )}{' '}
+              : {suggestion.id}
+            </li>
           ))}
         </ul>
         <p>{t('suggestion_modal_description_sub')}</p>
