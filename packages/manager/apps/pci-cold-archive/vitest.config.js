@@ -2,7 +2,6 @@ import path from 'path';
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
   test: {
@@ -23,6 +22,9 @@ export default defineConfig({
         'src/main.tsx',
         'src/pages/Layout.tsx',
         'src/routes.tsx',
+        'src/wrapperRenders.tsx',
+        'src/core/**',
+        'src/**/*.{spec,test}.{ts,tsx}',
       ],
     },
   },
