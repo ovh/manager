@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.18.0...@ovh-ux/manager-zimbra-app@0.19.0) (2025-02-20)
+
+
+### Features
+
+* add changelog button to product dashboards ([#14902](https://github.com/ovh/manager/issues/14902)) ([e18df6d](https://github.com/ovh/manager/commit/e18df6d703ca1ce181f15d3dbd61df3d9bab244c))
+
+
+
+
+
 # [0.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.17.3...@ovh-ux/manager-zimbra-app@0.18.0) (2025-02-19)
 
 

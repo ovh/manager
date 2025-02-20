@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.12.0...@ovh-ux/manager-vrack-services-app@0.13.0) (2025-02-20)
+
+
+### Bug Fixes
+
+* **changelog:** fix display and one forgotten button ([#15536](https://github.com/ovh/manager/issues/15536)) ([30c721f](https://github.com/ovh/manager/commit/30c721f741c9a3d972c3aa50a82d052ef5b99142))
+
+
+### Features
+
+* add changelog component to product dashboards ([#14906](https://github.com/ovh/manager/issues/14906)) ([46d2c78](https://github.com/ovh/manager/commit/46d2c78b8e8e11fe30f7189ec10f270f3d67586a))
+
+
+
+
+
 # [0.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.11.11...@ovh-ux/manager-vrack-services-app@0.12.0) (2025-02-19)
 
 

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.9.0...@ovh-ux/manager-react-components@2.10.0) (2025-02-20)
+
+### Features
+
+- **mrc:** add changelog component ([#14889](https://github.com/ovh/manager/issues/14889)) ([bf47c1a](https://github.com/ovh/manager/commit/bf47c1a114f0ece1e25c1d2562f1cfca21878ced))
+
 # [2.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.8.1...@ovh-ux/manager-react-components@2.9.0) (2025-02-19)
 
 ### Features

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-account-app",
-  "version": "0.1.21",
+  "version": "0.1.22",
   "private": true,
   "description": "User account and contacts management application",
   "repository": {
@@ -24,7 +24,7 @@
     "@ovh-ux/manager-config": "^8.0.2",
     "@ovh-ux/manager-core": "^13.0.5",
     "@ovh-ux/manager-error-page": "^2.4.2",
-    "@ovh-ux/manager-ng-layout-helpers": "^2.9.2",
+    "@ovh-ux/manager-ng-layout-helpers": "^2.10.0",
     "@ovh-ux/ng-at-internet": "^6.0.6",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.5.1",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",

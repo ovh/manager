@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.22.0...@ovh-ux/manager-pci-rancher-app@1.23.0) (2025-02-20)
+
+
+### Features
+
+* add changelog component to product dashboards ([#14906](https://github.com/ovh/manager/issues/14906)) ([46d2c78](https://github.com/ovh/manager/commit/46d2c78b8e8e11fe30f7189ec10f270f3d67586a))
+
+
+
+
+
 # [1.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.21.28...@ovh-ux/manager-pci-rancher-app@1.22.0) (2025-02-19)
 
 

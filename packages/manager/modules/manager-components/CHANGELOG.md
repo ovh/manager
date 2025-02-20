@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.22.8...@ovh-ux/manager-components@1.23.0) (2025-02-20)
+
+
+### Features
+
+* **manager-components:** add changelog button component ([#14950](https://github.com/ovh/manager/issues/14950)) ([9ea1d9b](https://github.com/ovh/manager/commit/9ea1d9bff1444352d171dee7ac7210f723ba34af))
+
+
+
+
+
 ## [1.22.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.22.7...@ovh-ux/manager-components@1.22.8) (2025-02-06)
 
 

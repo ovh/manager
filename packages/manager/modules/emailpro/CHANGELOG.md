@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.14.0...@ovh-ux/manager-emailpro@3.15.0) (2025-02-20)
+
+
+### Features
+
+* implement changelog button on angular stack ([#15174](https://github.com/ovh/manager/issues/15174)) ([a965c89](https://github.com/ovh/manager/commit/a965c8980b18a4eb7b17ae996bef52cb43e07a4d))
+
+
+
+
+
 # [3.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.13.1...@ovh-ux/manager-emailpro@3.14.0) (2025-02-03)
 
 

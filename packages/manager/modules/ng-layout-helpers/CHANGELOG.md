@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-ng-layout-helpers@2.9.2...@ovh-ux/manager-ng-layout-helpers@2.10.0) (2025-02-20)
+
+
+### Features
+
+* implement changelog button on angular stack ([#15174](https://github.com/ovh/manager/issues/15174)) ([a965c89](https://github.com/ovh/manager/commit/a965c8980b18a4eb7b17ae996bef52cb43e07a4d))
+
+
+
+
+
 ## [2.9.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-ng-layout-helpers@2.9.1...@ovh-ux/manager-ng-layout-helpers@2.9.2) (2024-11-28)
 
 **Note:** Version bump only for package @ovh-ux/manager-ng-layout-helpers

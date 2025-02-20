@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-vcd-api@0.2.1...@ovh-ux/manager-module-vcd-api@0.3.0) (2025-02-20)
+
+
+### Features
+
+* add changelog component to product dashboards ([#14906](https://github.com/ovh/manager/issues/14906)) ([46d2c78](https://github.com/ovh/manager/commit/46d2c78b8e8e11fe30f7189ec10f270f3d67586a))
+
+
+
+
+
 ## [0.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-vcd-api@0.2.0...@ovh-ux/manager-module-vcd-api@0.2.1) (2025-02-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-module-vcd-api
