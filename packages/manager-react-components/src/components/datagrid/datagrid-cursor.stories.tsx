@@ -1,13 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { ColumnSort } from '@tanstack/react-table';
-import { OdsDivider } from '@ovhcloud/ods-components/react';
-import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import { OdsDivider, OdsButton } from '@ovhcloud/ods-components/react';
+import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { FilterComparator, applyFilters } from '@ovh-ux/manager-core-api';
 import { withRouter } from 'storybook-addon-react-router-v6';
 import { useSearchParams } from 'react-router-dom';
 import { Datagrid } from './datagrid.component';
 import { useColumnFilters } from '../filters';
-import { columns, columsFilters } from './datagrid.mock';
+import {
+  columns,
+  columnsFilters,
+  columnsSearchAndFilters,
+} from './datagrid.mock';
 import { ActionMenu } from '../navigation';
+import DataGridTextCell from './text-cell.component';
 
 interface Item {
   label: string;
@@ -20,6 +26,7 @@ const DatagridStory = (args) => {
   const [data, setData] = useState(args.items);
   const [searchParams] = useSearchParams();
   const { filters, addFilter, removeFilter } = useColumnFilters();
+  const [searchInput, setSearchInput] = useState('');
 
   const fetchNextPage = () => {
     const itemsIndex = data?.length;
@@ -28,6 +35,33 @@ const DatagridStory = (args) => {
       price: Math.floor(1 + Math.random() * 100),
     }));
     setData((previousParams: any) => [...previousParams, ...tmp]);
+  };
+
+  const columnSearchable = useMemo(
+    () =>
+      args?.columns?.find((item) =>
+        Object.prototype.hasOwnProperty.call(item, 'isSearchable'),
+      ),
+    [columns],
+  );
+
+  const onSearch = (search: string) => {
+    if (columnSearchable) {
+      const tmp = applyFilters(
+        args.items,
+        !search || search.length === 0
+          ? filters
+          : [
+              {
+                key: columnSearchable.id,
+                value: searchInput,
+                comparator: FilterComparator.Includes,
+              },
+              ...filters,
+            ],
+      );
+      setData(tmp);
+    }
   };
 
   return (
@@ -39,12 +73,24 @@ const DatagridStory = (args) => {
         </>
       )}
       <Datagrid
-        items={data}
+        items={applyFilters(data, filters)}
         columns={args.columns}
         hasNextPage={data?.length > 0 && data.length < 30}
         onFetchNextPage={fetchNextPage}
         totalItems={data?.length}
         filters={{ filters, add: addFilter, remove: removeFilter }}
+        topbar={args.topbar}
+        {...(args.search
+          ? {
+              search: {
+                searchInput,
+                setSearchInput,
+                onSearch,
+              },
+            }
+          : {})}
+        getRowCanExpand={args.getRowCanExpand}
+        renderSubComponent={args.renderSubComponent}
         {...(args.isSortable
           ? {
               sorting,
@@ -143,8 +189,41 @@ Filters.args = {
     label: `Item #${i}`,
     price: Math.floor(1 + Math.random() * 100),
   })),
-  isSortable: true,
-  columns: columsFilters,
+  columns: columnsFilters,
+};
+
+export const Topbar = DatagridStory.bind({});
+
+const TopbarComponent = () => (
+  <OdsButton label="Add item" icon={ODS_ICON_NAME.plus} />
+);
+
+Topbar.args = {
+  items: [...Array(10).keys()].map((_, i) => ({
+    label: `Item #${i}`,
+    price: Math.floor(1 + Math.random() * 100),
+  })),
+  columns: columnsSearchAndFilters,
+  search: {
+    searchInput: '',
+    setSearchInput: () => {},
+    onSearch: () => {},
+  },
+  topbar: <TopbarComponent />,
+};
+
+export const WithSubComponent = DatagridStory.bind({});
+
+WithSubComponent.args = {
+  columns,
+  items: [...Array(10).keys()].map((_, i) => ({
+    label: `Item #${i}`,
+    price: Math.floor(1 + Math.random() * 100),
+  })),
+  getRowCanExpand: () => true,
+  renderSubComponent: (row) => (
+    <DataGridTextCell>{JSON.stringify(row.original)}</DataGridTextCell>
+  ),
 };
 
 export default {

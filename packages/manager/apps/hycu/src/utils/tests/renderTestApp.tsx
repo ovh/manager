@@ -11,10 +11,12 @@ import {
   getServicesMocks,
   GetServicesMocksParams,
 } from '@ovh-ux/manager-react-components';
+import {
+  toMswHandlers,
+  getAuthenticationMocks,
+} from '@ovh-ux/manager-core-test-utils';
 import { TestApp } from './TestApp';
 import { initTestI18n } from './init.i18n';
-import { toMswHandlers } from '../../../../../../../playwright-helpers';
-import { getAuthenticationMocks } from '../../../../../../../playwright-helpers/mocks/auth';
 import {
   CatalogHycuMocksParams,
   getCatalogHycuMocks,
@@ -23,6 +25,7 @@ import {
 } from '@/mocks';
 import { getIamMocks } from '@/mocks/iam/iam.handler';
 import { licensesHycuService } from '@/mocks/serviceLicenseHycu/serviceLicenseHycu.data';
+import { getFeaturesMocks } from '@/mocks/features/features.handler';
 
 let context: ShellContextType;
 let i18nValue: i18n;
@@ -43,6 +46,7 @@ export const renderTestApp = async (
         serviceResponse: mockParams.serviceResponse ?? licensesHycuService,
       }),
       ...getCatalogHycuMocks(mockParams),
+      ...getFeaturesMocks(),
     ]),
   );
 

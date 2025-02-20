@@ -1,4 +1,4 @@
-import { useMemo, useRef } from 'react';
+import React, { Fragment, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   ColumnDef,
@@ -8,6 +8,7 @@ import {
   getCoreRowModel,
   useReactTable,
   getSortedRowModel,
+  Row,
 } from '@tanstack/react-table';
 import {
   ODS_ICON_NAME,
@@ -15,7 +16,6 @@ import {
   ODS_BUTTON_SIZE,
 } from '@ovhcloud/ods-components';
 import {
-  OdsPopover,
   OdsButton,
   OdsIcon,
   OdsPagination,
@@ -23,15 +23,16 @@ import {
   OdsTable,
 } from '@ovhcloud/ods-components/react';
 import {
-  FilterComparator,
   FilterCategories,
+  FilterComparator,
   FilterTypeCategories,
 } from '@ovh-ux/manager-core-api';
-import { FilterAdd, FilterList } from '../filters';
+import { clsx } from 'clsx';
 import { ColumnFilter } from '../filters/filter-add.component';
 import { FilterWithLabel } from '../filters/interface';
 import { DataGridTextCell } from './text-cell.component';
 import { defaultNumberOfLoadingRows } from './datagrid.contants';
+import { DatagridTopbar } from './datagrid-topbar.component';
 import './translations';
 
 export type ColumnSort = TanstackColumnSort;
@@ -56,6 +57,8 @@ export interface DatagridColumn<T> {
   type?: FilterTypeCategories;
   /** Trigger the column filter */
   isFilterable?: boolean;
+  /** Trigger the column search */
+  isSearchable?: boolean;
 }
 
 type ColumnFilterProps = {
@@ -69,6 +72,12 @@ export interface FilterProps {
   filters: FilterWithLabel[];
   add: (filters: ColumnFilterProps) => void;
   remove: (filter: FilterWithLabel) => void;
+}
+
+export interface SearchProps {
+  searchInput: string;
+  setSearchInput: React.Dispatch<React.SetStateAction<string>>;
+  onSearch: (search: string) => void;
 }
 
 export interface DatagridProps<T> {
@@ -108,12 +117,22 @@ export interface DatagridProps<T> {
   numberOfLoadingRows?: number;
   /** List of filters and handlers to add, remove */
   filters?: FilterProps;
+  /** Trigger the column search. In case of backend search, make sure to add this on columns on which API supports the search option. */
+  search?: SearchProps;
+  /** Add react element at left in the datagrid topbar */
+  topbar?: React.ReactNode;
+  /** Function to render sub component as row child */
+  renderSubComponent?: (row: Row<T>) => JSX.Element;
+  /** function to define if row can be expanded or not */
+  getRowCanExpand?: (row: Row<T>) => boolean;
 }
 
 export const Datagrid = <T,>({
   columns,
   items,
   filters,
+  search,
+  topbar,
   totalItems,
   pagination,
   sorting,
@@ -128,29 +147,54 @@ export const Datagrid = <T,>({
   noResultLabel,
   isLoading = false,
   numberOfLoadingRows,
+  renderSubComponent,
+  getRowCanExpand,
 }: DatagridProps<T>) => {
   const { t } = useTranslation('datagrid');
-  const { t: tfilters } = useTranslation('filters');
-  const filterPopoverRef = useRef(null);
   const pageCount = pagination
     ? Math.ceil(totalItems / pagination.pageSize)
     : 1;
 
   const table = useReactTable({
-    columns: columns.map(
-      (col): ColumnDef<T> => ({
-        accessorKey: col.id,
-        cell: (props) => col.cell(props.row.original),
-        header: col.label,
-        enableSorting: col.isSortable !== false,
-      }),
-    ),
+    columns: [
+      ...(getRowCanExpand && renderSubComponent
+        ? [
+            {
+              id: 'expander',
+              cell: ({ row }) => {
+                return row.getCanExpand() ? (
+                  <OdsButton
+                    label=""
+                    onClick={row.getToggleExpandedHandler()}
+                    icon={
+                      row.getIsExpanded()
+                        ? ODS_ICON_NAME.chevronDown
+                        : ODS_ICON_NAME.chevronRight
+                    }
+                    variant={ODS_BUTTON_VARIANT.ghost}
+                    size={ODS_BUTTON_SIZE.xs}
+                  />
+                ) : null;
+              },
+            },
+          ]
+        : []),
+      ...columns.map(
+        (col): ColumnDef<T> => ({
+          accessorKey: col.id,
+          cell: (props) => col.cell(props.row.original),
+          header: col.label,
+          enableSorting: col.isSortable !== false,
+        }),
+      ),
+    ],
     data: items,
     manualPagination,
     manualSorting,
     enableSortingRemoval: false,
     sortDescFirst: false,
     getCoreRowModel: getCoreRowModel(),
+    getRowCanExpand,
     pageCount,
     ...(!manualSorting && {
       onSortingChange: onSortChange,
@@ -176,10 +220,10 @@ export const Datagrid = <T,>({
     }),
   });
 
-  const columnsFilters = useMemo<ColumnFilter[]>(
+  const filtersColumns = useMemo<ColumnFilter[]>(
     () =>
       columns
-        .filter(
+        ?.filter(
           (item) =>
             ('comparator' in item || 'type' in item) &&
             'isFilterable' in item &&
@@ -194,46 +238,20 @@ export const Datagrid = <T,>({
     [columns],
   );
 
+  const searchColumns = useMemo(
+    () => columns?.find((item) => item?.isSearchable),
+    [columns],
+  );
+
   return (
     <div>
-      {columnsFilters.length > 0 && (
-        <div className="flex flex-row-reverse py-[24px]">
-          <OdsButton
-            id="datagrid-filter-popover-trigger"
-            slot="datagrid-filter-popover-trigger"
-            size={ODS_BUTTON_SIZE.sm}
-            variant={ODS_BUTTON_VARIANT.ghost}
-            icon={ODS_ICON_NAME.filter}
-            aria-label={tfilters('common_criteria_adder_filter_label')}
-            label=""
-          />
-          <OdsPopover
-            ref={filterPopoverRef}
-            triggerId="datagrid-filter-popover-trigger"
-            with-arrow
-          >
-            <FilterAdd
-              columns={columnsFilters}
-              onAddFilter={(addedFilter, column) => {
-                filters.add({
-                  ...addedFilter,
-                  label: column.label,
-                });
-                filterPopoverRef.current?.hide();
-              }}
-            />
-          </OdsPopover>
-        </div>
-      )}
-      {filters?.filters.length > 0 && (
-        <div id="datagrid-filter-list" className="mb-[24px]">
-          <FilterList
-            filters={filters.filters}
-            onRemoveFilter={filters.remove}
-          />
-        </div>
-      )}
-
+      <DatagridTopbar
+        filtersColumns={filtersColumns}
+        isSearchable={!!searchColumns}
+        filters={filters}
+        search={search}
+        topbar={topbar}
+      />
       <div className={`contents px-[1px] ${className || ''}`}>
         <OdsTable className="overflow-x-visible">
           <table className="w-full border-collapse">
@@ -292,24 +310,34 @@ export const Datagrid = <T,>({
             </thead>
             <tbody>
               {table.getRowModel().rows.map((row) => (
-                <tr
-                  key={row.id}
-                  className="border-solid border-[1px] h-[3.25rem] border-[--ods-color-blue-200]"
-                >
-                  {row.getVisibleCells().map((cell) => (
-                    <td
-                      key={cell.id}
-                      className={
-                        contentAlignLeft ? 'text-left pl-4' : 'text-center'
-                      }
-                    >
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext(),
-                      )}
-                    </td>
-                  ))}
-                </tr>
+                <Fragment key={row.id}>
+                  <tr className="border-solid border-[1px] h-[3.25rem] border-[--ods-color-blue-200]">
+                    {row.getVisibleCells().map((cell) => (
+                      <td
+                        key={cell.id}
+                        className={clsx(
+                          contentAlignLeft ? 'text-left pl-4' : 'text-center',
+                          {
+                            'w-[2rem]': cell.id.indexOf('expander') !== -1,
+                          },
+                        )}
+                      >
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext(),
+                        )}
+                      </td>
+                    ))}
+                  </tr>
+                  {row.getIsExpanded() && !!renderSubComponent && (
+                    <tr>
+                      {/* 2nd row is a custom 1 cell row */}
+                      <td colSpan={row.getVisibleCells().length}>
+                        {renderSubComponent(row)}
+                      </td>
+                    </tr>
+                  )}
+                </Fragment>
               ))}
               {table.getRowModel().rows.length === 0 && !isLoading && (
                 <tr

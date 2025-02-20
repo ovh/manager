@@ -361,7 +361,7 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
         click_chapter1: pageTrackingData.page_chapter1,
         click_chapter2: pageTrackingData.page_chapter2,
         click_chapter3: pageTrackingData.page_chapter3,
-        ...getPageTrackingData(data?.page),
+        ...getPageTrackingData(data?.page || data),
       };
 
       if (['action', 'navigation', 'download', 'exit'].includes(data.type)) {

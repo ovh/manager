@@ -23,7 +23,7 @@ export const columns = [
   },
 ];
 
-export const columsFilters = [
+export const columnsFilters = [
   {
     id: 'label',
     cell: (item: Item) => {
@@ -40,6 +40,29 @@ export const columsFilters = [
     },
     label: 'Price',
     isFilterable: true,
+    comparator: FilterCategories.String,
+  },
+];
+
+export const columnsSearchAndFilters = [
+  {
+    id: 'label',
+    cell: (item: Item) => {
+      return <DataGridTextCell>{item.label}</DataGridTextCell>;
+    },
+    label: 'Label',
+    isFilterable: true,
+    isSearchable: true,
+    comparator: FilterCategories.String,
+  },
+  {
+    id: 'price',
+    cell: (item: Item) => {
+      return <DataGridTextCell>{item.price} €</DataGridTextCell>;
+    },
+    label: 'Price',
+    isFilterable: true,
+    isSearchable: true,
     comparator: FilterCategories.String,
   },
 ];

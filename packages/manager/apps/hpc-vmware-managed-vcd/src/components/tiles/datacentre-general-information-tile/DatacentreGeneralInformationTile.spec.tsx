@@ -26,7 +26,7 @@ vi.mock('react-router-dom', () => ({
   useParams: () => ({ id: 'id' }),
 }));
 
-describe.skip('DatacentreGeneralInformationTile component unit test suite', () => {
+describe('DatacentreGeneralInformationTile component unit test suite', () => {
   it('should define all sections with correct typo', () => {
     // given
     const vcdOrg = {

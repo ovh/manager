@@ -37,7 +37,7 @@
   "pci_projects_project_storages_blocks_add_deployment_mode_price_from": "From {{price}} ex. VAT/GB/hour",
   "pci_projects_project_storages_blocks_add_beta_free": "Free",
   "pci_projects_project_storages_blocks_add_type_subtitle": "Choose a block storage solution adapted to your use case, taking into account the desired levels of performance and data resilience.",
-  "pci_projects_project_storages_blocks_add_type_availability_zone_one": "Data located in {{count}} availability zone",
-  "pci_projects_project_storages_blocks_add_type_availability_zone_other": "Data located in {{count}} availability zones",
-  "pci_projects_project_storages_blocks_add_availability_zone_subtitle": "The choice of an availability zone is permanent. If you want to change your zone volume, you will have to delete it and create it again in the new zone you want."
+  "pci_projects_project_storages_blocks_add_type_availability_zone_one": "Data located in {{count}} Availability Zone",
+  "pci_projects_project_storages_blocks_add_type_availability_zone_other": "Data located in {{count}} Availability Zones",
+  "pci_projects_project_storages_blocks_add_availability_zone_subtitle": "The choice of an Availability Zone is permanent. If you want to change your zone volume, you will have to delete it and create it again in the new zone you want."
 }

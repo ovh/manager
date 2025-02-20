@@ -74,6 +74,6 @@
   "private_registry_common_cancel": "Cancelar",
   "private_registry_region": "Región",
   "common_clipboard_copied": "Copiado",
-  "private_registry_crud_cidr_error": "Se ha producido un error al actualizar los CIDR",
+  "private_registry_crud_cidr_error": "Se ha producido un error al actualizar los CIDR.",
   "common_criteria_adder_filter_label": "Filtrar"
 }

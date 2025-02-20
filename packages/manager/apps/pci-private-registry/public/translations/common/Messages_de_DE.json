@@ -74,6 +74,6 @@
   "private_registry_common_cancel": "Abbrechen",
   "private_registry_region": "Region",
   "common_clipboard_copied": "Kopiert",
-  "private_registry_crud_cidr_error": "Fehler beim Aktualisieren der CIDRs",
+  "private_registry_crud_cidr_error": "Beim Aktualisieren der CIDRs ist ein Fehler aufgetreten.",
   "common_criteria_adder_filter_label": "Filtern"
 }
