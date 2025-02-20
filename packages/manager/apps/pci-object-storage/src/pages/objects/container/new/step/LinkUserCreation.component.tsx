@@ -1,18 +1,12 @@
-import {
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_INPUT_TYPE,
-  ODS_SPINNER_SIZE,
-} from '@ovhcloud/ods-components';
-import {
-  OsdsButton,
-  OsdsFormField,
-  OsdsInput,
-  OsdsSpinner,
-} from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import {
+  OdsButton,
+  OdsFormField,
+  OdsInput,
+  OdsSpinner,
+} from '@ovhcloud/ods-components/react';
 import {
   createUser,
   generateS3Credentials,
@@ -134,10 +128,10 @@ export default function LinkUserCreation({
               onOdsChange={(event) => {
                 setFormState((prevState) => ({
                   ...prevState,
-                  description: event.detail.value,
+                  description: event.detail.value.toString(),
                 }));
               }}
-              onOdsInputBlur={() => {
+              onOdsBlur={() => {
                 setFormState((prevState) => ({
                   ...prevState,
                   isTouched: true,
@@ -145,14 +139,10 @@ export default function LinkUserCreation({
               }}
             />
             {isLoading && (
-              <OsdsSpinner
-                inline
-                size={ODS_SPINNER_SIZE.sm}
-                className="ml-6 align-center"
-              />
+              <OdsSpinner size="sm" className="ml-6 align-center" />
             )}
           </div>
-        </OsdsFormField>
+        </OdsFormField>
       )}
 
       <div className="flex mt-8 gap-4">
