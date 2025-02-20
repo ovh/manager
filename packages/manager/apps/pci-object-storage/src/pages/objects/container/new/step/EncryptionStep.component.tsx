@@ -7,7 +7,11 @@ import {
   OdsText,
 } from '@ovhcloud/ods-components/react';
 import { useContainerCreationStore } from '../useContainerCreationStore';
-import { ENCRYPTION_ALGORITHM_SSE_S3, NO_ENCRYPTION_VALUE } from '@/constants';
+import {
+  ENCRYPTION_ALGORITHM_SSE_S3,
+  NO_ENCRYPTION_VALUE,
+  OBJECT_CONTAINER_MODE_MULTI_ZONES,
+} from '@/constants';
 
 export function EncryptionStep() {
   const { t } = useTranslation(['containers/data-encryption', 'pci-common']);
@@ -28,7 +32,7 @@ export function EncryptionStep() {
       isOpen={stepper.encryption.isOpen || stepper.encryption.isLocked}
       isChecked={stepper.encryption.isChecked}
       isLocked={stepper.encryption.isLocked}
-      order={6}
+      order={form.deploymentMode === OBJECT_CONTAINER_MODE_MULTI_ZONES ? 7 : 6}
       next={{
         action: submitEncryption,
         label: t('pci-common:common_stepper_next_button_label'),

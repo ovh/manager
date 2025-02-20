@@ -16,6 +16,7 @@ import {
   setContainerAsPublic,
   updateStorageType,
   getStorageAccess,
+  Replication,
 } from '../data/storages';
 import {
   OBJECT_CONTAINER_MODE_LOCAL_ZONE,
@@ -315,13 +316,16 @@ export const useUpdateStorage = ({
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
-    mutationFn: async ({ versioning }: { versioning: { status: string } }) =>
+    mutationFn: async (updateData: {
+      versioning?: { status: string };
+      encryption?: { sseAlgorithm: string };
+    }) =>
       updateStorage({
         projectId,
         region,
         name,
-        versioning,
         s3StorageType,
+        ...updateData,
       }),
     onError,
     onSuccess: () => {
@@ -338,8 +342,7 @@ export const useUpdateStorage = ({
   });
 
   return {
-    updateContainer: ({ versioning }: { versioning: { status: string } }) =>
-      mutation.mutate({ versioning }),
+    updateContainer: mutation.mutate,
     ...mutation,
   };
 };
@@ -353,6 +356,8 @@ export interface UseCreateContainerArgs {
   encryption?: string;
   versioning?: boolean;
   containerType?: string;
+  offsiteReplication?: boolean;
+  replication?: Replication;
 }
 
 export const useCreateContainer = ({
@@ -383,6 +388,18 @@ export const useCreateContainer = ({
           region: args.region,
           encryption: args.encryption,
           versioning: args.versioning,
+          ...(args.offsiteReplication && {
+            replication: {
+              rules: [
+                {
+                  id: '',
+                  status: 'enabled',
+                  priority: 1,
+                  deleteMarkerReplication: 'enabled',
+                },
+              ],
+            },
+          }),
         });
       }
       if (!result) throw new Error(`${args.offer}: unknown container offer!`);

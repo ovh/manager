@@ -2,7 +2,7 @@ import { ApiError } from '@ovh-ux/manager-core-api';
 import { PciModal } from '@ovh-ux/manager-pci-common';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { OdsLink, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 import { useContext, useMemo } from 'react';
 import { Translation, useTranslation } from 'react-i18next';
 import {
@@ -13,9 +13,10 @@ import {
 } from 'react-router-dom';
 import { PAGE_PREFIX } from '@/tracking.constants';
 import { useAllStorages, useUpdateStorage } from '@/api/hooks/useStorages';
+import { ENABLE_ENCRYPTION_LINK } from '@/constants';
 
-export default function EnableVersioningPage() {
-  const { t } = useTranslation('containers/enable-versioning');
+export default function EnableEncryptionPage() {
+  const { t } = useTranslation('containers/enable-encryption');
 
   const { addSuccess, addError } = useNotifications();
   const { tracking } = useContext(ShellContext).shell;
@@ -27,6 +28,9 @@ export default function EnableVersioningPage() {
   const { data: storages, isPending: isStoragesPending } = useAllStorages(
     projectId,
   );
+  const context = useContext(ShellContext);
+
+  const { ovhSubsidiary } = context.environment.getUser();
 
   const storageDetail = useMemo(() => {
     return storages?.resources.find(
@@ -34,33 +38,36 @@ export default function EnableVersioningPage() {
     );
   }, [storages, storageId]);
 
+  const enableEncryptionLink =
+    ENABLE_ENCRYPTION_LINK[ovhSubsidiary] || ENABLE_ENCRYPTION_LINK.DEFAULT;
+
   const onClose = () =>
     navigate({
       pathname: `..`,
       search: `?${createSearchParams({
-        region: searchParams.get('region'),
+        region: storageDetail.region,
       })}`,
     });
 
   const onCancel = () => {
     onClose();
     tracking?.trackClick({
-      name: `${PAGE_PREFIX}object::enable-versioning::cancel`,
+      name: `${PAGE_PREFIX}object::enable-encryption::cancel`,
       type: 'action',
     });
   };
 
-  const { updateContainer, isPending } = useUpdateStorage({
+  const { updateContainer, isPending: isUpdatePending } = useUpdateStorage({
     projectId,
-    region: searchParams.get('region'),
+    region: storageDetail.region,
     name: storageId,
-    s3StorageType: storageDetail?.s3StorageType,
+    s3StorageType: storageDetail.s3StorageType,
     onError(error: ApiError) {
       addError(
-        <Translation ns="containers/enable-versioning">
+        <Translation ns="containers/enable-encryption">
           {(_t) =>
             _t(
-              'pci_projects_project_storages_containers_update_versioning_enable_error_message',
+              'pci_projects_project_storages_containers_update_encryption_enable_error_message',
               {
                 message:
                   error?.response?.data?.message || error?.message || null,
@@ -74,10 +81,10 @@ export default function EnableVersioningPage() {
     },
     onSuccess() {
       addSuccess(
-        <Translation ns="containers/enable-versioning">
+        <Translation ns="containers/enable-encryption">
           {(_t) =>
             _t(
-              'pci_projects_project_storages_containers_update_versioning_enable_success_message',
+              'pci_projects_project_storages_containers_update_encryption_enable_success_message',
             )
           }
         </Translation>,
@@ -89,11 +96,11 @@ export default function EnableVersioningPage() {
 
   const onConfirm = () => {
     updateContainer({
-      versioning: { status: 'enabled' },
+      encryption: { sseAlgorithm: 'AES256' },
     });
 
     tracking?.trackClick({
-      name: `${PAGE_PREFIX}object::enable-versioning::confirm`,
+      name: `${PAGE_PREFIX}object::enable-encryption::confirm`,
       type: 'action',
     });
   };
@@ -101,25 +108,42 @@ export default function EnableVersioningPage() {
   return (
     <PciModal
       title={t(
-        'pci_projects_project_storages_containers_update_versioning_title',
+        'pci_projects_project_storages_containers_update_encryption_title',
       )}
       onCancel={onCancel}
       onClose={onClose}
       onConfirm={onConfirm}
-      isPending={isPending || isStoragesPending}
-      isDisabled={isPending || isStoragesPending}
+      isPending={isUpdatePending || isStoragesPending}
+      isDisabled={isUpdatePending || isStoragesPending}
       submitText={t(
-        'pci_projects_project_storages_containers_update_versioning_enable_label',
+        'pci_projects_project_storages_containers_update_encryption_enable_label',
       )}
       cancelText={t(
-        'pci_projects_project_storages_containers_update_versioning_cancel_label',
+        'pci_projects_project_storages_containers_update_encryption_cancel_label',
       )}
     >
       <OdsText preset="paragraph">
         {t(
-          'pci_projects_project_storages_containers_bucket_versioning_description',
+          'pci_projects_project_storages_containers_bucket_encryption_description',
         )}
       </OdsText>
+      <OdsMessage className="my-6" color="information" isDismissible={false}>
+        <OdsText preset="paragraph" className="my-3">
+          {t(
+            'pci_projects_project_storages_containers_bucket_encryption_banner',
+          )}
+          <OdsLink
+            className="ml-4"
+            color="primary"
+            href={enableEncryptionLink}
+            target="_blank"
+            label={t(
+              'pci_projects_project_storages_containers_update_encryption_link',
+            )}
+            icon="external-link"
+          />
+        </OdsText>
+      </OdsMessage>
     </PciModal>
   );
 }

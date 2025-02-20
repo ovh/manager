@@ -31,6 +31,17 @@ export type TStoragesAapiResult = {
   errors: unknown[];
 };
 
+export interface ReplicationRule {
+  id: string;
+  status: 'enabled' | 'disabled';
+  priority: number;
+  deleteMarkerReplication: 'enabled' | 'disabled';
+}
+
+export interface Replication {
+  rules: ReplicationRule[];
+}
+
 export const getStorages = async (
   projectId: string,
   params = {
@@ -83,25 +94,42 @@ export const getStorage = async (
   return data;
 };
 
+interface Versioning {
+  status: string;
+}
+
+interface Encryption {
+  sseAlgorithm: string;
+}
+
+interface UpdateStorageParams {
+  projectId: string;
+  region: string;
+  name: string;
+  versioning?: Versioning;
+  encryption?: Encryption;
+  s3StorageType: string;
+}
+
+interface Payload {
+  versioning?: Versioning;
+  encryption?: Encryption;
+}
+
 export const updateStorage = async ({
   projectId,
   region,
   name,
   versioning,
+  encryption,
   s3StorageType,
-}: {
-  projectId: string;
-  region: string;
-  name: string;
-  versioning: { status: string };
-  s3StorageType: string;
-}) => {
+}: UpdateStorageParams) => {
   const url =
     s3StorageType === 'storage'
       ? `/cloud/project/${projectId}/region/${region}/storage/${name}`
       : `/cloud/project/${projectId}/region/${region}/storageStandard/${name}`;
 
-  const { data } = await v6.put(url, { versioning });
+  const { data } = await v6.put(url, { versioning, encryption });
 
   return data;
 };
@@ -136,6 +164,7 @@ export const createS3Storage = async ({
   region,
   encryption,
   versioning,
+  replication,
 }: {
   projectId: string;
   containerName: string;
@@ -143,6 +172,7 @@ export const createS3Storage = async ({
   ownerId: number;
   encryption: string;
   versioning: boolean;
+  replication?: Replication;
 }) => {
   const { data } = await v6.post<TStorage>(
     `/cloud/project/${projectId}/region/${region}/storage`,
@@ -152,6 +182,7 @@ export const createS3Storage = async ({
       encryption: {
         sseAlgorithm: encryption,
       },
+      replication,
       ...(versioning
         ? {
             versioning: {
