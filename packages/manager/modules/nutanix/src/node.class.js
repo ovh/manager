@@ -31,11 +31,8 @@ export default class Node {
   }
 
   get isDeployed() {
-    if (
-      this.status === NODE_STATUS.UNKNOWN &&
-      this.os.startWith(DEFAULT_OS_NODE_NUTANIX.split('.')[0])
-    ) {
-      return true;
+    if (this.os.startsWith(DEFAULT_OS_NODE_NUTANIX.split('.')[0])) {
+      return false;
     }
 
     return this.status === NODE_STATUS.DEPLOYED;
