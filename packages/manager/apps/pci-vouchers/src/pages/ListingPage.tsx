@@ -74,11 +74,17 @@ export default function ListingPage() {
           ]}
         ></OsdsBreadcrumb>
       )}
-      <div className="flex items-center justify-between mt-4">
-        <Headers title={t('cpb_project_management_credit_vouchers')} changelogButton={<ChangelogButton
-            links={CHANGELOG_LINKS}
-            chapters={CHANGELOG_CHAPTERS}
-          />} headerButton={<PciGuidesHeader category="storage" />} />
+      <div className="mt-4">
+        <Headers
+          title={t('cpb_project_management_credit_vouchers')}
+          changelogButton={
+            <ChangelogButton
+              links={CHANGELOG_LINKS}
+              chapters={CHANGELOG_CHAPTERS}
+            />
+          }
+          headerButton={<PciGuidesHeader category="storage" />}
+        />
       </div>
       <Notifications />
       <Headers description={t('cpb_vouchers_add_explain_bis')} />
