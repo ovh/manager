@@ -6,7 +6,8 @@ export default {
     advancedMode: '<',
     alert: '<',
     goTo: '<',
-    hasPolicies: '<',
+    // TODO: commented for now, remove when working on policies pages MANAGER-16217
+    // hasPolicies: '<',
     onboardingGuides: '<',
     trackClick: '<',
   },
