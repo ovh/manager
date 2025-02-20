@@ -28,6 +28,9 @@ const ACTION_DESCRIPTION_UNDEFINED = 'missing description';
 
 const FEATURE = {
   MAIN: 'iam',
+  IDENTITIES: 'identity-access-management:identities',
+  POLICIES: 'identity-access-management:policies',
+  APIKEYS: 'identity-access-management:api-keys',
 };
 
 const ENTITY = {

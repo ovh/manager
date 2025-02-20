@@ -18,13 +18,15 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: () => null,
       cursors: /* @ngInject */ ($transition$) => $transition$.params().cursors,
     },
-    redirectTo: (transition) =>
-      transition
-        .injector()
-        .getAsync('hasPolicies')
-        .then((hasPolicies) =>
-          !hasPolicies ? { state: 'iam.onboarding' } : false,
-        ),
+
+    // TODO: commented for now, remove when working on policies pages MANAGER-16217
+    // redirectTo: (transition) =>
+    //   transition
+    //     .injector()
+    //     .getAsync('hasPolicies')
+    //     .then((hasPolicies) =>
+    //       !hasPolicies ? { state: 'iam.onboarding' } : false,
+    //     ),
     atInternet: {
       rename: TAG.POLICIES,
     },
