@@ -14,6 +14,7 @@ import { subRoutes } from '@/routes/routes.constant';
 import { iamActions } from '@/utils/iam.constants';
 import EditableTileItem from '../editable-tile-item/EditableTileItem.component';
 import DatacentresCount from './DatacentresCount.component';
+import TEST_IDS from '@/utils/testIds.constants';
 
 type TTileProps = {
   vcdOrganization: VCDOrganization;
@@ -94,6 +95,7 @@ export default function OrganizationGenerationInformationTile({
               href={vcdOrganization.currentState?.webInterfaceUrl}
               label={t('managed_vcd_dashboard_management_interface_access')}
               target="_blank"
+              data-testid={TEST_IDS.dashboardVcdInterfaceLink}
             />
           ),
         },

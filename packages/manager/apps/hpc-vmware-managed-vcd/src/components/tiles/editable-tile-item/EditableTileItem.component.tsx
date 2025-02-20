@@ -2,6 +2,7 @@ import React, { Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ManagerButton } from '@ovh-ux/manager-react-components';
 import { OdsText } from '@ovhcloud/ods-components/react';
+import TEST_IDS from '@/utils/testIds.constants';
 
 type EditableTileItemProps = {
   value: string;
@@ -27,7 +28,7 @@ export default function EditableTileItem({
         <Suspense>
           <ManagerButton
             className="ml-6"
-            data-testid="editButton"
+            data-testid={TEST_IDS.editButton}
             iamActions={iamActions}
             urn={urn}
             onClick={onClickEdit}

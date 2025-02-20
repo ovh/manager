@@ -3,7 +3,6 @@ import {
   ErrorBanner,
   useResourcesIcebergV2,
 } from '@ovh-ux/manager-react-components';
-import { OdsDivider } from '@ovhcloud/ods-components/react';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { icebergListingQueryKey } from '@ovh-ux/manager-module-vcd-api';
