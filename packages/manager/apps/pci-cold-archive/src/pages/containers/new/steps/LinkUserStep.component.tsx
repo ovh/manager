@@ -69,18 +69,19 @@ export function LinkUserStep() {
           trackNextStepClick(COLD_ARCHIVE_TRACKING.CONTAINERS.STEPPER.STEP_1);
           submitOwnerId();
         },
-        label: t('pci-common:common_stepper_next_button_label'),
+        label: t('common_stepper_next_button_label', { ns: 'pci-common' }),
         isDisabled: !form.ownerId,
       }}
       edit={{
         action: editOwnerId,
-        label: t('pci-common:common_stepper_modify_this_step'),
+        label: t('common_stepper_modify_this_step', { ns: 'pci-common' }),
       }}
     >
       <div className="flex flex-col gap-8">
         <OdsText preset="paragraph">
           {t(
-            'cold-archive/new/link-user:pci_projects_project_storages_cold_archive_add_step_link_user_archive_description',
+            'pci_projects_project_storages_cold_archive_add_step_link_user_archive_description',
+            { ns: 'cold-archive/new/link-user' },
           )}
         </OdsText>
 
@@ -96,7 +97,8 @@ export function LinkUserStep() {
               variant="ghost"
               size="sm"
               label={t(
-                'cold-archive/new/link-user:pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_select',
+                'pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_select',
+                { ns: 'cold-archive/new/link-user' },
               )}
             />
             <OdsButton
@@ -109,7 +111,8 @@ export function LinkUserStep() {
               variant="outline"
               size="sm"
               label={t(
-                'cold-archive/new/link-user:pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_create',
+                'pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_create',
+                { ns: 'cold-archive/new/link-user' },
               )}
               icon="plus"
               isDisabled={isDiscoveryProject(project)}

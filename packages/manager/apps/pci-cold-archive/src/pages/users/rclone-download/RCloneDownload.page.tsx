@@ -62,6 +62,7 @@ export default function RCloneDownload() {
       setRegion(regions[0]);
     }
   }, [regions]);
+
   const { download, isLoading } = useDownloadRCloneConfig({
     projectId,
     userId,
