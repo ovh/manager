@@ -23,7 +23,7 @@ export const WEBSITE_LINK: Links = {
   FR: `${websiteRoot}fr${zimbraWebsite}`,
   GB: `${websiteRoot}en-gb${zimbraWebsite}`,
   DE: `${websiteRoot}de${zimbraWebsite}`,
-  ES: `${websiteRoot}es${zimbraWebsite}`,
+  ES: `${websiteRoot}es-es${zimbraWebsite}`,
   IT: `${websiteRoot}it${zimbraWebsite}`,
   NL: `${websiteRoot}nl${zimbraWebsite}`,
   PL: `${websiteRoot}pl${zimbraWebsite}`,
