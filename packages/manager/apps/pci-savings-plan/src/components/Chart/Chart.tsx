@@ -31,7 +31,8 @@ const getMaxRangeGraph = (maxValue: number) =>
   Math.round(maxValue * GRAPH_SIZE_ZOOM);
 
 const INCLUDED_COLOR = 'rgba(0, 128, 0, 0.6)';
-const EXCLUDED_COLOR = '#EF99AB';
+const EXCLUDED_COLOR = '#CF334E';
+const CUMUL_PLAN_SIZE_COLOR = '#157EEA';
 
 const GenericChart: React.FC<ChartProps> = ({
   chartTitle,
@@ -59,7 +60,7 @@ const GenericChart: React.FC<ChartProps> = ({
     : t('dashboard_graph_y_axis_label_vcpu');
 
   return (
-    <>
+    <div className="border border-gray-100 p-4 my-8 rounded-sm">
       <OdsText preset="heading-4" className="my-8">
         {chartTitle}
       </OdsText>
@@ -88,8 +89,6 @@ const GenericChart: React.FC<ChartProps> = ({
             label={{
               value: yAxisLabel,
               angle: -90,
-              position: 'insideLeft',
-              offset: -10,
               fontSize: 12,
             }}
             {...(maxRange <= 1 ? { ticks: [0, 1] } : {})}
@@ -142,15 +141,15 @@ const GenericChart: React.FC<ChartProps> = ({
             type="step"
             dataKey="excluded"
             stackId="2"
-            stroke="#FFC0CB"
-            fill={EXCLUDED_COLOR}
+            fill="#FFCCD9"
+            stroke={EXCLUDED_COLOR}
             name={t('dashboard_graph_excluded')}
           />
           <Area
             type="step"
             dataKey="cumulPlanSize"
             stackId="1"
-            stroke="red"
+            stroke={CUMUL_PLAN_SIZE_COLOR}
             strokeWidth={2}
             fill="white"
             name={t('dashboard_columns_cumul_plan_size')}
@@ -159,7 +158,7 @@ const GenericChart: React.FC<ChartProps> = ({
           <Line type="basis" dataKey="date" fillOpacity={0} strokeOpacity={0} />
         </AreaChart>
       </ResponsiveContainer>
-    </>
+    </div>
   );
 };
 
