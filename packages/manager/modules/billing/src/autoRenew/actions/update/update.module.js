@@ -6,30 +6,25 @@ import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import '@ovh-ux/ui-kit';
 import uiRouter from '@uirouter/angularjs';
 
-import automatic from './automatic/automatic.module';
-import form from './form/form.module';
-import manualPayment from './manualPayment/manualPayment.module';
-import noPaymentMean from './noPaymentMean/noPaymentMean.module';
-
 import component from './update.component';
+import service from './update.service';
 import routing from './update.routing';
+import updatePeriodTranslationService from './update-period-translation.service';
 
 const moduleName = 'ovhManagerBillingAutorenewUpdate';
 
 angular
   .module(moduleName, [
     angularTranslate,
-    automatic,
-    form,
     ngAtInternet,
     ngOvhUtils,
     ngTranslateAsyncLoader,
     'oui',
-    manualPayment,
-    noPaymentMean,
     uiRouter,
   ])
   .config(routing)
+  .service('ovhUpdateAutoRenewServiceModalService', service)
+  .service('ovhUpdatePeriodTranslationService', updatePeriodTranslationService)
   .component('billingAutorenewUpdate', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
