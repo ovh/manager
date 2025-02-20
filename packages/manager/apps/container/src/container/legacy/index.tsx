@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useRef, useState } from 'react';
+import { Suspense, useEffect, useMemo, useRef, useState } from 'react';
 
 import { IFrameMessageBus } from '@ovh-ux/shell';
 import { IFrameAppRouter } from '@/core/routing';
@@ -26,10 +26,22 @@ function LegacyContainer(): JSX.Element {
   const { shell } = useApplication();
   const { isStarted: isProgressAnimating } = useProgress();
   const preloaderVisible = usePreloader(shell, iframe);
-  const applications = shell
-    .getPlugin('environment')
-    .getEnvironment()
-    .getApplications();
+  const applications = useMemo(() => {
+    const applications = shell
+      .getPlugin('environment')
+      .getEnvironment()
+      .getApplications();
+    return {
+      ...applications,
+      'pci-instances-new': {
+        ...applications['public-cloud'],
+        container: {
+          ...applications['public-cloud'].container,
+          hash: '/pci/projects/:projectId/instances/new',
+        },
+      },
+    };
+  }, [shell]);
 
   const {
     isMfaEnrollmentForced,
