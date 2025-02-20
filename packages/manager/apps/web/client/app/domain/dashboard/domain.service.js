@@ -681,7 +681,13 @@ angular.module('services').service(
           data: { records: entryId },
           broadcast: 'domain.tabs.zonedns.refresh',
         },
-      );
+      ).then((res) => {
+        if (res?.state && res.state !== 'OK') {
+          return this.$q.reject(res);
+        }
+
+        return res;
+      });
     }
 
     /**
