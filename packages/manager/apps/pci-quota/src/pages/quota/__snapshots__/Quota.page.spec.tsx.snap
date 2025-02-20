@@ -23,7 +23,9 @@ exports[`QuotaPage > should render 1`] = `
         class="flex items-center justify-between"
       >
         <div />
-        <div>
+        <div
+          class="flex flex-wrap justify-end"
+        >
           <div />
         </div>
       </div>
