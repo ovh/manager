@@ -18,7 +18,6 @@
   "dashboard_kpis_non_discounted_tooltip": "Importe de la factura que supera las configuraciones de Savings Planes (durante el período seleccionado para el recurso seleccionado)",
   "dashboard_kpis_saved_amount_name": "Ahorro",
   "dashboard_kpis_saved_amount_name_tooltip": "Ahorro total (en el período seleccionado para el recurso seleccionado)",
-  "dashboard_kpis_saved_strikethrough": "En lugar de <price> {{pricing}}</price> ",
   "dashboard_kpis_not_available": "No disponible",
   "dashboard_select_label_service": "Servicio",
   "dashboard_select_label_period": "Período",
