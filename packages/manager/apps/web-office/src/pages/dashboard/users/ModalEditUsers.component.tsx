@@ -163,47 +163,54 @@ export default function ModalEditUsers() {
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t('common:common_field_label_mandatory')}
         </OdsText>
+        <div className="flex flex-wrap sm:flex-nowrap gap-5">
+          <Controller
+            control={control}
+            name="firstname"
+            rules={{ required: true }}
+            render={({ field: { name, value, onBlur, onChange } }) => (
+              <OdsFormField
+                error={errors?.firstname?.message as string}
+                className="w-full"
+              >
+                <label slot="label">{t('common:firstname')}*</label>
 
-        <Controller
-          control={control}
-          name="firstname"
-          rules={{ required: true }}
-          render={({ field: { name, value, onBlur, onChange } }) => (
-            <OdsFormField error={errors?.firstname?.message as string}>
-              <label slot="label">{t('common:firstname')}*</label>
+                <OdsInput
+                  type={ODS_INPUT_TYPE.text}
+                  name={name}
+                  value={value}
+                  data-testid="input-firstname"
+                  hasError={!!errors.firstname}
+                  onOdsBlur={onBlur}
+                  onOdsChange={onChange}
+                ></OdsInput>
+              </OdsFormField>
+            )}
+          />
+          <Controller
+            control={control}
+            name="lastname"
+            rules={{ required: true }}
+            render={({ field: { name, value, onBlur, onChange } }) => (
+              <OdsFormField
+                error={errors?.lastname?.message as string}
+                className="w-full"
+              >
+                <label slot="label">{t('common:lastname')}*</label>
 
-              <OdsInput
-                type={ODS_INPUT_TYPE.text}
-                name={name}
-                value={value}
-                data-testid="input-firstname"
-                hasError={!!errors.firstname}
-                onOdsBlur={onBlur}
-                onOdsChange={onChange}
-              ></OdsInput>
-            </OdsFormField>
-          )}
-        />
-        <Controller
-          control={control}
-          name="lastname"
-          rules={{ required: true }}
-          render={({ field: { name, value, onBlur, onChange } }) => (
-            <OdsFormField error={errors?.lastname?.message as string}>
-              <label slot="label">{t('common:lastname')}*</label>
-
-              <OdsInput
-                type={ODS_INPUT_TYPE.text}
-                name={name}
-                value={value}
-                data-testid="input-lastname"
-                hasError={!!errors.lastname}
-                onOdsBlur={onBlur}
-                onOdsChange={onChange}
-              ></OdsInput>
-            </OdsFormField>
-          )}
-        />
+                <OdsInput
+                  type={ODS_INPUT_TYPE.text}
+                  name={name}
+                  value={value}
+                  data-testid="input-lastname"
+                  hasError={!!errors.lastname}
+                  onOdsBlur={onBlur}
+                  onOdsChange={onChange}
+                ></OdsInput>
+              </OdsFormField>
+            )}
+          />
+        </div>
         <Controller
           control={control}
           name="login"
@@ -213,7 +220,7 @@ export default function ModalEditUsers() {
               <label htmlFor="label" slot="label">
                 {t('common:login')}*
               </label>
-              <div className="flex">
+              <div className="flex flex-wrap sm:flex-nowrap gap-5">
                 <OdsInput
                   type={ODS_INPUT_TYPE.text}
                   name={name}
@@ -222,7 +229,7 @@ export default function ModalEditUsers() {
                   hasError={!!errors.login}
                   onOdsBlur={onBlur}
                   onOdsChange={onChange}
-                  className="w-full mr-6"
+                  className="w-full"
                 ></OdsInput>
                 <OdsInput
                   type={ODS_INPUT_TYPE.text}

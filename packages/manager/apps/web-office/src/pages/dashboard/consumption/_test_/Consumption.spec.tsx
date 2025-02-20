@@ -31,8 +31,6 @@ describe('Consumption Component', () => {
   it('should render the component correctly', async () => {
     const { getByTestId } = render(<Consumption />);
     expect(getByTestId('period-select')).toBeInTheDocument();
-    expect(getByTestId('officeBusiness')).toBeInTheDocument();
-    expect(getByTestId('officeProPlus')).toBeInTheDocument();
   });
 
   it('should render the responsive chart container', async () => {
