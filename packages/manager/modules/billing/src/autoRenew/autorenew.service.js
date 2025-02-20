@@ -316,7 +316,15 @@ export default class {
           },
         });
       }
-      const toUpdate = pick(service, ['serviceId', 'serviceType', 'renew']);
+
+      const toUpdate = {
+        ...pick(service, ['serviceId', 'serviceType', 'renew']),
+        renew: {
+          ...service.renew,
+          period: service.cleanRenewPeriod,
+        },
+      };
+
       toUpdate.route = get(service, 'route.url');
       return this.updateServices([toUpdate]);
     });
