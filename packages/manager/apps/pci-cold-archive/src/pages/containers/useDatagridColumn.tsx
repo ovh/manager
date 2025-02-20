@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { useBytes } from '@ovh-ux/manager-pci-common';
 import { TArchiveContainer } from '@/api/data/archive';
 import StatusComponent from './Status.components';
-import ActionsComponent from './ActionsComponent';
+import ActionsComponent from './Actions.component';
 import { useFormattedDate } from '@/hooks/useFormattedDate';
 
 export const useDatagridColumn = () => {
@@ -62,16 +62,11 @@ export const useDatagridColumn = () => {
     },
     {
       id: 'lockedUntil',
-      cell: (props: TArchiveContainer) => {
-        if (props.lockedUntil) {
-          return (
-            <DataGridTextCell>
-              {useFormattedDate(props.lockedUntil, 'Pp')}
-            </DataGridTextCell>
-          );
-        }
-        return <DataGridTextCell>-</DataGridTextCell>;
-      },
+      cell: (props: TArchiveContainer) => (
+        <DataGridTextCell>
+          {props.lockedUntil ? useFormattedDate(props.lockedUntil, 'Pp') : '-'}
+        </DataGridTextCell>
+      ),
       label: t(
         'containers:pci_projects_project_storages_cold_archive_containers_locked_until_label',
       ),
