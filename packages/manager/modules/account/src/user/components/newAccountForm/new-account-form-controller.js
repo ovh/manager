@@ -533,11 +533,7 @@ export default class NewAccountFormController {
     const isSiretEnterprise =
       this.model.legalform === USER_TYPE_ENTERPRISE &&
       this.model.country === 'FR';
-    if (
-      isSiretEnterprise &&
-      this.fieldToFocus &&
-      !this.model.companyNationalIdentificationNumber
-    ) {
+    if (isSiretEnterprise && this.fieldToFocus) {
       this.$anchorScroll(this.fieldToFocus);
     }
     return isSiretEnterprise;
