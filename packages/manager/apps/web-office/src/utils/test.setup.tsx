@@ -12,6 +12,7 @@ import {
   userDomainMock,
   mockOfficeLicenseServiceInfos,
   mockUsageStatistics,
+  parentTenantMock,
 } from '@/api/_mock_';
 
 const mocksAxios = vi.hoisted(() => ({
@@ -126,6 +127,15 @@ vi.mock('@/api/usageStatistics', async (importActual) => {
     getOfficeTenantUsageStatistics: vi.fn(() =>
       Promise.resolve(mockUsageStatistics),
     ),
+  };
+});
+
+vi.mock('@/api/parentTenant', async (importActual) => {
+  return {
+    ...(await importActual<typeof import('@/api/parentTenant')>()),
+    getParentTenant: vi.fn(() => {
+      return Promise.resolve(parentTenantMock);
+    }),
   };
 });
 

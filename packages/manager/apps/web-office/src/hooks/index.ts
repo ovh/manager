@@ -7,3 +7,4 @@ export * from './useOfficeUsers';
 export * from './useOfficeUserDetail';
 export * from './useOrderCatalog';
 export * from './useDateFnsLocale';
+export * from './useOfficeParentTenant';

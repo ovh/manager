@@ -37,10 +37,38 @@ export const Routes: any = [
         children: [
           {
             path: '',
+            ...lazyRouteConfig(() =>
+              import('@/pages/dashboard/generalInformation/GeneralInformation'),
+            ),
+            handle: {
+              tracking: {
+                pageName: 'general-information',
+                pageType: PageType.dashboard,
+              },
+            },
+            children: [
+              {
+                path: 'edit-name',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/dashboard/generalInformation/UpdateDisplayNameModal.component'
+                  ),
+                ),
+                handle: {
+                  tracking: {
+                    pageName: 'edit-name',
+                    pageType: PageType.dashboard,
+                  },
+                },
+              },
+            ],
+          },
+          {
+            path: urls.users,
             ...lazyRouteConfig(() => import('@/pages/dashboard/users/Users')),
             handle: {
               tracking: {
-                pageName: 'license',
+                pageName: 'users',
                 pageType: PageType.dashboard,
               },
             },
