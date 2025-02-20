@@ -6,7 +6,7 @@ import { useSearchParams } from 'react-router-dom';
 import { render, act, waitFor, fireEvent } from '@/utils/test.provider';
 import { aliasMock, accountsMock } from '@/api/_mock_';
 import ModalDeleteAlias from '../ModalDeleteAlias.component';
-import accountAliasDeleteTranslation from '@/public/translations/accounts/alias/delete/Messages_fr_FR.json';
+import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
 import { deleteZimbraPlatformAlias } from '@/api/alias';
 
 vi.mocked(useSearchParams).mockReturnValue([
@@ -20,11 +20,7 @@ vi.mocked(useSearchParams).mockReturnValue([
 describe('Alias delete modal', () => {
   it('should render correctly', async () => {
     const { findByText } = render(<ModalDeleteAlias />);
-    expect(
-      await findByText(
-        accountAliasDeleteTranslation.zimbra_account_alias_delete_modal_title,
-      ),
-    ).toBeVisible();
+    expect(await findByText(commonTranslation.delete_alias)).toBeVisible();
   });
 
   it('should delete alias', async () => {

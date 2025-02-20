@@ -20,7 +20,7 @@ interface ActionButtonDomainProps {
 const ActionButtonDomain: React.FC<ActionButtonDomainProps> = ({
   domainItem,
 }) => {
-  const { t } = useTranslation('domains');
+  const { t } = useTranslation('common');
   const navigate = useNavigate();
   const { trackClick } = useOvhTracking();
   const { platformUrn } = usePlatform();
@@ -65,21 +65,21 @@ const ActionButtonDomain: React.FC<ActionButtonDomainProps> = ({
     {
       id: 1,
       onclick: handleEditDomainClick,
-      label: t('zimbra_domains_tooltip_configure'),
+      label: t('common:configure'),
       urn: platformUrn,
       iamActions: [IAM_ACTIONS.domain.edit],
     },
     {
       id: 2,
       onclick: handleDiagnosticsDomainClick,
-      label: t('zimbra_domains_tooltip_diagnostics'),
+      label: t('common:diagnostics'),
       urn: platformUrn,
       iamActions: [IAM_ACTIONS.domain.edit],
     },
     {
       id: 3,
       onclick: handleDeleteDomainClick,
-      label: t('zimbra_domains_tooltip_delete'),
+      label: t('common:delete'),
       urn: platformUrn,
       iamActions: [IAM_ACTIONS.domain.delete],
       color: ODS_BUTTON_COLOR.critical,

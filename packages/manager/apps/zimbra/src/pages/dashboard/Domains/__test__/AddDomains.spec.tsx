@@ -3,7 +3,8 @@ import { describe, expect, it } from 'vitest';
 import { render, screen, waitFor, act } from '@/utils/test.provider';
 import { DNS_CONFIG_TYPE } from '@/utils';
 import AddDomain from '../AddDomain.page';
-import addDomainTranslation from '@/public/translations/domains/addDomain/Messages_fr_FR.json';
+import domainsFormTranslation from '@/public/translations/domains/form/Messages_fr_FR.json';
+import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
 
 describe('Add Domain page', () => {
   const clickSelectOrganization = (selectOrganization) => {
@@ -28,9 +29,7 @@ describe('Add Domain page', () => {
     render(<AddDomain />);
 
     const page = screen.getByTestId('add-domain-page');
-    expect(page).toHaveTextContent(
-      addDomainTranslation.zimbra_domains_add_domain_title_select,
-    );
+    expect(page).toHaveTextContent(commonTranslation.add_domain);
   });
 
   it('Button should be disabled if organization is selected but no domain name is provided', async () => {
@@ -168,7 +167,7 @@ describe('Add Domain page', () => {
     expect(externalDomainInput).toHaveValue('external-example.com');
 
     const warningMessage = screen.getByText(
-      addDomainTranslation.zimbra_domains_add_domain_warning_modification_domain,
+      domainsFormTranslation.zimbra_domains_add_domain_warning_modification_domain,
     );
     expect(warningMessage).toBeVisible();
 

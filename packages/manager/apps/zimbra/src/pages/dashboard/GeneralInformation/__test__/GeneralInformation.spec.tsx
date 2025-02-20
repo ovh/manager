@@ -3,7 +3,7 @@ import { describe, expect, vi } from 'vitest';
 import { useSearchParams } from 'react-router-dom';
 import GeneralInformation from '../GeneralInformation';
 import { render } from '@/utils/test.provider';
-import dashboardTranslation from '@/public/translations/dashboard/Messages_fr_FR.json';
+import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
 import { organizationDetailMock } from '@/api/_mock_';
 
 describe('General Informations page', () => {
@@ -12,9 +12,7 @@ describe('General Informations page', () => {
       <GeneralInformation />,
     );
 
-    const title = await findByText(
-      dashboardTranslation.zimbra_dashboard_tile_status_title,
-    );
+    const title = await findByText(commonTranslation.status);
     const serviceStatus = queryByTestId('org-status');
     const status = getByTestId('status');
     const accounts = getByTestId('platform-accounts');
@@ -37,9 +35,7 @@ describe('General Informations page', () => {
 
     const { findByText, getByTestId } = render(<GeneralInformation />);
 
-    const title = await findByText(
-      dashboardTranslation.zimbra_dashboard_tile_status_title,
-    );
+    const title = await findByText(commonTranslation.status);
 
     const serviceStatus = getByTestId('org-status');
 

@@ -6,7 +6,7 @@ import { useSearchParams } from 'react-router-dom';
 import { fireEvent, render, waitFor, act } from '@/utils/test.provider';
 import { domainDetailMock } from '@/api/_mock_';
 import ModalEditDomain from '../ModalEditDomain.component';
-import domainsEditTranslation from '@/public/translations/domains/edit/Messages_fr_FR.json';
+import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
 import { putZimbraDomain } from '@/api/domain';
 
 vi.mocked(useSearchParams).mockReturnValue([
@@ -19,9 +19,7 @@ vi.mocked(useSearchParams).mockReturnValue([
 describe('Domains edit modal', () => {
   it('check if it is displayed', async () => {
     const { findByText } = render(<ModalEditDomain />);
-    expect(
-      await findByText(domainsEditTranslation.zimbra_domain_edit_modal_title),
-    ).toBeVisible();
+    expect(await findByText(commonTranslation.edit_domain)).toBeVisible();
   });
 
   it('check if disabled input have the domain name', async () => {

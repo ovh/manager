@@ -6,10 +6,11 @@ import { Location, useLocation, useSearchParams } from 'react-router-dom';
 import { render, waitFor, act } from '@/utils/test.provider';
 import { accountDetailMock } from '@/api/_mock_';
 import AddAndEditEmailAccount from '../AddAndEditEmailAccount.page';
-import emailAccountAddAndEditTranslation from '@/public/translations/accounts/addAndEdit/Messages_fr_FR.json';
+import emailAccountFormTranslation from '@/public/translations/accounts/form/Messages_fr_FR.json';
 import emailAccountAliasTranslation from '@/public/translations/accounts/alias/Messages_fr_FR.json';
 import redirectionsTranslation from '@/public/translations/redirections/Messages_fr_FR.json';
-import autoRepliesTranslation from '@/public/translations/autoReplies/Messages_fr_FR.json';
+import autoRepliesTranslation from '@/public/translations/auto-replies/Messages_fr_FR.json';
+import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
 
 describe('email account add and edit page', () => {
   it('if there is not editEmailAccountId params', async () => {
@@ -29,7 +30,7 @@ describe('email account add and edit page', () => {
     });
 
     expect(getByTestId('page-title')).toHaveTextContent(
-      emailAccountAddAndEditTranslation.zimbra_account_add_title,
+      commonTranslation.add_email_account,
     );
   });
 
@@ -53,7 +54,7 @@ describe('email account add and edit page', () => {
     });
 
     expect(getByTestId('page-title')).toHaveTextContent(
-      emailAccountAddAndEditTranslation.zimbra_account_edit_title.replace(
+      emailAccountFormTranslation.zimbra_account_edit_title.replace(
         '{{ account }}',
         accountDetailMock.currentState?.email,
       ),

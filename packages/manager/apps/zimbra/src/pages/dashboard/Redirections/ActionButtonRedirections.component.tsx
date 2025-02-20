@@ -28,7 +28,7 @@ const ActionButtonRedirections: React.FC<ActionButtonRedirectionsAccountProps> =
   redirectionsItem,
 }) => {
   const { trackClick } = useOvhTracking();
-  const { t } = useTranslation('redirections');
+  const { t } = useTranslation('common');
   const { platformUrn } = usePlatform();
   const navigate = useNavigate();
 
@@ -76,7 +76,7 @@ const ActionButtonRedirections: React.FC<ActionButtonRedirectionsAccountProps> =
       onClick: handleEditRedirectionsClick,
       urn: platformUrn,
       iamActions: [IAM_ACTIONS.redirection.edit],
-      label: t('zimbra_redirections_datagrid_tooltip_modification'),
+      label: t('modify'),
       hidden: !FEATURE_FLAGS.REDIRECTIONS_EDIT,
     },
     {
@@ -84,7 +84,7 @@ const ActionButtonRedirections: React.FC<ActionButtonRedirectionsAccountProps> =
       onClick: handleDeleteRedirectionsClick,
       urn: platformUrn,
       iamActions: [IAM_ACTIONS.redirection.delete],
-      label: t('zimbra_redirections_datagrid_tooltip_delete'),
+      label: t('delete'),
       color: ODS_BUTTON_COLOR.critical,
     },
   ];

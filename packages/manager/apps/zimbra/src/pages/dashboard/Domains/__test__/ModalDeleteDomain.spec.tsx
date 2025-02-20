@@ -5,7 +5,7 @@ import { vi, describe, expect } from 'vitest';
 import { useSearchParams } from 'react-router-dom';
 import { render, waitFor, act, fireEvent } from '@/utils/test.provider';
 import ModalDeleteDomain from '../ModalDeleteDomain.component';
-import domainsDeleteTranslation from '@/public/translations/domains/delete/Messages_fr_FR.json';
+import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
 import { getZimbraPlatformAccounts } from '@/api/account';
 import { deleteZimbraPlatformDomain } from '@/api/domain';
 import { domainDetailMock } from '@/api/_mock_';
@@ -20,11 +20,7 @@ vi.mocked(useSearchParams).mockReturnValue([
 describe('Domains delete modal', () => {
   it('check if it is displayed', async () => {
     const { findByText } = render(<ModalDeleteDomain />);
-    expect(
-      await findByText(
-        domainsDeleteTranslation.zimbra_domain_delete_modal_title,
-      ),
-    ).toBeVisible();
+    expect(await findByText(commonTranslation.delete_domain)).toBeVisible();
   });
 
   it('if have email use the domain', async () => {

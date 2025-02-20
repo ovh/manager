@@ -1,8 +1,0 @@
-{
-  "zimbra_auto_replies_delete_success_message": "Ihre Löschanfrage wurde registriert Sie wird in Kürze ausgeführt.",
-  "zimbra_auto_replies_delete_error_message": "Ihre Löschanfrage ist fehlgeschlagen. Bitte versuchen Sie es später erneut.",
-  "zimbra_auto_replies_delete_modal_title": "Eine automatische Antwort löschen",
-  "zimbra_auto_replies_delete_cancel": "Abbrechen",
-  "zimbra_auto_replies_delete_cta": "Löschen",
-  "zimbra_auto_replies_delete_modal_content": "Sind Sie sicher, dass Sie die automatische Antwort löschen möchten?"
-}

@@ -37,7 +37,7 @@ import queryClient from '@/queryClient';
 import { CANCEL, CONFIRM, EDIT_DOMAIN } from '@/tracking.constant';
 
 export default function ModalEditDomain() {
-  const { t } = useTranslation('domains/edit');
+  const { t } = useTranslation(['domains', 'common']);
   const navigate = useNavigate();
   const { trackClick, trackPage } = useOvhTracking();
   const [searchParams] = useSearchParams();
@@ -71,7 +71,7 @@ export default function ModalEditDomain() {
       });
       addSuccess(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {t('zimbra_domain_edit_success_message')}
+          {t('common:edit_success_message')}
         </OdsText>,
         true,
       );
@@ -83,7 +83,7 @@ export default function ModalEditDomain() {
       });
       addError(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {t('zimbra_domain_edit_error_message', {
+          {t('common:edit_error_message', {
             error: error?.response?.data?.message,
           })}
         </OdsText>,
@@ -127,14 +127,14 @@ export default function ModalEditDomain() {
 
   return (
     <Modal
-      title={t('zimbra_domain_edit_modal_title')}
+      title={t('common:edit_domain')}
       color={ODS_MODAL_COLOR.information}
       onClose={onClose}
       isOpen
       isDismissible
       isLoading={isLoadingDomain || isLoadingOrganizations}
       primaryButton={{
-        label: t('zimbra_domain_edit_confirm'),
+        label: t('common:confirm'),
         action: handleConfirmClick,
         isDisabled:
           detailDomain?.currentState?.organizationId === selectedOrganization,
@@ -142,7 +142,7 @@ export default function ModalEditDomain() {
         testid: 'edit-btn',
       }}
       secondaryButton={{
-        label: t('zimbra_domain_edit_cancel'),
+        label: t('common:cancel'),
         action: handleCancelClick,
         testid: 'cancel-btn',
       }}
@@ -150,7 +150,7 @@ export default function ModalEditDomain() {
       <>
         <OdsFormField className="mt-5">
           <label htmlFor="domain" slot="label">
-            {t('zimbra_domain_edit_domain_label')}
+            {t('common:domain')}
           </label>
           <OdsInput
             type={ODS_INPUT_TYPE.text}
@@ -163,9 +163,7 @@ export default function ModalEditDomain() {
           ></OdsInput>
         </OdsFormField>
         <OdsFormField className="mt-5">
-          <label slot="label">
-            {t('zimbra_domain_edit_organization_label')}
-          </label>
+          <label slot="label">{t('common:organization')}</label>
           <OdsSelect
             name="organization"
             value={selectedOrganization}

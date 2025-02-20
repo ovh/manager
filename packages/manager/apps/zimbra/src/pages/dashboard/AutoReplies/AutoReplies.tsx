@@ -68,12 +68,12 @@ const columns: DatagridColumn<AutoRepliesItem>[] = [
   {
     id: 'from',
     cell: (item) => <div>{item.from}</div>,
-    label: 'zimbra_auto_replies_from',
+    label: 'common:from',
   },
   {
     id: 'until',
     cell: (item) => <div>{item.until}</div>,
-    label: 'zimbra_auto_replies_until',
+    label: 'common:until',
   },
   {
     id: 'copyTo',
@@ -83,7 +83,7 @@ const columns: DatagridColumn<AutoRepliesItem>[] = [
   {
     id: 'status',
     cell: (item) => <BadgeStatus itemStatus={item.status}></BadgeStatus>,
-    label: 'zimbra_auto_replies_status',
+    label: 'common:status',
   },
   {
     id: 'actions',
@@ -94,7 +94,7 @@ const columns: DatagridColumn<AutoRepliesItem>[] = [
 
 export function AutoReplies() {
   const { trackClick } = useOvhTracking();
-  const { t } = useTranslation('autoReplies');
+  const { t } = useTranslation(['auto-replies', 'common']);
   const { platformUrn } = usePlatform();
   const navigate = useNavigate();
   const location = useLocation();
@@ -138,7 +138,7 @@ export function AutoReplies() {
             urn={platformUrn}
             iamActions={[IAM_ACTIONS.autoReply.create]}
             icon={ODS_ICON_NAME.plus}
-            label={t('zimbra_auto_replies_add_cta')}
+            label={t('common:add_auto_reply')}
             className="mb-6"
           ></ManagerButton>
           <Datagrid

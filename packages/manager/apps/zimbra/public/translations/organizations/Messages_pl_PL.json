@@ -6,5 +6,8 @@
   "zimbra_organization_delete": "Usuń",
   "zimbra_organization_label": "Etykieta",
   "zimbra_organization_name": "Organizacja",
-  "zimbra_organization_status": "Status"
+  "zimbra_organization_status": "Status",
+  "zimbra_organization_delete_modal_content": "Czy na pewno chcesz usunąć organizację?",
+  "zimbra_organization_delete_modal_message_disabled_part1": "Co najmniej jedna domena jest nadal skojarzona z tą organizacją.",
+  "zimbra_organization_delete_modal_message_disabled_part2": "Usuń skojarzone domeny przed usunięciem organizacji."
 }

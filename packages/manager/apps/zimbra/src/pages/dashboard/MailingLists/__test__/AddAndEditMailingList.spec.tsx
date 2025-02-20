@@ -3,12 +3,11 @@ import 'element-internals-polyfill';
 import '@testing-library/jest-dom';
 import { vi, describe, expect } from 'vitest';
 import { useSearchParams } from 'react-router-dom';
-import { render, waitFor, fireEvent, act } from '@/utils/test.provider';
+import { render, waitFor, act } from '@/utils/test.provider';
 import { mailingListsMock } from '@/api/_mock_';
 import { ReplyToChoices, ModerationChoices } from '@/api/mailinglist';
 import AddAndEditMailingList from '../AddAndEditMailingList.page';
-import mailingListsAddAndEditTranslation from '@/public/translations/mailinglists/addAndEdit/Messages_fr_FR.json';
-import { navigate } from '@/utils/test.setup';
+import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
 
 describe('mailing lists add and edit page', async () => {
   const editMailingListId = mailingListsMock[0].id;
@@ -21,7 +20,7 @@ describe('mailing lists add and edit page', async () => {
     });
 
     expect(getByTestId('page-title')).toHaveTextContent(
-      mailingListsAddAndEditTranslation.zimbra_mailinglist_add_title,
+      commonTranslation.add_mailing_list,
     );
   });
 
@@ -100,7 +99,7 @@ describe('mailing lists add and edit page', async () => {
     });
 
     expect(getByTestId('page-title')).toHaveTextContent(
-      mailingListsAddAndEditTranslation.zimbra_mailinglist_edit_title,
+      commonTranslation.edit_mailing_list,
     );
   });
 });

@@ -32,7 +32,7 @@ import {
 
 export default function ModalDeleteDomain() {
   const { trackClick, trackPage } = useOvhTracking();
-  const { t } = useTranslation('accounts/alias/delete');
+  const { t } = useTranslation(['accounts/alias', 'common']);
   const navigate = useNavigate();
 
   const [searchParams] = useSearchParams();
@@ -105,17 +105,17 @@ export default function ModalDeleteDomain() {
 
   return (
     <Modal
-      title={t('zimbra_account_alias_delete_modal_title')}
+      title={t('common:delete_alias')}
       color={ODS_MODAL_COLOR.critical}
       onClose={onClose}
       isOpen
       isDismissible
       secondaryButton={{
-        label: t('zimbra_account_alias_delete_modal_cancel_btn'),
+        label: t('common:cancel'),
         action: handleCancelClick,
       }}
       primaryButton={{
-        label: t('zimbra_account_alias_delete_modal_delete_btn'),
+        label: t('common:delete'),
         action: handleDeleteClick,
         variant: ODS_BUTTON_VARIANT.default,
         isLoading: isDeleting,
