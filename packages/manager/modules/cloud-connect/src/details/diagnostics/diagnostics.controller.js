@@ -1,7 +1,7 @@
 import {
   DIAGNOSTIC_TRACKING_PREFIX,
   DIAGNOSTIC_DASHBOARD_TRACKING_CONTEXT,
-  DIAGNOSTIC_LISTING_TRACKING_CONTEXT,
+  getDiagnosticDashboardTrackingContext,
 } from '../../cloud-connect.constants';
 
 export default class DiagnosticsResultCtrl {
@@ -42,7 +42,9 @@ export default class DiagnosticsResultCtrl {
     this.atInternet.trackClick({
       name: `${DIAGNOSTIC_TRACKING_PREFIX}datagrid::button::${option}::${diagnosticFunction}`,
       type: 'action',
-      ...DIAGNOSTIC_LISTING_TRACKING_CONTEXT,
+      ...getDiagnosticDashboardTrackingContext(
+        'cloud-connect::dashboard::diagnostics',
+      ),
     });
   }
 }

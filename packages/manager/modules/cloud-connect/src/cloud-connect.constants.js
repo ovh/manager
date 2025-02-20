@@ -90,6 +90,13 @@ export const DIAGNOSTIC_DASHBOARD_TRACKING_CONTEXT = {
   level2: 99,
 };
 
+export function getDiagnosticDashboardTrackingContext(page) {
+  return {
+    ...DIAGNOSTIC_DASHBOARD_TRACKING_CONTEXT,
+    page: { name: `${CLOUD_CONNECT_TRACKING_PREFIX}${page}` },
+  };
+}
+
 export default {
   GUIDELINK,
   POP_MAP,
