@@ -53,7 +53,8 @@ export function OffsiteReplication() {
       .filter((plan) =>
         plan.regions.some(
           (region: TRegionAvailability) =>
-            region.type === OBJECT_CONTAINER_MODE_MULTI_ZONES,
+            ((region.type as unknown) as string) ===
+            OBJECT_CONTAINER_MODE_MULTI_ZONES,
         ),
       )
       .map(({ code }) =>

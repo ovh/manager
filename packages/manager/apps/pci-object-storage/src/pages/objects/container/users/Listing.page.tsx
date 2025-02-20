@@ -13,14 +13,12 @@ import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import {
-  OsdsButton,
-  OsdsIcon,
-  OsdsMessage,
-  OsdsPopover,
-  OsdsPopoverContent,
-  OsdsSearchBar,
-  OsdsSpinner,
-  OsdsText,
+  OdsButton,
+  OdsMessage,
+  OdsPopover,
+  OdsSpinner,
+  OdsInput,
+  OdsText,
 } from '@ovhcloud/ods-components/react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { usePaginatedUsers } from '@/api/hooks/useUser';
@@ -65,26 +63,20 @@ export default function Listing() {
       <div className="header mt-8">
         <Notifications />
       </div>
-      <OsdsText
-        level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-        color={ODS_THEME_COLOR_INTENT.text}
-        size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-        className="mt-6 block"
-      >
+      <OdsText preset="heading-4" className="mt-6 block">
         {t('pci_projects_project_storages_containers_users_title')}
-      </OsdsText>
-      <OsdsText
-        level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-        color={ODS_THEME_COLOR_INTENT.text}
-        size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-        className="mt-6 block"
-      >
+      </OdsText>
+      <OdsText preset="paragraph" className="mt-6 block">
         {t('pci_projects_project_storages_containers_users_user_description')}
-      </OsdsText>
+      </OdsText>
       {availability?.[AVAILABILITY.LOCALZONE] && (
-        <OsdsMessage type={ODS_MESSAGE_TYPE.info} className="mt-6">
+        <OdsMessage
+          color="information"
+          className="mt-6 w-full"
+          isDismissible={false}
+        >
           {t('pci_projects_project_storages_containers_users_user_info_banner')}
-        </OsdsMessage>
+        </OdsMessage>
       )}
 
       <div className="sm:flex items-center justify-between mt-8">
@@ -103,15 +95,7 @@ export default function Listing() {
             clearNotifications();
             navigate('./new');
           }}
-        >
-          <OsdsIcon
-            size={ODS_ICON_SIZE.xs}
-            name={ODS_ICON_NAME.PLUS}
-            className="mr-2 bg-white"
-            color={ODS_THEME_COLOR_INTENT.primary}
-          />
-          {t('pci_projects_project_storages_containers_users_add_user')}
-        </OsdsButton>
+        />
 
         <div className="flex justify-center gap-4">
           <OdsButton

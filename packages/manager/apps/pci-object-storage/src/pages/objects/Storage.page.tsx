@@ -4,11 +4,14 @@ import {
   PciGuidesHeader,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
-import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
 import { Suspense, useEffect, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
 import { Outlet, useLocation, useResolvedPath } from 'react-router-dom';
+import {
+  OdsBreadcrumb,
+  OdsBreadcrumbItem,
+} from '@ovhcloud/ods-components/react';
 import { ROUTE_PATHS } from '@/routes';
 
 export default function ObjectsPage() {
