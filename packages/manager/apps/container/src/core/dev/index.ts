@@ -3,7 +3,7 @@ import { Application } from '@ovh-ux/manager-config';
 
 export function setupDevApplication(shell: Shell) {
   if (import.meta.env.DEV) {
-    const devApp = import.meta.env.VITE_CONTAINER_APP;
+    const devApp = 'new-account';
     const apps = shell
       .getPlugin('environment')
       .getEnvironment()
