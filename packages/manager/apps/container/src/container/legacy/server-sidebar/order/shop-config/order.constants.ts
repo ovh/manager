@@ -370,6 +370,23 @@ export const ORDER_URLS: Record<
       SN: 'https://www.ovhcloud.com/fr-sn/hosted-private-cloud/nutanix/',
       TN: 'https://www.ovhcloud.com/fr-tn/hosted-private-cloud/nutanix/',
     },
+    zimbra: {
+      CZ: "https://www.ovh.cz/order/webcloud/?zimbra=#/webCloud/zimbra/select?selection=~(zimbra~(offer~'zimbra-account-pp-starter~pricing~'default~quantity~1))",
+      DE: "https://www.ovh.de/order/webcloud/?zimbra=#/webCloud/zimbra/select?selection=~(zimbra~(offer~'zimbra-account-pp-starter~pricing~'default~quantity~1))",
+      ES: "https://www.ovh.es/order/webcloud/?zimbra=#/webCloud/zimbra/select?selection=~(zimbra~(offer~'zimbra-account-pp-starter~pricing~'default~quantity~1))",
+      FI: "https://www.ovh-hosting.fi/order/webcloud/?zimbra=#/webCloud/zimbra/select?selection=~(zimbra~(offer~'zimbra-account-pp-starter~pricing~'default~quantity~1))",
+      FR: "https://www.ovh.com/fr/order/webcloud/?zimbra=#/webCloud/zimbra/select?selection=~(zimbra~(offer~'zimbra-account-pp-starter~pricing~'default~quantity~1))",
+      GB: "https://www.ovh.co.uk/order/webcloud/?zimbra=#/webCloud/zimbra/select?selection=~(zimbra~(offer~'zimbra-account-pp-starter~pricing~'default~quantity~1))",
+      IE: "https://www.ovh.ie/order/webcloud/?zimbra=#/webCloud/zimbra/select?selection=~(zimbra~(offer~'zimbra-account-pp-starter~pricing~'default~quantity~1))",
+      IT: "https://www.ovh.it/order/webcloud/?zimbra=#/webCloud/zimbra/select?selection=~(zimbra~(offer~'zimbra-account-pp-starter~pricing~'default~quantity~1))",
+      LT: "https://www.ovh.lt/order/webcloud/?zimbra=#/webCloud/zimbra/select?selection=~(zimbra~(offer~'zimbra-account-pp-starter~pricing~'default~quantity~1))",
+      NL: "https://www.ovh.nl/order/webcloud/?zimbra=#/webCloud/zimbra/select?selection=~(zimbra~(offer~'zimbra-account-pp-starter~pricing~'default~quantity~1))",
+      PL: "https://www.ovh.pl/order/webcloud/?zimbra=#/webCloud/zimbra/select?selection=~(zimbra~(offer~'zimbra-account-pp-starter~pricing~'default~quantity~1))",
+      PT: "https://www.ovh.pt/order/webcloud/?zimbra=#/webCloud/zimbra/select?selection=~(zimbra~(offer~'zimbra-account-pp-starter~pricing~'default~quantity~1))",
+      MA: "https://www.ovh.ma/order/webcloud/?zimbra=#/webCloud/zimbra/select?selection=~(zimbra~(offer~'zimbra-account-pp-starter~pricing~'default~quantity~1))",
+      SN: "https://www.ovh.sn/order/webcloud/?zimbra=#/webCloud/zimbra/select?selection=~(zimbra~(offer~'zimbra-account-pp-starter~pricing~'default~quantity~1))",
+      TN: "https://www.ovh.com/tn/order/webcloud/?zimbra=#/webCloud/zimbra/select?selection=~(zimbra~(offer~'zimbra-account-pp-starter~pricing~'default~quantity~1))",
+    },
   },
   CA: {
     DEDICATED: {

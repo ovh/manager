@@ -5,6 +5,7 @@ import {
   HOSTING_SVG,
   EXCHANGE_SVG,
   OFFICE365_SVG,
+  ZIMBRA_SVG,
 } from '@ovh-ux/ovh-product-icons/utils/SvgIconWrapper';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 
@@ -47,6 +48,15 @@ const webShopConfig = (
         url: getOrderURL('orderCloudWeb', region, sub),
         external: true,
         tracking: 'web::orders::cloud-web::order',
+      }
+    : null,
+  features['zimbra'] && ORDER_URLS[region]?.zimbra
+    ? {
+        label: 'order_item_zimbra',
+        icon: ZIMBRA_SVG,
+        url: getOrderURL('zimbra', region, sub),
+        external: true,
+        tracking: 'web::orders::zimbra::order',
       }
     : null,
   features['email-pro'] && ORDER_URLS[region].orderEmailPro
