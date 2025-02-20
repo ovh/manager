@@ -1,7 +1,7 @@
 {
   "beta_modal_title": "Découvrez la nouvelle version de votre espace client",
   "beta_modal_greeting": "Bonjour {{user}},",
-  "beta_modal_welcome": "Bienvenue dans votre espace client.",
+  "beta_modal_welcome": "Bienvenue dans votre espace client !",
   "beta_modal_info": "Nous avons repensé son design et amélioré ses fonctionnalités pour vous offrir une expérience plus simple et plus rapide.",
   "beta_modal_explore": "Explorez dès maintenant toutes les nouvelles options qui vous sont proposées !",
   "beta_modal_accept": "Je le découvre dès maintenant",
