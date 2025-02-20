@@ -1,0 +1,15 @@
+<div data-ng-controller="IamUsersSsoDeleteCtrl as $ctrl">
+    <oui-modal
+        data-heading="{{:: 'sso_delete_modal_title' | translate }}"
+        data-primary-action="$ctrl.deleteSso()"
+        data-primary-label="{{:: 'user_modal_confirm' | translate }}"
+        data-secondary-action="$ctrl.close()"
+        data-secondary-label="{{:: 'user_modal_cancel' | translate }}"
+        data-on-dismiss="$ctrl.close()"
+    >
+        <p
+            class="text-danger"
+            data-translate="sso_delete_modal_step1_question"
+        ></p>
+    </oui-modal>
+</div>
