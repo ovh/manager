@@ -5,3 +5,13 @@
 html {
   font-family: var(--ods-font-family-default);
 }
+
+.sub-row {
+  th {
+    background-color: var(--ods-color-neutral-050) !important;
+  }
+  td {
+    padding: 16px 0 16px 2rem !important;
+    background-color: var(--ods-color-neutral-050) !important;
+  }
+}
