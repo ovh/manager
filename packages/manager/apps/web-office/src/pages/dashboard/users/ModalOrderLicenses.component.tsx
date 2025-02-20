@@ -93,8 +93,8 @@ export default function ModalOrderLicenses() {
       }}
     >
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="flex flex-wrap">
-          <OdsFormField className="w-3/5 mr-8">
+        <div className="flex flex-wrap justify-between">
+          <OdsFormField className="w-full md:w-3/5">
             <label slot="label" htmlFor="form-product-type">
               {t('dashboard_users_order_licences_type')}
             </label>
@@ -139,7 +139,6 @@ export default function ModalOrderLicenses() {
                   }
                   max={300}
                   min={1}
-                  className="ml-10"
                 />
               )}
             />

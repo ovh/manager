@@ -163,42 +163,49 @@ export default function ModalOrderUsers() {
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t('common:common_field_label_mandatory')}
         </OdsText>
-        <Controller
-          name="firstName"
-          control={control}
-          rules={{ required: true }}
-          render={({ field }) => (
-            <OdsFormField error={errors?.firstName?.message as string}>
-              <label slot="label">{t('common:firstname')}*</label>
-              <OdsInput
-                type={ODS_INPUT_TYPE.text}
-                name="firstName"
-                data-testid="input-firstName"
-                onOdsChange={(event) => field.onChange(event.target.value)}
-              ></OdsInput>
-            </OdsFormField>
-          )}
-        />
-        <Controller
-          name="lastName"
-          control={control}
-          rules={{ required: true }}
-          render={({ field }) => (
-            <OdsFormField error={errors?.lastName?.message as string}>
-              <label slot="label">{t('common:lastname')}*</label>
-              <OdsInput
-                type={ODS_INPUT_TYPE.text}
-                name="lastName"
-                data-testid="input-lastName"
-                onOdsChange={(event) => field.onChange(event.target.value)}
-              />
-            </OdsFormField>
-          )}
-        />
-
+        <div className="flex flex-wrap sm:flex-nowrap gap-5">
+          <Controller
+            name="firstName"
+            control={control}
+            rules={{ required: true }}
+            render={({ field }) => (
+              <OdsFormField
+                error={errors?.firstName?.message as string}
+                className="w-full"
+              >
+                <label slot="label">{t('common:firstname')}*</label>
+                <OdsInput
+                  type={ODS_INPUT_TYPE.text}
+                  name="firstName"
+                  data-testid="input-firstName"
+                  onOdsChange={(event) => field.onChange(event.target.value)}
+                />
+              </OdsFormField>
+            )}
+          />
+          <Controller
+            name="lastName"
+            control={control}
+            rules={{ required: true }}
+            render={({ field }) => (
+              <OdsFormField
+                error={errors?.lastName?.message as string}
+                className="w-full"
+              >
+                <label slot="label">{t('common:lastname')}*</label>
+                <OdsInput
+                  type={ODS_INPUT_TYPE.text}
+                  name="lastName"
+                  data-testid="input-lastName"
+                  onOdsChange={(event) => field.onChange(event.target.value)}
+                />
+              </OdsFormField>
+            )}
+          />
+        </div>
         <OdsFormField error={errors?.login?.message as string}>
           <label slot="label">{t('common:login')}*</label>
-          <div className="flex">
+          <div className="flex flex-wrap sm:flex-nowrap gap-5">
             <Controller
               name="login"
               control={control}
@@ -211,7 +218,7 @@ export default function ModalOrderUsers() {
                   data-testid="input-login"
                   onOdsBlur={onBlur}
                   onOdsChange={onChange}
-                  className="w-full mr-6"
+                  className="w-full"
                 />
               )}
             />
@@ -220,12 +227,12 @@ export default function ModalOrderUsers() {
               control={control}
               render={({ field: { name } }) => (
                 <OdsInput
-                  className="w-full"
                   type={ODS_INPUT_TYPE.text}
                   name={name}
                   data-testid="input-domain"
                   isDisabled
                   value={`@${domain}`}
+                  className="w-full"
                 />
               )}
             />

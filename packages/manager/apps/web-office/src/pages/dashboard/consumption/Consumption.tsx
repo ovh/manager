@@ -3,7 +3,7 @@ import {
   OdsCheckbox,
   OdsFormField,
   OdsSelect,
-  OdsText,
+  OdsBadge,
 } from '@ovhcloud/ods-components/react';
 import {
   Area,
@@ -20,7 +20,7 @@ import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 
 import { useTranslation } from 'react-i18next';
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
 import {
   getOfficeTenantUsageStatisticsQueryKey,
   getOfficeUsageStatistics,
@@ -132,7 +132,41 @@ export default function Consumption() {
         return chartItem;
       },
     ) || [];
+  const handleCheckboxChange = (entry: any, e: any) => {
+    setLineChartShow((old) => ({
+      ...old,
+      [entry.dataKey]: e.detail.checked,
+    }));
+  };
 
+  const renderLegend = ({ payload }: { payload: any[] }) => {
+    return (
+      <div className="flex justify-center flex-wrap mt-12">
+        {payload.map((entry) => (
+          <div key={entry.value} className="flex items-center mx-4">
+            <OdsCheckbox
+              name={entry.value}
+              inputId={entry.value}
+              isChecked={
+                lineChartShow[entry.dataKey as keyof typeof lineChartShow]
+              }
+              onOdsChange={(e) => handleCheckboxChange(entry, e)}
+            />
+            <label htmlFor={entry.value} className="ml-2 flex items-center">
+              <OdsBadge
+                label={entry.value}
+                color={
+                  entry.value === t('officeBusiness_serie_name')
+                    ? ODS_BADGE_COLOR.success
+                    : ODS_BADGE_COLOR.information
+                }
+              />
+            </label>
+          </div>
+        ))}
+      </div>
+    );
+  };
   return (
     <>
       <OdsFormField className="w-1/4">
@@ -154,47 +188,9 @@ export default function Consumption() {
           ))}
         </OdsSelect>
       </OdsFormField>
-      <div>
-        <div className="mb-4 mt-6">
-          <OdsCheckbox
-            name="officeBusiness"
-            inputId="officeBusiness"
-            isChecked={lineChartShow.officeBusiness}
-            onOdsChange={(e) =>
-              setLineChartShow((prev) => ({
-                ...prev,
-                officeBusiness: e.detail.checked,
-              }))
-            }
-            data-testid="officeBusiness"
-          />
-          <label htmlFor="officeBusiness" className="ml-4">
-            <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-              {t('officeBusiness_serie_name')}
-            </OdsText>
-          </label>
-        </div>
-        <OdsCheckbox
-          name="officeProPlus"
-          inputId="officeProPlus"
-          isChecked={lineChartShow.officeProPlus}
-          onOdsChange={(e) =>
-            setLineChartShow((prev) => ({
-              ...prev,
-              officeProPlus: e.detail.checked,
-            }))
-          }
-          data-testid="officeProPlus"
-        />
-        <label htmlFor="officeProPlus" className="ml-4">
-          <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-            {t('officeProPlus_serie_name')}
-          </OdsText>
-        </label>
-      </div>
       <div className="mt-12">
         <ResponsiveContainer width="100%" height={400}>
-          <AreaChart data={chartData}>
+          <AreaChart data={chartData} accessibilityLayer>
             <defs>
               <linearGradient id="colorBusiness" x1="0" y1="0" x2="0" y2="1">
                 <stop
@@ -233,27 +229,7 @@ export default function Consumption() {
             <Tooltip content={<CustomTooltip locale={locale} />} />
             <Legend
               aria-labelledby="legend-title"
-              onClick={(payload) => {
-                if (payload.dataKey === 'officeBusiness') {
-                  setLineChartShow((prev) => ({
-                    ...prev,
-                    officeBusiness: !prev.officeBusiness,
-                  }));
-                }
-                if (payload.dataKey === 'officeProPlus') {
-                  setLineChartShow((prev) => ({
-                    ...prev,
-                    officeProPlus: !prev.officeProPlus,
-                  }));
-                }
-              }}
-              onMouseEnter={(_payload, _index, event) => {
-                const { target } = event;
-
-                if (target instanceof HTMLSpanElement) {
-                  target.style.cursor = 'pointer';
-                }
-              }}
+              content={renderLegend}
               payload={[
                 {
                   id: 'officeBusiness',
