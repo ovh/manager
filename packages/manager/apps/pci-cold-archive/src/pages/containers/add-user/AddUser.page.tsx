@@ -1,5 +1,4 @@
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { ODS_BUTTON_VARIANT, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import {
   OdsButton,
@@ -7,22 +6,21 @@ import {
   OdsSpinner,
   OdsText,
 } from '@ovhcloud/ods-components/react';
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { COLD_ARCHIVE_TRACKING } from '@/tracking.constants';
-import { useTracking } from '@/hooks/useTracking';
-import { useNotifications } from '@/hooks/useNotifications';
-import { useUsers } from '@/api/hooks/useUsers';
-import { useAddUser } from '@/api/hooks/useArchive';
 import { TUser } from '@/api/data/users';
-import StepOneComponent from './StepOne.component';
-import StepTwoComponent from './StepTwo.component';
-import { useProductRegionsAvailability } from '@/api/hooks/useRegions';
+import { useAddUser } from '@/api/hooks/useArchive';
+import { useUsers } from '@/api/hooks/useUsers';
 import {
   OBJECT_CONTAINER_USER_ROLE_ADMIN,
   OBJECT_CONTAINER_USER_ROLES,
 } from '@/constants';
+import { useNotifications } from '@/hooks/useNotifications';
+import { useTracking } from '@/hooks/useTracking';
+import { COLD_ARCHIVE_TRACKING } from '@/tracking.constants';
+import StepOneComponent from './StepOne.component';
+import StepTwoComponent from './StepTwo.component';
 
 type TRole = typeof OBJECT_CONTAINER_USER_ROLES[number];
 
@@ -44,16 +42,7 @@ export default function AddUserToContainerPage() {
 
   const { projectId, archiveName } = useParams();
 
-  const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
-  const {
-    data: regions,
-    isPending: isRegionsPending,
-  } = useProductRegionsAvailability(
-    ovhSubsidiary,
-    'coldarchive.archive.hour.consumption',
-  );
-
-  const { validUsersWithCredentials, isPending: isPendingListUsers } = useUsers(
+  const { validUsersWithCredentials, isPending: isUsersPending } = useUsers(
     projectId,
   );
 
@@ -82,7 +71,6 @@ export default function AddUserToContainerPage() {
     storageId: archiveName,
     userId: selectedUser?.id,
     role: selectedRole,
-    region: regions ? regions[0] : '',
     onError: (error: ApiError) => {
       addErrorMessage({
         i18nKey:
@@ -123,7 +111,7 @@ export default function AddUserToContainerPage() {
     }
   };
 
-  const isPending = isPendingListUsers || isPendingAddUser || isRegionsPending;
+  const isPending = isUsersPending || isPendingAddUser;
 
   /* The following useEffect is a hack to allow the OdsSelect overflowing
    * in the OdsModal thus allowing the user to select an item even for long lists.

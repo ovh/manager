@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { useBytes } from '@ovh-ux/manager-pci-common';
 import { TArchiveContainer } from '@/api/data/archive';
 import StatusComponent from './Status.components';
-import ActionsComponent from './ActionsComponent';
+import ActionsComponent from './Actions.component';
 import { useFormattedDate } from '@/hooks/useFormattedDate';
 
 export const useDatagridColumn = () => {

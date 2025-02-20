@@ -80,8 +80,7 @@ export default function ActionsComponent({ user }: Readonly<{ user: TUser }>) {
     },
   });
 
-  const downloadUserPolicyJson = () => {
-    trackS3UsersClick(COLD_ARCHIVE_TRACKING.USER.ACTIONS.DOWNLOAD_POLICY);
+  const downloadUserPolicyJson = () =>
     getUserStoragePolicy(projectId, user?.id)
       .then(({ policy }) => {
         trackS3UsersPage(
@@ -109,7 +108,6 @@ export default function ActionsComponent({ user }: Readonly<{ user: TUser }>) {
           error,
         });
       });
-  };
 
   const items: ActionMenuItem[] = [
     {
@@ -123,7 +121,10 @@ export default function ActionsComponent({ user }: Readonly<{ user: TUser }>) {
     {
       id: 1,
       label: t('pci_projects_project_storages_containers_users_download_json'),
-      onClick: downloadUserPolicyJson,
+      onClick: () => {
+        trackS3UsersClick(COLD_ARCHIVE_TRACKING.USER.ACTIONS.DOWNLOAD_POLICY);
+        downloadUserPolicyJson();
+      },
     },
     {
       id: 2,
@@ -146,9 +147,9 @@ export default function ActionsComponent({ user }: Readonly<{ user: TUser }>) {
     },
     {
       id: 4,
-      label: t(
-        'containers:pci_projects_project_storages_containers_delete_label',
-      ),
+      label: t('pci_projects_project_storages_containers_delete_label', {
+        ns: 'containers',
+      }),
       onClick: () => {
         trackS3UsersClick(COLD_ARCHIVE_TRACKING.USER.ACTIONS.DELETE_POLICY);
         navigate(`./${user.id}/delete`);
