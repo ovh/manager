@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.21.1](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.21.0...@ovh-ux/ovh-at-internet@0.21.1) (2025-02-20)
+
+
+### Bug Fixes
+
+* **at-internet:** fix page chapter on click event ([102a3be](https://github.com/ovh/manager/commit/102a3bedfb87132da0a8466c4b0d8a0d98ed9bbb))
+
+
+
+
+
 # [0.21.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.20.0...@ovh-ux/ovh-at-internet@0.21.0) (2025-02-11)
 
 

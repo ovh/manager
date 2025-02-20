@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.10.0...@ovh-ux/manager-react-components@2.11.0) (2025-02-20)
+
+### Features
+
+- **generator:** update v6 template listing search ([fe9c477](https://github.com/ovh/manager/commit/fe9c477025a4c5881f3dc7ef25e94f9e82acb64f))
+- **manager-react-components:** add datagrid topbar component ([454f1c5](https://github.com/ovh/manager/commit/454f1c5963373d3c0686d8268b25fecd21673af7))
+- **manager-react-components:** add search in datagrid topbar component ([a286ef2](https://github.com/ovh/manager/commit/a286ef229b4930fb416978c8f0ed25b58d65abb1))
+- **manager-react-components:** update price to accept zero digits ([3651088](https://github.com/ovh/manager/commit/3651088303143c6a6d3e55e1392711c301130db0))
+- **mrc:** datagrid - add sub component feature ([ae4d154](https://github.com/ovh/manager/commit/ae4d154f0a5e6bfa549aae13a3b702e0bae46d35))
+
 # [2.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.9.0...@ovh-ux/manager-react-components@2.10.0) (2025-02-20)
 
 ### Features

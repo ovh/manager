@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-generator@0.24.0...@ovh-ux/manager-generator@0.25.0) (2025-02-20)
+
+
+### Features
+
+* **generator:** update v6 template listing search ([fe9c477](https://github.com/ovh/manager/commit/fe9c477025a4c5881f3dc7ef25e94f9e82acb64f))
+* **manager-react-components:** add datagrid topbar component ([454f1c5](https://github.com/ovh/manager/commit/454f1c5963373d3c0686d8268b25fecd21673af7))
+
+
+
+
+
 # [0.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-generator@0.23.0...@ovh-ux/manager-generator@0.24.0) (2025-02-19)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-ng-layout-helpers@2.10.0...@ovh-ux/manager-ng-layout-helpers@2.11.0) (2025-02-20)
+
+
+### Features
+
+* **ng-layout-helpers:** add possibility to display guide.category ([465daff](https://github.com/ovh/manager/commit/465daffea8226fdddfd20298dcf111108c34c53c))
+
+
+
+
+
 # [2.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-ng-layout-helpers@2.9.2...@ovh-ux/manager-ng-layout-helpers@2.10.0) (2025-02-20)
 
 
