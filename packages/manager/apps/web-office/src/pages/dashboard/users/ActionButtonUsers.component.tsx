@@ -19,30 +19,26 @@ const ActionButtonUsers: React.FC<ActionButtonUsersProps> = ({
 }) => {
   const { t } = useTranslation('dashboard/users');
   const navigate = useNavigate();
-  const hrefDeleteUsers = useGenerateUrl('./users/delete', 'path', {
+  const hrefDeleteUsers = useGenerateUrl('./delete', 'path', {
     activationEmail: usersItem.activationEmail,
     ...(!licenceDetail.serviceType && {
       licencePrepaidName: usersItem.serviceName,
     }),
   });
 
-  const hrefEditUsers = useGenerateUrl('./users/edit', 'path', {
+  const hrefEditUsers = useGenerateUrl('./edit', 'path', {
     activationEmail: usersItem.activationEmail,
     ...(!licenceDetail.serviceType && {
       licencePrepaidName: usersItem.serviceName,
     }),
   });
 
-  const hrefChangePasswordUsers = useGenerateUrl(
-    './users/change-password',
-    'path',
-    {
-      activationEmail: usersItem.activationEmail,
-      ...(!licenceDetail.serviceType && {
-        licencePrepaidName: licenceDetail.serviceName,
-      }),
-    },
-  );
+  const hrefChangePasswordUsers = useGenerateUrl('./change-password', 'path', {
+    activationEmail: usersItem.activationEmail,
+    ...(!licenceDetail.serviceType && {
+      licencePrepaidName: licenceDetail.serviceName,
+    }),
+  });
 
   const handlePasswordChangeClick = () => navigate(hrefChangePasswordUsers);
 
