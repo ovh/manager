@@ -36,5 +36,5 @@
   "zimbra_domains_add_domain_configuration_cname_field_type": "Tipo de registo:",
   "zimbra_domains_add_domain_configuration_cname_field_subdomain": "Subdomínio:",
   "zimbra_domains_add_domain_configuration_cname_field_target": "Destino:",
-  "zimbra_domains_add_domain_warning_configuration_standard": "Ao optar pela configuração recomendada, aceita que todos os seus e-mails sejam encaminhados para o serviço Zimbra. Se recusar, desmarque a caixa MX na configuração personalizada."
+  "zimbra_domains_add_domain_warning_configuration_standard": "Ao optar pela configuração recomendada, aceita que todos os seus e-mails sejam encaminhados para o serviço Zimbra. Se não o pretende, desmarque a caixa MX na configuração personalizada."
 }

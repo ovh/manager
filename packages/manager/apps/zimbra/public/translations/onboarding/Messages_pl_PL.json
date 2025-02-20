@@ -1,9 +1,9 @@
 {
-  "title": "Ciąg współdzielony Zimbra",
-  "description": "Komunikacja i współpraca w przedsiębiorstwie dzięki pakietowi Zimbra",
+  "title": "Rozwiązanie do pracy zespołowej Zimbra",
+  "description": "Zimbra - komunikacja i praca zespołowa w firmie",
   "orderButtonLabel": "Zamów",
   "orderButtonLink": "/#/dedicated/zimbra/order",
-  "moreInfoButtonLabel": "Poznaj rozwiązanie Zimbra",
+  "moreInfoButtonLabel": "Sprawdź rozwiązanie Zimbra",
   "moreInfoButtonLink": "/#/dedicated/zimbra/info",
   "guideCategory": "Tutoriale",
   "guide1Title": "Pierwsze kroki z rozwiązaniem Zimbra",
@@ -15,11 +15,11 @@
   "guide3Title": "Montaż NAS w systemie Windows Server za pomocą CIFS",
   "guide3Description": "Dowiedz się, jak zamontować NAS na serwerze Windows Server przy użyciu protokołu CIFS",
   "guide3Link": "https://help.ovhcloud.com/csm/pl-public-cloud-storage-nas-cifs?id=kb_article_view&amp;sysparm_article=KB0046679",
-  "card_guide_category": "Tutoriale",
-  "card_guide_title_1": "Pierwsze kroki z ofertą Zimbra",
+  "card_guide_category": "Tutorial",
+  "card_guide_title_1": "Pierwsze kroki z Zimbrą",
   "card_guide_title_2": "Konfiguracja konta Zimbra",
   "card_guide_title_3": "Zarządzanie webmailem Zimbra",
-  "card_guide_description_1": "Dowiedz się, jak utworzyć Twoje pierwsze skrzynki pocztowe i zarządzać usługą",
-  "card_guide_description_2": "Dowiedz się, jak skonfigurować i korzystać z konta Zimbra na zewnętrznym urządzeniu (PC lub smartphone)",
-  "card_guide_description_3": "Poznaj funkcje interfejsu WWW Zimbra"
+  "card_guide_description_1": "Sprawdź, jak utworzyć pierwsze skrzynki pocztowe i zarządzać usługą",
+  "card_guide_description_2": "Sprawdź, jak skonfigurować konto Zimbra na zewnętrznym urządzeniu (PC lub smartphone) i jak z niego korzystać",
+  "card_guide_description_3": "Poznaj funkcje interfejsu Zimbra"
 }
