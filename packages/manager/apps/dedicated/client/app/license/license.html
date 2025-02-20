@@ -3,7 +3,19 @@
 ></oui-spinner>
 
 <div data-ng-hide="loadingLicensesInformations || loadingLicensesError">
-    <oui-header heading="{{:: 'license_dashboard_title' | translate}}">
+    <oui-header>
+        <oui-header-heading>
+            <div class="d-flex justify-content-between">
+                <h1
+                    class="oui-header__title"
+                    data-translate="{{:: 'license_dashboard_title' | translate}}"
+                ></h1>
+                <changelog-button
+                    links="constants.CHANGELOG.licenses.links"
+                    chapters="constants.CHANGELOG.licenses.chapters"
+                ></changelog-button>
+            </div>
+        </oui-header-heading>
     </oui-header>
 
     <div>

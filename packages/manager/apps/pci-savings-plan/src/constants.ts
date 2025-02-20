@@ -1,3 +1,5 @@
+import { ChangelogLinks } from '@ovh-ux/manager-react-components';
+
 export const SAVINGS_PLAN_INFO_URL = {
   DEFAULT: 'https://ovhcloud.com/en/public-cloud/savings-plan/',
   ASIA: 'https://ovhcloud.com/asia/public-cloud/savings-plan/',
@@ -20,4 +22,11 @@ export const SAVINGS_PLAN_INFO_URL = {
   WE: 'https://ovhcloud.com/us-en/public-cloud/savings-plan/',
   WS: 'https://ovhcloud.com/us-en/public-cloud/savings-plan/',
   US: 'https://us.ovhcloud.com/public-cloud/savings-plan/',
+};
+
+export const CHANGELOG_LINKS: ChangelogLinks = {
+  changelog: 'https://github.com/orgs/ovh/projects/16/views/6?pane=info',
+  roadmap: 'https://github.com/orgs/ovh/projects/16/views/1?pane=info',
+  'feature-request':
+    'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
 };

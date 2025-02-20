@@ -12,6 +12,7 @@ export default class EmailDomainCtrl {
     mailingListLink,
     taskLink,
     WucEmails,
+    constants,
   ) {
     this.$scope = $scope;
     this.$stateParams = $stateParams;
@@ -24,6 +25,7 @@ export default class EmailDomainCtrl {
     this.mailingListLink = mailingListLink;
     this.taskLink = taskLink;
     this.WucEmails = WucEmails;
+    this.constants = constants;
   }
 
   $onInit() {

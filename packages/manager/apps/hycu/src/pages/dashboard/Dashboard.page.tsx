@@ -24,7 +24,10 @@ import {
   BaseLayout,
   useServiceDetails,
   Notifications,
+  ChangelogButton,
 } from '@ovh-ux/manager-react-components';
+
+import { CHANGELOG_LINKS } from '@/constants';
 
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb.component';
 import Errors from '@/components/Error/Error';
@@ -112,6 +115,7 @@ export default function DashboardPage() {
   const header = {
     title: serviceDetails?.data.resource.displayName,
     description: serviceName,
+    changelogButton: <ChangelogButton links={CHANGELOG_LINKS} />,
   };
 
   if (error) {

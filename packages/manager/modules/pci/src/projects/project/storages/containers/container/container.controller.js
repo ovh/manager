@@ -20,6 +20,7 @@ export default class PciStoragesContainersContainerController {
     atInternet,
     CucCloudMessage,
     PciProjectStorageContainersService,
+    CHANGELOG,
   ) {
     this.$q = $q;
     this.$translate = $translate;
@@ -28,6 +29,7 @@ export default class PciStoragesContainersContainerController {
     this.atInternet = atInternet;
     this.CucCloudMessage = CucCloudMessage;
     this.PciProjectStorageContainersService = PciProjectStorageContainersService;
+    this.CHANGELOG = CHANGELOG;
 
     this.guides = CONTAINER_GUIDES.map((guide) => ({
       ...guide,

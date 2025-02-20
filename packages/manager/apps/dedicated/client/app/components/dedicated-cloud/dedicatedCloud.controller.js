@@ -1,8 +1,9 @@
 export default class {
   /* @ngInject */
-  constructor($scope, $translate) {
+  constructor($scope, $translate, constants) {
     this.$scope = $scope;
     this.$translate = $translate;
+    this.constants = constants;
   }
 
   $onInit() {

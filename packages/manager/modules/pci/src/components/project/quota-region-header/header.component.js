@@ -1,4 +1,5 @@
 import template from './header.html';
+import controller from './header.controller';
 
 export default {
   template,
@@ -8,4 +9,5 @@ export default {
     trackClick: '<',
     projectId: '<',
   },
+  controller,
 };

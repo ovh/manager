@@ -30,6 +30,7 @@ export default /* @ngInject */ ($stateProvider) => {
           .then(({ data }) => data),
       header: /* @ngInject */ ($translate) =>
         $translate.instant('managed_baremetal_title'),
+      changelog: () => 'managed_baremetal',
       customizableColumns: () => true,
       getServiceNameLink: /* @ngInject */ ($state) => ({
         serviceName: productId,

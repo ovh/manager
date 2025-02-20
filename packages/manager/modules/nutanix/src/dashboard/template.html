@@ -25,9 +25,36 @@
     </oui-message>
     <oui-header
         class="mb-3"
-        heading="{{:: $ctrl.nutanixClusterIamName }}"
         description="{{:: $ctrl.cluster.targetSpec.name }}"
     >
+        <oui-header-heading>
+            <div class="d-flex justify-content-between">
+                <h1
+                    class="oui-header__title"
+                    data-translate="{{:: $ctrl.nutanixClusterIamName }}"
+                ></h1>
+                <div
+                    class="d-flex align-items-center flex-wrap gap-1 justify-end"
+                >
+                    <changelog-button
+                        links="$ctrl.constants.CHANGELOG.nutanix.links"
+                        chapters="$ctrl.constants.CHANGELOG.nutanix.chapters"
+                    ></changelog-button>
+                    <oui-guide-menu
+                        data-text="{{:: 'nutanix_dashboard_guides_header' | translate }}"
+                    >
+                        <oui-guide-menu-item
+                            href="{{ $ctrl.nutanixGuideUrl }}"
+                            data-external
+                        >
+                            <span
+                                data-translate="nutanix_dashboard_guides_header_all_guides"
+                            ></span>
+                        </oui-guide-menu-item>
+                    </oui-guide-menu>
+                </div>
+            </div>
+        </oui-header-heading>
         <oui-header-tabs>
             <oui-header-tabs-item
                 state="nutanix.dashboard.general-info"
@@ -44,18 +71,6 @@
                 ><span data-translate="nutanix_dashboard_nodes"></span>
             </oui-header-tabs-item>
         </oui-header-tabs>
-        <oui-guide-menu
-            data-text="{{:: 'nutanix_dashboard_guides_header' | translate }}"
-        >
-            <oui-guide-menu-item
-                href="{{ $ctrl.nutanixGuideUrl }}"
-                data-external
-            >
-                <span
-                    data-translate="nutanix_dashboard_guides_header_all_guides"
-                ></span>
-            </oui-guide-menu-item>
-        </oui-guide-menu>
     </oui-header>
     <div
         class="alert-server my-3"

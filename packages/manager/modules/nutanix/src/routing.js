@@ -45,6 +45,7 @@ export default /* @ngInject */ ($stateProvider) => {
       defaultFilterColumn: () => 'serviceName',
       header: /* @ngInject */ ($translate) =>
         $translate.instant('nutanix_title'),
+      changelog: () => 'nutanix',
       customizableColumns: () => true,
       columns: /* @ngInject */ ($translate, isPackTypeAvailable) => {
         return [

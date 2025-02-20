@@ -2,13 +2,22 @@ import get from 'lodash/get';
 
 export default class {
   /* @ngInject */
-  constructor($q, $stateParams, $scope, $translate, TucSmsMediator, TucToast) {
+  constructor(
+    $q,
+    $stateParams,
+    $scope,
+    $translate,
+    TucSmsMediator,
+    TucToast,
+    CHANGELOG,
+  ) {
     this.$q = $q;
     this.$stateParams = $stateParams;
     this.$translate = $translate;
     this.$scope = $scope;
     this.TucSmsMediator = TucSmsMediator;
     this.TucToast = TucToast;
+    this.CHANGELOG = CHANGELOG;
   }
 
   $onInit() {

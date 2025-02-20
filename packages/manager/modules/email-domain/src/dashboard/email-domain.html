@@ -6,7 +6,23 @@
     </div>
 
     <div data-ng-if="!ctrlEmailDomain.loading.init">
-        <oui-header data-heading="{{ domain.displayName }}">
+        <oui-header>
+            <oui-header-heading>
+                <div class="d-flex justify-content-between">
+                    <h1
+                        class="oui-header__title"
+                        data-translate="{{ domain.displayName }}"
+                    ></h1>
+                    <div
+                        class="d-flex justify-content-end align-items-center gap-1 flex-wrap"
+                    >
+                        <changelog-button
+                            links="ctrlEmailDomain.constants.CHANGELOG.mx_plan.links"
+                            chapters="ctrlEmailDomain.constants.CHANGELOG.mx_plan.chapters"
+                        ></changelog-button>
+                    </div>
+                </div>
+            </oui-header-heading>
             <oui-header-tabs>
                 <oui-header-tabs-item
                     href="{{ctrlEmailDomain.informationLink }}"

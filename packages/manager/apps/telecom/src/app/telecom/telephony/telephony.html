@@ -1,4 +1,21 @@
-<oui-header data-heading="{{ :: 'telephony_title' | translate }}"></oui-header>
+<oui-header>
+    <oui-header-heading>
+        <div class="d-flex justify-content-between">
+            <h1
+                class="oui-header__title"
+                data-translate="{{ :: 'telephony_title' | translate }}"
+            ></h1>
+            <div
+                class="d-flex justify-content-end align-items-center gap-1 flex-wrap"
+            >
+                <changelog-button
+                    links="$ctrl.CHANGELOG.telephony.links"
+                    chapters="$ctrl.CHANGELOG.telephony.chapters"
+                ></changelog-button>
+            </div>
+        </div>
+    </oui-header-heading>
+</oui-header>
 
 <tuc-telephony-procedure class="w-100"></tuc-telephony-procedure>
 

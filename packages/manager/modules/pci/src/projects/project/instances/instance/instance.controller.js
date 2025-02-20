@@ -9,6 +9,7 @@ export default class PciInstanceController {
     ovhManagerRegionService,
     PciProjectsProjectInstanceService,
     PciProject,
+    CHANGELOG,
   ) {
     this.$translate = $translate;
     this.coreConfig = coreConfig;
@@ -17,6 +18,7 @@ export default class PciInstanceController {
     this.PciProjectsProjectInstanceService = PciProjectsProjectInstanceService;
     this.PciProject = PciProject;
     this.THREE_AZ_REGION = THREE_AZ_REGION;
+    this.CHANGELOG = CHANGELOG;
   }
 
   $onInit() {

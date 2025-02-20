@@ -35,6 +35,7 @@ export default /* @ngInject */ ($stateProvider) => {
       defaultFilterColumn: () => 'serviceName',
       header: /* @ngInject */ ($translate) =>
         $translate.instant('hostings_title'),
+      changelog: () => 'hosting_plan',
       customizableColumns: () => true,
       getServiceNameLink: /* @ngInject */ ($state) => ({
         serviceName: productId,

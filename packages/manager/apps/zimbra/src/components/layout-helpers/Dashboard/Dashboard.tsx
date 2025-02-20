@@ -12,6 +12,7 @@ import {
   GuideItem,
   Notifications,
   useNotifications,
+  ChangelogButton,
 } from '@ovh-ux/manager-react-components';
 
 import { useTranslation } from 'react-i18next';
@@ -25,7 +26,7 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import TabsPanel, { computePathMatchers, TabItemProps } from './TabsPanel';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
-import { GUIDES_LIST } from '@/guides.constants';
+import { GUIDES_LIST, CHANGELOG_LINKS } from '@/guides.constants';
 import { urls } from '@/routes/routes.constants';
 import { FEATURE_FLAGS } from '@/utils';
 import { useGenerateUrl, useOrganization, useOverridePage } from '@/hooks';
@@ -166,6 +167,7 @@ export const Dashboard: React.FC = () => {
       header={{
         title: 'Zimbra',
         headerButton: <GuideButton items={guideItems} />,
+        changelogButton: <ChangelogButton links={CHANGELOG_LINKS} />,
       }}
       subtitle={
         organization &&

@@ -1,8 +1,9 @@
 export default class PciTrainingController {
   /* @ngInject */
-  constructor(CucCloudMessage, ovhManagerRegionService) {
+  constructor(CucCloudMessage, ovhManagerRegionService, CHANGELOG) {
     this.CucCloudMessage = CucCloudMessage;
     this.ovhManagerRegionService = ovhManagerRegionService;
+    this.CHANGELOG = CHANGELOG;
   }
 
   $onInit() {

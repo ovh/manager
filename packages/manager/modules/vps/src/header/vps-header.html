@@ -1,7 +1,16 @@
-<oui-header
-    data-heading="{{:: $ctrl.description || $ctrl.serviceName }}"
-    data-description="{{:: $ctrl.serviceName }}"
->
+<oui-header data-description="{{:: $ctrl.serviceName }}">
+    <oui-header-heading>
+        <div class="d-flex justify-content-between">
+            <h1
+                class="oui-header__title"
+                data-translate="{{:: $ctrl.description || $ctrl.serviceName }}"
+            ></h1>
+            <changelog-button
+                links="$ctrl.constants.CHANGELOG.vps.links"
+                chapters="$ctrl.constants.CHANGELOG.vps.chapters"
+            ></changelog-button>
+        </div>
+    </oui-header-heading>
     <oui-header-tabs data-ng-if="!$ctrl.vps.isExpired">
         <oui-header-tabs-item
             data-state="vps.detail.dashboard"

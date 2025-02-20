@@ -1,4 +1,5 @@
 import { screen, waitFor } from '@testing-library/react';
+import { vi } from 'vitest';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import {
   WAIT_FOR_DEFAULT_OPTIONS,
@@ -9,6 +10,14 @@ import { backupList } from '@ovh-ux/manager-module-vcd-api';
 import { renderTest, labels, goToDashboard } from '@/test-helpers';
 import { urls } from '@/routes/routes.constant';
 import '@testing-library/jest-dom';
+
+vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
+  const actual: any = await importOriginal();
+  return {
+    ...actual,
+    ChangelogButton: vi.fn().mockReturnValue(<div></div>),
+  };
+});
 
 describe('dashboard', () => {
   it('displays the dashboard page when clicking on the link', async () => {

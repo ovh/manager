@@ -15,6 +15,7 @@ export default class EmailDelegateCtrl {
     goToFilters,
     goToResponder,
     WucEmails,
+    constants,
   ) {
     this.$scope = $scope;
     this.$q = $q;
@@ -25,6 +26,7 @@ export default class EmailDelegateCtrl {
     this.goToFilters = goToFilters;
     this.goToResponder = goToResponder;
     this.WucEmails = WucEmails;
+    this.constants = constants;
   }
 
   $onInit() {

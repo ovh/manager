@@ -37,6 +37,7 @@ vi.mock('@ovh-ux/manager-react-components', async (managerComonents) => {
       sorting: { desc: false, id: 'value for id' },
       setSorting: vi.fn(),
     }),
+    ChangelogButton: vi.fn().mockReturnValue(<div></div>),
   };
 });
 

@@ -27,6 +27,7 @@ export default /* @ngInject */ ($stateProvider) => {
       defaultFilterColumn: () => 'domain',
       header: /* @ngInject */ ($translate) =>
         $translate.instant('exchange_title'),
+      changelog: () => 'exchange',
       customizableColumns: () => true,
       getServiceNameLink: /* @ngInject */ ($state) => ({ domain }) =>
         $state.href('exchange.dashboard', {
