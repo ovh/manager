@@ -150,7 +150,6 @@ export const useRestoreArchive = ({
 type AddUserProps = {
   projectId: string;
   storageId: string;
-  region: string;
   userId: number;
   role: string;
   onError: (cause: Error) => void;
@@ -160,12 +159,13 @@ type AddUserProps = {
 export const useAddUser = ({
   projectId,
   storageId,
-  region,
   userId,
   role,
   onError,
   onSuccess,
 }: AddUserProps) => {
+  const region = useArchiveRegion();
+
   const mutation = useMutation({
     mutationFn: () =>
       addUserToContainer({ projectId, region, storageId, userId, role }),

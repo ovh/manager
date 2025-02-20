@@ -232,7 +232,7 @@ export const useGenerateS3Credentials = ({
 
 type ImportPolicyProps = {
   projectId: string;
-  userId: string;
+  userId: number;
   files: File[];
   onError: (cause: Error) => void;
   onSuccess: () => void;
