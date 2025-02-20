@@ -1,9 +1,10 @@
 import {
   DIAGNOSTIC_TRACKING_PREFIX,
-  DIAGNOSTIC_DASHBOARD_TRACKING_CONTEXT,
+  getDiagnosticDashboardTrackingContext,
 } from '../../../../cloud-connect.constants';
 
 export default class DatacenterExtraConfiguration {
+  /* @ngInject */
   constructor(atInternet) {
     this.atInternet = atInternet;
   }
@@ -16,7 +17,9 @@ export default class DatacenterExtraConfiguration {
     this.atInternet.trackClick({
       name: `${DIAGNOSTIC_TRACKING_PREFIX}tile::button::check-bgp-peering::cloud-connect`,
       type: 'action',
-      ...DIAGNOSTIC_DASHBOARD_TRACKING_CONTEXT,
+      ...getDiagnosticDashboardTrackingContext(
+        'cloud-connect::dashboard::configure',
+      ),
     });
 
     return this.checkBgpPeering({

@@ -1,6 +1,7 @@
 import {
   DIAGNOSTIC_TRACKING_PREFIX,
   DIAGNOSTIC_LISTING_TRACKING_CONTEXT,
+  getDiagnosticDashboardTrackingContext,
 } from '../../../cloud-connect.constants';
 
 export default class DiagnosticResultCtrl {
@@ -33,7 +34,9 @@ export default class DiagnosticResultCtrl {
     this.atInternet.trackClick({
       name: `${DIAGNOSTIC_TRACKING_PREFIX}pop-up::button::copy_diagnostic-results-${this.diagnostic.function}`,
       type: 'action',
-      ...DIAGNOSTIC_LISTING_TRACKING_CONTEXT,
+      ...getDiagnosticDashboardTrackingContext(
+        `cloud-connect::pop-up::see::diagnostic-results-${this.diagnostic.function}`,
+      ),
     });
     if (navigator.clipboard && navigator.clipboard.writeText) {
       try {
@@ -53,7 +56,9 @@ export default class DiagnosticResultCtrl {
     this.atInternet.trackClick({
       name: `${DIAGNOSTIC_TRACKING_PREFIX}pop-up::button::download_diagnostic-results-${this.diagnostic.function}`,
       type: 'action',
-      ...DIAGNOSTIC_LISTING_TRACKING_CONTEXT,
+      ...getDiagnosticDashboardTrackingContext(
+        `cloud-connect::pop-up::see::diagnostic-results-${this.diagnostic.function}`,
+      ),
     });
     return this.cloudConnectDiagnosticsService.download(
       this.cloudConnect.id,

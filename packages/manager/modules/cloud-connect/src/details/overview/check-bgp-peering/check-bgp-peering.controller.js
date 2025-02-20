@@ -6,6 +6,7 @@ import {
 import {
   DIAGNOSTIC_TRACKING_PREFIX,
   DIAGNOSTIC_DASHBOARD_TRACKING_CONTEXT,
+  getDiagnosticDashboardTrackingContext,
 } from '../../../cloud-connect.constants';
 
 export default class CheckBGPPeeringCtrl {
@@ -43,7 +44,9 @@ export default class CheckBGPPeeringCtrl {
       this.atInternet.trackClick({
         name: `${DIAGNOSTIC_TRACKING_PREFIX}pop-up::button::check_bgp-peering::cancel`,
         type: 'action',
-        ...DIAGNOSTIC_DASHBOARD_TRACKING_CONTEXT,
+        ...getDiagnosticDashboardTrackingContext(
+          'cloud-connect::pop-up::check::bgp-peering',
+        ),
       });
     }
     return this.goBack();
@@ -53,7 +56,9 @@ export default class CheckBGPPeeringCtrl {
     this.atInternet.trackClick({
       name: `${DIAGNOSTIC_TRACKING_PREFIX}pop-up::button::check_bgp-peering-${this.diagnosticType}::confirm`,
       type: 'action',
-      ...DIAGNOSTIC_DASHBOARD_TRACKING_CONTEXT,
+      ...getDiagnosticDashboardTrackingContext(
+        'cloud-connect::pop-up::check::bgp-peering',
+      ),
     });
     this.isLoading = true;
     this.cloudConnectService
@@ -88,7 +93,9 @@ export default class CheckBGPPeeringCtrl {
                 this.atInternet.trackClick({
                   name: `${DIAGNOSTIC_TRACKING_PREFIX}banner::link::go-to-diagnostic-results-${this.diagnosticType}`,
                   type: 'action',
-                  ...DIAGNOSTIC_DASHBOARD_TRACKING_CONTEXT,
+                  ...getDiagnosticDashboardTrackingContext(
+                    'cloud-connect::dashboard::configure',
+                  ),
                 });
               });
             });
