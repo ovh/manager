@@ -1,5 +1,6 @@
 import '@testing-library/jest-dom';
 import 'element-internals-polyfill';
+import { createContext } from 'react';
 import { vi } from 'vitest';
 
 vi.mock('react-router-dom', async () => {
@@ -7,7 +8,7 @@ vi.mock('react-router-dom', async () => {
   return {
     ...mod,
     useSearchParams: () => [new URLSearchParams({})],
-    useParams: () => ({ projectId: 'project-id', kubeId: 'kube-id' }),
+    useParams: () => ({ projectId: 'project-id', archiveName: 'archive1' }),
     useHref: vi.fn(),
     useLocation: vi.fn(),
     useNavigate: vi.fn(),
@@ -45,6 +46,7 @@ vi.mock('@ovh-ux/manager-react-components', async () => {
     useNotifications: () => ({
       addError: vi.fn(),
       addSuccess: vi.fn(),
+      addInfo: vi.fn(),
     }),
   };
 });
@@ -58,6 +60,7 @@ vi.mock('react-i18next', () => ({
     },
   }),
   Trans: ({ children }: { children: string }) => children,
+  Translation: ({ children }: { children: string }) => children,
 }));
 
 vi.mock('@ovh-ux/manager-react-shell-client', async () => {
@@ -84,3 +87,26 @@ vi.mock('@ovh-ux/manager-core-api', async () => {
     },
   };
 });
+
+const mocks = vi.hoisted(() => ({
+  environment: {
+    getRegion: vi.fn(() => 'EU'),
+    getUser: vi.fn(() => ({ ovhSubsidiary: 'FR', currency: '€' })),
+  },
+  shell: {
+    navigation: {
+      getURL: vi.fn().mockResolvedValue('mocked-url'),
+    },
+    tracking: {
+      trackClick: vi.fn(),
+      trackPage: vi.fn(),
+    },
+  },
+}));
+
+vi.mock('@ovh-ux/manager-react-shell-client', () => ({
+  ShellContext: createContext({
+    shell: mocks.shell,
+    environment: mocks.environment,
+  }),
+}));

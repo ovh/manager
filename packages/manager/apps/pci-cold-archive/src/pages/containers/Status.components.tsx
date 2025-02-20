@@ -19,15 +19,15 @@ export default function StatusComponent({
   name,
   automaticDeletionAt,
 }: Readonly<{ status: string; name: string; automaticDeletionAt: string }>) {
-  const { t } = useTranslation('cold-archive, containers');
+  const { t } = useTranslation(['cold-archive', 'containers']);
+
   return (
     <DataGridTextCell>
       <OdsBadge
         className="font-bold"
         color={COLD_ARCHIVE_CONTAINER_STATUS_LABEL[status.toUpperCase()]}
-        label={t(
-          `cold-archive:pci_projects_project_storages_containers_status_${status}`,
-        )}
+        label={t(`pci_projects_project_storages_containers_status_${status}`)}
+        data-testid="status_badge"
       />
       {status === COLD_ARCHIVE_CONTAINER_STATUS.RESTORED &&
         automaticDeletionAt && (
@@ -36,6 +36,7 @@ export default function StatusComponent({
               preset="span"
               className="block mt-4"
               id={`popover-${name}`}
+              data-testid="status_restore-date_text"
             >
               {t(
                 'containers:pci_projects_project_storages_cold_archive_containers_status_restore_date',
@@ -44,7 +45,11 @@ export default function StatusComponent({
                 },
               )}
             </OdsText>
-            <OdsTooltip triggerId={`popover-${name}`} withArrow>
+            <OdsTooltip
+              data-testid="status_restore-date_tooltip"
+              triggerId={`popover-${name}`}
+              withArrow
+            >
               {t(
                 'containers:pci_projects_project_storages_cold_archive_containers_status_restore_date_tooltip',
               )}

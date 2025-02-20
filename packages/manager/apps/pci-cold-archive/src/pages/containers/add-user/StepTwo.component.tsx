@@ -16,7 +16,7 @@ export default function StepTwoComponent({
   const { t } = useTranslation('containers/add-user');
 
   return (
-    <>
+    <div data-testid="addUser_stepTwo">
       <OdsText preset="paragraph">
         {t(
           'pci_projects_project_storages_coldArchive_containers_addUser_description_container_step_1',
@@ -28,6 +28,7 @@ export default function StepTwoComponent({
         {OBJECT_CONTAINER_USER_ROLES.map((role) => (
           <div key={role} className="flex items-center gap-4">
             <OdsRadio
+              data-testid="AddUser-role_radio"
               inputId={role}
               name={role}
               value={role}
@@ -46,6 +47,6 @@ export default function StepTwoComponent({
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 }

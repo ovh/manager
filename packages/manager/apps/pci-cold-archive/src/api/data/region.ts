@@ -11,7 +11,7 @@ export const getProjectRegionDetails = async (
   return data;
 };
 
-type TProductRegionAvailability = {
+export type TProductRegionAvailability = {
   plans: { code: string; regions: string[] }[];
   products: {
     name: string;
