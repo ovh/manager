@@ -7,9 +7,13 @@ html {
   font-family: var(--ods-font-family-default);
 }
 
-ods-button.action-menu-item::part(button) {
-  width: 100%;
-  justify-content: left;
+.menu-item-button {
+  &::part(button) {
+    width: 100%;
+    justify-content: left;
+    height: 32px;
+    border-radius: 0;
+  }
 }
 
 ods-modal.max-height-modal::part(dialog) {

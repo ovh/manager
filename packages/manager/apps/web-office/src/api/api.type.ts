@@ -24,10 +24,12 @@ export enum TaskStatusEnum {
 }
 
 export type UserParamsType = {
-  activationEmail: string;
-  firstName: string;
-  lastName: string;
+  activationEmail?: string;
+  firstName?: string;
+  lastName?: string;
+  displayName?: string;
 };
+
 export type UserOrderParamsType = {
   domain: string;
   firstName: string;

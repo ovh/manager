@@ -26,7 +26,7 @@ const columns: DatagridColumn<LicenseType>[] = [
   {
     id: 'serviceName',
     cell: (item) => {
-      const href = useGenerateUrl(urls.license, 'href', {
+      const href = useGenerateUrl(urls.generalInformation, 'href', {
         serviceName: item.serviceName,
       });
 

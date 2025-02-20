@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useParams, useResolvedPath } from 'react-router-dom';
 import {
@@ -40,10 +40,16 @@ export default function DashboardPage() {
 
   const tabsList: DashboardTabItemProps[] = [
     {
-      name: 'licence',
-      title: t('licences'),
+      name: 'general-information',
+      title: t('general_informations'),
       to: basePath,
-      pathMatchers: computePathMatchers([urls.license]),
+      pathMatchers: computePathMatchers([urls.generalInformation]),
+    },
+    {
+      name: 'users',
+      title: t('licences'),
+      to: `${basePath}/users`,
+      pathMatchers: computePathMatchers([urls.users]),
     },
     {
       name: 'consumption',
