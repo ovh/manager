@@ -86,7 +86,7 @@ export const postS3Secret = async (
 
 export const importUserPolicy = async (
   projectId: string,
-  userId: string,
+  userId: number,
   policy: string,
 ) => {
   const { data } = await v6.post(

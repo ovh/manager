@@ -104,7 +104,12 @@ export default function DeletePage() {
       onConfirm={onConfirm}
     >
       {archive?.objectsCount > 0 ? (
-        <OdsMessage color="warning" className="block" isDismissible={false}>
+        <OdsMessage
+          color="warning"
+          className="block"
+          isDismissible={false}
+          data-testid="delete-archive_warning-message"
+        >
           <div>
             <span className="block w-full">
               {t(

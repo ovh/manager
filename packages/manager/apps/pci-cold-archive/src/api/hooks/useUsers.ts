@@ -259,7 +259,7 @@ export const useUserCredentials = (projectId: string, userId?: number) => {
 
 type ImportPolicyProps = {
   projectId: string;
-  userId: string;
+  userId: number;
   files: File[];
   onError: (cause: Error) => void;
   onSuccess: () => void;
