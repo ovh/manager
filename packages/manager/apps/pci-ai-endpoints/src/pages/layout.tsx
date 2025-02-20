@@ -163,7 +163,7 @@ export default function Layout() {
           </div>
         ) : (
           isSuccess && (
-            <div className="relative opacity-0 animate-fade-in">
+            <div className="relative animate-fade-in">
               <BaseLayout
                 header={headerProps}
                 tabs={

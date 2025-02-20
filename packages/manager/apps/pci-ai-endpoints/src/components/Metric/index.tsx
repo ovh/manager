@@ -134,7 +134,7 @@ const Metric: React.FC<MetricProps> = ({
   }
 
   return (
-    <div className="max-w-full mx-auto my-12 2xl:ml-0 2xl:mr-auto opacity-0 animate-fade-in">
+    <div className="max-w-full mx-auto my-12 2xl:ml-0 2xl:mr-auto animate-fade-in">
       <OsdsText
         color={ODS_THEME_COLOR_INTENT.primary}
         level={ODS_TEXT_LEVEL.heading}
