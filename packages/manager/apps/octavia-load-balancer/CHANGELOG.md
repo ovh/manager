@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.21](https://github.com/ovh/manager/compare/@ovh-ux/manager-octavia-load-balancer-app@0.7.20...@ovh-ux/manager-octavia-load-balancer-app@0.7.21) (2025-02-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-octavia-load-balancer-app
+
+
+
+
+
 ## [0.7.20](https://github.com/ovh/manager/compare/@ovh-ux/manager-octavia-load-balancer-app@0.7.19...@ovh-ux/manager-octavia-load-balancer-app@0.7.20) (2025-02-19)
 
 **Note:** Version bump only for package @ovh-ux/manager-octavia-load-balancer-app

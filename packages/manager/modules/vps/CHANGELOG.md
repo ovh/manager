@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.46.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.45.3...@ovh-ux/manager-vps@2.46.0) (2025-02-20)
+
+
+### Features
+
+* implement changelog button on angular stack ([#15174](https://github.com/ovh/manager/issues/15174)) ([a965c89](https://github.com/ovh/manager/commit/a965c8980b18a4eb7b17ae996bef52cb43e07a4d))
+
+
+
+
+
 ## [2.45.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.45.2...@ovh-ux/manager-vps@2.45.3) (2025-02-06)
 
 

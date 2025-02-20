@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-registry-app@0.5.0...@ovh-ux/manager-pci-private-registry-app@0.6.0) (2025-02-20)
+
+
+### Features
+
+* add changelog component to product dashboards ([#14906](https://github.com/ovh/manager/issues/14906)) ([46d2c78](https://github.com/ovh/manager/commit/46d2c78b8e8e11fe30f7189ec10f270f3d67586a))
+
+
+
+
+
 # [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-registry-app@0.4.3...@ovh-ux/manager-pci-private-registry-app@0.5.0) (2025-02-19)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-metrics-app",
-  "version": "3.0.17",
+  "version": "3.0.18",
   "private": true,
   "repository": {
     "type": "git",
@@ -18,11 +18,11 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-metrics-app' --include-dependencies -- npm run dev:watch --if-present"
   },
   "dependencies": {
-    "@ovh-ux/manager-components": "^1.22.8",
+    "@ovh-ux/manager-components": "^1.23.0",
     "@ovh-ux/manager-config": "^8.0.2",
     "@ovh-ux/manager-core": "^13.0.5",
     "@ovh-ux/manager-metrics": "^1.6.1",
-    "@ovh-ux/manager-ng-layout-helpers": "^2.9.2",
+    "@ovh-ux/manager-ng-layout-helpers": "^2.10.0",
     "@ovh-ux/ng-at-internet": "^6.0.6",
     "@ovh-ux/ng-ovh-actions-menu": "^5.1.2",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
