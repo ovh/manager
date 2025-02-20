@@ -18,7 +18,6 @@
   "dashboard_kpis_non_discounted_tooltip": "Montante da fatura que excede as suas configurações Savings Plans (no período selecionado para o recurso selecionado)",
   "dashboard_kpis_saved_amount_name": "Poupanças realizadas",
   "dashboard_kpis_saved_amount_name_tooltip": "Total das economias realizadas (no período selecionado para o recurso selecionado)",
-  "dashboard_kpis_saved_strikethrough": "Em vez de <price> {{pricing}}</price> ",
   "dashboard_kpis_not_available": "Não disponível",
   "dashboard_select_label_service": "Serviço",
   "dashboard_select_label_period": "Período",
