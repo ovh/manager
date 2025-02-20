@@ -22,7 +22,6 @@
   "dashboard_kpis_non_discounted_tooltip": "Montant de la facture dépassant vos configurations Savings Plans (sur la période sélectionnée pour la ressource sélectionnée)",
   "dashboard_kpis_saved_amount_name": "Économies réalisées",
   "dashboard_kpis_saved_amount_name_tooltip": "Total des économies réalisées (sur la période sélectionnée pour la ressource sélectionnée)",
-  "dashboard_kpis_saved_strikethrough": "Au lieu de <price>{{pricing}}</price>",
 
   "dashboard_kpis_not_available": "Non disponible",
 

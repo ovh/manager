@@ -60,10 +60,20 @@ describe('Kpis Component', () => {
     },
   } as SavingsPlanFlavorConsumption;
 
+  const flavorOptions = [
+    { label: 'Option 1', value: 'option1' },
+    { label: 'Option 2', value: 'option2' },
+  ];
+
   it('renders skeletons when loading', () => {
     vi.setSystemTime(new Date('2025-02-11T12:00:00Z'));
     render(
-      <Kpis isLoading={true} consumption={consumption} period="2025-02-01" />,
+      <Kpis
+        flavorOptions={flavorOptions}
+        isLoading={true}
+        consumption={consumption}
+        period="2025-02-01"
+      />,
     );
     expect(screen.getAllByTestId('skeleton')).toHaveLength(3);
   });
@@ -71,7 +81,12 @@ describe('Kpis Component', () => {
   it('renders KPIs without the saved amount when period is the current month', () => {
     vi.setSystemTime(new Date('2025-02-11T12:00:00Z'));
     render(
-      <Kpis isLoading={false} consumption={consumption} period="2025-02-01" />,
+      <Kpis
+        flavorOptions={flavorOptions}
+        isLoading={false}
+        consumption={consumption}
+        period="2025-02-01"
+      />,
     );
 
     expect(
@@ -94,7 +109,12 @@ describe('Kpis Component', () => {
   it('calls the translation function with the expected keys', () => {
     vi.setSystemTime(new Date('2025-02-11T12:00:00Z'));
     render(
-      <Kpis isLoading={false} consumption={consumption} period="2025-02-01" />,
+      <Kpis
+        flavorOptions={flavorOptions}
+        isLoading={false}
+        consumption={consumption}
+        period="2025-02-01"
+      />,
     );
     expect(tMock).toHaveBeenCalledWith('dashboard_kpis_active_plans_name');
     expect(tMock).toHaveBeenCalledWith('dashboard_kpis_usage_percent_name');

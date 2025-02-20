@@ -84,6 +84,7 @@ const Dashboard: React.FC = () => {
         periodOptions={periodOptions}
       />
       <Kpis
+        flavorOptions={flavorOptions}
         isLoading={isConsumptionLoading}
         consumption={currentConsumption}
         period={period}

@@ -6,7 +6,7 @@ import {
   OdsSkeleton,
 } from '@ovhcloud/ods-components/react';
 import React, { useCallback, useMemo } from 'react';
-import { Trans, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { usePricing } from '@ovh-ux/manager-pci-common';
 import {
   getPercentValue,
@@ -14,18 +14,17 @@ import {
   isCurrentPeriod,
 } from '@/utils/kpi/utils';
 import { SavingsPlanFlavorConsumption } from '@/types/savingsPlanConsumption.type';
+import { Option } from '../Filters/Filters';
 
 const Kpi = ({
   title,
   value,
-  valueWithoutAmount,
   tooltip,
   index,
   isLoading,
 }: {
   title: string;
   value: string | number;
-  valueWithoutAmount?: string | number;
   tooltip: string;
   index: number;
   isLoading: boolean;
@@ -56,21 +55,6 @@ const Kpi = ({
         </OdsTooltip>
       </OdsText>
       <span className="text-[20px] font-bold mb-0 text-[#0050D7]">{value}</span>
-      {!!value && !!valueWithoutAmount && (
-        <div className="flex items-center">
-          <span className="text-[15px] mb-0 text-[#666ca1] mr-2">
-            <Trans
-              i18nKey="dashboard:dashboard_kpis_saved_strikethrough"
-              values={{ pricing: valueWithoutAmount }}
-              components={{
-                price: (
-                  <span className="line-through text-[15px] mb-0 text-[#666ca1]" />
-                ),
-              }}
-            />
-          </span>
-        </div>
-      )}
     </div>
   );
 };
@@ -79,10 +63,12 @@ const Kpis = ({
   isLoading,
   consumption,
   period,
+  flavorOptions,
 }: Readonly<{
   isLoading: boolean;
   consumption: SavingsPlanFlavorConsumption | null | undefined;
   period: string;
+  flavorOptions: Option[];
 }>) => {
   const currentDate = new Date(period);
 
@@ -94,7 +80,7 @@ const Kpis = ({
 
   const getFormattedFee = useCallback(
     (fee: number | undefined): string | number => {
-      if (!fee || fee <= 0) return null;
+      if (!fee || fee <= 0) return formatPrice(0, { decimals: 2, unit: 1 });
       return formatPrice(fee, { decimals: 2, unit: 1 });
     },
     [formatPrice],
@@ -102,24 +88,19 @@ const Kpis = ({
 
   const formatKpiValue = useCallback(
     (value: number | string, percentage: boolean): string => {
-      if (!value) {
+      if (flavorOptions.length === 0 || !value) {
         return t('dashboard_kpis_not_available');
+      }
+      if (typeof value === 'number' && value <= 0) {
+        return '0 %';
       }
       return percentage ? `${value} %` : value.toString();
     },
-    [t],
+    [t, flavorOptions],
   );
 
   const savedAmount = useMemo(
     () => getFormattedFee(consumption?.fees?.savedAmount),
-    [consumption, getFormattedFee],
-  );
-
-  const withoutSavedAmount = useMemo(
-    () =>
-      getFormattedFee(
-        consumption?.fees?.savedAmount + consumption?.fees?.totalPrice,
-      ),
     [consumption, getFormattedFee],
   );
 
@@ -142,6 +123,10 @@ const Kpis = ({
     [consumption, getFormattedFee],
   );
 
+  const formattedUsage = useMemo(() => {
+    return formatKpiValue(usage, true);
+  }, [usage]);
+
   const kpiData = [
     {
       title: t('dashboard_kpis_active_plans_name'),
@@ -151,7 +136,7 @@ const Kpis = ({
     {
       title: t('dashboard_kpis_usage_percent_name'),
       tooltip: t('dashboard_kpis_usage_percent_tooltip'),
-      value: formatKpiValue(usage, true),
+      value: formattedUsage,
     },
     {
       title: t('dashboard_kpis_coverage_percent_name'),
@@ -164,7 +149,6 @@ const Kpis = ({
             title: t('dashboard_kpis_saved_amount_name'),
             tooltip: t('dashboard_kpis_saved_amount_name_tooltip'),
             value: formatKpiValue(savedAmount, false),
-            valueWithoutAmount: withoutSavedAmount,
           },
           {
             title: t('dashboard_kpis_non_discounted_name'),
@@ -185,7 +169,6 @@ const Kpis = ({
             tooltip={item.tooltip}
             index={index}
             isLoading={isLoading}
-            valueWithoutAmount={item.valueWithoutAmount}
           />
           {index < kpiData.length - 1 && (
             <div className="h-30 w-px bg-gray-300 mx-2"></div>

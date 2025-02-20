@@ -18,7 +18,6 @@
   "dashboard_kpis_non_discounted_tooltip": "Kwota faktury przekracza konfiguracje Savings Plans (w wybranym okresie dla wybranego zasobu)",
   "dashboard_kpis_saved_amount_name": "Zrealizowane oszczędności",
   "dashboard_kpis_saved_amount_name_tooltip": "Łączne zrealizowane oszczędności (w wybranym okresie dla wybranego zasobu)",
-  "dashboard_kpis_saved_strikethrough": "Zamiast <price>{{pricing}}</price> ",
   "dashboard_kpis_not_available": "Niedostępne",
   "dashboard_select_label_service": "Usługa",
   "dashboard_select_label_period": "Okres",
