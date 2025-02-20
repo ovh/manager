@@ -1,0 +1,123 @@
+<div data-ui-view>
+    <div data-ovh-alert="iam-sso-alert"></div>
+
+    <!-- SSO add part -->
+    <div data-ng-if="$ctrl.identityProvider === null">
+        <button
+            id="btnSso"
+            type="button"
+            class="btn btn-primary my-4"
+            data-ng-click="setAction('add/sso-add', user)"
+            data-ng-if="$ctrl.identityProvider == null"
+        >
+            <span data-translate="sso_add"></span>
+        </button>
+    </div>
+
+    <!-- SSO configuration part -->
+    <div data-ng-if="$ctrl.identityProvider != null">
+        <oui-message data-type="info" class="mb-4">
+            <span
+                class="d-block"
+                data-translate="sso_info"
+                data-translate-values="{nichandle: $ctrl.me.customerCode}"
+            >
+            </span>
+        </oui-message>
+
+        <!-- SSO IDENTITY PROVIDER -->
+        <div class="table-responsive">
+            <table
+                class="table table-hover"
+                aria-label="{{:: 'sso_table_description' | translate }}"
+            >
+                <thead>
+                    <tr>
+                        <th data-translate="sso_service_url" scope="col"></th>
+                        <th data-translate="sso_creation_date" scope="col"></th>
+                        <th
+                            data-translate="sso_last_update_date"
+                            colspan="2"
+                            scope="col"
+                        ></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <a
+                                data-ng-bind="$ctrl.identityProvider.ssoServiceUrl"
+                                data-ng-click="$ctrl.goToSSODetails()"
+                            >
+                            </a>
+                        </td>
+                        <td
+                            data-ng-bind="$ctrl.identityProvider.creation | date"
+                        ></td>
+                        <td
+                            data-ng-bind="$ctrl.identityProvider.lastUpdate | date"
+                        ></td>
+
+                        <td class="text-right">
+                            <div data-uib-dropdown data-dropdown-append-to-body>
+                                <button
+                                    type="button"
+                                    class="btn btn-link"
+                                    data-uib-dropdown-toggle
+                                >
+                                    <span
+                                        class="oui-icon oui-icon-ellipsis"
+                                        aria-hidden="true"
+                                    >
+                                    </span>
+                                </button>
+                                <ul
+                                    data-uib-dropdown-menu
+                                    class="dropdown-menu dropdown-menu-right"
+                                >
+                                    <li>
+                                        <button
+                                            type="button"
+                                            class="btn btn-link"
+                                            data-translate="sso_details"
+                                            data-ng-click="$ctrl.goToSSODetails()"
+                                        ></button>
+                                    </li>
+                                    <li>
+                                        <button
+                                            type="button"
+                                            class="btn btn-link"
+                                            data-ng-click="setAction('update/sso-update', user)"
+                                            data-translate="sso_update"
+                                        ></button>
+                                    </li>
+                                    <li>
+                                        <button
+                                            type="button"
+                                            class="btn btn-link"
+                                            data-ng-click="setAction('delete/sso-delete', user)"
+                                            data-translate="sso_delete"
+                                        ></button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div data-ng-if="$ctrl.isModalOpened">
+        <div class="modal d-block">
+            <div
+                class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+            >
+                <div class="modal-content">
+                    <div data-ng-include="stepPath"></div>
+                </div>
+            </div>
+        </div>
+        <div class="oui-modal-backdrop"></div>
+    </div>
+</div>

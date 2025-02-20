@@ -1,0 +1,193 @@
+<div data-ui-view>
+    <div data-ovh-alert="iam-users-alert"></div>
+
+    <div>
+        <oui-message
+            data-type="info"
+            data-ng-if="$ctrl.identityProvider == null || !$ctrl.identityProvider.disableUsers"
+        >
+            <span
+                class="d-block"
+                data-translate="user_users_info"
+                data-translate-values="{customerCode: $ctrl.me.customerCode}"
+            >
+            </span>
+            <span
+                data-ng-if="$ctrl.users.length !== 0 && !$ctrl.usersLoading"
+                data-translate="user_users_info_example"
+                data-translate-values="{customerCode: $ctrl.me.customerCode, login: $ctrl.users[0].login}"
+            >
+            </span>
+        </oui-message>
+        <oui-message
+            data-type="info"
+            data-ng-if="$ctrl.identityProvider.disableUsers"
+        >
+            <span class="d-block" data-translate="user_users_disabled"> </span>
+        </oui-message>
+
+        <!-- USER ADD BTN -->
+        <button
+            id="btnAddUser"
+            type="button"
+            class="btn btn-primary my-4"
+            data-ng-click="setAction('add/users-add', user)"
+            data-ng-disabled="$ctrl.usersLoading"
+            data-ng-class="{'disabled': $ctrl.usersLoading}"
+        >
+            <span data-translate="user_users_add_user"></span>
+        </button>
+
+        <!-- USERS LIST -->
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th data-translate="user_users_login" scope="col"></th>
+                        <th data-translate="user_users_group" scope="col"></th>
+                        <th
+                            data-translate="user_users_creation_date"
+                            scope="col"
+                        ></th>
+                        <th
+                            data-translate="user_users_last_password_update_date"
+                            scope="col"
+                        ></th>
+                        <th
+                            data-translate="user_users_status"
+                            colspan="2"
+                            scope="col"
+                        ></th>
+                    </tr>
+                </thead>
+                <tbody data-ng-show="$ctrl.usersLoading">
+                    <tr>
+                        <td colspan="6" class="text-center">
+                            <oui-spinner data-size="s"></oui-spinner>
+                        </td>
+                    </tr>
+                </tbody>
+                <tbody
+                    data-ng-show="$ctrl.users.length === 0 && !$ctrl.usersLoading"
+                >
+                    <tr>
+                        <td
+                            colspan="6"
+                            class="text-center font-italic"
+                            data-translate="user_users_table_empty"
+                        ></td>
+                    </tr>
+                </tbody>
+                <tbody
+                    data-ng-show="$ctrl.users.length > 0 && !$ctrl.usersLoading"
+                >
+                    <tr data-ng-repeat="user in $ctrl.users track by $index">
+                        <td>
+                            <strong class="d-block" data-ng-bind="user.login">
+                            </strong>
+                            <span
+                                class="text-muted"
+                                data-ng-bind="user.description"
+                            >
+                            </span>
+                        </td>
+                        <td data-ng-bind="user.group"></td>
+                        <td data-ng-bind="user.creation | date"></td>
+                        <td data-ng-bind="user.passwordLastUpdate | date"></td>
+                        <td>
+                            <span
+                                class="label"
+                                data-ng-class="{
+                                            'label-success': user.status === 'OK',
+                                            'label-danger': user.status === 'DISABLED'
+                                            }"
+                                data-ng-bind="'user_users_status_' + user.status | translate"
+                            >
+                            </span>
+                        </td>
+
+                        <td class="text-right">
+                            <div data-uib-dropdown data-dropdown-append-to-body>
+                                <button
+                                    type="button"
+                                    class="btn btn-link"
+                                    data-uib-dropdown-toggle
+                                >
+                                    <span
+                                        class="oui-icon oui-icon-ellipsis"
+                                        aria-hidden="true"
+                                    >
+                                    </span>
+                                </button>
+                                <ul
+                                    data-uib-dropdown-menu
+                                    class="dropdown-menu dropdown-menu-right"
+                                >
+                                    <li>
+                                        <button
+                                            type="button"
+                                            class="btn btn-link"
+                                            data-ng-click="setAction('update/users-update', user)"
+                                            data-translate="user_users_update"
+                                        ></button>
+                                    </li>
+                                    <li>
+                                        <button
+                                            type="button"
+                                            class="btn btn-link"
+                                            data-ng-click="setAction('delete/users-delete', user)"
+                                            data-translate="user_users_delete"
+                                        ></button>
+                                    </li>
+                                    <li data-ng-if="user.status === 'DISABLED'">
+                                        <button
+                                            type="button"
+                                            class="btn btn-link"
+                                            data-ng-click="setAction('enable/users-enable', user)"
+                                            data-translate="user_users_enable"
+                                        ></button>
+                                    </li>
+                                    <li data-ng-if="user.status === 'OK'">
+                                        <button
+                                            type="button"
+                                            class="btn btn-link"
+                                            data-ng-click="setAction('disable/users-disable', user)"
+                                            data-translate="user_users_disable"
+                                        ></button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- USERS PAGINATION -->
+        <div
+            data-pagination-front
+            data-items="$ctrl.userIds"
+            data-paginated-items="$ctrl.users"
+            data-current-page="currentPage"
+            data-items-per-page="itemsPerPage"
+            data-nb-pages="nbPages"
+            data-transform-item="$ctrl.onTransformItem(item)"
+            data-on-transform-item-done="$ctrl.onTransformItemDone(items)"
+            data-page-placeholder="{{  'pagination_page' | translate:{ t0: currentPage, t1: nbPages } }}"
+            data-item-per-page-placeholder="{{ 'pagination_display' | translate }}"
+        ></div>
+    </div>
+
+    <div data-ng-if="$ctrl.isModalOpened">
+        <div class="modal d-block">
+            <div
+                class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+            >
+                <div class="modal-content">
+                    <div data-ng-include="stepPath"></div>
+                </div>
+            </div>
+        </div>
+        <div class="oui-modal-backdrop"></div>
+    </div>
+</div>
