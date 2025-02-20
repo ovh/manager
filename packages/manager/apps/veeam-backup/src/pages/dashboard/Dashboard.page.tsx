@@ -57,7 +57,7 @@ export default function DashboardPage() {
   const getRealOfferConsumption = (
     offer: VeeamBackupOffer,
   ): VeeamBackupOffer => {
-    const consumption = consumptions.find(
+    const consumption = consumptions?.find(
       ({ planCode }) =>
         planCode === VEEAM_BACKUP_CONSUMPTION_PLAN_CODE[offer.name],
     );
