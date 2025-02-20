@@ -505,7 +505,7 @@ exports[`Show page > should display datagrid 1`] = `
               </thead>
               <tbody>
                 <tr
-                  class="border-[1px] h-[3.25rem] border-[--ods-color-blue-200]"
+                  class="border-solid border-[1px] h-[3.25rem] border-[--ods-color-blue-200]"
                 >
                   <td
                     class="text-left pl-4"
@@ -562,7 +562,7 @@ exports[`Show page > should display datagrid 1`] = `
                       />
                     </div>
                     <ods-popover
-                      class="py-[8px] px-0"
+                      class="py-[8px] px-0 w-max"
                       trigger-id="navigation-action-trigger-undefined"
                       with-arrow="true"
                     >
