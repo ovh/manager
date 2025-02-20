@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.21.28...@ovh-ux/manager-pci-rancher-app@1.22.0) (2025-02-19)
+
+
+### Features
+
+* update tailwing config export ([0325dde](https://github.com/ovh/manager/commit/0325ddeb69d5c38a18b06de729916641629e3e73))
+
+
+
+
+
 ## [1.21.28](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.21.27...@ovh-ux/manager-pci-rancher-app@1.21.28) (2025-02-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-rancher-app

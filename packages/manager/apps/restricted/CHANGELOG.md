@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-restricted-app@0.10.0...@ovh-ux/manager-restricted-app@0.11.0) (2025-02-19)
+
+
+### Features
+
+* **restricted:** update rights typing ([0c37e20](https://github.com/ovh/manager/commit/0c37e20b7c96a66775f2e9c18c32c702ca524e22))
+
+
+
+
+
 # [0.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-restricted-app@0.9.1...@ovh-ux/manager-restricted-app@0.10.0) (2025-02-11)
 
 
