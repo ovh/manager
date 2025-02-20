@@ -18,7 +18,6 @@
   "dashboard_kpis_non_discounted_tooltip": "Invoice amount exceeding your Savings Plans configurations (in the selected time period for the selected resource)",
   "dashboard_kpis_saved_amount_name": "Savings realized",
   "dashboard_kpis_saved_amount_name_tooltip": "Total savings (over the selected time period for the selected resource)",
-  "dashboard_kpis_saved_strikethrough": "Instead of <price> {{pricing}}</price> ",
   "dashboard_kpis_not_available": "Not available ",
   "dashboard_select_label_service": "Service",
   "dashboard_select_label_period": "Period",
