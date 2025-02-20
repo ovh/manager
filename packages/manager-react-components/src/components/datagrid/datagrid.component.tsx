@@ -294,7 +294,7 @@ export const Datagrid = <T,>({
               {table.getRowModel().rows.map((row) => (
                 <tr
                   key={row.id}
-                  className="border-[1px] h-[3.25rem] border-[--ods-color-blue-200]"
+                  className="border-solid border-[1px] h-[3.25rem] border-[--ods-color-blue-200]"
                 >
                   {row.getVisibleCells().map((cell) => (
                     <td
@@ -314,7 +314,7 @@ export const Datagrid = <T,>({
               {table.getRowModel().rows.length === 0 && !isLoading && (
                 <tr
                   className={
-                    'border-[1px] h-[3.25rem] border-[--ods-color-blue-200]'
+                    'border-solid border-[1px] h-[3.25rem] border-[--ods-color-blue-200]'
                   }
                 >
                   <td className="text-center" colSpan={columns.length}>
