@@ -1,16 +1,23 @@
 import { ErrorBanner } from '@ovh-ux/manager-react-components';
-import { Suspense, useContext } from 'react';
-import { Outlet, useRouteError } from 'react-router-dom';
+import { Suspense, useContext, useEffect } from 'react';
+import { Outlet, useLocation, useRouteError } from 'react-router-dom';
 import { ResponseAPIError, useProject } from '@ovh-ux/manager-pci-common';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import {
+  ShellContext,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import HidePreloader from '@/core/HidePreloader';
 import ShellRoutingSync from '@/core/ShellRoutingSync';
-import usePageTracking from '@/hooks/usePageTracking';
 
 export default function Layout() {
   const { isSuccess } = useProject();
 
-  usePageTracking();
+  const location = useLocation();
+  const { trackCurrentPage } = useOvhTracking();
+
+  useEffect(() => {
+    trackCurrentPage();
+  }, [location]);
 
   return (
     <div className="application">
