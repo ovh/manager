@@ -220,7 +220,7 @@ export default function Consumption() {
             <XAxis dataKey="date" tickFormatter={(tick) => tick} />
             <YAxis
               label={{
-                value: t('license_number'),
+                value: t('common:license_number'),
                 angle: -90,
                 position: 'insideLeft',
               }}

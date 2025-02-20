@@ -9,10 +9,17 @@ export const IAM_ACTIONS = {
     get: `${IAM_ACTIONS_OFFICE_PREFIX}user/get`,
     password: `${IAM_ACTIONS_OFFICE_PREFIX}user/changePassword`,
   },
+  licencePostPaid: {
+    get: `${IAM_ACTIONS_OFFICE_PREFIX}get`,
+    edit: `${IAM_ACTIONS_OFFICE_PREFIX}edit`,
+  },
   licencePrepaid: {
+    get: `${IAM_ACTIONS_OFFICE_PREPAID_PREFIX}get`,
     edit: `${IAM_ACTIONS_OFFICE_PREPAID_PREFIX}put`,
     changePassword: `${IAM_ACTIONS_OFFICE_PREPAID_PREFIX}changePassword`,
     unconfigure: `${IAM_ACTIONS_OFFICE_PREPAID_PREFIX}unconfigure`,
+    getParentTenant: `${IAM_ACTIONS_OFFICE_PREPAID_PREFIX}parentTenant/get`,
+    putParentTenant: `${IAM_ACTIONS_OFFICE_PREPAID_PREFIX}parentTenant/edit`,
   },
 };
 

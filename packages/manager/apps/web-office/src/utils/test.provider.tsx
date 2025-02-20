@@ -9,6 +9,7 @@ import {
   ShellContextType,
 } from '@ovh-ux/manager-react-shell-client';
 import userEvent from '@testing-library/user-event';
+import dashboardGeneralInformationTranslation from '@/public/translations/dashboard/general-information/Messages_fr_FR.json';
 import dashboardUsersTranslation from '@/public/translations/dashboard/users/Messages_fr_FR.json';
 import licensesTranslation from '@/public/translations/licenses/Messages_fr_FR.json';
 import dashboardUsersOrderLicensesTranslation from '@/public/translations/dashboard/users/order-licenses/Messages_fr_FR.json';
@@ -26,6 +27,7 @@ i18n.use(initReactI18next).init({
   resources: {
     fr: {
       licenses: licensesTranslation,
+      'dashboard/general-information': dashboardGeneralInformationTranslation,
       'dashboard/users': dashboardUsersTranslation,
       'dashboard/consumption': consumptionTranslation,
       'dashboard/users/order-licenses': dashboardUsersOrderLicensesTranslation,
