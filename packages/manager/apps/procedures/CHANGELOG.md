@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.9.0...@ovh-ux/manager-procedures-app@0.10.0) (2025-02-19)
+
+
+### Features
+
+* update tailwing config export ([0325dde](https://github.com/ovh/manager/commit/0325ddeb69d5c38a18b06de729916641629e3e73))
+
+
+
+
+
 # [0.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.8.5...@ovh-ux/manager-procedures-app@0.9.0) (2025-02-18)
 
 
