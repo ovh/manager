@@ -58,7 +58,7 @@ const Modal: React.FC<ModalProps> = ({
       onOdsClose={onClose}
       isOpen={isOpen}
     >
-      <OdsText className="mb-4" preset={ODS_TEXT_PRESET.heading4}>
+      <OdsText className="mb-8" preset={ODS_TEXT_PRESET.heading4}>
         {title}
       </OdsText>
       {!isLoading && <div className="flex flex-col text-left">{children}</div>}

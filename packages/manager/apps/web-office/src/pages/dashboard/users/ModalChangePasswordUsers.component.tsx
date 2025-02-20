@@ -118,6 +118,9 @@ export default function ModalChangePasswordUsers() {
       }}
     >
       <form className="flex flex-col" onSubmit={handleSubmit(handleSaveClick)}>
+        <OdsText preset={ODS_TEXT_PRESET.paragraph} className="mb-4">
+          {t('common:common_field_label_mandatory')}
+        </OdsText>
         <OdsFormField>
           <span>
             <OdsRadio
@@ -245,9 +248,6 @@ export default function ModalChangePasswordUsers() {
             </OdsFormField>
           )}
         />
-        <OdsText preset={ODS_TEXT_PRESET.caption}>
-          {t('common:common_field_label_mandatory')}
-        </OdsText>
       </form>
     </Modal>
   );
