@@ -5,6 +5,17 @@
   "zimbra_redirections_organization": "Organización",
   "zimbra_redirections_datagrid_tooltip_modification": "Modificar",
   "zimbra_redirections_datagrid_tooltip_delete": "Eliminar",
-  "zimbra_redirections_account_title": "Gestionar las redirecciones",
-  "zimbra_redirections_status": "Estado"
+  "zimbra_redirections_account_title": "Gestión de las redirecciones",
+  "zimbra_redirections_status": "Estado",
+  "zimbra_redirections_delete_modal_content": "¿Quiere eliminar la redirección?",
+  "zimbra_redirections_add_header": "Por favor, complete los datos para la redirección.",
+  "zimbra_redirections_add_form_input_from": "De la dirección",
+  "zimbra_redirections_add_form_input_to": "A la dirección",
+  "zimbra_redirections_add_form_input_checkbox": "Conservar una copia del correo en OVHcloud",
+  "zimbra_redirections_add_success_message": "La solicitud de creación de redirecciones se ha enviado. Será tratada en unos instantes.",
+  "zimbra_redirections_add_error_message": "No se ha podido completar la solicitud de creación de redirecciones. {{ error }}",
+  "zimbra_redirections_edit_success_message": "La solicitud de modificación de la redirección se ha enviado. Será tratada en unos instantes.",
+  "zimbra_redirections_edit_error_message": "No se ha podido completar la solicitud de cambio de redirección. {{ error }}",
+  "zimbra_redirections_delete_success_message": "La solicitud de eliminación de la redirección se ha enviado. Será tratada en unos instantes.",
+  "zimbra_redirections_delete_error_message": "No se ha podido completar la solicitud de eliminación de la redirección. {{ error }}"
 }

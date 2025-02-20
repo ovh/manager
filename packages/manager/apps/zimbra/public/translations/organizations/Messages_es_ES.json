@@ -6,5 +6,8 @@
   "zimbra_organization_delete": "Eliminar",
   "zimbra_organization_label": "Label",
   "zimbra_organization_name": "Organización",
-  "zimbra_organization_status": "Estado"
+  "zimbra_organization_status": "Estado",
+  "zimbra_organization_delete_modal_content": "¿Está seguro de que desea eliminar la organización?",
+  "zimbra_organization_delete_modal_message_disabled_part1": "Hay al menos un dominio asociado a esta organización.",
+  "zimbra_organization_delete_modal_message_disabled_part2": "Elimine los dominios asociados antes de eliminar su organización."
 }
