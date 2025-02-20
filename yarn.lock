@@ -5965,7 +5965,7 @@
     "@ovhcloud/ods-common-stencil" "17.2.2"
     "@ovhcloud/ods-common-theming" "17.2.2"
 
-"@ovhcloud/ods-components@^18.4.1":
+"@ovhcloud/ods-components@18.4.1", "@ovhcloud/ods-components@^18.4.1":
   version "18.4.1"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-18.4.1.tgz#44e21d23fbf844348e94b966d2aa5c38d8376dc8"
   integrity sha512-aS7BArn0691hyHAn2/ND/7XYIX01gAmVCSvEl8uT9umT4iDDvodipkWRtGxBUin6ndvyED1Jx0BfCbtYsrKPeQ==
@@ -6015,7 +6015,7 @@
   dependencies:
     "@ovhcloud/ods-common-theming" "17.2.2"
 
-"@ovhcloud/ods-themes@^18.4.1":
+"@ovhcloud/ods-themes@18.4.1", "@ovhcloud/ods-themes@^18.4.1":
   version "18.4.1"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-18.4.1.tgz#1c8dfeff1ba0b829fd61e8dea41af4cdbed46912"
   integrity sha512-bezBp/Bgbo19IFPJ/+a/bFt2IArjq8wGrHPshpk/bVVZsxkgpAiUfRERmftU+l7gYU3e+yvFdopNL6eRaJDPWQ==
