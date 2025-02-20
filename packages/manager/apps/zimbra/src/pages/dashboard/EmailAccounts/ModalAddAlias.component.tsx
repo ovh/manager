@@ -36,7 +36,7 @@ import { useForm } from '@/hooks/useForm';
 
 export default function ModalAddAndEditOrganization() {
   const { trackClick, trackPage } = useOvhTracking();
-  const { t } = useTranslation('accounts/alias/add');
+  const { t } = useTranslation(['accounts/alias', 'common']);
   const { platformId } = usePlatform();
   const [searchParams] = useSearchParams();
   const params = Object.fromEntries(searchParams.entries());
@@ -148,21 +148,21 @@ export default function ModalAddAndEditOrganization() {
 
   return (
     <Modal
-      title={t('zimbra_account_alias_add_modal_title')}
+      title={t('common:add_alias')}
       color={ODS_MODAL_COLOR.information}
       isOpen
       onClose={onClose}
       isDismissible
       isLoading={isLoading}
       secondaryButton={{
-        label: t('zimbra_account_alias_add_btn_cancel'),
+        label: t('common:cancel'),
         action: handleCancelClick,
         testid: 'cancel-btn',
       }}
       primaryButton={{
         testid: 'confirm-btn',
         variant: ODS_BUTTON_VARIANT.default,
-        label: t('zimbra_account_alias_add_btn_confirm'),
+        label: t('common:confirm'),
         isDisabled: !isFormValid,
         isLoading: isLoading || isSubmitting,
         action: handleConfirmClick,
@@ -184,9 +184,7 @@ export default function ModalAddAndEditOrganization() {
             <OdsInput
               type={ODS_INPUT_TYPE.text}
               name="alias"
-              placeholder={t(
-                'zimbra_account_alias_add_input_email_placeholder',
-              )}
+              placeholder={t('common:alias')}
               value={form.alias.value}
               defaultValue={form.alias.defaultValue}
               isRequired={form.alias.required}
@@ -214,9 +212,7 @@ export default function ModalAddAndEditOrganization() {
               defaultValue={form.domain.defaultValue}
               isRequired={form.domain.required}
               hasError={form.domain.hasError}
-              placeholder={t(
-                'zimbra_account_alias_add_select_domain_placeholder',
-              )}
+              placeholder={t('common:select_domain')}
               className="w-1/2"
               onOdsChange={({ detail: { name, value } }) =>
                 setValue(name, value)
@@ -235,12 +231,10 @@ export default function ModalAddAndEditOrganization() {
             preset={ODS_TEXT_PRESET.caption}
             className="flex flex-col"
           >
-            <span className="block">
-              {t('zimbra_account_alias_add_input_email_helper')}
-            </span>
+            <span className="block">{t('common:form_email_helper')}</span>
             {[1, 2, 3].map((elm) => (
               <span key={elm} className="block">
-                - {t(`zimbra_account_alias_add_input_email_helper_rule_${elm}`)}
+                - {t(`common:form_email_helper_rule_${elm}`)}
               </span>
             ))}
           </OdsText>

@@ -22,7 +22,7 @@ const ActionButtonAlias: React.FC<ActionButtonAliasAccountProps> = ({
   aliasItem,
 }) => {
   const { trackClick } = useOvhTracking();
-  const { t } = useTranslation('accounts/alias');
+  const { t } = useTranslation('common');
   const { platformUrn } = usePlatform();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -49,7 +49,7 @@ const ActionButtonAlias: React.FC<ActionButtonAliasAccountProps> = ({
       onClick: handleDeleteAliasClick,
       urn: platformUrn,
       iamActions: [IAM_ACTIONS.alias.delete],
-      label: t('zimbra_account_alias_datagrid_tooltip_delete'),
+      label: t('delete'),
       color: ODS_BUTTON_COLOR.critical,
     },
   ];

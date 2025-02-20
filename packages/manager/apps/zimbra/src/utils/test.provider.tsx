@@ -9,31 +9,23 @@ import {
   ShellContextType,
 } from '@ovh-ux/manager-react-shell-client';
 import userEvent from '@testing-library/user-event';
+import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
 import dashboardTranslation from '@/public/translations/dashboard/Messages_fr_FR.json';
 import organizationsTranslation from '@/public/translations/organizations/Messages_fr_FR.json';
-import organizationsAddAndEditTranslation from '@/public/translations/organizations/addAndEdit/Messages_fr_FR.json';
-import organizationsDeleteTranslation from '@/public/translations/organizations/delete/Messages_fr_FR.json';
+import organizationsFormTranslation from '@/public/translations/organizations/form/Messages_fr_FR.json';
 import domainsTranslation from '@/public/translations/domains/Messages_fr_FR.json';
-import domainsAddDomainTranslation from '@/public/translations/domains/addDomain/Messages_fr_FR.json';
-import domainsEditTranslation from '@/public/translations/domains/edit/Messages_fr_FR.json';
-import domainsDeleteTranslation from '@/public/translations/domains/delete/Messages_fr_FR.json';
+import domainsFormTranslation from '@/public/translations/domains/form/Messages_fr_FR.json';
 import domainsDiagnosticTranslation from '@/public/translations/domains/diagnostic/Messages_fr_FR.json';
 import accountTranslation from '@/public/translations/accounts/Messages_fr_FR.json';
-import accountAddAndEditTranslation from '@/public/translations/accounts/addAndEdit/Messages_fr_FR.json';
+import accountFormTranslation from '@/public/translations/accounts/form/Messages_fr_FR.json';
 import accountAliasTranslation from '@/public/translations/accounts/alias/Messages_fr_FR.json';
-import accountAliasAddTranslation from '@/public/translations/accounts/alias/add/Messages_fr_FR.json';
-import accountAliasDeleteTranslation from '@/public/translations/accounts/alias/delete/Messages_fr_FR.json';
-import accountDeleteTranslation from '@/public/translations/accounts/delete/Messages_fr_FR.json';
 import accountOrderTranslation from '@/public/translations/accounts/order/Messages_fr_FR.json';
-import mailingListsTranslation from '@/public/translations/mailinglists/Messages_fr_FR.json';
-import mailingListsAddAndEditTranslation from '@/public/translations/mailinglists/addAndEdit/Messages_fr_FR.json';
+import mailingListsTranslation from '@/public/translations/mailing-lists/Messages_fr_FR.json';
+import mailingListsFormTranslation from '@/public/translations/mailing-lists/form/Messages_fr_FR.json';
 import redirectionsTranslation from '@/public/translations/redirections/Messages_fr_FR.json';
-import redirectionsAddAndEditTranslation from '@/public/translations/redirections/addAndEdit/Messages_fr_FR.json';
-import redirectionsDeleteTranslation from '@/public/translations/redirections/delete/Messages_fr_FR.json';
 import onboardingTranslation from '@/public/translations/onboarding/Messages_fr_FR.json';
-import autoRepliesTranslation from '@/public/translations/autoReplies/Messages_fr_FR.json';
-import autoRepliesAddTranslation from '@/public/translations/autoReplies/add/Messages_fr_FR.json';
-import autoRepliesDeleteTranslation from '@/public/translations/autoReplies/delete/Messages_fr_FR.json';
+import autoRepliesTranslation from '@/public/translations/auto-replies/Messages_fr_FR.json';
+import autoRepliesFormTranslation from '@/public/translations/auto-replies/form/Messages_fr_FR.json';
 import '@testing-library/jest-dom';
 import 'element-internals-polyfill';
 
@@ -42,30 +34,22 @@ i18n.use(initReactI18next).init({
   fallbackLng: 'fr',
   resources: {
     fr: {
+      common: commonTranslation,
       dashboard: dashboardTranslation,
       organizations: organizationsTranslation,
-      'organizations/addAndEdit': organizationsAddAndEditTranslation,
-      'organizations/delete': organizationsDeleteTranslation,
+      'organizations/form': organizationsFormTranslation,
       domains: domainsTranslation,
-      'domains/addDomain': domainsAddDomainTranslation,
-      'domains/edit': domainsEditTranslation,
-      'domains/delete': domainsDeleteTranslation,
+      'domains/form': domainsFormTranslation,
       'domains/diagnostic': domainsDiagnosticTranslation,
       accounts: accountTranslation,
-      'accounts/addAndEdit': accountAddAndEditTranslation,
+      'accounts/form': accountFormTranslation,
       'accounts/alias': accountAliasTranslation,
-      'accounts/alias/add': accountAliasAddTranslation,
-      'accounts/alias/delete': accountAliasDeleteTranslation,
-      'accounts/delete': accountDeleteTranslation,
       'accounts/order': accountOrderTranslation,
-      mailinglists: mailingListsTranslation,
-      'mailinglists/addAndEdit': mailingListsAddAndEditTranslation,
+      'mailing-lists': mailingListsTranslation,
+      'mailing-lists/form': mailingListsFormTranslation,
       redirections: redirectionsTranslation,
-      'redirections/addAndEdit': redirectionsAddAndEditTranslation,
-      'redirections/delete': redirectionsDeleteTranslation,
-      autoReplies: autoRepliesTranslation,
-      'autoReplies/add': autoRepliesAddTranslation,
-      'autoReplies/delete': autoRepliesDeleteTranslation,
+      'auto-replies': autoRepliesTranslation,
+      'auto-replies/form': autoRepliesFormTranslation,
       onboarding: onboardingTranslation,
     },
   },

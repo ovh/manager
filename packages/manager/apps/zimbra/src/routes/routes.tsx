@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React from 'react';
 import { RouteObject } from 'react-router-dom';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
@@ -66,7 +67,7 @@ export const Routes: any = [
         path: ':serviceName',
         ...lazyRouteConfig(() => import('@/pages/dashboard/_layout')),
         handle: {
-          breadcrumbLabel: 'zimbra_dashboard_title',
+          breadcrumbLabel: 'common:app_name',
         },
         children: [
           {
@@ -79,7 +80,7 @@ export const Routes: any = [
                 pageName: GENERAL_INFORMATIONS,
                 pageType: PageType.dashboard,
               },
-              breadcrumbLabel: 'zimbra_dashboard_general_informations',
+              breadcrumbLabel: 'common:general_informations',
             },
           },
           {
@@ -92,7 +93,7 @@ export const Routes: any = [
                 pageName: ORGANIZATION,
                 pageType: PageType.listing,
               },
-              breadcrumbLabel: 'zimbra_dashboard_organizations',
+              breadcrumbLabel: 'common:organization',
             },
             children: [
               {
@@ -107,7 +108,7 @@ export const Routes: any = [
                     pageName: ADD_ORGANIZATION,
                     pageType: PageType.popup,
                   },
-                  breadcrumbLabel: 'zimbra_dashboard_organizations_add',
+                  breadcrumbLabel: 'common:add_organization',
                 },
               },
               {
@@ -122,7 +123,7 @@ export const Routes: any = [
                     pageName: EDIT_ORGANIZATION,
                     pageType: PageType.popup,
                   },
-                  breadcrumbLabel: 'zimbra_dashboard_organizations_edit',
+                  breadcrumbLabel: 'common:edit_organization',
                 },
               },
               {
@@ -137,7 +138,7 @@ export const Routes: any = [
                     pageName: DELETE_ORGANIZATION,
                     pageType: PageType.popup,
                   },
-                  breadcrumbLabel: 'zimbra_dashboard_organizations_delete',
+                  breadcrumbLabel: 'common:delete_organization',
                 },
               },
             ],
@@ -152,7 +153,7 @@ export const Routes: any = [
                 pageName: DOMAIN,
                 pageType: PageType.listing,
               },
-              breadcrumbLabel: 'zimbra_dashboard_domains',
+              breadcrumbLabel: 'common:domain',
             },
             children: [
               {
@@ -166,7 +167,7 @@ export const Routes: any = [
                     pageName: ADD_DOMAIN,
                     pageType: PageType.funnel,
                   },
-                  breadcrumbLabel: 'zimbra_dashboard_domains_add',
+                  breadcrumbLabel: 'common:add_domain',
                 },
               },
               {
@@ -179,7 +180,7 @@ export const Routes: any = [
                     pageName: EDIT_DOMAIN,
                     pageType: PageType.funnel,
                   },
-                  breadcrumbLabel: 'zimbra_dashboard_domains_edit',
+                  breadcrumbLabel: 'common:edit_domain',
                 },
               },
               {
@@ -194,7 +195,7 @@ export const Routes: any = [
                     pageName: DELETE_DOMAIN,
                     pageType: PageType.funnel,
                   },
-                  breadcrumbLabel: 'zimbra_dashboard_domains_delete',
+                  breadcrumbLabel: 'common:delete_domain',
                 },
               },
               {
@@ -208,7 +209,7 @@ export const Routes: any = [
                     pageName: VERIFY_DOMAIN,
                     pageType: PageType.funnel,
                   },
-                  breadcrumbLabel: 'zimbra_dashboard_domains_verify',
+                  breadcrumbLabel: 'common:verify',
                 },
               },
               {
@@ -222,7 +223,7 @@ export const Routes: any = [
                     pageName: DOMAIN_DIAGNOSTICS_MX,
                     pageType: PageType.funnel,
                   },
-                  breadcrumbLabel: 'zimbra_dashboard_domains_diagnostics',
+                  breadcrumbLabel: 'common:diagnostics',
                 },
               },
               {
@@ -236,7 +237,7 @@ export const Routes: any = [
                     pageName: DOMAIN_DIAGNOSTICS_SRV,
                     pageType: PageType.funnel,
                   },
-                  breadcrumbLabel: 'zimbra_dashboard_domains_diagnostics',
+                  breadcrumbLabel: 'common:diagnostics',
                 },
               },
               {
@@ -250,7 +251,7 @@ export const Routes: any = [
                     pageName: DOMAIN_DIAGNOSTICS_SPF,
                     pageType: PageType.funnel,
                   },
-                  breadcrumbLabel: 'zimbra_dashboard_domains_diagnostics',
+                  breadcrumbLabel: 'common:diagnostics',
                 },
               },
               {
@@ -264,7 +265,7 @@ export const Routes: any = [
                     pageName: DOMAIN_DIAGNOSTICS_DKIM,
                     pageType: PageType.funnel,
                   },
-                  breadcrumbLabel: 'zimbra_dashboard_domains_diagnostics',
+                  breadcrumbLabel: 'common:diagnostics',
                 },
               },
             ],
@@ -279,7 +280,7 @@ export const Routes: any = [
                 pageName: EMAIL_ACCOUNT,
                 pageType: PageType.listing,
               },
-              breadcrumbLabel: 'zimbra_dashboard_email_accounts',
+              breadcrumbLabel: 'common:email_account',
             },
             children: [
               {
@@ -295,7 +296,7 @@ export const Routes: any = [
                     pageName: ADD_EMAIL_ACCOUNT,
                     pageType: PageType.funnel,
                   },
-                  breadcrumbLabel: 'zimbra_dashboard_email_accounts_add',
+                  breadcrumbLabel: 'common:add_email_account',
                 },
               },
               {
@@ -311,7 +312,7 @@ export const Routes: any = [
                     pageName: EDIT_EMAIL_ACCOUNT,
                     pageType: PageType.funnel,
                   },
-                  breadcrumbLabel: 'zimbra_dashboard_email_accounts_settings',
+                  breadcrumbLabel: 'common:email_account_settings',
                 },
               },
               {
@@ -327,7 +328,7 @@ export const Routes: any = [
                     pageName: EMAIL_ACCOUNT_ALIAS,
                     pageType: PageType.listing,
                   },
-                  breadcrumbLabel: 'zimbra_dashboard_email_accounts_alias',
+                  breadcrumbLabel: 'common:alias',
                 },
                 children: [
                   {
@@ -342,8 +343,7 @@ export const Routes: any = [
                         pageName: EMAIL_ACCOUNT_ADD_ALIAS,
                         pageType: PageType.popup,
                       },
-                      breadcrumbLabel:
-                        'zimbra_dashboard_email_accounts_alias_add',
+                      breadcrumbLabel: 'common:add_alias',
                     },
                   },
                   {
@@ -358,8 +358,7 @@ export const Routes: any = [
                         pageName: EMAIL_ACCOUNT_DELETE_ALIAS,
                         pageType: PageType.popup,
                       },
-                      breadcrumbLabel:
-                        'zimbra_dashboard_email_accounts_alias_delete',
+                      breadcrumbLabel: 'common:delete_alias',
                     },
                   },
                 ],
@@ -377,8 +376,7 @@ export const Routes: any = [
                     pageName: EMAIL_ACCOUNT_REDIRECTION,
                     pageType: PageType.listing,
                   },
-                  breadcrumbLabel:
-                    'zimbra_dashboard_email_accounts_redirections',
+                  breadcrumbLabel: 'common:redirection',
                 },
                 children: [
                   {
@@ -393,8 +391,7 @@ export const Routes: any = [
                         pageName: EMAIL_ACCOUNT_ADD_REDIRECTION,
                         pageType: PageType.popup,
                       },
-                      breadcrumbLabel:
-                        'zimbra_dashboard_email_accounts_redirections_add',
+                      breadcrumbLabel: 'common:add_redirection',
                     },
                   },
                   {
@@ -409,8 +406,7 @@ export const Routes: any = [
                         pageName: EMAIL_ACCOUNT_EDIT_REDIRECTION,
                         pageType: PageType.popup,
                       },
-                      breadcrumbLabel:
-                        'zimbra_dashboard_email_accounts_redirections_edit',
+                      breadcrumbLabel: 'common:edit_redirection',
                     },
                   },
                   {
@@ -425,8 +421,7 @@ export const Routes: any = [
                         pageName: EMAIL_ACCOUNT_DELETE_REDIRECTION,
                         pageType: PageType.popup,
                       },
-                      breadcrumbLabel:
-                        'zimbra_dashboard_email_accounts_redirections_delete',
+                      breadcrumbLabel: 'common:delete_redirection',
                     },
                   },
                 ],
@@ -439,8 +434,7 @@ export const Routes: any = [
                     pageName: EMAIL_ACCOUNT_AUTO_REPLY,
                     pageType: PageType.listing,
                   },
-                  breadcrumbLabel:
-                    'zimbra_dashboard_email_accounts_auto_replies',
+                  breadcrumbLabel: 'common:auto_reply',
                 },
                 ...lazyRouteConfig(() =>
                   import(
@@ -459,8 +453,7 @@ export const Routes: any = [
                         pageName: EMAIL_ACCOUNT_ADD_AUTO_REPLY,
                         pageType: PageType.funnel,
                       },
-                      breadcrumbLabel:
-                        'zimbra_dashboard_email_accounts_auto_replies_add',
+                      breadcrumbLabel: 'common:add_auto_reply',
                     },
                   },
                   {
@@ -475,8 +468,7 @@ export const Routes: any = [
                         pageName: EMAIL_ACCOUNT_DELETE_AUTO_REPLY,
                         pageType: PageType.popup,
                       },
-                      breadcrumbLabel:
-                        'zimbra_dashboard_email_accounts_auto_replies_delete',
+                      breadcrumbLabel: 'common:delete_auto_reply',
                     },
                   },
                 ],
@@ -493,7 +485,7 @@ export const Routes: any = [
                     pageName: DELETE_EMAIL_ACCOUNT,
                     pageType: PageType.popup,
                   },
-                  breadcrumbLabel: 'zimbra_dashboard_email_accounts_delete',
+                  breadcrumbLabel: 'common:delete_email_account',
                 },
               },
               {
@@ -509,7 +501,7 @@ export const Routes: any = [
                     pageName: ORDER_ZIMBRA_EMAIL_ACCOUNT,
                     pageType: PageType.funnel,
                   },
-                  breadcrumbLabel: 'zimbra_dashboard_email_accounts_order',
+                  breadcrumbLabel: 'common:order_zimbra_accounts',
                 },
               },
             ],
@@ -524,7 +516,7 @@ export const Routes: any = [
                 pageName: MAILING_LIST,
                 pageType: PageType.listing,
               },
-              breadcrumbLabel: 'zimbra_dashboard_mailing_lists',
+              breadcrumbLabel: 'common:mailing_list',
             },
             children: [
               {
@@ -540,7 +532,7 @@ export const Routes: any = [
                     pageName: ADD_MAILING_LIST,
                     pageType: PageType.funnel,
                   },
-                  breadcrumbLabel: 'zimbra_dashboard_mailing_lists_add',
+                  breadcrumbLabel: 'common:add_mailing_list',
                 },
               },
               {
@@ -556,7 +548,7 @@ export const Routes: any = [
                     pageName: EDIT_MAILING_LIST,
                     pageType: PageType.funnel,
                   },
-                  breadcrumbLabel: 'zimbra_dashboard_mailing_lists_settings',
+                  breadcrumbLabel: 'common:edit_mailing_list',
                 },
               },
             ],
@@ -571,7 +563,7 @@ export const Routes: any = [
                 pageName: REDIRECTION,
                 pageType: PageType.listing,
               },
-              breadcrumbLabel: 'zimbra_dashboard_redirections',
+              breadcrumbLabel: 'common:redirection',
             },
             children: [
               {
@@ -586,7 +578,7 @@ export const Routes: any = [
                     pageName: ADD_REDIRECTION,
                     pageType: PageType.popup,
                   },
-                  breadcrumbLabel: 'zimbra_dashboard_redirections_add',
+                  breadcrumbLabel: 'common:add_redirection',
                 },
               },
               {
@@ -601,7 +593,7 @@ export const Routes: any = [
                     pageName: EDIT_REDIRECTION,
                     pageType: PageType.popup,
                   },
-                  breadcrumbLabel: 'zimbra_dashboard_redirections_edit',
+                  breadcrumbLabel: 'common:edit_redirection',
                 },
               },
               {
@@ -616,7 +608,7 @@ export const Routes: any = [
                     pageName: DELETE_REDIRECTION,
                     pageType: PageType.popup,
                   },
-                  breadcrumbLabel: 'zimbra_dashboard_redirections_delete',
+                  breadcrumbLabel: 'common:delete_redirection',
                 },
               },
             ],
@@ -631,7 +623,7 @@ export const Routes: any = [
                 pageName: AUTO_REPLY,
                 pageType: PageType.listing,
               },
-              breadcrumbLabel: 'zimbra_dashboard_auto_replies',
+              breadcrumbLabel: 'common:auto_reply',
             },
             children: [
               {
@@ -646,7 +638,7 @@ export const Routes: any = [
                     pageName: DELETE_AUTO_REPLY,
                     pageType: PageType.popup,
                   },
-                  breadcrumbLabel: 'zimbra_dashboard_auto_replies_delete',
+                  breadcrumbLabel: 'common:delete_auto_reply',
                 },
               },
               {
@@ -660,14 +652,13 @@ export const Routes: any = [
                     pageType: PageType.popup,
                   },
                   isOverridePage: true,
-                  breadcrumbLabel: 'zimbra_dashboard_auto_replies_add',
+                  breadcrumbLabel: 'common:add_auto_reply',
                 },
               },
             ],
           },
         ],
       },
-
       {
         path: 'onboarding',
         ...lazyRouteConfig(() => import('@/pages/onboarding')),

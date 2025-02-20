@@ -29,7 +29,7 @@ import {
 
 export default function AddAndEditMailingList() {
   const { trackClick } = useOvhTracking();
-  const { t } = useTranslation('mailinglists/addAndEdit');
+  const { t } = useTranslation(['mailing-lists/form', 'common']);
   const location = useLocation();
   const { platformId } = usePlatform();
   const [searchParams] = useSearchParams();
@@ -90,8 +90,8 @@ export default function AddAndEditMailingList() {
             />
             <Subtitle>
               {!editMailingListDetail
-                ? t('zimbra_mailinglist_add_title')
-                : t('zimbra_mailinglist_edit_title')}
+                ? t('common:add_mailing_list')
+                : t('common:edit_mailing_list')}
             </Subtitle>
           </div>
           <MailingListSettings

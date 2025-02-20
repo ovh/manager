@@ -36,7 +36,7 @@ import TabsPanel, {
 
 export default function AddAndEditAccount() {
   const { trackClick } = useOvhTracking();
-  const { t } = useTranslation('accounts/addAndEdit');
+  const { t } = useTranslation(['accounts/form', 'common']);
   const location = useLocation();
   const matches = useMatches();
   const { platformId } = usePlatform();
@@ -122,30 +122,30 @@ export default function AddAndEditAccount() {
     {
       name: 'settings',
       trackingName: EDIT_EMAIL_ACCOUNT,
-      title: t('zimbra_account_edit_tabs_settings'),
+      title: t('common:email_account_settings'),
       to: hrefSettings,
       pathMatchers: pathMatcherSettingsTabs,
     },
     {
       name: 'alias',
       trackingName: EMAIL_ACCOUNT_ALIAS,
-      title: t('zimbra_account_edit_tabs_alias'),
+      title: t('common:alias'),
       to: hrefAlias,
       pathMatchers: pathMatcherAliasTabs,
       hidden: !FEATURE_FLAGS.ALIAS,
     },
     {
-      name: 'redirections',
+      name: 'redirection',
       trackingName: EMAIL_ACCOUNT_REDIRECTION,
-      title: t('zimbra_account_edit_tabs_redirections'),
+      title: t('common:redirection'),
       to: hrefRedirections,
       pathMatchers: pathMatcherRedirectionsTabs,
       hidden: !FEATURE_FLAGS.REDIRECTIONS,
     },
     {
-      name: 'auto_replies',
+      name: 'auto_reply',
       trackingName: EMAIL_ACCOUNT_AUTO_REPLY,
-      title: t('zimbra_account_edit_tabs_auto_replies'),
+      title: t('common:auto_reply'),
       to: hrefAutoReplies,
       pathMatchers: pathMatcherAutoRepliesTabs,
       hidden: !FEATURE_FLAGS.AUTOREPLIES,
@@ -180,7 +180,7 @@ export default function AddAndEditAccount() {
             />
             <Subtitle>
               {!editAccountDetail
-                ? t('zimbra_account_add_title')
+                ? t('common:add_email_account')
                 : t('zimbra_account_edit_title', {
                     account: editAccountDetail?.currentState?.email,
                   })}

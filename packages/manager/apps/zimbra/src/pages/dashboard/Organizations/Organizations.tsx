@@ -129,7 +129,7 @@ export default function Organizations() {
               data-testid="add-organization-btn"
               className="mb-6"
               icon={ODS_ICON_NAME.plus}
-              label={t('zimbra_organization_cta')}
+              label={t('common:add_organization')}
             />
           </div>
           {isLoading ? (

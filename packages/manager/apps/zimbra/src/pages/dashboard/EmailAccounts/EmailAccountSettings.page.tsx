@@ -54,7 +54,7 @@ export default function EmailAccountSettings({
   editAccountDetail: AccountType;
 }>) {
   const { trackClick, trackPage } = useOvhTracking();
-  const { t } = useTranslation('accounts/addAndEdit');
+  const { t } = useTranslation(['accounts/form', 'common']);
   const navigate = useNavigate();
   const { addError, addSuccess } = useNotifications();
   const { platformId } = usePlatform();
@@ -225,17 +225,15 @@ export default function EmailAccountSettings({
   return (
     <div className="w-full md:w-3/4 space-y-4">
       <OdsText preset={ODS_TEXT_PRESET.caption} className="block">
-        {t('zimbra_account_add_input_mandatory')}
+        {t('common:form_mandatory_fields')}
       </OdsText>
       <OdsFormField className="w-full">
-        <label slot="label">
-          {t('zimbra_account_add_input_email_label')} *
-        </label>
+        <label slot="label">{t('common:email_account')} *</label>
         <div className="flex">
           <OdsInput
             type={ODS_INPUT_TYPE.text}
             name="account"
-            placeholder={t('zimbra_account_add_input_email_placeholder')}
+            placeholder={t('common:account_name')}
             hasError={form.account.hasError}
             value={form.account.value}
             defaultValue={form.account.defaultValue}
@@ -264,7 +262,7 @@ export default function EmailAccountSettings({
             isRequired={form.domain.required}
             hasError={form.domain.hasError}
             className="w-1/2"
-            placeholder={t('zimbra_account_add_select_domain_placeholder')}
+            placeholder={t('common:select_domain')}
             onOdsChange={(e) => handleDomainChange(e.detail.value)}
             data-testid="select-domain"
           >
@@ -284,12 +282,10 @@ export default function EmailAccountSettings({
           preset={ODS_TEXT_PRESET.caption}
           className="flex flex-col"
         >
-          <span className="block">
-            {t('zimbra_account_add_input_email_helper')}
-          </span>
+          <span className="block">{t('common:form_email_helper')}</span>
           {[1, 2, 3].map((elm) => (
             <span key={elm} className="block">
-              - {t(`zimbra_account_add_input_email_helper_rule_${elm}`)}
+              - {t(`common:form_email_helper_rule_${elm}`)}
             </span>
           ))}
         </OdsText>
@@ -411,11 +407,7 @@ export default function EmailAccountSettings({
           isLoading={isSending}
           onClick={handleSaveClick}
           data-testid="confirm-btn"
-          label={
-            !editAccountDetail
-              ? t('zimbra_account_add_button_confirm')
-              : t('zimbra_account_add_button_save')
-          }
+          label={!editAccountDetail ? t('common:confirm') : t('common:save')}
         />
 
         {editAccountDetail && (
@@ -424,7 +416,7 @@ export default function EmailAccountSettings({
             onClick={handleCancelClick}
             color={ODS_BUTTON_COLOR.primary}
             variant={ODS_BUTTON_VARIANT.outline}
-            label={t('zimbra_account_add_button_cancel')}
+            label={t('common:cancel')}
           />
         )}
       </div>

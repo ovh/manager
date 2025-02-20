@@ -2,7 +2,7 @@ import React from 'react';
 import { describe, expect } from 'vitest';
 import ActionButtonAlias from '../ActionButtonAlias.component';
 import { render } from '@/utils/test.provider';
-import aliasTranslation from '@/public/translations/accounts/alias/Messages_fr_FR.json';
+import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
 import { aliasMock } from '@/api/_mock_';
 import { ResourceStatus } from '@/api/api.type';
 
@@ -20,10 +20,7 @@ describe('Alias datagrid action menu', () => {
 
     expect(menuItems.length).toBe(1);
 
-    expect(menuItems[0]).toHaveAttribute(
-      'label',
-      aliasTranslation.zimbra_account_alias_datagrid_tooltip_delete,
-    );
+    expect(menuItems[0]).toHaveAttribute('label', commonTranslation.delete);
 
     expect(menu).toHaveAttribute('is-disabled', 'false');
   });
@@ -41,10 +38,7 @@ describe('Alias datagrid action menu', () => {
 
     expect(menuItems.length).toBe(1);
 
-    expect(menuItems[0]).toHaveAttribute(
-      'label',
-      aliasTranslation.zimbra_account_alias_datagrid_tooltip_delete,
-    );
+    expect(menuItems[0]).toHaveAttribute('label', commonTranslation.delete);
 
     expect(menu).toHaveAttribute('is-disabled', 'true');
   });

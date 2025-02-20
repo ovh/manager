@@ -109,7 +109,7 @@ function OrderCatalogForm({
   orderBaseURL,
 }: Readonly<OrderCatalogFormProps>) {
   const { trackClick } = useOvhTracking();
-  const { t } = useTranslation('accounts/order');
+  const { t } = useTranslation(['accounts/order', 'common']);
   const { platformId } = usePlatform();
   const [orderURL, setOrderURL] = useState('');
   const plans = useMemo(() => {
@@ -293,7 +293,7 @@ function OrderCatalogForm({
         isDisabled={!isFormValid || !atLeastOneProductSelected}
         onClick={handleConfirm}
         data-testid="order-account-confirm-btn"
-        label={t('zimbra_account_order_cta_confirm')}
+        label={t('common:pay')}
       ></OdsButton>
     </div>
   );

@@ -41,7 +41,7 @@ export type AliasItem = {
 
 export default function EmailAccountsAlias() {
   const { trackClick } = useOvhTracking();
-  const { t } = useTranslation('accounts/alias');
+  const { t } = useTranslation(['accounts/alias', 'common']);
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const params = Object.fromEntries(searchParams.entries());
@@ -58,14 +58,14 @@ export default function EmailAccountsAlias() {
       cell: (item: AliasItem) => (
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.alias}</OdsText>
       ),
-      label: 'zimbra_account_alias_datagrid_alias_label',
+      label: 'common:alias',
     },
     {
       id: 'status',
       cell: (item: AliasItem) => (
         <BadgeStatus itemStatus={item.status}></BadgeStatus>
       ),
-      label: 'zimbra_account_alias_datagrid_status_label',
+      label: 'common:status',
     },
     {
       id: 'tooltip',
@@ -110,7 +110,7 @@ export default function EmailAccountsAlias() {
               iamActions={[IAM_ACTIONS.alias.create]}
               data-testid="add-alias-btn"
               icon={ODS_ICON_NAME.plus}
-              label={t('zimbra_account_alias_cta')}
+              label={t('common:add_alias')}
             ></ManagerButton>
           </div>
           {isLoading ? (

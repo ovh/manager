@@ -27,7 +27,7 @@ import {
 
 export default function ModalDeleteRedirections() {
   const { trackClick, trackPage } = useOvhTracking();
-  const { t } = useTranslation('redirections/delete');
+  const { t } = useTranslation(['redirections', 'common']);
   const navigate = useNavigate();
   const { addSuccess, addError } = useNotifications();
 
@@ -56,7 +56,7 @@ export default function ModalDeleteRedirections() {
       });
       addSuccess(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {t('zimbra_domain_delete_success_message')}
+          {t('zimbra_redirections_delete_success_message')}
         </OdsText>,
         true,
       );
@@ -68,7 +68,7 @@ export default function ModalDeleteRedirections() {
       });
       addError(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {t('zimbra_domain_delete_error_message', {
+          {t('zimbra_redirections_delete_error_message', {
             error: error?.response?.data?.message,
           })}
         </OdsText>,
@@ -108,17 +108,17 @@ export default function ModalDeleteRedirections() {
     <Modal
       isOpen
       color={ODS_MODAL_COLOR.critical}
-      title={t('zimbra_redirections_delete_modal_title')}
+      title={t('common:delete_redirection')}
       onClose={onClose}
       secondaryButton={{
         testid: 'cancel-btn',
-        label: t('zimbra_redirections_delete_button_cancel'),
+        label: t('common:cancel'),
         action: handleCancelClick,
       }}
       primaryButton={{
         testid: 'delete-btn',
         variant: ODS_BUTTON_VARIANT.default,
-        label: t('zimbra_redirections_delete_button_delete'),
+        label: t('common:delete'),
         action: handleConfirmClick,
         isLoading: isSending,
       }}
@@ -134,11 +134,13 @@ export default function ModalDeleteRedirections() {
         </OdsText>
 
         <OdsText preset={ODS_TEXT_PRESET.paragraph} className="font-bold">
-          {t('zimbra_redirections_delete_modal_from')}
+          {t('zimbra_redirections_from')}
+          {' :'}
         </OdsText>
 
         <OdsText preset={ODS_TEXT_PRESET.paragraph} className="font-bold">
-          {t('zimbra_redirections_delete_modal_to')}
+          {t('zimbra_redirections_to')}
+          {' :'}
         </OdsText>
       </>
     </Modal>

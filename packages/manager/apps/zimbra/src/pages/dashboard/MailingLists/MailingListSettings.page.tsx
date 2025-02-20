@@ -91,7 +91,7 @@ export default function MailingListSettings({
   editMailingListDetail: MailingListType;
 }>) {
   const { trackClick, trackPage } = useOvhTracking();
-  const { t } = useTranslation('mailinglists/addAndEdit');
+  const { t } = useTranslation(['mailing-lists/form', 'common']);
   const navigate = useNavigate();
   const { addError, addSuccess } = useNotifications();
   const { platformId } = usePlatform();
@@ -274,7 +274,7 @@ export default function MailingListSettings({
           : t('zimbra_mailinglist_edit_header')}
       </OdsText>
       <OdsText preset={ODS_TEXT_PRESET.caption}>
-        {t('zimbra_mailinglist_mandatory_fields')}
+        {t('common:form_mandatory_fields')}
       </OdsText>
       <OdsFormField>
         <label slot="label">
@@ -314,7 +314,7 @@ export default function MailingListSettings({
             hasError={form.domain.hasError}
             isRequired={form.domain.required}
             onOdsChange={(e) => handleDomainChange(e.detail.value)}
-            placeholder={t('zimbra_mailinglist_add_select_domain_placeholder')}
+            placeholder={t('common:select_domain')}
             data-testid="select-domain"
           >
             {domainList?.map(({ currentState: domain }) => (
@@ -335,14 +335,12 @@ export default function MailingListSettings({
         </OdsMessage>
       )}
       <OdsFormField>
-        <label slot="label">
-          {t('zimbra_mailinglist_add_input_owner_label')} *
-        </label>
+        <label slot="label">{t('common:owner')} *</label>
         <div className="flex">
           <OdsInput
             type={ODS_INPUT_TYPE.text}
             name="owner"
-            placeholder={t('zimbra_mailinglist_add_input_owner_placeholder')}
+            placeholder={t('common:owner')}
             hasError={form.owner.hasError}
             value={form.owner.value}
             defaultValue={form.owner.defaultValue}
@@ -476,14 +474,14 @@ export default function MailingListSettings({
           isLoading={isSending}
           onClick={handleSavelick}
           data-testid="confirm-btn"
-          label={t('zimbra_mailinglist_add_button_confirm')}
+          label={t('common:confirm')}
         />
         {editMailingListId && (
           <OdsButton
             slot="actions"
             onClick={handleCancelClick}
             variant={ODS_BUTTON_VARIANT.outline}
-            label={t('zimbra_mailinglist_add_button_cancel')}
+            label={t('common:cancel')}
           />
         )}
       </div>

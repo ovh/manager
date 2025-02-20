@@ -2,7 +2,7 @@ import React from 'react';
 import { describe, expect } from 'vitest';
 import Domains from '../Domains';
 import { render, waitFor } from '@/utils/test.provider';
-import domainTranslation from '@/public/translations/domains/Messages_fr_FR.json';
+import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
 
 describe('Domains page', () => {
   it('Page should display correctly', async () => {
@@ -13,10 +13,7 @@ describe('Domains page', () => {
     });
 
     const button = getByTestId('add-domain-btn');
-    expect(button).toHaveAttribute(
-      'label',
-      domainTranslation.zimbra_domains_add_domain_title,
-    );
+    expect(button).toHaveAttribute('label', commonTranslation.add_domain);
 
     expect(button).toHaveAttribute('is-disabled', 'true');
   });

@@ -2,7 +2,7 @@ import React from 'react';
 import { describe, expect } from 'vitest';
 import ActionButtonOrganization from '../ActionButtonOrganization.component';
 import { render } from '@/utils/test.provider';
-import organizationsTranslation from '@/public/translations/organizations/Messages_fr_FR.json';
+import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
 import { organizationDetailMock } from '@/api/_mock_';
 
 describe('Organizations datagrid action menu', () => {
@@ -15,14 +15,8 @@ describe('Organizations datagrid action menu', () => {
 
     expect(menuItems.length).toBe(2);
 
-    expect(menuItems[0]).toHaveAttribute(
-      'label',
-      organizationsTranslation.zimbra_organization_edit,
-    );
+    expect(menuItems[0]).toHaveAttribute('label', commonTranslation.modify);
 
-    expect(menuItems[1]).toHaveAttribute(
-      'label',
-      organizationsTranslation.zimbra_organization_delete,
-    );
+    expect(menuItems[1]).toHaveAttribute('label', commonTranslation.delete);
   });
 });

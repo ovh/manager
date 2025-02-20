@@ -128,7 +128,7 @@ export const ZIMBRA_DNS_CONFIGURATION_GUIDE: GuideLinks = {
 
 export const GUIDES_LIST = {
   webmail: {
-    key: 'zimbra_dashboard_webmail',
+    key: 'common:webmail',
     url: WEBMAIL,
     tracking: GUIDE_WEBMAIL,
   },
