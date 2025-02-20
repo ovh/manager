@@ -1,0 +1,74 @@
+<div data-ng-controller="IamUsersGroupsAddCtrl as $ctrl">
+    <oui-modal
+        data-heading="{{:: 'users_groups_add_modal_title' | translate }}"
+        data-primary-action="$ctrl.addGroup()"
+        data-primary-label="{{:: 'user_modal_confirm' | translate }}"
+        data-primary-disabled="!$ctrl.iamUsersGroupsAddForm.$valid"
+        data-secondary-action="$ctrl.close()"
+        data-secondary-label="{{:: 'user_modal_cancel' | translate }}"
+        data-on-dismiss="$ctrl.close()"
+    >
+        <p data-translate="users_groups_add_modal_info"></p>
+
+        <h5
+            data-translate="users_groups_add_modal_step1_question"
+            data-translate-values="{login: $ctrl.user.login}"
+        ></h5>
+
+        <div class="text-center" data-ng-if="$ctrl.loader">
+            <oui-spinner data-size="s"></oui-spinner>
+        </div>
+
+        <form name="$ctrl.iamUsersGroupsAddForm" data-ng-if="!$ctrl.loader">
+            <div class="form-group">
+                <label
+                    class="control-label"
+                    for="groupName"
+                    data-translate="users_groups_add_modal_group_name"
+                >
+                </label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="groupName"
+                    name="groupName"
+                    data-ng-model="$ctrl.group.name"
+                />
+            </div>
+            <div class="form-group">
+                <label
+                    class="control-label"
+                    for="groupDescription"
+                    data-translate="users_groups_add_modal_group_description"
+                >
+                </label>
+
+                <textarea
+                    class="py-2 form-control"
+                    id="groupDescription"
+                    name="groupDescription"
+                    rows="5"
+                    data-ng-model="$ctrl.group.description"
+                >
+                </textarea>
+            </div>
+            <div class="form-group">
+                <label
+                    class="control-label"
+                    for="role"
+                    data-translate="user_users_role"
+                >
+                </label>
+                <select
+                    class="form-control"
+                    id="role"
+                    name="role"
+                    required
+                    data-ng-model="$ctrl.group.role"
+                    data-ng-options="'user_roles_' + role | translate for role in $ctrl.roles"
+                >
+                </select>
+            </div>
+        </form>
+    </oui-modal>
+</div>
