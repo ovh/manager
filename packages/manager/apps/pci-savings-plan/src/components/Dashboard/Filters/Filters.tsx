@@ -12,7 +12,7 @@ import {
 import { InstanceTechnicalName } from '@/types/CreatePlan.type';
 import { toMonthYear } from '@/utils/formatter/date';
 
-type Option = { label: string; value: string; prefix?: string };
+export type Option = { label: string; value: string; prefix?: string };
 
 const getSelectText = (value: string, options: Option[], t: TFunction) => {
   if (options.length === 0) {
