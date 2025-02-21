@@ -1,5 +1,6 @@
 import { ApiResponse, apiClient } from '@ovh-ux/manager-core-api';
 import { IamObject } from '@ovh-ux/manager-react-components';
+import { ServiceStatus } from '@/types';
 
 export type DedicatedServer = {
   ip: string;
@@ -61,13 +62,7 @@ export type DedicatedServerServiceInfos = {
     | 'oneShot'
     | 'option';
   serviceId: number;
-  status:
-    | 'autorenewInProgress'
-    | 'expired'
-    | 'inCreation'
-    | 'ok'
-    | 'pendingDebt'
-    | 'unPaid';
+  status: ServiceStatus;
 };
 
 export const getDedicatedServerServiceInfos = (
