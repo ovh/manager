@@ -39,6 +39,7 @@ export default function RestrictionsPage() {
 
   const {
     data,
+    mappedData,
     isPending: isFetchPending,
     addEmptyRow,
     deleteRowByIndex,
@@ -110,10 +111,10 @@ export default function RestrictionsPage() {
   };
 
   const onSave = (ip: string, index: number) => {
-    const ipsToSave = data.rows.map((d) =>
+    const ipsToSave = mappedData.map((d) =>
       d.index === index ? formatIP(ip) : d.value,
     );
-    updateRestriction(ipsToSave);
+    updateRestriction(ipsToSave.filter((d) => d));
   };
 
   const columns = useRestrictionColumns({
