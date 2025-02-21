@@ -23,7 +23,7 @@ export type TUseInstancesQueryParams = DeepReadonly<{
   filters: FilterWithLabel[];
 }>;
 
-export type TAddressType = 'public' | 'private';
+export type TAddressType = 'public' | 'private' | 'floating';
 
 export type TInstanceStatusSeverity = 'success' | 'error' | 'warning' | 'info';
 export type TInstanceStatusState = TInstanceStatusDto;

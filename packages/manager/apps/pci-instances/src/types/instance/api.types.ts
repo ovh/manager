@@ -1,6 +1,6 @@
 import { DeepReadonly } from '../utils.type';
 
-export type TInstanceDtoAddressType = 'public' | 'private';
+export type TInstanceDtoAddressType = 'public' | 'private' | 'floating';
 
 export type TInstanceDtoAddress = {
   ip: string;
