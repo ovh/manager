@@ -10,9 +10,10 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { getAdditionalIpsProductSettings } from '../order.utils';
 import { OrderContext } from '../order.context';
+import { MIN_IP_QUANTITY, MAX_IP_QUANTITY } from '../order.constant';
 import { urls } from '@/routes/routes.constant';
 import { ServiceType } from '@/types';
-import { MAX_IP_QUANTITY } from '../order.constant';
+import { useServiceRegion } from '@/data/hooks/useServiceRegion';
 
 export const OrderButtonSection: React.FC = () => {
   const {
@@ -25,28 +26,23 @@ export const OrderButtonSection: React.FC = () => {
     selectedGeolocation,
     selectedOrganisation,
     ipQuantity,
+    pricingMode,
   } = React.useContext(OrderContext);
   const { t } = useTranslation('order');
   const navigate = useNavigate();
+  const { region } = useServiceRegion({
+    serviceName: selectedService,
+    serviceType: selectedServiceType,
+  });
 
   const orderBaseUrl = useOrderURL('express_review_base');
-
-  if (
-    !ipVersion ||
-    !selectedService ||
-    !selectedServiceType ||
-    !selectedOffer ||
-    !selectedPlanCode ||
-    !selectedGeolocation ||
-    (!selectedOrganisation && [ServiceType.vrack].includes(selectedServiceType))
-  ) {
-    return <></>;
-  }
 
   return (
     <div className="flex gap-3">
       <OdsButton
-        isDisabled={ipQuantity > MAX_IP_QUANTITY}
+        isDisabled={
+          ipQuantity > MAX_IP_QUANTITY || ipQuantity < MIN_IP_QUANTITY
+        }
         color={ODS_BUTTON_COLOR.primary}
         size={ODS_BUTTON_SIZE.md}
         label={t('order_button_label')}
@@ -57,10 +53,15 @@ export const OrderButtonSection: React.FC = () => {
             offer: selectedOffer,
             organisation: selectedOrganisation,
             planCode: selectedPlanCode,
-            region: selectedRegion,
+            region: [ServiceType.ipParking, ServiceType.vrack].includes(
+              selectedServiceType,
+            )
+              ? selectedRegion
+              : region,
             serviceName: selectedService,
             serviceType: selectedServiceType,
             quantity: ipQuantity,
+            pricingMode,
           });
           window.open(
             `${orderBaseUrl}?products=~(${settings})`,
