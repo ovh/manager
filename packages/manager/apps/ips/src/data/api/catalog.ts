@@ -1,30 +1,39 @@
 import { ApiResponse, apiClient } from '@ovh-ux/manager-core-api';
 import { CurrencyCode, OvhSubsidiary } from '@ovh-ux/manager-react-components';
 
+export type Capacity =
+  | 'installation'
+  | 'renew'
+  | 'consumption'
+  | 'detach'
+  | 'downgrade'
+  | 'dynamic'
+  | 'upgrade';
+
+export type Pricing = {
+  capacities: Capacity[];
+  commitment: number;
+  description: string;
+  interval: number;
+  intervalUnit: string;
+  maximumQuantity: number;
+  maximumRepeat: number;
+  minimumQuantity: number;
+  minimumRepeat: number;
+  mustBeCompleted: boolean;
+  price: { currencyCode: CurrencyCode; text: string; value: number };
+  priceCapInUcents: number | null;
+  priceInUcents: number;
+  pricingStrategy: string;
+};
+
 export type CatalogIpPlan = {
   addonsFamily: unknown[];
   consumptionBillingStrategy: string | null;
   details: {
     metadatas: { key: string; value: 'true' | 'false' }[];
     pricings: {
-      default: [
-        {
-          capacities: ('installation' | 'renew')[];
-          commitment: number;
-          description: string;
-          interval: number;
-          intervalUnit: string;
-          maximumQuantity: number;
-          maximumRepeat: number;
-          minimumQuantity: number;
-          minimumRepeat: number;
-          mustBeCompleted: boolean;
-          price: { currencyCode: CurrencyCode; text: string; value: number };
-          priceCapInUcents: number | null;
-          priceInUcents: number;
-          pricingStrategy: string;
-        },
-      ];
+      default: Pricing[];
     };
     product: {
       configurations: {
@@ -63,3 +72,18 @@ export const getCatalogIps = (
   sub: OvhSubsidiary = OvhSubsidiary.FR,
 ): Promise<ApiResponse<CatalogIpsResponse>> =>
   apiClient.v6.get(`/order/catalog/formatted/ip?ovhSubsidiary=${sub}`);
+
+export type PccCatalogResponse = {
+  productType: string;
+  productName: string;
+  family: 'backup' | 'ip' | 'datastore' | 'dr';
+  prices: (Pricing & { pricingMode: string; pricingType: string })[];
+  planCode: string;
+  exclusive: boolean;
+  mandatory: boolean;
+}[];
+
+export const getPccCatalog = (
+  serviceName: string,
+): Promise<ApiResponse<PccCatalogResponse>> =>
+  apiClient.v6.get(`/order/cartServiceOption/privateCloud/${serviceName}`);
