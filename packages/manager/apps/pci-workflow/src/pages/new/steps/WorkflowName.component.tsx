@@ -30,7 +30,6 @@ import { StepState } from '@/pages/new/hooks/useStep';
 interface WorkflowNameProps {
   name: string;
   region: string;
-  ovhSubsidiary: string;
   step: StepState;
   onNameChange: (name: string) => void;
   onSubmit: () => void;
@@ -42,7 +41,6 @@ const VALID_NAME_PATTERN = /^[a-zA-Z0-9_.-]+$/;
 export function WorkflowName({
   name,
   region,
-  ovhSubsidiary,
   step,
   onNameChange,
   onSubmit,
@@ -61,7 +59,6 @@ export function WorkflowName({
   const { data: pricing, isFetching } = useInstanceSnapshotPricing(
     projectId,
     region,
-    ovhSubsidiary,
   );
 
   if (isFetching) {

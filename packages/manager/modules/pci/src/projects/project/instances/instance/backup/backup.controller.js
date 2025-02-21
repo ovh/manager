@@ -74,7 +74,7 @@ export default class PciInstanceBackupController {
   }
 
   formatPrice() {
-    const { price } = this.monthlyPrice;
+    const { price } = this.snapshotAvailability[this.instance.region].plans[0];
 
     const { value, currencyCode } = price;
     return `~${new Intl.NumberFormat(

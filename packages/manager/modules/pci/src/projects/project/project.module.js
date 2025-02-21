@@ -37,6 +37,7 @@ import projectComponent from './project.component';
 import service from './project.service';
 import pciProjectNew from '../new/service';
 import orderCart from '../order-cart.service';
+import { HOURS_PER_MONTH } from './project.constants';
 
 import './project.less';
 
@@ -78,6 +79,7 @@ angular
   .config(routing)
   .component('pciProject', projectComponent)
   .run(/* @ngTranslationsInject:json ./translations */)
+  .constant('HOURS_PER_MONTH', HOURS_PER_MONTH)
   .service('orderCart', orderCart)
   .service('pciProjectNew', pciProjectNew)
   .service('PciProject', service);

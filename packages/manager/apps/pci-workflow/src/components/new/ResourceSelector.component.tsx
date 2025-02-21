@@ -3,7 +3,6 @@ import {
   DataGridTextCell,
   FilterAdd,
   FilterList,
-  isLocalZone,
   useColumnFilters,
   useDataGrid,
 } from '@ovh-ux/manager-react-components';
@@ -33,40 +32,53 @@ import { usePaginatedInstances } from '@/api/hooks/useInstances';
 import StatusComponent from '@/components/new/Status.component';
 import NotSupportedTooltipComponent from '@/components/new/NotSupportedTooltip.component';
 import { TWorkflowInstance } from '@/types';
+import { useRegionsWithAutomaticBackup } from '@/hooks/useRegionsWithAutomaticBackup';
 
 const useDatagridColumn = (
   selectedInstance: TWorkflowInstance,
   onSelectInstance: (instance: TWorkflowInstance) => void,
 ) => {
   const { t } = useTranslation('new');
+  const { projectId } = useParams();
+  const regions = useRegionsWithAutomaticBackup(projectId);
+
   return [
     {
       id: 'actions',
-      cell: (instance: TWorkflowInstance) => (
-        <div className="text-center">
-          <NotSupportedTooltipComponent region={instance.region}>
-            <OsdsRadioButton
-              checked={selectedInstance?.id === instance?.id || undefined}
-              color={ODS_THEME_COLOR_INTENT.primary}
-              size={ODS_RADIO_BUTTON_SIZE.xs}
-              data-testid={`radio-button-${instance.id}`}
-              disabled={isLocalZone(instance.region) || undefined}
-              className="mx-auto"
-              onClick={() => {
-                if (!isLocalZone(instance.region)) {
-                  onSelectInstance(instance);
-                }
-              }}
-            />
-          </NotSupportedTooltipComponent>
-        </div>
-      ),
+      cell: (instance: TWorkflowInstance) => {
+        const isRegionSupportingAutomaticBackup = regions.includes(
+          instance.region,
+        );
+        return (
+          <div className="text-center">
+            <NotSupportedTooltipComponent
+              supported={isRegionSupportingAutomaticBackup}
+            >
+              <OsdsRadioButton
+                checked={selectedInstance?.id === instance?.id || undefined}
+                color={ODS_THEME_COLOR_INTENT.primary}
+                size={ODS_RADIO_BUTTON_SIZE.xs}
+                data-testid={`radio-button-${instance.id}`}
+                disabled={!isRegionSupportingAutomaticBackup || undefined}
+                className="mx-auto"
+                onClick={() => {
+                  if (isRegionSupportingAutomaticBackup) {
+                    onSelectInstance(instance);
+                  }
+                }}
+              />
+            </NotSupportedTooltipComponent>
+          </div>
+        );
+      },
       label: '',
     },
     {
       id: 'name',
       cell: (instance: TWorkflowInstance) => (
-        <NotSupportedTooltipComponent region={instance.region}>
+        <NotSupportedTooltipComponent
+          supported={regions.includes(instance.region)}
+        >
           <DataGridTextCell>{instance.name}</DataGridTextCell>
         </NotSupportedTooltipComponent>
       ),

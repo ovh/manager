@@ -21,15 +21,6 @@ export default /* @ngInject */ ($stateProvider) => {
           instanceId,
           customerRegions,
         ),
-      monthlyPrice: /* @ngInject */ (
-        PciProjectsProjectInstanceService,
-        projectId,
-        instance,
-      ) =>
-        PciProjectsProjectInstanceService.getSnapshotMonthlyPrice(
-          projectId,
-          instance,
-        ),
       goBack: /* @ngInject */ (goToInstances) => goToInstances,
       breadcrumb: () => null,
     },
