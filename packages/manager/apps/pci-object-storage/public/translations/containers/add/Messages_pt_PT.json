@@ -58,5 +58,14 @@
   "pci_projects_project_storages_containers_add_replication_rules_info_link": "Para saber mais e começar.",
   "pci_projects_project_storages_containers_disclaimer": "*S3 é uma marca registada pertencente à Amazon Technologies, Inc. Os serviços da OVHcloud não são patrocinados, aprovados ou afiliados de qualquer forma.",
   "pci_projects_project_storages_containers_project_banner_message": "Para aceder às etapas seguintes, deve",
-  "pci_projects_project_storages_containers_project_banner_link_text": "ativar o seu projeto."
+  "pci_projects_project_storages_containers_project_banner_link_text": "ativar o seu projeto.",
+  "pci_projects_project_storages_containers_offsite_replication_title": "Offsite Replication",
+  "pci_projects_project_storages_containers_offsite_replication_description": "Replique automaticamente os seus dados num local remoto ao melhor preço e com maior resiliência.",
+  "pci_projects_project_storages_containers_offsite_replication_disabled": "Desativar",
+  "pci_projects_project_storages_containers_offsite_replication_enabled": "Ativar",
+  "pci_projects_project_storages_containers_offsite_replication_recommanded": "Recomendada",
+  "pci_projects_project_storages_containers_offsite_replication_price_estimation": "~{{price}} /mês/TB + IVA",
+  "pci_projects_project_storages_containers_offsite_replication_final_price_estimation": "Estimativa total: ",
+  "pci_projects_project_storages_containers_offsite_replication_final_price_estimation_value": "~{{price}} /mês/TB + IVA",
+  "pci_projects_project_storages_containers_offsite_replication_versionning_warning": "Ao ativar a oferta Replication, a versão também será ativada. "
 }
