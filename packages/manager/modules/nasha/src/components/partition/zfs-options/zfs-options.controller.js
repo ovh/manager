@@ -6,7 +6,8 @@ import { PREFIX_TRACKING_DASHBOARD_PARTITION_ZFS_OPTION } from '../partition.con
 
 export default class NashaComponentsPartitionZfsOptionsController {
   /* @ngInject */
-  constructor($http, $translate) {
+  constructor($q, $http, $translate) {
+    this.$q = $q;
     this.$http = $http;
     this.$translate = $translate;
 
@@ -17,10 +18,17 @@ export default class NashaComponentsPartitionZfsOptionsController {
       recordsize: null,
       sync: null,
     };
+    this.templates = [];
   }
 
   $onInit() {
-    this.$http
+    this.$q.all(this.getOptions(), this.getAllTemplates()).finally(() => {
+      this.isLoading = false;
+    });
+  }
+
+  getOptions() {
+    return this.$http
       .get(`${this.partitionApiUrl}/options`)
       .then(({ data }) => {
         const options = prepareZfsOptions(data);
@@ -35,10 +43,27 @@ export default class NashaComponentsPartitionZfsOptionsController {
         } else {
           this.close({ error });
         }
-      })
-      .finally(() => {
-        this.isLoading = false;
       });
+  }
+
+  getAllTemplates() {
+    return this.$http
+      .get(`${this.partitionApiUrl}/templateUsage`)
+      .then(({ data }) => {
+        this.templates = [
+          {
+            name: this.translate('custom_template_selection'),
+            description: '',
+          },
+          ...data,
+        ];
+      });
+  }
+
+  onCustomSelection() {
+    return (
+      this.model.templateName === this.translate('custom_template_selection')
+    );
   }
 
   get canSubmit() {
@@ -46,7 +71,10 @@ export default class NashaComponentsPartitionZfsOptionsController {
   }
 
   get exportedModel() {
-    return exportZfsOptions(this.model);
+    return exportZfsOptions(
+      this.model,
+      this.translate('custom_template_selection'),
+    );
   }
 
   getRecordsizeLabel(recordsize) {
