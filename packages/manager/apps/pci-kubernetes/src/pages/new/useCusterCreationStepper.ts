@@ -3,14 +3,16 @@ import { TLocalisation } from '@ovh-ux/manager-pci-common';
 import { useStep } from './useStep';
 import { TNetworkFormState } from './steps/NetworkClusterStep.component';
 import { UpdatePolicy } from '@/types';
-import { NodePool } from '@/api/data/kubernetes';
+
+import { NodePool, NodePoolPrice } from '@/api/data/kubernetes';
 
 export type TClusterCreationForm = {
   region: TLocalisation;
   version: string;
   updatePolicy: UpdatePolicy;
   network: TNetworkFormState;
-  nodePools?: NodePool[];
+  nodePools?: NodePoolPrice[];
+
   clusterName: string;
 };
 
@@ -119,7 +121,7 @@ export function useClusterCreationStepper() {
         nodeStep.unlock();
         [confirmStep].forEach(stepReset);
       },
-      submit: (nodePools: NodePool[]) => {
+      submit: (nodePools: NodePoolPrice[]) => {
         setForm((f) => ({
           ...f,
           nodePools,

@@ -31,6 +31,8 @@ export interface NodePool {
   monthlyBilled: boolean;
 }
 
+export type NodePoolPrice = NodePool & { monthlyPrice: number };
+
 export interface KubeClusterCreationParams {
   name: string;
   region: string;

@@ -3,15 +3,21 @@ import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
+import { useCatalogPrice } from '@ovh-ux/manager-react-components';
 import { OsdsText } from '@ovhcloud/ods-components/react';
 import {
   ODS_TEXT_COLOR_INTENT,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
+import { NodePoolPrice } from '@/api/data/kubernetes';
 
-const Estimation = () => {
+const Estimation = ({ nodePools }: { nodePools?: NodePoolPrice[] }) => {
   const { t } = useTranslation('node-pool');
+
+  const { getFormattedMonthlyCatalogPrice } = useCatalogPrice(4, {
+    exclVat: true,
+  });
 
   return (
     <div className="flex flex-col gap-6 mb-8">
@@ -37,7 +43,17 @@ const Estimation = () => {
         size={ODS_TEXT_SIZE._400}
       >
         {t('kube_common_node_pool_estimation_price', {
-          estimation: 'x,xx € HT/mois',
+          estimation: nodePools
+            ? getFormattedMonthlyCatalogPrice(
+                nodePools.reduce(
+                  (acc, item) => acc + item.monthlyPrice,
+
+                  0,
+                ),
+              )
+            : getFormattedMonthlyCatalogPrice(0)
+                .replace('0.00', 'x.xx')
+                .replace('0,00', 'x.xx'),
         })}
       </OsdsText>
       <OsdsText

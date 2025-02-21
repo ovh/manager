@@ -174,15 +174,15 @@ describe('isBase64', () => {
 describe('generateUniqueName', () => {
   it.each([
     ['NodePool-2', [{ name: 'NodePool-1' }], 'NodePool-2'],
-    ['NodePool-2', [{ name: 'NodePool-2' }], 'NodePool-2-copie 1'],
+    ['NodePool-2', [{ name: 'NodePool-2' }], 'NodePool-2-1'],
     [
       'NodePool-2',
       [
         { name: 'NodePool-2' },
-        { name: 'NodePool-2-copie 1' },
-        { name: 'NodePool-2-copie 2' },
+        { name: 'NodePool-2-1' },
+        { name: 'NodePool-2-2' },
       ],
-      'NodePool-2-copie 3',
+      'NodePool-2-3',
     ],
     [
       'UniquePool',

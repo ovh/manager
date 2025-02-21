@@ -265,12 +265,11 @@ export default function NewPage() {
           <>
             {!stepper.confirm.step.isLocked && (
               <ClusterConfirmationStep
-                form={stepper.form}
+                nodePools={stepper.form.nodePools}
                 onSubmit={() => {
                   stepper.confirm.step.lock();
                   createNewCluster();
                 }}
-                step={stepper.confirm.step}
               />
             )}
             {stepper.confirm.step.isLocked && (

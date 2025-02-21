@@ -1,7 +1,5 @@
 import {
-  OsdsButton,
   OsdsText,
-  OsdsInput,
   OsdsFormField,
   OsdsToggle,
 } from '@ovhcloud/ods-components/react';
@@ -20,10 +18,12 @@ import { useTranslation } from 'react-i18next';
 type NodeToggleProps = {
   nodePoolEnabled: boolean;
   onNodePoolEnabledChange: (val: boolean) => void;
+  step: { isLocked: boolean };
 };
 
 const NodePoolToggle = ({
   nodePoolEnabled,
+  step,
   onNodePoolEnabledChange,
 }: Readonly<NodeToggleProps>) => {
   const { t: tNodePool } = useTranslation('node-pool');
@@ -46,15 +46,17 @@ const NodePoolToggle = ({
           </OsdsText>
         </OsdsToggle>
       </OsdsFormField>
-      <p>
-        <OsdsText
-          level={ODS_TEXT_LEVEL.body}
-          size={ODS_TEXT_SIZE._400}
-          color={ODS_THEME_COLOR_INTENT.text}
-        >
-          {tNodePool('kubernetes_add_node_pool_description')}
-        </OsdsText>
-      </p>
+      {!step.isLocked && (
+        <p>
+          <OsdsText
+            level={ODS_TEXT_LEVEL.body}
+            size={ODS_TEXT_SIZE._400}
+            color={ODS_THEME_COLOR_INTENT.text}
+          >
+            {tNodePool('kubernetes_add_node_pool_description')}
+          </OsdsText>
+        </p>
+      )}
     </>
   );
 };
