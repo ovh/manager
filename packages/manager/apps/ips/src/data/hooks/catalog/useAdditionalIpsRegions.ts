@@ -10,7 +10,9 @@ export const useAdditionalIpsRegions = ({
   serviceType: ServiceType;
 }) => {
   const { environment } = React.useContext(ShellContext);
-  const { data, ...query } = useCatalogIps(environment.user.ovhSubsidiary);
+  const { data, ...query } = useCatalogIps({
+    subsidiary: environment.user.ovhSubsidiary,
+  });
 
   const configurationName =
     serviceType === ServiceType.vrack ? 'ip_region' : 'datacenter';
