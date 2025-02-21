@@ -29,14 +29,15 @@ const SuggestionModal = (): JSX.Element => {
   } = useSuggestionForUserProfile(accountEditionLink);
   const [showModal, setShowModal] = useState(true);
 
-  const onClose = () => {
+  const closeModal = () => {
     setShowModal(false);
+    ux.notifyModalActionDone();
     // @ TODO: Handle tracking (ECAN-2228)
   };
-  const onAccept = () => {
+  const goToProfileEdition = () => {
     setShowModal(false);
     // @ TODO: Handle tracking (ECAN-2228)
-    window.top.location.href = `${accountEditionLink}?fieldToFocus=siretForm`;
+    window.top.location.href = `${accountEditionLink}?fieldToFocus=ovh_form_content_activity`;
   };
 
   /*
@@ -56,7 +57,7 @@ const SuggestionModal = (): JSX.Element => {
 
   return shouldBeDisplayed && showModal ? (
     <OsdsModal
-      onOdsModalClose={onClose}
+      dismissible={false}
       headline={t('suggestion_modal_title')}
       color={ODS_THEME_COLOR_INTENT.info}
       data-testid="suggestion-modal"
@@ -83,17 +84,17 @@ const SuggestionModal = (): JSX.Element => {
       </OsdsText>
 
       <OsdsButton
-        onClick={onClose}
+        onClick={goToProfileEdition}
         slot="actions"
         color={ODS_THEME_COLOR_INTENT.primary}
         variant={ODS_BUTTON_VARIANT.stroked}
         size={ODS_BUTTON_SIZE.sm}
       >
-        {t('suggestion_modal_action_cancel')}
+        {t('suggestion_modal_action_modify')}
       </OsdsButton>
 
       <OsdsButton
-        onClick={onAccept}
+        onClick={closeModal}
         slot="actions"
         color={ODS_THEME_COLOR_INTENT.primary}
         variant={ODS_BUTTON_VARIANT.flat}
