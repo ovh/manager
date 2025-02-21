@@ -83,6 +83,10 @@ export const DatagridTopbar = <T,>({
                     onOdsChange={(event) =>
                       search?.setSearchInput(event?.detail?.value?.toString())
                     }
+                    onKeyDown={(event) => {
+                      if (event.key === 'Enter')
+                        search?.onSearch(search?.searchInput);
+                    }}
                     value={search?.searchInput}
                   />
                   <OdsButton
