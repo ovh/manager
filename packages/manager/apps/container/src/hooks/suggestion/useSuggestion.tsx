@@ -5,7 +5,6 @@ import {
   useQueryClient,
 } from '@tanstack/react-query';
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { User } from '@ovh-ux/manager-config';
 import { fetchCompanyNumbersSuggestions } from '@/api/suggestion';
 import { Suggestion } from '@/types/suggestion';
 import { createPreferences } from '@/api/preferences';
@@ -48,7 +47,7 @@ export const useSuggestionForUserProfile = (accountEditionLink: string) => {
   const user = shell
     .getPlugin('environment')
     .getEnvironment()
-    .getUser() as User;
+    .getUser();
   const { ovhSubsidiary: subsidiary, legalform } = user;
   const { current } = useModals();
   const [isReady, setIsReady] = useState(false);
