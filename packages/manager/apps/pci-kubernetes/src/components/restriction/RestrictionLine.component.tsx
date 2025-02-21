@@ -35,6 +35,7 @@ export default function RestrictionLine({
       <div className="mx-5">
         {isEditing ? (
           <OsdsInput
+            data-testid="input-ip"
             type={ODS_INPUT_TYPE.text}
             value={displayedIP}
             error={isTouched && !isIPValid(displayedIP)}
@@ -56,6 +57,7 @@ export default function RestrictionLine({
         {isEditing ? (
           <>
             <RestrictionAction
+              testId="pen-icon-save"
               iconName={ODS_ICON_NAME.CHECK}
               onClick={() => {
                 setIsEditing(false);
@@ -64,6 +66,7 @@ export default function RestrictionLine({
               disabled={!isIPValid(displayedIP) || disabled}
             />
             <RestrictionAction
+              testId="trash-icon-close"
               iconName={ODS_ICON_NAME.CLOSE}
               onClick={() => {
                 setIsEditing(false);
@@ -75,11 +78,13 @@ export default function RestrictionLine({
         ) : (
           <>
             <RestrictionAction
+              testId="pen-icon-edit"
               iconName={ODS_ICON_NAME.PEN}
               onClick={() => setIsEditing(true)}
               disabled={disabled}
             />
             <RestrictionAction
+              testId="trash-icon-delete"
               iconName={ODS_ICON_NAME.TRASH}
               onClick={() => onDelete(displayedIP)}
               disabled={disabled}
