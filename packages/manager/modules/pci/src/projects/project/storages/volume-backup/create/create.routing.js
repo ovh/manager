@@ -51,24 +51,11 @@ export default /* @ngInject */ ($stateProvider) => {
         preselectedVolumeId,
         preselectedVolumeOption,
         prefilledBackupName,
-        PciProject,
-        customerRegions,
         volumes,
       ) => {
-        let volumeSelected = preselectedVolume;
-        if (preselectedVolumeId) {
-          volumeSelected = volumes?.find(
-            (volume) => volume.id === preselectedVolumeId,
-          );
-        }
-        const localZones = PciProject.getLocalZones(customerRegions);
-        const isLocalZone = PciProject.checkIsLocalZone(
-          localZones,
-          volumeSelected?.region,
-        );
-        const volume = volumeSelected
-          ? { ...volumeSelected, isLocalZone }
-          : null;
+        const volume =
+          preselectedVolume ??
+          volumes?.find((v) => v.id === preselectedVolumeId);
         return {
           name: prefilledBackupName || '',
           selected: {
@@ -79,12 +66,8 @@ export default /* @ngInject */ ($stateProvider) => {
         };
       },
 
-      volumes: /* @ngInject */ (
-        projectId,
-        VolumeBackupService,
-        customerRegions,
-      ) => {
-        return VolumeBackupService.getVolumes(projectId, customerRegions);
+      volumes: /* @ngInject */ (projectId, VolumeBackupService) => {
+        return VolumeBackupService.getVolumes(projectId);
       },
 
       volumesAddons: /* @ngInject */ (catalog) => {

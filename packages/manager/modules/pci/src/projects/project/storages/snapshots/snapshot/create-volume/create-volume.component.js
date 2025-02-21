@@ -8,7 +8,6 @@ export default {
     projectId: '<',
     snapshotId: '<',
     snapshot: '<',
-    catalogEndpoint: '<',
     goBack: '<',
   },
 };
