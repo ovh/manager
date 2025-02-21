@@ -13,7 +13,12 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { IpOffer, MAX_IP_QUANTITY } from '../order.constant';
+import {
+  DEFAULT_PRICING_MODE,
+  IpOffer,
+  MAX_IP_QUANTITY,
+  MIN_IP_QUANTITY,
+} from '../order.constant';
 import { isRegionInEu } from '@/components/RegionSelector/region-selector.utils';
 import { OrderSection } from '@/components/OrderSection/OrderSection.component';
 import {
@@ -35,6 +40,7 @@ import {
 export const OfferSelectionSection: React.FC = () => {
   const {
     ipVersion,
+    selectedService,
     selectedServiceType,
     selectedRegion,
     selectedOffer,
@@ -43,27 +49,17 @@ export const OfferSelectionSection: React.FC = () => {
     ipQuantity,
     setIpQuantity,
     setSelectedPlanCode,
+    setPricingMode,
   } = React.useContext(OrderContext);
   const { t, i18n } = useTranslation('order');
   const { price } = useIpv4LowestPrice();
   const { environment } = React.useContext(ShellContext);
-  const { pricingList, isLoading } = useAdditionalIpBlockPricings(
-    selectedRegion,
+  const { pricingList, isLoading } = useAdditionalIpBlockPricings({
     ipVersion,
-  );
-
-  React.useEffect(() => {
-    if (!hasAdditionalIpBlockOffer(selectedServiceType)) {
-      setSelectedOffer(IpOffer.additionalIp);
-      setSelectedPlanCode(
-        IP_FAILOVER_PLANCODE[getContinentKeyFromRegion(selectedRegion)],
-      );
-    }
-    if (!hasAdditionalIpOffer(selectedServiceType)) {
-      setSelectedOffer(IpOffer.blockAdditionalIp);
-      setSelectedPlanCode(pricingList?.[0]?.value);
-    }
-  }, [selectedServiceType, pricingList, selectedRegion]);
+    region: selectedRegion,
+    serviceName: selectedService,
+    serviceType: selectedServiceType,
+  });
 
   return (
     <OrderSection title={t('offer_selection_title')}>
@@ -94,7 +90,7 @@ export const OfferSelectionSection: React.FC = () => {
           >
             <OdsQuantity
               name="additional_ip_quantity"
-              min={1}
+              min={MIN_IP_QUANTITY}
               max={MAX_IP_QUANTITY}
               onOdsChange={(event) => setIpQuantity(event.target.value)}
               value={ipQuantity}
@@ -115,11 +111,13 @@ export const OfferSelectionSection: React.FC = () => {
             onClick={() => {
               setSelectedOffer(IpOffer.blockAdditionalIp);
               if (
-                pricingList.every(
+                pricingList?.length > 0 &&
+                pricingList?.every(
                   (pricing) => pricing.value !== selectedPlanCode,
                 )
               ) {
                 setSelectedPlanCode(pricingList[0].value);
+                setPricingMode(pricingList[0].pricingMode);
               }
             }}
           >
@@ -141,6 +139,10 @@ export const OfferSelectionSection: React.FC = () => {
                   ) {
                     setSelectedOffer(IpOffer.blockAdditionalIp);
                     setSelectedPlanCode(event.target.value as string);
+                    setPricingMode(
+                      pricingList.find((p) => p.value === event.target.value)
+                        ?.pricingMode || DEFAULT_PRICING_MODE,
+                    );
                   }
                 }}
               >
