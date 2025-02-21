@@ -163,6 +163,5 @@
   "billing_autorenew_service_every_3_month": "A cada 3 meses",
   "billing_autorenew_service_every_6_month": "A cada 6 meses",
   "billing_autorenew_service_every_12_month": "Todos os anos",
-  "billing_autorenew_engagement_none": "Sem compromisso",
-  "billing_autorenew_service_type_ZIMBRA_SLOT": "Zimbra Starter"
+  "billing_autorenew_engagement_none": "Sem compromisso"
 }
