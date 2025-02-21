@@ -7,7 +7,6 @@ vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
   const actual: any = await importOriginal();
   return {
     ...actual,
-    // ChangelogButton: vi.fn().mockReturnValue(<div></div>),
   };
 });
 
