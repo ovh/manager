@@ -438,9 +438,10 @@
         data-header="{{ :: 'pci_projects_project_instances_add_instance_title' | translate }}"
         data-on-focus="$ctrl.onInstanceFocus()"
         data-editable="!$ctrl.isLoading"
-        data-valid="$ctrl.automatedBackup.selected ? $ctrl.automatedBackup.schedule : true"
+        data-valid="$ctrl.automatedBackup.selected ? !!$ctrl.automatedBackup.schedule : true"
         name="instances_add_configuration"
         data-on-submit="$ctrl.onInstanceSubmit()"
+        data-prevent-next="true"
     >
         <oui-field
             data-label="{{ 'pci_projects_project_instances_add_numInstances_label' | translate }}"
@@ -545,12 +546,13 @@
         </div>
 
         <div
-            data-ng-if="$ctrl.PciProjectsProjectInstanceService.automatedBackupIsAvailable($ctrl.flavor.type) && !$ctrl.isLocalZone()"
+            data-ng-if="$ctrl.snapshotAvailability[$ctrl.model.datacenter.name] && $ctrl.snapshotAvailability[$ctrl.model.datacenter.name].plans.length && $ctrl.snapshotAvailability[$ctrl.model.datacenter.name].workflow && $ctrl.PciProjectsProjectInstanceService.automatedBackupIsAvailable($ctrl.flavor.type)"
         >
             <oui-checkbox
                 class="mb-4"
                 model="$ctrl.automatedBackup.selected"
                 name="automatedBackup"
+                data-on-change="$ctrl.onAutomatedBackupChange(modelValue)"
             >
                 <oui-checkbox-label>
                     <span
@@ -568,14 +570,8 @@
                 ></span>
             </oui-checkbox>
 
-            <oui-spinner
-                oui-spinner
-                data-size="s"
-                data-ng-if="$ctrl.isGettingBackupPrice"
-            ></oui-spinner>
             <p
                 class="font-weight-bold"
-                data-ng-if="$ctrl.automatedBackup.price"
                 data-translate="pci_workflow_create_monthly_backup_price"
                 data-translate-values="{ price : $ctrl.automatedBackup.price }"
             ></p>

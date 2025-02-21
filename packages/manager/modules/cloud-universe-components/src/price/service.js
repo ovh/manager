@@ -25,13 +25,14 @@ export default class OvhCloudPriceHelper {
     this.OvhApiMe = OvhApiMe;
   }
 
-  getCatalog(endpoint, me) {
+  getCatalog(endpoint, me, cache = false) {
     return this.$http
       .get(endpoint, {
         params: {
           productName: 'cloud',
           ovhSubsidiary: me.ovhSubsidiary,
         },
+        cache,
       })
       .then(({ data: catalog }) => catalog);
   }
@@ -40,12 +41,21 @@ export default class OvhCloudPriceHelper {
    * Get product prices
    * @param {string} serviceName : service for which we need info
    * @param {string} [catalogEndpoint = /order/catalog/public/cloud] : catalog endpoint where we got product info
+   * @param {boolean} cache use cached value if available
    * @returns {Promise}: return prices promise
    */
-  getPrices(serviceName, catalogEndpoint = '/order/catalog/public/cloud') {
+  getPrices(
+    serviceName,
+    catalogEndpoint = '/order/catalog/public/cloud',
+    cache = false,
+  ) {
     return this.$q
       .all({
-        catalog: this.getCatalog(catalogEndpoint, this.coreConfig.getUser()),
+        catalog: this.getCatalog(
+          catalogEndpoint,
+          this.coreConfig.getUser(),
+          cache,
+        ),
         project: this.OvhApiCloudProject.v6().get({ serviceName }).$promise,
       })
       .then(({ catalog, project }) => {

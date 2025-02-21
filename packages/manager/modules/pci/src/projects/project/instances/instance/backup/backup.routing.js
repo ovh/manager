@@ -8,15 +8,6 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     layout: 'modal',
     resolve: {
-      monthlyPrice: /* @ngInject */ (
-        PciProjectsProjectInstanceService,
-        projectId,
-        instance,
-      ) =>
-        PciProjectsProjectInstanceService.getSnapshotMonthlyPrice(
-          projectId,
-          instance,
-        ),
       goBack: /* @ngInject */ (goToInstance) => goToInstance,
       breadcrumb: () => null,
     },

@@ -16,12 +16,12 @@ import {
   BANDWIDTH_CONSUMPTION,
   BANDWIDTH_LIMIT,
   BANDWIDTH_OUT_INVOICE,
+  DEFAULT_IP,
+  FLAVORS_WITHOUT_ADDITIONAL_IPS,
   FLAVORS_WITHOUT_AUTOMATED_BACKUP,
   FLAVORS_WITHOUT_SOFT_REBOOT,
   FLAVORS_WITHOUT_SUSPEND,
   FLAVORS_WITHOUT_VNC,
-  FLAVORS_WITHOUT_ADDITIONAL_IPS,
-  DEFAULT_IP,
 } from './instances.constants';
 
 /* eslint class-methods-use-this: ["error", { "exceptMethods": ["getBaseApiRoute"] }] */
@@ -41,6 +41,7 @@ export default class PciProjectInstanceService {
     OvhApiCloudProjectNetwork,
     OvhApiCloudProjectQuota,
     OvhApiCloudProjectVolume,
+    OvhApiCloudProjectRegion,
     OvhApiIp,
     OvhApiOrderCatalogPublic,
     PciProjectRegions,
@@ -67,6 +68,7 @@ export default class PciProjectInstanceService {
     this.FLAVORS_WITHOUT_SUSPEND = FLAVORS_WITHOUT_SUSPEND;
     this.FLAVORS_WITHOUT_VNC = FLAVORS_WITHOUT_VNC;
     this.FLAVORS_WITHOUT_ADDITIONAL_IPS = FLAVORS_WITHOUT_ADDITIONAL_IPS;
+    this.FLAVORS_WITHOUT_AUTOMATED_BACKUP = FLAVORS_WITHOUT_AUTOMATED_BACKUP;
   }
 
   getBaseApiRoute(projectId) {
@@ -321,45 +323,48 @@ export default class PciProjectInstanceService {
     }).$promise;
   }
 
-  getSnapshotMonthlyPrice(projectId, instance, catalogEndpoint) {
-    return this.CucPriceHelper.getPrices(projectId, catalogEndpoint).then(
-      (catalog) => {
-        if (instance.planCode?.includes('3AZ')) {
-          return this.getProductAvailability(projectId).then(({ plans }) => {
-            const plan = plans.find(
-              ({ code, regions }) =>
-                code.startsWith('snapshot.consumption') &&
-                regions.find(({ name }) => name === instance.region),
-            );
+  getSnapshotPricesByRegion(projectId, catalogEndpoint) {
+    return this.$q
+      .all([
+        this.CucPriceHelper.getPrices(projectId, catalogEndpoint, true),
+        this.getProductAvailability(projectId, undefined, 'snapshot'),
+      ])
+      .then(([catalog, { plans }]) => {
+        return plans
+          .filter(({ code }) => code.startsWith('snapshot.consumption'))
+          .reduce((acc, plan) => {
+            const catalogPlan = catalog[plan.code];
+            plan.regions.forEach((r) => {
+              if (!acc[r.name]) acc[r.name] = [catalogPlan];
+              else acc[r.name].push(catalogPlan);
+            });
+            return acc;
+          }, {});
+      });
+  }
 
-            return catalog[plan?.code] ?? catalog['snapshot.consumption.3AZ'];
-          });
-        }
-        if (instance.isLocalZone) {
-          return this.getProductAvailability(projectId).then(
-            ({ plans }) =>
-              catalog[
-                plans.find(
-                  ({ code, regions }) =>
-                    code.startsWith('snapshot.consumption') &&
-                    regions.find(({ name }) => name === instance.region),
-                )?.code
-              ] ?? catalog['snapshot.consumption.LZ'],
-          );
-        }
-
-        return this.getProductAvailability(projectId).then(
-          ({ plans }) =>
-            catalog[
-              plans.find(
-                ({ code, regions }) =>
-                  code.startsWith('snapshot.consumption') &&
-                  regions.find(({ name }) => name === instance.region),
-              )?.code
-            ],
-        );
-      },
-    );
+  getSnapshotAvailability(projectId, catalogEndpoint) {
+    return this.$q
+      .all([
+        this.getSnapshotPricesByRegion(projectId, catalogEndpoint),
+        this.PciProjectRegions.getAvailableRegions(projectId),
+      ])
+      .then(([snapshotPricesByRegion, availableRegions]) =>
+        Object.fromEntries(
+          Object.entries(snapshotPricesByRegion).map(([regionName, plans]) => {
+            return [
+              regionName,
+              {
+                plans,
+                workflow:
+                  availableRegions
+                    .find((r) => r.name === regionName)
+                    ?.services.some((s) => s.name === 'workflow') || false,
+              },
+            ];
+          }),
+        ),
+      );
   }
 
   createBackup(projectId, { id: instanceId }, { name: snapshotName }) {
@@ -755,14 +760,7 @@ export default class PciProjectInstanceService {
   }
 
   getCatalog(endpoint, user) {
-    return this.$http
-      .get(endpoint, {
-        params: {
-          productName: 'cloud',
-          ovhSubsidiary: user.ovhSubsidiary,
-        },
-      })
-      .then(({ data: catalog }) => catalog);
+    return this.CucPriceHelper.getCatalog(endpoint, user, true);
   }
 
   getExtraBandwidthCost(endpoint, project, user) {
@@ -916,9 +914,8 @@ export default class PciProjectInstanceService {
   }
 
   automatedBackupIsAvailable(flavorType) {
-    return (
-      !this.coreConfig.isRegion('US') &&
-      !FLAVORS_WITHOUT_AUTOMATED_BACKUP.find((value) => value.test(flavorType))
+    return !this.FLAVORS_WITHOUT_AUTOMATED_BACKUP.find((value) =>
+      value.test(flavorType),
     );
   }
 

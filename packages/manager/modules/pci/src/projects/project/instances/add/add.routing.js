@@ -82,38 +82,30 @@ export default /* @ngInject */ ($stateProvider) => {
           );
         });
       },
-      getProductCatalog: /* @ngInject */ (
-        PciProjectsProjectInstanceService,
-        catalogEndpoint,
-        coreConfig,
-      ) =>
-        PciProjectsProjectInstanceService.getCatalog(
-          catalogEndpoint,
-          coreConfig.getUser(),
-        ).then((data) => {
-          const floatingIpProducts = data.addons
-            .filter((addon) =>
-              addon.product.startsWith('publiccloud-floatingip-floatingip'),
-            )
-            .sort(
-              (
-                { pricings: [{ price: priceA }] },
-                { pricings: [{ price: priceB }] },
-              ) => priceA - priceB,
-            )
-            .filter(({ product }, index, arr) => product === arr[0].product);
-          const [monthlyPriceObj] = floatingIpProducts.find(({ planCode }) =>
-            planCode.includes('month'),
-          )?.pricings;
-          const [hourlyPriceObj] = floatingIpProducts.find(({ planCode }) =>
-            planCode.includes('hour'),
-          )?.pricings;
-          return {
-            product: floatingIpProducts[0].product,
-            pricePerMonth: monthlyPriceObj.price,
-            pricePerHour: hourlyPriceObj.price,
-          };
-        }),
+      getProductCatalog: /* @ngInject */ (catalog) => {
+        const floatingIpProducts = catalog.addons
+          .filter((addon) =>
+            addon.product.startsWith('publiccloud-floatingip-floatingip'),
+          )
+          .sort(
+            (
+              { pricings: [{ price: priceA }] },
+              { pricings: [{ price: priceB }] },
+            ) => priceA - priceB,
+          )
+          .filter(({ product }, index, arr) => product === arr[0].product);
+        const [monthlyPriceObj] = floatingIpProducts.find(({ planCode }) =>
+          planCode.includes('month'),
+        )?.pricings;
+        const [hourlyPriceObj] = floatingIpProducts.find(({ planCode }) =>
+          planCode.includes('hour'),
+        )?.pricings;
+        return {
+          product: floatingIpProducts[0].product,
+          pricePerMonth: monthlyPriceObj.price,
+          pricePerHour: hourlyPriceObj.price,
+        };
+      },
       trackAddInstance: /* @ngInject */ (trackClick, trackPage) => (
         chapters,
         type = 'action',

@@ -50,6 +50,6 @@ export default {
     catalog: '<',
     isGridscaleLocalzoneAvailable: '<',
     hasGridscaleLocalzoneRegion: '<',
-    isInstanceLocalZoneBackupAvailable: '<',
+    snapshotAvailability: '<',
   },
 };

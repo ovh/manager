@@ -48,6 +48,6 @@ export default {
     guideTrackingSectionTags: '<',
     trackClick: '<',
     vncDisabled: '<',
-    isInstanceLocalZoneBackupAvailable: '<',
+    snapshotAvailability: '<',
   },
 };
