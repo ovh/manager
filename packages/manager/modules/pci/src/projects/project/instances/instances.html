@@ -40,7 +40,14 @@
         </oui-header-heading>
     </oui-header>
 
+    <oui-spinner
+        oui-spinner
+        data-size="s"
+        data-ng-if="$ctrl.loading"
+    ></oui-spinner>
+
     <pci-maintenance-banner
+        data-ng-if="!$ctrl.loading"
         data-steins="$ctrl.steins"
         data-customer-regions="$ctrl.customerRegions"
         data-product-regions="$ctrl.instancesRegions"
@@ -68,6 +75,7 @@
 
     <oui-datagrid
         id="publicCloudInstancesDatagrid"
+        data-ng-if="!$ctrl.loading"
         data-rows="$ctrl.instances"
         data-row-loader="$ctrl.loadInstanceDetail($row)"
         criteria="$ctrl.criteria"
