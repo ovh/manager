@@ -75,11 +75,14 @@ export default /* @ngInject */ ($stateProvider) => {
 
           return promise;
         },
-        goToRelocateNsxtEdge: ($state) => () => {
+        goToRelocateNsxtEdge: ($state) => () =>
           $state.go(
             'app.dedicatedCloud.details.datacenter.details.dashboard.move-nsxt-edge',
-          );
-        },
+          ),
+        goToResizeNsxEdge: ($state) => () =>
+          $state.go(
+            'app.dedicatedCloud.details.datacenter.details.dashboard.nsx',
+          ),
       },
     },
   );

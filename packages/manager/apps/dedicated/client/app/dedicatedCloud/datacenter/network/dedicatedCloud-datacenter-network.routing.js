@@ -49,10 +49,14 @@ export default /* @ngInject */ ($stateProvider) => {
             ({ enabled }) => enabled,
           ),
         breadcrumb: () => NETWORK_LABEL,
-        goToRelocate: ($state) => (nsxtEdgeId) =>
+        goToRelocate: /* @ngInject */ ($state) => (nsxtEdgeId) =>
           $state.go(
             'app.dedicatedCloud.details.datacenter.details.network.move-nsxt-edge',
             { nsxtEdgeId },
+          ),
+        goToResize: /* @ngInject */ ($state) => () =>
+          $state.go(
+            'app.dedicatedCloud.details.datacenter.details.dashboard.nsx',
           ),
       },
     },

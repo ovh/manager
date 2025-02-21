@@ -14,7 +14,7 @@ angular
     'oui',
     'pascalprecht.translate',
   ])
-  .component('ovhManagerDedicatedCloudDatacenterManageNsxtEdges', component)
+  .component('ovhManagerDedicatedCloudDatacenterManageNsxEdges', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

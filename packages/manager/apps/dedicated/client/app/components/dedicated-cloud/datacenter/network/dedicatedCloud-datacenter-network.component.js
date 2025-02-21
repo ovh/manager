@@ -8,6 +8,7 @@ export default {
     datacenterId: '<',
     nsxtEdgeOptionServiceId: '<',
     goToRelocate: '<',
+    goToResize: '<',
   },
   controller,
   template,
