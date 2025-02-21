@@ -8,4 +8,7 @@ export enum IpOffer {
   additionalIp = 'additionalIp',
 }
 
+export const MIN_IP_QUANTITY = 1;
 export const MAX_IP_QUANTITY = 64;
+
+export const DEFAULT_PRICING_MODE = 'default';
