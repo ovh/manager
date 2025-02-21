@@ -84,12 +84,12 @@ export const ErrorPage: React.FC<ErrorBannerProps> = ({ error }) => {
           >
             {t('manager_error_page_default')} <br />
             {error?.response?.data?.message && (
-              <strong>{error.response.data.message}</strong>
+              <strong>{error.response?.data.message}</strong>
             )}
-            {error?.response.headers['x-ovh-queryid'] && (
+            {error?.response?.headers['x-ovh-queryid'] && (
               <p>
                 {t('manager_error_page_detail_code')}
-                {error.response.headers['x-ovh-queryid']}
+                {error.response?.headers['x-ovh-queryid']}
               </p>
             )}
           </OsdsText>
