@@ -5,7 +5,7 @@ export type TRegionAvailability = {
   datacenter: string;
   enabled: boolean;
   name: string;
-  type: 'localzone' | 'region';
+  type: 'localzone' | 'region' | 'region-3-az';
 };
 
 export type TProductAvailability = {
