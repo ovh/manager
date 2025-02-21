@@ -1,4 +1,5 @@
 import { ApiResponse, apiClient } from '@ovh-ux/manager-core-api';
+import { ServiceStatus } from '@/types';
 
 export type VPS = {
   availableOptions: string[];
@@ -75,16 +76,15 @@ export type VpsServiceInfos = {
     | 'oneShot'
     | 'option';
   serviceId: number;
-  status:
-    | 'autorenewInProgress'
-    | 'expired'
-    | 'inCreation'
-    | 'ok'
-    | 'pendingDebt'
-    | 'unPaid';
+  status: ServiceStatus;
 };
 
 export const getVpsServiceInfos = (
   serviceName: string,
 ): Promise<ApiResponse<VpsServiceInfos>> =>
   apiClient.v6.get(`/vps/${serviceName}/serviceInfos`);
+
+export const getVpsOrderableIpCountries = (
+  serviceName: string,
+): Promise<ApiResponse<string[]>> =>
+  apiClient.v6.get(`/vps/${serviceName}/ipCountryAvailable`);

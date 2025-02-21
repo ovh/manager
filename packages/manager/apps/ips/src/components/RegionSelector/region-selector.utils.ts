@@ -1,9 +1,9 @@
-export const isRegionInEu = (region: string) =>
-  region.includes('eu-') || region.includes('labeu-');
+export const isRegionInEu = (region?: string) =>
+  region?.includes('eu-') || region?.includes('labeu-');
 
-export const isRegionInCa = (region: string) => region.includes('ca-');
+export const isRegionInCa = (region?: string) => region?.includes('ca-');
 
-export const isRegionInUs = (region: string) => region.includes('us-');
+export const isRegionInUs = (region?: string) => region?.includes('us-');
 
 export const hasOnlyOneRegion = (regionList: string[]) =>
   regionList.every(isRegionInCa) ||
@@ -77,9 +77,9 @@ export const countryCodeByRegion = {
   hel: 'fi',
 };
 
-export const getCountryCode = (region: string) =>
+export const getCountryCode = (region?: string) =>
   Object.entries(countryCodeByRegion).find(([regionPart]) =>
-    region.includes(regionPart),
+    region?.includes(regionPart),
   )?.[1];
 
 export const getCountryKey = (region: string) =>

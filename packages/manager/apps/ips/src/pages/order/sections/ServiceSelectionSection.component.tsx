@@ -12,29 +12,39 @@ import {
   ipParkingOptionValue,
   useServiceList,
 } from '@/data/hooks/useServiceList';
-import { OrderContext, ServiceStatus } from '../order.context';
+import { OrderContext } from '../order.context';
 import { useCheckServiceAvailability } from '@/data/hooks/useCheckServiceAvailability';
 import { ServiceRegion } from '@/pages/order/ServiceRegion.component';
 
 export const ServiceSelectionSection: React.FC = () => {
   const {
     selectedService,
-    selectedServiceStatus,
     setSelectedService,
+    selectedServiceType,
     setSelectedServiceType,
     disabledServices,
+    addDisabledService,
   } = React.useContext(OrderContext);
   const { t } = useTranslation('order');
   const {
     server,
     vrack,
     vps,
+    dedicatedCloud,
     getServiceType,
     isLoading,
     isError,
     error,
   } = useServiceList();
-  const { isServiceInfoLoading } = useCheckServiceAvailability();
+  const {
+    isServiceInfoLoading,
+    hasServiceInfoError,
+    serviceStatus,
+  } = useCheckServiceAvailability({
+    serviceName: selectedService,
+    serviceType: selectedServiceType,
+    onServiceExpired: addDisabledService,
+  });
 
   return (
     <OrderSection title={t('service_selection_title')}>
@@ -67,7 +77,17 @@ export const ServiceSelectionSection: React.FC = () => {
               label={t(
                 'service_selection_select_dedicated_cloud_option_group_label',
               )}
-            ></optgroup>
+            >
+              {dedicatedCloud?.map(({ serviceName, displayName }) => (
+                <option
+                  key={serviceName}
+                  value={serviceName}
+                  disabled={disabledServices.includes(serviceName)}
+                >
+                  {displayName}
+                </option>
+              ))}
+            </optgroup>
             <optgroup
               label={t(
                 'service_selection_select_dedicated_server_option_group_label',
@@ -120,26 +140,26 @@ export const ServiceSelectionSection: React.FC = () => {
             </optgroup>
           </OdsSelect>
         )}
-        <div slot="helper">
-          <div className="mt-1">
-            {selectedServiceStatus !== ServiceStatus.ok && (
-              <OdsMessage
-                className="block max-w-[384px]"
-                color={ODS_MESSAGE_COLOR.danger}
-                isDismissible={false}
-              >
-                {t(
-                  `service_selection_dedicated_server_${selectedServiceStatus}_error_message`,
+        {!!selectedService && (
+          <div slot="helper">
+            <div className="mt-1">
+              {!isServiceInfoLoading &&
+                (serviceStatus !== 'ok' || hasServiceInfoError) && (
+                  <OdsMessage
+                    className="block max-w-[384px]"
+                    color={ODS_MESSAGE_COLOR.danger}
+                    isDismissible={false}
+                  >
+                    {t(
+                      `service_selection_dedicated_server_${serviceStatus ||
+                        'expired'}_error_message`,
+                    )}
+                  </OdsMessage>
                 )}
-              </OdsMessage>
-            )}
-            {isServiceInfoLoading ? (
-              <OdsSpinner size={ODS_SPINNER_SIZE.sm} />
-            ) : (
               <ServiceRegion />
-            )}
+            </div>
           </div>
-        </div>
+        )}
       </OdsFormField>
     </OrderSection>
   );

@@ -19,9 +19,9 @@ export const OrganisationSection: React.FC = () => {
     setSelectedOrganisation,
     selectedPlanCode,
   } = React.useContext(OrderContext);
+  const { shell } = React.useContext(ShellContext);
   const { t } = useTranslation('order');
   const { data, isLoading } = useOrganisationList();
-  const { shell } = React.useContext(ShellContext);
 
   return (
     <OrderSection
