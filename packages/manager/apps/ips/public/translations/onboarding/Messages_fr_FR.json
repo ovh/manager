@@ -1,17 +1,75 @@
 {
   "title": "Additional IP",
-  "titlebis": "Ajoutez de la flexibilité à vos applications avec Additional IP",
-  "description": "La plupart des produits OVHcloud incluent une adresse IPv4 statique pré-configurée. Pour une flexibilité exceptionnelle, ces produits peuvent également être utilisés avec des Additional IP.",
+  "titleBis": "Apportez davantage de flexibilité à vos applications grâce aux Additional IP.",
+  "description": "De nombreux produits OVHcloud sont livrés avec des adresses IPv4/IPv6 statiques préconfigurées. Pour une flexibilité importante et une disponibilité accrue, ces produits peuvent également être utilisés avec des Additional IP publiques.",
   "descriptionBis": "Vous pouvez attribuer une Additional IP (adresse individuel ou bloc) à tout service compatible au sein du même campus. Un campus est un groupe de datacenters partageant le même emplacement géographique. Pour plus d'informations veuillez consulter notre page dédiée :",
-  "ip_onboarding_content_list_item_1": "Adresse individuelle (/32)",
-  "ip_onboarding_content_list_item_2": "Bloc d’adresse IP (jusqu’à /24)",
+  "ipOnboardingContentListItem1": "Adresse individuelle (/32)",
+  "ipOnboardingContentListItem2": "Bloc d'adresse IP (jusqu'à /24)",
   "orderButtonLabel": "Commander un ips",
   "boyipButtonLabel": "Bring your own IP",
   "guideCategory": "Tutoriel",
   "guide1Title": "Commander une Additional IP",
   "guide1Description": "Découvrez comment déplacer une Additional IP depuis l'espace client ou via les API OVHcloud",
-  "guide2Title": "Configurer un bloc d’IP dans le vRack",
-  "guide2Description": "Découvrez comment configurer un bloc d’adresses IP publiques dans le vRack",
+  "guide2Title": "Configurer un bloc d'IP dans le vRack",
+  "guide2Description": "Découvrez comment configurer un bloc d'adresses IP publiques dans le vRack",
   "guide3Title": "Ajouter un bloc IP",
-  "guide3Description": "Commander un bloc IP sur votre Hosted Private Cloud"
+  "guide3Description": "Commander un bloc IP sur votre Hosted Private Cloud",
+
+  "advantagesTitle": "Avantages des Additional IP",
+  "advantage1Title": "Capacités de fail-over",
+  "advantage1Description": "attribuez et déplacez facilement des adresses IP entre les services OVHcloud : VPS, Bare Metal, Public Cloud, réseau vRack, IPLB, etc.",
+  "advantage2Title": "Double adressage",
+  "advantage2Description": "vos clientes et clients peuvent contacter vos services en utilisant les types d'adresses IPv4 et IPv6. Cette option fournit une connectivité native de bout en bout pour les performances et la prise en charge du protocole IP de nouvelle génération (disponible via le réseau vRack).",
+  "advantage3Title": "Géolocalisation des IP",
+  "advantage3Description": "développez votre projet pour un public mondial en tirant parti d'IP géolocalisées supplémentaires. En permettant la géolocalisation des IP dans un pays spécifique, vous améliorez le référencement de vos projets dans les principaux moteurs de recherche (ex. les performances en matière de SEO).",
+  "advantage4Title": "Disponibilité améliorée",
+  "advantage4Description": "utilisez des IP supplémentaires pour la répartition de charge, le clustering ou les configurations à haute disponibilité avec le protocole VRRP dans des configurations doubles (IPv4 et IPv6), disponibles uniquement via le réseau vRack.",
+  "advantage5Title": "Migration vers le cloud avec le BYOIP",
+  "advantage5Description": "importez vos blocs d'IP et utilisez-les au sein d'OVHcloud en tant qu'IP supplémentaires ! (BYOIPv6 bientôt disponible). Découvrez-en plus sur le BYOIP",
+
+  "optionsTitle": "Options Additional IP",
+  "optionsColumnFeature": "Fonctionnalité",
+  "optionsColumnIpv4": "IPv4",
+  "optionsColumnIpv6": "IPv6",
+
+  "optionsAddressTypes": "Types d'adresses",
+  "optionsAddressTypesIpv4": "Adresse IP unique (/32)\nBloc d'IP (entre /30 et /24)\nBlocs d'adresses IP",
+  "optionsAddressTypesIpv6": "Blocs d'adresses IP",
+
+  "optionsModes": "Modes*",
+  "optionsModesIpv4": "Ponté (avec option vMac)\nPonté\nRouté",
+  "optionsModesIpv6": "Routé",
+
+  "optionsGeolocation": "Géolocalisation**",
+  "optionsGeolocationIpv4": "Disponible dans plusieurs pays",
+  "optionsGeolocationIpv6": "N/A",
+
+  "optionsCost": "Coût",
+  "optionsCostIpv4": "À partir de { } prix à partir d'Agora { } € par IP",
+  "optionsCostIpv6": "Gratuit",
+
+  "optionsCompatibleServices": "Services compatibles",
+  "optionsCompatibleServicesIpv4": "Bare Metal Cloud\nPublic Cloud\nHosted Private Cloud\nIP Load Balancer\nTout service compatible avec le vRack",
+  "optionsCompatibleServicesIpv6": "Tout service compatible avec le vRack",
+
+  "optionsAvailability": "Disponibilité",
+  "optionsAvailabilityIpv4": "Toutes les régions",
+  "optionsAvailabilityIpv6": "N/A",
+
+  "optionsByoip": "Bring Your Own IP",
+  "optionsByoipIpv4": "Oui",
+  "optionsByoipIpv6": "N/A (prochainement)",
+
+  "optionsFootnote": "* La disponibilité d'un type ou d'un mode d'IP particulier peut varier et est liée à un service donné auquel cette Additional IP sera liée.",
+  "geolocationNote": "La fonction de géolocalisation IP correspond au mappage d'une adresse IP à l'emplacement géographique réel (pays) et est indépendante de l'endroit où le service est réellement hébergé (région).",
+
+  "moreInfoText": "Vous pouvez trouver plus d'informations sur les Additional IP sur notre",
+  "moreInfoProductPage": "page produit",
+  "moreInfoOr": "ou",
+  "moreInfoDocPages": "les rechercher via nos pages de documentation",
+
+  "optionsAvailabilityCheck": "Vérifier la disponibilité",
+  "optionsAvailabilityHere": "ici",
+
+  "learnMoreByoip": "ici"
 }
