@@ -20,7 +20,7 @@ export default {
     productId: '<',
     serviceName: '<',
     setMessage: '<',
-    goToResizeNsxtEdge: '<',
+    goToResizeNsxEdge: '<',
     goToDatacenterNetwork: '<',
     goToRelocateNsxtEdge: '<',
   },
