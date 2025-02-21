@@ -153,7 +153,6 @@ export default function Dashboard() {
                     <NotificationsEmailUnreachable />
                   </div>
                   <SiretBanner />
-                  <SiretModal />
                   <KycIndiaBanner />
                   <KycFraudBanner />
                   <HubDashboardSubtitle />
