@@ -1,4 +1,4 @@
-import RCloneDownloadModal from '@ovh-ux/manager-pci-common/src/components/rclone-download/RCloneDownload';
+import { RCloneDownloadModal } from '@ovh-ux/manager-pci-common';
 import { useSearchParams } from 'react-router-dom';
 
 export default function RCloneDownload() {
