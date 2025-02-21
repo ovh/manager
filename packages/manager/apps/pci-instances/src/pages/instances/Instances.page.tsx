@@ -1,4 +1,32 @@
-import { FC, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { FilterComparator } from '@ovh-ux/manager-core-api';
+import { TProject } from '@ovh-ux/manager-pci-common';
+import {
+  FilterAdd,
+  FilterList,
+  Notifications,
+  PageLayout,
+  PciGuidesHeader,
+  Title,
+  useColumnFilters,
+} from '@ovh-ux/manager-react-components';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import {
+  ODS_BUTTON_SIZE,
+  ODS_BUTTON_VARIANT,
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
+  OsdsSearchBarCustomEvent,
+} from '@ovhcloud/ods-components';
+import {
+  OsdsButton,
+  OsdsDivider,
+  OsdsIcon,
+  OsdsPopover,
+  OsdsPopoverContent,
+  OsdsSearchBar,
+} from '@ovhcloud/ods-components/react';
+import { FC, useCallback, useMemo, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   Navigate,
   Outlet,
@@ -7,54 +35,12 @@ import {
   useParams,
   useRouteLoaderData,
 } from 'react-router-dom';
-import { TProject } from '@ovh-ux/manager-pci-common';
-import {
-  Datagrid,
-  DatagridColumn,
-  FilterAdd,
-  FilterList,
-  Notifications,
-  PageLayout,
-  PciGuidesHeader,
-  Title,
-  useColumnFilters,
-  useNotifications,
-  useProjectUrl,
-  useTranslatedMicroRegions,
-} from '@ovh-ux/manager-react-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import {
-  OsdsButton,
-  OsdsDivider,
-  OsdsIcon,
-  OsdsPopover,
-  OsdsPopoverContent,
-  OsdsSearchBar,
-  OsdsLink,
-} from '@ovhcloud/ods-components/react';
-import {
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-  OsdsSearchBarCustomEvent,
-} from '@ovhcloud/ods-components';
-import { Trans, useTranslation } from 'react-i18next';
-import { FilterComparator } from '@ovh-ux/manager-core-api';
-import { Spinner } from '@/components/spinner/Spinner.component';
-import { TInstance, useInstances } from '@/data/hooks/instance/useInstances';
-import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
-import { SECTIONS } from '@/routes/routes';
-import { StatusCell } from './datagrid/cell/StatusCell.component';
-import {
-  ActionsCell,
-  TActionsCellHrefs,
-} from './datagrid/cell/ActionsCell.component';
-import { NameIdCell } from './datagrid/cell/NameIdCell.component';
-import { TextCell } from '@/components/datagrid/cell/TextCell.component';
-import { ListCell } from './datagrid/cell/ListCell.component';
 import NotFoundPage from '../404/NotFound.page';
-import { mapAddressesToListItems } from './mapper';
+import DatagridComponent from '@/components/datagrid/Datagrid.component';
+import { useInstances } from '@/data/hooks/instance/useInstances';
+import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
+import { Spinner } from '@/components/spinner/Spinner.component';
+import { SECTIONS } from '@/routes/routes';
 
 const initialSorting = {
   id: 'name',
@@ -63,147 +49,26 @@ const initialSorting = {
 
 const Instances: FC = () => {
   const { t } = useTranslation(['list', 'common']);
+
   const { projectId } = useParams() as { projectId: string }; // safe because projectId has already been handled by async route loader
   const project = useRouteLoaderData('root') as TProject;
   const createInstanceHref = useHref('./new');
   const [sorting, setSorting] = useState(initialSorting);
   const [searchField, setSearchField] = useState('');
   const { filters, addFilter, removeFilter } = useColumnFilters();
-  const {
-    addWarning,
-    clearNotifications,
-    notifications,
-    addError,
-  } = useNotifications();
+
   const filterPopoverRef = useRef<HTMLOsdsPopoverElement>(null);
-  const { translateMicroRegion } = useTranslatedMicroRegions();
   const location = useLocation();
   const notFoundAction: boolean = location.state?.notFoundAction;
 
-  const {
-    data,
-    isLoading: instancesQueryLoading,
-    fetchNextPage,
-    hasNextPage,
-    isFetchingNextPage,
-    hasInconsistency,
-    refresh,
-    isFetching,
-    isRefetching,
-    isError,
-  } = useInstances(projectId, {
-    limit: 10,
-    sort: sorting.id,
-    sortOrder: sorting.desc ? 'desc' : 'asc',
-    filters,
-  });
-
-  const projectUrl = useProjectUrl('public-cloud');
-
-  const actionsCellHrefs = useCallback(
-    (instance: TInstance): TActionsCellHrefs => {
-      const basePath = `region/${instance.region}/instance/${instance.id}`;
-      return {
-        deleteHref: `${basePath}/delete`,
-        stopHref: `${basePath}/stop`,
-        startHref: `${basePath}/start`,
-        shelveHref: `${basePath}/shelve`,
-        unshelvetHref: `${basePath}/unshelve`,
-        autobackupHref: `${projectUrl}/workflow/new`,
-        detailsHref: instance.id,
-      };
+  const { data, isFetchingNextPage, refresh, isFetching } = useInstances(
+    projectId,
+    {
+      limit: 10,
+      sort: sorting.id,
+      sortOrder: sorting.desc ? 'desc' : 'asc',
+      filters,
     },
-    [projectUrl],
-  );
-
-  const datagridColumns: DatagridColumn<TInstance>[] = useMemo(
-    () => [
-      {
-        id: 'name',
-        cell: (instance) => (
-          <NameIdCell isLoading={isRefetching} instance={instance} />
-        ),
-        label: t('pci_instances_list_column_nameId'),
-        isSortable: true,
-      },
-      {
-        id: 'region',
-        cell: (instance) => (
-          <TextCell
-            isLoading={isRefetching}
-            label={translateMicroRegion(instance.region)}
-          />
-        ),
-        label: t('pci_instances_list_column_region'),
-        isSortable: false,
-      },
-      {
-        id: 'flavor',
-        cell: (instance) => (
-          <TextCell isLoading={isRefetching} label={instance.flavorName} />
-        ),
-        label: t('pci_instances_list_column_flavor'),
-        isSortable: true,
-      },
-      {
-        id: 'image',
-        cell: (instance) => (
-          <TextCell isLoading={isRefetching} label={instance.imageName} />
-        ),
-        label: t('pci_instances_list_column_image'),
-        isSortable: true,
-      },
-      {
-        id: 'publicIPs',
-        cell: (instance) => (
-          <ListCell
-            isLoading={isRefetching}
-            items={mapAddressesToListItems(instance.addresses.get('public'))}
-          />
-        ),
-        label: t('pci_instances_list_column_public_IPs'),
-        isSortable: false,
-      },
-      {
-        id: 'privateIPs',
-        cell: (instance) => (
-          <ListCell
-            isLoading={isRefetching}
-            items={mapAddressesToListItems(instance.addresses.get('private'))}
-          />
-        ),
-        label: t('pci_instances_list_column_private_IPs'),
-        isSortable: false,
-      },
-      {
-        id: 'volumes',
-        cell: (instance) => (
-          <ListCell isLoading={isRefetching} items={instance.volumes} />
-        ),
-        label: t('pci_instances_list_column_volumes'),
-        isSortable: false,
-      },
-      {
-        id: 'status',
-        cell: (instance) => (
-          <StatusCell isLoading={isRefetching} instance={instance} />
-        ),
-        label: t('pci_instances_list_column_status'),
-        isSortable: false,
-      },
-      {
-        id: 'actions',
-        cell: (instance) => (
-          <ActionsCell
-            isLoading={isRefetching}
-            hrefs={actionsCellHrefs(instance)}
-          />
-        ),
-        label: t('pci_instances_list_column_actions'),
-        isSortable: false,
-      },
-    ],
-    [actionsCellHrefs, isRefetching, t, translateMicroRegion],
   );
 
   const filterColumns = useMemo(
@@ -231,36 +96,12 @@ const Instances: FC = () => {
     if (filters.length) filters.forEach(removeFilter);
     if (JSON.stringify(sorting) !== JSON.stringify(initialSorting))
       setSorting(initialSorting);
-  }, [filters, sorting]);
+  }, [filters, sorting, removeFilter]);
 
   const handleRefresh = useCallback(() => {
     refresh();
     resetSortAndFilters();
   }, [refresh, resetSortAndFilters]);
-
-  const errorMessage = useMemo(
-    () => (
-      <>
-        <Trans
-          t={t}
-          i18nKey="pci_instances_list_unknown_error_message1"
-          tOptions={{ interpolation: { escapeValue: true } }}
-          shouldUnescape
-          components={{
-            Link: (
-              <OsdsLink
-                color={ODS_THEME_COLOR_INTENT.error}
-                onClick={handleRefresh}
-              />
-            ),
-          }}
-        />
-        <br />
-        <Trans t={t} i18nKey="pci_instances_list_unknown_error_message2" />
-      </>
-    ),
-    [handleRefresh, t],
-  );
 
   const handleOdsSearchSubmit = useCallback(
     (
@@ -279,28 +120,6 @@ const Instances: FC = () => {
     },
     [addFilter],
   );
-
-  const handleFetchNextPage = useCallback(() => {
-    fetchNextPage();
-  }, [fetchNextPage]);
-
-  useEffect(() => {
-    if (hasInconsistency)
-      addWarning(t('pci_instances_list_inconsistency_message'), true);
-    return () => {
-      clearNotifications();
-    };
-  }, [addWarning, hasInconsistency, t, clearNotifications]);
-
-  useEffect(() => {
-    if (isFetching && notifications.length) clearNotifications();
-  }, [clearNotifications, isFetching, notifications.length]);
-
-  useEffect(() => {
-    if (isError) addError(errorMessage, true);
-  }, [isError, addError, t, errorMessage]);
-
-  if (instancesQueryLoading) return <Spinner />;
 
   if (data && !data.length && !filters.length && !isFetching)
     return <Navigate to={SECTIONS.onboarding} />;
@@ -401,21 +220,12 @@ const Instances: FC = () => {
           <div className="my-5">
             <FilterList filters={filters} onRemoveFilter={removeFilter} />
           </div>
-          {data && (
-            <div className="mt-10">
-              <Datagrid
-                columns={datagridColumns}
-                hasNextPage={!isFetchingNextPage && hasNextPage}
-                items={data}
-                onFetchNextPage={handleFetchNextPage}
-                totalItems={data.length}
-                sorting={sorting}
-                onSortChange={setSorting}
-                manualSorting
-                className={'!overflow-x-visible'}
-              />
-            </div>
-          )}
+          <DatagridComponent
+            sorting={sorting}
+            filters={filters}
+            onRefresh={handleRefresh}
+            onSortChange={setSorting}
+          />
           {isFetchingNextPage && (
             <div className="mt-5">
               <Spinner />
