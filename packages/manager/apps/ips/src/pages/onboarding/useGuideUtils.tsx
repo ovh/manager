@@ -150,6 +150,48 @@ const URL_LIST: { [guideName: string]: Partial<GuideLinks> } = {
     AU: 'https://www.ovhcloud.com/en-au/network/additional-ip/',
     DEFAULT: 'https://www.ovhcloud.com/en-ie/network/additional-ip/',
   },
+  documentationLink: {
+    DE:
+      'https://help.ovhcloud.com/csm?id=kb_search&query=additional%20IP&language=de',
+    NL:
+      'https://help.ovhcloud.com/csm?id=kb_search&query=additional%20IP&language=nl',
+    ES:
+      'https://help.ovhcloud.com/csm?id=kb_search&query=additional%20IP&language=es',
+    IE:
+      'https://help.ovhcloud.com/csm?id=kb_search&query=additional%20IP&language=en',
+    IT:
+      'https://help.ovhcloud.com/csm?id=kb_search&query=additional%20IP&language=it',
+    PL:
+      'https://help.ovhcloud.com/csm?id=kb_search&query=additional%20IP&language=pl',
+    PT:
+      'https://help.ovhcloud.com/csm?id=kb_search&query=additional%20IP&language=pt',
+    FR:
+      'https://help.ovhcloud.com/csm?id=kb_search&query=additional%20IP&language=fr',
+    GB:
+      'https://help.ovhcloud.com/csm?id=kb_search&query=additional%20IP&language=en',
+    CA:
+      'https://help.ovhcloud.com/csm?id=kb_search&query=additional%20IP&language=en',
+    QC:
+      'https://help.ovhcloud.com/csm?id=kb_search&query=additional%20IP&language=fr',
+    US:
+      'https://help.ovhcloud.com/csm?id=kb_search&query=additional%20IP&language=en',
+    IN:
+      'https://help.ovhcloud.com/csm?id=kb_search&query=additional%20IP&language=en',
+    SN:
+      'https://help.ovhcloud.com/csm?id=kb_search&query=additional%20IP&language=fr',
+    MA:
+      'https://help.ovhcloud.com/csm?id=kb_search&query=additional%20IP&language=fr',
+    TN:
+      'https://help.ovhcloud.com/csm?id=kb_search&query=additional%20IP&language=fr',
+    SG:
+      'https://help.ovhcloud.com/csm?id=kb_search&query=additional%20IP&language=en',
+    ASIA:
+      'https://help.ovhcloud.com/csm?id=kb_search&query=additional%20IP&language=en',
+    AU:
+      'https://help.ovhcloud.com/csm?id=kb_search&query=additional%20IP&language=en',
+    DEFAULT:
+      'https://help.ovhcloud.com/csm?id=kb_search&query=additional%20IP&language=en',
+  },
   /*
   addNewGuideLink : {
     DEFAULT: '/guide-link-3-path',

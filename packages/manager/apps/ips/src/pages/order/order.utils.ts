@@ -1,5 +1,5 @@
 import JSURL from 'jsurl';
-import { IpOffer, IpVersion } from './order.constant';
+import { DEFAULT_PRICING_MODE, IpOffer, IpVersion } from './order.constant';
 import {
   IP_FAILOVER_PLANCODE,
   getContinentKeyFromRegion,
@@ -17,6 +17,7 @@ export type OrderParams = {
   geolocation: string;
   organisation: string;
   quantity?: number;
+  pricingMode?: string;
 };
 
 /**
@@ -43,6 +44,7 @@ export const getAdditionalIpsProductSettings = ({
   geolocation,
   organisation,
   quantity = 1,
+  pricingMode = DEFAULT_PRICING_MODE,
 }: OrderParams) =>
   JSURL.stringify({
     configuration: [
@@ -50,38 +52,55 @@ export const getAdditionalIpsProductSettings = ({
       geolocation && { label: 'country', value: geolocation.toUpperCase() },
       organisation && { label: 'organisation', value: organisation },
       region &&
-        serviceType !== ServiceType.vps && {
+        ![ServiceType.vps, ServiceType.dedicatedCloud].includes(
+          serviceType,
+        ) && {
           label: 'datacenter',
           value: getDatacenterFromRegion(region),
         },
     ].filter(Boolean),
     duration: 'P1M',
     planCode: getPlanCode(planCode, serviceType, region),
-    pricingMode: 'default',
+    pricingMode,
     productId:
       serviceType === ServiceType.dedicatedCloud ? 'privateCloud' : 'ip',
     quantity: offer === IpOffer.blockAdditionalIp ? 1 : quantity,
-    datacenter: region ? getDatacenterFromRegion(region) : null,
+    serviceName:
+      serviceType === ServiceType.dedicatedCloud ? serviceName : null,
+    datacenter:
+      region &&
+      ![ServiceType.vps, ServiceType.dedicatedCloud].includes(serviceType)
+        ? getDatacenterFromRegion(region)
+        : null,
   });
+
+export const offerPossibilitiesByServiceType = {
+  [IpOffer.blockAdditionalIp]: [
+    ServiceType.dedicatedCloud,
+    ServiceType.vrack,
+    ServiceType.ipParking,
+    ServiceType.server,
+  ],
+  [IpOffer.additionalIp]: [
+    ServiceType.ipParking,
+    ServiceType.server,
+    ServiceType.vps,
+  ],
+};
 
 /**
  * Returns true if Additional IP is available for this service type
  */
 export const hasAdditionalIpOffer = (serviceType: ServiceType) =>
-  [ServiceType.ipParking, ServiceType.server, ServiceType.vps].includes(
-    serviceType,
-  );
+  offerPossibilitiesByServiceType[IpOffer.additionalIp].includes(serviceType);
 
 /**
  * Returns true if Additional IP Block is available for this service type
  */
 export const hasAdditionalIpBlockOffer = (serviceType: ServiceType) =>
-  [
-    ServiceType.dedicatedCloud,
-    ServiceType.ipParking,
-    ServiceType.vrack,
-    ServiceType.server,
-  ].includes(serviceType);
+  offerPossibilitiesByServiceType[IpOffer.blockAdditionalIp].includes(
+    serviceType,
+  );
 
 /**
  * Returns a function that returns true if the current organisation is available for the provided region

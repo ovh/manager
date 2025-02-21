@@ -5,7 +5,9 @@ import { useCatalogIps } from './useCatalogIps';
 
 export const useIpv4LowestPrice = () => {
   const { environment } = React.useContext(ShellContext);
-  const { data, ...query } = useCatalogIps(environment.user.ovhSubsidiary);
+  const { data, ...query } = useCatalogIps({
+    subsidiary: environment.user.ovhSubsidiary,
+  });
 
   return {
     ...query,

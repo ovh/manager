@@ -1,4 +1,5 @@
 import { ApiResponse, apiClient } from '@ovh-ux/manager-core-api';
+import { ServiceStatus } from '@/types';
 
 export const getVrackList = (): Promise<ApiResponse<string[]>> =>
   apiClient.v6.get('/vrack');
@@ -10,13 +11,7 @@ export type VrackServiceInfos = {
   creation: string;
   domain: string;
   serviceId: number;
-  status:
-    | 'autorenewInProgress'
-    | 'expired'
-    | 'inCreation'
-    | 'ok'
-    | 'pendingDebt'
-    | 'unPaid';
+  status: ServiceStatus;
 };
 
 export const getVrackServiceInfos = (
