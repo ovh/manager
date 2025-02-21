@@ -10,7 +10,10 @@ import {
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
-import { Datagrid } from '@ovh-ux/manager-react-components';
+import {
+  convertHourlyPriceToMonthly,
+  Datagrid,
+} from '@ovh-ux/manager-react-components';
 import { AutoscalingState } from '@/components/Autoscaling.component';
 import {
   ANTI_AFFINITY_MAX_NODES,
@@ -28,8 +31,21 @@ import NodePoolType from './node-pool/NodePoolType.component';
 import NodePoolSize from './node-pool/NodePoolSize.component';
 import NodePoolAntiAffinity from './node-pool/NodePoolAntiAffinity.component';
 
-import { NodePool } from '@/api/data/kubernetes';
+import { NodePool, NodePoolPrice } from '@/api/data/kubernetes';
 import { generateUniqueName } from '@/helpers';
+
+export const getPrice = (
+  flavor: KubeFlavor,
+  scaling: AutoscalingState | null,
+) => {
+  if (flavor && scaling) {
+    return {
+      hour: flavor.pricingsHourly.price * scaling.quantity.desired,
+      month: flavor.pricingsMonthly?.price * scaling.quantity.desired,
+    };
+  }
+  return { hour: 0, month: 0 };
+};
 
 const NodePoolStep = ({
   stepper,
@@ -51,7 +67,7 @@ const NodePoolStep = ({
   const [flavor, setFlavor] = useState<KubeFlavor | null>(null);
 
   const [nodePoolEnabled, setNodePoolEnabled] = useState(true);
-  const [nodes, setNodes] = useState<NodePool[] | null>(null);
+  const [nodes, setNodes] = useState<NodePoolPrice[] | null>(null);
   const onDelete = useCallback(
     (nameToDelete: string) =>
       nodes && setNodes(nodes.filter((node) => node.name !== nameToDelete)),
@@ -124,10 +140,14 @@ const NodePoolStep = ({
 
   return (
     <>
-      <NodePoolToggle
-        nodePoolEnabled={nodePoolEnabled}
-        onNodePoolEnabledChange={setNodePoolEnabled}
-      />
+      {((!stepper.node.step.isLocked && nodePoolEnabled) ||
+        !nodePoolEnabled) && (
+        <NodePoolToggle
+          nodePoolEnabled={nodePoolEnabled}
+          step={stepper.node.step}
+          onNodePoolEnabledChange={setNodePoolEnabled}
+        />
+      )}
       <div className="bo border-">
         {!stepper.node.step.isLocked && nodePoolEnabled && (
           <>
@@ -174,7 +194,7 @@ const NodePoolStep = ({
             </div>
           </>
         )}
-        {!stepper.node.step.isLocked && (
+        {!stepper.node.step.isLocked && nodePoolEnabled && (
           <OsdsButton
             variant={ODS_BUTTON_VARIANT.stroked}
             className="my-6 w-fit"
@@ -184,7 +204,7 @@ const NodePoolStep = ({
             {...(isButtonDisabled ? { disabled: true } : {})}
             onClick={() => {
               if (nodes || scaling || flavor) {
-                const newNodePool: NodePool = {
+                const newNodePool: NodePoolPrice = {
                   name: generateUniqueName(name, nodes as NodePool[]),
                   antiAffinity,
                   autoscale: scaling.isAutoscale,
@@ -195,6 +215,11 @@ const NodePoolStep = ({
                   maxNodes: antiAffinity
                     ? Math.min(ANTI_AFFINITY_MAX_NODES, scaling.quantity.max)
                     : scaling.quantity.max,
+                  monthlyPrice: flavor.pricingsMonthly
+                    ? getPrice(flavor, scaling).month
+                    : convertHourlyPriceToMonthly(
+                        getPrice(flavor, scaling).hour,
+                      ),
                   monthlyBilled: isMonthlyBilled,
                 };
                 setName('');

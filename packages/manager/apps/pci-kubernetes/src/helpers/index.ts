@@ -175,7 +175,7 @@ export const getValidOptionalKeys = (oidcProvider: TOidcProvider) =>
   }, []);
 
 /**
- * Generates a unique name for a node pool by appending "-copie n"
+ * Generates a unique name for a node pool by appending "-n"
  * if the name already exists in the node pools array.
  *
  * @param {string} baseName - The desired base name for the node pool.
@@ -191,7 +191,7 @@ export function generateUniqueName(
   const isNameTaken = (pool: NodePool) => pool.name === newName;
 
   while (existingNodePools.some(isNameTaken)) {
-    newName = `${baseName}-copie ${copyNumber}`;
+    newName = `${baseName}-${copyNumber}`;
     copyNumber += 1;
   }
 
