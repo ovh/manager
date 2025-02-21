@@ -1,10 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useMemo } from 'react';
-import {
-  addProjectRegion,
-  getProjectRegions,
-  getProjectRegionDetails,
-} from '../data/regions';
+import { addProjectRegion, getProjectRegions } from '../data/regions';
 import {
   REGION_CAPACITY,
   S3_REGION_CAPACITY,
@@ -75,10 +71,3 @@ export const useAddProjectRegion = ({
     ...mutation,
   };
 };
-
-export const useProjectRegionDetails = (projectId: string, region: string) =>
-  useQuery({
-    queryKey: ['projectId', projectId, 'region', region],
-    queryFn: () => getProjectRegionDetails(projectId, region),
-    enabled: !!projectId && !!region,
-  });
