@@ -11,7 +11,7 @@ export default /* @ngInject */ ($stateProvider) => {
       plan: /* @ngInject */ (ByoipService) => ByoipService.getCatalog(),
       user: /* @ngInject */ (OvhApiMe) => OvhApiMe.v6().get().$promise,
       guideUrl: /* @ngInject */ (user) =>
-        GUIDELINK[user.ovhSubsidiary] || GUIDELINK.GB,
+        GUIDELINK[user.ovhSubsidiary] || GUIDELINK.DEFAULT,
       getToken: /* @ngInject */ (ByoipService) => (region) =>
         ByoipService.getToken(region),
       goToDisclaimer: /* @ngInject */ ($state) => (payload) =>
