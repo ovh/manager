@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.11.0...@ovh-ux/manager-react-components@2.11.1) (2025-02-21)
+
+### Bug Fixes
+
+- **mrc:** fix datagrid expand build ([1e3e778](https://github.com/ovh/manager/commit/1e3e7784c6d717457d484403a9a55c0c824a8192))
+
 # [2.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.10.0...@ovh-ux/manager-react-components@2.11.0) (2025-02-20)
 
 ### Features
