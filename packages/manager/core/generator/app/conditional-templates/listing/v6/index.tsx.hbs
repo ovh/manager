@@ -143,7 +143,7 @@ export default function Listing() {
       header={header}
     >
       <React.Suspense>
-        {columns && flattenData && (
+        {columns && (
           <Datagrid
             columns={columns}
             items={flattenData || []}
