@@ -31,13 +31,3 @@ export const addProjectRegion = async (
   });
   return data;
 };
-
-export const getProjectRegionDetails = async (
-  projectId: string,
-  region: string,
-): Promise<TRegion> => {
-  const { data } = await v6.get<TRegion>(
-    `/cloud/project/${projectId}/region/${region}`,
-  );
-  return data;
-};

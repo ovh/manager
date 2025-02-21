@@ -2,7 +2,6 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
 import { useContext, useMemo } from 'react';
 import { ApiError, applyFilters, Filter } from '@ovh-ux/manager-core-api';
-import { useProductRegionsAvailability } from '@ovh-ux/manager-pci-common';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   addUserToContainer,
@@ -13,9 +12,10 @@ import {
   restoreArchive,
   startArchive,
   TArchiveContainer,
-} from '../data/archive';
+} from '@/api/data/archive';
 import { paginateResults, sortResults } from '@/helpers';
 import queryClient from '@/queryClient';
+import { useProductRegionsAvailability } from './useRegions';
 
 type TBaseProps = Readonly<{
   projectId: string;

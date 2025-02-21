@@ -1,4 +1,3 @@
-import { useProjectRegionDetails } from '@ovh-ux/manager-pci-common';
 import { Clipboard } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
@@ -15,6 +14,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { MANAGE_ARCHIVE_DOC_LINK } from '@/constants';
 import LabelComponent from '@/components/Label.component';
 import { useArchiveRegion } from '@/api/hooks/useArchive';
+import { useProjectRegionDetails } from '@/api/hooks/useRegions';
 
 export default function Manage() {
   const { t } = useTranslation(['cold-archive', 'pci-common']);
