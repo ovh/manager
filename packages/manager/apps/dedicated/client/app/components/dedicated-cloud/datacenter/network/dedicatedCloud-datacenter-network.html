@@ -45,10 +45,11 @@
             class="oui-button oui-button_primary"
             data-translate="dedicatedCloud_network_add_edge_cta"
         ></button>
-        <button
+        <div
             class="oui-button oui-button_secondary"
+            data-ng-click="$ctrl.goToResize()"
             data-translate="dedicatedCloud_network_resize_edge_cta"
-        ></button>
+        ></div>
     </div>
 
     <oui-datagrid data-rows-loader="$ctrl.loadNsxtEdgeNetworks($config)">
