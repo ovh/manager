@@ -161,7 +161,7 @@ export const Datagrid = <T,>({
         ? [
             {
               id: 'expander',
-              cell: ({ row }) => {
+              cell: ({ row }: { row: Row<T> }) => {
                 return row.getCanExpand() ? (
                   <OdsButton
                     label=""
