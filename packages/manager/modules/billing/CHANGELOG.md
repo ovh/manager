@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.31.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.31.1...@ovh-ux/manager-billing@0.31.2) (2025-02-21)
+
+
+### Reverts
+
+* Revert "fix(billing): add zimbra slot translation (#15366)" ([5a7152b](https://github.com/ovh/manager/commit/5a7152b3ad1af53dd21cb23ec3cc8ca617d85147)), closes [#15366](https://github.com/ovh/manager/issues/15366)
+
+
+
+
+
 ## [0.31.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.31.0...@ovh-ux/manager-billing@0.31.1) (2025-02-20)
 
 

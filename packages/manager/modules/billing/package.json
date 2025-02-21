@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-billing",
-  "version": "0.31.1",
+  "version": "0.31.2",
   "private": true,
   "description": "Manager billing section",
   "repository": {
