@@ -2,7 +2,7 @@ export default /* @ngInject */ ($stateProvider) => {
   const name = 'account.user.infos';
 
   $stateProvider.state(name, {
-    url: '/infos?fieldToFocus&isUpdated',
+    url: '/infos?fieldToFocus',
     component: 'userAccountComponent',
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
