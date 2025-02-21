@@ -1,5 +1,4 @@
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { useProductRegionsAvailability } from '@ovh-ux/manager-pci-common';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { ODS_BUTTON_VARIANT, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import {
@@ -19,6 +18,7 @@ import { useAddUser } from '@/api/hooks/useArchive';
 import { TUser } from '@/api/data/users';
 import StepOneComponent from './StepOne.component';
 import StepTwoComponent from './StepTwo.component';
+import { useProductRegionsAvailability } from '@/api/hooks/useRegions';
 
 export default function AddUserToContainerPage() {
   const { t } = useTranslation('containers/add-user');
