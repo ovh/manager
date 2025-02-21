@@ -5,9 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import { urls } from '@/routes/routes.constant';
 import { Breadcrumb } from '@/components/Breadcrumb/Breadcrumb';
 import { IpVersionSection } from './sections/IpVersionSection.component';
-import { OrderButtonSection } from './sections/OrderButtonSection.component';
-import { Ipv4Order } from './Ipv4Order.component';
 import { OrderContextProvider } from './order.context';
+import { Ipv4Order } from './Ipv4Order.component';
 
 export const OrderPage: React.FC = () => {
   const { t } = useTranslation('order');
@@ -25,7 +24,6 @@ export const OrderPage: React.FC = () => {
       <OrderContextProvider>
         <IpVersionSection />
         <Ipv4Order />
-        <OrderButtonSection />
       </OrderContextProvider>
     </BaseLayout>
   );
