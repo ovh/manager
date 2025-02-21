@@ -49,7 +49,6 @@ const FormCreateRequest = () => {
   );
   const [showConfirmModal, setShowConfirmModal] = useState<boolean>(false);
   const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false);
-  const [processStarted, setProcessStarted] = useState<boolean>(false);
   const { useUploadDocuments, useUploadLinks } = useProcedures('2FA');
 
   const files = flatFiles(watch());
@@ -67,7 +66,6 @@ const FormCreateRequest = () => {
     onSuccess: () => {
       setShowSuccessModal(true);
       setShowConfirmModal(false);
-      setProcessStarted(false);
     },
     onError: () => {
       setShowConfirmModal(false);
@@ -86,7 +84,6 @@ const FormCreateRequest = () => {
     },
     onError: () => {
       setShowConfirmModal(false);
-      setProcessStarted(false);
     },
   });
 
@@ -105,7 +102,7 @@ const FormCreateRequest = () => {
 
   return (
     <form onSubmit={handleSubmit(() => setShowConfirmModal(true))}>
-      {processStarted && <ExitGuard />}
+      {(isPending || isError) && <ExitGuard />}
       {isOtherLegalFormForFR && (
         <div className="my-6">
           <OsdsText
@@ -179,7 +176,6 @@ const FormCreateRequest = () => {
             if (links) {
               uploadDocuments({ files, links });
             } else {
-              setProcessStarted(true);
               getUploadLinks({ numberOfDocuments: files.length });
             }
           }}
