@@ -1,90 +1,12 @@
-<h1
-    data-translate="pci_projects_project_storages_volume_backup_list_create_volume_title"
-></h1>
-
-<div class="text-center" data-ng-if="$ctrl.isCreating">
-    <oui-spinner></oui-spinner>
-</div>
-
-<form
-    novalidate
-    name="createVolumeForme"
-    data-ng-submit="createVolumeForme.$valid && $ctrl.onCreateVolumeClick()"
-    data-ng-if="!$ctrl.loading && !$ctrl.showLoading"
+<pci-project-storage-volume-edit
+    data-ng-if="$ctrl.storage"
+    data-storage="$ctrl.storage"
+    data-project-id="$ctrl.projectId"
+    data-size-editable="false"
+    data-title="'pci_projects_project_storages_volume_backup_list_create_volume_title' | translate"
+    data-submit-label="'pci_projects_project_storages_volume_backup_list_create_volume_action_confirm' | translate"
+    data-on-cancel="$ctrl.goBack()"
+    data-on-submit="$ctrl.onCreateVolumeClick()"
+    data-show-loading="$ctrl.isCreating"
 >
-    <!--Volume region-->
-    <div class="oui-field oui-field_error">
-        <label
-            for="storage-region"
-            class="oui-field__label oui-label"
-            data-translate="pci_projects_project_storages_volume_backup_list_create_volume_field_region"
-        ></label>
-        <div
-            class="oui-field__control"
-            data-ng-bind=":: $ctrl.ovhManagerRegionService.getTranslatedMicroRegion($ctrl.volume.region)"
-        ></div>
-    </div>
-
-    <!--Volume type-->
-    <div class="oui-field oui-field_error">
-        <label
-            for="storage-type"
-            class="oui-field__label oui-label"
-            data-translate="pci_projects_project_storages_volume_backup_list_create_volume_field_type"
-        ></label>
-        <div
-            class="oui-field__control"
-            data-ng-bind=":: $ctrl.volume.type"
-        ></div>
-    </div>
-
-    <!--Volume name-->
-    <oui-field
-        data-label="{{:: 'pci_projects_project_storages_volume_backup_list_create_volume_field_name' | translate }}"
-        data-size="xl"
-    >
-        <input
-            class="oui-input"
-            type="text"
-            id="volume-name"
-            name="volume-name"
-            data-ng-model="$ctrl.createVolumeModel.name"
-            data-ng-maxlength="255"
-            required
-        />
-    </oui-field>
-
-    <!--Volume capacity-->
-    <oui-field
-        data-label="{{:: 'pci_projects_project_storages_volume_backup_list_create_volume_field_size' | translate }}"
-        data-help-text="{{:: 'pci_projects_project_storages_volume_backup_list_create_volume_field_size_help' | translate }}"
-        data-size="xl"
-    >
-        <div class="d-inline-block">
-            <oui-numeric
-                data-name="volume-size"
-                data-disabled="$ctrl.isCreating"
-                data-min="$ctrl.VOLUME_SIZE.MIN"
-                data-max="$ctrl.VOLUME_SIZE.MAX"
-                data-model="$ctrl.createVolumeModel.size"
-                data-on-change="$ctrl.onVolumeSizeChange(modelValue)"
-            ></oui-numeric>
-        </div>
-        <span
-            class="pl-2"
-            data-translate="pci_projects_project_storages_volume_backup_list_create_volume_field_size_unit"
-        ></span>
-
-        <p
-            data-translate="pci_projects_project_storages_volume_backup_list_create_volume_field_size_price"
-            data-translate-values="{ price: $ctrl.volumePrice.monthly.text }"
-        ></p>
-    </oui-field>
-
-    <oui-form-actions
-        data-submit-text="{{ :: 'pci_projects_project_storages_volume_backup_list_create_volume_action_confirm' | translate }}"
-        data-cancel-text="{{:: 'pci_projects_project_storages_volume_backup_list_create_volume_action_cancel' | translate }}"
-        data-disabled="createVolumeForme.$invalid || $ctrl.isCreating"
-        data-on-cancel="$ctrl.onCreateVolumeCancelClick()"
-    ></oui-form-actions>
-</form>
+</pci-project-storage-volume-edit>

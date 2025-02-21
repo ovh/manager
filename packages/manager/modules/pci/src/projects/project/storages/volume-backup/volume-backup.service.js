@@ -119,19 +119,10 @@ export default class VolumeBackupService {
    * @param serviceName {string}: project id
    * @returns {Promise}: block storage volumes list Promise
    */
-  getVolumes(serviceName, customerRegions) {
+  getVolumes(serviceName) {
     return this.$http
       .get(`/cloud/project/${serviceName}/volume`)
-      .then(({ data }) => {
-        const localZones = this.PciProject.getLocalZones(customerRegions);
-        return data.map((volume) => {
-          const isLocalZone = this.PciProject.checkIsLocalZone(
-            localZones,
-            volume.region,
-          );
-          return { ...volume, isLocalZone };
-        });
-      });
+      .then(({ data }) => data);
   }
 
   /**
