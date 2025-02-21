@@ -40,11 +40,21 @@ export default function AccountSidebar() {
   const { data: availability } = useFeatureAvailability(
     features.concat(accountFeatures),
   );
-  const { data: kycIndiaProcedure } = useProcedureStatus(Procedures.INDIA, {
+  // In order to not wait too long before displaying the menu entries, we will not retry the retrieval of KYC
+  // procedures statuses
+  const {
+    data: kycIndiaProcedure,
+    status: fetchKycIndiaProcedureStatus,
+  } = useProcedureStatus(Procedures.INDIA, {
     enabled: availability?.[kycIndiaFeature] || false,
+    retry: 0,
   });
-  const { data: kycFraudProcedure } = useProcedureStatus(Procedures.FRAUD, {
+  const {
+    data: kycFraudProcedure,
+    status: fetchKycFraudProcedureStatus,
+  } = useProcedureStatus(Procedures.FRAUD, {
     enabled: availability?.[kycFraudFeature] || false,
+    retry: 0,
   });
 
   const getAccountSidebar = () => {
@@ -76,7 +86,7 @@ export default function AccountSidebar() {
 
     if (
       availability[kycIndiaFeature] &&
-      ['required', 'open'].includes(kycIndiaProcedure.status)
+      ['required', 'open'].includes(kycIndiaProcedure?.status)
     ) {
       menu.push({
         id: 'my-identity-documents',
@@ -91,7 +101,7 @@ export default function AccountSidebar() {
 
     if (
       availability[kycFraudFeature] &&
-      ['required', 'open'].includes(kycFraudProcedure.status)
+      ['required', 'open'].includes(kycFraudProcedure?.status)
     ) {
       menu.push({
         id: 'kyc-documents',
@@ -198,8 +208,10 @@ export default function AccountSidebar() {
   useEffect(() => {
     if (
       availability &&
-      (!availability[kycIndiaFeature] || kycIndiaProcedure) &&
-      (!availability[kycFraudFeature] || kycFraudProcedure)
+      (!availability[kycIndiaFeature] ||
+        fetchKycIndiaProcedureStatus !== 'pending') &&
+      (!availability[kycFraudFeature] ||
+        fetchKycFraudProcedureStatus !== 'pending')
     ) {
       setMenu(
         sanitizeMenu({
@@ -217,7 +229,12 @@ export default function AccountSidebar() {
         ),
       );
     }
-  }, [availability, i18n.language, kycIndiaProcedure, kycFraudProcedure]);
+  }, [
+    availability,
+    i18n.language,
+    fetchKycIndiaProcedureStatus,
+    fetchKycFraudProcedureStatus,
+  ]);
 
   return (
     <>
