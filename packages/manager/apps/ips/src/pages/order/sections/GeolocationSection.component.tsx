@@ -10,6 +10,7 @@ import { ServiceType } from '@/types';
 
 export const GeolocationSection: React.FC = () => {
   const {
+    selectedService,
     selectedPlanCode,
     selectedGeolocation,
     selectedServiceType,
@@ -17,9 +18,11 @@ export const GeolocationSection: React.FC = () => {
     selectedOffer,
   } = React.useContext(OrderContext);
   const { t } = useTranslation('order');
-  const { geolocations } = useAvailableGeolocationFromPlanCode(
-    selectedPlanCode,
-  );
+  const { geolocations } = useAvailableGeolocationFromPlanCode({
+    serviceName: selectedService,
+    serviceType: selectedServiceType,
+    planCode: selectedPlanCode,
+  });
 
   return (
     <OrderSection
@@ -36,9 +39,9 @@ export const GeolocationSection: React.FC = () => {
             selectedServiceType === ServiceType.ipParking
           }
           value={selectedGeolocation}
-          onChange={(event) =>
-            setSelectedGeolocation(event.target.value as string)
-          }
+          onChange={(event) => {
+            setSelectedGeolocation(event.target.value as string);
+          }}
         />
       </React.Suspense>
     </OrderSection>
