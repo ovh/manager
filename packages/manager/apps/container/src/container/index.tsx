@@ -13,8 +13,9 @@ import PaymentModal from '@/payment-modal/PaymentModal';
 import LiveChat from '@/components/LiveChat';
 import { IdentityDocumentsModal } from '@/identity-documents-modal/IdentityDocumentsModal';
 import AgreementsUpdateModal from '@/components/AgreementsUpdateModal/AgreementsUpdateModal.component';
-import useModals from '@/context/modals/useModals';
 import { ModalsProvider } from '@/context/modals';
+import SuggestionModal
+  from '@/components/SuggestionModal/SuggestionModal.component';
 
 export default function Container(): JSX.Element {
   const {
@@ -94,6 +95,9 @@ export default function Container(): JSX.Element {
           </Suspense>
           <Suspense fallback="">
             <IdentityDocumentsModal />
+          </Suspense>
+          <Suspense fallback="">
+            <SuggestionModal />
           </Suspense>
         </ModalsProvider>
       )}

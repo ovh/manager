@@ -4,6 +4,7 @@ export enum ModalTypes {
   kyc,
   payment,
   agreements,
+  suggestion,
 }
 
 export type ModalsContextType = {
