@@ -5,6 +5,7 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import {
   PciDiscoveryBanner,
+  TProject,
   isDiscoveryProject,
   useProject,
 } from '@ovh-ux/manager-pci-common';
@@ -32,13 +33,11 @@ import { useClusterCreationStepper } from './useCusterCreationStepper';
 import { LocationStep } from './steps/LocationStep.component';
 import { VersionAndUpdatePolicyStep } from './steps/VersionAndUpdatePolicyStep.component';
 import { NetworkStep } from './steps/NetworkStep.component';
-import { NodeTypeStep } from './steps/NodeTypeStep.component';
-import { NodeSizeStep } from './steps/NodeSizeStep.component';
 import { ClusterNameStep } from './steps/ClusterNameStep.component';
-import { ClusterBillingStep } from './steps/ClusterBillingStep.component';
+import { ClusterConfirmationStep } from './steps/ClusterConfirmStep.component';
 import { useCreateKubernetesCluster } from '@/api/hooks/useKubernetes';
 import { PAGE_PREFIX } from '@/tracking.constants';
-import { ANTI_AFFINITY_MAX_NODES } from '@/constants';
+import NodePoolStep from './steps/NodePoolStep.component';
 
 export default function NewPage() {
   const { t } = useTranslation('add');
@@ -52,13 +51,13 @@ export default function NewPage() {
   const hrefProject = useProjectUrl('public-cloud');
   const stepper = useClusterCreationStepper();
   const { addError, addSuccess } = useNotifications();
-  const isDiscovery = isDiscoveryProject(project);
+  const isDiscovery = isDiscoveryProject(project as TProject);
 
   const {
     createCluster,
     isPending: isCreationPending,
   } = useCreateKubernetesCluster({
-    projectId: project?.project_id,
+    projectId: project?.project_id ?? '',
     onSuccess: () => {
       navigate('..');
       addSuccess(
@@ -118,6 +117,34 @@ export default function NewPage() {
     },
   });
 
+  const nodePoolEnabled = !!stepper.form.nodePools;
+
+  const createNewCluster = () => {
+    tracking.trackClick({
+      name: `${PAGE_PREFIX}::kubernetes::add::confirm`,
+    });
+    createCluster({
+      name: stepper.form.clusterName,
+      region: stepper.form.region?.name,
+      version: stepper.form.version,
+      updatePolicy: stepper.form.updatePolicy,
+      ...(nodePoolEnabled && {
+        nodepools: stepper.form.nodePools,
+      }),
+      privateNetworkId:
+        stepper.form.network?.privateNetwork?.clusterRegion?.openstackId ||
+        undefined,
+      loadBalancersSubnetId:
+        stepper.form.network?.loadBalancersSubnet?.id || undefined,
+      nodesSubnetId: stepper.form.network?.subnet?.id || undefined,
+      privateNetworkConfiguration: {
+        defaultVrackGateway: stepper.form.network?.gateway?.ip || '',
+        privateNetworkRoutingAsDefault:
+          stepper.form.network?.gateway?.isEnabled,
+      },
+    });
+  };
+
   return (
     <>
       {project && (
@@ -150,6 +177,22 @@ export default function NewPage() {
       <div className="mt-8">
         <StepComponent
           order={1}
+          {...stepper.clusterName.step}
+          title={t('kubernetes_add_name_title')}
+          edit={{
+            action: stepper.clusterName.edit,
+            label: tStepper('common_stepper_modify_this_step'),
+            isDisabled: isDiscovery || isCreationPending,
+          }}
+        >
+          <ClusterNameStep
+            step={stepper.clusterName.step}
+            onNameChange={stepper.clusterName.update}
+            onSubmit={stepper.clusterName.submit}
+          />
+        </StepComponent>
+        <StepComponent
+          order={2}
           {...stepper.location.step}
           isLocked={stepper.location.step.isLocked || isDiscovery}
           title={t('kubernetes_add_region_title')}
@@ -166,7 +209,7 @@ export default function NewPage() {
           />
         </StepComponent>
         <StepComponent
-          order={2}
+          order={3}
           {...stepper.version.step}
           title={t('kubernetes_add_version_and_upgrade_policy_title')}
           edit={{
@@ -181,7 +224,7 @@ export default function NewPage() {
           />
         </StepComponent>
         <StepComponent
-          order={3}
+          order={4}
           {...stepper.network.step}
           title={tListing('kubernetes_add_private_network')}
           edit={{
@@ -197,105 +240,42 @@ export default function NewPage() {
           />
         </StepComponent>
         <StepComponent
-          order={4}
-          {...stepper.nodeType.step}
-          title={tListing('kube_common_node_pool_title')}
-          edit={{
-            action: stepper.nodeType.edit,
-            label: tStepper('common_stepper_modify_this_step'),
-            isDisabled: isCreationPending,
-          }}
-        >
-          <NodeTypeStep
-            projectId={projectId}
-            region={stepper.form.region?.name}
-            onSubmit={stepper.nodeType.submit}
-            step={stepper.nodeType.step}
-          />
-        </StepComponent>
-        <StepComponent
           order={5}
-          {...stepper.nodeSize.step}
-          title={tListing('kube_common_node_pool_autoscaling_title')}
+          {...stepper.node.step}
+          title={tListing('kube_common_node_pool_title_multiple')}
           edit={{
-            action: stepper.nodeSize.edit,
+            action: stepper.node.edit,
             label: tStepper('common_stepper_modify_this_step'),
             isDisabled: isCreationPending,
           }}
         >
-          <NodeSizeStep
-            isMonthlyBilling={stepper.form.isMonthlyBilled}
-            onSubmit={stepper.nodeSize.submit}
-            step={stepper.nodeSize.step}
-          />
+          <NodePoolStep stepper={stepper} />
         </StepComponent>
+
         <StepComponent
           order={6}
-          {...stepper.billing.step}
-          title={t('kubernetes_add_billing_anti_affinity_title')}
+          {...stepper.confirm.step}
+          title={tStepper('common_stepper_submit_button_cluster')}
           edit={{
-            action: stepper.billing.edit,
+            action: stepper.confirm.edit,
             label: tStepper('common_stepper_modify_this_step'),
             isDisabled: isCreationPending,
           }}
         >
-          <ClusterBillingStep
-            form={stepper.form}
-            onSubmit={stepper.billing.submit}
-            step={stepper.billing.step}
-          />
-        </StepComponent>
-        <StepComponent
-          order={7}
-          {...stepper.clusterName.step}
-          title={t('kubernetes_add_name_title')}
-        >
-          {!stepper.clusterName.step.isLocked && (
-            <ClusterNameStep
-              onNameChange={stepper.clusterName.update}
-              onSubmit={() => {
-                stepper.clusterName.step.lock();
-                createCluster({
-                  name: stepper.form.clusterName,
-                  region: stepper.form.region?.name,
-                  version: stepper.form.version,
-                  updatePolicy: stepper.form.updatePolicy,
-                  nodepool: {
-                    antiAffinity: stepper.form.antiAffinity,
-                    autoscale: stepper.form.scaling?.isAutoscale,
-                    desiredNodes: stepper.form.scaling?.quantity.desired,
-                    minNodes: stepper.form.scaling?.quantity.min,
-                    maxNodes: stepper.form.antiAffinity
-                      ? Math.min(
-                          ANTI_AFFINITY_MAX_NODES,
-                          stepper.form.scaling?.quantity.max,
-                        )
-                      : stepper.form.scaling?.quantity.max,
-                    flavorName: stepper.form.flavor?.name,
-                    monthlyBilled: stepper.form.isMonthlyBilled,
-                  },
-                  privateNetworkId:
-                    stepper.form.network?.privateNetwork?.clusterRegion
-                      ?.openstackId || undefined,
-                  loadBalancersSubnetId:
-                    stepper.form.network?.loadBalancersSubnet?.id || undefined,
-                  nodesSubnetId: stepper.form.network?.subnet?.id || undefined,
-                  privateNetworkConfiguration: {
-                    defaultVrackGateway:
-                      stepper.form.network?.gateway?.ip || '',
-                    privateNetworkRoutingAsDefault:
-                      stepper.form.network?.gateway?.isEnabled,
-                  },
-                });
-                tracking.trackClick({
-                  name: `${PAGE_PREFIX}::kubernetes::add::confirm`,
-                });
-              }}
-            />
-          )}
-          {stepper.clusterName.step.isLocked && (
-            <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
-          )}
+          <>
+            {!stepper.confirm.step.isLocked && (
+              <ClusterConfirmationStep
+                nodePools={stepper.form.nodePools}
+                onSubmit={() => {
+                  stepper.confirm.step.lock();
+                  createNewCluster();
+                }}
+              />
+            )}
+            {stepper.confirm.step.isLocked && (
+              <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
+            )}
+          </>
         </StepComponent>
       </div>
     </>

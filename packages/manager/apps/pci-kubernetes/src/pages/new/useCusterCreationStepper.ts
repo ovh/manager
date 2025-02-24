@@ -1,20 +1,19 @@
 import { useState } from 'react';
-import { KubeFlavor, TLocalisation } from '@ovh-ux/manager-pci-common';
+import { TLocalisation } from '@ovh-ux/manager-pci-common';
 import { useStep } from './useStep';
-import { AutoscalingState } from '@/components/Autoscaling.component';
 import { TNetworkFormState } from './steps/NetworkClusterStep.component';
 import { UpdatePolicy } from '@/types';
+
+import { NodePool, NodePoolPrice } from '@/api/data/kubernetes';
 
 export type TClusterCreationForm = {
   region: TLocalisation;
   version: string;
   updatePolicy: UpdatePolicy;
   network: TNetworkFormState;
-  flavor: KubeFlavor;
-  scaling: AutoscalingState;
+  nodePools?: NodePoolPrice[];
+
   clusterName: string;
-  isMonthlyBilled: boolean;
-  antiAffinity: boolean;
 };
 
 const stepReset = (step: ReturnType<typeof useStep>) => {
@@ -29,35 +28,48 @@ export function useClusterCreationStepper() {
     version: '',
     updatePolicy: null,
     network: null,
-    flavor: null,
-    scaling: null,
+
     clusterName: '',
-    isMonthlyBilled: false,
-    antiAffinity: false,
   });
 
-  const locationStep = useStep({ isOpen: true });
+  const clusterNameStep = useStep({ isOpen: true });
+  const locationStep = useStep();
   const versionStep = useStep();
   const networkStep = useStep();
-  const nodeTypeStep = useStep();
-  const nodeSizeStep = useStep();
-  const billingStep = useStep();
-  const clusterNameStep = useStep();
+  const nodeStep = useStep();
+  const confirmStep = useStep();
 
   return {
     form,
+    clusterName: {
+      step: clusterNameStep,
+      edit: () => {
+        clusterNameStep.unlock();
+        [locationStep, versionStep, networkStep, nodeStep, confirmStep].forEach(
+          stepReset,
+        );
+      },
+      update: (clusterName: string) => {
+        setForm((f) => ({
+          ...f,
+          clusterName,
+        }));
+      },
+      submit: (clusterName: string) => {
+        setForm((f) => ({
+          ...f,
+          clusterName,
+        }));
+        clusterNameStep.check();
+        clusterNameStep.lock();
+        locationStep.open();
+      },
+    },
     location: {
       step: locationStep,
       edit: () => {
         locationStep.unlock();
-        [
-          versionStep,
-          networkStep,
-          nodeTypeStep,
-          nodeSizeStep,
-          billingStep,
-          clusterNameStep,
-        ].forEach(stepReset);
+        [versionStep, networkStep, nodeStep, confirmStep].forEach(stepReset);
       },
       submit: (region: TLocalisation) => {
         setForm((f) => ({
@@ -73,13 +85,7 @@ export function useClusterCreationStepper() {
       step: versionStep,
       edit: () => {
         versionStep.unlock();
-        [
-          networkStep,
-          nodeTypeStep,
-          nodeSizeStep,
-          billingStep,
-          clusterNameStep,
-        ].forEach(stepReset);
+        [networkStep, nodeStep, confirmStep].forEach(stepReset);
       },
       submit: (version: string, updatePolicy: UpdatePolicy) => {
         setForm((f) => ({
@@ -96,9 +102,7 @@ export function useClusterCreationStepper() {
       step: networkStep,
       edit: () => {
         networkStep.unlock();
-        [nodeTypeStep, nodeSizeStep, billingStep, clusterNameStep].forEach(
-          stepReset,
-        );
+        [nodeStep, confirmStep].forEach(stepReset);
       },
       submit: (network: TClusterCreationForm['network']) => {
         setForm((f) => ({
@@ -107,46 +111,30 @@ export function useClusterCreationStepper() {
         }));
         networkStep.check();
         networkStep.lock();
-        nodeTypeStep.open();
+        nodeStep.open();
       },
     },
-    nodeType: {
-      step: nodeTypeStep,
+
+    node: {
+      step: nodeStep,
       edit: () => {
-        nodeTypeStep.unlock();
-        [nodeSizeStep, billingStep, clusterNameStep].forEach(stepReset);
+        nodeStep.unlock();
+        [confirmStep].forEach(stepReset);
       },
-      submit: (flavor: KubeFlavor) => {
+      submit: (nodePools: NodePoolPrice[]) => {
         setForm((f) => ({
           ...f,
-          flavor,
+          nodePools,
         }));
-        nodeTypeStep.check();
-        nodeTypeStep.lock();
-        nodeSizeStep.open();
+        nodeStep.check();
+        nodeStep.lock();
+        confirmStep.open();
       },
     },
-    nodeSize: {
-      step: nodeSizeStep,
+    confirm: {
+      step: confirmStep,
       edit: () => {
-        nodeSizeStep.unlock();
-        [billingStep, clusterNameStep].forEach(stepReset);
-      },
-      submit: (scaling: AutoscalingState) => {
-        setForm((f) => ({
-          ...f,
-          scaling,
-        }));
-        nodeSizeStep.check();
-        nodeSizeStep.lock();
-        billingStep.open();
-      },
-    },
-    billing: {
-      step: billingStep,
-      edit: () => {
-        billingStep.unlock();
-        [clusterNameStep].forEach(stepReset);
+        confirmStep.unlock();
       },
       submit: (antiAffinity: boolean, isMonthlyBilled: boolean) => {
         setForm((f) => ({
@@ -154,26 +142,8 @@ export function useClusterCreationStepper() {
           antiAffinity,
           isMonthlyBilled,
         }));
-        billingStep.check();
-        billingStep.lock();
-        clusterNameStep.open();
-      },
-    },
-    clusterName: {
-      step: clusterNameStep,
-      edit: () => {
-        clusterNameStep.unlock();
-        [].forEach((step) => {
-          step.unlock();
-          step.uncheck();
-          step.close();
-        });
-      },
-      update: (clusterName: string) => {
-        setForm((f) => ({
-          ...f,
-          clusterName,
-        }));
+        confirmStep.check();
+        confirmStep.lock();
       },
     },
   };
