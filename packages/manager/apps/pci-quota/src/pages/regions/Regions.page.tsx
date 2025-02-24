@@ -81,7 +81,7 @@ export default function RegionsPage(): JSX.Element {
       const code = selectedRegions[selectedLocation.name];
       await addRegion(projectId, code);
       queryClient.setQueryData(
-        ['project', projectId, 'regions', 'available'],
+        ['project', projectId, 'availableRegions'],
         availableRegions.filter((region) => region.name !== code),
       );
 
