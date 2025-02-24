@@ -1,7 +1,7 @@
 import { MutationStatus } from '@tanstack/react-query';
 
 export interface PciProject {
-  project_id: string;
+  projectId: string;
   projectName: string;
   description: string;
   planCode: PciProjectPlanCode;
@@ -44,6 +44,7 @@ export interface SavingsPlanContract {
   content: string;
   url: string;
 }
+
 export interface SavingsPlanService {
   id: string;
   model: string;
