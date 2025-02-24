@@ -7,6 +7,9 @@ export default /* @ngInject */ ($stateProvider) => {
       },
     },
     layout: 'modal',
+    atInternet: {
+      ignore: true,
+    },
     resolve: {
       goBack: /* @ngInject */ (goToDiagnosticPage) => goToDiagnosticPage,
       diagnosticId: /* @ngInject */ ($transition$) =>

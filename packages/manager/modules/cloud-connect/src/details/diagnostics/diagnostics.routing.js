@@ -1,7 +1,10 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('cloud-connect.details.diagnostics', {
-    url: '/diagnostics',
+    url: '/diagnostics?{fromLink:boolean}',
     component: 'cloudConnectDiagnosticsDetails',
+    atInternet: {
+      ignore: true,
+    },
     resolve: {
       diagnosticList: /* @ngInject */ (cloudConnectService, cloudConnect) =>
         cloudConnectService.getDiagnosticsWithDetails(cloudConnect.id),
@@ -14,6 +17,8 @@ export default /* @ngInject */ ($stateProvider) => {
       refreshDiagnostics: /* @ngInject */ ($state) => () => {
         return $state.reload();
       },
+      fromLink: /* @ngInject */ ($transition$) =>
+        $transition$.params().fromLink,
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('cloud_connect_diagnostics'),
     },

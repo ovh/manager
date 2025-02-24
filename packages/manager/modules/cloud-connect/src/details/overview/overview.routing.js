@@ -157,5 +157,8 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       breadcrumb: () => null,
     },
+    atInternet: {
+      ignore: true,
+    },
   });
 };
