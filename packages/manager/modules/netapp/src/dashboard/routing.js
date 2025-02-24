@@ -39,10 +39,16 @@ export default /* @ngInject */ ($stateProvider) => {
         trackClick('configure-network');
         return $state.go('netapp.dashboard.network');
       },
-      volumes: /* @ngInject */ ($http, serviceName) =>
+      volumes: /* @ngInject */ ($http, serviceName, NetAppDashboardService) =>
         $http
           .get(`/storage/netapp/${serviceName}/share?detail=true`)
-          .then(({ data }) => data.map((volume) => new Share(volume))),
+          .then(({ data }) => {
+            return NetAppDashboardService.getListOfAccessPath(
+              serviceName,
+              data,
+            );
+          })
+          .then((volumes) => volumes.map((volume) => new Share(volume))),
       availableVolumeSize: /* @ngInject */ (storage, volumes) => {
         const storageVolumesSize = volumes.reduce(
           (allSizes, volume) => allSizes + volume.size,

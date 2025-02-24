@@ -191,4 +191,21 @@ export default class NetAppDashboardService {
       name,
     });
   }
+
+  getListOfAccessPath(serviceName, volumes) {
+    return this.$q
+      .all(volumes.map((volume) => this.getAccessPath(serviceName, volume)))
+      .then((result) => result.flat());
+  }
+
+  getAccessPath(serviceName, volume) {
+    return this.$http
+      .get(`/storage/netapp/${serviceName}/share/${volume.id}/accessPath`)
+      .then(({ data }) => {
+        return {
+          ...volume,
+          path: data.map(({ path }) => path),
+        };
+      });
+  }
 }

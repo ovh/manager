@@ -99,6 +99,10 @@ export const LABELS = {
 
 export const NETAPP_NAME_PATTERN = /^[a-zA-Z0-9._-]{1,64}$/;
 
+export const MOUNT_PATH_PATTERN = /^\w+$/;
+
+export const MAX_CHAR_LIMIT = 255;
+
 export default {
   MINIMUM_VOLUME_SIZE,
   COMMIT_IMPRESSION_TRACKING_DATA,
@@ -110,4 +114,6 @@ export default {
   VRACK_ORDER_URLS,
   LABELS,
   NETAPP_NAME_PATTERN,
+  MOUNT_PATH_PATTERN,
+  MAX_CHAR_LIMIT,
 };

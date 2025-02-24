@@ -1,10 +1,16 @@
-import { MINIMUM_VOLUME_SIZE } from '../../constants';
+import {
+  MINIMUM_VOLUME_SIZE,
+  MOUNT_PATH_PATTERN,
+  MAX_CHAR_LIMIT,
+} from '../../constants';
 
 export default class VolumeCreateCtrl {
   /* @ngInject */
   constructor($http, $translate) {
     this.$http = $http;
     this.$translate = $translate;
+    this.MOUNT_PATH_PATTERN = MOUNT_PATH_PATTERN;
+    this.MAX_CHAR_LIMIT = MAX_CHAR_LIMIT;
   }
 
   $onInit() {
@@ -16,6 +22,9 @@ export default class VolumeCreateCtrl {
     [this.newVolumeProtocol] = this.protocolList;
     this.minimumVolumeSize = MINIMUM_VOLUME_SIZE;
     this.availableVolumeSize = this.getAvailableSize();
+    this.usedMountPaths = this.volumes
+      .map(({ path }) => path?.map((p) => p?.split('/')[1]))
+      .flat();
   }
 
   getAvailableSize() {
@@ -53,6 +62,20 @@ export default class VolumeCreateCtrl {
       .finally(() => {
         this.isCreating = false;
       });
+  }
+
+  isMountPointNameAlreadyUsed(value) {
+    if (!value || value === '') {
+      return true;
+    }
+    return !this.usedMountPaths?.includes(value);
+  }
+
+  isLimitExceeds(value) {
+    if (!value || value === '') {
+      return true;
+    }
+    return value?.length <= this.MAX_CHAR_LIMIT;
   }
 
   goBack() {
