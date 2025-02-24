@@ -84,11 +84,12 @@ export const usePricingInfo = ({
 }) => {
   const serviceId = useServiceId();
 
+  const exactProductCodeMatch = `"${productSizeCode}"`;
   return useQuery({
-    queryKey: ['pricingInfo', productSizeCode],
+    queryKey: ['pricingInfo', exactProductCodeMatch],
     queryFn: () =>
       getCommercialOffers({
-        productCode: productSizeCode,
+        productCode: exactProductCodeMatch,
         serviceId,
       }),
     select: (res) =>
