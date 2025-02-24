@@ -12,7 +12,7 @@ const testCases = [
   ['desiredNodes', 'kube_common_node_pool_desired_node'],
   ['autoscaling', 'autoscaling:kubernetes_node_pool_autoscaling_autoscale'],
   ['anti-affinity', 'billing-anti-affinity:kubernetes_node_pool_anti_affinity'],
-  ['billing', 'kube-nodes:kube_nodes_billing_type'],
+  ['billing', 'kube_node_pool_monthly_billing'],
   ['actions', ''],
 ];
 const columnCount = testCases.length;
