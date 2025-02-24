@@ -21,7 +21,7 @@ describe('AddUserPage', () => {
   });
   it('should display form', () => {
     vi.mocked(useUsers).mockReturnValue({
-      data: ([
+      validUsersWithCredentials: ([
         {
           id: 'id',
           username: 'username',

@@ -4,12 +4,12 @@ exports[`Actions > Action sould displayed 1`] = `
 <div>
   <div
     class="w-min"
-    id="navigation-action-trigger-name-deploymentMode-region"
+    id="navigation-action-trigger-name-deploymentMode-region-s3"
   >
     <ods-button
       data-testid="navigation-action-trigger-action"
       icon="ellipsis-vertical"
-      id="name-deploymentMode-region"
+      id="name-deploymentMode-region-s3"
       is-disabled="false"
       is-loading="false"
       size="sm"
@@ -19,7 +19,7 @@ exports[`Actions > Action sould displayed 1`] = `
   </div>
   <ods-popover
     class="py-[8px] px-0 w-max"
-    trigger-id="navigation-action-trigger-name-deploymentMode-region"
+    trigger-id="navigation-action-trigger-name-deploymentMode-region-s3"
     with-arrow="true"
   >
     <div

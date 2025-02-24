@@ -33,11 +33,11 @@ export default function AddUserPage() {
   const decodedObjectName = objectName.replace(/~2F/g, '/');
   const region = searchParams.get('region');
 
-  const { data: listUsers, isPending: isPendingListUsers } = useUsers(
+  const { validUsersWithCredentials, isPending: isPendingListUsers } = useUsers(
     projectId,
   );
 
-  const defaultUser = listUsers?.[0];
+  const defaultUser = validUsersWithCredentials?.[0];
 
   const [stepUser, setStepUser] = useState(0);
   const [selectedUser, setSelectedUser] = useState<TUser>(null);
@@ -120,7 +120,7 @@ export default function AddUserPage() {
           {stepUser === 0 ? (
             <StepOneComponent
               onSelectUser={setSelectedUser}
-              users={listUsers}
+              users={validUsersWithCredentials}
               defaultUser={defaultUser}
               selectedUser={selectedUser}
             />
