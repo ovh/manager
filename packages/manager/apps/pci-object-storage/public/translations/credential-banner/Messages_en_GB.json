@@ -1,0 +1,10 @@
+{
+  "pci_projects_project_storages_containers_add_linked_user_success_message": "The Object Storage credentials for the user {{username}} are now available.",
+  "pci_projects_project_storages_containers_add_create_user_success_message": "The Object Storage user {{username}} has been generated with the following credentials:",
+  "pci_projects_project_storages_containers_add_create_or_linked_user_create_user_fail_message": "The Object Storage credentials were not generated.",
+  "pci_projects_project_storages_containers_add_create_or_linked_user_create_credential_fail_message": "Failed to create user {{username}}.",
+  "pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_username_label": "Your username:",
+  "pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_description_label": "Your description:",
+  "pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_access-key_label": "Your access key:",
+  "pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_secret-key_label": "Your secret key:"
+}

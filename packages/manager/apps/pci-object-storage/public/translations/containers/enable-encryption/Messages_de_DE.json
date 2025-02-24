@@ -1,0 +1,14 @@
+{
+  "pci_projects_project_storages_containers_update_encryption_enable_label": "Aktivieren",
+  "pci_projects_project_storages_containers_update_encryption_enabled_label": "Aktiviert",
+  "pci_projects_project_storages_containers_update_encryption_disabled_label": "Deaktiviert",
+  "pci_projects_project_storages_containers_update_encryption_suspended_label": "Ausgesetzt",
+  "pci_projects_project_storages_containers_update_encryption_cancel_label": "Abbrechen",
+  "pci_projects_project_storages_containers_update_encryption_title": "Verschlüsselung aktivieren (SSE-OMK)",
+  "pci_projects_project_storages_containers_update_encryption_encryption": "Verschlüsselung:",
+  "pci_projects_project_storages_containers_update_encryption_enable_success_message": "Die Aktivierung der Verschlüsselung (SSE-OMK) wurde erfolgreich abgeschlossen.",
+  "pci_projects_project_storages_containers_update_encryption_enable_error_message": "Bei der Aktivierung der Verschlüsselung ist ein Fehler aufgetreten: {{ message }}.",
+  "pci_projects_project_storages_containers_bucket_encryption_description": "Aktiviert die serverseitige Verschlüsselung mit von OVHcloud verwalteten Schlüsseln, um Ihre Daten im Ruhezustand zu schützen.",
+  "pci_projects_project_storages_containers_bucket_encryption_banner": "Nach der Aktivierung wird die Verschlüsselung nur für neu hochgeladene Objekte angewendet und kann nicht mehr deaktiviert werden.",
+  "pci_projects_project_storages_containers_update_encryption_link": "Mehr erfahren"
+}
