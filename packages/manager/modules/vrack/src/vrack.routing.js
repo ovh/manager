@@ -1,4 +1,8 @@
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
+import {
+  VRACK_TRACKING_PREFIX,
+  VRACK_TRACKING_CONTEXT,
+} from './vrack.constant';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('vrack.index', {
@@ -77,7 +81,8 @@ export default /* @ngInject */ ($stateProvider) => {
           value: $translate.instant('vrack_order'),
           onClick: () => {
             atInternet.trackClick({
-              name: 'vrack::index::order',
+              name: `${VRACK_TRACKING_PREFIX}page::button::go-to-order::vrack-private-network`,
+              ...VRACK_TRACKING_CONTEXT,
               type: 'action',
             });
             $state.go('vrack.order');
@@ -85,6 +90,10 @@ export default /* @ngInject */ ($stateProvider) => {
         },
       }),
       hideBreadcrumb: () => true,
+    },
+    atInternet: {
+      rename: `${VRACK_TRACKING_PREFIX}vrack-private-network::listing::manage_vrack-private-network`,
+      ...VRACK_TRACKING_CONTEXT,
     },
     redirectTo: (transition) =>
       transition
