@@ -26,7 +26,7 @@ const UserAccountMenuButton = ({
       aria-expanded={show}
       aria-label={t('user_account_menu_manage_my_account')}
       size={ODS_BUTTON_SIZE.sm}
-      variant={ODS_BUTTON_VARIANT.ghost}
+      variant={ODS_BUTTON_VARIANT.stroked}
       color={ODS_THEME_COLOR_INTENT.primary}
       onClick={(e) => {
         e.preventDefault();
