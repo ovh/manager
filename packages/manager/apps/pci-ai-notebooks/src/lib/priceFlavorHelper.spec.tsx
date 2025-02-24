@@ -30,7 +30,11 @@ describe('priceFlavorHelper', () => {
       ],
     };
     expect(
-      createFlavorPricingList([mockedCapabilitiesFlavorCPU], mockedCatalog),
+      createFlavorPricingList(
+        [mockedCapabilitiesFlavorCPU],
+        mockedCatalog,
+        'test',
+      ),
     ).toStrictEqual([flavorWithPricing]);
   });
 });

@@ -1,4 +1,5 @@
 {
+  "breadcrumb": "Conteneurs de données",
   "attachedDataTitle": "Conteneurs de données",
   "attachedDataDescription": "Vous pouvez attacher des conteneurs de type Datastore S3, Datastore GIT, Object Storage OVHcloud. Une fois attachés, ceux-ci seront temporairement chargés et mis en cache près de votre instance afin de réduire la latence et d’améliorer les performances. La bonne pratique est d’attacher un conteneur avec vos données entrantes et un autre avec vos données sortantes.",
   "attachedDataInfoLink": "En savoir plus sur le stockage de données.",
@@ -22,5 +23,9 @@
   "dataSyncGlobalAlertDescription": "La synchronisation sere effecutée sur l'ensemble de vos répertoires de montage",
   "dataSyncMountPathAlertDescription": "La synchronisation sera effectuée seulement sur le répertoire de montage {{name}}",
   "datasyncButtonCancel": "Annuler",
-  "datasyncButtonConfirm": "Synchroniser"
+  "datasyncButtonConfirm": "Synchroniser",
+  "dataSyncToastErrorTitle": "Erreur",
+  "dataSyncToastSuccessTitle": "Succès",
+  "dataSyncMountPathToastSuccessDescription": "La synchronisation des données sur le répertoire de montage {{name}} a été correctement lancée",
+  "dataSyncGlobalToastSuccessDescription": "La synchronisation des données sur tous les répertoire de montage a été correctement lancée"
 }

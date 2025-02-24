@@ -7,7 +7,7 @@ export function breadcrumb() {
   return (
     <BreadcrumbItem
       translationKey="breadcrumb"
-      namespace="pci-ai-training/jobs/job/public-git"
+      namespace="components/public-git"
     />
   );
 }

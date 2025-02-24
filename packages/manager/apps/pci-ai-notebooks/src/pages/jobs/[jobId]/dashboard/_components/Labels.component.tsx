@@ -10,7 +10,7 @@ import { OVH_TAGS_CONFIG } from '@/configuration/label';
 
 const Labels = () => {
   const { job, jobQuery, projectId } = useJobData();
-  const { t } = useTranslation('pci-ai-training/jobs/job/dashboard');
+  const { t } = useTranslation('components/labels');
   const toast = useToast();
 
   const configuredLabel: ai.Label[] = useMemo(
@@ -30,15 +30,15 @@ const Labels = () => {
   const { editLabel } = useEditLabel({
     onError: (err) => {
       toast.toast({
-        title: t('jobToastErrorTitle'),
+        title: t('labelToastErrorTitle'),
         variant: 'destructive',
         description: getAIApiErrorMessage(err),
       });
     },
     onSuccess: () => {
       toast.toast({
-        title: t('jobToastSuccessTitle'),
-        description: t('jobLabelSuccess'),
+        title: t('labelToastSuccessTitle'),
+        description: t('labelToastSuccessDescription'),
       });
       jobQuery.refetch();
     },

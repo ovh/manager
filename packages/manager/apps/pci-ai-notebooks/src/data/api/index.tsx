@@ -10,6 +10,10 @@ export interface JobData extends PCIAi {
   jobId: string;
 }
 
+export interface AppData extends PCIAi {
+  appId: string;
+}
+
 export class AIError extends Error {
   code: string;
 

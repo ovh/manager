@@ -12,7 +12,7 @@ const DataSync = () => {
   const { volumeId } = useParams();
   const [volume, setVolume] = useState<ai.volume.VolumeStatus>();
   const { job, projectId } = useJobData();
-  const { t } = useTranslation('pci-ai-training/jobs/job/containers');
+  const { t } = useTranslation('components/containers');
   const navigate = useNavigate();
   const toast = useToast();
 

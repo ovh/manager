@@ -1,10 +1,4 @@
 {
-  "keyFieldLabel": "Clé",
-  "valueFieldLabel": "Valeur",
-  "existingKeyError": "Cette clé existe déjà",
-  "numberOfConfiguredLabels_zero": "{{count}} labels configurés",
-  "numberOfConfiguredLabels_one": "{{count}} label configuré sur {{max}}",
-  "numberOfConfiguredLabels_other": "{{count}} labels configurés sur {{max}}",
   "duplicateKeyError": "Cette clé SSH est déjà configurée",
   "configuredKeyFieldLabel": "Clé SSH déjà paramétrée",
   "sshKeyFieldPlaceholder": "Sélectionner une clé SSH",

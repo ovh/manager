@@ -1,7 +1,7 @@
 import { Cpu, HardDrive, HelpCircle, MemoryStick, Zap } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import * as ai from '@/types/cloud/project/ai';
-import { bytesConverter } from '@/lib/bytesHelper';
+import { bytesConverter, octetConverter } from '@/lib/bytesHelper';
 import {
   Popover,
   PopoverContent,
@@ -74,7 +74,7 @@ const ResourcesSpec = ({ resources }: ResourcesProps) => {
         <div className="flex flex-row items-center gap-2">
           <span>
             {t('temporaryLocalStorageField', {
-              storage: bytesConverter(resources.ephemeralStorage, false, 0),
+              storage: octetConverter(resources.ephemeralStorage, true, 0),
             })}
           </span>
           <Popover>
