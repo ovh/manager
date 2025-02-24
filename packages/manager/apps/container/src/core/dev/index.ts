@@ -1,13 +1,26 @@
 import { Shell } from '@ovh-ux/shell';
 import { Application } from '@ovh-ux/manager-config';
+import { da } from 'date-fns/locale';
 
 export function setupDevApplication(shell: Shell) {
   if (import.meta.env.DEV) {
     const devApp = import.meta.env.VITE_CONTAINER_APP;
-    const apps = shell
+    const defaultApps = shell
       .getPlugin('environment')
       .getEnvironment()
       .getApplications();
+    const dataplatformApp = {
+      'pci-dataplatform': {
+        container: defaultApps['pci-databases-analytics'].container,
+        publicURL: "https://www.ovh.com/manager/#/public-cloud",
+        universe: "public-cloud",
+        url: "https://www.ovh.com/manager/pci-dataplatform/"
+      }
+    };
+    const apps = {
+      ...defaultApps,
+      ...dataplatformApp
+    };
 
     if (!devApp) {
       throw new Error('Missing environment variable env.VITE_CONTAINER_APP');
