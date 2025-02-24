@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-workflow-app@0.4.1...@ovh-ux/manager-pci-workflow-app@0.5.0) (2025-02-24)
+
+
+### Bug Fixes
+
+* **pci-workflow:** add ~ on monthly pricing estimation ([#15386](https://github.com/ovh/manager/issues/15386)) ([2dd006c](https://github.com/ovh/manager/commit/2dd006c489fea55de9224218b7b0458c7dc5e1d7))
+
+
+### Features
+
+* **pci.instances:** add LZ automatic instance backup ([#14434](https://github.com/ovh/manager/issues/14434)) ([edfc171](https://github.com/ovh/manager/commit/edfc1711a4f6c929e463506e9ded95ae9feb10f7))
+
+
+
+
+
 ## [0.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-workflow-app@0.4.0...@ovh-ux/manager-pci-workflow-app@0.4.1) (2025-02-20)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-workflow-app
