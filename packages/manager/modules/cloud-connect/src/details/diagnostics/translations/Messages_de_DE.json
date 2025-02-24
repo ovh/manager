@@ -1,0 +1,14 @@
+{
+  "cloud_connect_diagnostics_id": "Diagnose-ID",
+  "cloud_connect_diagnostics_date": "Datum",
+  "cloud_connect_diagnostics_name": "Name",
+  "cloud_connect_diagnostics_scope": "Scope",
+  "cloud_connect_diagnostics_status": "Status",
+  "cloud_connect_diagnostics_status_todo": "Geplant",
+  "cloud_connect_diagnostics_status_doing": "Wird ausgeführt",
+  "cloud_connect_diagnostics_status_done": "Beendet",
+  "cloud_connect_diagnostics_status_error": "Fehler",
+  "cloud_connect_diagnostics_empty_datagrid": "Keine Diagnose verfügbar",
+  "cloud_connect_diagnostics_action_result": "Ergebnis anzeigen",
+  "cloud_connect_diagnostics_action_download": "Ergebnis herunterladen"
+}

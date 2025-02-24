@@ -25,6 +25,10 @@ export default /* @ngInject */ ($stateProvider) => {
           isDirectService: cloudConnect.isDirectService(),
           allowedPopType: cloudConnect.getAllowedPopType(),
         }),
+      diagnosticPageUrl: /* @ngInject */ ($state, cloudConnect) => () =>
+        $state.href('cloud-connect.details.diagnostics', {
+          cloudConnect,
+        }),
       goToRemovePopConfigurationPage: /* @ngInject */ (
         $state,
         cloudConnect,
@@ -58,6 +62,19 @@ export default /* @ngInject */ ($stateProvider) => {
             datacenterId,
           },
         ),
+      goToCheckBGPPeeringPage: /* @ngInject */ ($state) => ({
+        popConfigId,
+        dcConfigId,
+        isExtra,
+        extraConfigId,
+      }) => {
+        $state.go('cloud-connect.details.overview.check-bgp-peering', {
+          popConfigId,
+          dcConfigId,
+          isExtra,
+          extraConfigId,
+        });
+      },
       goToRemoveExtraPage: /* @ngInject */ ($state) => (
         datacenterId,
         extraId,
@@ -103,6 +120,7 @@ export default /* @ngInject */ ($stateProvider) => {
         cloudConnectId,
         cloudConnectService,
       ) => (message = false, type = 'success', reload = false, vrackId) => {
+        CucCloudMessage.flushChildMessage();
         const state = 'cloud-connect.details.overview';
 
         return $state
@@ -138,6 +156,9 @@ export default /* @ngInject */ ($stateProvider) => {
           });
       },
       breadcrumb: () => null,
+    },
+    atInternet: {
+      ignore: true,
     },
   });
 };
