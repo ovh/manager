@@ -1,8 +1,3 @@
-import filter from 'lodash/filter';
-import find from 'lodash/find';
-import get from 'lodash/get';
-import map from 'lodash/map';
-
 import {
   TAGS_BLOB,
   FLOATINGIP_ADDON_FAMILY,
@@ -10,10 +5,8 @@ import {
 } from '../../../constants';
 import {
   POLLER_INSTANCE_NAMESPACE,
-  TYPES_TO_EXCLUDE,
   WINDOWS_GEN_3_ADDON_PLANCODE,
 } from './instances.constants';
-import Instance from '../../../components/project/instance/instance.class';
 import { PCI_FEATURES } from '../../projects.constant';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -29,15 +22,6 @@ export default /* @ngInject */ ($stateProvider) => {
     onEnter: /* @ngInject */ (pciFeatureRedirect) => {
       return pciFeatureRedirect(PCI_FEATURES.PRODUCTS.INSTANCE);
     },
-    redirectTo: (transition) =>
-      transition
-        .injector()
-        .getAsync('instances')
-        .then((instances) =>
-          instances.length === 0
-            ? { state: 'pci.projects.project.instances.onboarding' }
-            : false,
-        ),
     onExit: /* @ngInject */ (killTasks) => {
       killTasks({ namespace: POLLER_INSTANCE_NAMESPACE.SHELVE });
       killTasks({ namespace: POLLER_INSTANCE_NAMESPACE.UNSHELVE });
@@ -56,58 +40,7 @@ export default /* @ngInject */ ($stateProvider) => {
           })
           .then(({ data: catalog }) => catalog);
       },
-      instances: /* @ngInject */ (
-        catalog,
-        $q,
-        PciProjectsProjectInstanceService,
-        projectId,
-        getFloatingIps,
-        customerRegions,
-      ) =>
-        $q
-          .all({
-            instances: PciProjectsProjectInstanceService.getAll(
-              projectId,
-              customerRegions,
-            ),
-            floatingIps: getFloatingIps(),
-          })
-          .then(({ instances, floatingIps }) => {
-            const updatedInstances = map(instances, (instance) => ({
-              ...instance,
-              floatingIp: floatingIps.find(
-                (floatingIp) =>
-                  floatingIp?.associatedEntity?.id === instance.id,
-              ),
-            }));
-            return $q
-              .all(
-                updatedInstances.map((instance) => {
-                  return PciProjectsProjectInstanceService.getInstanceFlavor(
-                    projectId,
-                    instance,
-                  ).then((flavor) => {
-                    return new Instance({
-                      ...instance,
-                      flavor,
-                    });
-                  });
-                }),
-              )
-              .then((data) =>
-                filter(
-                  data,
-                  (instance) =>
-                    !find(TYPES_TO_EXCLUDE, (pattern) =>
-                      pattern.test(get(instance, 'flavor.type')),
-                    ),
-                ),
-              );
-          }),
       instanceId: /* @ngInject */ ($transition$) => $transition$.params().id,
-
-      instancesRegions: /* @ngInject */ (instances) =>
-        Array.from(new Set(instances.map(({ region }) => region))),
 
       addInstance: /* @ngInject */ ($state, projectId) => () =>
         $state.go('pci.projects.project.instances.add', {
@@ -389,7 +322,7 @@ export default /* @ngInject */ ($stateProvider) => {
       /** If one/some instances is still in shelving we run a sub task until the instance is shelved
        * Also, the sub tasks are killed if changed state is different from instances.*
        */
-      pollShelvingInstances: /* @ngInject */ (
+      /* pollShelvingInstances: /!* @ngInject *!/ (
         $translate,
         CucCloudMessage,
         Poller,
@@ -421,12 +354,12 @@ export default /* @ngInject */ ($stateProvider) => {
               );
           }
         });
-      },
+      }, */
 
       /** If one/some instances is still in unshelving we run a sub task until the instance is active
        * Also, the sub tasks are killed if changed state is different from instances.*
        */
-      pollUnshelvingInstances: /* @ngInject */ (
+      /* pollUnshelvingInstances: /!* @ngInject *!/ (
         $translate,
         CucCloudMessage,
         Poller,
@@ -458,7 +391,7 @@ export default /* @ngInject */ ($stateProvider) => {
               );
           }
         });
-      },
+      }, */
       isAdditionalIpsAvailable: /* @ngInject */ (ovhFeatureFlipping) => {
         return ovhFeatureFlipping
           .checkFeatureAvailability(PCI_FEATURES.PRODUCTS.ADDITIONAL_IP)
