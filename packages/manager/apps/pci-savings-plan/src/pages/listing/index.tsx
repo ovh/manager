@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 
 import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
-import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
+import { OdsButton } from '@ovhcloud/ods-components/react';
 
 import {
   Notifications,
@@ -21,7 +21,6 @@ import {
 import TableContainer from '@/components/Table/TableContainer';
 import { useSavingsPlan } from '@/hooks/useSavingsPlan';
 import { SavingsPlanService } from '@/types';
-import TabsDashboard from '@/components/Dashboard/TabsDashboard/TabsDashboard';
 
 import { CHANGELOG_LINKS } from '@/constants';
 
