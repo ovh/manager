@@ -54,10 +54,9 @@ export function Actions({
 
   const uid = useMemo(
     () =>
-      `${storage.name}-${storage.deploymentMode}-${storage.region}`.replace(
-        /\./g,
-        '-',
-      ),
+      `${storage.name}-${storage.deploymentMode}-${storage.region}${
+        storage.s3StorageType ? '-s3' : ''
+      }`.replace(/\./g, '-'),
     [storage],
   );
 
