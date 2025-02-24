@@ -15,7 +15,11 @@ import {
   ODS_MESSAGE_COLOR,
   ODS_LINK_COLOR,
 } from '@ovhcloud/ods-components';
-import {ButtonType, PageLocation, useOvhTracking} from '@ovh-ux/manager-react-shell-client';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { useGenerateUrl, useDomain } from '@/hooks';
 import { GUIDES_LIST } from '@/guides.constants';
 import GuideLink from '@/components/GuideLink';
@@ -28,7 +32,7 @@ export enum DomainOwnership {
 }
 
 export default function ValidateOwnership() {
-  const { t } = useTranslation('domains/addDomain');
+  const { t } = useTranslation('domains/form');
   const { trackClick } = useOvhTracking();
   const [searchParams] = useSearchParams();
   const domainId = searchParams.get('domainId');

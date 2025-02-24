@@ -22,7 +22,7 @@ const ActionButtonEmail: React.FC<ActionButtonEmailAccountProps> = ({
   emailsItem,
 }) => {
   const { trackClick } = useOvhTracking();
-  const { t } = useTranslation('accounts');
+  const { t } = useTranslation('common');
   const { platformUrn } = usePlatform();
   const navigate = useNavigate();
 
@@ -60,14 +60,14 @@ const ActionButtonEmail: React.FC<ActionButtonEmailAccountProps> = ({
       onClick: handleEditEmailClick,
       urn: platformUrn,
       iamActions: [IAM_ACTIONS.account.edit],
-      label: t('zimbra_account_datagrid_tooltip_modification'),
+      label: t('modify'),
     },
     {
       id: 2,
       onClick: handleDeleteEmailClick,
       urn: platformUrn,
       iamActions: [IAM_ACTIONS.account.delete],
-      label: t('zimbra_account_datagrid_tooltip_delete'),
+      label: t('delete'),
       color: ODS_BUTTON_COLOR.critical,
     },
   ];

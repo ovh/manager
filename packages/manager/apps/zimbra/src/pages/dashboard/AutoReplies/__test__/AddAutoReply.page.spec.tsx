@@ -5,7 +5,7 @@ import { describe, expect, vi } from 'vitest';
 import { useSearchParams } from 'react-router-dom';
 import { fireEvent, render, waitFor, act } from '@/utils/test.provider';
 import AddAutoReply, { AutoReplyDurations } from '../AddAutoReply.page';
-import autoRepliesAddTranslation from '@/public/translations/autoReplies/add/Messages_fr_FR.json';
+import autoRepliesFormTranslation from '@/public/translations/auto-replies/form/Messages_fr_FR.json';
 import { accountDetailMock } from '@/api/_mock_';
 
 describe('add auto reply page', () => {
@@ -17,7 +17,7 @@ describe('add auto reply page', () => {
     });
 
     expect(getByTestId('page-header')).toHaveTextContent(
-      autoRepliesAddTranslation.zimbra_auto_replies_add_header,
+      autoRepliesFormTranslation.zimbra_auto_replies_add_header,
     );
   });
 

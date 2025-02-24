@@ -2,7 +2,7 @@ import React from 'react';
 import { describe, expect } from 'vitest';
 import ActionButtonEmail from '../ActionButtonEmail.component';
 import { render } from '@/utils/test.provider';
-import accountTranslation from '@/public/translations/accounts/Messages_fr_FR.json';
+import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
 import { accountsMock } from '@/api/_mock_';
 
 describe('EmailAccounts datagrid action menu', () => {
@@ -15,14 +15,8 @@ describe('EmailAccounts datagrid action menu', () => {
 
     expect(menuItems.length).toBe(2);
 
-    expect(menuItems[0]).toHaveAttribute(
-      'label',
-      accountTranslation.zimbra_account_datagrid_tooltip_modification,
-    );
+    expect(menuItems[0]).toHaveAttribute('label', commonTranslation.modify);
 
-    expect(menuItems[1]).toHaveAttribute(
-      'label',
-      accountTranslation.zimbra_account_datagrid_tooltip_delete,
-    );
+    expect(menuItems[1]).toHaveAttribute('label', commonTranslation.delete);
   });
 });

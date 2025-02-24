@@ -6,5 +6,8 @@
   "zimbra_organization_delete": "Delete",
   "zimbra_organization_label": "Label",
   "zimbra_organization_name": "Organisation",
-  "zimbra_organization_status": "Status"
+  "zimbra_organization_status": "Status",
+  "zimbra_organization_delete_modal_content": "Are you sure you want to delete the organization?",
+  "zimbra_organization_delete_modal_message_disabled_part1": "At least one domain is still associated with this organization.",
+  "zimbra_organization_delete_modal_message_disabled_part2": "Please delete the associated domains before deleting your organization."
 }

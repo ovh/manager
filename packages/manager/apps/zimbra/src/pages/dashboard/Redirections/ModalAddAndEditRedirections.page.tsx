@@ -39,7 +39,7 @@ import { useForm } from '@/hooks/useForm';
 
 export default function ModalAddAndEditRedirections() {
   const { trackClick, trackPage } = useOvhTracking();
-  const { t } = useTranslation('redirections/addAndEdit');
+  const { t } = useTranslation('redirections');
   const navigate = useNavigate();
 
   const [searchParams] = useSearchParams();
@@ -134,7 +134,7 @@ export default function ModalAddAndEditRedirections() {
       });
       addSuccess(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {t('zimbra_redirection_add_success_message')}
+          {t('zimbra_redirections_add_success_message')}
         </OdsText>,
         true,
       );
@@ -146,7 +146,7 @@ export default function ModalAddAndEditRedirections() {
       });
       addError(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {t('zimbra_redirection_add_error_message', {
+          {t('zimbra_redirections_add_error_message', {
             error: error?.response?.data?.message,
           })}
         </OdsText>,
@@ -191,19 +191,19 @@ export default function ModalAddAndEditRedirections() {
       isDismissible
       title={t(
         editRedirectionId
-          ? 'zimbra_redirections_title_edit'
-          : 'zimbra_redirections_title_add',
+          ? 'common:edit_redirection'
+          : 'common:add_redirection',
       )}
       onClose={onClose}
       secondaryButton={{
         testid: 'cancel-btn',
-        label: t('zimbra_redirections_add_btn_cancel'),
+        label: t('common:cancel'),
         action: handleCancelClick,
       }}
       primaryButton={{
         testid: 'confirm-btn',
         variant: ODS_BUTTON_VARIANT.default,
-        label: t('zimbra_redirections_add_btn_confirm'),
+        label: t('common:confirm'),
         action: handleClickConfirm,
         isDisabled: !isFormValid,
         isLoading: isSending,
@@ -212,14 +212,14 @@ export default function ModalAddAndEditRedirections() {
     >
       <>
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {t('zimbra_redirections_edit_1')}
+          {t('zimbra_redirections_add_header')}
         </OdsText>
         <OdsText preset={ODS_TEXT_PRESET.caption} className="my-5">
-          {t('zimbra_redirections_edit_2')}
+          {t('common:form_mandatory_fields')}
         </OdsText>
         <OdsFormField data-testid="field-from" className="mt-5">
           <label htmlFor="from" slot="label">
-            {t('zimbra_redirections_add_form_input_name_title_from')} *
+            {t('zimbra_redirections_add_form_input_from')} *
           </label>
           {editEmailAccountId || editRedirectionId ? (
             <OdsInput
@@ -237,9 +237,7 @@ export default function ModalAddAndEditRedirections() {
                 <OdsInput
                   type={ODS_INPUT_TYPE.text}
                   name="account"
-                  placeholder={t(
-                    'zimbra_redirections_add_input_email_placeholder',
-                  )}
+                  placeholder={t('common:account_name')}
                   hasError={form.account.hasError}
                   value={form.account.value}
                   defaultValue={form.account.defaultValue}
@@ -270,9 +268,7 @@ export default function ModalAddAndEditRedirections() {
                   className="w-1/2"
                   data-testid="select-domain"
                   isDisabled={isLoadingDomain}
-                  placeholder={t(
-                    'zimbra_redirections_add_select_domain_placeholder',
-                  )}
+                  placeholder={t('common:select_domain')}
                   onOdsChange={({ detail: { name, value } }) =>
                     setValue(name, value)
                   }
@@ -294,7 +290,7 @@ export default function ModalAddAndEditRedirections() {
         </OdsFormField>
         <OdsFormField data-testid="field-to" className="mt-5">
           <label htmlFor="to" slot="label">
-            {t('zimbra_redirections_add_form_input_name_title_to')} *
+            {t('zimbra_redirections_add_form_input_to')} *
           </label>
           <OdsInput
             type={ODS_INPUT_TYPE.email}

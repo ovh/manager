@@ -1,8 +1,0 @@
-{
-  "zimbra_account_alias_delete_modal_title": "Usuń alias",
-  "zimbra_account_alias_delete_modal_description": "Czy na pewno chcesz go usunąć?",
-  "zimbra_account_alias_delete_modal_cancel_btn": "Anuluj",
-  "zimbra_account_alias_delete_modal_delete_btn": "Usuń",
-  "zimbra_account_alias_delete_success_message": "Dyspozycja usunięcia została przyjęta. Zostanie wykonana w ciągu kilku minut.",
-  "zimbra_account_alias_delete_error_message": "Usunięcie nie powiodło się. {{error}}"
-}

@@ -77,7 +77,7 @@ const defaultExpertConfState = {
 };
 
 export default function AddDomain() {
-  const { t } = useTranslation('domains/addDomain');
+  const { t } = useTranslation(['domains/form', 'common']);
   const navigate = useNavigate();
   const { trackClick, trackPage } = useOvhTracking();
   const { addError, addSuccess } = useNotifications();
@@ -224,7 +224,7 @@ export default function AddDomain() {
       });
       addSuccess(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {t('zimbra_domains_add_domain_success_message')}
+          {t('common:add_success_message')}
         </OdsText>,
         true,
       );
@@ -236,7 +236,7 @@ export default function AddDomain() {
       });
       addError(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {t('zimbra_domains_add_domain_error_message', {
+          {t('common:add_error_message', {
             error: error?.response?.data?.message,
           })}
         </OdsText>,
@@ -309,10 +309,10 @@ export default function AddDomain() {
         color={ODS_LINK_COLOR.primary}
         label={t('zimbra_domains_add_domain_cta_back')}
       />
-      <Subtitle>{t('zimbra_domains_add_domain_title_select')}</Subtitle>
+      <Subtitle>{t('common:add_domain')}</Subtitle>
       <OdsFormField className="w-full mt-6">
         <label htmlFor="organization" slot="label">
-          {t('zimbra_domains_add_domain_organization')}
+          {t('common:organization')}
         </label>
         <OdsSelect
           id="organization"
@@ -323,7 +323,7 @@ export default function AddDomain() {
           isDisabled={isLoading || organization?.id}
           className="mt-2"
           data-testid="select-organization"
-          placeholder={t('zimbra_domains_add_domain_organization_select')}
+          placeholder={t('common:select_organization')}
         >
           {organizations
             ?.filter((org) => org.resourceStatus === ResourceStatus.READY)
@@ -377,7 +377,7 @@ export default function AddDomain() {
       {selectedOrganization && domainType && (
         <OdsFormField className="w-full">
           <label htmlFor="form-field-input" slot="label">
-            {t('zimbra_domains_add_domain_title')}
+            {t('common:domain_name')}
           </label>
           {ovhDomain ? (
             <>
@@ -389,7 +389,7 @@ export default function AddDomain() {
                 onOdsChange={(
                   event: OdsSelectCustomEvent<OdsSelectChangeEventDetail>,
                 ) => handleDomainOvhChange(event)}
-                placeholder={t('zimbra_domains_add_domain_select')}
+                placeholder={t('common:select_domain')}
                 isDisabled={isLoadingDomains}
               >
                 {domains?.map((domain: string, index: number) => (
@@ -433,7 +433,7 @@ export default function AddDomain() {
         <>
           <OdsFormField className="w-full">
             <label htmlFor="form-field-input" slot="label">
-              {t('zimbra_domains_add_domain_configuration_title')}
+              {t('common:configuration')}
             </label>
             <OdsText className="mb-4" preset={ODS_TEXT_PRESET.paragraph}>
               {t('zimbra_domains_add_domain_configuration_description')}
@@ -515,7 +515,7 @@ export default function AddDomain() {
             (!configurationType && ovhDomain)
           }
           isLoading={isSending}
-          label={t('zimbra_domains_add_domain_cta_confirm')}
+          label={t('common:confirm')}
         ></OdsButton>
       </OdsFormField>
     </div>

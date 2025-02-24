@@ -42,7 +42,7 @@ import {
 import { FormTypeInterface, useForm } from '@/hooks/useForm';
 
 export default function ModalAddAndEditOrganization() {
-  const { t } = useTranslation('organizations/addAndEdit');
+  const { t } = useTranslation(['organizations/form', 'common']);
   const { trackClick, trackPage } = useOvhTracking();
   const { platformId } = usePlatform();
   const [searchParams] = useSearchParams();
@@ -94,7 +94,7 @@ export default function ModalAddAndEditOrganization() {
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t(
             editOrganizationId
-              ? 'zimbra_organization_edit_success_message'
+              ? 'common:edit_success_message'
               : 'zimbra_organization_add_success_message',
           )}
         </OdsText>,
@@ -110,8 +110,8 @@ export default function ModalAddAndEditOrganization() {
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t(
             editOrganizationId
-              ? 'zimbra_organization_add_error_message'
-              : 'zimbra_organization_edit_error_message',
+              ? 'common:edit_error_message'
+              : 'zimbra_organization_add_error_message',
             {
               error: error.response?.data?.message,
             },
@@ -169,21 +169,21 @@ export default function ModalAddAndEditOrganization() {
       isOpen
       title={
         editOrganizationId
-          ? t('zimbra_organization_edit_modal_title')
-          : t('zimbra_organization_add_modal_title')
+          ? t('common:edit_organization')
+          : t('common:add_organization')
       }
       color={ODS_MODAL_COLOR.information}
       onClose={onClose}
       isDismissible
       isLoading={isLoading}
       secondaryButton={{
-        label: t('zimbra_organization_add_cancel'),
+        label: t('common:cancel'),
         action: handleCancelClick,
       }}
       primaryButton={{
         testid: 'confirm-btn',
         variant: ODS_BUTTON_VARIANT.default,
-        label: t('zimbra_organization_add'),
+        label: t('common:confirm'),
         isDisabled: !isFormValid,
         isLoading: isLoading || isSending,
         action: handleSaveClick,
@@ -201,15 +201,11 @@ export default function ModalAddAndEditOrganization() {
           </>
         )}
         <OdsText preset={ODS_TEXT_PRESET.caption} className="mt-5">
-          {t('zimbra_organization_add_form_input_mandatory')}
+          {t('common:form_mandatory_fields')}
         </OdsText>
         <OdsFormField
           data-testid="field-name"
-          error={
-            form.name.hasError
-              ? t('zimbra_organization_add_form_input_name_error')
-              : ''
-          }
+          error={form.name.hasError ? t('common:form_required_field') : ''}
           className="mt-5"
         >
           <label slot="label">
@@ -283,7 +279,7 @@ export default function ModalAddAndEditOrganization() {
             }
           ></OdsInput>
           <OdsText class="block" preset={ODS_TEXT_PRESET.caption} slot="helper">
-            {t('zimbra_organization_add_form_input_label_helper', {
+            {t('common:form_max_chars', {
               value: 12,
             })}
           </OdsText>

@@ -31,7 +31,7 @@ export default function ModalDeleteOrganization() {
   const [searchParams] = useSearchParams();
   const { trackClick, trackPage } = useOvhTracking();
   const deleteOrganizationId = searchParams.get('deleteOrganizationId');
-  const { t } = useTranslation('organizations/delete');
+  const { t } = useTranslation(['organizations', 'common']);
   const { platformId } = usePlatform();
   const { data: domains, isLoading } = useDomains({
     organizationId: deleteOrganizationId,
@@ -52,7 +52,7 @@ export default function ModalDeleteOrganization() {
       });
       addSuccess(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {t('zimbra_organization_delete_success_message')}
+          {t('common:add_success_message')}
         </OdsText>,
         true,
       );
@@ -64,7 +64,7 @@ export default function ModalDeleteOrganization() {
       });
       addError(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {t('zimbra_organization_delete_error_message', {
+          {t('common:add_error_message', {
             error: error?.response?.data?.message,
           })}
         </OdsText>,
@@ -103,19 +103,19 @@ export default function ModalDeleteOrganization() {
   return (
     <Modal
       isOpen
-      title={t('zimbra_organization_delete_modal_title')}
+      title={t('common:delete_organization')}
       color={ODS_MODAL_COLOR.critical}
       onClose={onClose}
       isDismissible
       isLoading={isLoading}
       secondaryButton={{
-        label: t('zimbra_organization_delete_cancel'),
+        label: t('common:cancel'),
         action: handleCancelClick,
       }}
       primaryButton={{
         testid: 'delete-btn',
         variant: ODS_BUTTON_VARIANT.default,
-        label: t('zimbra_organization_delete'),
+        label: t('common:delete'),
         action: handleDeleteClick,
         isLoading: isSending || isLoading,
         isDisabled: domains?.length > 0 || !deleteOrganizationId,
