@@ -5,7 +5,6 @@ export default {
   bindings: {
     projectId: '<',
     serviceId: '<',
-    quotas: '<',
     project: '<',
     projects: '<',
     user: '<',

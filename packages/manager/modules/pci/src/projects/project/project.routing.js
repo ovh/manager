@@ -93,8 +93,7 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return isActivateModalDisplayed;
       },
-      orderStatus: /* @ngInject */ (PciProject, projectId) =>
-        PciProject.getProjectOrderStatus(projectId),
+      orderStatus: /* @ngInject */ () => ({}),
       project: /* @ngInject */ (OvhApiCloudProject, projectId) => {
         OvhApiCloudProject.v6().resetCache();
         return OvhApiCloudProject.v6().get({
@@ -112,8 +111,6 @@ export default /* @ngInject */ ($stateProvider) => {
         }),
 
       serviceId: /* @ngInject */ (service) => service?.serviceId,
-
-      quotas: /* @ngInject */ (loadQuotas) => loadQuotas(),
 
       loadQuotas: /* @ngInject */ (PciProjectsService, projectId) => () =>
         PciProjectsService.getQuotas(projectId),
@@ -270,20 +267,7 @@ export default /* @ngInject */ ($stateProvider) => {
         });
       },
 
-      vouchersCreditDetails: /* @ngInject */ (PciProject, projectId) =>
-        PciProject.getVouchersCreditDetails(projectId).then(
-          (vouchersCreditDetails) =>
-            vouchersCreditDetails.map((voucherCreditDetails) => {
-              return {
-                voucher: voucherCreditDetails.voucher,
-                description: voucherCreditDetails.description,
-                balance: voucherCreditDetails.available_credit.text,
-                expirationDate: voucherCreditDetails.validity
-                  ? moment(voucherCreditDetails.validity.to).format('LLL')
-                  : null,
-              };
-            }),
-        ),
+      vouchersCreditDetails: /* @ngInject */ () => [],
 
       iamLink: /* @ngInject */ (coreURLBuilder) =>
         coreURLBuilder.buildURL('dedicated', '#/iam/policy'),

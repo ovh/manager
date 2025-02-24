@@ -27,28 +27,8 @@ export default class {
 
   getProjects(filters = [], sort = 'description', sortOrder = 'asc') {
     return this.$q
-      .all([
-        this.publicCloud.getProjects(filters, sort, sortOrder),
-        this.publicCloud.getServices([
-          {
-            field: 'route.path',
-            comparator: 'eq',
-            reference: '/cloud/project/{serviceName}',
-          },
-        ]),
-      ])
-      .then(([projects, services]) =>
-        map(
-          projects,
-          (project) =>
-            new Project({
-              ...project,
-              service: services.find(
-                (service) => project.project_id === service.resource.name,
-              ),
-            }),
-        ),
-      );
+      .all([this.publicCloud.getProjects(filters, sort, sortOrder)])
+      .then(([projects]) => map(projects, (project) => new Project(project)));
   }
 
   setAsDefaultProject(projectId) {

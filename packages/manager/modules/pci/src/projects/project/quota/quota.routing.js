@@ -37,6 +37,8 @@ export default /* @ngInject */ ($stateProvider) => {
             throw error;
           });
       },
+
+      quotas: /* @ngInject */ (loadQuotas) => loadQuotas(),
     },
   });
 };
