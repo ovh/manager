@@ -1,6 +1,11 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Card, OnboardingLayout } from '@ovh-ux/manager-react-components';
+import { useParams } from 'react-router-dom';
+import {
+  Card,
+  OnboardingLayout,
+  RedirectionGuard,
+} from '@ovh-ux/manager-react-components';
 import { OsdsText } from '@ovhcloud/ods-components/react';
 import {
   ODS_THEME_COLOR_INTENT,
@@ -8,14 +13,37 @@ import {
 } from '@ovhcloud/ods-common-theming';
 import { ODS_TEXT_LEVEL } from '@ovhcloud/ods-components';
 import useGuideUtils from '@/hooks/guide/useGuideUtils';
-import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
-import onboardingImgSrc from './onboarding-img.png';
+import onboardingImgSrc from '@/assets/onboarding-img.png';
+import { MetricData } from '@/types/cloud/project/database/metric';
+import { useGetMetrics } from '@/hooks/api/database/metric/useGetMetrics.hook';
 
 export default function Onboarding() {
   const { t } = useTranslation('onboarding');
   const link = useGuideUtils();
+  const { projectId } = useParams();
+  const [metricsData, setMetricsData] = useState<{ data: MetricData[] }>({
+    data: [],
+  });
 
-  const tileList = [
+  const metricsQuery = useGetMetrics(
+    projectId,
+    encodeURIComponent(new Date(2024, 0, 1).toISOString()),
+    encodeURIComponent(
+      new Date(
+        new Date().getFullYear(),
+        new Date().getMonth() + 1,
+        0,
+      ).toISOString(),
+    ),
+  );
+
+  useEffect(() => {
+    if (Array.isArray(metricsQuery?.data)) {
+      setMetricsData({ data: metricsQuery.data });
+    }
+  }, [metricsQuery?.data]);
+
+  const guideList = [
     {
       id: 1,
       texts: {
@@ -52,8 +80,11 @@ export default function Onboarding() {
   const descBis: string = t('descriptionBis');
 
   return (
-    <>
-      <Breadcrumb />
+    <RedirectionGuard
+      isLoading={false}
+      route={`/pci/projects/${projectId}/ai/endpoints/metrics`}
+      condition={metricsData.data.length > 0}
+    >
       <OnboardingLayout
         title={title}
         img={imgSrc}
@@ -63,7 +94,7 @@ export default function Onboarding() {
               color={ODS_THEME_COLOR_INTENT.text}
               level={ODS_TEXT_LEVEL.body}
               size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-              className="block"
+              className="block mt-8"
             >
               {t('description')}
             </OsdsText>
@@ -71,7 +102,7 @@ export default function Onboarding() {
               color={ODS_THEME_COLOR_INTENT.text}
               level={ODS_TEXT_LEVEL.body}
               size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-              className="block mt-4"
+              className="block mt-4 max-sm:mb-4"
             >
               <span
                 dangerouslySetInnerHTML={{
@@ -84,10 +115,11 @@ export default function Onboarding() {
         moreInfoButtonLabel={t('goToAiEndpoint')}
         moreInfoHref="https://endpoints.ai.cloud.ovh.net/"
       >
-        {tileList.map((tile) => (
+        <div className="mb-4 sm:hidden"></div>
+        {guideList.map((tile) => (
           <Card key={tile.id} href={tile.href} texts={tile.texts} />
         ))}
       </OnboardingLayout>
-    </>
+    </RedirectionGuard>
   );
 }
