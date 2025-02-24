@@ -796,5 +796,14 @@
   "streams_subscriptions_resource_products_webhosting": "Web Hosting",
   "streams_subscriptions_resource_products_account-api": "Espace client OVHcloud & OVHcloud API",
   "streams_subscriptions_resource_products_account-audit": "Audit Logs OVHcloud",
-  "streams_subscriptions_resource_products_cloud-project-kube": "Managed Kubernetes Service"
+  "streams_subscriptions_resource_products_account-iam": "IAM",
+  "streams_subscriptions_resource_products_email-exchange": "Hosted Exchange",
+  "streams_subscriptions_resource_products_hosting-private-database": "Web Cloud Databases",
+  "streams_subscriptions_resource_products_cloud-project-database-mongodb": "Managed MongoDB",
+  "streams_subscriptions_resource_products_cloud-project-database": "Managed Databases",
+  "streams_subscriptions_resource_products_cloud-project-kube": "Managed Kubernetes Service",
+  "streams_subscriptions_resource_products_cloud-project-octavia": "OVHcloud Load Balancer",
+  "streams_subscriptions_resource_products_ovh-cloud-connect": "OVHcloud Connect",
+  "streams_subscriptions_resource_products_okms": "Key Management Service",
+  "streams_subscriptions_resource_products_dedicated-cloud": "VMware on OVHcloud"
 }
