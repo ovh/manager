@@ -285,7 +285,7 @@ export const ENABLE_ENCRYPTION_LINK = {
   TN:
     'https://help.ovhcloud.com/csm/fr-public-cloud-storage-s3-encrypt-objects-sse-c?id=kb_article_view&sysparm_article=KB0047318',
   US:
-    'https://help.ovhcloud.com/csm/en-public-cloud-storage-s3-encrypt-objects-sse-c?id=kb_article_view&sysparm_article=KB0047314',
+    'https://support.us.ovhcloud.com/hc/en-us/articles/10694235769747-Object-Storage-Encrypt-Your-Server-Side-Objects-with-SSE-C-or-SSE-OMK',
   WE:
     'https://help.ovhcloud.com/csm/en-ie-public-cloud-storage-s3-encrypt-objects-sse-c?id=kb_article_view&sysparm_article=KB0047320',
   WS:

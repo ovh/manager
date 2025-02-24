@@ -31,7 +31,9 @@ export default function DeletePage() {
   );
 
   const storageToDelete = storages?.resources?.find(
-    (storage) => storage.name === searchParams.get('containerId'),
+    (storage) =>
+      storage.name === searchParams.get('containerId') &&
+      storage.region === searchParams.get('region'),
   );
 
   const { data: container, isPending: isPendingContainer } = useServerContainer(

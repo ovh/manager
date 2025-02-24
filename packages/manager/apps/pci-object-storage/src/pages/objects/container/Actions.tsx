@@ -117,6 +117,7 @@ export function Actions({
           pathname: `./delete`,
           search: `?${createSearchParams({
             containerId: storage.name,
+            region: storage.region,
           })}`,
         }),
     },
