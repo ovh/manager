@@ -51,8 +51,8 @@
   "vrack_delete_dialog_modal_description": "¿Seguro que quiere eliminar {{ services }} de su vRack?",
   "vrack_service_type_ovhcloudconnect": "OVHcloud Connect",
   "vrack_service_type_vrackservices": "vRack Services",
-  "vrack_select_dialog_modal_description_for_ipv6": "Tenga en cuenta que los bloques IPv6 adicionales solo pueden añadirse o eliminarse de uno en uno.",
-  "vrack_select_dialog_modal_description_for_vs": "Tenga en cuenta que la adición y eliminación de los productos vRack Services solo puede realizarse una vez.",
+  "vrack_select_dialog_modal_description_for_ipv6": "Tenga en cuenta que los bloques de IPv6 adicionales solo pueden añadirse o eliminarse de uno en uno.",
+  "vrack_select_dialog_modal_description_for_vs": "Tenga en cuenta que los productos vRack Services solo pueden añadirse o eliminarse de uno en uno.",
   "vrack_terminate_modal_success_banner": "La solicitud de eliminación del vRack se ha enviado correctamente. Le hemos enviado un mensaje de correo electrónico con el procedimiento que debe seguir.",
   "vrack_terminate_modal_error_banner": "No ha sido posible eliminar el vRack. Por favor, compruebe que el vRack esté vacío."
 }
