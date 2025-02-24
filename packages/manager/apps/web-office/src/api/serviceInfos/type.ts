@@ -1,21 +1,21 @@
 export enum RenewalTypeEnum {
-  AutomaticForcedProduct = 'automaticForcedProduct',
-  AutomaticV2012 = 'automaticV2012',
-  AutomaticV2014 = 'automaticV2014',
-  AutomaticV2016 = 'automaticV2016',
-  AutomaticV2024 = 'automaticV2024',
-  Manual = 'manual',
-  OneShot = 'oneShot',
-  Option = 'option',
+  AUTOMATIC_FORCED_PRODUCT = 'automaticForcedProduct',
+  AUTOMATIC_V2012 = 'automaticV2012',
+  AUTOMATIC_V2014 = 'automaticV2014',
+  AUTOMATIC_V2016 = 'automaticV2016',
+  AUTOMATIC_V2024 = 'automaticV2024',
+  MANUAL = 'manual',
+  ONE_SHOT = 'oneShot',
+  OPTION = 'option',
 }
 
 export enum StateEnum {
-  AutoRenewInProgress = 'autorenewInProgress',
-  Expired = 'expired',
-  InCreation = 'inCreation',
-  Ok = 'ok',
-  PendingDebt = 'pendingDebt',
-  UnPaid = 'unPaid',
+  AUTO_RENEW_IN_PROGRESS = 'autorenewInProgress',
+  EXPIRED = 'expired',
+  IN_CREATION = 'inCreation',
+  OK = 'ok',
+  PENDING_DEBT = 'pendingDebt',
+  UNPAID = 'unPaid',
 }
 
 export type RenewType = {

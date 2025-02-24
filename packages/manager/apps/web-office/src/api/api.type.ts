@@ -8,6 +8,7 @@ export enum UserStateEnum {
   SUSPENDED = 'suspended',
   SUSPENDING = 'suspending',
   UNSUSPENDING = 'unsuspending',
+  IN_MAINTENANCE = 'inMaintenance',
 }
 
 export enum LicenseEnum {

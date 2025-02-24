@@ -21,6 +21,7 @@ import { urls } from '@/routes/routes.constants';
 import { LicenseType } from '@/api/license';
 import { useOfficeLicenses, useGenerateUrl } from '@/hooks';
 import Loading from '@/components/Loading/Loading';
+import { OfficeServiceState } from '@/components/layout-helpers/Dashboard/OfficeServiceState.component';
 
 const columns: DatagridColumn<LicenseType>[] = [
   {
@@ -44,38 +45,6 @@ const columns: DatagridColumn<LicenseType>[] = [
     isSortable: true,
   },
   {
-    id: 'address',
-    cell: (item) => (
-      <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.address}</OdsText>
-    ),
-    label: 'microsoft_office_licenses_address',
-    isSortable: true,
-  },
-  {
-    id: 'city',
-    cell: (item) => (
-      <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.city}</OdsText>
-    ),
-    label: 'microsoft_office_licenses_city',
-    isSortable: true,
-  },
-  {
-    id: 'firstname',
-    cell: (item) => (
-      <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.firstName}</OdsText>
-    ),
-    label: 'microsoft_office_licenses_firstname',
-    isSortable: true,
-  },
-  {
-    id: 'lastname',
-    cell: (item) => (
-      <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.lastName}</OdsText>
-    ),
-    label: 'microsoft_office_licenses_lastname',
-    isSortable: true,
-  },
-  {
     id: 'serviceType',
     cell: (item) => (
       <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.serviceType}</OdsText>
@@ -85,18 +54,8 @@ const columns: DatagridColumn<LicenseType>[] = [
   },
   {
     id: 'status',
-    cell: (item) => (
-      <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.status}</OdsText>
-    ),
+    cell: (item) => <OfficeServiceState state={item.status} />,
     label: 'microsoft_office_licenses_status',
-    isSortable: true,
-  },
-  {
-    id: 'zipCode',
-    cell: (item) => (
-      <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.zipCode}</OdsText>
-    ),
-    label: 'microsoft_office_licenses_zipcode',
     isSortable: true,
   },
 ];

@@ -44,7 +44,11 @@
   "state_autorenewInProgress": "En cours de renouvellement",
   "state_expired": "Résilier",
   "state_inCreation": "En cours de création",
+  "state_inMaintenance": "En cours de maintenance",
   "state_pendingDebt": "Facture à régler",
   "state_unPaid": "Facture impayée",
+  "state_deleting": "En cours de suppression",
+  "state_suspended": "Suspendu",
+  "state_suspending": "En cours de suspension",
   "error_message": "Votre demande n'a pas pu aboutir. {{ error }}"
 }
