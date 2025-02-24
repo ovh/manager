@@ -1,9 +1,11 @@
 <div class="text-center" data-ng-if="$ctrl.loading">
     <oui-spinner></oui-spinner>
 </div>
+<audio id="soundAudio" preload="none"></audio>
 
 <div class="row">
     <div class="col-lg-8" data-ng-if="!$ctrl.loading">
+        <tuc-toast-message></tuc-toast-message>
         <h2
             data-translate="telephony_alias_config_contactCenterSolution_sounds_title"
         ></h2>
@@ -20,17 +22,41 @@
             <oui-field
                 data-label="{{:: 'telephony_alias_config_contactCenterSolution_sounds_waiting_opening_annonce' | translate }}"
                 data-label-popover="{{:: 'telephony_alias_config_contactCenterSolution_sounds_waiting_opening_annonce_help' | translate }}"
-                data-size="m"
+                data-size="l"
             >
-                <oui-select
-                    name="toneOnOpening"
-                    data-items="$ctrl.sounds"
-                    data-model="$ctrl.toneOnOpening"
-                    data-match="name"
-                    data-on-change="$ctrl.options.toneOnOpening = modelValue.soundId"
-                >
-                    <span data-ng-bind="::$item.name"></span>
-                </oui-select>
+                <div class="d-flex">
+                    <div class="flex-fill">
+                        <oui-select
+                            name="toneOnOpening"
+                            data-items="$ctrl.sounds"
+                            data-model="$ctrl.toneOnOpening"
+                            data-match="name"
+                            data-size="l"
+                            data-on-change="$ctrl.options.toneOnOpening = modelValue.soundId"
+                        >
+                            <span data-ng-bind="::$item.name"></span>
+                        </oui-select>
+                    </div>
+                    <button
+                        class="btn btn-link py-1 px-2 ml-1"
+                        type="button"
+                        title="{{:: 'telephony_alias_config_contactCenterSolution_sounds_listen' | translate }}"
+                        data-ng-click="$ctrl.listenSound($ctrl.options.toneOnOpening)"
+                    >
+                        <i
+                            class="fa fa-play-circle-o fa-lg"
+                            ng-if="$ctrl.options.toneOnOpening && !$ctrl.playing && !$ctrl.pendingListen"
+                        ></i>
+                        <i
+                            class="fa fa-stop-circle-o fa-lg"
+                            ng-if="$ctrl.playing && $ctrl.playing == $ctrl.options.toneOnOpening && !$ctrl.pendingListen"
+                        ></i>
+                        <oui-spinner
+                            data-ng-if="$ctrl.playing && $ctrl.playing == $ctrl.options.toneOnOpening && $ctrl.pendingListen"
+                            data-size="s"
+                        ></oui-spinner>
+                    </button>
+                </div>
                 <button
                     type="button"
                     class="oui-button oui-button_secondary oui-button_icon-left mt-3"
@@ -49,17 +75,41 @@
             <oui-field
                 data-label="{{:: 'telephony_alias_config_contactCenterSolution_sounds_waiting_onHold' | translate }}"
                 data-label-popover="{{:: 'telephony_alias_config_contactCenterSolution_sounds_waiting_onHold_help' | translate }}"
-                data-size="m"
+                data-size="l"
             >
-                <oui-select
-                    name="toneOnHold"
-                    data-items="$ctrl.sounds"
-                    data-model="$ctrl.toneOnHold"
-                    data-match="name"
-                    data-on-change="$ctrl.options.toneOnHold = modelValue.soundId"
-                >
-                    <span data-ng-bind="::$item.name"></span>
-                </oui-select>
+                <div class="d-flex">
+                    <div class="flex-fill">
+                        <oui-select
+                            name="toneOnHold"
+                            data-items="$ctrl.sounds"
+                            data-model="$ctrl.toneOnHold"
+                            data-match="name"
+                            data-size="l"
+                            data-on-change="$ctrl.options.toneOnHold = modelValue.soundId"
+                        >
+                            <span data-ng-bind="::$item.name"></span>
+                        </oui-select>
+                    </div>
+                    <button
+                        class="btn btn-link py-1 px-2 ml-1"
+                        type="button"
+                        title="{{:: 'telephony_alias_config_contactCenterSolution_sounds_listen' | translate }}"
+                        data-ng-click="$ctrl.listenSound($ctrl.options.toneOnHold)"
+                    >
+                        <i
+                            class="fa fa-play-circle-o fa-lg"
+                            ng-if="$ctrl.options.toneOnHold && !$ctrl.playing && !$ctrl.pendingListen"
+                        ></i>
+                        <i
+                            class="fa fa-stop-circle-o fa-lg"
+                            ng-if="$ctrl.playing && $ctrl.playing == $ctrl.options.toneOnHold && !$ctrl.pendingListen"
+                        ></i>
+                        <oui-spinner
+                            data-ng-if="$ctrl.playing && $ctrl.playing == $ctrl.options.toneOnHold && $ctrl.pendingListen"
+                            data-size="s"
+                        ></oui-spinner>
+                    </button>
+                </div>
                 <button
                     type="button"
                     class="oui-button oui-button_secondary oui-button_icon-left mt-3"
