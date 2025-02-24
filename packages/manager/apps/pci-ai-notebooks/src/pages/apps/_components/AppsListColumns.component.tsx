@@ -18,6 +18,7 @@ import DataTable from '@/components/data-table';
 
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
 import AppStatusBadge from './AppStatusBadge.component';
+import { isDeletingApp, isRunningApp, isStoppedApp } from '@/lib/statusHelper';
 
 interface AppsListColumnsProps {
   onStartClicked: (app: ai.app.App) => void;
@@ -180,7 +181,7 @@ export const getColumns = ({
       id: 'actions',
       enableGlobalFilter: false,
       cell: ({ row }) => {
-        // const job = row.original;
+        const app = row.original;
         return (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -207,10 +208,10 @@ export const getColumns = ({
               </DropdownMenuItem>
               <DropdownMenuItem
                 data-testid="notebook-action-start-button"
-                // disabled={
-                //   isRunningNotebook(notebook.status.state) ||
-                //   isDeletingNotebook(notebook.status.state)
-                // }
+                disabled={
+                  isRunningApp(app.status.state) ||
+                  isDeletingApp(app.status.state)
+                }
                 variant="primary"
                 onClick={() => {
                   onStartClicked(row.original);
@@ -220,10 +221,10 @@ export const getColumns = ({
               </DropdownMenuItem>
               <DropdownMenuItem
                 data-testid="notebook-action-stop-button"
-                // disabled={
-                //   !isRunningNotebook(notebook.status.state) ||
-                //   isDeletingNotebook(notebook.status.state)
-                // }
+                disabled={
+                  !isRunningApp(app.status.state) ||
+                  isDeletingApp(app.status.state)
+                }
                 variant="primary"
                 onClick={() => {
                   onStopClicked(row.original);
@@ -235,10 +236,10 @@ export const getColumns = ({
               <DropdownMenuItem
                 data-testid="notebook-action-delete-button"
                 variant="destructive"
-                // disabled={
-                //   !isStoppedNotebook(notebook.status.state) ||
-                //   isDeletingNotebook(notebook.status.state)
-                // }
+                disabled={
+                  !isStoppedApp(app.status.state) ||
+                  isDeletingApp(app.status.state)
+                }
                 onClick={() => {
                   onDeleteClicked(row.original);
                 }}

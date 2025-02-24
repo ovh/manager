@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { HelpCircle } from 'lucide-react';
 import { Label } from '@/components/ui/label';
-import { Scaling } from '@/types/orderFunnel';
+import { AppPricing, Scaling } from '@/types/orderFunnel';
 import * as ai from '@/types/cloud/project/ai';
 import { Input } from '@/components/ui/input';
 import {
@@ -22,16 +22,19 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 import { Slider } from '@/components/ui/slider';
+import Price from '@/components/price/Price.component';
 
 interface AutoScalingFormProps {
   scaling: Scaling;
   onChange: (scalingStrat: Scaling) => void;
+  pricingFlavor?: AppPricing;
+  onNonValidForm?: (isPending: boolean) => void;
 }
 
 export const AutoScalingForm = React.forwardRef<
   HTMLInputElement,
   AutoScalingFormProps
->(({ scaling, onChange }, ref) => {
+>(({ scaling, onChange, pricingFlavor, onNonValidForm }, ref) => {
   const { t } = useTranslation('components/scaling');
 
   const scalingSchema = z
@@ -88,6 +91,9 @@ export const AutoScalingForm = React.forwardRef<
         averageUsageTarget: watch('averageUsage'),
         resourceType: watch('resType'),
       });
+      onNonValidForm(false);
+    } else {
+      onNonValidForm(true);
     }
   };
 
@@ -265,6 +271,16 @@ export const AutoScalingForm = React.forwardRef<
           />
         </div>
       </div>
+      {pricingFlavor && (
+        <div>
+          <Price
+            decimals={2}
+            displayInHour={true}
+            priceInUcents={scaling.replicasMin * 60 * pricingFlavor.price}
+            taxInUcents={scaling.replicasMin * 60 * pricingFlavor.tax}
+          />
+        </div>
+      )}
     </Form>
   );
 });

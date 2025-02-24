@@ -88,22 +88,13 @@ const OrderFunnel = ({
   const [showAdvancedConfiguration, setShowAdvancedConfiguration] = useState(
     false,
   );
+  const [invalidScalingInput, setInvalidScalingInput] = useState(false);
   const accordionContentRef = useRef(null);
   const cliEquivalentModale = useModale('cli');
   const navigate = useNavigate();
 
   const { toast } = useToast();
   const [command, setCommand] = useState<ai.Command>({ command: '' });
-
-  const { signPartnerContract } = useSignPartnerContract({
-    onError: (err) => {
-      toast({
-        title: t('errorSigningContract'),
-        variant: 'destructive',
-        description: getAIApiErrorMessage(err),
-      });
-    },
-  });
 
   const { addApp, isPending: isPendingAddApp } = useAddApp({
     onError: (err) => {
@@ -119,6 +110,24 @@ const OrderFunnel = ({
         description: t('successCreatingAppDescription'),
       });
       navigate(`../deploy/${app.id}`);
+    },
+  });
+
+  const { signPartnerContract } = useSignPartnerContract({
+    onError: (err) => {
+      toast({
+        title: t('errorSigningContract'),
+        variant: 'destructive',
+        description: getAIApiErrorMessage(err),
+      });
+      throw new Error(err.message);
+    },
+    onSuccess: () => {
+      const appInfo: ai.app.AppSpecInput = getAppSpec(
+        model.result,
+        model.lists.appImages,
+      );
+      addApp(appInfo);
     },
   });
 
@@ -151,27 +160,26 @@ const OrderFunnel = ({
     }
   };
 
+  const throwErrorContract = () => {
+    scrollToDiv('image');
+    model.form.setError('image.name', {
+      type: 'custom',
+      message: t('formErrorPartnerContractNotSign'),
+    });
+    toast({
+      title: t('errorFormTitle'),
+      variant: 'destructive',
+      description: <ErrorList error={model.form.control._formState.errors} />,
+    });
+    throw new Error(t('formErrorPartnerContractNotSign'));
+  };
+
   const onSubmit = model.form.handleSubmit(
     () => {
-      // Final check to make sure that partner contract is sign
-      if (model.result.version && !model.result.contract) {
-        scrollToDiv('image');
-        model.form.setError('image.name', {
-          type: 'custom',
-          message: t('formErrorPartnerContractNotSign'),
-        });
-        toast({
-          title: t('errorFormTitle'),
-          variant: 'destructive',
-          description: (
-            <ErrorList error={model.form.control._formState.errors} />
-          ),
-        });
-        return;
-      }
-
-      // Post on partner Contract to sign it
-      if (model.result.version && model.result.contract) {
+      // if partner Image and contract not checked, throw error
+      if (!model.result.isContractChecked) throwErrorContract();
+      // if partner Image and contract need to be sign
+      if (!model.result.isContractSigned) {
         const signPartnerInfo: PartnerApp = {
           projectId,
           region: model.result.region.id,
@@ -179,15 +187,16 @@ const OrderFunnel = ({
             (app) => app.id === model.result.image,
           ).partnerId,
         };
+        // Sign and deploy app
         signPartnerContract(signPartnerInfo);
+      } else {
+        // Deploy the app
+        const appInfo: ai.app.AppSpecInput = getAppSpec(
+          model.result,
+          model.lists.appImages,
+        );
+        addApp(appInfo);
       }
-
-      // Deploy the app
-      const appInfo: ai.app.AppSpecInput = getAppSpec(
-        model.result,
-        model.lists.appImages,
-      );
-      addApp(appInfo);
     },
     (error) => {
       toast({
@@ -350,9 +359,10 @@ const OrderFunnel = ({
                         onChange={(newImage, newVersion, contractChecked) => {
                           model.form.setValue('image.name', newImage);
                           model.form.setValue('image.version', newVersion);
+                          // ContractChecked is set to true for customImage
                           model.form.setValue(
                             'image.contractChecked',
-                            contractChecked,
+                            contractChecked ?? true,
                           );
                           // remove errors onChange
                           model.form.trigger('image.name');
@@ -381,6 +391,7 @@ const OrderFunnel = ({
                         onChange={(newScaling) =>
                           model.form.setValue('scaling', newScaling)
                         }
+                        onNonValidForm={(val) => setInvalidScalingInput(val)}
                       />
                     </FormControl>
                     <FormMessage />
@@ -750,7 +761,7 @@ const OrderFunnel = ({
                 type="submit"
                 data-testid="order-submit-button"
                 className="w-full"
-                disabled={isPendingAddApp}
+                disabled={isPendingAddApp || invalidScalingInput}
               >
                 {t('orderButton')}
               </Button>

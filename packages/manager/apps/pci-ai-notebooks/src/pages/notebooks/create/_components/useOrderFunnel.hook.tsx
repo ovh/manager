@@ -115,7 +115,7 @@ export function useOrderFunnel(
 
   const listFlavor: Flavor[] = useMemo(() => {
     if (flavorQuery.isLoading) return [];
-    return createFlavorPricingList(flavorQuery.data, catalog);
+    return createFlavorPricingList(flavorQuery.data, catalog, 'ai-notebook');
   }, [region, flavorQuery.isSuccess]);
 
   const flavorObject: Flavor | undefined = useMemo(

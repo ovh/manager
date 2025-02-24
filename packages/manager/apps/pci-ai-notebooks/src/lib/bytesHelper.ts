@@ -31,3 +31,27 @@ export function bytesConverter(bytes: number, si = false, dp = 1) {
 
   return `${resultBytes.toFixed(dp)} ${units[u]}`;
 }
+
+export function octetConverter(octet: number, si = false, dp = 1) {
+  const thresh = si ? 1000 : 1024;
+  let resultOctet = octet;
+  if (Math.abs(resultOctet) < thresh) {
+    return `${resultOctet} o`;
+  }
+
+  const units = si
+    ? ['ko', 'Mo', 'Go', 'To', 'Po', 'Eo', 'Zo', 'Yo']
+    : ['Kio', 'Mio', 'Gio', 'Tio', 'Pio', 'Eio', 'Zio', 'Yio'];
+  let u = -1;
+  const r = 10 ** dp;
+
+  do {
+    resultOctet /= thresh;
+    u += 1;
+  } while (
+    Math.round(Math.abs(resultOctet) * r) / r >= thresh &&
+    u < units.length - 1
+  );
+
+  return `${resultOctet.toFixed(dp)} ${units[u]}`;
+}
