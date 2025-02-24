@@ -32,7 +32,7 @@
     "@ovh-ux/request-tagger": "^0.4.0",
     "@ovh-ux/url-builder": "^2.0.0",
     "@types/react": "^18.0.0",
-    "dompurify": "^2.3.3",
+    "dompurify": "^3.2.4",
     "jest-cucumber": "^3.0.1",
     "nanoid": "^3.1.25"
   },
