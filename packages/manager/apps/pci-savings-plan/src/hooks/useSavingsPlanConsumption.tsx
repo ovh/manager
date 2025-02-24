@@ -1,6 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import { SavingsPlanConsumption } from '@/types/savingsPlanConsumption.type';
+import {
+  EMPTY_MOCK,
+  MOCK_FEV_2025,
+  MOCK_JAN_2025,
+} from './mockPlanConsumption';
 
 const getSavingsPlanConsumption = async ({
   flavor,
@@ -13,13 +18,17 @@ const getSavingsPlanConsumption = async ({
   year: number;
   month: number;
 }): Promise<SavingsPlanConsumption> => {
-  const response = await fetch(
-    // TODO: replace with the correct url  when it will be available
-    `http://localhost:8080/proxy?flavor=${flavor}&projectId=${projectId}&year=${year}&month=${month}`,
-    // `http://localhost:8080/proxy?flavor=${flavor}&projectId=${projectId}&year=${year}&month=${month}`,
-  );
+  console.log('getSavingsPlanConsumption', flavor, projectId, year, month);
 
-  return response.json();
+  if (month === 2 && year === 2025) {
+    return MOCK_FEV_2025;
+  }
+
+  if (month === 1 && year === 2025) {
+    return MOCK_JAN_2025;
+  }
+
+  return EMPTY_MOCK;
 };
 
 export const useSavingsPlanConsumption = ({
