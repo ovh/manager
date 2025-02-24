@@ -226,7 +226,8 @@ export const findNodeByRouting = (root: Node, locationPath: string) => {
     const nodePath = node.routing.hash
       ? node.routing.hash.replace('#', node.routing.application)
       : '/' + node.routing.application;
-    const parsedPath = splitPathIntoSegmentsWithoutRouteParams(nodePath).map((path) => path.includes('/') ? path.replace('/', '') : path);
+
+    const parsedPath = splitPathIntoSegmentsWithoutRouteParams(nodePath.startsWith('/') ? nodePath : '/' + nodePath).map((path) => path.includes('/') ? path.replace('/', '') : path);
 
     return {
       value: parsedPath.reduce(
