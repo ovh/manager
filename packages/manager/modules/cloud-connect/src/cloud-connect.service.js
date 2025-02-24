@@ -4,6 +4,7 @@ import CloudConnect from './cloud-connect.class';
 import CloudConnectDatacenter from './cloud-connect-datacenter.class';
 import CloudConnectDatacenterExtra from './cloud-connect-datacenter-extra.class';
 import CloudConnectTasks from './cloud-connect-tasks.class';
+import CloudConnectDiagnostics from './cloud-connect-diagnostics.class';
 import CloudConnectServiceKey from './cloud-connect-service-key.class';
 import CloudConnectInterface from './cloud-connect-interface.class';
 
@@ -130,6 +131,25 @@ export default class CloudConnectService {
       .then(({ data }) => data);
   }
 
+  runDiagnostic(
+    serviceName,
+    diagnosticName,
+    popConfigId,
+    dcConfigId,
+    diagnosticType,
+    extraConfigId,
+  ) {
+    return this.$http
+      .post(`/ovhCloudConnect/${serviceName}/diagnostic`, {
+        dcConfigId,
+        diagnosticName,
+        diagnosticType,
+        extraConfigId,
+        popConfigId,
+      })
+      .then(({ data }) => data);
+  }
+
   loadAllTasks(cloudConnectId) {
     return this.$http
       .get(`/ovhCloudConnect/${cloudConnectId}/task`)
@@ -147,6 +167,23 @@ export default class CloudConnectService {
     return this.$http
       .get(`/ovhCloudConnect/${cloudConnectId}/task/${taskId}`)
       .then(({ data }) => new CloudConnectTasks(data));
+  }
+
+  getDiagnosticsWithDetails(cloudConnectId) {
+    return this.iceberg(`/ovhCloudConnect/${cloudConnectId}/diagnostic`)
+      .query()
+      .expand('CachedObjectList-Pages')
+      .sort('date', 'desc')
+      .execute(null, true)
+      .$promise.then(({ data: result }) =>
+        result.map((item) => new CloudConnectDiagnostics(item)),
+      );
+  }
+
+  getDiagnostic(cloudConnectId, diagnosticId) {
+    return this.$http
+      .get(`/ovhCloudConnect/${cloudConnectId}/diagnostic/${diagnosticId}`)
+      .then(({ data }) => data);
   }
 
   saveDescription(cloudConnectId, description) {
@@ -383,7 +420,10 @@ export default class CloudConnectService {
                     id: data.datacenterId,
                   });
                   set(data, 'dcName', get(dc, 'name', null));
-                  return new CloudConnectDatacenter(data);
+                  return new CloudConnectDatacenter({
+                    ...data,
+                    popConfigId: pop.id,
+                  });
                 });
             }),
           )

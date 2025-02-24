@@ -78,5 +78,9 @@
   "cloud_connect_vrack_associate_cloud_connect": "Korzystasz już z opcji OVHcloud Connect przypisanej do tej sieci vRack Pamiętaj, że konfiguracje DC będą połączone i każda zmiana będzie miała wpływ na pozostałe opcje.",
   "cloud_connect_date_expiration": "Odnowienie przewidziane na",
   "cloud_connect_product_name": "Nazwa oferty",
-  "cloud_connect_change_bandwidth": "Zmień przepustowość"
+  "cloud_connect_change_bandwidth": "Zmień przepustowość",
+  "cloud_connect_pop_diagnostic": "Diagnostyka POP",
+  "cloud_connect_pop_diagnostic_link": "Wyświetl wyniki </br> diagnostyk",
+  "cloud_connect_pop_diagnostic_check": "Test BGP Peering",
+  "cloud_connect_pop_get_mac_list": "Wyświetl listę moich adresów MAC"
 }

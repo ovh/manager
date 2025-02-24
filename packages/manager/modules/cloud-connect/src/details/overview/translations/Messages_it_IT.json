@@ -78,5 +78,9 @@
   "cloud_connect_vrack_associate_cloud_connect": "Su questa vRack risulta già associata un’opzione OVHcloud Connect. Ti ricordiamo che le configurazioni DC saranno associate e qualsiasi modifica avrà impatto sulle relative opzioni.",
   "cloud_connect_date_expiration": "Rinnovo previsto il",
   "cloud_connect_product_name": "Nome commerciale",
-  "cloud_connect_change_bandwidth": "Modificare la banda passante"
+  "cloud_connect_change_bandwidth": "Modificare la banda passante",
+  "cloud_connect_pop_diagnostic": "Diagnostica POP",
+  "cloud_connect_pop_diagnostic_link": "Visualizzare i risultati </br> delle mie diagnostiche",
+  "cloud_connect_pop_diagnostic_check": "Test BGP Peering",
+  "cloud_connect_pop_get_mac_list": "Visualizzare la lista dei miei indirizzi MAC"
 }
