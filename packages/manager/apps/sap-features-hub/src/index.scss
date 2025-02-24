@@ -1,0 +1,13 @@
+@tailwind utilities;
+
+@import '@ovhcloud/ods-themes/default';
+
+html {
+  font-family: var(--ods-font-family-default);
+}
+
+.ods-field-helper::part(text) {
+  width: 100%;
+  display: inline-block;
+  text-align: start;
+}
