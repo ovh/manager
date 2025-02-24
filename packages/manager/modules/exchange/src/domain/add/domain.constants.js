@@ -22,6 +22,14 @@ export const DOMAIN_ORDER_URL = {
   WS: 'https://us.ovh.com/es/order/webcloud',
 };
 
-export default {
-  DOMAIN_ORDER_URL,
+export const CONFIGURATION_MODE = {
+  RECOMMENDED: 'RECOMMENDED',
+  PERSONALIZED: 'PERSONALIZED',
 };
+
+export const DOMAIN_MODE = {
+  AUTHORITATIVE: 'AUTHORITATIVE',
+  NON_AUTHORITATIVE: 'NON_AUTHORITATIVE',
+};
+
+export const DEFAULT_OVH_TARGET_SERVER_URL = 'mx1.mail.ovh.net';
