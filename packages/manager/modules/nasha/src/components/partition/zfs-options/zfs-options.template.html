@@ -11,28 +11,27 @@
         data-label="{{:: 'nasha_components_partition_zfs_template_selection_title' | translate }}"
     >
         <label class="oui-select">
-            <select
-                id="templateName"
-                name="templateName"
-                class="oui-select__input"
-                data-ng-model="$ctrl.model.templateName"
+            <oui-select
+                class="w-100"
+                data-items="$ctrl.templates"
+                data-match="name"
+                data-name="name"
+                data-model="$ctrl.model.template"
+                data-placeholder="{{:: 'nasha_components_partition_zfs_template_selection_placeholder' | translate}}"
             >
-                <option
-                    value=""
-                    data-ng-disabled="true"
-                    data-translate="nasha_components_partition_zfs_template_selection_placeholder"
-                >
-                </option>
-                <option
-                    data-ng-repeat="template in $ctrl.templates"
-                    data-ng-bind="template.name"
-                    value="{{ template.name }}"
-                ></option>
-            </select>
-            <span
-                class="oui-icon oui-icon-chevron-down"
-                aria-hidden="true"
-            ></span>
+                <div>
+                    <div
+                        class="text-truncate"
+                        data-ng-bind=":: $item.name"
+                    ></div>
+                    <div data-ng-if="$item.description">
+                        <small
+                            class="ml-4"
+                            data-ng-bind=":: $item.description"
+                        ></small>
+                    </div>
+                </div>
+            </oui-select>
         </label>
     </oui-field>
     <div data-ng-if="$ctrl.onCustomSelection()">
