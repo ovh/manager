@@ -37,16 +37,19 @@ const renderUseResourcesV6Hook = (
       label: 'name',
       accessorKey: 'name',
       comparator: FilterCategories.String,
+      isFilterable: true,
+      isSearchable: true,
       type: 'string',
       cell: (props: any) => <div>{props.name}</div>,
     },
     {
-      id: 'name2',
-      header: 'name2',
-      label: 'name2',
-      accessorKey: 'name2',
+      id: 'age',
+      header: 'age',
+      label: 'age',
+      accessorKey: 'age',
       comparator: FilterCategories.String,
-      type: 'string',
+      isSearchable: true,
+      type: 'number',
       cell: (props: any) => <div>{props.name}</div>,
     },
   ];
@@ -68,6 +71,7 @@ const renderUseResourcesV6Hook = (
 const mockData = {
   data: [...Array(26).keys()].map((_, i) => ({
     name: `ns5007027.ip-51-${i}-XXXXX5.net`,
+    age: i,
   })),
   status: 200,
   totalCount: 26,
@@ -144,6 +148,54 @@ describe('useResourcesV6', () => {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       expect(filters.value).toBe('ns5007027.ip-51-7-XXXXX5.net');
+    });
+  });
+
+  it('should search a service with 25 in name or age', async () => {
+    const { result } = renderUseResourcesV6Hook();
+    act(() => {
+      result.current.search.onSearch('25');
+    });
+
+    waitFor(() => {
+      const { search, flattenData } = result.current;
+      expect(flattenData.length).toBe(1);
+      expect(search.searchInput).toBe('25');
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      expect(flattenData[0].name).toBe('ns5007027.ip-51-25-XXXXX5.net');
+    });
+  });
+
+  it('should search a service with 19 in name or age', async () => {
+    const { result } = renderUseResourcesV6Hook();
+    act(() => {
+      result.current.search.onSearch('19');
+    });
+
+    waitFor(() => {
+      const { current } = result;
+      expect(current.flattenData.length).toBe(1);
+      // eslint-disable-next-line
+      expect(current.flattenData[0]['age'].toBe(19));
+    });
+  });
+
+  it('should search a service with ns5007027.ip-51-21 in name or age', async () => {
+    const { result } = renderUseResourcesV6Hook();
+    act(() => {
+      result.current.search.onSearch('ns5007027.ip-51-21');
+    });
+
+    waitFor(() => {
+      const { current } = result;
+      expect(current.flattenData.length).toBe(1);
+      expect(
+        // eslint-disable-next-line
+        current.flattenData[0]['name'].toBe('ns5007027.ip-51-21-XXXXX5.net'),
+      );
+      // eslint-disable-next-line
+      expect(current.flattenData[0]['age'].toBe(21));
     });
   });
 });
