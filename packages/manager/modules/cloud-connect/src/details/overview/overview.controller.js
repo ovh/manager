@@ -1,17 +1,25 @@
 import { get } from 'lodash';
 
-import { POP_MAP } from '../../cloud-connect.constants';
+import {
+  POP_MAP,
+  DIAGNOSTIC_TRACKING_PREFIX,
+  CLOUD_CONNECT_TRACKING_PREFIX,
+  CLOUD_CONNECT_LISTING_TRACKING_CONTEXT,
+  getDiagnosticDashboardTrackingContext,
+} from '../../cloud-connect.constants';
 
 export default class CloudConnectOverviewCtrl {
   /* @ngInject */
   constructor(
     $state,
     $translate,
+    atInternet,
     $window,
     CucCloudMessage,
     cloudConnectService,
   ) {
     this.$state = $state;
+    this.atInternet = atInternet;
     this.$translate = $translate;
     this.$window = $window;
     this.CucCloudMessage = CucCloudMessage;
@@ -36,6 +44,11 @@ export default class CloudConnectOverviewCtrl {
     if (!this.cloudConnect.isDirectService()) {
       this.loadServiceKeys();
     }
+
+    this.atInternet.trackPage({
+      name: `${CLOUD_CONNECT_TRACKING_PREFIX}cloud-connect::dashboard::configure`,
+      ...CLOUD_CONNECT_LISTING_TRACKING_CONTEXT,
+    });
   }
 
   refreshMessages() {
@@ -141,7 +154,36 @@ export default class CloudConnectOverviewCtrl {
       );
   }
 
+  trackDiagnosticPageLink() {
+    this.atInternet.trackClick({
+      name: `${DIAGNOSTIC_TRACKING_PREFIX}go-to_open-diagnostic::cloud-connect`,
+      type: 'action',
+      ...getDiagnosticDashboardTrackingContext(
+        'cloud-connect::dashboard::configure',
+      ),
+    });
+  }
+
+  runBGPPeeringDiagnostic(popConfigId, dcConfigId) {
+    this.atInternet.trackClick({
+      name: `${DIAGNOSTIC_TRACKING_PREFIX}tile::button::bgp-peering-diagnostic::cloud-connect`,
+      type: 'action',
+      ...getDiagnosticDashboardTrackingContext(
+        'cloud-connect::dashboard::configure',
+      ),
+    });
+
+    return this.goToCheckBGPPeeringPage({ popConfigId, dcConfigId });
+  }
+
   getMacList(pop) {
+    this.atInternet.trackClick({
+      name: `${DIAGNOSTIC_TRACKING_PREFIX}tile::button::get-mac-list::cloud-connect`,
+      type: 'action',
+      ...getDiagnosticDashboardTrackingContext(
+        'cloud-connect::dashboard::configure',
+      ),
+    });
     this.CucCloudMessage.flushChildMessage();
     const diagnosticName = 'diagMacs';
     this.getMacLoading = true;

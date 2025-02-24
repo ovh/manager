@@ -8,9 +8,9 @@
         data-heading="{{:: 'cloud_connect_bgp_peering' | translate }}"
         data-primary-label="{{:: 'cloud_connect_run_diagnostic' | translate }}"
         data-primary-disabled="$ctrl.isLoading"
-        data-secondary-action="$ctrl.goBack()"
+        data-secondary-action="$ctrl.cancel()"
         data-secondary-label="{{:: 'cloud_connect_cancel' | translate }}"
-        data-on-dismiss="$ctrl.goBack()"
+        data-on-dismiss="$ctrl.cancel()"
         data-loading="$ctrl.isLoading"
     >
         <p data-translate="cloud_connect_bgp_peering_description"></p>
@@ -18,6 +18,7 @@
             data-model="$ctrl.diagnosticType"
             name="oui-radio-diagnostic"
             data-value="$ctrl.diagnosticTypes.default"
+            data-ng-click="$ctrl.selectOption()"
         >
             <oui-radio-label>
                 <span
@@ -34,6 +35,7 @@
             data-model="$ctrl.diagnosticType"
             name="oui-radio-diagnostic"
             data-value="$ctrl.diagnosticTypes.routes"
+            data-ng-click="$ctrl.selectOption()"
         >
             <oui-radio-label>
                 <span
@@ -50,6 +52,7 @@
             data-model="$ctrl.diagnosticType"
             name="oui-radio-diagnostic"
             data-value="$ctrl.diagnosticTypes.advertisedRoutes"
+            data-ng-click="$ctrl.selectOption()"
         >
             <oui-radio-label>
                 <span

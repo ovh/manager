@@ -7,6 +7,7 @@ export default {
     refreshDiagnostics: '<',
     diagnosticList: '<',
     gotoDiagnosticResult: '<',
+    fromLink: '<',
   },
   controller,
   template,
