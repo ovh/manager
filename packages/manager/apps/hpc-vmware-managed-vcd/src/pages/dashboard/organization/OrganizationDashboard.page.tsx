@@ -1,12 +1,9 @@
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams, useResolvedPath } from 'react-router-dom';
 import { useVcdOrganization } from '@ovh-ux/manager-module-vcd-api';
-import { ChangelogButton } from '@ovh-ux/manager-react-components';
 import VcdDashboardLayout from '@/components/dashboard/layout/VcdDashboardLayout.component';
 import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
 import { urls } from '@/routes/routes.constant';
-import { CHANGELOG_LINKS } from '@/utils/changelog.constants';
 
 export default function DashboardPage() {
   const { id } = useParams();
@@ -34,11 +31,9 @@ export default function DashboardPage() {
     ? {
         description: id,
         title: serviceName,
-        changelogButton: <ChangelogButton links={CHANGELOG_LINKS} />,
       }
     : {
         title: id,
-        changelogButton: <ChangelogButton links={CHANGELOG_LINKS} />,
       };
 
   const breadcrumbItems: BreadcrumbItem[] = [

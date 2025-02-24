@@ -7,6 +7,45 @@ import {
   waitForOptions,
 } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import { WAIT_FOR_DEFAULT_OPTIONS } from './ui-test-helpers-ods17';
+
+export const getElementByTestId = (
+  testId: string,
+  options = WAIT_FOR_DEFAULT_OPTIONS,
+): Promise<HTMLElement> =>
+  waitFor(() => screen.getByTestId(testId), options).then((res) => res);
+
+export const getOneElementByTestId = (
+  testId: string,
+  options = WAIT_FOR_DEFAULT_OPTIONS,
+): Promise<HTMLElement> =>
+  waitFor(() => screen.getAllByTestId(testId), options).then((res) => res[0]);
+
+export const assertElementVisibility = (
+  element: HTMLElement,
+  options = WAIT_FOR_DEFAULT_OPTIONS,
+) => waitFor(() => expect(element).toBeVisible(), options);
+
+export const assertOdsElementLabel = ({
+  element,
+  label,
+  ...options
+}: {
+  element: HTMLElement;
+  label: string;
+} & waitForOptions) =>
+  waitFor(() => expect(element).toHaveAttribute('label', label), {
+    ...WAIT_FOR_DEFAULT_OPTIONS,
+    ...options,
+  });
+
+export const assertOdsElementEnabledState = ({
+  element,
+  enabled = true,
+}: {
+  element: HTMLElement;
+  enabled?: boolean;
+}) => expect(element.getAttribute('is-disabled') !== 'true').toBe(enabled);
 
 export const assertOdsModalVisibility = async ({
   container,
@@ -16,12 +55,15 @@ export const assertOdsModalVisibility = async ({
   container: HTMLElement;
   isVisible: boolean;
 } & waitForOptions) =>
-  waitFor(() => {
-    const modal = container.querySelector('ods-modal');
-    return isVisible
-      ? expect(modal).toBeInTheDocument()
-      : expect(modal).not.toBeInTheDocument();
-  }, options);
+  waitFor(
+    () => {
+      const modal = container.querySelector('ods-modal');
+      return isVisible
+        ? expect(modal).toBeInTheDocument()
+        : expect(modal).not.toBeInTheDocument();
+    },
+    { ...WAIT_FOR_DEFAULT_OPTIONS, ...options },
+  );
 
 export const assertOdsModalText = ({
   container,
@@ -38,7 +80,7 @@ export const assertOdsModalText = ({
           exact: false,
         }),
       ).toBeVisible(),
-    options,
+    { ...WAIT_FOR_DEFAULT_OPTIONS, ...options },
   );
 
 export const getOdsButtonByLabel = async ({
@@ -65,6 +107,7 @@ export const getOdsButtonByLabel = async ({
     button = Array.from(buttonList).filter((btn) =>
       [label, altLabel].includes(btn.getAttribute('label')),
     )[nth] as HTMLElement;
+
     return disabled
       ? expect(button).toHaveAttribute('disabled')
       : expect(button).not.toHaveAttribute('disabled');
