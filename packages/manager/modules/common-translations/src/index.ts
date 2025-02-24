@@ -2,4 +2,5 @@ export const NAMESPACE_PREFIX = '@ovh-ux/manager-common-translations';
 
 export const NAMESPACES = {
   CLIPBOARD: `${NAMESPACE_PREFIX}/clipboard`,
+  IAM: `${NAMESPACE_PREFIX}/iam`,
 };
