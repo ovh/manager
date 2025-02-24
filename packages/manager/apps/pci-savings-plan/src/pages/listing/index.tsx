@@ -7,7 +7,6 @@ import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
 
 import {
   Notifications,
-  Title,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
 
@@ -20,6 +19,7 @@ import TableContainer from '@/components/Table/TableContainer';
 import { useSavingsPlan } from '@/hooks/useSavingsPlan';
 import { SavingsPlanService } from '@/types';
 import TabsDashboard from '@/components/Dashboard/TabsDashboard/TabsDashboard';
+import Header from '@/components/Header/Header';
 
 interface ListingTablePageProps {
   data: SavingsPlanService[];
@@ -69,7 +69,7 @@ const ListingTablePage: React.FC<ListingTablePageProps> = ({
   };
   return (
     <>
-      <Title>{t('title')}</Title>
+      <Header title={t('title')} category="savings_plans" />
       <OdsText preset="span" className="inline-block mb-4 w-[750px]">
         {t('informationMessage')}
       </OdsText>
