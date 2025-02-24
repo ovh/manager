@@ -80,6 +80,7 @@ const DatagridStory = (args) => {
         totalItems={data?.length}
         filters={{ filters, add: addFilter, remove: removeFilter }}
         topbar={args.topbar}
+        isLoading={args.isLoading}
         {...(args.search
           ? {
               search: {
@@ -121,6 +122,14 @@ export const Empty = DatagridStory.bind({});
 Empty.args = {
   columns,
   items: [],
+};
+
+export const Loading = DatagridStory.bind({});
+
+Loading.args = {
+  columns,
+  items: [],
+  isLoading: true,
 };
 
 export const Sortable = DatagridStory.bind({});
