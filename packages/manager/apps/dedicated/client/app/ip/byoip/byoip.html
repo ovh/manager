@@ -4,6 +4,13 @@
         data-heading="{{:: 'ip_byoip_heading' | translate }}"
         data-description="{{:: 'ip_byoip_description' | translate }}"
     >
+        <oui-guide-menu data-text="{{ ::'ip_byoip_guides' | translate }}">
+            <oui-guide-menu-item
+                data-href="{{:: $ctrl.guideUrl }}"
+                data-external
+                ><span data-translate="ip_byoip_guides_main"></span>
+            </oui-guide-menu-item>
+        </oui-guide-menu>
     </oui-header>
     <oui-message
         data-type="warning"
@@ -78,6 +85,10 @@
                     ><br />
                     <span
                         data-translate="ip_byoip_region_token_description_2"
+                    ></span>
+                    <br />
+                    <span
+                        data-translate="ip_byoip_region_token_description_3"
                     ></span>
                 </p>
                 <oui-clipboard data-model="$ctrl.token"></oui-clipboard>
