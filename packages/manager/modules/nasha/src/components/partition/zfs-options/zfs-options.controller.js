@@ -2,12 +2,14 @@ import isEqual from 'lodash/isEqual';
 
 import { prepareZfsOptions, exportZfsOptions } from '../../../nasha.utils';
 import { TRANSLATE_PREFIX } from './zfs-options.constants';
-import { PREFIX_TRACKING_DASHBOARD_PARTITION_ZFS_OPTION } from '../partition.constants';
+import {
+  PREFIX_TRACKING_DASHBOARD_PARTITION_ZFS_OPTION,
+  ZFS_OPTIONS_TEMPLATES,
+} from '../partition.constants';
 
 export default class NashaComponentsPartitionZfsOptionsController {
   /* @ngInject */
-  constructor($q, $http, $translate) {
-    this.$q = $q;
+  constructor($http, $translate) {
     this.$http = $http;
     this.$translate = $translate;
 
@@ -18,17 +20,33 @@ export default class NashaComponentsPartitionZfsOptionsController {
       recordsize: null,
       sync: null,
     };
-    this.templates = [];
   }
 
   $onInit() {
-    this.$q.all(this.getOptions(), this.getAllTemplates()).finally(() => {
-      this.isLoading = false;
-    });
-  }
+    this.templates = [
+      {
+        name: this.translate('custom_template_selection'),
+        description: '',
+      },
+      {
+        name: ZFS_OPTIONS_TEMPLATES.FILE_SYSTEM,
+        description: this.translate('template_1_description'),
+      },
+      {
+        name: ZFS_OPTIONS_TEMPLATES.VIRTUAL_MACHINES,
+        description: this.translate('template_2_description'),
+      },
+      {
+        name: ZFS_OPTIONS_TEMPLATES.DATABASES,
+        description: this.translate('template_3_description'),
+      },
+      {
+        name: ZFS_OPTIONS_TEMPLATES.DEFAULT,
+        description: this.translate('template_4_description'),
+      },
+    ];
 
-  getOptions() {
-    return this.$http
+    this.$http
       .get(`${this.partitionApiUrl}/options`)
       .then(({ data }) => {
         const options = prepareZfsOptions(data);
@@ -43,26 +61,15 @@ export default class NashaComponentsPartitionZfsOptionsController {
         } else {
           this.close({ error });
         }
-      });
-  }
-
-  getAllTemplates() {
-    return this.$http
-      .get(`${this.partitionApiUrl}/templateUsage`)
-      .then(({ data }) => {
-        this.templates = [
-          {
-            name: this.translate('custom_template_selection'),
-            description: '',
-          },
-          ...data,
-        ];
+      })
+      .finally(() => {
+        this.isLoading = false;
       });
   }
 
   onCustomSelection() {
     return (
-      this.model.templateName === this.translate('custom_template_selection')
+      this.model.template?.name === this.translate('custom_template_selection')
     );
   }
 

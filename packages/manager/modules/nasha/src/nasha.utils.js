@@ -94,17 +94,17 @@ export const prepareZfsOptions = ({
 });
 
 export const exportZfsOptions = (
-  { atime, recordsize, sync, templateName },
+  { atime, recordsize, sync, template },
   customTemplate,
 ) => {
-  return !templateName || templateName === customTemplate
+  return !template || template.name === customTemplate
     ? {
         atime: atime ? 'on' : 'off',
         recordsize,
         sync,
       }
     : {
-        templateName,
+        templateName: template.name,
       };
 };
 
