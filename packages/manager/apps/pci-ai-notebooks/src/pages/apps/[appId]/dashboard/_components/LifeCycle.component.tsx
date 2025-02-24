@@ -7,7 +7,7 @@ import A from '@/components/links/A.component';
 
 const LifeCycle = () => {
   const { app } = useAppData();
-  const { t } = useTranslation('pci-ai-training/apps/app/dashboard');
+  const { t } = useTranslation('pci-ai-deploy/apps/app/dashboard');
   return (
     <>
       <AppStatusHistory history={app.status.history} />

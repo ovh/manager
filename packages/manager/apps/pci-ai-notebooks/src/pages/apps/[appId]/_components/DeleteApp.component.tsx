@@ -22,7 +22,7 @@ interface DeleteAppProps {
 
 const DeleteApp = ({ app, onError, onSuccess }: DeleteAppProps) => {
   const { projectId } = useParams();
-  const { t } = useTranslation('pci-ai-training/apps/app');
+  const { t } = useTranslation('pci-ai-deploy/apps/app');
   const toast = useToast();
 
   const { deleteApp, isPending } = useDeleteApp({

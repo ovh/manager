@@ -19,7 +19,7 @@ import { isDeletingApp, isRunningApp } from '@/lib/statusHelper';
 import A from '@/components/links/A.component';
 
 export const AppHeader = ({ app }: { app: ai.app.App }) => {
-  const { t } = useTranslation('pci-ai-training/apps/app');
+  const { t } = useTranslation('pci-ai-deploy/apps/app');
   const { t: tRegions } = useTranslation('regions');
   const [isStartOpen, setIsStartOpen] = useState(false);
   const [isStopOpen, setIsStopOpen] = useState(false);

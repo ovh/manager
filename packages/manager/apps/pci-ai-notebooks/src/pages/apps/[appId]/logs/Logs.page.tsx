@@ -13,14 +13,14 @@ export function breadcrumb() {
   return (
     <BreadcrumbItem
       translationKey="breadcrumb"
-      namespace="pci-ai-notebooks/notebooks/notebook/logs"
+      namespace="pci-ai-deploy/apps/app/logs"
     />
   );
 }
 
 const LogsApps = () => {
   const { projectId, app } = useAppData();
-  const { t } = useTranslation('pci-ai-training/apps/app/logs');
+  const { t } = useTranslation('pci-ai-deploy/apps/app/logs');
   const [poll, setPoll] = useState(false);
   const { isUserActive } = useUserActivityContext();
   const logsQuery = useGetLogs(projectId, app.id, {

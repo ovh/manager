@@ -1,4 +1,9 @@
 {
+  "fieldVolumesLabel": "Volumes",
+  "fieldVolumeDescription1": "Si vous le souhaitez, vous pouvez attacher des conteneurs Swift, S3 ainsi que des dépôt Git privés ou publics à votre job que nous vous recommandons de configurer préalablement via AI Dashboard.",
+  "fieldVolumeDashboardLink": "Configurer un datastore",
+  "fieldVolumeDescription2": "Une fois attachés, ceux-ci seront temporairement chargés et mis en cache près de votre instance afin de réduire la latence et d’améliorer les performances. Une bonne pratique est d’attacher un conteneur avec vos données entrantes et un autre avec vos données sortantes.",
+  "fieldVolumeLink": "En savoir plus le stockage de données",
   "containerTitle": "Conteneur S3, Dépots Git privés et Object Storage OVHcloud",
   "containerFieldLabel": "Conteneurs",
   "containerDescription": "Datastore S3, Datastore Git ou Object Storage OVHcloud",

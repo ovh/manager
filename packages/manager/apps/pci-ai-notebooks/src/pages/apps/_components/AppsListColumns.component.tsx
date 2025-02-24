@@ -95,7 +95,7 @@ export const getColumns = ({
       ),
     },
     {
-      id: 'Resources',
+      id: 'resources',
       accessorFn: (row) => row.spec.resources,
       header: ({ column }) => (
         <DataTable.SortableHeader column={column}>
@@ -137,7 +137,7 @@ export const getColumns = ({
       },
     },
     {
-      id: 'Creation date',
+      id: 'creation-date',
       accessorFn: (row) => row.createdAt,
       header: ({ column }) => (
         <DataTable.SortableHeader column={column}>
@@ -151,7 +151,7 @@ export const getColumns = ({
       ),
     },
     {
-      id: 'Update date',
+      id: 'update-date',
       accessorFn: (row) => row.updatedAt,
       header: ({ column }) => (
         <DataTable.SortableHeader column={column}>
@@ -165,7 +165,7 @@ export const getColumns = ({
       ),
     },
     {
-      id: 'Status',
+      id: 'status',
       accessorFn: (row) => row.status.state,
       header: ({ column }) => (
         <DataTable.SortableHeader column={column}>

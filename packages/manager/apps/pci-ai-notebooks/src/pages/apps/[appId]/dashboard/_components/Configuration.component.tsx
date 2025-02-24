@@ -8,7 +8,7 @@ import { isStoppedApp } from '@/lib/statusHelper';
 
 const Configurations = () => {
   const { app } = useAppData();
-  const { t } = useTranslation('pci-ai-training/apps/app/dashboard');
+  const { t } = useTranslation('pci-ai-deploy/apps/app/dashboard');
   const navigate = useNavigate();
   const toast = useToast();
 

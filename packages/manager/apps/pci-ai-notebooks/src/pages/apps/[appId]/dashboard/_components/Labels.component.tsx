@@ -11,7 +11,7 @@ import { useEditLabel } from '@/hooks/api/ai/app/label/useEditLabel.hook';
 
 const Labels = () => {
   const { app, appQuery, projectId } = useAppData();
-  const { t } = useTranslation('pci-ai-training/apps/app/dashboard');
+  const { t } = useTranslation('components/labels');
   const toast = useToast();
 
   const configuredLabel: ai.Label[] = useMemo(
@@ -31,15 +31,15 @@ const Labels = () => {
   const { editLabel } = useEditLabel({
     onError: (err) => {
       toast.toast({
-        title: t('appToastErrorTitle'),
+        title: t('labelToastErrorTitle'),
         variant: 'destructive',
         description: getAIApiErrorMessage(err),
       });
     },
     onSuccess: () => {
       toast.toast({
-        title: t('appToastSuccessTitle'),
-        description: t('appLabelSuccess'),
+        title: t('labelToastSuccessTitle'),
+        description: t('labelToastSuccessDescription'),
       });
       appQuery.refetch();
     },

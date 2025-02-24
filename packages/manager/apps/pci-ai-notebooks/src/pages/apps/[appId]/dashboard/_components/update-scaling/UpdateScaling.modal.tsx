@@ -36,7 +36,9 @@ const UpdateScaling = () => {
   const [invalidForm, setInvalidForm] = useState(false);
   const navigate = useNavigate();
   const toast = useToast();
-  const { t } = useTranslation('pci-ai-deploy/apps/app/dashboard/update-image');
+  const { t } = useTranslation(
+    'pci-ai-deploy/apps/app/dashboard/update-scaling',
+  );
 
   const pricingResource: AppPricing = useMemo(() => {
     if (!catalogQuery.isSuccess) return { price: 0, tax: 0 };
@@ -123,8 +125,8 @@ const UpdateScaling = () => {
     >
       <DialogContent>
         <DialogHeader>
-          <DialogTitle data-testid="update-image-modal">
-            {t('updateImageTitle')}
+          <DialogTitle data-testid="update-scaling-modal">
+            {t('updateScalingTitle')}
           </DialogTitle>
         </DialogHeader>
         <Form {...form}>
@@ -163,15 +165,15 @@ const UpdateScaling = () => {
                   type="button"
                   variant="outline"
                 >
-                  {t('updateImageButtonCancel')}
+                  {t('updateScalingButtonCancel')}
                 </Button>
               </DialogClose>
               <Button
-                data-testid="update-image-submit-button"
+                data-testid="update-scaling-submit-button"
                 type="submit"
                 disabled={isPending || invalidForm}
               >
-                {t('updateImageButtonConfirm')}
+                {t('updateScalingButtonConfirm')}
               </Button>
             </DialogFooter>
           </form>

@@ -7,7 +7,7 @@ interface AppTabsProps {
 }
 
 const AppTabs = ({ app }: AppTabsProps) => {
-  const { t } = useTranslation('pci-ai-training/apps/app');
+  const { t } = useTranslation('pci-ai-deploy/apps/app');
 
   const containers: ai.volume.Volume[] = app.spec.volumes?.filter(
     (vol: ai.volume.Volume) =>

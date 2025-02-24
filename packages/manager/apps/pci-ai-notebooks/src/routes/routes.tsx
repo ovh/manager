@@ -468,13 +468,13 @@ export default [
               },
             ],
           },
-          // {
-          //   path: 'training/onboarding',
-          //   id: 'training.onboarding',
-          //   ...lazyRouteConfig(() =>
-          //     import('@/pages/jobs/onboarding/Onboarding.page'),
-          //   ),
-          // },
+          {
+            path: 'deploy/onboarding',
+            id: 'deploy.onboarding',
+            ...lazyRouteConfig(() =>
+              import('@/pages/apps/onboarding/Onboarding.page'),
+            ),
+          },
           {
             path: 'deploy/new',
             id: 'create-app',

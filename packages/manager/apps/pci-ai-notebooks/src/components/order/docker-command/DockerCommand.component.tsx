@@ -65,6 +65,10 @@ const DockerCommand = React.forwardRef<
 
   return (
     <Form {...form}>
+      <FormLabel className="scroll-m-20 text-xl font-semibold">
+        {t('fieldDockerCommandLabel')}
+      </FormLabel>
+      <p>{t('fieldDockedCommandDescription')}</p>
       <div
         className="flex w-full items-start gap-2"
         data-testid="docker-command-form-container"

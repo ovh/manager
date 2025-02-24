@@ -4,6 +4,7 @@
   "tableHeaderName": "Name",
   "tableHeaderImage": "Image",
   "tableHeaderLocation": "Région",
+  "tableHeaderResources": "Ressources",
   "tableHeaderCreationDate": "Date de création",
   "tableHeaderUpdateDate": "Date de mise à jour",
   "tableHeaderStatus": "Statut",

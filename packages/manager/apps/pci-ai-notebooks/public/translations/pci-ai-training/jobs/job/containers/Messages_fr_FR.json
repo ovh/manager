@@ -1,7 +1,0 @@
-{
-  "breadcrumb": "Conteneurs de données",
-  "dataSyncToastErrorTitle": "Erreur",
-  "dataSyncToastSuccessTitle": "Succès",
-  "dataSyncMountPathToastSuccessDescription": "La synchronisation des données sur le répertoire de montage {{name}} a été correctement lancée",
-  "dataSyncGlobalToastSuccessDescription": "La synchronisation des données sur tous les répertoire de montage a été correctement lancée"
-}

@@ -6,7 +6,6 @@ import {
   Settings2,
   Tag,
   TerminalSquare,
-  UserCheck,
 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
@@ -113,15 +112,7 @@ const Dashboard = () => {
       </div>
       <div className="flex flex-col lg:grid lg:grid-cols-3 gap-2">
         <Card className="lg:col-span-1">
-          <CardHeader>
-            <h4>
-              <UserCheck className="inline size-4 mr-2 mb-1" />
-              {t('billingSupportTitle')}
-            </h4>
-          </CardHeader>
-          <CardContent>
-            <BillingSupport />
-          </CardContent>
+          <BillingSupport />
           <div className="border-t my-2 pt-2 mx-6"></div>
           <h4 className="px-6 mb-4">
             <Settings2 className="inline size-4 mr-2 mb-1" />

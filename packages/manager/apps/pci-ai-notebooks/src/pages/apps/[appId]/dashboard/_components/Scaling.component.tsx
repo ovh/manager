@@ -10,7 +10,7 @@ const ScalingStrat = () => {
   const navigate = useNavigate();
   return (
     <>
-      <h5>{t('ScalingTitle')}</h5>
+      <h5>{t('scalingTitle')}</h5>
       <div className="flex flex-row justify-between gap-2 mt-4">
         <p className="mb-2 font-semibold">
           {app.spec.scalingStrategy.fixed?.replicas
@@ -29,25 +29,32 @@ const ScalingStrat = () => {
       <ul className="list-disc">
         {app.spec.scalingStrategy.fixed?.replicas ? (
           <li className="ml-8">
-            Replicas : {app.spec.scalingStrategy.fixed.replicas}
+            {t('fixedReplicasLabel', {
+              rep: app.spec.scalingStrategy.fixed.replicas,
+            })}
           </li>
         ) : (
           <>
             <li className="ml-8">
-              Minimum de replicas :{' '}
-              {app.spec.scalingStrategy.automatic.replicasMin}
+              {t('minReplicasLabel', {
+                rep: app.spec.scalingStrategy.automatic.replicasMin,
+              })}
+              {}
             </li>
             <li className="ml-8">
-              Maximum de replicas :{' '}
-              {app.spec.scalingStrategy.automatic.replicasMax}
+              {t('minReplicasLabel', {
+                rep: app.spec.scalingStrategy.automatic.replicasMax,
+              })}
             </li>
             <li className="ml-8">
-              Métrique surveillée :{' '}
-              {app.spec.scalingStrategy.automatic.resourceType}
+              {t('resourceTypeLabel', {
+                res: app.spec.scalingStrategy.automatic.resourceType,
+              })}
             </li>
             <li className="ml-8">
-              Seuil de déclenchement :{' '}
-              {app.spec.scalingStrategy.automatic.averageUsageTarget} %
+              {t('averageUsegeLabel', {
+                val: app.spec.scalingStrategy.automatic.averageUsageTarget,
+              })}
             </li>
           </>
         )}

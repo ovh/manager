@@ -6,7 +6,7 @@ import { useAppData } from '../../App.context';
 import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/components/ui/use-toast';
 
-const AccessLink = () => {
+const AppGeneralInfo = () => {
   const { app } = useAppData();
   const { t } = useTranslation('pci-ai-deploy/apps/app/dashboard');
   const toast = useToast();
@@ -52,7 +52,7 @@ const AccessLink = () => {
       <h5 className="mt-4 mb-2">{t('urlAccessTitle')}</h5>
       <div className="w-full border border-1 border-primary-100">
         <Button
-          data-testid="containers-copy-mountpath-button"
+          data-testid="url-copy-button"
           type="button"
           className="w-full flex justify-between items-center p-4 border-0"
           size="sm"
@@ -60,7 +60,7 @@ const AccessLink = () => {
           onClick={() => {
             navigator.clipboard.writeText(app.status.url);
             toast.toast({
-              title: t('mountPathCopyToast'),
+              title: t('urlCopyToast'),
             });
           }}
         >
@@ -74,4 +74,4 @@ const AccessLink = () => {
   );
 };
 
-export default AccessLink;
+export default AppGeneralInfo;

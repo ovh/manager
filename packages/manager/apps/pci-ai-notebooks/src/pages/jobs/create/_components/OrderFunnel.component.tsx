@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next';
 import {
-  ArrowRight,
   ChevronDown,
   ChevronUp,
   HelpCircle,
@@ -31,13 +30,11 @@ import RegionsSelect from '@/components/order/region/RegionSelect.component';
 import FlavorsSelect from '@/components/order/flavor/FlavorSelect.component';
 import { Input } from '@/components/ui/input';
 import OrderPrice from '@/components/order/price/OrderPrice.component';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
-import { Label } from '@/components/ui/label';
 import SshKeyForm from '@/components/order/configuration/SshKeyForm.component';
 import { SshKey } from '@/types/cloud/sshkey';
 import VolumeForm from '@/components/order/volumes/VolumesForm.component';
@@ -48,16 +45,13 @@ import { JobSuggestions, PrivacyEnum } from '@/types/orderFunnel';
 import { useModale } from '@/hooks/useModale';
 import CliEquivalent from './CliEquivalent.component';
 import { getJobSpec } from '@/lib/orderFunnelHelper';
-import A from '@/components/links/A.component';
-import { useLocale } from '@/hooks/useLocale';
-import OvhLink from '@/components/links/OvhLink.component';
 import { useOrderFunnel } from './useOrderFunnel.hook';
 import { useGetCommand } from '@/hooks/api/ai/job/useGetCommand.hook';
 import OrderSummary from './OrderSummary.component';
 import { useAddJob } from '@/hooks/api/ai/job/useAddJob.hook';
 import DockerCommand from '@/components/order/docker-command/DockerCommand.component';
-import { GUIDES, getGuideUrl } from '@/configuration/guide';
 import JobImagesSelect from '@/components/order/job-image/JobImageSelect.component';
+import PrivacyRadioInput from '@/components/order/privacy-radio/PrivacyRadio';
 
 interface OrderJobsFunnelProps {
   regions: ai.capabilities.Region[];
@@ -77,7 +71,6 @@ const OrderFunnel = ({
   const model = useOrderFunnel(regions, catalog, presetImage, suggestions);
 
   const { t } = useTranslation('pci-ai-training/jobs/create');
-  const locale = useLocale();
   const { projectId } = useParams();
   const [showAdvancedConfiguration, setShowAdvancedConfiguration] = useState(
     false,
@@ -220,10 +213,6 @@ const OrderFunnel = ({
                 name="flavorWithQuantity.flavor"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className={classNameLabel}>
-                      {t('fieldFlavorLabel')}
-                    </FormLabel>
-                    <p>{t('fieldFlavorDescription')}</p>
                     <FormControl>
                       <FlavorsSelect
                         {...field}
@@ -310,54 +299,13 @@ const OrderFunnel = ({
                 name="privacy"
                 render={({ field }) => (
                   <FormItem className="flex flex-col gap-1">
-                    <FormLabel className={classNameLabel}>
-                      {t('fieldConfigurationPrivacyLabel')}
-                    </FormLabel>
-                    <div className="flex items-center space-x-2">
-                      <RadioGroup
-                        className="mb-2"
-                        name="access-type"
-                        value={field.value}
-                        onValueChange={(newPrivacyValue: PrivacyEnum) =>
-                          model.form.setValue('privacy', newPrivacyValue)
-                        }
-                      >
-                        <div className="flex items-center space-x-2">
-                          <RadioGroupItem
-                            value={PrivacyEnum.private}
-                            id="private-access-radio"
-                          />
-
-                          <Label>{t('privateAccess')}</Label>
-                          <Popover>
-                            <PopoverTrigger>
-                              <HelpCircle className="size-4" />
-                            </PopoverTrigger>
-                            <PopoverContent className="text-sm">
-                              <p>{t('privateAccessDescription')}</p>
-                            </PopoverContent>
-                          </Popover>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                          <RadioGroupItem
-                            value={PrivacyEnum.public}
-                            id="public-access"
-                          />
-                          <Label>{t('publicAccess')}</Label>
-                          <Popover>
-                            <PopoverTrigger>
-                              <HelpCircle className="size-4" />
-                            </PopoverTrigger>
-                            <PopoverContent className="text-sm">
-                              <p>{t('publicAccessDescription1')}</p>
-                              <p className="text-red-600">
-                                {t('publicAccessDescription2')}
-                              </p>
-                            </PopoverContent>
-                          </Popover>
-                        </div>
-                      </RadioGroup>
-                    </div>
+                    <PrivacyRadioInput
+                      value={field.value}
+                      onChange={(newPrivacyValue: PrivacyEnum) =>
+                        model.form.setValue('privacy', newPrivacyValue)
+                      }
+                      className={classNameLabel}
+                    />
                   </FormItem>
                 )}
               />
@@ -398,10 +346,6 @@ const OrderFunnel = ({
                         name="dockerCommand"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className={classNameLabel}>
-                              {t('fieldDockerCommandLabel')}
-                            </FormLabel>
-                            <p>{t('fieldDockedCommandDescription')}</p>
                             <FormControl>
                               <DockerCommand
                                 {...field}
@@ -425,33 +369,6 @@ const OrderFunnel = ({
                         name="volumes"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className={classNameLabel}>
-                              {t('fieldVolumesLabel')}
-                            </FormLabel>
-                            <p>
-                              {t('fieldVolumeDescription1')}{' '}
-                              <OvhLink
-                                application="public-cloud"
-                                path={`#/pci/projects/${projectId}/ai/dashboard/datastore`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                              >
-                                {t('fieldVolumeDashboardLink')}
-                                <ArrowRight className="size-4 inline ml-1" />
-                              </OvhLink>
-                            </p>
-                            <p>{t('fieldVolumeDescription2')}</p>
-                            <A
-                              href={getGuideUrl(
-                                GUIDES.HOW_TO_MANAGE_DATA,
-                                locale,
-                              )}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              {t('fieldVolumeLink')}
-                              <ArrowRight className="size-4 inline ml-1" />
-                            </A>
                             <FormControl>
                               <VolumeForm
                                 {...field}

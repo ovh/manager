@@ -6,7 +6,6 @@ import {
   Settings2,
   Tag,
   TerminalSquare,
-  UserCheck,
 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
@@ -18,7 +17,7 @@ import * as ai from '@/types/cloud/project/ai';
 import CliCodeBlock from '@/components/cli-code-block/CliCodeBlock.component';
 import LifeCycle from './_components/LifeCycle.component';
 import Labels from './_components/Labels.component';
-import AccessLink from './_components/AccessLink.component';
+import AppGeneralInfo from './_components/GeneralInformation.component';
 import Guides from '@/components/guides/Guides.component';
 import { GuideSections } from '@/configuration/guide';
 import { useAppData } from '../App.context';
@@ -29,7 +28,7 @@ import ScalingStrat from './_components/Scaling.component';
 
 const Dashboard = () => {
   const { app, projectId } = useAppData();
-  const { t } = useTranslation('pci-ai-training/apps/app/dashboard');
+  const { t } = useTranslation('pci-ai-deploy/apps/app/dashboard');
   const { toast } = useToast();
   const [command, setCommand] = useState<ai.Command>();
 
@@ -74,11 +73,11 @@ const Dashboard = () => {
           <CardHeader>
             <h4>
               <Link className="size-4 inline mr-2" />
-              <span>{t('accessLinkTitle')}</span>
+              <span>{t('generalInfoTitle')}</span>
             </h4>
           </CardHeader>
           <CardContent>
-            <AccessLink />
+            <AppGeneralInfo />
           </CardContent>
           <div className="border-t my-2 pt-2 mx-6"></div>
           <h4 className="px-6 mb-4">
@@ -118,15 +117,7 @@ const Dashboard = () => {
       </div>
       <div className="flex flex-col lg:grid lg:grid-cols-3 gap-2">
         <Card className="lg:col-span-1">
-          <CardHeader>
-            <h4>
-              <UserCheck className="inline size-4 mr-2 mb-1" />
-              {t('billingSupportTitle')}
-            </h4>
-          </CardHeader>
-          <CardContent>
-            <BillingSupport />
-          </CardContent>
+          <BillingSupport />
           <div className="border-t my-2 pt-2 mx-6"></div>
           <h4 className="px-6 mb-4">
             <Settings2 className="inline size-4 mr-2 mb-1" />

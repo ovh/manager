@@ -24,7 +24,7 @@ interface StopAppProps {
 const StopApp = ({ app, onError, onSuccess, onClose }: StopAppProps) => {
   const { projectId } = useParams();
 
-  const { t } = useTranslation('pci-ai-training/apps/app');
+  const { t } = useTranslation('pci-ai-deploy/apps/app');
   const toast = useToast();
 
   const { stopApp, isPending } = useStopApp({
