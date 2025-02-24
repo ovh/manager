@@ -20,6 +20,7 @@ const UserAccountMenuButton = ({
   const { t } = useTranslation('user-account-menu');
   return (
     <OsdsButton
+      role="button"
       id="header-user-menu-button"
       title={t('user_account_menu_manage_my_account')}
       aria-haspopup={show}
