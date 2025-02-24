@@ -1,0 +1,37 @@
+import { Meta, Canvas, Source, ArgTypes } from '@storybook/blocks';
+
+<Meta title="Hooks/useBytes" />
+
+## Overview
+
+The `useBytes` custom React hook is designed to dynamically convert units from the API to the front-end.
+
+## Usage
+
+To use `useBytes`, follow these steps:
+
+1. Import and use the `useBytes` utility in your component.
+
+<Source
+  code={`
+  import { useBytes } from './useBytes';
+
+  const MyComponent = () => {
+    const { formatBytes } = useBytes();
+
+    const size = 123456789;
+
+    return (
+      <div>
+        <p>Size: {formatBytes(size, 2, 1000)}</p>
+        <p>Size: {formatBytes(size, 2, 1024)}</p>
+      </div>
+    );
+  };
+  `}
+  language="javascript"
+/>
+
+## Example usage of formatBytes
+
+
