@@ -118,7 +118,6 @@ describe('Vrack Services associate vrack test suite', () => {
   });
 
   it('from dashboard, display error when vrack eligible services is in error', async () => {
-    expect(true).toBe(true);
     const { container } = await renderTest({
       initialRoute: urls.overviewAssociate.replace(
         ':id',

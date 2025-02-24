@@ -6,8 +6,8 @@ import {
   PageType,
 } from '@ovh-ux/manager-react-shell-client';
 import { defineCurrentPage } from '@ovh-ux/request-tagger';
+import { ErrorBanner } from '@ovh-ux/manager-react-components';
 import { useVrackServicesList } from '@/data/hooks';
-import { ErrorPage } from '@/components/ErrorPage.component';
 import { PageName } from '@/utils/tracking';
 
 type Handle = {
@@ -34,7 +34,7 @@ export default function RootWrapper() {
 
   return (
     <React.Suspense>
-      {isError ? <ErrorPage error={error} /> : <Outlet />}
+      {isError ? <ErrorBanner error={error} /> : <Outlet />}
     </React.Suspense>
   );
 }
