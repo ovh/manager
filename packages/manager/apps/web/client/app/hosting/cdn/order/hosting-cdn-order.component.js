@@ -5,6 +5,7 @@ export default {
   controller,
   template,
   bindings: {
+    trackClick: '<',
     availablePlans: '<',
     goBack: '<',
     hasCDN: '<',
@@ -19,5 +20,8 @@ export default {
     pricingType: '<',
     workflowType: '<',
     workflowOptions: '<',
+
+    onOptionEdit: '<?',
+    onOptionSubmit: '<?',
   },
 };

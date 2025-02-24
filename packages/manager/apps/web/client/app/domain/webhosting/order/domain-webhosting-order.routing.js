@@ -1,5 +1,6 @@
 import get from 'lodash/get';
 import component from './domain-webhosting-order.component';
+import { ORDER_WEBHOSTING_TRACKING } from './domain-webhosting-order.constants';
 
 const resolve = {
   assignCart: /* @ngInject */ (WucOrderCartService) => (cartId) =>
@@ -101,6 +102,13 @@ const resolve = {
   catalog: /* @ngInject */ (user, WebHostingOrder) =>
     WebHostingOrder.getCatalog(user.ovhSubsidiary),
 
+  trackClick: /* @ngInject */ (atInternet) => (hit) => {
+    atInternet.trackClick({
+      ...hit,
+      type: 'action',
+    });
+  },
+
   breadcrumb: /* @ngInject */ ($translate) =>
     $translate.instant('domain_webhosting_order_title'),
 };
@@ -121,6 +129,12 @@ export default /* @ngInject */ ($stateProvider) => {
 
         user: /* @ngInject */ (coreConfig) => coreConfig.getUser(),
       },
+      atInternet: {
+        ignore: true,
+      },
+      onEnter: /* @ngInject */ (atInternet) => {
+        atInternet.trackPage(ORDER_WEBHOSTING_TRACKING.PAGE);
+      },
     })
     .state('app.alldom.domain.webhosting.order', {
       url: '/order',
@@ -133,6 +147,12 @@ export default /* @ngInject */ ($stateProvider) => {
         ...resolve,
         goBackToDashboard: /* @ngInject */ ($state) => () =>
           $state.go('app.alldom.domain.information'),
+      },
+      atInternet: {
+        ignore: true,
+      },
+      onEnter: /* @ngInject */ (atInternet) => {
+        atInternet.trackPage(ORDER_WEBHOSTING_TRACKING.PAGE);
       },
     });
 };

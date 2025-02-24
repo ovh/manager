@@ -1,4 +1,6 @@
-<oui-back-button data-on-click="$ctrl.goBack()">
+<oui-back-button
+    data-on-click="(!$ctrl.hasCDN && $ctrl.trackClick($ctrl.ORDER_CDN_TRACKING.GO_BACK)); $ctrl.goBack()"
+>
     <span
         data-ng-if="!$ctrl.hasCDN"
         data-translate="{{:: 'hosting_cdn_order_title' }}"
@@ -27,6 +29,8 @@
         data-editable="!$ctrl.isStepperLoading"
         data-prevent-next="true"
         data-valid="$ctrl.cdnPlanCode"
+        data-on-submit="$ctrl.onOptionSubmit($ctrl.cdnPlanCode)"
+        data-on-focus="$ctrl.onOptionEdit($ctrl.cdnPlanCode)"
     >
         <div class="row w-100 d-md-flex">
             <div

@@ -9,15 +9,18 @@ import {
   ENGINE_CONFIGURATION_KEY,
 } from '../order/public/hosting-database-order-public.constants';
 import {
+  ACTIVATION_DATABASE_TRACKING,
   PRESELECTED_DB_CATEGORY,
   WEBHOSTING_PRODUCT_NAME,
 } from './private-sql-activation.constants';
 
 export default class PrivateSqlActivationController {
   /* @ngInject */
-  constructor($q, $translate) {
+  constructor($q, $translate, atInternet) {
     this.$q = $q;
     this.$translate = $translate;
+    this.atInternet = atInternet;
+    this.ACTIVATION_DATABASE_TRACKING = ACTIVATION_DATABASE_TRACKING;
   }
 
   $onInit() {
@@ -34,6 +37,14 @@ export default class PrivateSqlActivationController {
         getPlanCode: this.getPlanCode.bind(this),
         getRightCatalogConfig: this.getRightCatalogConfig.bind(this),
         onGetConfiguration: this.getConfiguration.bind(this),
+        onPricingSubmit: (pricing) => {
+          this.trackClick({
+            ...ACTIVATION_DATABASE_TRACKING.PRICING.NEXT,
+            name: ACTIVATION_DATABASE_TRACKING.PRICING.NEXT.name
+              .replace(/{{pricing}}/g, `${pricing.interval}M`)
+              .replace(/{{databaseSolution}}/g, this.databaseSolution()),
+          });
+        },
       },
       workflowType: workflowConstants.WORKFLOW_TYPES.ORDER,
     };
@@ -102,5 +113,33 @@ export default class PrivateSqlActivationController {
       dbGroup: db.dbName,
       selectEngineVersion: db,
     };
+  }
+
+  trackClick(hit) {
+    this.atInternet.trackClick({
+      ...hit,
+      type: 'action',
+    });
+  }
+
+  onGoToNextStepClick() {
+    this.trackClick({
+      ...ACTIVATION_DATABASE_TRACKING.OPTION.NEXT,
+      name: ACTIVATION_DATABASE_TRACKING.OPTION.NEXT.name.replace(
+        /{{databaseSolution}}/g,
+        this.databaseSolution(),
+      ),
+    });
+  }
+
+  onOptionEdit() {
+    if (Object.keys(this.model.dbCategory).length > 0) {
+      this.trackClick(ACTIVATION_DATABASE_TRACKING.OPTION.EDIT);
+    }
+  }
+
+  databaseSolution() {
+    const { selectEngine, selectVersion } = this.model.dbCategory;
+    return `${selectEngine.dbGroup}-${selectVersion.productSize}`;
   }
 }

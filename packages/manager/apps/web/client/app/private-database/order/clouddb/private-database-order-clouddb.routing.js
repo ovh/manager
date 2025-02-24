@@ -1,4 +1,5 @@
 import component from './private-database-order-clouddb.component';
+import { ORDER_WEBCLOUD_DATABASE_TRACKING } from './private-database-order-clouddb.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.private-database-order-clouddb', {
@@ -80,6 +81,12 @@ export default /* @ngInject */ ($stateProvider) => {
           user.ovhSubsidiary,
         );
       },
+    },
+    atInternet: {
+      ignore: true,
+    },
+    onEnter: /* @ngInject */ (atInternet) => {
+      atInternet.trackPage(ORDER_WEBCLOUD_DATABASE_TRACKING.PAGE);
     },
   });
 };

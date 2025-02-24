@@ -4,12 +4,13 @@
     data-editable="!$ctrl.stepper.loadingCheckout"
     data-valid="$ctrl.offer"
     data-prevent-next
-    data-on-focus="$ctrl.offer = undefined"
+    data-on-focus="$ctrl.onOptionEdit()"
+    data-on-submit="$ctrl.onOfferNextStepClick()"
 >
     <oui-switch
         name="switchDetails"
         data-model="$ctrl.showDetails"
-        data-on-change="$ctrl.showDetails = !$ctrl.showDetails"
+        data-on-change="$ctrl.onChangeSwitchDetail()"
     >
     </oui-switch>
     <span>&nbsp;</span>
