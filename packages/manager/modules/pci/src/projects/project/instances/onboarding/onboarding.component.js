@@ -9,5 +9,7 @@ export default {
     addInstance: '<',
     getStateName: '<',
     goToRegion: '<',
+    projectId: '<',
+    customerRegions: '<',
   },
 };
