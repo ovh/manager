@@ -16,7 +16,7 @@ export type TRemoteWorkflow = {
   id: string;
   instanceId: string;
   cron: string;
-  executions: TWorkflowExecution[];
+  executions: TWorkflowExecution[] | null;
 };
 
 export const getRegionsWorkflows = async (

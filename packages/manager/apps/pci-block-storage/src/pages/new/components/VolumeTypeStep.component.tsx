@@ -34,6 +34,16 @@ function VolumeTypeTile({
 
   const isNew = useMemo(() => volumeType.tags.includes(BETA_TAG), [volumeType]);
 
+  const iopsType = useMemo(() => {
+    if (pricing.specs.volume.iops.guaranteed) {
+      return 'guaranteed';
+    }
+    if (pricing.areIOPSDynamic) {
+      return 'dynamic';
+    }
+    return 'not_guaranteed';
+  }, [pricing]);
+
   return (
     <div className="w-full">
       <div className="border-solid border-0 border-b border-b-[#85d9fd] py-3 d-flex">
@@ -75,23 +85,12 @@ function VolumeTypeTile({
           level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
           color={ODS_THEME_COLOR_INTENT.text}
         >
-          {pricing.specs.volume.iops.guaranteed
-            ? t(
-                'pci_projects_project_storages_blocks_add_type_addon_iops_guaranteed',
-                {
-                  iops: pricing.specs.volume.iops.level,
-                  separator: ', ',
-                },
-              )
-            : t(
-                'pci_projects_project_storages_blocks_add_type_addon_iops_not_guaranteed',
-                {
-                  iops:
-                    pricing.specs.volume.iops.max ||
-                    pricing.specs.volume.iops.level,
-                  separator: ', ',
-                },
-              )}
+          {t('pci_projects_project_storages_blocks_add_type_addon_iops', {
+            context: iopsType,
+            ...pricing.specs.volume.iops,
+            iops: pricing.specs.volume.iops.level,
+            separator: ',',
+          })}
           {t(
             'pci_projects_project_storages_blocks_add_type_addon_capacity_max',
             {

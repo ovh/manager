@@ -32,6 +32,7 @@ export default {
     getUAppUrl: '<',
     windowsGen3: '<',
     catalog: '<',
+    snapshotAvailability: '=',
   },
   controller,
   template,

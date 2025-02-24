@@ -11,15 +11,18 @@ type TRestrictionAction = {
   iconName: ODS_ICON_NAME;
   onClick: () => void;
   disabled: boolean;
+  testId: string;
 };
 
 export default function RestrictionAction({
   iconName,
   onClick,
   disabled,
+  testId,
 }: Readonly<TRestrictionAction>) {
   return (
     <OsdsButton
+      data-testid={testId}
       size={ODS_BUTTON_SIZE.sm}
       variant={ODS_BUTTON_VARIANT.stroked}
       color={ODS_THEME_COLOR_INTENT.primary}

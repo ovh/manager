@@ -29,7 +29,6 @@ describe('WorkflowName', () => {
       <WorkflowName
         name="foo"
         region="EU"
-        ovhSubsidiary="FR"
         step={{ isOpen: true, isChecked: false, isLocked: false }}
         onNameChange={null}
         onSubmit={null}

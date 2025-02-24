@@ -44,20 +44,6 @@ export default /* @ngInject */ ($stateProvider) => {
         );
       },
 
-      volumePrice: /* @ngInject */ (volume, getVolumePriceEstimation) =>
-        getVolumePriceEstimation(volume),
-
-      getVolumePriceEstimation: /* @ngInject */ (
-        projectId,
-        catalogEndpoint,
-        PciProjectStorageBlockService,
-      ) => (volume) =>
-        PciProjectStorageBlockService.getVolumePriceEstimation(
-          projectId,
-          volume,
-          catalogEndpoint,
-        ),
-
       goBack: /* @ngInject */ ($state) => () => $state.go('^'),
     },
   });

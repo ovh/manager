@@ -16,7 +16,6 @@ import Region from './region.class';
 
 import {
   VOLUME_ADDON_FAMILY,
-  VOLUME_MAX_SIZE,
   VOLUME_MIN_SIZE,
   VOLUME_SNAPSHOT_CONSUMPTION,
   VOLUME_UNLIMITED_QUOTA,
@@ -192,20 +191,25 @@ export default class PciProjectStorageBlockService {
       );
   }
 
-  getAvailableQuota(projectId, { region }) {
-    return this.getProjectQuota(projectId, region).then((quota) => {
-      if (quota && quota.volume) {
-        let availableGigabytes = VOLUME_MAX_SIZE;
+  getAvailableQuota(projectId, { region, type }) {
+    return this.$q
+      .all([
+        this.getProjectQuota(projectId, region),
+        this.getCatalog(projectId),
+      ])
+      .then(([quota, catalog]) => {
+        let availableGigabytes = catalog.models
+          .find((m) => m.name === type)
+          .pricings.find((p) => p.regions.includes(region)).specs.volume
+          .capacity.max;
         if (quota.volume.maxGigabytes !== VOLUME_UNLIMITED_QUOTA) {
           availableGigabytes = Math.min(
-            VOLUME_MAX_SIZE,
+            availableGigabytes,
             quota.volume.maxGigabytes - quota.volume.usedGigabytes,
           );
         }
         return availableGigabytes;
-      }
-      return VOLUME_MAX_SIZE;
-    });
+      });
   }
 
   getProjectQuota(projectId, region = null) {
@@ -287,14 +291,22 @@ export default class PciProjectStorageBlockService {
       }).$promise;
   }
 
-  getCatalog(endpoint, ovhSubsidiary) {
+  getCatalog(projectId, cache = true) {
     return this.$http
-      .get(endpoint, {
-        params: {
-          ovhSubsidiary,
-        },
+      .get(`/cloud/project/${projectId}/catalog/volume`, {
+        cache,
       })
       .then(({ data }) => data);
+  }
+
+  get3azAvailability(projectId) {
+    return this.getCatalog(projectId).then((catalog) => {
+      return catalog.filters.deployment.some((d) => d.name === 'region-3-az');
+    });
+  }
+
+  getProjectRegions(projectId) {
+    return this.getCatalog(projectId).then((catalog) => catalog.regions);
   }
 
   static getVolumePriceEstimationFromCatalog(catalog, storage) {
@@ -338,16 +350,11 @@ export default class PciProjectStorageBlockService {
     };
   }
 
-  getVolumePriceEstimation(projectId, storage, catalogEndpoint) {
-    return this.CucPriceHelper.getPrices(
-      projectId,
-      catalogEndpoint,
-    ).then((catalog) =>
-      PciProjectStorageBlockService.getVolumePriceEstimationFromCatalog(
-        catalog,
-        storage,
-        catalogEndpoint,
-      ),
+  getVolumePriceEstimation(projectId, storage) {
+    return this.getCatalog(projectId).then((catalog) =>
+      catalog.models
+        .find((model) => model.name === storage.type)
+        .pricings.find((p) => p.regions.includes(storage.region)),
     );
   }
 
