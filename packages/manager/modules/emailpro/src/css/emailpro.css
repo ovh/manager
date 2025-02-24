@@ -29,3 +29,8 @@
 .exchange-diagnostic-description {
   max-width: 800px;
 }
+
+.account-zimbra-password-helper {
+  display: flex;
+  flex-direction: column;
+}
