@@ -862,7 +862,7 @@
   "hosting_configuration_tab_modules_module_delete": "Supprimer le module",
   "hosting_configuration_tab_modules_module_access_admin": "Accéder à l'interface d'administration du module",
   "hosting_configuration_tab_modules_refresh": "Recharger les modules",
-  "hosting_configuration_tab_modules_module_access": "Accéder au module",
+  "hosting_configuration_tab_modules_module_access": "Accéder au site internet",
   "hosting_configuration_tab_modules_module_actions": "Actions sur le module",
   "hosting_configuration_tab_modules_create_title": "Créer un module",
   "hosting_configuration_tab_modules_create_step1_loading_error": "Une erreur s'est produite lors du chargement des informations.",
