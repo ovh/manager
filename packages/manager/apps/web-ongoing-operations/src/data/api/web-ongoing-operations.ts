@@ -22,6 +22,23 @@ export const getmeTaskDomainId = async (
 ): Promise<TApiResponseData> => apiClient.v6.get(`${taskMeDomain}/${id}`);
 
 /**
+ * Get information about domain related tasks : Get the domain task nic
+ */
+export const getmeTaskDomainNicList = async (
+  id: number,
+): Promise<TApiResponseData> =>
+  apiClient.v6.get(`/me/task/domain/${id}/argument`);
+
+/**
+ * Get information about domain related tasks : Get the domain task argument
+ */
+export const getmeTaskDomainArgument = async (
+  id: number,
+  nic: string,
+): Promise<TApiResponseData> =>
+  apiClient.v6.get(`/me/task/domain/${id}/argument/${nic}`);
+
+/**
  *  Get listing with iceberg V6
  */
 export const getListingIcebergV6 = async ({
@@ -48,3 +65,15 @@ export const getListingIcebergV6 = async ({
  */
 export const getmeTaskDnsList = async (): Promise<TApiResponseData> =>
   apiClient.v6.get(taskMeDns);
+
+export type UpdateTaskBody = {
+  value: string;
+};
+
+export const updateTask = async (
+  taskID: number,
+  key: string,
+  body: UpdateTaskBody,
+): Promise<void> => {
+  return apiClient.v6.put(`/me/task/domain/${taskID}/argument/${key}`, body);
+};
