@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-product-icons@0.8.0...@ovh-ux/ovh-product-icons@0.9.0) (2025-02-24)
+
+
+### Features
+
+* **container:** add zimbra to web side bar order ([#15478](https://github.com/ovh/manager/issues/15478)) ([3b711f8](https://github.com/ovh/manager/commit/3b711f870dfb216f637942c75920868f98d54c22))
+
+
+
+
+
 # [0.8.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-product-icons@0.7.0...@ovh-ux/ovh-product-icons@0.8.0) (2025-01-02)
 
 

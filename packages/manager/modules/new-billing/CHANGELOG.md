@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.31.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.31.1...@ovh-ux/manager-new-billing@0.31.2) (2025-02-24)
+
+
+### Bug Fixes
+
+* **billing:** fix js errors ([#15376](https://github.com/ovh/manager/issues/15376)) ([4d2f4a2](https://github.com/ovh/manager/commit/4d2f4a2fa8507b27cde963996cf8b2599743e3c6))
+
+
+
+
+
 ## [0.31.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.31.0...@ovh-ux/manager-new-billing@0.31.1) (2025-02-18)
 
 
