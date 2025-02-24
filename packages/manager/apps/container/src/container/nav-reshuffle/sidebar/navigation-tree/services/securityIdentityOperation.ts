@@ -18,18 +18,60 @@ const sioUniverse : Node = {
 
 sioUniverse.children = [
   {
+    id: 'iam',
+    idAttr: 'iam-link',
+    translation: 'sidebar_security_identity_operations_iam',
+    universe: sioUniverse.id,
+    features: ['iam:identities', 'iam:policies', 'iam:api-keys' ],
+    children: [
+      {
+        id: 'iam-identities',
+        idAttr: 'iam-identities-link',
+        translation: 'sidebar_security_identity_operations_iam_identities',
+        universe: sioUniverse.id,
+        features: ['iam:identities'],
+        routing: {
+          application: 'iam',
+          hash: '#/identities',
+        },
+      },
+      {
+        id: 'iam-policies',
+        idAttr: 'iam-policies-link',
+        translation: 'sidebar_security_identity_operations_iam_policies',
+        universe: sioUniverse.id,
+        features: ['iam:policies'],
+        routing: {
+          application: 'iam',
+          hash: '#/policies',
+        },
+      },
+      {
+        id: 'iam-api-keys',
+        idAttr: 'iam-api-keys-link',
+        translation: 'sidebar_security_identity_operations_iam_api-keys',
+        universe: sioUniverse.id,
+        features: ['iam:api-keys'],
+        routing: {
+          application: 'iam',
+          hash: '#/api-keys',
+        },
+      },
+    ]
+  },
+  {
     id: 'security-identity',
     idAttr: 'security-identity-link',
     translation: 'sidebar_security_identity',
     universe: sioUniverse.id,
-    features: ['iam', 'key-management-service'],
+    features: ['iam:legacy', 'key-management-service'],
     children: [
       {
         id: 'security-identity-operation-iam',
         idAttr: 'security-identity-operation-iam-link',
         translation: 'sidebar_security_identity_operations_iam',
         universe: sioUniverse.id,
-        features: ['iam'],
+        features: ['iam:legacy'],
         routing: {
           application: 'iam',
           hash: '#/',

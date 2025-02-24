@@ -1,0 +1,12 @@
+{
+  "iam_identities_header_heading": "Identités",
+  "iam_identities_header_guide_text": "Guides",
+  "iam_identities_breadcrumb": "Identités",
+  "iam_identities_users_breadcrumb": "Utilisateurs locaux",
+  "iam_identities_user_groups_breadcrumb": "Groupes d'utilisateurs",
+  "iam_identities_sso_breadcrumb": "SSO",
+  "iam_identities_sso_details_breadcrumb": "SSO Details",
+  "iam_identities_header_tabs_item_users": "Utilisateurs locaux",
+  "iam_identities_header_tabs_item_user_groups": "Groupes d'utilisateurs",
+  "iam_identities_header_tabs_item_sso": "SSO"
+}
