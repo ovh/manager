@@ -48,6 +48,11 @@ const HOSTING_SVG = SvgIconWrapper({ name: OvhProductName.HOSTING });
 const OFFICE365_SVG = SvgIconWrapper({ name: OvhProductName.OFFICE365 });
 const PROJECTCLOUD_SVG = SvgIconWrapper({ name: OvhProductName.PROJECTCLOUD });
 const EXCHANGE_SVG = SvgIconWrapper({ name: OvhProductName.EXCHANGE });
+const ZIMBRA_SVG = SvgIconWrapper({
+  name: OvhProductName.ZIMBRA,
+  width: 40,
+  height: 40,
+});
 const TELECOMETHERNET_SVG = SvgIconWrapper({
   name: OvhProductName.TELECOMETHERNET,
 });
@@ -77,6 +82,7 @@ export {
   HEADSET_SVG,
   TELEPHONY_SVG,
   EXCHANGE_SVG,
+  ZIMBRA_SVG,
   IP_SVG,
   VPS_SVG,
   NUTANIX_SVG,

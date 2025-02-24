@@ -15,6 +15,7 @@ import { ReactComponent as Hosting } from './hosting.svg';
 import { ReactComponent as Office365 } from './office365.svg';
 import { ReactComponent as Sharepoint } from './sharepoint.svg';
 import { ReactComponent as Exchange } from './exchange.svg';
+import { ReactComponent as Zimbra } from './zimbra.svg';
 import { ReactComponent as Headset } from './headset.svg';
 
 import { ReactComponent as BareMetalCloud } from './container/bare _metal_cloud.svg';
@@ -45,7 +46,7 @@ import { ReactComponent as Star } from './container/star.svg';
 import { ReactComponent as CloudChangelog } from './container/cloud_changelog.svg';
 import { ReactComponent as HostingChangelog } from './container/hosting_changelog.svg';
 
-export { Hosting, Office365, Sharepoint, Exchange };
+export { Hosting, Office365, Sharepoint, Exchange, Zimbra };
 export { TelecomEthernet, Telephony, Headset };
 
 export { Helpe, Leaf, LiveChat, NetworkStatus, Store, Email };
