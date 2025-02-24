@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.17.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.16.2...@ovh-ux/ng-ovh-cloud-universe-components@2.17.0) (2025-02-24)
+
+
+### Features
+
+* **pci.instances:** add LZ automatic instance backup ([#14434](https://github.com/ovh/manager/issues/14434)) ([edfc171](https://github.com/ovh/manager/commit/edfc1711a4f6c929e463506e9ded95ae9feb10f7))
+
+
+
+
+
 ## [2.16.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.16.1...@ovh-ux/ng-ovh-cloud-universe-components@2.16.2) (2025-01-02)
 
 

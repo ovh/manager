@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.81.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.80.1...@ovh-ux/manager-pci@6.81.0) (2025-02-24)
+
+
+### Bug Fixes
+
+* **pci-volume-backup:** add 1AZ/3AZ chips ([#15506](https://github.com/ovh/manager/issues/15506)) ([f84219b](https://github.com/ovh/manager/commit/f84219be54ea9b647e6e239370dee90c9066e237))
+* **pci:** update new instance guide link for us ([#14047](https://github.com/ovh/manager/issues/14047)) ([427c74a](https://github.com/ovh/manager/commit/427c74aa446aa691594f2cc490d183fa2dbd0a43))
+
+
+### Features
+
+* **pci.instances:** add LZ automatic instance backup ([#14434](https://github.com/ovh/manager/issues/14434)) ([edfc171](https://github.com/ovh/manager/commit/edfc1711a4f6c929e463506e9ded95ae9feb10f7))
+
+
+
+
+
 ## [6.80.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.80.0...@ovh-ux/manager-pci@6.80.1) (2025-02-20)
 
 
