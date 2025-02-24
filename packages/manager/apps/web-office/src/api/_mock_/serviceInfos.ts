@@ -21,7 +21,7 @@ export const mockOfficeLicenseServiceInfos: OfficeLicenseServiceInfosType = {
     manualPayment: null,
     period: 1,
   },
-  renewalType: RenewalTypeEnum.AutomaticForcedProduct,
+  renewalType: RenewalTypeEnum.AUTOMATIC_FORCED_PRODUCT,
   serviceId: 12345,
-  status: StateEnum.Ok,
+  status: StateEnum.OK,
 };
