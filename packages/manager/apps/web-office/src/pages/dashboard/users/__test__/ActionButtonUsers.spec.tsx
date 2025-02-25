@@ -24,14 +24,12 @@ describe('Users datagrid (licence) action menu', () => {
 
     expect(menuItems[0]).toHaveAttribute(
       'label',
-      usersTranslation.dashboard_users_action_user_change_password,
-    );
-
-    expect(menuItems[1]).toHaveAttribute(
-      'label',
       usersTranslation.dashboard_users_action_user_edit,
     );
-
+    expect(menuItems[1]).toHaveAttribute(
+      'label',
+      usersTranslation.dashboard_users_action_user_change_password,
+    );
     expect(menuItems[2]).toHaveAttribute(
       'label',
       usersTranslation.dashboard_users_action_user_delete,
@@ -52,12 +50,11 @@ describe('Users datagrid (licence) action menu', () => {
 
     expect(menuItems[0]).toHaveAttribute(
       'label',
-      usersTranslation.dashboard_users_action_user_change_password,
+      usersTranslation.dashboard_users_action_user_edit,
     );
-
     expect(menuItems[1]).toHaveAttribute(
       'label',
-      usersTranslation.dashboard_users_action_user_edit,
+      usersTranslation.dashboard_users_action_user_change_password,
     );
 
     expect(menuItems[2]).toHaveAttribute(

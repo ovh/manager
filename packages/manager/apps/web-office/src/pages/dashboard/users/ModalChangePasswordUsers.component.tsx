@@ -212,7 +212,7 @@ export default function ModalChangePasswordUsers() {
                 </OdsFormField>
               )}
             />
-            <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+            <OdsText preset={ODS_TEXT_PRESET.paragraph} className="mt-6">
               <div>{t('dashboard_users_change_password_helper1')}</div>
               <ul className="mt-0">
                 <li>{t('dashboard_users_change_password_helper2')}</li>

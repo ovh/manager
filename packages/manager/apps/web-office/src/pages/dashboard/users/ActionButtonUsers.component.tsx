@@ -47,10 +47,21 @@ const ActionButtonUsers: React.FC<ActionButtonUsersProps> = ({
   const handleEditUserClick = () => navigate(hrefEditUsers);
 
   const actionItems = [
+    {
+      id: 1,
+      onclick: handleEditUserClick,
+      label: t('dashboard_users_action_user_edit'),
+      urn: licenceDetail.iam.urn,
+      iamActions: [
+        ...(!licenceDetail.tenantServiceName
+          ? [IAM_ACTIONS.user.edit]
+          : [IAM_ACTIONS.licencePrepaid.edit]),
+      ],
+    },
     ...(!usersItem.isVirtual
       ? [
           {
-            id: 1,
+            id: 2,
             onclick: handlePasswordChangeClick,
             label: t('dashboard_users_action_user_change_password'),
             urn: licenceDetail.iam.urn,
@@ -62,17 +73,6 @@ const ActionButtonUsers: React.FC<ActionButtonUsersProps> = ({
           },
         ]
       : []),
-    {
-      id: 2,
-      onclick: handleEditUserClick,
-      label: t('dashboard_users_action_user_edit'),
-      urn: licenceDetail.iam.urn,
-      iamActions: [
-        ...(!licenceDetail.tenantServiceName
-          ? [IAM_ACTIONS.user.edit]
-          : [IAM_ACTIONS.licencePrepaid.edit]),
-      ],
-    },
     ...(!usersItem.isVirtual
       ? [
           {
