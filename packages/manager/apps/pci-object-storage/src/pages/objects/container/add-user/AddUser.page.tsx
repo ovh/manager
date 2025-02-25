@@ -6,7 +6,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ODS_BUTTON_VARIANT, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Translation, useTranslation } from 'react-i18next';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { ApiError } from '@ovh-ux/manager-core-api';
@@ -29,6 +29,8 @@ export default function AddUserToContainerPage() {
   const { projectId } = useParams();
   const [searchPrams] = useSearchParams();
   const containerId = searchPrams.get('containerId');
+
+  const modalRef = useRef(undefined);
 
   const { data: storages, isPending: isStoragesPending } = useAllStorages(
     projectId,
@@ -93,8 +95,26 @@ export default function AddUserToContainerPage() {
 
   const isPending = isPendingListUsers || isPendingAddUser || isStoragesPending;
 
+  /* The following useEffect is a hack to allow the OdsSelect overflowing
+   * in the OdsModal thus allowing the user to select an item even for long lists.
+   * This hack can be removed once this issue is fixed on ods side, and this
+   * version of ods is available in pci-common & manager-react-components.
+   */
+  useEffect(() => {
+    if (!modalRef.current) return;
+    const { shadowRoot } = modalRef.current;
+    if (!shadowRoot.querySelector('style')) {
+      const style = document.createElement('style');
+      style.innerHTML = `
+        .ods-modal__dialog { overflow: visible !important; }
+        .ods-modal__dialog__content { overflow: visible !important; }
+      `;
+      shadowRoot.appendChild(style);
+    }
+  }, [modalRef.current]);
+
   return (
-    <OdsModal onOdsClose={onClose} isOpen>
+    <OdsModal onOdsClose={onClose} ref={modalRef} isOpen>
       <OdsText preset="heading-3">
         {t(
           'pci_projects_project_storages_containers_container_addUser_container_title',
