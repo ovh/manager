@@ -25,9 +25,13 @@ import { ListingContext } from '../../listingContext';
 import { urls } from '@/routes/routes.constant';
 import { IpFilter, TypeFilter } from '../filters';
 import { ipFormatter } from '@/utils';
-import { IpGroupDatagrid } from '../IpGroupDatagrid/IpGroupDatagrid';
+import { getIpReverse } from '@/data/api';
 
-export type CellType = string;
+// export type CellType = string;
+export type CellType = {
+  ip: string;
+  subRows?: CellType[];
+};
 
 export const IpDatagrid = () => {
   const { apiFilter, ipToSearch } = useContext(ListingContext);
@@ -43,84 +47,84 @@ export const IpDatagrid = () => {
     {
       id: 'ip',
       label: t('listingColumnsIp'),
-      cell: (ip: CellType) => {
-        return <IpCell ip={ip}></IpCell>;
+      cell: (cell: CellType) => {
+        return <IpCell ip={cell.ip}></IpCell>;
       },
     },
     {
       id: 'ip-type',
       label: t('listingColumnsIpType'),
-      cell: (ip: CellType) => {
-        return <IpType ip={ip}></IpType>;
+      cell: (cell: CellType) => {
+        return <IpType ip={cell.ip}></IpType>;
       },
     },
     {
       id: 'ip-alerts',
       label: t('listingColumnsIpAlerts'),
-      cell: (ip: CellType) => {
-        return <IpAlerts ip={ip}></IpAlerts>;
+      cell: (cell: CellType) => {
+        return <IpAlerts ip={cell.ip}></IpAlerts>;
       },
     },
     {
       id: 'ip-region',
       label: t('listingColumnsIpRegion'),
-      cell: (ip: CellType) => {
-        return <IpRegion ip={ip}></IpRegion>;
+      cell: (cell: CellType) => {
+        return <IpRegion ip={cell.ip}></IpRegion>;
       },
     },
     {
       id: 'ip-country',
       label: t('listingColumnsIpCountry'),
-      cell: (ip: CellType) => {
-        return <IpCountry ip={ip}></IpCountry>;
+      cell: (cell: CellType) => {
+        return <IpCountry ip={cell.ip}></IpCountry>;
       },
     },
     {
       id: 'ip-attached-service',
       label: t('listingColumnsIpAttachedService'),
-      cell: (ip: CellType) => {
-        return <IpAttachedService ip={ip}></IpAttachedService>;
+      cell: (cell: CellType) => {
+        return <IpAttachedService ip={cell.ip}></IpAttachedService>;
       },
     },
     {
       id: 'ip-reverse',
       label: t('listingColumnsIpReverseDNS'),
-      cell: (ip: CellType) => {
-        return <IpReverse ip={ip}></IpReverse>;
+      cell: (cell: CellType) => {
+        return <IpReverse ip={cell.ip}></IpReverse>;
       },
     },
     {
       id: 'ip-vmac',
       label: t('listingColumnsIpVMac'),
-      cell: (ip: CellType) => {
-        return <IpVmac ip={ip}></IpVmac>;
+      cell: (cell: CellType) => {
+        return <IpVmac ip={cell.ip}></IpVmac>;
       },
     },
     {
       id: 'ip-ddos',
       label: t('listingColumnsIpAntiDDos'),
-      cell: (ip: CellType) => {
-        return <IpAntiDdos ip={ip}></IpAntiDdos>;
+      cell: (cell: CellType) => {
+        return <IpAntiDdos ip={cell.ip}></IpAntiDdos>;
       },
     },
     {
       id: 'ip-edge-firewall',
       label: t('listingColumnsIpEdgeFirewall'),
-      cell: (ip: CellType) => {
-        return <IpEdgeFirewall ip={ip}></IpEdgeFirewall>;
+      cell: (cell: CellType) => {
+        return <IpEdgeFirewall ip={cell.ip}></IpEdgeFirewall>;
       },
     },
     {
       id: 'ip-game-firewall',
       label: t('listingColumnsIpGameFirewall'),
-      cell: (ip: CellType) => {
-        return <IpGameFirewall ip={ip}></IpGameFirewall>;
+      cell: (cell: CellType) => {
+        return <IpGameFirewall ip={cell.ip}></IpGameFirewall>;
       },
     },
     {
       id: 'action',
       label: '',
-      cell: (ip: CellType) => <ActionsCell ip={ip} />,
+      cell: (cell: CellType) => <ActionsCell ip={cell.ip} />,
     },
   ];
 
@@ -130,12 +134,30 @@ export const IpDatagrid = () => {
     const filtered = ipToSearch
       ? ipList.filter((ip) => ip.indexOf(ipToSearch) !== -1)
       : ipList;
-    setFilteredIpList(filtered);
-    setPaginatedIpList(filtered.slice(0, pageSize * numberOfPageDisplayed));
+    setFilteredIpList(filtered.map((ip) => ({ ip })));
+    setPaginatedIpList(
+      filtered.map((ip) => ({ ip })).slice(0, pageSize * numberOfPageDisplayed),
+    );
   }, [ipList, numberOfPageDisplayed, ipToSearch]);
 
   const loadMoreIps = () => {
     setNumberOfPageDisplayed(numberOfPageDisplayed + 1);
+  };
+
+  const getIpChild = async (ip: string) => {
+    const { data: ipChildList } = await getIpReverse({ ip });
+    const paginatedListWithSubRows = paginatedIpList.map((row: CellType) => {
+      if (ip === row.ip)
+        return {
+          ...row,
+          subRows: ipChildList.map((ipChild) => ({ ip: ipChild.ipReverse })),
+        };
+      return row;
+    });
+    // eslint-disable-next-line no-console
+    console.log(paginatedListWithSubRows);
+    setPaginatedIpList(paginatedListWithSubRows);
+    return paginatedListWithSubRows;
   };
 
   return (
@@ -154,11 +176,18 @@ export const IpDatagrid = () => {
         totalItems={filteredIpList?.length}
         hasNextPage={numberOfPageDisplayed * pageSize < filteredIpList?.length}
         onFetchNextPage={loadMoreIps}
-        getRowCanExpand={(row) => ipFormatter(row.original).isGroup}
-        renderSubComponent={(row) => {
-          // console.log(row.getVisibleCells()[0].column.getSize());
-          return <IpGroupDatagrid row={row}></IpGroupDatagrid>;
+        getRowCanExpand={(row) => ipFormatter(row.original.ip).isGroup}
+        onExpand={(row) => getIpChild(row.original.ip)}
+        getSubRows={(originalRow) => {
+          // eslint-disable-next-line no-console
+          console.log(originalRow.subRows);
+          return originalRow.subRows;
         }}
+        isLoading={isLoading}
+        numberOfLoadingRows={10}
+        // renderSubComponent={(row) => {
+        //   return <IpGroupDatagrid row={row}></IpGroupDatagrid>;
+        // }}
       />
     </RedirectionGuard>
   );

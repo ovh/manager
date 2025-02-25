@@ -38,10 +38,6 @@ export const IpGroupDatagrid = ({ row }: { row: Row<string> }) => {
       cell: (ip: string) => {
         return <IpCell ip={ip}></IpCell>;
       },
-      size: row
-        .getVisibleCells()
-        .find((cell) => cell.id === `${row.index}_ip`)
-        .column.getSize(),
     },
     {
       id: 'ip-type',
@@ -49,10 +45,6 @@ export const IpGroupDatagrid = ({ row }: { row: Row<string> }) => {
       cell: () => {
         return <IpType ip={row.original}></IpType>;
       },
-      size: row
-        .getVisibleCells()
-        .find((cell) => cell.id === `${row.index}_ip-type`)
-        .column.getSize(),
     },
     {
       id: 'ip-alerts',
@@ -60,10 +52,6 @@ export const IpGroupDatagrid = ({ row }: { row: Row<string> }) => {
       cell: () => {
         return <IpAlerts ip={row.original}></IpAlerts>;
       },
-      size: row
-        .getVisibleCells()
-        .find((cell) => cell.id === `${row.index}_ip-alerts`)
-        .column.getSize(),
     },
     {
       id: 'ip-region',
@@ -71,10 +59,6 @@ export const IpGroupDatagrid = ({ row }: { row: Row<string> }) => {
       cell: () => {
         return <IpRegion ip={row.original}></IpRegion>;
       },
-      size: row
-        .getVisibleCells()
-        .find((cell) => cell.id === `${row.index}_ip-region`)
-        .column.getSize(),
     },
     {
       id: 'ip-country',
@@ -82,10 +66,6 @@ export const IpGroupDatagrid = ({ row }: { row: Row<string> }) => {
       cell: () => {
         return <IpCountry ip={row.original}></IpCountry>;
       },
-      size: row
-        .getVisibleCells()
-        .find((cell) => cell.id === `${row.index}_ip-country`)
-        .column.getSize(),
     },
     {
       id: 'ip-attached-service',
@@ -93,10 +73,6 @@ export const IpGroupDatagrid = ({ row }: { row: Row<string> }) => {
       cell: () => {
         return <IpAttachedService ip={row.original}></IpAttachedService>;
       },
-      size: row
-        .getVisibleCells()
-        .find((cell) => cell.id === `${row.index}_ip-attached-service`)
-        .column.getSize(),
     },
     {
       id: 'ip-reverse',
@@ -104,10 +80,6 @@ export const IpGroupDatagrid = ({ row }: { row: Row<string> }) => {
       cell: (ip: string) => {
         return <IpReverse ip={ip}></IpReverse>;
       },
-      size: row
-        .getVisibleCells()
-        .find((cell) => cell.id === `${row.index}_ip-reverse`)
-        .column.getSize(),
     },
     {
       id: 'ip-vmac',
@@ -115,10 +87,6 @@ export const IpGroupDatagrid = ({ row }: { row: Row<string> }) => {
       cell: (ip: string) => {
         return <IpVmac ip={ip}></IpVmac>;
       },
-      size: row
-        .getVisibleCells()
-        .find((cell) => cell.id === `${row.index}_ip-vmac`)
-        .column.getSize(),
     },
     {
       id: 'ip-ddos',
@@ -126,10 +94,6 @@ export const IpGroupDatagrid = ({ row }: { row: Row<string> }) => {
       cell: (ip: string) => {
         return <IpAntiDdos ip={ip}></IpAntiDdos>;
       },
-      size: row
-        .getVisibleCells()
-        .find((cell) => cell.id === `${row.index}_ip-ddos`)
-        .column.getSize(),
     },
     {
       id: 'ip-edge-firewall',
@@ -137,10 +101,6 @@ export const IpGroupDatagrid = ({ row }: { row: Row<string> }) => {
       cell: (ip: string) => {
         return <IpEdgeFirewall ip={ip}></IpEdgeFirewall>;
       },
-      size: row
-        .getVisibleCells()
-        .find((cell) => cell.id === `${row.index}_ip-edge-firewall`)
-        .column.getSize(),
     },
     {
       id: 'ip-game-firewall',
@@ -148,19 +108,11 @@ export const IpGroupDatagrid = ({ row }: { row: Row<string> }) => {
       cell: (ip: string) => {
         return <IpGameFirewall ip={ip}></IpGameFirewall>;
       },
-      size: row
-        .getVisibleCells()
-        .find((cell) => cell.id === `${row.index}_ip-game-firewall`)
-        .column.getSize(),
     },
     {
       id: 'action',
       label: '',
       cell: (ip: string) => <ActionsCell ip={ip} />,
-      size: row
-        .getVisibleCells()
-        .find((cell) => cell.id === `${row.index}_action`)
-        .column.getSize(),
     },
   ];
 

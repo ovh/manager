@@ -134,6 +134,8 @@ export interface DatagridProps<T> {
   /** Hide datagrid header if true */
   hideHeader?: boolean;
   onItemsChange?: (table: Table<T>) => void;
+  onExpand?: (row: Row<T>) => void;
+  getSubRows?: (originalRow: T) => T[];
 }
 
 export const Datagrid = <T,>({
@@ -160,23 +162,28 @@ export const Datagrid = <T,>({
   getRowCanExpand,
   onItemsChange,
   hideHeader,
+  onExpand,
+  getSubRows,
 }: DatagridProps<T>) => {
   const { t } = useTranslation('datagrid');
   const pageCount = pagination
     ? Math.ceil(totalItems / pagination.pageSize)
     : 1;
-
+  const [expanded, setExpanded] = React.useState<ExpandedState>({});
   const table = useReactTable({
     columns: [
-      ...(getRowCanExpand && renderSubComponent
+      ...(getRowCanExpand
         ? [
             {
               id: 'expander',
-              cell: ({ row }) => {
-                return row.getCanExpand() ? (
+              cell: ({ row }: { row: Row<T> }) => {
+                return row.getCanExpand() && !row.parentId ? (
                   <OdsButton
                     label=""
-                    onClick={row.getToggleExpandedHandler()}
+                    onClick={async () => {
+                      await onExpand?.(row);
+                      row.getToggleExpandedHandler()();
+                    }}
                     icon={
                       row.getIsExpanded()
                         ? ODS_ICON_NAME.chevronDown
@@ -207,11 +214,16 @@ export const Datagrid = <T,>({
     sortDescFirst: false,
     getCoreRowModel: getCoreRowModel(),
     getRowCanExpand,
+    getSubRows,
+    getExpandedRowModel: getExpandedRowModel(),
+    onExpandedChange: (expand) => setExpanded(expand),
+    autoResetExpanded: false,
     pageCount,
     ...(!manualSorting && {
       onSortingChange: onSortChange,
       state: {
         sorting,
+        expanded,
       },
       getSortedRowModel: getSortedRowModel(),
     }),
@@ -220,6 +232,7 @@ export const Datagrid = <T,>({
         ...(sorting && {
           sorting: [sorting],
         }),
+        expanded,
       },
       onStateChange: (updater) => {
         if (typeof updater === 'function') {
@@ -232,9 +245,9 @@ export const Datagrid = <T,>({
     }),
   });
 
-  useEffect(() => {
-    !!onItemsChange ? onItemsChange(table) : table.resetExpanded();
-  }, [items]);
+  // useEffect(() => {
+  //   !!onItemsChange ? onItemsChange(table) : table.resetExpanded();
+  // }, [items]);
 
   const filtersColumns = useMemo<ColumnFilter[]>(
     () =>
@@ -339,6 +352,18 @@ export const Datagrid = <T,>({
                           {
                             'w-[2rem]': cell.id.indexOf('expander') !== -1,
                           },
+                          !row
+                            .getAllCells()
+                            .find((c) => c.id.indexOf('expander') !== -1) &&
+                            cell.column.getIsFirstColumn()
+                            ? `!pl-[${row.depth * 2}rem]`
+                            : '',
+                          !!row
+                            .getAllCells()
+                            .find((c) => c.id.indexOf('expander') !== -1) &&
+                            cell.column.getIndex() == 1
+                            ? `!pl-[${row.depth * 2}rem]`
+                            : '',
                         )}
                       >
                         {flexRender(
@@ -396,6 +421,7 @@ export const Datagrid = <T,>({
           </table>
         </OdsTable>
       </div>
+      <div>{JSON.stringify(expanded)}</div>
       {!onFetchNextPage && items?.length > 0 && pagination ? (
         <OdsPagination
           defaultCurrentPage={pagination.pageIndex + 1}
