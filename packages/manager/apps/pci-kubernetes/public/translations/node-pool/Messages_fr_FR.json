@@ -28,7 +28,7 @@
   "kube_common_node_pool_desired_node": "Nombre de nœuds",
   "kube_common_node_pool_autoscaling": "Autoscaling",
   "kube_common_node_pool_localisation": "Localisation",
-  "kube_common_node_pool_model": "Model",
+  "kube_common_node_pool_model": "Modèle",
   "kube_common_node_pool_liste": "Liste des pools de nœuds",
   "kube_common_add_node_pool": "Ajouter le pool de nœuds",
   "kube_common_min_max_nodes": "Min {{minNodes}}, Max {{maxNodes}}"

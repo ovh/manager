@@ -10,11 +10,14 @@ import {
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
+import { useContext } from 'react';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { NodePoolPrice } from '@/api/data/kubernetes';
 
 const Estimation = ({ nodePools }: { nodePools?: NodePoolPrice[] }) => {
   const { t } = useTranslation('node-pool');
-
+  const context = useContext(ShellContext);
+  const region = context.environment.getRegion();
   const { getFormattedMonthlyCatalogPrice } = useCatalogPrice(4, {
     exclVat: true,
   });
@@ -30,13 +33,15 @@ const Estimation = ({ nodePools }: { nodePools?: NodePoolPrice[] }) => {
       >
         {t('kube_common_node_pool_estimated_cost')}
       </OsdsText>
-      <OsdsText
-        color={ODS_THEME_COLOR_INTENT.text}
-        level={ODS_TEXT_LEVEL.body}
-        size={ODS_TEXT_SIZE._400}
-      >
-        {t('kube_common_node_pool_estimation_text')}
-      </OsdsText>
+      {region !== 'US' && (
+        <OsdsText
+          color={ODS_THEME_COLOR_INTENT.text}
+          level={ODS_TEXT_LEVEL.body}
+          size={ODS_TEXT_SIZE._400}
+        >
+          {t('kube_common_node_pool_estimation_text')}
+        </OsdsText>
+      )}
       <OsdsText
         color={ODS_THEME_COLOR_INTENT.text}
         level={ODS_TEXT_LEVEL.body}
@@ -51,9 +56,7 @@ const Estimation = ({ nodePools }: { nodePools?: NodePoolPrice[] }) => {
                   0,
                 ),
               )
-            : getFormattedMonthlyCatalogPrice(0)
-                .replace('0.00', 'x.xx')
-                .replace('0,00', 'x.xx'),
+            : getFormattedMonthlyCatalogPrice(0),
         })}
       </OsdsText>
       <OsdsText

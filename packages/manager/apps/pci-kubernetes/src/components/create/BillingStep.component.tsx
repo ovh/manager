@@ -25,6 +25,8 @@ import {
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+import { useContext } from 'react';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
 const checkedClass =
   'cursor-pointer font-bold bg-[--ods-color-blue-100] border-[--ods-color-blue-600]';
@@ -51,7 +53,8 @@ export type TBillingStepProps = {
 export default function BillingStep(props: TBillingStepProps): JSX.Element {
   const { t } = useTranslation('billing-anti-affinity');
   const { t: tFlavourBilling } = useTranslation('flavor-billing');
-
+  const context = useContext(ShellContext);
+  const region = context.environment.getRegion();
   const {
     getFormattedMonthlyCatalogPrice,
     getFormattedHourlyCatalogPrice,
@@ -73,7 +76,7 @@ export default function BillingStep(props: TBillingStepProps): JSX.Element {
             'pci_projects_project_instances_configure_billing_type',
           )}
         </OsdsText>
-        {props.monthlyBilling.isComingSoon ? (
+        {props.monthlyBilling.isComingSoon && region !== 'US' ? (
           <OsdsMessage
             data-testid="coming_soon_message"
             type={ODS_MESSAGE_TYPE.info}
