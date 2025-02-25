@@ -5,13 +5,7 @@ import {
   useProjectUrl,
   useTranslatedMicroRegions,
 } from '@ovh-ux/manager-react-components';
-import {
-  Dispatch,
-  SetStateAction,
-  useCallback,
-  useEffect,
-  useMemo,
-} from 'react';
+import { Dispatch, SetStateAction, useEffect, useMemo } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { OsdsLink } from '@ovhcloud/ods-components/react';
@@ -20,17 +14,15 @@ import { usePciUrl } from '@ovh-ux/manager-pci-common';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { TextCell } from './cell/TextCell.component';
 import { NameIdCell } from '@/pages/instances/datagrid/cell/NameIdCell.component';
-import { useInstances, TInstance } from '@/data/hooks/instance/useInstances';
-import {
-  ActionsCell,
-  TActionsCellHrefs,
-} from '@/pages/instances/datagrid/cell/ActionsCell.component';
+import { useInstances } from '@/data/hooks/instance/useInstances';
+import { ActionsCell } from '@/pages/instances/datagrid/cell/ActionsCell.component';
 
 import { StatusCell } from '@/pages/instances/datagrid/cell/StatusCell.component';
 import { ListCell } from '@/pages/instances/datagrid/cell/ListCell.component';
 import { mapAddressesToListItems } from '@/pages/instances/mapper';
 import { Spinner } from '../spinner/Spinner.component';
 import { DeepReadonly } from '@/types/utils.type';
+import { TInstance } from '@/types/instance/entity.type';
 
 type TFilterWithLabel = Filter & { label: string };
 type TSorting = {
@@ -73,28 +65,12 @@ const DatagridComponent = ({
     isFetching,
     isRefetching,
     isError,
-  } = useInstances(projectId, {
+  } = useInstances(projectId, projectUrl, {
     limit: 10,
     sort: sorting.id,
     sortOrder: sorting.desc ? 'desc' : 'asc',
     filters,
   });
-
-  const actionsCellHrefs = useCallback(
-    (instance: TInstance): TActionsCellHrefs => {
-      const basePath = `region/${instance.region}/instance/${instance.id}`;
-      return {
-        deleteHref: `${basePath}/delete`,
-        stopHref: `${basePath}/stop`,
-        startHref: `${basePath}/start`,
-        shelveHref: `${basePath}/shelve`,
-        unshelvetHref: `${basePath}/unshelve`,
-        autobackupHref: `${projectUrl}/workflow/new`,
-        detailsHref: instance.id,
-      };
-    },
-    [projectUrl],
-  );
 
   const datagridColumns: DatagridColumn<TInstance>[] = useMemo(
     () => [
@@ -179,16 +155,13 @@ const DatagridComponent = ({
       {
         id: 'actions',
         cell: (instance) => (
-          <ActionsCell
-            isLoading={isRefetching}
-            hrefs={actionsCellHrefs(instance)}
-          />
+          <ActionsCell isLoading={isRefetching} instance={instance} />
         ),
         label: t('pci_instances_list_column_actions'),
         isSortable: false,
       },
     ],
-    [actionsCellHrefs, isRefetching, t, translateMicroRegion, pciUrl],
+    [isRefetching, t, translateMicroRegion, pciUrl],
   );
 
   const errorMessage = useMemo(

@@ -1,6 +1,6 @@
 import { describe } from 'vitest';
-import { TAddress } from '@/data/hooks/instance/useInstances';
 import { mapAddressesToListItems } from '.';
+import { TAddress } from '@/types/instance/entity.type';
 
 describe('Mapper functions', () => {
   describe('Considering the mapAddressesToListItems function', () => {
