@@ -4,7 +4,7 @@ import { FC } from 'react';
 import { useHref } from 'react-router-dom';
 import { BaseTextCell } from '@/components/datagrid/cell/TextCell.component';
 import { LoadingCell } from '@/components/datagrid/cell/LoadingCell.component';
-import { TInstance } from '@/data/hooks/instance/useInstances';
+import { TInstance } from '@/types/instance/entity.type';
 
 type TNameIdCellProps = {
   instance: TInstance;

@@ -11,8 +11,17 @@ import { useCallback, useEffect, useMemo } from 'react';
 import { Filter } from '@ovh-ux/manager-core-api';
 import { getInstances } from '@/data/api/instance';
 import { instancesQueryKey } from '@/utils';
+import { TInstanceDto, TInstanceStatusDto } from '@/types/instance/api.type';
+import {
+  TInstanceStatusSeverity,
+  TInstanceStatus,
+  TInstanceAddressType,
+  TAddress,
+  TInstance,
+  TInstanceAction,
+} from '@/types/instance/entity.type';
 import { DeepReadonly } from '@/types/utils.type';
-import { TInstanceDto, TInstanceStatusDto } from '@/types/instance/api.types';
+import { TActionName } from '@/types/instance/common.type';
 
 type FilterWithLabel = Filter & { label: string };
 
@@ -21,39 +30,6 @@ export type TUseInstancesQueryParams = DeepReadonly<{
   sort: string;
   sortOrder: 'asc' | 'desc';
   filters: FilterWithLabel[];
-}>;
-
-export type TAddressType = 'public' | 'private' | 'floating';
-
-export type TInstanceStatusSeverity = 'success' | 'error' | 'warning' | 'info';
-export type TInstanceStatusState = TInstanceStatusDto;
-export type TInstanceStatus = {
-  state: TInstanceStatusState;
-  severity: TInstanceStatusSeverity;
-};
-
-export type TAddress = {
-  ip: string;
-  version: number;
-  gatewayIp: string;
-};
-
-export type TVolume = {
-  id: string;
-  name: string;
-};
-
-export type TInstance = DeepReadonly<{
-  id: string;
-  name: string;
-  flavorId: string;
-  flavorName: string;
-  status: TInstanceStatus;
-  region: string;
-  imageId: string;
-  imageName: string;
-  addresses: Map<TAddressType, TAddress[]>;
-  volumes: TVolume[];
 }>;
 
 const listQueryKeyPredicate = (projectId: string) => (query: Query) =>
@@ -152,9 +128,43 @@ const getInstanceStatus = (status: TInstanceStatusDto): TInstanceStatus => ({
 const getInconsistency = (data: TInstance[] | undefined): boolean =>
   !!data?.some((elt) => elt.status.state === 'UNKNOWN');
 
+const getActionHrefByName = (
+  projectUrl: string,
+  name: TActionName,
+  { region, id }: Pick<TInstance, 'id' | 'region'>,
+): TInstanceAction['link'] => {
+  if (name === 'details') {
+    return { path: id, isExternal: false };
+  }
+
+  if (name === 'create_autobackup') {
+    return { path: `${projectUrl}/workflow/new`, isExternal: true };
+  }
+
+  const actions = new Set(['delete', 'stop', 'start', 'shelve', 'unshelve']);
+  if (actions.has(name)) {
+    return {
+      path: `region/${region}/instance/${id}/${name}`,
+      isExternal: false,
+    };
+  }
+
+  return { path: '', isExternal: false };
+};
+
+const mapInstanceActions = (
+  instance: TInstanceDto,
+  projectUrl: string,
+): TInstanceAction[] =>
+  instance.actions.map((action) => ({
+    ...action,
+    link: getActionHrefByName(projectUrl, action.name, instance),
+  }));
+
 export const instancesSelector = (
   { pages }: InfiniteData<TInstanceDto[], number>,
   limit: number,
+  projectUrl: string,
 ): TInstance[] =>
   pages
     .flatMap((page) => (page.length > limit ? page.slice(0, limit) : page))
@@ -171,11 +181,13 @@ export const instancesSelector = (
           return acc.set(type, [...foundAddresses, rest]);
         }
         return acc.set(type, [rest]);
-      }, new Map<TAddressType, TAddress[]>()),
+      }, new Map<TInstanceAddressType, TAddress[]>()),
+      actions: mapInstanceActions(instanceDto, projectUrl),
     }));
 
 export const useInstances = (
   projectId: string,
+  projectUrl: string,
   { limit, sort, sortOrder, filters }: TUseInstancesQueryParams,
 ) => {
   const queryClient = useQueryClient();
@@ -296,8 +308,8 @@ export const useInstances = (
       }),
     select: useCallback(
       (rawData: InfiniteData<TInstanceDto[], number>) =>
-        instancesSelector(rawData, limit),
-      [limit],
+        instancesSelector(rawData, limit, projectUrl),
+      [limit, projectUrl],
     ),
     placeholderData: keepPreviousData,
   });

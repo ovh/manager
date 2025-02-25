@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import { describe } from 'vitest';
 import StatusChip from './StatusChip.component';
-import { TInstanceStatus } from '@/data/hooks/instance/useInstances';
+import { TInstanceStatus } from '@/types/instance/entity.type';
 
 type Data = {
   status: TInstanceStatus;

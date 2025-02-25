@@ -8,6 +8,7 @@ import {
   PciGuidesHeader,
   Title,
   useColumnFilters,
+  useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
@@ -52,6 +53,7 @@ const Instances: FC = () => {
 
   const { projectId } = useParams() as { projectId: string }; // safe because projectId has already been handled by async route loader
   const project = useRouteLoaderData('root') as TProject;
+  const projectUrl = useProjectUrl('public-cloud');
   const createInstanceHref = useHref('./new');
   const [sorting, setSorting] = useState(initialSorting);
   const [searchField, setSearchField] = useState('');
@@ -63,6 +65,7 @@ const Instances: FC = () => {
 
   const { data, isFetchingNextPage, refresh, isFetching } = useInstances(
     projectId,
+    projectUrl,
     {
       limit: 10,
       sort: sorting.id,

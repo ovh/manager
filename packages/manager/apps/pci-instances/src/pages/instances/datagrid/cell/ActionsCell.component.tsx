@@ -1,66 +1,29 @@
-import { FC } from 'react';
+import { FC, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useHref } from 'react-router-dom';
 import {
   TActionsMenuItem,
   ActionsMenu,
 } from '@/components/menu/ActionsMenu.component';
 import { LoadingCell } from '@/components/datagrid/cell/LoadingCell.component';
-import { DeepReadonly } from '@/types/utils.type';
+import { TInstance } from '@/types/instance/entity.type';
 
-type TActionsCellHref =
-  | 'deleteHref'
-  | 'autobackupHref'
-  | 'detailsHref'
-  | 'stopHref'
-  | 'startHref'
-  | 'shelveHref'
-  | 'unshelvetHref';
-export type TActionsCellHrefs = Record<TActionsCellHref, string>;
-
-export type TActionsCellProps = DeepReadonly<{
+export type TActionsCellProps = {
   isLoading: boolean;
-  hrefs: TActionsCellHrefs;
-}>;
+  instance: TInstance;
+};
 
-export const ActionsCell: FC<TActionsCellProps> = ({ isLoading, hrefs }) => {
+export const ActionsCell: FC<TActionsCellProps> = ({ isLoading, instance }) => {
   const { t } = useTranslation('list');
-  const items: TActionsMenuItem[] = [
-    {
-      label: t('pci_instances_list_action_instance_details'),
-      href: useHref(hrefs.detailsHref),
-      group: 'general',
-    },
-    {
-      label: t('pci_instances_list_action_autobackup'),
-      href: hrefs.autobackupHref,
-      group: 'general',
-    },
-    {
-      label: t('pci_instances_list_action_start_instance'),
-      href: useHref(hrefs.startHref),
-      group: 'boot',
-    },
-    {
-      label: t('pci_instances_list_action_stop_instance'),
-      href: useHref(hrefs.stopHref),
-      group: 'boot',
-    },
-    {
-      label: t('pci_instances_list_action_shelve_instance'),
-      href: useHref(hrefs.shelveHref),
-      group: 'shelve',
-    },
-    {
-      label: t('pci_instances_list_action_unshelve_instance'),
-      href: useHref(hrefs.unshelvetHref),
-      group: 'shelve',
-    },
-    {
-      label: t('pci_instances_list_action_delete_instance'),
-      href: useHref(hrefs.deleteHref),
-    },
-  ];
+
+  const items: TActionsMenuItem[] = useMemo(
+    () =>
+      instance.actions.map((action) => ({
+        link: action.link,
+        label: t(`pci_instances_list_action_${action.name}`),
+        isDisabled: !action.enabled,
+      })),
+    [instance.actions, t],
+  );
 
   return (
     <LoadingCell isLoading={isLoading}>
