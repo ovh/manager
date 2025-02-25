@@ -3982,7 +3982,7 @@
   resolved "https://registry.yarnpkg.com/@gar/promisify/-/promisify-1.1.3.tgz#555193ab2e3bb3b6adc3d551c9c030d9e860daf6"
   integrity sha512-k2Ty1JcVojjJFwrg/ThKi2ujJ7XNLYaFGNB/bWT9wGR+oSMJHMa5w+CUq6p/pVrKeNNgA7pCqEcjSnHVoqJQFw==
 
-"@hookform/resolvers@^3.10.0":
+"@hookform/resolvers@^3.10.0", "@hookform/resolvers@^3.9.1":
   version "3.10.0"
   resolved "https://registry.yarnpkg.com/@hookform/resolvers/-/resolvers-3.10.0.tgz#7bfd18113daca4e57e27e1205b7d5a2d371aa59a"
   integrity sha512-79Dv+3mDF7i+2ajj7SkypSKHhl1cbln1OGavqrsF7p6mbUv11xpqpacPsGDCTRvCSjEEIez2ef1NveSVL3b0Ag==
@@ -3991,11 +3991,6 @@
   version "3.3.4"
   resolved "https://registry.yarnpkg.com/@hookform/resolvers/-/resolvers-3.3.4.tgz#de9b668c2835eb06892290192de6e2a5c906229b"
   integrity sha512-o5cgpGOuJYrd+iMKvkttOclgwRW86EsWJZZRC23prf0uU2i48Htq4PuT73AVb9ionFyZrwYEITuOFGF+BydEtQ==
-
-"@hookform/resolvers@^3.9.1":
-  version "3.10.0"
-  resolved "https://registry.yarnpkg.com/@hookform/resolvers/-/resolvers-3.10.0.tgz#7bfd18113daca4e57e27e1205b7d5a2d371aa59a"
-  integrity sha512-79Dv+3mDF7i+2ajj7SkypSKHhl1cbln1OGavqrsF7p6mbUv11xpqpacPsGDCTRvCSjEEIez2ef1NveSVL3b0Ag==
 
 "@humanwhocodes/config-array@^0.11.14":
   version "0.11.14"
@@ -5856,7 +5851,7 @@
     tailwindcss "^3.4.4"
     uuid "^9.0.1"
 
-"@ovh-ux/manager-react-shell-client@^0.8.5":
+"@ovh-ux/manager-react-shell-client@*", "@ovh-ux/manager-react-shell-client@^0.8.5":
   version "0.8.5"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-shell-client/-/manager-react-shell-client-0.8.5.tgz#b391298e455dd79b0d29a2cfff38a677c8472ef6"
   integrity sha512-e5L8F6ZciX1gDacWCR67zkKXT1R9iNTag1atL+NFnx2MpB4NJBWq5ro6tUVg3q5DBkToYNsdiz1MGG6HxhSfiw==
@@ -5970,6 +5965,18 @@
     "@ovhcloud/ods-common-stencil" "17.2.2"
     "@ovhcloud/ods-common-theming" "17.2.2"
 
+"@ovhcloud/ods-components@^18.3.0":
+  version "18.5.3"
+  resolved "https://artifactory.ovhcloud.tools:443/artifactory/api/npm/digital-tools-manager-aapi-npm/@ovhcloud/ods-components/-/ods-components-18.5.3.tgz#fdda4b29372bcb29b490cd450a450f03ecbbd500"
+  integrity sha512-+Ic1Uh15NHokvcyyejU5ChfG0kC8pqN9T0v8lx1HUyHdNKuXjuSjP3v1RGZuN1OxvvG8WgtaF3kjwSaj2eMZ1w==
+  dependencies:
+    "@floating-ui/dom" "1.6.11"
+    "@stencil/core" "4.16.0"
+    google-libphonenumber "3.2.35"
+    tom-select "2.3.1"
+    tslib "2.6.3"
+    vanillajs-datepicker "1.3.4"
+
 "@ovhcloud/ods-components@^18.4.1":
   version "18.4.1"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-18.4.1.tgz#44e21d23fbf844348e94b966d2aa5c38d8376dc8"
@@ -6019,6 +6026,11 @@
   integrity sha512-0Fr6ZJ10btgkGAXJDun5tftlV1gYFevB7piQiYT4kFjfVXmxmpSw9A1nusPHiZfmV+Dnzv3/+SVxpYK/uccYXw==
   dependencies:
     "@ovhcloud/ods-common-theming" "17.2.2"
+
+"@ovhcloud/ods-themes@^18.3.0":
+  version "18.5.3"
+  resolved "https://artifactory.ovhcloud.tools:443/artifactory/api/npm/digital-tools-manager-aapi-npm/@ovhcloud/ods-themes/-/ods-themes-18.5.3.tgz#44f2b4c565e2c63d487dc3865d2558b11726bc2c"
+  integrity sha512-y3uhYsQvdyx/aJBBKjN899U23FmNq2oFBJRG7VZ3PBrR6TKUuEx4kGKIIE9Lr7Fpw75ayYhuXTLM1gVA5308dA==
 
 "@ovhcloud/ods-themes@^18.4.1":
   version "18.4.1"
@@ -27678,6 +27690,17 @@ vite@^5.0.0:
   optionalDependencies:
     fsevents "~2.3.3"
 
+vite@^5.2.13, vite@^5.4.12:
+  version "5.4.14"
+  resolved "https://registry.yarnpkg.com/vite/-/vite-5.4.14.tgz#ff8255edb02134df180dcfca1916c37a6abe8408"
+  integrity sha512-EK5cY7Q1D8JNhSaPKVK4pwBFvaTmZxEnoKXLG/U9gmdDcihQGNzFlgIvaxezFR4glP1LsuiedwMBqCXH3wZccA==
+  dependencies:
+    esbuild "^0.21.3"
+    postcss "^8.4.43"
+    rollup "^4.20.0"
+  optionalDependencies:
+    fsevents "~2.3.3"
+
 vite@^5.2.2:
   version "5.3.5"
   resolved "https://registry.yarnpkg.com/vite/-/vite-5.3.5.tgz#b847f846fb2b6cb6f6f4ed50a830186138cb83d8"
@@ -27697,17 +27720,6 @@ vite@^5.3.3:
     esbuild "^0.21.3"
     postcss "^8.4.40"
     rollup "^4.13.0"
-  optionalDependencies:
-    fsevents "~2.3.3"
-
-vite@^5.4.12:
-  version "5.4.14"
-  resolved "https://registry.yarnpkg.com/vite/-/vite-5.4.14.tgz#ff8255edb02134df180dcfca1916c37a6abe8408"
-  integrity sha512-EK5cY7Q1D8JNhSaPKVK4pwBFvaTmZxEnoKXLG/U9gmdDcihQGNzFlgIvaxezFR4glP1LsuiedwMBqCXH3wZccA==
-  dependencies:
-    esbuild "^0.21.3"
-    postcss "^8.4.43"
-    rollup "^4.20.0"
   optionalDependencies:
     fsevents "~2.3.3"
 
@@ -27754,7 +27766,7 @@ vitepress@^1.0.0-rc.20:
     vite "^5.2.2"
     vue "^3.4.21"
 
-vitest@^2.1.9:
+vitest@^2.1.2, vitest@^2.1.9:
   version "2.1.9"
   resolved "https://registry.yarnpkg.com/vitest/-/vitest-2.1.9.tgz#7d01ffd07a553a51c87170b5e80fea3da7fb41e7"
   integrity sha512-MSmPM9REYqDGBI8439mA4mWhV5sKmDlBKWIYbA3lRb2PTHACE0mgKwA8yQ2xq9vxDTuk4iPrECBAEW2aoFXY0Q==
