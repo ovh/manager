@@ -6,11 +6,11 @@ import { DataStoresWithContainers } from '@/hooks/api/ai/datastore/useGetDatasto
 import { OrderVolumes } from '@/types/orderFunnel';
 import PublicGitForm from './PublicGitForm.component';
 import ContainerForm from './ContainerForm.component';
-import { FormLabel } from '@/components/ui/form';
 import OvhLink from '@/components/links/OvhLink.component';
 import A from '@/components/links/A.component';
 import { GUIDES, getGuideUrl } from '@/configuration/guide';
 import { useLocale } from '@/hooks/useLocale';
+import { Label } from '@/components/ui/label';
 
 interface VolumesFormProps {
   configuredVolumesList: DataStoresWithContainers[];
@@ -27,9 +27,9 @@ const VolumeForm = React.forwardRef<HTMLInputElement, VolumesFormProps>(
 
     return (
       <>
-        <FormLabel className="scroll-m-20 text-xl font-semibold">
+        <Label className="scroll-m-20 text-xl font-semibold">
           {t('fieldVolumesLabel')}
-        </FormLabel>
+        </Label>
         <p>
           {t('fieldVolumeDescription1')}{' '}
           <OvhLink

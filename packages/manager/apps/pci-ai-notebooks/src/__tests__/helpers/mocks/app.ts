@@ -23,6 +23,11 @@ export const mockedAppSpec: ai.app.AppSpec = {
     publicNetwork: 60,
   },
   unsecureHttp: false,
+  scalingStrategy: {
+    fixed: {
+      replicas: 1,
+    },
+  },
 };
 
 export const mockedAppStatus: ai.app.AppStatus = {
@@ -30,7 +35,7 @@ export const mockedAppStatus: ai.app.AppStatus = {
   dataSync: [mockedDataSync],
   history: [
     {
-      date: 'date',
+      date: '2020/02/04',
       state: ai.app.AppStateEnum.QUEUED,
     },
   ],

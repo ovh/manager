@@ -61,7 +61,7 @@ const StopApp = ({ app, onError, onSuccess, onClose }: StopAppProps) => {
     <RouteModal backUrl="../" isLoading={!app?.id} onClose={onClose}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle data-testid="kill-app-modal">
+          <DialogTitle data-testid="stop-app-modal">
             {t('stopAppTitle')}
           </DialogTitle>
         </DialogHeader>

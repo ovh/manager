@@ -14,7 +14,7 @@ import {
 import { cn } from '@/lib/utils';
 import { bytesConverter } from '@/lib/bytesHelper';
 import { Flavor } from '@/types/orderFunnel';
-import { FormLabel } from '@/components/ui/form';
+import { Label } from '@/components/ui/label';
 
 interface FlavorsSelectProps {
   flavors: Flavor[];
@@ -48,9 +48,9 @@ const FlavorsSelect = React.forwardRef<HTMLTableElement, FlavorsSelectProps>(
     };
     return (
       <>
-        <FormLabel className="scroll-m-20 text-xl font-semibold">
+        <Label className="scroll-m-20 text-xl font-semibold">
           {t('fieldFlavorLabel')}
-        </FormLabel>
+        </Label>
         <p className="text-sm">{t('fieldFlavorDescription')}</p>
         <Table
           data-testid="flavor-select-table"

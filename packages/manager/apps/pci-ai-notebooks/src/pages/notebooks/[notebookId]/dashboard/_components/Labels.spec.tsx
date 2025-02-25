@@ -102,8 +102,8 @@ describe('Configuration component', () => {
     await waitFor(() => {
       expect(labelsApi.editLabel).toHaveBeenCalled();
       expect(useToast().toast).toHaveBeenCalledWith({
-        title: 'notebookToastSuccessTitle',
-        description: 'notebookLabelSuccess',
+        title: 'labelToastSuccessTitle',
+        description: 'labelToastSuccessDescription',
       });
     });
   });
@@ -119,8 +119,8 @@ describe('Configuration component', () => {
     await waitFor(() => {
       expect(labelsApi.editLabel).toHaveBeenCalled();
       expect(useToast().toast).toHaveBeenCalledWith({
-        title: 'notebookToastSuccessTitle',
-        description: 'notebookLabelSuccess',
+        title: 'labelToastSuccessTitle',
+        description: 'labelToastSuccessDescription',
       });
     });
   });

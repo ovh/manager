@@ -65,7 +65,7 @@ describe('Onboarding page', () => {
     render(<Onboarding />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
       expect(screen.getByTestId('onbaording-container')).toBeInTheDocument();
-      expect(screen.getByTestId('create-job-link')).toBeInTheDocument();
+      expect(screen.getByTestId('create-app-link')).toBeInTheDocument();
       expect(screen.getByTestId('guide-open-button')).toBeInTheDocument();
     });
   });

@@ -41,6 +41,26 @@ export const mockedCatalogPlan: order.publicOrder.Plan = {
   product: 'product',
 };
 
+export const mockedJobCatalogPlan: order.publicOrder.Plan = {
+  addonFamilies: [
+    {
+      name: 'name',
+    },
+  ],
+  configurations: [
+    {
+      isCustom: true,
+      isMandatory: true,
+      name: 'name',
+    },
+  ],
+  invoiceName: 'invoiceName',
+  planCode: 'ai-training.flavorCPUId.minute.consumption',
+  pricingType: order.cart.GenericProductPricingTypeEnum.consumption,
+  pricings: [mockedPricing],
+  product: 'product',
+};
+
 export const mockedCatalogPlanMonth: order.publicOrder.Plan = {
   addonFamilies: [
     {
@@ -107,6 +127,7 @@ export const mockedCatalog: order.publicOrder.Catalog = {
     mockedCatalogPlanMonth,
     mockedCatalogStorageMonth,
     mockedCatalogStorageHour,
+    mockedJobCatalogPlan,
   ],
   catalogId: 1,
   locale: {

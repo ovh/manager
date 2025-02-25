@@ -1,7 +1,7 @@
 import { mockedCapabilitiesFlavorCPU } from '@/__tests__/helpers/mocks/flavor';
-import { createFlavorPricingList } from './priceFlavorHelper';
+import { createFlavorPricingList, getFlavorPricing } from './priceFlavorHelper';
 import { mockedCatalog } from '@/__tests__/helpers/mocks/catalog';
-import { Flavor } from '@/types/orderFunnel';
+import { AppPricing, Flavor } from '@/types/orderFunnel';
 import { order } from '@/types/catalog';
 
 describe('priceFlavorHelper', () => {
@@ -33,8 +33,22 @@ describe('priceFlavorHelper', () => {
       createFlavorPricingList(
         [mockedCapabilitiesFlavorCPU],
         mockedCatalog,
-        'test',
+        'ai-notebook',
       ),
     ).toStrictEqual([flavorWithPricing]);
+  });
+
+  it('createFlavorPricingList', () => {
+    const pricingFlavor: AppPricing = {
+      price: 1,
+      tax: 1,
+    };
+    expect(
+      getFlavorPricing(
+        mockedCapabilitiesFlavorCPU.id,
+        mockedCatalog,
+        'ai-notebook',
+      ),
+    ).toStrictEqual(pricingFlavor);
   });
 });

@@ -1,7 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { HelpCircle } from 'lucide-react';
-import { FormLabel } from '@/components/ui/form';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import {
@@ -23,9 +22,9 @@ const PrivacyRadioInput = React.forwardRef<HTMLInputElement, PrivacyRadioProps>(
 
     return (
       <>
-        <FormLabel className={className}>
+        <Label className={className}>
           {t('fieldConfigurationPrivacyLabel')}
-        </FormLabel>
+        </Label>
         <div className="flex items-center space-x-2">
           <RadioGroup
             ref={ref}

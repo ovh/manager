@@ -99,8 +99,8 @@ describe('Configuration component', () => {
     await waitFor(() => {
       expect(labelsApi.editLabel).toHaveBeenCalled();
       expect(useToast().toast).toHaveBeenCalledWith({
-        title: 'jobToastSuccessTitle',
-        description: 'jobLabelSuccess',
+        title: 'labelToastSuccessTitle',
+        description: 'labelToastSuccessDescription',
       });
     });
   });
@@ -116,8 +116,8 @@ describe('Configuration component', () => {
     await waitFor(() => {
       expect(labelsApi.editLabel).toHaveBeenCalled();
       expect(useToast().toast).toHaveBeenCalledWith({
-        title: 'jobToastSuccessTitle',
-        description: 'jobLabelSuccess',
+        title: 'labelToastSuccessTitle',
+        description: 'labelToastSuccessDescription',
       });
     });
   });
