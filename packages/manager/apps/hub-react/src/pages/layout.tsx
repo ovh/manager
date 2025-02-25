@@ -1,25 +1,30 @@
 import React, { useEffect, useContext } from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
+import { defineCurrentPage } from '@ovh-ux/request-tagger';
+import { Outlet, useLocation, useMatches } from 'react-router-dom';
 import {
+  ShellContext,
   useOvhTracking,
   useRouteSynchro,
-  ShellContext,
 } from '@ovh-ux/manager-react-shell-client';
 import '@ovhcloud/ods-theme-blue-jeans';
 
 export default function Layout() {
   const location = useLocation();
-  const { shell } = useContext(ShellContext);
   const { trackCurrentPage } = useOvhTracking();
+  const matches = useMatches();
+  const { shell } = useContext(ShellContext);
   useRouteSynchro();
 
   useEffect(() => {
-    trackCurrentPage();
-  }, [location]);
+    shell.ux.hidePreloader();
+    shell.ux.stopProgress();
+  }, []);
 
   useEffect(() => {
-    shell.ux.hidePreloader();
-  }, []);
+    trackCurrentPage();
+    const match = matches.slice(-1);
+    defineCurrentPage(`app.hub-${match[0]?.id}`);
+  }, [location]);
 
   return <Outlet />;
 }

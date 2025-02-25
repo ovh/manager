@@ -15,8 +15,10 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { OsdsButton } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
-import { defineCurrentPage } from '@ovh-ux/request-tagger';
+import {
+  ODS_BUTTON_SIZE,
+  ODS_BUTTON_VARIANT,
+} from '@ovhcloud/ods-components';
 import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { features } from '@/pages/dashboard/dashboard.constants';
@@ -90,7 +92,6 @@ export default function Dashboard() {
       const newValueIsAccountSidebarVisible = (await shell.ux.isAccountSidebarVisible()) as boolean;
       setIsAccountSidebarVisible(() => newValueIsAccountSidebarVisible);
     };
-    defineCurrentPage(`app.dashboard`);
     shell.ux.hidePreloader();
     shell.ux.stopProgress();
     getIsAccountSidebarVisible();
