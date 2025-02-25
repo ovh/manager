@@ -1,5 +1,5 @@
 {
-  "kubernetes_node_pool_autoscaling_description": "Vous pouvez configurer la mise à l'échelle automatique de chacun de vos pools de nœuds. Cette fonctionnalité, parfois appelée cluster autoscaler, complète le horizontal pod autoscaler de Kubernetes.",
+  "kubernetes_node_pool_autoscaling_description": "Vous pouvez configurer la mise à l'échelle automatique de chacun de vos pools de nœuds. Cette fonctionnalité, parfois appelée «cluster autoscaler», complète le «horizontal pod autoscaler» de Kubernetes. Veuillez noter que la fonctionnalité d'autoscaling n'est pas compatible avec l'activation de l'anti-affinité.",
   "kubernetes_node_pool_autoscaling_description_link": "Plus d'informations.",
   "kubernetes_node_pool_autoscaling_autoscale": "Autoscaling",
   "kubernetes_node_pool_autoscaling_autoscale_toggle_true": "Autoscaling actif",

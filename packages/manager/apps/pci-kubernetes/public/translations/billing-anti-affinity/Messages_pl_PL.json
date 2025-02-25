@@ -23,7 +23,7 @@
   "kubernetes_add_billing_anti_affinity_coming_soon_message_title": "Ceny miesięczne",
   "kubernetes_add_billing_anti_affinity_coming_soon_message_description": "Ceny miesięczne będą dostępne wkrótce, wraz z uruchomieniem Saving Plans.",
   "kubernetes_node_pool_anti_affinity": "Ochrona przed koligacją (anti-affinity)",
-  "kubernetes_node_pool_anti_affinity_description": "Po włączeniu funkcji anty-koligacji obecne i przyszłe węzły będą uruchamiane na różnych hiperwizorach (fizycznych serwerach), co zapewni większą tolerancję na awarie. Pule węzłów z powinowactwem mogą liczyć tylko do {{ maxNodes }} węzłów.",
+  "kubernetes_node_pool_anti_affinity_description": "Po włączeniu funkcji anti-koligate węzły obecne i przyszłe będą wdrażane na różnych hiperwizorach (fizycznych serwerach), co zapewni większą odporność na awarie. Pule węzłów z powinowactwem mogą zawierać tylko do {{maxNodes}} węzłów. Pamiętaj, że funkcja anty-koligacji nie jest kompatybilna z włączeniem autoskalowania.",
   "kubernetes_add_billing_savings_plan_banner": "Dzięki Savings Plan zyskujesz korzystne opłaty miesięczne, a jednocześnie zachowujesz możliwość płatności za instancje w trybie za godzinę.",
   "kubernetes_add_billing_savings_plan_cta": "Skonfiguruj Savings Plans",
   "kubernetes_node_pool_anti_affinity_true": "Anty-aktywne powinowactwo",

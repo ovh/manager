@@ -23,7 +23,7 @@
   "kubernetes_add_billing_anti_affinity_coming_soon_message_title": "Prezzi mensili",
   "kubernetes_add_billing_anti_affinity_coming_soon_message_description": "I prezzi mensili saranno disponibili a breve con l'arrivo dei Saving Plans.",
   "kubernetes_node_pool_anti_affinity": "Anti-affinità",
-  "kubernetes_node_pool_anti_affinity_description": "Attivando l'anti-affinità, i nodi presenti e futuri vengono avviati su hypervisor (server fisici) differenti, garantendo una maggiore tolleranza ai guasti. I pool di nodi con anti-affinità possono avere un massimo di {{ maxNodes }} nodi.",
+  "kubernetes_node_pool_anti_affinity_description": "Attivando l'anti-affinità, i nodi presenti e futuri vengono installati su hypervisor (server fisici) differenti, garantendo una maggiore tolleranza ai guasti. I pool di nodi con anti-affinità possono contenere solo fino a {{maxNodes}} nodi. Ti ricordiamo che la funzionalità di anti-affinità non è compatibile con l'attivazione dell'autoscaling.",
   "kubernetes_add_billing_savings_plan_banner": "Usufruisci di tariffe mensili vantaggiose grazie ai Savings Plan, conservando la flessibilità delle istanze all’ora.",
   "kubernetes_add_billing_savings_plan_cta": "Configura i tuoi Savings Plan",
   "kubernetes_node_pool_anti_affinity_true": "Antiaffinità attiva",

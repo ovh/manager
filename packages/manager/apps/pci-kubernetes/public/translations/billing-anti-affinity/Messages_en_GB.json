@@ -23,7 +23,7 @@
   "kubernetes_add_billing_anti_affinity_coming_soon_message_title": "Monthly prices",
   "kubernetes_add_billing_anti_affinity_coming_soon_message_description": "With the launch of Saving Plans, we will soon be able to bill you monthly.",
   "kubernetes_node_pool_anti_affinity": "Anti-affinity",
-  "kubernetes_node_pool_anti_affinity_description": "By enabling anti-affinity, current and future nodes will be launched on different hypervisors (physical servers), guaranteeing greater fault tolerance. Anti-affinity node pools can only have up to {{ maxNodes }} nodes.",
+  "kubernetes_node_pool_anti_affinity_description": "By enabling anti-affinity, current and future nodes will be deployed on different hypervisors (physical servers), guaranteeing better fault tolerance. Anti-affinity node pools can only contain up to {{maxNodes}} nodes. Please note that the anti-affinity feature is not compatible with auto-scaling activation.",
   "kubernetes_add_billing_savings_plan_banner": "Take advantage of low monthly rates with Savings Plans—save money without sacrificing the flexibility to use instances whenever you need them.",
   "kubernetes_add_billing_savings_plan_cta": "Set up your Savings Plan",
   "kubernetes_node_pool_anti_affinity_true": "Active anti-affinity",

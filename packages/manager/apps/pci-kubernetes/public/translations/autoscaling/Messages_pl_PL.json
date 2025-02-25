@@ -1,5 +1,5 @@
 {
-  "kubernetes_node_pool_autoscaling_description": "Skalowanie automatyczne można skonfigurować dla każdej puli węzłów. Funkcja ta, nazywana czasami klastrem autoscaler, jest uzupełnieniem funkcji poziomej pod autoscaler Kubernetesa.",
+  "kubernetes_node_pool_autoscaling_description": "Skalowanie automatyczne można skonfigurować dla każdej puli węzłów. Funkcja ta, nazywana czasami \"klastrem autoscaler\", uzupełnia \"funkcję poziomą pod autoscaler\" Kubernetesa. Pamiętaj, że funkcja automatycznego skalowania nie jest kompatybilna z włączeniem funkcji anty-koligacji.",
   "kubernetes_node_pool_autoscaling_description_link": "Więcej informacji.",
   "kubernetes_node_pool_autoscaling_autoscale": "Autoscaling",
   "kubernetes_node_pool_autoscaling_autoscale_toggle_true": "Autoscaling włączony",
