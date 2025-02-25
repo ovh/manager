@@ -12,6 +12,20 @@
             class="oui-heading_4"
             data-translate="nutanix_dashboard_add_nodes_actual_configuration"
         ></p>
+        <div
+            data-ng-if="$ctrl.isMultipleNodesOrderEnabled"
+            class="oui-message oui-message_warning mb-2"
+            role="alert"
+        >
+            <span
+                class="oui-message__icon oui-icon oui-icon-warning-circle"
+                aria-hidden="true"
+            ></span>
+            <p
+                class="oui-message__body"
+                data-translate="nutanix_dashboard_add_nodes_single_node_limit_alert"
+            ></p>
+        </div>
         <div>
             <strong
                 data-translate="nutanix_dashboard_add_nodes_server_model"
@@ -66,6 +80,7 @@
                 ></p>
 
                 <oui-field
+                    data-ng-if="$ctrl.isMultipleNodesOrderEnabled"
                     label="{{ 'nutanix_dashboard_add_nodes_number_of_additional_nodes_to_command' | translate }}"
                     error-messages="$ctrl.customErrorMessages"
                 >
