@@ -11,6 +11,7 @@ export default {
     nodeOrderLinkGenerator: '<',
     expressOrderLink: '<',
     handleSuccess: '<',
+    isMultipleNodesOrderEnabled: '<',
   },
   template,
   controller,

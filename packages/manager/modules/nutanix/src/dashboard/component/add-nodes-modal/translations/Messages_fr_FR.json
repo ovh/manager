@@ -16,5 +16,6 @@
   "nutanix_dashboard_add_nodes_success_banner_link_label": "Finaliser la commande",
   "nutanix_dashboard_add_nodes_informations_max_nodes": "Votre cluster est composé de {{currentNumberOfNodes}} noeuds actuellement et vous pouvez l'étendre jusqu'à {{maxNumberOfNodes}} noeuds.",
   "nutanix_dashboard_add_nodes_error_too_many_nodes": "Vous dépassez le nombre maximum de noeuds autorisés dans un cluster",
-  "nutanix_dashboard_add_nodes_error_not_enough_nodes": "Vous devez commander au moins 1 noeud"
+  "nutanix_dashboard_add_nodes_error_not_enough_nodes": "Vous devez commander au moins 1 noeud",
+  "nutanix_dashboard_add_nodes_single_node_limit_alert": "Vous ne pouvez commander qu'un seul noeud supplémentaire actuellement, la commande simultanée de plusieurs noeuds sera disponible prochainement"
 }

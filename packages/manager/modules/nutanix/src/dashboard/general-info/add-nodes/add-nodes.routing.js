@@ -1,3 +1,4 @@
+import { NUTANIX_MULTIPLE_NODES_ORDER_FEATURE } from '../../constants';
 import NodeExpressOrderLinkGenerator from '../../node-express-order-link-generator';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -34,6 +35,14 @@ export default /* @ngInject */ ($stateProvider) => {
         Alerter.info(message, 'nutanix_dashboard_alert');
         goBack();
       },
+      isMultipleNodesOrderEnabled: /* @ngInject */ (ovhFeatureFlipping) =>
+        ovhFeatureFlipping
+          .checkFeatureAvailability(NUTANIX_MULTIPLE_NODES_ORDER_FEATURE)
+          .then((featureAvailability) =>
+            featureAvailability.isFeatureAvailable(
+              NUTANIX_MULTIPLE_NODES_ORDER_FEATURE,
+            ),
+          ),
     },
   });
 };
