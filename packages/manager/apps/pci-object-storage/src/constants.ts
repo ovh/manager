@@ -432,3 +432,5 @@ export const X_AMZ_STORAGE_CLASS = 'X-Amz-Storage-Class';
 export const X_CONTAINER_READ = 'x-container-read';
 export const X_CONTAINER_META_WEB_LISTINGS = 'x-container-meta-web-listings';
 export const X_CONTAINER_READ_PUBLIC_VALUE = '.r:*,.rlistings';
+
+export const BACKUP_KEY = 'ovh:backup';

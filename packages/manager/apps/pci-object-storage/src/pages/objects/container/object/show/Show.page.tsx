@@ -47,6 +47,7 @@ import {
 import { useDatagridColumn } from './useDatagridColumn';
 import { Tiles } from './Tiles';
 import {
+  BACKUP_KEY,
   NO_ENCRYPTION_VALUE,
   OBJECT_CONTAINER_MODE_LOCAL_ZONE,
   OBJECT_CONTAINER_MODE_MONO_ZONE,
@@ -70,7 +71,12 @@ export type TContainer = {
   s3StorageType: string;
   staticUrl: string;
   regionDetails?: TRegion;
+  tags?: TTags;
 } & TServerContainer;
+
+export type TTags = {
+  [key: string]: string;
+};
 
 export default function ObjectPage() {
   const { storageId } = useParams();
@@ -143,6 +149,10 @@ export default function ObjectPage() {
       staticUrl: serverContainer?.staticUrl || serverContainer?.virtualHost,
     };
   }, [serverContainer, region, targetContainer, url]);
+
+  const shouldHideButton = useMemo(() => {
+    return !container?.tags?.[BACKUP_KEY];
+  }, [container]);
 
   const is = {
     localZone: useMemo(
@@ -515,17 +525,19 @@ export default function ObjectPage() {
           </div>
 
           <div className="sm:flex items-center justify-between mt-8">
-            <OdsButton
-              onClick={() => {
-                clearNotifications();
-                navigate(`./new?region=${searchParams.get('region')}`);
-              }}
-              label={tContainer(
-                `pci_projects_project_storages_containers_container_add_object_label`,
-              )}
-              icon="plus"
-              size="sm"
-            />
+            {shouldHideButton && (
+              <OdsButton
+                onClick={() => {
+                  clearNotifications();
+                  navigate(`./new?region=${searchParams.get('region')}`);
+                }}
+                label={tContainer(
+                  `pci_projects_project_storages_containers_container_add_object_label`,
+                )}
+                icon="plus"
+                size="sm"
+              />
+            )}
 
             <div className="flex justify-center gap-4">
               <OdsInput
