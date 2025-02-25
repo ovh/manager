@@ -179,7 +179,7 @@ exports[`Show page > should display datagrid 1`] = `
         size="sm"
       />
       <div
-        class="flex justify-center gap-4"
+        class="flex justify-center gap-4 ml-auto"
       >
         <ods-input
           class="min-w-[15rem]"
