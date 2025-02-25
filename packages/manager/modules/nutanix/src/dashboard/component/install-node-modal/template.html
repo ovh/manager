@@ -28,7 +28,7 @@
                         name="ahvIp"
                         data-ng-model-options="{ debounce: 500 }"
                         data-nutanix-ip-validator
-                        data-nutanix-unique-ip-validator="$ctrl.ipUnavailable"
+                        data-nutanix-unique-ip-validator="$ctrl.ipUnavailableWith($ctrl.cvmIp)"
                         data-nutanix-ip-subnet-validator="$ctrl.gatewayCidr"
                         data-ng-model="$ctrl.ahvIp"
                         data-required
@@ -47,7 +47,7 @@
                         name="cvmIp"
                         data-ng-model-options="{ debounce: 500 }"
                         data-nutanix-ip-validator
-                        data-nutanix-unique-ip-validator="$ctrl.ipUnavailable"
+                        data-nutanix-unique-ip-validator="$ctrl.ipUnavailableWith($ctrl.ahvIp)"
                         data-nutanix-ip-subnet-validator="$ctrl.gatewayCidr"
                         data-ng-model="$ctrl.cvmIp"
                         data-required
