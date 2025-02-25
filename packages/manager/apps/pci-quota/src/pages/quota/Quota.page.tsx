@@ -1,21 +1,16 @@
 import {
-  BaseLayout,
   Datagrid,
   Notifications,
   PaginationState,
-  PciGuidesHeader,
   useDataGrid,
   useMe,
   useNotifications,
-  useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { Suspense, useEffect, useMemo, useState } from 'react';
 import { Translation, useTranslation } from 'react-i18next';
 import {
-  OdsBreadcrumb,
-  OdsBreadcrumbItem,
   OdsButton,
   OdsLink,
   OdsMessage,
@@ -41,7 +36,6 @@ import {
 } from '@/constants';
 import { toggleManualQuota, unleash } from '@/api/data/project';
 import { useGetFilteredServiceOptions } from '@/api/hooks/useServiceOptions';
-import { TabsComponent } from '@/components/tabs/Tabs.component';
 import { useGetValidPaymentMethodIds } from '@/api/hooks/usePaymentmethods';
 import { useGetProjectService } from '@/api/hooks/useService';
 import { Quota } from '@/api/data/quota';
@@ -60,7 +54,7 @@ function paginateResults<T>(items: T[], pagination: PaginationState) {
 
 export default function QuotaPage(): JSX.Element {
   const isMobile: boolean = useMedia(`(max-width: 760px)`);
-  const { t: tQuota } = useTranslation('quotas');
+  const { t } = useTranslation(['regions', 'quotas']);
   const { projectId } = useParams();
   const columns = useDatagridColumn();
 
@@ -69,8 +63,6 @@ export default function QuotaPage(): JSX.Element {
   const { data: service, isPending: isServicePending } = useGetProjectService(
     projectId,
   );
-
-  const hrefProject = useProjectUrl('public-cloud');
 
   const [manualQuotaIsActive, setManualQuotaIsActive] = useState<boolean>(
     false,
@@ -167,28 +159,17 @@ export default function QuotaPage(): JSX.Element {
   if (isPending) {
     return <OdsSpinner size={ODS_SPINNER_SIZE.md} />;
   }
+
   return (
-    <BaseLayout
-      breadcrumb={
-        <OdsBreadcrumb>
-          <OdsBreadcrumbItem href={hrefProject} label={project?.description} />
-          <OdsBreadcrumbItem
-            label={tQuota('pci_projects_project_quota')}
-            href={''}
-          />
-        </OdsBreadcrumb>
-      }
-      header={{
-        headerButton: <PciGuidesHeader category="instances" />,
-      }}
-      tabs={<TabsComponent activeTab={'quota'} />}
-    >
+    <>
       {!isServicePending && !service && !serviceOptions && (
         <div className="mt-10">
           <OdsMessage color="danger" className="w-full" isDismissible={false}>
             <div className="p-2">
               <OdsText preset="paragraph">
-                {tQuota('pci_projects_project_quota_error_forbidden')}
+                {t('pci_projects_project_quota_error_forbidden', {
+                  ns: 'quotas',
+                })}
               </OdsText>
               <div className="mt-4">
                 <OdsLink href={IAM_LINK} label={IAM_LINK}></OdsLink>
@@ -207,17 +188,17 @@ export default function QuotaPage(): JSX.Element {
         <div className="mt-8 p-8 rounded-md border border-solid border-[#bef1ff] bg-[#f5feff]">
           <div>
             <OdsText preset="heading-6">
-              {tQuota(
-                'pci_projects_project_quota_restricted_paymentmean_active',
-              )}
+              {t('pci_projects_project_quota_restricted_paymentmean_active', {
+                ns: 'quotas',
+              })}
             </OdsText>
           </div>
           <OdsButton
             className="mt-4"
             size="sm"
-            label={tQuota(
-              'pci_projects_project_quota_restricted_unlock_button',
-            )}
+            label={t('pci_projects_project_quota_restricted_unlock_button', {
+              ns: 'quotas',
+            })}
             onClick={Do.unleash}
           />
         </div>
@@ -226,11 +207,13 @@ export default function QuotaPage(): JSX.Element {
         <div className="p-8 rounded-md border border-solid border-[#bef1ff] bg-[#f5feff] mt-4">
           <div>
             <OdsText preset="heading-6">
-              {tQuota('pci_projects_project_quota_protect_explain')}
+              {t('pci_projects_project_quota_protect_explain', {
+                ns: 'quotas',
+              })}
             </OdsText>
             <div className="mt-6">
               <OdsText preset="paragraph">
-                {tQuota('pci_projects_project_quota_protect_more')}
+                {t('pci_projects_project_quota_protect_more', { ns: 'quotas' })}
               </OdsText>
             </div>
           </div>
@@ -239,8 +222,9 @@ export default function QuotaPage(): JSX.Element {
               {quotas?.length > 0 && (
                 <OdsButton
                   size="sm"
-                  label={`${tQuota(
+                  label={`${t(
                     'pci_projects_project_quota_protect_contact_support',
+                    { ns: 'quotas' },
                   )}`}
                   onClick={() => {
                     navigate('./increase/contact-support');
@@ -254,9 +238,9 @@ export default function QuotaPage(): JSX.Element {
                   onClick={() => {
                     navigate('./increase/buy-credit');
                   }}
-                  label={`${tQuota(
-                    'pci_projects_project_quota_protect_more_btn',
-                  )}`}
+                  label={`${t('pci_projects_project_quota_protect_more_btn', {
+                    ns: 'quotas',
+                  })}`}
                 />
               )}
               {(!quotas || (quotas && quotas.length === 0)) && (
@@ -265,9 +249,9 @@ export default function QuotaPage(): JSX.Element {
                   size="sm"
                   icon="external-link"
                   iconAlignment="right"
-                  label={`${tQuota(
-                    'pci_projects_project_quota_protect_more_btn',
-                  )}`}
+                  label={`${t('pci_projects_project_quota_protect_more_btn', {
+                    ns: 'quotas',
+                  })}`}
                 />
               )}
             </div>
@@ -277,9 +261,9 @@ export default function QuotaPage(): JSX.Element {
                 (quotas && quotas.length === 0 && (
                   <OdsButton
                     size="sm"
-                    label={`${tQuota(
-                      'pci_projects_project_quota_protect_more_btn',
-                    )}`}
+                    label={`${t('pci_projects_project_quota_protect_more_btn', {
+                      ns: 'quotas',
+                    })}`}
                     isDisabled={true}
                   />
                 ))}
@@ -287,9 +271,9 @@ export default function QuotaPage(): JSX.Element {
                 <OdsButton
                   className="ml-4"
                   size="sm"
-                  label={`${tQuota(
-                    'pci_projects_project_quota_protect_more_btn',
-                  )}`}
+                  label={`${t('pci_projects_project_quota_protect_more_btn', {
+                    ns: 'quotas',
+                  })}`}
                   onClick={() => {
                     window.open(SUPPORT_LINK, '_top');
                   }}
@@ -301,8 +285,10 @@ export default function QuotaPage(): JSX.Element {
       )}
       <div className="flex justify-end mt-6 pr-2">
         <LabelComponent
-          text={tQuota('pci_projects_project_quota_autoscaling')}
-          helpText={tQuota('pci_projects_project_quota_autoscaling_help')}
+          text={t('pci_projects_project_quota_autoscaling', { ns: 'quotas' })}
+          helpText={t('pci_projects_project_quota_autoscaling_help', {
+            ns: 'quotas',
+          })}
           triggerId="quota-autoscaling-help"
           className="pr-4"
         />
@@ -320,10 +306,11 @@ export default function QuotaPage(): JSX.Element {
           }}
         />
         <LabelComponent
-          text={tQuota(
+          text={t(
             manualQuotaIsActive
               ? 'pci_projects_project_quota_autoscaling_on'
               : 'pci_projects_project_quota_autoscaling_off',
+            { ns: 'quotas' },
           )}
           className="pl-4"
         />
@@ -331,7 +318,7 @@ export default function QuotaPage(): JSX.Element {
 
       <div className="mt-8">
         <OdsText preset="heading-6">
-          {tQuota('pci_projects_project_quota_current_limit')}
+          {t('pci_projects_project_quota_current_limit', { ns: 'quotas' })}
         </OdsText>
       </div>
       <div className="mt-4">
@@ -349,6 +336,6 @@ export default function QuotaPage(): JSX.Element {
       <Suspense>
         <Outlet />
       </Suspense>
-    </BaseLayout>
+    </>
   );
 }

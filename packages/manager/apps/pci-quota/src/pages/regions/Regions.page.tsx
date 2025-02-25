@@ -1,19 +1,10 @@
-import {
-  OdsButton,
-  OdsMessage,
-  OdsText,
-  OdsBreadcrumb,
-  OdsBreadcrumbItem,
-} from '@ovhcloud/ods-components/react';
+import { OdsButton, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 import { useEffect, useState } from 'react';
 import { Translation, useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import {
-  BaseLayout,
   Notifications,
-  PciGuidesHeader,
   useNotifications,
-  useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 import {
   isDiscoveryProject,
@@ -27,7 +18,6 @@ import { ToAddPart } from '@/pages/regions/ToAdd.part';
 import { useGetAvailableRegions, useLocations } from '@/api/hooks/useRegions';
 import { addRegion } from '@/api/data/region';
 import queryClient from '@/queryClient';
-import { TabsComponent } from '@/components/tabs/Tabs.component';
 
 export type TPlainLocation = {
   name: string;
@@ -45,8 +35,6 @@ export default function RegionsPage(): JSX.Element {
   const [state, setState] = useState<TState>({ isAddingRegion: false });
 
   const isMobile: boolean = useMedia(`(max-width: 760px)`);
-
-  const hrefProject = useProjectUrl('public-cloud');
 
   const { addSuccess, addError } = useNotifications();
 
@@ -121,21 +109,7 @@ export default function RegionsPage(): JSX.Element {
   };
 
   return (
-    <BaseLayout
-      breadcrumb={
-        <OdsBreadcrumb>
-          <OdsBreadcrumbItem href={hrefProject} label={project?.description} />
-          <OdsBreadcrumbItem
-            label={t('pci_projects_project_regions')}
-            href={''}
-          />
-        </OdsBreadcrumb>
-      }
-      header={{
-        headerButton: <PciGuidesHeader category="instances" />,
-      }}
-      tabs={<TabsComponent activeTab={'regions'} />}
-    >
+    <>
       <PciAnnouncementBanner projectId={projectId} />
 
       <Notifications />
@@ -188,6 +162,6 @@ export default function RegionsPage(): JSX.Element {
           />
         </div>
       )}
-    </BaseLayout>
+    </>
   );
 }
