@@ -68,7 +68,7 @@ export default function NewPage() {
       );
     },
     onError: (err: ApiError) => {
-      stepper.clusterName.step.unlock();
+      stepper.confirm.step.unlock();
       if (err.status === 412) {
         const kubeErrorId = (err?.response?.data?.message?.match(/\[(.*)\]/) ||
           [])[0];

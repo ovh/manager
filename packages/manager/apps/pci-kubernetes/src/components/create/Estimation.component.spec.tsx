@@ -24,7 +24,7 @@ describe('Estimation Component', () => {
 
   it('should render the estimated cost label', () => {
     (useCatalogPrice as jest.Mock).mockReturnValue({
-      getFormattedMonthlyCatalogPrice: vi.fn().mockReturnValue('x.xx €'),
+      getFormattedMonthlyCatalogPrice: vi.fn().mockReturnValue('0.00 €'),
     });
 
     const { getByText } = render(<Estimation />, { wrapper });
@@ -36,7 +36,7 @@ describe('Estimation Component', () => {
 
   it('should display all expected estimation texts', () => {
     (useCatalogPrice as jest.Mock).mockReturnValue({
-      getFormattedMonthlyCatalogPrice: vi.fn().mockReturnValue('x.xx €'),
+      getFormattedMonthlyCatalogPrice: vi.fn().mockReturnValue('0.00 €'),
     });
 
     const { getByText } = render(<Estimation />, { wrapper });
@@ -46,7 +46,7 @@ describe('Estimation Component', () => {
     ).toBeInTheDocument();
     expect(
       getByText(
-        'kube_common_node_pool_estimation_price {"estimation":"x.xx €"}',
+        'kube_common_node_pool_estimation_price {"estimation":"0.00 €"}',
       ),
     ).toBeInTheDocument();
     expect(
