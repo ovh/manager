@@ -52,7 +52,7 @@ import { useModale } from '@/hooks/useModale';
 import { useGetCommand } from '@/hooks/api/ai/notebook/useGetCommand.hook';
 import CliEquivalent from './CliEquivalent.component';
 import { getNotebookSpec } from '@/lib/orderFunnelHelper';
-import PrivacyRadioInput from '@/components/order/privacy-radio/PrivacyRadio';
+import PrivacyRadioInput from '@/components/order/privacy-radio/PrivacyRadio.component';
 
 interface OrderFunnelProps {
   regions: ai.capabilities.Region[];

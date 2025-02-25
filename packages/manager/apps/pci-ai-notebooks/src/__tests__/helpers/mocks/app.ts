@@ -1,5 +1,25 @@
 import * as ai from '@/types/cloud/project/ai';
 import { mockedDataSync } from './datasync';
+import { Scaling } from '@/types/orderFunnel';
+
+export const mockedScaling: Scaling = {
+  autoScaling: true,
+  averageUsageTarget: 75,
+  resourceType: ai.app.ScalingAutomaticStrategyResourceTypeEnum.CPU,
+  replicasMin: 2,
+  replicasMax: 3,
+  replicas: 2,
+};
+
+export const mockedAppUpdate: ai.app.UpdateInput = {
+  command: ['command'],
+  cpu: 1,
+  defaultHttpPort: 8080,
+  flavor: 'flavor',
+  gpu: 1,
+  grpcPort: 8080,
+  url: 'test',
+};
 
 export const mockedAppSpec: ai.app.AppSpec = {
   command: ['command'],

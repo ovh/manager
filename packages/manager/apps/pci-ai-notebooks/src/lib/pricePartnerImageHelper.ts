@@ -22,8 +22,8 @@ export function createAppImagePricingList(
     }
 
     const noPriceFound: AppPricing = {
-      price: 0,
-      tax: 0,
+      price: NaN,
+      tax: NaN,
     };
 
     const appCpuPrice = catalog.addons?.find(

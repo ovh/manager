@@ -6,6 +6,7 @@ import {
   editDatastore,
   getDatastore,
   getDatastoreAuth,
+  getDatastoreContainer,
   getDatastores,
 } from '@/data/api/ai/datastore.api';
 import { mockedDatastoreInput } from '@/__tests__/helpers/mocks/datastore';
@@ -118,6 +119,18 @@ describe('Datastore functions', () => {
     });
     expect(apiClient.v6.get).toHaveBeenCalledWith(
       '/cloud/project/projectId/ai/data/region/region/alias/aliasID/auth',
+    );
+  });
+
+  it('should call getDatastoreContainer', async () => {
+    expect(apiClient.v6.get).not.toHaveBeenCalled();
+    await getDatastoreContainer({
+      projectId: 'projectId',
+      region: 'region',
+      alias: 'aliasID',
+    });
+    expect(apiClient.v6.get).toHaveBeenCalledWith(
+      '/cloud/project/projectId/ai/data/region/region/alias/aliasID/containers',
     );
   });
 });

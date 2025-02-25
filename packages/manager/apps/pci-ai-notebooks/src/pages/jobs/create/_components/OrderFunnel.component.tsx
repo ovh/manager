@@ -51,7 +51,7 @@ import OrderSummary from './OrderSummary.component';
 import { useAddJob } from '@/hooks/api/ai/job/useAddJob.hook';
 import DockerCommand from '@/components/order/docker-command/DockerCommand.component';
 import JobImagesSelect from '@/components/order/job-image/JobImageSelect.component';
-import PrivacyRadioInput from '@/components/order/privacy-radio/PrivacyRadio';
+import PrivacyRadioInput from '@/components/order/privacy-radio/PrivacyRadio.component';
 
 interface OrderJobsFunnelProps {
   regions: ai.capabilities.Region[];

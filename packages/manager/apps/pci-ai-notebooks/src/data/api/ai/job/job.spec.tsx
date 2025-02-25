@@ -57,7 +57,7 @@ describe('job functions', () => {
     );
   });
 
-  it('should call getNJob', async () => {
+  it('should call getJob', async () => {
     expect(apiClient.v6.get).not.toHaveBeenCalled();
     await getJob({
       projectId: 'projectId',

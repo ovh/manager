@@ -52,7 +52,7 @@ import { APP_CONFIG } from '@/configuration/app';
 import ProbeForm from '@/components/order/app-probe/ProbeForm.component';
 import { useSignPartnerContract } from '@/hooks/api/ai/partner/useSignPartnerContract.hook';
 import { PartnerApp } from '@/data/api/ai/partner.api';
-import PrivacyRadioInput from '@/components/order/privacy-radio/PrivacyRadio';
+import PrivacyRadioInput from '@/components/order/privacy-radio/PrivacyRadio.component';
 
 interface OrderAppsFunnelProps {
   regions: ai.capabilities.Region[];

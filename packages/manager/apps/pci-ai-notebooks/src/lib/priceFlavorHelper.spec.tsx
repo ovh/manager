@@ -38,7 +38,7 @@ describe('priceFlavorHelper', () => {
     ).toStrictEqual([flavorWithPricing]);
   });
 
-  it('createFlavorPricingList', () => {
+  it('getFlavorPricing', () => {
     const pricingFlavor: AppPricing = {
       price: 1,
       tax: 1,

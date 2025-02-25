@@ -44,6 +44,7 @@ const ProbeForm = React.forwardRef<HTMLInputElement, ProbeFormProps>(
       <Form {...form}>
         <div className="flex flex-row items-center gap-2">
           <Switch
+            data-testId="probe-swith-button"
             checked={isActive}
             onCheckedChange={() => {
               setIsActive(!isActive);
@@ -56,7 +57,7 @@ const ProbeForm = React.forwardRef<HTMLInputElement, ProbeFormProps>(
         {isActive && (
           <div
             className="w-full grid grid-cols-1 gap-4 md:grid-cols-[1fr_1fr_auto]"
-            data-testid="prob-form-container"
+            data-testid="prob-form-input"
           >
             <FormField
               control={form.control}

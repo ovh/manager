@@ -36,7 +36,7 @@ const PartnerImageSelect = React.forwardRef<
   const locale = useLocale();
   useEffect(() => {
     if (!value) return;
-    setIsChecked(!!images.find((im) => im.id === value)?.contract.signedAt);
+    setIsChecked(!!images.find((im) => im.id === value)?.contract?.signedAt);
     setContract(images.find((im) => im.id === value)?.contract);
   }, [value, images]);
 
@@ -60,7 +60,7 @@ const PartnerImageSelect = React.forwardRef<
                 onChange(
                   image.id,
                   image.versions[0],
-                  !!image.contract.signedAt,
+                  !!image?.contract?.signedAt,
                 );
               }}
               value={image.id}
@@ -148,6 +148,7 @@ const PartnerImageSelect = React.forwardRef<
           <div>
             <div className="flex flex-row items-center gap-2">
               <Checkbox
+                data-testid="contract-checkbox"
                 checked={isChecked}
                 disabled={isChecked && !!contract.signedAt}
                 onCheckedChange={() => {

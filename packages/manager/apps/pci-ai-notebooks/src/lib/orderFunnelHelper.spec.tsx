@@ -1,5 +1,6 @@
 import { mockedFramework } from '@/__tests__/helpers/mocks/notebook/framework';
 import {
+  getAppSpec,
   getJobSpec,
   getNotebookSpec,
   humanizeFramework,
@@ -16,7 +17,12 @@ import {
   mockedOrderVolumesGit,
   mockedOrderVolumesS3,
 } from '@/__tests__/helpers/mocks/datastore';
-import { JobOrderResult, NotebookOrderResult } from '@/types/orderFunnel';
+import {
+  AppOrderResult,
+  JobOrderResult,
+  NotebookOrderResult,
+} from '@/types/orderFunnel';
+import { mockedPartnerImage } from '@/__tests__/helpers/mocks/partnerAppImage';
 
 describe('orderFunnelHelper', () => {
   it('humanizeFramework', () => {
@@ -207,5 +213,136 @@ describe('orderFunnelHelper', () => {
     };
     expect(getJobSpec(jobOrderResultCPU)).toStrictEqual(jobSpecInputCPU);
     expect(getJobSpec(jobOrderResultGPU)).toStrictEqual(jobSpecInputGPU);
+  });
+
+  it('getAppSpec', () => {
+    const appOrderResultCPU: AppOrderResult = {
+      region: mockedCapabilitiesRegionGRA,
+      flavor: mockedOrderFlavorCPU,
+      resourcesQuantity: 2,
+      appName: 'myNewApp',
+      unsecureHttp: false,
+      image: 'myImage',
+      version: '',
+      httpPort: 8080,
+      volumes: [mockedOrderVolumesS3, mockedOrderVolumesGit],
+      dockerCommand: ['command', 'docker'],
+      scaling: {
+        autoScaling: true,
+        averageUsageTarget: 75,
+        replicas: 1,
+        replicasMin: 1,
+        replicasMax: 3,
+        resourceType: ai.app.ScalingAutomaticStrategyResourceTypeEnum.CPU,
+      },
+      labels: {
+        test: 'testLabel',
+      },
+      probe: {
+        path: '/health',
+        port: 8080,
+      },
+    };
+
+    const appOrderResultGPU: AppOrderResult = {
+      ...appOrderResultCPU,
+      flavor: mockedOrderFlavorGPU,
+      volumes: [mockedOrderPublicGit],
+      version: '1',
+      image: 'idImage1',
+      scaling: {
+        autoScaling: false,
+        averageUsageTarget: 75,
+        replicas: 1,
+        replicasMin: 1,
+        replicasMax: 3,
+        resourceType: ai.app.ScalingAutomaticStrategyResourceTypeEnum.CPU,
+      },
+    };
+
+    const appSpecInputCPU: ai.app.AppSpecInput = {
+      name: 'myNewApp',
+      region: 'GRA',
+      image: 'myImage',
+      defaultHttpPort: 8080,
+      resources: {
+        cpu: 2,
+        flavor: 'flavorCPUId',
+      },
+      unsecureHttp: false,
+      labels: {
+        test: 'testLabel',
+      },
+      command: ['command', 'docker'],
+      volumes: [
+        {
+          cache: false,
+          mountPath: '/s3',
+          permission: ai.VolumePermissionEnum.RWD,
+          volumeSource: {
+            dataStore: {
+              alias: 'alias',
+              container: 'container',
+            },
+          },
+        },
+        {
+          cache: true,
+          mountPath: '/git',
+          permission: ai.VolumePermissionEnum.RWD,
+          volumeSource: {
+            dataStore: {
+              alias: 'alias',
+              container: 'develop',
+            },
+          },
+        },
+      ],
+      scalingStrategy: {
+        automatic: {
+          averageUsageTarget: 75,
+          replicasMax: 3,
+          replicasMin: 1,
+          resourceType: ai.app.ScalingAutomaticStrategyResourceTypeEnum.CPU,
+        },
+      },
+      probe: {
+        path: '/health',
+        port: 8080,
+      },
+    };
+
+    const appSpecInputGPU: ai.app.AppSpecInput = {
+      ...appSpecInputCPU,
+      image: 'idImage1:1',
+      partnerId: 'partnerId1',
+      resources: {
+        gpu: 2,
+        flavor: 'flavorGPUId',
+      },
+      volumes: [
+        {
+          cache: false,
+          mountPath: '/demo',
+          permission: ai.VolumePermissionEnum.RO,
+          volumeSource: {
+            publicGit: {
+              url: 'https://repo.git',
+            },
+          },
+        },
+      ],
+      scalingStrategy: {
+        fixed: {
+          replicas: 1,
+        },
+      },
+    };
+    expect(getAppSpec(appOrderResultCPU, [mockedPartnerImage])).toStrictEqual(
+      appSpecInputCPU,
+    );
+    expect(getAppSpec(appOrderResultGPU, [mockedPartnerImage])).toStrictEqual(
+      appSpecInputGPU,
+    );
   });
 });

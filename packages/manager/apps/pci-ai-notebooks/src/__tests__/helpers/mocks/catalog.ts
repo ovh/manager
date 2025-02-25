@@ -121,6 +121,86 @@ export const mockedCatalogStorageHour: order.publicOrder.Plan = {
   product: 'product',
 };
 
+export const mockedCatalogCPUImageAppPartnerId: order.publicOrder.Plan = {
+  addonFamilies: [
+    {
+      name: 'name',
+    },
+  ],
+  configurations: [
+    {
+      isCustom: true,
+      isMandatory: true,
+      name: 'name3',
+    },
+  ],
+  invoiceName: 'invoiceName3',
+  planCode: 'ai-app.partnerid-mockedimagepartnerid-cpu.minute.consumption',
+  pricingType: order.cart.GenericProductPricingTypeEnum.consumption,
+  pricings: [mockedPricing],
+  product: 'product',
+};
+
+export const mockedCatalogGPUImageAppPartnerId: order.publicOrder.Plan = {
+  addonFamilies: [
+    {
+      name: 'name',
+    },
+  ],
+  configurations: [
+    {
+      isCustom: true,
+      isMandatory: true,
+      name: 'name3',
+    },
+  ],
+  invoiceName: 'invoiceName3',
+  planCode: 'ai-app.partnerid-mockedimagepartnerid-gpu.minute.consumption',
+  pricingType: order.cart.GenericProductPricingTypeEnum.consumption,
+  pricings: [mockedPricing],
+  product: 'product',
+};
+
+export const mockedCatalogBracketCPUImageAppPartnerId: order.publicOrder.Plan = {
+  addonFamilies: [
+    {
+      name: 'name',
+    },
+  ],
+  configurations: [
+    {
+      isCustom: true,
+      isMandatory: true,
+      name: 'name3',
+    },
+  ],
+  invoiceName: 'invoiceName3',
+  planCode: 'ai-partnername.mockedimagepartnerid-cpu-bracket1.unit.consumption',
+  pricingType: order.cart.GenericProductPricingTypeEnum.consumption,
+  pricings: [mockedPricing],
+  product: 'product',
+};
+
+export const mockedCatalogBracketGPUImageAppPartnerId: order.publicOrder.Plan = {
+  addonFamilies: [
+    {
+      name: 'name',
+    },
+  ],
+  configurations: [
+    {
+      isCustom: true,
+      isMandatory: true,
+      name: 'name3',
+    },
+  ],
+  invoiceName: 'invoiceName3',
+  planCode: 'ai-partnername.mockedimagepartnerid-gpu-bracket1.unit.consumption',
+  pricingType: order.cart.GenericProductPricingTypeEnum.consumption,
+  pricings: [mockedPricing],
+  product: 'product',
+};
+
 export const mockedCatalog: order.publicOrder.Catalog = {
   addons: [
     mockedCatalogPlan,
@@ -128,6 +208,10 @@ export const mockedCatalog: order.publicOrder.Catalog = {
     mockedCatalogStorageMonth,
     mockedCatalogStorageHour,
     mockedJobCatalogPlan,
+    mockedCatalogCPUImageAppPartnerId,
+    mockedCatalogGPUImageAppPartnerId,
+    mockedCatalogBracketCPUImageAppPartnerId,
+    mockedCatalogBracketGPUImageAppPartnerId,
   ],
   catalogId: 1,
   locale: {

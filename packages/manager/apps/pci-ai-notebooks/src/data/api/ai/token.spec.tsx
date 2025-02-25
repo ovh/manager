@@ -3,6 +3,7 @@ import { describe, expect, vi } from 'vitest';
 import {
   addToken,
   deleteToken,
+  getToken,
   getTokens,
   renewToken,
 } from '@/data/api/ai/token.api';
@@ -41,6 +42,17 @@ describe('Token functions', () => {
     });
     expect(apiClient.v6.get).toHaveBeenCalledWith(
       '/cloud/project/projectId/ai/token',
+    );
+  });
+
+  it('should call getToken', async () => {
+    expect(apiClient.v6.get).not.toHaveBeenCalled();
+    await getToken({
+      projectId: 'projectId',
+      tokenId: 'tokenId',
+    });
+    expect(apiClient.v6.get).toHaveBeenCalledWith(
+      '/cloud/project/projectId/ai/token/tokenId',
     );
   });
 

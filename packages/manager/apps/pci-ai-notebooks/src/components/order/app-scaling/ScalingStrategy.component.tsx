@@ -8,7 +8,6 @@ import A from '@/components/links/A.component';
 import { GUIDES, getGuideUrl } from '@/configuration/guide';
 import { useLocale } from '@/hooks/useLocale';
 import { Input } from '@/components/ui/input';
-import { FormControl, FormItem } from '@/components/ui/form';
 import { AutoScalingForm } from './AutoScalingForm.component';
 import {
   Popover,
@@ -34,8 +33,12 @@ const ScalingStrategy = React.forwardRef<
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange({ ...scaling, replicas: Number(e.target.value) });
   };
+
   return (
-    <div className="flex flex-col gap-4 mb-2">
+    <div
+      data-testid="scaling-strat-container"
+      className="flex flex-col gap-4 mb-2"
+    >
       <div className="mx-2 text-sm">
         <p>{t('fieldScalingDesc1')}</p>
         <A
@@ -51,6 +54,7 @@ const ScalingStrategy = React.forwardRef<
       </div>
       <div className="flex items-center space-x-2">
         <Switch
+          data-testid="switch-scaling-button"
           type="button"
           className="rounded-xl"
           id="scaling-strat"
@@ -74,33 +78,32 @@ const ScalingStrategy = React.forwardRef<
           onNonValidForm={onNonValidForm}
         />
       ) : (
-        <>
-          <FormItem>
-            <div className="flex items-center space-x-2 mb-4">
-              <p className="text-sm">{t('replicasInputLabel')}</p>
-              <Popover>
-                <PopoverTrigger>
-                  <HelpCircle className="size-4" />
-                </PopoverTrigger>
-                <PopoverContent className="text-sm">
-                  <p>{t('haInfoHelper')}</p>
-                </PopoverContent>
-              </Popover>
-            </div>
-
-            <FormControl>
-              <Input
-                ref={ref}
-                type="number"
-                max={10}
-                min={1}
-                value={scaling.replicas}
-                onChange={handleChange}
-              />
-            </FormControl>
-          </FormItem>
+        <div>
+          <div
+            data-testid="fixed-scaling-container"
+            className="flex items-center space-x-2 mb-2"
+          >
+            <p className="text-sm">{t('replicasInputLabel')}</p>
+            <Popover>
+              <PopoverTrigger>
+                <HelpCircle className="size-4" />
+              </PopoverTrigger>
+              <PopoverContent className="text-sm">
+                <p>{t('haInfoHelper')}</p>
+              </PopoverContent>
+            </Popover>
+          </div>
+          <Input
+            data-testid="replicas-input"
+            ref={ref}
+            type="number"
+            max={10}
+            min={1}
+            value={scaling.replicas}
+            onChange={handleChange}
+          />
           {pricingFlavor && (
-            <div>
+            <div className="mt-2">
               <Price
                 decimals={2}
                 displayInHour={true}
@@ -109,7 +112,7 @@ const ScalingStrategy = React.forwardRef<
               />
             </div>
           )}
-        </>
+        </div>
       )}
     </div>
   );

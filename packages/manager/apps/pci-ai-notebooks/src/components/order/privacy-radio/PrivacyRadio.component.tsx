@@ -25,7 +25,10 @@ const PrivacyRadioInput = React.forwardRef<HTMLInputElement, PrivacyRadioProps>(
         <Label className={className}>
           {t('fieldConfigurationPrivacyLabel')}
         </Label>
-        <div className="flex items-center space-x-2">
+        <div
+          data-testid="privacy-radio-container"
+          className="flex items-center space-x-2"
+        >
           <RadioGroup
             ref={ref}
             className="mb-2"
@@ -35,6 +38,7 @@ const PrivacyRadioInput = React.forwardRef<HTMLInputElement, PrivacyRadioProps>(
           >
             <div className="flex items-center space-x-2">
               <RadioGroupItem
+                data-testid="private-radio"
                 value={PrivacyEnum.private}
                 id="private-access-radio"
               />
@@ -49,7 +53,11 @@ const PrivacyRadioInput = React.forwardRef<HTMLInputElement, PrivacyRadioProps>(
               </Popover>
             </div>
             <div className="flex items-center space-x-2">
-              <RadioGroupItem value={PrivacyEnum.public} id="public-access" />
+              <RadioGroupItem
+                data-testid="public-radio"
+                value={PrivacyEnum.public}
+                id="public-access"
+              />
               <Label>{t('publicAccess')}</Label>
               <Popover>
                 <PopoverTrigger>

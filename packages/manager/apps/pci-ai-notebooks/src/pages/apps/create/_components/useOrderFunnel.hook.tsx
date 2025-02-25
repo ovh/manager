@@ -22,7 +22,7 @@ import {
   useGetDatastoresWithContainers,
 } from '@/hooks/api/ai/datastore/useGetDatastoresWithContainers.hook';
 import { useGetAppImages } from '@/hooks/api/ai/capabilities/useGetAppImage.hook';
-import { createAppImagePricingList } from '@/lib/priceParnterImageHelper';
+import { createAppImagePricingList } from '@/lib/pricePartnerImageHelper';
 import { createAppPriceObject } from '@/lib/priceAppHelper';
 import { APP_CONFIG } from '@/configuration/app';
 import { useGetPartner } from '@/hooks/api/ai/partner/useGetPartner.hook';

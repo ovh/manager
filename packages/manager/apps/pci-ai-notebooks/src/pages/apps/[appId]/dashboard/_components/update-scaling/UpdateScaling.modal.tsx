@@ -75,7 +75,7 @@ const UpdateScaling = () => {
       replicasMax: app.spec.scalingStrategy?.automatic?.replicasMax || 1,
       replicasMin: app.spec.scalingStrategy?.automatic?.replicasMin || 1,
       resourceType:
-        app.spec.scalingStrategy?.automatic.resourceType ||
+        app.spec.scalingStrategy?.automatic?.resourceType ||
         ai.app.ScalingAutomaticStrategyResourceTypeEnum.CPU,
     },
   };
