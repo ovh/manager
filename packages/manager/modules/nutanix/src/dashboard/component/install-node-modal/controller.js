@@ -17,6 +17,10 @@ export default class NutanixDashboarInstallNodeModal {
     };
   }
 
+  ipUnavailableWith(ip) {
+    return [...this.ipUnavailable, ip];
+  }
+
   onSubmit() {
     if (this.installNodeForm.$invalid) {
       return;
