@@ -4,15 +4,12 @@ import { FC, PropsWithChildren } from 'react';
 import { describe, test, vi } from 'vitest';
 import { act, renderHook, waitFor } from '@testing-library/react';
 import { isAxiosError } from 'axios';
-import {
-  TInstance,
-  updateDeletedInstanceStatus,
-  useInstances,
-} from '../useInstances';
+import { updateDeletedInstanceStatus, useInstances } from '../useInstances';
 import { setupInstancesServer } from '@/__mocks__/instance/node';
-import { TInstanceDto } from '@/types/instance/api.types';
+import { TInstanceDto } from '@/types/instance/api.type';
 import { TInstancesServerResponse } from '@/__mocks__/instance/handlers';
 import { TMutationFnType, useInstanceAction } from './useInstanceAction';
+import { TInstance } from '@/types/instance/entity.type';
 
 // initializers
 const initQueryClient = () => {
@@ -52,6 +49,7 @@ const fakeInstancesDto: TInstanceDto[] = [
     status: 'ACTIVE',
     addresses: [],
     volumes: [],
+    actions: [],
   },
   {
     id: `fake-id-2`,
@@ -64,6 +62,7 @@ const fakeInstancesDto: TInstanceDto[] = [
     status: 'ACTIVE',
     addresses: [],
     volumes: [],
+    actions: [],
   },
 ];
 
@@ -110,7 +109,7 @@ describe('Considering the useInstanceAction hook', () => {
 
         const { result: useInstancesResult } = renderHook(
           () =>
-            useInstances(projectId, {
+            useInstances(projectId, '', {
               limit: 10,
               sort: 'name',
               sortOrder: 'asc',

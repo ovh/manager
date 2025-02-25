@@ -1,4 +1,4 @@
-import { TInstance } from '@/data/hooks/instance/useInstances';
+import { TInstance } from '@/types/instance/entity.type';
 
 export const mockedInstance: TInstance = {
   id: '12345',
@@ -14,6 +14,7 @@ export const mockedInstance: TInstance = {
     ['public', [{ ip: '777.000.00', version: 2, gatewayIp: '' }]],
   ]),
   volumes: [],
+  actions: [],
 };
 
 export const mockedInstanceWithEmptyRegion: TInstance = {
