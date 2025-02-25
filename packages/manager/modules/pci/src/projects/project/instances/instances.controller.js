@@ -94,7 +94,7 @@ export default class CloudProjectComputeInfrastructureListCtrl {
       POLLER_INSTANCES.filter((poller) =>
         poller.needsPolling(instance),
       ).forEach((poller) => {
-        const endPointUrl = `/cloud/project/${this.projectId}/instance/${instance.id}`;
+        const endPointUrl = `/cloud/project/${this.projectId}/instance/${instance.id}?region=${instance.region}`;
         this.Poller.poll(endPointUrl, null, {
           interval: 5000,
           successRule: (i) => poller.isPolled(new Instance(i)),
