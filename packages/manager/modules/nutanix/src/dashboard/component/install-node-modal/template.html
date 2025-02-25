@@ -31,7 +31,7 @@
                         data-nutanix-unique-ip-validator="$ctrl.ipUnavailable"
                         data-nutanix-ip-subnet-validator="$ctrl.gatewayCidr"
                         data-ng-model="$ctrl.ahvIp"
-                        required
+                        data-required
                     />
                 </div>
             </oui-field>
@@ -50,7 +50,7 @@
                         data-nutanix-unique-ip-validator="$ctrl.ipUnavailable"
                         data-nutanix-ip-subnet-validator="$ctrl.gatewayCidr"
                         data-ng-model="$ctrl.cvmIp"
-                        required
+                        data-required
                     />
                 </div>
             </oui-field>
@@ -61,6 +61,7 @@
                     name="version"
                     data-model="$ctrl.version"
                     data-items=":: $ctrl.availableVersions"
+                    data-required
                 />
             </oui-field>
         </form>
