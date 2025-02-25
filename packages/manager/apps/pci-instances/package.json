@@ -53,7 +53,7 @@
     "@types/react-dom": "^18.2.19",
     "@types/react-query": "^1.2.9",
     "@vitejs/plugin-react": "^4.2.1",
-    "@vitest/coverage-v8": "^1.2.2",
+    "@vitest/coverage-v8": "^2.1.9",
     "autoprefixer": "^10.4.17",
     "eslint": "^8.57.0",
     "eslint-plugin-react": "^7.35.0",
