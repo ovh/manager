@@ -4,6 +4,7 @@ import {
   OnboardingLayout,
   OvhSubsidiary,
   PageLayout,
+  useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 import {
   Navigate,
@@ -30,6 +31,7 @@ import { Spinner } from '@/components/spinner/Spinner.component';
 const Onboarding: FC = () => {
   const { t } = useTranslation(['onboarding', 'common']);
   const { projectId } = useParams() as { projectId: string };
+  const projectUrl = useProjectUrl('public-cloud');
   const context = useContext(ShellContext);
   const { ovhSubsidiary } = context.environment.getUser() as {
     ovhSubsidiary: OvhSubsidiary;
@@ -38,7 +40,7 @@ const Onboarding: FC = () => {
   const createInstanceHref = useHref('../new');
   useHidePreloader();
 
-  const { data, isLoading } = useInstances(projectId, {
+  const { data, isLoading } = useInstances(projectId, projectUrl, {
     limit: 10,
     sort: 'name',
     sortOrder: 'asc',

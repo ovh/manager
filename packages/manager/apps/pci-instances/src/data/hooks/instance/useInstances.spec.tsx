@@ -5,15 +5,11 @@ import { describe, expect, test, afterEach } from 'vitest';
 import { renderHook, waitFor, act } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { FilterComparator } from '@ovh-ux/manager-core-api';
-import {
-  TInstance,
-  TInstanceStatus,
-  useInstances,
-  TUseInstancesQueryParams,
-} from './useInstances';
-import { TInstanceDto, TInstanceStatusDto } from '@/types/instance/api.types';
+import { useInstances, TUseInstancesQueryParams } from './useInstances';
+import { TInstanceDto, TInstanceStatusDto } from '@/types/instance/api.type';
 import { setupInstancesServer } from '@/__mocks__/instance/node';
 import { TInstancesServerResponse } from '@/__mocks__/instance/handlers';
+import { TInstance, TInstanceStatus } from '@/types/instance/entity.type';
 
 // builders
 const instanceDtoBuilder = (
@@ -30,6 +26,7 @@ const instanceDtoBuilder = (
   status,
   addresses,
   volumes: [],
+  actions: [],
 });
 
 const instanceBuilder = (
@@ -40,6 +37,7 @@ const instanceBuilder = (
   ...instanceDto,
   addresses,
   status,
+  actions: [],
 });
 
 // initializers
@@ -245,7 +243,7 @@ describe('UseInstances hook', () => {
 
           const { wrapper, queryClient } = initQueryClient();
           const { result } = renderHook(
-            () => useInstances(projectId, queryParamaters),
+            () => useInstances(projectId, '', queryParamaters),
             {
               wrapper,
             },
