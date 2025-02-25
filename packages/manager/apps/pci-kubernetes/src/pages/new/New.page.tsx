@@ -129,7 +129,9 @@ export default function NewPage() {
       version: stepper.form.version,
       updatePolicy: stepper.form.updatePolicy,
       ...(nodePoolEnabled && {
-        nodepools: stepper.form.nodePools,
+        nodepools: stepper.form.nodePools.map(
+          ({ localisation: _1, monthlyPrice: _2, ...nodePool }) => nodePool,
+        ),
       }),
       privateNetworkId:
         stepper.form.network?.privateNetwork?.clusterRegion?.openstackId ||
