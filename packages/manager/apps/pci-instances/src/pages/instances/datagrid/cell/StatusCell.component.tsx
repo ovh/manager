@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { LoadingCell } from '@/components/datagrid/cell/LoadingCell.component';
 import StatusChip from '@/components/statusChip/StatusChip.component';
-import { TInstance } from '@/data/hooks/instance/useInstances';
+import { TInstance } from '@/types/instance/entity.type';
 
 type TStatusCellProps = {
   instance: TInstance;

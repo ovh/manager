@@ -1,65 +1,78 @@
 import { describe, test, vi } from 'vitest';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import {
   ActionsMenu,
-  groupActionMenuItems,
+  ActionsMenuLink,
   TActionsMenuItem,
 } from './ActionsMenu.component';
 
-const onMenuItemClickMock = vi.fn();
+vi.mock('react-router-dom', () => ({
+  useHref: () => '/item1',
+}));
 
-const testItems: TActionsMenuItem[] = [
-  {
-    label: 'foo',
-    href: '/foo/bar',
-  },
-  {
-    label: 'bar',
-    onMenuItemClick: onMenuItemClickMock,
-  },
-];
-
-const renderActionsMenu = (items: TActionsMenuItem[]) => {
-  render(<ActionsMenu items={items} />);
+const prepareTest = (item: TActionsMenuItem) => {
+  render(<ActionsMenuLink item={item} />);
+  return screen.getByTestId('actions-menu-item');
 };
 
-describe('Considering the groupActionMenuItems() function', () => {
-  test("should group items by 'group' property", () => {
-    const items: TActionsMenuItem[] = [
-      { group: 'boot', label: 'Start' },
-      { group: 'boot', label: 'Stop' },
-      { group: 'delete', label: 'Delete' },
-      { label: 'Foo' },
+describe('Considering the ActionsMenu components', () => {
+  test('Should render a menu with items', () => {
+    const items = [
+      {
+        label: 'Item 1',
+        isDisabled: false,
+        link: { path: '/item1', isExternal: false },
+      },
+      {
+        label: 'Item 2',
+        isDisabled: true,
+        link: { path: '/item2', isExternal: false },
+      },
     ];
-
-    const result = groupActionMenuItems(items);
-
-    expect(result).toEqual({
-      boot: [{ label: 'Start' }, { label: 'Stop' }],
-      delete: [{ label: 'Delete' }],
-      others: [{ label: 'Foo' }],
-    });
-  });
-});
-
-describe('Considering the ActionsMenu component', () => {
-  test('Should render only action menu button with Icon as first child if items prop is []', () => {
-    renderActionsMenu([]);
-    const actionsMenuButtonElement = screen.getByTestId('actions-menu-button');
-    expect(actionsMenuButtonElement).toBeInTheDocument();
-    const childElements = actionsMenuButtonElement.querySelectorAll('*');
-    expect(childElements.length).toBe(1);
+    render(<ActionsMenu items={items} />);
+    expect(screen.getByTestId('actions-menu-button')).toBeInTheDocument();
+    expect(screen.getAllByTestId('actions-menu-item')).toHaveLength(2);
   });
 
-  test('Should render the list of items correctly if provided', () => {
-    renderActionsMenu(testItems);
-    const menuItemElements = screen.getAllByTestId('actions-menu-item');
-    expect(menuItemElements.length).toBe(2);
-    const [firstChild, secondChild] = menuItemElements;
-    expect(firstChild).toHaveTextContent('foo');
-    expect(firstChild).toHaveAttribute('href', '/foo/bar');
-    expect(secondChild).toHaveTextContent('bar');
-    fireEvent.click(secondChild);
-    expect(onMenuItemClickMock).toHaveBeenCalled();
+  test('Should render a menu item with an internal link', () => {
+    const item = {
+      label: 'Item 1',
+      isDisabled: false,
+      link: { path: '/item1', isExternal: false },
+    };
+    const elt = prepareTest(item);
+    expect(elt).toBeInTheDocument();
+    expect(elt).toHaveAttribute('href', '/item1');
+  });
+
+  test('Should render a menu item with an external link', () => {
+    const item = {
+      label: 'Item 2',
+      isDisabled: false,
+      link: { path: '/item2', isExternal: true },
+    };
+    const elt = prepareTest(item);
+    expect(elt).toBeInTheDocument();
+    expect(elt).toHaveAttribute('href', '/item2');
+  });
+
+  test('SHould render a disabled menu item', () => {
+    const item = {
+      label: 'Item 1',
+      isDisabled: true,
+      link: { path: '/item1', isExternal: false },
+    };
+    const elt = prepareTest(item);
+    expect(elt).toBeDisabled();
+  });
+
+  test('Should render a menu item with a custom label', () => {
+    const item = {
+      label: 'Custom Label',
+      isDisabled: false,
+      link: { path: '/item1', isExternal: false },
+    };
+    const elt = prepareTest(item);
+    expect(elt).toHaveTextContent('Custom Label');
   });
 });
