@@ -539,7 +539,7 @@ export default function ObjectPage() {
               />
             )}
 
-            <div className="flex justify-center gap-4">
+            <div className="flex justify-center gap-4 ml-auto">
               <OdsInput
                 name="searchField"
                 className="min-w-[15rem]"
