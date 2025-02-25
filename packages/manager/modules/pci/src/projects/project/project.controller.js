@@ -47,9 +47,7 @@ export default class ProjectController {
   $onInit() {
     this.productImages = PRODUCT_IMAGES;
 
-    this.projectQuotaAboveThreshold = this.quotas.find(
-      (quota) => quota.quotaAboveThreshold,
-    );
+    this.projectQuotaAboveThreshold = undefined;
 
     this.PciProject.setProjectInfo(this.project);
     this.loadMessages();
