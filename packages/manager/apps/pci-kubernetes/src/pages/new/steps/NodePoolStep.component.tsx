@@ -56,7 +56,7 @@ const NodePoolStep = ({
   const { t: tNodePool } = useTranslation('node-pool');
 
   const [scaling, setScaling] = useState<AutoscalingState | null>(null);
-  const [antiAffinity, setIsAntiaffinity] = useState(false);
+  const [antiAffinity, setAntiaffinity] = useState(false);
   const [name, setName] = useState('');
   const [isTouched, setIsTouched] = useState(false);
 
@@ -177,7 +177,7 @@ const NodePoolStep = ({
               <NodePoolAntiAffinity
                 isChecked={antiAffinity}
                 isEnabled={!scaling?.isAutoscale}
-                onChange={setIsAntiaffinity}
+                onChange={setAntiaffinity}
               />
             </div>
             <div className="mb-8">

@@ -4,11 +4,6 @@ import BillingStep, { TBillingStepProps } from './BillingStep.component';
 import { wrapper } from '@/wrapperRenders';
 
 const defaultProps: TBillingStepProps = {
-  antiAffinity: {
-    isEnabled: false,
-    isChecked: false,
-    onChange: vi.fn(),
-  },
   price: 0,
   monthlyPrice: 0,
   monthlyBilling: {

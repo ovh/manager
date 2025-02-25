@@ -63,7 +63,15 @@ export default function NewPage(): JSX.Element {
     isAdding: false,
   });
 
-  const [billingState, setBillingState] = useState<TBillingStepProps>({
+  const [billingState, setBillingState] = useState<
+    TBillingStepProps & {
+      antiAffinity: {
+        isEnabled: boolean;
+        isChecked: boolean;
+        onChange: (val: boolean) => void;
+      };
+    }
+  >({
     antiAffinity: {
       isEnabled: false,
       isChecked: false,
