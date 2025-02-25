@@ -4,10 +4,10 @@ import {
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
 import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
-import { Trans, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import React, { useEffect } from 'react';
-import { Links, LinkType } from '../typography';
 import { useOrderContext } from './Order.context';
+import { TransExternalLink } from '../typography/links/TransExternalLink.component';
 
 export type TOrderSummary = {
   onFinish: () => void;
@@ -48,21 +48,12 @@ export const OrderSummary: React.FC<TOrderSummary> = ({
           {t('order_summary_order_initiated_title', { product })}
         </OdsText>
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          <Trans
-            t={t}
+          <TransExternalLink
+            i18nNamespace="order"
             i18nKey="order_summary_order_initiated_subtitle"
-            components={{
-              OrderLink: (
-                <Links
-                  type={LinkType.external}
-                  target="_blank"
-                  href={orderLink}
-                  data-testid="order-summary-link"
-                  onClickReturn={onClickLink}
-                />
-              ),
-            }}
-          ></Trans>
+            href={orderLink}
+            onClickReturn={onClickLink}
+          />
         </OdsText>
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t('order_summary_order_initiated_info', { product })}
