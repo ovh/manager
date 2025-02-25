@@ -80,6 +80,7 @@
                 ></p>
 
                 <oui-field
+                    data-ng-if="$ctrl.isMultipleNodesOrderEnabled"
                     label="{{ 'nutanix_dashboard_add_nodes_number_of_additional_nodes_to_command' | translate }}"
                     error-messages="$ctrl.customErrorMessages"
                 >
