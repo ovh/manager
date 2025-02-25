@@ -1,6 +1,7 @@
 import { render } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
 import BillingStep, { TBillingStepProps } from './BillingStep.component';
+import { wrapper } from '@/wrapperRenders';
 
 const defaultProps: TBillingStepProps = {
   antiAffinity: {
@@ -35,7 +36,7 @@ describe('BillingStep', () => {
         ...defaultProps,
         price: 5248,
       };
-      const { getByTestId } = render(<BillingStep {...props} />);
+      const { getByTestId } = render(<BillingStep {...props} />, { wrapper });
 
       const hourlyTile = getByTestId('hourly_tile');
 
@@ -53,7 +54,9 @@ describe('BillingStep', () => {
             isComingSoon: true,
           },
         };
-        const { queryByTestId } = render(<BillingStep {...props} />);
+        const { queryByTestId } = render(<BillingStep {...props} />, {
+          wrapper,
+        });
 
         const monthlyTile = queryByTestId('monthly_tile');
 
@@ -69,7 +72,9 @@ describe('BillingStep', () => {
             isComingSoon: false,
           },
         };
-        const { queryByTestId } = render(<BillingStep {...props} />);
+        const { queryByTestId } = render(<BillingStep {...props} />, {
+          wrapper,
+        });
 
         const monthlyTile = queryByTestId('monthly_tile');
 
@@ -86,7 +91,9 @@ describe('BillingStep', () => {
             isComingSoon: true,
           },
         };
-        const { queryByTestId } = render(<BillingStep {...props} />);
+        const { queryByTestId } = render(<BillingStep {...props} />, {
+          wrapper,
+        });
 
         const yesMessage = queryByTestId('coming_soon_message');
         const noMessage = queryByTestId('billing_description');
@@ -103,7 +110,9 @@ describe('BillingStep', () => {
             isComingSoon: false,
           },
         };
-        const { queryByTestId } = render(<BillingStep {...props} />);
+        const { queryByTestId } = render(<BillingStep {...props} />, {
+          wrapper,
+        });
 
         const yesMessage = queryByTestId('coming_soon_message');
         const noMessage = queryByTestId('billing_description');
@@ -119,7 +128,7 @@ describe('BillingStep', () => {
         ...defaultProps,
         warn: true,
       };
-      const { queryByTestId } = render(<BillingStep {...props} />);
+      const { queryByTestId } = render(<BillingStep {...props} />, { wrapper });
 
       const warnMessage = queryByTestId('warn_message');
 
@@ -131,7 +140,7 @@ describe('BillingStep', () => {
         ...defaultProps,
         warn: false,
       };
-      const { queryByTestId } = render(<BillingStep {...props} />);
+      const { queryByTestId } = render(<BillingStep {...props} />, { wrapper });
 
       const warnMessage = queryByTestId('warn_message');
 
