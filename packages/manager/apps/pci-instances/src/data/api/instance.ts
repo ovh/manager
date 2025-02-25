@@ -2,7 +2,7 @@ import { v6 } from '@ovh-ux/manager-core-api';
 import {
   TInstanceDto,
   TRetrieveInstancesQueryParams,
-} from '@/types/instance/api.types';
+} from '@/types/instance/api.type';
 
 type TInstanceAction = 'delete' | 'stop' | 'start' | 'shelve' | 'unshelve';
 
