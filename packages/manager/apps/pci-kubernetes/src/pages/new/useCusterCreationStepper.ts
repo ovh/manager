@@ -4,7 +4,7 @@ import { useStep } from './useStep';
 import { TNetworkFormState } from './steps/NetworkClusterStep.component';
 import { UpdatePolicy } from '@/types';
 
-import { NodePool, NodePoolPrice } from '@/api/data/kubernetes';
+import { NodePoolPrice } from '@/api/data/kubernetes';
 
 export type TClusterCreationForm = {
   region: TLocalisation;

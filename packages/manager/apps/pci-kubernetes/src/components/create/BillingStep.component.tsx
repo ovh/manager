@@ -35,11 +35,6 @@ const uncheckedClass =
 const separatorClass = 'h-px my-5 bg-[#85d9fd] border-0';
 
 export type TBillingStepProps = {
-  antiAffinity?: {
-    isEnabled: boolean;
-    isChecked: boolean;
-    onChange: (val: boolean) => void;
-  };
   price: number;
   monthlyPrice?: number;
   monthlyBilling: {
