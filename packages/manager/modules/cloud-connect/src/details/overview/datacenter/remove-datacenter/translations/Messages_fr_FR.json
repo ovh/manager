@@ -1,6 +1,6 @@
 {
-  "cloud_connect_datacenter_remove": "Supprimer la configuration du datacentre",
-  "cloud_connect_datacenter_remove_description": "Cela supprimera la configuration de datacentre sélectionnée",
-  "cloud_connect_datacenter_remove_success": "Configuration de datacentre supprimée. <a href=\"{{ tasksUrl }}\">Cliquez ici pour voir le statut.</a>",
-  "cloud_connect_datacenter_remove_error": "Échec de la suppression d'une configuration de datacentre: {{message}}"
+  "cloud_connect_datacenter_remove": "Supprimer la configuration du zone de disponibilité",
+  "cloud_connect_datacenter_remove_description": "Cela supprimera la configuration de zone de disponibilité sélectionnée",
+  "cloud_connect_datacenter_remove_success": "Configuration de zone de disponibilité supprimée. <a href=\"{{ tasksUrl }}\">Cliquez ici pour voir le statut.</a>",
+  "cloud_connect_datacenter_remove_error": "Échec de la suppression d'une configuration de zone de disponibilité: {{message}}"
 }
