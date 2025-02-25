@@ -26,7 +26,6 @@ import {
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-import { defineCurrentPage } from '@ovh-ux/request-tagger';
 import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { features } from '@/pages/dashboard/dashboard.constants';
@@ -90,7 +89,6 @@ export default function Dashboard() {
       const newValueIsAccountSidebarVisible = (await shell.ux.isAccountSidebarVisible()) as boolean;
       setIsAccountSidebarVisible(() => newValueIsAccountSidebarVisible);
     };
-    defineCurrentPage(`app.dashboard`);
     shell.ux.hidePreloader();
     shell.ux.stopProgress();
     getIsAccountSidebarVisible();

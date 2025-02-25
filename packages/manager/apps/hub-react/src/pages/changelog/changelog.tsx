@@ -41,10 +41,7 @@ export default function Changelog() {
     },
   ];
 
-  const {
-    shell,
-    environment: { user },
-  } = useContext(ShellContext);
+  const { shell } = useContext(ShellContext);
 
   const [isAccountSidebarVisible, setIsAccountSidebarVisible] = useState(false);
 
@@ -55,8 +52,6 @@ export default function Changelog() {
       shell.ux.hidePreloader();
       shell.ux.stopProgress();
     };
-
-    defineCurrentPage('app.roadmap-changelog');
     getIsAccountSidebarVisible();
   }, []);
 
