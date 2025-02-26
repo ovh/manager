@@ -43,7 +43,7 @@ const SubscriptionStreamActions = ({
 
   if (isLoading || isPending) {
     return (
-      <div className="flex justify-center w-full py-4">
+      <div className="flex justify-center w-full py-6">
         <OdsSpinner size="md" data-testid="logStreamUrl-spinner" />
       </div>
     );
@@ -66,7 +66,7 @@ const SubscriptionStreamActions = ({
     );
 
   return (
-    <div className="flex flex-col gap-4 ">
+    <div className="flex flex-col gap-6 ">
       <Links
         href={data?.streamURL?.address}
         type={LinkType.external}
