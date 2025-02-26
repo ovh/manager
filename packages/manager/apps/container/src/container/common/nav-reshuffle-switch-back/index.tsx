@@ -13,13 +13,9 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 
 function NavReshuffleSwitchBack(): JSX.Element {
   const { t } = useTranslation('beta-modal');
-  const { updateBetaChoice, betaVersion, useBeta } = useContainer();
+  const { updateBetaChoice, useBeta } = useContainer();
   const shell = useShell();
   const trackingPlugin = shell.getPlugin('tracking');
-
-  if (!betaVersion) {
-    return <></>;
-  }
 
   const toggleVersion = (value: 'classic' | 'beta') => {
     const versionName = value === 'beta' ? 'new' : 'old';

@@ -10,7 +10,7 @@ import { IFrameMessageBus } from '@ovh-ux/shell';
 import { IFrameAppRouter } from '@/core/routing';
 
 import NavReshuffleBetaAccessModal from '@/container/common/pnr-beta-modal';
-import ApplicationContext from '@/context';
+import { useApplication } from '@/context';
 import { useProgress } from '@/context/progress';
 import { LegacyContainerProvider } from './context';
 import LegacyHeader from './Header';
@@ -29,13 +29,13 @@ function LegacyContainer(): JSX.Element {
   const [iframe, setIframe] = useState<HTMLIFrameElement>(null);
   const { betaVersion } = useContainer();
 
-  const { shell } = useContext(ApplicationContext);
+  const { shell, environment } = useApplication();
   const { isStarted: isProgressAnimating } = useProgress();
   const preloaderVisible = usePreloader(shell, iframe);
-  const applications = shell
-    .getPlugin('environment')
-    .getEnvironment()
-    .getApplications();
+  const applications = environment.getApplications();
+
+  const { ovhSubsidiary } = environment.getUser();
+  const canUseBeta = ovhSubsidiary !== 'US' || betaVersion;
 
   const {
     isMfaEnrollmentForced,
@@ -67,9 +67,11 @@ function LegacyContainer(): JSX.Element {
         <Progress isAnimating={isProgressAnimating}></Progress>
 
         <div className={style.managerShell}>
-          <Suspense fallback="">
-            <NavReshuffleBetaAccessModal />
-          </Suspense>
+          {canUseBeta && (
+            <Suspense fallback="">
+              <NavReshuffleBetaAccessModal />
+            </Suspense>
+          )}
           <div>
             <LegacyHeader />
           </div>

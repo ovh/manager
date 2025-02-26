@@ -1,11 +1,10 @@
-import { useState, Suspense } from 'react';
+import React, { useState, Suspense } from 'react';
 
 import HamburgerMenu from './HamburgerMenu';
 import UserAccountMenu from './user-account-menu';
 
 import LanguageMenu from '@/container/common/language';
 import modalStyle from '@/container/common/modal.module.scss';
-import NavReshuffleSwitchBack from '@/container/common/nav-reshuffle-switch-back';
 import NotificationsSidebar from '@/container/common/notifications-sidebar';
 import Notifications from '@/container/common/notifications-sidebar/NotificationsButton';
 import ApplicationContext, { useShell } from '@/context';
@@ -16,6 +15,10 @@ import { Logo } from '@/container/common/Logo';
 import style from './style.module.scss';
 import { useMediaQuery } from 'react-responsive';
 import { SMALL_DEVICE_MAX_SIZE } from '@/container/common/constants';
+import useContainer from '@/core/container';
+import useUser from '@/hooks/user/useUser';
+
+const NavReshuffleSwitchBack = React.lazy(() => import('@/container/common/nav-reshuffle-switch-back'));
 
 type Props = {
   isSidebarExpanded?: boolean;
@@ -29,6 +32,12 @@ function Header({
   onUserAccountMenuToggle = () => {},
 }: Props): JSX.Element {
   const shell = useShell();
+
+  // PNR SwitchBack check //
+  const { betaVersion } = useContainer();
+  const { ovhSubsidiary } = useUser();
+  const canUseBeta = ovhSubsidiary !== 'US' || betaVersion;
+
   const [userLocale, setUserLocale] = useState<string>(
     shell.getPlugin('i18n').getLocale(),
   );
@@ -68,11 +77,13 @@ function Header({
             <div
               className={`oui-navbar-list oui-navbar-list_aside oui-navbar-list_end ${style.navbarList}`}
             >
-              {!isSmallDevice &&
+              {!isSmallDevice && canUseBeta && (
                 <div className={`oui-navbar-list__item ${style.navbarListItem}`}>
-                  <NavReshuffleSwitchBack />
+                  <Suspense fallback={<></>}>
+                    <NavReshuffleSwitchBack />
+                  </Suspense>
                 </div>
-              }
+              )}
               <div className={`oui-navbar-list__item ${style.navbarListItem}`}>
                 <LanguageMenu
                   setUserLocale={setUserLocale}
@@ -96,11 +107,13 @@ function Header({
               </div>
             </div>
           </div>
-          {isSmallDevice &&
+          {isSmallDevice && canUseBeta && (
             <div className={style['small-device-pnr-switch']}>
-              <NavReshuffleSwitchBack />
+              <Suspense fallback={<></>}>
+                <NavReshuffleSwitchBack />
+              </Suspense>
             </div>
-          }
+          )}
           <NotificationsSidebar />
         </Suspense>
       )}
