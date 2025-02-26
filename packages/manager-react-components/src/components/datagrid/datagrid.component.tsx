@@ -1,4 +1,4 @@
-import React, { Fragment, useMemo } from 'react';
+import React, { Fragment, useEffect, useMemo, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   ColumnDef,
@@ -59,6 +59,8 @@ export interface DatagridColumn<T> {
   isFilterable?: boolean;
   /** Trigger the column search */
   isSearchable?: boolean;
+  /** Set default column size */
+  size?: number;
 }
 
 type ColumnFilterProps = {
@@ -122,9 +124,18 @@ export interface DatagridProps<T> {
   /** Add react element at left in the datagrid topbar */
   topbar?: React.ReactNode;
   /** Function to render sub component as row child */
-  renderSubComponent?: (row: Row<T>) => JSX.Element;
+  renderSubComponent?: (
+    row: Row<T>,
+    headerRefs?: React.MutableRefObject<Record<string, HTMLTableCellElement>>,
+  ) => JSX.Element;
   /** function to define if row can be expanded or not */
   getRowCanExpand?: (row: Row<T>) => boolean;
+  /** Hide datagrid header if true */
+  hideHeader?: boolean;
+  /** Resets the expanded rows when data is updated */
+  resetExpandedRowsOnItemsChange?: boolean;
+  /** When true, will fix the columns size by column definition size */
+  tableLayoutFixed?: boolean;
 }
 
 export const Datagrid = <T,>({
@@ -149,11 +160,16 @@ export const Datagrid = <T,>({
   numberOfLoadingRows,
   renderSubComponent,
   getRowCanExpand,
+  resetExpandedRowsOnItemsChange,
+  hideHeader,
+  tableLayoutFixed,
 }: DatagridProps<T>) => {
   const { t } = useTranslation('datagrid');
   const pageCount = pagination
     ? Math.ceil(totalItems / pagination.pageSize)
     : 1;
+
+  const headerRefs = useRef({});
 
   const table = useReactTable({
     columns: [
@@ -185,6 +201,7 @@ export const Datagrid = <T,>({
           cell: (props) => col.cell(props.row.original),
           header: col.label,
           enableSorting: col.isSortable !== false,
+          size: col.size,
         }),
       ),
     ],
@@ -220,6 +237,12 @@ export const Datagrid = <T,>({
     }),
   });
 
+  useEffect(() => {
+    if (resetExpandedRowsOnItemsChange) {
+      table.resetExpanded();
+    }
+  }, [items, resetExpandedRowsOnItemsChange]);
+
   const filtersColumns = useMemo<ColumnFilter[]>(
     () =>
       columns
@@ -254,60 +277,71 @@ export const Datagrid = <T,>({
       />
       <div className={`contents px-[1px] ${className || ''}`}>
         <OdsTable className="overflow-x-visible">
-          <table className="w-full border-collapse">
-            <thead>
-              {table.getHeaderGroups().map((headerGroup) => (
-                <tr key={headerGroup.id}>
-                  {headerGroup.headers.map((header) => (
-                    <th
-                      key={header.id}
-                      className={`${
-                        contentAlignLeft ? 'text-left pl-4' : 'text-center'
-                      } h-11 whitespace-nowrap `}
-                    >
-                      {header.isPlaceholder ? null : (
-                        <div
-                          {...{
-                            className:
-                              onSortChange && header.column.getCanSort()
-                                ? 'cursor-pointer select-none'
-                                : '',
-                            ...(onSortChange && {
-                              onClick: header.column.getToggleSortingHandler(),
-                            }),
-                          }}
-                          data-testid={`header-${header.id}`}
-                        >
-                          <span>
-                            <>
-                              {flexRender(
-                                header.column.columnDef.header,
-                                header.getContext(),
-                              )}
-                            </>
-                          </span>
-                          <span
-                            className={`align-middle inline-block h-4 -mt-6`}
+          <table
+            className="w-full border-collapse"
+            style={
+              { '--expander-column-width': '2.5rem' } as React.CSSProperties
+            }
+          >
+            {!hideHeader && (
+              <thead>
+                {table.getHeaderGroups().map((headerGroup) => (
+                  <tr key={headerGroup.id}>
+                    {headerGroup.headers.map((header) => (
+                      <th
+                        key={header.id}
+                        ref={(el) => {
+                          headerRefs.current[header.id] = el;
+                        }}
+                        className={`${
+                          contentAlignLeft ? 'text-left pl-4' : 'text-center'
+                        } h-11 whitespace-nowrap `}
+                      >
+                        {header.isPlaceholder ? null : (
+                          <div
+                            {...{
+                              className:
+                                onSortChange && header.column.getCanSort()
+                                  ? 'cursor-pointer select-none'
+                                  : '',
+                              ...(onSortChange && {
+                                onClick:
+                                  header.column.getToggleSortingHandler(),
+                              }),
+                            }}
+                            data-testid={`header-${header.id}`}
                           >
-                            <OdsIcon
-                              className={
-                                header.column.getIsSorted() ? '' : 'invisible'
-                              }
-                              name={
-                                (header.column.getIsSorted() as string) ===
-                                'asc'
-                                  ? ODS_ICON_NAME.arrowUp
-                                  : ODS_ICON_NAME.arrowDown
-                              }
-                            />
-                          </span>
-                        </div>
-                      )}
-                    </th>
-                  ))}
-                </tr>
-              ))}
-            </thead>
+                            <span>
+                              <>
+                                {flexRender(
+                                  header.column.columnDef.header,
+                                  header.getContext(),
+                                )}
+                              </>
+                            </span>
+                            <span
+                              className={`align-middle inline-block h-4 -mt-6`}
+                            >
+                              <OdsIcon
+                                className={
+                                  header.column.getIsSorted() ? '' : 'invisible'
+                                }
+                                name={
+                                  (header.column.getIsSorted() as string) ===
+                                  'asc'
+                                    ? ODS_ICON_NAME.arrowUp
+                                    : ODS_ICON_NAME.arrowDown
+                                }
+                              />
+                            </span>
+                          </div>
+                        )}
+                      </th>
+                    ))}
+                  </tr>
+                ))}
+              </thead>
+            )}
             <tbody>
               {table.getRowModel().rows.map((row) => (
                 <Fragment key={row.id}>
@@ -318,9 +352,14 @@ export const Datagrid = <T,>({
                         className={clsx(
                           contentAlignLeft ? 'text-left pl-4' : 'text-center',
                           {
-                            'w-[2rem]': cell.id.indexOf('expander') !== -1,
+                            'w-[2.5rem]': cell.id.indexOf('expander') !== -1,
                           },
                         )}
+                        style={{
+                          width: tableLayoutFixed
+                            ? `${cell.column.getSize()}px`
+                            : null,
+                        }}
                       >
                         {flexRender(
                           cell.column.columnDef.cell,
@@ -330,10 +369,10 @@ export const Datagrid = <T,>({
                     ))}
                   </tr>
                   {row.getIsExpanded() && !!renderSubComponent && (
-                    <tr>
+                    <tr className="sub-row">
                       {/* 2nd row is a custom 1 cell row */}
                       <td colSpan={row.getVisibleCells().length}>
-                        {renderSubComponent(row)}
+                        {renderSubComponent(row, headerRefs)}
                       </td>
                     </tr>
                   )}
