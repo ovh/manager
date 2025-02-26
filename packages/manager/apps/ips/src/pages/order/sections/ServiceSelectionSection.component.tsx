@@ -128,13 +128,13 @@ export const ServiceSelectionSection: React.FC = () => {
             <optgroup
               label={t('service_selection_select_vrack_option_group_label')}
             >
-              {vrack?.map((currentVrack) => (
+              {vrack?.map(({ serviceName, displayName }) => (
                 <option
-                  key={currentVrack}
-                  value={currentVrack}
-                  disabled={disabledServices.includes(currentVrack)}
+                  key={serviceName}
+                  value={serviceName}
+                  disabled={disabledServices.includes(serviceName)}
                 >
-                  {currentVrack}
+                  {displayName}
                 </option>
               ))}
             </optgroup>
