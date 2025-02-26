@@ -41,5 +41,8 @@
   "ip_byoip_cancel_text": "Cancelar",
   "ip_byoip_restriction_warning_message": "El servicio Bring Your Own IP solo está disponible con acceso restringido por ahora. Para más información, puede ponerse en contacto con el equipo comercial de OVHcloud.",
   "ip_byoip_region_YNM": "Bombay (YNM {{number}}) - India",
-  "ip_byoip_region_YYZ": "Toronto (YYZ{{number}}) - Canadá"
+  "ip_byoip_region_YYZ": "Toronto (YYZ{{number}}) - Canadá",
+  "ip_byoip_guides": "Guías",
+  "ip_byoip_guides_main": "Utilizar la funcionalidad Bring Your Own IP",
+  "ip_byoip_region_token_description_3": "Para APNIC, edite el campo \"remarks\" del objeto \"inetnum\" (o el objeto \"aut-num\" cuando se utiliza como un número)."
 }
