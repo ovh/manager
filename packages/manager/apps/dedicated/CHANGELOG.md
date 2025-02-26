@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.15.5...@ovh-ux/manager-dedicated@20.16.0) (2025-02-26)
+
+
+### Features
+
+* **dedicated:** add guide link on BYOIP ([#15537](https://github.com/ovh/manager/issues/15537)) ([43f54cb](https://github.com/ovh/manager/commit/43f54cbea507715d515c59b8981ce4f83641b465))
+
+
+
+
+
 ## [20.15.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.15.4...@ovh-ux/manager-dedicated@20.15.5) (2025-02-24)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated
