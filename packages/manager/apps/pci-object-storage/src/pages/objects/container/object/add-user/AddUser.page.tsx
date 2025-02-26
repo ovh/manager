@@ -14,12 +14,13 @@ import {
   useParams,
   useSearchParams,
 } from 'react-router-dom';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import StepOneComponent from './StepOne.component';
 import StepTwoComponent from './StepTwo.component';
 import { useUsers } from '@/api/hooks/useUser';
 import { useAddUser } from '@/api/hooks/useObject';
 import { TUser } from '@/api/data/user';
+import { useOdsModalOverflowHack } from '@/hooks/useOdsModalOverflowHack';
 
 export default function AddUserPage() {
   const { t } = useTranslation('containers/add-user');
@@ -42,6 +43,8 @@ export default function AddUserPage() {
   const [stepUser, setStepUser] = useState(0);
   const [selectedUser, setSelectedUser] = useState<TUser>(null);
   const [selectedRole, setSelectedRole] = useState<string>(null);
+
+  const modalRef = useRef<HTMLOdsModalElement>(undefined);
 
   const onClose = () =>
     navigate({
@@ -100,10 +103,13 @@ export default function AddUserPage() {
     },
   });
 
+  // @TODO refactor when ods modal overflow is fixed
+  useOdsModalOverflowHack(modalRef);
+
   const isPending = isPendingListUsers || isPendingAddUser;
 
   return (
-    <OdsModal onOdsClose={onClose} isOpen>
+    <OdsModal onOdsClose={onClose} ref={modalRef} isOpen>
       <OdsText preset="heading-3">
         {t(
           'pci_projects_project_storages_containers_container_addUser_object_title',
