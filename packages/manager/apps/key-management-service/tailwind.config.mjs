@@ -13,5 +13,9 @@ export default {
       path.dirname(require.resolve('@ovh-ux/manager-react-components')),
       '**/*.{js,jsx,ts,tsx}',
     ),
+    path.join(
+      path.dirname(require.resolve('@ovh-ux/logs-to-customer')),
+      '**/*.{js,jsx,ts,tsx}',
+    ),
   ],
 };
