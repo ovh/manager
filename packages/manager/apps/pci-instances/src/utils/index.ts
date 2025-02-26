@@ -42,3 +42,17 @@ export const instancesQueryKey = (
   'instances',
   ...(rest && rest.length > 0 ? rest : []),
 ];
+
+/**
+ * Reformats a non valid UUID string by inserting hyphens at the correct positions.
+ *
+ * @param uuid - A string representing a UUID without hyphens (32 hexadecimal characters).
+ * @returns The formatted UUID with hyphens (`xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`), or `null` if the input is empty.
+ *
+ * @note This function does not validate whether the input is a valid UUID.
+ *       It assumes a 32-character hexadecimal input.
+ */
+export const formatUUID = (uuid: string): string | null => {
+  if (!uuid.length) return null;
+  return uuid.replace(/^(.{8})(.{4})(.{4})(.{4})(.{12})$/, '$1-$2-$3-$4-$5');
+};

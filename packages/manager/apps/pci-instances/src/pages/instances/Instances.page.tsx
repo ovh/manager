@@ -8,7 +8,6 @@ import {
   PciGuidesHeader,
   Title,
   useColumnFilters,
-  useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
@@ -33,15 +32,14 @@ import {
   Outlet,
   useHref,
   useLocation,
-  useParams,
   useRouteLoaderData,
 } from 'react-router-dom';
 import NotFoundPage from '../404/NotFound.page';
 import DatagridComponent from '@/components/datagrid/Datagrid.component';
-import { useInstances } from '@/data/hooks/instance/useInstances';
 import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
 import { Spinner } from '@/components/spinner/Spinner.component';
 import { SECTIONS } from '@/routes/routes';
+import { useInstancesTest } from '@/hooks/instance/useInstancesTest';
 
 const initialSorting = {
   id: 'name',
@@ -51,9 +49,7 @@ const initialSorting = {
 const Instances: FC = () => {
   const { t } = useTranslation(['list', 'common']);
 
-  const { projectId } = useParams() as { projectId: string }; // safe because projectId has already been handled by async route loader
   const project = useRouteLoaderData('root') as TProject;
-  const projectUrl = useProjectUrl('public-cloud');
   const createInstanceHref = useHref('./new');
   const [sorting, setSorting] = useState(initialSorting);
   const [searchField, setSearchField] = useState('');
@@ -63,16 +59,12 @@ const Instances: FC = () => {
   const location = useLocation();
   const notFoundAction: boolean = location.state?.notFoundAction;
 
-  const { data, isFetchingNextPage, refresh, isFetching } = useInstances(
-    projectId,
-    projectUrl,
-    {
-      limit: 10,
-      sort: sorting.id,
-      sortOrder: sorting.desc ? 'desc' : 'asc',
-      filters,
-    },
-  );
+  const { data, isFetchingNextPage, refresh, isFetching } = useInstancesTest({
+    limit: 10,
+    sort: sorting.id,
+    sortOrder: sorting.desc ? 'desc' : 'asc',
+    filters,
+  });
 
   const filterColumns = useMemo(
     () => [
