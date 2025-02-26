@@ -68,7 +68,7 @@ webCloudUniverse.children = [
       idAttr: 'web-hosting-link',
       universe: webCloudUniverse.id,
       translation: 'sidebar_web_hosting',
-      features: ['hosting', 'private-database'],
+      features: ['hosting', 'private-database', 'web-hosting:websites'],
       children: [
         {
           id: 'hosting',
@@ -93,6 +93,18 @@ webCloudUniverse.children = [
             hash: '#/private_database',
           },
           features: ['private-database'],
+        },
+        {
+          id: 'web-hosting-websites',
+          idAttr: 'web-hosting-websites-link',
+          universe: webCloudUniverse.id,
+          translation: 'sidebar_web_hosting_websites',
+          routing: {
+            application: 'web-hosting/websites',
+            hash: '#/',
+          },
+          features: ['web-hosting:websites'],
+          hasService: false,
         },
       ],
     },
