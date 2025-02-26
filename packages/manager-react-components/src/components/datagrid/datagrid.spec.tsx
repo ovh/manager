@@ -1,6 +1,12 @@
 import { vitest } from 'vitest';
 import React, { useState } from 'react';
-import { act, fireEvent, render, screen } from '@testing-library/react';
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from '@testing-library/react';
 import { FilterCategories } from '@ovh-ux/manager-core-api';
 import { Row } from '@tanstack/react-table';
 import {
@@ -71,6 +77,7 @@ const DatagridTest = ({
   filters,
   getRowCanExpand,
   renderSubComponent,
+  tableLayoutFixed,
 }: {
   columns: any;
   items: string[];
@@ -80,6 +87,7 @@ const DatagridTest = ({
   filters?: FilterProps;
   getRowCanExpand?: (props: Row<any>) => boolean;
   renderSubComponent?: (row: Row<any>) => JSX.Element;
+  tableLayoutFixed?: boolean;
 }) => {
   const [pagination, setPagination] = useState<PaginationState>({
     pageIndex,
@@ -101,6 +109,7 @@ const DatagridTest = ({
       filters={filters}
       getRowCanExpand={getRowCanExpand}
       renderSubComponent={renderSubComponent}
+      tableLayoutFixed={tableLayoutFixed}
     />
   );
 };
@@ -354,4 +363,20 @@ it('should display new column to expand a row sub component', async () => {
   ).toBe(1);
 
   expect(container.querySelector('#sub-foo')).toBeDefined();
+});
+
+it('should use fixed column width', async () => {
+  const sizedColumns = sampleColumns.map((column) => ({ ...column, size: 50 }));
+  const { getByText } = render(
+    <DatagridTest
+      columns={sizedColumns}
+      items={['foo', 'bar', 'hello']}
+      pageIndex={0}
+      className={'overflow-hidden'}
+      tableLayoutFixed={true}
+    />,
+  );
+
+  const td = getByText('foo').closest('td');
+  expect(td.style.width).toBe('50px');
 });
