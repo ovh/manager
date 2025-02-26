@@ -9,6 +9,11 @@ import React, { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { usePricing } from '@ovh-ux/manager-pci-common';
 import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
+import {
   getPercentValue,
   getTotalActivePlans,
   isCurrentPeriod,
@@ -29,6 +34,7 @@ const Kpi = ({
   index: number;
   isLoading: boolean;
 }) => {
+  const { trackClick } = useOvhTracking();
   if (isLoading)
     return (
       <div className="h-16 w-[250px] mx-2 flex flex-col justify-center">
@@ -46,6 +52,14 @@ const Kpi = ({
           id={`trigger-${index}`}
         />
         <OdsTooltip
+          onOdsShow={() =>
+            trackClick({
+              location: PageLocation.page,
+              buttonType: ButtonType.button,
+              actionType: 'action',
+              actions: [`tooltip`, `see_${title}`],
+            })
+          }
           triggerId={`trigger-${index}`}
           id={`tooltip-default-${index}`}
         >
