@@ -18,7 +18,7 @@ export function breadcrumb() {
   );
 }
 
-const Job = () => {
+const App = () => {
   const { t } = useTranslation('pci-ai-deploy/apps/create');
   const { projectId } = useParams();
 
@@ -72,4 +72,4 @@ const Job = () => {
   );
 };
 
-export default Job;
+export default App;

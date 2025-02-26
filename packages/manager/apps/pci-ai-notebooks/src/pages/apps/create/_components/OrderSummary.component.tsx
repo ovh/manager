@@ -262,7 +262,7 @@ const HttpPortDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
     <div className="flex flex-col gap-2">
       <div className="flex items-center gap-2">
         <Button
-          data-testid="access-section-button"
+          data-testid="port-http-section-button"
           variant={'link'}
           size={'link'}
           type="button"
