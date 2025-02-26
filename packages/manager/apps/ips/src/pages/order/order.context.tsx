@@ -97,6 +97,9 @@ export const OrderContextProvider: React.FC<React.PropsWithChildren> = ({
         const code = getCountryCode(region || selectedRegion);
         setSelectedGeolocation(code === 'gb' ? 'uk' : code);
         setSelectedOffer(newOffer);
+        if (newOffer === IpOffer.blockAdditionalIp) {
+          setIpQuantity(1);
+        }
       },
       selectedPlanCode,
       setSelectedPlanCode,
