@@ -13,6 +13,9 @@ export default class CloudConnectDatacenter {
     status,
     subnet,
     popConfigId,
+    region,
+    regionType,
+    regionGroupKey,
   }) {
     Object.assign(this, {
       datacenterId,
@@ -22,6 +25,9 @@ export default class CloudConnectDatacenter {
       status,
       subnet,
       popConfigId,
+      region,
+      regionType,
+      regionGroupKey,
     });
     this.loadingExtraConf = false;
     this.extraConf = [];
