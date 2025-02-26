@@ -23,12 +23,8 @@ export type OrderParams = {
 /**
  * Returns the express order plan code to use
  */
-const getPlanCode = (
-  planCode: string,
-  serviceType: ServiceType,
-  region: string,
-) =>
-  serviceType === ServiceType.ipParking
+const getPlanCode = (planCode: string, offer: IpOffer, region: string) =>
+  offer === IpOffer.additionalIp
     ? IP_FAILOVER_PLANCODE[getContinentKeyFromRegion(region)]
     : planCode;
 
@@ -52,15 +48,17 @@ export const getAdditionalIpsProductSettings = ({
       geolocation && { label: 'country', value: geolocation.toUpperCase() },
       organisation && { label: 'organisation', value: organisation },
       region &&
-        ![ServiceType.vps, ServiceType.dedicatedCloud].includes(
-          serviceType,
-        ) && {
+        ![
+          ServiceType.vps,
+          ServiceType.dedicatedCloud,
+          ServiceType.server,
+        ].includes(serviceType) && {
           label: 'datacenter',
           value: getDatacenterFromRegion(region),
         },
     ].filter(Boolean),
     duration: 'P1M',
-    planCode: getPlanCode(planCode, serviceType, region),
+    planCode: getPlanCode(planCode, offer, region),
     pricingMode,
     productId:
       serviceType === ServiceType.dedicatedCloud ? 'privateCloud' : 'ip',
@@ -69,7 +67,11 @@ export const getAdditionalIpsProductSettings = ({
       serviceType === ServiceType.dedicatedCloud ? serviceName : null,
     datacenter:
       region &&
-      ![ServiceType.vps, ServiceType.dedicatedCloud].includes(serviceType)
+      ![
+        ServiceType.vps,
+        ServiceType.dedicatedCloud,
+        ServiceType.server,
+      ].includes(serviceType)
         ? getDatacenterFromRegion(region)
         : null,
   });

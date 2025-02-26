@@ -18,12 +18,12 @@ export const useAdditionalIpBlockPricings = ({
   ipVersion,
   serviceName,
   serviceType,
-}: Partial<{
+}: {
   region: string;
   ipVersion: IpVersion;
   serviceName: string;
   serviceType: ServiceType;
-}>) => {
+}) => {
   const { environment } = React.useContext(ShellContext);
   const { data, ...query } = useCatalogIps({
     subsidiary: environment.user.ovhSubsidiary,
