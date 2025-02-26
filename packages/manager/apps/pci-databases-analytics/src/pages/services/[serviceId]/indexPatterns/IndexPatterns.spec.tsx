@@ -1,6 +1,12 @@
 import { ReactNode } from 'react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, waitFor } from '@testing-library/react';
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
 import * as ServiceContext from '@/pages/services/[serviceId]/Service.context';
 import IndexPatterns, {
@@ -33,12 +39,7 @@ const mockedService = {
   },
 };
 
-const ResizeObserverMock = vi.fn(() => ({
-  observe: vi.fn(),
-  unobserve: vi.fn(),
-  disconnect: vi.fn(),
-}));
-
+const mockedUsedNavigate = vi.fn();
 describe('IndexPatterns page', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
@@ -51,12 +52,9 @@ describe('IndexPatterns page', () => {
     }));
     vi.mock('@/data/api/database/indexes.api', () => ({
       getIndexes: vi.fn(() => [mockedIndex]),
-      deleteIndex: vi.fn(),
     }));
     vi.mock('@/data/api/database/pattern.api', () => ({
       getPatterns: vi.fn(() => [mockedPattern]),
-      addPattern: vi.fn((pattern) => pattern),
-      deletePattern: vi.fn(),
     }));
     vi.mock('@/pages/services/[serviceId]/Service.context', () => ({
       useServiceData: vi.fn(() => ({
@@ -66,6 +64,13 @@ describe('IndexPatterns page', () => {
         serviceQuery: {} as UseQueryResult<database.Service, Error>,
       })),
     }));
+    vi.mock('react-router-dom', async () => {
+      const mod = await vi.importActual('react-router-dom');
+      return {
+        ...mod,
+        useNavigate: () => mockedUsedNavigate,
+      };
+    });
     vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
       const mod = await importOriginal<
         typeof import('@ovh-ux/manager-react-shell-client')
@@ -81,6 +86,12 @@ describe('IndexPatterns page', () => {
         })),
       };
     });
+    const ResizeObserverMock = vi.fn(() => ({
+      observe: vi.fn(),
+      unobserve: vi.fn(),
+      disconnect: vi.fn(),
+    }));
+    vi.stubGlobal('ResizeObserver', ResizeObserverMock);
   });
   afterEach(() => {
     vi.clearAllMocks();
@@ -164,190 +175,106 @@ describe('IndexPatterns page', () => {
     expect(addButton).toBeInTheDocument();
     expect(addButton).toBeDisabled();
   });
+  it('open add indexes modal on button click', async () => {
+    vi.mocked(ServiceContext.useServiceData).mockReturnValueOnce({
+      projectId: 'projectId',
+      service: {
+        ...mockedService,
+        capabilities: {
+          patterns: {
+            create: database.service.capability.StateEnum.enabled,
+          },
+        },
+      },
+      category: database.engine.CategoryEnum.analysis,
+      serviceQuery: {} as UseQueryResult<database.Service, CdbError>,
+    });
+    render(<IndexPatterns />, { wrapper: RouterWithQueryClientWrapper });
+    act(() => {
+      fireEvent.click(screen.getByTestId('pattern-add-button'));
+    });
+    await waitFor(() => {
+      expect(mockedUsedNavigate).toHaveBeenCalledWith('./add-pattern');
+    });
+  });
 });
 
-// describe('Open modals', () => {
-//   vi.mocked(ServiceContext.useServiceData).mockReturnValueOnce({
-//     projectId: 'projectId',
-//     service: {
-//       ...mockedService,
-//     },
-//     category: database.engine.CategoryEnum.analysis,
-//     serviceQuery: {} as UseQueryResult<database.Service, CdbError>,
-//   });
-//   // Stub the global ResizeObserver
-//   vi.stubGlobal('ResizeObserver', ResizeObserverMock);
+describe('Action index table button', () => {
+  // Helper function to open a button in the table menu
+  const openButtonInMenu = async (buttonId: string) => {
+    act(() => {
+      const trigger = screen.getByTestId('indexes-action-trigger');
+      fireEvent.focus(trigger);
+      fireEvent.keyDown(trigger, {
+        key: 'Enter',
+        code: 'Enter',
+        keyCode: 13,
+        charCode: 13,
+      });
+    });
+    const actionButton = screen.getByTestId(buttonId);
+    await waitFor(() => {
+      expect(actionButton).toBeInTheDocument();
+    });
+    act(() => {
+      fireEvent.click(actionButton);
+    });
+  };
+  beforeEach(async () => {
+    render(<IndexPatterns />, { wrapper: RouterWithQueryClientWrapper });
+    await waitFor(() => {
+      expect(screen.getByText(mockedIndex.name)).toBeInTheDocument();
+    });
+  });
+  afterEach(() => {
+    vi.clearAllMocks();
+  });
 
-//   // Helper function to open a button in the table menu
-//   const openButtonInMenu = async (menuId: string, buttonId: string) => {
-//     act(() => {
-//       const trigger = screen.getByTestId(menuId);
-//       fireEvent.focus(trigger);
-//       fireEvent.keyDown(trigger, {
-//         key: 'Enter',
-//         code: 'Enter',
-//         keyCode: 13,
-//         charCode: 13,
-//       });
-//     });
-//     const actionButton = screen.getByTestId(buttonId);
-//     await waitFor(() => {
-//       expect(actionButton).toBeInTheDocument();
-//     });
-//     act(() => {
-//       fireEvent.click(actionButton);
-//     });
-//   };
-//   beforeEach(async () => {
-//     vi.mock('@/components/ui/use-toast', () => {
-//       const toastMock = vi.fn();
-//       return {
-//         useToast: vi.fn(() => ({
-//           toast: toastMock,
-//         })),
-//       };
-//     });
-//     render(<IndexPatterns />, { wrapper: RouterWithQueryClientWrapper });
-//     await waitFor(() => {
-//       expect(screen.getByText(mockedIndex.name)).toBeInTheDocument();
-//       expect(screen.getByText(mockedPattern.pattern)).toBeInTheDocument();
-//     });
-//   });
+  it('open delete index modal', async () => {
+    await openButtonInMenu('indexes-action-delete-button');
+    await waitFor(() => {
+      expect(mockedUsedNavigate).toHaveBeenCalledWith('./delete-index/indexId');
+    });
+  });
+});
 
-//   afterEach(() => {
-//     vi.clearAllMocks();
-//   });
+describe('Action patterns table button', () => {
+  // Helper function to open a button in the table menu
+  const openButtonInMenu = async (buttonId: string) => {
+    act(() => {
+      const trigger = screen.getByTestId('patterns-action-trigger');
+      fireEvent.focus(trigger);
+      fireEvent.keyDown(trigger, {
+        key: 'Enter',
+        code: 'Enter',
+        keyCode: 13,
+        charCode: 13,
+      });
+    });
+    const actionButton = screen.getByTestId(buttonId);
+    await waitFor(() => {
+      expect(actionButton).toBeInTheDocument();
+    });
+    act(() => {
+      fireEvent.click(actionButton);
+    });
+  };
+  beforeEach(async () => {
+    render(<IndexPatterns />, { wrapper: RouterWithQueryClientWrapper });
+    await waitFor(() => {
+      expect(screen.getByText(mockedPattern.pattern)).toBeInTheDocument();
+    });
+  });
+  afterEach(() => {
+    vi.clearAllMocks();
+  });
 
-//   it('open and close add pattern modal', async () => {
-//     act(() => {
-//       fireEvent.click(screen.getByTestId('pattern-add-button'));
-//     });
-//     screen.debug();
-//     await waitFor(() => {
-//       expect(screen.getByTestId('add-pattern-modal')).toBeInTheDocument();
-//     });
-//     act(() => {
-//       fireEvent.click(screen.getByTestId('add-pattern-cancel-button'));
-//     });
-//     await waitFor(() => {
-//       expect(screen.queryByTestId('add-pattern-modal')).not.toBeInTheDocument();
-//     });
-//   });
-//   it('refetch data on add pattern success', async () => {
-//     act(() => {
-//       fireEvent.click(screen.getByTestId('pattern-add-button'));
-//     });
-//     await waitFor(() => {
-//       expect(screen.getByTestId('add-pattern-modal')).toBeInTheDocument();
-//     });
-//     act(() => {
-//       fireEvent.change(screen.getByTestId('add-pattern-pattern-input'), {
-//         target: {
-//           value: 'nePattern',
-//         },
-//       });
-//       fireEvent.change(screen.getByTestId('add-pattern-maxIndexCount-input'), {
-//         target: {
-//           value: '64',
-//         },
-//       });
-//       fireEvent.click(screen.getByTestId('add-pattern-submit-button'));
-//     });
-//     await waitFor(() => {
-//       expect(screen.queryByTestId('add-pattern-modal')).not.toBeInTheDocument();
-//       expect(patternApi.addPattern).toHaveBeenCalled();
-//       expect(patternApi.getPatterns).toHaveBeenCalled();
-//     });
-//   });
-
-//   it('shows delete pattern modal', async () => {
-//     await openButtonInMenu(
-//       'patterns-action-trigger',
-//       'patterns-action-delete-button',
-//     );
-//     await waitFor(() => {
-//       expect(screen.getByTestId('delete-patterns-modal')).toBeInTheDocument();
-//     });
-//   });
-//   it('closes delete pattern modal', async () => {
-//     await openButtonInMenu(
-//       'patterns-action-trigger',
-//       'patterns-action-delete-button',
-//     );
-//     await waitFor(() => {
-//       expect(screen.getByTestId('delete-patterns-modal')).toBeInTheDocument();
-//     });
-//     act(() => {
-//       fireEvent.click(screen.getByTestId('delete-patterns-cancel-button'));
-//     });
-//     await waitFor(() => {
-//       expect(
-//         screen.queryByTestId('delete-patterns-modal'),
-//       ).not.toBeInTheDocument();
-//     });
-//   });
-//   it('refetch data on delete pattern success', async () => {
-//     await openButtonInMenu(
-//       'patterns-action-trigger',
-//       'patterns-action-delete-button',
-//     );
-//     await waitFor(() => {
-//       expect(screen.getByTestId('delete-patterns-modal')).toBeInTheDocument();
-//     });
-//     act(() => {
-//       fireEvent.click(screen.getByTestId('delete-patterns-submit-button'));
-//     });
-//     await waitFor(() => {
-//       expect(
-//         screen.queryByTestId('delete-patterns-modal'),
-//       ).not.toBeInTheDocument();
-//       expect(patternApi.getPatterns).toHaveBeenCalled();
-//       expect(patternApi.deletePattern).toHaveBeenCalled();
-//     });
-//   });
-//   it('shows delete index modal', async () => {
-//     await openButtonInMenu(
-//       'indexes-action-trigger',
-//       'indexes-action-delete-button',
-//     );
-//     await waitFor(() => {
-//       expect(screen.getByTestId('delete-indexes-modal')).toBeInTheDocument();
-//     });
-//   });
-//   it('closes delete index modal', async () => {
-//     await openButtonInMenu(
-//       'indexes-action-trigger',
-//       'indexes-action-delete-button',
-//     );
-//     await waitFor(() => {
-//       expect(screen.getByTestId('delete-indexes-modal')).toBeInTheDocument();
-//     });
-//     act(() => {
-//       fireEvent.click(screen.getByTestId('delete-indexes-cancel-button'));
-//     });
-//     await waitFor(() => {
-//       expect(
-//         screen.queryByTestId('delete-indexes-modal'),
-//       ).not.toBeInTheDocument();
-//     });
-//   });
-//   it('refetch data on delete index success', async () => {
-//     await openButtonInMenu(
-//       'indexes-action-trigger',
-//       'indexes-action-delete-button',
-//     );
-//     await waitFor(() => {
-//       expect(screen.getByTestId('delete-indexes-modal')).toBeInTheDocument();
-//     });
-//     act(() => {
-//       fireEvent.click(screen.getByTestId('delete-indexes-submit-button'));
-//     });
-//     await waitFor(() => {
-//       expect(
-//         screen.queryByTestId('delete-indexes-modal'),
-//       ).not.toBeInTheDocument();
-//       expect(indexesApi.getIndexes).toHaveBeenCalled();
-//       expect(indexesApi.deleteIndex).toHaveBeenCalled();
-//     });
-//   });
-// });
+  it('open delete patterns modal', async () => {
+    await openButtonInMenu('patterns-action-delete-button');
+    await waitFor(() => {
+      expect(mockedUsedNavigate).toHaveBeenCalledWith(
+        './delete-pattern/patternId',
+      );
+    });
+  });
+});
