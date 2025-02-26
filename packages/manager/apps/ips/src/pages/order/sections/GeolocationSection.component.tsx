@@ -23,21 +23,25 @@ export const GeolocationSection: React.FC = () => {
     serviceType: selectedServiceType,
     planCode: selectedPlanCode,
   });
+  const isDisabled =
+    selectedOffer === IpOffer.additionalIp &&
+    [ServiceType.ipParking, ServiceType.server].includes(selectedServiceType);
 
   return (
     <OrderSection
       title={t('geolocation_selection_title')}
-      description={t('geolocation_selection_description')}
+      description={t(
+        isDisabled
+          ? 'geolocation_disabled_selection_description'
+          : 'geolocation_selection_description',
+      )}
     >
       <React.Suspense fallback={<OdsSkeleton />}>
         <CountrySelector
           name="ip-geolocation"
           className="max-w-[384px]"
           countryCodeList={geolocations}
-          isDisabled={
-            selectedOffer === IpOffer.additionalIp &&
-            selectedServiceType === ServiceType.ipParking
-          }
+          isDisabled={isDisabled}
           value={selectedGeolocation}
           onChange={(event) => {
             setSelectedGeolocation(event.target.value as string);
