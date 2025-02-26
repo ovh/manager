@@ -1,7 +1,12 @@
 import { OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
 import { TFunction } from 'i18next';
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import {
   Select,
   SelectContent,
@@ -118,8 +123,21 @@ const Filters = ({
   periodOptions,
 }: FiltersProps) => {
   const { t } = useTranslation(['dashboard', 'listing', 'create']);
-
+  const { trackClick } = useOvhTracking();
   const formatterDate = (date: string) => toMonthYear(new Date(date), locale);
+
+  const handleTrackClick = useCallback(() => {
+    trackClick({
+      location: PageLocation.page,
+      buttonType: ButtonType.select,
+      actionType: 'action',
+      actions: [
+        `see_savings_plan_consumption_details`,
+        `select_model`,
+        `${flavor}_${period}`,
+      ],
+    });
+  }, [trackClick, flavor, period]);
 
   return (
     <div className="flex flex-row gap-4">
@@ -129,7 +147,10 @@ const Filters = ({
         name="period"
         formatter={formatterDate}
         value={period}
-        onChange={setPeriod}
+        onChange={(value) => {
+          setPeriod(value);
+          handleTrackClick();
+        }}
         className="capitalize"
       />
 
@@ -141,7 +162,10 @@ const Filters = ({
         name="flavor"
         value={flavor}
         key="flavor"
-        onChange={setFlavor}
+        onChange={(value: InstanceTechnicalName) => {
+          setFlavor(value);
+          handleTrackClick();
+        }}
       />
     </div>
   );
