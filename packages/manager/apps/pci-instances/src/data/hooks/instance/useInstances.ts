@@ -141,6 +141,19 @@ const getActionHrefByName = (
     return { path: `${projectUrl}/workflow/new`, isExternal: true };
   }
 
+  if (name === 'assign_floating_ip') {
+    const searchParams = new URLSearchParams({
+      ipType: 'floating_ip',
+      region,
+      instance: id,
+    });
+
+    return {
+      path: `${projectUrl}/public-ips/order?${searchParams.toString()}`,
+      isExternal: true,
+    };
+  }
+
   const actions = new Set(['delete', 'stop', 'start', 'shelve', 'unshelve']);
   if (actions.has(name)) {
     return {
