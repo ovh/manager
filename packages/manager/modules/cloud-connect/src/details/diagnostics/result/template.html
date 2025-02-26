@@ -1,0 +1,69 @@
+<oui-modal
+    data-heading="{{:: 'cloud_connect_diagnostics_result' | translate }}"
+    data-secondary-label="{{:: 'cloud_connect_diagnostics_result_close' | translate }}"
+    data-secondary-action="$ctrl.goBack()"
+    data-on-dismiss="$ctrl.goBack()"
+    data-loading="$ctrl.isLoading"
+>
+    <div class="row">
+        <div class="col-sm-6">
+            <p>
+                <b
+                    ><span
+                        data-translate="cloud_connect_diagnostics_result_id"
+                    ></span
+                    >:</b
+                >
+                <span data-ng-bind="$ctrl.diagnostic.id"></span>
+            </p>
+            <p>
+                <b>
+                    <span
+                        data-translate="cloud_connect_diagnostics_result_date"
+                    ></span
+                    >:
+                </b>
+                <span data-ng-bind="$ctrl.diagnostic.date"></span>
+            </p>
+        </div>
+        <div class="col-sm-6">
+            <p>
+                <b
+                    ><span
+                        data-translate="cloud_connect_diagnostics_result_name"
+                    ></span
+                    >:</b
+                >
+                <span data-ng-bind="$ctrl.diagnostic.description"></span>
+            </p>
+            <p>
+                <b
+                    ><span
+                        data-translate="cloud_connect_diagnostics_result_source_setting"
+                    ></span
+                    >:</b
+                >
+                <span data-ng-bind="$ctrl.diagnostic.source"></span>
+            </p>
+        </div>
+    </div>
+    <div class="row result-output">
+        <div class="action-button" data-ng-if="$ctrl.canDownload">
+            <button
+                class="oui-button oui-button_s oui-button_ghost"
+                data-ng-click="$ctrl.copyToClipboard($ctrl.diagnostic)"
+            >
+                <span
+                    data-ng-class="['oui-icon', {'oui-icon-copy': !$ctrl.copyDone, 'oui-icon-check': $ctrl.copyDone}]"
+                ></span>
+            </button>
+            <button
+                class="oui-button oui-button_s oui-button_ghost"
+                data-ng-click="$ctrl.download($ctrl.diagnostic)"
+            >
+                <span class="fa fa-download"></span>
+            </button>
+        </div>
+        <div data-ng-bind="$ctrl.getLog()"></div>
+    </div>
+</oui-modal>

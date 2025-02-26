@@ -1,0 +1,9 @@
+{
+  "cloud_connect_diagnostics_result": "Resultado do diagnóstico",
+  "cloud_connect_diagnostics_result_close": "Fechar",
+  "cloud_connect_diagnostics_result_id": "Diagnóstico ID",
+  "cloud_connect_diagnostics_result_date": "Data",
+  "cloud_connect_diagnostics_result_name": "Nome",
+  "cloud_connect_diagnostics_result_source_setting": "Configuração de origem",
+  "cloud_connect_diagnostics_result_no_log": "O diagnóstico foi executado com sucesso. Nenhum valor a apresentar"
+}

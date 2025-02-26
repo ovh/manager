@@ -78,5 +78,9 @@
   "cloud_connect_vrack_associate_cloud_connect": "Eine Option OVHcloud Connect ist bereits mit diesem vRACK verbunden. Bitte beachten Sie, dass Ihre Rechenzentrumskonfigurationen miteinander verbunden sind: Jede Veränderung hat Auswirkungen auf die verbundenen Optionen.",
   "cloud_connect_date_expiration": "Verlängerung am",
   "cloud_connect_product_name": "Kommerzieller Name",
-  "cloud_connect_change_bandwidth": "Bandbreite ändern"
+  "cloud_connect_change_bandwidth": "Bandbreite ändern",
+  "cloud_connect_pop_diagnostic": "POP-Diagnose",
+  "cloud_connect_pop_diagnostic_link": "Ergebnisse meiner </br> Diagnosen anzeigen",
+  "cloud_connect_pop_diagnostic_check": "BGP-Peering-Test",
+  "cloud_connect_pop_get_mac_list": "Liste meiner MAC-Adressen anzeigen"
 }
