@@ -12,19 +12,20 @@ export type Capacity =
 
 export type Pricing = {
   capacities: Capacity[];
-  commitment: number;
+  commitment?: number;
   description: string;
   interval: number;
-  intervalUnit: string;
-  maximumQuantity: number;
-  maximumRepeat: number;
+  intervalUnit?: string;
+  maximumQuantity?: number | null;
+  maximumRepeat?: number | null;
   minimumQuantity: number;
   minimumRepeat: number;
-  mustBeCompleted: boolean;
+  mustBeCompleted?: boolean;
   price: { currencyCode: CurrencyCode; text: string; value: number };
-  priceCapInUcents: number | null;
+  priceCapInUcents?: number | null;
   priceInUcents: number;
-  pricingStrategy: string;
+  pricingStrategy?: string;
+  duration?: string;
 };
 
 export type CatalogIpPlan = {
@@ -76,7 +77,16 @@ export const getCatalogIps = (
 export type PccCatalogResponse = {
   productType: string;
   productName: string;
-  family: 'backup' | 'ip' | 'datastore' | 'dr';
+  family:
+    | 'backup'
+    | 'ip'
+    | 'datastore'
+    | 'dr'
+    | 'environnement'
+    | 'host'
+    | 'management'
+    | 'security'
+    | 'network';
   prices: (Pricing & { pricingMode: string; pricingType: string })[];
   planCode: string;
   exclusive: boolean;

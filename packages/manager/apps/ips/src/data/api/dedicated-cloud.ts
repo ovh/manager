@@ -1,5 +1,10 @@
 import { CountryCode } from '@ovh-ux/manager-config';
-import { ApiResponse, apiClient } from '@ovh-ux/manager-core-api';
+import {
+  ApiResponse,
+  IcebergFetchResultV6,
+  apiClient,
+  fetchIcebergV6,
+} from '@ovh-ux/manager-core-api';
 import { IamObject } from '@ovh-ux/manager-react-components';
 import { ServiceStatus } from '@/types';
 
@@ -50,6 +55,24 @@ export type DedicatedCloudService = {
   sslV3?: boolean | null;
   location: string;
   iam: IamObject;
+};
+
+export const getDedicatedCloudServiceList = async (): Promise<IcebergFetchResultV6<{
+  serviceName: string;
+  displayName: string;
+}>> => {
+  const response = await fetchIcebergV6<DedicatedCloudService>({
+    route: '/dedicatedCloud',
+    pageSize: 1000,
+  });
+
+  return {
+    ...response,
+    data: response.data.map(({ serviceName, description }) => ({
+      serviceName,
+      displayName: description || serviceName,
+    })),
+  };
 };
 
 export const getDedicatedCloudServiceData = (

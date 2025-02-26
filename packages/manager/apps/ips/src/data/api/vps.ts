@@ -1,53 +1,67 @@
-import { ApiResponse, apiClient } from '@ovh-ux/manager-core-api';
+import {
+  ApiResponse,
+  IcebergFetchResultV6,
+  apiClient,
+  fetchIcebergV6,
+} from '@ovh-ux/manager-core-api';
+import { IamObject } from '@ovh-ux/manager-react-components';
 import { ServiceStatus } from '@/types';
 
 export type VPS = {
-  availableOptions: string[];
-  canOrder: boolean;
   cluster: string;
-  creation: string;
-  diskPercent: number;
-  diskTotal: { unit: string; value: number };
-  diskUsed: { unit: string; value: number };
   displayName: string;
-  distribution: null;
-  engagement: { defaultEndAction: string; duration: string; type: string };
-  expiration: string;
-  hasBackup: boolean;
-  hasVeeam: boolean;
-  ipv4: string;
-  ipv6: string;
-  isExpired: boolean;
-  isValidVersionToRescheduleAutomatedBackup: boolean;
-  messages: string[];
-  model: string;
+  model: {
+    disk: number;
+    name: string;
+    offer: string;
+    vcore: number;
+    memory: number;
+    version: string;
+    datacenter: string[];
+    availableOptions: string[];
+    maximumAdditionnalIp: number;
+  };
   monitoringIpBlocks: string[];
   name: string;
   netbootMode: string;
-  noVNC: boolean;
   offerType: string;
-  ram: { unit: string; value: number };
-  reverseDns: null;
-  secondaryDns: number;
-  shouldReengage: boolean;
   slaMonitoring: boolean;
   state: string;
-  tabs: unknown;
-  traficPercent: number;
-  traficTotal: { unit: string; value: number };
-  traficUsed: { unit: string; value: number };
   vcore: number;
-  version: string;
   zone: string;
-  location: {
-    country: string;
-    datacentre: string;
-    longName: string;
+  keymap: string | null;
+  memoryLimit: number;
+  iam: IamObject;
+};
+
+export const getVpsList = async (): Promise<IcebergFetchResultV6<{
+  serviceName: string;
+  displayName: string;
+}>> => {
+  const response = await fetchIcebergV6<VPS>({
+    route: '/vps',
+    pageSize: 1000,
+  });
+
+  return {
+    ...response,
+    data: response.data.map(({ name, displayName }) => ({
+      serviceName: name,
+      displayName: displayName || name,
+    })),
   };
 };
 
-export const getVpsData = (serviceName: string): Promise<ApiResponse<VPS>> =>
-  apiClient.aapi.get(`/sws/vps/${serviceName}/info`);
+export type VpsDatacenter = {
+  country: string;
+  name: string;
+  longName: string;
+};
+
+export const getVpsDatacenter = (
+  serviceName: string,
+): Promise<ApiResponse<VpsDatacenter>> =>
+  apiClient.v6.get(`/vps/${serviceName}/datacenter`);
 
 export type VpsServiceInfos = {
   canDeleteAtExpiration: boolean;
