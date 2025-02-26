@@ -12,6 +12,7 @@ import {
   OdsFormField,
   OdsInput,
   OdsMessage,
+  OdsPassword,
   OdsRadio,
   OdsSelect,
   OdsText,
@@ -144,7 +145,19 @@ export default function UserCreatePage(): JSX.Element {
                 'pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_secret-key_label',
               )}
             />
-            <Clipboard className="w-[100%]" value={secret} />
+            {/* Ods clipboard doesn't currently allows input of type password */}
+            {/* @TODO refactor when clipboard allows password input types */}
+            <div className="flex">
+              <div className="flex-1">
+                <OdsPassword
+                  className="w-[100%]"
+                  name="secret"
+                  value={secret}
+                  isReadonly
+                />
+              </div>
+              <Clipboard className="w-[2rem]" value={secret} />
+            </div>
           </OdsFormField>
         </div>
       </div>
