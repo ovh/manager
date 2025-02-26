@@ -1029,7 +1029,7 @@
   "hosting_tab_FTP_configuration_user_modify_step2_protocols_label": "Protocolos de conexión",
   "hosting_tab_FTP_configuration_user_modify_fail": "Se ha producido un error al solicitar la modificación del usuario. ",
   "hosting_tab_FTP_configuration_user_modify_success": "Se va a modificar el usuario.",
-  "hosting_tab_FTP_configuration_offer_upgrade": "Su plan no permite crear otros usuarios.",
+  "hosting_tab_FTP_configuration_offer_upgrade": "Para disfrutar de usuarios FTP adicionales, elija un plan de servicio superior.",
   "hosting_tab_CRON_configuration_create_title_button": "Añadir una planificación",
   "hosting_tab_CRON_configuration_edit_title_button": "Editar la tarea",
   "hosting_tab_CRON_step3_title": "Resumen de la tarea",

@@ -1031,7 +1031,7 @@
   "hosting_tab_FTP_configuration_user_modify_step2_protocols_label": "Protocoles de connexion",
   "hosting_tab_FTP_configuration_user_modify_fail": "Une erreur est survenue lors de la demande de modification de l'utilisateur.",
   "hosting_tab_FTP_configuration_user_modify_success": "L'utilisateur va être modifié.",
-  "hosting_tab_FTP_configuration_offer_upgrade": "Votre offre ne permet pas de créer d'autres utilisateurs.",
+  "hosting_tab_FTP_configuration_offer_upgrade": "Pour bénéficier d'utilisateurs FTP supplémentaires, choisissez une de nos offres supérieures.",
   "hosting_tab_CRON_configuration_create_title_button": "Ajouter une planification",
   "hosting_tab_CRON_configuration_edit_title_button": "Editer la tâche",
   "hosting_tab_CRON_step3_title": "Résumé de la tâche",
