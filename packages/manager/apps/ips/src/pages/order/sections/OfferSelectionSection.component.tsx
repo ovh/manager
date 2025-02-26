@@ -31,6 +31,7 @@ import {
   useAdditionalIpBlockPricings,
   useIpv4LowestPrice,
 } from '@/data/hooks/catalog';
+import { useServiceRegion } from '@/data/hooks/useServiceRegion';
 import { OrderContext } from '../order.context';
 import {
   hasAdditionalIpBlockOffer,
@@ -54,9 +55,13 @@ export const OfferSelectionSection: React.FC = () => {
   const { t, i18n } = useTranslation('order');
   const { price } = useIpv4LowestPrice();
   const { environment } = React.useContext(ShellContext);
+  const { region } = useServiceRegion({
+    serviceName: selectedService,
+    serviceType: selectedServiceType,
+  });
   const { pricingList, isLoading } = useAdditionalIpBlockPricings({
     ipVersion,
-    region: selectedRegion,
+    region: region || selectedRegion,
     serviceName: selectedService,
     serviceType: selectedServiceType,
   });
@@ -70,7 +75,7 @@ export const OfferSelectionSection: React.FC = () => {
             subtitle={<PriceDescription price={price} />}
             description={t(
               `additional_ip_card_${
-                isRegionInEu(selectedRegion) ? 'ripe' : 'arin'
+                isRegionInEu(region || selectedRegion) ? 'ripe' : 'arin'
               }_description`,
               {
                 price: getPriceTextFormatted(
@@ -84,7 +89,9 @@ export const OfferSelectionSection: React.FC = () => {
             onClick={() => {
               setSelectedOffer(IpOffer.additionalIp);
               setSelectedPlanCode(
-                IP_FAILOVER_PLANCODE[getContinentKeyFromRegion(selectedRegion)],
+                IP_FAILOVER_PLANCODE[
+                  getContinentKeyFromRegion(region || selectedRegion)
+                ],
               );
             }}
           >
