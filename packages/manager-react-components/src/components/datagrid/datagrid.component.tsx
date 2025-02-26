@@ -9,6 +9,8 @@ import {
   useReactTable,
   getSortedRowModel,
   Row,
+  OnChangeFn,
+  VisibilityState,
 } from '@tanstack/react-table';
 import {
   ODS_ICON_NAME,
@@ -64,6 +66,8 @@ export interface DatagridColumn<T> {
   size?: number;
   /** filterOptions can be passed to have selector instead of input to choose value */
   filterOptions?: Option[];
+  /** Allows the column to be hidden or shown dynamically */
+  enableHiding?: boolean;
 }
 
 type ColumnFilterProps = {
@@ -124,6 +128,10 @@ export interface DatagridProps<T> {
   filters?: FilterProps;
   /** Trigger the column search. In case of backend search, make sure to add this on columns on which API supports the search option. */
   search?: SearchProps;
+  /** ids of the columns visible in the datagrid (optional by default all columns are visible) */
+  columnVisibility?: string[];
+  /** callback to handle column visibility change events (optional) */
+  onColumnVisibilityChange?: OnChangeFn<VisibilityState>;
   /** Add react element at left in the datagrid topbar */
   topbar?: React.ReactNode;
   /** Function to render sub component as row child */
@@ -143,6 +151,8 @@ export interface DatagridProps<T> {
 
 export const Datagrid = <T,>({
   columns,
+  columnVisibility,
+  onColumnVisibilityChange,
   items,
   filters,
   search,
@@ -205,6 +215,7 @@ export const Datagrid = <T,>({
           header: col.label,
           enableSorting: col.isSortable !== false,
           size: col.size,
+          enableHiding: col.enableHiding !== false,
         }),
       ),
     ],
@@ -238,6 +249,16 @@ export const Datagrid = <T,>({
         }
       },
     }),
+    initialState: {
+      columnVisibility: columns.reduce(
+        (acc, { id }) => ({
+          ...acc,
+          [id]: columnVisibility?.includes(id),
+        }),
+        {},
+      ),
+    },
+    ...(onColumnVisibilityChange && { onColumnVisibilityChange }),
   });
 
   useEffect(() => {
@@ -265,6 +286,23 @@ export const Datagrid = <T,>({
     [columns],
   );
 
+  const columnsVisibility = useMemo(
+    () =>
+      table.getAllLeafColumns().map((column) => {
+        const col = columns.find((item) => column.id === item.id);
+        return {
+          id: column.id,
+          label: column.columnDef.header as string,
+          isVisible: () => column.getIsVisible(),
+          isVisibleByDefault: columnVisibility?.includes(column.id),
+          isDisabled: !column.getCanHide(),
+          enableHiding: col?.enableHiding,
+          onChange: () => column.toggleVisibility(!column.getIsVisible()),
+        };
+      }),
+    [columns],
+  );
+
   const searchColumns = useMemo(
     () => columns?.find((item) => item?.isSearchable),
     [columns],
@@ -273,6 +311,7 @@ export const Datagrid = <T,>({
   return (
     <div>
       <DatagridTopbar
+        columnsVisibility={columnsVisibility}
         filtersColumns={filtersColumns}
         isSearchable={!!searchColumns}
         filters={filters}
@@ -309,8 +348,7 @@ export const Datagrid = <T,>({
                                   ? 'cursor-pointer select-none'
                                   : '',
                               ...(onSortChange && {
-                                onClick:
-                                  header.column.getToggleSortingHandler(),
+                                onClick: header.column.getToggleSortingHandler(),
                               }),
                             }}
                             data-testid={`header-${header.id}`}
