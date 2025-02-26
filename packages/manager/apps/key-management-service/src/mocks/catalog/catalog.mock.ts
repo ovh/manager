@@ -11,6 +11,9 @@ export const catalogMock: OKMSCatalog = {
           values: ['EU_WEST_RBX', 'EU_WEST_SBG'],
         },
       ],
+      planCode: '',
+      pricings: [],
     },
   ],
+  addons: [],
 };
