@@ -11,6 +11,7 @@ import { AxiosResponse } from 'axios';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import Loading from '../loading/Loading.component';
+import TEST_IDS from '@/utils/testIds.constants';
 
 interface EditModalProps {
   detailValue: string;
@@ -102,6 +103,8 @@ export const EditDetailModal = ({
           label={t('managed_vcd_dashboard_edit_modal_cta_edit')}
           onClick={handleSubmit}
           isDisabled={!isButtonEnabled || undefined}
+          data-testid={TEST_IDS.modalSubmitCta}
+          type="submit"
         />
       </div>
     </OdsModal>

@@ -19,6 +19,7 @@ import {
   DatagridProfileCell,
   DatagridTypeCell,
 } from '@/components/datagrid/storage/StorageCells.component';
+import TEST_IDS from '@/utils/testIds.constants';
 
 export default function StorageListingPage() {
   const { id, vdcId } = useParams();
@@ -87,6 +88,7 @@ export default function StorageListingPage() {
           label={t('managed_vcd_vdc_storage_order_cta')}
           variant="outline"
           onClick={() => navigate(subRoutes.order)}
+          data-testid={TEST_IDS.storageOrderCta}
         />
       }
     />

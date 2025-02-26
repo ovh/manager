@@ -14,6 +14,7 @@ import {
   getBackupBadgeParams,
   getBackupBadgeStatus,
 } from '@/utils/veeamBackupBadge';
+import TEST_IDS from '@/utils/testIds.constants';
 
 type TTileProps = {
   vcdOrganization: VCDOrganization;
@@ -45,7 +46,7 @@ export default function BackupTileItem({
     <div className="flex flex-col items-start">
       <div>
         {isLoading ? (
-          <OdsSkeleton data-testid="backupLoading" />
+          <OdsSkeleton data-testid={TEST_IDS.backupBadgeLoading} />
         ) : (
           <OdsBadge
             label={t(badgeParams.translationKey)}

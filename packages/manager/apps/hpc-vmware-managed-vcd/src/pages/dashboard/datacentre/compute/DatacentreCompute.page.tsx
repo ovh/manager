@@ -18,6 +18,7 @@ import {
 } from '@/components/datagrid/compute/ComputeCells.component';
 import DatagridContainer from '@/components/datagrid/container/DatagridContainer.component';
 import { subRoutes, urls } from '@/routes/routes.constant';
+import TEST_IDS from '@/utils/testIds.constants';
 
 export default function ComputeListingPage() {
   const { id, vdcId } = useParams();
@@ -80,6 +81,7 @@ export default function ComputeListingPage() {
           label={t('managed_vcd_vdc_compute_order_cta')}
           variant="outline"
           onClick={() => navigate(subRoutes.order)}
+          data-testid={TEST_IDS.computeOrderCta}
         />
       }
     />
