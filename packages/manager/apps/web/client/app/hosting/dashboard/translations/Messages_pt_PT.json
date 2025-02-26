@@ -927,7 +927,7 @@
   "hosting_configuration_tab_modules_create_step4_db": "Base de dados",
   "hosting_configuration_tab_modules_delete_title": "Eliminar um módulo",
   "hosting_configuration_tab_modules_delete_question": "Deseja eliminar o módulo {{t0}}?",
-  "hosting_configuration_tab_modules_delete_information": "Atenção, esta ação é irreversível e levará eliminação completa dos dados.",
+  "hosting_configuration_tab_modules_delete_information": "A eliminação do módulo não implica a eliminação da base de dados relacionada com este módulo. Se desejar, pode eliminá-la através do separador \"<a href=\"{{href}}\">Bases de dados</a>\".",
   "hosting_configuration_tab_modules_delete_success": "O módulo vai ser eliminado.",
   "hosting_configuration_tab_modules_delete_fail": "Ocorreu um erro aquando do pedido de eliminação do módulo {{t0}}.",
   "hosting_configuration_tab_modules_create_success": "O módulo está a ser instalado. Receberá um e-mail assim que esta operação terminar.",

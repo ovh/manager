@@ -929,7 +929,7 @@
   "hosting_configuration_tab_modules_create_step4_db": "Datenbank",
   "hosting_configuration_tab_modules_delete_title": "Modul löschen",
   "hosting_configuration_tab_modules_delete_question": "Möchten Sie das Modul {{t0}} löschen?",
-  "hosting_configuration_tab_modules_delete_information": "Achtung, diese Aktion kann nicht rückgängig gemacht werden und hat den Verlust aller Daten zur Folge.",
+  "hosting_configuration_tab_modules_delete_information": "Beim Löschen des Moduls wird die mit diesem Modul verknüpfte Datenbank nicht gelöscht. Wenn Sie möchten, können Sie sie über den Tab „<a href=\"{{href}}\">Datenbanken</a>“ löschen.",
   "hosting_configuration_tab_modules_delete_success": "Modul wird gelöscht.",
   "hosting_configuration_tab_modules_delete_fail": "Bei der Anfrage zur Löschung des Moduls {{t0}} ist ein Fehler aufgetreten.",
   "hosting_configuration_tab_modules_create_success": "Das Modul wird gerade installiert. Sie erhalten eine E-Mail, sobald diese Installation abgeschlossen ist.",

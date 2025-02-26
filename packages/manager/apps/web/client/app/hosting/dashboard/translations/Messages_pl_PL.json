@@ -929,7 +929,7 @@
   "hosting_configuration_tab_modules_create_step4_db": "Baza danych",
   "hosting_configuration_tab_modules_delete_title": "Usuń moduł",
   "hosting_configuration_tab_modules_delete_question": "Czy chcesz usunąć moduł {{t0}}?",
-  "hosting_configuration_tab_modules_delete_information": "Uwaga, ta operacja jest nieodwracalna i spowoduje utratę wszystkich danych.",
+  "hosting_configuration_tab_modules_delete_information": "Usunięcie modułu nie powoduje usunięcia bazy danych powiązanej z tym modułem. Jeśli chcesz, możesz ją usunąć w zakładce „<a href=\"{{href}}\">Bazy danych</a>”.",
   "hosting_configuration_tab_modules_delete_success": "Moduł zostanie usunięty.",
   "hosting_configuration_tab_modules_delete_fail": "Wystąpił problem podczas usuwania modułu {{t0}}.",
   "hosting_configuration_tab_modules_create_success": "Trwa instalacja modułu. Po zakończeniu tej operacji otrzymasz e-mail.",
