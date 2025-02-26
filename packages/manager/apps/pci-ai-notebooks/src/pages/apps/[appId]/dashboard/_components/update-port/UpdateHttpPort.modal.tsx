@@ -117,6 +117,7 @@ const UpdateHttpPort = () => {
 
                   <FormControl>
                     <Input
+                      data-testid="update-port-input"
                       type="number"
                       max={APP_CONFIG.port.max}
                       min={APP_CONFIG.port.min}

@@ -39,6 +39,7 @@ export const AppHeader = ({ app }: { app: ai.app.App }) => {
               {isRunningApp(app.status.state) ||
               isDeletingApp(app.status.state) ? (
                 <Button
+                  data-testid="open-stop-modal-button"
                   type="button"
                   size="roundedIcon"
                   className="bg-red-400 hover:bg-red-600"
@@ -48,6 +49,7 @@ export const AppHeader = ({ app }: { app: ai.app.App }) => {
                 </Button>
               ) : (
                 <Button
+                  data-testid="open-start-modal-button"
                   type="button"
                   size="roundedIcon"
                   onClick={() => setIsStartOpen(true)}
@@ -117,7 +119,10 @@ export const AppHeader = ({ app }: { app: ai.app.App }) => {
 AppHeader.Skeleton = function AppHeaderSkeleton() {
   const { t } = useTranslation('pci-ai-training/apps/app');
   return (
-    <div className="flex gap-2 items-center mt-4 mb-6">
+    <div
+      data-testid="app-header-skeleton"
+      className="flex gap-2 items-center mt-4 mb-6"
+    >
       <Skeleton className="rounded-full h-14 w-14" />
       <div>
         <h2>{t('dashboardTab')}</h2>

@@ -112,7 +112,11 @@ const UpdateImage = () => {
                   </div>
 
                   <FormControl>
-                    <Input value={field.value} {...field} />
+                    <Input
+                      data-testid="update-image-input"
+                      value={field.value}
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

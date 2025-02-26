@@ -18,6 +18,7 @@ const ScalingStrat = () => {
             : t('autoScalingLabel')}
         </p>
         <Button
+          data-testid="update-scaling-button"
           size="sm"
           variant="outline"
           onClick={() => navigate('./update-scaling')}
@@ -28,14 +29,14 @@ const ScalingStrat = () => {
       </div>
       <ul className="list-disc">
         {app.spec.scalingStrategy.fixed?.replicas ? (
-          <li className="ml-8">
+          <li data-testid="fixed-list" className="ml-8">
             {t('fixedReplicasLabel', {
               rep: app.spec.scalingStrategy.fixed.replicas,
             })}
           </li>
         ) : (
           <>
-            <li className="ml-8">
+            <li data-testid="automatic-list" className="ml-8">
               {t('minReplicasLabel', {
                 rep: app.spec.scalingStrategy.automatic.replicasMin,
               })}

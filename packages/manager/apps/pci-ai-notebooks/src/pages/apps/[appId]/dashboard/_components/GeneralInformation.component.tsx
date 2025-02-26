@@ -13,7 +13,10 @@ const AppGeneralInfo = () => {
   const navigate = useNavigate();
   return (
     <>
-      <div className="flex flex-row items-center justify-between gap-2">
+      <div
+        data-testid="image-container"
+        className="flex flex-row items-center justify-between gap-2"
+      >
         <div>
           <h5 className="mb-2">{t('imageTitle')}</h5>
           <p className="break-all w-full">
@@ -24,6 +27,7 @@ const AppGeneralInfo = () => {
         </div>
         {!app.spec.partnerId && (
           <Button
+            data-testid="update-image-button"
             size="sm"
             variant="outline"
             onClick={() => navigate('./update-image')}
@@ -33,13 +37,17 @@ const AppGeneralInfo = () => {
           </Button>
         )}
       </div>
-      <div className="flex flex-row items-center justify-between gap-2 mt-4">
+      <div
+        data-testid="port-container"
+        className="flex flex-row items-center justify-between gap-2 mt-4"
+      >
         <div>
           <h5 className="mb-2">{t('portTitle')}</h5>
           <Badge variant="error">{app.spec.defaultHttpPort}</Badge>
         </div>
         {!app.spec.partnerId && (
           <Button
+            data-testid="update-port-button"
             size="sm"
             variant="outline"
             onClick={() => navigate('./update-port')}
@@ -50,7 +58,10 @@ const AppGeneralInfo = () => {
         )}
       </div>
       <h5 className="mt-4 mb-2">{t('urlAccessTitle')}</h5>
-      <div className="w-full border border-1 border-primary-100">
+      <div
+        data-testid="url-container"
+        className="w-full border border-1 border-primary-100"
+      >
         <Button
           data-testid="url-copy-button"
           type="button"

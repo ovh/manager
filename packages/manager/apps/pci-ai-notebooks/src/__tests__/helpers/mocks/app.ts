@@ -63,13 +63,14 @@ export const mockedAppStatus: ai.app.AppStatus = {
     code: ai.InfoCodeEnum.APP_QUEUED,
     message: 'message',
   },
+  url: 'https://myappurl.com',
 };
 
 export const mockedApp: ai.app.App = {
-  createdAt: 'createdAt',
+  createdAt: '2020/02/02',
   id: 'appId',
   spec: mockedAppSpec,
   status: mockedAppStatus,
-  updatedAt: 'updatedAt',
+  updatedAt: '2020/02/02',
   user: 'user',
 };

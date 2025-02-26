@@ -161,7 +161,7 @@ const UpdateScaling = () => {
             <DialogFooter className="flex justify-end">
               <DialogClose asChild>
                 <Button
-                  data-testid="update-image-cancel-button"
+                  data-testid="update-scaling-cancel-button"
                   type="button"
                   variant="outline"
                 >

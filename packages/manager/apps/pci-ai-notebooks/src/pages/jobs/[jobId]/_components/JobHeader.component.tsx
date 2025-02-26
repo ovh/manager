@@ -38,6 +38,7 @@ export const JobHeader = ({ job }: { job: ai.job.Job }) => {
             <div className="flex flex-row gap-2 items-center">
               {!isStoppedJob(job.status.state) && (
                 <Button
+                  data-testid="open-stop-modal-button"
                   type="button"
                   size="roundedIcon"
                   className="bg-red-400 hover:bg-red-600"
@@ -47,6 +48,7 @@ export const JobHeader = ({ job }: { job: ai.job.Job }) => {
                 </Button>
               )}
               <Button
+                data-testid="open-restart-modal-button"
                 type="button"
                 size="roundedIcon"
                 onClick={() => setIsRestartOpen(true)}
@@ -104,7 +106,10 @@ export const JobHeader = ({ job }: { job: ai.job.Job }) => {
 JobHeader.Skeleton = function JobHeaderSkeleton() {
   const { t } = useTranslation('pci-ai-training/jobs/job');
   return (
-    <div className="flex gap-2 items-center mt-4 mb-6">
+    <div
+      data-testid="job-header-skeleton"
+      className="flex gap-2 items-center mt-4 mb-6"
+    >
       <Skeleton className="rounded-full h-14 w-14" />
       <div>
         <h2>{t('dashboardTab')}</h2>

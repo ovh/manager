@@ -15,7 +15,7 @@ const jobEnv: ai.job.JobEnv = {
   value: 'envVarsValue',
 };
 
-const mockedResources: ai.Resources = {
+export const mockedResources: ai.Resources = {
   cpu: 1,
   ephemeralStorage: 1,
   flavor: 'flavor',

@@ -186,7 +186,7 @@ export const getColumns = ({
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button
-                data-testid="notebooks-action-trigger"
+                data-testid="apps-action-trigger"
                 variant="menu"
                 size="menu"
               >
@@ -200,14 +200,14 @@ export const getColumns = ({
             >
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
               <DropdownMenuItem
-                data-testid="notebook-action-manage-button"
+                data-testid="app-action-manage-button"
                 variant="primary"
                 onClick={() => navigate(`./${row.original.id}`)}
               >
                 {t('tableActionManage')}
               </DropdownMenuItem>
               <DropdownMenuItem
-                data-testid="notebook-action-start-button"
+                data-testid="app-action-start-button"
                 disabled={
                   isRunningApp(app.status.state) ||
                   isDeletingApp(app.status.state)
@@ -220,7 +220,7 @@ export const getColumns = ({
                 {t('tableActionStart')}
               </DropdownMenuItem>
               <DropdownMenuItem
-                data-testid="notebook-action-stop-button"
+                data-testid="app-action-stop-button"
                 disabled={
                   !isRunningApp(app.status.state) ||
                   isDeletingApp(app.status.state)
@@ -234,7 +234,7 @@ export const getColumns = ({
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem
-                data-testid="notebook-action-delete-button"
+                data-testid="app-action-delete-button"
                 variant="destructive"
                 disabled={
                   !isStoppedApp(app.status.state) ||

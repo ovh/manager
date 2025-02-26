@@ -43,6 +43,7 @@ export const NotebookHeader = ({
               {isRunningNotebook(notebook.status.state) ||
               isDeletingNotebook(notebook.status.state) ? (
                 <Button
+                  data-testid="open-stop-modal-button"
                   type="button"
                   size="roundedIcon"
                   className="bg-red-400 hover:bg-red-600"
@@ -52,6 +53,7 @@ export const NotebookHeader = ({
                 </Button>
               ) : (
                 <Button
+                  data-testid="open-start-modal-button"
                   type="button"
                   size="roundedIcon"
                   onClick={() => setIsStartOpen(true)}
@@ -129,7 +131,10 @@ export const NotebookHeader = ({
 NotebookHeader.Skeleton = function NotebookHeaderSkeleton() {
   const { t } = useTranslation('pci-ai-notebooks/notebooks/notebook');
   return (
-    <div className="flex gap-2 items-center mt-4 mb-6">
+    <div
+      data-testid="notebook-header-skeleton"
+      className="flex gap-2 items-center mt-4 mb-6"
+    >
       <Skeleton className="rounded-full h-14 w-14" />
       <div>
         <h2>{t('dashboardTab')}</h2>
