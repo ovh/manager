@@ -79,7 +79,7 @@ describe('<Order> tests suite', () => {
     expect(queryByText('Order steps')).not.toBeInTheDocument();
 
     expect(getByTestId('order-summary-title')).toBeVisible();
-    expect(getByTestId('order-summary-link')).toBeVisible();
+    expect(getByTestId('trans-external-link')).toBeVisible();
 
     expect(window.open).toHaveBeenCalledTimes(1);
     expect(window.open).toHaveBeenCalledWith(
@@ -94,7 +94,7 @@ describe('<Order> tests suite', () => {
     const { getByTestId } = renderComponent(true, orderLink, null);
 
     fireEvent.click(getByTestId('cta-order-configuration-order'));
-    fireEvent.click(getByTestId('order-summary-link'));
+    fireEvent.click(getByTestId('trans-external-link'));
 
     expect(onClickLinkSpy).toHaveBeenCalled();
   });
@@ -121,7 +121,7 @@ describe('<Order> tests suite', () => {
       );
 
       fireEvent.click(getByTestId('cta-order-configuration-order'));
-      fireEvent.click(getByTestId('order-summary-link'));
+      fireEvent.click(getByTestId('trans-external-link'));
 
       const product = productName || 'service';
       expect(getByText(`Commande de votre ${product} initiée`)).toBeVisible();
