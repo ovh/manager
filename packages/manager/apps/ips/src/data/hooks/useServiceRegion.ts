@@ -3,11 +3,11 @@ import { useQuery } from '@tanstack/react-query';
 import {
   DedicatedCloudLocation,
   DedicatedServer,
-  VPS,
+  VpsDatacenter,
   getDedicatedCloudServiceData,
   getDedicatedCloudServiceLocation,
   getDedicatedServerData,
-  getVpsData,
+  getVpsDatacenter,
 } from '../api';
 import { ServiceStatus, ServiceType } from '@/types';
 import { DATACENTER_TO_REGION } from './catalog';
@@ -31,9 +31,9 @@ export const useServiceRegion = ({
     retry: false,
   });
 
-  const vpsData = useQuery<ApiResponse<VPS>, ApiError>({
-    queryKey: [ServiceType.vps, serviceName],
-    queryFn: async () => getVpsData(serviceName),
+  const vpsDatacenter = useQuery<ApiResponse<VpsDatacenter>, ApiError>({
+    queryKey: [ServiceType.vps, serviceName, 'datacenter'],
+    queryFn: async () => getVpsDatacenter(serviceName),
     enabled:
       !!serviceName &&
       serviceStatus === 'ok' &&
@@ -63,19 +63,19 @@ export const useServiceRegion = ({
   return {
     isLoading:
       dedicatedServerData?.isLoading ||
-      vpsData?.isLoading ||
+      vpsDatacenter?.isLoading ||
       dedicatedCloudLocation?.isLoading,
     region:
       dedicatedServerData?.data?.data?.region ||
-      DATACENTER_TO_REGION[vpsData?.data?.data?.location.datacentre] ||
+      DATACENTER_TO_REGION[vpsDatacenter?.data?.data?.name] ||
       dedicatedCloudLocation?.data?.data?.region,
     isError:
       dedicatedServerData.isError ||
-      vpsData.isError ||
+      vpsDatacenter.isError ||
       dedicatedCloudLocation?.isError,
     error:
       dedicatedServerData?.error ||
-      vpsData?.error ||
+      vpsDatacenter?.error ||
       dedicatedCloudLocation?.error,
   };
 };
