@@ -8,14 +8,17 @@ export const getIndexes = async ({
   serviceId,
 }: ServiceData) =>
   apiClient.v6
-    .get(`/cloud/project/${projectId}/database/${engine}/${serviceId}/index`, {
-      headers: {
-        'X-Pagination-Mode': 'CachedObjectList-Pages',
-        'X-Pagination-Size': '50000',
-        Pragma: 'no-cache',
+    .get<database.opensearch.Index[]>(
+      `/cloud/project/${projectId}/database/${engine}/${serviceId}/index`,
+      {
+        headers: {
+          'X-Pagination-Mode': 'CachedObjectList-Pages',
+          'X-Pagination-Size': '50000',
+          Pragma: 'no-cache',
+        },
       },
-    })
-    .then((res) => res.data as database.opensearch.Index[]);
+    )
+    .then((res) => res.data);
 
 export interface DeleteIndex extends ServiceData {
   indexId: string;

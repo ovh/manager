@@ -42,6 +42,8 @@ const IndexPatterns = () => {
   >[] = getPatternsColumns({
     onDeleteClick: (pattern: database.opensearch.Pattern) =>
       navigate(`./delete-pattern/${pattern.id}`),
+    service,
+    t,
   });
 
   const IndexesTableColumns: ColumnDef<
@@ -49,6 +51,8 @@ const IndexPatterns = () => {
   >[] = getIndexesColumns({
     onDeleteClick: (index: database.opensearch.Index) =>
       navigate(`./delete-index/${index.id}`),
+    service,
+    t,
   });
 
   return (

@@ -28,8 +28,8 @@ import { USER_CONFIG } from './user.constants';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 
 interface AclsSelectProps {
-  value: UserAcl[] | undefined;
-  onChange: (newAcls: UserAcl[] | undefined) => void;
+  value?: UserAcl[];
+  onChange?: (newAcls: UserAcl[]) => void;
 }
 
 const AclsSelect = React.forwardRef<HTMLInputElement, AclsSelectProps>(
@@ -77,24 +77,17 @@ const AclsSelect = React.forwardRef<HTMLInputElement, AclsSelectProps>(
       patternInputRef.current?.focus();
     };
     const handleRemoveAcl = (index: number) => {
-      const updatedAcls = [...value];
-      updatedAcls.splice(index, 1);
+      const updatedAcls = value.filter((_, i) => i !== index);
       onChange(updatedAcls);
     };
 
-    const errors = useMemo(() => {
-      const messages: string[] = [];
-      const formErrors = form.formState.errors;
-      Object.keys(formErrors).forEach((key) => {
-        const validKey = key as keyof typeof formErrors;
-        const formError = formErrors[validKey];
-        if (formError?.message) {
-          messages.push(formError.message);
-        }
-      });
-
-      return messages;
-    }, [form.formState.errors]);
+    const errors = useMemo(
+      () =>
+        Object.entries(form.formState.errors)
+          .map(([_, error]) => error?.message)
+          .filter((message): message is string => Boolean(message)),
+      [form.formState.errors],
+    );
 
     return (
       <>

@@ -1,6 +1,5 @@
-import { useTranslation } from 'react-i18next';
+import { TFunction } from 'i18next';
 import { ColumnDef } from '@tanstack/react-table';
-
 import { MoreHorizontal } from 'lucide-react';
 import {
   Tooltip,
@@ -14,22 +13,20 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
-
 import * as database from '@/types/cloud/project/database';
-import { useServiceData } from '../../Service.context';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
 import { DatatableSortableHeader } from '@/components/data-table/DatatableSortableHeader.component';
 
 interface IndexesTableColumnsProps {
   onDeleteClick: (index: database.opensearch.Index) => void;
+  service: database.Service;
+  t: TFunction;
 }
 export const getIndexesColumns = ({
   onDeleteClick,
+  service,
+  t,
 }: IndexesTableColumnsProps) => {
-  const { service } = useServiceData();
-  const { t } = useTranslation(
-    'pci-databases-analytics/services/service/indexPatterns',
-  );
   const columns: ColumnDef<database.opensearch.Index>[] = [
     {
       id: 'index',

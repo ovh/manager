@@ -8,7 +8,7 @@ export const getPatterns = async ({
   serviceId,
 }: ServiceData) =>
   apiClient.v6
-    .get(
+    .get<database.opensearch.Pattern[]>(
       `/cloud/project/${projectId}/database/${engine}/${serviceId}/pattern`,
       {
         headers: {
@@ -18,7 +18,7 @@ export const getPatterns = async ({
         },
       },
     )
-    .then((res) => res.data as database.opensearch.Pattern[]);
+    .then((res) => res.data);
 
 export interface AddPattern extends ServiceData {
   pattern: Omit<database.opensearch.Pattern, 'id'>;
@@ -31,11 +31,11 @@ export const addPattern = async ({
   pattern,
 }: AddPattern) =>
   apiClient.v6
-    .post(
+    .post<database.opensearch.Pattern>(
       `/cloud/project/${projectId}/database/${engine}/${serviceId}/pattern`,
       pattern,
     )
-    .then((res) => res.data as database.opensearch.Pattern);
+    .then((res) => res.data);
 
 export interface DeletePattern extends ServiceData {
   patternId: string;

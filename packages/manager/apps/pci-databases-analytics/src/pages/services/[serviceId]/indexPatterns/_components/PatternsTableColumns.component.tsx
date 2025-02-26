@@ -1,6 +1,5 @@
-import { useTranslation } from 'react-i18next';
+import { TFunction } from 'i18next';
 import { ColumnDef } from '@tanstack/react-table';
-
 import { MoreHorizontal } from 'lucide-react';
 import {
   Tooltip,
@@ -14,21 +13,19 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
-
 import * as database from '@/types/cloud/project/database';
-import { useServiceData } from '../../Service.context';
 import { DatatableSortableHeader } from '@/components/data-table/DatatableSortableHeader.component';
 
 interface PatternsTableColumnsProps {
   onDeleteClick: (pattern: database.opensearch.Pattern) => void;
+  service: database.Service;
+  t: TFunction;
 }
 export const getPatternsColumns = ({
   onDeleteClick,
+  service,
+  t,
 }: PatternsTableColumnsProps) => {
-  const { service } = useServiceData();
-  const { t } = useTranslation(
-    'pci-databases-analytics/services/service/indexPatterns',
-  );
   const columns: ColumnDef<database.opensearch.Pattern>[] = [
     {
       id: 'pattern',

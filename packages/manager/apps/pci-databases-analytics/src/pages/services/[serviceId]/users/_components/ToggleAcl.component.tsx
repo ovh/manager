@@ -11,12 +11,16 @@ const ToggleAcl = () => {
   const { t } = useTranslation(
     'pci-databases-analytics/services/service/users',
   );
-  const { projectId, service, serviceQuery } = useServiceData();
+  const { projectId, service, serviceQuery } = useServiceData<
+    database.opensearch.Service
+  >();
   const aclsEnabled = !!('aclsEnabled' in service && service.aclsEnabled);
   const [switchState, setSwitchState] = useState(aclsEnabled);
 
   const toast = useToast();
-  const { editService, isPending } = useEditService({
+  const { editService, isPending } = useEditService<
+    database.opensearch.Service
+  >({
     onError: (err) => {
       toast.toast({
         title: t('toggleAclErrorTitle'),
@@ -28,8 +32,7 @@ const ToggleAcl = () => {
     onEditSuccess: (updatedService) => {
       toast.toast({
         title: t('toggleAclSuccessTitle'),
-        description: ((updatedService as unknown) as database.opensearch.Service)
-          .aclsEnabled
+        description: updatedService.aclsEnabled
           ? t('toggleAclEnabledSuccessDescription')
           : t('toggleAclADisabledSuccessDescription'),
       });
@@ -38,10 +41,8 @@ const ToggleAcl = () => {
   });
 
   useEffect(() => {
-    setSwitchState(
-      ((service as unknown) as database.opensearch.Service).aclsEnabled,
-    );
-  }, [((service as unknown) as database.opensearch.Service).aclsEnabled]);
+    setSwitchState(service.aclsEnabled);
+  }, [service.aclsEnabled]);
 
   const handleSwitchChange = (newValue: boolean) => {
     setSwitchState(newValue);
@@ -63,7 +64,7 @@ const ToggleAcl = () => {
           service.capabilities.userAcls?.update !==
             database.service.capability.StateEnum.enabled
         }
-        onCheckedChange={(newVal) => handleSwitchChange(newVal)}
+        onCheckedChange={handleSwitchChange}
       />
       <Label htmlFor="airplane-mode">{t('toggleACLsLabel')}</Label>
     </div>
