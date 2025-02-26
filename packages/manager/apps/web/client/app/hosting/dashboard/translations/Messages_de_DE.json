@@ -709,6 +709,7 @@
   "hosting_tab_TASKS_status_DOING": "Wird ausgeführt",
   "hosting_tab_TASKS_status_DONE": "Abgeschlossen",
   "hosting_tab_TASKS_status_ERROR": "Fehler",
+  "hosting_tab_TASKS_status_OVHERROR": "Fehler",
   "hosting_tab_TASKS_status_TODO": "Geplant",
   "hosting_tab_TASKS_status_INIT": "Gestartet",
   "hosting_tab_TASKS_status_backup_FTP": "Das erstellte Backup wird Ihnen per E-Mail zugesandt und nicht automatisch in Ihrem FTP-Bereich wiederhergestellt.",

@@ -709,6 +709,7 @@
   "hosting_tab_TASKS_status_DOING": "In progress",
   "hosting_tab_TASKS_status_DONE": "Closed",
   "hosting_tab_TASKS_status_ERROR": "Error",
+  "hosting_tab_TASKS_status_OVHERROR": "Error",
   "hosting_tab_TASKS_status_TODO": "Scheduled",
   "hosting_tab_TASKS_status_INIT": "Initiated",
   "hosting_tab_TASKS_status_backup_FTP": "The generated backup will be sent to you by email, and will not be automatically restored on your FTP space.",

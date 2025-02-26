@@ -709,6 +709,7 @@
   "hosting_tab_TASKS_status_DOING": "En cours",
   "hosting_tab_TASKS_status_DONE": "Terminée",
   "hosting_tab_TASKS_status_ERROR": "En erreur",
+  "hosting_tab_TASKS_status_OVHERROR": "En erreur",
   "hosting_tab_TASKS_status_TODO": "Planifiée",
   "hosting_tab_TASKS_status_INIT": "Initiée",
   "hosting_tab_TASKS_status_backup_FTP": "La sauvegarde générée vous sera envoyée par courrier électronique et ne sera pas automatiquement restaurée sur votre espace FTP.",
