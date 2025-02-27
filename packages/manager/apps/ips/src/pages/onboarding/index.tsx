@@ -5,7 +5,7 @@ import {
   OnboardingLayout,
   Links,
 } from '@ovh-ux/manager-react-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { OdsText, OdsTable } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { useNavigate } from 'react-router-dom';
 
@@ -48,6 +48,52 @@ export default function Onboarding() {
     },
   ];
 
+  const IP_OPTIONS_ROWS = [
+    {
+      feature: t('optionsAddressTypes'),
+      ipv4: t('optionsAddressTypesIpv4'),
+      ipv6: t('optionsAddressTypesIpv6'),
+    },
+    {
+      feature: t('optionsModes'),
+      ipv4: t('optionsModesIpv4'),
+      ipv6: t('optionsModesIpv6'),
+    },
+    {
+      feature: t('optionsGeolocation'),
+      ipv4: t('optionsGeolocationIpv4'),
+      ipv6: t('optionsGeolocationIpv6'),
+    },
+    {
+      feature: t('optionsCost'),
+      ipv4: t('optionsCostIpv4'),
+      ipv6: t('optionsCostIpv6'),
+    },
+    {
+      feature: t('optionsCompatibleServices'),
+      ipv4: t('optionsCompatibleServicesIpv4'),
+      ipv6: t('optionsCompatibleServicesIpv6'),
+    },
+    {
+      feature: t('optionsAvailability'),
+      ipv4: t('optionsAvailabilityIpv4'),
+      ipv6: (
+        <>
+          {t('optionsAvailabilityCheck')}{' '}
+          <Links
+            href={link?.presentationLink}
+            label={t('optionsAvailabilityHere')}
+          />
+        </>
+      ),
+    },
+    {
+      feature: t('optionsByoip'),
+      ipv4: t('optionsByoipIpv4'),
+      ipv6: t('optionsByoipIpv6'),
+    },
+  ];
+
   const imgSrc = {
     src: onboardingImgSrc,
   };
@@ -59,21 +105,103 @@ export default function Onboarding() {
         img={imgSrc}
         description={
           <div className="text-center">
-            <OdsText preset={ODS_TEXT_PRESET.heading2}>{t('titlebis')}</OdsText>
+            <OdsText preset={ODS_TEXT_PRESET.heading2}>{t('titleBis')}</OdsText>
             <OdsText className="block">{t('description')}</OdsText>
-            <div>
-              <ul className="mt-2 text-sm text-center w-[10%] mx-auto">
-                <li>{t('ip_onboarding_content_list_item_1')}</li>
-                <li>{t('ip_onboarding_content_list_item_2')}</li>
-              </ul>
+
+            <div className="mt-8">
+              <OdsText preset={ODS_TEXT_PRESET.heading3} className="mb-4">
+                {t('advantagesTitle')}
+              </OdsText>
+              <div className="text-left mb-8">
+                <ol className="list-decimal pl-6 space-y-4">
+                  <li>
+                    <strong>{t('advantage1Title')}:</strong>{' '}
+                    {t('advantage1Description')}
+                  </li>
+                  <li>
+                    <strong>{t('advantage2Title')}:</strong>{' '}
+                    {t('advantage2Description')}
+                  </li>
+                  <li>
+                    <strong>{t('advantage3Title')}:</strong>{' '}
+                    {t('advantage3Description')}
+                  </li>
+                  <li>
+                    <strong>{t('advantage4Title')}:</strong>{' '}
+                    {t('advantage4Description')}
+                  </li>
+                  <li>
+                    <strong>{t('advantage5Title')}:</strong>{' '}
+                    {t('advantage5Description')}{' '}
+                    <Links
+                      href="https://www.ovhcloud.com/en-ie/network/byoip/"
+                      label={t('learnMoreByoip')}
+                    />
+                  </li>
+                </ol>
+              </div>
+
+              <OdsText preset={ODS_TEXT_PRESET.heading3} className="mb-4">
+                {t('optionsTitle')}
+              </OdsText>
+              <OdsTable className="w-full">
+                <table className="w-full border-collapse">
+                  <thead>
+                    <tr>
+                      <th className="text-left pl-4">
+                        {t('optionsColumnFeature')}
+                      </th>
+                      <th className="text-left pl-4">
+                        {t('optionsColumnIpv4')}
+                      </th>
+                      <th className="text-left pl-4">
+                        {t('optionsColumnIpv6')}
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {IP_OPTIONS_ROWS.map((row, index) => (
+                      <tr
+                        key={index}
+                        className="border-solid border-[1px] border-[--ods-color-blue-200]"
+                      >
+                        <td className="text-left pl-4">{row.feature}</td>
+                        <td
+                          className="text-left pl-4"
+                          style={{ whiteSpace: 'pre-line' }}
+                        >
+                          {row.ipv4}
+                        </td>
+                        <td
+                          className="text-left pl-4"
+                          style={{ whiteSpace: 'pre-line' }}
+                        >
+                          {row.ipv6}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </OdsTable>
+              <div className="mt-4 text-left text-xs">
+                <div className="mb-2">* {t('optionsFootnote')}</div>
+                <div>** {t('geolocationNote')}</div>
+              </div>
+
+              <OdsText className="mt-4 text-left">
+                {t('moreInfoText')}{' '}
+                <Links
+                  href={link?.presentationLink}
+                  label={t('moreInfoProductPage')}
+                />{' '}
+                {t('moreInfoOr')}{' '}
+                <Links
+                  href={link?.documentationLink}
+                  label={t('moreInfoDocPages')}
+                />
+                .
+              </OdsText>
             </div>
-            <OdsText className="w-[78%] mt-4">
-              <span>{t('descriptionBis')}</span>
-              <Links
-                href={link.presentationLink}
-                label={link.presentationLink}
-              ></Links>
-            </OdsText>
           </div>
         }
         onOrderButtonClick={() => navigate(urls.order)}
