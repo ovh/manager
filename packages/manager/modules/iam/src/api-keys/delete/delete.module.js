@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-import deleteEntity from '../../../components/deleteEntity';
+import deleteEntity from '../../components/deleteEntity';
 import routing from './delete.routing';
 
 const moduleName = 'ovhManagerIAMDashboardApplicationsDelete';
