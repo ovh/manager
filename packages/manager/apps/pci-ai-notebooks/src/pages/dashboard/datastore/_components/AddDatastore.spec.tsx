@@ -8,10 +8,10 @@ import {
 } from '@testing-library/react';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import * as datastoreApi from '@/data/api/ai/datastore.api';
-import { apiErrorMock } from '@/__tests__/helpers/mocks/aiError';
+import { apiErrorMock } from '@/__tests__/helpers/mocks/shared/aiError';
 import { useToast } from '@/components/ui/use-toast';
-import { mockedCapabilitiesRegionGRA } from '@/__tests__/helpers/mocks/region';
-import { mockedDatastoreWithRegion } from '@/__tests__/helpers/mocks/datastore';
+import { mockedCapabilitiesRegionGRA } from '@/__tests__/helpers/mocks/capabilities/region';
+import { mockedDatastoreWithRegion } from '@/__tests__/helpers/mocks/volume/datastore';
 import AddDatastore from './AddDatastore.modal';
 import { handleSelectOption } from '@/__tests__/helpers/unitTestHelper';
 

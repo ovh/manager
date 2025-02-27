@@ -7,7 +7,7 @@ import Onboarding from './Onboarding.page';
 import {
   mockedGuideOnboarding,
   mockedGuides,
-} from '@/__tests__/helpers/mocks/guides';
+} from '@/__tests__/helpers/mocks/shared/guides';
 
 describe('Onboarding page', () => {
   beforeEach(() => {

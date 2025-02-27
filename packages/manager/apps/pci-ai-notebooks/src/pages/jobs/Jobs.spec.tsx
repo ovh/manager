@@ -3,7 +3,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import { mockedUsedNavigate } from '@/__tests__/helpers/mockRouterDomHelper';
 import { mockManagerReactShellClient } from '@/__tests__/helpers/mockShellHelper';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
-import { mockedJob } from '@/__tests__/helpers/mocks/job';
+import { mockedJob } from '@/__tests__/helpers/mocks/job/job';
 import Jobs from './Jobs.page';
 import { openButtonInMenu } from '@/__tests__/helpers/unitTestHelper';
 

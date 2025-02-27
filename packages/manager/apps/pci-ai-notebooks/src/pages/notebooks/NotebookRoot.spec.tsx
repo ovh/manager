@@ -3,7 +3,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import Root, { Loader } from '@/pages/notebooks/NotebookRoot.page';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import * as notebookApi from '@/data/api/ai/notebook/notebook.api';
-import { mockedNotebook } from '@/__tests__/helpers/mocks/notebook';
+import { mockedNotebook } from '@/__tests__/helpers/mocks/notebook/notebook';
 
 const NotebookProps = {
   params: {

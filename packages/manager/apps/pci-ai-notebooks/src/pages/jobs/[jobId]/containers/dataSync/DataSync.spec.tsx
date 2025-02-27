@@ -12,15 +12,15 @@ import * as ai from '@/types/cloud/project/ai';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import * as datasyncAPI from '@/data/api/ai/job/datasync/datasync.api';
 import { useToast } from '@/components/ui/use-toast';
-import { apiErrorMock } from '@/__tests__/helpers/mocks/aiError';
-import { mockedDatastoreVolume } from '@/__tests__/helpers/mocks/volume';
+import { apiErrorMock } from '@/__tests__/helpers/mocks/shared/aiError';
+import { mockedDatastoreVolume } from '@/__tests__/helpers/mocks/volume/volume';
 import DataSync from './DataSync.modal';
 import { handleSelectOption } from '@/__tests__/helpers/unitTestHelper';
 import {
   mockedJob,
   mockedJobSpec,
   mockedJobStatus,
-} from '@/__tests__/helpers/mocks/job';
+} from '@/__tests__/helpers/mocks/job/job';
 
 const mockedJobWithVol: ai.job.Job = {
   ...mockedJob,

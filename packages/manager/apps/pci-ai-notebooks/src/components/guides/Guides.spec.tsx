@@ -12,7 +12,7 @@ import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/Route
 import {
   mockedGuideOnboarding,
   mockedGuides,
-} from '@/__tests__/helpers/mocks/guides';
+} from '@/__tests__/helpers/mocks/shared/guides';
 
 describe('Guides component', () => {
   beforeEach(() => {

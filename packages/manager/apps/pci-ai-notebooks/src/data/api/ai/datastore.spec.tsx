@@ -9,7 +9,7 @@ import {
   getDatastoreContainer,
   getDatastores,
 } from '@/data/api/ai/datastore.api';
-import { mockedDatastoreInput } from '@/__tests__/helpers/mocks/datastore';
+import { mockedDatastoreInput } from '@/__tests__/helpers/mocks/volume/datastore';
 
 describe('Datastore functions', () => {
   afterEach(() => {

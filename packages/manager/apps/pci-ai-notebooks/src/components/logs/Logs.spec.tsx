@@ -3,9 +3,9 @@ import { render, screen } from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
 import * as ai from '@/types/cloud/project/ai';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
-import { mockedNotebook } from '@/__tests__/helpers/mocks/notebook';
+import { mockedNotebook } from '@/__tests__/helpers/mocks/notebook/notebook';
 import Logs from './Logs.component';
-import { mockedLogs } from '@/__tests__/helpers/mocks/logs';
+import { mockedLogs } from '@/__tests__/helpers/mocks/shared/logs';
 
 describe('Logs page', () => {
   beforeEach(() => {

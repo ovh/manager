@@ -8,10 +8,10 @@ import {
 } from '@testing-library/react';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import * as registryApi from '@/data/api/ai/registry.api';
-import { apiErrorMock } from '@/__tests__/helpers/mocks/aiError';
+import { apiErrorMock } from '@/__tests__/helpers/mocks/shared/aiError';
 import { useToast } from '@/components/ui/use-toast';
-import { mockedCapabilitiesRegionGRA } from '@/__tests__/helpers/mocks/region';
-import { mockedRegistry } from '@/__tests__/helpers/mocks/registry';
+import { mockedCapabilitiesRegionGRA } from '@/__tests__/helpers/mocks/capabilities/region';
+import { mockedRegistry } from '@/__tests__/helpers/mocks/shared/registry';
 import AddDocker from './AddDocker.modal';
 import { handleSelectOption } from '@/__tests__/helpers/unitTestHelper';
 

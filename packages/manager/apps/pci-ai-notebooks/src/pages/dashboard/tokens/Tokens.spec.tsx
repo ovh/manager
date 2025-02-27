@@ -12,7 +12,7 @@ import Tokens, {
   breadcrumb as Breadcrumb,
 } from '@/pages/dashboard/tokens/Tokens.page';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
-import { mockedToken } from '@/__tests__/helpers/mocks/token';
+import { mockedToken } from '@/__tests__/helpers/mocks/shared/token';
 import { openButtonInMenu } from '@/__tests__/helpers/unitTestHelper';
 
 describe('Tokens page', () => {

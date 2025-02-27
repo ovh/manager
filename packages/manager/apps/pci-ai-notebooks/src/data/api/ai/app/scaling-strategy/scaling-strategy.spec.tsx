@@ -1,6 +1,7 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
 import { describe, expect, vi } from 'vitest';
 import { scalingStrategy } from './scaling-strategy.api';
+import { mockedFixedScaling } from '@/__tests__/helpers/mocks/app/appHelper';
 
 describe('scaling stategy functions', () => {
   afterEach(() => {
@@ -12,17 +13,13 @@ describe('scaling stategy functions', () => {
     await scalingStrategy({
       projectId: 'projectId',
       appId: 'appId',
-      scalingStrat: {
-        fixed: {
-          replicas: 1,
-        },
-      },
+      scalingStrat: mockedFixedScaling,
     });
     expect(apiClient.v6.put).toHaveBeenCalledWith(
       '/cloud/project/projectId/ai/app/appId/scalingstrategy',
       {
         fixed: {
-          replicas: 1,
+          replicas: 2,
         },
       },
     );

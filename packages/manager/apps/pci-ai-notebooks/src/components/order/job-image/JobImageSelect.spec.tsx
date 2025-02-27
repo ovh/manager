@@ -4,7 +4,7 @@ import { describe, it, vi } from 'vitest';
 import {
   mockedPresetImage,
   mockedPresetImageBis,
-} from '@/__tests__/helpers/mocks/presetImage';
+} from '@/__tests__/helpers/mocks/job/presetImage';
 import JobImagesSelect from './JobImageSelect.component';
 
 describe('Docker Image Select component', () => {

@@ -7,7 +7,7 @@ import {
   getTokens,
   renewToken,
 } from '@/data/api/ai/token.api';
-import { mockedTokenCreation } from '@/__tests__/helpers/mocks/token';
+import { mockedTokenCreation } from '@/__tests__/helpers/mocks/shared/token';
 
 describe('Token functions', () => {
   afterEach(() => {

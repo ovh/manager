@@ -6,7 +6,7 @@ import { useDataSync } from './useDataSync.hook';
 import {
   mockedDataSync,
   mockedDataSyncSpec,
-} from '@/__tests__/helpers/mocks/datasync';
+} from '@/__tests__/helpers/mocks/volume/datasync';
 
 vi.mock('@/data/api/ai/job/datasync/datasync.api', () => ({
   dataSync: vi.fn(),

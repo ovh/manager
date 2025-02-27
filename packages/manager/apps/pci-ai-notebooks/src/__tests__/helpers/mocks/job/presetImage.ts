@@ -1,16 +1,16 @@
 import * as ai from '@/types/cloud/project/ai';
 
 export const mockedPresetImage: ai.job.PresetImage = {
-  description: 'description',
-  id: 'presetImage',
+  description: 'pytorch image',
+  id: 'pytorch',
   link: 'https://mylink.com',
-  name: 'presetImage',
+  name: 'pytorch',
   logo: 'https:myLogo',
 };
 
 export const mockedPresetImageBis: ai.job.PresetImage = {
-  description: 'descriptionBis',
-  id: 'presetImageBis',
+  description: 'one for all',
+  id: 'ovh-one-for-all',
   link: 'https://mylinkBis.com',
-  name: 'presetImageBis',
+  name: 'oneforall',
 };

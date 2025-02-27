@@ -1,7 +1,7 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
-import { mockedFrameworkBis } from '@/__tests__/helpers/mocks/notebook/framework';
 import ImageVersionSelector from './PartnerImageVersion.component';
+import { mockedPartnerImagePerApp } from '@/__tests__/helpers/mocks/partner/partner';
 
 describe('Parnter image version Selector component', () => {
   afterEach(() => {
@@ -12,7 +12,7 @@ describe('Parnter image version Selector component', () => {
   it('should display Version Selector', async () => {
     render(
       <ImageVersionSelector
-        versions={mockedFrameworkBis.versions}
+        versions={mockedPartnerImagePerApp.versions}
         isImageSelected={true}
         onChange={onChange}
         selectedVersion=""

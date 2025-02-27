@@ -1,19 +1,19 @@
 import * as ai from '@/types/cloud/project/ai';
 
 export const mockedEditor: ai.capabilities.notebook.Editor = {
-  description: 'description',
-  docUrl: 'docURl',
+  description: 'editor jupyter',
+  docUrl: 'https://docurl',
   id: 'jupyterlab',
   logoUrl: 'logo',
-  name: 'EditorName',
+  name: 'Jupyterlab',
   versions: ['version'],
 };
 
 export const mockedEditorBis: ai.capabilities.notebook.Editor = {
-  description: 'description1',
+  description: 'editor jupyter colab',
   docUrl: 'docURl1',
   id: 'jupyterlabcollaborative',
   logoUrl: 'logoBis',
-  name: 'EditorNameBis',
+  name: 'Jupyterlabcollaboratives',
   versions: ['version'],
 };

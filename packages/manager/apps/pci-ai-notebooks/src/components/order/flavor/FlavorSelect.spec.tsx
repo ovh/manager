@@ -10,7 +10,7 @@ import FlavorsSelect from './FlavorSelect.component';
 import {
   mockedOrderFlavorCPU,
   mockedOrderFlavorGPU,
-} from '@/__tests__/helpers/mocks/flavor';
+} from '@/__tests__/helpers/mocks/capabilities/flavor';
 
 describe('Flavor table select component', () => {
   beforeEach(() => {

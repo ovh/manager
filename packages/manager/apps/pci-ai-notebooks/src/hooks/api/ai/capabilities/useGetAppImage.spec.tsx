@@ -3,7 +3,7 @@ import { vi } from 'vitest';
 
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import * as capabilitiesApi from '@/data/api/ai/capabilities.api';
-import { mockedCapaAppImage } from '@/__tests__/helpers/mocks/appImage';
+import { mockedCapaAppImage } from '@/__tests__/helpers/mocks/capabilities/partnerAppImage';
 import { useGetAppImages } from './useGetAppImage.hook';
 
 vi.mock('@/data/api/ai/capabilities.api', () => ({

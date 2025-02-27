@@ -12,7 +12,7 @@ import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/Route
 import {
   mockedNotebook,
   mockedNotebookSpec,
-} from '@/__tests__/helpers/mocks/notebook';
+} from '@/__tests__/helpers/mocks/notebook/notebook';
 import { useToast } from '@/components/ui/use-toast';
 import Labels from './Labels.component';
 import * as labelsApi from '@/data/api/ai/notebook/label/label.api';

@@ -9,8 +9,8 @@ import {
 import * as notebookApi from '@/data/api/ai/notebook/notebook.api';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { useToast } from '@/components/ui/use-toast';
-import { mockedNotebook } from '@/__tests__/helpers/mocks/notebook';
-import { apiErrorMock } from '@/__tests__/helpers/mocks/aiError';
+import { mockedNotebook } from '@/__tests__/helpers/mocks/notebook/notebook';
+import { apiErrorMock } from '@/__tests__/helpers/mocks/shared/aiError';
 import StartNotebook from './StartNotebook.component';
 
 describe('Start notebook modal', () => {

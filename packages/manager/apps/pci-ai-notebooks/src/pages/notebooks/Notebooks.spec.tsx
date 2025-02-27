@@ -3,7 +3,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import { mockedUsedNavigate } from '@/__tests__/helpers/mockRouterDomHelper';
 import { mockManagerReactShellClient } from '@/__tests__/helpers/mockShellHelper';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
-import { mockedNotebook } from '@/__tests__/helpers/mocks/notebook';
+import { mockedNotebook } from '@/__tests__/helpers/mocks/notebook/notebook';
 import Notebooks from './Notebooks.page';
 import { openButtonInMenu } from '@/__tests__/helpers/unitTestHelper';
 

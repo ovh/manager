@@ -12,7 +12,7 @@ import * as ai from '@/types/cloud/project/ai';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import Configurations from './Configuration.component';
 import { useToast } from '@/components/ui/use-toast';
-import { mockedJob, mockedJobStatus } from '@/__tests__/helpers/mocks/job';
+import { mockedJob, mockedJobStatus } from '@/__tests__/helpers/mocks/job/job';
 
 describe('Configuration component', () => {
   beforeEach(() => {

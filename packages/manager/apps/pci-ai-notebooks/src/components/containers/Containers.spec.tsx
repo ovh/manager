@@ -10,7 +10,7 @@ import { mockManagerReactShellClient } from '@/__tests__/helpers/mockShellHelper
 import { mockedUsedNavigate } from '@/__tests__/helpers/mockRouterDomHelper';
 import * as ai from '@/types/cloud/project/ai';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
-import { mockedDatastoreVolume } from '@/__tests__/helpers/mocks/volume';
+import { mockedDatastoreVolume } from '@/__tests__/helpers/mocks/volume/volume';
 import Containers from './Containers.component';
 import { openButtonInMenu } from '@/__tests__/helpers/unitTestHelper';
 

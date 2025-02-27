@@ -2,7 +2,7 @@ import { renderHook, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import * as jobApi from '@/data/api/ai/job/job.api';
-import { mockedJob, mockedJobSpec } from '@/__tests__/helpers/mocks/job';
+import { mockedJob, mockedJobSpec } from '@/__tests__/helpers/mocks/job/job';
 import { useAddJob } from './useAddJob.hook';
 
 vi.mock('@/data/api/ai/job/job.api', () => ({

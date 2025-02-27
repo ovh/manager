@@ -12,14 +12,14 @@ import { mockedUsedNavigate } from '@/__tests__/helpers/mockRouterDomHelper';
 import { mockManagerReactShellClient } from '@/__tests__/helpers/mockShellHelper';
 import * as ai from '@/types/cloud/project/ai';
 import { useToast } from '@/components/ui/use-toast';
-import { mockedDatastoreVolume } from '@/__tests__/helpers/mocks/volume';
+import { mockedDatastoreVolume } from '@/__tests__/helpers/mocks/volume/volume';
 import Containers, { breadcrumb as Breadcrumb } from './Containers.page';
 import { openButtonInMenu } from '@/__tests__/helpers/unitTestHelper';
 import {
   mockedApp,
   mockedAppSpec,
   mockedAppStatus,
-} from '@/__tests__/helpers/mocks/app';
+} from '@/__tests__/helpers/mocks/app/app';
 
 const mockedAppWithVol: ai.app.App = {
   ...mockedApp,

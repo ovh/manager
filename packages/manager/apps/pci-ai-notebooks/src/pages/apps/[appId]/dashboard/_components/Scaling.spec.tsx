@@ -11,7 +11,7 @@ import * as ai from '@/types/cloud/project/ai';
 import { mockManagerReactShellClient } from '@/__tests__/helpers/mockShellHelper';
 import { mockedUsedNavigate } from '@/__tests__/helpers/mockRouterDomHelper';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
-import { mockedApp, mockedAppSpec } from '@/__tests__/helpers/mocks/app';
+import { mockedApp, mockedAppSpec } from '@/__tests__/helpers/mocks/app/app';
 import ScalingStrat from './Scaling.component';
 import { useAppData } from '@/pages/apps/[appId]/App.context';
 import { AIError } from '@/data/api';

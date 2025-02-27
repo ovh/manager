@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import DeleteAppModal from './Delete.modal';
-import { mockedApp } from '@/__tests__/helpers/mocks/app';
+import { mockedApp } from '@/__tests__/helpers/mocks/app/app';
 
 describe('App dashboard delete modal', () => {
   beforeEach(() => {

@@ -2,7 +2,7 @@ import { renderHook, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import * as appApi from '@/data/api/ai/app/app.api';
-import { mockedApp } from '@/__tests__/helpers/mocks/app';
+import { mockedApp } from '@/__tests__/helpers/mocks/app/app';
 import { useGetApp } from './useGetApp.hook';
 
 vi.mock('@/data/api/ai/app/app.api', () => ({

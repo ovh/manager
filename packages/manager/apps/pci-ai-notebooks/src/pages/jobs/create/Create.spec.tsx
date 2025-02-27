@@ -9,31 +9,31 @@ import {
 import { mockedUsedNavigate } from '@/__tests__/helpers/mockRouterDomHelper';
 import { mockManagerReactShellClient } from '@/__tests__/helpers/mockShellHelper';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
-import { mockedCatalog } from '@/__tests__/helpers/mocks/catalog';
+import { mockedCatalog } from '@/__tests__/helpers/mocks/catalog/catalog';
 import { mockedPciProject } from '@/__tests__/helpers/mocks/project';
 import {
   mockedCapabilitiesRegionBHS,
   mockedCapabilitiesRegionGRA,
-} from '@/__tests__/helpers/mocks/region';
+} from '@/__tests__/helpers/mocks/capabilities/region';
 import {
   mockedSshKey,
   mockedSshKeyBis,
 } from '@/__tests__/helpers/mocks/sshkey';
-import { mockedCommand } from '@/__tests__/helpers/mocks/command';
-import { mockedCapabilitiesFlavorCPU } from '@/__tests__/helpers/mocks/flavor';
+import { mockedCommand } from '@/__tests__/helpers/mocks/shared/command';
+import { mockedCapabilitiesFlavorCPU } from '@/__tests__/helpers/mocks/capabilities/flavor';
 import {
   mockedDatastoreWithContainerGit,
   mockedDatastoreWithContainerS3,
-} from '@/__tests__/helpers/mocks/datastore';
+} from '@/__tests__/helpers/mocks/volume/datastore';
 import * as jobApi from '@/data/api/ai/job/job.api';
-import { apiErrorMock } from '@/__tests__/helpers/mocks/aiError';
+import { apiErrorMock } from '@/__tests__/helpers/mocks/shared/aiError';
 import { useToast } from '@/components/ui/use-toast';
-import { mockedJobSuggetions } from '@/__tests__/helpers/mocks/suggestion';
 import Job, { breadcrumb as Breadcrumb } from './Create.page';
 import {
   mockedPresetImage,
   mockedPresetImageBis,
-} from '@/__tests__/helpers/mocks/presetImage';
+} from '@/__tests__/helpers/mocks/job/presetImage';
+import { mockedSuggestionsForJob } from '@/__tests__/helpers/mocks/suggestion';
 
 describe('Order funnel page', () => {
   beforeEach(() => {
@@ -53,7 +53,7 @@ describe('Order funnel page', () => {
     }));
 
     vi.mock('@/data/api/ai/job/suggestions.api', () => ({
-      getSuggestions: vi.fn(() => mockedJobSuggetions),
+      getSuggestions: vi.fn(() => mockedSuggestionsForJob),
     }));
 
     vi.mock('@/data/api/ai/job/capabilities/image.api', () => ({

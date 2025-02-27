@@ -10,8 +10,7 @@ import FrameworksSelect from './FrameworkSelect.component';
 import {
   mockedFramework,
   mockedFrameworkBis,
-  mockedFrameworkTer,
-} from '@/__tests__/helpers/mocks/notebook/framework';
+} from '@/__tests__/helpers/mocks/capabilities/notebookFramework';
 
 describe('Framework Select component', () => {
   afterEach(() => {
@@ -22,7 +21,7 @@ describe('Framework Select component', () => {
   it('should display Framework Select', async () => {
     render(
       <FrameworksSelect
-        frameworks={[mockedFramework, mockedFrameworkBis, mockedFrameworkTer]}
+        frameworks={[mockedFramework, mockedFrameworkBis]}
         value={{
           framework: mockedFramework.id,
           version: mockedFramework.versions[0],

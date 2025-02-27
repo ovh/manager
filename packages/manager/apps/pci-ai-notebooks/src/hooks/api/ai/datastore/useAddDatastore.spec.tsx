@@ -5,7 +5,7 @@ import * as datastoreApi from '@/data/api/ai/datastore.api';
 import {
   mockedDatastore,
   mockedDatastoreInput,
-} from '@/__tests__/helpers/mocks/datastore';
+} from '@/__tests__/helpers/mocks/volume/datastore';
 import { useAddDatastore } from './useAddDatastore.hook';
 
 vi.mock('@/data/api/ai/datastore.api', () => ({

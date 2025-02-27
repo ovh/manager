@@ -14,7 +14,7 @@ import {
   mockedOrderPublicGit,
   mockedOrderVolumesGit,
   mockedOrderVolumesS3,
-} from '@/__tests__/helpers/mocks/datastore';
+} from '@/__tests__/helpers/mocks/volume/datastore';
 import { handleSelectText } from '@/__tests__/helpers/unitTestHelper';
 
 describe('Volume Form component', () => {

@@ -12,7 +12,7 @@ import { mockedUsedNavigate } from '@/__tests__/helpers/mockRouterDomHelper';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import Configurations from './Configuration.component';
 import { useToast } from '@/components/ui/use-toast';
-import { mockedApp, mockedAppStatus } from '@/__tests__/helpers/mocks/app';
+import { mockedApp, mockedAppStatus } from '@/__tests__/helpers/mocks/app/app';
 
 describe('Configuration component', () => {
   beforeEach(() => {

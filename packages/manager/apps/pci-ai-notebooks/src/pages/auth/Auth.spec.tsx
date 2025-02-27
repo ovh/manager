@@ -11,7 +11,7 @@ import Auth from './Auth.page';
 import * as authApi from '@/data/api/ai/authorization.api';
 import * as ProjectAPI from '@/data/api/project/project.api';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
-import { mockedAuthorization } from '@/__tests__/helpers/mocks/authorization';
+import { mockedAuthorization } from '@/__tests__/helpers/mocks/shared/authorization';
 import { mockedPciProject } from '@/__tests__/helpers/mocks/project';
 import { PlanCode } from '@/types/cloud/Project';
 

@@ -4,7 +4,7 @@ import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrap
 import * as suggestionApi from '@/data/api/ai/job/suggestions.api';
 
 import { useGetSuggestions } from './useGetSuggestionsJobs.hook';
-import { tempSuggestionsForJob } from '@/__tests__/helpers/mocks/tempSuggestion';
+import { mockedSuggestionsForJob } from '@/__tests__/helpers/mocks/suggestion';
 
 vi.mock('@/data/api/ai/job/suggestions.api', () => ({
   getSuggestions: vi.fn(),
@@ -15,7 +15,7 @@ describe('useGetSuggestions', () => {
     const projectId = 'projectId';
 
     vi.mocked(suggestionApi.getSuggestions).mockResolvedValue(
-      tempSuggestionsForJob,
+      mockedSuggestionsForJob,
     );
 
     const { result } = renderHook(() => useGetSuggestions(projectId), {
@@ -24,7 +24,7 @@ describe('useGetSuggestions', () => {
 
     await waitFor(() => {
       expect(result.current.isSuccess).toBe(true);
-      expect(result.current.data).toEqual(tempSuggestionsForJob);
+      expect(result.current.data).toEqual(mockedSuggestionsForJob);
       expect(suggestionApi.getSuggestions).toHaveBeenCalledWith();
     });
   });

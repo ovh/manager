@@ -7,7 +7,7 @@ import {
   waitFor,
 } from '@testing-library/react';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
-import { mockedPublicGitVolume } from '@/__tests__/helpers/mocks/volume';
+import { mockedPublicGitVolume } from '@/__tests__/helpers/mocks/volume/volume';
 import PublicGit from './PublicGit.component';
 
 describe('Public Git Component', () => {

@@ -2,7 +2,7 @@ import { renderHook, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import * as appApi from '@/data/api/ai/app/app.api';
-import { mockedApp, mockedAppUpdate } from '@/__tests__/helpers/mocks/app';
+import { mockedApp, mockedAppUpdate } from '@/__tests__/helpers/mocks/app/app';
 import { useUpdateApp } from './useUpdateApp.hook';
 import { UpdateApp } from '@/data/api/ai/app/app.api';
 

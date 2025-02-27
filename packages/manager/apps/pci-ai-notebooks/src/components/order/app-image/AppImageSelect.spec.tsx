@@ -3,11 +3,12 @@ import userEvent from '@testing-library/user-event';
 import { describe, it, vi } from 'vitest';
 import { mockManagerReactShellClient } from '@/__tests__/helpers/mockShellHelper';
 import AppImagesSelect from './AppImageSelect.component';
-import {
-  mockedPartnerImage,
-  mockedPartnerImageBis,
-} from '@/__tests__/helpers/mocks/partnerAppImage';
+
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
+import {
+  mockedPartnerImagePerApp,
+  mockedPartnerSignedImagePerReplica,
+} from '@/__tests__/helpers/mocks/partner/partner';
 
 describe('Docker Image Select component', () => {
   beforeEach(() => {
@@ -34,7 +35,10 @@ describe('Docker Image Select component', () => {
   it('should display Docker Image component with preset image select', async () => {
     render(
       <AppImagesSelect
-        appImages={[mockedPartnerImage, mockedPartnerImageBis]}
+        appImages={[
+          mockedPartnerImagePerApp,
+          mockedPartnerSignedImagePerReplica,
+        ]}
         value={''}
         onChange={onChange}
       />,
@@ -52,7 +56,10 @@ describe('Docker Image Select component', () => {
   it('should display personnal image input on custom image trigger', async () => {
     render(
       <AppImagesSelect
-        appImages={[mockedPartnerImage, mockedPartnerImageBis]}
+        appImages={[
+          mockedPartnerImagePerApp,
+          mockedPartnerSignedImagePerReplica,
+        ]}
         value={''}
         onChange={onChange}
       />,

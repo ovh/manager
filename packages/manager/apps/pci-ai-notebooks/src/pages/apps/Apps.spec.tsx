@@ -3,7 +3,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import { mockedUsedNavigate } from '@/__tests__/helpers/mockRouterDomHelper';
 import { mockManagerReactShellClient } from '@/__tests__/helpers/mockShellHelper';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
-import { mockedApp } from '@/__tests__/helpers/mocks/app';
+import { mockedApp } from '@/__tests__/helpers/mocks/app/app';
 import Apps from './Apps.page';
 import { openButtonInMenu } from '@/__tests__/helpers/unitTestHelper';
 

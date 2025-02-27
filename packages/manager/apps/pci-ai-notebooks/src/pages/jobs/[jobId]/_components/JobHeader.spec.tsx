@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import * as ai from '@/types/cloud/project/ai';
 
-import { mockedJob, mockedJobStatus } from '@/__tests__/helpers/mocks/job';
+import { mockedJob, mockedJobStatus } from '@/__tests__/helpers/mocks/job/job';
 import { JobHeader } from './JobHeader.component';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 

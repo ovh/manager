@@ -7,10 +7,13 @@ import {
 } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
 import { mockManagerReactShellClient } from '@/__tests__/helpers/mockShellHelper';
-import { AppPricing, Scaling } from '@/types/orderFunnel';
-import * as ai from '@/types/cloud/project/ai';
+import { Scaling } from '@/types/orderFunnel';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import ScalingStrategy from './ScalingStrategy.component';
+import {
+  mockedAppPricing1,
+  mockedOrderScaling,
+} from '@/__tests__/helpers/mocks/app/appHelper';
 
 describe('Scaling strategy component', () => {
   beforeEach(() => {
@@ -33,27 +36,14 @@ describe('Scaling strategy component', () => {
     vi.clearAllMocks();
   });
 
-  const basedScaling: Scaling = {
-    autoScaling: true,
-    replicas: 1,
-    replicasMin: 1,
-    replicasMax: 2,
-    averageUsageTarget: 75,
-    resourceType: ai.app.ScalingAutomaticStrategyResourceTypeEnum.CPU,
-  };
-  const resourcePrice: AppPricing = {
-    price: 8,
-    tax: 4,
-  };
-
   const onChange = vi.fn();
   const onNonValidForm = vi.fn();
   it('should display Autoscaling form with value', async () => {
     render(
       <ScalingStrategy
         onChange={onChange}
-        scaling={basedScaling}
-        pricingFlavor={resourcePrice}
+        scaling={mockedOrderScaling}
+        pricingFlavor={mockedAppPricing1}
         onNonValidForm={onNonValidForm}
       />,
       { wrapper: RouterWithQueryClientWrapper },
@@ -68,8 +58,8 @@ describe('Scaling strategy component', () => {
     render(
       <ScalingStrategy
         onChange={onChange}
-        scaling={basedScaling}
-        pricingFlavor={resourcePrice}
+        scaling={mockedOrderScaling}
+        pricingFlavor={mockedAppPricing1}
         onNonValidForm={onNonValidForm}
       />,
       { wrapper: RouterWithQueryClientWrapper },
@@ -84,7 +74,7 @@ describe('Scaling strategy component', () => {
     });
     await waitFor(() => {
       expect(onChange).toHaveBeenCalledWith({
-        ...basedScaling,
+        ...mockedOrderScaling,
         autoScaling: false,
       });
     });
@@ -92,14 +82,14 @@ describe('Scaling strategy component', () => {
 
   it('should trigger onChange on fixed input', async () => {
     const fixedScaling: Scaling = {
-      ...basedScaling,
+      ...mockedOrderScaling,
       autoScaling: false,
     };
     render(
       <ScalingStrategy
         onChange={onChange}
         scaling={fixedScaling}
-        pricingFlavor={resourcePrice}
+        pricingFlavor={mockedAppPricing1}
         onNonValidForm={onNonValidForm}
       />,
       { wrapper: RouterWithQueryClientWrapper },

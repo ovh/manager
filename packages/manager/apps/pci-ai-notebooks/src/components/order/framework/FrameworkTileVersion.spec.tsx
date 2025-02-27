@@ -1,7 +1,7 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
 import VersionSelector from './FrameworkTileVersion.component';
-import { mockedFrameworkBis } from '@/__tests__/helpers/mocks/notebook/framework';
+import { mockedFramework } from '@/__tests__/helpers/mocks/capabilities/notebookFramework';
 
 describe('Framework Version Selector component', () => {
   afterEach(() => {
@@ -12,7 +12,7 @@ describe('Framework Version Selector component', () => {
   it('should display Version Selector', async () => {
     render(
       <VersionSelector
-        versions={mockedFrameworkBis.versions}
+        versions={mockedFramework.versions}
         isFrameworkSelected={true}
         onChange={onChange}
         selectedVersion=""

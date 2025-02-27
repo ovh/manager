@@ -2,10 +2,12 @@ import { renderHook, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import * as datastoreApi from '@/data/api/ai/datastore.api';
-import { mockedDatastore } from '@/__tests__/helpers/mocks/datastore';
-import { mockedCapabilitiesRegionGRA } from '@/__tests__/helpers/mocks/region';
+import {
+  mockedContainer,
+  mockedDatastoreS3,
+} from '@/__tests__/helpers/mocks/volume/datastore';
+import { mockedCapabilitiesRegionGRA } from '@/__tests__/helpers/mocks/capabilities/region';
 import { useGetDatastoresWithContainers } from './useGetDatastoresWithContainers.hook';
-import { mockedContainer } from '@/__tests__/helpers/mocks/container';
 
 vi.mock('@/data/api/ai/datastore.api', () => ({
   getDatastores: vi.fn(),
@@ -14,17 +16,17 @@ vi.mock('@/data/api/ai/datastore.api', () => ({
 
 const mockedResut = [
   {
-    id: 's3 - alias - container1',
+    id: 's3 - myDatastoreS3 - container1',
     container: 'container1',
-    alias: 'alias',
+    alias: 'myDatastoreS3',
     type: 's3',
     endpoint: 'endpoint',
     owner: 'customer',
   },
   {
-    id: 's3 - alias - container2',
+    id: 's3 - myDatastoreS3 - container2',
     container: 'container2',
-    alias: 'alias',
+    alias: 'myDatastoreS3',
     type: 's3',
     endpoint: 'endpoint',
     owner: 'customer',
@@ -35,9 +37,11 @@ describe('useGetDatastoresWithContainers', () => {
   it('should return Datastores', async () => {
     const projectId = 'projectId';
     const region = mockedCapabilitiesRegionGRA;
-    const datastores = [mockedDatastore];
+    const datastores = [mockedDatastoreS3];
 
-    vi.mocked(datastoreApi.getDatastores).mockResolvedValue([mockedDatastore]);
+    vi.mocked(datastoreApi.getDatastores).mockResolvedValue([
+      mockedDatastoreS3,
+    ]);
     vi.mocked(datastoreApi.getDatastoreContainer).mockResolvedValue(
       mockedContainer,
     );
@@ -54,7 +58,7 @@ describe('useGetDatastoresWithContainers', () => {
       expect(datastoreApi.getDatastoreContainer).toHaveBeenCalledWith({
         projectId,
         region: region.id,
-        alias: 'alias',
+        alias: 'myDatastoreS3',
       });
     });
   });

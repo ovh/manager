@@ -15,9 +15,9 @@ import {
   mockedNotebook,
   mockedNotebookSpec,
   mockedNotebookStatus,
-} from '@/__tests__/helpers/mocks/notebook';
+} from '@/__tests__/helpers/mocks/notebook/notebook';
 import { useToast } from '@/components/ui/use-toast';
-import { mockedDatastoreVolume } from '@/__tests__/helpers/mocks/volume';
+import { mockedDatastoreVolume } from '@/__tests__/helpers/mocks/volume/volume';
 import Containers, { breadcrumb as Breadcrumb } from './Containers.page';
 import { openButtonInMenu } from '@/__tests__/helpers/unitTestHelper';
 

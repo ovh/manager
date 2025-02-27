@@ -7,7 +7,7 @@ import {
   waitFor,
 } from '@testing-library/react';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
-import { mockedStatusVolume } from '@/__tests__/helpers/mocks/volume';
+import { mockedStatusVolume } from '@/__tests__/helpers/mocks/volume/volume';
 import DataSyncModal from './DataSync.component';
 import { handleSelectOption } from '@/__tests__/helpers/unitTestHelper';
 

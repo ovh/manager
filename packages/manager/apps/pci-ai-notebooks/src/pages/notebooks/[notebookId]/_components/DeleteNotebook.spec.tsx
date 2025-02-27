@@ -9,9 +9,9 @@ import {
 import * as notebookApi from '@/data/api/ai/notebook/notebook.api';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { useToast } from '@/components/ui/use-toast';
-import { mockedNotebook } from '@/__tests__/helpers/mocks/notebook';
+import { mockedNotebook } from '@/__tests__/helpers/mocks/notebook/notebook';
 import DeleteNotebook from './DeleteNotebook.component';
-import { apiErrorMock } from '@/__tests__/helpers/mocks/aiError';
+import { apiErrorMock } from '@/__tests__/helpers/mocks/shared/aiError';
 
 const onSuccess = vi.fn();
 const onError = vi.fn();

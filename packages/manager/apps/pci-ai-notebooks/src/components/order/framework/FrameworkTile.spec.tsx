@@ -7,7 +7,7 @@ import {
 } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
 import FrameworkTile from './FrameworkTile.component';
-import { mockedFrameworkTer } from '@/__tests__/helpers/mocks/notebook/framework';
+import { mockedFrameworkBis } from '@/__tests__/helpers/mocks/capabilities/notebookFramework';
 
 describe('Framework Tile component', () => {
   afterEach(() => {
@@ -18,15 +18,15 @@ describe('Framework Tile component', () => {
   it('should display FrameworkTile with Version Selector', async () => {
     render(
       <FrameworkTile
-        framework={mockedFrameworkTer}
-        version={mockedFrameworkTer.versions[0]}
+        framework={mockedFrameworkBis}
+        version={mockedFrameworkBis.versions[0]}
         selected={false}
         onChange={onChange}
       />,
     );
     await waitFor(() => {
       expect(
-        screen.getByTestId(`fmk-radio-tile-${mockedFrameworkTer.id}`),
+        screen.getByTestId(`fmk-radio-tile-${mockedFrameworkBis.id}`),
       ).toBeInTheDocument();
       expect(
         screen.getByTestId('fmk-tile-version-container'),
@@ -37,13 +37,13 @@ describe('Framework Tile component', () => {
   it('should trigger callback when selected', async () => {
     render(
       <FrameworkTile
-        framework={mockedFrameworkTer}
-        version={mockedFrameworkTer.versions[0]}
+        framework={mockedFrameworkBis}
+        version={mockedFrameworkBis.versions[0]}
         selected={false}
         onChange={onChange}
       />,
     );
-    const fmkRadioTileId = `fmk-radio-tile-${mockedFrameworkTer.id}`;
+    const fmkRadioTileId = `fmk-radio-tile-${mockedFrameworkBis.id}`;
     await waitFor(() => {
       expect(screen.getByTestId(fmkRadioTileId)).toBeInTheDocument();
     });

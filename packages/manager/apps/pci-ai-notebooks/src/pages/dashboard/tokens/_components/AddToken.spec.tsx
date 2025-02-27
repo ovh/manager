@@ -8,11 +8,11 @@ import {
 } from '@testing-library/react';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import * as tokensApi from '@/data/api/ai/token.api';
-import { apiErrorMock } from '@/__tests__/helpers/mocks/aiError';
+import { apiErrorMock } from '@/__tests__/helpers/mocks/shared/aiError';
 import { useToast } from '@/components/ui/use-toast';
-import { mockedToken } from '@/__tests__/helpers/mocks/token';
+import { mockedToken } from '@/__tests__/helpers/mocks/shared/token';
 import AddToken from './AddToken.modal';
-import { mockedCapabilitiesRegionGRA } from '@/__tests__/helpers/mocks/region';
+import { mockedCapabilitiesRegionGRA } from '@/__tests__/helpers/mocks/capabilities/region';
 import { handleSelectOption } from '@/__tests__/helpers/unitTestHelper';
 
 describe('AddToken modal', () => {

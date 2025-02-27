@@ -11,8 +11,8 @@ import * as ai from '@/types/cloud/project/ai';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import * as appApi from '@/data/api/ai/app/app.api';
 import { useToast } from '@/components/ui/use-toast';
-import { apiErrorMock } from '@/__tests__/helpers/mocks/aiError';
-import { mockedApp } from '@/__tests__/helpers/mocks/app';
+import { apiErrorMock } from '@/__tests__/helpers/mocks/shared/aiError';
+import { mockedApp } from '@/__tests__/helpers/mocks/app/app';
 import UpdateHttpPort from './UpdateHttpPort.modal';
 
 describe('Update Port', () => {

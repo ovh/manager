@@ -12,8 +12,8 @@ import Docker, {
   breadcrumb as Breadcrumb,
 } from '@/pages/dashboard/docker/Docker.page';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
-import { mockedRegistry } from '@/__tests__/helpers/mocks/registry';
-import { mockedCapabilitiesRegionGRA } from '@/__tests__/helpers/mocks/region';
+import { mockedRegistry } from '@/__tests__/helpers/mocks/shared/registry';
+import { mockedCapabilitiesRegionGRA } from '@/__tests__/helpers/mocks/capabilities/region';
 import { openButtonInMenu } from '@/__tests__/helpers/unitTestHelper';
 
 describe('Docker page', () => {

@@ -9,7 +9,7 @@ import {
 import {
   mockedRegistryEdit,
   mockedRegistryInput,
-} from '@/__tests__/helpers/mocks/registry';
+} from '@/__tests__/helpers/mocks/shared/registry';
 
 describe('Registry functions', () => {
   afterEach(() => {

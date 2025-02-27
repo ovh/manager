@@ -6,7 +6,7 @@ import {
   mockedNotebook,
   mockedNotebookSpec,
   mockedNotebookStatus,
-} from '@/__tests__/helpers/mocks/notebook';
+} from '@/__tests__/helpers/mocks/notebook/notebook';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import Resources from './Resources.component';
 

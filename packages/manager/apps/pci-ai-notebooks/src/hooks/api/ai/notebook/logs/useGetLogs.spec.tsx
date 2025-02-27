@@ -2,7 +2,7 @@ import { renderHook, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import * as notebookApi from '@/data/api/ai/notebook/logs/logs.api';
-import { mockedLogs } from '@/__tests__/helpers/mocks/logs';
+import { mockedLogs } from '@/__tests__/helpers/mocks/shared/logs';
 import { useGetLogs } from './useGetLogs.hook';
 
 vi.mock('@/data/api/ai/notebook/logs/logs.api', () => ({

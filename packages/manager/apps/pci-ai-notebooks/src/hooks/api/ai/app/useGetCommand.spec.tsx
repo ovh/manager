@@ -3,8 +3,8 @@ import { vi } from 'vitest';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import * as appApi from '@/data/api/ai/app/app.api';
 import { useGetCommand } from './useGetCommand.hook';
-import { mockedCommand } from '@/__tests__/helpers/mocks/command';
-import { mockedAppSpec } from '@/__tests__/helpers/mocks/app';
+import { mockedCommand } from '@/__tests__/helpers/mocks/shared/command';
+import { mockedAppSpec } from '@/__tests__/helpers/mocks/app/app';
 import { AddApp } from '@/data/api/ai/app/app.api';
 
 vi.mock('@/data/api/ai/app/app.api', () => ({

@@ -2,14 +2,14 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
 import * as ai from '@/types/cloud/project/ai';
-import { mockedCommand } from '@/__tests__/helpers/mocks/command';
+import { mockedCommand } from '@/__tests__/helpers/mocks/shared/command';
 import { mockManagerReactShellClient } from '@/__tests__/helpers/mockShellHelper';
 import Dashboard from './Dashboard.page';
 import * as appApi from '@/data/api/ai/app/app.api';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
-import { apiErrorMock } from '@/__tests__/helpers/mocks/aiError';
+import { apiErrorMock } from '@/__tests__/helpers/mocks/shared/aiError';
 import { useToast } from '@/components/ui/use-toast';
-import { mockedApp, mockedAppSpec } from '@/__tests__/helpers/mocks/app';
+import { mockedApp, mockedAppSpec } from '@/__tests__/helpers/mocks/app/app';
 
 const mockedAppBis: ai.app.App = {
   ...mockedApp,

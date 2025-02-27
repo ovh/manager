@@ -9,8 +9,10 @@ import { describe, it, vi } from 'vitest';
 import { mockManagerReactShellClient } from '@/__tests__/helpers/mockShellHelper';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { AutoScalingForm } from './AutoScalingForm.component';
-import { AppPricing, Scaling } from '@/types/orderFunnel';
-import * as ai from '@/types/cloud/project/ai';
+import {
+  mockedAppPricing1,
+  mockedOrderScaling,
+} from '@/__tests__/helpers/mocks/app/appHelper';
 
 describe('Autoscaling form component', () => {
   beforeEach(() => {
@@ -34,27 +36,14 @@ describe('Autoscaling form component', () => {
     vi.clearAllMocks();
   });
 
-  const basedScaling: Scaling = {
-    autoScaling: true,
-    replicas: 1,
-    replicasMin: 1,
-    replicasMax: 2,
-    averageUsageTarget: 75,
-    resourceType: ai.app.ScalingAutomaticStrategyResourceTypeEnum.CPU,
-  };
-  const resourcePrice: AppPricing = {
-    price: 8,
-    tax: 4,
-  };
-
   const onChange = vi.fn();
   const onNonValidForm = vi.fn();
   it('should display Autoscaling form with value', async () => {
     render(
       <AutoScalingForm
         onChange={onChange}
-        scaling={basedScaling}
-        pricingFlavor={resourcePrice}
+        scaling={mockedOrderScaling}
+        pricingFlavor={mockedAppPricing1}
         onNonValidForm={onNonValidForm}
       />,
       { wrapper: RouterWithQueryClientWrapper },
@@ -71,8 +60,8 @@ describe('Autoscaling form component', () => {
     render(
       <AutoScalingForm
         onChange={onChange}
-        scaling={basedScaling}
-        pricingFlavor={resourcePrice}
+        scaling={mockedOrderScaling}
+        pricingFlavor={mockedAppPricing1}
         onNonValidForm={onNonValidForm}
       />,
       { wrapper: RouterWithQueryClientWrapper },
@@ -104,8 +93,8 @@ describe('Autoscaling form component', () => {
     render(
       <AutoScalingForm
         onChange={onChange}
-        scaling={basedScaling}
-        pricingFlavor={resourcePrice}
+        scaling={mockedOrderScaling}
+        pricingFlavor={mockedAppPricing1}
         onNonValidForm={onNonValidForm}
       />,
       { wrapper: RouterWithQueryClientWrapper },
@@ -127,7 +116,7 @@ describe('Autoscaling form component', () => {
       });
       fireEvent.change(screen.getByTestId('min-rep-input'), {
         target: {
-          value: 2,
+          value: 4,
         },
       });
       fireEvent.click(screen.getByTestId('radio-ram'));

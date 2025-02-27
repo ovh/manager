@@ -10,9 +10,9 @@ import { UseQueryResult } from '@tanstack/react-query';
 import * as ai from '@/types/cloud/project/ai';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import PublicGit, { breadcrumb as Breadcrumb } from './PublicGit.page';
-import { mockedPublicGitVolume } from '@/__tests__/helpers/mocks/volume';
+import { mockedPublicGitVolume } from '@/__tests__/helpers/mocks/volume/volume';
 import { useToast } from '@/components/ui/use-toast';
-import { mockedJob, mockedJobSpec } from '@/__tests__/helpers/mocks/job';
+import { mockedJob, mockedJobSpec } from '@/__tests__/helpers/mocks/job/job';
 
 const mockedNotebookBis: ai.job.Job = {
   ...mockedJob,

@@ -3,7 +3,7 @@ import { vi } from 'vitest';
 import * as API from '@/data/api/usage/usage.api';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import { useGetCurrentUsage } from './useGetUsage.hook';
-import { mockedCurrentUsage } from '@/__tests__/helpers/mocks/currentUsage';
+import { mockedCurrentUsage } from '@/__tests__/helpers/mocks/shared/currentUsage';
 
 vi.mock('@/data/api/usage/usage.api', () => ({
   getCurrentUsage: vi.fn(),

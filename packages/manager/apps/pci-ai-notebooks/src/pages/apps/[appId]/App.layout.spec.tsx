@@ -10,12 +10,12 @@ import * as ai from '@/types/cloud/project/ai';
 import {
   mockedDatastoreVolume,
   mockedPublicGitVolume,
-} from '@/__tests__/helpers/mocks/volume';
+} from '@/__tests__/helpers/mocks/volume/volume';
 import {
   mockedApp,
   mockedAppSpec,
   mockedAppStatus,
-} from '@/__tests__/helpers/mocks/app';
+} from '@/__tests__/helpers/mocks/app/app';
 
 const loaderParam = {
   params: {

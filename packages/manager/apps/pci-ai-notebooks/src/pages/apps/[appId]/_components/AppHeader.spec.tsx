@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import * as ai from '@/types/cloud/project/ai';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
-import { mockedApp, mockedAppStatus } from '@/__tests__/helpers/mocks/app';
+import { mockedApp, mockedAppStatus } from '@/__tests__/helpers/mocks/app/app';
 import { AppHeader } from './AppHeader.component';
 
 const runningApp: ai.app.App = {

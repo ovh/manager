@@ -3,7 +3,7 @@ import { vi } from 'vitest';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import * as authApi from '@/data/api/ai/authorization.api';
 import { usePostAuthorization } from './usePostAuthorization.hook';
-import { mockedAuthorization } from '@/__tests__/helpers/mocks/authorization';
+import { mockedAuthorization } from '@/__tests__/helpers/mocks/shared/authorization';
 
 vi.mock('@/data/api/ai/authorization.api', () => ({
   postAuthorization: vi.fn(),

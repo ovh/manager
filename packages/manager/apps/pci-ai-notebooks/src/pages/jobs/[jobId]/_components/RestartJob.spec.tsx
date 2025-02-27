@@ -9,9 +9,9 @@ import {
 import * as jobApi from '@/data/api/ai/job/job.api';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { useToast } from '@/components/ui/use-toast';
-import { apiErrorMock } from '@/__tests__/helpers/mocks/aiError';
+import { apiErrorMock } from '@/__tests__/helpers/mocks/shared/aiError';
 import RestartJob from './RestartJob.component';
-import { mockedJob } from '@/__tests__/helpers/mocks/job';
+import { mockedJob } from '@/__tests__/helpers/mocks/job/job';
 
 describe('Restart job modal', () => {
   beforeEach(() => {

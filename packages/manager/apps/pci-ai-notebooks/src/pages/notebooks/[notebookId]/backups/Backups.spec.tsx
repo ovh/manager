@@ -3,9 +3,9 @@ import { render, screen, waitFor } from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
 import { mockedUsedNavigate } from '@/__tests__/helpers/mockRouterDomHelper';
 import * as ai from '@/types/cloud/project/ai';
-import { mockedNotebook } from '@/__tests__/helpers/mocks/notebook';
+import { mockedNotebook } from '@/__tests__/helpers/mocks/notebook/notebook';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
-import { mockedBackup } from '@/__tests__/helpers/mocks/backup';
+import { mockedBackup } from '@/__tests__/helpers/mocks/notebook/backup';
 import Backups, { breadcrumb as Breadcrumb } from './Backups.page';
 import { openButtonInMenu } from '@/__tests__/helpers/unitTestHelper';
 

@@ -12,14 +12,14 @@ import { mockManagerReactShellClient } from '@/__tests__/helpers/mockShellHelper
 import { mockedUsedNavigate } from '@/__tests__/helpers/mockRouterDomHelper';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { useToast } from '@/components/ui/use-toast';
-import { mockedDatastoreVolume } from '@/__tests__/helpers/mocks/volume';
+import { mockedDatastoreVolume } from '@/__tests__/helpers/mocks/volume/volume';
 import Containers, { breadcrumb as Breadcrumb } from './Containers.page';
 import { openButtonInMenu } from '@/__tests__/helpers/unitTestHelper';
 import {
   mockedJob,
   mockedJobSpec,
   mockedJobStatus,
-} from '@/__tests__/helpers/mocks/job';
+} from '@/__tests__/helpers/mocks/job/job';
 
 const mockedJobWithVol: ai.job.Job = {
   ...mockedJob,

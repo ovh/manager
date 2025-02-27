@@ -1,7 +1,7 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
 import { describe, expect, vi } from 'vitest';
 import { dataSync } from './datasync.api';
-import { mockedDataSyncSpec } from '@/__tests__/helpers/mocks/datasync';
+import { mockedDataSyncSpec } from '@/__tests__/helpers/mocks/volume/datasync';
 
 describe('label functions', () => {
   afterEach(() => {

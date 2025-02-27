@@ -3,7 +3,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import Root, { Loader } from '@/pages/apps/AppRoot.page';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import * as appApi from '@/data/api/ai/app/app.api';
-import { mockedApp } from '@/__tests__/helpers/mocks/app';
+import { mockedApp } from '@/__tests__/helpers/mocks/app/app';
 
 const AppProps = {
   params: {

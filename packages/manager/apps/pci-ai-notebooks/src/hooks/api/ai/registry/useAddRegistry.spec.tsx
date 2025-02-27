@@ -6,7 +6,7 @@ import * as registryApi from '@/data/api/ai/registry.api';
 import {
   mockedRegistry,
   mockedRegistryInput,
-} from '@/__tests__/helpers/mocks/registry';
+} from '@/__tests__/helpers/mocks/shared/registry';
 import { useAddRegistry } from './useAddRegistry.hook';
 
 vi.mock('@/data/api/ai/registry.api', () => ({

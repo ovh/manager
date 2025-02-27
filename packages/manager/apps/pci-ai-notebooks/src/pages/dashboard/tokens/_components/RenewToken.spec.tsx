@@ -8,8 +8,8 @@ import {
 } from '@testing-library/react';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import * as tokensApi from '@/data/api/ai/token.api';
-import { mockedToken } from '@/__tests__/helpers/mocks/token';
-import { apiErrorMock } from '@/__tests__/helpers/mocks/aiError';
+import { mockedToken } from '@/__tests__/helpers/mocks/shared/token';
+import { apiErrorMock } from '@/__tests__/helpers/mocks/shared/aiError';
 import { useToast } from '@/components/ui/use-toast';
 import RenewToken from './RenewToken.modal';
 

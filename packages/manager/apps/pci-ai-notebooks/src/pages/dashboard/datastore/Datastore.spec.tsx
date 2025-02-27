@@ -12,9 +12,9 @@ import Datastore, {
   breadcrumb as Breadcrumb,
 } from '@/pages/dashboard/datastore/Datastore.page';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
-import { mockedCapabilitiesRegionGRA } from '@/__tests__/helpers/mocks/region';
-import { mockedDatastoreWithRegion } from '@/__tests__/helpers/mocks/datastore';
+import { mockedCapabilitiesRegionGRA } from '@/__tests__/helpers/mocks/capabilities/region';
 import { openButtonInMenu } from '@/__tests__/helpers/unitTestHelper';
+import { mockedDatastoreS3WithRegion } from '@/__tests__/helpers/mocks/volume/datastore';
 
 describe('Datastore page', () => {
   beforeEach(() => {
@@ -22,7 +22,7 @@ describe('Datastore page', () => {
     mockedUsedNavigate();
     mockManagerReactShellClient();
     vi.mock('@/data/api/ai/datastore.api', () => ({
-      getDatastores: vi.fn(() => [mockedDatastoreWithRegion]),
+      getDatastores: vi.fn(() => [mockedDatastoreS3WithRegion]),
     }));
     vi.mock('@/data/api/ai/capabilities.api', () => ({
       getRegions: vi.fn(() => [mockedCapabilitiesRegionGRA]),
@@ -43,7 +43,7 @@ describe('Datastore page', () => {
     expect(screen.getByTestId('create-datastore-button')).toBeInTheDocument();
     await waitFor(() => {
       expect(
-        screen.getByText(mockedDatastoreWithRegion.alias),
+        screen.getByText(mockedDatastoreS3WithRegion.alias),
       ).toBeInTheDocument();
     });
   });
@@ -63,7 +63,7 @@ describe('Datastore page', () => {
     render(<Datastore />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
       expect(
-        screen.getByText(mockedDatastoreWithRegion.alias),
+        screen.getByText(mockedDatastoreS3WithRegion.alias),
       ).toBeInTheDocument();
     });
     await openButtonInMenu(
@@ -71,7 +71,7 @@ describe('Datastore page', () => {
       'datastore-action-delete-button',
     );
     expect(mockedUsedNavigate).toHaveBeenCalledWith(
-      `./delete/${mockedDatastoreWithRegion.region}/${mockedDatastoreWithRegion.alias}`,
+      `./delete/${mockedDatastoreS3WithRegion.region}/${mockedDatastoreS3WithRegion.alias}`,
     );
   });
 });

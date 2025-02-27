@@ -2,7 +2,7 @@ import { renderHook, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import * as datastoreApi from '@/data/api/ai/datastore.api';
-import { mockedDatastoreAuth } from '@/__tests__/helpers/mocks/datastore';
+import { mockedDatastoreAuth } from '@/__tests__/helpers/mocks/volume/datastore';
 import { useGetDatastoreAuth } from './useGetDatastoreAuth.hook';
 
 vi.mock('@/data/api/ai/datastore.api', () => ({

@@ -2,11 +2,11 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import Home from '@/pages/dashboard/home/Home.page';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
-import { mockedApp } from '@/__tests__/helpers/mocks/app';
-import { mockedNotebook } from '@/__tests__/helpers/mocks/notebook';
-import { mockedJob } from '@/__tests__/helpers/mocks/job';
-import { mockedCurrentUsage } from '@/__tests__/helpers/mocks/currentUsage';
-import { mockedCapabilitiesRegionGRA } from '@/__tests__/helpers/mocks/region';
+import { mockedApp } from '@/__tests__/helpers/mocks/app/app';
+import { mockedNotebook } from '@/__tests__/helpers/mocks/notebook/notebook';
+import { mockedJob } from '@/__tests__/helpers/mocks/job/job';
+import { mockedCurrentUsage } from '@/__tests__/helpers/mocks/shared/currentUsage';
+import { mockedCapabilitiesRegionGRA } from '@/__tests__/helpers/mocks/capabilities/region';
 
 describe('Home page', () => {
   beforeEach(() => {

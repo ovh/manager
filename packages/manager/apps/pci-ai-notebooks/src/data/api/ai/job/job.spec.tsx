@@ -8,7 +8,7 @@ import {
   getJobs,
   killJob,
 } from './job.api';
-import { mockedJobSpec } from '@/__tests__/helpers/mocks/job';
+import { mockedJobSpec } from '@/__tests__/helpers/mocks/job/job';
 
 describe('job functions', () => {
   afterEach(() => {
@@ -52,18 +52,10 @@ describe('job functions', () => {
     expect(apiClient.v6.post).toHaveBeenCalledWith(
       '/cloud/project/projectId/ai/job',
       {
-        image: 'image',
-        name: 'name',
-        region: 'region',
-        resources: {
-          cpu: 1,
-          ephemeralStorage: 1,
-          flavor: 'flavor',
-          gpu: 1,
-          memory: 1,
-          privateNetwork: 1,
-          publicNetwork: 1,
-        },
+        image: mockedJobSpec.image,
+        name: mockedJobSpec.name,
+        region: mockedJobSpec.region,
+        resources: mockedJobSpec.resources,
       },
     );
   });
@@ -99,18 +91,10 @@ describe('job functions', () => {
     expect(apiClient.v6.post).toHaveBeenCalledWith(
       '/cloud/project/projectId/ai/job/command',
       {
-        image: 'image',
-        name: 'name',
-        region: 'region',
-        resources: {
-          cpu: 1,
-          ephemeralStorage: 1,
-          flavor: 'flavor',
-          gpu: 1,
-          memory: 1,
-          privateNetwork: 1,
-          publicNetwork: 1,
-        },
+        image: mockedJobSpec.image,
+        name: mockedJobSpec.name,
+        region: mockedJobSpec.region,
+        resources: mockedJobSpec.resources,
       },
     );
   });

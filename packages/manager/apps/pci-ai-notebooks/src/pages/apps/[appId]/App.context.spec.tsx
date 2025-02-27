@@ -1,7 +1,7 @@
 import { vi } from 'vitest';
 import { renderHook } from '@testing-library/react';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
-import { mockedApp } from '@/__tests__/helpers/mocks/app';
+import { mockedApp } from '@/__tests__/helpers/mocks/app/app';
 import { useAppData } from './App.context';
 
 describe('App context', () => {

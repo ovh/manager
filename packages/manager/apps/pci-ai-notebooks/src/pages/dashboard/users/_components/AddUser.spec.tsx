@@ -9,7 +9,7 @@ import {
 import * as usersApi from '@/data/api/user/user.api';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedUserDetails } from '@/__tests__/helpers/mocks/user';
-import { apiErrorMock } from '@/__tests__/helpers/mocks/aiError';
+import { apiErrorMock } from '@/__tests__/helpers/mocks/shared/aiError';
 import { useToast } from '@/components/ui/use-toast';
 import AddUser from './AddUser.modal';
 

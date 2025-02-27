@@ -1,10 +1,10 @@
 import { DataStoresWithContainers } from '@/hooks/api/ai/datastore/useGetDatastoresWithContainers.hook';
 import { DataStoresWithRegion } from '@/hooks/api/ai/datastore/useGetDatastoresWithRegions.hook';
 import * as ai from '@/types/cloud/project/ai';
-import { OrderVolumes } from '@/types/orderFunnel';
+import { OrderVolumes, Containers } from '@/types/orderFunnel';
 
-export const mockedDatastoreInput: ai.DataStoreInput = {
-  alias: 'datastoreAlias',
+export const mockedDatastoreInputGit: ai.DataStoreInput = {
+  alias: 'myGitDatastore',
   credentials: {
     git: {
       basicAuth: {
@@ -18,11 +18,17 @@ export const mockedDatastoreInput: ai.DataStoreInput = {
   type: ai.DataStoreTypeEnum.git,
 };
 
-export const mockedDatastore: ai.DataStore = {
-  alias: 'alias',
+export const mockedDatastoreS3: ai.DataStore = {
+  alias: 'myDatastoreS3',
   endpoint: 'endpoint',
   owner: ai.DataStoreOwnerEnum.customer,
   type: ai.DataStoreTypeEnum.s3,
+};
+
+export const mockedDatastoreS3WithRegion: DataStoresWithRegion = {
+  ...mockedDatastoreS3,
+  alias: 'myDatastoreS3',
+  region: 'GRA',
 };
 
 export const mockedDatastoreAuth: ai.DataStoreAuth = {
@@ -34,35 +40,22 @@ export const mockedDatastoreAuth: ai.DataStoreAuth = {
   url: 'url',
 };
 
-export const mockedDatastoreWithRegion: DataStoresWithRegion = {
-  alias: 'alias',
-  endpoint: 'endpoint',
-  owner: ai.DataStoreOwnerEnum.customer,
-  type: ai.DataStoreTypeEnum.s3,
-  region: 'GRA',
-};
-
 export const mockedGitWithRegion: DataStoresWithRegion = {
-  alias: 'alias',
-  endpoint: 'endpoint',
-  owner: ai.DataStoreOwnerEnum.customer,
+  ...mockedDatastoreS3WithRegion,
+  alias: 'myGitWithRegion',
   type: ai.DataStoreTypeEnum.git,
-  region: 'GRA',
 };
 
 export const mockedDatastoreWithContainerS3: DataStoresWithContainers = {
-  alias: 'aliasS3',
-  endpoint: 'endpoint',
-  owner: ai.DataStoreOwnerEnum.customer,
-  type: ai.DataStoreTypeEnum.s3,
+  ...mockedDatastoreS3,
+  alias: 'aliasS3withContainer',
   id: 'idS3',
   container: 'containerS3',
 };
 
 export const mockedDatastoreWithContainerGit: DataStoresWithContainers = {
-  alias: 'aliasGit',
-  endpoint: 'endpointGit',
-  owner: ai.DataStoreOwnerEnum.customer,
+  ...mockedDatastoreS3,
+  alias: 'aliasGitwithContainer',
   type: ai.DataStoreTypeEnum.git,
   id: 'idGit',
 };
@@ -70,7 +63,7 @@ export const mockedDatastoreWithContainerGit: DataStoresWithContainers = {
 export const mockedOrderVolumesS3: OrderVolumes = {
   cache: false,
   dataStore: {
-    alias: 'alias',
+    alias: 'aliasOfvolumeS3',
     container: 'container',
     type: ai.DataStoreTypeEnum.s3,
   },
@@ -81,7 +74,7 @@ export const mockedOrderVolumesS3: OrderVolumes = {
 export const mockedOrderVolumesGit: OrderVolumes = {
   cache: true,
   dataStore: {
-    alias: 'alias',
+    alias: 'aliasOfVolumeGit',
     container: 'develop',
     type: ai.DataStoreTypeEnum.git,
   },
@@ -96,4 +89,10 @@ export const mockedOrderPublicGit: OrderVolumes = {
   },
   mountPath: '/demo',
   permission: ai.VolumePermissionEnum.RO,
+};
+
+export const mockedContainer: Containers = {
+  status: 'ok',
+  message: 'message',
+  containers: ['container1', 'container2'],
 };

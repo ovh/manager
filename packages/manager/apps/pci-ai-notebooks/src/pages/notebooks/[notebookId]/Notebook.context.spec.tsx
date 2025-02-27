@@ -1,6 +1,6 @@
 import { vi } from 'vitest';
 import { renderHook } from '@testing-library/react';
-import { mockedNotebook } from '@/__tests__/helpers/mocks/notebook';
+import { mockedNotebook } from '@/__tests__/helpers/mocks/notebook/notebook';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { useNotebookData } from './Notebook.context';
 

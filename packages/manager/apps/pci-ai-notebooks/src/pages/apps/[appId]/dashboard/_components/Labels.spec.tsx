@@ -12,7 +12,7 @@ import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/Route
 import { useToast } from '@/components/ui/use-toast';
 import Labels from './Labels.component';
 import * as labelsApi from '@/data/api/ai/app/label/label.api';
-import { mockedApp, mockedAppSpec } from '@/__tests__/helpers/mocks/app';
+import { mockedApp, mockedAppSpec } from '@/__tests__/helpers/mocks/app/app';
 
 describe('Configuration component', () => {
   beforeEach(() => {

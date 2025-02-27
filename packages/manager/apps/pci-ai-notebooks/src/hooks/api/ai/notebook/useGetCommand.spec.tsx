@@ -3,8 +3,8 @@ import { vi } from 'vitest';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import * as notebookApi from '@/data/api/ai/notebook/notebook.api';
 import { useGetCommand } from './useGetCommand.hook';
-import { mockedNotebookSpecInput } from '@/__tests__/helpers/mocks/notebook';
-import { mockedCommand } from '@/__tests__/helpers/mocks/command';
+import { mockedNotebookSpecInput } from '@/__tests__/helpers/mocks/notebook/notebook';
+import { mockedCommand } from '@/__tests__/helpers/mocks/shared/command';
 import { AddNotebook } from '@/data/api/ai/notebook/notebook.api';
 
 vi.mock('@/data/api/ai/notebook/notebook.api', () => ({

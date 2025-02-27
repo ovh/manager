@@ -3,7 +3,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import Root, { Loader } from '@/pages/jobs/JobRoot.page';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import * as jobApi from '@/data/api/ai/job/job.api';
-import { mockedJob } from '@/__tests__/helpers/mocks/job';
+import { mockedJob } from '@/__tests__/helpers/mocks/job/job';
 
 const JobProps = {
   params: {

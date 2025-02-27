@@ -1,11 +1,11 @@
 import * as ai from '@/types/cloud/project/ai';
 import { Flavor } from '@/types/orderFunnel';
-import { mockedPricing } from './catalog';
+import { mockedPricing } from '../catalog/catalog';
 
 export const mockedCapabilitiesFlavorCPU: ai.capabilities.Flavor = {
   default: false,
-  description: 'descriptionFlav',
-  id: 'flavorCPUId',
+  description: 'flavor avec GPU',
+  id: 'ai1-1-cpu',
   max: 4,
   resourcesPerUnit: {
     cpu: 1,
@@ -19,13 +19,13 @@ export const mockedCapabilitiesFlavorCPU: ai.capabilities.Flavor = {
 
 export const mockedCapabilitiesFlavorGPU: ai.capabilities.Flavor = {
   default: false,
-  description: 'descriptionFlavGPU',
+  description: 'flavor avec GPU',
   gpuInformation: {
-    gpuBrand: 'gpuBrand',
+    gpuBrand: 'ovhclud',
     gpuMemory: 15,
-    gpuModel: 'gpuModel',
+    gpuModel: 'nvidia',
   },
-  id: 'flavorGPUId',
+  id: 'ai1-1-gpu',
   max: 2,
   resourcesPerUnit: {
     cpu: 11,

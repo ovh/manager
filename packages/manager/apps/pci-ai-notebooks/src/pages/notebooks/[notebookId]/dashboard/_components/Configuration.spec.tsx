@@ -14,7 +14,7 @@ import Configurations from './Configuration.component';
 import {
   mockedNotebook,
   mockedNotebookStatus,
-} from '@/__tests__/helpers/mocks/notebook';
+} from '@/__tests__/helpers/mocks/notebook/notebook';
 import { useToast } from '@/components/ui/use-toast';
 
 describe('Configuration component', () => {

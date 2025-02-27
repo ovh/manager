@@ -7,7 +7,7 @@ import {
 } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
 import LabelsForm from './LabelsForm.component';
-import { mockedLabel } from '@/__tests__/helpers/mocks/label';
+import { mockedLabel } from '@/__tests__/helpers/mocks/shared/label';
 
 describe('Labels Form component', () => {
   afterEach(() => {

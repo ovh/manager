@@ -12,8 +12,8 @@ import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/Route
 import { mockManagerReactShellClient } from '@/__tests__/helpers/mockShellHelper';
 import * as appApi from '@/data/api/ai/app/app.api';
 import { useToast } from '@/components/ui/use-toast';
-import { apiErrorMock } from '@/__tests__/helpers/mocks/aiError';
-import { mockedApp } from '@/__tests__/helpers/mocks/app';
+import { apiErrorMock } from '@/__tests__/helpers/mocks/shared/aiError';
+import { mockedApp } from '@/__tests__/helpers/mocks/app/app';
 import UpdateImage from './UpdateCustomImage.modal';
 
 describe('Update Custom image', () => {

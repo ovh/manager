@@ -12,7 +12,7 @@ import { mockedUsedNavigate } from '@/__tests__/helpers/mockRouterDomHelper';
 import { mockManagerReactShellClient } from '@/__tests__/helpers/mockShellHelper';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { useToast } from '@/components/ui/use-toast';
-import { mockedApp, mockedAppStatus } from '@/__tests__/helpers/mocks/app';
+import { mockedApp, mockedAppStatus } from '@/__tests__/helpers/mocks/app/app';
 import AppGeneralInfo from './GeneralInformation.component';
 
 describe('General information component', () => {

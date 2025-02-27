@@ -8,13 +8,13 @@ import {
 } from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
 import * as ai from '@/types/cloud/project/ai';
-import { mockedNotebook } from '@/__tests__/helpers/mocks/notebook';
+import { mockedNotebook } from '@/__tests__/helpers/mocks/notebook/notebook';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
-import { mockedBackup } from '@/__tests__/helpers/mocks/backup';
+import { mockedBackup } from '@/__tests__/helpers/mocks/notebook/backup';
 import Fork from './Fork.modal';
 import * as backupApi from '@/data/api/ai/notebook/backups/backups.api';
 import { useToast } from '@/components/ui/use-toast';
-import { apiErrorMock } from '@/__tests__/helpers/mocks/aiError';
+import { apiErrorMock } from '@/__tests__/helpers/mocks/shared/aiError';
 
 describe('Fork backup modal', () => {
   beforeEach(() => {

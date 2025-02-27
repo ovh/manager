@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
-import { mockedJob } from '@/__tests__/helpers/mocks/job';
+import { mockedJob } from '@/__tests__/helpers/mocks/job/job';
 import KillJobModal from './Kill.modal';
 
 describe('Jobs list stop modal', () => {

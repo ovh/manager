@@ -2,7 +2,7 @@ import { renderHook, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import * as scalingApi from '@/data/api/ai/app/scaling-strategy/scaling-strategy.api';
-import { mockedApp } from '@/__tests__/helpers/mocks/app';
+import { mockedApp } from '@/__tests__/helpers/mocks/app/app';
 import { useScalingStrategy } from './useScalingStrategy.hook';
 import * as ai from '@/types/cloud/project/ai';
 

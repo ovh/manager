@@ -12,34 +12,34 @@ import Notebook, {
   breadcrumb as Breadcrumb,
 } from '@/pages/notebooks/create/Create.page';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
-import { mockedCatalog } from '@/__tests__/helpers/mocks/catalog';
+import { mockedCatalog } from '@/__tests__/helpers/mocks/catalog/catalog';
 import { mockedPciProject } from '@/__tests__/helpers/mocks/project';
-import { mockedNotebookSuggestion } from '@/__tests__/helpers/mocks/suggestion';
 import {
   mockedCapabilitiesRegionBHS,
   mockedCapabilitiesRegionGRA,
-} from '@/__tests__/helpers/mocks/region';
+} from '@/__tests__/helpers/mocks/capabilities/region';
 import {
   mockedEditor,
   mockedEditorBis,
-} from '@/__tests__/helpers/mocks/notebook/editor';
-import {
-  mockedFramework,
-  mockedFrameworkBis,
-} from '@/__tests__/helpers/mocks/notebook/framework';
+} from '@/__tests__/helpers/mocks/capabilities/notebookEditor';
 import {
   mockedSshKey,
   mockedSshKeyBis,
 } from '@/__tests__/helpers/mocks/sshkey';
-import { mockedCommand } from '@/__tests__/helpers/mocks/command';
-import { mockedCapabilitiesFlavorCPU } from '@/__tests__/helpers/mocks/flavor';
+import { mockedCommand } from '@/__tests__/helpers/mocks/shared/command';
+import { mockedCapabilitiesFlavorCPU } from '@/__tests__/helpers/mocks/capabilities/flavor';
 import {
   mockedDatastoreWithContainerGit,
   mockedDatastoreWithContainerS3,
-} from '@/__tests__/helpers/mocks/datastore';
+} from '@/__tests__/helpers/mocks/volume/datastore';
 import * as notebookApi from '@/data/api/ai/notebook/notebook.api';
-import { apiErrorMock } from '@/__tests__/helpers/mocks/aiError';
+import { apiErrorMock } from '@/__tests__/helpers/mocks/shared/aiError';
 import { useToast } from '@/components/ui/use-toast';
+import { mockedSuggestionsForNotebook } from '@/__tests__/helpers/mocks/suggestion';
+import {
+  mockedFramework,
+  mockedFrameworkBis,
+} from '@/__tests__/helpers/mocks/capabilities/notebookFramework';
 
 describe('Order funnel page', () => {
   beforeEach(() => {
@@ -59,7 +59,7 @@ describe('Order funnel page', () => {
     }));
 
     vi.mock('@/data/api/ai/notebook/suggestions.api', () => ({
-      getSuggestions: vi.fn(() => mockedNotebookSuggestion),
+      getSuggestions: vi.fn(() => mockedSuggestionsForNotebook),
     }));
 
     vi.mock('@/data/api/catalog/catalog.api', () => ({

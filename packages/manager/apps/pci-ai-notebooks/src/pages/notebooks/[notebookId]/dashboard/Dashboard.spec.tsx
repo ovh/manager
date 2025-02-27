@@ -6,12 +6,12 @@ import {
   mockedNotebook,
   mockedNotebookSpec,
   mockedNotebookStatus,
-} from '@/__tests__/helpers/mocks/notebook';
-import { mockedCommand } from '@/__tests__/helpers/mocks/command';
+} from '@/__tests__/helpers/mocks/notebook/notebook';
+import { mockedCommand } from '@/__tests__/helpers/mocks/shared/command';
 import Dashboard from './Dashboard.page';
 import * as notebookApi from '@/data/api/ai/notebook/notebook.api';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
-import { apiErrorMock } from '@/__tests__/helpers/mocks/aiError';
+import { apiErrorMock } from '@/__tests__/helpers/mocks/shared/aiError';
 import { useToast } from '@/components/ui/use-toast';
 
 const mockedNotebookBis: ai.notebook.Notebook = {

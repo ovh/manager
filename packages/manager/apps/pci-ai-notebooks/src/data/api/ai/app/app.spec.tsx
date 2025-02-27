@@ -10,7 +10,10 @@ import {
   stopApp,
   updateApp,
 } from './app.api';
-import { mockedAppSpec, mockedAppUpdate } from '@/__tests__/helpers/mocks/app';
+import {
+  mockedAppSpec,
+  mockedAppUpdate,
+} from '@/__tests__/helpers/mocks/app/app';
 
 describe('app functions', () => {
   afterEach(() => {
@@ -54,31 +57,15 @@ describe('app functions', () => {
     expect(apiClient.v6.post).toHaveBeenCalledWith(
       '/cloud/project/projectId/ai/app',
       {
-        image: 'image',
-        name: 'name',
-        grpcPort: 8080,
-        command: ['command'],
-        defaultHttpPort: 8080,
-        deploymentStrategy: {
-          maxSurge: 'maxSurge',
-          maxUnavailable: 'maxUnavailable',
-          progressDeadlineSeconds: 120,
-        },
-        region: 'region',
-        resources: {
-          cpu: 20,
-          ephemeralStorage: 20,
-          flavor: 'flavor',
-          gpu: 2,
-          memory: 180,
-          privateNetwork: 80,
-          publicNetwork: 60,
-        },
-        scalingStrategy: {
-          fixed: {
-            replicas: 1,
-          },
-        },
+        image: mockedAppSpec.image,
+        name: mockedAppSpec.name,
+        grpcPort: mockedAppSpec.grpcPort,
+        command: mockedAppSpec.command,
+        defaultHttpPort: mockedAppSpec.defaultHttpPort,
+        deploymentStrategy: mockedAppSpec.deploymentStrategy,
+        region: mockedAppSpec.region,
+        resources: mockedAppSpec.resources,
+        scalingStrategy: mockedAppSpec.scalingStrategy,
         unsecureHttp: false,
       },
     );
@@ -147,31 +134,15 @@ describe('app functions', () => {
     expect(apiClient.v6.post).toHaveBeenCalledWith(
       '/cloud/project/projectId/ai/app/command',
       {
-        image: 'image',
-        name: 'name',
-        grpcPort: 8080,
-        command: ['command'],
-        defaultHttpPort: 8080,
-        deploymentStrategy: {
-          maxSurge: 'maxSurge',
-          maxUnavailable: 'maxUnavailable',
-          progressDeadlineSeconds: 120,
-        },
-        region: 'region',
-        resources: {
-          cpu: 20,
-          ephemeralStorage: 20,
-          flavor: 'flavor',
-          gpu: 2,
-          memory: 180,
-          privateNetwork: 80,
-          publicNetwork: 60,
-        },
-        scalingStrategy: {
-          fixed: {
-            replicas: 1,
-          },
-        },
+        image: mockedAppSpec.image,
+        name: mockedAppSpec.name,
+        grpcPort: mockedAppSpec.grpcPort,
+        command: mockedAppSpec.command,
+        defaultHttpPort: mockedAppSpec.defaultHttpPort,
+        deploymentStrategy: mockedAppSpec.deploymentStrategy,
+        region: mockedAppSpec.region,
+        resources: mockedAppSpec.resources,
+        scalingStrategy: mockedAppSpec.scalingStrategy,
         unsecureHttp: false,
       },
     );

@@ -1,30 +1,28 @@
-import { mockedCatalog } from '@/__tests__/helpers/mocks/catalog';
+import { mockedCatalog } from '@/__tests__/helpers/mocks/catalog/catalog';
 import { createAppImagePricingList } from './pricePartnerImageHelper';
-import { mockedCapaAppImage } from '@/__tests__/helpers/mocks/appImage';
+
 import {
   mockedContract,
   mockedPartner,
-} from '@/__tests__/helpers/mocks/partnerAppImage';
+} from '@/__tests__/helpers/mocks/partner/partner';
 import { ImagePartnerApp } from '@/types/orderFunnel';
-import * as ai from '@/types/cloud/project/ai';
+import {
+  mockedCapaAppImagePerApp,
+  mockedCapaAppImagePerBracket,
+} from '@/__tests__/helpers/mocks/capabilities/partnerAppImage';
+import { mockedAppPricing1 } from '@/__tests__/helpers/mocks/app/appHelper';
 
 describe('pricePartnerImageHelper', () => {
   it('createAppImagePricingList', () => {
     const appImage: ImagePartnerApp = {
-      ...mockedCapaAppImage,
+      ...mockedCapaAppImagePerApp,
       contract: mockedContract,
-      pricingCpu: {
-        price: 1,
-        tax: 1,
-      },
-      pricingGpu: {
-        price: 1,
-        tax: 1,
-      },
+      pricingCpu: mockedAppPricing1,
+      pricingGpu: mockedAppPricing1,
     };
     expect(
       createAppImagePricingList(
-        [mockedCapaAppImage],
+        [mockedCapaAppImagePerApp],
         [{ ...mockedPartner, contract: mockedContract }],
         mockedCatalog,
       ),
@@ -33,26 +31,20 @@ describe('pricePartnerImageHelper', () => {
 
   it('createAppImagePricingList with second bracket consumption', () => {
     const appImage: ImagePartnerApp = {
-      ...mockedCapaAppImage,
-      licensing: ai.capabilities.LicensingTypeEnum['per-second-bracket'],
+      ...mockedCapaAppImagePerBracket,
       contract: mockedContract,
       pricingCpu: {
-        price: 60,
-        tax: 60,
+        price: mockedAppPricing1.price * 60,
+        tax: mockedAppPricing1.tax * 60,
       },
       pricingGpu: {
-        price: 60,
-        tax: 60,
+        price: mockedAppPricing1.price * 60,
+        tax: mockedAppPricing1.tax * 60,
       },
     };
     expect(
       createAppImagePricingList(
-        [
-          {
-            ...mockedCapaAppImage,
-            licensing: ai.capabilities.LicensingTypeEnum['per-second-bracket'],
-          },
-        ],
+        [mockedCapaAppImagePerBracket],
         [{ ...mockedPartner, contract: mockedContract }],
         mockedCatalog,
       ),
@@ -61,7 +53,7 @@ describe('pricePartnerImageHelper', () => {
 
   it('createAppImagePricingList without price found', () => {
     const appImage: ImagePartnerApp = {
-      ...mockedCapaAppImage,
+      ...mockedCapaAppImagePerApp,
       id: 'testabc',
       contract: mockedContract,
       pricingCpu: {
@@ -75,7 +67,7 @@ describe('pricePartnerImageHelper', () => {
     };
     expect(
       createAppImagePricingList(
-        [{ ...mockedCapaAppImage, id: 'testabc' }],
+        [{ ...mockedCapaAppImagePerApp, id: 'testabc' }],
         [{ ...mockedPartner, contract: mockedContract }],
         mockedCatalog,
       ),

@@ -2,7 +2,7 @@ import { renderHook, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import * as partnerApi from '@/data/api/ai/partner.api';
-import { mockedContract } from '@/__tests__/helpers/mocks/partnerAppImage';
+import { mockedContract } from '@/__tests__/helpers/mocks/partner/partner';
 import { useSignPartnerContract } from './useSignPartnerContract.hook';
 import { PartnerApp } from '@/data/api/ai/partner.api';
 

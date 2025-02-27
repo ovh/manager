@@ -9,28 +9,28 @@ import {
 import { mockManagerReactShellClient } from '@/__tests__/helpers/mockShellHelper';
 import { mockedUsedNavigate } from '@/__tests__/helpers/mockRouterDomHelper';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
-import { mockedCatalog } from '@/__tests__/helpers/mocks/catalog';
+import { mockedCatalog } from '@/__tests__/helpers/mocks/catalog/catalog';
 import { mockedPciProject } from '@/__tests__/helpers/mocks/project';
 import {
   mockedCapabilitiesRegionBHS,
   mockedCapabilitiesRegionGRA,
-} from '@/__tests__/helpers/mocks/region';
-import { mockedCommand } from '@/__tests__/helpers/mocks/command';
-import { mockedCapabilitiesFlavorCPU } from '@/__tests__/helpers/mocks/flavor';
+} from '@/__tests__/helpers/mocks/capabilities/region';
+import { mockedCommand } from '@/__tests__/helpers/mocks/shared/command';
+import { mockedCapabilitiesFlavorCPU } from '@/__tests__/helpers/mocks/capabilities/flavor';
 import {
   mockedDatastoreWithContainerGit,
   mockedDatastoreWithContainerS3,
-} from '@/__tests__/helpers/mocks/datastore';
+} from '@/__tests__/helpers/mocks/volume/datastore';
 import * as appApi from '@/data/api/ai/app/app.api';
-import { apiErrorMock } from '@/__tests__/helpers/mocks/aiError';
+import { apiErrorMock } from '@/__tests__/helpers/mocks/shared/aiError';
 import { useToast } from '@/components/ui/use-toast';
-import { mockedAppSuggetions } from '@/__tests__/helpers/mocks/suggestion';
 import App, { breadcrumb as Breadcrumb } from './Create.page';
 import {
   mockedContract,
   mockedPartner,
-} from '@/__tests__/helpers/mocks/partnerAppImage';
-import { mockedCapaAppImage } from '@/__tests__/helpers/mocks/appImage';
+  mockedPartnerImagePerApp,
+} from '@/__tests__/helpers/mocks/partner/partner';
+import { mockedSuggestionsForApp } from '@/__tests__/helpers/mocks/suggestion';
 
 describe('Order funnel page', () => {
   beforeEach(() => {
@@ -45,7 +45,7 @@ describe('Order funnel page', () => {
     });
 
     vi.mock('@/data/api/ai/app/suggestions.api', () => ({
-      getSuggestions: vi.fn(() => mockedAppSuggetions),
+      getSuggestions: vi.fn(() => mockedSuggestionsForApp),
     }));
 
     vi.mock('@/data/api/ai/capabilities.api', () => ({
@@ -54,7 +54,7 @@ describe('Order funnel page', () => {
         mockedCapabilitiesRegionBHS,
       ]),
       getFlavor: vi.fn(() => [mockedCapabilitiesFlavorCPU]),
-      getAppImages: vi.fn(() => [mockedCapaAppImage]),
+      getAppImages: vi.fn(() => [mockedPartnerImagePerApp]),
     }));
 
     vi.mock('@/data/api/catalog/catalog.api', () => ({

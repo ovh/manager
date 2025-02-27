@@ -10,8 +10,8 @@ import { mockManagerReactShellClient } from '@/__tests__/helpers/mockShellHelper
 import { mockedUsedNavigate } from '@/__tests__/helpers/mockRouterDomHelper';
 import Git, { breadcrumb as Breadcrumb } from '@/pages/dashboard/git/Git.page';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
-import { mockedCapabilitiesRegionGRA } from '@/__tests__/helpers/mocks/region';
-import { mockedGitWithRegion } from '@/__tests__/helpers/mocks/datastore';
+import { mockedCapabilitiesRegionGRA } from '@/__tests__/helpers/mocks/capabilities/region';
+import { mockedGitWithRegion } from '@/__tests__/helpers/mocks/volume/datastore';
 import { openButtonInMenu } from '@/__tests__/helpers/unitTestHelper';
 
 describe('Git page', () => {

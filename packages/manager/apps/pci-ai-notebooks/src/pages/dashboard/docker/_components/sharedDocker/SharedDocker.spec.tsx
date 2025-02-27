@@ -5,7 +5,7 @@ import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/Route
 import {
   mockedCapabilitiesRegionBHS,
   mockedCapabilitiesRegionGRA,
-} from '@/__tests__/helpers/mocks/region';
+} from '@/__tests__/helpers/mocks/capabilities/region';
 
 import { handleSelectOption } from '@/__tests__/helpers/unitTestHelper';
 

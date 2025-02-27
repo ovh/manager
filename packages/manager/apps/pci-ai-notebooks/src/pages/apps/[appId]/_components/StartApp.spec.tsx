@@ -9,8 +9,8 @@ import {
 import * as appApi from '@/data/api/ai/app/app.api';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { useToast } from '@/components/ui/use-toast';
-import { mockedApp } from '@/__tests__/helpers/mocks/app';
-import { apiErrorMock } from '@/__tests__/helpers/mocks/aiError';
+import { mockedApp } from '@/__tests__/helpers/mocks/app/app';
+import { apiErrorMock } from '@/__tests__/helpers/mocks/shared/aiError';
 import StartApp from './StartApp.component';
 
 describe('Start app modal', () => {

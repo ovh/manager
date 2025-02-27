@@ -4,8 +4,8 @@ import { UseQueryResult } from '@tanstack/react-query';
 import * as ai from '@/types/cloud/project/ai';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import Logs, { breadcrumb as Breadcrumb } from './Logs.page';
-import { mockedLogs } from '@/__tests__/helpers/mocks/logs';
-import { mockedApp } from '@/__tests__/helpers/mocks/app';
+import { mockedLogs } from '@/__tests__/helpers/mocks/shared/logs';
+import { mockedApp } from '@/__tests__/helpers/mocks/app/app';
 
 describe('Logs page', () => {
   beforeEach(() => {

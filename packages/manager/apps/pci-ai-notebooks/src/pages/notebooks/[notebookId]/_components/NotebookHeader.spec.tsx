@@ -6,7 +6,7 @@ import { NotebookHeader } from './NotebookHeader.component';
 import {
   mockedNotebook,
   mockedNotebookStatus,
-} from '@/__tests__/helpers/mocks/notebook';
+} from '@/__tests__/helpers/mocks/notebook/notebook';
 
 const runningNotebook: ai.notebook.Notebook = {
   ...mockedNotebook,

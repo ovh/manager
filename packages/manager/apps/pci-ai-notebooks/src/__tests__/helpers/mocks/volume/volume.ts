@@ -26,12 +26,12 @@ export const mockedDatastoreVolume: ai.volume.Volume = {
 };
 
 export const mockedPublicGitVolume: ai.volume.Volume = {
-  cache: true,
-  mountPath: '/publicGit',
-  permission: ai.VolumePermissionEnum.RWD,
+  cache: false,
+  mountPath: '/demo',
+  permission: ai.VolumePermissionEnum.RO,
   volumeSource: {
     publicGit: {
-      url: 'https://myUrl.com',
+      url: 'https://repo.git',
     },
   },
 };
@@ -40,4 +40,28 @@ export const mockedStatusVolume: ai.volume.VolumeStatus = {
   id: 'volumeId',
   mountPath: 'volumeMountPaht',
   userVolumeId: 'userVolumeId',
+};
+
+export const mockedS3Volume: ai.volume.Volume = {
+  cache: false,
+  mountPath: '/s3',
+  permission: ai.VolumePermissionEnum.RWD,
+  volumeSource: {
+    dataStore: {
+      alias: 'aliasOfvolumeS3',
+      container: 'container',
+    },
+  },
+};
+
+export const mockedGitVolume: ai.volume.Volume = {
+  cache: true,
+  mountPath: '/git',
+  permission: ai.VolumePermissionEnum.RWD,
+  volumeSource: {
+    dataStore: {
+      alias: 'aliasOfVolumeGit',
+      container: 'develop',
+    },
+  },
 };

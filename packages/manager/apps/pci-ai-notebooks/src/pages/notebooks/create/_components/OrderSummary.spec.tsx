@@ -7,12 +7,12 @@ import {
   waitFor,
 } from '@testing-library/react';
 import OrderSummary from './OrderSummary.component';
-import { mockedCapabilitiesRegionGRA } from '@/__tests__/helpers/mocks/region';
-import { mockedCapabilitiesFlavorCPU } from '@/__tests__/helpers/mocks/flavor';
-import { mockedFramework } from '@/__tests__/helpers/mocks/notebook/framework';
-import { mockedEditor } from '@/__tests__/helpers/mocks/notebook/editor';
-import { mockedOrderVolumesS3 } from '@/__tests__/helpers/mocks/datastore';
+import { mockedCapabilitiesRegionGRA } from '@/__tests__/helpers/mocks/capabilities/region';
+import { mockedCapabilitiesFlavorCPU } from '@/__tests__/helpers/mocks/capabilities/flavor';
+import { mockedEditor } from '@/__tests__/helpers/mocks/capabilities/notebookEditor';
+import { mockedOrderVolumesS3 } from '@/__tests__/helpers/mocks/volume/datastore';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
+import { mockedFramework } from '@/__tests__/helpers/mocks/capabilities/notebookFramework';
 
 const mockedOrder = {
   region: mockedCapabilitiesRegionGRA,

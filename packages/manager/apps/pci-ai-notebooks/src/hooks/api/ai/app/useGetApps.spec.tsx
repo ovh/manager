@@ -3,7 +3,7 @@ import { vi } from 'vitest';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import * as appApi from '@/data/api/ai/app/app.api';
 import { useGetApps } from './useGetApps.hook';
-import { mockedApp } from '@/__tests__/helpers/mocks/app';
+import { mockedApp } from '@/__tests__/helpers/mocks/app/app';
 
 vi.mock('@/data/api/ai/app/app.api', () => ({
   getApps: vi.fn(),

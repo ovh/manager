@@ -12,9 +12,9 @@ import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/Route
 import {
   mockedNotebook,
   mockedNotebookSpec,
-} from '@/__tests__/helpers/mocks/notebook';
+} from '@/__tests__/helpers/mocks/notebook/notebook';
 import PublicGit, { breadcrumb as Breadcrumb } from './PublicGit.page';
-import { mockedPublicGitVolume } from '@/__tests__/helpers/mocks/volume';
+import { mockedPublicGitVolume } from '@/__tests__/helpers/mocks/volume/volume';
 import { useToast } from '@/components/ui/use-toast';
 
 const mockedNotebookBis: ai.notebook.Notebook = {

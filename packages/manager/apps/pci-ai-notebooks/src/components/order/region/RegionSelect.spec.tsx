@@ -10,7 +10,7 @@ import RegionsSelect from './RegionSelect.component';
 import {
   mockedCapabilitiesRegionGRA,
   mockedCapabilitiesRegionBHS,
-} from '@/__tests__/helpers/mocks/region';
+} from '@/__tests__/helpers/mocks/capabilities/region';
 
 describe('Region component', () => {
   afterEach(() => {

@@ -2,7 +2,7 @@ import { renderHook, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import * as backupApi from '@/data/api/ai/notebook/backups/backups.api';
-import { mockedNotebook } from '@/__tests__/helpers/mocks/notebook';
+import { mockedNotebook } from '@/__tests__/helpers/mocks/notebook/notebook';
 import { useForkBackup } from './useForkBackup.hook';
 
 vi.mock('@/data/api/ai/notebook/backups/backups.api', () => ({

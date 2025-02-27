@@ -1,10 +1,10 @@
 import { vi } from 'vitest';
 import { renderHook } from '@testing-library/react';
-import { mockedNotebook } from '@/__tests__/helpers/mocks/notebook';
+import { mockedNotebook } from '@/__tests__/helpers/mocks/notebook/notebook';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
-import { mockedJob } from '@/__tests__/helpers/mocks/job';
+import { mockedJob } from '@/__tests__/helpers/mocks/job/job';
 import { useDashboardData } from './Dashboard.context';
-import { mockedApp } from '@/__tests__/helpers/mocks/app';
+import { mockedApp } from '@/__tests__/helpers/mocks/app/app';
 
 describe('Dashboard context', () => {
   beforeEach(() => {

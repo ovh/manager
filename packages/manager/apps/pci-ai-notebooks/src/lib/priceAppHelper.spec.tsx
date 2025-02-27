@@ -1,15 +1,20 @@
 import {
   mockedOrderFlavorCPU,
   mockedOrderFlavorGPU,
-} from '@/__tests__/helpers/mocks/flavor';
+} from '@/__tests__/helpers/mocks/capabilities/flavor';
 import { AppGlobalPricing } from '@/types/orderFunnel';
 import { createAppPriceObject } from './priceAppHelper';
-import {
-  mockedPartnerImage,
-  mockedPartnerImageBis,
-} from '@/__tests__/helpers/mocks/partnerAppImage';
-import { mockedScaling } from '@/__tests__/helpers/mocks/app';
 import * as ai from '@/types/cloud/project/ai';
+import {
+  mockedPartnerImagePerApp,
+  mockedPartnerSignedImagePerReplica,
+} from '@/__tests__/helpers/mocks/partner/partner';
+import { mockedOrderScaling } from '@/__tests__/helpers/mocks/app/appHelper';
+
+const imagePartInput = {
+  name: 'sentiment-analysis-app',
+  version: '1',
+};
 
 describe('priceAppHelper', () => {
   it('createAppPriceObject without licencing', () => {
@@ -30,8 +35,8 @@ describe('priceAppHelper', () => {
     expect(
       createAppPriceObject(
         imageInput,
-        [mockedPartnerImage],
-        mockedScaling,
+        [mockedPartnerImagePerApp],
+        mockedOrderScaling,
         mockedOrderFlavorCPU,
         3,
       ),
@@ -39,10 +44,6 @@ describe('priceAppHelper', () => {
   });
 
   it('createAppPriceObject with licencing per app', () => {
-    const imageInput = {
-      name: 'idImage1',
-      version: '1',
-    };
     const pricingResult: AppGlobalPricing = {
       partnerLicence: {
         price: 2,
@@ -59,9 +60,9 @@ describe('priceAppHelper', () => {
     };
     expect(
       createAppPriceObject(
-        imageInput,
-        [mockedPartnerImage],
-        { ...mockedScaling, autoScaling: false },
+        imagePartInput,
+        [mockedPartnerImagePerApp],
+        { ...mockedOrderScaling, autoScaling: false },
         mockedOrderFlavorCPU,
         3,
       ),
@@ -69,10 +70,6 @@ describe('priceAppHelper', () => {
   });
 
   it('createAppPriceObject with licencing per resource per CPU', () => {
-    const imageInput = {
-      name: 'idImage1',
-      version: '1',
-    };
     const pricingResult: AppGlobalPricing = {
       partnerLicence: {
         price: 720,
@@ -89,14 +86,14 @@ describe('priceAppHelper', () => {
     };
     expect(
       createAppPriceObject(
-        imageInput,
+        imagePartInput,
         [
           {
-            ...mockedPartnerImage,
+            ...mockedPartnerImagePerApp,
             licensing: ai.capabilities.LicensingTypeEnum['per-resource'],
           },
         ],
-        mockedScaling,
+        mockedOrderScaling,
         mockedOrderFlavorCPU,
         3,
       ),
@@ -104,10 +101,6 @@ describe('priceAppHelper', () => {
   });
 
   it('createAppPriceObject with licencing per resource per GPU', () => {
-    const imageInput = {
-      name: 'idImage1',
-      version: '1',
-    };
     const pricingResult: AppGlobalPricing = {
       partnerLicence: {
         price: 720,
@@ -124,14 +117,14 @@ describe('priceAppHelper', () => {
     };
     expect(
       createAppPriceObject(
-        imageInput,
+        imagePartInput,
         [
           {
-            ...mockedPartnerImage,
+            ...mockedPartnerImagePerApp,
             licensing: ai.capabilities.LicensingTypeEnum['per-resource'],
           },
         ],
-        mockedScaling,
+        mockedOrderScaling,
         mockedOrderFlavorGPU,
         3,
       ),
@@ -139,10 +132,6 @@ describe('priceAppHelper', () => {
   });
 
   it('createAppPriceObject with licencing per replica per GPU', () => {
-    const imageInput = {
-      name: 'identifImage2',
-      version: '1',
-    };
     const pricingResult: AppGlobalPricing = {
       partnerLicence: {
         price: 4,
@@ -159,9 +148,9 @@ describe('priceAppHelper', () => {
     };
     expect(
       createAppPriceObject(
-        imageInput,
-        [mockedPartnerImageBis],
-        mockedScaling,
+        imagePartInput,
+        [mockedPartnerSignedImagePerReplica],
+        mockedOrderScaling,
         mockedOrderFlavorGPU,
         3,
       ),
@@ -169,10 +158,6 @@ describe('priceAppHelper', () => {
   });
 
   it('createAppPriceObject with licencing per replica per CPU', () => {
-    const imageInput = {
-      name: 'identifImage2',
-      version: '1',
-    };
     const pricingResult: AppGlobalPricing = {
       partnerLicence: {
         price: 4,
@@ -189,9 +174,9 @@ describe('priceAppHelper', () => {
     };
     expect(
       createAppPriceObject(
-        imageInput,
-        [mockedPartnerImageBis],
-        mockedScaling,
+        imagePartInput,
+        [mockedPartnerSignedImagePerReplica],
+        mockedOrderScaling,
         mockedOrderFlavorCPU,
         3,
       ),
@@ -199,10 +184,6 @@ describe('priceAppHelper', () => {
   });
 
   it('createAppPriceObject with licencing per second bracket per CPU', () => {
-    const imageInput = {
-      name: 'idImage1',
-      version: '1',
-    };
     const pricingResult: AppGlobalPricing = {
       partnerLicence: {
         price: 120,
@@ -219,14 +200,14 @@ describe('priceAppHelper', () => {
     };
     expect(
       createAppPriceObject(
-        imageInput,
+        imagePartInput,
         [
           {
-            ...mockedPartnerImage,
+            ...mockedPartnerImagePerApp,
             licensing: ai.capabilities.LicensingTypeEnum['per-second-bracket'],
           },
         ],
-        mockedScaling,
+        mockedOrderScaling,
         mockedOrderFlavorCPU,
         3,
       ),
@@ -235,7 +216,7 @@ describe('priceAppHelper', () => {
 
   it('createAppPriceObject with licencing per second bracket per GPU', () => {
     const imageInput = {
-      name: 'idImage1',
+      name: 'sentiment-analysis-app',
       version: '1',
     };
     const pricingResult: AppGlobalPricing = {
@@ -257,11 +238,11 @@ describe('priceAppHelper', () => {
         imageInput,
         [
           {
-            ...mockedPartnerImage,
+            ...mockedPartnerImagePerApp,
             licensing: ai.capabilities.LicensingTypeEnum['per-second-bracket'],
           },
         ],
-        mockedScaling,
+        mockedOrderScaling,
         mockedOrderFlavorGPU,
         3,
       ),

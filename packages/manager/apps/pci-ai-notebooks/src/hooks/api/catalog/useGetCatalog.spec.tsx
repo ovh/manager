@@ -6,7 +6,7 @@ import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrap
 import { useGetCatalog } from '@/hooks/api/catalog/useGetCatalog.hook';
 
 import { mockedUser } from '@/__tests__/helpers/mocks/user';
-import { mockedCatalog } from '@/__tests__/helpers/mocks/catalog';
+import { mockedCatalog } from '@/__tests__/helpers/mocks/catalog/catalog';
 
 vi.mock('@/data/api/catalog/catalog.api', () => ({
   catalogApi: {
