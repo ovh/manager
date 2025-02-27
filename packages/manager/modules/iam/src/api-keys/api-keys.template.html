@@ -1,3 +1,61 @@
 <div>
     <oui-header data-heading="{{:: 'iam_api_keys' | translate }}"> </oui-header>
 </div>
+<div>
+    <p data-translate="iam_api_keys_description"></p>
+    <oui-datagrid
+        data-rows="$ctrl.apiKeys"
+        data-page="{{ 1 }}"
+        data-page-size="{{ $ctrl.apiKeys.length }}"
+    >
+        <!-- <Columns> -->
+        <oui-datagrid-column
+            data-title=":: 'iam_api_keys_datagrid_column_application_id' | translate"
+        >
+            <span data-ng-bind="$row.applicationId"></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'iam_api_keys_datagrid_column_application_name' | translate"
+        >
+            <span data-ng-bind="$row.name"></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'iam_api_keys_datagrid_column_application_description' | translate"
+        >
+            <span data-ng-bind="$row.description"></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'iam_api_keys_datagrid_column_application_status' | translate"
+        >
+            <span
+                class="oui-badge"
+                data-ng-class="{
+                        'oui-badge_success': $row.status === 'active',
+                        'oui-badge_error': $row.status !== 'active'
+                    }"
+                data-translate="{{:: 'iam_api_keys_datagrid_column_application_status_' + $row.status | translate }}"
+            >
+            </span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'iam_api_keys_datagrid_column_application_key' | translate"
+        >
+            <span data-ng-bind="$row.applicationKey"></span>
+        </oui-datagrid-column>
+        <!-- </Columns> -->
+
+        <!-- <Actions> -->
+        <oui-action-menu data-compact data-placement="end">
+            <oui-action-menu-item
+                data-on-click="$ctrl.deleteApplication($row.applicationId)"
+            >
+                <span
+                    data-translate="iam_api_keys_datagrid_action_delete_application"
+                    class="text-danger"
+                ></span>
+            </oui-action-menu-item>
+        </oui-action-menu>
+        <!-- </Actions> -->
+    </oui-datagrid>
+    <div data-ui-view></div>    
+</div>
