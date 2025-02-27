@@ -862,7 +862,7 @@
   "hosting_configuration_tab_modules_module_delete": "Eliminar o módulo",
   "hosting_configuration_tab_modules_module_access_admin": "Aceder à interface de administração do módulo",
   "hosting_configuration_tab_modules_refresh": "Recarregar os módulos",
-  "hosting_configuration_tab_modules_module_access": "Aceder ao módulo",
+  "hosting_configuration_tab_modules_module_access": "Aceder ao website",
   "hosting_configuration_tab_modules_module_actions": "Ações sobre o módulo",
   "hosting_configuration_tab_modules_create_title": "Criar um módulo",
   "hosting_configuration_tab_modules_create_step1_loading_error": "Erro ao carregar a informação.",
