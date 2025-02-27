@@ -145,7 +145,7 @@
   "hosting_dashboard_service_offer_KIMSUFI_2015_support": "Hosting Kimsufi: pomoc jest dostępna wyłącznie poprzez system zgłoszeń awarii (menu Pomoc).",
   "hosting_dashboard_service_offer_60_FREE_end": "Oferta 60free zostanie wycofana 1 maja 2017. Możesz migrować Twoją domenę z rozszerzeniem.ovh.org na inny hosting (przycisk Migracja domeny .ovh.org)",
   "hosting_dashboard_service_offer_DEMO_1_G_end": "Oferta demo1g zostanie wycofana 1 maja 2017. Możesz migrować Twoją domenę z rozszerzeniem.ovh.org na inny hosting (przycisk Migracja domeny .ovh.org)",
-  "hosting_dashboard_service_offer_recommanded": "OVHcloud poleca pakiet {{t0}}.",
+  "hosting_dashboard_service_offer_recommanded": "OVHcloud poleca ofertę {{t0}}.",
   "hosting_dashboard_service_offer_recommanded_actions": "Możesz zmienić ofertę w zakładce z ogólnymi informacjami lub sprawdzić ofertę na naszej <a href=\"{{t0}}\" target=\"{{t1}}\">stronie</a>.",
   "hosting_dashboard_add_domain": "Dodaj domenę",
   "hosting_dashboard_migrate_my_ovh_org": "Migracja adresu .ovh.org",
