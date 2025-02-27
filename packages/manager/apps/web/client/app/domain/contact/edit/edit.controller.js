@@ -52,7 +52,12 @@ export default class DomainContactEditCtrl {
       this.domainName,
     )
       .then((rules) => {
-        rules.fields.and.sort((a, b) => {
+        let r = rules;
+        if (rules.and) {
+          r = rules.and.find((rule) => rule.label === 'OWNER_CONTACT');
+        }
+
+        r.fields.and.sort((a, b) => {
           if (
             Object.values(FIELD_NAME_LIST).indexOf(a.label) >
             Object.values(FIELD_NAME_LIST).indexOf(b.label)
@@ -62,7 +67,7 @@ export default class DomainContactEditCtrl {
           return -1;
         });
 
-        this.rules = rules;
+        this.rules = r;
       })
       .catch((err) => {
         this.initError = err.data?.message || err.message || err;
