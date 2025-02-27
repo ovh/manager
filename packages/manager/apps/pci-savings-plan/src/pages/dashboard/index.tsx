@@ -1,4 +1,4 @@
-import { Title, ErrorBanner } from '@ovh-ux/manager-react-components';
+import { ErrorBanner } from '@ovh-ux/manager-react-components';
 import React, { useContext, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -11,6 +11,7 @@ import TabsDashboard from '@/components/Dashboard/TabsDashboard/TabsDashboard';
 import { useSavingsPlan } from '@/hooks/useSavingsPlan';
 import GenericChart from '@/components/Chart/Chart';
 import { useFilteredConsumption } from '@/hooks/useFilteredConsumption';
+import Header from '@/components/Header/Header';
 
 const Dashboard: React.FC = () => {
   const { projectId } = useParams();
@@ -62,7 +63,7 @@ const Dashboard: React.FC = () => {
 
   return (
     <>
-      <Title>{t('listing:title')}</Title>
+      <Header title={t('listing:title')} />
       <OdsText preset="span" className="inline-block mb-4 w-[750px]">
         {t('dashboard_description')}
       </OdsText>
