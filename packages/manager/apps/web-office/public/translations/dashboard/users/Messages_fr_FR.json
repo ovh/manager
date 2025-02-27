@@ -13,6 +13,6 @@
   "dashboard_users_status_ok": "Créé",
   "dashboard_users_status_unconfigured": "Non configuré",
   "dashboard_users_action_user_change_password": "Modifier le mot de passe",
-  "dashboard_users_action_user_edit": "Editer le compte",
+  "dashboard_users_action_user_edit": "Éditer le compte",
   "dashboard_users_action_user_delete": "Supprimer le compte"
 }
