@@ -1,4 +1,4 @@
-import { ENTITY, TAG } from '../../../iam.constants';
+import { ENTITY, TAG } from '../../iam.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('iam.dashboard.applications.delete', {
