@@ -9,27 +9,6 @@ import {
 } from '@/data/api/ai/token.api';
 import { mockedTokenCreation } from '@/__tests__/helpers/mocks/token';
 
-vi.mock('@ovh-ux/manager-core-api', () => {
-  const get = vi.fn(() => {
-    return Promise.resolve({ data: null });
-  });
-  const post = vi.fn(() => {
-    return Promise.resolve({ data: null });
-  });
-  const del = vi.fn(() => {
-    return Promise.resolve({ data: null });
-  });
-  return {
-    apiClient: {
-      v6: {
-        get,
-        post,
-        delete: del,
-      },
-    },
-  };
-});
-
 describe('Token functions', () => {
   afterEach(() => {
     vi.clearAllMocks();

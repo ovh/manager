@@ -12,31 +12,6 @@ import {
 } from './app.api';
 import { mockedAppSpec, mockedAppUpdate } from '@/__tests__/helpers/mocks/app';
 
-vi.mock('@ovh-ux/manager-core-api', () => {
-  const get = vi.fn(() => {
-    return Promise.resolve({ data: null });
-  });
-  const post = vi.fn(() => {
-    return Promise.resolve({ data: null });
-  });
-  const put = vi.fn(() => {
-    return Promise.resolve({ data: null });
-  });
-  const del = vi.fn(() => {
-    return Promise.resolve({ data: null });
-  });
-  return {
-    apiClient: {
-      v6: {
-        get,
-        post,
-        put,
-        delete: del,
-      },
-    },
-  };
-});
-
 describe('app functions', () => {
   afterEach(() => {
     vi.clearAllMocks();

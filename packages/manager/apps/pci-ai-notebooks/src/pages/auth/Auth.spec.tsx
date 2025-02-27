@@ -6,7 +6,7 @@ import {
   screen,
   waitFor,
 } from '@testing-library/react';
-
+import { mockedUsedNavigate } from '@/__tests__/helpers/mockRouterDomHelper';
 import Auth from './Auth.page';
 import * as authApi from '@/data/api/ai/authorization.api';
 import * as ProjectAPI from '@/data/api/project/project.api';
@@ -15,33 +15,15 @@ import { mockedAuthorization } from '@/__tests__/helpers/mocks/authorization';
 import { mockedPciProject } from '@/__tests__/helpers/mocks/project';
 import { PlanCode } from '@/types/cloud/Project';
 
-const mockedUsedNavigate = vi.fn();
 describe('Auth behavior page', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
-
-    // Mock necessary hooks and dependencies
-    vi.mock('react-i18next', () => ({
-      useTranslation: () => ({
-        t: (key: string) => key,
-      }),
-    }));
+    mockedUsedNavigate();
 
     vi.mock('@/data/api/ai/authorization.api', () => ({
       getAuthorization: vi.fn(() => mockedAuthorization),
       postAuthorization: vi.fn(() => mockedAuthorization),
     }));
-
-    vi.mock('react-router-dom', async () => {
-      const mod = await vi.importActual('react-router-dom');
-      return {
-        ...mod,
-        useNavigate: () => mockedUsedNavigate,
-        useParams: () => ({
-          projectId: 'projectId',
-        }),
-      };
-    });
 
     vi.mock('@/data/api/project/project.api', () => {
       return {

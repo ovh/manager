@@ -3,23 +3,6 @@ import { describe, expect, vi } from 'vitest';
 import { addUser, getUsers } from '@/data/api/user/user.api';
 import { mockedUserCreation } from '@/__tests__/helpers/mocks/user';
 
-vi.mock('@ovh-ux/manager-core-api', () => {
-  const get = vi.fn(() => {
-    return Promise.resolve({ data: null });
-  });
-  const post = vi.fn(() => {
-    return Promise.resolve({ data: null });
-  });
-  return {
-    apiClient: {
-      v6: {
-        get,
-        post,
-      },
-    },
-  };
-});
-
 describe('User functions', () => {
   afterEach(() => {
     vi.clearAllMocks();

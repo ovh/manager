@@ -1,19 +1,4 @@
-import { apiClient } from '@ovh-ux/manager-core-api';
 import { describe, expect, vi } from 'vitest';
-import { getSuggestions } from './suggestions.api';
-
-vi.mock('@ovh-ux/manager-core-api', () => {
-  const get = vi.fn(() => {
-    return Promise.resolve({ data: null });
-  });
-  return {
-    apiClient: {
-      v6: {
-        get,
-      },
-    },
-  };
-});
 
 describe('logs functions', () => {
   afterEach(() => {

@@ -6,12 +6,9 @@ import {
   screen,
   waitFor,
 } from '@testing-library/react';
-
+import { mockManagerReactShellClient } from '@/__tests__/helpers/mockShellHelper';
 import Guides from './Guides.component';
-
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
-
-import { Locale } from '@/hooks/useLocale';
 import {
   mockedGuideOnboarding,
   mockedGuides,
@@ -20,39 +17,10 @@ import {
 describe('Guides component', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
-
-    // Mock necessary hooks and dependencies
-    vi.mock('react-i18next', () => ({
-      useTranslation: () => ({
-        t: (key: string) => key,
-      }),
-    }));
-    vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
-      const mod = await importOriginal<
-        typeof import('@ovh-ux/manager-react-shell-client')
-      >();
-      return {
-        ...mod,
-        useShell: vi.fn(() => ({
-          i18n: {
-            getLocale: vi.fn(() => Locale.fr_FR),
-            onLocaleChange: vi.fn(),
-            setLocale: vi.fn(),
-          },
-        })),
-      };
-    });
-
+    mockManagerReactShellClient();
     vi.mock('@/data/api/ai/guide.api', () => ({
       getGuides: vi.fn(() => [mockedGuides, mockedGuideOnboarding]),
     }));
-
-    const ResizeObserverMock = vi.fn(() => ({
-      observe: vi.fn(),
-      unobserve: vi.fn(),
-      disconnect: vi.fn(),
-    }));
-    vi.stubGlobal('ResizeObserver', ResizeObserverMock);
   });
   afterEach(() => {
     vi.clearAllMocks();

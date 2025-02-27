@@ -13,17 +13,6 @@ import { mockedApp } from '@/__tests__/helpers/mocks/app';
 describe('Dashboard Layout', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
-
-    vi.mock('react-router-dom', async () => {
-      const mod = await vi.importActual('react-router-dom');
-      return {
-        ...mod,
-        useParams: () => ({
-          projectId: 'projectId',
-        }),
-      };
-    });
-
     vi.mock('@/data/api/project/project.api', () => ({
       getProject: vi.fn(() => mockedPciDiscoveryProject),
     }));
@@ -37,9 +26,6 @@ describe('Dashboard Layout', () => {
     vi.mock('@/data/api/ai/notebook/notebook.api', () => ({
       getNotebooks: vi.fn(),
     }));
-
-    const mockScrollIntoView = vi.fn();
-    window.HTMLElement.prototype.scrollIntoView = mockScrollIntoView;
   });
   afterEach(() => {
     vi.clearAllMocks();

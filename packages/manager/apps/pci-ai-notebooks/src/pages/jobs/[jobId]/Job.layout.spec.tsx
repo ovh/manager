@@ -57,9 +57,6 @@ describe('Job Layout', () => {
     vi.mock('@/data/api/ai/job/job.api', () => ({
       getJob: vi.fn(() => mockedJob),
     }));
-
-    const mockScrollIntoView = vi.fn();
-    window.HTMLElement.prototype.scrollIntoView = mockScrollIntoView;
   });
   afterEach(() => {
     vi.clearAllMocks();

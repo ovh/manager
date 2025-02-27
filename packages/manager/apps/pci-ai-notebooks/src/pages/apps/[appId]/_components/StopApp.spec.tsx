@@ -15,32 +15,10 @@ import StopApp from './StopApp.component';
 
 describe('Stop app modal', () => {
   beforeEach(() => {
-    vi.mock('react-router-dom', async () => {
-      const mod = await vi.importActual('react-router-dom');
-      return {
-        ...mod,
-        useParams: () => ({
-          projectId: 'projectId',
-        }),
-      };
-    });
-    vi.mock('react-i18next', () => ({
-      useTranslation: () => ({
-        t: (key: string) => key,
-      }),
-    }));
     vi.mock('@/data/api/ai/app/app.api', () => ({
       getApps: vi.fn(() => [mockedApp]),
       stopApp: vi.fn((app) => app),
     }));
-    vi.mock('@/components/ui/use-toast', () => {
-      const toastMock = vi.fn();
-      return {
-        useToast: vi.fn(() => ({
-          toast: toastMock,
-        })),
-      };
-    });
   });
   afterEach(() => {
     vi.clearAllMocks();

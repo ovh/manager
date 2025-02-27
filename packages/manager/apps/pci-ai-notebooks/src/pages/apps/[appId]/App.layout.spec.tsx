@@ -42,7 +42,6 @@ const mockedAppWithVol: ai.app.App = {
 describe('App Layout', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
-
     vi.mock('react-router-dom', async () => {
       const mod = await vi.importActual('react-router-dom');
       return {
@@ -57,9 +56,6 @@ describe('App Layout', () => {
     vi.mock('@/data/api/ai/app/app.api', () => ({
       getApp: vi.fn(() => mockedApp),
     }));
-
-    const mockScrollIntoView = vi.fn();
-    window.HTMLElement.prototype.scrollIntoView = mockScrollIntoView;
   });
   afterEach(() => {
     vi.clearAllMocks();

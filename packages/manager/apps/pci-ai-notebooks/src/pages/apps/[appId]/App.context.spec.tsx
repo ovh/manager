@@ -18,6 +18,7 @@ describe('App context', () => {
         }),
       };
     });
+
     vi.mock('@/data/api/ai/app/app.api', () => ({
       getApp: vi.fn(() => mockedApp),
     }));

@@ -15,31 +15,9 @@ import { mockedJob } from '@/__tests__/helpers/mocks/job';
 
 describe('Stop job modal', () => {
   beforeEach(() => {
-    vi.mock('react-router-dom', async () => {
-      const mod = await vi.importActual('react-router-dom');
-      return {
-        ...mod,
-        useParams: () => ({
-          projectId: 'projectId',
-        }),
-      };
-    });
-    vi.mock('react-i18next', () => ({
-      useTranslation: () => ({
-        t: (key: string) => key,
-      }),
-    }));
     vi.mock('@/data/api/ai/job/job.api', () => ({
       killJob: vi.fn((job) => job),
     }));
-    vi.mock('@/components/ui/use-toast', () => {
-      const toastMock = vi.fn();
-      return {
-        useToast: vi.fn(() => ({
-          toast: toastMock,
-        })),
-      };
-    });
   });
   afterEach(() => {
     vi.clearAllMocks();

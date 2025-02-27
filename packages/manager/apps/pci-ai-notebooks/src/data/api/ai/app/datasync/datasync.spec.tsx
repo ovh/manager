@@ -3,19 +3,6 @@ import { describe, expect, vi } from 'vitest';
 import { dataSync } from './datasync.api';
 import { mockedDataSyncSpec } from '@/__tests__/helpers/mocks/datasync';
 
-vi.mock('@ovh-ux/manager-core-api', () => {
-  const post = vi.fn(() => {
-    return Promise.resolve({ data: null });
-  });
-  return {
-    apiClient: {
-      v6: {
-        post,
-      },
-    },
-  };
-});
-
 describe('label functions', () => {
   afterEach(() => {
     vi.clearAllMocks();

@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import {
   act,
   fireEvent,
@@ -11,16 +11,6 @@ import { mockedPublicGitVolume } from '@/__tests__/helpers/mocks/volume';
 import PublicGit from './PublicGit.component';
 
 describe('Public Git Component', () => {
-  beforeEach(() => {
-    vi.restoreAllMocks();
-    // Mock necessary hooks and dependencies
-    vi.mock('react-i18next', () => ({
-      useTranslation: () => ({
-        t: (key: string) => key,
-      }),
-    }));
-  });
-
   afterEach(() => {
     vi.clearAllMocks();
   });

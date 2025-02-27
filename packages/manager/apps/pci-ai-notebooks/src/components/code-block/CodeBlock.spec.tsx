@@ -3,20 +3,6 @@ import { describe, it, vi } from 'vitest';
 import { useToast } from '@/components/ui/use-toast';
 import CodeBlock from './CodeBlock.component';
 
-vi.mock('react-i18next', () => ({
-  useTranslation: () => ({
-    t: (key: string) => key,
-  }),
-}));
-vi.mock('@/components/ui/use-toast', () => {
-  const toastMock = vi.fn();
-  return {
-    useToast: vi.fn(() => ({
-      toast: toastMock,
-    })),
-  };
-});
-
 describe('CodeBlock component', () => {
   afterEach(() => {
     vi.clearAllMocks();

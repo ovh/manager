@@ -17,32 +17,10 @@ const onSuccess = vi.fn();
 const onError = vi.fn();
 describe('Delete notebook modal', () => {
   beforeEach(() => {
-    vi.mock('react-router-dom', async () => {
-      const mod = await vi.importActual('react-router-dom');
-      return {
-        ...mod,
-        useParams: () => ({
-          projectId: 'projectId',
-        }),
-      };
-    });
-    vi.mock('react-i18next', () => ({
-      useTranslation: () => ({
-        t: (key: string) => key,
-      }),
-    }));
     vi.mock('@/data/api/ai/notebook/notebook.api', () => ({
       getNotebooks: vi.fn(() => [mockedNotebook]),
       deleteNotebook: vi.fn(),
     }));
-    vi.mock('@/components/ui/use-toast', () => {
-      const toastMock = vi.fn();
-      return {
-        useToast: vi.fn(() => ({
-          toast: toastMock,
-        })),
-      };
-    });
   });
   afterEach(() => {
     vi.clearAllMocks();

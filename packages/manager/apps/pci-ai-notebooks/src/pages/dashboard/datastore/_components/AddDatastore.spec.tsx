@@ -6,7 +6,6 @@ import {
   screen,
   waitFor,
 } from '@testing-library/react';
-import { Locale } from '@/hooks/useLocale';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import * as datastoreApi from '@/data/api/ai/datastore.api';
 import { apiErrorMock } from '@/__tests__/helpers/mocks/aiError';
@@ -18,29 +17,6 @@ import { handleSelectOption } from '@/__tests__/helpers/unitTestHelper';
 
 describe('AddDatastore modal', () => {
   beforeEach(() => {
-    // Mock necessary hooks and dependencies
-    vi.mock('react-i18next', () => ({
-      useTranslation: () => ({
-        t: (key: string) => key,
-      }),
-    }));
-    vi.mock('react-router-dom', async () => {
-      const mod = await vi.importActual('react-router-dom');
-      return {
-        ...mod,
-        useParams: () => ({
-          projectId: 'projectID',
-        }),
-      };
-    });
-    vi.mock('@/components/ui/use-toast', () => {
-      const toastMock = vi.fn();
-      return {
-        useToast: vi.fn(() => ({
-          toast: toastMock,
-        })),
-      };
-    });
     vi.mock('@/data/api/ai/datastore.api', () => ({
       addDatastore: vi.fn(() => mockedDatastoreWithRegion),
     }));
@@ -48,25 +24,6 @@ describe('AddDatastore modal', () => {
     vi.mock('@/data/api/ai/capabilities.api', () => ({
       getRegions: vi.fn(() => [mockedCapabilitiesRegionGRA]),
     }));
-
-    const mockScrollIntoView = vi.fn();
-    window.HTMLElement.prototype.scrollIntoView = mockScrollIntoView;
-
-    vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
-      const mod = await importOriginal<
-        typeof import('@ovh-ux/manager-react-shell-client')
-      >();
-      return {
-        ...mod,
-        useShell: vi.fn(() => ({
-          i18n: {
-            getLocale: vi.fn(() => Locale.fr_FR),
-            onLocaleChange: vi.fn(),
-            setLocale: vi.fn(),
-          },
-        })),
-      };
-    });
   });
   afterEach(() => {
     vi.clearAllMocks();

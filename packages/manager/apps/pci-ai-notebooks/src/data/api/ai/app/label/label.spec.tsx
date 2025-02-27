@@ -3,19 +3,6 @@ import { describe, expect, vi } from 'vitest';
 import { editLabel } from './label.api';
 import { mockedLabel } from '@/__tests__/helpers/mocks/label';
 
-vi.mock('@ovh-ux/manager-core-api', () => {
-  const put = vi.fn(() => {
-    return Promise.resolve({ data: null });
-  });
-  return {
-    apiClient: {
-      v6: {
-        put,
-      },
-    },
-  };
-});
-
 describe('label functions', () => {
   afterEach(() => {
     vi.clearAllMocks();

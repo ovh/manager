@@ -3,23 +3,6 @@ import { describe, expect, vi } from 'vitest';
 import { addSSHKey, getSshkey } from '@/data/api/sshkey/sshkey.api';
 import { mockedSshKey } from '@/__tests__/helpers/mocks/sshkey';
 
-vi.mock('@ovh-ux/manager-core-api', () => {
-  const get = vi.fn(() => {
-    return Promise.resolve({ data: null });
-  });
-  const post = vi.fn(() => {
-    return Promise.resolve({ data: null });
-  });
-  return {
-    apiClient: {
-      v6: {
-        get,
-        post,
-      },
-    },
-  };
-});
-
 describe('sshkey functions', () => {
   afterEach(() => {
     vi.clearAllMocks();

@@ -18,32 +18,10 @@ import AddSSHKey from './AddSSHKey.modal';
 
 describe('Add SSHKey modal', () => {
   beforeEach(() => {
-    vi.mock('react-router-dom', async () => {
-      const mod = await vi.importActual('react-router-dom');
-      return {
-        ...mod,
-        useParams: () => ({
-          projectId: 'projectId',
-        }),
-      };
-    });
-    vi.mock('react-i18next', () => ({
-      useTranslation: () => ({
-        t: (key: string) => key,
-      }),
-    }));
     vi.mock('@/data/api/sshkey/sshkey.api', () => ({
       getSshkey: vi.fn(() => [mockedSshKey, mockedSshKeyBis]),
       addSSHKey: vi.fn((sshDetail) => sshDetail),
     }));
-    vi.mock('@/components/ui/use-toast', () => {
-      const toastMock = vi.fn();
-      return {
-        useToast: vi.fn(() => ({
-          toast: toastMock,
-        })),
-      };
-    });
   });
   afterEach(() => {
     vi.clearAllMocks();

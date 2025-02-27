@@ -2,19 +2,6 @@ import { apiClient } from '@ovh-ux/manager-core-api';
 import { describe, expect, vi } from 'vitest';
 import { getRegions, getFlavor, getAppImages } from './capabilities.api';
 
-vi.mock('@ovh-ux/manager-core-api', () => {
-  const get = vi.fn(() => {
-    return Promise.resolve({ data: null });
-  });
-  return {
-    apiClient: {
-      v6: {
-        get,
-      },
-    },
-  };
-});
-
 describe('Capabilities functions', () => {
   afterEach(() => {
     vi.clearAllMocks();

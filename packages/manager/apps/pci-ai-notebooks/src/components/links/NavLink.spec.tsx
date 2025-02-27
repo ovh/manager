@@ -5,12 +5,6 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import NavLink from '@/components/links/NavLink.component';
 import * as useLoadingIndicator from '@/contexts/LoadingIndicator.context';
 
-vi.mock('@ovh-ux/manager-react-shell-client', () => ({
-  useNavigation: () => ({
-    getURL: vi.fn((app: string, path: string) => `#mockedurl-${app}${path}`),
-  }),
-}));
-
 describe('NavLink', () => {
   const useLoadingIndicatorSpy = vi.spyOn(
     useLoadingIndicator,

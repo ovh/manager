@@ -1,49 +1,32 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, it, vi } from 'vitest';
+import { mockManagerReactShellClient } from '@/__tests__/helpers/mockShellHelper';
 import AppImagesSelect from './AppImageSelect.component';
-import { mockedUser } from '@/__tests__/helpers/mocks/user';
 import {
   mockedPartnerImage,
   mockedPartnerImageBis,
 } from '@/__tests__/helpers/mocks/partnerAppImage';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
-import { Locale } from '@/hooks/useLocale';
 
 describe('Docker Image Select component', () => {
+  beforeEach(() => {
+    vi.restoreAllMocks();
+    mockManagerReactShellClient();
+    vi.mock('@/hooks/api/catalog/useGetCatalog.hook', () => {
+      return {
+        useGetCatalog: vi.fn(() => ({
+          isSuccess: true,
+          data: {
+            locale: {
+              currencyCode: 'EUR',
+            },
+          },
+        })),
+      };
+    });
+  });
   afterEach(() => {
-    vi.mock('@ovh-ux/manager-react-shell-client', () => {
-      return {
-        useShell: vi.fn(() => ({
-          environment: {
-            getEnvironment: vi.fn(() => ({
-              getUser: vi.fn(() => mockedUser),
-            })),
-          },
-        })),
-      };
-    });
-
-    vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
-      const mod = await importOriginal<
-        typeof import('@ovh-ux/manager-react-shell-client')
-      >();
-      return {
-        ...mod,
-        useShell: vi.fn(() => ({
-          i18n: {
-            getLocale: vi.fn(() => Locale.fr_FR),
-            onLocaleChange: vi.fn(),
-            setLocale: vi.fn(),
-          },
-          environment: {
-            getEnvironment: vi.fn(() => ({
-              getUser: vi.fn(() => mockedUser),
-            })),
-          },
-        })),
-      };
-    });
     vi.clearAllMocks();
   });
 

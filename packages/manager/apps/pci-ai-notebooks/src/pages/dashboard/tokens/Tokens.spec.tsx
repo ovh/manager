@@ -6,50 +6,23 @@ import {
   screen,
   waitFor,
 } from '@testing-library/react';
+import { mockManagerReactShellClient } from '@/__tests__/helpers/mockShellHelper';
+import { mockedUsedNavigate } from '@/__tests__/helpers/mockRouterDomHelper';
 import Tokens, {
   breadcrumb as Breadcrumb,
 } from '@/pages/dashboard/tokens/Tokens.page';
-import { Locale } from '@/hooks/useLocale';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedToken } from '@/__tests__/helpers/mocks/token';
 import { openButtonInMenu } from '@/__tests__/helpers/unitTestHelper';
 
-const mockedUsedNavigate = vi.fn();
 describe('Tokens page', () => {
   beforeEach(() => {
-    // Mock necessary hooks and dependencies
-    vi.mock('react-i18next', () => ({
-      useTranslation: () => ({
-        t: (key: string) => key,
-      }),
-    }));
+    vi.restoreAllMocks();
+    mockedUsedNavigate();
+    mockManagerReactShellClient();
     vi.mock('@/data/api/ai/token.api', () => ({
       getTokens: vi.fn(() => [mockedToken]),
     }));
-
-    vi.mock('react-router-dom', async () => {
-      const mod = await vi.importActual('react-router-dom');
-      return {
-        ...mod,
-        useNavigate: () => mockedUsedNavigate,
-      };
-    });
-
-    vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
-      const mod = await importOriginal<
-        typeof import('@ovh-ux/manager-react-shell-client')
-      >();
-      return {
-        ...mod,
-        useShell: vi.fn(() => ({
-          i18n: {
-            getLocale: vi.fn(() => Locale.fr_FR),
-            onLocaleChange: vi.fn(),
-            setLocale: vi.fn(),
-          },
-        })),
-      };
-    });
   });
   afterEach(() => {
     vi.clearAllMocks();

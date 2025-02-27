@@ -6,8 +6,8 @@ import {
   waitFor,
 } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
+import { mockManagerReactShellClient } from '@/__tests__/helpers/mockShellHelper';
 import VolumeForm from './VolumesForm.component';
-import { Locale } from '@/hooks/useLocale';
 import {
   mockedDatastoreWithContainerGit,
   mockedDatastoreWithContainerS3,
@@ -18,31 +18,12 @@ import {
 import { handleSelectText } from '@/__tests__/helpers/unitTestHelper';
 
 describe('Volume Form component', () => {
+  beforeEach(() => {
+    mockManagerReactShellClient();
+  });
   afterEach(() => {
     vi.clearAllMocks();
   });
-
-  vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
-    const mod = await importOriginal<
-      typeof import('@ovh-ux/manager-react-shell-client')
-    >();
-    return {
-      ...mod,
-      useShell: vi.fn(() => ({
-        i18n: {
-          getLocale: vi.fn(() => Locale.fr_FR),
-          onLocaleChange: vi.fn(),
-          setLocale: vi.fn(),
-        },
-      })),
-      useNavigation: () => ({
-        getURL: vi.fn(
-          (app: string, path: string) => `#mockedurl-${app}${path}`,
-        ),
-      }),
-    };
-  });
-
   const onChange = vi.fn();
   it('renders volume form should display datastore form and public git form', async () => {
     render(

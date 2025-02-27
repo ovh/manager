@@ -62,9 +62,6 @@ describe('Notebook Layout', () => {
     vi.mock('@/data/api/ai/notebook/backups/backups.api', () => ({
       getBackups: vi.fn(() => [mockedBackup]),
     }));
-
-    const mockScrollIntoView = vi.fn();
-    window.HTMLElement.prototype.scrollIntoView = mockScrollIntoView;
   });
   afterEach(() => {
     vi.clearAllMocks();

@@ -6,43 +6,30 @@ import {
   waitFor,
 } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
-import { mockedUser } from '@/__tests__/helpers/mocks/user';
-import { Locale } from '@/hooks/useLocale';
+import { mockManagerReactShellClient } from '@/__tests__/helpers/mockShellHelper';
+import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { AutoScalingForm } from './AutoScalingForm.component';
 import { AppPricing, Scaling } from '@/types/orderFunnel';
 import * as ai from '@/types/cloud/project/ai';
-import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 
 describe('Autoscaling form component', () => {
-  beforeEach(async () => {
-    const ResizeObserverMock = vi.fn(() => ({
-      observe: vi.fn(),
-      unobserve: vi.fn(),
-      disconnect: vi.fn(),
-    }));
-    vi.stubGlobal('ResizeObserver', ResizeObserverMock);
-
-    vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
-      const mod = await importOriginal<
-        typeof import('@ovh-ux/manager-react-shell-client')
-      >();
+  beforeEach(() => {
+    vi.restoreAllMocks();
+    mockManagerReactShellClient();
+    vi.mock('@/hooks/api/catalog/useGetCatalog.hook', () => {
       return {
-        ...mod,
-        useShell: vi.fn(() => ({
-          i18n: {
-            getLocale: vi.fn(() => Locale.fr_FR),
-            onLocaleChange: vi.fn(),
-            setLocale: vi.fn(),
-          },
-          environment: {
-            getEnvironment: vi.fn(() => ({
-              getUser: vi.fn(() => mockedUser),
-            })),
+        useGetCatalog: vi.fn(() => ({
+          isSuccess: true,
+          data: {
+            locale: {
+              currencyCode: 'EUR',
+            },
           },
         })),
       };
     });
   });
+
   afterEach(() => {
     vi.clearAllMocks();
   });

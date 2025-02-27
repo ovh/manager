@@ -6,17 +6,10 @@ import { mockedApp } from '@/__tests__/helpers/mocks/app';
 import { mockedNotebook } from '@/__tests__/helpers/mocks/notebook';
 import { mockedJob } from '@/__tests__/helpers/mocks/job';
 import { mockedCurrentUsage } from '@/__tests__/helpers/mocks/currentUsage';
-import { Locale } from '@/hooks/useLocale';
 import { mockedCapabilitiesRegionGRA } from '@/__tests__/helpers/mocks/region';
 
 describe('Home page', () => {
   beforeEach(() => {
-    // Mock necessary hooks and dependencies
-    vi.mock('react-i18next', () => ({
-      useTranslation: () => ({
-        t: (key: string) => key,
-      }),
-    }));
     vi.mock('@/data/api/ai/app.api', () => ({
       getApps: vi.fn(() => [mockedApp]),
     }));
@@ -30,14 +23,6 @@ describe('Home page', () => {
     vi.mock('@/data/api/usage/usage.api', () => ({
       getCurrentUsage: vi.fn(() => mockedCurrentUsage),
     }));
-    vi.mock('@/components/ui/use-toast', () => {
-      const toastMock = vi.fn();
-      return {
-        useToast: vi.fn(() => ({
-          toast: toastMock,
-        })),
-      };
-    });
 
     vi.mock('@/pages/dashboard/Dashboard.context', () => ({
       useDashboardData: vi.fn(() => ({
@@ -51,21 +36,6 @@ describe('Home page', () => {
     vi.mock('@/data/api/ai/capabilities.api', () => ({
       getRegions: vi.fn(() => [mockedCapabilitiesRegionGRA]),
     }));
-    vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
-      const mod = await importOriginal<
-        typeof import('@ovh-ux/manager-react-shell-client')
-      >();
-      return {
-        ...mod,
-        useShell: vi.fn(() => ({
-          i18n: {
-            getLocale: vi.fn(() => Locale.fr_FR),
-            onLocaleChange: vi.fn(),
-            setLocale: vi.fn(),
-          },
-        })),
-      };
-    });
   });
   afterEach(() => {
     vi.clearAllMocks();

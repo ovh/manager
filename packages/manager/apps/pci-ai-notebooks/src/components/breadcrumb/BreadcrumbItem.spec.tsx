@@ -2,12 +2,6 @@ import { render, screen, waitFor } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 
-vi.mock('react-i18next', () => ({
-  useTranslation: () => ({
-    t: (key: string) => key,
-  }),
-}));
-
 describe('BreadcrumbItem component', () => {
   afterEach(() => {
     vi.clearAllMocks();

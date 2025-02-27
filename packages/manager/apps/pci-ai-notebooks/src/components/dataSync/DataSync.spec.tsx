@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import {
   act,
   fireEvent,
@@ -6,7 +6,6 @@ import {
   screen,
   waitFor,
 } from '@testing-library/react';
-import { Locale } from '@/hooks/useLocale';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedStatusVolume } from '@/__tests__/helpers/mocks/volume';
 import DataSyncModal from './DataSync.component';
@@ -14,47 +13,6 @@ import { handleSelectOption } from '@/__tests__/helpers/unitTestHelper';
 
 const onSubmit = vi.fn();
 describe('Data Sync Component', () => {
-  beforeEach(() => {
-    vi.restoreAllMocks();
-    // Mock necessary hooks and dependencies
-    vi.mock('react-i18next', () => ({
-      useTranslation: () => ({
-        t: (key: string) => key,
-      }),
-    }));
-
-    vi.mock('react-router-dom', async () => {
-      const mod = await vi.importActual('react-router-dom');
-      return {
-        ...mod,
-        useParams: vi.fn(),
-      };
-    });
-
-    vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
-      const mod = await importOriginal<
-        typeof import('@ovh-ux/manager-react-shell-client')
-      >();
-      return {
-        ...mod,
-        useShell: vi.fn(() => ({
-          i18n: {
-            getLocale: vi.fn(() => Locale.fr_FR),
-            onLocaleChange: vi.fn(),
-            setLocale: vi.fn(),
-          },
-        })),
-        useNavigation: () => ({
-          getURL: vi.fn(
-            (app: string, path: string) => `#mockedurl-${app}${path}`,
-          ),
-        }),
-      };
-    });
-    const mockScrollIntoView = vi.fn();
-    window.HTMLElement.prototype.scrollIntoView = mockScrollIntoView;
-  });
-
   afterEach(() => {
     vi.clearAllMocks();
   });

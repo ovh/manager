@@ -13,14 +13,6 @@ describe('Labels Form component', () => {
   afterEach(() => {
     vi.clearAllMocks();
   });
-  vi.mock('@/components/ui/use-toast', () => {
-    const toastMock = vi.fn();
-    return {
-      useToast: vi.fn(() => ({
-        toast: toastMock,
-      })),
-    };
-  });
   const onAdd = vi.fn();
   const onDelete = vi.fn();
   const onChange = vi.fn();

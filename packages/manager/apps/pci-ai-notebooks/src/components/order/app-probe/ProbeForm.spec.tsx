@@ -6,35 +6,9 @@ import {
   waitFor,
 } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
-import { mockedUser } from '@/__tests__/helpers/mocks/user';
-import { Locale } from '@/hooks/useLocale';
 import ProbeForm from './ProbeForm.component';
 
 describe('Probe form component', () => {
-  afterEach(() => {
-    vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
-      const mod = await importOriginal<
-        typeof import('@ovh-ux/manager-react-shell-client')
-      >();
-      return {
-        ...mod,
-        useShell: vi.fn(() => ({
-          i18n: {
-            getLocale: vi.fn(() => Locale.fr_FR),
-            onLocaleChange: vi.fn(),
-            setLocale: vi.fn(),
-          },
-          environment: {
-            getEnvironment: vi.fn(() => ({
-              getUser: vi.fn(() => mockedUser),
-            })),
-          },
-        })),
-      };
-    });
-    vi.clearAllMocks();
-  });
-
   const onChange = vi.fn();
   it('should display Probe Form without any activation', async () => {
     render(

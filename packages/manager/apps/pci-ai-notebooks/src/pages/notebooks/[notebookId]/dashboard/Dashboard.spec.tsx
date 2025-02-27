@@ -7,7 +7,6 @@ import {
   mockedNotebookSpec,
   mockedNotebookStatus,
 } from '@/__tests__/helpers/mocks/notebook';
-import { Locale } from '@/hooks/useLocale';
 import { mockedCommand } from '@/__tests__/helpers/mocks/command';
 import Dashboard from './Dashboard.page';
 import * as notebookApi from '@/data/api/ai/notebook/notebook.api';
@@ -33,12 +32,6 @@ const mockedNotebookBis: ai.notebook.Notebook = {
 describe('Dashboard page', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
-    // Mock necessary hooks and dependencies
-    vi.mock('react-i18next', () => ({
-      useTranslation: () => ({
-        t: (key: string) => key,
-      }),
-    }));
 
     vi.mock('@/data/api/ai/notebook/notebook.api', () => ({
       getCommand: vi.fn(() => mockedCommand),
@@ -51,35 +44,6 @@ describe('Dashboard page', () => {
         serviceQuery: {} as UseQueryResult<ai.notebook.Notebook, Error>,
       })),
     }));
-
-    vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
-      const mod = await importOriginal<
-        typeof import('@ovh-ux/manager-react-shell-client')
-      >();
-      return {
-        ...mod,
-        useShell: vi.fn(() => ({
-          i18n: {
-            getLocale: vi.fn(() => Locale.fr_FR),
-            onLocaleChange: vi.fn(),
-            setLocale: vi.fn(),
-          },
-        })),
-        useNavigation: () => ({
-          getURL: vi.fn(
-            (app: string, path: string) => `#mockedurl-${app}${path}`,
-          ),
-        }),
-      };
-    });
-    vi.mock('@/components/ui/use-toast', () => {
-      const toastMock = vi.fn();
-      return {
-        useToast: vi.fn(() => ({
-          toast: toastMock,
-        })),
-      };
-    });
   });
 
   afterEach(() => {

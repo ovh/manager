@@ -6,52 +6,27 @@ import {
   screen,
   waitFor,
 } from '@testing-library/react';
+import { mockManagerReactShellClient } from '@/__tests__/helpers/mockShellHelper';
+import { mockedUsedNavigate } from '@/__tests__/helpers/mockRouterDomHelper';
 import Datastore, {
   breadcrumb as Breadcrumb,
 } from '@/pages/dashboard/datastore/Datastore.page';
-import { Locale } from '@/hooks/useLocale';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedCapabilitiesRegionGRA } from '@/__tests__/helpers/mocks/region';
 import { mockedDatastoreWithRegion } from '@/__tests__/helpers/mocks/datastore';
 import { openButtonInMenu } from '@/__tests__/helpers/unitTestHelper';
 
-const mockedUsedNavigate = vi.fn();
 describe('Datastore page', () => {
   beforeEach(() => {
-    // Mock necessary hooks and dependencies
-    vi.mock('react-i18next', () => ({
-      useTranslation: () => ({
-        t: (key: string) => key,
-      }),
-    }));
+    vi.restoreAllMocks();
+    mockedUsedNavigate();
+    mockManagerReactShellClient();
     vi.mock('@/data/api/ai/datastore.api', () => ({
       getDatastores: vi.fn(() => [mockedDatastoreWithRegion]),
     }));
     vi.mock('@/data/api/ai/capabilities.api', () => ({
       getRegions: vi.fn(() => [mockedCapabilitiesRegionGRA]),
     }));
-    vi.mock('react-router-dom', async () => {
-      const mod = await vi.importActual('react-router-dom');
-      return {
-        ...mod,
-        useNavigate: () => mockedUsedNavigate,
-      };
-    });
-    vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
-      const mod = await importOriginal<
-        typeof import('@ovh-ux/manager-react-shell-client')
-      >();
-      return {
-        ...mod,
-        useShell: vi.fn(() => ({
-          i18n: {
-            getLocale: vi.fn(() => Locale.fr_FR),
-            onLocaleChange: vi.fn(),
-            setLocale: vi.fn(),
-          },
-        })),
-      };
-    });
   });
   afterEach(() => {
     vi.clearAllMocks();
