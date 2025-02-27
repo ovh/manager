@@ -862,7 +862,7 @@
   "hosting_configuration_tab_modules_module_delete": "Delete the module",
   "hosting_configuration_tab_modules_module_access_admin": "Access the module's administration interface ",
   "hosting_configuration_tab_modules_refresh": "Reload modules",
-  "hosting_configuration_tab_modules_module_access": "Access module ",
+  "hosting_configuration_tab_modules_module_access": "Go to website",
   "hosting_configuration_tab_modules_module_actions": "Actions on the module",
   "hosting_configuration_tab_modules_create_title": "Create a module",
   "hosting_configuration_tab_modules_create_step1_loading_error": "An error has occurred loading information.",

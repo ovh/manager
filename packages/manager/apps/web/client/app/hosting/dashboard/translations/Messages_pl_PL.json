@@ -862,7 +862,7 @@
   "hosting_configuration_tab_modules_module_delete": "Usuń moduł",
   "hosting_configuration_tab_modules_module_access_admin": "Dostęp do interfejsu administracyjnego modułu",
   "hosting_configuration_tab_modules_refresh": "Odśwież moduły",
-  "hosting_configuration_tab_modules_module_access": "Dostęp do modułu",
+  "hosting_configuration_tab_modules_module_access": "Dostęp do strony WWW",
   "hosting_configuration_tab_modules_module_actions": "Operacje dla modułu",
   "hosting_configuration_tab_modules_create_title": "Zainstaluj moduł",
   "hosting_configuration_tab_modules_create_step1_loading_error": "Wystąpił błąd podczas pobierania informacji.",

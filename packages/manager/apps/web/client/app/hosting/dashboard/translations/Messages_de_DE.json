@@ -862,7 +862,7 @@
   "hosting_configuration_tab_modules_module_delete": "Modul löschen",
   "hosting_configuration_tab_modules_module_access_admin": "Auf das Verwaltungsinterface des Moduls zugreifen",
   "hosting_configuration_tab_modules_refresh": "Module erneut laden",
-  "hosting_configuration_tab_modules_module_access": "Zum Modul",
+  "hosting_configuration_tab_modules_module_access": "Zur Website",
   "hosting_configuration_tab_modules_module_actions": "Modulaktionen",
   "hosting_configuration_tab_modules_create_title": "Modul erstellen",
   "hosting_configuration_tab_modules_create_step1_loading_error": "Beim Laden der Informationen ist ein Fehler aufgetreten.",
