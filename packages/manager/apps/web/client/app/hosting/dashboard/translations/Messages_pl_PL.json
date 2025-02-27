@@ -1031,7 +1031,7 @@
   "hosting_tab_FTP_configuration_user_modify_step2_protocols_label": "Protokoły logowania",
   "hosting_tab_FTP_configuration_user_modify_fail": "Wystąpił błąd podczas zmiany ustawień użytkownika.",
   "hosting_tab_FTP_configuration_user_modify_success": "Ustawienia użytkownika zostaną zmienione.",
-  "hosting_tab_FTP_configuration_offer_upgrade": "Pakiet, z którego korzystasz, nie pozwala na tworzenie innych użytkowników.",
+  "hosting_tab_FTP_configuration_offer_upgrade": "Aby skorzystać z dodatkowych kont FTP, wybierz jedną z naszych wyższych ofert.",
   "hosting_tab_CRON_configuration_create_title_button": "Dodaj zadanie",
   "hosting_tab_CRON_configuration_edit_title_button": "Edytuj zadanie",
   "hosting_tab_CRON_step3_title": "Podsumowanie zadania",

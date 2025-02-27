@@ -1031,7 +1031,7 @@
   "hosting_tab_FTP_configuration_user_modify_step2_protocols_label": "Connection protocols",
   "hosting_tab_FTP_configuration_user_modify_fail": "An error has occurred requesting a user modification.",
   "hosting_tab_FTP_configuration_user_modify_success": "The user is about to be changed.",
-  "hosting_tab_FTP_configuration_offer_upgrade": "Your current solution does not allow you to create other users.",
+  "hosting_tab_FTP_configuration_offer_upgrade": "To get additional FTP users, choose one of our higher plans.",
   "hosting_tab_CRON_configuration_create_title_button": "Add a scheduling",
   "hosting_tab_CRON_configuration_edit_title_button": "Edit the job",
   "hosting_tab_CRON_step3_title": "Job summary",
