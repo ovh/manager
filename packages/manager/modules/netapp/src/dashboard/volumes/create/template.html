@@ -67,5 +67,23 @@
                 data-ng-required="true"
             />
         </oui-field>
+        <oui-field
+            data-label="{{:: 'netapp_volume_mount_path' | translate }}"
+            data-error-messages="{  'pattern': ('netapp_volume_mount_path_format_error' | translate),
+            'limitExceeds': ('netapp_volume_mount_path_character_limit_error' | translate),
+            'alreadyUsed': ('netapp_volume_mount_path_already_used_error' | translate)
+            }"
+            size="l"
+        >
+            <input
+                class="oui-input"
+                type="text"
+                id="mountPointName"
+                name="mountPointName"
+                data-ng-model="$ctrl.newVolume.mountPointName"
+                data-ng-pattern="$ctrl.MOUNT_PATH_PATTERN"
+                data-ui-validate="{ limitExceeds: '$ctrl.isLimitExceeds($value)', alreadyUsed: '$ctrl.isMountPointNameAlreadyUsed($value)' }"
+            />
+        </oui-field>
     </form>
 </oui-modal>

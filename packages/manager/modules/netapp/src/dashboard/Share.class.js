@@ -1,5 +1,14 @@
 export default class Share {
-  constructor({ id, createdAt, description, name, protocol, size, status }) {
+  constructor({
+    id,
+    createdAt,
+    description,
+    name,
+    protocol,
+    size,
+    status,
+    path,
+  }) {
     Object.assign(this, {
       id,
       createdAt,
@@ -8,6 +17,7 @@ export default class Share {
       protocol,
       size,
       status,
+      path,
     });
   }
 
