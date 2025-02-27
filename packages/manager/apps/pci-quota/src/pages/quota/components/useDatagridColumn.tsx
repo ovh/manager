@@ -7,6 +7,12 @@ import { useBytes } from '@ovh-ux/manager-pci-common';
 import { Quota } from '@/api/data/quota';
 import { PRODUCTS } from '@/constants';
 import { LimitedQuotaBadgeComponent } from '@/pages/quota/components/LimitedQuotaBadge.component';
+import {
+  isCpuQuotaThresholdReached,
+  isInstanceQuotaThresholdReached,
+  isRamQuotaThresholdReached,
+  isVolumeQuotaThresholdReached,
+} from '@/helpers/thresholds';
 
 export const useDatagridColumn = () => {
   const { t } = useTranslation('quotas');
@@ -29,7 +35,7 @@ export const useDatagridColumn = () => {
               : props.instance.maxInstances}
           </span>
 
-          {props.isInstanceQuotaThresholdReached && (
+          {isInstanceQuotaThresholdReached(props) && (
             <LimitedQuotaBadgeComponent />
           )}
         </DataGridTextCell>
@@ -48,7 +54,7 @@ export const useDatagridColumn = () => {
               : props.instance.maxCores}
           </span>
 
-          {props.isCpuQuotaThresholdReached && <LimitedQuotaBadgeComponent />}
+          {isCpuQuotaThresholdReached(props) && <LimitedQuotaBadgeComponent />}
         </DataGridTextCell>
       ),
       label: t('pci_projects_project_quota_core'),
@@ -59,22 +65,24 @@ export const useDatagridColumn = () => {
       cell: (props: Quota) => {
         const { formatBytes } = useBytes();
         const [used, max] = [
-          formatBytes(props.instance.usedRAM * 1000000, 2),
-          formatBytes(props.instance.maxRam * 1000000, 2),
+          formatBytes(props.instance.usedRAM * 1_000_000, 2),
+          formatBytes(props.instance.maxRam * 1_000_000, 2),
         ];
         return (
           <DataGridTextCell>
             <span>
               {props.instance.usedRAM > 0
                 ? used
-                : props.instance.usedRAM * 1000000}{' '}
+                : props.instance.usedRAM * 1_000_000}{' '}
               /
               {props.instance.maxRam === -1
                 ? t('pci_projects_project_quota_instance_unlimited')
                 : max}
             </span>
 
-            {props.isRamQuotaThresholdReached && <LimitedQuotaBadgeComponent />}
+            {isRamQuotaThresholdReached(props) && (
+              <LimitedQuotaBadgeComponent />
+            )}
           </DataGridTextCell>
         );
       },
@@ -86,8 +94,8 @@ export const useDatagridColumn = () => {
       cell: (props: Quota) => {
         const { formatBytes } = useBytes();
         const [used, max] = [
-          formatBytes(props.volume.usedGigabytes * 1000000000, 2),
-          formatBytes(props.volume.maxGigabytes * 1000000000, 2),
+          formatBytes(props.volume.usedGigabytes * 1_000_000_000, 2),
+          formatBytes(props.volume.maxGigabytes * 1_000_000_000, 2),
         ];
 
         return (
@@ -95,13 +103,13 @@ export const useDatagridColumn = () => {
             <span>
               {props.volume.usedGigabytes > 0
                 ? used
-                : props.volume.usedGigabytes * 1000000}{' '}
+                : props.volume.usedGigabytes * 1_000_000}{' '}
               /
               {props.volume.usedGigabytes === -1
                 ? t('pci_projects_project_quota_instance_unlimited')
                 : max}
             </span>
-            {props.isVolumeQuotaThresholdReached && (
+            {isVolumeQuotaThresholdReached(props) && (
               <LimitedQuotaBadgeComponent />
             )}
           </DataGridTextCell>

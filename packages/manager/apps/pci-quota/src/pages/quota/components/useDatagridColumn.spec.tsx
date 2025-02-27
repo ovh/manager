@@ -48,6 +48,7 @@ describe('useDatagridColumn', () => {
     const columns = result.current;
 
     const quota = {
+      region: 'region',
       fullRegionName: 'Region 1',
       instance: {
         usedInstances: 2,
@@ -75,11 +76,11 @@ describe('useDatagridColumn', () => {
       isCpuQuotaThresholdReached: false,
       isRamQuotaThresholdReached: false,
       isVolumeQuotaThresholdReached: false,
-    } as Quota;
+    };
 
     columns.forEach((column) => {
       const CellComponent = column.cell;
-      const cell = CellComponent(quota);
+      const cell = CellComponent((quota as unknown) as Quota);
       expect(cell).toBeTruthy();
     });
   });

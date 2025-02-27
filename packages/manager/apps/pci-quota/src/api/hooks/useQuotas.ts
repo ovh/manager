@@ -31,12 +31,12 @@ export const useQuotas = (projectId: string) => {
         location.regions.some((region) => region === quota.region),
       );
 
-      return new Quota({
+      return {
         ...quota,
         fullRegionName: targetLocation
           ? `${targetLocation?.name} (${quota.region})`
           : quota.region,
-      });
+      };
     });
   }, [locations, query.data]);
 
