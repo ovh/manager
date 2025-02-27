@@ -1,5 +1,5 @@
 import { AbstractCursorDatagridController } from '@ovh-ux/manager-ng-apiv2-helper';
-import { TAG } from '../../iam.constants';
+import { TAG } from '../iam.constants';
 
 export default class ApplicationsController extends AbstractCursorDatagridController {
   /* @ngInject */
