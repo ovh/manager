@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.12.0...@ovh-ux/manager-react-components@2.13.0) (2025-02-27)
+
+### Bug Fixes
+
+- **i18n:** add missing translations [CDS 3737] ([c1b3843](https://github.com/ovh/manager/commit/c1b3843e4f15d7e2ed9b62d0e51b8ee15d1110b6))
+
+### Features
+
+- **manager-react-components:** datagrid add event enter in searchbar ([18a186a](https://github.com/ovh/manager/commit/18a186a9fb3cc9dcca8f9490d49a564fe0d6372e))
+- **manager-react-components:** update datagrid loading stories ([98bd11a](https://github.com/ovh/manager/commit/98bd11a5ec3e87428adcbe02b94c0341d688db77))
+- **mrc:** add useBytes hook ([fe775b4](https://github.com/ovh/manager/commit/fe775b4e2d5bbeb3ad75a23cb0084e8534838781))
+
 # [2.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.11.1...@ovh-ux/manager-react-components@2.12.0) (2025-02-27)
 
 ### Bug Fixes
