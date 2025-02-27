@@ -5,7 +5,6 @@ import {
   Links,
   OvhSubsidiary,
 } from '@ovh-ux/manager-react-components';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 
 const urls: Partial<{ [key in OvhSubsidiary]: string }> = {
   ES: 'https://www.ovhcloud.com/es-es/lp/vmware-vcd-evolution/',
@@ -44,7 +43,7 @@ export const VCDOrgInfoLink: React.FC<{
     <Links
       className={className}
       type={LinkType.external}
-      target={OdsHTMLAnchorElementTarget._blank}
+      target="_blank"
       label={label}
       href={href}
     />
