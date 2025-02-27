@@ -1,5 +1,5 @@
 import React from 'react';
-import { OsdsLink, OsdsSkeleton } from '@ovhcloud/ods-components/react';
+import { OdsLink, OdsSkeleton } from '@ovhcloud/ods-components/react';
 import { useNavigate } from 'react-router-dom';
 import {
   ActionMenu,
@@ -12,8 +12,7 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import {
   VeeamBackup,
   getOrganizationDisplayName,
@@ -24,17 +23,18 @@ import {
 } from '@ovh-ux/manager-module-vcd-api';
 import { vcdOrganizationAppName } from '@/veeam-backup.config';
 import { urls } from '@/routes/routes.constant';
+import TEST_IDS from '@/utils/testIds.constants';
 
 export const DisplayNameCell = (backup: VeeamBackup): JSX.Element => {
   const navigate = useNavigate();
   return (
     <DataGridTextCell>
-      <OsdsLink
-        color={ODS_THEME_COLOR_INTENT.primary}
+      <OdsLink
+        label={getVeeamBackupDisplayName(backup)}
         onClick={() => navigate(urls.dashboard.replace(':id', backup.id))}
-      >
-        {getVeeamBackupDisplayName(backup)}
-      </OsdsLink>
+        href={undefined}
+        data-testid={TEST_IDS.listingBackupLink}
+      />
     </DataGridTextCell>
   );
 };
@@ -67,7 +67,7 @@ export const OrganizationCell = ({
   }, []);
 
   if (isLoading || (withLink && !href)) {
-    return <OsdsSkeleton />;
+    return <OdsSkeleton />;
   }
   return withLink ? (
     <Links
@@ -107,15 +107,15 @@ export const ActionCell = (backup: VeeamBackup): JSX.Element => {
 
   return (
     <ActionMenu
-      icon={ODS_ICON_NAME.ELLIPSIS_VERTICAL}
+      id={`backup_menu_${backup.id}`}
       isCompact
       variant={ODS_BUTTON_VARIANT.ghost}
       items={[
         {
           id: 1,
           label: t('delete_action'),
-          color: ODS_THEME_COLOR_INTENT.error,
-          disabled: backup.resourceStatus !== 'READY' || undefined,
+          color: ODS_BUTTON_COLOR.critical,
+          isDisabled: backup.resourceStatus !== 'READY',
           urn: backup.iam.urn,
           // Not implemented yet in IAM
           iamActions: [

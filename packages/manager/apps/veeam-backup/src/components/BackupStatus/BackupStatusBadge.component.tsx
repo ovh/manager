@@ -1,21 +1,19 @@
-import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { OsdsChip } from '@ovhcloud/ods-components/react';
-import { ODS_CHIP_SIZE } from '@ovhcloud/ods-components';
 import { ResourceStatus, VeeamBackup } from '@ovh-ux/manager-module-vcd-api';
+import { OdsBadge } from '@ovhcloud/ods-components/react';
+import { OdsBadgeColor } from '@ovhcloud/ods-components';
 
 export type BackupStatusBadgeProps = {
   resourceStatus: ResourceStatus;
 };
 
-const colorByStatus: { [s in ResourceStatus]: ODS_THEME_COLOR_INTENT } = {
-  READY: ODS_THEME_COLOR_INTENT.success,
-  CREATING: ODS_THEME_COLOR_INTENT.info,
-  DISABLED: ODS_THEME_COLOR_INTENT.default,
-  DISABLING: ODS_THEME_COLOR_INTENT.info,
-  REMOVED: ODS_THEME_COLOR_INTENT.default,
-  UPDATING: ODS_THEME_COLOR_INTENT.info,
+const colorByStatus: { [s in ResourceStatus]: OdsBadgeColor } = {
+  READY: 'success',
+  CREATING: 'information',
+  DISABLED: 'neutral',
+  DISABLING: 'information',
+  REMOVED: 'neutral',
+  UPDATING: 'information',
 };
 
 export const BackupStatusBadge = ({
@@ -23,16 +21,12 @@ export const BackupStatusBadge = ({
   className,
 }: VeeamBackup & { className?: string }): JSX.Element => {
   const { t } = useTranslation('veeam-backup');
-  const color = colorByStatus[resourceStatus];
 
   return (
-    <OsdsChip
-      className={`whitespace-nowrap ${className}`}
-      inline
-      color={color}
-      size={ODS_CHIP_SIZE.sm}
-    >
-      {t(`status-${resourceStatus}`)}
-    </OsdsChip>
+    <OdsBadge
+      className={`whitespace-nowrap mt-1 ${className}`}
+      color={colorByStatus[resourceStatus]}
+      label={t(`status-${resourceStatus}`)}
+    />
   );
 };

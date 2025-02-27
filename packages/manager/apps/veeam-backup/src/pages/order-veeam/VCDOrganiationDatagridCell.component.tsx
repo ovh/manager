@@ -1,30 +1,26 @@
-import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { OsdsChip } from '@ovhcloud/ods-components/react';
-import { ODS_CHIP_SIZE } from '@ovhcloud/ods-components';
+import { OdsBadge } from '@ovhcloud/ods-components/react';
+import { OdsBadgeColor } from '@ovhcloud/ods-components';
 import { DataGridTextCell, Region } from '@ovh-ux/manager-react-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
+  BackupStatus,
   VCDOrganizationWithBackupStatus,
   getOrganizationDisplayName,
 } from '@ovh-ux/manager-module-vcd-api';
 
-const colorByStatus = {
-  active: ODS_THEME_COLOR_INTENT.success,
-  none: ODS_THEME_COLOR_INTENT.default,
-  error: ODS_THEME_COLOR_INTENT.error,
+const colorByStatus: { [s in BackupStatus]: OdsBadgeColor } = {
+  active: 'success',
+  none: 'neutral',
+  error: 'critical',
 };
 
 export const BackupStatusCell = (org: VCDOrganizationWithBackupStatus) => {
   const { t } = useTranslation('order-veeam');
   return (
-    <OsdsChip
-      inline
+    <OdsBadge
       color={colorByStatus[org?.backupStatus]}
-      size={ODS_CHIP_SIZE.sm}
-    >
-      {t(`${org?.backupStatus}_status`)}
-    </OsdsChip>
+      label={t(`${org?.backupStatus}_status`)}
+    />
   );
 };
 

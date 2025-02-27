@@ -1,29 +1,18 @@
 import React from 'react';
 import {
-  OsdsChip,
-  OsdsSpinner,
-  OsdsSkeleton,
+  OdsBadge,
+  OdsSkeleton,
+  OdsSpinner,
 } from '@ovhcloud/ods-components/react';
-import {
-  ODS_CHIP_SIZE,
-  ODS_SKELETON_SIZE,
-  ODS_SPINNER_SIZE,
-} from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 
 export const Loading = (props: React.HTMLAttributes<HTMLDivElement>) => (
   <div {...props} className={`flex justify-center ${props.className}`}>
-    <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
+    <OdsSpinner size="md" />
   </div>
 );
 
 export const LoadingChip = ({ className }: { className?: string }) => (
-  <OsdsChip
-    className={className}
-    inline
-    color={ODS_THEME_COLOR_INTENT.default}
-    size={ODS_CHIP_SIZE.sm}
-  >
-    <OsdsSkeleton inline size={ODS_SKELETON_SIZE.xs} />
-  </OsdsChip>
+  <OdsBadge className={`mt-1 ${className}`} color="neutral" label="">
+    <OdsSkeleton />
+  </OdsBadge>
 );
