@@ -1,7 +1,7 @@
 import { screen, waitFor } from '@testing-library/react';
 import {
   WAIT_FOR_DEFAULT_OPTIONS,
-  getButtonByLabel,
+  getOdsButtonByLabel,
 } from '@ovh-ux/manager-core-test-utils';
 import { renderTest, labels } from '@/test-helpers';
 import '@testing-library/jest-dom';
@@ -21,7 +21,7 @@ describe('listing', () => {
       initialRoute: '/',
     });
 
-    await getButtonByLabel({
+    await getOdsButtonByLabel({
       container,
       label: labels.error.manager_error_page_action_reload_label,
       altLabel: 'manager_error_page_action_reload_label',
