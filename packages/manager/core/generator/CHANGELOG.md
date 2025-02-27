@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-generator@0.25.0...@ovh-ux/manager-generator@0.26.0) (2025-02-27)
+
+
+### Features
+
+* **generator:** update v6 listing template ([1d556e7](https://github.com/ovh/manager/commit/1d556e7e767d551dba04418f68b1bbc6eaf79c45))
+
+
+
+
+
 # [0.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-generator@0.24.0...@ovh-ux/manager-generator@0.25.0) (2025-02-20)
 
 
