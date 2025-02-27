@@ -1,6 +1,8 @@
 import { lazy } from 'react';
 import { Route } from 'react-router-dom';
 import { ErrorBoundary } from '@/pages/Layout';
+import ContainerListingPage from '@/pages/containers/Listing.page';
+import UserListingPage from '@/pages/users/Listing.page';
 
 export const ROUTE_PATHS = {
   ROOT: '/pci/projects/:projectId/storages/cold-archive',
@@ -25,9 +27,7 @@ export const ROUTE_PATHS = {
 
 const LayoutPage = lazy(() => import('@/pages/Layout'));
 const StoragePage = lazy(() => import('@/pages/Archive.page'));
-const ListingContainerPage = lazy(() =>
-  import('@/pages/containers/Listing.page'),
-);
+
 const NewContainerPage = lazy(() => import('@/pages/containers/new/New.page'));
 const ManageContainerPage = lazy(() =>
   import('@/pages/containers/manage/Manage.page'),
@@ -53,7 +53,6 @@ const ArchivePage = lazy(() =>
   import('@/pages/containers/archive/Archive.page'),
 );
 
-const UserListingPage = lazy(() => import('@/pages/users/Listing.page'));
 const UserCreationPage = lazy(() => import('@/pages/users/create/Create.page'));
 const UserDeletionPage = lazy(() => import('@/pages/users/delete/Delete.page'));
 const UserImportPolicyPage = lazy(() =>
@@ -80,8 +79,8 @@ export default (
     <Route path={ROUTE_PATHS.STORAGES} Component={StoragePage}>
       <Route
         id="containers"
-        path={ROUTE_PATHS.STORAGES}
-        Component={ListingContainerPage}
+        path={ROUTE_PATHS.CONTAINER_LISTING}
+        Component={ContainerListingPage}
       >
         <Route
           id="manage-container"
@@ -119,6 +118,7 @@ export default (
           Component={FlushArchivePage}
         />
       </Route>
+
       <Route
         id="add_user"
         path={ROUTE_PATHS.USERS_LISTING}
