@@ -6,9 +6,12 @@ import ngOvhUtils from '@ovh-ux/ng-ovh-utils';
 import '@ovh-ux/ui-kit';
 import '@uirouter/angularjs';
 
+import { ApiV2ListHelper } from '@ovh-ux/manager-ng-apiv2-helper';
+
 import advanced from './advanced/advanced.module';
 import dashboard from './dashboard/user-dashboard.module';
 import emails from './emails/user-emails.module';
+import gdpr from './gdpr/gdpr.module';
 import infos from './infos/user-infos.module';
 import ipRestriction from './ip/restriction/user-ip-restriction.module';
 import newAccountForm from './components/newAccountForm/new-account-form-component.module';
@@ -33,11 +36,13 @@ angular
     advanced,
     dashboard,
     emails,
+    gdpr,
     infos,
     ipRestriction,
     newAccountForm,
     security,
     supportLevel,
+    ApiV2ListHelper.moduleName,
   ])
   .config(routing)
   .controller(

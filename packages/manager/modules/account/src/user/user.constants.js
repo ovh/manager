@@ -37,8 +37,13 @@ export const GUIDES_LIST = {
   },
 };
 
+export const DEFAULT_AUTHORIZATIONS = {
+  authorizedActions: [],
+};
+
 export default {
   GUIDES_LIST,
   SUPPORT_URLS,
   ACCOUNT_INFORMATIONS,
+  DEFAULT_AUTHORIZATIONS,
 };
