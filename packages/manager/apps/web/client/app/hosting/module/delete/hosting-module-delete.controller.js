@@ -2,12 +2,23 @@ angular.module('App').controller(
   'HostingModuleDeleteCtrl',
   class HostingModuleDeleteCtrl {
     /* @ngInject */
-    constructor($scope, $stateParams, $translate, Alerter, HostingModule) {
+    constructor(
+      $scope,
+      $stateParams,
+      $translate,
+      Alerter,
+      HostingModule,
+      coreURLBuilder,
+    ) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;
       this.$translate = $translate;
       this.Alerter = Alerter;
       this.HostingModule = HostingModule;
+      this.dataBaseHref = coreURLBuilder.buildURL(
+        'web',
+        `#/hosting/${$stateParams.productId}/database`,
+      );
     }
 
     $onInit() {

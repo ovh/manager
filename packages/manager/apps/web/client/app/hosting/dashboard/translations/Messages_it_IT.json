@@ -929,7 +929,7 @@
   "hosting_configuration_tab_modules_create_step4_db": "Database",
   "hosting_configuration_tab_modules_delete_title": "Elimina un modulo ",
   "hosting_configuration_tab_modules_delete_question": "Vuoi eliminare il modulo {{t0}}?",
-  "hosting_configuration_tab_modules_delete_information": "Attenzione, questa azione è irreversibile e comporta la perdita di tutti i dati",
+  "hosting_configuration_tab_modules_delete_information": "L'eliminazione del tuo modulo non comporta la cancellazione del database ad esso associato. Per eliminarlo, è possibile eseguire l’operazione dalla scheda \"<a href=\"{{href}}\">Database</a>\".",
   "hosting_configuration_tab_modules_delete_success": "Il modulo sarà eliminato",
   "hosting_configuration_tab_modules_delete_fail": "Si è verificato un errore durante la richiesta di eliminazione del modulo {{t0}}.",
   "hosting_configuration_tab_modules_create_success": "L’installazione del modulo è in corso. Ti invieremo una mail a installazione completata. ",
