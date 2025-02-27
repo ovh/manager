@@ -214,6 +214,13 @@ export const useServiceActions = (
         target: OdsHTMLAnchorElementTarget._top,
       });
     }
+
+    items.push({
+      label: 'Annuler engagement',
+      color: ODS_THEME_COLOR_INTENT.primary,
+      href: '#/vps/vps-8e163985.vps.ovh.net/dashboard/cancel-commitment',
+      target: OdsHTMLAnchorElementTarget._top,
+    });
     setActions(items);
   }, [links]);
 

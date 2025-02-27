@@ -73,6 +73,10 @@ export const useServiceLinks = (
           break;
       }
 
+      if (service.hasPendingEngagement) {
+        availableLinks.cancelCommitment = `${autoRenewLink}/${service.id}/cancel-commitment`;
+      }
+
       if (
         autoRenewLink &&
         service.hasDebt() &&
@@ -111,54 +115,6 @@ export const useServiceLinks = (
         }
         if (service.hasManualRenew() && service.canHandleRenew()) {
           availableLinks.renewManually = renewUrl;
-        }
-      }
-      if (service.hasPendingEngagement) {
-        // When we will fully migrate billing in React, we should add a possibility to give
-        // the cancelCommitment link (with an additional parameter in useServiceLinks)
-        availableLinks.cancelCommitment = `${autoRenewLink}/${service.id}/cancel-commitment`;
-      } else if (service.canBeEngaged && !service.isSuspended()) {
-        // When we will fully migrate billing in React, we should add a possibility to give
-        // the manageCommitment link (with an additional parameter in useServiceLinks)
-        availableLinks.manageCommitment = `${autoRenewLink}/${service.id}/commitment`;
-      }
-      if (service.serviceType === SERVICE_TYPE.EXCHANGE) {
-        const exchangeBillingLink = `${autoRenewLink}/exchange?organization=${organization}&exchangeName=${exchangeName ||
-          service.serviceId}`;
-        if (service.menuItems?.manageEmailAccountsInBilling) {
-          availableLinks.modifyExchangeBilling = exchangeBillingLink;
-        } else if (service.menuItems?.manageEmailAccountsInExchange) {
-          availableLinks.configureExchangeAccountsRenewal = exchangeBillingLink;
-        }
-      }
-      if (service.serviceType === SERVICE_TYPE.PACK_XDSL) {
-        if (
-          (service.shouldDeleteAtExpiration() || !service.isResiliated()) &&
-          !service.hasDebt() &&
-          !service.hasPendingResiliation() &&
-          resiliateLink &&
-          service.hasAdminRights(user.auth.account)
-        ) {
-          availableLinks.resiliate = resiliateLink;
-        }
-      } else if (
-        (service.shouldDeleteAtExpiration() || !service.isResiliated()) &&
-        !service.hasDebt() &&
-        !service.hasPendingResiliation()
-      ) {
-        if (
-          resiliateLink &&
-          (service.hasAdminRights(user.auth.account) ||
-            service.hasAdminRights(user.nichandle))
-        ) {
-          availableLinks.resiliate = resiliateLink;
-        }
-        if (autoRenewLink && service.canBeDeleted()) {
-          availableLinks.resiliateByDeletion =
-            service.serviceType &&
-            `${autoRenewLink}/delete-${service.serviceType
-              .replace(/_/g, '-')
-              .toLowerCase()}?serviceId=${service.serviceId}`;
         }
       }
       if (service.serviceType === SERVICE_TYPE.SMS) {
