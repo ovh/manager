@@ -8,9 +8,7 @@ export default /* @ngInject */ ($stateProvider) => {
       transition
         .injector()
         .getAsync('apiKeys')
-        .then((applications) =>
-          !applications ? { state: 'iam.api-keys.onboarding' } : false,
-        ),
+        .then((apiKeys) => !apiKeys && { state: 'iam.api-keys.onboarding' }),
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('iam_api_keys'),

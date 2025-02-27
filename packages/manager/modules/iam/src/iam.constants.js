@@ -162,6 +162,52 @@ const GUIDE = {
     WS:
       'https://help.ovhcloud.com/csm/es-customer-connect-saml-sso?id=kb_article_view&sysparm_article=KB0043009',
   },
+  APIKEY: {
+    ASIA:
+      'https://help.ovhcloud.com/csm/asia-api-getting-started-ovhcloud-api?id=kb_article_view&sysparm_article=KB0042776',
+    AU:
+      'https://help.ovhcloud.com/csm/en-au-api-getting-started-ovhcloud-api?id=kb_article_view&sysparm_article=KB0042780',
+    CA:
+      'https://help.ovhcloud.com/csm/en-ca-api-getting-started-ovhcloud-api?id=kb_article_view&sysparm_article=KB0029722',
+    DE:
+      'https://help.ovhcloud.com/csm/de-api-getting-started-ovhcloud-api?id=kb_article_view&sysparm_article=KB0042781',
+    ES:
+      'https://help.ovhcloud.com/csm/es-es-api-getting-started-ovhcloud-api?id=kb_article_view&sysparm_article=KB0042785',
+    FR:
+      'https://help.ovhcloud.com/csm/fr-api-getting-started-ovhcloud-api?id=kb_article_view&sysparm_article=KB0042789',
+    GB:
+      'https://help.ovhcloud.com/csm/en-gb-api-getting-started-ovhcloud-api?id=kb_article_view&sysparm_article=KB0042784',
+    IN:
+      'https://help.ovhcloud.com/csm/asia-api-getting-started-ovhcloud-api?id=kb_article_view&sysparm_article=KB0042776',
+    IT:
+      'https://help.ovhcloud.com/csm/it-api-getting-started-ovhcloud-api?id=kb_article_view&sysparm_article=KB0042788',
+    MA:
+      'https://help.ovhcloud.com/csm/fr-api-getting-started-ovhcloud-api?id=kb_article_view&sysparm_article=KB0042789',
+    PL:
+      'https://help.ovhcloud.com/csm/pl-api-getting-started-ovhcloud-api?id=kb_article_view&sysparm_article=KB0042799',
+    PT:
+      'https://help.ovhcloud.com/csm/pt-api-getting-started-ovhcloud-api?id=kb_article_view&sysparm_article=KB0042798',
+    QC:
+      'https://help.ovhcloud.com/csm/fr-ca-api-getting-started-ovhcloud-api?id=kb_article_view&sysparm_article=KB0042783',
+    SG:
+      'https://help.ovhcloud.com/csm/en-sg-api-getting-started-ovhcloud-api?id=kb_article_view&sysparm_article=KB0042779',
+    SN:
+      'https://help.ovhcloud.com/csm/fr-api-getting-started-ovhcloud-api?id=kb_article_view&sysparm_article=KB0042789',
+    TN:
+      'https://help.ovhcloud.com/csm/fr-api-getting-started-ovhcloud-api?id=kb_article_view&sysparm_article=KB0042789',
+    US:
+      'https://help.ovhcloud.com/csm/en-api-getting-started-ovhcloud-api?id=kb_article_view&sysparm_article=KB0042777',
+    WE:
+      'https://help.ovhcloud.com/csm/en-api-getting-started-ovhcloud-api?id=kb_article_view&sysparm_article=KB0042777',
+    WS:
+      'https://help.ovhcloud.com/csm/es-api-getting-started-ovhcloud-api?id=kb_article_view&sysparm_article=KB0042793',
+  },
+};
+
+const API_KEY_URL = {
+  EU: 'https://www.ovh.com/auth/api/createToken',
+  CA: 'https://ca.ovh.com/auth/api/createToken',
+  US: 'https://us.ovhcloud.com/auth/api/createToken',
 };
 
 const PAGE_SIZE = 25;
@@ -313,4 +359,5 @@ export {
   URN_VERSION,
   WILDCARD,
   ACTION_DESCRIPTION_UNDEFINED,
+  API_KEY_URL,
 };
