@@ -11,14 +11,14 @@ import * as datastoreApi from '@/data/api/ai/datastore.api';
 import { apiErrorMock } from '@/__tests__/helpers/mocks/shared/aiError';
 import { useToast } from '@/components/ui/use-toast';
 import { mockedCapabilitiesRegionGRA } from '@/__tests__/helpers/mocks/capabilities/region';
-import { mockedDatastoreWithRegion } from '@/__tests__/helpers/mocks/volume/datastore';
 import AddDatastore from './AddDatastore.modal';
 import { handleSelectOption } from '@/__tests__/helpers/unitTestHelper';
+import { mockedDatastoreS3WithRegion } from '@/__tests__/helpers/mocks/volume/datastore';
 
 describe('AddDatastore modal', () => {
   beforeEach(() => {
     vi.mock('@/data/api/ai/datastore.api', () => ({
-      addDatastore: vi.fn(() => mockedDatastoreWithRegion),
+      addDatastore: vi.fn(() => mockedDatastoreS3WithRegion),
     }));
 
     vi.mock('@/data/api/ai/capabilities.api', () => ({

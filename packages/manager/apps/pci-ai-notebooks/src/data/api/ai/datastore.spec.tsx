@@ -9,7 +9,7 @@ import {
   getDatastoreContainer,
   getDatastores,
 } from '@/data/api/ai/datastore.api';
-import { mockedDatastoreInput } from '@/__tests__/helpers/mocks/volume/datastore';
+import { mockedDatastoreInputGit } from '@/__tests__/helpers/mocks/volume/datastore';
 
 describe('Datastore functions', () => {
   afterEach(() => {
@@ -51,11 +51,11 @@ describe('Datastore functions', () => {
     await addDatastore({
       projectId: 'projectId',
       region: 'region',
-      datastore: mockedDatastoreInput,
+      datastore: mockedDatastoreInputGit,
     });
     expect(apiClient.v6.post).toHaveBeenCalledWith(
       '/cloud/project/projectId/ai/data/region/region/alias',
-      mockedDatastoreInput,
+      mockedDatastoreInputGit,
     );
   });
 
@@ -64,12 +64,12 @@ describe('Datastore functions', () => {
     await editDatastore({
       projectId: 'projectId',
       region: 'region',
-      datastore: mockedDatastoreInput,
+      datastore: mockedDatastoreInputGit,
       alias: 'monAlias',
     });
     expect(apiClient.v6.put).toHaveBeenCalledWith(
       '/cloud/project/projectId/ai/data/region/region/alias/monAlias',
-      mockedDatastoreInput,
+      mockedDatastoreInputGit,
     );
   });
 

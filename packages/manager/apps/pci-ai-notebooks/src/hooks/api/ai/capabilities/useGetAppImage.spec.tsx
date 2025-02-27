@@ -3,8 +3,8 @@ import { vi } from 'vitest';
 
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import * as capabilitiesApi from '@/data/api/ai/capabilities.api';
-import { mockedCapaAppImage } from '@/__tests__/helpers/mocks/capabilities/partnerAppImage';
 import { useGetAppImages } from './useGetAppImage.hook';
+import { mockedCapaAppImagePerApp } from '@/__tests__/helpers/mocks/capabilities/partnerAppImage';
 
 vi.mock('@/data/api/ai/capabilities.api', () => ({
   getAppImages: vi.fn(),
@@ -16,7 +16,7 @@ describe('useGetAppImage', () => {
     const region = 'region';
 
     vi.mocked(capabilitiesApi.getAppImages).mockResolvedValue([
-      mockedCapaAppImage,
+      mockedCapaAppImagePerApp,
     ]);
 
     const { result } = renderHook(() => useGetAppImages(projectId, region), {
@@ -25,7 +25,7 @@ describe('useGetAppImage', () => {
 
     await waitFor(() => {
       expect(result.current.isSuccess).toBe(true);
-      expect(result.current.data).toEqual([mockedCapaAppImage]);
+      expect(result.current.data).toEqual([mockedCapaAppImagePerApp]);
       expect(capabilitiesApi.getAppImages).toHaveBeenCalledWith({
         projectId,
         region,
