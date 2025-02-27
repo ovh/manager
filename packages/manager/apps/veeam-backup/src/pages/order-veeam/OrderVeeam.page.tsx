@@ -1,34 +1,18 @@
 import React from 'react';
 import {
   BaseLayout,
-  CommonTitle,
   DashboardGridLayout,
-  Description,
   IntervalUnitType,
   OvhSubsidiary,
   Price,
+  ManagerTile,
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-import {
-  OsdsMessage,
-  OsdsButton,
-  OsdsText,
-  OsdsTile,
-} from '@ovhcloud/ods-components/react';
+import { OdsText, OdsMessage, OdsButton } from '@ovhcloud/ods-components/react';
 import {
   ShellContext,
   i18nextLocaleToOvh,
 } from '@ovh-ux/manager-react-shell-client';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import {
-  ODS_BUTTON_SIZE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-  ODS_MESSAGE_TYPE,
-} from '@ovhcloud/ods-components';
 import { useVeeamBackupVmConsumptionPricing } from '@ovh-ux/manager-module-vcd-api';
 import { BillingLink } from '@/components/Links/BillingLink.component';
 import { Breadcrumb } from '@/components/Breadcrumb/Breadcrumb';
@@ -56,42 +40,31 @@ export default function OrderVeeamPage() {
       }}
       subtitle={t('select_offer_title')}
     >
-      <Description>{t('select_offer_description')}</Description>
-      <BillingLink className="mb-8" />
+      <OdsText>{t('select_offer_description')}</OdsText>
+      <BillingLink className="mb-4" />
       {isError ? (
-        <OsdsMessage type={ODS_MESSAGE_TYPE.error}>
-          <OsdsText color={ODS_THEME_COLOR_INTENT.error}>
-            {t('catalog_error', { error: error?.response?.data?.message })}
-          </OsdsText>
-        </OsdsMessage>
+        <OdsMessage color="danger">
+          {t('catalog_error', { error: error?.response?.data?.message })}
+        </OdsMessage>
       ) : (
         <DashboardGridLayout>
           {isLoading ? (
             <Loading />
           ) : (
-            <OsdsTile
-              color={ODS_THEME_COLOR_INTENT.primary}
-              checked
-              inline
-              className="w-full h-full flex-col"
+            <ManagerTile
+              className="w-full h-full flex-col mt-4"
+              color="primary"
             >
-              <CommonTitle
-                className="block mb-5"
-                typoSize={ODS_THEME_TYPOGRAPHY_SIZE._400}
-              >
+              <OdsText preset="heading-4" className="mb-2">
                 {t('offer_title', { productName })}
-              </CommonTitle>
-              <Description className="block mb-4">
+              </OdsText>
+              <OdsText className="block mb-2">
                 {t('offer_content_part1')}
-              </Description>
-              <Description className="block mb-4">
+              </OdsText>
+              <OdsText className="block mb-2">
                 {t('offer_content_part2')}
-              </Description>
-              <OsdsText
-                size={ODS_TEXT_SIZE._100}
-                level={ODS_TEXT_LEVEL.heading}
-                color={ODS_THEME_COLOR_INTENT.text}
-              >
+              </OdsText>
+              <OdsText>
                 <Price
                   value={pricing?.price || 0}
                   tax={pricing?.tax}
@@ -104,8 +77,8 @@ export default function OrderVeeamPage() {
                   }
                 />
                 {t('offer_price')}
-              </OsdsText>
-            </OsdsTile>
+              </OdsText>
+            </ManagerTile>
           )}
         </DashboardGridLayout>
       )}
@@ -113,15 +86,11 @@ export default function OrderVeeamPage() {
         {isStep2Visible ? (
           <OrderVeeamStep2 />
         ) : (
-          <OsdsButton
-            disabled={isLoading || isError || undefined}
-            inline
-            color={ODS_THEME_COLOR_INTENT.primary}
-            size={ODS_BUTTON_SIZE.sm}
+          <OdsButton
+            label={t('next_step')}
+            isDisabled={isLoading || isError}
             onClick={() => setIsStep2Visible(true)}
-          >
-            {t('next_step')}
-          </OsdsButton>
+          />
         )}
       </div>
     </BaseLayout>
