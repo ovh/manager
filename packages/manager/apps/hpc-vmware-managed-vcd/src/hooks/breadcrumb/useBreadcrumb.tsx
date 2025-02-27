@@ -1,19 +1,22 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { OdsBreadcrumbItem } from '@ovhcloud/ods-components';
 import { urls } from '@/routes/routes.constant';
 
 export type BreadcrumbItem = {
   id: string;
   label: string | undefined;
+  href?: string;
 };
 
 type BreadcrumbEvent = Event & {
   target: { isCollapsed?: boolean; isLast?: boolean };
 };
 
-type BreadcrumbNavigationItem = BreadcrumbItem & {
-  onClick?: (event?: BreadcrumbEvent) => void;
-};
+type BreadcrumbNavigationItem = BreadcrumbItem &
+  OdsBreadcrumbItem & {
+    onOdsClick?: (event?: BreadcrumbEvent) => void;
+  };
 
 export interface BreadcrumbProps {
   rootLabel?: string;
@@ -29,8 +32,8 @@ export const useBreadcrumb = ({ rootLabel, items }: BreadcrumbProps) => {
   const rootItem = {
     id: rootLabel,
     label: rootLabel,
-    onClick: () => navigate(urls.root),
-  };
+    onOdsClick: () => navigate(urls.root),
+  } as BreadcrumbNavigationItem;
 
   useEffect(() => {
     const pathsTab = pathnames.map((value, index) => {
@@ -39,7 +42,7 @@ export const useBreadcrumb = ({ rootLabel, items }: BreadcrumbProps) => {
       return {
         id: item?.id ?? value,
         label: item?.label ?? value,
-        onClick: (event: BreadcrumbEvent) => {
+        onOdsClick: (event: BreadcrumbEvent) => {
           const { isCollapsed, isLast } = event.target;
           if (!isCollapsed && !isLast) {
             navigate(`/${pathnames.slice(0, index + 1).join('/')}`);
@@ -47,7 +50,7 @@ export const useBreadcrumb = ({ rootLabel, items }: BreadcrumbProps) => {
         },
       };
     });
-    setPaths(pathsTab);
+    setPaths(pathsTab as BreadcrumbNavigationItem[]);
   }, [location, items]);
 
   return [rootItem, ...paths];

@@ -2,8 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { Links, LinkType } from '@ovh-ux/manager-react-components';
-import { ODS_CHIP_SIZE } from '@ovhcloud/ods-components';
-import { OsdsChip, OsdsSkeleton } from '@ovhcloud/ods-components/react';
+import { OdsSkeleton, OdsBadge } from '@ovhcloud/ods-components/react';
 import {
   getBackupIdFromOrganization,
   useVeeamBackup,
@@ -15,6 +14,7 @@ import {
   getBackupBadgeParams,
   getBackupBadgeStatus,
 } from '@/utils/veeamBackupBadge';
+import TEST_IDS from '@/utils/testIds.constants';
 
 type TTileProps = {
   vcdOrganization: VCDOrganization;
@@ -44,18 +44,16 @@ export default function BackupTileItem({
 
   return (
     <div className="flex flex-col items-start">
-      <div className="my-3">
+      <div>
         {isLoading ? (
-          <OsdsSkeleton data-testid="backupLoading" />
+          <OdsSkeleton data-testid={TEST_IDS.backupBadgeLoading} />
         ) : (
-          <OsdsChip
-            inline
+          <OdsBadge
+            label={t(badgeParams.translationKey)}
             data-testid={badgeParams.testIdLabel}
+            className="my-1"
             color={badgeParams.color}
-            size={ODS_CHIP_SIZE.sm}
-          >
-            {t(badgeParams.translationKey)}
-          </OsdsChip>
+          />
         )}
       </div>
       <Links

@@ -2,9 +2,7 @@ import {
   getVcdDatacentreComputeRoute,
   getVdcComputeQueryKey,
 } from '@ovh-ux/manager-module-vcd-api';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
-import { OsdsButton } from '@ovhcloud/ods-components/react';
+import { OdsButton } from '@ovhcloud/ods-components/react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -20,6 +18,7 @@ import {
 } from '@/components/datagrid/compute/ComputeCells.component';
 import DatagridContainer from '@/components/datagrid/container/DatagridContainer.component';
 import { subRoutes, urls } from '@/routes/routes.constant';
+import TEST_IDS from '@/utils/testIds.constants';
 
 export default function ComputeListingPage() {
   const { id, vdcId } = useParams();
@@ -78,14 +77,12 @@ export default function ComputeListingPage() {
       }}
       isEmbedded
       orderButton={
-        <OsdsButton
-          size={ODS_BUTTON_SIZE.sm}
-          variant={ODS_BUTTON_VARIANT.stroked}
-          color={ODS_THEME_COLOR_INTENT.primary}
+        <OdsButton
+          label={t('managed_vcd_vdc_compute_order_cta')}
+          variant="outline"
           onClick={() => navigate(subRoutes.order)}
-        >
-          {t('managed_vcd_vdc_compute_order_cta')}
-        </OsdsButton>
+          data-testid={TEST_IDS.computeOrderCta}
+        />
       }
     />
   );

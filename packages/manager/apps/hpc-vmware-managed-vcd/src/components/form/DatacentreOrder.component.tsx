@@ -4,13 +4,14 @@ import { useNavigate, useParams } from 'react-router-dom';
 import {
   Datagrid,
   DatagridColumn,
-  Description,
   ErrorBanner,
   Subtitle,
 } from '@ovh-ux/manager-react-components';
-import { OsdsButton } from '@ovhcloud/ods-components/react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import {
+  OdsButton,
+  OdsQuantity,
+  OdsText,
+} from '@ovhcloud/ods-components/react';
 import {
   useVcdCatalog,
   useVcdOrder,
@@ -18,7 +19,6 @@ import {
   VCDOrderableStoragePriced,
   VCDOrderableVhostPriced,
 } from '@ovh-ux/manager-module-vcd-api';
-import { QuantitySelector } from './QuantitySelector.component';
 import { useDatacentreOrderContext } from '@/context/DatacentreOrder.context';
 import { validateQuantity } from '@/utils/formValidation';
 import { getPricedVdcResources } from '@/utils/getPricedOrderableResource';
@@ -110,8 +110,8 @@ export const DatacentreOrder = <T extends OrderType>({
   return (
     <React.Suspense>
       <div className="px-10 my-4 flex flex-col">
-        <Subtitle>{title}</Subtitle>
-        <Description className="my-6">{subtitle}</Description>
+        <OdsText preset="heading-3">{title}</OdsText>
+        <OdsText className="my-6">{subtitle}</OdsText>
         <Datagrid
           columns={columns}
           items={pricedResources}
@@ -119,34 +119,34 @@ export const DatacentreOrder = <T extends OrderType>({
           contentAlignLeft
         />
         <div className="mt-10">
-          <QuantitySelector
-            quantity={selectedQuantity}
-            setQuantity={setSelectedQuantity}
-            isValid={isValidQuantity}
-            title={t('managed_vcd_vdc_order_quantity_title')}
-            label={t('managed_vcd_vdc_order_quantity_label')}
-            min={minQuantity}
-            max={maxQuantity}
-          />
+          <OdsText preset="heading-3">
+            {t('managed_vcd_vdc_order_quantity_title')}
+          </OdsText>
+          <div className="flex flex-col items-start">
+            <OdsText class="my-2">
+              {t('managed_vcd_vdc_order_quantity_label')}
+            </OdsText>
+            <OdsQuantity
+              name="order-quantity"
+              min={minQuantity}
+              max={maxQuantity}
+              hasError={!isValidQuantity}
+              value={selectedQuantity}
+              onOdsChange={(e) => setSelectedQuantity(e.detail.value)}
+            />
+          </div>
         </div>
         <div className="flex items-center gap-x-4 mt-10">
-          <OsdsButton
-            size={ODS_BUTTON_SIZE.sm}
-            variant={ODS_BUTTON_VARIANT.ghost}
-            color={ODS_THEME_COLOR_INTENT.primary}
+          <OdsButton
+            label={t('managed_vcd_vdc_order_cancel_cta')}
+            variant="ghost"
             onClick={() => navigate(backLink)}
-          >
-            {t('managed_vcd_vdc_order_cancel_cta')}
-          </OsdsButton>
-          <OsdsButton
-            size={ODS_BUTTON_SIZE.sm}
-            variant={ODS_BUTTON_VARIANT.flat}
-            color={ODS_THEME_COLOR_INTENT.primary}
-            disabled={!isValidQuantity || undefined}
+          />
+          <OdsButton
+            label={t('managed_vcd_vdc_order_confirm_cta')}
+            isDisabled={!isValidQuantity}
             onClick={isValidQuantity ? redirectToOrder : null}
-          >
-            {t('managed_vcd_vdc_order_confirm_cta')}
-          </OsdsButton>
+          />
         </div>
       </div>
     </React.Suspense>
