@@ -1,4 +1,3 @@
-import angular from 'angular';
 import uiRouter from '@uirouter/angularjs';
 import ocLazyLoad from 'oclazyload';
 
