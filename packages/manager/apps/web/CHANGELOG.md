@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.6.3...@ovh-ux/manager-web@19.7.0) (2025-02-27)
+
+
+### Features
+
+* **web-paas:** web-paas cleanup code EOS/EOL ([#14876](https://github.com/ovh/manager/issues/14876)) ([6f1a6ac](https://github.com/ovh/manager/commit/6f1a6ac638f6f09587410c56f7392b1bbbd7c069)), closes [#MANAGER-16572](https://github.com/ovh/manager/issues/MANAGER-16572)
+
+
+
+
+
 ## [19.6.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.6.2...@ovh-ux/manager-web@19.6.3) (2025-02-27)
 
 
