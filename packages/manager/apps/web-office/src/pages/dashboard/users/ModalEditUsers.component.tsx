@@ -43,7 +43,7 @@ export default function ModalEditUsers() {
   const licencePrepaidName = searchParams.get('licencePrepaidName');
   const { serviceName } = useParams();
 
-  const { addError, addSuccess } = useNotifications();
+  const { addError, addInfo } = useNotifications();
 
   const goBackUrl = useGenerateUrl('..', 'path');
   const onClose = () => navigate(goBackUrl);
@@ -92,7 +92,7 @@ export default function ModalEditUsers() {
         : putOfficeUserDetail(selectedServiceName, activationEmail, params);
     },
     onSuccess: () => {
-      addSuccess(
+      addInfo(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t('dashboard_users_edit_message_success')}
         </OdsText>,
