@@ -183,14 +183,6 @@ const productListingPages = {
     application: 'dedicated',
     hash: '#/vrack',
   },
-  WEB_PAA_S_SUBSCRIPTION: {
-    application: 'web',
-    hash: '#/paas/webpaas/projects',
-  },
-  WEB_PAAS_SUBSCRIPTION: {
-    application: 'web',
-    hash: '#/paas/webpaas/projects',
-  },
   XDSL: {
     application: 'telecom',
     hash: '#/pack',

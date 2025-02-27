@@ -79,7 +79,6 @@ import emailDomain from '@ovh-ux/manager-email-domain';
 import emailpro from '@ovh-ux/manager-emailpro';
 import exchange from '@ovh-ux/manager-exchange';
 import office from '@ovh-ux/manager-office';
-import WebPaas from '@ovh-ux/manager-web-paas';
 import '@ovh-ux/manager-filters';
 import { isTopLevelApplication } from '@ovh-ux/manager-config';
 
@@ -202,7 +201,6 @@ export default async (containerEl, shellClient) => {
         hostingEmail,
         hostingEmailActivateModule,
         ovhManagerDomainOperationModule,
-        WebPaas,
         wucAlldom,
         wucAutorenewInvite,
         wucCron,

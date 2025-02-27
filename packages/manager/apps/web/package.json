@@ -37,7 +37,6 @@
     "@ovh-ux/manager-office": "^2.12.2",
     "@ovh-ux/manager-phone-prefix": "^1.1.2",
     "@ovh-ux/manager-product-offers": "^5.6.1",
-    "@ovh-ux/manager-web-paas": "^2.1.0",
     "@ovh-ux/ng-at-internet": "^6.0.7",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.5.1",
     "@ovh-ux/ng-log-live-tail": "^2.4.1",
