@@ -36,7 +36,7 @@ export default function RegionsPage(): JSX.Element {
 
   const isMobile: boolean = useMedia(`(max-width: 760px)`);
 
-  const { addSuccess, addError } = useNotifications();
+  const { addSuccess, addError, clearNotifications } = useNotifications();
 
   const { projectId } = useParams();
   const { data: project } = useProject();
@@ -79,6 +79,7 @@ export default function RegionsPage(): JSX.Element {
         queryKey: ['project', projectId, 'regions'],
       });
 
+      clearNotifications();
       addSuccess(
         <Translation ns="regions">
           {(_t) => (
@@ -91,6 +92,7 @@ export default function RegionsPage(): JSX.Element {
         </Translation>,
       );
     } catch (e) {
+      clearNotifications();
       addError(
         <Translation ns="regions">
           {(_t) => (
