@@ -88,3 +88,58 @@ export const getProjectQuota = async (projectId: string): Promise<TQuota[]> => {
   const { data } = await v6.get(`/cloud/project/${projectId}/quota`);
   return data;
 };
+
+export const getProjectAcl = async (
+  projectId: string,
+  type: 'readOnly' | 'readWrite',
+): Promise<string[]> => {
+  const { data } = await v6.get(`/cloud/project/${projectId}/acl`, {
+    params: {
+      type,
+    },
+  });
+  return data;
+};
+
+export type TProjectServiceInfos = {
+  canDeleteAtExpiration: boolean;
+  contactAdmin: string;
+  contactBilling: string;
+  contactTech: string;
+  creation: string;
+  domain: string;
+  engagedUpTo?: string;
+  expiration: string;
+  possibleRenewPeriod: number[];
+  renew?: {
+    automatic: boolean;
+    deleteAtExpiration: boolean;
+    forced: boolean;
+    manualPayment: boolean | null;
+    period: number | null;
+  };
+  renewalType:
+    | 'automaticForcedProduct'
+    | 'automaticV2012'
+    | 'automaticV2014'
+    | 'automaticV2016'
+    | 'automaticV2024'
+    | 'manual'
+    | 'oneShot'
+    | 'option';
+  serviceId: number;
+  status:
+    | 'autorenewInProgress'
+    | 'expired'
+    | 'inCreation'
+    | 'ok'
+    | 'pendingDebt'
+    | 'unPaid';
+};
+
+export const getProjectServiceInfos = async (
+  projectId: string,
+): Promise<TProjectServiceInfos> => {
+  const { data } = await v6.get(`/cloud/project/${projectId}/serviceInfos`);
+  return data;
+};
