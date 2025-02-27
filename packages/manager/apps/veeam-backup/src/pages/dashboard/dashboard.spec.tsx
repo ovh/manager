@@ -1,15 +1,17 @@
-import { screen, waitFor } from '@testing-library/react';
+import { screen, waitFor, act } from '@testing-library/react';
 import { vi } from 'vitest';
-import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import {
   WAIT_FOR_DEFAULT_OPTIONS,
-  getButtonByIcon,
-  getButtonByLabel,
+  assertTextVisibility,
+  getElementByTestId,
+  getNthElementByTestId,
 } from '@ovh-ux/manager-core-test-utils';
 import { backupList } from '@ovh-ux/manager-module-vcd-api';
-import { renderTest, labels, goToDashboard } from '@/test-helpers';
+import userEvent from '@testing-library/user-event';
+import { renderTest, labels } from '@/test-helpers';
 import { urls } from '@/routes/routes.constant';
 import '@testing-library/jest-dom';
+import TEST_IDS from '@/utils/testIds.constants';
 
 vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
   const actual: any = await importOriginal();
@@ -21,8 +23,13 @@ vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
 
 describe('dashboard', () => {
   it('displays the dashboard page when clicking on the link', async () => {
+    const user = userEvent.setup();
     await renderTest();
-    await goToDashboard(backupList[0].iam.displayName);
+
+    const backupLink = await getNthElementByTestId({
+      testId: TEST_IDS.listingBackupLink,
+    });
+    await act(() => user.click(backupLink));
 
     await waitFor(
       () =>
@@ -38,7 +45,7 @@ describe('dashboard', () => {
   });
 
   it('actions are disabled if backup is not ready', async () => {
-    const { container } = await renderTest({
+    await renderTest({
       initialRoute: urls.dashboard.replace(':id', backupList[2].id),
     });
 
@@ -54,18 +61,12 @@ describe('dashboard', () => {
       WAIT_FOR_DEFAULT_OPTIONS,
     );
 
-    await getButtonByIcon({
-      container,
-      iconName: ODS_ICON_NAME.PEN,
-      disabled: true,
-    });
+    const editButton = await getElementByTestId(TEST_IDS.editNameCta);
+    expect(editButton).toBeDisabled();
 
-    await getButtonByLabel({
-      container,
-      label: labels.dashboard.delete_service,
-      disabled: true,
-    });
+    const deleteButton = await getElementByTestId(TEST_IDS.deleteServiceCta);
+    expect(deleteButton).toBeDisabled();
 
-    expect(screen.getByText(labels.dashboard.terminated_service)).toBeVisible();
+    await assertTextVisibility(labels.dashboard.terminated_service);
   });
 });

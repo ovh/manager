@@ -1,24 +1,14 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  OsdsButton,
-  OsdsChip,
-  OsdsIcon,
-  OsdsSkeleton,
+  OdsBadge,
+  OdsButton,
+  OdsSkeleton,
+  OdsText,
 } from '@ovhcloud/ods-components/react';
-import {
-  ODS_BUTTON_VARIANT,
-  ODS_BUTTON_SIZE,
-  ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-  ODS_BUTTON_TEXT_ALIGN,
-  ODS_CHIP_SIZE,
-} from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useNavigate } from 'react-router-dom';
 import {
   DashboardTile,
-  Description,
   useServiceDetails,
   useFormattedDate,
   DateFormat,
@@ -26,6 +16,7 @@ import {
 import { VeeamBackup } from '@ovh-ux/manager-module-vcd-api';
 import { urls } from '@/routes/routes.constant';
 import { LoadingChip } from '@/components/Loading/Loading';
+import TEST_IDS from '@/utils/testIds.constants';
 
 export const SubscriptionTile: React.FC<VeeamBackup> = ({
   id,
@@ -53,21 +44,18 @@ export const SubscriptionTile: React.FC<VeeamBackup> = ({
           label: t('next_billing'),
           value: isLoading ? (
             <>
-              <OsdsSkeleton />
+              <OdsSkeleton />
               <LoadingChip className="mt-5" />
             </>
           ) : (
             <>
-              <Description className="block">{nextBillingDate}</Description>
+              <OdsText className="block">{nextBillingDate}</OdsText>
               {data?.data?.billing?.renew?.current?.mode && (
-                <OsdsChip
-                  className="mt-5"
-                  inline
-                  color={ODS_THEME_COLOR_INTENT.success}
-                  size={ODS_CHIP_SIZE.sm}
-                >
-                  {t(`${data.data.billing.renew.current.mode}_renew`)}
-                </OsdsChip>
+                <OdsBadge
+                  className="mt-1"
+                  color="success"
+                  label={t(`${data.data.billing.renew.current.mode}_renew`)}
+                />
               )}
             </>
           ),
@@ -75,31 +63,23 @@ export const SubscriptionTile: React.FC<VeeamBackup> = ({
         {
           id: 'creationDate',
           label: t('creation_date'),
-          value: <Description>{creationDate}</Description>,
+          value: <OdsText>{creationDate}</OdsText>,
         },
         {
           id: 'deleteService',
           value: (
             // IAM not implemented yet on services
-            <OsdsButton
-              className="-ml-5 -mr-5"
-              variant={ODS_BUTTON_VARIANT.ghost}
-              color={ODS_THEME_COLOR_INTENT.primary}
-              size={ODS_BUTTON_SIZE.sm}
-              textAlign={ODS_BUTTON_TEXT_ALIGN.start}
-              disabled={resourceStatus !== 'READY' || undefined}
+            <OdsButton
+              label={t('delete_service')}
+              variant="ghost"
+              isDisabled={resourceStatus !== 'READY'}
+              iconAlignment="right"
               onClick={() =>
                 navigate(urls.deleteVeeamFromDashboard.replace(':id', id))
               }
-            >
-              {t('delete_service')}
-              <OsdsIcon
-                className="ml-4"
-                name={ODS_ICON_NAME.CHEVRON_RIGHT}
-                color={ODS_THEME_COLOR_INTENT.primary}
-                size={ODS_ICON_SIZE.xs}
-              />
-            </OsdsButton>
+              icon="chevron-right"
+              data-testid={TEST_IDS.deleteServiceCta}
+            />
           ),
         },
         {
@@ -109,17 +89,17 @@ export const SubscriptionTile: React.FC<VeeamBackup> = ({
             <div className="flex flex-col">
               {isLoading ? (
                 <>
-                  <OsdsSkeleton />
-                  <OsdsSkeleton />
-                  <OsdsSkeleton />
+                  <OdsSkeleton />
+                  <OdsSkeleton />
+                  <OdsSkeleton />
                 </>
               ) : (
                 data?.data?.customer?.contacts?.map((contact) => (
-                  <Description key={contact.type}>
+                  <OdsText key={contact.type}>
                     {t(`${contact.type}_contact`, {
                       code: contact.customerCode,
                     })}
-                  </Description>
+                  </OdsText>
                 ))
               )}
             </div>

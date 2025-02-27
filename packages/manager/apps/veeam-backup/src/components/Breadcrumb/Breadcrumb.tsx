@@ -1,11 +1,11 @@
 import React from 'react';
-import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
+import {
+  OdsBreadcrumb,
+  OdsBreadcrumbItem,
+} from '@ovhcloud/ods-components/react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import {
-  ODS_ICON_NAME,
-  OdsBreadcrumbAttributeItem,
-} from '@ovhcloud/ods-components';
+import { OdsIconName } from '@ovhcloud/ods-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   getVeeamBackupDisplayName,
@@ -16,7 +16,12 @@ import { appName, productName } from '@/veeam-backup.config';
 
 export type BreadcrumbItem = {
   label: string | undefined;
-  href?: string;
+  href: string;
+  icon?: OdsIconName;
+};
+
+type BreadcrumbNavigationItem = BreadcrumbItem & {
+  onClick?: () => void;
 };
 
 export function Breadcrumb() {
@@ -27,18 +32,22 @@ export function Breadcrumb() {
   const { id } = useParams();
   const { data } = useVeeamBackup(id);
 
-  const rootItems: (OdsBreadcrumbAttributeItem & { onClick?: () => void })[] = [
+  const rootItems: BreadcrumbNavigationItem[] = [
     {
-      icon: ODS_ICON_NAME.HOME,
+      label: undefined,
+      icon: 'home',
+      href: undefined,
       onClick: () => shell.navigation.navigateTo('hub', '#/', {}),
     },
     {
       label: t('hpc-crumb'),
+      href: undefined,
       onClick: () =>
         shell.navigation.navigateTo('dedicated', '#/dedicated_cloud', {}),
     },
     {
       label: productName,
+      href: undefined,
       onClick: () => navigate(urls.listing),
     },
   ];
@@ -49,5 +58,13 @@ export function Breadcrumb() {
     href: `/#/${appName}/${value}`,
   }));
 
-  return <OsdsBreadcrumb items={[...rootItems, ...paths]} />;
+  const items: BreadcrumbNavigationItem[] = [...rootItems, ...paths];
+
+  return (
+    <OdsBreadcrumb>
+      {items.map((item) => (
+        <OdsBreadcrumbItem key={`breadcrumb-item-${item.label}`} {...item} />
+      ))}
+    </OdsBreadcrumb>
+  );
 }
