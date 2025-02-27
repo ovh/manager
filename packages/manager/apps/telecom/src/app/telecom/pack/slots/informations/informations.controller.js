@@ -1,4 +1,6 @@
 import head from 'lodash/head';
+import find from 'lodash/find';
+import findLast from 'lodash/findLast';
 
 import { IG_MAP_URL, TRAVAUX_URL, GUIDES_URL } from './informations.constants';
 
@@ -6,11 +8,13 @@ export default /* @ngInject */ function PackInformationCtrl(
   $scope,
   $translate,
   $q,
+  $state,
   $stateParams,
   TucToast,
   OvhApiPackXdsl,
   OvhApiXdsl,
   moment,
+  $http,
 ) {
   const self = this;
 
@@ -52,6 +56,25 @@ export default /* @ngInject */ function PackInformationCtrl(
       );
   }
 
+  function getOrderFollowUp(packName) {
+    const url = `/pack/xdsl/${packName}/orderFollowUp`;
+
+    return $http.get(url).then(({ data: orders }) => {
+      let actualOrder = find(orders, (order) => order.status === 'doing');
+
+      if (!actualOrder) {
+        actualOrder = findLast(orders, (order) => order.status === 'done');
+      }
+
+      if (actualOrder?.doneDate) {
+        actualOrder.doneDateLocale = new Date(
+          actualOrder.doneDate,
+        ).toLocaleString();
+      }
+      return actualOrder;
+    });
+  }
+
   function init() {
     self.isLoading = true;
 
@@ -66,11 +89,14 @@ export default /* @ngInject */ function PackInformationCtrl(
         followUp: getResiliationFollowUp(),
         cancellable: getIsResiliationCancellable(),
         associatedLine: getAssociatedLine(),
+        orderFollowUp: getOrderFollowUp($stateParams.packName),
       })
       .then((result) => {
         self.resiliationFollowUp = result.followUp;
         self.isCancellable = result.cancellable;
         self.associatedLine = result.associatedLine;
+        self.actualOrder = result.orderFollowUp;
+        console.log(self.actualOrder, 'actualOrder');
         self.isEngaged = moment(
           $scope.Pack.pack.informations.engagedUpTo,
         ).isAfter(moment());
