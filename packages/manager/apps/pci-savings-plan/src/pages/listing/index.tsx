@@ -24,6 +24,7 @@ import { SavingsPlanService } from '@/types';
 import TabsDashboard from '@/components/Dashboard/TabsDashboard/TabsDashboard';
 
 import { CHANGELOG_LINKS } from '@/constants';
+import Header from '@/components/Header/Header';
 
 interface ListingTablePageProps {
   data: SavingsPlanService[];
@@ -74,7 +75,7 @@ const ListingTablePage: React.FC<ListingTablePageProps> = ({
   return (
     <>
       <div className="flex justify-between items-center">
-        <Title>{t('title')}</Title>
+        <Header title={t('title')} />
         <div className="flex flex-wrap justify-end gap-1">
           <ChangelogButton links={CHANGELOG_LINKS} />
         </div>
