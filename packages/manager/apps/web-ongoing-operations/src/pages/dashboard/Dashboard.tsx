@@ -8,7 +8,6 @@ import {
   useResolvedPath,
 } from 'react-router-dom';
 import { OdsTabs, OdsTab } from '@ovhcloud/ods-components/react';
-
 import { BaseLayout } from '@ovh-ux/manager-react-components';
 
 export type DashboardTabItemProps = {
@@ -44,10 +43,10 @@ export default function DashboardPage() {
     const activeTab = tabsList.find((tab) => tab.to === location.pathname);
     if (activeTab) {
       setActivePanel(activeTab.name);
-    } else {
-      setActivePanel(tabsList[0].name);
-      navigate(`${tabsList[0].to}`);
+      return;
     }
+    setActivePanel(tabsList[0].name);
+    navigate(`${tabsList[0].to}`);
   }, [location.pathname]);
 
   return (

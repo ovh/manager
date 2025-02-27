@@ -1,5 +1,5 @@
 import '@/setupTests';
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import '@testing-library/jest-dom';
 import {
   QueryClient,
@@ -20,7 +20,7 @@ vi.mock('@/data/api/web-ongoing-operations', () => ({
 }));
 
 const queryClient = new QueryClient();
-const wrapper = ({ children }: any) => (
+const wrapper = ({ children }: PropsWithChildren) => (
   <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
 );
 
@@ -30,10 +30,10 @@ describe('Dns datagrid', () => {
     const { getByTestId } = render(<Dns />, { wrapper });
     expect(getByTestId('listing-page-spinner')).toBeInTheDocument();
   });
+
   it('fetch in a good way using useQuery', () => {
-    const mockData = { data: dns };
     (useQuery as jest.Mock).mockReturnValue({
-      data: mockData,
+      data: dns,
       isLoading: false,
     });
     expect(useQuery).toHaveBeenCalledWith(
@@ -43,10 +43,10 @@ describe('Dns datagrid', () => {
       }),
     );
   });
+
   it('Display the datagrid element', async () => {
-    const mockData = { data: dns };
     (useQuery as jest.Mock).mockReturnValue({
-      data: mockData,
+      data: dns,
       isLoading: false,
     });
     const { getByTestId } = render(<Dns />, { wrapper });
