@@ -1,4 +1,4 @@
-import { find, forOwn, get, map, set } from 'lodash';
+import { find, forOwn, map } from 'lodash';
 
 import CloudConnect from './cloud-connect.class';
 import CloudConnectDatacenter from './cloud-connect-datacenter.class';
@@ -419,11 +419,15 @@ export default class CloudConnectService {
                   const dc = find(cloudConnect.availableDatacenters, {
                     id: data.datacenterId,
                   });
-                  set(data, 'dcName', get(dc, 'name', null));
-                  return new CloudConnectDatacenter({
+                  const configurations = {
                     ...data,
+                    dcName: dc.name || null,
                     popConfigId: pop.id,
-                  });
+                    region: dc.region || null,
+                    regionType: dc.regionType || null,
+                    regionGroupKey: dc.region + dc.regionType || '-',
+                  };
+                  return new CloudConnectDatacenter(configurations);
                 });
             }),
           )
