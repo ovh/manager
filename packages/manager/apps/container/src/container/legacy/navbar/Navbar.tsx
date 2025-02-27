@@ -14,13 +14,12 @@ import Universes from './Universes';
 import useContainer from '@/core/container';
 import LanguageMenu from '@/container/common/language';
 import modalStyle from '@/container/common/modal.module.scss';
-import NavReshuffleSwitchBack from '@/container/common/nav-reshuffle-switch-back';
 import Notifications from '@/container/common/notifications-sidebar/NotificationsButton';
 import { useShell } from '@/context';
 import { useHeader } from '@/context/header';
 import { useUniverses } from '@/hooks/useUniverses';
 import { useMediaQuery } from 'react-responsive';
-import { SMALL_DEVICE_MAX_SIZE, MOBILE_WIDTH_RESOLUTION } from '@/container/common/constants';
+import { MOBILE_WIDTH_RESOLUTION } from '@/container/common/constants';
 
 const HamburgerMenu = React.lazy(() => import('./HamburgerMenu'));
 
@@ -35,9 +34,6 @@ function Navbar({ environment }: Props): JSX.Element {
   const [userLocale, setUserLocale] = useState(
     shell.getPlugin('i18n').getLocale(),
   );
-  const isSmallDevice = useMediaQuery({
-    query: `(max-width: ${SMALL_DEVICE_MAX_SIZE})`,
-  });
 
   const isMobile = useMediaQuery({
     query: `(max-width: ${MOBILE_WIDTH_RESOLUTION}px)`,
@@ -104,11 +100,6 @@ function Navbar({ environment }: Props): JSX.Element {
               <Search targetURL={searchURL} />
             </div>
           )}
-          {!isSmallDevice &&
-            <div className="oui-navbar-list__item">
-              <NavReshuffleSwitchBack />
-            </div>
-          }
           <div className="oui-navbar-list__item">
             <LanguageMenu
               setUserLocale={setUserLocale}
@@ -125,11 +116,6 @@ function Navbar({ environment }: Props): JSX.Element {
           <Account />
         </div>
       </div>
-      {isSmallDevice &&
-        <div className={style['small-device-pnr-switch']}>
-          <NavReshuffleSwitchBack />
-        </div>
-      }
     </>
   );
 }
