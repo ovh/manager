@@ -40,17 +40,7 @@ import { useGetValidPaymentMethodIds } from '@/api/hooks/usePaymentmethods';
 import { useGetProjectService } from '@/api/hooks/useService';
 import { Quota } from '@/api/data/quota';
 import LabelComponent from '@/components/Label.component';
-
-function paginateResults<T>(items: T[], pagination: PaginationState) {
-  return {
-    rows: items.slice(
-      pagination.pageIndex * pagination.pageSize,
-      (pagination.pageIndex + 1) * pagination.pageSize,
-    ),
-    pageCount: Math.ceil(items.length / pagination.pageSize),
-    totalRows: items.length,
-  };
-}
+import { paginateResults } from '@/helpers';
 
 export default function QuotaPage(): JSX.Element {
   const isMobile: boolean = useMedia(`(max-width: 760px)`);

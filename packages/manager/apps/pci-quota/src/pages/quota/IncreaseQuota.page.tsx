@@ -3,7 +3,7 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useMemo, useState } from 'react';
 import { useMe, useNotifications } from '@ovh-ux/manager-react-components';
 import { useTracking } from '@ovh-ux/manager-react-shell-client';
-import { Modal } from '@/components/Modal.component';
+import { Modal, Type } from '@/components/Modal.component';
 import { useGetIssueTypes } from '@/api/hooks/useIssueTypes';
 import {
   SUPPORT_ISSUE_TYPE_IDS,
@@ -29,7 +29,9 @@ export default function IncreaseQuotaPage(): JSX.Element {
 
   const { trackClick, trackPage } = useTracking();
 
-  const type = location.pathname.includes('support') ? 'support' : 'credit';
+  const type = location.pathname.includes('support')
+    ? Type.SUPPORT
+    : Type.CREDIT;
 
   const { t, i18n } = useTranslation('quotas/increase');
 
@@ -44,7 +46,7 @@ export default function IncreaseQuotaPage(): JSX.Element {
   const inputLabel = useInputLabel(type, issueTypes);
 
   const onConfirm = async (formData: string) => {
-    if (type === 'support') {
+    if (type === Type.SUPPORT) {
       if (!issueType) {
         trackPage({
           name: `${TRACK.BASE_CONTACT_SUPPORT_BANNER}::${TRACK.ERROR}`,
@@ -120,7 +122,7 @@ ${formData}
           setIsLoading(false);
         }
       }
-    } else if (type === 'credit') {
+    } else if (type === Type.CREDIT) {
       const planCode = formData || 'quota-no-plan';
 
       const serviceOption = serviceOptions.find((s) => s.planCode === planCode);
@@ -195,13 +197,5 @@ ${formData}
     }
   };
 
-  return (
-    <Modal
-      type={type}
-      onConfirm={onConfirm}
-      onClose={goBack}
-      onCancel={goBack}
-      isLoading={isLoading}
-    />
-  );
+  return <Modal type={type} onConfirm={onConfirm} isLoading={isLoading} />;
 }

@@ -7,7 +7,7 @@ import {
   OdsSelect,
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { OdsSelectCustomRenderer } from '@ovhcloud/ods-components';
 import { useGetIssueTypes } from '@/api/hooks/useIssueTypes';
@@ -15,11 +15,14 @@ import { useGetFilteredServiceOptions } from '@/api/hooks/useServiceOptions';
 import { TServiceOption } from '@/api/data/service-option';
 import useInputLabel from '@/hooks/useInputLabel';
 
+export enum Type {
+  CREDIT = 'credit',
+  SUPPORT = 'support',
+}
+
 export type TProps = {
-  type: 'support' | 'credit';
+  type: Type;
   onConfirm: (formData: string) => void;
-  onCancel: () => void;
-  onClose: () => void;
   isLoading: boolean;
 };
 
@@ -36,15 +39,10 @@ const selectCustomRenderer: OdsSelectCustomRenderer = {
   },
 };
 
-export const Modal = ({
-  type,
-  onConfirm,
-  onClose,
-  onCancel,
-  isLoading,
-}: TProps): JSX.Element => {
+export const Modal = ({ type, onConfirm, isLoading }: TProps): JSX.Element => {
   const { t, i18n } = useTranslation('quotas/increase');
   const { projectId } = useParams();
+  const navigate = useNavigate();
 
   const { data: project } = useProject(projectId);
 
@@ -62,18 +60,18 @@ export const Modal = ({
       onConfirm={() =>
         onConfirm(type === 'support' ? description : serviceOption.planCode)
       }
-      onClose={onClose}
-      onCancel={onCancel}
+      onClose={() => navigate('..')}
+      onCancel={() => navigate('..')}
       isPending={isLoading}
       submitText={t('pci_projects_project_quota_increase_submit_label')}
       cancelText={t('pci_projects_project_quota_increase_cancel_label')}
       isDisabled={
         isLoading ||
-        (type === 'credit' && !serviceOption) ||
-        (type === 'support' && !description)
+        (type === Type.CREDIT && !serviceOption) ||
+        (type === Type.SUPPORT && !description)
       }
     >
-      {type === 'credit' && (
+      {type === Type.CREDIT && (
         <>
           <OdsText preset="paragraph">
             {t('pci_projects_project_quota_increase_buy_credits')}
@@ -97,7 +95,7 @@ export const Modal = ({
           }}
         ></span>
       </OdsText>
-      {type === 'support' && (
+      {type === Type.SUPPORT && (
         <OdsFormField className="mt-4">
           <OdsText slot="label" className="text-base">
             {inputLabel}
@@ -111,7 +109,7 @@ export const Modal = ({
           ></OdsTextarea>
         </OdsFormField>
       )}
-      {type === 'credit' && (
+      {type === Type.CREDIT && (
         <div className="mt-6">
           <OdsSelect
             name="service-option"
