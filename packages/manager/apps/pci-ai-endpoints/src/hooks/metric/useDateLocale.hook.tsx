@@ -1,32 +1,32 @@
-import { useState, useEffect } from 'react';
+import { useState, useCallback } from 'react';
 import { endOfDay } from 'date-fns';
 
 export function useDateLocale() {
-  const [timeZone, setTimeZone] = useState<string>('');
-  const [startTime, setStartTime] = useState<Date>(
-    new Date(new Date().getFullYear(), new Date().getMonth(), 1, 0, 1),
+  const detectedTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  const utcOffset = new Date().getTimezoneOffset() * 60000;
+
+  const adjustTime = (date: Date): Date => new Date(date.getTime() - utcOffset);
+
+  const [timeZone] = useState<string>(detectedTimeZone);
+
+  const [startTime, setStartTime] = useState<Date>(() =>
+    adjustTime(
+      new Date(new Date().getFullYear(), new Date().getMonth(), 1, 0, 1),
+    ),
   );
-  const [endTime, setEndTime] = useState<Date>(
-    new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0),
+  const [endTime, setEndTime] = useState<Date>(() =>
+    adjustTime(
+      new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0),
+    ),
   );
 
-  useEffect(() => {
-    const detectedTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    setTimeZone(detectedTimeZone);
-
-    const utcOffset = new Date().getTimezoneOffset() * 60000;
-    setStartTime((prevStart) => new Date(prevStart.getTime() - utcOffset));
-    setEndTime((prevEnd) => new Date(prevEnd.getTime() - utcOffset));
+  const handleStartTimeChange = useCallback((value: Date) => {
+    setStartTime(adjustTime(value));
   }, []);
 
-  const handleStartTimeChange = (value: Date) => {
-    setStartTime(value);
-  };
-
-  const handleEndTimeChange = (value: Date) => {
-    const updatedEndTime = endOfDay(value);
-    setEndTime(updatedEndTime);
-  };
+  const handleEndTimeChange = useCallback((value: Date) => {
+    setEndTime(adjustTime(endOfDay(value)));
+  }, []);
 
   return {
     timeZone,

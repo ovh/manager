@@ -29,6 +29,7 @@ import {
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+import clsx from 'clsx';
 import HidePreloader from '@/core/HidePreloader';
 import ShellRoutingSync from '@/core/ShellRoutingSync';
 import usePageTracking from '@/hooks/usePageTracking';
@@ -43,40 +44,37 @@ export type TabItemProps = {
 };
 
 export interface HeadersProps {
-  title?: string;
-  subtitle?: string;
-  description?: string;
-  headerButton?: React.ReactElement;
+  title: string;
+  headerButton: React.ReactElement;
 }
-
-export type BreadcrumbItem = {
-  id: string;
-  label: string | undefined;
-};
 
 const AI_ENDPOINTS_LABEL = 'AI Endpoints';
 const AI_ENDPOINTS_URL = 'https://endpoints.ai.cloud.ovh.net/';
 
+const getDateParams = () => {
+  const startDate = encodeURIComponent(
+    new Date(new Date().getFullYear(), 0, 1).toISOString(),
+  );
+  const endDate = encodeURIComponent(
+    new Date(
+      new Date().getFullYear(),
+      new Date().getMonth() + 1,
+      0,
+    ).toISOString(),
+  );
+  return { startDate, endDate };
+};
+
 export default function Layout() {
   const { projectId } = useParams<{ projectId: string }>();
   const { t } = useTranslation('metric');
-  const { isSuccess } = useProject(projectId ?? '', { retry: false });
+  const { data } = useProject(projectId ?? '', { retry: false });
   const [panel, setActivePanel] = useState<string>('');
   const [titleHeader, setTitleHeader] = useState<string>('');
   const navigate = useNavigate();
   const { pathname: path } = useLocation();
 
-  const dateParams = useMemo(() => {
-    const startDate = encodeURIComponent(new Date(2024, 0, 1).toISOString());
-    const endDate = encodeURIComponent(
-      new Date(
-        new Date().getFullYear(),
-        new Date().getMonth() + 1,
-        0,
-      ).toISOString(),
-    );
-    return { startDate, endDate };
-  }, []);
+  const dateParams = getDateParams();
 
   const metricsQuery = useGetMetrics(
     projectId,
@@ -84,12 +82,12 @@ export default function Layout() {
     dateParams.endDate,
   );
 
-  const metricsData = useMemo(() => {
-    if (Array.isArray(metricsQuery?.data)) {
-      return { data: metricsQuery.data };
-    }
-    return { data: [] };
-  }, [metricsQuery?.data]);
+  const metricsData = useMemo(
+    () => ({
+      data: Array.isArray(metricsQuery?.data) ? metricsQuery.data : [],
+    }),
+    [metricsQuery?.data],
+  );
 
   const tabsList: Readonly<TabItemProps[]> = [
     {
@@ -112,19 +110,13 @@ export default function Layout() {
     );
 
     const findActiveTab = (tabList: TabItemProps[]) =>
-      tabList.find((tab) => tab.to === path);
-
-    const findActiveParentTab = (tabList: TabItemProps[]) =>
+      tabList.find((tab) => tab.to === path) ||
       tabList.find((tab) => tab.to === path.slice(0, path.lastIndexOf('/')));
 
-    let currentActiveTab: TabItemProps | undefined =
-      findActiveTab(filteredTabs) || findActiveParentTab(filteredTabs);
-
-    if (!currentActiveTab && filteredTabs.length > 0) {
-      [currentActiveTab] = filteredTabs;
-    }
-
-    return { visibleTabs: filteredTabs, activeTab: currentActiveTab };
+    return {
+      visibleTabs: filteredTabs,
+      activeTab: findActiveTab(filteredTabs) ?? filteredTabs[0],
+    };
   }, [metricsData.data, path, tabsList]);
 
   useEffect(() => {
@@ -162,21 +154,21 @@ export default function Layout() {
             <OsdsSpinner className="w-16 h-16 mt-[45vh]" />
           </div>
         ) : (
-          isSuccess && (
+          data && (
             <div className="relative animate-fade-in">
               <BaseLayout
                 header={headerProps}
                 tabs={
                   <OsdsTabs panel={panel} className="-ml-2">
                     <OsdsTabBar slot="top">
-                      {visibleTabs.map((tab: TabItemProps) => (
+                      {visibleTabs.map((tab) => (
                         <NavLink
                           to={tab.to}
                           key={tab.name}
                           className={({ isActive }) =>
-                            `no-underline ${
-                              isActive ? 'selected-tab-class' : ''
-                            }`
+                            clsx('no-underline', {
+                              'selected-tab-class': isActive,
+                            })
                           }
                         >
                           <OsdsTabBarItem

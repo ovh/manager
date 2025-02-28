@@ -32,8 +32,12 @@ const unitLabels: Record<UnitLabels, string> = {
 
 // Custom hook to parse dates before passing them to other hooks
 export const useParseDates = (start: string | Date, end: string | Date) => {
-  const startDate = parseDate(start);
-  const endDate = parseDate(end);
+  // Utilisation de useMemo pour éviter un recalcul inutile
+  const { startDate, endDate } = useMemo(() => {
+    const parsedStart = parseDate(start);
+    const parsedEnd = parseDate(end);
+    return { startDate: parsedStart, endDate: parsedEnd };
+  }, [start, end]);
 
   return { startDate, endDate };
 };

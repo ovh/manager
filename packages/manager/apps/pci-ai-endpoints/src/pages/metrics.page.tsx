@@ -20,9 +20,6 @@ const PRIMARY_BORDER_COLOR = '#0050D7';
 export default function MetricPage() {
   const { projectId } = useParams();
   const { t } = useTranslation('metric');
-  const [metricsData, setMetricsData] = useState<{ data: MetricData[] }>({
-    data: [],
-  });
   const [selectedModel, setSelectedModel] = useState<string>(t('allModel'));
 
   const {
@@ -45,16 +42,16 @@ export default function MetricPage() {
     encodeURIComponent(endTime.toISOString()),
   );
 
-  useEffect(() => {
-    if (Array.isArray(metricsQuery?.data)) {
-      setMetricsData({ data: metricsQuery.data });
-    }
-  }, [metricsQuery?.data]);
+  const metricsData: MetricData[] = Array.isArray(metricsQuery.data)
+    ? metricsQuery.data
+    : [];
 
-  const filteredMetrics =
+  const filteredMetrics: MetricData[] =
     selectedModel && selectedModel !== t('allModel')
-      ? metricsData.data.filter((metric) => metric.model === selectedModel)
-      : metricsData.data;
+      ? metricsData.filter(
+          (metric: MetricData) => metric.model === selectedModel,
+        )
+      : metricsData;
 
   const localDatePicker = getLocaleForDatePicker();
 
@@ -71,7 +68,7 @@ export default function MetricPage() {
               <OsdsSelectOption value={t('allModel')}>
                 {t('allModel')}
               </OsdsSelectOption>
-              {metricsData?.data.map((metric) => (
+              {metricsData.map((metric: MetricData) => (
                 <OsdsSelectOption key={metric.model} value={metric.model}>
                   {metric.model}
                 </OsdsSelectOption>

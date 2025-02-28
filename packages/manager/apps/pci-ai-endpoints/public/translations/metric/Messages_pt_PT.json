@@ -1,11 +1,11 @@
 {
-  "allModel": "Todos",
-  "metrics": "Métricas",
-  "total": "Total",
-  "totalAudio": "Duração Total Do Áudio (Segundos)",
-  "noData": "Não há dados disponíveis para o período selecionado",
-  "loading": "Aguarde, estamos coletando seus dados",
-  "error": "Erro no carregamento das métricas. Queira tentar mais tarde",
-  "input": "Input token",
-  "output": "Output token"
+  "ai_endpoints_allModel": "Todos",
+  "ai_endpoints_metrics": "Métricas",
+  "ai_endpoints_total": "Total",
+  "ai_endpoints_totalAudio": "Duração Total Do Áudio (Segundos)",
+  "ai_endpoints_noData": "Não há dados disponíveis para o período selecionado",
+  "ai_endpoints_loading": "Aguarde, estamos coletando seus dados",
+  "ai_endpoints_error": "Erro no carregamento das métricas. Queira tentar mais tarde",
+  "ai_endpoints_input": "Input token",
+  "ai_endpoints_output": "Output token"
 }

@@ -13,8 +13,7 @@ export interface BreadcrumbProps {
 }
 
 const capitalize = (name: string) => {
-  if (!name) return '';
-  return name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+  return name.charAt(0).toUpperCase() + name.slice(1);
 };
 
 function Breadcrumb() {
