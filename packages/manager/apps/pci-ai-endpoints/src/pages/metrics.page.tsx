@@ -20,7 +20,9 @@ const PRIMARY_BORDER_COLOR = '#0050D7';
 export default function MetricPage() {
   const { projectId } = useParams();
   const { t } = useTranslation('metric');
-  const [selectedModel, setSelectedModel] = useState<string>(t('allModel'));
+  const [selectedModel, setSelectedModel] = useState<string>(
+    t('ai_endpoints_allModel'),
+  );
 
   const {
     timeZone,
@@ -47,7 +49,7 @@ export default function MetricPage() {
     : [];
 
   const filteredMetrics: MetricData[] =
-    selectedModel && selectedModel !== t('allModel')
+    selectedModel && selectedModel !== t('ai_endpoints_allModel')
       ? metricsData.filter(
           (metric: MetricData) => metric.model === selectedModel,
         )
@@ -65,8 +67,8 @@ export default function MetricPage() {
               value={selectedModel}
               onOdsValueChange={(v) => setSelectedModel(String(v.detail.value))}
             >
-              <OsdsSelectOption value={t('allModel')}>
-                {t('allModel')}
+              <OsdsSelectOption value={t('ai_endpoints_allModel')}>
+                {t('ai_endpoints_allModel')}
               </OsdsSelectOption>
               {metricsData.map((metric: MetricData) => (
                 <OsdsSelectOption key={metric.model} value={metric.model}>

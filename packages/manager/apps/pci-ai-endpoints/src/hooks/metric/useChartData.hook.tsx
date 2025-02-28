@@ -1,9 +1,9 @@
 import { useMemo } from 'react';
 
 const COLORS_ELEMENTS = {
-  input_tokens: { color: '#0050D7', labelKey: 'input' },
-  output_tokens: { color: '#A5E9FF', labelKey: 'output' },
-  seconds: { color: '#0050D7', labelKey: 'totalAudio' },
+  input_tokens: { color: '#0050D7', labelKey: 'ai_endpoints_input' },
+  output_tokens: { color: '#A5E9FF', labelKey: 'ai_endpoints_output' },
+  seconds: { color: '#0050D7', labelKey: 'ai_endpoints_totalAudio' },
 } as const;
 
 type UnitType = keyof typeof COLORS_ELEMENTS;

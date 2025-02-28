@@ -47,37 +47,37 @@ export default function Onboarding() {
     {
       id: 1,
       texts: {
-        title: t('guide1Title'),
-        description: t('guide1Description'),
-        category: t('guideCategory'),
+        title: t('ai_endpoints_guide1Title'),
+        description: t('ai_endpoints_guide1Description'),
+        category: t('ai_endpoints_guideCategory'),
       },
       href: link?.guideLink1,
     },
     {
       id: 2,
       texts: {
-        title: t('guide2Title'),
-        description: t('guide2Description'),
-        category: t('guideCategory'),
+        title: t('ai_endpoints_guide2Title'),
+        description: t('ai_endpoints_guide2Description'),
+        category: t('ai_endpoints_guideCategory'),
       },
       href: link?.guideLink2,
     },
     {
       id: 3,
       texts: {
-        title: t('guide3Title'),
-        description: t('guide3Description'),
-        category: t('tutoCategory'),
+        title: t('ai_endpoints_guide3Title'),
+        description: t('ai_endpoints_guide3Description'),
+        category: t('ai_endpoints_tutoCategory'),
       },
       href: link?.tutoLink1,
     },
   ];
 
-  const title: string = t('title');
+  const title: string = t('ai_endpoints_title');
   const imgSrc = {
     src: onboardingImgSrc,
   };
-  const descBis: string = t('descriptionBis');
+  const descBis: string = t('ai_endpoints_descriptionBis');
 
   return (
     <RedirectionGuard
@@ -112,7 +112,7 @@ export default function Onboarding() {
             </OsdsText>
           </>
         }
-        moreInfoButtonLabel={t('goToAiEndpoint')}
+        moreInfoButtonLabel={t('ai_endpoints_goToAiEndpoint')}
         moreInfoHref="https://endpoints.ai.cloud.ovh.net/"
       >
         <div className="mb-4 sm:hidden"></div>

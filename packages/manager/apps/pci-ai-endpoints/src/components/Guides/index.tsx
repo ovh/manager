@@ -14,19 +14,19 @@ export default function EndpointsGuideHeader() {
       id: 1,
       href: link?.guideLink1,
       target: OdsHTMLAnchorElementTarget._blank,
-      label: t('guide1Title'),
+      label: t('ai_endpoints_guide1Title'),
     },
     {
       id: 2,
       href: link?.guideLink2,
       target: OdsHTMLAnchorElementTarget._blank,
-      label: t('guide2Title'),
+      label: t('ai_endpoints_guide2Title'),
     },
     {
       id: 3,
       href: link?.tutoLink1,
       target: OdsHTMLAnchorElementTarget._blank,
-      label: t('guide3Title'),
+      label: t('ai_endpoints_guide3Title'),
     },
   ];
 

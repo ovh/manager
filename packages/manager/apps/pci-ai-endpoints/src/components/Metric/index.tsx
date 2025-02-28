@@ -102,7 +102,7 @@ const Metric: React.FC<MetricProps> = ({
             level={ODS_TEXT_LEVEL.heading}
             size={ODS_TEXT_SIZE._600}
           >
-            {t('loading')}
+            {t('ai_endpoints_loading')}
           </OsdsText>
           <div className="flex justify-center pt-8">
             <OsdsSpinner className="w-[3rem]" size={ODS_SPINNER_SIZE.sm} />
@@ -122,7 +122,7 @@ const Metric: React.FC<MetricProps> = ({
             level={ODS_TEXT_LEVEL.heading}
             size={ODS_TEXT_SIZE._600}
           >
-            {t('error')}
+            {t('ai_endpoints_error')}
           </OsdsText>
         </div>
       </div>
@@ -151,20 +151,22 @@ const Metric: React.FC<MetricProps> = ({
         {(totalInputTokens > 0 || totalOutputTokens > 0) && (
           <div className="flex flex-col">
             <OsdsText>
-              {`${t('total')} ${t(
-                'input',
+              {`${t('ai_endpoints_total')} ${t(
+                'ai_endpoints_input',
               )}: ${totalInputTokens.toLocaleString()}`}
             </OsdsText>
             <OsdsText className="pt-2">
-              {`${t('total')} ${t(
-                'output',
+              {`${t('ai_endpoints_total')} ${t(
+                'ai_endpoints_output',
               )}: ${totalOutputTokens.toLocaleString()}`}
             </OsdsText>
           </div>
         )}
         {totalSeconds > 0 && (
           <OsdsText>
-            {`${t('totalAudio')}: ${totalSeconds.toLocaleString()}`}
+            {`${t(
+              'ai_endpoints_totalAudio',
+            )}: ${totalSeconds.toLocaleString()}`}
           </OsdsText>
         )}
       </div>

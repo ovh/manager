@@ -97,7 +97,7 @@ export default function Layout() {
     },
     {
       name: 'metrics',
-      title: t('metrics'),
+      title: t('ai_endpoints_metrics'),
       to: useResolvedPath('metrics').pathname,
     },
   ];
