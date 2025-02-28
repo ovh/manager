@@ -5,6 +5,7 @@ import { useLocation, useMatches } from 'react-router-dom';
 import { COLD_ARCHIVE_TRACKING } from '@/tracking.constants';
 
 const DISCOVERY_PLAN_CODE = 'project.discovery';
+const PCI_LEVEL2 = '86';
 
 export const usePageTracking = () => {
   const location = useLocation();
@@ -41,7 +42,8 @@ export const useTracking = (page: string) => {
   const trackActionClick = (action: string) => {
     tracking?.trackClick({
       name: `${COLD_ARCHIVE_TRACKING.PAGE_PREFIX}::${page}::${action}`,
-      type: 'click',
+      type: 'action',
+      level2: PCI_LEVEL2,
     });
   };
 
@@ -49,6 +51,7 @@ export const useTracking = (page: string) => {
     tracking?.trackClick({
       name: `${COLD_ARCHIVE_TRACKING.PAGE_PREFIX}::${page}::${action}`,
       type: 'navigation',
+      level2: PCI_LEVEL2,
     });
   };
 
@@ -56,6 +59,7 @@ export const useTracking = (page: string) => {
     tracking?.trackPage({
       name: `${COLD_ARCHIVE_TRACKING.PAGE_PREFIX}::${page}_success`,
       type: 'navigation',
+      level2: PCI_LEVEL2,
     });
   };
 
@@ -63,20 +67,23 @@ export const useTracking = (page: string) => {
     tracking?.trackPage({
       name: `${COLD_ARCHIVE_TRACKING.PAGE_PREFIX}::${page}_error`,
       type: 'navigation',
+      level2: PCI_LEVEL2,
     });
   };
 
   const trackCancelAction = () => {
     tracking?.trackClick({
       name: `${COLD_ARCHIVE_TRACKING.PAGE_PREFIX}::${page}::cancel`,
-      type: 'click',
+      type: 'action',
+      level2: PCI_LEVEL2,
     });
   };
 
   const trackConfirmAction = () => {
     tracking?.trackClick({
       name: `${COLD_ARCHIVE_TRACKING.PAGE_PREFIX}::${page}::confirm`,
-      type: 'click',
+      type: 'action',
+      level2: PCI_LEVEL2,
     });
   };
 
