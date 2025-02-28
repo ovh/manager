@@ -3,19 +3,22 @@ import {
   DataGridTextCell,
 } from '@ovh-ux/manager-react-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { OsdsChip, OsdsIcon, OsdsLink } from '@ovhcloud/ods-components/react';
+import { OsdsChip, OsdsLink } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { useHref } from 'react-router-dom';
-import {
-  ODS_CHIP_SIZE,
-  ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-} from '@ovhcloud/ods-components';
+import { ODS_CHIP_SIZE } from '@ovhcloud/ods-components';
 import { TClusterNodePool } from '@/api/data/node-pools';
 import ActionsComponent from './actions.component';
 
 export const useDatagridColumns = () => {
-  const { t } = useTranslation('node-pool');
+  const { t } = useTranslation([
+    'node-pool',
+    'add',
+    'kube-nodes',
+    'autoscaling',
+    'flavor-billing',
+    'billing-anti-affinity',
+  ]);
   const { t: tKubeNodes } = useTranslation('kube-nodes');
 
   const columns: DatagridColumn<TClusterNodePool>[] = [
@@ -35,6 +38,11 @@ export const useDatagridColumns = () => {
       label: t('kube_node_pool_name'),
     },
     {
+      id: 'location',
+      cell: (props) => <DataGridTextCell>{props.location}</DataGridTextCell>,
+      label: t('kube_common_node_pool_localisation'),
+    },
+    {
       id: 'flavor',
       cell: (pool: TClusterNodePool) => (
         <DataGridTextCell>
@@ -45,12 +53,21 @@ export const useDatagridColumns = () => {
     },
     {
       id: 'antiAffinity',
-      cell: (pool: TClusterNodePool) => (
+      cell: (props) => (
         <DataGridTextCell>
-          <OsdsIcon
-            size={ODS_ICON_SIZE.sm}
-            name={pool.antiAffinity ? ODS_ICON_NAME.CHECK : ODS_ICON_NAME.CLOSE}
-          />
+          <span className="whitespace-nowrap">
+            <OsdsChip
+              color={
+                props.antiAffinity
+                  ? ODS_THEME_COLOR_INTENT.success
+                  : ODS_THEME_COLOR_INTENT.error
+              }
+              inline
+              size={ODS_CHIP_SIZE.sm}
+            >
+              {t(`kube_node_pool_autoscale_${props.antiAffinity}`)}
+            </OsdsChip>
+          </span>
         </DataGridTextCell>
       ),
       label: t('kube_node_pool_anti_affinity'),
@@ -66,40 +83,38 @@ export const useDatagridColumns = () => {
     },
     {
       id: 'autoscale',
-      cell: (pool: TClusterNodePool) => (
-        <DataGridTextCell>
-          <span className="whitespace-nowrap">
-            <OsdsChip
-              color={
-                pool.autoscale
-                  ? ODS_THEME_COLOR_INTENT.success
-                  : ODS_THEME_COLOR_INTENT.error
-              }
-              inline
-              size={ODS_CHIP_SIZE.sm}
-            >
-              {t(`kube_node_pool_autoscale_${pool.autoscale}`)}
-            </OsdsChip>
-            {pool.autoscale &&
-              ` (min: ${pool.minNodes} , max: ${pool.maxNodes})`}
-          </span>
-        </DataGridTextCell>
-      ),
+      cell: (pool: TClusterNodePool) =>
+        pool.autoscale ? (
+          <DataGridTextCell>
+            Min {pool.minNodes}, Max {pool.maxNodes}
+          </DataGridTextCell>
+        ) : (
+          <DataGridTextCell>
+            <span className="whitespace-nowrap">
+              <OsdsChip
+                color={ODS_THEME_COLOR_INTENT.error}
+                inline
+                size={ODS_CHIP_SIZE.sm}
+              >
+                {t(`kube_node_pool_autoscale_${pool.autoscale}`)}
+              </OsdsChip>
+            </span>
+          </DataGridTextCell>
+        ),
       label: 'Autoscaling',
     },
     {
       id: 'monthlyBilled',
-      cell: (pool: TClusterNodePool) => (
+      cell: (props) => (
         <DataGridTextCell>
-          <OsdsIcon
-            size={ODS_ICON_SIZE.sm}
-            name={
-              pool.monthlyBilled ? ODS_ICON_NAME.CHECK : ODS_ICON_NAME.CLOSE
-            }
-          />
+          {t(
+            props.monthlyBilled
+              ? 'flavor-billing:pci_project_flavors_billing_monthly'
+              : 'flavor-billing:pci_project_flavors_billing_hourly',
+          )}
         </DataGridTextCell>
       ),
-      label: t('kube_node_pool_monthly_billing'),
+      label: t('kube-nodes:kube_nodes_billing_type'),
     },
     {
       id: 'createdAt',

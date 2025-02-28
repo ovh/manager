@@ -107,7 +107,7 @@ export const useDatagridColumn = ({
           )}
         </DataGridTextCell>
       ),
-      label: t('kube-nodes:kube_nodes_billing_type'),
+      label: t('kube_node_pool_monthly_billing'),
     },
     {
       id: 'actions',

@@ -135,6 +135,11 @@ export default function NodePoolsPage() {
                     comparators: FilterCategories.String,
                   },
                   {
+                    id: 'location',
+                    label: tNodesPool('kube_common_node_pool_localisation'),
+                    comparators: FilterCategories.String,
+                  },
+                  {
                     id: 'flavor',
                     label: tKubeNodes('kube_nodes_flavor'),
                     comparators: FilterCategories.String,
