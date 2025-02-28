@@ -2,7 +2,6 @@ import { StepComponent } from '@ovh-ux/manager-react-components';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
-import { useParams } from 'react-router-dom';
 import { isDiscoveryProject, useProject } from '@ovh-ux/manager-pci-common';
 import { useContainerCreationStore } from '../useContainerCreationStore';
 import LinkUserSelector from './LinkUserSelector.component';
