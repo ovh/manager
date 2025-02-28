@@ -59,6 +59,17 @@ describe('Node class', () => {
       },
     ],
     [
+      'DEPLOYED',
+      SERVICE_STATES.ACTIVE,
+      'none_64',
+      {
+        isTerminated: false,
+        isError: false,
+        isDeployed: false,
+        isWaitForConfigure: true,
+      },
+    ],
+    [
       'DEPLOYING',
       SERVICE_STATES.ACTIVE,
       'Nutanix OS',
@@ -95,17 +106,6 @@ describe('Node class', () => {
       'UNKNOWN',
       SERVICE_STATES.ACTIVE,
       'Nutanix OS',
-      {
-        isTerminated: false,
-        isError: false,
-        isDeployed: true,
-        isWaitForConfigure: false,
-      },
-    ],
-    [
-      'UNKNOWN',
-      SERVICE_STATES.ACTIVE,
-      'none_64',
       {
         isTerminated: false,
         isError: false,
