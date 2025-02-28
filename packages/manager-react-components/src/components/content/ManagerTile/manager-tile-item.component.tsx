@@ -2,10 +2,6 @@ import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import React from 'react';
 
-export type TileBlockProps = React.PropsWithChildren<{
-  label?: string;
-}>;
-
 export const ManagerTileItem = ({ children }: React.PropsWithChildren) => {
   return <dl className="flex flex-col gap-1 m-0">{children}</dl>;
 };
