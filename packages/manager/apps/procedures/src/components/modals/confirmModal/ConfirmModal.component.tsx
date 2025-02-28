@@ -15,7 +15,6 @@ import {
   OsdsSpinner,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 
 type Props = {
@@ -87,7 +86,6 @@ export const ConfirmModal: FunctionComponent<Props> = ({
           <OsdsButton
             slot="actions"
             onClick={onValidate}
-            disabled={isPending || undefined}
             variant={ODS_BUTTON_VARIANT.flat}
             color={ODS_THEME_COLOR_INTENT.primary}
           >
