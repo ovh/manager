@@ -2,6 +2,8 @@ import { StepComponent } from '@ovh-ux/manager-react-components';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
+import { useParams } from 'react-router-dom';
+import { isDiscoveryProject, useProject } from '@ovh-ux/manager-pci-common';
 import { useContainerCreationStore } from '../useContainerCreationStore';
 import LinkUserSelector from './LinkUserSelector.component';
 import { CONTAINER_USER_ASSOCIATION_MODES } from '@/constants';
@@ -14,6 +16,8 @@ export function LinkUserStep() {
     'cold-archive/new/link-user',
     'pci-common',
   ]);
+
+  const { data: project } = useProject();
 
   const {
     form,
@@ -84,6 +88,7 @@ export function LinkUserStep() {
                 'cold-archive/new/link-user:pci_projects_project_storages_cold_archive_add_step_link_user_archive_mode_create',
               )}
               icon="plus"
+              isDisabled={isDiscoveryProject(project)}
             />
           </div>
         )}
