@@ -25,7 +25,7 @@ import {
 import {
   FilterCategories,
   FilterComparator,
-  FilterTypeCategories,
+  FilterTypeCategories as DatagridColumnTypes,
 } from '@ovh-ux/manager-core-api';
 import { clsx } from 'clsx';
 import { ColumnFilter } from '../filters/filter-add.component';
@@ -37,6 +37,7 @@ import './translations';
 
 export type ColumnSort = TanstackColumnSort;
 export type PaginationState = TanstackPaginationState;
+export { FilterTypeCategories as DatagridColumnTypes } from '@ovh-ux/manager-core-api';
 // Note: current prettier version does not supports export type
 // we could replace those types with :
 // export type { ColumnSort } from '@tanstack/react-table';
@@ -54,7 +55,7 @@ export interface DatagridColumn<T> {
   /** set column comparator for the filter */
   comparator?: FilterComparator[];
   /** Filters displayed for the column */
-  type?: FilterTypeCategories;
+  type?: DatagridColumnTypes;
   /** Trigger the column filter */
   isFilterable?: boolean;
   /** Trigger the column search */

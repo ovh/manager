@@ -81,8 +81,10 @@ export function useResourcesIcebergV6<T = unknown>({
 
   const searchableColumn = useMemo(
     () =>
-      columns?.find((item) =>
-        Object.prototype.hasOwnProperty.call(item, 'isSearchable'),
+      columns?.find(
+        (item) =>
+          Object.prototype.hasOwnProperty.call(item, 'isSearchable') &&
+          item.isSearchable,
       ),
     [columns],
   );

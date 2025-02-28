@@ -37,16 +37,20 @@ const renderUseResourcesV6Hook = (
       label: 'name',
       accessorKey: 'name',
       comparator: FilterCategories.String,
+      isFilterable: true,
+      isSearchable: true,
       type: 'string',
       cell: (props: any) => <div>{props.name}</div>,
     },
     {
-      id: 'name2',
-      header: 'name2',
-      label: 'name2',
-      accessorKey: 'name2',
+      id: 'age',
+      header: 'age',
+      label: 'age',
+      accessorKey: 'age',
       comparator: FilterCategories.String,
-      type: 'string',
+      isSearchable: true,
+      isFilterable: true,
+      type: 'number',
       cell: (props: any) => <div>{props.name}</div>,
     },
   ];
@@ -68,6 +72,7 @@ const renderUseResourcesV6Hook = (
 const mockData = {
   data: [...Array(26).keys()].map((_, i) => ({
     name: `ns5007027.ip-51-${i}-XXXXX5.net`,
+    age: i,
   })),
   status: 200,
   totalCount: 26,
@@ -144,6 +149,138 @@ describe('useResourcesV6', () => {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       expect(filters.value).toBe('ns5007027.ip-51-7-XXXXX5.net');
+    });
+  });
+
+  it('should search a service with 25 in name or age', async () => {
+    const { result } = renderUseResourcesV6Hook();
+    act(() => {
+      result.current.search.onSearch('25');
+    });
+
+    waitFor(() => {
+      const { search, flattenData } = result.current;
+      expect(flattenData.length).toBe(1);
+      expect(search.searchInput).toBe('25');
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      expect(flattenData[0].name).toBe('ns5007027.ip-51-25-XXXXX5.net');
+    });
+  });
+
+  it('should search a service with 19 in name or age', async () => {
+    const { result } = renderUseResourcesV6Hook();
+    act(() => {
+      result.current.search.onSearch('19');
+    });
+
+    waitFor(() => {
+      const { current } = result;
+      expect(current.flattenData.length).toBe(1);
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      expect(current.flattenData[0].age.toBe(19));
+    });
+  });
+
+  it('should search a service with ns5007027.ip-51-21 in name or age', async () => {
+    const { result } = renderUseResourcesV6Hook();
+    act(() => {
+      result.current.search.onSearch('ns5007027.ip-51-21');
+    });
+
+    waitFor(() => {
+      const { current } = result;
+      expect(current.flattenData.length).toBe(1);
+      expect(
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        current.flattenData[0].name.toBe('ns5007027.ip-51-21-XXXXX5.net'),
+      );
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      expect(current.flattenData[0].age.toBe(21));
+    });
+  });
+
+  it('should filter age service that contains 2', async () => {
+    const { result } = renderUseResourcesV6Hook();
+    act(() => {
+      result.current.filters.add({
+        key: 'age',
+        value: '19',
+        label: 'age',
+        comparator: FilterComparator.IsHigher,
+      });
+    });
+
+    waitFor(() => {
+      const { current } = result;
+      expect(current.flattenData.length).toBe(6);
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      expect(current.flattenData[0].age).toBe(25);
+    });
+  });
+  it('should filter age service that contains 2 and display by sorting age asc', async () => {
+    const { result } = renderUseResourcesV6Hook();
+    act(() => {
+      result.current.filters.add({
+        key: 'age',
+        value: '19',
+        label: 'age',
+        comparator: FilterComparator.IsHigher,
+      });
+      result.current.setSorting({ id: 'age', desc: false });
+    });
+
+    waitFor(() => {
+      const { current } = result;
+      expect(current.flattenData.length).toBe(6);
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      expect(current.flattenData[0].age).toBe(25);
+    });
+  });
+
+  it('should search service that contains 17, filters lower than 23 and display by sorting age asc', async () => {
+    const { result } = renderUseResourcesV6Hook();
+    act(() => {
+      result.current.filters.add({
+        key: 'age',
+        value: '23',
+        label: 'age',
+        comparator: FilterComparator.IsLower,
+      });
+      result.current.setSorting({ id: 'age', desc: false });
+      result.current.search.onSearch('17');
+    });
+
+    waitFor(() => {
+      const { current } = result;
+      expect(current.flattenData.length).toBe(1);
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      expect(current.flattenData[0].age).toBe(17);
+    });
+  });
+
+  it('should search service that contains 17, filters upper than 23 and display by sorting age asc', async () => {
+    const { result } = renderUseResourcesV6Hook();
+    act(() => {
+      result.current.filters.add({
+        key: 'age',
+        value: '23',
+        label: 'age',
+        comparator: FilterComparator.IsHigher,
+      });
+      result.current.setSorting({ id: 'age', desc: false });
+      result.current.search.onSearch('17');
+    });
+
+    waitFor(() => {
+      const { current } = result;
+      expect(current.flattenData.length).toBe(0);
     });
   });
 });
