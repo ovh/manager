@@ -1,15 +1,13 @@
 import '@/setupTests';
 import React, { PropsWithChildren } from 'react';
 import '@testing-library/jest-dom';
-import {
-  QueryClient,
-  QueryClientProvider,
-  useQuery,
-} from '@tanstack/react-query';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { vi } from 'vitest';
 import { render, waitFor, screen } from '@testing-library/react';
+import { useResourcesIcebergV6 } from '@ovh-ux/manager-react-components';
 import { domain } from '@/__mocks__/domain';
 import Domain from '@/pages/dashboard/domain/Domain';
+import { taskMeDomain } from '@/constants';
 
 vi.mock('react-router-dom', () => ({
   useNavigate: vi.fn(),
@@ -26,30 +24,35 @@ const wrapper = ({ children }: PropsWithChildren) => (
 
 describe('Domain datagrid', () => {
   it('displays loading spinner while main request are loading', async () => {
-    (useQuery as jest.Mock).mockReturnValue({ data: [], isLoading: true });
+    (useResourcesIcebergV6 as jest.Mock).mockReturnValue({
+      flattenData: [],
+      isLoading: true,
+    });
 
     const { getByTestId } = render(<Domain />, { wrapper });
     expect(getByTestId('listing-page-spinner')).toBeInTheDocument();
   });
 
   it('fetch in a good way using useQuery', () => {
-    (useQuery as jest.Mock).mockReturnValue({
-      data: domain,
+    (useResourcesIcebergV6 as jest.Mock).mockReturnValue({
+      flattenData: domain,
       isLoading: false,
+      totalCount: domain.length,
     });
 
-    expect(useQuery).toHaveBeenCalledWith(
+    expect(useResourcesIcebergV6).toHaveBeenCalledWith(
       expect.objectContaining({
-        queryKey: ['domainList'],
-        queryFn: expect.any(Function),
+        pageSize: 30,
+        route: taskMeDomain,
       }),
     );
   });
 
   it('Display the datagrid element', async () => {
-    (useQuery as jest.Mock).mockReturnValue({
-      data: domain,
+    (useResourcesIcebergV6 as jest.Mock).mockReturnValue({
+      flattenData: domain,
       isLoading: false,
+      totalCount: domain.length,
     });
 
     const { getByTestId } = render(<Domain />, { wrapper });

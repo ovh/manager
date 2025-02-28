@@ -1,14 +1,36 @@
 import React from 'react';
-import { Datagrid } from '@ovh-ux/manager-react-components';
+import {
+  Datagrid,
+  ErrorBanner,
+  useResourcesIcebergV6,
+} from '@ovh-ux/manager-react-components';
+import { useTranslation } from 'react-i18next';
 import Loading from '@/components/Loading/Loading';
 import {
   ParentEnum,
   useOngoingOperationDatagridColumns,
 } from '@/hooks/useOngoingOperationDatagridColumns';
-import { useDomainList } from '@/hooks/data/data';
+import { taskMeDomain } from '@/constants';
+import { TOngoingOperations } from '@/types';
 
 export default function Domain() {
-  const { data: domainList, isLoading } = useDomainList();
+  const { t: tError } = useTranslation('web-ongoing-operations/error');
+
+  const {
+    flattenData: domainList,
+    isError,
+    totalCount,
+    hasNextPage,
+    fetchNextPage,
+    isLoading,
+    sorting,
+    setSorting,
+    filters,
+  } = useResourcesIcebergV6<TOngoingOperations>({
+    route: taskMeDomain,
+    queryKey: [taskMeDomain],
+    pageSize: 30,
+  });
 
   const columns = useOngoingOperationDatagridColumns(
     ParentEnum.Domain,
@@ -23,6 +45,18 @@ export default function Domain() {
     );
   }
 
+  // TODO trad
+  if (isError) {
+    return (
+      <ErrorBanner
+        error={{
+          status: 500,
+          data: { message: tError('manager_error_page_default') },
+        }}
+      />
+    );
+  }
+
   return (
     <React.Suspense>
       {domainList && (
@@ -30,7 +64,12 @@ export default function Domain() {
           <Datagrid
             columns={columns}
             items={domainList}
-            totalItems={domainList.length}
+            totalItems={totalCount || 0}
+            hasNextPage={hasNextPage && !isLoading}
+            onFetchNextPage={fetchNextPage}
+            sorting={sorting}
+            onSortChange={setSorting}
+            filters={filters}
           />
         </div>
       )}
