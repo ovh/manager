@@ -74,8 +74,8 @@ export default function ContainerNewPage() {
           }
           username={form.selectedUser.username}
           description={form.selectedUser.description}
-          accessKey={form.selectedUser.s3Credentials.access}
-          secret={form.selectedUser.s3Credentials.secret}
+          accessKey={form.selectedUser?.s3Credentials?.access}
+          secret={form.selectedUser?.s3Credentials?.secret}
         />,
         false,
       );
