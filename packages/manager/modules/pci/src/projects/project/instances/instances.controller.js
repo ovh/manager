@@ -1,10 +1,12 @@
 import isEmpty from 'lodash/isEmpty';
 
+import map from 'lodash/map';
+import Instance from '../../../components/project/instance/instance.class';
+import { getCriteria } from '../project.utils';
 import {
   INSTANCE_HELP_REFERENCE_KEY,
   OPENSTACK_INSTANCE_STATUS,
 } from './instances.constants';
-import { getCriteria } from '../project.utils';
 
 export default class CloudProjectComputeInfrastructureListCtrl {
   /* @ngInject */
@@ -34,6 +36,48 @@ export default class CloudProjectComputeInfrastructureListCtrl {
     this.checkHelpDisplay();
 
     this.criteria = getCriteria('id', this.instanceId);
+
+    this.fetchInstances();
+  }
+
+  fetchInstances() {
+    this.loading = true;
+    return this.$q
+      .all({
+        instances: this.PciProjectsProjectInstanceService.getAll(
+          this.projectId,
+          this.customerRegions,
+        ),
+        floatingIps: this.getFloatingIps(),
+      })
+      .then(({ instances, floatingIps }) => {
+        const updatedInstances = map(instances, (instance) => ({
+          ...instance,
+          floatingIp: floatingIps.find(
+            (floatingIp) => floatingIp?.associatedEntity?.id === instance.id,
+          ),
+        }));
+        return this.$q.all(
+          updatedInstances.map((instance) => {
+            return this.PciProjectsProjectInstanceService.getInstanceFlavor(
+              this.projectId,
+              instance,
+            ).then((flavor) => {
+              return new Instance({
+                ...instance,
+                flavor,
+              });
+            });
+          }),
+        );
+      })
+      .then((instances) => {
+        this.instances = instances;
+        this.instancesRegions = Array.from(
+          new Set(instances.map(({ region }) => region)),
+        );
+        this.loading = false;
+      });
   }
 
   loadMessages() {

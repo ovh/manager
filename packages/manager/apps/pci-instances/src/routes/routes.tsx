@@ -75,12 +75,6 @@ const routes: RouteObject[] = [
         ),
       },
       {
-        path: SECTIONS.new,
-        ...lazyRouteConfig(() =>
-          import('@/pages/instances/create/CreateInstance.page'),
-        ),
-      },
-      {
         path: SECTIONS.instance,
         ...lazyRouteConfig(() =>
           import('@/pages/instances/instance/Instance.page'),
