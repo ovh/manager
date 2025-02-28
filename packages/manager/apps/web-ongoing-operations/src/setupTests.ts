@@ -37,6 +37,14 @@ vi.mock(import('@tanstack/react-query'), async (importOriginal) => {
   };
 });
 
+vi.mock(import('@ovh-ux/manager-react-components'), async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...actual,
+    useResourcesIcebergV6: vi.fn(),
+  };
+});
+
 vi.mock('@/utils/utils', () => ({
   formatDatagridDate: vi.fn(),
   removeQuotes: vi.fn(),
