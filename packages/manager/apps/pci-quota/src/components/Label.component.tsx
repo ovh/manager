@@ -3,7 +3,6 @@ import { OdsIcon, OdsPopover, OdsText } from '@ovhcloud/ods-components/react';
 type TLabelProps = {
   text: string;
   helpText?: string;
-  slot?: string;
   className?: string;
   triggerId?: string;
 };
