@@ -1,13 +1,12 @@
 {
-  "title": "web-hosting",
-  "description": "Découvrez des services de stockage managés qui s’appuient sur le système de fichiers OpenZFS. Bénéficiez en quelques clics d’espaces de stockage centralisés pour entreposer ou sauvegarder vos données et fichiers.",
-  "orderButtonLabel": "Commander un web-hosting",
-  "moreInfoButtonLabel": "En savoir plus sur web-hosting",
-  "guideCategory": "Tutoriel",
-  "guide1Title": "Premiers pas avec un web-hosting",
-  "guide1Description": "Découvrez comment gérer un NAS-HA depuis l'espace-client OVHcloud",
-  "guide2Title": "Monter votre NAS via un partage NFS",
-  "guide2Description": "Découvrez comment monter un NAS via un partage NFS",
-  "guide3Title": "Monter votre NAS sur Windows Server via CIFS",
-  "guide3Description": "Découvrez comment monter un NAS sur Windows Server via le protocole CIFS"
+  "title": "Choisissez l'hébergement web qui convient le mieux à votre activité numérique",
+  "description": "Avec OVHcloud, créez votre premier site web en quelques minutes. Publiez votre blog, votre site internet professionnel ou encore votre boutique en ligne.",
+  "order_btn": "Commander",
+  "guide_category": "Tutoriel",
+  "guide_1_title": "Comment bien débuter avec votre hébergement web en quelques étapes",
+  "guide_1_description": "Découvrez comment prendre en main votre nouvel hébergement web.",
+  "guide_2_title": "Mettre en ligne un site internet sur son hébergement web",
+  "guide_2_description": "Apprenez à mettre en ligne un site internet sur votre hébergement web OVHcloud.",
+  "guide_3_title": "Éditer une zone DNS OVHcloud",
+  "guide_3_description": "Découvrez comment éditer votre zone DNS OVHcloud via votre espace client OVHcloud."
 }
