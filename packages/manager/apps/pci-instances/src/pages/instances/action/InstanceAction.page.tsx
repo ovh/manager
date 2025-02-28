@@ -12,9 +12,17 @@ import { useUrlLastSection } from '@/hooks/url/useUrlLastSection';
 import { ActionModalContent } from './modal/ActionModalContent.component';
 import { useInstanceAction } from '@/data/hooks/instance/action/useInstanceAction';
 import NotFound from '@/pages/404/NotFound.page';
+import { kebabToSnakeCase } from '@/utils';
 
-export type TSectionType = 'delete' | 'start' | 'stop' | 'shelve' | 'unshelve';
-const actionSectionRegex = /^(delete|start|stop|shelve|unshelve)$/;
+export type TSectionType =
+  | 'delete'
+  | 'start'
+  | 'stop'
+  | 'shelve'
+  | 'unshelve'
+  | 'soft-reboot';
+
+const actionSectionRegex = /^(delete|start|stop|shelve|unshelve|soft-reboot)$/;
 
 const InstanceAction: FC = () => {
   const { t } = useTranslation(['actions', 'common']);
@@ -27,6 +35,12 @@ const InstanceAction: FC = () => {
   const section = useUrlLastSection<TSectionType>(
     actionSectionRegex.test.bind(actionSectionRegex),
   );
+
+  const snakeCaseSection = useMemo(
+    () => (section ? kebabToSnakeCase(section) : ''),
+    [section],
+  );
+
   const instanceName = useMemo(
     () => getInstanceNameById(projectId, instanceId, queryClient),
     [instanceId, projectId],
@@ -48,7 +62,7 @@ const InstanceAction: FC = () => {
   const handleMutationSuccess = () => {
     executeSuccessCallback();
     addSuccess(
-      t(`pci_instances_actions_${section}_instance_success_message`, {
+      t(`pci_instances_actions_${snakeCaseSection}_instance_success_message`, {
         name: instanceName,
       }),
       true,
@@ -58,7 +72,7 @@ const InstanceAction: FC = () => {
 
   const handleMutationError = () => {
     addError(
-      t(`pci_instances_actions_${section}_instance_error_message`, {
+      t(`pci_instances_actions_${snakeCaseSection}_instance_error_message`, {
         name: instanceName,
       }),
       true,
@@ -90,7 +104,7 @@ const InstanceAction: FC = () => {
   return (
     <PciModal
       type={section === 'delete' ? 'warning' : 'default'}
-      title={t(`pci_instances_actions_${section}_instance_title`)}
+      title={t(`pci_instances_actions_${snakeCaseSection}_instance_title`)}
       isPending={isPending}
       isDisabled={isPending}
       onClose={handleModalClose}

@@ -42,3 +42,5 @@ export const instancesQueryKey = (
   'instances',
   ...(rest && rest.length > 0 ? rest : []),
 ];
+
+export const kebabToSnakeCase = (str: string): string => str.replace(/-/g, '_');

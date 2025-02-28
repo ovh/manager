@@ -3,6 +3,7 @@ import { useCallback } from 'react';
 import {
   deleteInstance,
   shelveInstance,
+  rebootInstance,
   startInstance,
   stopInstance,
   unshelveInstance,
@@ -15,7 +16,9 @@ export type TMutationFnType =
   | 'start'
   | 'stop'
   | 'shelve'
-  | 'unshelve';
+  | 'unshelve'
+  | 'soft-reboot';
+
 export type TMutationFnVariables = string | undefined;
 
 export type TUseInstanceActionCallbacks = DeepReadonly<{
@@ -48,6 +51,8 @@ export const useInstanceAction = (
           return shelveInstance(projectId, instanceId);
         case 'unshelve':
           return unshelveInstance(projectId, instanceId);
+        case 'soft-reboot':
+          return rebootInstance({ projectId, instanceId, rebootType: 'soft' });
         default:
           return Promise.reject(unknownError);
       }

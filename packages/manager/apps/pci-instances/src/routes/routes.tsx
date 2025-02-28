@@ -25,13 +25,16 @@ export const SECTIONS = {
   start: 'start',
   shelve: 'shelve',
   unshelve: 'unshelve',
+  softReboot: 'soft-reboot',
 };
+
 const instanceActionsSections = [
   SECTIONS.delete,
   SECTIONS.start,
   SECTIONS.stop,
   SECTIONS.shelve,
   SECTIONS.unshelve,
+  SECTIONS.softReboot,
 ];
 
 const instanceActionLegacyRoutes = instanceActionsSections.map((section) => ({

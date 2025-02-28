@@ -4,7 +4,13 @@ import {
   TRetrieveInstancesQueryParams,
 } from '@/types/instance/api.type';
 
-type TInstanceAction = 'delete' | 'stop' | 'start' | 'shelve' | 'unshelve';
+type TInstanceAction =
+  | 'delete'
+  | 'stop'
+  | 'start'
+  | 'shelve'
+  | 'unshelve'
+  | 'reboot';
 
 const instanceActionUrl = (
   projectId: string,
@@ -65,3 +71,16 @@ export const unshelveInstance = (
   instanceId: string,
 ): Promise<null> =>
   v6.post(instanceActionUrl(projectId, instanceId, 'unshelve'));
+
+export const rebootInstance = ({
+  projectId,
+  instanceId,
+  rebootType,
+}: {
+  projectId: string;
+  instanceId: string;
+  rebootType: 'soft' | 'hard';
+}): Promise<null> =>
+  v6.post(instanceActionUrl(projectId, instanceId, 'reboot'), {
+    type: rebootType,
+  });
