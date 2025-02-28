@@ -154,7 +154,15 @@ const getActionHrefByName = (
     };
   }
 
+  if (name === 'soft_reboot') {
+    return {
+      path: `region/${region}/instance/${id}/soft-reboot`,
+      isExternal: false,
+    };
+  }
+
   const actions = new Set(['delete', 'stop', 'start', 'shelve', 'unshelve']);
+
   if (actions.has(name)) {
     return {
       path: `region/${region}/instance/${id}/${name}`,
