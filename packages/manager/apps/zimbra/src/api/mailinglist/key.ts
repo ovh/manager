@@ -6,11 +6,10 @@ export const getZimbraPlatformMailingListsQueryKey = (
   },
 ) => {
   const params = new URLSearchParams(queryParameters).toString();
-  const queryString = params ? `?${params}` : '';
-  return [`get/zimbra/platform/${platformId}/mailingList${queryString}`];
+  return ['get', 'zimbra', 'platform', platformId, 'mailingLists', params];
 };
 
 export const getZimbraPlatformMailingListDetailsQueryKey = (
   platformId: string,
   mailingListId: string,
-) => [`get/zimbra/platform/${platformId}/mailingList/${mailingListId}`];
+) => ['get', 'zimbra', 'platform', platformId, 'mailingList', mailingListId];
