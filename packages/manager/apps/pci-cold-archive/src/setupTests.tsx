@@ -1,3 +1,4 @@
+import { OdsRadio } from '@ovhcloud/ods-components';
 import '@testing-library/jest-dom';
 import 'element-internals-polyfill';
 import { vi } from 'vitest';
@@ -7,7 +8,7 @@ vi.mock('react-router-dom', async () => {
   return {
     ...mod,
     useSearchParams: () => [new URLSearchParams({})],
-    useParams: () => ({ projectId: 'project-id', kubeId: 'kube-id' }),
+    useParams: () => ({ projectId: 'project-id', archiveName: 'archive1' }),
     useHref: vi.fn(),
     useLocation: vi.fn(),
     useNavigate: vi.fn(),

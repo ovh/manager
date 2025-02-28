@@ -2,7 +2,7 @@ import { v6 } from '@ovh-ux/manager-core-api';
 import { OBJECT_STORAGE_USER_ROLE } from '@/constants';
 
 export type TS3Credentials = {
-  userId: string;
+  userId: number;
   tenantId: string;
   access: string;
   secret: string;
@@ -44,7 +44,7 @@ export const getAllUsers = async (projectId: string): Promise<TUser[]> => {
 
 export const getS3Credentials = async (
   projectId: string,
-  userId: string,
+  userId: number,
 ): Promise<TS3Credentials[]> => {
   const { data } = await v6.get<TS3Credentials[]>(
     `/cloud/project/${projectId}/user/${userId}/s3Credentials`,
@@ -86,7 +86,7 @@ export const postS3Secret = async (
 
 export const importUserPolicy = async (
   projectId: string,
-  userId: string,
+  userId: number,
   policy: string,
 ) => {
   const { data } = await v6.post(
