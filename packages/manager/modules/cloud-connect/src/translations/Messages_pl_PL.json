@@ -35,5 +35,7 @@
   "cloud_connect_order_follow_up_label_SEND_SERVICE_KEY": "Wysyłka klucza usługi",
   "cloud_connect_order_follow_up_label_CHECK_LIGHT": "Łącze optyczne",
   "cloud_connect_order_follow_up_label_FINALIZING": "Zakończenie",
-  "cloud_connect_order": "Zamów"
+  "cloud_connect_order": "Zamów",
+  "cloud_connect_active_notifications_label": "Aktywne powiadomienia",
+  "cloud_connect_manage_notifications_label": "Zarządzanie powiadomieniami"
 }

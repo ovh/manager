@@ -4,7 +4,7 @@ import {
   ApiDiagnosticStatus,
 } from './check-pgp-peering.constants';
 import {
-  DIAGNOSTIC_TRACKING_PREFIX,
+  TRACKING_PREFIX,
   DIAGNOSTIC_DASHBOARD_TRACKING_CONTEXT,
   getDiagnosticDashboardTrackingContext,
 } from '../../../cloud-connect.constants';
@@ -42,7 +42,7 @@ export default class CheckBGPPeeringCtrl {
   cancel() {
     if (this.optionSelected) {
       this.atInternet.trackClick({
-        name: `${DIAGNOSTIC_TRACKING_PREFIX}pop-up::button::check_bgp-peering::cancel`,
+        name: `${TRACKING_PREFIX}pop-up::button::check_bgp-peering::cancel`,
         type: 'action',
         ...getDiagnosticDashboardTrackingContext(
           'cloud-connect::pop-up::check::bgp-peering',
@@ -54,7 +54,7 @@ export default class CheckBGPPeeringCtrl {
 
   runDagnostic() {
     this.atInternet.trackClick({
-      name: `${DIAGNOSTIC_TRACKING_PREFIX}pop-up::button::check_bgp-peering-${this.diagnosticType}::confirm`,
+      name: `${TRACKING_PREFIX}pop-up::button::check_bgp-peering-${this.diagnosticType}::confirm`,
       type: 'action',
       ...getDiagnosticDashboardTrackingContext(
         'cloud-connect::pop-up::check::bgp-peering',
@@ -73,7 +73,7 @@ export default class CheckBGPPeeringCtrl {
       .then(({ status }) => {
         if (status === ApiDiagnosticStatus.TODO) {
           this.atInternet.trackPage({
-            name: `${DIAGNOSTIC_TRACKING_PREFIX}cloud-connect::banner-info::create_diagnostic_pending`,
+            name: `${TRACKING_PREFIX}cloud-connect::banner-info::create_diagnostic_pending`,
             type: 'display',
             ...DIAGNOSTIC_DASHBOARD_TRACKING_CONTEXT,
           });
@@ -91,7 +91,7 @@ export default class CheckBGPPeeringCtrl {
             this.$timeout(() => {
               $('#diagnostic-success-link').bind('click', () => {
                 this.atInternet.trackClick({
-                  name: `${DIAGNOSTIC_TRACKING_PREFIX}banner::link::go-to-diagnostic-results-${this.diagnosticType}`,
+                  name: `${TRACKING_PREFIX}banner::link::go-to-diagnostic-results-${this.diagnosticType}`,
                   type: 'action',
                   ...getDiagnosticDashboardTrackingContext(
                     'cloud-connect::dashboard::configure',
@@ -115,7 +115,7 @@ export default class CheckBGPPeeringCtrl {
       })
       .catch((error) => {
         this.atInternet.trackPage({
-          name: `${DIAGNOSTIC_TRACKING_PREFIX}cloud-connect::banner-error::create_diagnostic_error`,
+          name: `${TRACKING_PREFIX}cloud-connect::banner-error::create_diagnostic_error`,
           type: 'display',
           ...DIAGNOSTIC_DASHBOARD_TRACKING_CONTEXT,
         });

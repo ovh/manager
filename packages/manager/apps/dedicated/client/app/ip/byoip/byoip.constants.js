@@ -41,6 +41,8 @@ export const GUIDELINK = {
     'https://help.ovhcloud.com/csm/asia-network-bring-your-own-ip?id=kb_article_view&sysparm_article=KB0044845',
   SG:
     'https://help.ovhcloud.com/csm/en-sg-network-bring-your-own-ip?id=kb_article_view&sysparm_article=KB0044855',
+  US:
+    'https://support.us.ovhcloud.com/hc/en-us/articles/7437687367315-Using-the-Bring-Your-Own-IP-BYOIP-feature',
   DEFAULT:
     'https://help.ovhcloud.com/csm/en-network-bring-your-own-ip?id=kb_article_view&sysparm_article=KB0044856',
 };

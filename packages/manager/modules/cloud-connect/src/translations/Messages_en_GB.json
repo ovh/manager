@@ -35,5 +35,7 @@
   "cloud_connect_order_follow_up_label_SEND_SERVICE_KEY": "Send service key",
   "cloud_connect_order_follow_up_label_CHECK_LIGHT": "Optical connectivity",
   "cloud_connect_order_follow_up_label_FINALIZING": "Confirm",
-  "cloud_connect_order": "Order"
+  "cloud_connect_order": "Order",
+  "cloud_connect_active_notifications_label": "Active notifications",
+  "cloud_connect_manage_notifications_label": "Manage notifications"
 }

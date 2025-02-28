@@ -4,6 +4,7 @@ import ngOvhChart from '@ovh-ux/ng-ovh-chart';
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 import component from './cloud-connect.component';
 import details from './details';
+import manageNotifications from './manage-notifications';
 import routing from './cloud-connect.routing';
 import service from './cloud-connect.service';
 
@@ -23,6 +24,7 @@ angular
     'ovh-api-services',
     'oui',
     details,
+    manageNotifications,
   ])
   .config(routing)
   .service('cloudConnectService', service)

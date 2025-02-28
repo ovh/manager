@@ -16,5 +16,6 @@
   "netapp_order_commitment_payment": "Modalidades de pago",
   "netapp_order_confirm": "Aceptar",
   "netapp_order_performance_customization": "Asimismo, al aprovisionar su capacidad, deberá establecer el nivel de prestaciones de su servicio. Le recordamos que dispone de 64 MB/s y 4000 IOPS por TB de capacidad aprovisionada.",
-  "netapp_order_region_compatiable_with_info": "Compatible con"
+  "netapp_order_region_compatiable_with_info": "Compatible con",
+  "netapp_order_region_badge_vrack": "vRack"
 }

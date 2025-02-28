@@ -25,5 +25,6 @@
   "dedicatedCloud_configuration_add_datacenter_card_host_vsphere_saphana_description": "Su nuevo datacenter virtual estará compuesto por una infraestructura hiperconvergente especialmente diseñada y certificada para SAP HANA (podrá elegir las características de los hosts en la siguiente etapa).",
   "dedicatedCloud_configuration_add_datacenter_message_edge_information": "Se desplegarán 2 Edges NSX en el nuevo entorno. Por defecto, esta MV utilizará 2vCPU con 8 GB de RAM y 200 GB de almacenamiento por Edge. Deberá tener CPU disponible para alojar el clúster Edge, espacio y un mínimo de dos datastores globales. En caso contrario, deberá contratar 2 datastores para el nuevo vDC.",
   "dedicatedCloud_datacenters_adding_load_error": "Se ha producido un error al cargar los datos para la adición de un datacenter.",
-  "dedicatedCloud_configuration_add_datacenter_step_1_description_no_saphana": "Añada un VDC a su infraestructura VMware. La selección de los hosts (estándar o vSAN) se realizará en la siguiente etapa."
+  "dedicatedCloud_configuration_add_datacenter_step_1_description_no_saphana": "Añada un VDC a su infraestructura VMware. La selección de los hosts (estándar o vSAN) se realizará en la siguiente etapa.",
+  "dedicatedCloud_datacenters_no_offer_available": "Ningún datacenter disponible. Por favor, contacte con el soporte."
 }

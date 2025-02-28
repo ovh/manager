@@ -1,5 +1,9 @@
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
-import { GUIDELINK } from './cloud-connect.constants';
+import {
+  GUIDELINK,
+  TRACKING_PREFIX,
+  TRACKING_CONTEXT,
+} from './cloud-connect.constants';
 import { getCloudConnectOrderUrl } from './cloud-connect.order';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -29,15 +33,37 @@ export default /* @ngInject */ ($stateProvider) => {
           $state.href('cloud-connect.details', {
             ovhCloudConnectId,
           }),
-        viewDetail: /* @ngInject */ ($state) => ({ uuid: ovhCloudConnectId }) =>
+        viewDetail: /* @ngInject */ ($state, atInternet) => ({
+          uuid: ovhCloudConnectId,
+        }) => {
+          atInternet.trackClick({
+            name: `${TRACKING_PREFIX} + 'datagrid::button::viewDetail'`,
+            type: 'action',
+            ...TRACKING_CONTEXT,
+          });
           $state.go('cloud-connect.details', {
             ovhCloudConnectId,
-          }),
+          });
+        },
         hideBreadcrumb: () => true,
+        goToManageNotifications: /* @ngInject */ ($state, atInternet) => (
+          service,
+        ) => {
+          atInternet.trackClick({
+            name: `${TRACKING_PREFIX} + 'datagrid::button::goToManageNotifications'`,
+            type: 'action',
+            ...TRACKING_CONTEXT,
+          });
+          $state.go('cloud-connect.index.managenotifications', {
+            uuid: service.uuid,
+            description: service.description,
+          });
+        },
         gotoOrder: /* @ngInject */ ($window, coreConfig, atInternet) => () => {
           atInternet.trackClick({
-            name: 'cloud-connect::index::order',
+            name: `${TRACKING_PREFIX} + 'page::button::go-to-order_cloud-connect'`,
             type: 'action',
+            ...TRACKING_CONTEXT,
           });
           $window.open(
             getCloudConnectOrderUrl(coreConfig.getUser().ovhSubsidiary),
@@ -60,5 +86,8 @@ export default /* @ngInject */ ($stateProvider) => {
               ? { state: 'cloud-connect.onboarding' }
               : false,
           ),
+      atInternet: {
+        ignore: true,
+      },
     });
 };

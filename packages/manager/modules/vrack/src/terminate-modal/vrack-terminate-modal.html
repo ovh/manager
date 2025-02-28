@@ -3,9 +3,9 @@
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <oui-modal
-                    data-on-dismiss="$ctrl.onCancel()"
-                    data-primary-action="$ctrl.onConfirm()"
-                    data-secondary-action="$ctrl.onCancel()"
+                    data-on-dismiss="$ctrl.cancel()"
+                    data-primary-action="$ctrl.terminate()"
+                    data-secondary-action="$ctrl.cancel()"
                     data-type="warning"
                     data-primary-label="{{:: 'vrack_common_confirm' | translate }}"
                     data-secondary-label="{{:: 'vrack_common_cancel' | translate }}"

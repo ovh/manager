@@ -17,6 +17,7 @@
     </oui-header-heading>
 </oui-header>
 
+<div class="alert-server mt-3 mb-3" data-ovh-alert="cloud_connect_alert"></div>
 <oui-tile
     data-heading="{{:: 'cloud_connect_order_follow_up_title' | translate}}"
     data-ng-if="$ctrl.orders.length > 0"
@@ -100,7 +101,7 @@
         <oui-datagrid
             id="{{:: $ctrl.datagridId }}"
             data-page-size="{{ $ctrl.paginationSize }}"
-            data-rows-loader="$ctrl.loadPage()"
+            data-rows-loader="$ctrl.loadPage($config)"
             data-criteria="$ctrl.criteria"
             data-on-page-change="$ctrl.onPageChange($pagination)"
             data-on-criteria-change="$ctrl.onCriteriaChange($criteria)"
@@ -127,6 +128,12 @@
                 <a
                     data-ng-href="{{ $ctrl.getServiceNameLink($row) }}"
                     data-ng-bind="$value"
+                    data-track-on="click"
+                    data-track-name="{{:: $ctrl.TRACKING_PREFIX + 'datagrid::link::details_cloud-connect' }}"
+                    data-track-category="{{:: $ctrl.TRACKING_CONTEXT.page_category}}"
+                    data-track-page="{{:: $ctrl.TRACKING_CONTEXT.trackingPageLabel}}"
+                    data-track-theme="{{:: $ctrl.TRACKING_CONTEXT.page_theme}}"
+                    data-track-level2="{{:: $ctrl.TRACKING_CONTEXT.level2}} "
                 ></a>
             </oui-datagrid-column>
             <oui-datagrid-column
@@ -169,9 +176,21 @@
                     data-ng-bind="'cloud_connect_status_label_' + $value | translate"
                 ></span>
             </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title=":: 'cloud_connect_active_notifications_label' | translate"
+                data-property="activeNotfications"
+                data-type="string"
+            >
+            </oui-datagrid-column>
             <oui-action-menu data-compact data-placement="left-start">
                 <oui-action-menu-item data-on-click="$ctrl.viewDetail($row)"
                     ><span data-translate="cloud_connect_view_label"></span>
+                </oui-action-menu-item>
+                <oui-action-menu-item
+                    data-on-click="$ctrl.goToManageNotifications($row)"
+                    ><span
+                        data-translate="cloud_connect_manage_notifications_label"
+                    ></span>
                 </oui-action-menu-item>
             </oui-action-menu>
         </oui-datagrid>

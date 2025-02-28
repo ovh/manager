@@ -15,7 +15,7 @@
   "vrack_add_ipv6_modal_description2": "O tráfego público será encaminhado através da região {{ region }}",
   "vrack_add_ipv6_modal_description3": "Para mais informações, consulte",
   "vrack_add_ipv6_modal_help_link": "a nossa documentação",
-  "vrack_add_ipv6_modal_alert_msg": "Detetámos que já existe um bloco IPv6 público no seu vRack, mas está a adicionar um novo. Certifique-se de que a opção SLAAC está desativada em TODOS os blocos IPv6; caso contrário, o resultado não será o esperado.",
+  "vrack_add_ipv6_modal_alert_msg": "Detetámos que já existe um bloco IPv6 público no seu vRack, mas adicionou um novo. Certifique-se de que a opção SLAAC está desativada em TODOS os blocos IPv6; caso contrário, o resultado não será o esperado.",
   "vrack_delete_ipv6_modal_title": "Mover o IP adicional",
   "vrack_delete_ipv6_modal_description": "Vai eliminar {{ ip }} do seu vRack. Todas as sub-redes configuradas com este bloco serão eliminadas.",
   "vrack_delete_ipv6_modal_question": "Deseja continuar?"

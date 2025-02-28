@@ -1,5 +1,5 @@
 import {
-  DIAGNOSTIC_TRACKING_PREFIX,
+  TRACKING_PREFIX,
   DIAGNOSTIC_LISTING_TRACKING_CONTEXT,
   getDiagnosticDashboardTrackingContext,
 } from '../../../cloud-connect.constants';
@@ -24,7 +24,7 @@ export default class DiagnosticResultCtrl {
     this.canDownload = !!(this.diagnostic.result?.length > 0);
     $('.modal-dialog').attr('id', 'ovh-cloudConnect-diagnostic-result-modal');
     this.atInternet.trackPage({
-      name: `${DIAGNOSTIC_TRACKING_PREFIX}cloud-connect::pop-up::see::diagnostic-results-${this.diagnostic.function}`,
+      name: `${TRACKING_PREFIX}cloud-connect::pop-up::see::diagnostic-results-${this.diagnostic.function}`,
       type: 'navigation',
       ...DIAGNOSTIC_LISTING_TRACKING_CONTEXT,
     });
@@ -32,7 +32,7 @@ export default class DiagnosticResultCtrl {
 
   copyToClipboard(diagnostic) {
     this.atInternet.trackClick({
-      name: `${DIAGNOSTIC_TRACKING_PREFIX}pop-up::button::copy_diagnostic-results-${this.diagnostic.function}`,
+      name: `${TRACKING_PREFIX}pop-up::button::copy_diagnostic-results-${this.diagnostic.function}`,
       type: 'action',
       ...getDiagnosticDashboardTrackingContext(
         `cloud-connect::pop-up::see::diagnostic-results-${this.diagnostic.function}`,
@@ -54,7 +54,7 @@ export default class DiagnosticResultCtrl {
 
   download(diagnostic) {
     this.atInternet.trackClick({
-      name: `${DIAGNOSTIC_TRACKING_PREFIX}pop-up::button::download_diagnostic-results-${this.diagnostic.function}`,
+      name: `${TRACKING_PREFIX}pop-up::button::download_diagnostic-results-${this.diagnostic.function}`,
       type: 'action',
       ...getDiagnosticDashboardTrackingContext(
         `cloud-connect::pop-up::see::diagnostic-results-${this.diagnostic.function}`,

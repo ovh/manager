@@ -69,7 +69,7 @@ export const STATUS = {
   TERMINATED: 'terminated',
 };
 
-export const DIAGNOSTIC_TRACKING_PREFIX = 'Network::network::cloud-connect::';
+export const TRACKING_PREFIX = 'Network::network::cloud-connect::';
 export const DIAGNOSTIC_LISTING_TRACKING_CONTEXT = {
   page_theme: 'Network',
   page_category: 'listing',
@@ -97,6 +97,14 @@ export function getDiagnosticDashboardTrackingContext(page) {
   };
 }
 
+export const TRACKING_CONTEXT = {
+  ...DIAGNOSTIC_LISTING_TRACKING_CONTEXT,
+  trackingPageLabel: `${TRACKING_PREFIX}cloud-connect::listing::services`,
+  page: {
+    name: `${TRACKING_PREFIX}cloud-connect::listing::services`,
+  },
+};
+
 export default {
   GUIDELINK,
   POP_MAP,
@@ -108,8 +116,9 @@ export default {
   CLOUD_CONNECT_TRACKING_PREFIX,
   CLOUD_CONNECT_LISTING_TRACKING_CONTEXT,
   CHANGE_BANDWIDTH_ALLOWED_OFFERS_REGEX,
-  DIAGNOSTIC_TRACKING_PREFIX,
+  TRACKING_PREFIX,
   DIAGNOSTIC_LISTING_TRACKING_CONTEXT,
   DIAGNOSTIC_DASHBOARD_TRACKING_CONTEXT,
   getDiagnosticDashboardTrackingContext,
+  TRACKING_CONTEXT,
 };

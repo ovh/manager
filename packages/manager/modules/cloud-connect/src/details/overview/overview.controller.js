@@ -2,7 +2,7 @@ import { get } from 'lodash';
 
 import {
   POP_MAP,
-  DIAGNOSTIC_TRACKING_PREFIX,
+  TRACKING_PREFIX,
   CLOUD_CONNECT_TRACKING_PREFIX,
   CLOUD_CONNECT_LISTING_TRACKING_CONTEXT,
   getDiagnosticDashboardTrackingContext,
@@ -156,7 +156,7 @@ export default class CloudConnectOverviewCtrl {
 
   trackDiagnosticPageLink() {
     this.atInternet.trackClick({
-      name: `${DIAGNOSTIC_TRACKING_PREFIX}go-to_open-diagnostic::cloud-connect`,
+      name: `${TRACKING_PREFIX}go-to_open-diagnostic::cloud-connect`,
       type: 'action',
       ...getDiagnosticDashboardTrackingContext(
         'cloud-connect::dashboard::configure',
@@ -166,7 +166,7 @@ export default class CloudConnectOverviewCtrl {
 
   runBGPPeeringDiagnostic(popConfigId, dcConfigId) {
     this.atInternet.trackClick({
-      name: `${DIAGNOSTIC_TRACKING_PREFIX}tile::button::bgp-peering-diagnostic::cloud-connect`,
+      name: `${TRACKING_PREFIX}tile::button::bgp-peering-diagnostic::cloud-connect`,
       type: 'action',
       ...getDiagnosticDashboardTrackingContext(
         'cloud-connect::dashboard::configure',
@@ -178,7 +178,7 @@ export default class CloudConnectOverviewCtrl {
 
   getMacList(pop) {
     this.atInternet.trackClick({
-      name: `${DIAGNOSTIC_TRACKING_PREFIX}tile::button::get-mac-list::cloud-connect`,
+      name: `${TRACKING_PREFIX}tile::button::get-mac-list::cloud-connect`,
       type: 'action',
       ...getDiagnosticDashboardTrackingContext(
         'cloud-connect::dashboard::configure',

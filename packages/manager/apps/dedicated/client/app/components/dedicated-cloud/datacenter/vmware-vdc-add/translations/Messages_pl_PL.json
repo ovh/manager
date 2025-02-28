@@ -25,5 +25,6 @@
   "dedicatedCloud_configuration_add_datacenter_card_host_vsphere_saphana_description": "Twoje nowe wirtualne centrum danych będzie się składać z hiperkonwergentnej infrastruktury specjalnie zaprojektowanej i certyfikowanej dla SAP HANA (wybór parametrów hostów zostanie dokonany w kolejnym etapie).",
   "dedicatedCloud_configuration_add_datacenter_message_edge_information": "2 Edges NSX zostaną wdrożone w nowym środowisku. Domyślnie ta wirtualna maszyna będzie używać 2vCPU, 8GB RAM, 200 GB przestrzeni dyskowej per Edges. Aby hostować klaster Edge i minimum dwa globalne datastores oraz przestrzeń dyskową, musisz mieć dostępny procesor CPU. Jeśli nie spełniasz tych warunków, zamów 2 datastores dla nowego vDC.",
   "dedicatedCloud_datacenters_adding_load_error": "Wystąpił błąd podczas pobierania informacji o dodawaniu centrum danych.",
-  "dedicatedCloud_configuration_add_datacenter_step_1_description_no_saphana": "Dodaj VDC do infrastruktury VMware. Hosty (standard lub vSAN) wybierzesz w kolejnym kroku."
+  "dedicatedCloud_configuration_add_datacenter_step_1_description_no_saphana": "Dodaj VDC do infrastruktury VMware. Hosty (standard lub vSAN) wybierzesz w kolejnym kroku.",
+  "dedicatedCloud_datacenters_no_offer_available": "Brak dostępnych centrów danych. Skontaktuj się z działem wsparcia klienta."
 }

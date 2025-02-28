@@ -44,5 +44,6 @@
   "ip_byoip_region_YYZ": "Toronto (YYZ{{number}}) - Canada",
   "ip_byoip_guides": "Guides",
   "ip_byoip_guides_main": "Use the Bring Your Own IP feature",
-  "ip_byoip_region_token_description_3": "For APNIC, edit the \"remarks\" field of the \"inetnum\" object ( or the 'aut-num' object when used as a number)."
+  "ip_byoip_region_token_description_3": "For APNIC, edit the \"remarks\" field of the \"inetnum\" object ( or the 'aut-num' object when used as a number).",
+  "ip_byoip_region_PAR": "Paris (PAR{{number}}) - France"
 }
