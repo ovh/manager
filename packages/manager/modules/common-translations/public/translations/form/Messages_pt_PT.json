@@ -1,0 +1,19 @@
+{
+  "mandatory_fields": "Os campos marcados com um asterisco (*) são de preenchimento obrigatório",
+  "max_chars": "Máximo de {{ value }} caracteres",
+  "min_chars": "Mínimo de {{ value }} caracteres",
+  "required_field": "Campo obrigatório",
+  "required_fields": "Campos obrigatórios",
+  "error_required_field": "Preencha o campo.",
+  "error_required_fields": "Preencha os campos.",
+  "error_number": "Introduza um valor numérico válido.",
+  "error_email": "Introduza um endereço de e-mail válido.",
+  "error_min_exclusive": "Introduza um valor superior a {{ value }}.",
+  "error_min_inclusive": "Introduza um valor superior ou igual a {{ value }}.",
+  "error_max_exclusive": "Introduza um valor inferior a {{ value }}.",
+  "error_max_inclusive": "Introduza um valor inferior ou igual a {{ value }}.",
+  "error_min_chars": "Introduza um mínimo de {{ value }} caracteres.",
+  "error_max_chars": "Introduza um máximo de {{ value }} caracteres.",
+  "error_between_min_max_chars": "O campo deve conter entre {{ min }} e {{ max }} caracteres.",
+  "error_pattern": "Introduza um formato válido."
+}
