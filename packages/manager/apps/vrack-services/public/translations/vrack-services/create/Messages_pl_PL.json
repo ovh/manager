@@ -6,7 +6,7 @@
   "regionLabel": "Region",
   "regionDescription": "vRack Services to usługa regionalna. Wybierz region, w którym chcesz jej używać. Aby korzystać z Service Endpoint, wybierz region odpowiadający Twojej zarządzanej usłudze OVHcloud.",
   "createButtonLabel": "Włącz vRack Services",
-  "modalHeadline": "Włącz Vrack Services",
+  "modalHeadline": "Włącz vRack Services",
   "modalDescriptionLine1": "Aby włączyć vRack Services, utwórz sieć vRack.",
   "modalDescriptionLine2": "Chcesz zamówić sieć vRack równolegle z aktywacją vRack Services?",
   "modalDescriptionLine3": "Cena sieci vRack: 0 PLN",
@@ -18,6 +18,6 @@
   "modalSubmitOrderButtonLabel": "Zatwierdź",
   "vrackServicesCreationSuccess": "Konfiguracja została zapisana.",
   "vrackServicesOrderLinkLabel": "Moje zamówienie",
-  "modalDescriptionLine4": "Zleciłeś utworzenie sieci vRack podczas aktywacji usług vRack.",
-  "modalDescriptionLine5": "Aby dokończyć aktywację usługi vRack Services, zaakceptuj poniższe warunki."
+  "modalDescriptionLine4": "Zleciłeś utworzenie vRacka podczas aktywacji vRack Services.",
+  "modalDescriptionLine5": "Aby dokończyć aktywację vRack Services, zaakceptuj poniższy regulamin."
 }
