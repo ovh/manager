@@ -38,9 +38,6 @@ const UserAccountMenu = ({
   const [isNewAccountAvailable, setIsNewAccountAvailable] = useState<boolean>(
     false,
   );
-  const [isNewBillingAvailable, setIsNewBillingAvailable] = useState<boolean>(
-    false,
-  );
   const user = shell
     .getPlugin('environment')
     .getEnvironment()
@@ -98,8 +95,7 @@ const UserAccountMenu = ({
       }
 
       setIsNewAccountAvailable(!!featureAvailability['new-account']);
-      setIsNewBillingAvailable(!!featureAvailability['new-billing']);
-
+      const isNewBillingAvailable = !!featureAvailability['new-billing'];
       if (isNewAccountAvailable) {
         setSupportLink(getUrl('new-account', '#/useraccount/support/level'));
       }
@@ -152,7 +148,7 @@ const UserAccountMenu = ({
           : []),
       ]);
     },
-    [],
+    [isNewAccountAvailable],
   );
 
   useEffect(() => {
