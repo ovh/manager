@@ -188,7 +188,7 @@ describe('AddEdit user form', () => {
     });
     await waitFor(() => {
       expect(
-        screen.getByText('formUserRoleInputPlaceholder'),
+        screen.getByTestId('roles-select-input-trigger'),
       ).toBeInTheDocument();
     });
     act(() => {
@@ -320,6 +320,58 @@ describe('AddEdit user form', () => {
       expect(screen.getByText('formUserNameErrorPattern')).toBeInTheDocument();
     });
   });
+
+  it('should add a user with a acl', async () => {
+    const mockScrollIntoView = vi.fn();
+    window.HTMLElement.prototype.scrollIntoView = mockScrollIntoView;
+    const onSuccess = vi.fn();
+    render(
+      <AddEditUserModal
+        service={
+          {
+            ...mockedService,
+            aclsEnabled: true,
+            engine: database.EngineEnum.opensearch,
+          } as database.Service
+        }
+        onSuccess={onSuccess}
+        existingUsers={[]}
+      />,
+      { wrapper: RouterWithQueryClientWrapper },
+    );
+    await waitFor(() => {
+      expect(screen.getByText('formUserAclConfiguredAcls')).toBeInTheDocument();
+    });
+    act(() => {
+      const inputPattern = screen.getByTestId('add-edit-username-input');
+      fireEvent.change(inputPattern, {
+        target: {
+          value: 'newUser',
+        },
+      });
+      fireEvent.change(screen.getByTestId('acl-select-pattern-input'), {
+        target: {
+          value: 'pattern*',
+        },
+      });
+      fireEvent.click(screen.getByTestId('acl-select-submit-button'));
+    });
+    await waitFor(() => {
+      const list = screen.getByTestId('acl-select-list-acl-item');
+      expect(getByText(list, 'pattern*')).toBeInTheDocument();
+    });
+    act(() => {
+      fireEvent.click(screen.getByTestId('add-edit-user-submit-button'));
+    });
+    await waitFor(() => {
+      expect(usersApi.addUser).toHaveBeenCalled();
+      expect(useToast().toast).toHaveBeenCalledWith({
+        title: 'formUserToastSuccessTitle',
+        description: 'addUserToastSuccessDescription',
+      });
+    });
+  });
+
   it('should call onError when api failed', async () => {
     vi.mocked(usersApi.addUser).mockImplementation(() => {
       throw apiErrorMock;

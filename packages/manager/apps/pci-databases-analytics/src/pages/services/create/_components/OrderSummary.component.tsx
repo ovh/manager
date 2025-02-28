@@ -21,6 +21,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
+import { EngineIcon } from '@/components/engine-icon/EngineIcon.component';
 
 interface OrderSummaryProps {
   order: {
@@ -82,10 +83,10 @@ const EngineDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
             <span>
               {humanizeEngine(order.engine.name as database.EngineEnum)}
             </span>
-            <img
-              className="block w-9 h-6"
-              src={`./assets/engines/${order.engine.name}.png`}
-              alt={order.engine.name}
+            <EngineIcon
+              engine={order.engine.name as database.EngineEnum}
+              category={order.engine.category}
+              iconSize={10}
             />
           </>
         )}
