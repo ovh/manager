@@ -47,6 +47,11 @@ export const SECTIONS = {
   ],
 };
 
+export const FORCED_FIELDS = {
+  firstName: 'firstName',
+  lastName: 'lastName',
+}
+
 export const FIELD_NAME_LIST = {
   legalform: 'legalForm',
   legalFormCategory: 'legalFormCategory',
