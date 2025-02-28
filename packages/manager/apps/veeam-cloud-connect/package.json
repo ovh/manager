@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-veeam-cloud-connect-app",
-  "version": "4.0.15",
+  "version": "4.0.18",
   "private": true,
   "description": "Veeam Cloud Connect standalone application.",
   "repository": {
@@ -19,14 +19,14 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-veeam-cloud-connect-app' --include-dependencies -- npm run dev:watch --if-present"
   },
   "dependencies": {
-    "@ovh-ux/manager-components": "^1.23.0",
+    "@ovh-ux/manager-components": "^1.23.2",
     "@ovh-ux/manager-config": "^8.0.2",
     "@ovh-ux/manager-core": "^13.0.5",
     "@ovh-ux/manager-filters": "^0.1.0 || ^1.1.1",
     "@ovh-ux/manager-ng-layout-helpers": "^2.11.0",
     "@ovh-ux/manager-veeam-cloud-connect": "^2.9.0",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
-    "@ovh-ux/ng-ovh-cloud-universe-components": "^2.16.2",
+    "@ovh-ux/ng-ovh-cloud-universe-components": "^2.17.0",
     "@ovh-ux/ng-ovh-http": "^5.1.2",
     "@ovh-ux/ng-ovh-proxy-request": "^2.1.2",
     "@ovh-ux/ng-ovh-request-tagger": "^2.0.1",

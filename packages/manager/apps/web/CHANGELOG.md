@@ -3,6 +3,58 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.7.1...@ovh-ux/manager-web@19.7.2) (2025-02-27)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3749] ([65850f5](https://github.com/ovh/manager/commit/65850f5850827d5e8e138204abc61c529a934aeb))
+
+
+
+
+
+## [19.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.7.0...@ovh-ux/manager-web@19.7.1) (2025-02-27)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3749] ([65850f5](https://github.com/ovh/manager/commit/65850f5850827d5e8e138204abc61c529a934aeb))
+
+
+
+
+
+# [19.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.6.3...@ovh-ux/manager-web@19.7.0) (2025-02-27)
+
+
+### Features
+
+* **web-paas:** web-paas cleanup code EOS/EOL ([#14876](https://github.com/ovh/manager/issues/14876)) ([6f1a6ac](https://github.com/ovh/manager/commit/6f1a6ac638f6f09587410c56f7392b1bbbd7c069)), closes [#MANAGER-16572](https://github.com/ovh/manager/issues/MANAGER-16572)
+
+
+
+
+
+## [19.6.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.6.2...@ovh-ux/manager-web@19.6.3) (2025-02-27)
+
+
+### Bug Fixes
+
+* **web.domain:** domain contact edition issue ([#15626](https://github.com/ovh/manager/issues/15626)) ([d4934cc](https://github.com/ovh/manager/commit/d4934cc15782996f5484ec95ffd10415cd12d306))
+
+
+
+
+
+## [19.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.6.1...@ovh-ux/manager-web@19.6.2) (2025-02-24)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
 ## [19.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.6.0...@ovh-ux/manager-web@19.6.1) (2025-02-20)
 
 

@@ -8,7 +8,7 @@ export default {
     projectId: '<',
     instance: '<',
     isTrustedZone: '<',
-    monthlyPrice: '<',
     goBack: '<',
+    snapshotAvailability: '<',
   },
 };

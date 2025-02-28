@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@2.2.2...@ovh-ux/manager-pci-common@2.2.3) (2025-02-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-common
+
+
+
+
+
+## [2.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@2.2.1...@ovh-ux/manager-pci-common@2.2.2) (2025-02-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-common
+
+
+
+
+
+## [2.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@2.2.0...@ovh-ux/manager-pci-common@2.2.1) (2025-02-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-common
+
+
+
+
+
+# [2.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@2.1.3...@ovh-ux/manager-pci-common@2.2.0) (2025-02-24)
+
+
+### Features
+
+* **pci-common:** add 3az region's property to regionavailability type ([#15542](https://github.com/ovh/manager/issues/15542)) ([92a0166](https://github.com/ovh/manager/commit/92a01665d61bbdd43471a44a197f59e6af277646))
+
+
+
+
+
 ## [2.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@2.1.2...@ovh-ux/manager-pci-common@2.1.3) (2025-02-21)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-common

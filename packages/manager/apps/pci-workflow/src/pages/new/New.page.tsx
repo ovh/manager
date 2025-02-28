@@ -3,7 +3,6 @@ import {
   StepComponent,
   useNotifications,
   useProjectUrl,
-  useMe,
 } from '@ovh-ux/manager-react-components';
 import {
   OsdsBreadcrumb,
@@ -41,8 +40,6 @@ export default function NewPage() {
   const projectUrl = useProjectUrl('public-cloud');
   const backHref = useHref('..');
   const navigate = useNavigate();
-
-  const { me } = useMe();
 
   const { addWorkflow, isPending: isAdding } = useAddWorkflow({
     projectId,
@@ -163,7 +160,6 @@ export default function NewPage() {
           <WorkflowName
             name={stepper.form.name}
             region={stepper.form.instance?.region}
-            ovhSubsidiary={me?.ovhSubsidiary}
             step={stepper.naming.step}
             onNameChange={stepper.naming.update}
             onSubmit={() => {

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.17.0...@ovh-ux/manager-cloud-connect@1.18.0) (2025-02-26)
+
+
+### Features
+
+* **dedicated:** occ diagnostic project ([4a4f543](https://github.com/ovh/manager/commit/4a4f543798a82504c091639aa530611df92b3339))
+
+
+
+
+
 # [1.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.16.0...@ovh-ux/manager-cloud-connect@1.17.0) (2025-02-20)
 
 

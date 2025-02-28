@@ -97,27 +97,6 @@ webCloudUniverse.children = [
       ],
     },
     {
-      id: 'web-paas',
-      idAttr: 'web-paas-link',
-      universe: webCloudUniverse.id,
-      translation: 'sidebar_web_paas',
-      children: [
-        {
-          id: 'platform-sh',
-          idAttr: 'platform-sh-link',
-          universe: webCloudUniverse.id,
-          translation: 'sidebar_platform_sh',
-          serviceType: 'WEBPAAS_SUBSCRIPTION',
-          routing: {
-            application: 'web',
-            hash: '#/paas/webpaas/projects',
-          },
-          features: ['web-paas'],
-        },
-      ],
-      features: ['web-paas'],
-    },
-    {
       id: 'emails',
       idAttr: 'emails-link',
       universe: webCloudUniverse.id,

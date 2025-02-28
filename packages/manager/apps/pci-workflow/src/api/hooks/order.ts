@@ -3,53 +3,64 @@ import {
   getCatalogQuery,
   getProductAvailabilityQuery,
 } from '@ovh-ux/manager-pci-common';
+import { useMemo } from 'react';
+import { useMe } from '@ovh-ux/manager-react-components';
 import { isSnapshotConsumption } from '@/pages/new/utils/is-snapshot-consumption';
 
-export const useProjectAddons = (
-  projectId: string,
-  ovhSubsidiary: string,
-  instanceRegion: string,
-) =>
-  useQueries({
+export const useProjectSnapshotAddons = (projectId: string) => {
+  const { me } = useMe();
+  return useQueries({
     queries: [
-      getCatalogQuery(ovhSubsidiary),
-      getProductAvailabilityQuery(projectId, ovhSubsidiary),
+      { ...getCatalogQuery(me?.ovhSubsidiary), enabled: !!me?.ovhSubsidiary },
+      {
+        ...getProductAvailabilityQuery(projectId, me?.ovhSubsidiary, {
+          addonFamily: 'snapshot',
+        }),
+        enabled: !!me?.ovhSubsidiary,
+      },
     ],
 
     combine: ([
       { data: catalog, isFetching: isCatalogFetching },
-      { data: plans, isFetching: isPlansFetching },
+      { data: snapshotAvailabilities, isFetching: isPlansFetching },
     ]) => {
-      const plan = plans?.plans?.find(
-        ({ code, regions }) =>
-          isSnapshotConsumption(code) &&
-          regions.find(({ name }) => name === instanceRegion),
+      const snapshotRegionPlans = new Map(
+        snapshotAvailabilities?.plans
+          ?.filter(({ code }) => isSnapshotConsumption(code))
+          .map(({ code, regions }) => [code, regions]) ?? [],
       );
-      const addons = [
-        catalog?.addons.find(({ planCode }) => planCode === plan?.code),
-      ];
-      const isFetching = isCatalogFetching || isPlansFetching;
 
-      return { addons, isFetching };
+      return {
+        addons: catalog?.addons
+          .filter(({ planCode }) => snapshotRegionPlans.has(planCode))
+          .map((addon) => ({
+            ...addon,
+            regions: snapshotRegionPlans.get(addon.planCode),
+          })),
+        isFetching: isCatalogFetching || isPlansFetching,
+      };
     },
   });
+};
 
 export const useInstanceSnapshotPricing = (
   projectId: string,
   instanceRegion: string,
-  ovhSubsidiary: string,
 ) => {
-  const { addons, ...query } = useProjectAddons(
-    projectId,
-    ovhSubsidiary,
-    instanceRegion,
-  );
+  const { addons, ...query } = useProjectSnapshotAddons(projectId);
 
-  const price = addons
-    ? addons[0]?.pricings.find((pricing) =>
-        pricing.description.includes('hour'),
-      )
-    : null;
+  const price = useMemo(
+    () =>
+      addons
+        ?.find(({ regions }) =>
+          regions.find(({ name }) => name === instanceRegion),
+        )
+        ?.pricings.find(
+          ({ intervalUnit }) =>
+            intervalUnit === 'none' || intervalUnit === 'hour',
+        ),
+    [addons, instanceRegion],
+  );
 
   return {
     ...query,

@@ -13,6 +13,7 @@ import lockPort from './lock-port';
 import removeDatacenterConfiguration from './datacenter/remove-datacenter';
 import removePopConfiguration from './remove-pop-configuration';
 import removeVrack from './remove-vrack';
+import checkPGPPeering from './check-bgp-peering';
 import changeBandwidth from './change-bandwidth';
 import routing from './overview.routing';
 import sendServiceKey from './send-service-key';
@@ -34,6 +35,7 @@ angular
     removeDatacenterConfiguration,
     removePopConfiguration,
     removeVrack,
+    checkPGPPeering,
     unlockPort,
     sendServiceKey,
     changeBandwidth,

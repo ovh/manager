@@ -1,5 +1,0 @@
-{
-  "web_paas_project_template_count": "{{ count }} Template disponibili",
-  "web_paas_project_template_no_result": "Nessun risultato",
-  "web_paas_project_template_choose": "Scegli un template esistente"
-}

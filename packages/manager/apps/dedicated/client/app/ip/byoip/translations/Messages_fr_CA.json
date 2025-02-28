@@ -1,6 +1,8 @@
 {
   "ip_byoip": "BYOIP",
   "ip_byoip_heading": "Bring Your Own IP (BYOIP)",
+  "ip_byoip_guides": "Guides",
+  "ip_byoip_guides_main": "Utiliser la fonctionnalité Bring Your Own IP",
   "ip_byoip_description": "Importez vos propres adresses IP publiques et utilisez les sur les services OVHcloud éligibles.",
   "ip_byoip_select_rir_title": "Sélectionnez votre RIR - Regional Internet Registry",
   "ip_byoip_select_rir_description": "Sélectionnez le RIR qui gère vos adresses IP publiques.",
@@ -11,6 +13,7 @@
   "ip_byoip_region_token_description": "Pour valider que vous êtes bien le propriétaire de la plage d'adresses IP que vous voulez importer, vous devez mettre à jour l'entrée whois de votre plage en utilisant le jeton ci-dessous. Le jeton doit apparaître dans un champ spécifique de l'object whois (voir plus bas), sur une ligne dédiée. Le jeton doit être ajouté avant de faire la commande, et doit rester en place jusqu'à ce que le service soit livré.",
   "ip_byoip_region_token_description_1": "Pour RIPE, éditez le champs \"descr\" de l'objet \"inetnum\" de l'adresse IP.",
   "ip_byoip_region_token_description_2": "Pour ARIN, éditez le champ \"Public Comments\" de l'objet \"Network\".",
+  "ip_byoip_region_token_description_3": "Pour APNIC, éditez le champs \"remarks\" de l'objet \"inetnum\" ( ou l'objet 'aut-num' lorsqu'il est utilisé comme un nombre).",
   "ip_byoip_select_ip_range_input_label": "Indiquez votre plage d'adresses IP",
   "ip_byoip_select_ip_range_description": "Indiquez la plage d'adresses IP que vous voulez importer (la taille de la plage doit être comprise entre /19 et /24). Si la taille de la plage est supérieure à /24, la plage d'adresse sera segmentée en un ensemble contigu de plages de taille /24",
   "ip_byoip_select_ip_range_title": "Séléctionnez votre plage d'IP",

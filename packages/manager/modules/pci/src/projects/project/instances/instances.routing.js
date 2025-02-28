@@ -46,15 +46,12 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('pci_projects_project_instances_title'),
       help: /* @ngInject */ ($transition$) => $transition$.params().help,
-      catalog: /* @ngInject */ ($http, coreConfig) => {
-        return $http
-          .get('/order/catalog/public/cloud', {
-            params: {
-              productName: 'cloud',
-              ovhSubsidiary: coreConfig.getUser().ovhSubsidiary,
-            },
-          })
-          .then(({ data: catalog }) => catalog);
+      catalog: /* @ngInject */ (CucPriceHelper, coreConfig) => {
+        return CucPriceHelper.getCatalog(
+          '/order/catalog/public/cloud',
+          coreConfig.getUser(),
+          true,
+        );
       },
       instances: /* @ngInject */ (
         catalog,
@@ -475,17 +472,21 @@ export default /* @ngInject */ ($stateProvider) => {
           'public-cloud',
           `#/pci/projects/${projectId}/public-ips/floating-ips`,
         ),
-      isInstanceLocalZoneBackupAvailable: /* @ngInject */ (pciFeatures) => {
-        return pciFeatures.isFeatureAvailable(
-          PCI_FEATURES.ACTIONS.INSTANCE_LOCALZONE_BACKUP,
-        );
-      },
       windowsGen3: /* @ngInject */ (catalog) => ({
         price:
           catalog.addons.find(
             ({ planCode }) => planCode === WINDOWS_GEN_3_ADDON_PLANCODE,
           )?.pricings[0]?.price || null,
       }),
+      snapshotAvailability: /* @ngInject */ (
+        PciProjectsProjectInstanceService,
+        projectId,
+        catalogEndpoint,
+      ) =>
+        PciProjectsProjectInstanceService.getSnapshotAvailability(
+          projectId,
+          catalogEndpoint,
+        ),
     },
   });
 };

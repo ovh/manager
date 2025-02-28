@@ -11,7 +11,7 @@ module.exports = {
     '^.+\\.js$': 'babel-jest',
   },
   moduleNameMapper: {
-    '\\.(css|scss|png|less)$': 'identity-obj-proxy',
+    '\\.(css|scss|png|less|svg)$': 'identity-obj-proxy',
     '^@ovh-ux/manager-(.*)$': '<rootDir>/../../modules/$1/src/index.js',
     '^@ovh-ux/ng-(.*)$': '<rootDir>/../../../components/ng-$1/src/index.js',
   },
