@@ -78,6 +78,8 @@ export function IFrameAppRouter({
     delete configuration['octavia-load-balancer'];
   }
 
+  delete configuration['pci-object-storage'];
+
   // We order applications configurations by hash size, as a configuration with a hash means we want a route to be
   // redirected to this application. As a result we need to have them first, so they take priority over routes from
   // which we want to be redirected
