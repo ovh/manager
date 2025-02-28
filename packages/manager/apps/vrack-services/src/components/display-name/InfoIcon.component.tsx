@@ -13,7 +13,10 @@ import {
   ODS_SPINNER_SIZE,
 } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
-import { ResourceStatus, VrackServicesWithIAM } from '@/types';
+import {
+  ResourceStatus,
+  VrackServicesWithIAM,
+} from '@ovh-ux/manager-network-common';
 import { getDisplayName } from '@/utils/vrack-services';
 
 export type InfoInconProps = {

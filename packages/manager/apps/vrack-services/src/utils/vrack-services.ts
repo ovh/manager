@@ -1,4 +1,8 @@
-import { ProductStatus, ResourceStatus, VrackServicesWithIAM } from '@/types';
+import {
+  ProductStatus,
+  ResourceStatus,
+  VrackServicesWithIAM,
+} from '@ovh-ux/manager-network-common';
 
 export const isEditable = (vs?: VrackServicesWithIAM) =>
   vs?.resourceStatus === ResourceStatus.READY &&

@@ -1,7 +1,10 @@
 import { ColumnSort } from '@ovh-ux/manager-react-components';
 import { useParams } from 'react-router-dom';
-import { useServiceList, useVrackService } from '@/data/hooks';
-import { IAMResource } from '@/types';
+import {
+  useServiceList,
+  useVrackService,
+  IAMResource,
+} from '@ovh-ux/manager-network-common';
 
 export type EndpointItem = {
   description: string;

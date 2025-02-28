@@ -8,21 +8,19 @@ import {
 import { waitFor, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { vrackServicesListMocks } from '@ovh-ux/manager-network-common';
 import {
   assertModalTitle,
-  changeOdsSelectValueByTestId,
   getButtonByIcon,
   labels,
   renderTest,
 } from '../../test-utils';
-import vrackServicesList from '../../../mocks/vrack-services/get-vrack-services.json';
 import { urls } from '@/routes/routes.constants';
-import { vrackList } from '../../../mocks/vrack/vrack';
 
 describe('Vrack Services dissociate vrack test suite', () => {
   it('from dashboard should dissociate vrack', async () => {
     const { container } = await renderTest({
-      initialRoute: urls.overview.replace(':id', vrackServicesList[5].id),
+      initialRoute: urls.overview.replace(':id', vrackServicesListMocks[5].id),
       nbVs: 6,
     });
 
@@ -64,8 +62,8 @@ describe('Vrack Services dissociate vrack test suite', () => {
   it('from dashboard, should not display error if dissociate fails', async () => {
     const { container } = await renderTest({
       initialRoute: urls.overviewDissociate
-        .replace(':id', vrackServicesList[5].id)
-        .replace('vrackId', vrackServicesList[5].currentState.vrackId),
+        .replace(':id', vrackServicesListMocks[5].id)
+        .replace('vrackId', vrackServicesListMocks[5].currentState.vrackId),
       nbVs: 6,
       dissociateKo: true,
     });

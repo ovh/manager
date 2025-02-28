@@ -28,10 +28,10 @@ import {
   OsdsMessage,
 } from '@ovhcloud/ods-components/react';
 import { handleClick } from '@ovh-ux/manager-react-components';
+import { useCreateCart } from '@ovh-ux/manager-network-common';
 import { LoadingText } from '@/components/LoadingText.component';
 import { OrderSubmitModalContent } from '@/components/OrderSubmitModalContent.component';
 import { urls } from '@/routes/routes.constants';
-import { useCreateCart } from '@/data/hooks';
 
 const trackingParams: TrackingClickParams = {
   buttonType: ButtonType.button,

@@ -18,9 +18,9 @@ import {
   getAuthenticationMocks,
   toMswHandlers,
 } from '@ovh-ux/manager-core-test-utils';
+import { ConfigParams, getConfig } from '@ovh-ux/manager-network-common';
 import { translations, labels } from './test-i18n';
 import { TestApp } from './TestApp';
-import { ConfigParams, getConfig } from '../../mocks/handlers';
 
 const APP_NAME = 'vrack-services';
 

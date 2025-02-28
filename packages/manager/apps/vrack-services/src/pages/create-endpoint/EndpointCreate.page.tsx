@@ -8,8 +8,13 @@ import {
   OdsSelectValueChangeEvent,
 } from '@ovhcloud/ods-components';
 import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import {
+  getVrackServicesResourceQueryKey,
+  useServiceList,
+  useUpdateVrackServices,
+  useVrackService,
+} from '@ovh-ux/manager-network-common';
 import { FormField } from '@/components/FormField.component';
-import { getVrackServicesResourceQueryKey } from '@/data/api';
 import { CreatePageLayout } from '@/components/layout-helpers';
 import {
   subnetSelectName,
@@ -20,11 +25,6 @@ import { ErrorPage } from '@/components/ErrorPage.component';
 import { urls } from '@/routes/routes.constants';
 import { PageName } from '@/utils/tracking';
 import { MessagesContext } from '@/components/feedback-messages/Messages.context';
-import {
-  useServiceList,
-  useUpdateVrackServices,
-  useVrackService,
-} from '@/data/hooks';
 
 export default function EndpointCreatePage() {
   const { t } = useTranslation('vrack-services/endpoints');
@@ -161,7 +161,7 @@ export default function EndpointCreatePage() {
           <span slot="placeholder">{t('serviceNamePlaceholder')}</span>
           {serviceListResponse?.data
             ?.find((service) => service.managedServiceType === serviceType)
-            ?.managedServiceURNs.map((serviceURN) => {
+            ?.managedServiceURNs.map((serviceURN: string) => {
               const resource = iamResources?.data?.find(
                 ({ urn }) => urn === serviceURN,
               );
@@ -187,7 +187,7 @@ export default function EndpointCreatePage() {
           size={ODS_SELECT_SIZE.md}
         >
           <span slot="placeholder">{t('subnetPlaceholder')}</span>
-          {vrackServices?.data?.currentState.subnets.map((subnet) => (
+          {vrackServices?.data?.currentState.subnets.map((subnet: any) => (
             <OsdsSelectOption key={subnet.cidr} value={subnet.cidr}>
               {subnet.displayName
                 ? `${subnet.displayName} - ${subnet.cidr}`

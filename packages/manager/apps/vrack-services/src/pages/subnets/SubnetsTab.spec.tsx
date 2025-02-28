@@ -7,6 +7,7 @@ import {
 } from '@ovh-ux/manager-core-test-utils';
 import { waitFor, fireEvent, screen } from '@testing-library/react';
 import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { vrackServicesListMocks } from '@ovh-ux/manager-network-common';
 import {
   assertModalTitle,
   assertOsdFormInputInError,
@@ -16,14 +17,13 @@ import {
   labels,
   renderTest,
 } from '../../test-utils';
-import vrackServicesList from '../../../mocks/vrack-services/get-vrack-services.json';
 import { urls } from '@/routes/routes.constants';
 
 describe('Vrack Services subnets page test suite', () => {
   it('should display the subnets onboarding if no subnet exist', async () => {
     await renderTest({
       nbVs: 1,
-      initialRoute: urls.overview.replace(':id', vrackServicesList[0].id),
+      initialRoute: urls.overview.replace(':id', vrackServicesListMocks[0].id),
     });
 
     const subnetTab = await waitFor(() =>
@@ -38,7 +38,7 @@ describe('Vrack Services subnets page test suite', () => {
   it('should display the subnets listing if subnet exist', async () => {
     await renderTest({
       nbVs: 2,
-      initialRoute: urls.overview.replace(':id', vrackServicesList[1].id),
+      initialRoute: urls.overview.replace(':id', vrackServicesListMocks[1].id),
     });
 
     const subnetTab = await waitFor(() =>
@@ -49,17 +49,20 @@ describe('Vrack Services subnets page test suite', () => {
 
     await assertTextVisibility(labels.subnets.subnetDatagridDisplayNameLabel);
     await assertTextVisibility(
-      vrackServicesList[1].currentState.subnets[0].displayName,
+      vrackServicesListMocks[1].currentState.subnets[0].displayName,
     );
     await assertTextVisibility(
-      vrackServicesList[1].currentState.subnets[0].serviceRange.cidr,
+      vrackServicesListMocks[1].currentState.subnets[0].serviceRange.cidr,
     );
   });
 
   it('should limit the subnets to 1', async () => {
     const { container } = await renderTest({
       nbVs: 2,
-      initialRoute: urls.subnetsListing.replace(':id', vrackServicesList[1].id),
+      initialRoute: urls.subnetsListing.replace(
+        ':id',
+        vrackServicesListMocks[1].id,
+      ),
     });
 
     await assertTextVisibility(labels.subnets.betaSubnetLimitMessage);
@@ -73,7 +76,10 @@ describe('Vrack Services subnets page test suite', () => {
   it('should edit a subnet', async () => {
     const { container } = await renderTest({
       nbVs: 2,
-      initialRoute: urls.subnetsListing.replace(':id', vrackServicesList[1].id),
+      initialRoute: urls.subnetsListing.replace(
+        ':id',
+        vrackServicesListMocks[1].id,
+      ),
     });
 
     const actionMenuButton = await getButtonByIcon({
@@ -143,7 +149,10 @@ describe('Vrack Services subnets page test suite', () => {
   it('should display an error if api fail to edit a subnet', async () => {
     const { container } = await renderTest({
       nbVs: 2,
-      initialRoute: urls.subnetsListing.replace(':id', vrackServicesList[1].id),
+      initialRoute: urls.subnetsListing.replace(
+        ':id',
+        vrackServicesListMocks[1].id,
+      ),
       updateKo: true,
     });
 
@@ -187,7 +196,10 @@ describe('Vrack Services subnets page test suite', () => {
   it('should delete a subnet', async () => {
     const { container } = await renderTest({
       nbVs: 2,
-      initialRoute: urls.subnetsListing.replace(':id', vrackServicesList[1].id),
+      initialRoute: urls.subnetsListing.replace(
+        ':id',
+        vrackServicesListMocks[1].id,
+      ),
     });
 
     const actionMenuButton = await getButtonByIcon({

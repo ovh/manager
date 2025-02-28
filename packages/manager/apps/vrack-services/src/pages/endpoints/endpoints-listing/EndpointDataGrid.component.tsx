@@ -9,8 +9,11 @@ import {
   DatagridColumn,
   useDataGrid,
 } from '@ovh-ux/manager-react-components';
+import {
+  useVrackService,
+  useServiceList,
+} from '@ovh-ux/manager-network-common';
 import { ErrorPage } from '@/components/ErrorPage.component';
-import { useVrackService, useServiceList } from '@/data/hooks';
 import { EndpointItem, useEndpointsList } from './useEndpointList.hook';
 import { ActionCell } from './ActionCell.component';
 
