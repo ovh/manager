@@ -151,17 +151,20 @@ export default function BillingSummary() {
             </>
           ) : (
             <>
-              <p className="mt-6">
+              <div className="mt-6">
                 {bills?.total > 0 && debt?.dueAmount?.value === 0 && (
-                  <>
-                    <OsdsIcon
-                      className="align-middle mr-4"
-                      name={ODS_ICON_NAME.SUCCESS_CIRCLE}
-                      size={ODS_ICON_SIZE.sm}
-                      contrasted
-                    ></OsdsIcon>
-                    <span>{t('hub_billing_summary_debt_null')}</span>
-                  </>
+                  <div className="flex flex-row justify-center">
+                    <span className="h-[24px] w-[24px] mr-4">
+                      <OsdsIcon
+                        name={ODS_ICON_NAME.SUCCESS_CIRCLE}
+                        size={ODS_ICON_SIZE.sm}
+                        contrasted
+                      ></OsdsIcon>
+                    </span>
+                    <span className="inline-block">
+                      {t('hub_billing_summary_debt_null')}
+                    </span>
+                  </div>
                 )}
                 {debt?.dueAmount?.value > 0 && (
                   <>
@@ -194,7 +197,7 @@ export default function BillingSummary() {
                   </>
                 )}
                 {bills?.total === 0 && t('hub_billing_summary_debt_no_bills')}
-              </p>
+              </div>
               <Suspense
                 fallback={<OsdsSkeleton data-testid="bills_link_skeleton" />}
               >
