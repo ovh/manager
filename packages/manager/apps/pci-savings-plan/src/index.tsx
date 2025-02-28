@@ -6,6 +6,7 @@ import {
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
+import '@ovhcloud/ods-theme-blue-jeans';
 import './index.scss';
 import './vite-hmr';
 import '@ovh-ux/manager-pci-common/dist/style.css';
@@ -28,7 +29,7 @@ const init = async (appName: string) => {
     context,
     reloadOnLocaleChange: true,
     defaultNS: appName,
-    ns: ['listing', 'renew', 'onboarding', 'create'],
+    ns: ['listing', 'renew', 'onboarding', 'create', 'dashboard'],
   });
 
   const region = context.environment.getRegion();
