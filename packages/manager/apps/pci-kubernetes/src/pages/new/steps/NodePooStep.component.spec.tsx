@@ -50,6 +50,8 @@ describe('NodePoolStep Component', () => {
 
   it('shoukld render withoit error', () => {
     render(<NodePoolStep stepper={mockStepper} />, { wrapper });
-    expect(screen.getByText('kube_common_add_node_pool')).toBeInTheDocument();
+    expect(
+      screen.getByText('node-pool:kube_common_add_node_pool'),
+    ).toBeInTheDocument();
   });
 });

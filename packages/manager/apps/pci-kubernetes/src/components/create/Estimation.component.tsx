@@ -10,17 +10,16 @@ import {
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-import { useContext } from 'react';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { NodePoolPrice } from '@/api/data/kubernetes';
+import useIsUsRegion from '@/hooks/useRegion';
 
 const Estimation = ({ nodePools }: { nodePools?: NodePoolPrice[] }) => {
   const { t } = useTranslation('node-pool');
-  const context = useContext(ShellContext);
-  const region = context.environment.getRegion();
+
   const { getFormattedMonthlyCatalogPrice } = useCatalogPrice(4, {
     exclVat: true,
   });
+  const isUSRegion = useIsUsRegion();
 
   return (
     <div className="flex flex-col gap-6 mb-8">
@@ -33,7 +32,7 @@ const Estimation = ({ nodePools }: { nodePools?: NodePoolPrice[] }) => {
       >
         {t('kube_common_node_pool_estimated_cost')}
       </OsdsText>
-      {region !== 'US' && (
+      {!isUSRegion && (
         <OsdsText
           color={ODS_THEME_COLOR_INTENT.text}
           level={ODS_TEXT_LEVEL.body}

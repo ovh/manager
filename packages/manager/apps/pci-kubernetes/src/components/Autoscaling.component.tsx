@@ -38,7 +38,7 @@ export interface AutoscalingState {
   isAutoscale: boolean;
 }
 
-function calculateQuantity(
+function getDesiredQuantity(
   quantity: { min: number; desired: number },
   maxValue: number,
 ) {
@@ -78,14 +78,6 @@ export function Autoscaling({
       isAutoscale,
     });
   }, [quantity, isAutoscale]);
-
-  useEffect(() => {
-    setQuantity({
-      desired: initialScaling ? initialScaling.desired : NODE_RANGE.MIN,
-      min: initialScaling ? initialScaling.min : 0,
-      max: initialScaling ? initialScaling.max : NODE_RANGE.MAX,
-    });
-  }, []);
 
   return (
     <>
@@ -154,8 +146,8 @@ export function Autoscaling({
             label={t('kubernetes_node_pool_autoscaling_lowest_nodes_size')}
             value={quantity.min}
             onValueChange={(min) =>
-              setQuantity((_quantity) => ({
-                ..._quantity,
+              setQuantity((q) => ({
+                ...q,
                 min,
               }))
             }
@@ -167,12 +159,12 @@ export function Autoscaling({
             label={t('kubernetes_node_pool_autoscaling_highest_nodes_size')}
             value={quantity.max}
             onValueChange={(max) =>
-              setQuantity((_quantity) => ({
-                ..._quantity,
+              setQuantity((q) => ({
+                ...q,
                 max,
               }))
             }
-            min={calculateQuantity(quantity, maxValue)}
+            min={getDesiredQuantity(quantity, maxValue)}
             max={maxValue}
           />
         </div>
