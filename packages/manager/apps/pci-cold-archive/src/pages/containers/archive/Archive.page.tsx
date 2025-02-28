@@ -89,9 +89,11 @@ export default function ArchivePage() {
 
   const onClose = onCancel;
 
+  const maxDaysRetention = 4500;
+
   const error = {
     min: lockedUntilDays < 1,
-    max: lockedUntilDays > 365,
+    max: lockedUntilDays > maxDaysRetention,
     nan: !RegExp(/^\d*$/).test(`${lockedUntilDays}`),
   };
 
@@ -103,7 +105,7 @@ export default function ArchivePage() {
       return t('pci-common:common_field_error_min', { min: 1 });
     }
     if (error.max) {
-      return t('pci-common:common_field_error_max', { max: 365 });
+      return t('pci-common:common_field_error_max', { max: maxDaysRetention });
     }
     return '';
   }, [lockedUntilDays, error.min, error.max, error.nan]);
@@ -169,7 +171,7 @@ export default function ArchivePage() {
             />
             <OdsQuantity
               min={1}
-              max={365}
+              max={maxDaysRetention}
               value={lockedUntilDays}
               name="lockedUntilDays"
               className="mt-2"
