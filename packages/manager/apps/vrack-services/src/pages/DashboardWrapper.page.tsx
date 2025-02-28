@@ -2,10 +2,10 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams, Outlet, useLocation } from 'react-router-dom';
 import { useOvhTracking, ButtonType } from '@ovh-ux/manager-react-shell-client';
+import { ErrorBanner } from '@ovh-ux/manager-react-components';
 import { DashboardLayout } from '@/components/layout-helpers';
 import { useVrackService, useVrackServicesList } from '@/data/hooks';
 import NotFound from '@/pages/not-found/404.page';
-import { ErrorPage } from '@/components/ErrorPage.component';
 import { urls } from '@/routes/routes.constants';
 import { DashboardTabItemProps } from '@/components/layout-helpers/layout-helpers.type';
 
@@ -80,7 +80,7 @@ export default function DashboardWrapper() {
   );
 
   if (isError) {
-    return <ErrorPage error={error} />;
+    return <ErrorBanner error={error} />;
   }
 
   if (

@@ -4,8 +4,11 @@ import { useTranslation } from 'react-i18next';
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { Outlet } from 'react-router-dom';
 import { ovhLocaleToI18next } from '@ovh-ux/manager-react-shell-client';
-import { DashboardTile, Region } from '@ovh-ux/manager-react-components';
-import { ErrorPage } from '@/components/ErrorPage.component';
+import {
+  DashboardTile,
+  Region,
+  ErrorBanner,
+} from '@ovh-ux/manager-react-components';
 import { useVrackService } from '@/data/hooks';
 import { formatDateString } from '@/utils/date';
 import { VrackId } from '@/components/vrack-id/VrackId.component';
@@ -17,7 +20,7 @@ export default function OverviewTab() {
   const { data: vrackServices, error, isLoading } = useVrackService();
 
   return error ? (
-    <ErrorPage error={error} />
+    <ErrorBanner error={error} />
   ) : (
     <>
       <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 py-6">
