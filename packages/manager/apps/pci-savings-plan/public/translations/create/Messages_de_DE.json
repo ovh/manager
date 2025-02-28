@@ -37,5 +37,7 @@
   "commitment_month": "{{value}} Monat(e)",
   "commitment_price_month": "/ Monat (zzgl. MwSt.)",
   "cta_cancel": "Abbrechen",
-  "cta_plan": "Savings Plan erstellen"
+  "cta_plan": "Savings Plan erstellen",
+  "select_quantity_description_instance": "Geben Sie die Anzahl der Instanzen an, die in Ihrem Savings Plan enthalten sein sollen.",
+  "select_quantity_description_rancher": "Geben Sie die Anzahl der vCPUs an, die in Ihrem Savings Plan enthalten sein sollen."
 }

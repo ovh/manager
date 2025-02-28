@@ -346,7 +346,9 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
       <Block>
         <Subtitle>{t('select_quantity')}</Subtitle>
         <DescriptionWrapper className="mb-[12px]">
-          {t('select_quantity_description')}
+          {isInstance
+            ? t('select_quantity_description_instance')
+            : t('select_quantity_description_rancher')}
         </DescriptionWrapper>
         <OdsCard className="flex flex-row items-center mr-5 p-4 text-center justify-between w-full mb-[32px] mt-[16px]">
           <OdsText>{t('quantity_label')}</OdsText>

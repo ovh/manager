@@ -1,0 +1,18 @@
+{
+  "pci_projects_project_users_add_title": "Aggiungere un utente al tuo Object Storage",
+  "pci_projects_project_users_add_short_description": "Per accedere allo storage a oggetti, aggiungi un utente al tuo container. È possibile selezionare un utente esistente o crearne uno nuovo. Ogni utente (OpenStack) sarà associato a una o più coppie di chiavi (identificativi Object Storage), ognuna delle quali consiste in una \"chiave di accesso\" e una \"chiave segreta\".",
+  "pci_projects_project_users_add_submit_label": "Crea",
+  "pci_projects_project_users_add_cancel_label": "Annullare",
+  "pci_projects_project_users_add_description_label": "Descrizione dell'utente",
+  "pci_projects_project_users_add_existing_user": "Seleziona un utente esistente",
+  "pci_projects_project_users_add_create_user": "Crea un nuovo utente",
+  "pci_projects_project_users_add_success_message": "Le credenziali Object Storage per l'utente {{user}} sono state generate.",
+  "pci_projects_project_users_add_error_message": "Impossibile generare le credenziali Object Storage per l'utente {{user}}.",
+  "pci_projects_project_users_add_username": "Il tuo nome utente OpenStack:",
+  "pci_projects_project_users_add_description": "La tua descrizione:",
+  "pci_projects_project_users_add_accesskey": "La tua chiave di accesso:",
+  "pci_projects_project_users_add_secretkey": "La tua chiave segreta:",
+  "pci_projects_project_users_add_as_no_credentials": "Nessuna credenziale",
+  "pci_projects_project_users_add_as_credentials": "Credenziali generate",
+  "pci_projects_project_users_add_info_banner": "I nuovi utenti avranno automaticamente accesso a tutti i container nelle Local Zone."
+}
