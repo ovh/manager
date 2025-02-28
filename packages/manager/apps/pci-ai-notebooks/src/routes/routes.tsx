@@ -527,6 +527,24 @@ export default [
                       ),
                     ),
                   },
+                  {
+                    path: 'update-flavor',
+                    id: 'deploy.dashboard.update-flavor',
+                    ...lazyRouteConfig(() =>
+                      import(
+                        '@/pages/apps/[appId]/dashboard/_components/update-flavor/UpdateFlavor.modal'
+                      ),
+                    ),
+                  },
+                  {
+                    path: 'update-docker-command',
+                    id: 'deploy.dashboard.update-docker-command',
+                    ...lazyRouteConfig(() =>
+                      import(
+                        '@/pages/apps/[appId]/dashboard/_components/update-docker-command/UpdateDockerCommand.modal'
+                      ),
+                    ),
+                  },
                 ],
               },
               {

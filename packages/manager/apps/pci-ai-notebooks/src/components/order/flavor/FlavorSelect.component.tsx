@@ -22,10 +22,14 @@ interface FlavorsSelectProps {
   resourcesQuantity: number;
   onChange: (newFlavor: string) => void;
   className?: string;
+  isUpdate?: boolean;
 }
 
 const FlavorsSelect = React.forwardRef<HTMLTableElement, FlavorsSelectProps>(
-  ({ flavors, value, resourcesQuantity, onChange, className }, ref) => {
+  (
+    { flavors, value, resourcesQuantity, onChange, isUpdate, className },
+    ref,
+  ) => {
     const { t } = useTranslation('components/flavor');
 
     flavors.sort((a, b) => a.pricing[0].price - b.pricing[0].price);
@@ -65,9 +69,11 @@ const FlavorsSelect = React.forwardRef<HTMLTableElement, FlavorsSelectProps>(
               <TableHead className="font-bold text-base text-[#4d5592]">
                 {t('tableHeadType')}
               </TableHead>
-              <TableHead className="font-bold text-base text-[#4d5592]">
-                {t('tableHeadDescription')}
-              </TableHead>
+              {!isUpdate && (
+                <TableHead className="font-bold text-base text-[#4d5592]">
+                  {t('tableHeadDescription')}
+                </TableHead>
+              )}
               <TableHead className="font-bold text-base text-[#4d5592]">
                 {t('tableHeadVcores')}
               </TableHead>
@@ -115,9 +121,11 @@ const FlavorsSelect = React.forwardRef<HTMLTableElement, FlavorsSelectProps>(
                     <span>{flavor.id}</span>
                   </div>
                 </TableCell>
-                <TableCell className="text-[#4d5592] border border-primary-100">
-                  {flavor.description}
-                </TableCell>
+                {!isUpdate && (
+                  <TableCell className="text-[#4d5592] border border-primary-100">
+                    {flavor.description}
+                  </TableCell>
+                )}
                 <TableCell className="text-[#4d5592] border border-primary-100">
                   {resourcesQuantity * flavor.resourcesPerUnit.cpu}
                 </TableCell>
@@ -145,7 +153,7 @@ const FlavorsSelect = React.forwardRef<HTMLTableElement, FlavorsSelectProps>(
                       60 * resourcesQuantity * flavor.pricing[0]?.tax
                     }
                     decimals={2}
-                    displayInHour={true}
+                    displayInHour={false}
                   />
                 </TableCell>
               </TableRow>

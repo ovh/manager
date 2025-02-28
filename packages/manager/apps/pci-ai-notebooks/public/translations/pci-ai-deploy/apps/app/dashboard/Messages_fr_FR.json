@@ -8,6 +8,7 @@
   "urlCopyToast": "Url copiée",
   "labelsTitle": "Labels",
   "lifeCycleTitle": "Cycle de vie",
+  "dockerCommandTitle": "Commandes Docker",
   "grafanaTitle": "Suivi de la consommation",
   "grafanaButton": "Dashboard Grafana",
   "resourcesTitle": "Ressources",

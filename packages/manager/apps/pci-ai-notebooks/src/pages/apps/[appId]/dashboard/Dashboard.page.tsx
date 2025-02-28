@@ -25,6 +25,7 @@ import { useGetCommand } from '@/hooks/api/ai/app/useGetCommand.hook';
 import ResourcesSpec from '@/components/resources-spec/ResourcesSpec.component';
 import BillingSupport from '@/components/biling-support/BillingSupport.component';
 import ScalingStrat from './_components/Scaling.component';
+import DockerCommand from './_components/DockerCommand.component';
 
 const Dashboard = () => {
   const { app, projectId } = useAppData();
@@ -98,6 +99,9 @@ const Dashboard = () => {
           <CardContent>
             <LifeCycle />
           </CardContent>
+          <CardContent>
+            <DockerCommand />
+          </CardContent>
         </Card>
         <Card>
           <CardHeader>
@@ -111,7 +115,7 @@ const Dashboard = () => {
           </CardContent>
           <div className="border-t my-2 pt-2 mx-6"></div>
           <CardContent>
-            <ResourcesSpec resources={app.spec.resources} />
+            <ResourcesSpec resources={app.spec.resources} allowUpdate={true} />
           </CardContent>
         </Card>
       </div>
