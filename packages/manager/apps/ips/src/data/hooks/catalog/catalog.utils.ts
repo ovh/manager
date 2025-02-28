@@ -22,11 +22,13 @@ export const DATACENTER_TO_REGION: { [datacenter: string]: string } = {
   SBG: 'eu-west-sbg',
   PAR: 'eu-west-par',
   CR2: 'labeu-west-1-preprod',
-  DE: 'eu-west-lim',
   LIM: 'eu-west-lim',
+  // Keep it after LIM
+  DE: 'eu-west-lim',
   WAW: 'eu-central-waw',
-  UK: 'eu-west-eri',
   ERI: 'eu-west-eri',
+  // Keep it after ERI
+  UK: 'eu-west-eri',
   BHS: 'ca-east-bhs',
   YYZ: 'ca-east-tor',
   SGP: 'ap-southeast-sgp',
@@ -37,9 +39,9 @@ export const DATACENTER_TO_REGION: { [datacenter: string]: string } = {
 };
 
 export const getDatacenterFromRegion = (inputRegion: string) =>
-  Object.entries(DATACENTER_TO_REGION).find(
-    ([, region]) => region === inputRegion,
-  )?.[0];
+  Object.entries(DATACENTER_TO_REGION)
+    .filter(([, region]) => region === inputRegion)
+    .map(([datacenter]) => datacenter)?.[0];
 
 export const getCatalogIpsQueryKey = (sub: string) => ['getCatalogIps', sub];
 
