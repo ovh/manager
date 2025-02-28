@@ -62,8 +62,6 @@ export default class HostingGeneralInformationsCtrl {
   }
 
   $onInit() {
-    this.atInternet.trackPage({ name: 'web::hosting' });
-
     this.serviceName = this.$stateParams.productId;
     this.isCdnInDeleteAtExpiration =
       this.$scope.cdnServiceInfo?.renew.mode === 'deleteAtExpiration';
