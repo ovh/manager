@@ -709,6 +709,7 @@
   "hosting_tab_TASKS_status_DOING": "W realizacji",
   "hosting_tab_TASKS_status_DONE": "Zakończone",
   "hosting_tab_TASKS_status_ERROR": "Błąd",
+  "hosting_tab_TASKS_status_OVHERROR": "Błąd",
   "hosting_tab_TASKS_status_TODO": "Zaplanowane",
   "hosting_tab_TASKS_status_INIT": "Zainicjowane",
   "hosting_tab_TASKS_status_backup_FTP": "Utworzoną kopię zapasową otrzymasz do pobrania w wiadomości e-mail. Nie zostanie ona automatycznie przywrócona na Twojej przestrzeni FTP. ",
