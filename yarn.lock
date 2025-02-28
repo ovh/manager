@@ -5831,6 +5831,17 @@
     date-fns "^3.6.0"
     lodash.isequal "^4.5.0"
 
+"@ovh-ux/manager-pci-common@^2.2.3":
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-pci-common/-/manager-pci-common-2.2.3.tgz#7fe159b40cc49f6de6aefe9ef8e2f843b3827d82"
+  integrity sha512-HpurUEQxB94SaK3NP234EVBJ4MLN2gfDRGOOqHuj63njxEY1gF9NjDV6Ad/dInqpZlk5DATaWXkskhRLeCtfjQ==
+  dependencies:
+    "@ovh-ux/manager-core-utils" "^0.3.0"
+    "@ovh-ux/manager-tailwind-config" "^0.2.1"
+    clsx "2.1.1"
+    date-fns "^3.6.0"
+    lodash.isequal "^4.5.0"
+
 "@ovh-ux/manager-react-components@^1.41.1", "@ovh-ux/manager-react-components@^1.45.0":
   version "1.45.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-components/-/manager-react-components-1.45.0.tgz#e48f51c2d225660fbd37a99e9eda5a8e86262ab3"
@@ -5840,6 +5851,23 @@
     "@ovhcloud/ods-common-theming" "17.2.2"
     "@ovhcloud/ods-components" "17.2.2"
     "@ovhcloud/ods-theme-blue-jeans" "17.2.2"
+    "@tanstack/react-query" "^5.51.21"
+    "@tanstack/react-table" "^8.20.1"
+    clsx "^2.1.1"
+    lodash.isdate "^4.0.1"
+    lodash.isequal "^4.5.0"
+    react-i18next "^14.0.5"
+    react-use "^17.5.0"
+    sass "1.71.0"
+    tailwindcss "^3.4.4"
+    uuid "^9.0.1"
+
+"@ovh-ux/manager-react-components@^2.13.1":
+  version "2.13.1"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-components/-/manager-react-components-2.13.1.tgz#4c9c718b1d0968f7c07d1deb3e36fa3104f9206a"
+  integrity sha512-xBgQvsjtYVWV9bEDl5pdOb4xI8wJu3PRjYTR33y7AVzglaxj0oC6JA3g3l7FdKGyeP4Qb21OpLmukLUIJ71DpQ==
+  dependencies:
+    "@babel/plugin-proposal-private-property-in-object" "^7.21.11"
     "@tanstack/react-query" "^5.51.21"
     "@tanstack/react-table" "^8.20.1"
     clsx "^2.1.1"
