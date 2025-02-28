@@ -7,7 +7,7 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { defineCurrentPage } from '@ovh-ux/request-tagger';
 import { ErrorBanner } from '@ovh-ux/manager-react-components';
-import { useVrackServicesList } from '@/data/hooks';
+import { useVrackServicesList } from '@ovh-ux/manager-network-common';
 import { PageName } from '@/utils/tracking';
 
 type Handle = {

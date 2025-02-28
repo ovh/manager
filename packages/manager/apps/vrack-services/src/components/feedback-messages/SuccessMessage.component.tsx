@@ -11,8 +11,8 @@ import {
 } from '@ovhcloud/ods-components';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { useVrackServicesList } from '@ovh-ux/manager-network-common';
 import { MessageData, MessagesContext } from './Messages.context';
-import { useVrackServicesList } from '@/data/hooks';
 
 export const SuccessMessage: React.FC<Partial<MessageData>> = ({
   id,

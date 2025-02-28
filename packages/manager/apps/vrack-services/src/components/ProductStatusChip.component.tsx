@@ -3,16 +3,16 @@ import { useTranslation } from 'react-i18next';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { OsdsSpinner, OsdsChip } from '@ovhcloud/ods-components/react';
-import { ProductStatus } from '@/types';
+import { VrackServicesProductStatus } from '@ovh-ux/manager-network-common';
 
 const colorByProductStatus = {
-  [ProductStatus.ACTIVE]: ODS_THEME_COLOR_INTENT.success,
-  [ProductStatus.SUSPENDED]: ODS_THEME_COLOR_INTENT.default,
-  [ProductStatus.DRAFT]: ODS_THEME_COLOR_INTENT.info,
+  [VrackServicesProductStatus.ACTIVE]: ODS_THEME_COLOR_INTENT.success,
+  [VrackServicesProductStatus.SUSPENDED]: ODS_THEME_COLOR_INTENT.default,
+  [VrackServicesProductStatus.DRAFT]: ODS_THEME_COLOR_INTENT.info,
 };
 
 export type ProductStatusChipProps = {
-  productStatus: ProductStatus;
+  productStatus: VrackServicesProductStatus;
 };
 
 export const ProductStatusChip: React.FC<ProductStatusChipProps> = ({

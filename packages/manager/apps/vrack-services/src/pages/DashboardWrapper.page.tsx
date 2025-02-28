@@ -3,8 +3,11 @@ import { useTranslation } from 'react-i18next';
 import { useParams, Outlet, useLocation } from 'react-router-dom';
 import { useOvhTracking, ButtonType } from '@ovh-ux/manager-react-shell-client';
 import { ErrorBanner } from '@ovh-ux/manager-react-components';
+import {
+  useVrackService,
+  useVrackServicesList,
+} from '@ovh-ux/manager-network-common';
 import { DashboardLayout } from '@/components/layout-helpers';
-import { useVrackService, useVrackServicesList } from '@/data/hooks';
 import NotFound from '@/pages/not-found/404.page';
 import { urls } from '@/routes/routes.constants';
 import { DashboardTabItemProps } from '@/components/layout-helpers/layout-helpers.type';

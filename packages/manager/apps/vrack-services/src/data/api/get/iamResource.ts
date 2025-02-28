@@ -1,5 +1,5 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
-import { IAMResource } from '@/types';
+import { IAMResource } from '@/data/types/iam.type';
 
 export const getIamResourceQueryKey = (resourceURNList: string[]) => [
   `get/iam/resource/${resourceURNList.join(',')}`,

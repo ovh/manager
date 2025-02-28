@@ -9,8 +9,8 @@ import {
   ODS_ICON_SIZE,
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { useVrackService } from '@ovh-ux/manager-network-common';
 import { PageLayout } from '@/components/layout-helpers';
-import { useVrackService } from '@/data/hooks';
 import { EndpointDatagrid } from './EndpointDataGrid.component';
 import { useNavigateToCreateEndpointPage } from '../endpoints.hook';
 import { isEditable } from '@/utils/vrack-services';

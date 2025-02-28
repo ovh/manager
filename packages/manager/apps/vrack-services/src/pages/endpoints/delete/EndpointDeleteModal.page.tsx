@@ -9,10 +9,13 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { DeleteModal } from '@ovh-ux/manager-react-components';
-import { useVrackService, useUpdateVrackServices } from '@/data/hooks';
+import {
+  getEligibleManagedServiceListQueryKey,
+  useVrackService,
+  useUpdateVrackServices,
+} from '@ovh-ux/manager-network-common';
 import { PageName } from '@/utils/tracking';
 import { MessagesContext } from '@/components/feedback-messages/Messages.context';
-import { getEligibleManagedServiceListQueryKey } from '@/data/api';
 
 export default function EndpointsDeleteModal() {
   const { t } = useTranslation('vrack-services/endpoints');

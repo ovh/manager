@@ -9,20 +9,23 @@ import { waitFor, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import {
+  vrackServicesListMocks,
+  vrackListMocks,
+} from '@ovh-ux/manager-network-common';
+import {
   assertModalTitle,
   changeOdsSelectValueByTestId,
   getButtonByIcon,
   labels,
   renderTest,
 } from '../../test-utils';
-import vrackServicesList from '../../../mocks/vrack-services/get-vrack-services.json';
+
 import { urls } from '@/routes/routes.constants';
-import { vrackList } from '../../../mocks/vrack/vrack';
 
 describe('Vrack Services associate vrack test suite', () => {
   it('from dashboard should associate vrack using vrack modal', async () => {
     const { container } = await renderTest({
-      initialRoute: urls.overview.replace(':id', vrackServicesList[0].id),
+      initialRoute: urls.overview.replace(':id', vrackServicesListMocks[0].id),
       nbVs: 1,
     });
 
@@ -50,10 +53,10 @@ describe('Vrack Services associate vrack test suite', () => {
       container,
       text: labels.associate.modalVrackAssociationDescription,
     });
-    await assertModalText({ container, text: vrackList[0] });
+    await assertModalText({ container, text: vrackListMocks[0] });
     await changeOdsSelectValueByTestId({
       testId: 'select-vrack-input',
-      value: vrackList[1],
+      value: vrackListMocks[1],
     });
 
     const associateButton = await getButtonByLabel({
@@ -70,7 +73,7 @@ describe('Vrack Services associate vrack test suite', () => {
     const { container } = await renderTest({
       initialRoute: urls.overviewAssociate.replace(
         ':id',
-        vrackServicesList[0].id,
+        vrackServicesListMocks[0].id,
       ),
       nbVs: 1,
       nbEligibleVrackServices: 0,
@@ -86,7 +89,7 @@ describe('Vrack Services associate vrack test suite', () => {
 
   it('from dashboard, have disable action menu', async () => {
     const { container } = await renderTest({
-      initialRoute: urls.overview.replace(':id', vrackServicesList[2].id),
+      initialRoute: urls.overview.replace(':id', vrackServicesListMocks[2].id),
       nbVs: 3,
     });
 
@@ -101,7 +104,7 @@ describe('Vrack Services associate vrack test suite', () => {
     const { container } = await renderTest({
       initialRoute: urls.overviewAssociate.replace(
         ':id',
-        vrackServicesList[0].id,
+        vrackServicesListMocks[0].id,
       ),
       nbVs: 1,
       getVrackKo: true,
@@ -121,7 +124,7 @@ describe('Vrack Services associate vrack test suite', () => {
     const { container } = await renderTest({
       initialRoute: urls.overviewAssociate.replace(
         ':id',
-        vrackServicesList[0].id,
+        vrackServicesListMocks[0].id,
       ),
       nbVs: 1,
       getVrackEligibleServicesKo: true,
@@ -132,7 +135,7 @@ describe('Vrack Services associate vrack test suite', () => {
       container,
       text: labels.associate.modalVrackListInError.replace(
         '{{list}}',
-        vrackList.join(', '),
+        vrackListMocks.join(', '),
       ),
     });
   });
