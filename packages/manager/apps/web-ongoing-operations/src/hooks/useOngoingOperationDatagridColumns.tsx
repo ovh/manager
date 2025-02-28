@@ -4,6 +4,7 @@ import { ActionMenu, DataGridTextCell } from '@ovh-ux/manager-react-components';
 import { OdsLink } from '@ovhcloud/ods-components/react';
 import { useNavigate } from 'react-router-dom';
 import { TOngoingOperations } from 'src/types';
+import { FilterCategories } from '@ovh-ux/manager-core-api';
 import { formatDatagridDate, removeQuotes } from '@/utils/utils';
 import OngoingOperationDatagridBadge from '@/components/OngoingOperationDatagridBadge/OngoingOperationDatagridBadge';
 import { UseManagerUrl } from '@/hooks/url/useManagerUrl';
@@ -43,6 +44,8 @@ export const useOngoingOperationDatagridColumns = (
           parent === ParentEnum.Domain
             ? t('domain_operations_table_header_domain')
             : t('dns_operations_table_header_domain'),
+        comparator: FilterCategories.String,
+        isFilterable: true,
       },
       {
         id: 'operation',
@@ -52,6 +55,8 @@ export const useOngoingOperationDatagridColumns = (
           </DataGridTextCell>
         ),
         label: t('domain_operations'),
+        comparator: FilterCategories.String,
+        isFilterable: true,
       },
       {
         id: 'comment',
@@ -86,6 +91,8 @@ export const useOngoingOperationDatagridColumns = (
           <OngoingOperationDatagridBadge props={props} locale={l.language} />
         ),
         label: t('domain_operations_table_header_status'),
+        comparator: FilterCategories.String,
+        isFilterable: true,
       },
       {
         cell: (props: TOngoingOperations) => (
@@ -119,6 +126,7 @@ export const useOngoingOperationDatagridColumns = (
         ),
         id: 'actions',
         label: t('domain_operations_table_header_actions'),
+        isSortable: false,
       },
     ],
     [t, data],
