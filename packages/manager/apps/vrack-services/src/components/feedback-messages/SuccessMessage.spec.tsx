@@ -3,11 +3,14 @@ import { describe, expect, it, vi } from 'vitest';
 import { render, waitFor } from '@testing-library/react';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import { UseQueryResult } from '@tanstack/react-query';
-import vrackServicesList from '../../../mocks/vrack-services/get-vrack-services.json';
-import { useVrackServicesList } from '@/data/hooks';
+
+import {
+  VrackServicesWithIAM,
+  useVrackServicesList,
+  vrackServicesListMocks,
+} from '@ovh-ux/manager-network-common';
 import { SuccessMessages } from './SuccessMessage.component';
 import { MessagesContext, MessagesContextType } from './Messages.context';
-import { VrackServicesWithIAM } from '@/types';
 
 /** Render */
 const mockContextMessage = {
@@ -34,8 +37,8 @@ const renderComponent = ({ id }: { id?: string }) => {
 /** END RENDER */
 
 /** MOCKS */
-vi.mock('@/data/hooks', async (importOriginal) => {
-  const original: typeof import('@/data/hooks') = await importOriginal();
+vi.mock('@ovh-ux/manager-network-common', async (importOriginal) => {
+  const original: typeof import('@ovh-ux/manager-network-common') = await importOriginal();
   return {
     ...original,
     useVrackServicesList: vi.fn(),
@@ -62,7 +65,7 @@ vi.mock('react-i18next', () => ({
 describe('OperationMessages Component', () => {
   it('should display a message for all vrs which are not ready', async () => {
     vi.mocked(useVrackServicesList).mockReturnValue({
-      data: { data: vrackServicesList },
+      data: { data: vrackServicesListMocks },
     } as UseQueryResult<ApiResponse<VrackServicesWithIAM[]>, ApiError>);
     const { getByText } = renderComponent({});
     await waitFor(async () => {

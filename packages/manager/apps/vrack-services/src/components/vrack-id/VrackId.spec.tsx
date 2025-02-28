@@ -8,12 +8,14 @@ import {
   ShellContext,
   ShellContextType,
 } from '@ovh-ux/manager-react-shell-client';
+import {
+  VrackServicesWithIAM,
+  vrackServicesListMocks,
+} from '@ovh-ux/manager-network-common';
 import { VrackId } from './VrackId.component';
-import vrackServicesList from '../../../mocks/vrack-services/get-vrack-services.json';
-import { VrackServicesWithIAM } from '@/types';
 
-const defaultVs = vrackServicesList[5] as VrackServicesWithIAM;
-const vsWithoutVrack = vrackServicesList[0] as VrackServicesWithIAM;
+const defaultVs = vrackServicesListMocks[5] as VrackServicesWithIAM;
+const vsWithoutVrack = vrackServicesListMocks[0] as VrackServicesWithIAM;
 
 /** Render */
 

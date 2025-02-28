@@ -21,7 +21,7 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { handleClick } from '@ovh-ux/manager-react-components';
-import { useVrackList } from '@/data/hooks';
+import { useVrackList } from '@ovh-ux/manager-network-common';
 import { AssociateAnotherVrack } from './AssociateAnotherVrack.component';
 import { CreateVrack } from '@/components/CreateVrack.component';
 import { LoadingText } from '@/components/LoadingText.component';
