@@ -1,5 +1,5 @@
 import illustration from '@/assets/images/sidebar/security-identity-operations.png';
-import { Node } from '../node';
+import { Node, NodeTag } from '../node';
 import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
 
 const sioUniverse : Node = {
@@ -55,6 +55,18 @@ sioUniverse.children = [
         routing: {
           application: 'iam',
           hash: '#/api-keys',
+        },
+      },
+      {
+        id: 'iam-logs',
+        idAttr: 'iam-logs-link',
+        translation: 'sidebar_security_identity_operations_iam_logs',
+        universe: sioUniverse.id,
+        tag: NodeTag.BETA,
+        features: ['identity-access-management:logs'],
+        routing: {
+          application: 'iam',
+          hash: '#/logs',
         },
       },
     ]
