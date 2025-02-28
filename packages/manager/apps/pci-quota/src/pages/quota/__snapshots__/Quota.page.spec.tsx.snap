@@ -1,0 +1,312 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`QuotaPage > should render 1`] = `
+<div>
+  <div
+    class=""
+  >
+    <div>
+      Discovery Banner
+    </div>
+  </div>
+  <div>
+    Annoucement Banner
+  </div>
+  <div
+    data-testid="notifications"
+  />
+  <div
+    class="p-8 rounded-md border border-solid border-[#bef1ff] bg-[#f5feff] mt-4"
+  >
+    <div>
+      <ods-text
+        preset="heading-6"
+      >
+        pci_projects_project_quota_protect_explain
+      </ods-text>
+      <div
+        class="mt-6"
+      >
+        <ods-text
+          preset="paragraph"
+        >
+          pci_projects_project_quota_protect_more
+        </ods-text>
+      </div>
+    </div>
+    <div
+      class="mt-4"
+    >
+      <ods-button
+        is-disabled="true"
+        label="pci_projects_project_quota_protect_more_btn"
+        size="sm"
+      />
+      0
+    </div>
+  </div>
+  <div
+    class="flex justify-end mt-6 pr-2"
+  >
+    <div
+      class="flex gap-2 items-center pr-4"
+    >
+      <ods-text
+        class="font-bold-class"
+        preset="caption"
+      >
+        pci_projects_project_quota_autoscaling
+      </ods-text>
+      <div>
+        <ods-icon
+          class="cursor-help text-[12px]"
+          id="quota-autoscaling-help"
+          name="circle-question"
+        />
+        <ods-popover
+          trigger-id="quota-autoscaling-help"
+          with-arrow="true"
+        >
+          <ods-text
+            preset="caption"
+          >
+            pci_projects_project_quota_autoscaling_help
+          </ods-text>
+        </ods-popover>
+      </div>
+    </div>
+    <ods-toggle
+      is-disabled="false"
+      name="auto-scaling"
+      value="false"
+    />
+    <div
+      class="flex gap-2 items-center pl-4"
+    >
+      <ods-text
+        class="font-bold-class"
+        preset="caption"
+      >
+        pci_projects_project_quota_autoscaling_off
+      </ods-text>
+    </div>
+  </div>
+  <div
+    class="mt-8"
+  >
+    <ods-text
+      preset="heading-6"
+    >
+      pci_projects_project_quota_current_limit
+    </ods-text>
+  </div>
+  <div
+    class="mt-4"
+  >
+    <div>
+      <div
+        class="contents px-[1px] overflow-x-visible"
+      >
+        <ods-table
+          class="overflow-x-visible"
+        >
+          <!---->
+          <table
+            class="w-full border-collapse"
+          >
+            <thead>
+              <tr>
+                <th
+                  class="text-left pl-4 h-11 whitespace-nowrap "
+                >
+                  <div
+                    class="cursor-pointer select-none"
+                    data-testid="header-region"
+                  >
+                    <span>
+                      pci_projects_project_quota_region
+                    </span>
+                    <span
+                      class="align-middle inline-block h-4 -mt-6"
+                    >
+                      <ods-icon
+                        class="invisible"
+                        name="arrow-down"
+                      />
+                    </span>
+                  </div>
+                </th>
+                <th
+                  class="text-left pl-4 h-11 whitespace-nowrap "
+                >
+                  <div
+                    class=""
+                    data-testid="header-servers"
+                  >
+                    <span>
+                      pci_projects_project_quota_instance
+                    </span>
+                    <span
+                      class="align-middle inline-block h-4 -mt-6"
+                    >
+                      <ods-icon
+                        class="invisible"
+                        name="arrow-down"
+                      />
+                    </span>
+                  </div>
+                </th>
+                <th
+                  class="text-left pl-4 h-11 whitespace-nowrap "
+                >
+                  <div
+                    class=""
+                    data-testid="header-vCpu"
+                  >
+                    <span>
+                      pci_projects_project_quota_core
+                    </span>
+                    <span
+                      class="align-middle inline-block h-4 -mt-6"
+                    >
+                      <ods-icon
+                        class="invisible"
+                        name="arrow-down"
+                      />
+                    </span>
+                  </div>
+                </th>
+                <th
+                  class="text-left pl-4 h-11 whitespace-nowrap "
+                >
+                  <div
+                    class=""
+                    data-testid="header-ram"
+                  >
+                    <span>
+                      pci_projects_project_quota_ram
+                    </span>
+                    <span
+                      class="align-middle inline-block h-4 -mt-6"
+                    >
+                      <ods-icon
+                        class="invisible"
+                        name="arrow-down"
+                      />
+                    </span>
+                  </div>
+                </th>
+                <th
+                  class="text-left pl-4 h-11 whitespace-nowrap "
+                >
+                  <div
+                    class=""
+                    data-testid="header-disk"
+                  >
+                    <span>
+                      pci_projects_project_quota_add_disk
+                    </span>
+                    <span
+                      class="align-middle inline-block h-4 -mt-6"
+                    >
+                      <ods-icon
+                        class="invisible"
+                        name="arrow-down"
+                      />
+                    </span>
+                  </div>
+                </th>
+                <th
+                  class="text-left pl-4 h-11 whitespace-nowrap "
+                >
+                  <div
+                    class=""
+                    data-testid="header-ips"
+                  >
+                    <span>
+                      Floating IPs
+                    </span>
+                    <span
+                      class="align-middle inline-block h-4 -mt-6"
+                    >
+                      <ods-icon
+                        class="invisible"
+                        name="arrow-down"
+                      />
+                    </span>
+                  </div>
+                </th>
+                <th
+                  class="text-left pl-4 h-11 whitespace-nowrap "
+                >
+                  <div
+                    class=""
+                    data-testid="header-gateways"
+                  >
+                    <span>
+                      Gateways
+                    </span>
+                    <span
+                      class="align-middle inline-block h-4 -mt-6"
+                    >
+                      <ods-icon
+                        class="invisible"
+                        name="arrow-down"
+                      />
+                    </span>
+                  </div>
+                </th>
+                <th
+                  class="text-left pl-4 h-11 whitespace-nowrap "
+                >
+                  <div
+                    class=""
+                    data-testid="header-lbs"
+                  >
+                    <span>
+                      LB Octavia
+                    </span>
+                    <span
+                      class="align-middle inline-block h-4 -mt-6"
+                    >
+                      <ods-icon
+                        class="invisible"
+                        name="arrow-down"
+                      />
+                    </span>
+                  </div>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                class="border-solid border-[1px] h-[3.25rem] border-[--ods-color-blue-200]"
+              >
+                <td
+                  class="text-center"
+                  colspan="8"
+                >
+                  <ods-text
+                    preset="span"
+                  >
+                    common_pagination_no_results
+                  </ods-text>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </ods-table>
+      </div>
+    </div>
+  </div>
+  Outlet
+</div>
+`;
+
+exports[`QuotaPage > should render with spinner 1`] = `
+<div>
+  <ods-spinner
+    size="md"
+  />
+</div>
+`;
