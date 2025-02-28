@@ -14,5 +14,8 @@ export default /* @ngInject */ ($stateProvider) => {
       snapshot: /* @ngInject */ (snapshots, snapshotId) =>
         snapshots.find(({ id }) => id === snapshotId),
     },
+    atInternet: {
+      ignore: true,
+    },
   });
 };

@@ -6,6 +6,17 @@ export const SNAPSHOT_TYPE = {
   SYSTEM: 'system',
 };
 
+export const SNAPSHOT_TRACKING_PREFIX =
+  'Storage_backup::storage_backup::netapp::';
+export const SNAPSHOT_LISTING_TRACKING_CONTEXT = {
+  page: {
+    name: `${SNAPSHOT_TRACKING_PREFIX}netapp::volumes::listing::snapshots`,
+  },
+  page_theme: 'Storage_backup',
+  page_category: 'pop-up',
+  level2: 130,
+};
+
 export const STATUS = {
   ACTIVE: [
     'available',
@@ -31,4 +42,6 @@ export default {
   STATUS,
   SNAPSHOT_STATUS,
   FETCH_INTERVAL,
+  SNAPSHOT_TRACKING_PREFIX,
+  SNAPSHOT_LISTING_TRACKING_CONTEXT,
 };

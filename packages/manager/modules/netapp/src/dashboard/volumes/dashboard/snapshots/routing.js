@@ -1,5 +1,9 @@
 import Snapshot from './Snapshot.class';
-import { SNAPSHOT_TYPE } from './constants';
+import {
+  SNAPSHOT_TYPE,
+  SNAPSHOT_TRACKING_PREFIX,
+  SNAPSHOT_LISTING_TRACKING_CONTEXT,
+} from './constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('netapp.dashboard.volumes.dashboard.snapshots', {
@@ -9,7 +13,8 @@ export default /* @ngInject */ ($stateProvider) => {
       trackClick: /* @ngInject */ (atInternet) => (tracker) =>
         atInternet.trackClick({
           type: 'action',
-          name: `netapp::dashboard::volumes::dashboad::snapshots::${tracker}`,
+          name: `${SNAPSHOT_TRACKING_PREFIX}pop-up::button::${tracker}`,
+          ...SNAPSHOT_LISTING_TRACKING_CONTEXT,
         }),
       addSnapshotLink: /* @ngInject */ ($state, $transition$) =>
         $state.href(
@@ -20,28 +25,48 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('netapp_volumes_snapshots_breadcrumb'),
 
-      deleteSnapshot: /* @ngInject */ ($state, serviceName, volumeId) => (
+      /* @ngInject */
+      deleteSnapshot: (atInternet, $state, serviceName, volumeId) => (
         snapshotId,
-      ) =>
-        $state.go('netapp.dashboard.volumes.dashboard.snapshots.delete', {
-          serviceName,
-          volumeId,
-          snapshotId,
-        }),
+      ) => {
+        atInternet.trackClick({
+          type: 'action',
+          name: `${SNAPSHOT_TRACKING_PREFIX}datagrid::button::delete::volumes`,
+          ...SNAPSHOT_LISTING_TRACKING_CONTEXT,
+          page_category: 'listing',
+        });
 
-      editSnapshot: /* @ngInject */ ($state, serviceName, volumeId) => (
+        return $state.go(
+          'netapp.dashboard.volumes.dashboard.snapshots.delete',
+          {
+            serviceName,
+            volumeId,
+            snapshotId,
+          },
+        );
+      },
+
+      /* @ngInject */
+      editSnapshot: (atInternet, $state, serviceName, volumeId) => (
         snapshotId,
-      ) =>
-        $state.go('netapp.dashboard.volumes.dashboard.snapshots.edit', {
+      ) => {
+        atInternet.trackClick({
+          type: 'action',
+          name: `${SNAPSHOT_TRACKING_PREFIX}datagrid::button::edit::volumes`,
+          ...SNAPSHOT_LISTING_TRACKING_CONTEXT,
+          page_category: 'listing',
+        });
+
+        return $state.go('netapp.dashboard.volumes.dashboard.snapshots.edit', {
           serviceName,
           volumeId,
           snapshotId,
-        }),
-      createVolumeFromSnapshot: /* @ngInject */ (
-        $state,
-        serviceName,
-        volumeId,
-      ) => (snapshotId) =>
+        });
+      },
+      /* @ngInject */
+      createVolumeFromSnapshot: ($state, serviceName, volumeId) => (
+        snapshotId,
+      ) =>
         $state.go(
           'netapp.dashboard.volumes.dashboard.snapshots.create-volume',
           {
@@ -50,12 +75,11 @@ export default /* @ngInject */ ($stateProvider) => {
             snapshotId,
           },
         ),
-      goToSnapshots: /* @ngInject */ (
-        $state,
-        Alerter,
-        serviceName,
-        volumeId,
-      ) => (message = false, type = 'success') => {
+      /* @ngInject */
+      goToSnapshots: ($state, Alerter, serviceName, volumeId) => (
+        message = false,
+        type = 'success',
+      ) => {
         const reload = message && type === 'success';
 
         const promise = $state.go(
@@ -124,15 +148,17 @@ export default /* @ngInject */ ($stateProvider) => {
           .then(({ data }) => data)
           .catch(() => ({})),
 
-      applyPolicy: /* @ngInject */ ($http, serviceName, volumeId) => (
-        snapshotPolicyID,
-      ) =>
+      /* @ngInject */
+      applyPolicy: ($http, serviceName, volumeId) => (snapshotPolicyID) =>
         $http.put(
           `/storage/netapp/${serviceName}/share/${volumeId}/snapshotPolicy`,
           {
             snapshotPolicyID,
           },
         ),
+    },
+    atInternet: {
+      ignore: true,
     },
   });
 };
