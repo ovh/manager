@@ -28,7 +28,20 @@ export const trackingContext = {
   level2Config: LEVEL2,
 };
 
+// COMMON/MISC
+export const CANCEL = 'cancel';
+export const CONFIRM = 'confirm';
+export const BACK_PREVIOUS_PAGE = 'back_previous-page';
+export const TO_BE_DEFINED = 'to-be-defined';
+
 export const ONBOARDING = 'onboarding';
+export const ONBOARDING_ORDER_CTA = 'onboarding_order_cta';
 export const DASHBOARD = 'dashboard';
 export const WEBSITES = 'websites';
 export const GENERAL_INFORMATIONS = 'general_informations';
+
+export const GUIDE_GETTING_STARTED = 'getting-started-guide';
+export const GUIDE_PUBLISHING = 'publishing-guide';
+export const GUIDE_EDIT_DNS_ZONE = 'edit-dns-zone-guide';
+
+export const GO_TO = (link: string) => `go-to-${link}`;
