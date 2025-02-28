@@ -43,7 +43,9 @@ export default function DashboardPage() {
     const activeTab = tabsList.find((tab) => tab.to === location.pathname);
     if (activeTab) {
       setActivePanel(activeTab.name);
-      return;
+    } else {
+      setActivePanel(tabsList[0].name);
+      navigate(`${tabsList[0].to}`);
     }
     setActivePanel(tabsList[0].name);
     navigate(`${tabsList[0].to}`);

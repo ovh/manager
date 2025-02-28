@@ -16,6 +16,7 @@ export enum ParentEnum {
 export const useOngoingOperationDatagridColumns = (
   parent: ParentEnum.Domain | ParentEnum.Zone,
   data: TOngoingOperations[],
+  openModal: (id: number) => void,
 ) => {
   const { t } = useTranslation('dashboard');
   const l = getI18n();
@@ -100,11 +101,11 @@ export const useOngoingOperationDatagridColumns = (
                 {
                   id: 1,
                   label: t('domain_operations_tab_popover_update'),
-                  className:
-                    !props.canAccelerate &&
+                  className: `${!props.canAccelerate &&
                     !props.canRelaunch &&
                     !props.canCancel &&
-                    'hidden',
+                    'hidden'} openModal`,
+                  onClick: () => openModal(props.id),
                 },
                 {
                   id: 2,
