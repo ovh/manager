@@ -32,20 +32,4 @@ describe('LabelComponent', () => {
       'custom-class',
     );
   });
-
-  it('uses the default slot value when not provided', () => {
-    render(<LabelComponent text="Test Label" />);
-    expect(screen.getByText('Test Label').parentElement).toHaveAttribute(
-      'slot',
-      'label',
-    );
-  });
-
-  it('uses the provided slot value', () => {
-    render(<LabelComponent text="Test Label" slot="custom-slot" />);
-    expect(screen.getByText('Test Label').parentElement).toHaveAttribute(
-      'slot',
-      'custom-slot',
-    );
-  });
 });

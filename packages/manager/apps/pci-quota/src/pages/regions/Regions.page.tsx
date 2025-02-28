@@ -7,16 +7,20 @@ import {
   useNotifications,
 } from '@ovh-ux/manager-react-components';
 import {
+  addProjectRegion,
   isDiscoveryProject,
   PciAnnouncementBanner,
   PciDiscoveryBanner,
+  useGetProjectRegionsQuery,
   useProject,
 } from '@ovh-ux/manager-pci-common';
 import { useMedia } from 'react-use';
 import { AvailablePart } from '@/pages/regions/Available.part';
 import { ToAddPart } from '@/pages/regions/ToAdd.part';
-import { useGetAvailableRegions, useLocations } from '@/api/hooks/useRegions';
-import { addRegion } from '@/api/data/region';
+import {
+  useAvailableLocations,
+  useGetAvailableRegionsQuery,
+} from '@/api/hooks/useRegions';
 import queryClient from '@/queryClient';
 
 export type TPlainLocation = {
@@ -25,14 +29,10 @@ export type TPlainLocation = {
   regions: string[];
 };
 
-type TState = {
-  isAddingRegion: boolean;
-};
-
 export default function RegionsPage(): JSX.Element {
   const { t } = useTranslation('regions');
 
-  const [state, setState] = useState<TState>({ isAddingRegion: false });
+  const [isAddingRegion, setIsAddingRegion] = useState<boolean>(false);
 
   const isMobile: boolean = useMedia(`(max-width: 760px)`);
 
@@ -41,9 +41,7 @@ export default function RegionsPage(): JSX.Element {
   const { projectId } = useParams();
   const { data: project } = useProject();
 
-  const { data: availableRegions } = useGetAvailableRegions(projectId);
-
-  const { data: locations, isPending } = useLocations(projectId, true);
+  const { data: locations, isPending } = useAvailableLocations(projectId);
 
   const [selectedLocation, setSelectedLocation] = useState<TPlainLocation>(
     undefined,
@@ -64,19 +62,19 @@ export default function RegionsPage(): JSX.Element {
   }, [locations]);
 
   const doAddRegion = async () => {
-    setState({ ...state, isAddingRegion: true });
+    setIsAddingRegion(true);
     try {
       const code = selectedRegions[selectedLocation.name];
-      await addRegion(projectId, code);
-      queryClient.setQueryData(
-        ['project', projectId, 'availableRegions'],
-        availableRegions.filter((region) => region.name !== code),
-      );
+      await addProjectRegion(projectId, code);
 
       setSelectedLocation(undefined);
 
       await queryClient.invalidateQueries({
-        queryKey: ['project', projectId, 'regions'],
+        queryKey: useGetAvailableRegionsQuery(projectId).queryKey,
+      });
+
+      await queryClient.invalidateQueries({
+        queryKey: useGetProjectRegionsQuery(projectId).queryKey,
       });
 
       clearNotifications();
@@ -106,7 +104,7 @@ export default function RegionsPage(): JSX.Element {
         </Translation>,
       );
     } finally {
-      setState({ ...state, isAddingRegion: false });
+      setIsAddingRegion(false);
     }
   };
 
@@ -160,7 +158,7 @@ export default function RegionsPage(): JSX.Element {
             data-testid="add-region-button"
             onClick={doAddRegion}
             isDisabled={!selectedLocation || isDiscoveryProject(project)}
-            isLoading={state.isAddingRegion}
+            isLoading={isAddingRegion}
           />
         </div>
       )}

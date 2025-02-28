@@ -4,7 +4,8 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { vi } from 'vitest';
 import { renderHook, waitFor } from '@testing-library/react';
-import { useLocations } from './useRegions';
+import { TRegion } from '@ovh-ux/manager-pci-common';
+import { useAvailableLocations, useLocations } from './useRegions';
 import { getAvailableRegions } from '../data/region';
 import { wrapper } from '@/wrapperRenders';
 
@@ -30,9 +31,11 @@ describe('useLocations', () => {
   it('should return available locations data when onlyAvailable is true', async () => {
     const availableRegions = [{ name: 'region3' }, { name: 'region4' }];
 
-    vi.mocked(getAvailableRegions).mockResolvedValue(availableRegions);
+    vi.mocked(getAvailableRegions).mockResolvedValue(
+      (availableRegions as unknown) as TRegion[],
+    );
 
-    const { result } = renderHook(() => useLocations(projectId, true), {
+    const { result } = renderHook(() => useAvailableLocations(projectId), {
       wrapper,
     });
 

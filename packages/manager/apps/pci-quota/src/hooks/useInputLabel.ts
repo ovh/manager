@@ -17,5 +17,5 @@ export default function useInputLabel(
       }
     }
     return '';
-  }, [issueTypes]);
+  }, [issueTypes, type]);
 }

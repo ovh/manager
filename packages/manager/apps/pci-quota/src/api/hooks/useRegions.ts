@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
 import { useTranslatedMicroRegions } from '@ovh-ux/manager-react-components';
-import { getProjectRegions } from '@ovh-ux/manager-pci-common';
+import { TRegion, useGetProjectRegions } from '@ovh-ux/manager-pci-common';
 import { getAvailableRegions } from '@/api/data/region';
 
 type TLocation = {
@@ -15,51 +15,40 @@ type TPlainLocation = {
   regions: string[];
 };
 
-export const useGetRegions = (projectId: string) =>
-  useQuery({
-    queryKey: ['project', projectId, 'regions'],
-    queryFn: () => getProjectRegions(projectId),
-  });
+export const useGetAvailableRegionsQuery = (projectId: string) => ({
+  queryKey: ['project', projectId, 'availableRegions'],
+  queryFn: () => getAvailableRegions(projectId),
+});
 
 export const useGetAvailableRegions = (projectId: string) =>
-  useQuery({
-    queryKey: ['project', projectId, 'availableRegions'],
-    queryFn: () => getAvailableRegions(projectId),
-  });
+  useQuery(useGetAvailableRegionsQuery(projectId));
 
-export const useLocations = (projectId: string, onlyAvailable = false) => {
-  const query = onlyAvailable
-    ? useGetAvailableRegions(projectId)
-    : useGetRegions(projectId);
-
+const useLocationFilter = () => {
   const {
     translateContinentRegion,
     translateMacroRegion,
   } = useTranslatedMicroRegions();
 
   return {
-    ...query,
-    data: useMemo<TPlainLocation[]>(() => {
-      const payload = (query.data || []).reduce(
-        (acc: Map<string, TLocation>, region) => {
+    filterRegions: (data: TRegion[]): TPlainLocation[] => {
+      const payload: { [key: string]: TLocation } = (data || []).reduce(
+        (acc, region: TRegion) => {
           const continent = translateContinentRegion(region.name);
           const location = translateMacroRegion(region.name);
-
-          if (!acc.has(location)) {
-            acc.set(location, {
+          if (!(location in acc)) {
+            acc[location] = {
               continent,
               regions: new Set<string>().add(region.name),
-            });
+            };
           } else {
-            acc.get(location).regions.add(region.name);
+            acc[location].regions.add(region.name);
           }
-
           return acc;
         },
-        new Map<string, TLocation>(),
+        {},
       );
 
-      return Array.from(payload.entries() || []).reduce(
+      return Array.from(Object.entries(payload) || []).reduce(
         (acc: TPlainLocation[], [name, { continent, regions }]) => {
           return [
             ...acc,
@@ -72,6 +61,24 @@ export const useLocations = (projectId: string, onlyAvailable = false) => {
         },
         [],
       );
-    }, [query.data]),
+    },
+  };
+};
+
+export const useLocations = (projectId: string) => {
+  const { filterRegions } = useLocationFilter();
+  const query = useGetProjectRegions(projectId);
+  return {
+    ...query,
+    data: useMemo(() => filterRegions(query.data), [query.data]),
+  };
+};
+
+export const useAvailableLocations = (projectId: string) => {
+  const { filterRegions } = useLocationFilter();
+  const query = useGetAvailableRegions(projectId);
+  return {
+    ...query,
+    data: useMemo(() => filterRegions(query.data), [query.data]),
   };
 };

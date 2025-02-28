@@ -1,12 +1,18 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
 import RegionsPage from './Regions.page';
-import { useGetAvailableRegions, useLocations } from '@/api/hooks/useRegions';
+import {
+  useGetAvailableRegions,
+  useAvailableLocations,
+} from '@/api/hooks/useRegions';
 import { wrapper } from '@/wrapperRenders';
 
 vi.mock('@/api/hooks/useRegions', async () => ({
   useGetAvailableRegions: vi.fn(),
   useLocations: vi.fn().mockReturnValue({ data: [], isPending: false }),
+  useAvailableLocations: vi
+    .fn()
+    .mockReturnValue({ data: [], isPending: false }),
 }));
 
 vi.mock('react-use', () => ({
@@ -44,7 +50,7 @@ describe('RegionsPage', () => {
   });
 
   it('should show loading spinner when isPending is true', () => {
-    vi.mocked(useLocations).mockReturnValue({
+    vi.mocked(useAvailableLocations).mockReturnValue({
       data: [],
       isPending: true,
     } as never);

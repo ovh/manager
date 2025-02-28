@@ -11,12 +11,11 @@ type TLabelProps = {
 export default function LabelComponent({
   text,
   helpText,
-  slot = 'label',
   className = '',
   triggerId,
 }: Readonly<TLabelProps>): JSX.Element {
   return (
-    <div slot={slot} className={`flex gap-2 items-center ${className}`.trim()}>
+    <div className={`flex gap-2 items-center ${className}`.trim()}>
       <OdsText preset="caption" className="font-bold-class">
         {text}
       </OdsText>
