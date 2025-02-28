@@ -4,6 +4,9 @@ import { ZodObject, ZodRawShape } from 'zod';
 import { SigningAlgorithms, TOidcProvider } from '@/types';
 import { NodePool } from '@/api/data/kubernetes';
 
+export const MAX_LENGTH = 64;
+export const NAME_PATTERN = /^[a-zA-Z](([a-zA-Z0-9-]|_|-)*)[a-zA-Z0-9]$/;
+
 export const REFETCH_INTERVAL_DURATION = 15_000;
 export const QUOTA_ERROR_URL =
   'https://docs.ovh.com/gb/en/kubernetes/etcd-quota-error/';

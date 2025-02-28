@@ -17,15 +17,13 @@ import {
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { StepState } from '../useStep';
+import { MAX_LENGTH, NAME_PATTERN } from '@/helpers';
 
 export interface ClusterNameStepProps {
   step: StepState;
   onNameChange: (name: string) => void;
   onSubmit: (name: string) => void;
 }
-
-export const MAX_LENGTH = 64;
-export const NAME_PATTERN = /^[a-zA-Z](([a-zA-Z0-9-]|_|-)*)[a-zA-Z0-9]$/;
 
 export function ClusterNameStep({
   onNameChange,

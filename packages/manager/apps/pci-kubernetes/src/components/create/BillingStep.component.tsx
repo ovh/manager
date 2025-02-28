@@ -25,8 +25,7 @@ import {
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-import { useContext } from 'react';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import useIsUsRegion from '@/hooks/useRegion';
 
 const checkedClass =
   'cursor-pointer font-bold bg-[--ods-color-blue-100] border-[--ods-color-blue-600]';
@@ -48,8 +47,7 @@ export type TBillingStepProps = {
 export default function BillingStep(props: TBillingStepProps): JSX.Element {
   const { t } = useTranslation('billing-anti-affinity');
   const { t: tFlavourBilling } = useTranslation('flavor-billing');
-  const context = useContext(ShellContext);
-  const region = context.environment.getRegion();
+  const isUsRegion = useIsUsRegion();
   const {
     getFormattedMonthlyCatalogPrice,
     getFormattedHourlyCatalogPrice,
@@ -71,7 +69,7 @@ export default function BillingStep(props: TBillingStepProps): JSX.Element {
             'pci_projects_project_instances_configure_billing_type',
           )}
         </OsdsText>
-        {props.monthlyBilling.isComingSoon && region !== 'US' ? (
+        {props.monthlyBilling.isComingSoon && !isUsRegion ? (
           <OsdsMessage
             data-testid="coming_soon_message"
             type={ODS_MESSAGE_TYPE.info}
@@ -110,7 +108,7 @@ export default function BillingStep(props: TBillingStepProps): JSX.Element {
             size={ODS_TEXT_SIZE._400}
           >
             {t('kubernetes_add_billing_type_description')}
-            {region !== 'US' && t('kubernetes_add_billing_type_description')}
+            {!isUsRegion && t('kubernetes_add_billing_type_description')}
           </OsdsText>
         )}
       </div>
