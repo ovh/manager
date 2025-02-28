@@ -19,13 +19,21 @@ import { TUser } from '@/api/data/users';
 import StepOneComponent from './StepOne.component';
 import StepTwoComponent from './StepTwo.component';
 import { useProductRegionsAvailability } from '@/api/hooks/useRegions';
+import {
+  OBJECT_CONTAINER_USER_ROLE_ADMIN,
+  OBJECT_CONTAINER_USER_ROLES,
+} from '@/constants';
+
+type TRole = typeof OBJECT_CONTAINER_USER_ROLES[number];
 
 export default function AddUserToContainerPage() {
   const { t } = useTranslation('containers/add-user');
 
   const [stepUser, setStepUser] = useState(0);
   const [selectedUser, setSelectedUser] = useState<TUser>(null);
-  const [selectedRole, setSelectedRole] = useState<string>(null);
+  const [selectedRole, setSelectedRole] = useState<TRole>(
+    OBJECT_CONTAINER_USER_ROLE_ADMIN,
+  );
 
   const { addSuccessMessage, addErrorMessage } = useNotifications({
     ns: 'containers/add-user',
