@@ -40,7 +40,7 @@ export default function StatusComponent({
               {t(
                 'containers:pci_projects_project_storages_cold_archive_containers_status_restore_date',
                 {
-                  date: useFormattedDate(automaticDeletionAt, 'Pp'),
+                  date: useFormattedDate(automaticDeletionAt, 'P p'),
                 },
               )}
             </OdsText>
