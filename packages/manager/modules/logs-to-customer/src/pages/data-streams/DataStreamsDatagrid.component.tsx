@@ -5,8 +5,7 @@ import {
   DatagridColumn,
   FilterAdd,
   FilterList,
-  useColumnFilters,
-  useDataGrid,
+  useResourcesIcebergV6,
 } from '@ovh-ux/manager-react-components';
 import {
   OdsButton,
@@ -22,10 +21,6 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { useQueryClient } from '@tanstack/react-query';
 import ApiError from '../../components/apiError/ApiError.component';
-import {
-  getLogStreamsQueryKey,
-  useLogStreams,
-} from '../../data/hooks/useLogStream';
 import { Service, Stream } from '../../data/types/dbaas/logs';
 import DataStreamIndexingStatus from '../../components/data-streams/DataStreamIndexingStatus.component';
 import DataStreamRetention from '../../components/data-streams/DataStreamRetention.component';
@@ -53,33 +48,36 @@ const DataStreamsDatagrid = ({ service }: { service: Service }) => {
   const addDatastreamLogsAccess = useLogTrackingActions(
     LogsActionEnum.add_datastream_logs_access,
   );
-  const { pagination, setPagination } = useDataGrid();
-  const { filters, addFilter, removeFilter } = useColumnFilters();
-  const { data: streams, isPending, error } = useLogStreams(
-    service.serviceName,
-    pagination,
-    filters,
-  );
 
-  if (isPending)
+  const {
+    flattenData,
+    error,
+    isError,
+    totalCount,
+    hasNextPage,
+    fetchNextPage,
+    isLoading,
+    filters,
+  } = useResourcesIcebergV6({
+    route: `/dbaas/logs/${service.serviceName}/output/graylog/stream`,
+    queryKey: ['getLogStreams', service.serviceName],
+  });
+
+  if (isLoading)
     return (
-      <div className="flex py-8">
+      <div className="flex py-10">
         <OdsSpinner size="md" data-testid="logKinds-spinner" />
       </div>
     );
 
-  if (error)
+  if (isError)
     return (
       <ApiError
         testId="logKinds-error"
         error={error}
         onRetry={() =>
           queryClient.refetchQueries({
-            queryKey: getLogStreamsQueryKey(
-              service.serviceName,
-              pagination,
-              filters,
-            ),
+            queryKey: ['getLogStreams', service.serviceName],
           })
         }
       />
@@ -139,7 +137,7 @@ const DataStreamsDatagrid = ({ service }: { service: Service }) => {
   ];
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-4">
       <div className="flex justify-between">
         <OdsButton
           size="sm"
@@ -176,11 +174,7 @@ const DataStreamsDatagrid = ({ service }: { service: Service }) => {
               },
             ]}
             onAddFilter={(addedFilter, column) => {
-              setPagination({
-                pageIndex: 0,
-                pageSize: pagination.pageSize,
-              });
-              addFilter({
+              filters.add({
                 ...addedFilter,
                 label: column.label,
               });
@@ -189,14 +183,14 @@ const DataStreamsDatagrid = ({ service }: { service: Service }) => {
         </OdsPopover>
       </div>
       <div>
-        <FilterList filters={filters} onRemoveFilter={removeFilter} />
+        <FilterList filters={filters.filters} onRemoveFilter={filters.remove} />
       </div>
       <Datagrid
         columns={columns}
-        items={streams}
-        totalItems={streams.length || 0}
-        pagination={pagination}
-        onPaginationChange={setPagination}
+        items={flattenData}
+        totalItems={totalCount || 0}
+        hasNextPage={hasNextPage && !isLoading}
+        onFetchNextPage={fetchNextPage}
         noResultLabel={t('log_streams_no_results')}
       />
     </div>
