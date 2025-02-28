@@ -1,15 +1,8 @@
-import {
-  Suspense,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import { Suspense, useContext, useEffect, useRef, useState } from 'react';
 
 import { IFrameMessageBus } from '@ovh-ux/shell';
 import { IFrameAppRouter } from '@/core/routing';
 
-import NavReshuffleBetaAccessModal from '@/container/common/pnr-beta-modal';
 import ApplicationContext from '@/context';
 import { useProgress } from '@/context/progress';
 import { LegacyContainerProvider } from './context';
@@ -67,9 +60,6 @@ function LegacyContainer(): JSX.Element {
         <Progress isAnimating={isProgressAnimating}></Progress>
 
         <div className={style.managerShell}>
-          <Suspense fallback="">
-            <NavReshuffleBetaAccessModal />
-          </Suspense>
           <div>
             <LegacyHeader />
           </div>
