@@ -68,25 +68,34 @@ describe('useDateLocale', () => {
 
   it('should update startTime when handleStartTimeChange is called', () => {
     const { result } = renderHook(() => useDateLocale());
-    const newStartTime = new Date(2025, 0, 1, 0, 0, 0);
+
+    const newStartTime = new Date(Date.UTC(2025, 0, 1, 0, 0, 0));
 
     act(() => {
       result.current.handleStartTimeChange(newStartTime);
     });
 
-    expect(result.current.startTime).toEqual(newStartTime);
+    const timezoneOffset = newStartTime.getTimezoneOffset();
+    const adjustedStartTime = new Date(newStartTime);
+    adjustedStartTime.setHours(
+      adjustedStartTime.getHours() - timezoneOffset / 60,
+    );
+
+    expect(result.current.startTime.toISOString()).toBe(
+      adjustedStartTime.toISOString(),
+    );
   });
 
   it('should update endTime when handleEndTimeChange is called', () => {
     const { result } = renderHook(() => useDateLocale());
-    const newEndTime = new Date(2025, 0, 10, 0, 0, 0);
+    const newEndTime = new Date(Date.UTC(2025, 0, 10, 0, 0, 0));
 
     act(() => {
       result.current.handleEndTimeChange(newEndTime);
     });
 
     const expectedEndTime = new Date(newEndTime);
-    expectedEndTime.setHours(23, 59, 59, 999);
+    expectedEndTime.setUTCHours(23, 59, 59, 999);
 
     expect(result.current.endTime).toEqual(expectedEndTime);
   });

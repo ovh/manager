@@ -7,9 +7,9 @@ const mockT = (key: string) => {
     input_tokens: 'Input Tokens',
     output_tokens: 'Output Tokens',
     seconds: 'Total Audio',
-    input: 'Input Tokens',
-    output: 'Output Tokens',
-    totalAudio: 'Total Audio',
+    ai_endpoints_input: 'Input Tokens',
+    ai_endpoints_output: 'Output Tokens',
+    ai_endpoints_totalAudio: 'Total Audio',
   };
   return translations[key] || key;
 };
