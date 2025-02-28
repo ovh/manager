@@ -39,7 +39,7 @@ export default function ColdArchivePage() {
   const tabs = [
     {
       name: 'pci_projects_project_storages_cold_archive_label',
-      title: t('pci_projects_project_storages_cold_archive_label'),
+      title: t('pci_projects_project_storages_cold_archive_tabs_tab_archives'),
       to: useResolvedPath(ROUTE_PATHS.STORAGES).pathname,
     },
     {
