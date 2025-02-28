@@ -8,6 +8,7 @@ export enum GuideSections {
   'products' = 'produits-ia',
   'notebooks' = 'ai-notebooks',
   'jobs' = 'ai-training',
+  'apps' = 'ai-deploy',
 }
 
 export const notebookGuidesSections: GuideSections[] = [
@@ -24,6 +25,15 @@ export const jobGuidesSections: GuideSections[] = [
   GuideSections.data,
   GuideSections.faq,
   GuideSections.jobs,
+  GuideSections.ovhaiCli,
+  GuideSections.products,
+];
+
+export const appGuidesSections: GuideSections[] = [
+  GuideSections.cli,
+  GuideSections.data,
+  GuideSections.faq,
+  GuideSections.apps,
   GuideSections.ovhaiCli,
   GuideSections.products,
 ];
@@ -66,10 +76,34 @@ export const GUIDES = {
     default:
       'https://help.ovhcloud.com/csm/en-gb-public-cloud-ai-training-submit-job?id=kb_article_view&sysparm_article=KB0048754',
   },
+  APP_ONBOARDING_TUTO_1: {
+    fr_FR:
+      'https://help.ovhcloud.com/csm/fr-public-cloud-ai-deploy-capabilities?id=kb_article_view&sysparm_article=KB0047964',
+    fr_CA:
+      'https://help.ovhcloud.com/csm/fr-public-cloud-ai-deploy-capabilities?id=kb_article_view&sysparm_article=KB0047964',
+    default:
+      'https://help.ovhcloud.com/csm/en-gb-documentation-public-cloud?id=kb_browse_cat&kb_id=574a8325551974502d4c6e78b7421938',
+  },
+  APP_ONBOARDING_TUTO_2: {
+    fr_FR:
+      'https://help.ovhcloud.com/csm/fr-public-cloud-ai-deploy-getting-started?id=kb_article_view&sysparm_article=KB0047991',
+    fr_CA:
+      'https://help.ovhcloud.com/csm/fr-public-cloud-ai-deploy-getting-started?id=kb_article_view&sysparm_article=KB0047991',
+    default:
+      'https://help.ovhcloud.com/csm/en-gb-public-cloud-ai-deploy-getting-started?id=kb_article_view&sysparm_article=KB0047971',
+  },
   HOW_TO_MANAGE_DATA: {
     fr_FR: 'https://docs.ovh.com/fr/publiccloud/ai/data/',
     fr_CA: 'https://docs.ovh.com/fr/publiccloud/ai/data/',
     default: 'https://docs.ovh.com/gb/en/publiccloud/ai/data/',
+  },
+  HOW_TO_MANAGE_SCALING: {
+    fr_FR:
+      'https://help.ovhcloud.com/csm/fr-public-cloud-ai-deploy-apps-deployments?id=kb_article_view&sysparm_article=KB0048006',
+    fr_CA:
+      'https://help.ovhcloud.com/csm/fr-public-cloud-ai-deploy-apps-deployments?id=kb_article_view&sysparm_article=KB0048006',
+    default:
+      'https://help.ovhcloud.com/csm/en-gb-public-cloud-ai-deploy-apps-deployments?id=kb_article_view&sysparm_article=KB0047997',
   },
 };
 

@@ -3,7 +3,7 @@ import { vi } from 'vitest';
 
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import * as tokenApi from '@/data/api/ai/token.api';
-import { mockedToken } from '@/__tests__/helpers/mocks/token';
+import { mockedToken } from '@/__tests__/helpers/mocks/shared/token';
 import { useGetTokens } from './useGetTokens.hook';
 
 vi.mock('@/data/api/ai/token.api', () => ({

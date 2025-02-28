@@ -1,80 +1,55 @@
-import { JobSuggestions, Suggestions } from '@/types/orderFunnel';
+import {
+  AppSuggestions,
+  JobSuggestions,
+  Suggestions,
+} from '@/types/orderFunnel';
 
-export const mockedSuggestion: Suggestions[] = [
+const baseGRA = {
+  region: 'GRA',
+  ressources: {
+    nb: 1,
+    flavor: 'ai1-1-cpu',
+  },
+  unsecureHttp: false,
+};
+
+const baseBHS = {
+  region: 'BHS',
+  ressources: {
+    nb: 1,
+    flavor: 'ai1-le-1-gpu',
+  },
+  unsecureHttp: false,
+};
+
+export const mockedSuggestionsForNotebook: Suggestions[] = [
   {
-    region: 'GRA',
-    ressources: {
-      nb: 1,
-      flavor: 'flavorCPUId',
-    },
+    ...baseGRA,
     framework: {
       id: 'one-for-all',
       version: 'v98-ovh.beta.1',
     },
     editorId: 'jupyterlab',
-    unsecureHttp: false,
   },
   {
-    region: 'BHS',
-    ressources: {
-      nb: 1,
-      flavor: 'ai1-le-1-gpu',
-    },
+    ...baseBHS,
     framework: {
       id: 'one-for-all',
       version: 'v98-ovh.beta.1',
     },
     editorId: 'jupyterlab',
-    unsecureHttp: false,
   },
 ];
 
-export const mockedTempSuggestionForOrderFunnel: Suggestions[] = [
+export const mockedSuggestionsForJob: JobSuggestions[] = [
   {
-    region: 'GRA',
-    ressources: {
-      nb: 1,
-      flavor: 'ai1-1-cpu',
-    },
-    framework: {
-      id: 'one-for-all',
-      version: 'v98-ovh.beta.1',
-    },
-    editorId: 'jupyterlab',
-    unsecureHttp: false,
-  },
-  {
-    region: 'BHS',
-    ressources: {
-      nb: 1,
-      flavor: 'ai1-le-1-gpu',
-    },
-    framework: {
-      id: 'one-for-all',
-      version: 'v98-ovh.beta.1',
-    },
-    editorId: 'jupyterlab',
-    unsecureHttp: false,
-  },
-];
-
-export const mockedTempJobSuggestionForOrderFunnel: JobSuggestions[] = [
-  {
-    region: 'GRA',
-    ressources: {
-      nb: 1,
-      flavor: 'flavorCPUId',
-    },
+    ...baseGRA,
     image: 'ovhcom/ai-training-mxnet:1.5.0',
-    unsecureHttp: false,
   },
   {
-    region: 'BHS',
-    ressources: {
-      nb: 1,
-      flavor: 'ai1-le-1-gpu',
-    },
+    ...baseBHS,
     image: 'ovhcom/ai-training-mxnet:1.5.0',
-    unsecureHttp: false,
   },
 ];
+
+export const mockedSuggestionsForApp: AppSuggestions[] = [baseGRA, baseBHS];

@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import {
   act,
   fireEvent,
@@ -7,20 +7,10 @@ import {
   waitFor,
 } from '@testing-library/react';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
-import { mockedPublicGitVolume } from '@/__tests__/helpers/mocks/volume';
+import { mockedPublicGitVolume } from '@/__tests__/helpers/mocks/volume/volume';
 import PublicGit from './PublicGit.component';
 
 describe('Public Git Component', () => {
-  beforeEach(() => {
-    vi.restoreAllMocks();
-    // Mock necessary hooks and dependencies
-    vi.mock('react-i18next', () => ({
-      useTranslation: () => ({
-        t: (key: string) => key,
-      }),
-    }));
-  });
-
   afterEach(() => {
     vi.clearAllMocks();
   });

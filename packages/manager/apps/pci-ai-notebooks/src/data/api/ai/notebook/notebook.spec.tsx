@@ -9,33 +9,7 @@ import {
   startNotebook,
   stopNotebook,
 } from '@/data/api/ai/notebook/notebook.api';
-import { mockedNotebookSpec } from '@/__tests__/helpers/mocks/notebook';
-import * as ai from '@/types/cloud/project/ai';
-
-vi.mock('@ovh-ux/manager-core-api', () => {
-  const get = vi.fn(() => {
-    return Promise.resolve({ data: null });
-  });
-  const post = vi.fn(() => {
-    return Promise.resolve({ data: null });
-  });
-  const put = vi.fn(() => {
-    return Promise.resolve({ data: null });
-  });
-  const del = vi.fn(() => {
-    return Promise.resolve({ data: null });
-  });
-  return {
-    apiClient: {
-      v6: {
-        get,
-        post,
-        put,
-        delete: del,
-      },
-    },
-  };
-});
+import { mockedNotebookSpec } from '@/__tests__/helpers/mocks/notebook/notebook';
 
 describe('notebook functions', () => {
   afterEach(() => {
@@ -79,41 +53,12 @@ describe('notebook functions', () => {
     expect(apiClient.v6.post).toHaveBeenCalledWith(
       '/cloud/project/projectId/ai/notebook',
       {
-        env: {
-          editorId: 'editor',
-          frameworkId: 'frameworkId',
-          frameworkVersion: 'frameworkVersion',
-        },
-        envVars: [
-          {
-            name: 'envVarsName',
-            value: 'envVarsValue',
-          },
-        ],
-        name: 'name',
-        region: 'region',
-        resources: {
-          cpu: 1,
-          ephemeralStorage: 1,
-          flavor: 'flavor',
-          gpu: 1,
-          memory: 1,
-          privateNetwork: 1,
-          publicNetwork: 1,
-        },
-        volumes: [
-          {
-            cache: false,
-            mountPath: '/demo',
-            permission: ai.VolumePermissionEnum.RO,
-            volumeSource: {
-              dataStore: {
-                alias: 'alias',
-                container: 'container',
-              },
-            },
-          },
-        ],
+        env: mockedNotebookSpec.env,
+        envVars: mockedNotebookSpec.envVars,
+        name: mockedNotebookSpec.name,
+        region: mockedNotebookSpec.region,
+        resources: mockedNotebookSpec.resources,
+        volumes: mockedNotebookSpec.volumes,
       },
     );
   });
@@ -160,41 +105,12 @@ describe('notebook functions', () => {
     expect(apiClient.v6.post).toHaveBeenCalledWith(
       '/cloud/project/projectId/ai/notebook/command',
       {
-        env: {
-          editorId: 'editor',
-          frameworkId: 'frameworkId',
-          frameworkVersion: 'frameworkVersion',
-        },
-        envVars: [
-          {
-            name: 'envVarsName',
-            value: 'envVarsValue',
-          },
-        ],
-        name: 'name',
-        region: 'region',
-        resources: {
-          cpu: 1,
-          ephemeralStorage: 1,
-          flavor: 'flavor',
-          gpu: 1,
-          memory: 1,
-          privateNetwork: 1,
-          publicNetwork: 1,
-        },
-        volumes: [
-          {
-            cache: false,
-            mountPath: '/demo',
-            permission: ai.VolumePermissionEnum.RO,
-            volumeSource: {
-              dataStore: {
-                alias: 'alias',
-                container: 'container',
-              },
-            },
-          },
-        ],
+        env: mockedNotebookSpec.env,
+        envVars: mockedNotebookSpec.envVars,
+        name: mockedNotebookSpec.name,
+        region: mockedNotebookSpec.region,
+        resources: mockedNotebookSpec.resources,
+        volumes: mockedNotebookSpec.volumes,
       },
     );
   });

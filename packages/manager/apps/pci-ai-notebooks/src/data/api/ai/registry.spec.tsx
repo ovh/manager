@@ -9,32 +9,7 @@ import {
 import {
   mockedRegistryEdit,
   mockedRegistryInput,
-} from '@/__tests__/helpers/mocks/registry';
-
-vi.mock('@ovh-ux/manager-core-api', () => {
-  const get = vi.fn(() => {
-    return Promise.resolve({ data: null });
-  });
-  const post = vi.fn(() => {
-    return Promise.resolve({ data: null });
-  });
-  const put = vi.fn(() => {
-    return Promise.resolve({ data: null });
-  });
-  const del = vi.fn(() => {
-    return Promise.resolve({ data: null });
-  });
-  return {
-    apiClient: {
-      v6: {
-        get,
-        post,
-        put,
-        delete: del,
-      },
-    },
-  };
-});
+} from '@/__tests__/helpers/mocks/shared/registry';
 
 describe('Registry functions', () => {
   afterEach(() => {

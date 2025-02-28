@@ -6,94 +6,46 @@ import {
   screen,
   waitFor,
 } from '@testing-library/react';
-
+import { mockedUsedNavigate } from '@/__tests__/helpers/mockRouterDomHelper';
+import { mockManagerReactShellClient } from '@/__tests__/helpers/mockShellHelper';
 import Notebook, {
   breadcrumb as Breadcrumb,
 } from '@/pages/notebooks/create/Create.page';
-
-import { Locale } from '@/hooks/useLocale';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
-
-import { mockedUser } from '@/__tests__/helpers/mocks/user';
-import { mockedCatalog } from '@/__tests__/helpers/mocks/catalog';
+import { mockedCatalog } from '@/__tests__/helpers/mocks/catalog/catalog';
 import { mockedPciProject } from '@/__tests__/helpers/mocks/project';
-import { mockedSuggestion } from '@/__tests__/helpers/mocks/suggestion';
 import {
   mockedCapabilitiesRegionBHS,
   mockedCapabilitiesRegionGRA,
-} from '@/__tests__/helpers/mocks/region';
+} from '@/__tests__/helpers/mocks/capabilities/region';
 import {
   mockedEditor,
   mockedEditorBis,
-} from '@/__tests__/helpers/mocks/notebook/editor';
-import {
-  mockedFramework,
-  mockedFrameworkBis,
-} from '@/__tests__/helpers/mocks/notebook/framework';
+} from '@/__tests__/helpers/mocks/capabilities/notebookEditor';
 import {
   mockedSshKey,
   mockedSshKeyBis,
 } from '@/__tests__/helpers/mocks/sshkey';
-import { mockedCommand } from '@/__tests__/helpers/mocks/command';
-import { mockedCapabilitiesFlavorCPU } from '@/__tests__/helpers/mocks/flavor';
+import { mockedCommand } from '@/__tests__/helpers/mocks/shared/command';
+import { mockedCapabilitiesFlavorCPU } from '@/__tests__/helpers/mocks/capabilities/flavor';
 import {
   mockedDatastoreWithContainerGit,
   mockedDatastoreWithContainerS3,
-} from '@/__tests__/helpers/mocks/datastore';
+} from '@/__tests__/helpers/mocks/volume/datastore';
 import * as notebookApi from '@/data/api/ai/notebook/notebook.api';
-import { apiErrorMock } from '@/__tests__/helpers/mocks/aiError';
+import { apiErrorMock } from '@/__tests__/helpers/mocks/shared/aiError';
 import { useToast } from '@/components/ui/use-toast';
+import { mockedSuggestionsForNotebook } from '@/__tests__/helpers/mocks/suggestion';
+import {
+  mockedFramework,
+  mockedFrameworkBis,
+} from '@/__tests__/helpers/mocks/capabilities/notebookFramework';
 
-const mockedUsedNavigate = vi.fn();
 describe('Order funnel page', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
-
-    // Mock necessary hooks and dependencies
-    vi.mock('react-i18next', () => ({
-      useTranslation: () => ({
-        t: (key: string) => key,
-      }),
-      Trans: ({ children }: { children: React.ReactNode }) => children,
-    }));
-    vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
-      const mod = await importOriginal<
-        typeof import('@ovh-ux/manager-react-shell-client')
-      >();
-      return {
-        ...mod,
-        useShell: vi.fn(() => ({
-          i18n: {
-            getLocale: vi.fn(() => Locale.fr_FR),
-            onLocaleChange: vi.fn(),
-            setLocale: vi.fn(),
-          },
-          environment: {
-            getEnvironment: vi.fn(() => ({
-              getUser: vi.fn(() => mockedUser),
-            })),
-          },
-        })),
-      };
-    });
-
-    const ResizeObserverMock = vi.fn(() => ({
-      observe: vi.fn(),
-      unobserve: vi.fn(),
-      disconnect: vi.fn(),
-    }));
-    vi.stubGlobal('ResizeObserver', ResizeObserverMock);
-
-    vi.mock('react-router-dom', async () => {
-      const mod = await vi.importActual('react-router-dom');
-      return {
-        ...mod,
-        useParams: () => ({
-          projectId: 'projectId',
-        }),
-        useNavigate: () => mockedUsedNavigate,
-      };
-    });
+    mockedUsedNavigate();
+    mockManagerReactShellClient();
 
     vi.mock('@/data/api/project/project.api', () => {
       return {
@@ -107,7 +59,7 @@ describe('Order funnel page', () => {
     }));
 
     vi.mock('@/data/api/ai/notebook/suggestions.api', () => ({
-      getSuggestions: vi.fn(() => mockedSuggestion),
+      getSuggestions: vi.fn(() => mockedSuggestionsForNotebook),
     }));
 
     vi.mock('@/data/api/catalog/catalog.api', () => ({
@@ -149,18 +101,6 @@ describe('Order funnel page', () => {
     vi.mock('@/data/api/sshkey/sshkey.api', () => ({
       getSshkey: vi.fn(() => [mockedSshKey, mockedSshKeyBis]),
     }));
-
-    vi.mock('@/components/ui/use-toast', () => {
-      const toastMock = vi.fn();
-      return {
-        useToast: vi.fn(() => ({
-          toast: toastMock,
-        })),
-      };
-    });
-
-    const mockScrollIntoView = vi.fn();
-    window.HTMLElement.prototype.scrollIntoView = mockScrollIntoView;
   });
   afterEach(() => {
     vi.clearAllMocks();

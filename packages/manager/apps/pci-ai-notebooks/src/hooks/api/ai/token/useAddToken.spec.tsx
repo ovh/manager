@@ -7,7 +7,7 @@ import { useAddToken } from './useAddToken.hook';
 import {
   mockedToken,
   mockedTokenCreation,
-} from '@/__tests__/helpers/mocks/token';
+} from '@/__tests__/helpers/mocks/shared/token';
 
 vi.mock('@/data/api/ai/token.api', () => ({
   addToken: vi.fn(),

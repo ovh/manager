@@ -3,7 +3,7 @@ import { vi } from 'vitest';
 
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import * as capabilitiesApi from '@/data/api/ai/capabilities.api';
-import { mockedCapabilitiesRegionGRA } from '@/__tests__/helpers/mocks/region';
+import { mockedCapabilitiesRegionGRA } from '@/__tests__/helpers/mocks/capabilities/region';
 import { useGetRegions } from './useGetRegions.hook';
 
 vi.mock('@/data/api/ai/capabilities.api', () => ({

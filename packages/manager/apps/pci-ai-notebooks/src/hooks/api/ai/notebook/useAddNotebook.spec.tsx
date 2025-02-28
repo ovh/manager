@@ -5,7 +5,7 @@ import * as notebookApi from '@/data/api/ai/notebook/notebook.api';
 import {
   mockedNotebook,
   mockedNotebookSpec,
-} from '@/__tests__/helpers/mocks/notebook';
+} from '@/__tests__/helpers/mocks/notebook/notebook';
 import { useAddNotebook } from './useAddNotebook.hook';
 
 vi.mock('@/data/api/ai/notebook/notebook.api', () => ({

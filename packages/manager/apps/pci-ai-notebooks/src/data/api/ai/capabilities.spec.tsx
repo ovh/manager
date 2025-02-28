@@ -1,19 +1,6 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
 import { describe, expect, vi } from 'vitest';
-import { getRegions, getFlavor } from './capabilities.api';
-
-vi.mock('@ovh-ux/manager-core-api', () => {
-  const get = vi.fn(() => {
-    return Promise.resolve({ data: null });
-  });
-  return {
-    apiClient: {
-      v6: {
-        get,
-      },
-    },
-  };
-});
+import { getRegions, getFlavor, getAppImages } from './capabilities.api';
 
 describe('Capabilities functions', () => {
   afterEach(() => {
@@ -35,12 +22,6 @@ describe('Capabilities functions', () => {
       },
     );
   });
-});
-
-describe('Capabilities Flavor functions', () => {
-  afterEach(() => {
-    vi.clearAllMocks();
-  });
 
   it('should call getFlavor', async () => {
     expect(apiClient.v6.get).not.toHaveBeenCalled();
@@ -50,6 +31,17 @@ describe('Capabilities Flavor functions', () => {
     });
     expect(apiClient.v6.get).toHaveBeenCalledWith(
       '/cloud/project/projectId/ai/capabilities/region/regionId/flavor',
+    );
+  });
+
+  it('should call getAppImages', async () => {
+    expect(apiClient.v6.get).not.toHaveBeenCalled();
+    await getAppImages({
+      projectId: 'projectId',
+      region: 'region',
+    });
+    expect(apiClient.v6.get).toHaveBeenCalledWith(
+      '/cloud/project/projectId/ai/capabilities/region/region/app/image',
     );
   });
 });

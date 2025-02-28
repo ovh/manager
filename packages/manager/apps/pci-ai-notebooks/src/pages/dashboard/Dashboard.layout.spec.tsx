@@ -5,25 +5,14 @@ import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/Route
 import * as appAPI from '@/data/api/ai/app/app.api';
 import * as jobAPI from '@/data/api/ai/job/job.api';
 import * as notebookAPI from '@/data/api/ai/notebook/notebook.api';
-import { mockedJob } from '@/__tests__/helpers/mocks/job';
-import { mockedNotebook } from '@/__tests__/helpers/mocks/notebook';
+import { mockedJob } from '@/__tests__/helpers/mocks/job/job';
+import { mockedNotebook } from '@/__tests__/helpers/mocks/notebook/notebook';
 import { mockedPciDiscoveryProject } from '@/__tests__/helpers/mocks/project';
-import { mockedApp } from '@/__tests__/helpers/mocks/app';
+import { mockedApp } from '@/__tests__/helpers/mocks/app/app';
 
 describe('Dashboard Layout', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
-
-    vi.mock('react-router-dom', async () => {
-      const mod = await vi.importActual('react-router-dom');
-      return {
-        ...mod,
-        useParams: () => ({
-          projectId: 'projectId',
-        }),
-      };
-    });
-
     vi.mock('@/data/api/project/project.api', () => ({
       getProject: vi.fn(() => mockedPciDiscoveryProject),
     }));
@@ -37,9 +26,6 @@ describe('Dashboard Layout', () => {
     vi.mock('@/data/api/ai/notebook/notebook.api', () => ({
       getNotebooks: vi.fn(),
     }));
-
-    const mockScrollIntoView = vi.fn();
-    window.HTMLElement.prototype.scrollIntoView = mockScrollIntoView;
   });
   afterEach(() => {
     vi.clearAllMocks();

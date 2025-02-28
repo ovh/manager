@@ -10,7 +10,7 @@ import { OVH_TAGS_CONFIG } from '@/configuration/label';
 
 const Labels = () => {
   const { notebook, notebookQuery, projectId } = useNotebookData();
-  const { t } = useTranslation('pci-ai-notebooks/notebooks/notebook/dashboard');
+  const { t } = useTranslation('components/labels');
   const toast = useToast();
 
   const configuredLabel: ai.Label[] = useMemo(
@@ -30,15 +30,15 @@ const Labels = () => {
   const { editLabel } = useEditLabel({
     onError: (err) => {
       toast.toast({
-        title: t('notebookToastErrorTitle'),
+        title: t('labelToastErrorTitle'),
         variant: 'destructive',
         description: getAIApiErrorMessage(err),
       });
     },
     onSuccess: () => {
       toast.toast({
-        title: t('notebookToastSuccessTitle'),
-        description: t('notebookLabelSuccess'),
+        title: t('labelToastSuccessTitle'),
+        description: t('labelToastSuccessDescription'),
       });
       notebookQuery.refetch();
     },

@@ -1,9 +1,27 @@
 import { order } from '../catalog';
 import * as ai from '@/types/cloud/project/ai';
 import { PublicGit } from '../cloud/project/ai/volume';
+import { Contract } from '@/types/cloud/project/ai/partner/Contract';
+
+export interface AppPricing {
+  price: number;
+  tax: number;
+}
+
+export interface AppGlobalPricing {
+  resourcePricing?: AppPricing;
+  scalingPricing?: AppPricing;
+  partnerLicence?: AppPricing;
+}
 
 export interface Flavor extends ai.capabilities.Flavor {
   pricing: order.publicOrder.Pricing[];
+}
+
+export interface ImagePartnerApp extends ai.capabilities.app.Image {
+  pricingCpu: AppPricing;
+  pricingGpu: AppPricing;
+  contract?: Contract;
 }
 
 export interface FrameworkWithVersion {
@@ -72,6 +90,15 @@ export interface JobSuggestions {
   unsecureHttp: boolean;
 }
 
+export interface AppSuggestions {
+  region: string;
+  ressources: {
+    nb: number;
+    flavor: string;
+  };
+  unsecureHttp: boolean;
+}
+
 export interface NotebookOrderResult {
   region: ai.capabilities.Region;
   flavor: Flavor;
@@ -98,4 +125,34 @@ export interface JobOrderResult {
   sshKey: string[];
   volumes: OrderVolumes[];
   dockerCommand: string[];
+}
+
+export interface AppOrderResult {
+  region: ai.capabilities.Region;
+  flavor: Flavor;
+  resourcesQuantity: number;
+  image: string;
+  version: string;
+  appName: string;
+  unsecureHttp: boolean;
+  volumes: OrderVolumes[];
+  scaling: Scaling;
+  httpPort: number;
+  labels: {
+    [key: string]: string;
+  };
+  dockerCommand: string[];
+  probe: {
+    path: string;
+    port: number;
+  };
+}
+
+export interface Scaling {
+  autoScaling: boolean;
+  replicas: number;
+  averageUsageTarget: number;
+  replicasMax: number;
+  replicasMin: number;
+  resourceType: ai.app.ScalingAutomaticStrategyResourceTypeEnum;
 }

@@ -45,6 +45,27 @@ export function isStoppedJob(currentState: ai.job.JobStateEnum) {
   );
 }
 
+export function isDeletingApp(currentState: ai.app.AppStateEnum) {
+  return currentState === ai.app.AppStateEnum.DELETING;
+}
+
+export function isRunningApp(currentState: ai.app.AppStateEnum) {
+  return (
+    currentState === ai.app.AppStateEnum.RUNNING ||
+    currentState === ai.app.AppStateEnum.SCALING ||
+    currentState === ai.app.AppStateEnum.INITIALIZING ||
+    currentState === ai.app.AppStateEnum.QUEUED
+  );
+}
+
+export function isStoppedApp(currentState: ai.app.AppStateEnum) {
+  return (
+    currentState === ai.app.AppStateEnum.ERROR ||
+    currentState === ai.app.AppStateEnum.FAILED ||
+    currentState === ai.app.AppStateEnum.STOPPED
+  );
+}
+
 export function isDataSync(currentState: string) {
   return (
     currentState === ai.job.JobStateEnum.RUNNING ||

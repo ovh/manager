@@ -8,7 +8,7 @@ export function breadcrumb() {
   return (
     <BreadcrumbItem
       translationKey="breadcrumb"
-      namespace="pci-ai-training/jobs/job/containers"
+      namespace="components/containers"
     />
   );
 }

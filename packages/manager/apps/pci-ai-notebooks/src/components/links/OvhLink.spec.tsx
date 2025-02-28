@@ -1,15 +1,12 @@
 import { render, screen, waitFor } from '@testing-library/react';
-import '@testing-library/jest-dom/vitest';
 import { vi } from 'vitest';
+import { mockManagerReactShellClient } from '@/__tests__/helpers/mockShellHelper';
 import OvhLink from './OvhLink.component';
 
-vi.mock('@ovh-ux/manager-react-shell-client', () => ({
-  useNavigation: () => ({
-    getURL: vi.fn((app: string, path: string) => `#mockedurl-${app}${path}`),
-  }),
-}));
-
 describe('OvhLink component', () => {
+  beforeEach(() => {
+    mockManagerReactShellClient();
+  });
   afterEach(() => {
     vi.clearAllMocks();
   });

@@ -3,7 +3,7 @@ import { vi } from 'vitest';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import * as frameworkApi from '@/data/api/ai/notebook/capabilities/framework.api';
 import { useGetFramework } from './useGetFramework.hook';
-import { mockedFramework } from '@/__tests__/helpers/mocks/notebook/framework';
+import { mockedFramework } from '@/__tests__/helpers/mocks/capabilities/notebookFramework';
 
 vi.mock('@/data/api/ai/notebook/capabilities/framework.api', () => ({
   getFramework: vi.fn(),

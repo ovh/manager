@@ -9,38 +9,16 @@ import {
 import * as notebookApi from '@/data/api/ai/notebook/notebook.api';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { useToast } from '@/components/ui/use-toast';
-import { mockedNotebook } from '@/__tests__/helpers/mocks/notebook';
-import { apiErrorMock } from '@/__tests__/helpers/mocks/aiError';
+import { mockedNotebook } from '@/__tests__/helpers/mocks/notebook/notebook';
+import { apiErrorMock } from '@/__tests__/helpers/mocks/shared/aiError';
 import StartNotebook from './StartNotebook.component';
 
 describe('Start notebook modal', () => {
   beforeEach(() => {
-    vi.mock('react-router-dom', async () => {
-      const mod = await vi.importActual('react-router-dom');
-      return {
-        ...mod,
-        useParams: () => ({
-          projectId: 'projectId',
-        }),
-      };
-    });
-    vi.mock('react-i18next', () => ({
-      useTranslation: () => ({
-        t: (key: string) => key,
-      }),
-    }));
     vi.mock('@/data/api/ai/notebook/notebook.api', () => ({
       getNotebooks: vi.fn(() => [mockedNotebook]),
       startNotebook: vi.fn((notebook) => notebook),
     }));
-    vi.mock('@/components/ui/use-toast', () => {
-      const toastMock = vi.fn();
-      return {
-        useToast: vi.fn(() => ({
-          toast: toastMock,
-        })),
-      };
-    });
   });
   afterEach(() => {
     vi.clearAllMocks();

@@ -10,13 +10,13 @@ import {
   mockedNotebook,
   mockedNotebookSpec,
   mockedNotebookStatus,
-} from '@/__tests__/helpers/mocks/notebook';
-import { mockedBackup } from '@/__tests__/helpers/mocks/backup';
+} from '@/__tests__/helpers/mocks/notebook/notebook';
+import { mockedBackup } from '@/__tests__/helpers/mocks/notebook/backup';
 import * as ai from '@/types/cloud/project/ai';
 import {
   mockedDatastoreVolume,
   mockedPublicGitVolume,
-} from '@/__tests__/helpers/mocks/volume';
+} from '@/__tests__/helpers/mocks/volume/volume';
 
 const loaderParam = {
   params: {
@@ -62,9 +62,6 @@ describe('Notebook Layout', () => {
     vi.mock('@/data/api/ai/notebook/backups/backups.api', () => ({
       getBackups: vi.fn(() => [mockedBackup]),
     }));
-
-    const mockScrollIntoView = vi.fn();
-    window.HTMLElement.prototype.scrollIntoView = mockScrollIntoView;
   });
   afterEach(() => {
     vi.clearAllMocks();

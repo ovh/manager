@@ -14,14 +14,7 @@ describe('CliCodeBlock component', () => {
   afterEach(() => {
     vi.clearAllMocks();
   });
-  vi.mock('@/components/ui/use-toast', () => {
-    const toastMock = vi.fn();
-    return {
-      useToast: vi.fn(() => ({
-        toast: toastMock,
-      })),
-    };
-  });
+
   it('should display the CliCodeBlock', async () => {
     render(
       <CliCodeBlock

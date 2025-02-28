@@ -15,18 +15,6 @@ import {
 import { handleSelectText } from '@/__tests__/helpers/unitTestHelper';
 
 describe('SSHKey Form component', () => {
-  afterEach(() => {
-    vi.clearAllMocks();
-  });
-  vi.mock('@/components/ui/use-toast', () => {
-    const toastMock = vi.fn();
-    return {
-      useToast: vi.fn(() => ({
-        toast: toastMock,
-      })),
-    };
-  });
-
   const onChange = vi.fn();
   it('should display the Sshkey Form', async () => {
     render(

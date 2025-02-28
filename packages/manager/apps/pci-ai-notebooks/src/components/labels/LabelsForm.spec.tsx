@@ -7,19 +7,11 @@ import {
 } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
 import LabelsForm from './LabelsForm.component';
-import { mockedLabel } from '@/__tests__/helpers/mocks/label';
+import { mockedLabel } from '@/__tests__/helpers/mocks/shared/label';
 
 describe('Labels Form component', () => {
   afterEach(() => {
     vi.clearAllMocks();
-  });
-  vi.mock('@/components/ui/use-toast', () => {
-    const toastMock = vi.fn();
-    return {
-      useToast: vi.fn(() => ({
-        toast: toastMock,
-      })),
-    };
   });
   const onAdd = vi.fn();
   const onDelete = vi.fn();

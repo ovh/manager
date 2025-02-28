@@ -4,11 +4,13 @@ import { Probe } from '@/types/cloud/project/ai/app/Probe';
 import { Resources } from '@/types/cloud/project/ai/Resources';
 import { ScalingStrategy } from '@/types/cloud/project/ai/app/ScalingStrategy';
 import { Volume } from '@/types/cloud/project/ai/volume/Volume';
+import { ShutdownStrategyEnum } from '../ShutdownStrategyEnum';
 
 /** AI Solutions App Spec Object to create an app */
 export interface AppSpec {
   /** App command */
   command?: string[];
+  deletionRequested?: boolean;
   /** Default port to access the http service inside the app */
   defaultHttpPort?: number;
   /** AI App deployment strategy */
@@ -34,6 +36,7 @@ export interface AppSpec {
   /** App resources */
   resources: Resources;
   /** App scaling strategy */
+  shutdown?: ShutdownStrategyEnum;
   scalingStrategy?: ScalingStrategy;
   /** True if app api port can be accessed without any authentication token, false otherwise */
   unsecureHttp?: boolean;

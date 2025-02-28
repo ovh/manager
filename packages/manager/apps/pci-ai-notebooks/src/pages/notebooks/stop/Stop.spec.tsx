@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
-import { mockedNotebook } from '@/__tests__/helpers/mocks/notebook';
+import { mockedNotebook } from '@/__tests__/helpers/mocks/notebook/notebook';
 import StopNotebookModal from './Stop.modal';
 
 describe('Notebooks list stop modal', () => {
