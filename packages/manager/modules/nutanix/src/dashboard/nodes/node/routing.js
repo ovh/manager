@@ -1,3 +1,5 @@
+import { SERVICE_STATES } from '../../../constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('nutanix.dashboard.nodes.node', {
     url: '/:nodeId',
@@ -8,11 +10,13 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     redirectTo: (transition) => {
       const $translatePromise = transition.injector().getAsync('$translate');
-      const serviceInfoPromise = transition.injector().getAsync('serviceInfo');
+      const isTerminatedPromise = transition
+        .injector()
+        .getAsync('isTerminated');
 
-      return Promise.all([$translatePromise, serviceInfoPromise]).then(
-        ([$translate, serviceInfo]) => {
-          if (serviceInfo.isResiliated()) {
+      return Promise.all([$translatePromise, isTerminatedPromise]).then(
+        ([$translate, isTerminated]) => {
+          if (isTerminated) {
             return {
               state: 'error',
               params: {
@@ -37,6 +41,8 @@ export default /* @ngInject */ ($stateProvider) => {
       nodeId: /* @ngInject */ ($transition$) => $transition$.params().nodeId,
       node: /* @ngInject */ (nodeId, NutanixService) =>
         NutanixService.getServer(nodeId),
+      isTerminated: /* @ngInject */ (node) =>
+        node.serviceStatus === SERVICE_STATES.SUSPENDED,
       currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
         $state.href($state.current.name, $transition$.params()),
       trackingPrefix: /* @ngInject */ () => 'hpc::nutanix::cluster::node',

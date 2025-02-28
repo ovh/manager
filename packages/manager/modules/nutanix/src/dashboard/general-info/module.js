@@ -19,6 +19,7 @@ import licenceTile from '../component/licence-tile/module';
 import redeploy from './redeploy';
 import datacenterName from '../component/datacenter-name/module';
 import resiliate from './resiliate';
+import addNodes from './add-nodes';
 
 const moduleName = 'ovhManagerNutanixGeneralInfo';
 angular
@@ -39,6 +40,7 @@ angular
     redeploy,
     datacenterName,
     resiliate,
+    addNodes,
   ])
   .config(routing)
   .component('nutanixGeneralInfo', component)

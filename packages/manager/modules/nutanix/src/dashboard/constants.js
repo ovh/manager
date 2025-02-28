@@ -1,3 +1,5 @@
+export const NUTANIX_MULTIPLE_NODES_ORDER_FEATURE =
+  'nutanix:multiple-nodes-order';
 export const NOT_SUBSCRIBED = 'notSubscribed';
 export const SERVER_OPTIONS = {
   BANDWIDTH: 'BANDWIDTH',
@@ -28,6 +30,7 @@ export const OLD_CLUSTER_PLAN_CODE = [
 export const LICENSE_REGISTRATION_ENDS_IN_DAYS = 90;
 
 export default {
+  NUTANIX_MULTIPLE_NODES_ORDER_FEATURE,
   NOT_SUBSCRIBED,
   SERVER_OPTIONS,
   GUIDE_URL,
