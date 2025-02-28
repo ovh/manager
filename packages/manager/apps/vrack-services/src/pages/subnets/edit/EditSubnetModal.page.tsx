@@ -27,7 +27,10 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { handleClick } from '@ovh-ux/manager-react-components';
-import { useUpdateVrackServices, useVrackService } from '@/data/hooks';
+import {
+  useUpdateVrackServices,
+  useVrackService,
+} from '@ovh-ux/manager-network-common';
 import { MessagesContext } from '@/components/feedback-messages/Messages.context';
 import { LoadingText } from '@/components/LoadingText.component';
 import { PageName } from '@/utils/tracking';

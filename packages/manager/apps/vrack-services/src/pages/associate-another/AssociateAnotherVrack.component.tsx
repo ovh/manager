@@ -27,16 +27,16 @@ import {
 import { useNavigate, useParams } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
 import { handleClick } from '@ovh-ux/manager-react-components';
-import { PageName } from '@/utils/tracking';
-import { LoadingText } from '@/components/LoadingText.component';
-import { getVrackServicesResourceListQueryKey } from '@/data/api';
-import { MessagesContext } from '@/components/feedback-messages/Messages.context';
-import { SuccessMessage } from '@/components/feedback-messages/SuccessMessage.component';
 import {
+  getVrackServicesResourceListQueryKey,
   useAssociateVrack,
   useDissociateVrack,
   useVrackService,
-} from '@/data/hooks';
+} from '@ovh-ux/manager-network-common';
+import { PageName } from '@/utils/tracking';
+import { LoadingText } from '@/components/LoadingText.component';
+import { MessagesContext } from '@/components/feedback-messages/Messages.context';
+import { SuccessMessage } from '@/components/feedback-messages/SuccessMessage.component';
 import { getDisplayName } from '@/utils/vrack-services';
 
 export type AssociateAnotherVrackProps = {
