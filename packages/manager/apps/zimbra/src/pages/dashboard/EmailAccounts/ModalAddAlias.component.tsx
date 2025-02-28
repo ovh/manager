@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Trans, useTranslation } from 'react-i18next';
-
 import {
   OdsFormField,
   OdsInput,
@@ -9,7 +8,6 @@ import {
   OdsText,
 } from '@ovhcloud/ods-components/react';
 import {
-  ODS_BUTTON_VARIANT,
   ODS_INPUT_TYPE,
   ODS_MODAL_COLOR,
   ODS_TEXT_PRESET,
@@ -23,16 +21,25 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { useDomains, useGenerateUrl, usePlatform, useAccount } from '@/hooks';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+import {
+  useDomains,
+  useGenerateUrl,
+  usePlatform,
+  useAccount,
+  useOdsModalOverflowHack,
+} from '@/hooks';
 import Modal from '@/components/Modals/Modal';
 import {
+  AliasBodyParamsType,
   getZimbraPlatformAliasQueryKey,
   postZimbraPlatformAlias,
 } from '@/api/alias';
-import { ACCOUNT_REGEX } from '@/utils';
+import { aliasSchema } from '@/utils';
 import queryClient from '@/queryClient';
 import { CANCEL, CONFIRM, EMAIL_ACCOUNT_ADD_ALIAS } from '@/tracking.constant';
-import { useForm } from '@/hooks/useForm';
 
 export default function ModalAddAndEditOrganization() {
   const { trackClick, trackPage } = useOvhTracking();
@@ -47,21 +54,11 @@ export default function ModalAddAndEditOrganization() {
   const goBackUrl = useGenerateUrl('..', 'path', params);
   const onClose = () => navigate(goBackUrl);
 
-  const { form, isFormValid, setValue } = useForm({
-    alias: {
-      value: '',
-      defaultValue: '',
-      required: true,
-      validate: ACCOUNT_REGEX,
-    },
-    domain: {
-      value: '',
-      defaultValue: '',
-      required: true,
-    },
-  });
+  // @TODO refactor when ods modal overflow is fixed
+  const modalRef = useRef<HTMLOdsModalElement>(undefined);
+  useOdsModalOverflowHack(modalRef);
 
-  const { data: domainList, isLoading: isLoadingDomain } = useDomains({
+  const { data: domains, isLoading: isLoadingDomain } = useDomains({
     shouldFetchAll: true,
   });
 
@@ -76,19 +73,9 @@ export default function ModalAddAndEditOrganization() {
     }
   }, [isLoadingDomain, isLoadingEmailDetail]);
 
-  const { mutate: addAlias, isPending: isSubmitting } = useMutation({
-    mutationFn: () => {
-      const {
-        alias: { value: alias },
-        domain: { value: domain },
-      } = form;
-
-      const dataBody = {
-        alias: `${alias}@${domain}`,
-        aliasTarget: editAccountDetail?.currentState.email,
-        organizationId: editAccountDetail?.currentState.organizationId,
-      };
-      return postZimbraPlatformAlias(platformId, dataBody);
+  const { mutate: addAlias, isPending: isSending } = useMutation({
+    mutationFn: (payload: AliasBodyParamsType) => {
+      return postZimbraPlatformAlias(platformId, payload);
     },
     onSuccess: () => {
       trackPage({
@@ -124,7 +111,23 @@ export default function ModalAddAndEditOrganization() {
     },
   });
 
-  const handleConfirmClick = () => {
+  const {
+    control,
+    handleSubmit,
+    formState: { isDirty, isValid, errors },
+  } = useForm({
+    defaultValues: {
+      account: '',
+      domain: '',
+    },
+    mode: 'onTouched',
+    resolver: zodResolver(aliasSchema),
+  });
+
+  const handleConfirmClick: SubmitHandler<z.infer<typeof aliasSchema>> = ({
+    account,
+    domain,
+  }) => {
     trackClick({
       location: PageLocation.popup,
       buttonType: ButtonType.button,
@@ -132,7 +135,11 @@ export default function ModalAddAndEditOrganization() {
       actions: [EMAIL_ACCOUNT_ADD_ALIAS, CONFIRM],
     });
 
-    addAlias();
+    addAlias({
+      alias: `${account}@${domain}`,
+      aliasTarget: editAccountDetail?.currentState.email,
+      organizationId: editAccountDetail?.currentState.organizationId,
+    });
   };
 
   const handleCancelClick = () => {
@@ -154,22 +161,24 @@ export default function ModalAddAndEditOrganization() {
       onClose={onClose}
       isDismissible
       isLoading={isLoading}
+      ref={modalRef}
       secondaryButton={{
         label: t('common:cancel'),
-        action: handleCancelClick,
-        testid: 'cancel-btn',
+        onClick: handleCancelClick,
       }}
       primaryButton={{
         testid: 'confirm-btn',
-        variant: ODS_BUTTON_VARIANT.default,
         label: t('common:confirm'),
-        isDisabled: !isFormValid,
-        isLoading: isLoading || isSubmitting,
-        action: handleConfirmClick,
+        isDisabled: !isDirty || !isValid,
+        isLoading: isLoading || isSending,
+        onClick: handleSubmit(handleConfirmClick),
       }}
     >
-      <>
-        <OdsText preset={ODS_TEXT_PRESET.paragraph} className="mt-5 mb-5">
+      <form
+        className="flex flex-col gap-4"
+        onSubmit={handleSubmit(handleConfirmClick)}
+      >
+        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           <Trans
             t={t}
             i18nKey={'zimbra_account_alias_add_description'}
@@ -178,68 +187,71 @@ export default function ModalAddAndEditOrganization() {
             }}
           />
         </OdsText>
-
-        <OdsFormField>
-          <div className="flex">
-            <OdsInput
-              type={ODS_INPUT_TYPE.text}
-              name="alias"
-              placeholder={t('common:alias')}
-              value={form.alias.value}
-              defaultValue={form.alias.defaultValue}
-              isRequired={form.alias.required}
-              hasError={form.alias.hasError}
-              onOdsBlur={({ target: { name, value } }) =>
-                setValue(name, value.toString(), true)
-              }
-              onOdsChange={({ detail: { name, value } }) => {
-                setValue(name, String(value));
-              }}
-              className="rounded-r-none border-r-0 w-1/2"
-              data-testid="input-alias"
-            ></OdsInput>
-            <OdsInput
-              name={'@'}
-              type={ODS_INPUT_TYPE.text}
-              value={'@'}
-              isReadonly
-              isDisabled
-              className="input-at w-10"
-            ></OdsInput>
-            <OdsSelect
-              name="domain"
-              value={form.domain.value}
-              defaultValue={form.domain.defaultValue}
-              isRequired={form.domain.required}
-              hasError={form.domain.hasError}
-              placeholder={t('common:select_domain')}
-              className="w-1/2"
-              onOdsChange={({ detail: { name, value } }) =>
-                setValue(name, value)
-              }
-              data-testid="select-domain"
-            >
-              {domainList?.map(({ currentState: domain }) => (
-                <option key={domain.name} value={domain.name}>
-                  {domain.name}
-                </option>
-              ))}
-            </OdsSelect>
-          </div>
-          <OdsText
-            slot="helper"
-            preset={ODS_TEXT_PRESET.caption}
-            className="flex flex-col"
-          >
-            <span className="block">{t('common:form_email_helper')}</span>
-            {[1, 2, 3].map((elm) => (
-              <span key={elm} className="block">
-                - {t(`common:form_email_helper_rule_${elm}`)}
-              </span>
-            ))}
-          </OdsText>
-        </OdsFormField>
-      </>
+        <Controller
+          control={control}
+          name="account"
+          render={({ field: { name, value, onChange, onBlur } }) => (
+            <OdsFormField className="w-full" error={errors?.[name]?.message}>
+              <label htmlFor={name} slot="label">
+                {t('common:alias')} *
+              </label>
+              <div className="flex">
+                <OdsInput
+                  type={ODS_INPUT_TYPE.text}
+                  placeholder={t('common:alias')}
+                  data-testid="input-account"
+                  className="flex-1"
+                  id={name}
+                  name={name}
+                  hasError={!!errors[name]}
+                  value={value}
+                  onOdsBlur={onBlur}
+                  onOdsChange={onChange}
+                />
+                <OdsInput
+                  type={ODS_INPUT_TYPE.text}
+                  name="@"
+                  value="@"
+                  isReadonly
+                  isDisabled
+                  className="input-at w-10"
+                />
+                <Controller
+                  control={control}
+                  name="domain"
+                  render={({ field }) => (
+                    <OdsSelect
+                      id={field.name}
+                      name={field.name}
+                      hasError={!!errors[field.name]}
+                      value={field.value}
+                      className="w-1/2"
+                      placeholder={t('common:select_domain')}
+                      onOdsChange={field.onChange}
+                      onOdsBlur={field.onBlur}
+                      data-testid="select-domain"
+                    >
+                      {domains.map(({ currentState: domain }) => (
+                        <option key={domain.name} value={domain.name}>
+                          {domain.name}
+                        </option>
+                      ))}
+                    </OdsSelect>
+                  )}
+                />
+              </div>
+            </OdsFormField>
+          )}
+        />
+        <OdsText preset={ODS_TEXT_PRESET.caption} className="flex flex-col">
+          <span className="block">{t('common:form_email_helper')}</span>
+          {[1, 2, 3].map((elm) => (
+            <span key={elm} className="block">
+              - {t(`common:form_email_helper_rule_${elm}`)}
+            </span>
+          ))}
+        </OdsText>
+      </form>
     </Modal>
   );
 }

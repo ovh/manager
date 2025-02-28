@@ -10,10 +10,7 @@ import {
   getZimbraPlatformAccountDetailQueryKey,
 } from '@/api/account';
 
-type UseAccountParams = Omit<
-  UseQueryOptions,
-  'queryKey' | 'queryFn' | 'gcTime'
-> & {
+type UseAccountParams = Omit<UseQueryOptions, 'queryKey' | 'queryFn'> & {
   accountId?: string;
 };
 
