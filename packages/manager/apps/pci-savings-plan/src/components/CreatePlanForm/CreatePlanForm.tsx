@@ -104,6 +104,7 @@ export type CreatePlanFormProps = {
     size: number;
   }) => void;
   isDiscoveryProject: boolean;
+  isPendingCreatePlan: boolean;
 };
 
 export const getDescriptionInstanceKey = (resource: string) => {
@@ -141,6 +142,7 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
   setTechnicalModel,
   onCreatePlan,
   isDiscoveryProject,
+  isPendingCreatePlan,
 }: CreatePlanFormProps) => {
   const pciUrl = usePciUrl();
   const { trackClick } = useOvhTracking();
@@ -202,7 +204,8 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
       isLegalChecked &&
       planName &&
       !isDiscoveryProject &&
-      isValidPlanName,
+      isValidPlanName &&
+      !isPendingCreatePlan,
     [
       quantity,
       offerIdSelected,
@@ -212,6 +215,7 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
       planName,
       isDiscoveryProject,
       isValidPlanName,
+      isPendingCreatePlan,
     ],
   );
 
@@ -503,9 +507,10 @@ export const CreatePlanFormContainer = ({
     [addSuccess, t, locale],
   );
 
-  const { mutate: onCreatePlan } = useSavingsPlanCreate(
-    handleCreateSavingsPlanSuccess,
-  );
+  const {
+    mutate: onCreatePlan,
+    isPending: isPendingCreatePlan,
+  } = useSavingsPlanCreate(handleCreateSavingsPlanSuccess);
 
   const sortedPriceByDuration = [...pricingByDuration].sort(
     (a, b) => a.duration - b.duration,
@@ -568,6 +573,7 @@ export const CreatePlanFormContainer = ({
       setTechnicalModel={setTechnicalModel}
       technicalModel={technicalModel}
       isDiscoveryProject={isDiscoveryProject}
+      isPendingCreatePlan={isPendingCreatePlan}
     />
   );
 };
