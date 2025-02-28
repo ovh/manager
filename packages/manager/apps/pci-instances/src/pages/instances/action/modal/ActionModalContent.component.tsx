@@ -8,6 +8,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import { DeepReadonly } from '@/types/utils.type';
 import { TSectionType } from '../InstanceAction.page';
+import { kebabToSnakeCase } from '@/utils';
 
 type TActionModalProps = DeepReadonly<{
   type: TSectionType;
@@ -20,14 +21,15 @@ export const ActionModalContent: FC<TActionModalProps> = ({
 }) => {
   const { t } = useTranslation('actions');
   const getLabels = useCallback((): string[] => {
+    const sectionSnakeCase = type.includes('-') ? kebabToSnakeCase(type) : type;
     const confirmationMessage = t(
-      `pci_instances_actions_${type}_instance_confirmation_message`,
+      `pci_instances_actions_${sectionSnakeCase}_instance_confirmation_message`,
       {
         name: instanceName,
       },
     );
     const notaMessage = t(
-      `pci_instances_actions_${type}_instance_nota_message`,
+      `pci_instances_actions_${sectionSnakeCase}_instance_nota_message`,
     );
     switch (type) {
       case 'delete':
@@ -37,6 +39,8 @@ export const ActionModalContent: FC<TActionModalProps> = ({
         return [confirmationMessage];
       case 'shelve':
         return [confirmationMessage, notaMessage];
+      case 'soft-reboot':
+        return [confirmationMessage];
       default:
         return [];
     }
