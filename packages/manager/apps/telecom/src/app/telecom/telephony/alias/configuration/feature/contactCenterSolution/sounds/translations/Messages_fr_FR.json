@@ -16,6 +16,8 @@
   "telephony_alias_config_contactCenterSolution_sounds_closing_timeout_help": "Durée maximale avant que l’appelant ne sorte de la file d’attente. Il sera redirigé sur le répondeur de votre file d’appels ou sur l’annonce de fermeture, en fonction de votre configuration.",
   "telephony_alias_config_contactCenterSolution_sounds_closure_action_to_play_help": "Lorsque la durée maximale d’attente dans la file est atteinte ou que les lignes de votre file d’appels sont déconnectées, l’appelant tombera sur le répondeur de la ligne sélectionnée ou entendra une annonce de fermeture.",
   "telephony_alias_config_contactCenterSolution_sounds_add_sound": "Ajouter un son",
+  "telephony_alias_config_contactCenterSolution_sounds_listen": "Écouter",
+  "telephony_alias_config_contactCenterSolution_sounds_listen_error": "Une erreur est survenue lors de la lecture du son.",
   "telephony_alias_config_contactCenterSolution_sounds_add_voicemail": "Ajouter un répondeur",
   "telephony_alias_config_contactCenterSolution_sounds_time_in_seconds": "Temps exprimé en secondes.",
   "telephony_alias_config_contactCenterSolution_sounds_action_to_play": "Action à jouer",
