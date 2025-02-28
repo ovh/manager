@@ -18,5 +18,8 @@ export default /* @ngInject */ ($stateProvider) => {
       value: ['.'],
       format: 'json',
     },
+    atInternet: {
+      ignore: true,
+    },
   });
 };
