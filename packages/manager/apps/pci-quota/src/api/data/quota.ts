@@ -2,7 +2,6 @@ import { v6 } from '@ovh-ux/manager-core-api';
 
 export interface Quota {
   region: string;
-  fullRegionName: string;
   instance: {
     maxCores: number;
     maxInstances: number;

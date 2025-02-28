@@ -10,7 +10,6 @@ import {
 describe('Quota threshold helper functions', () => {
   const mockQuota: Quota = {
     region: 'region1',
-    fullRegionName: 'Region 1',
     instance: {
       maxCores: 10,
       maxInstances: 5,

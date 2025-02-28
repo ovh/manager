@@ -10,7 +10,6 @@ describe('Quota API', () => {
       const mockData: Quota[] = [
         {
           region: 'region1',
-          fullRegionName: 'Region 1',
           instance: {
             maxCores: 10,
             maxInstances: 5,

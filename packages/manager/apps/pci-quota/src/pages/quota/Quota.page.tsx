@@ -1,7 +1,6 @@
 import {
   Datagrid,
   Notifications,
-  PaginationState,
   useDataGrid,
   useMe,
   useNotifications,
@@ -25,8 +24,8 @@ import {
   useProject,
 } from '@ovh-ux/manager-pci-common';
 import { useMedia } from 'react-use';
-import { sortQuotas, useQuotas } from '@/api/hooks/useQuotas';
-import { useDatagridColumn } from './components/useDatagridColumn';
+import { useQuotas } from '@/api/hooks/useQuotas';
+import { sortQuotas, useDatagridColumn } from './components/useDatagridColumn';
 import {
   IAM_LINK,
   RESTRICTED_CORES,
@@ -41,6 +40,7 @@ import { useGetProjectService } from '@/api/hooks/useService';
 import { Quota } from '@/api/data/quota';
 import LabelComponent from '@/components/Label.component';
 import { paginateResults } from '@/helpers';
+import { useLocations } from '@/api/hooks/useRegions';
 
 export default function QuotaPage(): JSX.Element {
   const isMobile: boolean = useMedia(`(max-width: 760px)`);
@@ -72,11 +72,32 @@ export default function QuotaPage(): JSX.Element {
     desc: false,
   });
 
-  const { quotas, isPending } = useQuotas(projectId);
+  const { quotas, isPending: isQuotasPending } = useQuotas(projectId);
+  const { data: locations, isPending: isLocationsPending } = useLocations(
+    projectId,
+  );
+  const isPending = isQuotasPending || isLocationsPending;
 
-  const paginatedQuotas = useMemo(
-    () => paginateResults<Quota>(sortQuotas(quotas || [], sorting), pagination),
-    [quotas, sorting, pagination],
+  const quotasListing = useMemo(
+    () =>
+      paginateResults<Quota>(
+        sortQuotas(
+          quotas?.map((quota) => {
+            const targetLocation = locations.find((location) =>
+              location.regions.some((region) => region === quota.region),
+            );
+            return {
+              ...quota,
+              fullRegionName: targetLocation?.name
+                ? `${targetLocation?.name} (${quota.region})`
+                : quota.region,
+            };
+          }) || [],
+          sorting,
+        ),
+        pagination,
+      ),
+    [quotas, locations, sorting, pagination],
   );
 
   const { isValid } = useGetValidPaymentMethodIds();
@@ -314,7 +335,7 @@ export default function QuotaPage(): JSX.Element {
       <div className="mt-4">
         <Datagrid
           columns={columns}
-          items={paginatedQuotas?.rows || []}
+          items={quotasListing?.rows || []}
           totalItems={quotas?.length || 0}
           pagination={pagination}
           onPaginationChange={setPagination}

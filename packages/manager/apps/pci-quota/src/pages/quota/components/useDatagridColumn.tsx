@@ -4,6 +4,7 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { useBytes } from '@ovh-ux/manager-pci-common';
+import { ColumnSort } from '@tanstack/react-table';
 import { Quota } from '@/api/data/quota';
 import { PRODUCTS } from '@/constants';
 import { LimitedQuotaBadgeComponent } from '@/pages/quota/components/LimitedQuotaBadge.component';
@@ -14,19 +15,32 @@ import {
   isVolumeQuotaThresholdReached,
 } from '@/helpers/thresholds';
 
+export type QuotaRow = Quota & { fullRegionName: string };
+
+export const sortQuotas = (quotas: QuotaRow[], sorting: ColumnSort) => {
+  const { id: sortKey, desc } = sorting;
+  if (sortKey === 'region') {
+    const sortedQuotas = [...quotas].sort((a, b) =>
+      a.fullRegionName.localeCompare(b.fullRegionName),
+    );
+    return desc ? sortedQuotas : sortedQuotas.reverse();
+  }
+  return quotas;
+};
+
 export const useDatagridColumn = () => {
   const { t } = useTranslation('quotas');
-  const columns: DatagridColumn<Quota>[] = [
+  const columns: DatagridColumn<QuotaRow>[] = [
     {
       id: 'region',
-      cell: (props: Quota) => (
+      cell: (props: QuotaRow) => (
         <DataGridTextCell>{props.fullRegionName}</DataGridTextCell>
       ),
       label: t('pci_projects_project_quota_region'),
     },
     {
       id: 'servers',
-      cell: (props: Quota) => (
+      cell: (props: QuotaRow) => (
         <DataGridTextCell>
           <span>
             {props.instance.usedInstances} /
@@ -45,7 +59,7 @@ export const useDatagridColumn = () => {
     },
     {
       id: 'vCpu',
-      cell: (props: Quota) => (
+      cell: (props: QuotaRow) => (
         <DataGridTextCell>
           <span>
             {props.instance.usedCores} /
@@ -62,7 +76,7 @@ export const useDatagridColumn = () => {
     },
     {
       id: 'ram',
-      cell: (props: Quota) => {
+      cell: (props: QuotaRow) => {
         const { formatBytes } = useBytes();
         const [used, max] = [
           formatBytes(props.instance.usedRAM * 1_000_000, 2),
@@ -91,7 +105,7 @@ export const useDatagridColumn = () => {
     },
     {
       id: 'disk',
-      cell: (props: Quota) => {
+      cell: (props: QuotaRow) => {
         const { formatBytes } = useBytes();
         const [used, max] = [
           formatBytes(props.volume.usedGigabytes * 1_000_000_000, 2),
@@ -120,7 +134,7 @@ export const useDatagridColumn = () => {
     },
     {
       id: 'ips',
-      cell: (props: Quota) => (
+      cell: (props: QuotaRow) => (
         <DataGridTextCell>
           {props.network.usedFloatingIPs} / {props.network.maxFloatingIPs}
         </DataGridTextCell>
@@ -130,7 +144,7 @@ export const useDatagridColumn = () => {
     },
     {
       id: 'gateways',
-      cell: (props: Quota) => (
+      cell: (props: QuotaRow) => (
         <DataGridTextCell>
           {props.network.usedGateways} / {props.network.maxGateways}
         </DataGridTextCell>
@@ -140,7 +154,7 @@ export const useDatagridColumn = () => {
     },
     {
       id: 'lbs',
-      cell: (props: Quota) => (
+      cell: (props: QuotaRow) => (
         <DataGridTextCell>
           {props.loadbalancer?.usedLoadbalancers || 0} /{' '}
           {props.loadbalancer?.maxLoadbalancers || 0}

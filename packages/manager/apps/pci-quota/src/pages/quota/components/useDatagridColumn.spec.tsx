@@ -1,7 +1,6 @@
 import { vi } from 'vitest';
 import { renderHook } from '@testing-library/react';
-import { useDatagridColumn } from './useDatagridColumn';
-import { Quota } from '@/api/data/quota';
+import { QuotaRow, useDatagridColumn } from './useDatagridColumn';
 import { wrapper } from '@/wrapperRenders';
 import { PRODUCTS } from '@/constants';
 
@@ -101,7 +100,7 @@ describe('useDatagridColumn', () => {
 
     columns.forEach((column) => {
       const CellComponent = column.cell;
-      const cell = CellComponent((quota as unknown) as Quota);
+      const cell = CellComponent((quota as unknown) as QuotaRow);
       expect(cell).toBeTruthy();
     });
   });

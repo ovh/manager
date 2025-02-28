@@ -14,6 +14,13 @@ vi.mock('@/api/hooks/useQuotas', async () => {
     useQuotas: vi.fn(),
   };
 });
+vi.mock('@/api/hooks/useRegions', async () => {
+  const mod = await vi.importActual('@/api/hooks/useRegions');
+  return {
+    ...mod,
+    useLocations: vi.fn(() => ({ data: [] })),
+  };
+});
 
 describe('QuotaPage', () => {
   it('should render with spinner', () => {
