@@ -110,12 +110,17 @@ export default function ArchivePage() {
     return '';
   }, [lockedUntilDays, error.min, error.max, error.nan]);
 
+  const isDisabled =
+    isPending ||
+    (hasRetention && !lockedUntilDays) ||
+    (hasRetention && lockedUntilDays > maxDayRetention);
+
   return (
     <PciModal
       title={t(
         'pci_projects_project_storages_cold_archive_containers_container_archive_title',
       )}
-      isDisabled={isPending || (hasRetention && !lockedUntilDays)}
+      isDisabled={isDisabled}
       isPending={isPending}
       onConfirm={onConfirm}
       onCancel={onCancel}
