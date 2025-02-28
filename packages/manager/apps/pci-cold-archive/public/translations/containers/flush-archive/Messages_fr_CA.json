@@ -1,0 +1,12 @@
+{
+  "pci_projects_project_storages_containers_container_cold_archive_flush_title": "Voulez-vous vider votre archive ?",
+  "pci_projects_project_storages_containers_container_cold_archive_flush_description": "Vous êtes sur le point de vider l'archive: {{ containerName }} de ses objets.",
+  "pci_projects_project_storages_containers_container_cold_archive_flush_terminate_input_label": "Entrez \"TERMINATE\" dans le champ ci-dessous pour confirmer",
+  "pci_projects_project_storages_containers_container_cold_archive_flush_submit_label": "Confirmer",
+  "pci_projects_project_storages_containers_container_cold_archive_flush_cancel_label": "Annuler",
+  "pci_projects_project_storages_containers_container_cold_archive_flush_archive_erase_message": "Toutes les données sur l'archive {{containerName}} seront perdues.",
+  "pci_projects_project_storages_containers_container_cold_archive_flush_archive_status_archived_restored_warning_1": "Votre archive {{containerName}} contient {{objetsCount}} objet(s).",
+  "pci_projects_project_storages_containers_container_cold_archive_flush_archive_status_archived_restored_warning_2": "Vous êtes sur le point de vider l'archive de tous ses objets.",
+  "pci_projects_project_storages_containers_container_cold_archive_flush_success_message": "Les objets de votre archive {{ containerName }} sont en cours de suppression.",
+  "pci_projects_project_storages_containers_container_cold_archive_flush_error_delete": "Une erreur est survenue lors de la suppression des objets de l'archive {{ containerName }} : {{ message }}."
+}

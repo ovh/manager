@@ -1,0 +1,17 @@
+{
+  "pci_projects_project_users_add_title": "Aggiungere un utente al tuo Object Storage",
+  "pci_projects_project_users_add_short_description": "Hai la possibilità di definire l'accesso ai tuoi archivi agli utenti predefiniti o creare nuovi utenti ed ottenere le chiavi di accesso.",
+  "pci_projects_project_users_add_submit_label": "Crea",
+  "pci_projects_project_users_add_cancel_label": "Annullare",
+  "pci_projects_project_users_add_description_label": "Descrizione dell'utente",
+  "pci_projects_project_users_add_existing_user": "Seleziona un utente esistente",
+  "pci_projects_project_users_add_create_user": "Crea un nuovo utente",
+  "pci_projects_project_users_add_success_message": "Le credenziali Object Storage per l'utente {{user}} sono state generate.",
+  "pci_projects_project_users_add_error_message": "Impossibile generare le credenziali Object Storage per l'utente {{user}}.",
+  "pci_projects_project_users_add_username": "Il tuo nome utente OpenStack:",
+  "pci_projects_project_users_add_description": "La tua descrizione:",
+  "pci_projects_project_users_add_accesskey": "La tua chiave di accesso:",
+  "pci_projects_project_users_add_secretkey": "La tua chiave segreta:",
+  "pci_projects_project_users_add_as_no_credentials": "Nessuna credenziale",
+  "pci_projects_project_users_add_as_credentials": "Credenziali generate"
+}
