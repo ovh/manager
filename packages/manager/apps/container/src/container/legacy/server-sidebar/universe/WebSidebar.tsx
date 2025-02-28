@@ -14,6 +14,7 @@ export const webFeatures = [
   'web:domains',
   'web:domains:all-dom',
   'web:domains:zone',
+  'web-hosting:websites',
   'hosting',
   'private-database',
   'email-pro',
@@ -104,6 +105,19 @@ export default function WebSidebar() {
               })),
           ];
         },
+      });
+    }
+
+    if (features['web-hosting:websites']) {
+      menu.push({
+        id: 'web-hosting-websites',
+        label: t('sidebar_web_hosting_websites'),
+        icon: getIcon('ovh-font ovh-font-domain'),
+        routeMatcher: new RegExp('^/web-hosting/(websites|onboarding)'),
+        href: navigation.getURL(
+          'web-hosting',
+          '#/websites',
+        ),
       });
     }
 
