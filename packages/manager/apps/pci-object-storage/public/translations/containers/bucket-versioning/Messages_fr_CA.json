@@ -1,0 +1,7 @@
+{
+  "pci_projects_project_storages_containers_bucket_versioning_title": "Gestion des versions",
+  "pci_projects_project_storages_containers_bucket_versioning_description": "Automatise la création de versions d’un objet pour pallier la suppression accidentelle de ce dernier, ou simplement quand un nouvel objet est uploadé.",
+  "pci_projects_project_storages_containers_bucket_versioning_disabled": "Désactiver",
+  "pci_projects_project_storages_containers_bucket_versioning_enabled": "Activer",
+  "pci_projects_project_storages_containers_bucket_versioning_tooltip": "Le versioning ne peut pas être désactivé car vous avez activé la réplication. Modifiez l'étape Offsite Replication si vous souhaitez le désactiver."
+}

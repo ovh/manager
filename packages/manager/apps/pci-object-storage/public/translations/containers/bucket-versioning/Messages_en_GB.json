@@ -1,0 +1,7 @@
+{
+  "pci_projects_project_storages_containers_bucket_versioning_title": "Versioning",
+  "pci_projects_project_storages_containers_bucket_versioning_description": "Automatically saves multiple versions of objects to avoid accidental deletion, or when new objects are uploaded.",
+  "pci_projects_project_storages_containers_bucket_versioning_disabled": "Disable",
+  "pci_projects_project_storages_containers_bucket_versioning_enabled": "Activate",
+  "pci_projects_project_storages_containers_bucket_versioning_tooltip": "Versioning cannot be disabled because you have enabled replication. Edit the Offsite Replication step if you want to disable it."
+}
