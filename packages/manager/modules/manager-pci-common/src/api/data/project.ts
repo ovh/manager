@@ -32,6 +32,22 @@ export const getProject = async (projectId: string): Promise<TProject> => {
   return data;
 };
 
+export type TProjectUpdate = {
+  description: string | null;
+  manualQuota: boolean;
+};
+
+export const updateProject = async (
+  projectId: string,
+  { description, manualQuota }: TProjectUpdate,
+): Promise<void> => {
+  const { data } = await v6.put(`/cloud/project/${projectId}`, {
+    description,
+    manualQuota,
+  });
+  return data;
+};
+
 export type TQuota = {
   instance?: {
     maxCores: number;
