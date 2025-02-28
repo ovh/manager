@@ -28,7 +28,7 @@
   "modalDeleteHeadline": "Eliminar la subred",
   "modalDeleteDescription": "Para poder eliminar una subred, esta no puede contener un Service Endpoint asociado.",
   "none": "Ninguno",
-  "subnetsOnboardingTitle": "Todavía no se ha creado ninguna subred",
+  "subnetsOnboardingTitle": "Todavía no ha creado ninguna subred",
   "subnetsOnboardingDescription": "Para crear un endpoint, primero debe crear una subred.",
   "createSubnetPageTitle": "Crear una subred",
   "subnetsEmptyDataGridMessage": "Actualmente no hay ninguna subred",
