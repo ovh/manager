@@ -28,7 +28,7 @@ export const useDatagridColumn = () => {
       id: 'createdAt',
       cell: (props: TArchiveContainer) => (
         <DataGridTextCell>
-          {useFormattedDate(props.createdAt, 'Pp')}
+          {useFormattedDate(props.createdAt, 'P p')}
         </DataGridTextCell>
       ),
       label: t(
@@ -66,7 +66,7 @@ export const useDatagridColumn = () => {
         if (props.lockedUntil) {
           return (
             <DataGridTextCell>
-              {useFormattedDate(props.lockedUntil, 'Pp')}
+              {useFormattedDate(props.lockedUntil, 'P p')}
             </DataGridTextCell>
           );
         }
