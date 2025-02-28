@@ -160,7 +160,6 @@ export default function PaymentStatus() {
               <tbody>
                 {[1, 2, 3, 4].map((line: number) => (
                   <tr
-                    className="p-6"
                     key={`billing_service_skeleton_${line}`}
                     data-testid="payment_status_skeleton_table_row"
                   >

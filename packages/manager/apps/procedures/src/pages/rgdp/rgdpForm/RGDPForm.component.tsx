@@ -15,6 +15,7 @@ import { FinalizeValues, GDPRFormValues, GDPRValues } from '@/types/gdpr.type';
 import { TextField } from './TextField/TextField.component';
 import { SelectField } from './SelectField/SelectField.component';
 import { TextAreaField } from './TextAreaField/TextAreaField.component';
+import ExitGuard from '@/components/ExitGuard/ExitGuard.component';
 import {
   EmailRegex,
   GDPRSubjectValues,
@@ -111,6 +112,7 @@ export const RGDPForm: FunctionComponent = () => {
 
   return (
     <form onSubmit={handleSubmit(() => setShowConfirmModal(true))} noValidate>
+      {(isPending || isError) && <ExitGuard />}
       <div className="my-10">
         <TextField
           label={t('rgdp_form_field_label_firstname')}
@@ -252,7 +254,9 @@ export const RGDPForm: FunctionComponent = () => {
           maxFiles={OtherDocumentsMaxFiles}
           multiple
           maxSize={MaxFileSize}
-          helper={t('rgdp_form_field_helper_other_documents', { maxFiles: 8 })}
+          helper={t('rgdp_form_field_helper_other_documents', {
+            maxFiles: 8,
+          })}
         />
       </div>
       {isError && (
