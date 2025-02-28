@@ -141,13 +141,23 @@ export default function HubOrderTracking() {
             <>
               <div className="mb-6 h-[40px] flex flex-col justify-center">
                 <OsdsSkeleton
+                  data-testid="order_link_skeleton"
                   inline
                   size={ODS_SKELETON_SIZE.md}
                   className="h-[24px]"
                 ></OsdsSkeleton>
               </div>
-              <OsdsSkeleton inline randomized className="mb-6"></OsdsSkeleton>
-              <OsdsSkeleton inline randomized></OsdsSkeleton>
+              <OsdsSkeleton
+                inline
+                randomized
+                className="mb-6"
+                data-testid="order_info_skeleton"
+              ></OsdsSkeleton>
+              <OsdsSkeleton
+                inline
+                randomized
+                data-testid="orders_link_skeleton"
+              ></OsdsSkeleton>
             </>
           ) : (
             <>
