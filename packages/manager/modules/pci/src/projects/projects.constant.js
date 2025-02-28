@@ -100,6 +100,9 @@ export const PCI_FEATURES = {
 };
 
 export const PCI_FEATURES_STATES = {
+  DATAPLATFORM: {
+    LIST: 'pci.projects.project.dataplatform',
+  },
   INSTANCES: {
     LIST: 'pci.projects.project.instances',
     ADD: 'pci.projects.project.instances.add',

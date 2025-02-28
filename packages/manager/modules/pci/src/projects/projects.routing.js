@@ -86,6 +86,13 @@ export default /* @ngInject */ ($stateProvider) => {
           const category = redirectTarget.category.toUpperCase();
           const state = redirectTarget.state.toUpperCase();
 
+          if (category === 'DATAPLATFORM') {
+            resolve({
+              url: `https://hq-api.eu.dataplatform.ovh.net/iam/v4/login?authentication_provider=ovh&project=${project.project_id}&app_id=forepaas&response_type=token&redirect_uri=https%3A%2F%2Feu.dataplatform.ovh.net&authorize_bypass=true&token_mode=cookie&force_auth=false`,
+              isExternal: true,
+            });
+          }
+
           if (
             category === 'DATABASES' &&
             ['operational', 'databases'].includes(
@@ -124,13 +131,20 @@ export default /* @ngInject */ ($stateProvider) => {
 
       goToState: /* @ngInject */ ($state) => (targetedStatePromise) => {
         targetedStatePromise.then((targetedState) => {
-          if (targetedState.isUApp) {
+          if (targetedState.isUApp || targetedState.isExternal) {
             const url = new URL(targetedState.url);
-            Object.keys(targetedState.params).forEach((key) => {
-              url.searchParams.append(key, targetedState.params[key]);
-            });
-            const state = [targetedState.url, url.searchParams].join('?');
-            window.location = state;
+            let state = targetedState.url;
+            if (targetedState.params) {
+              Object.keys(targetedState.params).forEach((key) => {
+                url.searchParams.append(key, targetedState.params[key]);
+              });
+              state = [targetedState.url, url.searchParams].join('?');
+            }
+            if (targetedState.isExternal) {
+              window.open(state);
+            } else {
+              window.location = state;
+            }
             return state;
           }
           const { state, params, options } = targetedState;
