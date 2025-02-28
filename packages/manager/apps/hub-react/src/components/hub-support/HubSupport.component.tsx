@@ -64,8 +64,8 @@ export default function HubSupport() {
               refetch={refetch}
             />
           )}
-          {!error && data.count <= 0 && <HubSupportHelp />}
-          {!error && data.count > 0 && (
+          {!error && !data.count && <HubSupportHelp />}
+          {!error && !!data.count && (
             <>
               <div className="flex mb-2 gap-4 items-center">
                 <OsdsText
