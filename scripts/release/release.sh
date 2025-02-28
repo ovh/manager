@@ -42,7 +42,7 @@ get_changed_packages() {
 
 get_release_name() {
   seed="$1"
-  release_name=$(node scripts/release/index.js "$seed")
+  release_name=$(npx @ovh-ux/codename-generator codename-generator -s "$seed" | sed 's/ /-/g' | tr '[:upper:]' '[:lower:]')
   latest_release="$(git tag -l "${release_name}*" --sort=taggerdate | tail -1)"
   if [ -z "$latest_release" ]; then
     printf "%s\n" "$release_name"
