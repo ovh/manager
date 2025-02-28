@@ -1,5 +1,5 @@
 import {
-  DIAGNOSTIC_TRACKING_PREFIX,
+  TRACKING_PREFIX,
   DIAGNOSTIC_DASHBOARD_TRACKING_CONTEXT,
   getDiagnosticDashboardTrackingContext,
 } from '../../cloud-connect.constants';
@@ -15,14 +15,14 @@ export default class DiagnosticsResultCtrl {
   $onInit() {
     if (this.fromLink) {
       this.atInternet.trackClick({
-        name: `${DIAGNOSTIC_TRACKING_PREFIX}banner::link::go-to-diagnostic-results`,
+        name: `${TRACKING_PREFIX}banner::link::go-to-diagnostic-results`,
         type: 'action',
         ...DIAGNOSTIC_DASHBOARD_TRACKING_CONTEXT,
       });
     }
 
     this.atInternet.trackPage({
-      name: `${DIAGNOSTIC_TRACKING_PREFIX}cloud-connect::dashboard::diagnostics`,
+      name: `${TRACKING_PREFIX}cloud-connect::dashboard::diagnostics`,
       ...DIAGNOSTIC_DASHBOARD_TRACKING_CONTEXT,
     });
   }
@@ -40,7 +40,7 @@ export default class DiagnosticsResultCtrl {
 
   trackAction(option, diagnosticFunction) {
     this.atInternet.trackClick({
-      name: `${DIAGNOSTIC_TRACKING_PREFIX}datagrid::button::${option}::${diagnosticFunction}`,
+      name: `${TRACKING_PREFIX}datagrid::button::${option}::${diagnosticFunction}`,
       type: 'action',
       ...getDiagnosticDashboardTrackingContext(
         'cloud-connect::dashboard::diagnostics',
