@@ -27,7 +27,7 @@ export default class NashaOrderController {
           backUrl: this.nashaRoot,
         },
         cart: {
-          enable: true,
+          enable: false,
         },
       },
       callbacks: {
