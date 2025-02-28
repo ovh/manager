@@ -337,10 +337,10 @@ export default class DomainTabZoneDnsCtrl {
           );
         }
       })
-      .catch((err) => {
+      .catch(({ data }) => {
         this.Alerter.alertFromSWS(
           this.$translate.instant('domain_tab_ZONE_default_ttl_error'),
-          err,
+          data,
           this.$scope.alerts.main,
         );
       });
