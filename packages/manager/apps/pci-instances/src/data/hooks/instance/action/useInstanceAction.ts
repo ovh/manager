@@ -17,7 +17,8 @@ export type TMutationFnType =
   | 'stop'
   | 'shelve'
   | 'unshelve'
-  | 'soft-reboot';
+  | 'soft-reboot'
+  | 'hard-reboot';
 
 export type TMutationFnVariables = string | undefined;
 
@@ -53,6 +54,8 @@ export const useInstanceAction = (
           return unshelveInstance(projectId, instanceId);
         case 'soft-reboot':
           return rebootInstance({ projectId, instanceId, rebootType: 'soft' });
+        case 'hard-reboot':
+          return rebootInstance({ projectId, instanceId, rebootType: 'hard' });
         default:
           return Promise.reject(unknownError);
       }
