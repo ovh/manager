@@ -3,4 +3,5 @@ export const urls = {
   domain: 'domain',
   dns: 'dns',
   track: 'tracking/:id',
+  upload: 'upload/:id/:type',
 };

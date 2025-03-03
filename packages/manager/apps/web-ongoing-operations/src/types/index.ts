@@ -33,3 +33,17 @@ export interface TTracking {
   expectedDoneDate: string;
   taskActions: string[];
 }
+
+export interface TArgument {
+  acceptedFormats: string[];
+  acceptedValues: null;
+  description: string;
+  fields: string[];
+  key: string;
+  maximumSize: number;
+  minimumSize: null;
+  readOnly: boolean;
+  template: string;
+  type: string;
+  value: string;
+}
