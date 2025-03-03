@@ -12,6 +12,8 @@ module.exports = {
     'references-empty': [1, 'never'],
     // Enforce Signed-off-by footer format
     'signed-off-by': [2, 'always', 'Signed-off-by:'],
+    'signed-off-by': [0, 'always', 'Co-authored-by:'],
+
     // Enforce specific commit types (feat, fix, etc.)
     'type-enum': [2, 'always', COMMIT_TYPES],
     'header-max-length': [2, 'always', 100],
