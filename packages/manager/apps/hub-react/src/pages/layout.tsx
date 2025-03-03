@@ -8,6 +8,16 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import '@ovhcloud/ods-theme-blue-jeans';
 
+interface MatchHandle {
+  tracking?: {
+    pageName?: string;
+  };
+}
+
+interface Match {
+  handle?: MatchHandle;
+}
+
 export default function Layout() {
   const location = useLocation();
   const { trackCurrentPage } = useOvhTracking();
@@ -22,8 +32,8 @@ export default function Layout() {
 
   useEffect(() => {
     trackCurrentPage();
-    const match = matches.slice(-1);
-    defineCurrentPage(`app.hub-${match[0]?.id}`);
+    const [match] = matches.slice(-1) as Match[];
+    defineCurrentPage(`app.hub-${match?.handle?.tracking?.pageName}`);
   }, [location]);
 
   return <Outlet />;
