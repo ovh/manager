@@ -31,7 +31,7 @@ const columns: DatagridColumn<LicenseType>[] = [
         serviceName: item.serviceName,
       });
 
-      return <Links href={href} label={item.serviceName}></Links>;
+      return <Links href={href} label={item.tenantServiceName}></Links>;
     },
     label: 'microsoft_office_licenses_servicename',
     isSortable: true,
