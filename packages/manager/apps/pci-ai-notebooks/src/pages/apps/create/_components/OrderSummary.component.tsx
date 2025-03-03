@@ -425,7 +425,9 @@ const OrderSummary = ({ order, onSectionClicked }: OrderSummaryProps) => {
       <ImageDetails order={order} onSectionClicked={onSectionClicked} />
       <ScalingStrategy order={order} onSectionClicked={onSectionClicked} />
       <PrivacyDetails order={order} onSectionClicked={onSectionClicked} />
-      <HttpPortDetails order={order} onSectionClicked={onSectionClicked} />
+      {!order?.version && (
+        <HttpPortDetails order={order} onSectionClicked={onSectionClicked} />
+      )}
       {order.volumes.length > 0 && (
         <VolumesDetails order={order} onSectionClicked={onSectionClicked} />
       )}

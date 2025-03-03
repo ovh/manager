@@ -37,6 +37,7 @@
   "summaryFieldPublicLabel": "Public",
   "summaryFieldPrivateLabel": "Private",
   "formButtonAdvancedConfiguration": "Configuration avancée",
+  "fieldDockerCommandLabel": "Commandes docker:",
   "summaryFieldDockerCommand_one": "{{count}} commande",
   "summaryFieldDockerCommand_other": "{{count}} commandes",
   "summaryFieldVolumesLabel": "Volumes:",

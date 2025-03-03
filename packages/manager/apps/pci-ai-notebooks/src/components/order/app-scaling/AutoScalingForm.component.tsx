@@ -123,7 +123,7 @@ export const AutoScalingForm = React.forwardRef<
                 </div>
                 <FormControl>
                   <Input
-                    data-testId="min-rep-input"
+                    data-testid="min-rep-input"
                     {...field}
                     ref={ref}
                     type="number"
@@ -150,7 +150,7 @@ export const AutoScalingForm = React.forwardRef<
                 <p className="text-sm">{t('replicasMaxInputLabel')}</p>
                 <FormControl>
                   <Input
-                    data-testId="max-rep-input"
+                    data-testid="max-rep-input"
                     {...field}
                     ref={ref}
                     type="number"
@@ -196,7 +196,7 @@ export const AutoScalingForm = React.forwardRef<
                   <div className="flex flex-row gap-8">
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem
-                        data-testId="radio-cpu"
+                        data-testid="radio-cpu"
                         value={
                           ai.app.ScalingAutomaticStrategyResourceTypeEnum.CPU
                         }
@@ -208,7 +208,7 @@ export const AutoScalingForm = React.forwardRef<
                     </div>
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem
-                        data-testId="radio-ram"
+                        data-testid="radio-ram"
                         value={
                           ai.app.ScalingAutomaticStrategyResourceTypeEnum.RAM
                         }

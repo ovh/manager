@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { SubmitHandler } from 'react-hook-form';
 import {
+  Check,
+  ChevronsUpDown,
   GitBranchIcon,
   HelpCircle,
   Package,
@@ -36,6 +38,15 @@ import {
 import { useVolumesForm } from './useVolumesForm.hook';
 import { DataStoresWithContainers } from '@/hooks/api/ai/datastore/useGetDatastoresWithContainers.hook';
 import { Switch } from '@/components/ui/switch';
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from '@/components/ui/command';
+import { cn } from '@/lib/utils';
 
 interface ContainerFormProps {
   configuredVolumesList: DataStoresWithContainers[];
@@ -47,6 +58,7 @@ interface ContainerFormProps {
 const ContainerForm = React.forwardRef<HTMLInputElement, ContainerFormProps>(
   ({ configuredVolumesList, selectedVolumesList, onChange, disabled }, ref) => {
     const { t } = useTranslation('components/volumes');
+    const [inputValue, setInputValue] = useState('');
     const [selectedVolume, setSelectedVolume] = useState<
       DataStoresWithContainers
     >();
@@ -62,10 +74,7 @@ const ContainerForm = React.forwardRef<HTMLInputElement, ContainerFormProps>(
         permission: data.permission,
         dataStore: {
           alias: selectedVolume.alias,
-          container:
-            selectedVolume.type === ai.DataStoreTypeEnum.git
-              ? data.gitBranch
-              : selectedVolume.container,
+          container: data.container,
           type: selectedVolume.type,
         },
       };
@@ -82,6 +91,12 @@ const ContainerForm = React.forwardRef<HTMLInputElement, ContainerFormProps>(
       onChange(newVolumesList);
     };
 
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+      if (e.key === 'Enter') {
+        containerForm.setValue('container', inputValue);
+      }
+    };
+
     return (
       <>
         <Form {...containerForm}>
@@ -89,73 +104,202 @@ const ContainerForm = React.forwardRef<HTMLInputElement, ContainerFormProps>(
             className="flex flex-col w-full md:flex-row md:items-start gap-2"
             data-testid="datastore-form-container"
           >
-            <div
-              className={`grid ${
-                selectedVolume?.type === ai.DataStoreTypeEnum.git
-                  ? `grid-cols-2 md:grid-cols-4`
-                  : `grid-cols-2 md:grid-cols-3`
-              } gap-2 w-full`}
-            >
-              <FormItem>
-                <div className="inline space-x-2">
-                  <FormLabel>{t('containerFieldLabel')}</FormLabel>
-                  <Popover>
-                    <PopoverTrigger>
-                      <HelpCircle className="size-4" />
-                    </PopoverTrigger>
-                    <PopoverContent className="text-sm">
-                      <p>{t('containerDescription')}</p>
-                    </PopoverContent>
-                  </Popover>
-                </div>
-                <FormControl>
-                  <Select
-                    value={selectedVolume?.id}
-                    onValueChange={(value) => {
-                      containerForm.setValue('container', value);
-                      setSelectedVolume(
-                        configuredVolumesList.find((vol) => vol.id === value),
-                      );
-                    }}
-                  >
-                    <SelectTrigger data-testid="select-container-trigger">
-                      <SelectValue
-                        placeholder={t('containerFieldPlaceholder')}
-                      />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {Object.values(configuredVolumesList).map((dataStore) => (
-                        <SelectItem key={dataStore.id} value={dataStore.id}>
-                          {dataStore.id}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 w-full">
+              <FormField
+                control={containerForm.control}
+                name="datastore"
+                defaultValue={''}
+                render={({ field }) => (
+                  <FormItem>
+                    <div className="inline space-x-2">
+                      <FormLabel>{t('datastoreFieldLabel')}</FormLabel>
 
-              {selectedVolume?.type === ai.DataStoreTypeEnum.git && (
-                <FormField
-                  control={containerForm.control}
-                  name="gitBranch"
-                  defaultValue={''}
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>{t('gitBranchFieldLabel')}</FormLabel>
-                      <FormControl>
+                      <Popover>
+                        <PopoverTrigger>
+                          <HelpCircle className="size-4" />
+                        </PopoverTrigger>
+                        <PopoverContent className="text-sm">
+                          <p>{t('datastoreDescription')}</p>
+                        </PopoverContent>
+                      </Popover>
+                    </div>
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <FormControl>
+                          <Button
+                            role="combobox"
+                            size="default"
+                            variant="ghost"
+                            className="w-full flex flex-row items-center justify-between text-sm border"
+                          >
+                            {field.value
+                              ? configuredVolumesList.find(
+                                  (ds) => ds.id === field.value,
+                                )?.id
+                              : t('datastorePlaceholder')}
+                            <ChevronsUpDown className="opacity-50 size-4" />
+                          </Button>
+                        </FormControl>
+                      </PopoverTrigger>
+                      <PopoverContent>
+                        <Command>
+                          <CommandInput
+                            placeholder={t('inputDatastorePlaceholder')}
+                            className="h-9"
+                          />
+                          <CommandList>
+                            <CommandEmpty>{t('noDatastoreLabel')}</CommandEmpty>
+                            <CommandGroup>
+                              {Object.values(configuredVolumesList).map(
+                                (datastore) => (
+                                  <CommandItem
+                                    value={datastore.id}
+                                    key={datastore.id}
+                                    onSelect={() => {
+                                      containerForm.setValue(
+                                        'datastore',
+                                        datastore.id,
+                                      );
+                                      containerForm.setValue('container', '');
+                                      setSelectedVolume(
+                                        configuredVolumesList.find(
+                                          (vol) => vol.id === datastore.id,
+                                        ),
+                                      );
+                                    }}
+                                  >
+                                    {datastore.id}
+                                    <Check
+                                      className={cn(
+                                        'ml-auto',
+                                        datastore.id === field.value
+                                          ? 'opacity-100'
+                                          : 'opacity-0',
+                                      )}
+                                    />
+                                  </CommandItem>
+                                ),
+                              )}
+                            </CommandGroup>
+                          </CommandList>
+                        </Command>
+                      </PopoverContent>
+                    </Popover>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={containerForm.control}
+                name="container"
+                defaultValue={''}
+                render={({ field }) => (
+                  <FormItem>
+                    <div className="inline space-x-2">
+                      <FormLabel>
+                        {selectedVolume?.type === ai.DataStoreTypeEnum.git
+                          ? t('gitBranchFieldLabel')
+                          : t('containerFieldLabel')}
+                      </FormLabel>
+                      <Popover>
+                        <PopoverTrigger>
+                          <HelpCircle className="size-4" />
+                        </PopoverTrigger>
+                        <PopoverContent className="text-sm">
+                          <p>
+                            {selectedVolume?.type === ai.DataStoreTypeEnum.git
+                              ? t('gitBranchFieldHelper')
+                              : t('containerFieldHelper')}
+                          </p>
+                        </PopoverContent>
+                      </Popover>
+                    </div>
+
+                    <FormControl>
+                      {selectedVolume?.container?.length > 0 ? (
+                        <Popover>
+                          <PopoverTrigger asChild>
+                            <FormControl>
+                              <Button
+                                data-testid="select-container-combobox"
+                                role="combobox"
+                                size="default"
+                                variant="ghost"
+                                className="w-full flex flex-row items-center justify-between text-sm border"
+                              >
+                                {field.value
+                                  ? field.value
+                                  : t('containerPlaceholder')}
+                                <ChevronsUpDown className="opacity-50 size-4" />
+                              </Button>
+                            </FormControl>
+                          </PopoverTrigger>
+                          <PopoverContent>
+                            <Command>
+                              <CommandInput
+                                placeholder={t('inputContainerPlaceholder')}
+                                className="h-9"
+                              />
+                              <CommandList>
+                                <CommandGroup>
+                                  {Object.values(selectedVolume.container).map(
+                                    (container) => (
+                                      <CommandItem
+                                        value={container}
+                                        key={container}
+                                        onSelect={() => {
+                                          containerForm.setValue(
+                                            'container',
+                                            container,
+                                          );
+                                        }}
+                                      >
+                                        {container}
+                                        <Check
+                                          className={cn(
+                                            'ml-auto',
+                                            container === field.value
+                                              ? 'opacity-100'
+                                              : 'opacity-0',
+                                          )}
+                                        />
+                                      </CommandItem>
+                                    ),
+                                  )}
+                                  <CommandItem>
+                                    <Input
+                                      placeholder={t(
+                                        'newContainerPlaceholderInput',
+                                      )}
+                                      value={inputValue}
+                                      onChange={(e) =>
+                                        setInputValue(e.target.value)
+                                      }
+                                      onKeyDown={handleKeyDown}
+                                    ></Input>
+                                  </CommandItem>
+                                </CommandGroup>
+                              </CommandList>
+                            </Command>
+                          </PopoverContent>
+                        </Popover>
+                      ) : (
                         <Input
-                          data-testid="git-branch-input-field"
+                          data-testid="git-container-input-field"
                           {...field}
                           ref={ref}
-                          placeholder="develop"
+                          placeholder={
+                            selectedVolume?.type === ai.DataStoreTypeEnum.git
+                              ? 'develop'
+                              : 'dastore-container'
+                          }
                         />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              )}
+                      )}
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
               <FormField
                 control={containerForm.control}
@@ -217,7 +361,7 @@ const ContainerForm = React.forwardRef<HTMLInputElement, ContainerFormProps>(
                 )}
               />
             </div>
-            <div className="flex flex-row justify-around">
+            <div className="flex flex-row justify-around md:flex-col gap-2">
               <FormField
                 control={containerForm.control}
                 name="cache"
@@ -279,18 +423,15 @@ const ContainerForm = React.forwardRef<HTMLInputElement, ContainerFormProps>(
                     <Package className="mt-1 size-4 text-primary-700" />
                   )}
                   <div>
-                    <span>{volume.dataStore.alias}</span>
-                    {volume.dataStore.container && (
-                      <>
-                        <span> - </span>
-                        <span
-                          className="truncate max-w-96"
-                          title={volume.dataStore.container}
-                        >
-                          {volume.dataStore.container}
-                        </span>
-                      </>
-                    )}
+                    <span>{volume.dataStore.type}</span>
+                    <span> - {volume.dataStore.alias}</span>
+                    <span
+                      className="truncate max-w-96"
+                      title={volume.dataStore.container}
+                    >
+                      {' '}
+                      - {volume.dataStore.container}
+                    </span>
                     <span> - {volume.permission}</span>
                     <span> - {volume.mountPath}</span>
                     <span> - {volume.cache ? 'cache' : 'no cache'}</span>

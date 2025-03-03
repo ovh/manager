@@ -44,7 +44,7 @@ const ProbeForm = React.forwardRef<HTMLInputElement, ProbeFormProps>(
       <Form {...form}>
         <div className="flex flex-row items-center gap-2">
           <Switch
-            data-testId="probe-swith-button"
+            data-testid="probe-switch-button"
             checked={isActive}
             onCheckedChange={() => {
               setIsActive(!isActive);

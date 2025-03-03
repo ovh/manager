@@ -18,7 +18,7 @@ describe('Probe form component', () => {
       />,
     );
     await waitFor(() => {
-      expect(screen.getByTestId('probe-swith-button')).toBeInTheDocument();
+      expect(screen.getByTestId('probe-switch-button')).toBeInTheDocument();
       expect(screen.queryByTestId('prob-form-input')).not.toBeInTheDocument();
     });
   });
@@ -26,12 +26,12 @@ describe('Probe form component', () => {
   it('should display Probe Form and activate', async () => {
     render(<ProbeForm onChange={onChange} probeValue={{}} />);
     await waitFor(() => {
-      expect(screen.getByTestId('probe-swith-button')).toBeInTheDocument();
+      expect(screen.getByTestId('probe-switch-button')).toBeInTheDocument();
       expect(screen.queryByTestId('prob-form-input')).not.toBeInTheDocument();
     });
 
     act(() => {
-      fireEvent.click(screen.getByTestId('probe-swith-button'));
+      fireEvent.click(screen.getByTestId('probe-switch-button'));
     });
     await waitFor(() => {
       expect(screen.getByTestId('path-input-field')).toBeInTheDocument();
@@ -43,7 +43,7 @@ describe('Probe form component', () => {
   it('should display Probe Form and trigger on change on submit', async () => {
     render(<ProbeForm onChange={onChange} probeValue={{}} />);
     act(() => {
-      fireEvent.click(screen.getByTestId('probe-swith-button'));
+      fireEvent.click(screen.getByTestId('probe-switch-button'));
     });
     await waitFor(() => {
       expect(screen.getByTestId('path-input-field')).toBeInTheDocument();

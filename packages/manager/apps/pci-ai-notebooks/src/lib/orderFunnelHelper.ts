@@ -147,7 +147,7 @@ export function getAppSpec(
     unsecureHttp: formResult.unsecureHttp,
     labels: formResult.labels,
     command: formResult.dockerCommand,
-    defaultHttpPort: Number(formResult.httpPort),
+    defaultHttpPort: !formResult.version && Number(formResult.httpPort),
   };
 
   if (formResult.version) {

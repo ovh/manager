@@ -1,4 +1,10 @@
 export const VOLUMES_CONFIG = {
+  datastore: {
+    min: 1,
+  },
+  container: {
+    pattern: /^[^/\\]+$/,
+  },
   mountDirectory: {
     min: 1,
     max: 50,

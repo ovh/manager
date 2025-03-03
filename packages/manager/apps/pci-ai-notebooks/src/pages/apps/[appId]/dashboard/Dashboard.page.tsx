@@ -99,9 +99,11 @@ const Dashboard = () => {
           <CardContent>
             <LifeCycle />
           </CardContent>
-          <CardContent>
-            <DockerCommand />
-          </CardContent>
+          {!app.spec.partnerId && (
+            <CardContent>
+              <DockerCommand />
+            </CardContent>
+          )}
         </Card>
         <Card>
           <CardHeader>

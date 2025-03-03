@@ -68,6 +68,7 @@ const OrderFunnel = ({
   const model = useOrderFunnel(regions, catalog, suggestions);
   const { t } = useTranslation('pci-ai-deploy/apps/create');
   const { projectId } = useParams();
+  const [isPartnerSelected, setIsPartnerSelected] = useState(false);
   const [showAdvancedConfiguration, setShowAdvancedConfiguration] = useState(
     false,
   );
@@ -345,6 +346,15 @@ const OrderFunnel = ({
                           );
                           // remove errors onChange
                           model.form.trigger('image.name');
+
+                          if (newVersion) {
+                            model.form.setValue('volumes', []);
+                            model.form.setValue('httpPort', 8080);
+                            model.form.setValue('dockerCommand', []);
+                            setIsPartnerSelected(true);
+                          } else {
+                            setIsPartnerSelected(false);
+                          }
                         }}
                       />
                     </FormControl>
@@ -379,31 +389,32 @@ const OrderFunnel = ({
               />
             </section>
 
-            <section id="httpPort">
-              <FormField
-                control={model.form.control}
-                name="httpPort"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className={classNameLabel}>
-                      {t('fieldHttpPortLabel')}
-                    </FormLabel>
-                    <p className="text-sm">{t('fieldHttpPortDescription')}</p>
-                    <FormControl>
-                      <Input
-                        type="number"
-                        max={APP_CONFIG.port.max}
-                        min={APP_CONFIG.port.min}
-                        value={field.value}
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </section>
-
+            {!isPartnerSelected && (
+              <section id="httpPort">
+                <FormField
+                  control={model.form.control}
+                  name="httpPort"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className={classNameLabel}>
+                        {t('fieldHttpPortLabel')}
+                      </FormLabel>
+                      <p className="text-sm">{t('fieldHttpPortDescription')}</p>
+                      <FormControl>
+                        <Input
+                          type="number"
+                          max={APP_CONFIG.port.max}
+                          min={APP_CONFIG.port.min}
+                          value={field.value}
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </section>
+            )}
             <section id="access" data-testid="access-section">
               <FormField
                 control={model.form.control}
@@ -451,50 +462,55 @@ const OrderFunnel = ({
                   ${!showAdvancedConfiguration && 'max-h-0 py-0'}`}
                 >
                   <div className="flex flex-col gap-6">
-                    <section id="command">
-                      <FormField
-                        control={model.form.control}
-                        name="dockerCommand"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormControl>
-                              <DockerCommand
-                                {...field}
-                                commands={field.value}
-                                onChange={(newCommands) =>
-                                  model.form.setValue(
-                                    'dockerCommand',
-                                    newCommands,
-                                  )
-                                }
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </section>
-                    <section id="volumes">
-                      <FormField
-                        control={model.form.control}
-                        name="volumes"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormControl>
-                              <VolumeForm
-                                {...field}
-                                configuredVolumesList={model.lists.volumes}
-                                selectedVolumesList={field.value}
-                                onChange={(newVolumes) =>
-                                  model.form.setValue('volumes', newVolumes)
-                                }
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </section>
+                    {!isPartnerSelected && (
+                      <section id="command">
+                        <FormField
+                          control={model.form.control}
+                          name="dockerCommand"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormControl>
+                                <DockerCommand
+                                  {...field}
+                                  commands={field.value}
+                                  onChange={(newCommands) =>
+                                    model.form.setValue(
+                                      'dockerCommand',
+                                      newCommands,
+                                    )
+                                  }
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </section>
+                    )}
+                    {!isPartnerSelected && (
+                      <section id="volumes">
+                        <FormField
+                          control={model.form.control}
+                          name="volumes"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormControl>
+                                <VolumeForm
+                                  {...field}
+                                  configuredVolumesList={model.lists.volumes}
+                                  selectedVolumesList={field.value}
+                                  onChange={(newVolumes) =>
+                                    model.form.setValue('volumes', newVolumes)
+                                  }
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </section>
+                    )}
+
                     <section id="labels">
                       <FormField
                         control={model.form.control}

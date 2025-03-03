@@ -5,7 +5,7 @@ import * as ai from '@/types/cloud/project/ai';
 import { Containers } from '@/types/orderFunnel';
 
 export interface DataStoresWithContainers extends ai.DataStore {
-  container?: string;
+  container?: string[];
   id: string;
 }
 
@@ -37,15 +37,14 @@ export const useGetDatastoresWithContainers = (
                   alias: ds.alias,
                 }),
               ...options,
-              select: (container: Containers) =>
-                container.containers.map((ct: string) => ({
-                  id: `${ds.type} - ${ds.alias} - ${ct}`,
-                  container: ct,
-                  alias: ds.alias,
-                  type: ds.type,
-                  endpoint: ds.endpoint,
-                  owner: ds.owner,
-                })),
+              select: (container: Containers) => ({
+                id: `${ds.type} - ${ds.alias}`,
+                alias: ds.alias,
+                type: ds.type,
+                endpoint: ds.endpoint,
+                owner: ds.owner,
+                container: container.containers,
+              }),
             };
           })
       : [],
