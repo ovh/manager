@@ -29,7 +29,7 @@ export const useVrackService = (refetchIntervalTime = 2000) => {
         getVrackServicesResourceListQueryKey,
         ({ data: listingData, ...rest }: ApiResponse<VrackServices[]>) => ({
           data: listingData.map((vrackServices) =>
-            vrackServices.id === response.data.id
+            vrackServices.id === response?.data?.id
               ? response.data
               : vrackServices,
           ),
