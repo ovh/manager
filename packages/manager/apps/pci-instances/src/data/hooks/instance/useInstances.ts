@@ -161,6 +161,13 @@ const getActionHrefByName = (
     };
   }
 
+  if (name === 'hard_reboot') {
+    return {
+      path: `region/${region}/instance/${id}/hard-reboot`,
+      isExternal: false,
+    };
+  }
+
   const actions = new Set(['delete', 'stop', 'start', 'shelve', 'unshelve']);
 
   if (actions.has(name)) {

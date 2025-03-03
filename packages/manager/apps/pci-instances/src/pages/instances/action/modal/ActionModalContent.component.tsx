@@ -36,11 +36,11 @@ export const ActionModalContent: FC<TActionModalProps> = ({
       case 'stop':
       case 'start':
       case 'unshelve':
+      case 'soft-reboot':
+      case 'hard-reboot':
         return [confirmationMessage];
       case 'shelve':
         return [confirmationMessage, notaMessage];
-      case 'soft-reboot':
-        return [confirmationMessage];
       default:
         return [];
     }
