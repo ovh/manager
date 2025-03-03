@@ -60,12 +60,9 @@ export const useArchives = (projectId: string) => {
 };
 
 export const useGetArchiveByName = (projectId: string, archiveName: string) => {
-  const { data, isPending } = useArchives(projectId);
+  const { data } = useArchives(projectId);
 
-  return useMemo(() => data?.find((a) => a.name === archiveName), [
-    data,
-    isPending,
-  ]);
+  return useMemo(() => data?.find((a) => a.name === archiveName), [data]);
 };
 
 export const usePaginatedArchive = (
