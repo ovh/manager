@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import {
   OsdsButton,
   OsdsModal,
@@ -10,100 +10,105 @@ import {
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
 import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
-import { useShell } from '@/context';
-import { useSuggestionForUserProfile } from '@/hooks/suggestion/useSuggestion';
+import { useApplication } from '@/context';
+import { useModals } from '@/context/modals';
+import { Suggestion } from '@/types/suggestion';
+import { isSuggestionRelevant } from '@/helpers/suggestions/suggestionsHelper';
 
 const SuggestionModal = (): JSX.Element => {
   const { t } = useTranslation('suggestion-modal');
-  const shell = useShell();
+  const { shell } = useApplication();
+  const environment = shell.getPlugin('environment').getEnvironment();
+  const user = environment.getUser();
   const ux = shell.getPlugin('ux');
+  const appName = environment.getApplicationURL('new-account')
+    ? 'new-account'
+    : 'dedicated';
   const accountEditionLink = shell
     .getPlugin('navigation')
-    .getURL('dedicated', '#/useraccount/infos');
+    .getURL(appName, '#/useraccount/infos');
 
-  const {
-    isReady,
-    shouldBeDisplayed,
-    updatePreference,
-    suggestions,
-  } = useSuggestionForUserProfile(accountEditionLink);
   const [showModal, setShowModal] = useState(true);
+  const { data } = useModals();
+  const suggestions: Suggestion[] = useMemo(() => 
+    (data as Suggestion[] | undefined)?.filter((suggestion: Suggestion) =>
+      isSuggestionRelevant(suggestion, user),
+    ) || [],
+    [data],
+  );
 
   const closeModal = () => {
     setShowModal(false);
-    ux.notifyModalActionDone();
-    // @ TODO: Handle tracking (ECAN-2228)
+    ux.notifyModalActionDone('SuggestionModal');
+    // @TODO: Handle tracking (ECAN-2228)
   };
   const goToProfileEdition = () => {
     setShowModal(false);
-    // @ TODO: Handle tracking (ECAN-2228)
+    // @TODO: Handle tracking (ECAN-2228)
     window.top.location.href = `${accountEditionLink}?fieldToFocus=ovh_form_content_activity`;
   };
 
-  /*
-   Since we don't want to display multiple modals at the same time we "watch" the `current` modal, and once it is
-   the suggestion modal turn, we will try to display it (if conditions are met) or switch to the next one otherwise.
-  */
   useEffect(() => {
-    if (isReady) {
-      if (shouldBeDisplayed) {
-        // @ TODO: Handle tracking (ECAN-2228)
-        updatePreference();
-      } else {
-        ux.notifyModalActionDone();
-      }
-    }
-  }, [isReady]);
+    // @TODO: Handle tracking (ECAN-2228)
+  }, []);
 
-  return shouldBeDisplayed && showModal ? (
-    <OsdsModal
-      dismissible={false}
-      headline={t('suggestion_modal_title')}
-      color={ODS_THEME_COLOR_INTENT.info}
-      data-testid="suggestion-modal"
-    >
-      <OsdsText
-        color={ODS_THEME_COLOR_INTENT.text}
-        size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-      >
-        <p>{t('suggestion_modal_description')}</p>
-        <ul>
-          {suggestions?.map((suggestion) => (
-            <li key={`suggestion_${suggestion.type}`}>
-              {t(
-                `suggestion_modal_listed_type_${suggestion.type.replace(
-                  ' ',
-                  '_',
-                )}`,
-              )}{' '}
-              : {suggestion.id}
-            </li>
-          ))}
-        </ul>
-        <p>{t('suggestion_modal_description_sub')}</p>
-      </OsdsText>
+  if (suggestions.length === 0) {
+    ux.notifyModalActionDone('SuggestionModal');
+    return null;
+  }
 
-      <OsdsButton
-        onClick={goToProfileEdition}
-        slot="actions"
-        color={ODS_THEME_COLOR_INTENT.primary}
-        variant={ODS_BUTTON_VARIANT.stroked}
-        size={ODS_BUTTON_SIZE.sm}
+  return (
+    showModal && (
+      <OsdsModal
+        dismissible={false}
+        headline={t('suggestion_modal_title')}
+        color={ODS_THEME_COLOR_INTENT.info}
+        data-testid="suggestion-modal"
       >
-        {t('suggestion_modal_action_modify')}
-      </OsdsButton>
+        <OsdsText
+          color={ODS_THEME_COLOR_INTENT.text}
+          size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+        >
+          <p>{t('suggestion_modal_description')}</p>
+          <ul>
+            {suggestions
+              .map((suggestion: Suggestion) => (
+                <li key={`suggestion_${suggestion.type}`}>
+                  {t(
+                    `suggestion_modal_listed_type_${suggestion.type.replace(
+                      ' ',
+                      '_',
+                    )}`,
+                  )}{' '}
+                  : {suggestion.id}
+                </li>
+              ))}
+          </ul>
+          <p>{t('suggestion_modal_description_sub')}</p>
+        </OsdsText>
 
-      <OsdsButton
-        onClick={closeModal}
-        slot="actions"
-        color={ODS_THEME_COLOR_INTENT.primary}
-        variant={ODS_BUTTON_VARIANT.flat}
-        size={ODS_BUTTON_SIZE.sm}
-      >
-        {t('suggestion_modal_action_confirm')}
-      </OsdsButton>
-    </OsdsModal>
-  ) : null;
+        <OsdsButton
+          onClick={goToProfileEdition}
+          slot="actions"
+          color={ODS_THEME_COLOR_INTENT.primary}
+          variant={ODS_BUTTON_VARIANT.stroked}
+          size={ODS_BUTTON_SIZE.sm}
+        >
+          {t('suggestion_modal_action_modify')}
+        </OsdsButton>
+
+        <OsdsButton
+          onClick={closeModal}
+          slot="actions"
+          color={ODS_THEME_COLOR_INTENT.primary}
+          variant={ODS_BUTTON_VARIANT.flat}
+          size={ODS_BUTTON_SIZE.sm}
+        >
+          {t('suggestion_modal_action_confirm')}
+        </OsdsButton>
+      </OsdsModal>
+    )
+  );
 };
 
 export default SuggestionModal;
