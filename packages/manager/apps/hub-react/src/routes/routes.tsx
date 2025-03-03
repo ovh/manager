@@ -1,5 +1,6 @@
 import React from 'react';
 import { RouteObject } from 'react-router-dom';
+import { PageType } from '@ovh-ux/manager-react-shell-client';
 import NotFound from '@/pages/404';
 
 const lazyRouteConfig = (importFn: CallableFunction): Partial<RouteObject> => {
@@ -25,6 +26,7 @@ export const Routes: any = [
         handle: {
           tracking: {
             pageName: 'dashboard',
+            pageType: PageType.dashboard,
           },
         },
       },
@@ -34,6 +36,7 @@ export const Routes: any = [
         handle: {
           tracking: {
             pageName: 'roadmap-changelog',
+            pageType: PageType.onboarding,
           },
         },
       },
