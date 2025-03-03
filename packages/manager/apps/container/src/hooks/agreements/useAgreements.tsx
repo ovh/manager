@@ -9,7 +9,7 @@ import { useAccountUrn } from '@/hooks/accountUrn/useAccountUrn';
 import { useModals } from '@/context/modals';
 import { ModalTypes } from '@/context/modals/modals.context';
 import { createPreferences } from '@/api/preferences';
-import { MINIMUM_TIME_INTERVAL_IN_MS } from '@/core/onboarding';
+import { MINIMUM_TIME_INTERVAL_IN_S } from '@/core/onboarding';
 
 export const usePendingAgreements = (options?: Partial<DefinedInitialDataOptions<Agreements[]>>) =>
   useQuery({
@@ -52,7 +52,7 @@ export const useAgreementsUpdate = (contractsLink: string) => {
   const isTimeToShowModal = useMemo(() =>
     preference === undefined
       ? undefined
-      : (preference === null || (time === undefined ? undefined : (time - (Number(preference)) >= MINIMUM_TIME_INTERVAL_IN_MS))),
+      : (preference === null || (time === undefined ? undefined : (time - (Number(preference)) >= MINIMUM_TIME_INTERVAL_IN_S))),
     [preference, time],
   );
   const { data: urn, isError: isAccountUrnInError } = useAccountUrn({ enabled: isTimeToShowModal === true });
