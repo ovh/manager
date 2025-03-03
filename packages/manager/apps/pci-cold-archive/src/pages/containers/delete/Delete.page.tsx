@@ -118,7 +118,7 @@ export default function DeletePage() {
                 __html: t(
                   'pci_projects_project_storages_containers_container_cold_archive_delete_archive_status_active_warning_2',
                   {
-                    docUrl: documentationUrl(),
+                    docUrl: documentationUrl,
                   },
                 ),
               }}
