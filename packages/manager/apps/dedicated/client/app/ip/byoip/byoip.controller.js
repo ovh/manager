@@ -90,6 +90,11 @@ export default class IpByoipConfiguration {
     });
   }
 
+  valideAsType() {
+    if (this.asType === 'own') return !!this.byoip.asRir;
+    return true;
+  }
+
   orderByoip() {
     return this.goToDisclaimer(this.byoip);
   }

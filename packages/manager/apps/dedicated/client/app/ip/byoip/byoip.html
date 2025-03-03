@@ -125,7 +125,7 @@
         <oui-step-form
             data-header="{{:: 'ip_byoip_as_system_title' | translate }}"
             data-submit-text="{{:: 'ip_byoip_submit_text' | translate }}"
-            data-valid="$ctrl.asType"
+            data-valid="$ctrl.valideAsType()"
             data-description="{{:: 'ip_byoip_as_system_description' | translate}}"
             data-navigation="$ctrl.asType"
             data-on-submit="$ctrl.trackStepSubmit($ctrl.STEP_NAME.AS)"
