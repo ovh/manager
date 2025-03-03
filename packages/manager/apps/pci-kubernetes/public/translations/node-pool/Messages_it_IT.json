@@ -15,7 +15,7 @@
   "kube_node_pool_disabled": "Disattivato",
   "kube_node_pool_autoscale_true": "Attivo",
   "kube_node_pool_autoscale_false": "Inattivo",
-  "kube_node_pool_monthly_billing": "Forfait mensile",
+  "kube_node_pool_monthly_billing": "Tipo di fatturazione",
   "kube_node_pool_anti_affinity": "Anti-affinità",
   "kube_node_pool_enabled": "Attivato",
   "kube_common_node_pool_configure_true": "Configura pool di nodi",

@@ -5,7 +5,7 @@
   "kube_node_pool_name": "Nom du pool",
   "kube_node_pool_creation_date": "Date de création",
   "kube_node_pool_node_count": "Nombre de nœuds",
-  "kube_node_pool_monthly_billing": "Forfait mensuel",
+  "kube_node_pool_monthly_billing": "Type de facturation",
   "kube_node_pool_nodes": "Voir les noeuds",
   "kube_node_pool_scale": "Configurer la taille du pool de nœuds",
   "kube_node_pool_delete": "Supprimer le pool",

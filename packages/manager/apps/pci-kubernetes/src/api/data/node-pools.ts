@@ -18,6 +18,7 @@ type TRawClusterNodePool = {
   upToDateNodes: number;
   createdAt: string;
   updatedAt: string;
+  location?: string;
   autoscaling: {
     scaleDownUtilizationThreshold: number;
     scaleDownUnneededTimeSeconds: number;
@@ -50,6 +51,7 @@ export type TClusterNodePool = Pick<
   | 'flavor'
   | 'minNodes'
   | 'maxNodes'
+  | 'location'
 > & {
   formattedFlavor: string;
   search?: string;
