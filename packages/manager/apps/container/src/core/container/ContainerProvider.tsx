@@ -77,8 +77,24 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
       })
       .catch((error) => {
         if (error.response.status !== 404) {
-          throw error;
+          // if not set, create with value false (legacy navigation)
+          // to be removed after MANAGER-16732 / PR #15391
+          createBetaChoice(false);
         }
+      });
+
+  // to be removed after MANAGER-16732 / PR #15391
+  const createBetaChoice = async (accept = false) =>
+    v6
+      .post(
+        `/me/preferences/manager`,
+        {
+          key: NAV_RESHUFFLE_BETA_ACCESS_PREFERENCE_KEY,
+          value: JSON.stringify(accept),
+        },
+      )
+      .catch((error) => {
+        throw error;
       });
 
   const updateBetaChoice = async (accept = false) =>
@@ -89,8 +105,14 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
           key: NAV_RESHUFFLE_BETA_ACCESS_PREFERENCE_KEY,
           value: JSON.stringify(accept),
         },
-      )
-      .then(() => {
+      ).catch(async (error) => {
+        if (error.response.status === 404) {
+          await createBetaChoice(accept);
+        } else {
+          throw error;
+        }
+      })
+      .finally(() => {
         window.location.reload();
       });
 
