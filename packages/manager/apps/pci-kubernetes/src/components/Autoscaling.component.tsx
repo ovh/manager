@@ -86,8 +86,8 @@ export function Autoscaling({
         label={t('kubernetes_node_pool_autoscaling_desired_nodes_size')}
         value={quantity.desired}
         onValueChange={(desired) => {
-          setQuantity((_quantity) => ({
-            ..._quantity,
+          setQuantity((q) => ({
+            ...q,
             desired,
           }));
         }}
