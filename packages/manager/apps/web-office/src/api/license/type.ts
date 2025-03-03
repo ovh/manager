@@ -9,6 +9,7 @@ export type LicenseType = {
   lastName: string;
   phone: string;
   serviceName: string;
+  tenantServiceName: string;
   serviceType: string;
   status: UserStateEnum;
   zipCode: string;

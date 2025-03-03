@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Outlet, useParams, useResolvedPath } from 'react-router-dom';
+import { Outlet, useResolvedPath } from 'react-router-dom';
 import {
   BaseLayout,
   Notifications,
@@ -13,6 +13,7 @@ import { GUIDES_LIST } from '@/guides.constants';
 import { Breadcrumb } from '@/components/Breadcrumb/Breadcrumb';
 import { urls } from '@/routes/routes.constants';
 import TabsPanel from '@/components/layout-helpers/Dashboard/TabsPanel';
+import { useOfficeParentTenant } from '@/hooks/useOfficeParentTenant';
 
 export type DashboardTabItemProps = {
   name: string;
@@ -26,7 +27,8 @@ export type DashboardLayoutProps = {
 };
 
 export default function DashboardPage() {
-  const { serviceName } = useParams();
+  const { data } = useOfficeParentTenant();
+  const serviceName = data?.serviceName;
   const { t } = useTranslation('common');
   const { notifications } = useNotifications();
   const basePath = useResolvedPath('').pathname;
@@ -37,7 +39,6 @@ export default function DashboardPage() {
       (path) => new RegExp(path.replace(':serviceName', serviceName)),
     );
   }
-
   const tabsList: DashboardTabItemProps[] = [
     {
       name: 'general-information',
@@ -69,7 +70,7 @@ export default function DashboardPage() {
     },
   ];
   const header = {
-    title: serviceName,
+    title: data?.serviceName,
     headerButton: <GuideButton items={guideItems} />,
   };
   return (

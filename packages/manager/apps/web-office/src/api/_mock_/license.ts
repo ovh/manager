@@ -14,6 +14,7 @@ export const licensesMock: LicenseType[] = [
     serviceName: 'user123.o365.ovh.com',
     serviceType: 'payAsYouGo',
     status: UserStateEnum.OK,
+    tenantServiceName: 'user123.o365.ovh.com',
     zipCode: '75001',
     iam: {
       id: '12345abc-6789-def0-gh12-3456789ijklm',
@@ -31,6 +32,7 @@ export const licensesMock: LicenseType[] = [
     serviceName: 'topuser125.o365.ovh.com',
     serviceType: 'payAsYouGo',
     status: UserStateEnum.OK,
+    tenantServiceName: 'user123.o365.ovh.com',
     zipCode: '59000',
     iam: {
       id: '12345abc-6789-def0-gh12-3456789ijklm',
