@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.16.0...@ovh-ux/manager-vrack@1.17.0) (2025-03-03)
+
+
+### Bug Fixes
+
+* **vrack-services:** content fixes ([#14697](https://github.com/ovh/manager/issues/14697)) ([2bcec1f](https://github.com/ovh/manager/commit/2bcec1f3e39482d41e7474e8ca1cdfb8870ef7d6))
+
+
+### Features
+
+* **dedicated:** delete vrack tracking ([#15482](https://github.com/ovh/manager/issues/15482)) ([cfec2d4](https://github.com/ovh/manager/commit/cfec2d4bbdc8bccc9c27119585d39c06d1ef762f))
+
+
+
+
+
 # [1.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.15.0...@ovh-ux/manager-vrack@1.16.0) (2025-02-20)
 
 

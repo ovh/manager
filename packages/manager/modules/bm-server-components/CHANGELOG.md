@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.6.0...@ovh-ux/manager-bm-server-components@2.7.0) (2025-03-03)
+
+
+### Bug Fixes
+
+* **vrack-services:** content fixes ([#14697](https://github.com/ovh/manager/issues/14697)) ([2bcec1f](https://github.com/ovh/manager/commit/2bcec1f3e39482d41e7474e8ca1cdfb8870ef7d6))
+
+
+### Features
+
+* **dedicated:** rbx1 eol legal banner ([#15402](https://github.com/ovh/manager/issues/15402)) ([18032d6](https://github.com/ovh/manager/commit/18032d6dda323f5dd3ca75679aecee4d9aac575e))
+
+
+
+
+
 # [2.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.5.0...@ovh-ux/manager-bm-server-components@2.6.0) (2025-02-20)
 
 

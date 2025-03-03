@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.18.0...@ovh-ux/manager-cloud-connect@1.19.0) (2025-03-03)
+
+
+### Features
+
+* **cloud-connect:** occ notifications features ([#15164](https://github.com/ovh/manager/issues/15164)) ([ada5560](https://github.com/ovh/manager/commit/ada5560490032d1c58d6ef6efbca31454d5d49bb))
+
+
+
+
+
 # [1.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.17.0...@ovh-ux/manager-cloud-connect@1.18.0) (2025-02-26)
 
 
