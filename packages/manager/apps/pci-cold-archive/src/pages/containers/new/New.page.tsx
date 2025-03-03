@@ -30,7 +30,11 @@ import { LinkUserStep } from './steps/LinkUserStep.component';
 import { useContainerCreationStore } from './useContainerCreationStore';
 
 export default function ContainerNewPage() {
-  const { t } = useTranslation(['cold-archive/new', 'cold-archive']);
+  const { t } = useTranslation([
+    'cold-archive/new',
+    'cold-archive',
+    'users/credentials',
+  ]);
 
   const projectHref = useProjectUrl('public-cloud');
   const { data: project } = useProject();
@@ -61,11 +65,12 @@ export default function ContainerNewPage() {
               <span
                 dangerouslySetInnerHTML={{
                   __html: t(
-                    'users/credentials:pci_projects_project_storages_containers_add_container_success',
+                    'pci_projects_project_storages_containers_add_container_success',
                     {
                       containerName: `<strong>${container.name}</strong>`,
                       username: `<strong>${form.selectedUser.username}</strong>`,
                       role: `<strong>${form.selectedUser.roles[0]?.description}</strong>`,
+                      ns: 'users/credentials',
                     },
                   ),
                 }}
