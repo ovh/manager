@@ -16,7 +16,6 @@ import {
   OdsBreadcrumbAttributeItem,
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { defineCurrentPage } from '@ovh-ux/request-tagger';
 import {
   OdsHTMLAnchorElementRel,
   OdsHTMLAnchorElementTarget,
