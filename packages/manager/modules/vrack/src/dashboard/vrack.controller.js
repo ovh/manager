@@ -43,6 +43,8 @@ import {
 import { IPV6_GUIDES_LINK } from '../vrack-associated-services/ipv6/ipv6.constant';
 import arrowIcon from '../../assets/icon_vrack-mapper-arrows.svg';
 import {
+  VRACK_TRACKING_PREFIX,
+  VRACK_TRACKING_CONTEXT,
   SURVEY_LANGUAGES,
   BASE_URL_SURVEY,
   US_SURVEY_LINK,
@@ -110,6 +112,15 @@ export default class VrackMoveDialogCtrl {
     this.hasIpv6 = false;
     this.TYPE_SERVICE = TYPE_SERVICE;
     this.terminateVrackModalOpen = false;
+
+    this.atInternet.trackPage({
+      name: `${VRACK_TRACKING_PREFIX}vrack-private-network::detail`,
+      ...VRACK_TRACKING_CONTEXT,
+      page: {
+        name: `${VRACK_TRACKING_PREFIX}vrack-private-network::detail`,
+      },
+      page_category: 'detail',
+    });
 
     if (this.coreConfig.getRegion() === 'US') {
       this.surveyUrl = US_SURVEY_LINK;
@@ -245,7 +256,7 @@ export default class VrackMoveDialogCtrl {
         });
     }
 
-    this.$scope.$on('$destroy', this.clearPolling);
+    this.$scope.$on('$destroy', this.clearPolling.bind(this));
   }
 
   $onDestroy() {
@@ -268,6 +279,15 @@ export default class VrackMoveDialogCtrl {
   }
 
   openTerminateVrackModal() {
+    this.atInternet.trackClick({
+      name: `${VRACK_TRACKING_PREFIX}page::button::delete_vrack-private-network`,
+      type: 'action',
+      ...VRACK_TRACKING_CONTEXT,
+      page: {
+        name: `${VRACK_TRACKING_PREFIX}vrack-private-network::detail`,
+      },
+      page_category: 'detail',
+    });
     this.terminateVrackModalOpen = true;
   }
 

@@ -1,11 +1,16 @@
 import { PATTERN } from './constants';
+import {
+  SNAPSHOT_TRACKING_PREFIX,
+  SNAPSHOT_LISTING_TRACKING_CONTEXT,
+} from '../constants';
 
 export default class NetAppVolumesDashboardSnapshotsEditController {
   /* @ngInject */
-  constructor($http, $translate) {
+  constructor($http, $translate, atInternet) {
     this.$http = $http;
     this.$translate = $translate;
     this.PATTERN = PATTERN;
+    this.atInternet = atInternet;
   }
 
   $onInit() {
@@ -14,11 +19,15 @@ export default class NetAppVolumesDashboardSnapshotsEditController {
     this.id = id;
     this.name = name;
     this.description = description;
+    this.atInternet.trackPage({
+      name: `${SNAPSHOT_TRACKING_PREFIX}netapp::pop-up::edit::snapshot`,
+      ...SNAPSHOT_LISTING_TRACKING_CONTEXT,
+    });
   }
 
   editSnapshot() {
     this.isLoading = true;
-    this.trackClick('edit::confirm');
+    this.trackClick('edit_snapshot::confirm');
     return this.$http
       .put(
         `/storage/netapp/${this.serviceName}/share/${this.volumeId}/snapshot/${this.id}`,
@@ -46,7 +55,7 @@ export default class NetAppVolumesDashboardSnapshotsEditController {
   }
 
   goBack() {
-    this.trackClick('edit::cancel');
+    this.trackClick('edit_snapshot::cancel');
     return this.goToSnapshots();
   }
 }

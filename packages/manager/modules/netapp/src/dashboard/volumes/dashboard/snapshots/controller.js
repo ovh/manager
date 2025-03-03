@@ -1,19 +1,31 @@
-import { MAXIMUM_SNAPSHOT_ALLOWED, SNAPSHOT_TYPE } from './constants';
+import {
+  MAXIMUM_SNAPSHOT_ALLOWED,
+  SNAPSHOT_TYPE,
+  SNAPSHOT_TRACKING_PREFIX,
+  SNAPSHOT_LISTING_TRACKING_CONTEXT,
+} from './constants';
 
 export default class NetAppVolumesDashboardSnapshotsController {
   /* @ngInject */
-  constructor(Alerter, $translate, NetAppSnapshotService) {
+  constructor(Alerter, $translate, atInternet, NetAppSnapshotService) {
     this.Alerter = Alerter;
     this.$translate = $translate;
     this.MAXIMUM_SNAPSHOT_ALLOWED = MAXIMUM_SNAPSHOT_ALLOWED;
     this.SNAPSHOT_TYPE = SNAPSHOT_TYPE;
     this.NetAppSnapshotService = NetAppSnapshotService;
     this.loadingSnapshotHold = false;
+    this.atInternet = atInternet;
   }
 
   $onInit() {
     this.policyId = this.currentPolicy.id;
     this.SNAPSHOT_TYPE = SNAPSHOT_TYPE;
+
+    this.atInternet.trackPage({
+      name: `${SNAPSHOT_TRACKING_PREFIX}netapp::listing::snapshots`,
+      ...SNAPSHOT_LISTING_TRACKING_CONTEXT,
+      page_category: 'listing',
+    });
   }
 
   isApplicablePolicy() {

@@ -48,6 +48,13 @@ export default class VmwareVdcAddCtrl {
     this.vdcLoading = true;
     return this.DedicatedCloud.getCommercialRangeCompliance(this.serviceName)
       .then((compliance) => {
+        if (!compliance.length) {
+          throw new Error(
+            this.$translate.instant(
+              'dedicatedCloud_datacenters_no_offer_available',
+            ),
+          );
+        }
         this.vdcList = compliance
           .map((datacenter) => {
             return {

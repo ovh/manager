@@ -1,3 +1,3 @@
 {
-  "rbx1_eol_banner_title": "ATENCIÓN: Para asegurarnos de que puede migrar correctamente los servicios de RBX1, cuya modernización está prevista para este año, el período de migración de servidores se amplía hasta el 30 de junio de 2025. Para más información, consulte el correo electrónico recibido y nuestra <a href=\"{{guideLink}}\" target=\"_blank\" data-track-name=\"{{ trackLabel }}\" data-track-category=\"{{ trackCategory }}\" data-track-page=\"{{ trackPage }}\" data-track-theme=\"{{ trackTheme }}\" data-track-on=\"click\" data-track-type=\"action\">guía de migración</a>."
+  "rbx1_eol_banner_title": "ATENCIÓN: Para que pueda seguir utilizando los servicios alojados en RBX1, vamos a migrar su servidor hacia RBX3. Esta operación se realizará a partir del 15 de marzo. La fecha de la migración será comunicada con antelación tanto por correo electrónico como a través de nuestro centro de ayuda. Para más información, consulte el email correspondiente."
 }
