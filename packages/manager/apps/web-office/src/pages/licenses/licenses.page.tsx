@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Datagrid,
@@ -23,43 +23,6 @@ import { useOfficeLicenses, useGenerateUrl } from '@/hooks';
 import Loading from '@/components/Loading/Loading';
 import { OfficeServiceState } from '@/components/layout-helpers/Dashboard/OfficeServiceState.component';
 
-const columns: DatagridColumn<LicenseType>[] = [
-  {
-    id: 'serviceName',
-    cell: (item: LicenseType) => {
-      const href = useGenerateUrl(urls.generalInformation, 'href', {
-        serviceName: item.serviceName,
-      });
-
-      return <Links href={href} label={item.tenantServiceName}></Links>;
-    },
-    label: 'microsoft_office_licenses_servicename',
-    isSortable: true,
-  },
-  {
-    id: 'displayName',
-    cell: (item: LicenseType) => (
-      <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.displayName}</OdsText>
-    ),
-    label: 'microsoft_office_licenses_displayName',
-    isSortable: true,
-  },
-  {
-    id: 'serviceType',
-    cell: (item: LicenseType) => (
-      <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.serviceType}</OdsText>
-    ),
-    label: 'microsoft_office_licenses_servicetype',
-    isSortable: true,
-  },
-  {
-    id: 'status',
-    cell: (item: LicenseType) => <OfficeServiceState state={item.status} />,
-    label: 'microsoft_office_licenses_status',
-    isSortable: true,
-  },
-];
-
 export default function Licenses() {
   const { t } = useTranslation(['licenses', 'common']);
   const { data, isLoading } = useOfficeLicenses();
@@ -78,7 +41,7 @@ export default function Licenses() {
     title: t('common:common_office_title'),
   };
 
-  const sortedData = React.useMemo(() => {
+  const sortedData = useMemo(() => {
     if (!data || data.length === 0 || !sorting) return data;
 
     const sorted = [...data];
@@ -93,20 +56,59 @@ export default function Licenses() {
     return sorted;
   }, [data, sorting]);
 
+  const columns: DatagridColumn<LicenseType>[] = useMemo(
+    () => [
+      {
+        id: 'serviceName',
+        cell: (item) => {
+          const href = useGenerateUrl(urls.generalInformation, 'href', {
+            serviceName: item.serviceName,
+          });
+
+          return <Links href={href} label={item.tenantServiceName}></Links>;
+        },
+        label: 'microsoft_office_licenses_servicename',
+        isSortable: true,
+        enableHiding: true,
+      },
+      {
+        id: 'displayName',
+        cell: (item) => (
+          <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+            {item.displayName}
+          </OdsText>
+        ),
+        label: 'microsoft_office_licenses_displayName',
+        isSortable: true,
+        enableHiding: true,
+      },
+      {
+        id: 'serviceType',
+        cell: (item) => (
+          <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+            {t(`common:${item.serviceType}`)}
+          </OdsText>
+        ),
+        label: 'microsoft_office_licenses_servicetype',
+        isSortable: true,
+        enableHiding: true,
+      },
+      {
+        id: 'status',
+        cell: (item) => <OfficeServiceState state={item.status} />,
+        label: 'microsoft_office_licenses_status',
+        isSortable: true,
+        enableHiding: true,
+      },
+    ],
+    [],
+  );
+
   return (
     <>
       {isLoading && <Loading />}
       {!isLoading && (
         <BaseLayout header={header}>
-          <div className="mb-4">
-            <OdsButton
-              color={ODS_BUTTON_COLOR.primary}
-              variant={ODS_BUTTON_VARIANT.outline}
-              onClick={goToOrder}
-              label={t('microsoft_office_licenses_order')}
-              data-testid="licenses-order-button"
-            ></OdsButton>
-          </div>
           {columns && (
             <Datagrid
               columns={columns.map((column) => ({
@@ -117,7 +119,15 @@ export default function Licenses() {
               totalItems={sortedData?.length || 0}
               sorting={sorting}
               onSortChange={setSorting}
-              className="mt-4"
+              topbar={
+                <OdsButton
+                  color={ODS_BUTTON_COLOR.primary}
+                  variant={ODS_BUTTON_VARIANT.outline}
+                  onClick={goToOrder}
+                  label={t('microsoft_office_licenses_order')}
+                  data-testid="licenses-order-button"
+                ></OdsButton>
+              }
             />
           )}
         </BaseLayout>
