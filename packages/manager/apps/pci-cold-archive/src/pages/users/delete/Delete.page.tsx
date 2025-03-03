@@ -4,7 +4,7 @@ import { OdsText } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useNotifications } from '@/hooks/useNotifications';
-import { useDeleteUser, useGetUser } from '@/api/hooks/useUsers';
+import { useDeleteUser, useUser } from '@/api/hooks/useUsers';
 
 export default function UserDelete() {
   const { t } = useTranslation('users/delete');
@@ -21,7 +21,7 @@ export default function UserDelete() {
   const onCancel = goBack;
   const onClose = goBack;
 
-  const { user, isPending: isUserPending } = useGetUser(
+  const { data: user, isPending: isUserPending } = useUser(
     projectId,
     Number(userId),
   );

@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useNotifications } from '@/hooks/useNotifications';
 import FileInputComponent from '@/components/FileInput.component';
-import { useGetUser, useImportPolicy } from '@/api/hooks/useUsers';
+import { useUser, useImportPolicy } from '@/api/hooks/useUsers';
 
 export default function ImportPolicyPage() {
   const { t } = useTranslation('users/import-policy');
@@ -28,7 +28,7 @@ export default function ImportPolicyPage() {
   const onCancel = goBack;
   const onClose = goBack;
 
-  const { user, isPending: isUserPending } = useGetUser(
+  const { data: user, isPending: isUserPending } = useUser(
     projectId,
     Number(userId),
   );
