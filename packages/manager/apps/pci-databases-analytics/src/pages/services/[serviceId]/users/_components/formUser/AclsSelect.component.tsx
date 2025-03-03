@@ -28,8 +28,8 @@ import { USER_CONFIG } from './user.constants';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 
 interface AclsSelectProps {
-  value?: UserAcl[];
-  onChange?: (newAcls: UserAcl[]) => void;
+  value: UserAcl[];
+  onChange: (newAcls: UserAcl[]) => void;
 }
 
 const AclsSelect = React.forwardRef<HTMLInputElement, AclsSelectProps>(
