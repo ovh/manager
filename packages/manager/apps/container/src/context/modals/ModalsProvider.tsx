@@ -19,7 +19,7 @@ export const ModalsProvider = ({ children = null }: Props): JSX.Element => {
           if (previous === null) {
             return null;
           }
-          return (previous < ModalTypes.agreements) ? (previous + 1 as ModalTypes) : null;
+          return (previous < ModalTypes.suggestion) ? (previous + 1 as ModalTypes) : null;
         });
       });
   }, []);

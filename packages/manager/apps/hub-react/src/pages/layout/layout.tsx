@@ -56,7 +56,6 @@ const PaymentStatus = lazy(() =>
   import('@/pages/layout/PaymentStatus.component'),
 );
 const SiretBanner = lazy(() => import('@/pages/layout/SiretBanner.component'));
-const SiretModal = lazy(() => import('@/pages/layout/SiretModal.component'));
 const KycIndiaBanner = lazy(() =>
   import('@/pages/layout/KycIndiaBanner.component'),
 );
@@ -173,9 +172,6 @@ export default function Layout() {
                   </Suspense>
                   <Suspense>
                     <SiretBanner />
-                  </Suspense>
-                  <Suspense>
-                    <SiretModal />
                   </Suspense>
                   <Suspense>
                     <KycIndiaBanner />
