@@ -1,10 +1,12 @@
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { useContext } from 'react';
+import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 
-const useIsUsRegion = () => {
-  const context = useContext(ShellContext);
-  const region = context.environment.getRegion();
-  return region === 'US';
+const kubernetes = 'pci-kubernetes';
+
+const savingPlan = `${kubernetes}:savings-plan`;
+
+const useSavingPlanAvailable = () => {
+  const { data } = useFeatureAvailability([savingPlan]);
+  return data?.[savingPlan];
 };
 
-export default useIsUsRegion;
+export default useSavingPlanAvailable;
