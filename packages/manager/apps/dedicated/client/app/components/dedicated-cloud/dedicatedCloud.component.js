@@ -17,6 +17,7 @@ export default {
     dedicatedCloudPCCMigrationState: '<',
     hasVCDMigration: '<',
     vcdTrackingPrefix: '<',
+    customerSurveyBannerAvailability: '<',
   },
   controller,
   template,
