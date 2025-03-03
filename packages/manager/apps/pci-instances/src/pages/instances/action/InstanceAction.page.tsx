@@ -20,9 +20,10 @@ export type TSectionType =
   | 'stop'
   | 'shelve'
   | 'unshelve'
-  | 'soft-reboot';
+  | 'soft-reboot'
+  | 'hard-reboot';
 
-const actionSectionRegex = /^(delete|start|stop|shelve|unshelve|soft-reboot)$/;
+const actionSectionRegex = /^(delete|start|stop|shelve|unshelve|soft-reboot|hard-reboot)$/;
 
 const InstanceAction: FC = () => {
   const { t } = useTranslation(['actions', 'common']);
