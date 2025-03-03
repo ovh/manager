@@ -14,12 +14,13 @@ export const paginateResults = <T>(
 });
 
 export const compareFunction = <T>(key: keyof T) => (a: T, b: T) => {
-  const aValue = a[key] || '';
-  const bValue = b[key] || '';
+  const aValue = a[key] ?? '';
+  const bValue = b[key] ?? '';
 
   if (typeof aValue === 'number' && typeof bValue === 'number') {
     return aValue - bValue;
   }
+
   return aValue.toString().localeCompare(bValue.toString());
 };
 
@@ -57,7 +58,9 @@ export type TParam<T> = {
 };
 
 export const poll = async <T>(param: TParam<T>, iteration = 0) => {
-  const [maxTries, interval] = [param.maxTries || 10, param.interval || 5000];
+  const maxTries = param.maxTries ?? 10;
+  const interval = param.interval ?? 5000;
+
   if (iteration < maxTries) {
     const value: T = await param.fn();
     try {

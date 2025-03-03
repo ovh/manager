@@ -12,11 +12,12 @@ import {
   generateS3Credentials,
   getAllUsers,
   getS3Credentials,
+  getUser,
   importUserPolicy,
   postS3Secret,
   TS3Credentials,
   TUser,
-} from '../data/users';
+} from '@/api/data/users';
 
 export const getUsersCacheKey = (projectId: string) => [
   'project',
@@ -24,7 +25,7 @@ export const getUsersCacheKey = (projectId: string) => [
   'users',
 ];
 
-export const getQueryKeyUser = (projectId: string, userId: number) => [
+export const getUserCacheKey = (projectId: string, userId: number) => [
   userId,
   projectId,
   'user',
@@ -41,10 +42,7 @@ export const useAllUsers = (projectId: string) =>
     queryFn: () => getAllUsers(projectId),
   });
 
-export const useUsers = (
-  projectId: string,
-  filterWithCredentials?: boolean,
-) => {
+export const useUsers = (projectId: string) => {
   const { data: users, isPending } = useAllUsers(projectId);
 
   const allUsersQueries = useQueries({
@@ -63,7 +61,7 @@ export const useUsers = (
           (result) => result.data?.userId === user.openstackId,
         )?.data;
 
-        if (filterWithCredentials && !s3Credentials) return all;
+        if (!s3Credentials) return all;
 
         all.push({
           ...user,
@@ -102,7 +100,6 @@ export const usePaginatedUsers = (
 ) => {
   const { validUsersWithCredentials, error, isLoading, isPending } = useUsers(
     projectId,
-    true,
   );
 
   return useMemo(
@@ -139,16 +136,20 @@ type DeleteUserProps = {
   onSuccess: () => void;
 };
 
-export const useGetUser = (projectId: string, userId: number) => {
-  const { data: users, isPending } = useUsers(projectId);
+export const useUser = (projectId: string, userId: number) =>
+  useQuery({
+    queryKey: getUserCacheKey(projectId, userId),
+    queryFn: async () => {
+      const user = await getUser(projectId, userId);
+      const s3Credentials = await getS3Credentials(projectId, `${user.id}`);
 
-  const user = useMemo(() => users?.find((u) => u.id === userId), [
-    users,
-    isPending,
-  ]);
-
-  return { user, isPending };
-};
+      return {
+        ...user,
+        access: s3Credentials[0]?.access,
+        s3Credentials: s3Credentials[0],
+      };
+    },
+  });
 
 export const useDeleteUser = ({
   projectId,
