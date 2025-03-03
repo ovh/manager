@@ -148,7 +148,9 @@ export const useModalManager = (
 
     if (data === undefined) return undefined;
 
-    return configuration?.data?.check ? configuration.data.check(data) : true;
+    return configuration?.data?.check
+      ? configuration.data.check(data, user)
+      : true;
   }, [configuration, data]);
 
   const { mutate: updatePreference } = useCreatePreference(
