@@ -46,7 +46,7 @@ const Kpi = ({
       <OdsText preset="heading-5" className="max-w-lg whitespace-no-wrap">
         {title}
         <OdsIcon
-          className="my-auto ml-2"
+          className="my-auto ml-2 text-blue-500"
           aria-labelledby="tooltip-default"
           name="circle-question"
           id={`trigger-${index}`}

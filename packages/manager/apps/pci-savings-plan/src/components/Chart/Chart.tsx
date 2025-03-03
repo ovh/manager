@@ -30,8 +30,11 @@ const GRAPH_SIZE_ZOOM = 1.1;
 const getMaxRangeGraph = (maxValue: number) =>
   Math.round(maxValue * GRAPH_SIZE_ZOOM);
 
-const INCLUDED_COLOR = 'rgba(0, 128, 0, 0.6)';
-const EXCLUDED_COLOR = '#EF99AB';
+const areaChartColors = {
+  included: { fill: 'rgba(0, 128, 0, 0.6)', stroke: '#008000' },
+  excluded: { fill: '#CF334E', stroke: '#CF334E' },
+  cumulPlanSize: { fill: 'white', stroke: '#157EEA' },
+};
 
 const GenericChart: React.FC<ChartProps> = ({
   chartTitle,
@@ -59,7 +62,7 @@ const GenericChart: React.FC<ChartProps> = ({
     : t('dashboard_graph_y_axis_label_vcpu');
 
   return (
-    <>
+    <div className="border border-gray-100 p-4 my-8 rounded-sm">
       <OdsText preset="heading-4" className="my-8">
         {chartTitle}
       </OdsText>
@@ -88,8 +91,6 @@ const GenericChart: React.FC<ChartProps> = ({
             label={{
               value: yAxisLabel,
               angle: -90,
-              position: 'insideLeft',
-              offset: -10,
               fontSize: 12,
             }}
             {...(maxRange <= 1 ? { ticks: [0, 1] } : {})}
@@ -134,32 +135,32 @@ const GenericChart: React.FC<ChartProps> = ({
             type="step"
             dataKey="included"
             stackId="2"
-            stroke="#008000"
-            fill={INCLUDED_COLOR}
+            stroke={areaChartColors.included.stroke}
+            fill={areaChartColors.included.fill}
             name={t('dashboard_graph_included')}
           />
           <Area
             type="step"
             dataKey="excluded"
             stackId="2"
-            stroke="#FFC0CB"
-            fill={EXCLUDED_COLOR}
+            fill={areaChartColors.excluded.fill}
+            stroke={areaChartColors.excluded.stroke}
             name={t('dashboard_graph_excluded')}
           />
           <Area
             type="step"
             dataKey="cumulPlanSize"
             stackId="1"
-            stroke="red"
+            stroke={areaChartColors.cumulPlanSize.stroke}
             strokeWidth={2}
-            fill="white"
+            fill={areaChartColors.cumulPlanSize.fill}
             name={t('dashboard_columns_cumul_plan_size')}
           />
 
           <Line type="basis" dataKey="date" fillOpacity={0} strokeOpacity={0} />
         </AreaChart>
       </ResponsiveContainer>
-    </>
+    </div>
   );
 };
 
