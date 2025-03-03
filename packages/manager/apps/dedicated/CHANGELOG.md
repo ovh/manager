@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.16.2...@ovh-ux/manager-dedicated@20.17.0) (2025-03-03)
+
+
+### Bug Fixes
+
+* **dedicated:** fix us link for byoip ([#15695](https://github.com/ovh/manager/issues/15695)) ([2e12fff](https://github.com/ovh/manager/commit/2e12fff411613c38e4038e961b216067c155bc0f))
+
+
+### Features
+
+* **dedicated-cloud:** add error when no datacenter offer available ([#15277](https://github.com/ovh/manager/issues/15277)) ([8ba4bde](https://github.com/ovh/manager/commit/8ba4bdec901e98c06c21e166bfb2774de0d456be))
+* **dedicated:** add 3az paris translation ([#15642](https://github.com/ovh/manager/issues/15642)) ([d370049](https://github.com/ovh/manager/commit/d37004900c2a6e6a0490f6fbe92b98f4f873b6d5))
+* **dedicated:** rbx1 eol legal banner ([#15402](https://github.com/ovh/manager/issues/15402)) ([18032d6](https://github.com/ovh/manager/commit/18032d6dda323f5dd3ca75679aecee4d9aac575e))
+
+
+
+
+
 ## [20.16.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.16.1...@ovh-ux/manager-dedicated@20.16.2) (2025-02-27)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated

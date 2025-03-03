@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.6.0...@ovh-ux/manager-netapp@2.7.0) (2025-03-03)
+
+
+### Bug Fixes
+
+* **vrack-services:** content fixes ([#14697](https://github.com/ovh/manager/issues/14697)) ([2bcec1f](https://github.com/ovh/manager/commit/2bcec1f3e39482d41e7474e8ca1cdfb8870ef7d6))
+
+
+### Features
+
+* **dedicated:** update snapshot tracking ([#15396](https://github.com/ovh/manager/issues/15396)) ([2e64cb7](https://github.com/ovh/manager/commit/2e64cb7b9071234694d9aaf79fa51ab44560b43d))
+
+
+
+
+
 # [2.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.5.0...@ovh-ux/manager-netapp@2.6.0) (2025-02-20)
 
 
