@@ -1,6 +1,7 @@
 import {
   TRACKING_CONFIRM_PAGE_CATEGORY,
   TRACKING_CONFIRM_PAGE,
+  TRACKING_LEVEL2,
 } from '../gdpr.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -20,6 +21,7 @@ export default /* @ngInject */ ($stateProvider) => {
       atInternet.trackPage({
         name: TRACKING_CONFIRM_PAGE,
         page_category: TRACKING_CONFIRM_PAGE_CATEGORY,
+        level2: TRACKING_LEVEL2,
       });
     },
   });
