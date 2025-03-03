@@ -20,7 +20,6 @@ import EnterpriseBillingSummary from '@/pages/dashboard/EnterpriseBillingSummary
 import PaymentStatus from '@/pages/dashboard/PaymentStatus.component';
 import Catalog from '@/pages/dashboard/Catalog.component';
 import SiretBanner from '@/pages/dashboard/SiretBanner.component';
-import SiretModal from '@/pages/dashboard/SiretModal.component';
 import KycIndiaBanner from '@/pages/dashboard/KycIndiaBanner.component';
 import KycFraudBanner from '@/pages/dashboard/KycFraudBanner.component';
 import NotificationsCarousel from '@/pages/dashboard/NotificationsCarousel.component';

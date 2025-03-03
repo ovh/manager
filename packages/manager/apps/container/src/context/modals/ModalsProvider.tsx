@@ -2,16 +2,18 @@ import { Suspense, useEffect, useState } from 'react';
 import ModalsContext, { ModalsContextType } from './modals.context';
 
 import { useShell } from '@/context';
+import { useModalManager } from '@/context/modals/useModalManager';
+import { ModalToDisplayConfiguration } from '@/types/modal-configuration.type';
 import { AgreementsUpdateModalConfiguration } from '@/components/AgreementsUpdateModal/AgreementsUpdateModal.constants';
 import { IdentityDocumentsModalConfiguration } from '@/identity-documents-modal/IdentityDocumentsModal.constants';
 import { PaymentModalConfiguration } from '@/payment-modal/PaymentModal.constants';
-import { useModalManager } from '@/context/modals/useModalManager';
-import { ModalToDisplayConfiguration } from '@/types/modal-configuration.type';
+import { SuggestionModalConfiguration } from '@/components/SuggestionModal/SuggestionModal.constants';
 
 const MODALS_TO_DISPLAY: ModalToDisplayConfiguration[] = [
   IdentityDocumentsModalConfiguration,
   PaymentModalConfiguration,
   AgreementsUpdateModalConfiguration,
+  SuggestionModalConfiguration,
 ];
 
 export const ModalsProvider = (): JSX.Element => {
