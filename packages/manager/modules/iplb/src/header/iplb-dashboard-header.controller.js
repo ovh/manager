@@ -1,4 +1,4 @@
-import { GUIDE_HOME_URL } from '../dashboard/iplb-url.constants';
+import { GUIDE_HOME_URL, IPLB_GUIDES } from '../dashboard/iplb-url.constants';
 
 export default class IpLoadBalancerDashboardHeaderCtrl {
   /* @ngInject */
@@ -8,17 +8,17 @@ export default class IpLoadBalancerDashboardHeaderCtrl {
     $translate,
     CucControllerHelper,
     IpLoadBalancerHomeService,
-    ovhDocUrl,
     constants,
+    coreConfig,
   ) {
     this.$injector = $injector;
     this.$stateParams = $stateParams;
     this.$translate = $translate;
     this.CucControllerHelper = CucControllerHelper;
     this.IpLoadBalancerHomeService = IpLoadBalancerHomeService;
-    this.ovhDocUrl = ovhDocUrl;
     this.serviceName = $stateParams.serviceName;
     this.constants = constants;
+    this.coreConfig = coreConfig;
 
     //  No error handling since we don't want to break anything for a title.
     this.configuration = this.CucControllerHelper.request.getHashLoader({
@@ -37,23 +37,28 @@ export default class IpLoadBalancerDashboardHeaderCtrl {
   }
 
   $onInit() {
+    this.user = this.coreConfig.getUser();
     this.initGuides();
   }
 
   initGuides() {
     this.guides = {};
     this.guides.title = this.$translate.instant('iplb_guides');
+    const url = IPLB_GUIDES[this.user.ovhSubsidiary] || IPLB_GUIDES.DEFAULT;
     this.guides.list = [
       {
         name: this.$translate.instant('iplb_guides_title'),
-        url: this.ovhDocUrl.getDocUrl('load-balancer'),
+        url,
         external: true,
       },
     ];
-    this.guides.footer = {
-      name: this.$translate.instant('iplb_guide_footer'),
-      url: GUIDE_HOME_URL,
-      external: true,
+    this.guides = {
+      ...this.guides,
+      footer: {
+        name: this.$translate.instant('iplb_guide_footer'),
+        url: GUIDE_HOME_URL[this.user.ovhSubsidiary] || GUIDE_HOME_URL.DEFAULT,
+        external: true,
+      },
     };
   }
 }
