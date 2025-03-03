@@ -9,6 +9,7 @@ import {
   TRACKING_PAGE_CATEGORY,
   TRACKING_PAGE,
   TRACKING_PREFIX,
+  TRACKING_LEVEL2,
 } from './gdpr.constants';
 
 export default class UserAccountGdprController {
@@ -202,13 +203,15 @@ export default class UserAccountGdprController {
       page: {
         name: TRACKING_PAGE,
       },
+      level2: TRACKING_LEVEL2,
     });
   }
 
   trackBannerDisplay(bannerType, status) {
     this.atInternet.trackPage({
-      name: `${TRACKING_PREFIX}::banner::${bannerType}::delete-account_${status}`,
+      name: `${TRACKING_PREFIX}::user::banner::${bannerType}::delete-account_${status}`,
       page_category: 'banner',
+      level2: TRACKING_LEVEL2,
     });
   }
 

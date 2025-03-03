@@ -5,6 +5,7 @@ import {
   TRACKING_CONFIRM_PAGE_CATEGORY,
   TRACKING_CONFIRM_PAGE,
   TRACKING_PREFIX,
+  TRACKING_LEVEL2,
 } from '../gdpr.constants';
 
 export default class ConfirmRequestErasureController {
@@ -95,6 +96,7 @@ export default class ConfirmRequestErasureController {
             this.buildErrorMessage(error, CONFIRM_ERASURE_REQUEST_MESSAGES_MAP),
             GDPR_FEATURES_CONFIRM_BANNER_CONTAINER,
           );
+          this.trackErrorBannerDisplay();
         })
         .finally(() => {
           this.loading.confirm = false;
@@ -115,6 +117,15 @@ export default class ConfirmRequestErasureController {
       page: {
         name: TRACKING_CONFIRM_PAGE,
       },
+      level2: TRACKING_LEVEL2,
+    });
+  }
+
+  trackErrorBannerDisplay() {
+    this.atInternet.trackPage({
+      name: `${TRACKING_PREFIX}::user::banner-error::confirmation-code-delete-account_error`,
+      page_category: 'banner',
+      level2: TRACKING_LEVEL2,
     });
   }
 }
