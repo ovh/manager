@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.7.2...@ovh-ux/manager-web@19.8.0) (2025-03-03)
+
+
+### Bug Fixes
+
+* **web.domain:** handle delete dns record errors ([047e130](https://github.com/ovh/manager/commit/047e13089b4cb06588a8949eaa1a1b8bb15e5b2e))
+* **web.hosting:** change content banner ftp ([#15395](https://github.com/ovh/manager/issues/15395)) ([0abfb16](https://github.com/ovh/manager/commit/0abfb16eedaccf8c1a3f4bed0f3faddabe3deab1)), closes [#MANAGER-16941](https://github.com/ovh/manager/issues/MANAGER-16941)
+* **web.hosting:** fix warning message on delete module ([#15468](https://github.com/ovh/manager/issues/15468)) ([194a656](https://github.com/ovh/manager/commit/194a6566861e2cbbae4d963053bed89a2482c877)), closes [#MANAGER-16947](https://github.com/ovh/manager/issues/MANAGER-16947)
+
+
+### Features
+
+* **web:** correcting translation for access module ([#15496](https://github.com/ovh/manager/issues/15496)) ([298a39c](https://github.com/ovh/manager/commit/298a39c1cea4d7567bf8483e1302402ffce610a0))
+
+
+
+
+
 ## [19.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.7.1...@ovh-ux/manager-web@19.7.2) (2025-02-27)
 
 
