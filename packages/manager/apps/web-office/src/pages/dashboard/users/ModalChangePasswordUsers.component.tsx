@@ -49,7 +49,6 @@ export default function ModalChangePasswordUsers() {
       password: '',
       confirmPassword: '',
       email: isAutomatic ? emailUser : '',
-      editEmail: '',
     },
     mode: 'onChange',
     resolver: zodResolver(CHANGE_PASSWORD_USERS_FORM_SCHEMA),
