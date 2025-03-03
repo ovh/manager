@@ -74,6 +74,7 @@ export default function Users() {
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.lastName}</OdsText>
       ),
       label: 'dashboard_users_table_lastName',
+      enableHiding: true,
     },
     {
       id: 'activationEmail',
@@ -83,6 +84,7 @@ export default function Users() {
         </OdsText>
       ),
       label: 'dashboard_users_table_activationEmail',
+      enableHiding: true,
     },
     {
       id: 'licences',
@@ -90,6 +92,7 @@ export default function Users() {
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.licences}</OdsText>
       ),
       label: 'dashboard_users_table_licences',
+      enableHiding: true,
     },
     {
       id: 'status',
@@ -106,6 +109,7 @@ export default function Users() {
           <BadgeStatus itemStatus={item.status}></BadgeStatus>
         ),
       label: 'dashboard_users_table_status',
+      enableHiding: true,
     },
     {
       id: 'action',
@@ -115,6 +119,7 @@ export default function Users() {
           licenceDetail={dataLicenceDetail}
         ></ActionButtonUsers>
       ),
+      enableHiding: false,
       label: '',
     },
   ];
@@ -144,28 +149,6 @@ export default function Users() {
           {t('dashboard_users_download_id')}
         </OdsMessage>
       </OdsText>
-      <div className="flex">
-        {!dataLicenceDetail?.serviceType ? (
-          <OdsButton
-            data-testid="licenses-order-button"
-            label={t('common:users_order_licenses')}
-            onClick={onOrderLicenses}
-            variant={ODS_BUTTON_VARIANT.outline}
-            className="block mb-4"
-          />
-        ) : (
-          <ManagerButton
-            id={dataLicenceDetail.id}
-            data-testid="users-order-button"
-            label={t('common:users_order_users')}
-            urn={dataLicenceDetail?.iam.urn}
-            onClick={onOrderUsers}
-            variant={ODS_BUTTON_VARIANT.outline}
-            className="block mb-4"
-            iamActions={[IAM_ACTIONS.user.create]}
-          />
-        )}
-      </div>
       {isLoadingUsers || isLoadingLicenceDetail ? (
         <Loading />
       ) : (
@@ -176,7 +159,26 @@ export default function Users() {
           }))}
           items={dataUsers || []}
           totalItems={dataUsers?.length || 0}
-          className="mt-4"
+          topbar={
+            !dataLicenceDetail?.serviceType ? (
+              <OdsButton
+                data-testid="licenses-order-button"
+                label={t('common:users_order_licenses')}
+                onClick={onOrderLicenses}
+                variant={ODS_BUTTON_VARIANT.outline}
+              />
+            ) : (
+              <ManagerButton
+                id={dataLicenceDetail.id}
+                data-testid="users-order-button"
+                label={t('common:users_order_users')}
+                urn={dataLicenceDetail?.iam.urn}
+                onClick={onOrderUsers}
+                variant={ODS_BUTTON_VARIANT.outline}
+                iamActions={[IAM_ACTIONS.user.create]}
+              />
+            )
+          }
         />
       )}
     </div>
