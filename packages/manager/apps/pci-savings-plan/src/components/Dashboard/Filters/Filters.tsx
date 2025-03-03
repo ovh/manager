@@ -140,7 +140,7 @@ const Filters = ({
   }, [trackClick, flavor, period]);
 
   return (
-    <div className="flex flex-row gap-4">
+    <div className="flex flex-row gap-4 mt-6">
       <SelectWithLabel
         label={t('dashboard_select_label_period')}
         options={periodOptions}
