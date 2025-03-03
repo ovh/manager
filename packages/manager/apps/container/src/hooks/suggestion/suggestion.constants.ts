@@ -4,7 +4,7 @@ import { Suggestion } from '@/types/suggestion';
 export const SUGGESTION_MODAL_DISPLAY_PREFERENCE =
   'TIME_TO_DISPLAY_SUGGESTION_MODAL_UPDATE';
 
-export const TIME_BETWEEN_SUGGESTION_MODAL_DISPLAY = 24 * 60 * 60 * 1000; // 24h
+export const TIME_BETWEEN_SUGGESTION_MODAL_DISPLAY = 24 * 60 * 60; // 24h
 
 export const IGNORED_SUGGESTION_TYPES = ['COMPANY NUMBER', 'DUNS', 'NIN'];
 
