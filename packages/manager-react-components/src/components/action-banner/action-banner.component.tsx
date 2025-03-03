@@ -35,11 +35,11 @@ export function ActionBanner({
       isDismissible={isDismissible}
       color={color}
       variant={variant}
-      className="mt-3 flex-row"
+      className={`mt-3 action-banner action-banner—-${color}`}
       data-testid="actionBanner-message_container"
     >
-      <div className="sm:flex sm:flex-row sm:justify-between sm:items-center">
-        <OdsText>
+      <div className="w-full">
+        <OdsText className="action-banner__text block">
           <span
             dangerouslySetInnerHTML={{
               __html: message,
@@ -48,7 +48,7 @@ export function ActionBanner({
         </OdsText>
         {onClick && (
           <OdsButton
-            className="sm:mt-0 mt-4 sm:ml-4 ml-0"
+            className="sm:mt-0 mt-4 ml-0"
             data-testid="actionBanner-button"
             onClick={onClick}
             label={cta}
@@ -58,13 +58,12 @@ export function ActionBanner({
           <OdsLink
             data-testid="action-banner-link"
             id="action-banner-link"
-            className="sm:mt-0 mt-4 sm:ml-4 ml-0"
+            className="sm:mt-0 mt-4 ml-0"
             onClick={onClick}
             href={href}
             target="_blank"
-          >
-            {cta}
-          </OdsLink>
+            label={cta}
+          ></OdsLink>
         )}
       </div>
     </OdsMessage>
