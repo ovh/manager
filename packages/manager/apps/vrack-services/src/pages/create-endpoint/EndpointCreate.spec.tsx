@@ -2,10 +2,8 @@ import { describe, it } from 'vitest';
 import '@testing-library/jest-dom';
 import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
-import {
-  vrackServicesListMocks,
-  iamResourcesMocks,
-} from '@ovh-ux/manager-network-common';
+import { vrackServicesListMocks } from '@ovh-ux/manager-network-common';
+import { iamResourcesMocks } from '@/data/mocks/iam';
 import {
   changeSelectValueByLabelText,
   getButtonByVariant,

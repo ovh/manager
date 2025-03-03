@@ -14,7 +14,7 @@ import {
 } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import {
-  ResourceStatus,
+  VrackServicesResourceStatus,
   VrackServicesWithIAM,
 } from '@ovh-ux/manager-network-common';
 import { getDisplayName } from '@/utils/vrack-services';
@@ -29,13 +29,13 @@ export const InfoIcon: React.FC<InfoInconProps> = ({ className, vs }) => {
   const displayName = getDisplayName(vs);
   const size = ODS_ICON_SIZE.xs;
 
-  if (vs.resourceStatus === ResourceStatus.READY) {
+  if (vs.resourceStatus === VrackServicesResourceStatus.READY) {
     return null;
   }
 
   return (
     <OsdsTooltip>
-      {vs.resourceStatus === ResourceStatus.ERROR ? (
+      {vs.resourceStatus === VrackServicesResourceStatus.ERROR ? (
         <OsdsIcon
           className={className}
           color={ODS_THEME_COLOR_INTENT.warning}
@@ -52,7 +52,7 @@ export const InfoIcon: React.FC<InfoInconProps> = ({ className, vs }) => {
         />
       )}
       <OsdsTooltipContent slot="tooltip-content">
-        {vs.resourceStatus === ResourceStatus.ERROR ? (
+        {vs.resourceStatus === VrackServicesResourceStatus.ERROR ? (
           <OsdsMessage color={ODS_THEME_COLOR_INTENT.warning}>
             {t('vrackServicesInErrorMessage', { displayName })}
           </OsdsMessage>

@@ -7,10 +7,8 @@ import {
 } from '@ovh-ux/manager-core-test-utils';
 import { waitFor, fireEvent, screen } from '@testing-library/react';
 import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
-import {
-  vrackServicesListMocks,
-  iamResourcesMocks,
-} from '@ovh-ux/manager-network-common';
+import { vrackServicesListMocks } from '@ovh-ux/manager-network-common';
+import { iamResourcesMocks } from '@/data/mocks/iam';
 import {
   assertModalTitle,
   changeInputValueByLabelText,

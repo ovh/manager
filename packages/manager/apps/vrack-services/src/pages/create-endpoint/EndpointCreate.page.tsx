@@ -25,6 +25,10 @@ import { ErrorPage } from '@/components/ErrorPage.component';
 import { urls } from '@/routes/routes.constants';
 import { PageName } from '@/utils/tracking';
 import { MessagesContext } from '@/components/feedback-messages/Messages.context';
+import {
+  getIamResourceQueryKey,
+  getIamResource,
+} from '@/data/api/get/iamResource';
 
 export default function EndpointCreatePage() {
   const { t } = useTranslation('vrack-services/endpoints');
@@ -50,7 +54,10 @@ export default function EndpointCreatePage() {
     serviceListResponse,
     isServiceListLoading,
     serviceListError,
-  } = useServiceList(id);
+  } = useServiceList(id, {
+    getIamResourceQueryKey,
+    getIamResource,
+  });
 
   const {
     createEndpoint,
@@ -187,7 +194,7 @@ export default function EndpointCreatePage() {
           size={ODS_SELECT_SIZE.md}
         >
           <span slot="placeholder">{t('subnetPlaceholder')}</span>
-          {vrackServices?.data?.currentState.subnets.map((subnet: any) => (
+          {vrackServices?.data?.currentState.subnets.map((subnet) => (
             <OsdsSelectOption key={subnet.cidr} value={subnet.cidr}>
               {subnet.displayName
                 ? `${subnet.displayName} - ${subnet.cidr}`

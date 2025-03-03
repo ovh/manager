@@ -3,8 +3,12 @@ import { useParams } from 'react-router-dom';
 import {
   useServiceList,
   useVrackService,
-  IAMResource,
 } from '@ovh-ux/manager-network-common';
+import { IAMResource } from '@/data/types';
+import {
+  getIamResourceQueryKey,
+  getIamResource,
+} from '@/data/api/get/iamResource';
 
 export type EndpointItem = {
   description: string;
@@ -45,7 +49,10 @@ const sortEndpoints = (
 export const useEndpointsList = (sorting: ColumnSort): EndpointItem[] => {
   const { id } = useParams();
   const { data: vrackServices } = useVrackService();
-  const { iamResources } = useServiceList(id);
+  const { iamResources } = useServiceList(id, {
+    getIamResourceQueryKey,
+    getIamResource,
+  });
 
   const list =
     vrackServices?.currentState.subnets

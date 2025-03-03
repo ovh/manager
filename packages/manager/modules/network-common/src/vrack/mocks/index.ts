@@ -21,33 +21,31 @@ import {
   getRegionMocks,
   GetRegionMocksParams,
 } from './vrack-services/region';
-import { GetIamMocksParams, getIamMocks } from './iam/iam';
 
-export type ConfigParams = GetVrackServicesMocksParams &
+export type NetworkConfigParams = GetVrackServicesMocksParams &
   GetOrderDetailsMocksParams &
   GetRegionMocksParams &
   GetVrackMocksParams &
   GetServicesMocksParams &
-  GetIamMocksParams &
   GetCartMocksParams &
   Omit<GetFeatureAvailabilityMocksParams, 'featureAvailabilityResponse'> & {
     isVrackServicesFeatureUnavailable?: boolean;
     isVrackServicesOrderFeatureUnavailable?: boolean;
   };
 
-export const getConfig = ({
+export const getNetworkConfig = ({
   isFeatureAvailabilityServiceKo,
   isVrackServicesFeatureUnavailable,
   isVrackServicesOrderFeatureUnavailable,
   ...params
-}: ConfigParams): Handler[] =>
+}: NetworkConfigParams): Handler[] =>
   [
     getVrackServicesMocks,
     getRegionMocks,
     getVrackMocks,
     getOrderDetailsMocks,
     getServicesMocks,
-    getIamMocks,
+
     getCartMocks,
     getRegionFlagsMocks,
   ]
@@ -71,4 +69,3 @@ export const getConfig = ({
 
 export * from './vrack-services';
 export * from './vrack';
-export * from './iam';

@@ -1,5 +1,5 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
-import { EligibleManagedService } from '../../types';
+import { EligibleManagedService } from '../../../vrack-services';
 
 export const getEligibleManagedServiceListQueryKey = (
   vrackServicesId: string,

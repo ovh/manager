@@ -2,9 +2,8 @@ import { useMutation } from '@tanstack/react-query';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { CreateCartResult } from '@ovh-ux/manager-module-order';
 import { createVrackServicesCart } from '../../vrack/utils/cart';
-import { useSendOrder } from '../index';
 
-export const useCreateCart = () => {
+export const useCreateVrackServicesCart = (useSendOrder) => {
   const {
     sendOrder,
     isPending: isSendOrderPending,

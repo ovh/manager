@@ -13,6 +13,10 @@ import {
   useVrackService,
   useServiceList,
 } from '@ovh-ux/manager-network-common';
+import {
+  getIamResourceQueryKey,
+  getIamResource,
+} from '@/data/api/get/iamResource';
 import { ErrorPage } from '@/components/ErrorPage.component';
 import { EndpointItem, useEndpointsList } from './useEndpointList.hook';
 import { ActionCell } from './ActionCell.component';
@@ -28,7 +32,10 @@ export const EndpointDatagrid: React.FC = () => {
     isIamResourcesLoading,
     iamResourcesError,
     serviceListError,
-  } = useServiceList(id);
+  } = useServiceList(id, {
+    getIamResourceQueryKey,
+    getIamResource,
+  });
 
   const { sorting, setSorting } = useDataGrid({
     id: 'managedServiceURN',

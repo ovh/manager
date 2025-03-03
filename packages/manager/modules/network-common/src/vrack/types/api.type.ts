@@ -101,8 +101,3 @@ export type NonExpiringService = {
   serviceId: number;
   status: 'expired' | 'inCreation' | 'ok' | 'pendingDebt' | 'unPaid';
 };
-
-export type GetVrackServicesResourceListParams = {
-  /** Pagination cursor */
-  cursor?: 'next' | 'prev';
-};

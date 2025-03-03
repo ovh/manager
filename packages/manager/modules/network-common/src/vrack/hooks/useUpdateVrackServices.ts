@@ -10,7 +10,7 @@ import {
   getVrackServicesResourceListQueryKey,
   updateVrackServices,
   updateVrackServicesQueryKey,
-} from '../index';
+} from '../../vrack-services';
 
 /**
  * Get the function to mutate a vRack Services

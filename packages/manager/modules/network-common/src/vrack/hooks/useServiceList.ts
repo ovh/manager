@@ -5,14 +5,14 @@ import { ApiResponse, ApiError } from '@ovh-ux/manager-core-api';
 import {
   getEligibleManagedServiceList,
   getEligibleManagedServiceListQueryKey,
-  getIamResource,
-  getIamResourceQueryKey,
   useVrackService,
+} from '../index';
+
+import {
   EligibleManagedService,
-  IAMResource,
   Subnet,
   VrackServicesWithIAM,
-} from '../index';
+} from '../../vrack-services';
 
 const addVrackServicesUrnToUrnList = (vrackServices: VrackServicesWithIAM) => (
   urns: string[],
@@ -27,7 +27,13 @@ const addVrackServicesUrnToUrnList = (vrackServices: VrackServicesWithIAM) => (
     ),
   );
 
-export const useServiceList = (vrackServicesId: string) => {
+export const useServiceList = <T>(
+  vrackServicesId: string,
+  iamResource: {
+    getIamResourceQueryKey;
+    getIamResource: (urnList) => Promise<ApiResponse<T[]>>;
+  },
+) => {
   const [urnList, setUrnList] = React.useState<string[]>([]);
   const { data: vrackServices } = useVrackService();
 
@@ -45,9 +51,9 @@ export const useServiceList = (vrackServicesId: string) => {
     isLoading: isIamResourcesLoading,
     error: iamResourcesError,
     refetch: refetchIamResources,
-  } = useQuery<ApiResponse<IAMResource[]>, ApiError>({
-    queryKey: getIamResourceQueryKey(urnList),
-    queryFn: () => getIamResource(urnList),
+  } = useQuery<ApiResponse<T[]>, ApiError>({
+    queryKey: iamResource.getIamResourceQueryKey(urnList),
+    queryFn: () => iamResource.getIamResource(urnList),
     enabled: urnList.length > 0,
   });
 

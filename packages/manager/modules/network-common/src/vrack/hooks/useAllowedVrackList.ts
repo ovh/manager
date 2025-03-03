@@ -25,7 +25,7 @@ export const useAllowedVrackList = (vrackServicesId?: string) => {
     enabled: !!vrackServicesId,
     staleTime: Infinity,
   });
-
+  
   return useQueries({
     queries:
       isFetched && vrackListResponse?.data && vrackListResponse.data.length > 0

@@ -1,4 +1,4 @@
-import { Task, IamMetadata } from './api.type';
+import { Task, IamMetadata } from '../../vrack/types/api.type';
 
 export type Region = {
   name: string;
@@ -27,13 +27,13 @@ export type Subnet = {
   vlan: number | null;
 };
 
-export enum ProductStatus {
+export enum VrackServicesProductStatus {
   ACTIVE = 'ACTIVE',
   SUSPENDED = 'SUSPENDED',
   DRAFT = 'DRAFT',
 }
 
-export enum ResourceStatus {
+export enum VrackServicesResourceStatus {
   CREATING = 'CREATING',
   DELETING = 'DELETING',
   ERROR = 'ERROR',
@@ -57,14 +57,14 @@ export type VrackServices = {
   createdAt: string;
   currentState: {
     displayName: string | null;
-    productStatus: ProductStatus;
+    productStatus: VrackServicesProductStatus;
     subnets: Subnet[];
     vrackId: string | null;
     region: string;
   };
   currentTasks: Task[];
   id: string;
-  resourceStatus: ResourceStatus;
+  resourceStatus: VrackServicesResourceStatus;
   targetSpec: TargetSpec;
   // yyyy-mm-ddTZ
   updatedAt: string;

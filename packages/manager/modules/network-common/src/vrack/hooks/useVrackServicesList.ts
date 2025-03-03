@@ -5,7 +5,7 @@ import {
   getVrackServicesResourceListQueryKey,
   getVrackServicesResourceList,
   getVrackServicesResourceQueryKey,
-} from '../index';
+} from '../../vrack-services';
 
 export const useVrackServicesList = (refetchIntervalTime = 5000) => {
   const queryClient = useQueryClient();

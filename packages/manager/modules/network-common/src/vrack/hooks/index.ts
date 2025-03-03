@@ -7,5 +7,4 @@ export * from './useDissociateVrack';
 export * from './useAllowedVrackList';
 export * from './useVrackList';
 export * from './useCreateCartWithVrack';
-export * from './useSendOrder';
-export * from './useCreateCart';
+export * from './useCreateVrackServicesCart';
