@@ -27,6 +27,7 @@ export const SECTIONS = {
   unshelve: 'unshelve',
   softReboot: 'soft-reboot',
   hardReboot: 'hard-reboot',
+  reinstall: 'reinstall',
 };
 
 const instanceActionsSections = [
@@ -37,6 +38,7 @@ const instanceActionsSections = [
   SECTIONS.unshelve,
   SECTIONS.softReboot,
   SECTIONS.hardReboot,
+  SECTIONS.reinstall,
 ];
 
 const instanceActionLegacyRoutes = instanceActionsSections.map((section) => ({

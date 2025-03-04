@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { PciModal } from '@ovh-ux/manager-pci-common';
 import {
-  getInstanceNameById,
+  getInstanceById,
   updateDeletedInstanceStatus,
 } from '@/data/hooks/instance/useInstances';
 import queryClient from '@/queryClient';
@@ -21,9 +21,10 @@ export type TSectionType =
   | 'shelve'
   | 'unshelve'
   | 'soft-reboot'
-  | 'hard-reboot';
+  | 'hard-reboot'
+  | 'reinstall';
 
-const actionSectionRegex = /^(delete|start|stop|shelve|unshelve|soft-reboot|hard-reboot)$/;
+const actionSectionRegex = /^(delete|start|stop|shelve|unshelve|soft-reboot|hard-reboot|reinstall)$/;
 
 const InstanceAction: FC = () => {
   const { t } = useTranslation(['actions', 'common']);
@@ -42,10 +43,12 @@ const InstanceAction: FC = () => {
     [section],
   );
 
-  const instanceName = useMemo(
-    () => getInstanceNameById(projectId, instanceId, queryClient),
+  const instance = useMemo(
+    () => getInstanceById(projectId, instanceId, queryClient),
     [instanceId, projectId],
   );
+
+  const instanceName = instance?.name;
 
   const canExecuteAction = !!instanceId && !!instanceName && !!section;
 
@@ -92,7 +95,7 @@ const InstanceAction: FC = () => {
   });
 
   const handleInstanceAction = () => {
-    mutationHandler(instanceId);
+    mutationHandler(instance);
   };
 
   useEffect(() => {
