@@ -5,6 +5,8 @@ import {
   useColumnFilters,
   useDataGrid,
   useNotifications,
+  DatagridColumn,
+  DataGridTextCell,
 } from '@ovh-ux/manager-react-components';
 import {
   OsdsButton,
@@ -23,16 +25,22 @@ import {
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
-import { Suspense, useRef, useState } from 'react';
+import { Suspense, useMemo, useRef, useState } from 'react';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { usePoolMembers } from '@/api/hook/usePoolMember';
-import { usePoolMemberDatagridColumn } from './usePoolMemberDatagridColumn';
+import OperatingStatusComponent from '@/components/listing/OperatingStatus.component';
+import ProvisioningStatusComponent from '@/components/listing/ProvisioningStatus.component';
+import { TPoolMember } from '@/api/data/pool-member';
+import ActionsComponent from '@/components/detail/pools/members/Actions.component';
 
 export default function PoolMemberList() {
-  const { t } = useTranslation('pools/members/list');
-  const { t: tPoolDetail } = useTranslation('pools/detail');
-  const { t: tFilter } = useTranslation('filter');
+  const { t } = useTranslation([
+    'pools/members/list',
+    'pools/detail',
+    'filter',
+    'load-balancer',
+  ]);
 
   const { projectId, region, poolId } = useParams();
   const { pagination, setPagination, sorting, setSorting } = useDataGrid();
@@ -52,7 +60,63 @@ export default function PoolMemberList() {
     filters,
   );
 
-  const columns = usePoolMemberDatagridColumn();
+  const columns: DatagridColumn<TPoolMember>[] = useMemo(
+    () => [
+      {
+        id: 'name',
+        cell: (props: TPoolMember) => (
+          <DataGridTextCell>{props.name}</DataGridTextCell>
+        ),
+        label: t('octavia_load_balancer_pools_detail_members_name'),
+      },
+      {
+        id: 'address',
+        cell: (props: TPoolMember) => (
+          <DataGridTextCell>{props.address}</DataGridTextCell>
+        ),
+        label: t('octavia_load_balancer_pools_detail_members_address'),
+      },
+      {
+        id: 'protocolPort',
+        cell: (props: TPoolMember) => (
+          <DataGridTextCell>{props.protocolPort}</DataGridTextCell>
+        ),
+        label: t('octavia_load_balancer_pools_detail_members_protocol_port'),
+      },
+      {
+        id: 'provisioningStatus',
+        cell: (props: TPoolMember) => (
+          <ProvisioningStatusComponent
+            status={props.provisioningStatus}
+            className="w-fit"
+          />
+        ),
+        label: t('load-balancer:octavia_load_balancer_provisioning_status'),
+      },
+      {
+        id: 'operatingStatus',
+        cell: (props: TPoolMember) => (
+          <OperatingStatusComponent
+            status={props.operatingStatus}
+            className="w-fit"
+          />
+        ),
+        label: t('load-balancer:octavia_load_balancer_operating_status'),
+        isSortable: false,
+      },
+      {
+        id: 'actions',
+        cell: (props: TPoolMember) => (
+          <div className="min-w-16">
+            <ActionsComponent memberId={props.id} />
+          </div>
+        ),
+        label: '',
+        isSortable: false,
+      },
+    ],
+    [t],
+  );
 
   return (
     <>
@@ -92,8 +156,8 @@ export default function PoolMemberList() {
               className="mr-2"
               color={ODS_THEME_COLOR_INTENT.primary}
             />
-            {tPoolDetail(
-              'octavia_load_balancer_pools_detail_add_ips_instances',
+            {t(
+              'pools/detail:octavia_load_balancer_pools_detail_add_ips_instances',
             )}
           </OsdsButton>
         </div>
@@ -129,7 +193,7 @@ export default function PoolMemberList() {
                 className="mr-2"
                 color={ODS_THEME_COLOR_INTENT.primary}
               />
-              {tFilter('common_criteria_adder_filter_label')}
+              {t('filter:common_criteria_adder_filter_label')}
             </OsdsButton>
             <OsdsPopoverContent>
               <FilterAdd

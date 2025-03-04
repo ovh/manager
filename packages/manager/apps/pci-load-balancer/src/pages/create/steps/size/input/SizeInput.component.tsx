@@ -1,6 +1,6 @@
 import { ShapesInputComponent } from '@ovh-ux/manager-pci-common';
-import { TAddon } from '@/pages/create/store';
 import { LabelComponent } from './Label.component';
+import { TProductAddonDetail } from '@/types/product.type';
 
 export default function SizeInputComponent({
   addons,
@@ -8,20 +8,20 @@ export default function SizeInputComponent({
   onInput,
   columnsCount = 3,
 }: Readonly<{
-  addons: TAddon[];
-  value?: TAddon;
-  onInput: (item: TAddon) => void;
+  addons: TProductAddonDetail[];
+  value?: TProductAddonDetail;
+  onInput: (item: TProductAddonDetail) => void;
   columnsCount?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 }>): JSX.Element {
   return (
-    <ShapesInputComponent<TAddon>
+    <ShapesInputComponent<TProductAddonDetail>
       items={addons}
       value={value}
       onInput={onInput}
       columnsCount={columnsCount}
       item={{
         LabelComponent,
-        getId: (item) => item.code,
+        getId: (item) => item.size,
       }}
     />
   );
