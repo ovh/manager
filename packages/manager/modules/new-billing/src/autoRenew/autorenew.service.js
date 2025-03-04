@@ -13,6 +13,8 @@ import {
   SERVICE_EXPIRATION,
   SERVICE_STATES,
   SERVICE_STATUS,
+  SERVICE_RENEW_MODES,
+  SERVICE_TYPES_USING_V6_SERVICES,
 } from './autorenew.constants';
 
 export default class {
@@ -202,6 +204,16 @@ export default class {
     }).$promise;
   }
 
+  putServiceV6(service, data = {}) {
+    return this.OvhHttp.put('/services/{id}', {
+      rootPath: 'apiv6',
+      urlParams: {
+        id: service.id,
+      },
+      data,
+    });
+  }
+
   disableAutoRenewForDomains() {
     return this.OvhHttp.post('/me/manualDomainPayment', {
       rootPath: 'apiv6',
@@ -271,10 +283,30 @@ export default class {
   }
 
   updateRenew(service, agreements) {
-    const agreementsPromise = service.hasAutomaticRenew()
-      ? this.DucUserContractService.acceptAgreements(agreements)
-      : Promise.resolve([]);
+    const agreementsPromise =
+      agreements && service.hasAutomaticRenew()
+        ? this.DucUserContractService.acceptAgreements(agreements)
+        : Promise.resolve([]);
+
     return agreementsPromise.then(() => {
+      if (SERVICE_TYPES_USING_V6_SERVICES.includes(service?.serviceType)) {
+        const mode = service?.renew?.automatic
+          ? SERVICE_RENEW_MODES.AUTOMATIC
+          : SERVICE_RENEW_MODES.MANUAL;
+
+        const period = Number.isInteger(service?.renew?.period)
+          ? `P${service?.renew?.period || 1}M`
+          : service?.renew?.period;
+
+        return this.putServiceV6(service, {
+          renew: {
+            mode,
+            ...(mode === SERVICE_RENEW_MODES.AUTOMATIC && {
+              period,
+            }),
+          },
+        });
+      }
       const toUpdate = pick(service, ['serviceId', 'serviceType', 'renew']);
       toUpdate.route = get(service, 'route.url');
       return this.updateServices([toUpdate]);
