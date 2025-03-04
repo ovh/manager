@@ -61,11 +61,11 @@ export const updateDeletedInstanceStatus = (
   );
 };
 
-export const getInstanceNameById = (
+export const getInstanceById = (
   projectId: string,
   id: string | undefined,
   queryClient: QueryClient,
-): string | undefined => {
+): TInstanceDto | undefined => {
   if (!id) return undefined;
 
   const data = queryClient.getQueriesData<InfiniteData<TInstanceDto[], number>>(
@@ -73,12 +73,15 @@ export const getInstanceNameById = (
       predicate: listQueryKeyPredicate(projectId),
     },
   );
-  return data.reduce((acc, [, result]) => {
-    if (acc.length) return acc;
-    if (result)
-      return result.pages.flat().find((elt) => elt.id === id)?.name ?? acc;
+
+  return data.reduce((acc: TInstanceDto | undefined, [, result]) => {
+    if (acc) return acc;
+    if (result) {
+      const foundInstance = result.pages.flat().find((elt) => elt.id === id);
+      return foundInstance ?? acc;
+    }
     return acc;
-  }, '');
+  }, undefined);
 };
 
 const buildInstanceStatusSeverity = (
@@ -168,7 +171,14 @@ const getActionHrefByName = (
     };
   }
 
-  const actions = new Set(['delete', 'stop', 'start', 'shelve', 'unshelve']);
+  const actions = new Set([
+    'delete',
+    'stop',
+    'start',
+    'shelve',
+    'unshelve',
+    'reinstall',
+  ]);
 
   if (actions.has(name)) {
     return {
