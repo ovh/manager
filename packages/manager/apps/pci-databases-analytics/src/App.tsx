@@ -1,3 +1,4 @@
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import React, { useEffect } from 'react';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { useShell } from '@ovh-ux/manager-react-shell-client';
@@ -22,6 +23,7 @@ function App() {
       {loading && <ProgressLoader />}
       <React.Suspense fallback={<Loading />}>
         <Router />
+        <ReactQueryDevtools initialIsOpen={false} />
       </React.Suspense>
     </QueryClientProvider>
   );

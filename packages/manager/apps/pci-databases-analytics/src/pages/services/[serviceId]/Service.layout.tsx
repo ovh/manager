@@ -28,7 +28,7 @@ export const Loader = async ({ params }: ServiceLayoutProps) => {
       queryFn: () => getService({ projectId, serviceId }),
     })
     .then(
-      () => null,
+      () => true,
       () =>
         redirect(
           `/pci/projects/${projectId}/databases-analytics/${category}/services`,
