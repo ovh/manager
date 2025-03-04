@@ -48,8 +48,6 @@ export default function Changelog() {
     const getIsAccountSidebarVisible = async () => {
       const newValueIsAccountSidebarVisible = (await shell.ux.isAccountSidebarVisible()) as boolean;
       setIsAccountSidebarVisible(() => newValueIsAccountSidebarVisible);
-      shell.ux.hidePreloader();
-      shell.ux.stopProgress();
     };
     getIsAccountSidebarVisible();
   }, []);
@@ -371,7 +369,7 @@ export default function Changelog() {
                     hue={ODS_TEXT_COLOR_HUE._400}
                     color={ODS_THEME_COLOR_INTENT.text}
                   >
-                    {t('changelog_tile_list_item_2')}
+                    {t('changelog_tile_list_item_2')}{' '}
                     <OsdsLink
                       role="link"
                       target={OdsHTMLAnchorElementTarget._blank}

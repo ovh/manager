@@ -92,8 +92,6 @@ export default function Dashboard() {
       const newValueIsAccountSidebarVisible = (await shell.ux.isAccountSidebarVisible()) as boolean;
       setIsAccountSidebarVisible(() => newValueIsAccountSidebarVisible);
     };
-    shell.ux.hidePreloader();
-    shell.ux.stopProgress();
     getIsAccountSidebarVisible();
   }, []);
 
