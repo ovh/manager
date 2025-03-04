@@ -23,7 +23,7 @@ export function ClusterConfirmationStep({
         className="mt-4 w-fit"
         size={ODS_BUTTON_SIZE.md}
         color={ODS_THEME_COLOR_INTENT.primary}
-        onClick={() => onSubmit()}
+        onClick={onSubmit}
       >
         {t('common_stepper_submit_button_cluster')}
       </OsdsButton>

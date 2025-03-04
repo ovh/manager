@@ -25,7 +25,7 @@ import {
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-import useSavingPlanAvailable from '@/hooks/useSavingPlanAvailable';
+import useSavingsPlanAvailable from '@/hooks/useSavingPlanAvailable';
 
 const checkedClass =
   'cursor-pointer font-bold bg-[--ods-color-blue-100] border-[--ods-color-blue-600]';
@@ -47,7 +47,7 @@ export type TBillingStepProps = {
 export default function BillingStep(props: TBillingStepProps): JSX.Element {
   const { t } = useTranslation('billing-anti-affinity');
   const { t: tFlavourBilling } = useTranslation('flavor-billing');
-  const showSavingPlan = useSavingPlanAvailable();
+  const showSavingPlan = useSavingsPlanAvailable();
   const {
     getFormattedMonthlyCatalogPrice,
     getFormattedHourlyCatalogPrice,
@@ -69,7 +69,7 @@ export default function BillingStep(props: TBillingStepProps): JSX.Element {
             'pci_projects_project_instances_configure_billing_type',
           )}
         </OsdsText>
-        {props.monthlyBilling.isComingSoon && !showSavingPlan ? (
+        {props.monthlyBilling.isComingSoon && showSavingPlan ? (
           <OsdsMessage
             data-testid="coming_soon_message"
             type={ODS_MESSAGE_TYPE.info}
@@ -108,7 +108,7 @@ export default function BillingStep(props: TBillingStepProps): JSX.Element {
             size={ODS_TEXT_SIZE._400}
           >
             {t('kubernetes_add_billing_type_description')}
-            {!showSavingPlan && t('kubernetes_add_billing_type_description')}
+            {showSavingPlan && t('kubernetes_add_billing_type_description')}
           </OsdsText>
         )}
       </div>

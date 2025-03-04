@@ -11,16 +11,17 @@ import {
 export interface NodeTypeStepProps {
   projectId: string;
   region: string;
-
-  onFlavorChange: Dispatch<SetStateAction<KubeFlavor | null>>;
+  onSelect: Dispatch<SetStateAction<KubeFlavor | null>>;
 }
+
+type FlavorSelectorProps = Parameters<typeof FlavorSelector>[0];
 
 export default function NodePoolType({
   projectId,
   region,
-  onFlavorChange,
-}: Readonly<NodeTypeStepProps>) {
-  const { t: tAddForm } = useTranslation('add-form');
+  onSelect,
+}: Readonly<FlavorSelectorProps>) {
+  const { t } = useTranslation('add-form');
 
   return (
     <div>
@@ -30,12 +31,12 @@ export default function NodePoolType({
         level={ODS_TEXT_LEVEL.heading}
         size={ODS_TEXT_SIZE._400}
       >
-        {tAddForm('kube_common_node_pool_model_type_selector')}
+        {t('kube_common_node_pool_model_type_selector')}
       </OsdsText>
       <FlavorSelector
         projectId={projectId}
         region={region}
-        onSelect={onFlavorChange}
+        onSelect={onSelect}
       />
     </div>
   );

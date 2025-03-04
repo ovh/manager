@@ -21,7 +21,7 @@ describe('NodePoolType', () => {
       <NodePoolType
         projectId="test-project"
         region="test-region"
-        onFlavorChange={mockOnFlavorChange}
+        onSelect={mockOnFlavorChange}
       />,
       { wrapper },
     );
@@ -36,7 +36,7 @@ describe('NodePoolType', () => {
       <NodePoolType
         projectId="test-project"
         region="test-region"
-        onFlavorChange={mockOnFlavorChange}
+        onSelect={mockOnFlavorChange}
       />,
       { wrapper },
     );

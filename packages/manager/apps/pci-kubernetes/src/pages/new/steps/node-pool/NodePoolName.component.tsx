@@ -28,7 +28,7 @@ const NodePoolName = ({
   name,
   onNameChange,
 }: NodeNameProps) => {
-  const { t: tAdd } = useTranslation('add');
+  const { t } = useTranslation('add');
 
   return (
     <>
@@ -39,13 +39,13 @@ const NodePoolName = ({
         size={ODS_TEXT_SIZE._400}
         slot="label"
       >
-        {tAdd('kubernetes_add_nodepool_name_placeholder')}
+        {t('kubernetes_add_nodepool_name_placeholder')}
       </OsdsText>
       <OsdsFormField
         class="mt-6"
         error={
           hasError
-            ? tAdd('kube_add_node_pool_name_input_pattern_validation_error')
+            ? t('kube_add_node_pool_name_input_pattern_validation_error')
             : ''
         }
         inline
@@ -56,9 +56,10 @@ const NodePoolName = ({
           color={ODS_THEME_COLOR_INTENT.text}
           size={ODS_TEXT_SIZE._200}
         >
-          {tAdd('kubernetes_add_name')}
+          {t('kubernetes_add_name')}
         </OsdsText>
         <OsdsInput
+          placeholder={t('kube_add_node_pool_name_label')}
           value={name}
           color={ODS_THEME_COLOR_INTENT.primary}
           type={ODS_INPUT_TYPE.text}
