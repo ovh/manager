@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.9.0...@ovh-ux/manager-billing-components@4.9.1) (2025-03-04)
+
+
+### Bug Fixes
+
+* **billing:** fix my offer link appears two times ([#15689](https://github.com/ovh/manager/issues/15689)) ([61d2809](https://github.com/ovh/manager/commit/61d2809699df16e943fd054c9f2dbfdaceeb98f7))
+
+
+
+
+
 # [4.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.8.3...@ovh-ux/manager-billing-components@4.9.0) (2025-02-11)
 
 

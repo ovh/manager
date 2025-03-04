@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-react-app@0.8.2...@ovh-ux/manager-hub-react-app@0.8.3) (2025-03-04)
+
+
+### Performance Improvements
+
+* **hub-react:** improve web core vitals scores ([#15556](https://github.com/ovh/manager/issues/15556)) ([84a6053](https://github.com/ovh/manager/commit/84a605350d77ed9852bfcaa37ba5c178bfe2794a))
+
+
+
+
+
 ## [0.8.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-react-app@0.8.1...@ovh-ux/manager-hub-react-app@0.8.2) (2025-02-27)
 
 **Note:** Version bump only for package @ovh-ux/manager-hub-react-app

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.31.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.31.2...@ovh-ux/manager-new-billing@0.31.3) (2025-03-04)
+
+
+### Bug Fixes
+
+* **new-billing:** add zimbra slot translation ([#15633](https://github.com/ovh/manager/issues/15633)) ([013d668](https://github.com/ovh/manager/commit/013d6681c70a7b4688a8cd85a06b951cdf9dc870))
+
+
+
+
+
 ## [0.31.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.31.1...@ovh-ux/manager-new-billing@0.31.2) (2025-02-24)
 
 
