@@ -288,7 +288,7 @@ export const useStorage = (
       isPending: isStoragesPending,
       storage: storages?.resources.find(
         (c) =>
-          (c.id === storageId || c.name === storageId) &&
+          (c.id === storageId || (c.name === storageId && !c.id)) &&
           c.region === storageRegion,
       ),
       error: errorStorages,
