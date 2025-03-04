@@ -7,9 +7,11 @@ import {
   startInstance,
   stopInstance,
   unshelveInstance,
+  reinstallInstance,
 } from '@/data/api/instance';
 import { DeepReadonly } from '@/types/utils.type';
 import { instancesQueryKey } from '@/utils';
+import { TInstanceDto } from '@/types/instance/api.type';
 
 export type TMutationFnType =
   | 'delete'
@@ -18,9 +20,10 @@ export type TMutationFnType =
   | 'shelve'
   | 'unshelve'
   | 'soft-reboot'
-  | 'hard-reboot';
+  | 'hard-reboot'
+  | 'reinstall';
 
-export type TMutationFnVariables = string | undefined;
+export type TMutationFnVariables = TInstanceDto | undefined;
 
 export type TUseInstanceActionCallbacks = DeepReadonly<{
   onSuccess?: (data?: null) => void;
@@ -39,23 +42,34 @@ export const useInstanceAction = (
     ...(type !== null ? [type] : []),
   ]);
   const mutationFn = useCallback(
-    (instanceId?: string) => {
-      if (!instanceId) return Promise.reject(unknownError);
+    (instance?: TInstanceDto) => {
+      if (!instance) return Promise.reject(unknownError);
+      const { id, imageId } = instance;
       switch (type) {
         case 'delete':
-          return deleteInstance(projectId, instanceId);
+          return deleteInstance(projectId, id);
         case 'start':
-          return startInstance(projectId, instanceId);
+          return startInstance(projectId, id);
         case 'stop':
-          return stopInstance(projectId, instanceId);
+          return stopInstance(projectId, id);
         case 'shelve':
-          return shelveInstance(projectId, instanceId);
+          return shelveInstance(projectId, id);
         case 'unshelve':
-          return unshelveInstance(projectId, instanceId);
+          return unshelveInstance(projectId, id);
         case 'soft-reboot':
-          return rebootInstance({ projectId, instanceId, rebootType: 'soft' });
+          return rebootInstance({
+            projectId,
+            instanceId: id,
+            rebootType: 'soft',
+          });
         case 'hard-reboot':
-          return rebootInstance({ projectId, instanceId, rebootType: 'hard' });
+          return rebootInstance({
+            projectId,
+            instanceId: id,
+            rebootType: 'hard',
+          });
+        case 'reinstall':
+          return reinstallInstance(projectId, id, imageId);
         default:
           return Promise.reject(unknownError);
       }
