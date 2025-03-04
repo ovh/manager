@@ -1,26 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 import {
-  getmeTaskDnsList,
   getmeTaskDomainArgument,
   getmeTaskDomainId,
-  getmeTaskDomainList,
 } from '@/data/api/web-ongoing-operations';
 import { TArgument, TOngoingOperations, TTracking } from '@/types';
 import { getOperationTrackingStatus } from '@/data/api/tracking';
-
-export const useDomainList = () => {
-  return useQuery<TOngoingOperations[]>({
-    queryKey: ['domainList'],
-    queryFn: () => getmeTaskDomainList(),
-  });
-};
-
-export const useDnsList = () => {
-  return useQuery<TOngoingOperations[]>({
-    queryKey: ['dnsList'],
-    queryFn: () => getmeTaskDnsList(),
-  });
-};
 
 export const useTracking = (id: number) => {
   return useQuery<TTracking>({
