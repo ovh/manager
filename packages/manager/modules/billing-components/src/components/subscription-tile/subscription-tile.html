@@ -72,7 +72,7 @@
                 <a
                     class="oui-link_icon"
                     data-ng-href="{{ $ctrl.commitmentLink }}"
-                    data-ng-if="$ctrl.serviceInfos.canBeEngaged && !$ctrl.serviceInfos.hasPendingEngagement && !$ctrl.serviceInfos.isSuspended() && $ctrl.service.isEngaged()"
+                    data-ng-if="$ctrl.serviceInfos.canBeEngaged && !$ctrl.serviceInfos.hasPendingEngagement && !$ctrl.serviceInfos.isSuspended() && $ctrl.service.isEngaged() && !$ctrl.constructor.showCommit($ctrl.serviceInfos, $ctrl.service.isEngaged(), $ctrl.highlightEngagement)"
                     data-ng-click="$ctrl.trackAction('go-to-manage-commitment', false)"
                     target="_top"
                 >

@@ -49,19 +49,6 @@ baremetalUniverse.children = [
         features: ['dedicated-server'],
       },
       {
-        id: 'dedicated-housing',
-        universe: baremetalUniverse.id,
-        idAttr: 'dedicated-housing-link',
-        translation: 'sidebar_dedicated_housing',
-        serviceType: 'DEDICATED_HOUSING',
-        routing: {
-          application: 'dedicated',
-          hash: '#/housing',
-        },
-        hideIfEmpty: true,
-        features: ['dedicated-server'],
-      },
-      {
         id: 'vps',
         universe: baremetalUniverse.id,
         idAttr: 'vps-link',
