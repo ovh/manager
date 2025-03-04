@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.108.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.107.2...@ovh-ux/manager-container-app@0.108.0) (2025-03-04)
+
+
+### Bug Fixes
+
+* **container:** rooting failed in some cases like telephony ([#15603](https://github.com/ovh/manager/issues/15603)) ([62a8737](https://github.com/ovh/manager/commit/62a873719f059c4b9e0cae8cbc53b66b7b6e88df))
+* **pnr:** put eloquant on hold ([#15691](https://github.com/ovh/manager/issues/15691)) ([b488085](https://github.com/ovh/manager/commit/b488085ef01b7a1d3d0c5bf0c60b63390e35da2c))
+
+
+### Features
+
+* **container:** change user account menu appaerence ([#15595](https://github.com/ovh/manager/issues/15595)) ([f0d5c4e](https://github.com/ovh/manager/commit/f0d5c4e27e0bf751fd6fadf1bff4ccb5fff77520))
+* **container:** remove end of life housing ([#15590](https://github.com/ovh/manager/issues/15590)) ([88f0c78](https://github.com/ovh/manager/commit/88f0c78441e553f5ad286d29b492a74209c04eed))
+
+
+
+
+
 ## [0.107.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.107.1...@ovh-ux/manager-container-app@0.107.2) (2025-02-27)
 
 **Note:** Version bump only for package @ovh-ux/manager-container-app

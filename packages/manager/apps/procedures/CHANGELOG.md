@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.10.0...@ovh-ux/manager-procedures-app@0.11.0) (2025-03-04)
+
+
+### Features
+
+* **procedures:** add exitguard to prevent closing on pending rgdp form ([#15564](https://github.com/ovh/manager/issues/15564)) ([9611e26](https://github.com/ovh/manager/commit/9611e264682428ba4abe6132b0fd35f36cc3749d))
+
+
+
+
+
 # [0.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.9.0...@ovh-ux/manager-procedures-app@0.10.0) (2025-02-19)
 
 
