@@ -83,7 +83,7 @@ export function Actions({
       label: t('pci_projects_project_storages_containers_view_object_label'),
       onClick: () =>
         navigate({
-          pathname: `./${storage.name}`,
+          pathname: `./${storage.id || storage.name}`,
           search: `?${createSearchParams({
             region: storage.region,
           })}`,
