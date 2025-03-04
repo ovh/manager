@@ -15,10 +15,7 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { OsdsButton } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import {
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-} from '@ovhcloud/ods-components';
+import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { features } from '@/pages/dashboard/dashboard.constants';
@@ -30,15 +27,7 @@ import { Context } from '@/pages/dashboard/context';
 
 import Welcome from '@/components/welcome/Welcome.component';
 import Banner from '@/components/banner/Banner.component';
-import NotificationsCarousel from '@/pages/layout/NotificationsCarousel.component';
-import SiretBanner from '@/pages/layout/SiretBanner.component';
-import SiretModal from '@/pages/layout/SiretModal.component';
-import KycIndiaBanner from '@/pages/layout/KycIndiaBanner.component';
-import KycFraudBanner from '@/pages/layout/KycFraudBanner.component';
-import PaymentStatus from '@/pages/layout/PaymentStatus.component';
-import HubSupport from '@/components/hub-support/HubSupport.component';
-import OrderTracking from '@/components/hub-order-tracking/HubOrderTracking.component';
-import HubDashboardSubtitle from '@/pages/layout/HubDashboardSubtitle';
+import HubDashboardSubtitle from '@/pages/dashboard/HubDashboardSubtitle';
 
 const Products = lazy(() => import('@/components/products/Products.component'));
 const Catalog = lazy(() => import('@/pages/dashboard/Catalog.component'));
