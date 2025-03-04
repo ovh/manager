@@ -16,16 +16,8 @@ vi.mock('@/data/api/ai/datastore.api', () => ({
 
 const mockedResut = [
   {
-    id: 's3 - myDatastoreS3 - container1',
-    container: 'container1',
-    alias: 'myDatastoreS3',
-    type: 's3',
-    endpoint: 'endpoint',
-    owner: 'customer',
-  },
-  {
-    id: 's3 - myDatastoreS3 - container2',
-    container: 'container2',
+    id: 's3 - myDatastoreS3',
+    container: ['container1', 'container2'],
     alias: 'myDatastoreS3',
     type: 's3',
     endpoint: 'endpoint',

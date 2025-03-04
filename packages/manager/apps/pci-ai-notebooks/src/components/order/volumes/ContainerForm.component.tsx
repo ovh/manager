@@ -127,6 +127,7 @@ const ContainerForm = React.forwardRef<HTMLInputElement, ContainerFormProps>(
                       <PopoverTrigger asChild>
                         <FormControl>
                           <Button
+                            data-testid="select-datastore-container-button"
                             role="combobox"
                             size="default"
                             variant="ghost"

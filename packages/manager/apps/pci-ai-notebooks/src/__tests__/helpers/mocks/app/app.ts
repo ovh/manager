@@ -89,7 +89,17 @@ export const mockedAppSpecInput: ai.app.AppSpecInput = {
 };
 
 export const mockedAppSpecInputGPU: ai.app.AppSpecInput = {
-  ...mockedAppSpecInput,
+  name: 'myNewApp',
+  region: 'GRA',
+  unsecureHttp: false,
+  labels: {
+    test: 'testLabel',
+  },
+  probe: {
+    path: '/health',
+    port: 8080,
+  },
+  command: ['command', 'docker'],
   image: 'sentiment-analysis-app:1',
   partnerId: 'lettria',
   resources: { flavor: 'ai1-1-gpu', gpu: 2 },

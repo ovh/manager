@@ -62,15 +62,15 @@ const UpdateDockerCommand = () => {
   const { updateApp, isPending } = useUpdateApp({
     onError: (err) => {
       toast.toast({
-        title: t('updateImageToastErrorTitle'),
+        title: t('updateDockerToastErrorTitle'),
         variant: 'destructive',
         description: getAIApiErrorMessage(err),
       });
     },
     onUpdateSuccess: () => {
       toast.toast({
-        title: t('updateImageToastSuccessTitle'),
-        description: t('updateImageToastSuccessDescription'),
+        title: t('updateDockerToastSuccessTitle'),
+        description: t('updateDockerToastSuccessDescription'),
       });
       navigate('../');
     },
@@ -93,8 +93,8 @@ const UpdateDockerCommand = () => {
     <RouteModal backUrl="../">
       <DialogContent className="sm:max-w-2xl">
         <DialogHeader>
-          <DialogTitle data-testid="update-docker-image-modal">
-            {t('updateDockerImageTitle')}
+          <DialogTitle data-testid="update-docker-command-modal">
+            {t('updateDockerCommandTitle')}
           </DialogTitle>
         </DialogHeader>
         <Form {...form}>
@@ -134,7 +134,7 @@ const UpdateDockerCommand = () => {
                   type="button"
                   variant="outline"
                 >
-                  {t('updateDockerImageButtonCancel')}
+                  {t('updateDockerCommandButtonCancel')}
                 </Button>
               </DialogClose>
               <Button
@@ -142,7 +142,7 @@ const UpdateDockerCommand = () => {
                 type="submit"
                 disabled={isPending}
               >
-                {t('updateDockerImageButtonConfirm')}
+                {t('updateDockerCommandButtonConfirm')}
               </Button>
             </DialogFooter>
           </form>

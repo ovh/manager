@@ -50,7 +50,7 @@ export const mockedDatastoreWithContainerS3: DataStoresWithContainers = {
   ...mockedDatastoreS3,
   alias: 'aliasS3withContainer',
   id: 'idS3',
-  container: 'containerS3',
+  container: ['containerS3'],
 };
 
 export const mockedDatastoreWithContainerGit: DataStoresWithContainers = {

@@ -18,5 +18,8 @@
   "fieldFlavorQuantityDescription": "Sélectionner la quantité de ressources",
   "fieldFlavorQuantityInformation": "Quantité maximale pour ",
   "updateFlavorButtonCancel": "Annuler",
-  "updateFlavorButtonConfirm": "Confirmer"
+  "updateFlavorButtonConfirm": "Confirmer",
+  "updateFlavorToastErrorTitle": "Erreur",
+  "updateFlavorToastSuccessTitle": "Succés",
+  "updateFlavorToastSuccessDescription": "L'application a été mise à jour"
 }

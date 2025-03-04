@@ -5,7 +5,10 @@
   "commandInputHelper": "Renseigner les arguments (séparés par des espaces) qui seront passés à la commande Docker. Les apostrophes simples (`) ne sont pas supportées et à remplacer par des guillemets.",
   "commandSumupTitle": "Commande spécifique",
   "formDockerCommandErrorPattern": "Les apostrophes simples (`) ne sont pas supportées et à remplacer par des guillemets.",
-  "updateDockerImageTitle": "Mettre à jour les commandes docker",
-  "updateDockerImageButtonCancel": "Annuler",
-  "updateDockerImageButtonConfirm": "Confirmer"
+  "updateDockerCommandTitle": "Mettre à jour les commandes docker",
+  "updateDockerCommandButtonCancel": "Annuler",
+  "updateDockerCommandButtonConfirm": "Confirmer",
+  "updateDockerToastErrorTitle": "Erreur",
+  "updateDockerToastSuccessTitle": "Succés",
+  "updateDockerToastSuccessDescription": "L'application a été mise à jour"
 }

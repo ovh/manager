@@ -15,7 +15,7 @@ import {
   mockedOrderVolumesGit,
   mockedOrderVolumesS3,
 } from '@/__tests__/helpers/mocks/volume/datastore';
-import { handleSelectText } from '@/__tests__/helpers/unitTestHelper';
+import { handleSelectComboboxText } from '@/__tests__/helpers/unitTestHelper';
 
 describe('Volume Form component', () => {
   beforeEach(() => {
@@ -78,15 +78,22 @@ describe('Volume Form component', () => {
     );
 
     // Select S3 Datastore
-    await handleSelectText(
-      'select-container-trigger',
+    await handleSelectComboboxText(
+      'select-datastore-container-button',
       mockedDatastoreWithContainerS3.id,
     );
 
-    // Chech that Branch input is not displayed
-    expect(
-      screen.queryByTestId('gitBranch-field-label'),
-    ).not.toBeInTheDocument();
+    await waitFor(() => {
+      expect(
+        screen.getByTestId('select-container-combobox'),
+      ).toBeInTheDocument();
+    });
+
+    // Select Container
+    await handleSelectComboboxText(
+      'select-container-combobox',
+      mockedDatastoreWithContainerS3.container[0],
+    );
 
     // add a value in MountPath
     act(() => {
@@ -119,27 +126,31 @@ describe('Volume Form component', () => {
       />,
     );
 
-    // Select GIT Datastore
-    await handleSelectText(
-      'select-container-trigger',
+    await handleSelectComboboxText(
+      'select-datastore-container-button',
       mockedDatastoreWithContainerGit.id,
     );
 
     // Chech that Branch input is displayed
-    expect(screen.getByTestId('git-branch-input-field')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(
+        screen.getByTestId('git-container-input-field'),
+      ).toBeInTheDocument();
+
+      act(() => {
+        fireEvent.change(screen.getByTestId('git-container-input-field'), {
+          target: {
+            value: 'develop',
+          },
+        });
+      });
+    });
 
     // add a value in MountPath and in Branch
-    act(() => {
-      fireEvent.change(screen.getByTestId('git-branch-input-field'), {
-        target: {
-          value: '/develop',
-        },
-      });
-      fireEvent.change(screen.getByTestId('mount-directory-input-field'), {
-        target: {
-          value: '/demo',
-        },
-      });
+    fireEvent.change(screen.getByTestId('mount-directory-input-field'), {
+      target: {
+        value: '/demo',
+      },
     });
 
     // click add button

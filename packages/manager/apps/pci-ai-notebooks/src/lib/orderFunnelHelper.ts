@@ -147,8 +147,11 @@ export function getAppSpec(
     unsecureHttp: formResult.unsecureHttp,
     labels: formResult.labels,
     command: formResult.dockerCommand,
-    defaultHttpPort: !formResult.version && Number(formResult.httpPort),
   };
+
+  if (!formResult.version) {
+    appInfos.defaultHttpPort = Number(formResult.httpPort) || 8080;
+  }
 
   if (formResult.version) {
     appInfos.partnerId = listAppPartner?.find(

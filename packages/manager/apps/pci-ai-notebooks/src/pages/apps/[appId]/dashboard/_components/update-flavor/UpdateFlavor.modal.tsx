@@ -77,15 +77,15 @@ const UpdateFlavor = () => {
   const { updateApp, isPending } = useUpdateApp({
     onError: (err) => {
       toast.toast({
-        title: t('updateImageToastErrorTitle'),
+        title: t('updateFlavorToastErrorTitle'),
         variant: 'destructive',
         description: getAIApiErrorMessage(err),
       });
     },
     onUpdateSuccess: () => {
       toast.toast({
-        title: t('updateImageToastSuccessTitle'),
-        description: t('updateImageToastSuccessDescription'),
+        title: t('updateFlavorToastSuccessTitle'),
+        description: t('updateFlavorToastSuccessDescription'),
       });
       navigate('../');
     },
@@ -195,7 +195,7 @@ const UpdateFlavor = () => {
             <DialogFooter className="flex justify-end">
               <DialogClose asChild>
                 <Button
-                  data-testid="update-resources-cancel-button"
+                  data-testid="update-flavor-cancel-button"
                   type="button"
                   variant="outline"
                 >
@@ -203,7 +203,7 @@ const UpdateFlavor = () => {
                 </Button>
               </DialogClose>
               <Button
-                data-testid="update-resources-submit-button"
+                data-testid="update-flavor-submit-button"
                 type="submit"
                 disabled={isPending}
               >
