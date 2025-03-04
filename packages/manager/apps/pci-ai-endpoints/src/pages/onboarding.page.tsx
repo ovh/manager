@@ -88,7 +88,7 @@ export default function Onboarding() {
                 size={ODS_THEME_TYPOGRAPHY_SIZE._400}
                 className="block mt-8"
               >
-                {t('description')}
+                {t('ai_endpoints_description')}
               </OsdsText>
               <OsdsText
                 color={ODS_THEME_COLOR_INTENT.text}
