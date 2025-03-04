@@ -1,4 +1,7 @@
-export const MANUAL_RENEWAL_TYPES = 'manualPayment';
+export const SERVICE_RENEW_MODES = {
+  AUTOMATIC: 'automatic',
+  MANUAL: 'manual',
+};
 
 export const CONTRACTS_IDS = {
   CA: 1752,
@@ -8,6 +11,6 @@ export const CONTRACTS_IDS = {
 };
 
 export default {
-  MANUAL_RENEWAL_TYPES,
+  SERVICE_RENEW_MODES,
   CONTRACTS_IDS,
 };
