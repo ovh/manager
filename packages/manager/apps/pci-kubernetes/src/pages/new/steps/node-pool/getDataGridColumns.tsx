@@ -5,24 +5,16 @@ import {
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_CHIP_SIZE, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { OsdsChip } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
 import { NodePool } from '@/api/data/kubernetes';
 import RestrictionAction from '@/components/restriction/RestrictionAction.component';
 
-export const useDatagridColumn = ({
+export const getDatagridColumns = ({
   onDelete,
+  t,
 }: {
   onDelete: (name: string) => void;
+  t: (text: string) => string;
 }) => {
-  const { t } = useTranslation([
-    'node-pool',
-    'add',
-    'kube-nodes',
-    'autoscaling',
-    'flavor-billing',
-    'billing-anti-affinity',
-  ]);
-
   const columns: DatagridColumn<NodePool>[] = [
     {
       id: 'name',
@@ -35,19 +27,19 @@ export const useDatagridColumn = ({
       cell: (props) => (
         <DataGridTextCell>{props.localisation}</DataGridTextCell>
       ),
-      label: t('kube_common_node_pool_localisation'),
+      label: t('node-pool:kube_common_node_pool_localisation'),
     },
     {
       id: 'model',
       cell: (props) => <DataGridTextCell>{props.flavorName}</DataGridTextCell>,
-      label: t('kube_common_node_pool_model'),
+      label: t('node-pool:kube_common_node_pool_model'),
     },
     {
       id: 'desiredNodes',
       cell: (props) => (
         <DataGridTextCell>{props.desiredNodes}</DataGridTextCell>
       ),
-      label: t('kube_common_node_pool_desired_node'),
+      label: t('node-pool:kube_common_node_pool_desired_node'),
     },
     {
       id: 'autoscaling',
@@ -68,7 +60,7 @@ export const useDatagridColumn = ({
                 inline
                 size={ODS_CHIP_SIZE.sm}
               >
-                {t(`kube_node_pool_autoscale_${props.autoscale}`)}
+                {t(`node-pool:kube_node_pool_autoscale_${props.autoscale}`)}
               </OsdsChip>
             </span>
           </DataGridTextCell>
@@ -89,7 +81,7 @@ export const useDatagridColumn = ({
               inline
               size={ODS_CHIP_SIZE.sm}
             >
-              {t(`kube_node_pool_autoscale_${props.antiAffinity}`)}
+              {t(`node-pool:kube_node_pool_autoscale_${props.antiAffinity}`)}
             </OsdsChip>
           </span>
         </DataGridTextCell>
@@ -107,7 +99,7 @@ export const useDatagridColumn = ({
           )}
         </DataGridTextCell>
       ),
-      label: t('kube_node_pool_monthly_billing'),
+      label: t('node-pool:kube_node_pool_monthly_billing'),
     },
     {
       id: 'actions',
