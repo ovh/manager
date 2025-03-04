@@ -1,6 +1,6 @@
-import { FC, useCallback } from 'react';
-import { OsdsText } from '@ovhcloud/ods-components/react';
-import { ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+import { FC, useMemo } from 'react';
+import { OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
+import { ODS_MESSAGE_TYPE, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
@@ -20,7 +20,8 @@ export const ActionModalContent: FC<TActionModalProps> = ({
   instanceName,
 }) => {
   const { t } = useTranslation('actions');
-  const getLabels = useCallback((): string[] => {
+
+  const labels = useMemo((): string[] => {
     const sectionSnakeCase = type.includes('-') ? kebabToSnakeCase(type) : type;
     const confirmationMessage = t(
       `pci_instances_actions_${sectionSnakeCase}_instance_confirmation_message`,
@@ -38,6 +39,7 @@ export const ActionModalContent: FC<TActionModalProps> = ({
       case 'unshelve':
       case 'soft-reboot':
       case 'hard-reboot':
+      case 'reinstall':
         return [confirmationMessage];
       case 'shelve':
         return [confirmationMessage, notaMessage];
@@ -46,15 +48,36 @@ export const ActionModalContent: FC<TActionModalProps> = ({
     }
   }, [instanceName, t, type]);
 
-  return getLabels().map((label) => (
-    <OsdsText
-      key={label}
-      level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-      color={ODS_THEME_COLOR_INTENT.text}
-      size={ODS_TEXT_SIZE._400}
-      className="block mt-6"
-    >
-      {label}
-    </OsdsText>
-  ));
+  const warningMessage = useMemo(() => {
+    if (type === 'reinstall') {
+      return t(`pci_instances_actions_${type}_instance_warning_message`);
+    }
+    return null;
+  }, [type, t, instanceName]);
+
+  return (
+    <>
+      {labels.map((label) => (
+        <OsdsText
+          key={label}
+          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+          color={ODS_THEME_COLOR_INTENT.text}
+          size={ODS_TEXT_SIZE._400}
+          className="block mt-6"
+        >
+          {label}
+        </OsdsText>
+      ))}
+      {warningMessage && (
+        <OsdsMessage type={ODS_MESSAGE_TYPE.warning} className="mt-6">
+          <OsdsText
+            level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+            color={ODS_THEME_COLOR_INTENT.warning}
+          >
+            {warningMessage}
+          </OsdsText>
+        </OsdsMessage>
+      )}
+    </>
+  );
 };
