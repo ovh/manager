@@ -7,14 +7,14 @@ import {
   useCatalogPrice,
   convertHourlyPriceToMonthly,
 } from '@ovh-ux/manager-react-components';
-import { TAddon } from '@/pages/create/store';
+import { Addon } from '@/types/addon.type';
 
 const DIGIT_AFTER_DECIMAL = 4;
 
 export const LabelComponent = ({
   item,
 }: Readonly<{
-  item: TAddon;
+  item: Addon;
 }>) => {
   const { t: tCreate } = useTranslation('load-balancer/create');
 
@@ -43,7 +43,7 @@ export const LabelComponent = ({
         color={ODS_THEME_COLOR_INTENT.text}
       >
         {tCreate('octavia_load_balancer_create_size_flavour_title', {
-          sizeCode: item.label,
+          sizeCode: item.size.toUpperCase(),
         })}{' '}
       </OsdsText>
       <div className="mt-4 font-normal">
@@ -53,7 +53,7 @@ export const LabelComponent = ({
           color={ODS_THEME_COLOR_INTENT.text}
         >
           {tCreate(
-            `octavia_load_balancer_create_size_flavour_description_${item.code}`,
+            `octavia_load_balancer_create_size_flavour_description_${item.size}`,
           )}{' '}
         </OsdsText>
       </div>

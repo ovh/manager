@@ -3,6 +3,7 @@ module.exports = {
     '../../../../.eslintrc.js',
     'plugin:react/recommended',
     'plugin:react/jsx-runtime',
+    'plugin:react-hooks/recommended',
   ],
   settings: {
     react: {

@@ -5,24 +5,22 @@ import {
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
-import { FLOATING_IP_TYPES } from '@/constants';
+import { FloatingIpSelectionId } from '@/api/hook/useFloatingIps/useFloatingIps.constant';
 
 export type TIpStepMessagesProps = {
-  type: typeof FLOATING_IP_TYPES[number];
+  publicIpId: string;
   price: string;
 };
 
 export const IpStepMessages = ({
-  type,
+  publicIpId,
   price,
 }: TIpStepMessagesProps): JSX.Element => {
   const { t: tCreate } = useTranslation('load-balancer/create');
 
-  if (type === 'ip') return <></>;
-
   return (
     <>
-      {type === 'create' ? (
+      {publicIpId === FloatingIpSelectionId.NEW ? (
         <OsdsMessage
           className="mt-8"
           type={ODS_MESSAGE_TYPE.info}

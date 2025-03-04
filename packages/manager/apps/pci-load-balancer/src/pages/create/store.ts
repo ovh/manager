@@ -1,18 +1,12 @@
 import { create } from 'zustand';
 import { ApiError } from '@ovh-ux/manager-core-api';
+import { TRegion } from '@ovh-ux/manager-pci-common';
 import { TPrivateNetwork, TSubnet } from '@/api/data/network';
 import { ListenerConfiguration } from '@/components/create/InstanceTable.component';
 import { TSubnetGateway } from '@/api/data/gateways';
-import { TFloatingIp } from '@/api/data/floating-ips';
 import { createLoadBalancer, TFlavor } from '@/api/data/load-balancer';
-import { TRegion } from '@/api/hook/useRegions';
-
-export type TAddon = {
-  code: string;
-  price: number;
-  label: string;
-  technicalName: string;
-};
+import { Addon } from '@/types/addon.type';
+import { FloatingIpSelectionId } from '@/api/hook/useFloatingIps/useFloatingIps.constant';
 
 type TStep = {
   isOpen: boolean;
@@ -21,8 +15,8 @@ type TStep = {
 };
 
 export enum StepsEnum {
-  SIZE = 'SIZE',
   REGION = 'REGION',
+  SIZE = 'SIZE',
   IP = 'IP',
   NETWORK = 'NETWORK',
   INSTANCE = 'INSTANCE',
@@ -31,9 +25,9 @@ export enum StepsEnum {
 
 export type TCreateStore = {
   projectId: string;
-  addon: TAddon;
+  addon: Addon;
   region: TRegion;
-  publicIp: TFloatingIp;
+  publicIp: string;
   privateNetwork: TPrivateNetwork;
   subnet: TSubnet;
   gateways: TSubnetGateway[];
@@ -42,9 +36,9 @@ export type TCreateStore = {
   steps: Map<StepsEnum, TStep>;
   set: {
     projectId: (val: string) => void;
-    addon: (val: TAddon) => void;
+    addon: (val: Addon) => void;
     region: (val: TRegion) => void;
-    publicIp: (val: TFloatingIp) => void;
+    publicIp: (val: string) => void;
     privateNetwork: (val: TPrivateNetwork) => void;
     subnet: (val: TSubnet) => void;
     gateways: (val: TSubnetGateway[]) => void;
@@ -73,7 +67,7 @@ export const initialStoreState = () => ({
   projectId: '',
   addon: null,
   region: null,
-  publicIp: null,
+  publicIp: FloatingIpSelectionId.NEW,
   privateNetwork: null,
   subnet: null,
   gateways: [],
@@ -81,7 +75,7 @@ export const initialStoreState = () => ({
   name: '',
   steps: new Map<StepsEnum, TStep>([
     [
-      StepsEnum.SIZE,
+      StepsEnum.REGION,
       {
         isOpen: true,
         isLocked: false,
@@ -89,7 +83,7 @@ export const initialStoreState = () => ({
       },
     ],
     ...[
-      StepsEnum.REGION,
+      StepsEnum.SIZE,
       StepsEnum.IP,
       StepsEnum.NETWORK,
       StepsEnum.INSTANCE,
@@ -113,7 +107,7 @@ export const useCreateStore = create<TCreateStore>()((set, get) => ({
         projectId: val,
       });
     },
-    addon: (val: TAddon) => {
+    addon: (val: Addon) => {
       set({
         addon: val,
       });
@@ -123,7 +117,7 @@ export const useCreateStore = create<TCreateStore>()((set, get) => ({
         region: val,
       });
     },
-    publicIp: (val: TFloatingIp) => {
+    publicIp: (val: string) => {
       set({
         publicIp: val,
       });

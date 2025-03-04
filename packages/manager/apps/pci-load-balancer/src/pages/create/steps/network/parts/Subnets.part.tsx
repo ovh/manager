@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import {
   OsdsFormField,
   OsdsMessage,
@@ -15,23 +16,20 @@ import {
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useProjectUrl } from '@ovh-ux/manager-react-components';
-import { FLOATING_IP_TYPE, LOAD_BALANCER_CREATION_TRACKING } from '@/constants';
+import { LOAD_BALANCER_CREATION_TRACKING } from '@/constants';
 import { useGetPrivateNetworkSubnets } from '@/api/hook/useNetwork';
 import { useCreateStore } from '@/pages/create/store';
 import { useTranslatedLinkReference } from '@/hooks/useTranslatedLinkReference';
+import { FloatingIpSelectionId } from '@/api/hook/useFloatingIps/useFloatingIps.constant';
 
 export const SubnetsPart = (): JSX.Element => {
   const { t: tCreate } = useTranslation('load-balancer/create');
 
   const { projectId } = useParams();
-  const store = useCreateStore();
-  const { list: subnetsList } = useGetPrivateNetworkSubnets(
-    projectId,
-    store.region?.name,
-    store.privateNetwork?.id,
-  );
 
-  const { isPending: isSubnetsPending } = useGetPrivateNetworkSubnets(
+  const store = useCreateStore();
+
+  const { list: subnets, isFetching } = useGetPrivateNetworkSubnets(
     projectId,
     store.region?.name,
     store.privateNetwork?.id,
@@ -41,10 +39,18 @@ export const SubnetsPart = (): JSX.Element => {
 
   const networkTrack = useTranslatedLinkReference();
 
+  useEffect(() => {
+    if (!isFetching) {
+      store.set.subnet(subnets?.[0] ?? null);
+    }
+  }, [subnets, isFetching, store.set]);
+
   return (
     <>
-      {isSubnetsPending ? (
-        <OsdsSpinner inline />
+      {isFetching ? (
+        <div className="mt-8">
+          <OsdsSpinner inline />
+        </div>
       ) : (
         <>
           <OsdsFormField className="mt-8" inline>
@@ -65,13 +71,13 @@ export const SubnetsPart = (): JSX.Element => {
               value={store.subnet?.id}
               error={false}
               onOdsValueChange={(event) => {
-                const targetSubnet = subnetsList.find(
+                const targetSubnet = subnets.find(
                   (sub) => sub.id === event.target.value,
                 );
                 store.set.subnet(targetSubnet);
               }}
               inline
-              {...(subnetsList.length === 0 ? { disabled: true } : {})}
+              {...(subnets.length === 0 ? { disabled: true } : {})}
             >
               <OsdsText
                 color={ODS_THEME_COLOR_INTENT.text}
@@ -82,15 +88,15 @@ export const SubnetsPart = (): JSX.Element => {
                   'octavia_load_balancer_create_private_network_field_subnet',
                 )}
               </OsdsText>
-              {subnetsList.map((subnet) => (
+              {subnets.map((subnet) => (
                 <OsdsSelectOption value={subnet.id} key={subnet.id}>
                   {subnet.cidr}
                 </OsdsSelectOption>
               ))}
             </OsdsSelect>
           </OsdsFormField>
-          {subnetsList.length === 0 &&
-            store.publicIp?.type !== FLOATING_IP_TYPE.NO_IP && (
+          {!store.subnet &&
+            store.publicIp !== FloatingIpSelectionId.UNATTACHED && (
               <OsdsMessage
                 className="mt-8"
                 type={ODS_MESSAGE_TYPE.error}

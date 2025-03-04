@@ -1,31 +1,26 @@
-import {
-  OsdsLink,
-  OsdsSpinner,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
+import { OsdsLink, OsdsText } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { StepComponent } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { PRODUCT_LINK } from '@/constants';
 import SizeInputComponent from './input/SizeInput.component';
-import { StepsEnum, TAddon, useCreateStore } from '@/pages/create/store';
+import { StepsEnum, useCreateStore } from '@/pages/create/store';
 import { useTracking } from '@/pages/create/hooks/useTracking';
 import { useColumnsCount } from '@/pages/create/hooks/useColumnsCount';
+import { RegionAddon } from '@/types/addon.type';
+import { useRegionLoadBalancerAddons } from '@/api/hook/useLoadBalancer/useLoadBalancer';
 
 export type TSizeStepProps = {
   ovhSubsidiary: string;
-  addons: TAddon[];
-  isLoading: boolean;
+  regionAddons?: RegionAddon[];
 };
 
 export const SizeStep = ({
   ovhSubsidiary,
-  addons,
-  isLoading,
+  regionAddons,
 }: Readonly<TSizeStepProps>): JSX.Element => {
-  const { t: tCreate } = useTranslation('load-balancer/create');
-  const { t: tCommon } = useTranslation('pci-common');
+  const { t } = useTranslation(['load-balancer/create', 'pci-common']);
 
   const columnsCount = useColumnsCount();
 
@@ -33,23 +28,28 @@ export const SizeStep = ({
 
   const store = useCreateStore();
 
+  const addons = useRegionLoadBalancerAddons(
+    regionAddons || [],
+    store.region?.name || '',
+  );
+
   return (
     <StepComponent
-      title={tCreate('octavia_load_balancer_create_size_title')}
+      title={t('octavia_load_balancer_create_size_title')}
       isOpen={store.steps.get(StepsEnum.SIZE).isOpen}
       isChecked={store.steps.get(StepsEnum.SIZE).isChecked}
       isLocked={store.steps.get(StepsEnum.SIZE).isLocked}
-      order={1}
+      order={2}
       next={{
         action: () => {
-          trackStep(1);
+          trackStep(2);
 
           store.check(StepsEnum.SIZE);
           store.lock(StepsEnum.SIZE);
 
-          store.open(StepsEnum.REGION);
+          store.open(StepsEnum.IP);
         },
-        label: tCommon('common_stepper_next_button_label'),
+        label: t('pci-common:common_stepper_next_button_label'),
         isDisabled: store.addon === null,
       }}
       edit={{
@@ -58,14 +58,13 @@ export const SizeStep = ({
           store.uncheck(StepsEnum.SIZE);
           store.open(StepsEnum.SIZE);
           store.reset(
-            StepsEnum.REGION,
             StepsEnum.IP,
             StepsEnum.NETWORK,
             StepsEnum.INSTANCE,
             StepsEnum.NAME,
           );
         },
-        label: tCommon('common_stepper_modify_this_step'),
+        label: t('pci-common:common_stepper_modify_this_step'),
       }}
     >
       <OsdsText
@@ -73,26 +72,20 @@ export const SizeStep = ({
         level={ODS_TEXT_LEVEL.body}
         color={ODS_THEME_COLOR_INTENT.text}
       >
-        {tCreate('octavia_load_balancer_create_size_intro')}{' '}
+        {t('octavia_load_balancer_create_size_intro')}{' '}
         <OsdsLink
           href={PRODUCT_LINK[ovhSubsidiary] || PRODUCT_LINK.DEFAULT}
           color={ODS_THEME_COLOR_INTENT.primary}
         >
-          {tCreate('octavia_load_balancer_create_size_intro_link')}
+          {t('octavia_load_balancer_create_size_intro_link')}
         </OsdsLink>
       </OsdsText>
-      {isLoading ? (
-        <div className="text-center mt-6">
-          <OsdsSpinner inline />
-        </div>
-      ) : (
-        <SizeInputComponent
-          addons={addons || []}
-          value={store.addon}
-          onInput={store.set.addon}
-          columnsCount={columnsCount}
-        />
-      )}
+      <SizeInputComponent
+        addons={addons}
+        value={store.addon}
+        onInput={store.set.addon}
+        columnsCount={columnsCount}
+      />
     </StepComponent>
   );
 };

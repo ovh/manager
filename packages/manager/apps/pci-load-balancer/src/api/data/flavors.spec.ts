@@ -1,8 +1,8 @@
 import { describe, it, expect, vi } from 'vitest';
 import { v6 } from '@ovh-ux/manager-core-api';
-import { TAddon } from '@/pages/create/store';
 import { getFlavor } from './flavors';
 import { TFlavor } from '@/api/data/load-balancer';
+import { Addon } from '@/types/addon.type';
 
 describe('getFlavor', () => {
   const projectId = 'test-project';
@@ -10,7 +10,7 @@ describe('getFlavor', () => {
   const addon = ({
     technicalName: 'test-flavor',
     invoiceName: 'invoiceName',
-  } as unknown) as TAddon;
+  } as unknown) as Addon;
 
   it('should return the correct flavor', async () => {
     const mockFlavors: TFlavor[] = [

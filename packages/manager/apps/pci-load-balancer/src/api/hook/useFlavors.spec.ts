@@ -2,16 +2,16 @@ import { renderHook, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import { useGetFlavor } from './useFlavors';
 import { getFlavor } from '@/api/data/flavors';
-import { TAddon } from '@/pages/create/store';
 import { wrapper } from '@/wrapperRenders';
 import { TFlavor } from '../data/load-balancer';
+import { Addon } from '@/types/addon.type';
 
 vi.mock('@/api/data/flavors');
 
 describe('useGetFlavor', () => {
   const projectId = 'test-project';
   const regionName = 'test-region';
-  const addon = { code: 'test-addon' } as TAddon;
+  const addon = { size: 'test-addon' } as Addon;
 
   it('should fetch flavor data successfully', async () => {
     const mockFlavorData = {

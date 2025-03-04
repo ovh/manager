@@ -7,8 +7,9 @@ import {
   getRegionPrivateNetworks,
   getSubnetByNetworkAndRegion,
 } from '../data/network';
-import { FLOATING_IP_TYPE, NETWORK_PRIVATE_VISIBILITY } from '@/constants';
+import { NETWORK_PRIVATE_VISIBILITY } from '@/constants';
 import { useCreateStore } from '@/pages/create/store';
+import { FloatingIpSelectionId } from './useFloatingIps/useFloatingIps.constant';
 
 export const usePrivateNetworkByRegion = ({
   projectId,
@@ -86,7 +87,7 @@ export const useGetPrivateNetworkSubnets = (
     if (!query.data) {
       return [];
     }
-    return store.publicIp?.type !== FLOATING_IP_TYPE.NO_IP
+    return store.publicIp !== FloatingIpSelectionId.UNATTACHED
       ? query.data.filter((subnet) => subnet.gatewayIp)
       : query.data;
   }, [query.data, store.publicIp]);
@@ -97,13 +98,20 @@ export const useGetPrivateNetworkSubnets = (
   };
 };
 
+export const getRegionPrivateNetworksQuery = (
+  projectId: string,
+  region: string,
+) => ({
+  queryKey: ['project', projectId, 'region', region, 'networks'],
+  queryFn: () => getRegionPrivateNetworks(projectId, region),
+});
+
 export const useGetRegionPrivateNetworks = (
   projectId: string,
   region: string,
 ) => {
   const query = useQuery({
-    queryKey: ['project', projectId, 'region', region, 'networks'],
-    queryFn: () => getRegionPrivateNetworks(projectId, region),
+    ...getRegionPrivateNetworksQuery(projectId, region),
     enabled: !!projectId && !!region,
   });
 
