@@ -1,7 +1,8 @@
 import {
-  MANUAL_RENEWAL_TYPES,
+  SERVICE_RENEW_MODES,
   CONTRACTS_IDS,
 } from './auto-renew-service-modal.constants';
+import { SERVICE_TYPES_USING_V6_SERVICES } from '../utils/constants';
 
 export default class AutoRenewServiceModalService {
   /* @ngInject */
@@ -19,16 +20,31 @@ export default class AutoRenewServiceModalService {
     this.$q = $q;
   }
 
-  getAvailableRenewPeriods(serviceUrl) {
-    return this.$http
-      .get(`${serviceUrl}/serviceInfos`)
-      .then(({ data }) => [MANUAL_RENEWAL_TYPES, ...data.possibleRenewPeriod])
-      .then((periodes) =>
-        periodes.map((period) => ({
-          period,
-          label: this.getPeriodTranslation(period),
-        })),
-      );
+  getAvailableRenewPeriods(service) {
+    const fetchPeriods = SERVICE_TYPES_USING_V6_SERVICES.includes(
+      service.serviceType,
+    )
+      ? this.$http
+          .get(`/services/${service.id}/renewPeriodCapacities`)
+          .then(({ data }) => [
+            SERVICE_RENEW_MODES.MANUAL,
+            ...data.map(
+              (period) => Number(period.match(/\d+/)?.[0]) || 'to_be_defined',
+            ),
+          ])
+      : this.$http
+          .get(`${service.route.url}/serviceInfos`)
+          .then(({ data }) => [
+            SERVICE_RENEW_MODES.MANUAL,
+            ...data.possibleRenewPeriod,
+          ]);
+
+    return fetchPeriods.then((periods) =>
+      periods.map((period) => ({
+        period,
+        label: this.getPeriodTranslation(period),
+      })),
+    );
   }
 
   updateRenew(service, agreements) {
@@ -37,6 +53,25 @@ export default class AutoRenewServiceModalService {
       : Promise.resolve([]);
 
     return agreementsPromise.then(() => {
+      if (SERVICE_TYPES_USING_V6_SERVICES.includes(service?.serviceType)) {
+        const mode = service?.renew?.automatic
+          ? SERVICE_RENEW_MODES.AUTOMATIC
+          : SERVICE_RENEW_MODES.MANUAL;
+
+        const period = Number.isInteger(service?.renew?.period)
+          ? `P${service?.renew?.period || 1}M`
+          : service?.renew?.period;
+
+        return this.putServiceV6(service, {
+          renew: {
+            mode,
+            ...(mode === SERVICE_RENEW_MODES.AUTOMATIC && {
+              period,
+            }),
+          },
+        });
+      }
+
       const toUpdate = {
         serviceId: service.serviceId,
         serviceType: service.serviceType,
@@ -66,8 +101,12 @@ export default class AutoRenewServiceModalService {
       });
   }
 
+  putServiceV6(service, data = {}) {
+    return this.$http.put(`/services/${service.id}`, data);
+  }
+
   getPeriodTranslation(months) {
-    if (months === MANUAL_RENEWAL_TYPES) {
+    if (months === SERVICE_RENEW_MODES.MANUAL) {
       return this.$translate.instant(
         'autorenew_service_update_modal_period_manual',
       );

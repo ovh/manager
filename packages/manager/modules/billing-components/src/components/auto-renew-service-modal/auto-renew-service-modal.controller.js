@@ -1,4 +1,4 @@
-import { MANUAL_RENEWAL_TYPES } from './auto-renew-service-modal.constants';
+import { SERVICE_RENEW_MODES } from './auto-renew-service-modal.constants';
 
 export default class AutoRenewServiceModalController {
   /* @ngInject */
@@ -41,13 +41,13 @@ export default class AutoRenewServiceModalController {
   getRenewPeriods() {
     this.loading.getRenewPeriods = true;
     return this.ovhAutoRenewServiceModalService
-      .getAvailableRenewPeriods(this.service.route.url)
+      .getAvailableRenewPeriods(this.service)
       .then((periods) => {
         this.periods = periods;
         this.model = {
           period: this.service.renew.automatic
             ? periods.find((p) => this.service.renew.period === p.period)
-            : periods.find((p) => MANUAL_RENEWAL_TYPES === p.period),
+            : periods.find((p) => SERVICE_RENEW_MODES.MANUAL === p.period),
         };
       })
       .finally(() => {
@@ -69,7 +69,7 @@ export default class AutoRenewServiceModalController {
   }
 
   onPeriodChange(value) {
-    if (value.period === MANUAL_RENEWAL_TYPES) {
+    if (value.period === SERVICE_RENEW_MODES.MANUAL) {
       this.serviceToUpdate.setManualRenew();
     } else {
       this.serviceToUpdate.setAutomaticRenew(value.period);
@@ -106,7 +106,7 @@ export default class AutoRenewServiceModalController {
     return this.ovhAutoRenewServiceModalService
       .updateRenew(this.serviceToUpdate, this.autorenewAgreements)
       .then(() => {
-        if (this.model.period.period === MANUAL_RENEWAL_TYPES) {
+        if (this.model.period.period === SERVICE_RENEW_MODES.MANUAL) {
           this.service.setManualRenew();
         } else {
           this.service.setAutomaticRenew(this.model.period.period);
