@@ -1,11 +1,11 @@
 import { v6 } from '@ovh-ux/manager-core-api';
-import { TAddon } from '@/pages/create/store';
 import { TFlavor } from '@/api/data/load-balancer';
+import { Addon } from '@/types/addon.type';
 
 export const getFlavor = async (
   projectId: string,
   regionName: string,
-  addon: TAddon,
+  addon: Addon,
 ): Promise<TFlavor> => {
   const { data } = await v6.get<TFlavor[]>(
     `/cloud/project/${projectId}/region/${regionName}/loadbalancing/flavor`,

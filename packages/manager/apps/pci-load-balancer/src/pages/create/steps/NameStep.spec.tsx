@@ -1,12 +1,13 @@
 import { describe, Mock, vi } from 'vitest';
 import { StepComponent, TStepProps } from '@ovh-ux/manager-react-components';
 import { fireEvent, render, renderHook, within } from '@testing-library/react';
+import { TRegion } from '@ovh-ux/manager-pci-common';
 import { act } from 'react-dom/test-utils';
 import React from 'react';
 import { wrapper } from '@/wrapperRenders';
 import { NameStep } from './NameStep';
-import { StepsEnum, TAddon, useCreateStore } from '@/pages/create/store';
-import { TRegion } from '@/api/hook/useRegions';
+import { StepsEnum, useCreateStore } from '@/pages/create/store';
+import { Addon } from '@/types/addon.type';
 import { useCreateActions } from '../hooks/useCreateActions';
 
 vi.mock('../hooks/useCreateActions', async () => {
@@ -315,7 +316,7 @@ describe('NameStep', () => {
           const { result } = renderStore();
           act(() => {
             result.current.set.region({ name: 'name' } as TRegion);
-            result.current.set.addon({ code: 'code' } as TAddon);
+            result.current.set.addon({ size: 'code' } as Addon);
           });
 
           create = result.current.create;
@@ -365,7 +366,7 @@ describe('NameStep', () => {
           const { result } = renderStore();
 
           act(() => {
-            result.current.set.addon({ code: 'code' } as TAddon);
+            result.current.set.addon({ size: 'code' } as Addon);
             result.current.set.region({ name: 'name' } as TRegion);
             result.current.set.name('');
           });

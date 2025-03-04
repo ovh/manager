@@ -1,6 +1,7 @@
 import { renderHook, act, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import { applyFilters } from '@ovh-ux/manager-core-api';
+import { TRegion } from '@ovh-ux/manager-pci-common';
 import {
   useAllLoadBalancers,
   useLoadBalancers,
@@ -24,8 +25,6 @@ import {
 import { paginateResults, sortResults } from '@/helpers';
 import { wrapper } from '@/wrapperRenders';
 import { TPrivateNetwork, TSubnet } from '../data/network';
-import { TFloatingIp } from '../data/floating-ips';
-import { TRegion } from './useRegions';
 
 vi.mock('../data/load-balancer');
 
@@ -199,10 +198,7 @@ describe('useLoadBalancer hooks', () => {
             region: {
               name: 'region',
             } as TRegion,
-            floatingIp: {
-              id: '1',
-              ip: '1.1.1.1',
-            } as TFloatingIp,
+            floatingIp: '1',
             privateNetwork: {
               id: '1',
               name: 'privateNetwork',

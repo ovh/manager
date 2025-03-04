@@ -1,3 +1,5 @@
+import { useEffect, useContext } from 'react';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   OsdsMessage,
   OsdsSpinner,
@@ -13,12 +15,14 @@ import { useTranslation } from 'react-i18next';
 import { useCatalogPrice } from '@ovh-ux/manager-react-components';
 import { useParams } from 'react-router-dom';
 import { useCreateStore } from '@/pages/create/store';
+import { FloatingIpSelectionId } from '@/api/hook/useFloatingIps/useFloatingIps.constant';
 import {
-  useGetSubnetGateways,
-  useSmallestGatewayByRegion,
-} from '@/api/hook/useGateways';
+  useSmallestGatewayRegion,
+  useSubnetGateways,
+} from '@/api/hook/useGateways/useGateways';
 
 export const SubnetNetworksPart = (): JSX.Element => {
+  const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
   const store = useCreateStore();
   const { t } = useTranslation('load-balancer/create');
 
@@ -26,11 +30,26 @@ export const SubnetNetworksPart = (): JSX.Element => {
 
   const { projectId } = useParams();
 
-  const { isFetching: isSubnetGatewaysFetching } = useGetSubnetGateways(
-    projectId,
-    store.region?.name,
-    store.subnet?.id,
-  );
+  const region = store.region?.name || '';
+
+  const {
+    data: subnetGateways,
+    isFetching: isSubnetGatewaysFetching,
+  } = useSubnetGateways(projectId, region, store.subnet?.id);
+
+  const gateway = useSmallestGatewayRegion(ovhSubsidiary, projectId, region);
+
+  useEffect(() => {
+    store.set.gateways(subnetGateways || []);
+  }, [subnetGateways, store.set]);
+
+  if (isSubnetGatewaysFetching) {
+    return (
+      <div className="mt-8">
+        <OsdsSpinner inline />
+      </div>
+    );
+  }
 
   const gateway = useSmallestGatewayByRegion(store.region?.name, projectId);
 
@@ -42,7 +61,7 @@ export const SubnetNetworksPart = (): JSX.Element => {
     <>
       {store.subnet &&
         store.gateways.length === 0 &&
-        store.publicIp.type !== 'none' && (
+        store.publicIp !== FloatingIpSelectionId.UNATTACHED && (
           <OsdsMessage
             className="mt-8"
             type={ODS_MESSAGE_TYPE.info}

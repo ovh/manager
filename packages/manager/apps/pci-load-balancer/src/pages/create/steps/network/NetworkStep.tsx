@@ -1,38 +1,24 @@
-import { OsdsSpinner, OsdsText } from '@ovhcloud/ods-components/react';
+import { OsdsText } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { StepComponent } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-import { useEffect } from 'react';
-import { FLOATING_IP_TYPE } from '@/constants';
 import { StepsEnum, useCreateStore } from '@/pages/create/store';
 import { useTracking } from '@/pages/create/hooks/useTracking';
 import { SubnetNetworksPart } from '@/pages/create/steps/network/parts/SubnetNetworks.part';
 import { PrivateNetworkPart } from '@/pages/create/steps/network/parts/PrivateNetwork.part';
-import { TSubnet } from '@/api/data/network';
+import { FloatingIpSelectionId } from '@/api/hook/useFloatingIps/useFloatingIps.constant';
 
-export type TNetworkStepProps = {
-  subnetsList: TSubnet[];
-  isLoading: boolean;
-};
-export const NetworkStep = ({
-  subnetsList,
-  isLoading,
-}: Readonly<TNetworkStepProps>): JSX.Element => {
-  const { t: tCommon } = useTranslation('pci-common');
-  const { t: tCreate } = useTranslation('load-balancer/create');
+export const NetworkStep = (): JSX.Element => {
+  const { t } = useTranslation(['load-balancer/create', 'pci-common']);
 
   const store = useCreateStore();
 
   const { trackStep } = useTracking();
 
-  useEffect(() => {
-    store.set.subnet(subnetsList.length ? subnetsList[0] : null);
-  }, [subnetsList]);
-
   return (
     <StepComponent
-      title={tCreate('octavia_load_balancer_create_private_network_title')}
+      title={t('octavia_load_balancer_create_private_network_title')}
       isOpen={store.steps.get(StepsEnum.NETWORK).isOpen}
       isChecked={store.steps.get(StepsEnum.NETWORK).isChecked}
       isLocked={store.steps.get(StepsEnum.NETWORK).isLocked}
@@ -46,10 +32,9 @@ export const NetworkStep = ({
 
           store.open(StepsEnum.INSTANCE);
         },
-        label: tCommon('common_stepper_next_button_label'),
+        label: t('pci-common:common_stepper_next_button_label'),
         isDisabled:
-          subnetsList.length === 0 &&
-          store.publicIp?.type !== FLOATING_IP_TYPE.NO_IP,
+          !store.subnet && store.publicIp !== FloatingIpSelectionId.UNATTACHED,
       }}
       edit={{
         action: () => {
@@ -58,7 +43,7 @@ export const NetworkStep = ({
           store.open(StepsEnum.NETWORK);
           store.reset(StepsEnum.INSTANCE, StepsEnum.NAME);
         },
-        label: tCommon('common_stepper_modify_this_step'),
+        label: t('pci-common:common_stepper_modify_this_step'),
       }}
     >
       <OsdsText
@@ -67,17 +52,10 @@ export const NetworkStep = ({
         color={ODS_THEME_COLOR_INTENT.text}
         className="mb-4"
       >
-        {tCreate('octavia_load_balancer_create_private_network_intro')}
+        {t('octavia_load_balancer_create_private_network_intro')}
       </OsdsText>
       <PrivateNetworkPart />
-
-      {isLoading ? (
-        <div>
-          <OsdsSpinner inline />
-        </div>
-      ) : (
-        <SubnetNetworksPart />
-      )}
+      <SubnetNetworksPart />
     </StepComponent>
   );
 };

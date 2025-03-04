@@ -1,26 +1,29 @@
 import { describe, it, expect, vi } from 'vitest';
 import { v6 } from '@ovh-ux/manager-core-api';
-import { getFloatingIps, TFloatingIp } from './floating-ips';
+import { getFloatingIps } from './floating-ips';
+import { FloatingIp } from '@/types/floating.type';
 
 describe('getFloatingIps', () => {
   const projectId = 'test-project-id';
   const region = 'test-region';
-  const mockFloatingIps: TFloatingIp[] = [
+  const mockFloatingIps: FloatingIp[] = [
     {
-      associatedEntity: 'entity1',
+      associatedEntity: null,
       id: 'id1',
       ip: '192.168.1.1',
       networkId: 'network1',
       status: 'active',
-      type: 'ip',
     },
     {
-      associatedEntity: 'entity2',
+      associatedEntity: {
+        id: 'entity1',
+        type: 'entity-type',
+        ip: '1.0.0.0',
+      },
       id: 'id2',
       ip: '192.168.1.2',
       networkId: 'network2',
       status: 'inactive',
-      type: 'ip',
     },
   ];
 
