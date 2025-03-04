@@ -108,9 +108,9 @@ export const useDatagridColumns = () => {
       cell: (props) => (
         <DataGridTextCell>
           {t(
-            props.monthlyBilled
-              ? 'flavor-billing:pci_project_flavors_billing_monthly'
-              : 'flavor-billing:pci_project_flavors_billing_hourly',
+            `flavor-billing:pci_project_flavors_billing_${
+              props.monthlyBilled ? 'monthly' : 'hourly'
+            }`,
           )}
         </DataGridTextCell>
       ),
