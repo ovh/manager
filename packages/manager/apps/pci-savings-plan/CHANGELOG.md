@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.11.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.11.6...@ovh-ux/manager-pci-savings-plan-app@1.11.7) (2025-03-04)
+
+
+### Bug Fixes
+
+* **pci-svp:** add exact search on product code ([#15547](https://github.com/ovh/manager/issues/15547)) ([548ccc3](https://github.com/ovh/manager/commit/548ccc3225b331435e5d69af40ced958fc4cf5a8))
+* **savings-plan:** wording on quantity and deletion fix ([#13599](https://github.com/ovh/manager/issues/13599)) ([94ee456](https://github.com/ovh/manager/commit/94ee4569f0abc873fdd38a20147f229b4d1a4663))
+
+
+
+
+
 ## [1.11.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.11.5...@ovh-ux/manager-pci-savings-plan-app@1.11.6) (2025-02-27)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app

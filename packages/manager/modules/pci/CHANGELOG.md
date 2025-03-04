@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.81.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.81.0...@ovh-ux/manager-pci@6.81.1) (2025-03-04)
+
+
+### Bug Fixes
+
+* **savings-plan:** wording on quantity and deletion fix ([#13599](https://github.com/ovh/manager/issues/13599)) ([94ee456](https://github.com/ovh/manager/commit/94ee4569f0abc873fdd38a20147f229b4d1a4663))
+
+
+
+
+
 # [6.81.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.80.1...@ovh-ux/manager-pci@6.81.0) (2025-02-24)
 
 
