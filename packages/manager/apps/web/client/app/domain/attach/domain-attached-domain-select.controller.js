@@ -24,12 +24,14 @@ angular.module('App').controller(
       this.domainName = this.$stateParams.productId;
       this.loading = false;
       this.$scope.goToHosting = () => this.goToHosting();
+      this.$scope.addDomain = () => this.addDomain();
 
       this.getAttachedDomains();
     }
 
     getAttachedDomains() {
       this.loading = true;
+      this.hosting = this.$scope.currentActionData.hosting;
       return this.HostingDomain.getAttachedDomains(
         this.$scope.currentActionData.hosting,
       )
@@ -47,6 +49,25 @@ angular.module('App').controller(
         });
     }
 
+    addDomain() {
+      this.HostingDomain.addDomain(
+        this.$scope.currentActionData.domain?.name,
+        this.$scope.currentActionData.subdomain,
+        './',
+        true,
+        true,
+        'NONE',
+        null,
+        'NONE',
+        null,
+        true,
+        null,
+        this.$scope.currentActionData.hosting,
+      ).then(() => {
+        this.goToHosting();
+      });
+    }
+
     goToHosting() {
       this.$scope.resetAction();
       this.$timeout(() => {
@@ -55,7 +76,7 @@ angular.module('App').controller(
           type: 'HOSTING',
         });
         this.Navigator.navigate(
-          `configuration/hosting/${this.selectedAttachedDomain}`,
+          `configuration/hosting/${this.hosting}/multisite`,
         );
       }, 500);
     }
