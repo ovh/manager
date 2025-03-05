@@ -1,3 +1,5 @@
+<div data-ovh-alert="dedicated-cloud-datacenter-dashboard-alert"></div>
+
 <ovh-manager-dedicated-cloud-datacenter-drp-alerts
     data-current-drp="$ctrl.currentDrp"
     data-current-user="$ctrl.currentUser"
@@ -231,8 +233,8 @@
                         </oui-action-menu-item>
                         <oui-action-menu-item
                             aria-label="{{:: 'dedicatedCloud_datacenter_add_edge' | translate }}"
-                            data-ng-click=""
-                            data-disabled="!$ctrl.isNsxtEnabled"
+                            data-disabled="!$ctrl.isNsxtEnabled || $ctrl.hasMaximumNsx"
+                            data-ng-click="$ctrl.goToAddNsx()"
                         >
                             <span
                                 data-translate="dedicatedCloud_datacenter_add_edge"

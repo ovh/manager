@@ -86,4 +86,10 @@ export default class OvhManagerPccDatacenterService {
       },
     );
   }
+
+  addNsxtEdge(serviceName, datacenterId) {
+    return this.$http.post(
+      `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/nsxtEdge`,
+    );
+  }
 }

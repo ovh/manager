@@ -1,8 +1,8 @@
+import { TRACKING_SUFFIX } from './dedicatedCloud-datacenter-manage-nsx.constants';
 import {
+  EDGES_SIZES,
   NSX_RESOURCES,
-  TRACKING_SUFFIX,
-} from './dedicatedCloud-datacenter-manage-nsx.constants';
-import { EDGES_SIZES } from '../../../datacenters/datacenter.constants';
+} from '../../../datacenters/datacenter.constants';
 
 export default class {
   /* @ngInject */

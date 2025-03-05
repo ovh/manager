@@ -3,10 +3,10 @@ import {
   NSXT_EDGE_PLAN_CODE,
 } from './dedicatedCloud-datacenter-network-onboarding.constants';
 import {
+  NETWORK_LABEL,
   DATACENTER_NETWORK_SITE_WEB_LINK,
   NSXT_EDGE_PRICING_MODE,
-} from '../dedicatedCloud-datacenter-network.constants';
-import { NETWORK_LABEL } from '../../../../../dedicatedCloud/datacenter/dedicatedCloud-datacenter.constants';
+} from '../../../../../dedicatedCloud/datacenter/dedicatedCloud-datacenter.constants';
 import NETWORK_LOGO from './assets/network.png';
 
 export default class {
@@ -26,7 +26,7 @@ export default class {
 
     this.ctaMore =
       DATACENTER_NETWORK_SITE_WEB_LINK[this.ovhSubsidiary] ||
-      DATACENTER_NETWORK_SITE_WEB_LINK.DEFAULT;
+      DATACENTER_NETWORK_SITE_WEB_LINK.GB;
 
     this.guides = DATACENTER_NETWORK_ONBOARDING_GUIDES.map((guide) => ({
       id: guide.id,
