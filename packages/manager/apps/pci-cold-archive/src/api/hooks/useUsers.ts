@@ -42,7 +42,10 @@ export const useAllUsers = (projectId: string) =>
     queryFn: () => getAllUsers(projectId),
   });
 
-export const useUsers = (projectId: string) => {
+export const useUsers = (
+  projectId: string,
+  filterWithCredentials?: boolean,
+) => {
   const { data: users, isPending } = useAllUsers(projectId);
 
   const allUsersQueries = useQueries({
@@ -61,7 +64,7 @@ export const useUsers = (projectId: string) => {
           (result) => result.data?.userId === user.openstackId,
         )?.data;
 
-        if (!s3Credentials) return all;
+        if (filterWithCredentials && !s3Credentials) return all;
 
         all.push({
           ...user,
@@ -100,6 +103,7 @@ export const usePaginatedUsers = (
 ) => {
   const { validUsersWithCredentials, error, isLoading, isPending } = useUsers(
     projectId,
+    true,
   );
 
   return useMemo(

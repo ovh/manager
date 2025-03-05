@@ -146,7 +146,7 @@ export default function UsersListing() {
 
       <Datagrid
         columns={columns}
-        items={paginatedUsers?.rows || []}
+        items={isLoading ? [] : paginatedUsers?.rows}
         totalItems={paginatedUsers?.totalRows || 0}
         pagination={pagination}
         onPaginationChange={setPagination}
