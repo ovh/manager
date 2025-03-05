@@ -1,3 +1,4 @@
+export const MIN_NSX_EDGES = 2;
 export const MAX_NSX_EDGES = 10;
 
 export const NETWORK_LABEL = 'Network';
@@ -39,6 +40,7 @@ export const DATACENTER_NETWORK_SITE_WEB_LINK = {
 
 export default {
   MAX_NSX_EDGES,
+  MIN_NSX_EDGES,
   NSX_COMPATIBLE_COMMERCIAL_RANGE,
   NETWORK_LABEL,
   NSXT_EDGE_CATALOG,
