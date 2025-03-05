@@ -121,19 +121,6 @@ const NodePoolStep = ({
   const isButtonDisabled =
     !isScalingValid || !isNodePoolValid || !hasMax5NodesAntiAffinity;
 
-  const price = useMemo(() => {
-    if (flavor && nodePoolState.scaling) {
-      return {
-        hour:
-          flavor.pricingsHourly.price * nodePoolState.scaling.quantity.desired,
-        month:
-          flavor.pricingsMonthly?.price *
-          nodePoolState.scaling.quantity.desired,
-      };
-    }
-    return { hour: 0, month: 0 };
-  }, [flavor, nodePoolState.scaling?.quantity.desired]);
-
   const isPricingComingSoon = flavor?.blobs?.tags?.includes(
     TAGS_BLOB.COMING_SOON,
   );

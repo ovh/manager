@@ -107,7 +107,6 @@ export default function BillingStep(props: TBillingStepProps): JSX.Element {
             level={ODS_TEXT_LEVEL.body}
             size={ODS_TEXT_SIZE._400}
           >
-            {t('kubernetes_add_billing_type_description')}
             {showSavingPlan && t('kubernetes_add_billing_type_description')}
           </OsdsText>
         )}
