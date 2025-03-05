@@ -24,8 +24,11 @@ export const GeolocationSection: React.FC = () => {
     planCode: selectedPlanCode,
   });
   const isDisabled =
-    selectedOffer === IpOffer.additionalIp &&
-    [ServiceType.ipParking, ServiceType.server].includes(selectedServiceType);
+    geolocations.length < 2 ||
+    (selectedOffer === IpOffer.additionalIp &&
+      [ServiceType.ipParking, ServiceType.server].includes(
+        selectedServiceType,
+      ));
 
   return (
     <OrderSection
