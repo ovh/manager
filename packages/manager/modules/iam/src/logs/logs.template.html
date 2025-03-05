@@ -1,0 +1,40 @@
+<oui-header data-heading="{{:: 'iam_logs_label' | translate }}">
+    <oui-header-tabs>
+        <oui-header-tabs-item
+            data-state="iam.logs.audit"
+            data-disabled="!$ctrl.auditLogsAvailability"
+            ><span data-translate="iam_audit_logs_label"></span
+        ></oui-header-tabs-item>
+        <oui-header-tabs-item
+            data-state="iam.logs.activity"
+            data-disabled="!$ctrl.activityLogsAvailability"
+        >
+            <span data-translate="iam_activity_logs_label"></span
+            ><span class="oui-badge oui-badge_info"
+                >coming soon</span
+            ></oui-header-tabs-item
+        >
+        <oui-header-tabs-item
+            data-state="iam.logs.activity"
+            data-disabled="!$ctrl.accessPolicyLogsAvailability"
+        >
+            <span data-translate="iam_access_policy_logs_label"></span
+            ><span class="oui-badge oui-badge_info"
+                >coming soon</span
+            ></oui-header-tabs-item
+        >
+    </oui-header-tabs>
+
+    <oui-guide-menu data-text="{{:: 'iam_guide_header_label' | translate }}">
+        <oui-guide-menu-item
+            data-ng-repeat="guide in $ctrl.onboardingGuides track by $index"
+            data-href="{{:: guide.link }}"
+            data-on-click="$ctrl.onGuideClick(guide.key)"
+            data-external
+        >
+            <span data-ng-bind=":: guide.title"></span>
+        </oui-guide-menu-item>
+    </oui-guide-menu>
+</oui-header>
+
+<div class="container-fluid mt-4" data-ui-view="logsView"></div>

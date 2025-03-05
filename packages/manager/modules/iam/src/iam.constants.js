@@ -202,7 +202,43 @@ const GUIDE = {
     WS:
       'https://help.ovhcloud.com/csm/es-api-getting-started-ovhcloud-api?id=kb_article_view&sysparm_article=KB0042793',
   },
+  LOGS: {
+    FR:
+      'https://help.ovhcloud.com/csm/fr-iam-logs-forwarding?id=kb_article_view&sysparm_article=KB0060437',
+    DE:
+      'https://help.ovhcloud.com/csm/de-iam-logs-forwarding?id=kb_article_view&sysparm_article=KB0060440',
+    ES:
+      'https://help.ovhcloud.com/csm/es-es-iam-logs-forwarding?id=kb_article_view&sysparm_article=KB0060443',
+    WE:
+      'https://help.ovhcloud.com/csm/en-iam-logs-forwarding?id=kb_article_view&sysparm_article=KB0060439',
+    IE:
+      'https://help.ovhcloud.com/csm/en-ie-iam-logs-forwarding?id=kb_article_view&sysparm_article=KB0060446',
+    IT:
+      'https://help.ovhcloud.com/csm/it-iam-logs-forwarding?id=kb_article_view&sysparm_article=KB0060433',
+    PL:
+      'https://help.ovhcloud.com/csm/pl-iam-logs-forwarding?id=kb_article_view&sysparm_article=KB0060448',
+    PT:
+      'https://help.ovhcloud.com/csm/pt-iam-logs-forwarding?id=kb_article_view&sysparm_article=KB0060438',
+    GB:
+      'https://help.ovhcloud.com/csm/en-gb-iam-logs-forwarding?id=kb_article_view&sysparm_article=KB0060447',
+    CA:
+      'https://help.ovhcloud.com/csm/en-ca-iam-logs-forwarding?id=kb_article_view&sysparm_article=KB0060445',
+    QC:
+      'https://help.ovhcloud.com/csm/fr-ca-iam-logs-forwarding?id=kb_article_view&sysparm_article=KB0060436',
+    WS:
+      'https://help.ovhcloud.com/csm/es-iam-logs-forwarding?id=kb_article_view&sysparm_article=KB0060434',
+    AU:
+      'https://help.ovhcloud.com/csm/en-au-iam-logs-forwarding?id=kb_article_view&sysparm_article=KB0060442',
+    SG:
+      'https://help.ovhcloud.com/csm/en-sg-iam-logs-forwarding?id=kb_article_view&sysparm_article=KB0060444',
+    ASIA:
+      'https://help.ovhcloud.com/csm/asia-iam-logs-forwarding?id=kb_article_view&sysparm_article=KB0060435',
+  },
 };
+
+GUIDE.LOGS.SN = GUIDE.LOGS.FR;
+GUIDE.LOGS.TN = GUIDE.LOGS.FR;
+GUIDE.LOGS.MA = GUIDE.LOGS.FR;
 
 const API_KEY_URL = {
   EU: 'https://www.ovh.com/auth/api/createToken',
