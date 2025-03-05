@@ -54,6 +54,11 @@ export default /* @ngInject */ ($stateProvider) => {
             'app.dedicatedCloud.details.datacenter.details.network.move-nsxt-edge',
             { nsxtEdgeId },
           ),
+        goToRemove: /* @ngInject */ ($state) => (nsxtEdgeId) =>
+          $state.go(
+            'app.dedicatedCloud.details.datacenter.details.network.delete-nsx',
+            { nsxtEdgeId },
+          ),
         goToResize: /* @ngInject */ ($state) => () =>
           $state.go(
             'app.dedicatedCloud.details.datacenter.details.dashboard.nsx',
