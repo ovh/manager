@@ -59,6 +59,7 @@ export default class LogToCustomerTileCtrl {
       const data = await this.LogToCustomerService.icebergQuery(
         this.logSubscriptionUrl,
         { kind: this.kind },
+        this.apiVersion,
       );
 
       const streamPromises = data.map(async (subscription) => {
@@ -107,6 +108,7 @@ export default class LogToCustomerTileCtrl {
 
     this.LogToCustomerService.delete(
       `${this.logSubscriptionUrl}/${subscription.subscriptionId}`,
+      this.apiVersion,
     )
       .then(({ data }) => {
         return this.LogToCustomerService.pollOperation(
