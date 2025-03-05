@@ -112,3 +112,13 @@ export const reinstallInstance = (
   v6.post(instanceActionUrl(projectId, instanceId, 'reinstall'), {
     imageId,
   });
+export const getInstance = ({
+  projectId,
+  instanceId,
+}: {
+  projectId: string;
+  instanceId: string;
+}): Promise<TInstanceDto> =>
+  v6
+    .get(`/cloud/project/${projectId}/aggregated/instance/${instanceId}`)
+    .then((response) => response.data);
