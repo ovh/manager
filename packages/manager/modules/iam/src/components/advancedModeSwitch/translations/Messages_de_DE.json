@@ -1,5 +1,0 @@
-{
-  "iam_advanced_mode_switch_toggle_label": "Erweiterter Modus",
-  "iam_advanced_mode_switch_popover": "Im erweiterten Modus können Sie Ihre Richtlinien als „read-only“ anzeigen. Diese Richtlinien können weder bearbeitet noch gelöscht werden.",
-  "iam_advanced_mode_switch_error": "Es ist ein Fehler aufgetreten: {{ message }}"
-}
