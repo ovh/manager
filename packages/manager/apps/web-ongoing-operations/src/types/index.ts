@@ -47,3 +47,8 @@ export interface TArgument {
   type: string;
   value: string;
 }
+
+export interface TOperationArguments {
+  data: TArgument[];
+  actions: boolean;
+}

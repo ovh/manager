@@ -48,4 +48,4 @@ const init = async (appName: string) => {
   );
 };
 
-init('web-ongoing-operations');
+init(APP_NAME);
