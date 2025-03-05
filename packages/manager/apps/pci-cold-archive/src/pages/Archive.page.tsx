@@ -79,9 +79,11 @@ export default function ColdArchivePage() {
         header={{
           title: t('pci_projects_project_storages_cold_archive_label'),
           headerButton: <GuideMenu />,
-          description: ((
+        }}
+        description={
+          ((
             <>
-              <OdsText preset="paragraph" className="block mb-8">
+              <OdsText preset="paragraph" className="mr-4">
                 {t('pci_projects_project_storages_cold_archive_description')}
               </OdsText>
               <OdsLink
@@ -93,8 +95,8 @@ export default function ColdArchivePage() {
                 href={priceLink}
               />
             </>
-          ) as unknown) as string,
-        }}
+          ) as unknown) as string
+        }
         tabs={<TabsPanel tabs={tabs} />}
       >
         <Outlet />
