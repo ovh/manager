@@ -22,12 +22,12 @@ import { COLD_ARCHIVE_TRACKING } from '@/tracking.constants';
 import { useTracking } from '@/hooks/useTracking';
 import { CHECK_PRICES_DOC_LINK } from '@/constants';
 import UserInformationTile from '@/components/UserInformationTile.component';
-import GuideMenu from '@/components/GuideMenu.component';
 import { useCreateContainer } from '@/api/hooks/useArchive';
 import { TArchiveContainer } from '@/api/data/archive';
 import { ContainerNameStep } from './steps/ContainerNameStep.component';
 import { LinkUserStep } from './steps/LinkUserStep.component';
 import { useContainerCreationStore } from './useContainerCreationStore';
+import GuideMenu from '@/components/GuideMenu.component';
 
 export default function ContainerNewPage() {
   const { t } = useTranslation([
@@ -146,23 +146,26 @@ export default function ContainerNewPage() {
         title: t('pci_projects_project_storages_cold_archive_add_title'),
         headerButton: <GuideMenu />,
       }}
+      description={
+        ((
+          <div>
+            <OdsText preset="paragraph">
+              {t('pci_projects_project_storages_cold_archive_add_description')}
+            </OdsText>
+            <Links
+              className="mr-4"
+              href={pricesLink}
+              target="_blank"
+              type={LinkType.external}
+              label={t(
+                'pci_projects_project_storages_cold_archive_add_description_link',
+              )}
+            />
+          </div>
+        ) as unknown) as string
+      }
     >
       <div className="flex flex-col gap-4">
-        <div>
-          <OdsText preset="paragraph">
-            {t('pci_projects_project_storages_cold_archive_add_description')}
-          </OdsText>
-          <Links
-            className="block mt-4"
-            href={pricesLink}
-            target="_blank"
-            type={LinkType.external}
-            label={t(
-              'pci_projects_project_storages_cold_archive_add_description_link',
-            )}
-          />
-        </div>
-
         <div>
           <Notifications />
         </div>
