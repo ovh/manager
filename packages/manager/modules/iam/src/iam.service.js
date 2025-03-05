@@ -1,4 +1,4 @@
-import { API_ERROR, GUIDE, PREFERENCES_KEY } from './iam.constants';
+import { API_ERROR, GUIDE } from './iam.constants';
 
 export const URL = {
   ACTION: '/engine/api/v2/iam/reference/action',
@@ -321,62 +321,6 @@ export default class IAMService {
       },
     });
     return policy;
-  }
-
-  // **********************************************************************************************
-  // Preferences
-
-  /**
-   * Disable the AdvancedMode
-   * @returns {Promise<null>}
-   */
-  disableAdvancedMode() {
-    return this.registerAdvancedMode().then(() =>
-      this.$http.put(`${URL.PREFERENCES}/${PREFERENCES_KEY.ADVANCED_MODE}`, {
-        value: 'false',
-      }),
-    );
-  }
-
-  /**
-   * Enable the AdvancedMode
-   * @returns {Promise<null>}
-   */
-  enableAdvancedMode() {
-    return this.registerAdvancedMode().then(() =>
-      this.$http.put(`${URL.PREFERENCES}/${PREFERENCES_KEY.ADVANCED_MODE}`, {
-        value: 'true',
-      }),
-    );
-  }
-
-  /**
-   * Whether the advanced mode is enabled
-   * @returns {Promise<boolean>}
-   */
-  isAdvancedModeEnabled() {
-    return this.registerAdvancedMode().then(() =>
-      this.$http
-        .get(`${URL.PREFERENCES}/${PREFERENCES_KEY.ADVANCED_MODE}`)
-        .then(({ data: { value } }) => value === 'true'),
-    );
-  }
-
-  /**
-   * Register the IAM_ADVANCED_MODE key is in the preferences
-   * If no preferences is set yet, set it to false ('false' as only string are allowed)
-   * @returns {Promise<boolean>}
-   */
-  registerAdvancedMode() {
-    return this.$http.get(URL.PREFERENCES).then(({ data: preferencesKeys }) => {
-      if (!preferencesKeys.includes(PREFERENCES_KEY.ADVANCED_MODE)) {
-        return this.$http.post(URL.PREFERENCES, {
-          key: PREFERENCES_KEY.ADVANCED_MODE,
-          value: 'false',
-        });
-      }
-      return null;
-    });
   }
 
   // **********************************************************************************************

@@ -6,7 +6,7 @@ export default {
   bindings: {
     alert: '<',
     goTo: '<',
-    onboardingGuides: '<',
+    policiesGuides: '<',
     policy: '<',
     trackClick: '<',
     trackPage: '<',
