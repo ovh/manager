@@ -1,5 +1,6 @@
 import {
   NETWORK_LABEL,
+  MIN_NSX_EDGES,
   NSXT_EDGE_CATALOG,
   DATACENTER_NETWORK_SITE_WEB_LINK,
   NSXT_EDGE_CORE_PLAN_CODE,
@@ -16,6 +17,7 @@ export default class DedicatedCloudDatacenterNetworkTab {
     this.userLanguage = coreConfig.getUserLocale().replace('_', '-');
 
     this.NETWORK_LABEL = NETWORK_LABEL;
+    this.MIN_NSX_EDGES = MIN_NSX_EDGES;
   }
 
   $onInit() {
