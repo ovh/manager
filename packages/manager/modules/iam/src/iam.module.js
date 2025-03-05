@@ -18,6 +18,7 @@ import policy from './policy';
 import policies from './policies';
 import identities from './identities';
 import apiKeys from './api-keys';
+import logs from './logs';
 import resourceGroup from './resourceGroup';
 
 import filters from './iam.filters';
@@ -59,6 +60,7 @@ angular
     policies,
     identities,
     apiKeys,
+    logs,
     resourceGroup,
   ])
   .config(routing)
