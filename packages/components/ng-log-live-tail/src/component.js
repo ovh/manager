@@ -12,5 +12,6 @@ export default {
     logApiUrl: '<',
     logKind: '<',
     logKeys: '<',
+    apiVersion: '<?',
   },
 };

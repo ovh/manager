@@ -10,5 +10,6 @@ export default {
     goToListingPage: '<',
     trackClick: '<',
     trackingHits: '<',
+    apiVersion: '<?',
   },
 };
