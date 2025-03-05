@@ -1,6 +1,7 @@
 import JSURL from 'jsurl';
 import { uniq } from 'lodash';
 import { CatalogPricing } from '@ovh-ux/manager-models';
+// import setupNasHa from 'ConfigoNasHa/ConfigoNasHa';
 
 import {
   FORMAT_DURATION_TRACKING_ORDER,
@@ -22,7 +23,6 @@ export default class NashaOrderController {
     this.$translate = $translate;
     this.$window = $window;
     this.BillingService = BillingService;
-
     this.user = coreConfig.getUser();
     this.userLocale = coreConfig.getUserLocale();
     this.expressOrderUrl = RedirectionService.getURL('expressOrder');
@@ -58,11 +58,48 @@ export default class NashaOrderController {
   }
 
   $onInit() {
-    this.plans.forEach((plan) => {
-      const key = `nasha_order_capacity_description_${plan.planCode}`;
-      const description = this.$translate.instant(key);
-      Object.assign(plan.capacity, {
-        description: (description !== key && description) || '',
+    const element = document.getElementById('nasha-order-container');
+    // const { default: setupNasHa } = await import('ConfigoNasHa/ConfigoNasHa');
+    import('ConfigoNasHa/ConfigoNasHa').then(({ default: setupNasHa }) => {
+      setupNasHa(element, {
+        options: {
+          assets: {
+            flagsPath: '/assets/flags',
+          },
+          language: 'en',
+          subsidiary: 'FR',
+          // express: {
+          //   // openTarget: '_top',
+          //   backUrl: this.nashaPublicUrl,
+          // },
+          navbar: {
+            enable: true,
+            // backUrl: this.nashaRoot,
+          },
+          cart: {
+            enable: false,
+          },
+        },
+        callbacks: {
+          error: () => {},
+          ready: () => {},
+          update: () => {},
+          navigation: (ne) => {
+            switch (ne.action) {
+              case 'order':
+                this.trackClick(PREFIX_TRACKING_ORDER, 'confirm');
+                this.goToNasha();
+                break;
+              case 'leave':
+                this.trackClick(PREFIX_TRACKING_ORDER, 'cancel');
+                break;
+              default:
+                break;
+            }
+          },
+        },
+        parameters: null,
+        selections: null,
       });
     });
   }
