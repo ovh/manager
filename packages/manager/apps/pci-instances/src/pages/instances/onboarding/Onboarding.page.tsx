@@ -4,14 +4,8 @@ import {
   OnboardingLayout,
   OvhSubsidiary,
   PageLayout,
-  useProjectUrl,
 } from '@ovh-ux/manager-react-components';
-import {
-  Navigate,
-  useHref,
-  useParams,
-  useRouteLoaderData,
-} from 'react-router-dom';
+import { Navigate, useHref, useRouteLoaderData } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { OsdsText } from '@ovhcloud/ods-components/react';
 import {
@@ -30,8 +24,6 @@ import { Spinner } from '@/components/spinner/Spinner.component';
 
 const Onboarding: FC = () => {
   const { t } = useTranslation(['onboarding', 'common']);
-  const { projectId } = useParams() as { projectId: string };
-  const projectUrl = useProjectUrl('public-cloud');
   const context = useContext(ShellContext);
   const { ovhSubsidiary } = context.environment.getUser() as {
     ovhSubsidiary: OvhSubsidiary;
@@ -40,7 +32,7 @@ const Onboarding: FC = () => {
   const createInstanceHref = useHref('../new');
   useHidePreloader();
 
-  const { data, isLoading } = useInstances(projectId, projectUrl, {
+  const { data, isLoading } = useInstances({
     limit: 10,
     sort: 'name',
     sortOrder: 'asc',
