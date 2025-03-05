@@ -27,6 +27,7 @@ const instanceDtoBuilder = (
   addresses,
   volumes: [],
   actions: [],
+  pendingTask: false,
 });
 
 const instanceBuilder = (
@@ -57,7 +58,6 @@ const initQueryClient = () => {
 
 // test data
 type Data = {
-  projectId: string;
   queryParamaters: TUseInstancesQueryParams;
   queryPayload?: TInstanceDto[];
   expectedInstances: TInstance[];
@@ -66,7 +66,6 @@ type Data = {
   expectedQueryKey: string[];
 };
 
-const fakeProjectId = 'p42b4f068f404ef3832435304a316332';
 const fakeQueryParamaters1: TUseInstancesQueryParams = {
   limit: 10,
   sort: 'name',
@@ -167,7 +166,7 @@ const fakeInstance4: TInstance = instanceBuilder(
 
 const fakeQueryKey1 = [
   'project',
-  'p42b4f068f404ef3832435304a316332',
+  '8c8c4fd6d4414aa29fc777752b00005198664',
   'instances',
   'list',
   'sort',
@@ -177,7 +176,7 @@ const fakeQueryKey1 = [
 
 const fakeQueryKey2 = [
   'project',
-  'p42b4f068f404ef3832435304a316332',
+  '8c8c4fd6d4414aa29fc777752b00005198664',
   'instances',
   'list',
   'sort',
@@ -187,7 +186,7 @@ const fakeQueryKey2 = [
 
 const fakeQueryKey3 = [
   'project',
-  'p42b4f068f404ef3832435304a316332',
+  '8c8c4fd6d4414aa29fc777752b00005198664',
   'instances',
   'list',
   'sort',
@@ -204,21 +203,20 @@ let server: SetupServer;
 
 describe('UseInstances hook', () => {
   describe.each`
-    projectId        | queryParamaters         | queryPayload                            | expectedInstances                 | expectedQueryHasNext | expectedInstancesAfterRefetch     | expectedQueryKey
-    ${fakeProjectId} | ${fakeQueryParamaters1} | ${[]}                                   | ${[]}                             | ${false}             | ${undefined}                      | ${fakeQueryKey1}
-    ${fakeProjectId} | ${fakeQueryParamaters1} | ${[fakeInstanceDto1]}                   | ${[fakeInstance1]}                | ${false}             | ${undefined}                      | ${fakeQueryKey1}
-    ${fakeProjectId} | ${fakeQueryParamaters3} | ${[fakeInstanceDto1]}                   | ${[fakeInstance1]}                | ${false}             | ${undefined}                      | ${fakeQueryKey2}
-    ${fakeProjectId} | ${fakeQueryParamaters4} | ${[fakeInstanceDto1]}                   | ${[fakeInstance1]}                | ${false}             | ${undefined}                      | ${fakeQueryKey3}
-    ${fakeProjectId} | ${fakeQueryParamaters1} | ${[fakeInstanceDto1, fakeInstanceDto2]} | ${[fakeInstance1, fakeInstance2]} | ${false}             | ${undefined}                      | ${fakeQueryKey1}
-    ${fakeProjectId} | ${fakeQueryParamaters2} | ${[fakeInstanceDto1, fakeInstanceDto2]} | ${[fakeInstance1]}                | ${true}              | ${[fakeInstance1, fakeInstance1]} | ${fakeQueryKey1}
-    ${fakeProjectId} | ${fakeQueryParamaters1} | ${[fakeInstanceDto2]}                   | ${[fakeInstance2]}                | ${false}             | ${undefined}                      | ${fakeQueryKey1}
-    ${fakeProjectId} | ${fakeQueryParamaters1} | ${[fakeInstanceDto3]}                   | ${[fakeInstance3]}                | ${false}             | ${undefined}                      | ${fakeQueryKey1}
-    ${fakeProjectId} | ${fakeQueryParamaters1} | ${[fakeInstanceDto4]}                   | ${[fakeInstance4]}                | ${false}             | ${undefined}                      | ${fakeQueryKey1}
-    ${fakeProjectId} | ${fakeQueryParamaters1} | ${undefined}                            | ${undefined}                      | ${false}             | ${undefined}                      | ${fakeQueryKey1}
+    queryParamaters         | queryPayload                            | expectedInstances                 | expectedQueryHasNext | expectedInstancesAfterRefetch     | expectedQueryKey
+    ${fakeQueryParamaters1} | ${[]}                                   | ${[]}                             | ${false}             | ${undefined}                      | ${fakeQueryKey1}
+    ${fakeQueryParamaters1} | ${[fakeInstanceDto1]}                   | ${[fakeInstance1]}                | ${false}             | ${undefined}                      | ${fakeQueryKey1}
+    ${fakeQueryParamaters3} | ${[fakeInstanceDto1]}                   | ${[fakeInstance1]}                | ${false}             | ${undefined}                      | ${fakeQueryKey2}
+    ${fakeQueryParamaters4} | ${[fakeInstanceDto1]}                   | ${[fakeInstance1]}                | ${false}             | ${undefined}                      | ${fakeQueryKey3}
+    ${fakeQueryParamaters1} | ${[fakeInstanceDto1, fakeInstanceDto2]} | ${[fakeInstance1, fakeInstance2]} | ${false}             | ${undefined}                      | ${fakeQueryKey1}
+    ${fakeQueryParamaters2} | ${[fakeInstanceDto1, fakeInstanceDto2]} | ${[fakeInstance1]}                | ${true}              | ${[fakeInstance1, fakeInstance1]} | ${fakeQueryKey1}
+    ${fakeQueryParamaters1} | ${[fakeInstanceDto2]}                   | ${[fakeInstance2]}                | ${false}             | ${undefined}                      | ${fakeQueryKey1}
+    ${fakeQueryParamaters1} | ${[fakeInstanceDto3]}                   | ${[fakeInstance3]}                | ${false}             | ${undefined}                      | ${fakeQueryKey1}
+    ${fakeQueryParamaters1} | ${[fakeInstanceDto4]}                   | ${[fakeInstance4]}                | ${false}             | ${undefined}                      | ${fakeQueryKey1}
+    ${fakeQueryParamaters1} | ${undefined}                            | ${undefined}                      | ${false}             | ${undefined}                      | ${fakeQueryKey1}
   `(
-    'Given a projectId <$projectId> and query parameters <$queryParamaters>',
+    'Given query parameters <$queryParamaters>',
     ({
-      projectId,
       queryParamaters,
       queryPayload,
       expectedInstances,
@@ -242,12 +240,9 @@ describe('UseInstances hook', () => {
           server = setupInstancesServer(serverResponse);
 
           const { wrapper, queryClient } = initQueryClient();
-          const { result } = renderHook(
-            () => useInstances(projectId, '', queryParamaters),
-            {
-              wrapper,
-            },
-          );
+          const { result } = renderHook(() => useInstances(queryParamaters), {
+            wrapper,
+          });
 
           expect(result.current.isPending).toBe(true);
 
