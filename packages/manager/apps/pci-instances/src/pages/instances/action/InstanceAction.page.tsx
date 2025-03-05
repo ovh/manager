@@ -5,7 +5,7 @@ import { useNotifications } from '@ovh-ux/manager-react-components';
 import { PciModal } from '@ovh-ux/manager-pci-common';
 import {
   getInstanceById,
-  updateDeletedInstanceStatus,
+  updateInstancePendingTask,
 } from '@/data/hooks/instance/useInstances';
 import queryClient from '@/queryClient';
 import { useUrlLastSection } from '@/hooks/url/useUrlLastSection';
@@ -54,10 +54,8 @@ const InstanceAction: FC = () => {
 
   const executeSuccessCallback = useCallback((): void => {
     if (!instanceId) return;
-    if (section === 'delete') {
-      updateDeletedInstanceStatus(projectId, queryClient, instanceId);
-    }
-  }, [instanceId, projectId, section]);
+    updateInstancePendingTask(projectId, queryClient, instanceId);
+  }, [instanceId, projectId]);
 
   const handleModalClose = () => {
     navigate('..');

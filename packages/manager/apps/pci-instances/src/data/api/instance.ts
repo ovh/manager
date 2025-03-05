@@ -94,3 +94,11 @@ export const reinstallInstance = (
   v6.post(instanceActionUrl(projectId, instanceId, 'reinstall'), {
     imageId,
   });
+export const getInstance = ({
+  projectId,
+  instanceId,
+  region,
+}: any): Promise<any> =>
+  v6
+    .get(`/cloud/project/${projectId}/region/${region}/instance/${instanceId}`)
+    .then((d) => d);
