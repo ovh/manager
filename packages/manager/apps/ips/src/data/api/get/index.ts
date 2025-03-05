@@ -2,6 +2,7 @@ export * from './ipList';
 export * from './ipDetails';
 export * from './ipReverse';
 export * from './dedicatedServerVmac';
+export * from './dedicatedServerVmacVirtualAddress';
 export * from './ipMitigation';
 export * from './ipSpam';
 export * from './ipAntihack';
