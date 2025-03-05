@@ -8,8 +8,7 @@ import {
   getSubnetByNetworkAndRegion,
 } from '../data/network';
 import { NETWORK_PRIVATE_VISIBILITY } from '@/constants';
-import { useCreateStore } from '@/pages/create/store';
-import { FloatingIpSelectionId } from './useFloatingIps/useFloatingIps.constant';
+import { FloatingIpSelectionId, useCreateStore } from '@/pages/create/store';
 
 export const usePrivateNetworkByRegion = ({
   projectId,

@@ -53,7 +53,7 @@ export default function CreatePage(): JSX.Element {
   useEffect(() => {
     store.reset();
     store.set.projectId(projectId);
-  }, [projectId, store]);
+  }, []);
 
   if (isAddonsFetching) {
     return (
@@ -101,7 +101,7 @@ export default function CreatePage(): JSX.Element {
           ovhSubsidiary={ovhSubsidiary}
           projectId={projectId}
         />
-        <SizeStep ovhSubsidiary={ovhSubsidiary} regionAddons={addons} />
+        <SizeStep ovhSubsidiary={ovhSubsidiary} projectId={projectId} />
         <IpStep ovhSubsidiary={ovhSubsidiary} projectId={projectId} />
         <NetworkStep />
         <InstanceStep />

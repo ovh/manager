@@ -18,9 +18,8 @@ import { useTranslation } from 'react-i18next';
 import { useProjectUrl } from '@ovh-ux/manager-react-components';
 import { LOAD_BALANCER_CREATION_TRACKING } from '@/constants';
 import { useGetPrivateNetworkSubnets } from '@/api/hook/useNetwork';
-import { useCreateStore } from '@/pages/create/store';
+import { FloatingIpSelectionId, useCreateStore } from '@/pages/create/store';
 import { useTranslatedLinkReference } from '@/hooks/useTranslatedLinkReference';
-import { FloatingIpSelectionId } from '@/api/hook/useFloatingIps/useFloatingIps.constant';
 
 export const SubnetsPart = (): JSX.Element => {
   const { t: tCreate } = useTranslation('load-balancer/create');

@@ -2,10 +2,8 @@ import { useMemo } from 'react';
 import {
   getCatalogQuery,
   getProductAvailabilityQuery,
-  TRegion,
 } from '@ovh-ux/manager-pci-common';
 import { useQueries } from '@tanstack/react-query';
-import { Addon, RegionAddon } from '@/types/addon.type';
 import { SIZE_ORDER } from './useAddons.constant';
 
 export const useAddons = (
@@ -23,17 +21,14 @@ export const useAddons = (
     combine: ([
       { data: catalog, isFetching: isCatalogFetching },
       { data: plans, isFetching: isPlansFetching },
-    ]): {
-      addons: RegionAddon[];
-      isFetching: boolean;
-    } => {
+    ]) => {
       const addons = plans?.plans?.map(({ code, regions }) => {
         const addon = catalog?.addons.find(({ planCode }) => code === planCode);
 
         return addon
           ? {
               ...addon,
-              regions: (regions as unknown) as TRegion[],
+              regions,
             }
           : null;
       });
@@ -50,16 +45,16 @@ export const useRegionAddons = (
   projectId: string,
   region: string,
   addonFamily: string,
-): { addons: Addon[]; isFetching: boolean } => {
-  const { addons, isFetching } = useAddons(
+) => {
+  const { addons: data, isFetching } = useAddons(
     ovhSubsidiary,
     projectId,
     addonFamily,
   );
 
-  return useMemo(
-    () => ({
-      addons: addons
+  const addons = useMemo(
+    () =>
+      data
         ?.filter(
           ({ regions, pricings }) =>
             regions.some(({ name }) => name === region) &&
@@ -75,8 +70,8 @@ export const useRegionAddons = (
         .sort(
           (a, b) => SIZE_ORDER.indexOf(a.size) - SIZE_ORDER.indexOf(b.size),
         ),
-      isFetching,
-    }),
-    [addons, isFetching, region],
+    [data, region],
   );
+
+  return { addons, isFetching };
 };

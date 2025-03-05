@@ -3,11 +3,14 @@ import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { StepComponent } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-import { StepsEnum, useCreateStore } from '@/pages/create/store';
+import {
+  FloatingIpSelectionId,
+  StepsEnum,
+  useCreateStore,
+} from '@/pages/create/store';
 import { useTracking } from '@/pages/create/hooks/useTracking';
 import { SubnetNetworksPart } from '@/pages/create/steps/network/parts/SubnetNetworks.part';
 import { PrivateNetworkPart } from '@/pages/create/steps/network/parts/PrivateNetwork.part';
-import { FloatingIpSelectionId } from '@/api/hook/useFloatingIps/useFloatingIps.constant';
 
 export const NetworkStep = (): JSX.Element => {
   const { t } = useTranslation(['load-balancer/create', 'pci-common']);

@@ -2,62 +2,47 @@ import {
   DatagridColumn,
   DataGridTextCell,
 } from '@ovh-ux/manager-react-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { OsdsLink } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import { useHref } from 'react-router-dom';
 
 import OperatingStatusComponent from '@/components/listing/OperatingStatus.component';
 import ProvisioningStatusComponent from '@/components/listing/ProvisioningStatus.component';
 import ActionsComponent from '@/pages/detail/listeners/list/Actions.component';
 import { TLoadBalancerListener } from '@/api/data/listener';
+import DataGridLinkCell from '@/components/datagrid/DataGridLinkCell.component';
 
 export const useDatagridColumn = () => {
-  const { t } = useTranslation('load-balancer');
-  const { t: tListeners } = useTranslation('listeners');
+  const { t } = useTranslation(['listeners', 'load-balancer']);
 
   const columns: DatagridColumn<TLoadBalancerListener>[] = [
     {
       id: 'name',
-      cell: (props: TLoadBalancerListener) => (
-        <DataGridTextCell>
-          <OsdsLink
-            color={ODS_THEME_COLOR_INTENT.primary}
-            href={useHref(`../${props.id}/edit`)}
-          >
-            {props.name}
-          </OsdsLink>
-        </DataGridTextCell>
+      cell: ({ id, name }: TLoadBalancerListener) => (
+        <DataGridLinkCell href={`../${id}/edit`}>{name}</DataGridLinkCell>
       ),
-      label: tListeners('octavia_load_balancer_listeners_name'),
+      label: t('octavia_load_balancer_listeners_name'),
     },
     {
       id: 'defaultPoolId',
-      cell: (props: TLoadBalancerListener) => (
-        <DataGridTextCell>
-          <OsdsLink
-            color={ODS_THEME_COLOR_INTENT.primary}
-            href={useHref(`../../pools/${props.defaultPoolId}`)}
-          >
-            {props.defaultPoolId}
-          </OsdsLink>
-        </DataGridTextCell>
+      cell: ({ defaultPoolId }: TLoadBalancerListener) => (
+        <DataGridLinkCell href={`../../pools/${defaultPoolId}`}>
+          {defaultPoolId}
+        </DataGridLinkCell>
       ),
-      label: tListeners('octavia_load_balancer_listeners_default_pool'),
+      label: t('octavia_load_balancer_listeners_default_pool'),
     },
     {
       id: 'protocol',
       cell: (props: TLoadBalancerListener) => (
         <DataGridTextCell>{props.protocol}</DataGridTextCell>
       ),
-      label: tListeners('octavia_load_balancer_listeners_protocol'),
+      label: t('octavia_load_balancer_listeners_protocol'),
     },
     {
       id: 'port',
       cell: (props: TLoadBalancerListener) => (
         <DataGridTextCell>{props.port}</DataGridTextCell>
       ),
-      label: tListeners('octavia_load_balancer_listeners_port'),
+      label: t('octavia_load_balancer_listeners_port'),
     },
     {
       id: 'provisioningStatus',
@@ -67,7 +52,7 @@ export const useDatagridColumn = () => {
           className="w-fit"
         />
       ),
-      label: t('octavia_load_balancer_provisioning_status'),
+      label: t('load-balancer:octavia_load_balancer_provisioning_status'),
     },
     {
       id: 'operatingStatus',
@@ -77,7 +62,7 @@ export const useDatagridColumn = () => {
           className="w-fit"
         />
       ),
-      label: t('octavia_load_balancer_operating_status'),
+      label: t('load-balancer:octavia_load_balancer_operating_status'),
       isSortable: false,
     },
     {

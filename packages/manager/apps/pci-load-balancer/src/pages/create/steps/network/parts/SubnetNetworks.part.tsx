@@ -14,8 +14,7 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
 import { useCatalogPrice } from '@ovh-ux/manager-react-components';
 import { useParams } from 'react-router-dom';
-import { useCreateStore } from '@/pages/create/store';
-import { FloatingIpSelectionId } from '@/api/hook/useFloatingIps/useFloatingIps.constant';
+import { FloatingIpSelectionId, useCreateStore } from '@/pages/create/store';
 import {
   useSmallestGatewayRegion,
   useSubnetGateways,

@@ -4,14 +4,14 @@ import { useGetFlavor } from './useFlavors';
 import { getFlavor } from '@/api/data/flavors';
 import { wrapper } from '@/wrapperRenders';
 import { TFlavor } from '../data/load-balancer';
-import { Addon } from '@/types/addon.type';
+import { ProductAddonDetail } from '@/types/product.type';
 
 vi.mock('@/api/data/flavors');
 
 describe('useGetFlavor', () => {
   const projectId = 'test-project';
   const regionName = 'test-region';
-  const addon = { size: 'test-addon' } as Addon;
+  const addon = { size: 'test-addon' } as ProductAddonDetail;
 
   it('should fetch flavor data successfully', async () => {
     const mockFlavorData = {
