@@ -17,14 +17,27 @@ import {
   initTestI18n,
   getAuthenticationMocks,
   toMswHandlers,
+  WAIT_FOR_DEFAULT_OPTIONS,
 } from '@ovh-ux/manager-core-test-utils';
 import { translations, labels } from './test-i18n';
 import { TestApp } from './TestApp';
-import { GetIpsMocksParams, getIpsMocks } from '../../mocks/ip/ip';
 import {
+  GetIpsMocksParams,
+  getIpsMocks,
   GetDedicatedMocksParams,
   getDedicatedMocks,
-} from '../../mocks/dedicated/get-dedicated-virtualmac';
+  getCatalogMocks,
+  getDedicatedCloudMocks,
+  GetDedicatedCloudMocksParams,
+  getDedicatedServerMocks,
+  GetDedicatedServerMocksParams,
+  getVrackMocks,
+  GetVrackMocksParams,
+  getVpsMocks,
+  GetVpsMocksParams,
+  getOrganisationMocks,
+  GetOrganisationMocksParams,
+} from '../../mocks';
 
 const APP_NAME = 'ips';
 
@@ -38,14 +51,24 @@ export const renderTest = async ({
   initialRoute?: string;
 } & GetIpsMocksParams &
   GetDedicatedMocksParams &
-  GetServicesMocksParams = {}) => {
+  GetServicesMocksParams &
+  GetDedicatedCloudMocksParams &
+  GetDedicatedServerMocksParams &
+  GetVrackMocksParams &
+  GetVpsMocksParams &
+  GetOrganisationMocksParams = {}) => {
   ((global as unknown) as { server: SetupServer }).server?.resetHandlers(
     ...toMswHandlers([
       ...getIpsMocks(mockParams),
       ...getDedicatedMocks(mockParams),
       ...getAuthenticationMocks({ isAuthMocked: true }),
       ...getServicesMocks(mockParams),
-      // ...getConfig(mockParams),
+      ...getCatalogMocks(),
+      ...getDedicatedCloudMocks(mockParams),
+      ...getDedicatedServerMocks(mockParams),
+      ...getVrackMocks(mockParams),
+      ...getVpsMocks(mockParams),
+      ...getOrganisationMocks(mockParams),
     ]),
   );
 
@@ -73,7 +96,7 @@ export const renderTest = async ({
             exact: false,
           }).length,
         ).toBeGreaterThan(0),
-      { timeout: 30000 },
+      WAIT_FOR_DEFAULT_OPTIONS,
     );
   }
 
