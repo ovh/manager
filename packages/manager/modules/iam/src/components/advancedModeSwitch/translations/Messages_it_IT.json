@@ -1,5 +1,0 @@
-{
-  "iam_advanced_mode_switch_toggle_label": "Modalità avanzata",
-  "iam_advanced_mode_switch_popover": "La modalità avanzata ti permette di visualizzare le policy in \"read-only\". Queste policy non possono essere modificate né eliminate.",
-  "iam_advanced_mode_switch_error": "Si è verificato un errore: {{ message }}"
-}
