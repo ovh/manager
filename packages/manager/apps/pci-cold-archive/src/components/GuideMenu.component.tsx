@@ -1,9 +1,14 @@
+import { GuidesHeader } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { OdsButton, OdsLink, OdsPopover } from '@ovhcloud/ods-components/react';
 import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { GUIDE_MENU_ITEMS } from '@/constants';
 import { COLD_ARCHIVE_TRACKING } from '@/tracking.constants';
+import {
+  COLD_ARCHIVE_OVERVIEW_LINKS,
+  GETTING_STARTED_WITH_COLD_ARCHIVE_LINKS,
+  MANAGE_YOUR_DATA_LINKS,
+  STORAGE_BACKUP_LINKS,
+} from '@/constants';
 
 export default function GuideMenu() {
   const { t } = useTranslation(['cold-archive', 'pci-guides-header']);
@@ -15,53 +20,41 @@ export default function GuideMenu() {
 
   const { ovhSubsidiary } = environment.getUser();
 
-  const onGuideClick = (guideId: string) => {
-    tracking?.trackClick({
-      name: `${COLD_ARCHIVE_TRACKING.GUIDE}_${guideId}`,
-      type: 'action',
-    });
+  const COLD_ARCHIVE_GUIDES = {
+    'storage-backup': {
+      key: 'storage-backup',
+      url: STORAGE_BACKUP_LINKS,
+    },
+    overview: {
+      key: 'overview',
+      url: COLD_ARCHIVE_OVERVIEW_LINKS,
+    },
+    'getting-started-with-cold-archive': {
+      key: 'getting-started-with-cold-archive',
+      url: GETTING_STARTED_WITH_COLD_ARCHIVE_LINKS,
+    },
+    'manage-your-data': {
+      key: 'manage-your-data',
+      url: MANAGE_YOUR_DATA_LINKS,
+    },
   };
 
-  const guides = GUIDE_MENU_ITEMS.reduce(
-    (list, guide) => [
-      ...list,
-      {
-        ...guide,
-        title: t(
-          `pci_projects_project_storages_cold_archives_guides_${guide.id}_title`,
-        ),
-        description: t(
-          `pci_projects_project_storages_cold_archives_guides_${guide.id}_description`,
-        ),
-        link: guide.links[ovhSubsidiary] || guide.links.DEFAULT,
-      },
-    ],
-    [],
-  );
-
   return (
-    <>
-      <div id="guides-menu-trigger">
-        <OdsButton
-          slot={'menu-title'}
-          variant={'ghost'}
-          icon={'book'}
-          label={t('pci-guides-header:pci_project_guides_header')}
-        />
-      </div>
-      <OdsPopover triggerId="guides-menu-trigger">
-        {guides.map((guide) => (
-          <div className="flex flex-col gap-2 my-1" key={guide.id}>
-            <OdsLink
-              href={guide.link}
-              label={guide.title}
-              icon="external-link"
-              target="_blank"
-              onClick={() => onGuideClick(guide.id)}
-            />
-          </div>
-        ))}
-      </OdsPopover>
-    </>
+    <GuidesHeader
+      label={t('pci_project_guides_header', { ns: 'pci-guides-header' })}
+      guides={COLD_ARCHIVE_GUIDES}
+      ovhSubsidiary={ovhSubsidiary}
+      getGuideLabel={(guide) =>
+        t(
+          `pci_projects_project_storages_cold_archives_guides_${guide.key}_title`,
+        )
+      }
+      onGuideClick={(guide) => {
+        tracking?.trackClick({
+          name: `${COLD_ARCHIVE_TRACKING.GUIDE}_${guide.key}`,
+          type: 'action',
+        });
+      }}
+    />
   );
 }
