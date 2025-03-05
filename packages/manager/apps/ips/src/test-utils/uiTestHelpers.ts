@@ -1,6 +1,6 @@
 import { waitFor } from '@testing-library/react';
+import { ODS_ICON_NAME, OdsSelect } from '@ovhcloud/ods-components';
 import '@testing-library/jest-dom';
-import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 
 export const DEFAULT_LISTING_ERROR = 'An error occured while fetching data';
 export const WAIT_FOR_DEFAULT_OPTIONS = {
@@ -98,4 +98,46 @@ export const getTooltipByText = async ({
     expect(tooltip).toHaveTextContent(text);
   }, WAIT_FOR_DEFAULT_OPTIONS);
   return tooltip;
+};
+
+export const getSelectByPlaceholder = async ({
+  container,
+  placeholder,
+  nth = 0,
+}: {
+  container: HTMLElement;
+  placeholder: string;
+  nth?: number;
+}) => {
+  let select: OdsSelect;
+  await waitFor(() => {
+    const selectList = Array.from(
+      container.querySelectorAll('ods-select'),
+    ).filter((el) => el.getAttribute('placeholder') === placeholder);
+    select = (selectList?.[nth] as unknown) as OdsSelect;
+    expect(select).toBeInTheDocument();
+  }, WAIT_FOR_DEFAULT_OPTIONS);
+  return select;
+};
+
+export const getButtonByLabel = async ({
+  container,
+  label,
+  disabled,
+  nth = 0,
+}: {
+  container: HTMLElement;
+  label: string;
+  disabled?: boolean;
+  nth?: number;
+}) => {
+  let button: HTMLElement;
+  await waitFor(() => {
+    button = container.querySelectorAll(`ods-button`)?.[nth] as HTMLElement;
+    expect(button).toBeDefined();
+    return disabled
+      ? expect(button).toHaveAttribute('disabled')
+      : expect(button).not.toHaveAttribute('disabled');
+  }, WAIT_FOR_DEFAULT_OPTIONS);
+  return button;
 };
