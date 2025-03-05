@@ -1,10 +1,7 @@
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { within, screen, waitFor, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-
-export const WAIT_FOR_DEFAULT_OPTIONS = {
-  timeout: 30_000,
-};
+import { WAIT_FOR_DEFAULT_OPTIONS } from './common.constants';
 
 export const assertModalVisibility = async ({
   container,
@@ -107,18 +104,6 @@ export const getButtonByTestId = async ({
   }, WAIT_FOR_DEFAULT_OPTIONS);
   return button;
 };
-
-/**
- * @description Standard check: wait and expect some text to be visible on the screen
- * @param text expected to be visible
- * @param timeout time to wait for (default to 30sec)
- * @returns
- */
-export const assertTextVisibility = async (text: string): Promise<void> =>
-  waitFor(
-    () => expect(screen.getByText(text)).toBeVisible(),
-    WAIT_FOR_DEFAULT_OPTIONS,
-  );
 
 export const changeInputValue = async ({
   inputLabel,
