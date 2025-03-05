@@ -2,7 +2,6 @@ import {
   Suspense,
   useContext,
   useEffect,
-  useMemo,
   useRef,
   useState,
 } from 'react';
@@ -33,22 +32,10 @@ function LegacyContainer(): JSX.Element {
   const { shell } = useContext(ApplicationContext);
   const { isStarted: isProgressAnimating } = useProgress();
   const preloaderVisible = usePreloader(shell, iframe);
-  const applications = useMemo(() => {
-    const applications = shell
-      .getPlugin('environment')
-      .getEnvironment()
-      .getApplications();
-    return {
-      ...applications,
-      'pci-instances-new': {
-        ...applications['public-cloud'],
-        container: {
-          ...applications['public-cloud'].container,
-          hash: '/pci/projects/:projectId/instances/new',
-        },
-      },
-    };
-  }, [shell]);
+  const applications = shell
+    .getPlugin('environment')
+    .getEnvironment()
+    .getApplications();
 
   const {
     isMfaEnrollmentForced,
