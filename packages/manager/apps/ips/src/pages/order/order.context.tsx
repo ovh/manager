@@ -95,7 +95,14 @@ export const OrderContextProvider: React.FC<React.PropsWithChildren> = ({
       selectedOffer,
       setSelectedOffer: (newOffer: IpOffer) => {
         const code = getCountryCode(region || selectedRegion);
-        setSelectedGeolocation(code === 'gb' ? 'uk' : code);
+        setSelectedGeolocation(
+          code === 'gb' &&
+            [ServiceType.vrack, ServiceType.ipParking].includes(
+              selectedServiceType,
+            )
+            ? 'uk'
+            : code,
+        );
         setSelectedOffer(newOffer);
         if (newOffer === IpOffer.blockAdditionalIp) {
           setIpQuantity(1);
