@@ -1,51 +1,40 @@
+import { NSX_RESOURCES } from '../../../datacenters/datacenter.constants';
 import {
-  NETWORK_LABEL,
   NSXT_EDGE_CATALOG,
   DATACENTER_NETWORK_SITE_WEB_LINK,
   NSXT_EDGE_CORE_PLAN_CODE,
   NSXT_EDGE_PRICING_MODE,
-} from '../../../../dedicatedCloud/datacenter/dedicatedCloud-datacenter.constants.js';
+} from '../../../../../dedicatedCloud/datacenter/dedicatedCloud-datacenter.constants.js';
 
-export default class DedicatedCloudDatacenterNetworkTab {
+export default class {
   /* @ngInject */
-  constructor($translate, ovhManagerPccDatacenterService, coreConfig) {
+  constructor(
+    coreConfig,
+    DedicatedCloud,
+    ovhManagerPccDatacenterService,
+    $translate,
+    coreURLBuilder,
+  ) {
     this.coreConfig = coreConfig;
-    this.$translate = $translate;
+    this.DedicatedCloud = DedicatedCloud;
     this.ovhManagerPccDatacenterService = ovhManagerPccDatacenterService;
+    this.$translate = $translate;
+    this.coreURLBuilder = coreURLBuilder;
+    this.NSX_RESOURCES = NSX_RESOURCES;
     this.vcpuTextPrice = '-';
     this.userLanguage = coreConfig.getUserLocale().replace('_', '-');
-
-    this.NETWORK_LABEL = NETWORK_LABEL;
   }
 
   $onInit() {
-    this.loadComsumptionOfOption();
-    const { ovhSubsidiary } = this.coreConfig.getUser();
-    this.fetchVcpuPrice(ovhSubsidiary);
+    this.loading = false;
+    this.selectedNsxLevel = null;
 
+    const { ovhSubsidiary } = this.coreConfig.getUser();
     this.guideUrl =
       DATACENTER_NETWORK_SITE_WEB_LINK[ovhSubsidiary] ||
       DATACENTER_NETWORK_SITE_WEB_LINK.GB;
-  }
 
-  loadComsumptionOfOption() {
-    this.consumptionLoading = true;
-    return this.ovhManagerPccDatacenterService
-      .getConsumptionForecastByServiceId(this.nsxtEdgeOptionServiceId)
-      .then((consumption) => {
-        this.consumption = consumption;
-      })
-      .finally(() => {
-        this.consumptionLoading = false;
-      });
-  }
-
-  loadNsxtEdgeNetworks(paginationParams) {
-    return this.ovhManagerPccDatacenterService.getNsxtEdgeByDatacenter(
-      this.serviceName,
-      this.datacenterId,
-      paginationParams,
-    );
+    this.fetchVcpuPrice(ovhSubsidiary);
   }
 
   setVcpuTextPrice(price, currency) {
@@ -69,6 +58,27 @@ export default class DedicatedCloudDatacenterNetworkTab {
         const currency = data.locale.currencyCode;
 
         this.setVcpuTextPrice(price, currency);
+      });
+  }
+
+  handleAddNsx() {
+    this.loading = true;
+    this.addNsx()
+      .then(() => {
+        this.handleSuccess(
+          this.$translate.instant('dedicatedCloud_add_nsx_success_banner'),
+        );
+      })
+      .catch((error) => {
+        console.debug({ error });
+        this.handleError(
+          this.$translate.instant('dedicatedCloud_add_nsx_error_banner', {
+            error: error.data.message,
+          }),
+        );
+      })
+      .finally(() => {
+        this.loading = false;
       });
   }
 }

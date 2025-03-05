@@ -9,6 +9,8 @@ export default {
     nsxtEdgeOptionServiceId: '<',
     goToRelocate: '<',
     goToResize: '<',
+    hasMaximumNsx: '<',
+    goToAddNsx: '<',
   },
   controller,
   template,

@@ -6,6 +6,7 @@ import deleteDrp from './deleteDrp';
 import manageNsxEdges from './manage-nsx-edges';
 import routing from './dedicatedCloud.datacenter.dashboard.routes';
 import moveNsxtEdge from './move-nsxt-edge';
+import addNsx from './add-nsx';
 
 const moduleName = 'ovhManagerDedicatedCloudDatacenterDetailsDashboard';
 
@@ -16,6 +17,7 @@ angular
     deleteDrp,
     manageNsxEdges,
     moveNsxtEdge,
+    addNsx,
   ])
   .config(routing);
 
