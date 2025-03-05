@@ -29,7 +29,7 @@ const initQueryClient = () => {
 // test data
 type Data = {
   projectId: string;
-  instanceId: string | undefined;
+  instance: TInstanceDto | undefined;
   type: TMutationFnType | null;
   queryPayload?: TInstanceDto[];
   mutationPayload?: null;
@@ -66,6 +66,8 @@ const fakeInstancesDto: TInstanceDto[] = [
   },
 ];
 
+const fakeInstance = fakeInstancesDto[0];
+
 // msw server
 let server: SetupServer;
 
@@ -78,17 +80,17 @@ const handleSuccess = vi.fn(
 
 describe('Considering the useInstanceAction hook', () => {
   describe.each`
-    projectId        | instanceId     | type          | queryPayload        | mutationPayload
-    ${fakeProjectId} | ${'fake-id-1'} | ${'delete'}   | ${undefined}        | ${undefined}
-    ${fakeProjectId} | ${'fake-id-1'} | ${null}       | ${undefined}        | ${undefined}
-    ${fakeProjectId} | ${null}        | ${'stop'}     | ${undefined}        | ${undefined}
-    ${fakeProjectId} | ${'fake-id-1'} | ${'start'}    | ${fakeInstancesDto} | ${null}
-    ${fakeProjectId} | ${'fake-id-1'} | ${'stop'}     | ${fakeInstancesDto} | ${null}
-    ${fakeProjectId} | ${'fake-id-1'} | ${'shelve'}   | ${fakeInstancesDto} | ${null}
-    ${fakeProjectId} | ${'fake-id-1'} | ${'unshelve'} | ${fakeInstancesDto} | ${null}
+    projectId        | instance        | type          | queryPayload        | mutationPayload
+    ${fakeProjectId} | ${fakeInstance} | ${'delete'}   | ${undefined}        | ${undefined}
+    ${fakeProjectId} | ${fakeInstance} | ${null}       | ${undefined}        | ${undefined}
+    ${fakeProjectId} | ${null}         | ${'stop'}     | ${undefined}        | ${undefined}
+    ${fakeProjectId} | ${fakeInstance} | ${'start'}    | ${fakeInstancesDto} | ${null}
+    ${fakeProjectId} | ${fakeInstance} | ${'stop'}     | ${fakeInstancesDto} | ${null}
+    ${fakeProjectId} | ${fakeInstance} | ${'shelve'}   | ${fakeInstancesDto} | ${null}
+    ${fakeProjectId} | ${fakeInstance} | ${'unshelve'} | ${fakeInstancesDto} | ${null}
   `(
     'Given a projectId <$projectId> and an instanceId <$instanceId>',
-    ({ projectId, instanceId, type, queryPayload, mutationPayload }: Data) => {
+    ({ projectId, instance, type, queryPayload, mutationPayload }: Data) => {
       afterEach(() => {
         server?.close();
       });
@@ -123,7 +125,7 @@ describe('Considering the useInstanceAction hook', () => {
         const { result: useInstanceActionResult } = renderHook(
           () =>
             useInstanceAction(type, projectId, {
-              onSuccess: handleSuccess(instanceId as string, queryClient),
+              onSuccess: handleSuccess(instance?.id as string, queryClient),
               onError: handleError,
             }),
           {
@@ -135,14 +137,14 @@ describe('Considering the useInstanceAction hook', () => {
           expect(useInstancesResult.current.isPending).toBe(false),
         );
         expect(useInstanceActionResult.current.isIdle).toBeTruthy();
-        act(() => useInstanceActionResult.current.mutationHandler(instanceId));
+        act(() => useInstanceActionResult.current.mutationHandler(instance));
 
         if (mutationPayload === undefined) {
           await waitFor(() =>
             expect(useInstanceActionResult.current.isError).toBeTruthy(),
           );
 
-          if (type && instanceId) {
+          if (type && instance) {
             expect(useInstanceActionResult.current.error).toHaveProperty(
               'response.status',
               500,
@@ -158,7 +160,7 @@ describe('Considering the useInstanceAction hook', () => {
           );
           if (type === 'delete') {
             const deletedInstance = (useInstancesResult.current
-              .data as TInstance[]).find((elt) => elt.id === instanceId);
+              .data as TInstance[]).find((elt) => elt.id === instance?.id);
             expect(handleSuccess).toHaveBeenCalled();
             expect(deletedInstance).toBeDefined();
             expect(deletedInstance?.status.state).toStrictEqual('DELETING');
