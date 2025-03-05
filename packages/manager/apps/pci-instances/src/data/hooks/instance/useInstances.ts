@@ -37,7 +37,7 @@ const listQueryKeyPredicate = (projectId: string) => (query: Query) =>
     query.queryKey.includes(elt),
   );
 
-export const updateDeletedInstanceStatus = (
+export const updateInstancePendingTask = (
   projectId: string,
   queryClient: QueryClient,
   instanceId?: string | null,
@@ -52,7 +52,10 @@ export const updateDeletedInstanceStatus = (
       const updatedPages = prevData.pages.map((page) =>
         page.map((instance) =>
           instance.id === instanceId
-            ? { ...instance, status: 'DELETING' as TInstanceStatusDto }
+            ? {
+                ...instance,
+                pendingTask: true,
+              }
             : instance,
         ),
       );
@@ -130,6 +133,16 @@ const getInstanceStatus = (status: TInstanceStatusDto): TInstanceStatus => ({
 
 const getInconsistency = (data: TInstance[] | undefined): boolean =>
   !!data?.some((elt) => elt.status.state === 'UNKNOWN');
+
+const getInstanceIdAndRegionByPendingTask = (
+  data?: TInstance[],
+): Array<{ id: string; region: string }> => {
+  return data
+    ? data
+        .filter(({ pendingTask }) => pendingTask)
+        .map(({ id, region }) => ({ id, region }))
+    : [];
+};
 
 const getActionHrefByName = (
   projectUrl: string,
@@ -355,6 +368,7 @@ export const useInstances = (
   return {
     data,
     hasInconsistency: getInconsistency(data),
+    pendingIds: getInstanceIdAndRegionByPendingTask(data),
     refresh,
     ...rest,
   };

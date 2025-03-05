@@ -23,6 +23,7 @@ import { mapAddressesToListItems } from '@/pages/instances/mapper';
 import { Spinner } from '../spinner/Spinner.component';
 import { DeepReadonly } from '@/types/utils.type';
 import { TInstance } from '@/types/instance/entity.type';
+import { useInstancesStatus } from '@/data/hooks/instance/useInstanceRefresh';
 
 type TFilterWithLabel = Filter & { label: string };
 type TSorting = {
@@ -65,11 +66,17 @@ const DatagridComponent = ({
     isFetching,
     isRefetching,
     isError,
+    pendingIds,
   } = useInstances(projectId, projectUrl, {
-    limit: 10,
+    limit: 4,
     sort: sorting.id,
     sortOrder: sorting.desc ? 'desc' : 'asc',
     filters,
+  });
+
+  const fooData = useInstancesStatus({
+    projectId,
+    pendingInstances: pendingIds,
   });
 
   const datagridColumns: DatagridColumn<TInstance>[] = useMemo(
@@ -147,7 +154,14 @@ const DatagridComponent = ({
       {
         id: 'status',
         cell: (instance) => (
-          <StatusCell isLoading={isRefetching} instance={instance} />
+          <StatusCell
+            isLoading={
+              (isRefetching ||
+                fooData.find((d) => d.id === instance.id)?.isFetching) ??
+              false
+            }
+            instance={instance}
+          />
         ),
         label: t('pci_instances_list_column_status'),
         isSortable: false,
@@ -161,7 +175,7 @@ const DatagridComponent = ({
         isSortable: false,
       },
     ],
-    [isRefetching, t, translateMicroRegion, pciUrl],
+    [t, isRefetching, translateMicroRegion, pciUrl, fooData],
   );
 
   const errorMessage = useMemo(
