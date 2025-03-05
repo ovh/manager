@@ -11,6 +11,7 @@
   "iam_guide_iam": "Créer et gérer des politiques",
   "iam_guide_samlsso": "Activer la fédération SAML",
   "iam_guide_users": "Créer et gérer des utilisateurs",
+  "iam_guide_header_label": "Guides",
   "iam_resource_type_account": "Compte client OVHcloud",
   "iam_resource_type_alldom": "Domain packs",
   "iam_resource_type_analytics": "Analytics",
