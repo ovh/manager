@@ -7,11 +7,11 @@ import {
 } from '@ovh-ux/manager-react-components';
 import {
   OdsSelect,
-  OdsSkeleton,
+  OdsSpinner,
   OdsText,
   OdsQuantity,
 } from '@ovhcloud/ods-components/react';
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { ODS_TEXT_PRESET, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   DEFAULT_PRICING_MODE,
@@ -109,6 +109,7 @@ export const OfferSelectionSection: React.FC = () => {
         )}
         {hasAdditionalIpBlockOffer(selectedServiceType) && (
           <OptionCard
+            isDisabled={isLoading}
             title={t('additional_ip_block_card_title')}
             description={t('additional_ip_block_card_description')}
             subtitle={
@@ -129,7 +130,9 @@ export const OfferSelectionSection: React.FC = () => {
             }}
           >
             {isLoading ? (
-              <OdsSkeleton />
+              <div className="text-center">
+                <OdsSpinner size={ODS_SPINNER_SIZE.sm} />
+              </div>
             ) : (
               <OdsSelect
                 key={pricingList.reduce(
