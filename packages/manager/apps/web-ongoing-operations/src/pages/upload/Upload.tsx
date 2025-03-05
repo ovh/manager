@@ -5,7 +5,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 import {
   OdsDivider,
   OdsFileUpload,
-  OdsMessage,
   OdsText,
 } from '@ovhcloud/ods-components/react';
 import {

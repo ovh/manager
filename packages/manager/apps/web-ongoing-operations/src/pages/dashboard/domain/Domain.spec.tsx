@@ -1,7 +1,11 @@
 import '@/setupTests';
 import React, { PropsWithChildren } from 'react';
 import '@testing-library/jest-dom';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import {
+  QueryClient,
+  QueryClientProvider,
+  useQuery,
+} from '@tanstack/react-query';
 import { vi } from 'vitest';
 import { useResourcesIcebergV6 } from '@ovh-ux/manager-react-components';
 import { render, waitFor, screen, fireEvent } from '@testing-library/react';
@@ -132,6 +136,13 @@ describe('Modal Operations domain', () => {
       flattenData: modalOpen,
       isLoading: false,
       totalCount: modalOpen.length,
+    });
+
+    (useQuery as jest.Mock).mockReturnValue({
+      data: {
+        data: [],
+        actions: false,
+      },
     });
 
     const { container } = render(<Domain />, { wrapper });

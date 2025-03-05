@@ -60,44 +60,50 @@ export const modalString: TOngoingOperations = {
   canAccelerate: false,
 };
 
-export const modalContactArgument: TArgument = {
-  acceptedFormats: null,
-  acceptedValues: null,
-  description: 'Contact can be updated through /me/contact/1104',
-  fields: ['organisationName'],
-  key: 'nicowner',
-  maximumSize: null,
-  minimumSize: null,
-  readOnly: false,
-  template: null,
-  type: '/me/contact',
-  value: '1104',
-};
+export const modalContactArgument: TArgument[] = [
+  {
+    acceptedFormats: null,
+    acceptedValues: null,
+    description: 'Contact can be updated through /me/contact/1104',
+    fields: ['organisationName'],
+    key: 'nicowner',
+    maximumSize: null,
+    minimumSize: null,
+    readOnly: false,
+    template: null,
+    type: '/me/contact',
+    value: '1104',
+  },
+];
 
-export const modalDocumentArgument: TArgument = {
-  acceptedFormats: ['jpg', 'jpeg'],
-  acceptedValues: null,
-  description: 'Registrant (Marcin Sawicki) contact passport copy.',
-  fields: null,
-  key: 'identityEvidence',
-  maximumSize: 1024000,
-  minimumSize: null,
-  readOnly: false,
-  template: null,
-  type: '/me/document',
-  value: '2f28ec00-bdb6-4e08-ad99-8d3612ee05c3',
-};
+export const modalDocumentArgument: TArgument[] = [
+  {
+    acceptedFormats: ['jpg', 'jpeg'],
+    acceptedValues: null,
+    description: 'Registrant (Marcin Sawicki) contact passport copy.',
+    fields: null,
+    key: 'identityEvidence',
+    maximumSize: 1024000,
+    minimumSize: null,
+    readOnly: false,
+    template: null,
+    type: '/me/document',
+    value: '2f28ec00-bdb6-4e08-ad99-8d3612ee05c3',
+  },
+];
 
-export const modalStringArgument: TArgument = {
-  acceptedFormats: null,
-  acceptedValues: null,
-  description: 'Update name with valid content',
-  fields: null,
-  key: 'name',
-  maximumSize: null,
-  minimumSize: null,
-  readOnly: false,
-  template: null,
-  type: 'string',
-  value: 'Paul',
-};
+export const modalStringArgument: TArgument[] = [
+  {
+    acceptedFormats: null,
+    acceptedValues: null,
+    description: 'Update name with valid content',
+    fields: null,
+    key: 'name',
+    maximumSize: null,
+    minimumSize: null,
+    readOnly: false,
+    template: null,
+    type: 'string',
+    value: 'Paul',
+  },
+];

@@ -23,9 +23,8 @@ export default function TrackingFinalized() {
         {t('tracking_transfert_sub_finalized')}
       </OdsText>
       <OdsButton
-        role="link"
         label={t('tracking_transfert_back_to_domain')}
-        onClick={() => navigate(urls.domain)}
+        onClick={() => navigate(urls.root)}
       />
     </div>
   );

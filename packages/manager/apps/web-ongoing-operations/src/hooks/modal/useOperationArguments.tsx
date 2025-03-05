@@ -1,41 +1,32 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 import {
   getmeTaskDomainArgument,
   getmeTaskDomainNicList,
 } from '@/data/api/web-ongoing-operations';
-import { urls } from '@/routes/routes.constant';
+import { TArgument, TOperationArguments } from '@/types';
 
-export function useOperationArguments(dataId: number) {
-  const [operationArguments, setOperationArguments] = useState([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [actions, setActions] = useState<boolean>(false);
-  const navigate = useNavigate();
+const getMeTaskArguments = async (
+  dataId: number,
+): Promise<TOperationArguments> => {
+  const nicList = await getmeTaskDomainNicList(dataId);
+  const promiseArray: Promise<TArgument>[] = [];
 
-  getmeTaskDomainNicList(dataId)
-    .then((nicList) => {
-      const promises = nicList.map((element: string) =>
-        getmeTaskDomainArgument(dataId, element),
-      );
-      return Promise.all(promises);
-    })
-    .then((argument) => {
-      setOperationArguments(argument);
-      argument.some((argumentItem) => {
-        if (
-          argumentItem.type === '/me/contact' ||
-          argumentItem.type === 'string' ||
-          argumentItem.type === '/me'
-        ) {
-          return setActions(true);
-        }
-        return null;
-      });
-      setLoading(false);
-    })
-    .catch(() => {
-      navigate(urls.error404);
-    });
+  nicList.forEach((element: string) =>
+    promiseArray.push(getmeTaskDomainArgument(dataId, element)),
+  );
 
-  return { operationArguments, loading, actions };
+  const data = (await Promise.all(promiseArray)) || [];
+
+  const index = data.findIndex((arg) =>
+    ['/me/contact', 'string', '/me'].includes(arg.type),
+  );
+  const actions = index >= 0;
+  return { data, actions };
+};
+
+export function useOperationArguments(id: number) {
+  return useQuery<TOperationArguments>({
+    queryKey: ['arguments'],
+    queryFn: () => getMeTaskArguments(id),
+  });
 }
