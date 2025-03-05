@@ -52,4 +52,5 @@ export type TInstance = DeepReadonly<{
   addresses: Map<TInstanceAddressType, TAddress[]>;
   volumes: TVolume[];
   actions: TInstanceActions;
+  pendingTask: boolean;
 }>;

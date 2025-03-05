@@ -29,7 +29,7 @@ export type TInstanceActionDto = {
 export type TInstanceActionNameDto = TActionName;
 export type TInstanceStatusDto = TStatus;
 
-export type TInstanceDto = DeepReadonly<{
+export type TInstanceDto = {
   addresses: TInstanceAddressDto[];
   flavorId: string;
   flavorName: string;
@@ -41,7 +41,8 @@ export type TInstanceDto = DeepReadonly<{
   status: TInstanceStatusDto;
   volumes: TInstanceVolumeDto[];
   actions: TInstanceActionDto[];
-}>;
+  pendingTask: boolean;
+};
 
 export type TRetrieveInstancesQueryParams = DeepReadonly<{
   limit: number;

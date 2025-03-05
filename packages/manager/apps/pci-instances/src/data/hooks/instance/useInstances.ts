@@ -8,34 +8,29 @@ import {
   useQueryClient,
 } from '@tanstack/react-query';
 import { useCallback, useEffect, useMemo } from 'react';
-import { Filter } from '@ovh-ux/manager-core-api';
+import { useProjectUrl } from '@ovh-ux/manager-react-components';
 import { getInstances } from '@/data/api/instance';
 import { instancesQueryKey } from '@/utils';
-import { TInstanceDto, TInstanceStatusDto } from '@/types/instance/api.type';
+import { TInstanceDto } from '@/types/instance/api.type';
 import { TInstance } from '@/types/instance/entity.type';
-import { DeepReadonly } from '@/types/utils.type';
 import { instancesSelector } from './selectors/instances.selector';
-
-type FilterWithLabel = Filter & { label: string };
-
-export type TUseInstancesQueryParams = DeepReadonly<{
-  limit: number;
-  sort: string;
-  sortOrder: 'asc' | 'desc';
-  filters: FilterWithLabel[];
-}>;
+import {
+  TUseInstancesQueryParams,
+  useInstancesQueryParams,
+} from './useInstancesQueryParams';
+import { useProjectId } from '@/hooks/project/useProjectId';
 
 const listQueryKeyPredicate = (projectId: string) => (query: Query) =>
   instancesQueryKey(projectId, ['list']).every((elt) =>
     query.queryKey.includes(elt),
   );
 
-export const updateDeletedInstanceStatus = (
+export const updateInstanceFromCache = (
   projectId: string,
   queryClient: QueryClient,
-  instanceId?: string | null,
+  instance: Partial<TInstanceDto>,
 ) => {
-  if (!instanceId) return;
+  if (!instance.id) return;
   queryClient.setQueriesData<InfiniteData<TInstanceDto[], number>>(
     {
       predicate: listQueryKeyPredicate(projectId),
@@ -43,16 +38,22 @@ export const updateDeletedInstanceStatus = (
     (prevData) => {
       if (!prevData) return undefined;
       const updatedPages = prevData.pages.map((page) =>
-        page.map((instance) =>
-          instance.id === instanceId
-            ? { ...instance, status: 'DELETING' as TInstanceStatusDto }
-            : instance,
+        page.map((prevInstance) =>
+          instance.id === prevInstance.id
+            ? {
+                ...prevInstance,
+                ...instance,
+              }
+            : prevInstance,
         ),
       );
       return { ...prevData, pages: updatedPages };
     },
   );
 };
+
+const getPendingTaskIds = (data?: TInstance[]): string[] =>
+  data?.filter(({ pendingTask }) => pendingTask).map(({ id }) => id) ?? [];
 
 export const getInstanceById = (
   projectId: string,
@@ -80,12 +81,15 @@ export const getInstanceById = (
 const getInconsistency = (data: TInstance[] | undefined): boolean =>
   !!data?.some((elt) => elt.status.state === 'UNKNOWN');
 
-export const useInstances = (
-  projectId: string,
-  projectUrl: string,
-  { limit, sort, sortOrder, filters }: TUseInstancesQueryParams,
-) => {
+export const useInstances = (params?: Partial<TUseInstancesQueryParams>) => {
+  const projectId = useProjectId();
+
+  if (!projectId) {
+    throw new Error('invalid projectID');
+  }
+  const projectUrl = useProjectUrl('public-cloud');
   const queryClient = useQueryClient();
+  const { limit, sort, sortOrder, filters } = useInstancesQueryParams(params);
   const filtersQueryKey = useMemo(
     () =>
       filters?.length > 0
@@ -212,6 +216,7 @@ export const useInstances = (
   return {
     data,
     hasInconsistency: getInconsistency(data),
+    pendingTasks: getPendingTaskIds(data),
     refresh,
     ...rest,
   };
