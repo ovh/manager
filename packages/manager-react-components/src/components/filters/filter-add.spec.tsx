@@ -57,4 +57,33 @@ describe('FilterAdd tests', () => {
     const idColumnSelect = getByTestId('add-filter_select_idColumn');
     expect(idColumnSelect).toHaveValue(props.columns[0].id);
   });
+
+  it('should set the select option', () => {
+    const mockOnAddFilter = vitest.fn();
+    const props = {
+      columns: [
+        {
+          id: 'status',
+          label: 'Status',
+          comparators: [
+            'includes',
+            'starts_with',
+            'ends_with',
+            'is_equal',
+            'is_different',
+          ],
+          options: [
+            { label: 'option1', value: 'option_1' },
+            { label: 'option2', value: 'option_2' },
+          ],
+        },
+      ],
+      onAddFilter: mockOnAddFilter,
+    } as FilterAddProps;
+
+    const { getByTestId } = renderComponent(props);
+
+    const idSelect = getByTestId('filter-add_value-select');
+    expect(idSelect).toBeDefined();
+  });
 });
