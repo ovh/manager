@@ -14,5 +14,5 @@
   "nutanix_node_disable_reason_node_is_powered_off": "Le serveur est éteint",
   "nutanix_node_disable_reason_cluster_has_active_todo": "Une tâche d'installation est déjà en cours sur le cluster",
   "nutanix_node_disable_reason_server_is_rebooting": "Une tâche est déjà en cours sur le noeud",
-  "lower_than_initial_commitment_size": "Un cluster nutanix ne peut pas fonctionner avec moins de {{nb_nodes_minimal}} noeuds"
+  "nutanix_node_disable_reason_lower_than_initial_commitment_size": "Un cluster nutanix ne peut pas fonctionner avec moins de {{nb_nodes_minimal}} noeuds"
 }
