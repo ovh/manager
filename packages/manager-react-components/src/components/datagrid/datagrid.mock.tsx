@@ -4,6 +4,7 @@ import { DataGridTextCell } from './text-cell.component';
 export interface Item {
   label: string;
   price: number;
+  status: string;
 }
 
 export const columns = [
@@ -64,5 +65,18 @@ export const columnsSearchAndFilters = [
     isFilterable: true,
     isSearchable: true,
     comparator: FilterCategories.String,
+  },
+  {
+    id: 'status',
+    cell: (item: Item) => {
+      return <DataGridTextCell>{item.status}</DataGridTextCell>;
+    },
+    label: 'Status',
+    isFilterable: true,
+    comparator: FilterCategories.Options,
+    options: [
+      { label: 'Status #0', value: 'Status #0' },
+      { label: 'Status #1', value: 'Status #1' },
+    ],
   },
 ];

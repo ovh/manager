@@ -28,7 +28,7 @@ import {
   FilterTypeCategories as DatagridColumnTypes,
 } from '@ovh-ux/manager-core-api';
 import { clsx } from 'clsx';
-import { ColumnFilter } from '../filters/filter-add.component';
+import { Option, ColumnFilter } from '../filters/filter-add.component';
 import { FilterWithLabel } from '../filters/interface';
 import { DataGridTextCell } from './text-cell.component';
 import { defaultNumberOfLoadingRows } from './datagrid.contants';
@@ -62,6 +62,8 @@ export interface DatagridColumn<T> {
   isSearchable?: boolean;
   /** Set default column size */
   size?: number;
+  /** filterOptions can be passed to have selector instead of input to choose value */
+  filterOptions?: Option[];
 }
 
 type ColumnFilterProps = {
@@ -258,6 +260,7 @@ export const Datagrid = <T,>({
           label: column.label,
           ...(column?.type && { comparators: FilterCategories[column.type] }),
           ...(column?.comparator && { comparators: column.comparator }),
+          ...(column?.filterOptions && { options: column.filterOptions }),
         })),
     [columns],
   );
