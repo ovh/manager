@@ -9,16 +9,13 @@ import { useTracking } from '../hooks/useTracking';
 import { LOAD_BALANCER_CREATION_TRACKING } from '@/constants';
 import { TFlavor } from '@/api/data/load-balancer';
 import { useGetFlavor } from '@/api/hook/useFlavors';
-import { Addon } from '@/types/addon.type';
+import { TProductAddonDetail } from '@/types/product.type';
 
-vi.mock('@/api/hook/useFlavors', async () => {
-  const { ...rest } = await vi.importActual('@/api/hook/useAddons');
-  return {
-    ...rest,
-    useGetFlavor: vi
-      .fn()
-      .mockImplementation(() => ({ data: undefined, isPending: true })),
-  };
+vi.mock('@/api/hook/useFlavors');
+
+vi.mocked(useGetFlavor as Mock).mockReturnValue({
+  data: undefined,
+  isPending: true,
 });
 
 vi.mock('../hooks/useTracking', async () => {
@@ -61,7 +58,7 @@ describe('useCreateActions', () => {
       resultStore.current.create = vi.fn();
 
       act(() => {
-        resultStore.current.set.addon({ size: 'code' } as Addon);
+        resultStore.current.set.addon({ size: 'code' } as TProductAddonDetail);
         resultStore.current.set.region({ name: 'name' } as TRegion);
       });
 
@@ -96,7 +93,7 @@ describe('useCreateActions', () => {
       }));
 
       act(() => {
-        resultStore.current.set.addon({ size: 'code' } as Addon);
+        resultStore.current.set.addon({ size: 'code' } as TProductAddonDetail);
         resultStore.current.set.region({ name: 'name' } as TRegion);
         resultStore.current.set.name('');
       });

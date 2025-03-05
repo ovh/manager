@@ -7,7 +7,7 @@ import { StepsEnum, useCreateStore } from '@/pages/create/store';
 import { useTracking } from '@/pages/create/hooks/useTracking';
 import { SubnetNetworksPart } from '@/pages/create/steps/network/parts/SubnetNetworks.part';
 import { PrivateNetworkPart } from '@/pages/create/steps/network/parts/PrivateNetwork.part';
-import { FloatingIpSelectionId } from '@/api/hook/useFloatingIps/useFloatingIps.constant';
+import { FloatingIpSelectionId } from '@/types/floating.type';
 
 export const NetworkStep = (): JSX.Element => {
   const { t } = useTranslation(['load-balancer/create', 'pci-common']);

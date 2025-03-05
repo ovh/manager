@@ -2,11 +2,11 @@ import { create } from 'zustand';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { TRegion } from '@ovh-ux/manager-pci-common';
 import { TPrivateNetwork, TSubnet } from '@/api/data/network';
-import { ListenerConfiguration } from '@/components/create/InstanceTable.component';
 import { TSubnetGateway } from '@/api/data/gateways';
 import { createLoadBalancer, TFlavor } from '@/api/data/load-balancer';
-import { Addon } from '@/types/addon.type';
-import { FloatingIpSelectionId } from '@/api/hook/useFloatingIps/useFloatingIps.constant';
+import { TProductAddonDetail } from '@/types/product.type';
+import { FloatingIpSelectionId } from '@/types/floating.type';
+import { ListenerConfiguration } from '@/types/listener.type';
 
 type TStep = {
   isOpen: boolean;
@@ -25,9 +25,9 @@ export enum StepsEnum {
 
 export type TCreateStore = {
   projectId: string;
-  addon: Addon;
+  addon: TProductAddonDetail;
   region: TRegion;
-  publicIp: string;
+  publicIp: string | FloatingIpSelectionId;
   privateNetwork: TPrivateNetwork;
   subnet: TSubnet;
   gateways: TSubnetGateway[];
@@ -36,7 +36,7 @@ export type TCreateStore = {
   steps: Map<StepsEnum, TStep>;
   set: {
     projectId: (val: string) => void;
-    addon: (val: Addon) => void;
+    addon: (val: TProductAddonDetail) => void;
     region: (val: TRegion) => void;
     publicIp: (val: string) => void;
     privateNetwork: (val: TPrivateNetwork) => void;
@@ -67,7 +67,7 @@ export const initialStoreState = () => ({
   projectId: '',
   addon: null,
   region: null,
-  publicIp: FloatingIpSelectionId.NEW,
+  publicIp: null,
   privateNetwork: null,
   subnet: null,
   gateways: [],
@@ -107,7 +107,7 @@ export const useCreateStore = create<TCreateStore>()((set, get) => ({
         projectId: val,
       });
     },
-    addon: (val: Addon) => {
+    addon: (val: TProductAddonDetail) => {
       set({
         addon: val,
       });

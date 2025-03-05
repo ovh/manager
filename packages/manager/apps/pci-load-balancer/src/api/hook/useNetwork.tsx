@@ -9,7 +9,7 @@ import {
 } from '../data/network';
 import { NETWORK_PRIVATE_VISIBILITY } from '@/constants';
 import { useCreateStore } from '@/pages/create/store';
-import { FloatingIpSelectionId } from './useFloatingIps/useFloatingIps.constant';
+import { FloatingIpSelectionId } from '@/types/floating.type';
 
 export const usePrivateNetworkByRegion = ({
   projectId,

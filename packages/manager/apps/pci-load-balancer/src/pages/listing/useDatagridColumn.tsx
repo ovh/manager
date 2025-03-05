@@ -2,15 +2,13 @@ import {
   DatagridColumn,
   DataGridTextCell,
 } from '@ovh-ux/manager-react-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { OsdsLink } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import { useHref } from 'react-router-dom';
 import { TLoadBalancer } from '@/api/data/load-balancer';
 import OperatingStatusComponent from '@/components/listing/OperatingStatus.component';
 import ProvisioningStatusComponent from '@/components/listing/ProvisioningStatus.component';
 import ActionsComponent from '@/components/listing/Actions.component';
 import CreationDate from '@/components/listing/CreationDate.component';
+import DataGridLinkCell from '@/components/datagrid/DataGridLinkCell.component';
 
 export const useDatagridColumn = () => {
   const { t } = useTranslation('load-balancer');
@@ -18,15 +16,8 @@ export const useDatagridColumn = () => {
   const columns: DatagridColumn<TLoadBalancer>[] = [
     {
       id: 'name',
-      cell: (props: TLoadBalancer) => (
-        <DataGridTextCell>
-          <OsdsLink
-            color={ODS_THEME_COLOR_INTENT.primary}
-            href={useHref(`../${props.region}/${props.id}`)}
-          >
-            {props.name}
-          </OsdsLink>
-        </DataGridTextCell>
+      cell: ({ id, region, name }: TLoadBalancer) => (
+        <DataGridLinkCell href={`../${region}/${id}`}>{name}</DataGridLinkCell>
       ),
       label: t('octavia_load_balancer_name'),
     },

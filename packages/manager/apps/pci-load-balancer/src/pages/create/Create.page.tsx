@@ -23,7 +23,9 @@ import { IpStep } from './steps/ip/IpStep';
 import { NetworkStep } from './steps/network/NetworkStep';
 import { InstanceStep } from './steps/InstanceStep';
 import { NameStep } from './steps/NameStep';
-import { useLoadBalancerAddons } from '@/api/hook/useLoadBalancer/useLoadBalancer';
+import { useAddons } from '@/api/hook/useAddons/useAddons';
+import { AGORA_ADDON_FAMILY } from '@/constants';
+import { selectHourlyAddons } from '@/api/hook/useAddons/addons.select';
 
 export default function CreatePage(): JSX.Element {
   const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
@@ -40,10 +42,12 @@ export default function CreatePage(): JSX.Element {
 
   const { data: project } = useProject();
 
-  const { addons, isFetching: isAddonsFetching } = useLoadBalancerAddons(
+  const { addons, isFetching: isAddonsFetching } = useAddons({
     ovhSubsidiary,
     projectId,
-  );
+    addonFamily: AGORA_ADDON_FAMILY,
+    select: selectHourlyAddons,
+  });
 
   const regions = useMemo(() => addons?.flatMap((addon) => addon.regions), [
     addons,
@@ -53,7 +57,7 @@ export default function CreatePage(): JSX.Element {
   useEffect(() => {
     store.reset();
     store.set.projectId(projectId);
-  }, [projectId, store]);
+  }, []);
 
   if (isAddonsFetching) {
     return (
@@ -101,7 +105,7 @@ export default function CreatePage(): JSX.Element {
           ovhSubsidiary={ovhSubsidiary}
           projectId={projectId}
         />
-        <SizeStep ovhSubsidiary={ovhSubsidiary} regionAddons={addons} />
+        <SizeStep ovhSubsidiary={ovhSubsidiary} projectId={projectId} />
         <IpStep ovhSubsidiary={ovhSubsidiary} projectId={projectId} />
         <NetworkStep />
         <InstanceStep />

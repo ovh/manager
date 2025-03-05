@@ -20,7 +20,7 @@ import { LOAD_BALANCER_CREATION_TRACKING } from '@/constants';
 import { useGetPrivateNetworkSubnets } from '@/api/hook/useNetwork';
 import { useCreateStore } from '@/pages/create/store';
 import { useTranslatedLinkReference } from '@/hooks/useTranslatedLinkReference';
-import { FloatingIpSelectionId } from '@/api/hook/useFloatingIps/useFloatingIps.constant';
+import { FloatingIpSelectionId } from '@/types/floating.type';
 
 export const SubnetsPart = (): JSX.Element => {
   const { t: tCreate } = useTranslation('load-balancer/create');

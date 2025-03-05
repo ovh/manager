@@ -5,7 +5,7 @@ import {
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
-import { FloatingIpSelectionId } from '@/api/hook/useFloatingIps/useFloatingIps.constant';
+import { FloatingIpSelectionId } from '@/types/floating.type';
 
 export type TIpStepMessagesProps = {
   publicIpId: string;

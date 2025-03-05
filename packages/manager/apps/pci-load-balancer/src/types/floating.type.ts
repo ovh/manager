@@ -1,4 +1,4 @@
-export type FloatingIp = {
+export type TFloatingIp = {
   id: string;
   ip: string;
   networkId: string;
@@ -9,3 +9,8 @@ export type FloatingIp = {
     ip: string;
   };
 };
+
+export enum FloatingIpSelectionId {
+  NEW = 'NEW',
+  UNATTACHED = 'UNATTACHED',
+}

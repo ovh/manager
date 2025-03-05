@@ -2,8 +2,8 @@ import { v6 } from '@ovh-ux/manager-core-api';
 import { TInstance, TRegion } from '@ovh-ux/manager-pci-common';
 import { FLOATING_IP_CREATE_DESCRIPTION, PROTOCOLS } from '@/constants';
 import { TPrivateNetwork, TSubnet } from '@/api/data/network';
-import { ListenerConfiguration } from '@/components/create/InstanceTable.component';
-import { FloatingIpSelectionId } from '../hook/useFloatingIps/useFloatingIps.constant';
+import { FloatingIpSelectionId } from '@/types/floating.type';
+import { ListenerConfiguration } from '@/types/listener.type';
 
 export enum LoadBalancerOperatingStatusEnum {
   ONLINE = 'online',
@@ -115,7 +115,7 @@ export type TCreateLoadBalancerParam = {
   projectId: string;
   flavor: TFlavor;
   region: TRegion;
-  floatingIp: string;
+  floatingIp: string | FloatingIpSelectionId;
   privateNetwork: TPrivateNetwork;
   subnet: TSubnet;
   gateways: { id: string }[];
@@ -172,9 +172,8 @@ export const createLoadBalancer = async ({
   }
 
   if (
-    ![FloatingIpSelectionId.NEW, FloatingIpSelectionId.UNATTACHED].includes(
-      floatingIp as FloatingIpSelectionId,
-    )
+    FloatingIpSelectionId.NEW !== floatingIp &&
+    FloatingIpSelectionId.UNATTACHED !== floatingIp
   ) {
     network.private.floatingIp = {
       id: floatingIp,
