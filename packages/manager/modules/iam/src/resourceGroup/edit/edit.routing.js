@@ -1,4 +1,4 @@
-import { TAG } from '../../iam.constants';
+import { TAG, GUIDE } from '../../iam.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('iam.resourceGroup.edit', {
@@ -17,6 +17,9 @@ export default /* @ngInject */ ($stateProvider) => {
       resourceGroup: /* @ngInject */ ($transition$, IAMService) => {
         const { resourceGroup: uuid } = $transition$.params();
         return uuid ? IAMService.getDetailedResourceGroup(uuid) : null;
+      },
+      policiesGuides: /* @ngInject */ (IAMService) => {
+        return IAMService.formatGuides(GUIDE.IAM);
       },
     },
     atInternet: {
