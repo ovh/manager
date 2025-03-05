@@ -39,6 +39,7 @@ export const FEATURE_NAMES = {
   managedBareMetalDatacenter: 'managed-bare-metal',
   ovhCloudConnect: 'cloud-connect',
   vrackServices: 'vrack-services',
+  legacyVrackDelete: 'vrack:delete',
 };
 
 export const POLLING_INTERVAL = 3000;
