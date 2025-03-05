@@ -52,27 +52,6 @@ export const useDatagridColumns = () => {
       label: tKubeNodes('kube_nodes_flavor'),
     },
     {
-      id: 'antiAffinity',
-      cell: (props) => (
-        <DataGridTextCell>
-          <span className="whitespace-nowrap">
-            <OsdsChip
-              color={
-                props.antiAffinity
-                  ? ODS_THEME_COLOR_INTENT.success
-                  : ODS_THEME_COLOR_INTENT.error
-              }
-              inline
-              size={ODS_CHIP_SIZE.sm}
-            >
-              {t(`kube_node_pool_autoscale_${props.antiAffinity}`)}
-            </OsdsChip>
-          </span>
-        </DataGridTextCell>
-      ),
-      label: t('kube_node_pool_anti_affinity'),
-    },
-    {
       id: 'numberOfNodes',
       cell: (pool: TClusterNodePool) => (
         <DataGridTextCell>
@@ -102,6 +81,27 @@ export const useDatagridColumns = () => {
           </DataGridTextCell>
         ),
       label: 'Autoscaling',
+    },
+    {
+      id: 'antiAffinity',
+      cell: (props) => (
+        <DataGridTextCell>
+          <span className="whitespace-nowrap">
+            <OsdsChip
+              color={
+                props.antiAffinity
+                  ? ODS_THEME_COLOR_INTENT.success
+                  : ODS_THEME_COLOR_INTENT.error
+              }
+              inline
+              size={ODS_CHIP_SIZE.sm}
+            >
+              {t(`kube_node_pool_autoscale_${props.antiAffinity}`)}
+            </OsdsChip>
+          </span>
+        </DataGridTextCell>
+      ),
+      label: t('kube_node_pool_anti_affinity'),
     },
     {
       id: 'monthlyBilled',
