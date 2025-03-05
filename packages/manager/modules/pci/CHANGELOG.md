@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.82.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.81.1...@ovh-ux/manager-pci@6.82.0) (2025-03-05)
+
+
+### Features
+
+* **data-platform:** add deeplink ([#15632](https://github.com/ovh/manager/issues/15632)) ([add0098](https://github.com/ovh/manager/commit/add0098961f1fcd50c1e83f22cb1efcbd61a6c2b)), closes [#DATATR-1973](https://github.com/ovh/manager/issues/DATATR-1973)
+
+
+
+
+
 ## [6.81.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.81.0...@ovh-ux/manager-pci@6.81.1) (2025-03-04)
 
 
