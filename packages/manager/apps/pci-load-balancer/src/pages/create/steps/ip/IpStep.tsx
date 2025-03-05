@@ -71,6 +71,7 @@ export const IpStep = ({
           store.open(StepsEnum.NETWORK);
         },
         label: t('pci-common:common_stepper_next_button_label'),
+        isDisabled: !store.publicIp,
       }}
       edit={{
         action: () => {

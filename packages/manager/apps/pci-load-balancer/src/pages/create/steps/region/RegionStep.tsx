@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 import {
   OsdsLink,
   OsdsMessage,
+  OsdsSpinner,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
 import {
@@ -52,7 +53,7 @@ export const RegionStep = ({
 
   const store = useCreateStore();
 
-  const { data: networks } = useGetPrivateNetworks(projectId);
+  const { data: networks, isFetching } = useGetPrivateNetworks(projectId);
 
   const isNetworkAvailable = useMemo(
     () =>
@@ -158,6 +159,11 @@ export const RegionStep = ({
             {t('octavia_load_balancer_create_region_3az_price')}
           </OsdsText>
         </OsdsMessage>
+      )}
+      {isFetching && (
+        <div className="mt-6">
+          <OsdsSpinner inline />
+        </div>
       )}
       {store.region && !isNetworkAvailable && (
         <OsdsMessage

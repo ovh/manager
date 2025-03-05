@@ -13,7 +13,7 @@ import {
 } from './useFloatingIps.constant';
 import { getFloatingIps } from '@/api/data/floating-ips';
 import { floatingIps } from '@/__mocks__/floatingIps';
-import { regions } from '@/__mocks__/addons';
+import { defaultAddons } from '@/__mocks__/addons';
 import { RegionAddon } from '@/types/addon.type';
 
 vi.mock('@/api/data/floating-ips');
@@ -23,30 +23,7 @@ vi.mocked(getFloatingIps).mockResolvedValue(floatingIps);
 vi.mock('@/api/hook/useAddons/useAddons');
 
 vi.mocked(useAddons).mockReturnValue({
-  addons: ([
-    {
-      planCode: 'pci-product.l-code-hour',
-      product: 'pci-product-l',
-      pricings: [{ price: 100, intervalUnit: 'hour' }],
-      blobs: {
-        technical: {
-          name: 'large',
-        },
-      },
-      regions,
-    },
-    {
-      planCode: 'pci-product.s-code-hour',
-      product: 'pci-product-s',
-      pricings: [{ price: 50, intervalUnit: 'hour' }],
-      blobs: {
-        technical: {
-          name: 'small',
-        },
-      },
-      regions,
-    },
-  ] as unknown) as RegionAddon[],
+  addons: (defaultAddons as unknown) as RegionAddon[],
   isFetching: false,
 });
 

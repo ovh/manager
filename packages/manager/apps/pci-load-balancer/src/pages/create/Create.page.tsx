@@ -53,7 +53,7 @@ export default function CreatePage(): JSX.Element {
   useEffect(() => {
     store.reset();
     store.set.projectId(projectId);
-  }, [projectId, store]);
+  }, []);
 
   if (isAddonsFetching) {
     return (

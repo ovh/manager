@@ -2,52 +2,40 @@ import {
   DatagridColumn,
   DataGridTextCell,
 } from '@ovh-ux/manager-react-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { OsdsLink } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import { useHref } from 'react-router-dom';
 
 import OperatingStatusComponent from '@/components/listing/OperatingStatus.component';
 import ProvisioningStatusComponent from '@/components/listing/ProvisioningStatus.component';
 import ActionsComponent from './Actions.component';
 import { TLoadBalancerPool } from '@/api/data/pool';
+import DataGridLinkCell from '@/components/datagrid/DataGridLinkCell.component';
 
 export const useDatagridColumn = () => {
-  const { t } = useTranslation('load-balancer');
-  const { t: tPools } = useTranslation('pools');
+  const { t } = useTranslation(['pools', 'load-balancer']);
 
   const columns: DatagridColumn<TLoadBalancerPool>[] = [
     {
       id: 'name',
-      cell: (props: TLoadBalancerPool) => (
-        <DataGridTextCell>
-          <OsdsLink
-            color={ODS_THEME_COLOR_INTENT.primary}
-            href={useHref(`../${props.id}`)}
-          >
-            {props.name}
-          </OsdsLink>
-        </DataGridTextCell>
+      cell: ({ id, name }: TLoadBalancerPool) => (
+        <DataGridLinkCell href={`../${id}`}>{name}</DataGridLinkCell>
       ),
-      label: tPools('octavia_load_balancer_pools_name'),
+      label: t('octavia_load_balancer_pools_name'),
     },
     {
       id: 'protocol',
       cell: (props: TLoadBalancerPool) => (
         <DataGridTextCell>{props.protocol}</DataGridTextCell>
       ),
-      label: tPools('octavia_load_balancer_pools_protocol'),
+      label: t('octavia_load_balancer_pools_protocol'),
     },
     {
       id: 'algorithm',
       cell: (props: TLoadBalancerPool) => (
         <DataGridTextCell>
-          {tPools(
-            `octavia_load_balancer_pools_enum_algorithm_${props.algorithm}`,
-          )}
+          {t(`octavia_load_balancer_pools_enum_algorithm_${props.algorithm}`)}
         </DataGridTextCell>
       ),
-      label: tPools('octavia_load_balancer_pools_algorithm'),
+      label: t('octavia_load_balancer_pools_algorithm'),
     },
     {
       id: 'provisioningStatus',
@@ -57,7 +45,7 @@ export const useDatagridColumn = () => {
           className="w-fit"
         />
       ),
-      label: t('octavia_load_balancer_provisioning_status'),
+      label: t('load-balancer:octavia_load_balancer_provisioning_status'),
     },
     {
       id: 'operatingStatus',
@@ -67,7 +55,7 @@ export const useDatagridColumn = () => {
           className="w-fit"
         />
       ),
-      label: t('octavia_load_balancer_operating_status'),
+      label: t('load-balancer:octavia_load_balancer_operating_status'),
       isSortable: false,
     },
     {

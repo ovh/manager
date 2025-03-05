@@ -229,10 +229,7 @@ describe('useLoadBalancer hooks', () => {
         region: {
           name: 'region',
         },
-        floatingIp: {
-          id: '1',
-          ip: '1.1.1.1',
-        },
+        floatingIp: '1',
         privateNetwork: {
           id: '1',
           name: 'privateNetwork',

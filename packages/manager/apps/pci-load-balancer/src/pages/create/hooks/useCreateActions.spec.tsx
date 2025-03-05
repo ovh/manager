@@ -11,14 +11,11 @@ import { TFlavor } from '@/api/data/load-balancer';
 import { useGetFlavor } from '@/api/hook/useFlavors';
 import { Addon } from '@/types/addon.type';
 
-vi.mock('@/api/hook/useFlavors', async () => {
-  const { ...rest } = await vi.importActual('@/api/hook/useAddons');
-  return {
-    ...rest,
-    useGetFlavor: vi
-      .fn()
-      .mockImplementation(() => ({ data: undefined, isPending: true })),
-  };
+vi.mock('@/api/hook/useFlavors');
+
+vi.mocked(useGetFlavor as Mock).mockReturnValue({
+  data: undefined,
+  isPending: true,
 });
 
 vi.mock('../hooks/useTracking', async () => {

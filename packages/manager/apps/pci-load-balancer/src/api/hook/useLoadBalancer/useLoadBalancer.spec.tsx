@@ -1,7 +1,7 @@
 import { renderHook, waitFor } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
 import { useQueryWrapper } from '@/__tests__/wrapper';
-import { regions } from '@/__mocks__/addons';
+import { defaultAddons } from '@/__mocks__/addons';
 import { RegionAddon } from '@/types/addon.type';
 import {
   useLoadBalancerAddons,
@@ -11,30 +11,7 @@ import { useAddons } from '@/api/hook/useAddons/useAddons';
 
 vi.mock('@/api/hook/useAddons/useAddons');
 
-const addons = ([
-  {
-    planCode: 'pci-product.l-code-hour',
-    product: 'pci-product-l',
-    pricings: [{ price: 100, intervalUnit: 'hour' }],
-    blobs: {
-      technical: {
-        name: 'large',
-      },
-    },
-    regions,
-  },
-  {
-    planCode: 'pci-product.s-code-hour',
-    product: 'pci-product-s',
-    pricings: [{ price: 50, intervalUnit: 'hour' }],
-    blobs: {
-      technical: {
-        name: 'small',
-      },
-    },
-    regions,
-  },
-] as unknown) as RegionAddon[];
+const addons = (defaultAddons as unknown) as RegionAddon[];
 
 vi.mocked(useAddons).mockReturnValue({
   addons,
@@ -50,32 +27,7 @@ describe('useLoadBalancerAddons', () => {
       },
     );
 
-    await waitFor(() =>
-      expect(result.current.addons).toEqual([
-        {
-          planCode: 'pci-product.l-code-hour',
-          product: 'pci-product-l',
-          pricings: [{ price: 100, intervalUnit: 'hour' }],
-          blobs: {
-            technical: {
-              name: 'large',
-            },
-          },
-          regions,
-        },
-        {
-          planCode: 'pci-product.s-code-hour',
-          product: 'pci-product-s',
-          pricings: [{ price: 50, intervalUnit: 'hour' }],
-          blobs: {
-            technical: {
-              name: 'small',
-            },
-          },
-          regions,
-        },
-      ]),
-    );
+    await waitFor(() => expect(result.current.addons).toEqual(defaultAddons));
   });
 });
 
