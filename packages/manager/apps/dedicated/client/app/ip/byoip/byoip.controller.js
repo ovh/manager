@@ -90,7 +90,7 @@ export default class IpByoipConfiguration {
     });
   }
 
-  valideAsType() {
+  isAsTypeOwn() {
     if (this.asType === 'own') return !!this.byoip.asRir;
     return true;
   }
