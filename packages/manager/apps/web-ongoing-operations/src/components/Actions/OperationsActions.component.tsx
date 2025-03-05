@@ -43,7 +43,7 @@ export default function OperationActions({
           onOdsChange={() => {
             putOperationName(OperationName.CanRelaunch);
           }}
-          isDisabled={operationName !== OperationName.CanRelaunch}
+          isDisabled={!data.canRelaunch}
         ></OdsRadio>
         <label
           htmlFor="radio-relaunch"

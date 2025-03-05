@@ -49,15 +49,13 @@ export const useOngoingOperationDatagridColumns = (
         isFilterable: true,
       },
       {
-        id: 'operation',
+        id: 'function',
         cell: (props: TOngoingOperations) => (
           <DataGridTextCell>
             {t(`domain_operations_nicOperation_${props.function}`)}
           </DataGridTextCell>
         ),
         label: t('domain_operations'),
-        comparator: FilterCategories.String,
-        isFilterable: true,
       },
       {
         id: 'comment',
@@ -92,8 +90,6 @@ export const useOngoingOperationDatagridColumns = (
           <OngoingOperationDatagridBadge props={props} locale={l.language} />
         ),
         label: t('domain_operations_table_header_status'),
-        comparator: FilterCategories.String,
-        isFilterable: true,
       },
       {
         cell: (props: TOngoingOperations) => (

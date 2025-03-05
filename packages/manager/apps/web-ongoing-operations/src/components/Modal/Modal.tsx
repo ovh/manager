@@ -34,9 +34,13 @@ export default function Modal({
     setOperationName(label);
   };
 
-  const { operationArguments, loading, actions } = useOperationArguments(
+  const { data: operationArguments, isLoading, error } = useOperationArguments(
     data.id,
   );
+
+  if (error) {
+    navigate(urls.error404);
+  }
 
   const onValidate = async (id: number, operationType: OperationName) => {
     const promiseArray: Promise<void>[] = [];
@@ -79,7 +83,7 @@ export default function Modal({
       className="modal"
       data-testid="modal"
     >
-      {loading ? (
+      {isLoading ? (
         <OdsSpinner
           color="primary"
           size="md"
@@ -92,7 +96,7 @@ export default function Modal({
             description={data.comment}
           />
           <div className="my-6 flex flex-col gap-y-4">
-            {operationArguments?.map((argument, index) => (
+            {operationArguments?.data?.map((argument, index) => (
               <div key={`${data.id}-${index}`}>
                 <ModalContentComponent
                   argument={argument}
@@ -103,7 +107,7 @@ export default function Modal({
               </div>
             ))}
           </div>
-          {actions && (
+          {operationArguments.actions && (
             <OperationActions
               data={data}
               operationName={operationName}
