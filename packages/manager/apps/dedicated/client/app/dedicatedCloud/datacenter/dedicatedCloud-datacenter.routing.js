@@ -1,5 +1,6 @@
 import {
   NSX_COMPATIBLE_COMMERCIAL_RANGE,
+  MIN_NSX_EDGES,
   MAX_NSX_EDGES,
 } from './dedicatedCloud-datacenter.constants';
 
@@ -81,7 +82,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go(
           'app.dedicatedCloud.details.datacenter.details.dashboard.deleteDrp',
         ),
-      hasMaximumNsx: /* @ngInject */ (
+      totalCountNsx: /* @ngInject */ (
         ovhManagerPccDatacenterService,
         serviceName,
         datacenterId,
@@ -91,11 +92,15 @@ export default /* @ngInject */ ($stateProvider) => {
             pageSize: 1,
           })
           .then(({ meta }) => {
-            return meta.totalCount >= MAX_NSX_EDGES;
+            return meta.totalCount;
           })
           .catch(() => {
-            return false;
+            return 0;
           }),
+      hasMaximumNsx: /* @ngInject */ (totalCountNsx) =>
+        totalCountNsx >= MAX_NSX_EDGES,
+      hasOnlyMinimumNsx: /* @ngInject */ (totalCountNsx) =>
+        totalCountNsx <= MIN_NSX_EDGES,
       setMessage: /* @ngInject */ (Alerter) => (
         message = false,
         type = 'success',

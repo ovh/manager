@@ -368,6 +368,20 @@ class DedicatedCloudService {
       );
   }
 
+  getDatacenterPendingRemoveNsxTask(serviceName, datacenterId, params = {}) {
+    return this.icerbergUtils
+      .icebergQuery(
+        `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/task`,
+        params,
+        {
+          name: 'removeNsxtEdgeOnDc',
+        },
+      )
+      .then(({ data }) =>
+        data.filter((item) => item.state !== TASK_STATUS.DOING),
+      );
+  }
+
   datacenterResizeNsxTaskPoller(serviceName, taskId) {
     return this.Poller.poll(
       `/dedicatedCloud/${serviceName}/task/${taskId}`,
