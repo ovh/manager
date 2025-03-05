@@ -16,7 +16,12 @@ export const useProductRegionsAvailability = (
   planCode: string,
 ) =>
   useQuery({
-    queryKey: ['ovhSubsidiary', ovhSubsidiary, 'planCode', planCode],
+    queryKey: [
+      'cloud/order/rule/availability/ovhSubsidiary',
+      ovhSubsidiary,
+      'planCode',
+      planCode,
+    ],
     queryFn: () => getProductRegionsAvailability(ovhSubsidiary, planCode),
     enabled: !!ovhSubsidiary,
   });
