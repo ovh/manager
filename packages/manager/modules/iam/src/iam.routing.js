@@ -24,13 +24,6 @@ export default /* @ngInject */ ($stateProvider) => {
         $translate.instant('iam_breadcrumb'),
 
       /**
-       * Get the status of the advanced mode
-       * @returns {boolean}
-       */
-      advancedMode: /* @ngInject */ (IAMService) =>
-        IAMService.isAdvancedModeEnabled(),
-
-      /**
        * Display a Alerter message
        * @returns {{
        *   success: (key: string, values?: { [x: string]: any }) => void
@@ -101,18 +94,6 @@ export default /* @ngInject */ ($stateProvider) => {
           return result;
         });
       },
-
-      // TODO: commented for now, remove when working on policies pages MANAGER-16217
-      /**
-       * Whether there are any policies given the read-only flag (a.k.a advanced mode)
-       * @returns {boolean}
-       */
-      // hasPolicies: /* @ngInject */ (IAMService, advancedMode) =>
-      //   IAMService.getPolicies({
-      //     ...(!advancedMode && { readOnly: false }),
-      //   })
-      //     .then(({ data }) => data.length > 0)
-      //     .catch(() => false),
 
       /**
        * The onboarding guides
