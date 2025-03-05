@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 const { merge } = require('webpack-merge');
 const path = require('path');
 const fs = require('fs');
@@ -88,6 +89,17 @@ module.exports = (env = {}) => {
     new webpack.DefinePlugin({
       WEBPACK_ENV: {
         production: JSON.stringify(env.production),
+      },
+    }),
+  );
+
+  config.plugins.push(
+    new ModuleFederationPlugin({
+      name: 'will-order',
+      remoteType: 'commonjs',
+      remotes: {
+        ConfigoNasHa:
+          'ConfigoNasHa@https://ovhcloudcomdev.static.ovh.net/order/configos/assets/remoteEntry.js',
       },
     }),
   );
