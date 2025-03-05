@@ -105,7 +105,7 @@ export default function DatagridContainer({
         >
           {title}
         </OdsText>
-        <ChangelogButton links={CHANGELOG_LINKS} />
+        {!isEmbedded && <ChangelogButton links={CHANGELOG_LINKS} />}
       </div>
       {orderButton && <div className="w-fit mt-4 mb-8">{orderButton}</div>}
       <React.Suspense>

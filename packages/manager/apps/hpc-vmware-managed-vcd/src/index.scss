@@ -6,12 +6,12 @@ html {
   font-family: var(--ods-font-family-default);
 }
 
-.semibold::part(text) {
-  font-weight: 600;
+.color-disabled {
+  color: var(--ods-color-text-disabled-default);
 }
 
-.clipboard__full-width::part(tooltip) {
-  width: max-content;
+.semibold::part(text) {
+  font-weight: 600;
 }
 
 .ods-field-helper::part(text) {

@@ -105,7 +105,7 @@ export default function OrganizationGenerationInformationTile({
           value: (
             <Clipboard
               value={vcdOrganization.currentState?.apiUrl}
-              className="clipboard__full-width"
+              className="w-full"
             />
           ),
         },

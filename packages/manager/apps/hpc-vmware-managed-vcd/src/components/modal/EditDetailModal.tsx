@@ -93,10 +93,10 @@ export const EditDetailModal = ({
         </OdsText>
       </OdsFormField>
       {isLoading && <Loading slot="actions" className="w-9 mr-4" />}
-      <div className="flex gap-x-2 w-fit justify-self-center ml-auto mt-6">
+      <div className="flex gap-x-4 w-fit justify-self-center ml-auto mt-6">
         <OdsButton
           label={t('managed_vcd_dashboard_edit_modal_cta_cancel')}
-          variant="outline"
+          variant="ghost"
           onClick={onCloseModal}
         />
         <OdsButton

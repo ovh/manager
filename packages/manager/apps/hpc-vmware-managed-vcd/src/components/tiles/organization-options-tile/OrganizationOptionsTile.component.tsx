@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { useVcdOrder } from '@ovh-ux/manager-module-vcd-api';
 import { OdsText } from '@ovhcloud/ods-components/react';
-import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { WINDOWS_LICENSE_PLANCODE } from '@/utils/planCode.constants';
 
 export default function OrganizationOptionsTile({
@@ -39,6 +39,7 @@ export default function OrganizationOptionsTile({
                 <ActionMenu
                   id="license_menu"
                   isCompact
+                  variant={ODS_BUTTON_VARIANT.ghost}
                   icon={ODS_ICON_NAME.ellipsisVertical}
                   items={[
                     {

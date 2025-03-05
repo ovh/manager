@@ -14,7 +14,7 @@ export const Message: React.FC<MessageProps> = ({ message }) => {
     content,
     uid,
     type = 'information',
-    isDismissible,
+    isDismissible = true,
     includedSubRoutes,
     excludedSubRoutes,
     duration,
