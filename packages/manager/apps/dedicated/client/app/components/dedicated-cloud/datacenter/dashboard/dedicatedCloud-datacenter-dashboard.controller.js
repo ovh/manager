@@ -52,7 +52,7 @@ export default class {
     this.pollNsxTaskId = taskId;
     this.DedicatedCloud.datacenterResizeNsxTaskPoller(this.serviceName, taskId)
       .then(() => {
-        this.getNsxDetails();
+        this.getNsxtDetails();
       })
       .finally(() => {
         this.pollNsxTaskId = null;

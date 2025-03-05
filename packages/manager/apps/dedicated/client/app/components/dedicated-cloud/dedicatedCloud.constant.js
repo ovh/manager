@@ -17,6 +17,7 @@ export const VCD_MIGRATION_STATUS = {
   ENABLING: 'enabling',
   ENABLED: 'enabled',
   UNKNOWN: 'unknown',
+  DOING: 'doing',
 };
 
 export const PCC_MIGRATION_STATUS = {

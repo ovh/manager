@@ -15,5 +15,6 @@
   "dedicatedCloud_network_add_edge_cta": "Ajouter un Edge",
   "dedicatedCloud_network_resize_edge_cta": "Redimensionner",
   "dedicatedCloud_datacenter_network_guides": "Guides",
-  "dedicatedCloud_network_site_web_description_link": "Accéder au site web"
+  "dedicatedCloud_network_site_web_description_link": "Accéder au site web",
+  "dedicatedCloud_network_unable_have_minimum_nsx": "Vous ne pouvez pas avoir moins de {{minimumNsx}} NSX Edge"
 }

@@ -92,4 +92,18 @@ export default class OvhManagerPccDatacenterService {
       `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/nsxtEdge`,
     );
   }
+
+  removeNsxtEdge({ serviceName, datacenterId, nsxtEdgeId }) {
+    return this.$http.delete(
+      `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/nsxtEdge/${nsxtEdgeId}`,
+    );
+  }
+
+  isResilienceModeEnabled({ serviceName, datacenterId, nsxtEdgeId }) {
+    return this.$http
+      .get(
+        `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/nsxtEdge/${nsxtEdgeId}/resilience`,
+      )
+      .then(({ data }) => data.state === 'enabled');
+  }
 }
