@@ -1,15 +1,20 @@
+import { API_VERSION } from './constants';
+
 export default class LogLiveTailService {
   /* @ngInject */
-  constructor($http, iceberg) {
+  constructor($http) {
     this.$http = $http;
-    this.iceberg = iceberg;
   }
 
-  getLogSourceUrl(source, kind) {
+  getLogSourceUrl(source, kind, apiVersion = API_VERSION.v1) {
     return this.$http
-      .post(source, {
-        kind,
-      })
+      .post(
+        source,
+        { kind },
+        {
+          serviceType: apiVersion,
+        },
+      )
       .then(({ data }) => data);
   }
 
