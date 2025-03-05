@@ -4,7 +4,7 @@ import { Trans, useTranslation } from 'react-i18next';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import {
   getInstanceById,
-  updateDeletedInstanceStatus,
+  updateInstanceFromCache,
 } from '@/data/hooks/instance/useInstances';
 import { usePathMatch } from '@/hooks/url/usePathMatch';
 import NotFound from '@/pages/404/NotFound.page';
@@ -53,11 +53,13 @@ const InstanceAction: FC = () => {
   const canExecuteAction = !!instanceId && !!instanceName && !!section;
 
   const executeSuccessCallback = useCallback((): void => {
-    if (!instanceId) return;
-    if (section === 'delete') {
-      updateDeletedInstanceStatus(projectId, queryClient, instanceId);
-    }
-  }, [instanceId, projectId, section]);
+    if (!instance) return;
+    const newInstance = { ...instance, pendingTask: true };
+    updateInstanceFromCache(queryClient, {
+      projectId,
+      instance: newInstance,
+    });
+  }, [instance, projectId]);
 
   const handleModalClose = () => navigate('..');
 
