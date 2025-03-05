@@ -212,10 +212,6 @@ const API_KEY_URL = {
 
 const PAGE_SIZE = 25;
 
-const PREFERENCES_KEY = {
-  ADVANCED_MODE: 'IAM_ADVANCED_MODE',
-};
-
 const TAG = {
   // Policy creation
   ADD_POLICY: 'dedicated::account::iam::add-policy',
@@ -322,9 +318,7 @@ const TAG = {
   // Commons
   ADD_ACTION_MANUALLY_SUCCESS: 'add-manually-success',
   ADD_ACTION_MANUALLY: 'add-manually',
-  DISABLE_ADVANCED_MODE: 'dedicated::account::iam::disable-advanced-mode',
   DISABLE_ALLOW_ALL_ACTIONS: 'disable-allow-all-actions',
-  ENABLE_ADVANCED_MODE: 'dedicated::account::iam::enable-advanced-mode',
   ENABLE_ALLOW_ALL_ACTIONS: 'enable-allow-all-actions',
   GUIDE: (guideKey) => `dedicated::account::iam::guide-${guideKey}`,
   REMOVE_PRODUCT_TYPE_CANCEL: 'remove-product-type-cancel',
@@ -353,7 +347,6 @@ export {
   GUIDE,
   OVH_MANAGED_PERMISSIONS_GROUP,
   PAGE_SIZE,
-  PREFERENCES_KEY,
   TAG,
   UNAVAILABLE_STATE_NAME,
   URN_VERSION,
