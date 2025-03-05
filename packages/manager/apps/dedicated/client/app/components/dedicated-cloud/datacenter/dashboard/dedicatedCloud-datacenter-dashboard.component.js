@@ -23,6 +23,8 @@ export default {
     goToResizeNsxEdge: '<',
     goToDatacenterNetwork: '<',
     goToRelocateNsxtEdge: '<',
+    hasMaximumNsx: '<',
+    goToAddNsx: '<',
   },
   controller,
   template,

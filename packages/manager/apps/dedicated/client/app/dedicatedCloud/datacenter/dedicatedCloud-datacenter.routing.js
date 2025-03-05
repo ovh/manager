@@ -1,4 +1,7 @@
-import { NSX_COMPATIBLE_COMMERCIAL_RANGE } from './dedicatedCloud-datacenter.constants';
+import {
+  NSX_COMPATIBLE_COMMERCIAL_RANGE,
+  MAX_NSX_EDGES,
+} from './dedicatedCloud-datacenter.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.dedicatedCloud.details.datacenter.details', {
@@ -57,6 +60,8 @@ export default /* @ngInject */ ($stateProvider) => {
       hostsState: () => 'app.dedicatedCloud.details.datacenter.details.hosts',
       networkState: () =>
         'app.dedicatedCloud.details.datacenter.details.network',
+      addNsxState: () =>
+        'app.dedicatedCloud.details.datacenter.details.dashboard.add-nsx',
       goToHosts: /* @ngInject */ ($state, hostsState) => () =>
         $state.go(hostsState),
       goToDatastores: /* @ngInject */ ($state, datastoresState) => () =>
@@ -66,6 +71,8 @@ export default /* @ngInject */ ($stateProvider) => {
       goToDrp: /* @ngInject */ ($state, drpState) => () => $state.go(drpState),
       goToNetwork: /* @ngInject */ ($state, networkState) => () =>
         $state.go(networkState),
+      goToAddNsx: /* @ngInject */ ($state, addNsxState) => () =>
+        $state.go(addNsxState),
       goToDrpSummary: /* @ngInject */ ($state, currentDrp) => () =>
         $state.go('app.dedicatedCloud.details.datacenter.details.drp.summary', {
           drpInformations: currentDrp,
@@ -74,6 +81,21 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go(
           'app.dedicatedCloud.details.datacenter.details.dashboard.deleteDrp',
         ),
+      hasMaximumNsx: /* @ngInject */ (
+        ovhManagerPccDatacenterService,
+        serviceName,
+        datacenterId,
+      ) =>
+        ovhManagerPccDatacenterService
+          .getNsxtEdgeByDatacenter(serviceName, datacenterId, {
+            pageSize: 1,
+          })
+          .then(({ meta }) => {
+            return meta.totalCount >= MAX_NSX_EDGES;
+          })
+          .catch(() => {
+            return false;
+          }),
       setMessage: /* @ngInject */ (Alerter) => (
         message = false,
         type = 'success',
