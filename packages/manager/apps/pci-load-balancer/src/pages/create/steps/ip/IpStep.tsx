@@ -16,11 +16,10 @@ import { useMemo } from 'react';
 import { StepsEnum, useCreateStore } from '@/pages/create/store';
 import { useTracking } from '@/pages/create/hooks/useTracking';
 import { IpStepMessages } from '@/pages/create/steps/ip/IpStepMessages';
-import {
-  useRegionFloatingIpAddons,
-  useSelectFloatingIps,
-} from '@/api/hook/useFloatingIps/useFloatingIps';
-import { FloatingIpSelectionId } from '@/api/hook/useFloatingIps/useFloatingIps.constant';
+import { useFloatingIps } from '@/api/hook/useFloatingIps/useFloatingIps';
+import { FloatingIpSelectionId } from '@/types/floating.type';
+import { useRegionAddons } from '@/api/hook/useAddons/useAddons';
+import { FLOATING_IP_ADDON_FAMILY } from '@/api/hook/useFloatingIps/useFloatingIps.constant';
 
 export type TIpStepProps = {
   ovhSubsidiary: string;
@@ -41,13 +40,14 @@ export const IpStep = ({
 
   const region = store?.region?.name || '';
 
-  const { floatingIps, isFetching } = useSelectFloatingIps(projectId, region);
+  const { data: floatingIps, isFetching } = useFloatingIps(projectId, region);
 
-  const { addons, isFetching: isFetchingAddons } = useRegionFloatingIpAddons(
+  const { addons, isFetching: isFetchingAddons } = useRegionAddons({
     ovhSubsidiary,
     projectId,
     region,
-  );
+    addonFamily: FLOATING_IP_ADDON_FAMILY,
+  });
 
   const price = useMemo(
     () => (addons?.[0] ? getFormattedHourlyCatalogPrice(addons[0].price) : ''),
@@ -71,6 +71,7 @@ export const IpStep = ({
           store.open(StepsEnum.NETWORK);
         },
         label: t('pci-common:common_stepper_next_button_label'),
+        isDisabled: !store.publicIp,
       }}
       edit={{
         action: () => {
@@ -112,7 +113,6 @@ export const IpStep = ({
               store.set.publicIp(event.target.value as string)
             }
             inline
-            {...(floatingIps.length === 0 ? { disabled: true } : {})}
           >
             <OsdsText
               color={ODS_THEME_COLOR_INTENT.text}
@@ -121,17 +121,26 @@ export const IpStep = ({
             >
               {t('octavia_load_balancer_create_floating_ip_field')}
             </OsdsText>
-            {floatingIps.map(({ id, label }) => (
+            <OsdsSelectOption value={FloatingIpSelectionId.NEW}>
+              {t(
+                'octavia_load_balancer_create_floating_ip_field_new_floating_ip',
+              )}
+            </OsdsSelectOption>
+            <OsdsSelectOption value={FloatingIpSelectionId.UNATTACHED}>
+              {t(
+                'octavia_load_balancer_create_floating_ip_field_no_floating_ip',
+              )}
+            </OsdsSelectOption>
+            {floatingIps?.map(({ id, ip }) => (
               <OsdsSelectOption value={id} key={id}>
-                {t(label)}
+                {ip}
               </OsdsSelectOption>
             ))}
           </OsdsSelect>
         </OsdsFormField>
       )}
-      {[FloatingIpSelectionId.NEW, FloatingIpSelectionId.UNATTACHED].includes(
-        store.publicIp as FloatingIpSelectionId,
-      ) &&
+      {(FloatingIpSelectionId.NEW === store.publicIp ||
+        FloatingIpSelectionId.UNATTACHED === store.publicIp) &&
         !isFetchingAddons && (
           <IpStepMessages publicIpId={store.publicIp} price={price} />
         )}

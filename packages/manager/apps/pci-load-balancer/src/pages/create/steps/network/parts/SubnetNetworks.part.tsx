@@ -1,4 +1,4 @@
-import { useEffect, useContext } from 'react';
+import { useEffect, useContext, useMemo } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   OsdsMessage,
@@ -15,11 +15,10 @@ import { useTranslation } from 'react-i18next';
 import { useCatalogPrice } from '@ovh-ux/manager-react-components';
 import { useParams } from 'react-router-dom';
 import { useCreateStore } from '@/pages/create/store';
-import { FloatingIpSelectionId } from '@/api/hook/useFloatingIps/useFloatingIps.constant';
-import {
-  useSmallestGatewayRegion,
-  useSubnetGateways,
-} from '@/api/hook/useGateways/useGateways';
+import { useSubnetGateways } from '@/api/hook/useGateways/useGateways';
+import { FloatingIpSelectionId } from '@/types/floating.type';
+import { useRegionAddons } from '@/api/hook/useAddons/useAddons';
+import { GATEWAY_ADDON_FAMILY } from '@/api/hook/useGateways/useGateways.constant';
 
 export const SubnetNetworksPart = (): JSX.Element => {
   const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
@@ -37,7 +36,15 @@ export const SubnetNetworksPart = (): JSX.Element => {
     isFetching: isSubnetGatewaysFetching,
   } = useSubnetGateways(projectId, region, store.subnet?.id);
 
-  const gateway = useSmallestGatewayRegion(ovhSubsidiary, projectId, region);
+  const { addons } = useRegionAddons({
+    ovhSubsidiary,
+    projectId,
+    region,
+    addonFamily: GATEWAY_ADDON_FAMILY,
+  });
+
+  // the smallest gateway is always the first because it is already sorted by size
+  const gateway = useMemo(() => (addons ? addons[0] : null), [addons]);
 
   useEffect(() => {
     store.set.gateways(subnetGateways || []);

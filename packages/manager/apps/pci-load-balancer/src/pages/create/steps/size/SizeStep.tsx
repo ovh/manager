@@ -3,22 +3,21 @@ import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { StepComponent } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-import { PRODUCT_LINK } from '@/constants';
+import { AGORA_ADDON_FAMILY, PRODUCT_LINK } from '@/constants';
 import SizeInputComponent from './input/SizeInput.component';
 import { StepsEnum, useCreateStore } from '@/pages/create/store';
 import { useTracking } from '@/pages/create/hooks/useTracking';
 import { useColumnsCount } from '@/pages/create/hooks/useColumnsCount';
-import { RegionAddon } from '@/types/addon.type';
-import { useRegionLoadBalancerAddons } from '@/api/hook/useLoadBalancer/useLoadBalancer';
+import { useRegionAddons } from '@/api/hook/useAddons/useAddons';
 
 export type TSizeStepProps = {
   ovhSubsidiary: string;
-  regionAddons?: RegionAddon[];
+  projectId: string;
 };
 
 export const SizeStep = ({
   ovhSubsidiary,
-  regionAddons,
+  projectId,
 }: Readonly<TSizeStepProps>): JSX.Element => {
   const { t } = useTranslation(['load-balancer/create', 'pci-common']);
 
@@ -28,10 +27,12 @@ export const SizeStep = ({
 
   const store = useCreateStore();
 
-  const addons = useRegionLoadBalancerAddons(
-    regionAddons || [],
-    store.region?.name || '',
-  );
+  const { addons } = useRegionAddons({
+    ovhSubsidiary,
+    projectId,
+    region: store.region?.name || '',
+    addonFamily: AGORA_ADDON_FAMILY,
+  });
 
   return (
     <StepComponent

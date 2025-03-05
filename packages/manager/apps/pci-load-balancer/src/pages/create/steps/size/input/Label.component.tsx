@@ -7,14 +7,14 @@ import {
   useCatalogPrice,
   convertHourlyPriceToMonthly,
 } from '@ovh-ux/manager-react-components';
-import { Addon } from '@/types/addon.type';
+import { TProductAddonDetail } from '@/types/product.type';
 
 const DIGIT_AFTER_DECIMAL = 4;
 
 export const LabelComponent = ({
   item,
 }: Readonly<{
-  item: Addon;
+  item: TProductAddonDetail;
 }>) => {
   const { t: tCreate } = useTranslation('load-balancer/create');
 

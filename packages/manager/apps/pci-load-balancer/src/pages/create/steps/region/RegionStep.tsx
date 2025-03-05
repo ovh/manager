@@ -1,7 +1,8 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import {
   OsdsLink,
   OsdsMessage,
+  OsdsSpinner,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
 import {
@@ -30,14 +31,15 @@ import {
   useGetPrivateNetworks,
 } from '@/api/hook/useNetwork';
 import queryClient from '@/queryClient';
+import { TProductAvailabilityRegion } from '@/types/region.type';
 
 export type TRegionStepProps = {
-  regions: TRegion[];
+  regions: TProductAvailabilityRegion[];
   ovhSubsidiary: string;
   projectId: string;
 };
 
-const isRegionWith3AZ = (regions: TRegion[]) =>
+const isRegionWith3AZ = (regions: TProductAvailabilityRegion[]) =>
   regions.some((region) => region.type === 'region-3-az');
 
 export const RegionStep = ({
@@ -53,6 +55,8 @@ export const RegionStep = ({
   const store = useCreateStore();
 
   const { data: networks } = useGetPrivateNetworks(projectId);
+
+  const [isCheckingNetwork, setIsCheckingNetwork] = useState(false);
 
   const isNetworkAvailable = useMemo(
     () =>
@@ -75,10 +79,14 @@ export const RegionStep = ({
     if (region) {
       store.set.region(region);
 
+      setIsCheckingNetwork(true);
+
       // prefetch network for the next step
       await queryClient.prefetchQuery(
         getRegionPrivateNetworksQuery(projectId, region.name),
       );
+
+      setIsCheckingNetwork(false);
     }
   };
 
@@ -99,7 +107,7 @@ export const RegionStep = ({
           store.open(StepsEnum.SIZE);
         },
         label: t('pci-common:common_stepper_next_button_label'),
-        isDisabled: !isNetworkAvailable,
+        isDisabled: !isNetworkAvailable || isCheckingNetwork,
       }}
       edit={{
         action: () => {
@@ -158,6 +166,11 @@ export const RegionStep = ({
             {t('octavia_load_balancer_create_region_3az_price')}
           </OsdsText>
         </OsdsMessage>
+      )}
+      {isCheckingNetwork && (
+        <div className="mt-6">
+          <OsdsSpinner inline />
+        </div>
       )}
       {store.region && !isNetworkAvailable && (
         <OsdsMessage

@@ -44,6 +44,16 @@ export const NameStep = (): JSX.Element => {
     store.set.name(name);
   }, [store.addon, store.region, store.set]);
 
+  const errorMessage = useMemo(() => {
+    if (hasLengthError)
+      return t('pci-common:common_field_error_maxlength', {
+        maxlength: 70,
+      });
+    if (hasMatchError) return t('pci-common:common_field_error_pattern');
+
+    return '';
+  }, [hasLengthError, hasMatchError, t]);
+
   return (
     <StepComponent
       title={t('octavia_load_balancer_create_name_field_label')}
@@ -52,19 +62,7 @@ export const NameStep = (): JSX.Element => {
       isLocked={store.steps.get(StepsEnum.NAME).isLocked}
       order={6}
     >
-      <OsdsFormField
-        className="mt-8 w-[20rem]"
-        inline
-        error={(() => {
-          if (hasLengthError)
-            return t('pci-common:common_field_error_maxlength', {
-              maxlength: 70,
-            });
-          if (hasMatchError) return t('pci-common:common_field_error_pattern');
-
-          return '';
-        })()}
-      >
+      <OsdsFormField className="mt-8 w-[20rem]" inline error={errorMessage}>
         <OsdsText
           color={ODS_THEME_COLOR_INTENT.text}
           size={ODS_TEXT_SIZE._100}

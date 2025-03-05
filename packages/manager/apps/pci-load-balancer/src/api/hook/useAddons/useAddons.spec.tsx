@@ -6,7 +6,13 @@ import {
 } from '@ovh-ux/manager-pci-common';
 import { useAddons, useRegionAddons } from './useAddons';
 import { useQueryWrapper } from '@/__tests__/wrapper';
-import { availableProducts, catalog, regions } from '@/__mocks__/addons';
+import {
+  availableProducts,
+  catalog,
+  defaultAddons,
+  regions,
+} from '@/__mocks__/addons';
+import { selectHourlyAddons } from './addons.select';
 
 vi.mock('@ovh-ux/manager-pci-common');
 
@@ -23,7 +29,12 @@ vi.mocked(getProductAvailabilityQuery).mockReturnValue({
 describe('useAddons', () => {
   it('should return the project regions with addons', async () => {
     const { result } = renderHook(
-      () => useAddons('FR', 'projectId-test', 'testAddon'),
+      () =>
+        useAddons({
+          ovhSubsidiary: 'FR',
+          projectId: 'projectId-test',
+          addonFamily: 'testAddon',
+        }),
       { wrapper: useQueryWrapper },
     );
 
@@ -76,13 +87,33 @@ describe('useAddons', () => {
       ]),
     );
   });
+
+  it('should return hourly regions addons', async () => {
+    const { result } = renderHook(
+      () =>
+        useAddons({
+          ovhSubsidiary: 'FR',
+          projectId: 'projectId-test',
+          addonFamily: 'testAddon',
+          select: selectHourlyAddons,
+        }),
+      { wrapper: useQueryWrapper },
+    );
+
+    await waitFor(() => expect(result.current.addons).toEqual(defaultAddons));
+  });
 });
 
 describe('useRegionAddons', () => {
   it('should return the region addons', async () => {
     const { result } = renderHook(
       () =>
-        useRegionAddons('FR', 'projectId-test', 'GRA-STAGING-A', 'testAddon'),
+        useRegionAddons({
+          ovhSubsidiary: 'FR',
+          projectId: 'projectId-test',
+          region: 'GRA-STAGING-A',
+          addonFamily: 'testAddon',
+        }),
       {
         wrapper: useQueryWrapper,
       },

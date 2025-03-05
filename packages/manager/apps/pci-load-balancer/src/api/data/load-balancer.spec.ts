@@ -11,6 +11,7 @@ import {
   TCreateLoadBalancerParam,
 } from './load-balancer';
 import { mockFlavor, mockLoadBalancer, mockLoadBalancers } from '@/mocks';
+import { FloatingIpSelectionId } from '@/types/floating.type';
 
 export const projectId = 'test-project-id';
 const region = 'region1';
@@ -165,7 +166,7 @@ describe('updateLoadBalancerName', () => {
         projectId,
         flavor: { id: 'flavorId', name: 'flavorName', region: 'region1' },
         region: { name: 'region1' },
-        floatingIp: { type: 'create', id: 'floatingIpId' },
+        floatingIp: FloatingIpSelectionId.NEW,
         privateNetwork: { id: 'privateNetworkId' },
         subnet: { id: 'subnetId' },
         gateways: [{ id: 'gatewayId' }],
@@ -244,7 +245,7 @@ describe('updateLoadBalancerName', () => {
           projectId,
           flavor: { id: 'flavorId', name: 'flavorName', region: 'region1' },
           region: { name: 'region1' },
-          floatingIp: { type: 'create', id: 'floatingIpId' },
+          floatingIp: FloatingIpSelectionId.NEW,
           privateNetwork: { id: 'privateNetworkId' },
           subnet: { id: 'subnetId' },
           gateways: [{ id: 'gatewayId' }],

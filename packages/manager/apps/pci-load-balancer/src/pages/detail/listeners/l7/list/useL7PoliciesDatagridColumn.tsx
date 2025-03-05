@@ -4,8 +4,8 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useHref, useNavigate } from 'react-router-dom';
-import { OsdsButton, OsdsIcon, OsdsLink } from '@ovhcloud/ods-components/react';
+import { useNavigate } from 'react-router-dom';
+import { OsdsButton, OsdsIcon } from '@ovhcloud/ods-components/react';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
@@ -16,10 +16,10 @@ import OperatingStatusComponent from '@/components/listing/OperatingStatus.compo
 import ProvisioningStatusComponent from '@/components/listing/ProvisioningStatus.component';
 import { TL7Policy } from '@/api/data/l7Policies';
 import ActionsComponent from '@/pages/detail/listeners/l7/list/Actions.component';
+import DataGridLinkCell from '@/components/datagrid/DataGridLinkCell.component';
 
 export const useL7PoliciesDatagridColumn = () => {
-  const { t: tLoadBalancer } = useTranslation('load-balancer');
-  const { t: tL7Policies } = useTranslation('l7');
+  const { t } = useTranslation(['l7', 'load-balancer']);
   const navigate = useNavigate();
 
   const columns: DatagridColumn<TL7Policy>[] = [
@@ -41,35 +41,28 @@ export const useL7PoliciesDatagridColumn = () => {
           </span>
         </DataGridTextCell>
       ),
-      label: tL7Policies('octavia_load_balancer_list_l7_policies_position'),
+      label: t('octavia_load_balancer_list_l7_policies_position'),
     },
     {
       id: 'name',
-      cell: (props: TL7Policy) => (
-        <DataGridTextCell>
-          <OsdsLink
-            color={ODS_THEME_COLOR_INTENT.primary}
-            href={useHref(`../${props.id}/edit`)}
-          >
-            {props.name}
-          </OsdsLink>
-        </DataGridTextCell>
+      cell: ({ id, name }: TL7Policy) => (
+        <DataGridLinkCell href={`../${id}/edit`}>{name}</DataGridLinkCell>
       ),
-      label: tL7Policies('octavia_load_balancer_list_l7_policies_name'),
+      label: t('octavia_load_balancer_list_l7_policies_name'),
     },
     {
       id: 'action',
       cell: (props: TL7Policy) => (
         <DataGridTextCell>{props.action}</DataGridTextCell>
       ),
-      label: tL7Policies('octavia_load_balancer_list_l7_policies_action'),
+      label: t('octavia_load_balancer_list_l7_policies_action'),
     },
     {
       id: 'attribute',
       cell: (props: TL7Policy) => (
         <DataGridTextCell>{props.attribute}</DataGridTextCell>
       ),
-      label: tL7Policies('octavia_load_balancer_list_l7_policies_attribute'),
+      label: t('octavia_load_balancer_list_l7_policies_attribute'),
       isSortable: false,
     },
     {
@@ -77,9 +70,7 @@ export const useL7PoliciesDatagridColumn = () => {
       cell: (props: TL7Policy) => (
         <DataGridTextCell>{props.redirectHttpCode || '-'}</DataGridTextCell>
       ),
-      label: tL7Policies(
-        'octavia_load_balancer_list_l7_policies_redirect_code',
-      ),
+      label: t('octavia_load_balancer_list_l7_policies_redirect_code'),
       isSortable: false,
     },
     {
@@ -90,7 +81,7 @@ export const useL7PoliciesDatagridColumn = () => {
           className="w-fit"
         />
       ),
-      label: tLoadBalancer('octavia_load_balancer_provisioning_status'),
+      label: t('load-balancer:octavia_load_balancer_provisioning_status'),
       isSortable: false,
     },
     {
@@ -101,7 +92,7 @@ export const useL7PoliciesDatagridColumn = () => {
           className="w-fit"
         />
       ),
-      label: tLoadBalancer('octavia_load_balancer_operating_status'),
+      label: t('load-balancer:octavia_load_balancer_operating_status'),
       isSortable: false,
     },
     {

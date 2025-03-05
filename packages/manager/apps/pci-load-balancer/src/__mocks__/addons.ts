@@ -124,4 +124,29 @@ const availableProducts = {
   products: [],
 };
 
-export { catalog, availableProducts, regions };
+const defaultAddons = [
+  {
+    planCode: 'pci-product.l-code-hour',
+    product: 'pci-product-l',
+    pricings: [{ price: 100, intervalUnit: 'hour' }],
+    blobs: {
+      technical: {
+        name: 'large',
+      },
+    },
+    regions,
+  },
+  {
+    planCode: 'pci-product.s-code-hour',
+    product: 'pci-product-s',
+    pricings: [{ price: 50, intervalUnit: 'hour' }],
+    blobs: {
+      technical: {
+        name: 'small',
+      },
+    },
+    regions,
+  },
+];
+
+export { catalog, availableProducts, regions, defaultAddons };

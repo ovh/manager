@@ -27,7 +27,7 @@ import {
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 import { useContext, useEffect, useState } from 'react';
-import { TInstance, useInstances } from '@ovh-ux/manager-pci-common';
+import { useInstances } from '@ovh-ux/manager-pci-common';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   LISTENER_PROTOCOL_LIST,
@@ -37,16 +37,7 @@ import {
   PROTOCOLS,
 } from './constants';
 import { TRACKING_PREFIX } from '@/constants';
-
-export interface ListenerConfiguration {
-  protocol: string;
-  port: number;
-  healthMonitor: string;
-  instances: {
-    instance: TInstance;
-    port: number;
-  }[];
-}
+import { ListenerConfiguration } from '@/types/listener.type';
 
 export interface InstanceTableProps {
   projectId: string;
