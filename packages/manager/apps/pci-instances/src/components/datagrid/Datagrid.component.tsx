@@ -2,19 +2,21 @@ import {
   Datagrid,
   DatagridColumn,
   useNotifications,
-  useProjectUrl,
   useTranslatedMicroRegions,
 } from '@ovh-ux/manager-react-components';
 import { Dispatch, SetStateAction, useEffect, useMemo } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
 import { OsdsLink } from '@ovhcloud/ods-components/react';
 import { Filter } from '@ovh-ux/manager-core-api';
 import { usePciUrl } from '@ovh-ux/manager-pci-common';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { useQueryClient } from '@tanstack/react-query';
 import { TextCell } from './cell/TextCell.component';
 import { NameIdCell } from '@/pages/instances/datagrid/cell/NameIdCell.component';
-import { useInstances } from '@/data/hooks/instance/useInstances';
+import {
+  updateInstanceFromCache,
+  useInstances,
+} from '@/data/hooks/instance/useInstances';
 import { ActionsCell } from '@/pages/instances/datagrid/cell/ActionsCell.component';
 
 import { StatusCell } from '@/pages/instances/datagrid/cell/StatusCell.component';
@@ -23,6 +25,9 @@ import { mapAddressesToListItems } from '@/pages/instances/mapper';
 import { Spinner } from '../spinner/Spinner.component';
 import { DeepReadonly } from '@/types/utils.type';
 import { TInstance } from '@/types/instance/entity.type';
+import { useInstancesPolling } from '@/data/hooks/instance/polling/useInstancesPolling';
+import { TInstanceDto } from '@/types/instance/api.type';
+import { useProjectId } from '@/hooks/project/useProjectId';
 
 type TFilterWithLabel = Filter & { label: string };
 type TSorting = {
@@ -45,9 +50,9 @@ const DatagridComponent = ({
 }: TDatagridComponentProps) => {
   const pciUrl = usePciUrl();
   const { t } = useTranslation(['list', 'common']);
+  const queryClient = useQueryClient();
+  const projectId = useProjectId();
   const { translateMicroRegion } = useTranslatedMicroRegions();
-  const { projectId } = useParams() as { projectId: string }; // safe because projectId has already been handled by async route loader
-  const projectUrl = useProjectUrl('public-cloud');
   const {
     addWarning,
     clearNotifications,
@@ -65,12 +70,23 @@ const DatagridComponent = ({
     isFetching,
     isRefetching,
     isError,
-  } = useInstances(projectId, projectUrl, {
+    pendingTasks,
+  } = useInstances({
     limit: 10,
     sort: sorting.id,
     sortOrder: sorting.desc ? 'desc' : 'asc',
     filters,
   });
+
+  const handlePollingSuccess = (instance?: TInstanceDto) => {
+    if (instance && !instance.pendingTask)
+      updateInstanceFromCache(queryClient, {
+        projectId,
+        instance,
+      });
+  };
+
+  const pollingData = useInstancesPolling(pendingTasks, handlePollingSuccess);
 
   const datagridColumns: DatagridColumn<TInstance>[] = useMemo(
     () => [
@@ -147,7 +163,12 @@ const DatagridComponent = ({
       {
         id: 'status',
         cell: (instance) => (
-          <StatusCell isLoading={isRefetching} instance={instance} />
+          <StatusCell
+            isLoading={
+              isRefetching || !!pollingData.find((d) => d.id === instance.id)
+            }
+            instance={instance}
+          />
         ),
         label: t('pci_instances_list_column_status'),
         isSortable: false,
@@ -161,7 +182,7 @@ const DatagridComponent = ({
         isSortable: false,
       },
     ],
-    [isRefetching, t, translateMicroRegion, pciUrl],
+    [t, isRefetching, translateMicroRegion, pciUrl, pollingData],
   );
 
   const errorMessage = useMemo(
