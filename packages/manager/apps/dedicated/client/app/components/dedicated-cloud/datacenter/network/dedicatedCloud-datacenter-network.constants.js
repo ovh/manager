@@ -1,7 +1,3 @@
-export const NSXT_EDGE_CATALOG = 'privateCloudPreprod';
-export const NSXT_EDGE_CORE_PLAN_CODE = 'pcc-option-edge-nsxt-core';
-export const NSXT_EDGE_PRICING_MODE = 'pcc-servicepack-vrops-nsxt';
-
 export const DATACENTER_NETWORK_SITE_WEB_LINK = {
   DEFAULT: 'https://www.ovhcloud.com/en/hosted-private-cloud/vmware/nsx/',
   FR: 'https://www.ovhcloud.com/fr/hosted-private-cloud/vmware/nsx/',
@@ -29,8 +25,5 @@ export const DATACENTER_NETWORK_SITE_WEB_LINK = {
 };
 
 export default {
-  NSXT_EDGE_CATALOG,
   DATACENTER_NETWORK_SITE_WEB_LINK,
-  NSXT_EDGE_CORE_PLAN_CODE,
-  NSXT_EDGE_PRICING_MODE,
 };
