@@ -1,9 +1,11 @@
 import { ENTITY, TAG } from '../../iam.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('iam.dashboard.applications.delete', {
+  $stateProvider.state('iam.api-keys.delete', {
     url: '/delete/{application:string}',
-    component: 'iamDeleteEntity',
+    views: {
+      'delete-modal': { component: 'iamDeleteEntity' },
+    },
     resolve: {
       breadcrumb: () => null,
 
