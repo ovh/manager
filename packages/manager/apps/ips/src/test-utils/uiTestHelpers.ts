@@ -1,4 +1,4 @@
-import { waitFor } from '@testing-library/react';
+import { waitFor, within } from '@testing-library/react';
 import { ODS_ICON_NAME, OdsSelect } from '@ovhcloud/ods-components';
 import '@testing-library/jest-dom';
 
@@ -133,11 +133,32 @@ export const getButtonByLabel = async ({
 }) => {
   let button: HTMLElement;
   await waitFor(() => {
-    button = container.querySelectorAll(`ods-button`)?.[nth] as HTMLElement;
+    button = Array.from(
+      container.querySelectorAll(`ods-button[label="${label}"]`),
+    )?.[nth] as HTMLElement;
     expect(button).toBeDefined();
     return disabled
       ? expect(button).toHaveAttribute('disabled')
       : expect(button).not.toHaveAttribute('disabled');
   }, WAIT_FOR_DEFAULT_OPTIONS);
   return button;
+};
+
+export const getOdsCardByContentText = async ({
+  container,
+  text,
+  nth = 0,
+}: {
+  container: HTMLElement;
+  text: string;
+  nth?: number;
+}) => {
+  let card: HTMLElement;
+  await waitFor(() => {
+    card = Array.from(container.querySelectorAll('ods-card'))?.filter((c) =>
+      within(c).queryByText(text),
+    )?.[nth] as HTMLElement;
+    expect(card).toBeDefined();
+  }, WAIT_FOR_DEFAULT_OPTIONS);
+  return card;
 };

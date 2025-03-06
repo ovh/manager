@@ -10,19 +10,21 @@ import {
   getVpsServiceInfos,
   DedicatedCloudServiceInfos,
   getDedicatedCloudServiceInfos,
+  getDedicatedServerOrderableIp,
+  OrderableIpResponse,
 } from '../api';
 
 export const useCheckServiceAvailability = ({
   serviceName,
   serviceType,
-  onServiceExpired,
+  onServiceUnavailable,
 }: {
   serviceName?: string;
   serviceType?: ServiceType;
-  onServiceExpired?: (serviceName?: string) => void;
+  onServiceUnavailable?: (serviceName?: string) => void;
 }) => {
   const { isLoading, data, isError, error } = useQuery({
-    queryKey: [serviceType, serviceName, 'serviceInfos'],
+    queryKey: [serviceType, serviceName, 'availability'],
     queryFn: async () => {
       try {
         let serviceInfos: ApiResponse<
@@ -31,9 +33,18 @@ export const useCheckServiceAvailability = ({
           | VrackServiceInfos
           | DedicatedCloudServiceInfos
         > = null;
+        let orderableIps: ApiResponse<OrderableIpResponse> = null;
         switch (serviceType) {
           case ServiceType.server:
             serviceInfos = await getDedicatedServerServiceInfos(serviceName);
+            orderableIps = await getDedicatedServerOrderableIp(serviceName);
+            if (orderableIps?.data?.ipv4.length === 0) {
+              return {
+                data: {
+                  status: 'ip_quota_exceeded',
+                },
+              };
+            }
             break;
           case ServiceType.vps:
             serviceInfos = await getVpsServiceInfos(serviceName);
@@ -48,12 +59,12 @@ export const useCheckServiceAvailability = ({
             serviceInfos = null;
         }
         if (serviceInfos?.data?.status === 'expired') {
-          onServiceExpired?.(serviceName);
+          onServiceUnavailable?.(serviceName);
         }
         return serviceInfos;
       } catch (err) {
         if ((err as ApiError)?.response?.status === 460) {
-          onServiceExpired?.(serviceName);
+          onServiceUnavailable?.(serviceName);
         }
         throw err;
       }

@@ -37,6 +37,8 @@ import {
   GetVpsMocksParams,
   getOrganisationMocks,
   GetOrganisationMocksParams,
+  getIamMocks,
+  GetIamMocksParams,
 } from '../../mocks';
 
 const APP_NAME = 'ips';
@@ -50,6 +52,7 @@ export const renderTest = async ({
 }: {
   initialRoute?: string;
 } & GetIpsMocksParams &
+  GetIamMocksParams &
   GetDedicatedMocksParams &
   GetServicesMocksParams &
   GetDedicatedCloudMocksParams &
@@ -60,6 +63,7 @@ export const renderTest = async ({
   ((global as unknown) as { server: SetupServer }).server?.resetHandlers(
     ...toMswHandlers([
       ...getIpsMocks(mockParams),
+      ...getIamMocks(mockParams),
       ...getDedicatedMocks(mockParams),
       ...getAuthenticationMocks({ isAuthMocked: true }),
       ...getServicesMocks(mockParams),

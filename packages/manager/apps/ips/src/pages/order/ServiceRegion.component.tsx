@@ -18,7 +18,7 @@ export const ServiceRegion = () => {
   const { serviceStatus, isServiceInfoLoading } = useCheckServiceAvailability({
     serviceName: selectedService,
     serviceType: selectedServiceType,
-    onServiceExpired: addDisabledService,
+    onServiceUnavailable: addDisabledService,
   });
   const { isLoading, region, isError, error } = useServiceRegion({
     serviceName: selectedService,
