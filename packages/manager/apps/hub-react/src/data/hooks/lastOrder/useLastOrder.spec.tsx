@@ -2,9 +2,9 @@ import React, { PropsWithChildren } from 'react';
 import { renderHook, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { describe, it, vi } from 'vitest';
-import { useLastOrder } from '@/data/hooks/lastOrder/useLastOrder';
-import * as LastOrderApi from '@/data/api/order/order';
-import { LastOrder } from '@/types/order.type';
+import { useFetchHubLastOrder } from '@/data/hooks/lastOrder/useLastOrder';
+import * as LastOrderApi from '@/data/api/lastOrder';
+import { LastOrder } from '@/types/lastOrder.type';
 
 const queryClient = new QueryClient();
 
@@ -12,7 +12,7 @@ const wrapper = ({ children }: PropsWithChildren) => (
   <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
 );
 
-describe('useLastOrder', () => {
+describe('useFetchHubLastOrder', () => {
   it('returns no order if api returned none', async () => {
     const lastOrder: LastOrder = {
       status: 'OK',
@@ -22,7 +22,7 @@ describe('useLastOrder', () => {
       .spyOn(LastOrderApi, 'getLastOrder')
       .mockReturnValue(new Promise((resolve) => resolve(lastOrder)));
 
-    const { result } = renderHook(() => useLastOrder(), {
+    const { result } = renderHook(() => useFetchHubLastOrder(), {
       wrapper,
     });
 
@@ -66,7 +66,7 @@ describe('useLastOrder', () => {
       new Promise((resolve) => resolve(lastOrder)),
     );
 
-    const { result } = renderHook(() => useLastOrder(), {
+    const { result } = renderHook(() => useFetchHubLastOrder(), {
       wrapper,
     });
 

@@ -1,12 +1,10 @@
-import { ApiEnvelope } from '@/types/apiEnvelope.type';
-
 type Price = {
   currencyCode: string;
   text: string;
   value: number;
 };
 
-export type Order = {
+export type LastOrder = {
   date: string;
   expirationDate: string;
   orderId: number;
@@ -19,10 +17,10 @@ export type Order = {
   url: string;
 };
 
-export type LastOrder = ApiEnvelope<Order>;
-export type LastOrderResponse = ApiEnvelope<{
-  lastOrder: LastOrder;
-}>;
+export type OrderResponseData = {
+  data: LastOrder;
+  status: string;
+};
 
 export type OrderStatus =
   | 'cancelled'
@@ -61,7 +59,7 @@ export type FollowUpStep = {
 
 export type OrderFollowUpResponse = FollowUpStep[];
 
-export type LastOrderTrackingResponse = Order & {
+export type LastOrderTrackingResponse = LastOrder & {
   history: OrderHistory[];
   status: string;
 };
