@@ -13,8 +13,9 @@ import {
   OdsSelectCustomEvent,
   OdsSelectChangeEventDetail,
 } from '@ovhcloud/ods-components';
-import { TUser } from '@/api/data/users';
+import { TS3Credentials, TUser } from '@/api/data/users';
 import {
+  invalidateGetUsersCache,
   useGenerateS3Credentials,
   usePostS3Secret,
   useUsers,
@@ -41,6 +42,9 @@ export default function LinkUserSelector({
   const formUser = validUsers?.find((user) => user.id === userId);
 
   const [secretUser, setSecretUser] = useState('');
+  const [s3Credentials, setS3Credentials] = useState<TS3Credentials | null>(
+    null,
+  );
 
   const [
     haveShowedOrGeneratedCredentials,
@@ -63,11 +67,14 @@ export default function LinkUserSelector({
   } = useGenerateS3Credentials({
     projectId,
     onSuccess: (credentials) => {
+      setS3Credentials(credentials);
       onSelectOwner({
         ...formUser,
+        access: credentials?.access,
         s3Credentials: credentials,
       });
       setSecretUser(credentials.secret);
+      invalidateGetUsersCache(projectId);
     },
   });
 
@@ -75,10 +82,10 @@ export default function LinkUserSelector({
     if (formUser?.s3Credentials) {
       showSecretKey();
     }
-  }, [formUser?.s3Credentials]);
+  }, [formUser]);
 
   const onShowCredentials = () => {
-    if (!formUser.s3Credentials) {
+    if (!formUser?.s3Credentials) {
       generateS3Credentials(formUser?.id);
     }
 
@@ -148,8 +155,7 @@ export default function LinkUserSelector({
           {isPending && <OdsSpinner size="sm" />}
         </div>
       </OdsFormField>
-
-      {haveShowedOrGeneratedCredentials && (
+      {haveShowedOrGeneratedCredentials && s3Credentials && (
         <OdsMessage
           color="success"
           isDismissible
@@ -164,6 +170,8 @@ export default function LinkUserSelector({
                       'users/credentials:pci_projects_project_storages_containers_add_linked_user_success_message',
                       {
                         username: `<strong>${formUser?.username}</strong>`,
+                        // This hack is used beacause the italian translation use userName instead of username
+                        userName: `<strong>${formUser?.username}</strong>`,
                       },
                     ),
                   }}
@@ -172,12 +180,11 @@ export default function LinkUserSelector({
             }
             username={formUser?.username}
             description={formUser?.description}
-            accessKey={formUser?.access}
+            accessKey={s3Credentials?.access}
             secret={secretUser}
           />
         </OdsMessage>
       )}
-
       <div className="flex gap-4">
         <OdsButton
           onClick={onCancel}
