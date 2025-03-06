@@ -94,6 +94,7 @@
 /packages/manager/modules/octavia-load-balancer @ovh/dev-manager-pci-all
 /packages/manager/modules/office @ovh/dev-manager-web-all
 /packages/manager/modules/overthebox @ovh/dev-manager-web-all
+/packages/manager/modules/pci @ovh/dev-manager-pci-all
 /packages/manager/modules/pci-universe-components @ovh/dev-manager-pci-all
 /packages/manager/modules/phone-prefix @ovh/dev-manager-web-all
 /packages/manager/modules/product-offers @ovh/dev-manager-web-all
