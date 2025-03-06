@@ -221,6 +221,7 @@ export const useCreateStore = create<TCreateStore>()((set, get) => ({
         get().uncheck(step);
         switch (step) {
           case StepsEnum.SIZE:
+            get().set.addon(null);
             break;
           case StepsEnum.REGION:
             get().set.region(null);

@@ -299,6 +299,7 @@ describe('SizeStep', () => {
           expect(result.current.uncheck).toHaveBeenCalledWith(StepsEnum.SIZE);
           expect(result.current.open).toHaveBeenCalledWith(StepsEnum.SIZE);
           expect(result.current.reset).toHaveBeenCalledWith(
+            StepsEnum.SIZE,
             StepsEnum.IP,
             StepsEnum.NETWORK,
             StepsEnum.INSTANCE,

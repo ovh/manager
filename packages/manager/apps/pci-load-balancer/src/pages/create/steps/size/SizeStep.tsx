@@ -59,6 +59,7 @@ export const SizeStep = ({
           store.uncheck(StepsEnum.SIZE);
           store.open(StepsEnum.SIZE);
           store.reset(
+            StepsEnum.SIZE,
             StepsEnum.IP,
             StepsEnum.NETWORK,
             StepsEnum.INSTANCE,

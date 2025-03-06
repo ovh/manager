@@ -12,7 +12,7 @@ import {
   defaultAddons,
   regions,
 } from '@/__mocks__/addons';
-import { selectHourlyAddons } from './addons.select';
+import { filterByHourlyAddons } from './addons.select';
 
 vi.mock('@ovh-ux/manager-pci-common');
 
@@ -95,7 +95,7 @@ describe('useAddons', () => {
           ovhSubsidiary: 'FR',
           projectId: 'projectId-test',
           addonFamily: 'testAddon',
-          select: selectHourlyAddons,
+          select: filterByHourlyAddons,
         }),
       { wrapper: useQueryWrapper },
     );

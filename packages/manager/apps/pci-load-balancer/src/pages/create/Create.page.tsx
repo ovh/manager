@@ -25,7 +25,7 @@ import { InstanceStep } from './steps/InstanceStep';
 import { NameStep } from './steps/NameStep';
 import { useAddons } from '@/api/hook/useAddons/useAddons';
 import { AGORA_ADDON_FAMILY } from '@/constants';
-import { selectHourlyAddons } from '@/api/hook/useAddons/addons.select';
+import { filterByHourlyAddons } from '@/api/hook/useAddons/addons.select';
 
 export default function CreatePage(): JSX.Element {
   const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
@@ -46,7 +46,7 @@ export default function CreatePage(): JSX.Element {
     ovhSubsidiary,
     projectId,
     addonFamily: AGORA_ADDON_FAMILY,
-    select: selectHourlyAddons,
+    select: filterByHourlyAddons,
   });
 
   const regions = useMemo(() => addons?.flatMap((addon) => addon.regions), [
