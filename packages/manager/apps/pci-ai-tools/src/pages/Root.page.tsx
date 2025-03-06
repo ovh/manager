@@ -1,6 +1,11 @@
-import { useTranslation } from 'react-i18next';
+import { redirect } from 'react-router-dom';
 
-export default function Root() {
-  const { t } = useTranslation();
-  return <h1>{t('title')}</h1>;
+interface RootProps {
+  params: {
+    projectId: string;
+  };
 }
+export const Loader = ({ params }: RootProps) => {
+  const { projectId } = params;
+  return redirect(`/pci/projects/${projectId}/ai-ml/dashboard`);
+};
