@@ -70,6 +70,7 @@ describe('RegionSelector component', () => {
     { label: 'region-selector-eu-filter', cardNb: 16 },
     { label: 'region-selector-ca-filter', cardNb: 2 },
     { label: 'region-selector-us-filter', cardNb: 10 },
+    { label: 'region-selector-ap-filter', cardNb: 3 },
   ])('filters correctly', async ({ label, cardNb }) => {
     const { getByText, container } = render(
       <RegionSelector regionList={regionList} setSelectedRegion={vi.fn()} />,
@@ -108,6 +109,7 @@ describe('RegionSelector component', () => {
     expect(queryByText('region-selector-eu-filter')).not.toBeInTheDocument();
     expect(queryByText('region-selector-ca-filter')).not.toBeInTheDocument();
     expect(queryByText('region-selector-us-filter')).not.toBeInTheDocument();
+    expect(queryByText('region-selector-ap-filter')).not.toBeInTheDocument();
     expect(
       queryByText('region-selector-all-locations'),
     ).not.toBeInTheDocument();
@@ -121,11 +123,11 @@ describe('RegionSelector component', () => {
         'us-east-lz-nyc',
         'eu-west-rbx',
       ],
-      missingFilters: ['ca'],
+      missingFilters: ['ca', 'ap'],
     },
     {
       list: ['eu-west-par', 'eu-west-gra', 'eu-west-rbx', 'ca-east-tor'],
-      missingFilters: ['us'],
+      missingFilters: ['us', 'ap'],
     },
     {
       list: [
@@ -136,6 +138,10 @@ describe('RegionSelector component', () => {
         'ap-south-mum',
       ],
       missingFilters: ['eu'],
+    },
+    {
+      list: ['ap-south-mum', 'us-east-lz-chi', 'us-east-lz-nyc'],
+      missingFilters: ['eu', 'ca'],
     },
   ])(
     'hide filters if there is no corresponding regions',
