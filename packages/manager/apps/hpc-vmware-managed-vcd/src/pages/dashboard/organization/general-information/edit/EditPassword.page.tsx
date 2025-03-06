@@ -1,10 +1,7 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { OsdsModal, OsdsButton } from '@ovhcloud/ods-components/react';
-import { Description } from '@ovh-ux/manager-react-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import { OdsText, OdsButton, OdsModal } from '@ovhcloud/ods-components/react';
 import { useResetVcdPassword } from '@ovh-ux/manager-module-vcd-api';
 import { useMessageContext } from '@/context/Message.context';
 import { subRoutes } from '@/routes/routes.constant';
@@ -35,31 +32,24 @@ export default function EditPassword() {
   );
 
   return (
-    <OsdsModal
-      color={ODS_THEME_COLOR_INTENT.info}
-      onOdsModalClose={closeModal}
-      dismissible
-      headline={t('managed_vcd_dashboard_password_modal_title')}
-    >
-      <Description className="mt-6">
+    <OdsModal onOdsClose={closeModal} isOpen isDismissible>
+      <OdsText preset="heading-3">
+        {t('managed_vcd_dashboard_password_modal_title')}
+      </OdsText>
+      <OdsText className="mt-6">
         {t('managed_vcd_dashboard_password_modal_subtitle')}
-      </Description>
-      <OsdsButton
-        slot="actions"
-        color={ODS_THEME_COLOR_INTENT.primary}
-        variant={ODS_BUTTON_VARIANT.stroked}
+      </OdsText>
+      <OdsButton
+        label={t('managed_vcd_dashboard_edit_modal_cta_cancel')}
+        variant="outline"
         onClick={closeModal}
-      >
-        {t('managed_vcd_dashboard_edit_modal_cta_cancel')}
-      </OsdsButton>
-      <OsdsButton
-        slot="actions"
-        color={ODS_THEME_COLOR_INTENT.primary}
-        variant={ODS_BUTTON_VARIANT.flat}
+      />
+
+      <OdsButton
+        label={t('managed_vcd_dashboard_edit_modal_cta_validate')}
+        variant="ghost"
         onClick={() => resetPassword()}
-      >
-        {t('managed_vcd_dashboard_edit_modal_cta_validate')}
-      </OsdsButton>
-    </OsdsModal>
+      />
+    </OdsModal>
   );
 }

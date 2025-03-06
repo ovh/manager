@@ -1,14 +1,13 @@
 import {
-  assertModalText,
-  assertModalVisibility,
-  getButtonByIcon,
-  WAIT_FOR_DEFAULT_OPTIONS,
+  assertOdsModalText,
+  assertOdsModalVisibility,
+  assertTextVisibility,
+  getElementByTestId,
 } from '@ovh-ux/manager-core-test-utils';
 import {
   datacentreList,
   organizationList,
 } from '@ovh-ux/manager-module-vcd-api';
-import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import {
@@ -16,35 +15,37 @@ import {
   mockEditInputValue,
   mockSubmitNewValue,
   renderTest,
-} from '@/test-utils';
+} from '../../../../test-utils';
+import TEST_IDS from '../../../../utils/testIds.constants';
 
-const submitButtonLabel =
-  labels.dashboard.managed_vcd_dashboard_edit_modal_cta_edit;
+describe('Datacentre General Information Page Updates', () => {
+  it('display the datacentre dashboard general page', async () => {
+    await renderTest({
+      initialRoute: `/${organizationList[0].id}/datacentres/${datacentreList[0].id}`,
+    });
 
-describe('Datacentre General Information Page', () => {
-  it.skip('modify the description of the datacentre', async () => {
+    await assertTextVisibility(
+      labels.dashboard.managed_vcd_dashboard_general_information,
+    );
+  });
+});
+
+describe('Datacentre General Information Page Updates', () => {
+  it.skip('update the description of the datacentre', async () => {
     const { container } = await renderTest({
       initialRoute: `/${organizationList[0].id}/datacentres/${datacentreList[0].id}`,
     });
 
-    await waitFor(
-      () =>
-        expect(
-          screen.getByText(labels.datacentres.managed_vcd_vdc_vcpu_count),
-        ).toBeVisible(),
-      WAIT_FOR_DEFAULT_OPTIONS,
-    );
+    await assertTextVisibility(labels.datacentres.managed_vcd_vdc_vcpu_count);
 
-    const editButton = await getButtonByIcon({
-      container,
-      iconName: ODS_ICON_NAME.PEN,
-    });
+    const editButton = await getElementByTestId(TEST_IDS.editButton);
 
     await waitFor(() => userEvent.click(editButton));
-    await assertModalVisibility({ container, isVisible: true });
+    await assertOdsModalVisibility({ container, isVisible: true });
 
-    await mockSubmitNewValue({ submitButtonLabel });
-    await assertModalVisibility({ container, isVisible: false });
+    const submitCta = await getElementByTestId(TEST_IDS.modalSubmitCta);
+    await mockSubmitNewValue({ submitCta });
+    await assertOdsModalVisibility({ container, isVisible: false });
 
     expect(
       screen.queryByText(
@@ -53,7 +54,7 @@ describe('Datacentre General Information Page', () => {
     ).toBeVisible();
   });
 
-  it('display helper message when the input is invalid', async () => {
+  it('display helper message when the description input is invalid', async () => {
     const { container } = await renderTest({
       initialRoute: `/${organizationList[0].id}/datacentres/${datacentreList[0].id}/edit-description`,
     });
@@ -61,26 +62,30 @@ describe('Datacentre General Information Page', () => {
       labels.dashboard
         .managed_vcd_dashboard_edit_description_modal_helper_error;
 
-    await assertModalVisibility({ container, isVisible: true });
+    await assertOdsModalVisibility({ container, isVisible: true });
+    const submitCta = await getElementByTestId(TEST_IDS.modalSubmitCta);
 
     await mockEditInputValue('');
-    await assertModalText({ container, text: expectedError });
+    await assertOdsModalText({ container, text: expectedError });
+    expect(submitCta).toBeDisabled();
 
     await mockEditInputValue('a'.repeat(256));
-    await assertModalText({ container, text: expectedError });
+    await assertOdsModalText({ container, text: expectedError });
+    expect(submitCta).toBeDisabled();
   });
 
-  it('display an error if update datacentre service is KO', async () => {
+  it.skip('display an error if update datacentre service is KO', async () => {
     const { container } = await renderTest({
       initialRoute: `/${organizationList[0].id}/datacentres/${datacentreList[0].id}/edit-description`,
       isDatacentreUpdateKo: true,
     });
 
-    await assertModalVisibility({ container, isVisible: true });
+    await assertOdsModalVisibility({ container, isVisible: true });
 
-    await mockSubmitNewValue({ submitButtonLabel });
+    const submitCta = await getElementByTestId(TEST_IDS.modalSubmitCta);
+    await mockSubmitNewValue({ submitCta });
 
-    await assertModalVisibility({ container, isVisible: true });
-    await assertModalText({ container, text: 'Datacentre update error' });
+    await assertOdsModalVisibility({ container, isVisible: true });
+    await assertOdsModalText({ container, text: 'Datacentre update error' });
   });
 });

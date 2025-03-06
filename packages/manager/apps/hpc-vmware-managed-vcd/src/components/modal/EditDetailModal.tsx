@@ -1,27 +1,17 @@
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
-  ODS_BUTTON_VARIANT,
-  ODS_INPUT_TYPE,
-  ODS_MESSAGE_TYPE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-  OdsInputValueChangeEventDetail,
-  OsdsInputCustomEvent,
-} from '@ovhcloud/ods-components';
-import {
-  OsdsButton,
-  OsdsFormField,
-  OsdsInput,
-  OsdsMessage,
-  OsdsModal,
-  OsdsSpinner,
-  OsdsText,
+  OdsButton,
+  OdsFormField,
+  OdsInput,
+  OdsMessage,
+  OdsModal,
+  OdsText,
 } from '@ovhcloud/ods-components/react';
 import { AxiosResponse } from 'axios';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import Loading from '../loading/Loading.component';
+import TEST_IDS from '@/utils/testIds.constants';
 
 interface EditModalProps {
   detailValue: string;
@@ -49,12 +39,11 @@ export const EditDetailModal = ({
   const { t } = useTranslation('dashboard');
   const [newDetail, setNewDetail] = useState<string>(detailValue || '');
   const [isErrorVisible, setIsErrorVisible] = useState(false);
-  const isValidDetail = validateDetail(newDetail);
-  const isButtonEnabled =
-    isValidDetail && newDetail !== detailValue && !isLoading;
+  const isValid = validateDetail(newDetail);
+  const isButtonEnabled = isValid && newDetail !== detailValue && !isLoading;
 
   const handleSubmit = async () => {
-    if (isValidDetail) {
+    if (isValid) {
       setIsErrorVisible(false);
       try {
         await onEdit(newDetail);
@@ -65,77 +54,59 @@ export const EditDetailModal = ({
   };
 
   return (
-    <OsdsModal
-      color={ODS_THEME_COLOR_INTENT.info}
-      onOdsModalClose={onCloseModal}
-      dismissible
-      headline={headline}
-    >
-      {!!error && isErrorVisible && (
-        <OsdsMessage
-          type={ODS_MESSAGE_TYPE.error}
-          removable
-          onOdsRemoveClick={() => setIsErrorVisible(false)}
-        >
-          <OsdsText
-            level={ODS_TEXT_LEVEL.body}
-            size={ODS_TEXT_SIZE._400}
-            color={ODS_THEME_COLOR_INTENT.text}
+    <OdsModal onOdsClose={onCloseModal} isOpen isDismissible>
+      <div className="flex flex-col">
+        <OdsText preset="heading-3">{headline}</OdsText>
+        {!!error && isErrorVisible && (
+          <OdsMessage
+            color="danger"
+            isDismissible
+            onOdsRemove={() => setIsErrorVisible(false)}
           >
             {t('managed_vcd_dashboard_edit_modal_error', {
-              error: error.response?.data?.message,
+              error: error.response?.data?.message || error?.message,
             })}
-          </OsdsText>
-        </OsdsMessage>
-      )}
-      <OsdsFormField>
-        <OsdsText
-          color={ODS_THEME_COLOR_INTENT.text}
-          className="mt-6"
-          slot="label"
-        >
+          </OdsMessage>
+        )}
+      </div>
+      <OdsFormField
+        className="flex flex-col"
+        error={isValid ? undefined : errorHelper}
+      >
+        <OdsText className="mt-6" slot="label">
           {inputLabel}
-        </OsdsText>
-        <OsdsInput
-          ariaLabel="edit-input"
-          type={ODS_INPUT_TYPE.text}
+        </OdsText>
+        <OdsInput
+          name="edit-detail"
+          type="text"
           value={newDetail}
-          onOdsValueChange={(
-            e: OsdsInputCustomEvent<OdsInputValueChangeEventDetail>,
-          ) => setNewDetail(e.target.value as string)}
-          color={
-            isValidDetail
-              ? ODS_THEME_COLOR_INTENT.info
-              : ODS_THEME_COLOR_INTENT.error
-          }
+          onOdsChange={(e) => setNewDetail(e.target.value as string)}
+          hasError={!isValid}
+          ariaLabel="edit-input"
         />
-        <OsdsText
+        <OdsText
           slot="helper"
-          color={ODS_THEME_COLOR_INTENT.error}
-          className={isValidDetail ? 'invisible' : 'visible'}
+          preset="caption"
+          className={`ods-field-helper ${isValid ? 'block' : 'hidden'}`}
         >
           {errorHelper}
-        </OsdsText>
-      </OsdsFormField>
-
+        </OdsText>
+      </OdsFormField>
       {isLoading && <Loading slot="actions" className="w-9 mr-4" />}
-      <OsdsButton
-        slot="actions"
-        color={ODS_THEME_COLOR_INTENT.primary}
-        variant={ODS_BUTTON_VARIANT.stroked}
-        onClick={onCloseModal}
-      >
-        {t('managed_vcd_dashboard_edit_modal_cta_cancel')}
-      </OsdsButton>
-      <OsdsButton
-        disabled={!isButtonEnabled || undefined}
-        slot="actions"
-        color={ODS_THEME_COLOR_INTENT.primary}
-        variant={ODS_BUTTON_VARIANT.flat}
-        onClick={handleSubmit}
-      >
-        {t('managed_vcd_dashboard_edit_modal_cta_edit')}
-      </OsdsButton>
-    </OsdsModal>
+      <div className="flex gap-x-2 w-fit justify-self-center ml-auto mt-6">
+        <OdsButton
+          label={t('managed_vcd_dashboard_edit_modal_cta_cancel')}
+          variant="outline"
+          onClick={onCloseModal}
+        />
+        <OdsButton
+          label={t('managed_vcd_dashboard_edit_modal_cta_edit')}
+          onClick={handleSubmit}
+          isDisabled={!isButtonEnabled || undefined}
+          data-testid={TEST_IDS.modalSubmitCta}
+          type="submit"
+        />
+      </div>
+    </OdsModal>
   );
 };
