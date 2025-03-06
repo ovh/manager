@@ -2,7 +2,11 @@ import '@/setupTests';
 import React, { PropsWithChildren } from 'react';
 import { vi } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import {
+  QueryClient,
+  QueryClientProvider,
+  useQuery,
+} from '@tanstack/react-query';
 import Modal from './Modal';
 import {
   modalContact,
@@ -12,18 +16,10 @@ import {
   modalString,
   modalStringArgument,
 } from '@/__mocks__/modal';
-import { getmeTaskDomainArgument } from '@/data/api/web-ongoing-operations';
 
 vi.mock('react-router-dom', () => ({
   useNavigate: () => vi.fn(() => null),
   Navigate: vi.fn(() => null),
-}));
-
-vi.mock('@/data/api/web-ongoing-operations', () => ({
-  getmeTaskDomainArgument: vi.fn(),
-  getmeTaskDomainNicList: vi
-    .fn()
-    .mockImplementation(() => Promise.resolve(['nic'])),
 }));
 
 describe('Modal by argument', () => {
@@ -37,7 +33,13 @@ describe('Modal by argument', () => {
   );
 
   it('when the modal is contact', async () => {
-    vi.mocked(getmeTaskDomainArgument).mockResolvedValue(modalContactArgument);
+    (useQuery as jest.Mock).mockReturnValue({
+      data: {
+        data: modalContactArgument,
+        actions: true,
+      },
+    });
+
     render(<Modal universe="domain" data={modalContact} />, {
       wrapper,
     });
@@ -62,7 +64,12 @@ describe('Modal by argument', () => {
   });
 
   it('when the modal is document', async () => {
-    vi.mocked(getmeTaskDomainArgument).mockResolvedValue(modalDocumentArgument);
+    (useQuery as jest.Mock).mockReturnValue({
+      data: {
+        data: modalDocumentArgument,
+        actions: true,
+      },
+    });
     render(<Modal universe="domain" data={modalDocument} />, {
       wrapper,
     });
@@ -80,7 +87,12 @@ describe('Modal by argument', () => {
   });
 
   it('when the modal is string', async () => {
-    vi.mocked(getmeTaskDomainArgument).mockResolvedValue(modalStringArgument);
+    (useQuery as jest.Mock).mockReturnValue({
+      data: {
+        data: modalStringArgument,
+        actions: true,
+      },
+    });
     render(<Modal universe="domain" data={modalString} />, {
       wrapper,
     });
