@@ -45,7 +45,7 @@ export type TBillingStepProps = {
 };
 
 export default function BillingStep(props: TBillingStepProps): JSX.Element {
-  const { t } = useTranslation('billing-anti-affinity');
+  const { t } = useTranslation(['billing-anti-affinity', 'add']);
   const { t: tFlavourBilling } = useTranslation('flavor-billing');
   const showSavingPlan = useSavingsPlanAvailable();
   const {
@@ -107,7 +107,9 @@ export default function BillingStep(props: TBillingStepProps): JSX.Element {
             level={ODS_TEXT_LEVEL.body}
             size={ODS_TEXT_SIZE._400}
           >
-            {showSavingPlan && t('kubernetes_add_billing_type_description')}
+            {t('add:kube_add_billing_type_description')}{' '}
+            {props.monthlyPrice > 0 &&
+              t('add:kubernetes_add_billing_type_description_monthly')}
           </OsdsText>
         )}
       </div>
