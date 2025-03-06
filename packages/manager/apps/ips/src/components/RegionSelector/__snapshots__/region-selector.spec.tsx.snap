@@ -36,6 +36,11 @@ exports[`RegionSelector component > renders correctly 1`] = `
       >
         region-selector-us-filter
       </ods-tab>
+      <ods-tab
+        is-selected="false"
+      >
+        region-selector-ap-filter
+      </ods-tab>
     </ods-tabs>
     <div
       class="flex flex-wrap gap-4"
