@@ -1,7 +1,7 @@
 import { TRegion } from '@ovh-ux/manager-react-components';
 import { UseQueryResult } from '@tanstack/react-query';
 import '@testing-library/jest-dom';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import * as _useRegionHook from '../../api/hook/useRegions';
 import SelectS3StorageRegions from './SelectS3StorageRegions';
@@ -31,7 +31,7 @@ describe('S3StorageRegions Component', () => {
 
     renderComponent();
 
-    const selectElement = screen.getByTestId('s3StorageRegions_select');
+    const selectElement = screen.getByTestId('regions_select');
     expect(selectElement).toBeVisible();
 
     const graRegion = screen.getByText('Translated GRA');
@@ -52,10 +52,10 @@ describe('S3StorageRegions Component', () => {
     renderComponent();
 
     const selectElement = screen.getByTestId(
-      's3StorageRegions_select',
-    ) as HTMLSelectElement;
+      'regions_select',
+    ) as HTMLOdsSelectElement;
 
-    expect(selectElement.value).toBe('GRA');
+    expect(selectElement.defaultValue).toBe('GRA');
   });
 
   it('shows spinner when loading', () => {
@@ -70,7 +70,7 @@ describe('S3StorageRegions Component', () => {
     expect(spinner).toBeVisible();
   });
 
-  it('calls onS3StorageRegionChange with initial region', () => {
+  it('calls onS3StorageRegionChange with initial region', async () => {
     vi.spyOn(_useRegionHook, 'useS3StorageRegions').mockReturnValue({
       data: [{ name: 'GRA' }, { name: 'BHS' }, { name: 'SBG' }],
       isLoading: false,
@@ -78,6 +78,8 @@ describe('S3StorageRegions Component', () => {
 
     renderComponent();
 
-    expect(mockOnS3StorageRegionChange).toHaveBeenCalledWith('GRA');
+    await waitFor(() => {
+      expect(mockOnS3StorageRegionChange).toHaveBeenCalledWith('GRA');
+    });
   });
 });
