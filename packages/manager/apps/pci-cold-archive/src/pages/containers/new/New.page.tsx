@@ -28,6 +28,7 @@ import { ContainerNameStep } from './steps/ContainerNameStep.component';
 import { LinkUserStep } from './steps/LinkUserStep.component';
 import { useContainerCreationStore } from './useContainerCreationStore';
 import GuideMenu from '@/components/GuideMenu.component';
+import { usePostS3Secret } from '@/api/hooks/useUsers';
 
 export default function ContainerNewPage() {
   const { t } = useTranslation([
@@ -59,7 +60,40 @@ export default function ContainerNewPage() {
     clearNotifications();
   }, []);
 
-  const { createContainer, isPending } = useCreateContainer({
+  const {
+    mutateAsync: postSecretAsync,
+    isPending: isSecretPending,
+  } = usePostS3Secret({
+    projectId: project?.project_id,
+    userId: form.selectedUser?.id,
+    userAccess: form.selectedUser?.s3Credentials?.access,
+    onSuccess({ secret }) {
+      if (form.selectedUser?.s3Credentials) {
+        form.selectedUser.s3Credentials.secret = secret;
+      }
+    },
+    onError: (error: ApiError) => {
+      addError(
+        <Translation ns="cold-archive/new">
+          {(_t) =>
+            _t(
+              'pci_projects_project_storages_cold_archive_add_action_create_archive_create_request_failed',
+              {
+                containerName: form.containerName,
+                message:
+                  error?.response?.data?.message || error?.message || null,
+              },
+            )
+          }
+        </Translation>,
+        true,
+      );
+      trackErrorPage();
+      window.scrollTo(0, 0);
+    },
+  });
+
+  const { createContainer, isPending: isCreationPending } = useCreateContainer({
     projectId: project.project_id,
     onSuccess: (container: TArchiveContainer) => {
       clearNotifications();
@@ -116,8 +150,13 @@ export default function ContainerNewPage() {
     },
   });
 
-  const onCreateContainer = () => {
+  const isPending = isSecretPending || isCreationPending;
+
+  const onCreateContainer = async () => {
     trackConfirmAction();
+    if (!form.selectedUser?.s3Credentials?.secret) {
+      await postSecretAsync();
+    }
     createContainer({
       ownerId: form.ownerId,
       name: form.containerName,
