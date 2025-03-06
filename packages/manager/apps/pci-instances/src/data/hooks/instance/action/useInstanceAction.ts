@@ -21,7 +21,8 @@ export type TMutationFnType =
   | 'unshelve'
   | 'soft-reboot'
   | 'hard-reboot'
-  | 'reinstall';
+  | 'reinstall'
+  | 'rescue/start';
 
 export type TMutationFnVariables = TInstanceDto | undefined;
 
