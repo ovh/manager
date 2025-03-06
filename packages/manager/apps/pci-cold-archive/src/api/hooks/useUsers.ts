@@ -216,10 +216,11 @@ export const useGenerateS3Credentials = ({
   onError,
 }: UseGenerateCredentialsParams) => {
   const mutation = useMutation({
-    mutationFn: (userId: number) => generateS3Credentials(projectId, userId),
+    mutationFn: (userId: number) => {
+      return generateS3Credentials(projectId, userId);
+    },
     onSuccess: (credentials) => {
       onSuccess(credentials);
-      invalidateGetUsersCache(projectId);
     },
     onError,
   });

@@ -119,7 +119,7 @@ export default function LinkUserCreation({
             }
             username={newUser?.username}
             description={newUser?.description}
-            accessKey={newUser?.access}
+            accessKey={newUser?.s3Credentials?.access}
             secret={secretUser}
           />
         </OdsMessage>
