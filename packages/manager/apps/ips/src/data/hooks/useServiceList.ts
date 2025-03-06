@@ -1,11 +1,6 @@
-import { useQueries } from '@tanstack/react-query';
-import { getVrackList } from '../api/vrack';
+import { useQuery } from '@tanstack/react-query';
 import { ServiceType } from '@/types';
-import {
-  getDedicatedCloudServiceList,
-  getDedicatedServerList,
-  getVpsList,
-} from '../api';
+import { getServiceList } from '../api';
 
 export const ipParkingOptionValue = 'parking';
 
@@ -13,25 +8,9 @@ export const ipParkingOptionValue = 'parking';
  * Fetch the list of available services to order an additional IP
  */
 export const useServiceList = () => {
-  const queries = useQueries({
-    queries: [
-      {
-        queryKey: ['dedicatedCloud'],
-        queryFn: getDedicatedCloudServiceList,
-      },
-      {
-        queryKey: ['server'],
-        queryFn: getDedicatedServerList,
-      },
-      {
-        queryKey: ['vps'],
-        queryFn: getVpsList,
-      },
-      {
-        queryKey: ['vrack'],
-        queryFn: getVrackList,
-      },
-    ],
+  const { data, ...query } = useQuery({
+    queryKey: ['serviceList', 'order'],
+    queryFn: getServiceList,
   });
 
   return {
@@ -39,39 +18,20 @@ export const useServiceList = () => {
       if (serviceId === ipParkingOptionValue) {
         return ServiceType.ipParking;
       }
-      if (
-        queries[0]?.data?.data?.some(
-          ({ serviceName }) => serviceName === serviceId,
-        )
-      ) {
+      if (data?.dedicatedCloud?.some(({ name }) => name === serviceId)) {
         return ServiceType.dedicatedCloud;
       }
-      if (
-        queries[1]?.data?.data?.some(
-          ({ serviceName }) => serviceName === serviceId,
-        )
-      ) {
+      if (data?.server?.some(({ name }) => name === serviceId)) {
         return ServiceType.server;
       }
-      if (
-        queries[2]?.data?.data?.some(
-          ({ serviceName }) => serviceName === serviceId,
-        )
-      ) {
+      if (data?.vps?.some(({ name }) => name === serviceId)) {
         return ServiceType.vps;
       }
-      return queries[3]?.data?.data?.some(
-        ({ serviceName }) => serviceName === serviceId,
-      )
+      return data?.vrack?.some(({ name }) => name === serviceId)
         ? ServiceType.vrack
         : ServiceType.unknown;
     },
-    dedicatedCloud: queries[0]?.data?.data,
-    server: queries[1]?.data?.data,
-    vps: queries[2]?.data?.data,
-    vrack: queries[3]?.data?.data,
-    isError: queries.some((query) => query.isError),
-    error: queries.find((query) => query.error),
-    isLoading: queries.some((query) => query.isLoading),
+    ...data,
+    ...query,
   };
 };

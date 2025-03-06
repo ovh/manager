@@ -5,9 +5,12 @@ export const isRegionInCa = (region?: string) => region?.includes('ca-');
 
 export const isRegionInUs = (region?: string) => region?.includes('us-');
 
+export const isRegionInAp = (region?: string) => region?.includes('ap-');
+
 export const hasOnlyOneRegion = (regionList: string[]) =>
   regionList.every(isRegionInCa) ||
   regionList.every(isRegionInEu) ||
+  regionList.every(isRegionInAp) ||
   regionList.every(isRegionInUs);
 
 export enum RegionFilter {
@@ -15,6 +18,7 @@ export enum RegionFilter {
   eu = 'eu',
   ca = 'ca',
   us = 'us',
+  ap = 'ap',
 }
 
 export const shadowColor = '#000E9C33';
