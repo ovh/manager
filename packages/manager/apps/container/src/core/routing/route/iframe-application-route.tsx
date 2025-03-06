@@ -16,13 +16,14 @@ export function IFrameApplicationRoute({
 }: IFrameApplicationRouteProps): JSX.Element {
   const location = useLocation();
   const navigate = useNavigate();
-  const { setApplication } = useContainer();
+  const { setApplication, application } = useContainer();
 
   const [newIFrameURL, setNewIframeURL] = useState(null);
   const [iframeLocation, setIframeLocation] = useState(null);
 
   useEffect(() => {
     setApplication(appConfig);
+    console.log('set application', appConfig);
   }, [appConfig.universe, location]);
 
   const containerURLMatcher = useMatch('/:appPath/*');
@@ -47,6 +48,7 @@ export function IFrameApplicationRoute({
     const newURL = new URL(appendSlash(appConfig.url));
     newURL.hash = `/${hashPart}${location.search}`;
     setNewIframeURL(newURL.href);
+    console.log('onContainerLocationChange', newURL);
   };
 
   // perform the href update of the iframe element
@@ -55,6 +57,12 @@ export function IFrameApplicationRoute({
       const {
         location: currentIframeLocation,
       } = iframeRef.current.contentWindow;
+      console.log(
+        'onSetIFrameURL',
+        appConfig,
+        currentIframeLocation,
+        newIFrameURL,
+      );
       if (currentIframeLocation.href !== newIFrameURL) {
         currentIframeLocation.replace(newIFrameURL);
       }
@@ -68,6 +76,7 @@ export function IFrameApplicationRoute({
         iframeLocation.hash,
       )}`;
       const oldHash = `${location.pathname}${location.search}`;
+      console.log('onIFrameLocationChanged', appConfig, oldHash, newHash);
       if (newHash !== oldHash) {
         navigate(newHash, { replace: true });
       }
@@ -86,6 +95,13 @@ export function IFrameApplicationRoute({
     return () =>
       window.removeEventListener('ovh-routing-hash-change', onIframeHashUpdate);
   }, []);
+
+  console.log(
+    'iframe-application-route',
+    application,
+    iframeRef.current,
+    appConfig,
+  );
 
   return undefined;
 }
