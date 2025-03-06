@@ -6,10 +6,6 @@ import {
   OvhSubsidiary,
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-import {
-  OdsHTMLAnchorElementRel,
-  OdsHTMLAnchorElementTarget,
-} from '@ovhcloud/ods-common-core';
 
 const urls: Partial<{ [key in OvhSubsidiary]: string }> = {
   DE: 'https://www.ovhcloud.com/de/lp/vmware-vcd-evolution/veeam/',
@@ -53,8 +49,8 @@ export const BillingLink: React.FC<{ className?: string }> = ({
       type={LinkType.external}
       label={t('more_info_billing_modalities')}
       href={href}
-      target={OdsHTMLAnchorElementTarget._blank}
-      rel={OdsHTMLAnchorElementRel.noopener}
+      target="_blank"
+      rel="noopener"
     />
   );
 };

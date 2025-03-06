@@ -1,16 +1,5 @@
 import React from 'react';
-import {
-  OsdsLink,
-  OsdsMessage,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
-import {
-  ODS_MESSAGE_TYPE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { OdsLink, OdsMessage } from '@ovhcloud/ods-components/react';
 import { useQueryClient } from '@tanstack/react-query';
 import {
   VeeamBackup,
@@ -25,31 +14,23 @@ export const SuccessMessage: React.FC<Partial<MessageData>> = ({
 }) => {
   const { hideMessage } = React.useContext(MessagesContext);
   return (
-    <OsdsMessage
-      type={ODS_MESSAGE_TYPE.success}
-      className="mb-8"
-      removable
-      onOdsRemoveClick={() => id && hideMessage(id)}
+    <OdsMessage
+      color="success"
+      isDismissible
+      onOdsRemove={() => id && hideMessage(id)}
     >
-      <OsdsText
-        className="block"
-        level={ODS_TEXT_LEVEL.body}
-        size={ODS_TEXT_SIZE._400}
-        color={ODS_THEME_COLOR_INTENT.text}
-      >
+      <div>
         {message}
-      </OsdsText>
-      {options?.linkLabel && options?.linkUrl && (
-        <OsdsLink
-          color={ODS_THEME_COLOR_INTENT.primary}
-          href={options.linkUrl}
-          className="ml-3"
-          target={OdsHTMLAnchorElementTarget._blank}
-        >
-          {options.linkLabel}
-        </OsdsLink>
-      )}
-    </OsdsMessage>
+        {options?.linkLabel && options?.linkUrl && (
+          <OdsLink
+            label={options.linkLabel}
+            href={options.linkUrl}
+            className="ml-3"
+            target="_blank"
+          />
+        )}
+      </div>
+    </OdsMessage>
   );
 };
 
@@ -65,7 +46,7 @@ export const SuccessMessages: React.FC<{ id?: string }> = ({ id }) => {
   }
 
   return (
-    <>
+    <div className="flex flex-col gap-y-2">
       {successMessages
         .filter(
           ({ id: messageId, options }) =>
@@ -75,6 +56,6 @@ export const SuccessMessages: React.FC<{ id?: string }> = ({ id }) => {
         .map((msg) => (
           <SuccessMessage key={msg.id} {...msg} />
         ))}
-    </>
+    </div>
   );
 };

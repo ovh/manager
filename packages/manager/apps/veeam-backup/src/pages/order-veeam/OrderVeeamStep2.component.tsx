@@ -1,23 +1,13 @@
 import React from 'react';
-import {
-  Datagrid,
-  DatagridColumn,
-  Title,
-} from '@ovh-ux/manager-react-components';
+import { Datagrid, DatagridColumn } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import {
-  OsdsButton,
-  OsdsMessage,
-  OsdsRadioButton,
+  OdsButton,
+  OdsMessage,
+  OdsRadio,
+  OdsText,
 } from '@ovhcloud/ods-components/react';
-import {
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_MESSAGE_TYPE,
-  ODS_RADIO_BUTTON_SIZE,
-} from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   getVeeamBackupProductSettings,
   useOrderURL,
@@ -85,16 +75,15 @@ export const OrderVeeamStep2: React.FC = () => {
       label: '',
       isSortable: false,
       cell: (organization) => (
-        <OsdsRadioButton
-          size={ODS_RADIO_BUTTON_SIZE.xs}
-          color={ODS_THEME_COLOR_INTENT.primary}
+        <OdsRadio
+          name="radio-organization"
           onClick={() => {
             if (!isOrganizationDisabled(organization)) {
               setSelectedVcdOrg(organization);
             }
           }}
-          checked={organization?.id === selectedVcdOrg?.id || undefined}
-          disabled={isOrganizationDisabled(organization) || undefined}
+          isChecked={organization?.id === selectedVcdOrg?.id}
+          isDisabled={isOrganizationDisabled(organization)}
         />
       ),
     },
@@ -132,28 +121,30 @@ export const OrderVeeamStep2: React.FC = () => {
 
   return (
     <>
-      <Title className="block mb-9">{t('choose_org_title')}</Title>
+      <OdsText preset="heading-1" className="block mb-9">
+        {t('choose_org_title')}
+      </OdsText>
       {isLoading && <Loading className="mb-5" />}
       {!isLoading && !isError && (
         <NoOrganizationMessage organizationList={data?.pages[0].data} />
       )}
       {isError && (
-        <OsdsMessage className="mb-9" type={ODS_MESSAGE_TYPE.error}>
+        <OdsMessage className="mb-9" color="danger">
           {error.message}
-        </OsdsMessage>
+        </OdsMessage>
       )}
       {!isLoading &&
         flattenData?.length > 0 &&
         flattenData?.every((org) =>
           [BackupStatus.active, BackupStatus.error].includes(org.backupStatus),
         ) && (
-          <OsdsMessage className="mb-9" type={ODS_MESSAGE_TYPE.warning}>
+          <OdsMessage className="mb-9" color="warning">
             {t(
               hasNextPage
                 ? 'all_organization_backed_up_message_fetch_next_page'
                 : 'all_organization_backed_up_message',
             )}
-          </OsdsMessage>
+          </OdsMessage>
         )}
       <React.Suspense fallback={<Loading />}>
         {!isLoading && flattenData?.length > 0 && (
@@ -170,21 +161,14 @@ export const OrderVeeamStep2: React.FC = () => {
         )}
       </React.Suspense>
       <div>
-        <OsdsButton
-          inline
-          variant={ODS_BUTTON_VARIANT.ghost}
-          size={ODS_BUTTON_SIZE.sm}
-          color={ODS_THEME_COLOR_INTENT.primary}
+        <OdsButton
+          label={t('cancel_button')}
+          variant="ghost"
           onClick={() => navigate(urls.listing)}
-        >
-          {t('cancel_button')}
-        </OsdsButton>
-        <OsdsButton
+        />
+        <OdsButton
+          label={t('order_button')}
           className="ml-6"
-          inline
-          variant={ODS_BUTTON_VARIANT.flat}
-          size={ODS_BUTTON_SIZE.sm}
-          color={ODS_THEME_COLOR_INTENT.primary}
           onClick={() => {
             window.open(
               getVeeamBackupOrderLink({
@@ -195,10 +179,8 @@ export const OrderVeeamStep2: React.FC = () => {
             );
             navigate(urls.listing);
           }}
-          disabled={!selectedVcdOrg || undefined}
-        >
-          {t('order_button')}
-        </OsdsButton>
+          isDisabled={!selectedVcdOrg}
+        />
       </div>
     </>
   );

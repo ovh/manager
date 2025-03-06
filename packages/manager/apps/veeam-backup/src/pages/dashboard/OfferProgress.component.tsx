@@ -1,19 +1,10 @@
 import React from 'react';
 import {
-  OsdsIcon,
-  OsdsProgressBar,
-  OsdsText,
-  OsdsTooltip,
-  OsdsTooltipContent,
+  OdsIcon,
+  OdsProgressBar,
+  OdsText,
+  OdsTooltip,
 } from '@ovhcloud/ods-components/react';
-import { Description } from '@ovh-ux/manager-react-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import {
-  ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-  ODS_TEXT_SIZE,
-  ODS_TEXT_LEVEL,
-} from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import { VeeamBackupOffer } from '@ovh-ux/manager-module-vcd-api';
 
@@ -24,30 +15,26 @@ export const OfferProgress: React.FC<VeeamBackupOffer> = ({
 }) => {
   const { t } = useTranslation('dashboard');
   const percent = (usedSpaceInGB / (quotaInTB * 10)).toFixed(2);
+  const tooltipName = `${name}_tooltip`;
+  const tooltipTrigger = `${tooltipName}_trigger`;
 
   return (
     <div className="flex flex-col">
       <div className="flex mb-3">
-        <OsdsText
-          level={ODS_TEXT_LEVEL.body}
-          size={ODS_TEXT_SIZE._500}
-          color={ODS_THEME_COLOR_INTENT.text}
-        >
+        <OdsText>
           {t('space_summary', { usedSpaceInGB, quotaInTB, percent })}
-        </OsdsText>
-        <OsdsTooltip>
-          <OsdsIcon
-            className="ml-4"
-            name={ODS_ICON_NAME.HELP_CIRCLE}
-            color={ODS_THEME_COLOR_INTENT.text}
-            size={ODS_ICON_SIZE.xs}
-          />
-          <OsdsTooltipContent slot="tooltip-content">
-            <Description>{t(`${name}_tooltip`)}</Description>
-          </OsdsTooltipContent>
-        </OsdsTooltip>
+        </OdsText>
+
+        <OdsIcon id={tooltipTrigger} className="ml-4" name="circle-question" />
+        <OdsTooltip triggerId={tooltipTrigger}>
+          <OdsText>{t(tooltipName)}</OdsText>
+        </OdsTooltip>
       </div>
-      <OsdsProgressBar max={quotaInTB * 1000} value={usedSpaceInGB} />
+      <OdsProgressBar
+        className="progress__full-width"
+        max={quotaInTB * 1000}
+        value={usedSpaceInGB}
+      />
     </div>
   );
 };
