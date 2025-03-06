@@ -88,7 +88,10 @@ const NodePoolStep = ({
       nodes && setNodes(nodes.filter((node) => node.name !== nameToDelete)),
     [nodes],
   );
-  const columns = getDatagridColumns({ onDelete, t });
+  const columns = useMemo(() => getDatagridColumns({ onDelete, t }), [
+    onDelete,
+    t,
+  ]);
 
   const isNodePoolValid = !nodePoolEnabled || (Boolean(flavor) && isValidName);
 

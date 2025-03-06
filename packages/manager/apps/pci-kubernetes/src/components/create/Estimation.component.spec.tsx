@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import { describe, it, vi, expect, beforeEach } from 'vitest';
+import { describe, it, vi, expect, beforeEach, Mock } from 'vitest';
 import { useCatalogPrice } from '@ovh-ux/manager-react-components';
 import Estimation from './Estimation.component';
 import { wrapper } from '@/wrapperRenders';
@@ -23,7 +23,7 @@ describe('Estimation Component', () => {
   });
 
   it('should render the estimated cost label', () => {
-    (useCatalogPrice as jest.Mock).mockReturnValue({
+    (useCatalogPrice as Mock).mockReturnValue({
       getFormattedMonthlyCatalogPrice: vi.fn().mockReturnValue('0.00 €'),
     });
 
@@ -35,7 +35,7 @@ describe('Estimation Component', () => {
   });
 
   it('should display all expected estimation texts', () => {
-    (useCatalogPrice as jest.Mock).mockReturnValue({
+    (useCatalogPrice as Mock).mockReturnValue({
       getFormattedMonthlyCatalogPrice: vi.fn().mockReturnValue('0.00 €'),
     });
 
@@ -64,7 +64,7 @@ describe('Estimation Component', () => {
       .fn()
       .mockReturnValue('30.00 €');
 
-    (useCatalogPrice as jest.Mock).mockReturnValue({
+    (useCatalogPrice as Mock).mockReturnValue({
       getFormattedMonthlyCatalogPrice: getFormattedMonthlyCatalogPriceMock,
     });
 
@@ -85,7 +85,7 @@ describe('Estimation Component', () => {
       .fn()
       .mockReturnValue('x.xx €');
 
-    (useCatalogPrice as jest.Mock).mockReturnValue({
+    (useCatalogPrice as Mock).mockReturnValue({
       getFormattedMonthlyCatalogPrice: getFormattedMonthlyCatalogPriceMock,
     });
 

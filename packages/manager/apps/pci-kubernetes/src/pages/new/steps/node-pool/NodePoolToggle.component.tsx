@@ -26,7 +26,7 @@ const NodePoolToggle = ({
   step,
   onNodePoolEnabledChange,
 }: Readonly<NodeToggleProps>) => {
-  const { t: tNodePool } = useTranslation('node-pool');
+  const { t } = useTranslation('node-pool');
   return (
     <>
       <OsdsFormField className="mt-8" inline>
@@ -42,7 +42,7 @@ const NodePoolToggle = ({
             size={ODS_THEME_TYPOGRAPHY_SIZE._400}
             slot="end"
           >
-            {tNodePool(`kube_common_node_pool_configure_${nodePoolEnabled}`)}
+            {t(`kube_common_node_pool_configure_${nodePoolEnabled}`)}
           </OsdsText>
         </OsdsToggle>
       </OsdsFormField>
@@ -53,7 +53,7 @@ const NodePoolToggle = ({
             size={ODS_TEXT_SIZE._400}
             color={ODS_THEME_COLOR_INTENT.text}
           >
-            {tNodePool('kubernetes_add_node_pool_description')}
+            {t('kubernetes_add_node_pool_description')}
           </OsdsText>
         </p>
       )}
