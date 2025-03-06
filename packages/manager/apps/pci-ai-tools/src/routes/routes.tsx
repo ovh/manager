@@ -24,8 +24,30 @@ export default [
     ...lazyRouteConfig(() => import('@/pages/Root.layout')),
     children: [
       {
+        path: 'auth',
+        id: 'auth',
+        ...lazyRouteConfig(() => import('@/pages/auth/Auth.page')),
+      },
+      {
         path: '',
-        ...lazyRouteConfig(() => import('@/pages/Root.page')),
+        ...lazyRouteConfig(() => import('@/pages/Auth.layout')),
+        children: [
+          {
+            path: 'dashboard',
+            ...lazyRouteConfig(() =>
+              import('@/pages/dashboard/Dashboard.layout'),
+            ),
+            children: [
+              {
+                path: '',
+                id: 'dashboard.home',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/dashboard/home/Home.page'),
+                ),
+              },
+            ],
+          },
+        ],
       },
     ],
   },
