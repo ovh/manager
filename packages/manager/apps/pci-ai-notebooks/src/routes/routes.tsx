@@ -111,6 +111,15 @@ export default [
                       ),
                     ),
                   },
+                  {
+                    path: 'update-flavor',
+                    id: 'notebook.dashboard.update-flavor',
+                    ...lazyRouteConfig(() =>
+                      import(
+                        '@/pages/notebooks/[notebookId]/dashboard/_components/update-flavor/UpdateFlavor.modal'
+                      ),
+                    ),
+                  },
                 ],
               },
               {
@@ -128,6 +137,24 @@ export default [
                     ...lazyRouteConfig(() =>
                       import(
                         '@/pages/notebooks/[notebookId]/containers/dataSync/DataSync.modal'
+                      ),
+                    ),
+                  },
+                  {
+                    path: 'add-container',
+                    id: 'notebook.container.add',
+                    ...lazyRouteConfig(() =>
+                      import(
+                        '@/pages/notebooks/[notebookId]/containers/addVolume/AddVolume.modal'
+                      ),
+                    ),
+                  },
+                  {
+                    path: 'delete/:volumeId?',
+                    id: 'notebook.container.delete',
+                    ...lazyRouteConfig(() =>
+                      import(
+                        '@/pages/notebooks/[notebookId]/containers/deleteVolume/DeleteVolume.modal'
                       ),
                     ),
                   },
@@ -150,6 +177,26 @@ export default [
                     '@/pages/notebooks/[notebookId]/public-git/PublicGit.page'
                   ),
                 ),
+                children: [
+                  {
+                    path: 'add-public-git',
+                    id: 'notebook.public-git.add',
+                    ...lazyRouteConfig(() =>
+                      import(
+                        '@/pages/notebooks/[notebookId]/public-git/addVolume/AddVolume.modal'
+                      ),
+                    ),
+                  },
+                  {
+                    path: 'delete/:volumeId?',
+                    id: 'notebook.public-git.delete',
+                    ...lazyRouteConfig(() =>
+                      import(
+                        '@/pages/notebooks/[notebookId]/public-git/deleteVolume/DeleteVolume.modal'
+                      ),
+                    ),
+                  },
+                ],
               },
               {
                 path: 'logs',

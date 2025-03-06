@@ -5,7 +5,7 @@
   "tableHeaderImage": "Image",
   "tableHeaderLocation": "Région",
   "tableHeaderResources": "Ressources",
-  "tableHeaderCreationDate": "Date de création",
+  "tableHeaderReplicas": "Réplicas",
   "tableHeaderUpdateDate": "Date de mise à jour",
   "tableHeaderStatus": "Statut",
   "tableActionManage": "Gérer",

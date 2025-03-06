@@ -99,7 +99,7 @@ describe('Data Sync', () => {
     await waitFor(() => {
       expect(datasyncAPI.dataSync).toHaveBeenCalled();
       expect(useToast().toast).toHaveBeenCalledWith({
-        title: 'dataSyncToastErrorTitle',
+        title: 'containerToastErrorTitle',
         description: apiErrorMock.response.data.message,
         variant: 'destructive',
       });
@@ -116,7 +116,7 @@ describe('Data Sync', () => {
     await waitFor(() => {
       expect(datasyncAPI.dataSync).toHaveBeenCalled();
       expect(useToast().toast).toHaveBeenCalledWith({
-        title: 'dataSyncToastSuccessTitle',
+        title: 'containerToastSuccessTitle',
         description: 'dataSyncMountPathToastSuccessDescription',
       });
     });
@@ -139,7 +139,7 @@ describe('Data Sync', () => {
     await waitFor(() => {
       expect(datasyncAPI.dataSync).toHaveBeenCalled();
       expect(useToast().toast).toHaveBeenCalledWith({
-        title: 'dataSyncToastSuccessTitle',
+        title: 'containerToastSuccessTitle',
         description: 'dataSyncGlobalToastSuccessDescription',
       });
     });

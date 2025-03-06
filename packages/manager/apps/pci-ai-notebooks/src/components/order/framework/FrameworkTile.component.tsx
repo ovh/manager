@@ -58,9 +58,7 @@ export const FrameworkTile = ({
         }}
       />
       <RadioTile.Separator />
-      <p className="text-xs text-justify leading-relaxed">
-        {framework.description}
-      </p>
+      <p className="text-sm leading-relaxed">{framework.description}</p>
     </RadioTile>
   );
 };

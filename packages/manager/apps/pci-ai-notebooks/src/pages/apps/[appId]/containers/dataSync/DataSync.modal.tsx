@@ -28,7 +28,7 @@ const DataSync = () => {
   const { dataSync, isPending } = useDataSync({
     onError: (err) => {
       toast.toast({
-        title: t('dataSyncToastErrorTitle'),
+        title: t('containerToastErrorTitle'),
         variant: 'destructive',
         description: getAIApiErrorMessage(err),
       });
@@ -41,7 +41,7 @@ const DataSync = () => {
           })
         : t('dataSyncGlobalToastSuccessDescription');
       toast.toast({
-        title: t('dataSyncToastSuccessTitle'),
+        title: t('containerToastSuccessTitle'),
         description: toastdesc,
       });
       navigate('../');

@@ -79,10 +79,15 @@ const PresetImageSelect = React.forwardRef<
                     />
                   )}
                 </div>
-                <p>{image.description}</p>
+                <p className="text-sm">{image.description}</p>
               </div>
               <RadioTile.Separator />
-              <A href={image.link} target="_blank" rel="noopener noreferrer">
+              <A
+                href={image.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm"
+              >
                 {t('imageDocLink')}
                 <ArrowUpRightFromSquare className="size-4 inline ml-1" />
               </A>

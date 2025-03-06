@@ -24,7 +24,7 @@ export function useForkBackup({ onError, onSuccess }: UseForkBackup) {
       // invalidate notebooks list to avoid displaying
       // old list
       queryClient.invalidateQueries({
-        queryKey: [projectId, 'ai/notebook'],
+        queryKey: [projectId, 'ai', 'notebook'],
         refetchType: 'none',
       });
       onSuccess(data);

@@ -8,8 +8,15 @@ import {
   getNotebooks,
   startNotebook,
   stopNotebook,
+  updateNotebook,
 } from '@/data/api/ai/notebook/notebook.api';
-import { mockedNotebookSpec } from '@/__tests__/helpers/mocks/notebook/notebook';
+import {
+  mockedNotebookSpec,
+  mockedNotebookUpdateInput,
+} from '@/__tests__/helpers/mocks/notebook/notebook';
+import { mockedCPUResources } from '@/__tests__/helpers/mocks/shared/resource';
+import { mockedSshKey } from '@/__tests__/helpers/mocks/sshkey';
+import { mockedVolume } from '@/__tests__/helpers/mocks/volume/volume';
 
 describe('notebook functions', () => {
   afterEach(() => {
@@ -111,6 +118,25 @@ describe('notebook functions', () => {
         region: mockedNotebookSpec.region,
         resources: mockedNotebookSpec.resources,
         volumes: mockedNotebookSpec.volumes,
+      },
+    );
+  });
+
+  it('should call updateNotebook', async () => {
+    expect(apiClient.v6.put).not.toHaveBeenCalled();
+    await updateNotebook({
+      projectId: 'projectId',
+      notebookId: 'notebookId',
+      notebookInfo: mockedNotebookUpdateInput,
+    });
+    expect(apiClient.v6.put).toHaveBeenCalledWith(
+      '/cloud/project/projectId/ai/notebook/notebookId',
+      {
+        labels: { key: 'label' },
+        resources: mockedCPUResources,
+        sshPublicKeys: [mockedSshKey.publicKey],
+        unsecureHttp: false,
+        volumes: [mockedVolume],
       },
     );
   });

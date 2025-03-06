@@ -30,15 +30,15 @@ const NotebookTabs = ({ notebook }: NotebookTabsProps) => {
 
   const tabs = [
     { href: '', label: t('dashboardTab'), end: true },
-    containers?.length > 0 && {
+    {
       href: 'containers',
       label: t('containerTab'),
-      count: containers?.length,
+      count: containers.length,
     },
-    publicGitRepo?.length > 0 && {
+    {
       href: 'public-git',
       label: t('publicGit'),
-      count: publicGitRepo?.length,
+      count: publicGitRepo.length,
     },
     backups &&
       backups?.length > 0 && {

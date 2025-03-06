@@ -56,9 +56,7 @@ const EditorsSelect = React.forwardRef<HTMLInputElement, EditorsSelectProps>(
               )}
             </div>
             <RadioTile.Separator />
-            <p className="text-xs text-justify leading-relaxed">
-              {editor.description}
-            </p>
+            <p className="text-sm leading-relaxed">{editor.description}</p>
           </RadioTile>
         ))}
       </div>

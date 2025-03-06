@@ -4,6 +4,8 @@
   "tableHeaderName": "Name",
   "tableHeaderLocation": "Région",
   "tableHeaderImage": "Image Docker",
+  "tableHeaderResources": "Ressources",
+  "tableHeaderDuration": "Durée",
   "tableHeaderCreationDate": "Date de création",
   "tableHeaderStatus": "Statut",
   "tableActionManage": "Gérer",

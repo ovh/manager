@@ -134,7 +134,7 @@ const DataSyncModal = ({
                   type="button"
                   variant="outline"
                 >
-                  {t('datasyncButtonCancel')}
+                  {t('containerButtonCancel')}
                 </Button>
               </DialogClose>
               <Button

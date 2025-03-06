@@ -9,6 +9,7 @@ import {
   mockedVolume,
 } from '../volume/volume';
 import { mockedCPUResources, mockedGPUResources } from '../shared/resource';
+import { mockedSshKey } from '../sshkey';
 
 const notebookEnv: NotebookEnv = {
   editorId: 'jupyterlab',
@@ -36,8 +37,16 @@ export const mockedNotebookStatus: ai.notebook.NotebookStatus = {
     code: ai.InfoCodeEnum.JOB_DONE,
     message: 'message',
   },
-
+  state: ai.notebook.NotebookStateEnum.STOPPED,
   lastJobStatus: mockedJobStatus,
+};
+
+export const mockedNotebookUpdateInput: ai.notebook.NotebookUpdate = {
+  labels: { key: 'label' },
+  resources: mockedCPUResources,
+  sshPublicKeys: [mockedSshKey.publicKey],
+  unsecureHttp: false,
+  volumes: [mockedVolume],
 };
 
 export const mockedNotebook: ai.notebook.Notebook = {

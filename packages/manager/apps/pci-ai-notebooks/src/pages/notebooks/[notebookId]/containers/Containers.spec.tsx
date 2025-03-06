@@ -115,4 +115,18 @@ describe('Containers page', () => {
     );
     expect(mockedUsedNavigate).toHaveBeenCalledWith('./data-sync/volumeId');
   });
+
+  it('open delete volume modal from action table button', async () => {
+    render(<Containers />, { wrapper: RouterWithQueryClientWrapper });
+    await waitFor(() => {
+      expect(
+        screen.getByText(mockedDatastoreVolume.mountPath),
+      ).toBeInTheDocument();
+    });
+    await openButtonInMenu(
+      'container-action-trigger',
+      'container-action-delete-button',
+    );
+    expect(mockedUsedNavigate).toHaveBeenCalledWith('./delete/volumeId');
+  });
 });

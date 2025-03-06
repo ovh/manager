@@ -15,7 +15,7 @@ const Resources = () => {
   const { t } = useTranslation('pci-ai-notebooks/notebooks/notebook/dashboard');
   return (
     <div data-testid="resources-container">
-      <ResourcesSpec resources={notebook.spec.resources} />
+      <ResourcesSpec resources={notebook.spec.resources} allowUpdate={true} />
       <div className="flex flex-row items-center gap-2">
         <span>
           {t('workspaceStorage', {

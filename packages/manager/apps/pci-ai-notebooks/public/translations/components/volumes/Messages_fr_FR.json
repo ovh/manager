@@ -34,5 +34,11 @@
   "gitUrlErrorFormat": "Format incorrect (ex: https://publicRepoGit.git)",
   "numberOfConfiguredVolumes_zero": "{{count}} volumes configurés",
   "numberOfConfiguredVolumes_one": "{{count}} volume configuré sur {{max}}",
-  "numberOfConfiguredVolumes_other": "{{count}} volumes configurés sur {{max}}"
+  "numberOfConfiguredVolumes_other": "{{count}} volumes configurés sur {{max}}",
+  "addContainerTitle": "Ajouter un conteneurs de données",
+  "addContainerToastErrorTitle": "Erreur",
+  "addContainerToastSuccessTitle": "Succés",
+  "addContainerToastSuccessDescription": "Le conteneurs a été ajouté avec succés",
+  "addContainerButtonCancel": "Annuler",
+  "addContainerButtonConfirm": "Ajouter"
 }

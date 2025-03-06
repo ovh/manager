@@ -9,7 +9,7 @@ export function useGetLogs(
   notebookId: string,
   options: Omit<QueryObserverOptions, 'queryKey'> = {},
 ) {
-  const queryKey = [projectId, 'ai/notebook', notebookId, 'log'];
+  const queryKey = [projectId, 'ai', 'notebook', notebookId, 'log'];
   return useQueryImmediateRefetch({
     queryKey,
     queryFn: () => getLogs({ projectId, notebookId }),

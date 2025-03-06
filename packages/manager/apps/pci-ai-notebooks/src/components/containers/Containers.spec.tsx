@@ -15,6 +15,7 @@ import Containers from './Containers.component';
 import { openButtonInMenu } from '@/__tests__/helpers/unitTestHelper';
 
 const dataSync = vi.fn();
+const onDelete = vi.fn();
 describe('Containers component', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
@@ -30,6 +31,7 @@ describe('Containers component', () => {
     render(
       <Containers
         onDataSync={dataSync}
+        updateMode={false}
         status={ai.job.JobStateEnum.ERROR}
         volumes={[mockedDatastoreVolume]}
       />,
@@ -51,6 +53,7 @@ describe('Containers component', () => {
     render(
       <Containers
         onDataSync={dataSync}
+        updateMode={false}
         status={ai.job.JobStateEnum.ERROR}
         volumes={[mockedDatastoreVolume]}
       />,
@@ -75,11 +78,15 @@ describe('Containers component', () => {
     render(
       <Containers
         onDataSync={dataSync}
+        updateMode={false}
         status={ai.job.JobStateEnum.RUNNING}
         volumes={[mockedDatastoreVolume]}
       />,
       { wrapper: RouterWithQueryClientWrapper },
     );
+    await waitFor(() => {
+      expect(screen.queryByTestId('add-volume-button')).not.toBeInTheDocument();
+    });
     act(() => {
       fireEvent.click(screen.getByTestId('general-data-sync-button'));
     });
@@ -87,10 +94,31 @@ describe('Containers component', () => {
       expect(mockedUsedNavigate).toHaveBeenCalledWith('./data-sync');
     });
   });
+
+  it('open data sync modal on button click', async () => {
+    render(
+      <Containers
+        onDataSync={dataSync}
+        updateMode={true}
+        status={ai.notebook.NotebookStateEnum.STOPPED}
+        volumes={[mockedDatastoreVolume]}
+        onDelete={onDelete}
+      />,
+      { wrapper: RouterWithQueryClientWrapper },
+    );
+    act(() => {
+      fireEvent.click(screen.getByTestId('add-volume-button'));
+    });
+    await waitFor(() => {
+      expect(mockedUsedNavigate).toHaveBeenCalledWith('./add-container');
+    });
+  });
+
   it('open data sync modal', async () => {
     render(
       <Containers
         onDataSync={dataSync}
+        updateMode={false}
         status={ai.job.JobStateEnum.RUNNING}
         volumes={[mockedDatastoreVolume]}
       />,
@@ -102,6 +130,26 @@ describe('Containers component', () => {
     );
     await waitFor(() => {
       expect(dataSync).toHaveBeenCalledWith(mockedDatastoreVolume);
+    });
+  });
+
+  it('open delete container modal', async () => {
+    render(
+      <Containers
+        onDataSync={dataSync}
+        updateMode={true}
+        status={ai.job.JobStateEnum.RUNNING}
+        volumes={[mockedDatastoreVolume]}
+        onDelete={onDelete}
+      />,
+      { wrapper: RouterWithQueryClientWrapper },
+    );
+    await openButtonInMenu(
+      'container-action-trigger',
+      'container-action-delete-button',
+    );
+    await waitFor(() => {
+      expect(onDelete).toHaveBeenCalledWith(mockedDatastoreVolume);
     });
   });
 });

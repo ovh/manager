@@ -104,32 +104,17 @@ export const getColumns = ({
       ),
       cell: ({ row }) => {
         const { cpu, gpu, gpuModel } = row.original.spec.resources;
-        const replicas = row.original.spec.scalingStrategy?.fixed
-          ? row.original.spec.scalingStrategy?.fixed.replicas
-          : row.original.spec.scalingStrategy?.automatic?.replicasMin;
         return (
           <div>
             {gpu > 0 ? (
               <div className="flex gap-2 items-center">
                 <Zap className="size-4" />
                 <span>{`${gpu} GPU ${gpuModel}`}</span>
-                <span>{' / '}</span>
-                <span>
-                  {t('tableReplic', {
-                    rep: replicas,
-                  })}
-                </span>
               </div>
             ) : (
               <div className="flex gap-2 items-center">
                 <Cpu className="size-4" />
                 <span>{`${cpu} CPU`}</span>
-                <span>{' / '}</span>
-                <span>
-                  {t('tableReplic', {
-                    rep: replicas,
-                  })}
-                </span>
               </div>
             )}
           </div>
@@ -137,18 +122,25 @@ export const getColumns = ({
       },
     },
     {
-      id: 'creation-date',
-      accessorFn: (row) => row.createdAt,
+      id: 'replicas',
+      accessorFn: (row) => row.spec.scalingStrategy,
       header: ({ column }) => (
         <DataTable.SortableHeader column={column}>
-          {t('tableHeaderCreationDate')}
+          {t('tableHeaderReplicas')}
         </DataTable.SortableHeader>
       ),
-      cell: ({ row }) => (
-        <span>
-          <FormattedDate date={new Date(row.original.createdAt)} />
-        </span>
-      ),
+      cell: ({ row }) => {
+        const replicas = row.original.spec.scalingStrategy?.fixed
+          ? row.original.spec.scalingStrategy?.fixed.replicas
+          : row.original.spec.scalingStrategy?.automatic?.replicasMin;
+        return (
+          <span>
+            {t('tableReplic', {
+              rep: replicas,
+            })}
+          </span>
+        );
+      },
     },
     {
       id: 'update-date',

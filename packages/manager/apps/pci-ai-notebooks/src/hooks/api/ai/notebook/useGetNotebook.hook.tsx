@@ -9,7 +9,7 @@ export function useGetNotebook(
   notebookId: string,
   options: Omit<QueryObserverOptions, 'queryKey'> = {},
 ) {
-  const queryKey = [projectId, 'ai/notebook', notebookId];
+  const queryKey = [projectId, 'ai', 'notebook', notebookId];
   return useQueryImmediateRefetch({
     queryKey,
     queryFn: () => getNotebook({ projectId, notebookId }),

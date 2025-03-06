@@ -19,6 +19,7 @@ const PublicGitNotebook = () => {
       gitVolumes={app.spec.volumes.filter(
         (vol: ai.volume.Volume) => vol.volumeSource.publicGit,
       )}
+      updateMode={false}
     />
   );
 };

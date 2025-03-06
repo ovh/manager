@@ -106,7 +106,7 @@ const PartnerImageSelect = React.forwardRef<
                   }
                 />
                 <RadioTile.Separator />
-                <div className="text-xs">
+                <div className="text-sm">
                   <p className="mb-2">{image.description}</p>
                   <A
                     href={image.docUrl}

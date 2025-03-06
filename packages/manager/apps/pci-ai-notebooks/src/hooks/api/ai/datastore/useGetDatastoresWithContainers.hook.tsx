@@ -53,7 +53,7 @@ export const useGetDatastoresWithContainers = (
   const refetchAll = useCallback(() => {
     containersQueries.forEach((ds) => ds.refetch());
   }, [containersQueries]);
-
+  console.log('containerInData', containersQueries);
   const dataStoresWithContainers: DataStoresWithContainers[] = containersQueries.flatMap(
     (container) => {
       return container.data || [];

@@ -7,15 +7,18 @@ import {
   waitFor,
 } from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
+import { mockedUsedNavigate } from '@/__tests__/helpers/mockRouterDomHelper';
 import * as ai from '@/types/cloud/project/ai';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import {
   mockedNotebook,
   mockedNotebookSpec,
+  mockedNotebookStatus,
 } from '@/__tests__/helpers/mocks/notebook/notebook';
 import PublicGit, { breadcrumb as Breadcrumb } from './PublicGit.page';
 import { mockedPublicGitVolume } from '@/__tests__/helpers/mocks/volume/volume';
 import { useToast } from '@/components/ui/use-toast';
+import { openButtonInMenu } from '@/__tests__/helpers/unitTestHelper';
 
 const mockedNotebookBis: ai.notebook.Notebook = {
   ...mockedNotebook,
@@ -23,10 +26,17 @@ const mockedNotebookBis: ai.notebook.Notebook = {
     ...mockedNotebookSpec,
     volumes: [mockedPublicGitVolume],
   },
+  status: {
+    ...mockedNotebookStatus,
+    volumes: [
+      { id: 'volumeId', mountPath: '/demo', userVolumeId: 'useVoluId' },
+    ],
+  },
 };
 
 describe('Public Git page', () => {
   beforeEach(() => {
+    mockedUsedNavigate();
     vi.restoreAllMocks();
 
     vi.mock('@/pages/notebooks/[notebookId]/Notebook.context', () => ({
@@ -80,5 +90,14 @@ describe('Public Git page', () => {
         title: 'mountPathCopyToast',
       });
     });
+  });
+
+  it('open delete volume modal from action table button', async () => {
+    render(<PublicGit />, { wrapper: RouterWithQueryClientWrapper });
+    await openButtonInMenu(
+      'public-git-action-trigger',
+      'public-git-action-delete-button',
+    );
+    expect(mockedUsedNavigate).toHaveBeenCalledWith('./delete/volumeId');
   });
 });

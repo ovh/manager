@@ -49,3 +49,15 @@ export const getCommand = async ({ projectId, notebookInfo }: AddNotebook) =>
   apiClient.v6
     .post(`/cloud/project/${projectId}/ai/notebook/command`, notebookInfo)
     .then((res) => res.data as ai.Command);
+
+export interface UpdateNotebook extends NotebookData {
+  notebookInfo: ai.notebook.NotebookUpdate;
+}
+export const updateNotebook = async ({
+  projectId,
+  notebookId,
+  notebookInfo,
+}: UpdateNotebook) =>
+  apiClient.v6
+    .put(`/cloud/project/${projectId}/ai/notebook/${notebookId}`, notebookInfo)
+    .then((res) => res.data as ai.notebook.Notebook);

@@ -22,6 +22,7 @@ const ContainersApp = () => {
         (vol: ai.volume.Volume) => vol.volumeSource.dataStore,
       )}
       status={app.status.state}
+      updateMode={false}
       onDataSync={(volume) => {
         const volumeId = app.status.volumes.find(
           (vol) => vol.mountPath === volume.mountPath,
