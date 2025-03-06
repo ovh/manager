@@ -21,7 +21,6 @@
   "order_catalog_price_interval_month_by_ip": "mes por IP",
   "ip_agora_ipv6_description": "IPv6 es la mejor opción cuando son necesarios grandes bloques de IP y se define un esquema de direccionamiento jerárquico. Asegúrese de que todos sus clientes pueden utilizar el nuevo protocolo y sus servicios",
   "free_price": "gratis",
-  "ip_agora_ipv6_beta": "beta",
   "ip_agora_ipv6_option_step_question": "Seleccionar opciones adicionales",
   "ip_agora_ipv6_option_header": "En muchos casos, es posible que necesite una IPv4 estándar, la más utilizada, o una nueva versión del protocolo: IPv6 Tenga en cuenta que la lista de productos compatibles puede variar.",
   "ip_agora_ipv6_option_tile_title": "Nuevo prefijo /56 IPv6 (atribuido por OVHcloud)",
