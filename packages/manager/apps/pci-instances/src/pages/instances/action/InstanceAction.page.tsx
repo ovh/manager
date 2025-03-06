@@ -8,11 +8,11 @@ import {
   updateDeletedInstanceStatus,
 } from '@/data/hooks/instance/useInstances';
 import queryClient from '@/queryClient';
-import { useUrlLastSection } from '@/hooks/url/useUrlLastSection';
 import { ActionModalContent } from './modal/ActionModalContent.component';
 import { useInstanceAction } from '@/data/hooks/instance/action/useInstanceAction';
 import NotFound from '@/pages/404/NotFound.page';
 import { kebabToSnakeCase } from '@/utils';
+import { usePathMatch } from '@/hooks/url/usePathMatch';
 
 export type TSectionType =
   | 'delete'
@@ -22,9 +22,10 @@ export type TSectionType =
   | 'unshelve'
   | 'soft-reboot'
   | 'hard-reboot'
-  | 'reinstall';
+  | 'reinstall'
+  | 'rescue/start';
 
-const actionSectionRegex = /^(delete|start|stop|shelve|unshelve|soft-reboot|hard-reboot|reinstall)$/;
+const actionSectionRegex = /(?:rescue\/(start|end)|(?<!rescue\/)(start|stop|shelve|unshelve|delete))$/;
 
 const InstanceAction: FC = () => {
   const { t } = useTranslation(['actions', 'common']);
@@ -34,9 +35,7 @@ const InstanceAction: FC = () => {
     instanceId?: string;
   };
   const { addError, addSuccess } = useNotifications();
-  const section = useUrlLastSection<TSectionType>(
-    actionSectionRegex.test.bind(actionSectionRegex),
-  );
+  const section = usePathMatch<TSectionType>(actionSectionRegex);
 
   const snakeCaseSection = useMemo(
     () => (section ? kebabToSnakeCase(section) : ''),
