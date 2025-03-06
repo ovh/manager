@@ -8,6 +8,7 @@ import { ApiV2ListHelper } from '@ovh-ux/manager-ng-apiv2-helper';
 import managerAtInternetConfiguration from '@ovh-ux/manager-at-internet-configuration';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
 import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
+import ngOvhApiWrapper from '@ovh-ux/ng-ovh-api-wrappers';
 
 import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 import ngOvhUtils from '@ovh-ux/ng-ovh-utils';
@@ -52,6 +53,7 @@ angular
     managerAtInternetConfiguration,
     ngAtInternet,
     ngAtInternetUiRouterPlugin,
+    ngOvhApiWrapper,
     ngOvhFeatureFlipping,
     ngOvhUtils,
     uiKit,
