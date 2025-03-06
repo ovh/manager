@@ -2,7 +2,7 @@ import { Handler } from '@ovh-ux/manager-core-test-utils';
 import { availableService, expiredService } from './serviceInfo';
 import { VPS, VpsDatacenter } from '../src/data/api';
 
-const vpsList: VPS[] = [
+export const vpsMockList: VPS[] = [
   {
     iam: {
       id: 'id-vps',
@@ -88,7 +88,7 @@ export const getVpsMocks = ({
       ? {
           message: 'Get VPS KO',
         }
-      : vpsList.slice(0, nbVps),
+      : vpsMockList.slice(0, nbVps),
     api: 'v6',
     status: getVpsKo ? 400 : 200,
   },
