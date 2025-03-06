@@ -23,7 +23,7 @@ import mailingList from '../mailing-list/mailing-list.module';
 import redirection from '../redirection/redirection.module';
 import task from '../task/task.module';
 
-import '../css/exchangeDiagnostic.css';
+import '../css/emailpro.css';
 
 import {
   EMAILPRO_MX_CONFIG,
