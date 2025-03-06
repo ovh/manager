@@ -16,9 +16,10 @@ export const URL = {
 
 export default class IAMService {
   /* @ngInject */
-  constructor($http, $q, $translate, coreConfig, Apiv2Service) {
+  constructor($http, $q, $translate, coreConfig, Apiv2Service, iceberg) {
     this.$http = $http;
     this.$q = $q;
+    this.iceberg = iceberg;
     this.$translate = $translate;
     this.coreConfig = coreConfig;
     this.Apiv2Service = Apiv2Service;
@@ -440,15 +441,11 @@ export default class IAMService {
    * @returns {Promise<Object[]>} A Promise that resolves to an array of application objects, or null if an application fetch fails.
    */
   getApplications() {
-    return this.$http
-      .get(URL.APPLICATIONS)
-      .then(({ data }) =>
-        this.$q.all(
-          data
-            .map((id) => this.getApplication(id).catch(() => null))
-            .filter((application) => application !== null),
-        ),
-      );
+    return this.iceberg(URL.APPLICATIONS, {})
+      .query()
+      .expand('CachedObjectList-Pages')
+      .execute(null, true)
+      .$promise.then(({ data }) => data);
   }
 
   /**
