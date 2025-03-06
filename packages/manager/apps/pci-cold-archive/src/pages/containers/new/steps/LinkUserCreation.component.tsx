@@ -111,6 +111,8 @@ export default function LinkUserCreation({
                       'users/credentials:pci_projects_project_storages_containers_add_linked_user_success_message',
                       {
                         username: `<strong>${newUser?.username}</strong>`,
+                        // This hack is used beacause the italian translation use userName instead of username
+                        userName: `<strong>${newUser?.username}</strong>`,
                       },
                     ),
                   }}
@@ -119,7 +121,7 @@ export default function LinkUserCreation({
             }
             username={newUser?.username}
             description={newUser?.description}
-            accessKey={newUser?.access}
+            accessKey={newUser?.s3Credentials?.access}
             secret={secretUser}
           />
         </OdsMessage>
