@@ -9,6 +9,8 @@ import App from './App';
 
 import '@ovh-ux/manager-pci-common/dist/style.css';
 import './index.css';
+import '@datatr-ux/ods-tailwind-config/style.css';
+import '@datatr-ux/uxlib/style.css';
 
 import '@/vite-hmr.ts';
 import { useAppStore } from './store';
