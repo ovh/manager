@@ -43,7 +43,7 @@ export const ServiceSelectionSection: React.FC = () => {
   } = useCheckServiceAvailability({
     serviceName: selectedService,
     serviceType: selectedServiceType,
-    onServiceExpired: addDisabledService,
+    onServiceUnavailable: addDisabledService,
   });
 
   return (
@@ -78,11 +78,11 @@ export const ServiceSelectionSection: React.FC = () => {
                 'service_selection_select_dedicated_cloud_option_group_label',
               )}
             >
-              {dedicatedCloud?.map(({ serviceName, displayName }) => (
+              {dedicatedCloud?.map(({ id, name, displayName }) => (
                 <option
-                  key={serviceName}
-                  value={serviceName}
-                  disabled={disabledServices.includes(serviceName)}
+                  key={id}
+                  value={name}
+                  disabled={disabledServices.includes(name)}
                 >
                   {displayName}
                 </option>
@@ -93,11 +93,11 @@ export const ServiceSelectionSection: React.FC = () => {
                 'service_selection_select_dedicated_server_option_group_label',
               )}
             >
-              {server?.map(({ serviceName, displayName }) => (
+              {server?.map(({ id, name, displayName }) => (
                 <option
-                  key={serviceName}
-                  value={serviceName}
-                  disabled={disabledServices.includes(serviceName)}
+                  key={id}
+                  value={name}
+                  disabled={disabledServices.includes(name)}
                 >
                   {displayName}
                 </option>
@@ -106,11 +106,11 @@ export const ServiceSelectionSection: React.FC = () => {
             <optgroup
               label={t('service_selection_select_vps_option_group_label')}
             >
-              {vps.map(({ serviceName, displayName }) => (
+              {vps.map(({ id, name, displayName }) => (
                 <option
-                  key={serviceName}
-                  value={serviceName}
-                  disabled={disabledServices.includes(serviceName)}
+                  key={id}
+                  value={name}
+                  disabled={disabledServices.includes(name)}
                 >
                   {displayName}
                 </option>
@@ -128,11 +128,11 @@ export const ServiceSelectionSection: React.FC = () => {
             <optgroup
               label={t('service_selection_select_vrack_option_group_label')}
             >
-              {vrack?.map(({ serviceName, displayName }) => (
+              {vrack?.map(({ id, name, displayName }) => (
                 <option
-                  key={serviceName}
-                  value={serviceName}
-                  disabled={disabledServices.includes(serviceName)}
+                  key={id}
+                  value={name}
+                  disabled={disabledServices.includes(name)}
                 >
                   {displayName}
                 </option>
@@ -151,7 +151,7 @@ export const ServiceSelectionSection: React.FC = () => {
                     isDismissible={false}
                   >
                     {t(
-                      `service_selection_dedicated_server_${serviceStatus ||
+                      `service_selection_${serviceStatus ||
                         'expired'}_error_message`,
                     )}
                   </OdsMessage>
