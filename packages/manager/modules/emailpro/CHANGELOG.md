@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.15.0...@ovh-ux/manager-emailpro@3.16.0) (2025-03-06)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3760] ([9d4a214](https://github.com/ovh/manager/commit/9d4a214e1c8d704a81e2d9acdb83faeb33cc4d7b))
+
+
+### Features
+
+* **email.pro:** autofill mxRelay if needed ([91e22be](https://github.com/ovh/manager/commit/91e22bea80c29d1b6b9a4a15d7e765fa5027dc18))
+* **web.emailpro:** simplify add domain ([6060885](https://github.com/ovh/manager/commit/60608850589f2eb190fab2929caefb61cd7fbd5b))
+* **web.email:** update textcontent for ext domain ([249c831](https://github.com/ovh/manager/commit/249c8314ecba0a92a95c387d76c7f0b33adae713))
+
+
+
+
+
 # [3.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.14.0...@ovh-ux/manager-emailpro@3.15.0) (2025-02-20)
 
 

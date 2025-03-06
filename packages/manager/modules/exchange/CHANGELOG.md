@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.12.0...@ovh-ux/manager-exchange@4.13.0) (2025-03-06)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3760] ([9d4a214](https://github.com/ovh/manager/commit/9d4a214e1c8d704a81e2d9acdb83faeb33cc4d7b))
+
+
+### Features
+
+* **email.pro:** autofill mxRelay if needed ([91e22be](https://github.com/ovh/manager/commit/91e22bea80c29d1b6b9a4a15d7e765fa5027dc18))
+* **web.email:** update textcontent for ext domain ([249c831](https://github.com/ovh/manager/commit/249c8314ecba0a92a95c387d76c7f0b33adae713))
+* **web.exchange:** simplify add domain ([7fa409e](https://github.com/ovh/manager/commit/7fa409e787c94177ee4c79972eca314285945bf7))
+
+
+
+
+
 # [4.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.11.1...@ovh-ux/manager-exchange@4.12.0) (2025-02-20)
 
 

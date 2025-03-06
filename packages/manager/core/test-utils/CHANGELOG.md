@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-test-utils@0.3.3...@ovh-ux/manager-core-test-utils@0.4.0) (2025-03-06)
+
+
+### Features
+
+* **core-test-utils:** add new utils and separate files ([c5a4247](https://github.com/ovh/manager/commit/c5a4247940f16aba332962686fdcb7e4ad21ff73)), closes [#15812](https://github.com/ovh/manager/issues/15812)
+
+
+
+
+
 ## [0.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-test-utils@0.3.2...@ovh-ux/manager-core-test-utils@0.3.3) (2025-02-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-core-test-utils

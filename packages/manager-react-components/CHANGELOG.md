@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.13.1...@ovh-ux/manager-react-components@2.14.0) (2025-03-06)
+
+### Bug Fixes
+
+- **i18n:** add missing translations [CDS 3759] ([5e5bd48](https://github.com/ovh/manager/commit/5e5bd481a8770a1ec4681501adc036cbf3241a38))
+
+### Features
+
+- **manager-react-components:** add managerTile export ([b4c599c](https://github.com/ovh/manager/commit/b4c599c124fc53ce889bd792742a45a39e9971b9)), closes [#15744](https://github.com/ovh/manager/issues/15744)
+- **manager-react-components:** add search in useresourcesv6 hook ([0ba78df](https://github.com/ovh/manager/commit/0ba78df728d46fa0a85f0b8122a7ed31bf70e59f)), closes [#MANAGER-16703](https://github.com/ovh/manager/issues/MANAGER-16703)
+
 ## [2.13.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.13.0...@ovh-ux/manager-react-components@2.13.1) (2025-02-27)
 
 **Note:** Version bump only for package @ovh-ux/manager-react-components

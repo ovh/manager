@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.4.1...@ovh-ux/manager-common-translations@0.5.0) (2025-03-06)
+
+
+### Features
+
+* **common-translations:** add actions & form ([#15497](https://github.com/ovh/manager/issues/15497)) ([b5a0ec2](https://github.com/ovh/manager/commit/b5a0ec2871a91cc2366f31ff57e63eaf1642fbc5)), closes [#MANAGER-16577](https://github.com/ovh/manager/issues/MANAGER-16577)
+
+
+
+
+
 ## [0.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.4.0...@ovh-ux/manager-common-translations@0.4.1) (2025-02-27)
 
 **Note:** Version bump only for package @ovh-ux/manager-common-translations
