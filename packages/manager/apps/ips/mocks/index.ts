@@ -6,3 +6,4 @@ export * from './dedicated-server';
 export * from './organisation';
 export * from './vps';
 export * from './vrack';
+export * from './iam';
