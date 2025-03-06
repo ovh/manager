@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.21.2](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.21.1...@ovh-ux/ovh-at-internet@0.21.2) (2025-03-06)
+
+
+### Bug Fixes
+
+* **ovh-at-internet:** force trackpage to use page params ([f6615f7](https://github.com/ovh/manager/commit/f6615f7de33b4111ade2f6082288403f44c86286))
+
+
+
+
+
 ## [0.21.1](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.21.0...@ovh-ux/ovh-at-internet@0.21.1) (2025-02-20)
 
 
