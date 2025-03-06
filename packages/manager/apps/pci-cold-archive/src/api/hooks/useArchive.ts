@@ -81,25 +81,26 @@ export const usePaginatedArchive = (
     isFetching,
   } = useArchives(projectId);
 
-  return useMemo(
-    () => ({
+  return useMemo(() => {
+    const sortedAndFilteredArchives = sortResults<TArchiveContainer>(
+      applyFilters<TArchiveContainer>(archives || [], filters),
+      sorting,
+    );
+    return {
       isLoading,
       isPending,
       isSuccess,
       isFetching,
       paginatedArchives: paginateResults<TArchiveContainer>(
-        sortResults<TArchiveContainer>(
-          applyFilters<TArchiveContainer>(archives || [], filters),
-          sorting,
-        ),
+        sortedAndFilteredArchives,
         pagination,
       ),
       refresh: () => invalidateGetArchivesCache(projectId, region),
       allArchives: archives,
+      allFilteredArchives: sortedAndFilteredArchives,
       error,
-    }),
-    [archives, error, isLoading, isPending, pagination, sorting, filters],
-  );
+    };
+  }, [archives, error, isLoading, isPending, pagination, sorting, filters]);
 };
 
 export const useDeleteArchive = ({

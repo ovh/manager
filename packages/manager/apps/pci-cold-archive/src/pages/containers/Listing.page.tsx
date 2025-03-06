@@ -44,6 +44,7 @@ export default function ListingPage() {
   const {
     paginatedArchives,
     allArchives,
+    allFilteredArchives,
     isPending: isContainersPending,
     isFetching,
     refresh,
@@ -217,12 +218,14 @@ export default function ListingPage() {
           </div>
         </div>
 
-        <FilterList filters={filters} onRemoveFilter={removeFilter} />
+        <div>
+          <FilterList filters={filters} onRemoveFilter={removeFilter} />
+        </div>
 
         <Datagrid
           columns={columns}
           items={paginatedArchives?.rows || []}
-          totalItems={allArchives?.length || 0}
+          totalItems={allFilteredArchives?.length || 0}
           pagination={pagination}
           onPaginationChange={setPagination}
           sorting={sorting}
