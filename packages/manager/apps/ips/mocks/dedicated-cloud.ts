@@ -3,12 +3,13 @@ import { PathParams } from 'msw';
 import { CountryCode } from '@ovh-ux/manager-config';
 import { availableService, expiredService } from './serviceInfo';
 import { DedicatedCloudLocation, DedicatedCloudService } from '../src/data/api';
+import { resourceMockList } from './iam';
 
 export const dedicatedCloudMockList: DedicatedCloudService[] = [
   {
     iam: {
-      id: 'id-pcc',
-      urn: 'urn:v1:eu:resource:pccVMware:pcc-1',
+      id: resourceMockList[0].id,
+      urn: resourceMockList[0].urn,
     },
     spla: false,
     sslV3: false,
@@ -24,7 +25,7 @@ export const dedicatedCloudMockList: DedicatedCloudService[] = [
     generation: '2.0',
     billingType: 'monthly',
     description: '',
-    serviceName: 'pcc-1',
+    serviceName: resourceMockList[0].name,
     canMigrateToVCD: false,
     commercialRange: 'vrops',
     servicePackName: 'vrops',

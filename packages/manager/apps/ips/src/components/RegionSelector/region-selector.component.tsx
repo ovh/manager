@@ -12,6 +12,7 @@ import {
   isRegionInCa,
   isRegionInEu,
   isRegionInUs,
+  isRegionInAp,
   shadowColor,
 } from './region-selector.utils';
 import './region-selector.scss';
@@ -39,6 +40,7 @@ export const RegionSelector: React.FC<RegionSelectorProps> = ({
           setCaFilter={() => setCurrentFilter(RegionFilter.ca)}
           setEuFilter={() => setCurrentFilter(RegionFilter.eu)}
           setUsFilter={() => setCurrentFilter(RegionFilter.us)}
+          setApFilter={() => setCurrentFilter(RegionFilter.ap)}
         />
       )}
       <div className="flex flex-wrap gap-4">
@@ -51,6 +53,8 @@ export const RegionSelector: React.FC<RegionSelectorProps> = ({
                 return isRegionInCa(region);
               case RegionFilter.us:
                 return isRegionInUs(region);
+              case RegionFilter.ap:
+                return isRegionInAp(region);
               case RegionFilter.all:
               default:
                 return true;
