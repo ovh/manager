@@ -1,6 +1,7 @@
 import React from 'react';
 import { RouteObject } from 'react-router-dom';
 import NotFound from './pages/404';
+import ErrorPage from './pages/error';
 
 const lazyRouteConfig = (importFn: CallableFunction) => {
   return {
@@ -22,7 +23,12 @@ export const routes: RouteObject[] = [
     children: [
       {
         path: '/',
-        ...lazyRouteConfig(() => import('@/pages/index')),
+        ...lazyRouteConfig(() => import('@/pages/nasHaOrder/NasHaOrder.page')),
+      },
+      {
+        path: '/nasha',
+        errorElement: <ErrorPage />,
+        ...lazyRouteConfig(() => import('@/pages/nasHaOrder/NasHaOrder.page')),
       },
     ],
   },

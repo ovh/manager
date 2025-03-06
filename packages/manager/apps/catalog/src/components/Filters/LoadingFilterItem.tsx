@@ -1,5 +1,5 @@
 import React from 'react';
-import { OsdsSkeleton } from '@ovhcloud/ods-components/react';
+import { OdsSkeleton } from '@ovhcloud/ods-components/react';
 
 interface LoadingFilterItemProps {
   lineNumber?: number;
@@ -11,7 +11,7 @@ const LoadingFilterItem: React.FC<LoadingFilterItemProps> = ({
   <>
     {Array.from({ length: lineNumber }, (_, index) => (
       <span key={index} className="break-inside-avoid">
-        <OsdsSkeleton />
+        <OdsSkeleton />
       </span>
     ))}
   </>

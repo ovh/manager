@@ -1,7 +1,4 @@
 import React from 'react';
-import { OsdsChip } from '@ovhcloud/ods-components/react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_CHIP_SIZE } from '@ovhcloud/ods-components';
 import { toFilterDisplay } from '@/utils/utils';
 
 interface FilterChipProps {
@@ -19,28 +16,22 @@ const FilterChip = ({
 }: FilterChipProps) => (
   <div className="flex flex-row flex-wrap md:justify-end md:pt-4 mt-4">
     {universes.map((universe) => (
-      <OsdsChip
+      <span
         key={universe}
         className="inline-flex m-3"
-        color={ODS_THEME_COLOR_INTENT.primary}
-        removable
-        size={ODS_CHIP_SIZE.sm}
-        onOdsChipRemoval={() => onDeleteUniverse(universe)}
+        onClick={() => onDeleteUniverse(universe)}
       >
         {toFilterDisplay(universe)}
-      </OsdsChip>
+      </span>
     ))}
     {categories.map((category) => (
-      <OsdsChip
+      <span
         key={category}
         className="inline-flex m-3"
-        color={ODS_THEME_COLOR_INTENT.primary}
-        removable
-        size={ODS_CHIP_SIZE.sm}
-        onOdsChipRemoval={() => onDeleteCategory(category)}
+        onClick={() => onDeleteCategory(category)}
       >
         {toFilterDisplay(category)}
-      </OsdsChip>
+      </span>
     ))}
   </div>
 );
