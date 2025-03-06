@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-react-app@0.8.3...@ovh-ux/manager-hub-react-app@0.9.0) (2025-03-06)
+
+
+### Bug Fixes
+
+* **hub-react:** add suspense block for last order ([4144a86](https://github.com/ovh/manager/commit/4144a86b4b5eb743c803709624d8765651e67c2f)), closes [#INC0116662](https://github.com/ovh/manager/issues/INC0116662)
+
+
+### Features
+
+* **hub:** refactor order api hooks to optimize call counts ([04dd368](https://github.com/ovh/manager/commit/04dd368543633e8fa69dda975c7f5b357663155a))
+
+
+
+
+
 ## [0.8.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-react-app@0.8.2...@ovh-ux/manager-hub-react-app@0.8.3) (2025-03-04)
 
 
