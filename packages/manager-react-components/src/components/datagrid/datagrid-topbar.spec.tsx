@@ -20,6 +20,26 @@ vitest.mock('react-i18next', async () => {
   };
 });
 
+vitest.mock('@ovhcloud/ods-components/react', async () => {
+  const originalModule = await vitest.importActual(
+    '@ovhcloud/ods-components/react',
+  );
+
+  return {
+    ...originalModule,
+    OdsCheckbox: (column) => (
+      <input
+        type="checkbox"
+        name={column.id}
+        id={column.id}
+        checked={column.isVisible}
+        disabled={column.isDisabled}
+        onChange={column.onChange}
+      />
+    ),
+  };
+});
+
 const filtersColumns = [
   {
     id: 'ip',
@@ -105,5 +125,107 @@ describe('datagrid topbar', () => {
     render(<DatagridTopbar topbar={topbar} />);
     const filterListElement = screen.queryByTestId('custom-topbar-element');
     expect(filterListElement).toBeInTheDocument();
+  });
+
+  it('should display visibility with all available and all shown', () => {
+    render(
+      <DatagridTopbar
+        columnsVisibility={[
+          {
+            id: 'label',
+            label: 'Label',
+            enableHiding: true,
+            isDisabled: false,
+            isVisible: () => true,
+            onChange: () => null,
+          },
+          {
+            id: 'price',
+            label: 'Price',
+            enableHiding: true,
+            isDisabled: false,
+            isVisible: () => true,
+            onChange: () => null,
+          },
+        ]}
+      />,
+    );
+
+    const visibilityElement = screen.queryByTestId(
+      'datagrid-topbar-visibility-button',
+    );
+
+    expect(visibilityElement).toHaveAttribute(
+      'label',
+      'datagrid:common_topbar_columns ',
+    );
+  });
+
+  it('should display visibility with one disabled and only this disabled is shown', () => {
+    render(
+      <DatagridTopbar
+        columnsVisibility={[
+          {
+            id: 'label',
+            label: 'Label',
+            enableHiding: false,
+            isDisabled: true,
+            isVisible: () => true,
+            onChange: () => null,
+          },
+          {
+            id: 'price',
+            label: 'Price',
+            enableHiding: true,
+            isDisabled: false,
+            isVisible: () => false,
+            onChange: () => null,
+          },
+        ]}
+      />,
+    );
+
+    const visibilityElement = screen.queryByTestId(
+      'datagrid-topbar-visibility-button',
+    );
+
+    expect(visibilityElement).toHaveAttribute(
+      'label',
+      'datagrid:common_topbar_columns (0)',
+    );
+  });
+
+  it('should display visibility with all available and one shown', () => {
+    render(
+      <DatagridTopbar
+        columnsVisibility={[
+          {
+            id: 'label',
+            label: 'Label',
+            enableHiding: true,
+            isDisabled: false,
+            isVisible: () => true,
+            onChange: () => null,
+          },
+          {
+            id: 'price',
+            label: 'Price',
+            enableHiding: true,
+            isDisabled: false,
+            isVisible: () => false,
+            onChange: () => null,
+          },
+        ]}
+      />,
+    );
+
+    const visibilityElement = screen.queryByTestId(
+      'datagrid-topbar-visibility-button',
+    );
+
+    expect(visibilityElement).toHaveAttribute(
+      'label',
+      'datagrid:common_topbar_columns (1)',
+    );
   });
 });

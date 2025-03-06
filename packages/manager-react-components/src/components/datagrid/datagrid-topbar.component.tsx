@@ -16,6 +16,10 @@ import { FilterWithLabel } from '../filters/interface';
 import { FilterAdd, FilterList } from '../filters';
 import { ColumnFilter } from '../filters/filter-add.component';
 import './translations';
+import {
+  ColumnsVisibility,
+  VisibilityManagement,
+} from '../visibility/visibility-management.component';
 
 type ColumnFilterProps = {
   key: string;
@@ -37,6 +41,7 @@ export interface FilterProps {
 }
 
 export interface DatagridTopbarProps {
+  columnsVisibility?: ColumnsVisibility[];
   filtersColumns?: ColumnFilter[];
   isSearchable?: boolean;
   filters?: FilterProps;
@@ -45,18 +50,32 @@ export interface DatagridTopbarProps {
 }
 
 export const DatagridTopbar = <T,>({
+  columnsVisibility,
   filters,
   filtersColumns,
   isSearchable,
   search,
   topbar,
 }: DatagridTopbarProps) => {
-  const { t } = useTranslation('filters');
+  const { t } = useTranslation(['filters', 'datagrid']);
   const filterPopoverRef = useRef(null);
+  const visibilityPopoverRef = useRef(null);
+  const numberVisibleColumns = columnsVisibility?.filter((col) =>
+    col.isVisible(),
+  ).length;
+  const disabledVisibleColumns = columnsVisibility?.filter(
+    (col) => col.enableHiding === false,
+  ).length;
+  const hasVisibilityFeature = columnsVisibility?.some(
+    (col) => col.enableHiding,
+  );
 
   return (
     <>
-      {(isSearchable || filtersColumns?.length > 0 || topbar) && (
+      {(isSearchable ||
+        filtersColumns?.length > 0 ||
+        topbar ||
+        hasVisibilityFeature) && (
         <div id="container" className="flex flex-wrap justify-between py-6">
           <div id="left-side" className="w-full md:w-auto md:order-1">
             {topbar && <div>{topbar}</div>}
@@ -127,6 +146,33 @@ export const DatagridTopbar = <T,>({
                         });
                         filterPopoverRef.current?.hide();
                       }}
+                    />
+                  </OdsPopover>
+                </div>
+              )}
+              {hasVisibilityFeature && (
+                <div className="ml-[10px]">
+                  <OdsButton
+                    id="datagrid-visibility-popover-trigger"
+                    slot="datagrid-visibility-popover-trigger"
+                    data-testid="datagrid-topbar-visibility-button"
+                    size={ODS_BUTTON_SIZE.sm}
+                    variant={ODS_BUTTON_VARIANT.ghost}
+                    icon={ODS_ICON_NAME.columns}
+                    aria-label={t('datagrid:common_topbar_columns')}
+                    label={`${t('datagrid:common_topbar_columns')} ${
+                      numberVisibleColumns < columnsVisibility.length
+                        ? `(${numberVisibleColumns - disabledVisibleColumns})`
+                        : ''
+                    }`}
+                  />
+                  <OdsPopover
+                    ref={visibilityPopoverRef}
+                    triggerId="datagrid-visibility-popover-trigger"
+                    with-arrow
+                  >
+                    <VisibilityManagement
+                      columnsVisibility={columnsVisibility}
                     />
                   </OdsPopover>
                 </div>
