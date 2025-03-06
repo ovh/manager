@@ -8,7 +8,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import { DeepReadonly } from '@/types/utils.type';
 import { TSectionType } from '../InstanceAction.page';
-import { kebabToSnakeCase } from '@/utils';
+import { replaceToSnakeCase } from '@/utils';
 
 type TActionModalProps = DeepReadonly<{
   type: TSectionType;
@@ -22,7 +22,10 @@ export const ActionModalContent: FC<TActionModalProps> = ({
   const { t } = useTranslation('actions');
 
   const labels = useMemo((): string[] => {
-    const sectionSnakeCase = type.includes('-') ? kebabToSnakeCase(type) : type;
+    const sectionSnakeCase =
+      type.includes('-') || type.includes('/')
+        ? replaceToSnakeCase(type)
+        : type;
     const confirmationMessage = t(
       `pci_instances_actions_${sectionSnakeCase}_instance_confirmation_message`,
       {
@@ -32,6 +35,7 @@ export const ActionModalContent: FC<TActionModalProps> = ({
     const notaMessage = t(
       `pci_instances_actions_${sectionSnakeCase}_instance_nota_message`,
     );
+
     switch (type) {
       case 'delete':
       case 'stop':
@@ -40,6 +44,7 @@ export const ActionModalContent: FC<TActionModalProps> = ({
       case 'soft-reboot':
       case 'hard-reboot':
       case 'reinstall':
+      case 'rescue/start':
         return [confirmationMessage];
       case 'shelve':
         return [confirmationMessage, notaMessage];
@@ -53,7 +58,7 @@ export const ActionModalContent: FC<TActionModalProps> = ({
       return t(`pci_instances_actions_${type}_instance_warning_message`);
     }
     return null;
-  }, [type, t, instanceName]);
+  }, [type, t]);
 
   return (
     <>

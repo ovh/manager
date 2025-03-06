@@ -8,6 +8,7 @@ import {
   stopInstance,
   unshelveInstance,
   reinstallInstance,
+  rescueMode,
 } from '@/data/api/instance';
 import { DeepReadonly } from '@/types/utils.type';
 import { instancesQueryKey } from '@/utils';
@@ -21,8 +22,7 @@ export type TMutationFnType =
   | 'unshelve'
   | 'soft-reboot'
   | 'hard-reboot'
-  | 'reinstall'
-  | 'rescue/start';
+  | 'reinstall';
 
 export type TMutationFnVariables = TInstanceDto | undefined;
 
@@ -33,7 +33,42 @@ export type TUseInstanceActionCallbacks = DeepReadonly<{
 
 const unknownError = new Error('Unknwon Error');
 
-export const useInstanceAction = (
+export const useInstanceRescueAction = (
+  projectId: string,
+  { onError, onSuccess }: TUseInstanceActionCallbacks = {},
+) => {
+  const mutationKey = instancesQueryKey(projectId, [
+    'instance',
+    'rescue/start',
+  ]);
+  const mutationFn = useCallback(
+    ({ instance, imageId }: { instance: TInstanceDto; imageId: string }) => {
+      if (!instance) return Promise.reject(unknownError);
+      const { id } = instance;
+      return rescueMode({ projectId, instanceId: id, imageId });
+    },
+    [projectId],
+  );
+
+  const mutation = useMutation<
+    null,
+    unknown,
+    { instance: TInstanceDto; imageId: string },
+    unknown
+  >({
+    mutationKey,
+    mutationFn,
+    onError,
+    onSuccess,
+  });
+
+  return {
+    mutationHandler: mutation.mutate,
+    ...mutation,
+  };
+};
+
+export const useBaseInstanceAction = (
   type: TMutationFnType | null,
   projectId: string,
   { onError, onSuccess }: TUseInstanceActionCallbacks = {},

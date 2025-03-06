@@ -11,7 +11,8 @@ type TInstanceAction =
   | 'shelve'
   | 'unshelve'
   | 'reboot'
-  | 'reinstall';
+  | 'reinstall'
+  | 'rescueMode';
 
 const instanceActionUrl = (
   projectId: string,
@@ -84,6 +85,22 @@ export const rebootInstance = ({
 }): Promise<null> =>
   v6.post(instanceActionUrl(projectId, instanceId, 'reboot'), {
     type: rebootType,
+  });
+
+export const rescueMode = ({
+  projectId,
+  instanceId,
+  imageId,
+}: {
+  projectId: string;
+  instanceId: string;
+  imageId: string;
+}): Promise<null> =>
+  v6.post(instanceActionUrl(projectId, instanceId, 'rescueMode'), {
+    imageId,
+    instanceId,
+    rescue: true,
+    serviceName: 'ed4aefdc749145b4bcfa8b174ff2b25f',
   });
 
 export const reinstallInstance = (
