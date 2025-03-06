@@ -1,4 +1,5 @@
 {
+  "iam_api_keys_create_api_key": "Créer une clé API",
   "iam_api_keys_datagrid_column_application_id": "ID",
   "iam_api_keys_datagrid_column_application_name": "Nom",
   "iam_api_keys_datagrid_column_application_description": "Description",

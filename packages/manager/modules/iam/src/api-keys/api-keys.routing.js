@@ -2,13 +2,16 @@ import { TAG } from '../iam.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('iam.api-keys', {
-    url: '/api-keys?cursors',
+    url: '/api-keys',
     component: 'iamApiKeys',
     redirectTo: (transition) =>
       transition
         .injector()
         .getAsync('apiKeys')
-        .then((apiKeys) => !apiKeys && { state: 'iam.api-keys.onboarding' }),
+        .then(
+          (apiKeys) =>
+            apiKeys.length === 0 && { state: 'iam.api-keys.onboarding' },
+        ),
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('iam_api_keys'),
