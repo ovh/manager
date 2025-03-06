@@ -15,6 +15,7 @@ export type Filter = {
   key: string;
   value: string | string[];
   comparator: FilterComparator;
+  type?: FilterTypeCategories;
 };
 
 export enum FilterTypeCategories {
@@ -67,10 +68,24 @@ export function applyFilters<T>(items: T[] = [], filters: Filter[] = []) {
           keep = keep && `${value}`.toLowerCase().endsWith(comp.toLowerCase());
           break;
         case FilterComparator.IsEqual:
-          keep = keep && `${value}`.toLowerCase() === comp.toLowerCase();
+          if (filter.type === FilterTypeCategories.Date) {
+            keep =
+              keep &&
+              new Date(`${value}`).setHours(0, 0, 0, 0) ===
+                new Date(comp).setHours(0, 0, 0, 0);
+          } else {
+            keep = keep && `${value}`.toLowerCase() === comp.toLowerCase();
+          }
           break;
         case FilterComparator.IsDifferent:
-          keep = keep && `${value}`.toLowerCase() !== comp.toLowerCase();
+          if (filter.type === FilterTypeCategories.Date) {
+            keep =
+              keep &&
+              new Date(`${value}`).setHours(0, 0, 0, 0) !==
+                new Date(comp).setHours(0, 0, 0, 0);
+          } else {
+            keep = keep && `${value}`.toLowerCase() !== comp.toLowerCase();
+          }
           break;
         case FilterComparator.IsLower:
           keep = keep && Number(value) < Number(comp);
