@@ -1,12 +1,6 @@
-import {
-  ApiResponse,
-  IcebergFetchResultV6,
-  apiClient,
-  fetchIcebergV6,
-} from '@ovh-ux/manager-core-api';
+import { ApiResponse, apiClient } from '@ovh-ux/manager-core-api';
 import { IamObject } from '@ovh-ux/manager-react-components';
 import { ServiceStatus } from '@/types';
-import { toServiceListItem } from '@/utils/toServiceListItem';
 
 export type DedicatedServer = {
   ip: string;
@@ -34,21 +28,6 @@ export type DedicatedServer = {
   powerState: 'poweron' | 'poweroff';
   noIntervention: boolean;
   iam: IamObject;
-};
-
-export const getDedicatedServerList = async (): Promise<IcebergFetchResultV6<{
-  serviceName: string;
-  displayName: string;
-}>> => {
-  const response = await fetchIcebergV6<DedicatedServer>({
-    route: '/dedicated/server',
-    pageSize: 1000,
-  });
-
-  return {
-    ...response,
-    data: response.data.map(toServiceListItem),
-  };
 };
 
 export const getDedicatedServerData = (
@@ -105,8 +84,7 @@ export type OrderableIpResponse = {
   ipv6: OrderableIp[];
 };
 
-// TODO: Maybe check for limitations of ip quantity with this call
 export const getDedicatedServerOrderableIp = (
   serverName: string,
-): Promise<OrderableIpResponse> =>
+): Promise<ApiResponse<OrderableIpResponse>> =>
   apiClient.v6.get(`/dedicated/server/${serverName}/orderable/ip`);
