@@ -28,6 +28,7 @@ export const SECTIONS = {
   softReboot: 'soft-reboot',
   hardReboot: 'hard-reboot',
   reinstall: 'reinstall',
+  rescue: 'rescue/start',
 };
 
 const instanceActionsSections = [
@@ -39,6 +40,7 @@ const instanceActionsSections = [
   SECTIONS.softReboot,
   SECTIONS.hardReboot,
   SECTIONS.reinstall,
+  SECTIONS.rescue,
 ];
 
 const instanceActionLegacyRoutes = instanceActionsSections.map((section) => ({

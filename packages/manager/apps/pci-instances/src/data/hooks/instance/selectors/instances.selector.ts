@@ -96,6 +96,13 @@ const getActionHrefByName = (
     };
   }
 
+  if (name === 'rescue') {
+    return {
+      path: `region/${region}/instance/${id}/rescue/start`,
+      isExternal: false,
+    };
+  }
+
   const actions = new Set([
     'delete',
     'stop',
