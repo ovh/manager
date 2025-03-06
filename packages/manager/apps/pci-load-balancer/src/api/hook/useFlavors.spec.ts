@@ -1,7 +1,7 @@
 import { renderHook, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import { useGetFlavor } from './useFlavors';
-import { getFlavor } from '@/api/data/flavors';
+import { getFlavors } from '@/api/data/flavors';
 import { wrapper } from '@/wrapperRenders';
 import { TFlavor } from '../data/load-balancer';
 import { TProductAddonDetail } from '@/types/product.type';
@@ -22,7 +22,7 @@ describe('useGetFlavor', () => {
       region: 'region1',
       id: 'id1',
     } as TFlavor;
-    vi.mocked(getFlavor).mockResolvedValueOnce([mockFlavorData]);
+    vi.mocked(getFlavors).mockResolvedValueOnce([mockFlavorData]);
 
     const { result } = renderHook(
       () => useGetFlavor(projectId, regionName, addon),
@@ -32,6 +32,6 @@ describe('useGetFlavor', () => {
     await waitFor(() => expect(result.current.isSuccess).toBe(true));
 
     expect(result.current.data).toEqual(mockFlavorData);
-    expect(getFlavor).toHaveBeenCalledWith(projectId, regionName);
+    expect(getFlavors).toHaveBeenCalledWith(projectId, regionName);
   });
 });

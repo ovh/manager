@@ -1,7 +1,7 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 import { TFlavor } from '@/api/data/load-balancer';
 
-export const getFlavor = async (
+export const getFlavors = async (
   projectId: string,
   regionName: string,
 ): Promise<TFlavor[]> => {

@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import {
   OsdsLink,
   OsdsMessage,
@@ -26,11 +26,7 @@ import {
 import { REGION_AVAILABILITY_LINK } from '@/constants';
 import { StepsEnum, useCreateStore } from '@/pages/create/store';
 import { useTracking } from '@/pages/create/hooks/useTracking';
-import {
-  getRegionPrivateNetworksQuery,
-  useGetPrivateNetworks,
-} from '@/api/hook/useNetwork';
-import queryClient from '@/queryClient';
+import { useGetRegionPrivateNetworks } from '@/api/hook/useNetwork';
 import { TProductAvailabilityRegion } from '@/types/region.type';
 
 export type TRegionStepProps = {
@@ -54,17 +50,10 @@ export const RegionStep = ({
 
   const store = useCreateStore();
 
-  const { data: networks } = useGetPrivateNetworks(projectId);
-
-  const [isCheckingNetwork, setIsCheckingNetwork] = useState(false);
-
-  const isNetworkAvailable = useMemo(
-    () =>
-      networks?.some((network) =>
-        network.regions.some((region) => region.region === store?.region?.name),
-      ),
-    [networks, store?.region],
-  );
+  const {
+    list: networks,
+    isFetching: isSearchingNetwork,
+  } = useGetRegionPrivateNetworks(projectId, store.region?.name || '');
 
   const has3AZ = useMemo(() => {
     const allRegions = regions ? [...regions.values()] : [];
@@ -78,15 +67,6 @@ export const RegionStep = ({
 
     if (region) {
       store.set.region(region);
-
-      setIsCheckingNetwork(true);
-
-      // prefetch network for the next step
-      await queryClient.prefetchQuery(
-        getRegionPrivateNetworksQuery(projectId, region.name),
-      );
-
-      setIsCheckingNetwork(false);
     }
   };
 
@@ -107,7 +87,7 @@ export const RegionStep = ({
           store.open(StepsEnum.SIZE);
         },
         label: t('pci-common:common_stepper_next_button_label'),
-        isDisabled: !isNetworkAvailable || isCheckingNetwork,
+        isDisabled: networks.length === 0,
       }}
       edit={{
         action: () => {
@@ -152,27 +132,12 @@ export const RegionStep = ({
           }
         />
       </PCICommonContext.Provider>
-      {store.region?.type === 'region-3-az' && (
-        <OsdsMessage
-          color={ODS_THEME_COLOR_INTENT.warning}
-          icon={ODS_ICON_NAME.WARNING}
-          className="mt-6"
-        >
-          <OsdsText
-            level={ODS_TEXT_LEVEL.body}
-            size={ODS_TEXT_SIZE._400}
-            color={ODS_THEME_COLOR_INTENT.text}
-          >
-            {t('octavia_load_balancer_create_region_3az_price')}
-          </OsdsText>
-        </OsdsMessage>
-      )}
-      {isCheckingNetwork && (
+      {isSearchingNetwork && (
         <div className="mt-6">
           <OsdsSpinner inline />
         </div>
       )}
-      {store.region && !isNetworkAvailable && (
+      {store.region && networks.length === 0 && !isSearchingNetwork && (
         <OsdsMessage
           color={ODS_THEME_COLOR_INTENT.warning}
           icon={ODS_ICON_NAME.WARNING}

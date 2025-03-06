@@ -4,8 +4,8 @@ import {
   getProductAvailabilityQuery,
 } from '@ovh-ux/manager-pci-common';
 import { useQueries } from '@tanstack/react-query';
-import { sortProductBySize } from '@/utils/utils';
 import { TAddonRegions } from '@/types/region.type';
+import { sortProductBySize } from './addons.select';
 
 type UseAddonsParams = {
   ovhSubsidiary: string;

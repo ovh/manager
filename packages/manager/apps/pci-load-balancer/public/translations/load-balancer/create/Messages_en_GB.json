@@ -43,6 +43,5 @@
   "octavia_load_balancer_create_size_flavour_description_2xl": "Ideal for projects with high traffic volume, as it provides ample bandwidth for consistent performance.",
   "octavia_load_balancer_create_size_flavour_description_3xl": "Built for critical systems with heavy traffic, it maximises performance through its high bandwidth capabilities.",
   "octavia_load_balancer_create_private_network": "There are no private networks in the region selected. Make sure <link /> before the Load Balancer is created.",
-  "octavia_load_balancer_create_private_network_label": "you create a private network",
-  "octavia_load_balancer_create_region_3az_price": "Load Balancer is currently in beta phase in the Paris zone (EU-WEST-PAR) and is therefore free during this period."
+  "octavia_load_balancer_create_private_network_label": "you create a private network"
 }
