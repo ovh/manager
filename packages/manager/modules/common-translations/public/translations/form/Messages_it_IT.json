@@ -1,0 +1,19 @@
+{
+  "mandatory_fields": "I campi contrassegnati con un asterisco * sono obbligatori.",
+  "max_chars": "{{ value }} caratteri massimo.",
+  "min_chars": "{{ value }} caratteri minimo.",
+  "required_field": "Campo obbligatorio",
+  "required_fields": "Campo obbligatorio",
+  "error_required_field": "Completa questo campo",
+  "error_required_fields": "Completa questi campi.",
+  "error_number": "Inserisci un valore numerico valido",
+  "error_email": "Inserisci un indirizzo email valido.",
+  "error_min_exclusive": "Inserisci un valore maggiore di {{ value }}.",
+  "error_min_inclusive": "Inserisci un valore maggiore o uguale a {{ value }}.",
+  "error_max_exclusive": "Inserisci un valore inferiore a {{ value }}.",
+  "error_max_inclusive": "Inserisci un valore inferiore o uguale a {{ value }}.",
+  "error_min_chars": "Inserisci almeno {{ value }} caratteri.",
+  "error_max_chars": "Inserisci un massimo di {{ value }} caratteri.",
+  "error_between_min_max_chars": "Il campo deve contenere tra {{ min }} e {{ max }} caratteri.",
+  "error_pattern": "Inserisci un formato valido"
+}

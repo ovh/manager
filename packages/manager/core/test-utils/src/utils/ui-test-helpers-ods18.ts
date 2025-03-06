@@ -7,6 +7,7 @@ import {
   waitForOptions,
 } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import { WAIT_FOR_DEFAULT_OPTIONS } from './common.constants';
 
 export const assertOdsModalVisibility = async ({
   container,
@@ -16,12 +17,15 @@ export const assertOdsModalVisibility = async ({
   container: HTMLElement;
   isVisible: boolean;
 } & waitForOptions) =>
-  waitFor(() => {
-    const modal = container.querySelector('ods-modal');
-    return isVisible
-      ? expect(modal).toBeInTheDocument()
-      : expect(modal).not.toBeInTheDocument();
-  }, options);
+  waitFor(
+    () => {
+      const modal = container.querySelector('ods-modal');
+      return isVisible
+        ? expect(modal).toBeInTheDocument()
+        : expect(modal).not.toBeInTheDocument();
+    },
+    { ...WAIT_FOR_DEFAULT_OPTIONS, ...options },
+  );
 
 export const assertOdsModalText = ({
   container,
@@ -38,7 +42,7 @@ export const assertOdsModalText = ({
           exact: false,
         }),
       ).toBeVisible(),
-    options,
+    { ...WAIT_FOR_DEFAULT_OPTIONS, ...options },
   );
 
 export const getOdsButtonByLabel = async ({
@@ -58,17 +62,20 @@ export const getOdsButtonByLabel = async ({
   nth?: number;
 } & waitForOptions) => {
   let button: HTMLElement;
-  await waitFor(() => {
-    const buttonList = container.querySelectorAll(
-      isLink ? 'ods-link' : 'ods-button',
-    );
-    button = Array.from(buttonList).filter((btn) =>
-      [label, altLabel].includes(btn.getAttribute('label')),
-    )[nth] as HTMLElement;
-    return disabled
-      ? expect(button).toHaveAttribute('disabled')
-      : expect(button).not.toHaveAttribute('disabled');
-  }, options);
+  await waitFor(
+    () => {
+      const buttonList = container.querySelectorAll(
+        isLink ? 'ods-link' : 'ods-button',
+      );
+      button = Array.from(buttonList).filter((btn) =>
+        [label, altLabel].includes(btn.getAttribute('label')),
+      )[nth] as HTMLElement;
+      return disabled
+        ? expect(button).toHaveAttribute('disabled')
+        : expect(button).not.toHaveAttribute('disabled');
+    },
+    { ...WAIT_FOR_DEFAULT_OPTIONS, ...options },
+  );
   return button;
 };
 
@@ -87,14 +94,17 @@ export const getOdsButtonByIcon = async ({
   nth?: number;
 } & waitForOptions) => {
   let button: HTMLElement;
-  await waitFor(() => {
-    button = container.querySelectorAll(
-      `${isLink ? 'ods-link' : 'ods-button'}[icon="${iconName}"]`,
-    )?.[nth]?.parentElement;
-    return disabled
-      ? expect(button).toHaveAttribute('disabled')
-      : expect(button).not.toHaveAttribute('disabled');
-  }, options);
+  await waitFor(
+    () => {
+      button = container.querySelectorAll(
+        `${isLink ? 'ods-link' : 'ods-button'}[icon="${iconName}"]`,
+      )?.[nth]?.parentElement;
+      return disabled
+        ? expect(button).toHaveAttribute('disabled')
+        : expect(button).not.toHaveAttribute('disabled');
+    },
+    { ...WAIT_FOR_DEFAULT_OPTIONS, ...options },
+  );
   return button;
 };
 

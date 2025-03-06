@@ -8,14 +8,14 @@
   "zimbra_redirections_account_title": "Gestione dei reindirizzamenti",
   "zimbra_redirections_status": "Stato",
   "zimbra_redirections_delete_modal_content": "Vuoi eliminare il reindirizzamento?",
-  "zimbra_redirections_add_header": "Inserisci le informazioni relative al reindirizzamento.",
+  "zimbra_redirections_add_header": "Inserisci le informazioni per il reindirizzamento.",
   "zimbra_redirections_add_form_input_from": "Dall'indirizzo",
-  "zimbra_redirections_add_form_input_to": "All'indirizzo",
-  "zimbra_redirections_add_form_input_checkbox": "Conserva una copia dell'email in OVHcloud",
+  "zimbra_redirections_add_form_input_to": "Verso l'indirizzo",
+  "zimbra_redirections_add_form_input_checkbox": "Conservare una copia dell'email in OVHcloud",
   "zimbra_redirections_add_success_message": "La richiesta di creazione del reindirizzamento è stata presa in carico. Sarà elaborata entro pochi minuti.",
-  "zimbra_redirections_add_error_message": "La richiesta di creazione del reindirizzamento non è andata a buon fine. {{ error }}",
+  "zimbra_redirections_add_error_message": "La richiesta di creazione del reindirizzamento non è andata a buon fine: {{ error }}",
   "zimbra_redirections_edit_success_message": "La richiesta di modifica del reindirizzamento è stata presa in carico. Sarà elaborata entro pochi minuti.",
-  "zimbra_redirections_edit_error_message": "La richiesta di modifica del reindirizzamento non è andata a buon fine. {{ error }}",
-  "zimbra_redirections_delete_success_message": "La richiesta di eliminazione del reindirizzamento è stata presa in carico. Sarà elaborata entro pochi minuti.",
-  "zimbra_redirections_delete_error_message": "La richiesta di eliminazione del reindirizzamento non è andata a buon fine. {{ error }}"
+  "zimbra_redirections_edit_error_message": "La richiesta di modifica del reindirizzamento non è andata a buon fine: {{ error }}",
+  "zimbra_redirections_delete_success_message": "La tua richiesta di eliminazione del reindirizzamento è stata presa in carico. Sarà elaborata entro pochi minuti.",
+  "zimbra_redirections_delete_error_message": "La tua richiesta di eliminazione del reindirizzamento non è andata a buon fine: {{ error }}"
 }

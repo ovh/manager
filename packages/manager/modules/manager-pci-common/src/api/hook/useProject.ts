@@ -1,6 +1,18 @@
 import { useParams } from 'react-router-dom';
-import { QueryOptions, useQuery } from '@tanstack/react-query';
-import { getProject, getProjectQuota, TProject, TQuota } from '../data/project';
+import {
+  QueryOptions,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from '@tanstack/react-query';
+import {
+  getProject,
+  getProjectQuota,
+  TProject,
+  TProjectUpdate,
+  TQuota,
+  updateProject,
+} from '../data/project';
 
 export interface ResponseAPIError {
   message: string;
@@ -18,8 +30,10 @@ export interface ResponseAPIError {
   };
 }
 
+export const getProjectQueryKey = (projectId: string) => ['project', projectId];
+
 export const getProjectQuery = (projectId: string) => ({
-  queryKey: ['project', projectId],
+  queryKey: getProjectQueryKey(projectId),
   queryFn: () => getProject(projectId),
 });
 
@@ -33,6 +47,34 @@ export const useProject = (
     ...getProjectQuery(projectId || defaultProjectId),
     ...options,
   });
+};
+
+export interface UpdateProjectProps {
+  projectId: string;
+  onError: (cause: Error) => void;
+  onSuccess: () => void;
+}
+
+export const useUpdateProject = ({
+  projectId,
+  onError,
+  onSuccess,
+}: UpdateProjectProps) => {
+  const queryClient = useQueryClient();
+  const mutation = useMutation({
+    mutationFn: (changes: TProjectUpdate) => updateProject(projectId, changes),
+    onError,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: getProjectQueryKey(projectId),
+      });
+      onSuccess();
+    },
+  });
+  return {
+    update: (changes: TProjectUpdate) => mutation.mutate(changes),
+    ...mutation,
+  };
 };
 
 export const getProjectQuotaQuery = (projectId: string) => ({

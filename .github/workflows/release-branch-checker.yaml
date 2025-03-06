@@ -1,7 +1,7 @@
 name: 'Check for Release Branch'
 on:
   pull_request:
-    types: [opened, edited]
+    types: [opened, edited, reopened, synchronize]
 
 jobs:
   check_branch:

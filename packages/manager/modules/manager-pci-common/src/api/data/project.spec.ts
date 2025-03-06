@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 import { v6 } from '@ovh-ux/manager-core-api';
-import { getProject } from './project';
+import { getProject, updateProject } from './project';
 
 describe('getProject', () => {
   it('returns project data successfully', async () => {
@@ -53,5 +53,18 @@ describe('getProject', () => {
     vi.mocked(v6.get).mockResolvedValueOnce({ data: mockData });
     const result = await getProject('project2');
     expect(result).toEqual(mockData);
+  });
+});
+
+describe('upateProject', () => {
+  it('put data on project endpoint', async () => {
+    const projectId = '123';
+    const changes = {
+      description: 'hello',
+      manualQuota: true,
+    };
+    vi.mocked(v6.put).mockResolvedValueOnce({ data: null });
+    await updateProject(projectId, changes);
+    expect(v6.put).toHaveBeenCalledWith('/cloud/project/123', changes);
   });
 });

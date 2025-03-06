@@ -15,6 +15,12 @@
 /packages/manager/apps/container @ovh/dev-manager-gcj-all
 /packages/manager/apps/dbaas-logs @ovh/dev-manager-enabler-all
 /packages/manager/apps/dedicated @ovh/dev-manager-infra-all
+/packages/manager/apps/dedicated/client/*.js* @ovh/dev-manager-infra-all @ovh/dev-manager-hpc-all
+/packages/manager/apps/dedicated/client/app/managedBaremetal @ovh/dev-manager-hpc-all
+/packages/manager/apps/dedicated/client/app/dedicatedCloud @ovh/dev-manager-hpc-all
+/packages/manager/apps/dedicated/client/app/components/dedicated-cloud @ovh/dev-manager-hpc-all
+/packages/manager/apps/dedicated/client/__mocks__ @ovh/dev-manager-infra-all @ovh/dev-manager-hpc-all
+/packages/manager/apps/dedicated/client/__tests__ @ovh/dev-manager-infra-all @ovh/dev-manager-hpc-all
 /packages/manager/apps/dedicated-server @ovh/dev-manager-infra-all
 /packages/manager/apps/email-domain @ovh/dev-manager-web-all
 /packages/manager/apps/email-pro @ovh/dev-manager-web-all
@@ -31,7 +37,6 @@
 /packages/manager/apps/nasha @ovh/dev-manager-infra-all
 /packages/manager/apps/netapp @ovh/dev-manager-infra-all
 /packages/manager/apps/nutanix @ovh/dev-manager-hpc-all
-/packages/manager/apps/octavia-load-balancer @ovh/dev-manager-pci-all
 /packages/manager/apps/office @ovh/dev-manager-web-all
 /packages/manager/apps/overthebox @ovh/dev-manager-web-all
 /packages/manager/apps/pci @ovh/dev-manager-pci-all
@@ -85,9 +90,9 @@
 /packages/manager/modules/netapp @ovh/dev-manager-infra-all
 /packages/manager/modules/new-billing @ovh/dev-manager-gcj-all
 /packages/manager/modules/nutanix @ovh/dev-manager-hpc-all
-/packages/manager/modules/octavia-load-balancer @ovh/dev-manager-pci-all
 /packages/manager/modules/office @ovh/dev-manager-web-all
 /packages/manager/modules/overthebox @ovh/dev-manager-web-all
+/packages/manager/modules/pci @ovh/dev-manager-pci-all
 /packages/manager/modules/pci-universe-components @ovh/dev-manager-pci-all
 /packages/manager/modules/phone-prefix @ovh/dev-manager-web-all
 /packages/manager/modules/product-offers @ovh/dev-manager-web-all
@@ -99,7 +104,7 @@
 /packages/manager/modules/telecom-styles @ovh/dev-manager-web-all
 /packages/manager/modules/telecom-task @ovh/dev-manager-web-all
 /packages/manager/modules/telecom-universe-components @ovh/dev-manager-web-all
-/packages/manager/modules/vcd-api @ovh/dev-manager-hpc-all
+/packages/manager/modules/trusted-nic @ovh/dev-manager-gcj-all
 /packages/manager/modules/vcd-api @ovh/dev-manager-hpc-all
 /packages/manager/modules/veeam-cloud-connect @ovh/dev-manager-infra-all
 /packages/manager/modules/veeam-enterprise @ovh/dev-manager-infra-all

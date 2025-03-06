@@ -2,7 +2,12 @@ import clone from 'lodash/clone';
 import filter from 'lodash/filter';
 import head from 'lodash/head';
 import punycode from 'punycode';
-import { ADD_STATES } from './add.constants';
+import {
+  ADD_STATES,
+  CONFIGURATION_MODE,
+  DEFAULT_OVH_TARGET_SERVER_URL,
+  DOMAIN_MODE,
+} from './add.constants';
 
 export default /* @ngInject */ (
   $rootScope,
@@ -29,12 +34,17 @@ export default /* @ngInject */ (
       name: '',
       displayName: '',
       isUTF8Domain: false,
-      srvParam: false,
-      mxParam: false,
-      autoEnableDKIM: true,
+      srvParam: true,
+      mxParam: true,
+      configureSPF: true,
+      configureDKIM: true,
       domainType: $scope.ovhDomain,
+      mxRelay: '',
+      configMode: CONFIGURATION_MODE.RECOMMENDED,
     };
     $scope.isOvhDomain = true;
+    $scope.CONFIGURATION_MODE = CONFIGURATION_MODE;
+    $scope.DEFAULT_OVH_TARGET_SERVER_URL = DEFAULT_OVH_TARGET_SERVER_URL;
   };
 
   const prepareData = function prepareData(data) {
@@ -43,12 +53,9 @@ export default /* @ngInject */ (
     $scope.availableDomainsBuffer = data.availableDomains;
     $scope.availableTypes = data.types;
     $scope.availableMainDomains = data.mainDomains;
-    $scope.model.type = head($scope.availableTypes);
 
     if ($scope.availableDomains.length === 0) {
       $scope.model.domainType = $scope.nonOvhDomain;
-      $scope.model.srvParam = false;
-      $scope.model.mxParam = false;
       $scope.isOvhDomain = false;
     }
   };
@@ -71,6 +78,13 @@ export default /* @ngInject */ (
     }
   };
 
+  const shouldConfigureRecord = function shouldConfigure(value) {
+    return (
+      (!!value || $scope.model.configMode === CONFIGURATION_MODE.RECOMMENDED) &&
+      $scope.isOvhDomain
+    );
+  };
+
   const prepareModel = function prepareModel() {
     if ($scope.setOrganization2010) {
       if ($scope.model.main) {
@@ -81,14 +95,24 @@ export default /* @ngInject */ (
       }
       delete $scope.model.attachOrganization2010;
     }
-    $scope.model.configureDKIM = $scope.isOvhDomain;
-    $scope.model.autoEnableDKIM =
-      $scope.model.autoEnableDKIM && $scope.isOvhDomain;
-    $scope.model.configureSPF = $scope.isOvhDomain;
+    $scope.model.configureDKIM = shouldConfigureRecord(
+      $scope.model.configureDKIM,
+    );
+    $scope.model.autoEnableDKIM = !!$scope.model.configureDKIM;
+    $scope.model.configureSPF = shouldConfigureRecord(
+      $scope.model.configureSPF,
+    );
+    $scope.model.srvParam = shouldConfigureRecord($scope.model.srvParam);
+    $scope.model.mxParam = shouldConfigureRecord($scope.model.mxParam);
+
+    $scope.model.type = $scope.model.mxRelay
+      ? DOMAIN_MODE.NON_AUTHORITATIVE
+      : DOMAIN_MODE.AUTHORITATIVE;
 
     delete $scope.model.displayName;
     delete $scope.model.domainType;
     delete $scope.model.isUTF8Domain;
+    delete $scope.model.configMode;
   };
 
   init();
@@ -112,6 +136,29 @@ export default /* @ngInject */ (
     );
 
     check2010Provider();
+  };
+
+  $scope.checkDomain = function checkDomain() {
+    $scope.loading = true;
+    // check if domain has MxPlan already configured
+    EmailProDomains.checkMxPlan($scope.model.name)
+      .then(() => {
+        $scope.model.mxRelay = DEFAULT_OVH_TARGET_SERVER_URL;
+        $scope.loading = false;
+      })
+      .catch(() => {
+        // check zimbra only if MxPlan not configured
+        // because zimbra domain call is slow
+        EmailProDomains.checkZimbra($scope.model.name)
+          .then((found) => {
+            if (found) {
+              $scope.model.mxRelay = DEFAULT_OVH_TARGET_SERVER_URL;
+            }
+          })
+          .finally(() => {
+            $scope.loading = false;
+          });
+      });
   };
 
   $scope.resetSearchValue = function resetSearchValue() {
@@ -167,12 +214,8 @@ export default /* @ngInject */ (
   $scope.onChangeDomainType = () => {
     $scope.resetName();
     $scope.isOvhDomain = $scope.model.domainType === $scope.ovhDomain;
-  };
-
-  $scope.checkDomain = function checkDomain() {
-    if (!$scope.isOvhDomain) {
-      $scope.model.srvParam = false;
-    }
+    $scope.model.configMode = CONFIGURATION_MODE.RECOMMENDED;
+    $scope.model.mxRelay = '';
   };
 
   $scope.changeName = function changeName() {

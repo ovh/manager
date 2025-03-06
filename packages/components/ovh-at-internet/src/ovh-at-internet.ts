@@ -311,7 +311,7 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
     if (this.canTrack()) {
       const tracking = {
         ...this.getGenericTrackingData(data),
-        ...getPageTrackingData(data),
+        ...getPageTrackingData(data?.page || data),
       };
       if (tracking.page) {
         this.sendEvent('page.display', filterTrackingData(tracking));

@@ -238,4 +238,34 @@ export default /* @ngInject */ function EmailProDomains(
       .get(`/email/pro/${serviceName}/domain/${domain}/dkim/${selectorName}`)
       .then(({ data }) => data);
   };
+
+  this.checkMxPlan = function checkMxPlan(domain) {
+    return $http.get(`/email/domain/${domain}`);
+  };
+
+  this.checkZimbra = (domain) => {
+    return $http({
+      url: '/engine/api/v2/zimbra/platform',
+      serviceType: 'apiv2',
+      headers: { 'X-Pagination-Size': 9999 },
+    }).then(({ data }) => {
+      return Promise.allSettled(
+        data?.map((platform) => this.checkZimbraDomain(platform.id, domain)),
+      ).then((res) => {
+        return res.some((result) => result.status === 'fulfilled');
+      });
+    });
+  };
+
+  this.checkZimbraDomain = function checkZimbraDomain(platformId, domain) {
+    return $http({
+      url: `/engine/api/v2/zimbra/platform/${platformId}/domain`,
+      serviceType: 'apiv2',
+      headers: { 'X-Pagination-Size': 9999 },
+    }).then(({ data }) => {
+      return (
+        data?.some((d) => d?.currentState?.name === domain) || Promise.reject()
+      );
+    });
+  };
 }

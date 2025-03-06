@@ -1,0 +1,19 @@
+{
+  "mandatory_fields": "Pola oznaczone gwiazdką * są obowiązkowe.",
+  "max_chars": "Maksymalna liczba znaków: {{value}}",
+  "min_chars": "Minimalna liczba znaków: {{value}}",
+  "required_field": "Pole obowiązkowe",
+  "required_fields": "Pole obowiązkowe",
+  "error_required_field": "Wypełnij to pole.",
+  "error_required_fields": "Wypełnij te pola.",
+  "error_number": "Wprowadź poprawną wartość liczbową.",
+  "error_email": "Wprowadź poprawny adres e-mail.",
+  "error_min_exclusive": "Wprowadź wartość większą niż {{value}}.",
+  "error_min_inclusive": "Wprowadź wartość większą lub równą {{value}}.",
+  "error_max_exclusive": "Wprowadź wartość mniejszą niż {{value}}.",
+  "error_max_inclusive": "Wprowadź wartość mniejszą lub równą {{value}}.",
+  "error_min_chars": "Wprowadź minimum {{value}} znaków.",
+  "error_max_chars": "Wprowadź maksymalnie {{value}} znaków.",
+  "error_between_min_max_chars": "Pole musi zawierać od {{min}} do {{max}} znaków.",
+  "error_pattern": "Użyj poprawnego formatu."
+}
