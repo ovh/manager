@@ -8,6 +8,8 @@
   "dedicatedCloud_nsx_link_datastore_order": "Ajouter du stockage",
   "dedicatedCloud_nsx_link_hosts_order": "Ajouter des hosts",
   "dedicatedCloud_manage_nsx_edge_title": "Modifier les noeuds NSX Edge",
+  "dedicatedCloud_manage_nsx_edge_description_line_1": "Par défaut, tous les datacenters virtuels (VDC) NSX disposent d'un cluster NSX Edge composé de deux NSX Edge medium. Vous avez ensuite la possibilité de modifier la taille des Edges, sous réserve de disposer des ressources nécessaires pour ajuster leur taille ou leur nombre.",
+  "dedicatedCloud_manage_nsx_edge_description_line_2": "Cette interface vous permet de redimensionner des NSX Edge Nodes. Ceux-ci sont facturés au tarif de {{ price }} par vCPU et par mois. Des remises peuvent s’appliquer en fonction de votre engagement contractuel. Pour en savoir plus, consultez notre <a class=\"oui-link_icon\" href=\"{{link}}\" target=\"_blank\" rel=\"noopener noreferrer\">site web<i class=\"oui-icon oui-icon-external-link\" aria-label=\"External link\" aria-hidden=\"true\" ></i></a>.",
   "dedicatedCloud_manage_nsx_edge_require_per_node_MEDIUM": "Medium - Taille du dispositif par nœud",
   "dedicatedCloud_manage_nsx_edge_require_per_node_LARGE": "Large - Taille du dispositif par nœud",
   "dedicatedCloud_manage_nsx_edge_require_per_node_XLARGE": "Extra-large - Taille du dispositif par nœud",
@@ -123,5 +125,7 @@
   "dedicatedCloud_datacenter_go_certified_web_interface": "Interface web certifiée",
   "dedicatedCloud_datacenter_drp_get_state_error": "Une erreur est survenue lors de la récupération des informations de votre PRA.",
   "dedicatedCloud_datacenter_descriptionModifying_success": "Le changement de la description de votre datacenter sera effectif dans quelques instants.",
-  "dedicatedCloud_datacenter_nameModifying_success": "Le changement de nom de votre datacenter sera effectif dans quelques instants."
+  "dedicatedCloud_datacenter_nameModifying_success": "Le changement de nom de votre datacenter sera effectif dans quelques instants.",
+  "dedicatedCloud_manage_nsx_vcpu_price": "à partir de {{price}} HT/vCPU/ mois *",
+  "dedicatedCloud_manage_nsx_additionnal_price_informations": "* 2x4 vCPU inclus dans l'offre standard"
 }
