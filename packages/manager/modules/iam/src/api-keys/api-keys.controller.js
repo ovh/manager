@@ -1,11 +1,10 @@
-import { AbstractCursorDatagridController } from '@ovh-ux/manager-ng-apiv2-helper';
-import { TAG } from '../iam.constants';
+import { TAG, API_KEY_URL } from '../iam.constants';
 
-export default class ApplicationsController extends AbstractCursorDatagridController {
+export default class ApplicationsController {
   /* @ngInject */
-  constructor(IAMService) {
-    super();
+  constructor(IAMService, coreConfig) {
     this.IAMService = IAMService;
+    this.API_KEY_URL = API_KEY_URL[coreConfig.getRegion()];
   }
 
   /**
@@ -16,7 +15,7 @@ export default class ApplicationsController extends AbstractCursorDatagridContro
   deleteApplication(id) {
     this.trackClick(TAG.APPLICATIONS__DELETE);
     this.goTo({
-      name: 'iam.dashboard.applications.delete',
+      name: 'iam.api-keys.delete',
       params: { application: id },
     });
   }
