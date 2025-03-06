@@ -6,6 +6,7 @@ import {
   isRegionInCa,
   isRegionInEu,
   isRegionInUs,
+  isRegionInAp,
 } from './region-selector.utils';
 
 export type RegionTabsProps = {
@@ -14,6 +15,7 @@ export type RegionTabsProps = {
   setEuFilter: () => void;
   setCaFilter: () => void;
   setUsFilter: () => void;
+  setApFilter: () => void;
   removeFilter: () => void;
 };
 
@@ -23,12 +25,14 @@ export const RegionTabs: React.FC<RegionTabsProps> = ({
   setEuFilter,
   setCaFilter,
   setUsFilter,
+  setApFilter,
   removeFilter,
 }) => {
   const { t } = useTranslation('region-selector');
   const hasEu = regionList.some(isRegionInEu);
   const hasCa = regionList.some(isRegionInCa);
   const hasUs = regionList.some(isRegionInUs);
+  const hasAp = regionList.some(isRegionInAp);
 
   return (
     <OdsTabs className="mb-4">
@@ -60,6 +64,14 @@ export const RegionTabs: React.FC<RegionTabsProps> = ({
           onClick={() => hasUs && setUsFilter()}
         >
           {t('region-selector-us-filter')}
+        </OdsTab>
+      )}
+      {hasAp && (
+        <OdsTab
+          isSelected={currentFilter === RegionFilter.ap}
+          onClick={() => hasAp && setApFilter()}
+        >
+          {t('region-selector-ap-filter')}
         </OdsTab>
       )}
     </OdsTabs>
