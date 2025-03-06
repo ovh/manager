@@ -65,7 +65,7 @@ export default class NutanixGeneralInfoCtrl {
 
   loadServicesDetails() {
     this.loadingServicesDetails = true;
-    return this.NutanixService.getServicesDetails(this.serviceId)
+    return this.NutanixService.getServicesDetails(this.serviceInfo.serviceId)
       .then((servicesDetails) => {
         this.servicesDetails = servicesDetails;
         this.getPackType();
