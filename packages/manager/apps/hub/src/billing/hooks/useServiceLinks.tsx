@@ -73,6 +73,10 @@ export const useServiceLinks = (
           break;
       }
 
+      if (service.hasPendingEngagement) {
+        availableLinks.cancelCommitment = `${autoRenewLink}/${service.id}/cancel-commitment`;
+      }
+
       if (
         autoRenewLink &&
         service.hasDebt() &&
