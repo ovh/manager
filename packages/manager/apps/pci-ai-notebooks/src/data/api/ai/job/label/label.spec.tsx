@@ -1,7 +1,7 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
 import { describe, expect, vi } from 'vitest';
 import { editLabel } from './label.api';
-import { mockedLabel } from '@/__tests__/helpers/mocks/label';
+import { mockedLabel } from '@/__tests__/helpers/mocks/shared/label';
 
 vi.mock('@ovh-ux/manager-core-api', () => {
   const put = vi.fn(() => {

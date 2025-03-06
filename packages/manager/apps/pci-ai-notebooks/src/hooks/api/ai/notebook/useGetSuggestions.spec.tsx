@@ -3,7 +3,7 @@ import { vi } from 'vitest';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import * as suggestionApi from '@/data/api/ai/notebook/suggestions.api';
 import { useGetSuggestions } from './useGetSuggestions.hook';
-import { mockedNotebookSuggestion } from '@/__tests__/helpers/mocks/suggestion';
+import { mockedSuggestionsForNotebook } from '@/__tests__/helpers/mocks/suggestion';
 
 vi.mock('@/data/api/ai/notebook/suggestions.api', () => ({
   getSuggestions: vi.fn(),
@@ -14,7 +14,7 @@ describe('useGetSuggestions', () => {
     const projectId = 'projectId';
 
     vi.mocked(suggestionApi.getSuggestions).mockResolvedValue(
-      mockedNotebookSuggestion,
+      mockedSuggestionsForNotebook,
     );
 
     const { result } = renderHook(() => useGetSuggestions(projectId), {
@@ -23,7 +23,7 @@ describe('useGetSuggestions', () => {
 
     await waitFor(() => {
       expect(result.current.isSuccess).toBe(true);
-      expect(result.current.data).toEqual(mockedNotebookSuggestion);
+      expect(result.current.data).toEqual(mockedSuggestionsForNotebook);
       expect(suggestionApi.getSuggestions).toHaveBeenCalledWith();
     });
   });

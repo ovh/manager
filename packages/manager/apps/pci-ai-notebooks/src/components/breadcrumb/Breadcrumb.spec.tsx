@@ -40,17 +40,6 @@ vi.mock('@/data/api/project/project.api', () => {
     })),
   };
 });
-vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
-  const mod = await importOriginal<
-    typeof import('@ovh-ux/manager-react-shell-client')
-  >();
-  return {
-    ...mod,
-    useNavigation: () => ({
-      getURL: vi.fn((app: string, path: string) => `#mockedurl-${app}${path}`),
-    }),
-  };
-});
 
 describe('Breadcrumb component', () => {
   afterEach(() => {

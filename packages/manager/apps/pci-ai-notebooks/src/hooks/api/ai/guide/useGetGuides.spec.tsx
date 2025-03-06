@@ -3,7 +3,7 @@ import { vi } from 'vitest';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import * as guideApi from '@/data/api/ai/guide.api';
 import { useGetGuides } from './useGetGuides.hook';
-import { mockedGuides } from '@/__tests__/helpers/mocks/guides';
+import { mockedGuides } from '@/__tests__/helpers/mocks/shared/guides';
 
 vi.mock('@/data/api/ai/guide.api', () => ({
   getGuides: vi.fn(),

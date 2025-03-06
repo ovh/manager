@@ -3,31 +3,11 @@ import { describe, expect, vi } from 'vitest';
 import {
   addToken,
   deleteToken,
+  getToken,
   getTokens,
   renewToken,
 } from '@/data/api/ai/token.api';
-import { mockedTokenCreation } from '@/__tests__/helpers/mocks/token';
-
-vi.mock('@ovh-ux/manager-core-api', () => {
-  const get = vi.fn(() => {
-    return Promise.resolve({ data: null });
-  });
-  const post = vi.fn(() => {
-    return Promise.resolve({ data: null });
-  });
-  const del = vi.fn(() => {
-    return Promise.resolve({ data: null });
-  });
-  return {
-    apiClient: {
-      v6: {
-        get,
-        post,
-        delete: del,
-      },
-    },
-  };
-});
+import { mockedTokenCreation } from '@/__tests__/helpers/mocks/shared/token';
 
 describe('Token functions', () => {
   afterEach(() => {
@@ -41,6 +21,17 @@ describe('Token functions', () => {
     });
     expect(apiClient.v6.get).toHaveBeenCalledWith(
       '/cloud/project/projectId/ai/token',
+    );
+  });
+
+  it('should call getToken', async () => {
+    expect(apiClient.v6.get).not.toHaveBeenCalled();
+    await getToken({
+      projectId: 'projectId',
+      tokenId: 'tokenId',
+    });
+    expect(apiClient.v6.get).toHaveBeenCalledWith(
+      '/cloud/project/projectId/ai/token/tokenId',
     );
   });
 

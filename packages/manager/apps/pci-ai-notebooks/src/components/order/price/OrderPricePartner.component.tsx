@@ -23,7 +23,7 @@ const ParnterOrderPrice = ({
       data-testid="order-price-container"
       className="flex justify-between items-baseline gap-2"
     >
-      <div className="inline-block text-xs">
+      <div className="inline-block text-sm">
         {isCpu ? (
           <span>{t('licenceCpuPriceLabel')} </span>
         ) : (

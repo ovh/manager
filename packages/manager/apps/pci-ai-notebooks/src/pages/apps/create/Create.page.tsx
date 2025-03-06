@@ -18,7 +18,7 @@ export function breadcrumb() {
   );
 }
 
-const Job = () => {
+const App = () => {
   const { t } = useTranslation('pci-ai-deploy/apps/create');
   const { projectId } = useParams();
 
@@ -40,7 +40,7 @@ const Job = () => {
     <>
       <div className="flex justify-between w-full items-center">
         <h2>{t('title')}</h2>
-        <Guides section={[GuideSections.jobs]} />
+        <Guides section={[GuideSections.apps]} />
       </div>
 
       {loading ? (
@@ -72,4 +72,4 @@ const Job = () => {
   );
 };
 
-export default Job;
+export default App;

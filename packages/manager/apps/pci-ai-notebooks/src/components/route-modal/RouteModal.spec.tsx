@@ -1,21 +1,12 @@
-import { render, screen, waitFor } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
+import { render, screen, waitFor } from '@testing-library/react';
+import { mockedUsedNavigate } from '@/__tests__/helpers/mockRouterDomHelper';
 import RouteModal from './RouteModal';
 
-const mockedUsedNavigate = vi.fn();
 describe('Route Modal component', () => {
-  afterEach(() => {
-    vi.clearAllMocks();
+  beforeEach(() => {
+    mockedUsedNavigate();
   });
-
-  vi.mock('react-router-dom', async () => {
-    const mod = await vi.importActual('react-router-dom');
-    return {
-      ...mod,
-      useNavigate: () => mockedUsedNavigate,
-    };
-  });
-
   const onClose = vi.fn();
   it('renders Route Modal Skeleton on isLoading', async () => {
     render(

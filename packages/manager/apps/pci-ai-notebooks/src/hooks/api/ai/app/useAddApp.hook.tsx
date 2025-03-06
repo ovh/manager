@@ -21,8 +21,7 @@ export function useAddApp({ onError, onSuccess }: AddAppProps) {
       // invalidate applist to avoid displaying
       // old list
       queryClient.invalidateQueries({
-        queryKey: [projectId, 'ai/app'],
-        refetchType: 'none',
+        queryKey: [projectId, 'ai', 'app'],
       });
       onSuccess(data);
     },

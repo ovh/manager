@@ -76,6 +76,22 @@ export const GUIDES = {
     default:
       'https://help.ovhcloud.com/csm/en-gb-public-cloud-ai-training-submit-job?id=kb_article_view&sysparm_article=KB0048754',
   },
+  APP_ONBOARDING_TUTO_1: {
+    fr_FR:
+      'https://help.ovhcloud.com/csm/fr-public-cloud-ai-deploy-capabilities?id=kb_article_view&sysparm_article=KB0047964',
+    fr_CA:
+      'https://help.ovhcloud.com/csm/fr-public-cloud-ai-deploy-capabilities?id=kb_article_view&sysparm_article=KB0047964',
+    default:
+      'https://help.ovhcloud.com/csm/en-gb-documentation-public-cloud?id=kb_browse_cat&kb_id=574a8325551974502d4c6e78b7421938',
+  },
+  APP_ONBOARDING_TUTO_2: {
+    fr_FR:
+      'https://help.ovhcloud.com/csm/fr-public-cloud-ai-deploy-getting-started?id=kb_article_view&sysparm_article=KB0047991',
+    fr_CA:
+      'https://help.ovhcloud.com/csm/fr-public-cloud-ai-deploy-getting-started?id=kb_article_view&sysparm_article=KB0047991',
+    default:
+      'https://help.ovhcloud.com/csm/en-gb-public-cloud-ai-deploy-getting-started?id=kb_article_view&sysparm_article=KB0047971',
+  },
   HOW_TO_MANAGE_DATA: {
     fr_FR: 'https://docs.ovh.com/fr/publiccloud/ai/data/',
     fr_CA: 'https://docs.ovh.com/fr/publiccloud/ai/data/',

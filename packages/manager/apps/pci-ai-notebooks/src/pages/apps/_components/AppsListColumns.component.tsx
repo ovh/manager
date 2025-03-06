@@ -18,6 +18,7 @@ import DataTable from '@/components/data-table';
 
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
 import AppStatusBadge from './AppStatusBadge.component';
+import { isDeletingApp, isRunningApp, isStoppedApp } from '@/lib/statusHelper';
 
 interface AppsListColumnsProps {
   onStartClicked: (app: ai.app.App) => void;
@@ -94,7 +95,7 @@ export const getColumns = ({
       ),
     },
     {
-      id: 'Resources',
+      id: 'resources',
       accessorFn: (row) => row.spec.resources,
       header: ({ column }) => (
         <DataTable.SortableHeader column={column}>
@@ -103,32 +104,17 @@ export const getColumns = ({
       ),
       cell: ({ row }) => {
         const { cpu, gpu, gpuModel } = row.original.spec.resources;
-        const replicas = row.original.spec.scalingStrategy?.fixed
-          ? row.original.spec.scalingStrategy?.fixed.replicas
-          : row.original.spec.scalingStrategy?.automatic?.replicasMin;
         return (
           <div>
             {gpu > 0 ? (
               <div className="flex gap-2 items-center">
                 <Zap className="size-4" />
                 <span>{`${gpu} GPU ${gpuModel}`}</span>
-                <span>{' / '}</span>
-                <span>
-                  {t('tableReplic', {
-                    rep: replicas,
-                  })}
-                </span>
               </div>
             ) : (
               <div className="flex gap-2 items-center">
                 <Cpu className="size-4" />
                 <span>{`${cpu} CPU`}</span>
-                <span>{' / '}</span>
-                <span>
-                  {t('tableReplic', {
-                    rep: replicas,
-                  })}
-                </span>
               </div>
             )}
           </div>
@@ -136,21 +122,28 @@ export const getColumns = ({
       },
     },
     {
-      id: 'Creation date',
-      accessorFn: (row) => row.createdAt,
+      id: 'replicas',
+      accessorFn: (row) => row.spec.scalingStrategy,
       header: ({ column }) => (
         <DataTable.SortableHeader column={column}>
-          {t('tableHeaderCreationDate')}
+          {t('tableHeaderReplicas')}
         </DataTable.SortableHeader>
       ),
-      cell: ({ row }) => (
-        <span>
-          <FormattedDate date={new Date(row.original.createdAt)} />
-        </span>
-      ),
+      cell: ({ row }) => {
+        const replicas = row.original.spec.scalingStrategy?.fixed
+          ? row.original.spec.scalingStrategy?.fixed.replicas
+          : row.original.spec.scalingStrategy?.automatic?.replicasMin;
+        return (
+          <span>
+            {t('tableReplic', {
+              rep: replicas,
+            })}
+          </span>
+        );
+      },
     },
     {
-      id: 'Update date',
+      id: 'update-date',
       accessorFn: (row) => row.updatedAt,
       header: ({ column }) => (
         <DataTable.SortableHeader column={column}>
@@ -164,7 +157,7 @@ export const getColumns = ({
       ),
     },
     {
-      id: 'Status',
+      id: 'status',
       accessorFn: (row) => row.status.state,
       header: ({ column }) => (
         <DataTable.SortableHeader column={column}>
@@ -180,12 +173,12 @@ export const getColumns = ({
       id: 'actions',
       enableGlobalFilter: false,
       cell: ({ row }) => {
-        // const job = row.original;
+        const app = row.original;
         return (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button
-                data-testid="notebooks-action-trigger"
+                data-testid="apps-action-trigger"
                 variant="menu"
                 size="menu"
               >
@@ -199,18 +192,18 @@ export const getColumns = ({
             >
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
               <DropdownMenuItem
-                data-testid="notebook-action-manage-button"
+                data-testid="app-action-manage-button"
                 variant="primary"
                 onClick={() => navigate(`./${row.original.id}`)}
               >
                 {t('tableActionManage')}
               </DropdownMenuItem>
               <DropdownMenuItem
-                data-testid="notebook-action-start-button"
-                // disabled={
-                //   isRunningNotebook(notebook.status.state) ||
-                //   isDeletingNotebook(notebook.status.state)
-                // }
+                data-testid="app-action-start-button"
+                disabled={
+                  isRunningApp(app.status.state) ||
+                  isDeletingApp(app.status.state)
+                }
                 variant="primary"
                 onClick={() => {
                   onStartClicked(row.original);
@@ -219,11 +212,11 @@ export const getColumns = ({
                 {t('tableActionStart')}
               </DropdownMenuItem>
               <DropdownMenuItem
-                data-testid="notebook-action-stop-button"
-                // disabled={
-                //   !isRunningNotebook(notebook.status.state) ||
-                //   isDeletingNotebook(notebook.status.state)
-                // }
+                data-testid="app-action-stop-button"
+                disabled={
+                  !isRunningApp(app.status.state) ||
+                  isDeletingApp(app.status.state)
+                }
                 variant="primary"
                 onClick={() => {
                   onStopClicked(row.original);
@@ -233,12 +226,12 @@ export const getColumns = ({
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem
-                data-testid="notebook-action-delete-button"
+                data-testid="app-action-delete-button"
                 variant="destructive"
-                // disabled={
-                //   !isStoppedNotebook(notebook.status.state) ||
-                //   isDeletingNotebook(notebook.status.state)
-                // }
+                disabled={
+                  !isStoppedApp(app.status.state) ||
+                  isDeletingApp(app.status.state)
+                }
                 onClick={() => {
                   onDeleteClicked(row.original);
                 }}

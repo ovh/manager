@@ -7,5 +7,6 @@
   "memoryField": "RAM: {{ memory }}",
   "publicNetworkField": "Réseau public: {{ network }}/s",
   "temporaryLocalStorageField": "Stockage local éphémère: {{ storage }} SSD",
-  "temporaryLocalStorageHelper": "Stockage local performant, mais non sauvegardé"
+  "temporaryLocalStorageHelper": "Stockage local performant, mais non sauvegardé",
+  "modifyLabel": "Modifier"
 }

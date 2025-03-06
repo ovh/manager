@@ -2,7 +2,7 @@
 // import { PCIAi } from '../..';
 // import { Suggestions } from '@/types/orderFunnel';
 
-import { tempSuggestionsForJob } from '@/__tests__/helpers/mocks/tempSuggestion';
+import { mockedSuggestionsForJob } from '@/__tests__/helpers/mocks/suggestion';
 
 export const getSuggestions = async (/* { projectId }: PCIAi */) => {
   /*  
@@ -10,5 +10,5 @@ export const getSuggestions = async (/* { projectId }: PCIAi */) => {
       .get(`/cloud/project/${projectId}/ai/notebook/suggestions`)
       .then((res) => res.data as Suggestions[]);
       */
-  return tempSuggestionsForJob;
+  return mockedSuggestionsForJob;
 };

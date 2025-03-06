@@ -3,12 +3,6 @@ import '@testing-library/jest-dom/vitest';
 import { vi } from 'vitest';
 import A from '@/components/links/A.component';
 
-vi.mock('@ovh-ux/manager-react-shell-client', () => ({
-  useNavigation: () => ({
-    getURL: vi.fn((app: string, path: string) => `#mockedurl-${app}${path}`),
-  }),
-}));
-
 describe('A', () => {
   afterEach(() => {
     vi.clearAllMocks();

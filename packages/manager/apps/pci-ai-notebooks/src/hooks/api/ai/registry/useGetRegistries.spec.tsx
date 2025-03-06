@@ -3,7 +3,7 @@ import { vi } from 'vitest';
 
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import * as registryApi from '@/data/api/ai/registry.api';
-import { mockedRegistry } from '@/__tests__/helpers/mocks/registry';
+import { mockedRegistry } from '@/__tests__/helpers/mocks/shared/registry';
 import { useGetRegistries } from './useGetRegistries.hook';
 
 vi.mock('@/data/api/ai/registry.api', () => ({

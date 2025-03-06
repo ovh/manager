@@ -8,7 +8,7 @@ export function breadcrumb() {
   return (
     <BreadcrumbItem
       translationKey="breadcrumb"
-      namespace="pci-ai-training/jobs/job/containers"
+      namespace="components/containers"
     />
   );
 }
@@ -21,6 +21,7 @@ const ContainersJob = () => {
       volumes={job.spec.volumes.filter(
         (vol: ai.volume.Volume) => vol.volumeSource.dataStore,
       )}
+      updateMode={false}
       status={job.status.state}
       onDataSync={(volume) => {
         const volumeId = job.status.volumes.find(

@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { HelpCircle } from 'lucide-react';
 import { Label } from '@/components/ui/label';
-import { Scaling } from '@/types/orderFunnel';
+import { AppPricing, Scaling } from '@/types/orderFunnel';
 import * as ai from '@/types/cloud/project/ai';
 import { Input } from '@/components/ui/input';
 import {
@@ -22,16 +22,19 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 import { Slider } from '@/components/ui/slider';
+import Price from '@/components/price/Price.component';
 
 interface AutoScalingFormProps {
   scaling: Scaling;
   onChange: (scalingStrat: Scaling) => void;
+  pricingFlavor?: AppPricing;
+  onNonValidForm?: (isPending: boolean) => void;
 }
 
 export const AutoScalingForm = React.forwardRef<
   HTMLInputElement,
   AutoScalingFormProps
->(({ scaling, onChange }, ref) => {
+>(({ scaling, onChange, pricingFlavor, onNonValidForm }, ref) => {
   const { t } = useTranslation('components/scaling');
 
   const scalingSchema = z
@@ -88,13 +91,16 @@ export const AutoScalingForm = React.forwardRef<
         averageUsageTarget: watch('averageUsage'),
         resourceType: watch('resType'),
       });
+      onNonValidForm(false);
+    } else {
+      onNonValidForm(true);
     }
   };
 
   return (
     <Form {...scalingForm}>
       <div
-        data-testid="images-select-container"
+        data-testid="auto-scaling-container"
         ref={ref}
         className="grid grid-cols-1 md:grid-cols-2 gap-2"
       >
@@ -102,7 +108,6 @@ export const AutoScalingForm = React.forwardRef<
           <FormField
             control={scalingForm.control}
             name="minRep"
-            // defaultValue={''}
             render={({ field }) => (
               <FormItem className="mb-8">
                 <div className="flex items-center space-x-2 mb-4">
@@ -118,6 +123,7 @@ export const AutoScalingForm = React.forwardRef<
                 </div>
                 <FormControl>
                   <Input
+                    data-testid="min-rep-input"
                     {...field}
                     ref={ref}
                     type="number"
@@ -144,6 +150,7 @@ export const AutoScalingForm = React.forwardRef<
                 <p className="text-sm">{t('replicasMaxInputLabel')}</p>
                 <FormControl>
                   <Input
+                    data-testid="max-rep-input"
                     {...field}
                     ref={ref}
                     type="number"
@@ -189,6 +196,7 @@ export const AutoScalingForm = React.forwardRef<
                   <div className="flex flex-row gap-8">
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem
+                        data-testid="radio-cpu"
                         value={
                           ai.app.ScalingAutomaticStrategyResourceTypeEnum.CPU
                         }
@@ -200,6 +208,7 @@ export const AutoScalingForm = React.forwardRef<
                     </div>
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem
+                        data-testid="radio-ram"
                         value={
                           ai.app.ScalingAutomaticStrategyResourceTypeEnum.RAM
                         }
@@ -265,6 +274,16 @@ export const AutoScalingForm = React.forwardRef<
           />
         </div>
       </div>
+      {pricingFlavor && (
+        <div>
+          <Price
+            decimals={2}
+            displayInHour={true}
+            priceInUcents={scaling.replicasMin * 60 * pricingFlavor.price}
+            taxInUcents={scaling.replicasMin * 60 * pricingFlavor.tax}
+          />
+        </div>
+      )}
     </Form>
   );
 });

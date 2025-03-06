@@ -31,6 +31,13 @@ const ContainersNotebook = () => {
         ).id;
         navigate(`./data-sync/${volumeId}`);
       }}
+      updateMode={true}
+      onDelete={(volume) => {
+        const volumeId = notebook.status.volumes.find(
+          (vol) => vol.mountPath === volume.mountPath,
+        ).id;
+        navigate(`./delete/${volumeId}`);
+      }}
     />
   );
 };

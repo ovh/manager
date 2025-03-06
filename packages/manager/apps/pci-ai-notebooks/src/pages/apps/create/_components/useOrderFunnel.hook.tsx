@@ -22,7 +22,7 @@ import {
   useGetDatastoresWithContainers,
 } from '@/hooks/api/ai/datastore/useGetDatastoresWithContainers.hook';
 import { useGetAppImages } from '@/hooks/api/ai/capabilities/useGetAppImage.hook';
-import { createAppImagePricingList } from '@/lib/priceParnterImageHelper';
+import { createAppImagePricingList } from '@/lib/pricePartnerImageHelper';
 import { createAppPriceObject } from '@/lib/priceAppHelper';
 import { APP_CONFIG } from '@/configuration/app';
 import { useGetPartner } from '@/hooks/api/ai/partner/useGetPartner.hook';
@@ -164,7 +164,7 @@ export function useOrderFunnel(
 
   const listFlavor: Flavor[] = useMemo(() => {
     if (flavorQuery.isLoading) return [];
-    return createFlavorPricingList(flavorQuery.data, catalog);
+    return createFlavorPricingList(flavorQuery.data, catalog, 'ai-app');
   }, [region, flavorQuery.isSuccess]);
 
   const flavorObject: Flavor | undefined = useMemo(
@@ -206,6 +206,12 @@ export function useOrderFunnel(
     }, {} as { [key: string]: string });
   }, [labels]);
 
+  const isContractSigned: boolean = useMemo(() => {
+    if (!imageWithVersion.version) return true;
+    return !!listAppImages.find((app) => app.id === imageWithVersion.name)
+      .contract.signedAt;
+  }, [imageWithVersion.name, imageWithVersion.version]);
+
   // Select default Flavor Id / Flavor number when region change
   useEffect(() => {
     const suggestedFlavor =
@@ -246,7 +252,8 @@ export function useOrderFunnel(
       resourcesQuantity: flavorWithQuantity.quantity,
       image: imageWithVersion.name,
       version: imageWithVersion.version,
-      contract: imageWithVersion.contractChecked,
+      isContractChecked: imageWithVersion.contractChecked,
+      isContractSigned,
       appName,
       unsecureHttp: unsecureHttpObject,
       httpPort,

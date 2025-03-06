@@ -22,7 +22,7 @@ export function useAddNotebook({ onError, onSuccess }: AddNotebookProps) {
       // invalidate notebook list to avoid displaying
       // old list
       queryClient.invalidateQueries({
-        queryKey: [projectId, 'ai/notebook'],
+        queryKey: [projectId, 'ai', 'notebook'],
         refetchType: 'none',
       });
       onSuccess(data);

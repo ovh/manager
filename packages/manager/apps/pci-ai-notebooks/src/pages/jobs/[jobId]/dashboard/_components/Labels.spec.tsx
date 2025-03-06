@@ -8,22 +8,15 @@ import {
 } from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
 import * as ai from '@/types/cloud/project/ai';
-import { Locale } from '@/hooks/useLocale';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { useToast } from '@/components/ui/use-toast';
 import Labels from './Labels.component';
 import * as labelsApi from '@/data/api/ai/job/label/label.api';
-import { mockedJob, mockedJobSpec } from '@/__tests__/helpers/mocks/job';
+import { mockedJob, mockedJobSpec } from '@/__tests__/helpers/mocks/job/job';
 
 describe('Configuration component', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
-    // Mock necessary hooks and dependencies
-    vi.mock('react-i18next', () => ({
-      useTranslation: () => ({
-        t: (key: string) => key,
-      }),
-    }));
 
     vi.mock('@/pages/jobs/[jobId]/Job.context', () => ({
       useJobData: vi.fn(() => ({
@@ -42,30 +35,6 @@ describe('Configuration component', () => {
     vi.mock('@/data/api/ai/job/label/label.api', () => ({
       editLabel: vi.fn((labels) => labels),
     }));
-
-    vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
-      const mod = await importOriginal<
-        typeof import('@ovh-ux/manager-react-shell-client')
-      >();
-      return {
-        ...mod,
-        useShell: vi.fn(() => ({
-          i18n: {
-            getLocale: vi.fn(() => Locale.fr_FR),
-            onLocaleChange: vi.fn(),
-            setLocale: vi.fn(),
-          },
-        })),
-      };
-    });
-    vi.mock('@/components/ui/use-toast', () => {
-      const toastMock = vi.fn();
-      return {
-        useToast: vi.fn(() => ({
-          toast: toastMock,
-        })),
-      };
-    });
   });
 
   afterEach(() => {
@@ -99,8 +68,8 @@ describe('Configuration component', () => {
     await waitFor(() => {
       expect(labelsApi.editLabel).toHaveBeenCalled();
       expect(useToast().toast).toHaveBeenCalledWith({
-        title: 'jobToastSuccessTitle',
-        description: 'jobLabelSuccess',
+        title: 'labelToastSuccessTitle',
+        description: 'labelToastSuccessDescription',
       });
     });
   });
@@ -116,8 +85,8 @@ describe('Configuration component', () => {
     await waitFor(() => {
       expect(labelsApi.editLabel).toHaveBeenCalled();
       expect(useToast().toast).toHaveBeenCalledWith({
-        title: 'jobToastSuccessTitle',
-        description: 'jobLabelSuccess',
+        title: 'labelToastSuccessTitle',
+        description: 'labelToastSuccessDescription',
       });
     });
   });

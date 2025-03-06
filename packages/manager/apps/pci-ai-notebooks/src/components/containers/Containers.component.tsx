@@ -14,15 +14,27 @@ interface ContainersProps {
   volumes: ai.volume.Volume[];
   status: string;
   onDataSync: (volume: ai.volume.Volume) => void;
+  onDelete?: (volume: ai.volume.Volume) => void;
+  updateMode: boolean;
 }
 
-const Containers = ({ volumes, status, onDataSync }: ContainersProps) => {
+const Containers = ({
+  volumes,
+  status,
+  onDataSync,
+  onDelete,
+  updateMode,
+}: ContainersProps) => {
   const locale = useLocale();
   const navigate = useNavigate();
   const { t } = useTranslation('components/containers');
 
   const onSyncData = (volume: ai.volume.Volume) => {
     onDataSync(volume);
+  };
+
+  const onDeleteVolume = (volume: ai.volume.Volume) => {
+    onDelete(volume);
   };
 
   return (
@@ -42,9 +54,23 @@ const Containers = ({ volumes, status, onDataSync }: ContainersProps) => {
           <ArrowUpRightFromSquare className="size-4" />
         </div>
       </A>
-      <div className="flex flex-row gap-3 mt-2">
+      <div className="flex flex-row gap-4 pb-2 pt-4">
+        {updateMode && (
+          <Button
+            data-testid="add-volume-button"
+            size="sm"
+            type="button"
+            className="text-base"
+            onClick={() => navigate('./add-container')}
+            disabled={status !== ai.notebook.NotebookStateEnum.STOPPED}
+          >
+            {t('addVolumeButton')}
+          </Button>
+        )}
+
         <Button
           data-testid="general-data-sync-button"
+          variant="outline"
           size="sm"
           type="button"
           className="text-base"
@@ -58,6 +84,8 @@ const Containers = ({ volumes, status, onDataSync }: ContainersProps) => {
         volumes={volumes}
         volStatus={status}
         dataSync={(volume) => onSyncData(volume)}
+        deleteVol={(volume) => onDeleteVolume(volume)}
+        allowUpdate={updateMode}
       />
       <Outlet />
     </>

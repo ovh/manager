@@ -3,7 +3,7 @@ import { vi } from 'vitest';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import * as editorApi from '@/data/api/ai/notebook/capabilities/editor.api';
 import { useGetEditor } from './useGetEditor.hook';
-import { mockedEditor } from '@/__tests__/helpers/mocks/notebook/editor';
+import { mockedEditor } from '@/__tests__/helpers/mocks/capabilities/notebookEditor';
 
 vi.mock('@/data/api/ai/notebook/capabilities/editor.api', () => ({
   getEditor: vi.fn(),

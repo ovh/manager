@@ -7,7 +7,7 @@ export function breadcrumb() {
   return (
     <BreadcrumbItem
       translationKey="breadcrumb"
-      namespace="pci-ai-training/jobs/job/public-git"
+      namespace="components/public-git"
     />
   );
 }
@@ -19,6 +19,7 @@ const PublicGitNotebook = () => {
       gitVolumes={job.spec.volumes.filter(
         (vol: ai.volume.Volume) => vol.volumeSource.publicGit,
       )}
+      updateMode={false}
     />
   );
 };

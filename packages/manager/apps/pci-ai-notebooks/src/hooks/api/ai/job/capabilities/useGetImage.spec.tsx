@@ -2,7 +2,7 @@ import { renderHook, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import * as jobApi from '@/data/api/ai/job/capabilities/image.api';
-import { mockedPresetImage } from '@/__tests__/helpers/mocks/presetImage';
+import { mockedPresetImage } from '@/__tests__/helpers/mocks/job/presetImage';
 import { useGetImage } from './useGetImage.hook';
 
 vi.mock('@/data/api/ai/job/capabilities/image.api', () => ({

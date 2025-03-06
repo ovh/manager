@@ -3,9 +3,9 @@ import Guides from '@/components/guides/Guides.component';
 import Link from '@/components/links/Link.component';
 import { Button } from '@/components/ui/button';
 import onboardingImgSrc from '@/../public/assets/training.png';
-import OnboardingTile from './OnboardingTile.component';
 import { GUIDES, getGuideUrl, jobGuidesSections } from '@/configuration/guide';
 import { useLocale } from '@/hooks/useLocale';
+import OnboardingTile from '@/components/onboarding-tile/OnboardingTile.component';
 
 const Onboarding = () => {
   const { t } = useTranslation('pci-ai-training/onboarding');

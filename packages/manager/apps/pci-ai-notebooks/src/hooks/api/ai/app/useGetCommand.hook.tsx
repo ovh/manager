@@ -5,7 +5,7 @@ import { AddApp, getCommand } from '@/data/api/ai/app/app.api';
 
 interface GetCommandProps {
   onError: (cause: AIError) => void;
-  onSuccess: (notebook: ai.Command) => void;
+  onSuccess: (app: ai.Command) => void;
 }
 
 export function useGetCommand({ onError, onSuccess }: GetCommandProps) {

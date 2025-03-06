@@ -16,11 +16,15 @@ import { isDataSync } from '@/lib/statusHelper';
 
 interface VolumesListColumnsProps {
   onDataSyncClicked: (volume: ai.volume.Volume) => void;
+  updateMode: boolean;
+  onDeletVolume?: (volume: ai.volume.Volume) => void;
   status: string;
 }
 
 export const getColumns = ({
   onDataSyncClicked,
+  onDeletVolume,
+  updateMode,
   status,
 }: VolumesListColumnsProps) => {
   const { t } = useTranslation('components/containers');
@@ -135,6 +139,17 @@ export const getColumns = ({
               >
                 {t('tableActionSyncData')}
               </DropdownMenuItem>
+              {updateMode && (
+                <DropdownMenuItem
+                  data-testid="container-action-delete-button"
+                  variant="destructive"
+                  onClick={() => {
+                    onDeletVolume(row.original);
+                  }}
+                >
+                  {t('deleteAction')}
+                </DropdownMenuItem>
+              )}
             </DropdownMenuContent>
           </DropdownMenu>
         );

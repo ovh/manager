@@ -10,7 +10,7 @@ import { describe, it, vi } from 'vitest';
 import {
   mockedPresetImage,
   mockedPresetImageBis,
-} from '@/__tests__/helpers/mocks/presetImage';
+} from '@/__tests__/helpers/mocks/job/presetImage';
 import PresetImageSelect from './PresetImageSelect.component';
 
 describe('Preset Image Select component', () => {

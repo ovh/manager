@@ -1,11 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import {
-  ArrowRight,
-  ChevronDown,
-  ChevronUp,
-  HelpCircle,
-  TerminalSquare,
-} from 'lucide-react';
+import { ChevronDown, ChevronUp, TerminalSquare } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 import * as ai from '@/types/cloud/project/ai';
@@ -29,13 +23,6 @@ import { Button } from '@/components/ui/button';
 import RegionsSelect from '@/components/order/region/RegionSelect.component';
 import FlavorsSelect from '@/components/order/flavor/FlavorSelect.component';
 import { Input } from '@/components/ui/input';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/components/ui/popover';
-import { Label } from '@/components/ui/label';
 import VolumeForm from '@/components/order/volumes/VolumesForm.component';
 import { useToast } from '@/components/ui/use-toast';
 import { getAIApiErrorMessage } from '@/lib/apiHelper';
@@ -43,13 +30,9 @@ import ErrorList from '@/components/order/error-list/ErrorList.component';
 import { AppSuggestions, PrivacyEnum } from '@/types/orderFunnel';
 import { useModale } from '@/hooks/useModale';
 import CliEquivalent from './CliEquivalent.component';
-import A from '@/components/links/A.component';
-import { useLocale } from '@/hooks/useLocale';
-import OvhLink from '@/components/links/OvhLink.component';
 import { useOrderFunnel } from './useOrderFunnel.hook';
 import OrderSummary from './OrderSummary.component';
 import DockerCommand from '@/components/order/docker-command/DockerCommand.component';
-import { GUIDES, getGuideUrl } from '@/configuration/guide';
 import AppImagesSelect from '@/components/order/app-image/AppImageSelect.component';
 import LabelsForm from '@/components/labels/LabelsForm.component';
 import { useAddApp } from '@/hooks/api/ai/app/useAddApp.hook';
@@ -69,6 +52,7 @@ import { APP_CONFIG } from '@/configuration/app';
 import ProbeForm from '@/components/order/app-probe/ProbeForm.component';
 import { useSignPartnerContract } from '@/hooks/api/ai/partner/useSignPartnerContract.hook';
 import { PartnerApp } from '@/data/api/ai/partner.api';
+import PrivacyRadioInput from '@/components/order/privacy-radio/PrivacyRadio.component';
 
 interface OrderAppsFunnelProps {
   regions: ai.capabilities.Region[];
@@ -83,27 +67,18 @@ const OrderFunnel = ({
 }: OrderAppsFunnelProps) => {
   const model = useOrderFunnel(regions, catalog, suggestions);
   const { t } = useTranslation('pci-ai-deploy/apps/create');
-  const locale = useLocale();
   const { projectId } = useParams();
+  const [isPartnerSelected, setIsPartnerSelected] = useState(false);
   const [showAdvancedConfiguration, setShowAdvancedConfiguration] = useState(
     false,
   );
+  const [invalidScalingInput, setInvalidScalingInput] = useState(false);
   const accordionContentRef = useRef(null);
   const cliEquivalentModale = useModale('cli');
   const navigate = useNavigate();
 
   const { toast } = useToast();
   const [command, setCommand] = useState<ai.Command>({ command: '' });
-
-  const { signPartnerContract } = useSignPartnerContract({
-    onError: (err) => {
-      toast({
-        title: t('errorSigningContract'),
-        variant: 'destructive',
-        description: getAIApiErrorMessage(err),
-      });
-    },
-  });
 
   const { addApp, isPending: isPendingAddApp } = useAddApp({
     onError: (err) => {
@@ -119,6 +94,24 @@ const OrderFunnel = ({
         description: t('successCreatingAppDescription'),
       });
       navigate(`../deploy/${app.id}`);
+    },
+  });
+
+  const { signPartnerContract } = useSignPartnerContract({
+    onError: (err) => {
+      toast({
+        title: t('errorSigningContract'),
+        variant: 'destructive',
+        description: getAIApiErrorMessage(err),
+      });
+      throw new Error(err.message);
+    },
+    onSuccess: () => {
+      const appInfo: ai.app.AppSpecInput = getAppSpec(
+        model.result,
+        model.lists.appImages,
+      );
+      addApp(appInfo);
     },
   });
 
@@ -151,27 +144,26 @@ const OrderFunnel = ({
     }
   };
 
+  const throwErrorContract = () => {
+    scrollToDiv('image');
+    model.form.setError('image.name', {
+      type: 'custom',
+      message: t('formErrorPartnerContractNotSign'),
+    });
+    toast({
+      title: t('errorFormTitle'),
+      variant: 'destructive',
+      description: <ErrorList error={model.form.control._formState.errors} />,
+    });
+    throw new Error(t('formErrorPartnerContractNotSign'));
+  };
+
   const onSubmit = model.form.handleSubmit(
     () => {
-      // Final check to make sure that partner contract is sign
-      if (model.result.version && !model.result.contract) {
-        scrollToDiv('image');
-        model.form.setError('image.name', {
-          type: 'custom',
-          message: t('formErrorPartnerContractNotSign'),
-        });
-        toast({
-          title: t('errorFormTitle'),
-          variant: 'destructive',
-          description: (
-            <ErrorList error={model.form.control._formState.errors} />
-          ),
-        });
-        return;
-      }
-
-      // Post on partner Contract to sign it
-      if (model.result.version && model.result.contract) {
+      // if partner Image and contract not checked, throw error
+      if (!model.result.isContractChecked) throwErrorContract();
+      // if partner Image and contract need to be sign
+      if (!model.result.isContractSigned) {
         const signPartnerInfo: PartnerApp = {
           projectId,
           region: model.result.region.id,
@@ -179,15 +171,16 @@ const OrderFunnel = ({
             (app) => app.id === model.result.image,
           ).partnerId,
         };
+        // Sign and deploy app
         signPartnerContract(signPartnerInfo);
+      } else {
+        // Deploy the app
+        const appInfo: ai.app.AppSpecInput = getAppSpec(
+          model.result,
+          model.lists.appImages,
+        );
+        addApp(appInfo);
       }
-
-      // Deploy the app
-      const appInfo: ai.app.AppSpecInput = getAppSpec(
-        model.result,
-        model.lists.appImages,
-      );
-      addApp(appInfo);
     },
     (error) => {
       toast({
@@ -273,10 +266,6 @@ const OrderFunnel = ({
                 name="flavorWithQuantity.flavor"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className={classNameLabel}>
-                      {t('fieldFlavorLabel')}
-                    </FormLabel>
-                    <p>{t('fieldFlavorDescription')}</p>
                     <FormControl>
                       <FlavorsSelect
                         {...field}
@@ -350,12 +339,22 @@ const OrderFunnel = ({
                         onChange={(newImage, newVersion, contractChecked) => {
                           model.form.setValue('image.name', newImage);
                           model.form.setValue('image.version', newVersion);
+                          // ContractChecked is set to true for customImage
                           model.form.setValue(
                             'image.contractChecked',
-                            contractChecked,
+                            contractChecked ?? true,
                           );
                           // remove errors onChange
                           model.form.trigger('image.name');
+
+                          if (newVersion) {
+                            model.form.setValue('volumes', []);
+                            model.form.setValue('httpPort', 8080);
+                            model.form.setValue('dockerCommand', []);
+                            setIsPartnerSelected(true);
+                          } else {
+                            setIsPartnerSelected(false);
+                          }
                         }}
                       />
                     </FormControl>
@@ -381,6 +380,7 @@ const OrderFunnel = ({
                         onChange={(newScaling) =>
                           model.form.setValue('scaling', newScaling)
                         }
+                        onNonValidForm={(val) => setInvalidScalingInput(val)}
                       />
                     </FormControl>
                     <FormMessage />
@@ -389,84 +389,45 @@ const OrderFunnel = ({
               />
             </section>
 
-            <section id="httpPort">
-              <FormField
-                control={model.form.control}
-                name="httpPort"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className={classNameLabel}>
-                      {t('fieldHttpPortLabel')}
-                    </FormLabel>
-                    <p className="text-sm">{t('fieldHttpPortDescription')}</p>
-                    <FormControl>
-                      <Input
-                        type="number"
-                        max={APP_CONFIG.port.max}
-                        min={APP_CONFIG.port.min}
-                        value={field.value}
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </section>
-
+            {!isPartnerSelected && (
+              <section id="httpPort">
+                <FormField
+                  control={model.form.control}
+                  name="httpPort"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className={classNameLabel}>
+                        {t('fieldHttpPortLabel')}
+                      </FormLabel>
+                      <p className="text-sm">{t('fieldHttpPortDescription')}</p>
+                      <FormControl>
+                        <Input
+                          type="number"
+                          max={APP_CONFIG.port.max}
+                          min={APP_CONFIG.port.min}
+                          value={field.value}
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </section>
+            )}
             <section id="access" data-testid="access-section">
               <FormField
                 control={model.form.control}
                 name="privacy"
                 render={({ field }) => (
                   <FormItem className="flex flex-col gap-1">
-                    <FormLabel className={classNameLabel}>
-                      {t('fieldConfigurationPrivacyLabel')}
-                    </FormLabel>
-                    <div className="flex items-center space-x-2">
-                      <RadioGroup
-                        className="mb-2"
-                        name="access-type"
-                        value={field.value}
-                        onValueChange={(newPrivacyValue: PrivacyEnum) =>
-                          model.form.setValue('privacy', newPrivacyValue)
-                        }
-                      >
-                        <div className="flex items-center space-x-2">
-                          <RadioGroupItem
-                            value={PrivacyEnum.private}
-                            id="private-access-radio"
-                          />
-                          <Label>{t('privateAccess')}</Label>
-                          <Popover>
-                            <PopoverTrigger>
-                              <HelpCircle className="size-4" />
-                            </PopoverTrigger>
-                            <PopoverContent className="text-sm">
-                              <p>{t('privateAccessDescription')}</p>
-                            </PopoverContent>
-                          </Popover>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                          <RadioGroupItem
-                            value={PrivacyEnum.public}
-                            id="public-access"
-                          />
-                          <Label>{t('publicAccess')}</Label>
-                          <Popover>
-                            <PopoverTrigger>
-                              <HelpCircle className="size-4" />
-                            </PopoverTrigger>
-                            <PopoverContent className="text-sm">
-                              <p>{t('publicAccessDescription1')}</p>
-                              <p className="text-red-600">
-                                {t('publicAccessDescription2')}
-                              </p>
-                            </PopoverContent>
-                          </Popover>
-                        </div>
-                      </RadioGroup>
-                    </div>
+                    <PrivacyRadioInput
+                      value={field.value}
+                      onChange={(newPrivacyValue: PrivacyEnum) =>
+                        model.form.setValue('privacy', newPrivacyValue)
+                      }
+                      className={classNameLabel}
+                    />
                   </FormItem>
                 )}
               />
@@ -501,81 +462,55 @@ const OrderFunnel = ({
                   ${!showAdvancedConfiguration && 'max-h-0 py-0'}`}
                 >
                   <div className="flex flex-col gap-6">
-                    <section id="command">
-                      <FormField
-                        control={model.form.control}
-                        name="dockerCommand"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel className={classNameLabel}>
-                              {t('fieldDockerCommandLabel')}
-                            </FormLabel>
-                            <p>{t('fieldDockedCommandDescription')}</p>
-                            <FormControl>
-                              <DockerCommand
-                                {...field}
-                                commands={field.value}
-                                onChange={(newCommands) =>
-                                  model.form.setValue(
-                                    'dockerCommand',
-                                    newCommands,
-                                  )
-                                }
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </section>
-                    <section id="volumes">
-                      <FormField
-                        control={model.form.control}
-                        name="volumes"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel className={classNameLabel}>
-                              {t('fieldVolumesLabel')}
-                            </FormLabel>
-                            <p>
-                              {t('fieldVolumeDescription1')}{' '}
-                              <OvhLink
-                                application="public-cloud"
-                                path={`#/pci/projects/${projectId}/ai/dashboard/datastore`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                              >
-                                {t('fieldVolumeDashboardLink')}
-                                <ArrowRight className="size-4 inline ml-1" />
-                              </OvhLink>
-                            </p>
-                            <p>{t('fieldVolumeDescription2')}</p>
-                            <A
-                              href={getGuideUrl(
-                                GUIDES.HOW_TO_MANAGE_DATA,
-                                locale,
-                              )}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              {t('fieldVolumeLink')}
-                              <ArrowRight className="size-4 inline ml-1" />
-                            </A>
-                            <FormControl>
-                              <VolumeForm
-                                {...field}
-                                configuredVolumesList={model.lists.volumes}
-                                selectedVolumesList={field.value}
-                                onChange={(newVolumes) =>
-                                  model.form.setValue('volumes', newVolumes)
-                                }
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </section>
+                    {!isPartnerSelected && (
+                      <section id="command">
+                        <FormField
+                          control={model.form.control}
+                          name="dockerCommand"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormControl>
+                                <DockerCommand
+                                  {...field}
+                                  commands={field.value}
+                                  onChange={(newCommands) =>
+                                    model.form.setValue(
+                                      'dockerCommand',
+                                      newCommands,
+                                    )
+                                  }
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </section>
+                    )}
+                    {!isPartnerSelected && (
+                      <section id="volumes">
+                        <FormField
+                          control={model.form.control}
+                          name="volumes"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormControl>
+                                <VolumeForm
+                                  {...field}
+                                  configuredVolumesList={model.lists.volumes}
+                                  selectedVolumesList={field.value}
+                                  onChange={(newVolumes) =>
+                                    model.form.setValue('volumes', newVolumes)
+                                  }
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </section>
+                    )}
+
                     <section id="labels">
                       <FormField
                         control={model.form.control}
@@ -750,7 +685,7 @@ const OrderFunnel = ({
                 type="submit"
                 data-testid="order-submit-button"
                 className="w-full"
-                disabled={isPendingAddApp}
+                disabled={isPendingAddApp || invalidScalingInput}
               >
                 {t('orderButton')}
               </Button>

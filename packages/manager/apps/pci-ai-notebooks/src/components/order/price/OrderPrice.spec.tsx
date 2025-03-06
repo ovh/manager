@@ -1,7 +1,7 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
 import OrderPrice from './OrderPrice.component';
-import { mockedPricing } from '@/__tests__/helpers/mocks/catalog';
+import { mockedPricing } from '@/__tests__/helpers/mocks/catalog/catalog';
 
 describe('OrderPrice component', () => {
   afterEach(() => {

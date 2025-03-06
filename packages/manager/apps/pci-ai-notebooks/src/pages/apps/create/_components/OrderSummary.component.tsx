@@ -262,7 +262,7 @@ const HttpPortDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
     <div className="flex flex-col gap-2">
       <div className="flex items-center gap-2">
         <Button
-          data-testid="access-section-button"
+          data-testid="port-http-section-button"
           variant={'link'}
           size={'link'}
           type="button"
@@ -425,7 +425,9 @@ const OrderSummary = ({ order, onSectionClicked }: OrderSummaryProps) => {
       <ImageDetails order={order} onSectionClicked={onSectionClicked} />
       <ScalingStrategy order={order} onSectionClicked={onSectionClicked} />
       <PrivacyDetails order={order} onSectionClicked={onSectionClicked} />
-      <HttpPortDetails order={order} onSectionClicked={onSectionClicked} />
+      {!order?.version && (
+        <HttpPortDetails order={order} onSectionClicked={onSectionClicked} />
+      )}
       {order.volumes.length > 0 && (
         <VolumesDetails order={order} onSectionClicked={onSectionClicked} />
       )}

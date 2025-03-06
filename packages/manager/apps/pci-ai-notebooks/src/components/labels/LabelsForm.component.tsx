@@ -27,7 +27,7 @@ interface LabelsFormProps {
 
 const LabelsForm = React.forwardRef<HTMLInputElement, LabelsFormProps>(
   ({ configuredLabels, onAdd, onDelete, onChange, disabled }, ref) => {
-    const { t } = useTranslation('components/configuration');
+    const { t } = useTranslation('components/labels');
 
     const { form } = useLabelForm({
       configuredLabel: configuredLabels.map((label) => label.name),

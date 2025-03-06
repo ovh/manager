@@ -14,8 +14,14 @@ export const useVolumesForm = ({
 }: UseVolumesFormProps) => {
   const { t } = useTranslation('components/volumes');
 
-  const gitBranchRules = z.string().optional();
+  const datastoreRules = z.string().min(VOLUMES_CONFIG.datastore.min);
 
+  const containerRules = datastoreRules.regex(
+    VOLUMES_CONFIG.container.pattern,
+    {
+      message: t('containerErrorFormat'),
+    },
+  );
   const mountDirectoryRules = z
     .string()
     .min(VOLUMES_CONFIG.mountDirectory.min)
@@ -53,7 +59,8 @@ export const useVolumesForm = ({
     });
 
   const containerSchema = z.object({
-    gitBranch: gitBranchRules,
+    datastore: datastoreRules,
+    container: containerRules,
     mountDirectory: mountDirectoryRules,
     permission: permissionRules,
     cache: cacheRules,

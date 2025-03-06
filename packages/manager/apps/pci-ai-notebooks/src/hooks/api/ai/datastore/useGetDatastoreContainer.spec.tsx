@@ -2,9 +2,8 @@ import { renderHook, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import * as datastoreApi from '@/data/api/ai/datastore.api';
-import { getDatastoreContainer } from '@/data/api/ai/datastore.api';
-import { mockedContainer } from '@/__tests__/helpers/mocks/container';
 import { useGetDatastoreContainer } from './useGetDatastoreContainer.hook';
+import { mockedContainer } from '@/__tests__/helpers/mocks/volume/datastore';
 
 vi.mock('@/data/api/ai/datastore.api', () => ({
   getDatastoreContainer: vi.fn(),

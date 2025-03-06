@@ -2,23 +2,6 @@ import { apiClient } from '@ovh-ux/manager-core-api';
 import { describe, expect, vi } from 'vitest';
 import { forkBackup, getBackup, getBackups } from './backups.api';
 
-vi.mock('@ovh-ux/manager-core-api', () => {
-  const get = vi.fn(() => {
-    return Promise.resolve({ data: null });
-  });
-  const post = vi.fn(() => {
-    return Promise.resolve({ data: null });
-  });
-  return {
-    apiClient: {
-      v6: {
-        get,
-        post,
-      },
-    },
-  };
-});
-
 describe('backup functions', () => {
   afterEach(() => {
     vi.clearAllMocks();

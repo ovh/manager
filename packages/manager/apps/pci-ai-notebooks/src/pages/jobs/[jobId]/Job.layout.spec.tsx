@@ -10,12 +10,12 @@ import * as ai from '@/types/cloud/project/ai';
 import {
   mockedDatastoreVolume,
   mockedPublicGitVolume,
-} from '@/__tests__/helpers/mocks/volume';
+} from '@/__tests__/helpers/mocks/volume/volume';
 import {
   mockedJob,
   mockedJobSpec,
   mockedJobStatus,
-} from '@/__tests__/helpers/mocks/job';
+} from '@/__tests__/helpers/mocks/job/job';
 
 const loaderParam = {
   params: {
@@ -57,9 +57,6 @@ describe('Job Layout', () => {
     vi.mock('@/data/api/ai/job/job.api', () => ({
       getJob: vi.fn(() => mockedJob),
     }));
-
-    const mockScrollIntoView = vi.fn();
-    window.HTMLElement.prototype.scrollIntoView = mockScrollIntoView;
   });
   afterEach(() => {
     vi.clearAllMocks();

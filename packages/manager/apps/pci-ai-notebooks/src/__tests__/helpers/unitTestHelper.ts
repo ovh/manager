@@ -62,3 +62,24 @@ export async function handleSelectText(
   const optionToSelect = screen.getByText(elementoSelect);
   fireEvent.keyDown(optionToSelect, { key: 'Enter', code: 13 });
 }
+
+export async function handleOpenCombo(triggerId: string) {
+  const selectTrigger = screen.getByTestId(triggerId);
+  // Open select
+  await waitFor(() => {
+    expect(selectTrigger).toBeInTheDocument();
+  });
+  act(() => {
+    fireEvent.click(selectTrigger);
+  });
+  expect(selectTrigger).not.toHaveAttribute('data-state', 'closed');
+}
+
+export async function handleSelectComboboxText(
+  triggerId: string,
+  elementoSelect: string,
+) {
+  await handleOpenCombo(triggerId);
+  const optionToSelect = screen.getByText(elementoSelect);
+  fireEvent.click(optionToSelect);
+}

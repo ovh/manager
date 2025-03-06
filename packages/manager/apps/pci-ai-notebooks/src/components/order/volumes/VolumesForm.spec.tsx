@@ -6,43 +6,24 @@ import {
   waitFor,
 } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
+import { mockManagerReactShellClient } from '@/__tests__/helpers/mockShellHelper';
 import VolumeForm from './VolumesForm.component';
-import { Locale } from '@/hooks/useLocale';
 import {
   mockedDatastoreWithContainerGit,
   mockedDatastoreWithContainerS3,
   mockedOrderPublicGit,
   mockedOrderVolumesGit,
   mockedOrderVolumesS3,
-} from '@/__tests__/helpers/mocks/datastore';
-import { handleSelectText } from '@/__tests__/helpers/unitTestHelper';
+} from '@/__tests__/helpers/mocks/volume/datastore';
+import { handleSelectComboboxText } from '@/__tests__/helpers/unitTestHelper';
 
 describe('Volume Form component', () => {
+  beforeEach(() => {
+    mockManagerReactShellClient();
+  });
   afterEach(() => {
     vi.clearAllMocks();
   });
-
-  vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
-    const mod = await importOriginal<
-      typeof import('@ovh-ux/manager-react-shell-client')
-    >();
-    return {
-      ...mod,
-      useShell: vi.fn(() => ({
-        i18n: {
-          getLocale: vi.fn(() => Locale.fr_FR),
-          onLocaleChange: vi.fn(),
-          setLocale: vi.fn(),
-        },
-      })),
-      useNavigation: () => ({
-        getURL: vi.fn(
-          (app: string, path: string) => `#mockedurl-${app}${path}`,
-        ),
-      }),
-    };
-  });
-
   const onChange = vi.fn();
   it('renders volume form should display datastore form and public git form', async () => {
     render(
@@ -97,15 +78,22 @@ describe('Volume Form component', () => {
     );
 
     // Select S3 Datastore
-    await handleSelectText(
-      'select-container-trigger',
+    await handleSelectComboboxText(
+      'select-datastore-container-button',
       mockedDatastoreWithContainerS3.id,
     );
 
-    // Chech that Branch input is not displayed
-    expect(
-      screen.queryByTestId('gitBranch-field-label'),
-    ).not.toBeInTheDocument();
+    await waitFor(() => {
+      expect(
+        screen.getByTestId('select-container-combobox'),
+      ).toBeInTheDocument();
+    });
+
+    // Select Container
+    await handleSelectComboboxText(
+      'select-container-combobox',
+      mockedDatastoreWithContainerS3.container[0],
+    );
 
     // add a value in MountPath
     act(() => {
@@ -138,27 +126,31 @@ describe('Volume Form component', () => {
       />,
     );
 
-    // Select GIT Datastore
-    await handleSelectText(
-      'select-container-trigger',
+    await handleSelectComboboxText(
+      'select-datastore-container-button',
       mockedDatastoreWithContainerGit.id,
     );
 
     // Chech that Branch input is displayed
-    expect(screen.getByTestId('git-branch-input-field')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(
+        screen.getByTestId('git-container-input-field'),
+      ).toBeInTheDocument();
+
+      act(() => {
+        fireEvent.change(screen.getByTestId('git-container-input-field'), {
+          target: {
+            value: 'develop',
+          },
+        });
+      });
+    });
 
     // add a value in MountPath and in Branch
-    act(() => {
-      fireEvent.change(screen.getByTestId('git-branch-input-field'), {
-        target: {
-          value: '/develop',
-        },
-      });
-      fireEvent.change(screen.getByTestId('mount-directory-input-field'), {
-        target: {
-          value: '/demo',
-        },
-      });
+    fireEvent.change(screen.getByTestId('mount-directory-input-field'), {
+      target: {
+        value: '/demo',
+      },
     });
 
     // click add button

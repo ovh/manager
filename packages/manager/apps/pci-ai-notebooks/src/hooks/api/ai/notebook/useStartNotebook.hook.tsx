@@ -22,7 +22,7 @@ export function useStartNotebook({
     onSuccess: () => {
       // Invalidate notebooks list query to get the latest data
       queryClient.invalidateQueries({
-        queryKey: [projectId, 'ai/notebook'],
+        queryKey: [projectId, 'ai', 'notebook'],
       });
       onStartSuccess();
     },

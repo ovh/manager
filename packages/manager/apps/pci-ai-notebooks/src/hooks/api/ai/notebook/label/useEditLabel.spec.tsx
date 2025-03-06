@@ -3,7 +3,7 @@ import { vi } from 'vitest';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import * as labelApi from '@/data/api/ai/notebook/label/label.api';
 import { useEditLabel } from './useEditLabel.hook';
-import { mockedLabel } from '@/__tests__/helpers/mocks/label';
+import { mockedLabel } from '@/__tests__/helpers/mocks/shared/label';
 
 vi.mock('@/data/api/ai/notebook/label/label.api', () => ({
   editLabel: vi.fn(),

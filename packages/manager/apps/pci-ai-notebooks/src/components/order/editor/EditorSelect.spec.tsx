@@ -10,7 +10,7 @@ import EditorsSelect from './EditorSelect.component';
 import {
   mockedEditor,
   mockedEditorBis,
-} from '@/__tests__/helpers/mocks/notebook/editor';
+} from '@/__tests__/helpers/mocks/capabilities/notebookEditor';
 
 describe('Editor Select component', () => {
   afterEach(() => {

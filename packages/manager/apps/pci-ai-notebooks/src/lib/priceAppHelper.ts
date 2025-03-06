@@ -72,6 +72,20 @@ export function createAppPriceObject(
             ? selectedPartnerApp.pricingGpu.tax * nbReplicas
             : selectedPartnerApp.pricingCpu.tax * nbReplicas,
       };
+    } else if (
+      selectedPartnerApp?.licensing ===
+      ai.capabilities.LicensingTypeEnum['per-second-bracket']
+    ) {
+      appPricing.partnerLicence = {
+        price:
+          resource.type === ai.capabilities.FlavorTypeEnum.gpu
+            ? selectedPartnerApp.pricingGpu.price * 60
+            : selectedPartnerApp.pricingCpu.price * 60,
+        tax:
+          resource.type === ai.capabilities.FlavorTypeEnum.gpu
+            ? selectedPartnerApp.pricingGpu.tax * 60
+            : selectedPartnerApp.pricingCpu.tax * 60,
+      };
     } else if (selectedPartnerApp) {
       appPricing.partnerLicence = {
         price:

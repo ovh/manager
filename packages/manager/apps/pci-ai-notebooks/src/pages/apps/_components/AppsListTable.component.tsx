@@ -64,7 +64,7 @@ AppsList.Skeleton = function AppsListSkeleton() {
   return (
     <>
       <div
-        data-testid="app-list-table-skeleton"
+        data-testid="apps-list-table-skeleton"
         className="flex justify-between w-100 mb-2 items-end"
       >
         <Skeleton className="h-20 w-48" />

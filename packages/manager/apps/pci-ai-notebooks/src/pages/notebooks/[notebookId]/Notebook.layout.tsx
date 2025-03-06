@@ -22,7 +22,7 @@ export const Loader = async ({ params }: NotebookLayoutProps) => {
   const { projectId, notebookId } = params;
   return queryClient
     .fetchQuery({
-      queryKey: [projectId, 'ai/notebook', notebookId],
+      queryKey: [projectId, 'ai', 'notebook', notebookId],
       queryFn: () => getNotebook({ projectId, notebookId }),
     })
     .then(

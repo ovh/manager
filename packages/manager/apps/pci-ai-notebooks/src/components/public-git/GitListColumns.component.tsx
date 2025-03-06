@@ -1,12 +1,26 @@
 import { ColumnDef } from '@tanstack/react-table';
 import { useTranslation } from 'react-i18next';
-import { Files } from 'lucide-react';
+import { Files, MoreHorizontal } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import * as ai from '@/types/cloud/project/ai';
 import { useToast } from '@/components/ui/use-toast';
 import DataTable from '@/components/data-table';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '../ui/dropdown-menu';
 
-export const getColumns = () => {
+interface GitColumnListProps {
+  updateMode: boolean;
+  onDeletVolume?: (volume: ai.volume.Volume) => void;
+}
+
+export const getColumns = ({
+  onDeletVolume,
+  updateMode,
+}: GitColumnListProps) => {
   const { t } = useTranslation('components/public-git');
   const toast = useToast();
   const columns: ColumnDef<ai.volume.Volume>[] = [
@@ -65,5 +79,39 @@ export const getColumns = () => {
       },
     },
   ];
+
+  if (updateMode) {
+    columns.push({
+      id: 'actions',
+      cell: ({ row }) => {
+        return (
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                data-testid="public-git-action-trigger"
+                variant="menu"
+                size="menu"
+              >
+                <span className="sr-only">Open menu</span>
+                <MoreHorizontal className="h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuItem
+                data-testid="public-git-action-delete-button"
+                variant="destructive"
+                onClick={() => {
+                  onDeletVolume(row.original);
+                }}
+              >
+                {t('tableActionDelete')}
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        );
+      },
+    });
+  }
+
   return columns;
 };

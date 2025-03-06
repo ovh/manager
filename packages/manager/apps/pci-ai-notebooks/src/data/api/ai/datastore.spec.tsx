@@ -6,34 +6,10 @@ import {
   editDatastore,
   getDatastore,
   getDatastoreAuth,
+  getDatastoreContainer,
   getDatastores,
 } from '@/data/api/ai/datastore.api';
-import { mockedDatastoreInput } from '@/__tests__/helpers/mocks/datastore';
-
-vi.mock('@ovh-ux/manager-core-api', () => {
-  const get = vi.fn(() => {
-    return Promise.resolve({ data: null });
-  });
-  const post = vi.fn(() => {
-    return Promise.resolve({ data: null });
-  });
-  const put = vi.fn(() => {
-    return Promise.resolve({ data: null });
-  });
-  const del = vi.fn(() => {
-    return Promise.resolve({ data: null });
-  });
-  return {
-    apiClient: {
-      v6: {
-        get,
-        post,
-        put,
-        delete: del,
-      },
-    },
-  };
-});
+import { mockedDatastoreInputGit } from '@/__tests__/helpers/mocks/volume/datastore';
 
 describe('Datastore functions', () => {
   afterEach(() => {
@@ -75,11 +51,11 @@ describe('Datastore functions', () => {
     await addDatastore({
       projectId: 'projectId',
       region: 'region',
-      datastore: mockedDatastoreInput,
+      datastore: mockedDatastoreInputGit,
     });
     expect(apiClient.v6.post).toHaveBeenCalledWith(
       '/cloud/project/projectId/ai/data/region/region/alias',
-      mockedDatastoreInput,
+      mockedDatastoreInputGit,
     );
   });
 
@@ -88,12 +64,12 @@ describe('Datastore functions', () => {
     await editDatastore({
       projectId: 'projectId',
       region: 'region',
-      datastore: mockedDatastoreInput,
+      datastore: mockedDatastoreInputGit,
       alias: 'monAlias',
     });
     expect(apiClient.v6.put).toHaveBeenCalledWith(
       '/cloud/project/projectId/ai/data/region/region/alias/monAlias',
-      mockedDatastoreInput,
+      mockedDatastoreInputGit,
     );
   });
 
@@ -118,6 +94,18 @@ describe('Datastore functions', () => {
     });
     expect(apiClient.v6.get).toHaveBeenCalledWith(
       '/cloud/project/projectId/ai/data/region/region/alias/aliasID/auth',
+    );
+  });
+
+  it('should call getDatastoreContainer', async () => {
+    expect(apiClient.v6.get).not.toHaveBeenCalled();
+    await getDatastoreContainer({
+      projectId: 'projectId',
+      region: 'region',
+      alias: 'aliasID',
+    });
+    expect(apiClient.v6.get).toHaveBeenCalledWith(
+      '/cloud/project/projectId/ai/data/region/region/alias/aliasID/containers',
     );
   });
 });
