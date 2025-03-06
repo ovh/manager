@@ -7,8 +7,11 @@ import {
 import initI18n from './i18n';
 import App from './App';
 
-import '@/vite-hmr.ts';
 import './index.css';
+import '@datatr-ux/ods-tailwind-config/style.css';
+import '@datatr-ux/uxlib/style.css';
+import '@/vite-hmr.ts';
+import { LoadingIndicatorProvider } from './contexts/LoadingIndicator.context';
 
 const init = async (
   appName: string,
@@ -41,7 +44,9 @@ const init = async (
   ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <React.StrictMode>
       <ShellProvider client={context}>
-        <App />
+        <LoadingIndicatorProvider>
+          <App />
+        </LoadingIndicatorProvider>
       </ShellProvider>
     </React.StrictMode>,
   );
