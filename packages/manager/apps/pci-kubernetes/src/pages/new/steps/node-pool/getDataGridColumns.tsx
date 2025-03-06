@@ -7,6 +7,7 @@ import { ODS_CHIP_SIZE, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { OsdsChip } from '@ovhcloud/ods-components/react';
 import { NodePool } from '@/api/data/kubernetes';
 import RestrictionAction from '@/components/restriction/RestrictionAction.component';
+import { MonthlyBilled } from '@/pages/detail/nodepools/useDatagridColumn';
 
 export const getDatagridColumns = ({
   onDelete,
@@ -90,15 +91,7 @@ export const getDatagridColumns = ({
     },
     {
       id: 'billing',
-      cell: (props) => (
-        <DataGridTextCell>
-          {t(
-            `flavor-billing:pci_project_flavors_billing_${
-              props.monthlyBilled ? 'monthly' : 'hourly'
-            }`,
-          )}
-        </DataGridTextCell>
-      ),
+      cell: MonthlyBilled,
       label: t('node-pool:kube_node_pool_monthly_billing'),
     },
     {

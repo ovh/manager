@@ -10,6 +10,19 @@ import { ODS_CHIP_SIZE } from '@ovhcloud/ods-components';
 import { TClusterNodePool } from '@/api/data/node-pools';
 import ActionsComponent from './actions.component';
 
+export const MonthlyBilled = ({
+  monthlyBilled,
+}: {
+  monthlyBilled: boolean;
+}) => {
+  const { t } = useTranslation('flavor-billing');
+  return (
+    <DataGridTextCell>
+      {t(`pci_project_flavors_billing_${monthlyBilled ? 'monthly' : 'hourly'}`)}
+    </DataGridTextCell>
+  );
+};
+
 export const useDatagridColumns = () => {
   const { t } = useTranslation([
     'node-pool',
@@ -105,15 +118,7 @@ export const useDatagridColumns = () => {
     },
     {
       id: 'monthlyBilled',
-      cell: (props) => (
-        <DataGridTextCell>
-          {t(
-            `flavor-billing:pci_project_flavors_billing_${
-              props.monthlyBilled ? 'monthly' : 'hourly'
-            }`,
-          )}
-        </DataGridTextCell>
-      ),
+      cell: MonthlyBilled,
       label: t('kube-nodes:kube_nodes_billing_type'),
     },
     {
