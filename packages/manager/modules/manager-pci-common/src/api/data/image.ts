@@ -42,7 +42,17 @@ export type TImage = {
   visibility: string;
 };
 
-export const getImages = async (projectId: string): Promise<TImage[]> => {
-  const { data } = await v6.get<TImage[]>(`/cloud/project/${projectId}/image`);
+export type TGetImagesParams = {
+  flavorType?: string;
+  region?: string;
+};
+
+export const getImages = async (
+  projectId: string,
+  params: TGetImagesParams,
+): Promise<TImage[]> => {
+  const { data } = await v6.get<TImage[]>(`/cloud/project/${projectId}/image`, {
+    params,
+  });
   return data;
 };
