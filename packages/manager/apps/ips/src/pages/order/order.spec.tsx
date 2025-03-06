@@ -7,9 +7,10 @@ import {
   WAIT_FOR_DEFAULT_OPTIONS,
   getSelectByPlaceholder,
   getButtonByLabel,
+  getOdsCardByContentText,
 } from '@/test-utils';
 import { urls } from '@/routes/routes.constant';
-import { organisationMockList } from '../../../mocks';
+import { organisationMockList, resourceMockList } from '../../../mocks';
 import { IpOffer, IpVersion } from './order.constant';
 import { ipParkingOptionValue } from '@/data/hooks/useServiceList';
 
@@ -18,32 +19,32 @@ describe('Order', async () => {
     {
       case: 'vRack',
       ipVersion: IpVersion.ipv4,
-      serviceName: 'pn-0000001',
+      serviceName: resourceMockList[2].name,
       region: 'eu-west-lim',
       organisation: organisationMockList[2],
       offer: IpOffer.blockAdditionalIp,
       expectedOrderLink:
-        "https://www.ovh.com/fr/order/express/#/express/review?products=~(~(configuration~(~(label~'destination~value~'pn-0000001)~(label~'country~value~'DE)~(label~'organisation~value~'RIPE-1)~(label~'datacenter~value~'LIM))~duration~'P1M~planCode~'ip-v4-s30-ripe~pricingMode~'default~productId~'ip~quantity~1~serviceName~null~datacenter~'LIM))",
+        "https://www.ovh.com/fr/order/express/#/express/review?products=~(~(configuration~(~(label~'destination~value~'pn-000001)~(label~'country~value~'DE)~(label~'organisation~value~'RIPE-1)~(label~'datacenter~value~'LIM))~duration~'P1M~planCode~'ip-v4-s30-ripe~pricingMode~'default~productId~'ip~quantity~1~serviceName~null~datacenter~'LIM))",
     },
     {
       case: 'vRack in UK',
       ipVersion: IpVersion.ipv4,
-      serviceName: 'pn-0000002',
+      serviceName: resourceMockList[3].name,
       region: 'eu-west-eri',
       organisation: organisationMockList[3],
       offer: IpOffer.blockAdditionalIp,
       expectedOrderLink:
-        "https://www.ovh.com/fr/order/express/#/express/review?products=~(~(configuration~(~(label~'destination~value~'pn-0000002)~(label~'country~value~'UK)~(label~'organisation~value~'RIPE-2)~(label~'datacenter~value~'ERI))~duration~'P1M~planCode~'ip-v4-s30-ripe~pricingMode~'default~productId~'ip~quantity~1~serviceName~null~datacenter~'ERI))",
+        "https://www.ovh.com/fr/order/express/#/express/review?products=~(~(configuration~(~(label~'destination~value~'pn-000002)~(label~'country~value~'UK)~(label~'organisation~value~'RIPE-2)~(label~'datacenter~value~'ERI))~duration~'P1M~planCode~'ip-v4-s30-ripe~pricingMode~'default~productId~'ip~quantity~1~serviceName~null~datacenter~'ERI))",
     },
     {
       case: 'vRack in CA',
       ipVersion: IpVersion.ipv4,
-      serviceName: 'pn-0000001',
+      serviceName: resourceMockList[2].name,
       region: 'ca-east-bhs',
       organisation: organisationMockList[0],
       offer: IpOffer.blockAdditionalIp,
       expectedOrderLink:
-        "https://www.ovh.com/fr/order/express/#/express/review?products=~(~(configuration~(~(label~'destination~value~'pn-0000001)~(label~'country~value~'CA)~(label~'organisation~value~'ARIN-1)~(label~'datacenter~value~'BHS))~duration~'P1M~planCode~'ip-v4-s30-arin~pricingMode~'default~productId~'ip~quantity~1~serviceName~null~datacenter~'BHS))",
+        "https://www.ovh.com/fr/order/express/#/express/review?products=~(~(configuration~(~(label~'destination~value~'pn-000001)~(label~'country~value~'CA)~(label~'organisation~value~'ARIN-1)~(label~'datacenter~value~'BHS))~duration~'P1M~planCode~'ip-v4-s30-arin~pricingMode~'default~productId~'ip~quantity~1~serviceName~null~datacenter~'BHS))",
     },
     {
       case: 'Parking + Additional IP',
@@ -53,6 +54,14 @@ describe('Order', async () => {
       offer: IpOffer.additionalIp,
       expectedOrderLink:
         "https://www.ovh.com/fr/order/express/#/express/review?products=~(~(configuration~(~(label~'destination~value~'parking)~(label~'country~value~'CA)~(label~'datacenter~value~'BHS))~duration~'P1M~planCode~'ip-failover-arin~pricingMode~'default~productId~'ip~quantity~1~serviceName~null~datacenter~'BHS))",
+    },
+    {
+      case: 'Dedicated Cloud',
+      ipVersion: IpVersion.ipv4,
+      serviceName: resourceMockList[0].name,
+      offer: IpOffer.blockAdditionalIp,
+      expectedOrderLink:
+        "https://www.ovh.com/fr/order/express/#/express/review?products=~(~(configuration~(~(label~'destination~value~'pcc-1)~(label~'country~value~'FR))~duration~'P1M~planCode~'pcc-option-ip-ripe-28~pricingMode~'pcc-servicepack-default~productId~'privateCloud~quantity~1~serviceName~'pcc-1~datacenter~null))",
     },
   ])(
     'redirect to express order successfully ($case)',
@@ -107,13 +116,19 @@ describe('Order', async () => {
 
       // Select offer
       let offerOption: HTMLElement;
-      await waitFor(() => {
-        offerOption = screen.getByText(
+      await waitFor(async () => {
+        const text =
           offer === IpOffer.blockAdditionalIp
             ? labels.order.additional_ip_block_card_title
-            : labels.order.additional_ip_card_title,
-        );
-        expect(offerOption).toBeInTheDocument();
+            : labels.order.additional_ip_card_title;
+
+        const subcomponent =
+          offer === IpOffer.blockAdditionalIp ? 'ods-select' : 'ods-quantity';
+        offerOption = await getOdsCardByContentText({
+          container,
+          text,
+        });
+        expect(offerOption.querySelector(subcomponent)).toBeInTheDocument();
       }, WAIT_FOR_DEFAULT_OPTIONS);
 
       await waitFor(() => userEvent.click(offerOption));
