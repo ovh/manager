@@ -8,35 +8,7 @@ export default /* @ngInject */ ($stateProvider) => {
         component: 'nutanixNode',
       },
     },
-    redirectTo: (transition) => {
-      const $translatePromise = transition.injector().getAsync('$translate');
-      const isTerminatedPromise = transition
-        .injector()
-        .getAsync('isTerminated');
-
-      return Promise.all([$translatePromise, isTerminatedPromise]).then(
-        ([$translate, isTerminated]) => {
-          if (isTerminated) {
-            return {
-              state: 'error',
-              params: {
-                detail: {
-                  message: $translate.instant(
-                    'nutanix_dashboard_service_suspended',
-                  ),
-                  status: 'EXPIRED',
-                  code: 404,
-                },
-                to: {
-                  state: 'nutanix.index',
-                },
-              },
-            };
-          }
-          return 'nutanix.dashboard.nodes.node.general-info';
-        },
-      );
-    },
+    redirectTo: () => 'nutanix.dashboard.nodes.node.general-info',
     resolve: {
       nodeId: /* @ngInject */ ($transition$) => $transition$.params().nodeId,
       node: /* @ngInject */ (nodeId, NutanixService) =>
