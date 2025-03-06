@@ -29,12 +29,14 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { handleClick } from '@ovh-ux/manager-react-components';
 import { useQueryClient } from '@tanstack/react-query';
-import { getVrackListQueryKey } from '@/data/api';
+import {
+  getVrackListQueryKey,
+  useCreateCartWithVrack,
+} from '@ovh-ux/manager-network-common';
 import { DeliveringMessages } from '@/components/DeliveringMessages.component';
 import { MessagesContext } from './feedback-messages/Messages.context';
 import { LoadingText } from './LoadingText.component';
 import { OrderSubmitModalContent } from './OrderSubmitModalContent.component';
-import { useCreateCartWithVrack } from '@/data/hooks';
 
 const trackingParams = {
   location: PageLocation.popup,

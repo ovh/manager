@@ -8,9 +8,8 @@ import {
   DataGridTextCell,
   ColumnSort,
 } from '@ovh-ux/manager-react-components';
+import { useVrackService, Subnet } from '@ovh-ux/manager-network-common';
 import { SubnetsActionCell } from './SubnetsActionCell.component';
-import { Subnet } from '@/types';
-import { useVrackService } from '@/data/hooks';
 
 const sortSubnets = (sorting: ColumnSort, subnetList: Subnet[] = []) => {
   subnetList.sort((s1, s2) => {
