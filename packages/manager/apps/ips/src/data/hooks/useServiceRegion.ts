@@ -9,7 +9,7 @@ import {
   getDedicatedServerData,
   getVpsDatacenter,
 } from '../api';
-import { ServiceStatus, ServiceType } from '@/types';
+import { ServiceType } from '@/types';
 import { DATACENTER_TO_REGION } from './catalog';
 
 export const useServiceRegion = ({
@@ -19,7 +19,7 @@ export const useServiceRegion = ({
 }: {
   serviceName?: string;
   serviceType?: ServiceType;
-  serviceStatus?: ServiceStatus;
+  serviceStatus?: string;
 }) => {
   const dedicatedServerData = useQuery<ApiResponse<DedicatedServer>, ApiError>({
     queryKey: [ServiceType.server, serviceName],
