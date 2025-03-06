@@ -1,14 +1,20 @@
 <div data-ui-view>
     <div>
-        <oui-header data-heading="{{:: 'iam_api_keys' | translate }}"> </oui-header>
+        <oui-header data-heading="{{:: 'iam_api_keys' | translate }}">
+        </oui-header>
     </div>
     <div>
         <p data-translate="iam_api_keys_description"></p>
-        <oui-datagrid
-            data-rows="$ctrl.apiKeys"
-            data-page="{{ 1 }}"
-            data-page-size="{{ $ctrl.apiKeys.length }}"
+        <a
+            class="mb-3 oui-button oui-button_primary text-light"
+            rel="noopener"
+            target="_blank"
+            data-ng-href="{{:: $ctrl.API_KEY_URL}}"
         >
+            <span data-translate="iam_api_keys_create_api_key"></span>
+        </a>
+
+        <oui-datagrid data-rows="$ctrl.apiKeys">
             <!-- <Columns> -->
             <oui-datagrid-column
                 data-title=":: 'iam_api_keys_datagrid_column_application_id' | translate"
@@ -58,6 +64,6 @@
             </oui-action-menu>
             <!-- </Actions> -->
         </oui-datagrid>
-        <div data-ui-view></div>    
+        <div data-ui-view="delete-modal"></div>
     </div>
 </div>
