@@ -31,11 +31,11 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { Await } from 'react-router-dom';
-import { useLastOrderTracking } from '@/data/hooks/lastOrderTracking/useLastOrderTracking';
+import { useFetchLastOrder } from '@/data/hooks/apiOrder/useLastOrder';
 import {
   ERROR_STATUS,
   WAITING_PAYMENT_LABEL,
-} from '@/data/api/order/order.constants';
+} from '@/data/api/apiOrder/apiOrder.constants';
 import useDateFormat from '@/hooks/dateFormat/useDateFormat';
 import { LastOrderTrackingResponse, OrderHistory } from '@/types/order.type';
 import { useHubContext } from '@/pages/layout/context';
@@ -52,7 +52,7 @@ export default function HubOrderTracking() {
     isLoading: isLastOrderLoading,
     error,
     refetch,
-  } = useLastOrderTracking();
+  } = useFetchLastOrder();
   const context = useContext(ShellContext);
   const { navigation } = context.shell;
   const { trackClick } = useOvhTracking();
@@ -89,11 +89,11 @@ export default function HubOrderTracking() {
   };
 
   const currentStatus = useMemo(() => {
-    if (!orderDataResponse || isLastOrderLoading) return undefined;
-    if (!orderDataResponse.history?.length)
+    if (!orderDataResponse) return undefined;
+    if (!orderDataResponse.history.length)
       return getInitialStatus(orderDataResponse);
     return getLatestStatus(orderDataResponse.history);
-  }, [orderDataResponse, isLastOrderLoading]);
+  }, [orderDataResponse]);
 
   const isWaitingPayment = currentStatus?.label === WAITING_PAYMENT_LABEL;
 

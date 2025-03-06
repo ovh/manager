@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
-import { getLastOrder } from '@/data/api/order/order';
-import { LastOrder } from '@/types/order.type';
+import { getLastOrder } from '@/data/api/lastOrder';
+import { LastOrder } from '@/types/lastOrder.type';
 
-export const useLastOrder = () =>
+export const useFetchHubLastOrder = () =>
   useQuery<LastOrder, AxiosError>({
-    queryKey: ['lastOrder'],
+    queryKey: ['getHubLastOrder'],
     queryFn: getLastOrder,
   });

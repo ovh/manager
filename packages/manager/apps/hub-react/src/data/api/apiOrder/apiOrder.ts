@@ -1,19 +1,18 @@
 import { aapi, v6 } from '@ovh-ux/manager-core-api';
 import {
   OrderFollowUpResponse,
+  OrderResponseData,
   OrderDetailsResponse,
   OrderStatus,
   OrderHistory,
-  LastOrderResponse,
-  Order,
+  LastOrderTrackingResponse,
 } from '@/types/order.type';
-import { NOT_PAID, WAITING_PAYMENT_LABEL } from './order.constants';
-import { ApiEnvelope } from '@/types/apiEnvelope.type';
+import { NOT_PAID, WAITING_PAYMENT_LABEL } from './apiOrder.constants';
 
-export const getLastOrder = async (): Promise<ApiEnvelope<Order>> => {
-  const { data } = await aapi.get<LastOrderResponse>('/hub/lastOrder');
-  return data.data.lastOrder;
-};
+export const getLastOrder: () => Promise<OrderResponseData> = async () =>
+  aapi.get('/hub/lastOrder').then(({ data }) => {
+    return data.data.lastOrder;
+  });
 
 export const getOrderDetails = async (
   orderId: number,
@@ -58,4 +57,29 @@ export const getCompleteHistory = async (
     }
     throw err;
   }
+};
+
+export const fetchOrder = async (): Promise<LastOrderTrackingResponse> => {
+  const lastOrderResponse = await getLastOrder();
+
+  if (!lastOrderResponse || lastOrderResponse.status !== 'OK') return undefined;
+
+  const { data: lastOrder } = lastOrderResponse;
+  const [orderStatus, details] = await Promise.all([
+    getOrderStatus(lastOrder.orderId),
+    getOrderDetails(lastOrder.orderId),
+  ]);
+
+  const histories = await getCompleteHistory(
+    lastOrder.orderId,
+    lastOrder.date,
+    orderStatus,
+  );
+
+  return {
+    ...details,
+    status: orderStatus,
+    history: histories,
+    ...lastOrder,
+  };
 };
