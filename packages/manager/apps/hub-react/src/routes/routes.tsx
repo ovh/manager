@@ -32,7 +32,7 @@ export const Routes: any = [
       },
       {
         path: 'roadmap-changelog',
-        ...lazyRouteConfig(() => import('@/pages/changelog/changelog')),
+        ...lazyRouteConfig(() => import('@/pages/changelog/Changelog')),
         handle: {
           tracking: {
             pageName: 'roadmap-changelog',
