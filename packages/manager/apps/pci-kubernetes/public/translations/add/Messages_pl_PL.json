@@ -27,7 +27,7 @@
   "kube_add_node_pool_creating": "Tworzenie puli węzłów",
   "kube_add_node_pool_success": "Pula węzłów '{{nodePoolName}}' została utworzona",
   "kube_add_node_pool_error": "Nie można utworzyć puli węzłów '{{nodePoolName}}': {{message}}",
-  "kube_add_billing_type_description": "Ten tryb płatności zostanie zastosowany do wszystkich utworzonych w przyszłości węzłów w tej puli. Będziesz mógł później zmienić płatność za godzinę na płatność miesięczną dla każdego węzła osobno.",
+  "kube_add_billing_type_description": "Ten tryb płatności zostanie zastosowany do wszystkich przyszłych węzłów w tej puli.",
   "kube_add_billing_type_payment_method": "Opłata zostanie pobrana za pomocą domyślnego sposobu płatności.",
   "kube_add_billing_anti_affinity_title": "Płatności i ochrona przed koligacją (anti-affinity)",
   "kube_add_node_pool_error_InsufficientVCPUsQuota": "Limit vCPUs dla Twojego projektu jest niewystarczający, aby przeprowadzić operację. Zwiększ limit lub zmniejsz ilość zasobów.",
@@ -47,5 +47,6 @@
   "kubernetes_add_billing_savings_plan_banner": "Dzięki Savings Plan zyskujesz korzystne opłaty miesięczne, a jednocześnie zachowujesz możliwość płatności za instancje w trybie za godzinę.",
   "kubernetes_add_billing_savings_plan_cta": "Skonfiguruj Savings Plans",
   "kubernetes_add_name_placeholder": "Nazwa klastra",
-  "kubernetes_add_nodepool_name_placeholder": "Nazwa puli węzłów"
+  "kubernetes_add_nodepool_name_placeholder": "Nazwa puli węzłów",
+  "kubernetes_add_billing_type_description_monthly": "Będziesz mógł później zmienić płatność za godzinę na płatność miesięczną dla każdego węzła osobno."
 }
