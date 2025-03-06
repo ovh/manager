@@ -3,7 +3,7 @@ import { PathParams } from 'msw';
 import { availableService, expiredService } from './serviceInfo';
 import { DedicatedServer } from '../src/data/api';
 
-const dedicatedServerList: DedicatedServer[] = [
+export const dedicatedServerMockList: DedicatedServer[] = [
   {
     ip: '111.222.333.444',
     os: 'os',
@@ -54,14 +54,14 @@ export const getDedicatedServerMocks = ({
   {
     url: '/dedicated/server/:serviceName',
     response: (_: unknown, params: PathParams) =>
-      dedicatedServerList.find(
+      dedicatedServerMockList.find(
         (service) => service.name === params.serviceName,
       ),
     api: 'v6',
   },
   {
     url: '/dedicated/server',
-    response: dedicatedServerList.slice(0, nbDedicatedServers),
+    response: dedicatedServerMockList.slice(0, nbDedicatedServers),
     api: 'v6',
   },
 ];

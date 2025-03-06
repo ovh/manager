@@ -39,5 +39,6 @@
   "order_button_label": "Continuer ma commande",
   "cancel_button_label": "Retour",
   "error_message": "Une erreur est survenue: {{error}}",
-  "service_selection_dedicated_server_expired_error_message": "Le service est expiré"
+  "service_selection_expired_error_message": "Le service est expiré",
+  "service_selection_ip_quota_exceeded_error_message": "Le quota maximal d'IPs a été atteint pour ce serveur."
 }
