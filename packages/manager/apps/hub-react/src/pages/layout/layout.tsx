@@ -21,7 +21,7 @@ import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { features } from '@/pages/layout/layout.constants';
 import { useFetchHubServices } from '@/data/hooks/services/useServices';
-import { useFetchHubLastOrder } from '@/data/hooks/lastOrder/useLastOrder';
+import { useLastOrder } from '@/data/hooks/lastOrder/useLastOrder';
 // Components used in Suspense's fallback cannot be lazy loaded (break testing)
 import TileGridSkeleton from '@/components/tile-grid-skeleton/TileGridSkeleton.component';
 import { Context } from '@/pages/layout/context';
@@ -79,10 +79,7 @@ export default function Layout() {
     data: services,
     isPending: areServicesLoading,
   } = useFetchHubServices();
-  const {
-    data: lastOrder,
-    isPending: isLastOrderLoading,
-  } = useFetchHubLastOrder();
+  const { data: lastOrder, isPending: isLastOrderLoading } = useLastOrder();
 
   function scrollToComponent() {
     mainContentRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -166,7 +163,9 @@ export default function Layout() {
                       <HubSupport />
                     </div>
                     <div className="md:w-4/12 order-4 px-6 box-border">
-                      <OrderTracking />
+                      <Suspense>
+                        <OrderTracking />
+                      </Suspense>
                     </div>
                   </div>
                   <div className="hub-dashboard-product">
