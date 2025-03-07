@@ -5,9 +5,11 @@ import { OdsLink } from '@ovhcloud/ods-components/react';
 import { useNavigate } from 'react-router-dom';
 import { TOngoingOperations } from 'src/types';
 import { FilterCategories } from '@ovh-ux/manager-core-api';
+import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { formatDatagridDate, removeQuotes } from '@/utils/utils';
 import OngoingOperationDatagridBadge from '@/components/OngoingOperationDatagridBadge/OngoingOperationDatagridBadge';
-import { UseManagerUrl } from '@/hooks/url/useManagerUrl';
+import { UseWebCloudManagerUrl } from '@/hooks/url/useWebCloudManagerUrl';
+import { DNS_OPERATIONS_TABLE_HEADER_DOMAIN } from '@/pages/dashboard/Dashboard';
 
 export enum ParentEnum {
   Domain = 'domain',
@@ -29,7 +31,7 @@ export const useOngoingOperationDatagridColumns = (
         id: parent,
         cell: (props: TOngoingOperations) => {
           const value: string = props[parent];
-          const url: string = UseManagerUrl(parent, value);
+          const url: string = UseWebCloudManagerUrl(parent, value);
           return (
             <DataGridTextCell>
               <OdsLink
@@ -44,9 +46,10 @@ export const useOngoingOperationDatagridColumns = (
         label:
           parent === ParentEnum.Domain
             ? t('domain_operations_table_header_domain')
-            : t('dns_operations_table_header_domain'),
+            : DNS_OPERATIONS_TABLE_HEADER_DOMAIN,
         comparator: FilterCategories.String,
         isFilterable: true,
+        isSearchable: true,
       },
       {
         id: 'function',
@@ -100,6 +103,7 @@ export const useOngoingOperationDatagridColumns = (
               isDisabled={
                 !props.canAccelerate && !props.canRelaunch && !props.canCancel
               }
+              variant={ODS_BUTTON_VARIANT.ghost}
               items={[
                 {
                   id: 1,
@@ -122,7 +126,7 @@ export const useOngoingOperationDatagridColumns = (
           </div>
         ),
         id: 'actions',
-        label: t('domain_operations_table_header_actions'),
+        label: '',
         isSortable: false,
       },
     ],

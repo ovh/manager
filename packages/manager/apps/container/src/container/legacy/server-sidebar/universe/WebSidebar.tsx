@@ -14,6 +14,7 @@ export const webFeatures = [
   'web:domains',
   'web:domains:all-dom',
   'web:domains:zone',
+  'web-ongoing-operations',
   'hosting',
   'private-database',
   'email-pro',
@@ -46,6 +47,26 @@ export default function WebSidebar() {
   const getWebMenu = (features: Record<string, boolean>) => {
     const menu = [];
 
+    let domain_operations = {
+      id: 'domain_operations',
+      label: t('sidebar_domain_operations'),
+      href: navigation.getURL('web', '#/domain/operation'),
+      routeMatcher: new RegExp('^(/configuration)?/domain/operation'),
+      icon: getIcon('ovh-font ovh-font-config'),
+      ignoreSearch: true,
+    }
+
+    if(features['web-ongoing-operations']){
+      domain_operations = {
+        id: 'domain_operations',
+        label: t('sidebar_domain_operations'),
+        href: navigation.getURL('web-ongoing-operations', '#/domain'),
+        routeMatcher: new RegExp('^(/configuration)?/domain/operation'),
+        icon: getIcon('ovh-font ovh-font-config'),
+        ignoreSearch: true,
+      }
+    }
+
     if (features['web:domains']) {
       menu.push({
         id: 'domains',
@@ -70,14 +91,7 @@ export default function WebSidebar() {
               icon: getIcon('oui-icon oui-icon-list'),
               ignoreSearch: true,
             },
-            {
-              id: 'domain_operations',
-              label: t('sidebar_domain_operations'),
-              href: navigation.getURL('web', '#/domain/operation'),
-              routeMatcher: new RegExp('^(/configuration)?/domain/operation'),
-              icon: getIcon('ovh-font ovh-font-config'),
-              ignoreSearch: true,
-            },
+            domain_operations,
             ...allDom.map((item) => ({
               ...item,
               href: undefined,
