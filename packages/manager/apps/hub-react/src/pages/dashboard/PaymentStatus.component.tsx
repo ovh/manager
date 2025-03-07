@@ -31,8 +31,8 @@ import { Await } from 'react-router-dom';
 import { useFetchHubBillingServices } from '@/data/hooks/billingServices/useBillingServices';
 import { BillingService } from '@/billing/types/billingServices.type';
 import useDateFormat from '@/hooks/dateFormat/useDateFormat';
-import { useHubContext } from '@/pages/layout/context';
-import { BILLING_FEATURE } from '@/pages/layout/layout.constants';
+import { useHubContext } from '@/pages/dashboard/context';
+import { BILLING_FEATURE } from '@/pages/dashboard/dashboard.constants';
 
 const TileError = lazy(() =>
   import('@/components/tile-error/TileError.component'),
