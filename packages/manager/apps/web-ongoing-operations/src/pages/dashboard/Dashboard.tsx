@@ -10,6 +10,8 @@ import {
 import { OdsTabs, OdsTab } from '@ovhcloud/ods-components/react';
 import { BaseLayout } from '@ovh-ux/manager-react-components';
 
+export const DNS_OPERATIONS_TABLE_HEADER_DOMAIN = 'DNS';
+
 export type DashboardTabItemProps = {
   name: string;
   title: string;
@@ -34,7 +36,7 @@ export default function DashboardPage() {
     },
     {
       name: 'dns',
-      title: t('dns_operations_table_header_domain'),
+      title: DNS_OPERATIONS_TABLE_HEADER_DOMAIN,
       to: useResolvedPath('dns').pathname,
     },
   ];
