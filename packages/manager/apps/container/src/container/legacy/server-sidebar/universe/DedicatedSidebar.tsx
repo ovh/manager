@@ -33,6 +33,7 @@ export const features = [
   'exchange:dedicated-dashboard',
   'license',
   'ip',
+  'ips',
   'iam',
   'public-cloud',
   'dedicated-server:order',
