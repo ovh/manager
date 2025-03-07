@@ -10,6 +10,7 @@ import {
   OVH_FIELD_PREFIX,
   REGEX,
   OTHER_KEY,
+  FORCED_FIELDS,
 } from '../edit.constants';
 
 export default class EditOwnerFormFieldController {
@@ -182,8 +183,10 @@ export default class EditOwnerFormFieldController {
     return true;
   }
 
+  // Returns a list of fields that are required to pass the validation rules.
+  // In some cases we need to return a list of fields even though the rule says otherwise.
   isRequired() {
-    return !!this.rule?.constraints
+    return Object.values(FORCED_FIELDS).includes(this.rule?.label) || !!this.rule?.constraints
       .filter((constraint) => constraint.operator === 'required')
       .find((rules) => {
         if (rules?.conditions) {
