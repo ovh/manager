@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   OsdsChip,
@@ -40,7 +40,10 @@ import { BillingLink } from '@/components/Links/BillingLink.component';
 import { Loading } from '@/components/Loading/Loading';
 import { BackupStatusBadge } from '@/components/BackupStatus/BackupStatusBadge.component';
 import useVeeamBackupConsumption from '@/data/hooks/useVeeamBackupConsumption';
-import { VEEAM_BACKUP_CONSUMPTION_PLAN_CODE } from '@/pages/dashboard/Dashboard.constants';
+import {
+  VEEAM_BACKUP_CONSUMPTION_PLAN_CODE,
+  VEEAM_BACKUP_CONSUMPTION_VCD_VM_CODE,
+} from '@/pages/dashboard/Dashboard.constants';
 import { CHANGELOG_LINKS } from '@/constants';
 
 export default function DashboardPage() {
@@ -54,6 +57,14 @@ export default function DashboardPage() {
   const { t } = useTranslation('dashboard');
   const displayName = getVeeamBackupDisplayName(data?.data);
 
+  const consumedVms = useMemo(() => {
+    if (!Array.isArray(consumptions)) return null;
+    return consumptions.filter(
+      (consumption) =>
+        consumption.planCode === VEEAM_BACKUP_CONSUMPTION_VCD_VM_CODE,
+    ).length;
+  }, [consumptions]);
+
   const getRealOfferConsumption = (
     offer: VeeamBackupOffer,
   ): VeeamBackupOffer => {
@@ -63,7 +74,7 @@ export default function DashboardPage() {
     );
     return { ...offer, usedSpaceInGB: consumption?.quantity ?? 0 };
   };
-  
+
   const header = {
     title: displayName,
     description: displayName !== data?.data?.id ? data?.data?.id : null,
@@ -164,7 +175,13 @@ export default function DashboardPage() {
                       <Description>{t('consumed_vms_label')}</Description>
                     </div>
                   ) : (
-                    <ComingSoonBadge />
+                    <OsdsChip
+                      data-testid="consumed-vms"
+                      color={ODS_THEME_COLOR_INTENT.primary}
+                      inline
+                    >
+                      {consumedVms} VMs
+                    </OsdsChip>
                   ),
                 },
                 ...(data?.data?.currentState?.offers?.map((offer) => ({
