@@ -55,6 +55,7 @@ import {
   OBJECT_CONTAINER_S3_STATIC_URL_INFO,
   STORAGE_ASYNC_REPLICATION_LINK,
   TRACKING,
+  MUMBAI_REGION_NAME,
 } from '@/constants';
 import { useGetRegion } from '@/api/hooks/useRegion';
 import { useStorage, useStorageEndpoint } from '@/api/hooks/useStorages';
@@ -348,17 +349,20 @@ export default function ObjectPage() {
                     ></span>
                   </OdsText>
 
-                  {is.rightOffer && !is.localZone && !is.encrypted && (
-                    <div>
-                      <Links
-                        label={tContainer(
-                          'pci_projects_project_storages_containers_container_enable_encryption',
-                        )}
-                        type={LinkType.next}
-                        href={enableEncryptionHref}
-                      />
-                    </div>
-                  )}
+                  {is.rightOffer &&
+                    !is.localZone &&
+                    !is.encrypted &&
+                    region?.name !== MUMBAI_REGION_NAME && (
+                      <div>
+                        <Links
+                          label={tContainer(
+                            'pci_projects_project_storages_containers_container_enable_encryption',
+                          )}
+                          type={LinkType.next}
+                          href={enableEncryptionHref}
+                        />
+                      </div>
+                    )}
                 </div>
               )}
 
