@@ -4,7 +4,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { useNotifications } from '@/hooks/useNotifications';
-import { useGetUser, useImportPolicy } from '@/api/hooks/useUsers';
+import { useUser, useImportPolicy } from '@/api/hooks/useUsers';
 import { TUser } from '@/api/data/users';
 import ImportPolicy from './ImportPolicy.page';
 
@@ -18,7 +18,7 @@ vi.mock('@/hooks/useNotifications', () => ({
 
 vi.mock('@/api/hooks/useUsers', () => ({
   useImportPolicy: vi.fn(),
-  useGetUser: vi.fn(),
+  useUser: vi.fn(),
 }));
 
 vi.mock('@ovh-ux/manager-react-shell-client', () => ({
@@ -47,10 +47,10 @@ describe('ImportPolicy', () => {
 
     vi.mocked(useNavigate).mockReturnValue(mockNavigate);
 
-    vi.mocked(useGetUser).mockReturnValue({
-      user: mockUser,
+    vi.mocked(useUser).mockReturnValue({
+      data: mockUser,
       isPending: false,
-    } as ReturnType<typeof useGetUser>);
+    } as ReturnType<typeof useUser>);
 
     vi.mocked(useImportPolicy).mockReturnValue({
       importPolicy: mockImportPolicy,
@@ -64,10 +64,10 @@ describe('ImportPolicy', () => {
   });
 
   it('shows loading state when user data is loading', async () => {
-    vi.mocked(useGetUser).mockReturnValue({
-      user: null,
+    vi.mocked(useUser).mockReturnValue({
+      data: null,
       isPending: true,
-    } as ReturnType<typeof useGetUser>);
+    } as ReturnType<typeof useUser>);
 
     render(<ImportPolicy />);
 

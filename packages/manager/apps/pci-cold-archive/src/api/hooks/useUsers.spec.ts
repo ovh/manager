@@ -4,13 +4,13 @@ import * as usersApi from '@/api//data/users';
 import queryClient from '@/queryClient';
 import { wrapper } from '@/wrapperRenders';
 import {
-  getQueryKeyUser,
+  getUserCacheKey,
   getUsersCacheKey,
   invalidateGetUsersCache,
   useAllUsers,
   useDeleteUser,
   useGenerateS3Credentials,
-  useGetUser,
+  useUser,
 } from './useUsers';
 
 vi.mock('@/api/data/users');
@@ -61,6 +61,12 @@ describe('Users Hooks', () => {
     vi.clearAllMocks();
 
     vi.mocked(usersApi.getAllUsers).mockResolvedValue(mockUsers);
+    vi.mocked(usersApi.getUser).mockResolvedValue({
+      id: 1,
+      username: 'user1',
+      description: 'desc1',
+      creationDate: '2023-01-01',
+    } as usersApi.TUser);
     vi.mocked(usersApi.getS3Credentials).mockImplementation(
       (_projectId, userId) => {
         if (userId === 1) return Promise.resolve([mockS3Credentials[0]]);
@@ -80,9 +86,9 @@ describe('Users Hooks', () => {
     });
   });
 
-  describe('getQueryKeyUser', () => {
+  describe('getUserCacheKey', () => {
     it('should return the correct query key for a specific user', () => {
-      expect(getQueryKeyUser(mockProjectId, mockUserId)).toEqual([
+      expect(getUserCacheKey(mockProjectId, mockUserId)).toEqual([
         mockUserId,
         mockProjectId,
         'user',
@@ -112,26 +118,16 @@ describe('Users Hooks', () => {
     });
   });
 
-  describe('useGetUser', () => {
+  describe('useUser', () => {
     it('should return the user with the specified ID', async () => {
-      const { result } = renderHook(() => useGetUser(mockProjectId, 1), {
+      const { result } = renderHook(() => useUser(mockProjectId, 1), {
         wrapper,
       });
 
       await waitFor(() => expect(result.current.isPending).toBe(false));
 
-      expect(result.current.user).toBeDefined();
-      expect(result.current.user.id).toBe(1);
-    });
-
-    it('should return undefined if user not found', async () => {
-      const { result } = renderHook(() => useGetUser(mockProjectId, 999), {
-        wrapper,
-      });
-
-      await waitFor(() => expect(result.current.isPending).toBe(false));
-
-      expect(result.current.user).toBeUndefined();
+      expect(result.current.data).toBeDefined();
+      expect(result.current.data.id).toBe(1);
     });
   });
 

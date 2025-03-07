@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { TUser } from '@/api/data/users';
-import { useDeleteUser, useGetUser } from '@/api/hooks/useUsers';
+import { useDeleteUser, useUser } from '@/api/hooks/useUsers';
 import { useNotifications } from '@/hooks/useNotifications';
 import DeletePage from './Delete.page';
 
@@ -18,7 +18,7 @@ vi.mock('@/hooks/useNotifications', () => ({
 
 vi.mock('@/api/hooks/useUsers', () => ({
   useDeleteUser: vi.fn(),
-  useGetUser: vi.fn(),
+  useUser: vi.fn(),
 }));
 
 vi.mock('@ovh-ux/manager-react-shell-client', () => ({
@@ -47,10 +47,10 @@ describe('DeletePage', () => {
 
     vi.mocked(useNavigate).mockReturnValue(mockNavigate);
 
-    vi.mocked(useGetUser).mockReturnValue({
-      user: mockUser,
+    vi.mocked(useUser).mockReturnValue({
+      data: mockUser,
       isPending: false,
-    } as ReturnType<typeof useGetUser>);
+    } as ReturnType<typeof useUser>);
 
     vi.mocked(useDeleteUser).mockReturnValue({
       deleteUser: () => mockDeleteUser(),
@@ -64,10 +64,10 @@ describe('DeletePage', () => {
   });
 
   it('shows loading state when user data is loading', async () => {
-    vi.mocked(useGetUser).mockReturnValue({
-      user: null,
+    vi.mocked(useUser).mockReturnValue({
+      data: null,
       isPending: true,
-    } as ReturnType<typeof useGetUser>);
+    } as ReturnType<typeof useUser>);
 
     render(<DeletePage />);
 

@@ -36,17 +36,12 @@ exports[`Manage > should match snapshot when data is loaded 1`] = `
         <ods-form-field
           class="w-full"
         >
-          <div
-            class="flex gap-2 items-center"
-            slot="label"
+          <ods-text
+            class="font-bold-class"
+            preset="caption"
           >
-            <ods-text
-              class="font-bold-class"
-              preset="caption"
-            >
-              pci_projects_project_storages_cold_archive_containers_container_manage_endpoint_label
-            </ods-text>
-          </div>
+            pci_projects_project_storages_cold_archive_containers_container_manage_endpoint_label
+          </ods-text>
           <ods-clipboard
             class="w-full"
             data-testid="clipboard"
@@ -58,17 +53,12 @@ exports[`Manage > should match snapshot when data is loaded 1`] = `
         <ods-form-field
           class="w-full"
         >
-          <div
-            class="flex gap-2 items-center"
-            slot="label"
+          <ods-text
+            class="font-bold-class"
+            preset="caption"
           >
-            <ods-text
-              class="font-bold-class"
-              preset="caption"
-            >
-              pci_projects_project_storages_cold_archive_containers_container_manage_region_label
-            </ods-text>
-          </div>
+            pci_projects_project_storages_cold_archive_containers_container_manage_region_label
+          </ods-text>
           <ods-clipboard
             class="w-full"
             data-testid="clipboard"

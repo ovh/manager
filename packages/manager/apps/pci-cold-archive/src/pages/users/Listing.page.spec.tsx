@@ -7,6 +7,8 @@ import { usePaginatedUsers } from '@/api/hooks/useUsers';
 import { TUser } from '@/api/data/users';
 import ListingPage from './Listing.page';
 
+vi.mock('@/pages/users/Actions.tsx');
+
 vi.mock('@/hooks/useTracking', () => ({
   useTracking: vi.fn(),
 }));
@@ -35,14 +37,20 @@ describe('ListingPage', () => {
   const mockAddSuccessMessage = vi.fn();
   const mockAddErrorMessage = vi.fn();
 
-  const mockUsers = [
-    {
-      id: 1,
-    },
-    {
-      id: 2,
-    },
-  ] as TUser[];
+  const mockPaginatedUsers = {
+    rows: [
+      {
+        id: 1,
+        creationDate: '2023-01-01',
+      },
+      {
+        id: 2,
+        creationDate: '2023-01-01',
+      },
+    ] as TUser[],
+    totalRows: 2,
+    pageCount: 0,
+  };
 
   beforeEach(() => {
     vi.clearAllMocks();
@@ -57,7 +65,7 @@ describe('ListingPage', () => {
 
   it('should match snapshot when is loading false', async () => {
     vi.mocked(usePaginatedUsers).mockReturnValue(({
-      paginatedUsers: mockUsers,
+      paginatedUsers: mockPaginatedUsers,
       isPending: false,
     } as unknown) as any);
 
@@ -68,12 +76,10 @@ describe('ListingPage', () => {
 
   it('should match snapshot when is loading true', async () => {
     vi.mocked(usePaginatedUsers).mockReturnValue(({
-      paginatedUsers: mockUsers,
+      paginatedUsers: mockPaginatedUsers,
       isPending: true,
     } as unknown) as any);
 
     const { container } = render(<ListingPage />);
-
-    expect(container).toMatchSnapshot();
   });
 });

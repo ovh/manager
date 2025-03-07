@@ -12,17 +12,12 @@ exports[`UserInformationTile tests > Should match snapshot 1`] = `
       class="grid grid-cols-2 gap-4"
     >
       <ods-form-field>
-        <div
-          class="flex gap-2 items-center"
-          slot="label"
+        <ods-text
+          class="font-bold-class"
+          preset="caption"
         >
-          <ods-text
-            class="font-bold-class"
-            preset="caption"
-          >
-            pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_username_label
-          </ods-text>
-        </div>
+          pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_username_label
+        </ods-text>
         <ods-clipboard
           class="w-full"
           data-testid="clipboard"
@@ -32,17 +27,12 @@ exports[`UserInformationTile tests > Should match snapshot 1`] = `
         />
       </ods-form-field>
       <ods-form-field>
-        <div
-          class="flex gap-2 items-center"
-          slot="label"
+        <ods-text
+          class="font-bold-class"
+          preset="caption"
         >
-          <ods-text
-            class="font-bold-class"
-            preset="caption"
-          >
-            pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_access-key_label
-          </ods-text>
-        </div>
+          pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_access-key_label
+        </ods-text>
         <ods-clipboard
           class="w-full"
           data-testid="clipboard"
@@ -52,17 +42,12 @@ exports[`UserInformationTile tests > Should match snapshot 1`] = `
         />
       </ods-form-field>
       <ods-form-field>
-        <div
-          class="flex gap-2 items-center"
-          slot="label"
+        <ods-text
+          class="font-bold-class"
+          preset="caption"
         >
-          <ods-text
-            class="font-bold-class"
-            preset="caption"
-          >
-            pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_description_label
-          </ods-text>
-        </div>
+          pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_description_label
+        </ods-text>
         <ods-clipboard
           class="w-full"
           data-testid="clipboard"
@@ -72,17 +57,12 @@ exports[`UserInformationTile tests > Should match snapshot 1`] = `
         />
       </ods-form-field>
       <ods-form-field>
-        <div
-          class="flex gap-2 items-center"
-          slot="label"
+        <ods-text
+          class="font-bold-class"
+          preset="caption"
         >
-          <ods-text
-            class="font-bold-class"
-            preset="caption"
-          >
-            pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_secret-key_label
-          </ods-text>
-        </div>
+          pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_secret-key_label
+        </ods-text>
         <ods-password
           class="w-full"
           color="primary"
