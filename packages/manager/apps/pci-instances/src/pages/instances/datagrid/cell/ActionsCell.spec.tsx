@@ -20,21 +20,31 @@ describe('Considering the ActionsCell component', () => {
     expect(actionsMenuElement).toBeInTheDocument();
   });
 
-  test('Should render actions menu items with correct labels and hrefs', () => {
+  test('Should render grouped actions menu items with correct labels and hrefs', () => {
     const instance: TInstance = {
       ...mockedInstance,
-      actions: [
-        {
-          name: 'start',
-          enabled: true,
-          link: { path: '/start', isExternal: false },
-        },
-        {
-          name: 'stop',
-          enabled: false,
-          link: { path: '/stop', isExternal: false },
-        },
-      ],
+      actions: new Map([
+        [
+          'boot',
+          [
+            {
+              label: 'pci_instances_list_action_start',
+              isDisabled: false,
+              link: { path: '/start', isExternal: false },
+            },
+          ],
+        ],
+        [
+          'details',
+          [
+            {
+              label: 'pci_instances_list_action_stop',
+              isDisabled: true,
+              link: { path: '/stop', isExternal: false },
+            },
+          ],
+        ],
+      ]),
     };
 
     render(<ActionsCell isLoading={false} instance={instance} />);
