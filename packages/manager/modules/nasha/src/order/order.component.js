@@ -6,6 +6,8 @@ export default {
     goToNasha: '<',
     plans: '<',
     trackClick: '<',
+    nashaPublicUrl: '<',
+    setupNasHa: '<',
     trackClickConfirmOrder: '<',
   },
   controller,
