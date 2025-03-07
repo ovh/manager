@@ -26,6 +26,7 @@ import { urls } from '@/routes/routes.constant';
 import { SuccessMessages } from '@/components/Messages/SuccessMessage.component';
 import { OrganizationCell } from '../listing/DatagridCell.component';
 import { DisplayNameWithEditButton } from './DisplayName.component';
+import { ConsumedVms } from './ConsumedVms.component';
 import { OfferProgress } from './OfferProgress.component';
 import { SubscriptionTile } from './SubscriptionTile.component';
 import { ComingSoonBadge } from '@/components/ComingSoonBadge/ComingSoonBadge';
@@ -33,6 +34,7 @@ import { BillingLink } from '@/components/Links/BillingLink.component';
 import { Loading } from '@/components/Loading/Loading';
 import { BackupStatusBadge } from '@/components/BackupStatus/BackupStatusBadge.component';
 import useVeeamBackupConsumption from '@/data/hooks/useVeeamBackupConsumption';
+
 import { VEEAM_BACKUP_CONSUMPTION_PLAN_CODE } from '@/pages/dashboard/Dashboard.constants';
 import { CHANGELOG_LINKS } from '@/constants';
 
@@ -142,17 +144,7 @@ export default function DashboardPage() {
                 {
                   id: 'consumedVms',
                   label: t('consumed_vms'),
-                  value: data?.data?.currentState?.vms ? (
-                    <div className="flex flex-col">
-                      <OdsBadge
-                        className="mt-1"
-                        label={`${data.data.currentState.vms} VMs`}
-                      />
-                      <OdsText>{t('consumed_vms_label')}</OdsText>
-                    </div>
-                  ) : (
-                    <ComingSoonBadge />
-                  ),
+                  value: <ConsumedVms id={id} backup={data?.data} />,
                 },
                 ...(data?.data?.currentState?.offers?.map((offer) => ({
                   id: offer.name,
