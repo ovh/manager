@@ -1,3 +1,5 @@
+import React from 'react';
+import { vitest } from 'vitest';
 import { waitFor } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
 import {
@@ -10,6 +12,18 @@ import {
 } from '@ovh-ux/manager-core-test-utils';
 import { labels, renderTest } from '../../../../test-utils';
 import TEST_IDS from '../../../../utils/testIds.constants';
+
+// remove mock when ods element-internals-polyfill is fixed
+vitest.mock('@ovhcloud/ods-components/react', async () => {
+  const originalModule = await vitest.importActual(
+    '@ovhcloud/ods-components/react',
+  );
+
+  return {
+    ...originalModule,
+    OdsRadio: () => <input type="radio" name="radio-order-compute" />,
+  };
+});
 
 const orderCTA = labels.datacentresCompute.managed_vcd_vdc_compute_order_cta;
 const orderTitle = orderCTA;

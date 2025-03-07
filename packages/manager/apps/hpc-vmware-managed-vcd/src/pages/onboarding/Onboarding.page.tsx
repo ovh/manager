@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { OdsText } from '@ovhcloud/ods-components/react';
 import { Card, OnboardingLayout } from '@ovh-ux/manager-react-components';
 import useGuideUtils from '@/hooks/guide/useGuideUtils';
 import vmwareBroadcomOVHCloud from '@/assets/VmwareBroadcomxOVHcloud.svg';
@@ -42,10 +43,10 @@ export default function Onboarding() {
   ];
 
   const description: React.ReactNode = (
-    <>
+    <OdsText className="text-center">
       <p>{t('managed_vcd_onboarding_description_part1')}</p>
       {t('managed_vcd_onboarding_description_part2')}
-    </>
+    </OdsText>
   );
   const imgSrc = {
     src: vmwareBroadcomOVHCloud,

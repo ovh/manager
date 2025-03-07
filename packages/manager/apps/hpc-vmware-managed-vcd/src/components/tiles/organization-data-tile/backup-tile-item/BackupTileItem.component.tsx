@@ -51,7 +51,7 @@ export default function BackupTileItem({
           <OdsBadge
             label={t(badgeParams.translationKey)}
             data-testid={badgeParams.testIdLabel}
-            className="my-1"
+            className="my-3"
             color={badgeParams.color}
           />
         )}

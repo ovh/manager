@@ -45,10 +45,7 @@ export default function VcdDashboardLayout({
           <OdsTabs>
             {tabs.map((tab: Tab) => (
               <NavLink to={tab.to} className="no-underline" key={tab.name}>
-                <OdsTab
-                  isSelected={tab.name === activeTab.name}
-                  className="pb-2"
-                >
+                <OdsTab isSelected={tab.name === activeTab.name}>
                   {tab.title}
                 </OdsTab>
               </NavLink>

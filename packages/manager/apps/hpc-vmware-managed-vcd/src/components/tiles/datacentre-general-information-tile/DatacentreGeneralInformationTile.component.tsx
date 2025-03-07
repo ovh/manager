@@ -107,19 +107,14 @@ export default function DatacentreGenerationInformationTile({
           value: (
             <Clipboard
               value={vcdOrganization?.currentState?.apiUrl}
-              className="clipboard__full-width"
+              className="w-full"
             />
           ),
         },
         {
           id: 'vdcId',
           label: ID_LABEL,
-          value: (
-            <Clipboard
-              value={vcdDatacentre?.id}
-              className="clipboard__full-width"
-            />
-          ),
+          value: <Clipboard value={vcdDatacentre?.id} className="w-full" />,
         },
       ]}
     />

@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import { Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ManagerButton } from '@ovh-ux/manager-react-components';
 import { OdsText } from '@ovhcloud/ods-components/react';
@@ -23,7 +23,7 @@ export default function EditableTileItem({
 
   return (
     <div className="flex justify-between items-center">
-      <OdsText className="break-all">{value}</OdsText>
+      <OdsText>{value}</OdsText>
       <div className="min-w-fit">
         <Suspense>
           <ManagerButton
