@@ -73,6 +73,7 @@ export default function Onboarding() {
       {!isLoading && !isError && (
         <NoOrganizationMessage organizationList={organizationList} />
       )}
+      <div>Test Alex</div>
       <OnboardingLayout
         title={productFullName}
         img={{ src: onboardingImgSrc }}

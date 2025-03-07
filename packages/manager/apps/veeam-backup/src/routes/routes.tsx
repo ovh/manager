@@ -108,6 +108,17 @@ export const routes: any[] = [
           },
         },
       },
+      {
+        id: 'flow',
+        path: '/flow',
+        ...lazyRouteConfig(() => import('@/pages/flow/Flow.page')),
+        // handle: {
+        //   tracking: {
+        //     pageName: 'glow',
+        //     pageType: PageType.onboarding,
+        //   },
+        // },
+      },
     ],
   },
   {

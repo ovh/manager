@@ -146,6 +146,7 @@ export const useOvhTracking = () => {
         }),
       );
     },
+    trackClickById: (id: string) => {},
     trackClick: ({
       location,
       buttonType,
