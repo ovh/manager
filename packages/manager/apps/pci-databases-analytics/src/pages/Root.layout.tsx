@@ -54,7 +54,7 @@ export const Loader = ({ params, request }: ServiceCategoryLayoutProps) => {
       queryFn: () => getProject(projectId),
     })
     .then(
-      () => null,
+      () => true,
       () => redirect(`/pci/projects`),
     );
 };

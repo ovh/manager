@@ -265,6 +265,45 @@ export default [
             ),
           },
           {
+            path: 'indexPatterns',
+            id: 'service.{service.engine}.indexPatterns',
+            ...lazyRouteConfig(() =>
+              import(
+                '@/pages/services/[serviceId]/indexPatterns/IndexPatterns.page'
+              ),
+            ),
+            children: [
+              {
+                id: 'service.{service.engine}.indexPatterns.addPattern',
+                path: 'add-pattern',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/services/[serviceId]/indexPatterns/addPattern/AddPattern.modal'
+                  ),
+                ),
+              },
+              {
+                id: 'service.{service.engine}.indexPatterns.deletePattern',
+                path: 'delete-pattern/:patternId',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/services/[serviceId]/indexPatterns/deletePattern/DeletePattern.modal'
+                  ),
+                ),
+              },
+              {
+                id: 'service.{service.engine}.indexPatterns.deleteIndex',
+                path: 'delete-index/:indexId',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/services/[serviceId]/indexPatterns/deleteIndex/DeleteIndex.modal'
+                  ),
+                ),
+              },
+            ],
+          },
+
+          {
             path: 'integrations',
             id: 'service.{service.engine}.integrations',
             ...lazyRouteConfig(() =>
