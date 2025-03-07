@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useLegacyContainer } from '@/container/legacy/context';
+import { useLegacyContainer } from '@/container/legacy/legacy.context';
 import { SidebarMenuItem } from './sidebarMenu';
 import style from './index.module.scss';
 import {
@@ -67,7 +67,9 @@ export default function ServerSidebarItemRenderer({
   const [isClicked, setIsClicked] = useState(false);
   let itemRender = null;
 
-  let linkColor = item.isSelected ? ODS_THEME_COLOR_INTENT.primary : ODS_THEME_COLOR_INTENT.text
+  let linkColor = item.isSelected
+    ? ODS_THEME_COLOR_INTENT.primary
+    : ODS_THEME_COLOR_INTENT.text;
 
   const handleClick = () => {
     setIsClicked(!isClicked);
@@ -115,41 +117,43 @@ export default function ServerSidebarItemRenderer({
           {iconOrSpinner}
           <span className="pl-2 align-middle" aria-hidden="true">
             {item.icon}
-            <span className="pl-2">{item.depth === 0 ? (
-              <>
-              <OsdsText
-                level={ODS_TEXT_LEVEL.heading}
-                color={ODS_THEME_COLOR_INTENT.text}
-                size={ODS_TEXT_SIZE._200}
-              >
-                {item.label}
-              </OsdsText>
-              {item?.badge && (
-                <span
-               className={`oui-badge oui-badge_s oui-badge_${item.badge} ${style.menuBadge}`}
-              >
-               {item.badge}
-                 </span>
-               )}
-             </>
-            ) : (
-              <>
-                <OsdsText
-                  level={ODS_TEXT_LEVEL.button}
-                  color={ODS_THEME_COLOR_INTENT.text}
-                  size={ODS_TEXT_SIZE._300}
-                >
-                  {item.label}
-                </OsdsText>
-                {item?.badge && (
-                  <span
-                    className={`oui-badge oui-badge_s oui-badge_${item.badge} ${style.menuBadge}`}
+            <span className="pl-2">
+              {item.depth === 0 ? (
+                <>
+                  <OsdsText
+                    level={ODS_TEXT_LEVEL.heading}
+                    color={ODS_THEME_COLOR_INTENT.text}
+                    size={ODS_TEXT_SIZE._200}
                   >
-                    {item.badge}
-                  </span>
-                )}
-              </>
-            )}</span>
+                    {item.label}
+                  </OsdsText>
+                  {item?.badge && (
+                    <span
+                      className={`oui-badge oui-badge_s oui-badge_${item.badge} ${style.menuBadge}`}
+                    >
+                      {item.badge}
+                    </span>
+                  )}
+                </>
+              ) : (
+                <>
+                  <OsdsText
+                    level={ODS_TEXT_LEVEL.button}
+                    color={ODS_THEME_COLOR_INTENT.text}
+                    size={ODS_TEXT_SIZE._300}
+                  >
+                    {item.label}
+                  </OsdsText>
+                  {item?.badge && (
+                    <span
+                      className={`oui-badge oui-badge_s oui-badge_${item.badge} ${style.menuBadge}`}
+                    >
+                      {item.badge}
+                    </span>
+                  )}
+                </>
+              )}
+            </span>
           </span>
         </span>
       </button>

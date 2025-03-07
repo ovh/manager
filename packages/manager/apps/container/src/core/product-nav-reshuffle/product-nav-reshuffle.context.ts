@@ -22,8 +22,8 @@ export type ProductNavReshuffleContextType = {
   setIsAnimated: (isAnimated: boolean) => void;
 };
 
-const ProductNavReshuffleContext = createContext<
-  ProductNavReshuffleContextType
->({} as ProductNavReshuffleContextType);
+const ProductNavReshuffleContext = createContext<ProductNavReshuffleContextType | null>(
+  null,
+);
 
 export default ProductNavReshuffleContext;

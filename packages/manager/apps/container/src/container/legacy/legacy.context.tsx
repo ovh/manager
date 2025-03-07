@@ -1,11 +1,13 @@
 import React, { createContext, useContext, useState } from 'react';
 
-type Props = {
+type LegacyContainerContextType = {
   isResponsiveSidebarMenuOpen: boolean;
   setIsResponsiveSidebarMenuOpen: (isOpen: boolean) => void;
 };
 
-const LegacyContainerContext = createContext<Props>(undefined);
+const LegacyContainerContext = createContext<LegacyContainerContextType | null>(
+  null,
+);
 
 export function LegacyContainerProvider({
   children,
@@ -30,5 +32,12 @@ export function LegacyContainerProvider({
 }
 
 export function useLegacyContainer() {
-  return useContext(LegacyContainerContext);
+  const legacyContainerContext = useContext(LegacyContainerContext);
+  if (!legacyContainerContext) {
+    throw new Error(
+      'useLegacyContainer must be used within a LegacyContainerProvider',
+    );
+  }
+
+  return legacyContainerContext;
 }
