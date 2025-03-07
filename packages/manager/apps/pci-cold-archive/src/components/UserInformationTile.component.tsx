@@ -58,12 +58,19 @@ export default function UserInformationTile({
               'pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_secret-key_label',
             )}
           />
-          <OdsPassword
-            className="w-full"
-            name="secretKey"
-            value={secret}
-            color="primary"
-          />
+          {/* Ods clipboard doesn't currently allows input of type password */}
+          {/* @TODO refactor when clipboard allows password input types */}
+          <div className="flex">
+            <div className="flex-1">
+              <OdsPassword
+                className="w-[100%]"
+                name="secret"
+                value={secret}
+                isReadonly
+              />
+            </div>
+            <Clipboard className="w-[2rem]" value={secret} />
+          </div>
         </OdsFormField>
       </div>
     </div>
