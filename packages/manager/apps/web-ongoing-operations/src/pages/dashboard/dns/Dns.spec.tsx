@@ -57,7 +57,7 @@ describe('Dns datagrid', () => {
       expect(dnsName).toBeInTheDocument();
       expect(dnsName).toHaveAttribute(
         'href',
-        'https://ovh.test/#/web/zone/testpuwebdomain.us/information',
+        'https://ovh.test/#/zone/testpuwebdomain.us/information',
       );
       expect(dnsName).toHaveAttribute('target', '_blank');
     });
