@@ -16,19 +16,24 @@ const prepareTest = (item: TActionsMenuItem) => {
 };
 
 describe('Considering the ActionsMenu components', () => {
-  test('Should render a menu with items', () => {
-    const items = [
-      {
-        label: 'Item 1',
-        isDisabled: false,
-        link: { path: '/item1', isExternal: false },
-      },
-      {
-        label: 'Item 2',
-        isDisabled: true,
-        link: { path: '/item2', isExternal: false },
-      },
-    ];
+  test('Should render a menu with grouped items', () => {
+    const items = new Map([
+      [
+        'details',
+        [
+          {
+            label: 'Item 1',
+            isDisabled: false,
+            link: { path: '/item1', isExternal: false },
+          },
+          {
+            label: 'Item 2',
+            isDisabled: true,
+            link: { path: '/item2', isExternal: false },
+          },
+        ],
+      ],
+    ]);
     render(<ActionsMenu items={items} />);
     expect(screen.getByTestId('actions-menu-button')).toBeInTheDocument();
     expect(screen.getAllByTestId('actions-menu-item')).toHaveLength(2);
