@@ -1,0 +1,10 @@
+{
+  "ai_endpoints_allModel": "Wszystkie",
+  "ai_endpoints_metrics": "Okres rozliczeniowy",
+  "ai_endpoints_total": "Razem",
+  "ai_endpoints_totalAudio": "Całkowity czas dźwięku (sekundy)",
+  "ai_endpoints_noData": "Brak danych dostępnych w wybranym okresie",
+  "ai_endpoints_loading": "Prosimy o cierpliwość, a my zbieramy Twoje dane",
+  "ai_endpoints_error": "Wystąpił błąd podczas pobierania metryk. Spróbuj ponownie później",
+  "ai_endpoints_input": "Input token"
+}

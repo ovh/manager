@@ -1,0 +1,11 @@
+{
+  "ai_endpoints_allModel": "Tous",
+  "ai_endpoints_metrics": "Métriques",
+  "ai_endpoints_total": "Total",
+  "ai_endpoints_totalAudio": "Durée audio totale (secondes)",
+  "ai_endpoints_noData": "Aucune donnée disponible pour la période sélectionnée",
+  "ai_endpoints_loading": "Veuillez patienter, nous collectons vos données",
+  "ai_endpoints_error": "Erreur lors du chargement des métriques. Veuillez réessayer ultérieurement",
+  "ai_endpoints_input": "Input token",
+  "ai_endpoints_output": "Output token"
+}
