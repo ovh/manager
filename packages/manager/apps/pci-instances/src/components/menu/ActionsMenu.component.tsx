@@ -8,9 +8,11 @@ import {
   ODS_ICON_SIZE,
   ODS_BUTTON_SIZE,
   ODS_TEXT_LEVEL,
+  ODS_DIVIDER_SIZE,
 } from '@ovhcloud/ods-components';
 import {
   OsdsButton,
+  OsdsDivider,
   OsdsIcon,
   OsdsMenu,
   OsdsMenuItem,
@@ -18,6 +20,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { FC } from 'react';
 import { useHref } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { DeepReadonly } from '@/types/utils.type';
 
 export type TActionsMenuItem = DeepReadonly<{
@@ -27,11 +30,10 @@ export type TActionsMenuItem = DeepReadonly<{
     path: string;
     isExternal: boolean;
   };
-  group?: string;
 }>;
 
 export type TActionsMenuProps = DeepReadonly<{
-  items: TActionsMenuItem[];
+  items: Map<string, TActionsMenuItem[]>;
 }>;
 
 export type TActionsMenuLinkProps = DeepReadonly<{
@@ -39,6 +41,7 @@ export type TActionsMenuLinkProps = DeepReadonly<{
 }>;
 
 export const ActionsMenuLink: FC<TActionsMenuLinkProps> = ({ item }) => {
+  const { t } = useTranslation('list');
   const internalHref = useHref(item.link.path);
   const href = item.link.isExternal ? item.link.path : internalHref;
   return (
@@ -56,7 +59,7 @@ export const ActionsMenuLink: FC<TActionsMenuLinkProps> = ({ item }) => {
         color={ODS_THEME_COLOR_INTENT.primary}
         slot={'start'}
       >
-        {item.label}
+        {t(item.label)}
       </OsdsText>
     </OsdsButton>
   );
@@ -77,10 +80,19 @@ export const ActionsMenu: FC<TActionsMenuProps> = ({ items }) => (
         size={ODS_ICON_SIZE.xxs}
       />
     </OsdsButton>
-    {items.map((item) => (
-      <OsdsMenuItem key={item.label}>
-        <ActionsMenuLink item={item} />
-      </OsdsMenuItem>
+    {Array.from(items.entries()).map(([group, item], index, arr) => (
+      <div key={`group-${group}-${index}`}>
+        {item.map((elt) => (
+          <OsdsMenuItem key={elt.label}>
+            <ActionsMenuLink item={elt} />
+          </OsdsMenuItem>
+        ))}
+        {arr.length - 1 !== index && (
+          <div className="px-4">
+            <OsdsDivider separator size={ODS_DIVIDER_SIZE.one} />
+          </div>
+        )}
+      </div>
     ))}
   </OsdsMenu>
 );
