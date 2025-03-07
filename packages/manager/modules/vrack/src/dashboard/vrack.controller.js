@@ -112,6 +112,9 @@ export default class VrackMoveDialogCtrl {
     this.hasIpv6 = false;
     this.TYPE_SERVICE = TYPE_SERVICE;
     this.terminateVrackModalOpen = false;
+    this.terminateVrackOptionAvailable = this.features.isFeatureAvailable(
+      FEATURE_NAMES.legacyVrackDelete,
+    );
 
     this.atInternet.trackPage({
       name: `${VRACK_TRACKING_PREFIX}vrack-private-network::detail`,

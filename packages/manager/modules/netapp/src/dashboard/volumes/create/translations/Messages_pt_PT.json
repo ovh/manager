@@ -12,5 +12,9 @@
   "netapp_volume_create_size_minimum_error": "Tamanho mínimo necessário: {{ minSize }} GB.",
   "netapp_volume_create_size_maximum_error": "Tamanho máximo autorizado: {{ maxSize }} GB.",
   "netapp_volume_create_success": "O seu volume foi criado com sucesso! Depois de configurar as regras de controlo de acesso, poderá aceder-lhe.",
-  "netapp_volume_create_error": "Ocorreu um erro aquando da criação do volume. {{ message }}"
+  "netapp_volume_create_error": "Ocorreu um erro aquando da criação do volume. {{ message }}",
+  "netapp_volume_mount_path": "Mount Path (opcional)",
+  "netapp_volume_mount_path_format_error": "Os caracteres especiais não são autorizados",
+  "netapp_volume_mount_path_character_limit_error": "Excedeu o número máximo de caracteres de 255",
+  "netapp_volume_mount_path_already_used_error": "O mount path já está a ser utilizado noutro volume. Introduza um novo."
 }

@@ -1,4 +1,5 @@
 import get from 'lodash/get';
+import { SNC_LABEL } from './options.constants';
 
 export default class Options {
   /* @ngInject */
@@ -20,6 +21,7 @@ export default class Options {
     this.ovhFeatureFlipping = ovhFeatureFlipping;
     this.ovhManagerPccDashboardOptionsService = ovhManagerPccDashboardOptionsService;
     this.bindings = ovhManagerPccDashboardOptionsModelBindings;
+    this.SNC_LABEL = SNC_LABEL;
   }
 
   $onInit() {
@@ -50,19 +52,21 @@ export default class Options {
       },
     };
 
+    const feature = 'dedicated-cloud:sectorSpecificCompliance';
     return this.$q
       .all({
-        featureAvailability: this.ovhFeatureFlipping
-          .checkFeatureAvailability('dedicated-cloud:sectorSpecificCompliance')
-          .then((featureAvailability) =>
-            featureAvailability.isFeatureAvailable(
-              'dedicated-cloud:sectorSpecificCompliance',
-            ),
-          ),
+        featureAvailability: this.ovhFeatureFlipping.checkFeatureAvailability(
+          `${feature},${feature}:enable-compliance`,
+        ),
         init: this.handleInitialData(),
       })
       .then(({ featureAvailability }) => {
-        this.canManageSectorSpecificCompliance = featureAvailability;
+        this.canManageSectorSpecificCompliance = featureAvailability.isFeatureAvailable(
+          feature,
+        );
+        this.canEnableSectorSpecificCompliance = featureAvailability.isFeatureAvailable(
+          `${feature}:enable-compliance`,
+        );
       });
   }
 

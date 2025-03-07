@@ -21,6 +21,14 @@ export const PREFIX_TRACKING_PARTITION_ACL = 'partition::acl';
 
 export const PREFIX_TRACKING_SNAPSHOT_POLICY = 'partition::snapshot-policy';
 
+export const ZFS_OPTIONS_TEMPLATES = {
+  FILE_SYSTEM: 'File Systems (big files)',
+  VIRTUAL_MACHINES: 'Virtual machines',
+  DATABASES: 'Databases',
+  DEFAULT: 'Default',
+  CUSTOM: 'Custom',
+};
+
 export default {
   DESCRIPTION_MAX,
   NAME_PATTERN,
@@ -32,4 +40,5 @@ export default {
   PREFIX_TRACKING_DASHBOARD_PARTITION_ZFS_OPTION,
   PREFIX_TRACKING_PARTITION_ACL,
   PREFIX_TRACKING_SNAPSHOT_POLICY,
+  ZFS_OPTIONS_TEMPLATES,
 };

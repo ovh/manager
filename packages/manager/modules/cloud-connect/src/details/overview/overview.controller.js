@@ -141,6 +141,10 @@ export default class CloudConnectOverviewCtrl {
       .loadDatacenterConfigurations(this.cloudConnect, this.datacenters)
       .then(() => {
         if (this.cloudConnect.datacenterConfigurations) {
+          this.groupDatacenterConfigByRegionFun(
+            this.cloudConnect.datacenterConfigurations,
+            'regionGroupKey',
+          );
           return this.cloudConnectService.getExtras(this.cloudConnect);
         }
         return null;
@@ -211,6 +215,19 @@ export default class CloudConnectOverviewCtrl {
       .finally(() => {
         this.getMacLoading = false;
       });
+  }
+
+  groupDatacenterConfigByRegionFun(datacenterConfigurations = [], key) {
+    this.cloudConnect.datacenterConfigurationsGroups = datacenterConfigurations.reduce(
+      (acc, item) => {
+        const groupKey = item[key];
+        return {
+          ...acc,
+          [groupKey]: [...(acc[groupKey] || []), item], // Add new item to the group
+        };
+      },
+      {},
+    );
   }
 
   getBandwidth(bandwidth) {

@@ -10,6 +10,9 @@ export const ORDER_STATUS = {
   unknown: 'unknown',
 };
 
+export const SNC_LABEL = 'SNC';
+
 export default {
   ORDER_STATUS,
+  SNC_LABEL,
 };

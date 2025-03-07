@@ -72,11 +72,17 @@
                 >
                     <p
                         class="mb-0"
+                        data-ng-if="!$ctrl.model.currentUser.isTrusted"
                         data-translate="ovhManagerPccDashboardOptions_certification_description_name_none"
+                    ></p>
+                    <p
+                        class="mb-0"
+                        data-ng-if="$ctrl.model.currentUser.isTrusted"
+                        data-ng-bind=":: $ctrl.SNC_LABEL"
                     ></p>
 
                     <a
-                        data-ng-if=":: $ctrl.bindings.options.certification.description.presentation.exists"
+                        data-ng-if=":: $ctrl.bindings.options.certification.description.presentation.exists && $ctrl.canEnableSectorSpecificCompliance"
                         data-ng-href="{{:: $ctrl.bindings.options.certification.description.presentation.url }}"
                         class="oui-link_icon d-block"
                         target="_blank"
@@ -108,7 +114,7 @@
                 </ovh-manager-pcc-dashboard-options-descriptions-certification>
             </oui-tile-description>
             <oui-action-menu
-                data-ng-if=":: $ctrl.bindings.options.certification.actionMenu.exists"
+                data-ng-if=":: $ctrl.bindings.options.certification.actionMenu.exists && $ctrl.canEnableSectorSpecificCompliance"
                 data-compact
                 data-placement="end"
             >

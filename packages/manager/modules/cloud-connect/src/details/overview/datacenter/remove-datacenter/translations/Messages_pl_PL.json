@@ -1,6 +1,6 @@
 {
-  "cloud_connect_datacenter_remove": "Usuń konfigurację centrum danych",
-  "cloud_connect_datacenter_remove_description": "Spowoduje to usunięcie wybranej konfiguracji centrum danych.",
-  "cloud_connect_datacenter_remove_success": "Konfiguracja centrum została usunięta. <a href=\"{{tasksUrl}}\">Kliknij tutaj, aby sprawdzić status.</a>",
-  "cloud_connect_datacenter_remove_error": "Wystąpił błąd podczas usuwania konfiguracji centrum danych: {{message}}"
+  "cloud_connect_datacenter_remove": "Usuń konfigurację strefy dostępności",
+  "cloud_connect_datacenter_remove_description": "Spowoduje to usunięcie wybranej konfiguracji strefy dostępności",
+  "cloud_connect_datacenter_remove_success": "Konfiguracja strefy dostępności została usunięta. <a href=\"{{ tasksUrl }}\">Kliknij tutaj, aby sprawdzić status.</a>",
+  "cloud_connect_datacenter_remove_error": "Wystąpił błąd podczas usuwania konfiguracji strefy dostępności: {{message}}"
 }
