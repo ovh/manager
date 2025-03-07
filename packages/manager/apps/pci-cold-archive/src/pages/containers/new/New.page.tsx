@@ -45,7 +45,7 @@ export default function ContainerNewPage() {
     COLD_ARCHIVE_TRACKING.CONTAINERS.ADD_CONTAINER,
   );
 
-  const { addError, addSuccess } = useNotifications();
+  const { addError, addSuccess, clearNotifications } = useNotifications();
 
   const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
   const pricesLink =
@@ -55,9 +55,14 @@ export default function ContainerNewPage() {
 
   const goBack = () => navigate('..');
 
+  useEffect(() => {
+    clearNotifications();
+  }, []);
+
   const { createContainer, isPending } = useCreateContainer({
     projectId: project.project_id,
     onSuccess: (container: TArchiveContainer) => {
+      clearNotifications();
       addSuccess(
         <UserInformationTile
           title={
@@ -89,6 +94,7 @@ export default function ContainerNewPage() {
       goBack();
     },
     onError: (error: ApiError) => {
+      clearNotifications();
       addError(
         <Translation ns="cold-archive/new">
           {(_t) =>
