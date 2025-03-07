@@ -1,5 +1,10 @@
 import { DeepReadonly } from '../utils.type';
-import { TActionName, TAddressType, TStatus } from './common.type';
+import {
+  TActionName,
+  TAddressType,
+  TInstanceActionGroup,
+  TStatus,
+} from './common.type';
 
 export type TInstanceAddressType = TAddressType;
 
@@ -25,13 +30,15 @@ export type TVolume = {
 };
 
 export type TInstanceAction = {
-  name: TInstanceActionName;
-  enabled: boolean;
+  label: string;
+  isDisabled: boolean;
   link: {
     path: string;
     isExternal: boolean;
   };
 };
+
+export type TInstanceActions = Map<TInstanceActionGroup, TInstanceAction[]>;
 
 export type TInstance = DeepReadonly<{
   id: string;
@@ -44,5 +51,5 @@ export type TInstance = DeepReadonly<{
   imageName: string;
   addresses: Map<TInstanceAddressType, TAddress[]>;
   volumes: TVolume[];
-  actions: TInstanceAction[];
+  actions: TInstanceActions;
 }>;
