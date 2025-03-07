@@ -4,7 +4,9 @@
     data-heading="{{ 'domain_webhosting_order_title' | translate }}"
     data-description="{{ 'domain_webhosting_order_description' | translate }}"
 >
-    <oui-back-button data-on-click="$ctrl.goBackToDashboard()">
+    <oui-back-button
+        data-on-click="$ctrl.trackClick($ctrl.ORDER_WEBHOSTING_TRACKING.GO_BACK); $ctrl.goBackToDashboard()"
+    >
     </oui-back-button>
 </oui-header>
 
