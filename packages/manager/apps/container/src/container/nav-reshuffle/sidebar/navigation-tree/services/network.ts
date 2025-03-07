@@ -12,6 +12,7 @@ const networkUniverse: Node = {
   features: [
     'vrack:bare-metal-cloud',
     'ip',
+    'ips',
     'veeam-cloud-connect',
     'ip-load-balancer',
     'dedicated-cdn',
@@ -40,7 +41,7 @@ networkUniverse.children = [
     translation: 'sidebar_ip',
     serviceType: 'IP_SERVICE',
     routing: {
-      application: '/network/ip',
+      application: 'network',
       hash: '#/ip',
     },
     features: ['ips'],
