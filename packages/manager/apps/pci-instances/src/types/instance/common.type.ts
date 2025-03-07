@@ -51,3 +51,9 @@ export type TStatus =
   | 'RESUMING';
 
 export type TAddressType = 'public' | 'private' | 'floating';
+export type TInstanceActionGroup =
+  | 'boot'
+  | 'delete'
+  | 'details'
+  | 'lifecycle'
+  | 'shelve';

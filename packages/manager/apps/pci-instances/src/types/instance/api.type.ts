@@ -1,5 +1,10 @@
 import { DeepReadonly } from '../utils.type';
-import { TActionName, TAddressType, TStatus } from './common.type';
+import {
+  TActionName,
+  TAddressType,
+  TInstanceActionGroup,
+  TStatus,
+} from './common.type';
 
 export type TInstanceAddressTypeDto = TAddressType;
 
@@ -18,6 +23,7 @@ export type TInstanceVolumeDto = {
 export type TInstanceActionDto = {
   name: TInstanceActionNameDto;
   enabled: boolean;
+  group: TInstanceActionGroup;
 };
 
 export type TInstanceActionNameDto = TActionName;
