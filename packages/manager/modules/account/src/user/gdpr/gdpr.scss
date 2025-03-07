@@ -1,9 +1,9 @@
 .oui-datagrid-column-reasons {
-  max-width: 31rem;
+  min-width: 31rem;
   white-space: normal;
   word-wrap: break-word;
-  margin: 0;
-  padding: 0;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 oui-modal {
