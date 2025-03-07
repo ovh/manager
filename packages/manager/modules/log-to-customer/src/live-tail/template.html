@@ -13,6 +13,7 @@
     data-log-keys="$ctrl.logKeys"
     data-log-api-url="$ctrl.logApiUrl"
     data-log-kind="$ctrl.kind"
+    data-api-version="$ctrl.apiVersion"
 >
     <description>
         <main-descriptsion
@@ -30,12 +31,13 @@
 
     <tile>
         <log-tile
-            log-subscription-url="$ctrl.logSubscriptionUrl"
-            kind="$ctrl.kind"
-            go-to-listing-page="$ctrl.goToListingPage"
-            go-to-stream-listing-page="$ctrl.goToStreamListingPage"
+            data-log-subscription-url="$ctrl.logSubscriptionUrl"
+            data-kind="$ctrl.kind"
+            data-go-to-listing-page="$ctrl.goToListingPage"
+            data-go-to-stream-listing-page="$ctrl.goToStreamListingPage"
             data-track-click="$ctrl.trackClick"
             data-tracking-hits="$ctrl.trackingHits"
+            data-api-version="$ctrl.apiVersion"
         >
         </log-tile>
     </tile>

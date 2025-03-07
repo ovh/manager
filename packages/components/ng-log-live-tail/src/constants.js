@@ -11,3 +11,9 @@ export const LEVEL_LABELS = {
   6: 'info',
   7: 'debug',
 };
+
+export const API_VERSION = {
+  v1: 'apiv6',
+  v2: 'apiv2',
+  aapi: 'aapi',
+};

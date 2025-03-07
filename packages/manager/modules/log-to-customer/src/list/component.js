@@ -10,5 +10,6 @@ export default {
     description: '@',
     trackingHits: '<',
     trackClick: '<',
+    apiVersion: '<?',
   },
 };
