@@ -39,6 +39,8 @@ export default function ContainerNewPage() {
   const projectHref = useProjectUrl('public-cloud');
   const { data: project } = useProject();
 
+  console.log('project', project);
+
   const navigate = useNavigate();
 
   const { trackConfirmAction, trackSuccessPage, trackErrorPage } = useTracking(
@@ -169,9 +171,9 @@ export default function ContainerNewPage() {
           <Notifications />
         </div>
 
-        <div className="sticky top-0 z-50">
-          <PciDiscoveryBanner project={project} />
-        </div>
+        <PciDiscoveryBanner
+          project={{ ...project, planCode: 'project.discovery' }}
+        />
 
         <OdsMessage color="information" isDismissible={false}>
           {t(

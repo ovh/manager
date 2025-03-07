@@ -7,7 +7,7 @@ import { vi } from 'vitest';
 
 export const shellContext = {
   environment: {
-    getUser: () => ({ ovhSubsidiary: 'mocked_ovhSubsidiary' }),
+    getUser: () => ({ ovhSubsidiary: 'FR' }),
   },
   shell: {
     navigation: {
