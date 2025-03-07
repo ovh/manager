@@ -4,7 +4,6 @@ import {
   RedirectionGuard,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
-
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   OdsBreadcrumb,
@@ -14,40 +13,22 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Outlet, useHref, useMatch, useResolvedPath } from 'react-router-dom';
+import { Outlet, useHref } from 'react-router-dom';
 import { ROUTE_PATHS } from '@/routes';
 import { CHECK_PRICES_DOC_LINK } from '@/constants';
 import GuideMenu from '@/components/GuideMenu.component';
 import { useArchives } from '@/api/hooks/useArchive';
+import { useTabs } from '@/hooks/useTabs';
 
 export default function ColdArchivePage() {
   const { t } = useTranslation('cold-archive');
 
-  const usersMatch = useMatch({
-    path: `${ROUTE_PATHS.ROOT}/${ROUTE_PATHS.USER_LIST}/*`,
-    end: false,
-  });
-
-  const showUsersTab = Boolean(usersMatch);
-
   const hrefProject = useProjectUrl('public-cloud');
   const { data: project } = useProject();
+  const { tabs, isUserTabSelected } = useTabs();
 
   const { data: allArchives, isPending } = useArchives(project.project_id);
   const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
-
-  const tabs = [
-    {
-      name: 'pci_projects_project_storages_cold_archive_label',
-      title: t('pci_projects_project_storages_cold_archive_tabs_tab_archives'),
-      to: useResolvedPath(ROUTE_PATHS.STORAGES).pathname,
-    },
-    {
-      name: 'pci_projects_project_storages_cold_archive_tabs_tab_users',
-      title: t('pci_projects_project_storages_cold_archive_tabs_tab_users'),
-      to: useResolvedPath(ROUTE_PATHS.USER_LIST).pathname,
-    },
-  ];
 
   const priceLink =
     CHECK_PRICES_DOC_LINK[ovhSubsidiary] || CHECK_PRICES_DOC_LINK.DEFAULT;
@@ -66,7 +47,7 @@ export default function ColdArchivePage() {
               label={t('pci_projects_project_storages_cold_archive_label')}
               href={useHref(ROUTE_PATHS.STORAGES)}
             />
-            {showUsersTab && (
+            {isUserTabSelected && (
               <OdsBreadcrumbItem
                 label={t(
                   'pci_projects_project_storages_cold_archive_tabs_tab_users',
