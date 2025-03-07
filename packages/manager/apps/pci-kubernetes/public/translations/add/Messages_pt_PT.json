@@ -27,7 +27,7 @@
   "kube_add_node_pool_creating": "Criação de um pool de nós",
   "kube_add_node_pool_success": "O pool de nós '{{nodePoolName}}' foi criado com êxito",
   "kube_add_node_pool_error": "Não foi possível criar o pool de nós '{{ nodePoolName }}': {{ message }}",
-  "kube_add_billing_type_description": "Todos os nós futuros deste pool de nós estarão sujeitos a este modo de faturação. Posteriormente, poderá passar cada um dos seus nós individualmente da faturação à hora para a faturação mensal.",
+  "kube_add_billing_type_description": "Todos os nós futuros deste pool de nós estarão sujeitos a este modo de faturação.",
   "kube_add_billing_type_payment_method": "A faturação será realizada através do seu método de pagamento predefinido.",
   "kube_add_billing_anti_affinity_title": "Faturação e anti-afinidade",
   "kube_add_node_pool_error_InsufficientVCPUsQuota": "A quota de vCPU do seu projeto é insuficiente para realizar a operação. Aumente a sua quota ou solicite menos recursos.",
@@ -38,12 +38,15 @@
   "kube_add_billing_auto_scaling_monthly_warning": "Atenção: ativará simultaneamente o autoscaling e o tarifário mensal para este nodepool. Todas as criações de nós através do autoscaling implicarão a faturação imediata de um nó em pro rata do tempo restante no mês em curso. Recomendamos que evite esta combinação se antecipar que o tamanho do seu nodepool seja frequentemente reduzido.",
   "kube_add_node_pool_name_input_pattern_validation_error": "O nome deve ter pelo menos dois caracteres, começar com um carácter alfabético, acabar por um caráter alfanumérico e os únicos caracteres especiais autorizados são os traços e os underscores.",
   "kube_add_billing_anti_affinity_coming_soon_message_title": "Preços mensais",
-  "kube_add_billing_anti_affinity_coming_soon_message_description": "Os preços mensais estarão disponíveis em breve com a chegada dos Saving Plans.",
+  "kube_add_billing_anti_affinity_coming_soon_message_description": "Os preços mensais estarão em breve disponíveis com a chegada dos Saving Plans.",
   "kubernetes_add_version_and_upgrade_policy_title": "Selecione a versão menor de Kubernetes e a política de segurança desejada.",
   "kube_update_policy_picker_documentation_text": "Saber mais sobre as políticas de segurança do Managed Kubernetes Service",
   "kube_update_policy_picker_documentation_link": "Consulte a documentação",
   "kubernetes_add_update_policy_title": "Selecione a política de segurança",
   "kubernetes_select_version_title": "Selecione uma versão",
   "kubernetes_add_billing_savings_plan_banner": "Graças aos Savings Plans, beneficie de preços mensais vantajosos, enquanto conserva a flexibilidade das instâncias à hora.",
-  "kubernetes_add_billing_savings_plan_cta": "Configure os seus Savings Plans"
+  "kubernetes_add_billing_savings_plan_cta": "Configure os seus Savings Plans",
+  "kubernetes_add_name_placeholder": "Nome do cluster",
+  "kubernetes_add_nodepool_name_placeholder": "Nome do pool de nós",
+  "kubernetes_add_billing_type_description_monthly": "Posteriormente, poderá passar cada um dos seus nós individualmente da faturação à hora para a faturação mensal."
 }
