@@ -58,7 +58,7 @@ const mocks: any = vi.hoisted(() => ({
       period: { from: '2024-08-01', to: '2024-08-31' },
       total: 0,
     },
-    isPending: true,
+    isLoading: true,
     error: null,
     refetch: vi.fn(() => ({})),
   },
@@ -93,7 +93,7 @@ const mocks: any = vi.hoisted(() => ({
         currencyCode: 'EUR',
       },
     },
-    isPending: false,
+    isLoading: false,
     refetch: vi.fn(() => ({})),
   },
   hubContext: {
@@ -479,7 +479,7 @@ describe('Layout.page', () => {
     });
 
     it('should display correct wording when customer has no bills', async () => {
-      mocks.bills.isPending = false;
+      mocks.bills.isLoading = false;
       const { findByTestId, getByText, getByTestId } = renderComponent(
         <BillingSummary />,
       );

@@ -72,13 +72,16 @@ export default function HubOrderTracking() {
     [],
   );
 
-  const getInitialStatus = (orderData: LastOrderTrackingResponse) => ({
-    date: orderData.date,
-    label:
-      orderData.status === 'delivered'
-        ? 'INVOICE_IN_PROGRESS'
-        : 'custom_creation',
-  });
+  const getInitialStatus = (orderData: LastOrderTrackingResponse) => {
+    if (!orderData?.date || !orderData?.status) return undefined;
+    return {
+      date: orderData.date,
+      label:
+        orderData.status === 'delivered'
+          ? 'INVOICE_IN_PROGRESS'
+          : 'custom_creation',
+    };
+  };
 
   const getLatestStatus = (history: OrderHistory[]) => {
     return history.reduce((latest, item) => {
@@ -111,15 +114,6 @@ export default function HubOrderTracking() {
       actions: ['activity', 'order', 'show-all'],
     });
   };
-
-  if (error)
-    return (
-      <TileError
-        message={t('hub_order_tracking_error')}
-        className={`block p-1`}
-        refetch={refetch}
-      />
-    );
 
   return (
     (isLoading || !isFreshCustomer) && (
@@ -161,80 +155,93 @@ export default function HubOrderTracking() {
             </>
           ) : (
             <>
-              <Suspense>
-                <Await
-                  resolve={orderTrackingLinkAsync}
-                  children={(orderTrackingLink: string) => (
-                    <OsdsLink
-                      href={orderTrackingLink}
-                      target={OdsHTMLAnchorElementTarget._blank}
-                      rel={OdsHTMLAnchorElementRel.noreferrer}
-                      color={ODS_THEME_COLOR_INTENT.primary}
-                      className="font-bold flex flex-col items-center justify-center mb-6 h-[40px]"
-                    >
-                      <span
-                        slot="start"
-                        className="flex flex-col items-center justify-center"
-                      >
-                        <OsdsChip
-                          size={ODS_CHIP_SIZE.sm}
-                          color={ODS_THEME_COLOR_INTENT.info}
+              {!error && orderDataResponse?.date && orderDataResponse?.status && (
+                <>
+                  <Suspense>
+                    <Await
+                      resolve={orderTrackingLinkAsync}
+                      children={(orderTrackingLink: string) => (
+                        <OsdsLink
+                          href={orderTrackingLink}
+                          target={OdsHTMLAnchorElementTarget._blank}
+                          rel={OdsHTMLAnchorElementRel.noreferrer}
+                          color={ODS_THEME_COLOR_INTENT.primary}
+                          className="font-bold flex flex-col items-center justify-center mb-6 h-[40px]"
                         >
-                          {t('hub_order_tracking_order_id', {
-                            orderId: orderDataResponse.orderId,
-                          })}
-                        </OsdsChip>
-                      </span>
-                    </OsdsLink>
-                  )}
-                />
-              </Suspense>
-              <div className="mb-6 flex justify-center gap-3 items-center flex-wrap">
-                <OsdsText
-                  level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                  hue={ODS_TEXT_COLOR_HUE._800}
-                  color={ODS_THEME_COLOR_INTENT.primary}
-                  className="inline-block mr-1"
-                >
-                  <strong>{format(new Date(currentStatus.date))}</strong>
-                  &nbsp;{t(`order_tracking_history_${currentStatus.label}`)}
-                </OsdsText>
-                <span className="inline-block size-[16px]">
-                  <OsdsIcon
-                    size={ODS_ICON_SIZE.xxs}
-                    color={ODS_THEME_COLOR_INTENT.text}
-                    name={
-                      !ERROR_STATUS.includes(currentStatus.label) &&
-                      !isWaitingPayment
-                        ? ODS_ICON_NAME.OK
-                        : ODS_ICON_NAME.CLOSE
-                    }
-                  ></OsdsIcon>
-                </span>
-              </div>
-              <Suspense>
-                <Await
-                  resolve={ordersTrackingLinkAsync}
-                  children={(ordersTrackingLink: string) => (
-                    <OsdsLink
-                      href={ordersTrackingLink}
-                      target={OdsHTMLAnchorElementTarget._top}
+                          <span
+                            slot="start"
+                            className="flex flex-col items-center justify-center"
+                          >
+                            <OsdsChip
+                              size={ODS_CHIP_SIZE.sm}
+                              color={ODS_THEME_COLOR_INTENT.info}
+                            >
+                              {t('hub_order_tracking_order_id', {
+                                orderId: orderDataResponse.orderId,
+                              })}
+                            </OsdsChip>
+                          </span>
+                        </OsdsLink>
+                      )}
+                    />
+                  </Suspense>
+                  <div className="mb-6 flex justify-center gap-3 items-center flex-wrap">
+                    <OsdsText
+                      level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+                      hue={ODS_TEXT_COLOR_HUE._800}
                       color={ODS_THEME_COLOR_INTENT.primary}
-                      onClick={handleSeeAll}
-                      className="font-bold mb-1 flex flex-col items-center justify-center"
+                      className="inline-block mr-1"
                     >
-                      {t('hub_order_tracking_see_all')}
-                      <span slot="end">
-                        <OsdsIcon
-                          size={ODS_ICON_SIZE.xs}
-                          name={ODS_ICON_NAME.ARROW_RIGHT}
-                          color={ODS_THEME_COLOR_INTENT.info}
-                        />
-                      </span>
-                    </OsdsLink>
-                  )}
+                      <strong>{format(new Date(currentStatus.date))}</strong>
+                      &nbsp;{t(`order_tracking_history_${currentStatus.label}`)}
+                    </OsdsText>
+                    <span className="inline-block size-[16px]">
+                      <OsdsIcon
+                        size={ODS_ICON_SIZE.xxs}
+                        color={ODS_THEME_COLOR_INTENT.text}
+                        name={
+                          !ERROR_STATUS.includes(currentStatus.label) &&
+                          !isWaitingPayment
+                            ? ODS_ICON_NAME.OK
+                            : ODS_ICON_NAME.CLOSE
+                        }
+                      ></OsdsIcon>
+                    </span>
+                  </div>
+                  <Suspense>
+                    <Await
+                      resolve={ordersTrackingLinkAsync}
+                      children={(ordersTrackingLink: string) => (
+                        <OsdsLink
+                          href={ordersTrackingLink}
+                          target={OdsHTMLAnchorElementTarget._top}
+                          color={ODS_THEME_COLOR_INTENT.primary}
+                          onClick={handleSeeAll}
+                          className="font-bold mb-1 flex flex-col items-center justify-center"
+                        >
+                          {t('hub_order_tracking_see_all')}
+                          <span slot="end">
+                            <OsdsIcon
+                              size={ODS_ICON_SIZE.xs}
+                              name={ODS_ICON_NAME.ARROW_RIGHT}
+                              color={ODS_THEME_COLOR_INTENT.info}
+                            />
+                          </span>
+                        </OsdsLink>
+                      )}
+                    />
+                  </Suspense>
+                </>
+              )}
+              {(error ||
+                !orderDataResponse?.date ||
+                !orderDataResponse?.status) && (
+                <TileError
+                  message={t('hub_order_tracking_error')}
+                  className={`!p-1`}
+                  refetch={refetch}
                 />
-              </Suspense>
+              )}
             </>
           )}
         </div>
