@@ -1,11 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 import { getFlavor } from '@/api/data/flavors';
-import { TAddon } from '@/pages/create/store';
+import { ProductAddonDetail } from '@/types/product.type';
 
 export const useGetFlavor = (
   projectId: string,
   regionName: string,
-  addon: TAddon,
+  addon: ProductAddonDetail,
 ) =>
   useQuery({
     queryKey: [
@@ -14,7 +14,7 @@ export const useGetFlavor = (
       'region',
       regionName,
       'size',
-      addon?.code,
+      addon?.size,
       'flavor',
     ],
     queryFn: () => getFlavor(projectId, regionName, addon),

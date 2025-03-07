@@ -25,7 +25,7 @@ export const useCreateActions = () => {
       });
 
       trackClick({
-        name: `${LOAD_BALANCER_CREATION_TRACKING.CONFIRM}::${store.addon.code}::${store.region.name}`,
+        name: `${LOAD_BALANCER_CREATION_TRACKING.CONFIRM}::${store.addon.size}::${store.region.name}`,
         type: 'action',
       });
 
