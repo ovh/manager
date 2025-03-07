@@ -47,16 +47,16 @@ export default function BillingSummary() {
   const [months, setMonths] = useState(1);
 
   const {
-    isPending: areBillsLoading,
+    isLoading: areBillsLoading,
     data: bills,
     error: billsError,
     refetch,
   } = useFetchHubBills(months, { enabled: !(isLoading || isFreshCustomer) });
-  const { isPending: isDebtLoading, data: debt } = useFetchHubDebt({
+  const { isLoading: isDebtLoading, data: debt } = useFetchHubDebt({
     enabled: !(isLoading || isFreshCustomer),
   });
 
-  const areDataLoading = areBillsLoading || isDebtLoading;
+  const isDataLoading = isLoading || areBillsLoading || isDebtLoading;
 
   const formattedPrice = usePriceFormat(bills?.total, bills?.currency?.code);
   const formattedDebtPrice = usePriceFormat(
@@ -88,146 +88,149 @@ export default function BillingSummary() {
   };
 
   return (
-    <div data-testid="billing_summary" className="manager-hub-billing-summary">
-      <OsdsText
-        className="block mb-6"
-        level={ODS_TEXT_LEVEL.subheading}
-        size={ODS_TEXT_SIZE._200}
-        color={ODS_THEME_COLOR_INTENT.text}
+    (isDataLoading || !isFreshCustomer) && (
+      <div
+        data-testid="billing_summary"
+        className="manager-hub-billing-summary"
       >
-        {t('hub_billing_summary_title')}
-      </OsdsText>
-      {!areDataLoading && billsError && (
-        <Suspense
-          fallback={<OsdsSkeleton data-testid="tile_error_skeleton" inline />}
+        <OsdsText
+          className="block mb-6"
+          level={ODS_TEXT_LEVEL.subheading}
+          size={ODS_TEXT_SIZE._200}
+          color={ODS_THEME_COLOR_INTENT.text}
         >
-          <TileError
-            contrasted
-            message={t('hub_billing_summary_display_bills_error')}
-            refetch={refetch}
-          />
-        </Suspense>
-      )}
-      {!billsError && (
-        <div>
-          <OsdsSelect
-            data-testid="bills_period_selector"
-            className="w-full m-auto max-w-60 px-4 box-border"
-            value={months}
-            onOdsValueChange={(event) =>
-              setMonths(Number(event.detail.value as string))
-            }
+          {t('hub_billing_summary_title')}
+        </OsdsText>
+        {!isDataLoading && billsError && (
+          <Suspense
+            fallback={<OsdsSkeleton data-testid="tile_error_skeleton" inline />}
           >
-            {BILLING_SUMMARY_PERIODS_IN_MONTHS.map((month) => (
-              <OsdsSelectOption
-                data-testid={`months_period_option_${month}`}
-                key={`months_period_option_${month}`}
-                value={month}
-              >
-                {t(`hub_billing_summary_period_${month}`)}
-              </OsdsSelectOption>
-            ))}
-          </OsdsSelect>
-          <span
-            data-testid="bills_amount_container"
-            className="block whitespace-nowrap manager-hub-billing-summary__bill-total"
-          >
-            {!areDataLoading ? formattedPrice : <OsdsSkeleton inline />}
-          </span>
-          {areDataLoading ? (
-            <>
-              <p className="mt-6">
+            <TileError
+              contrasted
+              message={t('hub_billing_summary_display_bills_error')}
+              refetch={refetch}
+            />
+          </Suspense>
+        )}
+        {!billsError && (
+          <div>
+            <OsdsSelect
+              data-testid="bills_period_selector"
+              className="w-full m-auto max-w-60 px-4 box-border"
+              value={months}
+              onOdsValueChange={(event) =>
+                setMonths(Number(event.detail.value as string))
+              }
+            >
+              {BILLING_SUMMARY_PERIODS_IN_MONTHS.map((month) => (
+                <OsdsSelectOption
+                  data-testid={`months_period_option_${month}`}
+                  key={`months_period_option_${month}`}
+                  value={month}
+                >
+                  {t(`hub_billing_summary_period_${month}`)}
+                </OsdsSelectOption>
+              ))}
+            </OsdsSelect>
+            <span
+              data-testid="bills_amount_container"
+              className="block whitespace-nowrap manager-hub-billing-summary__bill-total"
+            >
+              {!isDataLoading ? formattedPrice : <OsdsSkeleton inline />}
+            </span>
+            {isDataLoading ? (
+              <>
+                <p className="mt-6">
+                  <OsdsSkeleton
+                    data-testid="bills_status_skeleton"
+                    size={ODS_SKELETON_SIZE.sm}
+                    inline
+                  />
+                </p>
                 <OsdsSkeleton
-                  data-testid="bills_status_skeleton"
+                  data-testid="bills_link_skeleton"
                   size={ODS_SKELETON_SIZE.sm}
                   inline
                 />
-              </p>
-              <OsdsSkeleton
-                data-testid="bills_link_skeleton"
-                size={ODS_SKELETON_SIZE.sm}
-                inline
-              />
-            </>
-          ) : (
-            <>
-              <div className="mt-6">
-                {bills?.total > 0 && debt?.dueAmount?.value === 0 && (
-                  <div className="flex flex-row justify-center">
-                    <span className="h-[24px] w-[24px] mr-4">
+              </>
+            ) : (
+              <>
+                <div className="mt-6">
+                  {bills?.total > 0 && debt?.dueAmount?.value === 0 && (
+                    <div className="flex flex-row justify-center">
+                       <span className="h-[24px] w-[24px] mr-4">
                       <OsdsIcon
                         name={ODS_ICON_NAME.SUCCESS_CIRCLE}
                         size={ODS_ICON_SIZE.sm}
                         contrasted
                       ></OsdsIcon>
-                    </span>
-                    <span className="inline-block">
-                      {t('hub_billing_summary_debt_null')}
-                    </span>
-                  </div>
-                )}
-                {debt?.dueAmount?.value > 0 && (
-                  <>
-                    <span data-testid="debt_amount">
-                      {t('hub_billing_summary_debt', {
-                        debt: formattedDebtPrice,
-                      })}
-                    </span>
-                    <Suspense
-                      fallback={
-                        <OsdsSkeleton data-testid="debt_link_skeleton" />
-                      }
-                    >
-                      <Await
-                        resolve={payDebtLink}
-                        children={(link: string) => (
-                          <OsdsLink
-                            data-testid="debt_link"
-                            className="block"
-                            href={link}
-                            rel={OdsHTMLAnchorElementRel.noreferrer}
-                            target={OdsHTMLAnchorElementTarget._blank}
-                            contrasted
-                          >
-                            <span>{t('hub_billing_summary_debt_pay')}</span>
-                          </OsdsLink>
-                        )}
-                      />
-                    </Suspense>
-                  </>
-                )}
-                {bills?.total === 0 && t('hub_billing_summary_debt_no_bills')}
-              </div>
-              <Suspense
-                fallback={<OsdsSkeleton data-testid="bills_link_skeleton" />}
-              >
-                <Await
-                  resolve={viewBillsLink}
-                  children={(link: string) => (
-                    <OsdsLink
-                      data-testid="bills_link"
-                      className="mt-6"
-                      href={link}
-                      onClick={trackGoToBilling}
-                      target={OdsHTMLAnchorElementTarget._top}
-                      contrasted
-                    >
-                      {t('hub_billing_summary_display_bills')}
-                      <span className="ml-4" slot="end">
-                        <OsdsIcon
-                          name={ODS_ICON_NAME.ARROW_RIGHT}
-                          size={ODS_ICON_SIZE.sm}
-                          contrasted
-                        ></OsdsIcon>
                       </span>
-                    </OsdsLink>
+                    <span className="inline-block">{t('hub_billing_summary_debt_null')}</span>
+                    </div>
                   )}
-                />
-              </Suspense>
-            </>
-          )}
-        </div>
-      )}
-    </div>
+                  {debt?.dueAmount?.value > 0 && (
+                    <>
+                      <span data-testid="debt_amount">
+                        {t('hub_billing_summary_debt', {
+                          debt: formattedDebtPrice,
+                        })}
+                      </span>
+                      <Suspense
+                        fallback={
+                          <OsdsSkeleton data-testid="debt_link_skeleton" />
+                        }
+                      >
+                        <Await
+                          resolve={payDebtLink}
+                          children={(link: string) => (
+                            <OsdsLink
+                              data-testid="debt_link"
+                              className="block"
+                              href={link}
+                              rel={OdsHTMLAnchorElementRel.noreferrer}
+                              target={OdsHTMLAnchorElementTarget._blank}
+                              contrasted
+                            >
+                              <span>{t('hub_billing_summary_debt_pay')}</span>
+                            </OsdsLink>
+                          )}
+                        />
+                      </Suspense>
+                    </>
+                  )}
+                  {bills?.total === 0 && t('hub_billing_summary_debt_no_bills')}
+                </div>
+                <Suspense
+                  fallback={<OsdsSkeleton data-testid="bills_link_skeleton" />}
+                >
+                  <Await
+                    resolve={viewBillsLink}
+                    children={(link: string) => (
+                      <OsdsLink
+                        data-testid="bills_link"
+                        className="mt-6"
+                        href={link}
+                        onClick={trackGoToBilling}
+                        target={OdsHTMLAnchorElementTarget._top}
+                        contrasted
+                      >
+                        {t('hub_billing_summary_display_bills')}
+                        <span className="ml-4" slot="end">
+                          <OsdsIcon
+                            name={ODS_ICON_NAME.ARROW_RIGHT}
+                            size={ODS_ICON_SIZE.sm}
+                            contrasted
+                          ></OsdsIcon>
+                        </span>
+                      </OsdsLink>
+                    )}
+                  />
+                </Suspense>
+              </>
+            )}
+          </div>
+        )}
+      </div>
+    )
   );
 }
