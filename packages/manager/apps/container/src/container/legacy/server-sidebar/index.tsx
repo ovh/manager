@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import useContainer from '@/core/container';
-import { useLegacyContainer } from '@/container/legacy/context';
+import { useLegacyContainer } from '@/container/legacy/legacy.context';
 import style from './index.module.scss';
 
 const AccountSidebar = React.lazy(() => import('./universe/AccountSidebar'));
@@ -37,19 +37,24 @@ export default function ServerSidebarIndex() {
     ],
     iam: '*',
     'carbon-calculator': '*',
-    'account': '*',
-    'billing': '*',
-  }
+    account: '*',
+    billing: '*',
+  };
 
   useEffect(() => {
-    const accountMenuPathEntry = Object.entries(accountMenuPath)
-      .find(([path]) => path === application?.container?.path);
+    const accountMenuPathEntry = Object.entries(accountMenuPath).find(
+      ([path]) => path === application?.container?.path,
+    );
     if (accountMenuPathEntry) {
       const [path, routes] = accountMenuPathEntry;
       if (routes === '*') {
         setIsAccountMenu(true);
       } else {
-        setIsAccountMenu(routes.some((route) => location.pathname.startsWith(`/${path}${route}`)));
+        setIsAccountMenu(
+          routes.some((route) =>
+            location.pathname.startsWith(`/${path}${route}`),
+          ),
+        );
       }
     } else {
       setIsAccountMenu(false);
@@ -57,7 +62,7 @@ export default function ServerSidebarIndex() {
   }, [universe, location, application]);
 
   if (universe === 'hub') {
-    return <></>
+    return <></>;
   }
   if (isAccountMenu) {
     return (
@@ -92,13 +97,15 @@ export default function ServerSidebarIndex() {
   if (isUniverseMenu) {
     return (
       <div
-  className={`${style.serverSidebar} ${isResponsiveSidebarMenuOpen ? style.serverSidebarOpen : ''}`}
->
-  {universe === 'public-cloud' && <PublicCloudSidebar />}
-  {universe === 'server' && <DedicatedSidebar />}
-  {universe === 'telecom' && <TelecomSidebar />}
-  {universe === 'web' && <WebSidebar />}
-</div>
+        className={`${style.serverSidebar} ${
+          isResponsiveSidebarMenuOpen ? style.serverSidebarOpen : ''
+        }`}
+      >
+        {universe === 'public-cloud' && <PublicCloudSidebar />}
+        {universe === 'server' && <DedicatedSidebar />}
+        {universe === 'telecom' && <TelecomSidebar />}
+        {universe === 'web' && <WebSidebar />}
+      </div>
     );
   }
   return undefined;
