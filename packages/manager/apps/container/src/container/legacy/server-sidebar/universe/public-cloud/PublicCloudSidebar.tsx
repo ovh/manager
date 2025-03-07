@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
-import { useLegacyContainer } from '@/container/legacy/context';
+import { useLegacyContainer } from '@/container/legacy/legacy.context';
 import { useShell } from '@/context';
 import useProjects from './useProjects';
 import { features, getPciProjectMenu } from './pci-menu';
@@ -26,22 +26,24 @@ export default function PublicCloudSidebar() {
     .getRegion();
   const projectId = currentProject?.project_id;
 
-  const {data: availability } = useFeatureAvailability(features);
+  const { data: availability } = useFeatureAvailability(features);
 
   const menu = useMemo(() => {
     if (!availability) return [];
-    const menuItems = getPciProjectMenu(projectId, region, availability, (...args):string =>
-      navigation.getURL(...args),
+    const menuItems = getPciProjectMenu(
+      projectId,
+      region,
+      availability,
+      (...args): string => navigation.getURL(...args),
     );
     return menuItems
       .map((item) => ({
         ...item,
-        subItems: item.subItems
-          ?.map((item) => ({
-            ...item,
-            selected:
-              location?.pathname?.indexOf(item.href?.replace(/^.*#/, '')) >= 0,
-          })),
+        subItems: item.subItems?.map((item) => ({
+          ...item,
+          selected:
+            location?.pathname?.indexOf(item.href?.replace(/^.*#/, '')) >= 0,
+        })),
       }))
       .filter((menu) => menu.subItems?.length > 0);
   }, [availability, location, projectId, navigation]);
@@ -53,12 +55,10 @@ export default function PublicCloudSidebar() {
   }, []);
 
   const onCreateProjectClick = useCallback(() => {
-    shell
-      .getPlugin('tracking')
-      .trackClick({
-        name: 'public-cloud_project-listing_create-instance',
-        type: 'action',
-      });
+    shell.getPlugin('tracking').trackClick({
+      name: 'public-cloud_project-listing_create-instance',
+      type: 'action',
+    });
   }, [shell]);
 
   const onMenuItemClick = useCallback(
@@ -177,13 +177,13 @@ export default function PublicCloudSidebar() {
       <div style={{ height: '100%', overflow: 'scroll' }}>
         <div className="d-flex m-2">
           <h2 className={style.projectTitle}>{currentProject?.description}</h2>
-            <button
-              type="button"
-              className={style.menuToggle}
-              onClick={onShowAllProjectClick}
-            >
-              <span className="oui-icon oui-icon-chevron-right"></span>
-            </button>
+          <button
+            type="button"
+            className={style.menuToggle}
+            onClick={onShowAllProjectClick}
+          >
+            <span className="oui-icon oui-icon-chevron-right"></span>
+          </button>
         </div>
 
         <ProjectIdCopy id="copy" projectId={currentProject?.project_id} />
@@ -192,14 +192,15 @@ export default function PublicCloudSidebar() {
         {menu.map((item) => (
           <div className="m-2" key={item.id}>
             <h2 className={style.menuTitle}>
-             {item.title}
-             {item.badge && (
-                        <span
-                          className={`oui-badge oui-badge_s oui-badge_${item.badge} ${style.menuBadge}`}
-                        >
-                          {item.badge}
-                        </span>
-                      )}</h2>
+              {item.title}
+              {item.badge && (
+                <span
+                  className={`oui-badge oui-badge_s oui-badge_${item.badge} ${style.menuBadge}`}
+                >
+                  {item.badge}
+                </span>
+              )}
+            </h2>
             {item.subItems?.length > 0 && (
               <ul className={style.menuUl}>
                 {item.subItems.map((subItem) => (

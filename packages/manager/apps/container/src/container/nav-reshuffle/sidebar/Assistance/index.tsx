@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useURL, ContentURLS } from '@/container/common/urls-constants';
 import { useShell } from '@/context';
@@ -7,9 +7,19 @@ import useContainer from '@/core/container';
 import { Node } from '../navigation-tree/node';
 import { AssistanceLinkItem } from './AssistanceLinkItem';
 import { ShortAssistanceLinkItem } from './ShortAssistanceLinkItem';
-import { OsdsButton, OsdsIcon, OsdsMenuItem, OsdsPopover, OsdsPopoverContent } from '@ovhcloud/ods-components/react';
+import {
+  OsdsButton,
+  OsdsIcon,
+  OsdsMenuItem,
+  OsdsPopover,
+  OsdsPopoverContent,
+} from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import {
+  ODS_BUTTON_SIZE,
+  ODS_BUTTON_VARIANT,
+  ODS_ICON_NAME,
+} from '@ovhcloud/ods-components';
 
 export interface AssistanceProps {
   nodeTree?: Node;
@@ -20,15 +30,13 @@ export interface AssistanceProps {
 const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
   nodeTree,
   selectedNode,
-  isShort
+  isShort,
 }): JSX.Element => {
   const { t } = useTranslation('sidebar');
   const shell = useShell();
   const { setChatbotReduced } = useContainer();
 
-  const environment = shell
-    .getPlugin('environment')
-    .getEnvironment();
+  const environment = shell.getPlugin('environment').getEnvironment();
   const urls = useURL(environment);
   const trackingPlugin = shell.getPlugin('tracking');
   const isEUOrCA = ['EU', 'CA'].includes(environment.getRegion());
@@ -36,7 +44,11 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
 
   useEffect(() => {
     nodeTree.children.forEach((node: Node) => {
-      if (node.url && typeof node.url === 'string' && !node.url.startsWith('http')) {
+      if (
+        node.url &&
+        typeof node.url === 'string' &&
+        !node.url.startsWith('http')
+      ) {
         node.url = urls.get(node.url as keyof ContentURLS);
       }
       switch (node.id) {
@@ -57,10 +69,12 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
         case 'tickets':
           node.onClick = () => trackNode('assistance_support_tickets');
           node.url = isEUOrCA ? node.url : null;
-          node.routing = !isEUOrCA ? {
-            application: 'dedicated',
-            hash: '#/ticket',
-          } : null;
+          node.routing = !isEUOrCA
+            ? {
+                application: 'dedicated',
+                hash: '#/ticket',
+              }
+            : null;
           node.isExternal = isEUOrCA;
           break;
         case 'assistance_status':
@@ -87,35 +101,45 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
   }, []);
 
   const trackNode = (id: string) => {
-    trackingPlugin.trackClick({ name: `navbar_v3_entry_home::${id}`, type: 'navigation' });
+    trackingPlugin.trackClick({
+      name: `navbar_v3_entry_home::${id}`,
+      type: 'navigation',
+    });
   };
 
-  if (isShort) return (
-    <OsdsPopover className='fixed z-[1000] left-[0.3rem] bottom-[4rem]' id="useful-links" role="menu">
-      <OsdsButton
-        slot="popover-trigger"
-        className='w-[4rem]'
-        color={ODS_THEME_COLOR_INTENT.primary}
-        variant={ODS_BUTTON_VARIANT.ghost}
-        size={ODS_BUTTON_SIZE.md}
-        title={t('sidebar_assistance_title')}
-        contrasted
+  if (isShort)
+    return (
+      <OsdsPopover
+        className="fixed z-[1000] left-[0.3rem] bottom-[4rem]"
+        id="useful-links"
+        role="menu"
       >
-        <OsdsIcon
-          name={ODS_ICON_NAME.ELLIPSIS}
+        <OsdsButton
+          slot="popover-trigger"
+          className="w-[4rem]"
+          color={ODS_THEME_COLOR_INTENT.primary}
+          variant={ODS_BUTTON_VARIANT.ghost}
+          size={ODS_BUTTON_SIZE.md}
+          title={t('sidebar_assistance_title')}
           contrasted
-        />
-      </OsdsButton>
-      <OsdsPopoverContent>
-        {nodeTree.children.map((node: Node) => (
-          <ShortAssistanceLinkItem key={node.id} node={node} />
-        ))}
-      </OsdsPopoverContent>
-    </OsdsPopover>
-  )
+        >
+          <OsdsIcon name={ODS_ICON_NAME.ELLIPSIS} contrasted />
+        </OsdsButton>
+        <OsdsPopoverContent>
+          {nodeTree.children.map((node: Node) => (
+            <ShortAssistanceLinkItem key={node.id} node={node} />
+          ))}
+        </OsdsPopoverContent>
+      </OsdsPopover>
+    );
 
   return (
-    <ul className="mt-auto pb-3 flex-none" id="useful-links" role="menu" data-testid="assistance-sidebar">
+    <ul
+      className="mt-auto pb-3 flex-none"
+      id="useful-links"
+      role="menu"
+      data-testid="assistance-sidebar"
+    >
       <li className="assistance_header px-3 mb-3">
         <h2 className="flex justify-between">
           <span>{t('sidebar_assistance_title')}</span>
@@ -128,7 +152,8 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
           isSelected={node.id === selectedNode?.id}
         />
       ))}
-    </ul>);
+    </ul>
+  );
 };
 
 export default AssistanceSidebar;

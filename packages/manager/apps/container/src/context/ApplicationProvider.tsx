@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
 import { Environment } from '@ovh-ux/manager-config';
 import { Shell } from '@ovh-ux/shell';
@@ -17,15 +17,13 @@ export const ApplicationProvider = ({
   environment = {} as Environment,
   shell = {} as Shell,
 }: Props): JSX.Element => {
-  let applicationContext = useContext(ApplicationContext);
-
-  applicationContext = {
-    environment,
-    shell,
-  };
-
   return (
-    <ApplicationContext.Provider value={applicationContext}>
+    <ApplicationContext.Provider
+      value={{
+        environment,
+        shell,
+      }}
+    >
       <HeaderProvider>{children}</HeaderProvider>
     </ApplicationContext.Provider>
   );
