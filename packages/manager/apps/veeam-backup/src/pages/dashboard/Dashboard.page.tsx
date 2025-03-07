@@ -1,7 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  OsdsChip,
   OsdsMessage,
   OsdsSkeleton,
   OsdsText,
@@ -33,6 +32,7 @@ import { urls } from '@/routes/routes.constant';
 import { SuccessMessages } from '@/components/Messages/SuccessMessage.component';
 import { OrganizationCell } from '../listing/DatagridCell.component';
 import { DisplayNameWithEditButton } from './DisplayName.component';
+import { ConsumedVms } from './ConsumedVms.component';
 import { OfferProgress } from './OfferProgress.component';
 import { SubscriptionTile } from './SubscriptionTile.component';
 import { ComingSoonBadge } from '@/components/ComingSoonBadge/ComingSoonBadge';
@@ -40,6 +40,7 @@ import { BillingLink } from '@/components/Links/BillingLink.component';
 import { Loading } from '@/components/Loading/Loading';
 import { BackupStatusBadge } from '@/components/BackupStatus/BackupStatusBadge.component';
 import useVeeamBackupConsumption from '@/data/hooks/useVeeamBackupConsumption';
+
 import { VEEAM_BACKUP_CONSUMPTION_PLAN_CODE } from '@/pages/dashboard/Dashboard.constants';
 import { CHANGELOG_LINKS } from '@/constants';
 
@@ -63,7 +64,7 @@ export default function DashboardPage() {
     );
     return { ...offer, usedSpaceInGB: consumption?.quantity ?? 0 };
   };
-  
+
   const header = {
     title: displayName,
     description: displayName !== data?.data?.id ? data?.data?.id : null,
@@ -156,16 +157,7 @@ export default function DashboardPage() {
                 {
                   id: 'consumedVms',
                   label: t('consumed_vms'),
-                  value: data?.data?.currentState?.vms ? (
-                    <div className="flex flex-col">
-                      <OsdsChip color={ODS_THEME_COLOR_INTENT.primary} inline>
-                        {data.data.currentState.vms} VMs
-                      </OsdsChip>
-                      <Description>{t('consumed_vms_label')}</Description>
-                    </div>
-                  ) : (
-                    <ComingSoonBadge />
-                  ),
+                  value: <ConsumedVms id={id} backup={data?.data} />,
                 },
                 ...(data?.data?.currentState?.offers?.map((offer) => ({
                   id: offer.name,
