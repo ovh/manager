@@ -12,13 +12,8 @@ export interface BreadcrumbProps {
   rootLabel?: string;
   appName?: string;
   projectId?: string;
-  // items?: BreadcrumbItem[];
 }
-export const usePciBreadcrumb = ({
-  projectId,
-  appName,
-}: // items,
-BreadcrumbProps) => {
+export const usePciBreadcrumb = ({ projectId, appName }: BreadcrumbProps) => {
   const { shell } = useContext(ShellContext);
   const [root, setRoot] = useState<BreadcrumbItem[]>([]);
   const [appRoot, setAppRoot] = useState<BreadcrumbItem[]>([]);
@@ -45,7 +40,8 @@ BreadcrumbProps) => {
           },
         ]);
       } catch (error) {
-        console.error('Error fetching root URL:', error);
+        setRoot([]);
+        setAppRoot([]);
       }
     };
     if (project) fetchRoot();
@@ -70,8 +66,8 @@ export const useBreadcrumb = ({ rootLabel, appName }: BreadcrumbProps) => {
           href: String(response),
         };
         setRoot([rootItem]);
-      } catch {
-        // Fetch navigation error
+      } catch (error) {
+        setRoot([]);
       }
     };
     fetchRoot();

@@ -30,10 +30,17 @@ export default function DeletePage() {
     projectId,
   );
 
+  const containerId = searchParams.get('containerId');
+  const region = searchParams.get('region');
+  const containerType = searchParams.get('containerType');
+
   const storageToDelete = storages?.resources?.find(
     (storage) =>
-      storage.name === searchParams.get('containerId') &&
-      storage.region === searchParams.get('region'),
+      storage.name === containerId &&
+      storage.region === region &&
+      (containerType
+        ? storage.containerType === containerType
+        : !('containerType' in storage)),
   );
 
   const { data: container, isPending: isPendingContainer } = useServerContainer(

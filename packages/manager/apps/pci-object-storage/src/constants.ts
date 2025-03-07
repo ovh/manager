@@ -434,3 +434,5 @@ export const X_CONTAINER_META_WEB_LISTINGS = 'x-container-meta-web-listings';
 export const X_CONTAINER_READ_PUBLIC_VALUE = '.r:*,.rlistings';
 
 export const BACKUP_KEY = 'ovh:backup';
+
+export const MUMBAI_REGION_NAME = 'AP-SOUTH-MUM';

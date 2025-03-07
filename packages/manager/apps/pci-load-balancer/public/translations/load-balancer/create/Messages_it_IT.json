@@ -27,7 +27,7 @@
   "octavia_load_balancer_create_private_network_field_subnet": "Scegli una sottorete",
   "octavia_load_balancer_create_private_network_no_subnet_text": "La rete privata selezionata non ha una sottorete con un gateway ip definito: scegli o <a href=\"{{ createPrivateNetworkLink }}\" target=\"_blank\" data-track-name=\"{{ trackLabel }}\" data-track-on=\"click\" data-track-type=\"action\">Crea un'altra rete privata.</a>",
   "octavia_load_balancer_create_private_network_no_gateway_text": "Abbiamo rilevato che manca un gateway sulla rete privata / subnet selezionata. Ne creeremo una per te al momento della creazione del Load Balancer",
-  "octavia_load_balancer_create_private_network_no_gateway_text_price": "Prezzo del nuovo gateway:",
+  "octavia_load_balancer_create_private_network_no_gateway_text_price": "La taglia selezionata è {{ size }} (al prezzo di {{ price }})",
   "octavia_load_balancer_create_gateway_price_interval": " /ora",
   "octavia_load_balancer_create_instance_title": "Aggiungi istanze",
   "octavia_load_balancer_create_instance_intro": "Per configurare il Load Balancer, definisci i tuoi listener (front end) con una porta e un protocollo. Dopodiché, assegnalo a un pool di istanze (back end) raggiungibili su una porta e un protocollo specifici. Se disponi di più protocolli e/o porte per istanza, puoi configurare più pool per listener <a href=\"{{ linkUrl }}\" target=\"_blank\" data-track-name=\"{{ trackLabel }}\" data-track-on=\"click\" data-track-type=\"action\">consultando la documentazione</a>",

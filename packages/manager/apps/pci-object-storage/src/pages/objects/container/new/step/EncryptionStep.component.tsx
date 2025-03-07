@@ -9,6 +9,7 @@ import {
 import { useContainerCreationStore } from '../useContainerCreationStore';
 import {
   ENCRYPTION_ALGORITHM_SSE_S3,
+  MUMBAI_REGION_NAME,
   NO_ENCRYPTION_VALUE,
   OBJECT_CONTAINER_MODE_MULTI_ZONES,
 } from '@/constants';
@@ -72,7 +73,7 @@ export function EncryptionStep() {
               value={ENCRYPTION_ALGORITHM_SSE_S3}
               name="encryption"
               inputId="encryption-sse-s3"
-              isDisabled={form.region?.name === 'AP-SOUTH-MUM'}
+              isDisabled={form.region?.name === MUMBAI_REGION_NAME}
               onOdsChange={() => setEncryption(ENCRYPTION_ALGORITHM_SSE_S3)}
             />
             <label htmlFor="encryption-sse-s3">

@@ -111,14 +111,19 @@ export function Actions({
     {
       id: 3,
       label: t('pci_projects_project_storages_containers_delete_label'),
-      onClick: () =>
+      onClick: () => {
+        const searchParams = {
+          containerId: storage.name,
+          region: storage.region,
+          ...(storage.containerType && {
+            containerType: storage.containerType,
+          }),
+        };
         navigate({
           pathname: `./delete`,
-          search: `?${createSearchParams({
-            containerId: storage.name,
-            region: storage.region,
-          })}`,
-        }),
+          search: `?${createSearchParams(searchParams)}`,
+        });
+      },
     },
   ]
     .filter((i) => !('condition' in i) || i.condition)

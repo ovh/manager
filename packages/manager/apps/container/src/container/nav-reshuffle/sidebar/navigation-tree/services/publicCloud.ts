@@ -471,7 +471,6 @@ pciNode.children = [
         hasService: false,
         url: 'https://hq-api.eu.dataplatform.ovh.net/iam/v4/login?authentication_provider=ovh&project={projectId}&app_id=forepaas&&response_type=token&redirect_uri=https%3A%2F%2Feu.dataplatform.ovh.net&authorize_bypass=true&token_mode=cookie&force_auth=false',
         features: ['data-platform'],
-        tag: NodeTag.BETA,
         isExternal: true,
       },
       {
