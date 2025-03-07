@@ -25,6 +25,7 @@ import {
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+import useSavingsPlanAvailable from '@/hooks/useSavingPlanAvailable';
 
 const checkedClass =
   'cursor-pointer font-bold bg-[--ods-color-blue-100] border-[--ods-color-blue-600]';
@@ -53,6 +54,7 @@ export default function BillingStep(props: TBillingStepProps): JSX.Element {
 
   const projectURL = useProjectUrl('public-cloud');
   const savingsPlanUrl = `${projectURL}/savings-plan`;
+  const showSavingPlan = useSavingsPlanAvailable();
 
   return (
     <>
