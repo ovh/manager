@@ -1,0 +1,15 @@
+{
+  "pci_projects_project_storages_cold_archive_containers_container_archive_title": "Archive your container",
+  "pci_projects_project_storages_cold_archive_containers_container_archive_description": "You are about to archive your {{ containerName }} container.",
+  "pci_projects_project_storages_cold_archive_containers_container_archive_submit_label": "Archive",
+  "pci_projects_project_storages_cold_archive_containers_container_archive_cancel_label": "Exit",
+  "pci_projects_project_storages_cold_archive_containers_container_archive_success_message": "Archiving the {{containerName}} container.",
+  "pci_projects_project_storages_cold_archive_containers_container_archive_error_message": "An error has occurred archiving the {{containerName}} container: {{message}}",
+  "pci_projects_project_storages_cold_archive_containers_container_archive_description_2": "By configuring a retention period, your archive will be locked and you will no longer be able to delete your data during the entire retention period.",
+  "pci_projects_project_storages_cold_archive_containers_container_archive_has_retention": "Schedule a retention period",
+  "pci_projects_project_storages_cold_archive_containers_container_archive_has_no_retention": "Do not schedule a retention period",
+  "pci_projects_project_storages_cold_archive_containers_container_archive_retention_days": "Add the number of retention days",
+  "pci_projects_project_storages_cold_archive_containers_container_retention_warning": "Your retention period will end on <strong> {{ date }}</strong> .",
+  "pci_projects_project_storages_cold_archive_containers_container_retention_warning_2": "You can only delete your data once this date has passed.",
+  "pci_projects_project_storages_cold_archive_containers_container_retention_retention_value_wartning": "Add the number of retention days (minimum 1 day, maximum 4,500 days)"
+}

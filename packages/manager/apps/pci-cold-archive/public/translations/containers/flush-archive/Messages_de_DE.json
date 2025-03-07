@@ -1,0 +1,12 @@
+{
+  "pci_projects_project_storages_containers_container_cold_archive_flush_title": "Möchten Sie Ihr Archiv leeren?",
+  "pci_projects_project_storages_containers_container_cold_archive_flush_description": "Im nächsten Schritt leeren Sie das Archiv: {{ containerName }}.",
+  "pci_projects_project_storages_containers_container_cold_archive_flush_terminate_input_label": "Um zur bestätigen, geben Sie bitte „TERMINATE“ im unten stehen Feld ein.",
+  "pci_projects_project_storages_containers_container_cold_archive_flush_submit_label": "Bestätigen",
+  "pci_projects_project_storages_containers_container_cold_archive_flush_cancel_label": "Abbrechen",
+  "pci_projects_project_storages_containers_container_cold_archive_flush_archive_erase_message": "Sämtliche Daten im Archiv {{containerName}} werden unwiderruflich gelöscht.",
+  "pci_projects_project_storages_containers_container_cold_archive_flush_archive_status_archived_restored_warning_1": "Ihr Archiv {{containerName}} enthält {{objetsCount}} Objekt(e).",
+  "pci_projects_project_storages_containers_container_cold_archive_flush_archive_status_archived_restored_warning_2": "Sie sind im Begriff, alle Objekte des Archivs zu leeren.",
+  "pci_projects_project_storages_containers_container_cold_archive_flush_success_message": "Aus Ihrem Archiv {{ containerName }} werden alle Objekte gelöscht.",
+  "pci_projects_project_storages_containers_container_cold_archive_flush_error_delete": "Beim Löschen der Objekte aus dem Archiv {{ containerName }} ist ein Fehler aufgetreten: {{ message }}"
+}

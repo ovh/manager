@@ -10,3 +10,4 @@ export * from './useRegions';
 export * from './useInstance';
 export * from './useImage';
 export * from './useVolume';
+export * from './useRclone';
