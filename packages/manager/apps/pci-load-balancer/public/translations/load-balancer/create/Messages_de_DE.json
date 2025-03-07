@@ -27,7 +27,7 @@
   "octavia_load_balancer_create_private_network_field_subnet": "Subnet auswählen",
   "octavia_load_balancer_create_private_network_no_subnet_text": "Für das ausgewählte private Netzwerk ist kein Subnet mit definierter Gateway IP vorhanden: Wählen Sie ein anderes privates Netzwerk aus oder <a href=\"{{ createPrivateNetworkLink }}\" target=\"_blank\" data-track-name=\"{{ trackLabel }}\" data-track-on=\"click\" data-track-type=\"action\">erstellen Sie ein neues.</a>",
   "octavia_load_balancer_create_private_network_no_gateway_text": "Wir haben festgestellt, dass im ausgewählten privaten Netzwerk/Subnet keine Gateway IP vorhanden ist. Wir werden sie für Sie erstellen, wenn der Loadbalancer erstellt wird.",
-  "octavia_load_balancer_create_private_network_no_gateway_text_price": "Preis der neuen Gateway IP:",
+  "octavia_load_balancer_create_private_network_no_gateway_text_price": "Die gewählte Größe ist: {{ size }} (zum Preis von {{ price }})",
   "octavia_load_balancer_create_gateway_price_interval": " /Stunde abgerechnet.",
   "octavia_load_balancer_create_instance_title": "Instanzen hinzufügen",
   "octavia_load_balancer_create_instance_intro": "Um Ihren Loadbalancer zu konfigurieren, definieren Sie Ihre Listener (Frontends) mit einem Port und einem Protokoll. Weisen Sie ihn anschließend einem Instanzen-Pool (Backends) zu, der über einen bestimmten Port und ein bestimmtes Protokoll erreichbar ist. Wenn Sie über mehrere Protokolle und/oder Ports pro Instanz verfügen, können Sie mehrere Pools pro Listener konfigurieren. <a href=\"{{ linkUrl }}\" target=\"_blank\" data-track-name=\"{{ trackLabel }}\" data-track-on=\"click\" data-track-type=\"action\">Weitere Informationen dazu finden Sie in der Dokumentation.</a>",

@@ -27,7 +27,7 @@
   "octavia_load_balancer_create_private_network_field_subnet": "Seleccione una subred",
   "octavia_load_balancer_create_private_network_no_subnet_text": "La red privada seleccionada no tiene una subred con una gateway IP definida: elija o <a href=\"{{ createPrivateNetworkLink }}\" target=\"_blank\" data-track-name=\"{{ trackLabel }}\" data-track-on=\"click\" data-track-type=\"action\">cree otra red privada.</a>",
   "octavia_load_balancer_create_private_network_no_gateway_text": "Hemos detectado que falta una puerta de enlace en la red privada / subred seleccionada. Vamos a crear una para usted al crear el Load Balancer",
-  "octavia_load_balancer_create_private_network_no_gateway_text_price": "Precio del nuevo servicio Gateway:",
+  "octavia_load_balancer_create_private_network_no_gateway_text_price": "El tamaño seleccionado es: {{ size }} (por {{ price }})",
   "octavia_load_balancer_create_gateway_price_interval": " /hora",
   "octavia_load_balancer_create_instance_title": "Añadir instancias",
   "octavia_load_balancer_create_instance_intro": "Para configurar el Load Balancer, defina sus listeners (front-ends) con un puerto y un protocolo. A continuación, asígnelo a un pool de instancias (back-ends) accesibles en un puerto y protocolo específicos. Si dispone de varios protocolos y/o puertos por instancia, puede configurar varios pools por listener <a href=\"{{ linkUrl }}\" target=\"_blank\" data-track-name=\"{{ trackLabel }}\" data-track-on=\"click\" data-track-type=\"action\">consultando la documentación</a>",
