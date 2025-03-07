@@ -23,6 +23,7 @@ export function IFrameApplicationRoute({
 
   useEffect(() => {
     setApplication(appConfig);
+    console.log('set application', appConfig);
   }, [appConfig.universe, location]);
 
   const containerURLMatcher = useMatch('/:appPath/*');
@@ -47,6 +48,7 @@ export function IFrameApplicationRoute({
     const newURL = new URL(appendSlash(appConfig.url));
     newURL.hash = `/${hashPart}${location.search}`;
     setNewIframeURL(newURL.href);
+    console.log('onContainerLocationChange', newURL);
   };
 
   // perform the href update of the iframe element
@@ -55,6 +57,12 @@ export function IFrameApplicationRoute({
       const {
         location: currentIframeLocation,
       } = iframeRef.current.contentWindow;
+      console.log(
+        'onSetIFrameURL',
+        appConfig,
+        currentIframeLocation,
+        newIFrameURL,
+      );
       if (currentIframeLocation.href !== newIFrameURL) {
         currentIframeLocation.replace(newIFrameURL);
       }
@@ -68,8 +76,9 @@ export function IFrameApplicationRoute({
         iframeLocation.hash,
       )}`;
       const oldHash = `${location.pathname}${location.search}`;
+      console.log('onIFrameLocationChanged', appConfig, oldHash, newHash);
       if (newHash !== oldHash) {
-        navigate(newHash, { replace: true });
+        navigate(newHash);
       }
     }
   };
@@ -86,6 +95,36 @@ export function IFrameApplicationRoute({
     return () =>
       window.removeEventListener('ovh-routing-hash-change', onIframeHashUpdate);
   }, []);
+
+  useEffect(() => {
+    console.log(
+      'iframe-application-route',
+      location,
+      newIFrameURL,
+      appConfig.universe,
+      iframeRef.current.contentWindow.location,
+    );
+  }, []);
+
+  useEffect(() => {
+    console.log('location changed', location);
+  }, [location]);
+
+  useEffect(() => {
+    console.log('newIFrameURL changed', newIFrameURL);
+  }, [newIFrameURL]);
+
+  useEffect(() => {
+    console.log('iframeLocation changed', iframeLocation);
+  }, [iframeLocation]);
+
+  useEffect(() => {
+    console.log('appConfig.universe changed', appConfig.universe);
+  }, [appConfig.universe]);
+
+  useEffect(() => {
+    console.log('iframeRef changed', iframeRef);
+  }, [iframeRef]);
 
   return undefined;
 }

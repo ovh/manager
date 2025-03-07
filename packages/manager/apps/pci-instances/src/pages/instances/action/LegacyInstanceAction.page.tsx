@@ -17,9 +17,10 @@ const LegacyInstanceAction: FC = () => {
   const section = useUrlLastSection<TSectionType>(
     actionSectionRegex.test.bind(actionSectionRegex),
   );
-  const { instanceId } = useUrlSearchParams('instanceId');
+  const { instanceId, region } = useUrlSearchParams('instanceId');
   const canRedirect = !!section && !!instanceId;
-  const redirectHref = `../region/${null}/instance/${instanceId}/${section}`;
+  const redirectHref = `../region/${region ||
+    null}/instance/${instanceId}/${section}`;
   const currentHref = `${location.pathname}${location.search}`;
 
   return (
