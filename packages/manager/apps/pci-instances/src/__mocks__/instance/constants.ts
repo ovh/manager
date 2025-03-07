@@ -14,7 +14,7 @@ export const mockedInstance: TInstance = {
     ['public', [{ ip: '777.000.00', version: 2, gatewayIp: '' }]],
   ]),
   volumes: [],
-  actions: [],
+  actions: new Map(),
 };
 
 export const mockedInstanceWithEmptyRegion: TInstance = {
