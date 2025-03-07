@@ -115,6 +115,17 @@ const getActionHrefByName = (
   return { path: '', isExternal: false };
 };
 
+const mapInstanceAddresses = (instance: TInstanceDto) =>
+  instance.addresses.reduce((acc, { type, ...rest }) => {
+    const foundAddresses = acc.get(type);
+    const ipAlreadyExists = !!foundAddresses?.find(({ ip }) => ip === rest.ip);
+    if (foundAddresses) {
+      if (ipAlreadyExists) return acc.set(type, [...foundAddresses]);
+      return acc.set(type, [...foundAddresses, rest]);
+    }
+    return acc.set(type, [rest]);
+  }, new Map<TInstanceAddressType, TAddress[]>());
+
 const mapInstanceActions = (
   instance: TInstanceDto,
   projectUrl: string,
@@ -143,16 +154,6 @@ export const instancesSelector = (
     .map((instanceDto) => ({
       ...instanceDto,
       status: getInstanceStatus(instanceDto.status),
-      addresses: instanceDto.addresses.reduce((acc, { type, ...rest }) => {
-        const foundAddresses = acc.get(type);
-        const ipAlreadyExists = !!foundAddresses?.find(
-          ({ ip }) => ip === rest.ip,
-        );
-        if (foundAddresses) {
-          if (ipAlreadyExists) return acc.set(type, [...foundAddresses]);
-          return acc.set(type, [...foundAddresses, rest]);
-        }
-        return acc.set(type, [rest]);
-      }, new Map<TInstanceAddressType, TAddress[]>()),
+      addresses: mapInstanceAddresses(instanceDto),
       actions: mapInstanceActions(instanceDto, projectUrl),
     }));
