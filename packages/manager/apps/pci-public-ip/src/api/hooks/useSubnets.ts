@@ -1,14 +1,23 @@
-import { useQuery } from '@tanstack/react-query';
+import { queryOptions, useQuery } from '@tanstack/react-query';
 import { getSubnets, getSubnetsUrl } from '@/api/data/subnets';
 
-export const getSubnetsQuery = (projectId: string, networkId: string) => ({
-  queryKey: [getSubnetsUrl(projectId, networkId)],
-  queryFn: () => getSubnets(projectId, networkId),
-});
+const getSubnetsQuery = (
+  projectId: string,
+  region: string,
+  networkId: string,
+) =>
+  queryOptions({
+    queryKey: [getSubnetsUrl(projectId, region, networkId)],
+    queryFn: () => getSubnets(projectId, region, networkId),
+    enabled: !!projectId && !!region && !!networkId,
+  });
 
-export const useSubnets = (projectId: string, networkId: string) => {
+export const useSubnets = (
+  projectId: string,
+  region: string,
+  networkId: string,
+) => {
   return useQuery({
-    ...getSubnetsQuery(projectId, networkId),
-    enabled: !!projectId && !!networkId,
+    ...getSubnetsQuery(projectId, region, networkId),
   });
 };
