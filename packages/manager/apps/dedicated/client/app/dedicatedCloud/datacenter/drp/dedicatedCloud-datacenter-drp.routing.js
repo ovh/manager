@@ -106,10 +106,10 @@ export default /* @ngInject */ ($stateProvider) => {
 
       displayErrorMessage: /* @ngInject */ (Alerter) => (errorMessage) =>
         Alerter.error(errorMessage, 'dedicatedCloudDatacenterDrpAlert'),
-      displayInfoMessage: /* @ngInject */ (setMessage) => (message) =>
-        setMessage(message, 'info'),
+      displayInfoMessage: /* @ngInject */ (Alerter) => (infoMessage) =>
+        Alerter.info(infoMessage, 'dedicatedCloudDatacenterDrpDashboard'),
       displaySuccessMessage: /* @ngInject */ (Alerter) => (successMessage) =>
-        Alerter.success(successMessage, 'dedicatedCloud_alert'),
+        Alerter.success(successMessage, 'dedicatedCloudDatacenterDrpDashboard'),
 
       goToConfiguration: /* @ngInject */ ($state) => (
         drpInformations,
