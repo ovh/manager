@@ -70,6 +70,7 @@ export default class LogToCustomerListCtrl {
     return this.LogToCustomerService.icebergQuery(
       this.logSubscriptionApiData.url,
       this.logSubscriptionApiData.params,
+      this.apiVersion,
     ).then((data) => {
       data.forEach((item) => {
         this.streamSubscriptions[item.streamId] = { ...item };
@@ -80,10 +81,14 @@ export default class LogToCustomerListCtrl {
   createLogSubscription(id) {
     this.trackClick(this.trackingHits.SUBSCRIBE);
     this.streamLoading[id] = true;
-    this.LogToCustomerService.post(this.logSubscriptionApiData.url, {
-      ...this.logSubscriptionApiData.params,
-      streamId: id,
-    })
+    this.LogToCustomerService.post(
+      this.logSubscriptionApiData.url,
+      {
+        ...this.logSubscriptionApiData.params,
+        streamId: id,
+      },
+      this.apiVersion,
+    )
       .then(({ data }) => {
         return this.LogToCustomerService.pollOperation(
           this.selectedAccount.serviceName,
@@ -110,6 +115,7 @@ export default class LogToCustomerListCtrl {
 
     this.LogToCustomerService.delete(
       `${this.logSubscriptionApiData.url}/${subscriptionId}`,
+      this.apiVersion,
     )
       .then(({ data }) => {
         return this.LogToCustomerService.pollOperation(

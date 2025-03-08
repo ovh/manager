@@ -1,10 +1,18 @@
 export default class LogToCustomerService {
   /* @ngInject */
-  constructor($http, $q, iceberg, Poller) {
+  constructor($http, $q, iceberg, Poller, Apiv2Service, API_VERSION) {
     this.$http = $http;
     this.$q = $q;
     this.iceberg = iceberg;
     this.Poller = Poller;
+    this.Apiv2Service = Apiv2Service;
+    this.API_VERSION = API_VERSION;
+  }
+
+  getHttpConfig(apiVersion) {
+    return {
+      serviceType: apiVersion ?? this.API_VERSION.v1,
+    };
   }
 
   getRetention(serviceName, clusterId, retentionId) {
@@ -15,24 +23,35 @@ export default class LogToCustomerService {
       .then(({ data }) => data);
   }
 
-  icebergQuery(url, params = {}) {
-    return this.iceberg(url, params)
-      .query()
-      .expand('CachedObjectList-Pages')
-      .execute(null, true)
-      .$promise.then(({ data }) => data);
+  icebergQuery(url, params = {}, apiVersion) {
+    const promise =
+      apiVersion === this.API_VERSION.v2
+        ? this.Apiv2Service.httpApiv2List(
+            {
+              url,
+              params,
+              headers: { 'X-Pagination-Mode': 'CachedObjectList-Cursor' },
+            },
+            { cursor: null },
+          )
+        : this.iceberg(url, params)
+            .query()
+            .expand('CachedObjectList-Pages')
+            .execute(null, true).$promise;
+
+    return promise.then(({ data }) => data);
   }
 
-  get(url) {
-    return this.$http.get(url);
+  get(url, apiVersion) {
+    return this.$http.get(url, this.getHttpConfig(apiVersion));
   }
 
-  post(url, payload) {
-    return this.$http.post(url, payload);
+  post(url, payload, apiVersion) {
+    return this.$http.post(url, payload, this.getHttpConfig(apiVersion));
   }
 
-  delete(url) {
-    return this.$http.delete(url);
+  delete(url, apiVersion) {
+    return this.$http.delete(url, this.getHttpConfig(apiVersion));
   }
 
   pollOperation(serviceName, operation) {
