@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
-import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
+import {
+  FilterCategories,
+  FilterComparator,
+  FilterTypeCategories,
+} from '@ovh-ux/manager-core-api';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
@@ -52,7 +56,6 @@ const FiltersStory = () => {
             label="Filter"
           />
         </div>
-
         <OdsPopover triggerId="popover-trigger" with-arrow>
           <FilterAdd
             columns={[
@@ -60,6 +63,12 @@ const FiltersStory = () => {
                 id: 'username',
                 label: 'Username',
                 comparators: FilterCategories.String,
+              },
+              {
+                id: 'createdAt',
+                label: 'Created at',
+                comparators: FilterCategories.Date,
+                type: FilterTypeCategories.Date,
               },
             ]}
             onAddFilter={(addedFilter, column) => {
