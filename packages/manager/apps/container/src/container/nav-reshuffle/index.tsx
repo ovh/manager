@@ -1,14 +1,8 @@
-import React, {
-  Suspense,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import React, { Suspense, useEffect, useRef, useState } from 'react';
 
 import { IFrameMessageBus } from '@ovh-ux/shell';
 import { IFrameAppRouter } from '@/core/routing';
-import ApplicationContext from '@/context';
+import { useShell } from '@/context';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 
 import Header from './header';
@@ -26,7 +20,7 @@ function NavReshuffleContainer(): JSX.Element {
   const iframeRef = useRef(null);
   const [iframe, setIframe] = useState(null);
   const [showOverlay, setShowOverlay] = useState(false);
-  const { shell } = useContext(ApplicationContext);
+  const shell = useShell();
   const { isStarted: isProgressAnimating } = useProgress();
   const applications = shell
     .getPlugin('environment')
