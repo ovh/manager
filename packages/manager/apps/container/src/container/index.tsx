@@ -32,7 +32,8 @@ export default function Container(): JSX.Element {
 
   const isNavReshuffle = betaVersion && useBeta;
 
-  const cookiePolicyHandler = (isApplied: boolean): void => setIsCookiePolicyApplied(isApplied);
+  const cookiePolicyHandler = (isApplied: boolean): void =>
+    setIsCookiePolicyApplied(isApplied);
 
   useEffect(() => {
     if (!isLoading) {
@@ -77,20 +78,19 @@ export default function Container(): JSX.Element {
           style={{ position: 'absolute' }}
         ></LiveChat>
       </ProgressProvider>
-
       <Suspense fallback="">
         <SSOAuthModal />
       </Suspense>
-      {isCookiePolicyApplied &&
+      {isCookiePolicyApplied && (
         <Suspense fallback="">
           <PaymentModal />
         </Suspense>
-      }
-      {isCookiePolicyApplied &&
+      )}
+      {isCookiePolicyApplied && (
         <Suspense fallback="">
           <IdentityDocumentsModal />
         </Suspense>
-      }
+      )}
       <Suspense fallback="...">
         <CookiePolicy shell={shell} onValidate={cookiePolicyHandler} />
       </Suspense>
