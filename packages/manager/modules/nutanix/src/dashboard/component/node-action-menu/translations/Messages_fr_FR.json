@@ -1,0 +1,18 @@
+{
+  "nutanix_node_action_menu_action_aria_label": "Actions des noeuds",
+  "nutanix_node_action_menu_install": "Installer",
+  "nutanix_node_action_menu_reinstall": "Ré-installer",
+  "nutanix_node_action_menu_uninstall": "Désinstaller",
+  "nutanix_node_action_menu_terminate": "Résilier",
+  "nutanix_node_action_menu_power_on": "Allumer",
+  "nutanix_node_action_menu_power_off": "Eteindre",
+  "nutanix_node_disable_reason_node_already_installed": "Le noeud a déjà été déployé",
+  "nutanix_node_disable_reason_node_is_powered_on": "Vous devez éteindre le noeud avant de réaliser cette action",
+  "nutanix_node_disable_reason_node_not_uninstalled": "Par sécurité, vous devez désinstaller le noeud avant de pouvoir le résilier",
+  "nutanix_node_disable_reason_node_not_installed": "Une tâche d'installation doit être effectuée d'abord",
+  "nutanix_node_disable_reason_node_already_uninstalled": "Ce noeud a déjà été désinstallé",
+  "nutanix_node_disable_reason_node_is_powered_off": "Le serveur est éteint",
+  "nutanix_node_disable_reason_cluster_has_active_todo": "Une tâche d'installation est déjà en cours sur le cluster",
+  "nutanix_node_disable_reason_server_is_rebooting": "Une tâche est déjà en cours sur le noeud",
+  "nutanix_node_disable_reason_lower_than_initial_commitment_size": "Un cluster nutanix ne peut pas fonctionner avec moins de {{nb_nodes_minimal}} noeuds"
+}

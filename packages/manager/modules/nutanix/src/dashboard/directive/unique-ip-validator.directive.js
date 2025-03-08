@@ -16,7 +16,7 @@ export default /* @ngInject */ () => ({
   link(scope, element, attrs, modelCtrl) {
     set(modelCtrl, '$validators.uniqueIpValidator', (value) => {
       const ips = scope
-        .$eval(attrs.nutanixDashboardRedeployUniqueIpValidator)
+        .$eval(attrs.nutanixUniqueIpValidator)
         .filter((ip) => ipaddr.isValid(ip));
       removeCurrentElement(ips, modelCtrl.$modelValue);
       if (value && ipaddr.isValid(value)) {
