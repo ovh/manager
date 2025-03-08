@@ -72,14 +72,12 @@
                     <dt
                         data-translate="hosting_tab_AUTOMATED_EMAILS_total_sent"
                     ></dt>
-                    <dd data-ng-bind="ctrl.automatedEmails.sent"></dd>
+                    <dd data-ng-bind="ctrl.totalSumMails"></dd>
                     <dt
                         data-translate="hosting_tab_AUTOMATED_EMAILS_today_sent"
                     ></dt>
                     <dd>
-                        <span
-                            data-ng-bind="ctrl.automatedEmails.sentToday"
-                        ></span>
+                        <span data-ng-bind="ctrl.dailySumMails"></span>
                         <span data-ng-if="ctrl.automatedEmails.maxPerDay > 0">
                             / {{ctrl.automatedEmails.maxPerDay}}</span
                         >
