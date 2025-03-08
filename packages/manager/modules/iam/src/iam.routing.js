@@ -16,19 +16,12 @@ export default /* @ngInject */ ($stateProvider) => {
         .getAsync('features')
         .then((featureAvailabilityResult) =>
           featureAvailabilityResult.isFeatureAvailable(constants.FEATURE.MAIN)
-            ? 'iam.dashboard'
+            ? 'iam.identities'
             : { state: constants.UNAVAILABLE_STATE_NAME },
         ),
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('iam_breadcrumb'),
-
-      /**
-       * Get the status of the advanced mode
-       * @returns {boolean}
-       */
-      advancedMode: /* @ngInject */ (IAMService) =>
-        IAMService.isAdvancedModeEnabled(),
 
       /**
        * Display a Alerter message
@@ -101,17 +94,6 @@ export default /* @ngInject */ ($stateProvider) => {
           return result;
         });
       },
-
-      /**
-       * Whether there are any policies given the read-only flag (a.k.a advanced mode)
-       * @returns {boolean}
-       */
-      hasPolicies: /* @ngInject */ (IAMService, advancedMode) =>
-        IAMService.getPolicies({
-          ...(!advancedMode && { readOnly: false }),
-        })
-          .then(({ data }) => data.length > 0)
-          .catch(() => false),
 
       /**
        * The onboarding guides

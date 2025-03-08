@@ -1,4 +1,4 @@
-import { TAG } from '../../iam.constants';
+import { TAG, GUIDE } from '../../iam.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('iam.policy.create', {
@@ -13,6 +13,9 @@ export default /* @ngInject */ ($stateProvider) => {
        */
       permissionsGroups: /* @ngInject */ (IAMService) =>
         IAMService.getPermissionsGroups(),
+      policiesGuides: /* @ngInject */ (IAMService) => {
+        return IAMService.formatGuides(GUIDE.IAM);
+      },
     },
     atInternet: {
       rename: TAG.ADD_POLICY,
