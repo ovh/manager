@@ -7,7 +7,7 @@ export const getZimbraPlatformOrganizationQueryKey = (
     'zimbra',
     'platform',
     platformId,
-    'organization',
+    'organizations',
     shouldFetchAll ? 'all' : '',
   ].filter(Boolean);
 
