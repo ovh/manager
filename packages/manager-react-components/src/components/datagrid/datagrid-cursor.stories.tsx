@@ -5,7 +5,7 @@ import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { FilterComparator, applyFilters } from '@ovh-ux/manager-core-api';
 import { withRouter } from 'storybook-addon-react-router-v6';
 import { useSearchParams } from 'react-router-dom';
-import { Datagrid } from './datagrid.component';
+import { Datagrid, DatagridColumn } from './datagrid.component';
 import { useColumnFilters } from '../filters';
 import {
   columns,
@@ -233,6 +233,63 @@ WithSubComponent.args = {
   renderSubComponent: (row) => (
     <DataGridTextCell>{JSON.stringify(row.original)}</DataGridTextCell>
   ),
+};
+
+export const WithDatagridSubComponent = DatagridStory.bind({});
+
+WithDatagridSubComponent.args = {
+  columns,
+  items: [...Array(10).keys()].map((_, i) => ({
+    label: `Item #${i}`,
+    price: Math.floor(1 + Math.random() * 100),
+  })),
+  getRowCanExpand: () => true,
+  renderSubComponent: (row, headerRefs) => {
+    const subComponentColumns = columns.map((col) => ({
+      ...col,
+      size: headerRefs.current[col.id].clientWidth,
+    }));
+    const css = `
+      .sub-row > td {
+        padding: 0 0 0 var(--expander-column-width) !important;
+      }
+      .sub-row table, .sub-row tr {
+        border: none;
+      }
+      .sub-row table td {
+        border-left: none !important;
+        border-right: none !important;
+      }
+      .sub-row table tr:first-child td {
+        border-top: none;
+      }
+      .sub-row table tr:last-child td {
+        border-bottom: none;
+      }
+      .sub-row table tr td:first-child {
+        border-left: none;
+      }
+      .sub-row table tr td:last-child {
+        border-right: none;
+      }
+    `;
+
+    return (
+      <>
+        <style>{css}</style>
+        <Datagrid
+          columns={subComponentColumns}
+          items={[
+            { label: 'sub component label', price: 10 },
+            { label: 'sub component label #2', price: 100 },
+          ]}
+          totalItems={2}
+          hideHeader={true}
+          tableLayoutFixed={true}
+        ></Datagrid>
+      </>
+    );
+  },
 };
 
 export default {
