@@ -81,7 +81,7 @@ export const ActionsMenu: FC<TActionsMenuProps> = ({ items }) => (
       />
     </OsdsButton>
     {Array.from(items.entries()).map(([group, item], index, arr) => (
-      <div key={`group-${group}-${index}`}>
+      <div key={group}>
         {item.map((elt) => (
           <OsdsMenuItem key={elt.label}>
             <ActionsMenuLink item={elt} />
