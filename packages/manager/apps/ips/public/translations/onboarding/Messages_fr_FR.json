@@ -6,7 +6,7 @@
   "ipOnboardingContentListItem1": "Adresse individuelle (/32)",
   "ipOnboardingContentListItem2": "Bloc d'adresse IP (jusqu'à /24)",
   "orderButtonLabel": "Commander un ips",
-  "boyipButtonLabel": "Bring your own IP",
+  "byoipButtonLabel": "Bring your own IP",
   "guideCategory": "Tutoriel",
   "guide1Title": "Commander une Additional IP",
   "guide1Description": "Découvrez comment déplacer une Additional IP depuis l'espace client ou via les API OVHcloud",
