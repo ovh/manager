@@ -329,15 +329,21 @@ export default class BillingService {
     );
   }
 
+  isSuspendedHostingWeb() {
+    return this.isHostingWeb && this.isResiliated();
+  }
+
   canBeDeleted() {
     return (
-      [
+      ([
         'EMAIL_DOMAIN',
         'ENTERPRISE_CLOUD_DATABASE',
         'HOSTING_WEB',
         'HOSTING_PRIVATE_DATABASE',
         'WEBCOACH',
-      ].includes(this.serviceType) && !this.isResiliated()
+      ].includes(this.serviceType) &&
+        !this.isResiliated()) ||
+      this.isSuspendedHostingWeb()
     );
   }
 
