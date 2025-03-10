@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-load-balancer-app@0.6.4...@ovh-ux/manager-pci-load-balancer-app@0.6.5) (2025-03-10)
+
+
+### Bug Fixes
+
+* **pci.load-balancer:** wrong gateway price in the config page ([#15453](https://github.com/ovh/manager/issues/15453)) ([60f3cdd](https://github.com/ovh/manager/commit/60f3cddfadb43851931157f6c16c10d7d5fc48d5)), closes [#TAPC-2823](https://github.com/ovh/manager/issues/TAPC-2823)
+
+
+
+
+
 ## [0.6.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-load-balancer-app@0.6.3...@ovh-ux/manager-pci-load-balancer-app@0.6.4) (2025-03-06)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-load-balancer-app

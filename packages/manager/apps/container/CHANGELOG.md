@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.109.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.108.1...@ovh-ux/manager-container-app@0.109.0) (2025-03-10)
+
+
+### Features
+
+* **pci.dataplatform:** remove beta tag ([#15857](https://github.com/ovh/manager/issues/15857)) ([75e7f30](https://github.com/ovh/manager/commit/75e7f30fab41b01cd97a8060c1703256863e03f6)), closes [#DATATR-2040](https://github.com/ovh/manager/issues/DATATR-2040)
+
+
+
+
+
 ## [0.108.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.108.0...@ovh-ux/manager-container-app@0.108.1) (2025-03-06)
 
 **Note:** Version bump only for package @ovh-ux/manager-container-app
