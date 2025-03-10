@@ -8,7 +8,7 @@ import {
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 import { PciAnnouncementBanner, useProject } from '@ovh-ux/manager-pci-common';
-import { useContext } from 'react';
+import { Suspense, useContext } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   OdsBreadcrumb,
@@ -121,7 +121,9 @@ export default function OnBoardingPage() {
           ))}
         </OnboardingLayout>
 
-        <Outlet />
+        <Suspense>
+          <Outlet />
+        </Suspense>
       </BaseLayout>
     </RedirectionGuard>
   );
