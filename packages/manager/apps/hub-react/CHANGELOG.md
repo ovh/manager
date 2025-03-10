@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-react-app@0.9.2...@ovh-ux/manager-hub-react-app@0.10.0) (2025-03-10)
+
+
+### Features
+
+* **hub:** refactor order api hooks to optimize call counts ([#15868](https://github.com/ovh/manager/issues/15868)) ([4b2c4da](https://github.com/ovh/manager/commit/4b2c4da7c94870e36e68856be2f392be54490f66)), closes [#15860](https://github.com/ovh/manager/issues/15860) [#MANAGER-16593](https://github.com/ovh/manager/issues/MANAGER-16593) [#INC0116662](https://github.com/ovh/manager/issues/INC0116662)
+
+
+
+
+
 ## [0.9.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-react-app@0.9.1...@ovh-ux/manager-hub-react-app@0.9.2) (2025-03-06)
 
 
