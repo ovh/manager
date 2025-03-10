@@ -25,7 +25,7 @@ export default class DatacenterExtraConfiguration {
     return this.checkBgpPeering({
       popConfigId,
       dcConfigId,
-      isExtar: true,
+      isExtra: true,
       extraConfigId,
     });
   }

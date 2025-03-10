@@ -6,7 +6,7 @@ import {
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('cloud-connect.details.overview.check-bgp-peering', {
     url:
-      '/check-bgp-peering?{popConfigId:int}&{extraConfigId:int}&{dcConfigId:int}&{isExtra:boolean}',
+      '/check-bgp-peering?{popConfigId:int}&{extraConfigId:int}&{dcConfigId:int}&{isExtra:bool}',
     views: {
       modal: {
         component: 'cloudConnectCheckBgpPeering',
