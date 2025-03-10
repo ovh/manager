@@ -48,7 +48,7 @@ export default /* @ngInject */ ($stateProvider) => {
                   ),
                 },
               });
-            }, 1000),
+            }, 2000),
           );
         }
 

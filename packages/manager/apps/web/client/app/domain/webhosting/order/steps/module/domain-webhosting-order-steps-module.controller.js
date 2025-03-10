@@ -1,16 +1,19 @@
 import sortBy from 'lodash/sortBy';
 
 import { LATEST_MODULES } from './domain-webhosting-order-steps-module.constants';
-import { DOMAIN_TRACKING } from '../../../../../hosting/hosting.constants';
+import { ORDER_WEBHOSTING_TRACKING } from '../../domain-webhosting-order.constants';
 
 export default class {
   /* @ngInject */
   constructor(atInternet) {
     this.atInternet = atInternet;
+    this.module = undefined;
   }
 
   getModules() {
-    this.module = undefined;
+    if (this.module) {
+      this.trackClick(ORDER_WEBHOSTING_TRACKING.PRE_INSTALL.EDIT);
+    }
     this.isLoading = true;
     return this.getAvailableModules({ offer: this.stepper.cartOption.offer })
       .then((availableModules) => {
@@ -44,7 +47,7 @@ export default class {
 
   trackClick(hit) {
     return this.atInternet.trackClick({
-      name: hit,
+      ...hit,
       type: 'action',
     });
   }
@@ -55,13 +58,13 @@ export default class {
   }
 
   onModuleClick(module) {
-    const { SELECT_CMS, SELECT_NO_CMS } = DOMAIN_TRACKING.STEP_2;
-    const cmsHitTrack = module
-      ? `${SELECT_CMS}${module.planCode}`
-      : SELECT_NO_CMS;
-
-    this.trackClick(cmsHitTrack);
     this.updateModule();
-    this.trackClick(DOMAIN_TRACKING.STEP_2.GO_TO_NEXT_STEP);
+    this.trackClick({
+      ...ORDER_WEBHOSTING_TRACKING.PRE_INSTALL.CMS,
+      name: ORDER_WEBHOSTING_TRACKING.PRE_INSTALL.CMS.name.replace(
+        /{{cms}}/g,
+        module?.planCode || 'none',
+      ),
+    });
   }
 }
