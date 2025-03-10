@@ -6,13 +6,22 @@ import {
   act,
   waitFor,
 } from '@testing-library/react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { describe, it, expect, vi } from 'vitest';
 import HubOrderTracking from '@/components/hub-order-tracking/HubOrderTracking.component';
 import '@testing-library/jest-dom';
 
+const queryClient = new QueryClient();
+
 const { refetch } = vi.hoisted(() => ({
   refetch: vi.fn(),
 }));
+
+const renderComponent = (component: React.ReactNode) => {
+  return render(
+    <QueryClientProvider client={queryClient}>{component}</QueryClientProvider>,
+  );
+};
 
 const trackClickMock = vi.fn();
 
@@ -20,15 +29,15 @@ vi.mock('@/components/tile-error/TileError.component', () => ({
   default: () => <div data-testid="tile-error"></div>,
 }));
 
-const useFetchLastOrderMockValue: any = {
-  data: { orderId: 12345, history: [], date: new Date() },
+const useLastOrderTrackingMockValue: any = {
+  data: { orderId: 12345, history: [], date: new Date(), status: 'delivered' },
   isFetched: true,
   isLoading: false,
   refetch,
 };
 
-vi.mock('@/data/hooks/apiOrder/useLastOrder', () => ({
-  useFetchLastOrder: vi.fn(() => useFetchLastOrderMockValue),
+vi.mock('@/data/hooks/lastOrderTracking/useLastOrderTracking', () => ({
+  useLastOrderTracking: vi.fn(() => useLastOrderTrackingMockValue),
 }));
 
 const mocks = vi.hoisted(() => ({
@@ -62,7 +71,7 @@ vi.mock('@/hooks/dateFormat/useDateFormat', () => ({
 
 describe('HubOrderTracking Component', async () => {
   it('renders correctly with data', async () => {
-    render(<HubOrderTracking />);
+    renderComponent(<HubOrderTracking />);
 
     await waitFor(() => {
       const orderLink = screen.getByText('hub_order_tracking_order_id');
@@ -82,9 +91,9 @@ describe('HubOrderTracking Component', async () => {
   });
 
   it('displays loading skeletons when isLoading is true', () => {
-    useFetchLastOrderMockValue.isLoading = true;
+    useLastOrderTrackingMockValue.isLoading = true;
 
-    render(<HubOrderTracking />);
+    renderComponent(<HubOrderTracking />);
 
     const orderLinkSkeleton = screen.getByTestId('order_link_skeleton');
     const orderInfoSkeleton = screen.getByTestId('order_info_skeleton');
@@ -96,19 +105,20 @@ describe('HubOrderTracking Component', async () => {
   });
 
   it('displays TileError when there is an error', async () => {
-    useFetchLastOrderMockValue.error = true;
+    useLastOrderTrackingMockValue.isLoading = false;
+    useLastOrderTrackingMockValue.error = true;
 
-    render(<HubOrderTracking />);
+    renderComponent(<HubOrderTracking />);
 
     const tileError = await screen.findByTestId('tile-error');
     expect(tileError).toBeInTheDocument();
   });
 
   it('handles the "see all" link click correctly and tracks the click', async () => {
-    useFetchLastOrderMockValue.error = false;
-    useFetchLastOrderMockValue.isLoading = false;
+    useLastOrderTrackingMockValue.error = false;
+    useLastOrderTrackingMockValue.isLoading = false;
 
-    render(<HubOrderTracking />);
+    renderComponent(<HubOrderTracking />);
 
     await waitFor(async () => {
       const seeAllLink = screen.getByText('hub_order_tracking_see_all');
@@ -125,7 +135,7 @@ describe('HubOrderTracking Component', async () => {
   });
 
   it('formats the date correctly using useDateFormat', () => {
-    render(<HubOrderTracking />);
+    renderComponent(<HubOrderTracking />);
 
     const formattedDate = screen.getByText(new Date().toLocaleDateString());
     expect(formattedDate).toBeInTheDocument();

@@ -33,7 +33,7 @@ import { Notification, NotificationType } from '@/types/notifications.type';
 import { CatalogItem } from '@/types/catalog';
 import { ApiEnvelope } from '@/types/apiEnvelope.type';
 import { KycStatus } from '@/types/kyc.type';
-import { LastOrder } from '@/types/lastOrder.type';
+import { LastOrder } from '@/types/order.type';
 import { ProductList } from '@/types/services.type';
 
 import {
@@ -58,7 +58,7 @@ const mocks: any = vi.hoisted(() => ({
       period: { from: '2024-08-01', to: '2024-08-31' },
       total: 0,
     },
-    isPending: true,
+    isLoading: true,
     error: null,
     refetch: vi.fn(() => ({})),
   },
@@ -93,7 +93,7 @@ const mocks: any = vi.hoisted(() => ({
         currencyCode: 'EUR',
       },
     },
-    isPending: false,
+    isLoading: false,
     refetch: vi.fn(() => ({})),
   },
   hubContext: {
@@ -236,7 +236,7 @@ vi.mock('@/data/hooks/services/useServices', () => ({
 }));
 
 vi.mock('@/data/hooks/lastOrder/useLastOrder', () => ({
-  useFetchHubLastOrder: (): { data: LastOrder; isPending: boolean } => ({
+  useLastOrder: (): { data: LastOrder; isPending: boolean } => ({
     data: mocks.lastOrder,
     isPending: mocks.isLastOrderLoading,
   }),
@@ -479,7 +479,7 @@ describe('Layout.page', () => {
     });
 
     it('should display correct wording when customer has no bills', async () => {
-      mocks.bills.isPending = false;
+      mocks.bills.isLoading = false;
       const { findByTestId, getByText, getByTestId } = renderComponent(
         <BillingSummary />,
       );
