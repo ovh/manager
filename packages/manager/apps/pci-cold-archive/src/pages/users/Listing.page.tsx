@@ -15,7 +15,7 @@ import {
   OdsPopover,
   OdsText,
 } from '@ovhcloud/ods-components/react';
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { usePaginatedUsers } from '@/api/hooks/useUsers';
@@ -154,8 +154,9 @@ export default function UsersListing() {
         onSortChange={setSorting}
         isLoading={isLoading}
       />
-
-      <Outlet />
+      <Suspense>
+        <Outlet />
+      </Suspense>
     </div>
   );
 }

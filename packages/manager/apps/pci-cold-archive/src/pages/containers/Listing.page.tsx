@@ -14,7 +14,7 @@ import {
   OdsInput,
   OdsPopover,
 } from '@ovhcloud/ods-components/react';
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { useTracking } from '@/hooks/useTracking';
@@ -231,7 +231,9 @@ export default function ListingPage() {
           sorting={sorting}
           onSortChange={setSorting}
         />
-        <Outlet />
+        <Suspense>
+          <Outlet />
+        </Suspense>
       </div>
     </RedirectionGuard>
   );
