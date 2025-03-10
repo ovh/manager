@@ -29,6 +29,7 @@ import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
 import { OsdsButton } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import { ExcludedNodeIdsList } from './navigation-tree/excluded';
 
 interface ServicesCountError {
   url: string;
@@ -172,7 +173,7 @@ const Sidebar = (): JSX.Element => {
   // Functions
 
   const processNode = (servicesTypes: ServicesTypes, node: Node) => {
-    node.hasService = hasService(servicesTypes, node);
+    node.hasService = hasService(servicesTypes, node, ExcludedNodeIdsList);
     node.children?.map((childNode: Node) => processNode(servicesTypes, childNode));
   };
 
