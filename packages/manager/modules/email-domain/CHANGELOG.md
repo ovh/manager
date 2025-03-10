@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-email-domain@1.10.0...@ovh-ux/manager-email-domain@1.11.0) (2025-03-10)
+
+
+### Features
+
+* **web.email:** remove back label button ([a0ac2db](https://github.com/ovh/manager/commit/a0ac2dbb71cad3e5c3c1e98ab67b99f98165bb54)), closes [#MANAGER-16946](https://github.com/ovh/manager/issues/MANAGER-16946)
+
+
+
+
+
 # [1.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-email-domain@1.9.1...@ovh-ux/manager-email-domain@1.10.0) (2025-02-20)
 
 

@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.8.1...@ovh-ux/manager-web@19.9.0) (2025-03-10)
+
+
+### Bug Fixes
+
+* **web.domain:** fix error message on dns zone section ([c61fad6](https://github.com/ovh/manager/commit/c61fad60fdcdc0cd6de10691865131e1b0f8b372)), closes [#MANAGER-16914](https://github.com/ovh/manager/issues/MANAGER-16914)
+* **web.domain:** fix timeout before success message on contact ([8e632a3](https://github.com/ovh/manager/commit/8e632a37c09da574ff6c148efb0c156aa31aaa1f)), closes [#MANAGER-16863](https://github.com/ovh/manager/issues/MANAGER-16863)
+* **web.domain:** update href on domain operation ([7ac4082](https://github.com/ovh/manager/commit/7ac40825bd4c55461739a8414ccd24226c39a685)), closes [#MANAGER-17302](https://github.com/ovh/manager/issues/MANAGER-17302)
+* **web.hosting:** fix some tracking on hosting product ([7fa8938](https://github.com/ovh/manager/commit/7fa89382a0830a26ca12b8ce1d5747c4fb235219)), closes [#MANAGER-15355](https://github.com/ovh/manager/issues/MANAGER-15355)
+
+
+### Features
+
+* **web.domain:** add the ability to force field display on Contact Edit domains pages ([#15856](https://github.com/ovh/manager/issues/15856)) ([100f48e](https://github.com/ovh/manager/commit/100f48e7da354b3f3381ae2ab005bcd8c44fd910)), closes [#MANAGER-17225](https://github.com/ovh/manager/issues/MANAGER-17225)
+
+
+
+
+
 ## [19.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.8.0...@ovh-ux/manager-web@19.8.1) (2025-03-06)
 
 **Note:** Version bump only for package @ovh-ux/manager-web
