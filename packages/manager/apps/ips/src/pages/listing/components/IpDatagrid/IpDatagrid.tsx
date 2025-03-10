@@ -23,7 +23,6 @@ import {
 import { useGetIpList } from '@/data/hooks/ip';
 import { ListingContext } from '../../listingContext';
 import { urls } from '@/routes/routes.constant';
-import { IpFilter, TypeFilter } from '../filters';
 import { ipFormatter } from '@/utils';
 import { IpGroupDatagrid } from '../ipGroupDatagrid/ipGroupDatagrid';
 
@@ -143,8 +142,6 @@ export const IpDatagrid = () => {
       isError={isError}
       errorComponent={<ErrorBanner error={error as ApiError} />}
     >
-      <IpFilter />
-      <TypeFilter />
       <Datagrid
         columns={columns}
         items={paginatedIpList}

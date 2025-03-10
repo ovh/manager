@@ -206,7 +206,7 @@ export default function Onboarding() {
         }
         onOrderButtonClick={() => navigate(urls.order)}
         orderButtonLabel={t('orderButtonLabel')}
-        moreInfoButtonLabel={t('boyipButtonLabel')}
+        moreInfoButtonLabel={t('byoipButtonLabel')}
         onmoreInfoButtonClick={() => navigate(urls.byoip)}
       >
         {tileList.map((tile) => (
