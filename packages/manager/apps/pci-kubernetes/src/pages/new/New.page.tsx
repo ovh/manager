@@ -38,6 +38,7 @@ import { ClusterConfirmationStep } from './steps/ClusterConfirmStep.component';
 import { useCreateKubernetesCluster } from '@/api/hooks/useKubernetes';
 import { PAGE_PREFIX } from '@/tracking.constants';
 import NodePoolStep from './steps/NodePoolStep.component';
+import PlanStep from './steps/PlanStep';
 
 export default function NewPage() {
   const { t } = useTranslation('add');
@@ -211,7 +212,20 @@ export default function NewPage() {
           />
         </StepComponent>
         <StepComponent
+          edit={{
+            action: stepper.clusterName.edit,
+            label: tStepper('common_stepper_modify_this_step'),
+            isDisabled: isDiscovery || isCreationPending,
+          }}
+          title={t('kubernetes_add_plan_title')}
           order={3}
+          {...stepper.plan.step}
+        >
+          <PlanStep />
+        </StepComponent>
+
+        <StepComponent
+          order={4}
           {...stepper.version.step}
           title={t('kubernetes_add_version_and_upgrade_policy_title')}
           edit={{
@@ -226,7 +240,7 @@ export default function NewPage() {
           />
         </StepComponent>
         <StepComponent
-          order={4}
+          order={5}
           {...stepper.network.step}
           title={tListing('kubernetes_add_private_network')}
           edit={{
@@ -242,7 +256,7 @@ export default function NewPage() {
           />
         </StepComponent>
         <StepComponent
-          order={5}
+          order={6}
           {...stepper.node.step}
           title={tListing('kube_common_node_pool_title_multiple')}
           edit={{
@@ -255,7 +269,7 @@ export default function NewPage() {
         </StepComponent>
 
         <StepComponent
-          order={6}
+          order={7}
           {...stepper.confirm.step}
           title={tStepper('common_stepper_submit_button_cluster')}
           edit={{
