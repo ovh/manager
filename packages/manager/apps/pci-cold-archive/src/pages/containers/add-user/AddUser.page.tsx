@@ -66,7 +66,9 @@ export default function AddUserToContainerPage() {
     trackCancelAction,
     trackSuccessPage,
     trackErrorPage,
-  } = useTracking(COLD_ARCHIVE_TRACKING.CONTAINERS.ADD_USER);
+  } = useTracking(
+    `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.ADD_USER}`,
+  );
 
   const onCancel = () => {
     trackCancelAction();

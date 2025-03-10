@@ -49,7 +49,9 @@ export default function EditRetentionPage() {
     trackCancelAction,
     trackSuccessPage,
     trackErrorPage,
-  } = useTracking(COLD_ARCHIVE_TRACKING.CONTAINERS.EDIT_RETENTION);
+  } = useTracking(
+    `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.EDIT_RETENTION}`,
+  );
 
   const { startArchive, isPending: isPendingStartArchive } = useStartArchive({
     projectId,

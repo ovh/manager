@@ -115,6 +115,7 @@ export default function ContainerNewPage() {
           description={form.selectedUser.description}
           accessKey={s3Credentials.access}
           secret={s3Credentials.secret}
+          trackingPrefix={COLD_ARCHIVE_TRACKING.CONTAINERS.CLIPBOARD_PREFIX}
         />,
         false,
       );
