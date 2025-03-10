@@ -1,7 +1,11 @@
 {
-  "title": "Listing page",
+  "title": "Gérer les IPs",
+  "listingTabIpTitle": "Toutes les IP",
+  "listingTabManageIpOrganisationsTitle": "Gérer les organisations IP",
+  "listingTabIpDescription": "Mes adresses IP publiques et services associés",
   "listing_resultats": "résultats",
-  "orderIps": "Commander des IPs",
+  "orderIpsButtonLabel": "Commander des IPs",
+  "orderByoipButtonLabel": "Bring your own IP",
   "listingColumnsIp": "Adresse IP",
   "listingColumnsIpType": "Type",
   "listingColumnsIpRegion": "Régions",
