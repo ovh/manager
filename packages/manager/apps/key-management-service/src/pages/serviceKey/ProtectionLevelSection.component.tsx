@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   IntervalUnitType,
   OvhSubsidiary,
@@ -6,21 +6,41 @@ import {
   Subtitle,
 } from '@ovh-ux/manager-react-components';
 import { ODS_CARD_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsText, OdsCard } from '@ovhcloud/ods-components/react';
+import { OdsText, OdsCard, OdsSkeleton } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { Region } from '@ovh-ux/manager-config';
-import {
-  KEY_SOFTWARE_PROTECTION_PRICE_EU,
-  KEY_SOFTWARE_PROTECTION_PRICE_US,
-} from './CreateKey.constants';
+import { useOrderCatalogOKMS } from '@/data/hooks/useOrderCatalogOKMS';
 
 export const ProtectionLevelSection: React.FC = () => {
   const { t } = useTranslation('key-management-service/serviceKeys');
   const { environment } = React.useContext(ShellContext);
   const { ovhSubsidiary } = environment.getUser();
   const userLocale = environment.getUserLocale();
-  const region = environment.getRegion();
+  const { data: catalog, isLoading, isPending } = useOrderCatalogOKMS(
+    ovhSubsidiary,
+  );
+  const [pricingData, setPricingData] = useState({
+    price: 0,
+    tax: 0,
+    intervalUnit: IntervalUnitType.none,
+  });
+
+  const getServiceKeyPriceData = () => {
+    const plan = catalog?.plans.find((p) => p.planCode === 'okms');
+    const addon = catalog?.addons.find(
+      (a) => a.planCode === 'okms-servicekey-monthly-consumption',
+    );
+
+    setPricingData({
+      price: addon?.pricings[0]?.price,
+      tax: addon?.pricings[0]?.tax,
+      intervalUnit: plan?.pricings[0]?.intervalUnit,
+    });
+  };
+
+  useEffect(() => {
+    getServiceKeyPriceData();
+  }, [catalog]);
 
   return (
     <div className="flex flex-col gap-6 md:gap-8">
@@ -47,18 +67,19 @@ export const ProtectionLevelSection: React.FC = () => {
               'key_management_service_service-keys_create_software_protection_subtitle',
             )}
           </OdsText>
-          <Price
-            value={
-              region === Region.US
-                ? KEY_SOFTWARE_PROTECTION_PRICE_US
-                : KEY_SOFTWARE_PROTECTION_PRICE_EU
-            }
-            ovhSubsidiary={
-              OvhSubsidiary[ovhSubsidiary as keyof typeof OvhSubsidiary]
-            }
-            locale={userLocale}
-            intervalUnit={IntervalUnitType.month}
-          />
+          {!isLoading && !isPending ? (
+            <Price
+              value={pricingData.price}
+              tax={pricingData.tax}
+              ovhSubsidiary={
+                OvhSubsidiary[ovhSubsidiary as keyof typeof OvhSubsidiary]
+              }
+              locale={userLocale}
+              intervalUnit={pricingData.intervalUnit}
+            />
+          ) : (
+            <OdsSkeleton />
+          )}
         </div>
       </OdsCard>
     </div>
