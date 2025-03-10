@@ -10,8 +10,8 @@ export const useLastOrderTracking = () => {
     error: lastOrderError,
     refetch: refetchLastOrder,
   } = useLastOrder();
-  const orderId = lastOrder?.data.orderId;
-  const orderDate = lastOrder?.data.date;
+  const orderId = lastOrder?.data?.orderId;
+  const orderDate = lastOrder?.data?.date;
 
   // Use dependent queries to wait for the lastOrder to load
   const {

@@ -30,7 +30,7 @@ vi.mock('@/components/tile-error/TileError.component', () => ({
 }));
 
 const useLastOrderTrackingMockValue: any = {
-  data: { orderId: 12345, history: [], date: new Date() },
+  data: { orderId: 12345, history: [], date: new Date(), status: 'delivered' },
   isFetched: true,
   isLoading: false,
   refetch,
@@ -105,6 +105,7 @@ describe('HubOrderTracking Component', async () => {
   });
 
   it('displays TileError when there is an error', async () => {
+    useLastOrderTrackingMockValue.isLoading = false;
     useLastOrderTrackingMockValue.error = true;
 
     renderComponent(<HubOrderTracking />);
