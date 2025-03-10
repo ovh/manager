@@ -71,6 +71,13 @@ export default class DedicatedCloudDatacenterNetworkTab {
         const currency = data.locale.currencyCode;
 
         this.setVcpuTextPrice(price, currency);
+      })
+      .catch((error) => {
+        if (error.status === 404) {
+          this.setVcpuTextPrice(0, 'EUR');
+        } else {
+          throw error;
+        }
       });
   }
 }
