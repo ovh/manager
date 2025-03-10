@@ -5,8 +5,9 @@ import {
   OdsSpinner,
   OdsText,
 } from '@ovhcloud/ods-components/react';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useNavigate } from 'react-router-dom';
 import LabelComponent from '@/components/Label.component';
 import {
@@ -32,6 +33,15 @@ export function ContainerNameStep({
     'cold-archive/new',
     'pci-common',
   ]);
+  const { tracking } = useContext(ShellContext).shell;
+
+  const trackNextStepClick = (action: string) => {
+    tracking?.trackClick({
+      name: action,
+      type: 'action',
+      level2: COLD_ARCHIVE_TRACKING.PCI_LEVEL2,
+    });
+  };
 
   const navigate = useNavigate();
 
@@ -69,7 +79,10 @@ export function ContainerNameStep({
       isLocked={stepper.containerName.isLocked || isCreationPending}
       order={2}
       next={{
-        action: () => onSubmit(form),
+        action: () => {
+          trackNextStepClick(COLD_ARCHIVE_TRACKING.CONTAINERS.STEPPER.STEP_2);
+          onSubmit(form);
+        },
         label: t(
           'cold-archive/new:pci_projects_project_storages_cold_archive_add_action_create',
         ),

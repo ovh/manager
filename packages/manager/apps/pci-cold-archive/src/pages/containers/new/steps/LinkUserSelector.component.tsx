@@ -22,6 +22,8 @@ import {
 } from '@/api/hooks/useUsers';
 import LabelComponent from '@/components/Label.component';
 import UserInformationTile from '@/components/UserInformationTile.component';
+import { COLD_ARCHIVE_TRACKING } from '@/tracking.constants';
+import { useTracking } from '@/hooks/useTracking';
 
 type LinkUserSelectorProps = {
   userId: number;
@@ -42,16 +44,25 @@ export default function LinkUserSelector({
   const [isCredentialsVisible, setCredentialsVisible] = useState(false);
   const { addError } = useNotifications();
 
+  const { trackCancelAction, trackConfirmAction } = useTracking(
+    `${COLD_ARCHIVE_TRACKING.CONTAINERS.ADD_CONTAINER}::${COLD_ARCHIVE_TRACKING.ADD_USER.ASSOCIATE.EXISTING_USER}`,
+  );
+  const { trackSuccessPage, trackErrorPage } = useTracking(
+    `${COLD_ARCHIVE_TRACKING.CONTAINERS.ADD_CONTAINER}::${COLD_ARCHIVE_TRACKING.ADD_USER.ASSOCIATE.ASSOCIATE_USER}`,
+  );
+
   const {
     getCredentialsAsync,
     isPending: isCredentialsPending,
   } = useUserCredentials(projectId, selectedUser?.id);
 
   const onShowCredentials = async () => {
+    trackConfirmAction();
     try {
       const s3Credentials = await getCredentialsAsync();
       setCredentials(s3Credentials);
       setCredentialsVisible(true);
+      trackSuccessPage();
     } catch (error) {
       addError(
         <Translation ns="users">
@@ -68,6 +79,7 @@ export default function LinkUserSelector({
         </Translation>,
         true,
       );
+      trackErrorPage();
     }
   };
 
@@ -161,13 +173,19 @@ export default function LinkUserSelector({
             description={selectedUser?.description}
             accessKey={credentials?.access}
             secret={credentials?.secret}
+            trackingPrefix={
+              COLD_ARCHIVE_TRACKING.CONTAINERS.USER.CLIPBOARD_PREFIX
+            }
           />
         </OdsMessage>
       )}
 
       <div className="flex gap-4">
         <OdsButton
-          onClick={onCancel}
+          onClick={() => {
+            trackCancelAction();
+            onCancel();
+          }}
           variant="ghost"
           size="sm"
           isDisabled={isPending || undefined}

@@ -1,5 +1,5 @@
 export const COLD_ARCHIVE_TRACKING = {
-  PAGE_PREFIX: 'PublicCloud::pci::projects::project::storages::coldArchive',
+  PAGE_PREFIX: 'PublicCloud::pci::projects::project::storages::cold_archive',
   PCI_LEVEL2: '86',
   SEE_PRICE: 'dashboard::see-prices',
   GUIDE: 'public-cloud_cold_archive::guides::go_to',
@@ -40,6 +40,7 @@ export const COLD_ARCHIVE_TRACKING = {
     MAIN: 'dashboard::containers',
     RESTORE: 'restore',
     ADD_CONTAINER: 'add',
+    CLIPBOARD_PREFIX: 'add',
     ARCHIVE: 'archive',
     EDIT_RETENTION: 'edit-retention',
     DELETE: 'delete',
@@ -47,6 +48,13 @@ export const COLD_ARCHIVE_TRACKING = {
     DELETE_CONTAINER: 'delete-container',
     FLUSH_CONTAINER: 'flush-container',
     ADD_USER: 'add-user',
+    USER: {
+      CLIPBOARD_PREFIX: 'add::add-user::add',
+    },
+    STEPPER: {
+      STEP_1: 'cold_archive_link_user_archive',
+      STEP_2: 'cold_archive_name_archive',
+    },
     USER_SUCCESS_BANNER: {
       USERNAME: {
         id: 'username',
@@ -73,6 +81,7 @@ export const COLD_ARCHIVE_TRACKING = {
       NEW_USER: 'confirm_new',
       EXISTING_USER: 'confirm_existing',
     },
+    CLIPBOARD_PREFIX: 's3_users::add_user',
     ACTIONS: {
       MENU: 'action_menu',
       DELETE_USER: 'delete_user_credentials',
@@ -93,5 +102,11 @@ export const COLD_ARCHIVE_TRACKING = {
   STATUS: {
     SUCCESS: 'success',
     ERROR: 'error',
+  },
+  CLIPBOARD_INFO: {
+    NAME: 's3-name',
+    DESCRIPTION: 'description',
+    ACCESS_KEY: 's3-access-key',
+    SECRET_KEY: 's3-secret-key',
   },
 };

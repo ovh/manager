@@ -49,7 +49,9 @@ export default function RCloneDownload() {
     trackCancelAction,
     trackSuccessPage,
     trackErrorPage,
-  } = useTracking(COLD_ARCHIVE_TRACKING.USER.ACTIONS.DOWNLOAD_RCLONE);
+  } = useTracking(
+    `${COLD_ARCHIVE_TRACKING.USER.MAIN}::${COLD_ARCHIVE_TRACKING.USER.ACTIONS.DOWNLOAD_RCLONE}`,
+  );
 
   const rCloneGuideURL = RCLONE_GUIDE[ovhSubsidiary] || RCLONE_GUIDE.DEFAULT;
 

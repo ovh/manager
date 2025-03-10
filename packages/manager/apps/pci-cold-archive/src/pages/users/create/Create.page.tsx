@@ -55,8 +55,13 @@ export default function UserCreatePage(): JSX.Element {
 
   const { projectId } = useParams();
 
-  const { trackActionClick, trackCancelAction, trackErrorPage } = useTracking(
-    COLD_ARCHIVE_TRACKING.USER.ADD_USER,
+  const {
+    trackActionClick,
+    trackCancelAction,
+    trackErrorPage,
+    trackSuccessPage,
+  } = useTracking(
+    `${COLD_ARCHIVE_TRACKING.USER.MAIN}::${COLD_ARCHIVE_TRACKING.USER.ADD_USER}`,
   );
 
   const navigate = useNavigate();
@@ -115,11 +120,13 @@ export default function UserCreatePage(): JSX.Element {
         description={description}
         accessKey={access}
         secret={secret}
+        trackingPrefix={COLD_ARCHIVE_TRACKING.USER.CLIPBOARD_PREFIX}
       />,
       false,
     );
 
     invalidateGetUsersCache(projectId);
+    trackSuccessPage();
     goBack();
   };
 
@@ -196,6 +203,7 @@ export default function UserCreatePage(): JSX.Element {
           values: { user: targetUser.description },
         });
         setState({ ...state, isLoading: false });
+        trackErrorPage();
         goBack();
       }
     }
