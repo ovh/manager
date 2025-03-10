@@ -20,7 +20,7 @@ const getMeTaskArguments = async (
   const index = data.findIndex((arg) =>
     ['/me/contact', 'string', '/me'].includes(arg.type),
   );
-  const actions = index >= 0;
+  const actions = data.length === 0 || index >= 0;
   return { data, actions };
 };
 
