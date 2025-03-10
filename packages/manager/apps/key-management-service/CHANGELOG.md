@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.19.6...@ovh-ux/manager-key-management-service-app@0.20.0) (2025-03-10)
+
+
+### Features
+
+* **kms:** bump to vite6 ([f93b67b](https://github.com/ovh/manager/commit/f93b67b81a173f3b1c78ee7d94e0eb77c31510b2))
+* **kms:** retrieve service key price from agora ([c55fc08](https://github.com/ovh/manager/commit/c55fc081f6818e68a924fa309406c17df2794384))
+
+
+
+
+
 ## [0.19.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.19.5...@ovh-ux/manager-key-management-service-app@0.19.6) (2025-03-06)
 
 **Note:** Version bump only for package @ovh-ux/manager-key-management-service-app
