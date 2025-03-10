@@ -6,7 +6,7 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/audit',
     views: { logsView: name },
     atInternet: {
-      rename: IAM_LOGS_TRACKING_HITS.LOGS_PAGE,
+      rename: IAM_LOGS_TRACKING_HITS.AUDIT.LOGS_PAGE,
     },
     redirectTo: (transition) =>
       transition

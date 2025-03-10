@@ -1,11 +1,11 @@
-import { FEATURE_LOGS, IAM_LOGS_TRACKING_HITS } from './logs.constants';
+import { FEATURE_LOGS } from './logs.constants';
 import { name } from './logs.component';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('iam.logs', {
     url: '/logs',
     atInternet: {
-      rename: IAM_LOGS_TRACKING_HITS.LOGS_PAGE,
+      ignore: true,
     },
     redirectTo: (transition) =>
       transition
