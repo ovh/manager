@@ -28,7 +28,9 @@ export default function FlushArchivePage() {
     trackCancelAction,
     trackSuccessPage,
     trackErrorPage,
-  } = useTracking(COLD_ARCHIVE_TRACKING.CONTAINERS.FLUSH_CONTAINER);
+  } = useTracking(
+    `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.FLUSH_CONTAINER}`,
+  );
 
   const { flushArchive, isPending: isFlushArchivePending } = useFlushArchive({
     projectId,

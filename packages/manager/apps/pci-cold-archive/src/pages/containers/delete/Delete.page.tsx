@@ -31,7 +31,9 @@ export default function DeletePage() {
     trackCancelAction,
     trackSuccessPage,
     trackErrorPage,
-  } = useTracking(COLD_ARCHIVE_TRACKING.CONTAINERS.DELETE_CONTAINER);
+  } = useTracking(
+    `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.DELETE_CONTAINER}`,
+  );
 
   const onCancel = () => {
     trackCancelAction();
