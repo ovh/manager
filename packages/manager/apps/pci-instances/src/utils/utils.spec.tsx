@@ -4,6 +4,7 @@ import { ErrorBannerProps } from '@ovh-ux/manager-react-components';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import {
   instancesQueryKey,
+  isCustomUrlSection,
   mapUnknownErrorToBannerError,
   replaceToSnakeCase,
 } from './index';
@@ -140,6 +141,19 @@ describe('Utility functions', () => {
     `('Given an input <$input>', ({ input, expectedOutput }) => {
       test(`Then, expect the output to be '${expectedOutput}'`, () => {
         expect(replaceToSnakeCase(input)).toStrictEqual(expectedOutput);
+      });
+    });
+  });
+
+  describe('Considering the isCustomUrlSection function', () => {
+    describe.each`
+      input             | expectedOutput
+      ${'reinstall'}    | ${false}
+      ${'soft-reboot'}  | ${true}
+      ${'rescue/start'} | ${true}
+    `('Given an input <$input>', ({ input, expectedOutput }) => {
+      test(`Then, expect the output to be '${expectedOutput}'`, () => {
+        expect(isCustomUrlSection(input)).toStrictEqual(expectedOutput);
       });
     });
   });

@@ -1,4 +1,3 @@
-import { FC, useState } from 'react';
 import {
   Select,
   SelectContent,
@@ -6,21 +5,19 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@datatr-ux/uxlib';
+import { FC, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { OsdsText } from '@ovhcloud/ods-components/react';
-import Modal from '@/components/modal/Modal.component';
+import ActionModal from '@/components/actionModal/ActionModal.component';
+import { useImages } from '@/data/hooks/image/useImages';
 import { useInstanceRescueAction } from '@/data/hooks/instance/action/useInstanceAction';
 import { TInstanceDto } from '@/types/instance/api.type';
-import { ActionModalContent } from './modal/ActionModalContent.component';
-import { useImages } from '@/data/hooks/image/useImages';
+import { imagesRescueSelector } from '@/data/hooks/image/selector/image.selector';
 
-// TODO: Remove when api will be ready
-const DEFAULT_RESCUE_ID = '0';
-const DEFAULT_RESCUE = 'Distribution Rescue Made-in-OVH';
+type TRescueActionPageProps = 'rescue/start' | 'rescue/end';
 
 export const RescueActionPage: FC<{
   title: string;
-  section: 'rescue/start';
+  section: TRescueActionPageProps;
   projectId: string;
   handleMutationError: () => void;
   handleMutationSuccess: () => void;
@@ -36,64 +33,81 @@ export const RescueActionPage: FC<{
   instance,
 }) => {
   const { t } = useTranslation('actions');
-  const { data: images, isLoading } = useImages(projectId, {
+  const { data: images, isLoading } = useImages({
+    projectId,
     region: instance.region,
+    params: {
+      visibility: 'public',
+    },
+    selectFn: (data) => imagesRescueSelector(data, t),
   });
 
-  const [imageId, setImageId] = useState<string>(DEFAULT_RESCUE_ID);
+  const [imageId, setImageId] = useState<string>('');
+
+  useEffect(() => {
+    if (images && images.length > 0) {
+      setImageId(images[0].id);
+    }
+  }, [images]);
+
+  const isRescueMode = section === 'rescue/start';
 
   const { mutationHandler, isPending } = useInstanceRescueAction(projectId, {
     onError: handleMutationError,
     onSuccess: handleMutationSuccess,
   });
 
-  const handleInstanceAction = () => mutationHandler({ instance, imageId });
+  const handleInstanceAction = () =>
+    mutationHandler({ instance, imageId, isRescue: isRescueMode });
 
-  const imageOptions = images?.map((image) => ({
-    label: image.name,
-    value: image.id,
-  }));
+  const imageOptions = useMemo(
+    () =>
+      images?.map((image) => ({
+        label: image.name,
+        value: image.id,
+      })),
+    [images],
+  );
 
   return (
-    <Modal
+    <ActionModal
       title={title}
-      isPending={isPending || isLoading}
+      isPending={isPending}
       handleInstanceAction={handleInstanceAction}
       handleModalClose={handleModalClose}
+      instanceName={instance.name}
+      section={section}
     >
-      <ActionModalContent type={section} instanceName={instance.name} />
-
-      <Select
-        aria-label="image-id-select"
-        name={'image'}
-        onValueChange={setImageId}
-        value={imageId}
-        disabled={isLoading}
-      >
-        <OsdsText>
-          {t('pci_instances_actions_rescue_start_instance_select_image_label')}
-        </OsdsText>
-        <SelectTrigger
-          className={`text-foreground whitespace-nowrap overflow-hidden text-ellipsis`}
-          id="image"
+      {isRescueMode && (
+        <Select
+          aria-label="image-id-select"
+          name="image"
+          onValueChange={setImageId}
+          value={imageId}
+          disabled={isLoading || !imageOptions?.length}
         >
-          <SelectValue placeholder="Select an image" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectItem key={DEFAULT_RESCUE_ID} value={DEFAULT_RESCUE_ID}>
-            <div className="flex flex-col items-start">
-              <p className={`text-bold text-l`}>{DEFAULT_RESCUE}</p>
-            </div>
-          </SelectItem>
-          {imageOptions?.map((option) => (
-            <SelectItem key={option.value} value={option.value}>
-              <div className="flex flex-col items-start">
-                <p className={`text-bold text-l`}>{option.label}</p>
-              </div>
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
-    </Modal>
+          <p className="text-grey-500 my-2 font-bold text-xs">
+            {t(
+              'pci_instances_actions_rescue_start_instance_select_image_label',
+            )}
+          </p>
+          <SelectTrigger
+            className="text-foreground whitespace-nowrap overflow-hidden text-ellipsis"
+            id="image"
+          >
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            {imageOptions?.map((option) => (
+              <SelectItem key={option.value} value={option.value}>
+                <div className="flex flex-col items-start text-primary-800">
+                  <p className={`text-bold text-l`}>{option.label}</p>
+                </div>
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      )}
+    </ActionModal>
   );
 };

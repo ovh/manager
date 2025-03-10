@@ -91,16 +91,17 @@ export const rescueMode = ({
   projectId,
   instanceId,
   imageId,
+  isRescue,
 }: {
   projectId: string;
   instanceId: string;
   imageId: string;
+  isRescue: boolean;
 }): Promise<null> =>
   v6.post(instanceActionUrl(projectId, instanceId, 'rescueMode'), {
     imageId,
     instanceId,
-    rescue: true,
-    serviceName: 'ed4aefdc749145b4bcfa8b174ff2b25f',
+    rescue: isRescue,
   });
 
 export const reinstallInstance = (

@@ -1,8 +1,7 @@
 import { FC } from 'react';
-import Modal from '@/components/modal/Modal.component';
 import { useBaseInstanceAction } from '@/data/hooks/instance/action/useInstanceAction';
-import { ActionModalContent } from './modal/ActionModalContent.component';
 import { TInstanceDto } from '@/types/instance/api.type';
+import ActionModal from '@/components/actionModal/ActionModal.component';
 
 type BaseInstanceActionSection =
   | 'delete'
@@ -14,7 +13,7 @@ type BaseInstanceActionSection =
   | 'hard-reboot'
   | 'reinstall';
 
-const BaseInstanceActionPage: FC<{
+export type TBaseInstanceActionPageProps = {
   title: string;
   section: BaseInstanceActionSection;
   projectId: string;
@@ -22,7 +21,9 @@ const BaseInstanceActionPage: FC<{
   handleMutationSuccess: () => void;
   handleModalClose: () => void;
   instance: TInstanceDto;
-}> = ({
+};
+
+const BaseInstanceActionPage: FC<TBaseInstanceActionPageProps> = ({
   title,
   section,
   projectId,
@@ -43,14 +44,14 @@ const BaseInstanceActionPage: FC<{
   const handleInstanceAction = () => mutationHandler(instance);
 
   return (
-    <Modal
+    <ActionModal
       title={title}
       isPending={isPending}
       handleInstanceAction={handleInstanceAction}
       handleModalClose={handleModalClose}
-    >
-      <ActionModalContent type={section} instanceName={instance.name} />
-    </Modal>
+      instanceName={instance.name}
+      section={section}
+    />
   );
 };
 

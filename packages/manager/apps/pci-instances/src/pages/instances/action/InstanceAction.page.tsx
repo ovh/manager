@@ -1,6 +1,6 @@
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { FC, useCallback, useEffect, useMemo } from 'react';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import {
   getInstanceById,
@@ -23,7 +23,8 @@ export type TSectionType =
   | 'soft-reboot'
   | 'hard-reboot'
   | 'reinstall'
-  | 'rescue/start';
+  | 'rescue/start'
+  | 'rescue/end';
 
 const actionSectionRegex = /(?:rescue\/(start|end)|(?<!rescue\/)(start|stop|shelve|unshelve|delete|soft-reboot|hard-reboot|reinstall))$/;
 
@@ -34,7 +35,7 @@ const InstanceAction: FC = () => {
     projectId: string;
     instanceId?: string;
   };
-  const { addError, addSuccess } = useNotifications();
+  const { addError, addSuccess, addInfo } = useNotifications();
   const section = usePathMatch<TSectionType>(actionSectionRegex);
 
   const snakeCaseSection = useMemo(
@@ -62,12 +63,38 @@ const InstanceAction: FC = () => {
 
   const handleMutationSuccess = () => {
     executeSuccessCallback();
+
+    const isRescue = section === 'rescue/start';
+
+    if (isRescue) {
+      addInfo(
+        <Trans
+          i18nKey={`pci_instances_actions_rescue_start_instance_info_message`}
+          values={{ name: instanceName, ip: instance?.addresses[0].ip }}
+          ns={'actions'}
+          components={
+            isRescue
+              ? [
+                  <code
+                    key="0"
+                    className="px-1 py-0.5 text-[90%] text-[#c7254e] bg-[#f9f2f4] rounded"
+                  />,
+                ]
+              : []
+          }
+        />,
+        true,
+      );
+    }
+
     addSuccess(
       t(`pci_instances_actions_${snakeCaseSection}_instance_success_message`, {
         name: instanceName,
       }),
       true,
     );
+
+    handleModalClose();
   };
 
   const handleMutationError = () => {
@@ -103,7 +130,7 @@ const InstanceAction: FC = () => {
     instance,
   };
 
-  return section === 'rescue/start' ? (
+  return section === 'rescue/start' || section === 'rescue/end' ? (
     <RescueActionPage {...modalProps} section={section} />
   ) : (
     <BaseInstanceActionPage {...modalProps} section={section} />

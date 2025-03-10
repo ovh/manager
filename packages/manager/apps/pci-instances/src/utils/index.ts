@@ -45,3 +45,6 @@ export const instancesQueryKey = (
 
 export const replaceToSnakeCase = (str: string): string =>
   str.replace(/[-/]/g, '_');
+
+export const isCustomUrlSection = (str: string): boolean =>
+  str.includes('-') || str.includes('/');

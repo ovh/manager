@@ -8,7 +8,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import { DeepReadonly } from '@/types/utils.type';
 import { TSectionType } from '../InstanceAction.page';
-import { replaceToSnakeCase } from '@/utils';
+import { isCustomUrlSection, replaceToSnakeCase } from '@/utils';
 
 type TActionModalProps = DeepReadonly<{
   type: TSectionType;
@@ -22,10 +22,9 @@ export const ActionModalContent: FC<TActionModalProps> = ({
   const { t } = useTranslation('actions');
 
   const labels = useMemo((): string[] => {
-    const sectionSnakeCase =
-      type.includes('-') || type.includes('/')
-        ? replaceToSnakeCase(type)
-        : type;
+    const sectionSnakeCase = isCustomUrlSection(type)
+      ? replaceToSnakeCase(type)
+      : type;
     const confirmationMessage = t(
       `pci_instances_actions_${sectionSnakeCase}_instance_confirmation_message`,
       {
@@ -45,6 +44,7 @@ export const ActionModalContent: FC<TActionModalProps> = ({
       case 'hard-reboot':
       case 'reinstall':
       case 'rescue/start':
+      case 'rescue/end':
         return [confirmationMessage];
       case 'shelve':
         return [confirmationMessage, notaMessage];

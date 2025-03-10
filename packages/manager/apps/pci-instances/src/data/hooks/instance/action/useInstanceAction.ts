@@ -33,19 +33,21 @@ export type TUseInstanceActionCallbacks = DeepReadonly<{
 
 const unknownError = new Error('Unknwon Error');
 
+type TRescueMutationFnVariables = {
+  instance: TInstanceDto;
+  imageId: string;
+  isRescue: boolean;
+};
+
 export const useInstanceRescueAction = (
   projectId: string,
   { onError, onSuccess }: TUseInstanceActionCallbacks = {},
 ) => {
-  const mutationKey = instancesQueryKey(projectId, [
-    'instance',
-    'rescue/start',
-  ]);
+  const mutationKey = instancesQueryKey(projectId, ['instance', 'rescue']);
   const mutationFn = useCallback(
-    ({ instance, imageId }: { instance: TInstanceDto; imageId: string }) => {
-      if (!instance) return Promise.reject(unknownError);
+    ({ instance, imageId, isRescue }: TRescueMutationFnVariables) => {
       const { id } = instance;
-      return rescueMode({ projectId, instanceId: id, imageId });
+      return rescueMode({ projectId, instanceId: id, imageId, isRescue });
     },
     [projectId],
   );
@@ -53,7 +55,7 @@ export const useInstanceRescueAction = (
   const mutation = useMutation<
     null,
     unknown,
-    { instance: TInstanceDto; imageId: string },
+    TRescueMutationFnVariables,
     unknown
   >({
     mutationKey,

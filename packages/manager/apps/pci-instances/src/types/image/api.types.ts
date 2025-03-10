@@ -1,16 +1,18 @@
 import { DeepReadonly } from '../utils.type';
 
+export type TImageType = 'custom' | 'official' | 'rescue' | 'snapshot';
+export type TImageVisibility = 'community' | 'private' | 'public' | 'shared';
+export type TImageStatus = 'active' | 'deleted' | 'error' | 'queued' | 'saving';
+
 export type TImageDto = DeepReadonly<{
-  creationDate: string;
-  flavorType: string | null;
+  baseImageRef: string;
+  createdAt: string;
   id: string;
-  minDisk: number;
-  minRam: number;
   name: string;
-  planCode: string;
+  osType: string;
   region: string;
   size: number;
-  status: string;
-  user: string;
-  visibility: string;
+  status: TImageStatus;
+  type: TImageType;
+  visibility: TImageVisibility;
 }>;

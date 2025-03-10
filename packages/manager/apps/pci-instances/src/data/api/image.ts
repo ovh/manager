@@ -1,58 +1,25 @@
 import { v6 } from '@ovh-ux/manager-core-api';
-
-export type TImage = {
-  creationDate: string;
-  flavorType: string | null;
-  id: string;
-  minDisk: number;
-  minRam: number;
-  name: string;
-  planCode: string | null;
-  region: string;
-  size: number;
-  status:
-    | 'attaching'
-    | 'available'
-    | 'awaiting-transfer'
-    | 'backing-up'
-    | 'creating'
-    | 'deleting'
-    | 'detaching'
-    | 'downloading'
-    | 'error'
-    | 'error_backing-up'
-    | 'error_deleting'
-    | 'error_extending'
-    | 'error_restoring'
-    | 'extending'
-    | 'in-use'
-    | 'maintenance'
-    | 'reserved'
-    | 'restoring-backup'
-    | 'retyping'
-    | 'uploading';
-  tags: string[];
-  type:
-    | 'classic'
-    | 'classic-BETA'
-    | 'high-speed'
-    | 'high-speed-BETA'
-    | 'high-speed-gen2';
-  user: string;
-  visibility: string;
-};
+import {
+  TImageDto,
+  TImageType,
+  TImageVisibility,
+} from '@/types/image/api.types';
 
 export type TGetImagesParams = {
-  flavorType?: string;
-  region?: string;
+  type?: TImageType;
+  visibility?: TImageVisibility;
 };
 
 export const getImages = async (
   projectId: string,
+  region: string,
   params: TGetImagesParams,
-): Promise<TImage[]> => {
-  const { data } = await v6.get<TImage[]>(`/cloud/project/${projectId}/image`, {
-    params,
-  });
+): Promise<TImageDto[]> => {
+  const { data } = await v6.get<TImageDto[]>(
+    `/cloud/project/${projectId}/region/${region}/image`,
+    {
+      params,
+    },
+  );
   return data;
 };
