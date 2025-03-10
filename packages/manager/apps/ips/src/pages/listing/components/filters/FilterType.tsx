@@ -19,6 +19,7 @@ export const TypeFilter = () => {
 
   return (
     <OdsSelect
+      className="m-2"
       name="search-type"
       data-testid="search-type"
       onOdsChange={(e: OdsSelectCustomEvent<OdsSelectChangeEventDetail>) => {
