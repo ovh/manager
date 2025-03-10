@@ -95,34 +95,32 @@ export const useOngoingOperationDatagridColumns = (
       },
       {
         cell: (props: TOngoingOperations) => (
-          <div className="flex items-center justify-center">
-            <ActionMenu
-              id={`${props.id}`}
-              isCompact
-              isDisabled={
-                !props.canAccelerate && !props.canRelaunch && !props.canCancel
-              }
-              variant={ODS_BUTTON_VARIANT.ghost}
-              items={[
-                {
-                  id: 1,
-                  label: t('domain_operations_tab_popover_update'),
-                  className: `${!props.canAccelerate &&
-                    !props.canRelaunch &&
-                    !props.canCancel &&
-                    'hidden'} openModal`,
-                  onClick: () => openModal(props.id),
-                },
-                {
-                  id: 2,
-                  label: t('domain_operations_tab_popover_progress'),
-                  className:
-                    props.function !== 'DomainIncomingTransfer' && 'hidden',
-                  onClick: () => navigate(`/tracking/${props.id}`),
-                },
-              ]}
-            />
-          </div>
+          <ActionMenu
+            id={`${props.id}`}
+            isCompact
+            isDisabled={
+              !props.canAccelerate && !props.canRelaunch && !props.canCancel
+            }
+            variant={ODS_BUTTON_VARIANT.ghost}
+            items={[
+              {
+                id: 1,
+                label: t('domain_operations_tab_popover_update'),
+                className: `${!props.canAccelerate &&
+                  !props.canRelaunch &&
+                  !props.canCancel &&
+                  'hidden'} openModal`,
+                onClick: () => openModal(props.id),
+              },
+              {
+                id: 2,
+                label: t('domain_operations_tab_popover_progress'),
+                className:
+                  props.function !== 'DomainIncomingTransfer' && 'hidden',
+                onClick: () => navigate(`/tracking/${props.id}`),
+              },
+            ]}
+          />
         ),
         id: 'actions',
         label: '',
