@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { OdsLink } from '@ovhcloud/ods-components/react';
 import { ODS_LINK_COLOR } from '@ovhcloud/ods-components';
@@ -23,10 +23,12 @@ export const IpAttachedService = ({ ip }: IpAttachedServiceProps) => {
 
   const { ipDetails, isLoading } = useGetIpdetails({ ip });
 
-  getLinkByServiceName({
-    serviceName: ipDetails?.routedTo?.serviceName,
-    navigation: shell.navigation,
-  }).then(setServiceUrl);
+  useEffect(() => {
+    getLinkByServiceName({
+      serviceName: ipDetails?.routedTo?.serviceName,
+      navigation: shell.navigation,
+    }).then(setServiceUrl);
+  }, [ipDetails]);
 
   return (
     <SkeletonCell isLoading={isLoading}>
