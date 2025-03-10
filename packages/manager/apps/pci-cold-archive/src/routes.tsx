@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 import { ErrorBoundary } from '@/pages/Layout';
 import ContainerListingPage from '@/pages/containers/Listing.page';
 import UserListingPage from '@/pages/users/Listing.page';
+import { COLD_ARCHIVE_TRACKING } from './tracking.constants';
 
 export const ROUTE_PATHS = {
   ROOT: '/pci/projects/:projectId/storages/cold-archive',
@@ -72,75 +73,75 @@ export default (
     <Route path="notFound" element={<>Page not found</>}></Route>
     <Route path={ROUTE_PATHS.ONBOARDING} Component={OnboardingPage} />
     <Route
-      id="add"
+      id={COLD_ARCHIVE_TRACKING.CONTAINERS.ADD_CONTAINER}
       path={ROUTE_PATHS.NEW_CONTAINER}
       Component={NewContainerPage}
     />
     <Route path={ROUTE_PATHS.STORAGES} Component={StoragePage}>
       <Route
-        id="containers"
+        id={COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}
         path={ROUTE_PATHS.CONTAINER_LISTING}
         Component={ContainerListingPage}
       >
         <Route
-          id="manage-container"
+          id={`${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.MANAGE_CONTAINER}`}
           path={ROUTE_PATHS.MANAGE_CONTAINER}
           Component={ManageContainerPage}
         />
         <Route
-          id="delete-container"
+          id={`${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.DELETE_CONTAINER}`}
           path={ROUTE_PATHS.DELETE_CONTAINER}
           Component={DeleteContainerPage}
         />
         <Route
-          id="add-user"
+          id={`${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.ADD_USER}`}
           path={ROUTE_PATHS.ADD_USER_CONTAINER}
           Component={AddUserContainerPage}
         />
         <Route
-          id="restore"
+          id={`${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.RESTORE}`}
           path={ROUTE_PATHS.RESTORE_CONTAINER}
           Component={RestoreContainerPage}
         />
         <Route
-          id="archive"
+          id={`${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.ARCHIVE}`}
           path={ROUTE_PATHS.ARCHIVE_CONTAINER}
           Component={ArchivePage}
         />
         <Route
-          id="edit-retention"
+          id={`${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.EDIT_RETENTION}`}
           path={ROUTE_PATHS.EDIT_RETENTION}
           Component={EditRetentionPage}
         />
         <Route
-          id="flush-container"
+          id={`${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.FLUSH_CONTAINER}`}
           path={ROUTE_PATHS.FLUSH_ARCHIVE}
           Component={FlushArchivePage}
         />
       </Route>
 
       <Route
-        id="add_user"
+        id={COLD_ARCHIVE_TRACKING.USER.MAIN}
         path={ROUTE_PATHS.USERS_LISTING}
         Component={UserListingPage}
       >
         <Route
-          id="create"
+          id={`${COLD_ARCHIVE_TRACKING.USER.MAIN}::${COLD_ARCHIVE_TRACKING.USER.ADD_USER}`}
           path={ROUTE_PATHS.USER_CREATE}
           Component={UserCreationPage}
         />
         <Route
-          id="delete_s3_policy"
+          id={`${COLD_ARCHIVE_TRACKING.USER.MAIN}::${COLD_ARCHIVE_TRACKING.USER.ACTIONS.DELETE_POLICY}`}
           path={ROUTE_PATHS.USER_DELETE}
           Component={UserDeletionPage}
         />
         <Route
-          id="import_s3_policy"
+          id={`${COLD_ARCHIVE_TRACKING.USER.MAIN}::${COLD_ARCHIVE_TRACKING.USER.ACTIONS.IMPORT_POLICY}`}
           path={ROUTE_PATHS.USER_IMPORT_POLICY}
           Component={UserImportPolicyPage}
         />
         <Route
-          id="download_rClone_file"
+          id={`${COLD_ARCHIVE_TRACKING.USER.MAIN}::${COLD_ARCHIVE_TRACKING.USER.ACTIONS.DOWNLOAD_RCLONE}`}
           path={ROUTE_PATHS.USER_R_CLONE_DOWNLOAD}
           Component={UserRCloneDownloadPage}
         />

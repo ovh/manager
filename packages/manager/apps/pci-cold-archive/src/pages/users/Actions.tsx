@@ -32,14 +32,14 @@ export default function ActionsComponent({ user }: Readonly<{ user: TUser }>) {
 
   const trackS3UsersPage = (action: string) => {
     tracking?.trackPage({
-      name: `${COLD_ARCHIVE_TRACKING.USER.MAIN}::${action}`,
+      name: `${COLD_ARCHIVE_TRACKING.PAGE_PREFIX}::${COLD_ARCHIVE_TRACKING.USER.MAIN}::${action}`,
       action: 'navigation',
     });
   };
 
   const trackS3UsersClick = (action: string) => {
     tracking?.trackClick({
-      name: `${COLD_ARCHIVE_TRACKING.USER.MAIN}::${action}`,
+      name: `${COLD_ARCHIVE_TRACKING.PAGE_PREFIX}::${COLD_ARCHIVE_TRACKING.USER.MAIN}::${action}`,
       type: 'action',
     });
   };
