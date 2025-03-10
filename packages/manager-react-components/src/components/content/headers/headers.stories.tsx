@@ -1,5 +1,6 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
+import { withRouter } from 'storybook-addon-react-router-v6';
 import Headers, { HeadersProps } from './headers.component';
 import ActionMenu from '../../navigation/menus/action/action.component';
 import GuideButton from '../../navigation/menus/guide/guide.component';
@@ -79,6 +80,7 @@ export const headerWithActions = () => <Headers {...HeadingWithActionButton} />;
 
 const meta: Meta = {
   title: 'Content/Headers',
+  decorators: [withRouter],
   component: Headers,
   argTypes: {},
   args: Heading,
