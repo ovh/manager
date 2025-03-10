@@ -10,6 +10,7 @@ const telecomUniverse: Node = {
   illustration,
   svgIcon: OvhProductName.PHONE,
   features: ['telecom'],
+  forceNavigate: true,
   routing: {
     application: 'telecom',
     hash: '#/',
