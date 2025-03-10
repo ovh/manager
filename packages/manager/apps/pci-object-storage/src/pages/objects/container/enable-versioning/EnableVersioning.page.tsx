@@ -30,7 +30,10 @@ export default function EnableVersioningPage() {
 
   const storageDetail = useMemo(() => {
     return storages?.resources.find(
-      (s) => s.name === storageId && s.region === searchParams.get('region'),
+      (s) =>
+        s.name === storageId &&
+        s.region === searchParams.get('region') &&
+        !('containerType' in s),
     );
   }, [storages, storageId]);
 
