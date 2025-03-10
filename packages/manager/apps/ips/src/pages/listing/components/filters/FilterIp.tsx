@@ -26,6 +26,7 @@ export const IpFilter = () => {
   return (
     <form onSubmit={(event) => onSubmit(event)}>
       <OdsInput
+        className="pl-2 m-2"
         data-testid="search-ip"
         name="search-ip"
         type={ODS_INPUT_TYPE.search}
