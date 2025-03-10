@@ -11,7 +11,7 @@ import {
 } from '@/types/instance/entity.type';
 import { TActionName } from '@/types/instance/common.type';
 
-const buildInstanceStatusSeverity = (
+const getInstanceStatusSeverity = (
   status: TInstanceStatusDto,
 ): TInstanceStatusSeverity => {
   switch (status) {
@@ -53,7 +53,7 @@ const buildInstanceStatusSeverity = (
 
 const getInstanceStatus = (status: TInstanceStatusDto): TInstanceStatus => ({
   state: status,
-  severity: buildInstanceStatusSeverity(status),
+  severity: getInstanceStatusSeverity(status),
 });
 
 const getActionHrefByName = (
@@ -118,10 +118,10 @@ const getActionHrefByName = (
 const mapInstanceAddresses = (instance: TInstanceDto) =>
   instance.addresses.reduce((acc, { type, ...rest }) => {
     const foundAddresses = acc.get(type);
-    const ipAlreadyExists = !!foundAddresses?.find(({ ip }) => ip === rest.ip);
     if (foundAddresses) {
-      if (ipAlreadyExists) return acc.set(type, [...foundAddresses]);
-      return acc.set(type, [...foundAddresses, rest]);
+      const ipAlreadyExists = !!foundAddresses.find(({ ip }) => ip === rest.ip);
+      if (!ipAlreadyExists) foundAddresses.push(rest);
+      return acc;
     }
     return acc.set(type, [rest]);
   }, new Map<TInstanceAddressType, TAddress[]>());
@@ -130,18 +130,17 @@ const mapInstanceActions = (
   instance: TInstanceDto,
   projectUrl: string,
 ): TInstanceActions =>
-  instance.actions.reduce<TInstanceActions>((acc, cur) => {
-    const { group, name, enabled } = cur;
+  instance.actions.reduce<TInstanceActions>((acc, action) => {
+    const { group, name, enabled } = action;
     const newAction = {
       label: `pci_instances_list_action_${name}`,
       isDisabled: !enabled,
       link: getActionHrefByName(projectUrl, name, instance),
     };
     const foundAction = acc.get(group);
-    if (!foundAction) {
-      return acc.set(group, [newAction]);
-    }
-    return acc.set(group, [...foundAction, newAction]);
+    if (!foundAction) return acc.set(group, [newAction]);
+    foundAction.push(newAction);
+    return acc;
   }, new Map() as TInstanceActions);
 
 export const instancesSelector = (
