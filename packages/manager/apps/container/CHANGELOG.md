@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.109.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.109.0...@ovh-ux/manager-container-app@0.109.1) (2025-03-10)
+
+
+### Bug Fixes
+
+* **container.legacy-sidebar:** fix url for hosting order ([#15751](https://github.com/ovh/manager/issues/15751)) ([35bceca](https://github.com/ovh/manager/commit/35bcecaf556c24ce1cf327eb61172a42d296eefa)), closes [#MANAGER-15069](https://github.com/ovh/manager/issues/MANAGER-15069)
+* **container:** eclude pci logs data platform from count ([#15594](https://github.com/ovh/manager/issues/15594)) ([d5dfc05](https://github.com/ovh/manager/commit/d5dfc05acb024cf0f91a5f9907363a6ba7c68b90)), closes [#MANAGER-17103](https://github.com/ovh/manager/issues/MANAGER-17103)
+
+
+
+
+
 # [0.109.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.108.1...@ovh-ux/manager-container-app@0.109.0) (2025-03-10)
 
 
