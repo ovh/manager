@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {
   ShellContext,
@@ -7,17 +7,11 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import App from './App';
 import '@ovhcloud/ods-theme-blue-jeans/dist/index.css';
+import './index.scss';
 import './vite-hmr';
 import '@ovh-ux/manager-pci-common/dist/style.css';
 
-import './index.scss';
-
-import {
-  UNIVERSE,
-  SUB_UNIVERSE,
-  APP_NAME,
-  LEVEL2,
-} from './configuration/pci.constant';
+import { UNIVERSE, SUB_UNIVERSE, APP_NAME, LEVEL2 } from './tracking.constant';
 
 const trackingContext = {
   chapter1: UNIVERSE,
@@ -46,12 +40,10 @@ const init = async (appName: string) => {
     // nothing to do
   }
 
-  ReactDOM.createRoot(document.getElementById('root')).render(
+  ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
       <ShellContext.Provider value={context}>
-        <Suspense>
-          <App />
-        </Suspense>
+        <App />
       </ShellContext.Provider>
     </React.StrictMode>,
   );

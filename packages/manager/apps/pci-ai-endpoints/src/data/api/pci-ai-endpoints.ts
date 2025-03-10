@@ -1,8 +1,8 @@
-import { apiClient } from '@ovh-ux/manager-core-api';
+import { fetchIcebergV2, apiClient } from '@ovh-ux/manager-core-api';
 
 export type GetpublicCloudProjectProjectIdParams = {
   /** Project ID */
-  projectId?: number;
+  projectId?: any;
 };
 
 export const getpublicCloudProjectProjectIdQueryKey = (

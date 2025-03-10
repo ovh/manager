@@ -1,7 +1,10 @@
+import React from 'react';
+import { RouteObject } from 'react-router-dom';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
-import NotFound from '@/pages/404.page';
+import NotFound from '@/pages/404';
+import { urls } from '@/routes/routes.constant';
 
-const lazyRouteConfig = (importFn: CallableFunction) => {
+const lazyRouteConfig = (importFn: CallableFunction): Partial<RouteObject> => {
   return {
     lazy: async () => {
       const { default: moduleDefault, ...moduleExports } = await importFn();
@@ -13,35 +16,23 @@ const lazyRouteConfig = (importFn: CallableFunction) => {
   };
 };
 
-export const COMMON_PATH = '/pci/projects';
-
-export enum Route {
-  Dashboard = 'dashboard',
-  Onboarding = 'onboarding',
-  Metrics = 'metrics',
-}
-
-export default [
+export const Routes: any = [
+  {
+    path: '/',
+    ...lazyRouteConfig(() => import('@/pages/layout')),
+  },
   {
     path: '/pci/projects/:projectId/ai/endpoints',
     ...lazyRouteConfig(() => import('@/pages/layout')),
     children: [
       {
+        id: 'onboarding',
         path: '',
-        ...lazyRouteConfig(() => import('@/pages/onboarding.page')),
+        ...lazyRouteConfig(() => import('@/pages/onboarding')),
         handle: {
           tracking: {
-            pageName: Route.Onboarding,
+            pageName: 'onboarding',
             pageType: PageType.onboarding,
-          },
-        },
-      },
-      {
-        path: 'metrics',
-        ...lazyRouteConfig(() => import('@/pages/metrics.page')),
-        handle: {
-          tracking: {
-            pageName: Route.Metrics,
           },
         },
       },
