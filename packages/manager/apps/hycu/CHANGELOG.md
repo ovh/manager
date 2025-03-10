@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hycu-app@0.8.4...@ovh-ux/manager-hycu-app@0.9.0) (2025-03-10)
+
+
+### Features
+
+* **hcyu:** bump to vite 6 ([5a77133](https://github.com/ovh/manager/commit/5a771333ba9c282826055c9767794605bdcc2784))
+
+
+
+
+
 ## [0.8.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-hycu-app@0.8.3...@ovh-ux/manager-hycu-app@0.8.4) (2025-03-06)
 
 **Note:** Version bump only for package @ovh-ux/manager-hycu-app
