@@ -24,6 +24,8 @@ import { useGetIpList } from '@/data/hooks/ip';
 import { ListingContext } from '../../listingContext';
 import { urls } from '@/routes/routes.constant';
 import { IpFilter, TypeFilter } from '../filters';
+import { ipFormatter } from '@/utils';
+import { IpGroupDatagrid } from '../ipGroupDatagrid/ipGroupDatagrid';
 
 export const IpDatagrid = () => {
   const { apiFilter, ipToSearch } = useContext(ListingContext);
@@ -149,6 +151,18 @@ export const IpDatagrid = () => {
         totalItems={filteredIpList?.length}
         hasNextPage={numberOfPageDisplayed * pageSize < filteredIpList?.length}
         onFetchNextPage={loadMoreIps}
+        getRowCanExpand={(row) => ipFormatter(row.original).isGroup}
+        renderSubComponent={(row, headerRefs) => {
+          return (
+            <IpGroupDatagrid
+              row={row}
+              parentHeaders={headerRefs}
+            ></IpGroupDatagrid>
+          );
+        }}
+        isLoading={isLoading}
+        numberOfLoadingRows={10}
+        resetExpandedRowsOnItemsChange={true}
       />
     </RedirectionGuard>
   );
