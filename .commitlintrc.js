@@ -18,5 +18,8 @@ module.exports = {
     'type-enum': [2, 'always', COMMIT_TYPES],
     'header-max-length': [2, 'always', 100],
     'footer-leading-blank' : [2, 'always']
-  }
+  },
+  ignores: [
+    (c) => c.startsWith('fixup!'),
+    ],
 };
