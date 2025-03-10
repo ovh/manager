@@ -25,6 +25,36 @@ export const Routes: any = [
         id: 'listing',
         path: urls.listing,
         ...lazyRouteConfig(() => import('@/pages/listing')),
+        children: [
+          {
+            id: 'ips',
+            path: '',
+            ...lazyRouteConfig(() =>
+              import('@/pages/listing/ipListing/ip.listing.page'),
+            ),
+            handle: {
+              tracking: {
+                pageName: 'ips',
+                pageType: PageType.listing,
+              },
+            },
+          },
+          {
+            id: 'manage-organisations',
+            path: urls.manageOrganisations,
+            ...lazyRouteConfig(() =>
+              import(
+                '@/pages/listing/manageOrganisations/manage.organisations.page'
+              ),
+            ),
+            handle: {
+              tracking: {
+                pageName: 'manage-organisations',
+                pageType: PageType.listing,
+              },
+            },
+          },
+        ],
         handle: {
           tracking: {
             pageName: 'listing',
