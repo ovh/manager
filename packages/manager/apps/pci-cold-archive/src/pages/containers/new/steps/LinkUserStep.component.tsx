@@ -1,13 +1,16 @@
 import { StepComponent } from '@ovh-ux/manager-react-components';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
 import { isDiscoveryProject, useProject } from '@ovh-ux/manager-pci-common';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useContainerCreationStore } from '../useContainerCreationStore';
 import LinkUserSelector from './LinkUserSelector.component';
 import { CONTAINER_USER_ASSOCIATION_MODES } from '@/constants';
 import LinkUserCreation from './LinkUserCreation.component';
 import { TUser } from '@/api/data/users';
+import { useTracking } from '@/hooks/useTracking';
+import { COLD_ARCHIVE_TRACKING } from '@/tracking.constants';
 
 export function LinkUserStep() {
   const { t } = useTranslation([
@@ -15,6 +18,15 @@ export function LinkUserStep() {
     'cold-archive/new/link-user',
     'pci-common',
   ]);
+  const { tracking } = useContext(ShellContext).shell;
+
+  const trackNextStepClick = (action: string) => {
+    tracking?.trackClick({
+      name: action,
+      type: 'action',
+      level2: COLD_ARCHIVE_TRACKING.PCI_LEVEL2,
+    });
+  };
 
   const { data: project } = useProject();
 
@@ -26,6 +38,10 @@ export function LinkUserStep() {
     setOwnerId,
     setSelectedUser,
   } = useContainerCreationStore();
+
+  const { trackActionClick } = useTracking(
+    COLD_ARCHIVE_TRACKING.CONTAINERS.ADD_CONTAINER,
+  );
 
   const [associateMode, setAssociateMode] = useState('');
 
@@ -49,7 +65,10 @@ export function LinkUserStep() {
       isLocked={stepper.ownerId.isLocked}
       order={1}
       next={{
-        action: submitOwnerId,
+        action: () => {
+          trackNextStepClick(COLD_ARCHIVE_TRACKING.CONTAINERS.STEPPER.STEP_1);
+          submitOwnerId();
+        },
         label: t('pci-common:common_stepper_next_button_label'),
         isDisabled: !form.ownerId,
       }}
@@ -68,9 +87,12 @@ export function LinkUserStep() {
         {!associateMode && (
           <div className="flex gap-4">
             <OdsButton
-              onClick={() =>
-                setAssociateMode(CONTAINER_USER_ASSOCIATION_MODES.LINKED)
-              }
+              onClick={() => {
+                trackActionClick(
+                  COLD_ARCHIVE_TRACKING.ADD_USER.ASSOCIATE.EXISTING_USER,
+                );
+                setAssociateMode(CONTAINER_USER_ASSOCIATION_MODES.LINKED);
+              }}
               variant="ghost"
               size="sm"
               label={t(
@@ -78,9 +100,12 @@ export function LinkUserStep() {
               )}
             />
             <OdsButton
-              onClick={() =>
-                setAssociateMode(CONTAINER_USER_ASSOCIATION_MODES.CREATE)
-              }
+              onClick={() => {
+                trackActionClick(
+                  COLD_ARCHIVE_TRACKING.ADD_USER.ASSOCIATE.NEW_USER,
+                );
+                setAssociateMode(CONTAINER_USER_ASSOCIATION_MODES.CREATE);
+              }}
               variant="outline"
               size="sm"
               label={t(

@@ -43,7 +43,9 @@ export default function ArchivePage() {
     trackCancelAction,
     trackSuccessPage,
     trackErrorPage,
-  } = useTracking(COLD_ARCHIVE_TRACKING.CONTAINERS.ARCHIVE);
+  } = useTracking(
+    `${COLD_ARCHIVE_TRACKING.CONTAINERS.MAIN}::${COLD_ARCHIVE_TRACKING.CONTAINERS.ARCHIVE}`,
+  );
 
   const { startArchive, isPending } = useStartArchive({
     projectId,

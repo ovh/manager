@@ -47,6 +47,14 @@ export const useTracking = (page: string) => {
     });
   };
 
+  const trackCopyClipboardClick = (action: string) => {
+    tracking?.trackClick({
+      name: `${COLD_ARCHIVE_TRACKING.PAGE_PREFIX}::${page}_success_copy-${action}`,
+      type: 'action',
+      level2: PCI_LEVEL2,
+    });
+  };
+
   const trackNavigationClick = (action: string) => {
     tracking?.trackClick({
       name: `${COLD_ARCHIVE_TRACKING.PAGE_PREFIX}::${page}::${action}`,
@@ -94,5 +102,6 @@ export const useTracking = (page: string) => {
     trackErrorPage,
     trackCancelAction,
     trackConfirmAction,
+    trackCopyClipboardClick,
   };
 };
