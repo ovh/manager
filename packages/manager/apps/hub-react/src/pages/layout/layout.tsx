@@ -163,7 +163,9 @@ export default function Layout() {
                       <HubSupport />
                     </div>
                     <div className="md:w-4/12 order-4 px-6 box-border">
-                      <OrderTracking />
+                      <Suspense>
+                        <OrderTracking />
+                      </Suspense>
                     </div>
                   </div>
                   <div className="hub-dashboard-product">
