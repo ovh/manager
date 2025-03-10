@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.1.1...@ovh-ux/manager-pci-object-storage-app@0.2.0) (2025-03-10)
+
+
+### Bug Fixes
+
+* **pci-object-storage:** add ods modal overflow hack ([#15677](https://github.com/ovh/manager/issues/15677)) ([65fa7cb](https://github.com/ovh/manager/commit/65fa7cbce6965c678d50e40981623083f7c09843)), closes [#DTCORE-3001](https://github.com/ovh/manager/issues/DTCORE-3001)
+
+
+### Features
+
+* **pci-object-storage:** same name and region issue ([#15810](https://github.com/ovh/manager/issues/15810)) ([b1d6b40](https://github.com/ovh/manager/commit/b1d6b40a690514232192beac1e2ff89a35a13c2f)), closes [#TAPC-3003](https://github.com/ovh/manager/issues/TAPC-3003)
+
+
+
+
+
 ## [0.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.1.0...@ovh-ux/manager-pci-object-storage-app@0.1.1) (2025-03-06)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app
