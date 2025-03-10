@@ -1,10 +1,9 @@
 import React, { useContext } from 'react';
-import { IpTypeEnum } from '@/data/api';
 import { useGetIpVmac, useGetIpdetails } from '@/data/hooks/ip';
-import { IPRoutedServiceType, getTypeByServiceName } from '@/utils';
 import { ipFormatter } from '@/utils/ipFormatter';
 import { SkeletonCell } from '../SkeletonCell/SkeletonCell';
 import { ListingContext } from '@/pages/listing/listingContext';
+import { isVmacEnabled } from '../enableCellsUtils';
 
 export type IpVmacProps = {
   ip: string;
@@ -12,6 +11,8 @@ export type IpVmacProps = {
 
 /**
  * Component to display the cell content for IP Vmac
+ * On this component only data fetching is done. Display is managed by IpVmacDisplay component
+ * Display rules:
  * If ip is not /32 display nothing
  * If ip is not routed to a dedicated server display nothing
  * If ip is /32 and linked to a dedicated server but has no vmac display "-"
@@ -29,13 +30,11 @@ export const IpVmac = ({ ip }: IpVmacProps) => {
     enabled: !isGroup,
   });
 
+  // not expired and additionnal / dedicated Ip linked to a dedicated server
   const enabled =
     expiredIps.indexOf(ip) === -1 &&
     !isIpDetailsLoading &&
-    (ipDetails?.type === IpTypeEnum.ADDITIONAL ||
-      ipDetails?.type === IpTypeEnum.DEDICATED) &&
-    getTypeByServiceName({ serviceName: ipDetails?.routedTo?.serviceName }) ===
-      IPRoutedServiceType.DEDICATED;
+    isVmacEnabled(ipDetails);
 
   // get vmacs if ip is routed to a dedicated server
   const { vmacs, isLoading, error } = useGetIpVmac({
@@ -52,9 +51,9 @@ export const IpVmac = ({ ip }: IpVmacProps) => {
       {!enabled && null}
       {enabled && !vmacs?.length && <>-</>}
       {enabled &&
-        vmacs?.map((vmac) => {
-          return <div key={vmac.macAddress}>{vmac.macAddress}</div>;
-        })}
+        vmacs?.map((vmac) => (
+          <div key={vmac.macAddress}>{vmac.macAddress}</div>
+        ))}
     </SkeletonCell>
   );
 };
