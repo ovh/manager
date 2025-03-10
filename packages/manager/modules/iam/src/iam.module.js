@@ -4,6 +4,7 @@ import uiRouter from '@uirouter/angularjs';
 
 import { OnboardingLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 import { ApiV2ListHelper } from '@ovh-ux/manager-ng-apiv2-helper';
+import ngUiRouterLayout from '@ovh-ux/ng-ui-router-layout';
 
 import managerAtInternetConfiguration from '@ovh-ux/manager-at-internet-configuration';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
@@ -64,6 +65,7 @@ angular
     apiKeys,
     logs,
     resourceGroup,
+    ngUiRouterLayout,
   ])
   .config(routing)
   .config(registerTypes)
