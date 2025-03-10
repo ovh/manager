@@ -19,6 +19,8 @@ import { invalidateGetUsersCache, usePostS3Secret } from '@/api/hooks/useUsers';
 import LabelComponent from '@/components/Label.component';
 import UserInformationTile from '@/components/UserInformationTile.component';
 import { poll } from '@/helpers';
+import { COLD_ARCHIVE_TRACKING } from '@/tracking.constants';
+import { useTracking } from '@/hooks/useTracking';
 
 type LinkUserCreationProps = {
   onCreateUser: (user: TUser) => void;
@@ -44,6 +46,21 @@ export default function LinkUserCreation({
   const [secretUser, setSecretUser] = useState('');
   const [hideCredentials, setHideCredentials] = useState(false);
 
+  const {
+    trackCancelAction,
+    trackConfirmAction: trackConfirmActionNewUser,
+    trackSuccessPage: trackSuccessPageNewUser,
+  } = useTracking(
+    `${COLD_ARCHIVE_TRACKING.CONTAINERS.ADD_CONTAINER}::${COLD_ARCHIVE_TRACKING.ADD_USER.ASSOCIATE.NEW_USER}`,
+  );
+
+  const {
+    trackSuccessPage: trackSuccessPageAssociate,
+    trackConfirmAction: trackConfirmActionAssociate,
+  } = useTracking(
+    `${COLD_ARCHIVE_TRACKING.CONTAINERS.ADD_CONTAINER}::${COLD_ARCHIVE_TRACKING.ADD_USER.ASSOCIATE.ASSOCIATE_USER}`,
+  );
+
   useEffect(() => {
     setFormState((prevState) => ({
       ...prevState,
@@ -68,6 +85,9 @@ export default function LinkUserCreation({
   }, [newUser?.s3Credentials]);
 
   const onConfirm = async () => {
+    trackConfirmActionNewUser();
+    trackConfirmActionAssociate();
+
     setIsLoading(true);
     const data = await createUser(projectId, formState.description);
 
@@ -82,6 +102,10 @@ export default function LinkUserCreation({
           s3Credentials: credentials,
         };
         setNewUser(userWithCredentials);
+
+        trackSuccessPageAssociate();
+        trackSuccessPageNewUser();
+
         onCreateUser(userWithCredentials);
         invalidateGetUsersCache(projectId);
         setIsLoading(false);
@@ -120,6 +144,9 @@ export default function LinkUserCreation({
             description={newUser?.description}
             accessKey={newUser?.s3Credentials?.access}
             secret={secretUser}
+            trackingPrefix={
+              COLD_ARCHIVE_TRACKING.CONTAINERS.USER.CLIPBOARD_PREFIX
+            }
           />
         </OdsMessage>
       ) : (
@@ -162,7 +189,10 @@ export default function LinkUserCreation({
 
       <div className="flex gap-4">
         <OdsButton
-          onClick={onCancel}
+          onClick={() => {
+            trackCancelAction();
+            onCancel();
+          }}
           variant="ghost"
           size="sm"
           label={t(

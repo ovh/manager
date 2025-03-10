@@ -19,6 +19,8 @@ import { Suspense, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { usePaginatedUsers } from '@/api/hooks/useUsers';
+import { useTracking } from '@/hooks/useTracking';
+import { COLD_ARCHIVE_TRACKING } from '@/tracking.constants';
 import { useDatagridColumn } from './useDatagridColumn';
 
 export default function UsersListing() {
@@ -36,6 +38,8 @@ export default function UsersListing() {
   const [searchField, setSearchField] = useState('');
 
   const columns = useDatagridColumn();
+
+  const { trackNavigationClick } = useTracking(COLD_ARCHIVE_TRACKING.USER.MAIN);
 
   const { paginatedUsers, refetch, isLoading } = usePaginatedUsers(
     projectId,
@@ -81,6 +85,7 @@ export default function UsersListing() {
           className="xs:mb-0.5 sm:mb-0"
           onClick={() => {
             clearNotifications();
+            trackNavigationClick(COLD_ARCHIVE_TRACKING.USER.ADD_USER);
             navigate('./new');
           }}
         />
