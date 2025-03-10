@@ -69,7 +69,7 @@ export function IFrameApplicationRoute({
       )}`;
       const oldHash = `${location.pathname}${location.search}`;
       if (newHash !== oldHash) {
-        navigate(newHash, { replace: true });
+        navigate(newHash);
       }
     }
   };
