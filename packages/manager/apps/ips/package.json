@@ -23,7 +23,7 @@
     "@ovh-ux/manager-config": "*",
     "@ovh-ux/manager-core-api": "*",
     "@ovh-ux/manager-core-utils": "*",
-    "@ovh-ux/manager-module-common-api": "0.3.2",
+    "@ovh-ux/manager-module-common-api": "0.3.3",
     "@ovh-ux/manager-module-order": "0.9.4",
     "@ovh-ux/manager-react-components": "^2.8.1",
     "@ovh-ux/manager-react-core-application": "*",
@@ -31,6 +31,7 @@
     "@ovh-ux/request-tagger": "^0.4.0",
     "@ovhcloud/ods-components": "^18.5.1",
     "@ovhcloud/ods-themes": "^18.5.1",
+    "@tanstack/react-table": "^8.20.1",
     "i18next": "^23.8.2",
     "i18next-http-backend": "^2.4.2",
     "jsurl": "0.1.5",
@@ -40,7 +41,7 @@
     "react-router-dom": "^6.3.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-core-test-utils": "^0.3.3",
+    "@ovh-ux/manager-core-test-utils": "^0.4.0",
     "@ovh-ux/manager-vite-config": "*",
     "@tanstack/react-query": "^5.51.21",
     "@tanstack/react-query-devtools": "^5.51.21",
