@@ -5,7 +5,7 @@ import { URL } from '../logs.service';
 export default class IAMAuditLogsController {
   /* @ngInject */
   constructor(coreConfig) {
-    this.IAM_LOGS_TRACKING_HITS = IAM_LOGS_TRACKING_HITS;
+    this.IAM_AUDIT_LOGS_TRACKING_HITS = IAM_LOGS_TRACKING_HITS.AUDIT;
     this.URL = URL;
     this.logServiceGuideLink =
       GUIDE.LOGS[coreConfig.getUser().ovhSubsidiary] ?? GUIDE.LOGS.GB;
