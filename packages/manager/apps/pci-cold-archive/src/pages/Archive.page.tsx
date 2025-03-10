@@ -12,7 +12,7 @@ import {
   OdsLink,
   OdsText,
 } from '@ovhcloud/ods-components/react';
-import { useContext } from 'react';
+import { Suspense, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useHref, useMatch, useResolvedPath } from 'react-router-dom';
 import { ROUTE_PATHS } from '@/routes';
@@ -99,7 +99,9 @@ export default function ColdArchivePage() {
         }
         tabs={<TabsPanel tabs={tabs} />}
       >
-        <Outlet />
+        <Suspense>
+          <Outlet />
+        </Suspense>
       </BaseLayout>
     </RedirectionGuard>
   );
