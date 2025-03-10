@@ -4,8 +4,9 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('iam.api-keys.delete', {
     url: '/delete/{application:string}',
     views: {
-      'delete-modal': { component: 'iamDeleteEntity' },
+      modal: { component: 'iamDeleteEntity' },
     },
+    layout: 'modal',
     resolve: {
       breadcrumb: () => null,
 
