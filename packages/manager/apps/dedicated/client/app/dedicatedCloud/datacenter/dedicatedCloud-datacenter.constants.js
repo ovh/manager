@@ -9,7 +9,7 @@ export const NSX_COMPATIBLE_COMMERCIAL_RANGE = [
   'SDDC 2018',
 ];
 
-export const NSXT_EDGE_CATALOG = 'privateCloudPreprod';
+export const NSXT_EDGE_CATALOG = 'privateCloud';
 export const NSXT_EDGE_CORE_PLAN_CODE = 'pcc-option-edge-nsxt-core';
 export const NSXT_EDGE_PRICING_MODE = 'pcc-servicepack-vrops-nsxt';
 
