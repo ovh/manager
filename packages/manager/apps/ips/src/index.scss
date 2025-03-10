@@ -5,3 +5,34 @@
 html {
   font-family: var(--ods-font-family-default);
 }
+
+.sub-row > td {
+  padding: 0 0 0 var(--expander-column-width) !important;
+  background-color: var(--ods-color-neutral-050) !important;
+}
+
+.sub-row table,
+.sub-row tr {
+  border: none;
+}
+
+.sub-row table td {
+  border-left: none !important;
+  border-right: none !important;
+}
+
+.sub-row table tr:first-child td {
+  border-top: none;
+}
+
+.sub-row table tr:last-child td {
+  border-bottom: none;
+}
+
+.sub-row table tr td:first-child {
+  border-left: none;
+}
+
+.sub-row table tr td:last-child {
+  border-right: none;
+}
