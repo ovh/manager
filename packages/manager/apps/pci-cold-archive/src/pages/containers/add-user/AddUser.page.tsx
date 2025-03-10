@@ -7,7 +7,7 @@ import {
   OdsSpinner,
   OdsText,
 } from '@ovhcloud/ods-components/react';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { COLD_ARCHIVE_TRACKING } from '@/tracking.constants';
@@ -58,6 +58,8 @@ export default function AddUserToContainerPage() {
   );
 
   const defaultUser = validUsersWithCredentials?.[0];
+
+  const modalRef = useRef(undefined);
 
   const {
     trackConfirmAction,
@@ -121,8 +123,31 @@ export default function AddUserToContainerPage() {
 
   const isPending = isPendingListUsers || isPendingAddUser || isRegionsPending;
 
+  /* The following useEffect is a hack to allow the OdsSelect overflowing
+   * in the OdsModal thus allowing the user to select an item even for long lists.
+   * This hack can be removed once this issue is fixed on ods side, and this
+   * version of ods is available in pci-common & manager-react-components.
+   */
+  useEffect(() => {
+    if (!modalRef.current) return;
+    const { shadowRoot } = modalRef.current;
+    if (!shadowRoot.querySelector('style')) {
+      const style = document.createElement('style');
+      style.innerHTML = `
+        .ods-modal__dialog { overflow: visible !important; }
+        .ods-modal__dialog__content { overflow: visible !important; }
+      `;
+      shadowRoot.appendChild(style);
+    }
+  }, [modalRef.current]);
+
   return (
-    <OdsModal onOdsClose={onClose} isOpen className="modal_add-user">
+    <OdsModal
+      onOdsClose={onClose}
+      isOpen
+      ref={modalRef}
+      className="modal_add-user"
+    >
       <OdsText preset="heading-3">
         {t(
           'pci_projects_project_storages_coldArchive_containers_addUser_container_title',
