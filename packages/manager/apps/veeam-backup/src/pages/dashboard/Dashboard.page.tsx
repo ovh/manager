@@ -1,9 +1,8 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   OsdsChip,
   OsdsMessage,
-  OsdsSkeleton,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
@@ -17,16 +16,11 @@ import {
   Region,
   ChangelogButton,
 } from '@ovh-ux/manager-react-components';
-import {
-  ODS_MESSAGE_TYPE,
-  ODS_SKELETON_SIZE,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
+import { ODS_MESSAGE_TYPE, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import {
   getRegionNameFromAzName,
   getVeeamBackupDisplayName,
   useVeeamBackup,
-  VeeamBackupOffer,
 } from '@ovh-ux/manager-module-vcd-api';
 import { Breadcrumb } from '@/components/Breadcrumb/Breadcrumb';
 import { urls } from '@/routes/routes.constant';
@@ -39,41 +33,14 @@ import { ComingSoonBadge } from '@/components/ComingSoonBadge/ComingSoonBadge';
 import { BillingLink } from '@/components/Links/BillingLink.component';
 import { Loading } from '@/components/Loading/Loading';
 import { BackupStatusBadge } from '@/components/BackupStatus/BackupStatusBadge.component';
-import useVeeamBackupConsumption from '@/data/hooks/useVeeamBackupConsumption';
-import {
-  VEEAM_BACKUP_CONSUMPTION_PLAN_CODE,
-  VEEAM_BACKUP_CONSUMPTION_VCD_VM_CODE,
-} from '@/pages/dashboard/Dashboard.constants';
 import { CHANGELOG_LINKS } from '@/constants';
 
 export default function DashboardPage() {
   const { id } = useParams();
   const { data, isLoading, isError } = useVeeamBackup(id);
-  const {
-    data: consumptions,
-    isLoading: isLoadingConsumption,
-  } = useVeeamBackupConsumption(id);
   const navigate = useNavigate();
   const { t } = useTranslation('dashboard');
   const displayName = getVeeamBackupDisplayName(data?.data);
-
-  const consumedVms = useMemo(() => {
-    if (!Array.isArray(consumptions)) return null;
-    return consumptions.filter(
-      (consumption) =>
-        consumption.planCode === VEEAM_BACKUP_CONSUMPTION_VCD_VM_CODE,
-    ).length;
-  }, [consumptions]);
-
-  const getRealOfferConsumption = (
-    offer: VeeamBackupOffer,
-  ): VeeamBackupOffer => {
-    const consumption = consumptions?.find(
-      ({ planCode }) =>
-        planCode === VEEAM_BACKUP_CONSUMPTION_PLAN_CODE[offer.name],
-    );
-    return { ...offer, usedSpaceInGB: consumption?.quantity ?? 0 };
-  };
 
   const header = {
     title: displayName,
@@ -180,7 +147,7 @@ export default function DashboardPage() {
                       color={ODS_THEME_COLOR_INTENT.primary}
                       inline
                     >
-                      {consumedVms} VMs
+                      {/* {consumedVms} VMs */}
                     </OsdsChip>
                   ),
                 },
@@ -189,14 +156,7 @@ export default function DashboardPage() {
                   label: `${offer.name
                     .at(0)
                     .toUpperCase()}${offer.name.substring(1).toLowerCase()}`,
-                  value: isLoadingConsumption ? (
-                    <>
-                      <OsdsSkeleton inline size={ODS_SKELETON_SIZE.sm} />
-                      <OsdsSkeleton size={ODS_SKELETON_SIZE.md} />
-                    </>
-                  ) : (
-                    <OfferProgress {...getRealOfferConsumption(offer)} />
-                  ),
+                  value: <OfferProgress id={id} offer={offer} />,
                 })) || []),
                 data?.data?.currentState.offers.every(
                   (offer) => offer.name !== 'GOLD',

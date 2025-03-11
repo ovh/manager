@@ -23,5 +23,6 @@
   "billing_contact": "{{code}} Facturation",
   "technical_contact": "{{code}} Technique",
   "terminated_service": "Le service a été résilié.",
-  "space_summary": "{{usedSpaceInGB}} Go ({{percent}}% de {{quotaInTB}} To)"
+  "space_summary": "{{usedSpaceInGB}} Go ({{percent}}% de {{quotaInTB}} To)",
+  "error_loading_consumption": "Impossible de charger les informations de consommation."
 }
