@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.17.2...@ovh-ux/manager-dedicated@20.18.0) (2025-03-11)
+
+
+### Features
+
+* **dedicated.pcc:** disable option sector compliance for SNC ([22c6b15](https://github.com/ovh/manager/commit/22c6b1564ace3c0b8ac59d503d405ca69873aba9)), closes [#MANAGER-17075](https://github.com/ovh/manager/issues/MANAGER-17075)
+
+
+
+
+
 ## [20.17.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.17.1...@ovh-ux/manager-dedicated@20.17.2) (2025-03-06)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated

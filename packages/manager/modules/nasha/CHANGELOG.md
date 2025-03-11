@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.18.0...@ovh-ux/manager-nasha@2.19.0) (2025-03-11)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 266] ([2495741](https://github.com/ovh/manager/commit/2495741e969fef174a4eae8feaafefab90f3f45a))
+
+
+### Features
+
+* **nasha:** enable translations for templates ([09a5d8d](https://github.com/ovh/manager/commit/09a5d8de92d88778e71c6a8d28a28aebe85f7724))
+* **nasha:** modify modal to include template usage selection ([1301010](https://github.com/ovh/manager/commit/130101012b7a0eb68919d83fb9080c5389fe47b1))
+
+
+
+
+
 # [2.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.17.0...@ovh-ux/manager-nasha@2.18.0) (2025-02-20)
 
 
