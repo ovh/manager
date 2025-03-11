@@ -3,7 +3,7 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/terminate-vrack?service&serviceType',
     views: {
       modal: {
-        component: 'billingAutorenewTerminateVrack',
+        component: 'billingTerminateVrack',
       },
     },
     layout: 'modal',

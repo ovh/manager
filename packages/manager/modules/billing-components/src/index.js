@@ -10,6 +10,7 @@ import cancellationForm from './components/cancellation-form';
 import servicesActions from './components/services-actions';
 import serviceStatus from './components/service-status';
 import splitPayment from './components/split-payment';
+import terminateVrack from './components/terminate-vrack';
 import subscriptionTile from './components/subscription-tile';
 import autoRenew2016DeploymentBanner from './components/auto-renew-2016-deployment-banner';
 import { RENEW_URL } from './components/services-actions/service-actions.constants';
@@ -33,6 +34,7 @@ angular.module(moduleName, [
   servicesActions,
   serviceStatus,
   splitPayment,
+  terminateVrack,
   subscriptionTile,
   autoRenew2016DeploymentBanner,
   autoRenewPaymentMethod,

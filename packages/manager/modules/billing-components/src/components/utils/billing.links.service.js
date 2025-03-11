@@ -106,6 +106,7 @@ export default class BillingLinksService {
         case SERVICE_TYPE.VRACK:
           if (service.status !== SUSPENDED_SERVICE) {
             links.resiliateLink = `${autorenewLink}/terminate-vrack?service=${service.serviceId}${serviceTypeParam}`;
+            // links.resiliateLink = `${autorenewLink}?selectedType=VRACK&terminate=${service.serviceId}${serviceTypeParam}`;
           }
           break;
         case SERVICE_TYPE.OKMS:

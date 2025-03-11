@@ -10,5 +10,5 @@ export default {
   },
   controller,
   template,
-  name: 'billingAutorenewTerminateVrack',
+  name: 'billingTerminateVrack',
 };
