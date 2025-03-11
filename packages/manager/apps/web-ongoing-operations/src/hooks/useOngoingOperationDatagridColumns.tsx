@@ -8,7 +8,7 @@ import { FilterCategories } from '@ovh-ux/manager-core-api';
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { formatDatagridDate, removeQuotes } from '@/utils/utils';
 import OngoingOperationDatagridBadge from '@/components/OngoingOperationDatagridBadge/OngoingOperationDatagridBadge';
-import { UseWebCloudManagerUrl } from '@/hooks/url/useWebCloudManagerUrl';
+import { useWebCloudManagerUrl } from '@/hooks/url/useWebCloudManagerUrl';
 import { DNS_OPERATIONS_TABLE_HEADER_DOMAIN } from '@/pages/dashboard/Dashboard';
 
 export enum ParentEnum {
@@ -31,7 +31,7 @@ export const useOngoingOperationDatagridColumns = (
         id: parent,
         cell: (props: TOngoingOperations) => {
           const value: string = props[parent];
-          const url: string = UseWebCloudManagerUrl(parent, value);
+          const url: string = useWebCloudManagerUrl(parent, value);
           return (
             <DataGridTextCell>
               <OdsLink

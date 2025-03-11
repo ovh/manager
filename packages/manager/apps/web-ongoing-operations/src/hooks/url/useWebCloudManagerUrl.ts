@@ -1,7 +1,7 @@
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useContext, useEffect, useState } from 'react';
 
-export const UseWebCloudManagerUrl = (path: string, value: string) => {
+export const useWebCloudManagerUrl = (path: string, value: string) => {
   const nav = useContext(ShellContext).shell.navigation;
   const [url, setUrl] = useState('');
 
