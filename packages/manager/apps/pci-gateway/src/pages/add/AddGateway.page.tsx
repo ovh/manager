@@ -3,10 +3,11 @@ import {
   OsdsDivider,
   OsdsIcon,
   OsdsLink,
+  OsdsSpinner,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
 import { useHref, useParams } from 'react-router-dom';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   ODS_THEME_COLOR_INTENT,
@@ -35,6 +36,7 @@ import { useNewGatewayStore } from '@/pages/add/useStore';
 import { PUBLIC_GATEWAYS_READ_MORE_GUIDE } from '@/constants';
 import { ACTION_PREFIX } from '@/tracking.constants';
 import HidePreloader from '@/core/HidePreloader';
+import { useGatewayHourlyAddons } from '@/api/hooks/useGateways/useGateways';
 
 export default function AddGatewayPage(): JSX.Element {
   const { t } = useTranslation('common');
@@ -51,6 +53,16 @@ export default function AddGatewayPage(): JSX.Element {
   const learnMoreLink =
     PUBLIC_GATEWAYS_READ_MORE_GUIDE.ALL_GUIDE[ovhSubsidiary] ||
     PUBLIC_GATEWAYS_READ_MORE_GUIDE.ALL_GUIDE.DEFAULT;
+
+  const { addons, isFetching: isAddonsFetching } = useGatewayHourlyAddons(
+    ovhSubsidiary,
+    projectId,
+  );
+
+  const regions = useMemo(
+    () => addons.flatMap((addon) => addon.regions || []),
+    [addons],
+  );
 
   // reset form on page load
   useEffect(() => {
@@ -165,9 +177,17 @@ export default function AddGatewayPage(): JSX.Element {
       </div>
 
       <div className="grid grid-cols-1 gap-4">
-        <SizeStep />
-        <LocationStep />
-        <NetworkStep />
+        {isAddonsFetching ? (
+          <div className="text-center">
+            <OsdsSpinner inline />
+          </div>
+        ) : (
+          <>
+            <LocationStep regions={regions} />
+            <SizeStep ovhSubsidiary={ovhSubsidiary} />
+            <NetworkStep />
+          </>
+        )}
       </div>
     </>
   );

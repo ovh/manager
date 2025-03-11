@@ -3252,11 +3252,6 @@
   resolved "https://registry.yarnpkg.com/@cucumber/tag-expressions/-/tag-expressions-6.1.0.tgz#cb7af908bdb43669b7574c606f71fa707196e962"
   integrity sha512-+3DwRumrCJG27AtzCIL37A/X+A/gSfxOPLg8pZaruh5SLumsTmpvilwroVWBT2fPzmno/tGXypeK5a7NHU4RzA==
 
-"@datatr-ux/ovhcloud-types@^1.0.7":
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/@datatr-ux/ovhcloud-types/-/ovhcloud-types-1.0.7.tgz#8ca98acf725cf61ebfbc05ca5270fa33d4e9afc9"
-  integrity sha512-9pQZevNTX3fpYpMww1Ynhj9E/jNybZHq1osphSw5NCVBfDsZ4DNouwe3f/jZtbmIqVNYRCKXoIooh+07dV4aVA==
-
 "@discoveryjs/json-ext@^0.5.0", "@discoveryjs/json-ext@^0.5.3":
   version "0.5.7"
   resolved "https://registry.yarnpkg.com/@discoveryjs/json-ext/-/json-ext-0.5.7.tgz#1d572bfbbe14b7704e0ba0f39b74815b84870d70"

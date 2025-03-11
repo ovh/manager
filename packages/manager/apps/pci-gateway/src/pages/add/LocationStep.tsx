@@ -18,7 +18,7 @@ import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { StepsEnum, useNewGatewayStore } from '@/pages/add/useStore';
 import { TAvailableRegion, useData } from '@/api/hooks/data';
-import { RegionType } from '@/types/region';
+import { RegionType, TProductAvailabilityRegion } from '@/types/region';
 
 type IState = {
   regions: TAvailableRegion[];
@@ -36,7 +36,11 @@ const isRegionWith3AZ = (regions: TAvailableRegion[]) =>
  * Not in migration scope
  * TODO : move groups(continent) from translation files
  */
-export const LocationStep = () => {
+export const LocationStep = ({
+  regions,
+}: {
+  regions: TProductAvailabilityRegion[];
+}) => {
   const { t } = useTranslation(['stepper', 'add']);
   const { projectId } = useParams();
   const [searchParams] = useSearchParams();
@@ -96,7 +100,7 @@ export const LocationStep = () => {
   return (
     <StepComponent
       id={StepsEnum.LOCATION}
-      order={2}
+      order={1}
       isOpen={store.steps.get(StepsEnum.LOCATION).isOpen}
       isChecked={store.steps.get(StepsEnum.LOCATION).isChecked}
       isLocked={store.steps.get(StepsEnum.LOCATION).isLocked}
@@ -126,7 +130,7 @@ export const LocationStep = () => {
           ? (id) => {
               store.updateStep.check(id as StepsEnum);
               store.updateStep.lock(id as StepsEnum);
-              store.updateStep.open(StepsEnum.NETWORK);
+              store.updateStep.open(StepsEnum.SIZE);
               tracking.trackClick({
                 name: 'public-gateway_add_select-region',
                 type: 'action',
@@ -141,10 +145,14 @@ export const LocationStep = () => {
           store.updateStep.unCheck(id as StepsEnum);
           store.updateStep.unlock(id as StepsEnum);
 
-          store.updateStep.close(StepsEnum.NETWORK);
+          store.updateForm.regionName(undefined);
+          store.updateStep.close(StepsEnum.SIZE);
+          store.updateStep.unCheck(StepsEnum.SIZE);
+          store.updateStep.unlock(StepsEnum.SIZE);
 
           store.updateForm.name(undefined);
           store.updateForm.network(undefined, undefined);
+          store.updateStep.close(StepsEnum.NETWORK);
         },
         label: t('stepper:common_stepper_modify_this_step'),
         isDisabled: false,
@@ -155,7 +163,7 @@ export const LocationStep = () => {
           projectId={projectId}
           onSelectRegion={(region) => store.updateForm.regionName(region?.name)}
           regionFilter={(r) =>
-            r.isMacro || state.regions.some(({ name }) => name === r.name)
+            r.isMacro || regions.some(({ name }) => name === r.name)
           }
         />
       </PCICommonContext.Provider>

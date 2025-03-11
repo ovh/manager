@@ -56,7 +56,7 @@ type TStore = {
 const getInitialSteps = () =>
   new Map([
     [
-      StepsEnum.SIZE,
+      StepsEnum.LOCATION,
       {
         isOpen: true,
         isChecked: false,
@@ -64,7 +64,7 @@ const getInitialSteps = () =>
       },
     ],
     [
-      StepsEnum.LOCATION,
+      StepsEnum.SIZE,
       {
         isOpen: false,
         isChecked: false,
