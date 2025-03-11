@@ -257,7 +257,7 @@ export const useCreateContainer = ({
   onError,
 }: {
   projectId: string;
-  onSuccess: (container: TArchiveContainer) => void;
+  onSuccess?: (container: TArchiveContainer) => void;
   onError: (error: ApiError) => void;
 }) => {
   const region = useArchiveRegion();
@@ -268,13 +268,15 @@ export const useCreateContainer = ({
     onError,
     onSuccess: (result) => {
       invalidateGetArchivesCache(projectId, region);
-      onSuccess(result);
+      onSuccess?.(result);
     },
   });
 
   return {
     createContainer: (container: { name: string; ownerId: number }) =>
       mutation.mutate(container),
+    createContainerAsync: (container: { name: string; ownerId: number }) =>
+      mutation.mutateAsync(container),
     ...mutation,
   };
 };
