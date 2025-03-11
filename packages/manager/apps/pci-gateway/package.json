@@ -16,6 +16,7 @@
     "test:watch": "vitest dev"
   },
   "dependencies": {
+    "@datatr-ux/ovhcloud-types": "^1.0.7",
     "@ovh-ux/manager-config": "^8.0.2",
     "@ovh-ux/manager-core-api": "^0.10.0",
     "@ovh-ux/manager-pci-common": "^0.15.2",
