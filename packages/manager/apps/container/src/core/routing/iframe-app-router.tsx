@@ -82,15 +82,6 @@ export function IFrameAppRouter({
       delete newConfiguration['octavia-load-balancer'];
     }
 
-    newConfiguration['pci-instances'] = {
-      ...newConfiguration['pci-instances'],
-      container: {
-        ...newConfiguration['pci-instances'].container,
-        hash: undefined,
-        hashes: [newConfiguration['pci-instances'].container.hash as string],
-      },
-    };
-
     return newConfiguration;
   }, [configuration]);
 
