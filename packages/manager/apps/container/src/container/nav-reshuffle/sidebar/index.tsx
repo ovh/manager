@@ -56,12 +56,13 @@ const Sidebar = (): JSX.Element => {
     isMobile,
     isAnimated,
     setIsAnimated,
+    isNavigationSidebarOpened
   } = useProductNavReshuffle();
   const [servicesCount, setServicesCount] = useState<ServicesCount>(null);
   const [selectedNode, setSelectedNode] = useState<Node>(null);
   const [showSubTree, setShowSubTree] = useState<boolean>(false);
   const [selectedSubMenu, setSelectedSubMenu] = useState<Node>(null);
-  const [open, setOpen] = useState<boolean>(true);
+  const [open, setOpen] = useState<boolean>(isNavigationSidebarOpened);
   const [assistanceTree, setAssistanceTree] = useState<Node>(null);
   const logoLink = navigationPlugin.getURL('hub', '#/');
   const savedLocationKey = 'NAVRESHUFFLE_SAVED_LOCATION';
@@ -101,8 +102,9 @@ const Sidebar = (): JSX.Element => {
   }, []);
 
   useEffect(() => {
-    if (isMobile) setOpen(true);
-  }, [isMobile]);
+    if (isMobile) setOpen(isNavigationSidebarOpened);
+    console.log("coucou")
+  }, [isMobile, isNavigationSidebarOpened]);
 
   useEffect(() => {
     if (!currentNavigationNode) return;
@@ -225,7 +227,6 @@ const Sidebar = (): JSX.Element => {
     const close = () => {
       setIsManuallyClosed(true);
       setSelectedSubMenu(null);
-      setIsManuallyClosed(true);
     };
 
     isMobile
@@ -276,7 +277,7 @@ const Sidebar = (): JSX.Element => {
   return (
     <div
       className={`${style.sidebar} ${
-        selectedNode ? style.sidebar_selected : ''
+        (selectedNode && !isManuallyClosed) ? style.sidebar_selected : ''
       }`}
     >
       <div
@@ -322,11 +323,6 @@ const Sidebar = (): JSX.Element => {
                         ? style.sidebar_menu_items_selected
                         : ''
                     }`}
-                    className={`py-1 ${style.sidebar_menu_items} ${
-                      node.id === selectedNode?.id
-                        ? style.sidebar_menu_items_selected
-                        : ''
-                    }`}
                     role="menuitem"
                   >
                     <SidebarLink
@@ -358,16 +354,6 @@ const Sidebar = (): JSX.Element => {
                 role="link"
                 title={t('sidebar_service_add')}
               >
-                <div className="flex justify-center align-middle p-0 m-0">
-                  <SvgIconWrapper
-                    name={OvhProductName.SHOPPINGCARTPLUS}
-                    height={24}
-                    width={24}
-                    className="fill-[var(--ods-color-primary-500)]"
-                  />
-                  {open && (
-                    <span className="ml-3">{t('sidebar_service_add')}</span>
-                  )}
                 <div className="flex justify-center align-middle p-0 m-0">
                   <SvgIconWrapper
                     name={OvhProductName.SHOPPINGCARTPLUS}

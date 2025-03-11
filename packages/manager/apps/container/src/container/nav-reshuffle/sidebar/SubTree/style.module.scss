@@ -13,9 +13,10 @@
     width: 0rem;
     overflow-y: auto;
 
-    transform: scaleX(0);
+    transform: translateX(-100%);
     transform-origin: 0% 50%;
     opacity: 0;
+    z-index: 10;
 
     &_animated {
       transition: transform 0.3s ease-in, opacity 0.3s ease-in,
@@ -33,13 +34,13 @@
     }
 
     &_open {
-      transform: scaleX(1);
+      transform: translateX(0);
       opacity: 1;
       width: 20rem;
     }
 
     &_close {
-      transform: scaleX(0);
+      transform: translateX(-100%);
       opacity: 0;
       width: 20rem;
     }
@@ -126,6 +127,7 @@
   .subtree {
     left: 0;
     width: 100%;
+    z-index: 21;
     &_content {
       position: absolute;
       top: 0;

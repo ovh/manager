@@ -28,6 +28,7 @@ $sidebar-font-size: 0.875rem;
     scrollbar-width: none;
     background-color: $p-700;
     transform-origin: left;
+    z-index: 20;
 
     &::-webkit-scrollbar {
       display: none;
