@@ -6,7 +6,7 @@ import {
   OnboardingLayout,
 } from '@ovh-ux/manager-react-components';
 import { useNavigate } from 'react-router-dom';
-import { OdsMessage } from '@ovhcloud/ods-components/react';
+import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 import { useOrganizationList } from '@ovh-ux/manager-module-vcd-api';
 import { useGuideUtils } from './useGuideUtils';
 import onboardingImgSrc from '@/assets/veeamxOVHcloud.svg';
@@ -72,7 +72,9 @@ export default function Onboarding() {
       <OnboardingLayout
         title={productFullName}
         img={{ src: onboardingImgSrc }}
-        description={t('description')}
+        description={
+          <OdsText className="text-center">{t('description')}</OdsText>
+        }
         orderButtonLabel={t('order_button_label')}
         isActionDisabled={!organizationList?.length}
         onOrderButtonClick={() => navigate(urls.orderVeeam)}

@@ -41,7 +41,7 @@ export default function OrderVeeamPage() {
       subtitle={t('select_offer_title')}
     >
       <OdsText>{t('select_offer_description')}</OdsText>
-      <BillingLink className="mb-4" />
+      <BillingLink className="block mb-4" />
       {isError ? (
         <OdsMessage color="danger">
           {t('catalog_error', { error: error?.response?.data?.message })}
