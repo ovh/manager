@@ -17,6 +17,8 @@ export default defineConfig({
         'src/index.tsx',
         'src/tracking.constant.ts',
         'src/vite-hmr.ts',
+        'src/**/*.spec.tsx',
+        'src/**/*.spec.ts',
       ],
     },
     testTimeout: 60000,
