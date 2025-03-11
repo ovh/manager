@@ -108,7 +108,7 @@ export default function DatagridContainer({
     <div className={layoutCss}>
       <div className="flex items-center justify-between mt-4">
         {header}
-        <ChangelogButton links={CHANGELOG_LINKS} />
+        {!isEmbedded && <ChangelogButton links={CHANGELOG_LINKS} />}
       </div>
       <OsdsDivider />
       {orderButton && <div className="w-fit mb-8">{orderButton}</div>}
