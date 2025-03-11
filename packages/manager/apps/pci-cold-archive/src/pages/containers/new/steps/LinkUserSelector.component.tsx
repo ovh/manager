@@ -6,18 +6,18 @@ import {
   OdsSpinner,
   OdsText,
 } from '@ovhcloud/ods-components/react';
-import { useCallback, useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useNotifications } from '@ovh-ux/manager-react-components';
+import { useCallback, useState } from 'react';
+import { Translation, useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import {
   OdsSelectCustomEvent,
   OdsSelectChangeEventDetail,
 } from '@ovhcloud/ods-components';
-import { TS3Credentials, TUser } from '@/api/data/users';
+import { TUser } from '@/api/data/users';
 import {
   invalidateGetUsersCache,
-  useGenerateS3Credentials,
-  usePostS3Secret,
+  useUserCredentials,
   useUsers,
 } from '@/api/hooks/useUsers';
 import LabelComponent from '@/components/Label.component';
@@ -34,70 +34,45 @@ export default function LinkUserSelector({
   onSelectOwner,
   onCancel,
 }: Readonly<LinkUserSelectorProps>) {
-  const { t } = useTranslation('cold-archive/new/link-user');
-
+  const { t } = useTranslation(['cold-archive/new/link-user', 'users']);
   const { projectId } = useParams();
-
-  const { validUsers, isPending: isGetUsersPending } = useUsers(projectId);
-  const formUser = validUsers?.find((user) => user.id === userId);
-
-  const [secretUser, setSecretUser] = useState('');
-  const [s3Credentials, setS3Credentials] = useState<TS3Credentials | null>(
-    null,
-  );
-
-  const [
-    haveShowedOrGeneratedCredentials,
-    setHaveShowedOrGeneratedCredentials,
-  ] = useState(false);
+  const { validUsers, isPending: isUsersPending } = useUsers(projectId);
+  const selectedUser = validUsers?.find((user) => user.id === userId);
+  const [credentials, setCredentials] = useState<TUser['s3Credentials']>();
+  const [isCredentialsVisible, setCredentialsVisible] = useState(false);
+  const { addError } = useNotifications();
 
   const {
-    postS3Secret: showSecretKey,
-    isPending: isSecretGenerationPending,
-  } = usePostS3Secret({
-    projectId,
-    userId: formUser?.id,
-    userAccess: formUser?.s3Credentials?.access,
-    onSuccess: ({ secret }) => setSecretUser(secret),
-  });
+    getCredentialsAsync,
+    isPending: isCredentialsPending,
+  } = useUserCredentials(projectId, selectedUser?.id);
 
-  const {
-    generateS3Credentials,
-    isPending: isCredentialsGenerationPending,
-  } = useGenerateS3Credentials({
-    projectId,
-    onSuccess: (credentials) => {
-      setS3Credentials(credentials);
-      onSelectOwner({
-        ...formUser,
-        access: credentials?.access,
-        s3Credentials: credentials,
-      });
-      setSecretUser(credentials.secret);
-      invalidateGetUsersCache(projectId);
-    },
-  });
-
-  useEffect(() => {
-    if (formUser?.s3Credentials) {
-      showSecretKey();
+  const onShowCredentials = async () => {
+    try {
+      const s3Credentials = await getCredentialsAsync();
+      setCredentials(s3Credentials);
+      setCredentialsVisible(true);
+    } catch (error) {
+      addError(
+        <Translation ns="users">
+          {(_t) =>
+            _t(
+              'pci_projects_project_storages_containers_users_show_secret_key_error',
+              {
+                user: selectedUser?.username,
+                message:
+                  error?.response?.data?.message || error?.message || null,
+              },
+            )
+          }
+        </Translation>,
+        true,
+      );
     }
-  }, [formUser]);
-
-  const onShowCredentials = () => {
-    if (!formUser?.s3Credentials) {
-      generateS3Credentials(formUser?.id);
-    }
-
-    setHaveShowedOrGeneratedCredentials(true);
   };
 
-  const isPending =
-    isGetUsersPending ||
-    isSecretGenerationPending ||
-    isCredentialsGenerationPending;
-
-  const isDisabled = !formUser || haveShowedOrGeneratedCredentials || isPending;
+  const isPending = isUsersPending || isCredentialsPending;
+  const isDisabled = !selectedUser || isPending;
 
   const handleSelectChange = useCallback(
     (event: OdsSelectCustomEvent<OdsSelectChangeEventDetail>) => {
@@ -122,10 +97,10 @@ export default function LinkUserSelector({
           <OdsSelect
             className="min-w-[35rem]"
             key={`select-users-${validUsers?.length}`}
-            value={`${formUser?.id}`}
+            defaultValue={`${selectedUser?.id}`}
             name="selectUser"
-            isDisabled={haveShowedOrGeneratedCredentials || isPending}
-            onOdsChange={(event) => handleSelectChange(event)}
+            isDisabled={isCredentialsVisible || isPending}
+            onOdsChange={handleSelectChange}
             customRenderer={{
               option: (data) => {
                 return `<div style="display: flex; justify-content: space-between; align-items: center;">
@@ -155,11 +130,15 @@ export default function LinkUserSelector({
           {isPending && <OdsSpinner size="sm" />}
         </div>
       </OdsFormField>
-      {haveShowedOrGeneratedCredentials && s3Credentials && (
+
+      {isCredentialsVisible && credentials && (
         <OdsMessage
           color="success"
           isDismissible
-          onOdsRemove={() => setHaveShowedOrGeneratedCredentials(false)}
+          onOdsRemove={() => {
+            invalidateGetUsersCache(projectId);
+            setCredentialsVisible(false);
+          }}
         >
           <UserInformationTile
             title={
@@ -169,22 +148,23 @@ export default function LinkUserSelector({
                     __html: t(
                       'users/credentials:pci_projects_project_storages_containers_add_linked_user_success_message',
                       {
-                        username: `<strong>${formUser?.username}</strong>`,
+                        username: `<strong>${selectedUser?.username}</strong>`,
                         // This hack is used beacause the italian translation use userName instead of username
-                        userName: `<strong>${formUser?.username}</strong>`,
+                        userName: `<strong>${selectedUser?.username}</strong>`,
                       },
                     ),
                   }}
                 />
               </OdsText>
             }
-            username={formUser?.username}
-            description={formUser?.description}
-            accessKey={s3Credentials?.access}
-            secret={secretUser}
+            username={selectedUser?.username}
+            description={selectedUser?.description}
+            accessKey={credentials?.access}
+            secret={credentials?.secret}
           />
         </OdsMessage>
       )}
+
       <div className="flex gap-4">
         <OdsButton
           onClick={onCancel}
