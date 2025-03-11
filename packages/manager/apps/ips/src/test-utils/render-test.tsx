@@ -39,7 +39,19 @@ import {
   GetOrganisationMocksParams,
   getIamMocks,
   GetIamMocksParams,
+  GetCatalogMocksParams,
 } from '../../mocks';
+
+export type MockParams = GetIpsMocksParams &
+  GetIamMocksParams &
+  GetDedicatedMocksParams &
+  GetServicesMocksParams &
+  GetDedicatedCloudMocksParams &
+  GetDedicatedServerMocksParams &
+  GetVrackMocksParams &
+  GetVpsMocksParams &
+  GetOrganisationMocksParams &
+  GetCatalogMocksParams;
 
 const APP_NAME = 'ips';
 
@@ -49,17 +61,7 @@ let i18nState: i18n;
 export const renderTest = async ({
   initialRoute,
   ...mockParams
-}: {
-  initialRoute?: string;
-} & GetIpsMocksParams &
-  GetIamMocksParams &
-  GetDedicatedMocksParams &
-  GetServicesMocksParams &
-  GetDedicatedCloudMocksParams &
-  GetDedicatedServerMocksParams &
-  GetVrackMocksParams &
-  GetVpsMocksParams &
-  GetOrganisationMocksParams = {}) => {
+}: { initialRoute?: string } & MockParams = {}) => {
   ((global as unknown) as { server: SetupServer }).server?.resetHandlers(
     ...toMswHandlers([
       ...getIpsMocks(mockParams),
@@ -67,7 +69,7 @@ export const renderTest = async ({
       ...getDedicatedMocks(mockParams),
       ...getAuthenticationMocks({ isAuthMocked: true }),
       ...getServicesMocks(mockParams),
-      ...getCatalogMocks(),
+      ...getCatalogMocks(mockParams),
       ...getDedicatedCloudMocks(mockParams),
       ...getDedicatedServerMocks(mockParams),
       ...getVrackMocks(mockParams),

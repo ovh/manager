@@ -90,6 +90,7 @@ export const getDedicatedCloudMocks = ({
             message: `The requested object (pccZone = ${params.zone}) does not exist`,
           }
         : location,
+    status: hasPccZoneError ? 400 : 200,
     api: 'v6',
   },
   {
