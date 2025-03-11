@@ -23,12 +23,11 @@ import { useTracking } from '@/hooks/useTracking';
 import { CHECK_PRICES_DOC_LINK } from '@/constants';
 import UserInformationTile from '@/components/UserInformationTile.component';
 import { useCreateContainer } from '@/api/hooks/useArchive';
-import { TArchiveContainer } from '@/api/data/archive';
 import { ContainerNameStep } from './steps/ContainerNameStep.component';
 import { LinkUserStep } from './steps/LinkUserStep.component';
 import { useContainerCreationStore } from './useContainerCreationStore';
 import GuideMenu from '@/components/GuideMenu.component';
-import { usePostS3Secret } from '@/api/hooks/useUsers';
+import { useUserCredentials } from '@/api/hooks/useUsers';
 
 export default function ContainerNewPage() {
   const { t } = useTranslation([
@@ -39,64 +38,60 @@ export default function ContainerNewPage() {
 
   const projectHref = useProjectUrl('public-cloud');
   const { data: project } = useProject();
-
   const navigate = useNavigate();
-
   const { trackConfirmAction, trackSuccessPage, trackErrorPage } = useTracking(
     COLD_ARCHIVE_TRACKING.CONTAINERS.ADD_CONTAINER,
   );
-
   const { addError, addSuccess, clearNotifications } = useNotifications();
-
   const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
   const pricesLink =
     CHECK_PRICES_DOC_LINK[ovhSubsidiary] || CHECK_PRICES_DOC_LINK.DEFAULT;
-
   const { form, reset } = useContainerCreationStore();
-
   const goBack = () => navigate('..');
 
-  useEffect(() => {
+  const {
+    getCredentialsAsync,
+    isPending: isCredentialsPending,
+  } = useUserCredentials(project.project_id, form.ownerId);
+
+  const reportError = (error: ApiError) => {
     clearNotifications();
-  }, []);
+    addError(
+      <Translation ns="cold-archive/new">
+        {(_t) =>
+          _t(
+            'pci_projects_project_storages_cold_archive_add_action_create_archive_create_request_failed',
+            {
+              containerName: form.containerName,
+              message: error?.response?.data?.message || error?.message || null,
+            },
+          )
+        }
+      </Translation>,
+      true,
+    );
+    trackErrorPage();
+    window.scrollTo(0, 0);
+  };
 
   const {
-    mutateAsync: postSecretAsync,
-    isPending: isSecretPending,
-  } = usePostS3Secret({
-    projectId: project?.project_id,
-    userId: form.selectedUser?.id,
-    userAccess: form.selectedUser?.s3Credentials?.access,
-    onSuccess({ secret }) {
-      if (form.selectedUser?.s3Credentials) {
-        form.selectedUser.s3Credentials.secret = secret;
-      }
-    },
-    onError: (error: ApiError) => {
-      addError(
-        <Translation ns="cold-archive/new">
-          {(_t) =>
-            _t(
-              'pci_projects_project_storages_cold_archive_add_action_create_archive_create_request_failed',
-              {
-                containerName: form.containerName,
-                message:
-                  error?.response?.data?.message || error?.message || null,
-              },
-            )
-          }
-        </Translation>,
-        true,
-      );
-      trackErrorPage();
-      window.scrollTo(0, 0);
-    },
+    createContainerAsync,
+    isPending: isCreationPending,
+  } = useCreateContainer({
+    projectId: project.project_id,
+    onError: reportError,
   });
 
-  const { createContainer, isPending: isCreationPending } = useCreateContainer({
-    projectId: project.project_id,
-    onSuccess: (container: TArchiveContainer) => {
-      clearNotifications();
+  const isPending = isCreationPending || isCredentialsPending;
+
+  const onCreateContainer = async () => {
+    trackConfirmAction();
+    try {
+      const s3Credentials = await getCredentialsAsync();
+      const container = await createContainerAsync({
+        ownerId: form.ownerId,
+        name: form.containerName,
+      });
       addSuccess(
         <UserInformationTile
           title={
@@ -118,53 +113,21 @@ export default function ContainerNewPage() {
           }
           username={form.selectedUser.username}
           description={form.selectedUser.description}
-          accessKey={form.selectedUser?.s3Credentials?.access}
-          secret={form.selectedUser?.s3Credentials?.secret}
+          accessKey={s3Credentials.access}
+          secret={s3Credentials.secret}
         />,
         false,
       );
-
       trackSuccessPage();
       goBack();
-    },
-    onError: (error: ApiError) => {
-      clearNotifications();
-      addError(
-        <Translation ns="cold-archive/new">
-          {(_t) =>
-            _t(
-              'pci_projects_project_storages_cold_archive_add_action_create_archive_create_request_failed',
-              {
-                containerName: form.containerName,
-                message:
-                  error?.response?.data?.message || error?.message || null,
-              },
-            )
-          }
-        </Translation>,
-        true,
-      );
-
-      trackErrorPage();
-      window.scrollTo(0, 0);
-    },
-  });
-
-  const isPending = isSecretPending || isCreationPending;
-
-  const onCreateContainer = async () => {
-    trackConfirmAction();
-    if (!form.selectedUser?.s3Credentials?.secret) {
-      await postSecretAsync();
+    } catch (error) {
+      reportError(error);
     }
-    createContainer({
-      ownerId: form.ownerId,
-      name: form.containerName,
-    });
   };
 
   useEffect(() => {
     reset();
+    clearNotifications();
   }, []);
 
   return (

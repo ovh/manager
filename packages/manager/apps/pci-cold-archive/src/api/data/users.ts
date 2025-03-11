@@ -44,7 +44,7 @@ export const getAllUsers = async (projectId: string): Promise<TUser[]> => {
 
 export const getS3Credentials = async (
   projectId: string,
-  userId: string,
+  userId: number,
 ): Promise<TS3Credentials[]> => {
   const { data } = await v6.get<TS3Credentials[]>(
     `/cloud/project/${projectId}/user/${userId}/s3Credentials`,
