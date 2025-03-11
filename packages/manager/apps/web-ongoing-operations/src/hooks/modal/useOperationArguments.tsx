@@ -26,7 +26,7 @@ const getMeTaskArguments = async (
 
 export function useOperationArguments(id: number) {
   return useQuery<TOperationArguments>({
-    queryKey: ['arguments'],
+    queryKey: ['arguments', id],
     queryFn: () => getMeTaskArguments(id),
   });
 }
