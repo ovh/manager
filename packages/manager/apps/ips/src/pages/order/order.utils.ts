@@ -32,6 +32,7 @@ const getPlanCode = (planCode: string, offer: IpOffer, region: string) =>
  * Returns the express order settings
  */
 export const getAdditionalIpsProductSettings = ({
+  ipVersion,
   serviceName,
   serviceType,
   planCode,
@@ -47,7 +48,9 @@ export const getAdditionalIpsProductSettings = ({
       { label: 'destination', value: serviceName },
       geolocation && { label: 'country', value: geolocation.toUpperCase() },
       organisation && { label: 'organisation', value: organisation },
+      ipVersion === IpVersion.ipv6 && { label: 'ip_region', value: region },
       region &&
+        ipVersion === IpVersion.ipv4 &&
         ![
           ServiceType.vps,
           ServiceType.dedicatedCloud,
@@ -67,6 +70,7 @@ export const getAdditionalIpsProductSettings = ({
       serviceType === ServiceType.dedicatedCloud ? serviceName : null,
     datacenter:
       region &&
+      ipVersion === IpVersion.ipv4 &&
       ![
         ServiceType.vps,
         ServiceType.dedicatedCloud,

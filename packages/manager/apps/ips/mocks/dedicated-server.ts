@@ -40,12 +40,41 @@ export const dedicatedServerMockList: DedicatedServer[] = [
 export type GetDedicatedServerMocksParams = {
   nbDedicatedServers?: number;
   isDedicatedServerExpired?: boolean;
+  isDedicatedServerCannotOrderIp?: boolean;
 };
 
 export const getDedicatedServerMocks = ({
   nbDedicatedServers = 1,
   isDedicatedServerExpired,
+  isDedicatedServerCannotOrderIp,
 }: GetDedicatedServerMocksParams): Handler[] => [
+  {
+    url: '/dedicated/server/:serviceName/orderable/ip',
+    response: isDedicatedServerCannotOrderIp
+      ? { ipv6: [], ipv4: [] }
+      : {
+          ipv6: [],
+          ipv4: [
+            {
+              ipNumber: 256,
+              type: 'failover',
+              included: true,
+              optionRequired: null,
+              number: 64,
+              blockSizes: [1, 4, 8, 16, 32, 64, 128, 256],
+            },
+            {
+              optionRequired: null,
+              included: false,
+              number: 5,
+              blockSizes: [1],
+              type: 'unshielded',
+              ipNumber: 5,
+            },
+          ],
+        },
+    api: 'v6',
+  },
   {
     url: '/dedicated/server/:serviceName/serviceInfos',
     response: isDedicatedServerExpired ? expiredService : availableService,
