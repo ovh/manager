@@ -66,7 +66,7 @@ export default function ListingPage() {
 
   const columns = useDatagridColumn();
 
-  const isPending = !region || isContainersPending;
+  const isPending = !region || isContainersPending || isFetching;
 
   return (
     <RedirectionGuard
