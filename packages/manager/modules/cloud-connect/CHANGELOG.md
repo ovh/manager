@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.19.0...@ovh-ux/manager-cloud-connect@1.20.0) (2025-03-11)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 269] ([9009cfb](https://github.com/ovh/manager/commit/9009cfb7999d2365648ddfa0de577f851a475423))
+* **occ:** fix datacenter diagnostic type ([de967c2](https://github.com/ovh/manager/commit/de967c2a6bbb8ace1cf7d86dced40fa1e1ce34ec)), closes [#MANAGER-15324](https://github.com/ovh/manager/issues/MANAGER-15324)
+
+
+### Features
+
+* **cloud-connect:** group dc config based on region ([48aa84e](https://github.com/ovh/manager/commit/48aa84e623eb3aac79eba89600583e0d7ef2c3f4))
+* **cloud-connect:** modify region name and location ([5e86aad](https://github.com/ovh/manager/commit/5e86aadbf470bfaa76a9e35adf03fd998fd39316))
+
+
+
+
+
 # [1.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.18.0...@ovh-ux/manager-cloud-connect@1.19.0) (2025-03-03)
 
 

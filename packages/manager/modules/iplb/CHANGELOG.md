@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.20.0...@ovh-ux/manager-iplb@1.21.0) (2025-03-11)
+
+
+### Features
+
+* **iplb:** display guides based on ovhSubsidiary ([8cafcde](https://github.com/ovh/manager/commit/8cafcdebb4f3a935b3418b79041edc5253bbcdba))
+
+
+
+
+
 # [1.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.19.0...@ovh-ux/manager-iplb@1.20.0) (2025-02-20)
 
 

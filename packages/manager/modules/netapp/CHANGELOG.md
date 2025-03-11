@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.7.0...@ovh-ux/manager-netapp@2.8.0) (2025-03-11)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 263] ([0241237](https://github.com/ovh/manager/commit/024123741001ef9fc3b623352f78a22c92faaf4e))
+
+
+### Features
+
+* **netapp:** add mount path during volume creation ([9967556](https://github.com/ovh/manager/commit/9967556ca9d44a43a39aefee839a9d80071f8a37))
+
+
+
+
+
 # [2.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.6.0...@ovh-ux/manager-netapp@2.7.0) (2025-03-03)
 
 
