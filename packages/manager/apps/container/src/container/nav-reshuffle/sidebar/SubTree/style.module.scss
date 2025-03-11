@@ -15,7 +15,7 @@
 
     transform: translateX(-100%);
     transform-origin: 0% 50%;
-    opacity: 0;
+    opacity: 0.4;
     z-index: 10;
 
     &_animated {
@@ -41,7 +41,7 @@
 
     &_close {
       transform: translateX(-100%);
-      opacity: 0;
+      opacity: 0.4;
       width: 20rem;
     }
   }
