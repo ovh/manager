@@ -112,6 +112,9 @@
   "domain_operations_update_nicadmin_click": "Changez les informations du nicadmin en cliquant ici",
   "domain_operations_update_nictech_click": "Changez les informations du nictech en cliquant ici",
   "domain_operations_update_nicbilling_click": "Changez les informations du nicbilling en cliquant ici",
+  "domain_operations_accelerate_success": "L'opération a été accélérée avec succès.",
+  "domain_operations_cancel_success": "L'opération a été annulée avec succès.",
+  "domain_operations_relaunch_success": "L'opération a été relancée avec succès.",
   "wizard_cancel": "Annuler",
   "wizard_confirm": "Confirmer"
 }
