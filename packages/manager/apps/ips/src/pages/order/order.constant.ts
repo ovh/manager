@@ -8,6 +8,10 @@ export enum IpOffer {
   additionalIp = 'additionalIp',
 }
 
+export enum Ipv6Options {
+  newPrefix56 = 'newPrefix56',
+}
+
 export const MIN_IP_QUANTITY = 1;
 export const MAX_IP_QUANTITY = 64;
 

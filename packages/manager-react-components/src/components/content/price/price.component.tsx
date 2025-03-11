@@ -24,6 +24,7 @@ export function Price({
   isConvertIntervalUnit,
   isStartingPrice,
   suffix = '',
+  freePriceLabel,
 }: Readonly<PriceProps>) {
   const { t } = useTranslation('price');
   const isAsiaFormat = ['ASIA', 'AU', 'IN', 'SG'].includes(ovhSubsidiary);
@@ -68,7 +69,7 @@ export function Price({
   const components = [
     {
       condition: value === 0,
-      component: <span>{t('price_free')}</span>,
+      component: <span>{freePriceLabel ?? t('price_free')}</span>,
     },
     {
       condition: isFrenchFormat && tax > 0,
