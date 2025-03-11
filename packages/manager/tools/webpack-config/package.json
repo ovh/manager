@@ -51,7 +51,7 @@
     "raw-loader": "^4.0.2",
     "regenerator-runtime": "^0.13.10",
     "resolve-url-loader": "^3.0.0",
-    "sass": "^1.56.0",
+    "sass": "1.56.1",
     "sass-loader": "^13.1.0",
     "script-loader": "^0.7.2",
     "terser-webpack-plugin": "^5.3.6",
