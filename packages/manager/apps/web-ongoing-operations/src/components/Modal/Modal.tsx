@@ -2,6 +2,7 @@ import { OdsModal, OdsSpinner } from '@ovhcloud/ods-components/react';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
+import { useTranslation } from 'react-i18next';
 import ModalHeaderComponent from '@/components/Modal/Header/ModalHeader.component';
 import ModalContentComponent from '@/components/Modal/Content/ModalContent.component';
 import { updateTask } from '@/data/api/web-ongoing-operations';
@@ -25,6 +26,7 @@ export default function Modal({
   data,
   changeStatus,
 }: IsModalOpenProps) {
+  const { t } = useTranslation('dashboard');
   const [operationArgumentsUpdated, setOperationArgumentsUpdated] = useState<
     Record<string, string>
   >();
@@ -54,6 +56,12 @@ export default function Modal({
     Promise.all(promiseArray)
       .then(() => {
         updateOperationStatus(universe, id, operationType)
+          .then(() => {
+            changeStatus(
+              ODS_MESSAGE_COLOR.success,
+              t(`domain_operations_${operationType}_success`),
+            );
+          })
           .catch((e) => {
             changeStatus(ODS_MESSAGE_COLOR.warning, e.message);
           })
