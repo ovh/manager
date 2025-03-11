@@ -56,11 +56,7 @@ export const ServiceRegion = () => {
   return (
     <>
       {t('service_selection_region_helper')}
-      {region === 'unknown' ? (
-        t('service_selection_unknown_region')
-      ) : (
-        <Region name={region} mode="region" />
-      )}
+      <Region name={region} mode="region" />
     </>
   );
 };
