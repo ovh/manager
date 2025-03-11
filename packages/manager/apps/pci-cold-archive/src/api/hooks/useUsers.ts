@@ -51,7 +51,7 @@ export const useUsers = (
   const allUsersQueries = useQueries({
     queries: (users || [])?.map((user) => ({
       queryKey: [...getUsersCacheKey(projectId), user.id, 's3Credentials'],
-      queryFn: () => getS3Credentials(projectId, `${user.id}`),
+      queryFn: () => getS3Credentials(projectId, user.id),
       enabled: !isPending,
       select: (s3Credentials: TS3Credentials[]) => s3Credentials[0],
     })),
@@ -145,7 +145,7 @@ export const useUser = (projectId: string, userId: number) =>
     queryKey: getUserCacheKey(projectId, userId),
     queryFn: async () => {
       const user = await getUser(projectId, userId);
-      const s3Credentials = await getS3Credentials(projectId, `${user.id}`);
+      const s3Credentials = await getS3Credentials(projectId, user.id);
 
       return {
         ...user,
@@ -227,6 +227,32 @@ export const useGenerateS3Credentials = ({
 
   return {
     generateS3Credentials: (userId: number) => mutation.mutate(userId),
+    ...mutation,
+  };
+};
+
+export const useUserCredentials = (projectId: string, userId?: number) => {
+  const mutation = useMutation({
+    mutationFn: async () => {
+      let [credentials] = await getS3Credentials(projectId, userId);
+      if (!credentials) {
+        credentials = await generateS3Credentials(projectId, userId);
+      }
+      const { secret } = await postS3Secret(
+        projectId,
+        userId,
+        credentials.access,
+      );
+      return {
+        ...credentials,
+        secret,
+      };
+    },
+  });
+
+  return {
+    getCredentials: () => mutation.mutate(),
+    getCredentialsAsync: () => mutation.mutateAsync(),
     ...mutation,
   };
 };
