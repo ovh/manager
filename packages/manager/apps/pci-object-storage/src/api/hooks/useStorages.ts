@@ -292,6 +292,7 @@ export const useStorage = (
           c.region === storageRegion,
       ),
       error: errorStorages,
+      storages,
     };
   }, [storages, isStoragesPending, errorStorages]);
 };

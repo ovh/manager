@@ -181,6 +181,7 @@ exports[`Show page > should display datagrid 1`] = `
       <div
         class="flex justify-center gap-4 ml-auto"
       >
+         
         <ods-input
           class="min-w-[15rem]"
           name="searchField"
@@ -510,81 +511,103 @@ exports[`Show page > should display datagrid 1`] = `
                   <td
                     class="text-left pl-4"
                   >
-                    <ods-text
-                      preset="span"
-                    >
-                      name
-                    </ods-text>
-                  </td>
-                  <td
-                    class="text-left pl-4"
-                  >
-                    <ods-text
-                      preset="span"
-                    >
-                      formattedDate
-                    </ods-text>
-                  </td>
-                  <td
-                    class="text-left pl-4"
-                  >
-                    <ods-text
-                      preset="span"
-                    >
-                      1 unit_size_B
-                    </ods-text>
-                  </td>
-                  <td
-                    class="text-left pl-4"
-                  >
-                    <ods-text
-                      preset="span"
-                    >
-                      contentType
-                    </ods-text>
+                    <div>
+                      <div
+                        class="flex flex-col"
+                      >
+                        <ods-text
+                          preset="span"
+                        >
+                          name
+                        </ods-text>
+                      </div>
+                    </div>
                   </td>
                   <td
                     class="text-left pl-4"
                   >
                     <div
-                      class="w-min"
-                      id="navigation-action-trigger-undefined"
+                      class=""
                     >
-                      <ods-button
-                        data-testid="navigation-action-trigger-action"
-                        icon="ellipsis-vertical"
-                        id="undefined"
-                        is-disabled="false"
-                        is-loading="false"
-                        size="sm"
-                        slot="menu-title"
-                        variant="outline"
-                      />
+                      <ods-text
+                        preset="span"
+                      >
+                        formattedDate
+                      </ods-text>
                     </div>
-                    <ods-popover
-                      class="py-[8px] px-0 w-max"
-                      trigger-id="navigation-action-trigger-undefined"
-                      with-arrow="true"
+                  </td>
+                  <td
+                    class="text-left pl-4"
+                  >
+                    <div
+                      class=""
+                    >
+                      <ods-text
+                        preset="span"
+                      >
+                        1 unit_size_B
+                      </ods-text>
+                    </div>
+                  </td>
+                  <td
+                    class="text-left pl-4"
+                  >
+                    <div
+                      class=""
+                    >
+                      <ods-text
+                        preset="span"
+                      >
+                        contentType
+                      </ods-text>
+                    </div>
+                  </td>
+                  <td
+                    class="text-left pl-4"
+                  >
+                    <div
+                      class=""
                     >
                       <div
-                        class="flex flex-col"
+                        class="w-min"
+                        id="navigation-action-trigger-undefined"
                       >
                         <ods-button
-                          class="menu-item-button w-full"
-                          display-tooltip="false"
-                          label="pci_projects_project_storages_containers_container_download_label"
+                          data-testid="navigation-action-trigger-action"
+                          icon="ellipsis-vertical"
+                          id="undefined"
+                          is-disabled="false"
+                          is-loading="false"
                           size="sm"
-                          variant="ghost"
-                        />
-                        <ods-button
-                          class="menu-item-button w-full"
-                          display-tooltip="false"
-                          label="pci_projects_project_storages_containers_container_delete_label"
-                          size="sm"
-                          variant="ghost"
+                          slot="menu-title"
+                          variant="outline"
                         />
                       </div>
-                    </ods-popover>
+                      <ods-popover
+                        class="py-[8px] px-0 w-max"
+                        trigger-id="navigation-action-trigger-undefined"
+                        with-arrow="true"
+                      >
+                        <div
+                          class="flex flex-col"
+                        >
+                          <ods-button
+                            class="menu-item-button w-full"
+                            display-tooltip="false"
+                            label="pci_projects_project_storages_containers_container_download_label"
+                            size="sm"
+                            variant="ghost"
+                          />
+                          <ods-button
+                            class="menu-item-button w-full"
+                            display-tooltip="false"
+                            label="pci_projects_project_storages_containers_container_delete_label"
+                            size="sm"
+                            variant="ghost"
+                          />
+                        </div>
+                      </ods-popover>
+                    </div>
                   </td>
                 </tr>
               </tbody>
