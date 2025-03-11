@@ -254,7 +254,7 @@ export default function DedicatedSidebar() {
             label: t('sidebar_ip_short'),
             icon: getIcon('ovh-font ovh-font-ip'),
             ...(feature['ips'] ? {
-              href: navigation.getURL('network', '#/ip'),
+              href: navigation.getURL('ips', '#/ip'),
               pathMatcher: new RegExp('/ip(/|$)'),
             } : {
               href: navigation.getURL('dedicated', '#/ip'),
