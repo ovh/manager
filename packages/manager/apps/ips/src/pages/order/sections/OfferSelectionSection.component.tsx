@@ -29,7 +29,7 @@ import {
   IP_FAILOVER_PLANCODE,
   getContinentKeyFromRegion,
   useAdditionalIpBlockPricings,
-  useIpv4LowestPrice,
+  useCatalogLowestPrice,
 } from '@/data/hooks/catalog';
 import { useServiceRegion } from '@/data/hooks/useServiceRegion';
 import { OrderContext } from '../order.context';
@@ -53,7 +53,7 @@ export const OfferSelectionSection: React.FC = () => {
     setPricingMode,
   } = React.useContext(OrderContext);
   const { t, i18n } = useTranslation('order');
-  const { price } = useIpv4LowestPrice();
+  const { ipv4LowestPrice } = useCatalogLowestPrice();
   const { environment } = React.useContext(ShellContext);
   const { region } = useServiceRegion({
     serviceName: selectedService,
@@ -72,7 +72,7 @@ export const OfferSelectionSection: React.FC = () => {
         {hasAdditionalIpOffer(selectedServiceType) && (
           <OptionCard
             title={t('additional_ip_card_title')}
-            subtitle={<PriceDescription price={price} />}
+            subtitle={<PriceDescription price={ipv4LowestPrice} />}
             description={t(
               `additional_ip_card_${
                 isRegionInEu(region || selectedRegion) ? 'ripe' : 'arin'
@@ -81,7 +81,7 @@ export const OfferSelectionSection: React.FC = () => {
                 price: getPriceTextFormatted(
                   environment.user.ovhSubsidiary as OvhSubsidiary,
                   i18n.language,
-                  getPrice(price, 0),
+                  getPrice(ipv4LowestPrice, 0),
                 ),
               },
             )}
@@ -103,7 +103,7 @@ export const OfferSelectionSection: React.FC = () => {
               value={ipQuantity}
             />
             <OdsText preset={ODS_TEXT_PRESET.heading4}>
-              <PriceDescription price={price * ipQuantity} />
+              <PriceDescription price={ipv4LowestPrice * ipQuantity} />
             </OdsText>
           </OptionCard>
         )}
@@ -113,7 +113,10 @@ export const OfferSelectionSection: React.FC = () => {
             title={t('additional_ip_block_card_title')}
             description={t('additional_ip_block_card_description')}
             subtitle={
-              <PriceDescription suffix={t('per_ip_full')} price={price} />
+              <PriceDescription
+                suffix={t('per_ip_full')}
+                price={ipv4LowestPrice}
+              />
             }
             isSelected={selectedOffer === IpOffer.blockAdditionalIp}
             onClick={() => {
