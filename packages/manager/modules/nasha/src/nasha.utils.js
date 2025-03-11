@@ -93,11 +93,20 @@ export const prepareZfsOptions = ({
   sync,
 });
 
-export const exportZfsOptions = ({ atime, recordsize, sync }) => ({
-  atime: atime ? 'on' : 'off',
-  recordsize,
-  sync,
-});
+export const exportZfsOptions = (
+  { atime, recordsize, sync, template },
+  customTemplate,
+) => {
+  return !template || template.name === customTemplate
+    ? {
+        atime: atime ? 'on' : 'off',
+        recordsize,
+        sync,
+      }
+    : {
+        templateName: template.name,
+      };
+};
 
 export const formatRecordsizeEnum = (schema, bytesFilter) =>
   schema.models[NASHA_RECORD_SIZE_ENUM].enum

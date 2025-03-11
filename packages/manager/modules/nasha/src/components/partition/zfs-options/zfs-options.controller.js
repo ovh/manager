@@ -2,7 +2,10 @@ import isEqual from 'lodash/isEqual';
 
 import { prepareZfsOptions, exportZfsOptions } from '../../../nasha.utils';
 import { TRANSLATE_PREFIX } from './zfs-options.constants';
-import { PREFIX_TRACKING_DASHBOARD_PARTITION_ZFS_OPTION } from '../partition.constants';
+import {
+  PREFIX_TRACKING_DASHBOARD_PARTITION_ZFS_OPTION,
+  ZFS_OPTIONS_TEMPLATES,
+} from '../partition.constants';
 
 export default class NashaComponentsPartitionZfsOptionsController {
   /* @ngInject */
@@ -20,6 +23,29 @@ export default class NashaComponentsPartitionZfsOptionsController {
   }
 
   $onInit() {
+    this.templates = [
+      {
+        name: ZFS_OPTIONS_TEMPLATES.CUSTOM,
+        description: this.translate('custom_template_selection'),
+      },
+      {
+        name: ZFS_OPTIONS_TEMPLATES.FILE_SYSTEM,
+        description: this.translate('template_1_description'),
+      },
+      {
+        name: ZFS_OPTIONS_TEMPLATES.VIRTUAL_MACHINES,
+        description: this.translate('template_2_description'),
+      },
+      {
+        name: ZFS_OPTIONS_TEMPLATES.DATABASES,
+        description: this.translate('template_3_description'),
+      },
+      {
+        name: ZFS_OPTIONS_TEMPLATES.DEFAULT,
+        description: this.translate('template_4_description'),
+      },
+    ];
+
     this.$http
       .get(`${this.partitionApiUrl}/options`)
       .then(({ data }) => {
@@ -41,12 +67,16 @@ export default class NashaComponentsPartitionZfsOptionsController {
       });
   }
 
+  onCustomSelection() {
+    return this.model.template?.name === ZFS_OPTIONS_TEMPLATES.CUSTOM;
+  }
+
   get canSubmit() {
     return !isEqual(this.model, this.baseModel);
   }
 
   get exportedModel() {
-    return exportZfsOptions(this.model);
+    return exportZfsOptions(this.model, ZFS_OPTIONS_TEMPLATES.CUSTOM);
   }
 
   getRecordsizeLabel(recordsize) {

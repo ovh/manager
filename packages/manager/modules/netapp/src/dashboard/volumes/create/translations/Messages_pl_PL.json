@@ -12,5 +12,9 @@
   "netapp_volume_create_size_minimum_error": "Minimalny wymagany rozmiar: {{minSize}} GB.",
   "netapp_volume_create_size_maximum_error": "Maksymalny dozwolony rozmiar: {{maxSize}} GB.",
   "netapp_volume_create_success": "Wolumen został utworzony. Będziesz mógł się z nim połączyć po skonfigurowaniu reguł kontroli dostępu.",
-  "netapp_volume_create_error": "Wystąpił błąd podczas tworzenia projektu: {{message}}"
+  "netapp_volume_create_error": "Wystąpił błąd podczas tworzenia projektu: {{message}}",
+  "netapp_volume_mount_path": "Mount Path (opcjonalnie)",
+  "netapp_volume_mount_path_format_error": "Znaki specjalne nie są dozwolone",
+  "netapp_volume_mount_path_character_limit_error": "Przekroczono maksymalną liczbę znaków 255",
+  "netapp_volume_mount_path_already_used_error": "Tryb mount path jest już używany na innym woluminie. Wprowadź nowy adres e-mail."
 }
