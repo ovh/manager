@@ -41,7 +41,7 @@ networkUniverse.children = [
     translation: 'sidebar_ip',
     serviceType: 'IP_SERVICE',
     routing: {
-      application: 'network',
+      application: 'ips',
       hash: '#/ip',
     },
     features: ['ips'],
