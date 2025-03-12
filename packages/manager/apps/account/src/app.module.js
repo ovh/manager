@@ -38,7 +38,7 @@ export default async (containerEl, shellClient) => {
     atInternetConfigurationProvider.setPrefix('dedicated');
   };
 
-  const [environment, locale] = await Promise.all([
+  const [environment, currentLocale] = await Promise.all([
     shellClient.environment.getEnvironment(),
     shellClient.i18n.getLocale(),
   ]);
@@ -63,7 +63,7 @@ export default async (containerEl, shellClient) => {
   const calendarConfigProvider = /* @ngInject */ (
     ouiCalendarConfigurationProvider,
   ) => {
-    const [lang] = locale.split('_');
+    const [lang] = currentLocale.split('_');
     return import(`flatpickr/dist/l10n/${lang}.js`)
       .then((module) => {
         ouiCalendarConfigurationProvider.setLocale(module.default[lang]);
@@ -174,7 +174,20 @@ export default async (containerEl, shellClient) => {
     .config(calendarConfigProvider)
     .run(broadcastAppStarted)
     .run(transitionsConfig)
-    .run(defaultErrorHandler);
+    .run(defaultErrorHandler)
+    .run(
+      /* @ngInject */ ($timeout, $translate, asyncLoader) => {
+        shellClient.i18n.onLocaleChange(({ locale }) => {
+          $translate.use(locale).then(() => {
+            $timeout(() =>
+              asyncLoader
+                .refreshTranslations()
+                .then(() => $translate.refresh()),
+            );
+          });
+        });
+      },
+    );
 
   angular.bootstrap(containerEl, [moduleName], {
     strictDi: true,
