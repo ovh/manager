@@ -19,6 +19,7 @@ class IcebergUtilsServices {
       sort,
       sortOrder,
       defaultFilterColumn,
+      isCacheDisabled,
     } = paginationParams;
 
     let request = this.iceberg(url, urlParams)
@@ -36,7 +37,12 @@ class IcebergUtilsServices {
     }
 
     return this.$q
-      .resolve(request.execute(urlParams, true).$promise)
+      .resolve(
+        request.execute(
+          urlParams,
+          isCacheDisabled ? { headers: { Pragma: 'no-cache' } } : true,
+        ).$promise,
+      )
       .then(({ data, headers }) => ({
         data,
         meta: {

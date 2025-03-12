@@ -1,7 +1,7 @@
 {
   "dedicatedCloud_datacenter_network_onboarding_description1": "En activant cette option, vous pourrez redimensionner, ajouter ou supprimer des NSX Edges selon vos besoins.",
   "dedicatedCloud_datacenter_network_onboarding_description2": "Cette option fonctionne sur un modèle de facturation à la consommation : toute modification de la configuration standard des NSX Edges entraînera des frais supplémentaires.",
-  "dedicatedCloud_datacenter_network_onboarding_cta_start": "Commencer",
+  "dedicatedCloud_datacenter_network_onboarding_cta_activate": "Activer",
   "dedicatedCloud_datacenter_network_onboarding_cta_more": "En savoir plus",
   "dedicatedCloud_datacenter_network_onboarding_doc_category_tutorial": "Tutoriel",
   "dedicatedCloud_datacenter_network_onboarding_doc_category_faq": "FAQ",

@@ -1,11 +1,14 @@
 import { NSXT_EDGE_PLAN_CODE } from '../../../components/dedicated-cloud/datacenter/network/onboarding/dedicatedCloud-datacenter-network-onboarding.constants';
-import { NETWORK_LABEL } from '../dedicatedCloud-datacenter.constants';
+import {
+  NETWORK_LABEL,
+  NSX_EDGE_RELOCATE_FEATURE_AVAILABLE,
+} from '../dedicatedCloud-datacenter.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
     'app.dedicatedCloud.details.datacenter.details.network',
     {
-      url: '/network',
+      url: '/nsx-edge-nodes',
       views: {
         pccDatacenterView: {
           component: 'ovhManagerDedicatedCloudDatacenterNetwork',
@@ -49,6 +52,14 @@ export default /* @ngInject */ ($stateProvider) => {
             ({ enabled }) => enabled,
           ),
         breadcrumb: () => NETWORK_LABEL,
+        isNsxEdgeRelocateAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
+          ovhFeatureFlipping
+            .checkFeatureAvailability(NSX_EDGE_RELOCATE_FEATURE_AVAILABLE)
+            .then((featureAvailability) =>
+              featureAvailability.isFeatureAvailable(
+                NSX_EDGE_RELOCATE_FEATURE_AVAILABLE,
+              ),
+            ),
         goToRelocate: /* @ngInject */ ($state) => (nsxtEdgeId) =>
           $state.go(
             'app.dedicatedCloud.details.datacenter.details.network.move-nsxt-edge',
