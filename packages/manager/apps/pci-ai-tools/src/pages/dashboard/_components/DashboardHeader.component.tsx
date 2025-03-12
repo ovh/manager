@@ -7,7 +7,7 @@ import usePciProject from '@/data/hooks/project/usePciProject.hook';
 import { PlanCode } from '@/configuration/project';
 
 export const DashboardHeader = () => {
-  const { t } = useTranslation('pci-ai-dashboard');
+  const { t } = useTranslation('ai-tools/dashboard');
   const projectData = usePciProject();
 
   const isProjectDiscoveryMode =

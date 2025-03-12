@@ -8,14 +8,14 @@ import { useGetTokens } from '@/data/hooks/ai/token/useGetTokens.hook';
 import { useGetRegistries } from '@/data/hooks/ai/registry/useGetRegistries.hook';
 import { useGetRegions } from '@/data/hooks/ai/capabilities/useGetRegions.hook';
 import { useGetUsers } from '@/data/hooks/user/useGetUsers.hook';
-// import { useGetDatastoresWithRegions } from '@/hooks/api/ai/datastore/useGetDatastoresWithRegions.hook';
 import TabsMenu from '@/components/tabs-menu/TabsMenu.component';
 import { useUserActivityContext } from '@/contexts/UserActivityContext';
 import { POLLING } from '@/configuration/polling.constants';
+import { useGetDatastoresWithRegions } from '@/data/hooks/ai/data/useGetDatastoresWithRegions.hook';
 
 const DashboardTabs = () => {
   const { projectId } = useParams();
-  const { t } = useTranslation('pci-ai-dashboard');
+  const { t } = useTranslation('ai-tools/dashboard');
   const [regions, setRegions] = useState<ai.capabilities.Region[]>([]);
   const { isUserActive } = useUserActivityContext();
   const regionQuery = useGetRegions(projectId);
@@ -37,9 +37,9 @@ const DashboardTabs = () => {
     refetchInterval: isUserActive && POLLING.DOCKER,
   });
 
-  // const { data: datastores } = useGetDatastoresWithRegions(projectId, regions, {
-  //   refetchInterval: isUserActive && POLLING.DATASTORE,
-  // });
+  const { data: datastores } = useGetDatastoresWithRegions(projectId, regions, {
+    refetchInterval: isUserActive && POLLING.DATASTORE,
+  });
 
   const tabs = [
     { href: '', label: t('homeTab'), end: true },
@@ -67,18 +67,18 @@ const DashboardTabs = () => {
       label: t('dockerRegistriesTab'),
       count: registries?.length || 0,
     },
-    // {
-    //   href: 'git-registries',
-    //   label: t('githubRegistriesTab'),
-    //   count: datastores?.filter((ds) => ds.type === ai.DataStoreTypeEnum.git)
-    //     .length,
-    // },
-    // {
-    //   href: 'datastore',
-    //   label: t('datastoreTab'),
-    //   count: datastores?.filter((ds) => ds.type === ai.DataStoreTypeEnum.s3)
-    //     .length,
-    // },
+    {
+      href: 'git-registries',
+      label: t('githubRegistriesTab'),
+      count: datastores?.filter((ds) => ds.type === ai.DataStoreTypeEnum.git)
+        .length,
+    },
+    {
+      href: 'datastore',
+      label: t('datastoreTab'),
+      count: datastores?.filter((ds) => ds.type === ai.DataStoreTypeEnum.s3)
+        .length,
+    },
   ].filter((tab) => tab);
 
   return <TabsMenu tabs={tabs} />;

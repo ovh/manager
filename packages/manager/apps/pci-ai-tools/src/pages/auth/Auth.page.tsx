@@ -1,7 +1,15 @@
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
-import { AlertCircle, ArrowRight } from 'lucide-react';
-import { Alert, AlertDescription, Button, useToast } from '@datatr-ux/uxlib';
+import { useNavigate, useParams } from 'react-router-dom';
+import { AlertCircle, ArrowRight, BrainCircuit } from 'lucide-react';
+import {
+  Alert,
+  AlertDescription,
+  Button,
+  Card,
+  CardContent,
+  CardHeader,
+  useToast,
+} from '@datatr-ux/uxlib';
 import { PlanCode } from '@/configuration/project';
 import usePciProject from '@/data/hooks/project/usePciProject.hook';
 import {
@@ -9,12 +17,23 @@ import {
   usePostAuthorization,
 } from '@/data/hooks/ai/authorization/usePostAuthorization.hook';
 import OvhLink from '@/components/links/OvhLink.component';
+import storeImage from '@/../public/assets/stock.png';
+import exploreImage from '@/../public/assets/explore.png';
+import trainImage from '@/../public/assets/train.png';
+import deployImage from '@/../public/assets/serve.png';
+import ProductInformations from '../dashboard/home/_components/ProductInformations.component';
+import Onboarding from '../dashboard/home/_components/Onboarding.component';
 
 export default function Auth() {
-  const { t } = useTranslation('ai-tools/auth');
+  const { t } = useTranslation('ai-tools/dashboard/home');
+  const { projectId } = useParams();
   const toast = useToast();
   const navigate = useNavigate();
   const projectData = usePciProject();
+  const objectStoragePath = `/pci/projects/${projectId}/storages/objects`;
+  const notebooksPath = '../notebooks';
+  const jobsPath = `/pci/projects/${projectId}/training/jobs`;
+  const appsPath = `/pci/projects/${projectId}/ai/apps`;
 
   const isProjectDiscoveryMode =
     projectData.data?.planCode === PlanCode.DISCOVERY;
@@ -44,7 +63,7 @@ export default function Auth() {
 
   return (
     <>
-      {isProjectDiscoveryMode && (
+      {isProjectDiscoveryMode ? (
         <Alert className="bg-warning-100">
           <AlertDescription className="text-base">
             <div
@@ -69,23 +88,73 @@ export default function Auth() {
             </div>
           </AlertDescription>
         </Alert>
+      ) : (
+        <Alert className="bg-blue-100">
+          <AlertDescription className="text-base">
+            <div
+              data-testid="discovery-container"
+              className="flex flex-row md:flex-col items-center justify-between gap-4"
+            >
+              <div className="flex flex-row gap-5 items-center">
+                <AlertCircle className="h-6 w-6" />
+                <p>{t('authDescription')}</p>
+              </div>
+              <Button
+                data-testid="activate-project-button"
+                onClick={() => activateProject()}
+                className="font-semibold"
+              >
+                {t('authActivateProjectButton')}
+              </Button>
+            </div>
+          </AlertDescription>
+        </Alert>
       )}
-      <div
-        data-testid="auth-page-container"
-        className="flex flex-col justify-center items-center h-screen gap-4"
-      >
-        <h1>{t('authTitle')}</h1>
-        <p>{t('authDescription')}</p>
-        <Button
-          data-testid="activate-project-button"
-          onClick={() => activateProject()}
-          className="font-semibold"
-          variant="neutral"
-          size="sm"
-        >
-          {t('authActivateProjectButton')}
-        </Button>
-      </div>
+      <Card data-testid="product-life-card">
+        <CardHeader>
+          <div className="flex flex-row items-center">
+            <BrainCircuit className="size-4 inline mr-2" />
+            <h4>{t('onboardingTitle')}</h4>
+          </div>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 content-end">
+            <ProductInformations
+              img={storeImage}
+              isInternalAppLink={false}
+              link={objectStoragePath}
+              title={t('store-title')}
+              productName={t('object-storage-title')}
+              showConsumptionInfos={false}
+            />
+            <ProductInformations
+              img={exploreImage}
+              isInternalAppLink={true}
+              link={notebooksPath}
+              title={t('explore-title')}
+              productName={t('notebooks-title')}
+              showConsumptionInfos={false}
+            />
+            <ProductInformations
+              img={trainImage}
+              link={jobsPath}
+              isInternalAppLink={false}
+              title={t('train-title')}
+              productName={t('training-title')}
+              showConsumptionInfos={false}
+            />
+            <ProductInformations
+              img={deployImage}
+              isInternalAppLink={false}
+              link={appsPath}
+              title={t('deploy-title')}
+              productName={t('ai-deploy-title')}
+              showConsumptionInfos={false}
+            />
+          </div>
+        </CardContent>
+      </Card>
+      <Onboarding />
     </>
   );
 }

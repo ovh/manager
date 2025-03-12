@@ -1,4 +1,5 @@
 import * as ai from '@datatr-ux/ovhcloud-types/cloud/project/ai/index';
+import { DataStoresWithRegion } from '@/data/hooks/ai/data/useGetDatastoresWithRegions.hook';
 // import { DataStoresWithContainers } from '@/hooks/api/ai/datastore/useGetDatastoresWithContainers.hook';
 // import { DataStoresWithRegion } from '@/hooks/api/ai/datastore/useGetDatastoresWithRegions.hook';
 // import { OrderVolumes, Containers } from '@/types/orderFunnel';
@@ -25,11 +26,11 @@ export const mockedDatastoreS3: ai.DataStore = {
   type: ai.DataStoreTypeEnum.s3,
 };
 
-// export const mockedDatastoreS3WithRegion: DataStoresWithRegion = {
-//   ...mockedDatastoreS3,
-//   alias: 'myDatastoreS3',
-//   region: 'GRA',
-// };
+export const mockedDatastoreS3WithRegion: DataStoresWithRegion = {
+  ...mockedDatastoreS3,
+  alias: 'myDatastoreS3',
+  region: 'GRA',
+};
 
 export const mockedDatastoreAuth: ai.DataStoreAuth = {
   accessKey: 'accessKey',
@@ -40,11 +41,11 @@ export const mockedDatastoreAuth: ai.DataStoreAuth = {
   url: 'url',
 };
 
-// export const mockedGitWithRegion: DataStoresWithRegion = {
-//   ...mockedDatastoreS3WithRegion,
-//   alias: 'myGitWithRegion',
-//   type: ai.DataStoreTypeEnum.git,
-// };
+export const mockedGitWithRegion: DataStoresWithRegion = {
+  ...mockedDatastoreS3WithRegion,
+  alias: 'myGitWithRegion',
+  type: ai.DataStoreTypeEnum.git,
+};
 
 // export const mockedDatastoreWithContainerS3: DataStoresWithContainers = {
 //   ...mockedDatastoreS3,
