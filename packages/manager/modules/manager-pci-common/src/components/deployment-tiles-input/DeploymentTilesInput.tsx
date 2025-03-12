@@ -6,39 +6,32 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { GLOBAL_INFRASTRUCTURE_URL } from './website-link';
 import { RadioAdapterFactoryProps } from '@/components/input-adapter';
-import { DeploymentModeCard } from '@/components/deployment-mode-card';
+import {
+  DeploymentModeCard,
+  TDeployment,
+} from '@/components/deployment-mode-card';
 import {
   TilesInput,
   TilesInputProps,
 } from '@/components/tiles-input/TilesInput';
 
-export type Deployment = {
-  name: string;
-  beta?: boolean;
-  comingSoon?: boolean;
-  leastPrice?: number;
-};
-
 export type DeploymentTilesInputProps = {
-  deployments: Deployment[];
+  deployments: TDeployment[];
 } & Omit<
-  TilesInputProps<Deployment>,
+  TilesInputProps<TDeployment>,
   'elements' | 'elementKey' | 'render' | 'inputProps' | 'label' | 'subtitle'
 >;
 
 // render is considered as a React component so we need to ignore this rule
 // eslint-disable-next-line react/display-name
-const deploymentTileAdapterFactory = (element: Deployment) => ({
+const deploymentTileAdapterFactory = (element: TDeployment) => ({
   labelId,
   ariaDetailsId,
 }: RadioAdapterFactoryProps) => (
   <DeploymentModeCard
-    type={element.name}
-    beta={element.beta}
-    comingSoon={element.comingSoon}
+    {...element}
     labelId={labelId}
     ariaDetailsId={ariaDetailsId}
-    leastPrice={element.leastPrice}
   />
 );
 

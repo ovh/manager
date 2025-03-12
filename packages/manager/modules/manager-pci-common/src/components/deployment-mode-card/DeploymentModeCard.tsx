@@ -7,39 +7,27 @@ import {
 } from '@ovhcloud/ods-common-theming';
 import { ODS_CHIP_SIZE } from '@ovhcloud/ods-components';
 import { clsx } from 'clsx';
-import { TRegion } from '@/api/data';
-import {
-  Region3AZChip,
-  RegionGlobalzoneChip,
-  RegionLocalzoneChip,
-} from '../region-selector';
 import './style.scss';
 import '@/translations/deployment-mode';
+import { ReactNode } from 'react';
+import { RegionChipByType } from '@/components/region-selector/RegionChipByType';
 
-const RegionChipByType = ({ type }: Readonly<{ type: TRegion['type'] }>) => {
-  switch (type) {
-    case 'localzone':
-      return <RegionLocalzoneChip showTooltip={false} />;
-    case 'region':
-      return <RegionGlobalzoneChip showTooltip={false} />;
-    case 'region-3-az':
-      return <Region3AZChip showTooltip={false} />;
-    default:
-      return null;
-  }
-};
-
-export type DeploymentModeCardProps = Readonly<{
-  type: TRegion['type'];
+export type TDeployment = {
+  name: string;
   beta?: boolean;
   comingSoon?: boolean;
-  leastPrice?: number;
-  labelId?: string;
-  ariaDetailsId?: string;
-}>;
+  leastPrice?: ReactNode;
+};
+
+export type DeploymentModeCardProps = Readonly<
+  {
+    labelId?: string;
+    ariaDetailsId?: string;
+  } & TDeployment
+>;
 
 export const DeploymentModeCard = ({
-  type,
+  name,
   beta,
   comingSoon,
   leastPrice,
@@ -59,13 +47,13 @@ export const DeploymentModeCard = ({
             className={clsx('leading-8')}
             id={labelId}
           >
-            {t(`deployment_mode_title_${type}`)}
+            {t(`deployment_mode_title_${name}`)}
           </OsdsText>
         </div>
 
         <div id={ariaDetailsId} className="deployment-mode-card__content">
           <div className="mb-3">
-            <RegionChipByType type={type} />
+            <RegionChipByType type={name} showTooltip={false} />
           </div>
           <div className="mb-3 text-center">
             <OsdsText
@@ -73,10 +61,10 @@ export const DeploymentModeCard = ({
               level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
               color={ODS_THEME_COLOR_INTENT.text}
             >
-              {t(`deployment_mode_description_${type}`)}
+              {t(`deployment_mode_description_${name}`)}
             </OsdsText>
           </div>
-          <div>
+          <div className="mb-3">
             {beta && (
               <div>
                 <OsdsChip
@@ -104,7 +92,16 @@ export const DeploymentModeCard = ({
                 </OsdsChip>
               </div>
             )}
-            {leastPrice}
+            <div className="mb-3">
+              <OsdsText
+                size={ODS_THEME_TYPOGRAPHY_SIZE._100}
+                level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+                color={ODS_THEME_COLOR_INTENT.text}
+                className="uppercase font-bold"
+              >
+                {leastPrice}
+              </OsdsText>
+            </div>
           </div>
         </div>
       </div>
