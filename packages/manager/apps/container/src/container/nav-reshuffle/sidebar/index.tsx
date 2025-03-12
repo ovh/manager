@@ -103,7 +103,6 @@ const Sidebar = (): JSX.Element => {
 
   useEffect(() => {
     if (isMobile) setOpen(isNavigationSidebarOpened);
-    console.log("coucou")
   }, [isMobile, isNavigationSidebarOpened]);
 
   useEffect(() => {
