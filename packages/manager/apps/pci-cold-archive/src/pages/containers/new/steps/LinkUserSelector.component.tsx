@@ -107,7 +107,7 @@ export default function LinkUserSelector({
 
         <div className="flex gap-4 items-center">
           <OdsSelect
-            className="min-w-[35rem]"
+            className="w-full max-w-[35rem]"
             key={`select-users-${validUsers?.length}`}
             defaultValue={`${selectedUser?.id}`}
             name="selectUser"
