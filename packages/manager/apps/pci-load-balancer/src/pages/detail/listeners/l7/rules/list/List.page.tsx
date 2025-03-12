@@ -5,6 +5,8 @@ import {
   useColumnFilters,
   useDataGrid,
   useNotifications,
+  DatagridColumn,
+  DataGridTextCell,
 } from '@ovh-ux/manager-react-components';
 import {
   OsdsButton,
@@ -23,15 +25,17 @@ import {
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
-import { Suspense, useRef, useState } from 'react';
+import { Suspense, useMemo, useRef, useState } from 'react';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useL7RulesDatagridColumn } from '@/pages/detail/listeners/l7/rules/list/useL7RulesDatagridColumn';
+import OperatingStatusComponent from '@/components/listing/OperatingStatus.component';
+import ProvisioningStatusComponent from '@/components/listing/ProvisioningStatus.component';
+import ActionsComponent from '@/pages/detail/listeners/l7/rules/list/Actions.component';
+import { TL7Rule } from '@/api/data/l7Rules';
 import { useL7Rules } from '@/api/hook/useL7Rule';
 
 export default function L7RulesList() {
-  const { t } = useTranslation('l7/rules/list');
-  const { t: tFilter } = useTranslation('filter');
+  const { t } = useTranslation(['l7/rules/list', 'load-balancer', 'filter']);
 
   const { projectId, region, policyId } = useParams();
   const { pagination, setPagination, sorting, setSorting } = useDataGrid();
@@ -51,7 +55,86 @@ export default function L7RulesList() {
     filters,
   );
 
-  const columns = useL7RulesDatagridColumn();
+  const columns: DatagridColumn<TL7Rule>[] = useMemo(
+    () => [
+      {
+        id: 'ruleType',
+        cell: (props: TL7Rule) => (
+          <DataGridTextCell>{props.ruleType}</DataGridTextCell>
+        ),
+        label: t('octavia_load_balancer_list_l7_rules_type'),
+      },
+      {
+        id: 'compareType',
+        cell: (props: TL7Rule) => (
+          <DataGridTextCell>{props.compareType}</DataGridTextCell>
+        ),
+        label: t('octavia_load_balancer_list_l7_rules_comparison_type'),
+      },
+      {
+        id: 'key',
+        cell: (props: TL7Rule) => (
+          <DataGridTextCell>{props.key}</DataGridTextCell>
+        ),
+        label: t('octavia_load_balancer_list_l7_rules_key'),
+      },
+      {
+        id: 'value',
+        cell: (props: TL7Rule) => (
+          <DataGridTextCell>{props.value}</DataGridTextCell>
+        ),
+        label: t('octavia_load_balancer_list_l7_rules_value'),
+      },
+      {
+        id: 'invert',
+        cell: (props: TL7Rule) => (
+          <DataGridTextCell>
+            {props.invert ? (
+              <OsdsIcon
+                name={ODS_ICON_NAME.CHECK}
+                color={ODS_THEME_COLOR_INTENT.text}
+                size={ODS_ICON_SIZE.xxs}
+              />
+            ) : (
+              '-'
+            )}
+          </DataGridTextCell>
+        ),
+        label: t('octavia_load_balancer_list_l7_rules_invert'),
+      },
+      {
+        id: 'provisioningStatus',
+        cell: (props: TL7Rule) => (
+          <ProvisioningStatusComponent
+            status={props.provisioningStatus}
+            className="w-fit"
+          />
+        ),
+        label: t('load-balancer:octavia_load_balancer_provisioning_status'),
+      },
+      {
+        id: 'operatingStatus',
+        cell: (props: TL7Rule) => (
+          <OperatingStatusComponent
+            status={props.operatingStatus}
+            className="w-fit"
+          />
+        ),
+        label: t('load-balancer:octavia_load_balancer_operating_status'),
+      },
+      {
+        id: 'actions',
+        cell: (props: TL7Rule) => (
+          <div className="min-w-16">
+            <ActionsComponent l7RulesId={props.id} />
+          </div>
+        ),
+        label: '',
+        isSortable: false,
+      },
+    ],
+    [t],
+  );
 
   return (
     <>
@@ -106,7 +189,7 @@ export default function L7RulesList() {
                 className="mr-2"
                 color={ODS_THEME_COLOR_INTENT.primary}
               />
-              {tFilter('common_criteria_adder_filter_label')}
+              {t('filter:common_criteria_adder_filter_label')}
             </OsdsButton>
             <OsdsPopoverContent>
               <FilterAdd

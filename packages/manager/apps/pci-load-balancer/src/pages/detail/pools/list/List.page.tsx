@@ -5,6 +5,8 @@ import {
   useColumnFilters,
   useDataGrid,
   useNotifications,
+  DatagridColumn,
+  DataGridTextCell,
 } from '@ovh-ux/manager-react-components';
 import {
   ODS_BUTTON_SIZE,
@@ -21,18 +23,21 @@ import {
   OsdsSearchBar,
   OsdsSpinner,
 } from '@ovhcloud/ods-components/react';
-import { Suspense, useRef, useState } from 'react';
+import { Suspense, useMemo, useRef, useState } from 'react';
 
 import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
-import { useDatagridColumn } from './useDatagridColumn';
+import OperatingStatusComponent from '@/components/listing/OperatingStatus.component';
+import ProvisioningStatusComponent from '@/components/listing/ProvisioningStatus.component';
+import ActionsComponent from './Actions.component';
+import { TLoadBalancerPool } from '@/api/data/pool';
+import DataGridLinkCell from '@/components/datagrid/DataGridLinkCell.component';
 import { useLoadBalancerPools } from '@/api/hook/usePool';
 
 export default function PoolList() {
-  const { t } = useTranslation('pools');
-  const { t: tFilter } = useTranslation('filter');
+  const { t } = useTranslation(['pools', 'filter', 'load-balancer']);
 
   const { projectId, region, loadBalancerId } = useParams();
   const { pagination, setPagination, sorting, setSorting } = useDataGrid();
@@ -52,7 +57,65 @@ export default function PoolList() {
     filters,
   );
 
-  const columns = useDatagridColumn();
+  const columns: DatagridColumn<TLoadBalancerPool>[] = useMemo(
+    () => [
+      {
+        id: 'name',
+        cell: ({ id, name }: TLoadBalancerPool) => (
+          <DataGridLinkCell href={`../${id}`}>{name}</DataGridLinkCell>
+        ),
+        label: t('octavia_load_balancer_pools_name'),
+      },
+      {
+        id: 'protocol',
+        cell: (props: TLoadBalancerPool) => (
+          <DataGridTextCell>{props.protocol}</DataGridTextCell>
+        ),
+        label: t('octavia_load_balancer_pools_protocol'),
+      },
+      {
+        id: 'algorithm',
+        cell: (props: TLoadBalancerPool) => (
+          <DataGridTextCell>
+            {t(`octavia_load_balancer_pools_enum_algorithm_${props.algorithm}`)}
+          </DataGridTextCell>
+        ),
+        label: t('octavia_load_balancer_pools_algorithm'),
+      },
+      {
+        id: 'provisioningStatus',
+        cell: (props: TLoadBalancerPool) => (
+          <ProvisioningStatusComponent
+            status={props.provisioningStatus}
+            className="w-fit"
+          />
+        ),
+        label: t('load-balancer:octavia_load_balancer_provisioning_status'),
+      },
+      {
+        id: 'operatingStatus',
+        cell: (props: TLoadBalancerPool) => (
+          <OperatingStatusComponent
+            status={props.operatingStatus}
+            className="w-fit"
+          />
+        ),
+        label: t('load-balancer:octavia_load_balancer_operating_status'),
+        isSortable: false,
+      },
+      {
+        id: 'actions',
+        cell: (props: TLoadBalancerPool) => (
+          <div className="min-w-16">
+            <ActionsComponent pool={props} />
+          </div>
+        ),
+        label: '',
+        isSortable: false,
+      },
+    ],
+    [t],
+  );
 
   if (isPending && !error) {
     return (
@@ -117,7 +180,7 @@ export default function PoolList() {
                 className="mr-2"
                 color={ODS_THEME_COLOR_INTENT.primary}
               />
-              {tFilter('common_criteria_adder_filter_label')}
+              {t('filter:common_criteria_adder_filter_label')}
             </OsdsButton>
             <OsdsPopoverContent>
               <FilterAdd

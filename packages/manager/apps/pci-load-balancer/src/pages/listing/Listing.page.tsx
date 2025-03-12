@@ -10,8 +10,10 @@ import {
   useDataGrid,
   useNotifications,
   useProjectUrl,
+  DatagridColumn,
+  DataGridTextCell,
 } from '@ovh-ux/manager-react-components';
-import { Suspense, useRef } from 'react';
+import { Suspense, useMemo, useRef } from 'react';
 import {
   OsdsBreadcrumb,
   OsdsButton,
@@ -31,12 +33,16 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { FilterCategories } from '@ovh-ux/manager-core-api';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
-import { useDatagridColumn } from '@/pages/listing/useDatagridColumn';
+import { TLoadBalancer } from '@/api/data/load-balancer';
+import OperatingStatusComponent from '@/components/listing/OperatingStatus.component';
+import ProvisioningStatusComponent from '@/components/listing/ProvisioningStatus.component';
+import ActionsComponent from '@/components/listing/Actions.component';
+import CreationDate from '@/components/listing/CreationDate.component';
+import DataGridLinkCell from '@/components/datagrid/DataGridLinkCell.component';
 import { useLoadBalancers } from '@/api/hook/useLoadBalancer';
 
 export default function ListingPage() {
-  const { t } = useTranslation('load-balancer');
-  const { t: tFilter } = useTranslation('filter');
+  const { t } = useTranslation(['load-balancer', 'filter']);
 
   const { projectId } = useParams();
   const { data: project } = useProject();
@@ -54,7 +60,69 @@ export default function ListingPage() {
     isPending,
   } = useLoadBalancers(projectId, pagination, sorting, filters);
 
-  const columns = useDatagridColumn();
+  const columns: DatagridColumn<TLoadBalancer>[] = useMemo(
+    () => [
+      {
+        id: 'name',
+        cell: ({ id, region, name }: TLoadBalancer) => (
+          <DataGridLinkCell href={`../${region}/${id}`}>
+            {name}
+          </DataGridLinkCell>
+        ),
+        label: t('octavia_load_balancer_name'),
+      },
+      {
+        id: 'region',
+        cell: (props: TLoadBalancer) => (
+          <DataGridTextCell>{props.region}</DataGridTextCell>
+        ),
+        label: t('octavia_load_balancer_region'),
+      },
+      {
+        id: 'vipAddress',
+        cell: (props: TLoadBalancer) => (
+          <DataGridTextCell>{props.vipAddress}</DataGridTextCell>
+        ),
+        label: t('octavia_load_balancer_ip'),
+      },
+      {
+        id: 'createdAt',
+        cell: (props: TLoadBalancer) => <CreationDate date={props.createdAt} />,
+        label: t('octavia_load_balancer_creation_date'),
+      },
+      {
+        id: 'provisioningStatus',
+        cell: (props: TLoadBalancer) => (
+          <ProvisioningStatusComponent
+            status={props.provisioningStatus}
+            className="w-fit"
+          />
+        ),
+        label: t('octavia_load_balancer_provisioning_status'),
+      },
+      {
+        id: 'operatingStatus',
+        cell: (props: TLoadBalancer) => (
+          <OperatingStatusComponent
+            status={props.operatingStatus}
+            className="w-fit"
+          />
+        ),
+        label: t('octavia_load_balancer_operating_status'),
+      },
+      {
+        id: 'actions',
+        cell: (props: TLoadBalancer) => (
+          <div className="min-w-16">
+            <ActionsComponent loadBalancer={props} />
+          </div>
+        ),
+        label: '',
+        isSortable: false,
+      },
+    ],
+    [t],
+  );
 
   return (
     <RedirectionGuard
@@ -114,7 +182,7 @@ export default function ListingPage() {
                 className="mr-2"
                 color={ODS_THEME_COLOR_INTENT.primary}
               />
-              {tFilter('common_criteria_adder_filter_label')}
+              {t('filter:common_criteria_adder_filter_label')}
             </OsdsButton>
             <OsdsPopoverContent>
               <FilterAdd
