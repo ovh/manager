@@ -2,6 +2,7 @@ import { createContext } from 'react';
 
 export interface InternalMeta {
   has3AZ?: boolean;
+  applicationName?: string;
 }
 
 /**
