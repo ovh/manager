@@ -5,7 +5,10 @@ import { useParams } from 'react-router-dom';
 import { useVcdOrder } from '@ovh-ux/manager-module-vcd-api';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { WINDOWS_LICENSE_PLANCODE } from '@/utils/planCode.constants';
+import { TRACKING } from '@/tracking.constant';
+import TEST_IDS from '@/utils/testIds.constants';
 
 export default function OrganizationOptionsTile({
   isLicenseActive,
@@ -14,6 +17,7 @@ export default function OrganizationOptionsTile({
 }>) {
   const { t } = useTranslation('dashboard');
   const { id } = useParams();
+  const { trackClick } = useOvhTracking();
   const { redirectToOrder } = useVcdOrder({
     serviceName: id,
     planCode: WINDOWS_LICENSE_PLANCODE,
@@ -47,7 +51,11 @@ export default function OrganizationOptionsTile({
                       label: t(
                         'managed_vcd_dashboard_windows_license_activate',
                       ),
-                      onClick: redirectToOrder,
+                      onClick: () => {
+                        trackClick(TRACKING.dashboard.activateWindowsLicence);
+                        redirectToOrder();
+                      },
+                      'data-testid': TEST_IDS.activateLicenseCta,
                     },
                   ]}
                 />

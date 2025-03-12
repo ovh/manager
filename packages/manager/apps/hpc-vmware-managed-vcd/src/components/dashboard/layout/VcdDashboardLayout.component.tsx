@@ -1,19 +1,22 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { HeadersProps, BaseLayout } from '@ovh-ux/manager-react-components';
 import { OdsTab, OdsTabs } from '@ovhcloud/ods-components/react';
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import Breadcrumb from '@/components/breadcrumb/Breadcrumb.component';
 import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
 import { MessageList } from '@/components/message/MessageList.component';
+import { TRACK_TAB_CLICK } from '@/tracking.constant';
 
-type Tab = {
+export type DashboardTab = {
   name: string;
   title: string;
   to: string;
+  trackingActions: string[];
 };
 
 export type TDashboardLayoutProps = {
-  tabs: Tab[];
+  tabs: DashboardTab[];
   breadcrumbItems: BreadcrumbItem[];
   header: HeadersProps;
   backLinkLabel?: string;
@@ -28,6 +31,7 @@ export default function VcdDashboardLayout({
   onClickReturn,
 }: TDashboardLayoutProps) {
   const { pathname: path } = useLocation();
+  const { trackClick } = useOvhTracking();
 
   const activeTab = useMemo(() => {
     const getActiveTab = () => tabs.find((tab) => tab.to === path);
@@ -43,8 +47,13 @@ export default function VcdDashboardLayout({
         header={header}
         tabs={
           <OdsTabs>
-            {tabs.map((tab: Tab) => (
-              <NavLink to={tab.to} className="no-underline" key={tab.name}>
+            {tabs.map((tab: DashboardTab) => (
+              <NavLink
+                to={tab.to}
+                className="no-underline"
+                key={tab.name}
+                onClick={() => trackClick(TRACK_TAB_CLICK(tab.trackingActions))}
+              >
                 <OdsTab isSelected={tab.name === activeTab.name}>
                   {tab.title}
                 </OdsTab>
