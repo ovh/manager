@@ -1,12 +1,14 @@
-import { PciModal } from '@ovh-ux/manager-pci-common';
 import {
+  OdsRadio,
+  OdsSpinner,
+  OdsText,
+  OdsModal,
+  OdsButton,
+  OdsSelect,
   OdsFormField,
   OdsInput,
-  OdsRadio,
-  OdsSelect,
-  OdsText,
 } from '@ovhcloud/ods-components/react';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useNotifications as useMRCNotifications } from '@ovh-ux/manager-react-components';
@@ -17,12 +19,12 @@ import {
   TUser,
 } from '@/api/data/users';
 import { invalidateGetUsersCache, useUsers } from '@/api/hooks/useUsers';
-import LabelComponent from '@/components/Label.component';
 import UserInformationTile from '@/components/UserInformationTile.component';
 import { COLD_ARCHIVE_TRACKING } from '@/tracking.constants';
 import { poll } from '@/helpers';
 import { useTracking } from '@/hooks/useTracking';
 import { useNotifications } from '@/hooks/useNotifications';
+import LabelComponent from '@/components/Label.component';
 
 const RadioOption = ({ checked, value, label, onChange, name }) => (
   <div className="flex items-center my-2">
@@ -87,7 +89,10 @@ export default function UserCreatePage(): JSX.Element {
     isLoading: false,
   });
 
-  const { validUsersWithoutCredentials } = useUsers(projectId);
+  const {
+    validUsersWithoutCredentials,
+    isPending: isPendingUsersWithoutcredentials,
+  } = useUsers(projectId);
 
   const onSuccess = ({
     username,
@@ -237,106 +242,153 @@ export default function UserCreatePage(): JSX.Element {
     }
   }, [state.userType]);
 
+  const isDisabled =
+    state.isLoading ||
+    !state.userType ||
+    (state.userType === 'NEW' && !state.userDescription.value) ||
+    (state.userType === 'EXISTING' && !state.selectedUserId);
+
+  const modalRef = useRef(undefined);
+
+  /* The following useEffect is a hack to allow the OdsSelect overflowing
+   * in the OdsModal thus allowing the user to select an item even for long lists.
+   * This hack can be removed once this issue is fixed on ods side, and this
+   * version of ods is available in pci-common & manager-react-components.
+   */
+  useEffect(() => {
+    if (!modalRef.current) return;
+    const { shadowRoot } = modalRef?.current;
+    if (!shadowRoot.querySelector('style')) {
+      const style = document.createElement('style');
+      style.innerHTML = `
+        .ods-modal__dialog { overflow: visible !important; }
+        .ods-modal__dialog__content { overflow: visible !important; }
+      `;
+      shadowRoot.appendChild(style);
+    }
+  }, [modalRef.current]);
+
   return (
-    <PciModal
-      title={t('pci_projects_project_users_add_title')}
-      submitText={t('pci_projects_project_users_add_submit_label')}
-      cancelText={t('pci_projects_project_users_add_cancel_label')}
-      isDisabled={
-        state.isLoading ||
-        !state.userType ||
-        (state.userType === 'NEW' && !state.userDescription.value) ||
-        (state.userType === 'EXISTING' && !state.selectedUserId)
-      }
-      onConfirm={onConfirm}
-      onClose={onClose}
-      onCancel={onCancel}
-      isPending={state.isLoading}
-    >
-      <OdsText preset="paragraph" className="my-6">
-        {t('pci_projects_project_users_add_short_description')}
-      </OdsText>
+    <OdsModal color={'information'} isOpen onOdsClose={onClose} ref={modalRef}>
+      <>
+        <OdsText preset="heading-3">
+          {t('pci_projects_project_users_add_title')}
+        </OdsText>
+        <slot name="content">
+          {state.isLoading || isPendingUsersWithoutcredentials ? (
+            <OdsSpinner size="md" className="block text-center mt-6 mb-8" />
+          ) : (
+            <div className="mt-6 mb-8">
+              <OdsText preset="paragraph" className="my-6">
+                {t('pci_projects_project_users_add_short_description')}
+              </OdsText>
 
-      <div className="grid grid-cols-1 gap-4">
-        {validUsersWithoutCredentials?.length > 0 && (
-          <RadioOption
-            checked={state.userType === 'EXISTING'}
-            value="EXISTING"
-            name="addExistingUser"
-            label={t('pci_projects_project_users_add_existing_user')}
-            onChange={() => setState({ ...state, userType: 'EXISTING' })}
-          />
-        )}
+              <div className="grid grid-cols-1 gap-4">
+                {validUsersWithoutCredentials?.length > 0 && (
+                  <RadioOption
+                    checked={state.userType === 'EXISTING'}
+                    value="EXISTING"
+                    name="addExistingUser"
+                    label={t('pci_projects_project_users_add_existing_user')}
+                    onChange={() =>
+                      setState({ ...state, userType: 'EXISTING' })
+                    }
+                  />
+                )}
 
-        {state.userType === 'EXISTING' && (
-          <OdsSelect
-            name="userNameDescriptionKey"
-            value={`${state.selectedUserId}`}
-            onOdsChange={(event) => {
-              setState({
-                ...state,
-                selectedUserId: parseInt(event.detail.value, 10),
-              });
-            }}
-            className="mb-8"
-            customRenderer={{
-              option: (data) => {
-                return `<div style="display: flex; justify-content: space-between; align-items: center;">
+                {state.userType === 'EXISTING' && (
+                  <OdsSelect
+                    name="userNameDescriptionKey"
+                    value={`${state.selectedUserId}`}
+                    onOdsChange={(event) => {
+                      setState({
+                        ...state,
+                        selectedUserId: parseInt(event.detail.value, 10),
+                      });
+                    }}
+                    className="mb-8"
+                    customRenderer={{
+                      option: (data) => {
+                        return `<div style="display: flex; justify-content: space-between; align-items: center;">
                           <p style="font-size: 16px; margin: 0; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; width:70%">${data?.text}</p>
                           <p style="font-size: 12px; margin: 0;">${data.hint}</p>
                         </div>`;
-              },
-            }}
-          >
-            {validUsersWithoutCredentials.map((user) => (
-              <option
-                value={user.id}
-                key={user.id}
-                data-hint={t(
-                  user.s3Credentials
-                    ? 'pci_projects_project_users_add_as_credentials'
-                    : 'pci_projects_project_users_add_as_no_credentials',
+                      },
+                    }}
+                  >
+                    {validUsersWithoutCredentials.map((user) => (
+                      <option
+                        value={user.id}
+                        key={user.id}
+                        data-hint={t(
+                          user.s3Credentials
+                            ? 'pci_projects_project_users_add_as_credentials'
+                            : 'pci_projects_project_users_add_as_no_credentials',
+                        )}
+                      >
+                        {user.description
+                          ? `${user.username} - ${user.description}`
+                          : user.username}
+                      </option>
+                    ))}
+                  </OdsSelect>
                 )}
-              >
-                {user.description
-                  ? `${user.username} - ${user.description}`
-                  : user.username}
-              </option>
-            ))}
-          </OdsSelect>
-        )}
 
-        <RadioOption
-          checked={state.userType === 'NEW'}
-          value="NEW"
-          name="createNewUser"
-          label={t('pci_projects_project_users_add_create_user')}
-          onChange={() => setState({ ...state, userType: 'NEW' })}
+                <RadioOption
+                  checked={state.userType === 'NEW'}
+                  value="NEW"
+                  name="createNewUser"
+                  label={t('pci_projects_project_users_add_create_user')}
+                  onChange={() => setState({ ...state, userType: 'NEW' })}
+                />
+
+                {state.userType === 'NEW' && (
+                  <OdsFormField>
+                    <LabelComponent
+                      text={t(
+                        'pci_projects_project_users_add_description_label',
+                      )}
+                    />
+
+                    <OdsInput
+                      value={state.userDescription.value}
+                      name="description"
+                      max={255}
+                      onOdsChange={(event) => {
+                        setState({
+                          ...state,
+                          userDescription: {
+                            value: event.detail.value as string,
+                            isTouched: true,
+                          },
+                        });
+                      }}
+                    />
+                  </OdsFormField>
+                )}
+              </div>
+            </div>
+          )}
+        </slot>
+
+        <OdsButton
+          label={t('pci_projects_project_users_add_cancel_label')}
+          color="primary"
+          variant="ghost"
+          onClick={onCancel}
+          isDisabled={state.isLoading}
+          slot="actions"
         />
-
-        {state.userType === 'NEW' && (
-          <OdsFormField>
-            <LabelComponent
-              text={t('pci_projects_project_users_add_description_label')}
-            />
-
-            <OdsInput
-              value={state.userDescription.value}
-              name="description"
-              max={255}
-              onOdsChange={(event) => {
-                setState({
-                  ...state,
-                  userDescription: {
-                    value: event.detail.value as string,
-                    isTouched: true,
-                  },
-                });
-              }}
-            />
-          </OdsFormField>
-        )}
-      </div>
-    </PciModal>
+        <OdsButton
+          label={t('pci_projects_project_users_add_submit_label')}
+          color="primary"
+          onClick={onConfirm}
+          isDisabled={
+            isDisabled || state.isLoading || isPendingUsersWithoutcredentials
+          }
+          slot="actions"
+        />
+      </>
+    </OdsModal>
   );
 }
