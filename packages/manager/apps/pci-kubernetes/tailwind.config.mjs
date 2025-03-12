@@ -1,13 +1,13 @@
 import config from '@ovh-ux/manager-tailwind-config';
 import odsPlugin from '@datatr-ux/ods-tailwind-config';
-import tailwindAnimationPlugin from 'tailwindcss-animate';
+
 import path from 'path';
 import { createRequire } from 'node:module';
 
 const require = createRequire(import.meta.url);
 
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
   ...config,
   content: [
     './src/**/*.{js,jsx,ts,tsx}',
@@ -24,5 +24,5 @@ export default {
     preflight: false,
   },
 
-  plugins: [tailwindAnimationPlugin, odsPlugin],
+  plugins: [odsPlugin],
 };

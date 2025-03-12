@@ -12,7 +12,7 @@ export type TClusterCreationForm = {
   updatePolicy: UpdatePolicy;
   network: TNetworkFormState;
   nodePools?: NodePoolPrice[];
-
+  plan?: 'standard' | 'premium';
   clusterName: string;
 };
 
@@ -89,7 +89,7 @@ export function useClusterCreationStepper() {
         planStep.unlock();
         [versionStep, networkStep, nodeStep, confirmStep].forEach(stepReset);
       },
-      submit: (plan: TLocalisation) => {
+      submit: (plan: TClusterCreationForm['plan']) => {
         setForm((f) => ({
           ...f,
           plan,

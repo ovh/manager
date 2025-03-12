@@ -8,12 +8,6 @@ import { useCreateKubernetesCluster } from '@/api/hooks/useKubernetes';
 import NewPage from './New.page';
 import { wrapper } from '@/wrapperRenders';
 
-vi.mock('react-router-dom', () => ({
-  useHref: vi.fn(),
-  useNavigate: vi.fn(),
-  useParams: vi.fn(),
-}));
-
 vi.mock('@ovh-ux/manager-pci-common', async (actual) => ({
   ...((await actual()) as Record<string, unknown>),
   isDiscoveryProject: vi.fn(),
@@ -54,6 +48,11 @@ describe('NewPage', () => {
         edit: vi.fn(),
       },
       location: {
+        step: { isLocked: false },
+        submit: vi.fn(),
+        edit: vi.fn(),
+      },
+      plan: {
         step: { isLocked: false },
         submit: vi.fn(),
         edit: vi.fn(),

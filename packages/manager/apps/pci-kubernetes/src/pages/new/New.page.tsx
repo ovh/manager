@@ -213,7 +213,7 @@ export default function NewPage() {
         </StepComponent>
         <StepComponent
           edit={{
-            action: stepper.clusterName.edit,
+            action: stepper.plan.edit,
             label: tStepper('common_stepper_modify_this_step'),
             isDisabled: isDiscovery || isCreationPending,
           }}
@@ -221,7 +221,7 @@ export default function NewPage() {
           order={3}
           {...stepper.plan.step}
         >
-          <PlanStep />
+          <PlanStep onSubmit={stepper.plan.submit} step={stepper.plan.step} />
         </StepComponent>
 
         <StepComponent
