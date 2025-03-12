@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.21.3](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.21.2...@ovh-ux/ovh-at-internet@0.21.3) (2025-03-12)
+
+
+### Bug Fixes
+
+* **ovh-at-internet:** revert trackpage fix ([20a21be](https://github.com/ovh/manager/commit/20a21bea4ffe01e9e6dfd2cd2859425854c88f50)), closes [#MANAGER-17275](https://github.com/ovh/manager/issues/MANAGER-17275)
+
+
+
+
+
 ## [0.21.2](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.21.1...@ovh-ux/ovh-at-internet@0.21.2) (2025-03-06)
 
 
