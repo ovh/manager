@@ -1,29 +1,10 @@
 export default class NutanixDashboarInstallNodeModal {
   /* @ngInject */
-  constructor(
-    NutanixService,
-    ovhManagerPccDatacenterService,
-    DedicatedCloud,
-    $translate,
-    $q,
-  ) {
-    this.NutanixService = NutanixService;
+  constructor(ovhManagerPccDatacenterService, DedicatedCloud, $translate, $q) {
     this.DedicatedCloud = DedicatedCloud;
     this.$translate = $translate;
     this.$q = $q;
     this.ovhManagerPccDatacenterService = ovhManagerPccDatacenterService;
-
-    this.errorMessages = {
-      ipSubnetValidator: this.$translate.instant(
-        'nutanix_dashboard_install_ip_not_in_cidr_subnet_error',
-      ),
-      uniqueIpValidator: this.$translate.instant(
-        'nutanix_dashboard_install_ip_unique_error',
-      ),
-      ipValidator: this.$translate.instant(
-        'nutanix_dashboard_install_ip_format_error',
-      ),
-    };
   }
 
   $onInit() {

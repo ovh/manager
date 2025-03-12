@@ -65,7 +65,7 @@ export default class {
       this.datacenter.model.id,
     ).then((data) => {
       if (data?.length > 0) {
-        this.pollNsxTask(data[0].taskId);
+        this.pollNsxtTask(data[0].taskId);
       }
     });
   }

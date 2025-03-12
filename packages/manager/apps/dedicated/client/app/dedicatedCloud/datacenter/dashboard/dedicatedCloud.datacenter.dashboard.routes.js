@@ -1,3 +1,5 @@
+import { NSX_EDGE_RELOCATE_FEATURE_AVAILABLE } from '../dedicatedCloud-datacenter.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
     'app.dedicatedCloud.details.datacenter.details.dashboard',
@@ -22,6 +24,14 @@ export default /* @ngInject */ ($stateProvider) => {
             'dedicated',
             `#/dedicated_cloud/${serviceName}/datacenter/${datacenterId}/datastores/order`,
           ),
+        isNsxEdgeRelocateAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
+          ovhFeatureFlipping
+            .checkFeatureAvailability(NSX_EDGE_RELOCATE_FEATURE_AVAILABLE)
+            .then((featureAvailability) =>
+              featureAvailability.isFeatureAvailable(
+                NSX_EDGE_RELOCATE_FEATURE_AVAILABLE,
+              ),
+            ),
         hostOrderLink: /* @ngInject */ (
           coreURLBuilder,
           serviceName,
