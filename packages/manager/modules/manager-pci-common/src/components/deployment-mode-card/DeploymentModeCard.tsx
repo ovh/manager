@@ -16,7 +16,7 @@ export type TDeployment = {
   name: string;
   beta?: boolean;
   comingSoon?: boolean;
-  leastPrice?: ReactNode;
+  price?: ReactNode;
 };
 
 export type DeploymentModeCardProps = Readonly<
@@ -30,7 +30,7 @@ export const DeploymentModeCard = ({
   name,
   beta,
   comingSoon,
-  leastPrice,
+  price,
   labelId,
   ariaDetailsId,
 }: DeploymentModeCardProps) => {
@@ -92,16 +92,7 @@ export const DeploymentModeCard = ({
                 </OsdsChip>
               </div>
             )}
-            <div className="mb-3">
-              <OsdsText
-                size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-                level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                color={ODS_THEME_COLOR_INTENT.text}
-                className="uppercase font-bold"
-              >
-                {leastPrice}
-              </OsdsText>
-            </div>
+            <div className="mb-3">{price}</div>
           </div>
         </div>
       </div>

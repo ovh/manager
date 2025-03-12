@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { TRegion } from '@/api/data';
-import { Deployment } from '@/components/deployment-tiles-input';
 import { usePCIFeatureAvailability } from '@/api/hook/usePCIFeatureAvailability';
+import { TDeployment } from '@/components/deployment-mode-card';
 
 export const DEPLOYMENT_MODES_TYPES: TRegion['type'][] = [
   'region',
@@ -23,7 +23,7 @@ export const useFeaturedDeploymentModes = () => {
   const { data: featureAvailability, ...rest } = usePCIFeatureAvailability(
     DEPLOYMENT_FEATURES,
   );
-  const deployments = useMemo<Deployment[]>(
+  const deployments = useMemo<TDeployment[]>(
     () =>
       DEPLOYMENT_MODES_TYPES.map((d) => ({
         name: d,
