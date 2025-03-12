@@ -274,7 +274,7 @@ export default function UserCreatePage(): JSX.Element {
             customRenderer={{
               option: (data) => {
                 return `<div style="display: flex; justify-content: space-between; align-items: center;">
-                          <p style="font-size: 16px; margin: 0;">${data.text}</p>
+                          <p style="font-size: 16px; margin: 0; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; width:70%">${data?.text}</p>
                           <p style="font-size: 12px; margin: 0;">${data.hint}</p>
                         </div>`;
               },
