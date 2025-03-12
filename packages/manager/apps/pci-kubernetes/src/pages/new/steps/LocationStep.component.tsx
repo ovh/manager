@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { TLocalisation } from '@ovh-ux/manager-pci-common';
+import {
+  Region3AZChip,
+  RegionGlobalzoneChip,
+  TLocalisation,
+} from '@ovh-ux/manager-pci-common';
 import {
   OsdsButton,
   OsdsDivider,
@@ -14,18 +18,10 @@ import {
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import clsx from 'clsx';
-import {
-  Button,
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-  Checkbox,
-} from '@datatr-ux/uxlib';
+import { Subtitle } from '@ovh-ux/manager-react-components';
 import { KubeRegionSelector } from '@/components/region-selector/KubeRegionSelector.component';
 import { StepState } from '../useStep';
+import { KubeDeploymentTile } from '@/components/region-selector/KubeDeploymentTile';
 
 export interface LocationStepProps {
   projectId: string;
@@ -33,33 +29,64 @@ export interface LocationStepProps {
   step: StepState;
 }
 
+export type TRegionType = 'region' | 'localzone' | 'region-3-az';
+
+export enum RegionType {
+  Region = 'region',
+  Localzone = 'localzone',
+  Region3Az = 'region-3-az',
+}
+
 export function LocationStep({
   projectId,
   onSubmit,
   step,
 }: Readonly<LocationStepProps>) {
-  const { t: tStepper } = useTranslation('stepper');
+  const { t } = useTranslation(['stepper', 'add']);
   const [region, setRegion] = useState<TLocalisation>();
+  const [selectedDeployment, setSelectedDeployment] = useState<TRegionType>(
+    undefined,
+  );
+
+  const tilesData = [
+    {
+      title: t('add:kubernetes_add_region_title_1az'),
+      pillLabel: <RegionGlobalzoneChip showTooltip={false} />,
+      description: t('add:kubernetes_add_region_description_1az'),
+      regionType: RegionType.Region,
+    },
+    {
+      title: t('add:kubernetes_add_region_title_3az'),
+      pillLabel: <Region3AZChip showTooltip={false} />,
+      description: t('add:kubernetes_add_region_description_3az'),
+      regionType: RegionType.Region3Az,
+    },
+  ];
+
   return (
     <>
       <div className={clsx(step.isLocked && 'hidden')}>
-        <Card className="w-[380px]">
-          <CardHeader>
-            <CardTitle>Region-1-AZ</CardTitle>
-            <CardDescription>LA CHIP a mettre</CardDescription>
-          </CardHeader>
-          <CardContent className="grid gap-4">
-            <div className=" flex items-center space-x-4 rounded-md border p-4">
-              <div className="flex-1 space-y-1">
-                <p className="text-sm font-medium leading-none">
-                  Déploiement résiliens et éconopmique
-                </p>
-              </div>
-            </div>
-          </CardContent>
-          <CardFooter>si tu veux rajouter footer</CardFooter>
-        </Card>
-        <KubeRegionSelector projectId={projectId} onSelectRegion={setRegion} />
+        <div className="grid grid-cols-4 gap-4 my-5">
+          {tilesData.map(({ title, pillLabel, description, regionType }) => (
+            <KubeDeploymentTile
+              key={regionType}
+              title={title}
+              pillLabel={pillLabel}
+              description={description}
+              regionType={regionType}
+              selectedDeployment={selectedDeployment}
+              setSelectedDeployment={setSelectedDeployment}
+            />
+          ))}
+        </div>
+        <Subtitle className="mb-6">
+          {t('add:kubernetes_add_region_title')}
+        </Subtitle>
+        <KubeRegionSelector
+          projectId={projectId}
+          onSelectRegion={setRegion}
+          selectedDeployment={selectedDeployment}
+        />
       </div>
       {step.isLocked && region && (
         <OsdsTile color={ODS_THEME_COLOR_INTENT.primary} inline>
@@ -89,7 +116,7 @@ export function LocationStep({
           disabled={region ? undefined : true}
           onClick={() => region && onSubmit(region)}
         >
-          {tStepper('common_stepper_next_button_label')}
+          {t('stepper:common_stepper_next_button_label')}
         </OsdsButton>
       )}
     </>

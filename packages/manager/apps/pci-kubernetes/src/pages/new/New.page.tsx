@@ -15,17 +15,23 @@ import {
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
   ODS_SPINNER_SIZE,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import {
   OsdsBreadcrumb,
   OsdsIcon,
   OsdsLink,
   OsdsSpinner,
+  OsdsText,
 } from '@ovhcloud/ods-components/react';
 import {
   Headers,
+  Links,
+  LinkType,
   Notifications,
   StepComponent,
+  Subtitle,
   useNotifications,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
@@ -39,6 +45,7 @@ import { useCreateKubernetesCluster } from '@/api/hooks/useKubernetes';
 import { PAGE_PREFIX } from '@/tracking.constants';
 import NodePoolStep from './steps/NodePoolStep.component';
 import PlanStep from './steps/PlanStep';
+import { DEPLOYMENT_URL } from '@/constants';
 
 export default function NewPage() {
   const { t } = useTranslation('add');
@@ -53,6 +60,8 @@ export default function NewPage() {
   const stepper = useClusterCreationStepper();
   const { addError, addSuccess } = useNotifications();
   const isDiscovery = isDiscoveryProject(project as TProject);
+  const context = useContext(ShellContext);
+  const { ovhSubsidiary } = context.environment.getUser();
 
   const {
     createCluster,
@@ -205,6 +214,21 @@ export default function NewPage() {
             isDisabled: isDiscovery || isCreationPending,
           }}
         >
+          <Subtitle>{t('kubernetes_add_deployment_mode_title')}</Subtitle>
+          <div>
+            <OsdsText
+              size={ODS_TEXT_SIZE._400}
+              level={ODS_TEXT_LEVEL.body}
+              color={ODS_THEME_COLOR_INTENT.text}
+            >
+              {t('add:kubernetes_add_deployment_mode_description')}
+            </OsdsText>{' '}
+            <Links
+              href={DEPLOYMENT_URL[ovhSubsidiary] ?? DEPLOYMENT_URL.DEFAULT}
+              label={t('add:kubernetes_add_find_out_more')}
+              type={LinkType.next}
+            />
+          </div>
           <LocationStep
             projectId={projectId}
             onSubmit={stepper.location.submit}
