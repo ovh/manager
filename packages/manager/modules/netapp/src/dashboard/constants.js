@@ -103,6 +103,14 @@ export const MOUNT_PATH_PATTERN = /^[\w-_]+$/;
 
 export const MAX_CHAR_LIMIT = 255;
 
+export const SNAPSHOT_TYPE = {
+  AUTOMATIC: 'automatic',
+  MANUAL: 'manual',
+  SYSTEM: 'system',
+};
+
+export const CUSTOM_SELECTION = 'Custom';
+
 export default {
   MINIMUM_VOLUME_SIZE,
   COMMIT_IMPRESSION_TRACKING_DATA,
@@ -116,4 +124,6 @@ export default {
   NETAPP_NAME_PATTERN,
   MOUNT_PATH_PATTERN,
   MAX_CHAR_LIMIT,
+  SNAPSHOT_TYPE,
+  CUSTOM_SELECTION,
 };
