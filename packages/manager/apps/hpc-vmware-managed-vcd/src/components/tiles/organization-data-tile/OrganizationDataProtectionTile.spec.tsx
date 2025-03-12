@@ -30,10 +30,18 @@ import {
 } from '../../../pages/dashboard/organization/organizationDashboard.constants';
 import TEST_IDS from '../../../utils/testIds.constants';
 
-vi.mock('@ovh-ux/manager-module-vcd-api', async (original) => {
-  const actual: any = await original();
+vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
+  const original: typeof import('@ovh-ux/manager-react-shell-client') = await importOriginal();
   return {
-    ...actual,
+    ...original,
+    useOvhTracking: () => ({ trackClick: vi.fn() }),
+  };
+});
+
+vi.mock('@ovh-ux/manager-module-vcd-api', async (importOriginal) => {
+  const original: typeof import('@ovh-ux/manager-module-vcd-api') = await importOriginal();
+  return {
+    ...original,
     useVeeamBackup: vi.fn(),
     getBackupIdFromOrganization: vi.fn(),
   };

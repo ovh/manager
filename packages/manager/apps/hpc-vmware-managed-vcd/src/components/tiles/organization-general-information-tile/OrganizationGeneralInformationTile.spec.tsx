@@ -11,6 +11,14 @@ import {
 import OrganizationGeneralInformationTile from './OrganizationGeneralInformationTile.component';
 import TEST_IDS from '../../../utils/testIds.constants';
 
+vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
+  const original: typeof import('@ovh-ux/manager-react-shell-client') = await importOriginal();
+  return {
+    ...original,
+    useOvhTracking: () => ({ trackClick: vi.fn() }),
+  };
+});
+
 vi.mock('react-router-dom', () => ({
   useNavigate: () => ({ navigate: vi.fn() }),
   useParams: () => ({ id: 'id' }),

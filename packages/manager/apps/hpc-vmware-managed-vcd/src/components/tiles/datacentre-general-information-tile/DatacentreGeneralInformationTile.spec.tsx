@@ -13,6 +13,14 @@ import { labels } from '../../../test-utils';
 import { ID_LABEL } from '../../../pages/dashboard/dashboard.constants';
 import TEST_IDS from '../../../utils/testIds.constants';
 
+vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
+  const original: typeof import('@ovh-ux/manager-react-shell-client') = await importOriginal();
+  return {
+    ...original,
+    useOvhTracking: () => ({ trackClick: vi.fn() }),
+  };
+});
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {

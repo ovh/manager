@@ -13,18 +13,25 @@ import {
   VCD_ORGANIZATION_ROUTE,
   VCDOrganization,
 } from '@ovh-ux/manager-module-vcd-api';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import DatagridContainer from '@/components/datagrid/container/DatagridContainer.component';
 import { urls } from '@/routes/routes.constant';
 import { MANAGED_VCD_LABEL } from '@/pages/dashboard/organization/organizationDashboard.constants';
 import TEST_IDS from '@/utils/testIds.constants';
+import { TRACKING } from '@/tracking.constant';
 
 /* ========= datagrid cells ========== */
 const DatagridIdCell = (vdcOrg: VCDOrganization) => {
   const navigate = useNavigate();
+  const { trackClick } = useOvhTracking();
+
   return (
     <DataGridTextCell>
       <Links
-        onClickReturn={() => navigate(`/${vdcOrg.id}`)}
+        onClickReturn={() => {
+          trackClick(TRACKING.listing.details);
+          navigate(`/${vdcOrg.id}`);
+        }}
         label={vdcOrg.currentState?.fullName}
         data-testid={TEST_IDS.listingVcdNameLink}
       ></Links>

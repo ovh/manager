@@ -12,7 +12,7 @@ import {
   getElementByTestId,
   getNthElementByTestId,
 } from '@ovh-ux/manager-core-test-utils';
-import { expect } from 'vitest';
+import { expect, vi } from 'vitest';
 import { OdsMessageColor } from '@ovhcloud/ods-components';
 import {
   DEFAULT_LISTING_ERROR,
@@ -22,6 +22,14 @@ import {
 import { COMPUTE_LABEL } from '../datacentreDashboard.constants';
 import { VHOSTS_LABEL } from '../compute/datacentreCompute.constants';
 import TEST_IDS from '../../../../utils/testIds.constants';
+
+vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
+  const original: typeof import('@ovh-ux/manager-react-shell-client') = await importOriginal();
+  return {
+    ...original,
+    useOvhTracking: () => ({ trackClick: vi.fn(), trackCurrentPage: vi.fn() }),
+  };
+});
 
 describe('Datacentre Compute Listing Page', () => {
   it('access and display compute listing page without banner info for special offer', async () => {

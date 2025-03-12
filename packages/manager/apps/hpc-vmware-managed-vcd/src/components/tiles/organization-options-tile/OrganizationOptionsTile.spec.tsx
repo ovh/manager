@@ -10,6 +10,14 @@ import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 import OrganizationOptionsTile from './OrganizationOptionsTile.component';
 import { labels } from '../../../test-utils';
 
+vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
+  const original: typeof import('@ovh-ux/manager-react-shell-client') = await importOriginal();
+  return {
+    ...original,
+    useOvhTracking: () => ({ trackClick: vi.fn() }),
+  };
+});
+
 const shellContext = {
   environment: {
     getRegion: vi.fn(),
