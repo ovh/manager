@@ -1,0 +1,21 @@
+{
+  "hub_order_tracking_title": "Letzte Bestellung",
+  "hub_order_tracking_see_all": "Meine Bestellungen anzeigen",
+  "hub_order_tracking_error": "Nachverfolgung der Bestellung nicht verfügbar",
+  "hub_order_tracking_order_id": "Nr. {{orderId}}",
+  "order_tracking_history_DELIVERY": "Vorbereitung Ihrer Bestellung",
+  "order_tracking_history_FRAUD_CHECK": "Bestellung wird bestätigt...",
+  "order_tracking_history_FRAUD_DOCS_REQUESTED": "Warten auf Belege",
+  "order_tracking_history_FRAUD_MANUAL_REVIEW": "Überprüfen Ihrer Bestellung",
+  "order_tracking_history_FRAUD_REFUSED": "Bestellung abgelehnt",
+  "order_tracking_history_INVOICE_IN_PROGRESS": "Ihre Bestellung ist verfügbar",
+  "order_tracking_history_INVOICE_SENT": "Ihre Rechnung ist verfügbar",
+  "order_tracking_history_ORDER_ACCEPTED": "Bestellung angenommen",
+  "order_tracking_history_ORDER_STARTED": "Ihre Bestellung wird erstellt...",
+  "order_tracking_history_PAYMENT_CONFIRMED": "Zahlung bestätigt",
+  "order_tracking_history_PAYMENT_INITIATED": "Zahlung wird bestätigt",
+  "order_tracking_history_PAYMENT_RECEIVED": "Zahlung erhalten",
+  "order_tracking_history_REGISTERED_PAYMENT_INITIATED": "Zahlung wird bestätigt",
+  "order_tracking_history_custom_payment_waiting": "Unbezahlt",
+  "order_tracking_history_custom_creation": "Erstellung Ihrer Bestellung"
+}
