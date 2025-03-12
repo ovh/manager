@@ -42,7 +42,7 @@ const TabsMenu = ({ tabs }: TabsMenuProps) => {
               >
                 {tab.label}
                 {tab.count > 0 && (
-                  <Badge className="hidden md:block text-xs bg-blue-500 text-white font-semibold rounded-md py-0.5 px-2.5">
+                  <Badge className="hidden md:block bg-blue-500 text-white text-xs rounded-full py-0.5 px-2.5">
                     {tab.count}
                   </Badge>
                 )}
