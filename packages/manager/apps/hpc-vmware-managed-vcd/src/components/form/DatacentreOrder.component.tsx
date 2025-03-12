@@ -5,7 +5,6 @@ import {
   Datagrid,
   DatagridColumn,
   ErrorBanner,
-  Subtitle,
 } from '@ovh-ux/manager-react-components';
 import {
   OdsButton,
@@ -19,10 +18,12 @@ import {
   VCDOrderableStoragePriced,
   VCDOrderableVhostPriced,
 } from '@ovh-ux/manager-module-vcd-api';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { useDatacentreOrderContext } from '@/context/DatacentreOrder.context';
 import { validateQuantity } from '@/utils/formValidation';
 import { getPricedVdcResources } from '@/utils/getPricedOrderableResource';
 import Loading from '../loading/Loading.component';
+import { TRACKING } from '@/tracking.constant';
 
 type OrderType = 'compute' | 'storage';
 type OrderColumns<T extends OrderType> = T extends 'compute'
@@ -51,6 +52,7 @@ export const DatacentreOrder = <T extends OrderType>({
   const { t } = useTranslation('datacentres/order');
   const navigate = useNavigate();
   const { id, vdcId } = useParams();
+  const { trackClick } = useOvhTracking();
   const {
     selectedResource,
     setSelectedResource,
@@ -140,12 +142,19 @@ export const DatacentreOrder = <T extends OrderType>({
           <OdsButton
             label={t('managed_vcd_vdc_order_cancel_cta')}
             variant="ghost"
-            onClick={() => navigate(backLink)}
+            onClick={() => {
+              trackClick(TRACKING[orderType].orderCancel);
+              navigate(backLink);
+            }}
           />
           <OdsButton
             label={t('managed_vcd_vdc_order_confirm_cta')}
             isDisabled={!isValidQuantity}
-            onClick={isValidQuantity ? redirectToOrder : null}
+            onClick={() => {
+              if (!isValidQuantity) return;
+              trackClick(TRACKING[orderType].orderConfirm);
+              redirectToOrder();
+            }}
           />
         </div>
       </div>

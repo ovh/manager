@@ -12,8 +12,9 @@ import {
   getElementByTestId,
   getNthElementByTestId,
 } from '@ovh-ux/manager-core-test-utils';
-import { expect } from 'vitest';
+import { expect, vi } from 'vitest';
 import { OdsMessageColor } from '@ovhcloud/ods-components';
+import { act } from '@testing-library/react';
 import {
   DEFAULT_LISTING_ERROR,
   labels,
@@ -22,11 +23,27 @@ import {
 import { COMPUTE_LABEL } from '../datacentreDashboard.constants';
 import { VHOSTS_LABEL } from '../compute/datacentreCompute.constants';
 import TEST_IDS from '../../../../utils/testIds.constants';
+import { TRACKING } from '../../../../tracking.constant';
+
+const trackClickMock = vi.fn();
+vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
+  const original: typeof import('@ovh-ux/manager-react-shell-client') = await importOriginal();
+  return {
+    ...original,
+    useOvhTracking: () => ({
+      trackClick: trackClickMock,
+      trackCurrentPage: vi.fn(),
+    }),
+  };
+});
+
+const vdcRoute = `/${organizationList[0].id}/datacentres/${datacentreList[0].id}`;
+const computeRoute = `${vdcRoute}/compute`;
 
 describe('Datacentre Compute Listing Page', () => {
   it('access and display compute listing page without banner info for special offer', async () => {
     const { getByText, queryByText } = await renderTest({
-      initialRoute: `/${organizationList[0].id}/datacentres/${datacentreList[0].id}`,
+      initialRoute: vdcRoute,
       feature: { 'hpc-vmware-managed-vcd:compute-special-offer-banner': false },
     });
 
@@ -70,7 +87,7 @@ describe('Datacentre Compute Listing Page', () => {
 
   it('access and display compute listing page with banner info for special offer', async () => {
     const { getByText, getByTestId } = await renderTest({
-      initialRoute: `/${organizationList[0].id}/datacentres/${datacentreList[0].id}`,
+      initialRoute: vdcRoute,
       feature: { 'hpc-vmware-managed-vcd:compute-special-offer-banner': true },
     });
 
@@ -87,12 +104,20 @@ describe('Datacentre Compute Listing Page', () => {
     }, WAIT_FOR_DEFAULT_OPTIONS);
   });
 
-  it('display an error', async () => {
-    await renderTest({
-      initialRoute: `/${organizationList[0].id}/datacentres/${datacentreList[0].id}/compute`,
-      isComputeKO: true,
-    });
+  it('should track click on orderButton', async () => {
+    const user = userEvent.setup();
+    await renderTest({ initialRoute: computeRoute });
 
+    const orderButton = await getElementByTestId(TEST_IDS.computeOrderCta);
+
+    await act(() => user.click(orderButton));
+    expect(trackClickMock).toHaveBeenCalledWith(
+      TRACKING.compute.addVirtualHost,
+    );
+  });
+
+  it('display an error', async () => {
+    await renderTest({ initialRoute: computeRoute, isComputeKO: true });
     await assertTextVisibility(DEFAULT_LISTING_ERROR);
   });
 });

@@ -9,12 +9,14 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { VCDDatacentre, VCDOrganization } from '@ovh-ux/manager-module-vcd-api';
 import { OdsText } from '@ovhcloud/ods-components/react';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { subRoutes } from '@/routes/routes.constant';
 import { iamActions } from '@/utils/iam.constants';
 import EditableTileItem from '../editable-tile-item/EditableTileItem.component';
 import { capitalize } from '@/utils/capitalize';
 import { ID_LABEL } from '@/pages/dashboard/dashboard.constants';
 import TEST_IDS from '@/utils/testIds.constants';
+import { TRACKING } from '@/tracking.constant';
 
 type TTileProps = {
   vcdDatacentre: VCDDatacentre;
@@ -28,6 +30,7 @@ export default function DatacentreGenerationInformationTile({
   const { t } = useTranslation('dashboard');
   const { t: tVdc } = useTranslation('datacentres');
   const navigate = useNavigate();
+  const { trackClick } = useOvhTracking();
 
   return (
     <DashboardTile
@@ -98,6 +101,9 @@ export default function DatacentreGenerationInformationTile({
               label={t('managed_vcd_dashboard_management_interface_access')}
               target="_blank"
               data-testid={TEST_IDS.dashboardDatacentreInterfaceLink}
+              onClickReturn={() =>
+                trackClick(TRACKING.datacentreDashboard.goToVcdPortal)
+              }
             />
           ),
         },

@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { act, render } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
 import React from 'react';
 import { VCDOrganization } from '@ovh-ux/manager-module-vcd-api';
@@ -8,8 +8,19 @@ import {
   assertTextVisibility,
   getElementByTestId,
 } from '@ovh-ux/manager-core-test-utils';
+import userEvent from '@testing-library/user-event';
 import OrganizationGeneralInformationTile from './OrganizationGeneralInformationTile.component';
 import TEST_IDS from '../../../utils/testIds.constants';
+import { TRACKING } from '../../../tracking.constant';
+
+const trackClickMock = vi.fn();
+vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
+  const original: typeof import('@ovh-ux/manager-react-shell-client') = await importOriginal();
+  return {
+    ...original,
+    useOvhTracking: () => ({ trackClick: trackClickMock }),
+  };
+});
 
 vi.mock('react-router-dom', () => ({
   useNavigate: () => ({ navigate: vi.fn() }),
@@ -42,6 +53,7 @@ const vcdOrg: VCDOrganization = {
 
 describe('OrganizationGeneralInformationTile component unit test suite', () => {
   it('should define tileTitle and sections', async () => {
+    const user = userEvent.setup();
     // when
     render(
       <QueryClientProvider client={new QueryClient()}>
@@ -75,6 +87,11 @@ describe('OrganizationGeneralInformationTile component unit test suite', () => {
     expect(webUrlLink).toHaveAttribute(
       'href',
       vcdOrg.currentState.webInterfaceUrl,
+    );
+
+    await act(() => user.click(webUrlLink));
+    expect(trackClickMock).toHaveBeenCalledWith(
+      TRACKING.dashboard.goToVcdPortal,
     );
   });
 });
