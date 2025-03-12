@@ -78,6 +78,7 @@
 
         <oui-action-menu data-compact data-placement="end">
             <oui-action-menu-item
+                data-ng-if=":: $ctrl.isNsxEdgeRelocateAvailable"
                 data-on-click="$ctrl.goToRelocate($row.nsxtEdgeId)"
                 ><span
                     data-translate="dedicatedCloud_network_relocate_action"

@@ -364,7 +364,10 @@ class DedicatedCloudService {
         },
       )
       .then(({ data }) =>
-        data.filter((item) => item.state !== TASK_STATUS.DONE),
+        data.filter(
+          (item) =>
+            item.state !== TASK_STATUS.DONE && item.state !== TASK_STATUS.ERROR,
+        ),
       );
   }
 

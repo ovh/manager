@@ -74,7 +74,7 @@ export default class DedicatedCloudDatacenterNetworkTab {
       })
       .catch((error) => {
         if (error.status === 404) {
-          this.setVcpuTextPrice(0, 'EUR');
+          this.setVcpuTextPrice(0, this.coreConfig.user.currency.code);
         } else {
           throw error;
         }
