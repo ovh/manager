@@ -18,6 +18,8 @@ import { useNotifications } from '@/hooks/useNotifications';
 import { useTracking } from '@/hooks/useTracking';
 import { COLD_ARCHIVE_TRACKING } from '@/tracking.constants';
 
+const MAX_RETENTION_DAYS = 4500;
+
 export default function EditRetentionPage() {
   const { t } = useTranslation('containers/edit-retention');
 
@@ -31,9 +33,12 @@ export default function EditRetentionPage() {
 
   const [lockedUntilDays, setLockedUntilDays] = useState(1);
 
-  const newRetentionDate = add(new Date(), {
-    days: lockedUntilDays,
-  });
+  const newRetentionDate =
+    lockedUntilDays <= MAX_RETENTION_DAYS
+      ? add(new Date(), {
+          days: lockedUntilDays,
+        })
+      : new Date();
 
   const formattedRetentionDate = useFormattedDate(
     newRetentionDate.toString(),
@@ -91,7 +96,11 @@ export default function EditRetentionPage() {
   const onClose = onCancel;
 
   const isPending = !archive || isPendingStartArchive;
-  const isDisabled = isPending || hasWarning || !lockedUntilDays;
+  const isDisabled =
+    isPending ||
+    hasWarning ||
+    !lockedUntilDays ||
+    lockedUntilDays > MAX_RETENTION_DAYS;
 
   return (
     <PciModal
@@ -143,7 +152,7 @@ export default function EditRetentionPage() {
         <OdsQuantity
           className="block"
           min={1}
-          max={4500}
+          max={MAX_RETENTION_DAYS}
           value={lockedUntilDays}
           name="lockedUntilDays"
           onOdsChange={(event) => setLockedUntilDays(event.detail.value)}
