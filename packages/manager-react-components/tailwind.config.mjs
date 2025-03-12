@@ -11,4 +11,7 @@ export default {
       xxl: '87.5em',
     },
   },
+  corePlugins: {
+    preflight: false,
+  },
 };
