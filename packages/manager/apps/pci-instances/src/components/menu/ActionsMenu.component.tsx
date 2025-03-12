@@ -25,7 +25,6 @@ import { DeepReadonly } from '@/types/utils.type';
 
 export type TActionsMenuItem = DeepReadonly<{
   label: string;
-  isDisabled: boolean;
   link: {
     path: string;
     isExternal: boolean;
@@ -51,7 +50,6 @@ export const ActionsMenuLink: FC<TActionsMenuLinkProps> = ({ item }) => {
       color={ODS_THEME_COLOR_INTENT.primary}
       data-testid="actions-menu-item"
       href={href}
-      disabled={item.isDisabled || undefined}
     >
       <OsdsText
         size={ODS_THEME_TYPOGRAPHY_SIZE._500}
