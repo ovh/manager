@@ -308,10 +308,14 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
   }
 
   trackPage(data: LegacyTrackingData): void {
+    const trackingData = data;
+    if (trackingData?.page?.name) {
+      trackingData.name = trackingData.page.name;
+    }
     if (this.canTrack()) {
       const tracking = {
-        ...this.getGenericTrackingData(data),
-        ...getPageTrackingData(data?.page || data),
+        ...this.getGenericTrackingData(trackingData),
+        ...getPageTrackingData(trackingData),
       };
       if (tracking.page) {
         this.sendEvent('page.display', filterTrackingData(tracking));
