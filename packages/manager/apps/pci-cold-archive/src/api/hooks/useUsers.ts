@@ -46,18 +46,17 @@ export const useUsers = (
   projectId: string,
   filterWithCredentials?: boolean,
 ) => {
-  const { data: users, isPending } = useAllUsers(projectId);
+  const { data: users, isPending, isLoading } = useAllUsers(projectId);
 
   const allUsersQueries = useQueries({
     queries: (users || [])?.map((user) => ({
       queryKey: [...getUsersCacheKey(projectId), user.id, 's3Credentials'],
       queryFn: () => getS3Credentials(projectId, user.id),
-      enabled: !isPending,
       select: (s3Credentials: TS3Credentials[]) => s3Credentials[0],
     })),
     combine: (results) => ({
-      isPending: results.some((result) => result.isPending),
-      isLoading: results.some((result) => result.isLoading),
+      isPending: isPending || results.some((result) => result.isPending),
+      isLoading: isLoading || results.some((result) => result.isLoading),
       error: results.find((result) => result.error),
       data: users?.reduce<TUser[]>((all, user) => {
         const s3Credentials = results.find(
