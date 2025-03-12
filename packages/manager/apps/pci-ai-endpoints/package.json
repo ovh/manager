@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-ai-endpoints-app",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "private": true,
   "description": "Manage AI Endpoints (usage and tokens) through OVHcloud control panel",
   "repository": {
@@ -25,11 +25,11 @@
     "@ovh-ux/manager-core-utils": "*",
     "@ovh-ux/manager-pci-common": "^0.14.4",
     "@ovh-ux/manager-react-components": "^1.45.0",
-    "@ovh-ux/manager-react-core-application": "^0.11.12",
+    "@ovh-ux/manager-react-core-application": "^0.11.13",
     "@ovh-ux/manager-react-shell-client": "^0.8.5",
     "@ovh-ux/manager-tailwind-config": "*",
     "@ovh-ux/request-tagger": "^0.4.0",
-    "@ovh-ux/shell": "^4.1.9",
+    "@ovh-ux/shell": "^4.1.10",
     "@ovhcloud/ods-common-core": "17.2.1",
     "@ovhcloud/ods-common-theming": "17.2.1",
     "axios": "^1.1.2",
