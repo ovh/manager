@@ -16,7 +16,6 @@ import { DeepReadonly } from '@/types/utils.type';
 
 export type TActionsMenuItem = DeepReadonly<{
   label: string;
-  isDisabled: boolean;
   link: {
     path: string;
     isExternal: boolean;
@@ -39,12 +38,10 @@ const ActionMenuItem: FC<TActionsMenuLinkProps> = ({ item }) => {
 
   return (
     <DropdownMenuItem
-      disabled={item.isDisabled}
-      data-testid="actions-menu-item"
+      className="cursor-pointer text-base text-blue-700 font-semibold focus:text-blue-700"
+      asChild
     >
-      <a className="text-blue-700" href={href}>
-        {t(item.label)}
-      </a>
+      <a href={href}>{t(item.label)}</a>
     </DropdownMenuItem>
   );
 };
@@ -70,7 +67,9 @@ export const ActionsMenu = ({ items }: TActionsMenuProps) => {
             {item.map((elt) => (
               <ActionMenuItem key={elt.label} item={elt} />
             ))}
-            {arr.length - 1 !== index && <DropdownMenuSeparator />}
+            {arr.length - 1 !== index && (
+              <DropdownMenuSeparator className="bg-[--ods-color-form-element-border-default]" />
+            )}
           </div>
         ))}
       </DropdownMenuContent>
