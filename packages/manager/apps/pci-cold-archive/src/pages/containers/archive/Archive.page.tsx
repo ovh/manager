@@ -178,7 +178,7 @@ export default function ArchivePage() {
               max={maxDaysRetention}
               value={lockedUntilDays}
               name="lockedUntilDays"
-              className="mt-2"
+              className="mt-2 block"
               hasError={!!errorMessage}
               onOdsChange={(event) => setLockedUntilDays(event.detail.value)}
             />
