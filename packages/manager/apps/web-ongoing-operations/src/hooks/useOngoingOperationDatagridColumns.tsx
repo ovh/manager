@@ -109,14 +109,14 @@ export const useOngoingOperationDatagridColumns = (
                 className: `${!props.canAccelerate &&
                   !props.canRelaunch &&
                   !props.canCancel &&
-                  'hidden'} openModal`,
+                  'hidden'} openModal menu-item-button`,
                 onClick: () => openModal(props.id),
               },
               {
                 id: 2,
                 label: t('domain_operations_tab_popover_progress'),
-                className:
-                  props.function !== 'DomainIncomingTransfer' && 'hidden',
+                className: `${props.function !== 'DomainIncomingTransfer' &&
+                  'hidden'} menu-item-button`,
                 onClick: () => navigate(`/tracking/${props.id}`),
               },
             ]}

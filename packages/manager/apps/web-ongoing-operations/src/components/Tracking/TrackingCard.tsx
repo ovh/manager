@@ -11,6 +11,7 @@ import {
   OdsMessage,
   OdsSpinner,
   OdsText,
+  OdsTooltip,
 } from '@ovhcloud/ods-components/react';
 import React, { useMemo, useRef } from 'react';
 import { getI18n, useTranslation } from 'react-i18next';
@@ -200,7 +201,25 @@ export default function TrackingCard({ tracking }: TrackingCardProps) {
             </OdsText>
             <ul className="pl-4 my-0 text-[--ods-color-text]">
               <li>{t('tracking_transfert_fourth_step_operation_list_1')}</li>
-              <li>{t('tracking_transfert_fourth_step_operation_list_2')}</li>
+              <li>
+                {t('tracking_transfert_fourth_step_operation_list_2')}
+                <OdsIcon
+                  id="trigger-1"
+                  name="circle-question"
+                  className="ml-1"
+                />
+                <OdsTooltip
+                  role="tooltip"
+                  strategy="fixed"
+                  triggerId="trigger-1"
+                >
+                  <OdsText preset={ODS_TEXT_PRESET.span}>
+                    {t(
+                      'tracking_transfert_fourth_step_operation_list_2_detail',
+                    )}
+                  </OdsText>
+                </OdsTooltip>
+              </li>
             </ul>
             <OdsText preset={ODS_TEXT_PRESET.paragraph}>
               {t('tracking_transfert_last_update', {

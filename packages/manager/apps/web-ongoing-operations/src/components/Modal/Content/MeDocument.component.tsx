@@ -29,7 +29,7 @@ export default function MeDocumentComponent({
     <OdsLink
       label={t(`domain_operations_update_nicowner_click_${argumentKey}`)}
       icon="external-link"
-      className="mb-1 block"
+      className="mb-1 block modal-link"
       href={url}
       data-testid="documentModal"
     />
