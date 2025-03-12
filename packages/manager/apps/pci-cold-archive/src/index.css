@@ -29,7 +29,3 @@ button {
 .badge-deployment-multizone::part(badge) {
   background-color: var(--ods-color-information-200);
 }
-
-.font-bold-class::part(text) {
-  @apply font-bold;
-}
