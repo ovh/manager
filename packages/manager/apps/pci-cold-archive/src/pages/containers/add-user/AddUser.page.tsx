@@ -144,12 +144,7 @@ export default function AddUserToContainerPage() {
   }, [modalRef.current]);
 
   return (
-    <OdsModal
-      onOdsClose={onClose}
-      isOpen
-      ref={modalRef}
-      className="modal_add-user"
-    >
+    <OdsModal onOdsClose={onClose} isOpen ref={modalRef}>
       <OdsText preset="heading-3">
         {t(
           'pci_projects_project_storages_coldArchive_containers_addUser_container_title',
