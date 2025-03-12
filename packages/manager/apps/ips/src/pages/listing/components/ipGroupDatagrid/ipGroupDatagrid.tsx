@@ -1,16 +1,20 @@
 import { Datagrid, DatagridColumn } from '@ovh-ux/manager-react-components';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Row } from '@tanstack/react-table';
 import {
   ActionsCell,
   IpAlerts,
+  IpAntiDdosDisplay,
   IpAttachedService,
   IpCell,
   IpCountry,
+  IpEdgeFirewallDisplay,
+  IpGameFirewallDisplay,
   IpRegion,
   IpReverse,
   IpType,
+  IpVmacFilterByIp,
 } from '../DatagridCells';
 import {
   useGetIpEdgeFirewall,
@@ -20,15 +24,10 @@ import {
   useGetIpVmacWithIp,
   useGetIpdetails,
 } from '@/data/hooks/ip';
-import { ListingContext } from '../../listingContext';
-import { IpAntiDdosDisplay } from '../DatagridCells/IpAntiDdos/IpAntiDdosDisplay';
-import { IpEdgeFirewallDisplay } from '../DatagridCells/IpEdgeFirewall/IpEdgeFirewallDisplay';
-import { IpGameFirewallDisplay } from '../DatagridCells/IpGameFirewall/IpGameFirewallDisplay';
 import {
   isAntiDdosEnabled,
   isGameFirewallEnabled,
 } from '../DatagridCells/enableCellsUtils';
-import { IpVmacFilterByIp } from '../DatagridCells/IpVmacFilterByIp/IpVmacFilterByIp';
 
 export const IpGroupDatagrid = ({
   row,
@@ -37,7 +36,6 @@ export const IpGroupDatagrid = ({
   row: Row<string>;
   parentHeaders: React.MutableRefObject<Record<string, HTMLTableCellElement>>;
 }) => {
-  const { ipToSearch } = useContext(ListingContext);
   const [paginatedIpList, setPaginatedIpList] = useState<string[]>([]);
   const [numberOfPageDisplayed, setNumberOfPageDisplayed] = useState(1);
 
@@ -191,7 +189,7 @@ export const IpGroupDatagrid = ({
     if (!ipReverseList) return;
     const paginated = ipReverseList.map((ip) => ip.ipReverse);
     setPaginatedIpList(paginated.slice(0, pageSize * numberOfPageDisplayed));
-  }, [ipReverseList, numberOfPageDisplayed, ipToSearch]);
+  }, [ipReverseList, numberOfPageDisplayed]);
 
   const loadMoreIps = () => {
     setNumberOfPageDisplayed(numberOfPageDisplayed + 1);
