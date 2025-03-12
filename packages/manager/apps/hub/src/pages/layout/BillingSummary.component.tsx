@@ -158,14 +158,16 @@ export default function BillingSummary() {
                 <div className="mt-6">
                   {bills?.total > 0 && debt?.dueAmount?.value === 0 && (
                     <div className="flex flex-row justify-center">
-                       <span className="h-[24px] w-[24px] mr-4">
-                      <OsdsIcon
-                        name={ODS_ICON_NAME.SUCCESS_CIRCLE}
-                        size={ODS_ICON_SIZE.sm}
-                        contrasted
-                      ></OsdsIcon>
+                      <span className="h-[24px] w-[24px] mr-4">
+                        <OsdsIcon
+                          name={ODS_ICON_NAME.SUCCESS_CIRCLE}
+                          size={ODS_ICON_SIZE.sm}
+                          contrasted
+                        ></OsdsIcon>
                       </span>
-                    <span className="inline-block">{t('hub_billing_summary_debt_null')}</span>
+                      <span className="inline-block">
+                        {t('hub_billing_summary_debt_null')}
+                      </span>
                     </div>
                   )}
                   {debt?.dueAmount?.value > 0 && (
