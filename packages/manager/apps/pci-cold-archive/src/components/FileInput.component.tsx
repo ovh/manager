@@ -16,7 +16,7 @@ export default function FileInputComponent({
   const { t } = useTranslation('pci-common');
 
   const handleFileChange = ({ detail }) => {
-    const newFiles = Array.from(detail.files) as File[];
+    const newFiles = detail.files;
 
     const updatedFiles = [...selectedFiles, ...newFiles];
     setSelectedFiles(updatedFiles);
