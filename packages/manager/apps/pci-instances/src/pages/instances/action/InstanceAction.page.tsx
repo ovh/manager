@@ -2,17 +2,16 @@ import { FC, useCallback, useEffect, useMemo } from 'react';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import { PciModal } from '@ovh-ux/manager-pci-common';
 import {
   getInstanceById,
   updateDeletedInstanceStatus,
 } from '@/data/hooks/instance/useInstances';
 import queryClient from '@/queryClient';
 import { useUrlLastSection } from '@/hooks/url/useUrlLastSection';
-import { ActionModalContent } from './modal/ActionModalContent.component';
 import { useInstanceAction } from '@/data/hooks/instance/action/useInstanceAction';
 import NotFound from '@/pages/404/NotFound.page';
 import { kebabToSnakeCase } from '@/utils';
+import ActionModal from '@/components/actionModal/ActionModal.component';
 
 export type TSectionType =
   | 'delete'
@@ -106,17 +105,15 @@ const InstanceAction: FC = () => {
   if (!instanceName) return <Navigate to={'..'} />;
 
   return (
-    <PciModal
-      type={section === 'delete' ? 'warning' : 'default'}
+    <ActionModal
       title={t(`pci_instances_actions_${snakeCaseSection}_instance_title`)}
       isPending={isPending}
-      isDisabled={isPending}
-      onClose={handleModalClose}
-      onConfirm={handleInstanceAction}
-      onCancel={handleModalClose}
-    >
-      <ActionModalContent type={section} instanceName={instanceName} />
-    </PciModal>
+      handleInstanceAction={handleInstanceAction}
+      handleModalClose={handleModalClose}
+      instanceName={instance.name}
+      section={section}
+      variant={section === 'delete' ? 'warning' : 'primary'}
+    />
   );
 };
 
