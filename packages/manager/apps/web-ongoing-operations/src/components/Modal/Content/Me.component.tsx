@@ -19,8 +19,14 @@ export default function MeComponent({
   const { shell } = useContext(ShellContext);
   const { environment } = shell;
   const [nichandle, setNichandle] = useState('');
+  const nav = useContext(ShellContext).shell.navigation;
+  const [url, setUrl] = useState('');
 
   useEffect(() => {
+    nav.getURL('new-account', `#/useraccount/infos`, {}).then((data) => {
+      setUrl(data as string);
+    });
+
     const getNichandle = async () => {
       const env = await environment.getEnvironment();
       const user = env.getUser();
@@ -38,7 +44,7 @@ export default function MeComponent({
           })}
         </OdsText>
         <OdsLink
-          href={`/manager/#/account/useraccount/infos`}
+          href={url}
           color="primary"
           label={t(`domain_operations_update_${argumentKey}_click`)}
           className="block"
