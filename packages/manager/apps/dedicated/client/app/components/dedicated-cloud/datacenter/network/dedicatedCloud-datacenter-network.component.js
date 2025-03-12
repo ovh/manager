@@ -13,6 +13,7 @@ export default {
     hasMaximumNsx: '<',
     hasOnlyMinimumNsx: '<',
     goToAddNsx: '<',
+    isNsxEdgeRelocateAvailable: '<',
   },
   controller,
   template,
