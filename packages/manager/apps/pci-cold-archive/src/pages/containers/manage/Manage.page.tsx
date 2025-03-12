@@ -39,7 +39,7 @@ export default function Manage() {
   const endpoint = archiveRegion?.services[0]?.endpoint;
 
   return (
-    <OdsModal isOpen onOdsClose={onClose} className="modal">
+    <OdsModal isOpen onOdsClose={onClose}>
       <OdsText preset="heading-3">
         {t('pci_projects_project_storages_cold_archive_container_manage')}
       </OdsText>

@@ -33,11 +33,3 @@ button {
 .font-bold-class::part(text) {
   @apply font-bold;
 }
-
-.modal::part(dialog) {
-  @apply max-w-[40%];
-}
-
-.modal_add-user::part(dialog) {
-  @apply max-w-[45%];
-}
