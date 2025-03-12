@@ -9,6 +9,8 @@ import '@/vite-hmr';
 import App from './App';
 
 import './index.css';
+import '@datatr-ux/ods-tailwind-config/style.css';
+import '@datatr-ux/uxlib/style.css';
 
 const init = async (
   appName: string,

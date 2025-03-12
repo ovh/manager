@@ -16,6 +16,9 @@
     "type:check": "tsc --noEmit"
   },
   "dependencies": {
+    "@datatr-ux/ods-tailwind-config": "^1.0.3",
+    "@datatr-ux/uxlib": "^0.0.3",
+    "@ovh-ux/manager-common-translations": "^0.5.0",
     "@ovh-ux/manager-config": "^8.0.2",
     "@ovh-ux/manager-core-api": "^0.10.0",
     "@ovh-ux/manager-pci-common": "^0.15.2",
