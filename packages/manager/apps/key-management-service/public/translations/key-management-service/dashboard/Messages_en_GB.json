@@ -12,7 +12,7 @@
   "key_management_service_dashboard_field_label_id": "ID",
   "key_management_service_dashboard_field_label_urn": "URN",
   "key_management_service_dashboard_field_label_region": "Region",
-  "key_management_service_dashboard_field_label_restApi": "Rest API",
+  "key_management_service_dashboard_field_label_restApi": "Endpoint",
   "key_management_service_dashboard_field_label_kmip": "KMIP",
   "key_management_service_dashboard_field_label_swagger": "Swagger UI",
   "key_management_service_dashboard_modal_title": "KMS name",
@@ -57,5 +57,7 @@
   "key_management_service_dashboard_dashboard_field_state_toActivate": "Enabling required",
   "key_management_service_dashboard_dashboard_field_state_toDelete": "To be deleted",
   "key_management_service_dashboard_dashboard_field_state_toSuspend": "To be suspended",
-  "key_management_service_dashboard_back_link": "Back to KMS list"
+  "key_management_service_dashboard_back_link": "Back to KMS list",
+  "key_management_service_dashboard_field_label_kmip_count": "Number of KMIP objects",
+  "key_management_service_dashboard_field_label_service-keys_count": "Number of keys"
 }
