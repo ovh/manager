@@ -1,11 +1,14 @@
 import '@/test-utils/setupUnitTests';
 import React from 'react';
 import { describe, expect, it, vi } from 'vitest';
-import { render, waitFor } from '@testing-library/react';
+import { act, fireEvent, render, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { Row } from '@tanstack/react-table';
 import { ListingContext } from '@/pages/listing/listingContext';
 import ipList from '../../../../../mocks/ip/get-ips.json';
 import { IpDatagrid } from './IpDatagrid';
+import { getButtonByIcon } from '@/test-utils';
 
 const queryClient = new QueryClient();
 /** MOCKS */
@@ -30,6 +33,12 @@ vi.mock('../DatagridCells', () => ({
   IpReverse: ({ ip }: { ip: string }) => <div>{ip}</div>,
   IpType: ({ ip }: { ip: string }) => <div>{ip}</div>,
   IpVmac: ({ ip }: { ip: string }) => <div>{ip}</div>,
+}));
+
+vi.mock('../ipGroupDatagrid/ipGroupDatagrid', () => ({
+  IpGroupDatagrid: ({ row }: { row: Row<string> }) => (
+    <div>{`row-${row.original}`}</div>
+  ),
 }));
 
 let ipToSearch = '';
@@ -107,6 +116,28 @@ describe('IpDatagrid Component', async () => {
       expect(getAllByText('239.99.244.14/32').length).toBe(12);
       expect(queryByText('239.99.262.83/32')).toBeNull();
       expect(queryByText('239.99.279.206/32')).toBeNull();
+    });
+  });
+
+  it('should display expandable rows for ip group', async () => {
+    useGetIpListMock.mockReturnValue({
+      ipList,
+      isLoading: false,
+      error: undefined,
+    });
+    setIpToSearch('241.94.186.48');
+    const { container, getByText } = renderComponent();
+    const expandButton = await getButtonByIcon({
+      container,
+      iconName: ODS_ICON_NAME.chevronRight,
+    });
+
+    await act(() => {
+      fireEvent.click(expandButton);
+    });
+
+    await waitFor(() => {
+      expect(getByText('row-241.94.186.48/28')).toBeDefined();
     });
   });
 });
