@@ -12,7 +12,7 @@ export type DeploymentTilesInputForAppProps = Omit<
   'deployments'
 >;
 
-export const DeploymentTilesInputForApp = ({
+export const FeaturedDeploymentTilesInput = ({
   value,
   onChange,
   name,

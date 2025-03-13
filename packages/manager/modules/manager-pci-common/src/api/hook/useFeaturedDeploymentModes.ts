@@ -1,7 +1,8 @@
 import { useMemo } from 'react';
 import { TRegion } from '@/api/data';
 import { usePCIFeatureAvailability } from '@/api/hook/usePCIFeatureAvailability';
-import { TDeployment } from '@/components/deployment-mode-card';
+
+import { TDeployment } from '@/dto';
 
 export const DEPLOYMENT_MODES_TYPES: TRegion['type'][] = [
   'region',
@@ -27,12 +28,9 @@ export const useFeaturedDeploymentModes = () => {
     () =>
       DEPLOYMENT_MODES_TYPES.map((d) => ({
         name: d,
-        beta:
-          featureAvailability &&
-          featureAvailability.get(getDeploymentBetaKey(d)),
+        beta: featureAvailability?.get(getDeploymentBetaKey(d)) || false,
         comingSoon:
-          featureAvailability &&
-          featureAvailability.get(getDeploymentComingSoonKey(d)),
+          featureAvailability?.get(getDeploymentComingSoonKey(d)) || false,
       })),
     [featureAvailability],
   );

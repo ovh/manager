@@ -1,3 +1,3 @@
 export * from './DeploymentTilesInput';
-export * from './DeploymentTilesInputForApp';
+export * from './FeaturedDeploymentTilesInput';
 export * from './website-link';

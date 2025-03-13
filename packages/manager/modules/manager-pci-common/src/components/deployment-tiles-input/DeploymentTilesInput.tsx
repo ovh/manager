@@ -6,14 +6,12 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { GLOBAL_INFRASTRUCTURE_URL } from './website-link';
 import { RadioAdapterFactoryProps } from '@/components/input-adapter';
-import {
-  DeploymentModeCard,
-  TDeployment,
-} from '@/components/deployment-mode-card';
+import { DeploymentModeCard } from '@/components/deployment-mode-card';
 import {
   TilesInput,
   TilesInputProps,
 } from '@/components/tiles-input/TilesInput';
+import { TDeployment } from '@/dto';
 
 export type DeploymentTilesInputProps = {
   deployments: TDeployment[];

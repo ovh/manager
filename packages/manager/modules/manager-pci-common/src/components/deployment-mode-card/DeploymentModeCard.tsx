@@ -9,15 +9,8 @@ import { ODS_CHIP_SIZE } from '@ovhcloud/ods-components';
 import { clsx } from 'clsx';
 import './style.scss';
 import '@/translations/deployment-mode';
-import { ReactNode } from 'react';
 import { RegionChipByType } from '@/components/region-selector/RegionChipByType';
-
-export type TDeployment = {
-  name: string;
-  beta?: boolean;
-  comingSoon?: boolean;
-  price?: ReactNode;
-};
+import { TDeployment } from '@/dto';
 
 export type DeploymentModeCardProps = Readonly<
   {
@@ -47,7 +40,7 @@ export const DeploymentModeCard = ({
             className={clsx('leading-8')}
             id={labelId}
           >
-            {t(`deployment_mode_title_${name}`)}
+            {t(`deployment_mode_card_title_${name}`)}
           </OsdsText>
         </div>
 
@@ -61,7 +54,7 @@ export const DeploymentModeCard = ({
               level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
               color={ODS_THEME_COLOR_INTENT.text}
             >
-              {t(`deployment_mode_description_${name}`)}
+              {t(`deployment_mode_card_description_${name}`)}
             </OsdsText>
           </div>
           <div className="mb-3">
@@ -73,7 +66,7 @@ export const DeploymentModeCard = ({
                   size={ODS_CHIP_SIZE.sm}
                   inline
                 >
-                  {t('deployment_mode_beta')}
+                  {t('deployment_mode_card_beta')}
                 </OsdsChip>
                 <OsdsText
                   size={ODS_THEME_TYPOGRAPHY_SIZE._100}
@@ -81,14 +74,14 @@ export const DeploymentModeCard = ({
                   color={ODS_THEME_COLOR_INTENT.text}
                   className="uppercase font-bold"
                 >
-                  {t('deployment_mode_beta_price')}
+                  {t('deployment_mode_card_beta_price')}
                 </OsdsText>
               </div>
             )}
             {comingSoon && (
               <div>
                 <OsdsChip className="m-3" size={ODS_CHIP_SIZE.sm} inline>
-                  {t('deployment_mode_coming_soon')}
+                  {t('deployment_mode_card_coming_soon')}
                 </OsdsChip>
               </div>
             )}
