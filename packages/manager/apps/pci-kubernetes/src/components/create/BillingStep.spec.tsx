@@ -1,13 +1,9 @@
 import { render } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
 import BillingStep, { TBillingStepProps } from './BillingStep.component';
+import { wrapper } from '@/wrapperRenders';
 
 const defaultProps: TBillingStepProps = {
-  antiAffinity: {
-    isEnabled: false,
-    isChecked: false,
-    onChange: vi.fn(),
-  },
   price: 0,
   monthlyPrice: 0,
   monthlyBilling: {
@@ -29,72 +25,13 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
 }));
 
 describe('BillingStep', () => {
-  describe('Anti affinity checkbox', () => {
-    it('the checkbox should be disabled from props', () => {
-      const props = {
-        ...defaultProps,
-        antiAffinity: {
-          ...defaultProps.antiAffinity,
-          isEnabled: false,
-        },
-      };
-      const { getByTestId } = render(<BillingStep {...props} />);
-
-      const checkbox = getByTestId('checkbox');
-
-      expect(checkbox.attributes.getNamedItem('disabled').value).toBe('true');
-    });
-    it('the checkbox should be enabled from props', () => {
-      const props = {
-        ...defaultProps,
-        antiAffinity: {
-          ...defaultProps.antiAffinity,
-          isEnabled: true,
-        },
-      };
-      const { getByTestId } = render(<BillingStep {...props} />);
-
-      const checkbox = getByTestId('checkbox');
-
-      expect(checkbox.attributes.getNamedItem('disabled').value).toBe('false');
-    });
-    it('the checkbox should be checked from props', () => {
-      const props = {
-        ...defaultProps,
-        antiAffinity: {
-          ...defaultProps.antiAffinity,
-          isChecked: true,
-        },
-      };
-      const { getByTestId } = render(<BillingStep {...props} />);
-
-      const checkbox = getByTestId('checkbox');
-
-      expect(checkbox.attributes.getNamedItem('checked').value).toBe('true');
-    });
-    it('the checkbox should be unchecked from props', () => {
-      const props = {
-        ...defaultProps,
-        antiAffinity: {
-          ...defaultProps.antiAffinity,
-          isChecked: false,
-        },
-      };
-      const { getByTestId } = render(<BillingStep {...props} />);
-
-      const checkbox = getByTestId('checkbox');
-
-      expect(checkbox.attributes.getNamedItem('checked').value).toBe('false');
-    });
-  });
-
   describe('Hourly billing', () => {
     it('should render hourly billing tile with price from props', () => {
       const props = {
         ...defaultProps,
         price: 5248,
       };
-      const { getByTestId } = render(<BillingStep {...props} />);
+      const { getByTestId } = render(<BillingStep {...props} />, { wrapper });
 
       const hourlyTile = getByTestId('hourly_tile');
 
@@ -112,7 +49,9 @@ describe('BillingStep', () => {
             isComingSoon: true,
           },
         };
-        const { queryByTestId } = render(<BillingStep {...props} />);
+        const { queryByTestId } = render(<BillingStep {...props} />, {
+          wrapper,
+        });
 
         const monthlyTile = queryByTestId('monthly_tile');
 
@@ -128,7 +67,9 @@ describe('BillingStep', () => {
             isComingSoon: false,
           },
         };
-        const { queryByTestId } = render(<BillingStep {...props} />);
+        const { queryByTestId } = render(<BillingStep {...props} />, {
+          wrapper,
+        });
 
         const monthlyTile = queryByTestId('monthly_tile');
 
@@ -145,7 +86,9 @@ describe('BillingStep', () => {
             isComingSoon: true,
           },
         };
-        const { queryByTestId } = render(<BillingStep {...props} />);
+        const { queryByTestId } = render(<BillingStep {...props} />, {
+          wrapper,
+        });
 
         const yesMessage = queryByTestId('coming_soon_message');
         const noMessage = queryByTestId('billing_description');
@@ -162,7 +105,9 @@ describe('BillingStep', () => {
             isComingSoon: false,
           },
         };
-        const { queryByTestId } = render(<BillingStep {...props} />);
+        const { queryByTestId } = render(<BillingStep {...props} />, {
+          wrapper,
+        });
 
         const yesMessage = queryByTestId('coming_soon_message');
         const noMessage = queryByTestId('billing_description');
@@ -178,7 +123,7 @@ describe('BillingStep', () => {
         ...defaultProps,
         warn: true,
       };
-      const { queryByTestId } = render(<BillingStep {...props} />);
+      const { queryByTestId } = render(<BillingStep {...props} />, { wrapper });
 
       const warnMessage = queryByTestId('warn_message');
 
@@ -190,7 +135,7 @@ describe('BillingStep', () => {
         ...defaultProps,
         warn: false,
       };
-      const { queryByTestId } = render(<BillingStep {...props} />);
+      const { queryByTestId } = render(<BillingStep {...props} />, { wrapper });
 
       const warnMessage = queryByTestId('warn_message');
 
