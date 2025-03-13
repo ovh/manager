@@ -39,6 +39,5 @@
   "pci_additional_ip_price_per_month": "{{ price }}/mois",
   "pci_additional_ip_creating_floating_ip": "Créer une floating IP",
   "pci_additional_ip_create_floating_ip_success": "Une nouvelle floating IP est en cours d'attribution...",
-  "pci_additional_ip_create_floating_ip_error": "Échec de l'attribution d'une adresse floating IP : {{ message }}",
-  "pci_additional_ip_create_3az_price": "Floating IP est actuellement en phase Beta dans la zone Paris (EU-WEST-PAR) et est donc gratuite durant cette période."
+  "pci_additional_ip_create_floating_ip_error": "Échec de l'attribution d'une adresse floating IP : {{ message }}"
 }

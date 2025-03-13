@@ -4,11 +4,7 @@ import {
   OsdsSelectOption,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import {
-  ODS_ICON_NAME,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
+import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useNavigation } from '@ovh-ux/manager-react-shell-client';
 import {
@@ -134,21 +130,6 @@ export const FloatingSteps = ({
             }
           />
         </PCICommonContext.Provider>
-        {form.floatingRegion?.type === RegionType['3AZ'] && (
-          <OsdsMessage
-            color={ODS_THEME_COLOR_INTENT.warning}
-            icon={ODS_ICON_NAME.WARNING}
-            className="mt-6"
-          >
-            <OsdsText
-              level={ODS_TEXT_LEVEL.body}
-              size={ODS_TEXT_SIZE._400}
-              color={ODS_THEME_COLOR_INTENT.text}
-            >
-              {tOrder('pci_additional_ip_create_3az_price')}
-            </OsdsText>
-          </OsdsMessage>
-        )}
       </StepComponent>
       <StepComponent
         key={StepIdsEnum.FLOATING_INSTANCE}
