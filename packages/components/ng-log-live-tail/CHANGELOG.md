@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.5.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-log-live-tail@2.4.1...@ovh-ux/ng-log-live-tail@2.5.0) (2025-03-13)
+
+
+### Features
+
+* manage apiv2 into log to customer module ([e06a952](https://github.com/ovh/manager/commit/e06a9529b890cfdc0db9475507fe23212cc3a5a1)), closes [#MANAGER-16783](https://github.com/ovh/manager/issues/MANAGER-16783)
+
+
+
+
+
 ## [2.4.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-log-live-tail@2.4.0...@ovh-ux/ng-log-live-tail@2.4.1) (2024-11-28)
 
 **Note:** Version bump only for package @ovh-ux/ng-log-live-tail

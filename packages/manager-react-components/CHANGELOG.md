@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.14.0...@ovh-ux/manager-react-components@2.15.0) (2025-03-13)
+
+### Bug Fixes
+
+- **mrc:** fix action-banner style and alignement ([5feab2f](https://github.com/ovh/manager/commit/5feab2f2d428bebff34ac96e7ac64ea52b9ecef7))
+
+### Features
+
+- **mrc:** improve datagrid in datagrid with col size ([fc48b5a](https://github.com/ovh/manager/commit/fc48b5a033defbe2caff99118c3e5388d224a791))
+
 # [2.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.13.1...@ovh-ux/manager-react-components@2.14.0) (2025-03-06)
 
 ### Bug Fixes
