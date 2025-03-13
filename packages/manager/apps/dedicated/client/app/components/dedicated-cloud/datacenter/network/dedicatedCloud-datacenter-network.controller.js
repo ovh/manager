@@ -9,7 +9,13 @@ import {
 
 export default class DedicatedCloudDatacenterNetworkTab {
   /* @ngInject */
-  constructor($translate, ovhManagerPccDatacenterService, coreConfig) {
+  constructor(
+    DedicatedCloud,
+    $translate,
+    ovhManagerPccDatacenterService,
+    coreConfig,
+  ) {
+    this.DedicatedCloud = DedicatedCloud;
     this.coreConfig = coreConfig;
     this.$translate = $translate;
     this.ovhManagerPccDatacenterService = ovhManagerPccDatacenterService;
@@ -21,7 +27,9 @@ export default class DedicatedCloudDatacenterNetworkTab {
   }
 
   $onInit() {
+    this.pollNsxTaskId = true;
     this.loadComsumptionOfOption();
+    this.getNsxtEdgePendingTask();
     const { ovhSubsidiary } = this.coreConfig.getUser();
     this.fetchVcpuPrice(ovhSubsidiary);
 
@@ -71,13 +79,29 @@ export default class DedicatedCloudDatacenterNetworkTab {
         const currency = data.locale.currencyCode;
 
         this.setVcpuTextPrice(price, currency);
-      })
-      .catch((error) => {
-        if (error.status === 404) {
-          this.setVcpuTextPrice(0, this.coreConfig.user.currency.code);
-        } else {
-          throw error;
-        }
       });
+  }
+
+  pollNsxtTask(taskId) {
+    this.pollNsxTaskId = taskId;
+    this.DedicatedCloud.datacenterResizeNsxTaskPoller(
+      this.serviceName,
+      taskId,
+    ).finally(() => {
+      this.pollNsxTaskId = null;
+    });
+  }
+
+  getNsxtEdgePendingTask() {
+    return this.DedicatedCloud.getDatacenterPendingResizeNsxTask(
+      this.serviceName,
+      this.datacenterId,
+    ).then((data) => {
+      if (data?.length > 0) {
+        this.pollNsxtTask(data[0].taskId);
+      } else {
+        this.pollNsxTaskId = null;
+      }
+    });
   }
 }
