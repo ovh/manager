@@ -68,7 +68,9 @@ const Sidebar = (): JSX.Element => {
   );
   const [isManuallyClosed, setIsManuallyClosed] = useState<boolean>(false);
 
-
+  // As we don't update any state when we set the hasService variable
+  // we miss a render when we don't open the subtree
+  // So we simulate a state update when we set the hasService variable
   const [, updateState]: any = useState();
   const forceUpdate = useCallback(() => updateState({}), []);
 
