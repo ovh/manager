@@ -27,7 +27,6 @@ import { useEffect, useState } from 'react';
 import { useNewPoolStore } from '@/pages/detail/nodepools/new/store';
 import { StepsEnum } from '@/pages/detail/nodepools/new/steps.enum';
 import { useKubernetesCluster } from '@/api/hooks/useKubernetes';
-import { Autoscaling } from '@/components/Autoscaling.component';
 import { createNodePool, TCreateNodePoolParam } from '@/api/data/node-pools';
 import { useCatalog } from '@/api/hooks/catalog';
 import BillingStep, {
@@ -36,12 +35,15 @@ import BillingStep, {
 import { ANTI_AFFINITY_MAX_NODES, NODE_RANGE } from '@/constants';
 import queryClient from '@/queryClient';
 import { useTrack } from '@/hooks/track';
+import NodePoolAntiAffinity from '@/pages/new/steps/node-pool/NodePoolAntiAffinity.component';
+import NodePoolSize from '@/pages/new/steps/node-pool/NodePoolSize.component';
 
 export default function NewPage(): JSX.Element {
   const { t: tCommon } = useTranslation('common');
   const { t: tListing } = useTranslation('listing');
   const { t: tAdd } = useTranslation('add');
   const { t: tAddForm } = useTranslation('add-form');
+  const { t: tKube } = useTranslation('kube');
 
   const { trackClick } = useTrack();
 
@@ -62,7 +64,15 @@ export default function NewPage(): JSX.Element {
     isAdding: false,
   });
 
-  const [billingState, setBillingState] = useState<TBillingStepProps>({
+  const [billingState, setBillingState] = useState<
+    TBillingStepProps & {
+      antiAffinity: {
+        isEnabled: boolean;
+        isChecked: boolean;
+        onChange: (val: boolean) => void;
+      };
+    }
+  >({
     antiAffinity: {
       isEnabled: false,
       isChecked: false,
@@ -211,6 +221,11 @@ export default function NewPage(): JSX.Element {
         }));
       });
   };
+  const hasMax5NodesAntiAffinity =
+    !store.antiAffinity ||
+    (store.antiAffinity &&
+      store.autoScaling &&
+      store.autoScaling.quantity.desired <= ANTI_AFFINITY_MAX_NODES);
 
   return (
     <>
@@ -352,6 +367,7 @@ export default function NewPage(): JSX.Element {
             : undefined,
           label: tCommon('common_stepper_next_button_label'),
           isDisabled:
+            !hasMax5NodesAntiAffinity ||
             !store.autoScaling ||
             (!store.autoScaling.isAutoscale &&
               store.autoScaling.quantity.desired > NODE_RANGE.MAX) ||
@@ -368,22 +384,27 @@ export default function NewPage(): JSX.Element {
           label: tCommon('common_stepper_modify_this_step'),
         }}
       >
-        <Autoscaling
-          autoscale={false}
-          onChange={(auto) => store.set.autoScaling(auto)}
+        <NodePoolSize
+          isMonthlyBilled={store.isMonthlyBilling}
+          onScaleChange={(auto) => store.set.autoScaling(auto)}
+          antiAffinity={billingState.antiAffinity.isChecked}
+        />
+        <NodePoolAntiAffinity
+          isChecked={billingState.antiAffinity.isChecked}
+          isEnabled={!store.autoScaling?.isAutoscale}
+          onChange={billingState.antiAffinity.onChange}
         />
       </StepComponent>
       <div ref={store.steps.get(StepsEnum.BILLING).ref}></div>
       <StepComponent
         id={StepsEnum.BILLING}
-        title={tAdd('kube_add_billing_anti_affinity_title')}
+        title={tKube('kube_service_billing')}
         isOpen={store.steps.get(StepsEnum.BILLING).isOpen}
         isChecked={store.steps.get(StepsEnum.BILLING).isChecked}
         isLocked={store.steps.get(StepsEnum.BILLING).isLocked}
         order={4}
       >
         <BillingStep
-          antiAffinity={billingState.antiAffinity}
           price={billingState.price}
           monthlyPrice={billingState.monthlyPrice}
           monthlyBilling={billingState.monthlyBilling}
