@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-vrack-services-app",
-  "version": "0.13.7",
+  "version": "0.13.8",
   "private": true,
   "description": "OVHcloud VrackServices app",
   "repository": {
@@ -46,7 +46,7 @@
   },
   "devDependencies": {
     "@ovh-ux/manager-core-test-utils": "^0.4.0",
-    "@ovh-ux/manager-vite-config": "^0.9.1",
+    "@ovh-ux/manager-vite-config": "^0.9.2",
     "@tanstack/react-query-devtools": "^5.51.21",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.0.1",

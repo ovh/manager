@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-exchange-app",
-  "version": "0.12.22",
+  "version": "0.12.23",
   "private": true,
   "repository": {
     "type": "git",
@@ -21,7 +21,7 @@
     "@ovh-ux/manager-advices": "^1.8.2",
     "@ovh-ux/manager-config": "^8.0.2",
     "@ovh-ux/manager-core": "^13.0.5",
-    "@ovh-ux/manager-exchange": "^4.13.0",
+    "@ovh-ux/manager-exchange": "^4.13.1",
     "@ovh-ux/manager-ng-layout-helpers": "^2.11.0",
     "@ovh-ux/ng-at-internet": "^6.0.9",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
@@ -72,7 +72,7 @@
     "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-webpack-config": "^7.0.5",
+    "@ovh-ux/manager-webpack-config": "^7.0.6",
     "glob": "^7.1.6",
     "lodash": "^4.17.15",
     "webpack-merge": "^4.2.2"

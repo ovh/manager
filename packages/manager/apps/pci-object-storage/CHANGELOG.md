@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.2.1...@ovh-ux/manager-pci-object-storage-app@0.2.2) (2025-03-13)
+
+
+### Bug Fixes
+
+* **pci-object-storage:** update tailwing config and snapshot ([721d246](https://github.com/ovh/manager/commit/721d24690aa68ab67863de145d6342fd8016e2b4)), closes [#MANAGER-17420](https://github.com/ovh/manager/issues/MANAGER-17420)
+
+
+
+
+
 ## [0.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.2.0...@ovh-ux/manager-pci-object-storage-app@0.2.1) (2025-03-12)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app

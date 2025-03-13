@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-billing-app",
-  "version": "0.2.33",
+  "version": "0.2.34",
   "private": true,
   "description": "OVHcloud Billing app",
   "repository": {
@@ -25,7 +25,7 @@
     "@ovh-ux/manager-config": "^8.0.2",
     "@ovh-ux/manager-core": "^13.0.5",
     "@ovh-ux/manager-error-page": "^2.4.1",
-    "@ovh-ux/manager-exchange": "^4.13.0",
+    "@ovh-ux/manager-exchange": "^4.13.1",
     "@ovh-ux/manager-models": "^2.3.1",
     "@ovh-ux/manager-new-billing": "^0.31.4",
     "@ovh-ux/manager-ng-layout-helpers": "^2.11.0",
@@ -81,7 +81,7 @@
     "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-webpack-config": "^7.0.5",
+    "@ovh-ux/manager-webpack-config": "^7.0.6",
     "glob": "^7.1.6",
     "lodash": "^4.17.15",
     "webpack": "^5.94.0",
