@@ -31,8 +31,12 @@ const plans: Plan[] = [
       [
         'kube_add_plan_content_standard_control',
         'kube_add_plan_content_standard_high_availability',
+        'kube_add_plan_content_standard_SLO',
         'kube_add_plan_content_standard_auto_scaling',
+        'kube_add_plan_content_standard_ETCD',
+
         'kube_add_plan_content_standard_version',
+        'kube_add_plan_content_standard_100',
       ].map((text, index) => (
         <span className="flex items-start gap-1" key={index}>
           <Check className="text-teal-500" />
@@ -57,13 +61,16 @@ const plans: Plan[] = [
 
     getContent: ({ t }) =>
       [
-        'kube_add_plan_content_premium_SLA',
         'kube_add_plan_content_premium_3AZ_control_plane',
-        'kube_add_plan_content_premium_scaling',
+        'kube_add_plan_content_premium_disponibility',
+        'kube_add_plan_content_premium_SLA',
+        'kube_add_plan_content_standard_auto_scaling',
+        'kube_add_plan_content_premium_ETCD',
         'kube_add_plan_content_premium_version',
+        'kube_add_plan_content_premium_500',
       ].map((text, index) => (
         <span className="flex items-start gap-1" key={index}>
-          <Check className="text-neutral-600" />
+          <Check className="text-neutral-600 shrink-0" />
           {t(text)}
         </span>
       )),
