@@ -15,7 +15,7 @@ const actionSectionRegex = /(?:rescue\/(start|end)|(?<!rescue\/)(start|stop|shel
 const LegacyInstanceAction: FC = () => {
   const location = useLocation();
   const section = usePathMatch<TSectionType>(actionSectionRegex);
-  const { instanceId, region } = useUrlSearchParams('instanceId');
+  const { instanceId, region } = useUrlSearchParams('instanceId', 'region');
   const canRedirect = !!section && !!instanceId;
   const redirectHref = `../region/${region ||
     null}/instance/${instanceId}/${section}`;
