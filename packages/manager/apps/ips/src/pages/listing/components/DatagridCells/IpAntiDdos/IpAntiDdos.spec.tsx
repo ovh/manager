@@ -3,10 +3,12 @@ import React, { PropsWithChildren } from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { render, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
 import { ListingContextProvider } from '@/pages/listing/listingContext';
 import ipDetailsList from '../../../../../../mocks/ip/get-ip-details.json';
 import { IpAntiDdos, IpAntiDdosProps } from './IpAntiDdos';
 import { IpMitigationStateEnum, IpMitigationType } from '@/data/api';
+import { getOdsBadgeByLabel } from '@/test-utils';
 
 const queryClient = new QueryClient();
 /** MOCKS */
@@ -48,9 +50,15 @@ describe('IpAntiDdos Component', async () => {
       isLoading: false,
       error: undefined,
     });
-    const { getByText } = renderComponent({ ip: ipDetailsList[0].ip });
+    const { getByText, container } = renderComponent({
+      ip: ipDetailsList[0].ip,
+    });
+    const badge = await getOdsBadgeByLabel({
+      container,
+      label: 'listingColumnsIpAntiDDosAutomatic',
+    });
     await waitFor(() => {
-      expect(getByText(`listingColumnsIpAntiDDosAutomatic`)).toBeDefined();
+      expect(badge.getAttribute('color')).toBe(ODS_BADGE_COLOR.neutral);
       expect(
         getByText(`listingColumnsIpAntiDDosAutomaticTooltip`),
       ).toBeDefined();
@@ -69,9 +77,15 @@ describe('IpAntiDdos Component', async () => {
       isLoading: false,
       error: undefined,
     });
-    const { getByText } = renderComponent({ ip: ipDetailsList[0].ip });
+    const { getByText, container } = renderComponent({
+      ip: ipDetailsList[0].ip,
+    });
+    const badge = await getOdsBadgeByLabel({
+      container,
+      label: 'listingColumnsIpAntiDDosPermanent',
+    });
     await waitFor(() => {
-      expect(getByText(`listingColumnsIpAntiDDosPermanent`)).toBeDefined();
+      expect(badge.getAttribute('color')).toBe(ODS_BADGE_COLOR.warning);
       expect(
         getByText(`listingColumnsIpAntiDDosPermanentTooltip`),
       ).toBeDefined();
@@ -90,9 +104,15 @@ describe('IpAntiDdos Component', async () => {
       isLoading: false,
       error: undefined,
     });
-    const { getByText } = renderComponent({ ip: ipDetailsList[0].ip });
+    const { getByText, container } = renderComponent({
+      ip: ipDetailsList[0].ip,
+    });
+    const badge = await getOdsBadgeByLabel({
+      container,
+      label: 'listingColumnsIpAntiDDosInAction',
+    });
     await waitFor(() => {
-      expect(getByText(`listingColumnsIpAntiDDosInAction`)).toBeDefined();
+      expect(badge.getAttribute('color')).toBe(ODS_BADGE_COLOR.success);
       expect(
         getByText(`listingColumnsIpAntiDDosInActionTooltip`),
       ).toBeDefined();
@@ -111,9 +131,15 @@ describe('IpAntiDdos Component', async () => {
       isLoading: false,
       error: undefined,
     });
-    const { getByText } = renderComponent({ ip: ipDetailsList[0].ip });
+    const { getByText, container } = renderComponent({
+      ip: ipDetailsList[0].ip,
+    });
+    const badge = await getOdsBadgeByLabel({
+      container,
+      label: 'listingColumnsIpAntiDDosPending',
+    });
     await waitFor(() => {
-      expect(getByText(`listingColumnsIpAntiDDosPending`)).toBeDefined();
+      expect(badge.getAttribute('color')).toBe(ODS_BADGE_COLOR.warning);
       expect(getByText(`listingColumnsIpAntiDDosPendingTooltip`)).toBeDefined();
     });
   });

@@ -1,9 +1,8 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
-import { datagridCellStyle } from '../datagridCellStyles';
+import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
 import { IpEdgeFirewallStateEnum, IpEdgeFirewallType } from '@/data/api';
-import { IconCell } from '../IconCell/IconCell';
+import { BadgeCell } from '../BadgeCell/BadgeCell';
 
 export type IpEdgeFirewallDetailsProps = {
   ipEdgeFirewall: IpEdgeFirewallType;
@@ -28,20 +27,19 @@ export const IpEdgeFirewallDisplay = ({
   return (
     <>
       {!ipEdgeFirewall && (
-        <IconCell
-          icon={ODS_ICON_NAME.shieldFirewall}
+        <BadgeCell
+          badgeColor={ODS_BADGE_COLOR.neutral}
           text={t('listingColumnsIpEdgeFirewallDisabled')}
           tooltip={t('listingColumnsIpEdgeFirewallDisabledTooltip')}
           trigger={id}
-          style={datagridCellStyle.iconDisable}
         />
       )}
       {!!ipEdgeFirewall && (
         <div key={ipEdgeFirewall.ipOnFirewall}>
           {ipEdgeFirewall.state === IpEdgeFirewallStateEnum.OK &&
             ipEdgeFirewall.enabled && (
-              <IconCell
-                icon={ODS_ICON_NAME.shieldFirewall}
+              <BadgeCell
+                badgeColor={ODS_BADGE_COLOR.information}
                 text={t('listingColumnsIpEdgeFirewallEnabled')}
                 tooltip={t('listingColumnsIpEdgeFirewallEnabledTooltip')}
                 trigger={id}
@@ -49,21 +47,19 @@ export const IpEdgeFirewallDisplay = ({
             )}
           {ipEdgeFirewall.state === IpEdgeFirewallStateEnum.OK &&
             !ipEdgeFirewall.enabled && (
-              <IconCell
-                icon={ODS_ICON_NAME.shieldFirewall}
+              <BadgeCell
+                badgeColor={ODS_BADGE_COLOR.neutral}
                 text={t('listingColumnsIpEdgeFirewallDisabled')}
                 tooltip={t('listingColumnsIpEdgeFirewallDisabledTooltip')}
                 trigger={id}
-                style={datagridCellStyle.iconDisable}
               />
             )}
           {ipEdgeFirewall.state !== IpEdgeFirewallStateEnum.OK && (
-            <IconCell
-              icon={ODS_ICON_NAME.shieldFirewall}
+            <BadgeCell
+              badgeColor={ODS_BADGE_COLOR.warning}
               text={t('listingColumnsIpEdgeFirewallPending')}
               tooltip={t('listingColumnsIpEdgeFirewallPendingTooltip')}
               trigger={id}
-              style={datagridCellStyle.iconWarning}
             />
           )}
         </div>
