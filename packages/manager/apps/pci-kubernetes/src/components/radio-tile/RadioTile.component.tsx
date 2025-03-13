@@ -54,10 +54,8 @@ const RadioTile = ({
             {
               'border-primary-600  selected': !disabled && props.checked,
               'border-primary-100 bg-white': !disabled && !props.checked,
-              'bg-gray-neutral-200 border-neutral-200': disabled,
               'hover:shadow-sm hover:border-primary-600 hover:bg-primary-100 cursor-pointer': !disabled,
-              'bg-neutral-100': disabled,
-              'text-neutral-800': disabled,
+              'bg-neutral-100 border-neutral-100 text-neutral-800': disabled,
             },
 
             labelClassName,
