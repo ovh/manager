@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.9.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.9.1...@ovh-ux/manager-web@19.9.2) (2025-03-13)
+
+
+### Bug Fixes
+
+* **manager-web:** revert href on contact modal page ([75b125f](https://github.com/ovh/manager/commit/75b125ff7ab7b8478cc7ddb7608b34d1572716ec)), closes [#MANAGER-17417](https://github.com/ovh/manager/issues/MANAGER-17417)
+
+
+
+
+
 ## [19.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.9.0...@ovh-ux/manager-web@19.9.1) (2025-03-12)
 
 **Note:** Version bump only for package @ovh-ux/manager-web
