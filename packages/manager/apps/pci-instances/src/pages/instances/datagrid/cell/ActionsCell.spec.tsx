@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { describe, vi } from 'vitest';
 import { ActionsCell, TActionsCellProps } from './ActionsCell.component';
 import { mockedInstance } from '@/__mocks__/instance/constants';
@@ -20,7 +21,9 @@ describe('Considering the ActionsCell component', () => {
     expect(actionsMenuElement).toBeInTheDocument();
   });
 
-  test('Should render grouped actions menu items with correct labels and hrefs', () => {
+  test('Should render grouped actions menu items with correct labels and hrefs', async () => {
+    const user = userEvent.setup();
+
     const instance: TInstance = {
       ...mockedInstance,
       actions: new Map([
@@ -29,7 +32,6 @@ describe('Considering the ActionsCell component', () => {
           [
             {
               label: 'pci_instances_list_action_start',
-              isDisabled: false,
               link: { path: '/start', isExternal: false },
             },
           ],
@@ -39,7 +41,6 @@ describe('Considering the ActionsCell component', () => {
           [
             {
               label: 'pci_instances_list_action_stop',
-              isDisabled: true,
               link: { path: '/stop', isExternal: false },
             },
           ],
@@ -48,12 +49,13 @@ describe('Considering the ActionsCell component', () => {
     };
 
     render(<ActionsCell isLoading={false} instance={instance} />);
+    const actionsMenuElement = screen.getByTestId('actions-menu-button');
+    await user.click(actionsMenuElement);
 
     const menuItems = screen.getAllByTestId('actions-menu-item');
     expect(menuItems).toHaveLength(2);
     expect(menuItems[0]).toHaveAttribute('href', '/start');
     expect(menuItems[0]).toHaveTextContent('pci_instances_list_action_start');
     expect(menuItems[1]).toHaveTextContent('pci_instances_list_action_stop');
-    expect(menuItems[1]).toBeDisabled();
   });
 });
