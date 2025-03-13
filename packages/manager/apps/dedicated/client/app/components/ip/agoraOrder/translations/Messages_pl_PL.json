@@ -21,7 +21,6 @@
   "order_catalog_price_interval_month_by_ip": "m-c/IP",
   "ip_agora_ipv6_description": "Jeśli wymagane są duże bloki IP i zdefiniowany jest schemat hierarchicznego adresowania, najlepszym wyborem jest IPv6. Upewnij się, czy wszyscy Twoi klienci są w stanie korzystać z nowego protokołu oraz z Twoich usług",
   "free_price": "Gratis",
-  "ip_agora_ipv6_beta": "Wersja beta",
   "ip_agora_ipv6_option_step_question": "Wybierz dodatkowe opcje",
   "ip_agora_ipv6_option_header": "W wielu przypadkach możesz potrzebować standardowego protokołu IPv4, który jest najczęściej używany, lub nowej wersji protokołu: IPv6. Lista kompatybilnych produktów może się zmieniać.",
   "ip_agora_ipv6_option_tile_title": "Nowy prefiks /56 IPv6 (przypisany przez OVHcloud)",
