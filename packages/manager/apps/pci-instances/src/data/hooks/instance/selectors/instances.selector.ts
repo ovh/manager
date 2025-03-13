@@ -131,10 +131,9 @@ const mapInstanceActions = (
   projectUrl: string,
 ): TInstanceActions =>
   instance.actions.reduce<TInstanceActions>((acc, action) => {
-    const { group, name, enabled } = action;
+    const { group, name } = action;
     const newAction = {
       label: `pci_instances_list_action_${name}`,
-      isDisabled: !enabled,
       link: getActionHrefByName(projectUrl, name, instance),
     };
     const foundAction = acc.get(group);

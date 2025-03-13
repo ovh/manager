@@ -31,7 +31,6 @@ export type TVolume = {
 
 export type TInstanceAction = {
   label: string;
-  isDisabled: boolean;
   link: {
     path: string;
     isExternal: boolean;
