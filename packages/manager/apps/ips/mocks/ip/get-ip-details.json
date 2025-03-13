@@ -1,0 +1,112 @@
+[
+  {
+    "canBeTerminated": false,
+    "version": 4,
+    "organisationId": null,
+    "regions": ["ap-southeast-syd"],
+    "type": "dedicated",
+    "campus": "SYD",
+    "isAdditionalIp": false,
+    "bringYourOwnIp": false,
+    "description": "test",
+    "routedTo": {
+      "serviceName": "ns123456.ip-239-99-244.net"
+    },
+    "rir": null,
+    "ip": "239.99.244.14/32",
+    "country": null,
+    "iam": {
+      "id": "test-0",
+      "tags": {
+        "ovh:campus": "SYD",
+        "ovh:isAdditionalIp": "false",
+        "ovh:routedTo": "ns123456.ip-239-99-244.net",
+        "ovh:type": "dedicated",
+        "ovh:version": "4"
+      },
+      "urn": "urn:v1:eu:resource:ip:239.99.244.14%2F32"
+    }
+  },
+  {
+    "regions": ["ap-southeast-syd"],
+    "rir": "ARIN",
+    "version": 4,
+    "isAdditionalIp": true,
+    "routedTo": {
+      "serviceName": null
+    },
+    "country": "au",
+    "canBeTerminated": true,
+    "campus": "SYD",
+    "ip": "239.99.262.83/32",
+    "description": "test3",
+    "bringYourOwnIp": false,
+    "organisationId": null,
+    "type": "failover",
+    "iam": {
+      "id": "test-1",
+      "tags": {
+        "ovh:campus": "SYD",
+        "ovh:isAdditionalIp": "true",
+        "ovh:type": "failover",
+        "ovh:version": "4"
+      },
+      "urn": "urn:v1:eu:resource:ip:239.99.262.83%2F32"
+    }
+  },
+  {
+    "bringYourOwnIp": false,
+    "canBeTerminated": true,
+    "version": 4,
+    "description": "Check vmac not supported",
+    "routedTo": {
+      "serviceName": "routed-service-id"
+    },
+    "organisationId": null,
+    "campus": "SYD",
+    "type": "failover",
+    "regions": ["ap-southeast-syd"],
+    "isAdditionalIp": true,
+    "rir": "ARIN",
+    "country": "au",
+    "ip": "239.99.279.206/32",
+    "iam": {
+      "id": "test-2",
+      "tags": {
+        "ovh:campus": "SYD",
+        "ovh:isAdditionalIp": "true",
+        "ovh:type": "failover",
+        "ovh:version": "4"
+      },
+      "urn": "urn:v1:eu:resource:ip:239.99.279.206%2F32"
+    }
+  },
+  {
+    "canBeTerminated": true,
+    "description": null,
+    "routedTo": {
+      "serviceName": "pn-1234567"
+    },
+    "bringYourOwnIp": false,
+    "version": 4,
+    "type": "vrack",
+    "ip": "241.94.186.48/28",
+    "organisationId": null,
+    "campus": "RBX",
+    "isAdditionalIp": true,
+    "regions": ["eu-west-rbx", "eu-west-sbg", "eu-west-gra"],
+    "country": "fr",
+    "rir": "RIPE",
+    "iam": {
+      "id": "test-3",
+      "tags": {
+        "ovh:campus": "RBX",
+        "ovh:isAdditionalIp": "true",
+        "ovh:routedTo": "pn-1234567",
+        "ovh:type": "vrack",
+        "ovh:version": "4"
+      },
+      "urn": "urn:v1:eu:resource:ip:241.94.186.48%2F28"
+    }
+  }
+]
