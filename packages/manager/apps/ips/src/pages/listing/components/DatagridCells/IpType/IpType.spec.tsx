@@ -59,7 +59,10 @@ describe('IpType Component', async () => {
       expect(
         getByText(`listingColumnsType_${ipDetailsList[1].type}`),
       ).toBeDefined();
-      getOdsBadgeByLabel({ container, label: 'listingColumnsTypeBadgeParked' });
+    });
+    await getOdsBadgeByLabel({
+      container,
+      label: 'listingColumnsTypeBadgeParked',
     });
   });
 
@@ -75,10 +78,10 @@ describe('IpType Component', async () => {
       expect(
         getByText(`listingColumnsType_${ipDetailsList[2].type}`),
       ).toBeDefined();
-      getOdsBadgeByLabel({
-        container,
-        label: 'listingColumnsTypeBadgeAssigned',
-      });
+    });
+    await getOdsBadgeByLabel({
+      container,
+      label: 'listingColumnsTypeBadgeAssigned',
     });
   });
 });
