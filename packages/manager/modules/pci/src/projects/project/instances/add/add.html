@@ -46,7 +46,7 @@
             (($ctrl.currentStep > 1)
                 ? 'pci_projects_project_instances_add_region_selected_title'
                 : 'pci_projects_project_instances_add_region_title') | translate: {
-                    location: $ctrl.model.location
+                    location: $ctrl.model.location + ($ctrl.model.threeAzRegion.zone ? ' (' + $ctrl.model.threeAzRegion.zone + ')' : '')
                 }
             }}"
         data-valid="$ctrl.isRegionValid()"
