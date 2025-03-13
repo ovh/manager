@@ -10,13 +10,13 @@ export const WAIT_FOR_DEFAULT_OPTIONS = {
 export const getOdsBadgeByLabel = async ({
   container,
   label,
-  disabled,
   nth = 0,
+  isHidden,
 }: {
   container: HTMLElement;
   label: string;
-  disabled?: boolean;
   nth?: number;
+  isHidden?: boolean;
 }) => {
   let badge: HTMLElement;
   await waitFor(() => {
@@ -24,9 +24,9 @@ export const getOdsBadgeByLabel = async ({
     badge = Array.from(badgeList).filter((bdg) =>
       [label].includes(bdg.getAttribute('label')),
     )[nth];
-    return disabled
-      ? expect(badge).toBeDisabled()
-      : expect(badge).not.toBeDisabled();
+    return isHidden
+      ? expect(badge).not.toBeDefined()
+      : expect(badge).toBeDefined();
   }, WAIT_FOR_DEFAULT_OPTIONS);
   return badge;
 };
