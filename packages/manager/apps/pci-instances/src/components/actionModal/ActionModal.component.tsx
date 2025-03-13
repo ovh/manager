@@ -23,23 +23,21 @@ export const ActionModal = ({
   instanceName,
   section,
   variant,
-}: TActionModalProps) => {
-  return (
-    <Modal
-      title={title}
-      isPending={isPending}
-      handleInstanceAction={handleInstanceAction}
-      handleModalClose={handleModalClose}
-      variant={variant}
-    >
-      {isPending ? (
-        <Spinner />
-      ) : (
-        <ActionModalContent type={section} instanceName={instanceName} />
-      )}
-      {children}
-    </Modal>
-  );
-};
+}: TActionModalProps) => (
+  <Modal
+    title={title}
+    isPending={isPending}
+    handleInstanceAction={handleInstanceAction}
+    handleModalClose={handleModalClose}
+    variant={variant}
+  >
+    {isPending ? (
+      <Spinner />
+    ) : (
+      <ActionModalContent type={section} instanceName={instanceName} />
+    )}
+    {children}
+  </Modal>
+);
 
 export default ActionModal;

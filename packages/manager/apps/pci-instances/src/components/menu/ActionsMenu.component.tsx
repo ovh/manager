@@ -30,7 +30,7 @@ export type TActionsMenuLinkProps = DeepReadonly<{
   item: TActionsMenuItem;
 }>;
 
-const ActionMenuItem: FC<TActionsMenuLinkProps> = ({ item }) => {
+export const ActionMenuItem: FC<TActionsMenuLinkProps> = ({ item }) => {
   const { t } = useTranslation('list');
   const internalHref = useHref(item.link.path);
 
@@ -41,7 +41,9 @@ const ActionMenuItem: FC<TActionsMenuLinkProps> = ({ item }) => {
       className="cursor-pointer text-base text-blue-700 font-semibold focus:text-blue-700"
       asChild
     >
-      <a href={href}>{t(item.label)}</a>
+      <a href={href} data-testid="actions-menu-item">
+        {t(item.label)}
+      </a>
     </DropdownMenuItem>
   );
 };
@@ -51,7 +53,7 @@ export const ActionsMenu = ({ items }: TActionsMenuProps) => {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
-          data-testid="services-action-trigger"
+          data-testid="actions-menu-button"
           className="size-9 p-0  text-primary border-primary border-2 bg-background font-semibold hover:bg-primary-100 rounded-full"
         >
           <OsdsIcon
@@ -61,7 +63,7 @@ export const ActionsMenu = ({ items }: TActionsMenuProps) => {
           />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent data-testid="services-action-content" align="end">
+      <DropdownMenuContent align="center" side="left">
         {Array.from(items.entries()).map(([group, item], index, arr) => (
           <div key={group}>
             {item.map((elt) => (
