@@ -7,7 +7,7 @@ import {
 } from '@/components/deployment-tiles-input/DeploymentTilesInput';
 import { useFeaturedDeploymentModes } from '@/api/hook/useFeaturedDeploymentModes';
 
-export type DeploymentTilesInputForAppProps = Omit<
+export type FeaturedDeploymentTilesInputProps = Omit<
   DeploymentTilesInputProps,
   'deployments'
 >;
@@ -16,7 +16,7 @@ export const FeaturedDeploymentTilesInput = ({
   value,
   onChange,
   name,
-}: DeploymentTilesInputForAppProps) => {
+}: FeaturedDeploymentTilesInputProps) => {
   const { deployments, isPending } = useFeaturedDeploymentModes();
 
   return isPending ? (
