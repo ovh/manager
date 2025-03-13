@@ -1,9 +1,8 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
 import { IpGameFirewallStateEnum, IpGameFirewallType } from '@/data/api';
-import { datagridCellStyle } from '../datagridCellStyles';
-import { IconCell } from '../IconCell/IconCell';
+import { BadgeCell } from '../BadgeCell/BadgeCell';
 
 export type IpGameFirewallDisplayProps = {
   ip: string;
@@ -32,20 +31,19 @@ export const IpGameFirewallDisplay = ({
   return (
     <>
       {enabled && ipGameFirewall?.state === IpGameFirewallStateEnum.OK && (
-        <IconCell
-          icon={ODS_ICON_NAME.gameControllerAlt}
+        <BadgeCell
+          badgeColor={ODS_BADGE_COLOR.information}
           text={t('listingColumnsIpGameFirewallAvailable')}
         />
       )}
       {enabled &&
         !!ipGameFirewall &&
         ipGameFirewall.state !== IpGameFirewallStateEnum.OK && (
-          <IconCell
-            icon={ODS_ICON_NAME.gameControllerAlt}
+          <BadgeCell
+            badgeColor={ODS_BADGE_COLOR.warning}
             text={t('listingColumnsIpGameFirewallPending')}
             tooltip={t('listingColumnsIpGameFirewallPendingTooltip')}
             trigger={id}
-            style={datagridCellStyle.iconWarning}
           />
         )}
     </>
