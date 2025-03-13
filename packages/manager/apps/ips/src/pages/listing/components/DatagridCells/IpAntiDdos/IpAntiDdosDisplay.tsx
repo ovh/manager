@@ -1,9 +1,8 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
 import { IpMitigationStateEnum, IpMitigationType } from '@/data/api';
-import { IconCell } from '../IconCell/IconCell';
-import { datagridCellStyle } from '../datagridCellStyles';
+import { BadgeCell } from '../BadgeCell/BadgeCell';
 
 export type IpAntiDdosDisplayProps = {
   ipMitigation: IpMitigationType;
@@ -34,8 +33,8 @@ export const IpAntiDdosDisplay = ({
   return (
     <>
       {enabled && !ipMitigation && (
-        <IconCell
-          icon={ODS_ICON_NAME.shield}
+        <BadgeCell
+          badgeColor={ODS_BADGE_COLOR.neutral}
           text={t('listingColumnsIpAntiDDosAutomatic')}
           tooltip={t('listingColumnsIpAntiDDosAutomaticTooltip')}
           trigger={id}
@@ -45,30 +44,27 @@ export const IpAntiDdosDisplay = ({
         <div key={ipMitigation.ipOnMitigation}>
           {ipMitigation.state === IpMitigationStateEnum.OK &&
             ipMitigation.permanent && (
-              <IconCell
-                icon={ODS_ICON_NAME.shieldExclamation}
+              <BadgeCell
+                badgeColor={ODS_BADGE_COLOR.warning}
                 text={t('listingColumnsIpAntiDDosPermanent')}
-                style={datagridCellStyle.iconWarning}
                 tooltip={t('listingColumnsIpAntiDDosPermanentTooltip')}
                 trigger={id}
               />
             )}
           {ipMitigation.state === IpMitigationStateEnum.OK &&
             ipMitigation.auto && (
-              <IconCell
-                icon={ODS_ICON_NAME.shieldCheck}
+              <BadgeCell
+                badgeColor={ODS_BADGE_COLOR.success}
                 text={t('listingColumnsIpAntiDDosInAction')}
-                style={datagridCellStyle.iconSuccess}
                 tooltip={t('listingColumnsIpAntiDDosInActionTooltip')}
                 trigger={id}
               />
             )}
           {!!ipMitigation &&
             ipMitigation.state !== IpMitigationStateEnum.OK && (
-              <IconCell
-                icon={ODS_ICON_NAME.shieldMinus}
+              <BadgeCell
+                badgeColor={ODS_BADGE_COLOR.warning}
                 text={t('listingColumnsIpAntiDDosPending')}
-                style={datagridCellStyle.iconWarning}
                 tooltip={t('listingColumnsIpAntiDDosPendingTooltip')}
                 trigger={id}
               />
