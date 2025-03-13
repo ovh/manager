@@ -51,10 +51,9 @@ export default function BillingStep(props: TBillingStepProps): JSX.Element {
     getFormattedMonthlyCatalogPrice,
     getFormattedHourlyCatalogPrice,
   } = useCatalogPrice(4, { exclVat: true });
-
+  const showSavingPlan = useSavingsPlanAvailable();
   const projectURL = useProjectUrl('public-cloud');
   const savingsPlanUrl = `${projectURL}/savings-plan`;
-  const showSavingPlan = useSavingsPlanAvailable();
 
   return (
     <>

@@ -14,6 +14,16 @@ import {
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import clsx from 'clsx';
+import {
+  Button,
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+  Checkbox,
+} from '@datatr-ux/uxlib';
 import { KubeRegionSelector } from '@/components/region-selector/KubeRegionSelector.component';
 import { StepState } from '../useStep';
 
@@ -33,6 +43,22 @@ export function LocationStep({
   return (
     <>
       <div className={clsx(step.isLocked && 'hidden')}>
+        <Card className="w-[380px]">
+          <CardHeader>
+            <CardTitle>Region-1-AZ</CardTitle>
+            <CardDescription>LA CHIP a mettre</CardDescription>
+          </CardHeader>
+          <CardContent className="grid gap-4">
+            <div className=" flex items-center space-x-4 rounded-md border p-4">
+              <div className="flex-1 space-y-1">
+                <p className="text-sm font-medium leading-none">
+                  Déploiement résiliens et éconopmique
+                </p>
+              </div>
+            </div>
+          </CardContent>
+          <CardFooter>si tu veux rajouter footer</CardFooter>
+        </Card>
         <KubeRegionSelector projectId={projectId} onSelectRegion={setRegion} />
       </div>
       {step.isLocked && region && (
