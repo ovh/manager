@@ -8,7 +8,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 
 import { add } from 'date-fns';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useGetArchiveByName, useStartArchive } from '@/api/hooks/useArchive';
@@ -33,12 +33,17 @@ export default function EditRetentionPage() {
 
   const [lockedUntilDays, setLockedUntilDays] = useState(1);
 
-  const newRetentionDate =
-    lockedUntilDays <= MAX_RETENTION_DAYS
-      ? add(new Date(), {
+  const [newRetentionDate, setNewRetentionDate] = useState(new Date());
+
+  useEffect(() => {
+    if (lockedUntilDays && lockedUntilDays < MAX_RETENTION_DAYS) {
+      setNewRetentionDate(
+        add(new Date(), {
           days: lockedUntilDays,
-        })
-      : new Date();
+        }),
+      );
+    }
+  }, [lockedUntilDays]);
 
   const formattedRetentionDate = useFormattedDate(
     newRetentionDate.toString(),
