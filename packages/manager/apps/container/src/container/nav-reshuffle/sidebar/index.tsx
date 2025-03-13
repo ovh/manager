@@ -1,4 +1,4 @@
-import { useEffect, useState, Suspense } from 'react';
+import { useEffect, useState, Suspense, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
 import { aapi } from '@ovh-ux/manager-core-api';
 import { useTranslation } from 'react-i18next';
@@ -67,6 +67,10 @@ const Sidebar = (): JSX.Element => {
     window.localStorage.getItem(savedLocationKey),
   );
   const [isManuallyClosed, setIsManuallyClosed] = useState<boolean>(false);
+
+
+  const [, updateState]: any = useState();
+  const forceUpdate = useCallback(() => updateState({}), []);
 
   /** Initialize navigation tree */
   useEffect(() => {
@@ -167,14 +171,15 @@ const Sidebar = (): JSX.Element => {
    */
   useEffect(() => {
     if (!currentNavigationNode || !servicesCount) return;
-    processNode({ ...servicesCount.serviceTypes }, currentNavigationNode);
+    processNode({ ...servicesCount.serviceTypes }, currentNavigationNode, true);
   }, [currentNavigationNode, servicesCount]);
 
   // Functions
 
-  const processNode = (servicesTypes: ServicesTypes, node: Node) => {
-    node.hasService = hasService(servicesTypes, node, ExcludedNodeIdsList);
+  const processNode = (servicesTypes: ServicesTypes, node: Node, isCurrentNavigationNode = false) => {
     node.children?.map((childNode: Node) => processNode(servicesTypes, childNode));
+    node.hasService = hasService(servicesTypes, node, ExcludedNodeIdsList);
+    if (isCurrentNavigationNode) forceUpdate();
   };
 
   const setSavedNode = (node: Node) => {
