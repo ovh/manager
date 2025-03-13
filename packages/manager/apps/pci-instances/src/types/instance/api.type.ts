@@ -22,7 +22,6 @@ export type TInstanceVolumeDto = {
 
 export type TInstanceActionDto = {
   name: TInstanceActionNameDto;
-  enabled: boolean;
   group: TInstanceActionGroup;
 };
 
