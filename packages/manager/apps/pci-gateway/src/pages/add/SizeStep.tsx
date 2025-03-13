@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { OsdsText } from '@ovhcloud/ods-components/react';
 import {
   StepComponent,
@@ -15,7 +15,6 @@ import {
 import { useParams } from 'react-router-dom';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { StepsEnum, useNewGatewayStore } from '@/pages/add/useStore';
-import { useData } from '@/api/hooks/data';
 import { useRegionGatewayAddons } from '@/api/hooks/useGateways/useGateways';
 import { TProductAddonDetail } from '@/types/addon.type';
 
@@ -28,7 +27,6 @@ export const SizeStep = ({
 
   const { t } = useTranslation(['add', 'stepper', 'catalog-selector']);
 
-  const sizes = useData(projectId);
   const [size, setSize] = useState<TProductAddonDetail>();
 
   const { tracking } = useContext(ShellContext).shell;
@@ -44,16 +42,6 @@ export const SizeStep = ({
     getFormattedHourlyCatalogPrice,
     getFormattedMonthlyCatalogPrice,
   } = useCatalogPrice(4);
-
-  useEffect(() => {
-    if (sizes.length) {
-      store.updateForm.size(sizes[0].payload);
-    }
-  }, [sizes]);
-
-  useEffect(() => {
-    setSize(addons.find((addon) => addon.size === store.form.size));
-  }, [store.form.size, addons]);
 
   return (
     <StepComponent
@@ -73,19 +61,17 @@ export const SizeStep = ({
         </OsdsText>
       }
       next={{
-        action: store.form.size
-          ? (id) => {
-              store.updateStep.check(id as StepsEnum);
-              store.updateStep.lock(id as StepsEnum);
-              store.updateStep.open(StepsEnum.NETWORK);
-              tracking.trackClick({
-                name: 'public-gateway_add_select-type',
-                type: 'action',
-              });
-            }
-          : undefined,
+        action: (id) => {
+          store.updateStep.check(id as StepsEnum);
+          store.updateStep.lock(id as StepsEnum);
+          store.updateStep.open(StepsEnum.NETWORK);
+          tracking.trackClick({
+            name: 'public-gateway_add_select-type',
+            type: 'action',
+          });
+        },
         label: t('stepper:common_stepper_next_button_label'),
-        isDisabled: false,
+        isDisabled: !store.form.size,
       }}
       edit={{
         action: (id) => {
@@ -165,6 +151,7 @@ export const SizeStep = ({
         )}
         onInput={(item) => {
           store.updateForm.size(item.size);
+          setSize(addons.find((addon) => addon.size === item.size));
         }}
       />
     </StepComponent>

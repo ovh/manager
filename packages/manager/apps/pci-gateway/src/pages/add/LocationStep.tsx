@@ -5,8 +5,8 @@ import {
   PCICommonContext,
 } from '@ovh-ux/manager-pci-common';
 import { useTranslation } from 'react-i18next';
-import { useContext, useEffect, useMemo, useState } from 'react';
-import { useParams, useSearchParams } from 'react-router-dom';
+import { useContext, useMemo } from 'react';
+import { useParams } from 'react-router-dom';
 import { OsdsIcon, OsdsLink, OsdsText } from '@ovhcloud/ods-components/react';
 import {
   ODS_THEME_COLOR_INTENT,
@@ -17,16 +17,9 @@ import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { StepsEnum, useNewGatewayStore } from '@/pages/add/useStore';
-import { TAvailableRegion, useData } from '@/api/hooks/data';
 import { RegionType, TProductAvailabilityRegion } from '@/types/region';
 
-type IState = {
-  regions: TAvailableRegion[];
-  region: TAvailableRegion;
-  regionsLink: string;
-};
-
-const isRegionWith3AZ = (regions: TAvailableRegion[]) =>
+const isRegionWith3AZ = (regions: TProductAvailabilityRegion[]) =>
   regions.some((region) => region.type === RegionType['3AZ']);
 
 /**
@@ -43,57 +36,10 @@ export const LocationStep = ({
 }) => {
   const { t } = useTranslation(['stepper', 'add']);
   const { projectId } = useParams();
-  const [searchParams] = useSearchParams();
   const { tracking } = useContext(ShellContext).shell;
   const store = useNewGatewayStore();
 
-  const sizes = useData(projectId);
-
-  const [state, setState] = useState<IState>({
-    region: undefined,
-    regions: [],
-    regionsLink: '',
-  });
-
-  useEffect(() => {
-    setState((prev) => ({
-      ...prev,
-      regions:
-        sizes.find((size) => size.payload === store.form.size)
-          ?.availableRegions || [],
-    }));
-  }, [sizes, store.form.size]);
-
-  useEffect(() => {
-    setState((prev) => ({ ...prev, regionsLink: `${projectId}/regions` }));
-  }, [projectId]);
-
-  useEffect(() => {
-    setState((prev) => ({
-      ...prev,
-      region: state.regions.find(
-        (region) => region.name === store.form.regionName,
-      ),
-    }));
-  }, [store.form.regionName]);
-
-  useEffect(() => {
-    const regionName = searchParams.get('region');
-    if (regionName) {
-      const targetRegion = state.regions.find(
-        (region) => region.name === regionName,
-      );
-      if (targetRegion) {
-        setState((prev) => ({
-          ...prev,
-          region: targetRegion,
-        }));
-        store.updateForm.regionName(targetRegion.name);
-      }
-    }
-  }, [searchParams, state.regions]);
-
-  const has3AZ = useMemo(() => isRegionWith3AZ(state.regions), [state.regions]);
+  const has3AZ = useMemo(() => isRegionWith3AZ(regions), [regions]);
 
   const metaProps = usePCICommonContextFactory({ has3AZ });
 
@@ -126,19 +72,17 @@ export const LocationStep = ({
         </OsdsText>
       }
       next={{
-        action: store.form.regionName
-          ? (id) => {
-              store.updateStep.check(id as StepsEnum);
-              store.updateStep.lock(id as StepsEnum);
-              store.updateStep.open(StepsEnum.SIZE);
-              tracking.trackClick({
-                name: 'public-gateway_add_select-region',
-                type: 'action',
-              });
-            }
-          : undefined,
-        label: t('stepper:Next'),
-        isDisabled: !state.region?.enabled,
+        action: (id) => {
+          store.updateStep.check(id as StepsEnum);
+          store.updateStep.lock(id as StepsEnum);
+          store.updateStep.open(StepsEnum.SIZE);
+          tracking.trackClick({
+            name: 'public-gateway_add_select-region',
+            type: 'action',
+          });
+        },
+        label: t('stepper:common_stepper_next_button_label'),
+        isDisabled: !store.form.regionName,
       }}
       edit={{
         action: (id) => {
