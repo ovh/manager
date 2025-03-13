@@ -230,13 +230,17 @@ export default class LogLiveTailCtrl {
     this.errorMessage = null;
     this.url = null;
 
-    return this.LogLiveTail.getLogSourceUrl(this.logApiUrl, this.logKind)
-      .then((data) => {
-        this.url = data.url;
+    return this.LogLiveTail.getLogSourceUrl(
+      this.logApiUrl,
+      this.logKind,
+      this.apiVersion,
+    )
+      .then(({ url, expirationDate }) => {
+        this.url = url;
         this.clearTimeout();
 
         const expirationConnectionTimeout =
-          Date.parse(data.expirationDate) - new Date().getTime() - 300;
+          Date.parse(expirationDate) - new Date().getTime() - 300;
         this.setUrlTimeout = this.$timeout(() => {
           this.generateTempUrlSource();
         }, expirationConnectionTimeout);

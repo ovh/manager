@@ -11,6 +11,7 @@ export default {
     logApiUrl: '<',
     logServiceGuideLink: '<',
     logSubscriptionUrl: '<',
+    apiVersion: '<?',
     goToListingPage: '<',
     logKindsList: '<',
     logKindsKeys: '<',
