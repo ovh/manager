@@ -7,7 +7,7 @@ export function useGetMetric(
   metric: string,
   startTime: string,
   endTime: string,
-  options: Omit<QueryObserverOptions, 'queryKey'> = {},
+  options: Partial<QueryObserverOptions> = {},
 ) {
   const queryKey = ['metrics', projectId, metric, startTime, endTime];
 

@@ -89,7 +89,7 @@ export default function MetricPage() {
                 {t('ai_endpoints_models')}
               </OsdsText>
               <OsdsSelect
-                id="Hello"
+                id="model"
                 className="min-w-[250px] h-fit"
                 value={selectedModel}
                 onOdsValueChange={(v) =>
