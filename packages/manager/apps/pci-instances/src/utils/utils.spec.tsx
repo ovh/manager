@@ -6,6 +6,7 @@ import {
   instancesQueryKey,
   mapUnknownErrorToBannerError,
   kebabToSnakeCase,
+  formatUUID,
 } from './index';
 
 describe('Utility functions', () => {
@@ -139,6 +140,22 @@ describe('Utility functions', () => {
     `('Given an input <$input>', ({ input, expectedOutput }) => {
       test(`Then, expect the output to be '${expectedOutput}'`, () => {
         expect(kebabToSnakeCase(input)).toStrictEqual(expectedOutput);
+      });
+    });
+  });
+
+  describe('Considering the formatUUID function', () => {
+    describe.each`
+      uuid                                      | expectedFormattedUuid
+      ${''}                                     | ${null}
+      ${'550e8400e29b41d4a71644'}               | ${null}
+      ${'foo-bar'}                              | ${null}
+      ${'550e8400e29b41d4a71644665544ZZZZ'}     | ${null}
+      ${'550e8400-e29b-41d4-a716-446655440000'} | ${null}
+      ${'550e8400e29b41d4a716446655440000'}     | ${'550e8400-e29b-41d4-a716-446655440000'}
+    `('Given an uuid <$uuid>', ({ uuid, expectedFormattedUuid }) => {
+      test(`Then, expect the output to be '${expectedFormattedUuid}'`, () => {
+        expect(formatUUID(uuid)).toStrictEqual(expectedFormattedUuid);
       });
     });
   });

@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import {
   getInstanceById,
-  updateDeletedInstanceStatus,
+  updateInstanceFromCache,
 } from '@/data/hooks/instance/useInstances';
 import queryClient from '@/queryClient';
 import { useUrlLastSection } from '@/hooks/url/useUrlLastSection';
@@ -52,11 +52,12 @@ const InstanceAction: FC = () => {
   const canExecuteAction = !!instanceId && !!instanceName && !!section;
 
   const executeSuccessCallback = useCallback((): void => {
-    if (!instanceId) return;
-    if (section === 'delete') {
-      updateDeletedInstanceStatus(projectId, queryClient, instanceId);
-    }
-  }, [instanceId, projectId, section]);
+    if (!instance) return;
+    updateInstanceFromCache(projectId, queryClient, {
+      ...instance,
+      pendingTask: true,
+    });
+  }, [instance, projectId]);
 
   const handleModalClose = () => {
     navigate('..');

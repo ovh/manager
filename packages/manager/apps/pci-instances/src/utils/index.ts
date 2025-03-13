@@ -44,3 +44,14 @@ export const instancesQueryKey = (
 ];
 
 export const kebabToSnakeCase = (str: string): string => str.replace(/-/g, '_');
+
+export const formatUUID = (uuid: string): string | null => {
+  if (!/^[a-fA-F0-9]{32}$/.test(uuid)) {
+    return null;
+  }
+
+  return `${uuid.slice(0, 8)}-${uuid.slice(8, 12)}-${uuid.slice(
+    12,
+    16,
+  )}-${uuid.slice(16, 20)}-${uuid.slice(20)}`;
+};
