@@ -2,11 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { OdsText } from '@ovhcloud/ods-components/react';
-import {
-  ODS_BUTTON_VARIANT,
-  ODS_MODAL_COLOR,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
+import { ODS_MODAL_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import {
   ButtonType,
   PageLocation,
@@ -113,13 +109,12 @@ export default function ModalDeleteRedirections() {
       secondaryButton={{
         testid: 'cancel-btn',
         label: t('common:cancel'),
-        action: handleCancelClick,
+        onClick: handleCancelClick,
       }}
       primaryButton={{
         testid: 'delete-btn',
-        variant: ODS_BUTTON_VARIANT.default,
         label: t('common:delete'),
-        action: handleConfirmClick,
+        onClick: handleConfirmClick,
         isLoading: isSending,
       }}
       isDismissible

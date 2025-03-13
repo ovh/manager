@@ -12,4 +12,5 @@ export * from './usePlatform';
 export * from './useAccount';
 export * from './useTasks';
 export * from './useOrderCatalog';
+export * from './useOdsModalOverflowHack';
 export * from './types';

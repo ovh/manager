@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import {
   IconLinkAlignmentType,
   LinkType,
@@ -33,6 +33,7 @@ import TabsPanel, {
   computePathMatchers,
   TabItemProps,
 } from '@/components/layout-helpers/Dashboard/TabsPanel';
+import { ResourceStatus } from '@/api/api.type';
 
 export default function AddAndEditAccount() {
   const { trackClick } = useOvhTracking();
@@ -59,11 +60,18 @@ export default function AddAndEditAccount() {
   } = useAccount({
     accountId: editEmailAccountId,
     enabled: !!editEmailAccountId,
+    gcTime: 0,
   });
 
   const { data: domainList, isLoading: isLoadingDomainRequest } = useDomains({
     shouldFetchAll: true,
   });
+
+  const domains = useMemo(() => {
+    return domainList?.filter(
+      (domain) => domain.resourceStatus === ResourceStatus.READY,
+    );
+  }, [domainList]);
 
   const pathMatcherSettingsTabs = computePathMatchers(
     [urls.email_accounts_add, urls.email_accounts_edit],
@@ -193,7 +201,7 @@ export default function AddAndEditAccount() {
           )}
           {isSettingsTab && (
             <EmailAccountSettings
-              domainList={domainList}
+              domains={domains}
               editAccountDetail={editAccountDetail}
             />
           )}

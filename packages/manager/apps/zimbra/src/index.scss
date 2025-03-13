@@ -24,6 +24,13 @@ ods-modal::part(dialog) {
   max-height: 100vh;
 }
 
+// ods table has 1rem hardcoded line height
+// which cuts letter from links and badge inside
+// cells
+ods-table td {
+  line-height: unset !important;
+}
+
 // tag doesn't seems centered if line is bigger
 ods-tag.org-tag::part(tag) {
   transform: translateY(-10%);
@@ -47,6 +54,7 @@ ods-tag.org-tag::part(tag) {
     }
   }
 }
+
 table.dns-fields {
   border-collapse: collapse;
 

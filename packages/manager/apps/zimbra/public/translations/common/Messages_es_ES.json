@@ -69,5 +69,14 @@
   "diagnostics": "Diagnóstico",
   "useful_links": "Enlaces útiles",
   "number_of_accounts": "Número de cuentas",
-  "no_email_account": "Actualmente no tiene ninguna cuenta de correo."
+  "no_email_account": "Actualmente no tiene ninguna cuenta de correo.",
+  "form_min_chars": "{{ value }} caracteres mínimo",
+  "form_at_least_one_digit": "Debe contener al menos un número",
+  "form_at_least_one_uppercase": "Debe contener al menos una mayúscula",
+  "form_at_least_one_special": "Debe contener al menos un carácter especial",
+  "form_valid_email": "Introduzca una dirección de correo electrónico válida",
+  "form_valid_domain": "Introduzca un dominio válido",
+  "form_valid_account": "Introduzca un nombre de cuenta válido",
+  "form_valid_date": "Introduzca una fecha válida",
+  "form_valid_number": "Introduzca un número válido"
 }
