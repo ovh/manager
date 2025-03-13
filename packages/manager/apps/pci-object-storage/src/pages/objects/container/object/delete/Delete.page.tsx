@@ -23,6 +23,7 @@ export default function DeletePage() {
   const isLocalZone = searchParams.get('isLocalZone');
   const isSwift = searchParams.get('isSwift');
   const isVersioningDisabled = searchParams.get('isVersioningDisabled');
+  const isVersioningSuspended = searchParams.get('isVersioningSuspended');
 
   const [deleteConfirmation, setDeleteConfirmation] = useState(null);
   const [isTouched, setIsTouched] = useState(false);
@@ -50,10 +51,22 @@ export default function DeletePage() {
   );
 
   const isPermanentDelete = useMemo(() => {
-    return versionId || isLocalZone || isSwift || isVersioningDisabled;
-  }, [versionId, isLocalZone, isSwift, isVersioningDisabled]);
+    return (
+      versionId ||
+      isLocalZone ||
+      isSwift ||
+      isVersioningDisabled ||
+      isVersioningSuspended
+    );
+  }, [
+    versionId,
+    isLocalZone,
+    isSwift,
+    isVersioningDisabled,
+    isVersioningSuspended,
+  ]);
 
-  const goBack = () => navigate(`../?region=${region}&refetch=${true}`);
+  const goBack = () => navigate(`../?region=${region}&refetch=true`);
 
   const onCancel = goBack;
   const onClose = goBack;
@@ -117,7 +130,15 @@ export default function DeletePage() {
       onClose={onClose}
       onConfirm={onConfirm}
       isPending={isPending}
-      isDisabled={isPending || (versionId && !isValid)}
+      isDisabled={
+        isPending ||
+        ((versionId ||
+          isLocalZone ||
+          isSwift ||
+          isVersioningDisabled ||
+          isVersioningSuspended) &&
+          !isValid)
+      }
       submitText={t(
         'pci_projects_project_storages_containers_container_object_delete_submit_label',
       )}
@@ -134,7 +155,10 @@ export default function DeletePage() {
           >
             <OdsText>
               {t(
-                isLocalZone || isSwift || isVersioningDisabled
+                isLocalZone ||
+                  isSwift ||
+                  isVersioningDisabled ||
+                  isVersioningSuspended
                   ? 'pci_projects_project_storages_containers_container_object_delete_permanent_delete_no_version_text'
                   : 'pci_projects_project_storages_containers_container_object_delete_permanent_delete_version_text',
                 { object: decodedObjectName },
@@ -143,10 +167,9 @@ export default function DeletePage() {
           </OdsMessage>
 
           <div className="block w-full">
-            <OdsText
-              slot="helper"
-              preset="caption"
-              className={`block w-full max-w-2xl ${
+            <label
+              slot="label"
+              className={`block w-full max-w-2xl text-[#4d5592] font-semibold ${
                 nameError ? 'text-critical' : ''
               }`}
             >
@@ -154,7 +177,7 @@ export default function DeletePage() {
                 'pci_projects_project_storages_containers_container_object_delete_permanent_delete_help',
                 { confirmKey: PERMANENTLY_DELETE_MSG },
               )}
-            </OdsText>
+            </label>
             <OdsInput
               className="block w-full mt-3"
               value={deleteConfirmation}

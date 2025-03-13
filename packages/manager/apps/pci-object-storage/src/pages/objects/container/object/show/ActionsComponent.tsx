@@ -4,7 +4,11 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { useContext } from 'react';
-import { STATUS_DISABLED, TRACKING_PREFIX } from '@/constants';
+import {
+  STATUS_DISABLED,
+  STATUS_SUSPENDED,
+  TRACKING_PREFIX,
+} from '@/constants';
 import { TObject } from '@/api/data/container';
 import { downloadObject } from '@/api/data/download';
 import { TContainer } from '@/pages/objects/container/object/show/Show.page';
@@ -61,11 +65,15 @@ export default function ActionsComponent({
           ? `&versionId=${object.versionId}`
           : '';
 
-        const isLocalZoneParam = isLocalZone ? `&isLocalZone=${true}` : '';
-        const isSwiftParam = !container.s3StorageType ? `&isSwift=${true}` : '';
+        const isLocalZoneParam = isLocalZone ? '&isLocalZone=true' : '';
+        const isSwiftParam = !container.s3StorageType ? '&isSwift=true' : '';
         const isVersioningDisabledParam =
           container.versioning?.status === STATUS_DISABLED
-            ? `&isVersioningDisabled=${true}`
+            ? '&isVersioningDisabled=true'
+            : '';
+        const isVersioningSuspendedParam =
+          container.versioning?.status === STATUS_SUSPENDED
+            ? '&isVersioningSuspended=true'
             : '';
 
         navigate(
@@ -73,7 +81,8 @@ export default function ActionsComponent({
             versionParam +
             isLocalZoneParam +
             isSwiftParam +
-            isVersioningDisabledParam,
+            isVersioningDisabledParam +
+            isVersioningSuspendedParam,
         );
       },
     },

@@ -200,7 +200,7 @@ export default function ObjectPage() {
 
   const containerObjectsWithIndex = useMemo(() => {
     if (!containerObjects && !container?.s3StorageType) return [];
-    return containerObjects.map((object, index) => ({
+    return containerObjects?.map((object, index) => ({
       ...object,
       index: `${index}`,
     }));
@@ -705,11 +705,6 @@ export default function ObjectPage() {
               <div className="mt-8">
                 <Datagrid
                   columns={objectsColumns}
-                  filters={{
-                    add: function Zu() {},
-                    filters: [],
-                    remove: function Zu() {},
-                  }}
                   hasNextPage={hasNextPage}
                   items={containerObjectsWithIndex}
                   onFetchNextPage={handleFetchNextPage}
