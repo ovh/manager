@@ -196,3 +196,47 @@ export const CHANGELOG_LINKS: ChangelogLinks = {
   'feature-request':
     'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
 };
+
+export const DEPLOYMENT_URL = {
+  ASIA:
+    'https://help.ovhcloud.com/csm/asia-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066023',
+  AU:
+    'https://help.ovhcloud.com/csm/en-au-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066022',
+  CA:
+    'https://help.ovhcloud.com/csm/en-ca-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066032',
+  GB:
+    'https://help.ovhcloud.com/csm/en-gb-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066027',
+  IE:
+    'https://help.ovhcloud.com/csm/en-ie-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066035',
+  IN:
+    'https://help.ovhcloud.com/csm/asia-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066023',
+  SG:
+    'https://help.ovhcloud.com/csm/en-sg-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066026',
+  DE:
+    'https://help.ovhcloud.com/csm/de-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066036',
+  ES:
+    'https://help.ovhcloud.com/csm/es-es-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066024',
+  FR:
+    'https://help.ovhcloud.com/csm/fr-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066031',
+  IT:
+    'https://help.ovhcloud.com/csm/es-es-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066024',
+  MA:
+    'https://help.ovhcloud.com/csm/fr-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066031',
+  SN:
+    'https://help.ovhcloud.com/csm/fr-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066031',
+  TN:
+    'https://help.ovhcloud.com/csm/fr-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066031',
+  NL:
+    'https://help.ovhcloud.com/csm/en-nl-documentation-public-cloud?id=kb_browse_cat&kb_id=574a8325551974502d4c6e78b7421938',
+  PL:
+    'https://help.ovhcloud.com/csm/pl-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066030',
+  PT:
+    'https://help.ovhcloud.com/csm/pt-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066025',
+  QC:
+    'https://help.ovhcloud.com/csm/fr-ca-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066034',
+  US: 'https://us.ovhcloud.com/support/',
+  WS:
+    'https://help.ovhcloud.com/csm/es-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066028',
+  DEFAULT:
+    'https://help.ovhcloud.com/csm/en-gb-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066027',
+};

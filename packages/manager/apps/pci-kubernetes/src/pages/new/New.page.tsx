@@ -14,17 +14,23 @@ import {
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
   ODS_SPINNER_SIZE,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import {
   OsdsBreadcrumb,
   OsdsIcon,
   OsdsLink,
   OsdsSpinner,
+  OsdsText,
 } from '@ovhcloud/ods-components/react';
 import {
   Headers,
+  Links,
+  LinkType,
   Notifications,
   StepComponent,
+  Subtitle,
   useNotifications,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
