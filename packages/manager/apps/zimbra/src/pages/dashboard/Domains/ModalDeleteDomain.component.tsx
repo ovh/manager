@@ -2,7 +2,6 @@ import React from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
-  ODS_BUTTON_VARIANT,
   ODS_MESSAGE_COLOR,
   ODS_MODAL_COLOR,
   ODS_TEXT_PRESET,
@@ -112,12 +111,11 @@ export default function ModalDeleteDomain() {
       isOpen
       secondaryButton={{
         label: t('common:cancel'),
-        action: handleCancelClick,
+        onClick: handleCancelClick,
       }}
       primaryButton={{
         label: t('common:delete'),
-        variant: ODS_BUTTON_VARIANT.default,
-        action: handleDeleteClick,
+        onClick: handleDeleteClick,
         isDisabled: accounts?.length > 0 || !deleteDomainId,
         isLoading: isSending,
         testid: 'delete-btn',

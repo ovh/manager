@@ -39,15 +39,27 @@ describe('Domains edit modal', () => {
     const { getByTestId } = render(<ModalEditDomain />);
     const confirmCta = getByTestId('edit-btn');
     const selectOrganization = getByTestId('select-organization');
+
     expect(confirmCta).toHaveAttribute('is-disabled', 'true');
 
-    act(() => {
+    await act(() => {
+      fireEvent.blur(selectOrganization);
+      selectOrganization.odsBlur.emit({});
+    });
+
+    expect(confirmCta).toHaveAttribute('is-disabled', 'true');
+
+    await act(() => {
+      fireEvent.change(selectOrganization, {
+        target: { value: '1903b491-4d10-4000-8b70-f474d1abe601' },
+      });
       selectOrganization.odsChange.emit({
-        name: 'organization',
+        name: 'organizationId',
         value: '1903b491-4d10-4000-8b70-f474d1abe601',
       });
     });
 
+    expect(selectOrganization).toHaveAttribute('has-error', 'false');
     expect(confirmCta).toHaveAttribute('is-disabled', 'false');
 
     await act(() => {

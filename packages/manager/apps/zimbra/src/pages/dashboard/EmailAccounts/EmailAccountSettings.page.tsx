@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import { zodResolver } from '@hookform/resolvers/zod';
 import {
   OdsButton,
   OdsFormField,
@@ -17,6 +18,7 @@ import {
   ODS_INPUT_TYPE,
   ODS_MESSAGE_COLOR,
   ODS_TEXT_PRESET,
+  OdsSelectChangeEvent,
 } from '@ovhcloud/ods-components';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useMutation } from '@tanstack/react-query';
@@ -26,6 +28,7 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useGenerateUrl, usePlatform } from '@/hooks';
 import {
   AccountBodyParamsType,
@@ -34,7 +37,11 @@ import {
   putZimbraPlatformAccount,
 } from '@/api/account';
 import { DomainType } from '@/api/domain';
-import { ACCOUNT_REGEX, PASSWORD_REGEX } from '@/utils';
+import {
+  AddEmailAccountSchema,
+  addEmailAccountSchema,
+  editEmailAccountSchema,
+} from '@/utils';
 import queryClient from '@/queryClient';
 import {
   ADD_EMAIL_ACCOUNT,
@@ -42,15 +49,13 @@ import {
   CONFIRM,
   EDIT_EMAIL_ACCOUNT,
 } from '@/tracking.constant';
-import { FormTypeInterface, useForm } from '@/hooks/useForm';
-import { ResourceStatus } from '@/api/api.type';
 import { getZimbraPlatformListQueryKey } from '@/api/platform';
 
 export default function EmailAccountSettings({
-  domainList = [],
+  domains = [],
   editAccountDetail = null,
 }: Readonly<{
-  domainList: DomainType[];
+  domains: DomainType[];
   editAccountDetail: AccountType;
 }>) {
   const { trackClick, trackPage } = useOvhTracking();
@@ -70,67 +75,6 @@ export default function EmailAccountSettings({
 
   const onClose = () => {
     return navigate(goBackUrl);
-  };
-
-  const { form, isFormValid, setValue, setForm } = useForm({
-    ...{
-      account: {
-        value: '',
-        defaultValue: '',
-        required: true,
-        validate: ACCOUNT_REGEX,
-      },
-      domain: {
-        value: '',
-        defaultValue: '',
-        required: true,
-      },
-      lastName: {
-        value: '',
-        defaultValue: '',
-      },
-      firstName: {
-        value: '',
-        defaultValue: '',
-      },
-      displayName: {
-        value: '',
-        defaultValue: '',
-      },
-      password: {
-        value: '',
-        defaultValue: '',
-        required: !editEmailAccountId,
-        validate: PASSWORD_REGEX,
-      },
-    },
-  });
-
-  useEffect(() => {
-    if (editAccountDetail) {
-      const newForm: FormTypeInterface = form;
-      const {
-        email,
-        lastName,
-        firstName,
-        displayName,
-      } = editAccountDetail.currentState;
-      const [account, domain] = email.split('@');
-      newForm.account.value = account;
-      newForm.domain.value = domain;
-      newForm.lastName.value = lastName;
-      newForm.firstName.value = firstName;
-      newForm.displayName.value = displayName;
-      setForm((oldForm) => ({ ...oldForm, ...newForm }));
-    }
-  }, []);
-
-  const handleDomainChange = (selectedDomain: string) => {
-    const organizationLabel = domainList.find(
-      ({ currentState }) => currentState.name === selectedDomain,
-    )?.currentState.organizationLabel;
-    setValue('domain', selectedDomain);
-    setSelectedDomainOrganization(organizationLabel);
   };
 
   const { mutate: addOrEditEmailAccount, isPending: isSending } = useMutation({
@@ -182,7 +126,7 @@ export default function EmailAccountSettings({
     },
   });
 
-  const handleSaveClick = () => {
+  const handleSaveClick: SubmitHandler<AddEmailAccountSchema> = (data) => {
     trackClick({
       location: PageLocation.page,
       buttonType: ButtonType.button,
@@ -190,26 +134,25 @@ export default function EmailAccountSettings({
       actions: [trackingName, CONFIRM],
     });
 
-    const {
-      account: { value: account },
-      domain: { value: domain },
-    } = form;
-    let dataBody = {
+    const { account, domain } = data;
+
+    const payload: Record<string, unknown> = {
       email: `${account}@${domain}`.toLowerCase(),
     };
-    Object.entries(form).forEach(([key, { value }]) => {
+
+    Object.entries(data).forEach(([key, value]) => {
       if (
         ![
           'account',
           'domain',
-          editEmailAccountId && form.password.value === '' ? 'password' : '',
+          editEmailAccountId && data.password === '' ? 'password' : '',
         ].includes(key)
       ) {
-        dataBody = { ...dataBody, [key]: value };
+        payload[key] = value;
       }
     });
 
-    addOrEditEmailAccount(dataBody);
+    addOrEditEmailAccount(payload as AccountBodyParamsType);
   };
 
   const handleCancelClick = () => {
@@ -222,76 +165,113 @@ export default function EmailAccountSettings({
     onClose();
   };
 
+  const {
+    control,
+    handleSubmit,
+    formState: { isDirty, isValid, errors },
+  } = useForm({
+    defaultValues: {
+      account: editAccountDetail?.currentState?.email?.split('@')[0] || '',
+      domain: editAccountDetail?.currentState?.email?.split('@')[1] || '',
+      firstName: editAccountDetail?.currentState?.firstName || '',
+      lastName: editAccountDetail?.currentState?.lastName || '',
+      displayName: editAccountDetail?.currentState?.displayName || '',
+      password: '',
+    },
+    mode: 'onTouched',
+    resolver: zodResolver(
+      editEmailAccountId ? editEmailAccountSchema : addEmailAccountSchema,
+    ),
+  });
+
+  const setSelectedOrganization = (e: OdsSelectChangeEvent) => {
+    const organizationLabel = domains.find(
+      ({ currentState }) => currentState.name === e?.detail?.value,
+    )?.currentState.organizationLabel;
+    setSelectedDomainOrganization(organizationLabel);
+  };
+
   return (
-    <div className="w-full md:w-3/4 space-y-4">
+    <form
+      onSubmit={handleSubmit(handleSaveClick)}
+      className="w-full md:w-3/4 space-y-4"
+    >
       <OdsText preset={ODS_TEXT_PRESET.caption} className="block">
         {t('common:form_mandatory_fields')}
       </OdsText>
-      <OdsFormField className="w-full">
-        <label slot="label">{t('common:email_account')} *</label>
-        <div className="flex">
-          <OdsInput
-            type={ODS_INPUT_TYPE.text}
-            name="account"
-            placeholder={t('common:account_name')}
-            hasError={form.account.hasError}
-            value={form.account.value}
-            defaultValue={form.account.defaultValue}
-            isRequired={form.account.required}
-            onOdsBlur={({ target: { name, value } }) =>
-              setValue(name, value.toString(), true)
-            }
-            onOdsChange={({ detail: { name, value } }) => {
-              setValue(name, String(value));
-            }}
-            className="w-1/2"
-            data-testid="input-account"
-          ></OdsInput>
-          <OdsInput
-            type={ODS_INPUT_TYPE.text}
-            name={'@'}
-            value={'@'}
-            defaultValue={'@'}
-            isReadonly
-            isDisabled
-            className="input-at w-10"
-          ></OdsInput>
-          <OdsSelect
-            name="domain"
-            value={form.domain.value}
-            isRequired={form.domain.required}
-            hasError={form.domain.hasError}
-            className="w-1/2"
-            placeholder={t('common:select_domain')}
-            onOdsChange={(e) => handleDomainChange(e.detail.value)}
-            data-testid="select-domain"
-          >
-            {domainList
-              ?.filter(
-                (domain) => domain.resourceStatus === ResourceStatus.READY,
-              )
-              .map(({ currentState: domain }) => (
-                <option key={domain.name} value={domain.name}>
-                  {domain.name}
-                </option>
-              ))}
-          </OdsSelect>
-        </div>
-        <OdsText
-          slot="helper"
-          preset={ODS_TEXT_PRESET.caption}
-          className="flex flex-col"
-        >
-          <span className="block">{t('common:form_email_helper')}</span>
-          {[1, 2, 3].map((elm) => (
-            <span key={elm} className="block">
-              - {t(`common:form_email_helper_rule_${elm}`)}
-            </span>
-          ))}
-        </OdsText>
-      </OdsFormField>
+      <Controller
+        control={control}
+        name="account"
+        render={({ field: { name, value, onChange, onBlur } }) => (
+          <OdsFormField className="w-full" error={errors?.[name]?.message}>
+            <label htmlFor={name} slot="label">
+              {t('common:email_account')} *
+            </label>
+            <div className="flex">
+              <OdsInput
+                type={ODS_INPUT_TYPE.text}
+                placeholder={t('common:account_name')}
+                data-testid="input-account"
+                className="flex-1"
+                id={name}
+                name={name}
+                hasError={!!errors[name]}
+                value={value}
+                onOdsBlur={onBlur}
+                onOdsChange={onChange}
+              />
+              <OdsInput
+                type={ODS_INPUT_TYPE.text}
+                name="@"
+                value="@"
+                isReadonly
+                isDisabled
+                className="input-at w-10"
+              />
+              <Controller
+                control={control}
+                name="domain"
+                render={({ field }) => (
+                  <OdsSelect
+                    id={name}
+                    name={field.name}
+                    hasError={!!errors[field.name]}
+                    value={field.value}
+                    className="w-1/2"
+                    placeholder={t('common:select_domain')}
+                    onOdsChange={(e) => {
+                      field.onChange(e);
+                      setSelectedOrganization(e);
+                    }}
+                    onOdsBlur={field.onBlur}
+                    data-testid="select-domain"
+                  >
+                    {domains.map(({ currentState: domain }) => (
+                      <option key={domain.name} value={domain.name}>
+                        {domain.name}
+                      </option>
+                    ))}
+                  </OdsSelect>
+                )}
+              />
+            </div>
+          </OdsFormField>
+        )}
+      />
+      <OdsText preset={ODS_TEXT_PRESET.caption} className="flex flex-col">
+        <span className="block">{t('common:form_email_helper')}</span>
+        {[1, 2, 3].map((elm) => (
+          <span key={elm} className="block">
+            - {t(`common:form_email_helper_rule_${elm}`)}
+          </span>
+        ))}
+      </OdsText>
       {selectedDomainOrganization && (
-        <OdsMessage isDismissible={false} color={ODS_MESSAGE_COLOR.information}>
+        <OdsMessage
+          className="w-full"
+          isDismissible={false}
+          color={ODS_MESSAGE_COLOR.information}
+        >
           <OdsText preset={ODS_TEXT_PRESET.paragraph}>
             {t('zimbra_account_add_message_organization', {
               organizationLabel: selectedDomainOrganization,
@@ -300,116 +280,139 @@ export default function EmailAccountSettings({
         </OdsMessage>
       )}
       <div className="flex">
-        <OdsFormField className="w-full md:w-1/2 pr-6">
-          <label slot="label">
-            {t('zimbra_account_add_input_lastName_label')}
-          </label>
-          <OdsInput
-            type={ODS_INPUT_TYPE.text}
-            name="lastName"
-            placeholder={t('zimbra_account_add_input_lastName_placeholder')}
-            value={form.lastName.value}
-            defaultValue={form.lastName.defaultValue}
-            isRequired={form.lastName.required}
-            onOdsBlur={({ target: { name, value } }) =>
-              setValue(name, value.toString(), true)
-            }
-            onOdsChange={({ detail: { name, value } }) => {
-              setValue(name, String(value));
-            }}
-          ></OdsInput>
-        </OdsFormField>
-
-        <OdsFormField className="w-full md:w-1/2 pl-6">
-          <label slot="label">
-            {t('zimbra_account_add_input_firstName_label')}
-          </label>
-          <OdsInput
-            type={ODS_INPUT_TYPE.text}
-            name="firstName"
-            placeholder={t('zimbra_account_add_input_firstName_placeholder')}
-            value={form.firstName.value}
-            defaultValue={form.firstName.defaultValue}
-            isRequired={form.firstName.required}
-            onOdsBlur={({ target: { name, value } }) =>
-              setValue(name, value.toString(), true)
-            }
-            onOdsChange={({ detail: { name, value } }) => {
-              setValue(name, String(value));
-            }}
-          ></OdsInput>
-        </OdsFormField>
+        <Controller
+          control={control}
+          name="lastName"
+          render={({ field: { name, value, onChange, onBlur } }) => (
+            <OdsFormField
+              className="w-full md:w-1/2 pr-6"
+              error={errors?.[name]?.message}
+            >
+              <label htmlFor={name} slot="label">
+                {t('zimbra_account_add_input_lastName_label')}
+              </label>
+              <OdsInput
+                placeholder={t('zimbra_account_add_input_lastName_placeholder')}
+                type={ODS_INPUT_TYPE.text}
+                id={name}
+                name={name}
+                hasError={!!errors[name]}
+                value={value}
+                defaultValue=""
+                onOdsBlur={onBlur}
+                onOdsChange={onChange}
+              />
+            </OdsFormField>
+          )}
+        />
+        <Controller
+          control={control}
+          name="firstName"
+          render={({ field: { name, value, onChange, onBlur } }) => (
+            <OdsFormField
+              className="w-full md:w-1/2 pl-6"
+              error={errors?.[name]?.message}
+            >
+              <label htmlFor={name} slot="label">
+                {t('zimbra_account_add_input_firstName_label')}
+              </label>
+              <OdsInput
+                type={ODS_INPUT_TYPE.text}
+                placeholder={t(
+                  'zimbra_account_add_input_firstName_placeholder',
+                )}
+                name={name}
+                hasError={!!errors[name]}
+                value={value}
+                defaultValue=""
+                onOdsBlur={onBlur}
+                onOdsChange={onChange}
+              />
+            </OdsFormField>
+          )}
+        />
       </div>
       <div className="flex w-full md:w-1/2">
-        <OdsFormField className="w-full md:pr-6">
-          <label slot="label">
-            {t('zimbra_account_add_input_displayName_label')}
-          </label>
-          <OdsInput
-            type={ODS_INPUT_TYPE.text}
-            name="displayName"
-            placeholder={t('zimbra_account_add_input_displayName_placeholder')}
-            value={form.displayName.value}
-            defaultValue={form.displayName.defaultValue}
-            isRequired={form.displayName.required}
-            onOdsBlur={({ target: { name, value } }) =>
-              setValue(name, value.toString(), true)
-            }
-            onOdsChange={({ detail: { name, value } }) => {
-              setValue(name, String(value));
-            }}
-          ></OdsInput>
-        </OdsFormField>
+        <Controller
+          control={control}
+          name="displayName"
+          render={({ field: { name, value, onChange, onBlur } }) => (
+            <OdsFormField
+              className="w-full md:pr-6"
+              error={errors?.[name]?.message}
+            >
+              <label htmlFor={name} slot="label">
+                {t('zimbra_account_add_input_displayName_label')}
+              </label>
+              <OdsInput
+                type={ODS_INPUT_TYPE.text}
+                placeholder={t(
+                  'zimbra_account_add_input_displayName_placeholder',
+                )}
+                name={name}
+                hasError={!!errors[name]}
+                value={value}
+                defaultValue=""
+                onOdsBlur={onBlur}
+                onOdsChange={onChange}
+              />
+            </OdsFormField>
+          )}
+        />
       </div>
       <div className="flex w-full md:w-1/2">
-        <OdsFormField className="w-full md:pr-6">
-          <label slot="label">
-            {t('zimbra_account_add_input_password_label')}
-            {!editAccountDetail && ' *'}
-          </label>
-          <OdsPassword
-            isMasked
-            name="password"
-            className="w-full"
-            value={form.password.value}
-            defaultValue={form.password.defaultValue}
-            hasError={form.password.hasError}
-            onOdsBlur={({ target: { name, value } }) =>
-              setValue(name, value.toString(), true)
-            }
-            onOdsChange={({ detail: { name, value } }) => {
-              setValue(name, String(value));
-            }}
-            data-testid="input-password"
-          ></OdsPassword>
-          <OdsText
-            slot="helper"
-            preset={ODS_TEXT_PRESET.caption}
-            className="flex flex-col"
-          >
-            <span className="block">
-              {t('zimbra_account_add_input_password_helper')}
-            </span>
-            {[1, 2, 3].map((elm) => (
-              <span key={elm} className="block">
-                - {t(`zimbra_account_add_input_password_helper_rule_${elm}`)}
-              </span>
-            ))}
-          </OdsText>
-        </OdsFormField>
+        <Controller
+          control={control}
+          name="password"
+          render={({ field: { name, value, onChange, onBlur } }) => (
+            <OdsFormField
+              className="w-full md:pr-6"
+              error={errors?.[name]?.message}
+            >
+              <label htmlFor={name} slot="label">
+                {t('zimbra_account_add_input_password_label')}
+                {!editAccountDetail && ' *'}
+              </label>
+              <OdsPassword
+                data-testid="input-password"
+                isMasked
+                className="w-full"
+                id={name}
+                name={name}
+                hasError={!!errors[name]}
+                value={value}
+                onOdsBlur={onBlur}
+                onOdsChange={(e) => {
+                  // this is necessary because OdsPassword returns
+                  // value as null somehow
+                  onChange(e?.detail?.value || '');
+                }}
+              />
+            </OdsFormField>
+          )}
+        />
       </div>
+      <OdsText preset={ODS_TEXT_PRESET.caption} className="flex flex-col">
+        <span className="block">
+          {t('zimbra_account_add_input_password_helper')}
+        </span>
+        {[1, 2, 3].map((elm) => (
+          <span key={elm} className="block">
+            - {t(`zimbra_account_add_input_password_helper_rule_${elm}`)}
+          </span>
+        ))}
+      </OdsText>
 
       <div className="flex space-x-5">
         <OdsButton
           slot="actions"
+          type="submit"
           color={ODS_BUTTON_COLOR.primary}
-          isDisabled={!isFormValid}
+          isDisabled={!isDirty || !isValid}
           isLoading={isSending}
-          onClick={handleSaveClick}
           data-testid="confirm-btn"
           label={!editAccountDetail ? t('common:confirm') : t('common:save')}
         />
-
         {editAccountDetail && (
           <OdsButton
             slot="actions"
@@ -420,6 +423,6 @@ export default function EmailAccountSettings({
           />
         )}
       </div>
-    </div>
+    </form>
   );
 }
