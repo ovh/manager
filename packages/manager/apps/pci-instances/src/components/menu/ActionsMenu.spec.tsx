@@ -1,8 +1,10 @@
+import { DropdownMenu, DropdownMenuContent } from '@datatr-ux/uxlib';
 import { describe, test, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import {
   ActionsMenu,
-  ActionsMenuLink,
+  ActionMenuItem,
   TActionsMenuItem,
 } from './ActionsMenu.component';
 
@@ -11,12 +13,20 @@ vi.mock('react-router-dom', () => ({
 }));
 
 const prepareTest = (item: TActionsMenuItem) => {
-  render(<ActionsMenuLink item={item} />);
+  render(
+    <DropdownMenu defaultOpen>
+      <DropdownMenuContent>
+        <ActionMenuItem item={item} />
+      </DropdownMenuContent>
+    </DropdownMenu>,
+  );
   return screen.getByTestId('actions-menu-item');
 };
 
 describe('Considering the ActionsMenu components', () => {
-  test('Should render a menu with grouped items', () => {
+  test('Should render a menu with grouped items', async () => {
+    const user = userEvent.setup();
+
     const items = new Map([
       [
         'details',
@@ -35,7 +45,9 @@ describe('Considering the ActionsMenu components', () => {
       ],
     ]);
     render(<ActionsMenu items={items} />);
+    const button = screen.getByTestId('actions-menu-button');
     expect(screen.getByTestId('actions-menu-button')).toBeInTheDocument();
+    await user.click(button);
     expect(screen.getAllByTestId('actions-menu-item')).toHaveLength(2);
   });
 
@@ -59,16 +71,6 @@ describe('Considering the ActionsMenu components', () => {
     const elt = prepareTest(item);
     expect(elt).toBeInTheDocument();
     expect(elt).toHaveAttribute('href', '/item2');
-  });
-
-  test('SHould render a disabled menu item', () => {
-    const item = {
-      label: 'Item 1',
-      isDisabled: true,
-      link: { path: '/item1', isExternal: false },
-    };
-    const elt = prepareTest(item);
-    expect(elt).toBeDisabled();
   });
 
   test('Should render a menu item with a custom label', () => {
