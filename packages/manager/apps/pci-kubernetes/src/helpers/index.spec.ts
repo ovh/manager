@@ -11,7 +11,9 @@ import {
   filterSchemaKeys,
   isBase64,
   parseCommaSeparated,
+  generateUniqueName,
 } from '@/helpers/index';
+import { NodePool } from '@/api/data/kubernetes';
 
 describe('helper', () => {
   it('compares two objects based on a key', () => {
@@ -167,4 +169,34 @@ describe('isBase64', () => {
   it('invalidates a malformed Base64 string', () => {
     expect(isBase64('SGVsbG8gd29ybGQ')).toBe(false);
   });
+});
+
+describe('generateUniqueName', () => {
+  it.each([
+    ['NodePool-2', [{ name: 'NodePool-1' }], 'NodePool-2'],
+    ['NodePool-2', [{ name: 'NodePool-2' }], 'NodePool-2-1'],
+    [
+      'NodePool-2',
+      [
+        { name: 'NodePool-2' },
+        { name: 'NodePool-2-1' },
+        { name: 'NodePool-2-2' },
+      ],
+      'NodePool-2-3',
+    ],
+    [
+      'UniquePool',
+      [{ name: 'AnotherPool' }, { name: 'NodePool-2' }],
+      'UniquePool',
+    ],
+  ])(
+    'should return %s for baseName "%s" with existing nodes %j',
+    (baseName, existingNodePools, expectedResult) => {
+      const result = generateUniqueName(
+        baseName,
+        existingNodePools as NodePool[],
+      );
+      expect(result).toBe(expectedResult);
+    },
+  );
 });
