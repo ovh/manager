@@ -84,14 +84,14 @@ const getActionHrefByName = (
 
   if (name === 'soft_reboot') {
     return {
-      path: `region/${region}/instance/${id}/soft-reboot`,
+      path: `soft-reboot?instanceId=${id}&region=${region}`,
       isExternal: false,
     };
   }
 
   if (name === 'hard_reboot') {
     return {
-      path: `region/${region}/instance/${id}/hard-reboot`,
+      path: `hard-reboot?instanceId=${id}&region=${region}`,
       isExternal: false,
     };
   }
@@ -107,7 +107,7 @@ const getActionHrefByName = (
 
   if (actions.has(name)) {
     return {
-      path: `region/${region}/instance/${id}/${name}`,
+      path: `${name}?instanceId=${id}&region=${region}`,
       isExternal: false,
     };
   }

@@ -3,8 +3,15 @@ import { Navigate, useLocation } from 'react-router-dom';
 import { useUrlLastSection } from '@/hooks/url/useUrlLastSection';
 import { useUrlSearchParams } from '@/hooks/url/useUrlSearchParams';
 
-type TSectionType = 'delete' | 'start' | 'stop' | 'shelve' | 'unshelve';
-const actionSectionRegex = /^(delete|start|stop|shelve|unshelve)$/;
+type TSectionType =
+  | 'delete'
+  | 'start'
+  | 'stop'
+  | 'shelve'
+  | 'unshelve'
+  | 'hard-reboot'
+  | 'soft-reboot';
+const actionSectionRegex = /^(delete|start|stop|shelve|unshelve|soft-reboot|hard-reboot)$/;
 
 /**
  * React component to handle leagcy non-regionalized routes for instance actions.
@@ -17,7 +24,7 @@ const LegacyInstanceAction: FC = () => {
   const section = useUrlLastSection<TSectionType>(
     actionSectionRegex.test.bind(actionSectionRegex),
   );
-  const { instanceId, region } = useUrlSearchParams('instanceId');
+  const { instanceId, region } = useUrlSearchParams('instanceId', 'region');
   const canRedirect = !!section && !!instanceId;
   const redirectHref = `../region/${region ||
     null}/instance/${instanceId}/${section}`;
