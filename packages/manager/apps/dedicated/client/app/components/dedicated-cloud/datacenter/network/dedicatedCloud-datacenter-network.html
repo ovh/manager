@@ -34,24 +34,32 @@
                 <oui-skeleton size="xs"></oui-skeleton>
             </dd>
             <dd
-                data-ng-else
+                data-ng-if="!$ctrl.consumptionLoading && $ctrl.consumption.price.value === 0"
+                class="col-md-3"
+                data-translate="dedicatedCloud_network_included_in_offer"
+            ></dd>
+            <dd
+                data-ng-if="!$ctrl.consumptionLoading && $ctrl.consumption.price.value !== 0"
                 class="col-md-3"
                 data-ng-bind="$ctrl.consumption.price.text"
             ></dd>
         </dl>
     </div>
     <div>
-        <button
-            class="oui-button oui-button_primary"
-            data-translate="dedicatedCloud_network_add_edge_cta"
-            data-disabled="$ctrl.hasMaximumNsx"
+        <oui-button
+            variant="primary"
+            data-disabled="$ctrl.hasMaximumNsx || !!$ctrl.pollNsxTaskId"
             data-ng-click="$ctrl.goToAddNsx()"
-        ></button>
-        <div
-            class="oui-button oui-button_secondary"
+            ><span data-translate="dedicatedCloud_network_add_edge_cta"></span
+        ></oui-button>
+        <oui-button
+            variant="secondary"
             data-ng-click="$ctrl.goToResize()"
-            data-translate="dedicatedCloud_network_resize_edge_cta"
-        ></div>
+            data-disabled="!!$ctrl.pollNsxTaskId"
+            ><span
+                data-translate="dedicatedCloud_network_resize_edge_cta"
+            ></span
+        ></oui-button>
     </div>
 
     <oui-datagrid data-rows-loader="$ctrl.loadNsxtEdgeNetworks($config)">
