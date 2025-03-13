@@ -13,13 +13,24 @@ export const getServices = async ({ projectId }: PCIData) =>
     })
     .then((res) => res.data as database.Service[]);
 
-export const getService = async ({
+export const getService = async <
+  T extends database.Service = database.Service
+>({
   projectId,
   serviceId,
-}: Omit<ServiceData, 'engine'>) =>
-  apiClient.v6
+}: Omit<ServiceData, 'engine'>) => {
+  // first fetch the basic info in services endpoint
+  const serviceInfo = await apiClient.v6
     .get(`/cloud/project/${projectId}/database/service/${serviceId}`)
     .then((res) => res.data as database.Service);
+  // then get the engine's specific information
+  const serviceData = await apiClient.v6
+    .get<T>(
+      `/cloud/project/${projectId}/database/${serviceInfo.engine}/${serviceId}`,
+    )
+    .then((res) => res.data);
+  return serviceData;
+};
 
 interface AddService extends Omit<ServiceData, 'serviceId'> {
   serviceInfo: Partial<database.ServiceCreation>;
@@ -48,19 +59,23 @@ export interface EditService extends ServiceData {
       | 'enablePrometheus'
     > & {
       backups?: Pick<database.service.Backup, 'time'>;
+    } & {
+      aclsEnabled?: boolean;
     }
   >;
 }
 
-export const editService = async ({
+export const editService = async <
+  T extends database.Service = database.Service
+>({
   projectId,
   engine,
   serviceId,
   data,
 }: EditService) =>
   apiClient.v6
-    .put(`/cloud/project/${projectId}/database/${engine}/${serviceId}`, data)
-    .then((res) => res.data as database.Service);
+    .put<T>(`/cloud/project/${projectId}/database/${engine}/${serviceId}`, data)
+    .then((res) => res.data);
 
 export const deleteService = async ({
   projectId,

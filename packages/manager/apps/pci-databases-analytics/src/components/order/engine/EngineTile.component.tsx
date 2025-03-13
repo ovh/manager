@@ -7,6 +7,7 @@ import { humanizeEngine } from '@/lib/engineNameHelper';
 import * as database from '@/types/cloud/project/database';
 import { Badge } from '@/components/ui/badge';
 import { getTagVariant } from '@/lib/tagsHelper';
+import { EngineIcon } from '@/components/engine-icon/EngineIcon.component';
 
 export const EngineTile = ({
   engine,
@@ -27,6 +28,7 @@ export const EngineTile = ({
   useEffect(() => {
     onChange(engine, selectedVersion);
   }, [selectedVersion]);
+
   return (
     <RadioTile
       data-testid="engine-radio-tile"
@@ -37,12 +39,10 @@ export const EngineTile = ({
     >
       <div className="flex justify-between items-center">
         <div className="flex gap-2">
-          <h5
-            className={`capitalize ${selected ? 'font-bold' : 'font-normal'}`}
-          >
+          <h5 className={'capitalize'}>
             {humanizeEngine(engine.name as database.EngineEnum)}
           </h5>
-          <div className="flex gap-1">
+          <div className="flex gap-1 items-center">
             {engine.tags.map((tag) => (
               <Badge
                 data-testid={`Badge${tag}`}
@@ -50,15 +50,14 @@ export const EngineTile = ({
                 variant={getTagVariant(tag)}
                 className="text-xs h-4"
               >
-                {t(`planTag-${tag}`, tag)}
+                {t(`versionTag-${tag}`, tag)}
               </Badge>
             ))}
           </div>
         </div>
-        <img
-          className="block w-[60px] h-[40px]"
-          src={`./assets/engines/${engine.name}.png`}
-          alt={engine.name}
+        <EngineIcon
+          engine={engine.name as database.EngineEnum}
+          category={engine.category}
         />
       </div>
       <p className="text-sm">
