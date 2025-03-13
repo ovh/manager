@@ -198,19 +198,6 @@
                         <span
                             data-ng-bind="$ctrl.datacenter.model.edgesLevel"
                         ></span>
-                        <span
-                            class="oui-badge"
-                            data-ng-if="$ctrl.datacenter.model.edgesStatus"
-                            data-ng-class="{
-                                'oui-badge_error': ($ctrl.datacenter.model.edgesStatus === 'error'),
-                                'oui-badge_warning': ['disabling','migrating','provisionning','recycling','upgrading'].includes($ctrl.datacenter.model.edgesStatus),
-                                'oui-badge_success': ['available','delivered'].includes($ctrl.datacenter.model.edgesStatus)
-                            }"
-                        >
-                            <span
-                                data-ng-bind="$ctrl.datacenter.model.edgesStatus"
-                            ></span>
-                        </span>
                     </oui-tile-description>
                     <oui-action-menu data-compact data-placement="end">
                         <oui-action-menu-item
