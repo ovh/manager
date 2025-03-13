@@ -74,7 +74,7 @@ export default class DedicatedCloudDatacenterNetworkTab {
           .pricings.find(
             (pricing) =>
               pricing.mode === NSXT_EDGE_PRICING_MODE &&
-              pricing.description === 'extra edges',
+              pricing.description === 'Consumption',
           );
         const currency = data.locale.currencyCode;
 
