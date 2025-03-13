@@ -20,11 +20,15 @@ import {
   OdsHTMLAnchorElementRel,
   OdsHTMLAnchorElementTarget,
 } from '@ovhcloud/ods-common-core';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import {
+  ShellContext,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { EXTERNAL_LINKS } from '@/changelog.constants';
 
 export default function Changelog() {
   const { t } = useTranslation('changelog');
+  const { trackClick } = useOvhTracking();
 
   const header: HeadersProps = {
     title: t('changelog_title'),
@@ -53,7 +57,10 @@ export default function Changelog() {
   }, []);
 
   return (
-    <div className="relative w-full h-full overflow-auto border-box">
+    <div
+      className="relative w-full h-full overflow-auto border-box"
+      data-testid="roadmap-changelog-page"
+    >
       <div
         className={`hub-main ${
           isAccountSidebarVisible ? 'hub-main-view_sidebar_expanded' : ''
@@ -101,6 +108,10 @@ export default function Changelog() {
                 rel={OdsHTMLAnchorElementRel.external}
                 color={ODS_THEME_COLOR_INTENT.primary}
                 href={EXTERNAL_LINKS.CLOUD_CHANGELOG.url}
+                data-testid="changelog-cloud-link"
+                onClick={() => {
+                  trackClick(EXTERNAL_LINKS.CLOUD_CHANGELOG.tracking);
+                }}
               >
                 {t(EXTERNAL_LINKS.CLOUD_CHANGELOG.label_key)}
                 <span slot="end">
@@ -120,6 +131,9 @@ export default function Changelog() {
                 rel={OdsHTMLAnchorElementRel.external}
                 color={ODS_THEME_COLOR_INTENT.primary}
                 href={EXTERNAL_LINKS.WEB_CHANGELOG.url}
+                onClick={() => {
+                  trackClick(EXTERNAL_LINKS.WEB_CHANGELOG.tracking);
+                }}
               >
                 {t(EXTERNAL_LINKS.WEB_CHANGELOG.label_key)}
                 <span slot="end">
@@ -178,6 +192,9 @@ export default function Changelog() {
               rel={OdsHTMLAnchorElementRel.external}
               color={ODS_THEME_COLOR_INTENT.primary}
               href={EXTERNAL_LINKS.WEB_ROADMAP.url}
+              onClick={() => {
+                trackClick(EXTERNAL_LINKS.WEB_ROADMAP.tracking);
+              }}
             >
               {t(EXTERNAL_LINKS.WEB_ROADMAP.label_key)}
               <span slot="end">
@@ -195,6 +212,9 @@ export default function Changelog() {
               rel={OdsHTMLAnchorElementRel.external}
               color={ODS_THEME_COLOR_INTENT.primary}
               href={EXTERNAL_LINKS.DOMAIN_ROADMAP.url}
+              onClick={() => {
+                trackClick(EXTERNAL_LINKS.DOMAIN_ROADMAP.tracking);
+              }}
             >
               {t(EXTERNAL_LINKS.DOMAIN_ROADMAP.label_key)}
               <span slot="end">
@@ -212,6 +232,9 @@ export default function Changelog() {
               rel={OdsHTMLAnchorElementRel.external}
               color={ODS_THEME_COLOR_INTENT.primary}
               href={EXTERNAL_LINKS.COLLAB_ROADMAP.url}
+              onClick={() => {
+                trackClick(EXTERNAL_LINKS.COLLAB_ROADMAP.tracking);
+              }}
             >
               {t(EXTERNAL_LINKS.COLLAB_ROADMAP.label_key)}
               <span slot="end">
@@ -239,6 +262,9 @@ export default function Changelog() {
               rel={OdsHTMLAnchorElementRel.external}
               color={ODS_THEME_COLOR_INTENT.primary}
               href={EXTERNAL_LINKS.CLOUD_ROADMAP.url}
+              onClick={() => {
+                trackClick(EXTERNAL_LINKS.CLOUD_ROADMAP.tracking);
+              }}
             >
               {t(EXTERNAL_LINKS.CLOUD_ROADMAP.label_key)}
               <span slot="end">
@@ -256,6 +282,9 @@ export default function Changelog() {
               rel={OdsHTMLAnchorElementRel.external}
               color={ODS_THEME_COLOR_INTENT.primary}
               href={EXTERNAL_LINKS.PUBLIC_CLOUD_ROADMAP.url}
+              onClick={() => {
+                trackClick(EXTERNAL_LINKS.PUBLIC_CLOUD_ROADMAP.tracking);
+              }}
             >
               {t(EXTERNAL_LINKS.PUBLIC_CLOUD_ROADMAP.label_key)}
               <span slot="end">
@@ -274,6 +303,9 @@ export default function Changelog() {
                 rel={OdsHTMLAnchorElementRel.external}
                 color={ODS_THEME_COLOR_INTENT.primary}
                 href={EXTERNAL_LINKS.INFRA_ROADMAP.url}
+                onClick={() => {
+                  trackClick(EXTERNAL_LINKS.INFRA_ROADMAP.tracking);
+                }}
               >
                 {t(EXTERNAL_LINKS.INFRA_ROADMAP.label_key)}
                 <span slot="end">
@@ -303,6 +335,9 @@ export default function Changelog() {
                 rel={OdsHTMLAnchorElementRel.external}
                 color={ODS_THEME_COLOR_INTENT.primary}
                 href={EXTERNAL_LINKS.PRIVATE_CLOUD_ROADMAP.url}
+                onClick={() => {
+                  trackClick(EXTERNAL_LINKS.PRIVATE_CLOUD_ROADMAP.tracking);
+                }}
               >
                 {t(EXTERNAL_LINKS.PRIVATE_CLOUD_ROADMAP.label_key)}
                 <span slot="end">
@@ -331,6 +366,9 @@ export default function Changelog() {
               rel={OdsHTMLAnchorElementRel.external}
               color={ODS_THEME_COLOR_INTENT.primary}
               href={EXTERNAL_LINKS.SECURITY_ROADMAP.url}
+              onClick={() => {
+                trackClick(EXTERNAL_LINKS.SECURITY_ROADMAP.tracking);
+              }}
             >
               {t(EXTERNAL_LINKS.SECURITY_ROADMAP.label_key)}
               <span slot="end">
@@ -376,6 +414,9 @@ export default function Changelog() {
                       rel={OdsHTMLAnchorElementRel.external}
                       color={ODS_THEME_COLOR_INTENT.primary}
                       href={EXTERNAL_LINKS.HELPCENTER.url}
+                      onClick={() => {
+                        trackClick(EXTERNAL_LINKS.BUG_BOUNTY.tracking);
+                      }}
                     >
                       {t(EXTERNAL_LINKS.HELPCENTER.label_key)}{' '}
                       <span slot="end">
@@ -403,6 +444,9 @@ export default function Changelog() {
                       rel={OdsHTMLAnchorElementRel.external}
                       color={ODS_THEME_COLOR_INTENT.primary}
                       href={EXTERNAL_LINKS.BUG_BOUNTY.url}
+                      onClick={() => {
+                        trackClick(EXTERNAL_LINKS.BUG_BOUNTY.tracking);
+                      }}
                     >
                       {t(EXTERNAL_LINKS.BUG_BOUNTY.label_key)}
                       <span slot="end">
