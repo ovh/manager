@@ -55,7 +55,7 @@ angular.module('App').controller(
         this.todoOperation = 'cancel';
       }
 
-      this.contactUrl = this.coreURLBuilder.buildURL('web', '#/web/domain');
+      this.contactUrl = this.coreURLBuilder.buildURL('dedicated', '#/contact');
 
       this.$scope.updateOperation = () => this.updateOperation();
 
