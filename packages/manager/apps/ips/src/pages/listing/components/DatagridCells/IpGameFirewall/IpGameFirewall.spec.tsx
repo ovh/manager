@@ -3,10 +3,12 @@ import React, { PropsWithChildren } from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { render, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
 import { ListingContextProvider } from '@/pages/listing/listingContext';
 import ipDetailsList from '../../../../../../mocks/ip/get-ip-details.json';
 import { IpGameFirewall, IpGameFirewallProps } from './IpGameFirewall';
 import { IpGameFirewallStateEnum, IpGameFirewallType } from '@/data/api';
+import { getOdsBadgeByLabel } from '@/test-utils';
 
 const queryClient = new QueryClient();
 /** MOCKS */
@@ -54,9 +56,13 @@ describe('IpGameFirewall Component', async () => {
       isLoading: false,
       error: undefined,
     });
-    const { getByText } = renderComponent({ ip: ipDetailsList[0].ip });
+    const { container } = renderComponent({ ip: ipDetailsList[0].ip });
+    const badge = await getOdsBadgeByLabel({
+      container,
+      label: 'listingColumnsIpGameFirewallAvailable',
+    });
     await waitFor(() => {
-      expect(getByText(`listingColumnsIpGameFirewallAvailable`)).toBeDefined();
+      expect(badge.getAttribute('color')).toBe(ODS_BADGE_COLOR.information);
     });
   });
 
@@ -72,9 +78,15 @@ describe('IpGameFirewall Component', async () => {
       isLoading: false,
       error: undefined,
     });
-    const { getByText } = renderComponent({ ip: ipDetailsList[0].ip });
+    const { getByText, container } = renderComponent({
+      ip: ipDetailsList[0].ip,
+    });
+    const badge = await getOdsBadgeByLabel({
+      container,
+      label: 'listingColumnsIpGameFirewallPending',
+    });
     await waitFor(() => {
-      expect(getByText(`listingColumnsIpGameFirewallPending`)).toBeDefined();
+      expect(badge.getAttribute('color')).toBe(ODS_BADGE_COLOR.warning);
       expect(
         getByText(`listingColumnsIpGameFirewallPendingTooltip`),
       ).toBeDefined();
@@ -93,13 +105,24 @@ describe('IpGameFirewall Component', async () => {
       isLoading: false,
       error: undefined,
     });
-    const { queryByText } = renderComponent({ ip: ipDetailsList[1].ip });
+    const { queryByText, container } = renderComponent({
+      ip: ipDetailsList[1].ip,
+    });
+
+    await getOdsBadgeByLabel({
+      container,
+      label: 'listingColumnsIpGameFirewallPending',
+      isHidden: true,
+    });
+    await getOdsBadgeByLabel({
+      container,
+      label: 'listingColumnsIpGameFirewallAvailable',
+      isHidden: true,
+    });
     await waitFor(() => {
-      expect(queryByText(`listingColumnsIpGameFirewallPending`)).toBeNull();
       expect(
         queryByText(`listingColumnsIpGameFirewallPendingTooltip`),
       ).toBeNull();
-      expect(queryByText(`listingColumnsIpGameFirewallAvailable`)).toBeNull();
     });
   });
 
@@ -113,13 +136,23 @@ describe('IpGameFirewall Component', async () => {
       isLoading: false,
       error: undefined,
     });
-    const { queryByText } = renderComponent({ ip: ipDetailsList[0].ip });
+    const { queryByText, container } = renderComponent({
+      ip: ipDetailsList[0].ip,
+    });
+    await getOdsBadgeByLabel({
+      container,
+      label: 'listingColumnsIpGameFirewallPending',
+      isHidden: true,
+    });
+    await getOdsBadgeByLabel({
+      container,
+      label: 'listingColumnsIpGameFirewallAvailable',
+      isHidden: true,
+    });
     await waitFor(() => {
-      expect(queryByText(`listingColumnsIpGameFirewallPending`)).toBeNull();
       expect(
         queryByText(`listingColumnsIpGameFirewallPendingTooltip`),
       ).toBeNull();
-      expect(queryByText(`listingColumnsIpGameFirewallAvailable`)).toBeNull();
     });
   });
 });
