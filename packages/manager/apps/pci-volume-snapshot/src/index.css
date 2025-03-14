@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+button {
+  font-family: var(--ods-font-family-default);
+}
+
+.application {
+  @apply md:mx-12 mt-8;
+}
+
+.font-bold-class::part(text) {
+  @apply font-bold;
+}
