@@ -4,8 +4,9 @@ import { ErrorBannerProps } from '@ovh-ux/manager-react-components';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import {
   instancesQueryKey,
+  isCustomUrlSection,
   mapUnknownErrorToBannerError,
-  kebabToSnakeCase,
+  replaceToSnakeCase,
 } from './index';
 
 describe('Utility functions', () => {
@@ -131,14 +132,28 @@ describe('Utility functions', () => {
     );
   });
 
-  describe('Considering the kebabToSnakeCase function', () => {
+  describe('Considering the replaceToSnakeCase function', () => {
     describe.each`
       input                   | expectedOutput
       ${'soft-reboot'}        | ${'soft_reboot'}
-      ${'soft-reboot-action'} | ${'soft_reboot_action'}
+      ${'rescue/start'}       | ${'rescue_start'}
+      ${'soft-reboot/action'} | ${'soft_reboot_action'}
     `('Given an input <$input>', ({ input, expectedOutput }) => {
       test(`Then, expect the output to be '${expectedOutput}'`, () => {
-        expect(kebabToSnakeCase(input)).toStrictEqual(expectedOutput);
+        expect(replaceToSnakeCase(input)).toStrictEqual(expectedOutput);
+      });
+    });
+  });
+
+  describe('Considering the isCustomUrlSection function', () => {
+    describe.each`
+      input             | expectedOutput
+      ${'reinstall'}    | ${false}
+      ${'soft-reboot'}  | ${true}
+      ${'rescue/start'} | ${true}
+    `('Given an input <$input>', ({ input, expectedOutput }) => {
+      test(`Then, expect the output to be '${expectedOutput}'`, () => {
+        expect(isCustomUrlSection(input)).toStrictEqual(expectedOutput);
       });
     });
   });
