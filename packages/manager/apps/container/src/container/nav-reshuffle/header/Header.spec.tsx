@@ -43,7 +43,6 @@ vi.mock('@ovh-ux/manager-react-components', async () => ({
   useFeatureAvailability: vi.fn().mockReturnValue([]),
   fetchFeatureAvailabilityData: vi.fn().mockReturnValue({
     'new-billing': true,
-    'new-account': true,
     'identity-documents': false,
     'procedures:fraud': false,
   }),
@@ -245,7 +244,7 @@ describe('Header.component', () => {
 
     it.each([
       ['new-billing', true, 'https://mockedurl.mock/new-billing'],
-      ['new-account', true, 'https://mockedurl.mock/new-account']
+      ['account', true, 'https://mockedurl.mock/account']
     ])(
       'should render all expected links in the document for %s feature being %s',
       async (feature, isEnabled, specialUrl) => {
