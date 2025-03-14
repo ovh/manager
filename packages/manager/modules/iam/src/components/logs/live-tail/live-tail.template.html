@@ -1,8 +1,8 @@
 <div data-ovh-alert></div>
 
 <log-to-customer-live-tail
-    data-log-api-url="$ctrl.URL.LOG"
-    data-log-subscription-url="$ctrl.URL.LOG_SUSBSCRIPTION"
+    data-log-api-url="$ctrl.url.LOG"
+    data-log-subscription-url="$ctrl.url.LOG_SUSBSCRIPTION"
     data-log-service-guide-link="$ctrl.logServiceGuideLink"
     data-api-version="$ctrl.apiVersion"
     data-go-to-listing-page="$ctrl.goToListingPage"
@@ -10,9 +10,9 @@
     data-log-kinds-keys="$ctrl.logKindsKeys"
     data-kind-init-value="$ctrl.kind"
     data-track-click="$ctrl.trackClick"
-    data-tracking-hits="$ctrl.IAM_AUDIT_LOGS_TRACKING_HITS"
+    data-tracking-hits="$ctrl.trackingHits"
 >
     <main-description>
-        <span data-translate="iam_logs_description_default"></span>
+        <span data-ng-bind=":: $ctrl.description"></span>
     </main-description>
 </log-to-customer-live-tail>

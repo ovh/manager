@@ -13,7 +13,7 @@ export default /* @ngInject */ ($stateProvider) => {
         .getAsync('features')
         .then((featureAvailability) => ({
           state: featureAvailability.isFeatureAvailable(FEATURE_LOGS.ROOT)
-            ? 'iam.logs.audit'
+            ? 'iam.logs.access-policy'
             : 'iam',
         })),
     component: name,
@@ -36,7 +36,6 @@ export default /* @ngInject */ ($stateProvider) => {
         features.isFeatureAvailable(FEATURE_LOGS.ACTIVITY),
       accessPolicyLogsAvailability: /* @ngInject */ (features) =>
         features.isFeatureAvailable(FEATURE_LOGS.ACCESS_POLICY),
-      logKinds: /* @ngInject */ (logsService) => logsService.getLogKinds(),
     },
   });
 };
