@@ -3,7 +3,7 @@ import statusTemplate from './templates/status.html';
 import prismUrl from './templates/prismUrl.html';
 import serviceLink from './templates/serviceLink.html';
 import localizationTemplate from './templates/localization.html';
-import { getNutanixOrderUrl, FEATURES } from './constants';
+import { getNutanixOrderUrl } from './constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('nutanix.index', {
@@ -47,7 +47,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $translate.instant('nutanix_title'),
       changelog: () => 'nutanix',
       customizableColumns: () => true,
-      columns: /* @ngInject */ ($translate, isPackTypeAvailable) => {
+      columns: /* @ngInject */ ($translate) => {
         return [
           {
             title: $translate.instant('nutanix_cluster_list_name'),
@@ -61,12 +61,6 @@ export default /* @ngInject */ ($stateProvider) => {
             title: $translate.instant('nutanix_cluster_list_number_of_nodes'),
             template: '{{::$row.getNumberOfNodes()}}',
             property: 'targetSpec.nodes',
-          },
-          isPackTypeAvailable && {
-            title: $translate.instant('nutanix_cluster_list_pack_type'),
-            property: 'targetSpec.name',
-            template:
-              "<a data-ng-href='{{ $ctrl.getServiceNameLink($row) }}' target='_top' data-translate='nutanix_cluster_list_pack_type_details'></a",
           },
           {
             title: $translate.instant('nutanix_cluster_list_status'),
@@ -113,13 +107,6 @@ export default /* @ngInject */ ($stateProvider) => {
         },
       }),
       hideBreadcrumb: () => true,
-      isPackTypeAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
-        ovhFeatureFlipping
-          .checkFeatureAvailability([FEATURES.PACK_TYPE])
-          .then((featureAvailability) =>
-            featureAvailability.isFeatureAvailable(FEATURES.PACK_TYPE),
-          )
-          .catch(() => false),
     },
     atInternet: {
       rename: 'hpc::nutanix::clusters',
