@@ -9,7 +9,7 @@ import App from './App';
 
 import './index.css';
 
-import '@/vite-hmr.ts';
+import '@/vite-hmr';
 
 const init = async (
   appName: string,
@@ -31,7 +31,7 @@ const init = async (
     defaultNS: 'common',
   });
 
-  ReactDOM.createRoot(document.getElementById('root')).render(
+  ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <React.StrictMode>
       <ShellContext.Provider value={context}>
         <App />
