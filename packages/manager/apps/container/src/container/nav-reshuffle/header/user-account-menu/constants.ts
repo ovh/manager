@@ -18,7 +18,7 @@ export const tracking = {
 
 export const links: UserLink[] = [
   {
-    app: 'new-account',
+    app: 'account',
     key: 'user-account-menu-profile',
     hash: '#/useraccount/dashboard',
     i18nKey: 'user_account_menu_profile',
@@ -47,7 +47,7 @@ export const links: UserLink[] = [
     region: ['EU', 'CA'],
   },
   {
-    app: 'new-account',
+    app: 'account',
     key: 'myCommunications',
     hash: '#/useraccount/emails',
     i18nKey: 'user_account_menu_my_communication',
@@ -69,7 +69,7 @@ export const links: UserLink[] = [
     trackingHit: tracking.orders,
   },
   {
-    app: 'new-account',
+    app: 'account',
     key: 'myContacts',
     hash: '#/contacts/services',
     i18nKey: 'user_account_menu_my_contacts',
