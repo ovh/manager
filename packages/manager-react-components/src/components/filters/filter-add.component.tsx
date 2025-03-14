@@ -1,9 +1,14 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Filter, FilterComparator } from '@ovh-ux/manager-core-api';
+import {
+  Filter,
+  FilterComparator,
+  FilterTypeCategories,
+} from '@ovh-ux/manager-core-api';
 import { ODS_BUTTON_SIZE, ODS_INPUT_TYPE } from '@ovhcloud/ods-components';
 
 import {
   OdsButton,
+  OdsDatepicker,
   OdsFormField,
   OdsInput,
   OdsSelect,
@@ -15,6 +20,7 @@ export type ColumnFilter = {
   id: string;
   label: string;
   comparators: FilterComparator[];
+  type?: FilterTypeCategories;
 };
 
 export type FilterAddProps = {
@@ -30,6 +36,7 @@ export function FilterAdd({ columns, onAddFilter }: Readonly<FilterAddProps>) {
     columns?.[0]?.comparators?.[0] || FilterComparator.IsEqual,
   );
   const [value, setValue] = useState('');
+  const [dateValue, setDateValue] = useState<Date | null>(null);
 
   const selectedColumn = useMemo(
     () => columns.find(({ id }) => selectedId === id),
@@ -41,15 +48,22 @@ export function FilterAdd({ columns, onAddFilter }: Readonly<FilterAddProps>) {
       {
         key: selectedId,
         comparator: selectedComparator,
-        value,
+        value:
+          selectedColumn.type === FilterTypeCategories.Date
+            ? dateValue.toISOString()
+            : value,
+        type: selectedColumn.type,
       },
       selectedColumn,
     );
     setValue('');
+    setDateValue(null);
   };
 
   useEffect(() => {
     setSelectedComparator(selectedColumn?.comparators[0]);
+    setValue('');
+    setDateValue(null);
   }, [selectedColumn]);
 
   return (
@@ -82,31 +96,23 @@ export function FilterAdd({ columns, onAddFilter }: Readonly<FilterAddProps>) {
               {t('common_criteria_adder_operator_label')}
             </span>
           </div>
-          {selectedColumn &&
-            columns.map((column) => {
-              return (
-                <div
-                  key={`filter-condition-select-${column.id}`}
-                  className={column.id === selectedColumn.id ? '' : 'hidden'}
-                >
-                  <OdsSelect
-                    name={`add-operator-${column?.id}`}
-                    value={selectedComparator}
-                    onOdsChange={(event) => {
-                      setSelectedComparator(
-                        event.detail.value as FilterComparator,
-                      );
-                    }}
-                  >
-                    {column?.comparators?.map((comp) => (
-                      <option key={`${column.id}-${comp}`} value={comp}>
-                        {t(`common_criteria_adder_operator_${comp}`)}
-                      </option>
-                    ))}
-                  </OdsSelect>
-                </div>
-              );
-            })}
+          {selectedColumn && (
+            <div key={`filter-condition-select-${selectedColumn.id}`}>
+              <OdsSelect
+                name={`add-operator-${selectedColumn.id}`}
+                value={selectedComparator}
+                onOdsChange={(event) => {
+                  setSelectedComparator(event.detail.value as FilterComparator);
+                }}
+              >
+                {selectedColumn.comparators?.map((comp) => (
+                  <option key={comp} value={comp}>
+                    {t(`common_criteria_adder_operator_${comp}`)}
+                  </option>
+                ))}
+              </OdsSelect>
+            </div>
+          )}
         </OdsFormField>
       </div>
       <div>
@@ -116,26 +122,36 @@ export function FilterAdd({ columns, onAddFilter }: Readonly<FilterAddProps>) {
               {t('common_criteria_adder_value_label')}
             </span>
           </div>
-          <OdsInput
-            name="filter-add_value-input"
-            className="border"
-            type={ODS_INPUT_TYPE.text}
-            value={value}
-            data-testid="filter-add_value-input"
-            onOdsChange={(e) => setValue(`${e.detail.value}`)}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter') {
-                submitAddFilter();
-              }
-            }}
-          />
+          {selectedColumn?.type === FilterTypeCategories.Date ? (
+            <OdsDatepicker
+              name="filter-add_value-input"
+              className="border"
+              value={dateValue}
+              data-testid="filter-add_value-date"
+              onOdsChange={(e) => setDateValue(e.detail.value)}
+            />
+          ) : (
+            <OdsInput
+              name="filter-add_value-input"
+              className="border"
+              type={ODS_INPUT_TYPE.text}
+              value={value}
+              data-testid="filter-add_value-input"
+              onOdsChange={(e) => setValue(`${e.detail.value}`)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  submitAddFilter();
+                }
+              }}
+            />
+          )}
         </OdsFormField>
       </div>
       <div>
         <OdsButton
           className="mt-4 w-full filter-add-button-submit"
           size={ODS_BUTTON_SIZE.sm}
-          isDisabled={!value}
+          isDisabled={!value && !dateValue}
           onClick={submitAddFilter}
           data-testid="filter-add_submit"
           label={t('common_criteria_adder_submit_label')}
