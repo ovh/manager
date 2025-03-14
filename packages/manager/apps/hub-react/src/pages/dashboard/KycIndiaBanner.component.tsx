@@ -23,8 +23,8 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { useKyc } from '@/data/hooks/kyc/useKyc';
 import { KycProcedures, KycStatuses } from '@/types/kyc.type';
-import { useHubContext } from '@/pages/layout/context';
-import { KYC_INDIA_FEATURE } from '@/pages/layout/layout.constants';
+import { useHubContext } from '@/pages/dashboard/context';
+import { KYC_INDIA_FEATURE } from '@/pages/dashboard/dashboard.constants';
 
 export default function KycIndiaBanner() {
   const { t } = useTranslation('hub/kyc');

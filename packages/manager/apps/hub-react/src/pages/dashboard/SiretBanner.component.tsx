@@ -24,8 +24,8 @@ import {
   useOvhTracking,
   PageType,
 } from '@ovh-ux/manager-react-shell-client';
-import { useHubContext } from '@/pages/layout/context';
-import { SIRET_BANNER_FEATURE } from '@/pages/layout/layout.constants';
+import { useHubContext } from '@/pages/dashboard/context';
+import { SIRET_BANNER_FEATURE } from '@/pages/dashboard/dashboard.constants';
 
 export default function SiretBanner() {
   const { t } = useTranslation('hub/siret');
