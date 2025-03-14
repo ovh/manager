@@ -1,5 +1,4 @@
 import { Navigate, Route, useLocation, useParams } from 'react-router-dom';
-import { Application } from '@ovh-ux/manager-config';
 
 function Rewrite({ to }: { to: string }): JSX.Element {
   const location = useLocation();
@@ -12,12 +11,9 @@ function Rewrite({ to }: { to: string }): JSX.Element {
   return <Navigate to={`${target}${location.search}`} replace={true} />;
 }
 
-export function Redirections(configuration: Record<string, Application>): JSX.Element {
-  const isNewAccountAvailable = !!configuration?.['new-account'];
-
+export function Redirections(): JSX.Element {
   return (
     <>
-      {isNewAccountAvailable ? (
         <>
           <Route
             path="/useraccount/*"
@@ -40,12 +36,6 @@ export function Redirections(configuration: Record<string, Application>): JSX.El
             element={<Rewrite to="/account/documents/*" />}
           />
         </>
-      ) : (
-        <Route
-          path="/useraccount/*"
-          element={<Rewrite to="/dedicated/useraccount/*" />}
-        />
-      )}
         <Route
           path="/dedicated/billing/*"
           element={<Rewrite to="/billing/*" />}
