@@ -65,5 +65,21 @@
   "formUserRoleInputAdminRoles": "Role administratora",
   "formUserRoleInputCustomRoles": "Role spersonalizowane",
   "formUserRoleDatabaseInputPlaceholder": "Spersonalizowana baza danych",
-  "formUserRoleDatabaseConfiguredRoles": "Skonfigurowane role:"
+  "formUserRoleDatabaseConfiguredRoles": "Skonfigurowane role:",
+  "tableHeadACLs": "ACL",
+  "tableHeadPattern": "Pattern",
+  "tableHeadPermission": "Uprawnienie",
+  "toggleACLsLabel": "Włącz ACL",
+  "toggleAclErrorTitle": "Wystąpił błąd podczas aktualizacji usługi",
+  "toggleAclSuccessTitle": "Sukces",
+  "toggleAclEnabledSuccessDescription": "ACL są teraz włączone dla Twojej usługi",
+  "toggleAclADisabledSuccessDescription": "ACL zostały wyłączone dla Twojej usługi",
+  "formUserFieldAclsLabel": "ACL",
+  "formUserAclPatternAlertInfo": "Wzorce używają standardowego systemu dopasowywania, zwanego także wzorcem globalnym ('*' działa dla dowolnej liczby znaków, a '?' dla dowolnego znaku). Na przykład model 'logs_200?' będzie działać dla dopasowania indeksu 'logs_200904', ale nie 'logs_201904'.",
+  "formUserAclPatternInputLabel": "Pattern",
+  "formUserAclPermissionInputLabel": "Uprawnienie",
+  "formUserAclConfiguredAcls": "Skonfigurowane listy ACL",
+  "formUseAclPatternErrorPattern": "Wzorzec może zawierać tylko litery, cyfry, myślniki, podkreślenia, kropki, gwiazdki i znaki zapytania.",
+  "formUserInvalidPermission": "Wybierz poprawne uprawnienie z poniższej listy: {values}",
+  "formUserAclDuplicate": "Podobna ACL jest już skonfigurowana"
 }

@@ -7,7 +7,7 @@ describe('useDatagridColumn', () => {
 
     const columns = result.current;
 
-    expect(columns).toHaveLength(9);
+    expect(columns).toHaveLength(10);
 
     const nameColumn = columns.find((col) => col.id === 'name');
     expect(nameColumn).toBeDefined();
@@ -35,7 +35,9 @@ describe('useDatagridColumn', () => {
       (col) => col.id === 'monthlyBilled',
     );
     expect(monthlyBilledColumn).toBeDefined();
-    expect(monthlyBilledColumn?.label).toBe('kube_node_pool_monthly_billing');
+    expect(monthlyBilledColumn?.label).toBe(
+      'kube-nodes:kube_nodes_billing_type',
+    );
 
     const createdAtColumn = columns.find((col) => col.id === 'createdAt');
     expect(createdAtColumn).toBeDefined();
