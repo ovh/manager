@@ -2,27 +2,21 @@
     <oui-header-tabs>
         <oui-header-tabs-item
             data-state="iam.logs.audit"
-            data-disabled="!$ctrl.auditLogsAvailability"
+            data-ng-if="$ctrl.auditLogsAvailability"
             ><span data-translate="iam_audit_logs_label"></span
         ></oui-header-tabs-item>
         <oui-header-tabs-item
             data-state="iam.logs.activity"
-            data-disabled="!$ctrl.activityLogsAvailability"
+            data-ng-if="$ctrl.activityLogsAvailability"
         >
             <span data-translate="iam_activity_logs_label"></span
-            ><span class="oui-badge oui-badge_info"
-                >coming soon</span
-            ></oui-header-tabs-item
-        >
+        ></oui-header-tabs-item>
         <oui-header-tabs-item
-            data-state="iam.logs.activity"
-            data-disabled="!$ctrl.accessPolicyLogsAvailability"
+            data-state="iam.logs.access-policy"
+            data-ng-if="$ctrl.accessPolicyLogsAvailability"
         >
             <span data-translate="iam_access_policy_logs_label"></span
-            ><span class="oui-badge oui-badge_info"
-                >coming soon</span
-            ></oui-header-tabs-item
-        >
+        ></oui-header-tabs-item>
     </oui-header-tabs>
 
     <oui-guide-menu data-text="{{:: 'iam_guide_header_label' | translate }}">
