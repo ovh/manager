@@ -12,14 +12,12 @@ import ngOvhHttp from '@ovh-ux/ng-ovh-http';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import ovhManagerAtInternetConfiguration from '@ovh-ux/manager-at-internet-configuration';
 import { registerAtInternet } from '@ovh-ux/ng-shell-tracking';
-// TODO: Change to '@ovh-ux/manager-billing' when module is deployed
-// import Billing from '@ovh-ux/manager-billing';
-import Billing from '../../../modules/new-billing/src';
+import Billing from '@ovh-ux/manager-billing';
 import config, {
   getConstants,
-} from '../../../modules/new-billing/src/config/config';
+} from '@ovh-ux/manager-billing/src/config/config';
+import dedicatedUniverseComponents from '@ovh-ux/manager-billing/src/dedicatedUniverseComponents';
 import errorPage from './error';
-import dedicatedUniverseComponents from '../../../modules/new-billing/src/dedicatedUniverseComponents';
 import TRACKING from './tracking/at-internet.constants';
 import '@ovh-ux/ui-kit/dist/css/oui.css';
 import './app.less';

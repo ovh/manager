@@ -3,7 +3,7 @@ import kebabCase from 'lodash/kebabCase';
 import { BillingService as Service } from '@ovh-ux/manager-models';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.account.billing.autorenew.resiliation', {
+  $stateProvider.state('billing.autorenew.resiliation', {
     url: '/resiliation?serviceId&serviceName&serviceType',
     component: 'ovhManagerBillingResiliation',
     resolve: {

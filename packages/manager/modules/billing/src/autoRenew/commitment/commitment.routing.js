@@ -1,7 +1,7 @@
 import kebabCase from 'lodash/kebabCase';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.account.billing.autorenew.service.commitment', {
+  $stateProvider.state('billing.autorenew.service.commitment', {
     url: '/commitment?duration',
     component: 'billingCommitment',
     resolve: {

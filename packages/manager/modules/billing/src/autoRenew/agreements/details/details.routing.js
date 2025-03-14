@@ -7,14 +7,14 @@ export default /* @ngInject */ (
   coreConfigProvider,
 ) => {
   if (coreConfigProvider.isRegion(['EU', 'CA'])) {
-    $stateProvider.state('app.account.billing.autorenew.agreements.agreement', {
+    $stateProvider.state('billing.autorenew.agreements.agreement', {
       url: '/details/{id:int}',
       template,
       controller,
       controllerAs: 'ctrl',
       resolve: {
         agreementId: /* @ngInject */ ($transition$) => $transition$.params().id,
-        breadcrumb: /* @ngInject */ (agreementId) => agreementId,
+        breadcrumb: /* @ngInject */ (agreementId) => agreementId.toString(),
       },
     });
 

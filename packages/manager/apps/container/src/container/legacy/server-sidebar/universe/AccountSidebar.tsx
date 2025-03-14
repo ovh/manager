@@ -48,7 +48,6 @@ export default function AccountSidebar() {
 
     const isEUOrCA = ['EU', 'CA'].includes(region);
     const isNewAccountAvailable = !!availability['new-account'];
-    const isNewBillingAvailable = !!availability['new-billing'];
 
     menu.push({
       id: 'back-to-home',
@@ -100,11 +99,10 @@ export default function AccountSidebar() {
       menu.push({
         id: 'my-bills',
         label: t('sidebar_billing'),
-        href: navigation.getURL(
-          isNewBillingAvailable ? 'new-billing' : 'dedicated',
+        href: navigation.getURL('billing',
           region === 'US'
-            ? `${!isNewBillingAvailable ? '/billing' : ''}/payAsYouGo`
-            : `${!isNewBillingAvailable ? '/billing' : ''}/history`,
+            ? '/billing/payAsYouGo'
+            : '/billing/history',
         ),
         routeMatcher: new RegExp(
           '^/billing/(history|payAsYouGo|payments|refunds)',
@@ -115,9 +113,8 @@ export default function AccountSidebar() {
     menu.push({
       id: 'my-services',
       label: t('sidebar_billing_services'),
-      href: navigation.getURL(
-        isNewBillingAvailable ? 'new-billing' : 'dedicated',
-        `${!isNewBillingAvailable ? '/billing' : ''}/autorenew${
+      href: navigation.getURL( 'billing',
+        `/billing/autorenew${
           isEnterprise ? '/ssh' : '/'
         }`,
       ),
@@ -128,19 +125,14 @@ export default function AccountSidebar() {
       menu.push({
         id: 'payment-method',
         label: t('sidebar_billing_payment'),
-        href: navigation.getURL(
-          isNewBillingAvailable ? 'new-billing' : 'dedicated',
-          `${!isNewBillingAvailable ? '/billing' : ''}/payment`,
+        href: navigation.getURL('billing','/billing/payment',
         ),
         routeMatcher: new RegExp('^/billing/payment[^s]'),
       });
       menu.push({
         id: 'my-orders',
         label: t('sidebar_orders'),
-        href: navigation.getURL(
-          isNewBillingAvailable ? 'new-billing' : 'dedicated',
-          `${!isNewBillingAvailable ? '/billing' : ''}/orders`,
-        ),
+        href: navigation.getURL('billing','/billing/orders'),
         routeMatcher: new RegExp('^/billing/orders'),
       });
     }
