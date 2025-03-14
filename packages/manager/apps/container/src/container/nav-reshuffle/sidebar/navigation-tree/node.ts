@@ -27,6 +27,7 @@ export type Node = {
   hideIfEmpty?: boolean;
   badge?: string;
   forceVisibility?: boolean;
+  forceNavigate?: boolean;
   url?: string | Record<string, string>;
   isExternal?: boolean;
   hidden?: boolean;
