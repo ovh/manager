@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.15.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.15.0...@ovh-ux/manager-react-components@2.15.1) (2025-03-14)
+
+### Bug Fixes
+
+- **mrc:** display date-picker for date filtering ([#15847](https://github.com/ovh/manager/issues/15847)) ([32055cd](https://github.com/ovh/manager/commit/32055cdf3af8920e99d2023fb5baed5096fe8814)), closes [#15846](https://github.com/ovh/manager/issues/15846)
+- **mrc:** remove preflight from tailwind config ([#15945](https://github.com/ovh/manager/issues/15945)) ([4fdf428](https://github.com/ovh/manager/commit/4fdf428a805c23d19efce3775fde85a3bff04697)), closes [#15928](https://github.com/ovh/manager/issues/15928)
+
 # [2.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.14.0...@ovh-ux/manager-react-components@2.15.0) (2025-03-13)
 
 ### Bug Fixes
