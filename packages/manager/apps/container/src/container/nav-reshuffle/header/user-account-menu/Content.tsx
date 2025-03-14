@@ -35,9 +35,6 @@ const UserAccountMenu = ({
   const [isKycDocumentsVisible, setIsDocumentsVisible] = useState<boolean>(
     false,
   );
-  const [isNewAccountAvailable, setIsNewAccountAvailable] = useState<boolean>(
-    false,
-  );
   const user = shell
     .getPlugin('environment')
     .getEnvironment()
@@ -80,8 +77,6 @@ const UserAccountMenu = ({
     () => async () => {
       let isIdentityDocumentsAvailable = false;
       const featureAvailability = await fetchFeatureAvailabilityData([
-        'new-billing',
-        'new-account',
         'identity-documents',
         'procedures:fraud',
       ]);
@@ -94,10 +89,7 @@ const UserAccountMenu = ({
         setIsDocumentsVisible(['required', 'open'].includes(status));
       }
 
-      setIsNewAccountAvailable(!!featureAvailability['new-account']);
-      if (isNewAccountAvailable) {
-        setSupportLink(getUrl('new-account', '#/useraccount/support/level'));
-      }
+      setSupportLink(getUrl('account', '#/useraccount/support/level'));
 
       setAllLinks([
         ...links.map((link: UserLink) => {
@@ -108,7 +100,7 @@ const UserAccountMenu = ({
               'myContacts',
             ].includes(link.key)
           ) {
-            link.app = isNewAccountAvailable ? 'new-account' : 'dedicated';
+            link.app = 'account';
           }
           if (
             [
@@ -126,7 +118,7 @@ const UserAccountMenu = ({
         ...(isIdentityDocumentsAvailable
           ? [
               {
-                app: isNewAccountAvailable ? 'new-account' : 'dedicated',
+                app: 'account',
                 key: 'myIdentityDocuments',
                 hash: '#/identity-documents',
                 i18nKey: 'user_account_menu_my_identity_documents',
@@ -136,7 +128,7 @@ const UserAccountMenu = ({
         ...(region === 'US'
           ? [
               {
-                app: isNewAccountAvailable ? 'new-account' : 'dedicated',
+                app: 'account',
                 key: 'myAssistanceTickets',
                 hash: '#/ticket',
                 i18nKey: 'user_account_menu_my_assistance_tickets',
@@ -255,7 +247,7 @@ const UserAccountMenu = ({
               id={'account_kyc_documents'}
               onClick={() =>
                 onLinkClick({
-                  app: isNewAccountAvailable ? 'new-account' : 'dedicated',
+                  app: 'account',
                   key: 'account_kyc_documents',
                   hash: '#/documents',
                   i18nKey: 'sidebar_account_kyc_documents',
@@ -264,8 +256,7 @@ const UserAccountMenu = ({
               className="d-block"
               aria-label={sidebarTranslation.t('sidebar_account_kyc_documents')}
               title={sidebarTranslation.t('sidebar_account_kyc_documents')}
-              href={getUrl(
-                isNewAccountAvailable ? 'new-account' : 'dedicated',
+              href={getUrl('account',
                 '#/documents',
               )}
               target="_top"
