@@ -50,6 +50,7 @@ export default {
     goToDeleteReverseDns: '<',
     goToTrafficOrder: '<',
     goToTrafficCancel: '<',
+    goToTagsModal: '<',
     serverType: '<?',
     displayRbxEolBanner: '<?',
   },
