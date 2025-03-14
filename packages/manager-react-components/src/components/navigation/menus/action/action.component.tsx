@@ -26,6 +26,7 @@ export interface ActionMenuItem {
   isDisabled?: boolean;
   isLoading?: boolean;
   color?: ODS_BUTTON_COLOR;
+  'data-testid'?: string;
 }
 
 export interface ActionMenuProps {
