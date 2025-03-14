@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useReket } from '@ovh-ux/ovh-reket';
-import { Application } from '@ovh-ux/manager-config';
+import { Application, Environment } from '@ovh-ux/manager-config';
 import {fetchFeatureAvailabilityData} from '@ovh-ux/manager-react-components'
 import {
   getBetaAvailabilityFromLocalStorage,
@@ -8,21 +8,22 @@ import {
   isBetaForced,
 } from './localStorage';
 import { BetaVersion, ContainerContext } from './context';
-import { useShell } from '@/context';
+// import { Shell } from '@ovh-ux/shell';
+import { useApplication } from '@/context/useApplicationContext';
 
 export const BETA = 1;
 
 export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
   const reketInstance = useReket();
-  const shell = useShell();
-  const uxPlugin = shell.getPlugin('ux');
   const preferenceKey = 'NAV_RESHUFFLE_BETA_ACCESS';
   const [isLoading, setIsLoading] = useState(true);
   const [chatbotOpen, setChatbotOpen] = useState(false);
   const [chatbotReduced, setChatbotReduced] = useState(false);
   const [application, setApplication] = useState<Application>(undefined);
   const [universe, setUniverse] = useState<string>();
-
+  //const [environment, setEnvironment] = useState<Environment>(undefined);
+  // const [shell, setShell] = useState<Shell | null>(null);
+  const { shell, environment} = useApplication();
   // true if we should we ask the user if he want to test beta version
   const [askBeta, setAskBeta] = useState(false);
 
@@ -129,8 +130,8 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
   }, []);
 
   useEffect(() => {
-    uxPlugin.onChatbotVisibilityChange(async () => {
-      const chatbotVisibility = await uxPlugin.isChatbotVisible();
+    shell.getPlugin('ux').onChatbotVisibilityChange(async () => {
+      const chatbotVisibility = await shell.getPlugin('ux').isChatbotVisible();
       if (isLivechatEnabled) {
         setChatbotOpen(chatbotVisibility);
       }
@@ -154,6 +155,8 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
   }, []);
 
   const containerContext = {
+    shell,
+    environment,
     createBetaChoice,
     askBeta,
     betaVersion,
