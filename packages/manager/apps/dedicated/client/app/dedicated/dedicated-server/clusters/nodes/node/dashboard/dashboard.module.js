@@ -22,6 +22,7 @@ import commitment from './commitment';
 import cancelCommitment from './cancel-commitment';
 import cancelResiliation from './cancel-resiliation';
 import resiliation from './resiliation';
+import tagsListModal from './tags-list-modal';
 import terminate from '../terminate';
 import upgrade from './upgrade';
 
@@ -62,6 +63,7 @@ angular
     installationOvh,
     installationProgress,
     serverDashboard,
+    tagsListModal,
   ])
   .config(routing)
   .constant('IMPRESSION_TRACKING_DATA', {

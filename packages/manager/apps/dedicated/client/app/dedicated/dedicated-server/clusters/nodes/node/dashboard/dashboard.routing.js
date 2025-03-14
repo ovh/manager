@@ -241,6 +241,14 @@ export default /* @ngInject */ ($stateProvider) => {
             productId: serverName,
           },
         ),
+      goToTagsModal: /* @ngInject */ ($state, serverName, clusterId) => () =>
+        $state.go(
+          'app.dedicated-cluster.cluster.node.dashboard.tags-list-modal',
+          {
+            clusterId,
+            productId: serverName,
+          },
+        ),
       getOrderPrivateBandwidthLink: /* @ngInject */ (
         $state,
         serverName,

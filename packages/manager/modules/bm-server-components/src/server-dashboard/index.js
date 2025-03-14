@@ -2,6 +2,7 @@ import angular from 'angular';
 
 import '@ovh-ux/ui-kit';
 import 'angular-translate';
+import resourceTagging from '@ovh-ux/manager-resource-tagging';
 
 import vmacUnavailableBanner from '../vmac-unavailable-banner';
 import rbx1EolBanner from '../rbx1-eol-banner';
@@ -18,6 +19,7 @@ angular
     'pascalprecht.translate',
     vmacUnavailableBanner,
     rbx1EolBanner,
+    resourceTagging,
   ])
   .component('serverDashboard', component)
   .service('Server', service)
