@@ -103,9 +103,12 @@ export default class BillingPaymentMethodAddCtrl {
     this.onPaymentMethodAddError(error);
   }
 
-  onPaymentMethodIntegrationSuccess(paymentMethod, selectedPaymentMethodType) {
+  onPaymentMethodIntegrationSuccess(selectedPaymentMethodType) {
     this.loading.redirecting = true;
-    this.onPaymentMethodAdded(paymentMethod, selectedPaymentMethodType);
+    this.onPaymentMethodAdded(
+      selectedPaymentMethodType,
+      this.model.setAsDefault,
+    );
   }
 
   /* ----------  OuiStepper callbacks  ---------- */
