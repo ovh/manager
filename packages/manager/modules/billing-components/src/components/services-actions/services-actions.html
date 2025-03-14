@@ -27,7 +27,7 @@
     <div data-ng-if="::$ctrl.canDisplayRenewManagementMenuEntries">
         <!-- Service in autorenew -->
         <oui-action-menu-item
-            ng-if="::$ctrl.canDisplayRenewConfigurationMenuEntry"
+            data-ng-if="::$ctrl.canDisplayRenewConfigurationMenuEntry"
             href="{{:: $ctrl.updateLink }}"
             on-click="$ctrl.trackAction('go-to-configure-renew')"
             data-navi-id="go-to-configure-renew"
