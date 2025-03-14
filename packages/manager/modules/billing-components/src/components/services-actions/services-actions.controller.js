@@ -13,6 +13,8 @@ export default class ServicesActionsCtrl {
     coreConfig,
     coreURLBuilder,
     BillingLinksService,
+    $element,
+    BillingService,
   ) {
     this.SERVICE_ACTIVE_STATUS = SERVICE_ACTIVE_STATUS;
     this.$injector = $injector;
@@ -28,9 +30,12 @@ export default class ServicesActionsCtrl {
     this.SERVICE_TYPE = SERVICE_TYPE;
     this.isLoading = true;
     this.BillingLinksService = BillingLinksService;
+    this.$element = $element;
+    this.BillingService = BillingService;
   }
 
   $onInit() {
+    this.initActionMenuClick();
     this.user = this.coreConfig.getUser();
     this.BillingLinksService.generateAutorenewLinks(this.service, {
       billingManagementAvailability: this.billingManagementAvailability,
@@ -110,6 +115,51 @@ export default class ServicesActionsCtrl {
 
     if (this.handleGoToResiliation) {
       this.handleGoToResiliation();
+    }
+  }
+
+  /**
+   * Adds a 'click' event listener in capture mode on the actionMenu element.
+   *
+   * The <oui-action-menu> component does not support an 'on click' handler,
+   * making it impossible to catch clicks directly through its attributes.
+   * To work around this, the listener is added in capture mode.
+   * This way, it catches the click before <oui-action-menu> can call stopPropagation or preventDefault,
+   * ensuring that the getPendingEngagement() function is triggered on click.
+   */
+  initActionMenuClick() {
+    const [actionMenuElement] = this.$element;
+    this.actionMenuElement = actionMenuElement;
+    this.actionMenuClickListener = () => {
+      this.getPendingEngagement();
+    };
+    this.actionMenuElement.addEventListener(
+      'click',
+      this.actionMenuClickListener,
+      true,
+    );
+  }
+
+  $onDestroy() {
+    this.actionMenuElement.removeEventListener(
+      'click',
+      this.actionMenuClickListener,
+      true,
+    );
+  }
+
+  getPendingEngagement() {
+    if (!this.loadedPendingEngagement) {
+      this.BillingService.getPendingEngagement(this.service.id)
+        .then(() => {
+          this.service.hasPendingEngagement = true;
+        })
+        .catch(() => {
+          this.service.hasPendingEngagement = false;
+        })
+        .finally(() => {
+          this.loadedPendingEngagement = true;
+        });
     }
   }
 }
