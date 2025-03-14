@@ -22,6 +22,7 @@ export type MailingListType = {
     language: string;
     members: string[];
     moderationOption: ModerationChoices;
+    subscriberModeration: boolean;
     organizationId: string;
     organizationLabel: string;
     owner: string;
@@ -32,6 +33,7 @@ export type MailingListType = {
     language: string;
     members: string[];
     moderationOption: ModerationChoices;
+    subscriberModeration: boolean;
     organizationId: string;
     organizationLabel: string;
     owner: string;
@@ -50,6 +52,7 @@ export type MailingListBodyParamsType = {
   language?: string;
   members?: string[];
   moderationOption?: ModerationChoices;
+  subscriberModeration?: boolean;
   organizationId?: string;
   owner?: string;
 };

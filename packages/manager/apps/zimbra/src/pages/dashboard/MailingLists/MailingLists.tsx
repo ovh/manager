@@ -127,11 +127,12 @@ export default function MailingLists() {
   const { t } = useTranslation('mailing-lists');
   const navigate = useNavigate();
   const { platformUrn, data: platformData } = usePlatform();
+  const isOverridedPage = useOverridePage();
   const { data, isLoading } = useMailingLists({
     refetchInterval: DATAGRID_REFRESH_INTERVAL,
     refetchOnMount: DATAGRID_REFRESH_ON_MOUNT,
+    enabled: !isOverridedPage,
   });
-  const isOverridedPage = useOverridePage();
 
   const items: MailingListItem[] = getMailingListItems(data);
 

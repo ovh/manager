@@ -3,7 +3,7 @@ import 'element-internals-polyfill';
 import '@testing-library/jest-dom';
 import { vi, describe, expect } from 'vitest';
 import { useResolvedPath, useSearchParams } from 'react-router-dom';
-import { render, screen, waitFor, act } from '@/utils/test.provider';
+import { fireEvent, render, screen, waitFor, act } from '@/utils/test.provider';
 import { accountDetailMock } from '@/api/_mock_';
 import ModalAddAlias from '../ModalAddAlias.component';
 
@@ -21,7 +21,7 @@ vi.mocked(useSearchParams).mockReturnValue([
 ]);
 
 describe('add alias modal', () => {
-  it('if modal are displayed', async () => {
+  it('should display modal', async () => {
     const { queryByTestId } = render(<ModalAddAlias />);
 
     await waitFor(() => {
@@ -31,7 +31,7 @@ describe('add alias modal', () => {
     screen.getByText(accountDetailMock.currentState?.email);
   });
 
-  it('check validity form', async () => {
+  it('should check the form validity', async () => {
     const { getByTestId, queryByTestId } = render(<ModalAddAlias />);
 
     await waitFor(() => {
@@ -39,23 +39,34 @@ describe('add alias modal', () => {
     });
 
     const button = getByTestId('confirm-btn');
-    const inputAccount = getByTestId('input-alias');
+    const inputAccount = getByTestId('input-account');
     const selectDomain = getByTestId('select-domain');
 
     expect(button).toHaveAttribute('is-disabled', 'true');
 
-    act(() => {
-      inputAccount.odsBlur.emit({ name: 'alias', value: '' });
+    await act(() => {
+      inputAccount.odsBlur.emit({});
+      selectDomain.odsBlur.emit({});
     });
 
     expect(inputAccount).toHaveAttribute('has-error', 'true');
+    expect(selectDomain).toHaveAttribute('has-error', 'true');
+    expect(button).toHaveAttribute('is-disabled', 'true');
 
-    act(() => {
-      inputAccount.odsChange.emit({ name: 'alias', value: 'alias' });
-      selectDomain.odsChange.emit({ name: 'domain', value: 'domain' });
+    await act(() => {
+      fireEvent.input(inputAccount, {
+        target: { value: 'alias' },
+      });
+      inputAccount.odsChange.emit({ name: 'account', value: 'alias' });
+
+      fireEvent.change(selectDomain, {
+        target: { value: 'domain.fr' },
+      });
+      selectDomain.odsChange.emit({ name: 'domain', value: 'domain.fr' });
     });
 
     expect(inputAccount).toHaveAttribute('has-error', 'false');
+    expect(selectDomain).toHaveAttribute('has-error', 'false');
     expect(button).toHaveAttribute('is-disabled', 'false');
   });
 });

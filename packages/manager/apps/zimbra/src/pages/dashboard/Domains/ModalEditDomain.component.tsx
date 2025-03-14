@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-
 import {
   ODS_INPUT_TYPE,
   ODS_MODAL_COLOR,
@@ -22,11 +21,14 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import {
   useDomain,
   useGenerateUrl,
   useOrganizationList,
   usePlatform,
+  useOdsModalOverflowHack,
 } from '@/hooks';
 import {
   getZimbraPlatformDomainsQueryKey,
@@ -35,6 +37,7 @@ import {
 import Modal from '@/components/Modals/Modal';
 import queryClient from '@/queryClient';
 import { CANCEL, CONFIRM, EDIT_DOMAIN } from '@/tracking.constant';
+import { EditDomainSchema, editDomainSchema } from '@/utils';
 
 export default function ModalEditDomain() {
   const { t } = useTranslation(['domains', 'common']);
@@ -42,15 +45,19 @@ export default function ModalEditDomain() {
   const { trackClick, trackPage } = useOvhTracking();
   const [searchParams] = useSearchParams();
   const editDomainId = searchParams.get('editDomainId');
-  const [selectedOrganization, setSelectedOrganization] = useState('');
 
   const { platformId } = usePlatform();
 
-  const { data: detailDomain, isLoading: isLoadingDomain } = useDomain({
+  // @TODO refactor when ods modal overflow is fixed
+  const modalRef = useRef<HTMLOdsModalElement>(undefined);
+  useOdsModalOverflowHack(modalRef);
+
+  const { data: domain, isLoading: isLoadingDomain } = useDomain({
     domainId: editDomainId,
+    gcTime: 0,
   });
   const {
-    data: organizationsList,
+    data: organizations,
     isLoading: isLoadingOrganizations,
   } = useOrganizationList({ shouldFetchAll: true });
 
@@ -60,9 +67,9 @@ export default function ModalEditDomain() {
   const onClose = () => navigate(goBackUrl);
 
   const { mutate: editDomain, isPending: isSending } = useMutation({
-    mutationFn: (organization: string) =>
-      putZimbraDomain(platformId, detailDomain.id, {
-        organizationId: organization,
+    mutationFn: (payload: EditDomainSchema) =>
+      putZimbraDomain(platformId, payload.domainId, {
+        organizationId: payload.organizationId,
       }),
     onSuccess: () => {
       trackPage({
@@ -99,6 +106,29 @@ export default function ModalEditDomain() {
     },
   });
 
+  const {
+    control,
+    handleSubmit,
+    reset,
+    formState: { isDirty, isValid, errors },
+  } = useForm({
+    defaultValues: {
+      domainId: editDomainId,
+      organizationId: domain?.currentState?.organizationId || '',
+    },
+    mode: 'onTouched',
+    resolver: zodResolver(editDomainSchema),
+  });
+
+  useEffect(() => {
+    if (domain) {
+      reset({
+        domainId: editDomainId,
+        organizationId: domain?.currentState?.organizationId,
+      });
+    }
+  }, [domain]);
+
   const handleCancelClick = () => {
     trackClick({
       location: PageLocation.popup,
@@ -109,21 +139,15 @@ export default function ModalEditDomain() {
     onClose();
   };
 
-  const handleConfirmClick = () => {
+  const handleConfirmClick: SubmitHandler<EditDomainSchema> = (data) => {
     trackClick({
       location: PageLocation.popup,
       buttonType: ButtonType.button,
       actionType: 'action',
       actions: [EDIT_DOMAIN, CONFIRM],
     });
-    editDomain(selectedOrganization);
+    editDomain(data);
   };
-
-  useEffect(() => {
-    if (detailDomain && organizationsList) {
-      setSelectedOrganization(detailDomain.currentState.organizationId);
-    }
-  }, [detailDomain, organizationsList]);
 
   return (
     <Modal
@@ -133,51 +157,71 @@ export default function ModalEditDomain() {
       isOpen
       isDismissible
       isLoading={isLoadingDomain || isLoadingOrganizations}
+      ref={modalRef}
       primaryButton={{
         label: t('common:confirm'),
-        action: handleConfirmClick,
-        isDisabled:
-          detailDomain?.currentState?.organizationId === selectedOrganization,
+        onClick: handleSubmit(handleConfirmClick),
+        isDisabled: !isDirty || !isValid,
         isLoading: isSending,
         testid: 'edit-btn',
       }}
       secondaryButton={{
         label: t('common:cancel'),
-        action: handleCancelClick,
+        onClick: handleCancelClick,
         testid: 'cancel-btn',
       }}
     >
-      <>
-        <OdsFormField className="mt-5">
+      <form
+        className="flex flex-col gap-4"
+        onSubmit={handleSubmit(handleConfirmClick)}
+      >
+        <OdsFormField>
           <label htmlFor="domain" slot="label">
-            {t('common:domain')}
+            {t('common:domain')} *
           </label>
           <OdsInput
             type={ODS_INPUT_TYPE.text}
             isDisabled
             id="domain"
             name="domain"
-            defaultValue={detailDomain?.currentState?.name}
-            value={detailDomain?.currentState?.name}
+            defaultValue={domain?.currentState?.name}
+            value={domain?.currentState?.name}
             data-testid="input-domain"
           ></OdsInput>
         </OdsFormField>
-        <OdsFormField className="mt-5">
-          <label slot="label">{t('common:organization')}</label>
-          <OdsSelect
-            name="organization"
-            value={selectedOrganization}
-            onOdsChange={(e) => setSelectedOrganization(e.detail.value)}
-            data-testid="select-organization"
-          >
-            {organizationsList?.map((organization) => (
-              <option key={organization.id} value={organization.id}>
-                {organization.currentState.label}
-              </option>
-            ))}
-          </OdsSelect>
-        </OdsFormField>
-      </>
+        <Controller
+          control={control}
+          name="organizationId"
+          render={({ field: { name, value, onChange, onBlur } }) => (
+            <OdsFormField error={errors?.[name]?.message}>
+              <label htmlFor={name} slot="label">
+                {t('common:organization')} *
+              </label>
+              <OdsSelect
+                key={value}
+                id={name}
+                name={name}
+                hasError={!!errors[name]}
+                value={
+                  value || domain?.currentState?.organizationId
+                  /* necessary to prevent a bug where value is empty
+                   * even after it has been updated by the domain org id
+                   * in some random case */
+                }
+                onOdsChange={onChange}
+                onOdsBlur={onBlur}
+                data-testid="select-organization"
+              >
+                {organizations?.map((organization) => (
+                  <option key={organization.id} value={organization.id}>
+                    {organization.currentState.label}
+                  </option>
+                ))}
+              </OdsSelect>
+            </OdsFormField>
+          )}
+        />
+      </form>
     </Modal>
   );
 }

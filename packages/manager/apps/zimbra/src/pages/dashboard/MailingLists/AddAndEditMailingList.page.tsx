@@ -35,14 +35,18 @@ export default function AddAndEditMailingList() {
   const [searchParams] = useSearchParams();
   const editMailingListId = searchParams.get('editMailingListId');
   const [isLoading, setIsLoading] = useState(true);
-  const goBackUrl = useGenerateUrl('..', 'path');
+  const goBackUrl = useGenerateUrl(
+    '..',
+    'href',
+    Object.fromEntries(searchParams.entries()),
+  );
 
   const {
     data: editMailingListDetail,
     isLoading: isLoadingMailingListDetailRequest,
   } = useMailingList({ mailingListId: editMailingListId });
 
-  const { data: domainList, isLoading: isLoadingDomainRequest } = useDomains({
+  const { data: domains, isLoading: isLoadingDomainRequest } = useDomains({
     shouldFetchAll: true,
   });
 
@@ -95,7 +99,7 @@ export default function AddAndEditMailingList() {
             </Subtitle>
           </div>
           <MailingListSettings
-            domainList={domainList}
+            domains={domains}
             editMailingListDetail={editMailingListDetail}
           />
         </>

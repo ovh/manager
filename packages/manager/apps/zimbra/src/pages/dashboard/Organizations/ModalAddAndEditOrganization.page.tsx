@@ -9,7 +9,6 @@ import {
   OdsTooltip,
 } from '@ovhcloud/ods-components/react';
 import {
-  ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
   ODS_INPUT_TYPE,
   ODS_MODAL_COLOR,
@@ -24,6 +23,9 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { z } from 'zod';
 import { useGenerateUrl, useOrganization, usePlatform } from '@/hooks';
 import Modal from '@/components/Modals/Modal';
 import {
@@ -39,7 +41,7 @@ import {
   CONFIRM,
   EDIT_ORGANIZATION,
 } from '@/tracking.constant';
-import { FormTypeInterface, useForm } from '@/hooks/useForm';
+import { organizationSchema } from '@/utils';
 
 export default function ModalAddAndEditOrganization() {
   const { t } = useTranslation(['organizations/form', 'common']);
@@ -57,27 +59,14 @@ export default function ModalAddAndEditOrganization() {
     navigate(goBackUrl);
   };
 
-  const { form, setForm, isFormValid, setValue } = useForm({
-    name: {
-      value: '',
-      defaultValue: '',
-      required: true,
-      validate: /^.+$/,
-    },
-    label: {
-      value: '',
-      defaultValue: '',
-      required: true,
-      validate: /^.{1,12}$/,
-    },
-  });
+  const { data: editOrganizationDetail } = useOrganization(
+    editOrganizationId,
+    true,
+  );
 
-  const [isLoading, setIsLoading] = useState(!!editOrganizationId);
-
-  const {
-    data: editOrganizationDetail,
-    isLoading: isLoadingRequest,
-  } = useOrganization(editOrganizationId, true);
+  const [isLoading, setIsLoading] = useState(
+    editOrganizationId && !editOrganizationDetail,
+  );
 
   const { mutate: addOrEditOrganization, isPending: isSending } = useMutation({
     mutationFn: (params: OrganizationBodyParamsType) => {
@@ -128,19 +117,40 @@ export default function ModalAddAndEditOrganization() {
     },
   });
 
-  const handleSaveClick = () => {
-    const {
-      name: { value: name },
-      label: { value: label },
-    } = form;
+  const {
+    control,
+    handleSubmit,
+    reset,
+    formState: { isDirty, isValid, errors },
+  } = useForm({
+    defaultValues: {
+      name: editOrganizationDetail?.currentState?.name || '',
+      label: editOrganizationDetail?.currentState?.label || '',
+    },
+    mode: 'onTouched',
+    resolver: zodResolver(organizationSchema),
+  });
 
+  useEffect(() => {
+    if (editOrganizationDetail) {
+      reset({
+        name: editOrganizationDetail?.currentState?.name,
+        label: editOrganizationDetail?.currentState?.label,
+      });
+      setIsLoading(false);
+    }
+  }, [editOrganizationDetail, isLoading]);
+
+  const handleSaveClick: SubmitHandler<z.infer<typeof organizationSchema>> = (
+    data,
+  ) => {
     trackClick({
       location: PageLocation.popup,
       buttonType: ButtonType.button,
       actionType: 'action',
       actions: [trackingName, CONFIRM],
     });
-    addOrEditOrganization({ name, label });
+    addOrEditOrganization(data);
   };
 
   const handleCancelClick = () => {
@@ -152,17 +162,6 @@ export default function ModalAddAndEditOrganization() {
     });
     onClose();
   };
-
-  useEffect(() => {
-    if (editOrganizationDetail && !isLoadingRequest) {
-      const { name, label } = editOrganizationDetail.currentState;
-      const newForm: FormTypeInterface = form;
-      newForm.name.value = name;
-      newForm.label.value = label;
-      setForm((oldForm) => ({ ...oldForm, ...newForm }));
-      setIsLoading(false);
-    }
-  }, [isLoading, isLoadingRequest, editOrganizationDetail]);
 
   return (
     <Modal
@@ -178,113 +177,104 @@ export default function ModalAddAndEditOrganization() {
       isLoading={isLoading}
       secondaryButton={{
         label: t('common:cancel'),
-        action: handleCancelClick,
+        onClick: handleCancelClick,
       }}
       primaryButton={{
         testid: 'confirm-btn',
-        variant: ODS_BUTTON_VARIANT.default,
         label: t('common:confirm'),
-        isDisabled: !isFormValid,
+        isDisabled: !isDirty || !isValid,
         isLoading: isLoading || isSending,
-        action: handleSaveClick,
+        onClick: handleSubmit(handleSaveClick),
       }}
     >
-      <>
+      <form
+        className="flex flex-col gap-4"
+        onSubmit={handleSubmit(handleSaveClick)}
+      >
         {!editOrganizationId && (
-          <>
+          <div>
             <OdsText preset={ODS_TEXT_PRESET.paragraph}>
               {t('zimbra_organization_add_modal_content_part1')}
             </OdsText>
             <OdsText preset={ODS_TEXT_PRESET.paragraph}>
               {t('zimbra_organization_add_modal_content_part2')}
             </OdsText>
-          </>
+          </div>
         )}
-        <OdsText preset={ODS_TEXT_PRESET.caption} className="mt-5">
+        <OdsText preset={ODS_TEXT_PRESET.caption}>
           {t('common:form_mandatory_fields')}
         </OdsText>
-        <OdsFormField
-          data-testid="field-name"
-          error={form.name.hasError ? t('common:form_required_field') : ''}
-          className="mt-5"
-        >
-          <label slot="label">
-            {t('zimbra_organization_add_form_input_name_title')} *
-          </label>
-
-          <OdsInput
-            type={ODS_INPUT_TYPE.text}
-            name="name"
-            data-testid="input-name"
-            placeholder={t(
-              'zimbra_organization_add_form_input_name_placeholder',
-            )}
-            hasError={form.name.hasError}
-            value={form.name.value}
-            defaultValue={form.name.defaultValue}
-            isRequired={form.name.required}
-            onOdsBlur={({ target: { name, value } }) =>
-              setValue(name, value.toString(), true)
-            }
-            onOdsChange={({ detail: { name, value } }) => {
-              setValue(name, String(value));
-            }}
-          ></OdsInput>
-        </OdsFormField>
-        <OdsFormField
-          data-testid="field-label"
-          error={
-            form.label.hasError
-              ? t('zimbra_organization_add_form_input_label_error', {
-                  value: 12,
-                })
-              : ''
-          }
-          className="mt-5"
-        >
-          <label htmlFor="label" slot="label">
-            {t('zimbra_organization_add_form_input_label_title')} *
-            <OdsIcon
-              id="tooltip-trigger"
-              className="ml-3 text-xs"
-              name={ODS_ICON_NAME.circleQuestion}
-            ></OdsIcon>
-            <OdsTooltip
-              role="tooltip"
-              strategy="fixed"
-              triggerId="tooltip-trigger"
+        <Controller
+          control={control}
+          name="name"
+          render={({ field: { name, value, onChange, onBlur } }) => (
+            <OdsFormField
+              data-testid="field-name"
+              error={errors?.[name]?.message}
+              className="w-full"
             >
-              <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-                {t('zimbra_organization_add_form_input_label_tooltip')}
-              </OdsText>
-            </OdsTooltip>
-          </label>
-          <OdsInput
-            type={ODS_INPUT_TYPE.text}
-            data-testid="input-label"
-            id="label"
-            name="label"
-            placeholder={t(
-              'zimbra_organization_add_form_input_label_placeholder',
-            )}
-            hasError={form.label.hasError}
-            value={form.label.value}
-            defaultValue={form.label.defaultValue}
-            isRequired={form.label.required}
-            onOdsBlur={({ target: { name, value } }) =>
-              setValue(name, value.toString(), true)
-            }
-            onOdsChange={({ detail: { name, value } }) =>
-              setValue(name, String(value))
-            }
-          ></OdsInput>
-          <OdsText class="block" preset={ODS_TEXT_PRESET.caption} slot="helper">
-            {t('common:form_max_chars', {
-              value: 12,
-            })}
-          </OdsText>
-        </OdsFormField>
-      </>
+              <label htmlFor={name} slot="label">
+                {t('zimbra_organization_add_form_input_name_title')} *
+              </label>
+              <OdsInput
+                type={ODS_INPUT_TYPE.text}
+                data-testid="input-name"
+                placeholder={t(
+                  'zimbra_organization_add_form_input_name_placeholder',
+                )}
+                id={name}
+                name={name}
+                hasError={!!errors[name]}
+                value={value}
+                onOdsBlur={onBlur}
+                onOdsChange={onChange}
+              ></OdsInput>
+            </OdsFormField>
+          )}
+        />
+        <Controller
+          control={control}
+          name="label"
+          render={({ field: { name, value, onChange, onBlur } }) => (
+            <OdsFormField
+              data-testid="field-label"
+              error={errors?.[name]?.message}
+              className="w-full"
+            >
+              <label htmlFor={name} slot="label">
+                {t('zimbra_organization_add_form_input_label_title')} *
+                <OdsIcon
+                  id="tooltip-trigger"
+                  className="ml-3 text-xs"
+                  name={ODS_ICON_NAME.circleQuestion}
+                ></OdsIcon>
+                <OdsTooltip
+                  role="tooltip"
+                  strategy="fixed"
+                  triggerId="tooltip-trigger"
+                >
+                  <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                    {t('zimbra_organization_add_form_input_label_tooltip')}
+                  </OdsText>
+                </OdsTooltip>
+              </label>
+              <OdsInput
+                type={ODS_INPUT_TYPE.text}
+                data-testid="input-label"
+                placeholder={t(
+                  'zimbra_organization_add_form_input_label_placeholder',
+                )}
+                id={name}
+                name={name}
+                hasError={!!errors[name]}
+                value={value}
+                onOdsBlur={onBlur}
+                onOdsChange={onChange}
+              ></OdsInput>
+            </OdsFormField>
+          )}
+        />
+      </form>
     </Modal>
   );
 }

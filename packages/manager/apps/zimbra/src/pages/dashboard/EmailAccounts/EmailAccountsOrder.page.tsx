@@ -18,12 +18,10 @@ import {
   OdsFormField,
   OdsRadio,
   OdsLink,
-  OdsCard,
 } from '@ovhcloud/ods-components/react';
 import {
   ODS_BUTTON_COLOR,
   ODS_BUTTON_SIZE,
-  ODS_CARD_COLOR,
   ODS_ICON_NAME,
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
@@ -34,21 +32,18 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { getExpressOrderURL } from '@ovh-ux/manager-module-order';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import Loading from '@/components/Loading/Loading';
 import { useOrderCatalog } from '@/hooks/useOrderCatalog';
-import {
-  order,
-  ZimbraPlanCodes,
-  generateOrderURL,
-  whitelistedPlanCodes,
-} from '@/api/order';
-import { usePlatform } from '@/hooks';
+import { order, ZimbraPlanCodes, generateOrderURL } from '@/api/order';
+import { useGenerateUrl, usePlatform } from '@/hooks';
 import {
   CANCEL,
   CONFIRM,
   ORDER_ZIMBRA_EMAIL_ACCOUNT,
 } from '@/tracking.constant';
-import { FormTypeInterface, useForm } from '@/hooks/useForm';
+import { OrderEmailAccountSchema, orderEmailAccountSchema } from '@/utils';
 
 type OrderGeneratedTileProps = {
   orderURL: string;
@@ -57,36 +52,42 @@ type OrderGeneratedTileProps = {
 function OrderGeneratedTile({ orderURL }: Readonly<OrderGeneratedTileProps>) {
   const { t } = useTranslation('accounts/order');
   const navigate = useNavigate();
+  const { trackClick } = useOvhTracking();
+  const goBackUrl = useGenerateUrl('..', 'path');
+
   const goBack = () => {
-    navigate('..');
+    trackClick({
+      location: PageLocation.page,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [ORDER_ZIMBRA_EMAIL_ACCOUNT, CANCEL],
+    });
+    navigate(goBackUrl);
   };
 
   return (
     <>
-      <OdsCard
+      <div
         data-testid="order-generated-tile"
-        color={ODS_CARD_COLOR.neutral}
-        className="mb-6"
+        className="flex flex-col gap-4 py-6"
       >
-        <div className="flex flex-col gap-6 p-6">
-          <OdsText preset={ODS_TEXT_PRESET.heading3}>
-            {t('zimbra_account_order_initiated_title')}
-          </OdsText>
-          <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-            {t('zimbra_account_order_initiated_subtitle')}
-          </OdsText>
-          <OdsLink
-            target="_blank"
-            referrerpolicy="strict-origin-when-cross-origin"
-            href={orderURL}
-            icon={ODS_ICON_NAME.externalLink}
-            label={t('zimbra_account_order_initiated_link_label')}
-          ></OdsLink>
-          <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-            {t('zimbra_account_order_initiated_info')}
-          </OdsText>
-        </div>
-      </OdsCard>
+        <OdsText preset={ODS_TEXT_PRESET.heading3}>
+          {t('zimbra_account_order_initiated_title')}
+        </OdsText>
+        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+          {t('zimbra_account_order_initiated_subtitle')}
+        </OdsText>
+        <OdsLink
+          target="_blank"
+          referrerpolicy="strict-origin-when-cross-origin"
+          href={orderURL}
+          icon={ODS_ICON_NAME.externalLink}
+          label={t('zimbra_account_order_initiated_link_label')}
+        ></OdsLink>
+        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+          {t('zimbra_account_order_initiated_info')}
+        </OdsText>
+      </div>
       <OdsButton
         label={t('zimbra_account_order_cta_done')}
         size={ODS_BUTTON_SIZE.md}
@@ -112,64 +113,55 @@ function OrderCatalogForm({
   const { t } = useTranslation(['accounts/order', 'common']);
   const { platformId } = usePlatform();
   const [orderURL, setOrderURL] = useState('');
-  const plans = useMemo(() => {
-    return (catalog?.plans || [])
-      .filter((plan) =>
-        whitelistedPlanCodes.includes(plan.planCode as ZimbraPlanCodes),
-      )
-      .map((plan) => {
-        return {
-          ...plan,
-          monthly: plan.pricings.find(
-            (pricing) =>
-              pricing.interval === 1 &&
-              pricing.intervalUnit === IntervalUnitType.month,
-          ),
-        };
-      });
+  const starterPlan = useMemo(() => {
+    const starter = (catalog?.plans || []).find(
+      (plan) => plan.planCode === ZimbraPlanCodes.ZIMBRA_ACCOUNT_PP_STARTER,
+    );
+
+    if (!starter) {
+      return null;
+    }
+
+    return {
+      ...starter,
+      monthly: starter.pricings.find(
+        (pricing) =>
+          pricing.interval === 1 &&
+          pricing.intervalUnit === IntervalUnitType.month,
+      ),
+    };
   }, [catalog]);
 
-  const { form, isFormValid, setValue } = useForm({
-    consent: {
-      value: '',
-      required: true,
-      validate: /checked/,
+  const {
+    control,
+    handleSubmit,
+    formState: { isDirty, isValid, errors },
+  } = useForm({
+    defaultValues: {
+      consent: false,
+      commitment: '1',
+      [ZimbraPlanCodes.ZIMBRA_ACCOUNT_PP_STARTER]: 0,
     },
-    commitment: {
-      value: '1',
-      required: true,
-    },
-    ...plans.reduce<FormTypeInterface>((prev, curr) => {
-      return {
-        ...prev,
-        [curr.planCode]: {
-          value: '0',
-          validate: (value) => Number(value) >= 0 && Number(value) <= 1000,
-        },
-      };
-    }, {}),
+    mode: 'onTouched',
+    resolver: zodResolver(orderEmailAccountSchema),
   });
 
-  const atLeastOneProductSelected = Object.entries(form)
-    .filter(([key]) => whitelistedPlanCodes.includes(key as ZimbraPlanCodes))
-    .some(([, item]) => Number(item.value) > 0);
-
-  const handleConfirm = () => {
+  const handleConfirmClick: SubmitHandler<OrderEmailAccountSchema> = (data) => {
     trackClick({
       location: PageLocation.page,
       buttonType: ButtonType.button,
       actionType: 'action',
-      actions: [ORDER_ZIMBRA_EMAIL_ACCOUNT, CONFIRM, form.commitment.value],
+      actions: [ORDER_ZIMBRA_EMAIL_ACCOUNT, CONFIRM, data.commitment],
     });
-    const products = Object.entries(form)
-      .filter(([key]) => whitelistedPlanCodes.includes(key as ZimbraPlanCodes))
-      .map(([key, { value }]) => {
-        return {
-          planCode: key,
-          quantity: Number(value) || 1,
-          platformId,
-        };
-      });
+
+    const products = [
+      {
+        planCode: ZimbraPlanCodes.ZIMBRA_ACCOUNT_PP_STARTER,
+        quantity: data[ZimbraPlanCodes.ZIMBRA_ACCOUNT_PP_STARTER] || 0,
+        platformId,
+      },
+    ];
+
     setOrderURL(generateOrderURL({ baseURL: orderBaseURL, products }));
   };
 
@@ -188,114 +180,137 @@ function OrderCatalogForm({
   }
 
   return (
-    <div className="flex flex-col gap-6 mt-4">
-      <OdsText preset={ODS_TEXT_PRESET.heading3}>
+    <form
+      onSubmit={handleSubmit(handleConfirmClick)}
+      className="flex flex-col gap-4 mt-4"
+    >
+      <OdsText preset={ODS_TEXT_PRESET.heading4}>
         {t('zimbra_account_order_subtitle')}
       </OdsText>
-      {plans.flatMap(({ planCode, blobs, monthly }) => {
-        const quantity = Number(form[planCode].value);
-        return (
-          <div className="flex flex-col gap-4" key={planCode}>
-            <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-              {blobs?.commercial?.name}
+      <Controller
+        control={control}
+        name={ZimbraPlanCodes.ZIMBRA_ACCOUNT_PP_STARTER}
+        render={({ field: { name, value, onChange, onBlur } }) => (
+          <OdsFormField
+            className="flex flex-col gap-4"
+            error={errors?.[name]?.message}
+          >
+            <OdsText className="font-bold" preset={ODS_TEXT_PRESET.paragraph}>
+              <b>{starterPlan?.blobs?.commercial?.name}</b>
             </OdsText>
             <OdsQuantity
-              id={planCode}
-              name={planCode}
+              id={name}
+              name={name}
               className="justify-start"
               min={0}
               max={1000}
-              value={quantity || 0}
-              onOdsChange={({ detail }) => {
-                const { name, value } = detail;
-                setValue(name, value.toString());
-              }}
+              value={value}
+              onOdsChange={onChange}
+              onOdsBlur={onBlur}
             ></OdsQuantity>
             <Price
-              value={quantity ? quantity * monthly.price : monthly.price}
-              tax={quantity ? quantity * monthly.tax : monthly.tax}
-              intervalUnit={monthly.intervalUnit}
+              value={
+                value
+                  ? value * starterPlan?.monthly.price
+                  : starterPlan?.monthly.price
+              }
+              tax={
+                value
+                  ? value * starterPlan?.monthly.tax
+                  : starterPlan?.monthly.tax
+              }
+              intervalUnit={starterPlan?.monthly.intervalUnit}
               ovhSubsidiary={catalog.locale.subsidiary}
               locale={locale}
             ></Price>
-          </div>
-        );
-      })}
-      <div className="flex flex-col gap-6">
-        <OdsText preset={ODS_TEXT_PRESET.heading3}>
-          {t('zimbra_account_order_subtitle_commitment')}
-        </OdsText>
-        <OdsFormField>
-          <div className="flex leading-none gap-4">
-            <OdsRadio
-              id="1-month"
-              name="1-month"
-              data-testid="radio-1-month"
-              value="1"
-              isChecked={form.commitment.value === '1'}
-              onOdsChange={(event) =>
-                setValue('commitment', event.detail.value)
-              }
-            ></OdsRadio>
-            <label htmlFor="1-month" className="flex flex-col w-full">
-              <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-                {`1 ${t('zimbra_account_order_commitment_month')}`}
+          </OdsFormField>
+        )}
+      />
+      <Controller
+        control={control}
+        name="commitment"
+        render={({ field: { name, value, onChange } }) => (
+          <OdsFormField error={errors?.[name]?.message}>
+            <label htmlFor={name} slot="label">
+              <OdsText preset={ODS_TEXT_PRESET.heading4}>
+                {t('zimbra_account_order_subtitle_commitment')}
               </OdsText>
             </label>
-          </div>
-          <div className="flex leading-none gap-4">
-            <OdsRadio
-              id="12-month"
-              name="12-month"
-              data-testid="radio-12-month"
-              value="12"
-              isChecked={form.commitment.value === '12'}
-              isDisabled={true}
-              onOdsChange={(event) =>
-                setValue('commitment', event.detail.value)
-              }
-            ></OdsRadio>
-            <label htmlFor="12-month" className="flex flex-col w-full">
-              <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-                {`12 ${t('zimbra_account_order_commitment_months')}`}
-              </OdsText>
-              <OdsText preset={ODS_TEXT_PRESET.caption}>
-                {t('zimbra_account_order_commitment_available_soon')}
-              </OdsText>
-            </label>
-          </div>
-        </OdsFormField>
-      </div>
-      <OdsFormField>
-        <div className="flex leading-none gap-4">
-          <OdsCheckbox
-            id="consent"
-            name="consent"
-            data-testid="consent"
-            isChecked={form.consent.value === 'checked'}
-            onOdsChange={() =>
-              setValue(
-                'consent',
-                form.consent.value === 'checked' ? '' : 'checked',
-              )
-            }
-          ></OdsCheckbox>
-          <label htmlFor="consent">
-            <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-              {t('zimbra_account_order_legal_checkbox')}
-            </OdsText>
-          </label>
-        </div>
-      </OdsFormField>
+            <div className="flex flex-col gap-4">
+              <div className="flex leading-none gap-4">
+                <OdsRadio
+                  id="1-month"
+                  name="1-month"
+                  data-testid="radio-1-month"
+                  value="1"
+                  isChecked={value === '1'}
+                  onClick={() => onChange('1')}
+                ></OdsRadio>
+                <label htmlFor="1-month" className="cursor-pointer">
+                  <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                    {`1 ${t('zimbra_account_order_commitment_month')}`}
+                  </OdsText>
+                </label>
+              </div>
+              <div className="flex leading-none gap-4">
+                <OdsRadio
+                  id="12-month"
+                  name="12-month"
+                  data-testid="radio-12-month"
+                  value="12"
+                  isDisabled
+                  isChecked={value === '12'}
+                  onClick={() => onChange('12')}
+                ></OdsRadio>
+                <label
+                  htmlFor="12-month"
+                  className="flex flex-col cursor-pointer"
+                >
+                  <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                    {`12 ${t('zimbra_account_order_commitment_months')}`}
+                  </OdsText>
+                  <OdsText preset={ODS_TEXT_PRESET.caption}>
+                    {t('zimbra_account_order_commitment_available_soon')}
+                  </OdsText>
+                </label>
+              </div>
+            </div>
+          </OdsFormField>
+        )}
+      />
+      <Controller
+        control={control}
+        name="consent"
+        render={({ field: { name, value, onChange } }) => (
+          <OdsFormField error={errors?.[name]?.message}>
+            <div className="flex leading-none gap-4 cursor-pointer">
+              <OdsCheckbox
+                data-testid={name}
+                inputId={name}
+                id={name}
+                name={name}
+                value={(value as unknown) as string}
+                isChecked={value}
+                onClick={() => onChange(!value)}
+              ></OdsCheckbox>
+              <label className="cursor-pointer" htmlFor={name}>
+                <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                  {t('zimbra_account_order_legal_checkbox')}
+                </OdsText>
+              </label>
+            </div>
+          </OdsFormField>
+        )}
+      />
       <OdsButton
+        type="submit"
         className="w-fit"
         color={ODS_BUTTON_COLOR.primary}
-        isDisabled={!isFormValid || !atLeastOneProductSelected}
-        onClick={handleConfirm}
+        isDisabled={!isDirty || !isValid}
         data-testid="order-account-confirm-btn"
         label={t('common:pay')}
-      ></OdsButton>
-    </div>
+      />
+    </form>
   );
 }
 
@@ -311,6 +326,7 @@ export default function EmailAccountsOrder() {
   const orderBaseURL = getExpressOrderURL(region, ovhSubsidiary);
 
   const navigate = useNavigate();
+  const goBackUrl = useGenerateUrl('..', 'path');
 
   const goBack = () => {
     trackClick({
@@ -319,7 +335,7 @@ export default function EmailAccountsOrder() {
       actionType: 'action',
       actions: [ORDER_ZIMBRA_EMAIL_ACCOUNT, CANCEL],
     });
-    navigate('..');
+    navigate(goBackUrl);
   };
 
   const { data: catalog, isLoading, isError, error } = useOrderCatalog({

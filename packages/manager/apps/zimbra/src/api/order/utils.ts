@@ -1,5 +1,4 @@
 import JSURL from 'jsurl';
-import { ZimbraPlanCodes } from './type';
 
 export type OrderProduct = {
   planCode: string;
@@ -33,5 +32,3 @@ export const generateOrderURL = ({
     products.map(formatOrderProduct),
   )}`;
 };
-
-export const whitelistedPlanCodes = [ZimbraPlanCodes.ZIMBRA_ACCOUNT_PP_STARTER];

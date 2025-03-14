@@ -16,6 +16,7 @@ import {
   LinkType,
   ManagerButton,
   ManagerText,
+  useBytes,
 } from '@ovh-ux/manager-react-components';
 import { Outlet, useNavigate } from 'react-router-dom';
 import {
@@ -35,11 +36,7 @@ import {
 import LabelChip from '@/components/LabelChip';
 import { GUIDES_LIST } from '@/guides.constants';
 import ActionButtonEmail from './ActionButtonEmail.component';
-import {
-  convertOctets,
-  DATAGRID_REFRESH_INTERVAL,
-  DATAGRID_REFRESH_ON_MOUNT,
-} from '@/utils';
+import { DATAGRID_REFRESH_INTERVAL, DATAGRID_REFRESH_ON_MOUNT } from '@/utils';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import Loading from '@/components/Loading/Loading';
 import { BadgeStatus } from '@/components/BadgeStatus';
@@ -61,49 +58,6 @@ export type EmailsItem = {
   available: number;
   status: ResourceStatus;
 };
-
-const columns: DatagridColumn<EmailsItem>[] = [
-  {
-    id: 'email account',
-    cell: (item) => (
-      <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.email}</OdsText>
-    ),
-    label: 'common:email_account',
-  },
-  {
-    id: 'organization',
-    cell: (item) => (
-      <LabelChip id={item.organizationId}>{item.organizationLabel}</LabelChip>
-    ),
-    label: 'common:organization',
-  },
-  {
-    id: 'offer',
-    cell: (item) => (
-      <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.offer}</OdsText>
-    ),
-    label: 'zimbra_account_datagrid_offer_label',
-  },
-  {
-    id: 'quota',
-    cell: (item) => (
-      <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-        {convertOctets(item.used)} / {convertOctets(item.available)}
-      </OdsText>
-    ),
-    label: 'zimbra_account_datagrid_quota',
-  },
-  {
-    id: 'status',
-    cell: (item) => <BadgeStatus itemStatus={item.status}></BadgeStatus>,
-    label: 'common:status',
-  },
-  {
-    id: 'tooltip',
-    cell: (item: EmailsItem) => <ActionButtonEmail emailsItem={item} />,
-    label: '',
-  },
-];
 
 export default function EmailAccounts() {
   const { t } = useTranslation(['accounts', 'common']);
@@ -201,7 +155,51 @@ export default function EmailAccounts() {
     });
     navigate(hrefOrderEmailAccount);
   };
+  const { formatBytes } = useBytes();
 
+  const columns: DatagridColumn<EmailsItem>[] = [
+    {
+      id: 'email account',
+      cell: (item) => (
+        <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.email}</OdsText>
+      ),
+      label: 'common:email_account',
+    },
+    {
+      id: 'organization',
+      cell: (item) => (
+        <LabelChip id={item.organizationId}>{item.organizationLabel}</LabelChip>
+      ),
+      label: 'common:organization',
+    },
+    {
+      id: 'offer',
+      cell: (item) => (
+        <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.offer}</OdsText>
+      ),
+      label: 'zimbra_account_datagrid_offer_label',
+    },
+    {
+      id: 'quota',
+      cell: (item) => (
+        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+          {formatBytes(item.used, 2, 1024)} /{' '}
+          {formatBytes(item.available, 0, 1024)}
+        </OdsText>
+      ),
+      label: 'zimbra_account_datagrid_quota',
+    },
+    {
+      id: 'status',
+      cell: (item) => <BadgeStatus itemStatus={item.status}></BadgeStatus>,
+      label: 'common:status',
+    },
+    {
+      id: 'tooltip',
+      cell: (item: EmailsItem) => <ActionButtonEmail emailsItem={item} />,
+      label: '',
+    },
+  ];
   return (
     <div>
       <Outlet />

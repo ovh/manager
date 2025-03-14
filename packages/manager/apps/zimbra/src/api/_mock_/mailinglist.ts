@@ -16,6 +16,7 @@ export const mailingListDetailMock: MailingListType = {
     organizationId: '191fa41e-46c0-4000-8a42-82cf2c709380',
     organizationLabel: 'testOrg',
     owner: '191fa41e-46c0-4000-8a42-82cf2c709370',
+    subscriberModeration: false,
   },
   currentTasks: [
     {
@@ -36,6 +37,7 @@ export const mailingListDetailMock: MailingListType = {
     organizationId: '191fa41e-46c0-4000-8ae1-ce5ad8165601',
     organizationLabel: 'testOrg',
     owner: '191fa41e-46c0-4000-8a42-82cf2c709370',
+    subscriberModeration: false,
   },
 };
 
@@ -52,6 +54,7 @@ export const mailingListsMock: MailingListType[] = [
       organizationId: '191fa41e-46c0-4000-8a42-82cf2c709380',
       organizationLabel: 'testOrg2',
       owner: '191fa41e-46c0-4000-8a42-82cf2c709370',
+      subscriberModeration: true,
     },
     currentTasks: [
       {
@@ -72,6 +75,7 @@ export const mailingListsMock: MailingListType[] = [
       organizationId: '191fa41e-46c0-4000-8ae1-ce5ad8165601',
       organizationLabel: 'testOrg2',
       owner: '191fa41e-46c0-4000-8a42-82cf2c709370',
+      subscriberModeration: true,
     },
   },
   {
@@ -85,6 +89,7 @@ export const mailingListsMock: MailingListType[] = [
       organizationId: '191fa41e-46c0-4000-8a42-82cf2c709380',
       organizationLabel: 'testOrg3',
       owner: '191fa41e-46c0-4000-8a42-82cf2c709370',
+      subscriberModeration: true,
     },
     currentTasks: [
       {
@@ -105,6 +110,7 @@ export const mailingListsMock: MailingListType[] = [
       organizationId: '191fa41e-46c0-4000-8ae1-ce5ad8165601',
       organizationLabel: 'testOrg3',
       owner: '191fa41e-46c0-4000-8a42-82cf2c709370',
+      subscriberModeration: true,
     },
   },
 ];
