@@ -1,0 +1,17 @@
+<oui-modal
+    type="{{ :: $ctrl.deviceId ? 'error' : 'warning' }}"
+    data-on-dismiss="$ctrl.goBack()"
+    data-primary-action="$ctrl.trackClick($ctrl.SOFTPHONE_TRACKING.REMOVE_DEVICE.REMOVE);$ctrl.deleteDevice()"
+    data-primary-label="{{:: 'telephony_line_softphone_btn_delete' | translate }}"
+    data-primary-disabled="$ctrl.deleting"
+    data-heading="{{ $ctrl.deviceId ? 'telephony_line_softphone_delete_device_modal_title' : 'telephony_line_softphone_delete_all' | translate }}"
+>
+    <p>
+        <b
+            data-translate="telephony_line_softphone_delete_{{ $ctrl.deviceId ? 'device' : 'all_devices' }}_warning"
+        ></b>
+    </p>
+    <p
+        data-translate="telephony_line_softphone_delete_{{ $ctrl.deviceId ? 'device' : 'all_devices' }}_before_action"
+    ></p>
+</oui-modal>
