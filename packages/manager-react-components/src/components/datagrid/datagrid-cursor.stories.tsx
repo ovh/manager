@@ -211,6 +211,7 @@ Topbar.args = {
   items: [...Array(10).keys()].map((_, i) => ({
     label: `Item #${i}`,
     price: Math.floor(1 + Math.random() * 100),
+    status: `Status #${i}`,
   })),
   columns: columnsSearchAndFilters,
   search: {

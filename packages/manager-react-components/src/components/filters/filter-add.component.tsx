@@ -11,10 +11,16 @@ import {
 import { useTranslation } from 'react-i18next';
 import './translations';
 
+export type Option = {
+  label: string;
+  value: string;
+};
+
 export type ColumnFilter = {
   id: string;
   label: string;
   comparators: FilterComparator[];
+  options?: Option[];
 };
 
 export type FilterAddProps = {
@@ -35,6 +41,9 @@ export function FilterAdd({ columns, onAddFilter }: Readonly<FilterAddProps>) {
     () => columns.find(({ id }) => selectedId === id),
     [columns, selectedId],
   );
+
+  const isInputSelect = selectedColumn?.options?.length > 0;
+  const isInputString = !isInputSelect;
 
   const submitAddFilter = () => {
     onAddFilter(
@@ -116,19 +125,35 @@ export function FilterAdd({ columns, onAddFilter }: Readonly<FilterAddProps>) {
               {t('common_criteria_adder_value_label')}
             </span>
           </div>
-          <OdsInput
-            name="filter-add_value-input"
-            className="border"
-            type={ODS_INPUT_TYPE.text}
-            value={value}
-            data-testid="filter-add_value-input"
-            onOdsChange={(e) => setValue(`${e.detail.value}`)}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter') {
-                submitAddFilter();
-              }
-            }}
-          />
+          {isInputString && (
+            <OdsInput
+              name="filter-add_value-input"
+              className="border"
+              type={ODS_INPUT_TYPE.text}
+              value={value}
+              data-testid="filter-add_value-input"
+              onOdsChange={(e) => setValue(`${e.detail.value}`)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  submitAddFilter();
+                }
+              }}
+            />
+          )}
+          {isInputSelect && (
+            <OdsSelect
+              value={value}
+              name="filter-add_value-select"
+              data-testid="filter-add_value-select"
+              onOdsChange={(event) => setValue(event.detail.value as string)}
+            >
+              {selectedColumn?.options.map((option) => (
+                <option key={option.label} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </OdsSelect>
+          )}
         </OdsFormField>
       </div>
       <div>
