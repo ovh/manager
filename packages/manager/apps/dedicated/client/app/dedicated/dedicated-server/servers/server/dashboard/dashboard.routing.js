@@ -244,6 +244,10 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('app.dedicated-server.server.dashboard.delete-reverse-dns', {
           productId: serverName,
         }),
+      goToTagsModal: /* @ngInject */ ($state, serverName) => () =>
+        $state.go('app.dedicated-server.server.dashboard.tags-list-modal', {
+          productId: serverName,
+        }),
       technicalDetails: /* @ngInject */ ($http, serverName) =>
         $http
           .get(`/dedicated/technical-details/${serverName}`, {
