@@ -149,7 +149,8 @@ main() {
 
   #Remove package specific tags
   clean_tags
-
+  worker export RELEASE_NOTE "${RELEASE_NOTE}"
+  worker export NEXT_TAG "${next_tag}"
   #push_and_release "$next_tag"
 }
 
