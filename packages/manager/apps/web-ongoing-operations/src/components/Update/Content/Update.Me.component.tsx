@@ -17,7 +17,7 @@ export default function UpdateMeComponent({
   fields,
 }: UpdateMeComponentProps) {
   const { t } = useTranslation('dashboard');
-  const { data: url } = useNavigationGetUrl(['new-account', '', {}]);
+  const { data: url } = useNavigationGetUrl(['account', '', {}]);
   const { nichandle } = useNichandle();
 
   if (nichandle !== value) {
