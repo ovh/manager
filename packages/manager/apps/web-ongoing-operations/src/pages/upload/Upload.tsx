@@ -161,7 +161,9 @@ export default function Upload() {
             maxFile={maxFile}
             maxSize={domainArgument.maximumSize}
             maxSizeLabel={t('domain_operations_upload_max_size_label')}
-            accept={`.${domainArgument.acceptedFormats.join(', ')}`}
+            accept={domainArgument.acceptedFormats
+              .map((acceptedFormat) => `.${acceptedFormat}`)
+              .join(', ')}
             acceptedFileLabel={`${t(
               'domain_operations_upload_accepted_file_types',
             )} ${domainArgument.acceptedFormats.map(

@@ -7,6 +7,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import {
+  ODS_BUTTON_COLOR,
   ODS_BUTTON_VARIANT,
   ODS_MESSAGE_COLOR,
 } from '@ovhcloud/ods-components';
@@ -101,7 +102,8 @@ export default function OperationActions({
             putOperationName(null);
             navigate(urls.root);
           }}
-          variant={ODS_BUTTON_VARIANT.outline}
+          variant={ODS_BUTTON_VARIANT.ghost}
+          color={ODS_BUTTON_COLOR.primary}
         />
         <OdsButton
           label={t('wizard_confirm')}

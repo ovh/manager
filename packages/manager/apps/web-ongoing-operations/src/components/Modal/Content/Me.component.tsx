@@ -41,7 +41,7 @@ export default function MeComponent({
           href={`/manager/#/account/useraccount/infos`}
           color="primary"
           label={t(`domain_operations_update_${argumentKey}_click`)}
-          className="block"
+          className="block modal-link"
           target="_blank"
           icon="external-link"
         />

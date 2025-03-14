@@ -17,7 +17,7 @@ export default function StringComponent({
   const [inputValue, setInputValue] = useState(value);
   return (
     <div className="mb-3">
-      <div className="ods-form-field__label">
+      <div className="ods-form-field__label mb-1">
         <label htmlFor={argumentKey}>
           {t(`domain_operations_update_key_${argumentKey}`)}
         </label>
