@@ -1,17 +1,18 @@
-import { FC, useCallback, useEffect, useMemo } from 'react';
-import { Navigate, useNavigate, useParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
 import { useNotifications } from '@ovh-ux/manager-react-components';
+import { FC, useCallback, useEffect, useMemo } from 'react';
+import { Trans, useTranslation } from 'react-i18next';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import {
   getInstanceById,
   updateDeletedInstanceStatus,
 } from '@/data/hooks/instance/useInstances';
-import queryClient from '@/queryClient';
-import { useUrlLastSection } from '@/hooks/url/useUrlLastSection';
-import { useInstanceAction } from '@/data/hooks/instance/action/useInstanceAction';
+import { usePathMatch } from '@/hooks/url/usePathMatch';
 import NotFound from '@/pages/404/NotFound.page';
-import { kebabToSnakeCase } from '@/utils';
-import ActionModal from '@/components/actionModal/ActionModal.component';
+import queryClient from '@/queryClient';
+import { replaceToSnakeCase } from '@/utils';
+
+import BaseInstanceActionPage from './BaseAction.page';
+import { RescueActionPage } from './RescueAction.page';
 
 export type TSectionType =
   | 'delete'
@@ -21,9 +22,11 @@ export type TSectionType =
   | 'unshelve'
   | 'soft-reboot'
   | 'hard-reboot'
-  | 'reinstall';
+  | 'reinstall'
+  | 'rescue/start'
+  | 'rescue/end';
 
-const actionSectionRegex = /^(delete|start|stop|shelve|unshelve|soft-reboot|hard-reboot|reinstall)$/;
+const actionSectionRegex = /(?:rescue\/(start|end)|(?<!rescue\/)(start|stop|shelve|unshelve|delete|soft-reboot|hard-reboot|reinstall))$/;
 
 const InstanceAction: FC = () => {
   const { t } = useTranslation(['actions', 'common']);
@@ -32,13 +35,11 @@ const InstanceAction: FC = () => {
     projectId: string;
     instanceId?: string;
   };
-  const { addError, addSuccess } = useNotifications();
-  const section = useUrlLastSection<TSectionType>(
-    actionSectionRegex.test.bind(actionSectionRegex),
-  );
+  const { addError, addSuccess, addInfo } = useNotifications();
+  const section = usePathMatch<TSectionType>(actionSectionRegex);
 
   const snakeCaseSection = useMemo(
-    () => (section ? kebabToSnakeCase(section) : ''),
+    () => (section ? replaceToSnakeCase(section) : ''),
     [section],
   );
 
@@ -58,18 +59,41 @@ const InstanceAction: FC = () => {
     }
   }, [instanceId, projectId, section]);
 
-  const handleModalClose = () => {
-    navigate('..');
-  };
+  const handleModalClose = () => navigate('..');
 
   const handleMutationSuccess = () => {
     executeSuccessCallback();
+
+    const isRescue = section === 'rescue/start';
+
+    if (isRescue) {
+      addInfo(
+        <Trans
+          i18nKey={`pci_instances_actions_rescue_start_instance_info_message`}
+          values={{ name: instanceName, ip: instance?.addresses[0].ip }}
+          ns={'actions'}
+          components={
+            isRescue
+              ? [
+                  <code
+                    key="0"
+                    className="px-1 py-0.5 text-[90%] text-[#c7254e] bg-[#f9f2f4] rounded"
+                  />,
+                ]
+              : []
+          }
+        />,
+        true,
+      );
+    }
+
     addSuccess(
       t(`pci_instances_actions_${snakeCaseSection}_instance_success_message`, {
         name: instanceName,
       }),
       true,
     );
+
     handleModalClose();
   };
 
@@ -88,15 +112,6 @@ const InstanceAction: FC = () => {
       addError(t('pci_instances_actions_instance_unknown_error_message'), true);
   }, [addError, canExecuteAction, t]);
 
-  const { mutationHandler, isPending } = useInstanceAction(section, projectId, {
-    onError: handleMutationError,
-    onSuccess: handleMutationSuccess,
-  });
-
-  const handleInstanceAction = () => {
-    mutationHandler(instance);
-  };
-
   useEffect(() => {
     handleUnknownError();
   }, [handleUnknownError, instanceId, instanceName, section]);
@@ -104,16 +119,21 @@ const InstanceAction: FC = () => {
   if (!instanceId || !section) return <NotFound />;
   if (!instanceName) return <Navigate to={'..'} />;
 
-  return (
-    <ActionModal
-      title={t(`pci_instances_actions_${snakeCaseSection}_instance_title`)}
-      isPending={isPending}
-      handleInstanceAction={handleInstanceAction}
-      handleModalClose={handleModalClose}
-      instanceName={instance.name}
-      section={section}
-      variant={section === 'delete' ? 'warning' : 'primary'}
-    />
+  const title = t(`pci_instances_actions_${snakeCaseSection}_instance_title`);
+
+  const modalProps = {
+    title,
+    projectId,
+    handleMutationError,
+    handleMutationSuccess,
+    handleModalClose,
+    instance,
+  };
+
+  return section === 'rescue/start' || section === 'rescue/end' ? (
+    <RescueActionPage {...modalProps} section={section} />
+  ) : (
+    <BaseInstanceActionPage {...modalProps} section={section} />
   );
 };
 
