@@ -1,9 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { initShell, Shell } from '@ovh-ux/shell';
-
+import React from 'react';
 import ApplicationContext from './application.context';
-import { HeaderProvider } from './header';
-import { setupDevApplication } from '@/core/dev';
+import useContainer from '@/core/container';
 
 type Props = {
   children: JSX.Element;
@@ -12,30 +9,16 @@ type Props = {
 export const ApplicationProvider = ({
   children = null,
 }: Props): JSX.Element => {
-  const [shell, setShell] = useState<Shell | null>(null);
+  const { shell, environment } = useContainer();
 
-  useEffect(() => {
-    initShell().then(setShell);
-  }, []);
-
-  let applicationContext = useContext(ApplicationContext);
-
-  if (!shell) {
-    return null;
-  }
-
-  setupDevApplication(shell);
-
-  applicationContext = {
-    environment: shell.getPlugin('environment').getEnvironment(),
+  const applicationContext = {
+    environment,
     shell,
   };
 
   return (
-    <ApplicationContext.Provider
-      value={applicationContext}
-    >
-      <HeaderProvider>{children}</HeaderProvider>
+    <ApplicationContext.Provider value={applicationContext}>
+      {children}
     </ApplicationContext.Provider>
   );
 };

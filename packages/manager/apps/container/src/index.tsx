@@ -72,13 +72,11 @@ config()
     root.render(
       <React.StrictMode>
         <QueryClientProvider client={queryClient}>
-          <ApplicationProvider>
             <ContainerProvider>
-              <HashRouter>
-                <Container />
-              </HashRouter>
+                <HashRouter>
+                  <Container />
+                </HashRouter>
             </ContainerProvider>
-          </ApplicationProvider>
         </QueryClientProvider>
       </React.StrictMode>,
     );
