@@ -4,7 +4,7 @@ export const URL = {
   LOG_SUSBSCRIPTION: '/engine/api/v2/iam/log/subscription',
 };
 
-export default class IAMLogsService {
+export default class IAMAccessPolicyLogsService {
   /* @ngInject */
   constructor(Apiv2Service) {
     this.Apiv2Service = Apiv2Service;
