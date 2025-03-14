@@ -9,32 +9,27 @@ import { StepState } from '../useStep';
 
 type Plan = {
   disabled: boolean;
-  getTitle: ({ t }: { t: TFunction<'add'> }) => string;
-  getDescription: ({ t }: { t: TFunction<'add'> }) => JSX.Element;
-  getContent: ({ t }: { t: TFunction<'add'> }) => JSX.Element[];
-  getFooter?: ({ t }: { t: TFunction<'add'> }) => string;
+  title: string;
+  description: string;
+  content: () => JSX.Element[];
+  footer?: string;
   value: TClusterCreationForm['plan'];
 };
 
 const plans: Plan[] = [
   {
     disabled: false,
-    getFooter: ({ t }) => t('kube_add_plan_footer_standard'),
-    getTitle: ({ t }) => t('kube_add_plan_title_standard'),
-    getDescription: ({ t }) => (
-      <>
-        <span>{t('kube_add_plan_description_standard')},</span>
-      </>
-    ),
-
-    getContent: ({ t }) =>
-      [
+    footer: 'kube_add_plan_footer_standard',
+    title: 'kube_add_plan_title_standard',
+    description: 'kube_add_plan_description_standard',
+    content: () => {
+      const { t } = useTranslation(['add']);
+      return [
         'kube_add_plan_content_standard_control',
         'kube_add_plan_content_standard_high_availability',
         'kube_add_plan_content_standard_SLO',
         'kube_add_plan_content_standard_auto_scaling',
         'kube_add_plan_content_standard_ETCD',
-
         'kube_add_plan_content_standard_version',
         'kube_add_plan_content_standard_100',
       ].map((text, index) => (
@@ -42,25 +37,18 @@ const plans: Plan[] = [
           <Check className="text-teal-500" />
           {t(text)}
         </span>
-      )),
-
+      ));
+    },
     value: 'standard',
   },
   {
     disabled: true,
-    getTitle: ({ t }) => t('kube_add_plan_title_premium'),
-    getDescription: ({ t }) => (
-      <>
-        <span className="text-critical-500 inline-flex gap-1">
-          <XCircle />
-          <span>{t('kube_add_plan_no_available_plan')}</span>
-        </span>
-        <span>{t('kube_add_plan_description_premium')}</span>
-      </>
-    ),
+    title: 'kube_add_plan_title_premium',
+    description: 'kube_add_plan_description_premium',
 
-    getContent: ({ t }) =>
-      [
+    content: () => {
+      const { t } = useTranslation(['add']);
+      return [
         'kube_add_plan_content_premium_3AZ_control_plane',
         'kube_add_plan_content_premium_disponibility',
         'kube_add_plan_content_premium_SLA',
@@ -73,7 +61,8 @@ const plans: Plan[] = [
           <Check className="text-neutral-600 shrink-0" />
           {t(text)}
         </span>
-      )),
+      ));
+    },
     value: 'premium',
   },
 ];
@@ -101,7 +90,8 @@ const PlanTile = ({
     <form data-testid="form" onSubmit={onSubmitHandler}>
       <div className=" mt-6 grid grid-cols-1  lg:grid-cols-2  xl:grid-cols-4  gap-4">
         {!step.isLocked &&
-          plans.map((plan) => (
+          // eslint-disable-next-line @typescript-eslint/naming-convention
+          plans.map(({ content: Content, ...plan }) => (
             <RadioTile
               disabled={plan.disabled}
               key={plan.value}
@@ -112,33 +102,20 @@ const PlanTile = ({
               value={plan.value}
               checked={selected === plan.value}
             >
-              <div className="  px-4 py-2 flex-col w-full ">
-                <h5
-                  data-testid="plan-header"
-                  className={`capitalize ${
-                    !plan.disabled && selected === plan.value
-                      ? 'font-bold'
-                      : 'font-normal'
-                  }`}
-                >
-                  {plan.getTitle({ t })}
-                </h5>
-                <div className="mt-2 flex flex-col">
-                  {plan.getDescription({ t })}
-                </div>
-              </div>
+              {PlanTile.Header && plan.title && (
+                <PlanTile.Header
+                  selected={!plan.disabled && selected === plan.value}
+                  title={plan.title}
+                  description={plan.description}
+                  disabled={plan.disabled}
+                />
+              )}
               <RadioTile.Separator />
               <div className="text-sm flex flex-col p-4">
-                {plan.getContent({ t })}
+                <Content />
               </div>
-              {plan.getFooter && (
-                <div className=" mt-auto w-full rounded-b-md border-none bg-neutral-100">
-                  <p className=" p-4 text-xl text-primary-600">
-                    <strong data-testid={`plan-footer${plan.value}`}>
-                      {plan.getFooter({ t })}
-                    </strong>
-                  </p>
-                </div>
+              {PlanTile.Footer && plan.footer && (
+                <PlanTile.Footer value={plan.value} content={plan.footer} />
               )}
             </RadioTile>
           ))}
@@ -164,19 +141,67 @@ PlanTile.LockedView = function PlanTileLockedView({
 }: {
   value: string;
 }) {
-  const { t } = (useTranslation(['add', 'stepper']) as unknown) as {
-    t: TFunction<'add'>;
-  };
+  const { t } = useTranslation(['add']);
   const plan = plans.find((p) => p.value === value);
 
   return (
     <RadioTile labelClassName="border-neutral-200">
       <div className="  px-4 py-2 flex-col w-full ">
         <h5 data-testid="plan-header-locked" className="capitalize font-bold">
-          {plan.getTitle({ t })}
+          {t(plan.title)}
         </h5>
       </div>
     </RadioTile>
+  );
+};
+
+PlanTile.Header = function PlanTileHeader({
+  selected,
+  title,
+  description,
+  disabled,
+}: {
+  selected: boolean;
+  title: string;
+  description: string;
+  disabled: boolean;
+}) {
+  const { t } = useTranslation(['add']);
+  return (
+    <div className="  px-4 py-2 flex-col w-full ">
+      <h5
+        data-testid="plan-header"
+        className={`capitalize ${selected ? 'font-bold' : 'font-normal'}`}
+      >
+        {t(title)}
+      </h5>
+      <div className="mt-2 flex flex-col">
+        {disabled && (
+          <span className="text-critical-500 inline-flex gap-1">
+            <XCircle />
+            <span>{t('kube_add_plan_no_available_plan')}</span>
+          </span>
+        )}
+        <span>{t(description)}</span>
+      </div>
+    </div>
+  );
+};
+
+PlanTile.Footer = function PlanTileFooter({
+  value,
+  content,
+}: {
+  value: string;
+  content: string;
+}) {
+  const { t } = useTranslation(['add', 'stepper']);
+  return (
+    <div className=" mt-auto w-full rounded-b-md border-none bg-neutral-100">
+      <p className=" p-4 text-xl text-primary-600">
+        <strong data-testid={`plan-footer${value}`}>{t(content)}</strong>
+      </p>
+    </div>
   );
 };
 
