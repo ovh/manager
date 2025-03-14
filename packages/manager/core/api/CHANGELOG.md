@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-api@0.10.0...@ovh-ux/manager-core-api@0.10.1) (2025-03-14)
+
+
+### Bug Fixes
+
+* **mrc:** display date-picker for date filtering ([#15847](https://github.com/ovh/manager/issues/15847)) ([32055cd](https://github.com/ovh/manager/commit/32055cdf3af8920e99d2023fb5baed5096fe8814)), closes [#15846](https://github.com/ovh/manager/issues/15846)
+
+
+
+
+
 # [0.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-api@0.9.0...@ovh-ux/manager-core-api@0.10.0) (2025-01-30)
 
 
