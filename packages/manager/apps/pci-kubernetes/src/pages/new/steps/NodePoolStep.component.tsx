@@ -165,7 +165,7 @@ const NodePoolStep = ({
               nodePoolState.scaling.quantity.max,
             )
           : nodePoolState.scaling.quantity.max,
-        monthlyPrice: flavor.pricingsMonthly
+        monthlyPrice: isMonthlyBilled
           ? getPrice(flavor, nodePoolState.scaling).month
           : convertHourlyPriceToMonthly(
               getPrice(flavor, nodePoolState.scaling).hour,
@@ -200,62 +200,66 @@ const NodePoolStep = ({
         />
       )}
       <div className="bo border-">
-        {!stepper.node.step.isLocked && nodePoolEnabled && (
-          <>
-            <div className="mb-8">
-              <NodePoolName
-                onTouched={(isTouched: boolean) =>
-                  setNodePoolState((state) => ({ ...state, isTouched }))
-                }
-                hasError={hasError}
-                onNameChange={(name: string) =>
-                  setNodePoolState((state) => ({ ...state, name }))
-                }
-                name={nodePoolState.name}
-              />
-            </div>
-            <div className="mb-8">
-              <NodePoolType
-                projectId={projectId as string}
-                region={stepper.form.region.name}
-                onSelect={setFlavor}
-              />
-            </div>
-            <div className="mb-8">
-              <NodePoolSize
-                isMonthlyBilled={isMonthlyBilled}
-                onScaleChange={(scaling: AutoscalingState) =>
-                  setNodePoolState((state) => ({ ...state, scaling }))
-                }
-                antiAffinity={nodePoolState.antiAffinity}
-              />
-            </div>
-            <div className="mb-8">
-              <NodePoolAntiAffinity
-                isChecked={nodePoolState.antiAffinity}
-                isEnabled={!nodePoolState.scaling?.isAutoscale}
-                onChange={(antiAffinity: boolean) =>
-                  setNodePoolState((state) => ({ ...state, antiAffinity }))
-                }
-              />
-            </div>
-            <div className="mb-8">
-              <BillingStep
-                price={getPrice(flavor, nodePoolState.scaling).hour}
-                monthlyPrice={getPrice(flavor, nodePoolState.scaling).month}
-                monthlyBilling={{
-                  isComingSoon: isPricingComingSoon ?? false,
-                  isChecked: isMonthlyBilled,
-                  check: setIsMonthlyBilled,
-                }}
-                warn={
-                  (nodePoolState.scaling?.isAutoscale && isMonthlyBilled) ??
-                  false
-                }
-              />
-            </div>
-          </>
-        )}
+        <div
+          className={
+            !stepper.node.step.isLocked && nodePoolEnabled
+              ? 'visible'
+              : 'invisible w-0 h-0 overflow-hidden'
+          }
+        >
+          <div className="mb-8">
+            <NodePoolName
+              onTouched={(isTouched: boolean) =>
+                setNodePoolState((state) => ({ ...state, isTouched }))
+              }
+              hasError={hasError}
+              onNameChange={(name: string) =>
+                setNodePoolState((state) => ({ ...state, name }))
+              }
+              name={nodePoolState.name}
+            />
+          </div>
+          <div className="mb-8">
+            <NodePoolType
+              projectId={projectId as string}
+              region={stepper.form.region.name}
+              onSelect={setFlavor}
+            />
+          </div>
+          <div className="mb-8">
+            <NodePoolSize
+              isMonthlyBilled={isMonthlyBilled}
+              onScaleChange={(scaling: AutoscalingState) =>
+                setNodePoolState((state) => ({ ...state, scaling }))
+              }
+              antiAffinity={nodePoolState.antiAffinity}
+            />
+          </div>
+          <div className="mb-8">
+            <NodePoolAntiAffinity
+              isChecked={nodePoolState.antiAffinity}
+              isEnabled={!nodePoolState.scaling?.isAutoscale}
+              onChange={(antiAffinity: boolean) =>
+                setNodePoolState((state) => ({ ...state, antiAffinity }))
+              }
+            />
+          </div>
+          <div className="mb-8">
+            <BillingStep
+              price={getPrice(flavor, nodePoolState.scaling).hour}
+              monthlyPrice={getPrice(flavor, nodePoolState.scaling).month}
+              monthlyBilling={{
+                isComingSoon: isPricingComingSoon ?? false,
+                isChecked: isMonthlyBilled,
+                check: setIsMonthlyBilled,
+              }}
+              warn={
+                (nodePoolState.scaling?.isAutoscale && isMonthlyBilled) ?? false
+              }
+            />
+          </div>
+        </div>
+
         {!stepper.node.step.isLocked && nodePoolEnabled && (
           <OsdsButton
             variant={ODS_BUTTON_VARIANT.stroked}
