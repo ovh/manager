@@ -99,7 +99,7 @@ export const LABELS = {
 
 export const NETAPP_NAME_PATTERN = /^[a-zA-Z0-9._-]{1,64}$/;
 
-export const MOUNT_PATH_PATTERN = /^\w+$/;
+export const MOUNT_PATH_PATTERN = /^[\w-_]+$/;
 
 export const MAX_CHAR_LIMIT = 255;
 
