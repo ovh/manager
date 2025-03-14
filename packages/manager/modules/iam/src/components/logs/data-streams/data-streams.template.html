@@ -1,9 +1,9 @@
 <div data-ovh-alert></div>
 <log-to-customer-list
     data-log-subscription-api-data="$ctrl.logSubscriptionApiData"
-    data-description="{{ 'iam_logs_data_streams_description_' + $ctrl.kind | translate }}"
+    data-description="{{:: ('iam_logs_data_streams_description_' + $ctrl.kind) | translate }}"
     data-go-back="$ctrl.goBack"
-    data-tracking-hits="$ctrl.IAM_AUDIT_DATA_STREAMS_TRACKING_HITS"
+    data-tracking-hits="$ctrl.trackingHits"
     data-track-click="$ctrl.trackClick"
     data-api-version="$ctrl.apiVersion"
 >
