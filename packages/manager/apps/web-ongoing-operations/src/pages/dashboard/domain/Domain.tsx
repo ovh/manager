@@ -6,14 +6,12 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import Loading from '@/components/Loading/Loading';
-import {
-  ParentEnum,
-  useOngoingOperationDatagridColumns,
-} from '@/hooks/useOngoingOperationDatagridColumns';
+import { useOngoingOperationDatagridColumns } from '@/hooks/useOngoingOperationDatagridColumns';
 import { taskMeDomain } from '@/constants';
 import { TOngoingOperations } from '@/types';
 import Modal from '@/components/Modal/Modal';
 import Notification from '@/components/Notification/Notification.component';
+import { ParentEnum } from '@/enum/parent.enum';
 
 export default function Domain() {
   const { t: tError } = useTranslation('web-ongoing-operations/error');
@@ -57,7 +55,7 @@ export default function Domain() {
   };
 
   const columns = useOngoingOperationDatagridColumns(
-    ParentEnum.Domain,
+    ParentEnum.DOMAIN,
     domainList,
     openModal,
   );

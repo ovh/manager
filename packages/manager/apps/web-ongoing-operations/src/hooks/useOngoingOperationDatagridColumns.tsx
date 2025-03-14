@@ -6,18 +6,14 @@ import { useNavigate } from 'react-router-dom';
 import { TOngoingOperations } from 'src/types';
 import { FilterCategories } from '@ovh-ux/manager-core-api';
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import { ParentEnum } from '@/enum/parent.enum';
 import { formatDatagridDate, removeQuotes } from '@/utils/utils';
 import OngoingOperationDatagridBadge from '@/components/OngoingOperationDatagridBadge/OngoingOperationDatagridBadge';
 import { UseWebCloudManagerUrl } from '@/hooks/url/useWebCloudManagerUrl';
 import { DNS_OPERATIONS_TABLE_HEADER_DOMAIN } from '@/pages/dashboard/Dashboard';
 
-export enum ParentEnum {
-  Domain = 'domain',
-  Zone = 'zone',
-}
-
 export const useOngoingOperationDatagridColumns = (
-  parent: ParentEnum.Domain | ParentEnum.Zone,
+  parent: ParentEnum.DOMAIN | ParentEnum.ZONE,
   data: TOngoingOperations[],
   openModal: (id: number) => void,
 ) => {
@@ -44,7 +40,7 @@ export const useOngoingOperationDatagridColumns = (
           );
         },
         label:
-          parent === ParentEnum.Domain
+          parent === ParentEnum.DOMAIN
             ? t('domain_operations_table_header_domain')
             : DNS_OPERATIONS_TABLE_HEADER_DOMAIN,
         comparator: FilterCategories.String,

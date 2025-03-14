@@ -26,7 +26,7 @@ import Loading from '@/components/Loading/Loading';
 import { useDomain, useDomainArgument } from '@/hooks/data/data';
 import { updateOperationStatus } from '@/data/api/ongoing-operations-actions';
 import { OperationName } from '@/enum/operationName.enum';
-import { ParentEnum } from '@/hooks/useOngoingOperationDatagridColumns';
+import { ParentEnum } from '@/enum/parent.enum';
 import OperationActions from '@/components/Actions/OperationsActions.component';
 import Notification from '@/components/Notification/Notification.component';
 
@@ -55,7 +55,7 @@ export default function Upload() {
 
   const { mutate: executeActionOnOperation } = useMutation({
     mutationFn: (operationID: number) =>
-      updateOperationStatus(ParentEnum.Domain, operationID, operationName),
+      updateOperationStatus(ParentEnum.DOMAIN, operationID, operationName),
     onSuccess: () => navigate(urls.domain),
     onError: () => {
       setStatus({

@@ -2,11 +2,9 @@ import '@/setupTests';
 import '@testing-library/jest-dom';
 import { renderHook } from '@testing-library/react';
 import { vi } from 'vitest';
-import {
-  ParentEnum,
-  useOngoingOperationDatagridColumns,
-} from '@/hooks/useOngoingOperationDatagridColumns';
+import { useOngoingOperationDatagridColumns } from '@/hooks/useOngoingOperationDatagridColumns';
 import { domain } from '@/__mocks__/domain';
+import { ParentEnum } from '@/enum/parent.enum';
 
 vi.mock('react-router-dom', async (importOriginal) => {
   const original: typeof import('react-router-dom') = await importOriginal();
@@ -27,7 +25,7 @@ vi.mock('@/pages/dashboard/domain/Domain', () => ({
 describe('useDatagridColumn', () => {
   it('should return the correct columns', () => {
     const { result } = renderHook(() =>
-      useOngoingOperationDatagridColumns(ParentEnum.Domain, domain, null),
+      useOngoingOperationDatagridColumns(ParentEnum.DOMAIN, domain, null),
     );
     const columns = result.current;
 
