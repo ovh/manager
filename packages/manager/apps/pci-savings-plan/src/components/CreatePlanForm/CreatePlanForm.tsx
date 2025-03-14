@@ -61,11 +61,15 @@ import {
   ResourceType,
 } from '../../types/CreatePlan.type';
 import { formatDate, toLocalDateUTC } from '../../utils/formatter/date';
-import { isValidSavingsPlanName } from '../../utils/savingsPlan';
+import {
+  getInstancesInformation,
+  isValidSavingsPlanName,
+} from '../../utils/savingsPlan';
 import Commitment from '../Commitment/Commitment';
 import SimpleTile from '../SimpleTile/SimpleTile';
 import { TileTechnicalInfo } from '../TileTechnicalInfo/TileTechnicalInfo';
 import LegalLinks from '../LegalLinks/LegalLinks';
+import { formatTechnicalInfo } from '@/utils/formatter/formatter';
 
 const COMMON_SPACING = 'my-4';
 
@@ -84,8 +88,12 @@ const Block: React.FC<React.PropsWithChildren> = ({ children }) => {
   return <div className="my-8">{children}</div>;
 };
 
+type InstanceInfoWithTechnical = InstanceInfo & {
+  technical: ReturnType<typeof formatTechnicalInfo>[];
+};
+
 export type CreatePlanFormProps = {
-  instancesInfo: InstanceInfo[];
+  instancesInfo: InstanceInfoWithTechnical[];
   resources: Resource[];
   instanceCategory: InstanceTechnicalName;
   setInstanceCategory: (category: InstanceTechnicalName) => void;
@@ -318,7 +326,7 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
                   isSelected={tab.technicalName === instanceCategory}
                   onClick={() => setInstanceCategory(tab.technicalName)}
                 >
-                  {tab.label}
+                  {t(tab.label)}
                 </OdsTab>
               ))}
             </OdsTabs>
@@ -350,7 +358,7 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
             ? t('select_quantity_description_instance')
             : t('select_quantity_description_rancher')}
         </DescriptionWrapper>
-        <OdsCard className="flex flex-row items-center mr-5 p-4 text-center justify-between w-full mb-[32px] mt-[16px]">
+        <OdsCard className="flex flex-row items-center mr-5 p-4 text-center justify-between w-full mb-[32px] mt-[16px] border border-[--ods-color-neutral-200]">
           <OdsText>{t('quantity_label')}</OdsText>
           <OdsQuantity
             onOdsChange={handleQuantityChange}
@@ -526,42 +534,20 @@ export const CreatePlanFormContainer = ({
     },
   ];
 
-  const instancesInfo: InstanceInfo[] = [
-    {
-      id: '1',
-      category: ResourceType.instance,
-      technicalName: InstanceTechnicalName.b3,
-      label: t('resource_tabs_general_purpose'),
-      technical: technicalList,
-    },
-    {
-      id: '2',
-      category: ResourceType.instance,
-      technicalName: InstanceTechnicalName.c3,
-      label: t('resource_tabs_cpu'),
-      technical: technicalList,
-    },
-    {
-      id: '3',
-      category: ResourceType.instance,
-      technicalName: InstanceTechnicalName.r3,
-      label: t('resource_tabs_ram'),
-      technical: technicalList,
-    },
-    {
-      id: '4',
-      category: ResourceType.rancher,
-      technicalName: InstanceTechnicalName.rancher,
-      label: t('resource_tabs_rancher'),
-      technical: technicalList,
-    },
-  ];
+  const instancesInformation = useMemo(
+    () =>
+      getInstancesInformation(t).map((i) => ({
+        ...i,
+        technical: technicalList,
+      })),
+    [technicalList, t],
+  );
 
   return (
     <CreatePlanForm
       onCreatePlan={onCreatePlan}
       resources={resources}
-      instancesInfo={instancesInfo}
+      instancesInfo={instancesInformation}
       instanceCategory={instanceCategory}
       setInstanceCategory={setInstanceCategory}
       pricingByDuration={sortedPriceByDuration}
