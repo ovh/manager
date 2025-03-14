@@ -43,4 +43,8 @@ export const instancesQueryKey = (
   ...(rest && rest.length > 0 ? rest : []),
 ];
 
-export const kebabToSnakeCase = (str: string): string => str.replace(/-/g, '_');
+export const replaceToSnakeCase = (str: string): string =>
+  str.replace(/[-/]/g, '_');
+
+export const isCustomUrlSection = (str: string): boolean =>
+  str.includes('-') || str.includes('/');

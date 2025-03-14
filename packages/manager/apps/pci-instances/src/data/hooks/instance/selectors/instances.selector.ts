@@ -96,6 +96,20 @@ const getActionHrefByName = (
     };
   }
 
+  if (name === 'rescue') {
+    return {
+      path: `region/${region}/instance/${id}/rescue/start`,
+      isExternal: false,
+    };
+  }
+
+  if (name === 'unrescue') {
+    return {
+      path: `region/${region}/instance/${id}/rescue/end`,
+      isExternal: false,
+    };
+  }
+
   const actions = new Set([
     'delete',
     'stop',
