@@ -26,6 +26,7 @@ export interface ActionMenuItem {
   isDisabled?: boolean;
   isLoading?: boolean;
   color?: ODS_BUTTON_COLOR;
+  testId?: string;
 }
 
 export interface ActionMenuProps {
@@ -47,12 +48,14 @@ const MenuItem = ({
   isTrigger: boolean;
   id: number;
 }) => {
+  const { testId, ...rest } = item;
   const buttonProps = {
     size: ODS_BUTTON_SIZE.sm,
     variant: ODS_BUTTON_VARIANT.ghost,
     displayTooltip: false,
     className: 'menu-item-button w-full',
-    ...item,
+    'data-testid': testId,
+    ...rest,
   };
 
   if (item.href) {
