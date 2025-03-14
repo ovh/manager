@@ -5,7 +5,6 @@ export default {
   bindings: {
     goBack: '<',
     service: '<',
-    serviceType: '<',
     isEmpty: '<',
   },
   controller,
