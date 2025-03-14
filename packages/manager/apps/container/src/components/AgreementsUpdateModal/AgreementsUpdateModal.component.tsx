@@ -76,7 +76,7 @@ export default function AgreementsUpdateModal () {
       >
         <div className="w-full flex justify-center items-center mb-6">
           <img
-            src={ovhCloudLogo} alt="ovh-cloud-logo"
+            src={ovhCloudLogo} alt="ovhcloud-logo"
             height={40}
           />
         </div>
