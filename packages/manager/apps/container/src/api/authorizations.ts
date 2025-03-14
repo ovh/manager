@@ -10,7 +10,7 @@ type IamResource = {
 };
 
 export const fetchAccountUrn = async (): Promise<string> => {
-  const { data } = await fetchIcebergV2<IamResource>({
+  const { data = [] } = await fetchIcebergV2<IamResource>({
     route: '/iam/resource?resourceType=account',
   });
 

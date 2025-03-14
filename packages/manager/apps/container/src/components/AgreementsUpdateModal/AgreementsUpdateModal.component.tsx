@@ -23,11 +23,9 @@ import ovhCloudLogo from '@/assets/images/logo-ovhcloud.png';
 
 /*
  Lifecycle management:
-  - If user is on the agreements page, we will not display the modal and let the page notify for modal change
-  once the user accept non-validated agreements or leave the page
+  - If user is on the agreements page, we will not display the modal and let the page notify for modal change once the user accept non-validated agreements or leave the page
   - Wait until all necessary data (IAM authorization, non-validated agreements list) are loaded
-  - Once we have the data, check if they allow the display of the modal (IAM authorized + at least one non-validated
-  agreement), if the conditions are met, we show the modal, otherwise we switch to the next one
+  - Once we have the data, check if they allow the display of the modal (IAM authorized + at least one non-validated agreement), if the conditions are met, we show the modal, otherwise we switch to the next one
 */
 export default function AgreementsUpdateModal () {
   const { shell } = useContext(ApplicationContext);
