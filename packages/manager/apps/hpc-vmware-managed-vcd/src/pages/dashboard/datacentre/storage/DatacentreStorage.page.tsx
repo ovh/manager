@@ -6,6 +6,7 @@ import {
   getVcdDatacentreStorageRoute,
   getVdcStorageQueryKey,
 } from '@ovh-ux/manager-module-vcd-api';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import DatagridContainer from '@/components/datagrid/container/DatagridContainer.component';
 import { STORAGE_LABEL } from '../datacentreDashboard.constants';
 import { subRoutes, urls } from '@/routes/routes.constant';
@@ -20,12 +21,14 @@ import {
   DatagridTypeCell,
 } from '@/components/datagrid/storage/StorageCells.component';
 import TEST_IDS from '@/utils/testIds.constants';
+import { TRACKING } from '@/tracking.constant';
 
 export default function StorageListingPage() {
   const { id, vdcId } = useParams();
   const { t } = useTranslation('datacentres/storage');
   const { t: tCompute } = useTranslation('datacentres/compute');
   const navigate = useNavigate();
+  const { trackClick } = useOvhTracking();
 
   const columns = [
     {
@@ -87,7 +90,10 @@ export default function StorageListingPage() {
         <OdsButton
           label={t('managed_vcd_vdc_storage_order_cta')}
           variant="outline"
-          onClick={() => navigate(subRoutes.order)}
+          onClick={() => {
+            trackClick(TRACKING.storage.addStorage);
+            navigate(subRoutes.order);
+          }}
           data-testid={TEST_IDS.storageOrderCta}
         />
       }

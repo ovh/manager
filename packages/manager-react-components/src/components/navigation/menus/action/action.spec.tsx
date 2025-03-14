@@ -18,6 +18,7 @@ const actionItems: ActionMenuProps = {
       label: 'Action 1',
       urn: 'urn:v18:eu:resource:m--components:vrz-a878-dsflkds-fdsfdsfdsf',
       iamActions: ['vrackServices:apiovh:iam/resource/tag/remove'],
+      testId: 'manager-button',
     },
     {
       id: 2,
@@ -25,6 +26,7 @@ const actionItems: ActionMenuProps = {
       label: 'Action 2',
       urn: 'urn:v18:eu:resource:m--components:vrz-a878-dsflkds-fdsfdsfdsf',
       iamActions: ['vrackServices:apiovh:iam/resource/tag/remove'],
+      testId: 'manager-button',
     },
   ],
 };

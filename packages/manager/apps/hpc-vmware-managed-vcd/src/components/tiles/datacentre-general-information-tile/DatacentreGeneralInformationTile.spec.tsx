@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { act, render } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { describe, expect, it, vi } from 'vitest';
 import { VCDDatacentre, VCDOrganization } from '@ovh-ux/manager-module-vcd-api';
@@ -8,10 +8,21 @@ import {
   getElementByTestId,
   assertElementLabel,
 } from '@ovh-ux/manager-core-test-utils';
+import userEvent from '@testing-library/user-event';
 import DatacentreGeneralInformationTile from './DatacentreGeneralInformationTile.component';
 import { labels } from '../../../test-utils';
 import { ID_LABEL } from '../../../pages/dashboard/dashboard.constants';
 import TEST_IDS from '../../../utils/testIds.constants';
+import { TRACKING } from '../../../tracking.constant';
+
+const trackClickMock = vi.fn();
+vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
+  const original: typeof import('@ovh-ux/manager-react-shell-client') = await importOriginal();
+  return {
+    ...original,
+    useOvhTracking: () => ({ trackClick: trackClickMock }),
+  };
+});
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -77,6 +88,7 @@ const datacentre = {
 
 describe('DatacentreGeneralInformationTile component unit test suite', () => {
   it('should define tileTitle and sections', async () => {
+    const user = userEvent.setup();
     // when
     render(
       <QueryClientProvider client={queryClient}>
@@ -114,6 +126,11 @@ describe('DatacentreGeneralInformationTile component unit test suite', () => {
     expect(webUrlLink).toHaveAttribute(
       'href',
       vcdOrg.currentState.webInterfaceUrl,
+    );
+
+    await act(() => user.click(webUrlLink));
+    expect(trackClickMock).toHaveBeenCalledWith(
+      TRACKING.datacentreDashboard.goToVcdPortal,
     );
   });
 });
