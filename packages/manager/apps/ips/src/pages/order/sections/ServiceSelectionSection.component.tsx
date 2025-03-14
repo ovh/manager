@@ -15,9 +15,11 @@ import {
 import { OrderContext } from '../order.context';
 import { useCheckServiceAvailability } from '@/data/hooks/useCheckServiceAvailability';
 import { ServiceRegion } from '@/pages/order/ServiceRegion.component';
+import { IpVersion } from '../order.constant';
 
 export const ServiceSelectionSection: React.FC = () => {
   const {
+    ipVersion,
     selectedService,
     setSelectedService,
     selectedServiceType,
@@ -73,58 +75,66 @@ export const ServiceSelectionSection: React.FC = () => {
             value={selectedService}
             placeholder={t('service_selection_select_placeholder')}
           >
-            <optgroup
-              label={t(
-                'service_selection_select_dedicated_cloud_option_group_label',
-              )}
-            >
-              {dedicatedCloud?.map(({ id, name, displayName }) => (
-                <option
-                  key={id}
-                  value={name}
-                  disabled={disabledServices.includes(name)}
-                >
-                  {displayName}
+            {ipVersion === IpVersion.ipv4 && (
+              <optgroup
+                label={t(
+                  'service_selection_select_dedicated_cloud_option_group_label',
+                )}
+              >
+                {dedicatedCloud?.map(({ id, name, displayName }) => (
+                  <option
+                    key={id}
+                    value={name}
+                    disabled={disabledServices.includes(name)}
+                  >
+                    {displayName}
+                  </option>
+                ))}
+              </optgroup>
+            )}
+            {ipVersion === IpVersion.ipv4 && (
+              <optgroup
+                label={t(
+                  'service_selection_select_dedicated_server_option_group_label',
+                )}
+              >
+                {server?.map(({ id, name, displayName }) => (
+                  <option
+                    key={id}
+                    value={name}
+                    disabled={disabledServices.includes(name)}
+                  >
+                    {displayName}
+                  </option>
+                ))}
+              </optgroup>
+            )}
+            {ipVersion === IpVersion.ipv4 && (
+              <optgroup
+                label={t('service_selection_select_vps_option_group_label')}
+              >
+                {vps?.map(({ id, name, displayName }) => (
+                  <option
+                    key={id}
+                    value={name}
+                    disabled={disabledServices.includes(name)}
+                  >
+                    {displayName}
+                  </option>
+                ))}
+              </optgroup>
+            )}
+            {ipVersion === IpVersion.ipv4 && (
+              <optgroup
+                label={t(
+                  'service_selection_select_ip_parking_option_group_label',
+                )}
+              >
+                <option value={ipParkingOptionValue}>
+                  {t('service_selection_select_ip_parking_option_label')}
                 </option>
-              ))}
-            </optgroup>
-            <optgroup
-              label={t(
-                'service_selection_select_dedicated_server_option_group_label',
-              )}
-            >
-              {server?.map(({ id, name, displayName }) => (
-                <option
-                  key={id}
-                  value={name}
-                  disabled={disabledServices.includes(name)}
-                >
-                  {displayName}
-                </option>
-              ))}
-            </optgroup>
-            <optgroup
-              label={t('service_selection_select_vps_option_group_label')}
-            >
-              {vps.map(({ id, name, displayName }) => (
-                <option
-                  key={id}
-                  value={name}
-                  disabled={disabledServices.includes(name)}
-                >
-                  {displayName}
-                </option>
-              ))}
-            </optgroup>
-            <optgroup
-              label={t(
-                'service_selection_select_ip_parking_option_group_label',
-              )}
-            >
-              <option value={ipParkingOptionValue}>
-                {t('service_selection_select_ip_parking_option_label')}
-              </option>
-            </optgroup>
+              </optgroup>
+            )}
             <optgroup
               label={t('service_selection_select_vrack_option_group_label')}
             >

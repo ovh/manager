@@ -10,10 +10,11 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { getAdditionalIpsProductSettings } from '../order.utils';
 import { OrderContext } from '../order.context';
-import { MIN_IP_QUANTITY, MAX_IP_QUANTITY } from '../order.constant';
+import { MIN_IP_QUANTITY, MAX_IP_QUANTITY, IpVersion } from '../order.constant';
 import { urls } from '@/routes/routes.constant';
 import { ServiceType } from '@/types';
 import { useServiceRegion } from '@/data/hooks/useServiceRegion';
+import { useIpv6PlanCode } from '@/data/hooks/catalog/useIpv6PlanCode';
 
 export const OrderButtonSection: React.FC = () => {
   const {
@@ -34,7 +35,7 @@ export const OrderButtonSection: React.FC = () => {
     serviceName: selectedService,
     serviceType: selectedServiceType,
   });
-
+  const ipv6PlanCode = useIpv6PlanCode({ region: selectedRegion, ipVersion });
   const orderBaseUrl = useOrderURL('express_review_base');
 
   return (
@@ -52,7 +53,8 @@ export const OrderButtonSection: React.FC = () => {
             geolocation: selectedGeolocation,
             offer: selectedOffer,
             organisation: selectedOrganisation,
-            planCode: selectedPlanCode,
+            planCode:
+              ipVersion === IpVersion.ipv6 ? ipv6PlanCode : selectedPlanCode,
             region: [ServiceType.ipParking, ServiceType.vrack].includes(
               selectedServiceType,
             )

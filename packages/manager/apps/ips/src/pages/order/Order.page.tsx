@@ -7,6 +7,7 @@ import { Breadcrumb } from '@/components/Breadcrumb/Breadcrumb';
 import { IpVersionSection } from './sections/IpVersionSection.component';
 import { OrderContextProvider } from './order.context';
 import { Ipv4Order } from './Ipv4Order.component';
+import { Ipv6Order } from './Ipv6Order.component';
 
 export const OrderPage: React.FC = () => {
   const { t } = useTranslation('order');
@@ -24,6 +25,7 @@ export const OrderPage: React.FC = () => {
       <OrderContextProvider>
         <IpVersionSection />
         <Ipv4Order />
+        <Ipv6Order />
       </OrderContextProvider>
     </BaseLayout>
   );

@@ -13,6 +13,7 @@ export interface PriceProps {
   locale: string;
   suffix?: string;
   isStartingPrice?: boolean;
+  freePriceLabel?: string;
 }
 
 export const getPrice = (value: number, tax?: number): number => {

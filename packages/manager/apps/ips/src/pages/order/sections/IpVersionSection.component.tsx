@@ -8,13 +8,13 @@ import {
 } from '@/components/OptionCard/OptionCard.component';
 import { IpVersion } from '../order.constant';
 import { OrderSection } from '../../../components/OrderSection/OrderSection.component';
-import { useIpv4LowestPrice } from '@/data/hooks/catalog';
+import { useCatalogLowestPrice } from '@/data/hooks/catalog';
 import { OrderContext } from '../order.context';
 
 export const IpVersionSection: React.FC = () => {
   const { ipVersion, setIpVersion } = React.useContext(OrderContext);
   const { t } = useTranslation('order');
-  const { price } = useIpv4LowestPrice();
+  const { ipv4LowestPrice, ipv6LowestPrice } = useCatalogLowestPrice();
 
   return (
     <OrderSection
@@ -30,28 +30,17 @@ export const IpVersionSection: React.FC = () => {
         >
           <PriceDescription
             isStartingPrice
-            price={price}
+            price={ipv4LowestPrice}
             suffix={t('per_ip')}
           />
         </OptionCard>
         <OptionCard
-          title={
-            <>
-              {t('ipv6_card_title')}
-              <OdsBadge
-                className="ml-2 inline-block"
-                label={t('ipv6_card_badge_label')}
-                color={ODS_BADGE_COLOR.beta}
-                size={ODS_BADGE_SIZE.sm}
-              />
-            </>
-          }
+          title={t('ipv6_card_title')}
           description={t('ipv6_card_description')}
-          isDisabled
           isSelected={ipVersion === IpVersion.ipv6}
           onClick={() => setIpVersion(IpVersion.ipv6)}
         >
-          <PriceDescription price={0} />
+          <PriceDescription price={ipv6LowestPrice} />
         </OptionCard>
       </div>
     </OrderSection>

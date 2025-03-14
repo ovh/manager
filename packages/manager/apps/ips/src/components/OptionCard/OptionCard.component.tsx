@@ -83,7 +83,7 @@ export const PriceDescription: React.FC<PriceFooterProps> = ({
   suffix,
   isStartingPrice,
 }) => {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { environment } = React.useContext(ShellContext);
 
   return (
@@ -99,6 +99,7 @@ export const PriceDescription: React.FC<PriceFooterProps> = ({
           intervalUnit={IntervalUnitType.month}
           ovhSubsidiary={environment.user.ovhSubsidiary as OvhSubsidiary}
           locale={i18n.language}
+          freePriceLabel={t('free_price')}
         />
       )}
     </OdsText>
