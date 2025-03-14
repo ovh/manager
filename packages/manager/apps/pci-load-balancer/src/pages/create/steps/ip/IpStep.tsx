@@ -12,35 +12,25 @@ import {
   useCatalogPrice,
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-import { TCatalog } from '@ovh-ux/manager-pci-common';
 import { useMemo } from 'react';
 import { StepsEnum, useCreateStore } from '@/pages/create/store';
 import { useTracking } from '@/pages/create/hooks/useTracking';
-import { TFloatingIp } from '@/api/data/floating-ips';
-import { TPrivateNetwork } from '@/api/data/network';
-import { defaultFloatingIps } from '@/api/hook/useFloatingIps';
 import { IpStepMessages } from '@/pages/create/steps/ip/IpStepMessages';
+import { useFloatingIps } from '@/api/hook/useFloatingIps/useFloatingIps';
+import { FloatingIpSelectionId } from '@/types/floating.type';
+import { useRegionAddons } from '@/api/hook/useAddons/useAddons';
+import { FLOATING_IP_ADDON_FAMILY } from '@/api/hook/useFloatingIps/useFloatingIps.constant';
 
 export type TIpStepProps = {
-  floatingIps: TFloatingIp[];
-  privateNetworksList: TPrivateNetwork[];
-  catalog: TCatalog;
-  isLoading: boolean;
-};
-
-const FLOATING_IP_PLAN_CODE = {
-  region: 'floatingip.floatingip.hour.consumption',
-  'region-3-az': 'floatingip.floatingip.hour.consumption.3AZ',
+  ovhSubsidiary: string;
+  projectId: string;
 };
 
 export const IpStep = ({
-  floatingIps,
-  privateNetworksList,
-  catalog,
-  isLoading,
+  ovhSubsidiary,
+  projectId,
 }: TIpStepProps): JSX.Element => {
-  const { t: tCreate } = useTranslation('load-balancer/create');
-  const { t: tCommon } = useTranslation('pci-common');
+  const { t } = useTranslation(['load-balancer/create', 'pci-common']);
 
   const { trackStep } = useTracking();
 
@@ -48,30 +38,25 @@ export const IpStep = ({
 
   const store = useCreateStore();
 
-  const floatingIpsList = useMemo(
-    () => [
-      ...defaultFloatingIps.map((floatingIp) => ({
-        ...floatingIp,
-        ip: tCreate(floatingIp.ip),
-      })),
-      ...floatingIps,
-    ],
-    [floatingIps],
+  const region = store?.region?.name || '';
+
+  const { data: floatingIps, isFetching } = useFloatingIps(projectId, region);
+
+  const { addons, isFetching: isFetchingAddons } = useRegionAddons({
+    ovhSubsidiary,
+    projectId,
+    region,
+    addonFamily: FLOATING_IP_ADDON_FAMILY,
+  });
+
+  const price = useMemo(
+    () => (addons?.[0] ? getFormattedHourlyCatalogPrice(addons[0].price) : ''),
+    [addons, getFormattedHourlyCatalogPrice],
   );
-
-  const price = useMemo(() => {
-    const hourlyPrice = catalog?.addons.find(
-      (addon) => addon.planCode === FLOATING_IP_PLAN_CODE[store.region?.type],
-    )?.pricings[0].price;
-
-    return store.publicIp?.type === 'create' && hourlyPrice !== undefined
-      ? getFormattedHourlyCatalogPrice(hourlyPrice)
-      : '';
-  }, [store.publicIp, store.region, catalog, getFormattedHourlyCatalogPrice]);
 
   return (
     <StepComponent
-      title={tCreate('octavia_load_balancer_create_floating_ip_title')}
+      title={t('octavia_load_balancer_create_floating_ip_title')}
       isOpen={store.steps.get(StepsEnum.IP).isOpen}
       isChecked={store.steps.get(StepsEnum.IP).isChecked}
       isLocked={store.steps.get(StepsEnum.IP).isLocked}
@@ -83,13 +68,10 @@ export const IpStep = ({
           store.check(StepsEnum.IP);
           store.lock(StepsEnum.IP);
 
-          if (privateNetworksList.length > 0) {
-            store.set.privateNetwork(privateNetworksList[0]);
-          }
-
           store.open(StepsEnum.NETWORK);
         },
-        label: tCommon('common_stepper_next_button_label'),
+        label: t('pci-common:common_stepper_next_button_label'),
+        isDisabled: !store.publicIp,
       }}
       edit={{
         action: () => {
@@ -98,7 +80,7 @@ export const IpStep = ({
           store.open(StepsEnum.IP);
           store.reset(StepsEnum.NETWORK, StepsEnum.INSTANCE, StepsEnum.NAME);
         },
-        label: tCommon('common_stepper_modify_this_step'),
+        label: t('pci-common:common_stepper_modify_this_step'),
       }}
     >
       <OsdsText
@@ -107,9 +89,9 @@ export const IpStep = ({
         color={ODS_THEME_COLOR_INTENT.text}
         className="mb-4"
       >
-        {tCreate('octavia_load_balancer_create_floating_ip_intro')}
+        {t('octavia_load_balancer_create_floating_ip_intro')}
       </OsdsText>
-      {isLoading ? (
+      {isFetching ? (
         <div>
           <OsdsSpinner inline />
         </div>
@@ -121,39 +103,47 @@ export const IpStep = ({
             level={ODS_TEXT_LEVEL.subheading}
             slot="label"
           >
-            {tCreate('octavia_load_balancer_create_floating_ip_field')}
+            {t('octavia_load_balancer_create_floating_ip_field')}
           </OsdsText>
           <OsdsSelect
             className="w-[20rem]"
-            value={store.publicIp?.id}
+            value={store.publicIp}
             error={false}
-            onOdsValueChange={(event) => {
-              const targetIp = floatingIpsList.find(
-                (ip) => ip.id === event.target.value,
-              );
-              store.set.publicIp(targetIp);
-            }}
+            onOdsValueChange={(event) =>
+              store.set.publicIp(event.target.value as string)
+            }
             inline
-            {...(floatingIpsList.length === 0 ? { disabled: true } : {})}
           >
             <OsdsText
               color={ODS_THEME_COLOR_INTENT.text}
               size={ODS_TEXT_SIZE._200}
               slot="placeholder"
             >
-              {tCreate('octavia_load_balancer_create_floating_ip_field')}
+              {t('octavia_load_balancer_create_floating_ip_field')}
             </OsdsText>
-            {floatingIpsList.map((ip) => (
-              <OsdsSelectOption value={ip.id} key={ip.id}>
-                {ip.ip}
+            <OsdsSelectOption value={FloatingIpSelectionId.NEW}>
+              {t(
+                'octavia_load_balancer_create_floating_ip_field_new_floating_ip',
+              )}
+            </OsdsSelectOption>
+            <OsdsSelectOption value={FloatingIpSelectionId.UNATTACHED}>
+              {t(
+                'octavia_load_balancer_create_floating_ip_field_no_floating_ip',
+              )}
+            </OsdsSelectOption>
+            {floatingIps?.map(({ id, ip }) => (
+              <OsdsSelectOption value={id} key={id}>
+                {ip}
               </OsdsSelectOption>
             ))}
           </OsdsSelect>
         </OsdsFormField>
       )}
-      {['create', 'none'].includes(store.publicIp?.type) && (
-        <IpStepMessages type={store.publicIp?.type} price={price} />
-      )}
+      {(FloatingIpSelectionId.NEW === store.publicIp ||
+        FloatingIpSelectionId.UNATTACHED === store.publicIp) &&
+        !isFetchingAddons && (
+          <IpStepMessages publicIpId={store.publicIp} price={price} />
+        )}
     </StepComponent>
   );
 };

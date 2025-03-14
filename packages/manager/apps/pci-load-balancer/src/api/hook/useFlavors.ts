@@ -1,22 +1,21 @@
 import { useQuery } from '@tanstack/react-query';
 import { getFlavor } from '@/api/data/flavors';
-import { TAddon } from '@/pages/create/store';
+import { TProductAddonDetail } from '@/types/product.type';
+import { queryKeyBuilder } from '@/utils/utils';
 
 export const useGetFlavor = (
   projectId: string,
-  regionName: string,
-  addon: TAddon,
+  region: string,
+  addon?: TProductAddonDetail,
 ) =>
   useQuery({
-    queryKey: [
-      'project',
-      projectId,
-      'region',
-      regionName,
+    queryKey: queryKeyBuilder(projectId, region, [
       'size',
-      addon?.code,
+      addon?.size,
       'flavor',
-    ],
-    queryFn: () => getFlavor(projectId, regionName, addon),
-    enabled: !!projectId && !!regionName && !!addon,
+    ]),
+    queryFn: () => getFlavor(projectId, region),
+    enabled: !!projectId && !!region && !!addon,
+    select: (flavors) =>
+      flavors.find(({ name }) => name === addon.technicalName),
   });

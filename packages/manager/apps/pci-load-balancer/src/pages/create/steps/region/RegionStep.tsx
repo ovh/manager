@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import {
   OsdsLink,
   OsdsMessage,
@@ -19,37 +19,52 @@ import {
 import { Trans, useTranslation } from 'react-i18next';
 import {
   RegionSelector,
-  useProject,
   usePCICommonContextFactory,
   PCICommonContext,
-  TLocalisation,
+  TRegion,
 } from '@ovh-ux/manager-pci-common';
-import { TRegion } from '@/api/hook/useRegions';
 import { REGION_AVAILABILITY_LINK } from '@/constants';
 import { StepsEnum, useCreateStore } from '@/pages/create/store';
 import { useTracking } from '@/pages/create/hooks/useTracking';
+import {
+  getRegionPrivateNetworksQuery,
+  useGetPrivateNetworks,
+} from '@/api/hook/useNetwork';
+import queryClient from '@/queryClient';
+import { TProductAvailabilityRegion } from '@/types/region.type';
 
 export type TRegionStepProps = {
-  isLoading: boolean;
-  regions?: Map<string, TRegion[]>;
+  regions: TProductAvailabilityRegion[];
   ovhSubsidiary: string;
+  projectId: string;
 };
 
-const isRegionWith3AZ = (regions: TRegion[]) =>
+const isRegionWith3AZ = (regions: TProductAvailabilityRegion[]) =>
   regions.some((region) => region.type === 'region-3-az');
 
 export const RegionStep = ({
-  isLoading,
   regions,
   ovhSubsidiary,
+  projectId,
 }: Readonly<TRegionStepProps>): JSX.Element => {
   const { t } = useTranslation(['load-balancer/create', 'pci-common']);
-  const { data: project } = useProject();
   const projectUrl = useProjectUrl('public-cloud');
 
   const { trackStep } = useTracking();
 
   const store = useCreateStore();
+
+  const { data: networks } = useGetPrivateNetworks(projectId);
+
+  const [isCheckingNetwork, setIsCheckingNetwork] = useState(false);
+
+  const isNetworkAvailable = useMemo(
+    () =>
+      networks?.some((network) =>
+        network.regions.some((region) => region.region === store?.region?.name),
+      ),
+    [networks, store?.region],
+  );
 
   const has3AZ = useMemo(() => {
     const allRegions = regions ? [...regions.values()] : [];
@@ -58,14 +73,20 @@ export const RegionStep = ({
 
   const metaProps = usePCICommonContextFactory({ has3AZ });
 
-  const handleSelectRegion = (selectedRegion: TLocalisation) => {
+  const handleSelectRegion = async (region?: TRegion) => {
     store.set.region(null);
-    if (selectedRegion) {
-      const region = regions
-        ?.get(store.addon?.code)
-        ?.find(({ name }) => selectedRegion.name === name);
 
+    if (region) {
       store.set.region(region);
+
+      setIsCheckingNetwork(true);
+
+      // prefetch network for the next step
+      await queryClient.prefetchQuery(
+        getRegionPrivateNetworksQuery(projectId, region.name),
+      );
+
+      setIsCheckingNetwork(false);
     }
   };
 
@@ -75,18 +96,18 @@ export const RegionStep = ({
       isOpen={store.steps.get(StepsEnum.REGION).isOpen}
       isChecked={store.steps.get(StepsEnum.REGION).isChecked}
       isLocked={store.steps.get(StepsEnum.REGION).isLocked}
-      order={2}
+      order={1}
       next={{
         action: () => {
-          trackStep(2);
+          trackStep(1);
 
           store.check(StepsEnum.REGION);
           store.lock(StepsEnum.REGION);
 
-          store.open(StepsEnum.IP);
+          store.open(StepsEnum.SIZE);
         },
         label: t('pci-common:common_stepper_next_button_label'),
-        isDisabled: !store.region?.isEnabled,
+        isDisabled: !isNetworkAvailable || isCheckingNetwork,
       }}
       edit={{
         action: () => {
@@ -94,6 +115,7 @@ export const RegionStep = ({
           store.uncheck(StepsEnum.REGION);
           store.open(StepsEnum.REGION);
           store.reset(
+            StepsEnum.SIZE,
             StepsEnum.IP,
             StepsEnum.NETWORK,
             StepsEnum.INSTANCE,
@@ -121,24 +143,15 @@ export const RegionStep = ({
           </OsdsLink>
         </OsdsText>
       </div>
-      {isLoading ? (
-        <div className="text-center mt-6">
-          <OsdsSpinner inline />
-        </div>
-      ) : (
-        <PCICommonContext.Provider value={metaProps}>
-          <RegionSelector
-            projectId={project.project_id}
-            onSelectRegion={handleSelectRegion}
-            regionFilter={(region) =>
-              region.isMacro ||
-              regions
-                ?.get(store.addon?.code)
-                ?.some(({ name }) => name === region.name)
-            }
-          />
-        </PCICommonContext.Provider>
-      )}
+      <PCICommonContext.Provider value={metaProps}>
+        <RegionSelector
+          projectId={projectId}
+          onSelectRegion={handleSelectRegion}
+          regionFilter={(region) =>
+            region.isMacro || regions?.some(({ name }) => name === region.name)
+          }
+        />
+      </PCICommonContext.Provider>
       {store.region?.type === 'region-3-az' && (
         <OsdsMessage
           color={ODS_THEME_COLOR_INTENT.warning}
@@ -154,7 +167,12 @@ export const RegionStep = ({
           </OsdsText>
         </OsdsMessage>
       )}
-      {store.region && !store.region.isEnabled && (
+      {isCheckingNetwork && (
+        <div className="mt-6">
+          <OsdsSpinner inline />
+        </div>
+      )}
+      {store.region && !isNetworkAvailable && (
         <OsdsMessage
           color={ODS_THEME_COLOR_INTENT.warning}
           icon={ODS_ICON_NAME.WARNING}

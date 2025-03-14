@@ -2,22 +2,20 @@ import { describe, it, Mock, vi } from 'vitest';
 import { act } from 'react-dom/test-utils';
 import { useNavigate } from 'react-router-dom';
 import { renderHook } from '@testing-library/react';
+import { TRegion } from '@ovh-ux/manager-pci-common';
 import { useCreateActions } from './useCreateActions';
-import { TAddon, useCreateStore } from '@/pages/create/store';
-import { TRegion } from '@/api/hook/useRegions';
+import { useCreateStore } from '@/pages/create/store';
 import { useTracking } from '../hooks/useTracking';
 import { LOAD_BALANCER_CREATION_TRACKING } from '@/constants';
 import { TFlavor } from '@/api/data/load-balancer';
 import { useGetFlavor } from '@/api/hook/useFlavors';
+import { TProductAddonDetail } from '@/types/product.type';
 
-vi.mock('@/api/hook/useFlavors', async () => {
-  const { ...rest } = await vi.importActual('@/api/hook/useAddons');
-  return {
-    ...rest,
-    useGetFlavor: vi
-      .fn()
-      .mockImplementation(() => ({ data: undefined, isPending: true })),
-  };
+vi.mock('@/api/hook/useFlavors');
+
+vi.mocked(useGetFlavor as Mock).mockReturnValue({
+  data: undefined,
+  isPending: true,
 });
 
 vi.mock('../hooks/useTracking', async () => {
@@ -60,7 +58,7 @@ describe('useCreateActions', () => {
       resultStore.current.create = vi.fn();
 
       act(() => {
-        resultStore.current.set.addon({ code: 'code' } as TAddon);
+        resultStore.current.set.addon({ size: 'code' } as TProductAddonDetail);
         resultStore.current.set.region({ name: 'name' } as TRegion);
       });
 
@@ -95,7 +93,7 @@ describe('useCreateActions', () => {
       }));
 
       act(() => {
-        resultStore.current.set.addon({ code: 'code' } as TAddon);
+        resultStore.current.set.addon({ size: 'code' } as TProductAddonDetail);
         resultStore.current.set.region({ name: 'name' } as TRegion);
         resultStore.current.set.name('');
       });

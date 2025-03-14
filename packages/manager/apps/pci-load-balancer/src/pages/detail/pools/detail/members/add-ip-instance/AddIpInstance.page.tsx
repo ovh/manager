@@ -22,7 +22,7 @@ import {
   OsdsSpinner,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Translation, useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { v4 as uuidV4 } from 'uuid';
@@ -157,14 +157,13 @@ export default function AddIpInstancePage() {
     return '';
   };
 
-  const isFormValid = () =>
-    useMemo(() => {
-      const errors = checkedInstances
-        .map((instance) => protocolPortError(instance))
-        .filter((error) => error !== '');
+  const isFormValid = useCallback(() => {
+    const errors = checkedInstances
+      .map(protocolPortError)
+      .filter((error) => error !== '');
 
-      return errors.length === 0;
-    }, [checkedInstances]);
+    return errors.length === 0;
+  }, [checkedInstances]);
 
   const { createPoolMembers } = useCreatePoolMembers({
     projectId,
