@@ -8,6 +8,7 @@ import {
   stopInstance,
   unshelveInstance,
   reinstallInstance,
+  rescueMode,
 } from '@/data/api/instance';
 import { DeepReadonly } from '@/types/utils.type';
 import { instancesQueryKey } from '@/utils';
@@ -32,7 +33,44 @@ export type TUseInstanceActionCallbacks = DeepReadonly<{
 
 const unknownError = new Error('Unknwon Error');
 
-export const useInstanceAction = (
+type TRescueMutationFnVariables = {
+  instance: TInstanceDto;
+  imageId: string;
+  isRescue: boolean;
+};
+
+export const useInstanceRescueAction = (
+  projectId: string,
+  { onError, onSuccess }: TUseInstanceActionCallbacks = {},
+) => {
+  const mutationKey = instancesQueryKey(projectId, ['instance', 'rescue']);
+  const mutationFn = useCallback(
+    ({ instance, imageId, isRescue }: TRescueMutationFnVariables) => {
+      const { id } = instance;
+      return rescueMode({ projectId, instanceId: id, imageId, isRescue });
+    },
+    [projectId],
+  );
+
+  const mutation = useMutation<
+    null,
+    unknown,
+    TRescueMutationFnVariables,
+    unknown
+  >({
+    mutationKey,
+    mutationFn,
+    onError,
+    onSuccess,
+  });
+
+  return {
+    mutationHandler: mutation.mutate,
+    ...mutation,
+  };
+};
+
+export const useBaseInstanceAction = (
   type: TMutationFnType | null,
   projectId: string,
   { onError, onSuccess }: TUseInstanceActionCallbacks = {},

@@ -4,7 +4,7 @@ import Modal from '@/components/modal/Modal.component';
 import { TSectionType } from '@/pages/instances/action/InstanceAction.page';
 import { Spinner } from '../spinner/Spinner.component';
 
-type TActionModalProps = PropsWithChildren<{
+export type TActionModalProps = PropsWithChildren<{
   title: string;
   isPending: boolean;
   handleInstanceAction: () => void;
@@ -34,9 +34,11 @@ export const ActionModal = ({
     {isPending ? (
       <Spinner />
     ) : (
-      <ActionModalContent type={section} instanceName={instanceName} />
+      <>
+        <ActionModalContent type={section} instanceName={instanceName} />
+        {children}
+      </>
     )}
-    {children}
   </Modal>
 );
 

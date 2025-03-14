@@ -8,7 +8,7 @@ import { updateDeletedInstanceStatus, useInstances } from '../useInstances';
 import { setupInstancesServer } from '@/__mocks__/instance/node';
 import { TInstanceDto } from '@/types/instance/api.type';
 import { TInstancesServerResponse } from '@/__mocks__/instance/handlers';
-import { TMutationFnType, useInstanceAction } from './useInstanceAction';
+import { TMutationFnType, useBaseInstanceAction } from './useInstanceAction';
 import { TInstance } from '@/types/instance/entity.type';
 
 // initializers
@@ -80,14 +80,15 @@ const handleSuccess = vi.fn(
 
 describe('Considering the useInstanceAction hook', () => {
   describe.each`
-    projectId        | instance        | type          | queryPayload        | mutationPayload
-    ${fakeProjectId} | ${fakeInstance} | ${'delete'}   | ${undefined}        | ${undefined}
-    ${fakeProjectId} | ${fakeInstance} | ${null}       | ${undefined}        | ${undefined}
-    ${fakeProjectId} | ${null}         | ${'stop'}     | ${undefined}        | ${undefined}
-    ${fakeProjectId} | ${fakeInstance} | ${'start'}    | ${fakeInstancesDto} | ${null}
-    ${fakeProjectId} | ${fakeInstance} | ${'stop'}     | ${fakeInstancesDto} | ${null}
-    ${fakeProjectId} | ${fakeInstance} | ${'shelve'}   | ${fakeInstancesDto} | ${null}
-    ${fakeProjectId} | ${fakeInstance} | ${'unshelve'} | ${fakeInstancesDto} | ${null}
+    projectId        | instance        | type             | queryPayload        | mutationPayload
+    ${fakeProjectId} | ${fakeInstance} | ${'delete'}      | ${undefined}        | ${undefined}
+    ${fakeProjectId} | ${fakeInstance} | ${null}          | ${undefined}        | ${undefined}
+    ${fakeProjectId} | ${null}         | ${'stop'}        | ${undefined}        | ${undefined}
+    ${fakeProjectId} | ${fakeInstance} | ${'start'}       | ${fakeInstancesDto} | ${null}
+    ${fakeProjectId} | ${fakeInstance} | ${'stop'}        | ${fakeInstancesDto} | ${null}
+    ${fakeProjectId} | ${fakeInstance} | ${'shelve'}      | ${fakeInstancesDto} | ${null}
+    ${fakeProjectId} | ${fakeInstance} | ${'unshelve'}    | ${fakeInstancesDto} | ${null}
+    ${fakeProjectId} | ${fakeInstance} | ${'soft-reboot'} | ${fakeInstancesDto} | ${null}
   `(
     'Given a projectId <$projectId> and an instanceId <$instanceId>',
     ({ projectId, instance, type, queryPayload, mutationPayload }: Data) => {
@@ -124,7 +125,7 @@ describe('Considering the useInstanceAction hook', () => {
 
         const { result: useInstanceActionResult } = renderHook(
           () =>
-            useInstanceAction(type, projectId, {
+            useBaseInstanceAction(type, projectId, {
               onSuccess: handleSuccess(instance?.id as string, queryClient),
               onError: handleError,
             }),
