@@ -46,7 +46,7 @@ export const ErrorBoundary = () => {
       <ErrorBanner
         onReloadPage={reloadPage}
         onRedirectHome={navigateToHomePage}
-        error={error.response}
+        error={error?.response || error}
       />
       <ShellRoutingSync />
       <HidePreloader />
