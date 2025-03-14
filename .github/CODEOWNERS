@@ -88,7 +88,6 @@
 /packages/manager/modules/metrics @ovh/dev-manager-infra-all
 /packages/manager/modules/nasha @ovh/dev-manager-infra-all
 /packages/manager/modules/netapp @ovh/dev-manager-infra-all
-/packages/manager/modules/new-billing @ovh/dev-manager-gcj-all
 /packages/manager/modules/nutanix @ovh/dev-manager-hpc-all
 /packages/manager/modules/office @ovh/dev-manager-web-all
 /packages/manager/modules/overthebox @ovh/dev-manager-web-all

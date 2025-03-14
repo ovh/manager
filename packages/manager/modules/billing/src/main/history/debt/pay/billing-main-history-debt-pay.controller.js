@@ -29,7 +29,7 @@ export default class BillingHistoryDebtPayCtrl {
   }
 
   closeModal() {
-    return this.$state.go('app.account.billing.main.history');
+    return this.$state.go('billing.main.history');
   }
 
   /* =============================

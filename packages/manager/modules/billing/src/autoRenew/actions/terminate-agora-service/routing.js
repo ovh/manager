@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.account.billing.autorenew.terminateAgoraService', {
+  $stateProvider.state('billing.autorenew.terminateAgoraService', {
     url: '/terminate-service?id&serviceType',
     views: {
       modal: {

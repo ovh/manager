@@ -7,7 +7,7 @@ export default /* @ngInject */ (
   coreConfigProvider,
 ) => {
   if (coreConfigProvider.isRegion(['EU', 'CA'])) {
-    const name = 'app.account.billing.payment.ovhaccount';
+    const name = 'billing.payment.ovhaccount';
 
     $stateProvider.state(name, {
       url: '/ovhaccount',
@@ -21,7 +21,7 @@ export default /* @ngInject */ (
           const reload = message && type === 'success';
 
           const promise = $state.go(
-            'app.account.billing.payment.ovhaccount',
+            'billing.payment.ovhaccount',
             {},
             {
               reload,

@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.account.billing.payment.ovhaccount.refund', {
+  $stateProvider.state('billing.payment.ovhaccount.refund', {
     url: '/refund?accountId&movementId',
     views: {
       modal: {

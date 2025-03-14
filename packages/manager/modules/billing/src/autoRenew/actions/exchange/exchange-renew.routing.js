@@ -1,7 +1,7 @@
 import { Exchange as ExchangeModel } from '@ovh-ux/manager-exchange';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.account.billing.autorenew.exchange', {
+  $stateProvider.state('billing.autorenew.exchange', {
     url: '/exchange?organization&exchangeName',
     component: 'exchangeAccountRenew',
     resolve: {

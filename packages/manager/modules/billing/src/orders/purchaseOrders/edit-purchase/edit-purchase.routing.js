@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.account.billing.orders.purchases.edit-purchase', {
+  $stateProvider.state('billing.orders.purchases.edit-purchase', {
     url: '/edit-purchase',
     params: {
       purchase: null,

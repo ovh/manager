@@ -3,18 +3,18 @@
     data-description="{{ :: $ctrl.descriptionOfHeading() }}"
 >
     <oui-header-tabs>
-        <oui-header-tabs-item data-state="app.account.billing.main.history"
+        <oui-header-tabs-item data-state="billing.main.history"
             ><span data-translate="billing_main_bills_tab"></span
         ></oui-header-tabs-item>
         <oui-header-tabs-item
             data-ng-if="$ctrl.isPayAsYouGoAvailable"
-            data-state="app.account.billing.main.pay-as-you-go"
+            data-state="billing.main.pay-as-you-go"
             ><span data-translate="billing_main_pay_as_you_go_tab"></span
         ></oui-header-tabs-item>
-        <oui-header-tabs-item state="app.account.billing.main.payments"
+        <oui-header-tabs-item state="billing.main.payments"
             ><span data-translate="billing_main_payments_tab"></span
         ></oui-header-tabs-item>
-        <oui-header-tabs-item state="app.account.billing.main.refunds"
+        <oui-header-tabs-item state="billing.main.refunds"
             ><span data-translate="billing_payment_refunds_title"></span
         ></oui-header-tabs-item>
     </oui-header-tabs>

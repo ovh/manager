@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.account.billing.autorenew.warnNic', {
+  $stateProvider.state('billing.autorenew.warnNic', {
     url: '/warn-nic?nic',
     views: {
       modal: {

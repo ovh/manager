@@ -1,9 +1,0 @@
-{
-  "autorenew_privateDatabase_dashboard_close_service": "Delete my Private SQL hosting service immediately",
-  "autorenew_privateDatabase_dashboard_close_service_success": "Your request to close the Private SQL web hosting service has been processed. You have been sent an email detailing the procedure to follow.",
-  "autorenew_privateDatabase_dashboard_close_service_error": "An error has occurred submitting a request to close your Private SQL hosting service:",
-  "autorenew_privateDatabase_dashboard_close_service_warning": "Deleting a web hosting plan will permanently erase all corresponding data. The process of deleting a web hosting plan does not entitle you to a refund.",
-  "autorenew_privateDatabase_dashboard_close_service_desc1": "You will get an email containing the procedure for closing your web hosting plan, so you can confirm that you want it deleted immediately.",
-  "autorenew_privateDatabase_dashboard_close_confirm": "Confirm",
-  "autorenew_privateDatabase_dashboard_close_cancel": "Cancel"
-}

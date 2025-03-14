@@ -1,3 +1,14 @@
+const AUTORENEW_2016_SUBSIDIARIES = [
+  'FR',
+  'CA',
+  'QC',
+  'WE',
+  'WS',
+  'ASIA',
+  'SG',
+  'AU',
+];
+
 export default /* @ngInject */ function BillingUserService(
   $q,
   coreConfig,
@@ -15,6 +26,11 @@ export default /* @ngInject */ function BillingUserService(
       billingCountry: result.country,
       ovhSubsidiary: result.ovhSubsidiary,
       spareEmail: result.spareEmail,
+      canHaveInvoicesByPostalMail: () =>
+        result.billingCountry === 'FR' && result.legalform === 'individual',
+      hasAutorenew2016: () =>
+        AUTORENEW_2016_SUBSIDIARIES.includes(result.ovhSubsidiary),
+      auth: result.auth,
     }));
 
   this.getMe = () => $q.when(coreConfig.getUser());

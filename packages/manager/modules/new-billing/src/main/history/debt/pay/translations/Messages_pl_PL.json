@@ -1,8 +1,0 @@
-{
-  "billing_main_history_debt_pay_title": "Uregulowanie salda",
-  "billing_main_history_debt_pay_confirm": "Ureguluj saldo",
-  "billing_main_history_debt_pay_explanation": "Zostanie wygenerowane zamówienie pozwalające na natychmiastowe uregulowanie salda. Zamówienie to będzie ważne przez godzinę.",
-  "billing_main_history_debt_pay_success": "Wygenerowane zostało <a href=\"{{t1}}\" target=\"_blank\" rel=\"noopener\">zamówienie {{t0}}</a> umożliwiające uregulowanie salda. ",
-  "billing_main_history_debt_pay_error": "Wystąpił błąd podczas spłaty Twojego salda.",
-  "billing_main_history_debt_pay_error_nothing_to_pay": "Aktualnie brak oczekujących płatności."
-}

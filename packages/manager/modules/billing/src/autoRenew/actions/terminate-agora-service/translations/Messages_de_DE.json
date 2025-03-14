@@ -3,7 +3,7 @@
   "autorenew_agora_terminate_service_warning_OKMS_RESOURCE": "Bitte bestätigen Sie die Kündigung Ihres KMS",
   "autorenew_agora_terminate_service_success_OKMS_RESOURCE": "Ihre Anfrage zur Kündigung Ihres KMS wurde registriert. Eine E-Mail mit weiteren Informationen wurde an Sie versandt.",
   "autorenew_agora_terminate_service_error_OKMS_RESOURCE": "Bei der Anfrage zur Kündigung Ihres KMS ist ein Fehler aufgetreten. {{error}}",
-  "autorenew_agora_terminate_service_confirm_input": "Geben Sie im folgenden Feld „TERMINATE\" ein, um den Vorgang zu bestätigen.",
+  "autorenew_agora_terminate_service_confirm_input": "Geben Sie „TERMINATE“ in das unten stehende Feld ein, um zu bestätigen",
   "autorenew_agora_terminate_service_DBAAS_LOGS": "Meine LDP kündigen",
   "autorenew_agora_terminate_service_warning_DBAAS_LOGS": "Bitte bestätigen Sie die Kündigung Ihrer LDP.",
   "autorenew_agora_terminate_service_success_DBAAS_LOGS": "Ihre Anfrage zur Kündigung Ihrer LDP wurde registriert. Eine E-Mail mit weiteren Informationen zur Vorgehensweise wurde soeben an Sie versandt.",
