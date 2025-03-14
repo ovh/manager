@@ -3,7 +3,7 @@
   "autorenew_agora_terminate_service_warning_OKMS_RESOURCE": "Confirme a rescisão do seu KMS",
   "autorenew_agora_terminate_service_success_OKMS_RESOURCE": "O seu pedido de rescisão do KMS foi registado com êxito. Um e-mail com o procedimento foi-lhe enviado.",
   "autorenew_agora_terminate_service_error_OKMS_RESOURCE": "Ocorreu um erro aquando do pedido de rescisão do seu KMS: {{error}}",
-  "autorenew_agora_terminate_service_confirm_input": "Introduza “TERMINATE” no seguinte campo para confirmar",
+  "autorenew_agora_terminate_service_confirm_input": "Introduza \"TERMINATE\" no seguinte campo para confirmar",
   "autorenew_agora_terminate_service_DBAAS_LOGS": "Rescindir o meu LDP",
   "autorenew_agora_terminate_service_warning_DBAAS_LOGS": "Confirme a rescisão do seu LDP",
   "autorenew_agora_terminate_service_success_DBAAS_LOGS": "O seu pedido de rescisão do LDP foi registado com êxito. Um e-mail com o procedimento foi-lhe enviado.",

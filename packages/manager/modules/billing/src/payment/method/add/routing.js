@@ -3,21 +3,21 @@ import component from './component';
 import { PAYMENT_RUPAY_CREDIT_CARD_CHARGES_FEATURE_ID } from './constants';
 
 export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
-  const name = 'app.account.billing.payment.method.add';
+  const name = 'billing.payment.method.add';
 
   $stateProvider.state(name, {
     url: '/add?callbackUrl&status&redirectResult&paymentMethodId&transactionId',
     views: {
-      '@app.account.billing.payment': {
+      '@billing.payment': {
         component: component.name,
       },
-      'bankAccount@app.account.billing.payment.method.add': {
+      'bankAccount@billing.payment.method.add': {
         component: 'paymentMethodAddBankAccountView',
       },
-      'bankAccountOwner@app.account.billing.payment.method.add': {
+      'bankAccountOwner@billing.payment.method.add': {
         component: 'paymentMethodAddLegacyBillingAddressView',
       },
-      'billingContact@app.account.billing.payment.method.add': {
+      'billingContact@billing.payment.method.add': {
         component: 'paymentMethodAddBillingContactView',
       },
     },
