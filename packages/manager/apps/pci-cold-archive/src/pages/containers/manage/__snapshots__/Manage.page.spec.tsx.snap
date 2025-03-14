@@ -1,0 +1,112 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Manage > should match snapshot when data is loaded 1`] = `
+<div>
+  <ods-modal
+    is-open="true"
+  >
+    <ods-text
+      preset="heading-3"
+    >
+      pci_projects_project_storages_cold_archive_container_manage
+    </ods-text>
+    <slot
+      name="content"
+    >
+      <div
+        class="flex flex-col gap-6 mt-6 mb-8"
+      >
+        <ods-link
+          href="https://docs.ovh.com/fr/storage/object-storage/s3/getting-started-with-object-storage/"
+          icon="external-link"
+          label="pci_projects_project_storages_cold_archive_container_manage_documentation_link"
+          target="_blank"
+        />
+        <ods-text
+          preset="paragraph"
+        >
+          pci_projects_project_storages_cold_archive_container_manage_description_1
+        </ods-text>
+        <ods-text
+          preset="paragraph"
+        >
+          pci_projects_project_storages_cold_archive_container_manage_description_2
+        </ods-text>
+        <ods-form-field
+          class="w-full"
+        >
+          <ods-text
+            class="font-bold-class"
+            preset="caption"
+          >
+            pci_projects_project_storages_cold_archive_containers_container_manage_endpoint_label
+          </ods-text>
+          <ods-clipboard
+            class="w-full"
+            data-testid="clipboard"
+            label-copy="clipboard_copy"
+            label-copy-success="clipboard_copy_success"
+            value="http://example.com"
+          />
+        </ods-form-field>
+        <ods-form-field
+          class="w-full"
+        >
+          <ods-text
+            class="font-bold-class"
+            preset="caption"
+          >
+            pci_projects_project_storages_cold_archive_containers_container_manage_region_label
+          </ods-text>
+          <ods-clipboard
+            class="w-full"
+            data-testid="clipboard"
+            label-copy="clipboard_copy"
+            label-copy-success="clipboard_copy_success"
+            value="bhs"
+          />
+        </ods-form-field>
+      </div>
+    </slot>
+    <ods-button
+      class="mt-6"
+      color="primary"
+      is-disabled="false"
+      label="pci_projects_project_storages_cold_archive_containers_container_manage_close_label"
+      slot="actions"
+      variant="ghost"
+    />
+  </ods-modal>
+</div>
+`;
+
+exports[`Manage > should match snapshot when data is loading 1`] = `
+<div>
+  <ods-modal
+    is-open="true"
+  >
+    <ods-text
+      preset="heading-3"
+    >
+      pci_projects_project_storages_cold_archive_container_manage
+    </ods-text>
+    <slot
+      name="content"
+    >
+      <ods-spinner
+        class="block text-center mt-6 mb-8"
+        data-testid="pciModal-spinner"
+        size="md"
+      />
+    </slot>
+    <ods-button
+      class="mt-6"
+      color="primary"
+      is-disabled="false"
+      label="pci_projects_project_storages_cold_archive_containers_container_manage_close_label"
+      slot="actions"
+      variant="ghost"
+    />
+  </ods-modal>
+</div>
+`;

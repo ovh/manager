@@ -5970,6 +5970,18 @@
     tslib "2.6.3"
     vanillajs-datepicker "1.3.4"
 
+"@ovhcloud/ods-components@18.5.3":
+  version "18.5.3"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-18.5.3.tgz#fdda4b29372bcb29b490cd450a450f03ecbbd500"
+  integrity sha512-+Ic1Uh15NHokvcyyejU5ChfG0kC8pqN9T0v8lx1HUyHdNKuXjuSjP3v1RGZuN1OxvvG8WgtaF3kjwSaj2eMZ1w==
+  dependencies:
+    "@floating-ui/dom" "1.6.11"
+    "@stencil/core" "4.16.0"
+    google-libphonenumber "3.2.35"
+    tom-select "2.3.1"
+    tslib "2.6.3"
+    vanillajs-datepicker "1.3.4"
+
 "@ovhcloud/ods-components@^18.5.0":
   version "18.5.0"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-18.5.0.tgz#f5b9d3ace2dafab19340e1457a0d113ccb09a52c"
@@ -6012,6 +6024,11 @@
   version "18.4.1"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-18.4.1.tgz#1c8dfeff1ba0b829fd61e8dea41af4cdbed46912"
   integrity sha512-bezBp/Bgbo19IFPJ/+a/bFt2IArjq8wGrHPshpk/bVVZsxkgpAiUfRERmftU+l7gYU3e+yvFdopNL6eRaJDPWQ==
+
+"@ovhcloud/ods-themes@18.5.3":
+  version "18.5.3"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-18.5.3.tgz#44f2b4c565e2c63d487dc3865d2558b11726bc2c"
+  integrity sha512-y3uhYsQvdyx/aJBBKjN899U23FmNq2oFBJRG7VZ3PBrR6TKUuEx4kGKIIE9Lr7Fpw75ayYhuXTLM1gVA5308dA==
 
 "@ovhcloud/ods-themes@^18.5.0":
   version "18.5.0"
@@ -9002,7 +9019,7 @@
     "@types/qs" "*"
     "@types/serve-static" "*"
 
-"@types/file-saver@^2.0.7":
+"@types/file-saver@2.0.7", "@types/file-saver@^2.0.7":
   version "2.0.7"
   resolved "https://registry.yarnpkg.com/@types/file-saver/-/file-saver-2.0.7.tgz#8dbb2f24bdc7486c54aa854eb414940bbd056f7d"
   integrity sha512-dNKVfHd/jk0SkR/exKGj2ggkB45MAkzvWCaqLUUgkyjITkGNzH8H+yUwr+BLJUBjZOe9w8X3wgmXhZDRg1ED6A==
@@ -9935,6 +9952,24 @@
   version "2.1.8"
   resolved "https://registry.yarnpkg.com/@vitest/coverage-v8/-/coverage-v8-2.1.8.tgz#738527e6e79cef5004248452527e272e0df12284"
   integrity sha512-2Y7BPlKH18mAZYAW1tYByudlCYrQyl5RGvnnDYJKW5tCiO5qg3KSAy3XAxcxKz900a0ZXxWtKrMuZLe3lKBpJw==
+  dependencies:
+    "@ampproject/remapping" "^2.3.0"
+    "@bcoe/v8-coverage" "^0.2.3"
+    debug "^4.3.7"
+    istanbul-lib-coverage "^3.2.2"
+    istanbul-lib-report "^3.0.1"
+    istanbul-lib-source-maps "^5.0.6"
+    istanbul-reports "^3.1.7"
+    magic-string "^0.30.12"
+    magicast "^0.3.5"
+    std-env "^3.8.0"
+    test-exclude "^7.0.1"
+    tinyrainbow "^1.2.0"
+
+"@vitest/coverage-v8@^2.1.9":
+  version "2.1.9"
+  resolved "https://registry.yarnpkg.com/@vitest/coverage-v8/-/coverage-v8-2.1.9.tgz#060bebfe3705c1023bdc220e17fdea4bd9e2b24d"
+  integrity sha512-Z2cOr0ksM00MpEfyVE8KXIYPEcBFxdbLSs56L8PO0QQMxt/6bDj45uQfxoc96v05KW3clk7vvgP0qfDit9DmfQ==
   dependencies:
     "@ampproject/remapping" "^2.3.0"
     "@bcoe/v8-coverage" "^0.2.3"
@@ -14415,6 +14450,11 @@ element-internals-polyfill@^1.3.12:
   resolved "https://registry.yarnpkg.com/element-internals-polyfill/-/element-internals-polyfill-1.3.12.tgz#4a9464a15f2d50a36c7e21e0c40aeed30fb8efb0"
   integrity sha512-KW1k+cMGwXlx3X9nqhgmuElAfR/c/ccFt0pG4KpwK++Mx9Y+mPExxJW+jgQnqux/NQrJejgOxxg4Naf3f6y67Q==
 
+element-internals-polyfill@^3.0.0:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/element-internals-polyfill/-/element-internals-polyfill-3.0.1.tgz#46e69c38c87313d9863fa4ec949517c26ca3beb5"
+  integrity sha512-gHt0mrRy/y7VIymHIcq1U/IZOci3Z8qUy/YyMBSoSIfMHqO4v6Sm6igGpoFeljroo0Q2wjkInUafB79M6WAocQ==
+
 email-addresses@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/email-addresses/-/email-addresses-5.0.0.tgz#7ae9e7f58eef7d5e3e2c2c2d3ea49b78dc854fa6"
@@ -15850,7 +15890,7 @@ file-loader@^6.2.0:
     loader-utils "^2.0.0"
     schema-utils "^3.0.0"
 
-file-saver@^2.0.1, file-saver@^2.0.5:
+file-saver@2.0.5, file-saver@^2.0.1, file-saver@^2.0.5:
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/file-saver/-/file-saver-2.0.5.tgz#d61cfe2ce059f414d899e9dd6d4107ee25670c38"
   integrity sha512-P9bmyZ3h/PRG+Nzga+rbdI4OEpNDzAVyy74uVO9ATgzLK6VtAsYybF/+TOCvrc0MO793d6+42lLyZTw7/ArVzA==
