@@ -29,7 +29,7 @@
     >
         <!-- Service in autorenew -->
         <oui-action-menu-item
-            ng-if="!$ctrl.service.isOneShot() && !$ctrl.service.hasForcedRenew() && !$ctrl.service.isResiliated() && $ctrl.service.canHandleRenew() && !$ctrl.service.hasEngagement()"
+            ng-if="$ctrl.service.serviceType !== $ctrl.SERVICE_TYPE.EXTRA_SQL_PERSO && !$ctrl.service.isOneShot() && !$ctrl.service.hasForcedRenew() && !$ctrl.service.isResiliated() && $ctrl.service.canHandleRenew() && !$ctrl.service.hasEngagement()"
             href="{{:: $ctrl.updateLink }}"
             on-click="$ctrl.trackAction('go-to-configure-renew')"
             data-navi-id="go-to-configure-renew"
@@ -196,7 +196,7 @@
 
     <!-- Service with termination asked by the customer -->
     <oui-action-menu-item
-        ng-if="$ctrl.service.serviceType !== $ctrl.SERVICE_TYPE.VRACK && $ctrl.cancelResiliationLink && ($ctrl.service.canBeUnresiliated($ctrl.user.nichandle) || $ctrl.service.canCancelResiliationByEndRule())"
+        ng-if="![$ctrl.SERVICE_TYPE.VRACK, $ctrl.SERVICE_TYPE.EXTRA_SQL_PERSO].includes($ctrl.service.serviceType) && $ctrl.cancelResiliationLink && ($ctrl.service.canBeUnresiliated($ctrl.user.nichandle) || $ctrl.service.canCancelResiliationByEndRule())"
         href="{{:: $ctrl.cancelResiliationLink }}"
         on-click="$ctrl.trackAction('go-to-cancel-resiliation')"
         data-navi-id="go-to-cancel-resiliation"
