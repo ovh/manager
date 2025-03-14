@@ -29,21 +29,20 @@ version() {
 
   if "${DRY_RELEASE}"; then
     printf "%s\n" "Dry releasing"
-    lerna version --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --allow-branch="${GIT_BRANCH}" --yes
+    node_modules/.bin/lerna version --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --allow-branch="${GIT_BRANCH}" --yes
   else
     printf "%s\n" "Releasing"
-    lerna version --conventional-commits --no-commit-hooks --no-git-tag-version --no-push  --yes
+    node_modules/.bin/lerna version --conventional-commits --no-commit-hooks --no-git-tag-version --no-push  --yes
   fi
 }
 
 get_changed_packages() {
-  lerna changed --all -p -l
+  node_modules/.bin/lerna changed --all -p -l
 }
 
 get_release_name() {
   seed="$1"
-  #release_name=$(node scripts/release/index.js "$seed")
-  release_name=$(npx @ovh-ux/codename-generator codename-generator -s "$seed" | sed 's/ /-/g' | tr '[:upper:]' '[:lower:]')
+  release_name=$(node scripts/release/index.js "$seed")
   latest_release="$(git tag -l "${release_name}*" --sort=taggerdate | tail -1)"
   if [ -z "$latest_release" ]; then
     printf "%s\n" "$release_name"
@@ -59,7 +58,7 @@ get_release_name() {
 }
 
 create_release_note() (
-  conventional-changelog -p angular -n scripts/release/changelog.js -k "$1" --commit-path "$1" -l "$2"
+  node_modules/.bin/conventional-changelog -p angular -n scripts/release/changelog.js -k "$1" --commit-path "$1" -l "$2"
 )
 
 push_and_release() {
@@ -150,7 +149,7 @@ main() {
   #Remove package specific tags
   clean_tags
 
-  #push_and_release "$next_tag"
+  push_and_release "$next_tag"
 }
 
 main "${@}"
