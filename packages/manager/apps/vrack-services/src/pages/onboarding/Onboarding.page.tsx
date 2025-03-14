@@ -17,10 +17,10 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { getVrackServicesResourceListQueryKey } from '@ovh-ux/manager-network-common';
 import { useGuideUtils } from './useGuideUtils';
 import { OnboardingLayout } from '@/components/layout-helpers';
 import onboardingImgSrc from '@/assets/onboarding-img.png';
-import { getVrackServicesResourceListQueryKey } from '@/data/api';
 import { urls } from '@/routes/routes.constants';
 import { onboardingRefetchInterval } from './onboarding.constants';
 
