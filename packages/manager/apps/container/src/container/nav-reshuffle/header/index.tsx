@@ -5,7 +5,6 @@ import UserAccountMenu from './user-account-menu';
 
 import LanguageMenu from '@/container/common/language';
 import modalStyle from '@/container/common/modal.module.scss';
-import NavReshuffleSwitchBack from '@/container/common/nav-reshuffle-switch-back';
 import NotificationsSidebar from '@/container/common/notifications-sidebar';
 import Notifications from '@/container/common/notifications-sidebar/NotificationsButton';
 import ApplicationContext, { useShell } from '@/context';
@@ -14,8 +13,6 @@ import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 import { Logo } from '@/container/common/Logo';
 
 import style from './style.module.scss';
-import { useMediaQuery } from 'react-responsive';
-import { SMALL_DEVICE_MAX_SIZE } from '@/container/common/constants';
 
 type Props = {
   isSidebarExpanded?: boolean;
@@ -34,9 +31,6 @@ function Header({
   );
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { setIsNotificationsSidebarVisible } = useHeader();
-  const isSmallDevice = useMediaQuery({
-    query: `(max-width: ${SMALL_DEVICE_MAX_SIZE})`,
-  });
   const navigationPlugin = shell.getPlugin('navigation');
   const logoLink = navigationPlugin.getURL('hub', '#/');
   const { isMobile } = useProductNavReshuffle();
@@ -68,11 +62,6 @@ function Header({
             <div
               className={`oui-navbar-list oui-navbar-list_aside oui-navbar-list_end ${style.navbarList}`}
             >
-              {!isSmallDevice &&
-                <div className={`oui-navbar-list__item ${style.navbarListItem}`}>
-                  <NavReshuffleSwitchBack />
-                </div>
-              }
               <div className={`oui-navbar-list__item ${style.navbarListItem}`}>
                 <LanguageMenu
                   setUserLocale={setUserLocale}
@@ -96,11 +85,6 @@ function Header({
               </div>
             </div>
           </div>
-          {isSmallDevice &&
-            <div className={style['small-device-pnr-switch']}>
-              <NavReshuffleSwitchBack />
-            </div>
-          }
           <NotificationsSidebar />
         </Suspense>
       )}
