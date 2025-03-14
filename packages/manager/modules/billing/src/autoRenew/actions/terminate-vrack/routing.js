@@ -1,9 +1,9 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.account.billing.autorenew.terminateVrack', {
+  $stateProvider.state('billing.autorenew.terminateVrack', {
     url: '/terminate-vrack?service&serviceType',
     views: {
       modal: {
-        component: 'billingAutorenewTerminateVrack',
+        component: 'billingTerminateVrack',
       },
     },
     layout: 'modal',
