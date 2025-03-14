@@ -35,7 +35,7 @@ export default class BmServerComponentsNetbootCtrl {
 
     this.NETBOOT_PRIORITY_ORDER = [this.RESCUE, this.HARDDISK, this.NETWORK];
 
-    this.DEFAULT_RESCUE = 'rescue-customer';
+    this.DEFAULT_RESCUE = 'rescue12-customer';
 
     this.loading = {
       init: true,
