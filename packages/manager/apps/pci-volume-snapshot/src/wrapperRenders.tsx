@@ -1,3 +1,4 @@
+import React, { ReactNode } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import {
   ShellContext,
@@ -26,8 +27,7 @@ const queryClient = new QueryClient({
     },
   },
 });
-
-export const wrapper = ({ children }) => (
+export const wrapper = ({ children }: { children: ReactNode }) => (
   <QueryClientProvider client={queryClient}>
     <ShellContext.Provider
       value={(shellContext as unknown) as ShellContextType}
