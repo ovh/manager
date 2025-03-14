@@ -212,6 +212,13 @@
             ></server-advanced-features>
         </div>
 
+        <!-- Tagging -->
+        <div class="col-md-4 mb-3">
+            <ovh-manager-resource-tagging-dashboard-tile
+                tags="$ctrl.server.iam.tags"
+                go-to-tags-modal="$ctrl.goToTagsModal"
+            ></ovh-manager-resource-tagging-dashboard-tile>
+        </div>
         <!-- Retention Advices -->
         <ovh-advices
             data-ng-if="!$ctrl.server.isExpired && $ctrl.serverType !== 'node'"
