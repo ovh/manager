@@ -2,6 +2,7 @@ import React from 'react';
 import { OdsTag } from '@ovhcloud/ods-components/react';
 import { ODS_TAG_COLOR } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
+import { FilterTypeCategories } from '@ovh-ux/manager-core-api';
 import { FilterWithLabel } from './interface';
 import './translations';
 
@@ -14,9 +15,10 @@ export function FilterList({
   filters,
   onRemoveFilter,
 }: Readonly<FilterListProps>) {
-  const { t } = useTranslation('filters');
+  const { t, i18n } = useTranslation('filters');
   const tComp = (comparator: string) =>
     t(`common_criteria_adder_operator_${comparator}`);
+  const locale = i18n.language?.replace('_', '-') || 'FR-fr';
 
   return (
     <>
@@ -31,7 +33,11 @@ export function FilterList({
           label={`${
             filter.label ? `${filter.label} ${tComp(filter.comparator)} ` : ''
           }
-          ${filter.value}`}
+          ${
+            filter.type === FilterTypeCategories.Date
+              ? new Date(`${filter.value}`).toLocaleDateString(locale)
+              : `${filter.value}`
+          }`}
         />
       ))}
     </>
