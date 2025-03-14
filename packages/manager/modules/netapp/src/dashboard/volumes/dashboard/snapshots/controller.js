@@ -22,7 +22,7 @@ export default class NetAppVolumesDashboardSnapshotsController {
     this.SNAPSHOT_TYPE = SNAPSHOT_TYPE;
 
     this.atInternet.trackPage({
-      name: `${SNAPSHOT_TRACKING_PREFIX}netapp::listing::snapshots`,
+      name: `${SNAPSHOT_TRACKING_PREFIX}netapp::volumes::listing::snapshots`,
       ...SNAPSHOT_LISTING_TRACKING_CONTEXT,
       page_category: 'listing',
     });
