@@ -10,7 +10,6 @@ import {
   OsdsIcon,
   OsdsInput,
   OsdsLink,
-  OsdsMessage,
   OsdsSpinner,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
@@ -19,15 +18,13 @@ import {
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
-import { useContext, useEffect, useMemo, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
   ODS_INPUT_TYPE,
   ODS_SPINNER_SIZE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import {
   useHref,
@@ -41,7 +38,6 @@ import { useEditGateway, useGateway } from '@/api/hooks/useGateways';
 import { TSizeItem, useData } from '@/api/hooks/data';
 import { SizeLabelComponent } from '@/pages/edit/SizeLabel.component';
 import HidePreloader from '@/core/HidePreloader';
-import { RegionType } from '@/types/region';
 
 type TState = {
   size: TSizeItem;
@@ -62,14 +58,6 @@ export default function EditGatewayPage(): JSX.Element {
   const sizes = useData(projectId);
 
   const regionName = searchParams.get('region');
-
-  const region = useMemo(
-    () =>
-      sizes[0]?.availableRegions.find(
-        (availableRegion) => availableRegion.name === regionName,
-      ),
-    [sizes, regionName],
-  );
 
   const { data: gateway, isPending: isGatewayLoading } = useGateway(
     projectId,
@@ -250,21 +238,6 @@ export default function EditGatewayPage(): JSX.Element {
                 setState({ ...state, size: item });
               }}
             />
-            {region?.type === RegionType['3AZ'] && (
-              <OsdsMessage
-                color={ODS_THEME_COLOR_INTENT.warning}
-                icon={ODS_ICON_NAME.WARNING}
-                className="mb-6"
-              >
-                <OsdsText
-                  level={ODS_TEXT_LEVEL.body}
-                  size={ODS_TEXT_SIZE._400}
-                  color={ODS_THEME_COLOR_INTENT.text}
-                >
-                  {t('add:pci_projects_project_public_gateways_3az_price')}
-                </OsdsText>
-              </OsdsMessage>
-            )}
           </StepComponent>
         </>
       )}
