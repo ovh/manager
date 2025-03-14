@@ -150,7 +150,7 @@ main() {
   #Remove package specific tags
   clean_tags
 
-  push_and_release "$next_tag"
+  #push_and_release "$next_tag"
 }
 
 main "${@}"
