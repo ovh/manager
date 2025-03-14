@@ -86,7 +86,7 @@ export const TRACKING = definedTrackingConfig({
       actions: ['go-to-access-vcd_portal'],
     },
   },
-  datacentreCompute: {
+  compute: {
     addVirtualHost: {
       location: PageLocation.page,
       buttonType: ButtonType.button,
@@ -106,7 +106,7 @@ export const TRACKING = definedTrackingConfig({
       actions: ['datacenter_add_virtual_hosting', 'cancel'],
     },
   },
-  datacentreStorage: {
+  storage: {
     addStorage: {
       location: PageLocation.page,
       buttonType: ButtonType.button,
@@ -132,8 +132,8 @@ export const TRACKING_TABS_ACTIONS = {
   dashboard: ['general-informations'],
   datacentres: ['datacenters'],
   datacentreDashboard: ['datacenter', 'general-informations'],
-  datacentreCompute: ['datacenter', 'compute'],
-  datacentreStorage: ['datacenter', 'storage'],
+  compute: ['datacenter', 'compute'],
+  storage: ['datacenter', 'storage'],
 };
 
 export const TRACK_TAB_CLICK = (actions: string[]): TrackingClickParams => ({

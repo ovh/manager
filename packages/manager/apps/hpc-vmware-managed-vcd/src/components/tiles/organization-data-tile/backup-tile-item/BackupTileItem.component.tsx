@@ -65,6 +65,7 @@ export default function BackupTileItem({
         type={LinkType.external}
         label={t('managed_vcd_dashboard_backup_link')}
         href={veeamHref}
+        data-testid={TEST_IDS.dashboardVeeamBackupLink}
         onClickReturn={() => trackClick(TRACKING.dashboard.goToManageBackup)}
       />
     </div>

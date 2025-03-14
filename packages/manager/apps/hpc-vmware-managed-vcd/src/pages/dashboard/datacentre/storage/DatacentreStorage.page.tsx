@@ -91,7 +91,7 @@ export default function StorageListingPage() {
           label={t('managed_vcd_vdc_storage_order_cta')}
           variant="outline"
           onClick={() => {
-            trackClick(TRACKING.datacentreStorage.addStorage);
+            trackClick(TRACKING.storage.addStorage);
             navigate(subRoutes.order);
           }}
           data-testid={TEST_IDS.storageOrderCta}

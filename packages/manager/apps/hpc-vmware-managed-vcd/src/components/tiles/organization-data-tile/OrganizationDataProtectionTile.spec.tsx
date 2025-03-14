@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { act, render } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
 import React from 'react';
 import {
@@ -22,6 +22,7 @@ import {
   assertTextVisibility,
   getElementByTestId,
 } from '@ovh-ux/manager-core-test-utils';
+import userEvent from '@testing-library/user-event';
 import OrganizationDataProtectionTile from './OrganizationDataProtectionTile.component';
 import { labels } from '../../../test-utils';
 import {
@@ -29,12 +30,14 @@ import {
   DATA_PROTECTION_RECOVERY_LABEL,
 } from '../../../pages/dashboard/organization/organizationDashboard.constants';
 import TEST_IDS from '../../../utils/testIds.constants';
+import { TRACKING } from '../../../tracking.constant';
 
+const trackClickMock = vi.fn();
 vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
   const original: typeof import('@ovh-ux/manager-react-shell-client') = await importOriginal();
   return {
     ...original,
-    useOvhTracking: () => ({ trackClick: vi.fn() }),
+    useOvhTracking: () => ({ trackClick: trackClickMock }),
   };
 });
 
@@ -86,6 +89,21 @@ describe('OrganizationDataProtectionTile component unit test suite', () => {
     ];
 
     elements.forEach(async (element) => assertTextVisibility(element));
+  });
+
+  it('should track click on redirect to VeeamBackup', async () => {
+    const user = userEvent.setup();
+    // when
+    renderComponent();
+
+    // then
+    const veeamLink = await getElementByTestId(
+      TEST_IDS.dashboardVeeamBackupLink,
+    );
+    await act(() => user.click(veeamLink));
+    expect(trackClickMock).toHaveBeenCalledWith(
+      TRACKING.dashboard.goToManageBackup,
+    );
   });
 });
 

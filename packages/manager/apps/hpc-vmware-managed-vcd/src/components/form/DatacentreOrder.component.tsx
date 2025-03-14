@@ -143,11 +143,7 @@ export const DatacentreOrder = <T extends OrderType>({
             label={t('managed_vcd_vdc_order_cancel_cta')}
             variant="ghost"
             onClick={() => {
-              trackClick(
-                orderType === 'compute'
-                  ? TRACKING.datacentreCompute.orderCancel
-                  : TRACKING.datacentreStorage.orderCancel,
-              );
+              trackClick(TRACKING[orderType].orderCancel);
               navigate(backLink);
             }}
           />
@@ -156,11 +152,7 @@ export const DatacentreOrder = <T extends OrderType>({
             isDisabled={!isValidQuantity}
             onClick={() => {
               if (!isValidQuantity) return;
-              trackClick(
-                orderType === 'compute'
-                  ? TRACKING.datacentreCompute.orderConfirm
-                  : TRACKING.datacentreStorage.orderConfirm,
-              );
+              trackClick(TRACKING[orderType].orderConfirm);
               redirectToOrder();
             }}
           />

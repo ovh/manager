@@ -8,6 +8,7 @@ import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { WINDOWS_LICENSE_PLANCODE } from '@/utils/planCode.constants';
 import { TRACKING } from '@/tracking.constant';
+import TEST_IDS from '@/utils/testIds.constants';
 
 export default function OrganizationOptionsTile({
   isLicenseActive,
@@ -54,6 +55,7 @@ export default function OrganizationOptionsTile({
                         trackClick(TRACKING.dashboard.activateWindowsLicence);
                         redirectToOrder();
                       },
+                      testId: TEST_IDS.activateLicenseCta,
                     },
                   ]}
                 />

@@ -1,4 +1,3 @@
-import React from 'react';
 import { useNavigate, useParams, useResolvedPath } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
@@ -41,13 +40,13 @@ function DatacentreDashboardPage() {
       name: 'compute',
       title: COMPUTE_LABEL,
       to: useResolvedPath('compute').pathname,
-      trackingActions: TRACKING_TABS_ACTIONS.datacentreCompute,
+      trackingActions: TRACKING_TABS_ACTIONS.compute,
     },
     {
       name: 'storage',
       title: STORAGE_LABEL,
       to: useResolvedPath('storage').pathname,
-      trackingActions: TRACKING_TABS_ACTIONS.datacentreStorage,
+      trackingActions: TRACKING_TABS_ACTIONS.storage,
     },
   ];
 

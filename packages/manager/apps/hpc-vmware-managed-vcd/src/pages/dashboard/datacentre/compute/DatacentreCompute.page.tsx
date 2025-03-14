@@ -100,7 +100,7 @@ export default function ComputeListingPage() {
             label={t('managed_vcd_vdc_compute_order_cta')}
             variant="outline"
             onClick={() => {
-              trackClick(TRACKING.datacentreCompute.addVirtualHost);
+              trackClick(TRACKING.compute.addVirtualHost);
               navigate(subRoutes.order);
             }}
             data-testid={TEST_IDS.computeOrderCta}
