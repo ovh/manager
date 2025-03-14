@@ -1,10 +1,10 @@
 import { FC } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
-import { useUrlLastSection } from '@/hooks/url/useUrlLastSection';
 import { useUrlSearchParams } from '@/hooks/url/useUrlSearchParams';
+import { usePathMatch } from '@/hooks/url/usePathMatch';
 
 type TSectionType = 'delete' | 'start' | 'stop' | 'shelve' | 'unshelve';
-const actionSectionRegex = /^(delete|start|stop|shelve|unshelve)$/;
+const actionSectionRegex = /(?:rescue\/(start|end)|(?<!rescue\/)(start|stop|shelve|unshelve|delete))$/;
 
 /**
  * React component to handle leagcy non-regionalized routes for instance actions.
@@ -14,9 +14,7 @@ const actionSectionRegex = /^(delete|start|stop|shelve|unshelve)$/;
  */
 const LegacyInstanceAction: FC = () => {
   const location = useLocation();
-  const section = useUrlLastSection<TSectionType>(
-    actionSectionRegex.test.bind(actionSectionRegex),
-  );
+  const section = usePathMatch<TSectionType>(actionSectionRegex);
   const { instanceId } = useUrlSearchParams('instanceId');
   const canRedirect = !!section && !!instanceId;
   const redirectHref = `../region/${null}/instance/${instanceId}/${section}`;
