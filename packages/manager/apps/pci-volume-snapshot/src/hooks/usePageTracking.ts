@@ -1,5 +1,5 @@
 import { useContext, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useMatches } from 'react-router-dom';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useProject } from '@ovh-ux/manager-pci-common';
 import { PAGE_PREFIX, PCI_LEVEL2 } from '@/tracking.constants';
@@ -8,6 +8,7 @@ const DISCOVERY_PLANCODE = 'project.discovery';
 
 export default function usePageTracking() {
   const location = useLocation();
+  const matches = useMatches();
   const { data: project } = useProject();
   const { setPciProjectMode, trackPage } = useContext(
     ShellContext,
@@ -23,10 +24,10 @@ export default function usePageTracking() {
   }, [project]);
 
   useEffect(() => {
-    const pageId = location.pathname.split('/').pop();
-    const pageKey = pageId === 'volume_snapshot' ? '' : `::${pageId}`;
+    const matchedRoute = matches[matches.length - 1];
+
     trackPage({
-      name: `${PAGE_PREFIX}::${pageKey}`,
+      name: `${PAGE_PREFIX}::${matchedRoute?.id}`,
       level2: PCI_LEVEL2,
     });
   }, [location]);
