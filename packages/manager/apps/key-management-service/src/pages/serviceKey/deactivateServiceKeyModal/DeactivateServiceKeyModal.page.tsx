@@ -87,6 +87,7 @@ export const DisableServiceKeyModal = () => {
       isDismissible
       onOdsClose={closeModal}
       color={ODS_MODAL_COLOR.warning}
+      className="[&::part(dialog)]:overflow-visible [&::part(dialog-content)]:overflow-visible"
     >
       <OdsText preset={ODS_TEXT_PRESET.heading2}>
         {t('key_management_service_service-keys_modal_deactivation_heading')}
