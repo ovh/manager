@@ -18,6 +18,7 @@ export const features = [
   'pci-databases-analytics-operational',
   'pci-databases-analytics-streaming',
   'pci-databases-analytics-analysis',
+  'pci-dataplatform',
   'archive',
   'cold-archive',
   'snapshot',
@@ -261,6 +262,7 @@ export function getPciProjectMenu(
       'data-processing',
       'databases-analysis',
       'pci-databases-analytics-analysis',
+      'pci-dataplatform',
       'data-platform',
       'logs-data-platform',
     )
@@ -336,6 +338,15 @@ export function getPciProjectMenu(
           title: 'Data Platform',
           href: `https://hq-api.eu.dataplatform.ovh.net/iam/v4/login?authentication_provider=ovh&project=${projectId}&app_id=forepaas&&response_type=token&redirect_uri=https%3A%2F%2Feu.dataplatform.ovh.net&authorize_bypass=true&token_mode=cookie&force_auth=false`,
           external: true,
+        },
+        isFeaturesAvailable('pci-dataplatform') && {
+          id: 'pci-dataplatform',
+          title: 'Data Platform',
+          badge: 'new',
+          href: getURL(
+            'public-cloud',
+            `#/pci/projects/${projectId}/dataplatform`,
+          ),
         },
         isFeaturesAvailable('logs-data-platform') && {
           id: 'logs-data-platform',
