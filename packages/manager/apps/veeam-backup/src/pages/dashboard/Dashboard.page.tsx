@@ -1,27 +1,20 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  OsdsChip,
-  OsdsMessage,
-  OsdsSkeleton,
-  OsdsText,
+  OdsBadge,
+  OdsMessage,
+  OdsSkeleton,
+  OdsText,
 } from '@ovhcloud/ods-components/react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import {
   DashboardGridLayout,
   BaseLayout,
   DashboardTile,
-  Description,
   RedirectionGuard,
   Region,
   ChangelogButton,
 } from '@ovh-ux/manager-react-components';
-import {
-  ODS_MESSAGE_TYPE,
-  ODS_SKELETON_SIZE,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
 import {
   getRegionNameFromAzName,
   getVeeamBackupDisplayName,
@@ -63,7 +56,7 @@ export default function DashboardPage() {
     );
     return { ...offer, usedSpaceInGB: consumption?.quantity ?? 0 };
   };
-  
+
   const header = {
     title: displayName,
     description: displayName !== data?.data?.id ? data?.data?.id : null,
@@ -79,14 +72,7 @@ export default function DashboardPage() {
           {['DISABLED', 'DISABLING', 'REMOVED'].includes(
             data?.data?.resourceStatus,
           ) && (
-            <OsdsMessage type={ODS_MESSAGE_TYPE.warning}>
-              <OsdsText
-                color={ODS_THEME_COLOR_INTENT.warning}
-                size={ODS_TEXT_SIZE._400}
-              >
-                {t('terminated_service')}
-              </OsdsText>
-            </OsdsMessage>
+            <OdsMessage color="warning">{t('terminated_service')}</OdsMessage>
           )}
           <SuccessMessages id={id} />
         </>
@@ -112,7 +98,7 @@ export default function DashboardPage() {
                 {
                   id: 'status',
                   label: t('product_status'),
-                  value: <BackupStatusBadge className="mt-4" {...data?.data} />,
+                  value: <BackupStatusBadge {...data?.data} />,
                 },
                 {
                   id: 'vcdOrg',
@@ -129,23 +115,23 @@ export default function DashboardPage() {
                   id: 'location',
                   label: t('location'),
                   value: (
-                    <Description>
+                    <OdsText>
                       <Region
                         mode="region"
                         name={getRegionNameFromAzName(
                           data?.data.currentState.azName,
                         )}
                       />
-                    </Description>
+                    </OdsText>
                   ),
                 },
                 {
                   id: 'region',
                   label: t('region'),
                   value: (
-                    <Description>
+                    <OdsText>
                       {getRegionNameFromAzName(data?.data.currentState.azName)}
-                    </Description>
+                    </OdsText>
                   ),
                 },
               ]}
@@ -158,10 +144,11 @@ export default function DashboardPage() {
                   label: t('consumed_vms'),
                   value: data?.data?.currentState?.vms ? (
                     <div className="flex flex-col">
-                      <OsdsChip color={ODS_THEME_COLOR_INTENT.primary} inline>
-                        {data.data.currentState.vms} VMs
-                      </OsdsChip>
-                      <Description>{t('consumed_vms_label')}</Description>
+                      <OdsBadge
+                        className="mt-1"
+                        label={`${data.data.currentState.vms} VMs`}
+                      />
+                      <OdsText>{t('consumed_vms_label')}</OdsText>
                     </div>
                   ) : (
                     <ComingSoonBadge />
@@ -174,8 +161,8 @@ export default function DashboardPage() {
                     .toUpperCase()}${offer.name.substring(1).toLowerCase()}`,
                   value: isLoadingConsumption ? (
                     <>
-                      <OsdsSkeleton inline size={ODS_SKELETON_SIZE.sm} />
-                      <OsdsSkeleton size={ODS_SKELETON_SIZE.md} />
+                      <OdsSkeleton />
+                      <OdsSkeleton />
                     </>
                   ) : (
                     <OfferProgress {...getRealOfferConsumption(offer)} />

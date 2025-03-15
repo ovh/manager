@@ -1,9 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, Outlet } from 'react-router-dom';
-import { OsdsButton } from '@ovhcloud/ods-components/react';
-import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { OdsButton } from '@ovhcloud/ods-components/react';
 import {
   Datagrid,
   BaseLayout,
@@ -118,14 +116,11 @@ export default function Listing() {
         message={<SuccessMessages />}
       >
         <div className="flex mb-6">
-          <OsdsButton
-            variant={ODS_BUTTON_VARIANT.stroked}
-            color={ODS_THEME_COLOR_INTENT.primary}
-            inline
+          <OdsButton
+            variant="outline"
             onClick={() => navigate(urls.orderVeeam)}
-          >
-            {t('order_button')}
-          </OsdsButton>
+            label={t('order_button')}
+          />
         </div>
 
         <React.Suspense fallback={<Loading />}>

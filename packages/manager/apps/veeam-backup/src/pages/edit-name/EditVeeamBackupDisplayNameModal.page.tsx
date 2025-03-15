@@ -43,6 +43,7 @@ export default function EditVeeamBackupDisplayNameModal() {
 
   return (
     <UpdateIamNameModal
+      isOpen
       closeModal={onClose}
       headline={t('update_display_name_modal_headline')}
       inputLabel={t('update_display_name_input_label')}

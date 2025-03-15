@@ -6,9 +6,7 @@ import {
   OnboardingLayout,
 } from '@ovh-ux/manager-react-components';
 import { useNavigate } from 'react-router-dom';
-import { OsdsMessage } from '@ovhcloud/ods-components/react';
-import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 import { useOrganizationList } from '@ovh-ux/manager-module-vcd-api';
 import { useGuideUtils } from './useGuideUtils';
 import onboardingImgSrc from '@/assets/veeamxOVHcloud.svg';
@@ -35,9 +33,7 @@ export default function Onboarding() {
         description: t('guide1_description'),
         category: t('guide_category'),
       },
-      badges: [
-        { text: t('new_badge_label'), color: ODS_THEME_COLOR_INTENT.info },
-      ],
+      badges: [{ text: t('new_badge_label') }],
       href: guides?.guideLink1,
       isExternalHref: true,
     },
@@ -66,9 +62,9 @@ export default function Onboarding() {
   return (
     <React.Suspense fallback={<Loading />}>
       {isError && (
-        <OsdsMessage className="mb-9" type={ODS_MESSAGE_TYPE.error}>
+        <OdsMessage className="mb-9" color="danger">
           {error.message}
-        </OsdsMessage>
+        </OdsMessage>
       )}
       {!isLoading && !isError && (
         <NoOrganizationMessage organizationList={organizationList} />
@@ -76,13 +72,12 @@ export default function Onboarding() {
       <OnboardingLayout
         title={productFullName}
         img={{ src: onboardingImgSrc }}
-        description={t('description')}
-        orderButtonLabel={t('order_button_label')}
-        onOrderButtonClick={
-          organizationList?.length > 0
-            ? () => navigate(urls.orderVeeam)
-            : undefined
+        description={
+          <OdsText className="text-center">{t('description')}</OdsText>
         }
+        orderButtonLabel={t('order_button_label')}
+        isActionDisabled={!organizationList?.length}
+        onOrderButtonClick={() => navigate(urls.orderVeeam)}
         moreInfoButtonLabel={t('more_info_button_label')}
         moreInfoHref={moreInfoHref}
       >

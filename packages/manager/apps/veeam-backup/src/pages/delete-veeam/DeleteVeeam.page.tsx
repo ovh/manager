@@ -40,6 +40,7 @@ export default function DeleteVeeamBackupModal() {
 
   return (
     <DeleteServiceModal
+      isOpen
       closeModal={onClose}
       deleteInputLabel={t('delete_input_label')}
       headline={t('headline')}
