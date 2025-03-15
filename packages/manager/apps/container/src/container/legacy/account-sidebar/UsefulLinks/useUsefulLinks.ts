@@ -56,7 +56,6 @@ const useUsefulLinks = (): UseUsefulLinks => {
             id: 'chatbot',
             action: () => {
               shell.getPlugin('ux').openLiveChat();
-              setChatbotReduced(false);
             },
             icon: getOdsIcon(ODS_ICON_NAME.SPEECH_BUBBLE_CONCEPT),
           },
