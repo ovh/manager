@@ -1,0 +1,124 @@
+<div>
+    <div data-ovh-alert="iam-user-groups-alert"></div>
+
+    <!-- GROUPS add BTN -->
+    <button
+        type="button"
+        class="btn btn-primary mb-4"
+        data-ng-click="setAction('add/users-groups-add', user)"
+        data-ng-disabled="$ctrl.groupsLoading"
+        data-ng-class="{'disabled': $ctrl.groupsLoading}"
+    >
+        <span data-translate="users_groups_add"></span>
+    </button>
+
+    <!-- IDENTITY PROVIDER GROUPS MAPPING -->
+    <div class="table-responsive">
+        <table
+            class="table table-hover"
+            aria-label="{{:: 'users_groups_table_description' | translate }}"
+        >
+            <thead>
+                <tr>
+                    <th data-translate="users_groups_name" scope="col"></th>
+                    <th data-translate="users_groups_role" scope="col"></th>
+                    <th
+                        data-translate="users_groups_description"
+                        scope="col"
+                    ></th>
+                    <th data-translate="users_groups_creation" scope="col"></th>
+                    <th
+                        data-translate="users_groups_last_update"
+                        colspan="2"
+                        scope="col"
+                    ></th>
+                </tr>
+            </thead>
+            <tbody
+                data-ng-show="$ctrl.groupsArray.length > 0 && !$ctrl.groupsLoading"
+            >
+                <tr data-ng-repeat="group in $ctrl.groupsArray track by $index">
+                    <td>
+                        <strong data-ng-bind="group.name"> </strong>
+                    </td>
+                    <td
+                        data-ng-bind="'user_roles_' + group.role | translate"
+                    ></td>
+                    <td>
+                        <span
+                            data-ng-bind="group.shortDescription"
+                            data-oui-tooltip="{{ group.description }}"
+                        >
+                        </span>
+                    </td>
+                    <td data-ng-bind="group.creation | date"></td>
+                    <td data-ng-bind="group.lastUpdate | date"></td>
+
+                    <td class="text-right">
+                        <div data-uib-dropdown data-dropdown-append-to-body>
+                            <button
+                                type="button"
+                                class="btn btn-link"
+                                data-uib-dropdown-toggle
+                            >
+                                <span
+                                    class="oui-icon oui-icon-ellipsis"
+                                    aria-hidden="true"
+                                >
+                                </span>
+                            </button>
+                            <ul
+                                data-uib-dropdown-menu
+                                class="dropdown-menu dropdown-menu-right"
+                            >
+                                <li>
+                                    <button
+                                        type="button"
+                                        class="btn btn-link"
+                                        data-ng-click="setAction('update/users-groups-update', group)"
+                                        data-translate="users_groups_update"
+                                    ></button>
+                                </li>
+                                <li>
+                                    <button
+                                        type="button"
+                                        class="btn btn-link"
+                                        data-ng-click="setAction('delete/users-groups-delete', group)"
+                                        data-translate="users_groups_delete"
+                                    ></button>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- GROUPS PAGINATION -->
+    <div
+        data-pagination-front
+        data-items="$ctrl.groupIds"
+        data-paginated-items="$ctrl.groupsArray"
+        data-current-page="currentPage"
+        data-items-per-page="itemsPerPage"
+        data-nb-pages="nbPages"
+        data-transform-item="$ctrl.onTransformGroup(item)"
+        data-on-transform-item-done="$ctrl.onTransformGroupDone(items)"
+        data-page-placeholder="{{ 'pagination_page' | translate:{ t0: currentPage, t1: nbPages } }}"
+        data-item-per-page-placeholder="{{ 'pagination_display' | translate }}"
+    ></div>
+
+    <div data-ng-if="$ctrl.isModalOpened">
+        <div class="modal d-block">
+            <div
+                class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+            >
+                <div class="modal-content">
+                    <div data-ng-include="stepPath"></div>
+                </div>
+            </div>
+        </div>
+        <div class="oui-modal-backdrop"></div>
+    </div>
+</div>
