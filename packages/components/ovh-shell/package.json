@@ -31,13 +31,12 @@
     "@ovh-ux/ovh-reket": "^2.1.7",
     "@ovh-ux/request-tagger": "^0.4.0",
     "@ovh-ux/url-builder": "^2.0.0",
-    "@types/react": "^18.0.0",
     "dompurify": "^3.2.4",
-    "jest-cucumber": "^3.0.1",
     "nanoid": "^3.1.25"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.7.4",
-    "@typescript-eslint/parser": "^4.7.4"
+    "@typescript-eslint/parser": "^4.7.4",
+    "jest-cucumber": "^3.0.1"
   }
 }

@@ -11,10 +11,12 @@
     "docs:preview": "vitepress preview"
   },
   "devDependencies": {
+    "@algolia/client-search": "^5.20.4",
     "get-monorepo-packages": "^1.2.0",
     "gh-pages": "^5.0.0",
     "lodash": "^4.17.15",
     "markdown-it": "^13.0.2",
+    "search-insights": "^2.17.3",
     "vitepress": "^1.0.0-rc.20",
     "vue": "^3.2.47"
   }

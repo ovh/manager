@@ -1,5 +1,6 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
+import { withRouter } from 'storybook-addon-react-router-v6';
 import {
   ChangelogButton,
   ChangelogLinks,
@@ -23,7 +24,7 @@ export const changelogButton: ChangelogButtonProps = {
 
 const meta: Meta<ChangelogButtonProps> = {
   title: 'Navigation/Menus',
-  decorators: [(story) => <div>{story()}</div>],
+  decorators: [withRouter],
   component: ChangelogButton,
   argTypes: {},
   args: changelogButton,

@@ -23,6 +23,7 @@
     "start:watch": "tsc -w"
   },
   "devDependencies": {
+    "typescript": "^5.8.2",
     "vite": "^5.4.12",
     "vite-plugin-dts": "3.5.1",
     "vite-plugin-static-copy": "^2.0.0"
