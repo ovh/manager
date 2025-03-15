@@ -24,8 +24,7 @@ export type ContainerContextType = {
   setUniverse: (universe: string) => void;
 };
 
-export const ContainerContext = createContext<ContainerContextType>(
-  {} as ContainerContextType,
+export const ContainerContext = createContext<ContainerContextType | null>(
+  null,
 );
-
 export default ContainerContext;
