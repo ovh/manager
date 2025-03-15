@@ -35,6 +35,11 @@
             </div>
         </div>
 
+        <ovh-manager-pcc-dashboard-customer-survey-banner
+            data-ng-if="$ctrl.customerSurveyBannerAvailability"
+        >
+        </ovh-manager-pcc-dashboard-customer-survey-banner>
+
         <ovh-manager-pcc-managed-vcd-migration-banner
             data-tracking-prefix="$ctrl.vcdTrackingPrefix"
             data-vcd-migration-state="$ctrl.dedicatedCloudVCDMigrationState"
