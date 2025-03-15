@@ -11,7 +11,6 @@ import outgoingTrafic from './outgoing-trafic';
 import snapshotList from './snapshot-list';
 import volumeList from './volume-list';
 import resourceUsageList from './resource-usage';
-import coldArchiveList from './cold-archive-list';
 
 const moduleName = 'ovhManagerPciComponentsProjectBilling';
 
@@ -27,7 +26,6 @@ angular.module(moduleName, [
   snapshotList,
   volumeList,
   resourceUsageList,
-  coldArchiveList,
 ]);
 
 export default moduleName;
