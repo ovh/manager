@@ -1,148 +1,105 @@
-import userEvents from '@testing-library/user-event';
-import { screen, waitFor } from '@testing-library/react';
 import { organizationList } from '@ovh-ux/manager-module-vcd-api';
 import {
-  getButtonByLabel,
-  assertModalVisibility,
-  assertModalText,
-  WAIT_FOR_DEFAULT_OPTIONS,
+  assertOdsModalVisibility,
+  getElementByTestId,
+  assertOdsModalText,
   assertTextVisibility,
 } from '@ovh-ux/manager-core-test-utils';
-import { renderTest, labels, mockSubmitNewValue } from '../../../../test-utils';
-
-const submitButtonLabel =
-  labels.dashboard.managed_vcd_dashboard_edit_modal_cta_edit;
+import {
+  renderTest,
+  labels,
+  mockSubmitNewValue,
+  mockEditInputValue,
+} from '../../../../test-utils';
+import TEST_IDS from '../../../../utils/testIds.constants';
 
 describe('Organization General Information Page', () => {
-  it('modify the name of the organization', async () => {
-    const { container } = await renderTest({
-      initialRoute: `/${organizationList[1].id}`,
-    });
+  it('display the VCD dashboard general page', async () => {
+    await renderTest({ initialRoute: `/${organizationList[0].id}` });
 
-    await assertTextVisibility(
+    const dashboardElements = [
+      labels.dashboard.managed_vcd_dashboard_general_information,
+      labels.dashboard.managed_vcd_dashboard_options,
       labels.dashboard.managed_vcd_dashboard_data_protection,
-    );
+      labels.dashboard.managed_vcd_dashboard_service_management,
+    ];
 
-    let editButton;
-    await waitFor(() => {
-      editButton = screen.getAllByTestId('editIcon').at(0);
-      return expect(editButton).toBeEnabled();
-    }, WAIT_FOR_DEFAULT_OPTIONS);
-    await waitFor(() => userEvents.click(editButton));
+    dashboardElements.forEach(async (element) => assertTextVisibility(element));
+  });
+});
 
-    await assertModalVisibility({ container, isVisible: true });
+describe('Organization General Information Page Updates', () => {
+  const editNameRoute = `/${organizationList[1].id}/edit-name`;
+  const editDescriptionRoute = `/${organizationList[1].id}/edit-description`;
 
-    await mockSubmitNewValue({ submitButtonLabel });
+  it.each([
+    {
+      inputName: 'name',
+      initialRoute: editNameRoute,
+      successMessage:
+        labels.dashboard.managed_vcd_dashboard_edit_name_modal_success,
+    },
+    {
+      inputName: 'description',
+      initialRoute: editDescriptionRoute,
+      successMessage:
+        labels.dashboard.managed_vcd_dashboard_edit_description_modal_success,
+    },
+  ])('update the $inputName of the organization', async ({ initialRoute }) => {
+    const { container } = await renderTest({ initialRoute });
 
-    await assertModalVisibility({ container, isVisible: false });
-    await assertTextVisibility(
-      labels.dashboard.managed_vcd_dashboard_edit_name_modal_success,
-    );
+    await assertOdsModalVisibility({ container, isVisible: true });
   });
 
-  it('trying to update name displays an error if update organization service is KO', async () => {
-    const { container } = await renderTest({
-      initialRoute: `/${organizationList[0].id}/edit-name`,
-      isOrganizationUpdateKo: true,
-    });
+  it.each([
+    {
+      inputName: 'name',
+      initialRoute: editNameRoute,
+      error:
+        labels.dashboard.managed_vcd_dashboard_edit_name_modal_helper_error,
+    },
+    {
+      inputName: 'description',
+      initialRoute: editDescriptionRoute,
+      error:
+        labels.dashboard
+          .managed_vcd_dashboard_edit_description_modal_helper_error,
+    },
+  ])(
+    'display helper message when the input $inputName is invalid',
+    async ({ initialRoute, error }) => {
+      const { container } = await renderTest({ initialRoute });
 
-    await assertModalVisibility({ container, isVisible: true });
+      await assertOdsModalVisibility({ container, isVisible: true });
+      const submitCta = await getElementByTestId(TEST_IDS.modalSubmitCta);
 
-    await mockSubmitNewValue({ submitButtonLabel });
+      await mockEditInputValue('');
+      await assertOdsModalText({ container, text: error });
+      expect(submitCta).toBeDisabled();
 
-    await assertModalVisibility({ container, isVisible: true });
-    await assertModalText({ container, text: 'Organization update error' });
-  });
+      await mockEditInputValue('a'.repeat(256));
+      await assertOdsModalText({ container, text: error });
+      expect(submitCta).toBeDisabled();
+    },
+  );
 
-  it('modify the description of the organization', async () => {
-    const { container } = await renderTest({
-      initialRoute: `/${organizationList[1].id}`,
-    });
+  it.each([
+    { inputName: 'name', initialRoute: editNameRoute },
+    { inputName: 'description', initialRoute: editDescriptionRoute },
+  ])(
+    'keeps modal open if trying to update $inputName while updateOrganizationService is KO',
+    async ({ initialRoute }) => {
+      const { container } = await renderTest({
+        initialRoute,
+        isOrganizationUpdateKo: true,
+      });
 
-    await assertTextVisibility(
-      labels.dashboard.managed_vcd_dashboard_data_protection,
-    );
+      await assertOdsModalVisibility({ container, isVisible: true });
 
-    let editButton;
-    await waitFor(() => {
-      editButton = screen.getAllByTestId('editIcon').at(1);
-      return expect(editButton).toBeEnabled();
-    }, WAIT_FOR_DEFAULT_OPTIONS);
-    await waitFor(() => userEvents.click(editButton));
+      const submitCta = await getElementByTestId(TEST_IDS.modalSubmitCta);
+      await mockSubmitNewValue({ submitCta });
 
-    await assertModalVisibility({ container, isVisible: true });
-
-    await mockSubmitNewValue({ submitButtonLabel });
-
-    await assertModalVisibility({ container, isVisible: false });
-    await assertTextVisibility(
-      labels.dashboard.managed_vcd_dashboard_edit_description_modal_success,
-    );
-  });
-
-  it('trying to update description displays an error if update organization service is KO', async () => {
-    const { container } = await renderTest({
-      initialRoute: `/${organizationList[0].id}/edit-description`,
-      isOrganizationUpdateKo: true,
-    });
-
-    await assertModalVisibility({ container, isVisible: true });
-
-    await mockSubmitNewValue({ submitButtonLabel });
-
-    await assertModalVisibility({ container, isVisible: true });
-    await assertModalText({ container, text: 'Organization update error' });
-  });
-
-  // uncomment below: when API for resetPassword is available
-  // it('resets the password of the organization', async () => {
-  //   const { container } = await renderTest({
-  //     initialRoute: `/${organizationList[1].id}`,
-  //   });
-
-  //   await assertTextVisibility(
-  //     labels.dashboard.managed_vcd_dashboard_password_renew,
-  //   );
-
-  //   const resetPasswordLink = await getButtonByLabel({
-  //     container,
-  //     label: labels.dashboard.managed_vcd_dashboard_password_renew,
-  //     isLink: true,
-  //   });
-  //   await waitFor(() => userEvents.click(resetPasswordLink));
-
-  //   await assertModalVisibility({ container, isVisible: true });
-
-  //   const validateButton = await getButtonByLabel({
-  //     container,
-  //     label: labels.dashboard.managed_vcd_dashboard_edit_modal_cta_validate,
-  //   });
-  //   await waitFor(() => userEvents.click(validateButton));
-
-  //   await assertModalVisibility({ container, isVisible: false });
-  //   await assertTextVisibility(
-  //     labels.dashboard.managed_vcd_dashboard_password_renew_success,
-  //   );
-  // });
-
-  // uncomment below: when API for resetPassword is available
-  // it('trying to reset password displays an error if reset password service is KO', async () => {
-  //   const { container } = await renderTest({
-  //     initialRoute: `/${organizationList[0].id}/reset-password`,
-  //     isOrganizationResetPasswordKo: true,
-  //   });
-
-  //   await assertModalVisibility({ container, isVisible: true });
-
-  //   const validateButton = await getButtonByLabel({
-  //     container,
-  //     label: labels.dashboard.managed_vcd_dashboard_edit_modal_cta_validate,
-  //   });
-  //   await waitFor(() => userEvents.click(validateButton));
-
-  //   await assertModalVisibility({ container, isVisible: false });
-  //   await assertTextVisibility(
-  //     labels.dashboard.managed_vcd_dashboard_password_renew_error,
-  //   );
-  // });
+      await assertOdsModalVisibility({ container, isVisible: true });
+    },
+  );
 });

@@ -24,8 +24,11 @@ export default function EditVdcDescription() {
     onSuccess: () => {
       addSuccess({
         content: t('managed_vcd_dashboard_edit_description_modal_success'),
-        includedSubRoutes: [id],
-        excludedSubRoutes: [subRoutes.datacentres],
+        includedSubRoutes: [vdcId],
+        excludedSubRoutes: [
+          subRoutes.datacentreCompute,
+          subRoutes.datacentreStorage,
+        ],
       });
       closeModal();
     },

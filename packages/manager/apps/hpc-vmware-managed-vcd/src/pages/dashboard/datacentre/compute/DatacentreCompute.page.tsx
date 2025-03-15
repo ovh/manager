@@ -3,20 +3,7 @@ import {
   getVdcComputeQueryKey,
 } from '@ovh-ux/manager-module-vcd-api';
 import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import {
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_MESSAGE_TYPE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
-import {
-  OsdsButton,
-  OsdsMessage,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
-import React from 'react';
+import { OdsButton, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ID_LABEL } from '../../dashboard.constants';
@@ -32,6 +19,7 @@ import {
 import DatagridContainer from '@/components/datagrid/container/DatagridContainer.component';
 import { subRoutes, urls } from '@/routes/routes.constant';
 import { FEATURES } from '@/utils/features.constants';
+import TEST_IDS from '@/utils/testIds.constants';
 
 export default function ComputeListingPage() {
   const { id, vdcId } = useParams();
@@ -84,15 +72,13 @@ export default function ComputeListingPage() {
     <>
       {features?.[FEATURES.COMPUTE_SPECIAL_OFFER_BANNER] && (
         <div className="mx-10 pb-4">
-          <OsdsMessage type={ODS_MESSAGE_TYPE.info}>
-            <OsdsText
-              size={ODS_TEXT_SIZE._400}
-              level={ODS_TEXT_LEVEL.body}
-              color={ODS_THEME_COLOR_INTENT.info}
-            >
-              {t('managed_vcd_vdc_compute_special_offer')}
-            </OsdsText>
-          </OsdsMessage>
+          <OdsMessage
+            color="information"
+            data-testid={TEST_IDS.computeSpecialOfferBanner}
+            isDismissible={false}
+          >
+            <OdsText>{t('managed_vcd_vdc_compute_special_offer')}</OdsText>
+          </OdsMessage>
         </div>
       )}
       <DatagridContainer
@@ -107,14 +93,12 @@ export default function ComputeListingPage() {
         }}
         isEmbedded
         orderButton={
-          <OsdsButton
-            size={ODS_BUTTON_SIZE.sm}
-            variant={ODS_BUTTON_VARIANT.stroked}
-            color={ODS_THEME_COLOR_INTENT.primary}
+          <OdsButton
+            label={t('managed_vcd_vdc_compute_order_cta')}
+            variant="outline"
             onClick={() => navigate(subRoutes.order)}
-          >
-            {t('managed_vcd_vdc_compute_order_cta')}
-          </OsdsButton>
+            data-testid={TEST_IDS.computeOrderCta}
+          />
         }
       />
     </>

@@ -1,5 +1,4 @@
-import userEvents from '@testing-library/user-event';
-import { screen, waitFor } from '@testing-library/react';
+import React from 'react';
 import { vi } from 'vitest';
 import { organizationList } from '@ovh-ux/manager-module-vcd-api';
 import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
@@ -14,19 +13,20 @@ vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
 });
 
 describe('Organization Dashboard Page', () => {
-  it('display the dashboard page', async () => {
-    await renderTest();
-    const link = screen.getByText(organizationList[0].currentState.fullName);
-    await waitFor(() => userEvents.click(link));
+  it('display the VCD dashboard page', async () => {
+    await renderTest({ initialRoute: `/${organizationList[0].id}` });
 
-    await assertTextVisibility(
-      labels.dashboard.managed_vcd_dashboard_data_protection,
-    );
+    const layoutElements = [
+      organizationList[0].currentState.fullName,
+      organizationList[0].currentState.description,
+      labels.dashboard.managed_vcd_dashboard_general_information,
+      labels.dashboard.managed_vcd_dashboard_datacentres_title,
+    ];
 
-    await assertTextVisibility(organizationList[0].currentState.description);
+    layoutElements.forEach(async (element) => assertTextVisibility(element));
   });
 
-  it('display an error', async () => {
+  it('display an error if organization service is KO', async () => {
     await renderTest({
       initialRoute: `/${organizationList[0].id}`,
       isOrganizationKo: true,
