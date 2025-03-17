@@ -6,7 +6,7 @@
   "telephony_line_tab_call_management": "Gestion des appels",
   "telephony_line_tab_music_management": "Gestion des musiques",
   "telephony_line_tab_softphone": "Softphone",
-  "telephony_line_tab_softphone_active_description": "Si l'interrupteur est actif, alors cette ligne est utilisable sur l'ensemble de vos applications \"Softcall\" : mobile et ordinateur.",
+  "telephony_line_tab_softphone_active_description": "Si l'interrupteur est actif, alors cette ligne est utilisable sur l'ensemble de vos applications \"Softcall\" (mobile et ordinateur) ne sera plus utilisable sur un terminal de téléphonie fixe ou sur un autre softphone.",
   "telephony_line_tab_softphone_inactive_description": "Si l'interrupteur est inactif, alors cette ligne est utilisable uniquement sur un terminal de téléphone fixe (filaire ou DECT) ou sur un softphone de votre choix.",
   "telephony_line_tab_softphone_activation_message_success": "L'activation/désactivation de votre option Softphone sur votre ligne a bien été prise en compte.",
   "telephony_line_tab_softphone_activation_message_error": "L'activation/désactivation de votre option Softphone sur votre ligne n'a pas pu aboutir.",
