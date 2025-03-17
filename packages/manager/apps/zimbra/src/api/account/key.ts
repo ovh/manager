@@ -7,15 +7,14 @@ export const getZimbraPlatformAccountsQueryKey = (
   shouldFetchAll?: boolean,
 ) => {
   const params = new URLSearchParams(queryParameters).toString();
-  const queryString = params ? `?${params}` : '';
   return [
     'get',
     'zimbra',
     'platform',
     platformId,
-    'account',
-    queryString,
+    'accounts',
     shouldFetchAll ? 'all' : '',
+    params,
   ].filter(Boolean);
 };
 
