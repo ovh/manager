@@ -79,7 +79,6 @@ export default function ContainerNewPage() {
     isPending: isCreationPending,
   } = useCreateContainer({
     projectId: project.project_id,
-    onError: reportError,
   });
 
   const isPending = isCreationPending || isCredentialsPending;
