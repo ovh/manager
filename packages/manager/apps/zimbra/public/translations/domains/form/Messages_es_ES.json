@@ -25,7 +25,7 @@
   "zimbra_domains_add_domain_configuration_expert_configure_spf": "Configurar el registro SPF automáticamente",
   "zimbra_domains_add_domain_configuration_expert_configure_dkim": "Configurar el registro DKIM automáticamente",
   "zimbra_domains_add_domain_configuration_cname_title": "Verificación de su dominio",
-  "zimbra_domains_add_domain_configuration_cname_description": "Para validar que es titular del dominio <strong>{{domain}}</strong>, añada este registro DNS:",
+  "zimbra_domains_add_domain_configuration_cname_description": "Para validar que es titular del dominio<strong>{{domain}}</strong>, añada este registro DNS:",
   "zimbra_domains_add_domain_configuration_info": "Una vez añadido el registro, espere unos minutos a que se propague y nuestro robot lo detecte.<br/>Dispone de 48 horas para realizar esta validación. Puede consultar esta información más adelante en la lista de dominios.",
   "zimbra_domains_add_domain_configuration_part_1": "Una vez validado el dominio, deberá editar manualmente los registros MX, SRV, SPF y DKIM en la zona DNS.",
   "zimbra_domains_add_domain_configuration_part_2": "Puede encontrar la información necesaria en la página de diagnóstico del dominio asociado.",
