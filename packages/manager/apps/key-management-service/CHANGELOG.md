@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.20.3...@ovh-ux/manager-key-management-service-app@0.21.0) (2025-03-17)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3770] ([5a396c7](https://github.com/ovh/manager/commit/5a396c7b6f082adb79d175b4ee1455243ce8256f))
+* **i18n:** add missing translations [CDS 3771] ([ed2e111](https://github.com/ovh/manager/commit/ed2e11119b10857b24bb6df4a178195399303a25))
+
+
+### Features
+
+* **kms:** add number of kmip and service keys on kms datagrid ([f69cd0a](https://github.com/ovh/manager/commit/f69cd0ae50613ed4d7110da99b93b246ecc75a05))
+* **kms:** split dashboard tile for kmip and rest ([20c1757](https://github.com/ovh/manager/commit/20c17576f78cda0dfc7022dd2a8e14c95675d444))
+
+
+
+
+
 ## [0.20.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.20.2...@ovh-ux/manager-key-management-service-app@0.20.3) (2025-03-14)
 
 **Note:** Version bump only for package @ovh-ux/manager-key-management-service-app
