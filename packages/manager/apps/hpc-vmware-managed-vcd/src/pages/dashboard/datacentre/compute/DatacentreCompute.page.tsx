@@ -21,7 +21,7 @@ import DatagridContainer from '@/components/datagrid/container/DatagridContainer
 import { subRoutes, urls } from '@/routes/routes.constant';
 import { FEATURES } from '@/utils/features.constants';
 import TEST_IDS from '@/utils/testIds.constants';
-import { TRACKING } from '@/tracking.constant';
+import { TRACKING } from '@/tracking.constants';
 
 export default function ComputeListingPage() {
   const { id, vdcId } = useParams();

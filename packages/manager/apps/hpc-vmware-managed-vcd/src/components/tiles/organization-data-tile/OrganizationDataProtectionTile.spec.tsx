@@ -30,7 +30,7 @@ import {
   DATA_PROTECTION_RECOVERY_LABEL,
 } from '../../../pages/dashboard/organization/organizationDashboard.constants';
 import TEST_IDS from '../../../utils/testIds.constants';
-import { TRACKING } from '../../../tracking.constant';
+import { TRACKING } from '../../../tracking.constants';
 
 const trackClickMock = vi.fn();
 vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {

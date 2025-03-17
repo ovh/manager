@@ -13,7 +13,7 @@ import {
 import userEvent from '@testing-library/user-event';
 import OrganizationOptionsTile from './OrganizationOptionsTile.component';
 import { labels } from '../../../test-utils';
-import { TRACKING } from '../../../tracking.constant';
+import { TRACKING } from '../../../tracking.constants';
 import TEST_IDS from '../../../utils/testIds.constants';
 
 vi.stubGlobal('open', vi.fn());

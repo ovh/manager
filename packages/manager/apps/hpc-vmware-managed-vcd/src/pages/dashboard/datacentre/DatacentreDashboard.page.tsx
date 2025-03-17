@@ -15,7 +15,7 @@ import { subRoutes, urls } from '@/routes/routes.constant';
 import { useAutoRefetch } from '@/data/hooks/useAutoRefetch';
 import { isUpdatingTargetSpec } from '@/utils/refetchConditions';
 import { CHANGELOG_LINKS } from '@/utils/changelog.constants';
-import { TRACKING_TABS_ACTIONS } from '@/tracking.constant';
+import { TRACKING_TABS_ACTIONS } from '@/tracking.constants';
 
 function DatacentreDashboardPage() {
   const { id, vdcId } = useParams();

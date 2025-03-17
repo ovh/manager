@@ -18,7 +18,7 @@ import {
   getBackupBadgeStatus,
 } from '@/utils/veeamBackupBadge';
 import TEST_IDS from '@/utils/testIds.constants';
-import { TRACKING } from '@/tracking.constant';
+import { TRACKING } from '@/tracking.constants';
 
 type TTileProps = {
   vcdOrganization: VCDOrganization;

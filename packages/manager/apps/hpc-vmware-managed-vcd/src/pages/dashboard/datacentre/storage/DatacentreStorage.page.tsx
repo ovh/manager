@@ -21,7 +21,7 @@ import {
   DatagridTypeCell,
 } from '@/components/datagrid/storage/StorageCells.component';
 import TEST_IDS from '@/utils/testIds.constants';
-import { TRACKING } from '@/tracking.constant';
+import { TRACKING } from '@/tracking.constants';
 
 export default function StorageListingPage() {
   const { id, vdcId } = useParams();

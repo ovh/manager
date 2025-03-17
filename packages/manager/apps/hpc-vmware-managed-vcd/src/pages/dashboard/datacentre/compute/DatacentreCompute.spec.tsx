@@ -23,7 +23,7 @@ import {
 import { COMPUTE_LABEL } from '../datacentreDashboard.constants';
 import { VHOSTS_LABEL } from '../compute/datacentreCompute.constants';
 import TEST_IDS from '../../../../utils/testIds.constants';
-import { TRACKING } from '../../../../tracking.constant';
+import { TRACKING } from '../../../../tracking.constants';
 
 const trackClickMock = vi.fn();
 vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {

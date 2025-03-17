@@ -18,7 +18,7 @@ import DatagridContainer from '@/components/datagrid/container/DatagridContainer
 import { urls } from '@/routes/routes.constant';
 import { MANAGED_VCD_LABEL } from '@/pages/dashboard/organization/organizationDashboard.constants';
 import TEST_IDS from '@/utils/testIds.constants';
-import { TRACKING } from '@/tracking.constant';
+import { TRACKING } from '@/tracking.constants';
 
 /* ========= datagrid cells ========== */
 const DatagridIdCell = (vdcOrg: VCDOrganization) => {

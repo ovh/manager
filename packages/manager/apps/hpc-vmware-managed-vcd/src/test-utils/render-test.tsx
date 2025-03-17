@@ -31,7 +31,7 @@ import {
 } from '@ovh-ux/manager-core-test-utils';
 import { translations } from './test-i18n';
 import { TestApp } from './TestApp';
-import { APP_NAME } from '@/tracking.constant';
+import { APP_NAME } from '@/tracking.constants';
 import { MANAGED_VCD_LABEL } from '@/pages/dashboard/organization/organizationDashboard.constants';
 import {
   getFeatureAvailabilityMocks,
