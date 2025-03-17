@@ -178,9 +178,7 @@ export default function ContainerNewPage() {
           <Notifications />
         </div>
 
-        <PciDiscoveryBanner
-          project={{ ...project, planCode: 'project.discovery' }}
-        />
+        <PciDiscoveryBanner project={project} />
 
         <OdsMessage color="information" isDismissible={false}>
           {t(
