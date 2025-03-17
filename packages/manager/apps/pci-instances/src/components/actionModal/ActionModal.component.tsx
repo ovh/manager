@@ -34,10 +34,9 @@ export const ActionModal = ({
     {isPending ? (
       <Spinner />
     ) : (
-      <>
-        <ActionModalContent type={section} instanceName={instanceName} />
+      <ActionModalContent type={section} instanceName={instanceName}>
         {children}
-      </>
+      </ActionModalContent>
     )}
   </Modal>
 );
