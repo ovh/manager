@@ -52,12 +52,7 @@ export const useInstanceRescueAction = (
     [projectId],
   );
 
-  const mutation = useMutation<
-    null,
-    unknown,
-    TRescueMutationFnVariables,
-    unknown
-  >({
+  const mutation = useMutation({
     mutationKey,
     mutationFn,
     onError,
@@ -115,7 +110,7 @@ export const useBaseInstanceAction = (
     [projectId, type],
   );
 
-  const mutation = useMutation<null, unknown, TMutationFnVariables, unknown>({
+  const mutation = useMutation({
     mutationKey,
     mutationFn,
     onError,
