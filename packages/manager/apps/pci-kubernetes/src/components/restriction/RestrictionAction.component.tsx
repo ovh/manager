@@ -11,7 +11,7 @@ type TRestrictionAction = {
   iconName: ODS_ICON_NAME;
   onClick: () => void;
   disabled: boolean;
-  testId: string;
+  testId?: string;
 };
 
 export default function RestrictionAction({

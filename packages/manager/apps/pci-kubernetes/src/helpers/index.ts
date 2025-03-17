@@ -1,7 +1,10 @@
 import { PaginationState } from '@ovh-ux/manager-react-components';
 import { FieldError, FieldErrors } from 'react-hook-form';
 import { ZodObject, ZodRawShape } from 'zod';
+import { ClassValue, clsx } from 'clsx';
+import { twMerge } from 'tailwind-merge';
 import { SigningAlgorithms, TOidcProvider } from '@/types';
+import { NodePool } from '@/api/data/kubernetes';
 
 export const REFETCH_INTERVAL_DURATION = 15_000;
 export const QUOTA_ERROR_URL =
@@ -172,3 +175,31 @@ export const getValidOptionalKeys = (oidcProvider: TOidcProvider) =>
     }
     return acc;
   }, []);
+
+/**
+ * Generates a unique name for a node pool by appending "-n"
+ * if the name already exists in the node pools array.
+ *
+ * @param {string} baseName - The desired base name for the node pool.
+ * @param {Array<{name: string}>} existingNodePools - Array of existing node pools.
+ */
+export function generateUniqueName(
+  baseName: string,
+  existingNodePools: NodePool[],
+) {
+  let newName = baseName;
+  let copyNumber = 1;
+
+  const isNameTaken = (pool: NodePool) => pool.name === newName;
+
+  while (existingNodePools.some(isNameTaken)) {
+    newName = `${baseName}-${copyNumber}`;
+    copyNumber += 1;
+  }
+
+  return newName;
+}
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
