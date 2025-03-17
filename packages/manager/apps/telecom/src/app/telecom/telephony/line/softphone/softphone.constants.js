@@ -1,4 +1,6 @@
 export const LOGO_FILE_FORMATS = 'image/png,image/jpeg,image/jpg';
+export const LOGO_BY_DEFAULT =
+  'https://softphone-production.s3.gra.io.cloud.ovh.net/public/Softphone_app_icon_512x512.png';
 export const MAX_SIZE_LOGO_FILE = 1000000;
 export const MOBILE_OS = {
   windows: 'windows',
