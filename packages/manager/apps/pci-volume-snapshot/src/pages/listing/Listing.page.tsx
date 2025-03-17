@@ -13,6 +13,7 @@ import {
 import { useProject } from '@ovh-ux/manager-pci-common';
 import { useTranslation } from 'react-i18next';
 import { useDatagridColumn } from '@/pages/listing/useDatagridColumn';
+import { useVolumeSnapshots } from '@/api/hooks/useSnapshots';
 
 export default function ListingPage() {
   const { t } = useTranslation(['volumes']);
@@ -22,6 +23,10 @@ export default function ListingPage() {
 
   const { pagination, setPagination, sorting, setSorting } = useDataGrid();
   const columns = useDatagridColumn();
+
+  const { data: volumeSnapshots, isPending, isLoading } = useVolumeSnapshots(
+    project?.project_id,
+  );
 
   return (
     <RedirectionGuard condition={false} isLoading={false} route={''}>
@@ -45,7 +50,7 @@ export default function ListingPage() {
       >
         <Datagrid
           columns={columns}
-          items={[]}
+          items={volumeSnapshots}
           totalItems={9}
           pagination={pagination}
           onPaginationChange={setPagination}
