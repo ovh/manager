@@ -4,8 +4,6 @@ import { OsdsText } from '@ovhcloud/ods-components/react';
 import {
   StepComponent,
   TilesInputComponent,
-  useCatalogPrice,
-  convertHourlyPriceToMonthly,
 } from '@ovh-ux/manager-react-components';
 import {
   ODS_THEME_COLOR_INTENT,
@@ -17,6 +15,7 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { StepsEnum, useNewGatewayStore } from '@/pages/add/useStore';
 import { useRegionGatewayAddons } from '@/api/hooks/useGateways/useGateways';
 import { TProductAddonDetail } from '@/types/addon.type';
+import SizeLabel from '@/components/size/SizeLabel.component';
 
 export const SizeStep = (): JSX.Element => {
   const { projectId } = useParams();
@@ -38,11 +37,6 @@ export const SizeStep = (): JSX.Element => {
     projectId,
     store.form.regionName,
   );
-
-  const {
-    getFormattedHourlyCatalogPrice,
-    getFormattedMonthlyCatalogPrice,
-  } = useCatalogPrice(4);
 
   return (
     <StepComponent
@@ -95,61 +89,7 @@ export const SizeStep = (): JSX.Element => {
         id="gateway-size-input"
         value={size}
         items={addons}
-        label={(item: TProductAddonDetail) => (
-          <div className="grid grid-cols-1 gap-2 text-left text w-full">
-            <div className="">
-              <OsdsText
-                level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-                size={ODS_THEME_TYPOGRAPHY_SIZE._200}
-                color={ODS_THEME_COLOR_INTENT.text}
-              >
-                {t(
-                  'catalog-selector:pci_projects_project_gateways_model_selector_size',
-                )}{' '}
-                {item.size.toUpperCase()}
-              </OsdsText>
-            </div>
-            <div className="text-sm font-normal">
-              <OsdsText
-                level={ODS_THEME_TYPOGRAPHY_LEVEL.caption}
-                size={ODS_THEME_TYPOGRAPHY_SIZE._200}
-                color={ODS_THEME_COLOR_INTENT.text}
-              >
-                {item.bandwidth > 1000
-                  ? t(
-                      'catalog-selector:pci_projects_project_gateways_model_selector_bandwidth_unit_size_gbps',
-                      { bandwidth: item.bandwidth / 1000 },
-                    )
-                  : t(
-                      'catalog-selector:pci_projects_project_gateways_model_selector_bandwidth_unit_size_mbps',
-                      { bandwidth: item.bandwidth },
-                    )}
-              </OsdsText>
-            </div>
-            <hr className="w-full border-solid border-0 border-b border-[--ods-color-blue-200]" />
-            <div className="text-sm mt-4 text-center">
-              <OsdsText
-                level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                size={ODS_THEME_TYPOGRAPHY_SIZE._200}
-                color={ODS_THEME_COLOR_INTENT.text}
-              >
-                {getFormattedHourlyCatalogPrice(item.price)}
-              </OsdsText>
-            </div>
-            <div className="text-sm text-center font-normal">
-              <OsdsText
-                level={ODS_THEME_TYPOGRAPHY_LEVEL.caption}
-                size={ODS_THEME_TYPOGRAPHY_SIZE._200}
-                color={ODS_THEME_COLOR_INTENT.text}
-              >
-                ~{' '}
-                {getFormattedMonthlyCatalogPrice(
-                  convertHourlyPriceToMonthly(item.price),
-                )}
-              </OsdsText>
-            </div>
-          </div>
-        )}
+        label={SizeLabel}
         onInput={(item) => {
           store.updateForm.size(item.size);
           setSize(addons.find((addon) => addon.size === item.size));
