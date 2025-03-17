@@ -1,6 +1,6 @@
 import { User } from '@ovh-ux/manager-config';
-import * as user from '@datatr-ux/ovhcloud-types/cloud/user/index.js';
-import * as ai from '@datatr-ux/ovhcloud-types/cloud/project/ai/index.js';
+import * as user from '@datatr-ux/ovhcloud-types/cloud/user/index';
+import * as ai from '@datatr-ux/ovhcloud-types/cloud/project/ai/index';
 
 export const mockedUser: User = {
   nichandle: 'test123',
