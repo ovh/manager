@@ -6,11 +6,10 @@ import {
   ODS_THEME_TYPOGRAPHY_LEVEL,
 } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
-import { DeepReadonly } from '@/types/utils.type';
 import { TSectionType } from '../InstanceAction.page';
 import { isCustomUrlSection, replaceToSnakeCase } from '@/utils';
 
-type TActionModalProps = DeepReadonly<{
+type TActionModalProps = React.PropsWithChildren<{
   type: TSectionType;
   instanceName: string;
 }>;
@@ -18,6 +17,7 @@ type TActionModalProps = DeepReadonly<{
 export const ActionModalContent: FC<TActionModalProps> = ({
   type,
   instanceName,
+  children,
 }) => {
   const { t } = useTranslation('actions');
 
@@ -57,6 +57,10 @@ export const ActionModalContent: FC<TActionModalProps> = ({
     if (type === 'reinstall') {
       return t(`pci_instances_actions_${type}_instance_warning_message`);
     }
+
+    if (type === 'backup') {
+      return t(`pci_instances_actions_${type}_instance_warning_message`);
+    }
     return null;
   }, [type, t]);
 
@@ -73,6 +77,7 @@ export const ActionModalContent: FC<TActionModalProps> = ({
           {label}
         </OsdsText>
       ))}
+      {children}
       {warningMessage && (
         <OsdsMessage type={ODS_MESSAGE_TYPE.warning} className="mt-6">
           <OsdsText
