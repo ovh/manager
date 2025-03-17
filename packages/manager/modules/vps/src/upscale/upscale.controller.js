@@ -558,13 +558,13 @@ export default class UpscaleController {
   trackStep(index, order) {
     const currentPlanCode = this.upscaleRanges.find((e) => e.isCurrentRange)
       ?.planCode;
-    const { planCode } = this.getPlanFromSelectedRangeAndConfiguration(
+    const plan = this.getPlanFromSelectedRangeAndConfiguration(
       this.rangeConfiguration,
       this.range.formattedName.toLowerCase(),
     );
     return order
       ? this.atInternet.trackClick({
-          name: `${UPSCALE_TRACKING_PREFIX}${index}::order-${currentPlanCode}_to_${planCode}`,
+          name: `${UPSCALE_TRACKING_PREFIX}${index}::order-${currentPlanCode}_to_${plan.planCode}`,
           type: 'action',
         })
       : this.atInternet.trackPage({
