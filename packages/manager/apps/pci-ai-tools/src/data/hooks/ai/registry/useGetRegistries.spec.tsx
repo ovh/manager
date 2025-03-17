@@ -5,7 +5,7 @@ import * as registryApi from '@/data/api/ai/registry/registry.api';
 import { mockedRegistry } from '@/__tests__/helpers/mocks/shared/registry';
 import { useGetRegistries } from './useGetRegistries.hook';
 
-vi.mock('@/data/api/ai/registry.api', () => ({
+vi.mock('@/data/api/ai/registry/registry.api', () => ({
   getRegistries: vi.fn(),
 }));
 

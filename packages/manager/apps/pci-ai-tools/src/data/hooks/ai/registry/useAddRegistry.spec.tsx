@@ -8,7 +8,7 @@ import {
 } from '@/__tests__/helpers/mocks/shared/registry';
 import { useAddRegistry } from './useAddRegistry.hook';
 
-vi.mock('@/data/api/ai/registry.api', () => ({
+vi.mock('@/data/api/ai/registry/registry.api', () => ({
   addRegistry: vi.fn(),
 }));
 

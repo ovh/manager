@@ -4,7 +4,7 @@ import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrap
 import * as datastoreApi from '@/data/api/ai/data/datastore.api';
 import { useDeleteDatastore } from './useDeleteDatastore.hook';
 
-vi.mock('@/data/api/ai/datastore.api', () => ({
+vi.mock('@/data/api/ai/data/datastore.api', () => ({
   deleteDatastore: vi.fn(),
 }));
 
