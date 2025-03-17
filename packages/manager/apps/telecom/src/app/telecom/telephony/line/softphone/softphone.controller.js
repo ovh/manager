@@ -150,6 +150,35 @@ export default class SoftphoneController {
       });
   }
 
+  deleteTheme() {
+    this.isUpdatingTheme = true;
+    return this.SoftphoneService.deleteSoftphoneTheme(
+      this.billingAccount,
+      this.serviceName,
+    )
+      .then(() =>
+        this.TucToast.success(
+          this.$translate.instant(
+            'telephony_line_softphone_apply_theme_success',
+          ),
+        ),
+      )
+      .catch((error) =>
+        this.TucToast.error(
+          this.$translate.instant(
+            'telephony_line_softphone_apply_theme_error',
+            {
+              errorMessage: error.message,
+            },
+          ),
+        ),
+      )
+      .finally(() => {
+        this.fetchSoftPhoneInformations();
+        this.isUpdatingTheme = false;
+      });
+  }
+
   applyLogo() {
     this.isUpdatingLogo = true;
     return this.SoftphoneService.uploadDocument(this.fileModel[0]).then(
