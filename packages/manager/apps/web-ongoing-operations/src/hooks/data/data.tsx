@@ -8,21 +8,21 @@ import { getOperationTrackingStatus } from '@/data/api/tracking';
 
 export const useTracking = (id: number) => {
   return useQuery<TTracking>({
-    queryKey: ['tracking'],
+    queryKey: ['tracking', id],
     queryFn: () => getOperationTrackingStatus(id),
   });
 };
 
 export const useDomain = (id: number) => {
   return useQuery<TOngoingOperations>({
-    queryKey: ['domain'],
+    queryKey: ['domain', id],
     queryFn: () => getmeTaskDomainId(id),
   });
 };
 
 export const useDomainArgument = (id: number, argumentType: string) => {
   return useQuery<TArgument>({
-    queryKey: ['argument'],
+    queryKey: ['argument', id, argumentType],
     queryFn: () => getmeTaskDomainArgument(id, argumentType),
   });
 };
