@@ -4,47 +4,62 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { useBytes } from '@ovh-ux/manager-pci-common';
+import { TVolumeSnapshot } from '@/api/hooks/useSnapshots';
 
 export const useDatagridColumn = () => {
   const { t } = useTranslation('volumes');
 
   const { formatBytes } = useBytes();
 
-  const columns: DatagridColumn<any>[] = [
+  const columns: DatagridColumn<TVolumeSnapshot>[] = [
     {
       id: 'name',
       label: t('pci_projects_project_storages_snapshots_name_label'),
-      cell: (props: any) => <DataGridTextCell>{props.name}</DataGridTextCell>,
+      cell: (props: TVolumeSnapshot) => (
+        <DataGridTextCell>{props.name}</DataGridTextCell>
+      ),
     },
     {
       id: 'id',
       label: t('pci_projects_project_storages_snapshots_id_label'),
-      cell: (props: any) => <DataGridTextCell>{props.name}</DataGridTextCell>,
+      cell: (props: TVolumeSnapshot) => (
+        <DataGridTextCell>{props.id}</DataGridTextCell>
+      ),
     },
     {
       id: 'region',
       label: t('pci_projects_project_storages_snapshots_region_label'),
-      cell: (props: any) => <DataGridTextCell>{props.name}</DataGridTextCell>,
+      cell: (props: TVolumeSnapshot) => (
+        <DataGridTextCell>{props.region}</DataGridTextCell>
+      ),
     },
     {
       id: 'volumeId',
       label: t('pci_projects_project_storages_snapshots_volume_label'),
-      cell: (props: any) => <DataGridTextCell>{props.name}</DataGridTextCell>,
+      cell: (props: TVolumeSnapshot) => (
+        <DataGridTextCell>{props.volume?.name}</DataGridTextCell>
+      ),
     },
     {
       id: 'size',
       label: t('pci_projects_project_storages_snapshots_size_label'),
-      cell: (props: any) => <DataGridTextCell>{props.name}</DataGridTextCell>,
+      cell: (props: TVolumeSnapshot) => (
+        <DataGridTextCell>{props.size}</DataGridTextCell>
+      ),
     },
     {
       id: 'creationDate',
       label: t('pci_projects_project_storages_snapshots_creationDate_label'),
-      cell: (props: any) => <DataGridTextCell>{props.name}</DataGridTextCell>,
+      cell: (props: TVolumeSnapshot) => (
+        <DataGridTextCell>{props.creationDate}</DataGridTextCell>
+      ),
     },
     {
       id: 'status',
       label: t('pci_projects_project_storages_snapshots_status_label'),
-      cell: (props: any) => <DataGridTextCell>{props.name}</DataGridTextCell>,
+      cell: (props: TVolumeSnapshot) => (
+        <DataGridTextCell>{props.status}</DataGridTextCell>
+      ),
     },
   ];
 
