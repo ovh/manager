@@ -51,6 +51,7 @@ export default {
     goToTrafficOrder: '<',
     goToTrafficCancel: '<',
     goToTagsModal: '<',
+    goToTagManager: '<',
     serverType: '<?',
     displayRbxEolBanner: '<?',
   },
