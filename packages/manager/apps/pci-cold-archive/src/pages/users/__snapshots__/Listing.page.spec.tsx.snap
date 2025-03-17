@@ -117,108 +117,9 @@ exports[`ListingPage > should match snapshot when is loading false 1`] = `
                   common_criteria_adder_operator_label
                 </span>
               </div>
-              <div
-                class=""
-              >
+              <div>
                 <ods-select
                   name="add-operator-username"
-                  value="includes"
-                >
-                  <option
-                    value="includes"
-                  >
-                    common_criteria_adder_operator_includes
-                  </option>
-                  <option
-                    value="starts_with"
-                  >
-                    common_criteria_adder_operator_starts_with
-                  </option>
-                  <option
-                    value="ends_with"
-                  >
-                    common_criteria_adder_operator_ends_with
-                  </option>
-                  <option
-                    value="is_equal"
-                  >
-                    common_criteria_adder_operator_is_equal
-                  </option>
-                  <option
-                    value="is_different"
-                  >
-                    common_criteria_adder_operator_is_different
-                  </option>
-                </ods-select>
-              </div>
-              <div
-                class="hidden"
-              >
-                <ods-select
-                  name="add-operator-creationDate"
-                  value="includes"
-                >
-                  <option
-                    value="is_equal"
-                  >
-                    common_criteria_adder_operator_is_equal
-                  </option>
-                  <option
-                    value="is_different"
-                  >
-                    common_criteria_adder_operator_is_different
-                  </option>
-                  <option
-                    value="is_before"
-                  >
-                    common_criteria_adder_operator_is_before
-                  </option>
-                  <option
-                    value="is_after"
-                  >
-                    common_criteria_adder_operator_is_after
-                  </option>
-                </ods-select>
-              </div>
-              <div
-                class="hidden"
-              >
-                <ods-select
-                  name="add-operator-description"
-                  value="includes"
-                >
-                  <option
-                    value="includes"
-                  >
-                    common_criteria_adder_operator_includes
-                  </option>
-                  <option
-                    value="starts_with"
-                  >
-                    common_criteria_adder_operator_starts_with
-                  </option>
-                  <option
-                    value="ends_with"
-                  >
-                    common_criteria_adder_operator_ends_with
-                  </option>
-                  <option
-                    value="is_equal"
-                  >
-                    common_criteria_adder_operator_is_equal
-                  </option>
-                  <option
-                    value="is_different"
-                  >
-                    common_criteria_adder_operator_is_different
-                  </option>
-                </ods-select>
-              </div>
-              <div
-                class="hidden"
-              >
-                <ods-select
-                  name="add-operator-access"
                   value="includes"
                 >
                   <option
@@ -294,6 +195,7 @@ exports[`ListingPage > should match snapshot when is loading false 1`] = `
           <!---->
           <table
             class="w-full border-collapse"
+            style="--expander-column-width: 2.5rem;"
           >
             <thead>
               <tr>
@@ -630,108 +532,9 @@ exports[`ListingPage > should match snapshot when is loading true 1`] = `
                   common_criteria_adder_operator_label
                 </span>
               </div>
-              <div
-                class=""
-              >
+              <div>
                 <ods-select
                   name="add-operator-username"
-                  value="includes"
-                >
-                  <option
-                    value="includes"
-                  >
-                    common_criteria_adder_operator_includes
-                  </option>
-                  <option
-                    value="starts_with"
-                  >
-                    common_criteria_adder_operator_starts_with
-                  </option>
-                  <option
-                    value="ends_with"
-                  >
-                    common_criteria_adder_operator_ends_with
-                  </option>
-                  <option
-                    value="is_equal"
-                  >
-                    common_criteria_adder_operator_is_equal
-                  </option>
-                  <option
-                    value="is_different"
-                  >
-                    common_criteria_adder_operator_is_different
-                  </option>
-                </ods-select>
-              </div>
-              <div
-                class="hidden"
-              >
-                <ods-select
-                  name="add-operator-creationDate"
-                  value="includes"
-                >
-                  <option
-                    value="is_equal"
-                  >
-                    common_criteria_adder_operator_is_equal
-                  </option>
-                  <option
-                    value="is_different"
-                  >
-                    common_criteria_adder_operator_is_different
-                  </option>
-                  <option
-                    value="is_before"
-                  >
-                    common_criteria_adder_operator_is_before
-                  </option>
-                  <option
-                    value="is_after"
-                  >
-                    common_criteria_adder_operator_is_after
-                  </option>
-                </ods-select>
-              </div>
-              <div
-                class="hidden"
-              >
-                <ods-select
-                  name="add-operator-description"
-                  value="includes"
-                >
-                  <option
-                    value="includes"
-                  >
-                    common_criteria_adder_operator_includes
-                  </option>
-                  <option
-                    value="starts_with"
-                  >
-                    common_criteria_adder_operator_starts_with
-                  </option>
-                  <option
-                    value="ends_with"
-                  >
-                    common_criteria_adder_operator_ends_with
-                  </option>
-                  <option
-                    value="is_equal"
-                  >
-                    common_criteria_adder_operator_is_equal
-                  </option>
-                  <option
-                    value="is_different"
-                  >
-                    common_criteria_adder_operator_is_different
-                  </option>
-                </ods-select>
-              </div>
-              <div
-                class="hidden"
-              >
-                <ods-select
-                  name="add-operator-access"
                   value="includes"
                 >
                   <option
@@ -807,6 +610,7 @@ exports[`ListingPage > should match snapshot when is loading true 1`] = `
           <!---->
           <table
             class="w-full border-collapse"
+            style="--expander-column-width: 2.5rem;"
           >
             <thead>
               <tr>

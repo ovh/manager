@@ -1,4 +1,8 @@
-import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
+import {
+  FilterCategories,
+  FilterComparator,
+  FilterTypeCategories,
+} from '@ovh-ux/manager-core-api';
 import {
   Datagrid,
   FilterAdd,
@@ -166,6 +170,7 @@ export default function ListingPage() {
                       'containers:pci_projects_project_storages_containers_name_label',
                     ),
                     comparators: FilterCategories.String,
+                    type: FilterTypeCategories.String,
                   },
                   {
                     id: 'createdAt',
@@ -173,6 +178,7 @@ export default function ListingPage() {
                       'pci_projects_project_storages_cold_archive_containers_creation_date_label',
                     ),
                     comparators: FilterCategories.Date,
+                    type: FilterTypeCategories.Date,
                   },
                   {
                     id: 'objectsCount',
@@ -180,6 +186,7 @@ export default function ListingPage() {
                       'containers:pci_projects_project_storages_containers_storedObjects_label',
                     ),
                     comparators: FilterCategories.Numeric,
+                    type: FilterTypeCategories.Numeric,
                   },
                   {
                     id: 'objectsSize',
@@ -187,6 +194,7 @@ export default function ListingPage() {
                       'containers:pci_projects_project_storages_containers_storedBytes_label',
                     ),
                     comparators: FilterCategories.Numeric,
+                    type: FilterTypeCategories.Numeric,
                   },
                   {
                     id: 'lockedUntil',
@@ -194,6 +202,7 @@ export default function ListingPage() {
                       'containers:pci_projects_project_storages_cold_archive_containers_locked_until_label',
                     ),
                     comparators: FilterCategories.Date,
+                    type: FilterTypeCategories.Date,
                   },
                   {
                     id: 'status',
@@ -201,6 +210,7 @@ export default function ListingPage() {
                       'pci_projects_project_storages_cold_archive_containers_status_label',
                     ),
                     comparators: FilterCategories.String,
+                    type: FilterTypeCategories.String,
                   },
                 ]}
                 onAddFilter={(addedFilter, column) => {
