@@ -1,7 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { OdsLink, OdsText } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import {
+  ShellContext,
+  useNavigationGetUrl,
+} from '@ovh-ux/manager-react-shell-client';
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 
 interface MeComponentProps {
@@ -19,6 +22,7 @@ export default function MeComponent({
   const { shell } = useContext(ShellContext);
   const { environment } = shell;
   const [nichandle, setNichandle] = useState('');
+  const { data: url } = useNavigationGetUrl(['new-account', '', {}]);
 
   useEffect(() => {
     const getNichandle = async () => {
@@ -38,12 +42,13 @@ export default function MeComponent({
           })}
         </OdsText>
         <OdsLink
-          href={`/manager/#/account/useraccount/infos`}
+          href={`${url}/useraccount/infos`}
           color="primary"
           label={t(`domain_operations_update_${argumentKey}_click`)}
-          className="block"
+          className="block modal-link"
           target="_blank"
           icon="external-link"
+          isDisabled={!url}
         />
       </>
     );
