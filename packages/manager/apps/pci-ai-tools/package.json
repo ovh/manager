@@ -27,7 +27,7 @@
     "@datatr-ux/uxlib": "^0.0.8",
     "@hookform/resolvers": "^3.3.4",
     "@ovh-ux/manager-config": "*",
-    "@ovh-ux/manager-core-api": "*",
+    "@ovh-ux/manager-core-api": "^0.10.0",
     "@ovh-ux/manager-react-shell-client": "*",
     "@ovh-ux/request-tagger": "*",
     "@ovh-ux/shell": "*",
