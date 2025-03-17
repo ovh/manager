@@ -8,7 +8,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 
 import { add } from 'date-fns';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useGetArchiveByName, useStartArchive } from '@/api/hooks/useArchive';
@@ -21,7 +21,7 @@ import { COLD_ARCHIVE_TRACKING } from '@/tracking.constants';
 const MAX_RETENTION_DAYS = 4500;
 
 export default function EditRetentionPage() {
-  const { t } = useTranslation('containers/edit-retention');
+  const { t } = useTranslation(['containers/edit-retention', 'pci-common']);
 
   const { addSuccessMessage, addErrorMessage } = useNotifications({
     ns: 'containers/edit-retention',
@@ -49,7 +49,6 @@ export default function EditRetentionPage() {
     newRetentionDate.toString(),
     'P',
   );
-  const hasWarning = newRetentionDate < new Date(archive?.lockedUntil);
 
   const navigate = useNavigate();
   const goBack = () => navigate('..');
@@ -100,12 +99,30 @@ export default function EditRetentionPage() {
 
   const onClose = onCancel;
 
+  const hasWarning = newRetentionDate < new Date(archive?.lockedUntil);
+  const errorMessage = useMemo(() => {
+    if (!RegExp(/^\d*$/).test(`${lockedUntilDays}`)) {
+      return t('common_field_error_number', { ns: 'pci-common' });
+    }
+    if (lockedUntilDays < 1) {
+      return t('common_field_error_min', { min: 1, ns: 'pci-common' });
+    }
+    if (lockedUntilDays > MAX_RETENTION_DAYS) {
+      return t('common_field_error_max', {
+        max: MAX_RETENTION_DAYS,
+        ns: 'pci-common',
+      });
+    }
+    if (hasWarning) {
+      return t(
+        'pci_projects_project_storages_cold_archive_containers_container_edit_retention_retention_wartning_help',
+      );
+    }
+    return null;
+  }, [lockedUntilDays, hasWarning]);
+
   const isPending = !archive || isPendingStartArchive;
-  const isDisabled =
-    isPending ||
-    hasWarning ||
-    !lockedUntilDays ||
-    lockedUntilDays > MAX_RETENTION_DAYS;
+  const isDisabled = isPending || !!errorMessage || !lockedUntilDays;
 
   return (
     <PciModal
@@ -139,16 +156,7 @@ export default function EditRetentionPage() {
           'pci_projects_project_storages_cold_archive_containers_container_edit_retention_description_2',
         )}
       </OdsText>
-      <OdsFormField
-        className="mt-4"
-        error={
-          hasWarning
-            ? t(
-                'pci_projects_project_storages_cold_archive_containers_container_edit_retention_retention_wartning_help',
-              )
-            : ''
-        }
-      >
+      <OdsFormField className="mt-4" error={errorMessage}>
         <LabelComponent
           text={t(
             'pci_projects_project_storages_cold_archive_containers_container_edit_retention_retention_days',
@@ -160,6 +168,7 @@ export default function EditRetentionPage() {
           max={MAX_RETENTION_DAYS}
           value={lockedUntilDays}
           name="lockedUntilDays"
+          hasError={!!errorMessage}
           onOdsChange={(event) => setLockedUntilDays(event.detail.value)}
         />
       </OdsFormField>
