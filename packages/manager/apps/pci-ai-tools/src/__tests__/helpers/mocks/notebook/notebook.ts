@@ -1,7 +1,5 @@
 import * as ai from '@datatr-ux/ovhcloud-types/cloud/project/ai/index';
-import { NotebookEnv } from '@datatr-ux/ovhcloud-types/cloud/project/ai/notebook/NotebookEnv';
-import { mockedJobStatus } from '../job/job';
-import { mockedDataSync } from '../volume/datasync';
+
 import {
   mockedGitVolume,
   mockedPublicGitVolume,
@@ -10,8 +8,10 @@ import {
 } from '../volume/volume';
 import { mockedCPUResources, mockedGPUResources } from '../shared/resource';
 import { mockedSshKey } from '../sshkey';
+import { mockedDataSync } from '../volume/datasync';
+import { mockedJobStatus } from '../job/job';
 
-const notebookEnv: NotebookEnv = {
+const notebookEnv: ai.notebook.NotebookEnv = {
   editorId: 'jupyterlab',
   frameworkId: 'one-for-all',
   frameworkVersion: 'version',
