@@ -5,7 +5,7 @@ import * as guideApi from '@/data/api/ai/guides/guide.api';
 import { useGetGuides } from './useGetGuides.hook';
 import { mockedGuides } from '@/__tests__/helpers/mocks/shared/guides';
 
-vi.mock('@/data/api/ai/guide.api', () => ({
+vi.mock('@/data/api/ai/guides/guide.api', () => ({
   getGuides: vi.fn(),
 }));
 

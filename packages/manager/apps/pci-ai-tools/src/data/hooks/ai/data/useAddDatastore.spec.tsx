@@ -8,7 +8,7 @@ import {
   mockedDatastoreS3,
 } from '@/__tests__/helpers/mocks/volume/datastore';
 
-vi.mock('@/data/api/ai/datastore.api', () => ({
+vi.mock('@/data/api/ai/data/datastore.api', () => ({
   addDatastore: vi.fn(),
 }));
 

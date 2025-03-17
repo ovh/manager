@@ -5,7 +5,7 @@ import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrap
 import * as tokenApi from '@/data/api/ai/token/token.api';
 import { useDeleteToken } from './useDeleteToken.hook';
 
-vi.mock('@/data/api/ai/token.api', () => ({
+vi.mock('@/data/api/ai/token/token.api', () => ({
   deleteToken: vi.fn(),
 }));
 

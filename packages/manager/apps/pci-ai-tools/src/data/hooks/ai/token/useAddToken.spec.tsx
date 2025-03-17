@@ -1,6 +1,5 @@
 import { renderHook, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
-
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import * as tokenApi from '@/data/api/ai/token/token.api';
 import { useAddToken } from './useAddToken.hook';
@@ -9,7 +8,7 @@ import {
   mockedTokenCreation,
 } from '@/__tests__/helpers/mocks/shared/token';
 
-vi.mock('@/data/api/ai/token.api', () => ({
+vi.mock('@/data/api/ai/token/token.api', () => ({
   addToken: vi.fn(),
 }));
 
