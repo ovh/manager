@@ -248,6 +248,11 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('app.dedicated-server.server.dashboard.tags-list-modal', {
           productId: serverName,
         }),
+      goToTagManager: /* @ngInject */ ($state, serverName) => () => {
+        $state.go('app.dedicated-server.server.tag-manager', {
+          productId: serverName,
+        });
+      },
       technicalDetails: /* @ngInject */ ($http, serverName) =>
         $http
           .get(`/dedicated/technical-details/${serverName}`, {
