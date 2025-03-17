@@ -28,6 +28,7 @@ import trafficOrder from './traffic/order';
 import trafficCancel from './traffic/cancel';
 import trafficService from './traffic/traffic.service';
 import routing from './server.routing';
+import tagManager from './tag-manager';
 
 const moduleName = 'ovhManagerDedicatedServerDetail';
 
@@ -56,6 +57,7 @@ angular
     trafficOrder,
     trafficCancel,
     tagsListModal,
+    tagManager,
   ])
   .config(routing)
   .service('ServerTrafficService', trafficService)
