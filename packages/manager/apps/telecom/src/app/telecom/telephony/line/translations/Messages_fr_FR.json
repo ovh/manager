@@ -39,7 +39,7 @@
   "telephony_line_softphone_apply_theme_error": "Votre thème n'a pas pu être appliqué: {{errorMessage}}",
   "telephony_line_softphone_apply_theme_success": "Votre thème a bien été appliqué.",
   "telephony_line_softphone_btn_apply_theme": "Appliquer un thème",
-  "telephony_line_softphone_btn_delete_theme": "Supprimer le thème",
+  "telephony_line_softphone_btn_delete_theme": "Restaurer le thème du groupe",
   "telephony_line_softphone_btn_apply_logo": "Appliquer un logo",
   "telephony_line_softphone_delete_device_modal_title": "Suppression de mon appareil",
   "telephony_line_softphone_delete_all": "Déconnecter tous vos appareils",
