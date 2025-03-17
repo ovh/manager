@@ -23,7 +23,7 @@ import { useDatacentreOrderContext } from '@/context/DatacentreOrder.context';
 import { validateQuantity } from '@/utils/formValidation';
 import { getPricedVdcResources } from '@/utils/getPricedOrderableResource';
 import Loading from '../loading/Loading.component';
-import { TRACKING } from '@/tracking.constant';
+import { TRACKING } from '@/tracking.constants';
 
 type OrderType = 'compute' | 'storage';
 type OrderColumns<T extends OrderType> = T extends 'compute'

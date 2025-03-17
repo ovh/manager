@@ -16,7 +16,7 @@ import EditableTileItem from '../editable-tile-item/EditableTileItem.component';
 import { capitalize } from '@/utils/capitalize';
 import { ID_LABEL } from '@/pages/dashboard/dashboard.constants';
 import TEST_IDS from '@/utils/testIds.constants';
-import { TRACKING } from '@/tracking.constant';
+import { TRACKING } from '@/tracking.constants';
 
 type TTileProps = {
   vcdDatacentre: VCDDatacentre;

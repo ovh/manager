@@ -14,7 +14,7 @@ import {
   SUB_UNIVERSE,
   LEVEL2,
   APP_NAME_TRACKING,
-} from './tracking.constant';
+} from './tracking.constants';
 
 const trackingContext = {
   chapter1: UNIVERSE,

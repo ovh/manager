@@ -9,7 +9,7 @@ import VcdDashboardLayout, {
 import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
 import { urls } from '@/routes/routes.constant';
 import { CHANGELOG_LINKS } from '@/utils/changelog.constants';
-import { TRACKING_TABS_ACTIONS } from '@/tracking.constant';
+import { TRACKING_TABS_ACTIONS } from '@/tracking.constants';
 
 export default function DashboardPage() {
   const { id } = useParams();
