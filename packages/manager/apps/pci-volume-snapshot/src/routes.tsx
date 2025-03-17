@@ -1,6 +1,7 @@
 import { lazy } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import { ErrorBoundary } from '@/pages/Layout';
+import { LISTING } from '@/tracking.constants';
 
 const ROUTE_PATHS = {
   ROOT: '/pci/projects/:projectId/storages/volume-snapshots',
@@ -8,17 +9,16 @@ const ROUTE_PATHS = {
 };
 
 const LayoutPage = lazy(() => import('@/pages/Layout'));
+const VolumeListPage = lazy(() => import('@/pages/listing/Listing.page'));
 
-const RoutesComponent = () => (
-  <Routes>
-    <Route
-      id="root"
-      path={ROUTE_PATHS.ROOT}
-      Component={LayoutPage}
-      errorElement={<ErrorBoundary />}
-    ></Route>
-    <Route path="" element={<>Page not found</>}></Route>
-  </Routes>
+export default (
+  <Route
+    id="root"
+    path={ROUTE_PATHS.ROOT}
+    Component={LayoutPage}
+    errorElement={<ErrorBoundary />}
+  >
+    <Route path="notFound" element={<>Page not found</>}></Route>
+    <Route path={ROUTE_PATHS.LISTING} Component={VolumeListPage} id={LISTING} />
+  </Route>
 );
-
-export default RoutesComponent;
