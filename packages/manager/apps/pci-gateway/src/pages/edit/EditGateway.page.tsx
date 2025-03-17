@@ -2,6 +2,7 @@ import {
   StepComponent,
   TilesInputComponent,
   useNotifications,
+  useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 import {
   OsdsBreadcrumb,
@@ -35,43 +36,41 @@ import {
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useProject } from '@ovh-ux/manager-pci-common';
 import { useEditGateway, useGateway } from '@/api/hooks/useGateways';
-import { TSizeItem, useData } from '@/api/hooks/data';
-import { SizeLabelComponent } from '@/pages/edit/SizeLabel.component';
 import HidePreloader from '@/core/HidePreloader';
-
-type TState = {
-  size: TSizeItem;
-  name: string;
-};
+import { useRegionGatewayAddons } from '@/api/hooks/useGateways/useGateways';
+import { TProductAddonDetail } from '@/types/addon.type';
+import SizeLabel from '@/components/size/SizeLabel.component';
 
 export default function EditGatewayPage(): JSX.Element {
-  const { navigation } = useContext(ShellContext).shell;
-  const { t } = useTranslation(['edit', 'common', 'add', 'global']);
+  const { t } = useTranslation(['edit', 'common', 'global']);
+  const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
+
   const { projectId } = useParams();
   const [searchParams] = useSearchParams();
   const { addError, addSuccess, clearNotifications } = useNotifications();
-  const navigate = useNavigate();
 
-  const goBack = () => navigate('..');
-  const backHref = useHref('..');
+  const { data: project } = useProject();
 
-  const sizes = useData(projectId);
+  const projectUrl = useProjectUrl('public-cloud');
 
   const regionName = searchParams.get('region');
+
+  const navigate = useNavigate();
+
+  const backHref = useHref('..');
+
+  const goBack = () => navigate('..');
+
+  const [size, setSize] = useState<TProductAddonDetail>();
+  const [name, setName] = useState('');
+
+  const addons = useRegionGatewayAddons(ovhSubsidiary, projectId, regionName);
 
   const { data: gateway, isPending: isGatewayLoading } = useGateway(
     projectId,
     regionName,
     searchParams.get('gatewayId'),
   );
-
-  const [state, setState] = useState<TState>({
-    size: undefined,
-    name: '',
-  });
-  const [projectUrl, setProjectUrl] = useState('');
-
-  const { data: project } = useProject();
 
   const { updateGateway, isPending: isGatewayUpdating } = useEditGateway({
     projectId,
@@ -81,7 +80,7 @@ export default function EditGatewayPage(): JSX.Element {
       clearNotifications();
       addSuccess(
         t('pci_projects_project_public_gateway_edit_success', {
-          name: state.name,
+          name,
         }),
         true,
       );
@@ -91,7 +90,7 @@ export default function EditGatewayPage(): JSX.Element {
       clearNotifications();
       addError(
         t('pci_projects_project_public_gateway_edit_error', {
-          name: state.name,
+          name,
         }),
         true,
       );
@@ -100,19 +99,11 @@ export default function EditGatewayPage(): JSX.Element {
   });
 
   useEffect(() => {
-    if (gateway && sizes.length > 0) {
-      setState({
-        name: gateway.name,
-        size: sizes.find((s) => s.payload.split(/-+/).pop() === gateway.model),
-      });
+    if (gateway && addons.length > 0) {
+      setName(gateway.name);
+      setSize(addons.find((addon) => addon.size === gateway.model));
     }
-  }, [gateway, sizes]);
-
-  useEffect(() => {
-    navigation.getURL('', `#/pci/projects/${projectId}`, {}).then((data) => {
-      setProjectUrl(data as string);
-    });
-  }, [projectId, navigation]);
+  }, [gateway, addons]);
 
   return (
     <>
@@ -125,14 +116,13 @@ export default function EditGatewayPage(): JSX.Element {
               label: project.description,
             },
             {
-              href: `${projectUrl}/gateway`,
               label: t('common:pci_projects_project_public_gateway_title'),
             },
           ]}
         />
       )}
 
-      <OsdsDivider></OsdsDivider>
+      <OsdsDivider />
       <OsdsLink
         className="mt-6 mb-3"
         color={ODS_THEME_COLOR_INTENT.primary}
@@ -163,7 +153,7 @@ export default function EditGatewayPage(): JSX.Element {
               data-testid="gatewayEdit-spinner"
             />
           )}
-          <OsdsDivider></OsdsDivider>
+          <OsdsDivider />
           <StepComponent
             id="edit"
             order={1}
@@ -181,25 +171,21 @@ export default function EditGatewayPage(): JSX.Element {
               </OsdsText>
             }
             next={{
-              action: !state.name.length
-                ? undefined
-                : () => {
-                    const payload = {
-                      model: state.size.payload.split(/-+/).pop(),
-                      name: state.name,
-                    };
-                    updateGateway(payload);
-                  },
+              action: () => {
+                const payload = {
+                  model: size.size,
+                  name,
+                };
+                updateGateway(payload);
+              },
               label: t(
                 'pci_projects_project_public_gateway_edit_submit_action',
               ),
-              isDisabled: false,
+              isDisabled: !name || !size,
             }}
           >
             <OsdsFormField
-              error={
-                state.name.length ? '' : t('global:common_field_error_required')
-              }
+              error={name.length ? '' : t('global:common_field_error_required')}
             >
               <OsdsText
                 level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
@@ -212,31 +198,24 @@ export default function EditGatewayPage(): JSX.Element {
                 )}
               </OsdsText>
               <OsdsInput
-                value={state.name}
+                value={name}
                 placeholder={t(
                   'pci_projects_project_public_gateways_edit_public_gateway_field_placeholder',
                 )}
-                error={!state.name.length}
+                error={!name.length}
                 inline
-                onOdsValueChange={(event) => {
-                  setState((prev) => ({
-                    ...prev,
-                    name: `${event.target.value}`,
-                  }));
-                }}
+                onOdsValueChange={(event) => setName(`${event.target.value}`)}
                 type={ODS_INPUT_TYPE.text}
                 color={ODS_THEME_COLOR_INTENT.primary}
                 className="border"
               />
             </OsdsFormField>
 
-            <TilesInputComponent<TSizeItem, string, string>
-              value={state.size}
-              items={sizes}
-              label={(item: TSizeItem) => <SizeLabelComponent item={item} />}
-              onInput={(item) => {
-                setState({ ...state, size: item });
-              }}
+            <TilesInputComponent<TProductAddonDetail, string, string>
+              value={size}
+              items={addons}
+              label={(props) => <SizeLabel {...props} />}
+              onInput={(item) => setSize(item)}
             />
           </StepComponent>
         </>

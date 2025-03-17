@@ -88,13 +88,11 @@ export const LocationStep = ({
         action: (id) => {
           store.updateStep.unCheck(id as StepsEnum);
           store.updateStep.unlock(id as StepsEnum);
-
-          store.updateForm.regionName(undefined);
           store.updateStep.close(StepsEnum.SIZE);
           store.updateStep.unCheck(StepsEnum.SIZE);
           store.updateStep.unlock(StepsEnum.SIZE);
 
-          store.updateForm.name(undefined);
+          store.updateForm.size(undefined);
           store.updateForm.network(undefined, undefined);
           store.updateStep.close(StepsEnum.NETWORK);
         },
