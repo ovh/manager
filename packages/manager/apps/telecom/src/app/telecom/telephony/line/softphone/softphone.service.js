@@ -77,6 +77,14 @@ export default class SofpthoneService {
       .then(({ data }) => data);
   }
 
+  deleteSoftphoneTheme(billingAccount, serviceName) {
+    return this.$http
+      .delete(
+        `/telephony/${billingAccount}/line/${serviceName}/softphone/theme`,
+      )
+      .then(({ data }) => data);
+  }
+
   putSoftphoneLogo(billingAccount, serviceName, filename = '', url = '') {
     return this.$http
       .put(`/telephony/${billingAccount}/line/${serviceName}/softphone/logo`, {

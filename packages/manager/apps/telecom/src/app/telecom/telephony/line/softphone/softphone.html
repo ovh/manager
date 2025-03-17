@@ -239,6 +239,16 @@
                     data-translate="telephony_line_softphone_btn_apply_theme"
                 ></span>
             </button>
+            <button
+                data-ng-disabled="$ctrl.isLoading || $ctrl.isUpdatingTheme"
+                type="button"
+                class="btn btn-default"
+                data-ng-click="$ctrl.deleteTheme()"
+            >
+                <span
+                    data-translate="telephony_line_softphone_btn_delete_theme"
+                ></span>
+            </button>
         </form>
         <p data-translate="telephony_line_softphone_save_theme"></p>
     </oui-collapsible>
