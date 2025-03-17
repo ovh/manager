@@ -5,11 +5,13 @@ import {
   MOBILE_OS,
   SOFTPHONE_TRACKING,
   LOGO_BY_DEFAULT,
+  DOWNLOAD_URL,
 } from './softphone.constants';
 
 export default class SoftphoneController {
   /* @ngInject */
   constructor(SoftphoneService, $translate, $q, TucToast) {
+    this.DOWNLOAD_URL = DOWNLOAD_URL;
     this.LOGO_BY_DEFAULT = LOGO_BY_DEFAULT;
     this.LOGO_FILE_FORMATS = LOGO_FILE_FORMATS;
     this.MAX_SIZE_LOGO_FILE = MAX_SIZE_LOGO_FILE;
@@ -108,8 +110,12 @@ export default class SoftphoneController {
       return;
     }
     // iOS detection from: http://stackoverflow.com/a/9039885/177710
-    if (/iPad|iPhone|Macintosh|iPod/.test(userAgent) && !window.MSStream) {
+    if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
       this.osName = MOBILE_OS.ios;
+      return;
+    }
+    if (/macintosh/.test(userAgent)) {
+      this.osName = MOBILE_OS.macos;
       return;
     }
     this.osName = MOBILE_OS.windows;

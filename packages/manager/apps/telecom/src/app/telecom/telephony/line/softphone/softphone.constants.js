@@ -6,7 +6,10 @@ export const MOBILE_OS = {
   windows: 'windows',
   android: 'android',
   ios: 'ios',
+  macos: 'macos',
 };
+
+export const DOWNLOAD_URL = 'https://download.softcall.app/apps/prod/';
 
 const TRACKING_PREFIX = 'telecom::telephony::{{serviceType}}::';
 
@@ -158,4 +161,6 @@ export default {
   MAX_SIZE_LOGO_FILE,
   LOGO_FILE_FORMATS,
   SOFTPHONE_TRACKING,
+  DOWNLOAD_URL,
+  LOGO_BY_DEFAULT,
 };
