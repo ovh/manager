@@ -5,7 +5,7 @@ import * as tokenApi from '@/data/api/ai/token/token.api';
 import { mockedToken } from '@/__tests__/helpers/mocks/shared/token';
 import { useRenewToken } from './useRenewToken.hook';
 
-vi.mock('@/data/api/ai/token.api', () => ({
+vi.mock('@/data/api/ai/token/token.api', () => ({
   renewToken: vi.fn(),
 }));
 
