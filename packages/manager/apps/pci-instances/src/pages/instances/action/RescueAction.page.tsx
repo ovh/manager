@@ -19,7 +19,7 @@ export const RescueActionPage: FC<{
   title: string;
   section: TRescueActionPageProps;
   projectId: string;
-  handleMutationError: () => void;
+  handleMutationError: (error: unknown) => void;
   handleMutationSuccess: () => void;
   handleModalClose: () => void;
   instance: TInstanceDto;
