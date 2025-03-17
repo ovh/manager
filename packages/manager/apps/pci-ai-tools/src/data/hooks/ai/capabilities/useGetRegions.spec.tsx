@@ -5,7 +5,7 @@ import * as capabilitiesApi from '@/data/api/ai/capabilities/capabilities.api';
 import { mockedCapabilitiesRegionGRA } from '@/__tests__/helpers/mocks/capabilities/region';
 import { useGetRegions } from './useGetRegions.hook';
 
-vi.mock('@/data/api/ai/capabilities.api', () => ({
+vi.mock('@/data/api/ai/capabilities/capabilities.api', () => ({
   getRegions: vi.fn(),
 }));
 

@@ -1,5 +1,6 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
 import { describe, expect, vi } from 'vitest';
+import { mockedTokenCreation } from '@/__tests__/helpers/mocks/shared/token';
 import {
   addToken,
   deleteToken,
@@ -7,7 +8,6 @@ import {
   getTokens,
   renewToken,
 } from '@/data/api/ai/token/token.api';
-import { mockedTokenCreation } from '@/__tests__/helpers/mocks/shared/token';
 
 describe('Token functions', () => {
   afterEach(() => {
