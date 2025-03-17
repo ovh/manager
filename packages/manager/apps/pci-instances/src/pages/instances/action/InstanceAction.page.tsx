@@ -2,6 +2,7 @@ import { useNotifications } from '@ovh-ux/manager-react-components';
 import { FC, useCallback, useEffect, useMemo } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
+import { DefaultError } from '@tanstack/react-query';
 import {
   getInstanceById,
   updateInstanceFromCache,
@@ -9,8 +10,7 @@ import {
 import { usePathMatch } from '@/hooks/url/usePathMatch';
 import NotFound from '@/pages/404/NotFound.page';
 import queryClient from '@/queryClient';
-import { replaceToSnakeCase } from '@/utils';
-
+import { isApiErrorResponse, replaceToSnakeCase } from '@/utils';
 import BaseInstanceActionPage from './BaseAction.page';
 import { RescueActionPage } from './RescueAction.page';
 
@@ -99,10 +99,14 @@ const InstanceAction: FC = () => {
     handleModalClose();
   };
 
-  const handleMutationError = () => {
+  const handleMutationError = (rawError: unknown) => {
+    const errorMessage = isApiErrorResponse(rawError)
+      ? rawError.response?.data.message
+      : (rawError as DefaultError).message;
     addError(
       t(`pci_instances_actions_${snakeCaseSection}_instance_error_message`, {
         name: instanceName,
+        error: errorMessage,
       }),
       true,
     );
