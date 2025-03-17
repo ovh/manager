@@ -18,7 +18,7 @@ describe('Guides component', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
     mockManagerReactShellClient();
-    vi.mock('@/data/api/ai/guide.api', () => ({
+    vi.mock('@/data/api/ai/guides/guide.api', () => ({
       getGuides: vi.fn(() => [mockedGuides, mockedGuideOnboarding]),
     }));
   });
