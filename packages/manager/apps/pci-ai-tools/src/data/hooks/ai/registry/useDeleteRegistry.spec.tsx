@@ -4,7 +4,7 @@ import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrap
 import * as registryApi from '@/data/api/ai/registry/registry.api';
 import { useDeleteRegistry } from './useDeleteRegistry.hook';
 
-vi.mock('@/data/api/ai/registry.api', () => ({
+vi.mock('@/data/api/ai/registry/registry.api', () => ({
   deleteRegistry: vi.fn(),
 }));
 
