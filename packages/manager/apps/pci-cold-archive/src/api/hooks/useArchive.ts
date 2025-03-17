@@ -258,7 +258,7 @@ export const useCreateContainer = ({
 }: {
   projectId: string;
   onSuccess?: (container: TArchiveContainer) => void;
-  onError: (error: ApiError) => void;
+  onError?: (error: ApiError) => void;
 }) => {
   const region = useArchiveRegion();
 
