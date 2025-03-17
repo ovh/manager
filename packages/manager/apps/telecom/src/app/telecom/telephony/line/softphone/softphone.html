@@ -61,17 +61,6 @@
                         src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
                     />
                 </a>
-                <a
-                    data-ng-href="{{$ctrl.storeLinks[$ctrl.MOBILE_OS.windows]}}"
-                    target="_blank"
-                    data-ng-click="$ctrl.goStoreTrackClick('microsoft-store')"
-                >
-                    <img
-                        class="windows"
-                        alt="{{:: 'telephony_line_softphone_store_link_windows'| translate}}"
-                        src="https://learn.microsoft.com/fr-fr/windows/apps/images/new-badge-light.png"
-                    />
-                </a>
             </div>
         </div>
 
@@ -80,10 +69,21 @@
                 data-translate="telephony_line_softphone_download_links_option_2"
             ></b>
         </p>
-        <div class="row mb-2">
-            <div class="d-flex justify-content-left ml-5">
-                <qr data-text="$ctrl.storeLinks[$ctrl.osName]"></qr>
-            </div>
+        <div class="row mb-2 ml-0">
+            <p
+                data-translate="telephony_line_softphone_download_links_option_2_link"
+                class="d-inline"
+            ></p>
+            <a
+                href="{{ $ctrl.DOWNLOAD_URL }}"
+                class="oui-link_icon d-inline"
+                target="_blank"
+                ><span data-ng-bind="$ctrl.DOWNLOAD_URL"></span
+                ><span
+                    class="oui-icon oui-icon-external-link"
+                    aria-hidden="true"
+                ></span
+            ></a>
         </div>
 
         <p class="pt-1">
