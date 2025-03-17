@@ -1,7 +1,7 @@
 import { ErrorBannerProps } from '@ovh-ux/manager-react-components';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { ErrorResponse, isRouteErrorResponse } from 'react-router-dom';
-import { AxiosError } from 'axios';
+import { AxiosError, isAxiosError } from 'axios';
 
 type RouterErrorResponse = Pick<
   ErrorResponse,
@@ -11,7 +11,7 @@ type RouterErrorResponse = Pick<
 };
 
 export const isApiErrorResponse = (error: unknown): error is ApiError =>
-  error instanceof AxiosError &&
+  isAxiosError(error) &&
   (error as AxiosError<{ message: string }>).response?.data?.message !==
     undefined;
 

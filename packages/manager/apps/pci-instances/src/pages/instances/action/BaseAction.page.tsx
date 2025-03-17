@@ -17,7 +17,7 @@ export type TBaseInstanceActionPageProps = {
   title: string;
   section: BaseInstanceActionSection;
   projectId: string;
-  handleMutationError: () => void;
+  handleMutationError: (error: unknown) => void;
   handleMutationSuccess: () => void;
   handleModalClose: () => void;
   instance: TInstanceDto;
