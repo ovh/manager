@@ -6,10 +6,10 @@ import { useNavigate } from 'react-router-dom';
 import { TOngoingOperations } from 'src/types';
 import { FilterCategories } from '@ovh-ux/manager-core-api';
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
 import { ParentEnum } from '@/enum/parent.enum';
 import { formatDatagridDate, removeQuotes } from '@/utils/utils';
 import OngoingOperationDatagridBadge from '@/components/OngoingOperationDatagridBadge/OngoingOperationDatagridBadge';
-import { UseWebCloudManagerUrl } from '@/hooks/url/useWebCloudManagerUrl';
 import { DNS_OPERATIONS_TABLE_HEADER_DOMAIN } from '@/pages/dashboard/Dashboard';
 
 export const useOngoingOperationDatagridColumns = (
@@ -20,6 +20,11 @@ export const useOngoingOperationDatagridColumns = (
   const { t } = useTranslation('dashboard');
   const l = getI18n();
   const navigate = useNavigate();
+  const { data: url } = useNavigationGetUrl(['web', '', {}]);
+  let information = '';
+  if (parent === ParentEnum.DOMAIN) {
+    information = `/information`;
+  }
 
   return useMemo(
     () => [
@@ -27,14 +32,14 @@ export const useOngoingOperationDatagridColumns = (
         id: parent,
         cell: (props: TOngoingOperations) => {
           const value: string = props[parent];
-          const url: string = UseWebCloudManagerUrl(parent, value);
           return (
             <DataGridTextCell>
               <OdsLink
-                href={url}
+                href={`${url}/${parent}/${value}${information}`}
                 label={value}
                 target="_blank"
                 data-testid={value}
+                isDisabled={!url}
               />
             </DataGridTextCell>
           );
@@ -105,14 +110,14 @@ export const useOngoingOperationDatagridColumns = (
                 className: `${!props.canAccelerate &&
                   !props.canRelaunch &&
                   !props.canCancel &&
-                  'hidden'} openModal`,
+                  'hidden'} openModal menu-item-button`,
                 onClick: () => openModal(props.id),
               },
               {
                 id: 2,
                 label: t('domain_operations_tab_popover_progress'),
-                className:
-                  props.function !== 'DomainIncomingTransfer' && 'hidden',
+                className: `${props.function !== 'DomainIncomingTransfer' &&
+                  'hidden'} menu-item-button`,
                 onClick: () => navigate(`/tracking/${props.id}`),
               },
             ]}
