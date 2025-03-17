@@ -275,8 +275,7 @@
                 </oui-field>
                 <img
                     class="col-md-2"
-                    data-ng-if="$ctrl.logoFilename !== ''"
-                    data-ng-src="{{ $ctrl.logoUrl }}"
+                    data-ng-src="{{ $ctrl.logoFilename !== '' ? $ctrl.logoUrl : $ctrl.LOGO_BY_DEFAULT }}"
                     width="512"
                     height="auto"
                     alt="{{:: 'telephony_line_softphone_logo_image' | translate  }}"
