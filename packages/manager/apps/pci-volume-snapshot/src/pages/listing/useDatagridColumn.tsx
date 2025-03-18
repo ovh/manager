@@ -1,15 +1,20 @@
 import {
   DataGridTextCell,
   DatagridColumn,
+  useTranslatedMicroRegions,
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { useBytes } from '@ovh-ux/manager-pci-common';
 import { TVolumeSnapshot } from '@/api/hooks/useSnapshots';
+import { useFormattedDate } from '@/hooks/useFormattedDate';
+import StatusComponent from './Status.component';
 
 export const useDatagridColumn = () => {
   const { t } = useTranslation('volumes');
 
   const { formatBytes } = useBytes();
+
+  const { translateMicroRegion } = useTranslatedMicroRegions();
 
   const columns: DatagridColumn<TVolumeSnapshot>[] = [
     {
@@ -30,7 +35,9 @@ export const useDatagridColumn = () => {
       id: 'region',
       label: t('pci_projects_project_storages_snapshots_region_label'),
       cell: (props: TVolumeSnapshot) => (
-        <DataGridTextCell>{props.region}</DataGridTextCell>
+        <DataGridTextCell>
+          {translateMicroRegion(props.region)}
+        </DataGridTextCell>
       ),
     },
     {
@@ -44,21 +51,27 @@ export const useDatagridColumn = () => {
       id: 'size',
       label: t('pci_projects_project_storages_snapshots_size_label'),
       cell: (props: TVolumeSnapshot) => (
-        <DataGridTextCell>{props.size}</DataGridTextCell>
+        <DataGridTextCell>
+          {formatBytes(props.size * Math.pow(1024, 3), 2, 1024)}
+        </DataGridTextCell>
       ),
     },
     {
       id: 'creationDate',
       label: t('pci_projects_project_storages_snapshots_creationDate_label'),
       cell: (props: TVolumeSnapshot) => (
-        <DataGridTextCell>{props.creationDate}</DataGridTextCell>
+        <DataGridTextCell>
+          {useFormattedDate(props.creationDate, 'P p')}
+        </DataGridTextCell>
       ),
     },
     {
       id: 'status',
       label: t('pci_projects_project_storages_snapshots_status_label'),
       cell: (props: TVolumeSnapshot) => (
-        <DataGridTextCell>{props.status}</DataGridTextCell>
+        <DataGridTextCell>
+          <StatusComponent status={props.status} />
+        </DataGridTextCell>
       ),
     },
   ];
