@@ -9,7 +9,7 @@ export const platformMock: ZimbraPlatformType[] = [
         {
           availableAccountsCount: 1,
           configuredAccountsCount: 5,
-          offer: 'BUSINESS',
+          offer: 'PRO',
         },
         {
           availableAccountsCount: 2,
