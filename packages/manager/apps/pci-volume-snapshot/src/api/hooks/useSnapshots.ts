@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { useQuery, useQueries } from '@tanstack/react-query';
 import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
+import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
 import { getSnapshots, getVolume, TSnapshot, TVolume } from '../data/snapshots';
 import { paginateResults, sortResults } from '@/helpers';
 
@@ -43,6 +44,7 @@ export const usePaginatedVolumeSnapshot = (
   projectId: string,
   pagination: PaginationState,
   sorting: ColumnSort,
+  filters: Filter[],
 ) => {
   const { data: snapshots, error, isLoading, isPending } = useVolumeSnapshots(
     projectId,
@@ -50,7 +52,7 @@ export const usePaginatedVolumeSnapshot = (
 
   return useMemo(() => {
     const sortedAndFilteredSnapshots = sortResults<TVolumeSnapshot>(
-      snapshots || [],
+      applyFilters<TVolumeSnapshot>(snapshots || [], filters),
       sorting,
     );
     return {
@@ -62,5 +64,5 @@ export const usePaginatedVolumeSnapshot = (
       ),
       error,
     };
-  }, [snapshots, error, isLoading, isPending, pagination, sorting]);
+  }, [snapshots, error, isLoading, isPending, pagination, sorting, filters]);
 };
