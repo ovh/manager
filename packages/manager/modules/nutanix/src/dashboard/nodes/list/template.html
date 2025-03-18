@@ -101,6 +101,10 @@
         <node-action-menu
             data-ng-if="$row.possibleActions && !$row.isTerminated"
             data-possible-actions="$row.possibleActions"
+            data-service-name="$ctrl.serviceName"
+            data-server="$row.name"
+            data-has-only-minimum-node=":: $ctrl.hasOnlyMinimumNode"
+            data-initial-commitment-size="$ctrl.cluster.targetSpec.initialCommitmentSize"
             data-on-power-on="$ctrl.onPowerOn($row.name)"
             data-on-power-off="$ctrl.powerOffNode($row.name)"
             data-on-install="$ctrl.installNode($row.name)"

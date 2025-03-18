@@ -1,22 +1,41 @@
 import { POSSIBLE_ACTIONS } from './constants';
-import { MIN_NODES_BY_CLUSTER } from '../../../constants';
 
 export default class NutanixDashboardNodeActionMenu {
   /* @ngInject */
-  constructor($translate) {
+  constructor($translate, NutanixNode) {
     this.$translate = $translate;
+    this.NutanixNode = NutanixNode;
   }
 
   $onInit() {
-    this.mapPossibleActions();
     this.POSSIBLE_ACTIONS = POSSIBLE_ACTIONS;
   }
 
-  mapPossibleActions() {
+  loadPossibleActions() {
+    this.isLoading = true;
+    this.NutanixNode.getNodeDetails(this.serviceName, this.server)
+      .then((node) => {
+        this.mapPossibleActions(node.possibleActions);
+      })
+      .catch(() => {
+        this.possibleActionsMapped = [];
+      })
+      .finally(() => {
+        this.isLoading = false;
+      });
+  }
+
+  mapPossibleActions(possibleActions) {
     this.possibleActionsMapped = {};
-    this.possibleActions.forEach(({ action, isPossible, reason }) => {
+    possibleActions.forEach(({ action, isPossible, reason }) => {
       this.possibleActionsMapped[action] = { isPossible, reason };
     });
+
+    if (this.hasOnlyMinimumNode) {
+      this.possibleActionsMapped[POSSIBLE_ACTIONS.TERMINATE].isPossible = false;
+      this.possibleActionsMapped[POSSIBLE_ACTIONS.TERMINATE].reason =
+        'lower_than_initial_commitment_size';
+    }
   }
 
   getReasonTranslation(reason) {
@@ -26,7 +45,7 @@ export default class NutanixDashboardNodeActionMenu {
 
     return this.$translate.instant(
       `nutanix_node_disable_reason_${reasonTrimed}`,
-      { nb_nodes_minimal: MIN_NODES_BY_CLUSTER },
+      { nb_nodes_minimal: this.initialCommitmentSize },
     );
   }
 }
