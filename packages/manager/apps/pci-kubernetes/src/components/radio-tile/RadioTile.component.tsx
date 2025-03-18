@@ -33,7 +33,7 @@ const RadioTile = ({
       className={cn('flex', tileClassName)}
       role="radio"
       aria-checked={props.checked}
-      tabIndex={0}
+      tabIndex={!disabled ? 0 : undefined}
       onKeyDown={handleLabelKeyDown}
       data-testid="radio-tile-container"
     >

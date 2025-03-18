@@ -1,68 +1,51 @@
 import { Check, XCircle } from 'lucide-react';
 import { Button } from '@datatr-ux/uxlib';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TFunction } from 'i18next';
 import RadioTile from '@/components/radio-tile/RadioTile.component';
 import { TClusterCreationForm } from '../useCusterCreationStepper';
 import { StepState } from '../useStep';
+import { cn } from '@/helpers';
 
 type Plan = {
-  disabled: boolean;
   title: string;
+  type: 'region' | 'region-3-az';
   description: string;
-  content: () => JSX.Element[];
+  content: string[];
   footer?: string;
   value: TClusterCreationForm['plan'];
 };
 
 const plans: Plan[] = [
   {
-    disabled: false,
-    footer: 'kube_add_plan_footer_standard',
     title: 'kube_add_plan_title_standard',
     description: 'kube_add_plan_description_standard',
-    content: () => {
-      const { t } = useTranslation(['add']);
-      return [
-        'kube_add_plan_content_standard_control',
-        'kube_add_plan_content_standard_high_availability',
-        'kube_add_plan_content_standard_SLO',
-        'kube_add_plan_content_standard_auto_scaling',
-        'kube_add_plan_content_standard_ETCD',
-        'kube_add_plan_content_standard_version',
-        'kube_add_plan_content_standard_100',
-      ].map((text, index) => (
-        <span className="flex items-start gap-1" key={index}>
-          <Check className="text-teal-500" />
-          {t(text)}
-        </span>
-      ));
-    },
+    content: [
+      'kube_add_plan_content_standard_control',
+      'kube_add_plan_content_standard_high_availability',
+      'kube_add_plan_content_standard_SLO',
+      'kube_add_plan_content_standard_auto_scaling',
+      'kube_add_plan_content_standard_ETCD',
+      'kube_add_plan_content_standard_version',
+      'kube_add_plan_content_standard_100',
+    ],
     value: 'standard',
+    type: 'region',
   },
   {
-    disabled: true,
     title: 'kube_add_plan_title_premium',
     description: 'kube_add_plan_description_premium',
-
-    content: () => {
-      const { t } = useTranslation(['add']);
-      return [
-        'kube_add_plan_content_premium_3AZ_control_plane',
-        'kube_add_plan_content_premium_disponibility',
-        'kube_add_plan_content_premium_SLA',
-        'kube_add_plan_content_standard_auto_scaling',
-        'kube_add_plan_content_premium_ETCD',
-        'kube_add_plan_content_premium_version',
-        'kube_add_plan_content_premium_500',
-      ].map((text, index) => (
-        <span className="flex items-start gap-1" key={index}>
-          <Check className="text-neutral-600 shrink-0" />
-          {t(text)}
-        </span>
-      ));
-    },
+    content: [
+      'kube_add_plan_content_premium_3AZ_control_plane',
+      'kube_add_plan_content_premium_disponibility',
+      'kube_add_plan_content_premium_SLA',
+      'kube_add_plan_content_standard_auto_scaling',
+      'kube_add_plan_content_premium_ETCD',
+      'kube_add_plan_content_premium_version',
+      'kube_add_plan_content_premium_500',
+    ],
+    type: 'region-3-az',
     value: 'premium',
   },
 ];
@@ -70,12 +53,14 @@ const plans: Plan[] = [
 const PlanTile = ({
   onSubmit,
   step,
+  type,
 }: {
   onSubmit: (plan: TClusterCreationForm['plan']) => void;
   step: StepState;
+  type: string;
 }) => {
   const [selected, setSelected] = useState<TClusterCreationForm['plan']>(
-    'standard',
+    type === 'region' ? 'standard' : 'premium',
   );
   const { t } = (useTranslation(['add', 'stepper']) as unknown) as {
     t: TFunction<'add'>;
@@ -86,36 +71,52 @@ const PlanTile = ({
     onSubmit(selected);
   };
 
+  const planIsDisabled = (plan) =>
+    (type === 'region' && plan.value === 'premium') ||
+    (type === 'region-3-az' && plan.value === 'standard');
+
+  const plansToShow = useMemo(() => {
+    if (type === 'region-3-az') {
+      return plans.filter((plan) => plan.value !== 'standard');
+    }
+    return plans;
+  }, [type, plans]);
+
   return (
     <form data-testid="form" onSubmit={onSubmitHandler}>
-      <div className=" mt-6 grid grid-cols-1  lg:grid-cols-2  xl:grid-cols-4  gap-4">
+      <div className=" mt-6 grid grid-cols-1  lg:grid-cols-2  xl:grid-cols-3  gap-4">
         {!step.isLocked &&
-          // eslint-disable-next-line @typescript-eslint/naming-convention
-          plans.map(({ content: Content, ...plan }) => (
+          plansToShow.map(({ content, ...plan }) => (
             <RadioTile
-              disabled={plan.disabled}
+              disabled={planIsDisabled(plan)}
               key={plan.value}
               data-testid={`plan-tile-radio-tile-${plan.value}`}
               name="plan-select"
               tileClassName="min-h-[350px] "
-              onChange={() => !plan.disabled && setSelected(plan.value)}
+              onChange={() => !planIsDisabled(plan) && setSelected(plan.value)}
               value={plan.value}
               checked={selected === plan.value}
             >
               {PlanTile.Header && plan.title && (
                 <PlanTile.Header
-                  selected={!plan.disabled && selected === plan.value}
+                  selected={!planIsDisabled(plan) && selected === plan.value}
                   title={plan.title}
                   description={plan.description}
-                  disabled={plan.disabled}
+                  disabled={planIsDisabled(plan)}
                 />
               )}
               <RadioTile.Separator />
               <div className="text-sm flex flex-col p-4">
-                <Content />
+                <PlanTile.Content
+                  disabled={planIsDisabled(plan)}
+                  contents={content}
+                />
               </div>
-              {PlanTile.Footer && plan.footer && (
-                <PlanTile.Footer value={plan.value} content={plan.footer} />
+              {!planIsDisabled(plan) && (
+                <PlanTile.Footer
+                  value={plan.value}
+                  content="kube_add_plan_footer_standard"
+                />
               )}
             </RadioTile>
           ))}
@@ -142,7 +143,7 @@ PlanTile.LockedView = function PlanTileLockedView({
   value: string;
 }) {
   const { t } = useTranslation(['add']);
-  const plan = plans.find((p) => p.value === value);
+  const plan = useMemo(() => plans.find((p) => p.value === value), [value]);
 
   return (
     <RadioTile labelClassName="border-neutral-200">
@@ -186,6 +187,27 @@ PlanTile.Header = function PlanTileHeader({
       </div>
     </div>
   );
+};
+
+PlanTile.Content = function PlanTileContent({
+  contents,
+  disabled,
+}: {
+  contents: string[];
+  disabled: boolean;
+}) {
+  const { t } = useTranslation(['add']);
+  return contents.map((text, index) => (
+    <span className="flex items-start gap-1" key={index}>
+      <Check
+        className={cn('shrink-0', {
+          'text-neutral-600': disabled,
+          'text-teal-500': !disabled,
+        })}
+      />
+      {t(text)}
+    </span>
+  ));
 };
 
 PlanTile.Footer = function PlanTileFooter({
