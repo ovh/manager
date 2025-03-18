@@ -171,6 +171,7 @@ export default class PackMoveCtrl {
     });
     this.$scope.$on('updateBuildingDetails', (event, selectedOffer) => {
       this.offer.selected.buildingDetails = selectedOffer;
+      console.log('offer', this.offer);
       if (this.offer.selected.offer.totalSubServiceToDelete > 0) {
         this.moveStep = STEPS.serviceDelete;
       } else if (this.offer.selected.offer.customOntAddress) {
