@@ -11,7 +11,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@datatr-ux/uxlib';
-import * as ai from '@datatr-ux/ovhcloud-types/cloud/project/ai/index';
+import ai from '@/types/AI';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
 import DataTable from '@/components/data-table';
 

@@ -1,8 +1,8 @@
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import * as ai from '@datatr-ux/ovhcloud-types/cloud/project/ai/index';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslation } from 'react-i18next';
+import ai from '@/types/AI';
 import { USER_CONFIG } from './users.constants';
 
 export const useUserForm = () => {
