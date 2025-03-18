@@ -14,10 +14,13 @@ export const useAllSnapshots = (projectId: string) =>
 export const useVolumeSnapshots = (projectId: string) => {
   const { data: snapshots, isPending, isLoading } = useAllSnapshots(projectId);
 
+  const volumeIds = snapshots?.map((volume) => volume.volumeId);
+  const uniqueVolumeIds = [...new Set(volumeIds)];
+
   return useQueries({
-    queries: (snapshots || [])?.map((snapshot) => ({
-      queryKey: ['snapshots', projectId, 'volume', snapshot.volumeId],
-      queryFn: () => getVolume(projectId, snapshot.volumeId),
+    queries: uniqueVolumeIds?.map((volumeId) => ({
+      queryKey: ['snapshots', projectId, 'volume', volumeId],
+      queryFn: () => getVolume(projectId, volumeId),
     })),
     combine: (volumes) => ({
       isPending: isPending || volumes.some((result) => result.isPending),
@@ -25,7 +28,8 @@ export const useVolumeSnapshots = (projectId: string) => {
       error: volumes.find((result) => result.error),
       data: (snapshots || []).map((snapshot) => ({
         ...snapshot,
-        volume: volumes.find(({ data }) => data?.id === snapshot.volumeId),
+        volume: volumes.find(({ data }) => data?.id === snapshot.volumeId)
+          ?.data,
       })),
     }),
   });
