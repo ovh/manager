@@ -18,6 +18,9 @@ export default /* @ngInject */ ($stateProvider) => {
           ),
       resolve: {
         breadcrumb: () => null,
+        displaySuccessMessage: /* @ngInject */ (Alerter) => (message) => {
+          Alerter.success(message, 'dedicatedCloud_dashboard_alert');
+        },
       },
     },
   );

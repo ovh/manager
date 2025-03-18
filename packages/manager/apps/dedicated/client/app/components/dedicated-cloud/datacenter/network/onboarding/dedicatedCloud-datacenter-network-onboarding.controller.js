@@ -47,4 +47,13 @@ export default class {
       },
     ])}`;
   }
+
+  handleOrderClick() {
+    this.displaySuccessMessage(
+      this.$translate.instant(
+        'dedicatedCloud_datacenter_network_onboarding_order_success',
+        { link: this.orderLink },
+      ),
+    );
+  }
 }
