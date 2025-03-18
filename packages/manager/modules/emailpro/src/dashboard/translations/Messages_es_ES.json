@@ -896,7 +896,7 @@
   "email_tab_modal_create_redirection_info": "Introduzca los detalles de la redirección.",
   "email_tab_modal_redirection_create_keep_copy_title": "Seleccione un modo de copia:",
   "email_tab_modal_redirection_create_email_error": "La dirección de correo electrónico no es válida.",
-  "email_tab_modal_redirection_create_copy_local": "Conservar una copia del correo en OVH",
+  "email_tab_modal_redirection_create_copy_local": "Conservar una copia del correo en OVHcloud",
   "email_tab_modal_redirection_create_copy_none": "No conservar copia del correo",
   "email_tab_modal_redirection_create_copy_select": "Seleccione una opción",
   "email_tab_modal_create_redirection_success": "La redirección se está creando. El cambio será efectivo en los próximos minutos.",
