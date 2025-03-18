@@ -52,4 +52,5 @@ export type TInstance = DeepReadonly<{
   volumes: TVolume[];
   actions: TInstanceActions;
   pendingTask: boolean;
+  availabilityZone: string | null;
 }>;

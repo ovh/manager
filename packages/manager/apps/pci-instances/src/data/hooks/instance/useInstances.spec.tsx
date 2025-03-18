@@ -28,6 +28,7 @@ const instanceDtoBuilder = (
   volumes: [],
   actions: [],
   pendingTask: false,
+  availabilityZone: null,
 });
 
 const instanceBuilder = (

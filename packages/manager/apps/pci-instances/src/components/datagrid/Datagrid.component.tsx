@@ -100,12 +100,14 @@ const DatagridComponent = ({
       },
       {
         id: 'region',
-        cell: (instance) => (
-          <TextCell
-            isLoading={isRefetching}
-            label={translateMicroRegion(instance.region)}
-          />
-        ),
+        cell: (instance) => {
+          const { availabilityZone } = instance;
+          const formattedRegion =
+            availabilityZone !== null
+              ? availabilityZone
+              : translateMicroRegion(instance.region);
+          return <TextCell isLoading={isRefetching} label={formattedRegion} />;
+        },
         label: t('pci_instances_list_column_region'),
         isSortable: false,
       },
