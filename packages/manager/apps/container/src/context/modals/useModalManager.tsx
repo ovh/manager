@@ -79,6 +79,8 @@ export const useModalManager = (
     },
   );
   const isFeatureAvailable = useMemo(() => {
+    if (!configuration?.checks.featuresAvailability) return true;
+
     if (!availability) return undefined;
 
     return (configuration?.checks.featuresAvailability || []).every(
