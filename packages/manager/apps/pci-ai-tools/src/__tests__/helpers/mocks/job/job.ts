@@ -1,4 +1,4 @@
-import * as ai from '@datatr-ux/ovhcloud-types/cloud/project/ai/index';
+import ai from '@/types/AI';
 import { mockedDataSync } from '../volume/datasync';
 import { mockedCPUResources, mockedGPUResources } from '../shared/resource';
 import {

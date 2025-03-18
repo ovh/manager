@@ -2,7 +2,6 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { Copy, HelpCircle } from 'lucide-react';
-import * as ai from '@datatr-ux/ovhcloud-types/cloud/project/ai/index';
 import {
   Alert,
   Badge,
@@ -30,6 +29,7 @@ import {
   SelectValue,
   useToast,
 } from '@datatr-ux/uxlib';
+import ai from '@/types/AI';
 import { useTokenForm } from './tokensForm/useTokenForm.hook';
 import RouteModal from '@/components/route-modal/RouteModal';
 import { useGetRegions } from '@/data/hooks/ai/capabilities/useGetRegions.hook';

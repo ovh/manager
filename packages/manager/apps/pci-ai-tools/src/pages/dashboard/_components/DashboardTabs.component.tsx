@@ -1,9 +1,9 @@
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
-import * as ai from '@datatr-ux/ovhcloud-types/cloud/project/ai/index';
-import * as user from '@datatr-ux/ovhcloud-types/cloud/user/index';
 import * as role from '@datatr-ux/ovhcloud-types/cloud/role/index';
+import ai from '@/types/AI';
+import user from '@/types/User';
 import { useGetTokens } from '@/data/hooks/ai/token/useGetTokens.hook';
 import { useGetRegistries } from '@/data/hooks/ai/registry/useGetRegistries.hook';
 import { useGetRegions } from '@/data/hooks/ai/capabilities/useGetRegions.hook';

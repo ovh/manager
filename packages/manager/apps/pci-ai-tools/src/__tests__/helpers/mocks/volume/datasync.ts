@@ -1,4 +1,4 @@
-import * as ai from '@datatr-ux/ovhcloud-types/cloud/project/ai/index';
+import ai from '@/types/AI';
 
 export const mockedDataSyncSpec: ai.volume.DataSyncSpec = {
   direction: ai.volume.DataSyncEnum.pull,

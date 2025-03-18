@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import * as ai from '@datatr-ux/ovhcloud-types/cloud/project/ai/index';
 import {
   Button,
   DialogClose,
@@ -25,6 +24,7 @@ import {
   SelectValue,
   useToast,
 } from '@datatr-ux/uxlib';
+import ai from '@/types/AI';
 import { useGitForm } from './useGitForm.hook';
 import RouteModal from '@/components/route-modal/RouteModal';
 import { useGetRegions } from '@/data/hooks/ai/capabilities/useGetRegions.hook';
