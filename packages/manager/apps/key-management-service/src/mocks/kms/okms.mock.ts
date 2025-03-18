@@ -13,5 +13,7 @@ export const okmsMock: OKMS[] = [
     region: 'EU_WEST_RBX',
     restEndpoint: 'https://eu-west-rbx.okms.ovh.net',
     swaggerEndpoint: '"https://swagger-eu-west-rbx.okms.ovh.net',
+    kmipObjectCount: 1,
+    serviceKeyCount: 3,
   },
 ];

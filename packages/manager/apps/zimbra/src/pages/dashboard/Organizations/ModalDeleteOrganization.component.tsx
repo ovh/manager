@@ -1,9 +1,7 @@
 import React from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-
 import {
-  ODS_BUTTON_VARIANT,
   ODS_MESSAGE_COLOR,
   ODS_MODAL_COLOR,
   ODS_TEXT_PRESET,
@@ -110,13 +108,12 @@ export default function ModalDeleteOrganization() {
       isLoading={isLoading}
       secondaryButton={{
         label: t('common:cancel'),
-        action: handleCancelClick,
+        onClick: handleCancelClick,
       }}
       primaryButton={{
         testid: 'delete-btn',
-        variant: ODS_BUTTON_VARIANT.default,
         label: t('common:delete'),
-        action: handleDeleteClick,
+        onClick: handleDeleteClick,
         isLoading: isSending || isLoading,
         isDisabled: domains?.length > 0 || !deleteOrganizationId,
       }}

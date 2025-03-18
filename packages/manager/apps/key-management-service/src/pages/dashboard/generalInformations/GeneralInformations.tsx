@@ -9,6 +9,8 @@ import { ROUTES_URLS } from '@/routes/routes.constants';
 import InformationsTile from '@/components/layout-helpers/Dashboard/GeneralInformationsTiles/InformationsTile';
 import BillingInformationsTile from '@/components/layout-helpers/Dashboard/GeneralInformationsTiles/BillingInformationsTile';
 import Loading from '@/components/Loading/Loading';
+import KmipTile from '@/components/layout-helpers/Dashboard/GeneralInformationsTiles/KmipTile';
+import RestApiTile from '@/components/layout-helpers/Dashboard/GeneralInformationsTiles/RestApiTile';
 
 function GeneralInformationsTab() {
   const { okmsId } = useParams();
@@ -38,6 +40,10 @@ function GeneralInformationsTab() {
         okmsData={okms.data}
         okmsServiceInfos={okmsService.data}
       />
+      <div className="flex flex-col gap-6">
+        <KmipTile okmsData={okms.data} />
+        <RestApiTile okmsData={okms.data} />
+      </div>
       <BillingInformationsTile okmsService={okmsService.data} />
     </DashboardGridLayout>
   );

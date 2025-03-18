@@ -5,11 +5,7 @@ import { OdsText } from '@ovhcloud/ods-components/react';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useMutation } from '@tanstack/react-query';
-import {
-  ODS_BUTTON_VARIANT,
-  ODS_MODAL_COLOR,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
+import { ODS_MODAL_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import {
   ButtonType,
   PageLocation,
@@ -115,13 +111,12 @@ export default function ModalDeleteAutoReply() {
       isOpen
       secondaryButton={{
         label: t('common:cancel'),
-        action: handleCancelClick,
+        onClick: handleCancelClick,
         testid: 'cancel-btn',
-        variant: ODS_BUTTON_VARIANT.outline,
       }}
       primaryButton={{
         label: t('common:delete'),
-        action: handleDeleteClick,
+        onClick: handleDeleteClick,
         isDisabled: !deleteAutoReplyId,
         isLoading: isSending,
         testid: 'delete-btn',

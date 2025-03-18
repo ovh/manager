@@ -8,12 +8,11 @@ import {
 } from '@ovh-ux/manager-react-components';
 
 import { Trans, useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import {
   OdsFormField,
   OdsRadio,
   OdsSelect,
-  OdsSpinner,
   OdsText,
   OdsButton,
   OdsInput,
@@ -25,13 +24,7 @@ import {
   ODS_INPUT_TYPE,
   ODS_SPINNER_SIZE,
   ODS_TEXT_PRESET,
-  OdsCheckboxChangeEventDetail,
-  OdsInputChangeEvent,
-  OdsSelectChangeEventDetail,
-  OdsCheckboxCustomEvent,
   OdsRadioCustomEvent,
-  OdsSelectCustomEvent,
-  ODS_SPINNER_COLOR,
   ODS_MESSAGE_COLOR,
   ODS_BUTTON_COLOR,
   OdsRadioChangeEventDetail,
@@ -45,8 +38,9 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import {
-  useOrganization,
   useOrganizationList,
   usePlatform,
   useGenerateUrl,
@@ -61,20 +55,15 @@ import {
 } from '@/api/domain';
 import queryClient from '@/queryClient';
 import { DomainType } from '@/api/domain/type';
-import { DNS_CONFIG_TYPE, DnsRecordType } from '@/utils';
+import { DNS_CONFIG_TYPE, DomainSchema, domainSchema } from '@/utils';
 import { ADD_DOMAIN, CONFIRM, BACK_PREVIOUS_PAGE } from '@/tracking.constant';
 import { ResourceStatus } from '@/api/api.type';
+import Loading from '@/components/Loading/Loading';
 
 export enum DomainOwnership {
   OVH = 'ovhDomain',
   EXTERNAL = 'externalDomain',
 }
-
-const defaultExpertConfState = {
-  [DnsRecordType.MX]: true,
-  [DnsRecordType.SPF]: true,
-  [DnsRecordType.DKIM]: true,
-};
 
 export default function AddDomain() {
   const { t } = useTranslation(['domains/form', 'common']);
@@ -83,14 +72,31 @@ export default function AddDomain() {
   const { addError, addSuccess } = useNotifications();
 
   const { platformId } = usePlatform();
-  const { data: organization } = useOrganization();
+  const [searchParams] = useSearchParams();
+  const organizationId = searchParams.get('organizationId');
+
   const { data: organizations, isLoading } = useOrganizationList({
     shouldFetchAll: true,
   });
 
-  const [selectedOrganization, setSelectedOrganization] = useState(
-    organization?.id || '',
+  const organizationOptions = useMemo(
+    () =>
+      organizations
+        ?.filter((org) => org.resourceStatus === ResourceStatus.READY)
+        .map((item) => (
+          <option key={item.id} value={item.id}>
+            {item.targetSpec?.name}
+          </option>
+        )) || [],
+    [organizations],
   );
+
+  // @TODO: remove this when OdsSelect is fixed ODS-1565
+  const [hackKeyOrg, setHackKeyOrg] = useState(Date.now());
+
+  useEffect(() => {
+    setHackKeyOrg(Date.now());
+  }, [organizations, organizationId]);
 
   const goBackUrl = useGenerateUrl('..', 'path');
   const onClose = () => navigate(goBackUrl);
@@ -108,24 +114,33 @@ export default function AddDomain() {
     shouldFetchAll: true,
   });
 
-  const domains = useMemo(() => {
-    // this is necessary otherwise app crashes
-    // with error "Failed to execute removeChild on Node"
-    // because of OdsSelect
+  const domainsOptions = useMemo(() => {
     if (!existingDomains) {
       return [];
     }
-    return (domainZones || []).filter(
-      (zone: string) =>
-        !existingDomains.find((d) => zone === d.currentState.name),
-    );
+    return (domainZones || [])
+      .filter(
+        (zone: string) =>
+          !existingDomains.find((d) => zone === d.currentState.name),
+      )
+      .map((domain: string, index: number) => (
+        <option key={index} value={domain}>
+          {domain}
+        </option>
+      ));
+  }, [domainZones, existingDomains]);
+
+  // @TODO: remove this when OdsSelect is fixed ODS-1565
+  const [hackKeyDomains, setHackKeyDomains] = useState(Date.now());
+
+  useEffect(() => {
+    setHackKeyDomains(Date.now());
   }, [domainZones, existingDomains]);
 
   const isLoadingDomains = isLoadingDomainZones || isLoadingExistingDomains;
 
   const [domainType, setDomainType] = useState(DomainOwnership.OVH);
 
-  const [selectedDomainName, setSelectedDomainName] = useState('');
   const [domainToVerify, setDomainToVerify] = useState('');
 
   const verifyUrl = useGenerateUrl('../verify', 'path', {
@@ -142,76 +157,9 @@ export default function AddDomain() {
     DNS_CONFIG_TYPE.STANDARD,
   );
 
-  const [expertConfState, setExpertConfState] = useState<
-    Record<string, boolean>
-  >(defaultExpertConfState);
+  const isOvhDomain = domainType === DomainOwnership.OVH;
 
-  const expertConfigItems = [
-    {
-      name: DnsRecordType.MX,
-      label: t('zimbra_domains_add_domain_configuration_expert_configure_mx'),
-    },
-    {
-      name: DnsRecordType.SPF,
-      label: t('zimbra_domains_add_domain_configuration_expert_configure_spf'),
-    },
-    {
-      name: DnsRecordType.SRV,
-      label: t('zimbra_domains_add_domain_configuration_expert_configure_srv'),
-      isDisabled: true,
-    },
-    {
-      name: DnsRecordType.DKIM,
-      label: t('zimbra_domains_add_domain_configuration_expert_configure_dkim'),
-    },
-  ];
-
-  const handleOrganizationChange = (
-    event: OdsSelectCustomEvent<OdsSelectChangeEventDetail>,
-  ) => {
-    setSelectedOrganization(event.detail.value);
-  };
-  const handleDomainOvhChange = (
-    event: OdsSelectCustomEvent<OdsSelectChangeEventDetail>,
-  ) => {
-    setSelectedDomainName(event.detail.value);
-    setConfigurationType(DNS_CONFIG_TYPE.STANDARD);
-    setExpertConfState(defaultExpertConfState);
-  };
-
-  const ovhDomain = domainType === DomainOwnership.OVH;
-
-  const isExpertConfSelected = configurationType === DNS_CONFIG_TYPE.EXPERT;
-
-  const handleDomainTypeChange = useCallback(
-    (event: OdsRadioCustomEvent<OdsRadioChangeEventDetail>) => {
-      const newValue = event.detail.value as DomainOwnership;
-      setDomainType(newValue);
-      setSelectedDomainName('');
-      setConfigurationType(DNS_CONFIG_TYPE.STANDARD);
-      setExpertConfState(defaultExpertConfState);
-    },
-    [setDomainType],
-  );
-
-  const handleConfigurationTypeChange = useCallback(
-    (event: OdsRadioCustomEvent<OdsRadioChangeEventDetail>) => {
-      const type = `${event.detail.value}` || '';
-      setConfigurationType(type);
-      setExpertConfState(defaultExpertConfState);
-    },
-    [setConfigurationType],
-  );
-
-  const handleExpertConfChange = useCallback(
-    (event: OdsCheckboxCustomEvent<OdsCheckboxChangeEventDetail>) => {
-      setExpertConfState((prev) => ({
-        ...prev,
-        [event.target.name]: event.detail.checked,
-      }));
-    },
-    [expertConfState],
-  );
+  const isExpertConf = configurationType === DNS_CONFIG_TYPE.EXPERT;
 
   const { mutate: addDomain, isPending: isSending } = useMutation({
     mutationFn: (params: DomainBodyParamsType) => {
@@ -256,41 +204,74 @@ export default function AddDomain() {
     },
   });
 
-  const handleAddDomainClick = () => {
-    const formData = {
-      organizationId: selectedOrganization,
-      name: selectedDomainName,
-      autoConfigureMX:
-        (configurationType === DNS_CONFIG_TYPE.STANDARD && ovhDomain) ||
-        (configurationType === DNS_CONFIG_TYPE.EXPERT &&
-          expertConfState[DnsRecordType.MX]) ||
-        false,
-      autoConfigureSPF:
-        (configurationType === DNS_CONFIG_TYPE.STANDARD && ovhDomain) ||
-        (configurationType === DNS_CONFIG_TYPE.EXPERT &&
-          expertConfState[DnsRecordType.SPF]) ||
-        false,
-      autoConfigureDKIM:
-        (configurationType === DNS_CONFIG_TYPE.STANDARD && ovhDomain) ||
-        (configurationType === DNS_CONFIG_TYPE.EXPERT &&
-          expertConfState[DnsRecordType.DKIM]) ||
-        false,
-    };
+  const {
+    control,
+    handleSubmit,
+    resetField,
+    watch,
+    formState: { isDirty, isValid, errors },
+  } = useForm({
+    defaultValues: {
+      name: '',
+      organizationId: organizationId || '',
+      autoConfigureMX: true,
+      autoConfigureSPF: true,
+      autoConfigureDKIM: true,
+    },
+    mode: 'onTouched',
+    resolver: zodResolver(domainSchema),
+  });
+
+  const formValues = watch();
+
+  const handleDomainTypeChange = useCallback(
+    (event: OdsRadioCustomEvent<OdsRadioChangeEventDetail>) => {
+      setDomainType(event.detail.value as DomainOwnership);
+      setConfigurationType(DNS_CONFIG_TYPE.STANDARD);
+      resetField('name');
+    },
+    [setDomainType],
+  );
+
+  const handleConfigurationTypeChange = useCallback(
+    (event: OdsRadioCustomEvent<OdsRadioChangeEventDetail>) => {
+      setConfigurationType(event.detail.value || '');
+    },
+    [setConfigurationType],
+  );
+
+  const handleAddDomainClick: SubmitHandler<DomainSchema> = (data) => {
     trackClick({
       location: PageLocation.page,
       buttonType: ButtonType.button,
       actionType: 'action',
       actions: [ADD_DOMAIN, CONFIRM],
     });
-    addDomain(formData);
-  };
 
-  const handleInputChange = (event: OdsInputChangeEvent) => {
-    setSelectedDomainName(event.detail.value as string);
+    addDomain({
+      ...data,
+      autoConfigureMX:
+        (configurationType === DNS_CONFIG_TYPE.STANDARD && isOvhDomain) ||
+        (configurationType === DNS_CONFIG_TYPE.EXPERT &&
+          data.autoConfigureMX) ||
+        false,
+      autoConfigureSPF:
+        (configurationType === DNS_CONFIG_TYPE.STANDARD && isOvhDomain) ||
+        (configurationType === DNS_CONFIG_TYPE.EXPERT &&
+          data.autoConfigureSPF) ||
+        false,
+      autoConfigureDKIM:
+        (configurationType === DNS_CONFIG_TYPE.STANDARD && isOvhDomain) ||
+        (configurationType === DNS_CONFIG_TYPE.EXPERT &&
+          data.autoConfigureDKIM) ||
+        false,
+    } as DomainBodyParamsType);
   };
 
   return (
-    <div
+    <form
+      key={organizationId /* @TODO remove when OdsSelect is fixed */}
+      onSubmit={handleSubmit(handleAddDomainClick)}
       className="flex flex-col items-start w-full md:w-1/2 gap-4"
       data-testid="add-domain-page"
     >
@@ -310,39 +291,41 @@ export default function AddDomain() {
         label={t('zimbra_domains_add_domain_cta_back')}
       />
       <Subtitle>{t('common:add_domain')}</Subtitle>
-      <OdsFormField className="w-full mt-6">
-        <label htmlFor="organization" slot="label">
-          {t('common:organization')}
-        </label>
-        <OdsSelect
-          id="organization"
-          name="organization"
-          value={selectedOrganization}
-          defaultValue=""
-          onOdsChange={(event) => handleOrganizationChange(event)}
-          isDisabled={isLoading || organization?.id}
-          className="mt-2"
-          data-testid="select-organization"
-          placeholder={t('common:select_organization')}
-        >
-          {organizations
-            ?.filter((org) => org.resourceStatus === ResourceStatus.READY)
-            .map((item) => (
-              <option key={item.id} value={item.id}>
-                {item.targetSpec?.name}
-              </option>
-            ))}
-        </OdsSelect>
-        {isLoading && (
-          <div slot="helper">
-            <OdsSpinner
-              color={ODS_SPINNER_COLOR.primary}
-              size={ODS_SPINNER_SIZE.sm}
-            />
-          </div>
+      <Controller
+        control={control}
+        name="organizationId"
+        render={({ field: { name, value, onChange, onBlur } }) => (
+          <OdsFormField className="w-full" error={errors?.[name]?.message}>
+            <label htmlFor={name} slot="label">
+              {t('common:organization')} *
+            </label>
+            <div className="flex">
+              <OdsSelect
+                key={hackKeyOrg}
+                data-testid="select-organization"
+                placeholder={t('common:select_organization')}
+                className="mt-2 flex-1"
+                id={name}
+                name={name}
+                value={value}
+                hasError={!!errors[name]}
+                isDisabled={isLoading || !!organizationId}
+                onOdsChange={onChange}
+                onOdsBlur={onBlur}
+              >
+                {organizationOptions}
+              </OdsSelect>
+              {isLoading && (
+                <Loading
+                  className="flex justify-center"
+                  size={ODS_SPINNER_SIZE.sm}
+                />
+              )}
+            </div>
+          </OdsFormField>
         )}
-      </OdsFormField>
-      {selectedOrganization && (
+      />
+      {formValues.organizationId && (
         <OdsFormField className="w-full gap-4">
           <div className="flex leading-none gap-4">
             <OdsRadio
@@ -374,62 +357,66 @@ export default function AddDomain() {
           </div>
         </OdsFormField>
       )}
-      {selectedOrganization && domainType && (
-        <OdsFormField className="w-full">
-          <label htmlFor="form-field-input" slot="label">
-            {t('common:domain_name')}
-          </label>
-          {ovhDomain ? (
-            <>
-              <OdsSelect
-                name={'domain'}
-                value={selectedDomainName}
-                defaultValue=""
-                data-testid="select-domain"
-                onOdsChange={(
-                  event: OdsSelectCustomEvent<OdsSelectChangeEventDetail>,
-                ) => handleDomainOvhChange(event)}
-                placeholder={t('common:select_domain')}
-                isDisabled={isLoadingDomains}
-              >
-                {domains?.map((domain: string, index: number) => (
-                  <option key={index} value={domain}>
-                    {domain}
-                  </option>
-                ))}
-              </OdsSelect>
-              {isLoadingDomains && (
-                <div slot="helper">
-                  <OdsSpinner
-                    color={ODS_SPINNER_COLOR.primary}
-                    size={ODS_SPINNER_SIZE.sm}
-                  />
+      {formValues.organizationId && domainType && (
+        <Controller
+          control={control}
+          name="name"
+          render={({ field: { name, value, onChange, onBlur } }) => (
+            <OdsFormField className="w-full" error={errors?.[name]?.message}>
+              <label htmlFor={name} slot="label">
+                {t('common:domain_name')} *
+              </label>
+              {isOvhDomain ? (
+                <div className="flex">
+                  <OdsSelect
+                    key={hackKeyDomains}
+                    className="flex-1"
+                    data-testid="select-domain"
+                    placeholder={t('common:select_domain')}
+                    id={name}
+                    name={name}
+                    value={value}
+                    hasError={!!errors[name]}
+                    isDisabled={isLoadingDomains}
+                    onOdsChange={onChange}
+                    onOdsBlur={onBlur}
+                  >
+                    {domainsOptions}
+                  </OdsSelect>
+                  {(isLoadingExistingDomains || isLoadingDomainZones) && (
+                    <Loading
+                      className="flex justify-center"
+                      size={ODS_SPINNER_SIZE.sm}
+                    />
+                  )}
                 </div>
+              ) : (
+                <OdsInput
+                  type={ODS_INPUT_TYPE.text}
+                  value={value}
+                  hasError={!!errors[name]}
+                  onOdsChange={onChange}
+                  onBlur={onBlur}
+                  data-testid="input-external-domain"
+                  placeholder={t('zimbra_domains_add_domain_input')}
+                  name={name}
+                  id={name}
+                />
               )}
-            </>
-          ) : (
-            <>
-              <OdsInput
-                type={ODS_INPUT_TYPE.text}
-                value={selectedDomainName}
-                onOdsChange={handleInputChange}
-                defaultValue=""
-                data-testid="input-external-domain"
-                placeholder={t('zimbra_domains_add_domain_input')}
-                name="ext-domain"
-              />
-              <OdsMessage
-                isDismissible={false}
-                className="mt-6"
-                color={ODS_MESSAGE_COLOR.information}
-              >
-                {t('zimbra_domains_add_domain_warning_modification_domain')}
-              </OdsMessage>
-            </>
+            </OdsFormField>
           )}
-        </OdsFormField>
+        />
       )}
-      {domainType && ovhDomain && selectedDomainName && (
+      {!isOvhDomain && (
+        <OdsMessage
+          isDismissible={false}
+          className="w-full"
+          color={ODS_MESSAGE_COLOR.information}
+        >
+          {t('zimbra_domains_add_domain_warning_modification_domain')}
+        </OdsMessage>
+      )}
+      {isOvhDomain && formValues.name && (
         <>
           <OdsFormField className="w-full">
             <label htmlFor="form-field-input" slot="label">
@@ -464,34 +451,81 @@ export default function AddDomain() {
               </div>
             ))}
           </OdsFormField>
-          {isExpertConfSelected ? (
+          {isExpertConf ? (
             <OdsFormField className="w-full space-y-4">
               <OdsText preset={ODS_TEXT_PRESET.paragraph}>
                 <Trans
                   t={t}
                   i18nKey="zimbra_domains_add_domain_configuration_expert_title"
-                  values={{ domain: selectedDomainName }}
+                  values={{ domain: formValues.name }}
                 />
               </OdsText>
-              {expertConfigItems.map(({ name, label, isDisabled }) =>
-                isDisabled ? null : (
+              <Controller
+                control={control}
+                name="autoConfigureMX"
+                render={({ field: { name, value, onChange } }) => (
                   <div key={name} className="flex leading-none gap-4">
                     <OdsCheckbox
                       inputId={name}
                       key={name}
-                      isChecked={expertConfState[name]}
+                      isChecked={value}
                       name={name}
-                      onOdsChange={handleExpertConfChange}
-                      isDisabled={isDisabled}
+                      onOdsChange={() => onChange(!value)}
                     ></OdsCheckbox>
                     <label htmlFor={name}>
                       <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-                        {label}
+                        {t(
+                          'zimbra_domains_add_domain_configuration_expert_configure_mx',
+                        )}
                       </OdsText>
                     </label>
                   </div>
-                ),
-              )}
+                )}
+              />
+              <Controller
+                control={control}
+                name="autoConfigureSPF"
+                render={({ field: { name, value, onChange } }) => (
+                  <div key={name} className="flex leading-none gap-4">
+                    <OdsCheckbox
+                      inputId={name}
+                      key={name}
+                      isChecked={value}
+                      name={name}
+                      onOdsChange={() => onChange(!value)}
+                    ></OdsCheckbox>
+                    <label htmlFor={name}>
+                      <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                        {t(
+                          'zimbra_domains_add_domain_configuration_expert_configure_spf',
+                        )}
+                      </OdsText>
+                    </label>
+                  </div>
+                )}
+              />
+              <Controller
+                control={control}
+                name="autoConfigureDKIM"
+                render={({ field: { name, value, onChange } }) => (
+                  <div key={name} className="flex leading-none gap-4">
+                    <OdsCheckbox
+                      inputId={name}
+                      key={name}
+                      isChecked={value}
+                      name={name}
+                      onOdsChange={() => onChange(!value)}
+                    ></OdsCheckbox>
+                    <label htmlFor={name}>
+                      <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                        {t(
+                          'zimbra_domains_add_domain_configuration_expert_configure_dkim',
+                        )}
+                      </OdsText>
+                    </label>
+                  </div>
+                )}
+              />
             </OdsFormField>
           ) : (
             <OdsMessage
@@ -507,17 +541,13 @@ export default function AddDomain() {
       <OdsFormField>
         <OdsButton
           data-testid="add-domain-submit-btn"
+          type="submit"
           color={ODS_BUTTON_COLOR.primary}
-          onClick={handleAddDomainClick}
-          isDisabled={
-            !selectedOrganization ||
-            !selectedDomainName ||
-            (!configurationType && ovhDomain)
-          }
+          isDisabled={!isDirty || !isValid}
           isLoading={isSending}
           label={t('common:confirm')}
         ></OdsButton>
       </OdsFormField>
-    </div>
+    </form>
   );
 }

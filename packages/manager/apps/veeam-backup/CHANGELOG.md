@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.7.8...@ovh-ux/manager-veeam-backup-app@0.7.9) (2025-03-17)
+
+
+### Bug Fixes
+
+* **veeam:** fix typo of the banner noOrganisationMessage ([5634722](https://github.com/ovh/manager/commit/56347224dde96da10fc16577b68e6b7dd724d1aa))
+
+
+
+
+
 ## [0.7.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.7.7...@ovh-ux/manager-veeam-backup-app@0.7.8) (2025-03-14)
 
 **Note:** Version bump only for package @ovh-ux/manager-veeam-backup-app

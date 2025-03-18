@@ -6,11 +6,7 @@ import { OdsText } from '@ovhcloud/ods-components/react';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useMutation } from '@tanstack/react-query';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import {
-  ODS_BUTTON_VARIANT,
-  ODS_MODAL_COLOR,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
+import { ODS_MODAL_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import {
   ButtonType,
   PageLocation,
@@ -112,12 +108,11 @@ export default function ModalDeleteDomain() {
       isDismissible
       secondaryButton={{
         label: t('common:cancel'),
-        action: handleCancelClick,
+        onClick: handleCancelClick,
       }}
       primaryButton={{
         label: t('common:delete'),
-        action: handleDeleteClick,
-        variant: ODS_BUTTON_VARIANT.default,
+        onClick: handleDeleteClick,
         isLoading: isDeleting,
         testid: 'delete-btn',
       }}

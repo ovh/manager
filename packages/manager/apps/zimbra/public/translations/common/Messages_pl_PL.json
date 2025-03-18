@@ -69,5 +69,14 @@
   "diagnostics": "Diagnozowanie",
   "useful_links": "Przydatne linki",
   "number_of_accounts": "Liczba kont",
-  "no_email_account": "Aktualnie nie posiadasz żadnej skrzynki e-mail."
+  "no_email_account": "Aktualnie nie posiadasz żadnej skrzynki e-mail.",
+  "form_min_chars": "{{ value }} znaków minimum",
+  "form_at_least_one_digit": "Musi zawierać minimum jedną cyfrę",
+  "form_at_least_one_uppercase": "Musi zawierać co najmniej jedną wielką literę",
+  "form_at_least_one_special": "Musi zawierać minimum jeden znak specjalny",
+  "form_valid_email": "Proszę podać poprawny adres email",
+  "form_valid_domain": "Wprowadź poprawną domenę",
+  "form_valid_account": "Proszę podać poprawną nazwę konta",
+  "form_valid_date": "Wpisz poprawną datę",
+  "form_valid_number": "Wprowadź poprawną liczbę"
 }

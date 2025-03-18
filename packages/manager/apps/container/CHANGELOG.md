@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.110.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.109.4...@ovh-ux/manager-container-app@0.110.0) (2025-03-17)
+
+
+### Features
+
+* **container:** on click on universe redirect to telecom dashboard ([#15895](https://github.com/ovh/manager/issues/15895)) ([3a7febe](https://github.com/ovh/manager/commit/3a7febedea0e88ac239b1fd58c01f9b869ac28e4)), closes [#MANAGER-17195](https://github.com/ovh/manager/issues/MANAGER-17195)
+
+
+
+
+
 ## [0.109.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.109.3...@ovh-ux/manager-container-app@0.109.4) (2025-03-14)
 
 **Note:** Version bump only for package @ovh-ux/manager-container-app
