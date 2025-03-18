@@ -155,7 +155,7 @@ export default class AccountUserIdentityDocumentsController {
     // and we can switch to the next one if necessary
     if (this.$injector.has('shellClient')) {
       const shellClient = this.$injector.get('shellClient');
-      shellClient.ux.notifyModalActionDone();
+      shellClient.ux.notifyModalActionDone('IdentityDocumentsModal');
     }
   }
 
