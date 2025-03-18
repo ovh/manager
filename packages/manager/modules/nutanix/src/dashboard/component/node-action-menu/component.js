@@ -3,7 +3,10 @@ import controller from './controller';
 
 export default {
   bindings: {
-    possibleActions: '<',
+    serviceName: '<',
+    server: '<',
+    hasOnlyMinimumNode: '<',
+    initialCommitmentSize: '<',
     onPowerOn: '&',
     onPowerOff: '&',
     onInstall: '&',
