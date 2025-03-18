@@ -64,7 +64,7 @@ export default function Auth() {
   return (
     <>
       {isProjectDiscoveryMode ? (
-        <Alert className="bg-warning-100">
+        <Alert variant="warning">
           <AlertDescription className="text-base">
             <div
               data-testid="discovery-container"
@@ -89,10 +89,10 @@ export default function Auth() {
           </AlertDescription>
         </Alert>
       ) : (
-        <Alert className="bg-blue-100">
+        <Alert variant="primary">
           <AlertDescription className="text-base">
             <div
-              data-testid="discovery-container"
+              data-testid="activate-container"
               className="flex flex-row md:flex-col items-center justify-between gap-4"
             >
               <div className="flex flex-row gap-5 items-center">
@@ -102,7 +102,6 @@ export default function Auth() {
               <Button
                 data-testid="activate-project-button"
                 onClick={() => activateProject()}
-                className="font-semibold"
               >
                 {t('authActivateProjectButton')}
               </Button>

@@ -96,8 +96,8 @@ export const getColumns = ({ onDeleteClick }: DockerTableColumnsProps) => {
                   <DropdownMenuTrigger asChild>
                     <Button
                       data-testid="docker-action-trigger"
-                      // variant="menu"
-                      // size="menu"
+                      variant="menu"
+                      size="menu"
                     >
                       <span className="sr-only">Open menu</span>
                       <MoreHorizontal className="h-4 w-4" />
@@ -110,7 +110,7 @@ export const getColumns = ({ onDeleteClick }: DockerTableColumnsProps) => {
                     <TooltipTrigger className="w-full">
                       <DropdownMenuItem
                         data-testid="docker-action-delete-button"
-                        // variant="destructive"
+                        variant="destructive"
                         onClick={() => {
                           onDeleteClick(row.original);
                         }}

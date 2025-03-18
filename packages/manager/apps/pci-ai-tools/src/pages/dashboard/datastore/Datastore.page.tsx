@@ -53,7 +53,7 @@ const Datastore = () => {
         <Guides />
       </div>
       <h3 className="pb-4">{t('title')}</h3>
-      <Alert className="bg-blue-100 mt-4">
+      <Alert variant="primary" className="mt-4">
         <div className="flex flex-row gap-3 items-center">
           <AlertCircle className="size-5 shrink-0" />
           <div>
@@ -75,8 +75,6 @@ const Datastore = () => {
       <Button
         data-testid="create-datastore-button"
         onClick={() => navigate('./add')}
-        className="font-semibold"
-        size="sm"
       >
         <Plus className="w-4 h-4" />
         {t('addButtonLabel')}

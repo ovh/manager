@@ -100,9 +100,8 @@ export const getColumns = ({
                   <DropdownMenuTrigger asChild>
                     <Button
                       data-testid="token-action-trigger"
-                      // className="size-8 p-0 border text-primary border-primary border-2 bg-background font-semibold hover:bg-primary-100 rounded-full"
-                      // variant="menu"
-                      // size="menu"
+                      variant="menu"
+                      size="menu"
                     >
                       <span className="sr-only">Open menu</span>
                       <MoreHorizontal className="h-4 w-4" />
@@ -115,7 +114,7 @@ export const getColumns = ({
                     <TooltipTrigger className="w-full">
                       <DropdownMenuItem
                         data-testid="token-action-renew-button"
-                        // variant="primary"
+                        variant="primary"
                         onClick={() => {
                           onRegenerateClick(row.original);
                         }}
@@ -126,7 +125,7 @@ export const getColumns = ({
                       <DropdownMenuSeparator />
                       <DropdownMenuItem
                         data-testid="token-action-delete-button"
-                        // variant="destructive"
+                        variant="destructive"
                         onClick={() => {
                           onDeleteClick(row.original);
                         }}

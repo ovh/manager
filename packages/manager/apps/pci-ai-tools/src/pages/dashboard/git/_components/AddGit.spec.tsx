@@ -17,12 +17,12 @@ import { mockedGitWithRegion } from '@/__tests__/helpers/mocks/volume/datastore'
 
 describe('AddGit modal', () => {
   beforeEach(() => {
-    vi.mock('@/data/api/ai/datastore.api', () => ({
+    vi.mock('@/data/api/ai/data/datastore.api', () => ({
       getDatastores: vi.fn(() => [mockedGitWithRegion]),
       addDatastore: vi.fn(() => mockedGitWithRegion),
     }));
 
-    vi.mock('@/data/api/ai/capabilities.api', () => ({
+    vi.mock('@/data/api/ai/capabilities/capabilities.api', () => ({
       getRegions: vi.fn(() => [mockedCapabilitiesRegionGRA]),
     }));
   });
