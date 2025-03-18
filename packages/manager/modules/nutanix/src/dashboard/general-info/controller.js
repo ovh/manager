@@ -1,4 +1,8 @@
-import { CLUSTER_STATUS, NUTANIX_AUTHORIZATION_TYPE } from '../../constants';
+import {
+  CLUSTER_STATUS,
+  NUTANIX_AUTHORIZATION_TYPE,
+  MAX_NODES_BY_CLUSTER,
+} from '../../constants';
 import {
   GENERAL_INFO_TILE_TITLE,
   NUTANIX_PERSONAL_LICENSE_EDITION,
@@ -30,6 +34,8 @@ export default class NutanixGeneralInfoCtrl {
     this.NUTANIX_PERSONAL_LICENSE_EDITION = NUTANIX_PERSONAL_LICENSE_EDITION;
     this.NUTANIX_BYOL = NUTANIX_BYOL;
     this.GENERAL_INFO_TILE_TITLE = GENERAL_INFO_TILE_TITLE;
+    this.nodesDetails = [];
+    this.addNodeTooltipContent = null;
   }
 
   $onInit() {
@@ -38,6 +44,12 @@ export default class NutanixGeneralInfoCtrl {
     this.clusterRedeploying = this.cluster.status === CLUSTER_STATUS.DEPLOYING;
     this.showRedeployWarningModal = false;
     this.TRACKING = TRACKING;
+    this.isMaxNodesReached = this.nodes.length >= MAX_NODES_BY_CLUSTER;
+    this.addNodeTooltipContent = this.isMaxNodesReached
+      ? this.$translate.instant(
+          'nutanix_dashboard_cluster_add_node_max_node_tooltip',
+        )
+      : null;
 
     const { ovhSubsidiary } = this.coreConfig.getUser();
     this.NUTANIX_LINK =
@@ -61,6 +73,14 @@ export default class NutanixGeneralInfoCtrl {
       .finally(() => {
         this.loadingServicesDetails = false;
       });
+  }
+
+  get numberNodesDeployed() {
+    return this.nodes.filter((node) => node.isDeployed).length;
+  }
+
+  get numberNodesToDeploy() {
+    return this.nodes.filter((node) => node.isWaitForConfigure).length;
   }
 
   setPrivateBandwidthServiceId() {

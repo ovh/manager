@@ -12,6 +12,8 @@ module.exports = {
   },
   moduleNameMapper: {
     '\\.(css|scss|png|less|svg)$': 'identity-obj-proxy',
+    '^@ovh-ux/manager-components$':
+      '<rootDir>/../../modules/manager-components/src/index.js',
     '^@ovh-ux/manager-(.*)$': '<rootDir>/../../modules/$1/src/index.js',
     '^@ovh-ux/ng-(.*)$': '<rootDir>/../../../components/ng-$1/src/index.js',
   },
