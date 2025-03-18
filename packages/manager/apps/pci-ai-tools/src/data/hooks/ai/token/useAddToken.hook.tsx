@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
-import * as ai from '@datatr-ux/ovhcloud-types/cloud/project/ai/index';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import ai from '@/types/AI';
 import { AIError } from '@/data/api';
 import { AddTokenProps, addToken } from '@/data/api/ai/token/token.api';
 

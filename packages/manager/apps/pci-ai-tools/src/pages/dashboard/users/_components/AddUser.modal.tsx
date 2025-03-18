@@ -2,7 +2,6 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { Copy } from 'lucide-react';
-import * as ai from '@datatr-ux/ovhcloud-types/cloud/project/ai/index';
 import {
   Alert,
   Button,
@@ -26,6 +25,7 @@ import {
   SelectValue,
   useToast,
 } from '@datatr-ux/uxlib';
+import ai from '@/types/AI';
 import { useUserForm } from './useUserForm.hook';
 import RouteModal from '@/components/route-modal/RouteModal';
 import { MutateUserProps, useAddUser } from '@/data/hooks/user/useAddUser.hook';

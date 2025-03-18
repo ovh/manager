@@ -1,6 +1,6 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
-import * as ai from '@datatr-ux/ovhcloud-types/cloud/project/ai/index';
-import * as user from '@datatr-ux/ovhcloud-types/cloud/user/index';
+import user from '@/types/User';
+import ai from '@/types/AI';
 import { PCIAi } from '..';
 
 export const getUsers = async ({ projectId }: PCIAi) =>

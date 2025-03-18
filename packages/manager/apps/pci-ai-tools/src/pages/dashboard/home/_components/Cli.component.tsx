@@ -1,4 +1,3 @@
-import * as ai from '@datatr-ux/ovhcloud-types/cloud/project/ai/index';
 import {
   Alert,
   Select,
@@ -10,6 +9,7 @@ import {
 import { AlertCircle } from 'lucide-react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import ai from '@/types/AI';
 import Link from '@/components/links/Link.component';
 import CodeBlock from '@/components/code-block/CodeBlock.component';
 
