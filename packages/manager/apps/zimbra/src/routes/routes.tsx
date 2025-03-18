@@ -40,10 +40,14 @@ import {
   GENERAL_INFORMATIONS,
   MAILING_LIST,
   ONBOARDING,
+  ONBOARDING_WELCOME,
+  ONBOARDING_CONFIGURE_ORGANIZATION,
   ORDER_ZIMBRA_EMAIL_ACCOUNT,
   ORGANIZATION,
   REDIRECTION,
   VERIFY_DOMAIN,
+  ONBOARDING_CONFIGURE_DOMAIN,
+  ONBOARDING_CONFIGURE_EMAIL_ACCOUNTS,
 } from '@/tracking.constant';
 
 const lazyRouteConfig = (importFn: CallableFunction): Partial<RouteObject> => {
@@ -830,13 +834,72 @@ export const Routes: any = [
       },
       {
         path: 'onboarding',
-        ...lazyRouteConfig(() => import('@/pages/onboarding')),
-        handle: {
-          tracking: {
-            pageName: ONBOARDING,
-            pageType: PageType.onboarding,
+        children: [
+          {
+            path: '',
+            ...lazyRouteConfig(() => import('@/pages/onboarding')),
+            handle: {
+              tracking: {
+                pageName: ONBOARDING,
+                pageType: PageType.onboarding,
+              },
+            },
           },
-        },
+          {
+            path: 'welcome',
+            ...lazyRouteConfig(() => import('@/pages/onboarding/Welcome.page')),
+            handle: {
+              tracking: {
+                pageName: ONBOARDING_WELCOME,
+                pageType: PageType.onboarding,
+              },
+            },
+          },
+          {
+            path: 'configure/:platformId',
+            ...lazyRouteConfig(() =>
+              import('@/pages/onboarding/Configure/Configure.layout'),
+            ),
+            children: [
+              {
+                path: 'organization',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/onboarding/Configure/Organization.page'),
+                ),
+                handle: {
+                  tracking: {
+                    pageName: ONBOARDING_CONFIGURE_ORGANIZATION,
+                    pageType: PageType.onboarding,
+                  },
+                },
+              },
+              {
+                path: 'domain',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/onboarding/Configure/Domain.page'),
+                ),
+                handle: {
+                  tracking: {
+                    pageName: ONBOARDING_CONFIGURE_DOMAIN,
+                    pageType: PageType.onboarding,
+                  },
+                },
+              },
+              {
+                path: 'email_accounts',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/onboarding/Configure/EmailAccounts.page'),
+                ),
+                handle: {
+                  tracking: {
+                    pageName: ONBOARDING_CONFIGURE_EMAIL_ACCOUNTS,
+                    pageType: PageType.onboarding,
+                  },
+                },
+              },
+            ],
+          },
+        ],
       },
     ],
   },
