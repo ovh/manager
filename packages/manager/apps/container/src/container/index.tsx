@@ -9,11 +9,7 @@ import { ProductNavReshuffleProvider } from '@/core/product-nav-reshuffle';
 import { ProgressProvider } from '@/context/progress';
 import CookiePolicy from '@/cookie-policy/CookiePolicy';
 import SSOAuthModal from '@/sso-auth-modal/SSOAuthModal';
-import PaymentModal from '@/payment-modal/PaymentModal';
 import LiveChat from '@/components/LiveChat';
-import { IdentityDocumentsModal } from '@/identity-documents-modal/IdentityDocumentsModal';
-import AgreementsUpdateModal from '@/components/AgreementsUpdateModal/AgreementsUpdateModal.component';
-import useModals from '@/context/modals/useModals';
 import { ModalsProvider } from '@/context/modals';
 
 export default function Container(): JSX.Element {
@@ -84,19 +80,7 @@ export default function Container(): JSX.Element {
       <Suspense fallback="">
         <SSOAuthModal />
       </Suspense>
-      {isCookiePolicyApplied && (
-        <ModalsProvider>
-          <Suspense fallback="">
-            <AgreementsUpdateModal />
-          </Suspense>
-          <Suspense fallback="">
-            <PaymentModal />
-          </Suspense>
-          <Suspense fallback="">
-            <IdentityDocumentsModal />
-          </Suspense>
-        </ModalsProvider>
-      )}
+      {isCookiePolicyApplied && <ModalsProvider />}
       <Suspense fallback="...">
         <CookiePolicy shell={shell} onValidate={cookiePolicyHandler} />
       </Suspense>

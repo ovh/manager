@@ -82,7 +82,7 @@ export default /* @ngInject */ function UserAccountAgreementsController(
           // have been accepted
           if ($injector.has('shellClient')) {
             const shellClient = $injector.get('shellClient');
-            shellClient.ux.notifyModalActionDone();
+            shellClient.ux.notifyModalActionDone('AgreementsUpdateModal');
           }
           $scope.getToValidate();
           $scope.$broadcast('paginationServerSide.reload', 'agreementsList');

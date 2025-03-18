@@ -143,7 +143,7 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
         // and we can switch to the next one if necessary
         if ($injector.has('shellClient')) {
           const shellClient = $injector.get('shellClient');
-          shellClient.ux.notifyModalActionDone();
+          shellClient.ux.notifyModalActionDone('PaymentModal');
         }
 
         return goPaymentList(
