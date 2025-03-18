@@ -808,7 +808,6 @@ export default class Server {
         },
         params: {
           type: 'ovh',
-          mode: 'new',
         },
       },
     );
