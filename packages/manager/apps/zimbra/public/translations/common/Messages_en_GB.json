@@ -78,5 +78,9 @@
   "form_valid_domain": "Please enter a valid domain",
   "form_valid_account": "Please enter a valid account name",
   "form_valid_date": "Please enter a valid date",
-  "form_valid_number": "Please enter a valid number"
+  "form_valid_number": "Please enter a valid number",
+  "configure_now": "Configure now",
+  "configure_later": "Configure later",
+  "skip_step": "Skip this step",
+  "configure_another_account": "Configure another account"
 }
