@@ -1,5 +1,5 @@
 import React from 'react';
-import { Story } from '@storybook/react';
+import { StoryObj } from '@storybook/react';
 import { Region } from './region.component';
 
 const managerRegion = {
@@ -7,21 +7,21 @@ const managerRegion = {
   component: Region,
 };
 
-const Template: Story<any> = (args) => <Region {...args} />;
+type Story = StoryObj<typeof managerRegion>;
 
-export const DemoRegion = Template.bind({});
-
-DemoRegion.args = {
-  mode: 'region',
-  name: 'ca-east-bhs',
+export const DemoRegion: Story = {
+  args: {
+    mode: 'region',
+    name: 'ca-east-bhs',
+  },
 };
 
-export const DemoDatacenter = Template.bind({});
-
-DemoDatacenter.args = {
-  mode: 'datacenter',
-  name: 'RBX',
-  micro: 2,
+export const DemoDatacenter: Story = {
+  args: {
+    mode: 'datacenter',
+    name: 'RBX',
+    micro: 2,
+  },
 };
 
 export default managerRegion;
