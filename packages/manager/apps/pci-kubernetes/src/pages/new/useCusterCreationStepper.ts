@@ -22,7 +22,7 @@ const stepReset = (step: ReturnType<typeof useStep>) => {
   step.close();
 };
 
-export function useClusterCreationStepper() {
+export function useClusterCreationStepper(has3AZRegions: boolean) {
   const [form, setForm] = useState<TClusterCreationForm>({
     region: null,
     version: '',
@@ -70,7 +70,9 @@ export function useClusterCreationStepper() {
       step: locationStep,
       edit: () => {
         locationStep.unlock();
-        [versionStep, networkStep, nodeStep, confirmStep].forEach(stepReset);
+        [planStep, versionStep, networkStep, nodeStep, confirmStep].forEach(
+          stepReset,
+        );
       },
       submit: (region: TLocalisation) => {
         setForm((f) => ({
@@ -79,8 +81,7 @@ export function useClusterCreationStepper() {
         }));
         locationStep.check();
         locationStep.lock();
-        versionStep.open();
-        planStep.open();
+        (has3AZRegions ? planStep : versionStep).open();
       },
     },
     plan: {

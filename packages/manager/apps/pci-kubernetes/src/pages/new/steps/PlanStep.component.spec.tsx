@@ -12,11 +12,11 @@ describe('PlanTile Component', () => {
     mockOnSubmit.mockClear();
   });
 
-  const renderComponent = () =>
-    render(<PlanTile onSubmit={mockOnSubmit} step={step} />);
+  const renderComponent = (region) =>
+    render(<PlanTile type={region} onSubmit={mockOnSubmit} step={step} />);
 
   test('renders all plan options', () => {
-    renderComponent();
+    renderComponent('region');
     expect(
       screen.getByTestId('plan-tile-radio-tile-standard'),
     ).toBeInTheDocument();
@@ -26,22 +26,26 @@ describe('PlanTile Component', () => {
   });
 
   test('selecting a plan updates state', () => {
-    renderComponent();
+    renderComponent('region');
     const standardOption = screen.getByTestId('plan-tile-radio-tile-standard');
     fireEvent.click(standardOption);
     expect(standardOption).toBeChecked();
-  });
-
-  test('displays disabled state for premium plan', () => {
-    renderComponent();
     expect(screen.getByTestId('plan-tile-radio-tile-premium')).toHaveAttribute(
       'aria-disabled',
       'true',
     );
   });
 
+  test('displays disabled state for premium plan', () => {
+    renderComponent('region-3-az');
+    const standardOption = screen.getByTestId('plan-tile-radio-tile-standard');
+    fireEvent.click(standardOption);
+    expect(screen.getByTestId('plan-tile-radio-tile-premium')).toBeChecked();
+    expect(standardOption).toHaveAttribute('aria-disabled', 'true');
+  });
+
   test('submitting form calls onSubmit with selected plan', () => {
-    renderComponent();
+    renderComponent('region');
     const form = screen.getByTestId('form');
     fireEvent.submit(form);
     expect(mockOnSubmit).toHaveBeenCalledWith('standard');
@@ -49,7 +53,7 @@ describe('PlanTile Component', () => {
 
   test('does not allow changing selection when step is locked', () => {
     step.isLocked = true;
-    renderComponent();
+    renderComponent('region');
     expect(screen.getByTestId('plan-header-locked')).toBeInTheDocument();
   });
 });
