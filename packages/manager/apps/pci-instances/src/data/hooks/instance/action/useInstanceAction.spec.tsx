@@ -52,6 +52,7 @@ const fakeInstancesDto: TInstanceDto[] = [
     volumes: [],
     actions: [],
     pendingTask: false,
+    availabilityZone: null,
   },
   {
     id: `fake-id-2`,
@@ -66,6 +67,7 @@ const fakeInstancesDto: TInstanceDto[] = [
     volumes: [],
     pendingTask: false,
     actions: [],
+    availabilityZone: null,
   },
 ];
 
