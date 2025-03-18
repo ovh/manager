@@ -5,6 +5,7 @@ export default {
   bindings: {
     network: '<',
     productId: '<',
+    displaySuccessMessage: '<',
   },
   controller,
   template,
