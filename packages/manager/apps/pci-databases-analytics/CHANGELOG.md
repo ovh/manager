@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.13.7...@ovh-ux/manager-pci-databases-analytics-app@1.14.0) (2025-03-18)
+
+
+### Features
+
+* **pci.databases:** add data-anlaysis engines ([#13326](https://github.com/ovh/manager/issues/13326)) ([a34354e](https://github.com/ovh/manager/commit/a34354e4dbc1ac3c3d725615bd2e79ec14667296)), closes [#DATATR-1793](https://github.com/ovh/manager/issues/DATATR-1793)
+
+
+
+
+
 ## [1.13.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.13.6...@ovh-ux/manager-pci-databases-analytics-app@1.13.7) (2025-03-14)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-databases-analytics-app

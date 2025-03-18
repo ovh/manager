@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-endpoints-app@0.3.7...@ovh-ux/manager-pci-ai-endpoints-app@0.4.0) (2025-03-18)
+
+
+### Features
+
+* **pci-ai-endpoints:** add Metrics page ([#15921](https://github.com/ovh/manager/issues/15921)) ([4ecfc35](https://github.com/ovh/manager/commit/4ecfc35e3abb670d2fe7628f751d933850cc775c)), closes [#AIS-961](https://github.com/ovh/manager/issues/AIS-961)
+
+
+
+
+
 ## [0.3.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-endpoints-app@0.3.6...@ovh-ux/manager-pci-ai-endpoints-app@0.3.7) (2025-03-14)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-ai-endpoints-app

@@ -217,7 +217,10 @@ const UpdateFlavor = () => {
                       {t('updateFlavorCancelButton')}
                     </Button>
                   </DialogClose>
-                  <Button disabled={isPending}>
+                  <Button
+                    disabled={isPending}
+                    data-testid="update-flavor-submit-button"
+                  >
                     {t('updateFlavorSubmitButton')}
                   </Button>
                 </div>

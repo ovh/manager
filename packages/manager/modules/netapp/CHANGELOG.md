@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.8.0...@ovh-ux/manager-netapp@2.9.0) (2025-03-18)
+
+
+### Bug Fixes
+
+* **dedicated:** fix tracking page ([#16017](https://github.com/ovh/manager/issues/16017)) ([aa3e5ba](https://github.com/ovh/manager/commit/aa3e5ba156f55026c30a835a924edc27fa1bcff3)), closes [#MANAGER-17275](https://github.com/ovh/manager/issues/MANAGER-17275)
+
+
+### Features
+
+* **dedicated.netapp:** add some special characters for mount path names ([#15956](https://github.com/ovh/manager/issues/15956)) ([875bdea](https://github.com/ovh/manager/commit/875bdea7543fc3672ecbe40702a9d6facffe4528)), closes [#MANAGER-17393](https://github.com/ovh/manager/issues/MANAGER-17393)
+
+
+
+
+
 # [2.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.7.0...@ovh-ux/manager-netapp@2.8.0) (2025-03-11)
 
 

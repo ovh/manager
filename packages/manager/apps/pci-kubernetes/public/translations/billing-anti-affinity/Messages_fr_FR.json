@@ -17,11 +17,13 @@
   "kubernetes_add_name": "Nom",
   "kubernetes_add_cluster_name_input_pattern_validation_error": "Le nom doit commencer par un caractère alphabétique, se terminer par un caractère alphanumérique et les seuls caractères spéciaux autorisés sont les tirets et les underscores.",
   "kubernetes_add_billing_type_description": "Tous les nœuds futurs de ce pool de nœuds se verront appliquer ce mode de facturation. Vous pourrez ultérieurement passer chacun de vos nœuds individuellement de la facturation horaire à mensuelle.",
-  "kubernetes_add_billing_auto_scaling_monthly_warning": "Attention : Vous activez simultanément l'autoscaling et le forfait mensuel pour ce nodepool. Chaque création de nœud par l'autoscaling va entrainer la facturation immédiate d'un nœud au prorata du temps restant sur le mois en cours. Nous vous conseillons d'éviter cette combinaison si vous anticipez que la taille de votre nodepool sera fréquemment réduite.",
+  "kubernetes_add_billing_auto_scaling_monthly_warning": "Vous activez simultanément l'autoscaling et le forfait mensuel pour ce pool de nœuds. Chaque création de nœud par l'autoscaling entraînera la facturation immédiate d'un nœud, calculée au prorata du temps restant sur le mois en cours. Nous vous conseillons d'éviter cette combinaison si vous anticipez des réductions fréquentes de la taille de votre pool de nœuds.",
   "kubernetes_add_billing_type_payment_method": "Vous serez facturé sur votre mode de paiement par défaut",
   "kubernetes_add_billing_anti_affinity_title": "Facturation et anti-affinité",
   "kubernetes_add_billing_savings_plan_banner": "Bénéficiez de tarifs mensuels avantageux grâce aux Savings Plans, tout en gardant la flexibilité des instances à l'heure.",
   "kubernetes_add_billing_savings_plan_cta": "Configurez vos Savings Plans",
   "kubernetes_node_pool_anti_affinity": "Anti-affinité",
-  "kubernetes_node_pool_anti_affinity_description": "En activant l'anti-affinité, les nœuds présents et futurs seront lancés sur des hyperviseurs (serveurs physiques) différents, garantissant une plus grande tolérance à la panne. Les pools de nœuds avec anti-affinité ne peuvent compter que jusque {{ maxNodes }} nœuds."
+  "kubernetes_node_pool_anti_affinity_description": "En activant l'anti-affinité, les nœuds présents et futurs seront déployés sur des hyperviseurs (serveurs physiques) différents, garantissant une meilleure tolérance aux pannes. Les pools de nœuds avec anti-affinité ne peuvent contenir que jusqu'à {{maxNodes}} nœuds. Veuillez noter que la fonctionnalité d'anti-affinité n'est pas compatible avec l'activation de l'autoscaling.",
+  "kubernetes_node_pool_anti_affinity_true": "Anti-affinité active",
+  "kubernetes_node_pool_anti_affinity_false": "Anti-affinité inactive"
 }

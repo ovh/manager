@@ -28,7 +28,7 @@ export const Loader = async ({ params }: ServiceLayoutProps) => {
       queryFn: () => getService({ projectId, serviceId }),
     })
     .then(
-      () => null,
+      () => true,
       () =>
         redirect(
           `/pci/projects/${projectId}/databases-analytics/${category}/services`,
@@ -80,7 +80,7 @@ export default function ServiceLayout() {
       <div className="space-y-2">
         <Outlet context={serviceLayoutContext} />
       </div>
-      <LegalMentions className="mt-4" />
+      <LegalMentions />
     </>
   );
 }

@@ -1,5 +1,3 @@
-// formConfig.ts
-
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
@@ -112,6 +110,35 @@ export const useUserForm = ({
         message: t('formUserChannelsErrorPattern'),
       }),
   );
+  const aclsInputRules = z.array(
+    z.object({
+      pattern: z
+        .string()
+        .min(USER_CONFIG.acls.pattern.min, {
+          message: t('formUserErrorMinLength', {
+            min: USER_CONFIG.acls.pattern.min,
+          }),
+        })
+        .max(USER_CONFIG.acls.pattern.max, {
+          message: t('formUserErrorMaxLength', {
+            min: USER_CONFIG.acls.pattern.max,
+          }),
+        })
+        .regex(USER_CONFIG.acls.pattern.pattern, {
+          message: t('formUseAclPatternErrorPattern'),
+        }),
+      permission: z
+        .string()
+        .min(1, {
+          message: t('formUserErrorRequiredField'),
+        })
+        .refine((val) => USER_CONFIG.acls.permission.values.includes(val), {
+          message: t('formUserInvalidPermission', {
+            values: USER_CONFIG.acls.permission.values.join(', '),
+          }),
+        }),
+    }),
+  );
 
   const baseSchema = z.object({
     name: nameRules,
@@ -134,13 +161,19 @@ export const useUserForm = ({
       channels: channelsInputRules,
     }),
   );
+  const openSearchSchema = baseSchema.merge(
+    z.object({
+      acls: aclsInputRules,
+    }),
+  );
   const schemaGroup = baseSchema.merge(groupSchema);
 
   type ValidationSchema =
     | z.infer<typeof baseSchema>
     | z.infer<typeof schemaGroup>
     | z.infer<typeof roleschema>
-    | z.infer<typeof redisSchema>;
+    | z.infer<typeof redisSchema>
+    | z.infer<typeof openSearchSchema>;
 
   let schema;
   // Manage MongoDb case with name that include @
@@ -180,6 +213,17 @@ export const useUserForm = ({
         commands: (editedUser as database.redis.User)?.commands || [],
         channels: (editedUser as database.redis.User)?.channels || [],
       };
+      break;
+    case database.EngineEnum.opensearch:
+      if ('aclsEnabled' in service && service.aclsEnabled) {
+        schema = openSearchSchema;
+        defaultValues = {
+          ...defaultValues,
+          acls: (editedUser as database.opensearch.User)?.acls || [],
+        };
+      } else {
+        schema = baseSchema;
+      }
       break;
     default:
       schema = baseSchema;

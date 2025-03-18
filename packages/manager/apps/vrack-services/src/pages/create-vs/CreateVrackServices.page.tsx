@@ -3,8 +3,10 @@ import { useTranslation } from 'react-i18next';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
-import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
-import { ErrorPage } from '@/components/ErrorPage.component';
+import {
+  useFeatureAvailability,
+  ErrorBanner,
+} from '@ovh-ux/manager-react-components';
 import { RegionFormField } from './RegionFormField.component';
 import { CreatePageLayout } from '@/components/layout-helpers';
 import { urls } from '@/routes/routes.constants';
@@ -39,7 +41,7 @@ export default function CreateVrackServicesPage() {
   });
 
   if (hasRegionError) {
-    return <ErrorPage error={error} />;
+    return <ErrorBanner error={error} />;
   }
 
   return (

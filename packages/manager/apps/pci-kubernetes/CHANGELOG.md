@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.16.8...@ovh-ux/manager-pci-kubernetes-app@0.17.0) (2025-03-18)
+
+
+### Bug Fixes
+
+* **pci-kubernetes:** fix pricing and flavor view ([#16019](https://github.com/ovh/manager/issues/16019)) ([2838299](https://github.com/ovh/manager/commit/2838299f445694f60f906a0c5600fa78e5712720)), closes [#TAPC-2229](https://github.com/ovh/manager/issues/TAPC-2229)
+
+
+### Features
+
+* **pci.kubernetes:** redesign cluster creation ([#15505](https://github.com/ovh/manager/issues/15505)) ([c330591](https://github.com/ovh/manager/commit/c3305911f023c4af7dc45e66d2c8554c5c15ac95)), closes [#TAPC-2229](https://github.com/ovh/manager/issues/TAPC-2229)
+
+
+
+
+
 ## [0.16.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.16.7...@ovh-ux/manager-pci-kubernetes-app@0.16.8) (2025-03-14)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-kubernetes-app

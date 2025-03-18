@@ -1,7 +1,7 @@
 import common from '../../public/translations/vrack-services/Messages_fr_FR.json';
 import create from '../../public/translations/vrack-services/create/Messages_fr_FR.json';
 import dashboard from '../../public/translations/vrack-services/dashboard/Messages_fr_FR.json';
-import error from '../../public/translations/vrack-services/error/Messages_fr_FR.json';
+import error from '../../../../../manager-react-components/src/components/templates/error/translations/Messages_fr_FR.json';
 import associate from '../../public/translations/vrack-services/associate/Messages_fr_FR.json';
 import listing from '../../public/translations/vrack-services/listing/Messages_fr_FR.json';
 import dissociate from '../../public/translations/vrack-services/dissociate/Messages_fr_FR.json';
@@ -16,7 +16,7 @@ export const translations = {
   [APP_NAME]: common,
   [`${APP_NAME}/create`]: create,
   [`${APP_NAME}/dashboard`]: dashboard,
-  [`${APP_NAME}/error`]: error,
+  error,
   [`${APP_NAME}/associate`]: associate,
   [`${APP_NAME}/listing`]: listing,
   [`${APP_NAME}/dissociate`]: dissociate,

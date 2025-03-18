@@ -22,7 +22,6 @@ export default {
     help: '<',
     instanceLink: '<',
     instanceId: '<',
-    instances: '<',
     hasComingSoonFlavorTag: '<',
     isAdditionalIpsAvailable: '<',
     projectId: '<',
@@ -43,7 +42,6 @@ export default {
     killTasks: '<',
     steins: '<',
     customerRegions: '<',
-    instancesRegions: '<',
     getStateName: '<',
     goToRegion: '<',
     floatingIpsLink: '<',
@@ -51,5 +49,6 @@ export default {
     isGridscaleLocalzoneAvailable: '<',
     hasGridscaleLocalzoneRegion: '<',
     snapshotAvailability: '<',
+    getFloatingIps: '<',
   },
 };
