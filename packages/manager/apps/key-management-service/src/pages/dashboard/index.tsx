@@ -1,4 +1,4 @@
-import React, { createContext, Suspense } from 'react';
+import React, { createContext, Suspense, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import {
@@ -8,6 +8,7 @@ import {
   ErrorBanner,
   useServiceDetails,
   ChangelogButton,
+  useFeatureAvailability,
 } from '@ovh-ux/manager-react-components';
 import { OdsBadge } from '@ovhcloud/ods-components/react';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
@@ -23,20 +24,18 @@ import { CHANGELOG_LINKS } from '@/constants';
 import KmsTabs, {
   KmsTabProps,
 } from '@/components/layout-helpers/Dashboard/KmsTabs';
+import { FEATURES } from '@/utils/feature-availability/feature-availability.constants';
 
 export const OkmsContext = createContext<OKMS>(null);
 
 export default function DashboardPage() {
-  const { t: tDashboard } = useTranslation('key-management-service/dashboard');
-  const navigate = useNavigate();
-  const { t: tServiceKeys } = useTranslation(
+  const { t } = useTranslation([
+    'key-management-service/dashboard',
     'key-management-service/serviceKeys',
-  );
-  const { t: tCredentials } = useTranslation(
+    'key-management-service/logs',
     'key-management-service/credential',
-  );
-  const { t: tLogs } = useTranslation('key-management-service/logs');
-
+  ]);
+  const navigate = useNavigate();
   const { okmsId } = useParams();
   const {
     data: okms,
@@ -52,7 +51,83 @@ export default function DashboardPage() {
     error: okmsServiceInfoError,
   } = useServiceDetails({ resourceName: okmsId });
 
-  if (isOkmsServiceInfosLoading || isOkmsLoading) return <Loading />;
+  const { data: features, isLoading } = useFeatureAvailability([FEATURES.LOGS]);
+
+  const displayName = okmsServiceInfos?.data?.resource.displayName;
+
+  const tabsList: KmsTabProps[] = useMemo(
+    () =>
+      [
+        {
+          url: '',
+          content: (
+            <>{t('key-management-service/dashboard:general_informations')}</>
+          ),
+        },
+        {
+          url: ROUTES_URLS.keys,
+          content: <>{t('key-management-service/dashboard:encrypted_keys')}</>,
+        },
+        {
+          url: ROUTES_URLS.credentials,
+          content: (
+            <>{t('key-management-service/dashboard:access_certificates')}</>
+          ),
+        },
+        features?.[FEATURES.LOGS] && {
+          url: ROUTES_URLS.logs,
+          content: (
+            <div className="flex gap-2">
+              {t('key-management-service/dashboard:logs')}{' '}
+              <OdsBadge
+                size="sm"
+                label="beta"
+                color="information"
+                className="font-normal"
+              />
+            </div>
+          ),
+        },
+      ].filter(Boolean),
+    [features, t],
+  );
+
+  const breadcrumbItems: BreadcrumbItem[] = [
+    {
+      id: okmsId,
+      label: displayName,
+      navigateTo: `/${okmsId}`,
+    },
+    {
+      id: ROUTES_URLS.keys,
+      label: t(
+        'key-management-service/serviceKeys:key_management_service_service_keys',
+      ),
+      navigateTo: `/${okmsId}/${ROUTES_URLS.keys}`,
+    },
+    {
+      id: ROUTES_URLS.credentials,
+      label: t(
+        'key-management-service/credential:key_management_service_credential',
+      ),
+      navigateTo: `/${okmsId}/${ROUTES_URLS.credentials}`,
+    },
+    {
+      id: ROUTES_URLS.okmsUpdateName,
+      label: t(
+        'key-management-service/dashboard:key_management_service_update_name',
+      ),
+      navigateTo: `/${okmsId}/${ROUTES_URLS.okmsUpdateName}`,
+    },
+    {
+      id: ROUTES_URLS.logs,
+      label: t('key-management-service/logs:key_management_service_logs'),
+      navigateTo: `/${okmsId}/${ROUTES_URLS.logs}`,
+    },
+  ];
+
+  if (isOkmsServiceInfosLoading || isOkmsLoading || isLoading)
+    return <Loading />;
 
   if (isOkmsServiceInfosError || isOkmsError) {
     return (
@@ -72,65 +147,6 @@ export default function DashboardPage() {
     );
   }
 
-  const displayName = okmsServiceInfos?.data?.resource.displayName;
-
-  const tabsList: KmsTabProps[] = [
-    {
-      url: '',
-      content: <>{tDashboard('general_informations')}</>,
-    },
-    {
-      url: ROUTES_URLS.keys,
-      content: <>{tDashboard('encrypted_keys')}</>,
-    },
-    {
-      url: ROUTES_URLS.credentials,
-      content: <>{tDashboard('access_certificates')}</>,
-    },
-    {
-      url: ROUTES_URLS.logs,
-      content: (
-        <div className="flex gap-2">
-          {tDashboard('logs')}{' '}
-          <OdsBadge
-            size="sm"
-            label="beta"
-            color="information"
-            className="font-normal"
-          />
-        </div>
-      ),
-    },
-  ];
-
-  const breadcrumbItems: BreadcrumbItem[] = [
-    {
-      id: okmsId,
-      label: displayName,
-      navigateTo: `/${okmsId}`,
-    },
-    {
-      id: ROUTES_URLS.keys,
-      label: tServiceKeys('key_management_service_service_keys'),
-      navigateTo: `/${okmsId}/${ROUTES_URLS.keys}`,
-    },
-    {
-      id: ROUTES_URLS.credentials,
-      label: tCredentials('key_management_service_credential'),
-      navigateTo: `/${okmsId}/${ROUTES_URLS.credentials}`,
-    },
-    {
-      id: ROUTES_URLS.okmsUpdateName,
-      label: tDashboard('key_management_service_update_name'),
-      navigateTo: `/${okmsId}/${ROUTES_URLS.okmsUpdateName}`,
-    },
-    {
-      id: ROUTES_URLS.logs,
-      label: tLogs('key_management_service_logs'),
-      navigateTo: `/${okmsId}/${ROUTES_URLS.logs}`,
-    },
-  ];
-
   const headerProps: HeadersProps = {
     title: displayName,
     headerButton: <KmsGuidesHeader />,
@@ -145,8 +161,8 @@ export default function DashboardPage() {
           onClickReturn={() => {
             navigate(ROUTES_URLS.root);
           }}
-          backLinkLabel={tDashboard(
-            'key_management_service_dashboard_back_link',
+          backLinkLabel={t(
+            'key-management-service/dashboard:key_management_service_dashboard_back_link',
           )}
           breadcrumb={<Breadcrumb items={breadcrumbItems} />}
           message={<Notifications />}
