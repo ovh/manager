@@ -16,6 +16,7 @@ export const mockedInstance: TInstance = {
   volumes: [],
   actions: new Map(),
   pendingTask: false,
+  availabilityZone: null,
 };
 
 export const mockedInstanceWithEmptyRegion: TInstance = {

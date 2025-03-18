@@ -41,6 +41,7 @@ export type TInstanceDto = {
   volumes: TInstanceVolumeDto[];
   actions: TInstanceActionDto[];
   pendingTask: boolean;
+  availabilityZone: string | null;
 };
 
 export type TRetrieveInstancesQueryParams = DeepReadonly<{
