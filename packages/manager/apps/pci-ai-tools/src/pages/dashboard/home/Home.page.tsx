@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import * as ai from '@datatr-ux/ovhcloud-types/cloud/project/ai/index';
 import { Card, CardContent, CardHeader, Skeleton } from '@datatr-ux/uxlib';
 import { Activity, BrainCircuit, TerminalSquare } from 'lucide-react';
+import ai from '@/types/AI';
 import storeImage from '@/../public/assets/stock.png';
 import exploreImage from '@/../public/assets/explore.png';
 import trainImage from '@/../public/assets/train.png';

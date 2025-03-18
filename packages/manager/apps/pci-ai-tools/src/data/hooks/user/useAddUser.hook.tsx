@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
-import * as user from '@datatr-ux/ovhcloud-types/cloud/user/index';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import user from '@/types/User';
 import { AIError } from '@/data/api';
 import { AddUserProps, addUser } from '@/data/api/user/user.api';
 

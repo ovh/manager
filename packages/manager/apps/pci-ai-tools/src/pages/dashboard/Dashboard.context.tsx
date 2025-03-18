@@ -1,5 +1,5 @@
 import { useOutletContext, useParams } from 'react-router-dom';
-import * as ai from '@datatr-ux/ovhcloud-types/cloud/project/ai/index';
+import ai from '@/types/AI';
 
 export type DashboardLayoutContext = {
   notebooks: ai.notebook.Notebook[];

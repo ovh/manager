@@ -1,10 +1,10 @@
 import { ColumnDef } from '@tanstack/react-table';
 import { AlertCircle, ArrowRight, Plus } from 'lucide-react';
-import * as ai from '@datatr-ux/ovhcloud-types/cloud/project/ai/index';
 import { Alert, Button } from '@datatr-ux/uxlib';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
+import ai from '@/types/AI';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 import Guides from '@/components/guides/Guides.component';
 import OvhLink from '@/components/links/OvhLink.component';

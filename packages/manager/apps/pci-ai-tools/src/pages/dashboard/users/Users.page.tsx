@@ -1,10 +1,10 @@
 import { Plus } from 'lucide-react';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import * as ai from '@datatr-ux/ovhcloud-types/cloud/project/ai/index';
-import * as user from '@datatr-ux/ovhcloud-types/cloud/user/index';
 import * as role from '@datatr-ux/ovhcloud-types/cloud/role/index';
 import { Button } from '@datatr-ux/uxlib';
+import user from '@/types/User';
+import ai from '@/types/AI';
 import OvhLink from '@/components/links/OvhLink.component';
 import { GuideSections } from '@/configuration/guide';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
