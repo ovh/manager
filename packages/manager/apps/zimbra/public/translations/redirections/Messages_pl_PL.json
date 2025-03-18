@@ -9,13 +9,13 @@
   "zimbra_redirections_status": "Status",
   "zimbra_redirections_delete_modal_content": "Czy chcesz usunąć przekierowanie?",
   "zimbra_redirections_add_header": "Uzupełnij informacje dotyczące przekierowania.",
-  "zimbra_redirections_add_form_input_from": "Z adresu",
-  "zimbra_redirections_add_form_input_to": "Na adres",
-  "zimbra_redirections_add_form_input_checkbox": "Zachowaj kopię e-maila w OVHcloud",
-  "zimbra_redirections_add_success_message": "Zlecenie utworzenia przekierowania zostało zarejestrowane. Zostanie ona przetworzona za kilka minut.",
-  "zimbra_redirections_add_error_message": "Zlecenie utworzenia przekierowania nie powiodło się. {{ error }}",
-  "zimbra_redirections_edit_success_message": "Zlecenie modyfikacji przekierowania zostało przyjęte. Zostanie ona przetworzona za kilka minut.",
-  "zimbra_redirections_edit_error_message": "Zlecenie zmiany przekierowania nie mogło zostać zrealizowane. {{ error }}",
-  "zimbra_redirections_delete_success_message": "Zlecenie usunięcia przekierowania zostało zarejestrowane. Zostanie ona przetworzona za kilka minut.",
-  "zimbra_redirections_delete_error_message": "Zlecenie usunięcia przekierowania nie powiodło się. {{ error }}"
+  "zimbra_redirections_add_form_input_from": "Z adresu:",
+  "zimbra_redirections_add_form_input_to": "Na adres:",
+  "zimbra_redirections_add_form_input_checkbox": "Zachowaj kopię wiadomości w OVHcloud",
+  "zimbra_redirections_add_success_message": "Dyspozycja utworzenia przekierowania została przyjęta. Zostanie przetworzona w ciągu kilku minut.",
+  "zimbra_redirections_add_error_message": "Utworzenie przekierowania nie powiodło się. {{error}}",
+  "zimbra_redirections_edit_success_message": "Dyspozycja zmiany przekierowania została przyjęta. Zostanie przetworzona w ciągu kilku minut.",
+  "zimbra_redirections_edit_error_message": "Modyfikacja przekierowania nie powiodła się. {{error}}",
+  "zimbra_redirections_delete_success_message": "Dyspozycja usunięcia przekierowania została przyjęta. Zostanie przetworzona w ciągu kilku minut.",
+  "zimbra_redirections_delete_error_message": "Usunięcie przekierowania nie powiodło się {{error}}."
 }
