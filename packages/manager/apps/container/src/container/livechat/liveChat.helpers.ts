@@ -1,4 +1,6 @@
 import { SnowChatContext } from '@/types/live-chat.type';
+import { SupportLevel } from '@ovh-ux/manager-config';
+import { adriellyChatUrl } from './liveChat.constants';
 
 /**
  * Utility function to construct query parameters
@@ -38,3 +40,9 @@ export const getCustomerLevel = (level: string) => {
       return 'STD';
   }
 };
+
+export const generateAdriellyChatUrl = (
+  ovhSupportLevel: SupportLevel,
+  ovhSubsidiary: string,
+  language: string,
+) => adriellyChatUrl(getCustomerLevel(ovhSupportLevel.level), ovhSubsidiary.toUpperCase(), language);
