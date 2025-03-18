@@ -21,7 +21,7 @@ describe('AddDocker modal', () => {
       addRegistry: vi.fn(() => mockedRegistry),
     }));
 
-    vi.mock('@/data/api/ai/capabilities.api', () => ({
+    vi.mock('@/data/api/ai/capabilities/capabilities.api', () => ({
       getRegions: vi.fn(() => [mockedCapabilitiesRegionGRA]),
     }));
   });

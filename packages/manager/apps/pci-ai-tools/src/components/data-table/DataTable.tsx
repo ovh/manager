@@ -23,7 +23,7 @@ export function DataTable<TData>({
   renderRowExpansion,
 }: DatatableProps<TData>) {
   const { table, rows } = useDataTableContext();
-  const { t } = useTranslation('pci-databases-analytics/components/data-table');
+  const { t } = useTranslation('ai-tools/components/data-table');
   const [expandedRows, setExpandedRows] = useState<Record<string, boolean>>({});
 
   const toggleRowExpansion = (rowId: string) => {
@@ -52,11 +52,11 @@ export function DataTable<TData>({
                   key={header.id}
                   className={`border font-semibold text-primary-800 ${
                     isEmptyHeader || renderRowExpansion
-                      ? 'border-l-0' // Remove left border for empty headers and row extend column
+                      ? 'border-0' // Remove left border for empty headers and row extend column
                       : ''
                   } ${
                     isEmptyNextHeader
-                      ? 'border-r-0' // Remove right border from current column if next header is empty
+                      ? 'border-0' // Remove right border from current column if next header is empty
                       : ''
                   }`}
                 >

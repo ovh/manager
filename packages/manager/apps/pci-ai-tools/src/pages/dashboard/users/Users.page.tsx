@@ -45,7 +45,6 @@ const Users = () => {
           data-testid="manage-user-button"
           // variant="default"
           type="button"
-          size="sm"
           asChild
         >
           <OvhLink
@@ -73,7 +72,6 @@ const Users = () => {
           onClick={() => navigate('./add')}
           className="font-semibold"
           mode="outline"
-          size="sm"
         >
           <Plus className="w-4 h-4" />
           {t('addButtonLabel')}
