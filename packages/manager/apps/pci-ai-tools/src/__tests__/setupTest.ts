@@ -37,9 +37,11 @@ vi.mock('react-i18next', () => ({
   }),
 }));
 
-vi.mock('@/components/ui/use-toast', () => {
+vi.mock('@datatr-ux/uxlib', async (importOriginal) => {
   const toastMock = vi.fn();
+  const mod = await importOriginal<typeof import('@datatr-ux/uxlib')>();
   return {
+    ...mod,
     useToast: vi.fn(() => ({
       toasts: [],
       toast: toastMock,

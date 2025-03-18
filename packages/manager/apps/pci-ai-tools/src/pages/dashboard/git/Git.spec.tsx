@@ -19,10 +19,10 @@ describe('Git page', () => {
     vi.restoreAllMocks();
     mockedUsedNavigate();
     mockManagerReactShellClient();
-    vi.mock('@/data/api/ai/datastore.api', () => ({
+    vi.mock('@/data/api/ai/data/datastore.api', () => ({
       getDatastores: vi.fn(() => [mockedGitWithRegion]),
     }));
-    vi.mock('@/data/api/ai/capabilities.api', () => ({
+    vi.mock('@/data/api/ai/capabilities/capabilities.api', () => ({
       getRegions: vi.fn(() => [mockedCapabilitiesRegionGRA]),
     }));
   });

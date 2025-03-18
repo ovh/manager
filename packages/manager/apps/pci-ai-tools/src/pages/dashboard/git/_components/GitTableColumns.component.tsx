@@ -60,8 +60,8 @@ export const getColumns = ({ onDeleteClick }: GitTableColumnsProps) => {
                   <DropdownMenuTrigger asChild>
                     <Button
                       data-testid="git-action-trigger"
-                      // variant="menu"
-                      // size="menu"
+                      variant="menu"
+                      size="menu"
                     >
                       <span className="sr-only">Open menu</span>
                       <MoreHorizontal className="h-4 w-4" />
@@ -74,7 +74,7 @@ export const getColumns = ({ onDeleteClick }: GitTableColumnsProps) => {
                     <TooltipTrigger className="w-full">
                       <DropdownMenuItem
                         data-testid="git-action-delete-button"
-                        // mode="destructive"
+                        variant="destructive"
                         onClick={() => {
                           onDeleteClick(row.original);
                         }}

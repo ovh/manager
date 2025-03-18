@@ -93,7 +93,7 @@ const AddUser = () => {
         <DialogDescription />
         {newPass ? (
           <div>
-            <Alert className="bg-green-100">
+            <Alert variant="success">
               <p>{t('formUserPasswordSuccess')}</p>
               <div className="relative my-2">
                 <Button
