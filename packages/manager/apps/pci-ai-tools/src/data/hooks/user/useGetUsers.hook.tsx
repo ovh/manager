@@ -1,5 +1,5 @@
 import { QueryObserverOptions, UseQueryResult } from '@tanstack/react-query';
-import * as user from '@datatr-ux/ovhcloud-types/cloud/user/index';
+import user from '@/types/User';
 import { getUsers } from '@/data/api/user/user.api';
 import { useQueryImmediateRefetch } from '@/hooks/useImmediateRefetch';
 

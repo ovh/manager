@@ -1,5 +1,5 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
-import * as ai from '@datatr-ux/ovhcloud-types/cloud/project/ai/index';
+import ai from '@/types/AI';
 import { NotebookData, PCIAi } from '../..';
 
 export const getNotebooks = async ({ projectId }: PCIAi) =>

@@ -2,7 +2,6 @@ import { AlertTriangleIcon, HelpCircle } from 'lucide-react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
-import * as ai from '@datatr-ux/ovhcloud-types/cloud/project/ai/index';
 import {
   Alert,
   Popover,
@@ -14,6 +13,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@datatr-ux/uxlib';
+import ai from '@/types/AI';
 import OvhLink from '@/components/links/OvhLink.component';
 import CodeBlock from '@/components/code-block/CodeBlock.component';
 

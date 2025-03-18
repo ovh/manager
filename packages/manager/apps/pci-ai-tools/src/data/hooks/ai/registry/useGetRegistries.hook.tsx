@@ -1,5 +1,5 @@
 import { QueryObserverOptions, UseQueryResult } from '@tanstack/react-query';
-import * as ai from '@datatr-ux/ovhcloud-types/cloud/project/ai/index';
+import ai from '@/types/AI';
 import { getRegistries } from '@/data/api/ai/registry/registry.api';
 import { useQueryImmediateRefetch } from '@/hooks/useImmediateRefetch';
 

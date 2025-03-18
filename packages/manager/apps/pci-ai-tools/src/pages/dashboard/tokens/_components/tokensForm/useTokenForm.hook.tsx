@@ -1,8 +1,8 @@
 import { z } from 'zod';
-import * as ai from '@datatr-ux/ovhcloud-types/cloud/project/ai/index';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
+import ai from '@/types/AI';
 import { TOKEN_CONFIG } from './token.constant';
 
 export const useTokenForm = () => {

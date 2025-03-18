@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import * as ai from '@datatr-ux/ovhcloud-types/cloud/project/ai/index';
 import { useParams } from 'react-router-dom';
+import ai from '@/types/AI';
 import { AIError } from '@/data/api';
 import {
   AddRegistryProps,

@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { ColumnDef } from '@tanstack/react-table';
 import { MoreHorizontal } from 'lucide-react';
-import * as ai from '@datatr-ux/ovhcloud-types/cloud/project/ai/index';
 import {
   Button,
   DropdownMenu,
@@ -12,6 +11,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@datatr-ux/uxlib';
+import ai from '@/types/AI';
 import DataTable from '@/components/data-table';
 import { DataStoresWithRegion } from '@/data/hooks/ai/data/useGetDatastoresWithRegions.hook';
 
