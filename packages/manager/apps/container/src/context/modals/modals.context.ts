@@ -1,13 +1,7 @@
 import { createContext } from 'react';
 
-export enum ModalTypes {
-  kyc,
-  payment,
-  agreements,
-}
-
 export type ModalsContextType = {
-  current: ModalTypes;
+  data: any;
 };
 
 const ModalsContext = createContext<ModalsContextType>({} as ModalsContextType);
