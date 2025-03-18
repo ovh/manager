@@ -25,5 +25,8 @@
   "terminated_service": "The service has been cancelled.",
   "gigabyte": "GB",
   "terabyte": "TB",
-  "space_summary": "{{usedSpaceInGB}} GB ({{percent}}% of {{quotaInTB}} TB)"
+  "space_summary": "{{usedSpaceInGB}} GB ({{percent}}% of {{quotaInTB}} TB)",
+  "storage_primary": "Primary",
+  "storage_secondary": "Secondary",
+  "error_api": "Error"
 }
