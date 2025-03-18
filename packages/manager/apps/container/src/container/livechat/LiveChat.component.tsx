@@ -23,15 +23,13 @@ import {
   SnowChatContext
 } from '@/types/live-chat.type';
 import {
-  ADRIELLY_CHAT_URL_TEMPLATE,
   ADRIELLY_CHAT_ORIGIN,
   SNOW_INSTANCE_URL,
   SNOW_CHAT_QUEUE_STORAGE_KEY,
   CHAT_STATE_STORAGE_KEY,
   CHAT_TYPE_STORAGE_KEY,
-  ADRIELLY_LABEU_CHAT_URL,
 } from './liveChat.constants';
-import { generateSnowChatUrl } from './liveChat.helpers';
+import { generateSnowChatUrl, generateAdriellyChatUrl } from './liveChat.helpers';
 import ChatDialog from './ChatDialog.component';
 import { useTranslation } from 'react-i18next';
 
@@ -94,7 +92,6 @@ export default function LiveChat({
   const handleCloseChat = () => {
 
     if (chatType === 'SNOW' && chatIFrame.current) {
-      // console.log('sending EndCall message to', chatIFrame.current.contentWindow, chatIFrame.current.contentWindow?.window)
       if (!chatIFrame.current.contentWindow) {
         console.error('chatIFrame.current.contentWindow is null');
         const frame = document.getElementById('livechat-iframe') as HTMLIFrameElement;
@@ -139,9 +136,9 @@ export default function LiveChat({
     const livechatMessageEventHandler = async (
       ev: MessageEvent<{ event: string; queue: string }>,
     ) => {
-      // TODO: Add back after testing
-      // if (ev.origin !== ADRIELLY_CHAT_ORIGIN) return;
-      //ev.stopPropagation();
+
+      if (ev.origin !== ADRIELLY_CHAT_ORIGIN) return;
+      ev.stopPropagation();
 
       if (typeof ev.data !== 'object' || ev.data.event !== 'open_agent_chat')
         return;
@@ -181,13 +178,6 @@ export default function LiveChat({
 
   if (region === 'US') return null;
 
-  // const url = `https://chat.ovh.com/system/templates/liveChat-manager/${customerLevel}/${subsidiary}_${language}/docs/index2.html`;
-  let url = 'https://chat.ovh.com/system/templates/pre-prod/prepa_prod/STD/FR_fr/docs/index2.html';
-
-  if (window.location.hostname.includes('labeu')) {
-    url = ADRIELLY_LABEU_CHAT_URL;
-  }
-
   if (!chatbotOpen) return null;
   return (
     <div
@@ -199,7 +189,7 @@ export default function LiveChat({
           title="OVHcloud Chat"
           chatIFrame={chatIFrame}
           visible={!chatbotReduced}
-          url={url}
+          url={generateAdriellyChatUrl(supportLevel, ovhSubsidiary, language)}
           key={chatType}
         />
       )}
