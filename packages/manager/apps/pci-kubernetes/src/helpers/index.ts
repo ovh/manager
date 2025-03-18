@@ -1,6 +1,8 @@
 import { PaginationState } from '@ovh-ux/manager-react-components';
 import { FieldError, FieldErrors } from 'react-hook-form';
 import { ZodObject, ZodRawShape } from 'zod';
+import { ClassValue, clsx } from 'clsx';
+import { twMerge } from 'tailwind-merge';
 import { SigningAlgorithms, TOidcProvider } from '@/types';
 import { NodePool } from '@/api/data/kubernetes';
 
@@ -196,4 +198,8 @@ export function generateUniqueName(
   }
 
   return newName;
+}
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
 }
