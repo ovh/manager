@@ -25,5 +25,8 @@
   "terminated_service": "Usługa została zakończona.",
   "gigabyte": "GB",
   "terabyte": "TB",
-  "space_summary": "{{usedSpaceInGB}} GB ({{percent}}% z {{quotaInTB}} TB)"
+  "space_summary": "{{usedSpaceInGB}} GB ({{percent}}% z {{quotaInTB}} TB)",
+  "storage_primary": "Główny",
+  "storage_secondary": "Drugorzędny",
+  "error_api": "Błąd"
 }
