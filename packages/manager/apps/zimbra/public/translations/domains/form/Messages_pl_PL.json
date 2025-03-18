@@ -7,7 +7,7 @@
   "zimbra_domains_add_domain_select_title": "Wybierz domenę z listy",
   "zimbra_domains_add_domain_select": "Wybierz nazwę domeny",
   "zimbra_domains_add_domain_input": "Wpisz nazwę domeny",
-  "zimbra_domains_add_domain_input_title": "Wpisz domenę, która nie jest zarządzana na Twoim koncie OVHcloud",
+  "zimbra_domains_add_domain_input_title": "Wpisz domenę, która nie jest zarządzana przez Twoje konto OVHcloud",
   "zimbra_domains_add_domain_organization": "Organizacja",
   "zimbra_domains_add_domain_organization_select": "Wybierz organizację",
   "zimbra_domains_add_domain_configuration_title": "Konfiguracja",
@@ -26,15 +26,15 @@
   "zimbra_domains_add_domain_configuration_expert_configure_dkim": "Skonfiguruj automatycznie rekord DKIM",
   "zimbra_domains_add_domain_configuration_cname_title": "Weryfikacja domeny",
   "zimbra_domains_add_domain_configuration_cname_description": "Aby potwierdzić, że jesteś właścicielem domeny <strong>{{domain}}</strong>, dodaj ten rekord DNS:",
-  "zimbra_domains_add_domain_configuration_info": "Po dodaniu serwera poczekaj kilka minut, aż nagranie się rozprzestrzeni i nasz robot go wykryje.<br/>Zatwierdzenie operacji należy wykonać w ciągu 48 godzin. Informacje te odnajdziesz retrospektywnie na liście domen.",
+  "zimbra_domains_add_domain_configuration_info": "Po dodaniu rekordu poczekaj kilka minut, aż zmiany zostaną rozpropagowane i nasz robot je wykryje.<br/>Należy je zatwierdzić w ciągu 48 godzin. Informacje te znajdziesz później na liście domen.",
   "zimbra_domains_add_domain_configuration_part_1": "Po zatwierdzeniu domeny zmodyfikuj ręcznie rekordy MX, SRV, SPF i DKIM w strefie DNS.",
-  "zimbra_domains_add_domain_configuration_part_2": "Wymagane informacje można znaleźć na stronie diagnostyki przypisanej domeny.",
+  "zimbra_domains_add_domain_configuration_part_2": "Potrzebne informacje znajdziesz na stronie z parametrami określonej domeny.",
   "zimbra_domains_add_domain_configuration_guides_referee": "Sprawdź przewodnik",
   "zimbra_domains_add_domain_warning_modification_domain": "Upewnij się, że ustawienia w strefie DNS wybranej domeny mogą zostać zmienione przez jej administratora.",
   "zimbra_domains_add_domain_configuration_cname_validated": "Potwierdziliśmy już, że jesteś właścicielem domeny {{domain}}, nie musisz przeprowadzać żadnej dodatkowej operacji.",
-  "zimbra_domains_add_domain_configuration_cname_not_found": "Nie można odnaleźć informacji związanych z tym identyfikatorem domeny.",
+  "zimbra_domains_add_domain_configuration_cname_not_found": "Nie znaleźliśmy informacji związanych z tym identyfikatorem domeny.",
   "zimbra_domains_add_domain_configuration_cname_field_type": "Typ rekordu:",
   "zimbra_domains_add_domain_configuration_cname_field_subdomain": "Subdomena:",
   "zimbra_domains_add_domain_configuration_cname_field_target": "Adres docelowy:",
-  "zimbra_domains_add_domain_warning_configuration_standard": "Wybierając zalecaną konfigurację, wyrażasz zgodę na kierowanie wszystkich e-maili w przyszłości do usługi Zimbra. Jeśli nie zgadzasz się na to, usuń zaznaczenie pola MX w konfiguracji niestandardowej."
+  "zimbra_domains_add_domain_warning_configuration_standard": "Wybierając zalecaną konfigurację, zgadzasz się, że wszystkie wiadomości e-mail będą w przyszłości kierowane do usługi Zimbra. Jeśli nie wyrażasz zgody, usuń zaznaczenie w polu MX w konfiguracji niestandardowej."
 }
