@@ -13,6 +13,9 @@ import './index.css';
 import '@/vite-hmr.ts';
 import { useAppStore } from './store';
 
+import '@datatr-ux/ods-tailwind-config/style.css';
+import '@datatr-ux/uxlib/style.css';
+
 const init = async (
   appName: string,
   { reloadOnLocaleChange } = { reloadOnLocaleChange: false },
