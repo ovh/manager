@@ -10,5 +10,6 @@
   "dedicatedCloud_datacenter_network_onboarding_doc2_title": "Comment activer NSX-T sur la solution VMware on OVHcloud",
   "dedicatedCloud_datacenter_network_onboarding_doc2_description": "Découvrez comment attribuer des droits à un utilisateur et aux datacenters pour NSX-T.",
   "dedicatedCloud_datacenter_network_onboarding_doc3_title": "NSX - FAQ",
-  "dedicatedCloud_datacenter_network_onboarding_doc3_description": "Retrouvez les réponses aux questions les plus fréquentes sur l'utilisation de NSX au sein de l'écosystème Hosted Private Cloud."
+  "dedicatedCloud_datacenter_network_onboarding_doc3_description": "Retrouvez les réponses aux questions les plus fréquentes sur l'utilisation de NSX au sein de l'écosystème Hosted Private Cloud.",
+  "dedicatedCloud_datacenter_network_onboarding_order_success": "Votre commande concernant l'option NSX Edge a été initiée. Si vous ne l'avez pas encore finalisée, vous pouvez la compléter en cliquant sur <a href=\"{{link}}\" target=\"_blank\" rel=\"noopener noreferrer\">ce lien</a>."
 }
