@@ -10,7 +10,7 @@ export const domainDetailMock: DomainType = {
   },
   currentState: {
     organizationId: '00000000-0000-0000-0000-000000000000',
-    name: 'NormalDomain',
+    name: 'domain.fr',
     status: 'READY',
     createdAt: '2024-04-12T12:27:47.213Z',
     updatedAt: '2024-04-12T12:27:47.213Z',
@@ -64,7 +64,7 @@ export const domainsMock: DomainType[] = [
     },
     currentState: {
       organizationId: '00000000-0000-0000-0000-000000000000',
-      name: 'AwesomeDomain',
+      name: 'domain.com',
       status: 'READY',
       createdAt: '2024-04-12T12:27:47.213Z',
       updatedAt: '2024-04-12T12:27:47.213Z',
@@ -115,7 +115,7 @@ export const domainsMock: DomainType[] = [
     },
     currentState: {
       organizationId: '00000000-0000-0000-0000-000000000001',
-      name: 'BlablaDomain',
+      name: 'domain.io',
       status: 'READY',
       createdAt: '2024-04-12T12:27:47.213Z',
       updatedAt: '2024-04-12T12:27:47.213Z',

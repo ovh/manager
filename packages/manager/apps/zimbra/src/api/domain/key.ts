@@ -8,7 +8,7 @@ export const getZimbraPlatformDomainsQueryKey = (
     'zimbra',
     'platform',
     platformId,
-    'domain',
+    'domains',
     shouldFetchAll ? 'all' : '',
     organizationId,
   ].filter(Boolean);
@@ -21,7 +21,7 @@ export const getZimbraPlatformDomainsDiagnosticQueryKey = (
   'zimbra',
   'platform',
   platformId,
-  'domain',
+  'domains',
   'diagnostic',
   ...domainIds,
 ];

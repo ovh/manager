@@ -77,6 +77,14 @@ export const DatagridCellStatus = (kms: OKMS) => {
   return <OkmsServiceState state={OkmsServiceInfos.data.resource.state} />;
 };
 
+export const DatagridResourceKmipCountCell = (kms: OKMS) => {
+  return <DataGridTextCell>{kms.kmipObjectCount}</DataGridTextCell>;
+};
+
+export const DatagridResourceServiceKeyCountCell = (kms: OKMS) => {
+  return <DataGridTextCell>{kms.serviceKeyCount}</DataGridTextCell>;
+};
+
 export const DatagridServiceKeyCellName = (props: OkmsAllServiceKeys) => {
   const navigate = useNavigate();
   const { trackClick } = useOvhTracking();

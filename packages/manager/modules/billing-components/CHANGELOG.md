@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.9.1...@ovh-ux/manager-billing-components@4.10.0) (2025-03-17)
+
+
+### Features
+
+* **billing:** add cancel commitment request button in ellipsis menu ([#15747](https://github.com/ovh/manager/issues/15747)) ([67f9b08](https://github.com/ovh/manager/commit/67f9b0820b3c5d8c94fce87b8af8431cd9c77d73)), closes [#MANAGER-17067](https://github.com/ovh/manager/issues/MANAGER-17067)
+
+
+
+
+
 ## [4.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.9.0...@ovh-ux/manager-billing-components@4.9.1) (2025-03-04)
 
 

@@ -241,6 +241,10 @@ const Sidebar = (): JSX.Element => {
       name: trackingIdComplement.replace(/[:][:]$/g, ''),
       type: 'navigation',
     });
+
+    if (node.forceNavigate && node.routing) {
+      navigationPlugin.navigateTo(node.routing.application, node.routing.hash);
+    }
   };
 
   const onEnter = (node: Node) => {

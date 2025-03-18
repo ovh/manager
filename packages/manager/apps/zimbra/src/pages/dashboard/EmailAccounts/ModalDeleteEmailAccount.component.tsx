@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
-  ODS_BUTTON_VARIANT,
   ODS_MESSAGE_COLOR,
   ODS_MODAL_COLOR,
   ODS_TEXT_PRESET,
@@ -108,13 +107,12 @@ export default function ModalDeleteEmailAccount() {
       isOpen
       secondaryButton={{
         label: t('common:cancel'),
-        action: handleCancelClick,
+        onClick: handleCancelClick,
       }}
       primaryButton={{
         label: t('common:delete'),
-        action: step === 1 ? () => setStep(2) : handleDeleteClick,
+        onClick: step === 1 ? () => setStep(2) : handleDeleteClick,
         isLoading: step === 1 ? false : isSending,
-        variant: ODS_BUTTON_VARIANT.default,
         testid: 'primary-btn',
       }}
     >
