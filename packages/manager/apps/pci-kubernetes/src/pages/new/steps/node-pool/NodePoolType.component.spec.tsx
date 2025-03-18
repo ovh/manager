@@ -3,7 +3,7 @@ import { vi } from 'vitest';
 import NodePoolType from './NodePoolType.component';
 import { wrapper } from '@/wrapperRenders';
 
-vi.mock('@ovh-ux/manager-pci-common', () => ({
+vi.mock('@/components/flavor-selector/FlavorSelector.component', () => ({
   FlavorSelector: ({ onSelect }: { onSelect: (flavor: string) => void }) => (
     <button onClick={() => onSelect('mock-flavor')}>Flavor</button>
   ),

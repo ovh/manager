@@ -23,6 +23,7 @@ export interface NodePool {
   name: string;
   antiAffinity: boolean;
   autoscale: boolean;
+  availabilityZones: string[];
   desiredNodes: number;
   minNodes: number;
   localisation: string; // will change with 3AZ
@@ -42,6 +43,7 @@ export interface KubeClusterCreationParams {
   privateNetworkId: string;
   nodesSubnetId?: string;
   loadBalancersSubnetId?: string;
+  availabilityZones?: string[];
   privateNetworkConfiguration: {
     defaultVrackGateway?: string;
     privateNetworkRoutingAsDefault?: boolean;

@@ -9,19 +9,21 @@ import { OsdsIcon, OsdsText } from '@ovhcloud/ods-components/react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SubnetSelector } from '../network/SubnetSelector.component';
-import { TNetwork } from '@/api/data/network';
+import { TNetworkRegion } from '@/api/data/network';
 import { TPrivateNetworkSubnet } from '@/api/data/subnets';
 
 export type LoadBalancerSelectProps = {
   projectId: string;
-  network: TNetwork;
+  network: TNetworkRegion;
   onSelect: (network: TPrivateNetworkSubnet) => void;
+  region: string;
 };
 
 export default function LoadBalancerSelect({
   projectId,
   network,
   onSelect,
+  region,
 }: Readonly<LoadBalancerSelectProps>) {
   const { t } = useTranslation('network-add');
   const [isExpanded, setIsExpanded] = useState(false);
@@ -69,8 +71,8 @@ export default function LoadBalancerSelect({
           className="mt-6"
           title={t('kubernetes_network_form_load_balancers_subnet')}
           projectId={projectId}
-          networkId={network.clusterRegion?.openstackId}
-          region={network.clusterRegion?.region}
+          networkId={network?.id}
+          region={region}
           onSelect={onSelect}
           allowsEmpty
         />
