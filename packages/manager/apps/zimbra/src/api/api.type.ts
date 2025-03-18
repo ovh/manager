@@ -1,5 +1,10 @@
+export const ZimbraOffer = {
+  STARTER: 'STARTER',
+  PRO: 'PRO',
+} as const;
+
 export type AccountStatistics = {
-  offer: string;
+  offer: keyof typeof ZimbraOffer;
   configuredAccountsCount: number;
   availableAccountsCount: number;
 };
