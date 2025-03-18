@@ -69,6 +69,14 @@ export const OnboardingWithOrderCTA = () => (
     title="Onboarding with order Button"
     orderHref="https://example.com/order"
     orderButtonLabel="Order Now"
+  />
+);
+
+export const OnboardingWithIamCheckOnOrderCTA = () => (
+  <OnboardingLayout
+    title="Onboarding with IAM action check on order Button"
+    orderHref="https://example.com/order"
+    orderButtonLabel="Order Now"
     orderIam={{
       urn: 'urn:v1:eu:resource:vrackServices:vrs-bby-zkm-3a9-tlk',
       iamActions: ['vrackServices:apiovh:resource/edit'],

@@ -51,42 +51,22 @@ const OnboardingLayoutButton: React.FC<OnboardingLayoutButtonProps> = ({
   }
   return (
     <div className="flex flex-col gap-3 sm:gap-4 w-full sm:w-fit sm:flex-row sm:items-center sm:justify-center">
-      {(orderIam?.iamActions || orderIam?.iamActions?.length > 0) &&
-        orderButtonLabel &&
-        (onOrderButtonClick || orderHref) && (
-          <ManagerButton
-            id="orderButton"
-            className="[&::part(button)]:w-full sm:w-auto"
-            size={ODS_BUTTON_SIZE.md}
-            onClick={() => {
-              onOrderButtonClick?.();
-              if (orderHref) {
-                window.open(orderHref, '_blank');
-              }
-            }}
-            label={orderButtonLabel}
-            isDisabled={isActionDisabled}
-            urn={orderIam.urn}
-            iamActions={orderIam.iamActions}
-            displayTooltip={orderIam.displayTooltip}
-          />
-        )}
-      {(!orderIam?.iamActions || orderIam?.iamActions?.length === 0) &&
-        orderButtonLabel &&
-        (onOrderButtonClick || orderHref) && (
-          <OdsButton
-            className="[&::part(button)]:w-full sm:w-auto"
-            size={ODS_BUTTON_SIZE.md}
-            onClick={() => {
-              onOrderButtonClick?.();
-              if (orderHref) {
-                window.open(orderHref, '_blank');
-              }
-            }}
-            label={orderButtonLabel}
-            isDisabled={isActionDisabled}
-          />
-        )}
+      {orderButtonLabel && (onOrderButtonClick || orderHref) && (
+        <ManagerButton
+          id="orderButton"
+          className="[&::part(button)]:w-full sm:w-auto"
+          size={ODS_BUTTON_SIZE.md}
+          onClick={() => {
+            onOrderButtonClick?.();
+            if (orderHref) {
+              window.open(orderHref, '_blank');
+            }
+          }}
+          label={orderButtonLabel}
+          isDisabled={isActionDisabled}
+          {...(orderIam || {})}
+        />
+      )}
       {moreInfoButtonLabel && (onmoreInfoButtonClick || moreInfoHref) && (
         <OdsButton
           className="[&::part(button)]:w-full sm:w-auto"
