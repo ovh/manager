@@ -21,5 +21,10 @@
   "card_guide_title_3": "Zimbra-Webmail richtig handhaben",
   "card_guide_description_1": "Hier erfahren Sie, wie Sie Ihre ersten Postfächer erstellen und Ihren Dienst verwalten.",
   "card_guide_description_2": "Informieren Sie sich über das Einrichten und Verwenden Ihres Zimbra-Accounts auf einem externen Endgerät (PC oder Smartphone).",
-  "card_guide_description_3": "Entdecken Sie die Funktionen des Zimbra-Webinterface."
+  "card_guide_description_3": "Entdecken Sie die Funktionen des Zimbra-Webinterface.",
+  "welcome_title": "Willkommen bei Zimbra",
+  "welcome_description": "Möchten Sie Ihren Account jetzt einrichten?",
+  "configure_title": "Konfigurieren wir gemeinsam Ihren Dienst",
+  "configure_exit": "Konfiguration verlassen",
+  "configure_success_message": "Glückwunsch, Ihr Dienst ist jetzt konfiguriert!"
 }

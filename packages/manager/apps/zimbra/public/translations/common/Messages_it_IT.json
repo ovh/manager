@@ -78,5 +78,9 @@
   "form_valid_domain": "Inserisci un dominio valido",
   "form_valid_account": "Inserisci un nome di account valido",
   "form_valid_date": "Inserisci una data valida",
-  "form_valid_number": "Inserisci un numero valido."
+  "form_valid_number": "Inserisci un numero valido.",
+  "configure_now": "Configurare adesso",
+  "configure_later": "Configurare più tardi",
+  "skip_step": "Saltare questo step",
+  "configure_another_account": "Configurare un altro account"
 }

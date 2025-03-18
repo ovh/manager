@@ -21,5 +21,10 @@
   "card_guide_title_3": "Gestire la webmail Zimbra",
   "card_guide_description_1": "Scopri come creare le tue prime caselle email e amministrare il tuo servizio",
   "card_guide_description_2": "Impara a configurare e utilizzare il tuo account Zimbra su un dispositivo esterno (PC o smartphone)",
-  "card_guide_description_3": "Scopri le funzionalità dell'interfaccia web Zimbra"
+  "card_guide_description_3": "Scopri le funzionalità dell'interfaccia web Zimbra",
+  "welcome_title": "Benvenuto su Zimbra",
+  "welcome_description": "Vuoi configurare il tuo account adesso?",
+  "configure_title": "Configuriamo insieme il tuo servizio",
+  "configure_exit": "Uscire dalla configurazione",
+  "configure_success_message": "Complimenti, il tuo servizio è configurato!"
 }

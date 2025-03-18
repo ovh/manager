@@ -21,5 +21,10 @@
   "card_guide_title_3": "Zarządzanie webmailem Zimbra",
   "card_guide_description_1": "Sprawdź, jak utworzyć pierwsze skrzynki pocztowe i zarządzać usługą",
   "card_guide_description_2": "Sprawdź, jak skonfigurować konto Zimbra na zewnętrznym urządzeniu (PC lub smartphone) i jak z niego korzystać",
-  "card_guide_description_3": "Poznaj funkcje interfejsu Zimbra"
+  "card_guide_description_3": "Poznaj funkcje interfejsu Zimbra",
+  "welcome_title": "Witamy w Zimbrze",
+  "welcome_description": "Czy chcesz skonfigurować swoje konto teraz?",
+  "configure_title": "Skonfigurujmy usługę razem",
+  "configure_exit": "Zakończ konfigurację",
+  "configure_success_message": "Gratulacje, Twoja usługa jest skonfigurowana!"
 }
