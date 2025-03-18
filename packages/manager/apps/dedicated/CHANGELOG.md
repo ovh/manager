@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.18.3...@ovh-ux/manager-dedicated@20.19.0) (2025-03-18)
+
+
+### Bug Fixes
+
+* **dedicated:** display a success message after activation of Zerto ([#15651](https://github.com/ovh/manager/issues/15651)) ([444e93b](https://github.com/ovh/manager/commit/444e93bfa3ce3353f7b3340391375a546dbba575)), closes [#MANAGER-17096](https://github.com/ovh/manager/issues/MANAGER-17096)
+* **dedicated:** fix BYOIP order with own AS ([#15754](https://github.com/ovh/manager/issues/15754)) ([bedf94d](https://github.com/ovh/manager/commit/bedf94da48d47d12520cb12fb82c2b0673cb4eb2)), closes [#MANAGER-17211](https://github.com/ovh/manager/issues/MANAGER-17211)
+
+
+### Features
+
+* **dedicated:** remove beta tag on ipv6 ([#15381](https://github.com/ovh/manager/issues/15381)) ([aa47aca](https://github.com/ovh/manager/commit/aa47aca5ef739a686274da94095faa32a4a2b65d))
+
+
+
+
+
 ## [20.18.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.18.2...@ovh-ux/manager-dedicated@20.18.3) (2025-03-17)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated
