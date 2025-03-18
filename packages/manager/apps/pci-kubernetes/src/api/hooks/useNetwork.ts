@@ -1,12 +1,35 @@
 import { useQuery } from '@tanstack/react-query';
-import { useMemo } from 'react';
-import { getAllPrivateNetworks } from '../data/network';
+import {
+  getAllPrivateNetworks,
+  getAllPrivateNetworksByRegion,
+  TNetworkRegion,
+} from '../data/network';
+import { getListGateways, TGateway } from '../data/subnets';
+
+const getListGatewaysQueryKey = (
+  projectId: string,
+  regionName: string,
+  subnetId,
+) => [
+  'project',
+  projectId,
+  'region',
+  regionName,
+  'gateways',
+  'subnet',
+  subnetId,
+];
 
 const getQueryKeyPrivateNetworks = (projectId: string) => [
   'project',
   projectId,
   'privateNetworks',
 ];
+
+export const getQueryKeyPrivateNetworksByRegion = (
+  projectId: string,
+  regionName: string,
+) => [...getQueryKeyPrivateNetworks(projectId), 'regionName', regionName];
 
 export const useAllPrivateNetworks = (projectId: string) =>
   useQuery({
@@ -15,39 +38,52 @@ export const useAllPrivateNetworks = (projectId: string) =>
     throwOnError: true,
   });
 
+export const usePrivateNetworkByRegion = (
+  projectId: string,
+  regionName: string,
+  select: (data: TNetworkRegion[]) => TNetworkRegion[],
+) =>
+  useQuery({
+    queryKey: getQueryKeyPrivateNetworksByRegion(projectId, regionName),
+    queryFn: () => getAllPrivateNetworksByRegion(projectId, regionName),
+    throwOnError: true,
+    select,
+  });
+
+export const usePrivateNetworkByRegionFilterPublic = (
+  projectId: string,
+  regionName: string,
+) =>
+  usePrivateNetworkByRegion(projectId, regionName, (networks) =>
+    networks.filter((network) => network.vlanId !== null),
+  );
+
 export const useAvailablePrivateNetworks = (
   projectId: string,
   regionName: string,
-) => {
-  const {
-    data: privateNetworks,
-    error,
-    isLoading,
-    isPending,
-  } = useAllPrivateNetworks(projectId);
-
-  const availablePrivateNetworks = useMemo(() => {
-    const filteredPrivateNetworks = privateNetworks?.filter((network) =>
-      network.regions.find(
-        (region) => region.region === regionName && region.status === 'ACTIVE',
-      ),
-    );
-    return filteredPrivateNetworks
-      ?.map((network) => ({
+) =>
+  usePrivateNetworkByRegion(projectId, regionName, (networks) =>
+    networks
+      .filter((network) => network.vlanId !== null)
+      .map((network) => ({
         ...network,
-        name: `${network.vlanId.toString().padStart(4, '0')} - ${network.name}`,
-        clusterRegion: network.regions.find(
-          (_region) =>
-            _region.status === 'ACTIVE' && _region.region === regionName,
-        ),
+        name: `${network.vlanId?.toString().padStart(4, '0')} - ${
+          network.name
+        }`,
+        clusterRegion: regionName,
       }))
-      .sort((a, b) => a.name.localeCompare(b.name));
-  }, [privateNetworks, regionName]);
+      .sort((a, b) => a.name.localeCompare(b.name)),
+  );
 
-  return {
-    data: availablePrivateNetworks,
-    error,
-    isLoading,
-    isPending,
-  };
-};
+export const useListGateways = (
+  projectId: string,
+  regionName: string,
+  subnetId: string,
+  select?: (data: TGateway[]) => TGateway[],
+) =>
+  useQuery({
+    queryKey: getListGatewaysQueryKey(projectId, regionName, subnetId),
+    queryFn: () => getListGateways(projectId, regionName, subnetId),
+    enabled: !!projectId && !!regionName && !!subnetId,
+    select,
+  });

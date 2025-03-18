@@ -19,6 +19,7 @@ type TRawClusterNodePool = {
   createdAt: string;
   updatedAt: string;
   location?: string;
+  availabilityZones?: string[];
   autoscaling: {
     scaleDownUtilizationThreshold: number;
     scaleDownUnneededTimeSeconds: number;
@@ -45,6 +46,7 @@ export type TClusterNodePool = Pick<
   | 'availableNodes'
   | 'desiredNodes'
   | 'autoscale'
+  | 'availabilityZones'
   | 'monthlyBilled'
   | 'createdAt'
   | 'status'
@@ -80,6 +82,9 @@ export const getClusterNodePools = async (
         flavor: item.flavor,
         minNodes: item.minNodes,
         maxNodes: item.maxNodes,
+        ...(item.availabilityZones && {
+          availabilityZones: item.availabilityZones,
+        }),
       } as TClusterNodePool),
   );
 };
@@ -112,6 +117,7 @@ export const updateNodePoolSize = async (
 export type TCreateNodePoolParam = {
   flavorName: string;
   name: string;
+  availabilityZones?: string[];
   antiAffinity: boolean;
   monthlyBilled: boolean;
   autoscale: boolean;

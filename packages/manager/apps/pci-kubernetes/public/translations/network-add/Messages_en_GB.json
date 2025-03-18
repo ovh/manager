@@ -12,7 +12,7 @@
   "kubernetes_network_form_gateway_vrack_field_ip_error_pattern": "Please enter a valid IP address",
   "kubernetes_network_form_label": "Private network attached",
   "kubernetes_network_form_none": "None (public IPs)",
-  "kubernetes_network_form_description": "By default, your worker nodes have a public IPv4. If you choose a private network, the public IPs of these nodes will be used exclusively for administration/linking to the Kubernetes control plane, and your nodes will be assigned an IP on the vLAN of the private network you have chosen.",
+  "kubernetes_network_form_description": "Your nodes will be assigned an IP on the vLAN of the private network you have chosen.",
   "kubernetes_network_form_add": "Create a private network",
   "kubernetes_network_form_subnet": "Choose a subnet for your cluster",
   "kubernetes_network_form_subnet_description": "Select the subnet to use for your Managed Kubernetes Service cluster. Please ensure that it meets the network requirements for the Managed Kubernetes Service.",
@@ -28,5 +28,9 @@
   "kubernetes_network_form_gateway_mode_auto": "Default gateway set according to your private network DHCP configuration (recommended)",
   "kubernetes_network_form_gateway_mode_custom": "Default gateway statically overloaded",
   "kubernetes_network_form_gateway_mode_custom_placeholder": "IP address of your default gateway",
-  "kubernetes_network_form_rebuild": "Warning: To change the outgoing routing strategy, you need to redeploy your cluster’s nodes using a rolling update process."
+  "kubernetes_network_form_rebuild": "Warning: changing the outgoing routing strategy involves redeploying the nodes in your cluster by rolling update.",
+  "kubernetes_network_form_notify_users": "To deploy the Managed Kubernetes Service in a region with 3 availability zones (3-AZ), a subnet with an attached gateway is mandatory. Ensure that your private network meets these requirements to ensure optimal operation.",
+  "kubernetes_network_form_select_private_option": "Select a private network",
+  "kubernetes_network_form_no_private_network": "An associated private network is required to configure your network for your Kubernetes. We recommend creating a private network if you do not already have one.",
+  "kubernetes_network_form_no_associated_gateway": "During the beta phase, a managed Gateway must be attached to the private network."
 }
