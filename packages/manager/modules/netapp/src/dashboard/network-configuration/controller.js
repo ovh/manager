@@ -111,7 +111,9 @@ export default class OvhManagerNetAppNetworkConfigurationCtrl {
     this.selectedSubnet = null;
     this.subnets = (vrackService.currentState.subnets || []).map((subnet) => ({
       ...subnet,
-      displayName: subnet.displayName ?? subnet.cidr,
+      displayName: subnet.displayName
+        ? `${subnet.cidr} : ${subnet.displayName}`
+        : subnet.cidr,
     }));
 
     if (!this.subnets.length) {
