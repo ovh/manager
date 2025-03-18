@@ -37,6 +37,7 @@
   "kube_nodes_status_REDEPLOYING": "Application des changements",
   "kube_nodes_status_UPSCALING": "Upscaling",
   "kube_nodes_status_DOWNSCALING": "Downscaling",
+  "kube_nodes_status_UNKNOWN": "Inconnu",
   "kube_nodes_instances_error": "Une erreur s'est produite lors du chargement des détails de facturation : {{ message }}",
   "kube_nodes_billing_type": "Type de facturation",
   "kube_nodes_billing_monthly": "Mensuelle",

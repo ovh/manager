@@ -2,7 +2,6 @@ import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
 import { useProject } from '@ovh-ux/manager-pci-common';
 import {
   ChangelogButton,
-  ChangelogLinks,
   Datagrid,
   FilterAdd,
   FilterList,

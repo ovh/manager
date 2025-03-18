@@ -1,7 +1,9 @@
 import { PaginationState } from '@ovh-ux/manager-react-components';
 import { FieldError, FieldErrors } from 'react-hook-form';
 import { ZodObject, ZodRawShape } from 'zod';
-import { SigningAlgorithms, TOidcProvider } from '@/types';
+import { ClassValue, clsx } from 'clsx';
+import { twMerge } from 'tailwind-merge';
+import { DeploymentMode, SigningAlgorithms, TOidcProvider } from '@/types';
 import { NodePool } from '@/api/data/kubernetes';
 
 export const REFETCH_INTERVAL_DURATION = 15_000;
@@ -52,8 +54,14 @@ export const downloadContent = ({
   URL.revokeObjectURL(url);
 };
 
-export const getFormatedKubeVersion = (version: string) =>
-  version.substring(0, version.lastIndexOf('.'));
+export const getFormatedKubeVersion = (version: string) => {
+  const [major, minor] = version.split('.');
+
+  if (!minor) {
+    return major;
+  }
+  return `${major}.${minor}`;
+};
 
 export const formatIP = (ip: string) => {
   const [cidr, mask] = ip.split('/');
@@ -197,3 +205,14 @@ export function generateUniqueName(
 
   return newName;
 }
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+
+export const isMonoDeploymentZone = (type: DeploymentMode) =>
+  type === DeploymentMode.MONO_ZONE;
+export const isMultiDeploymentZones = (type: DeploymentMode) =>
+  type === DeploymentMode.MULTI_ZONES;
+export const isLocalDeploymentZone = (type: DeploymentMode) =>
+  type === DeploymentMode.LOCAL_ZONE;
