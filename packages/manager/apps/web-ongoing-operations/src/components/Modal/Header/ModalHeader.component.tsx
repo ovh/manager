@@ -1,32 +1,39 @@
 import React from 'react';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
+import { TOngoingOperations } from '@/types';
 
 interface ModalHeaderComponentProps {
-  readonly heading: string;
-  readonly description: string;
+  readonly data: TOngoingOperations;
 }
 
 export default function ModalHeaderComponent({
-  heading,
-  description,
+  data,
 }: ModalHeaderComponentProps) {
   const { t } = useTranslation('dashboard');
+  const { domain, comment, function: func } = data;
 
   return (
-    <hgroup>
-      <OdsText preset="heading-3" className="mb-3">
-        {t('domain_operations_modal_title', {
-          t0: heading,
-        })}
-      </OdsText>
-      {description && (
-        <OdsText preset="span">
-          {t('domain_operations_update_comment', {
-            t0: description,
+    <div>
+      <hgroup className="mb-2">
+        <OdsText preset="heading-3" className="mb-3">
+          {t('domain_operations_modal_title', {
+            t0: domain,
           })}
         </OdsText>
-      )}
-    </hgroup>
+        {comment && (
+          <OdsText preset="span">
+            {t('domain_operations_update_comment', {
+              t0: comment,
+            })}
+          </OdsText>
+        )}
+      </hgroup>
+      <OdsText>
+        {t('domain_operations_update_info', {
+          t0: t(`domain_operations_nicOperation_${func}`),
+        })}
+      </OdsText>
+    </div>
   );
 }

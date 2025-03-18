@@ -43,6 +43,7 @@ export default function OperationActions({
           onOdsChange={() => {
             putOperationName(OperationName.CanRelaunch);
           }}
+          isChecked={data.canRelaunch}
           isDisabled={!data.canRelaunch}
         ></OdsRadio>
         <label
@@ -101,7 +102,7 @@ export default function OperationActions({
             putOperationName(null);
             navigate(urls.root);
           }}
-          variant={ODS_BUTTON_VARIANT.outline}
+          variant={ODS_BUTTON_VARIANT.ghost}
         />
         <OdsButton
           label={t('wizard_confirm')}
