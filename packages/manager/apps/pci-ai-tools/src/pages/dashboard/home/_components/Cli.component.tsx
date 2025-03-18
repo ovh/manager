@@ -37,19 +37,19 @@ const Cli = ({ regions }: CliProps) => {
           setSelectedRegion(regions.find((reg) => reg.id === region))
         }
       >
-        <SelectTrigger>
+        <SelectTrigger className="text-base">
           <SelectValue />
         </SelectTrigger>
         <SelectContent>
           {regions.map((region) => (
-            <SelectItem key={region.id} value={region.id}>
+            <SelectItem className="text-base" key={region.id} value={region.id}>
               {tRegions(`region_${region.id}`)}
             </SelectItem>
           ))}
         </SelectContent>
       </Select>
       <CodeBlock code={curlUlr} />
-      <Alert className="bg-blue-100 border-0">
+      <Alert variant="primary" className="border-0">
         <div className="flex flex-row gap-3 items-center">
           <AlertCircle className="size-5" />
           <p>{t('alertCli')}</p>

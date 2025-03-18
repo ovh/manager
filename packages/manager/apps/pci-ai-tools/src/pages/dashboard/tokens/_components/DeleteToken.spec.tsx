@@ -15,7 +15,7 @@ import DeleteToken from './DeleteToken.modal';
 
 describe('DeleteToken modal', () => {
   beforeEach(() => {
-    vi.mock('@/data/api/ai/token.api', () => ({
+    vi.mock('@/data/api/ai/token/token.api', () => ({
       deleteToken: vi.fn(),
       getToken: vi.fn(() => mockedToken),
     }));
