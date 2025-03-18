@@ -5,7 +5,7 @@ import {
   ShellContext,
   ShellContextType,
 } from '@ovh-ux/manager-react-shell-client';
-import Changelog from './changelog';
+import Changelog from './Changelog';
 
 const trackClickMock = vi.fn();
 const trackPageMock = vi.fn();
