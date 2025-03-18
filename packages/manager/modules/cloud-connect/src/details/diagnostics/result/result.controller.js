@@ -21,7 +21,7 @@ export default class DiagnosticResultCtrl {
   }
 
   $onInit() {
-    this.canDownload = !!(this.diagnostic.result?.length > 0);
+    this.canDownload = !!this.diagnostic?.result?.[0]?.output;
     $('.modal-dialog').attr('id', 'ovh-cloudConnect-diagnostic-result-modal');
     this.atInternet.trackPage({
       name: `${TRACKING_PREFIX}cloud-connect::pop-up::see::diagnostic-results-${this.diagnostic.function}`,
