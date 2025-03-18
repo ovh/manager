@@ -1,53 +1,45 @@
 import { BaseLayout } from '@ovh-ux/manager-react-components';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom';
-import {
-  OdsDivider,
-  OdsFileUpload,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
+import { useParams } from 'react-router-dom';
+import { OdsDivider, OdsText } from '@ovhcloud/ods-components/react';
 import {
   ODS_DIVIDER_COLOR,
   ODS_DIVIDER_SPACING,
   ODS_MESSAGE_COLOR,
   ODS_TEXT_PRESET,
   OdsFile,
-  OdsFileChangeEventDetail,
-  OdsFileRejectedEventDetail,
-  OdsFileUploadCustomEvent,
 } from '@ovhcloud/ods-components';
 import { useMutation } from '@tanstack/react-query';
 import { updateTask } from '@/data/api/web-ongoing-operations';
 import SubHeader from '@/components/SubHeader/SubHeader';
 import { saveFile } from '@/data/api/document';
-import { urls } from '@/routes/routes.constant';
 import Loading from '@/components/Loading/Loading';
-import { useDomain, useDomainArgument } from '@/hooks/data/data';
 import { updateOperationStatus } from '@/data/api/ongoing-operations-actions';
 import { OperationName } from '@/enum/operationName.enum';
 import { ParentEnum } from '@/enum/parent.enum';
 import OperationActions from '@/components/Actions/OperationsActions.component';
 import Notification from '@/components/Notification/Notification.component';
+import { useOperationArguments } from '@/hooks/modal/useOperationArguments';
+import { useDomain, useNicList } from '@/hooks/data/query';
+import FileUpload from '@/components/Upload/FileUpload';
 
 export default function Upload() {
   const { t } = useTranslation('dashboard');
-  const { id, type } = useParams<{ id: string; type: string }>();
-  const navigate = useNavigate();
+  const { id } = useParams<{ id: string }>();
   const [operationName, setOperationName] = useState<OperationName>(null);
+  const [uploadedFiles, setUploadedFiles] = useState<OdsFile[]>([]);
   const defaultStatus = { label: '', message: '' };
   const [status, setStatus] = useState(defaultStatus);
-  const [uploadedFiles, setUploadedFiles] = useState<OdsFile[]>([]);
-  const [errorUpload, setErrorUpload] = useState<string>('');
-  const maxFile = 1;
   const paramId = Number(id);
+  const maxFile = 1;
 
   const { data: domain, isLoading: domainLoading } = useDomain(paramId);
-
   const {
-    data: domainArgument,
+    data: operationArguments,
     isLoading: argumentLoading,
-  } = useDomainArgument(paramId, type);
+  } = useOperationArguments(paramId);
+  const { data: nicList } = useNicList(paramId);
 
   const putOperationName = (label: OperationName) => {
     setOperationName(label);
@@ -56,7 +48,12 @@ export default function Upload() {
   const { mutate: executeActionOnOperation } = useMutation({
     mutationFn: (operationID: number) =>
       updateOperationStatus(ParentEnum.DOMAIN, operationID, operationName),
-    onSuccess: () => navigate(urls.domain),
+    onSuccess: () => {
+      setStatus({
+        label: ODS_MESSAGE_COLOR.success,
+        message: t(`domain_operations_update_${operationName}`),
+      });
+    },
     onError: () => {
       setStatus({
         label: ODS_MESSAGE_COLOR.warning,
@@ -71,7 +68,7 @@ export default function Upload() {
   ) => {
     const documentId = await saveFile(file);
     const body = { value: documentId };
-    await updateTask(operationID, type, body);
+    nicList.forEach((nic) => updateTask(operationID, nic, body));
   };
 
   const onValidate = (operationID: number) => {
@@ -99,6 +96,14 @@ export default function Upload() {
       });
   };
 
+  const addFileUpload = (file: OdsFile[]) => {
+    setUploadedFiles((prevFiles) => [...prevFiles, ...file]);
+  };
+
+  const removeFileUpload = (fileName: string) => {
+    setUploadedFiles(uploadedFiles.filter((item) => item.name !== fileName));
+  };
+
   if (domainLoading || argumentLoading) {
     return (
       <div data-testid="listing-page-spinner">
@@ -121,12 +126,16 @@ export default function Upload() {
         />
       )}
 
-      <SubHeader domain={domain} />
+      <SubHeader
+        title={t('domain_operations_upload_title', {
+          t0: domain?.domain,
+        })}
+      />
       <section>
         <div className="flex flex-col gap-y-1 mb-6">
           <OdsText preset={ODS_TEXT_PRESET.paragraph}>
             {t('domain_operation_comment')}
-            <strong> {domain.comment}</strong>
+            <strong>{domain.comment}</strong>
           </OdsText>
           <OdsText preset={ODS_TEXT_PRESET.paragraph}>
             {t('domain_operation_data')}
@@ -136,45 +145,16 @@ export default function Upload() {
           </OdsText>
         </div>
 
-        <div>
-          <OdsText className="block mb-3" preset={ODS_TEXT_PRESET.span}>
-            <strong>{domainArgument.description}</strong>
-          </OdsText>
-          <OdsFileUpload
-            onOdsChange={(
-              e: OdsFileUploadCustomEvent<OdsFileChangeEventDetail>,
-            ) => {
-              setUploadedFiles(e.detail.files);
-              setOperationName(OperationName.CanRelaunch);
-            }}
-            onOdsCancel={() => {
-              setUploadedFiles([]);
-              setOperationName(null);
-              setErrorUpload('');
-            }}
-            onOdsRejected={(
-              e: OdsFileUploadCustomEvent<OdsFileRejectedEventDetail>,
-            ) => setErrorUpload(e.detail.reason)}
-            error={
-              errorUpload && t(`domain_operations_upload_error_${errorUpload}`)
-            }
-            maxFile={maxFile}
-            maxSize={domainArgument.maximumSize}
-            maxSizeLabel={t('domain_operations_upload_max_size_label')}
-            accept={domainArgument.acceptedFormats
-              .map((acceptedFormat) => `.${acceptedFormat}`)
-              .join(', ')}
-            acceptedFileLabel={`${t(
-              'domain_operations_upload_accepted_file_types',
-            )} ${domainArgument.acceptedFormats.map(
-              (acceptedFormat: string) => {
-                return `${acceptedFormat} `;
-              },
-            )}`}
-            files={uploadedFiles}
-            className="w-1/4"
-            data-testid="upload"
-          />
+        <div className="flex flex-col gap-y-4">
+          {operationArguments?.data.map((argument) => (
+            <FileUpload
+              key={argument.key}
+              argument={argument}
+              addFileUpload={addFileUpload}
+              removeFileUpload={removeFileUpload}
+              maxFile={maxFile}
+            />
+          ))}
         </div>
 
         <OdsDivider
@@ -185,7 +165,7 @@ export default function Upload() {
         <OperationActions
           data={domain}
           operationName={operationName}
-          disabled={uploadedFiles.length === 0}
+          disabled={uploadedFiles.length !== operationArguments.data.length}
           onValidate={onValidate}
           putOperationName={putOperationName}
           justify="start"

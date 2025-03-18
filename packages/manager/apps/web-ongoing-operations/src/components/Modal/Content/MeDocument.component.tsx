@@ -16,7 +16,7 @@ export default function MeDocumentComponent({
   const { t } = useTranslation('dashboard');
   const { data: url } = useNavigationGetUrl([
     config.rootLabel,
-    `/upload/${operationID}/${argumentKey}`,
+    `/upload/${operationID}`,
     {},
   ]);
 

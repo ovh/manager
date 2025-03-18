@@ -32,6 +32,7 @@ export default function Domain() {
     sorting,
     setSorting,
     filters,
+    refetch,
   } = useResourcesIcebergV6<TOngoingOperations>({
     route: taskMeDomain,
     queryKey: [taskMeDomain],
@@ -48,6 +49,7 @@ export default function Domain() {
   const closeModal = () => {
     setModalOpen(!modalOpen);
     setFilterDomain(null);
+    refetch();
   };
 
   const changeStatus = (label: string, message: string) => {

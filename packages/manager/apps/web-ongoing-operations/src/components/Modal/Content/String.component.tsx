@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { OdsInput } from '@ovhcloud/ods-components/react';
+import { OdsFormField, OdsInput } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
+import { ODS_INPUT_TYPE } from '@ovhcloud/ods-components';
 
 interface StringComponentProps {
   readonly argumentKey: string;
@@ -16,13 +17,13 @@ export default function StringComponent({
   const { t } = useTranslation('dashboard');
   const [inputValue, setInputValue] = useState(value);
   return (
-    <div className="mb-3">
-      <div className="ods-form-field__label mb-1">
-        <label htmlFor={argumentKey}>
-          {t(`domain_operations_update_key_${argumentKey}`)}
-        </label>
-      </div>
+    <OdsFormField data-testid="field-name">
+      <label slot="label">
+        {t(`domain_operations_update_key_${argumentKey}`)}
+      </label>
+
       <OdsInput
+        type={ODS_INPUT_TYPE.text}
         id={argumentKey}
         value={inputValue}
         name={argumentKey}
@@ -32,6 +33,6 @@ export default function StringComponent({
         }}
         data-testid={`input-${argumentKey}`}
       ></OdsInput>
-    </div>
+    </OdsFormField>
   );
 }
