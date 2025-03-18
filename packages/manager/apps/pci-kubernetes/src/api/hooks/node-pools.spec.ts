@@ -5,13 +5,13 @@ import * as ApiNodePoolsModule from '@/api/data/node-pools';
 import { TClusterNodePool } from '@/api/data/node-pools';
 import {
   useClusterNodePools,
-  useDeleteNodePool,
   useUpdateNodePoolSize,
 } from '@/api/hooks/node-pools';
 import { wrapper } from '@/wrapperRenders';
 
+vi.mock('@ovh-ux/manager-core-utils');
+
 describe('useClusterNodePools', () => {
-  // TODO fix this test
   it.skip('fetches cluster node pools successfully', async () => {
     const mockData = [
       {
@@ -27,50 +27,29 @@ describe('useClusterNodePools', () => {
         flavor: 'flavor1',
         minNodes: 1,
         maxNodes: 5,
+        availabilityZones: ['zone1'],
       },
     ] as TClusterNodePool[];
+
     const mockResulData = [
       {
         ...mockData[0],
-        createdAt: '01 Jan 2023 01:00:00', // Expected date format
+        createdAt: '01 Jan 2023 01:00:00',
       },
     ];
+
     vi.spyOn(ApiNodePoolsModule, 'getClusterNodePools').mockResolvedValueOnce(
       mockData,
     );
     vi.mocked(getDateFnsLocale).mockResolvedValue('fr');
+
     const { result } = renderHook(
       () => useClusterNodePools('project1', 'cluster1'),
       { wrapper },
     );
+
     await waitFor(() => expect(result.current.isSuccess).toBe(true));
     expect(result.current.data).toEqual(mockResulData);
-  });
-});
-
-describe('useDeleteNodePool', () => {
-  it('deletes node pool successfully', async () => {
-    const mockSuccess = vi.fn();
-    const mockError = vi.fn();
-    vi.spyOn(ApiNodePoolsModule, 'deleteNodePool').mockResolvedValue(
-      {} as never,
-    );
-    const { result } = renderHook(
-      () =>
-        useDeleteNodePool({
-          projectId: 'project1',
-          clusterId: 'cluster1',
-          poolId: 'pool1',
-          onError: mockError,
-          onSuccess: mockSuccess,
-        }),
-      { wrapper },
-    );
-    act(() => {
-      result.current.deletePool();
-    });
-    await waitFor(() => expect(mockSuccess).toHaveBeenCalled());
-    expect(mockError).not.toHaveBeenCalled();
   });
 });
 

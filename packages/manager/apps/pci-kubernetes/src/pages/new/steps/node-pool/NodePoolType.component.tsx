@@ -1,12 +1,15 @@
 import { Dispatch, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FlavorSelector, KubeFlavor } from '@ovh-ux/manager-pci-common';
 import { OsdsText } from '@ovhcloud/ods-components/react';
 import {
   ODS_TEXT_COLOR_INTENT,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
+import {
+  FlavorSelector,
+  KubeFlavor,
+} from '@/components/flavor-selector/FlavorSelector.component';
 
 export interface NodeTypeStepProps {
   projectId: string;

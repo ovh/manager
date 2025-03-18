@@ -58,6 +58,11 @@ describe('NewPage', () => {
         submit: vi.fn(),
         edit: vi.fn(),
       },
+      plan: {
+        step: { isLocked: false },
+        submit: vi.fn(),
+        edit: vi.fn(),
+      },
       version: {
         step: { isLocked: false },
         submit: vi.fn(),
@@ -89,7 +94,7 @@ describe('NewPage', () => {
         flavor: { name: 'b2-7' },
         isMonthlyBilled: true,
         network: {
-          privateNetwork: { clusterRegion: { openstackId: '123' } },
+          privateNetwork: { clusterRegion: { id: '123' } },
           loadBalancersSubnet: { id: '456' },
           subnet: { id: '789' },
           gateway: { ip: '192.168.1.1', isEnabled: true },
@@ -124,7 +129,7 @@ describe('NewPage', () => {
       screen.getByText('kubernetes_add_version_and_upgrade_policy_title'),
     ).toBeInTheDocument();
     expect(
-      screen.getByText('kubernetes_add_private_network'),
+      screen.getByText('listing:kubernetes_add_private_network'),
     ).toBeInTheDocument();
   });
 });

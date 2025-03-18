@@ -10,6 +10,7 @@ export default function TileLine({ title, value }: Readonly<TileLineProps>) {
   return (
     <>
       <OsdsText
+        data-testid={`tile-line-${title}`}
         className="mb-4 block"
         size={ODS_TEXT_SIZE._200}
         level={ODS_TEXT_LEVEL.heading}

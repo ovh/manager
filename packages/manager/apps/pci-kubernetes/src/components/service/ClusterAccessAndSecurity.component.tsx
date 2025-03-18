@@ -37,6 +37,7 @@ import { TKube } from '@/types';
 import {
   downloadContent,
   getValidOptionalKeys,
+  isMultiDeploymentZones,
   isOptionalValue,
 } from '@/helpers';
 import {
@@ -51,6 +52,7 @@ import {
   useOidcProvider,
 } from '@/api/hooks/useKubernetes';
 import TileLine from './TileLine.component';
+import { useRegionInformations } from '@/api/hooks/useRegionInformations';
 
 export type ClusterAccessAndSecurityProps = {
   kubeDetail: TKube;
@@ -102,6 +104,10 @@ export default function ClusterAccessAndSecurity({
       ),
   });
   const isProcessing = (status: string) => PROCESSING_STATUS.includes(status);
+  const { data: regionInformations } = useRegionInformations(
+    projectId,
+    kubeDetail?.region,
+  );
 
   const validOptionalKeys = useMemo(() => getValidOptionalKeys(oidcProvider), [
     oidcProvider,
@@ -224,146 +230,149 @@ export default function ClusterAccessAndSecurity({
 
         <OsdsDivider separator />
 
-        <TileLine
-          title={
-            <div className="flex items-center justify-between">
-              <OsdsText
-                size={ODS_TEXT_SIZE._200}
-                level={ODS_TEXT_LEVEL.heading}
-                color={ODS_THEME_COLOR_INTENT.text}
-              >
-                {t('kube_service_access_security_oidc_title')}
-              </OsdsText>
-
-              <div className="min-w-10 ml-4">
-                <ActionMenu
-                  icon={ODS_ICON_NAME.ELLIPSIS_VERTICAL}
-                  aria-label={t(
-                    'kube_service_access_security_oidc_menu_action_sr_only',
-                  )}
-                  isCompact
-                  items={[
-                    {
-                      id: 1,
-                      label: t(
-                        'kube_service_access_security_oidc_menu_action_add_provider',
-                      ),
-                      disabled:
-                        isProcessing(kubeDetail?.status) || isOidcDefined,
-                      href: hrefUAddOIDCProvider,
-                    },
-                    {
-                      id: 2,
-                      label: t(
-                        'kube_service_access_security_oidc_menu_action_set_provider',
-                      ),
-                      disabled:
-                        isProcessing(kubeDetail?.status) || !isOidcDefined,
-                      href: hrefUpdateOIDCProvider,
-                    },
-                    {
-                      id: 3,
-                      label: t(
-                        'kube_service_access_security_oidc_menu_action_remove_provider',
-                      ),
-                      disabled:
-                        isProcessing(kubeDetail?.status) || !isOidcDefined,
-                      href: hrefRemoveOIDCProvider,
-                    },
-                  ]}
-                />
-              </div>
-            </div>
-          }
-          value={
-            <div className="flex items-baseline justify-between">
-              {isOidcDefined ? (
-                <div className="w-full">
-                  <Clipboard
-                    aria-label="clipboard"
-                    value={oidcProvider.issuerUrl}
-                  />
-                  <div className="mt-6">
-                    <OsdsText
-                      className="mr-2 font-semibold"
-                      size={ODS_TEXT_SIZE._400}
-                      level={ODS_TEXT_LEVEL.body}
-                      color={ODS_THEME_COLOR_INTENT.text}
-                    >
-                      Client ID :
-                    </OsdsText>
-
-                    <OsdsText
-                      size={ODS_TEXT_SIZE._400}
-                      level={ODS_TEXT_LEVEL.body}
-                      color={ODS_THEME_COLOR_INTENT.text}
-                    >
-                      {oidcProvider.clientId}
-                    </OsdsText>
-                  </div>
-
-                  {hasOptionalValues && (
-                    <div className="mt-6">
-                      <OsdsAccordion
-                        onOdsAccordionToggle={() => setIsOptional(!isOptional)}
-                      >
-                        <span slot="summary">
-                          {isOptional
-                            ? t('kube_service_show_optional')
-                            : t('kube_service_hide_optional')}
-                        </span>
-                        <>
-                          {Object.entries(oidcProvider)
-                            .filter(
-                              ([key, value]) =>
-                                isOptionalValue(value) &&
-                                key !== 'issuerUrl' &&
-                                key !== 'clientId',
-                            )
-                            .map(([key, value]) => (
-                              <div
-                                key={key}
-                                className="mb-4 mt-4 flex flex-col max-w-[400px]"
-                              >
-                                <OsdsText
-                                  className="font-semibold"
-                                  size={ODS_TEXT_SIZE._200}
-                                  level={ODS_TEXT_LEVEL.heading}
-                                  color={ODS_THEME_COLOR_INTENT.text}
-                                >
-                                  {key}
-                                </OsdsText>
-                                <OsdsText
-                                  className="mb-4 truncate"
-                                  size={ODS_TEXT_SIZE._400}
-                                  level={ODS_TEXT_LEVEL.body}
-                                  color={ODS_THEME_COLOR_INTENT.text}
-                                >
-                                  {Array.isArray(value)
-                                    ? value.join(', ')
-                                    : value}
-                                </OsdsText>
-                              </div>
-                            ))}
-                        </>
-                      </OsdsAccordion>
-                    </div>
-                  )}
-                </div>
-              ) : (
+        {!isMultiDeploymentZones(regionInformations?.type) && (
+          <TileLine
+            title={
+              <div className="flex items-center justify-between">
                 <OsdsText
-                  className="mb-4"
-                  size={ODS_TEXT_SIZE._400}
-                  level={ODS_TEXT_LEVEL.body}
+                  size={ODS_TEXT_SIZE._200}
+                  level={ODS_TEXT_LEVEL.heading}
                   color={ODS_THEME_COLOR_INTENT.text}
                 >
-                  {t('kube_service_access_security_oidc_no_provider')}
+                  {t('kube_service_access_security_oidc_title')}
                 </OsdsText>
-              )}
-            </div>
-          }
-        />
 
+                <div className="min-w-10 ml-4">
+                  <ActionMenu
+                    icon={ODS_ICON_NAME.ELLIPSIS_VERTICAL}
+                    aria-label={t(
+                      'kube_service_access_security_oidc_menu_action_sr_only',
+                    )}
+                    isCompact
+                    items={[
+                      {
+                        id: 1,
+                        label: t(
+                          'kube_service_access_security_oidc_menu_action_add_provider',
+                        ),
+                        disabled:
+                          isProcessing(kubeDetail?.status) || isOidcDefined,
+                        href: hrefUAddOIDCProvider,
+                      },
+                      {
+                        id: 2,
+                        label: t(
+                          'kube_service_access_security_oidc_menu_action_set_provider',
+                        ),
+                        disabled:
+                          isProcessing(kubeDetail?.status) || !isOidcDefined,
+                        href: hrefUpdateOIDCProvider,
+                      },
+                      {
+                        id: 3,
+                        label: t(
+                          'kube_service_access_security_oidc_menu_action_remove_provider',
+                        ),
+                        disabled:
+                          isProcessing(kubeDetail?.status) || !isOidcDefined,
+                        href: hrefRemoveOIDCProvider,
+                      },
+                    ]}
+                  />
+                </div>
+              </div>
+            }
+            value={
+              <div className="flex items-baseline justify-between">
+                {isOidcDefined ? (
+                  <div className="w-full">
+                    <Clipboard
+                      aria-label="clipboard"
+                      value={oidcProvider.issuerUrl}
+                    />
+                    <div className="mt-6">
+                      <OsdsText
+                        className="mr-2 font-semibold"
+                        size={ODS_TEXT_SIZE._400}
+                        level={ODS_TEXT_LEVEL.body}
+                        color={ODS_THEME_COLOR_INTENT.text}
+                      >
+                        Client ID :
+                      </OsdsText>
+
+                      <OsdsText
+                        size={ODS_TEXT_SIZE._400}
+                        level={ODS_TEXT_LEVEL.body}
+                        color={ODS_THEME_COLOR_INTENT.text}
+                      >
+                        {oidcProvider.clientId}
+                      </OsdsText>
+                    </div>
+
+                    {hasOptionalValues && (
+                      <div className="mt-6">
+                        <OsdsAccordion
+                          onOdsAccordionToggle={() =>
+                            setIsOptional(!isOptional)
+                          }
+                        >
+                          <span slot="summary">
+                            {isOptional
+                              ? t('kube_service_show_optional')
+                              : t('kube_service_hide_optional')}
+                          </span>
+                          <>
+                            {Object.entries(oidcProvider)
+                              .filter(
+                                ([key, value]) =>
+                                  isOptionalValue(value) &&
+                                  key !== 'issuerUrl' &&
+                                  key !== 'clientId',
+                              )
+                              .map(([key, value]) => (
+                                <div
+                                  key={key}
+                                  className="mb-4 mt-4 flex flex-col max-w-[400px]"
+                                >
+                                  <OsdsText
+                                    className="font-semibold"
+                                    size={ODS_TEXT_SIZE._200}
+                                    level={ODS_TEXT_LEVEL.heading}
+                                    color={ODS_THEME_COLOR_INTENT.text}
+                                  >
+                                    {key}
+                                  </OsdsText>
+                                  <OsdsText
+                                    className="mb-4 truncate"
+                                    size={ODS_TEXT_SIZE._400}
+                                    level={ODS_TEXT_LEVEL.body}
+                                    color={ODS_THEME_COLOR_INTENT.text}
+                                  >
+                                    {Array.isArray(value)
+                                      ? value.join(', ')
+                                      : value}
+                                  </OsdsText>
+                                </div>
+                              ))}
+                          </>
+                        </OsdsAccordion>
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <OsdsText
+                    className="mb-4"
+                    size={ODS_TEXT_SIZE._400}
+                    level={ODS_TEXT_LEVEL.body}
+                    color={ODS_THEME_COLOR_INTENT.text}
+                  >
+                    {t('kube_service_access_security_oidc_no_provider')}
+                  </OsdsText>
+                )}
+              </div>
+            }
+          />
+        )}
         <TileLine
           title={t('kube_service_upgrade_policy')}
           value={

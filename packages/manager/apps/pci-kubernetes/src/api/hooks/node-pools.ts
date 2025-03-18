@@ -104,7 +104,7 @@ export const usePaginatedClusterNodePools = (
         return {
           ...pool,
           formattedFlavor,
-          location: cluster?.region,
+          location: pool.availabilityZones?.[0] || cluster?.region,
           search: `${pool.name} ${formattedFlavor}`,
         };
       }),

@@ -1,6 +1,6 @@
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useEffect } from 'react';
-
+import { useParams } from 'react-router-dom';
 import {
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
@@ -25,6 +25,10 @@ import AdmissionPlugins from './AdmissionPlugins.component';
 import { isProcessing } from './ClusterManagement.component';
 import ClusterTile from './ClusterTile.component';
 
+import { useRegionInformations } from '@/api/hooks/useRegionInformations';
+
+import { isMultiDeploymentZones } from '@/helpers';
+
 export type ClusterInformationProps = {
   kubeDetail: TKube;
 };
@@ -34,8 +38,12 @@ export default function ClusterInformation({
 }: Readonly<ClusterInformationProps>) {
   const { t } = useTranslation('service');
   const { t: tDetail } = useTranslation('listing');
+  const { projectId } = useParams();
   const { clearNotifications } = useNotifications();
-
+  const { data: regionInformations } = useRegionInformations(
+    projectId,
+    kubeDetail.region,
+  );
   useEffect(() => clearNotifications, []);
 
   return (
@@ -83,13 +91,17 @@ export default function ClusterInformation({
             {kubeDetail.version}
           </OsdsText>
         </TileLine>
-        <TileLineLegacy title={<ClusterTile />} value={<ClusterETCD />} />
-        <TileLine label={t('kube_service_cluster_admission_plugins')}>
-          <AdmissionPlugins
-            plugins={kubeDetail.plugins}
-            isProcessing={isProcessing(kubeDetail.status)}
-          />
-        </TileLine>
+        {!isMultiDeploymentZones(regionInformations?.type) && (
+          <TileLineLegacy title={<ClusterTile />} value={<ClusterETCD />} />
+        )}
+        {!isMultiDeploymentZones(regionInformations?.type) && (
+          <TileLine label={t('kube_service_cluster_admission_plugins')}>
+            <AdmissionPlugins
+              plugins={kubeDetail.plugins}
+              isProcessing={isProcessing(kubeDetail.status)}
+            />
+          </TileLine>
+        )}
         <TileLine label={t('kube_service_cluster_region')}>
           <OsdsText
             className="mb-4"
@@ -101,9 +113,11 @@ export default function ClusterInformation({
           </OsdsText>
         </TileLine>
 
-        <TileLine label={t('kube_service_cluster_nodes_url')}>
-          <Clipboard aria-label="clipboard" value={kubeDetail.nodesUrl} />
-        </TileLine>
+        {!isMultiDeploymentZones(regionInformations?.type) && (
+          <TileLine label={t('kube_service_cluster_nodes_url')}>
+            <Clipboard aria-label="clipboard" value={kubeDetail.nodesUrl} />
+          </TileLine>
+        )}
       </div>
     </OsdsTile>
   );
