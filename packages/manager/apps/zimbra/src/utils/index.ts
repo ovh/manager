@@ -15,3 +15,13 @@ export const FEATURE_FLAGS = {
 
 export const APIV2_MAX_PAGESIZE = 9999;
 export const APIV2_DEFAULT_PAGESIZE = 25;
+
+export const ONBOARDED_KEY = 'zimbra_onboarded';
+
+export const isOnboarded = () => {
+  return localStorage.getItem(ONBOARDED_KEY) === 'true';
+};
+
+export const setOnboarded = (state = 'true') => {
+  return localStorage.setItem(ONBOARDED_KEY, state);
+};
