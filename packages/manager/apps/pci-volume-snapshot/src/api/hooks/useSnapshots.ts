@@ -1,14 +1,18 @@
+import { useMemo } from 'react';
 import { useQuery, useQueries } from '@tanstack/react-query';
+import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
 import { getSnapshots, getVolume, TSnapshot, TVolume } from '../data/snapshots';
+import { paginateResults, sortResults } from '@/helpers';
 
 export type TVolumeSnapshot = TSnapshot & {
-  volume: TVolume | null;
+  volume?: TVolume | null;
 };
 
 export const useAllSnapshots = (projectId: string) =>
   useQuery({
     queryKey: ['snapshots', projectId],
-    queryFn: () => getSnapshots(projectId),
+    enabled: !!projectId,
+    queryFn: () => getSnapshots(projectId || ''),
   });
 
 export const useVolumeSnapshots = (projectId: string) => {
@@ -33,4 +37,30 @@ export const useVolumeSnapshots = (projectId: string) => {
       })),
     }),
   });
+};
+
+export const usePaginatedVolumeSnapshot = (
+  projectId: string,
+  pagination: PaginationState,
+  sorting: ColumnSort,
+) => {
+  const { data: snapshots, error, isLoading, isPending } = useVolumeSnapshots(
+    projectId,
+  );
+
+  return useMemo(() => {
+    const sortedAndFilteredSnapshots = sortResults<TVolumeSnapshot>(
+      snapshots || [],
+      sorting,
+    );
+    return {
+      isLoading,
+      isPending,
+      paginatedSnapshots: paginateResults<TVolumeSnapshot>(
+        sortedAndFilteredSnapshots,
+        pagination,
+      ),
+      error,
+    };
+  }, [snapshots, error, isLoading, isPending, pagination, sorting]);
 };

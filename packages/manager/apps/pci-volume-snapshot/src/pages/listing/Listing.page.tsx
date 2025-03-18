@@ -13,7 +13,10 @@ import {
 import { useProject } from '@ovh-ux/manager-pci-common';
 import { useTranslation } from 'react-i18next';
 import { useDatagridColumn } from '@/pages/listing/useDatagridColumn';
-import { useVolumeSnapshots } from '@/api/hooks/useSnapshots';
+import {
+  usePaginatedVolumeSnapshot,
+  useVolumeSnapshots,
+} from '@/api/hooks/useSnapshots';
 
 export default function ListingPage() {
   const { t } = useTranslation(['volumes']);
@@ -21,14 +24,16 @@ export default function ListingPage() {
   const hrefProject = useProjectUrl('public-cloud');
   const { data: project } = useProject();
 
-  const { pagination, setPagination, sorting, setSorting } = useDataGrid();
   const columns = useDatagridColumn();
-
-  const { data: volumeSnapshots, isPending, isLoading } = useVolumeSnapshots(
-    project?.project_id,
+  const { pagination, setPagination, sorting, setSorting } = useDataGrid({
+    id: 'creationDate',
+    desc: true,
+  });
+  const { paginatedSnapshots, isLoading } = usePaginatedVolumeSnapshot(
+    project?.project_id || '',
+    pagination,
+    sorting,
   );
-
-  console.log(volumeSnapshots);
 
   return (
     <RedirectionGuard condition={false} isLoading={false} route={''}>
@@ -52,12 +57,13 @@ export default function ListingPage() {
       >
         <Datagrid
           columns={columns}
-          items={volumeSnapshots}
-          totalItems={9}
+          items={isLoading ? [] : paginatedSnapshots.rows}
+          totalItems={paginatedSnapshots.totalRows}
           pagination={pagination}
           onPaginationChange={setPagination}
           sorting={sorting}
           onSortChange={setSorting}
+          isLoading={isLoading}
         />
       </BaseLayout>
     </RedirectionGuard>
