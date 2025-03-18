@@ -67,3 +67,5 @@ export const CnameBadge: React.FC<CnameBadge> = ({ item }) => {
     </div>
   );
 };
+
+export default CnameBadge;

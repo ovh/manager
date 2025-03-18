@@ -7,7 +7,7 @@ export const organizationDetailMock: OrganizationType = {
     accountsStatistics: [
       {
         configuredAccountsCount: 0,
-        offer: 'BUSINESS',
+        offer: 'STARTER',
         availableAccountsCount: 4,
       },
     ],
@@ -42,7 +42,7 @@ export const organizationListMock: OrganizationType[] = [
       accountsStatistics: [
         {
           configuredAccountsCount: 0,
-          offer: 'BUSINESS',
+          offer: 'STARTER',
           availableAccountsCount: 4,
         },
       ],
@@ -75,7 +75,7 @@ export const organizationListMock: OrganizationType[] = [
       accountsStatistics: [
         {
           configuredAccountsCount: 3,
-          offer: 'READY',
+          offer: 'STARTER',
           availableAccountsCount: 4,
         },
       ],

@@ -78,5 +78,9 @@
   "form_valid_domain": "Introduzca un dominio válido",
   "form_valid_account": "Introduzca un nombre de cuenta válido",
   "form_valid_date": "Introduzca una fecha válida",
-  "form_valid_number": "Introduzca un número válido"
+  "form_valid_number": "Introduzca un número válido",
+  "configure_now": "Configurar ahora",
+  "configure_later": "Configurar más tarde",
+  "skip_step": "Saltar este paso",
+  "configure_another_account": "Configurar otra cuenta"
 }

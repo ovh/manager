@@ -78,5 +78,9 @@
   "form_valid_domain": "Wprowadź poprawną domenę",
   "form_valid_account": "Wprowadź poprawną nazwę konta",
   "form_valid_date": "Wprowadź poprawną datę",
-  "form_valid_number": "Wprowadź poprawną liczbę"
+  "form_valid_number": "Wprowadź poprawną liczbę",
+  "configure_now": "Skonfiguruj teraz",
+  "configure_later": "Skonfiguruj później",
+  "skip_step": "Pomiń ten etap",
+  "configure_another_account": "Skonfiguruj inne konto"
 }
