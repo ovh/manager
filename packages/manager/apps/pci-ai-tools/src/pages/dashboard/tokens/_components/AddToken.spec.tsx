@@ -17,11 +17,11 @@ import { handleSelectOption } from '@/__tests__/helpers/unitTestHelper';
 
 describe('AddToken modal', () => {
   beforeEach(() => {
-    vi.mock('@/data/api/ai/token.api', () => ({
+    vi.mock('@/data/api/ai/token/token.api', () => ({
       addToken: vi.fn(() => mockedToken),
     }));
 
-    vi.mock('@/data/api/ai/capabilities.api', () => ({
+    vi.mock('@/data/api/ai/capabilities/capabilities.api', () => ({
       getRegions: vi.fn(() => [mockedCapabilitiesRegionGRA]),
     }));
   });

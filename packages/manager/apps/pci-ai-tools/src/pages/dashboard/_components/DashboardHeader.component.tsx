@@ -20,7 +20,7 @@ export const DashboardHeader = () => {
     >
       <h2 data-testid="header-title">{t('title')}</h2>
       {isProjectDiscoveryMode && (
-        <Alert>
+        <Alert variant="warning">
           <AlertDescription className="text-base">
             <div
               data-testid="discovery-container"

@@ -36,7 +36,7 @@ const SharedDocker = ({ regions }: SharedDockerProps) => {
   return (
     <>
       <h4 data-testid="shared-docker-title">{t('titleSharedDocker')}</h4>
-      <Alert className="bg-yellow-100">
+      <Alert variant="warning">
         <div className="flex flex-row gap-3 items-center">
           <AlertTriangleIcon className="size-6 shrink-0" />
           <p>{t('alertSharedDocker')}</p>
@@ -51,12 +51,15 @@ const SharedDocker = ({ regions }: SharedDockerProps) => {
           setSelectedRegion(regions.find((reg) => reg.id === region))
         }
       >
-        <SelectTrigger data-testid="select-region-trigger">
+        <SelectTrigger
+          className="text-base"
+          data-testid="select-region-trigger"
+        >
           <SelectValue />
         </SelectTrigger>
         <SelectContent>
           {regions.map((region) => (
-            <SelectItem key={region.id} value={region.id}>
+            <SelectItem className="text-base" key={region.id} value={region.id}>
               {tRegions(`region_${region.id}`)}
             </SelectItem>
           ))}
