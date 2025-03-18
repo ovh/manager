@@ -49,5 +49,6 @@
   "kube_nodes_delete_nodes": "Usuń węzły",
   "kube_nodes_status_REDEPLOYING": "Wdrażanie zmian",
   "kube_nodes_status_UPSCALING": "Upscaling",
-  "kube_nodes_status_DOWNSCALING": "Przeniesienie"
+  "kube_nodes_status_DOWNSCALING": "Przeniesienie",
+  "kube_nodes_status_UNKNOWN": "Nieznany"
 }

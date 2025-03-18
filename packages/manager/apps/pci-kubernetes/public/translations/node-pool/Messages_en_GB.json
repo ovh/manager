@@ -22,8 +22,8 @@
   "kube_common_node_pool_configure_false": " Create a cluster without a node pool",
   "kube_common_node_pool_estimated_cost": "Estimated monthly cluster cost:",
   "kube_common_node_pool_estimation_text": "This estimate does not include a potential Savings Plan discount.",
-  "kube_common_node_pool_estimation_price": "Node pools: {{estimation}}",
-  "kube_common_node_pool_estimation_text_end": "The exact cost will depend on the actual resources used, which we can only determine after the cluster is set up.",
+  "kube_common_node_pool_estimation_price": "Node pools:",
+  "kube_common_node_pool_estimation_text_end": "The exact cost depends on the actual resource usage, which cannot be accurately estimated before a cluster is created.",
   "kube_common_node_pool_size_title": "Node pool size",
   "kube_common_node_pool_desired_node": "Number of nodes",
   "kube_common_node_pool_autoscaling": "Autoscaling",
@@ -31,5 +31,11 @@
   "kube_common_node_pool_model": "Template",
   "kube_common_node_pool_liste": "List of node pools",
   "kube_common_add_node_pool": "Add node pool",
-  "kube_common_min_max_nodes": "Min: {{minNodes}}, Max: {{maxNodes}}"
+  "kube_common_min_max_nodes": "Min {{minNodes}}, Max {{maxNodes}}",
+  "kube_common_estimation_price": "Free during the beta phase.",
+  "kube_common_cluster_estimation_price": "Managed control plane:",
+  "kube_common_node_pool_deploy_title": "Choice of availability zone",
+  "kube_common_node_pool_deploy_description": "In a Kubernetes cluster spread across three availability zones (AZs), the use of node pools per zone is recommended to ensure resilience and high availability. This configuration allows you to distribute your workloads evenly across the AZ. This improves fault tolerance and ensures optimal continuity of service.",
+  "kube_node_pool": "Configure node pool",
+  "kube_common_estimation_price_free": "Free"
 }

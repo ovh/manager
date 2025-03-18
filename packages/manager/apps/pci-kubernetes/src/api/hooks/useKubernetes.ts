@@ -600,7 +600,7 @@ export const useCreateKubernetesCluster = ({
   };
 };
 
-export const useGetClusterEtcdUsage = (projectId, kubeId) => {
+export const useGetClusterEtcdUsage = (projectId: string, kubeId: string) => {
   const queryKey = ['project', projectId, 'kube', kubeId, 'etcd', 'usage'];
   return useQuery({
     queryKey,

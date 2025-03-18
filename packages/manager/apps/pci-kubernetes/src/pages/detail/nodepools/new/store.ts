@@ -19,6 +19,7 @@ export type TFormStore = {
     hasError: boolean;
   };
   flavor: TFlavor;
+  selectedAvailibilityZone: string;
   autoScaling: AutoscalingState;
   antiAffinity: boolean;
   isMonthlyBilling: boolean;
@@ -26,6 +27,7 @@ export type TFormStore = {
   set: {
     name: (val: string) => void;
     flavor: (val: TFlavor) => void;
+    selectedAvailibilityZone: (selectedZone: string) => void;
     autoScaling: (val: AutoscalingState) => void;
     antiAffinity: (val: boolean) => void;
     isMonthlyBilling: (val: boolean) => void;
@@ -96,8 +98,14 @@ export const useNewPoolStore = create<TFormStore>()((set, get) => ({
   autoScaling: null,
   antiAffinity: false,
   isMonthlyBilling: false,
+  selectedAvailibilityZone: '',
   steps: initialSteps(),
   set: {
+    selectedAvailibilityZone: (val: string) => {
+      set({
+        selectedAvailibilityZone: val,
+      });
+    },
     name: (val: string) => {
       if (val !== get().name.value) {
         set({
