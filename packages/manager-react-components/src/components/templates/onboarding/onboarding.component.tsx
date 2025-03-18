@@ -6,6 +6,7 @@ import {
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
 import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
+import { ManagerButton } from '../../ManagerButton/ManagerButton';
 import React, { PropsWithChildren } from 'react';
 
 import placeholderSrc from '../../../../public/assets/placeholder.png';
@@ -19,6 +20,11 @@ type OnboardingLayoutButtonProps = {
   onOrderButtonClick?: () => void;
   onmoreInfoButtonClick?: () => void;
   isActionDisabled?: boolean;
+  orderIam?: {
+    urn: string;
+    iamActions: string[];
+    displayTooltip?: boolean;
+  };
 };
 
 export type OnboardingLayoutProps = OnboardingLayoutButtonProps &
@@ -38,26 +44,49 @@ const OnboardingLayoutButton: React.FC<OnboardingLayoutButtonProps> = ({
   onOrderButtonClick,
   onmoreInfoButtonClick,
   isActionDisabled,
+  orderIam,
 }) => {
   if (!orderButtonLabel && !moreInfoButtonLabel) {
     return <></>;
   }
   return (
     <div className="flex flex-col gap-3 sm:gap-4 w-full sm:w-fit sm:flex-row sm:items-center sm:justify-center">
-      {orderButtonLabel && (onOrderButtonClick || orderHref) && (
-        <OdsButton
-          className="[&::part(button)]:w-full sm:w-auto"
-          size={ODS_BUTTON_SIZE.md}
-          onClick={() => {
-            onOrderButtonClick?.();
-            if (orderHref) {
-              window.open(orderHref, '_blank');
-            }
-          }}
-          label={orderButtonLabel}
-          isDisabled={isActionDisabled}
-        />
-      )}
+      {(orderIam?.iamActions || orderIam?.iamActions?.length > 0) &&
+        orderButtonLabel &&
+        (onOrderButtonClick || orderHref) && (
+          <ManagerButton
+            id="orderButton"
+            className="[&::part(button)]:w-full sm:w-auto"
+            size={ODS_BUTTON_SIZE.md}
+            onClick={() => {
+              onOrderButtonClick?.();
+              if (orderHref) {
+                window.open(orderHref, '_blank');
+              }
+            }}
+            label={orderButtonLabel}
+            isDisabled={isActionDisabled}
+            urn={orderIam.urn}
+            iamActions={orderIam.iamActions}
+            displayTooltip={orderIam.displayTooltip}
+          />
+        )}
+      {(!orderIam?.iamActions || orderIam?.iamActions?.length === 0) &&
+        orderButtonLabel &&
+        (onOrderButtonClick || orderHref) && (
+          <OdsButton
+            className="[&::part(button)]:w-full sm:w-auto"
+            size={ODS_BUTTON_SIZE.md}
+            onClick={() => {
+              onOrderButtonClick?.();
+              if (orderHref) {
+                window.open(orderHref, '_blank');
+              }
+            }}
+            label={orderButtonLabel}
+            isDisabled={isActionDisabled}
+          />
+        )}
       {moreInfoButtonLabel && (onmoreInfoButtonClick || moreInfoHref) && (
         <OdsButton
           className="[&::part(button)]:w-full sm:w-auto"
@@ -91,6 +120,7 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
   onmoreInfoButtonClick,
   img = {},
   isActionDisabled,
+  orderIam,
 }) => {
   const { className: imgClassName, alt: altText, ...imgProps } = img;
   return (
@@ -122,6 +152,7 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
             orderButtonLabel={orderButtonLabel}
             moreInfoHref={moreInfoHref}
             moreInfoButtonLabel={moreInfoButtonLabel}
+            orderIam={orderIam}
           />
         </section>
       )}
