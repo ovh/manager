@@ -1,5 +1,6 @@
 import React from 'react';
-import { Meta, Story } from '@storybook/react';
+import { fn } from '@storybook/test';
+import { Meta } from '@storybook/react';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import TabsComponent from './Tabs.component';
 
@@ -12,6 +13,9 @@ type TContinent = {
 export default {
   title: 'Components/Tabs',
   component: TabsComponent,
+  args: {
+    onChange: fn(),
+  },
   parameters: {
     docs: {
       description: {
@@ -21,7 +25,7 @@ export default {
   },
 } as Meta;
 
-const Template: Story<any> = (args) => <TabsComponent<TContinent> {...args} />;
+const Template = (args: any) => <TabsComponent<TContinent> {...args} />;
 
 export const Demo = Template.bind({});
 Demo.args = {
