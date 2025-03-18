@@ -5,7 +5,8 @@ import {
   ShellContext,
 } from '@ovh-ux/manager-react-shell-client';
 import ErrorBanner from '@/components/Error/Error';
-import { usePlatform } from '@/hooks';
+import { useOrganizations, usePlatform } from '@/hooks';
+import { isOnboarded } from '@/utils';
 
 export default function Layout() {
   const location = useLocation();
@@ -13,6 +14,11 @@ export default function Layout() {
   const { shell } = useContext(ShellContext);
 
   const { platformId, isLoading, isError, error } = usePlatform();
+
+  const onboarded = isOnboarded();
+
+  const { data: organizations } = useOrganizations();
+
   useEffect(() => {
     trackCurrentPage();
     shell.routing.onHashChange();
@@ -22,6 +28,11 @@ export default function Layout() {
     shell.ux.hidePreloader();
   }, []);
 
+  const shouldOnboard =
+    !onboarded &&
+    organizations?.length === 0 &&
+    !location.pathname.startsWith('/onboarding');
+
   return (
     <>
       <Outlet />
@@ -29,7 +40,14 @@ export default function Layout() {
       {!platformId && !isLoading && (
         <Navigate key={location.pathname} to="onboarding" replace={true} />
       )}
-      {platformId && location.pathname === '/' && location.search === '' && (
+      {shouldOnboard && (
+        <Navigate
+          key={location.pathname}
+          to="onboarding/welcome"
+          replace={true}
+        />
+      )}
+      {!shouldOnboard && location.pathname === '/' && (
         <Navigate to={platformId} replace={true} />
       )}
     </>
