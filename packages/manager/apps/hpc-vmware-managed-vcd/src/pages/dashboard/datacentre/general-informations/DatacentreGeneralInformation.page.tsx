@@ -43,6 +43,7 @@ export default function DatacentresGeneralInformationPage() {
           vcdDatacentre={vcdDatacentre?.data}
           vcdOrganization={vcdOrganization?.data}
         />
+        <DatacentreUsageTile vcdDatacentre={vcdDatacentre?.data} />
       </div>
       <Outlet />
     </React.Suspense>
