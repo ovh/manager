@@ -9,7 +9,7 @@ export type TActionModalProps = PropsWithChildren<{
   isPending: boolean;
   handleInstanceAction: () => void;
   handleModalClose: () => void;
-  instanceName: string;
+  instanceName?: string;
   section: TSectionType;
   variant?: 'primary' | 'warning';
 }>;
@@ -31,11 +31,14 @@ export const ActionModal = ({
     handleModalClose={handleModalClose}
     variant={variant}
   >
-    {isPending ? (
+    {isPending && !instanceName ? (
       <Spinner />
     ) : (
       <>
-        <ActionModalContent type={section} instanceName={instanceName} />
+        <ActionModalContent
+          type={section}
+          instanceName={instanceName as string}
+        />
         {children}
       </>
     )}
