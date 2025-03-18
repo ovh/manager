@@ -10,13 +10,13 @@ import Home from './Home.page';
 
 describe('Home page', () => {
   beforeEach(() => {
-    vi.mock('@/data/api/ai/app.api', () => ({
+    vi.mock('@/data/api/ai/app/app.api', () => ({
       getApps: vi.fn(() => [mockedApp]),
     }));
-    vi.mock('@/data/api/ai/notebook.api', () => ({
+    vi.mock('@/data/api/ai/notebook/notebook.api', () => ({
       getNotebooks: vi.fn(() => [mockedNotebook]),
     }));
-    vi.mock('@/data/api/ai/job.api', () => ({
+    vi.mock('@/data/api/ai/job/job.api', () => ({
       getJobs: vi.fn(() => [mockedJob]),
     }));
 
@@ -33,7 +33,7 @@ describe('Home page', () => {
       })),
     }));
 
-    vi.mock('@/data/api/ai/capabilities.api', () => ({
+    vi.mock('@/data/api/ai/capabilities/capabilities.api', () => ({
       getRegions: vi.fn(() => [mockedCapabilitiesRegionGRA]),
     }));
   });

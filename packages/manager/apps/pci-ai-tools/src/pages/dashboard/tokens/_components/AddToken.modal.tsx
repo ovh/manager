@@ -106,7 +106,7 @@ const AddToken = () => {
         <DialogDescription />
         {newTokenValue ? (
           <div>
-            <Alert className="bg-green-100">
+            <Alert variant="success">
               <p>{t('formTokenSuccess')}</p>
               <div className="relative my-2 rounded bg-gray-100">
                 <Button
@@ -159,22 +159,22 @@ const AddToken = () => {
                 <p>{t('formAddTokenFieldLabelDescription')}</p>
                 <div className="flex flex-row items-center gap-2 mt-2">
                   <p>{t('formAddTokenFieldLabelSample')}</p>
-                  <Badge size="sm" variant="information">
+                  <Badge size="sm" variant="primary">
                     {t('formAddTokenLabelBadge1')}
                   </Badge>
-                  <Badge size="sm" variant="information">
+                  <Badge size="sm" variant="primary">
                     {t('formAddTokenLabelBadge2')}
                   </Badge>
-                  <Badge size="sm" variant="information">
+                  <Badge size="sm" variant="primary">
                     {t('formAddTokenLabelBadge3')}
                   </Badge>
                 </div>
                 <div className="flex flex-row items-center gap-2 mt-2">
                   <p>{t('formAddTokenDefaultLabelsDescription')}</p>
-                  <Badge size="sm" variant="information">
+                  <Badge size="sm" variant="primary">
                     {t('formAddTokenDefaultLabelBadge1')}
                   </Badge>
-                  <Badge size="sm" variant="information">
+                  <Badge size="sm" variant="primary">
                     {t('formAddTokenDefaultLabelBadge2')}
                   </Badge>
                 </div>

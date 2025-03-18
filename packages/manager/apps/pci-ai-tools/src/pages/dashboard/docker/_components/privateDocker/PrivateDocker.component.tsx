@@ -47,7 +47,6 @@ const PrivateDocker = () => {
       <Button
         data-testid="create-docker-button"
         onClick={() => navigate('./add')}
-        size="sm"
       >
         <Plus className="w-4 h-4" />
         {t('addButtonLabel')}

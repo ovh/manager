@@ -37,14 +37,14 @@ describe('Auth behavior page', () => {
   it('renders the auth Page', async () => {
     render(<Auth />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByTestId('auth-page-container')).toBeInTheDocument();
+      expect(screen.getByTestId('activate-container')).toBeInTheDocument();
       expect(screen.getByTestId('activate-project-button')).toBeInTheDocument();
     });
   });
   it('renders the onboarding Page on activation', async () => {
     render(<Auth />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByTestId('auth-page-container')).toBeInTheDocument();
+      expect(screen.getByTestId('activate-container')).toBeInTheDocument();
       expect(screen.getByTestId('activate-project-button')).toBeInTheDocument();
     });
     act(() => {

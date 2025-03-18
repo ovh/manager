@@ -1,14 +1,7 @@
-import {
-  act,
-  fireEvent,
-  render,
-  screen,
-  waitFor,
-} from '@testing-library/react';
-import { useToast } from '@datatr-ux/uxlib';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
+import { useToast } from '@datatr-ux/uxlib';
 import CodeBlock from './CodeBlock.component';
-import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 
 describe('CodeBlock component', () => {
   afterEach(() => {
@@ -23,55 +16,52 @@ describe('CodeBlock component', () => {
     });
   });
 
-  // it('should copy code to clipboard and shows toast message on button click', async () => {
-  //   const code = 'console.log("Hello, World!");';
-  //   const toastMessage = 'Code copied!';
-  //   const mockWriteText = vi.fn();
-
-  //   // Mock navigator.clipboard.writeText
-  //   Object.assign(navigator, {
-  //     clipboard: {
-  //       writeText: mockWriteText,
-  //     },
-  //   });
-
-  //   render(<CodeBlock code={code} toastMessage={toastMessage} />);
-
-  //   const button = screen.getByTestId('code-block-copy-button');
-  //   fireEvent.click(button);
-
-  //   // expect(mockWriteText).toHaveBeenCalledWith(code);
-  //   expect(window.navigator.clipboard.writeText).toHaveBeenCalledWith(code);
-  //   expect(useToast().toast).toHaveBeenCalledWith({ title: toastMessage });
-  // });
-
-  it('uses default toast message when none is provided', async () => {
+  it('should copy code to clipboard and shows toast message on button click', async () => {
     const code = 'console.log("Hello, World!");';
-    Object.assign(window.navigator, {
+    const toastMessage = 'Code copied!';
+    const mockToast = { toast: vi.fn() };
+    const mockWriteText = vi.fn();
+
+    // Mock useTranslation and useToast hooks
+    (useToast as any).mockReturnValue(mockToast);
+
+    // Mock navigator.clipboard.writeText
+    Object.assign(navigator, {
       clipboard: {
-        writeText: vi.fn().mockImplementation(() => Promise.resolve()),
+        writeText: mockWriteText,
       },
     });
 
-    render(<CodeBlock code={code} />, {
-      wrapper: RouterWithQueryClientWrapper,
+    render(<CodeBlock code={code} toastMessage={toastMessage} />);
+
+    const button = screen.getByTestId('code-block-copy-button');
+    fireEvent.click(button);
+
+    expect(mockWriteText).toHaveBeenCalledWith(code);
+    expect(mockToast.toast).toHaveBeenCalledWith({ title: toastMessage });
+  });
+
+  it('uses default toast message when none is provided', async () => {
+    const code = 'console.log("Hello, World!");';
+    const mockToast = { toast: vi.fn() };
+    const mockWriteText = vi.fn();
+
+    // Mock useTranslation and useToast hooks
+    (useToast as any).mockReturnValue(mockToast);
+
+    // Mock navigator.clipboard.writeText
+    Object.assign(navigator, {
+      clipboard: {
+        writeText: mockWriteText,
+      },
     });
 
-    act(() => {
-      fireEvent.click(screen.getByTestId('code-block-copy-button'));
-    });
-    await waitFor(() => {
-      expect(useToast().toast).toHaveBeenCalledWith({ title: 'copied' });
-    });
+    render(<CodeBlock code={code} />);
 
-    // const button = screen.getByTestId('code-block-copy-button');
-    // act(() => {
-    //   fireEvent.click(button);
-    // });
+    const button = screen.getByTestId('code-block-copy-button');
+    fireEvent.click(button);
 
-    // await waitFor(() => {
-    //   expect(window.navigator.clipboard.writeText).toHaveBeenCalledWith(code);
-
-    // });
+    expect(mockWriteText).toHaveBeenCalledWith(code);
+    expect(mockToast.toast).toHaveBeenCalledWith({ title: 'copied' });
   });
 });

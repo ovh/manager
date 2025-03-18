@@ -21,10 +21,10 @@ describe('Docker page', () => {
     vi.restoreAllMocks();
     mockedUsedNavigate();
     mockManagerReactShellClient();
-    vi.mock('@/data/api/ai/registry.api', () => ({
+    vi.mock('@/data/api/ai/registry/registry.api', () => ({
       getRegistries: vi.fn(() => [mockedRegistry]),
     }));
-    vi.mock('@/data/api/ai/capabilities.api', () => ({
+    vi.mock('@/data/api/ai/capabilities/capabilities.api', () => ({
       getRegions: vi.fn(() => [mockedCapabilitiesRegionGRA]),
     }));
   });

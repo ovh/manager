@@ -86,6 +86,7 @@ export function DataTableProvider<TData, TValue>({
     columnFilters.filters,
     data,
     sorting,
+    table.getState().pagination.pageIndex,
   ]);
 
   const contextValue: DataTableContextValue<TData> = {

@@ -17,11 +17,11 @@ import { mockedDatastoreS3WithRegion } from '@/__tests__/helpers/mocks/volume/da
 
 describe('AddDatastore modal', () => {
   beforeEach(() => {
-    vi.mock('@/data/api/ai/datastore.api', () => ({
+    vi.mock('@/data/api/ai/data/datastore.api', () => ({
       addDatastore: vi.fn(() => mockedDatastoreS3WithRegion),
     }));
 
-    vi.mock('@/data/api/ai/capabilities.api', () => ({
+    vi.mock('@/data/api/ai/capabilities/capabilities.api', () => ({
       getRegions: vi.fn(() => [mockedCapabilitiesRegionGRA]),
     }));
   });

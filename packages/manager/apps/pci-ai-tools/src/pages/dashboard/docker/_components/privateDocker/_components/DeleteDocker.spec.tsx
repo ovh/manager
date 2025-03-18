@@ -19,7 +19,7 @@ describe('DeleteDocker modal', () => {
       deleteRegistry: vi.fn(),
     }));
 
-    vi.mock('@/data/api/ai/capabilities.api', () => ({
+    vi.mock('@/data/api/ai/capabilities/capabilities.api', () => ({
       getRegions: vi.fn(() => [mockedCapabilitiesRegionGRA]),
     }));
   });

@@ -20,7 +20,7 @@ describe('Tokens page', () => {
     vi.restoreAllMocks();
     mockedUsedNavigate();
     mockManagerReactShellClient();
-    vi.mock('@/data/api/ai/token.api', () => ({
+    vi.mock('@/data/api/ai/token/token.api', () => ({
       getTokens: vi.fn(() => [mockedToken]),
     }));
   });

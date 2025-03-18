@@ -76,7 +76,7 @@ const RenewToken = () => {
         </DialogHeader>
         {newTokenValue ? (
           <div>
-            <Alert className="bg-green-100">
+            <Alert variant="success">
               <p>{t('renewTokenSuccess')}</p>
               <div className="relative my-2 rounded bg-gray-100">
                 <Button
