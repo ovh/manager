@@ -28,6 +28,8 @@ export default function ListingPage() {
     project?.project_id,
   );
 
+  console.log(volumeSnapshots);
+
   return (
     <RedirectionGuard condition={false} isLoading={false} route={''}>
       <BaseLayout
