@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.46.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.46.1...@ovh-ux/manager-vps@2.46.2) (2025-03-18)
+
+
+### Bug Fixes
+
+* **dedicated.vps:** fix issue on upscale funnel ([2669aa9](https://github.com/ovh/manager/commit/2669aa9613e627a964316250fc9832249b48d735)), closes [#MANAGER-17487](https://github.com/ovh/manager/issues/MANAGER-17487)
+
+
+
+
+
 ## [2.46.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.46.0...@ovh-ux/manager-vps@2.46.1) (2025-03-11)
 
 
