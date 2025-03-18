@@ -8,6 +8,7 @@ import {
   OdsSelectValueChangeEvent,
 } from '@ovhcloud/ods-components';
 import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { ErrorBanner } from '@ovh-ux/manager-react-components';
 import { FormField } from '@/components/FormField.component';
 import { getVrackServicesResourceQueryKey } from '@/data/api';
 import { CreatePageLayout } from '@/components/layout-helpers';
@@ -16,7 +17,6 @@ import {
   serviceTypeSelectName,
   serviceNameSelectName,
 } from './endpointCreate.constants';
-import { ErrorPage } from '@/components/ErrorPage.component';
 import { urls } from '@/routes/routes.constants';
 import { PageName } from '@/utils/tracking';
 import { MessagesContext } from '@/components/feedback-messages/Messages.context';
@@ -89,7 +89,7 @@ export default function EndpointCreatePage() {
   ]);
 
   if (serviceListError || iamResourcesError) {
-    return <ErrorPage error={serviceListError || iamResourcesError} />;
+    return <ErrorBanner error={serviceListError || iamResourcesError} />;
   }
 
   return (

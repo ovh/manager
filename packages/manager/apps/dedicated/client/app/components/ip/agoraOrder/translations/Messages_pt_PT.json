@@ -22,7 +22,6 @@
   "order_catalog_price_interval_month_by_ip": "mês/IP",
   "ip_agora_ipv6_description": "Quando são necessários grandes blocos de endereços IP e é definido um esquema de endereçamento hierárquico, o IPv6 é a melhor escolha. Certifique-se de que todos os seus clientes estão aptos a utilizar o novo protocolo e os seus serviços.",
   "free_price": "gratuito",
-  "ip_agora_ipv6_beta": "beta",
   "ip_agora_ipv6_option_step_question": "Escolher opções adicionais",
   "ip_agora_ipv6_option_header": "Em muitos casos, poderá necessitar de um IPv4 standard, o mais utilizado, ou de uma nova versão do protocolo: IPv6 A lista de produtos compatíveis pode variar.",
   "ip_agora_ipv6_option_tile_title": "Novo prefixo /56 IPv6 (atribuído pela OVHcloud)",

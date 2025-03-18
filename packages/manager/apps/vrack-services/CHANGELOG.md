@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.13.9...@ovh-ux/manager-vrack-services-app@0.13.10) (2025-03-18)
+
+
+### Bug Fixes
+
+* **vrack-services:** use mrc error page ([#15113](https://github.com/ovh/manager/issues/15113)) ([ffa1e86](https://github.com/ovh/manager/commit/ffa1e86fe539bf29732fb58a0039302add3d16d2)), closes [#MANAGER-17221](https://github.com/ovh/manager/issues/MANAGER-17221)
+
+
+
+
+
 ## [0.13.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.13.8...@ovh-ux/manager-vrack-services-app@0.13.9) (2025-03-14)
 
 **Note:** Version bump only for package @ovh-ux/manager-vrack-services-app

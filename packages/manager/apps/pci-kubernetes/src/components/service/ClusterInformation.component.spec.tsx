@@ -1,5 +1,4 @@
-import { render, screen, waitFor, act } from '@testing-library/react';
-import * as manager from '@ovh-ux/manager-react-components';
+import { render, screen, waitFor } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import ClusterInformation from '@/components/service/ClusterInformation.component';
@@ -42,10 +41,9 @@ describe('ClusterInformation', () => {
   } as TKube;
 
   it('renders cluster information correctly', async () => {
-    const { debug } = renderClusterInformation(kubeDetail);
+    renderClusterInformation(kubeDetail);
 
     await waitFor(() => {
-      debug();
       expect(
         screen.getByText(/kube_service_cluster_information/i),
       ).toBeInTheDocument();

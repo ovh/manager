@@ -31,11 +31,11 @@ describe('NodePools', () => {
       error: undefined,
     });
 
-    const { container } = render(<Page />, {
+    const { getByTestId } = render(<Page />, {
       wrapper,
     });
 
-    expect(container).toMatchSnapshot();
+    expect(getByTestId('spinner')).toBeInTheDocument();
   });
 
   it('should render datagrid when nodepools are loaded', async () => {

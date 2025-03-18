@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import '@testing-library/jest-dom';
 import { PointerEvent } from './helpers/pointerEvent';
 
@@ -14,3 +15,6 @@ console.error = (...args) => {
   }
   originalConsoleError(...args);
 };
+
+const scrollMock = vi.fn();
+window.HTMLElement.prototype.scrollIntoView = scrollMock;

@@ -32,9 +32,7 @@ import LoadingSkeleton from '@/components/LoadingSkeleton.component';
 export default function NodePoolsPage() {
   const { projectId, kubeId } = useParams();
   const [searchField, setSearchField] = useState('');
-  const { t: tNodesPool } = useTranslation('node-pool');
-  const { t: tFilter } = useTranslation('filter');
-  const { t: tKubeNodes } = useTranslation('kube-nodes');
+  const { t } = useTranslation(['node-pool', 'filter', 'kube-nodes']);
   const filterPopoverRef = useRef(undefined);
   const navigate = useNavigate();
 
@@ -72,7 +70,7 @@ export default function NodePoolsPage() {
               navigate('./new');
             }}
           >
-            {tNodesPool('kube_node_pool_add')}
+            {t('kube_node_pool_add')}
           </OsdsButton>
           <OsdsButton
             data-testid="refresh-button"
@@ -124,19 +122,24 @@ export default function NodePoolsPage() {
                 className="mr-2"
                 color={ODS_THEME_COLOR_INTENT.primary}
               />
-              {tFilter('common_criteria_adder_filter_label')}
+              {t('filter:common_criteria_adder_filter_label')}
             </OsdsButton>
             <OsdsPopoverContent>
               <FilterAdd
                 columns={[
                   {
                     id: 'name',
-                    label: tNodesPool('kube_node_pool_name'),
+                    label: t('kube_node_pool_name'),
+                    comparators: FilterCategories.String,
+                  },
+                  {
+                    id: 'location',
+                    label: t('kube_common_node_pool_localisation'),
                     comparators: FilterCategories.String,
                   },
                   {
                     id: 'flavor',
-                    label: tKubeNodes('kube_nodes_flavor'),
+                    label: t('kube-nodes:kube_nodes_flavor'),
                     comparators: FilterCategories.String,
                   },
                   {
@@ -146,12 +149,12 @@ export default function NodePoolsPage() {
                   },
                   {
                     id: 'monthlyBilled',
-                    label: tNodesPool('kube_node_pool_monthly_billing'),
+                    label: t('kube_node_pool_monthly_billing'),
                     comparators: FilterCategories.String,
                   },
                   {
                     id: 'createdAt',
-                    label: tNodesPool('kube_node_pool_creation_date'),
+                    label: t('kube_node_pool_creation_date'),
                     comparators: FilterCategories.String,
                   },
                 ]}

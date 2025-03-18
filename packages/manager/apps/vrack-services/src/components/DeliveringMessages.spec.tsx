@@ -1,16 +1,8 @@
 import React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { render } from '@testing-library/react';
-import {
-  ShellContext,
-  ShellContextType,
-} from '@ovh-ux/manager-react-shell-client';
 import { DetailedOrder } from '@ovh-ux/manager-module-order';
-import { ErrorBannerProps, ErrorPage } from './ErrorPage.component';
-import {
-  DeliveringMessages,
-  DeliveringMessagesProps,
-} from './DeliveringMessages.component';
+import { DeliveringMessages } from './DeliveringMessages.component';
 
 /** MOCKS */
 vi.mock('react-i18next', () => ({

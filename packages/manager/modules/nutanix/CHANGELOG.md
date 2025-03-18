@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@2.6.0...@ovh-ux/manager-nutanix@2.6.1) (2025-03-18)
+
+
+### Bug Fixes
+
+* **nutanix:** remove column of pack type in nutanix ([#15793](https://github.com/ovh/manager/issues/15793)) ([5541399](https://github.com/ovh/manager/commit/5541399da4d1fcea74e69628f1ac38906dbd12d7)), closes [#MANAGER-16213](https://github.com/ovh/manager/issues/MANAGER-16213)
+
+
+
+
+
 # [2.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@2.5.0...@ovh-ux/manager-nutanix@2.6.0) (2025-02-20)
 
 

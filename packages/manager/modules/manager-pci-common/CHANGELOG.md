@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@2.3.2...@ovh-ux/manager-pci-common@2.3.3) (2025-03-18)
+
+
+### Bug Fixes
+
+* **manager-pci-common:** rclone download select issue & refactoring ([#15760](https://github.com/ovh/manager/issues/15760)) ([a1f32e2](https://github.com/ovh/manager/commit/a1f32e20ddd2b6e34eba084d466b0879b8fa7bda)), closes [#DTCORE-3163](https://github.com/ovh/manager/issues/DTCORE-3163)
+
+
+
+
+
 ## [2.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@2.3.1...@ovh-ux/manager-pci-common@2.3.2) (2025-03-14)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-common
