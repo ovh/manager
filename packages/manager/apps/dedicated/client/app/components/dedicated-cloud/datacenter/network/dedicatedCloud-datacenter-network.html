@@ -83,9 +83,14 @@
                 data-title=":: 'dedicatedCloud_network_sizing' | translate"
                 data-property="size"
             >
+                <span data-ng-bind="$row.size | capitalize"></span>
             </oui-datagrid-column>
 
-            <oui-action-menu data-compact data-placement="end">
+            <oui-action-menu
+                data-compact
+                data-disabled="!!$ctrl.pollNsxTaskId"
+                data-placement="end"
+            >
                 <oui-action-menu-item
                     data-ng-if=":: $ctrl.isNsxEdgeRelocateAvailable"
                     data-on-click="$ctrl.goToRelocate($row.nsxtEdgeId)"
