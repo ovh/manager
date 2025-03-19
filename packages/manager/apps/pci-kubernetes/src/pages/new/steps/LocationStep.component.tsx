@@ -11,6 +11,7 @@ import {
   OsdsText,
   OsdsTile,
 } from '@ovhcloud/ods-components/react';
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import {
   ODS_BUTTON_SIZE,
   ODS_TEXT_LEVEL,
@@ -30,7 +31,7 @@ import { StepState } from '../useStep';
 import { KubeDeploymentTile } from '@/components/region-selector/KubeDeploymentTile';
 import { DEPLOYMENT_URL } from '@/constants';
 import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
-import { mockAvailabilityWith3az } from '@/mocks/mockAvaibility';
+import useHas3AZRegions from '@/hooks/useHas3AZRegions';
 
 export interface LocationStepProps {
   projectId: string;
@@ -52,35 +53,14 @@ export function LocationStep({
   const { t } = useTranslation(['stepper', 'add']);
   const context = useContext(ShellContext);
   const { ovhSubsidiary } = context.environment.getUser();
-  const [region, setRegion] = useState<TLocalisation>();
+  const [region, setRegion] = useState<TLocalisation | undefined>();
   const [selectedDeployment, setSelectedDeployment] = useState<TRegion['type']>(
     undefined,
   );
   const featureFlipping3az = use3AZPlanAvailable();
 
-  // FIXME
-  // const { data: availability } = useProductAvailability(projectId, {
-  //   product: 'kubernetes',
-  // });
-
-  const product = mockAvailabilityWith3az?.products.find(
-    ({ name }) => name === 'kubernetes',
-  );
-  const uniqueRegions = [
-    ...new Set(
-      product?.regions?.map((deploymentRegion) => deploymentRegion.type),
-    ),
-  ].sort((a, b) => {
-    if (a === (RegionType.Region3Az as string)) return 1;
-    if (b === (RegionType.Region3Az as string)) return -1;
-    return 0;
-  });
-
-  const has3AZ =
-    uniqueRegions.some(
-      (deploymentRegion) =>
-        deploymentRegion === (RegionType.Region3Az as string),
-    ) || featureFlipping3az;
+  const { uniqueRegions, contains3AZ } = useHas3AZRegions();
+  const has3AZ = contains3AZ && featureFlipping3az;
 
   const tilesData = uniqueRegions.map((regionType: TRegion['type']) => ({
     title: t(`add:kubernetes_add_region_title_${regionType}`),
@@ -109,6 +89,7 @@ export function LocationStep({
                 {t('add:kubernetes_add_deployment_mode_description')}
               </OsdsText>{' '}
               <Links
+                target={OdsHTMLAnchorElementTarget._blank}
                 href={DEPLOYMENT_URL[ovhSubsidiary] ?? DEPLOYMENT_URL.DEFAULT}
                 label={t('add:kubernetes_add_find_out_more')}
                 type={LinkType.next}
@@ -122,9 +103,10 @@ export function LocationStep({
                     title={title}
                     description={description}
                     pillLabel={pillLabel}
-                    setSelectedDeployment={() =>
-                      setSelectedDeployment(regionType)
-                    }
+                    onSelectedDeployment={() => {
+                      setSelectedDeployment(regionType);
+                      setRegion(undefined);
+                    }}
                     isSelected={regionType === selectedDeployment}
                   />
                 ),
@@ -136,6 +118,7 @@ export function LocationStep({
           </>
         )}
         <KubeRegionSelector
+          key={selectedDeployment}
           projectId={projectId}
           onSelectRegion={setRegion}
           selectedDeployment={selectedDeployment}

@@ -1,14 +1,15 @@
+import { useCallback } from 'react';
 import {
   RegionSelector,
   RegionSelectorProps,
   TRegion,
-  useProductAvailability,
 } from '@ovh-ux/manager-pci-common';
 import { OsdsSpinner } from '@ovhcloud/ods-components/react';
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import './KubeRegionSelector.css';
 import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
-import { mockAvailabilityWith3az } from '@/mocks/mockAvaibility';
+import { mockedModule } from '@/mocks/mockAvaibility';
+import useHas3AZRegions from '@/hooks/useHas3AZRegions';
 
 export interface KubeRegionSelectorProps {
   projectId: string;
@@ -21,31 +22,45 @@ export function KubeRegionSelector({
   onSelectRegion,
   selectedDeployment,
 }: Readonly<KubeRegionSelectorProps>) {
-  const { data: availability, isPending } = useProductAvailability(projectId, {
-    product: 'kubernetes',
-  });
+  const { data: availability, isPending } = mockedModule.useProductAvailability(
+    projectId,
+    {
+      product: 'kubernetes',
+    },
+  );
+
   const featureFlipping3az = use3AZPlanAvailable();
+
+  const { contains3AZ } = useHas3AZRegions();
+  const has3AZ = contains3AZ && featureFlipping3az;
   if (isPending) {
-    return <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />;
+    return (
+      <OsdsSpinner data-testid="spinner" inline size={ODS_SPINNER_SIZE.md} />
+    );
   }
+
+  const regionFilter = useCallback(
+    (region) => {
+      const product = availability?.products.find(
+        ({ name }) => name === 'kubernetes',
+      );
+
+      return product.regions.some(({ name, type }) =>
+        selectedDeployment
+          ? name === region.name && type === selectedDeployment
+          : name === region.name,
+      );
+    },
+    [availability, selectedDeployment],
+  );
+
   return (
-    <div className="mt-6">
+    <div data-testid="region-selector" className="mt-6">
       <RegionSelector
         projectId={projectId}
         onSelectRegion={onSelectRegion}
-        regionFilter={(region) => {
-          const product = mockAvailabilityWith3az?.products.find(
-            ({ name }) => name === 'kubernetes',
-          );
-          if (selectedDeployment) {
-            return product.regions.some(
-              ({ name, type }) =>
-                name === region.name && type === selectedDeployment,
-            );
-          }
-          return product.regions.some(({ name }) => name === region.name);
-        }}
-        compactMode={featureFlipping3az}
+        regionFilter={regionFilter}
+        compactMode={!has3AZ}
       />
     </div>
   );

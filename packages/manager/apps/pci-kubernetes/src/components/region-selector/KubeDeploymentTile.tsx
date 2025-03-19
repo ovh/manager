@@ -7,14 +7,14 @@ export interface KubeDeploymentTileProps {
   readonly pillLabel: ReactNode;
   readonly description: string;
   readonly isSelected?: boolean;
-  readonly setSelectedDeployment: () => void;
+  readonly onSelectedDeployment: () => void;
 }
 
 export function KubeDeploymentTile({
   title,
   pillLabel,
   description,
-  setSelectedDeployment,
+  onSelectedDeployment,
   isSelected,
 }: KubeDeploymentTileProps) {
   return (
@@ -22,7 +22,7 @@ export function KubeDeploymentTile({
       key={title}
       data-testid="deployment-tile-radio-tile"
       name="deployment-select"
-      onChange={() => setSelectedDeployment()}
+      onChange={onSelectedDeployment}
       value={title}
       checked={isSelected}
     >
