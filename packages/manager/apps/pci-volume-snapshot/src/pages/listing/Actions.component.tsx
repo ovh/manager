@@ -13,7 +13,7 @@ export default function Actions({ snapshot }: Readonly<ActionsProps>) {
   const items = [
     {
       id: 1,
-      href: useHref('#'),
+      href: useHref(`./${snapshot.id}/new-volume`),
       label: t('pci_projects_project_storages_snapshots_create_volume_label'),
     },
     {
