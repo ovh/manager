@@ -6,3 +6,7 @@ html,
 button {
   font-family: var(--ods-font-family-default);
 }
+
+.fw-bold::part(text) {
+  font-weight: bold;
+}
