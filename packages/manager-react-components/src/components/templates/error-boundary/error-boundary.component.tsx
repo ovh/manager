@@ -22,6 +22,11 @@ export interface ResponseAPIError {
   };
 }
 
+const ShellRoutingSync = () => {
+  useRouteSynchro();
+  return null;
+};
+
 export interface ErrorBoundaryProps {
   /** application name to redirect */
   redirectionApp: string;
@@ -47,10 +52,6 @@ export const ErrorBoundary = ({
     shell?.navigation.reload();
   };
 
-  if (isRouteShellSync) {
-    useRouteSynchro();
-  }
-
   useEffect(() => {
     if (isPreloaderHide) {
       shell?.ux.hidePreloader();
@@ -58,13 +59,16 @@ export const ErrorBoundary = ({
   }, [isPreloaderHide]);
 
   return (
-    <ErrorBanner
-      onReloadPage={reloadPage}
-      onRedirectHome={navigateToHomePage}
-      error={{
-        data: { message: error?.response?.data?.message || error?.message },
-        headers: error?.response?.headers || {},
-      }}
-    />
+    <>
+      <ErrorBanner
+        onReloadPage={reloadPage}
+        onRedirectHome={navigateToHomePage}
+        error={{
+          data: { message: error?.response?.data?.message || error?.message },
+          headers: error?.response?.headers || {},
+        }}
+      />
+      {isRouteShellSync && <ShellRoutingSync />}
+    </>
   );
 };

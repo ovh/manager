@@ -2,7 +2,7 @@ import { Meta, Canvas, Source } from '@storybook/blocks';
 
 <Meta title="Templates/ErrorBoundary/Documentation" />
 
-# Datagrid
+# ErrorBoundary
 
 ## Overview
 
@@ -13,6 +13,8 @@ This component also integrates with `ShellContext` from `@ovh-ux/manager-react-s
 ## Usage
 
 ### Importing the Component in your routes.tsx file
+
+#### With LazyRouteConfig function
 
 <Source
   code={`import { ErrorBoundary } from '@ovh-ux/manager-react-components';
@@ -28,6 +30,23 @@ This component also integrates with `ShellContext` from `@ovh-ux/manager-react-s
           // Just add this following line and fill the redirectionApp
           errorElement: <ErrorBoundary redirectionApp="key-management-service" />
       });`}
+
+language="typescript"
+/>
+
+#### With Route component
+
+<Source
+  code={`import { ErrorBoundary } from '@ovh-ux/manager-react-components';
+  <Route
+    id="root"
+    path={ROUTE_PATHS.ROOT}
+    Component={LayoutPage}
+    // Just add this following line and fill the redirectionApp
+    errorElement={<ErrorBoundary redirectionApp="key-management-service" />}
+  >
+    <Route path="notFound" element={<>Page not found</>}></Route>
+`}
 
 language="typescript"
 />
