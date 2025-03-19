@@ -12,9 +12,9 @@ import {
   OdsText,
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
+import { TFunction } from 'i18next';
 import { useAllSnapshots } from '@/api/hooks/useSnapshots';
 import { TRANSFER_VOLUME_BACKUP_FROM_ONE_DATACENTRE_TO_ANOTHER_URL } from './onboarding.constants';
-import { TFunction } from 'i18next';
 
 const OnBoardingDescription = ({ t }: { t: TFunction }): JSX.Element => {
   return (
@@ -76,6 +76,7 @@ export default function OnBoardingPage() {
       >
         <PciAnnouncementBanner />
         <OnboardingLayout
+          data-testid="onboarding-layout"
           img={{ src: 'assets/snapshots.png' }}
           title={t('pci_projects_project_storages_snapshots_title', {
             ns: 'volumes',
