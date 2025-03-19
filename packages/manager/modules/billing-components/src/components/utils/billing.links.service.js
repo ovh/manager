@@ -7,6 +7,7 @@ export default class BillingLinksService {
     this.coreConfig = coreConfig;
     this.coreURLBuilder = coreURLBuilder;
     this.$injector = $injector;
+    this.autorenewLink = null;
   }
 
   generateAutorenewLinks(service, options) {
@@ -23,6 +24,8 @@ export default class BillingLinksService {
 
     if (!billingManagementAvailability) {
       fetchAutoRenewLink.resolve(null);
+    } else if (this.autorenewLink) {
+      fetchAutoRenewLink.resolve(this.autorenewLink);
     } else if (this.$injector.has('shellClient')) {
       this.$injector
         .get('shellClient')
@@ -36,6 +39,7 @@ export default class BillingLinksService {
     }
 
     return fetchAutoRenewLink.promise.then((autorenewLink) => {
+      this.autorenewLink = autorenewLink;
       links.autorenewLink = autorenewLink;
       links.billingManagementAvailabilityAndHaveAutorenewLink =
         options.billingManagementAvailability && !!autorenewLink;
