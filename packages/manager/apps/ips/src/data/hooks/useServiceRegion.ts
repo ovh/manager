@@ -4,7 +4,6 @@ import {
   DedicatedCloudLocation,
   DedicatedServer,
   VpsDatacenter,
-  getDedicatedCloudServiceData,
   getDedicatedCloudServiceLocation,
   getDedicatedServerData,
   getVpsDatacenter,
@@ -46,13 +45,7 @@ export const useServiceRegion = ({
     ApiError
   >({
     queryKey: [ServiceType.dedicatedCloud, serviceName],
-    queryFn: async () => {
-      const response = await getDedicatedCloudServiceData(serviceName);
-      const locationResponse = await getDedicatedCloudServiceLocation(
-        response?.data?.location,
-      );
-      return locationResponse;
-    },
+    queryFn: async () => getDedicatedCloudServiceLocation(serviceName),
     enabled:
       !!serviceName &&
       serviceStatus === 'ok' &&
