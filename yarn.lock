@@ -6531,6 +6531,15 @@
   resolved "https://registry.yarnpkg.com/@orchidjs/unicode-variants/-/unicode-variants-1.1.2.tgz#1fd71791a67fdd1591ebe0dcaadd3964537a824e"
   integrity sha512-5DobW1CHgnBROOEpFlEXytED5OosEWESFvg/VYmH0143oXcijYTprRYJTs+55HzGM4IqxiLFSuqEzu9mPNwVsA==
 
+"@ovh-ux/manager-core-api@^0.10.1":
+  version "0.10.1"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core-api/-/manager-core-api-0.10.1.tgz#139b02351d8bd72479fbc5a6861dae17a875108e"
+  integrity sha512-rDoN7OHsqeRoW4iepD1FrFApOkN/RBkIwxT7dqZmPQfnq0J+a1szoXPRzDiN2g/SXRSsTqUEhSPdoGvhooapvg==
+  dependencies:
+    "@ovh-ux/manager-core-sso" "^0.3.0"
+    "@ovh-ux/request-tagger" "^0.4.0"
+    axios "^1.1.2"
+
 "@ovh-ux/manager-pci-common@^0.16.4":
   version "0.16.4"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-pci-common/-/manager-pci-common-0.16.4.tgz#0d9f4efd0140cd4f2eb0f9b508f3e53a8120e5c2"
@@ -6769,7 +6778,7 @@
     tslib "2.6.3"
     vanillajs-datepicker "1.3.4"
 
-"@ovhcloud/ods-components@18.6.1", "@ovhcloud/ods-components@^18.6.0":
+"@ovhcloud/ods-components@18.6.1":
   version "18.6.1"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-18.6.1.tgz#69160c8945e6374aef08a257ca8c609a1cdc2661"
   integrity sha512-AVgmYtJI8Um60/zf9wLiUWpjzbQt/ZBR4kZUnt85XnhZVLEjNtI6mtphTnpT4VNXzvR69yOfgBESWO3BWLCujQ==
@@ -6790,6 +6799,19 @@
     "@floating-ui/dom" "1.6.11"
     "@stencil/core" "4.16.0"
     google-libphonenumber "3.2.35"
+    tom-select "2.3.1"
+    tslib "2.6.3"
+    vanillajs-datepicker "1.3.4"
+
+"@ovhcloud/ods-components@^18.6.0":
+  version "18.6.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-18.6.0.tgz#c129f28bcd39d57ca3b395e1007e13b6f626485a"
+  integrity sha512-nszh/d/9oUmLy3/0VHtf53l7KrTqzRcGg6tpJz1gQo1bZ2GLuoy09bKwGEk6CEkmbA/06dfzA6HR4AI6M0Cu+w==
+  dependencies:
+    "@floating-ui/dom" "1.6.11"
+    "@stencil/core" "4.16.0"
+    google-libphonenumber "3.2.35"
+    mark.js "8.11.1"
     tom-select "2.3.1"
     tslib "2.6.3"
     vanillajs-datepicker "1.3.4"
@@ -6823,7 +6845,7 @@
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-18.5.3.tgz#44f2b4c565e2c63d487dc3865d2558b11726bc2c"
   integrity sha512-y3uhYsQvdyx/aJBBKjN899U23FmNq2oFBJRG7VZ3PBrR6TKUuEx4kGKIIE9Lr7Fpw75ayYhuXTLM1gVA5308dA==
 
-"@ovhcloud/ods-themes@18.6.1", "@ovhcloud/ods-themes@^18.6.0":
+"@ovhcloud/ods-themes@18.6.1":
   version "18.6.1"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-18.6.1.tgz#76c786202b5c8d5c259b0b7a709ed8634f5b2b38"
   integrity sha512-22puEiRx+jwUtICpoFs5PO15r62CdwRxSSlZboM+RySeOtGM7KZwg9AA2PBs9Cjm9XHDimtZxoHvL8cr6vsHFw==
@@ -6832,6 +6854,11 @@
   version "18.5.0"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-18.5.0.tgz#0da59e081ee1db44dadf5c3a63e49f73fc280ea3"
   integrity sha512-PAwRtQOYQ1mVVP1RMt2J65NMf7tRbk+jDEf46jUWwRsS2gFuzNrwH3pfgKk4G/nksZ5exTKNL0MeC/fLLVr4Wg==
+
+"@ovhcloud/ods-themes@^18.6.0":
+  version "18.6.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-18.6.0.tgz#b92266b48bd5858cf4dcf7c61b22ed73c1651d30"
+  integrity sha512-O4PD+q97ghjjDv4mc15XZ3TvR59xs6WEK0UQrh/ELu7Lk4qF9zI8pjxNLNygVNpfg3e2M1/WNQmcY99qMjGZ1w==
 
 "@ovhcloud/reket-axios-client@^0.2.1":
   version "0.2.1"
@@ -23931,6 +23958,13 @@ p-limit@^5.0.0:
   dependencies:
     yocto-queue "^1.0.0"
 
+p-limit@^6.2.0:
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/p-limit/-/p-limit-6.2.0.tgz#c254d22ba6aeef441a3564c5e6c2f2da59268a0f"
+  integrity sha512-kuUqqHNUqoIWp/c467RI4X6mmyuojY5jGutNU0wVTmEOOfcuwLqyMVoAi9MKi2Ak+5i9+nhmrK4ufZE8069kHA==
+  dependencies:
+    yocto-queue "^1.1.1"
+
 p-locate@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/p-locate/-/p-locate-2.0.0.tgz#20a0103b222a70c8fd39cc2e580680f3dde5ec43"
@@ -31221,6 +31255,11 @@ yocto-queue@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/yocto-queue/-/yocto-queue-1.0.0.tgz#7f816433fb2cbc511ec8bf7d263c3b58a1a3c251"
   integrity sha512-9bnSc/HEW2uRy67wc+T8UwauLuPJVn28jb+GtJY16iiKWyvmYJRXVT4UamsAEGQfPohgr2q4Tq0sQbQlxTfi1g==
+
+yocto-queue@^1.1.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/yocto-queue/-/yocto-queue-1.2.1.tgz#36d7c4739f775b3cbc28e6136e21aa057adec418"
+  integrity sha512-AyeEbWOu/TAXdxlV9wmGcR0+yh2j3vYPGOECcIj2S7MkrLyC7ne+oye2BKTItt0ii2PHk4cDy+95+LshzbXnGg==
 
 yoctocolors-cjs@^2.1.2:
   version "2.1.2"
