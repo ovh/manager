@@ -1,5 +1,5 @@
 import * as sshkey from '@datatr-ux/ovhcloud-types/cloud/sshkey/index';
-// import { OrderSshKey } from '@/types/orderFunnel';
+import { OrderSshKey } from '@/types/orderFunnel';
 
 export const mockedSshKey: sshkey.SshKey = {
   id: 'idSSHKEY',
@@ -23,7 +23,7 @@ export const mockedSshKeyDetail: sshkey.SshKeyDetail = {
   regions: ['GRA', 'BHS'],
 };
 
-// export const mockedOrderSshKey: OrderSshKey = {
-//   name: 'sshkeyName',
-//   sshKey: 'sskKEYDetails',
-// };
+export const mockedOrderSshKey: OrderSshKey = {
+  name: 'sshkeyName',
+  sshKey: 'sskKEYDetails',
+};

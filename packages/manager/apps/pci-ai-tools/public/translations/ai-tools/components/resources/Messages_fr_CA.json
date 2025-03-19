@@ -1,0 +1,13 @@
+{
+  "powerTitleSection": "Power",
+  "computeTitleSection": "Compute",
+  "storageTitleSection": "Stockage",
+  "gpuMemoryField": "{{ gpu }} x {{ memory }} RAM",
+  "gcuComputeField": "CPU: {{ cpu }} vCores ",
+  "memoryField": "RAM: {{ memory }}",
+  "publicNetworkField": "Réseau public: {{ network }}/s",
+  "temporaryLocalStorageField": "Stockage local éphémère: {{ storage }} SSD",
+  "temporaryLocalStorageHelper": "Stockage local performant, mais non sauvegardé",
+  "modifyLabel": "Modifier",
+  "disabledButtonTooltip": "Le notebook doit être en statut arrêté"
+}
