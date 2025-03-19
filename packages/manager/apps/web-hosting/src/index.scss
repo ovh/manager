@@ -6,3 +6,10 @@
 html {
   font-family: var(--ods-font-family-default);
 }
+
+// ods table has 1rem hardcoded line height
+// which cuts letter from links and badge inside
+// cells
+ods-table td {
+  line-height: unset !important;
+}

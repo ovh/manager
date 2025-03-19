@@ -1,10 +1,20 @@
 import { vi } from 'vitest';
+import React from 'react';
+import { attachedDomainDigStatusMock, websitesMocks } from './api/_mock_';
 
 const mocksAxios = vi.hoisted(() => ({
   get: vi.fn(),
   post: vi.fn(),
   put: vi.fn(),
   delete: vi.fn(),
+}));
+
+const mocksHostingUrl = vi.hoisted(() => ({
+  shell: {
+    navigation: {
+      getURL: vi.fn().mockResolvedValue('test-url'),
+    },
+  },
 }));
 
 vi.mock('axios', async (importActual) => {
@@ -31,10 +41,13 @@ vi.mock('axios', async (importActual) => {
 });
 
 vi.mock('@ovh-ux/manager-react-shell-client', async (importActual) => {
+  const actual = await importActual<
+    typeof import('@ovh-ux/manager-react-shell-client')
+  >();
   return {
-    ...(await importActual<
-      typeof import('@ovh-ux/manager-react-shell-client')
-    >()),
+    ...actual,
+    ShellContext: React.createContext(mocksHostingUrl),
+    useContext: React.useContext,
     useOvhTracking: vi.fn(() => {
       return {
         trackClick: vi.fn(),
@@ -42,6 +55,22 @@ vi.mock('@ovh-ux/manager-react-shell-client', async (importActual) => {
         trackCurrentPage: vi.fn(),
       };
     }),
+    PageLocation: {
+      page: 'page',
+      tile: 'tile',
+    },
+    ButtonType: {
+      button: 'button',
+      externalLink: 'externalLink',
+    },
+  };
+});
+
+vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
+  return {
+    ...(await importOriginal<
+      typeof import('@ovh-ux/manager-react-components')
+    >()),
   };
 });
 
@@ -63,6 +92,18 @@ vi.mock('react-router-dom', async (importActual) => {
     useHref: vi.fn((url) => url),
   };
 });
+
+vi.mock('@/api/index', () => ({
+  getWebHostingAttachedDomain: vi.fn().mockResolvedValue({
+    data: websitesMocks,
+    cursorNext: null,
+  }),
+  getWebHostingAttachedDomainQueryKey: vi.fn(),
+  getWebHostingAttachedDomainDigStatus: vi.fn(() =>
+    Promise.resolve(attachedDomainDigStatusMock),
+  ),
+  getWebHostingAttachedDomainDigStatusQueryKey: vi.fn(),
+}));
 
 afterEach(() => {
   vi.clearAllMocks();
