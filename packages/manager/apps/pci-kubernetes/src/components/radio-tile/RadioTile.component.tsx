@@ -29,7 +29,7 @@ const RadioTile = ({
   };
   return (
     <div
-      className={cn('flex', tileClassName)}
+      className={cn(tileClassName)}
       role="radio"
       aria-checked={props.checked}
       tabIndex={0}
