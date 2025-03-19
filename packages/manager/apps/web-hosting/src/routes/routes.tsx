@@ -3,12 +3,7 @@ import { PageType } from '@ovh-ux/manager-react-shell-client';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import NotFound from '@/pages/404';
 import { urls } from '@/routes/routes.constants';
-import {
-  DASHBOARD,
-  GENERAL_INFORMATIONS,
-  ONBOARDING,
-  WEBSITES,
-} from '@/tracking.constants';
+import { ONBOARDING, WEBSITES } from '@/tracking.constants';
 
 const lazyRouteConfig = (importFn: CallableFunction) => {
   return {
@@ -46,60 +41,6 @@ export default [
             label: 'websites',
           },
         },
-      },
-      {
-        id: DASHBOARD,
-        path: urls.dashboard,
-        ...lazyRouteConfig(() => import('@/pages/dashboard/Dashboard.page')),
-        handle: {
-          tracking: {
-            pageName: GENERAL_INFORMATIONS,
-            pageType: PageType.dashboard,
-          },
-          breadcrumb: {
-            label: ':serviceName',
-          },
-        },
-        children: [
-          {
-            id: GENERAL_INFORMATIONS,
-            path: '',
-            ...lazyRouteConfig(() =>
-              import(
-                '@/pages/dashboard/generalInformations/GeneralInformations.page'
-              ),
-            ),
-            handle: {
-              tracking: {
-                pageName: GENERAL_INFORMATIONS,
-                pageType: PageType.dashboard,
-              },
-              breadcrumb: {
-                label: 'general_informations',
-              },
-            },
-            children: [
-              {
-                id: 'test',
-                path: '/:serviceName/:test',
-                ...lazyRouteConfig(() =>
-                  import(
-                    '@/pages/dashboard/generalInformations/GeneralInformations.page'
-                  ),
-                ),
-                handle: {
-                  tracking: {
-                    pageName: GENERAL_INFORMATIONS,
-                    pageType: PageType.dashboard,
-                  },
-                  breadcrumb: {
-                    label: ':test',
-                  },
-                },
-              },
-            ],
-          },
-        ],
       },
       {
         id: ONBOARDING,
