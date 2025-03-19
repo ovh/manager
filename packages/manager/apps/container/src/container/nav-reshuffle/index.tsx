@@ -79,6 +79,7 @@ function NavReshuffleContainer(): JSX.Element {
             isSidebarExpanded={isNavigationSidebarOpened}
             onHamburgerMenuClick={() => onHamburgerMenuClick()}
             onUserAccountMenuToggle={setShowOverlay}
+            iframeRef={iframeRef}
           />
         </div>
         <div className={style.iframeContainer}>

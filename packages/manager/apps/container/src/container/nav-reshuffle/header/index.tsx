@@ -12,6 +12,7 @@ import ApplicationContext, { useShell } from '@/context';
 import { useHeader } from '@/context/header';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 import { Logo } from '@/container/common/Logo';
+import SkipToMainContent from './skip-to-main-content';
 
 import style from './style.module.scss';
 import { useMediaQuery } from 'react-responsive';
@@ -21,12 +22,14 @@ type Props = {
   isSidebarExpanded?: boolean;
   onHamburgerMenuClick?(): void;
   onUserAccountMenuToggle?(show: boolean): void;
+  iframeRef: React.MutableRefObject<any>;
 };
 
 function Header({
   isSidebarExpanded = false,
   onHamburgerMenuClick = () => {},
   onUserAccountMenuToggle = () => {},
+  iframeRef 
 }: Props): JSX.Element {
   const shell = useShell();
   const [userLocale, setUserLocale] = useState<string>(
@@ -68,6 +71,7 @@ function Header({
             <div
               className={`oui-navbar-list oui-navbar-list_aside oui-navbar-list_end ${style.navbarList}`}
             >
+              <SkipToMainContent iframeRef={iframeRef} />
               {!isSmallDevice &&
                 <div className={`oui-navbar-list__item ${style.navbarListItem}`}>
                   <NavReshuffleSwitchBack />

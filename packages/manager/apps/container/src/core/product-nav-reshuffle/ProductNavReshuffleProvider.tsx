@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useState, useEffect, useRef } from 'react';
 import useContainer from '@/core/container/useContainer';
 import { useShell } from '@/context/useApplicationContext';
 import ProductNavReshuffleContext from './context';
@@ -16,6 +16,7 @@ export const ProductNavReshuffleProvider = ({
 }: Props): JSX.Element => {
   let pnrContext = useContext(ProductNavReshuffleContext);
 
+  const [isFirstTabDone, setIsFirstTabDone] = useState<boolean>(false);
   const [currentNavigationNode, setCurrentNavigationNode] = useState<Node>(null);
   const [navigationTree, setNavigationTree] = useState({});
   const { betaVersion } = useContainer();
@@ -23,6 +24,7 @@ export const ProductNavReshuffleProvider = ({
   const [isMobile, setIsMobile] = useState(useMediaQuery({
     query: `(max-width: ${MOBILE_WIDTH_RESOLUTION}px)`,
   }));
+  const firstFocusableElement = useRef(null)
 
   const onboarding = useOnboarding();
 
@@ -109,6 +111,9 @@ export const ProductNavReshuffleProvider = ({
     navigationTree,
     setNavigationTree,
     isMobile,
+    isFirstTabDone,
+    setIsFirstTabDone,
+    firstFocusableElement
   };
 
   return (
