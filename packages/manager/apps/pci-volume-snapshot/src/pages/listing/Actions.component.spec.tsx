@@ -57,7 +57,10 @@ describe('Actions Component', () => {
     // Check first menu item (create volume)
     const createVolumeItem = getByTestId('menu-item-1');
     expect(createVolumeItem).toBeInTheDocument();
-    expect(createVolumeItem).toHaveAttribute('href', '#');
+    expect(createVolumeItem).toHaveAttribute(
+      'href',
+      './snapshot-123/new-volume',
+    );
     expect(createVolumeItem).toHaveTextContent(
       'pci_projects_project_storages_snapshots_create_volume_label',
     );
