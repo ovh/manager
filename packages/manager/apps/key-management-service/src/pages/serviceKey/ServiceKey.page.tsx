@@ -40,6 +40,7 @@ import ServiceKeyStateActions from '@/components/serviceKey/serviceKeyStateActio
 import { getOkmsResourceQueryKey } from '@/data/api/okms';
 import { kmsIamActions } from '@/utils/iam/iam.constants';
 import { SERVICE_KEY_TEST_IDS } from './ServiceKey.constants';
+import { SERVICE_KEYS_LABEL } from '@/constants';
 
 export default function Key() {
   const { okmsId, keyId } = useParams();
@@ -91,7 +92,7 @@ export default function Key() {
     },
     {
       id: ROUTES_URLS.keys,
-      label: t('key_management_service_service_keys'),
+      label: SERVICE_KEYS_LABEL,
       navigateTo: `/${okmsId}/${ROUTES_URLS.keys}`,
     },
     {
