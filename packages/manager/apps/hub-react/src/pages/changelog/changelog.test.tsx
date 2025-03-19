@@ -12,6 +12,7 @@ const trackPageMock = vi.fn();
 
 const mocks: any = vi.hoisted(() => ({
   isAccountSidebarVisible: false,
+  region: 'EU',
   shellContext: {
     shell: {
       ux: {
@@ -23,6 +24,9 @@ const mocks: any = vi.hoisted(() => ({
         trackImpression: vi.fn(),
         trackClickImpression: vi.fn(),
       },
+    },
+    environment: {
+      getRegion: vi.fn(() => mocks.region),
     },
   },
 }));
