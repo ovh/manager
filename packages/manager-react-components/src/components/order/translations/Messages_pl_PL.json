@@ -4,6 +4,6 @@
   "order_summary_finish": "Zakończ",
   "order_summary_product_default_label": "Usługa",
   "order_summary_order_initiated_title": "Zamówienie {{product}} jest przetwarzane",
-  "order_summary_order_initiated_subtitle": "Jeżeli nie udało Ci się sfinalizować zamówienia, dokończ je, klikając <OrderLink label=\"lien suivant\">{{label}}</OrderLink>",
+  "order_summary_order_initiated_subtitle": "Jeżeli nie udało Ci się sfinalizować zamówienia, dokończ je, klikając <ExternalLink>link</ExternalLink>",
   "order_summary_order_initiated_info": "O dostępności {{product}} powiadomimy Cię e-mailem."
 }
