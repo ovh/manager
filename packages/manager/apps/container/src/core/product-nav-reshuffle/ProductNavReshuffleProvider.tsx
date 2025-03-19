@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { useLocation } from 'react-router-dom';
 import { useShell } from '@/context/useApplicationContext';
@@ -22,6 +22,7 @@ export const ProductNavReshuffleProvider = ({
   const [isMobile, setIsMobile] = useState(useMediaQuery({
     query: `(max-width: ${MOBILE_WIDTH_RESOLUTION}px)`,
   }));
+  const skipToTheMainContentSlot = useRef(null)
   const [isAnimated, setIsAnimated] = useState(false);
   const [isLocationChangesOnce, setIsLocationChangesOnce] = useState(false);
   const [popoverPosition, setPopoverPosition] = useState<number>(0);
@@ -120,6 +121,7 @@ export const ProductNavReshuffleProvider = ({
     navigationTree,
     setNavigationTree,
     isMobile,
+    skipToTheMainContentSlot,
     isAnimated,
     setIsAnimated,
     popoverPosition,

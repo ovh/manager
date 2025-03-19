@@ -15,19 +15,10 @@
         data-ng-class="{'in-container': !$ctrl.isTopLevelApplication}"
     >
         <div class="h-100 d-flex flex-column overflow-hidden ng-cloak">
-            <!-- Skip to main content -->
-            <div class="skipnav">
-                <a
-                    class="oui-button oui-button_ghost"
-                    href
-                    data-translate="common_skip_to_main_content"
-                    data-ng-click="scrollTo('maincontent')"
-                >
-                </a>
-            </div>
             <div
                 class="container-fluid h-100 w-100"
                 style="overflow-y: auto; overflow-x: hidden;"
+                id="mainview"
                 data-ui-view="app"
             >
                 <div class="row h-100">
