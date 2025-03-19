@@ -11,8 +11,9 @@ import { getExpressOrderURL } from '@ovh-ux/manager-module-order';
 import { PCI_LEVEL2 } from '@/tracking.constants';
 import { useMe } from '@/api/hooks/useMe';
 import { createFloatingIp } from '@/api/hooks/useCreateFloatingIp';
-import { IPTypeEnum, StepIdsEnum } from '@/api/types';
+import { StepIdsEnum } from '@/api/types';
 import { useOrderStore } from '@/pages/order/hooks/useStore';
+import { PublicIp } from '@/types/publicip.type';
 
 export const useActions = (projectId: string) => {
   const { trackClick } = useTracking();
@@ -114,7 +115,7 @@ export const useActions = (projectId: string) => {
     (id: string) => {
       switch (id) {
         case StepIdsEnum.IP_TYPE:
-          if (form.ipType === IPTypeEnum.FAILOVER) {
+          if (form.ipType === PublicIp.FAILOVER) {
             openStep(StepIdsEnum.FAILOVER_COUNTRY);
           } else {
             openStep(StepIdsEnum.FLOATING_REGION);
@@ -163,7 +164,7 @@ export const useActions = (projectId: string) => {
   const onEdit = (id: string) => {
     switch (id) {
       case StepIdsEnum.IP_TYPE:
-        if (form.ipType === IPTypeEnum.FAILOVER) {
+        if (form.ipType === PublicIp.FAILOVER) {
           setForm({ ...form, failoverCountry: null, instance: null });
         } else {
           setForm({
