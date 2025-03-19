@@ -91,7 +91,7 @@ export const getInstanceById = (
 };
 
 const getInconsistency = (data: TInstance[] | undefined): boolean =>
-  !!data?.some((elt) => elt.status.state === 'UNKNOWN');
+  !!data?.some((elt) => elt.status.label === 'UNKNOWN');
 
 export const useInstances = ({
   limit,

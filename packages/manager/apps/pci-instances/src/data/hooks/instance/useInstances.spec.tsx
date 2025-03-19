@@ -101,7 +101,7 @@ const fakeQueryParamaters4: TUseInstancesQueryParams = {
 
 const fakeInstanceDto1: TInstanceDto = instanceDtoBuilder([], 'ACTIVE');
 const fakeInstance1: TInstance = instanceBuilder(fakeInstanceDto1, new Map(), {
-  state: 'ACTIVE',
+  label: 'ACTIVE',
   severity: 'success',
 });
 
@@ -118,7 +118,7 @@ const fakeInstance2: TInstance = instanceBuilder(
       version: 1,
     },
   ]),
-  { state: 'ERROR', severity: 'error' },
+  { label: 'ERROR', severity: 'error' },
 );
 
 const fakeInstanceDto3: TInstanceDto = instanceDtoBuilder(
@@ -143,7 +143,7 @@ const fakeInstance3: TInstance = instanceBuilder(
       { ip: '193.02.689.00', gatewayIp: '', version: 2 },
       { ip: '191.01.045.10', gatewayIp: '', version: 7 },
     ]),
-  { state: 'DELETING', severity: 'info' },
+  { label: 'DELETING', severity: 'info' },
 );
 
 const fakeInstanceDto4: TInstanceDto = instanceDtoBuilder(
@@ -162,7 +162,7 @@ const fakeInstance4: TInstance = instanceBuilder(
       version: 2,
     },
   ]),
-  { state: 'BUILD', severity: 'warning' },
+  { label: 'BUILD', severity: 'warning' },
 );
 
 const fakeQueryKey1 = [
