@@ -1,0 +1,11 @@
+{
+  "status-DELETING": "Eliminando",
+  "status-RESTARTING": "Reiniciando",
+  "status-STARTING": "Inicio",
+  "status-STOPPING": "En proceso de extinción",
+  "status-FAILED": "Error",
+  "status-ERROR": "Error",
+  "status-STOPPED": "Detenido",
+  "status-SYNC_FAILED": "Error de sincronización",
+  "status-RUNNING": "En servicio"
+}
