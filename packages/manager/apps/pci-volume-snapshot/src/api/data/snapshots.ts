@@ -28,10 +28,10 @@ export const deleteSnapshot = async (
 
 export const getVolume = async (
   projectId: string,
-  snapshotId: string,
+  volumeId: string,
 ): Promise<TVolume> => {
   const { data } = await v6.get(
-    `/cloud/project/${projectId}/volume/${snapshotId}`,
+    `/cloud/project/${projectId}/volume/${volumeId}`,
   );
   return data;
 };
