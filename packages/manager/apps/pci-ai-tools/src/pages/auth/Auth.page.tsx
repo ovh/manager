@@ -25,7 +25,7 @@ import ProductInformations from '../dashboard/home/_components/ProductInformatio
 import Onboarding from '../dashboard/home/_components/Onboarding.component';
 
 export default function Auth() {
-  const { t } = useTranslation('ai-tools/dashboard/home');
+  const { t } = useTranslation('ai-tools/auth');
   const toast = useToast();
   const navigate = useNavigate();
   const projectData = usePciProject();

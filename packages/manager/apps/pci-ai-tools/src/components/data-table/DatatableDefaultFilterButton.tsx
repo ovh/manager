@@ -215,9 +215,9 @@ const DataTableDefaultFilterButton = ({
           )}
         </div>
         <div>
-          {/* <Button className="w-full mt-2" onClick={submitAddFilter}>
+          <Button className="w-full mt-2" onClick={submitAddFilter}>
             {t('common_criteria_adder_submit_label')}
-          </Button> */}
+          </Button>
         </div>
       </DropdownMenuContent>
     </DropdownMenu>
