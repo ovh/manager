@@ -13,6 +13,7 @@ import DatagridContainer, {
 import { subRoutes, urls } from '@/routes/routes.constant';
 import { capitalize } from '@/utils/capitalize';
 import { ID_LABEL } from '@/pages/dashboard/dashboard.constants';
+import TEST_IDS from '@/utils/testIds.constants';
 
 /* ========= datagrid cells ========= */
 const DatagridIdCell = (vcdDatacentre: VCDDatacentre) => {
@@ -30,7 +31,8 @@ const DatagridIdCell = (vcdDatacentre: VCDDatacentre) => {
           )
         }
         label={vcdDatacentre.currentState.name}
-      ></Links>
+        data-testid={TEST_IDS.listingDatacentreNameLink}
+      />
     </DataGridTextCell>
   );
 };

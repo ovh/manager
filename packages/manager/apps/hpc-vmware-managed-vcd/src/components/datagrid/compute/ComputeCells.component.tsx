@@ -1,26 +1,9 @@
 import React from 'react';
-import {
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-} from '@ovhcloud/ods-components';
-import {
-  OsdsButton,
-  OsdsIcon,
-  OsdsTooltip,
-  OsdsTooltipContent,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
+import { OdsButton, OdsTooltip, OdsText } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import {
-  ODS_THEME_COLOR_HUE,
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import { VCDCompute } from '@ovh-ux/manager-module-vcd-api';
+import { VCDCompute, VCDStorage } from '@ovh-ux/manager-module-vcd-api';
 import { DataGridTextCell } from '@ovh-ux/manager-react-components';
+import TEST_IDS from '@/utils/testIds.constants';
 
 export const DatagridIdCell = (vcdCompute: VCDCompute) => (
   <DataGridTextCell>{vcdCompute?.id}</DataGridTextCell>
@@ -57,33 +40,27 @@ export const DatagridRamCountCell = (vcdCompute: VCDCompute) => {
   );
 };
 
-export const ActionDeleteCell = () => {
+export const ActionDeleteCell = (resource: VCDCompute | VCDStorage) => {
   const { t } = useTranslation('datacentres');
 
   return (
-    <OsdsTooltip>
-      <OsdsButton
-        size={ODS_BUTTON_SIZE.sm}
-        variant={ODS_BUTTON_VARIANT.ghost}
-        color={ODS_THEME_COLOR_INTENT.primary}
-        disabled
+    <>
+      <OdsButton
+        id={`delete-tooltip-trigger-${resource?.id}`}
+        size="sm"
+        variant="ghost"
+        isDisabled
+        label=""
+        icon="trash"
+        aria-label="delete-datacentre-resource"
+        data-testid={TEST_IDS.cellDeleteCta}
+      />
+      <OdsTooltip
+        triggerId={`delete-tooltip-trigger-${resource?.id}`}
+        data-testid={TEST_IDS.cellDeleteTooltip}
       >
-        <OsdsIcon
-          name={ODS_ICON_NAME.BIN}
-          size={ODS_ICON_SIZE.xs}
-          color={ODS_THEME_COLOR_INTENT.default}
-        />
-      </OsdsButton>
-      <OsdsTooltipContent slot="tooltip-content">
-        <OsdsText
-          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-          color={ODS_THEME_COLOR_INTENT.text}
-          size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-          hue={ODS_THEME_COLOR_HUE._500}
-        >
-          {t('managed_vcd_vdc_contact_support')}
-        </OsdsText>
-      </OsdsTooltipContent>
-    </OsdsTooltip>
+        <OdsText>{t('managed_vcd_vdc_contact_support')}</OdsText>
+      </OdsTooltip>
+    </>
   );
 };
