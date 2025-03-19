@@ -44,7 +44,8 @@ export default function Changelog() {
     },
   ];
 
-  const { shell } = useContext(ShellContext);
+  const { shell, environment } = useContext(ShellContext);
+  const isRegionUS = environment.getRegion() === 'US';
 
   const [isAccountSidebarVisible, setIsAccountSidebarVisible] = useState(false);
 
@@ -124,28 +125,30 @@ export default function Changelog() {
                 </span>
               </OsdsLink>
             </div>
-            <div>
-              <OsdsLink
-                role="link"
-                target={OdsHTMLAnchorElementTarget._blank}
-                rel={OdsHTMLAnchorElementRel.external}
-                color={ODS_THEME_COLOR_INTENT.primary}
-                href={EXTERNAL_LINKS.WEB_CHANGELOG.url}
-                onClick={() => {
-                  trackClick(EXTERNAL_LINKS.WEB_CHANGELOG.tracking);
-                }}
-              >
-                {t(EXTERNAL_LINKS.WEB_CHANGELOG.label_key)}
-                <span slot="end">
-                  <OsdsIcon
-                    name={ODS_ICON_NAME.EXTERNAL_LINK}
-                    className="ml-1"
-                    size={ODS_ICON_SIZE.xxs}
-                    color={ODS_THEME_COLOR_INTENT.primary}
-                  />
-                </span>
-              </OsdsLink>
-            </div>
+            {!isRegionUS && (
+              <div>
+                <OsdsLink
+                  role="link"
+                  target={OdsHTMLAnchorElementTarget._blank}
+                  rel={OdsHTMLAnchorElementRel.external}
+                  color={ODS_THEME_COLOR_INTENT.primary}
+                  href={EXTERNAL_LINKS.WEB_CHANGELOG.url}
+                  onClick={() => {
+                    trackClick(EXTERNAL_LINKS.WEB_CHANGELOG.tracking);
+                  }}
+                >
+                  {t(EXTERNAL_LINKS.WEB_CHANGELOG.label_key)}
+                  <span slot="end">
+                    <OsdsIcon
+                      name={ODS_ICON_NAME.EXTERNAL_LINK}
+                      className="ml-1"
+                      size={ODS_ICON_SIZE.xxs}
+                      color={ODS_THEME_COLOR_INTENT.primary}
+                    />
+                  </span>
+                </OsdsLink>
+              </div>
+            )}
             <div className="pt-6">
               <OsdsText
                 level={ODS_TEXT_LEVEL.heading}
@@ -176,76 +179,80 @@ export default function Changelog() {
                 {t('changelog_paragraph_4')}
               </OsdsText>
             </div>
-            <div className="pt-6">
-              <OsdsText
-                level={ODS_TEXT_LEVEL.heading}
-                size={ODS_TEXT_SIZE._400}
-                hue={ODS_TEXT_COLOR_HUE._800}
-                color={ODS_THEME_COLOR_INTENT.primary}
-              >
-                {t('changelog_subtitle_4')}
-              </OsdsText>
-            </div>
-            <OsdsLink
-              role="link"
-              target={OdsHTMLAnchorElementTarget._blank}
-              rel={OdsHTMLAnchorElementRel.external}
-              color={ODS_THEME_COLOR_INTENT.primary}
-              href={EXTERNAL_LINKS.WEB_ROADMAP.url}
-              onClick={() => {
-                trackClick(EXTERNAL_LINKS.WEB_ROADMAP.tracking);
-              }}
-            >
-              {t(EXTERNAL_LINKS.WEB_ROADMAP.label_key)}
-              <span slot="end">
-                <OsdsIcon
-                  name={ODS_ICON_NAME.EXTERNAL_LINK}
-                  className="ml-1"
-                  size={ODS_ICON_SIZE.xxs}
+            {!isRegionUS && (
+              <>
+                <div className="pt-6">
+                  <OsdsText
+                    level={ODS_TEXT_LEVEL.heading}
+                    size={ODS_TEXT_SIZE._400}
+                    hue={ODS_TEXT_COLOR_HUE._800}
+                    color={ODS_THEME_COLOR_INTENT.primary}
+                  >
+                    {t('changelog_subtitle_4')}
+                  </OsdsText>
+                </div>
+                <OsdsLink
+                  role="link"
+                  target={OdsHTMLAnchorElementTarget._blank}
+                  rel={OdsHTMLAnchorElementRel.external}
                   color={ODS_THEME_COLOR_INTENT.primary}
-                />
-              </span>
-            </OsdsLink>
-            <OsdsLink
-              role="link"
-              target={OdsHTMLAnchorElementTarget._blank}
-              rel={OdsHTMLAnchorElementRel.external}
-              color={ODS_THEME_COLOR_INTENT.primary}
-              href={EXTERNAL_LINKS.DOMAIN_ROADMAP.url}
-              onClick={() => {
-                trackClick(EXTERNAL_LINKS.DOMAIN_ROADMAP.tracking);
-              }}
-            >
-              {t(EXTERNAL_LINKS.DOMAIN_ROADMAP.label_key)}
-              <span slot="end">
-                <OsdsIcon
-                  name={ODS_ICON_NAME.EXTERNAL_LINK}
-                  className="ml-1"
-                  size={ODS_ICON_SIZE.xxs}
+                  href={EXTERNAL_LINKS.WEB_ROADMAP.url}
+                  onClick={() => {
+                    trackClick(EXTERNAL_LINKS.WEB_ROADMAP.tracking);
+                  }}
+                >
+                  {t(EXTERNAL_LINKS.WEB_ROADMAP.label_key)}
+                  <span slot="end">
+                    <OsdsIcon
+                      name={ODS_ICON_NAME.EXTERNAL_LINK}
+                      className="ml-1"
+                      size={ODS_ICON_SIZE.xxs}
+                      color={ODS_THEME_COLOR_INTENT.primary}
+                    />
+                  </span>
+                </OsdsLink>
+                <OsdsLink
+                  role="link"
+                  target={OdsHTMLAnchorElementTarget._blank}
+                  rel={OdsHTMLAnchorElementRel.external}
                   color={ODS_THEME_COLOR_INTENT.primary}
-                />
-              </span>
-            </OsdsLink>
-            <OsdsLink
-              role="link"
-              target={OdsHTMLAnchorElementTarget._blank}
-              rel={OdsHTMLAnchorElementRel.external}
-              color={ODS_THEME_COLOR_INTENT.primary}
-              href={EXTERNAL_LINKS.COLLAB_ROADMAP.url}
-              onClick={() => {
-                trackClick(EXTERNAL_LINKS.COLLAB_ROADMAP.tracking);
-              }}
-            >
-              {t(EXTERNAL_LINKS.COLLAB_ROADMAP.label_key)}
-              <span slot="end">
-                <OsdsIcon
-                  name={ODS_ICON_NAME.EXTERNAL_LINK}
-                  className="ml-1"
-                  size={ODS_ICON_SIZE.xxs}
+                  href={EXTERNAL_LINKS.DOMAIN_ROADMAP.url}
+                  onClick={() => {
+                    trackClick(EXTERNAL_LINKS.DOMAIN_ROADMAP.tracking);
+                  }}
+                >
+                  {t(EXTERNAL_LINKS.DOMAIN_ROADMAP.label_key)}
+                  <span slot="end">
+                    <OsdsIcon
+                      name={ODS_ICON_NAME.EXTERNAL_LINK}
+                      className="ml-1"
+                      size={ODS_ICON_SIZE.xxs}
+                      color={ODS_THEME_COLOR_INTENT.primary}
+                    />
+                  </span>
+                </OsdsLink>
+                <OsdsLink
+                  role="link"
+                  target={OdsHTMLAnchorElementTarget._blank}
+                  rel={OdsHTMLAnchorElementRel.external}
                   color={ODS_THEME_COLOR_INTENT.primary}
-                />
-              </span>
-            </OsdsLink>
+                  href={EXTERNAL_LINKS.COLLAB_ROADMAP.url}
+                  onClick={() => {
+                    trackClick(EXTERNAL_LINKS.COLLAB_ROADMAP.tracking);
+                  }}
+                >
+                  {t(EXTERNAL_LINKS.COLLAB_ROADMAP.label_key)}
+                  <span slot="end">
+                    <OsdsIcon
+                      name={ODS_ICON_NAME.EXTERNAL_LINK}
+                      className="ml-1"
+                      size={ODS_ICON_SIZE.xxs}
+                      color={ODS_THEME_COLOR_INTENT.primary}
+                    />
+                  </span>
+                </OsdsLink>
+              </>
+            )}
             <div className="pt-6">
               <OsdsText
                 level={ODS_TEXT_LEVEL.heading}
@@ -324,7 +331,7 @@ export default function Changelog() {
                   hue={ODS_TEXT_COLOR_HUE._400}
                   className="color-[var(--ods-color-default-500)]"
                 >
-                  {t('changelog_infra_product_list')}
+                  {t(`changelog_infra_product_list${isRegionUS ? '_us' : ''}`)}
                 </OsdsText>
               </div>
             </div>
@@ -356,7 +363,11 @@ export default function Changelog() {
                   hue={ODS_TEXT_COLOR_HUE._400}
                   className="color-[var(--ods-color-default-500)]"
                 >
-                  {t('changelog_private_cloud_product_list')}
+                  {t(
+                    `changelog_private_cloud_product_list${
+                      isRegionUS ? '_us' : ''
+                    }`,
+                  )}
                 </OsdsText>
               </div>
             </div>
