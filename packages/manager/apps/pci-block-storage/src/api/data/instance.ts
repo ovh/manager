@@ -36,3 +36,7 @@ export const getInstance = async (
   );
   return data;
 };
+
+export function canAttachVolume(instance: Instance): boolean {
+  return instance.status === 'ACTIVE';
+}
