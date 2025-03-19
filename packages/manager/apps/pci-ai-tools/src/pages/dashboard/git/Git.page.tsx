@@ -54,8 +54,12 @@ const Git = () => {
       <h3>{t('title')}</h3>
       <p>{t('gitParagraphe2')}</p>
       <p>{t('gitParagraphe3')}</p>
-      <Button data-testid="create-git-button" onClick={() => navigate('./add')}>
-        <Plus className="w-4 h-4" />
+      <Button
+        data-testid="create-git-button"
+        className="sm"
+        onClick={() => navigate('./add')}
+      >
+        <Plus className="!size-5" />
         {t('addButtonLabel')}
       </Button>
 
