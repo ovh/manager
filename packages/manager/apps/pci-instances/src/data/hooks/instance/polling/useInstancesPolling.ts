@@ -39,9 +39,10 @@ export const useInstancesPolling = (
     })),
     combine: useCallback(
       (results: UseQueryResult<TInstanceDto>[]) =>
-        results.map(({ data, isFetching }, index) => ({
+        results.map(({ data, isFetching, isError }, index) => ({
           id: pendingTaskIds[index],
           isFetching,
+          isError,
           data,
         })),
       [pendingTaskIds],

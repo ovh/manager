@@ -6,6 +6,10 @@ vi.mock('zustand');
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
     t: (translationKey: string) => translationKey,
+    i18n: {
+      changeLanguage: () => new Promise(() => {}),
+      exists: () => true,
+    },
   }),
 }));
 

@@ -52,7 +52,7 @@ const getInstanceStatusSeverity = (
 };
 
 const getInstanceStatus = (status: TInstanceStatusDto): TInstanceStatus => ({
-  state: status,
+  label: status,
   severity: getInstanceStatusSeverity(status),
 });
 
