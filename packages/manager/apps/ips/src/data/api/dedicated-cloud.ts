@@ -1,61 +1,6 @@
 import { CountryCode } from '@ovh-ux/manager-config';
 import { ApiResponse, apiClient } from '@ovh-ux/manager-core-api';
-import { IamObject } from '@ovh-ux/manager-react-components';
 import { ServiceStatus } from '@/types';
-
-export type DedicatedCloudService = {
-  advancedSecurity: boolean;
-  webInterfaceUrl: string;
-  billingType: 'monthly' | 'demo';
-  managementInterface:
-    | 'azure'
-    | 'openstack'
-    | 'systemcenter'
-    | 'vcloud'
-    | 'vcsa'
-    | 'vsphere';
-  userSessionTimeout: number;
-  bandwidth: string;
-  description: string;
-  productReference: 'EPCC' | 'MBM';
-  generation: '1.0' | '2.0';
-  state:
-    | 'available'
-    | 'delivered'
-    | 'disabled'
-    | 'disabling'
-    | 'error'
-    | 'migrating'
-    | 'provisionning'
-    | 'recycling'
-    | 'reserved'
-    | 'toDisable'
-    | 'toProvision'
-    | 'toRecycle'
-    | 'toRemove'
-    | 'toUnprovision'
-    | 'unprovisionning'
-    | 'upgrading';
-  canMigrateToVCD: boolean;
-  userAccessPolicy: 'filtered' | 'open';
-  commercialRange: string;
-  certifiedInterfaceUrl: string;
-  vScopeUrl: string;
-  version: { minor: string; build: string; major: string };
-  serviceName: string;
-  userLogoutPolicy: 'first' | 'last';
-  servicePackName?: string | null;
-  spla: boolean;
-  userLimitConcurrentSession: number;
-  sslV3?: boolean | null;
-  location: string;
-  iam: IamObject;
-};
-
-export const getDedicatedCloudServiceData = (
-  serviceName: string,
-): Promise<ApiResponse<DedicatedCloudService>> =>
-  apiClient.v6.get(`/dedicatedCloud/${serviceName}`);
 
 export type DedicatedCloudLocation = {
   city: string;
@@ -67,9 +12,9 @@ export type DedicatedCloudLocation = {
 };
 
 export const getDedicatedCloudServiceLocation = (
-  pccZone: string,
+  serviceName: string,
 ): Promise<ApiResponse<DedicatedCloudLocation>> =>
-  apiClient.v6.get(`/dedicatedCloud/location/${pccZone}`);
+  apiClient.v6.get(`/dedicatedCloud/${serviceName}/location`);
 
 export type DedicatedCloudServiceInfos = {
   canDeleteAtExpiration: boolean;
