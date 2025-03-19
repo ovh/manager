@@ -1,0 +1,16 @@
+{
+  "title": "AI Notebooks",
+  "description1": "Os seus notebooks operacionais e totalmente geridos em alguns segundos.",
+  "description2": "Acelere o lançamento dos seus projetos e modelos com notebooks.",
+  "description3": "É um data scientist ou programador e deseja lançar um notebook em alguns minutos? Aceda rapidamente ao Jupyter ou VS Code e lance rapidamente o seu notebook com os recursos necessários graças à nossa solução AI Notebooks. Para desenvolver a sua atividade, também poderá usufruir de um acesso seguro ao utilizador, de uma utilização simplificada dos seus dados e dos maiores frameworks de inteligência artificial (TensorFlow, PyTorch, Hugging Face ou ainda Scikit-learn).",
+  "createNotebookButton": "Criar um Notebook",
+  "cardTutotitle": "Tutoriais",
+  "cardGuidetitle": "Manuais",
+  "cardLink": "Saber mais",
+  "cardTuto1Description": "Documentação completa do AI Notebooks",
+  "cardTuto1Content": "Consulte toda a documentação do AI Notebooks.",
+  "cardTuto2Description": "Características, capacidades e limites",
+  "cardTuto2Content": "Descubra o que é um AI Notebook na OVHcloud.",
+  "cardTuto3Description": "Começar com o AI Notebooks",
+  "cardTuto3Content": "Saiba como iniciar rapidamente o seu Notebook a partir da Área de Cliente, da linha de comandos ou da API."
+}
