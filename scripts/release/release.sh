@@ -64,7 +64,7 @@ create_release_note() (
 push_and_release() {
   printf "%s\n" "Commit and tag"
   git add .
-  git commit -s -m "release: $1"
+  git commit -s -m "release(*): $1"
   git tag -a -m "release: $1" "$1"
   if ! "${DRY_RELEASE}"; then
     gh config set prompt disabled
