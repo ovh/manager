@@ -32,6 +32,7 @@ export const mockedUser: User = {
   firstname: '',
   isTrusted: false,
   italianSDI: '',
+  kycValidated: false,
   language: '',
   legalform: '',
   name: '',
