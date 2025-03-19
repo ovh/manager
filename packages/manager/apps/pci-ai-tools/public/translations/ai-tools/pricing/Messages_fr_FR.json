@@ -1,0 +1,12 @@
+{
+  "pricingHt": "{{ price }} HT",
+  "pricingInHour": "/ heure",
+  "pricingTtc": "{{ price }} TTC",
+  "pricingLabel": "Prix",
+  "licenceCpuPriceLabel": "Prix licence sur CPU:",
+  "licenceGpuPriceLabel": "Prix licence sur GPU:",
+  "licenceFromLabel": "à partir de",
+  "partnerPriceGPUPrefix": "Prix licence sur GPU: à partir de",
+  "partnerPriceSuffix": "par ressource/heure",
+  "partnerPricePerUsageSuffix": "par heure d'utilisation (voir la documentation)"
+}
