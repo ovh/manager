@@ -41,12 +41,7 @@ const Users = () => {
       <p>{t('userParagraphe2')}</p>
       <p>{t('userParagraphe3')}</p>
       <div className="flex flew-row gap-3 mt-3">
-        <Button
-          data-testid="manage-user-button"
-          // variant="default"
-          type="button"
-          asChild
-        >
+        <Button data-testid="manage-user-button" type="button" asChild>
           <OvhLink
             className="hover:no-underline hover:text-primary-foreground"
             application="public-cloud"
@@ -70,10 +65,9 @@ const Users = () => {
         <Button
           data-testid="create-user-button"
           onClick={() => navigate('./add')}
-          className="font-semibold"
           mode="outline"
         >
-          <Plus className="w-4 h-4" />
+          <Plus className="!size-5" />
           {t('addButtonLabel')}
         </Button>
       </div>
