@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.8.3...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.9.0) (2025-03-19)
+
+
+### Features
+
+* **vcd:** bump ods version to 18 ([32ce585](https://github.com/ovh/manager/commit/32ce5858a1135a2309325d3aa3525663e90bd013)), closes [#MANAGER-15348](https://github.com/ovh/manager/issues/MANAGER-15348)
+
+
+
+
+
 ## [0.8.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.8.2...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.8.3) (2025-03-14)
 
 **Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-managed-vcd-app

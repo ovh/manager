@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.7.9...@ovh-ux/manager-veeam-backup-app@0.8.0) (2025-03-19)
+
+
+### Features
+
+* **veeam-backup:** bump ods version to 18 ([32dc09c](https://github.com/ovh/manager/commit/32dc09c4b8644fb9d2c2a50feb13488a01cdad1d)), closes [#MANAGER-15391](https://github.com/ovh/manager/issues/MANAGER-15391)
+
+
+
+
+
 ## [0.7.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.7.8...@ovh-ux/manager-veeam-backup-app@0.7.9) (2025-03-17)
 
 
