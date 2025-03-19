@@ -87,13 +87,17 @@ export const usePricingInfo = ({
   const exactProductCodeMatch = `"${productSizeCode}"`;
   return useQuery({
     queryKey: ['pricingInfo', exactProductCodeMatch],
-    queryFn: () =>
-      getCommercialOffers({
+    queryFn: async () => {
+      const offers = await getCommercialOffers({
         productCode: exactProductCodeMatch,
         serviceId,
-      }),
+      });
+      return offers || [];
+    },
     select: (res) =>
-      res.map(formatPricingInfo).filter((item) => item.id !== null),
+      res.length > 0
+        ? res.map(formatPricingInfo).filter((item) => item.id !== null)
+        : [],
   });
 };
 

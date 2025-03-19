@@ -10,6 +10,7 @@ import {
 } from '../../types/CreatePlan.type';
 
 import { render } from '@/utils/testProvider';
+import { DeploymentMode } from '@/utils/savingsPlan';
 
 vi.mock('@ovh-ux/manager-pci-common', () => ({
   usePciUrl: vi.fn(() => '/url'),
@@ -88,6 +89,8 @@ const defaultProps: CreatePlanFormProps = {
   technicalModel: 'b3-8',
   setTechnicalModel: mockSetTechnicalModel,
   onCreatePlan: mockOnCreatePlan,
+  setDeploymentMode: vi.fn(),
+  deploymentMode: DeploymentMode['1AZ'],
 };
 
 const setupSpecTest = async (props: CreatePlanFormProps = defaultProps) =>
