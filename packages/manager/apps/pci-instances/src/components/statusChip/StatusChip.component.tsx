@@ -1,6 +1,11 @@
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { OsdsChip } from '@ovhcloud/ods-components/react';
+import {
+  OsdsChip,
+  OsdsTooltip,
+  OsdsTooltipContent,
+} from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
+import { useMemo } from 'react';
 import { TInstanceStatus } from '@/types/instance/entity.type';
 
 const colorBySeverityStatus = {
@@ -11,16 +16,42 @@ const colorBySeverityStatus = {
 };
 
 const StatusChip = ({ status }: { status: TInstanceStatus }) => {
-  const { t } = useTranslation('status');
+  const { t, i18n } = useTranslation('status');
+  const { label, severity } = status;
 
-  return (
-    <OsdsChip
-      inline
-      color={colorBySeverityStatus[status.severity]}
-      data-testid="status-chip"
-    >
-      {t(status.state.toLowerCase())}
-    </OsdsChip>
+  const tooltipContentI18nKey = `pci_instances_tooltip_content_status_${label.toLowerCase()}`;
+
+  const isTooltipDisplayed = useMemo(
+    () =>
+      i18n.exists(tooltipContentI18nKey, {
+        ns: 'status',
+      }),
+    [i18n, tooltipContentI18nKey],
+  );
+
+  const chip = useMemo(
+    () => (
+      <OsdsChip
+        inline
+        color={colorBySeverityStatus[severity]}
+        data-testid="status-chip"
+        className="cursor-default"
+      >
+        {t(`pci_instances_status_${label.toLowerCase()}`)}
+      </OsdsChip>
+    ),
+    [label, severity, t],
+  );
+
+  return isTooltipDisplayed ? (
+    <OsdsTooltip>
+      {chip}
+      <OsdsTooltipContent slot="tooltip-content">
+        {t(tooltipContentI18nKey)}
+      </OsdsTooltipContent>
+    </OsdsTooltip>
+  ) : (
+    chip
   );
 };
 

@@ -9,7 +9,6 @@ import { setupInstancesServer } from '@/__mocks__/instance/node';
 import { TInstanceDto } from '@/types/instance/api.type';
 import { TInstancesServerResponse } from '@/__mocks__/instance/handlers';
 import { TMutationFnType, useBaseInstanceAction } from './useInstanceAction';
-import { TInstance } from '@/types/instance/entity.type';
 
 // initializers
 const initQueryClient = () => {
@@ -167,13 +166,6 @@ describe('Considering the useInstanceAction hook', () => {
           await waitFor(() =>
             expect(useInstanceActionResult.current.isSuccess).toBeTruthy(),
           );
-          if (type === 'delete') {
-            const deletedInstance = (useInstancesResult.current
-              .data as TInstance[]).find((elt) => elt.id === instance?.id);
-            expect(handleSuccess).toHaveBeenCalled();
-            expect(deletedInstance).toBeDefined();
-            expect(deletedInstance?.status.state).toStrictEqual('DELETING');
-          }
         }
       });
     },

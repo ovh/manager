@@ -8,7 +8,7 @@ export const mockedInstance: TInstance = {
   imageId: '11121314',
   imageName: 'linux',
   region: 'BHS',
-  status: { severity: 'success', state: 'ACTIVE' },
+  status: { severity: 'success', label: 'ACTIVE' },
   addresses: new Map([
     ['private', [{ ip: '123.000.00', version: 1, gatewayIp: '' }]],
     ['public', [{ ip: '777.000.00', version: 2, gatewayIp: '' }]],

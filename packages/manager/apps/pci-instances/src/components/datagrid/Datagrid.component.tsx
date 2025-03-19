@@ -164,14 +164,18 @@ const DatagridComponent = ({
       },
       {
         id: 'status',
-        cell: (instance) => (
-          <StatusCell
-            isLoading={
-              isRefetching || !!pollingData.find((d) => d.id === instance.id)
-            }
-            instance={instance}
-          />
-        ),
+        cell: (instance) => {
+          const pollingInstance = pollingData.find((d) => d.id === instance.id);
+
+          return (
+            <StatusCell
+              isLoading={
+                isRefetching || (!!pollingInstance && !pollingInstance.isError)
+              }
+              instance={instance}
+            />
+          );
+        },
         label: t('pci_instances_list_column_status'),
         isSortable: false,
       },

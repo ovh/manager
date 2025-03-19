@@ -14,7 +14,7 @@ export type TInstanceStatusState = TStatus;
 export type TInstanceActionName = TActionName;
 
 export type TInstanceStatus = {
-  state: TInstanceStatusState;
+  label: TInstanceStatusState;
   severity: TInstanceStatusSeverity;
 };
 
