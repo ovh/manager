@@ -16,7 +16,7 @@
     "start": "lerna exec --stream --scope='@ovh-ux/manager-veeam-backup-app' --include-dependencies -- npm run build --if-present",
     "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-veeam-backup-app' --include-dependencies -- npm run dev --if-present",
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-veeam-backup-app' --include-dependencies -- npm run dev:watch --if-present",
-    "test": "vitest run",
+    "test": "vitest run --pool=threads",
     "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
@@ -53,7 +53,6 @@
     "@testing-library/jest-dom": "^6.5.0",
     "@testing-library/react": "^16.0.1",
     "@testing-library/user-event": "^14.5.2",
-    "@vitejs/plugin-react": "^4.3.0",
     "@vitest/coverage-v8": "^2.1.9",
     "msw": "2.1.7",
     "typescript": "^4.3.2",

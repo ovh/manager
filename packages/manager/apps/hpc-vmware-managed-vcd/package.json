@@ -17,7 +17,7 @@
     "start": "lerna exec --stream --scope='@ovh-ux/manager-hpc-vmware-managed-vcd-app' --include-dependencies -- npm run build --if-present",
     "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-hpc-vmware-managed-vcd-app' --include-dependencies -- npm run dev --if-present",
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-hpc-vmware-managed-vcd-app' --include-dependencies -- npm run dev:watch --if-present",
-    "test": "vitest run",
+    "test": "vitest run --pool=threads",
     "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
@@ -57,7 +57,6 @@
     "@testing-library/user-event": "^14.5.2",
     "@types/react": "^18.2.55",
     "@types/react-dom": "^18.2.19",
-    "@vitejs/plugin-react": "^4.3.0",
     "@vitest/coverage-v8": "^2.1.9",
     "autoprefixer": "^10.4.17",
     "msw": "2.1.7",

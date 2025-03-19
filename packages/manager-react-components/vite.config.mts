@@ -1,4 +1,3 @@
-import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vitest/config';
 import dts from 'vite-plugin-dts';
 import path from 'path';
@@ -12,7 +11,7 @@ export default defineConfig({
   ...baseConfig,
   assetsInclude: ['**/*.png', '**/*.jpg', '**/*.svg'],
   plugins: [
-    react(),
+    ...baseConfig.plugins,
     dts({
       outDir: '../dist/types',
       insertTypesEntry: true,

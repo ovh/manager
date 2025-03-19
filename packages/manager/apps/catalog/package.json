@@ -32,6 +32,8 @@
     "@ovhcloud/ods-common-theming": "17.2.2",
     "@ovhcloud/ods-components": "17.2.2",
     "@ovhcloud/ods-theme-blue-jeans": "17.2.2",
+    "@swc/core": "^1.11.11",
+    "@swc/jest": "^0.2.37",
     "@tanstack/react-query": "^5.51.21",
     "autoprefixer": "^10.4.16",
     "axios": "^1.1.2",

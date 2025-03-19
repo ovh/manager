@@ -1,7 +1,6 @@
 import { dirname, join, resolve } from 'path';
 import { fileURLToPath } from 'url';
-import react from '@vitejs/plugin-react';
-import legacy from '@vitejs/plugin-legacy';
+import react from '@vitejs/plugin-react-swc';
 import svgr from 'vite-plugin-svgr';
 import yn from 'yn';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
@@ -62,9 +61,6 @@ const getBaseConfig = (config) => {
     },
     plugins: [
       react(),
-      legacy({
-        targets: ['defaults'],
-      }),
       viteOvhDevServerPlugin({ isContainerApp, envConfig }),
       IframeHmrPlugin(),
       svgr(),
