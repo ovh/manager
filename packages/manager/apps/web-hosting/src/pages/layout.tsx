@@ -1,18 +1,20 @@
 import React, { useEffect, useContext } from 'react';
 import { defineCurrentPage } from '@ovh-ux/request-tagger';
-import { Outlet, useLocation, useMatches } from 'react-router-dom';
+import { Navigate, Outlet, useLocation, useMatches } from 'react-router-dom';
 import {
   useOvhTracking,
   useRouteSynchro,
   ShellContext,
 } from '@ovh-ux/manager-react-shell-client';
+import { useWebHostingAttachedDomain } from '@/hooks';
+import Onboarding from './onboarding/Onboarding.page';
 
 export default function Layout() {
   const location = useLocation();
   const { shell } = useContext(ShellContext);
   const matches = useMatches();
   const { trackCurrentPage } = useOvhTracking();
-
+  const { data } = useWebHostingAttachedDomain();
   useRouteSynchro();
 
   useEffect(() => {
@@ -25,5 +27,13 @@ export default function Layout() {
     shell.ux.hidePreloader();
   }, []);
 
-  return <Outlet />;
+  return (
+    <>
+      <Outlet />
+      {data?.length === 0 && <Onboarding />}
+      {data?.length > 0 &&
+        location.pathname === '/' &&
+        location.search === '' && <Navigate to="/websites" />}
+    </>
+  );
 }
