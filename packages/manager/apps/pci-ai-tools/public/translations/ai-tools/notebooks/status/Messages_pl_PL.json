@@ -1,0 +1,11 @@
+{
+  "status-DELETING": "W trakcie usuwania",
+  "status-RESTARTING": "Trwa restart",
+  "status-STARTING": "Uruchamianie",
+  "status-STOPPING": "Wygasanie w trakcie",
+  "status-FAILED": "Błąd",
+  "status-ERROR": "Błąd",
+  "status-STOPPED": "Zatrzymano",
+  "status-SYNC_FAILED": "Synchronizacja się nie powiodła",
+  "status-RUNNING": "W użyciu"
+}
