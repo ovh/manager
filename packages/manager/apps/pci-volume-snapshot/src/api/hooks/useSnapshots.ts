@@ -35,7 +35,7 @@ export const useVolumeSnapshots = (projectId: string | undefined | null) => {
   const { data: snapshots, isPending, isLoading } = useAllSnapshots(projectId);
 
   const uniqueVolumeIds = [
-    ...new Set(snapshots?.map((volume) => volume.volumeId)),
+    ...new Set(snapshots?.map((snapshot) => snapshot.volumeId)),
   ];
 
   return useQueries({
