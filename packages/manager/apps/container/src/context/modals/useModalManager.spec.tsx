@@ -1,14 +1,13 @@
 import { PropsWithChildren } from 'react';
-import { describe, it, vi, vitest } from 'vitest';
-import { renderHook, act, waitFor } from '@testing-library/react';
+import { describe, it, vi } from 'vitest';
+import { renderHook, waitFor } from '@testing-library/react';
 import {
   UseQueryResult,
-  ApiError,
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query';
 import * as MRC from '@ovh-ux/manager-react-components';
-import { User } from '@ovh-ux/manager-config';
+import { UseFeatureAvailabilityResult } from '@ovh-ux/manager-react-components';
 import * as useAccountUrnModule from '@/hooks/accountUrn/useAccountUrn';
 import * as usePreferencesModule from '@/hooks/preferences/usePreferences';
 import * as useTimeModule from '@/hooks/time/useTime';
@@ -89,24 +88,24 @@ describe('useModalManager', () => {
     useFeatureAvailabilitySpy.mockClear();
     useFeatureAvailabilitySpy.mockReturnValue({
       isLoading: true,
-    } as UseQueryResult<{ feature: boolean }, ApiError>);
+    } as UseFeatureAvailabilityResult<{ feature: boolean }>);
     useAccountUrnSpy.mockClear();
     useAccountUrnSpy.mockReturnValue({
       isLoading: true,
-    } as UseQueryResult<string, ApiError>);
+    } as UseQueryResult<string>);
     useAuthorizationIamSpy.mockClear();
     useAuthorizationIamSpy.mockReturnValue({
       isAuthorized: false,
       isLoading: true,
-    } as UseQueryResult<any, ApiError> & { isAuthorized: boolean });
+    } as UseQueryResult<any> & { isAuthorized: boolean });
     usePreferencesSpy.mockClear();
     usePreferencesSpy.mockReturnValue({
       isLoading: true,
-    } as UseQueryResult<number, ApiError>);
+    } as UseQueryResult<number>);
     useTimeSpy.mockClear();
     useTimeSpy.mockReturnValue({
       isLoading: true,
-    } as UseQueryResult<number, ApiError>);
+    } as UseQueryResult<number>);
   });
   it('should validate all checks before authorizing the display', async () => {
     const modalConfiguration: ModalToDisplayConfiguration = {
@@ -136,7 +135,7 @@ describe('useModalManager', () => {
         check: (result) => !!result,
       },
       component: function ModalToDisplay() {
-        return <div data-testid="modal"></div>;
+        return <div></div>;
       },
     };
     const { result, rerender } = renderHook(
@@ -177,7 +176,7 @@ describe('useModalManager', () => {
 
     useFeatureAvailabilitySpy.mockReturnValue({
       data: { feature: true },
-    } as UseQueryResult<{ feature: boolean }, ApiError>);
+    } as UseFeatureAvailabilityResult<{ feature: boolean }>);
 
     rerender();
 
@@ -203,7 +202,7 @@ describe('useModalManager', () => {
 
     useAccountUrnSpy.mockReturnValue({
       data: 'fake-urn',
-    } as UseQueryResult<string, ApiError>);
+    } as UseQueryResult<string>);
 
     rerender();
 
@@ -226,7 +225,7 @@ describe('useModalManager', () => {
 
     useAuthorizationIamSpy.mockReturnValue({
       isAuthorized: true,
-    } as UseQueryResult<any, ApiError> & { isAuthorized: boolean });
+    } as UseQueryResult<any> & { isAuthorized: boolean });
 
     rerender();
 
@@ -245,7 +244,7 @@ describe('useModalManager', () => {
 
     usePreferencesSpy.mockReturnValue({
       data: 0,
-    } as UseQueryResult<number, ApiError>);
+    } as UseQueryResult<number>);
 
     rerender();
 
@@ -258,7 +257,7 @@ describe('useModalManager', () => {
 
     useTimeSpy.mockReturnValue({
       data: modalConfiguration.checks.intervalInSeconds + 1,
-    } as UseQueryResult<number, ApiError>);
+    } as UseQueryResult<number>);
 
     rerender();
 
@@ -329,7 +328,7 @@ describe('useModalManager', () => {
 
     usePreferencesSpy.mockReturnValue({
       data: 0,
-    } as UseQueryResult<number, ApiError>);
+    } as UseQueryResult<number>);
 
     rerender();
 
@@ -352,7 +351,7 @@ describe('useModalManager', () => {
 
     useTimeSpy.mockReturnValue({
       data: modalConfiguration.checks.intervalInSeconds + 1,
-    } as UseQueryResult<number, ApiError>);
+    } as UseQueryResult<number>);
 
     rerender();
 
@@ -434,7 +433,7 @@ describe('useModalManager', () => {
 
     useFeatureAvailabilitySpy.mockReturnValue({
       data: { feature: false },
-    } as UseQueryResult<{ feature: boolean }, ApiError>);
+    } as UseFeatureAvailabilityResult<{ feature: boolean }>);
 
     rerender();
 
