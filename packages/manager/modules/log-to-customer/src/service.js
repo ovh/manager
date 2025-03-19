@@ -30,7 +30,10 @@ export default class LogToCustomerService {
             {
               url,
               params,
-              headers: { 'X-Pagination-Mode': 'CachedObjectList-Cursor' },
+              headers: {
+                'X-Pagination-Mode': 'CachedObjectList-Cursor',
+                Pragma: 'no-cache',
+              },
             },
             { cursor: null },
           )
