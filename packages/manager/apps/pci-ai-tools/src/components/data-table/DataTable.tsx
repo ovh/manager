@@ -50,7 +50,7 @@ export function DataTable<TData>({
               return (
                 <TableHead
                   key={header.id}
-                  className={`border font-semibold text-primary-800 ${
+                  className={`border font-semibold text-primary-800 h-10 ${
                     isEmptyHeader || renderRowExpansion
                       ? 'border-0' // Remove left border for empty headers and row extend column
                       : ''
@@ -78,7 +78,7 @@ export function DataTable<TData>({
             <React.Fragment key={row.id}>
               <TableRow data-state={row.getIsSelected() && 'selected'}>
                 {renderRowExpansion && (
-                  <TableCell>
+                  <TableCell className="px-2 py-1">
                     <Button
                       mode="ghost"
                       onClick={() => toggleRowExpansion(row.id)}
@@ -93,7 +93,7 @@ export function DataTable<TData>({
                   </TableCell>
                 )}
                 {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id}>
+                  <TableCell className="px-2 py-1" key={cell.id}>
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
                 ))}

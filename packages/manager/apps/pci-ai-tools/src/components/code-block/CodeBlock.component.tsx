@@ -1,5 +1,5 @@
 import { Button, useToast } from '@datatr-ux/uxlib';
-import { Copy } from 'lucide-react';
+import { Files } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 interface CodeBlockProps {
@@ -21,10 +21,13 @@ const CodeBlock = ({ code, toastMessage }: CodeBlockProps) => {
       <Button
         data-testid="code-block-copy-button"
         onClick={handleCopyPass}
-        // variant="ghost"
-        className="absolute top-2 right-2 p-1 hover:bg-gray-100 z-10"
+        size="menu"
+        variant="menu"
+        mode="menu"
+        className="absolute top-2 right-2 p-1 z-10 !shrink-0"
       >
-        <Copy className="size-4" />
+        <Files className="w-4 h-4" />
+        <span className="sr-only">copy</span>
       </Button>
       <pre className="p-4 text-sm rounded overflow-auto">
         <code>{code}</code>
