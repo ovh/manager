@@ -11,7 +11,11 @@ vi.mock('react-router-dom', async () => {
     useSearchParams: () => [
       new URLSearchParams({ snapshotId: 'test-snapshot-id' }),
     ],
-    useParams: () => ({ projectId: 'project-id', kubeId: 'kube-id' }),
+    useParams: () => ({
+      projectId: 'project-id',
+      snapshotId: 'snapshot-id',
+      kubeId: 'kube-id',
+    }),
     useHref: vi.fn().mockImplementation((to: string) => to),
     useLocation: vi.fn(),
     useNavigate: vi.fn(),
