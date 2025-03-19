@@ -21,6 +21,7 @@ export interface LinksProps {
   color?: ODS_LINK_COLOR;
   download?: string;
   label?: string;
+  children?: string;
   href?: string;
   rel?: string;
   target?: string;
@@ -31,6 +32,7 @@ export interface LinksProps {
 }
 
 export const Links: React.FC<LinksProps> = ({
+  children,
   label,
   onClickReturn,
   type,
@@ -39,7 +41,7 @@ export const Links: React.FC<LinksProps> = ({
   iconAlignment,
   className = '',
   ...props
-}: LinksProps) => (
+}) => (
   <OdsLink
     className={className}
     href={href}
@@ -55,7 +57,7 @@ export const Links: React.FC<LinksProps> = ({
     })}
     {...(type === LinkType.next && { icon: ODS_ICON_NAME.arrowRight })}
     {...(type === LinkType.external && { icon: ODS_ICON_NAME.externalLink })}
-    label={label}
+    label={label ?? children}
   />
 );
 

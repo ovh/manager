@@ -6,8 +6,8 @@ import {
 import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
 import { Trans, useTranslation } from 'react-i18next';
 import React, { useEffect } from 'react';
-import { Links, LinkType } from '../typography';
 import { useOrderContext } from './Order.context';
+import { Links, LinkType } from '../typography';
 
 export type TOrderSummary = {
   onFinish: () => void;
@@ -52,7 +52,7 @@ export const OrderSummary: React.FC<TOrderSummary> = ({
             t={t}
             i18nKey="order_summary_order_initiated_subtitle"
             components={{
-              OrderLink: (
+              ExternalLink: (
                 <Links
                   type={LinkType.external}
                   target="_blank"
@@ -62,7 +62,7 @@ export const OrderSummary: React.FC<TOrderSummary> = ({
                 />
               ),
             }}
-          ></Trans>
+          />
         </OdsText>
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t('order_summary_order_initiated_info', { product })}
