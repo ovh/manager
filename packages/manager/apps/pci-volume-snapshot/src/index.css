@@ -34,3 +34,7 @@ button {
 .region-tooltip-content *::part(text) {
   @apply text-sm;
 }
+
+.fw-bold::part(text) {
+  font-weight: bold;
+}

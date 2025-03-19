@@ -5,14 +5,16 @@ export type TVolumeType =
   | 'classic-BETA'
   | 'high-speed'
   | 'high-speed-BETA'
-  | 'high-speed-gen2';
+  | 'high-speed-gen2'
+  | string;
 
 export type TSnapshotStatus =
   | 'available'
   | 'creating'
   | 'deleting'
   | 'error'
-  | 'error_deleting';
+  | 'error_deleting'
+  | string;
 
 export type TVolumeStatus =
   | 'attaching'
@@ -34,7 +36,8 @@ export type TVolumeStatus =
   | 'reserved'
   | 'restoring-backup'
   | 'retyping'
-  | 'uploading';
+  | 'uploading'
+  | string;
 
 export type TSnapshot = {
   id: string;

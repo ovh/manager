@@ -1,7 +1,7 @@
 import { lazy } from 'react';
 import { Route } from 'react-router-dom';
 import { ErrorBoundary } from '@/pages/Layout';
-import { LISTING, CREATE, DELETE } from '@/tracking.constants';
+import { LISTING, CREATE, DELETE, ONBOARDING } from '@/tracking.constants';
 
 export const ROUTE_PATHS = {
   ROOT: '/pci/projects/:projectId/storages/volume-snapshots',
@@ -9,6 +9,7 @@ export const ROUTE_PATHS = {
   CREATE_VOLUME: ':snapshotId/new-volume',
   DELETE: 'delete',
   BLOCK_STORAGE: '/pci/projects/:projectId/storages/blocks',
+  ONBOARDING: 'onboarding',
 };
 
 const LayoutPage = lazy(() => import('@/pages/Layout'));
@@ -19,6 +20,7 @@ const CreateVolumePage = lazy(() =>
 const VolumeDeletePage = lazy(() =>
   import('@/pages/listing/delete/Delete.page'),
 );
+const OnBoardingPage = lazy(() => import('@/pages/onboarding/OnBoarding.page'));
 
 export default (
   <Route
@@ -39,6 +41,11 @@ export default (
       path={ROUTE_PATHS.CREATE_VOLUME}
       Component={CreateVolumePage}
       id={CREATE}
+    />
+    <Route
+      path={ROUTE_PATHS.ONBOARDING}
+      Component={OnBoardingPage}
+      id={ONBOARDING}
     />
   </Route>
 );
