@@ -70,6 +70,15 @@ const FiltersStory = () => {
                 comparators: FilterCategories.Date,
                 type: FilterTypeCategories.Date,
               },
+              {
+                id: 'status',
+                label: 'Status',
+                comparators: FilterCategories.Options,
+                options: [
+                  { label: 'Status #0', value: 'Status #0' },
+                  { label: 'Status #1', value: 'Status #1' },
+                ],
+              },
             ]}
             onAddFilter={(addedFilter, column) => {
               addFilter({

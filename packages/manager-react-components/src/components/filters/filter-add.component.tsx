@@ -16,11 +16,17 @@ import {
 import { useTranslation } from 'react-i18next';
 import './translations';
 
+export type Option = {
+  label: string;
+  value: string;
+};
+
 export type ColumnFilter = {
   id: string;
   label: string;
   comparators: FilterComparator[];
   type?: FilterTypeCategories;
+  options?: Option[];
 };
 
 export type FilterAddProps = {
@@ -65,6 +71,50 @@ export function FilterAdd({ columns, onAddFilter }: Readonly<FilterAddProps>) {
     setValue('');
     setDateValue(null);
   }, [selectedColumn]);
+
+  let inputComponent: JSX.Element;
+  if (selectedColumn?.type === FilterTypeCategories.Date) {
+    inputComponent = (
+      <OdsDatepicker
+        name="filter-add_value-input"
+        className="border"
+        value={dateValue}
+        data-testid="filter-add_value-date"
+        onOdsChange={(e) => setDateValue(e.detail.value)}
+      />
+    );
+  } else if (selectedColumn?.options?.length > 0) {
+    inputComponent = (
+      <OdsSelect
+        value={value}
+        name="filter-add_value-select"
+        data-testid="filter-add_value-select"
+        onOdsChange={(event) => setValue(event.detail.value as string)}
+      >
+        {selectedColumn?.options.map((option) => (
+          <option key={option.label} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </OdsSelect>
+    );
+  } else {
+    inputComponent = (
+      <OdsInput
+        name="filter-add_value-input"
+        className="border"
+        type={ODS_INPUT_TYPE.text}
+        value={value}
+        data-testid="filter-add_value-input"
+        onOdsChange={(e) => setValue(`${e.detail.value}`)}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') {
+            submitAddFilter();
+          }
+        }}
+      />
+    );
+  }
 
   return (
     <>
@@ -122,29 +172,7 @@ export function FilterAdd({ columns, onAddFilter }: Readonly<FilterAddProps>) {
               {t('common_criteria_adder_value_label')}
             </span>
           </div>
-          {selectedColumn?.type === FilterTypeCategories.Date ? (
-            <OdsDatepicker
-              name="filter-add_value-input"
-              className="border"
-              value={dateValue}
-              data-testid="filter-add_value-date"
-              onOdsChange={(e) => setDateValue(e.detail.value)}
-            />
-          ) : (
-            <OdsInput
-              name="filter-add_value-input"
-              className="border"
-              type={ODS_INPUT_TYPE.text}
-              value={value}
-              data-testid="filter-add_value-input"
-              onOdsChange={(e) => setValue(`${e.detail.value}`)}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter') {
-                  submitAddFilter();
-                }
-              }}
-            />
-          )}
+          {inputComponent}
         </OdsFormField>
       </div>
       <div>
