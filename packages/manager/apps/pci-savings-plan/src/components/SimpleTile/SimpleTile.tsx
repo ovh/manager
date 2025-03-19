@@ -2,6 +2,10 @@ import { OdsCard } from '@ovhcloud/ods-components/react';
 import clsx from 'clsx';
 import React from 'react';
 
+export const Block: React.FC<React.PropsWithChildren> = ({ children }) => (
+  <div className="my-8">{children}</div>
+);
+
 const SimpleTile: React.FC<React.PropsWithChildren<{
   onClick?: () => void;
   isActive?: boolean;
