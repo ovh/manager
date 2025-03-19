@@ -100,8 +100,10 @@ export const DefaultProps = {
   args: {},
 };
 
-export default {
+const meta = {
   title: 'Components/Filters',
   component: FiltersStory,
   decorators: [withRouter],
 };
+
+export default meta;
