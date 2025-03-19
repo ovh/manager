@@ -1,11 +1,10 @@
 import React from 'react';
-import { Meta, Story } from '@storybook/react';
+import { Meta } from '@storybook/react';
 
 import Price from './price.component';
-import { PriceProps } from './price.utils';
 import { OvhSubsidiary } from '../../../enumTypes';
 
-export default {
+const meta = {
   title: 'Components/Price',
   component: Price,
   parameters: {
@@ -17,7 +16,9 @@ export default {
   },
 } as Meta;
 
-const Template: Story<PriceProps> = (args) => <Price {...args} />;
+export default meta;
+
+const Template = (args) => <Price {...args} />;
 
 export const Demo = Template.bind({});
 Demo.args = {
