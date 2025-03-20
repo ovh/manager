@@ -1,10 +1,12 @@
 import {
+  ComponentType,
   DetailedHTMLProps,
   InputHTMLAttributes,
   useCallback,
   useId,
   useMemo,
 } from 'react';
+import clsx from 'clsx';
 
 export type RadioAdapterFactoryProps = {
   name: string;
@@ -17,9 +19,7 @@ export type RadioAdapterFactoryProps = {
   'onChange'
 >;
 
-export type RadioAdapterFactory = (
-  inputProperties: RadioAdapterFactoryProps,
-) => JSX.Element;
+export type RadioAdapterFactory = ComponentType<RadioAdapterFactoryProps>;
 
 export type RadioAdapterProps = {
   name: string;
@@ -34,8 +34,10 @@ export type RadioAdapterProps = {
 export const RadioAdapter = ({
   name,
   checked,
-  render,
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  render: Renderer,
   onChange: onChangeProp,
+  className,
   ...inputProps
 }: Readonly<RadioAdapterProps>) => {
   const labelId = useId();
@@ -47,16 +49,17 @@ export const RadioAdapter = ({
   ]);
 
   const element = useMemo(
-    () =>
-      render({
-        name,
-        checked,
-        labelId,
-        ariaDetailsId,
-        onChange,
-        ...inputProps,
-      }),
-    [render, name, checked, labelId, ariaDetailsId, inputProps],
+    () => (
+      <Renderer
+        name={name}
+        checked={checked}
+        labelId={labelId}
+        ariaDetailsId={ariaDetailsId}
+        onChange={onChange}
+        {...inputProps}
+      />
+    ),
+    [Renderer, name, checked, labelId, ariaDetailsId, inputProps],
   );
 
   return (
@@ -68,7 +71,7 @@ export const RadioAdapter = ({
         type="radio"
         name={name}
         checked={checked}
-        className="sr-only"
+        className={clsx('sr-only peer', className)}
         aria-labelledby={labelId}
         aria-details={ariaDetailsId}
       />

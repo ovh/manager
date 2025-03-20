@@ -1,23 +1,44 @@
-export const GLOBAL_INFRASTRUCTURE_URL = {
-  ASIA: 'https://www.ovhcloud.com/asia/about-us/global-infrastructure/',
-  AU: 'https://www.ovhcloud.com/en-au/about-us/global-infrastructure/',
-  CA: 'https://www.ovhcloud.com/en-ca/about-us/global-infrastructure/',
-  GB: 'https://www.ovhcloud.com/en-gb/about-us/global-infrastructure/',
-  IE: 'https://www.ovhcloud.com/en-ie/about-us/global-infrastructure/',
-  IN: 'https://www.ovhcloud.com/en-in/about-us/global-infrastructure/',
-  SG: 'https://www.ovhcloud.com/en-sg/about-us/global-infrastructure/',
-  DE: 'https://www.ovhcloud.com/de/about-us/global-infrastructure/',
-  ES: 'https://www.ovhcloud.com/es-es/about-us/global-infrastructure/',
-  FR: 'https://www.ovhcloud.com/fr/about-us/global-infrastructure/',
-  IT: 'https://www.ovhcloud.com/it/about-us/global-infrastructure/',
-  MA: 'https://www.ovhcloud.com/fr-ma/about-us/global-infrastructure/',
-  SN: 'https://www.ovhcloud.com/fr-sn/about-us/global-infrastructure/',
-  TN: 'https://www.ovhcloud.com/fr-tn/about-us/global-infrastructure/',
-  NL: 'https://www.ovhcloud.com/nl/about-us/global-infrastructure/',
-  PL: 'https://www.ovhcloud.com/pl/about-us/global-infrastructure/',
-  PT: 'https://www.ovhcloud.com/pt/about-us/global-infrastructure/',
-  QC: 'https://www.ovhcloud.com/fr-ca/about-us/global-infrastructure/',
-  US: 'https://www.ovhcloud.com/en/about-us/global-infrastructure/',
-  WS: 'https://www.ovhcloud.com/es/about-us/global-infrastructure/',
-  DEFAULT: 'https://www.ovhcloud.com/en/about-us/global-infrastructure/',
+export const DEPLOYMENT_MODES_URL = {
+  ASIA:
+    'https://help.ovhcloud.com/csm/asia-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066023',
+  AU:
+    'https://help.ovhcloud.com/csm/en-au-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066022',
+  CA:
+    'https://help.ovhcloud.com/csm/en-ca-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066032',
+  GB:
+    'https://help.ovhcloud.com/csm/en-gb-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066027',
+  IE:
+    'https://help.ovhcloud.com/csm/en-ie-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066035',
+  IN:
+    'https://help.ovhcloud.com/csm/asia-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066023',
+  SG:
+    'https://help.ovhcloud.com/csm/en-sg-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066026',
+  DE:
+    'https://help.ovhcloud.com/csm/de-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066036',
+  ES:
+    'https://help.ovhcloud.com/csm/es-es-documentation-public-cloud?id=kb_browse_cat&kb_id=574a8325551974502d4c6e78b7421938',
+  FR:
+    'https://help.ovhcloud.com/csm/fr-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066031',
+  IT:
+    'https://help.ovhcloud.com/csm/it-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066033',
+  MA:
+    'https://help.ovhcloud.com/csm/fr-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066031',
+  SN:
+    'https://help.ovhcloud.com/csm/fr-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066031',
+  TN:
+    'https://help.ovhcloud.com/csm/fr-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066031',
+  NL:
+    'https://help.ovhcloud.com/csm/en-ie-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066035',
+  PL:
+    'https://help.ovhcloud.com/csm/pl-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066030',
+  PT:
+    'https://help.ovhcloud.com/csm/pt-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066025',
+  QC:
+    'https://help.ovhcloud.com/csm/fr-ca-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066034',
+  US:
+    'https://help.ovhcloud.com/csm/en-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066029',
+  WS:
+    'https://help.ovhcloud.com/csm/es-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066028',
+  DEFAULT:
+    'https://help.ovhcloud.com/csm/en-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066029',
 };

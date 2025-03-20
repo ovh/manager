@@ -1,19 +1,28 @@
-import { DetailedHTMLProps, InputHTMLAttributes, useMemo } from 'react';
+import {
+  ComponentType,
+  DetailedHTMLProps,
+  InputHTMLAttributes,
+  useMemo,
+} from 'react';
 import {
   RadioAdapter,
-  RadioAdapterFactory,
+  RadioAdapterFactoryProps,
   RadioFieldProps,
 } from '@/components/input-adapter';
 import { RadioField } from '@/components/input-adapter/radio-adapter/RadioField';
 
 type KeyValue = string | number;
 
+export type TilesInputRenderProps<T> = RadioAdapterFactoryProps & {
+  element: T;
+};
+
 export type TilesInputProps<T> = {
   elements: T[];
   value: T | null;
   elementKey: (element: T) => KeyValue;
   onChange: (value: T) => void;
-  render: (element: T) => RadioAdapterFactory;
+  render: ComponentType<TilesInputRenderProps<T>>;
   inputProps?: (
     element: T,
   ) => Omit<
@@ -31,7 +40,8 @@ export const TilesInput = <
   elementKey,
   value: selectedValue,
   onChange,
-  render,
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  render: Renderer,
   inputProps,
   subtitle,
   ...radioAdapterProps
@@ -53,7 +63,9 @@ export const TilesInput = <
               value={key}
               checked={key === selectedValueKey}
               onChange={() => onChange(element)}
-              render={render(element)}
+              render={(adapterProps) => (
+                <Renderer {...adapterProps} element={element} />
+              )}
               {...inputProps?.(element)}
             />
           );

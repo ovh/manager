@@ -1,94 +1,74 @@
 import { useTranslation } from 'react-i18next';
-import { OsdsChip, OsdsText, OsdsTile } from '@ovhcloud/ods-components/react';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import { ODS_CHIP_SIZE } from '@ovhcloud/ods-components';
-import { clsx } from 'clsx';
-import './style.scss';
 import '@/translations/deployment-mode';
+import clsx from 'clsx';
+import { PropsWithChildren, ReactNode } from 'react';
 import { RegionChipByType } from '@/components/region-selector/RegionChipByType';
-import { TDeployment } from '@/dto';
+import {
+  Card,
+  CardBody,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/card/Card';
 
 export type DeploymentModeCardProps = Readonly<
-  {
+  PropsWithChildren<{
     labelId?: string;
     ariaDetailsId?: string;
-  } & TDeployment
+    name: string;
+    price?: ReactNode;
+    className?: string;
+  }>
 >;
+
+const backgroundStyle =
+  'peer-enabled:hover:bg-[--ods-color-blue-100] peer-checked:bg-[--ods-color-blue-100] peer-enabled:cursor-pointer';
+const borderStyle =
+  'peer-enabled:hover:border-[--ods-color-blue-600] peer-checked:border-[--ods-color-blue-600] peer-focus-visible:border-[--ods-color-blue-600]';
+const disabledStyle = 'peer-disabled:opacity-50';
 
 export const DeploymentModeCard = ({
   name,
-  beta,
-  comingSoon,
   price,
   labelId,
   ariaDetailsId,
+  className,
+  children,
 }: DeploymentModeCardProps) => {
   const { t } = useTranslation('deployment-mode');
 
   return (
-    <OsdsTile className="deployment-mode-card">
-      <div className="deployment-mode-card__content">
-        <div className="deployment-mode-card__header">
-          <OsdsText
-            color={ODS_THEME_COLOR_INTENT.text}
-            level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-            size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-            className={clsx('leading-8')}
-            id={labelId}
-          >
-            {t(`deployment_mode_card_title_${name}`)}
-          </OsdsText>
+    <Card
+      className={clsx(
+        'items-center',
+        backgroundStyle,
+        borderStyle,
+        disabledStyle,
+        // With tailwind 3 we can't style children from group, but we can style children from parent
+        'peer-checked:[&_.deployment-mode-card-title]:font-bold',
+        className,
+      )}
+    >
+      <CardHeader>
+        <CardTitle id={labelId} className="deployment-mode-card-title">
+          {t(`deployment_mode_card_title_${name}`)}
+        </CardTitle>
+      </CardHeader>
+      <CardBody id={ariaDetailsId}>
+        <div>
+          <RegionChipByType type={name} showTooltip={false} />
         </div>
 
-        <div id={ariaDetailsId} className="deployment-mode-card__content">
-          <div className="mb-3">
-            <RegionChipByType type={name} showTooltip={false} />
-          </div>
-          <div className="mb-3 text-center">
-            <OsdsText
-              size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-              level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-              color={ODS_THEME_COLOR_INTENT.text}
-            >
-              {t(`deployment_mode_card_description_${name}`)}
-            </OsdsText>
-          </div>
-          <div className="mb-3">
-            {beta && (
-              <div>
-                <OsdsChip
-                  className="m-3"
-                  color={ODS_THEME_COLOR_INTENT.success}
-                  size={ODS_CHIP_SIZE.sm}
-                  inline
-                >
-                  {t('deployment_mode_card_beta')}
-                </OsdsChip>
-                <OsdsText
-                  size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-                  level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                  color={ODS_THEME_COLOR_INTENT.text}
-                  className="uppercase font-bold"
-                >
-                  {t('deployment_mode_card_beta_price')}
-                </OsdsText>
-              </div>
-            )}
-            {comingSoon && (
-              <div>
-                <OsdsChip className="m-3" size={ODS_CHIP_SIZE.sm} inline>
-                  {t('deployment_mode_card_coming_soon')}
-                </OsdsChip>
-              </div>
-            )}
-            <div className="mb-3">{price}</div>
-          </div>
+        <div>
+          <CardDescription>
+            {t(`deployment_mode_card_description_${name}`)}
+          </CardDescription>
         </div>
-      </div>
-    </OsdsTile>
+
+        <div>{price}</div>
+
+        <div>{children}</div>
+      </CardBody>
+    </Card>
   );
 };
