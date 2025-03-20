@@ -277,12 +277,7 @@ export default /* @ngInject */ function(
   }
 
   self.refreshRequests = () => {
-    if (
-      isSelectedChoiceDedicatedServer() &&
-      !includes(self.requests, self.intervention.request)
-    ) {
-      self.requests.push(self.intervention.request);
-    } else if (!isSelectedChoiceDedicatedServer()) {
+    if (!isSelectedChoiceDedicatedServer()) {
       remove(self.requests, (req) => self.intervention.request === req);
       self.ticket.category = undefined;
       self.ticket.subcategory = null;
@@ -483,11 +478,6 @@ export default /* @ngInject */ function(
               'intervention',
               'sales',
             );
-          } else {
-            self.requests = clone(self.allRequests);
-            if (isSelectedChoiceDedicatedServer()) {
-              self.requests.push('intervention');
-            }
           }
         });
 
