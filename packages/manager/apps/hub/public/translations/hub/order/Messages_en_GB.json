@@ -1,0 +1,21 @@
+{
+  "hub_order_tracking_title": "Most recent order",
+  "hub_order_tracking_see_all": "View my orders",
+  "hub_order_tracking_error": "Unable to retrieve order tracking",
+  "hub_order_tracking_order_id": "No. {{orderId}}",
+  "order_tracking_history_DELIVERY": "Preparing your order",
+  "order_tracking_history_FRAUD_CHECK": "Your order is being confirmed",
+  "order_tracking_history_FRAUD_DOCS_REQUESTED": "Awaiting supporting documents ",
+  "order_tracking_history_FRAUD_MANUAL_REVIEW": "Checking your order",
+  "order_tracking_history_FRAUD_REFUSED": "Order declined",
+  "order_tracking_history_INVOICE_IN_PROGRESS": "Your order is available",
+  "order_tracking_history_INVOICE_SENT": "Your bill is available",
+  "order_tracking_history_ORDER_ACCEPTED": "Order accepted",
+  "order_tracking_history_ORDER_STARTED": "Your order is being processed",
+  "order_tracking_history_PAYMENT_CONFIRMED": "Payment validated",
+  "order_tracking_history_PAYMENT_INITIATED": "Your payment is being validated",
+  "order_tracking_history_PAYMENT_RECEIVED": "Payment received",
+  "order_tracking_history_REGISTERED_PAYMENT_INITIATED": "Your payment is being validated",
+  "order_tracking_history_custom_payment_waiting": "Payment not received",
+  "order_tracking_history_custom_creation": "Create your order"
+}
