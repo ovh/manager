@@ -2,11 +2,11 @@ import React from 'react';
 import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { ActionMenu, ActionMenuItem } from '@ovh-ux/manager-react-components';
 
-export type ActionsCellParams = {
+export type IpActionsCellParams = {
   ip: string;
 };
 
-export const ActionsCell = ({ ip }: ActionsCellParams) => {
+export const IpActionsCell = ({ ip }: IpActionsCellParams) => {
   const id = `actions-${ip.replace(/\/|\./g, '-')}`;
 
   const items: ActionMenuItem[] = [];
