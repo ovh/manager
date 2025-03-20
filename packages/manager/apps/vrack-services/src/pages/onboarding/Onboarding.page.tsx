@@ -1,7 +1,5 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { useNavigate, Navigate } from 'react-router-dom';
 import {
   Card,
@@ -54,9 +52,7 @@ export default function OnboardingPage() {
         }),
       isExternalHref: true,
       hoverable: true,
-      badges: [
-        { text: t('newBadgeText'), color: ODS_THEME_COLOR_INTENT.primary },
-      ],
+      badges: [{ text: t('newBadgeText') }],
     },
     {
       texts: {
@@ -73,9 +69,7 @@ export default function OnboardingPage() {
         }),
       isExternalHref: true,
       hoverable: true,
-      badges: [
-        { text: t('newBadgeText'), color: ODS_THEME_COLOR_INTENT.primary },
-      ],
+      badges: [{ text: t('newBadgeText') }],
     },
   ];
 
@@ -105,7 +99,7 @@ export default function OnboardingPage() {
       }}
       secondaryButtonLabel={t('moreInfoButtonLabel')}
       secondaryHref={link?.guideLink2}
-      secondaryTarget={OdsHTMLAnchorElementTarget._blank}
+      secondaryTarget="_blank"
       secondaryOnClick={() => {
         trackClick({
           location: PageLocation.page,

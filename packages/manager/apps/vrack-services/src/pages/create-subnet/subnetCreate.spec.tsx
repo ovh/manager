@@ -45,14 +45,14 @@ describe('Vrack Services subnets page test suite', () => {
     });
     await getButtonByVariant({
       container,
-      variant: ODS_BUTTON_VARIANT.flat,
+      variant: ODS_BUTTON_VARIANT.default,
       disabled: false,
     });
 
     clickOnRadioByName({ container, name: 'hasVlan', value: 'vlanNumber' });
     await getButtonByVariant({
       container,
-      variant: ODS_BUTTON_VARIANT.flat,
+      variant: ODS_BUTTON_VARIANT.default,
       disabled: true,
     });
     await changeInputValueByLabelText({
@@ -61,7 +61,7 @@ describe('Vrack Services subnets page test suite', () => {
     });
     const submitButton = await getButtonByVariant({
       container,
-      variant: ODS_BUTTON_VARIANT.flat,
+      variant: ODS_BUTTON_VARIANT.default,
       disabled: false,
     });
 

@@ -7,7 +7,7 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { ActionMenu } from '@ovh-ux/manager-react-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_BUTTON_COLOR } from '@ovhcloud/ods-components';
 import { VrackServicesWithIAM } from '@ovh-ux/manager-network-common';
 import { urls } from '@/routes/routes.constants';
 import { useVrackMenuItems } from '@/components/vrack-id/useVrackMenuItems.hook';
@@ -31,6 +31,7 @@ export const ActionCell: React.FC<VrackServicesWithIAM> = (vs) => {
 
   return (
     <ActionMenu
+      id={`action-menu-${vs.id}`}
       isCompact
       items={[
         {
@@ -49,7 +50,7 @@ export const ActionCell: React.FC<VrackServicesWithIAM> = (vs) => {
         {
           id: 1,
           label: t('action-editDisplayName'),
-          disabled,
+          isDisabled: true,
           onClick: () => {
             trackClick({
               location: PageLocation.datagrid,
@@ -64,8 +65,8 @@ export const ActionCell: React.FC<VrackServicesWithIAM> = (vs) => {
         {
           id: 2,
           label: t('action-deleteVrackServices'),
-          disabled: disabled || isVrackserviceAlreadyAssociated,
-          color: ODS_THEME_COLOR_INTENT.error,
+          isDisabled: disabled || isVrackserviceAlreadyAssociated,
+          color: ODS_BUTTON_COLOR.critical,
           onClick: () => {
             trackClick({
               location: PageLocation.datagrid,

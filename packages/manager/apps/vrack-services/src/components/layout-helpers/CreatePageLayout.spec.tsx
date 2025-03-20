@@ -5,7 +5,6 @@ import React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { render, act, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { getButtonByLabel } from '@ovh-ux/manager-core-test-utils';
 import {
   CreatePageLayout,
@@ -34,7 +33,6 @@ describe('CreatePageLayout Component', () => {
 
     const title = getByText('create-title');
     expect(title).toBeDefined();
-    expect(title).toHaveAttribute('size', ODS_TEXT_SIZE._600);
 
     const description = getByText('create-description');
     expect(description).toBeDefined();

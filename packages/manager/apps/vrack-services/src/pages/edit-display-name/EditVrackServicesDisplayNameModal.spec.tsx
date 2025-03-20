@@ -3,7 +3,6 @@ import '@testing-library/jest-dom';
 import {
   assertModalVisibility,
   changeInputValue,
-  getButtonByIcon,
 } from '@ovh-ux/manager-core-test-utils';
 import { waitFor, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -14,6 +13,7 @@ import {
   getButtonByVariant,
   labels,
   renderTest,
+  getButtonByIcon,
 } from '../../test-utils';
 import { urls } from '@/routes/routes.constants';
 
@@ -26,7 +26,7 @@ describe('Vrack Services edit name test suite', () => {
 
     const editButton = await getButtonByIcon({
       container,
-      iconName: ODS_ICON_NAME.PEN,
+      iconName: ODS_ICON_NAME.pen,
     });
 
     await waitFor(() => fireEvent.click(editButton));
@@ -44,7 +44,7 @@ describe('Vrack Services edit name test suite', () => {
 
     const modifyButton = await getButtonByVariant({
       container,
-      variant: ODS_BUTTON_VARIANT.flat,
+      variant: ODS_BUTTON_VARIANT.default,
     });
 
     await waitFor(() => userEvent.click(modifyButton));
