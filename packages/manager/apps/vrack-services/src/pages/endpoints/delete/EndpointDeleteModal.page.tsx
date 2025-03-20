@@ -14,11 +14,13 @@ import {
   useVrackService,
   useUpdateVrackServices,
 } from '@ovh-ux/manager-network-common';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { PageName } from '@/utils/tracking';
 import { MessagesContext } from '@/components/feedback-messages/Messages.context';
 
 export default function EndpointsDeleteModal() {
   const { t } = useTranslation('vrack-services/endpoints');
+  const { t: tActions } = useTranslation(NAMESPACES.ACTIONS);
   const { id, urn } = useParams();
   const urnToDelete = urn.replace('_', '/');
   const navigate = useNavigate();
@@ -67,10 +69,12 @@ export default function EndpointsDeleteModal() {
 
   return (
     <DeleteModal
+      isOpen
       closeModal={onClose}
       deleteInputLabel={t('modalDeleteEndpointInputLabel')}
       headline={t('modalDeleteEndpointHeadline')}
       description={t('modalDeleteEndpointDescription')}
+      confirmButtonLabel={tActions('delete')}
       onConfirmDelete={() => {
         trackClick({
           location: PageLocation.popup,

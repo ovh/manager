@@ -9,6 +9,8 @@ import onboarding from '../../public/translations/vrack-services/onboarding/Mess
 import createVrack from '../../public/translations/vrack-services/create-vrack/Messages_fr_FR.json';
 import endpoints from '../../public/translations/vrack-services/endpoints/Messages_fr_FR.json';
 import subnets from '../../public/translations/vrack-services/subnets/Messages_fr_FR.json';
+import actions from '@ovh-ux/manager-common-translations/public/translations/actions/Messages_fr_FR.json';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 const APP_NAME = 'vrack-services';
 
@@ -24,6 +26,7 @@ export const translations = {
   [`${APP_NAME}/createVrack`]: createVrack,
   [`${APP_NAME}/endpoints`]: endpoints,
   [`${APP_NAME}/subnets`]: subnets,
+  [NAMESPACES.ACTIONS]: actions,
 };
 
 export const labels = {
@@ -38,4 +41,5 @@ export const labels = {
   createVrack,
   endpoints,
   subnets,
+  actions,
 };

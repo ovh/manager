@@ -1,26 +1,22 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
-  OsdsButton,
-  OsdsModal,
-  OsdsMessage,
-  OsdsText,
+  OdsButton,
+  OdsModal,
+  OdsMessage,
+  OdsText,
 } from '@ovhcloud/ods-components/react';
 import {
-  ODS_BUTTON_TYPE,
   ODS_BUTTON_VARIANT,
-  ODS_MESSAGE_TYPE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
+  ODS_MESSAGE_COLOR,
+  ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
 import {
   ButtonType,
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { handleClick } from '@ovh-ux/manager-react-components';
 import { useVrackList } from '@ovh-ux/manager-network-common';
 import { AssociateAnotherVrack } from './AssociateAnotherVrack.component';
 import { CreateVrack } from '@/components/CreateVrack.component';
@@ -47,23 +43,20 @@ export default function AssociateAnotherVrackModal() {
   }
 
   return (
-    <OsdsModal
-      dismissible
-      headline={t('modalAssociateAnotherVrackTitle')}
-      onOdsModalClose={closeModal}
-    >
+    <OdsModal isOpen isDismissible onOdsClose={closeModal}>
+      <OdsText className="block mb-4" preset={ODS_TEXT_PRESET.heading4}>
+        {t('modalAssociateAnotherVrackTitle')}
+      </OdsText>
       {isError && (
-        <OsdsMessage className="mb-4" type={ODS_MESSAGE_TYPE.error}>
-          <OsdsText
-            level={ODS_TEXT_LEVEL.body}
-            size={ODS_TEXT_SIZE._400}
-            color={ODS_THEME_COLOR_INTENT.text}
-          >
-            {t('modalVrackAssociationError', {
-              error: error?.response?.data?.message,
-            })}
-          </OsdsText>
-        </OsdsMessage>
+        <OdsMessage
+          isDismissible={false}
+          className="block mb-4"
+          color={ODS_MESSAGE_COLOR.critical}
+        >
+          {t('modalVrackAssociationError', {
+            error: error?.response?.data?.message,
+          })}
+        </OdsMessage>
       )}
       {isLoading && <LoadingText title={t('modalLoadingVrackList')} />}
       {!isLoading && !isError && vrackList.length > 0 && (
@@ -73,16 +66,14 @@ export default function AssociateAnotherVrackModal() {
         <CreateVrack closeModal={closeModal} />
       )}
       {(isLoading || isError) && (
-        <OsdsButton
+        <OdsButton
           slot="actions"
-          type={ODS_BUTTON_TYPE.button}
+          type="button"
           variant={ODS_BUTTON_VARIANT.ghost}
-          color={ODS_THEME_COLOR_INTENT.primary}
-          {...handleClick(closeModal)}
-        >
-          {t('modalAssociateCancelButton')}
-        </OsdsButton>
+          onClick={closeModal}
+          label={t('modalAssociateCancelButton')}
+        />
       )}
-    </OsdsModal>
+    </OdsModal>
   );
 }

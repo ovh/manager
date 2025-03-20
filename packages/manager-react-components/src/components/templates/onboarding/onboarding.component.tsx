@@ -19,6 +19,7 @@ type OnboardingLayoutButtonProps = {
   onOrderButtonClick?: () => void;
   onmoreInfoButtonClick?: () => void;
   isActionDisabled?: boolean;
+  isMoreInfoDisabled?: boolean;
 };
 
 export type OnboardingLayoutProps = OnboardingLayoutButtonProps &
@@ -38,6 +39,7 @@ const OnboardingLayoutButton: React.FC<OnboardingLayoutButtonProps> = ({
   onOrderButtonClick,
   onmoreInfoButtonClick,
   isActionDisabled,
+  isMoreInfoDisabled,
 }) => {
   if (!orderButtonLabel && !moreInfoButtonLabel) {
     return <></>;
@@ -64,14 +66,17 @@ const OnboardingLayoutButton: React.FC<OnboardingLayoutButtonProps> = ({
           size={ODS_BUTTON_SIZE.md}
           variant={ODS_BUTTON_VARIANT.outline}
           onClick={() => {
-            onmoreInfoButtonClick?.();
-            if (moreInfoHref) {
-              window.open(moreInfoHref, '_blank');
+            if (!isMoreInfoDisabled) {
+              onmoreInfoButtonClick?.();
+              if (moreInfoHref) {
+                window.open(moreInfoHref, '_blank');
+              }
             }
           }}
           label={moreInfoButtonLabel}
           icon={moreInfoIcon}
           iconAlignment={ODS_BUTTON_ICON_ALIGNMENT.right}
+          isDisabled={isMoreInfoDisabled}
         />
       )}
     </div>
@@ -86,6 +91,8 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
   orderHref,
   moreInfoHref,
   moreInfoButtonLabel,
+  moreInfoIcon,
+  isMoreInfoDisabled,
   children,
   onOrderButtonClick,
   onmoreInfoButtonClick,
@@ -122,6 +129,8 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
             orderButtonLabel={orderButtonLabel}
             moreInfoHref={moreInfoHref}
             moreInfoButtonLabel={moreInfoButtonLabel}
+            moreInfoIcon={moreInfoIcon}
+            isMoreInfoDisabled={isMoreInfoDisabled}
           />
         </section>
       )}

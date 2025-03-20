@@ -1,11 +1,6 @@
 import React from 'react';
-import { OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
-import {
-  ODS_MESSAGE_TYPE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { OdsMessage } from '@ovhcloud/ods-components/react';
+import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import {
   VrackServicesResourceStatus,
@@ -26,25 +21,22 @@ const OperationMessage: React.FC<{ vs?: VrackServicesWithIAM }> = ({ vs }) => {
   }
 
   return (
-    <OsdsMessage
-      type={isError ? ODS_MESSAGE_TYPE.error : ODS_MESSAGE_TYPE.info}
-      className="mb-8"
+    <OdsMessage
+      isDismissible={false}
+      color={
+        isError ? ODS_MESSAGE_COLOR.critical : ODS_MESSAGE_COLOR.information
+      }
+      className="block mb-8"
     >
-      <OsdsText
-        level={ODS_TEXT_LEVEL.body}
-        size={ODS_TEXT_SIZE._400}
-        color={ODS_THEME_COLOR_INTENT.text}
-      >
-        {t(
-          isError
-            ? 'vrackServicesInErrorMessage'
-            : 'vrackServicesNotReadyInfoMessage',
-          {
-            displayName: getDisplayName(vs),
-          },
-        )}
-      </OsdsText>
-    </OsdsMessage>
+      {t(
+        isError
+          ? 'vrackServicesInErrorMessage'
+          : 'vrackServicesNotReadyInfoMessage',
+        {
+          displayName: getDisplayName(vs),
+        },
+      )}
+    </OdsMessage>
   );
 };
 

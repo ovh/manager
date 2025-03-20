@@ -1,4 +1,5 @@
 import React from 'react';
+import { vi } from 'vitest';
 import { waitFor } from '@testing-library/react';
 import { render } from '../../../utils/test.provider';
 import {
@@ -103,6 +104,27 @@ describe('specs:onboarding', () => {
         `[label="${infoBtnLabel}"]`,
       );
       expect(orderButton).toBeVisible();
+    });
+
+    it('disable buttons', async () => {
+      const screen = await setupSpecTest({
+        title: 'title',
+        moreInfoHref: 'https://example.com/order',
+        moreInfoButtonLabel: infoBtnLabel,
+        orderButtonLabel: orderBtnLabel,
+        onOrderButtonClick: vi.fn(),
+        isMoreInfoDisabled: true,
+        isActionDisabled: true,
+      });
+
+      const orderButton = screen.container.querySelector(
+        `[label="${infoBtnLabel}"]`,
+      );
+      const moreInfoButton = screen.container.querySelector(
+        `[label="${orderBtnLabel}"]`,
+      );
+      expect(orderButton).toBeDisabled();
+      expect(moreInfoButton).toBeDisabled();
     });
 
     it('displays children correctly', async () => {

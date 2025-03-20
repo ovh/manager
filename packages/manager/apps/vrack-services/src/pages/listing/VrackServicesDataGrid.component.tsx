@@ -109,8 +109,6 @@ export const VrackServicesDatagrid: React.FC = () => {
   return (
     <>
       <Datagrid
-        // wrapperStyle={{ display: 'flex' }}
-        // tableStyle={{ minWidth: '1000px' }}
         className="pb-[200px] -mx-6"
         sorting={sorting}
         onSortChange={setSorting}

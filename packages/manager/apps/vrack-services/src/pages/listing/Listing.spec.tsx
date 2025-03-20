@@ -28,7 +28,7 @@ describe('Vrack Services listing test suite', () => {
 
     const actionMenuDisabled = await getButtonByIcon({
       container,
-      iconName: ODS_ICON_NAME.ELLIPSIS,
+      iconName: ODS_ICON_NAME.ellipsisVertical,
       nth: 6,
     });
 
@@ -55,7 +55,7 @@ describe('Vrack Services listing test suite', () => {
 
     const actionMenuActive = await getButtonByIcon({
       container,
-      iconName: ODS_ICON_NAME.ELLIPSIS,
+      iconName: ODS_ICON_NAME.ellipsisVertical,
       nth: 1,
     });
 

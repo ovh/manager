@@ -26,14 +26,14 @@ describe('Vrack Services delete test suite', () => {
 
     const actionMenuButton = await getButtonByIcon({
       container,
-      iconName: ODS_ICON_NAME.ELLIPSIS,
+      iconName: ODS_ICON_NAME.ellipsisVertical,
     });
 
     await waitFor(() => fireEvent.click(actionMenuButton));
 
     const deleteVrackService = await getButtonByLabel({
       container,
-      label: labels.common['action-deleteVrackServices'],
+      label: labels.actions.delete,
     });
 
     await waitFor(() => fireEvent.click(deleteVrackService));
@@ -44,7 +44,7 @@ describe('Vrack Services delete test suite', () => {
     });
     await getButtonByVariant({
       container,
-      variant: ODS_BUTTON_VARIANT.flat,
+      variant: ODS_BUTTON_VARIANT.default,
       disabled: true,
     });
     await changeInputValueByLabelText({
@@ -54,7 +54,7 @@ describe('Vrack Services delete test suite', () => {
 
     const submitButton = await getButtonByVariant({
       container,
-      variant: ODS_BUTTON_VARIANT.flat,
+      variant: ODS_BUTTON_VARIANT.default,
       disabled: false,
     });
 

@@ -1,11 +1,6 @@
-import {
-  ODS_MESSAGE_TYPE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
 import React from 'react';
+import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
+import { OdsMessage } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { DetailedOrder } from '@ovh-ux/manager-module-order';
 
@@ -27,23 +22,18 @@ export const DeliveringMessages: React.FC<DeliveringMessagesProps> = ({
       {orders.map((order) => {
         const date = new Date(order.date);
         return (
-          <OsdsMessage
-            className="mt-5"
-            type={ODS_MESSAGE_TYPE.info}
+          <OdsMessage
+            className="block mt-5"
+            color={ODS_MESSAGE_COLOR.information}
             key={`delivering-message-${order.orderId}`}
+            isDismissible={false}
           >
-            <OsdsText
-              level={ODS_TEXT_LEVEL.body}
-              size={ODS_TEXT_SIZE._400}
-              color={ODS_THEME_COLOR_INTENT.text}
-            >
-              {t(messageKey, {
-                date: date.toLocaleDateString(i18n.language.replace('_', '-')),
-                time: `${date.getHours()}:${date.getMinutes()}`,
-                status: t(`orderStatus-${order.status}`),
-              })}
-            </OsdsText>
-          </OsdsMessage>
+            {t(messageKey, {
+              date: date.toLocaleDateString(i18n.language.replace('_', '-')),
+              time: `${date.getHours()}:${date.getMinutes()}`,
+              status: t(`orderStatus-${order.status}`),
+            })}
+          </OdsMessage>
         );
       })}
     </>

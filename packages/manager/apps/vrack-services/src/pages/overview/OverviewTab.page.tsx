@@ -1,7 +1,7 @@
 import React from 'react';
-import { OsdsSpinner, OsdsTile } from '@ovhcloud/ods-components/react';
+import { OdsSpinner, OdsCard } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+import { ODS_SPINNER_SIZE, ODS_CARD_COLOR } from '@ovhcloud/ods-components';
 import { Outlet } from 'react-router-dom';
 import { ovhLocaleToI18next } from '@ovh-ux/manager-react-shell-client';
 import {
@@ -26,9 +26,12 @@ export default function OverviewTab() {
       <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 py-6">
         <div className="p-3">
           {isLoading ? (
-            <OsdsTile className="w-full h-full justify-center" inline rounded>
-              <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
-            </OsdsTile>
+            <OdsCard
+              className="w-full h-full justify-center"
+              color={ODS_CARD_COLOR.neutral}
+            >
+              <OdsSpinner size={ODS_SPINNER_SIZE.md} />
+            </OdsCard>
           ) : (
             <DashboardTile
               title={t('tileTitle')}
