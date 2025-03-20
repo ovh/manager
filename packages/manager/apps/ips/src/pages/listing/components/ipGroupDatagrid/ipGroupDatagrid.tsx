@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Row } from '@tanstack/react-table';
 import {
-  ActionsCell,
+  IpActionsCell,
   IpAlerts,
   IpAntiDdosDisplay,
   IpAttachedService,
@@ -180,7 +180,7 @@ export const IpGroupDatagrid = ({
     {
       id: 'action',
       label: '',
-      cell: (ip: string) => <ActionsCell ip={ip} />,
+      cell: (ip: string) => <IpActionsCell ip={ip} />,
       size: parentHeaders.current.action.clientWidth,
     },
   ];
