@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useReket } from '@ovh-ux/ovh-reket';
-import { Application } from '@ovh-ux/manager-config';
+import { Application, Environment } from '@ovh-ux/manager-config';
 import { fetchFeatureAvailabilityData } from '@ovh-ux/manager-react-components';
 import {
   getBetaAvailabilityFromLocalStorage,
@@ -8,21 +8,27 @@ import {
   isBetaForced,
 } from './localStorage';
 import { BetaVersion, ContainerContext } from './container.context';
-import { useShell } from '@/context';
+import { initShell, Shell } from '@ovh-ux/shell';
+import { ApplicationProvider } from '@/context';
+import { HeaderProvider } from '@/context/header';
+import { setupDevApplication } from '../dev';
 
 export const BETA = 1;
 
 export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
+  const [shell, setShell] = useState<Shell | null>(null);
+
+  useEffect(() => {
+    initShell().then(setShell);
+  }, []);
+
   const reketInstance = useReket();
-  const shell = useShell();
-  const uxPlugin = shell.getPlugin('ux');
   const preferenceKey = 'NAV_RESHUFFLE_BETA_ACCESS';
   const [isLoading, setIsLoading] = useState(true);
   const [chatbotOpen, setChatbotOpen] = useState(false);
   const [chatbotReduced, setChatbotReduced] = useState(false);
   const [application, setApplication] = useState<Application>(undefined);
   const [universe, setUniverse] = useState<string>();
-
   // true if we should we ask the user if he want to test beta version
   const [askBeta, setAskBeta] = useState(false);
 
@@ -53,7 +59,7 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
       }))
       .catch(() => ({
         version: '',
-        livechat: undefined,
+        livechat: false,
       }));
   };
 
@@ -87,9 +93,6 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
         });
 
     return updatePromise.then(() => {
-      if (!accept) {
-        // @TODO open new tab for survey
-      }
       window.location.reload();
     });
   };
@@ -114,6 +117,10 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
    * to provide him the choice.
    */
   useEffect(() => {
+    if (!shell) {
+      return;
+    }
+
     fetchFeatureAvailability()
       .then(({ version, livechat }) => {
         setBetaVersion(version);
@@ -126,18 +133,26 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
         return null;
       })
       .finally(() => setIsLoading(false));
-  }, []);
+  }, [shell]);
 
   useEffect(() => {
-    uxPlugin.onChatbotVisibilityChange(async () => {
-      const chatbotVisibility = await uxPlugin.isChatbotVisible();
+    if (!shell) {
+      return;
+    }
+
+    shell.getPlugin('ux').onChatbotVisibilityChange(async () => {
+      const chatbotVisibility = await shell.getPlugin('ux').isChatbotVisible();
       if (isLivechatEnabled) {
         setChatbotOpen(chatbotVisibility);
       }
     });
-  }, [isLivechatEnabled]);
+  }, [isLivechatEnabled, shell]);
 
   useEffect(() => {
+    if (!shell) {
+      return;
+    }
+
     // special HPC case
     if (window.location.hash?.endsWith('hosted-private-cloud')) {
       return;
@@ -145,15 +160,27 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
     if (application?.universe) {
       setUniverse(application.universe);
     }
-  }, [application]);
+  }, [application, shell]);
 
   useEffect(() => {
+    if (!shell) {
+      return;
+    }
+
     shell.getPlugin('environment').onUniverseChange((universe: string) => {
       setUniverse(universe);
     });
-  }, []);
+  }, [shell]);
+
+  if (!shell) {
+    return <>loading</>;
+  }
+
+  setupDevApplication(shell);
 
   const containerContext = {
+    shell,
+    environment: shell.getPlugin('environment').getEnvironment(),
     createBetaChoice,
     askBeta,
     betaVersion,
@@ -175,7 +202,9 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
 
   return (
     <ContainerContext.Provider value={containerContext}>
-      {children}
+      <ApplicationProvider>
+        <HeaderProvider>{children}</HeaderProvider>
+      </ApplicationProvider>
     </ContainerContext.Provider>
   );
 };

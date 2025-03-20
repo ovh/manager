@@ -6,6 +6,9 @@ import ApplicationContext, {
   ApplicationContextType,
 } from './application.context';
 
+/**
+ * @deprecated use context from useContainer instead
+ */
 export const useApplication = (): ApplicationContextType => {
   const applicationContext = useContext(ApplicationContext);
   if (!applicationContext) {
@@ -15,7 +18,13 @@ export const useApplication = (): ApplicationContextType => {
   return applicationContext;
 };
 
-export const useShell = (): Shell => useApplication().shell;
+/**
+ * @deprecated use shell object from useContainer instead
+ */
+export const useShell = (): Shell => {
+  const { shell } = useContext(ApplicationContext);
+  return shell;
+};
 
 export default {
   useApplication,

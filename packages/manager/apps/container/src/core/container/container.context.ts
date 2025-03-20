@@ -1,4 +1,5 @@
-import { Application } from '@ovh-ux/manager-config';
+import { Application, Environment } from '@ovh-ux/manager-config';
+import { Shell } from '@ovh-ux/shell';
 import { createContext } from 'react';
 
 export enum BetaVersion {
@@ -7,6 +8,8 @@ export enum BetaVersion {
 }
 
 export type ContainerContextType = {
+  shell: Shell;
+  environment: Environment;
   createBetaChoice: (accept?: boolean) => Promise<unknown>;
   askBeta: boolean;
   betaVersion: BetaVersion | string;
