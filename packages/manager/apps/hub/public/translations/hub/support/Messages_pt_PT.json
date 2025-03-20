@@ -1,0 +1,12 @@
+{
+  "hub_support_title": "Últimos pedidos de assistência",
+  "hub_support_read": "Ler",
+  "hub_support_state_open": "Aberto",
+  "hub_support_state_closed": "Encerrado",
+  "hub_support_state_unknown": "Desconhecido",
+  "hub_support_account_management": "Gestão da conta",
+  "hub_support_need_help": "Precisa de ajuda?",
+  "hub_support_need_help_more": "Tem dificuldades em utilizar os seus produtos e serviços? Consulte os nossos manuais agora.",
+  "hub_support_help": "Compreender e utilizar os serviços da OVHcloud",
+  "hub_support_error": "Não foi possível recuperar os seus pedidos de assistência"
+}
