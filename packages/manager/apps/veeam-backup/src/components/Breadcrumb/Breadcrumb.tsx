@@ -60,10 +60,15 @@ export function Breadcrumb() {
 
   const items: BreadcrumbNavigationItem[] = [...rootItems, ...paths];
 
+  const breadcrumbItems = React.useMemo(
+    () => items.map((item) => ({ ...item, id: crypto.randomUUID() })),
+    [items],
+  );
+
   return (
     <OdsBreadcrumb>
-      {items.map((item) => (
-        <OdsBreadcrumbItem key={`breadcrumb-item-${item.label}`} {...item} />
+      {breadcrumbItems.map((item) => (
+        <OdsBreadcrumbItem key={item.id} {...item} />
       ))}
     </OdsBreadcrumb>
   );
