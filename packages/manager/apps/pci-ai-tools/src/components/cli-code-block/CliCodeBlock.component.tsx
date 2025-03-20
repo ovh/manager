@@ -34,7 +34,7 @@ const CliCodeBlock = ({
           size="menu"
           variant="menu"
           mode="menu"
-          className="!shrink-0"
+          className="shrink-0"
         >
           <Files className="w-4 h-4" />
           <span className="sr-only">copy</span>
