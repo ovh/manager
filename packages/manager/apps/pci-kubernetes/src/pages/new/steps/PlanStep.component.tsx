@@ -1,9 +1,12 @@
-import { Check, XCircle } from 'lucide-react';
+import { OsdsMessage } from '@ovhcloud/ods-components/react';
+import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components';
+import { Check, XCircle, Clock12 } from 'lucide-react';
 import { Button } from '@datatr-ux/uxlib';
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TFunction } from 'i18next';
 import RadioTile from '@/components/radio-tile/RadioTile.component';
+
 import { TClusterCreationForm } from '../useCusterCreationStepper';
 import { StepState } from '../useStep';
 import { cn } from '@/helpers';
@@ -75,54 +78,68 @@ const PlanTile = ({
     (type === 'region' && plan.value === 'premium') ||
     (type === 'region-3-az' && plan.value === 'standard');
 
-  const sortedPlans = useMemo(() => {
-    if (type === 'region-3-az') {
-      return [...plans].sort((a) => (a.value === 'premium' ? -1 : 1));
-    }
-    if (type === 'region') {
-      return [...plans].sort((a) => (a.value === 'standard' ? -1 : 1));
-    }
-    return plans;
-  }, [type, plans]);
+  const getSortOrder = (typeRegion: string) => {
+    const priority = {
+      'region-3-az': 'premium',
+      region: 'standard',
+    };
+    return priority[type]
+      ? (a) => (a.value === priority[typeRegion] ? -1 : 1)
+      : () => 0;
+  };
+
+  const sortedPlans = useMemo(() => [...plans].sort(getSortOrder(type)), [
+    type,
+    plans,
+  ]);
 
   return (
     <form data-testid="form" onSubmit={onSubmitHandler}>
+      {!step.isLocked && <PlanTile.Banner type={type} />}
       <div className=" mt-6 grid grid-cols-1  lg:grid-cols-2  xl:grid-cols-3  gap-4">
-        {!step.isLocked &&
-          sortedPlans.map(({ content, ...plan }) => (
-            <RadioTile
-              disabled={planIsDisabled(plan)}
-              key={plan.value}
-              data-testid={`plan-tile-radio-tile-${plan.value}`}
-              name="plan-select"
-              tileClassName="min-h-[350px] "
-              onChange={() => !planIsDisabled(plan) && setSelected(plan.value)}
-              value={plan.value}
-              checked={selected === plan.value}
-            >
-              {PlanTile.Header && plan.title && (
-                <PlanTile.Header
-                  selected={!planIsDisabled(plan) && selected === plan.value}
-                  title={plan.title}
-                  description={plan.description}
-                  disabled={planIsDisabled(plan)}
-                />
-              )}
-              <RadioTile.Separator />
-              <div className="text-sm flex flex-col p-4">
-                <PlanTile.Content
-                  disabled={planIsDisabled(plan)}
-                  contents={content}
-                />
-              </div>
-              {!planIsDisabled(plan) && (
-                <PlanTile.Footer
-                  value={plan.value}
-                  content="kube_add_plan_footer_standard"
-                />
-              )}
-            </RadioTile>
-          ))}
+        {!step.isLocked && (
+          <>
+            {sortedPlans.map(({ content, ...plan }) => (
+              <RadioTile
+                disabled={planIsDisabled(plan)}
+                key={plan.value}
+                data-testid={`plan-tile-radio-tile-${plan.value}`}
+                name="plan-select"
+                tileClassName="h-full "
+                onChange={() =>
+                  !planIsDisabled(plan) && setSelected(plan.value)
+                }
+                value={plan.value}
+                checked={selected === plan.value}
+              >
+                {PlanTile.Header && plan.title && (
+                  <PlanTile.Header
+                    type={type}
+                    value={plan.value}
+                    selected={!planIsDisabled(plan) && selected === plan.value}
+                    title={plan.title}
+                    description={plan.description}
+                    disabled={planIsDisabled(plan)}
+                  />
+                )}
+                <RadioTile.Separator />
+                <div className="text-sm flex flex-col p-4">
+                  <PlanTile.Content
+                    disabled={planIsDisabled(plan)}
+                    contents={content}
+                  />
+                </div>
+
+                {!planIsDisabled(plan) && (
+                  <PlanTile.Footer
+                    value={plan.value}
+                    content={`kube_add_plan_footer_${plan.value}`}
+                  />
+                )}
+              </RadioTile>
+            ))}
+          </>
+        )}
         {step.isLocked && <PlanTile.LockedView value={selected} />}
       </div>
       {!step.isLocked && (
@@ -137,6 +154,24 @@ const PlanTile = ({
         </Button>
       )}
     </form>
+  );
+};
+
+PlanTile.Banner = function PlanTileBanner({ type }: { type: string }) {
+  const { t } = useTranslation(['add']);
+  return (
+    <>
+      {type === 'region-3-az' && (
+        <OsdsMessage className="mt-4" type={ODS_MESSAGE_TYPE.warning}>
+          {t('kube_add_plan_content_standard_3AZ_banner')}
+        </OsdsMessage>
+      )}
+      {type === 'region' && (
+        <OsdsMessage className="mt-4" type={ODS_MESSAGE_TYPE.warning}>
+          {t('kube_add_plan_content_premium_1AZ_banner')}
+        </OsdsMessage>
+      )}
+    </>
   );
 };
 
@@ -164,13 +199,29 @@ PlanTile.Header = function PlanTileHeader({
   title,
   description,
   disabled,
+  value,
+  type,
 }: {
   selected: boolean;
   title: string;
   description: string;
   disabled: boolean;
+  value: string;
+  type: string;
 }) {
   const { t } = useTranslation(['add']);
+
+  const renderWarningMessage = (condition, icon, messageKey, textClass) => {
+    if (!condition) return null;
+    const IconComponent = icon;
+    return (
+      <span className={`${textClass} inline-flex gap-1`}>
+        <IconComponent />
+        <span>{t(messageKey)}</span>
+      </span>
+    );
+  };
+
   return (
     <div className="  px-4 py-2 flex-col w-full ">
       <h5
@@ -180,11 +231,17 @@ PlanTile.Header = function PlanTileHeader({
         {t(title)}
       </h5>
       <div className="mt-2 flex flex-col">
-        {disabled && (
-          <span className="text-critical-500 inline-flex gap-1">
-            <XCircle />
-            <span>{t('kube_add_plan_no_available_plan')}</span>
-          </span>
+        {renderWarningMessage(
+          disabled && value === 'premium' && type === 'region',
+          XCircle,
+          'kube_add_plan_no_available_plan',
+          'text-critical-500',
+        )}
+        {renderWarningMessage(
+          disabled && value === 'standard' && type === 'region-3-az',
+          Clock12,
+          'kube_add_plan_content_standard_very_soon',
+          'text-warning-500',
         )}
         <span>{t(description)}</span>
       </div>

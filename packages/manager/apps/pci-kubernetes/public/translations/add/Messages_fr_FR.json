@@ -56,8 +56,9 @@
   "kube_add_billing_anti_affinity_coming_soon_message_description": "Les tarifications mensuelles seront prochainement disponibles avec l'arrivée des Saving Plans.",
   "kubernetes_add_nodepool_name_placeholder": "Nom du pool de nœuds",
   "kube_add_plan_footer_standard": "Gratuit",
+  "kube_add_plan_footer_premium": "Gratuit durant la phase de Bêta",
   "kube_add_plan_title_standard": "Plan Standard",
-  "kube_add_plan_description_standard": "Bénéficiez de coûts optimisés pour vos ressources de calculs associés à la simplicité opérationnelle d'une solution Kubernetes managé gratuite à vie.",
+  "kube_add_plan_description_standard": "Profitez d'un plan de contrôle gratuit. Payez uniquement vos nœuds de travail (VMs), sans engagement ni SLA garanti. Idéal pour utiliser Kubernetes à moindre coût.",
   "kube_add_plan_content_standard_control": "Control plane entièrement managé",
   "kube_add_plan_content_standard_high_availability": "Haute disponibilité (1 AZ)",
   "kube_add_plan_content_standard_SLO": "99,5% SLO",
@@ -67,12 +68,15 @@
   "kube_add_plan_content_standard_100": "Jusqu'à 100 nœuds par cluster",
   "kube_add_plan_title_premium": "Plan Premium",
   "kube_add_plan_no_available_plan": "Indisponible",
-  "kube_add_plan_description_premium": "Bénéficiez d'un engagement de niveau de service et de déploiement multizones, idéal pour vos charges de travail exigent résilience et haute disponibilité.",
+  "kube_add_plan_description_premium": "Optimisé pour la production avec un SLA garanti. Bénéficiez d’une plateforme robuste pour vos applications critiques. Les nœuds de travail  (VMs) restent payants.",
   "kube_add_plan_content_premium_SLA": "99,99% SLA",
   "kube_add_plan_content_premium_ETCD": "ETCD avec une capacité allant jusqu'à 8 GB",
   "kube_add_plan_content_premium_3AZ_control_plane": "Control plane entièrement managé avec des ressources garanties",
   "kube_add_plan_content_premium_scaling": "Fonctionnalité de mise à l'échelle des noeuds",
   "kube_add_plan_content_premium_version": "Support des trois versions les plus récentes de Kubernetes",
   "kube_add_plan_content_premium_500": "Jusqu'à 500 nœuds par cluster",
-  "kube_add_plan_content_premium_disponibility": "Haute disponibilité et résilience grâce à une architecture distribuée sur trois zones de disponibilité (3-AZ)"
+  "kube_add_plan_content_premium_disponibility": "Haute disponibilité et résilience grâce à une architecture distribuée sur trois zones de disponibilité (3-AZ)",
+  "kube_add_plan_content_premium_1AZ_banner": "L'offre Premium n'est pas disponible dans les régions 1-AZ. Si vous souhaitez profiter du plan Premium, veuillez sélectionner le déploiement en 3-AZ.",
+  "kube_add_plan_content_standard_3AZ_banner": "L'offre Standard n'est pas encore disponible dans les régions 3-AZ. Si vous souhaitez bénéficier de cette offre, veuillez sélectionner un déploiement en 1-AZ.",
+  "kube_add_plan_content_standard_very_soon": "Bientôt disponible"
 }

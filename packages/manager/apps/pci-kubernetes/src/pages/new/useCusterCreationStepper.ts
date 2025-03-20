@@ -28,7 +28,7 @@ export function useClusterCreationStepper(has3AZRegions: boolean) {
     version: '',
     updatePolicy: null,
     network: null,
-
+    plan: null,
     clusterName: '',
   });
 
