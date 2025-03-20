@@ -1,1 +1,2 @@
-export * from './useOrganisationList';
+export * from './useGetOrganisationsList';
+export * from './useGetOrganisationsDetails';
