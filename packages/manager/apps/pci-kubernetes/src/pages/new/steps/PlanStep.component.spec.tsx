@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { vi } from 'vitest';
-import PlanTile from './PlanStep';
+import PlanTile from './PlanStep.component';
 import { StepState } from '../useStep';
 
 describe('PlanTile Component', () => {
