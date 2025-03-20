@@ -45,7 +45,7 @@ export default function JobsList({ jobs }: JobsListProps) {
               navigate('./new');
             }}
           >
-            <Plus className="!size-6" />
+            <Plus className="size-6" />
             {t('createNewJob')}
           </Button>
         </DataTable.Action>
