@@ -1,3 +1,4 @@
+import { Environment } from '@ovh-ux/manager-config';
 import { ModalToDisplayConfiguration } from '@/types/modal-configuration.type';
 import AgreementsUpdateModal from '@/components/AgreementsUpdateModal/AgreementsUpdateModal.component';
 import fetchPendingAgreements from '@/api/agreements';
@@ -10,8 +11,14 @@ export const AgreementsUpdateModalConfiguration: ModalToDisplayConfiguration = {
     intervalInSeconds: 24 * 60 * 60,
     excludedUrls: [
       {
-        appName: 'dedicated',
-        appPath: '#/billing/autorenew/agreements',
+        appName: (environment: Environment) =>
+          environment.getApplicationURL('new-billing')
+            ? 'new-billing'
+            : 'dedicated',
+        appPath: (environment: Environment) =>
+          `#/${
+            environment.getApplicationURL('new-billing') ? '' : 'billing/'
+          }autorenew/agreements`,
       },
     ],
   },

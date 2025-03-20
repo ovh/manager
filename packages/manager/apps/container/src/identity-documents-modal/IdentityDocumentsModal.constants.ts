@@ -17,12 +17,6 @@ export const IdentityDocumentsModalConfiguration: ModalToDisplayConfiguration = 
     userCheck: (user) => !user.kycValidated,
     featuresAvailability: [kycIndiaFeature],
     intervalInSeconds: Infinity,
-    excludedUrls: [
-      {
-        appName: 'dedicated',
-        appPath: '#/identity-documents',
-      },
-    ],
   },
   data: {
     queryParams: {
