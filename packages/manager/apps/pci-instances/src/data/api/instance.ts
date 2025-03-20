@@ -112,6 +112,7 @@ export const reinstallInstance = (
   v6.post(instanceActionUrl(projectId, instanceId, 'reinstall'), {
     imageId,
   });
+
 export const getInstance = ({
   projectId,
   instanceId,
