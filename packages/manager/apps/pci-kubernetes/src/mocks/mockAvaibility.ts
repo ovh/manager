@@ -5,10 +5,12 @@ export const mockAvailabilityWith3az = {
   isPending: false,
   data: {
     plans: [],
-    products: {
-      name: 'kubernetes',
-      regions,
-    },
+    products: [
+      {
+        name: 'kubernetes',
+        regions,
+      },
+    ],
   },
 };
 
