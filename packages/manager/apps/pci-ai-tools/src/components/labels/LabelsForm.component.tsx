@@ -100,14 +100,14 @@ const LabelsForm = React.forwardRef<HTMLInputElement, LabelsFormProps>(
             size="menu"
             variant="menu"
             mode="menu"
-            className="!shrink-0 mt-8 ml-2"
+            className="shrink-0 mt-8 ml-2"
             onClick={form.handleSubmit(onSubmit)}
             disabled={
               disabled ||
               configuredLabels.length >= CONFIGURATION_CONFIG.maxLabelNumber
             }
           >
-            <Plus className="!size-6" />
+            <Plus className="size-6" />
           </Button>
         </div>
         <div className="flex flex-wrap gap-2 mt-4 p-2">
@@ -129,7 +129,7 @@ const LabelsForm = React.forwardRef<HTMLInputElement, LabelsFormProps>(
                   className="inline-flex items-center justify-center h-3 w-3 px-2 py-2 rounded-full border border-primary bg-primary-100 hover:bg-primary-200"
                   onClick={() => removeLabel(label.name)}
                 >
-                  <X className="!size-4" />
+                  <X className="size-4" />
                 </Button>
               </div>
             </Badge>

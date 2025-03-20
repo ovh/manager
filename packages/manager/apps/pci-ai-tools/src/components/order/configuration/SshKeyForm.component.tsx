@@ -124,14 +124,14 @@ const SshKeyForm = React.forwardRef<HTMLInputElement, SshKeyFormProps>(
               size="menu"
               variant="menu"
               mode="menu"
-              className="!shrink-0 mt-8 ml-2"
+              className="shrink-0 mt-8 ml-2"
               onClick={form.handleSubmit(onSubmit)}
               disabled={
                 disabled ||
                 sshKeyList.length >= CONFIGURATION_CONFIG.maxSshKeyNumber
               }
             >
-              <Plus className="!size-6" />
+              <Plus className="size-6" />
             </Button>
           </div>
         )}

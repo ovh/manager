@@ -116,7 +116,7 @@ const UpdateFlavor = () => {
 
   return (
     <RouteModal backUrl="../" isLoading={!(listFlavor.length > 0)}>
-      <DialogContent className="sm:!max-w-2xl">
+      <DialogContent className="sm:max-w-2xl">
         <DialogHeader>
           <DialogTitle data-testid="update-flavor-modal">
             {t('updateFlavorTitle')}
@@ -129,7 +129,7 @@ const UpdateFlavor = () => {
                 control={form.control}
                 name="flavorWithQuantity.flavor"
                 render={({ field }) => (
-                  <FormItem className="max-w-sm sm:!max-w-full">
+                  <FormItem className="max-w-sm sm:max-w-full">
                     <FormControl>
                       <FlavorsSelect
                         {...field}
