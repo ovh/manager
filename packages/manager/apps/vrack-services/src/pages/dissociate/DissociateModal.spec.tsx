@@ -26,7 +26,7 @@ describe('Vrack Services dissociate vrack test suite', () => {
 
     const actionMenuButton = await getButtonByIcon({
       container,
-      iconName: ODS_ICON_NAME.ELLIPSIS,
+      iconName: ODS_ICON_NAME.ellipsisVertical,
     });
 
     await waitFor(() => fireEvent.click(actionMenuButton));

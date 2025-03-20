@@ -46,6 +46,7 @@ export default function EditEndpointDisplayName() {
 
   return (
     <UpdateIamNameModal
+      isOpen
       closeModal={onClose}
       inputLabel={t('endpointUpdateDisplayNameInputLabel')}
       headline={t('modalEndpointUpdateHeadline', {

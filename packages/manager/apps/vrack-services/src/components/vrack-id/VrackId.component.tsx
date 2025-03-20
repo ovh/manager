@@ -1,6 +1,6 @@
 import React from 'react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { OsdsLink } from '@ovhcloud/ods-components/react';
+import { ODS_BUTTON_COLOR } from '@ovhcloud/ods-components';
+import { OdsLink } from '@ovhcloud/ods-components/react';
 import { ActionMenu, DataGridTextCell } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { VrackServicesWithIAM } from '@ovh-ux/manager-network-common';
@@ -29,15 +29,18 @@ export const VrackId: React.FC<VrackIdProps> = ({ isListing, ...vs }) => {
     <div className="flex items-center">
       <div className="grow">
         {vrackId ? (
-          <OsdsLink href={vrackUrl} color={ODS_THEME_COLOR_INTENT.primary}>
-            {vrackId}
-          </OsdsLink>
+          <OdsLink href={vrackUrl} label={vrackId} />
         ) : (
           <DataGridTextCell>{vrackId}</DataGridTextCell>
         )}
       </div>
       <div className="flex-none">
-        <ActionMenu isCompact items={menuItems} disabled={!isEditable(vs)} />
+        <ActionMenu
+          id={`action-menu-${vs.id}`}
+          isCompact
+          items={menuItems}
+          isDisabled={!isEditable(vs)}
+        />
       </div>
     </div>
   );

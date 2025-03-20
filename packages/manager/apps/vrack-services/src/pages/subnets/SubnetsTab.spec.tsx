@@ -84,7 +84,7 @@ describe('Vrack Services subnets page test suite', () => {
 
     const actionMenuButton = await getButtonByIcon({
       container,
-      iconName: ODS_ICON_NAME.ELLIPSIS,
+      iconName: ODS_ICON_NAME.ellipsisVertical,
     });
 
     await waitFor(() => fireEvent.click(actionMenuButton));
@@ -122,7 +122,7 @@ describe('Vrack Services subnets page test suite', () => {
     });
     await getButtonByVariant({
       container,
-      variant: ODS_BUTTON_VARIANT.flat,
+      variant: ODS_BUTTON_VARIANT.default,
       disabled: true,
     });
 
@@ -137,7 +137,7 @@ describe('Vrack Services subnets page test suite', () => {
     });
     const submitButton = await getButtonByVariant({
       container,
-      variant: ODS_BUTTON_VARIANT.flat,
+      variant: ODS_BUTTON_VARIANT.default,
       disabled: false,
     });
 
@@ -158,7 +158,7 @@ describe('Vrack Services subnets page test suite', () => {
 
     const actionMenuButton = await getButtonByIcon({
       container,
-      iconName: ODS_ICON_NAME.ELLIPSIS,
+      iconName: ODS_ICON_NAME.ellipsisVertical,
     });
 
     await waitFor(() => fireEvent.click(actionMenuButton));
@@ -181,7 +181,7 @@ describe('Vrack Services subnets page test suite', () => {
     });
     const submitButton = await getButtonByVariant({
       container,
-      variant: ODS_BUTTON_VARIANT.flat,
+      variant: ODS_BUTTON_VARIANT.default,
       disabled: false,
     });
 
@@ -204,7 +204,7 @@ describe('Vrack Services subnets page test suite', () => {
 
     const actionMenuButton = await getButtonByIcon({
       container,
-      iconName: ODS_ICON_NAME.ELLIPSIS,
+      iconName: ODS_ICON_NAME.ellipsisVertical,
     });
 
     await waitFor(() => fireEvent.click(actionMenuButton));
@@ -222,7 +222,7 @@ describe('Vrack Services subnets page test suite', () => {
     });
     await getButtonByVariant({
       container,
-      variant: ODS_BUTTON_VARIANT.flat,
+      variant: ODS_BUTTON_VARIANT.default,
       disabled: true,
     });
     await changeInputValueByLabelText({
@@ -232,7 +232,7 @@ describe('Vrack Services subnets page test suite', () => {
 
     const submitButton = await getButtonByVariant({
       container,
-      variant: ODS_BUTTON_VARIANT.flat,
+      variant: ODS_BUTTON_VARIANT.default,
       disabled: false,
     });
 
