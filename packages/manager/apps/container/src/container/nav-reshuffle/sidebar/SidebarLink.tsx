@@ -58,7 +58,7 @@ const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
     >
       <span className='flex gap-2 align-items-center'>
         <SvgIconWrapper name={node.svgIcon} height={32} width={32} className='p-1 fill-white block' />
-        {!isShortText && <span>{t(node.translation)}</span>}
+        {!isShortText && <span className={`${style.sidebarLinkTitle}`}>{t(node.translation)}</span>}
       </span>
       <span className="flex justify-end align-items-center">
         {hasService && (
