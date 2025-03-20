@@ -21,7 +21,7 @@ export default class {
             find(this.RENEWAL_TYPES, { type: this.service.getRenew() }) ||
             head(this.RENEWAL_TYPES),
           period:
-            find(this.PERIODS, { period: this.service.renew.period }) ||
+            find(this.PERIODS, { period: this.service.cleanRenewPeriod }) ||
             head(this.PERIODS),
         };
         this.onRenewalTypeChange(this.model.renewalType);
