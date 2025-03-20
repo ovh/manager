@@ -13,7 +13,7 @@ export const useAllSnapshots = (projectId: string) =>
   useQuery({
     queryKey: ['snapshots', projectId],
     enabled: !!projectId,
-    queryFn: () => getSnapshots(projectId || ''),
+    queryFn: () => getSnapshots(projectId),
   });
 
 export const useVolumeSnapshots = (projectId: string) => {

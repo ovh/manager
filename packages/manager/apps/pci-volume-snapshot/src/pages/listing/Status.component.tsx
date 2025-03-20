@@ -1,8 +1,8 @@
-import { TSnapshot } from '@/api/data/snapshots';
 import { OdsBadgeColor } from '@ovhcloud/ods-components';
 import { OdsBadge } from '@ovhcloud/ods-components/react';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { TSnapshot } from '@/api/data/snapshots';
 
 type StatusComponentProps = {
   status: TSnapshot['status'];
