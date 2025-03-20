@@ -514,9 +514,16 @@
                 class="col-sm-12 col-md-5 m-2"
                 data-ng-repeat="(configurationGroups, configurations) in $ctrl.cloudConnect.datacenterConfigurationsGroups"
             >
-                <h4
-                    data-ng-bind="('cloud_connect_region_' + configurations[0].region | translate) + ' ' + ('cloud_connect_region_type' | translate)+ ' ' + configurations[0].regionType"
-                ></h4>
+                <h4>
+                    <span
+                        data-translate="{{'cloud_connect_region_' + configurations[0].region}}"
+                    ></span>
+                    <span class="oui-badge oui-badge_info">
+                        <span
+                            data-translate="{{'cloud_connect_region_type_'+configurations[0].regionType}}"
+                        ></span>
+                    </span>
+                </h4>
                 <div
                     class="oui-tile datacenter-configuration mb-2"
                     data-ng-repeat="configuration in configurations track by configuration.id"
