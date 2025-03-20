@@ -147,14 +147,14 @@ const PublicGitForm = React.forwardRef<HTMLInputElement, PublicGitFormProps>(
               size="menu"
               variant="menu"
               mode="menu"
-              className="!shrink-0 mt-8 ml-2"
+              className="shrink-0 mt-8 ml-2"
               onClick={publicGitForm.handleSubmit(onSubmit)}
               disabled={
                 disabled ||
                 selectedVolumesList.length >= VOLUMES_CONFIG.maxVolumes
               }
             >
-              <Plus className="!size-6" />
+              <Plus className="size-6" />
             </Button>
           </div>
         </Form>

@@ -30,7 +30,7 @@ const PublicGit = ({ gitVolumes, onDelete, updateMode }: PublicGitProps) => {
           className="text-base"
           onClick={() => navigate('./add-public-git')}
         >
-          <Plus className="!size-5" />
+          <Plus className="size-5" />
           {t('addPublicGitButton')}
         </Button>
       )}
