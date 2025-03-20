@@ -64,7 +64,7 @@ const Containers = ({
             onClick={() => navigate('./add-container')}
             disabled={status !== ai.notebook.NotebookStateEnum.STOPPED}
           >
-            <Plus className="!size-5" />
+            <Plus className="size-5" />
             {t('addVolumeButton')}
           </Button>
         )}

@@ -17,7 +17,7 @@ const CliEquivalent = ({ command, controller }: CliEquivalentModalProps) => {
   const { t } = useTranslation('ai-tools/notebooks/create');
   return (
     <Dialog {...controller}>
-      <DialogContent className="sm:!max-w-2xl">
+      <DialogContent className="sm:max-w-2xl">
         <DialogHeader>
           <DialogTitle data-testid="cli-equivalent-modal">
             {t('cliEquivalentModalTitle')}

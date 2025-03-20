@@ -377,7 +377,7 @@ const OrderFunnel = ({
                   ref={accordionContentRef}
                   data-state={showAdvancedConfiguration ? 'open' : 'closed'}
                   className={`
-                  p-0 !px-6 overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down
+                  p-0 px-6 overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down
                   ${!showAdvancedConfiguration && 'max-h-0'}`}
                 >
                   <div className="flex flex-col gap-6">
