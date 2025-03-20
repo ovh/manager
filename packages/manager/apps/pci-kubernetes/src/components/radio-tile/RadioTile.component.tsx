@@ -29,14 +29,13 @@ const RadioTile = ({
   };
   return (
     <div
-      className={cn(tileClassName)}
       role="radio"
       aria-checked={props.checked}
       tabIndex={!disabled ? 0 : undefined}
       onKeyDown={handleLabelKeyDown}
       data-testid="radio-tile-container"
     >
-      <div>
+      <div className={cn(tileClassName)}>
         <input
           onChange={(e) => (props.onChange ? props.onChange(e) : null)}
           className="hidden"
