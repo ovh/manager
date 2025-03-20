@@ -49,7 +49,7 @@ const Tokens = () => {
         data-testid="create-token-button"
         onClick={() => navigate('./add')}
       >
-        <Plus className="!size-5" />
+        <Plus className="size-5" />
         {t('addButtonLabel')}
       </Button>
       {tokenQuery.isSuccess ? (
