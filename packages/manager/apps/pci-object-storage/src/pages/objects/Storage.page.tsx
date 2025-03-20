@@ -1,6 +1,7 @@
 import { TabsPanel, useProject } from '@ovh-ux/manager-pci-common';
 import {
   BaseLayout,
+  ChangelogButton,
   PciGuidesHeader,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
@@ -13,6 +14,7 @@ import {
   OdsBreadcrumbItem,
 } from '@ovhcloud/ods-components/react';
 import { ROUTE_PATHS } from '@/routes';
+import { CHANGELOG_LINKS } from '@/constants';
 
 export default function ObjectsPage() {
   const { t } = useTranslation('objects');
@@ -55,6 +57,7 @@ export default function ObjectsPage() {
             'pci_projects_project_storages_containers_object_description',
           ),
           headerButton: <PciGuidesHeader category="objectStorage" />,
+          changelogButton: <ChangelogButton links={CHANGELOG_LINKS} />,
         }}
         tabs={<TabsPanel tabs={tabs} />}
       >
