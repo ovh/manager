@@ -56,7 +56,7 @@ const RestartJob = ({ job, onError, onSuccess, onClose }: RestartJobProps) => {
   };
   return (
     <RouteModal backUrl="../" isLoading={!job?.id} onClose={onClose}>
-      <DialogContent className="sm:!max-w-2xl">
+      <DialogContent className="sm:max-w-2xl">
         <DialogHeader>
           <DialogTitle data-testid="restart-job-modal">
             {t('restartJobTitle')}

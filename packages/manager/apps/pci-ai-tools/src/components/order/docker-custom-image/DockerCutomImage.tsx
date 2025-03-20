@@ -110,10 +110,10 @@ const DockerCustomImageInput = React.forwardRef<
               size="menu"
               variant="menu"
               mode="menu"
-              className="!shrink-0 mt-8 ml-2"
+              className="shrink-0 mt-8 ml-2"
               onClick={onSubmit}
             >
-              <Plus className="!size-6" />
+              <Plus className="size-6" />
             </Button>
           </div>
         </Form>
