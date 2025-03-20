@@ -38,7 +38,9 @@ export default function ListingPage() {
   const hrefProject = useProjectUrl('public-cloud');
   const { data: project } = useProject();
 
-  const { hasMaintenance, maintenanceURL } = useProductMaintenance(projectId);
+  const { hasMaintenance, maintenanceURL } = useProductMaintenance(
+    projectId || '',
+  );
   const columns = useDatagridColumn();
   const [searchField, setSearchField] = useState('');
   const { filters, addFilter, removeFilter } = useColumnFilters();
@@ -47,7 +49,7 @@ export default function ListingPage() {
     desc: true,
   });
   const { paginatedSnapshots, isLoading } = usePaginatedVolumeSnapshot(
-    projectId,
+    projectId || '',
     pagination,
     sorting,
     filters,
@@ -123,12 +125,14 @@ export default function ListingPage() {
                 onOdsChange={({ detail }) =>
                   setSearchField(detail.value as string)
                 }
+                data-testid="search-input"
               />
               <OdsButton
                 label=""
                 icon="magnifying-glass"
                 size="sm"
                 onClick={onHandleSearch}
+                data-testid="search-button"
               />
 
               <OdsButton
@@ -141,6 +145,7 @@ export default function ListingPage() {
                 })}
                 variant="outline"
                 icon="filter"
+                data-testid="add-filter-btn"
               />
 
               <OdsPopover triggerId="popover-filter">
