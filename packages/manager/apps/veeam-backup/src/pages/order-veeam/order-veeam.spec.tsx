@@ -1,3 +1,4 @@
+import { afterEach, vitest } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import { act } from '@testing-library/react';
 import {
@@ -9,6 +10,8 @@ import { urls } from '@/routes/routes.constant';
 import '@testing-library/jest-dom';
 
 describe('order', () => {
+  afterEach(() => vitest.resetAllMocks());
+
   const orderVeeamDescription = labels.orderVeeam.description;
   const nextStepLabel = labels.orderVeeam.next_step;
 
